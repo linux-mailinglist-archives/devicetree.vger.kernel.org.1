@@ -1,111 +1,116 @@
-Return-Path: <devicetree+bounces-257409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257410-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OBFjOuK8cGkRZgAAu9opvQ
-	(envelope-from <devicetree+bounces-257409-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 12:47:46 +0100
+	id aP+4JehXcGlvXQAAu9opvQ
+	(envelope-from <devicetree+bounces-257410-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 05:36:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEF0756374
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 12:47:46 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3D9B51160
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 05:36:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 616F348B5CB
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 13:01:02 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 161A88A4B7C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 13:01:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04FBB42884C;
-	Tue, 20 Jan 2026 12:53:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35D57429834;
+	Tue, 20 Jan 2026 12:54:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Id5qHpG7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="heUv2y+T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F755425CD7
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 12:53:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BFCE42981F
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 12:54:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768913610; cv=none; b=E9VBGN5ecrXcgN4To6vJzDsEUV6GhLy5hvIimPOhMqorYozYmrJ767PqasDIZQkF7gbGJcZWXdQvtbxYBU3C5UwKYlT6YAyfizGcySOCnzj1SgYyqe/VkmFE+DqcBvtL/O424zBN07Fj1Q7MuFxQH4g183ex48P668pJscEYhFA=
+	t=1768913643; cv=none; b=lI/ad16J9elMzzUSkt+DCE8/mE95RPgTbANj7p90s7uWDBdRzll+xZW5X21cJGig1X/uWxCjzLkUD5OOgbSgozwJ4u8c0lVU7p34fyYlAou6AweLGa0pVNSvrldJmRA+xVX2U1SSGNtJGRtj4mo2XTzBaDNspHjlOMQF1Rv2Cmw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768913610; c=relaxed/simple;
-	bh=sBYnhcqH6qEqlGJT2u1dzWA2jA2jeHDkJ4Fv8Ahehdo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZuvdMQ/DpN/R6IYResBymHlusm+logQxBAz8OoeVCVJuONILkkgaGsUxNuDjSs1FNSxlVEbpCycq5wmikWKczSWTFmpqE2r9U3x0w+CZUMeuSMMegcWipPmHkmAi/ZkVXghXMsPPrXpB79ctTwLtcy389pK9t0Qatm+6YjVxQOw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Id5qHpG7; arc=none smtp.client-ip=209.85.214.174
+	s=arc-20240116; t=1768913643; c=relaxed/simple;
+	bh=rfOiA6dgd2q0nYUa0afVp2YzXs7KfO8y6Iz2Tj9FhBc=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=CokRxKSkvlY4imFDKo+2vIQRDrkX88/FPhQhAbNiInXcnDs5fzkIxwF/xc0j44XgIplNVHho5DZIpGl2ANWXadCs3dFXqWqmblWpCdnaxjWc5Yu4PanBXmNFs+4IFjOO59CP/mRKl4R2ybo4g3ukbB+iJi2m4gyQFkHgITG7XLU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=heUv2y+T; arc=none smtp.client-ip=209.85.221.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-2a07f8dd9cdso33615165ad.1
-        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 04:53:29 -0800 (PST)
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-42fb4eeb482so2930836f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 04:54:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768913608; x=1769518408; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vQA0UiXnoLM7Zoi1HosgUAoRgcMqa5i1Mjp3uZoByh0=;
-        b=Id5qHpG769lMwU+Eev8Fnv+NSgWAb9//k+TgQzoP/HAky0WMaNS0p3C2UihCpuhSbV
-         EjpGZjt8AsCw8aI5QYBPtP7hD8FmB7hFED3vh92OixCsghU9VKKF0VfKJO00XfqAoH9Q
-         EBbOVS3KxSXOXCL18CBJsSH85DiCq/z5ThMVqBra9/jHU1pLZqe8POYigubTlBrCW0JJ
-         SXrWOhAqf2pZvJmVx9s7VlT+RY/8mH1EzjfuxasToSYgRP6zIoK5bKJ0W2u6MaO3WpQy
-         x+iXphdL4pqBa51L9Yf9N/t+oxukbcBfPG3RzgTz5UPAPf7Vc1HqtGz+Hp1HkyeIM1Qg
-         n5hg==
+        d=gmail.com; s=20230601; t=1768913640; x=1769518440; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=upZyTdYXHRuOjxM2BwCRC4m8vkbpnnQvQrullGYrig8=;
+        b=heUv2y+TMHiWn6IA7nGdNuGL/S8dk2BDaRhb7KvKxravXK/9Dbc6gLzlKjDaVHFH3k
+         UWD+gRKMf930f9ByccAZENXFA6hdOQ3l8b2xVpbuI3e+EXwlwvDVWuoyDzQfYP9RxoEL
+         2J0flEEBJN+cNkdLj/PQ9VGA48ee1Rn5HuAh69gXYPETfl93ehQyfIlsfoZzftDXRcnt
+         dyL3B4qUGOuRildIetl6LeYHqMGdM4DPSQbvVVPF4/MigyBpHRrVJIUrQru8s5hlZ74b
+         ZUksKlkArtDJGVskoODKawrZ5rQ4KSVWmRqlxy1qKm0Ok19hcLJJ7Iu7gkyd4D7tsjl3
+         NFIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768913608; x=1769518408;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vQA0UiXnoLM7Zoi1HosgUAoRgcMqa5i1Mjp3uZoByh0=;
-        b=BYhszYLDab/UoES6YcDGyNBduMUjFo8xcM6Y6Kr5GNXpkxE1l4BsevM688bDZYARdU
-         cYePd5CBSwG0ovjoCcMh8gwUDGvyMm5jx18CKIlZv1dxhGHeih1Q1goB+BuYaRUTiNxw
-         OJPsAjSz7rviMwRz4AQ+ojwtc2ypi4mZJo4fvvspxauAR9l/AsrkpRrcsX7vcm1+pmHm
-         UFEZuNSz4dxt6Yk8NbglV7xAOge3/aiAtW3D4KuI7VKrSRuqS8Z7bSaUpc1gzoOnlHw8
-         IHAcWANmGTQ5ym+VQlfn2usnJ8zetpIE32SXArkUhLwYsSK8aGeIKP1ZVDpciEyp1Z7N
-         7czw==
-X-Forwarded-Encrypted: i=1; AJvYcCUyFIWFgp4YkGnn/JCe41p652GfRtaKdtU0/M8mc/J0UWR33sFyoUYlbSbjjfdnQVG/QlTKp35B1d2Y@vger.kernel.org
-X-Gm-Message-State: AOJu0YzmY1X0ErM3jJfAcM2vYitqszd6M3PjxGD7qWiY3JD/BXk5Apjv
-	FL7Yu64BSFK90pniwBbfxngzJjt2Z30/Mmc93cgpzybnluhTXXj1fDos
-X-Gm-Gg: AZuq6aLriLjFPtIwnuQ3YYVysckzyTdKH+9w86JDQUT9iVQfTccnOR4I/iLOzsGoR0D
-	2QM5T5343BJAQ05frOIG6UUVqTa8d5guSCUYwdMpAKPvVt8VG0buCRDuisuy1Vr6hK1j5tdMvbN
-	7Nll+jy5pq64RlmvEuEukvdun0B/6GsJwcL16e88PDwiD8rMFICL3v08C/OnUhYOFRLzS/m6LK3
-	EaxyEt0uOQmB5B3birZxMQ79bXe57u/hwKnAY3JCvOx5JozXn/IKNpHQefnVJZK6k27maFql+l9
-	9nKxA0bEj2Ghq9NDPq5XeZRSrCl4MGNxdon1V3AlFZ1/BA5EDatCu79ESrRG6M3py3eFXUl7kZo
-	l8Xm8sXquPOI8xIsFq21neWH3O84KQ9hh0N/DBdYpFQynh725HhFp4l4n3fMKSVd4mwD0Tmc3Bv
-	6jbXHldRaJ4UnQf4koWG1iNWkhGxV200RSaw==
-X-Received: by 2002:a17:902:e84a:b0:2a0:c942:8adf with SMTP id d9443c01a7336-2a7690523c5mr13664115ad.8.1768913608371;
-        Tue, 20 Jan 2026 04:53:28 -0800 (PST)
-Received: from [172.16.20.12] ([136.226.253.21])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a7190abcf0sm125579405ad.12.2026.01.20.04.53.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Jan 2026 04:53:27 -0800 (PST)
-Message-ID: <c8d539f1-bebd-445b-b0a4-9f3fc62770c0@gmail.com>
-Date: Tue, 20 Jan 2026 18:23:50 +0530
+        d=1e100.net; s=20230601; t=1768913640; x=1769518440;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=upZyTdYXHRuOjxM2BwCRC4m8vkbpnnQvQrullGYrig8=;
+        b=MiNKmL/FdWS0sPT6RBrFuFHiLizVVjUq/BHD/IcjXGZSeOp/K5JyJCHu3Oee5t7krt
+         UTbyfWcrO4S5bSs4P0d5hL8ryBN+az67To6R8zbSzLpP4TObCCEi54flyYL28t3im4Kz
+         78dR52/O7z/hPCMxEeqIQjoyPr3byPbETG35KDaUqK96SO5NJXrw0Up5j6OiMu031RFG
+         29SThYcbsvvYiSzkBv06/dv85QKOm3Ib3HAhlO5285Fpzbmrjp5NriM3qZMdj1eVMjf7
+         RXV44fWwfXatbl1P49/6E+GMBizZUYHDkmkLv2XD9Rn7KDJf+CQT+HKW/oVFvugm58bF
+         JdAw==
+X-Forwarded-Encrypted: i=1; AJvYcCWaNGfOgNrHC1V8SIad/UdeQk+CLTEUX42WCeZiu7cik1SPTUSe9uvjwCBKd7G+1h4YEVqnlTuwoOHj@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy9Pj/+66eeZERjcaC6/0/GHO++pz6u5NfK5nRSyIoFph5jQCTp
+	h4+EKk+j75EXkn8q7JJI5l5Bs7kMXuDRpGEyWfp4K1ViRluhzWcd8HFn
+X-Gm-Gg: AZuq6aLvovPP/UuLyrDE6ijeV1v5J5kud9bC68yEC7TyuPcPUeraUqdhDjVBCHTGCIE
+	rrWbPhT+VDj5ZzomxCJ/WZnzUzK1mel6kqn/mQ06U4oRAJycZFXMyFHjDOgolxJ9BUEm6KJF1K8
+	NlhltUMrXLrdlmLx4zQiVm4w+//uDoeR8BXSt99lh6TpXJMQPxxt/F6cTp9fQIqT6uFzt2tdHz7
+	YSVI5x1sktLu673pXaFY4LsF+NQHFQ/llGWwKHScYG8GnpYgJjSOJ7Z/xdmSKWqJf00o3q32B0j
+	wOy82/NQWfG8S04dJb9z0BQuKc4XrAAwtvG9YIOzFrc8yTqT6M8nSqf+9rqvAUZggBFvL5WE/h8
+	k1NMpTvS2O5hV/HICjD2agutQJqKDZDSR1LxNRtaImLHKAEC70jmV7k/fJ/J8lmlAmeSPD4Tr6f
+	cZgdKH4UOR1LXtK/HbKj1hcywU9XDuP19SE5YSzIfvJE8gug0BBPeSSgooEGkZy1c=
+X-Received: by 2002:a05:6000:2504:b0:430:f58d:40cf with SMTP id ffacd0b85a97d-4356a02c4c3mr18942565f8f.16.1768913639446;
+        Tue, 20 Jan 2026 04:53:59 -0800 (PST)
+Received: from alchark-surface.localdomain (bba-83-110-134-52.alshamil.net.ae. [83.110.134.52])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4359314bbc6sm2404931f8f.12.2026.01.20.04.53.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Jan 2026 04:53:58 -0800 (PST)
+From: Alexey Charkov <alchark@gmail.com>
+Date: Tue, 20 Jan 2026 16:53:54 +0400
+Subject: [PATCH v2] arm64: dts: rockchip: Explicitly request UFS reset pin
+ on RK3576
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] backlight: gpio: add support for multiple GPIOs
- for backlight control
-To: Daniel Thompson <daniel@riscstar.com>
-Cc: lee@kernel.org, danielt@kernel.org, jingoohan1@gmail.com, deller@gmx.de,
- pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
- linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260105085120.230862-1-tessolveupstream@gmail.com>
- <20260105085120.230862-3-tessolveupstream@gmail.com>
- <aVuN7zVUWJ1qsVh8@aspen.lan> <1fedb7d7-3a30-4f0f-961f-09613f2a95d0@gmail.com>
- <aWe-QA_grqNwnE4n@aspen.lan> <ec7b7af7-1343-4988-b783-9ce9b045c8ae@gmail.com>
- <aW9NH5GTwSR-m7VQ@aspen.lan>
-Content-Language: en-US
-From: tessolveupstream@gmail.com
-In-Reply-To: <aW9NH5GTwSR-m7VQ@aspen.lan>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20260120-ufs-rst-v2-1-b5735f1996f6@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAOJ6b2kC/2XMQQ6CMBCF4auQWTumrQRbV97DsMA6hUmEkg4SD
+ endrWxd/i8v3wZCiUngUm2QaGXhOJUwhwr80E09IT9Kg1GmUVo7fAXBJAuGcPeKvLWkzlDec6L
+ A7126taUHliWmzw6v+rf+G6tGjd6Sa2p3crX1137s+Hn0cYQ25/wFnfrYUZ4AAAA=
+X-Change-ID: 20260119-ufs-rst-ffbc0ec88e07
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ "Martin K. Petersen" <martin.petersen@oracle.com>, 
+ Shawn Lin <shawn.lin@rock-chips.com>, 
+ Manivannan Sadhasivam <mani@kernel.org>
+Cc: Quentin Schulz <quentin.schulz@cherry.de>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org, 
+ Alexey Charkov <alchark@gmail.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3949; i=alchark@gmail.com;
+ h=from:subject:message-id; bh=rfOiA6dgd2q0nYUa0afVp2YzXs7KfO8y6Iz2Tj9FhBc=;
+ b=owGbwMvMwCW2adGNfoHIK0sZT6slMWTmVz3XL1lyvd75GNP0eb61RZziFU95Xl/9JufO+euHZ
+ 1/TbTO5joksDGJcDJZiiixzvy2xnWrEN2uXh8dXmDmsTCBDpEUaGICAhYEvNzGv1EjHSM9U21DP
+ 0FDHWMeIgYtTAKZ6kgYjw5mWgCsLt615obBhzdf1sW2hq2tunGW/kRGw+7/1kR2F63QY/ns83rl
+ iguGy5HC/X5uftM4tUF5Y53WUyeLuSZFLLwNOczAAAA==
+X-Developer-Key: i=alchark@gmail.com; a=openpgp;
+ fpr=9DF6A43D95320E9ABA4848F5B2A2D88F1059D4A5
 X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
@@ -114,284 +119,130 @@ X-Spamd-Result: default: False [-0.46 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,gmx.de,lists.freedesktop.org,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-257409-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
 	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[cherry.de,vger.kernel.org,lists.infradead.org,gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-257410-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	FROM_NEQ_ENVFROM(0.00)[tessolveupstream@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alchark@gmail.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: BEF0756374
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[2a2d0000:email,dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,cherry.de:email]
+X-Rspamd-Queue-Id: D3D9B51160
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+Rockchip RK3576 UFS controller uses a dedicated pin to reset the connected
+UFS device, which can operate either in a hardware controlled mode or as a
+GPIO pin.
 
+Power-on default is GPIO mode, but the boot ROM reconfigures it to a
+hardware controlled mode if it uses UFS to load the next boot stage.
 
-On 20-01-2026 15:08, Daniel Thompson wrote:
-> On Tue, Jan 20, 2026 at 10:22:02AM +0530, tessolveupstream@gmail.com wrote:
->>
->>
->> On 14-01-2026 21:33, Daniel Thompson wrote:
->>> On Tue, Jan 13, 2026 at 12:47:26PM +0530, tessolveupstream@gmail.com wrote:
->>>>
->>>>
->>>> On 05-01-2026 15:39, Daniel Thompson wrote:
->>>>> On Mon, Jan 05, 2026 at 02:21:20PM +0530, Sudarshan Shetty wrote:
->>>>>> Extend the gpio-backlight driver to handle multiple GPIOs instead of a
->>>>>> single one. This allows panels that require driving several enable pins
->>>>>> to be controlled by the backlight framework.
->>>>>>
->>>>>> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
->>>>>> ---
->>>>>>  drivers/video/backlight/gpio_backlight.c | 61 +++++++++++++++++-------
->>>>>>  1 file changed, 45 insertions(+), 16 deletions(-)
->>>>>>
->>>>>> diff --git a/drivers/video/backlight/gpio_backlight.c b/drivers/video/backlight/gpio_backlight.c
->>>>>> index 728a546904b0..037e1c111e48 100644
->>>>>> --- a/drivers/video/backlight/gpio_backlight.c
->>>>>> +++ b/drivers/video/backlight/gpio_backlight.c
->>>>>> @@ -17,14 +17,18 @@
->>>>>>
->>>>>>  struct gpio_backlight {
->>>>>>  	struct device *dev;
->>>>>> -	struct gpio_desc *gpiod;
->>>>>> +	struct gpio_desc **gpiods;
->>>>>> +	unsigned int num_gpios;
->>>>>
->>>>> Why not use struct gpio_descs for this?
->>>>>
->>>>> Once you do that, then most of the gbl->num_gpios loops can be replaced with
->>>>> calls to the array based accessors.
->>>>>
->>>>
->>>> Based on your feedback, I have updated the implementation to use
->>>> struct gpio_descs and array-based accessors, as recommended like
->>>> below:
->>>>
->>>> git diff drivers/video/backlight/gpio_backlight.c
->>>> diff --git a/drivers/video/backlight/gpio_backlight.c b/drivers/video/backlight/gpio_backlight.c
->>>> index 037e1c111e48..e99d7a9dc670 100644
->>>> --- a/drivers/video/backlight/gpio_backlight.c
->>>> +++ b/drivers/video/backlight/gpio_backlight.c
->>>> @@ -14,22 +14,37 @@
->>>>  #include <linux/platform_device.h>
->>>>  #include <linux/property.h>
->>>>  #include <linux/slab.h>
->>>> +#include <linux/bitmap.h>
->>>>
->>>>  struct gpio_backlight {
->>>>         struct device *dev;
->>>> -       struct gpio_desc **gpiods;
->>>> +       struct gpio_descs *gpiods;
->>>>         unsigned int num_gpios;
->>>>  };
->>>>
->>>>  static int gpio_backlight_update_status(struct backlight_device *bl)
->>>>  {
->>>>         struct gpio_backlight *gbl = bl_get_data(bl);
->>>> -       unsigned int i;
->>>> +       unsigned int n = gbl->num_gpios;
->>>>         int br = backlight_get_brightness(bl);
->>>> +       unsigned long *value_bitmap;
->>>> +       int words = BITS_TO_LONGS(n);
->>>> +
->>>> +       value_bitmap = kcalloc(words, sizeof(unsigned long), GFP_KERNEL);
->>>
->>> Not sure you need a kcalloc() here. If you want to support more than 32
->>> GPIOs then you can pre-allocate space with a devm_kcalloc() in the probe
->>> method rather than reallocate every time it is used.
->>>
->>> To be honest I don't really mind putting a hard limit on the maximum
->>> gpl->num_gpios (so you can just use a local variable) and having no
->>> allocation at all.
->>>
->>
->> Thanks for the suggestion. I addressed the kcalloc() concern by
->> moving the bitmap allocation to probe using devm_kcalloc() as
->> below:
->>
->> diff --git a/drivers/video/backlight/gpio_backlight.c b/drivers/video/backlight/gpio_backlight.c
->> index 0eb42d8bf1d9..7af5dc4f0315 100644
->> --- a/drivers/video/backlight/gpio_backlight.c
->> +++ b/drivers/video/backlight/gpio_backlight.c
->> @@ -19,32 +19,25 @@
->>  struct gpio_backlight {
->>         struct device *dev;
->>         struct gpio_descs *gpiods;
->> -       unsigned int num_gpios;
->> +       unsigned long *bitmap;
->>  };
->>
->>  static int gpio_backlight_update_status(struct backlight_device *bl)
->>  {
->>         struct gpio_backlight *gbl = bl_get_data(bl);
->> -       unsigned int n = gbl->num_gpios;
->> +       unsigned int n = gbl->gpiods->ndescs;
->>         int br = backlight_get_brightness(bl);
->> -       unsigned long *value_bitmap;
->> -       int words = BITS_TO_LONGS(n);
->> -
->> -       value_bitmap = kcalloc(words, sizeof(unsigned long), GFP_KERNEL);
->> -       if (!value_bitmap)
->> -               return -ENOMEM;
->>
->>         if (br)
->> -               bitmap_fill(value_bitmap, n);
->> +               bitmap_fill(gbl->bitmap, n);
->>         else
->> -               bitmap_zero(value_bitmap, n);
->> +               bitmap_zero(gbl->bitmap, n);
->>
->> -       gpiod_set_array_value_cansleep(gbl->gpiods->ndescs,
->> +       gpiod_set_array_value_cansleep(n,
->>                                        gbl->gpiods->desc,
->>                                        gbl->gpiods->info,
->> -                                      value_bitmap);
->> +                                      gbl->bitmap);
->>
->> -       kfree(value_bitmap);
->>         return 0;
->>  }
->>
->> @@ -67,22 +60,25 @@ static int gpio_backlight_probe(struct platform_device *pdev)
->>         struct device *dev = &pdev->dev;
->>         struct gpio_backlight_platform_data *pdata = dev_get_platdata(dev);
->>         struct device_node *of_node = dev->of_node;
->> -       struct backlight_properties props;
->> +       struct backlight_properties props = { };
->>         struct backlight_device *bl;
->>         struct gpio_backlight *gbl;
->> -       int ret, init_brightness, def_value;
->> -       unsigned int i;
->> +       bool def_value;
->> +       enum gpiod_flags flags;
->> +       unsigned int n;
->> +       int words;
->>
->> -       gbl = devm_kzalloc(dev, sizeof(*gbl), GFP_KERNEL);
->> -       if (gbl == NULL)
->> +       gbl = devm_kcalloc(dev, 1, sizeof(*gbl), GFP_KERNEL);
->> +       if (!gbl)
->>                 return -ENOMEM;
->>
->>         if (pdata)
->>                 gbl->dev = pdata->dev;
->>
->>         def_value = device_property_read_bool(dev, "default-on");
->> -
->> -       gbl->gpiods = devm_gpiod_get_array(dev, NULL, GPIOD_ASIS);
->> +       flags = def_value ? GPIOD_OUT_HIGH : GPIOD_OUT_LOW;
->> +
->> +       gbl->gpiods = devm_gpiod_get_array(dev, NULL, flags);
->>         if (IS_ERR(gbl->gpiods)) {
->>                 if (PTR_ERR(gbl->gpiods) == -ENODEV)
->>                         return dev_err_probe(dev, -EINVAL,
->> @@ -90,12 +86,17 @@ static int gpio_backlight_probe(struct platform_device *pdev)
->>                 return PTR_ERR(gbl->gpiods);
->>         }
->>
->> -       gbl->num_gpios = gbl->gpiods->ndescs;
->> -       if (gbl->num_gpios == 0)
->> +       n = gbl->gpiods->ndescs;
->> +       if (!n)
->>                 return dev_err_probe(dev, -EINVAL,
->> -                       "The gpios parameter is missing or invalid\n");
->> +                       "No GPIOs provided\n");
->> +
->> +       words = BITS_TO_LONGS(n);
->> +       gbl->bitmap = devm_kcalloc(dev, words, sizeof(unsigned long),
->> +                                  GFP_KERNEL);
->> +       if (!gbl->bitmap)
->> +               return -ENOMEM;
->>
->> -       memset(&props, 0, sizeof(props));
->>         props.type = BACKLIGHT_RAW;
->>         props.max_brightness = 1;
->>         bl = devm_backlight_device_register(dev, dev_name(dev), dev, gbl,
->> @@ -106,50 +107,19 @@ static int gpio_backlight_probe(struct platform_device *pdev)
->>         }
->>
->>         /* Set the initial power state */
->> -       if (!of_node || !of_node->phandle) {
->> +       if (!of_node || !of_node->phandle)
->>                 /* Not booted with device tree or no phandle link to the node */
->>                 bl->props.power = def_value ? BACKLIGHT_POWER_ON
->>                                                     : BACKLIGHT_POWER_OFF;
->> -       } else {
->> -               bool all_high = true;
->> -               unsigned long *value_bitmap;
->> -               int words = BITS_TO_LONGS(gbl->num_gpios);
->> -
->> -               value_bitmap = kcalloc(words, sizeof(unsigned long),
->> -                                      GFP_KERNEL);
->> -               if (!value_bitmap)
->> -                       return -ENOMEM;
->> -
->> -               ret = gpiod_get_array_value_cansleep(gbl->gpiods->ndescs,
->> -                                                    gbl->gpiods->desc,
->> -                                                    gbl->gpiods->info,
->> -                                                    value_bitmap);
->> -               if (ret) {
->> -                       kfree(value_bitmap);
->> -                       return dev_err_probe(dev, ret,
->> -                               "failed to read initial gpio values\n");
->> -               }
->> -
->> -               all_high = bitmap_full(value_bitmap, gbl->num_gpios);
->> -
->> -               kfree(value_bitmap);
->> -               bl->props.power =
->> -                       all_high ? BACKLIGHT_POWER_ON :  BACKLIGHT_POWER_OFF;
->> -       }
->> -
->> -       bl->props.brightness = 1;
->> -
->> -       init_brightness = backlight_get_brightness(bl);
->> +       else if (gpiod_get_value_cansleep(gbl->gpiods->desc[0]) == 0)
->> +               bl->props.power = BACKLIGHT_POWER_OFF;
->> +       else
->> +               bl->props.power = BACKLIGHT_POWER_ON;
->>
->> -       for (i = 0; i < gbl->num_gpios; i++) {
->> -               ret = gpiod_direction_output(gbl->gpiods->desc[i],
->> -                                            init_brightness);
->> -               if (ret)
->> -                       return dev_err_probe(dev, ret,
->> -                                       "failed to set gpio %u direction\n",
->> -                                       i);
->> -       }
->> +       bl->props.brightness = def_value ? 1 : 0;
->>
->> +       gpio_backlight_update_status(bl);
->> +
->>         platform_set_drvdata(pdev, bl);
->>         return 0;
->>  }
->>
->> Kindly confirm whether this approach aligns with your
->> expectations.
-> 
-> As mentioned yesterday, I'd rather just review a v2 patch than this kind of
-> meta-patch. Please send a v2 patch instead.
->
+Given that existing bindings (and rk3576.dtsi) expect a GPIO-controlled
+device reset, request the required pin config explicitly.
 
-Got it, will send v2 patch.
+This doesn't appear to affect Linux, but it does affect U-boot:
+
+Before:
+=> md.l 0x2604b398
+2604b398: 00000011 00000000 00000000 00000000  ................
+< ... snip ... >
+=> ufs init
+ufshcd-rockchip ufshc@2a2d0000: [RX, TX]: gear=[3, 3], lane[2, 2], pwr[FASTAUTO_MODE, FASTAUTO_MODE], rate = 2
+=> md.l 0x2604b398
+2604b398: 00000011 00000000 00000000 00000000  ................
+
+After:
+=> md.l 0x2604b398
+2604b398: 00000011 00000000 00000000 00000000  ................
+< ... snip ...>
+=> ufs init
+ufshcd-rockchip ufshc@2a2d0000: [RX, TX]: gear=[3, 3], lane[2, 2], pwr[FASTAUTO_MODE, FASTAUTO_MODE], rate = 2
+=> md.l 0x2604b398
+2604b398: 00000010 00000000 00000000 00000000  ................
+
+(0x2604b398 is the respective pin mux register, with its BIT0 driving the
+mode of UFS_RST: unset = GPIO, set = hardware controlled UFS_RST)
+
+This helps ensure that GPIO-driven device reset actually fires when the
+system requests it, not when whatever black box magic inside the UFSHC
+decides to reset the flash chip.
+
+Cc: stable@vger.kernel.org
+Fixes: c75e5e010fef ("scsi: arm64: dts: rockchip: Add UFS support for RK3576 SoC")
+Reported-by: Quentin Schulz <quentin.schulz@cherry.de>
+Signed-off-by: Alexey Charkov <alchark@gmail.com>
+---
+This has originally surfaced during the review of UFS patches for U-boot
+at [1], where it was found that the UFS reset line is not requested to be
+configured as GPIO but used as such. This leads in some cases to the UFS
+driver appearing to control device resets, while in fact it is the
+internal controller logic that drives the reset line (perhaps in
+unexpected ways).
+
+Thanks Quentin Schulz for spotting this issue.
+
+[1] https://lore.kernel.org/u-boot/259fc358-f72b-4a24-9a71-ad90f2081335@cherry.de/
+---
+Changes in v2:
+- Change default pin pull to pull-down in line with the SoC power-on default
+- Link to v1: https://lore.kernel.org/r/20260119-ufs-rst-v1-1-c8e96493948c@gmail.com
+---
+ arch/arm64/boot/dts/rockchip/rk3576-pinctrl.dtsi | 7 +++++++
+ arch/arm64/boot/dts/rockchip/rk3576.dtsi         | 2 +-
+ 2 files changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3576-pinctrl.dtsi b/arch/arm64/boot/dts/rockchip/rk3576-pinctrl.dtsi
+index 0b0851a7e4ea..7bcfa393416f 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3576-pinctrl.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3576-pinctrl.dtsi
+@@ -5228,6 +5228,13 @@ ufs_rst: ufs-rst {
+ 				/* ufs_rstn */
+ 				<4 RK_PD0 1 &pcfg_pull_none>;
+ 		};
++
++		/omit-if-no-ref/
++		ufs_rst_gpio: ufs-rst-gpio {
++			rockchip,pins =
++				/* ufs_rstn */
++				<4 RK_PD0 RK_FUNC_GPIO &pcfg_pull_down>;
++		};
+ 	};
  
-> 
-> Daniel.
+ 	ufs_testdata0 {
+diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+index 3a29c627bf6d..db610f57c845 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+@@ -1865,7 +1865,7 @@ ufshc: ufshc@2a2d0000 {
+ 			assigned-clock-parents = <&cru CLK_REF_MPHY_26M>;
+ 			interrupts = <GIC_SPI 361 IRQ_TYPE_LEVEL_HIGH>;
+ 			power-domains = <&power RK3576_PD_USB>;
+-			pinctrl-0 = <&ufs_refclk>;
++			pinctrl-0 = <&ufs_refclk &ufs_rst_gpio>;
+ 			pinctrl-names = "default";
+ 			resets = <&cru SRST_A_UFS_BIU>, <&cru SRST_A_UFS_SYS>,
+ 				 <&cru SRST_A_UFS>, <&cru SRST_P_UFS_GRF>;
+
+---
+base-commit: 46fe65a2c28ecf5df1a7475aba1f08ccf4c0ac1b
+change-id: 20260119-ufs-rst-ffbc0ec88e07
+
+Best regards,
+-- 
+Alexey Charkov <alchark@gmail.com>
 
 
