@@ -1,177 +1,203 @@
-Return-Path: <devicetree+bounces-257436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257440-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gOEtL6d6cGktYAAAu9opvQ
-	(envelope-from <devicetree+bounces-257436-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 08:05:11 +0100
+	id yB56CE51cGktYAAAu9opvQ
+	(envelope-from <devicetree+bounces-257440-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 07:42:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88CE252917
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 08:05:11 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3B9452364
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 07:42:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9335568473A
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 14:10:12 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E8F9856C6DF
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 14:40:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1F0A43DA55;
-	Tue, 20 Jan 2026 14:06:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D14D4418DF;
+	Tue, 20 Jan 2026 14:31:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BGjvjIkG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IFNIWqHD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f41.google.com (mail-dl1-f41.google.com [74.125.82.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D0CE43DA41
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 14:06:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.82.41
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768917994; cv=pass; b=EPWztrZwzSQIjVMHaJHUb0nP/VI7chCMoQ7fIY2OWstgFXJJYlyNd9lJfOdthHapkC+EK9rlsyW+rWTsaziFWd6oiQLoDaRQrK3KTnGrm6HNlCHJsoG3y0I7E69S6Ys6uX9AY/rOU7L3AthJRjvdjZiX4GUuLt3h/GBMmQ/lyPs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768917994; c=relaxed/simple;
-	bh=wpxEIKPcpfz5xqKXQMz+0Waal/J17WkYT/xpNLwvFpE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZIu+yt7S9T+92KXw0afADPOjJupzX4AC9Pgp8h5jahiUehrE3/m2n52HDVjyoV4suWFLMtiduCyKqvAD3vNiCsafxb0ttLxG1KwHu3ZXl4YHw/3edN+F72ZVgwTIsTahv2OzMwnd3C41Jx86nlYCweTMUUl0MUqlYufOf1ou/+A=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BGjvjIkG; arc=pass smtp.client-ip=74.125.82.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f41.google.com with SMTP id a92af1059eb24-1233c155a42so6913686c88.1
-        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 06:06:32 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1768917992; cv=none;
-        d=google.com; s=arc-20240605;
-        b=bfpYoqQ7EX7H1X0KgNAJpEUQjrNJgcxF8LI0pEM148VvKNT6JgteOrdYxQ/JPRt6H5
-         ow4bGpdUxpSudQfhlYhGkJ6jb850qee3QQKgm1/0RaLY4oyZPi2CeeqKvLlMEC8lXewf
-         eeou6bKFoP4Tz22BXoGogwxpMzfmGLY+2yVGZmT6JQ3ngwOEe/jayiPEC5Lg0WMMj1Fb
-         90kC24gNcf1hq4ncScokeSWqAyhW9CHpC+ZD4s/lURAC1Q61fReqEYhdSRKjgj6ZvSUy
-         iSx/awwkQoz1O2MIXaBf5BPtl2uoOLYMtng4xGK3RkFInK6Q7J2HnC16INaDw75ml7Rv
-         NK7w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=VXFM7Jkpwqf/MKm70+eA7jdHdZGuqW/xQ6SJbuMNCrg=;
-        fh=2WOd+69rUMXQLNicrkG3B0VFgg9QcBf11z9pu93ESL0=;
-        b=I20A71RENm7mC1L247ZWgroPed1xywOZbEqvYZr8zhRzOlYsIv9AWhMAM+f4Nb0ZqB
-         6aBy3HOjs2uT+jjxPFvWozJ4jQyG65DznthrLiRJ6mYz2y/oLObn/+AgYvO42GkzmsjQ
-         BGRGTWhqn3SW2LUINFMMRBgy3mrl7k7I9MZ8EJ92WTqU0dKDEZEQzjXLdG5Km+aRTUeA
-         6GKoMLRpWMk7HW7H6U2UclrnMQOWaxSygY6jj8B+UZd07jRqXhh6Xhg0xaQ5NhNtwl4k
-         +t9AMTq1md1v2gYQxbwQlojiOi4TQOWDmHGmsx9YOeAkV2e3n9G5JI4v7K2Xr8+PEwgx
-         cIQw==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768917992; x=1769522792; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VXFM7Jkpwqf/MKm70+eA7jdHdZGuqW/xQ6SJbuMNCrg=;
-        b=BGjvjIkG4uOb1dM73dWvbk4Hu8M58GHUOBVlOsB8DWVeY9zDC/HPtYlwHB+HJjAMrQ
-         ntkNBRCVRbM6cf+NpMuQa2al3OqnbxiYUwgjJRTd5dNe0OXGMLKX9Z+IFHaH82TqS881
-         c+y+3VYLH34zhmjCY6L6H/+Z6NH/AXjrs/MPXYA0rz3CCpWiMsrG+zq0Ct/giU1CxMhl
-         xvRDdJV3Pog3EsjhkJir5yWiWHWFjlt5a6XGDS6XTS1zeBliuzea6ILRMlXvmNWcXSTS
-         XEoJS+Es50o/314X8cJBIS+RiUKoNTE60veOxnVENWzEBx9HSzUl28TXedQXJT/Vsulx
-         ZtGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768917992; x=1769522792;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=VXFM7Jkpwqf/MKm70+eA7jdHdZGuqW/xQ6SJbuMNCrg=;
-        b=PzVmskdMIAsxqm3ePeV4Gpvu+6RvvVrT2FXwgfkRhNKmNuUFO6xw3FYfPA1G5+n0Ng
-         8nVAa14OPQezAlXJF8cVqhFlVgxU2UMnn8jEHEmKKq+pIPznndGan0ZVvIxv2vuw8Lyg
-         Ge4nP6MdiiGOHAvG+cslaMyRV7aVE9kWmNvpCgA7A6tuanhxB97RoBzSmZTTU7/rLBxJ
-         nPnokk+2XOfI1W4K2GLcSi2CKsCLbKsLvbX1eCKEIUJNDkkMkrbKXiOV2bdOqSpz95KG
-         6YhayiDXgQyH9wsHMzU7b5UbbbkLsL56X+XsD6fE0AZNJy1Olc66jXUJEltfJfg7zcyL
-         xbmg==
-X-Forwarded-Encrypted: i=1; AJvYcCVSkYQr/+D6XWs9n6sXIQZLf9Oohs2rtpZtLBMo4n79+Gc8h1f9qRapn5SVR4nf88wtOejNzGBvHhUO@vger.kernel.org
-X-Gm-Message-State: AOJu0YwNIyeSlvmkA+AcQREAhIUtujtDvGv0wK5wgeCkt7+FQOp3ZH/E
-	dBMLhitZxM3tbC92EIBiUhSHIOvS3xr95gzcZw/MswXMYG1aOW3FxsDRDHklkuWzFKJFK7hqkSg
-	79H9ClIt8tyXDmOXFWbcHcD0ZHZwgRXI=
-X-Gm-Gg: AY/fxX4naOM7bjzAf0hxERt2RI/MsbdROUOHz5SyeGYF6unyv8HIRLp8iETXhx5FYmR
-	zpCfcPgX8WWbNFhi29v3VRN1ZK8Nejja33imuAR6Bz+FwqVMsTH54IVY7MFIk1SOSGj39kJ68o8
-	W1GJ5sqobrKaSrMyMmqsf7FdmBxCMjQFf4YDjgaTIqUnFva7m7gWMjDSu80ySYvlXDGxGiLjqel
-	AweSKq3muwrEl/lKoldzDAshSbniIUmdQjEBeGyTMHsE2T7AWcbNaY5xPx/pQAnSZu7CF+G6VR/
-	FheNNo39Ox9yLe3bZsH+YfixkOLetzH1syyvnu3nYArLaStTpl+rgYHEPpkyXRxhnc54UCIhpk7
-	SIcEWBRdcYQ==
-X-Received: by 2002:a05:7022:eacf:b0:11a:61df:252a with SMTP id
- a92af1059eb24-1246a95864dmr1539061c88.6.1768917991939; Tue, 20 Jan 2026
- 06:06:31 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBCA2441057;
+	Tue, 20 Jan 2026 14:31:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768919478; cv=none; b=KF66sZMpPjLbn74MkXarhukwdmNRjEosTqSBkVXyYxrwia7MBxDmu/EPQKm7QS1OScasBTffX3XUSCeZ0Po/MqqqtUwcmw281kw3siW62s+AsH11ouVznpkBUqIL7fEQHHQ2Ts10pfJJ13ZZJ8spg7QJVZiBvLx74wpmlVMqm8U=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768919478; c=relaxed/simple;
+	bh=s85xFP9uAEf5v/tpfUOiZujjKSHqwCqldvU+qcb0zC4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DXJXQLUO2p2aqWTppByp/KSt8L+uMRqQFtrHw5KhmmQyheGe182H1DDe/UqIomCwXRMGltjKj6TAO9uRsGNdBkyTaSfYj1p9vJH+3UM3C6/qGBF6/1Oo3Sl5Opz16e+aeoI7kk6at3sB3ezEnoLt3jCONYxeiAEeYaUoUSrH6d4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IFNIWqHD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7630EC16AAE;
+	Tue, 20 Jan 2026 14:31:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768919477;
+	bh=s85xFP9uAEf5v/tpfUOiZujjKSHqwCqldvU+qcb0zC4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=IFNIWqHD7tB96iUwcJdHS4wPuLhuyY1E+8TII0MbXb45WksfpHmEvuraXycep1H+X
+	 2JR31o+qFX0qwaolAMUXMhFQgxCYqKFkYWQOiAg+QV0jpcLtYNq5c7GyJNb6zF/pwn
+	 siAJbMRwrYQY9A0iNpKUQt2/GPOR7IZUSw+IHsH0lyEp3LFGiopgRRRwHFZrZPZgXB
+	 BeDHkcJia7F+VtkI9f4ze9ywgKB3wfKmrV5HRxWX8bSoCsfw3Pq5hoYaCjOOMHTm9h
+	 cpO3vrfTE6WWEFK4fjh8ugTv30nA+k2/UWurldZjvWvp7aM8FUGljFITknZsepX8mj
+	 B4X17ybFNIFjg==
+Message-ID: <3f3c47ea-1660-4bd4-ab89-3bdf58217995@kernel.org>
+Date: Tue, 20 Jan 2026 15:31:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260119-tsc3400-v1-0-82a65c5417aa@protonmail.com> <20260119-tsc3400-v1-1-82a65c5417aa@protonmail.com>
-In-Reply-To: <20260119-tsc3400-v1-1-82a65c5417aa@protonmail.com>
-From: Daniel Baluta <daniel.baluta@gmail.com>
-Date: Tue, 20 Jan 2026 16:09:12 +0200
-X-Gm-Features: AZwV_Qio-O-vTE5PHylE3IQy5B0233NJK43z8Dbc2ZFFAu4-CQCiqmv-S4Yu3Bk
-Message-ID: <CAEnQRZAuSkDmJuMAaJwKXhZRZ868_hFbUAy+raeS-vuZPMnjxA@mail.gmail.com>
-Subject: Re: [PATCH 1/3] doc: add Device Tree binding for AMS TCS3400 light sensor
-To: petr.hodina@protonmail.com
-Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	David Heidelberg <david@ixit.cz>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: backlight: gpio-backlight: allow
+ multiple GPIOs
+To: Sudarshan Shetty <tessolveupstream@gmail.com>, lee@kernel.org,
+ danielt@kernel.org, jingoohan1@gmail.com
+Cc: deller@gmx.de, pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, dri-devel@lists.freedesktop.org,
+ linux-fbdev@vger.kernel.org, linux-leds@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260120125036.2203995-1-tessolveupstream@gmail.com>
+ <20260120125036.2203995-2-tessolveupstream@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260120125036.2203995-2-tessolveupstream@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-257440-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-257436-lists,devicetree=lfdr.de];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_TO(0.00)[protonmail.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmx.de,kernel.org,lists.freedesktop.org,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[danielbaluta@gmail.com,devicetree@vger.kernel.org];
-	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[protonmail.com:email,ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 88CE252917
+	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo]
+X-Rspamd-Queue-Id: B3B9452364
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Jan 19, 2026 at 7:19=E2=80=AFPM Petr Hodina via B4 Relay
-<devnull+petr.hodina.protonmail.com@kernel.org> wrote:
->
-> From: Petr Hodina <petr.hodina@protonmail.com>
->
-> Adds a new YAML binding describing the AMS TCS3400 I2C light sensor,
-> including compatible string, registers, interrupts, power supply, and an
-> example node.
->
-> Signed-off-by: Petr Hodina <petr.hodina@protonmail.com>
+On 20/01/2026 13:50, Sudarshan Shetty wrote:
+> Update the gpio-backlight binding to support configurations that require
+> more than one GPIO for enabling/disabling the backlight.
+
+
+Why? Which devices need it? How a backlight would have three enable
+GPIOs? I really do not believe, so you need to write proper hardware
+justification.
+
+> 
+> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
 > ---
->  .../devicetree/bindings/iio/light/ams,tcs3400.yaml | 54 ++++++++++++++++=
-++++++
->  MAINTAINERS                                        |  6 +++
->  2 files changed, 60 insertions(+)
->
+>  .../leds/backlight/gpio-backlight.yaml        | 24 +++++++++++++++++--
+>  1 file changed, 22 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
+> index 584030b6b0b9..4e4a856cbcd7 100644
+> --- a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
+> +++ b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
+> @@ -16,8 +16,18 @@ properties:
+>      const: gpio-backlight
+>  
+>    gpios:
+> -    description: The gpio that is used for enabling/disabling the backlight.
+> -    maxItems: 1
+> +    description: |
+> +      The gpio that is used for enabling/disabling the backlight.
+> +      Multiple GPIOs can be specified for panels that require several
+> +      enable signals. All GPIOs are controlled together.
+> +    type: array
 
-Please use the correct subject prefix. E.g: dt-bindings: iio: light
+There is no such syntax in the bindings, from where did you get it? Type
+is already defined.
 
-If you are not sure what prefix to use just look around:
+items:
+  minItems: 1
+  maxItems: 3
 
-git log --oneline Documentation/devicetree/bindings/iio/light/
+
+> +    minItems: 1
+> +    items:
+> +      type: array
+> +      minItems: 3
+> +      maxItems: 3
+> +      items:
+> +        type: integer
+
+All this is some odd stuff - just to be clear, don't send us LLM output.
+I don't want to waste my time to review microslop.
+
+Was it done with help of Microslop?
+
+Best regards,
+Krzysztof
 
