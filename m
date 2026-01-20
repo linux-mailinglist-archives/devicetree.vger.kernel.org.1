@@ -1,120 +1,111 @@
-Return-Path: <devicetree+bounces-257235-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257236-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id C930CD3C329
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 10:15:24 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3783FD3C313
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 10:11:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 31A1E68604C
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 08:57:47 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id ECB774A6E7E
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 09:04:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EA973BC4C5;
-	Tue, 20 Jan 2026 08:56:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE8973BC4E5;
+	Tue, 20 Jan 2026 09:04:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="EEUU3Ttc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ET65+//j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 667783B8D65;
-	Tue, 20 Jan 2026 08:56:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EE253B95FE;
+	Tue, 20 Jan 2026 09:04:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768899371; cv=none; b=jiMO55GkbSdF5Oul2RLsCvaKAxtvf3891B2eIh4WPjK/wsOX+JJdLPDyJGjXFR1FN6jCRiRK65FqrkntK3lQyZj+lXEixubNWTNV0707gi1SCySqzhU/vVr9i1e/jQl8H95stEXP/pBCa3hNF/dDVOII1EuEuZqEVF1qXq6L6cQ=
+	t=1768899858; cv=none; b=aU2RRrwVkGGbTM5XEkgM17+ZA6UY60z5FCJT9Qeh47xIRNT+DMTfOwoBeTuoACXu7/GdMtBhd00YrL6qMRFGeB2ElBSKlinct4gxaf7yiCLnOTDLvAy49M1+qIMFqJwUct2lxfjo4YlAFGphljDDSYk/x6y4RJokIPqjWXNMXGI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768899371; c=relaxed/simple;
-	bh=dxgtuw6/eiHYsPsz91G2+s/blRfxmN8N4VduCGdXThM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=HsFqcoJpU87zWxWGfRKeUlqU/MetwbeJc8vMnaHStipHZAUnzUe2GcH2cgJKU5qHgf3z5XlP7VT0PAmuBx8y33gIq73W0zApr9jQEK4L+Er0CmuhsvKf6EDnHeq9zLSvUPbBBD4TudCzQoVfM+QGert1w1IM4NNWBpoK0TeVuak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=EEUU3Ttc; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=dxgtuw6/eiHYsPsz91G2+s/blRfxmN8N4VduCGdXThM=; b=EEUU3TtcX15TaXsTpy+efUZgnr
-	GvRN3Wul0JrdfXvzmqZFYEm9I5Uuv2B2EaNTsD6vtuVQ2+71/Bp0nMxYDfQreGXBBUP8E75DD691R
-	sAIRMetPw+PlnHZgC9fXRBVhvGFkXks8VAGKpYofCqbwcrnGs2p5BTnF2BLcVEKn8IjMgEHdbP4kL
-	vuJxuwoN8jvH8O5oN6rX7N6gVXJ1b2PMiViNfcUxHagz6JNq/xpOXqaAQAnK0ZGMXv6M0VDImvFsR
-	LMq0DtfiImIzlNlKYk4TEmnqJ22gXd2Z3+oQymTtqHxJ9fB9TTcxhaeEAlz4ysIznmFaON5yNz4x1
-	QaakdUVA==;
-Received: from [192.76.154.230] (helo=phil.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1vi7Wm-003K6A-Kw; Tue, 20 Jan 2026 09:55:57 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: Alexey Charkov <alchark@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- Manivannan Sadhasivam <mani@kernel.org>, Shawn Lin <shawn.lin@rock-chips.com>
-Cc: shawn.lin@rock-chips.com, Quentin Schulz <quentin.schulz@cherry.de>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org
-Subject:
- Re: [PATCH] arm64: dts: rockchip: Explicitly request UFS reset pin on RK3576
-Date: Tue, 20 Jan 2026 09:55:56 +0100
-Message-ID: <5743823.mogB4TqSGs@phil>
-In-Reply-To: <6479d7b8-7712-4181-9c82-0021da94d1a8@rock-chips.com>
-References:
- <20260119-ufs-rst-v1-1-c8e96493948c@gmail.com>
- <6479d7b8-7712-4181-9c82-0021da94d1a8@rock-chips.com>
+	s=arc-20240116; t=1768899858; c=relaxed/simple;
+	bh=MN5D24zEMc520dPM1Py+TMz+LPimSRzyHfeoCh7ZTxs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=suzhwa2XfCkXSadb8oUWrWzOtxk0bDL7WPqVzzcbBHcX4w7hoBy/y/gmbc1MVO0GGnaRWt4J/wP0EZG2QxNkUwVxKadt/AnSB2l11zsPujNmrI66gfI3naln7+RJTgfx977MBLZi4RQajDanAN/sEImuzBYy5t0IhZa9u24H2TQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ET65+//j; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76EF7C19423;
+	Tue, 20 Jan 2026 09:04:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768899858;
+	bh=MN5D24zEMc520dPM1Py+TMz+LPimSRzyHfeoCh7ZTxs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ET65+//jCX2UscF/MXtNYdgDvtYU+QIshghTZcm7TU9MCv7h0zskb2NNv7IKB0sRd
+	 IZRfKjZvGU+oRp+Owc/DxXnUfEG2tXcfQlmCZvh06T7yFmD0MCSzUTl2HvDfd33t63
+	 n5GJAbGpCRP1h4mFxGBBpEarmrefEFFpsEYpkCYdajYEk5jNzxzQw6Kr53gFvHX/NH
+	 v0gihRwE3CL8+T0d9pW0zpPR04X/B35edwgSgdaViPpTLKF4a/gZozs2B5ot6e/o9x
+	 97MuczfNqrrP2mQWj+hZLr/DgHVEeylDkcJBKVBnv658LZI6VvKwJoxstPIuXTNAh2
+	 gF/9GOfU6RpqA==
+Date: Tue, 20 Jan 2026 10:04:15 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>, 
+	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Brian Norris <computersforpeace@gmail.com>, Kamal Dasu <kdasu.kdev@gmail.com>, 
+	William Zhang <william.zhang@broadcom.com>, Nick Terrell <terrelln@fb.com>, David Sterba <dsterba@suse.com>, 
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, Simon Glass <sjg@chromium.org>, 
+	Linus Walleij <linusw@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Marcus Folkesson <marcus.folkesson@gmail.com>, Tony Lindgren <tony@atomide.com>, 
+	Roger Quadros <rogerq@kernel.org>, Hauke Mehrtens <hauke@hauke-m.de>, linux-mtd@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org
+Subject: Re: [PATCH v2 10/10] dt-bindings: mtd: partitions: Combine simple
+ partition bindings
+Message-ID: <20260120-origami-lori-of-genius-8fd944@quoll>
+References: <20260119-dt-mtd-partitions-v2-0-77ebb958a312@kernel.org>
+ <20260119-dt-mtd-partitions-v2-10-77ebb958a312@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260119-dt-mtd-partitions-v2-10-77ebb958a312@kernel.org>
 
-Am Dienstag, 20. Januar 2026, 02:39:28 Mitteleurop=C3=A4ische Normalzeit sc=
-hrieb Shawn Lin:
-> =E5=9C=A8 2026/01/19 =E6=98=9F=E6=9C=9F=E4=B8=80 17:22, Alexey Charkov =
-=E5=86=99=E9=81=93:
-> > Rockchip RK3576 UFS controller uses a dedicated pin to reset the connec=
-ted
-> > UFS device, which can operate either in a hardware controlled mode or a=
-s a
-> > GPIO pin.
-> >=20
->=20
-> It's the only one 1.2V IO could be used on RK3576 to reset ufs devices,
-> except ufs refclk. So it's a dedicated pin for sure if using ufs, that's
-> why we put it into rk3576.dtsi.
->=20
-> > Power-on default is GPIO mode, but the boot ROM reconfigures it to a
-> > hardware controlled mode if it uses UFS to load the next boot stage.
-> >=20
->=20
-> ROM code could be specific, but the linux/loader driver is compatible=EF=
-=BC=8C
-> so for the coming SoCs, with more 1.2V IO could be used, it's more
-> flexible to use gpio-based instead of hardware controlled(of course,
-> move reset pinctrl settings into board dts).
->=20
-> > Given that existing bindings (and rk3576.dtsi) expect a GPIO-controlled
-> > device reset, request the required pin config explicitly.
-> >=20
-> > This doesn't appear to affect Linux, but it does affect U-boot:
-> >=20
->=20
-> IIUC, it's more or less a fix for loader, more precisely U-boot here?
-> I'm not entirely certain about the handling here, is it standard
-> convention to add a fixes tag in this context?
+On Mon, Jan 19, 2026 at 07:48:31PM -0600, Rob Herring (Arm) wrote:
+> Several partition node bindings are just a compatible plus properties
+> defined in partition.yaml. Move all of these bindings to a single schema
+> file.
+> 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> -        partition@200000 {
+> -            compatible = "tfa-bl31";
+> -            reg = <0x200000 0x100000>;
+> -            align = <0x4000>;
+> -        };
+> -    };
+> diff --git a/Documentation/devicetree/bindings/mtd/partitions/brcm,bcm4908-partitions.yaml b/Documentation/devicetree/bindings/mtd/partitions/brcm,bcm4908-partitions.yaml
+> index 159b32d12803..a6edf145df57 100644
+> --- a/Documentation/devicetree/bindings/mtd/partitions/brcm,bcm4908-partitions.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/partitions/brcm,bcm4908-partitions.yaml
+> @@ -29,11 +29,7 @@ properties:
+>  
+>  patternProperties:
+>    "^partition@[0-9a-f]+$":
+> -    $ref: partition.yaml#
+> -    properties:
+> -      compatible:
+> -        const: brcm,bcm4908-firmware
+> -    unevaluatedProperties: false
+> +    type: object
 
-Yes, a fixes tag is warranted here, in Linux it "only" fixes a potential
-issue due to the mismatch between pinconfig and gpio during probe.
+I think this is not specific enough now and you should have here $ref
+(e.g. to simple-partition.yaml) with unevaluatedProperties. Otherwise
+schema does not report:
+1. bogus properties in partition@ nodes without compatibles (like the
+   first one in the example),
+2. partition@ nodes with some other compatibles (non-partition like,
+   e.g. whatever I2C device stuffed there for which there is a schema of
+   course)
 
-nce this patch then enters the kernel, it can be cherry-picked to
-the current u-boot development cycle. I don't think u-boot is doing
-stable releases though, so U-Boot will only profit for the next
-version where this is included.
-
-Heiko
-
+Best regards,
+Krzysztof
 
 
