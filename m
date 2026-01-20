@@ -1,87 +1,123 @@
-Return-Path: <devicetree+bounces-257221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BCECD3C108
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 08:56:11 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14E2AD3C14D
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 09:03:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B5483441158
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 07:54:51 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8E680582DEB
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 07:56:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F1373A89C4;
-	Tue, 20 Jan 2026 07:54:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 870D03B8D65;
+	Tue, 20 Jan 2026 07:55:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H0C6eT+9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LNi/4U+Y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B6BF33D50B;
-	Tue, 20 Jan 2026 07:54:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CA473B8D58
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 07:55:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768895687; cv=none; b=VlS0CidMTEPl4GwRRn5iRAZoFNSAC8byXB0QRVtHsyywxHhJZD3kp3VdE8JZAQeAsGMIM54JP59RAcCO8Ycy9xGhOWTfvUsY8hCva2zGNmX0UeCT6BKK3z77/vOinBfgSuNQgnCAxVqCoBo9iGSfB4wLVI1rFwQh3HBG/Uxyjw8=
+	t=1768895718; cv=none; b=YCIKkDoiRWp+WSs303/qvEuEzzjMjymhkNi3psne5NfBroZcXvq3rSXchGcNb0wO74L+MDRoyayRzhhkET9ZJcH1e6MlclQ7Lqp5MpFxE4gi9Fgvg8BTnYKj27aVI1k99b6rvJ+rtUwBuqf5emF5YiGqjWs6/3dRMC3MLw+5IdE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768895687; c=relaxed/simple;
-	bh=B726PHTSmFoDDIvtou6n2TxR0c1xXbiJY524zsjJtpo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Sy7fpomTkyho7QvIG0HoSdheFBeK8cl0jDCHVezJHmMf0anNvmK3eJnEJakarRvKBy1Idej7KsI7DQptt8fjK4YVT18E+Qbs3e98p4/N79hWCyxq8xXbizQt0Oy9W1ZvrdysG4ujQSrA3wHEDWd5xN0PHBIJDK3EhN1CoT8cU5A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H0C6eT+9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F985C16AAE;
-	Tue, 20 Jan 2026 07:54:46 +0000 (UTC)
+	s=arc-20240116; t=1768895718; c=relaxed/simple;
+	bh=TMLsqINFJyrKXhaZG2FJM4ezyn4y9q99PGcQ/6K3rFU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rYxii3F7W2fTbsOTa3BWQg5cVTNWdC77GLhj834h9A/m8igTkBGvOWhHaDklqgW9LNpT+AXJQpwRSbI5BeVJiNdeFrtJGDwP4TZu21dt4WtQMYUfHoxJ4FyVV7y75K4wRzDoLVdHqsjD76MNJRygKqvMQHUgYzyggpuFeinpafE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LNi/4U+Y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6F93C2BCB2
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 07:55:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768895686;
-	bh=B726PHTSmFoDDIvtou6n2TxR0c1xXbiJY524zsjJtpo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=H0C6eT+994EWlYBN33+wT2pGsYHsDgja6wB3ZmJcS8QQAeSIinXoiartbKEzfPZAi
-	 IfDUu5MoQ5sQrnfa2tdGy3frZrkMgsM9flVupYVy3J8umUc2jwa9Wgams+vfJgLdVr
-	 4edxaL24YiiBITeEarfWWqOjszsdvy0on8c7pdpQGB7/MrsEGgS3l+wR+NcSB12u4+
-	 eIlS0x4Av9Wzl8hTr7cSaTNLBwivl2zF7pRz4cxgThRykeEupIEqX8WPJCQEdHva9J
-	 hPFLeEU41UFX4KJpIODM5XUvjkrNqS2HhOxOT3vHHx0Ud/YeDSCn5d5TiMJEgshkrC
-	 Xix/LScERsVfw==
-Date: Tue, 20 Jan 2026 08:54:44 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Brian Norris <computersforpeace@gmail.com>, Kamal Dasu <kdasu.kdev@gmail.com>, 
-	William Zhang <william.zhang@broadcom.com>, Nick Terrell <terrelln@fb.com>, David Sterba <dsterba@suse.com>, 
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, Simon Glass <sjg@chromium.org>, 
-	Linus Walleij <linusw@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Marcus Folkesson <marcus.folkesson@gmail.com>, Tony Lindgren <tony@atomide.com>, 
-	Roger Quadros <rogerq@kernel.org>, Hauke Mehrtens <hauke@hauke-m.de>, linux-mtd@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org
-Subject: Re: [PATCH v2 08/10] dt-bindings: mtd: fixed-partitions: Restrict
- undefined properties
-Message-ID: <20260120-lime-nautilus-of-promise-8db3a2@quoll>
-References: <20260119-dt-mtd-partitions-v2-0-77ebb958a312@kernel.org>
- <20260119-dt-mtd-partitions-v2-8-77ebb958a312@kernel.org>
+	s=k20201202; t=1768895717;
+	bh=TMLsqINFJyrKXhaZG2FJM4ezyn4y9q99PGcQ/6K3rFU=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
+	b=LNi/4U+YXla5CSde8B0UCcyl6TTmcg7RDk+rUCKE2Tuo5l8q54R2Lzu4cZkF3aPCP
+	 36pRRmhzO4jcrstA4tyuI8kz9n4HRzKauNmo7obCQXKUfQtonJRC9aGSB+dwUPkfa4
+	 rhKzNB0KpHv4miU2MlP0UTlPfcCP0+Ita2ZTdzVupQuQr6wB3vNMRXLfNzh49YgY4j
+	 0JfNyf1/93p1u3C2IkqFcqNLVfkavlUVDKw2WrJKxCRzO0D7ieKLc0/S6ETJKm1frc
+	 CMAFrWYGDFvoHaJE3MYihNWFCSzrEHgqXD/PqAdaFNNOwzzPZ/4DnjVdHAWy9oJdRR
+	 AEjvSrMg/OQTQ==
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-382f4aa8dd1so47818651fa.3
+        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 23:55:17 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVI+94bsfxgKhrc4UsnBYZgtn8flAV9b8PQpfud3kjPpRVtnk+ZHVZuALvGUBUOEYahnkY/g00jriDS@vger.kernel.org
+X-Gm-Message-State: AOJu0YxgT/GEV/QYuut2zgdDOIFd5mjWWkZTPGifoxd83b3wjGA/2pty
+	oMYw1QwfbCjfye73BghsY+P48mu2x1mZeww0mUUQNO+pIM+xbGtWB2bU/OUKI280oBFZyxS/wD6
+	+5rOgKVO8q0bobdDGv57aeE5LqYSzVzg=
+X-Received: by 2002:a05:651c:1443:b0:37b:97b7:a048 with SMTP id
+ 38308e7fff4ca-385a54354fbmr4917361fa.17.1768895716136; Mon, 19 Jan 2026
+ 23:55:16 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260119-dt-mtd-partitions-v2-8-77ebb958a312@kernel.org>
+References: <20260119-soc-of-root-v1-0-32a0fa9a78b4@oss.qualcomm.com> <20260119-soc-of-root-v1-8-32a0fa9a78b4@oss.qualcomm.com>
+In-Reply-To: <20260119-soc-of-root-v1-8-32a0fa9a78b4@oss.qualcomm.com>
+Reply-To: wens@kernel.org
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Tue, 20 Jan 2026 15:55:00 +0800
+X-Gmail-Original-Message-ID: <CAGb2v64uUhbEkB+iFjs5FGYR8E7=2nyNxDi646PmnygBZa6hQA@mail.gmail.com>
+X-Gm-Features: AZwV_Qj3MBFPhHKAOhUS4trI6djFD2VyeTyhcWYMtPVh-frJE3FOzmJGjGidA8s
+Message-ID: <CAGb2v64uUhbEkB+iFjs5FGYR8E7=2nyNxDi646PmnygBZa6hQA@mail.gmail.com>
+Subject: Re: [PATCH 8/8] soc: sunxi: mbus: don't access of_root directly
+To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Danilo Krummrich <dakr@kernel.org>, "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev, 
+	linux-renesas-soc@vger.kernel.org, linux-sunxi@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jan 19, 2026 at 07:48:29PM -0600, Rob Herring (Arm) wrote:
-> The fixed-partitions schema allowed undefined properties in order to
-> avoid warnings when there are nested fixed-partitions.
-> 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+On Mon, Jan 19, 2026 at 6:40=E2=80=AFPM Bartosz Golaszewski
+<bartosz.golaszewski@oss.qualcomm.com> wrote:
+>
+> Don't access of_root directly as it reduces the build test coverage for
+> this driver with COMPILE_TEST=3Dy and OF=3Dn. Use existing helper functio=
+ns
+> to retrieve the relevant information.
+
+I was somewhat expecting a matching change to the Kconfig to add
+COMPILE_TEST to the "depends on" line.
+
+But maybe the case is already hit with ARM=3Dy && USE_OF=3Dn ?
+
+ChenYu
+
+> Suggested-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
 > ---
->  .../devicetree/bindings/mtd/partitions/fixed-partitions.yaml       | 7 +++++--
->  Documentation/devicetree/bindings/mtd/partitions/partition.yaml    | 2 +-
->  2 files changed, 6 insertions(+), 3 deletions(-)
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-
-Best regards,
-Krzysztof
-
+>  drivers/soc/sunxi/sunxi_mbus.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/soc/sunxi/sunxi_mbus.c b/drivers/soc/sunxi/sunxi_mbu=
+s.c
+> index 1734da357ca21b249740e089698275507ea98a8a..8bc5f62ff258837d3f3b30cb8=
+4b60d1872b31c27 100644
+> --- a/drivers/soc/sunxi/sunxi_mbus.c
+> +++ b/drivers/soc/sunxi/sunxi_mbus.c
+> @@ -118,7 +118,7 @@ static const char * const sunxi_mbus_platforms[] __in=
+itconst =3D {
+>
+>  static int __init sunxi_mbus_init(void)
+>  {
+> -       if (!of_device_compatible_match(of_root, sunxi_mbus_platforms))
+> +       if (!of_machine_compatible_match(sunxi_mbus_platforms))
+>                 return 0;
+>
+>         bus_register_notifier(&platform_bus_type, &sunxi_mbus_nb);
+>
+> --
+> 2.47.3
+>
 
