@@ -1,132 +1,180 @@
-Return-Path: <devicetree+bounces-257593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257594-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MACjMVr1b2m+UQAAu9opvQ
-	(envelope-from <devicetree+bounces-257593-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 22:36:26 +0100
+	id aBb1CX/vb2m+UQAAu9opvQ
+	(envelope-from <devicetree+bounces-257594-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 22:11:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id B33C54C5EF
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 22:36:26 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAB9E4C036
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 22:11:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9C95482229B
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 19:49:36 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4FC9D884803
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 19:49:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CD2D393418;
-	Tue, 20 Jan 2026 19:49:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65C93394496;
+	Tue, 20 Jan 2026 19:49:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="osFQ5eCK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q4ytq5VT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35D6A37A49D;
-	Tue, 20 Jan 2026 19:49:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEA2839341F;
+	Tue, 20 Jan 2026 19:49:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768938571; cv=none; b=UlhmKkcUiT50XKjy61oE/iVzqnOKvLk2f8bBzScLHErnNnux1PaEri6KnN/GnHJ/Y6SDat1SWMuRan3hiag18nEKaBNrk+jEXpTi7idH64w+0CdW+3PgR/kFexOfBYIka3sRubUs6AgBcMR2z9d6aPFFNh7WtfsZy10uqb0UlS4=
+	t=1768938581; cv=none; b=T9Hhl2p2tF4Ol4F+w7yvfhaE/9BT9oTbxjmKocmmu8oHF7kvVOWAyNsxFeTueVT/8EZmAitIIYqftsNSMHWV+eXnqekhDAu3hbMPfIQ4xpf3MFHEcEw+TepagBznP3GElxJJkjpG2HFkwuwJyqCuZO9EJEQY5JpfnVKqSPkSKnE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768938571; c=relaxed/simple;
-	bh=mTot7Q38/x/8CwocVTc+5EvDGHnAEp5pvFVT9iyOkas=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lhptHp0lE45E0Qt45krvDcHs7hM6wgDntlf2sOVSIyzT6qKRv+Pov0+uuWsjS+/s+U5637S1ovXpUB45tx8L7X0pQTH8SPudjJplyfy9QBHTw87Sz0Ot5OEbNa0CjAPKYPOR4gvF3oR7jpYt/p0oswpqQJ4Z4jQJTy9dGvHIRH8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=osFQ5eCK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0022C16AAE;
-	Tue, 20 Jan 2026 19:49:27 +0000 (UTC)
+	s=arc-20240116; t=1768938581; c=relaxed/simple;
+	bh=tsWM3d8iCmhp/RJs7MDgtxaiXZPebNGaqNIDAPcjfF8=;
+	h=From:Date:Content-Type:MIME-Version:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=nBf7tFNNS5bpfqOhkOmBJxiOuDzwuNrwOLg5egSXkjHfI/AjLI+F1SRMMYVFqgNV9f6wGsVSwyEjuT4oOT54H9tktqx9zq44Ggghv28A7dynYJy3/ua/MSV4+96zMbXJwaMrOsghi9Y1safpSJS8Zlf1q+dsCN2bmVIRHsKLNgk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q4ytq5VT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48313C16AAE;
+	Tue, 20 Jan 2026 19:49:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768938570;
-	bh=mTot7Q38/x/8CwocVTc+5EvDGHnAEp5pvFVT9iyOkas=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=osFQ5eCK3StoflUWwK3eO/L6o5peJ/87hxkmpPq1Taj0yuvRw9CEZvqAFEzz2mmnF
-	 x1v7YBw6xZFOTpGc+T3CwO5lYqsnMmEEJJd5Tw3WhpD134omJlccbuO5VxMhnJB2v9
-	 BP37Kfw4uDRpjnOFiwQdghdXopeqjg5H4V+SaEgl58xfLMUbreDMK6Q+NCNBj3uFif
-	 +F6ZedZmbVlgTNhUX1Mm66KPADirUsOIfqX3uI0sbCw2ws+kwDLVA44FUmLWJmxgQb
-	 B4xYJ1FrJX+OxY8D2CYl8b8k6Xqw+Vn9ttdXipXABaJoxsojvEbCfakxOtp7GR5ClF
-	 Nv/E50WF+u1vA==
-Date: Tue, 20 Jan 2026 19:49:25 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Biju <biju.das.au@gmail.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>, linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH 01/12] dt-bindings: serial: renesas,scif: Document RZ/G3L
- SoC
-Message-ID: <20260120-unafraid-body-2c646dc099e1@spud>
-References: <20260120125232.349708-1-biju.das.jz@bp.renesas.com>
- <20260120125232.349708-2-biju.das.jz@bp.renesas.com>
+	s=k20201202; t=1768938580;
+	bh=tsWM3d8iCmhp/RJs7MDgtxaiXZPebNGaqNIDAPcjfF8=;
+	h=From:Date:Cc:To:In-Reply-To:References:Subject:From;
+	b=Q4ytq5VTWaZ3xt7D1EYAwUwA92owOwswff7/a8MsB/Zbd2cn/WdHd05QQneYLZQ5O
+	 AKR8mBWapfeHqnmmcu+BdINnqKY4coZNidCAgBaaomZvPm2+NBpq8g4yahUkN95F2x
+	 o64vwsUiF3iYpK+Vm3Hc/zaVkWJNwljdy+dH1nlEVIJvsspWDZPJplyT+RlymeIAaG
+	 BXfw3HP1YDtMKYfYAxMrPVbEf2g8bQF7RPUL8cP+DZ/CC4kRSsV6ykGugP/oQRlaJD
+	 ItXjqpRT4ixgBevEoU6pz3MjK5zklPwLSyVrhm+rywSQsXduA5pperiu9Wkyi5fVGF
+	 TN+VTIl6QWe3w==
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 20 Jan 2026 13:49:39 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="cSz45uwo3ug8U7NN"
-Content-Disposition: inline
-In-Reply-To: <20260120125232.349708-2-biju.das.jz@bp.renesas.com>
-X-Spamd-Result: default: False [-2.06 / 15.00];
-	SIGNED_PGP(-2.00)[];
+Cc: Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+ David Heidelberg <david@ixit.cz>, linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Jonathan Cameron <jic23@kernel.org>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, linux-iio@vger.kernel.org, 
+ David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>
+To: Petr Hodina <petr.hodina@protonmail.com>
+In-Reply-To: <20260119-tsc3400-v1-0-82a65c5417aa@protonmail.com>
+References: <20260119-tsc3400-v1-0-82a65c5417aa@protonmail.com>
+Message-Id: <176893840646.630967.6863112889558802076.robh@kernel.org>
+Subject: Re: [PATCH 0/3] iio: light: add AMS TCS3400 driver
+X-Spamd-Result: default: False [0.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-257593-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-257594-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[protonmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FREEMAIL_CC(0.00)[linuxfoundation.org,kernel.org,glider.be,gmail.com,bp.renesas.com,vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,microchip.com:email]
-X-Rspamd-Queue-Id: B33C54C5EF
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,0.0.0.39:email,protonmail.com:email,ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
+X-Rspamd-Queue-Id: AAB9E4C036
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
---cSz45uwo3ug8U7NN
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Mon, 19 Jan 2026 18:19:05 +0100, Petr Hodina wrote:
+> Hi,
+> 
+> This patch adds an IIO driver for the AMS TCS3400 color light-to-digital
+> converter.
+> 
+> The TCS3400 is an I2C-connected RGB color sensor supporting RGBC and
+> RGB-IR measurement modes, programmable integration time, selectable
+> gain, optional interrupt-driven sampling, and regulator-based power
+> control.
+> 
+> Signed-off-by: Petr Hodina <petr.hodina@protonmail.com>
+> ---
+> Petr Hodina (3):
+>       doc: add Device Tree binding for AMS TCS3400 light sensor
+>       iio: light: add AMS TCS3400 RGB and RGB-IR color sensor driver
+>       sdm845: tama: Add AMS TCS3400 ambient light sensor
+> 
+>  .../devicetree/bindings/iio/light/ams,tcs3400.yaml |  54 +++
+>  MAINTAINERS                                        |   7 +
+>  .../boot/dts/qcom/sdm845-sony-xperia-tama.dtsi     |  36 +-
+>  drivers/iio/light/Kconfig                          |  11 +
+>  drivers/iio/light/Makefile                         |   1 +
+>  drivers/iio/light/tcs3400.c                        | 505 +++++++++++++++++++++
+>  6 files changed, 613 insertions(+), 1 deletion(-)
+> ---
+> base-commit: 46fe65a2c28ecf5df1a7475aba1f08ccf4c0ac1b
+> change-id: 20260119-tsc3400-68a91d8c1355
+> 
+> Best regards,
+> --
+> Petr Hodina <petr.hodina@protonmail.com>
+> 
+> 
+> 
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
 
---cSz45uwo3ug8U7NN
-Content-Type: application/pgp-signature; name="signature.asc"
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
------BEGIN PGP SIGNATURE-----
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaW/cRQAKCRB4tDGHoIJi
-0h2wAPoDlwir2cqqcy5JC6EzOqPxRebGI8P5TO2bFnJOH3oABgEAivzSVJZsRTLw
-snvtZewjdbAEhF5sF64LHT/dt1wawwQ=
-=51aL
------END PGP SIGNATURE-----
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
 
---cSz45uwo3ug8U7NN--
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: 46fe65a2c28ecf5df1a7475aba1f08ccf4c0ac1b (use --merge-base to override)
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+
+Warnings in base: 229
+Warnings after series: 235
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20260119-tsc3400-v1-0-82a65c5417aa@protonmail.com:
+
+arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dtb: tcs3400_sensor@39 (ams,tcs3400): 'ams,rgbcir-gpio-vdd', 'ams,rgbcir-vdd-supply', 'ams,rgbcir-vio-supply', 'vio-supply' do not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/iio/light/ams,tcs3400.yaml
+arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-apollo.dtb: tcs3400_sensor@39 (ams,tcs3400): 'ams,rgbcir-gpio-vdd', 'ams,rgbcir-vdd-supply', 'ams,rgbcir-vio-supply', 'vio-supply' do not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/iio/light/ams,tcs3400.yaml
+arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dtb: tcs3400_sensor@39 (ams,tcs3400): 'ams,rgbcir-gpio-vdd', 'ams,rgbcir-vdd-supply', 'ams,rgbcir-vio-supply', 'vio-supply' do not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/iio/light/ams,tcs3400.yaml
+
+
+
+
+
 
