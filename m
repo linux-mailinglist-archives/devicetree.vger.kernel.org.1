@@ -1,204 +1,183 @@
-Return-Path: <devicetree+bounces-257306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257308-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +JJGKelNcWkahAAAu9opvQ
-	(envelope-from <devicetree+bounces-257306-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 23:06:33 +0100
+	id +HRLKewwcGkSXAAAu9opvQ
+	(envelope-from <devicetree+bounces-257308-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:50:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D92A5E7BF
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 23:06:33 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 507FA4F5B8
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:50:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4AFCE5E4C77
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 10:54:01 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id AFDFC5E24DF
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 10:57:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8C9B3B8BBB;
-	Tue, 20 Jan 2026 10:53:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0672407577;
+	Tue, 20 Jan 2026 10:57:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=machinesoul.in header.i=@machinesoul.in header.b="SXnUHz+0";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="0SK9V55E"
+	dkim=pass (1024-bit key) header.d=ziyao.cc header.i=me@ziyao.cc header.b="UfbY76hC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-a5-smtp.messagingengine.com (fout-a5-smtp.messagingengine.com [103.168.172.148])
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13352F507;
-	Tue, 20 Jan 2026 10:53:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.148
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768906434; cv=none; b=o1KD8RaoP4s+gqxGExpY9S7z43DrPyRvepGzj4ePnodvDNavOWGDTGkGx7FQKveraUIyb+t5Qmye0KjUoCkBpZgQQh3jCJ6LdRgwgCUy/P2U5DX7FYo6QdE2Cbf5tqGoRQQEmOEqO/3t8+nW1Rja0+ygTR3imrGV+p1j8wwxifQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768906434; c=relaxed/simple;
-	bh=PvYuqTp/zxnJTZa25yGtnsjIHXl1URwdBAeM8AzczX4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ahkIBUj7bWHnHP+LSDjY7dNiha4kCjh8hK2HEmUEt+krJE+T0bPs2Alx2clFtH9Y2amN2cp0EXEHlC1o9laSfFiuQUj8uRNZRjbd/ayH+YmizQ0xYrCgxzNvqaWDRXAnjmnorpXAr1uJ9O8LoFAyl+EbhykBrq5A+pmnMC08etA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=machinesoul.in; spf=pass smtp.mailfrom=machinesoul.in; dkim=pass (2048-bit key) header.d=machinesoul.in header.i=@machinesoul.in header.b=SXnUHz+0; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=0SK9V55E; arc=none smtp.client-ip=103.168.172.148
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=machinesoul.in
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=machinesoul.in
-Received: from phl-compute-08.internal (phl-compute-08.internal [10.202.2.48])
-	by mailfout.phl.internal (Postfix) with ESMTP id 35441EC00AA;
-	Tue, 20 Jan 2026 05:53:51 -0500 (EST)
-Received: from phl-frontend-03 ([10.202.2.162])
-  by phl-compute-08.internal (MEProxy); Tue, 20 Jan 2026 05:53:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=machinesoul.in;
-	 h=cc:cc:content-transfer-encoding:content-type:content-type
-	:date:date:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:subject:subject:to:to; s=fm2;
-	 t=1768906431; x=1768992831; bh=qgTGHf8ClPccFRWlPfS+X4BvRns7/Og7
-	S6s/d/ixkhY=; b=SXnUHz+0T31QiJEFnL9AjbRBW4wSAL4Dn8aeBN0UPG/tNMC8
-	meQB3MWFSjn2Jtk8Ic0IaUxUwHWuu8Kp8nbcxfjHNFUqZWaziiNFhJRYPt8XX6R0
-	Cy67NJNne6qc3YeMIywR1KnT0PdEM1xE3Hqg7YhnzbMldw7Qli+8l5xK7JQWt18V
-	kGCVz1eVYds0KsdH8vxGdB8eG23T8erif6aDz0e/ca36SFBTtNyxcvtD0e2B/SuH
-	HbjzkhK093DvKamTojymbhqLukxKqc+OrBrh3zFfeSh6M02l2Byq5V3UxkWDKxpp
-	0c2BOr+MRg2kl2h13DL8T91k6yzaIE+TG2Uvdg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1768906431; x=
-	1768992831; bh=qgTGHf8ClPccFRWlPfS+X4BvRns7/Og7S6s/d/ixkhY=; b=0
-	SK9V55EHagBbtGe32nEWvO+zJrizFoarwweKoz/HZR2EaDC9NMfku+Mc+gRNmm8k
-	kaA9L3FRGc8xD+Uat00VmeOyA05Izv5XtMXtvU1U40vPJuKccjxhHZsajK8uC78F
-	h8BcPlGPJY+Uxr6xZDnXG4OR7nWQnl3FfQo4KK+T4KRau1ixlDGCpADewdpkyaen
-	khv479+76X0RLEKZalrEl20duj6VQZ5xAonQIDL7qy69gdlPQYyFxMPJzUKkeBCr
-	/SVG2NS2BJFilxwM2V2/9x4McFEYbYwnS+2NHYYUsUWZIpmFSPGnbO+P0VOFBdCi
-	2PHV9JEq25qkVlTOgI6jg==
-X-ME-Sender: <xms:vl5vafx8UJowe6X0TsF3R1eKVbKt41-MN--8OxgvEuUYVsWKwgbw0Q>
-    <xme:vl5vaRq0FEyZOhVCnrmAXdv2wUNIQ5n9tJrjvHYRMTdoltxH68oDgXbT7r7He6ryO
-    NGogXdNpbfOKXmhlgL6sW8mqybK_aOqQuD16NL3Kd0s7MJJJ5G0a5w>
-X-ME-Received: <xmr:vl5vafeqXj_ML_IYUJ5N9gjjkYmfsdx7ugSotsnTHdbnyp9iklvQUP8MhhR9QLdFErk>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgddugedtvddvucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
-    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
-    gurhephffvvefufffkjghfggfgtgesthfuredttddtjeenucfhrhhomhepuehhuhhshhgr
-    nhcuufhhrghhuceosghhuhhshhgrnhdrshhhrghhsehmrggthhhinhgvshhouhhlrdhinh
-    eqnecuggftrfgrthhtvghrnhepgeeftdeuheetjeevveehkeegledttdeikeejledvgfdu
-    tddvteevkeehudduledvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrg
-    hilhhfrhhomhepsghhuhhshhgrnhdrshhhrghhsehmrggthhhinhgvshhouhhlrdhinhdp
-    nhgspghrtghpthhtohepudegpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopegrnh
-    guvghrshhsohhnsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkohhnrhgrugihsggt
-    ihhosehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorh
-    hgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohep
-    tghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtrhhoshdqqhgtoh
-    hmqdguthhsqdifrghttghhvghrshestghhrhhomhhiuhhmrdhorhhgpdhrtghpthhtohep
-    sghhrghrrggufigrjhdrrhgrjhhusehmrggthhhinhgvshhouhhlrdhinhdprhgtphhtth
-    hopegrlhgvgigrnhgurhgvrdhfvghrrhhivghugiesohhrrghnghgvrdgtohhmpdhrtghp
-    thhtoheplhhutggrrdifvghishhssehfrghirhhphhhonhgvrdgtohhm
-X-ME-Proxy: <xmx:vl5vaUrZA_IyR7wk44KuMoYOAXibJmCRKudnFKbB9vX5MEfqH6BX2w>
-    <xmx:vl5vaZkFP5Ey3Bp4i8rb2JQUY-cXACD5PwoR3gd7gjmYUYGU7E-3sw>
-    <xmx:vl5vaVRLk4G_g1tCkaEhck1gh4QUeT8AqixjwxiXCQJecabDYePuPw>
-    <xmx:vl5vafb6tytaSZYEOA282o6iJqsWix3gha5A-d_61nCKvucyBa1_Qg>
-    <xmx:v15vaWbD-b1kgzJ4rRcC6bFgSmbDNsHS-mr5QJLEBXZJBsF8ZBupfsSj>
-Feedback-ID: i6b0e4831:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 20 Jan 2026 05:53:46 -0500 (EST)
-From: Bhushan Shah <bhushan.shah@machinesoul.in>
-To: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- cros-qcom-dts-watchers@chromium.org,
- Bharadwaj Raju <bharadwaj.raju@machinesoul.in>,
- Alexandre Ferrieux <alexandre.ferrieux@orange.com>,
- Luca Weiss <luca.weiss@fairphone.com>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH] arm64: dts: qcom: kodiak: Add missing clock votes for lpass_tlmm
-Date: Tue, 20 Jan 2026 16:23:09 +0530
-Message-ID: <5976946.DvuYhMxLoT@antlia>
-In-Reply-To: <6749502.DvuYhMxLoT@antlia>
-References:
- <20260109-kodiak-lpass-tlmm-clocks-v1-1-746112687772@fairphone.com>
- <6749502.DvuYhMxLoT@antlia>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF8313E9F82;
+	Tue, 20 Jan 2026 10:57:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768906654; cv=pass; b=hc0WYYOGV8GW2yUFYpvoEUe9Pe5soBIKruSrJU9gYPEeSiwekdwUdHZBTjibzmWLGgYJ74brp6DKBbQoplAKDsViRvMekDZEts4Ysl3hX5W3SLtPqjKD2U4W936/fFsyDftDpvOgwKHWVoaKC3lmekwHdHYI8qbqyQMqooIwQDA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768906654; c=relaxed/simple;
+	bh=hLhhaaiGUK4UAPYUo2Wht+3suThBEz9Cj77yr1RmrCs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EpudcmA2hZGJs/+tFpmU8VmPmdI25O1yejkUsr5fdCs6zT8A0eYyzeDAgc1/lUR4ZK21hJXurv77F4Tko7zOjYqqrfznPeoQvtk/8kLpuwskQ6hMwtk7OYxOGn0zigh7R43XAdiRgHm8NzPyYSE2X3FXT3y0L0rZcbfHyJFhQxU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc; spf=pass smtp.mailfrom=ziyao.cc; dkim=pass (1024-bit key) header.d=ziyao.cc header.i=me@ziyao.cc header.b=UfbY76hC; arc=pass smtp.client-ip=136.143.188.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziyao.cc
+ARC-Seal: i=1; a=rsa-sha256; t=1768906567; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=Ak6+zhg/djoSET/jxpadpQyRcrriZ+Hb4IrbOf1xk69NlUklGQMlAFWHFwmYe3Yesq3b5hQ22GYGsF+HGH1Bt05MaD92p74uwnxUUFvPhFQ84McpHwHIm1iz+EQW9QgEc5Xc5zFv6FwCsoa2iYSN8/h5UXVatAvvTisNw1EldZo=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1768906567; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=ONSVQRKcPO7Hdq9rjeCJBLbi+rJef9ClGejj6CnM0wY=; 
+	b=NOJakvj5baRnkmXoB7LumnUit/KQxGV92PkXR478iuA98Tdt3Of/28od+qlx0Eepp+TIkIeLBAt5wPapNsAjtx9Doj78v/gkaJqNN5QnZPeD1wRDB6IAZiGhCl9gjGgBF3uF+8QEDy5fAE724YLlr0+UDLbM8smzAJ233CuTkzg=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=ziyao.cc;
+	spf=pass  smtp.mailfrom=me@ziyao.cc;
+	dmarc=pass header.from=<me@ziyao.cc>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1768906567;
+	s=zmail; d=ziyao.cc; i=me@ziyao.cc;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=ONSVQRKcPO7Hdq9rjeCJBLbi+rJef9ClGejj6CnM0wY=;
+	b=UfbY76hCP8zX5WETuGgn6VZM3NN+FjaN8LWv69wwAVNk0zvq8H3HC8pdZHJp2V4c
+	sfOY8cbsd+bhCiZhPaWpES7/nq72N3qz3r2DaTdaXMj1PJmH1Q7eUkPXygOtrxsg6XT
+	wISiqo24iESoNSprYd3gvxcv3ZhFDNNxXiO9pccg=
+Received: by mx.zohomail.com with SMTPS id 1768906565127972.0399174349235;
+	Tue, 20 Jan 2026 02:56:05 -0800 (PST)
+Date: Tue, 20 Jan 2026 10:55:43 +0000
+From: Yao Zi <me@ziyao.cc>
+To: Inochi Amaoto <inochiama@gmail.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+	Yanteng Si <siyanteng@cqsoftware.com.cn>,
+	Yao Zi <ziyao@disroot.org>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Choong Yong Liang <yong.liang.choong@linux.intel.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Chen-Yu Tsai <wens@kernel.org>,
+	Shangjuan Wei <weishangjuan@eswincomputing.com>,
+	Boon Khai Ng <boon.khai.ng@altera.com>,
+	Quentin Schulz <quentin.schulz@cherry.de>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	Longbin Li <looong.bin@gmail.com>
+Subject: Re: [PATCH net-next 1/3] dt-bindings: net: Add support for Spacemit
+ K3 dwmac
+Message-ID: <aW9fL7r0AM0flALJ@pie>
+References: <20260120043609.910302-1-inochiama@gmail.com>
+ <20260120043609.910302-2-inochiama@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
-X-Spamd-Result: default: False [2.24 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260120043609.910302-2-inochiama@gmail.com>
+X-ZohoMailClient: External
+X-Spamd-Result: default: False [9.34 / 15.00];
+	URIBL_BLACK(7.50)[ziyao.cc:dkim];
 	SUSPICIOUS_RECIPS(1.50)[];
-	DATE_IN_PAST(1.00)[35];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
-	CTE_CASE(0.50)[];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	BAD_REP_POLICIES(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-257306-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	R_DKIM_ALLOW(0.00)[ziyao.cc:s=zmail];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gentoo.org,foss.st.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,armlinux.org.uk,cqsoftware.com.cn,disroot.org,nxp.com,bp.renesas.com,linux.intel.com,bootlin.com,eswincomputing.com,altera.com,cherry.de,st.com,synopsys.com];
+	GREYLIST(0.00)[pass,body];
+	RCPT_COUNT_TWELVE(0.00)[38];
+	TAGGED_FROM(0.00)[bounces-257308-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[machinesoul.in];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.linux.dev,st-md-mailman.stormreply.com,gmail.com];
+	DMARC_POLICY_ALLOW(0.00)[ziyao.cc,quarantine];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bhushan.shah@machinesoul.in,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[me@ziyao.cc,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=2];
 	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[fairphone.com:email,ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,machinesoul.in:email]
-X-Rspamd-Queue-Id: 4D92A5E7BF
-X-Rspamd-Action: no action
+	DKIM_TRACE(0.00)[ziyao.cc:+];
+	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DMARC_POLICY_ALLOW_WITH_FAILURES(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,ziyao.cc:dkim]
+X-Rspamd-Queue-Id: 507FA4F5B8
+X-Rspamd-Action: add header
 X-Rspamd-Server: lfdr
+X-Spam: Yes
 
-On Friday, 9 January 2026 21:08:32 IST Bhushan Shah wrote:
-> On Friday, 9 January 2026 20:44:34 IST Luca Weiss wrote:
-> > Without the correct clock votes set, we may be hitting a synchronous
-> > external abort error when touching the lpi registers.
-> > 
-> >   Internal error: synchronous external abort: 0000000096000010 [#1]  SMP
-> >   <...>
-> >   
-> >   Call trace:
-> >    lpi_gpio_read.isra.0+0x2c/0x58 (P)
-> >    pinmux_enable_setting+0x218/0x300
-> >    pinctrl_commit_state+0xb0/0x280
-> >    pinctrl_select_state+0x28/0x48
-> >    pinctrl_bind_pins+0x1f4/0x2a0
-> >    really_probe+0x64/0x3a8
-> > 
-> > Add the clocks to fix that.
-> > 
-> > Platforms with this SoC using AudioReach won't be impacted due to
-> > qcs6490-audioreach.dtsi already setting clocks & clock-names for
-> > q6prmcc. The sc7280-chrome-common.dtsi has also been adjusted to keep
-> > the behavior the same as they also do not use Elite with q6afecc.
-> > 
-> > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+On Tue, Jan 20, 2026 at 12:36:06PM +0800, Inochi Amaoto wrote:
+> The GMAC IP on Spacemit K3 is almost a standard Synopsys DesignWare
+> MAC (version 5.40a) with some extra clock.
 > 
-> Tested-by: Bhushan Shah <bhushan.shah@machinesoul.in> # On fairphone-fp5
+> Add necessary compatible string for this device.
+> 
+> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> ---
+>  .../devicetree/bindings/net/snps,dwmac.yaml   |   3 +
+>  .../bindings/net/spacemit,k3-dwmac.yaml       | 107 ++++++++++++++++++
+>  2 files changed, 110 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/spacemit,k3-dwmac.yaml
 
-As a follow-up;
+...
 
-While this fixes original abort, it seems on some coldboots or as such(?); it fails
-to vote the clocks and then eventually soundcard fails to probe, so there is still
-some issue that needs to be solved.
+> diff --git a/Documentation/devicetree/bindings/net/spacemit,k3-dwmac.yaml b/Documentation/devicetree/bindings/net/spacemit,k3-dwmac.yaml
+> new file mode 100644
+> index 000000000000..58dd98f79e8a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/spacemit,k3-dwmac.yaml
 
-[   17.944296] Bluetooth: hci0: Frame reassembly failed (-84)
-[   20.961100] qcom-q6afe aprsvc:service:4:4: AFE failed to vote (3)
-[   20.961131] Failed to prepare clk 'core': -110                                                                                           
-[   20.961137] qcom-sc7280-lpass-lpi-pinctrl 33c0000.pinctrl: error -ETIMEDOUT: Can't enable clocks
-[   20.961144] qcom-sc7280-lpass-lpi-pinctrl 33c0000.pinctrl: probe with driver qcom-sc7280-lpass-lpi-pinctrl failed with error -110
+...
 
-So far I was not able to find a precise pattern to this, but doing bunch of coldboots
-is most easiest way to reproduce I have found.
+> +  clocks:
+> +    minItems: 3
+> +    items:
+> +      - description: GMAC main clock
+> +      - description: PTP clock
+> +      - description: TX clock
+> +      - description: PHY clock
 
-If anyone has any inputs on this, I would love to hear.
+Why does the MAC require "phy" clock? Shouldn't this be handled in PHY
+driver instead, or I get its meaning wrong?
 
-Best Regards,
-Bhushan
+Also, I don't see "phy" clock is acquired anywhere in the driver. Is it
+really necessary for the MAC?
 
-
+Best regards,
+Yao Zi
 
