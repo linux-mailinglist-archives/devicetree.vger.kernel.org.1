@@ -1,214 +1,279 @@
-Return-Path: <devicetree+bounces-257188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257189-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 140F6D3BEFD
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 07:12:35 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78AA3D3BF2F
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 07:30:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A53AD4E830D
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 06:12:33 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 43A4D4F4167
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 06:25:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E569A368278;
-	Tue, 20 Jan 2026 06:12:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C54C37A49D;
+	Tue, 20 Jan 2026 06:24:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Y12PmSCh"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="SWPq7p5/";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="caEEgNFD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MW6PR02CU001.outbound.protection.outlook.com (mail-westus2azon11012062.outbound.protection.outlook.com [52.101.48.62])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6964133B96E;
-	Tue, 20 Jan 2026 06:12:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.48.62
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768889549; cv=fail; b=FHjNJ12Hra1usKzCRUjOTtI+8pLVUBbNrkbnJTAGJpzaWAmWqYg5zVTyUJfk8ZrmrowbcKZAdMxpR/UG3t5aU1wygEGYpjja94D3jy0a5dQ8Ul1XB9+ReR3TmHB1newLQE/+DTdvuePMpcoXTApenaTDEoN/QBUXdOzjKNoEPY8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768889549; c=relaxed/simple;
-	bh=0VwpVAvPlRzYecMFuPxGyUPpWSzSE+3S+MYKKnuwpUQ=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=MdqBgwWe8W8qppodTG+zToMoGsZpEpq2nAFmWnD343n/rvD0cz2OKGZNHDq5+3RUaZA1953zbjCRaLaHx9xm1Hl4vEHpP1UQgX1Acm9b73gf9Ijkltlo2G1iSdgqWWCFmnrsagq/stUGkUYt08X0GOQKHdc6s3pSRQz6YWArsWg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Y12PmSCh; arc=fail smtp.client-ip=52.101.48.62
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gRM3Sw3nFira/0ury2OhL6v0NHR/MY5eWgcZMQyI5+6JWhSs1Frz/r+eB8NAxFcOeh81kE4hM7AFOhXufqOJe2M08iIKWcelSU3X+wxOyT/r8Uv5pfTqIpL8NG1LYnc8SXLeMI61BxUXteRmvKTve/2fbCuX/btKAAOneLQxrCvYEkwP/7DbBiNbl794+9fE6QCUgLdAITfp76jMFJBFSWWrRSAq6oJYZA7kz1hMvbobUzWmHSspBDmBcpcrverWP+xejQW5a/IKb6/MvkZIZT+FCDwMbKtKnBOu4aqQIMQLbIUaJ3WZgqF8FcRvryLzLX+5yXKMXdBRCGv5oEhipQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BSDo7aH/DecQGOGSEI6/z/SFKnpTJhF1eNXGHC91qeA=;
- b=IoJ8tC6Bx9RP51z3LSdev+LxD8J+z85+Jg9mCUPF4OMkve5prwn8s7cZCSbz8yj7UzHmO7G7MchCbcyXVmnaScmc2567h3D9/Nrezq0L4v6JNULoOWnYeFMUchOFLXMyBuTttLOiK/gw1G8Blx1LBA0zjUvjCtTq204RTCeBjwMVK6CGDYzE3FdbJMcRv+Sqa4V/zr8EnSEZYnOt5gGKTAtVwrlTWj4KMSb22bCFQKPmtuLv9fmzDilD6pHI87Skk7HdRr9mGS9xzkKmkCFl6aNVASBighA4JPfQkH1MJWzElEj/hM01luFS/hg0QRKFJj6K+/wDJxYTKuD2z54/gg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.194) smtp.rcpttodomain=lists.infradead.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BSDo7aH/DecQGOGSEI6/z/SFKnpTJhF1eNXGHC91qeA=;
- b=Y12PmSChjjG4vn0a3dhQxlYlDdFOYGwAaKpaX5GHBCCG+f0W8ManSLuglscRWtI8Q2DHtarps3HAbYASLDBEVkqK/8FgnThoYHLpcS0yJ2OT2hMmn8wyqdTrwlpbDBu2nJrn4SLR6xxxfiXB1fsvuJ1HDLdt3E9nxBz3x9DL3KY=
-Received: from SN7PR18CA0022.namprd18.prod.outlook.com (2603:10b6:806:f3::21)
- by DM3PPFA35BF3976.namprd10.prod.outlook.com (2603:10b6:f:fc00::c3c) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.13; Tue, 20 Jan
- 2026 06:12:26 +0000
-Received: from SN1PEPF000397AF.namprd05.prod.outlook.com
- (2603:10b6:806:f3:cafe::e7) by SN7PR18CA0022.outlook.office365.com
- (2603:10b6:806:f3::21) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9520.11 via Frontend Transport; Tue,
- 20 Jan 2026 06:12:25 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
-Received: from flwvzet200.ext.ti.com (198.47.21.194) by
- SN1PEPF000397AF.mail.protection.outlook.com (10.167.248.53) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9542.4 via Frontend Transport; Tue, 20 Jan 2026 06:12:24 +0000
-Received: from DFLE205.ent.ti.com (10.64.6.63) by flwvzet200.ext.ti.com
- (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 20 Jan
- 2026 00:12:20 -0600
-Received: from DFLE213.ent.ti.com (10.64.6.71) by DFLE205.ent.ti.com
- (10.64.6.63) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 20 Jan
- 2026 00:12:20 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE213.ent.ti.com
- (10.64.6.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Tue, 20 Jan 2026 00:12:20 -0600
-Received: from toolbox.dhcp.ti.com (uda0492258.dhcp.ti.com [10.24.73.74])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60K6CFP9569454;
-	Tue, 20 Jan 2026 00:12:15 -0600
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <bb@ti.com>, <afd@ti.com>,
-	<p-bhagat@ti.com>
-CC: <stable@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<srk@ti.com>, <s-vadapalli@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-am62d2-evm: Fix missing RX delay for DP83867 PHY
-Date: Tue, 20 Jan 2026 11:43:24 +0530
-Message-ID: <20260120061335.1497832-1-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.51.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 618DA36CDF4
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 06:24:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768890251; cv=none; b=Z3LIrIoktF7DScoU/XobG3Q4mJ3u+WGrXXX+1xOsCPtN8CIm1WO6uVyZLwi64LjtAKxDukMlwLKnFsS6+1pet/eZ511F83cnNLQQI1/RIp+/v5P+wrUia62p+RB0qT9i+yxwse02rWco5J5hS103uHQwqBMqhR/GiYtuV+L6ipA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768890251; c=relaxed/simple;
+	bh=KQvTe851Bvsh8j+PgLjhAYuShFSOrpuVnlKmfK6Ke38=;
+	h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+	 In-Reply-To:Content-Type; b=i3/fxKK04DesM0YhY8gH3VcTCAOGdI7k2klEUWEY1Ny19ODwNgnLzSyuAOV5WNVTnLiYsDzSAYG4s8m9jDK8cqiJfq0UZxPjL5RztdWlKS8zbRu8MMLXmOmHmek1RwMN3e5MX8XFuzTJn0WTb13RPbFP9buVSDdiTiP2s1KOzQE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=SWPq7p5/; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=caEEgNFD; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60K33GGO3805028
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 06:24:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	dqnUnHSglS08Ezs/9IFZQZo2vw1kZKcPcP5C+SqXBDc=; b=SWPq7p5/mpy3ncPK
+	dpVzkW82+ZaSyhmIATF4mHMBuToZR+U03nPCxrtoCZiz6AlO7qXY37dRUI+Ojip3
+	6NXIBTIX+HSxAFgq/qXni6B5fZeXxA8CS4fUWpdLMMrvHRy/gKEkZf89JpyzWig8
+	SMaxjp4/hNDdDecNa11ZYPPzcGR9P4S7SHJWNjR3By4+4zANhrsNVJf8GHf09/xL
+	Q8DvkSu8dw9lwBcY/KkVE1cGjKm5uuKyBqPYQY3hUbhtO6kFf/RZME4wgEuGRv6N
+	JpOvs8Hk1ZgFbT+tBOdZEIaxbUSqoE/rVNzwAaPL9sxAFTrSsniEpirYsAoo5mnK
+	xf3r9Q==
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bt1f88fvp-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 06:24:07 +0000 (GMT)
+Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-81f73452300so9128871b3a.1
+        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 22:24:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1768890247; x=1769495047; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-language:in-reply-to:mime-version
+         :user-agent:date:message-id:from:references:cc:to:subject:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=dqnUnHSglS08Ezs/9IFZQZo2vw1kZKcPcP5C+SqXBDc=;
+        b=caEEgNFDKVvs27oMBxCLi8MFS1XesEsHLGNmIxPx6qeaFvSwDrEfFBI/Bcs0nVIIo5
+         uUT7i3VjvwLOlLiVzOAxm7eVbxiPCCJaJ78c/ez+ZbaJ08fmD+zLjjUtYZEKDPnzlzaX
+         Vv4pZ7euEk+gobOEvYolAinesQQGtCPorN4YBXfPF8bFwU8QhqPuta7zJoU1yEXhj+nG
+         ELAFX0zAMXQgjtMSACK974uOMsjGXTd8RNLKGiQmMJGJr1jDd2ffT6M5yuHYuDxRN/2l
+         vZ+FCC2O98YZaVhf+tNyKEWNUvxpWGcq2A+kI5mij2I0xGtajDjqqBrBkP2hJFAsRJqB
+         TgpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768890247; x=1769495047;
+        h=content-transfer-encoding:content-language:in-reply-to:mime-version
+         :user-agent:date:message-id:from:references:cc:to:subject:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dqnUnHSglS08Ezs/9IFZQZo2vw1kZKcPcP5C+SqXBDc=;
+        b=uwIRNO/CHcF1t1kI8JctO2/WFx6fVuJXvb4L/khoSH+5KdZsNnDN9FpaR+Z3Dv7OqU
+         vwh6wP2gsiis5oG0gMdPDi2ILYTsHvinLwODt5F6NwP3wSdoj8JdVI+apwMv/Im1Y283
+         tJXMBQSS/UodmBu0rOv51o4n9CrhN8+fJGQOd5qT4AmXf9J/d8ZhkRDOQQjm8HVaTsRa
+         gK070DenC/+NXYDmZRzJcIWmIAJRWtLbkI5ZWLOwl5ZC6dlX/Csa5SX00hUVIDQsm+1C
+         LndCA2AdlzAMJ5GxqIjW7G/Z4TZy7w3jGr2MNT0xZLa9mqwz5sEhyYRkSMyPbOl/Insn
+         xn8Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWxln7mnH5t3vED14RWInAYPrxCAKGqUFLoB8YxYolVyJVHgoWzftYz4l5f93soFFD1zs8sC5Ao4jN9@vger.kernel.org
+X-Gm-Message-State: AOJu0YyqCZaIboMnUenHHPtsqg7qzzYSnIbX9nUrRI+z5GOLxVjeA65F
+	BOC+ijZ9ZxkfIffJtsC10PTYJTs+LkVcNpdYSR04xYsBP+0/DTSfOCDgwxx50HKjwuq3rO987w+
+	Gaexz43IzsgMvJIE0Jnw2+RG1eqbGEqGaJa54PwYXkK06roj0S7a+EyJIgwc61tFs
+X-Gm-Gg: AY/fxX49A1AaVna7BPoiGVGqH/3ZYYAWLPq/XRrAi+4ejYnL78/Go/kFtz/eldwUcPm
+	uv3MRpX7luYNn7c/5n1BAY4PusBcBJWCH6e7iAOjY/HmAYfgrUAB2HXOLyCtNswM/1MSVmo6kSc
+	msESgdxIoKK3/uCiPRBAlACBrA/9SQTpbPYfbVf5RKi0/PNbUs4oeoCqvFb8ufB/bJfVv6MbzVf
+	D7ybpwzeZBiDiDbvXgjb+XuPccL5CGl7gxOGt5ILjRohPfNhrJL8Hn/YluCE1EOyeIoJ+f4Oack
+	e4FriQ72DsaCB+bfMUv3kgReVaUcAFKu3F72PWdbi8WaoJdtkEwc0sioH5AjgUdjUhQIfQHRHxg
+	B0sS0gs5nqUYdND8CeCtnwd6QayZrDudaeKPWNCw=
+X-Received: by 2002:a05:6a21:a92:b0:34f:28f7:ed75 with SMTP id adf61e73a8af0-38e45d08641mr914497637.8.1768890247102;
+        Mon, 19 Jan 2026 22:24:07 -0800 (PST)
+X-Received: by 2002:a05:6a21:a92:b0:34f:28f7:ed75 with SMTP id adf61e73a8af0-38e45d08641mr914469637.8.1768890246585;
+        Mon, 19 Jan 2026 22:24:06 -0800 (PST)
+Received: from [10.217.223.153] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-81fa1291ca2sm10975787b3a.54.2026.01.19.22.24.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Jan 2026 22:24:06 -0800 (PST)
+Subject: Re: [PATCH v2 0/2] Enable Inline crypto engine for kodiak
+To: Rob Herring <robh@kernel.org>
+Cc: linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        krzk+dt@kernel.org, ulf.hansson@linaro.org, devicetree@vger.kernel.org,
+        andersson@kernel.org, konradybcio@kernel.org, conor+dt@kernel.org
+References: <20260114094848.3790487-1-neeraj.soni@oss.qualcomm.com>
+ <176840729246.2734238.959231359705262987.robh@kernel.org>
+ <9c21bc87-326a-aa0b-ba81-31b10e119acb@oss.qualcomm.com>
+ <CAL_JsqLVOLwC5fdQUoU-0QXcyjH0tK7cTE_7B6kVa6kFE8zF3g@mail.gmail.com>
+From: Neeraj Soni <neeraj.soni@oss.qualcomm.com>
+Message-ID: <96ca9dd8-2d92-262f-8bb7-0f0c30cabd74@oss.qualcomm.com>
+Date: Tue, 20 Jan 2026 11:54:02 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+In-Reply-To: <CAL_JsqLVOLwC5fdQUoU-0QXcyjH0tK7cTE_7B6kVa6kFE8zF3g@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-GB
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF000397AF:EE_|DM3PPFA35BF3976:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2ced4f0b-b851-4d4b-201b-08de57eae11f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|82310400026|36860700013|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?vu/QH5RrfHyk9OMzmpMUMjq4nUdDk4PKrSS1VspfcGVUrcIhzxwWWl98p/kn?=
- =?us-ascii?Q?dkgBUxFP2UAgIiFwXuyL5GB2ZCfEldETuSQU36CGGa1wc1jnoeNy7FhfN66y?=
- =?us-ascii?Q?Yn6HonLBXUdIxnimWe2hScRk5oglpEswFUu6Y8IGIVprWZqLhdFYonNMUrIh?=
- =?us-ascii?Q?7MQ4vDP4ifIzBvm1OAJBxH2jpfBxnEpm8BdfW8q+BMB9DBYvlztgIepv9373?=
- =?us-ascii?Q?f+7indi7AhFJetLegfjRg7nFmAwEgeSRFxlMHIIvUpQhhQtinth3wbVmuU9q?=
- =?us-ascii?Q?MVRpy92Rulqd90c+KPLkjh8uDPJNM948jrkZ8c8J7xRJOeVbuHtWk1BN8nXT?=
- =?us-ascii?Q?NMVsF+jV4Xhp/bFDFC5ulWAVpzkfxALwslNDCixEI7Wj2ldzYyXvjrIYId6f?=
- =?us-ascii?Q?/VvrUqhgdyeQzdkJQBZG+xEvUY5tC3X44i97CVxR5AlMvSEgQnUOUe71KBD2?=
- =?us-ascii?Q?AeOFRtkrvQaL/KLC7Iub9VW+bKbh7qDXM0g98vt5a5YHeUpXbJm7/65M1V1z?=
- =?us-ascii?Q?6WEIW2XaTObFRWHh6iE81i542ZHkc65PgS5tjtBqtGXwxyiMkdB70EwiHlo2?=
- =?us-ascii?Q?V9EDuPMbSsR6TQ0BNdyNWhCYI73VVzO+rcZAf/+jutBTDMjjRl9RGEUE9yMN?=
- =?us-ascii?Q?8+ci6BZujMyvXivNYRu9cATsOGRp7kMP6ybsUR+pUAnlRA8Tr5XONPwW1VYz?=
- =?us-ascii?Q?31SeSeO3S/5Gc+0llirVEVLH4eqYLy3LTuuOj2o742ce5wKvDsf/JJgzubrW?=
- =?us-ascii?Q?ZC9THcrEg6YMi1j7E2L/lJAZnDXBnavYp2VFyx1Taf/JS5K+Cln4s6xhpmu2?=
- =?us-ascii?Q?AKuHXj6mfgdRkIaHc2s0DW27L1FoEgtpKgVyM8FSnSlohu3vZjwIB5c5QPrz?=
- =?us-ascii?Q?oii+8PO/zhKzaLf5yyjqJvmS10T7lw2vfnejbFxoVHJtiaeGOtAQicgWNJbq?=
- =?us-ascii?Q?x219oj6nHczaPPm0QJaVV0orWZvOc7CKM0pljN7N5KXVfVkxrr6tt7uMByiH?=
- =?us-ascii?Q?qjPFmg8Ys5vXU/0P2k56iqwFgDvU086/5ej+vYsqkVndfsa2jh9nIhqasADD?=
- =?us-ascii?Q?TNZ3D1mmJNVj5vqjW+FP2kB8FztM995XJioCJqJdZ5VhF5Mb5qkspOOnBJxo?=
- =?us-ascii?Q?3152UG0zNEm/r3Nzvr4ZCNk3iZ/P+UjaPXdakn6BaTCoNfaCy77RTZSBAnOe?=
- =?us-ascii?Q?zZwl7LeubKn5oHBwyEeA37mCuZLolaRxoCLu+XbnIB/gC9woCnLg51WVrkQO?=
- =?us-ascii?Q?4Qqf1a1jrfeGisSGpY82uEnnhyrsg8zx1+vM4SmYj+QuWJOWyZNIKA7JD0q5?=
- =?us-ascii?Q?OEytGm0IR36cJGJkxlADKhxIupTmiokkeiaND2RFi6ZjDPR+a+5gtN+Rhlqe?=
- =?us-ascii?Q?KMU52z2wFYRqJ0K53koCcDnwsvPc3+xDx+FHTdIzWMM3yJCy2NWescB/SX+L?=
- =?us-ascii?Q?eNgw7yWPhfQNzkfJNKwSyWITlxHmPBORFpXQTcpRFtLHbZQxd2pe+76LBkKr?=
- =?us-ascii?Q?HpKk4VJHr52wIMBS/3oKp9qdUd8bxr3uo52Yl2uRq1K1EQIp5q9xtyg2tgds?=
- =?us-ascii?Q?HC7FMaTO/aPwpRIfk0IyVJehoIA/QyK9KPUGV5hP/UZCCrm5RfHukZ6j7v02?=
- =?us-ascii?Q?6DrEWzWr8ATBa8MwtE64ENJifnosDosN2p24ty13jAVxJpImmm+FPuVos//X?=
- =?us-ascii?Q?BhSbkg=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(36860700013)(376014);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2026 06:12:24.3229
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2ced4f0b-b851-4d4b-201b-08de57eae11f
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SN1PEPF000397AF.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PPFA35BF3976
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIwMDA1MSBTYWx0ZWRfX0DGqkYyQl7sX
+ mDoD7GVltpIJ/44AGMcoe3lOrRuuuh3OUBIzgks12zUJAoKKuebuYDET+Zo1hmJHSVr0bRo9gu6
+ LegknLVo04YmZ03pvDKBrbpFH+/3twahk+dAFdV1hbZeovmCdJVa/UYbCXaiSHrOT2ofS4Gzlof
+ 8IRb4PlAAQ3WIDsYKvov85H+wBPpwdMG01hYzTiE5hH/4PwNpn2QG8yDC8KBeuY07XqFd6U3cRx
+ 4RuS3KWbXD9ZcIczA7ui2vTzgNx2UVCxEEeCsVX1p4kaR/Lrl592Hv+Xu3drkr73t5ExxOEOx0b
+ /k+KSPr/+J9pc5UOuBScOJnfcxNYsp9uMeWq98y1y4UGDUijxPgpJHiXXgdPj/zXkVKkURmP7Uc
+ ffJ72cRBPVWEnzB9njrENIWvFkmcSFu76elbrrJymY9r5zfTiVDEf542Gjy9W9tYYYUkI4ITZBV
+ kna1L9zk57lzvtldfJg==
+X-Proofpoint-GUID: R_6KJfnmuaSSsUne7xiqzcRkPBPMfx77
+X-Proofpoint-ORIG-GUID: R_6KJfnmuaSSsUne7xiqzcRkPBPMfx77
+X-Authority-Analysis: v=2.4 cv=LdQxKzfi c=1 sm=1 tr=0 ts=696f1f87 cx=c_pps
+ a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=gEfo2CItAAAA:8 a=EUspDBNiAAAA:8
+ a=oVZI_Enn05QVDH3hfaoA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=2VI0MkxyNR6bbpdq8BZq:22 a=sptkURWiP4Gy88Gu7hUp:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-20_01,2026-01-19_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 bulkscore=0 clxscore=1015 impostorscore=0 spamscore=0
+ priorityscore=1501 lowpriorityscore=0 adultscore=0 suspectscore=0
+ malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
+ definitions=main-2601200051
 
-MAC Ports 1 and 2 of the CPSW3G Ethernet Switch in the AM62D2 SoC are both
-connected to different instances of the DP83867 Ethernet PHY on the AM62D2
-EVM, with the 'phy-mode' set to 'rgmii-id'. The DP83867 Ethernet PHY has to
-add a 2 nanosecond delay on receive (from wire) based on the EVM design.
 
-Since the device driver for the DP83867 Ethernet PHY coincidentally assumes
-that the a 2 nanosecond receive delay has to be added in the absence of the
-'ti,rx-internal-delay' property, Ethernet is functional.
+On 1/20/2026 6:55 AM, Rob Herring wrote:
+> On Mon, Jan 19, 2026 at 6:49 AM Neeraj Soni
+> <neeraj.soni@oss.qualcomm.com> wrote:
+>>
+>> Hi,
+>>
+>> On 1/14/2026 9:48 PM, Rob Herring wrote:
+>>>
+>>> On Wed, 14 Jan 2026 15:18:46 +0530, Neeraj Soni wrote:
+>>>> Document Inline Crypto Engine (ICE) handle for SDHC and add its device-tree
+>>>> node to enable it for kodiak.
+>>>>
+>>>> How this patch was tested:
+>>>> - export ARCH=arm64
+>>>> - export CROSS_COMPILE=aarch64-linux-gnu-
+>>>> - make menuconfig
+>>>> - make defconifg
+>>>> - make DT_SCHEMA_FILES=Documentation/devicetree/bindings/mmc/sdhci-msm.yaml dt_binding_check
+>>>> - make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- CHECK_DTBS=y dtbs
+>>>>
+>>>> ---
+>>>> Changes in v2:
+>>>> - Removed the "if: required:" description for "qcom,ice" dt-binding
+>>>>   as the ICE node is optional.
+>>>> - Corrected the ICE dt node entry according to the dt-binding description.
+>>>> - Added test details.
+>>>>
+>>>> Changes in v1:
+>>>> - Updated the dt-binding for ICE node.
+>>>> - Added the dt node for ICE for kodiak.
+>>>>
+>>>> Neeraj Soni (2):
+>>>>   dt-bindings: mmc: sdhci-msm: Add ICE phandle
+>>>>   arm64: dts: qcom: kodiak: enable the inline crypto engine for SDHC
+>>>>
+>>>>  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 4 ++++
+>>>>  arch/arm64/boot/dts/qcom/kodiak.dtsi                 | 9 +++++++++
+>>>>  2 files changed, 13 insertions(+)
+>>>>
+>>>> --
+>>>> 2.34.1
+>>>>
+>>>>
+>>>>
+>>>
+>>>
+>>> My bot found new DTB warnings on the .dts files added or changed in this
+>>> series.
+>>>
+>>> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+>>> are fixed by another series. Ultimately, it is up to the platform
+>>> maintainer whether these warnings are acceptable or not. No need to reply
+>>> unless the platform maintainer has comments.
+>>>
+>>> If you already ran DT checks and didn't see these error(s), then
+>>> make sure dt-schema is up to date:
+>>>
+>>>   pip3 install dtschema --upgrade
+>>>
+>>>
+>>> This patch series was applied (using b4) to base:
+>>>  Base: attempting to guess base-commit...
+>>>  Base: tags/v6.19-rc1-102-g3af51501e2b8 (exact match)
+>>>  Base: tags/v6.19-rc1-102-g3af51501e2b8 (use --merge-base to override)
+>>>
+>>> If this is not the correct base, please add 'base-commit' tag
+>>> (or use b4 which does this automatically)
+>>>
+>>> New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20260114094848.3790487-1-neeraj.soni@oss.qualcomm.com:
+>>>
+>>> arch/arm64/boot/dts/qcom/sm7325-nothing-spacewar.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+>>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+>>> arch/arm64/boot/dts/qcom/sc7280-herobrine-crd-pro.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+>>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+>>> arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+>>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+>>> arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dtb: pmic@2 (qcom,pm8350c): pwm:nvmem: [[386, 387]] is too short
+>>>       from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml
+>>> arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dtb: pwm (qcom,pm8350c-pwm): nvmem: [[386, 387]] is too short
+>>>       from schema $id: http://devicetree.org/schemas/leds/leds-qcom-lpg.yaml
+>>> arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+>>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+>>> arch/arm64/boot/dts/qcom/qcm6490-idp.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+>>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+>>> arch/arm64/boot/dts/qcom/qcm6490-particle-tachyon.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+>>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+>>> arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+>>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+>>> arch/arm64/boot/dts/qcom/sc7280-idp.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+>>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+>>> arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker-lte.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+>>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+>>> arch/arm64/boot/dts/qcom/sc7280-idp2.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+>>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+>>> arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+>>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+>>> arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie-lte.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+>>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+>>> arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+>>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+>>> arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie-nvme-lte.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+>>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+>>> arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie-nvme.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+>>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+>>> arch/arm64/boot/dts/qcom/sc7280-crd-r3.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+>>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+>>> arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+>>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+>>> arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+>>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+>>> arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+>>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+>>> arch/arm64/boot/dts/qcom/qcs6490-thundercomm-rubikpi3.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+>>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+>>> arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1-lte.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+>>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+>>> arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+>>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+>>> arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+>>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+>>>
+>> The crypto node i added is not a "bus" node but a leaf node for Inline Crypto Engine (ICE). There are no props like "compatible = "simple-bus"" or "#address-cells" and "#size-cells"
+>> added in the ICE dt which indicates it is bus device so why the tool expects "ranges" prop? Adding "ranges" as a property in ICE node will be wrong since it is not a "bus" device.
+> 
+> The issue is your unit-address is upper case hex.
+> 
+Thanks and i will fix upper case in next patch but the logs are bit confusing to indicate upper case issue as "ranges" prop missing.
 
-However, since the device-tree is intended to describe the Hardware, and,
-the device driver for the DP83867 Ethernet PHY may change in the future,
-add the 'ti,rx-internal-delay' property and assign it the value
-'DP83867_RGMIIDCTL_2_00_NS' which corresponds to a 2 nanosecond
-delay.
-
-Fixes: 1544bca2f188 ("arm64: dts: ti: Add support for AM62D2-EVM")
-Cc: <stable@vger.kernel.org>
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
-
-Hello,
-
-This patch is based on commit
-24d479d26b25 Linux 6.19-rc6
-of Mainline Linux.
-
-Patch has been tested on the AM62D2 EVM verifying Ethernet functionality in
-the form of NFS (Network File System) mounted using the CPSW3G Ethernet
-interface 'eth0'. Test Logs:
-https://gist.github.com/Siddharth-Vadapalli-at-TI/04c51da22c0a05f7fc930afc98997571
-
-Regards,
-Siddharth.
-
- arch/arm64/boot/dts/ti/k3-am62d2-evm.dts | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am62d2-evm.dts b/arch/arm64/boot/dts/ti/k3-am62d2-evm.dts
-index 2b233bc0323d..17c64af4f97b 100644
---- a/arch/arm64/boot/dts/ti/k3-am62d2-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am62d2-evm.dts
-@@ -649,12 +649,14 @@ &cpsw3g_mdio {
- 
- 	cpsw3g_phy0: ethernet-phy@0 {
- 		reg = <0>;
-+		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
- 		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
- 		ti,min-output-impedance;
- 	};
- 
- 	cpsw3g_phy1: ethernet-phy@3 {
- 		reg = <3>;
-+		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
- 		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
- 		ti,min-output-impedance;
- 	};
--- 
-2.51.1
-
+> Rob
+> 
+Regards
+Neeraj
 
