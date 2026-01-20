@@ -1,106 +1,64 @@
-Return-Path: <devicetree+bounces-257474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257480-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2MKFG1Whb2nrCgAAu9opvQ
-	(envelope-from <devicetree+bounces-257474-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 16:37:57 +0100
+	id kJ9UIXSob2kaEwAAu9opvQ
+	(envelope-from <devicetree+bounces-257480-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 17:08:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0600F46452
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 16:37:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F2B0471B8
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 17:08:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id F16637C490A
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 15:23:30 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 60B6E7C5EBA
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 15:25:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 450D7478E31;
-	Tue, 20 Jan 2026 15:04:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DiQJAvU2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F8BB478E56;
+	Tue, 20 Jan 2026 15:06:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51BCE44B66B
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 15:04:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01F95466B50;
+	Tue, 20 Jan 2026 15:06:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768921490; cv=none; b=CSaORsp4jFaxDyW93CX0qX3GffvW4Z++KwNUwq/tgUXkL5ULBMTpwtVxttxoxe1M/zvb7O6aHsC+grA7QCwFF0diYq9f8oKB1tzkxGRwJioX+Hk0bWLAZ3IDxZy5MGQHwkhhZCOE2qc0h9Zm/f4Quu25zQ4pLEQ1CkPC7dkIEDg=
+	t=1768921594; cv=none; b=QPE5jYVGXohA5lVod4wcoyaYcMTz2mH4KLrnwcK6abD7TNp1jj6v0wDWc0JYXeRDyfjwre31OXdrujEypoBWTM3ONSrpuu/4zyqbib6dY7DAuqKvJJpZJlf/4oV1X8qyziq52mjtuiyTLNg1fKpZeUWQI0ZSmDHS3Nvt28YjAxk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768921490; c=relaxed/simple;
-	bh=Jl3N+qCdcymJQepNuOa3YD/ijHGOuCtZx6z1DXj31tE=;
+	s=arc-20240116; t=1768921594; c=relaxed/simple;
+	bh=vgIXuJTGjYgFHqOU/AjAXxtKNjUamkHUF8We3gLEPZE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=u8HcRXriaK6fatmeYyb4M3RhSbva3EOLSSiZmK0NU2GMOKF21Iv1LqZmn1xawklsMDAfIisRmlOr8w6VAJmbfc2bAJPj1LQqkbBuhULU1hC080xuza2pU5/EzwgAh/jnRQYrMunH9Jsu93PQ2P7Q0IDeIytunNAuUhiFj54VVt8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DiQJAvU2; arc=none smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-64b608ffca7so8266636a12.3
-        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 07:04:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768921487; x=1769526287; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GhLdh2zZK+bYAbQvWFFaUIm6SUaBfCue1vhMyALyCxw=;
-        b=DiQJAvU2dLD4pbSsmdPLZV3bu7yHT6rZnR5Jk2ZJ7ydVTWEX+G+j/QqhFHhdSkVBqS
-         Hag4uFSPK5Z4NPv4Lakil+ItTwntEtIvCcWooglM2XOHrbrBJwCD5XrYuIX/DSOrhlbZ
-         T5CUZ7ewjQE6fnTAZx2vY4lYM0V7dcESBlta3H/sTbVLAS922fttpfoCG7m1hulS9/OA
-         Jwo2oIDM97kdku5fmOq34XsfFeK8UCWEiJzmte9ORL3lnkHMkyvZOiIcua/EyoByTZh3
-         gWtc1GUIv9qYOoedrQ3NJakeC3tZ1Pvjj/DGfKrETR2lr22SLt19B+8vMnYgWXPSCVMR
-         VDPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768921487; x=1769526287;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=GhLdh2zZK+bYAbQvWFFaUIm6SUaBfCue1vhMyALyCxw=;
-        b=nKH+KY48zHvJz28AjFD/tSyq22WecNpMWy60lC5RszHHau7cAEYMNwAiLY/9ASRcuH
-         Ufghp4XceA6aoDK7Ztax5bUF+EizscM948qaZWviPbNeL/WSiN/PHq/tHAc9aJO5qjPn
-         /ziCKHL3a+5cL2N3NNvE2shg19G0DkE/1h0BXjptG9Y+HASctF4A3aKFun3MZ/QGi8e0
-         1PX3SBf+Ow8dydqa+zs4nsRp79EsfSK9hjur2eCzTLPShuOW15Pmb/1FVHT0NEVf6Q4u
-         unGXIMU9MJTxk4n0xb54zgZvLqd/ls+6ojuMT3Uwy6ktQfTuJmOLYNauZdqHnuYLOrsQ
-         Mvfg==
-X-Forwarded-Encrypted: i=1; AJvYcCUyXs1aLoC8wHdjYKZneYSlSMKEHObgnftiRoK2vlblaRntzYiscDkEfcUOuovKl+oGXBjqWzbK0bgb@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx+fLydquWNBTHGL9Be61YnSS6Wmw0tZdbXHT+VJ/rGq1amAqKa
-	AJn3M+L7AA09MZI4kHcDlBEWa7ie3KHA+IQOuaGzAcXTxb7m8vzMFKZF
-X-Gm-Gg: AZuq6aLhvcb+qwKsyN4h1YOgzSACuTTI3yLLR/BDlKtlT7mk74lNlDjr5Uud7W03vFc
-	jFCjV1zscrheFA3Te7TbslR8Vrx/eDD3dtl0s/BInFz/7rhziYwKDjq9pG2HRrTS7Lov3yS8mTF
-	FMOnFV+O/yd9CY8w4BQruSmoMNeinT/5gK8hkNvfxeCGqqpeQ2WBWEuCw6UtmqNM44TSYpa1km1
-	5fefIB4QAyI/O/dd4Rtql3/yJpi2qvT7QXAJyiI+D6ZReEfcvi3KovlabX7vdYp62Sa6rJI66wL
-	sdoaDgsuA+7AvcZEcrv1l8x1xc0YlZJ2aSsSFgCJtLEGzCwG4JflcbWy56ZAf0I6EmyWaORiQpf
-	xucPk5bLKhidmOVEMBZrOwc6QMQkndJK/jnsUZsfOZeO5C0+8I8uLXA+PSVez4nDObUMIifcesg
-	7zcixOof2Hz7HY49cZZRNRcF0XOsFImBaSkJA8
-X-Received: by 2002:a17:907:97c8:b0:b87:40fd:c913 with SMTP id a640c23a62f3a-b87968b6b22mr1267788266b.2.1768921486189;
-        Tue, 20 Jan 2026 07:04:46 -0800 (PST)
-Received: from SMW024614.wbi.nxp.com ([128.77.115.157])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8795a214e8sm1427045966b.60.2026.01.20.07.04.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jan 2026 07:04:45 -0800 (PST)
-From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-To: Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Shengjiu Wang <shengjiu.wang@nxp.com>,
-	Chancel Liu <chancel.liu@nxp.com>
-Cc: linux-sound@vger.kernel.org,
+	 MIME-Version; b=h/ZEYKLD9t/ZWklu3SO7+ZkTNGVKasfX9UQEUw8HvCBIg7nbvj7BbjoVNjXKHLV7ujrezSPbw8X5/TwZtYAgAfJIpIH5SnE7AuoHPDIve3bIUnmaSygcnfOr/SaAmCdwPwg+LYhAQ6DmrqotpD1UGH2YDf0RjsYnwsQpp3WQ7xc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+X-CSE-ConnectionGUID: O3X+MApoTZKD71CsGiiHpA==
+X-CSE-MsgGUID: Fk0qRjr3RRe3wIeUmI+QQw==
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 21 Jan 2026 00:06:30 +0900
+Received: from vm01.adwin.renesas.com (unknown [10.226.92.24])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id D8173402261F;
+	Wed, 21 Jan 2026 00:06:26 +0900 (JST)
+From: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
+To: geert+renesas@glider.be,
+	magnus.damm@gmail.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	biju.das.jz@bp.renesas.com,
+	fabrizio.castro.jz@renesas.com
+Cc: linux-renesas-soc@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: [PATCH 2/2] arm64: dts: imx95-15x15-frdm: support AONMIX MQS
-Date: Tue, 20 Jan 2026 07:03:29 -0800
-Message-ID: <20260120150329.1486-3-laurentiumihalcea111@gmail.com>
+	linux-clk@vger.kernel.org
+Subject: [PATCH v2 4/5] arm64: dts: renesas: r9a09g057h44-rzv2h-evk: Add versa3 clock generator node
+Date: Tue, 20 Jan 2026 15:06:05 +0000
+Message-ID: <20260120150606.7356-5-ovidiu.panait.rb@renesas.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260120150329.1486-1-laurentiumihalcea111@gmail.com>
-References: <20260120150329.1486-1-laurentiumihalcea111@gmail.com>
+In-Reply-To: <20260120150606.7356-1-ovidiu.panait.rb@renesas.com>
+References: <20260120150606.7356-1-ovidiu.panait.rb@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -108,171 +66,91 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [1.04 / 15.00];
+X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[renesas.com : No valid SPF, No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-257474-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,pengutronix.de,nxp.com];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	R_SPF_SOFTFAIL(0.00)[~all:c];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[laurentiumihalcea111@gmail.com,devicetree@vger.kernel.org];
-	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
-	RCVD_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-257480-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[glider.be,gmail.com,kernel.org,baylibre.com,bp.renesas.com,renesas.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
-	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 0600F46452
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	R_DKIM_NA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ovidiu.panait.rb@renesas.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	R_SPF_SOFTFAIL(0.00)[~all:c];
+	TO_DN_NONE(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	DBL_PROHIBIT(0.00)[0.0.0.12:email];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,renesas.com:email,renesas.com:mid,0.0.0.69:email]
+X-Rspamd-Queue-Id: 1F2B0471B8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+Add versa3 clock generator node. It provides clocks for the RTC, PCIe
+and audio devices.
 
-Add support for AONMIX MQS (i.e. MQS1).
-
-Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+Signed-off-by: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
 ---
- .../boot/dts/freescale/imx95-15x15-frdm.dts   | 73 +++++++++++++++++++
- arch/arm64/boot/dts/freescale/imx95.dtsi      |  5 ++
- 2 files changed, 78 insertions(+)
+v2 changes: None.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx95-15x15-frdm.dts b/arch/arm64/boot/dts/freescale/imx95-15x15-frdm.dts
-index ca1c4966c867..53aae25db7e4 100644
---- a/arch/arm64/boot/dts/freescale/imx95-15x15-frdm.dts
-+++ b/arch/arm64/boot/dts/freescale/imx95-15x15-frdm.dts
-@@ -243,6 +243,12 @@ codec {
- 		};
+ .../dts/renesas/r9a09g057h44-rzv2h-evk.dts    | 25 +++++++++++++++++++
+ 1 file changed, 25 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
+index dc4577ebf2e9..4a70e0707b38 100644
+--- a/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
++++ b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
+@@ -108,6 +108,12 @@ vqmmc_sdhi1: regulator-vccq-sdhi1 {
+ 		states = <3300000 0>, <1800000 1>;
  	};
  
-+	sound-mqs {
-+		compatible = "audio-graph-card2";
-+		links = <&sai1_port1>;
-+		label = "mqs-audio";
++	x1: x1-clock {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <24000000>;
 +	};
 +
- 	usdhc3_pwrseq: usdhc3-pwrseq {
- 		compatible = "mmc-pwrseq-simple";
- 		reset-gpios = <&pcal6524 8 GPIO_ACTIVE_LOW>;
-@@ -473,6 +479,21 @@ &mu7 {
- 	status = "okay";
- };
- 
-+&mqs1 {
-+	clocks = <&scmi_clk IMX95_CLK_SAI1>;
-+	clock-names = "mclk";
-+	pinctrl-0 = <&pinctrl_mqs1>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	mqs1_port: port {
-+		mqs1_ep: endpoint {
-+			dai-format = "left_j";
-+			remote-endpoint = <&sai1_port1_ep>;
-+		};
-+	};
-+};
-+
- &netc_blk_ctrl {
- 	status = "okay";
- };
-@@ -534,6 +555,51 @@ &pcie0 {
- 	status = "okay";
- };
- 
-+&sai1 {
-+	clocks = <&scmi_clk IMX95_CLK_BUSAON>, <&dummy>,
-+		 <&scmi_clk IMX95_CLK_SAI1>, <&dummy>,
-+		 <&dummy>, <&scmi_clk IMX95_CLK_AUDIOPLL1>,
-+		 <&scmi_clk IMX95_CLK_AUDIOPLL2>;
-+	clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3", "pll8k", "pll11k";
-+	assigned-clocks = <&scmi_clk IMX95_CLK_AUDIOPLL1_VCO>,
-+			  <&scmi_clk IMX95_CLK_AUDIOPLL2_VCO>,
-+			  <&scmi_clk IMX95_CLK_AUDIOPLL1>,
-+			  <&scmi_clk IMX95_CLK_AUDIOPLL2>,
-+			  <&scmi_clk IMX95_CLK_SAI1>;
-+	assigned-clock-parents = <0>, <0>, <0>, <0>, <&scmi_clk IMX95_CLK_AUDIOPLL1>;
-+	assigned-clock-rates = <3932160000>, <3612672000>,
-+			       <393216000>, <361267200>,
-+			       <24576000>;
-+	fsl,sai-mclk-direction-output;
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		/* leave unconnected - no RX in the context of MQS */
-+		port@0 {
-+			reg = <0>;
-+
-+			endpoint {
-+			};
-+		};
-+
-+		sai1_port1: port@1 {
-+			reg = <1>;
-+			mclk-fs = <512>;
-+
-+			sai1_port1_ep: endpoint {
-+				dai-format = "left_j";
-+				system-clock-direction-out;
-+				bitclock-master;
-+				frame-master;
-+				remote-endpoint = <&mqs1_ep>;
-+			};
-+		};
-+	};
-+};
-+
- &scmi_iomuxc {
- 	pinctrl_emdio: emdiogrp {
- 		fsl,pins = <
-@@ -618,6 +684,13 @@ IMX95_PAD_GPIO_IO31__LPI2C4_SCL				0x40000b9e
- 		>;
+ 	/* 32.768kHz crystal */
+ 	x6: x6-clock {
+ 		compatible = "fixed-clock";
+@@ -277,6 +283,25 @@ raa215300: pmic@12 {
+ 		clocks = <&x6>;
+ 		clock-names = "xin";
  	};
- 
-+	pinctrl_mqs1: mqs1grp {
-+		fsl,pins = <
-+			IMX95_PAD_SAI1_TXFS__AONMIX_TOP_MQS1_LEFT               0x31e
-+			IMX95_PAD_SAI1_RXD0__AONMIX_TOP_MQS1_RIGHT              0x31e
-+		>;
-+	};
 +
- 	pinctrl_pcal6524: pcal6524grp {
- 		fsl,pins = <
- 			IMX95_PAD_GPIO_IO34__GPIO5_IO_BIT14			0x31e
-diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
-index 55e2da094c88..0c55861d673c 100644
---- a/arch/arm64/boot/dts/freescale/imx95.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
-@@ -391,6 +391,11 @@ scmi_misc: protocol@84 {
- 		};
- 	};
- 
-+	mqs1: mqs-1 {
-+		compatible = "fsl,imx95-aonmix-mqs";
-+		status = "disabled";
++	versa3: clock-generator@69 {
++		compatible = "renesas,5l35023";
++		reg = <0x69>;
++		clocks = <&x1>;
++		#clock-cells = <1>;
++		assigned-clocks = <&versa3 0>,
++				  <&versa3 1>,
++				  <&versa3 2>,
++				  <&versa3 3>,
++				  <&versa3 4>,
++				  <&versa3 5>;
++		assigned-clock-rates = <24000000>,
++				       <24576000>,
++				       <32768>,
++				       <22579200>,
++				       <100000000>,
++				       <100000000>;
 +	};
-+
- 	pmu {
- 		compatible = "arm,cortex-a55-pmu";
- 		interrupts = <GIC_PPI 7 (GIC_CPU_MASK_SIMPLE(6) | IRQ_TYPE_LEVEL_HIGH)>;
+ };
+ 
+ &mdio0 {
 -- 
-2.43.0
+2.51.0
 
 
