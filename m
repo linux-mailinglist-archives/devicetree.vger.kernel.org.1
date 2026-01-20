@@ -1,93 +1,142 @@
-Return-Path: <devicetree+bounces-257246-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257248-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE581D3C42D
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 10:54:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7986D3C49D
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 11:08:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5F5345616AB
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 09:45:00 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 11F4338A54E
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 09:46:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A1AC3D5243;
-	Tue, 20 Jan 2026 09:39:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB6BE3C1FCC;
+	Tue, 20 Jan 2026 09:43:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="jHu/EVLQ"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="aJf6ki/5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C4FD3D5220;
-	Tue, 20 Jan 2026 09:39:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80EB33A89A7;
+	Tue, 20 Jan 2026 09:43:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768901979; cv=none; b=XAIYFj2Leo5+COxWkdujJN5J+SeHkfwoyCyEw4ORO8I1nZZxWAU9qYjwqm62G4OajhOrF4QRScMpPBDbOs0yBWPZL1hP3IyiD17ipaVPQrWCdGUYfrX4saVDKPQ0pcsZ3PzAuqnZdVvxL2qEttodK9GpZdJnF8ZxsisHqvlkzoo=
+	t=1768902215; cv=none; b=UqeEAMpBN11MsrP7bMwN7MtA4Wsje3y9uodxwRnBQyS+kwjLKtnohQLuqcXpsetX07j5Ir8I/uuLmN9oxBpDYPLwCq8N6K6DXZPUI+n2vMY4/k2JS0m0Ujh2GsurBAjrkD0+g4jGCU1M3qR6NqT3u2MKjwrse9A8T93WZTe8Cek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768901979; c=relaxed/simple;
-	bh=2odh8yCUKMmU2qb+xhTR98g5Ui6wUMvjtfUEkILPuno=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Ch6nizFzkRvY5d2ywBgRcytU2jgEGzJ2nmp0hStM7gXQtrP8y0k60KXiGr7X3mprfAarsJPsqmfmX4fFEJnpZSyH3IFVE/7XeTlz6CXVx+ALzKKGaCU551no5LpNxIgMmx4XXfmPgRJ3pnDazAjTc3Pdpxg6RnyjM30bmPLiQDM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=jHu/EVLQ; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=7louDgFpxyU4n0BWWFhxWA7atRnSXCl4eBuC57wksqg=; b=jHu/EVLQCh4FX6xag2JDnMRWcz
-	Tqa1YrbtdVCFqoTts8BA9KJk1qEUO1QD4qzOq/JktOmezMPQM0ewCcbiCKFByEktJ2lxxW9N8E3NR
-	/obpZUzMAG6XdERx+GYKKTQrhlkcMHQkkDp+QQhznnOUWdR/grmqwPn34WBTzNvpOHMMGuWTzrmez
-	dRZ+nM/h5w4cHRnTppYQrulIELOFmXcODGkabqWxXlhHNubl3rtYGSqcXUYowXgj4YeWTFiIMjhLj
-	JCa/S12Re27rsJZ3OodC6R0MnSsxVWD7nZSJDebzk301HQ4tS7YC8REbIX5Zd+Ysk7ttZmD9kEF2H
-	Uvvc8VxQ==;
-Received: from [192.76.154.238] (helo=phil.dip.tu-dresden.de)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1vi8Cv-003KZM-Et; Tue, 20 Jan 2026 10:39:30 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	Jun Yan <jerrysteve1101@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	pbrobinson@gmail.com,
-	dsimic@manjaro.org,
-	didi.debian@cknow.org,
-	conor+dt@kernel.org,
-	stable@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: rockchip: Do not enable hdmi_sound node on Pinebook Pro
-Date: Tue, 20 Jan 2026 10:39:27 +0100
-Message-ID: <176890189896.310054.3689082098898178787.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20260116151253.9223-1-jerrysteve1101@gmail.com>
-References: <20260116151253.9223-1-jerrysteve1101@gmail.com>
+	s=arc-20240116; t=1768902215; c=relaxed/simple;
+	bh=cFmtw+W0nIPjyA9JXnCJ34TLkLN51eHKUkL0cw7+gFs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VgHRgvIImaR9lwW2OuuOuq8Pyat6x/eIQiWV+sY5+DJnTT6kIGFSY+u97SMlSsp1hYe7x4Bcid9TDIOxVoZSRFl1fqLCKcz5oVqQDN5jsKBjckQMdMcqqMqBpdOE9o7yjs6i98B7cWfxnATDcCtwigjvKlEyZxDEC+SfF2fESzo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=aJf6ki/5; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1768902211;
+	bh=cFmtw+W0nIPjyA9JXnCJ34TLkLN51eHKUkL0cw7+gFs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=aJf6ki/55o9knlTHmfUazfZ+yXtr8Aw7sNER1HrKmXGGtA57yT7kPoc1Sn+kz30iz
+	 mGJoCamBbqY+HYJ0ltn/pgn6zRhCaK2nMrMgqGG4rI30O0xzbtrzPZJpYZnW2sJ/Zy
+	 nC/6gjaBFSUnc0pSjDic7VxOFBXmGZYFT/BaVDriwRu9OdtUlgkG9Qn8drbBqxAfw9
+	 KCsNLvo4KRWqXSHqZLQtfEeGt17ta1ZWgR6NXHLjKD5S2zU2hkCwKNvyaWzHc7JtWb
+	 cFeBc6eKGSBkjd6wpWnPgYGxX2myF//YDwVD4YbO7f1KMXiWJjwR95tsP8ujPxB7Fb
+	 x1A9PUrSKfZ4w==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 49F3F17E0CF3;
+	Tue, 20 Jan 2026 10:43:30 +0100 (CET)
+Message-ID: <c3878cb0-cf37-41a3-a875-cf8f2a604b0c@collabora.com>
+Date: Tue, 20 Jan 2026 10:43:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 11/24] scsi: ufs: mediatek: Rework probe function
+To: =?UTF-8?B?UGV0ZXIgV2FuZyAo546L5L+h5Y+LKQ==?= <peter.wang@mediatek.com>,
+ "chu.stanley@gmail.com" <chu.stanley@gmail.com>,
+ "robh@kernel.org" <robh@kernel.org>,
+ =?UTF-8?B?Q2h1bmZlbmcgWXVuICjkupHmmKXls7Ap?= <Chunfeng.Yun@mediatek.com>,
+ "kishon@kernel.org" <kishon@kernel.org>,
+ "James.Bottomley@HansenPartnership.com"
+ <James.Bottomley@HansenPartnership.com>,
+ "bvanassche@acm.org" <bvanassche@acm.org>,
+ =?UTF-8?B?Q2hhb3RpYW4gSmluZyAo5LqV5pyd5aSpKQ==?=
+ <Chaotian.Jing@mediatek.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+ "nicolas.frattaroli@collabora.com" <nicolas.frattaroli@collabora.com>,
+ "vkoul@kernel.org" <vkoul@kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
+ "krzk@kernel.org" <krzk@kernel.org>,
+ "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "avri.altman@wdc.com" <avri.altman@wdc.com>,
+ "broonie@kernel.org" <broonie@kernel.org>,
+ "martin.petersen@oracle.com" <martin.petersen@oracle.com>
+Cc: "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
+ "kernel@collabora.com" <kernel@collabora.com>
+References: <20260108-mt8196-ufs-v5-0-49215157ec41@collabora.com>
+ <20260108-mt8196-ufs-v5-11-49215157ec41@collabora.com>
+ <81ed17eb-2170-4e97-b56d-488b5335ff5c@kernel.org>
+ <dd2eba99adaddf7517f06acf7805d32e261fafa4.camel@mediatek.com>
+ <87887adf-2c94-48c2-8f83-4e772ab50f60@kernel.org>
+ <e9a6da3998195b9dbda5abd26bc6dd5d3aca07ff.camel@mediatek.com>
+ <66ca211a-c909-4d0c-a22c-9cbd3489d372@kernel.org>
+ <46cb450f92887ceba07614dc85ed495f6af7f602.camel@mediatek.com>
+ <26c68bb1-1e63-4b47-babc-21ae27e3205e@collabora.com>
+ <74944c55418976375955430d27ac568149d555f1.camel@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <74944c55418976375955430d27ac568149d555f1.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-
-On Fri, 16 Jan 2026 23:12:53 +0800, Jun Yan wrote:
-> Remove the redundant enabling of the hdmi_sound node in the Pinebook Pro
-> board dts file, because the HDMI output is unused on this device. [1][2]
+Il 13/01/26 08:26, Peter Wang (王信友) ha scritto:
+> On Mon, 2026-01-12 at 16:02 +0100, AngeloGioacchino Del Regno wrote:
+>> No, MediaTek's reset hardware implementation is not the same as Texas
+>> Instruments.
+>> It was *very similar* to TI in the past (years ago, around the MT6795
+>> Helio
+>> generation times).
+>>
+>> MediaTek's reset controller - by hardware - is definitely different
+>> from the one
+>> found in TI SoCs.
+>>
+>> Regards,
+>> Angelo
 > 
-> This change also eliminates the following kernel log warning, which is
-> caused by the unenabled dependent node of hdmi_sound that ultimately
-> results in the node's probe failure:
+> I did not notice this change.
+> Will you be helping to upstream MediaTek's reset controller instead of
+> TI's?
 > 
-> [...]
 
-Applied, thanks!
+The main reset controllers are already integrated in clock drivers since
+... well, years ago.
 
-[1/1] arm64: dts: rockchip: Do not enable hdmi_sound node on Pinebook Pro
-      commit: b18247f9dab735c9c2d63823d28edc9011e7a1ad
+If there's any additional reset controller that is missing, and special to
+UFS, and that's not in the UFS clock driver, yes we can upstream that.
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+Cheers,
+Angelo
+
+> Thanks
+> Peter
+> 
+
+
 
