@@ -1,83 +1,83 @@
-Return-Path: <devicetree+bounces-257546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257549-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cIDdNubWb2mgMQAAu9opvQ
-	(envelope-from <devicetree+bounces-257546-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 20:26:30 +0100
+	id 4D08AIHab2n8RwAAu9opvQ
+	(envelope-from <devicetree+bounces-257549-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 20:41:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84DDE4A519
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 20:26:30 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94ED94AA37
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 20:41:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id EA7B97E4D1F
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 18:02:04 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B5E367EB064
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 18:02:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A758644A708;
-	Tue, 20 Jan 2026 18:01:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FA5844A72C;
+	Tue, 20 Jan 2026 18:01:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PStsfgj6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jRPStTcG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E2684418F2
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 18:01:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7BB344CAF6
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 18:01:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768932072; cv=none; b=qaRw7ocrgioMOMQZqPYPF2qR/kL268KLZuEs+ctilZGAcPRHN+XsGujg7Z6A8XW3DBC2/NfMpZK8Vif1zfZxf53vx//3B8hwsL8J02tQJQkzujU1lFMAD/79NPw80aH6pZFpdFGrdCjWkuwmF7YyZZdO40WREmR2v+CsO0QBnfA=
+	t=1768932080; cv=none; b=V1RpFQEZ5EB8guBmJihw8CsUV4wEvGZumSdEygtPSKOJOLMefYU2b013QpnHjgRd9hRqSXEDk7XUlhNn7dRgNYf7Wu7vJDYGg6OL4Pxx+xxapDBGaD55tDV48jd4IztwFEUjIZiIEXnVml2TmLtd9JYbO9VLtUkoL4oIlaP+bQc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768932072; c=relaxed/simple;
-	bh=H0r1XhTSYeujT5OkF0NqoAORNYd+BlQHapkH2n3cQzU=;
+	s=arc-20240116; t=1768932080; c=relaxed/simple;
+	bh=zo6KXXG4jYJD4f3UcZmvtjIsDA2DOYsZLMjNkvq+2ts=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Y8nFdKhbxNhlxOMLSwIuijYM5dfv4ZLbgAwJkxKCZMvsjX3pVcXZGCbYN/+o9Ug0TNXSUVY5wXiRuBFvh8WBAkExPL3u/gjFlerHJ0nVvKKJjRKvd1smqAHB7+7RJB6//Q4aaEthZRAeIhEv0tDffdMO0vsbVfU+0vCgKFqbZBE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PStsfgj6; arc=none smtp.client-ip=209.85.128.41
+	 MIME-Version; b=Xw9PI2fEQrhQpcHJDkliQ3iUjKOT6oA6YtDAEWAOvrMVk+LKR18+nd8nf514nA6zWVGocB+xzbrlJw4c8OzawDCaHVC+8G6nHLDBkBhBJy3JpuZphd2qC4TwMsgbMu+n54pdCWJgkXREUZLLEddATodOA3EChYIgwYdRLavIYVo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jRPStTcG; arc=none smtp.client-ip=209.85.128.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-47edd9024b1so36814005e9.3
-        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 10:01:10 -0800 (PST)
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-47ee0291921so38879115e9.3
+        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 10:01:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768932069; x=1769536869; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1768932075; x=1769536875; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=pU2QhlhL7N/9Y4yWJDtY0VNKSwgyki0STxJ6xsRTMoc=;
-        b=PStsfgj696rUqtAKenQi9zknxRclabR/6RBxi8AxqnhYZsCl3A9wLsoC7iDKToAhrG
-         YJHl4VPgFJpEIcZSdj12IS/EpHRwzRjzKPgsUj9ss+vtoy69MHRpOIvODmbHtXxd9MsI
-         6daB2Savc36zUO1LYLKF/bbijf90rFMhyLQSpnt6V8CYJVzEKHc56Za7qTdJN3wZTwtP
-         OIanPXprs882hXOlBdDgmrBjZjaS08sk0pWob2kPUeCZTRh0LsRpVu4w21R0FXTBNogX
-         FZC8QaIyatKCLA4evvkenJScfiThh6qZNQeZwPnYUDKp8Tru/oTPqdHxx8+wnHl4+T68
-         YBAw==
+        bh=QOD1KDE91Gue2VdaOrwNvitqYh5KSJtVXc4kZEOQho4=;
+        b=jRPStTcGyPkldbMe1Q5mHL0GR+HwSZe1QocNCmpMDD/675Zi4KBx46tCrw95khfREL
+         oR5vxBMm0t24UFrrIF39JtsPuiN/8LmPOaOjiDQGX/t8GZQYJ/hejNSfCqL28UQ5luIZ
+         /RLeK387J8k+C7Q+t+H8/fBZtzc7GGeKE0/qXYMAgt/3G9I8tqGizqT+3bRw2ghUhGzS
+         dlxKFHIHI+7AprALskzh6BQdBUCytcwnqb0KBiOvYcghVViWsbntcwv2/ygk5i6WE7pr
+         EaSmoShnzcxaeqO3lp/Q65up5MDIlLKb1tGVPaRrls/EJk9O4cwR8fMnk8M/NTZH4pzx
+         PO6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768932069; x=1769536869;
+        d=1e100.net; s=20230601; t=1768932075; x=1769536875;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=pU2QhlhL7N/9Y4yWJDtY0VNKSwgyki0STxJ6xsRTMoc=;
-        b=rUovvO+iMbGNDEV1udMYxaW5KnJ1RVe6791xfer8UyOT9OvdBd8QYtcYdutd3H9eLv
-         qzL4Uc2zoLNKmig9Hd9UYt4bbGBxTrlthlhpYRcrGxpWahbsHK/7Z9V+wKVd/8TM91rK
-         CSMw6tpUfFNZKz7pxnEBsK5IenbXAvwThQtTsk1lPEY9PfCX1BKnOUxVWEEPHS7ut+h4
-         eLvXAS4BPU5cZcQCX9D75TfHUxvioZbHhe2J9AjkVIf+ZRwhnvkyeqTSjKQALJ2jj4rH
-         hRb6r1K/7/QtRqykZBTYTDec2yym/12XivGyCydd5j4NJKTnFhgB8G2keQYLLIlSAKkK
-         JRoA==
-X-Forwarded-Encrypted: i=1; AJvYcCUjYbZbUlXp3MoF9EYpPMw/WMjiR6zNWgMrP2MgTaR+pdd9RtDtlAY/lCKsHbjB0MZ18PL3hKHxm7XQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywm9Z8DUYLLjlqykhJHrnzGxLa7lx+20MT9By4AWQNqn2cKXXCJ
-	8jUcTAMW0CyqOujCZzO5a/KcFZO2deMnl9NqNPP4VOXWvEQwr+9CSDDFPzFOTWnX
-X-Gm-Gg: AY/fxX4+ANkOPMx6r/vWLfsOK8IYIQ/dR393dZLwywa9z3UC+78Q9Fd3WPMq7nLGA2n
-	6h+HeFF/pHGFWelnv0rjegllYn43xmss7oYJ3C+F7AYDrhtRPlj57sVBz3L+KBzVCiAj/46qNIx
-	GMz3PK66xLHuMbnHIN2sue0aoie2AvZLvvFza2mg1b7CCfkRswD9QkhGdQxwD7bV6m/X5g3GuTj
-	ndokTPZ7Z2yaSxaYjryAutSFTqZVSbfkLeQnL29a8ozipH6FWNjChc316BC0RdmGUNsPytr/SRq
-	YJzBAtVZPTsp6d3T0TSZZaXbuOToY6JhGckgW+qukQmpsGua3Mi6IJeH89wF5jiHZuPznIlhqQ5
-	8OX6cCYsJ/m05lRQTaw/xarYr/OxTOnkKrCkbC7cdpL3jHfkhOp8AS3FR7zE0OQ5TPWCGPOx9gQ
-	EyK0Hho8G/zWZce+U4WNa0
-X-Received: by 2002:a05:600c:4587:b0:47e:e952:86c9 with SMTP id 5b1f17b1804b1-4801ea340d1mr186623115e9.0.1768932068649;
-        Tue, 20 Jan 2026 10:01:08 -0800 (PST)
+        bh=QOD1KDE91Gue2VdaOrwNvitqYh5KSJtVXc4kZEOQho4=;
+        b=FJE3coZUfWUKg0NyH7skjl3tt83VCEZ3kjO1tSs/v08ga/N4pSnHnxtxUIU0d7vgIG
+         wgCzzspEM65lr7KZS8O4PGoH5WK55dT5BAmp81Nltwi1YLjCKHu4CQPxl8YDcC52zhEJ
+         lLn7NoexQ/i0kzqKkwhPI0ujW82DO63F8Nj2QBzxlcfSEshd6FhuuQ2TFbh08dqGVGzs
+         v8cyrzeuuDTTFB8RPmIUqfUFQQi0VNjaqbZfH4bJRrvFzRbxX6axqV1TbuxgVu9nbIQu
+         khGEd/eeACT5jMnlftovz/70M9uDjqVCBmS8JYQuDltII9m7z+k1hg41qOyfq6x7QbN9
+         LOUw==
+X-Forwarded-Encrypted: i=1; AJvYcCWyYwiSvB2hlU++ZwbyNRdgKHpGs74Fes3fRqVyjq0UiGTefhNsOw9odMddZnf1nHTIAn0++tr5U1Lt@vger.kernel.org
+X-Gm-Message-State: AOJu0YyNHwn7xpAKoNHgj2TIUs23ifm4t5kKkd3Mup+VCDwxI8MzId+L
+	1mRCUzQ/9zX9nX6Xdr+wMyEykpmKipIJBBU2Rsm/0FlkC6ZahJYyfLo/
+X-Gm-Gg: AY/fxX7v7OfTdk86fdG9lqdk3+KVVHhz1kVkT8NQEKociIDG2J2WlWjabpbVrWmWXNZ
+	zcRh+dwvZykn2/3nflavZ9WE6n/qhiLI803pZEn165rT97+5oaLIdsOxhe53zYMZM6wzlZZlmaR
+	Em7j+yqcaQirKA7hYG3Zz51vEwRlp8KjF5PSK45+lzUL/yPkqyiGcwpYfSurTcUpVxqRLMQAakF
+	0ciCYtUUto8tExPuNH0+DsB7CNteerBEg/Yijj4WUHF8Rt5Q3jjUa1bjISlcxaTnjwI74XbkBH2
+	Z2CMqSWM73kRgYXpiArVJcm0HHQaEiihMiucriWfMvEwM2qM37iO+0rXNiJj+Rwv+X2hB2jQiNm
+	TFjNjf4sjPJiJsX0X8YWc9wyxO/jStwyG6Yvni34QoXSwdBAOGjB6dTIQycWhiM52RNjdxON3XQ
+	/q7ISfwF15M7FlTwl2PztN
+X-Received: by 2002:a05:600c:4451:b0:477:63b5:6f3a with SMTP id 5b1f17b1804b1-4801eb0eeb8mr189671835e9.27.1768932074686;
+        Tue, 20 Jan 2026 10:01:14 -0800 (PST)
 Received: from unknown.zextras.com ([78.208.157.140])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-47f429071a2sm312013015e9.11.2026.01.20.10.01.07
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-47f429071a2sm312013015e9.11.2026.01.20.10.01.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jan 2026 10:01:08 -0800 (PST)
+        Tue, 20 Jan 2026 10:01:14 -0800 (PST)
 From: Gianluca Boiano <morf3089@gmail.com>
 To: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org
@@ -87,10 +87,12 @@ Cc: andersson@kernel.org,
 	conor+dt@kernel.org,
 	robh@kernel.org,
 	david@ixit.cz,
-	Gianluca Boiano <morf3089@gmail.com>
-Subject: [PATCH 2/7] arm64: dts: qcom: sdm660: add common Xiaomi SDM636/SDM660 include file
-Date: Tue, 20 Jan 2026 19:00:47 +0100
-Message-ID: <20260120180052.1031231-3-morf3089@gmail.com>
+	Gianluca Boiano <morf3089@gmail.com>,
+	Mathesh Velayudan <123v.mathesh@gmail.com>,
+	Alexey Minnekhanov <alexeymin@postmarketos.org>
+Subject: [PATCH 5/7] arm64: dts: qcom: add device tree for Xiaomi Redmi Note 5 Pro (whyred)
+Date: Tue, 20 Jan 2026 19:00:50 +0100
+Message-ID: <20260120180052.1031231-6-morf3089@gmail.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260120180052.1031231-1-morf3089@gmail.com>
 References: <20260120180052.1031231-1-morf3089@gmail.com>
@@ -103,461 +105,455 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spamd-Result: default: False [1.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-257546-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,ixit.cz,gmail.com];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[morf3089@gmail.com,devicetree@vger.kernel.org];
+	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
+	TAGGED_FROM(0.00)[bounces-257549-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,ixit.cz,gmail.com,postmarketos.org];
+	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	PRECEDENCE_BULK(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
+	FROM_NEQ_ENVFROM(0.00)[morf3089@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	DBL_PROHIBIT(0.00)[0.0.0.3:email];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
-	PRECEDENCE_BULK(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: 84DDE4A519
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.1:email,ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,0.0.0.11:email,postmarketos.org:email,0.0.0.20:email]
+X-Rspamd-Queue-Id: 94ED94AA37
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Create a shared device tree include file for Xiaomi smartphones and tablets
-based on Qualcomm SDM636/SDM660 SoCs. This reduces code duplication when
-adding new Xiaomi devices and ensures consistent configuration across the
-family.
+Add initial device tree support for the Xiaomi Redmi Note 5 Pro
+(codename: whyred), a smartphone based on Qualcomm SDM636 SoC with
+4/6GB RAM and a 5.99" 1080x2160 display.
 
-The common dtsi includes:
-- PM660/PM660L PMIC configuration with volume/power buttons
-- Serial console (blsp1_uart2, blsp2_uart1)
-- Hall effect sensor (disabled by default)
-- USB (qusb2phy0, usb3) in peripheral mode
-- SD card (sdhc_2) pinctrl and supplies
-- eMMC (sdhc_1) with HS400 support
-- Backlight (pm660l_wled)
-- Framebuffer memory reservation
-- WiFi (wcn3990)
-- Bluetooth (wcn3990)
+This enables:
+- Booting to a framebuffer console
+- USB support
+- Hall effect sensor
+- Touchscreen (Synaptics RMI4)
+- Battery monitoring
+- Charging (pm660_charger)
+- Status LED (pm660l_lpg)
 
-Also refactor sdm660-xiaomi-lavender.dts to use the new common include,
-removing duplicated code.
-
+Co-developed-by: Mathesh Velayudan <123v.mathesh@gmail.com>
+Signed-off-by: Mathesh Velayudan <123v.mathesh@gmail.com>
+Co-developed-by: Alexey Minnekhanov <alexeymin@postmarketos.org>
+Signed-off-by: Alexey Minnekhanov <alexeymin@postmarketos.org>
 Signed-off-by: Gianluca Boiano <morf3089@gmail.com>
 ---
- .../boot/dts/qcom/sdm660-xiaomi-common.dtsi   | 214 ++++++++++++++++++
- .../boot/dts/qcom/sdm660-xiaomi-lavender.dts  | 144 +-----------
- 2 files changed, 219 insertions(+), 139 deletions(-)
- create mode 100644 arch/arm64/boot/dts/qcom/sdm660-xiaomi-common.dtsi
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ .../boot/dts/qcom/sdm636-xiaomi-whyred.dts    | 374 ++++++++++++++++++
+ 2 files changed, 375 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sdm636-xiaomi-whyred.dts
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm660-xiaomi-common.dtsi b/arch/arm64/boot/dts/qcom/sdm660-xiaomi-common.dtsi
+diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+index 6168d204ca91..a1cf067fdfeb 100644
+--- a/arch/arm64/boot/dts/qcom/Makefile
++++ b/arch/arm64/boot/dts/qcom/Makefile
+@@ -244,6 +244,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm632-fairphone-fp3.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sdm632-motorola-ocean.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sdm636-sony-xperia-ganges-mermaid.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sdm636-xiaomi-tulip.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= sdm636-xiaomi-whyred.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sdm660-xiaomi-lavender.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sdm670-google-sargo.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-db845c.dtb
+diff --git a/arch/arm64/boot/dts/qcom/sdm636-xiaomi-whyred.dts b/arch/arm64/boot/dts/qcom/sdm636-xiaomi-whyred.dts
 new file mode 100644
-index 000000000000..37ce675089fb
+index 000000000000..153c8481c658
 --- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sdm660-xiaomi-common.dtsi
-@@ -0,0 +1,214 @@
++++ b/arch/arm64/boot/dts/qcom/sdm636-xiaomi-whyred.dts
+@@ -0,0 +1,374 @@
 +// SPDX-License-Identifier: GPL-2.0-only
 +/*
-+ * Common devicetree for Xiaomi SDM636/SDM660 devices
-+ *
-+ * Copyright (c) 2020, Alexey Minnekhanov <alexey.min@gmail.com>
-+ * Copyright (c) 2022, Gianluca Boiano <morf3089@gmail.com>
++ * Copyright (c) 2025, Mathesh Velayudan <123v.mathesh@gmail.com>
++ * Copyright (c) 2025, Alexey Minnekhanov <alexeymin@postmarketos.org>
 + */
 +
-+#include "pm660.dtsi"
-+#include "pm660l.dtsi"
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/input/gpio-keys.h>
-+#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
++/dts-v1/;
++
++#include "sdm636.dtsi"
++#include "sdm660-xiaomi-common.dtsi"
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/leds/common.h>
 +
 +/ {
-+	aliases {
-+		serial0 = &blsp1_uart2;
-+		serial1 = &blsp2_uart1;
-+	};
++	model = "Xiaomi Redmi Note 5 Pro";
++	compatible = "xiaomi,whyred", "qcom,sdm636";
++	chassis-type = "handset";
 +
-+	chosen {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		stdout-path = "serial0:115200n8";
-+
-+		framebuffer0: framebuffer@9d400000 {
-+			compatible = "simple-framebuffer";
-+			memory-region = <&framebuffer_mem>;
-+			/*
-+			 * width/height/stride to be overridden
-+			 * by individual device dts
-+			 */
-+			format = "a8r8g8b8";
-+
-+			status = "disabled";
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-0 = <&vol_up_default>;
-+		pinctrl-names = "default";
-+
-+		key-volup {
-+			label = "Volume Up";
-+			gpios = <&pm660l_gpios 7 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_VOLUMEUP>;
-+			debounce-interval = <15>;
-+		};
-+	};
-+
-+	gpio_hall_sensor: gpio-hall-sensor {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-0 = <&gpio_hall_sensor_default>;
-+		pinctrl-names = "default";
-+
-+		status = "disabled";
-+
-+		event-hall {
-+			label = "Hall Effect Sensor";
-+			gpios = <&tlmm 75 GPIO_ACTIVE_LOW>;
-+			linux,input-type = <EV_SW>;
-+			linux,code = <SW_LID>;
-+			linux,can-disable;
-+			wakeup-source;
-+		};
++	battery: battery {
++		compatible = "simple-battery";
++		charge-full-design-microamp-hours = <4000000>;
++		voltage-min-design-microvolt = <3400000>;
++		voltage-max-design-microvolt = <4408000>;
 +	};
 +
 +	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		framebuffer_mem: memory@9d400000 {
-+			reg = <0x0 0x9d400000 0x0 0x2400000>;
-+			no-map;
++		ramoops@a0000000 {
++			compatible = "ramoops";
++			reg = <0x0 0xa0000000 0x0 0x400000>;
++			console-size = <0x20000>;
++			record-size = <0x20000>;
++			ftrace-size = <0x0>;
++			pmsg-size = <0x20000>;
 +		};
 +	};
-+
-+	vph_pwr: vph-pwr-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vph_pwr";
-+		regulator-min-microvolt = <3700000>;
-+		regulator-max-microvolt = <3700000>;
-+
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
 +};
 +
-+&blsp1_uart2 {
++&blsp_i2c1 {
++	status = "okay";
++
++	/* Synaptics E753 */
++	touchscreen@20 {
++		compatible = "syna,rmi4-i2c";
++		reg = <0x20>;
++
++		#address-cells = <1>;
++		#size-cells = <0>;
++		interrupts-extended = <&tlmm 67 IRQ_TYPE_EDGE_FALLING>;
++
++		pinctrl-0 = <&ts_active>;
++		pinctrl-names = "default";
++
++		vio-supply = <&vreg_l11a_1p8>;
++
++		syna,reset-delay-ms = <220>;
++		syna,startup-delay-ms = <600>;
++
++		rmi4-f01@1 {
++			reg = <0x01>;
++			syna,nosleep-mode = <1>;
++		};
++
++		rmi4-f11@11 {
++			reg = <0x11>;
++			syna,sensor-type = <1>;
++		};
++	};
++};
++
++&framebuffer0 {
++	width = <1080>;
++	height = <2160>;
++	stride = <(1080 * 4)>;
++
 +	status = "okay";
 +};
 +
-+&blsp2_uart1 {
++&gpio_hall_sensor {
 +	status = "okay";
-+
-+	bluetooth {
-+		compatible = "qcom,wcn3990-bt";
-+		vddxo-supply = <&vreg_l9a_1p8>;
-+		vddrf-supply = <&vreg_l6a_1p3>;
-+		vddch0-supply = <&vreg_l19a_3p3>;
-+		vddio-supply = <&vreg_l13a_1p8>;
-+		max-speed = <3200000>;
-+	};
 +};
 +
-+&pm660l_gpios {
-+	vol_up_default: vol-up-default-state {
-+		pins = "gpio7";
-+		function = PMIC_GPIO_FUNC_NORMAL;
-+		bias-pull-up;
-+		input-enable;
-+		qcom,drive-strength = <PMIC_GPIO_STRENGTH_NO>;
++&pm660_charger {
++	monitored-battery = <&battery>;
++
++	status = "okay";
++};
++
++&pm660l_lpg {
++	#address-cells = <1>;
++	#size-cells = <0>;
++	qcom,power-source = <1>;
++
++	status = "okay";
++
++	led@3 {
++		reg = <3>;
++		color = <LED_COLOR_ID_WHITE>;
++		function = LED_FUNCTION_STATUS;
 +	};
 +};
 +
 +&pm660l_wled {
-+	qcom,switching-freq = <800>;
-+	qcom,current-limit-microamp = <20000>;
-+	qcom,num-strings = <2>;
-+};
-+
-+&pon_pwrkey {
 +	status = "okay";
 +};
 +
-+&pon_resin {
-+	linux,code = <KEY_VOLUMEDOWN>;
++&rpm_requests {
++	regulators-0 {
++		compatible = "qcom,rpm-pm660l-regulators";
 +
-+	status = "okay";
-+};
++		vdd_s1-supply = <&vph_pwr>;
++		vdd_s2-supply = <&vph_pwr>;
++		vdd_s3_s4-supply = <&vph_pwr>;
++		vdd_s5-supply = <&vph_pwr>;
++		vdd_s6-supply = <&vph_pwr>;
 +
-+&qusb2phy0 {
-+	vdd-supply = <&vreg_l1b_0p925>;
-+	vdda-pll-supply = <&vreg_l10a_1p8>;
-+	vdda-phy-dpdm-supply = <&vreg_l7b_3p125>;
++		vdd_l1_l9_l10-supply = <&vreg_s2b_1p05>;
++		vdd_l2-supply = <&vreg_bob>;
++		vdd_l3_l5_l7_l8-supply = <&vreg_bob>;
++		vdd_l4_l6-supply = <&vreg_bob>;
++		vdd_bob-supply = <&vph_pwr>;
 +
-+	status = "okay";
-+};
++		vreg_s1b_1p125: s1 {
++			regulator-min-microvolt = <1125000>;
++			regulator-max-microvolt = <1125000>;
++			regulator-enable-ramp-delay = <200>;
++		};
 +
-+&sdc2_state_off {
-+	sd-cd-pins {
-+		pins = "gpio54";
-+		function = "gpio";
-+		bias-disable;
-+		drive-strength = <2>;
++		vreg_s2b_1p05: s2 {
++			regulator-min-microvolt = <1050000>;
++			regulator-max-microvolt = <1050000>;
++			regulator-enable-ramp-delay = <200>;
++		};
++
++		/* LDOs */
++		vreg_l1b_0p925: l1 {
++			regulator-min-microvolt = <800000>;
++			regulator-max-microvolt = <925000>;
++			regulator-enable-ramp-delay = <250>;
++			regulator-allow-set-load;
++		};
++
++		/* SDHCI 3.3V signal doesn't seem to be supported. */
++		vreg_l2b_2p95: l2 {
++			regulator-min-microvolt = <1648000>;
++			regulator-max-microvolt = <3100000>;
++			regulator-enable-ramp-delay = <250>;
++			regulator-allow-set-load;
++		};
++
++		vreg_l3b_3p3: l3 {
++			regulator-min-microvolt = <1710000>;
++			regulator-max-microvolt = <3600000>;
++			regulator-enable-ramp-delay = <250>;
++			regulator-allow-set-load;
++			regulator-always-on;
++		};
++
++		vreg_l4b_2p95: l4 {
++			regulator-min-microvolt = <1700000>;
++			regulator-max-microvolt = <2950000>;
++			regulator-enable-ramp-delay = <250>;
++
++			regulator-min-microamp = <200>;
++			regulator-max-microamp = <600000>;
++			regulator-system-load = <570000>;
++			regulator-allow-set-load;
++		};
++
++		/*
++		 * Downstream specifies a range of 1721-3600mV,
++		 * but the only assigned consumers are SDHCI2 VMMC
++		 * and Coresight QPDI that both request pinned 2.95V.
++		 * Tighten the range to 1.8-3.328 (closest to 3.3) to
++		 * make the mmc driver happy.
++		 */
++		vreg_l5b_2p95: l5 {
++			regulator-min-microvolt = <1800000>;
++			regulator-max-microvolt = <3328000>;
++			regulator-enable-ramp-delay = <250>;
++			regulator-allow-set-load;
++			regulator-system-load = <800000>;
++		};
++
++		vreg_l7b_3p125: l7 {
++			regulator-min-microvolt = <2700000>;
++			regulator-max-microvolt = <3125000>;
++			regulator-enable-ramp-delay = <250>;
++		};
++
++		vreg_l8b_3p3: l8 {
++			regulator-min-microvolt = <3200000>;
++			regulator-max-microvolt = <3400000>;
++			regulator-enable-ramp-delay = <250>;
++		};
++
++		vreg_bob: bob {
++			regulator-min-microvolt = <3300000>;
++			regulator-max-microvolt = <3600000>;
++			regulator-enable-ramp-delay = <500>;
++		};
 +	};
-+};
 +
-+&sdc2_state_on {
-+	sd-cd-pins {
-+		pins = "gpio54";
-+		function = "gpio";
-+		bias-pull-up;
-+		drive-strength = <2>;
++	regulators-1 {
++		compatible = "qcom,rpm-pm660-regulators";
++
++		vdd_s1-supply = <&vph_pwr>;
++		vdd_s2-supply = <&vph_pwr>;
++		vdd_s3-supply = <&vph_pwr>;
++		vdd_s4-supply = <&vph_pwr>;
++		vdd_s5-supply = <&vph_pwr>;
++		vdd_s6-supply = <&vph_pwr>;
++
++		vdd_l1_l6_l7-supply = <&vreg_s5a_1p35>;
++		vdd_l2_l3-supply = <&vreg_s2b_1p05>;
++		vdd_l5-supply = <&vreg_s2b_1p05>;
++		vdd_l8_l9_l10_l11_l12_l13_l14-supply = <&vreg_s4a_2p04>;
++		vdd_l15_l16_l17_l18_l19-supply = <&vreg_bob>;
++
++		/*
++		 * S1A (FTAPC0), S2A (FTAPC1), S3A (HFAPC1) are managed
++		 * by the Core Power Reduction hardened (CPRh) and the
++		 * Operating State Manager (OSM) HW automatically.
++		 */
++
++		vreg_s4a_2p04: s4 {
++			regulator-min-microvolt = <1805000>;
++			regulator-max-microvolt = <2040000>;
++			regulator-enable-ramp-delay = <200>;
++			regulator-always-on;
++		};
++
++		vreg_s5a_1p35: s5 {
++			regulator-min-microvolt = <1224000>;
++			regulator-max-microvolt = <1350000>;
++			regulator-enable-ramp-delay = <200>;
++		};
++
++		vreg_s6a_0p87: s6 {
++			regulator-min-microvolt = <504000>;
++			regulator-max-microvolt = <992000>;
++			regulator-enable-ramp-delay = <150>;
++		};
++
++		/* LDOs */
++		vreg_l1a_1p225: l1 {
++			regulator-min-microvolt = <1150000>;
++			regulator-max-microvolt = <1250000>;
++			regulator-enable-ramp-delay = <250>;
++			regulator-allow-set-load;
++		};
++
++		vreg_l2a_1p0: l2 {
++			regulator-min-microvolt = <950000>;
++			regulator-max-microvolt = <1010000>;
++			regulator-enable-ramp-delay = <250>;
++		};
++
++		vreg_l3a_1p0: l3 {
++			regulator-min-microvolt = <950000>;
++			regulator-max-microvolt = <1010000>;
++			regulator-enable-ramp-delay = <250>;
++		};
++
++		vreg_l5a_0p848: l5 {
++			regulator-min-microvolt = <525000>;
++			regulator-max-microvolt = <950000>;
++			regulator-enable-ramp-delay = <250>;
++		};
++
++		vreg_l6a_1p3: l6 {
++			regulator-min-microvolt = <1200000>;
++			regulator-max-microvolt = <1370000>;
++			regulator-allow-set-load;
++			regulator-enable-ramp-delay = <250>;
++		};
++
++		vreg_l7a_1p2: l7 {
++			regulator-min-microvolt = <1200000>;
++			regulator-max-microvolt = <1200000>;
++			regulator-enable-ramp-delay = <250>;
++		};
++
++		vreg_l8a_1p8: l8 {
++			regulator-min-microvolt = <1750000>;
++			regulator-max-microvolt = <1900000>;
++			regulator-enable-ramp-delay = <250>;
++			regulator-system-load = <325000>;
++			regulator-allow-set-load;
++		};
++
++		vreg_l9a_1p8: l9 {
++			regulator-min-microvolt = <1750000>;
++			regulator-max-microvolt = <1900000>;
++			regulator-enable-ramp-delay = <250>;
++			regulator-allow-set-load;
++		};
++
++		vreg_l10a_1p8: l10 {
++			regulator-min-microvolt = <1780000>;
++			regulator-max-microvolt = <1950000>;
++			regulator-enable-ramp-delay = <250>;
++			regulator-allow-set-load;
++			regulator-system-load = <14000>;
++		};
++
++		vreg_l11a_1p8: l11 {
++			regulator-min-microvolt = <1780000>;
++			regulator-max-microvolt = <1950000>;
++			regulator-enable-ramp-delay = <250>;
++		};
++
++		vreg_l12a_1p8: l12 {
++			regulator-min-microvolt = <1780000>;
++			regulator-max-microvolt = <1950000>;
++			regulator-enable-ramp-delay = <250>;
++		};
++
++		/* This gives power to the LPDDR4: never turn it off! */
++		vreg_l13a_1p8: l13 {
++			regulator-min-microvolt = <1780000>;
++			regulator-max-microvolt = <1950000>;
++			regulator-enable-ramp-delay = <250>;
++			regulator-boot-on;
++			regulator-always-on;
++		};
++
++		vreg_l14a_1p8: l14 {
++			regulator-min-microvolt = <1710000>;
++			regulator-max-microvolt = <1900000>;
++			regulator-enable-ramp-delay = <250>;
++		};
++
++		vreg_l15a_1p8: l15 {
++			regulator-min-microvolt = <1650000>;
++			regulator-max-microvolt = <2950000>;
++			regulator-enable-ramp-delay = <250>;
++		};
++
++		vreg_l16a_2p7: l16 {
++			regulator-min-microvolt = <2800000>;
++			regulator-max-microvolt = <2800000>;
++			regulator-enable-ramp-delay = <250>;
++			regulator-always-on;
++		};
++
++		vreg_l17a_1p8: l17 {
++			regulator-min-microvolt = <1650000>;
++			regulator-max-microvolt = <2950000>;
++			regulator-enable-ramp-delay = <250>;
++		};
++
++		vreg_l19a_3p3: l19 {
++			regulator-min-microvolt = <3200000>;
++			regulator-max-microvolt = <3400000>;
++			regulator-enable-ramp-delay = <250>;
++			regulator-allow-set-load;
++		};
 +	};
-+};
-+
-+&sdhc_1 {
-+	supports-cqe;
-+
-+	mmc-hs200-1_8v;
-+	mmc-hs400-1_8v;
-+	mmc-hs400-enhanced-strobe;
-+
-+	vmmc-supply = <&vreg_l4b_2p95>;
-+	vqmmc-supply = <&vreg_l8a_1p8>;
-+
-+	status = "okay";
 +};
 +
 +&sdhc_2 {
-+	cd-gpios = <&tlmm 54 GPIO_ACTIVE_HIGH>;
-+
-+	vmmc-supply = <&vreg_l5b_2p95>;
-+	vqmmc-supply = <&vreg_l2b_2p95>;
++	status = "okay";
 +};
 +
 +&tlmm {
-+	gpio_hall_sensor_default: gpio-hall-sensor-default-state {
-+		pins = "gpio75";
++	gpio-reserved-ranges = <8 4>; /* Fingerprint SPI */
++
++	ts_active: ts-active-state {
++		pins = "gpio66", "gpio67";
 +		function = "gpio";
-+		drive-strength = <6>;
++		drive-strength = <10>;
 +		bias-pull-up;
 +	};
 +};
-+
-+&usb3 {
-+	qcom,select-utmi-as-pipe-clk;
-+
-+	status = "okay";
-+};
-+
-+&usb3_dwc3 {
-+	maximum-speed = "high-speed";
-+	phys = <&qusb2phy0>;
-+	phy-names = "usb2-phy";
-+	dr_mode = "peripheral";
-+};
-+
-+&wifi {
-+	vdd-0.8-cx-mx-supply = <&vreg_l5a_0p848>;
-+	vdd-1.8-xo-supply = <&vreg_l9a_1p8>;
-+	vdd-1.3-rfa-supply = <&vreg_l6a_1p3>;
-+	vdd-3.3-ch0-supply = <&vreg_l19a_3p3>;
-+
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts b/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
-index a9926ad6c6f9..6467cb4dfd16 100644
---- a/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
-@@ -7,58 +7,13 @@
- /dts-v1/;
- 
- #include "sdm660.dtsi"
--#include "pm660.dtsi"
--#include "pm660l.dtsi"
--#include <dt-bindings/input/input.h>
--#include <dt-bindings/input/gpio-keys.h>
-+#include "sdm660-xiaomi-common.dtsi"
- 
- / {
- 	model = "Xiaomi Redmi Note 7";
- 	compatible = "xiaomi,lavender", "qcom,sdm660";
- 	chassis-type = "handset";
- 
--	aliases {
--		serial0 = &blsp1_uart2;
--	};
--
--	chosen {
--		#address-cells = <2>;
--		#size-cells = <2>;
--		ranges;
--
--		stdout-path = "serial0:115200n8";
--
--		framebuffer0: framebuffer@9d400000 {
--			compatible = "simple-framebuffer";
--			reg = <0 0x9d400000 0 (1080 * 2340 * 4)>;
--			width = <1080>;
--			height = <2340>;
--			stride = <(1080 * 4)>;
--			format = "a8r8g8b8";
--		};
--	};
--
--	vph_pwr: vph-pwr-regulator {
--		compatible = "regulator-fixed";
--		regulator-name = "vph_pwr";
--		regulator-min-microvolt = <3700000>;
--		regulator-max-microvolt = <3700000>;
--
--		regulator-always-on;
--		regulator-boot-on;
--	};
--
--	gpio-keys {
--		compatible = "gpio-keys";
--
--		key-volup {
--			label = "Volume Up";
--			gpios = <&pm660l_gpios 7 GPIO_ACTIVE_LOW>;
--			linux,code = <KEY_VOLUMEUP>;
--			debounce-interval = <15>;
--		};
--	};
--
- 	reserved-memory {
- 		#address-cells = <2>;
- 		#size-cells = <2>;
-@@ -78,37 +33,14 @@ framebuffer_mem: memory@9d400000 {
- 			no-map;
- 		};
- 	};
--
--	/*
--	 * Until we hook up type-c detection, we
--	 * have to stick with this. But it works.
--	 */
--	extcon_usb: extcon-usb {
--		compatible = "linux,extcon-usb-gpio";
--		id-gpios = <&tlmm 58 GPIO_ACTIVE_HIGH>;
--	};
--};
--
--&blsp1_uart2 {
--	status = "okay";
- };
- 
--&pon_pwrkey {
--	status = "okay";
--};
-+&framebuffer0 {
-+	width = <1080>;
-+	height = <2340>;
-+	stride = <(1080 * 4)>;
- 
--&pon_resin {
- 	status = "okay";
--
--	linux,code = <KEY_VOLUMEDOWN>;
--};
--
--&qusb2phy0 {
--	status = "okay";
--
--	vdd-supply = <&vreg_l1b_0p925>;
--	vdda-pll-supply = <&vreg_l10a_1p8>;
--	vdda-phy-dpdm-supply = <&vreg_l7b_3p125>;
- };
- 
- &rpm_requests {
-@@ -363,69 +295,3 @@ vreg_l19a_3p3: l19 {
- 		};
- 	};
- };
--
--&pm660l_wled {
--	status = "okay";
--
--	qcom,switching-freq = <800>;
--	qcom,current-limit-microamp = <20000>;
--	qcom,num-strings = <2>;
--};
--
--&sdc2_state_on {
--	sd-cd-pins {
--		pins = "gpio54";
--		function = "gpio";
--		bias-pull-up;
--		drive-strength = <2>;
--	};
--};
--
--&sdc2_state_off {
--	sd-cd-pins {
--		pins = "gpio54";
--		function = "gpio";
--		bias-disable;
--		drive-strength = <2>;
--	};
--};
--
--&sdhc_1 {
--	status = "okay";
--	supports-cqe;
--
--	mmc-hs200-1_8v;
--	mmc-hs400-1_8v;
--	mmc-hs400-enhanced-strobe;
--
--	vmmc-supply = <&vreg_l4b_2p95>;
--	vqmmc-supply = <&vreg_l8a_1p8>;
--};
--
--&sdhc_2 {
--	status = "okay";
--
--	cd-gpios = <&tlmm 54 GPIO_ACTIVE_HIGH>;
--
--	vmmc-supply = <&vreg_l5b_2p95>;
--	vqmmc-supply = <&vreg_l2b_2p95>;
--};
--
--&tlmm {
--	gpio-reserved-ranges = <8 4>;
--};
--
--&usb3 {
--	qcom,select-utmi-as-pipe-clk;
--
--	status = "okay";
--};
--
--&usb3_dwc3 {
--	maximum-speed = "high-speed";
--	phys = <&qusb2phy0>;
--	phy-names = "usb2-phy";
--
--	dr_mode = "peripheral";
--	extcon = <&extcon_usb>;
--};
 -- 
 2.52.0
 
