@@ -1,64 +1,71 @@
-Return-Path: <devicetree+bounces-257481-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257514-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gIonKI5gcGkVXwAAu9opvQ
-	(envelope-from <devicetree+bounces-257481-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 06:13:50 +0100
+	id 6OYkDAfZb2n8RwAAu9opvQ
+	(envelope-from <devicetree+bounces-257514-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 20:35:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id C90695163A
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 06:13:49 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE3FC4A8B0
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 20:35:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 22A149C43F7
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 15:25:56 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 358C36AD5E0
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 16:52:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26DF4478E5B;
-	Tue, 20 Jan 2026 15:06:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA8A833DEE3;
+	Tue, 20 Jan 2026 16:46:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b="LOgKswLU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D204947A0BD;
-	Tue, 20 Jan 2026 15:06:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from mail.thorsis.com (mail.thorsis.com [217.92.40.78])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D387233D4E1;
+	Tue, 20 Jan 2026 16:46:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.92.40.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768921598; cv=none; b=Vf4tqF/5bzLRzCnZ+D6dQX7Iju1tw9GfyOc4X3d075Vr5c0BMma6P8Ln/a7SJrLcE6ZlX8Azpp9M8P2KaUQyCVRTjgp3HaGIlrT+msiyo2iIR/z1t3wVujMFiCGd7v5t8HxRFTLyHPkKg8Ey7Qqjgq2lIiPX/VMkcdOaKPySVR4=
+	t=1768927619; cv=none; b=PehlQLgajmLIvpOtah6Eo2xqGceUptlpYjy6eIpi07KQyEKGsa6t7EZpma9kR1U9DQORjXeULtMi8AhjgVrHZz51TIy+f8aC867MM4K/nXy9B/pPVF/RLG815N4O2mm6IgEykkX7JS1XcDW2+DIy1zHegUX0ern1gUpcgsuFnxs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768921598; c=relaxed/simple;
-	bh=HwnOiUZ/RWt0dPC99yeATkbRtqsbXpXMaimFxLxXPd4=;
+	s=arc-20240116; t=1768927619; c=relaxed/simple;
+	bh=+/J8bN8ZXWd7ZPT6M5wsO8nw9TSIuNFETtix1FidLbw=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=dF9qfkbTMfr7+EdEbbdcizPYxelWS5GUFDmxKn0H4cHcfhR/loDyi36SCTnnrumLlB8pCvLnmb5u9yHMZFqKJpCmY16GqCW5lsZ+2HT+oPtJZd3LOOngA3bCWRjRKXBaZ4+5Crcf1gdb1OarLGeGzQiYxmEUwz8Z0/bCrqk0Xi4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-X-CSE-ConnectionGUID: it7hc4pmSfCLjwohDXpBcg==
-X-CSE-MsgGUID: Ibvn49FOQWeHXGv3xtef7w==
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 21 Jan 2026 00:06:35 +0900
-Received: from vm01.adwin.renesas.com (unknown [10.226.92.24])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 887C44022B00;
-	Wed, 21 Jan 2026 00:06:31 +0900 (JST)
-From: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
-To: geert+renesas@glider.be,
-	magnus.damm@gmail.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	mturquette@baylibre.com,
-	sboyd@kernel.org,
-	biju.das.jz@bp.renesas.com,
-	fabrizio.castro.jz@renesas.com
-Cc: linux-renesas-soc@vger.kernel.org,
+	 MIME-Version; b=TSBaR3OOzt6d2rI5y6iZnfQSd3EzVHlM0pbM3hchRng45bekyHDIPoxtiu28U3la5YulQCoypZXge7cIRALuaov8Nv29jNqqQ9U0tcZj/rVOQtk/BVnOWD41x0/lUe1mcahbBhk+Dk9ffA4vAENqUBeZ3ZeGggN0Ymz2oaOY4Zc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com; spf=pass smtp.mailfrom=thorsis.com; dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b=LOgKswLU; arc=none smtp.client-ip=217.92.40.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thorsis.com
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 80A7D148AD7D;
+	Tue, 20 Jan 2026 17:46:55 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thorsis.com; s=dkim;
+	t=1768927615; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=Na2lG/ZFqQP/kePMDfHzvjLtQoruIDe9Dm3njT0tDe8=;
+	b=LOgKswLUf23sHSYJ3wJIV1aXibG8xAeu7nWk4n5/XtxbbxzEecv02H8RNIRbN0TU/2nhrA
+	l4o85DPGlhqC/MMRaGJ0mzr7WWT+AcKlVdMChDp0uy4qIjWo3bHBE9g/l6L0vXoAs1169P
+	hSYHpWCrzkmkhCG/ziqjWDbxPW9zc1dZ5l3BSpOzg66lJd6gaPjfzCUHuQw7/mcorVVzhK
+	nVcvk3cgLCIXi1kY83xAWLbEeqAqzKzJV+oIViD6hjgsdstDvtoMFsOlWC33rdCh7FksEB
+	6zcbl702q8yee/NpqS3OULSOJ5tcyrN5hVGU8aQa/772efJeR83+Xv8B0JHxrw==
+From: Alexander Dahl <ada@thorsis.com>
+To: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Cc: Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Ryan Wanner <ryan.wanner@microchip.com>,
+	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org
-Subject: [PATCH v2 5/5] arm64: dts: renesas: r9a09g056n48-rzv2n-evk: Add versa3 clock generator node
-Date: Tue, 20 Jan 2026 15:06:06 +0000
-Message-ID: <20260120150606.7356-6-ovidiu.panait.rb@renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260120150606.7356-1-ovidiu.panait.rb@renesas.com>
-References: <20260120150606.7356-1-ovidiu.panait.rb@renesas.com>
+	linux-clk@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: [PATCH v3 16/19] ARM: dts: microchip: sama7g5: Add OTPC clocks
+Date: Tue, 20 Jan 2026 16:44:50 +0100
+Message-ID: <20260120154502.1280938-10-ada@thorsis.com>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20260120154502.1280938-1-ada@thorsis.com>
+References: <20260120143759.904013-1-ada@thorsis.com>
+ <20260120154502.1280938-1-ada@thorsis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,91 +73,77 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [1.84 / 15.00];
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [1.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
+	R_DKIM_ALLOW(-0.20)[thorsis.com:s=dkim];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[renesas.com : No valid SPF, No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-257481-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[glider.be,gmail.com,kernel.org,baylibre.com,bp.renesas.com,renesas.com];
+	TAGGED_FROM(0.00)[bounces-257514-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	R_DKIM_NA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ovidiu.panait.rb@renesas.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[ada@thorsis.com,devicetree@vger.kernel.org];
+	DMARC_POLICY_ALLOW(0.00)[thorsis.com,quarantine];
+	DKIM_TRACE(0.00)[thorsis.com:+];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
-	TO_DN_NONE(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	DBL_PROHIBIT(0.00)[0.0.0.69:email];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,renesas.com:email,renesas.com:mid,0.0.0.12:email]
-X-Rspamd-Queue-Id: C90695163A
+	PRECEDENCE_BULK(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,thorsis.com:email,thorsis.com:dkim,thorsis.com:mid,e8c00000:email,0.0.0.1:email]
+X-Rspamd-Queue-Id: BE3FC4A8B0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add versa3 clock generator node. It provides clocks for the RTC, PCIe
-and audio devices.
+These clocks should be enabled, datasheet says:
 
-Signed-off-by: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
+> The OTPC is clocked through the Power Management Controller (PMC).
+> The user must power on the main RC oscillator and enable the
+> peripheral clock of the OTPC prior to reading or writing the OTP
+> memory.
+
+Earlier discussions suggest, MCK0 must be enabled, too.  MCK0 is parent
+of peripheral otpc_clk, so this is done implicitly.
+
+Link: https://lore.kernel.org/linux-clk/ec34efc2-2051-4b8a-b5d8-6e2fd5e08c28@microchip.com/T/#u
+Signed-off-by: Alexander Dahl <ada@thorsis.com>
 ---
-v2 changes: New patch.
 
- .../dts/renesas/r9a09g056n48-rzv2n-evk.dts    | 25 +++++++++++++++++++
- 1 file changed, 25 insertions(+)
+Notes:
+    v3:
+    - Removed clock-names, not part of bindings anymore, and not used by driver
+    
+    v2:
+    - new patch, not present in v1
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts b/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts
-index 9af50198d2f1..8399f4f705c4 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts
-@@ -100,6 +100,12 @@ vqmmc_sdhi1: regulator-vqmmc-sdhi1 {
- 		states = <3300000 0>, <1800000 1>;
- 	};
+ arch/arm/boot/dts/microchip/sama7g5.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm/boot/dts/microchip/sama7g5.dtsi b/arch/arm/boot/dts/microchip/sama7g5.dtsi
+index b8296391fc696..30193f3bf9775 100644
+--- a/arch/arm/boot/dts/microchip/sama7g5.dtsi
++++ b/arch/arm/boot/dts/microchip/sama7g5.dtsi
+@@ -1036,6 +1036,7 @@ otpc: efuse@e8c00000 {
+ 			reg = <0xe8c00000 0x100>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
++			clocks = <&pmc PMC_TYPE_CORE SAMA7G5_PMC_MAIN_RC>, <&pmc PMC_TYPE_PERIPHERAL 67>;
  
-+	x1: x1-clock {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <24000000>;
-+	};
-+
- 	/* 32.768kHz crystal */
- 	x6: x6-clock {
- 		compatible = "fixed-clock";
-@@ -256,6 +262,25 @@ raa215300: pmic@12 {
- 		clocks = <&x6>;
- 		clock-names = "xin";
- 	};
-+
-+	versa3: clock-generator@69 {
-+		compatible = "renesas,5l35023";
-+		reg = <0x69>;
-+		clocks = <&x1>;
-+		#clock-cells = <1>;
-+		assigned-clocks = <&versa3 0>,
-+				  <&versa3 1>,
-+				  <&versa3 2>,
-+				  <&versa3 3>,
-+				  <&versa3 4>,
-+				  <&versa3 5>;
-+		assigned-clock-rates = <24000000>,
-+				       <24576000>,
-+				       <32768>,
-+				       <22579200>,
-+				       <100000000>,
-+				       <100000000>;
-+	};
- };
- 
- &mdio0 {
+ 			temperature_calib: calib@1 {
+ 				reg = <OTP_PKT(1) 76>;
 -- 
-2.51.0
+2.47.3
 
 
