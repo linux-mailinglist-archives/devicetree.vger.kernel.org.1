@@ -1,191 +1,136 @@
-Return-Path: <devicetree+bounces-257342-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257343-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YJpCE6escGkgZAAAu9opvQ
-	(envelope-from <devicetree+bounces-257342-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 11:38:31 +0100
+	id IEkbDV5WcGlvXQAAu9opvQ
+	(envelope-from <devicetree+bounces-257343-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 05:30:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id F364655557
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 11:38:30 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE71251074
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 05:30:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 672ED62B0A1
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 11:44:57 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 0C65E6409F0
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 11:46:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9324642317C;
-	Tue, 20 Jan 2026 11:43:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC5EC42668B;
+	Tue, 20 Jan 2026 11:44:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fBoPr2th"
+	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="oexglfcU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f171.google.com (mail-dy1-f171.google.com [74.125.82.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-174.mta1.migadu.com (out-174.mta1.migadu.com [95.215.58.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1B4B3EDACF
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 11:43:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00DF7423A82
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 11:44:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768909429; cv=none; b=sT96mDSi2CuoVcIuuAwXgU3NTol/Of6AYozy2yYpammsQV1N/RxJyA3E0hdNi+cN2+G8Ja8AzLJZETpYRwfYmRrPfYZK4FgGPlcymTJPTZoUcOGsI7fRJqcbuzYB7/8WDRRol3b7x6ujcwdV5V/vMFDWxlERenooUcVtcUIVwcg=
+	t=1768909451; cv=none; b=cVCpcSz121qawbXkKcBvgO7cHjW30c9XCBFlcsRF9zlml++gsU12rKuuhL40RF2GrqTRMdnkHHa5xYx5CtrWVvR92Zk02G4vRr+EayaxRQD7Or7UeJ4wDrlmms6qpNijrSZNAHXLB5NXxvMxtND+9doZ4MLmer8EzWUFARCzsSs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768909429; c=relaxed/simple;
-	bh=gcLF48OQAJqjairFH8eR92suY9fBYKsnj8NxKel1wV4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DZ21VxIeSRT8BjNUy+AOnFd6i7bNJNxXGCUN6AyKZVUyldAprlJI+CMVJyizMr6VI2dXgvxAOuwZ0DKnpRVCS063lsqL80PPdTPsDiQhMdWB8E2L42hvH8Ye88fmNam2GPg+oYWjzw23icJ/NER/D+8/pBChUHaKxb1Et2ZF2b8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fBoPr2th; arc=none smtp.client-ip=74.125.82.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f171.google.com with SMTP id 5a478bee46e88-2b4520f6b32so7078894eec.0
-        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 03:43:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768909427; x=1769514227; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=KEeKRKNgnXmWzaKf1C0tW6uj5QVjxVimCmm99Tj3C3c=;
-        b=fBoPr2thtrJ7IKXqOqlk3jkwWCLQZ78B67lQ/mVvViQCxtCtqI1qpv3jwIgLjiKd+Y
-         /XDUv5FrDOO8JGdJY1bYBRxXo5BiI9kFZI7ZP0MIy/NjK0PVNZkkzZFrlnlPBg96/xKA
-         cZdCUrvnoILnw3CNjNSDAWrXHTSMtReMbLN4aQ2f4QRs8Qsn56vUhmmud+D3zkeNpOX6
-         6rvvkgzyeq7ThI3/OLBTWniItCcJQpTvMaWqzpwvRiHgIW7aBSeQ4sH/mbmzoo6D1jaI
-         zzBFbztWoN2eFnFrlOqx0xNu8fJUwqszvXkMfiYPFxA205HdDeuOubM+0DtAeXx5zP/c
-         VuBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768909427; x=1769514227;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KEeKRKNgnXmWzaKf1C0tW6uj5QVjxVimCmm99Tj3C3c=;
-        b=lD6rNj/unybYyk8TrnF/wK3LrIASU8n7riSOI+ad2kCnjHC4ch0646voxIgdNZRrbc
-         8C1BNkvqI8wLN31zOsz9z4h5ly/LMlJ2C9a9Ait0AM+Zx76fitz5i7hcEEYhxOar1Vod
-         z4SL7zVUlcxegHndV5L7e6uSAGpcE/yuvZeu0kGNWvixeY/z+G7zJpuy78jKxszJDgb4
-         xiufbgwqksxFe88W/vHl+ep3V2f1c/wuFUKbKdEKkqO3F4F1CC8kcHxK77EIzD5gbDA9
-         eJvmsYLORNDi+cYNKy/mF1+dBhUOm+I7gNNiL5T38EUOcvf3ckzPDZ/+yFfO8pbaQOus
-         IYPA==
-X-Forwarded-Encrypted: i=1; AJvYcCX35fQZLyuLPFZ48d7LfPscP1qxUf6UFgBXrK3DqMqQcGZNDzRwm9WVQ6g5pHENacqd0bBbj0kpx810@vger.kernel.org
-X-Gm-Message-State: AOJu0YyspdI+fPoNxuwCrCAuqxW9fGd91C4xG/9+CZ9qZHDbhItH8vLp
-	7YjfhaHKscTIkoOmQSn4UQSpN4dCanNP+IbPlVakInlGnH22cjMqlTht
-X-Gm-Gg: AZuq6aIjGYoVUuMg/xLugnHZMlXRS2G2ptoQNDZIOzjG7TWuWY55T39sp3mGDZt7zpJ
-	izRV6HIUDPi9z1PpqohPcHGJpVBXg3mZr4wZanjYLZAx72zns1oNwp4MjXjGAUUs8JXCqsQvoZV
-	+QNnQe+4PISF8zxEJbCkGJMirCbuaYBYEaX+QkaFwhm1XEIlmb066SDfiHV1JCR26jMQ2yJUxQF
-	SHrZFEik1b5j+iWpsA5HynqgCPXB22PWmNGw7TXOlvE7ZmZlQyAcAkxkV5OVQmlhfoALv5BK19A
-	+8KsLXzsdIBtkzz+J38TpAYwyZdaIUyY2nJx5YLOEMylsWnLBVJpVcWggCkIAnfPEyAv16YqLV4
-	j/gYbZhYpWerIBx3YHxD+9f70v3ieIaa653eZNFckyBQrPO/sJvRmkIiJSOKn/R81jhQutl+vRL
-	9N8pbQ9ez8ZA==
-X-Received: by 2002:a05:7301:2b05:b0:2b0:5929:4d1f with SMTP id 5a478bee46e88-2b6fd7add4emr884545eec.33.1768909426655;
-        Tue, 20 Jan 2026 03:43:46 -0800 (PST)
-Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b6b34c11dasm18506224eec.2.2026.01.20.03.43.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jan 2026 03:43:46 -0800 (PST)
-Date: Tue, 20 Jan 2026 19:43:36 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>, Yao Zi <me@ziyao.cc>
-Cc: Inochi Amaoto <inochiama@gmail.com>, 
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Richard Cochran <richardcochran@gmail.com>, Paul Walmsley <pjw@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Yanteng Si <siyanteng@cqsoftware.com.cn>, 
-	Yao Zi <ziyao@disroot.org>, Vladimir Oltean <vladimir.oltean@nxp.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, Choong Yong Liang <yong.liang.choong@linux.intel.com>, 
-	Maxime Chevallier <maxime.chevallier@bootlin.com>, Chen-Yu Tsai <wens@kernel.org>, 
-	Shangjuan Wei <weishangjuan@eswincomputing.com>, Boon Khai Ng <boon.khai.ng@altera.com>, 
-	Quentin Schulz <quentin.schulz@cherry.de>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
-	Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
-	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
-	Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH net-next 3/3] net: stmmac: Add glue layer for Spacemit K3
- SoC
-Message-ID: <aW9p9By1ZW5i4iWw@inochi.infowork>
-References: <20260120043609.910302-1-inochiama@gmail.com>
- <20260120043609.910302-4-inochiama@gmail.com>
- <aW9jbqBSgkiLLw8r@pie>
- <aW9m8YOVO1ClIQOd@shell.armlinux.org.uk>
+	s=arc-20240116; t=1768909451; c=relaxed/simple;
+	bh=TBJAFEXB7pUqai6KjvPDlvSX7uwXO1rTYHITS5eD3hw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uBy09LU0ILBmuIvQtkRhERU4C1jgNYHM14EILhq4d9+VQz+emhw/SO/OjKJHg35MXKIMxDWs5uAWI31xIhOoI1U2nbvGi1Jgw2+ycEXrN3Ikp/R1wIK/dFoMYWFeSuZcOqfEO7lzkELcaEgF/FcEQtHT3uC16iWqVh73QXh/DaI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=oexglfcU; arc=none smtp.client-ip=95.215.58.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=packett.cool
+Message-ID: <2b532215-e530-4b9e-900a-e67c70d5e19e@packett.cool>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=packett.cool;
+	s=key1; t=1768909433;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=bDuc7hpOHRtcWQi6aDzHf441wxFw1bVpR1pKewUL+B4=;
+	b=oexglfcUQJ8rzRrPCaBIilEBWD7mxtWFrEZE4BVemsL9LrKn+bwz1ggMRRfzlVp/9JKkfm
+	cpQTe0/p74VpijdQmMp49PAQSsST7Uyj9eyHp2+yR1cChLsXEbXvaoxurIFi05dUvP8FzG
+	scw93zDGGAf99aqxfhq4UQ4ekcfM07XemA+yyZahW/6VQdo4Sj+V0O16Zb4a8Ql+ThTu2O
+	2xW1MrBzuuFDRFDF6CSv76ILCEzxiG9ScNiC3GjSwRV6XY4oIXR4QcPTeaLxFUQnKzErEQ
+	DPvj6SZqO9zRpVN06kZ7aBegrPbkdNey/tow5KlnmufS49a08HnIoHTdR4nUFg==
+Date: Tue, 20 Jan 2026 08:43:42 -0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aW9m8YOVO1ClIQOd@shell.armlinux.org.uk>
+Subject: Re: [PATCH 0/3] SC7180 MDSS core reset
+To: Konrad Dybcio <konradybcio@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Taniya Das <quic_tdas@quicinc.com>,
+ cros-qcom-dts-watchers@chromium.org, Kalyan Thota
+ <quic_kalyant@quicinc.com>, Douglas Anderson <dianders@chromium.org>,
+ Harigovindan P <harigovi@codeaurora.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20260120-topic-7180_dispcc_bcr-v1-0-0b1b442156c3@oss.qualcomm.com>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Val Packett <val@packett.cool>
+In-Reply-To: <20260120-topic-7180_dispcc_bcr-v1-0-0b1b442156c3@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_DKIM_ALLOW(-0.20)[packett.cool:s=key1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-257342-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-257343-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[gmail.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gentoo.org,foss.st.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,cqsoftware.com.cn,disroot.org,nxp.com,bp.renesas.com,linux.intel.com,bootlin.com,eswincomputing.com,altera.com,cherry.de,st.com,synopsys.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,st-md-mailman.stormreply.com];
-	RCPT_COUNT_TWELVE(0.00)[39];
+	DMARC_POLICY_ALLOW(0.00)[packett.cool,quarantine];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[packett.cool:+];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[inochiama@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	FROM_NEQ_ENVFROM(0.00)[val@packett.cool,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: F364655557
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,qualcomm.com:email]
+X-Rspamd-Queue-Id: EE71251074
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Jan 20, 2026 at 11:28:49AM +0000, Russell King (Oracle) wrote:
-> On Tue, Jan 20, 2026 at 11:13:50AM +0000, Yao Zi wrote:
-> > On Tue, Jan 20, 2026 at 12:36:08PM +0800, Inochi Amaoto wrote:
-> > > +static int spacemit_dwmac_probe(struct platform_device *pdev)
-> > > +{
-> > 
-> > ...
-> > 
-> > > +	of_property_read_u32(pdev->dev.of_node, "tx-internal-delay-ps", &tx_delay);
-> > > +	of_property_read_u32(pdev->dev.of_node, "rx-internal-delay-ps", &rx_delay);
-> > 
-> > According to of.h, of_property_read_u32, which in turn calls
-> > of_property_read_u32_array, could fail with -ENODATA if there's no value
-> > associated with the property. Should the case be handled?
-> 
-> You cut too much. This had:
-> 
-> 	unsigned int tx_delay = 0;
-> 	unsigned int rx_delay = 0;
-> 
-> at the start of the function.
-> 
-> of_property_read_u32_array() says:
-> 
->  * @out_values: pointer to return value, modified only if return value is 0.
-> 
-> and of_property_read_u32() passes &tx_delay or &rx_delay to this. Thus,
-> if any error occurs, these will be zero. In other words, a missing
-> property is equivalent to setting these to zero, which is entirely
-> reasonable.
-> 
-> However, "unsigned int" _may_ be type equivalent to "u32", but really
-> these should be "u32" if of_property_read_u32_array() is used.
-> 
 
-Good catch! I always treat "unsigned int" to "u32" implictly, I will 
-change to u32 for as an precise type.
+On 1/20/26 8:19 AM, Konrad Dybcio wrote:
+> Add the missing reset for the display subsystem and wire it up, so that
+> drivers can consume it.
+>
+> Compile-tested only.
+>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> ---
 
-Regards,
-Inochi
+Thanks!
+
+Tested-by: Val Packett <val@packett.cool> # sc7180-ecs-liva-qc710
+
+Might be worth noting in the commit message that the real world issue 
+this solves is that after probing the driver, the DPU would keep trying 
+to access the physical address that belonged to the EFI framebuffer, 
+causing constant IOMMU faults and visual glitches on the display output.
+
+~val
+
+P.S. what a coincidence that just a week ago this was discussed for 
+sdm845 
+https://lore.kernel.org/all/bfe55d1b-1b45-4187-84fe-9475cb90b00a@linaro.org/
+
 
