@@ -1,85 +1,53 @@
-Return-Path: <devicetree+bounces-257387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257389-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ECqhLg9mcGkVXwAAu9opvQ
-	(envelope-from <devicetree+bounces-257387-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 06:37:19 +0100
+	id 6PzHDJlXcGlvXQAAu9opvQ
+	(envelope-from <devicetree+bounces-257389-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 05:35:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5612E51980
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 06:37:19 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 999A551130
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 05:35:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 13D823EB591
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 12:30:01 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 12A7182A224
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 12:33:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C2083D6662;
-	Tue, 20 Jan 2026 12:29:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0880241C2F7;
+	Tue, 20 Jan 2026 12:31:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jaqeOb+v"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BdI4N5tm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1343F3DA7FE
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 12:29:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC31E35A939;
+	Tue, 20 Jan 2026 12:31:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768912186; cv=none; b=pGxhRZc/KrqXwfUcQ8XgOpXkSJhAzcpk6z/pOGOkpnlKl2psx6mcZy/lLolh+nWCwTawYVW4UdMbal3z8PzdD045GOicaTv3GLnynojm9l6RvL1BwaODPptmhDu9cqqevFqw1dm7oJ0VmjZxSbD71G8p+KuFvMCDReW9Tlma2i4=
+	t=1768912300; cv=none; b=t0UAByMkhURgB0dcjt2gv66a9MzCutv7eDLha/3sgNZwIii94mMRtUcU7IxB8Cyjis1ZWlLWk4zelyuZIr6hjwEooy7j1BUsw2wIQOVIBAAi5MEYIyXcQjkBlzwo+tufQ6Uk9x8U28hgh1ni1NiDNs7rAt6idZxxjFgJ9qhS0wQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768912186; c=relaxed/simple;
-	bh=ch1EDL45KQ1Bli8m3y9dlCGuNaDcJnG1aw6Tw3Tgbh8=;
+	s=arc-20240116; t=1768912300; c=relaxed/simple;
+	bh=9C4iEBqyXAfkbe6trSaNFjqrSpj7O42c6FjkKJkCPIE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CcOpWArTI2qacIPFIa7anMORg9eReGmzmXZ8yZvt5uqaOePBl7sxlGbNbjlS0G56R/ETwQ2flzakvwTkfdQ3IDIHTyna3L/h2iVrLxymAu/PNETfL3NyeM6db0aTIxCRUfUtMt/GjV3iYqzmK5Ac4zbjFxCwqxXrDko9sBb6BMg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jaqeOb+v; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-b86f3e88d4dso949958066b.0
-        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 04:29:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768912182; x=1769516982; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=h0YG28pJwuFWWWbmb7kZFD7xrZgouesVy9V7x/n/G6Y=;
-        b=jaqeOb+v7ykK6Cf9QPY7OtGUK9+boVgdOrgcAxVNKGJaHR6ZdyLKMdISbKdnhClS7B
-         XCzZUA/sIqbd/AbbbTrXd1RGSRWzWXv0f8+jsJ9FqBppZYc/jY9Y/jz19XM9EIKt9BHM
-         7eWyLm2IVk0s5J+RX51x+0nx2JLtn98GegIIlWvyFVHx4oDQQFVzyeLd6w83kN6Ibf10
-         XJZSivSNYh7HSA8+H0S4AJeURAdmDyDAHibiUfAI/1FrCwf4oFKULtR1JVBNKPfvPjYm
-         7FUVuxx58gALAhwQr2RL8xaSp1/C65Rb+cqgizJcdMJVbM4e0W/g143al7WxMz8DEi31
-         NAFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768912182; x=1769516982;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=h0YG28pJwuFWWWbmb7kZFD7xrZgouesVy9V7x/n/G6Y=;
-        b=Zm+VO2lSNkSGi7uRy7Q+FNxVuQIgytGRPghcnvt+uABInLcatCJSH4j3llFoJ9utt4
-         4Z+L/Bov8zixvukFixANMBTriPzJQBo6ca85S9//ATahyh29KS6r/b9mLd7xpLLctux7
-         y3Kv+osKCp+Tq8w10bIY/G6b3K4GrT9S/mIIjO2Pmcok8cVdXeDaY9bqHt+3gwfxavap
-         qd+ZgrFmjqskFyo7gzUFTuZDrlbzMuhs6tTbxIUAVWqTCViN+XzOpGqn4aoqlyfPmZOh
-         hoHTQ+nq4Umi+prb+EZDPPPgsM4YhTzhXqB4qzXeJxJeCz1PVaDfMbL1/LhGwAWXbUTf
-         7XHg==
-X-Gm-Message-State: AOJu0Ywls4+hNQT5T5W8yOHlvDBVB5SpCn2PCEuQlwOCp4W9azIoAbPM
-	S+u+gNq9W2paLBenhpb9t5bQKud3NJjTVB8skaXPoEDR952EB93mQ+Jx
-X-Gm-Gg: AZuq6aLopBkdaNRd48LjLNS+rBJSS8DacvUBEjS+CqI6nNpNMk1w/z1n+o7/6tfYxoa
-	uC1krGddnkYL31dklNy5rK9sR306p+S1anLgqn95W86j1lLv6zYK/MAN4bMLB11iJjkRZhW55Mk
-	qvxb1PMufeOEZyA2TLPVoxx0XA9mFcsovh3tS/yCqn6k+M5rafxmJcqY0/sCdpk2pCiX4u7/ryT
-	fqjj0HINUBwiJlb49xV9mmdTHYomFtvyf2ikKW/VXtqTXRAfHRSMqv1yNt4j3gtAoIfL+U3RTYL
-	gvrxEJoQg3z0M6dIo6pohsnJOmHDsHBuLWLY5/J21XHkGJ0qp7el7/2P3qug4BJmmZwJCFDyTs0
-	DHeEXKA9b3leoj4y9Y3Krg77pPhhZkjatfZi6qDE6CzBeNbXaQaNvXSshq+U+gtNEaA6cNTX24s
-	ak26yZdNieAowByo3ST86wd2GEMenw9mdaEOEqK2e9Aw==
-X-Received: by 2002:a17:906:c153:b0:b87:3280:6003 with SMTP id a640c23a62f3a-b8792fc4229mr1369007366b.49.1768912182084;
-        Tue, 20 Jan 2026 04:29:42 -0800 (PST)
-Received: from [10.25.220.41] ([128.77.115.157])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8795a0880dsm1368115166b.57.2026.01.20.04.29.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jan 2026 04:29:41 -0800 (PST)
-Message-ID: <993363fb-8ce4-4a89-b6c4-8fbf181ad410@gmail.com>
-Date: Tue, 20 Jan 2026 04:30:32 -0800
+	 In-Reply-To:Content-Type; b=tZzUoSLndb2Qlxyu9xJJb+WL28TKLcSwfNpQwjpiiGMeJ2hu64P+n24b9QfuA/BZ1hVUo7tre5vwYCSizcOZf7g17d3p8SG2wwM39pWvyDKiec6bvZDzEuXZpyyYpzIRAwdtbRkZ4bwyRmNxUHHEqOp6+0NfywHyrjMpjzrVA9s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BdI4N5tm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 745B4C16AAE;
+	Tue, 20 Jan 2026 12:31:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768912300;
+	bh=9C4iEBqyXAfkbe6trSaNFjqrSpj7O42c6FjkKJkCPIE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=BdI4N5tmJoSSUvjTBD13rGVuSrXpKul6I8CTBjgRLxVJDFttCt/uFllcbSFJj35zW
+	 iyIaBkicCp6/2/p7i8O0GFeqd/ExgikyD+iYFHT9EjqkD0Om/sHhB+AkfFJmglA6RC
+	 kYDgZ7KykN8gQifnrXaarauRX7YZK2ovIqAKK9MXMgBzve+s5fXKqcT5ykKjfdt4r2
+	 Ee4JUmnNS4su75mmMl9h5mnabqnTyW8Xh9IDnzM+6xHWauRxDV8vRSJZfVYNoo5zj8
+	 UaPlPnoMzQG3u2iMOUsWLEMTf1yOqlUz0zqaFewYrnCRWOKeis9szSf8HfufFHjuuB
+	 /qcb5p4ExuoXA==
+Message-ID: <8f3ea845-2f5a-42e1-b8c9-4e183c463e58@kernel.org>
+Date: Tue, 20 Jan 2026 13:31:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,101 +55,128 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: imx95: Reserve eDMA channels 0-1 for V2X
-To: Joy Zou <joy.zou@nxp.com>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH RFT 3/3] arm64: dts: qcom: glymur-crd: Enable USB support
+To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
+ Abel Vesa <abel.vesa@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>,
- Peng Fan <peng.fan@nxp.com>, Ye Li <ye.li@nxp.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260120-b4-imx95-v2x-v1-1-52b2025b27a0@nxp.com>
+ <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Wesley Cheng <quic_wcheng@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+ Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+References: <20260113-dts-qcom-glymur-add-usb-support-v1-0-98d6d387df01@oss.qualcomm.com>
+ <20260113-dts-qcom-glymur-add-usb-support-v1-3-98d6d387df01@oss.qualcomm.com>
+ <1299cddb-8205-47bc-89c4-98b4ddcd688c@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-In-Reply-To: <20260120-b4-imx95-v2x-v1-1-52b2025b27a0@nxp.com>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <1299cddb-8205-47bc-89c4-98b4ddcd688c@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-257387-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_TO(0.00)[nxp.com,kernel.org,pengutronix.de,gmail.com];
+	TAGGED_FROM(0.00)[bounces-257389-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[laurentiumihalcea111@gmail.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[2.128.222.128:email];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,nxp.com:email]
-X-Rspamd-Queue-Id: 5612E51980
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo]
+X-Rspamd-Queue-Id: 999A551130
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-
-On 1/20/2026 12:35 AM, Joy Zou wrote:
-> Reserve eDMA channels 0 and 1 on the AXI eDMA controller for exclusive
-> use by V2X (Vehicle-to-Everything) fast hash operations.
->
-> Signed-off-by: Joy Zou <joy.zou@nxp.com>
-> ---
-> ---
->  arch/arm64/boot/dts/freescale/imx95.dtsi | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
-> index 55e2da094c889fc7c1096d0e36f31ae118d2a982..24d02aa18b2f480bbffdc30bc41c658fb3aaf67a 100644
-> --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
-> @@ -631,6 +631,7 @@ edma2: dma-controller@42000000 {
->  				reg = <0x42000000 0x210000>;
->  				#dma-cells = <3>;
->  				dma-channels = <64>;
-> +				dma-channel-mask = <0x3>;
->  				interrupts = <GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH>,
->  					     <GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH>,
->  					     <GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH>,
->
-> ---
-> base-commit: d08c85ac8894995d4b0d8fb48d2f6a3e53cd79ab
-> change-id: 20260120-b4-imx95-v2x-3e01c7bc6881
->
-> Best regards,
+On 20/01/2026 13:07, Pankaj Patil wrote:
+> On 1/13/2026 6:03 PM, Abel Vesa wrote:
+>> From: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+>>
+>> The Qualcomm Glymur Compute Reference Device comes with 3 Type-C ports,
+>> one USB Type-A, and a fingerprint reader connected over USB. Each of these
+>> 3 Type-C ports are connected to one of the USB combo PHYs and one of the
+>> M31 eUSB2 PHYs. The Type-A is connected to the USB Multi-port controller
+>> via one of the M31 eUSB2 PHYs and one combo PHY. The fingerprint reader
+>> is connected to the USB_2 controller. All M31 eUSB2 PHYs have associated
+>> eUSB2 to USB 2.0 repeaters, which are either part of SMB2360 PMICs or
+>> dedicated NXP PTN3222.
+>>
+>> So enable all needed controllers, PHYs and repeaters, while describing
+>> their supplies. Also describe the PMIC glink graph for Type-C connectors.
+>>
+>> Signed-off-by: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+>> Co-developed-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+>> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+>> ---
 
 
-Thanks, this fixes the kernel panics on MX95-15x15-FRDM and MX95-19x19-EVK after
+Please kindly trim the replies from unnecessary context. It makes it
+much easier to find new content.
 
-AP access is removed from said channels via SM.
+I went through entire pages of quoted text and found no relevant
+answer... probably because it was deep hidden in these pages of
+irrelevant quote.
 
-
-Just one thing: can you do this change for imx95-19x19-evk-sof.dts as well?
-
-If not, I'll just send a patch for that later on.
-
-
-Either way:
-
-Reviewed-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
-
-Tested-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com> # MX95-15x15-FRDM, MX95-19x19-EVK
-
+Best regards,
+Krzysztof
 
