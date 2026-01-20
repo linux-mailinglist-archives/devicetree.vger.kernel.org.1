@@ -1,65 +1,67 @@
-Return-Path: <devicetree+bounces-257445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257459-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6Hw0Lxawb2nMKgAAu9opvQ
-	(envelope-from <devicetree+bounces-257445-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 17:40:54 +0100
+	id INGwIW2tb2nxEwAAu9opvQ
+	(envelope-from <devicetree+bounces-257459-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 17:29:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60C5B47C81
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 17:40:54 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24BAD4788F
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 17:29:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 3776D66CD2E
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 14:43:24 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 08EF3721ED3
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 14:59:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC12A44DB8A;
-	Tue, 20 Jan 2026 14:33:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5334143E4BB;
+	Tue, 20 Jan 2026 14:47:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b="gCp7kAsk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from mail.thorsis.com (mail.thorsis.com [217.92.40.78])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13B9644B69F;
-	Tue, 20 Jan 2026 14:33:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.84
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA9D843CEC1;
+	Tue, 20 Jan 2026 14:47:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.92.40.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768919598; cv=none; b=poEspiX8XqWOnLi4af/CbTNsLVJO2qjRYi0yWuGxJ1EoVcNZtt2eKH6Rk+bTCVcUkE70O6zrr2hYnEvR0VLqjcD37WdU9XqKnNl+Y5nJqeEIdwgU2Sg3MjB90ur3d+0VZMlW7ivHWTmMBY/Wgf2vl/xRIQ/lzH/1qo0TDM7fs5U=
+	t=1768920464; cv=none; b=q+OGMw+p4S6hKtxxoSb0VITXPSa5MdVhx6R8g6G+EOqYPziEvi0SZ5nwj4t8v9CpintEJ9iFSznkuv7Sw9SgqHL19B5Eaw2OIuJX3ZtMmSAHMFPsQyAfoxAcXCfk4RIPY2/eMVi0GsDY6M+Ov+mFhTKW5rekEpveciqquj3Y79E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768919598; c=relaxed/simple;
-	bh=y3j7a8AHlwqdtV7We7unMDy7szHzimBFoijdXbjyjJU=;
+	s=arc-20240116; t=1768920464; c=relaxed/simple;
+	bh=S+YzY3yWLHJBzPQ+BP8F0P/REajJo7wlTKOXADK+CNs=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=P6wBRIXI3YffaEa5l0A1PXEOgNc0bNrrTrR2eTt/3C19L0fqMca9lItbfro2Wt998DHL4oQEKR794nyiOWQVORWP93z0fXVvHeDFcBNhvcEz0v338bwaYBYMnCvTaaclkIfhAnL9RI8BPETPuPEF1nX/NuYtZew6tWlTLAMXbkc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.84
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
-Received: from duge-virtual-machine (unknown [183.192.221.134])
-	by APP-05 (Coremail) with SMTP id zQCowACn_hESkm9p+zDJBQ--.5466S6;
-	Tue, 20 Jan 2026 22:32:55 +0800 (CST)
-From: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
-To: vkoul@kernel.org,
-	gregkh@linuxfoundation.org,
-	conor@kernel.org
-Cc: neil.armstrong@linaro.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	pjw@kernel.org,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	alex@ghiti.fr,
-	jiayu.riscv@isrc.iscas.ac.cn,
-	linux-phy@lists.infradead.org,
-	linux-usb@vger.kernel.org,
+	 MIME-Version; b=HzjR/vSP7c5eFirFRcj1/JmUvFUDN6Fk+elcBCNAkUDCbCIN1VG+fch0ey0c53K9SYfdg8LLemgan9D9sTbKCxHK7aDfle5gdHOH0zN6EzvdyXSTZWLJv1TSWbNAKVkMWkSIcFfXu1UlgF/xfBepnd/DOdxfa6UscCDz9JP3cjE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com; spf=pass smtp.mailfrom=thorsis.com; dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b=gCp7kAsk; arc=none smtp.client-ip=217.92.40.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thorsis.com
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DD18B148AD3E;
+	Tue, 20 Jan 2026 15:38:24 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thorsis.com; s=dkim;
+	t=1768919905; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=3hoXMVRSQSHzlrc6BbneIFGzDKJfR415NtQHWKx5Mxg=;
+	b=gCp7kAske59StqI62JOTq91WMYEzRi/kuFO6Kgah5eMF6sbw8oWBk7eY2Xgw+L/xV6KKoS
+	L8mESPh9n3EW0iIeJzDepuQzirbqipPiVsY7dI4w6cmWiCnTveSNapWDAhJNaoJXEqJjJT
+	HbTbcmc9XAn73oHmwbgxmXbpqDjHntg5ZwlOWnrj4wIc+dblxxNh4Orwnr0zCn6xyLB7hs
+	dpWpKyFtNbdpOmZ2XugdmRig8X2melFBk0fEyNp9BpmYMpd5+F1gy4ffsCwi/IzTaRpZeO
+	jXtNx4hr2MrEbAlvzQqf009jtjLxmvi4VTPkOvClSCECQtPWLkNRDaVvZOF19Q==
+From: Alexander Dahl <ada@thorsis.com>
+To: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Cc: Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Ryan Wanner <ryan.wanner@microchip.com>,
+	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 4/4] riscv: dts: canaan: Add syscon and USB nodes for K230
-Date: Tue, 20 Jan 2026 22:32:43 +0800
-Message-ID: <20260120143243.71937-5-jiayu.riscv@isrc.iscas.ac.cn>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260120143243.71937-1-jiayu.riscv@isrc.iscas.ac.cn>
-References: <20260120143243.71937-1-jiayu.riscv@isrc.iscas.ac.cn>
+	linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org
+Subject: [PATCH v3 01/19] MAINTAINERS: Add sam9/sama to (AT91) SoC support
+Date: Tue, 20 Jan 2026 15:37:22 +0100
+Message-ID: <20260120143759.904013-2-ada@thorsis.com>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20260120143759.904013-1-ada@thorsis.com>
+References: <20260120143759.904013-1-ada@thorsis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,135 +69,64 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:zQCowACn_hESkm9p+zDJBQ--.5466S6
-X-Coremail-Antispam: 1UD129KBjvJXoW7tF1xZr1fCrykZF47JFy5Jwb_yoW8tw4xp3
-	srCFZ8Gr93Wr4S93Wak348KFyfGF4kGFyfWrn8AryUGr4UZas09w1fJ34fXFyUXw47J3y2
-	kasYqryxKF4jyw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUmS14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2048vs2IY020E87I2jVAFwI0_JF0E3s1l82xGYI
-	kIc2x26xkF7I0E14v26ryj6s0DM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2
-	z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Cr0_Gr
-	1UM28EF7xvwVC2z280aVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4UJVWx
-	Jr1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2I
-	x0cI8IcVAFwI0_JrI_JrylYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8
-	JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2Y2
-	ka0xkIwI1lc7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Y
-	z7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zV
-	AF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_JFI_Gr1l
-	IxAIcVC0I7IYx2IY6xkF7I0E14v26F4j6r4UJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF
-	4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8Jr0_Cr1UYxBI
-	daVFxhVjvjDU0xZFpf9x0JUWMKtUUUUU=
-X-CM-SenderInfo: 5mld534oul2uny6l223fol2u1dvotugofq/
-X-Spamd-Result: default: False [1.74 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [-0.46 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
+	R_DKIM_ALLOW(-0.20)[thorsis.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[iscas.ac.cn];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-257445-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
+	TAGGED_FROM(0.00)[bounces-257459-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[jiayu.riscv@isrc.iscas.ac.cn,devicetree@vger.kernel.org];
+	DMARC_POLICY_ALLOW(0.00)[thorsis.com,quarantine];
+	DKIM_TRACE(0.00)[thorsis.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
-	DBL_PROHIBIT(0.00)[5.116.45.224:email];
-	TO_DN_NONE(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	PRECEDENCE_BULK(0.00)[];
-	R_DKIM_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[isrc.iscas.ac.cn:mid,ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,iscas.ac.cn:email,5.114.182.224:email,5.116.202.32:email,5.117.121.232:email]
-X-Rspamd-Queue-Id: 60C5B47C81
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	FROM_NEQ_ENVFROM(0.00)[ada@thorsis.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[thorsis.com:email,thorsis.com:dkim,thorsis.com:mid,ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,microchip.com:email]
+X-Rspamd-Queue-Id: 24BAD4788F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add top syscon and USB PHY subdevice nodes, USB0/USB1 dwc2 controller
-to K230 DTSI, and enable UART0 and USB0/USB1 in DshanPI DT.
+Will catch previously unmatched files in include/dt-bindings/*
 
-Signed-off-by: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+Signed-off-by: Alexander Dahl <ada@thorsis.com>
 ---
- .../boot/dts/canaan/k230-canmv-dshanpi.dts    | 17 +++++++++
- arch/riscv/boot/dts/canaan/k230.dtsi          | 35 +++++++++++++++++++
- 2 files changed, 52 insertions(+)
 
-diff --git a/arch/riscv/boot/dts/canaan/k230-canmv-dshanpi.dts b/arch/riscv/boot/dts/canaan/k230-canmv-dshanpi.dts
-index 4f95b534ee87..55197cfc25b4 100644
---- a/arch/riscv/boot/dts/canaan/k230-canmv-dshanpi.dts
-+++ b/arch/riscv/boot/dts/canaan/k230-canmv-dshanpi.dts
-@@ -80,3 +80,20 @@ &uart0 {
- 	pinctrl-0 = <&uart0_pins>;
- 	status = "okay";
- };
-+
-+&usb0 {
-+	vusb_d-supply = <&vdd_3v3>;
-+	vusb_a-supply = <&vdd_1v8>;
-+	status = "okay";
-+};
-+
-+&usb1 {
-+	dr_mode = "host";
-+	vusb_d-supply = <&vdd_3v3>;
-+	vusb_a-supply = <&vdd_1v8>;
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	status = "okay";
-+};
-diff --git a/arch/riscv/boot/dts/canaan/k230.dtsi b/arch/riscv/boot/dts/canaan/k230.dtsi
-index 8ca5c7dee427..b369b7d8dc83 100644
---- a/arch/riscv/boot/dts/canaan/k230.dtsi
-+++ b/arch/riscv/boot/dts/canaan/k230.dtsi
-@@ -148,5 +148,40 @@ uart4: serial@91404000 {
- 			reg-shift = <2>;
- 			status = "disabled";
- 		};
-+
-+		usb0: usb@91500000 {
-+			compatible = "canaan,k230-usb", "snps,dwc2";
-+			reg = <0x0 0x91500000 0x0 0x40000>;
-+			interrupts = <173 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&sysclk K230_HS_USB0_AHB_GATE>;
-+			clock-names = "otg";
-+			g-rx-fifo-size = <512>;
-+			g-np-tx-fifo-size = <64>;
-+			g-tx-fifo-size = <512 1024 64 64 64 64>;
-+			phys = <&usbphy 0>;
-+			phy-names = "usb2-phy";
-+			status = "disabled";
-+		};
-+
-+		usb1: usb@91540000 {
-+			compatible = "canaan,k230-usb", "snps,dwc2";
-+			reg = <0x0 0x91540000 0x0 0x40000>;
-+			interrupts = <174 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&sysclk K230_HS_USB1_AHB_GATE>;
-+			clock-names = "otg";
-+			g-rx-fifo-size = <512>;
-+			g-np-tx-fifo-size = <64>;
-+			g-tx-fifo-size = <512 1024 64 64 64 64>;
-+			phys = <&usbphy 1>;
-+			phy-names = "usb2-phy";
-+			status = "disabled";
-+		};
-+
-+		usbphy: usb-phy@91585000 {
-+			compatible = "canaan,k230-usb-phy";
-+			reg = <0x0 0x91585000 0x0 0x400>;
-+			#phy-cells = <1>;
-+			status = "disabled";
-+		};
- 	};
- };
+Notes:
+    v3:
+    - new patch, not present in v2
+
+ MAINTAINERS | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/MAINTAINERS b/MAINTAINERS
+index da9dbc1a40194..c882399c5e4b2 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -3033,6 +3033,7 @@ F:	include/soc/at91/
+ X:	drivers/input/touchscreen/atmel_mxt_ts.c
+ N:	at91
+ N:	atmel
++N:	sam[9a]
+ 
+ ARM/Microchip Sparx5 SoC support
+ M:	Steen Hegelund <Steen.Hegelund@microchip.com>
 -- 
-2.52.0
+2.47.3
 
 
