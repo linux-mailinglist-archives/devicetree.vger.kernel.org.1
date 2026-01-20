@@ -1,217 +1,397 @@
-Return-Path: <devicetree+bounces-257408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257409-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +NLcKqVVcGlvXQAAu9opvQ
-	(envelope-from <devicetree+bounces-257408-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 05:27:17 +0100
+	id OBFjOuK8cGkRZgAAu9opvQ
+	(envelope-from <devicetree+bounces-257409-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 12:47:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E30A51019
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 05:27:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BEF0756374
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 12:47:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 044966A9A18
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 12:57:58 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 616F348B5CB
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 13:01:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9B3743C069;
-	Tue, 20 Jan 2026 12:52:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04FBB42884C;
+	Tue, 20 Jan 2026 12:53:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Dc4aCsMX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Id5qHpG7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42BD5428835
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 12:52:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F755425CD7
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 12:53:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768913569; cv=none; b=bIE7IikGVGXaaN+vUdHMTzIB2AHPenf0idgXcOx6kVjgl6PuWNaAx6IpUprjJqVb9HMepQVcHNKGuTqlBZ+kfQ2nJ9Kk/N+KcY63eR5gUBcqXitYbKQwCwg1t+ug6THeBIFLr2jd4cAlqsdDzLOKCfQXwukD6bm/znAxN5SwzeQ=
+	t=1768913610; cv=none; b=E9VBGN5ecrXcgN4To6vJzDsEUV6GhLy5hvIimPOhMqorYozYmrJ767PqasDIZQkF7gbGJcZWXdQvtbxYBU3C5UwKYlT6YAyfizGcySOCnzj1SgYyqe/VkmFE+DqcBvtL/O424zBN07Fj1Q7MuFxQH4g183ex48P668pJscEYhFA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768913569; c=relaxed/simple;
-	bh=DNvCcHyX7sPj2C7SJV8w7x4hYFhROp6KSWlENSBsykQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=exmXuA87NYUDME+D2+9IEsC05/9xEcNoS9cN6bYUgc/7PxTBPFI1wqiXB2ZzhdHWZtuFA2ObeXyfOyM0vlhTpnr3lbmaR/RJhuQ+9eMsAsfSAUlmzlxfv/vaNz1sg62FMUCgi68swGTEORKuUlmVTFIgqS4tY+R/wD+GKaJ2hdw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Dc4aCsMX; arc=none smtp.client-ip=209.85.218.50
+	s=arc-20240116; t=1768913610; c=relaxed/simple;
+	bh=sBYnhcqH6qEqlGJT2u1dzWA2jA2jeHDkJ4Fv8Ahehdo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZuvdMQ/DpN/R6IYResBymHlusm+logQxBAz8OoeVCVJuONILkkgaGsUxNuDjSs1FNSxlVEbpCycq5wmikWKczSWTFmpqE2r9U3x0w+CZUMeuSMMegcWipPmHkmAi/ZkVXghXMsPPrXpB79ctTwLtcy389pK9t0Qatm+6YjVxQOw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Id5qHpG7; arc=none smtp.client-ip=209.85.214.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-b79f8f7ea43so1230954266b.2
-        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 04:52:45 -0800 (PST)
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-2a07f8dd9cdso33615165ad.1
+        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 04:53:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768913563; x=1769518363; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=A/PatGsOkc/gWR4SN5iTW0uIsVTQmqps+7Qt5H3c+lw=;
-        b=Dc4aCsMX3rX68isTyXrN3dNmT2TFYB8ohaOh2LSWnwVqhai3ah4XwFteWr792HK6hT
-         TtEt85n3iL0XaFfHiqH22F/QZmC+Q98XyOAQWCKo4yNyE8ffMVDg4+SGheZaqAapHwIY
-         nJDscf0JIivAQ8tP2h7pgM1pDnrtddxq/Kt7xSRQIAtn3KMRelQoOYoqlon0+zlyesfo
-         1v3sWOHsod0TujSLJW3/kXmOjtsYvD27Q/muDGy9ci8zRPbrFD3+pcNdW27rov0YNg8W
-         zc0VJFVmvuC0WgefRyOlS5cJNTQ5bx3BokcDzY9JL/y86G/qDfmhbA4SlwXQFPLixAZX
-         al8Q==
+        d=gmail.com; s=20230601; t=1768913608; x=1769518408; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vQA0UiXnoLM7Zoi1HosgUAoRgcMqa5i1Mjp3uZoByh0=;
+        b=Id5qHpG769lMwU+Eev8Fnv+NSgWAb9//k+TgQzoP/HAky0WMaNS0p3C2UihCpuhSbV
+         EjpGZjt8AsCw8aI5QYBPtP7hD8FmB7hFED3vh92OixCsghU9VKKF0VfKJO00XfqAoH9Q
+         EBbOVS3KxSXOXCL18CBJsSH85DiCq/z5ThMVqBra9/jHU1pLZqe8POYigubTlBrCW0JJ
+         SXrWOhAqf2pZvJmVx9s7VlT+RY/8mH1EzjfuxasToSYgRP6zIoK5bKJ0W2u6MaO3WpQy
+         x+iXphdL4pqBa51L9Yf9N/t+oxukbcBfPG3RzgTz5UPAPf7Vc1HqtGz+Hp1HkyeIM1Qg
+         n5hg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768913563; x=1769518363;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=A/PatGsOkc/gWR4SN5iTW0uIsVTQmqps+7Qt5H3c+lw=;
-        b=mxPzShdJzZiimWV5PTkTJoveH1Y3JIcSKH/sh0zdJ/8zIcn7fENUo00CY2Pzk8dyN3
-         zMyM9E5kQAQ4p/wucweviAFxJqsWV9u6qSaJDi0pw8iarSHrZJIsuPT1c8bEC+ycEfcd
-         4wFLQHgOkHYGjxOu6FHusp6oYp0SqmO032EOI0twOPg0IB0u3ssXmvIRdjX/N0nvwLyC
-         ICwfO2pSehNNXbRhhRI19/xxub3hAQ5+aCv5rhYXz3TaupLOrGaaBFE9anccBMJ9APqj
-         xIsoJJTjcXE2QVWhASnYjKTYo6XhGrYkl9bBuALSdgX+KOI5htVaNvazxXgaofLlWyxE
-         R9Bw==
-X-Forwarded-Encrypted: i=1; AJvYcCW15VSoDmRJA6IyBmIhGvAX4WTAt+6IdbCMzU/RzFcPlMS9zTkJlGsZQuO80B+17PhlFTWilEq/iCS9@vger.kernel.org
-X-Gm-Message-State: AOJu0YxfkjtOgFYO2tRUBrutaIbaBAxpJVcX/eKl/CM1TtHO125L+ob9
-	0tMi27fosXiWWAkXLyNN5+hliFkfvbaCB5aiis0s094mNe6q8yVMbZzT
-X-Gm-Gg: AZuq6aKdVISQ+onz+saPlSBDLmcfzXR5IBaXKBxHQ/sfjAMTvaLd4yzQL5wuM8jdj8K
-	gncwM2hSXzfiDLsot0dNBBUyLlKp1Bv7vYRMJuImyWFpW2hfc3egg6jRKzu+ylu9L0yUJjWdpgu
-	MSCIg/su99m0jAbpPUD8jSxw3SkVLlWows557Kj0wOImRqEn6DTDNPPd9m7lCJIzN5Sw1OaP87v
-	JOsJaF8osUfGLYebwpsgDPpnBf5KWxVjI5W9FRmmGtMm6QRa96ulxgnnUf4+oLW3kwm1alXKHZr
-	IgZ/SXwiYR8x8iwE2ZnxvRJRMiaSERW0BtM3ri6ZbHlLc4K205Wh5NIvgDG4HM0qdy608+q5/0j
-	7nxlAEvTvYkcw8sqOvcqy+zZwzeRksIlxat31q74u+YseOma6/1UfTbBfVs0hrkZdHbHOaOlKNr
-	3klGLhaELJpjG7CG7iMyJwYKEtbKzJxOZ/+yDgEhpi6Yv7Ww==
-X-Received: by 2002:a17:907:60ca:b0:b87:d09c:182c with SMTP id a640c23a62f3a-b8800262de1mr164787366b.21.1768913562510;
-        Tue, 20 Jan 2026 04:52:42 -0800 (PST)
-Received: from localhost.localdomain ([2a00:23c4:a758:8a01:c8c7:2ef6:8ac5:5556])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b87959ca32esm1420626066b.41.2026.01.20.04.52.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jan 2026 04:52:42 -0800 (PST)
-From: Biju <biju.das.au@gmail.com>
-X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH 12/12] arm64: dts: renesas: Add initial device tree for RZ/G3L SMARC EVK board
-Date: Tue, 20 Jan 2026 12:52:23 +0000
-Message-ID: <20260120125232.349708-13-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260120125232.349708-1-biju.das.jz@bp.renesas.com>
-References: <20260120125232.349708-1-biju.das.jz@bp.renesas.com>
+        d=1e100.net; s=20230601; t=1768913608; x=1769518408;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vQA0UiXnoLM7Zoi1HosgUAoRgcMqa5i1Mjp3uZoByh0=;
+        b=BYhszYLDab/UoES6YcDGyNBduMUjFo8xcM6Y6Kr5GNXpkxE1l4BsevM688bDZYARdU
+         cYePd5CBSwG0ovjoCcMh8gwUDGvyMm5jx18CKIlZv1dxhGHeih1Q1goB+BuYaRUTiNxw
+         OJPsAjSz7rviMwRz4AQ+ojwtc2ypi4mZJo4fvvspxauAR9l/AsrkpRrcsX7vcm1+pmHm
+         UFEZuNSz4dxt6Yk8NbglV7xAOge3/aiAtW3D4KuI7VKrSRuqS8Z7bSaUpc1gzoOnlHw8
+         IHAcWANmGTQ5ym+VQlfn2usnJ8zetpIE32SXArkUhLwYsSK8aGeIKP1ZVDpciEyp1Z7N
+         7czw==
+X-Forwarded-Encrypted: i=1; AJvYcCUyFIWFgp4YkGnn/JCe41p652GfRtaKdtU0/M8mc/J0UWR33sFyoUYlbSbjjfdnQVG/QlTKp35B1d2Y@vger.kernel.org
+X-Gm-Message-State: AOJu0YzmY1X0ErM3jJfAcM2vYitqszd6M3PjxGD7qWiY3JD/BXk5Apjv
+	FL7Yu64BSFK90pniwBbfxngzJjt2Z30/Mmc93cgpzybnluhTXXj1fDos
+X-Gm-Gg: AZuq6aLriLjFPtIwnuQ3YYVysckzyTdKH+9w86JDQUT9iVQfTccnOR4I/iLOzsGoR0D
+	2QM5T5343BJAQ05frOIG6UUVqTa8d5guSCUYwdMpAKPvVt8VG0buCRDuisuy1Vr6hK1j5tdMvbN
+	7Nll+jy5pq64RlmvEuEukvdun0B/6GsJwcL16e88PDwiD8rMFICL3v08C/OnUhYOFRLzS/m6LK3
+	EaxyEt0uOQmB5B3birZxMQ79bXe57u/hwKnAY3JCvOx5JozXn/IKNpHQefnVJZK6k27maFql+l9
+	9nKxA0bEj2Ghq9NDPq5XeZRSrCl4MGNxdon1V3AlFZ1/BA5EDatCu79ESrRG6M3py3eFXUl7kZo
+	l8Xm8sXquPOI8xIsFq21neWH3O84KQ9hh0N/DBdYpFQynh725HhFp4l4n3fMKSVd4mwD0Tmc3Bv
+	6jbXHldRaJ4UnQf4koWG1iNWkhGxV200RSaw==
+X-Received: by 2002:a17:902:e84a:b0:2a0:c942:8adf with SMTP id d9443c01a7336-2a7690523c5mr13664115ad.8.1768913608371;
+        Tue, 20 Jan 2026 04:53:28 -0800 (PST)
+Received: from [172.16.20.12] ([136.226.253.21])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a7190abcf0sm125579405ad.12.2026.01.20.04.53.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Jan 2026 04:53:27 -0800 (PST)
+Message-ID: <c8d539f1-bebd-445b-b0a4-9f3fc62770c0@gmail.com>
+Date: Tue, 20 Jan 2026 18:23:50 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-1.46 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 2/2] backlight: gpio: add support for multiple GPIOs
+ for backlight control
+To: Daniel Thompson <daniel@riscstar.com>
+Cc: lee@kernel.org, danielt@kernel.org, jingoohan1@gmail.com, deller@gmx.de,
+ pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
+ linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260105085120.230862-1-tessolveupstream@gmail.com>
+ <20260105085120.230862-3-tessolveupstream@gmail.com>
+ <aVuN7zVUWJ1qsVh8@aspen.lan> <1fedb7d7-3a30-4f0f-961f-09613f2a95d0@gmail.com>
+ <aWe-QA_grqNwnE4n@aspen.lan> <ec7b7af7-1343-4988-b783-9ce9b045c8ae@gmail.com>
+ <aW9NH5GTwSR-m7VQ@aspen.lan>
+Content-Language: en-US
+From: tessolveupstream@gmail.com
+In-Reply-To: <aW9NH5GTwSR-m7VQ@aspen.lan>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-0.46 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[bp.renesas.com,vger.kernel.org,gmail.com];
-	TO_DN_SOME(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
-	FREEMAIL_TO(0.00)[glider.be,gmail.com,kernel.org];
-	TAGGED_FROM(0.00)[bounces-257408-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,gmx.de,lists.freedesktop.org,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-257409-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
+	MIME_TRACE(0.00)[0:+];
+	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	R_SPF_SOFTFAIL(0.00)[~all:c];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[tessolveupstream@gmail.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
+	R_SPF_SOFTFAIL(0.00)[~all:c];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,bp.renesas.com:mid,ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: 4E30A51019
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
+X-Rspamd-Queue-Id: BEF0756374
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Biju Das <biju.das.jz@bp.renesas.com>
 
-Add the initial device tree for the Renesas RZ/G3L SMARC EVK board.
 
-Added placeholders to avoid compilation error with the common code in
-renesas-smarc2.dtsi.
+On 20-01-2026 15:08, Daniel Thompson wrote:
+> On Tue, Jan 20, 2026 at 10:22:02AM +0530, tessolveupstream@gmail.com wrote:
+>>
+>>
+>> On 14-01-2026 21:33, Daniel Thompson wrote:
+>>> On Tue, Jan 13, 2026 at 12:47:26PM +0530, tessolveupstream@gmail.com wrote:
+>>>>
+>>>>
+>>>> On 05-01-2026 15:39, Daniel Thompson wrote:
+>>>>> On Mon, Jan 05, 2026 at 02:21:20PM +0530, Sudarshan Shetty wrote:
+>>>>>> Extend the gpio-backlight driver to handle multiple GPIOs instead of a
+>>>>>> single one. This allows panels that require driving several enable pins
+>>>>>> to be controlled by the backlight framework.
+>>>>>>
+>>>>>> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
+>>>>>> ---
+>>>>>>  drivers/video/backlight/gpio_backlight.c | 61 +++++++++++++++++-------
+>>>>>>  1 file changed, 45 insertions(+), 16 deletions(-)
+>>>>>>
+>>>>>> diff --git a/drivers/video/backlight/gpio_backlight.c b/drivers/video/backlight/gpio_backlight.c
+>>>>>> index 728a546904b0..037e1c111e48 100644
+>>>>>> --- a/drivers/video/backlight/gpio_backlight.c
+>>>>>> +++ b/drivers/video/backlight/gpio_backlight.c
+>>>>>> @@ -17,14 +17,18 @@
+>>>>>>
+>>>>>>  struct gpio_backlight {
+>>>>>>  	struct device *dev;
+>>>>>> -	struct gpio_desc *gpiod;
+>>>>>> +	struct gpio_desc **gpiods;
+>>>>>> +	unsigned int num_gpios;
+>>>>>
+>>>>> Why not use struct gpio_descs for this?
+>>>>>
+>>>>> Once you do that, then most of the gbl->num_gpios loops can be replaced with
+>>>>> calls to the array based accessors.
+>>>>>
+>>>>
+>>>> Based on your feedback, I have updated the implementation to use
+>>>> struct gpio_descs and array-based accessors, as recommended like
+>>>> below:
+>>>>
+>>>> git diff drivers/video/backlight/gpio_backlight.c
+>>>> diff --git a/drivers/video/backlight/gpio_backlight.c b/drivers/video/backlight/gpio_backlight.c
+>>>> index 037e1c111e48..e99d7a9dc670 100644
+>>>> --- a/drivers/video/backlight/gpio_backlight.c
+>>>> +++ b/drivers/video/backlight/gpio_backlight.c
+>>>> @@ -14,22 +14,37 @@
+>>>>  #include <linux/platform_device.h>
+>>>>  #include <linux/property.h>
+>>>>  #include <linux/slab.h>
+>>>> +#include <linux/bitmap.h>
+>>>>
+>>>>  struct gpio_backlight {
+>>>>         struct device *dev;
+>>>> -       struct gpio_desc **gpiods;
+>>>> +       struct gpio_descs *gpiods;
+>>>>         unsigned int num_gpios;
+>>>>  };
+>>>>
+>>>>  static int gpio_backlight_update_status(struct backlight_device *bl)
+>>>>  {
+>>>>         struct gpio_backlight *gbl = bl_get_data(bl);
+>>>> -       unsigned int i;
+>>>> +       unsigned int n = gbl->num_gpios;
+>>>>         int br = backlight_get_brightness(bl);
+>>>> +       unsigned long *value_bitmap;
+>>>> +       int words = BITS_TO_LONGS(n);
+>>>> +
+>>>> +       value_bitmap = kcalloc(words, sizeof(unsigned long), GFP_KERNEL);
+>>>
+>>> Not sure you need a kcalloc() here. If you want to support more than 32
+>>> GPIOs then you can pre-allocate space with a devm_kcalloc() in the probe
+>>> method rather than reallocate every time it is used.
+>>>
+>>> To be honest I don't really mind putting a hard limit on the maximum
+>>> gpl->num_gpios (so you can just use a local variable) and having no
+>>> allocation at all.
+>>>
+>>
+>> Thanks for the suggestion. I addressed the kcalloc() concern by
+>> moving the bitmap allocation to probe using devm_kcalloc() as
+>> below:
+>>
+>> diff --git a/drivers/video/backlight/gpio_backlight.c b/drivers/video/backlight/gpio_backlight.c
+>> index 0eb42d8bf1d9..7af5dc4f0315 100644
+>> --- a/drivers/video/backlight/gpio_backlight.c
+>> +++ b/drivers/video/backlight/gpio_backlight.c
+>> @@ -19,32 +19,25 @@
+>>  struct gpio_backlight {
+>>         struct device *dev;
+>>         struct gpio_descs *gpiods;
+>> -       unsigned int num_gpios;
+>> +       unsigned long *bitmap;
+>>  };
+>>
+>>  static int gpio_backlight_update_status(struct backlight_device *bl)
+>>  {
+>>         struct gpio_backlight *gbl = bl_get_data(bl);
+>> -       unsigned int n = gbl->num_gpios;
+>> +       unsigned int n = gbl->gpiods->ndescs;
+>>         int br = backlight_get_brightness(bl);
+>> -       unsigned long *value_bitmap;
+>> -       int words = BITS_TO_LONGS(n);
+>> -
+>> -       value_bitmap = kcalloc(words, sizeof(unsigned long), GFP_KERNEL);
+>> -       if (!value_bitmap)
+>> -               return -ENOMEM;
+>>
+>>         if (br)
+>> -               bitmap_fill(value_bitmap, n);
+>> +               bitmap_fill(gbl->bitmap, n);
+>>         else
+>> -               bitmap_zero(value_bitmap, n);
+>> +               bitmap_zero(gbl->bitmap, n);
+>>
+>> -       gpiod_set_array_value_cansleep(gbl->gpiods->ndescs,
+>> +       gpiod_set_array_value_cansleep(n,
+>>                                        gbl->gpiods->desc,
+>>                                        gbl->gpiods->info,
+>> -                                      value_bitmap);
+>> +                                      gbl->bitmap);
+>>
+>> -       kfree(value_bitmap);
+>>         return 0;
+>>  }
+>>
+>> @@ -67,22 +60,25 @@ static int gpio_backlight_probe(struct platform_device *pdev)
+>>         struct device *dev = &pdev->dev;
+>>         struct gpio_backlight_platform_data *pdata = dev_get_platdata(dev);
+>>         struct device_node *of_node = dev->of_node;
+>> -       struct backlight_properties props;
+>> +       struct backlight_properties props = { };
+>>         struct backlight_device *bl;
+>>         struct gpio_backlight *gbl;
+>> -       int ret, init_brightness, def_value;
+>> -       unsigned int i;
+>> +       bool def_value;
+>> +       enum gpiod_flags flags;
+>> +       unsigned int n;
+>> +       int words;
+>>
+>> -       gbl = devm_kzalloc(dev, sizeof(*gbl), GFP_KERNEL);
+>> -       if (gbl == NULL)
+>> +       gbl = devm_kcalloc(dev, 1, sizeof(*gbl), GFP_KERNEL);
+>> +       if (!gbl)
+>>                 return -ENOMEM;
+>>
+>>         if (pdata)
+>>                 gbl->dev = pdata->dev;
+>>
+>>         def_value = device_property_read_bool(dev, "default-on");
+>> -
+>> -       gbl->gpiods = devm_gpiod_get_array(dev, NULL, GPIOD_ASIS);
+>> +       flags = def_value ? GPIOD_OUT_HIGH : GPIOD_OUT_LOW;
+>> +
+>> +       gbl->gpiods = devm_gpiod_get_array(dev, NULL, flags);
+>>         if (IS_ERR(gbl->gpiods)) {
+>>                 if (PTR_ERR(gbl->gpiods) == -ENODEV)
+>>                         return dev_err_probe(dev, -EINVAL,
+>> @@ -90,12 +86,17 @@ static int gpio_backlight_probe(struct platform_device *pdev)
+>>                 return PTR_ERR(gbl->gpiods);
+>>         }
+>>
+>> -       gbl->num_gpios = gbl->gpiods->ndescs;
+>> -       if (gbl->num_gpios == 0)
+>> +       n = gbl->gpiods->ndescs;
+>> +       if (!n)
+>>                 return dev_err_probe(dev, -EINVAL,
+>> -                       "The gpios parameter is missing or invalid\n");
+>> +                       "No GPIOs provided\n");
+>> +
+>> +       words = BITS_TO_LONGS(n);
+>> +       gbl->bitmap = devm_kcalloc(dev, words, sizeof(unsigned long),
+>> +                                  GFP_KERNEL);
+>> +       if (!gbl->bitmap)
+>> +               return -ENOMEM;
+>>
+>> -       memset(&props, 0, sizeof(props));
+>>         props.type = BACKLIGHT_RAW;
+>>         props.max_brightness = 1;
+>>         bl = devm_backlight_device_register(dev, dev_name(dev), dev, gbl,
+>> @@ -106,50 +107,19 @@ static int gpio_backlight_probe(struct platform_device *pdev)
+>>         }
+>>
+>>         /* Set the initial power state */
+>> -       if (!of_node || !of_node->phandle) {
+>> +       if (!of_node || !of_node->phandle)
+>>                 /* Not booted with device tree or no phandle link to the node */
+>>                 bl->props.power = def_value ? BACKLIGHT_POWER_ON
+>>                                                     : BACKLIGHT_POWER_OFF;
+>> -       } else {
+>> -               bool all_high = true;
+>> -               unsigned long *value_bitmap;
+>> -               int words = BITS_TO_LONGS(gbl->num_gpios);
+>> -
+>> -               value_bitmap = kcalloc(words, sizeof(unsigned long),
+>> -                                      GFP_KERNEL);
+>> -               if (!value_bitmap)
+>> -                       return -ENOMEM;
+>> -
+>> -               ret = gpiod_get_array_value_cansleep(gbl->gpiods->ndescs,
+>> -                                                    gbl->gpiods->desc,
+>> -                                                    gbl->gpiods->info,
+>> -                                                    value_bitmap);
+>> -               if (ret) {
+>> -                       kfree(value_bitmap);
+>> -                       return dev_err_probe(dev, ret,
+>> -                               "failed to read initial gpio values\n");
+>> -               }
+>> -
+>> -               all_high = bitmap_full(value_bitmap, gbl->num_gpios);
+>> -
+>> -               kfree(value_bitmap);
+>> -               bl->props.power =
+>> -                       all_high ? BACKLIGHT_POWER_ON :  BACKLIGHT_POWER_OFF;
+>> -       }
+>> -
+>> -       bl->props.brightness = 1;
+>> -
+>> -       init_brightness = backlight_get_brightness(bl);
+>> +       else if (gpiod_get_value_cansleep(gbl->gpiods->desc[0]) == 0)
+>> +               bl->props.power = BACKLIGHT_POWER_OFF;
+>> +       else
+>> +               bl->props.power = BACKLIGHT_POWER_ON;
+>>
+>> -       for (i = 0; i < gbl->num_gpios; i++) {
+>> -               ret = gpiod_direction_output(gbl->gpiods->desc[i],
+>> -                                            init_brightness);
+>> -               if (ret)
+>> -                       return dev_err_probe(dev, ret,
+>> -                                       "failed to set gpio %u direction\n",
+>> -                                       i);
+>> -       }
+>> +       bl->props.brightness = def_value ? 1 : 0;
+>>
+>> +       gpio_backlight_update_status(bl);
+>> +
+>>         platform_set_drvdata(pdev, bl);
+>>         return 0;
+>>  }
+>>
+>> Kindly confirm whether this approach aligns with your
+>> expectations.
+> 
+> As mentioned yesterday, I'd rather just review a v2 patch than this kind of
+> meta-patch. Please send a v2 patch instead.
+>
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/Makefile          |  2 +
- .../boot/dts/renesas/r9a08g046l48-smarc.dts   | 41 +++++++++++++++++++
- 2 files changed, 43 insertions(+)
- create mode 100644 arch/arm64/boot/dts/renesas/r9a08g046l48-smarc.dts
-
-diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
-index 1fab1b50f20e..0153e772c231 100644
---- a/arch/arm64/boot/dts/renesas/Makefile
-+++ b/arch/arm64/boot/dts/renesas/Makefile
-@@ -179,6 +179,8 @@ dtb-$(CONFIG_ARCH_R9A08G045) += r9a08g045s33-smarc-pmod1-type-3a.dtbo
- r9a08g045s33-smarc-pmod1-type-3a-dtbs := r9a08g045s33-smarc.dtb r9a08g045s33-smarc-pmod1-type-3a.dtbo
- dtb-$(CONFIG_ARCH_R9A08G045) += r9a08g045s33-smarc-pmod1-type-3a.dtb
+Got it, will send v2 patch.
  
-+dtb-$(CONFIG_ARCH_R9A08G046) += r9a08g046l48-smarc.dtb
-+
- dtb-$(CONFIG_ARCH_R9A09G011) += r9a09g011-v2mevk2.dtb
- 
- dtb-$(CONFIG_ARCH_R9A09G047) += r9a09g047e57-smarc.dtb
-diff --git a/arch/arm64/boot/dts/renesas/r9a08g046l48-smarc.dts b/arch/arm64/boot/dts/renesas/r9a08g046l48-smarc.dts
-new file mode 100644
-index 000000000000..988b1f96228f
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/r9a08g046l48-smarc.dts
-@@ -0,0 +1,41 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+/*
-+ * Device Tree Source for the RZ/G3L SMARC EVK board
-+ *
-+ * Copyright (C) 2026 Renesas Electronics Corp.
-+ */
-+
-+/dts-v1/;
-+
-+/* Add place holder to avoid compilation error with renesas-smarc2.dtsi */
-+#define KEY_1_GPIO		1
-+#define KEY_2_GPIO		2
-+#define KEY_3_GPIO		3
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include "r9a08g046l48.dtsi"
-+#include "rzg3l-smarc-som.dtsi"
-+#include "renesas-smarc2.dtsi"
-+
-+/ {
-+	model = "Renesas SMARC EVK version 2 based on r9a08g046l48";
-+	compatible = "renesas,smarc2-evk", "renesas,rzg3l-smarcm",
-+		     "renesas,r9a08g046l48", "renesas,r9a08g046";
-+
-+	aliases {
-+		serial3 = &scif0;
-+	};
-+};
-+
-+&keys {
-+	status = "disabled";
-+
-+	/delete-node/ key-1;
-+	/delete-node/ key-2;
-+	/delete-node/ key-3;
-+};
-+
-+&scif0 {
-+	status = "okay";
-+};
--- 
-2.43.0
+> 
+> Daniel.
 
 
