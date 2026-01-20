@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-257172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257174-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id C71AAD3BE45
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 05:18:24 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B278D3BE4B
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 05:19:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5C91B352241
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 04:17:45 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5D2354E9DF5
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 04:17:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E98733F37E;
-	Tue, 20 Jan 2026 04:15:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B6FA33F8DD;
+	Tue, 20 Jan 2026 04:15:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tRPacVIB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q9O4T3Iw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C836833B6E7;
-	Tue, 20 Jan 2026 04:15:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCC7333F396;
+	Tue, 20 Jan 2026 04:15:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768882527; cv=none; b=m7KVmFGi/U45fmMma/ofvISOSTMIZElPO4Ux5+XA81VLBlLpuYhUKQFpkNNjx2bnfZ+y55b+FXgm4b6m+r48xbI/hs2iSRXmtSiwfUJTelzgvo75DzyD7f+lVavS0sTckx9TrzInJZEJWF/JAo2GGCAyND+56w2hVTy4wJMzksc=
+	t=1768882528; cv=none; b=PTgQxmbZIM5VD5ANrMQOKkuyPqH7m8kxuu1u1yLl/I3SkuisIttpgLj5D/Gb+8nxosDRh/mkPx1urbbYDHWgEU/by49Ij+wpIOnZVZmZ4vXReSzX8sl5t0hD95jjkAd+6HhJH6MnXv91j+ve+qQuFXC+YvEcKZOX7W/h36MyCmc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768882527; c=relaxed/simple;
-	bh=08+NoXyvW3Xk6Oo5KOcsUwbtLfO2FJFdCtJSOZ1Zuws=;
+	s=arc-20240116; t=1768882528; c=relaxed/simple;
+	bh=udCB56ewUuBczR6ctM7up8XACViyJiWY/ibyZC1jejs=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To; b=gd3yA2KddySmvR2gODQEWQXaxNgMpUrVk5P9+SSWL99pSU8ZTEtV9xsfx6ob1a5SECyUzazhH56Z11sE5EtrJvd6uKtx5CChHN1xyNqYjuhbsOHbK0xWxLif0BwXx8cWyXj72m4q3I0x2ba7DRrKIC154lcEe9g8OiwgYgdkc3g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tRPacVIB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE6D4C19424;
-	Tue, 20 Jan 2026 04:15:26 +0000 (UTC)
+	 In-Reply-To:To; b=MCX2nUj1xPbqkpS3/ibFQ87x27B/LQEgNU87DPYS/kbbU615YwTdp3lUX6kzu9g9nMH1t316mPbpxKPBtZFXRAInqEI1hhG+knRTN0FVRSyHFYRl0934El9LSyYQisv1A3VtyQNLEYQBcGWVjn1HTCg9Hxb8bhLHOQiEwtmKKqs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q9O4T3Iw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A3A1C2BC87;
+	Tue, 20 Jan 2026 04:15:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1768882527;
-	bh=08+NoXyvW3Xk6Oo5KOcsUwbtLfO2FJFdCtJSOZ1Zuws=;
+	bh=udCB56ewUuBczR6ctM7up8XACViyJiWY/ibyZC1jejs=;
 	h=From:Date:Subject:References:In-Reply-To:To:From;
-	b=tRPacVIB4t2VbsUGJIO2a17wCy77QjWXAqYWwS+DmywWQ4CWeiln7CdoF7NgrS5WO
-	 QctBL5aVxNJi9c4/0f0XNETkCdcbkj5n0ztIYdU9Mbr0gJzs7QpYdlecRDZg9xYIe+
-	 uE/TOVtnIlYqqra03dzwi5VJodv6Bhdk6Ky0sTFNwhoEU3aTMPuXGRURkPrgwkh0Vp
-	 9nJo0cOP4H6KavTf6THwQiyeigZ17k9C4fnZx4rQPy1tYmDSAmaywdZv1CxvaxyEHa
-	 zlQbXvbGESSPyLfKcu5hgSEZDfutLFOyGI/vdAMsc2gc4QoK4BZhGE+rBO3g7wG/Ae
-	 2xdke4ZtlmOdw==
+	b=q9O4T3Iwp5YU9aTtmeJpgqm4DzAdGefVfEQ9vaci4fasVdHhxCtxtl06PwRBg9ERG
+	 h4nBCUYcBujNBC5VaUWllNPthZII8W19hZEeJqcnU3cXhADKEIYf43qj2Zw5g6iZQT
+	 4IxMq95bY1ARP4MJGC/HikCdl+ip+UlakSpBKhDw0yU/aSRBfRzW0ME6L770zJ+EmK
+	 KL8Se3YCpBA+/ETMQAyiACgFGsljmdcS9hlV3ygaw3oBdg8ecLy6/zjUjYxezXL+Tq
+	 GiVchXxe9h9bw8OO0rmUuYaZma252RfrfXycAmNh4t+/ryn8mJXFugVqp8kRktGuAH
+	 o+5SG6ii9Ve1Q==
 From: Drew Fustini <fustini@kernel.org>
-Date: Mon, 19 Jan 2026 20:14:54 -0800
-Subject: [PATCH NFU RFC 17/19] riscv: dts: qemu: add dump from virt machine
+Date: Mon, 19 Jan 2026 20:14:55 -0800
+Subject: [PATCH NFU RFC 18/19] riscv: dts: qemu: add CBQRI controller nodes
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,7 +52,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260119-ssqosid-cbqri-v1-17-aa2a75153832@kernel.org>
+Message-Id: <20260119-ssqosid-cbqri-v1-18-aa2a75153832@kernel.org>
 References: <20260119-ssqosid-cbqri-v1-0-aa2a75153832@kernel.org>
 In-Reply-To: <20260119-ssqosid-cbqri-v1-0-aa2a75153832@kernel.org>
 To: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
@@ -78,448 +78,96 @@ To: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-riscv@lists.infradead.org, x86@kernel.org
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=17006; i=fustini@kernel.org;
- h=from:subject:message-id; bh=08+NoXyvW3Xk6Oo5KOcsUwbtLfO2FJFdCtJSOZ1Zuws=;
- b=owGbwMvMwCV2+43O4ZsaG3kYT6slMWTmMwY3Jj7gXmZ++ZKKxNwG3X8sSgwn27sPfVXYGlV3e
- JL8woNPOkpZGMS4GGTFFFk2fci7sMQr9OuC+S+2wcxhZQIZwsDFKQATmWbFyLBL4M0U39MWP16x
- ZByefHHb1xbd//PaHiTNPVG+SO2xi1IXw//8Lc5J4SvPOkR0/vQxNpD/lTzvQqm8REaej170hLb
- 6RC4A
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2591; i=fustini@kernel.org;
+ h=from:subject:message-id; bh=udCB56ewUuBczR6ctM7up8XACViyJiWY/ibyZC1jejs=;
+ b=owGbwMvMwCV2+43O4ZsaG3kYT6slMWTmMwZb8NY27P2ru04ycsMpxgV11wKXXXzt/+/TjxdWZ
+ TE1O+tXd5SyMIhxMciKKbJs+pB3YYlX6NcF819sg5nDygQyhIGLUwAmknWb4X9CjeiBp9XGT/dk
+ pz9Kmhp1gzl0e4QFn1Tk+51p269ymuoy/Ga5duGYup/rg52s59Ycknr2elF+qdEf8z9LK+1r/gj
+ Lp/MBAA==
 X-Developer-Key: i=fustini@kernel.org; a=openpgp;
  fpr=1B6F948213EA489734F3997035D5CD577C1E6010
 
 [NOT FOR UPSTREAM]
 
-Dumped dtb from qemu branch based on the v4 riscv-ssqosid-cbqri series.
+Add nodes to for CBQRI-capable cache and bandwidth controllers.
 
- $ qemu-system-riscv64 -version
- QEMU emulator version 10.2.50 (v10.2.0-208-g087112467867)
- Copyright (c) 2003-2025 Fabrice Bellard and the QEMU Project developers
-
- $ qemu-system-riscv64 \
-      -M virt \
-      -nographic \
-      -smp 8 \
-      -bios output/images/fw_jump.elf \
-      -kernel $HOME/kernel/cbqri-linux/arch/riscv/boot/Image \
-      -append "root=/dev/vda ro" \
-      -drive file=output/images/rootfs.ext2,format=raw,id=hd0 \
-      -device virtio-blk-device,drive=hd0 \
-      -machine dumpdtb=qemu.dtb
-
-Link: https://lore.kernel.org/all/20260105-riscv-ssqosid-cbqri-v4-0-9ad7671dde78@kernel.org/
 Link: https://github.com/tt-fustini/qemu/tree/b4/riscv-ssqosid-cbqri
 Co-developed-by: Adrien Ricciardi <aricciardi@baylibre.com>
 Signed-off-by: Adrien Ricciardi <aricciardi@baylibre.com>
 Signed-off-by: Drew Fustini <fustini@kernel.org>
 ---
- arch/riscv/boot/dts/qemu/qemu-virt-cbqri.dts | 399 +++++++++++++++++++++++++++
- 1 file changed, 399 insertions(+)
+ arch/riscv/boot/dts/qemu/qemu-virt-cbqri.dts | 59 ++++++++++++++++++++++++++++
+ 1 file changed, 59 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/qemu/qemu-virt-cbqri.dts b/arch/riscv/boot/dts/qemu/qemu-virt-cbqri.dts
-new file mode 100644
-index 000000000000..4c6257bec42d
---- /dev/null
+index 4c6257bec42d..9f65de65f758 100644
+--- a/arch/riscv/boot/dts/qemu/qemu-virt-cbqri.dts
 +++ b/arch/riscv/boot/dts/qemu/qemu-virt-cbqri.dts
-@@ -0,0 +1,399 @@
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
-+/dts-v1/;
+@@ -395,5 +395,64 @@ pci@30000000 {
+ 			#interrupt-cells = <0x01>;
+ 			#address-cells = <0x03>;
+ 		};
 +
-+/ {
-+	#address-cells = <0x02>;
-+	#size-cells = <0x02>;
-+	compatible = "riscv-virtio";
-+	model = "riscv-virtio,qemu";
-+
-+	poweroff {
-+		value = <0x5555>;
-+		offset = <0x00>;
-+		regmap = <0x12>;
-+		compatible = "syscon-poweroff";
-+	};
-+
-+	reboot {
-+		value = <0x7777>;
-+		offset = <0x00>;
-+		regmap = <0x12>;
-+		compatible = "syscon-reboot";
-+	};
-+
-+	platform-bus@4000000 {
-+		interrupt-parent = <0x11>;
-+		ranges = <0x00 0x00 0x4000000 0x2000000>;
-+		#address-cells = <0x01>;
-+		#size-cells = <0x01>;
-+		compatible = "qemu,platform\0simple-bus";
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		reg = <0x00 0x80000000 0x00 0x8000000>;
-+	};
-+
-+	cpus {
-+		#address-cells = <0x01>;
-+		#size-cells = <0x00>;
-+		timebase-frequency = <0x989680>;
-+
-+		cpu@0 {
-+			phandle = <0x0f>;
-+			device_type = "cpu";
-+			reg = <0x00>;
-+			status = "okay";
-+			compatible = "riscv";
-+			riscv,cbop-block-size = <0x40>;
-+			riscv,cboz-block-size = <0x40>;
-+			riscv,cbom-block-size = <0x40>;
-+			riscv,isa-extensions = "i\0m\0a\0f\0d\0c\0h\0zic64b\0zicbom\0zicbop\0zicboz\0ziccamoa\0ziccif\0zicclsm\0ziccrse\0zicntr\0zicsr\0zifencei\0zihintntl\0zihintpause\0zihpm\0zmmul\0za64rs\0zaamo\0zalrsc\0zawrs\0zfa\0zca\0zcd\0zba\0zbb\0zbc\0zbs\0sdtrig\0shcounterenw\0shgatpa\0shtvala\0shvsatpa\0shvstvala\0shvstvecd\0ssccptr\0sscounterenw\0ssqosid\0ssstrict\0sstc\0sstvala\0sstvecd\0ssu64xl\0svadu\0svvptc";
-+			riscv,isa-base = "rv64i";
-+			riscv,isa = "rv64imafdch_zic64b_zicbom_zicbop_zicboz_ziccamoa_ziccif_zicclsm_ziccrse_zicntr_zicsr_zifencei_zihintntl_zihintpause_zihpm_zmmul_za64rs_zaamo_zalrsc_zawrs_zfa_zca_zcd_zba_zbb_zbc_zbs_sdtrig_shcounterenw_shgatpa_shtvala_shvsatpa_shvstvala_shvstvecd_ssccptr_sscounterenw_ssqosid_ssstrict_sstc_sstvala_sstvecd_ssu64xl_svadu_svvptc";
-+			mmu-type = "riscv,sv57";
-+
-+			interrupt-controller {
-+				#interrupt-cells = <0x01>;
-+				interrupt-controller;
-+				compatible = "riscv,cpu-intc";
-+				phandle = <0x10>;
-+			};
++		cluster0_l2: controller@4820000 {
++			compatible = "riscv,cbqri-cache";
++			reg = <0x0 0x4820000 0x0 0x1000>; /* 4KB at 0x04820000 */
++			cache-unified;
++			cache-line-size = <64>;
++			cache-level = <2>;
++			cache-sets = <1000>;
++			cache-size = <768000>; /* 750 KiB */
++			next-level-cache = <&shared_llc>;
++			riscv,cbqri-rcid = <64>;
++			riscv,cbqri-mcid = <256>;
 +		};
 +
-+		cpu@1 {
-+			phandle = <0x0d>;
-+			device_type = "cpu";
-+			reg = <0x01>;
-+			status = "okay";
-+			compatible = "riscv";
-+			riscv,cbop-block-size = <0x40>;
-+			riscv,cboz-block-size = <0x40>;
-+			riscv,cbom-block-size = <0x40>;
-+			riscv,isa-extensions = "i\0m\0a\0f\0d\0c\0h\0zic64b\0zicbom\0zicbop\0zicboz\0ziccamoa\0ziccif\0zicclsm\0ziccrse\0zicntr\0zicsr\0zifencei\0zihintntl\0zihintpause\0zihpm\0zmmul\0za64rs\0zaamo\0zalrsc\0zawrs\0zfa\0zca\0zcd\0zba\0zbb\0zbc\0zbs\0sdtrig\0shcounterenw\0shgatpa\0shtvala\0shvsatpa\0shvstvala\0shvstvecd\0ssccptr\0sscounterenw\0ssqosid\0ssstrict\0sstc\0sstvala\0sstvecd\0ssu64xl\0svadu\0svvptc";
-+			riscv,isa-base = "rv64i";
-+			riscv,isa = "rv64imafdch_zic64b_zicbom_zicbop_zicboz_ziccamoa_ziccif_zicclsm_ziccrse_zicntr_zicsr_zifencei_zihintntl_zihintpause_zihpm_zmmul_za64rs_zaamo_zalrsc_zawrs_zfa_zca_zcd_zba_zbb_zbc_zbs_sdtrig_shcounterenw_shgatpa_shtvala_shvsatpa_shvstvala_shvstvecd_ssccptr_sscounterenw_ssqosid_ssstrict_sstc_sstvala_sstvecd_ssu64xl_svadu_svvptc";
-+			mmu-type = "riscv,sv57";
-+
-+			interrupt-controller {
-+				#interrupt-cells = <0x01>;
-+				interrupt-controller;
-+				compatible = "riscv,cpu-intc";
-+				phandle = <0x0e>;
-+			};
++		cluster1_l2: controller@4821000 {
++			compatible = "riscv,cbqri-cache";
++			reg = <0x0 0x4821000 0x0 0x1000>; /* 4KB at 0x04821000 */
++			cache-unified;
++			cache-line-size = <64>;
++			cache-level = <2>;
++			cache-sets = <1000>;
++			cache-size = <768000>; /* 750 KiB */
++			next-level-cache = <&shared_llc>;
++			riscv,cbqri-rcid = <64>;
++			riscv,cbqri-mcid = <256>;
 +		};
 +
-+		cpu@2 {
-+			phandle = <0x0b>;
-+			device_type = "cpu";
-+			reg = <0x02>;
-+			status = "okay";
-+			compatible = "riscv";
-+			riscv,cbop-block-size = <0x40>;
-+			riscv,cboz-block-size = <0x40>;
-+			riscv,cbom-block-size = <0x40>;
-+			riscv,isa-extensions = "i\0m\0a\0f\0d\0c\0h\0zic64b\0zicbom\0zicbop\0zicboz\0ziccamoa\0ziccif\0zicclsm\0ziccrse\0zicntr\0zicsr\0zifencei\0zihintntl\0zihintpause\0zihpm\0zmmul\0za64rs\0zaamo\0zalrsc\0zawrs\0zfa\0zca\0zcd\0zba\0zbb\0zbc\0zbs\0sdtrig\0shcounterenw\0shgatpa\0shtvala\0shvsatpa\0shvstvala\0shvstvecd\0ssccptr\0sscounterenw\0ssqosid\0ssstrict\0sstc\0sstvala\0sstvecd\0ssu64xl\0svadu\0svvptc";
-+			riscv,isa-base = "rv64i";
-+			riscv,isa = "rv64imafdch_zic64b_zicbom_zicbop_zicboz_ziccamoa_ziccif_zicclsm_ziccrse_zicntr_zicsr_zifencei_zihintntl_zihintpause_zihpm_zmmul_za64rs_zaamo_zalrsc_zawrs_zfa_zca_zcd_zba_zbb_zbc_zbs_sdtrig_shcounterenw_shgatpa_shtvala_shvsatpa_shvstvala_shvstvecd_ssccptr_sscounterenw_ssqosid_ssstrict_sstc_sstvala_sstvecd_ssu64xl_svadu_svvptc";
-+			mmu-type = "riscv,sv57";
-+
-+			interrupt-controller {
-+				#interrupt-cells = <0x01>;
-+				interrupt-controller;
-+				compatible = "riscv,cpu-intc";
-+				phandle = <0x0c>;
-+			};
++		shared_llc: controller@482b000 {
++			compatible = "riscv,cbqri-cache";
++			reg = <0x0 0x482b000 0x0 0x1000>; /* 4KB at 0x0482B000 */
++			cache-unified;
++			cache-line-size = <64>;
++			cache-level = <3>;
++			cache-sets = <4096>;
++			cache-size = <3145728>; /* 3 MiB */
++			riscv,cbqri-rcid = <64>;
++			riscv,cbqri-mcid = <256>;
 +		};
 +
-+		cpu@3 {
-+			phandle = <0x09>;
-+			device_type = "cpu";
-+			reg = <0x03>;
-+			status = "okay";
-+			compatible = "riscv";
-+			riscv,cbop-block-size = <0x40>;
-+			riscv,cboz-block-size = <0x40>;
-+			riscv,cbom-block-size = <0x40>;
-+			riscv,isa-extensions = "i\0m\0a\0f\0d\0c\0h\0zic64b\0zicbom\0zicbop\0zicboz\0ziccamoa\0ziccif\0zicclsm\0ziccrse\0zicntr\0zicsr\0zifencei\0zihintntl\0zihintpause\0zihpm\0zmmul\0za64rs\0zaamo\0zalrsc\0zawrs\0zfa\0zca\0zcd\0zba\0zbb\0zbc\0zbs\0sdtrig\0shcounterenw\0shgatpa\0shtvala\0shvsatpa\0shvstvala\0shvstvecd\0ssccptr\0sscounterenw\0ssqosid\0ssstrict\0sstc\0sstvala\0sstvecd\0ssu64xl\0svadu\0svvptc";
-+			riscv,isa-base = "rv64i";
-+			riscv,isa = "rv64imafdch_zic64b_zicbom_zicbop_zicboz_ziccamoa_ziccif_zicclsm_ziccrse_zicntr_zicsr_zifencei_zihintntl_zihintpause_zihpm_zmmul_za64rs_zaamo_zalrsc_zawrs_zfa_zca_zcd_zba_zbb_zbc_zbs_sdtrig_shcounterenw_shgatpa_shtvala_shvsatpa_shvstvala_shvstvecd_ssccptr_sscounterenw_ssqosid_ssstrict_sstc_sstvala_sstvecd_ssu64xl_svadu_svvptc";
-+			mmu-type = "riscv,sv57";
-+
-+			interrupt-controller {
-+				#interrupt-cells = <0x01>;
-+				interrupt-controller;
-+				compatible = "riscv,cpu-intc";
-+				phandle = <0x0a>;
-+			};
++		mem0: controller@4828000 {
++			compatible = "riscv,cbqri-bandwidth";
++			reg = <0x0 0x4828000 0x0 0x1000>; /* 4KB at 0x04828000 */
++			riscv,cbqri-rcid = <64>;
++			riscv,cbqri-mcid = <256>;
 +		};
 +
-+		cpu@4 {
-+			phandle = <0x07>;
-+			device_type = "cpu";
-+			reg = <0x04>;
-+			status = "okay";
-+			compatible = "riscv";
-+			riscv,cbop-block-size = <0x40>;
-+			riscv,cboz-block-size = <0x40>;
-+			riscv,cbom-block-size = <0x40>;
-+			riscv,isa-extensions = "i\0m\0a\0f\0d\0c\0h\0zic64b\0zicbom\0zicbop\0zicboz\0ziccamoa\0ziccif\0zicclsm\0ziccrse\0zicntr\0zicsr\0zifencei\0zihintntl\0zihintpause\0zihpm\0zmmul\0za64rs\0zaamo\0zalrsc\0zawrs\0zfa\0zca\0zcd\0zba\0zbb\0zbc\0zbs\0sdtrig\0shcounterenw\0shgatpa\0shtvala\0shvsatpa\0shvstvala\0shvstvecd\0ssccptr\0sscounterenw\0ssqosid\0ssstrict\0sstc\0sstvala\0sstvecd\0ssu64xl\0svadu\0svvptc";
-+			riscv,isa-base = "rv64i";
-+			riscv,isa = "rv64imafdch_zic64b_zicbom_zicbop_zicboz_ziccamoa_ziccif_zicclsm_ziccrse_zicntr_zicsr_zifencei_zihintntl_zihintpause_zihpm_zmmul_za64rs_zaamo_zalrsc_zawrs_zfa_zca_zcd_zba_zbb_zbc_zbs_sdtrig_shcounterenw_shgatpa_shtvala_shvsatpa_shvstvala_shvstvecd_ssccptr_sscounterenw_ssqosid_ssstrict_sstc_sstvala_sstvecd_ssu64xl_svadu_svvptc";
-+			mmu-type = "riscv,sv57";
-+
-+			interrupt-controller {
-+				#interrupt-cells = <0x01>;
-+				interrupt-controller;
-+				compatible = "riscv,cpu-intc";
-+				phandle = <0x08>;
-+			};
++		mem1: controller@4829000 {
++			compatible = "riscv,cbqri-bandwidth";
++			reg = <0x0 0x4829000 0x0 0x1000>; /* 4KB at 0x04829000 */
++			riscv,cbqri-rcid = <64>;
++			riscv,cbqri-mcid = <256>;
 +		};
 +
-+		cpu@5 {
-+			phandle = <0x05>;
-+			device_type = "cpu";
-+			reg = <0x05>;
-+			status = "okay";
-+			compatible = "riscv";
-+			riscv,cbop-block-size = <0x40>;
-+			riscv,cboz-block-size = <0x40>;
-+			riscv,cbom-block-size = <0x40>;
-+			riscv,isa-extensions = "i\0m\0a\0f\0d\0c\0h\0zic64b\0zicbom\0zicbop\0zicboz\0ziccamoa\0ziccif\0zicclsm\0ziccrse\0zicntr\0zicsr\0zifencei\0zihintntl\0zihintpause\0zihpm\0zmmul\0za64rs\0zaamo\0zalrsc\0zawrs\0zfa\0zca\0zcd\0zba\0zbb\0zbc\0zbs\0sdtrig\0shcounterenw\0shgatpa\0shtvala\0shvsatpa\0shvstvala\0shvstvecd\0ssccptr\0sscounterenw\0ssqosid\0ssstrict\0sstc\0sstvala\0sstvecd\0ssu64xl\0svadu\0svvptc";
-+			riscv,isa-base = "rv64i";
-+			riscv,isa = "rv64imafdch_zic64b_zicbom_zicbop_zicboz_ziccamoa_ziccif_zicclsm_ziccrse_zicntr_zicsr_zifencei_zihintntl_zihintpause_zihpm_zmmul_za64rs_zaamo_zalrsc_zawrs_zfa_zca_zcd_zba_zbb_zbc_zbs_sdtrig_shcounterenw_shgatpa_shtvala_shvsatpa_shvstvala_shvstvecd_ssccptr_sscounterenw_ssqosid_ssstrict_sstc_sstvala_sstvecd_ssu64xl_svadu_svvptc";
-+			mmu-type = "riscv,sv57";
-+
-+			interrupt-controller {
-+				#interrupt-cells = <0x01>;
-+				interrupt-controller;
-+				compatible = "riscv,cpu-intc";
-+				phandle = <0x06>;
-+			};
++		mem2: controller@482a000 {
++			compatible = "riscv,cbqri-bandwidth";
++			reg = <0x0 0x482a000 0x0 0x1000>; /* 4KB at 0x0482A000 */
++			riscv,cbqri-rcid = <64>;
++			riscv,cbqri-mcid = <256>;
 +		};
-+
-+		cpu@6 {
-+			phandle = <0x03>;
-+			device_type = "cpu";
-+			reg = <0x06>;
-+			status = "okay";
-+			compatible = "riscv";
-+			riscv,cbop-block-size = <0x40>;
-+			riscv,cboz-block-size = <0x40>;
-+			riscv,cbom-block-size = <0x40>;
-+			riscv,isa-extensions = "i\0m\0a\0f\0d\0c\0h\0zic64b\0zicbom\0zicbop\0zicboz\0ziccamoa\0ziccif\0zicclsm\0ziccrse\0zicntr\0zicsr\0zifencei\0zihintntl\0zihintpause\0zihpm\0zmmul\0za64rs\0zaamo\0zalrsc\0zawrs\0zfa\0zca\0zcd\0zba\0zbb\0zbc\0zbs\0sdtrig\0shcounterenw\0shgatpa\0shtvala\0shvsatpa\0shvstvala\0shvstvecd\0ssccptr\0sscounterenw\0ssqosid\0ssstrict\0sstc\0sstvala\0sstvecd\0ssu64xl\0svadu\0svvptc";
-+			riscv,isa-base = "rv64i";
-+			riscv,isa = "rv64imafdch_zic64b_zicbom_zicbop_zicboz_ziccamoa_ziccif_zicclsm_ziccrse_zicntr_zicsr_zifencei_zihintntl_zihintpause_zihpm_zmmul_za64rs_zaamo_zalrsc_zawrs_zfa_zca_zcd_zba_zbb_zbc_zbs_sdtrig_shcounterenw_shgatpa_shtvala_shvsatpa_shvstvala_shvstvecd_ssccptr_sscounterenw_ssqosid_ssstrict_sstc_sstvala_sstvecd_ssu64xl_svadu_svvptc";
-+			mmu-type = "riscv,sv57";
-+
-+			interrupt-controller {
-+				#interrupt-cells = <0x01>;
-+				interrupt-controller;
-+				compatible = "riscv,cpu-intc";
-+				phandle = <0x04>;
-+			};
-+		};
-+
-+		cpu@7 {
-+			phandle = <0x01>;
-+			device_type = "cpu";
-+			reg = <0x07>;
-+			status = "okay";
-+			compatible = "riscv";
-+			riscv,cbop-block-size = <0x40>;
-+			riscv,cboz-block-size = <0x40>;
-+			riscv,cbom-block-size = <0x40>;
-+			riscv,isa-extensions = "i\0m\0a\0f\0d\0c\0h\0zic64b\0zicbom\0zicbop\0zicboz\0ziccamoa\0ziccif\0zicclsm\0ziccrse\0zicntr\0zicsr\0zifencei\0zihintntl\0zihintpause\0zihpm\0zmmul\0za64rs\0zaamo\0zalrsc\0zawrs\0zfa\0zca\0zcd\0zba\0zbb\0zbc\0zbs\0sdtrig\0shcounterenw\0shgatpa\0shtvala\0shvsatpa\0shvstvala\0shvstvecd\0ssccptr\0sscounterenw\0ssqosid\0ssstrict\0sstc\0sstvala\0sstvecd\0ssu64xl\0svadu\0svvptc";
-+			riscv,isa-base = "rv64i";
-+			riscv,isa = "rv64imafdch_zic64b_zicbom_zicbop_zicboz_ziccamoa_ziccif_zicclsm_ziccrse_zicntr_zicsr_zifencei_zihintntl_zihintpause_zihpm_zmmul_za64rs_zaamo_zalrsc_zawrs_zfa_zca_zcd_zba_zbb_zbc_zbs_sdtrig_shcounterenw_shgatpa_shtvala_shvsatpa_shvstvala_shvstvecd_ssccptr_sscounterenw_ssqosid_ssstrict_sstc_sstvala_sstvecd_ssu64xl_svadu_svvptc";
-+			mmu-type = "riscv,sv57";
-+
-+			interrupt-controller {
-+				#interrupt-cells = <0x01>;
-+				interrupt-controller;
-+				compatible = "riscv,cpu-intc";
-+				phandle = <0x02>;
-+			};
-+		};
-+
-+		cpu-map {
-+
-+			cluster0 {
-+
-+				core0 {
-+					cpu = <0x0f>;
-+				};
-+
-+				core1 {
-+					cpu = <0x0d>;
-+				};
-+
-+				core2 {
-+					cpu = <0x0b>;
-+				};
-+
-+				core3 {
-+					cpu = <0x09>;
-+				};
-+
-+				core4 {
-+					cpu = <0x07>;
-+				};
-+
-+				core5 {
-+					cpu = <0x05>;
-+				};
-+
-+				core6 {
-+					cpu = <0x03>;
-+				};
-+
-+				core7 {
-+					cpu = <0x01>;
-+				};
-+			};
-+		};
-+	};
-+
-+	pmu {
-+		riscv,event-to-mhpmcounters = <0x01 0x01 0x7fff9 0x02 0x02 0x7fffc 0x10019 0x10019 0x7fff8 0x1001b 0x1001b 0x7fff8 0x10021 0x10021 0x7fff8>;
-+		compatible = "riscv,pmu";
-+	};
-+
-+	fw-cfg@10100000 {
-+		dma-coherent;
-+		reg = <0x00 0x10100000 0x00 0x18>;
-+		compatible = "qemu,fw-cfg-mmio";
-+	};
-+
-+	flash@20000000 {
-+		bank-width = <0x04>;
-+		reg = <0x00 0x20000000 0x00 0x2000000 0x00 0x22000000 0x00 0x2000000>;
-+		compatible = "cfi-flash";
-+	};
-+
-+	aliases {
-+		serial0 = "/soc/serial@10000000";
-+	};
-+
-+	chosen {
-+		bootargs = "root=/dev/vda ro loglevel=8";
-+		stdout-path = "/soc/serial@10000000";
-+		rng-seed = <0x56a2904d 0x281bbaec 0x55c405c1 0x602a34cd 0x3490edca 0x3ed9ed5d 0xa98e5ed6 0xa663e102>;
-+	};
-+
-+	soc {
-+		#address-cells = <0x02>;
-+		#size-cells = <0x02>;
-+		compatible = "simple-bus";
-+		ranges;
-+
-+		rtc@101000 {
-+			interrupts = <0x0b>;
-+			interrupt-parent = <0x11>;
-+			reg = <0x00 0x101000 0x00 0x1000>;
-+			compatible = "google,goldfish-rtc";
-+		};
-+
-+		serial@10000000 {
-+			interrupts = <0x0a>;
-+			interrupt-parent = <0x11>;
-+			clock-frequency = "\08@";
-+			reg = <0x00 0x10000000 0x00 0x100>;
-+			compatible = "ns16550a";
-+		};
-+
-+		test@100000 {
-+			phandle = <0x12>;
-+			reg = <0x00 0x100000 0x00 0x1000>;
-+			compatible = "sifive,test1\0sifive,test0\0syscon";
-+		};
-+
-+		virtio_mmio@10008000 {
-+			interrupts = <0x08>;
-+			interrupt-parent = <0x11>;
-+			reg = <0x00 0x10008000 0x00 0x1000>;
-+			compatible = "virtio,mmio";
-+		};
-+
-+		virtio_mmio@10007000 {
-+			interrupts = <0x07>;
-+			interrupt-parent = <0x11>;
-+			reg = <0x00 0x10007000 0x00 0x1000>;
-+			compatible = "virtio,mmio";
-+		};
-+
-+		virtio_mmio@10006000 {
-+			interrupts = <0x06>;
-+			interrupt-parent = <0x11>;
-+			reg = <0x00 0x10006000 0x00 0x1000>;
-+			compatible = "virtio,mmio";
-+		};
-+
-+		virtio_mmio@10005000 {
-+			interrupts = <0x05>;
-+			interrupt-parent = <0x11>;
-+			reg = <0x00 0x10005000 0x00 0x1000>;
-+			compatible = "virtio,mmio";
-+		};
-+
-+		virtio_mmio@10004000 {
-+			interrupts = <0x04>;
-+			interrupt-parent = <0x11>;
-+			reg = <0x00 0x10004000 0x00 0x1000>;
-+			compatible = "virtio,mmio";
-+		};
-+
-+		virtio_mmio@10003000 {
-+			interrupts = <0x03>;
-+			interrupt-parent = <0x11>;
-+			reg = <0x00 0x10003000 0x00 0x1000>;
-+			compatible = "virtio,mmio";
-+		};
-+
-+		virtio_mmio@10002000 {
-+			interrupts = <0x02>;
-+			interrupt-parent = <0x11>;
-+			reg = <0x00 0x10002000 0x00 0x1000>;
-+			compatible = "virtio,mmio";
-+		};
-+
-+		virtio_mmio@10001000 {
-+			interrupts = <0x01>;
-+			interrupt-parent = <0x11>;
-+			reg = <0x00 0x10001000 0x00 0x1000>;
-+			compatible = "virtio,mmio";
-+		};
-+
-+		plic@c000000 {
-+			phandle = <0x11>;
-+			riscv,ndev = <0x5f>;
-+			reg = <0x00 0xc000000 0x00 0x600000>;
-+			interrupts-extended = <0x10 0x0b 0x10 0x09 0x0e 0x0b 0x0e 0x09 0x0c 0x0b 0x0c 0x09 0x0a 0x0b 0x0a 0x09 0x08 0x0b 0x08 0x09 0x06 0x0b 0x06 0x09 0x04 0x0b 0x04 0x09 0x02 0x0b 0x02 0x09>;
-+			interrupt-controller;
-+			compatible = "sifive,plic-1.0.0\0riscv,plic0";
-+			#address-cells = <0x00>;
-+			#interrupt-cells = <0x01>;
-+		};
-+
-+		clint@2000000 {
-+			interrupts-extended = <0x10 0x03 0x10 0x07 0x0e 0x03 0x0e 0x07 0x0c 0x03 0x0c 0x07 0x0a 0x03 0x0a 0x07 0x08 0x03 0x08 0x07 0x06 0x03 0x06 0x07 0x04 0x03 0x04 0x07 0x02 0x03 0x02 0x07>;
-+			reg = <0x00 0x2000000 0x00 0x10000>;
-+			compatible = "sifive,clint0\0riscv,clint0";
-+		};
-+
-+		pci@30000000 {
-+			interrupt-map-mask = <0x1800 0x00 0x00 0x07>;
-+			interrupt-map = <0x00 0x00 0x00 0x01 0x11 0x20 0x00 0x00 0x00 0x02 0x11 0x21 0x00 0x00 0x00 0x03 0x11 0x22 0x00 0x00 0x00 0x04 0x11 0x23 0x800 0x00 0x00 0x01 0x11 0x21 0x800 0x00 0x00 0x02 0x11 0x22 0x800 0x00 0x00 0x03 0x11 0x23 0x800 0x00 0x00 0x04 0x11 0x20 0x1000 0x00 0x00 0x01 0x11 0x22 0x1000 0x00 0x00 0x02 0x11 0x23 0x1000 0x00 0x00 0x03 0x11 0x20 0x1000 0x00 0x00 0x04 0x11 0x21 0x1800 0x00 0x00 0x01 0x11 0x23 0x1800 0x00 0x00 0x02 0x11 0x20 0x1800 0x00 0x00 0x03 0x11 0x21 0x1800 0x00 0x00 0x04 0x11 0x22>;
-+			ranges = <0x1000000 0x00 0x00 0x00 0x3000000 0x00 0x10000 0x2000000 0x00 0x40000000 0x00 0x40000000 0x00 0x40000000 0x3000000 0x04 0x00 0x04 0x00 0x04 0x00>;
-+			reg = <0x00 0x30000000 0x00 0x10000000>;
-+			dma-coherent;
-+			bus-range = <0x00 0xff>;
-+			linux,pci-domain = <0x00>;
-+			device_type = "pci";
-+			compatible = "pci-host-ecam-generic";
-+			#size-cells = <0x02>;
-+			#interrupt-cells = <0x01>;
-+			#address-cells = <0x03>;
-+		};
-+	};
-+};
+ 	};
+ };
 
 -- 
 2.43.0
