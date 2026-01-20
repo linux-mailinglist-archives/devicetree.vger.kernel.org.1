@@ -1,342 +1,205 @@
-Return-Path: <devicetree+bounces-257479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257482-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8KJxLTC2b2nHMAAAu9opvQ
-	(envelope-from <devicetree+bounces-257479-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 18:06:56 +0100
+	id qL/2BSG8b2kOMQAAu9opvQ
+	(envelope-from <devicetree+bounces-257482-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 18:32:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BBCC48418
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 18:06:56 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D8774899F
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 18:32:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8E6AE7C5D5F
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 15:25:16 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id ACF638AD4D6
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 15:33:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D92DE466B5F;
-	Tue, 20 Jan 2026 15:06:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9A5947D958;
+	Tue, 20 Jan 2026 15:13:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bR3/T7zd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 295DE466B44;
-	Tue, 20 Jan 2026 15:06:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83A2747D94A
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 15:13:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768921593; cv=none; b=tG6N4JKcx4SXIeaVzsOB/o194UlyuUCII9YD5y3GH/NWFkfeVEXHFaU8YKvLo0ZbeiVWZk/CR/wUmkRO/P86t8aELVqI/LuDwF9tDkLEE4RgfzMwNpUkXK+2UiwpYeXwm/BR57j02cooTWUkH8nyVrxn/7EqnaenxZ+TKQK9Y70=
+	t=1768922035; cv=none; b=Zw2d/J1ZT6R+Kr6HvJihGV7/7Tco9gyEB/0oMMs+p0cRAuUYWYcBYxFiqE8vcqqKE4LfQLp9YBZnzwh/rUQNr7lvo+G33CJsIKGIhL3+VM9Lj7pv7MyZ8g6abcxsqWI9gQ/uW4nP2T4kEvPtbM6zLBh9u3yqhvxkz/7BCFSWz/A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768921593; c=relaxed/simple;
-	bh=KZwTxLHxL1Doc3YxcrFYNw6yDZhRFqBpXb+jaGyw/bE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Aj5zsycpfrnhBLZiPgsmW5v+7v35VT/x5U0ZF3Q/l0fyPI2KgcHpr4lavW7j3NOBi4Xp0pxtb9NTHo76I4QqikCtKP36u2ngHbsSaRW931CIkfZuxmjCK1rCUBUwO6MSnlSTkI6biXMJHYSpNf7uD+vDMz0yDBnnauKOOAbRo1g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-X-CSE-ConnectionGUID: YUnI0gulSLa/BzAAMZY4hg==
-X-CSE-MsgGUID: vkMZCOxXR+anPv7ZJhBuAg==
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 21 Jan 2026 00:06:26 +0900
-Received: from vm01.adwin.renesas.com (unknown [10.226.92.24])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 3171D4022B00;
-	Wed, 21 Jan 2026 00:06:21 +0900 (JST)
-From: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
-To: geert+renesas@glider.be,
-	magnus.damm@gmail.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	mturquette@baylibre.com,
-	sboyd@kernel.org,
-	biju.das.jz@bp.renesas.com,
-	fabrizio.castro.jz@renesas.com
-Cc: linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org
-Subject: [PATCH v2 3/5] clk: versaclock3: Add freerunning 32.768kHz clock support
-Date: Tue, 20 Jan 2026 15:06:04 +0000
-Message-ID: <20260120150606.7356-4-ovidiu.panait.rb@renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260120150606.7356-1-ovidiu.panait.rb@renesas.com>
-References: <20260120150606.7356-1-ovidiu.panait.rb@renesas.com>
+	s=arc-20240116; t=1768922035; c=relaxed/simple;
+	bh=tTdNJ9w0A3SRS2jGZyO87hh6ddJ8/yTI7BHcKalWjPA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=e0aQkNfheVSOSp9+cI3gpHteHd0qI05Ew1zvk9RlO0kd7Y7Ir2jo8Ox5hbL3jOMXO8yv1sKzLW8gjoakH1GdecVGG13Jr0zxnLuiVOtpjBqopItuF5EvQMlB/uK9zKN+zimhJAxvKR4Zgv+ohf8ANuPW5Eqrmiep0JC2YdpVwbs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bR3/T7zd; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4801c314c84so35236575e9.0
+        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 07:13:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1768922031; x=1769526831; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KfHF8XX2sLoiWwn6mh6WL+QXvB0XHx4J/lS+4r+T224=;
+        b=bR3/T7zdFsQ79orClB/OtuJkhWjteFZ0ldd6bNXwgN6fisE5qcOQgkjwxTZFoHHc5y
+         7yOyZDtZSZaDTS8ifjUmEfV9CoS4RA0mOQRRHhOX37mQc5i2WUhVK/u4Fj0WEq244H2m
+         EL8NGU7vTFgO0C5cgmMINHG7iQ82UZZYrBQhBcFL3LFsiYgUncQGXA/w0u1AqIGJk6WN
+         JM0QyEhH/TdLoVc9N/tGqY0ahOhJLCkixGa08RxflOIfnO2f/B+6aHagRzCQwLkG22Bf
+         QqDk0s97FGVeslJMAlK5OHWLIEqY2BEyQ63ZNs6fO3Us9xRwOe7ylg8LmnX5TJqPW7qe
+         UMhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768922031; x=1769526831;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KfHF8XX2sLoiWwn6mh6WL+QXvB0XHx4J/lS+4r+T224=;
+        b=fqOVRBXP+fyVXGvwlRXQg2lYEYt0FVk1SdU2Y+ab6eh3yezRY2tCqUEQwDBbKpHEec
+         W8TBtDqs6gLZX3y9UfVDWxtp5gU/5JYKvgSCyG1O2MO4dCr/8yzTtImvaG5ZWSsluDv6
+         cXSl+8dedd4lLCbu+d2cIVvn2wCEQHjgBfd/XAdt6L7Y4AWyO33QpS+4omwVz/LcfAuG
+         Oq/eFoO0LOhRi2ZOdab2cRhzd0rOTDy1tfhzfUkhpGJXHO8U3hzHRtVDnIO/4B0wHWDt
+         ds9jS0hU3sd2bZXQkBEcbjt9ZkWZzTeAMtL0YOGgh0Um4H8S9FVlL3zWj9uZW+iSpdRl
+         sxcA==
+X-Forwarded-Encrypted: i=1; AJvYcCVwn/NqF8Jdn83ZyAaPBsGyaSRhCA0bBvbFGXfy/oYAwnWVqzFatBtXaCI6+IqEiTtWhUxgbdOKHP5e@vger.kernel.org
+X-Gm-Message-State: AOJu0YyYNSA2jcc1IP6wcy/3M3DBd9UTuuZMjn0Fj4zU79MSRs1XywxL
+	yih1AvADCHV7ofVqGVrcvDt6Rgb5n4S2YAadSuEIqlkmx4teYqc2KVKVdZ4DVJ7eEoQ=
+X-Gm-Gg: AY/fxX6c4xmFVJatQKeru8UvPWPePrTqH4eOHS7YdSS2OBoS1CC7U/8U0krK+A+d/qw
+	u3+QwBE+Zekn6q8v1sZp4JuCVAFgAYqNLWFkjq+6v+1ar77XNvju0rFhMgrskE5StajbYoSz+Rp
+	Rpp5iNS7ymJgkXeLXVDey1i/GKNI0vJekxEjlcZk4hS1aYVAEtsfc4Aw9fOswee4WsyLoi1ZQ+D
+	JlbvvtUs2+x+JHqLpFUNXb2tT5+WZhxzHV6zses/g/L3fGgetGU15w1j9E9gWbG9dtbSwTjA5qt
+	t6bX0Y12WBT571/J9WTGrn4qEfLhXOTi4DoIDq1yYpdTp3MLt5+TXfGrjwUtbtbz5Td/pJRCXEY
+	EAWDb/UA3X4Z7qv0TmXoIGdN7W+wI1hXbFttOovcmxlW2AEBDIxpyHfpT4vymmVuryWl2kW8qjb
+	oURpNlILzP4MFpSn4Rv7ucZjRnc8Tyoh4=
+X-Received: by 2002:a05:600c:458d:b0:47d:264e:b435 with SMTP id 5b1f17b1804b1-4801e34209cmr173700875e9.22.1768922030743;
+        Tue, 20 Jan 2026 07:13:50 -0800 (PST)
+Received: from [192.168.1.221] ([94.202.56.172])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4801e9ee5c3sm113053335e9.2.2026.01.20.07.13.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Jan 2026 07:13:50 -0800 (PST)
+Message-ID: <ae85df64-b6b7-43d7-ba50-9c0525481299@linaro.org>
+Date: Tue, 20 Jan 2026 17:13:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [1.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 18/26] mm/memblock: Add MEMBLOCK_INSPECT flag
+To: Mike Rapoport <rppt@kernel.org>, david@redhat.com
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-mm@kvack.org, tglx@linutronix.de, andersson@kernel.org,
+ pmladek@suse.com, rdunlap@infradead.org, corbet@lwn.net, mhocko@suse.com,
+ tudor.ambarus@linaro.org, mukesh.ojha@oss.qualcomm.com,
+ linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org,
+ jonechou@google.com, rostedt@goodmis.org, linux-doc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ linux-arch@vger.kernel.org, tony.luck@intel.com, kees@kernel.org
+References: <20251119154427.1033475-1-eugen.hristev@linaro.org>
+ <20251119154427.1033475-19-eugen.hristev@linaro.org>
+ <aVImIneFgOngYdSn@kernel.org>
+ <4b8953ac-567b-4d68-9c25-72a69afdf1b3@linaro.org>
+ <aVlsqdgXSBLIE9Xi@kernel.org>
+From: Eugen Hristev <eugen.hristev@linaro.org>
+Content-Language: en-US
+In-Reply-To: <aVlsqdgXSBLIE9Xi@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-1.96 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[renesas.com : No valid SPF, No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-257479-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[glider.be,gmail.com,kernel.org,baylibre.com,bp.renesas.com,renesas.com];
-	R_SPF_SOFTFAIL(0.00)[~all:c];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[linaro.org,none];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	TAGGED_FROM(0.00)[bounces-257482-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[ovidiu.panait.rb@renesas.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
-	TO_DN_NONE(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	R_DKIM_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,renesas.com:email,renesas.com:mid]
-X-Rspamd-Queue-Id: 6BBCC48418
+	FROM_NEQ_ENVFROM(0.00)[eugen.hristev@linaro.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	R_SPF_SOFTFAIL(0.00)[~all:c];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,linaro.org:mid,linaro.org:dkim]
+X-Rspamd-Queue-Id: 7D8774899F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The Versa 3 clock generator has an internal 32.768kHz oscillator that can
-be routed to the SE1, SE2 and SE3 outputs. This patch exposes it as a
-fixed-rate clock ("vc3-clk-32k") and makes it available as a parent for
-the SE1/SE2/SE3 muxes.
 
-The 32.768kHz clock is only intended to be used when explicitly requested
-(i.e. when a rate of exactly 32768Hz is set). Selecting it as a fallback
-for other rates can cause issues, for example in audio configurations.
 
-To enforce this, introduce a new helper function,
-_vc3_clk_mux_determine_rate() which rejects configurations where the
-32.768kHz parent would otherwise be chosen implicitly.
+On 1/3/26 21:23, Mike Rapoport wrote:
+> On Sat, Jan 03, 2026 at 08:36:40AM +0200, Eugen Hristev wrote:
+>>
+>>
+>> On 12/29/25 08:56, Mike Rapoport wrote:
+>>> Hi Eugen,
+>>>
+>>> On Wed, Nov 19, 2025 at 05:44:19PM +0200, Eugen Hristev wrote:
+>>>> This memblock flag indicates that a specific block is registered
+>>>> into an inspection table.
+>>>> The block can be marked for inspection using memblock_mark_inspect()
+>>>> and cleared with memblock_clear_inspect()
+>>>
+>>> Can you explain why memblock should treat memory registered for inspection
+>>> differently?
+>>
+>> It should not, at a first glance.
+>>
+>> The purpose of the flag is to let memblock be aware of it.
+>> The flag is there to have a "memblock way" of registering the memory,
+>> which inside memblock , it can translate to a meminspect way of
+>> registering the memory. It's just an extra layer on top of meminspect.
+>> With this, it would be avoided to call meminspect all over the places it
+>> would be required, but rather use the memblock API.
+> 
+> memblock APIs are not available after boot on many architectures, most
+> notable being x86.
+> 
+> But regardless, I can't say I understand why using memblock APIs for
+> meminspect is better than using meminspect directly.
+> I'd imagine that using meminspect register APIs would actually make it more
+> consistent and it would be easier to identify what memory is registered
+> with meminspect.
+> 
+> In the end, memblock_alloc*() returns dynamically allocated memory, just
+> like kmalloc(), the difference is that memblock is active very early at
+> boot and disappears after core MM initialization.
 
-Two new fields are added to struct vc3_clk_data:
-  - clk_32k_bitmsk: bit mask for selecting the 32.768kHz oscillator
-  - clk_32k_index: index of the 32.768kHz clock in the mux parent list
+Hi Mike,
 
-They are used by clk_mux callbacks to select the appropriate parent clock.
+Thanks for sharing your opinion.
 
-Signed-off-by: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
----
-v2 changes: None.
+David, what do you think, does it make sense to have this flag or we can
+ditch it and use meminspect directly ?
 
- drivers/clk/clk-versaclock3.c | 85 +++++++++++++++++++++++++++++------
- 1 file changed, 71 insertions(+), 14 deletions(-)
+Also, for some memory blocks, they do not disappear ever, e.g. the
+printk log buffer, it's allocated early and never freed, so it's
+required to have some memblocks marked for inspection.
 
-diff --git a/drivers/clk/clk-versaclock3.c b/drivers/clk/clk-versaclock3.c
-index ebd9d75d7f55..b5df349f497d 100644
---- a/drivers/clk/clk-versaclock3.c
-+++ b/drivers/clk/clk-versaclock3.c
-@@ -61,8 +61,10 @@
- #define VC3_OUTPUT_CTR_DIV4_SRC_SEL	BIT(3)
- 
- #define VC3_SE2_CTRL_REG0		0x1f
-+#define VC3_SE2_CTRL_REG0_SE2_FREERUN_32K	BIT(7)
- 
- #define VC3_SE3_DIFF1_CTRL_REG		0x21
-+#define VC3_SE3_DIFF1_CTRL_REG_SE3_FREERUN_32K	BIT(7)
- #define VC3_SE3_DIFF1_CTRL_REG_SE3_CLK_SEL	BIT(6)
- 
- #define VC3_DIFF1_CTRL_REG		0x22
-@@ -72,6 +74,7 @@
- #define VC3_DIFF2_CTRL_REG_DIFF2_CLK_SEL	BIT(7)
- 
- #define VC3_SE1_DIV4_CTRL		0x24
-+#define VC3_SE1_DIV4_CTRL_SE1_FREERUN_32K	BIT(4)
- #define VC3_SE1_DIV4_CTRL_SE1_CLK_SEL	BIT(3)
- 
- #define VC3_PLL1_VCO_MIN		300000000UL
-@@ -83,6 +86,9 @@
- #define VC3_2_POW_16			(U16_MAX + 1)
- #define VC3_DIV_MASK(width)		((1 << (width)) - 1)
- 
-+#define VC3_CLK_32K_NAME		"vc3-clk-32k"
-+#define VC3_CLK_32K_FREQ		32768
-+
- enum vc3_pfd_mux {
- 	VC3_PFD2_MUX,
- 	VC3_PFD3_MUX,
-@@ -134,6 +140,9 @@ enum vc3_clk_mux {
- struct vc3_clk_data {
- 	u8 offs;
- 	u8 bitmsk;
-+
-+	u8 clk_32k_bitmsk;
-+	u8 clk_32k_index;
- };
- 
- struct vc3_pfd_data {
-@@ -213,6 +222,7 @@ static const struct clk_div_table div3_divs[] = {
- 	{}
- };
- 
-+static struct clk_hw *clk_32k;
- static struct clk_hw *clk_out[6];
- 
- static u8 vc3_pfd_mux_get_parent(struct clk_hw *hw)
-@@ -549,19 +559,40 @@ static const struct clk_ops vc3_div_ops = {
- 	.set_rate = vc3_div_set_rate,
- };
- 
-+static int _vc3_clk_mux_determine_rate(struct clk_hw *hw,
-+				       struct clk_rate_request *req)
-+{
-+	bool is_32k_req = (req->rate == VC3_CLK_32K_FREQ);
-+	struct clk_rate_request tmp_req;
-+	int ret;
-+
-+	clk_hw_init_rate_request(hw, &tmp_req, req->rate);
-+
-+	ret = clk_mux_determine_rate_flags(hw, &tmp_req, CLK_SET_RATE_PARENT);
-+	if (ret)
-+		return ret;
-+
-+	/* Select the 32.768 kHz parent only when explicitly requested. */
-+	if ((tmp_req.best_parent_rate == VC3_CLK_32K_FREQ) && !is_32k_req)
-+		return -EINVAL;
-+
-+	memcpy(req, &tmp_req, sizeof(*req));
-+
-+	return 0;
-+}
-+
- static int vc3_clk_mux_determine_rate(struct clk_hw *hw,
- 				      struct clk_rate_request *req)
- {
- 	int frc;
- 
--	if (clk_mux_determine_rate_flags(hw, req, CLK_SET_RATE_PARENT)) {
-+	if (_vc3_clk_mux_determine_rate(hw, req)) {
- 		/* The below check is equivalent to (best_parent_rate/rate) */
- 		if (req->best_parent_rate >= req->rate) {
- 			frc = DIV_ROUND_CLOSEST_ULL(req->best_parent_rate,
- 						    req->rate);
- 			req->rate *= frc;
--			return clk_mux_determine_rate_flags(hw, req,
--							    CLK_SET_RATE_PARENT);
-+			return _vc3_clk_mux_determine_rate(hw, req);
- 		}
- 	}
- 
-@@ -576,6 +607,9 @@ static u8 vc3_clk_mux_get_parent(struct clk_hw *hw)
- 
- 	regmap_read(vc3->regmap, clk_mux->offs, &val);
- 
-+	if (clk_mux->clk_32k_bitmsk && !(val & clk_mux->clk_32k_bitmsk))
-+		return clk_mux->clk_32k_index;
-+
- 	return !!(val & clk_mux->bitmsk);
- }
- 
-@@ -583,9 +617,15 @@ static int vc3_clk_mux_set_parent(struct clk_hw *hw, u8 index)
- {
- 	struct vc3_hw_data *vc3 = container_of(hw, struct vc3_hw_data, hw);
- 	const struct vc3_clk_data *clk_mux = vc3->data;
-+	unsigned int bitmsk = clk_mux->clk_32k_bitmsk;
-+	unsigned int val = 0;
-+
-+	if (index != clk_mux->clk_32k_index) {
-+		bitmsk |= clk_mux->bitmsk;
-+		val = clk_mux->clk_32k_bitmsk | (index ? clk_mux->bitmsk : 0);
-+	}
- 
--	return regmap_update_bits(vc3->regmap, clk_mux->offs, clk_mux->bitmsk,
--				  index ? clk_mux->bitmsk : 0);
-+	return regmap_update_bits(vc3->regmap, clk_mux->offs, bitmsk, val);
- }
- 
- static const struct clk_ops vc3_clk_mux_ops = {
-@@ -900,18 +940,21 @@ static struct vc3_hw_data clk_div[] = {
- 	}
- };
- 
--static const struct clk_parent_data clk_mux_parent_data[][2] = {
-+static const struct clk_parent_data clk_mux_parent_data[][3] = {
- 	[VC3_SE1_MUX] = {
- 		{ .hw = &clk_div[VC3_DIV5].hw },
--		{ .hw = &clk_div[VC3_DIV4].hw }
-+		{ .hw = &clk_div[VC3_DIV4].hw },
-+		{ .name = VC3_CLK_32K_NAME, .index = -1 }
- 	},
- 	[VC3_SE2_MUX] = {
- 		{ .hw = &clk_div[VC3_DIV5].hw },
--		{ .hw = &clk_div[VC3_DIV4].hw }
-+		{ .hw = &clk_div[VC3_DIV4].hw },
-+		{ .name = VC3_CLK_32K_NAME, .index = -1 }
- 	},
- 	[VC3_SE3_MUX] = {
- 		{ .hw = &clk_div[VC3_DIV2].hw },
--		{ .hw = &clk_div[VC3_DIV4].hw }
-+		{ .hw = &clk_div[VC3_DIV4].hw },
-+		{ .name = VC3_CLK_32K_NAME, .index = -1 }
- 	},
- 	[VC3_DIFF1_MUX] = {
- 		{ .hw = &clk_div[VC3_DIV1].hw },
-@@ -927,38 +970,44 @@ static struct vc3_hw_data clk_mux[] = {
- 	[VC3_SE1_MUX] = {
- 		.data = &(struct vc3_clk_data) {
- 			.offs = VC3_SE1_DIV4_CTRL,
--			.bitmsk = VC3_SE1_DIV4_CTRL_SE1_CLK_SEL
-+			.bitmsk = VC3_SE1_DIV4_CTRL_SE1_CLK_SEL,
-+			.clk_32k_bitmsk = VC3_SE1_DIV4_CTRL_SE1_FREERUN_32K,
-+			.clk_32k_index = 2
- 		},
- 		.hw.init = &(struct clk_init_data) {
- 			.name = "se1_mux",
- 			.ops = &vc3_clk_mux_ops,
- 			.parent_data = clk_mux_parent_data[VC3_SE1_MUX],
--			.num_parents = 2,
-+			.num_parents = 3,
- 			.flags = CLK_SET_RATE_PARENT
- 		}
- 	},
- 	[VC3_SE2_MUX] = {
- 		.data = &(struct vc3_clk_data) {
- 			.offs = VC3_SE2_CTRL_REG0,
-+			.clk_32k_bitmsk = VC3_SE2_CTRL_REG0_SE2_FREERUN_32K,
-+			.clk_32k_index = 2
- 		},
- 		.hw.init = &(struct clk_init_data) {
- 			.name = "se2_mux",
- 			.ops = &vc3_clk_mux_ops,
- 			.parent_data = clk_mux_parent_data[VC3_SE2_MUX],
--			.num_parents = 2,
-+			.num_parents = 3,
- 			.flags = CLK_SET_RATE_PARENT
- 		}
- 	},
- 	[VC3_SE3_MUX] = {
- 		.data = &(struct vc3_clk_data) {
- 			.offs = VC3_SE3_DIFF1_CTRL_REG,
--			.bitmsk = VC3_SE3_DIFF1_CTRL_REG_SE3_CLK_SEL
-+			.bitmsk = VC3_SE3_DIFF1_CTRL_REG_SE3_CLK_SEL,
-+			.clk_32k_bitmsk = VC3_SE3_DIFF1_CTRL_REG_SE3_FREERUN_32K,
-+			.clk_32k_index = 2
- 		},
- 		.hw.init = &(struct clk_init_data) {
- 			.name = "se3_mux",
- 			.ops = &vc3_clk_mux_ops,
- 			.parent_data = clk_mux_parent_data[VC3_SE3_MUX],
--			.num_parents = 2,
-+			.num_parents = 3,
- 			.flags = CLK_SET_RATE_PARENT
- 		}
- 	},
-@@ -1038,6 +1087,14 @@ static int vc3_probe(struct i2c_client *client)
- 		return ret;
- 	}
- 
-+	/* Register fixed 32.768kHz clock */
-+	clk_32k = devm_clk_hw_register_fixed_rate(dev, VC3_CLK_32K_NAME, NULL,
-+						  0, VC3_CLK_32K_FREQ);
-+	if (IS_ERR(clk_32k))
-+		return dev_err_probe(dev, PTR_ERR(clk_32k),
-+				     "Failed to register %dHz fixed clock\n",
-+				     VC3_CLK_32K_FREQ);
-+
- 	/* Register pfd muxes */
- 	for (i = 0; i < ARRAY_SIZE(clk_pfd_mux); i++) {
- 		clk_pfd_mux[i].regmap = regmap;
--- 
-2.51.0
+Eugen
+
+> 
+>> And further, inside memblock, it would be a single point where
+>> meminspect can be disabled (while preserving a no-op memblock flag), or
+>> easily changed to another API if needed.
+>> Ofcourse, one can call here directly the meminspect API if this is desired.
+>> Do you think it would be better to have it this way ?
+>>
+>> Thanks for looking into it,
+>> Eugen
+> 
 
 
