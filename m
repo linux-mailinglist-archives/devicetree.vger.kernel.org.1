@@ -1,49 +1,50 @@
-Return-Path: <devicetree+bounces-257168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257169-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEB50D3BE40
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 05:18:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2043FD3BE44
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 05:18:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 941CD4E91A0
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 04:17:06 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AE1554E9451
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 04:17:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D74DB33DEE9;
-	Tue, 20 Jan 2026 04:15:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4D4E33E35D;
+	Tue, 20 Jan 2026 04:15:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ibALnT31"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o5O6wA2S"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E53233DED0;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 273A433CEBC;
 	Tue, 20 Jan 2026 04:15:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768882525; cv=none; b=oPoELGYRsS+YQ68+jFLaOeNijtVWU2rwsmR67zTVhWKmTUYR4jNz0gaJ87uChFMYlOTYEHnpynWBZQ9XcTrR9Nj9e1c/aYr6TLCi8KyzQagIzbzAfKVtklG84ft/TcVm/G/jiHWk5gnEwiLb1FssyrDfZRAXHj2NFsK6MKoEFa4=
+	t=1768882526; cv=none; b=YQ9uKX5lZFLqoFzgq0AC93ladeYT/7YwYpKSlIds2TohvN5kaRlT8BGIvZsieL5EvyPsHQIPJQtuEDgm2VFw8Y1tPD8X4Y9sG6CGxzJCG1QEiUShC7N4vIZdbUep0pFUQDLFprjfge9KVxHF3tl+oawQzgS/YuVno3B08SXkR6E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768882525; c=relaxed/simple;
-	bh=RN9LOBb2Q5aHVScQAnVGdCBA9dhEyBoY6qpcRx7/gOs=;
+	s=arc-20240116; t=1768882526; c=relaxed/simple;
+	bh=R1lDGdU7iIiekrd1oymtfCVNrLHfj85DdbG3x9sBksw=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To; b=rnd8jUTEu7kFFFsWNBL4rgfBjx4r6bv2qTjCxODky3QOW7Zdn0+nFLz6CtqMi3ieEhnjH9nqr9ZGBpcEhgijqHxDgKYPfIwKbYK8OKX4MH2ax5il4/9Hj00dJSw20JQidWfrFTCVS4ZzoTqvPqBNopax7vjF7jsPgMk9wRfej7A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ibALnT31; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 770D7C2BC86;
+	 In-Reply-To:To; b=OklOgfga1uWZFbhSnXfflRGn+dhmpr+TMIyaSa6AEQk8TnO9CQ/rlJYnqcGwqaefBWvKzwm04alegOOeRpN/aQ0Ck8q4jEo/9dB8hJX6bqKOmQUNE1msztuE3enYsbWAvPs324MldQwAo8Npy2JH1BEYgDu/EEK9d7d0rEArYKc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o5O6wA2S; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2260C2BC87;
 	Tue, 20 Jan 2026 04:15:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768882524;
-	bh=RN9LOBb2Q5aHVScQAnVGdCBA9dhEyBoY6qpcRx7/gOs=;
+	s=k20201202; t=1768882525;
+	bh=R1lDGdU7iIiekrd1oymtfCVNrLHfj85DdbG3x9sBksw=;
 	h=From:Date:Subject:References:In-Reply-To:To:From;
-	b=ibALnT31IaRWqMCGHNDwcHyS4zY3PSOEdYb8NpS5lFcY9V9AQeIfJA2MNUOWdVPtP
-	 wyj4P9oSyvIXD/15cPtpJwSySspLscah8p/lnpuHvXZEI85EKPrXpjLk+zD33TxEsw
-	 EHnQr6ea1HUSUyEiaNWdWHFBEMzPGqb7hEzz2cyMZnQXxYQOqA32mx0gxcMDD8ctGj
-	 U50pAXE51MWcZQQtDzQF951X0vIB//j+f/InQulIwnKdQXW3yZgzaG9oArYLSXu2pz
-	 Bpf4UF51bu52DKbecRmXPwjGMafftEKpEZa6YtZKZ/nCYIW5BinTsiwjTnFAmUHQCc
-	 cQsndQKaXlmKQ==
+	b=o5O6wA2Sa7mj9exOhlWMr60IUo9V+uZYDFgj/AhtuKNokK4T3QyFOibJGyRd/1tvh
+	 OlI8fL+nnGEs9NWYESHV2Ln6pnEEjX1xeBGGxoAFo6Yjtgv4DJxBR67E1V19Ji1w0T
+	 ru6gkzgY1nuC/RU8Nt7mQvtbTH1brAy6rmgME1DwHJBF7uTBQ/uheBfPdA85pqFZy0
+	 TTpO4Ua/33Wtye91iWendEhluYKw7bEVDuNHZuECacmYeyVzJIQ8R7fPgk9c9Gsn5f
+	 QQJVQkom/0DVWSGuPP29AUkhY8ygZTpcvbJCaOZQeOJbb4SBneVreDS6c0YgELxqKh
+	 UtBt/nasszGpg==
 From: Drew Fustini <fustini@kernel.org>
-Date: Mon, 19 Jan 2026 20:14:50 -0800
-Subject: [PATCH RFC 13/19] dt-bindings: riscv: add riscv,cbqri bindings
+Date: Mon, 19 Jan 2026 20:14:51 -0800
+Subject: [PATCH NFU RFC 14/19] resctrl: riscv: add CBQRI cache controller
+ driver
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,7 +53,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260119-ssqosid-cbqri-v1-13-aa2a75153832@kernel.org>
+Message-Id: <20260119-ssqosid-cbqri-v1-14-aa2a75153832@kernel.org>
 References: <20260119-ssqosid-cbqri-v1-0-aa2a75153832@kernel.org>
 In-Reply-To: <20260119-ssqosid-cbqri-v1-0-aa2a75153832@kernel.org>
 To: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
@@ -78,72 +79,139 @@ To: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-riscv@lists.infradead.org, x86@kernel.org
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2066; i=fustini@kernel.org;
- h=from:subject:message-id; bh=RN9LOBb2Q5aHVScQAnVGdCBA9dhEyBoY6qpcRx7/gOs=;
- b=owGbwMvMwCV2+43O4ZsaG3kYT6slMWTmMwZvKFxgcutym03sq+CM7AXrjIVjpl3U/3o9LfXz/
- danM1VvdJSyMIhxMciKKbJs+pB3YYlX6NcF819sg5nDygQyhIGLUwAm8rmO4X9BzN0toRZacQzf
- 96rcrT4tKfnC6njW3ZzSqS/jBRbaS51hZGiMPee4Z+38us9bFs7YbRN6YIFugjWX0duHVdEvGlX
- i1vADAA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3582; i=fustini@kernel.org;
+ h=from:subject:message-id; bh=R1lDGdU7iIiekrd1oymtfCVNrLHfj85DdbG3x9sBksw=;
+ b=owGbwMvMwCV2+43O4ZsaG3kYT6slMWTmMwbPd3m6brnUfHdzF68gA205o7A5f5Y/vX7961zf9
+ V6HTss+6yhlYRDjYpAVU2TZ9CHvwhKv0K8L5r/YBjOHlQlkCAMXpwBM5KMZI0NvyR13W+maSyv5
+ 81fnPVsf/LTjXeQOW5t5nClJBgc62h4y/I/4cJxpakut2He/3U9mLlK4Eq8vvf2afgnHv7lGHCu
+ mf2IDAA==
 X-Developer-Key: i=fustini@kernel.org; a=openpgp;
  fpr=1B6F948213EA489734F3997035D5CD577C1E6010
 
-Document properties that can be used in the bindings for controllers
-that implement the RISC-V CBQRI specification.
+[NOT FOR UPSTREAM]
+
+Add example driver for a cache controller that implements CBQRI capacity
+allocation.
 
 Co-developed-by: Adrien Ricciardi <aricciardi@baylibre.com>
 Signed-off-by: Adrien Ricciardi <aricciardi@baylibre.com>
 Signed-off-by: Drew Fustini <fustini@kernel.org>
 ---
- .../devicetree/bindings/riscv/riscv,cbqri.yaml     | 28 ++++++++++++++++++++++
- MAINTAINERS                                        |  1 +
- 2 files changed, 29 insertions(+)
+ drivers/resctrl/riscv/cbqri_cache.c | 106 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 106 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/riscv/riscv,cbqri.yaml b/Documentation/devicetree/bindings/riscv/riscv,cbqri.yaml
+diff --git a/drivers/resctrl/riscv/cbqri_cache.c b/drivers/resctrl/riscv/cbqri_cache.c
 new file mode 100644
-index 000000000000..7d0482c31a46
+index 000000000000..0bee65eefb2d
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/riscv/riscv,cbqri.yaml
-@@ -0,0 +1,28 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/riscv/riscv,cbqri.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++++ b/drivers/resctrl/riscv/cbqri_cache.c
+@@ -0,0 +1,106 @@
++// SPDX-License-Identifier: GPL-2.0-only
++#define pr_fmt(fmt) "cbqri-cache: " fmt
 +
-+title: RISC-V Capacity and Bandwidth Register Interface (CBQRI) properties
++#include <linux/device.h>
++#include <linux/of.h>
++#include <linux/riscv_qos.h>
 +
-+description: |
-+  Common properties for cache and memory controllers that implement the
-+  RISC-V CBQRI specification:
-+  https://github.com/riscv/riscv-ssqosid/releases/tag/v1.0
++static const struct of_device_id cbqri_cache_ids[] = {
++	{ .compatible = "riscv,cbqri-cache" },
++	{ }
++};
 +
-+maintainers:
-+  - Drew Fustini <fustini@kernel.org>
++static int __init cbqri_cache_init(void)
++{
++	struct cbqri_controller_info *ctrl_info;
++	struct device_node *np;
++	u32 value;
++	int err;
 +
-+properties:
-+  riscv,cbqri-rcid:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: The maximum number of RCIDs the controller supports
++	for_each_matching_node(np, cbqri_cache_ids) {
++		if (!of_device_is_available(np)) {
++			of_node_put(np);
++			continue;
++		}
 +
-+  riscv,cbqri-mcid:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: The maximum number of MCIDs the controller supports
++		ctrl_info = kzalloc(sizeof(*ctrl_info), GFP_KERNEL);
++		if (!ctrl_info)
++			goto err_node_put;
++		ctrl_info->type = CBQRI_CONTROLLER_TYPE_CAPACITY;
 +
-+additionalProperties: true
++		err = of_property_read_u32_index(np, "reg", 1, &value);
++		if (err) {
++			pr_err("Failed to read reg base address (%d)", err);
++			goto err_kfree_ctrl_info;
++		}
++		ctrl_info->addr = value;
 +
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 96ead357a634..2c9151e34d2b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -22509,6 +22509,7 @@ RISC-V QOS RESCTRL SUPPORT
- M:	Drew Fustini <fustini@kernel.org>
- L:	linux-riscv@lists.infradead.org
- S:	Supported
-+F:	Documentation/devicetree/bindings/riscv/riscv,cbqri.yaml
- F:	arch/riscv/include/asm/qos.h
- F:	arch/riscv/include/asm/resctrl.h
- F:	arch/riscv/kernel/qos/
++		err = of_property_read_u32_index(np, "reg", 3, &value);
++		if (err) {
++			pr_err("Failed to read reg size (%d)", err);
++			goto err_kfree_ctrl_info;
++		}
++		ctrl_info->size = value;
++
++		err = of_property_read_u32(np, "cache-level", &value);
++		if (err) {
++			pr_err("Failed to read cache level (%d)", err);
++			goto err_kfree_ctrl_info;
++		}
++		ctrl_info->cache.cache_level = value;
++
++		err = of_property_read_u32(np, "cache-size", &value);
++		if (err) {
++			pr_err("Failed to read cache size (%d)", err);
++			goto err_kfree_ctrl_info;
++		}
++		ctrl_info->cache.cache_size = value;
++
++		err = of_property_read_u32(np, "riscv,cbqri-rcid", &value);
++		if (err) {
++			pr_err("Failed to read RCID count (%d)", err);
++			goto err_kfree_ctrl_info;
++		}
++		ctrl_info->rcid_count = value;
++
++		err = of_property_read_u32(np, "riscv,cbqri-mcid", &value);
++		if (err) {
++			pr_err("Failed to read MCID count (%d)", err);
++			goto err_kfree_ctrl_info;
++		}
++		ctrl_info->mcid_count = value;
++
++		/*
++		 * For CBQRI, any cpu (technically a hart in RISC-V terms)
++		 * can access the memory-mapped registers of any CBQRI
++		 * controller in the system. Therefore, set the CPU mask
++		 * to 'FF' to allow all 8 cores in the example Qemu SoC
++		 */
++		err = cpumask_parse("FF", &ctrl_info->cache.cpu_mask);
++		if (err) {
++			pr_err("Failed to convert cores mask string to cpumask (%d)", err);
++			goto err_kfree_ctrl_info;
++		}
++
++		of_node_put(np);
++
++		pr_debug("addr=0x%lx max-rcid=%u max-mcid=%u level=%d size=%u",
++			 ctrl_info->addr, ctrl_info->rcid_count, ctrl_info->mcid_count,
++			 ctrl_info->cache.cache_level, ctrl_info->cache.cache_size);
++
++		/* Fill the list shared with RISC-V QoS resctrl */
++		INIT_LIST_HEAD(&ctrl_info->list);
++		list_add_tail(&ctrl_info->list, &cbqri_controllers);
++	}
++
++	return 0;
++
++err_kfree_ctrl_info:
++	kfree(ctrl_info);
++
++err_node_put:
++	of_node_put(np);
++
++	return err;
++}
++device_initcall(cbqri_cache_init);
 
 -- 
 2.43.0
