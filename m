@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-257171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257172-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15B2FD3BE48
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 05:18:49 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id C71AAD3BE45
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 05:18:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 10DED4E995F
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 04:17:36 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5C91B352241
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 04:17:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D378033DED1;
-	Tue, 20 Jan 2026 04:15:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E98733F37E;
+	Tue, 20 Jan 2026 04:15:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZOPt/O0/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tRPacVIB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8915133EAF9;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C836833B6E7;
 	Tue, 20 Jan 2026 04:15:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768882527; cv=none; b=rkraPCV+6Eq2uBgiZaVT2vQ6bMQk+NsGaS2G2VtRtaQ7lVgRf29xeL6LZOSZRMlLQ5+ZMnW6zdi+VeMFtjtLyqi6jNZGdWC7NouSnRTCBNKRlLDLqtqf9ptXobzvcl5HT4vbDKoP//udJH7BJozd1VEDdpRfnU8+gcGvMoiQM7s=
+	t=1768882527; cv=none; b=m7KVmFGi/U45fmMma/ofvISOSTMIZElPO4Ux5+XA81VLBlLpuYhUKQFpkNNjx2bnfZ+y55b+FXgm4b6m+r48xbI/hs2iSRXmtSiwfUJTelzgvo75DzyD7f+lVavS0sTckx9TrzInJZEJWF/JAo2GGCAyND+56w2hVTy4wJMzksc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1768882527; c=relaxed/simple;
-	bh=So9iUedCC3u+sUXH12Vr6tmS+PCHIo5F5wnJVHearb0=;
+	bh=08+NoXyvW3Xk6Oo5KOcsUwbtLfO2FJFdCtJSOZ1Zuws=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To; b=teqtJciatxQDSOZLwxfnb/qzHo7RoAxUZEU3BQF9qmtgqD7OzEzYJojAvEaalGDzsxOnwrWwMJ0MYDyXLN6ZDPdEpI8h+ypk+PgD3xLBT7Bkv1LHAlcFfYdupgqgUvBHevGtC6MguoWcoV0RLrwpPecwLFvOowbdVMd6h/O7pew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZOPt/O0/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FB6AC19425;
+	 In-Reply-To:To; b=gd3yA2KddySmvR2gODQEWQXaxNgMpUrVk5P9+SSWL99pSU8ZTEtV9xsfx6ob1a5SECyUzazhH56Z11sE5EtrJvd6uKtx5CChHN1xyNqYjuhbsOHbK0xWxLif0BwXx8cWyXj72m4q3I0x2ba7DRrKIC154lcEe9g8OiwgYgdkc3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tRPacVIB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE6D4C19424;
 	Tue, 20 Jan 2026 04:15:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768882526;
-	bh=So9iUedCC3u+sUXH12Vr6tmS+PCHIo5F5wnJVHearb0=;
+	s=k20201202; t=1768882527;
+	bh=08+NoXyvW3Xk6Oo5KOcsUwbtLfO2FJFdCtJSOZ1Zuws=;
 	h=From:Date:Subject:References:In-Reply-To:To:From;
-	b=ZOPt/O0/lggO52Wdqgoyk4ZT7fSlplaFQFPkEmhmPi+Yz8LaLhlbmgALIJrx6Qxct
-	 KaJgNIlxfnALFw9h9mKpcDMv0npFxJbQTsaSXE1z6+TJG5qW7RX/5Cm48LHwRUVAL6
-	 oSfR/TTp5nPBnVrA7wjOmqaaP4Fg5fiNXzUA3JIiL4BQUJjj4dF8Vidayyx+sleQjL
-	 hoqmDDtUXZlYKDnfd1AmALPWENyBoG6zcHMckXnN4pGLzDuVlAc6jxN+5q7ay93UWB
-	 G+1KaRwbhzTloc1xZrAsr+nW19jITSMDcC/WMPUbIAFRvyvmNVR4H2MJ6eKECnNq8t
-	 bL/1NqGjMLsZg==
+	b=tRPacVIB4t2VbsUGJIO2a17wCy77QjWXAqYWwS+DmywWQ4CWeiln7CdoF7NgrS5WO
+	 QctBL5aVxNJi9c4/0f0XNETkCdcbkj5n0ztIYdU9Mbr0gJzs7QpYdlecRDZg9xYIe+
+	 uE/TOVtnIlYqqra03dzwi5VJodv6Bhdk6Ky0sTFNwhoEU3aTMPuXGRURkPrgwkh0Vp
+	 9nJo0cOP4H6KavTf6THwQiyeigZ17k9C4fnZx4rQPy1tYmDSAmaywdZv1CxvaxyEHa
+	 zlQbXvbGESSPyLfKcu5hgSEZDfutLFOyGI/vdAMsc2gc4QoK4BZhGE+rBO3g7wG/Ae
+	 2xdke4ZtlmOdw==
 From: Drew Fustini <fustini@kernel.org>
-Date: Mon, 19 Jan 2026 20:14:53 -0800
-Subject: [PATCH NFU RFC 16/19] resctrl: riscv: build CBQRI drivers
+Date: Mon, 19 Jan 2026 20:14:54 -0800
+Subject: [PATCH NFU RFC 17/19] riscv: dts: qemu: add dump from virt machine
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,7 +52,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260119-ssqosid-cbqri-v1-16-aa2a75153832@kernel.org>
+Message-Id: <20260119-ssqosid-cbqri-v1-17-aa2a75153832@kernel.org>
 References: <20260119-ssqosid-cbqri-v1-0-aa2a75153832@kernel.org>
 In-Reply-To: <20260119-ssqosid-cbqri-v1-0-aa2a75153832@kernel.org>
 To: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
@@ -78,91 +78,448 @@ To: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-riscv@lists.infradead.org, x86@kernel.org
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2641; i=fustini@kernel.org;
- h=from:subject:message-id; bh=So9iUedCC3u+sUXH12Vr6tmS+PCHIo5F5wnJVHearb0=;
- b=owGbwMvMwCV2+43O4ZsaG3kYT6slMWTmMwafTDv76crDL4EMJi5SFdMX/G2vbLl3wN6i5O6Zk
- /I6Z9uCO0pZGMS4GGTFFFk2fci7sMQr9OuC+S+2wcxhZQIZwsDFKQATaTvLyHDgy++/e45OWiQf
- /TdkisrqDT/mH2b0m+xRqJT0/UqnT9xCRoajN+8bOG5XCGyRPTRt4gn+4FDLY0EdM+9l7zlpPV1
- yXikjAA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=17006; i=fustini@kernel.org;
+ h=from:subject:message-id; bh=08+NoXyvW3Xk6Oo5KOcsUwbtLfO2FJFdCtJSOZ1Zuws=;
+ b=owGbwMvMwCV2+43O4ZsaG3kYT6slMWTmMwY3Jj7gXmZ++ZKKxNwG3X8sSgwn27sPfVXYGlV3e
+ JL8woNPOkpZGMS4GGTFFFk2fci7sMQr9OuC+S+2wcxhZQIZwsDFKQATmWbFyLBL4M0U39MWP16x
+ ZByefHHb1xbd//PaHiTNPVG+SO2xi1IXw//8Lc5J4SvPOkR0/vQxNpD/lTzvQqm8REaej170hLb
+ 6RC4A
 X-Developer-Key: i=fustini@kernel.org; a=openpgp;
  fpr=1B6F948213EA489734F3997035D5CD577C1E6010
 
 [NOT FOR UPSTREAM]
 
-Add RISC-V CBQRI cache and bandwidth controller drivers to the build.
+Dumped dtb from qemu branch based on the v4 riscv-ssqosid-cbqri series.
 
-Link: https://github.com/riscv-non-isa/riscv-cbqri/releases/tag/v1.0
+ $ qemu-system-riscv64 -version
+ QEMU emulator version 10.2.50 (v10.2.0-208-g087112467867)
+ Copyright (c) 2003-2025 Fabrice Bellard and the QEMU Project developers
+
+ $ qemu-system-riscv64 \
+      -M virt \
+      -nographic \
+      -smp 8 \
+      -bios output/images/fw_jump.elf \
+      -kernel $HOME/kernel/cbqri-linux/arch/riscv/boot/Image \
+      -append "root=/dev/vda ro" \
+      -drive file=output/images/rootfs.ext2,format=raw,id=hd0 \
+      -device virtio-blk-device,drive=hd0 \
+      -machine dumpdtb=qemu.dtb
+
+Link: https://lore.kernel.org/all/20260105-riscv-ssqosid-cbqri-v4-0-9ad7671dde78@kernel.org/
+Link: https://github.com/tt-fustini/qemu/tree/b4/riscv-ssqosid-cbqri
 Co-developed-by: Adrien Ricciardi <aricciardi@baylibre.com>
 Signed-off-by: Adrien Ricciardi <aricciardi@baylibre.com>
 Signed-off-by: Drew Fustini <fustini@kernel.org>
 ---
- drivers/resctrl/Kconfig        |  2 ++
- drivers/resctrl/Makefile       |  2 ++
- drivers/resctrl/riscv/Kconfig  | 25 +++++++++++++++++++++++++
- drivers/resctrl/riscv/Makefile |  4 ++++
- 4 files changed, 33 insertions(+)
+ arch/riscv/boot/dts/qemu/qemu-virt-cbqri.dts | 399 +++++++++++++++++++++++++++
+ 1 file changed, 399 insertions(+)
 
-diff --git a/drivers/resctrl/Kconfig b/drivers/resctrl/Kconfig
-index c808e0470394..6c1d909dd20c 100644
---- a/drivers/resctrl/Kconfig
-+++ b/drivers/resctrl/Kconfig
-@@ -22,3 +22,5 @@ config MPAM_KUNIT_TEST
- 	  If unsure, say N.
- 
- endif
-+
-+source "drivers/resctrl/riscv/Kconfig"
-diff --git a/drivers/resctrl/Makefile b/drivers/resctrl/Makefile
-index 898199dcf80d..48fa4d69d76f 100644
---- a/drivers/resctrl/Makefile
-+++ b/drivers/resctrl/Makefile
-@@ -2,3 +2,5 @@ obj-$(CONFIG_ARM64_MPAM_DRIVER)			+= mpam.o
- mpam-y						+= mpam_devices.o
- 
- ccflags-$(CONFIG_ARM64_MPAM_DRIVER_DEBUG)	+= -DDEBUG
-+
-+obj-y						+= riscv/
-diff --git a/drivers/resctrl/riscv/Kconfig b/drivers/resctrl/riscv/Kconfig
+diff --git a/arch/riscv/boot/dts/qemu/qemu-virt-cbqri.dts b/arch/riscv/boot/dts/qemu/qemu-virt-cbqri.dts
 new file mode 100644
-index 000000000000..d9a774fb856b
+index 000000000000..4c6257bec42d
 --- /dev/null
-+++ b/drivers/resctrl/riscv/Kconfig
-@@ -0,0 +1,25 @@
-+# SPDX-License-Identifier: GPL-2.0
++++ b/arch/riscv/boot/dts/qemu/qemu-virt-cbqri.dts
+@@ -0,0 +1,399 @@
++// SPDX-License-Identifier: GPL-2.0 OR MIT
++/dts-v1/;
 +
-+config RESCTRL_RISCV_CBQRI_CACHE
-+	bool "RISC-V QoS cache controller (CBQRI)"
-+	default y
-+	depends on RISCV
-+	select RISCV_ISA_SSQOSID
-+	help
-+	  Support RISC-V platform which implements a QoS capacity
-+	  controller according to the RISC-V Capacity and Bandwidth QoS
-+	  Register Interface (CBQRI) specification.
++/ {
++	#address-cells = <0x02>;
++	#size-cells = <0x02>;
++	compatible = "riscv-virtio";
++	model = "riscv-virtio,qemu";
 +
-+	  If you do not care about testing RISC-V CBQRI, then choose 'N'.
++	poweroff {
++		value = <0x5555>;
++		offset = <0x00>;
++		regmap = <0x12>;
++		compatible = "syscon-poweroff";
++	};
 +
-+config RESCTRL_RISCV_CBQRI_BANDWIDTH
-+	bool "RISC-V QoS bandwidth controller (CBQRI)"
-+	default y
-+	depends on RISCV
-+	select RISCV_ISA_SSQOSID
-+	help
-+	  Support RISC-V platform which implements a QoS bandwidth
-+	  controller according to the RISC-V Capacity and Bandwidth QoS
-+	  Register Interface (CBQRI) specification.
++	reboot {
++		value = <0x7777>;
++		offset = <0x00>;
++		regmap = <0x12>;
++		compatible = "syscon-reboot";
++	};
 +
-+	  If you do not care about testing RISC-V CBQRI, then choose 'N'.
-diff --git a/drivers/resctrl/riscv/Makefile b/drivers/resctrl/riscv/Makefile
-new file mode 100644
-index 000000000000..e6937a8632d6
---- /dev/null
-+++ b/drivers/resctrl/riscv/Makefile
-@@ -0,0 +1,4 @@
-+# SPDX-License-Identifier: GPL-2.0
++	platform-bus@4000000 {
++		interrupt-parent = <0x11>;
++		ranges = <0x00 0x00 0x4000000 0x2000000>;
++		#address-cells = <0x01>;
++		#size-cells = <0x01>;
++		compatible = "qemu,platform\0simple-bus";
++	};
 +
-+obj-$(CONFIG_RESCTRL_RISCV_CBQRI_CACHE)      += cbqri_cache.o
-+obj-$(CONFIG_RESCTRL_RISCV_CBQRI_BANDWIDTH)  += cbqri_bandwidth.o
++	memory@80000000 {
++		device_type = "memory";
++		reg = <0x00 0x80000000 0x00 0x8000000>;
++	};
++
++	cpus {
++		#address-cells = <0x01>;
++		#size-cells = <0x00>;
++		timebase-frequency = <0x989680>;
++
++		cpu@0 {
++			phandle = <0x0f>;
++			device_type = "cpu";
++			reg = <0x00>;
++			status = "okay";
++			compatible = "riscv";
++			riscv,cbop-block-size = <0x40>;
++			riscv,cboz-block-size = <0x40>;
++			riscv,cbom-block-size = <0x40>;
++			riscv,isa-extensions = "i\0m\0a\0f\0d\0c\0h\0zic64b\0zicbom\0zicbop\0zicboz\0ziccamoa\0ziccif\0zicclsm\0ziccrse\0zicntr\0zicsr\0zifencei\0zihintntl\0zihintpause\0zihpm\0zmmul\0za64rs\0zaamo\0zalrsc\0zawrs\0zfa\0zca\0zcd\0zba\0zbb\0zbc\0zbs\0sdtrig\0shcounterenw\0shgatpa\0shtvala\0shvsatpa\0shvstvala\0shvstvecd\0ssccptr\0sscounterenw\0ssqosid\0ssstrict\0sstc\0sstvala\0sstvecd\0ssu64xl\0svadu\0svvptc";
++			riscv,isa-base = "rv64i";
++			riscv,isa = "rv64imafdch_zic64b_zicbom_zicbop_zicboz_ziccamoa_ziccif_zicclsm_ziccrse_zicntr_zicsr_zifencei_zihintntl_zihintpause_zihpm_zmmul_za64rs_zaamo_zalrsc_zawrs_zfa_zca_zcd_zba_zbb_zbc_zbs_sdtrig_shcounterenw_shgatpa_shtvala_shvsatpa_shvstvala_shvstvecd_ssccptr_sscounterenw_ssqosid_ssstrict_sstc_sstvala_sstvecd_ssu64xl_svadu_svvptc";
++			mmu-type = "riscv,sv57";
++
++			interrupt-controller {
++				#interrupt-cells = <0x01>;
++				interrupt-controller;
++				compatible = "riscv,cpu-intc";
++				phandle = <0x10>;
++			};
++		};
++
++		cpu@1 {
++			phandle = <0x0d>;
++			device_type = "cpu";
++			reg = <0x01>;
++			status = "okay";
++			compatible = "riscv";
++			riscv,cbop-block-size = <0x40>;
++			riscv,cboz-block-size = <0x40>;
++			riscv,cbom-block-size = <0x40>;
++			riscv,isa-extensions = "i\0m\0a\0f\0d\0c\0h\0zic64b\0zicbom\0zicbop\0zicboz\0ziccamoa\0ziccif\0zicclsm\0ziccrse\0zicntr\0zicsr\0zifencei\0zihintntl\0zihintpause\0zihpm\0zmmul\0za64rs\0zaamo\0zalrsc\0zawrs\0zfa\0zca\0zcd\0zba\0zbb\0zbc\0zbs\0sdtrig\0shcounterenw\0shgatpa\0shtvala\0shvsatpa\0shvstvala\0shvstvecd\0ssccptr\0sscounterenw\0ssqosid\0ssstrict\0sstc\0sstvala\0sstvecd\0ssu64xl\0svadu\0svvptc";
++			riscv,isa-base = "rv64i";
++			riscv,isa = "rv64imafdch_zic64b_zicbom_zicbop_zicboz_ziccamoa_ziccif_zicclsm_ziccrse_zicntr_zicsr_zifencei_zihintntl_zihintpause_zihpm_zmmul_za64rs_zaamo_zalrsc_zawrs_zfa_zca_zcd_zba_zbb_zbc_zbs_sdtrig_shcounterenw_shgatpa_shtvala_shvsatpa_shvstvala_shvstvecd_ssccptr_sscounterenw_ssqosid_ssstrict_sstc_sstvala_sstvecd_ssu64xl_svadu_svvptc";
++			mmu-type = "riscv,sv57";
++
++			interrupt-controller {
++				#interrupt-cells = <0x01>;
++				interrupt-controller;
++				compatible = "riscv,cpu-intc";
++				phandle = <0x0e>;
++			};
++		};
++
++		cpu@2 {
++			phandle = <0x0b>;
++			device_type = "cpu";
++			reg = <0x02>;
++			status = "okay";
++			compatible = "riscv";
++			riscv,cbop-block-size = <0x40>;
++			riscv,cboz-block-size = <0x40>;
++			riscv,cbom-block-size = <0x40>;
++			riscv,isa-extensions = "i\0m\0a\0f\0d\0c\0h\0zic64b\0zicbom\0zicbop\0zicboz\0ziccamoa\0ziccif\0zicclsm\0ziccrse\0zicntr\0zicsr\0zifencei\0zihintntl\0zihintpause\0zihpm\0zmmul\0za64rs\0zaamo\0zalrsc\0zawrs\0zfa\0zca\0zcd\0zba\0zbb\0zbc\0zbs\0sdtrig\0shcounterenw\0shgatpa\0shtvala\0shvsatpa\0shvstvala\0shvstvecd\0ssccptr\0sscounterenw\0ssqosid\0ssstrict\0sstc\0sstvala\0sstvecd\0ssu64xl\0svadu\0svvptc";
++			riscv,isa-base = "rv64i";
++			riscv,isa = "rv64imafdch_zic64b_zicbom_zicbop_zicboz_ziccamoa_ziccif_zicclsm_ziccrse_zicntr_zicsr_zifencei_zihintntl_zihintpause_zihpm_zmmul_za64rs_zaamo_zalrsc_zawrs_zfa_zca_zcd_zba_zbb_zbc_zbs_sdtrig_shcounterenw_shgatpa_shtvala_shvsatpa_shvstvala_shvstvecd_ssccptr_sscounterenw_ssqosid_ssstrict_sstc_sstvala_sstvecd_ssu64xl_svadu_svvptc";
++			mmu-type = "riscv,sv57";
++
++			interrupt-controller {
++				#interrupt-cells = <0x01>;
++				interrupt-controller;
++				compatible = "riscv,cpu-intc";
++				phandle = <0x0c>;
++			};
++		};
++
++		cpu@3 {
++			phandle = <0x09>;
++			device_type = "cpu";
++			reg = <0x03>;
++			status = "okay";
++			compatible = "riscv";
++			riscv,cbop-block-size = <0x40>;
++			riscv,cboz-block-size = <0x40>;
++			riscv,cbom-block-size = <0x40>;
++			riscv,isa-extensions = "i\0m\0a\0f\0d\0c\0h\0zic64b\0zicbom\0zicbop\0zicboz\0ziccamoa\0ziccif\0zicclsm\0ziccrse\0zicntr\0zicsr\0zifencei\0zihintntl\0zihintpause\0zihpm\0zmmul\0za64rs\0zaamo\0zalrsc\0zawrs\0zfa\0zca\0zcd\0zba\0zbb\0zbc\0zbs\0sdtrig\0shcounterenw\0shgatpa\0shtvala\0shvsatpa\0shvstvala\0shvstvecd\0ssccptr\0sscounterenw\0ssqosid\0ssstrict\0sstc\0sstvala\0sstvecd\0ssu64xl\0svadu\0svvptc";
++			riscv,isa-base = "rv64i";
++			riscv,isa = "rv64imafdch_zic64b_zicbom_zicbop_zicboz_ziccamoa_ziccif_zicclsm_ziccrse_zicntr_zicsr_zifencei_zihintntl_zihintpause_zihpm_zmmul_za64rs_zaamo_zalrsc_zawrs_zfa_zca_zcd_zba_zbb_zbc_zbs_sdtrig_shcounterenw_shgatpa_shtvala_shvsatpa_shvstvala_shvstvecd_ssccptr_sscounterenw_ssqosid_ssstrict_sstc_sstvala_sstvecd_ssu64xl_svadu_svvptc";
++			mmu-type = "riscv,sv57";
++
++			interrupt-controller {
++				#interrupt-cells = <0x01>;
++				interrupt-controller;
++				compatible = "riscv,cpu-intc";
++				phandle = <0x0a>;
++			};
++		};
++
++		cpu@4 {
++			phandle = <0x07>;
++			device_type = "cpu";
++			reg = <0x04>;
++			status = "okay";
++			compatible = "riscv";
++			riscv,cbop-block-size = <0x40>;
++			riscv,cboz-block-size = <0x40>;
++			riscv,cbom-block-size = <0x40>;
++			riscv,isa-extensions = "i\0m\0a\0f\0d\0c\0h\0zic64b\0zicbom\0zicbop\0zicboz\0ziccamoa\0ziccif\0zicclsm\0ziccrse\0zicntr\0zicsr\0zifencei\0zihintntl\0zihintpause\0zihpm\0zmmul\0za64rs\0zaamo\0zalrsc\0zawrs\0zfa\0zca\0zcd\0zba\0zbb\0zbc\0zbs\0sdtrig\0shcounterenw\0shgatpa\0shtvala\0shvsatpa\0shvstvala\0shvstvecd\0ssccptr\0sscounterenw\0ssqosid\0ssstrict\0sstc\0sstvala\0sstvecd\0ssu64xl\0svadu\0svvptc";
++			riscv,isa-base = "rv64i";
++			riscv,isa = "rv64imafdch_zic64b_zicbom_zicbop_zicboz_ziccamoa_ziccif_zicclsm_ziccrse_zicntr_zicsr_zifencei_zihintntl_zihintpause_zihpm_zmmul_za64rs_zaamo_zalrsc_zawrs_zfa_zca_zcd_zba_zbb_zbc_zbs_sdtrig_shcounterenw_shgatpa_shtvala_shvsatpa_shvstvala_shvstvecd_ssccptr_sscounterenw_ssqosid_ssstrict_sstc_sstvala_sstvecd_ssu64xl_svadu_svvptc";
++			mmu-type = "riscv,sv57";
++
++			interrupt-controller {
++				#interrupt-cells = <0x01>;
++				interrupt-controller;
++				compatible = "riscv,cpu-intc";
++				phandle = <0x08>;
++			};
++		};
++
++		cpu@5 {
++			phandle = <0x05>;
++			device_type = "cpu";
++			reg = <0x05>;
++			status = "okay";
++			compatible = "riscv";
++			riscv,cbop-block-size = <0x40>;
++			riscv,cboz-block-size = <0x40>;
++			riscv,cbom-block-size = <0x40>;
++			riscv,isa-extensions = "i\0m\0a\0f\0d\0c\0h\0zic64b\0zicbom\0zicbop\0zicboz\0ziccamoa\0ziccif\0zicclsm\0ziccrse\0zicntr\0zicsr\0zifencei\0zihintntl\0zihintpause\0zihpm\0zmmul\0za64rs\0zaamo\0zalrsc\0zawrs\0zfa\0zca\0zcd\0zba\0zbb\0zbc\0zbs\0sdtrig\0shcounterenw\0shgatpa\0shtvala\0shvsatpa\0shvstvala\0shvstvecd\0ssccptr\0sscounterenw\0ssqosid\0ssstrict\0sstc\0sstvala\0sstvecd\0ssu64xl\0svadu\0svvptc";
++			riscv,isa-base = "rv64i";
++			riscv,isa = "rv64imafdch_zic64b_zicbom_zicbop_zicboz_ziccamoa_ziccif_zicclsm_ziccrse_zicntr_zicsr_zifencei_zihintntl_zihintpause_zihpm_zmmul_za64rs_zaamo_zalrsc_zawrs_zfa_zca_zcd_zba_zbb_zbc_zbs_sdtrig_shcounterenw_shgatpa_shtvala_shvsatpa_shvstvala_shvstvecd_ssccptr_sscounterenw_ssqosid_ssstrict_sstc_sstvala_sstvecd_ssu64xl_svadu_svvptc";
++			mmu-type = "riscv,sv57";
++
++			interrupt-controller {
++				#interrupt-cells = <0x01>;
++				interrupt-controller;
++				compatible = "riscv,cpu-intc";
++				phandle = <0x06>;
++			};
++		};
++
++		cpu@6 {
++			phandle = <0x03>;
++			device_type = "cpu";
++			reg = <0x06>;
++			status = "okay";
++			compatible = "riscv";
++			riscv,cbop-block-size = <0x40>;
++			riscv,cboz-block-size = <0x40>;
++			riscv,cbom-block-size = <0x40>;
++			riscv,isa-extensions = "i\0m\0a\0f\0d\0c\0h\0zic64b\0zicbom\0zicbop\0zicboz\0ziccamoa\0ziccif\0zicclsm\0ziccrse\0zicntr\0zicsr\0zifencei\0zihintntl\0zihintpause\0zihpm\0zmmul\0za64rs\0zaamo\0zalrsc\0zawrs\0zfa\0zca\0zcd\0zba\0zbb\0zbc\0zbs\0sdtrig\0shcounterenw\0shgatpa\0shtvala\0shvsatpa\0shvstvala\0shvstvecd\0ssccptr\0sscounterenw\0ssqosid\0ssstrict\0sstc\0sstvala\0sstvecd\0ssu64xl\0svadu\0svvptc";
++			riscv,isa-base = "rv64i";
++			riscv,isa = "rv64imafdch_zic64b_zicbom_zicbop_zicboz_ziccamoa_ziccif_zicclsm_ziccrse_zicntr_zicsr_zifencei_zihintntl_zihintpause_zihpm_zmmul_za64rs_zaamo_zalrsc_zawrs_zfa_zca_zcd_zba_zbb_zbc_zbs_sdtrig_shcounterenw_shgatpa_shtvala_shvsatpa_shvstvala_shvstvecd_ssccptr_sscounterenw_ssqosid_ssstrict_sstc_sstvala_sstvecd_ssu64xl_svadu_svvptc";
++			mmu-type = "riscv,sv57";
++
++			interrupt-controller {
++				#interrupt-cells = <0x01>;
++				interrupt-controller;
++				compatible = "riscv,cpu-intc";
++				phandle = <0x04>;
++			};
++		};
++
++		cpu@7 {
++			phandle = <0x01>;
++			device_type = "cpu";
++			reg = <0x07>;
++			status = "okay";
++			compatible = "riscv";
++			riscv,cbop-block-size = <0x40>;
++			riscv,cboz-block-size = <0x40>;
++			riscv,cbom-block-size = <0x40>;
++			riscv,isa-extensions = "i\0m\0a\0f\0d\0c\0h\0zic64b\0zicbom\0zicbop\0zicboz\0ziccamoa\0ziccif\0zicclsm\0ziccrse\0zicntr\0zicsr\0zifencei\0zihintntl\0zihintpause\0zihpm\0zmmul\0za64rs\0zaamo\0zalrsc\0zawrs\0zfa\0zca\0zcd\0zba\0zbb\0zbc\0zbs\0sdtrig\0shcounterenw\0shgatpa\0shtvala\0shvsatpa\0shvstvala\0shvstvecd\0ssccptr\0sscounterenw\0ssqosid\0ssstrict\0sstc\0sstvala\0sstvecd\0ssu64xl\0svadu\0svvptc";
++			riscv,isa-base = "rv64i";
++			riscv,isa = "rv64imafdch_zic64b_zicbom_zicbop_zicboz_ziccamoa_ziccif_zicclsm_ziccrse_zicntr_zicsr_zifencei_zihintntl_zihintpause_zihpm_zmmul_za64rs_zaamo_zalrsc_zawrs_zfa_zca_zcd_zba_zbb_zbc_zbs_sdtrig_shcounterenw_shgatpa_shtvala_shvsatpa_shvstvala_shvstvecd_ssccptr_sscounterenw_ssqosid_ssstrict_sstc_sstvala_sstvecd_ssu64xl_svadu_svvptc";
++			mmu-type = "riscv,sv57";
++
++			interrupt-controller {
++				#interrupt-cells = <0x01>;
++				interrupt-controller;
++				compatible = "riscv,cpu-intc";
++				phandle = <0x02>;
++			};
++		};
++
++		cpu-map {
++
++			cluster0 {
++
++				core0 {
++					cpu = <0x0f>;
++				};
++
++				core1 {
++					cpu = <0x0d>;
++				};
++
++				core2 {
++					cpu = <0x0b>;
++				};
++
++				core3 {
++					cpu = <0x09>;
++				};
++
++				core4 {
++					cpu = <0x07>;
++				};
++
++				core5 {
++					cpu = <0x05>;
++				};
++
++				core6 {
++					cpu = <0x03>;
++				};
++
++				core7 {
++					cpu = <0x01>;
++				};
++			};
++		};
++	};
++
++	pmu {
++		riscv,event-to-mhpmcounters = <0x01 0x01 0x7fff9 0x02 0x02 0x7fffc 0x10019 0x10019 0x7fff8 0x1001b 0x1001b 0x7fff8 0x10021 0x10021 0x7fff8>;
++		compatible = "riscv,pmu";
++	};
++
++	fw-cfg@10100000 {
++		dma-coherent;
++		reg = <0x00 0x10100000 0x00 0x18>;
++		compatible = "qemu,fw-cfg-mmio";
++	};
++
++	flash@20000000 {
++		bank-width = <0x04>;
++		reg = <0x00 0x20000000 0x00 0x2000000 0x00 0x22000000 0x00 0x2000000>;
++		compatible = "cfi-flash";
++	};
++
++	aliases {
++		serial0 = "/soc/serial@10000000";
++	};
++
++	chosen {
++		bootargs = "root=/dev/vda ro loglevel=8";
++		stdout-path = "/soc/serial@10000000";
++		rng-seed = <0x56a2904d 0x281bbaec 0x55c405c1 0x602a34cd 0x3490edca 0x3ed9ed5d 0xa98e5ed6 0xa663e102>;
++	};
++
++	soc {
++		#address-cells = <0x02>;
++		#size-cells = <0x02>;
++		compatible = "simple-bus";
++		ranges;
++
++		rtc@101000 {
++			interrupts = <0x0b>;
++			interrupt-parent = <0x11>;
++			reg = <0x00 0x101000 0x00 0x1000>;
++			compatible = "google,goldfish-rtc";
++		};
++
++		serial@10000000 {
++			interrupts = <0x0a>;
++			interrupt-parent = <0x11>;
++			clock-frequency = "\08@";
++			reg = <0x00 0x10000000 0x00 0x100>;
++			compatible = "ns16550a";
++		};
++
++		test@100000 {
++			phandle = <0x12>;
++			reg = <0x00 0x100000 0x00 0x1000>;
++			compatible = "sifive,test1\0sifive,test0\0syscon";
++		};
++
++		virtio_mmio@10008000 {
++			interrupts = <0x08>;
++			interrupt-parent = <0x11>;
++			reg = <0x00 0x10008000 0x00 0x1000>;
++			compatible = "virtio,mmio";
++		};
++
++		virtio_mmio@10007000 {
++			interrupts = <0x07>;
++			interrupt-parent = <0x11>;
++			reg = <0x00 0x10007000 0x00 0x1000>;
++			compatible = "virtio,mmio";
++		};
++
++		virtio_mmio@10006000 {
++			interrupts = <0x06>;
++			interrupt-parent = <0x11>;
++			reg = <0x00 0x10006000 0x00 0x1000>;
++			compatible = "virtio,mmio";
++		};
++
++		virtio_mmio@10005000 {
++			interrupts = <0x05>;
++			interrupt-parent = <0x11>;
++			reg = <0x00 0x10005000 0x00 0x1000>;
++			compatible = "virtio,mmio";
++		};
++
++		virtio_mmio@10004000 {
++			interrupts = <0x04>;
++			interrupt-parent = <0x11>;
++			reg = <0x00 0x10004000 0x00 0x1000>;
++			compatible = "virtio,mmio";
++		};
++
++		virtio_mmio@10003000 {
++			interrupts = <0x03>;
++			interrupt-parent = <0x11>;
++			reg = <0x00 0x10003000 0x00 0x1000>;
++			compatible = "virtio,mmio";
++		};
++
++		virtio_mmio@10002000 {
++			interrupts = <0x02>;
++			interrupt-parent = <0x11>;
++			reg = <0x00 0x10002000 0x00 0x1000>;
++			compatible = "virtio,mmio";
++		};
++
++		virtio_mmio@10001000 {
++			interrupts = <0x01>;
++			interrupt-parent = <0x11>;
++			reg = <0x00 0x10001000 0x00 0x1000>;
++			compatible = "virtio,mmio";
++		};
++
++		plic@c000000 {
++			phandle = <0x11>;
++			riscv,ndev = <0x5f>;
++			reg = <0x00 0xc000000 0x00 0x600000>;
++			interrupts-extended = <0x10 0x0b 0x10 0x09 0x0e 0x0b 0x0e 0x09 0x0c 0x0b 0x0c 0x09 0x0a 0x0b 0x0a 0x09 0x08 0x0b 0x08 0x09 0x06 0x0b 0x06 0x09 0x04 0x0b 0x04 0x09 0x02 0x0b 0x02 0x09>;
++			interrupt-controller;
++			compatible = "sifive,plic-1.0.0\0riscv,plic0";
++			#address-cells = <0x00>;
++			#interrupt-cells = <0x01>;
++		};
++
++		clint@2000000 {
++			interrupts-extended = <0x10 0x03 0x10 0x07 0x0e 0x03 0x0e 0x07 0x0c 0x03 0x0c 0x07 0x0a 0x03 0x0a 0x07 0x08 0x03 0x08 0x07 0x06 0x03 0x06 0x07 0x04 0x03 0x04 0x07 0x02 0x03 0x02 0x07>;
++			reg = <0x00 0x2000000 0x00 0x10000>;
++			compatible = "sifive,clint0\0riscv,clint0";
++		};
++
++		pci@30000000 {
++			interrupt-map-mask = <0x1800 0x00 0x00 0x07>;
++			interrupt-map = <0x00 0x00 0x00 0x01 0x11 0x20 0x00 0x00 0x00 0x02 0x11 0x21 0x00 0x00 0x00 0x03 0x11 0x22 0x00 0x00 0x00 0x04 0x11 0x23 0x800 0x00 0x00 0x01 0x11 0x21 0x800 0x00 0x00 0x02 0x11 0x22 0x800 0x00 0x00 0x03 0x11 0x23 0x800 0x00 0x00 0x04 0x11 0x20 0x1000 0x00 0x00 0x01 0x11 0x22 0x1000 0x00 0x00 0x02 0x11 0x23 0x1000 0x00 0x00 0x03 0x11 0x20 0x1000 0x00 0x00 0x04 0x11 0x21 0x1800 0x00 0x00 0x01 0x11 0x23 0x1800 0x00 0x00 0x02 0x11 0x20 0x1800 0x00 0x00 0x03 0x11 0x21 0x1800 0x00 0x00 0x04 0x11 0x22>;
++			ranges = <0x1000000 0x00 0x00 0x00 0x3000000 0x00 0x10000 0x2000000 0x00 0x40000000 0x00 0x40000000 0x00 0x40000000 0x3000000 0x04 0x00 0x04 0x00 0x04 0x00>;
++			reg = <0x00 0x30000000 0x00 0x10000000>;
++			dma-coherent;
++			bus-range = <0x00 0xff>;
++			linux,pci-domain = <0x00>;
++			device_type = "pci";
++			compatible = "pci-host-ecam-generic";
++			#size-cells = <0x02>;
++			#interrupt-cells = <0x01>;
++			#address-cells = <0x03>;
++		};
++	};
++};
 
 -- 
 2.43.0
