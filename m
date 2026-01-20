@@ -1,81 +1,83 @@
-Return-Path: <devicetree+bounces-257394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257395-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mOrQEFQwcGkSXAAAu9opvQ
-	(envelope-from <devicetree+bounces-257394-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:48:04 +0100
+	id INFQMbt6cGktYAAAu9opvQ
+	(envelope-from <devicetree+bounces-257395-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 08:05:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id E44E64F534
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:48:03 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F5E65292F
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 08:05:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 717DA62D24C
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 12:53:11 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BA9B062D943
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 12:53:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD0FC42980E;
-	Tue, 20 Jan 2026 12:50:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DACB842DFE7;
+	Tue, 20 Jan 2026 12:50:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MYfjS2yy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iwpd6/bl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 534C8429800
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 12:50:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82D03421890
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 12:50:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768913445; cv=none; b=spJ/26z9lQ7nEl5n3365ejZbylgfVjfQWKtxGYR1Ux/fEf2Djr5ccF9dyBmcpoIs0cKnE6KENJJ+RuhrVEHn8YDPdeae32WDbTP2acZOehDexoHKWcdfrNcidNDkqP3xoKASvmCCfKulAfa+lpGQq4Swh5Moeu6V38GlF+ZpdOw=
+	t=1768913453; cv=none; b=NAX0JRENcjHIUoQB1De7DPk0fAyBbJev8o2/aF3NXaFubmPR+3y6ydD/JXbG8hvS4CEZUgshYRFxgjtPCDk/7n9kWSre2cInbrrx8rOISA3ZaLJQSiCDO80gCllcptBYehdI9tFe1TUgekbBG+kZ+SCgav1+7lyK8uV6hgqq6NA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768913445; c=relaxed/simple;
-	bh=6sMqGXnBsWs7Qtna1yPZgI8g0wHllWWzrqehilIX0J4=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=sYMrrIpievmI+9LHYrd0iO51AeWQ7nryzH9gUdSta/V0F4W3rDtmJbref5Q3f2zAG2npfMSH6clKe02WmLJjKzOjSGI7jHzq1j+D+NiuAYGixhGIVHI4pHO8Wtm4l1p4hpgvMb6M8hNCHlVnH44bC7i8ZEt/KTP7oIgh7PeViDs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MYfjS2yy; arc=none smtp.client-ip=209.85.214.172
+	s=arc-20240116; t=1768913453; c=relaxed/simple;
+	bh=jIBkxlJHIcCc3JY8HlzcY+4/Sq1XPQvovm3vReAxEQI=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=gk6U8T3Y28ACBNwRUDntxPucUO4NhS980UeEY9E92g/Gy1WVY0r1jO6zE0irQFNd7JV1PUiHPm515y/FaaKB+iIoTPB9qC/HLK9laKQJOBmX2slikTx2wjGO4/ShpKb5rCjJ5Y4fwjVzbplZx9XxylfwYnneMK5ZMl/B399gGhw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iwpd6/bl; arc=none smtp.client-ip=209.85.214.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-2a12ebe4b74so51106495ad.0
-        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 04:50:44 -0800 (PST)
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-2a07fac8aa1so39988095ad.1
+        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 04:50:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768913444; x=1769518244; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZJYUWQwQhgkeAbC/dM1w7lsNUkVncAvp21VUFc05s9E=;
-        b=MYfjS2yyNT3EgyCloriC6EOaPE4vKXLkAjxfqTCmte2Ls/zCzZKJk9p90e7f1LquGL
-         f2bCEOyOGziLUZuP8Dy7yBoTSV1DQ4AHNrPu5hkd7AeEhpDENNwKS+K8RXQctTUIg32v
-         dKc+0oVX9MIM3ArcRR/EUH62OLEH3Q6H4r0mSJc36usfYJ06Mq6vKbMQUabZA4vrEU/j
-         FqJ90OACA9cE/BAAwXL7d9LXUMBbJYl8W2tD2N9GagMb87LZWFPBgHGRyD0m/dd0/yaK
-         eOl505ERFcC1/eT1VJ0GNBU/wU7TVP4mksc0q3lfd9cBRcG/ste7VDnx68psnBamMbg6
-         7SqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768913444; x=1769518244;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1768913451; x=1769518251; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ZJYUWQwQhgkeAbC/dM1w7lsNUkVncAvp21VUFc05s9E=;
-        b=Pktz/QZVSmE1sB1GMfoVvsR89xCZgj/F26Q1H9nd6HnSpGezl8bpVBvUxdoET58w1w
-         5juNf4bH/cUL3rp1fPF7hGzlw0/UztlJRcfyFptjb2dvOM0DDnlDSAGqwxlm7GEfaOaW
-         iVojDAwOqQ6MGqgBZRUJXn9WcALKCqbxsE7x+iYhmD/1D91H40tVUGpClJiFD6TaL8aw
-         MtIjNky7gMzga2pV1VGi4tFLNenZIEDfLO1odPnSd3zbIQvDLQZFR4ZDfKmPczk49q2e
-         JNPxBhODPd5mrRtVtFntIG9okpNoawDnZeP9M7iaUgLCzF2I6HRx0sKjG5SWz0Euxk+w
-         xDpQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWG1FneGke06L9Yhz5VF4QFHb7AZMJPP2EuAOWakA6R+Iprla0FgWwccZ9vE0nkAS4QQinFxRkRdHlF@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywjmj/oOsUOVUXLUFMdOXDsAraM9S346GFNJXCltIPVmFKPbtUd
-	DSYCu4bCkJB30nUSarlGTVR0YvFPY3vqXpb0EV6qQ9vtD+AqWdarlfzg
-X-Gm-Gg: AZuq6aJEZFsYasyfgH68zA9QvbQMd8XLCc9Mk7t25DeP3Rxh6EB4GnG1c5Eg1PYOW31
-	qdZ2P54lEBPKOCIg74zlFTYDEXvKISpT0pBJfoRiFo0jV5LqK7n3w9rA36v5w3AsHF3xb80LCFy
-	XnjutT9X9Yl+pABEoNmGHzAcQKJ9i2WnsBPvQ+KULTt1zxIgUwRERAMK5FhvUW4D+ZxTqmqc8Qj
-	bp8W9T474QmAKK2jXYe+Tq1ec6QvNpx4vAi8hqkvAdvW1qkFuLTSU0CBkD4YqgeqNOCdzcTVzm/
-	noJ5W5S/3A9Kl8poh/WUR4mKIro6hH1EIu5pjkEXoRFQJyq+SWXfVY8lkDQ6y3iNh1AHhjS6nKj
-	4aytV7yDHWVFOjToWUZPCxP5HtQkdoZRoo1/pEw7gpxqBLHRJZHudSsdcmUIyhFI1cgrHkZQ086
-	1LyslBLRcYf8rQWWFMFIoMjEv6VHIcvA1YAhHe
-X-Received: by 2002:a17:903:1447:b0:298:2afa:796d with SMTP id d9443c01a7336-2a76b26ccd2mr17322155ad.61.1768913443613;
-        Tue, 20 Jan 2026 04:50:43 -0800 (PST)
+        bh=QnR4PJhsaUjZWZn+C6vALPZ6Lj3dxWE4L9BjOpkr0AY=;
+        b=iwpd6/bl8uw0/LmLRlTE4DpbocYpdYAtij2ti6OibJmaoLOl1ul3O3A+4/ygEvVJBp
+         U96MCfXYoPXqzglepNXfHmpsy/Ug8SuUWfY24Sqdg0m4yadYbGddQlccCuv6ceWM65vw
+         zmAGQv2SJYcTfy2HIl4h02FgQbOtQscze8NTVyQsxyEF83LifoLDB7uP7FDAcL5+M73R
+         90M1mu0d+nbzJw5XQApC6/XBIlIu+mAaXFhx2I1uav1CxeIK70K6j6DX2asQbzgUnmOy
+         yYd/JNcAoNqV+o5GeXsqs6aKiOCws8oszEDugPi5jeUd/I+0qF65V6s0dxjD+0ACKemk
+         wRaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768913451; x=1769518251;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=QnR4PJhsaUjZWZn+C6vALPZ6Lj3dxWE4L9BjOpkr0AY=;
+        b=A/WQ4URIaolcz6OcfP1bdGbQN84pGboCQp8A9gyNYrIZrDCpGqJgUlbjTHTwFK7rQR
+         +DYcuslFe6FZKHb9W5MLzFqpZy0qYyoJVzx87s5DQhiw6jtJn/E15A33EOhq3Q0KV8BJ
+         fe8C91zZ5p+IsX6DSpJrCiHibVHXTaK93PW47s8DISp/7+CF7oyaHlYsf/8ZwSCLMuGT
+         wZJ1WpOwdyw7NT+YCB5EVA97WepMebswxZj/hxbByzyIewznMJUe2m3ChG6Em0zd51e9
+         xxpMQKAUTXLUyby9vL/j+0pxILAvdAK5qpsJpx58AvreZmixpXvwfc1dokSpjZCmpNQ6
+         dEBw==
+X-Forwarded-Encrypted: i=1; AJvYcCV6pR73vPw1kZRAxm2JQ4ozgHgkBFnUn37+28dsPfupH3KOLaRvILjKDYChPe3EUBOVdRD7CcuclGPr@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxxh3qmKlZT8sbXorXkMgNBOHVj/E6giXBbFsQhu68kCBCyLemT
+	Bulr+XFZ2me+vDbzCXb7etTuciInvgDUPbaXXciEs3TPhwWq93pANvgj
+X-Gm-Gg: AZuq6aJkpIgrRAUIXE2925mGxTqXHS3zpHOC6dDiZH9wrYnjI4xI0vs6CWmWx1vsTOR
+	3/melB3r3uhDa+Tel5IRl253v/gfSjUDFWE6JozyVFFtBmuFjOTKwsr16AsWqZRfcWmYll/4gnn
+	pyZw3t5iI0Lax/0C1h+Ja8eeLP1jK++3P0Jm1guLLADGokXiTzkRiNCUspuo8fpkQdIX74WByZ3
+	ubmKwUFR3lEaWG1O9vfFX2OHx7/I5TUlk+dT0CXKu0NFFtViPEcH9NHT0KEpvNWTANkh7MFud2A
+	6OjXuw8nStfzptZ9ITYIrKPIT+tgUNvpWcOXepMjp1Y/lbbvK7qUZF7ZZ6jXx33QHKR/KRShyXv
+	6leLliYrM3j6WXM4VufMhfKPjEdcAsPTfQQWxBpdPExuaJauN/Vh34IXgsTHAdnh3IgbSxsj9HB
+	rPounixJjZYIHYYO7oRAHZKUZHbor+2QiiL3OJ
+X-Received: by 2002:a17:902:e842:b0:2a0:ccef:a5d3 with SMTP id d9443c01a7336-2a768b7a68amr16787195ad.3.1768913450709;
+        Tue, 20 Jan 2026 04:50:50 -0800 (PST)
 Received: from test-HP-Desktop-Pro-G3.. ([103.218.174.23])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a7193dd582sm124973815ad.52.2026.01.20.04.50.39
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a7193dd582sm124973815ad.52.2026.01.20.04.50.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jan 2026 04:50:43 -0800 (PST)
+        Tue, 20 Jan 2026 04:50:50 -0800 (PST)
 From: Sudarshan Shetty <tessolveupstream@gmail.com>
 To: lee@kernel.org,
 	danielt@kernel.org,
@@ -91,10 +93,12 @@ Cc: deller@gmx.de,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Sudarshan Shetty <tessolveupstream@gmail.com>
-Subject: [PATCH v2 0/2] backlight: gpio: add support for multiple GPIOs for backlight control
-Date: Tue, 20 Jan 2026 18:20:34 +0530
-Message-Id: <20260120125036.2203995-1-tessolveupstream@gmail.com>
+Subject: [PATCH v2 1/2] dt-bindings: backlight: gpio-backlight: allow multiple GPIOs
+Date: Tue, 20 Jan 2026 18:20:35 +0530
+Message-Id: <20260120125036.2203995-2-tessolveupstream@gmail.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260120125036.2203995-1-tessolveupstream@gmail.com>
+References: <20260120125036.2203995-1-tessolveupstream@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -114,7 +118,7 @@ X-Spamd-Result: default: False [1.04 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-257394-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-257395-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
@@ -131,46 +135,60 @@ X-Spamd-Result: default: False [1.04 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
+	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: E44E64F534
+X-Rspamd-Queue-Id: 7F5E65292F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi all,
+Update the gpio-backlight binding to support configurations that require
+more than one GPIO for enabling/disabling the backlight.
 
-This patch extends the gpio-backlight driver and its Device Tree
-bindings to support multiple GPIOs for controlling a single
-backlight device.
+Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
+---
+ .../leds/backlight/gpio-backlight.yaml        | 24 +++++++++++++++++--
+ 1 file changed, 22 insertions(+), 2 deletions(-)
 
-Some panels require more than one GPIO to enable or disable the
-backlight, and previously the driver only supported a single GPIO.
-With this change:
- - The driver now handles an array of GPIOs and updates all of them
-   based on brightness state.
- - The Device Tree binding has been updated to allow specifying one
-   or more GPIOs for a gpio-backlight node.
-
-This approach avoids describing multiple backlight devices in DT for a
-single panel.
-
-Changes in v2:
- - Used devm_gpiod_get_array() and struct gpio_descs
- - Replaced per-index GPIO handling with descriptor array access
- - Moved the bitmap allocation to probe using devm_kcalloc().
- - Updated commit messages.
-
-Thanks,
-Anusha
-
-Sudarshan Shetty (2):
-  dt-bindings: backlight: gpio-backlight: allow multiple GPIOs
-  backlight: gpio: add support for multiple GPIOs for backlight control
-
- .../leds/backlight/gpio-backlight.yaml        | 24 ++++++-
- drivers/video/backlight/gpio_backlight.c      | 66 +++++++++++++------
- 2 files changed, 67 insertions(+), 23 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
+index 584030b6b0b9..4e4a856cbcd7 100644
+--- a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
++++ b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
+@@ -16,8 +16,18 @@ properties:
+     const: gpio-backlight
+ 
+   gpios:
+-    description: The gpio that is used for enabling/disabling the backlight.
+-    maxItems: 1
++    description: |
++      The gpio that is used for enabling/disabling the backlight.
++      Multiple GPIOs can be specified for panels that require several
++      enable signals. All GPIOs are controlled together.
++    type: array
++    minItems: 1
++    items:
++      type: array
++      minItems: 3
++      maxItems: 3
++      items:
++        type: integer
+ 
+   default-on:
+     description: enable the backlight at boot.
+@@ -38,4 +48,14 @@ examples:
+         default-on;
+     };
+ 
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    backlight {
++      compatible = "gpio-backlight";
++      gpios = <&gpio3 4 GPIO_ACTIVE_HIGH>,
++              <&gpio3 5 GPIO_ACTIVE_HIGH>,
++              <&gpio3 6 GPIO_ACTIVE_HIGH>;
++      default-on;
++    };
++
+ ...
 -- 
 2.34.1
 
