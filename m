@@ -1,58 +1,57 @@
-Return-Path: <devicetree+bounces-257379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257382-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4HMJB5kncGmyWwAAu9opvQ
-	(envelope-from <devicetree+bounces-257379-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:10:49 +0100
+	id 4DgPGUJWcGlvXQAAu9opvQ
+	(envelope-from <devicetree+bounces-257382-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 05:29:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9D6C4EE95
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:10:48 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2FE051056
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 05:29:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A0BF0681392
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 12:23:29 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 0498768368B
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 12:26:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58624426D29;
-	Tue, 20 Jan 2026 12:22:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 953BB428482;
+	Tue, 20 Jan 2026 12:24:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WrapHvxu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bu7pgg2E"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25C7F42316D;
-	Tue, 20 Jan 2026 12:22:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47AEA426D22;
+	Tue, 20 Jan 2026 12:24:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768911752; cv=none; b=Rg9ZWwe/zVTv+vLnAclQjTfzaBRU5g85I7I0v1VQPs8qDifKKztjHFxpA4vLE68UrqfqZeVtgR0kKteYIQR4rBpE9ko/jT69kcD4Xq8OBCPcvseh3b/11XHhx4qmVZMSiPzRFL4GiSDBpbmayoj9K/j3OQvowuFXLK4tdpIKUh0=
+	t=1768911869; cv=none; b=aCIDiFIh/6PXAZqT38I7+iQjrh/S/7yWjf+fobtb22Eq9t8TQ3QJT/PYIoxZdICnG5xnWtobrK4ZIBuByap/1fj0aw65TzPrlUpxgloGIJmVEQIN4/6WJnrln5fQ0OU/NK68JARYDY8c1D/3z0rgw1q8QLCPPhf5Toc7ePF0SwM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768911752; c=relaxed/simple;
-	bh=SBMojAQMLBEsq97VBBgUN3ogr+3rX2KzJ0Dl48KhAsI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=EmsSvp5MbZT+wNCQUK5cNhGOZEaMk0YYnfZCrS/YaqVdNmdXJkxJYw/HaNEts8CkU+7CBMLPYcDxPsPz5XQhpIPOcPxwwSi/ltLQsU+/Pl/xRIqoWc1v+sjDcneV5llXjO3318SRKWQtK9SFvNKlSMvq4sZVRfR7eHZoP6YDg1Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WrapHvxu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C1ECFC2BCB5;
-	Tue, 20 Jan 2026 12:22:31 +0000 (UTC)
+	s=arc-20240116; t=1768911869; c=relaxed/simple;
+	bh=cABijGtH5qtV4tilYuBX2OxEKmyd4+buX5dd0F3c//E=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=B8D15LoXCD/BJT4AL7UTLJAuf9N93XjjE1/ZoXgoBAGElrX9IX+B121nX3yI5QpszceE1FRmDmwmHlbawE1hFCtH3tLLxaBKnH0M028GlcweU9ro2ehGWxbrQ6naZjv29vqWdQFmnda+2aRXe9VdB+yxNxDioBtAzG3W6cQrFtE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bu7pgg2E; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id CBB85C16AAE;
+	Tue, 20 Jan 2026 12:24:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768911751;
-	bh=SBMojAQMLBEsq97VBBgUN3ogr+3rX2KzJ0Dl48KhAsI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=WrapHvxu9wzC6dPh+d2Diu33um8C+StFfh5MJrVUMKJHx0sZtchoh7hfLoDgGjpa1
-	 8mHz2LgITw35uFF7Ajq6uP27pqoxElgAAHpZyiHmP5GZ8u74C5U3+C5GjPgBeH+JmN
-	 k7SXgBg5+1M5NZ9dJd8P459Z+A1MXkdTMNJNCB2+8VsHd6/sOgqn+79rOt68u5Yg0B
-	 RNUjI1vhFCtXtDAhuRl8s/ri2VknucbJ7q+2tOAunD2MF2N3iLtEzMRpCG6NiXVxF7
-	 xz/o776+HawJM+cXWt12eAExfMmwB0lJbJDMxWLgsq4R/0xuplyQ7VOkY8gl4BjOuf
-	 Lpu/CqdwuH3NQ==
+	s=k20201202; t=1768911868;
+	bh=cABijGtH5qtV4tilYuBX2OxEKmyd4+buX5dd0F3c//E=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=Bu7pgg2EouLO5AFXlmdeQo7pmsjif32cLrc1B9CmHjJe8mRrAkPK72btyqITfzR/2
+	 eXcsX7OIBdhaaXjOLJocyi2jfAi5c0im8JwL16Du7nWBK3ePeMdr3KFGbLYtbTh0Wm
+	 tsxMUeIc0Cf/vIwnnmitYoV1sIOluF87hJFVYrQ0/2lDZ4lCZVB6DBU/7lRHsqk37d
+	 eE5V8ujqdovlTn9RHi7RzX7yRVdlJRNM1sb4zlDQ8vnt3X64PNcdMrPK7HT3hKDFeA
+	 qEDEHYZwjgkirMI/O4HBPdjDbnBONb9GhlUxfGp9QxMXxo0qmpXwc/8VcmYELiktYA
+	 d9eR4njhfD7Gg==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ADB0AD2ED15;
-	Tue, 20 Jan 2026 12:22:31 +0000 (UTC)
-From: Michael Riesch via B4 Relay <devnull+michael.riesch.collabora.com@kernel.org>
-Date: Tue, 20 Jan 2026 13:22:29 +0100
-Subject: [PATCH v8 3/3] arm64: defconfig: enable designware mipi csi-2
- receiver
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BEAA2D2ED0F;
+	Tue, 20 Jan 2026 12:24:28 +0000 (UTC)
+From: Petr Hodina via B4 Relay <devnull+petr.hodina.protonmail.com@kernel.org>
+Subject: [PATCH v2 0/2] Enable uart and bluetooth for Xperia devices
+Date: Tue, 20 Jan 2026 13:24:23 +0100
+Message-Id: <20260120-akatsuki-uart-v2-0-867ee7f042d0@protonmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,97 +60,92 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251114-rockchip-mipi-receiver-v8-3-bd1cf5cb9588@collabora.com>
-References: <20251114-rockchip-mipi-receiver-v8-0-bd1cf5cb9588@collabora.com>
-In-Reply-To: <20251114-rockchip-mipi-receiver-v8-0-bd1cf5cb9588@collabora.com>
-To: Michael Riesch <michael.riesch@collabora.com>, 
- Chaoyi Chen <chaoyi.chen@rock-chips.com>, 
- Kever Yang <kever.yang@rock-chips.com>, Frank Li <Frank.li@nxp.com>, 
- Mehdi Djait <mehdi.djait@linux.intel.com>, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Hans Verkuil <hverkuil@kernel.org>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+X-B4-Tracking: v=1; b=H4sIAPdzb2kC/13MQQ6CMBCF4auQWVvT1kLRlfcwLEYoMkFa0haiI
+ b27haXL/yXv2yAYTybArdjAm5UCOZtDngpoB7Qvw6jLDZLLUkihGY4YwzISW9BHpjrNS11X6ok
+ a8mf2pqfP4T2a3AOF6Pz34Fexr7tUcSGuf9IqGGfyUveqQ9VjWd1n76KzE9L73LoJmpTSD6M9K
+ dyvAAAA
+X-Change-ID: 20251217-akatsuki-uart-4d7057864ba7
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>, 
- Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
- Collabora Kernel Team <kernel@collabora.com>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org
-X-Mailer: b4 0.12.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1768911749; l=786;
- i=michael.riesch@collabora.com; s=20250410; h=from:subject:message-id;
- bh=4/e4J7LessS5jdywMTVpeb4iDs9BMTFRupZRi4shvqg=;
- b=vM+9GvcUuupfbEtXCVYeCqoIhDdyKGXeBgK5EHF4Y7GG0wfQPK5IhDW3ee+Q8DGNb9+HqRDbd
- cXR5vbU9VxTCsLddpvbjSWg4A95nbSX+dQKQNM2sHkwQtLb5lkuN4Pw
-X-Developer-Key: i=michael.riesch@collabora.com; a=ed25519;
- pk=+MWX1fffLFZtTPG/I6XdYm/+OSvpRE8D9evQaWbiN04=
-X-Endpoint-Received: by B4 Relay for michael.riesch@collabora.com/20250410
- with auth_id=371
-X-Original-From: Michael Riesch <michael.riesch@collabora.com>
-Reply-To: michael.riesch@collabora.com
-X-Spamd-Result: default: False [0.54 / 15.00];
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Petr Hodina <petr.hodina@protonmail.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ David Heidelberg <david@ixit.cz>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768911867; l=887;
+ i=petr.hodina@protonmail.com; s=20260107; h=from:subject:message-id;
+ bh=cABijGtH5qtV4tilYuBX2OxEKmyd4+buX5dd0F3c//E=;
+ b=8rewuacEgvIP8DbcRvn9B7+krUMaZJ6zZXJ0TfP2pU3lIGOpq44oRl06poMNxgG2V21gKaBCk
+ r/tJf4Z9vJBCrpt61ZYXuH2JDpmXaE0+L8PHEWEV4o0WG13dLILcH4v
+X-Developer-Key: i=petr.hodina@protonmail.com; a=ed25519;
+ pk=3QaVc6AaAu1IsyyH86+LIOOFhD7kCws8Xhe+wwyE7Bg=
+X-Endpoint-Received: by B4 Relay for petr.hodina@protonmail.com/20260107
+ with auth_id=594
+X-Original-From: Petr Hodina <petr.hodina@protonmail.com>
+Reply-To: petr.hodina@protonmail.com
+X-Spamd-Result: default: False [1.54 / 15.00];
+	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_MATCH_TO(1.00)[];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-257379-lists,devicetree=lfdr.de,michael.riesch.collabora.com];
+	TAGGED_FROM(0.00)[bounces-257382-lists,devicetree=lfdr.de,petr.hodina.protonmail.com];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_REPLYTO(0.00)[protonmail.com];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
-	RCVD_COUNT_FIVE(0.00)[5];
-	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	FREEMAIL_CC(0.00)[vger.kernel.org,protonmail.com,oss.qualcomm.com,ixit.cz];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	HAS_REPLYTO(0.00)[michael.riesch@collabora.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,collabora.com:email,collabora.com:replyto,collabora.com:mid]
-X-Rspamd-Queue-Id: D9D6C4EE95
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
+	HAS_REPLYTO(0.00)[petr.hodina@protonmail.com];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,protonmail.com:email,protonmail.com:replyto,protonmail.com:mid]
+X-Rspamd-Queue-Id: D2FE051056
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Michael Riesch <michael.riesch@collabora.com>
+This fixes the uart instances defined in the dts so the serial
+console will now work if uart is attached to Rx pin on the uSD pinout.
+Also now enables bluetooth.
 
-The Synopsys DesignWare MIPI CSI-2 Receiver is integrated into
-recent Rockchip SoCs, such as the RK3568 and the RK3588.
-Enable the driver for it in the default configuration.
-
-Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
+Signed-off-by: Petr Hodina <petr.hodina@protonmail.com>
 ---
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Changes in v2:
+- Added comment about serial0 console
+- Fixed firmware-name to expected path
+- Link to v1: https://lore.kernel.org/r/20260119-akatsuki-uart-v1-0-238f4da4fa56@protonmail.com
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 45288ec9eaf7..58bda738819a 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -873,6 +873,7 @@ CONFIG_SDR_PLATFORM_DRIVERS=y
- CONFIG_V4L_MEM2MEM_DRIVERS=y
- CONFIG_VIDEO_AMPHION_VPU=m
- CONFIG_VIDEO_CADENCE_CSI2RX=m
-+CONFIG_VIDEO_DW_MIPI_CSI2RX=m
- CONFIG_VIDEO_MEDIATEK_JPEG=m
- CONFIG_VIDEO_MEDIATEK_VCODEC=m
- CONFIG_VIDEO_WAVE_VPU=m
+---
+Petr Hodina (2):
+      arm64: dts: qcom: sdm845-sony-xperia-tama: Correct uart instances
+      arm64: dts: qcom: sdm845-sony-xperia-tama: Add bluetooth
 
+ arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi | 17 +++++++++++++++--
+ 1 file changed, 15 insertions(+), 2 deletions(-)
+---
+base-commit: f417b7ffcbef7d76b0d8860518f50dae0e7e5eda
+change-id: 20251217-akatsuki-uart-4d7057864ba7
+
+Best regards,
 -- 
-2.39.5
+Petr Hodina <petr.hodina@protonmail.com>
 
 
 
