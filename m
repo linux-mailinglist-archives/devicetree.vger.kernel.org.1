@@ -1,134 +1,130 @@
-Return-Path: <devicetree+bounces-257259-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257260-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 910D2D3C4B8
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 11:12:27 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14F7BD3C5D4
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 11:44:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 23502583E00
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 10:04:28 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9CAF0728333
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 10:07:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DB343E9581;
-	Tue, 20 Jan 2026 10:02:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 507B73B961F;
+	Tue, 20 Jan 2026 10:07:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="nXcYyEHE"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VMeACIUe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 054413D1CCE;
-	Tue, 20 Jan 2026 10:02:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECC2F335066;
+	Tue, 20 Jan 2026 10:06:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768903357; cv=none; b=pf8JiprLWKeSW/JAzkyPzuRsWDWahDjbZgM2HXnVShwEpAHucWJ93zbjr+9t8QJbYf5UQ+205IGhrzeu84eSNHahe7ESKwPXogX5Hiu4ZY9Ni4E2J1yFVXGd7m4lN5Q8ujkIIDqmfTNY84GSbEimwiKX2Jtgh4C/fG/vaecsiqg=
+	t=1768903621; cv=none; b=XnwFic+ns3Xh0SKPELBnKy7l3jjo3fAmktchYP3OO1Q9uMX8hb9bQkXdsOObi9YgR5JV0p/YrAKkYmWosgf4B04MddqbY+a5koFjGrQOJNKtsAUxek0MrypHm47yNjbG87t/Ww8MBJNnDwyhtIjh2y6cwWnN/bqTttFiC5dCtYs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768903357; c=relaxed/simple;
-	bh=9EpXo9mJfLq62gWnbq0y8rqmR84/Ag97tDfBxlzXkB8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=sUtA50Lkuy2q2NMLblmhuAMuhC6JLWEuT3HTaLWY3xsu9kcJOOYVVa8wP1QGwTErOosYNYmHzQ3ytFjnBYkjo0/f9aeguJdDfYoZh2W3o5lL83WWy8fSsi2PwdLUevI9C+/6bF16WKsRnktQwy8Iyx+Q7szekffKzWYHyDgvhGg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=nXcYyEHE; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb.corp.toradex.com (248.201.173.83.static.wline.lns.sme.cust.swisscom.ch [83.173.201.248])
-	by mail11.truemail.it (Postfix) with ESMTPA id 95CA11FA75;
-	Tue, 20 Jan 2026 11:02:25 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1768903346;
-	bh=S7951CmhBfNyeg6X5oFR/k3HQrKbwIeGqG50J+wopCs=; h=From:To:Subject;
-	b=nXcYyEHE74KQFgZYlqNEYOwELUmuiRjg5OfOpQzSJvGrksJAWOIapHaax/BFHmdNC
-	 vOaAziDCQq3TIVmDnugwbW0XJ2MKVA1pw6krg6+geqjdL35ykM3PqyEIs9otZRD2LT
-	 u3JEsfuVeLKiMCPc0hocUoKRafgn2CV46g7diXpLkJZRL093EqxNPOEuvU2RCZA16X
-	 nbR+kW27/OcRIovle8po3kwtzEuhEXrP8u+qZoXByFtpI5cfV8DmPyAUpGSme9T9xn
-	 svducdGRKvgP5kMeMQxLK0U5Lvcl99tmNh+gnaigXi9OsRV7eyreWaXVXF+wlUOeqW
-	 0QLZ759V9jyWQ==
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1768903621; c=relaxed/simple;
+	bh=ZfdRKUyvjJmkNQcuOAo2pc0ij0ysYxYiaEvuZ7NxhUw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aA1AZNpqBagt1HmycLBRCbUD0h1XEG2sEmkNLI0TjSE+GxBHDwT3eh0abL69RS2a85oCL9IwDGrujSbWo24Gs0f3aOPK4Ab8rMa8NC17jZAy4X1z9/VggOJeacCSL1UL58Qss5X5pP9Ry5pF4V5lXiiGB7OsHNpIv0g4wQCZU9c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=VMeACIUe; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1768903618; x=1800439618;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ZfdRKUyvjJmkNQcuOAo2pc0ij0ysYxYiaEvuZ7NxhUw=;
+  b=VMeACIUemL52X/jDJruvCv3v0PXZf/lyYqrtM6gum9yh6SctEbfirKPQ
+   JBzmsr5Gf3kSqLBqsgnW2kf4i+uMGmA0NGPpslAgPgrEW+MpOUjok8paj
+   rrkCpLIpjQ6QWxFwCFAwxh0Um6FZEJtaS7rmXu2BA51oZdDooKDgNzbJZ
+   CrjnD+Bn6Z8tUNiVr9DrugWgR0lfyhtvDVWUynZa0vP5Fk+KBWLC6DBv/
+   mzhqkKZBPODKiYT5zx7rajONz7o5sbOPk9fMtCZXB9fOgZJjxRg7aEbns
+   AebgLZxEIQ+iweK1of+PT7rMI3ALs3SoKyZngYkSJGIOf7ApGNoUYq+JY
+   g==;
+X-CSE-ConnectionGUID: K1+9IAzISj6lTmyQGNVBmQ==
+X-CSE-MsgGUID: 1c1LHA0kTsGJzsP371R0Hg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11676"; a="72695361"
+X-IronPort-AV: E=Sophos;i="6.21,240,1763452800"; 
+   d="scan'208";a="72695361"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jan 2026 02:06:57 -0800
+X-CSE-ConnectionGUID: RH0OGAKKTNejgBxJv3hV+g==
+X-CSE-MsgGUID: pWlNfn/SRimB3tdTXOy5rA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,240,1763452800"; 
+   d="scan'208";a="210225300"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+  by orviesa003.jf.intel.com with ESMTP; 20 Jan 2026 02:06:53 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vi8dO-00000000Ont-39kq;
+	Tue, 20 Jan 2026 10:06:50 +0000
+Date: Tue, 20 Jan 2026 18:06:25 +0800
+From: kernel test robot <lkp@intel.com>
+To: Petr Hodina via B4 Relay <devnull+petr.hodina.protonmail.com@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1] arm64: dts: imx8-apalis: Disable the audmix
-Date: Tue, 20 Jan 2026 11:02:20 +0100
-Message-ID: <20260120100221.47274-1-francesco@dolcini.it>
-X-Mailer: git-send-email 2.47.3
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	David Heidelberg <david@ixit.cz>
+Cc: oe-kbuild-all@lists.linux.dev, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	Petr Hodina <petr.hodina@protonmail.com>
+Subject: Re: [PATCH 2/3] iio: light: add AMS TCS3400 RGB and RGB-IR color
+ sensor driver
+Message-ID: <202601201721.SsgdtZmN-lkp@intel.com>
+References: <20260119-tsc3400-v1-2-82a65c5417aa@protonmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260119-tsc3400-v1-2-82a65c5417aa@protonmail.com>
 
-From: Francesco Dolcini <francesco.dolcini@toradex.com>
+Hi Petr,
 
-The audmix is not used on apalis imx8, disable it.
+kernel test robot noticed the following build warnings:
 
-This solves the following warning message
+[auto build test WARNING on 46fe65a2c28ecf5df1a7475aba1f08ccf4c0ac1b]
 
-  imx-audmix imx-audmix.0: failed to find SAI platform device
-  imx-audmix imx-audmix.0: probe with driver imx-audmix failed with error -22
+url:    https://github.com/intel-lab-lkp/linux/commits/Petr-Hodina-via-B4-Relay/doc-add-Device-Tree-binding-for-AMS-TCS3400-light-sensor/20260120-012240
+base:   46fe65a2c28ecf5df1a7475aba1f08ccf4c0ac1b
+patch link:    https://lore.kernel.org/r/20260119-tsc3400-v1-2-82a65c5417aa%40protonmail.com
+patch subject: [PATCH 2/3] iio: light: add AMS TCS3400 RGB and RGB-IR color sensor driver
+config: i386-allmodconfig (https://download.01.org/0day-ci/archive/20260120/202601201721.SsgdtZmN-lkp@intel.com/config)
+compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260120/202601201721.SsgdtZmN-lkp@intel.com/reproduce)
 
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
- arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi       | 4 ----
- arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi | 4 ----
- arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi | 4 ----
- 3 files changed, 12 deletions(-)
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202601201721.SsgdtZmN-lkp@intel.com/
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi
-index 06790255a764..6f5af37ba9af 100644
---- a/arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi
-@@ -22,10 +22,6 @@ &adc1 {
- 	status = "okay";
- };
- 
--&amix {
--	status = "okay";
--};
--
- &asrc0 {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi
-index 7022de46b8bf..97fcd865fe3e 100644
---- a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi
-@@ -62,10 +62,6 @@ &adc1 {
- 	status = "okay";
- };
- 
--&amix {
--	status = "okay";
--};
--
- &asrc0 {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi
-index 12732ed7f811..b70cf3e8f8c1 100644
---- a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi
-@@ -94,10 +94,6 @@ &adc1 {
- 	status = "okay";
- };
- 
--&amix {
--	status = "okay";
--};
--
- &asrc0 {
- 	status = "okay";
- };
+All warnings (new ones prefixed by >>):
+
+>> drivers/iio/light/tcs3400.c:82:18: warning: 'tcs3400_gains' defined but not used [-Wunused-const-variable=]
+      82 | static const int tcs3400_gains[] = {1, 4, 16, 64};
+         |                  ^~~~~~~~~~~~~
+
+
+vim +/tcs3400_gains +82 drivers/iio/light/tcs3400.c
+
+    81	
+  > 82	static const int tcs3400_gains[] = {1, 4, 16, 64};
+    83	
+
 -- 
-2.47.3
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
