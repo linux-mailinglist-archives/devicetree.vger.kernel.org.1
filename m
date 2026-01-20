@@ -1,86 +1,86 @@
-Return-Path: <devicetree+bounces-257320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257321-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kHuEGncXcGkEVwAAu9opvQ
-	(envelope-from <devicetree+bounces-257320-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 01:01:59 +0100
+	id CFaCBn9wcGktYAAAu9opvQ
+	(envelope-from <devicetree+bounces-257321-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 07:21:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B8A24E3E7
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 01:01:59 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id B430A51FE2
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 07:21:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E558C601AFA
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 11:11:51 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 84B605E6E42
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 11:12:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B033341C2FD;
-	Tue, 20 Jan 2026 11:11:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF035352F94;
+	Tue, 20 Jan 2026 11:11:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="L7YbPn8l"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="gdUulpUu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F168B41B36F
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 11:11:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BF9541C307
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 11:11:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768907481; cv=none; b=SeXQ7aKIfAzV+l4mNmfMB8mVL8Uxypsc3EWvxDeeyX3QADuM6cj249VhwDe5eGGIavrgTSK0cxdG8qwmE7fftcoWHLXXQvNHztmmJWls208zHSCA4V8H1VCzvacBfX+/mWgiW/p4Xfc+iGOeEglDK4afe8cipSWXWE0g/nqzN2E=
+	t=1768907487; cv=none; b=ZSbGQ+hHH4efc7vPQNKJbtsYH29COcl/tklm/7J/sFkvWIVkLT0Vw5Off9H7daKkqqTPSevHZ/u8WU1xeoCmWwAToQUhBdpETPbAcvCZaGl8/scyOdji4SJsq5RAEGXkQaB5pOCZw7t7115vYyDnT2txKtlAHAAtG50EJOjNfkg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768907481; c=relaxed/simple;
-	bh=dfwYfXDU7fRvePV7n6sSb6fLGHYkCvkdHHCR07GvgC4=;
+	s=arc-20240116; t=1768907487; c=relaxed/simple;
+	bh=lG6zSJkAeOhVEW0tGblKsxpTnhZQhwmmCOaPF4JiYEM=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=rISLaH91NEjrjoqGB/Umis4rKDVwNW8mPsxWiBGz+qdhhWFNhfbqorN2kwOQKwR22Guk3pOdKI/j5aUgEyKpX/r7wmmSNI2rs1Xx4t7vEZ3VON0JKd6UbQVOp2SxDBgLA8zSyufPH/s/PW6DIF/ynL20V18+CIaA0fKGrydBXyM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=L7YbPn8l; arc=none smtp.client-ip=209.85.210.171
+	 In-Reply-To:To:Cc; b=dUHgCuuy7TxzugunYJDNk0vLGuNXLhHSUy/uu3dydm7YNMm19RAL4IZTLffGwsSy+1gvRkPyu2dB8nzwimB6KBhcWrBr4DfDqLGebehuh0mFM04zIOE496jOYz4+RfI92WeNpqB5eqdZjoR2We8TE9QNjqw155jSNDU5vb3WvFM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=gdUulpUu; arc=none smtp.client-ip=209.85.210.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-81e9d0cd082so4078251b3a.0
-        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 03:11:19 -0800 (PST)
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-81dbc0a99d2so2663153b3a.1
+        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 03:11:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1768907479; x=1769512279; darn=vger.kernel.org;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1768907484; x=1769512284; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=JaBSZVkVDpyEFk0K6mei2gWdyNIGdA1b2fG0c+mMO1c=;
-        b=L7YbPn8lCpt4K5uxcX9gVkPm+WnVbHmbzOhD/OrSXKQWqSvpBfXBYOIqfb/ohaY2U6
-         PQ9s72o1LtT63Z198blFgTcESPzCDjJyrK7dokr6M8s81xsvCNkKfOU7P/hpw/GGPNOY
-         80/+vGtX2rGHo4T7fnRjw9AwIxfIeAE6tahmzJEasOFJmdkHZEUTMScde1UFNf3tzO1z
-         LRhQ0i//8MKKaF4NnaOS2Z/c1SaCu8acUe+Q2bIyuOLK7I1LegnjczU8c5No/dDaszyq
-         ibZgluRLYQYq5QeWYoqR6htO1S8Fy3W3D4ZrjBq0Zd1Ku4GXwriO17BEYRD5o+0rhHiH
-         5s6g==
+        bh=Uez6X+iymQJpeDjdab9LEMJvp0cchNgB+RDT9Qm0CoM=;
+        b=gdUulpUupp054v6R/buLyobwxO1MxvSAkfNi0FqHxieF8TdUumNWUBi2XhIKFsowpP
+         JfdzeJty3vOqsO5Qr+a2ER9xylSlLM3XwUIUCfZTS+3jwswGBxovprNlY+ceSXM5X7so
+         eUJg7vDpfOH7FhSZPglC+1XCSUAxcdC+dRgVYeyeUi5Ikai81pLnepJ/kcrQBgR/PhvB
+         RJLxTA7ykWnjsetqkrIHBW9M9C9QyT94hh748b9YJp1IA1lv6yve9B3XcD9k6FfqL3fD
+         YCSRrjyM2ZLxhuBfF64QAzgMDtSgbOsmHumwVcPMoiUWBxHuMFRVBhTxulF7f9A9VSjn
+         lWFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768907479; x=1769512279;
+        d=1e100.net; s=20230601; t=1768907484; x=1769512284;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=JaBSZVkVDpyEFk0K6mei2gWdyNIGdA1b2fG0c+mMO1c=;
-        b=ETxHPlr+QcPvLDtodFfnJ8RR0ftIvPhhUmBd6gGbOTAbuEV1u7abmsm8uOTCoojCNZ
-         BR4Atyg4mH2LymGPuF2wSCbR91ZUwJ02tmX4Q7h0Lyh7DvATCB7H7hWPIBRcVoq5pz1/
-         NJcmedbG1avLcn/ubMrIztHujC6dWRlGEUEuy52XWUg2VGs520en/Cs8HN1NbrzYwXH+
-         qdaAL5j7Ga8qXN50Fs4ZIXtI5cERUC0KM6QOUyQ4r4zJaaLUcrc/cKin8McBVBbV6b25
-         U7kLq6WLOJl2x8lyPz1tx6z/fUV9Rf65HPdKsv1coJ8FOJIeh/hN0RAS5hFlLjV/zoYw
-         Pijw==
-X-Forwarded-Encrypted: i=1; AJvYcCVFIUlwrvNdFwYlaxWY91DJ1sNY+0uuW7NZhFLo2y+v8tnyokpl1bkQcPl9bGL/ytrHD/+hiyi1MUhH@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz5GCfjXgQ1U0gvbsREvCVN97O2WoE71uXoV0jVtK0d0qN4AA6f
-	0y2J0OORpqU+fjvN162iRryDHZ79EvQ4GQzdVua2WtpIbtIw2Czu3PNeZNsyxZ+3zWI=
-X-Gm-Gg: AY/fxX4gMxr1Os/vGuOjiHXtatjZh7l8WK3KNVWAobm6GUwTDSq9pGcnOrzX+DyIwdl
-	CTZJFNSVvPbG1KTpbe/t9gFFxujQEyGl3sxpe5CSeHWqDfvBWoinhtYeOX5BoKc6njNye8pn05u
-	M4DZEV1f0BaDcZ+vnfwNN5MKmw/dWVFmEUFjCysmzhYbM1hJhlfq9fhSZupQC9SjyqBYR2LBYhP
-	IWXPe7d9KMGvmouuA3xVIjUv9FytgZ+i0vlhV/VuvncxjzLdHfu92jP8f3wYlMOvrSnrx8d60s9
-	EiY2p6APPtknr4ZmWkgUbbUh2u/0bxSwHYvKY/HJ/apLKgrWjEABbEeqyVItOahB5SCDPHtGgZ7
-	diRHc7Tkm7JS0z3MNksbqynV4jC+H/TjBxJ0v6Y9DpbYzKCXZBqSNY4F+E49ds7HNo45Gj2hbA6
-	P4ul1K9hXjQck/MEuCsLLd1rJn+pxNcU+OhsNgSZ74DQ==
-X-Received: by 2002:a05:6a00:3a25:b0:81f:4063:f1e4 with SMTP id d2e1a72fcca58-81fa184efc7mr11353743b3a.56.1768907479280;
-        Tue, 20 Jan 2026 03:11:19 -0800 (PST)
+        bh=Uez6X+iymQJpeDjdab9LEMJvp0cchNgB+RDT9Qm0CoM=;
+        b=P4eluz2hm0P7yX/FBCjPB/ck+ei6p1DXg7M3froJfb01LpjqgFG7VCGikghygLqb4p
+         N2cuSm3ce89Fs8XMCToRKNQEZPvVq6WllG02mSjqbUdvTy/RCgWBwwL+YU9pGmrGsOkU
+         JbEUN8Q4g09UOcyT65cgZVZ4cMoFTbwzDr9PEbWiU1aaFLGBslSFjgmbSKzbcnZUPLs+
+         DpWXKVaIbLZ9uNNDDHsAXqEFzR7MGr2pQ5syGJaLtbP9nCNAWesd2ohRCSKn2ANWdC8L
+         dLQCAiU7d/6OAFrxILZI2PtVge/Py57bsX5Bdgc4mK75tu3n8V3kcEHPQZlRh51kHrRr
+         b+zw==
+X-Forwarded-Encrypted: i=1; AJvYcCV/NT6Ua/Tm79ohhlf/SeY9/qDSvXmZmHLfm6YCf9uhhh0O9At5X0rePFEx+MKYJ1LTF2tepatfOjyG@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxv76kSBW4y2rytEaobEX9N90cQavtKPeklutztzeXgn475F7ur
+	Z27/4t6zgOGiVANBccKv4cYDa5M4VnSq/iYC0NLeE57rV6K9UXrLv2iuYApf04ezI6E=
+X-Gm-Gg: AZuq6aJ2NPQjNWXZyyKBNZoTY5e5pGzzItjIdjGmDpp170q34xpbvRgSfvuDhT4/Fq4
+	lbCTmYycAhXu8WPvYM1zufgce0YfkGHlsvqpjy8QxXQMvU8WG/vuNWAK8f79EHUrPpzpqfkGv5A
+	sJlESGxoePAApk0qrLa0rX8it8Yknfv2I2DgVYlqDstsQfZ2vsI4u2vDsE5LVg9gV7iem5MrzHZ
+	BB46WcdCMx/YFu6odbGfgujzqxnVNxzmVHNJt/tIV7rSOnHb7swA0nL0hjGFjeLncuc4KX2W6WZ
+	mAhJqCP4gSee5dKzOu4EvAVNtOc6NkbclInhgBySnrBzTIChbHg43lLwQO+bw99QBe6fAUCpkNy
+	nvMq8q15PQ47NJ0nQyGJgMODb0ovyGjc/IspondYgJMZc0aPO2I03Df+2jcp1DzjG7fOUsKb2MZ
+	xjDoIl5+A30FZNNoyKD9IWHDuV4+XTguWmAMG3p2rHHg==
+X-Received: by 2002:a05:6a00:a89:b0:81f:50b1:51ec with SMTP id d2e1a72fcca58-81f9f7e64e9mr12973971b3a.4.1768907484141;
+        Tue, 20 Jan 2026 03:11:24 -0800 (PST)
 Received: from [127.0.1.1] ([2a12:a305:4::4015])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-81fa10efc6bsm11398349b3a.29.2026.01.20.03.11.14
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-81fa10efc6bsm11398349b3a.29.2026.01.20.03.11.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jan 2026 03:11:18 -0800 (PST)
+        Tue, 20 Jan 2026 03:11:23 -0800 (PST)
 From: Guodong Xu <guodong@riscstar.com>
-Date: Tue, 20 Jan 2026 19:10:50 +0800
-Subject: [PATCH v3 2/4] reset: Create subdirectory for SpacemiT drivers
+Date: Tue, 20 Jan 2026 19:10:51 +0800
+Subject: [PATCH v3 3/4] reset: spacemit: Extract common K1 reset code
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,7 +89,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260120-k3-reset-v3-2-effe87f4bdbe@riscstar.com>
+Message-Id: <20260120-k3-reset-v3-3-effe87f4bdbe@riscstar.com>
 References: <20260120-k3-reset-v3-0-effe87f4bdbe@riscstar.com>
 In-Reply-To: <20260120-k3-reset-v3-0-effe87f4bdbe@riscstar.com>
 To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
@@ -109,13 +109,13 @@ X-Spamd-Result: default: False [0.14 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-257320-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-257321-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[12];
 	DKIM_TRACE(0.00)[riscstar-com.20230601.gappssmtp.com:+];
-	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
@@ -125,123 +125,364 @@ X-Spamd-Result: default: False [0.14 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,riscstar.com:email,riscstar.com:mid]
-X-Rspamd-Queue-Id: 0B8A24E3E7
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,riscstar.com:email,riscstar.com:mid,riscstar-com.20230601.gappssmtp.com:dkim]
+X-Rspamd-Queue-Id: B430A51FE2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Create a dedicated subdirectory for SpacemiT reset drivers to allow
-for better organization as support for more SoCs is added.
+Extract the common reset controller code from the K1 driver into
+separate reset-spacemit-common.{c,h} files to prepare for additional
+SpacemiT SoCs that share the same reset controller architecture.
 
-Move the existing K1 reset driver into this new directory and rename
-it to reset-spacemit-k1.c.
+The common code includes handlers for reset assert and deassert
+operations and probing for auxiliary bus devices.
 
-Rename the Kconfig symbol to RESET_SPACEMIT_K1 and update its default
-from ARCH_SPACEMIT to SPACEMIT_K1_CCU. The reset driver depends on the
-clock driver to register reset devices as an auxiliary device, so the
-default should reflect this dependency.
+Changes during extraction:
+- Module ownership: Use dev->driver->owner instead of THIS_MODULE in
+  spacemit_reset_controller_register() to correctly reference the
+  calling driver's module.
+- Rename spacemit_reset_ids to spacemit_k1_reset_ids.
+- Define new namespace "RESET_SPACEMIT" for the exported common
+  functions (spacemit_reset_probe) and update K1 driver to import it.
 
-Also sort the drivers/reset/Kconfig entries alphabetically.
+This prepares for additional SpacemiT SoCs (K3) that share the same reset
+controller architecture.
 
 Reviewed-by: Alex Elder <elder@riscstar.com>
 Signed-off-by: Guodong Xu <guodong@riscstar.com>
 ---
-v3: Add Alex's reviewed-by.
-    Remove the trailing empty newline in Makefile to keep constant style
-     with others in the reset folder.
-v2: No change.
+v3: Add reviewed-by from Alex.
+v2: Use dev->driver->owner for the reset controller owner instead of
+    THIS_MODULE to fix the module reference counting issue pointed out
+    by Krzysztof Kozlowski.
 ---
- drivers/reset/Kconfig                                      | 12 ++----------
- drivers/reset/Makefile                                     |  2 +-
- drivers/reset/spacemit/Kconfig                             | 14 ++++++++++++++
- drivers/reset/spacemit/Makefile                            |  2 ++
- .../{reset-spacemit.c => spacemit/reset-spacemit-k1.c}     |  0
- 5 files changed, 19 insertions(+), 11 deletions(-)
+ drivers/reset/spacemit/Kconfig                 |  17 +++-
+ drivers/reset/spacemit/Makefile                |   2 +
+ drivers/reset/spacemit/reset-spacemit-common.c |  77 ++++++++++++++++++
+ drivers/reset/spacemit/reset-spacemit-common.h |  42 ++++++++++
+ drivers/reset/spacemit/reset-spacemit-k1.c     | 107 +++----------------------
+ 5 files changed, 144 insertions(+), 101 deletions(-)
 
-diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-index 6e5d6deffa7d..b110f0fa7bb1 100644
---- a/drivers/reset/Kconfig
-+++ b/drivers/reset/Kconfig
-@@ -299,15 +299,6 @@ config RESET_SOCFPGA
- 	  This enables the reset driver for the SoCFPGA ARMv7 platforms. This
- 	  driver gets initialized early during platform init calls.
- 
--config RESET_SPACEMIT
--	tristate "SpacemiT reset driver"
--	depends on ARCH_SPACEMIT || COMPILE_TEST
--	select AUXILIARY_BUS
--	default ARCH_SPACEMIT
--	help
--	  This enables the reset controller driver for SpacemiT SoCs,
--	  including the K1.
--
- config RESET_SUNPLUS
- 	bool "Sunplus SoCs Reset Driver" if COMPILE_TEST
- 	default ARCH_SUNPLUS
-@@ -406,9 +397,10 @@ config RESET_ZYNQMP
- 	  This enables the reset controller driver for Xilinx ZynqMP SoCs.
- 
- source "drivers/reset/amlogic/Kconfig"
-+source "drivers/reset/hisilicon/Kconfig"
-+source "drivers/reset/spacemit/Kconfig"
- source "drivers/reset/starfive/Kconfig"
- source "drivers/reset/sti/Kconfig"
--source "drivers/reset/hisilicon/Kconfig"
- source "drivers/reset/tegra/Kconfig"
- 
- endif
-diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-index 9c3e484dfd81..fc0cc99f8514 100644
---- a/drivers/reset/Makefile
-+++ b/drivers/reset/Makefile
-@@ -2,6 +2,7 @@
- obj-y += core.o
- obj-y += amlogic/
- obj-y += hisilicon/
-+obj-y += spacemit/
- obj-y += starfive/
- obj-y += sti/
- obj-y += tegra/
-@@ -38,7 +39,6 @@ obj-$(CONFIG_RESET_RZV2H_USB2PHY) += reset-rzv2h-usb2phy.o
- obj-$(CONFIG_RESET_SCMI) += reset-scmi.o
- obj-$(CONFIG_RESET_SIMPLE) += reset-simple.o
- obj-$(CONFIG_RESET_SOCFPGA) += reset-socfpga.o
--obj-$(CONFIG_RESET_SPACEMIT) += reset-spacemit.o
- obj-$(CONFIG_RESET_SUNPLUS) += reset-sunplus.o
- obj-$(CONFIG_RESET_SUNXI) += reset-sunxi.o
- obj-$(CONFIG_RESET_TH1520) += reset-th1520.o
 diff --git a/drivers/reset/spacemit/Kconfig b/drivers/reset/spacemit/Kconfig
-new file mode 100644
-index 000000000000..552884e8b72a
---- /dev/null
+index 552884e8b72a..56a4858b30e1 100644
+--- a/drivers/reset/spacemit/Kconfig
 +++ b/drivers/reset/spacemit/Kconfig
-@@ -0,0 +1,14 @@
-+# SPDX-License-Identifier: GPL-2.0-only
+@@ -1,10 +1,20 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ 
+-config RESET_SPACEMIT_K1
+-	tristate "SpacemiT K1 reset driver"
++menu "Reset support for SpacemiT platforms"
+ 	depends on ARCH_SPACEMIT || COMPILE_TEST
+-	depends on SPACEMIT_K1_CCU
++
++config RESET_SPACEMIT_COMMON
++	tristate
+ 	select AUXILIARY_BUS
++	help
++	  Common reset controller infrastructure for SpacemiT SoCs.
++	  This provides shared code and helper functions used by
++	  reset drivers for various SpacemiT SoC families.
 +
 +config RESET_SPACEMIT_K1
-+	tristate "SpacemiT K1 reset driver"
-+	depends on ARCH_SPACEMIT || COMPILE_TEST
++	tristate "Support for SpacemiT K1 SoC"
 +	depends on SPACEMIT_K1_CCU
-+	select AUXILIARY_BUS
-+	default SPACEMIT_K1_CCU
-+	help
-+	  Support for reset controller in SpacemiT K1 SoC.
-+	  This driver works with the SpacemiT K1 clock controller
-+	  unit (CCU) driver to provide reset control functionality
-+	  for various peripherals and subsystems in the SoC.
-+
++	select RESET_SPACEMIT_COMMON
+ 	default SPACEMIT_K1_CCU
+ 	help
+ 	  Support for reset controller in SpacemiT K1 SoC.
+@@ -12,3 +22,4 @@ config RESET_SPACEMIT_K1
+ 	  unit (CCU) driver to provide reset control functionality
+ 	  for various peripherals and subsystems in the SoC.
+ 
++endmenu
 diff --git a/drivers/reset/spacemit/Makefile b/drivers/reset/spacemit/Makefile
-new file mode 100644
-index 000000000000..34e3350136bb
---- /dev/null
+index 34e3350136bb..0b056e8661ec 100644
+--- a/drivers/reset/spacemit/Makefile
 +++ b/drivers/reset/spacemit/Makefile
-@@ -0,0 +1,2 @@
-+# SPDX-License-Identifier: GPL-2.0
-+obj-$(CONFIG_RESET_SPACEMIT_K1)		+= reset-spacemit-k1.o
-diff --git a/drivers/reset/reset-spacemit.c b/drivers/reset/spacemit/reset-spacemit-k1.c
-similarity index 100%
-rename from drivers/reset/reset-spacemit.c
-rename to drivers/reset/spacemit/reset-spacemit-k1.c
+@@ -1,2 +1,4 @@
+ # SPDX-License-Identifier: GPL-2.0
++obj-$(CONFIG_RESET_SPACEMIT_COMMON)	+= reset-spacemit-common.o
++
+ obj-$(CONFIG_RESET_SPACEMIT_K1)		+= reset-spacemit-k1.o
+diff --git a/drivers/reset/spacemit/reset-spacemit-common.c b/drivers/reset/spacemit/reset-spacemit-common.c
+new file mode 100644
+index 000000000000..0626633a5e7d
+--- /dev/null
++++ b/drivers/reset/spacemit/reset-spacemit-common.c
+@@ -0,0 +1,77 @@
++// SPDX-License-Identifier: GPL-2.0-only
++
++/* SpacemiT reset controller driver - common implementation */
++
++#include <linux/container_of.h>
++#include <linux/device.h>
++#include <linux/module.h>
++
++#include <soc/spacemit/ccu.h>
++
++#include "reset-spacemit-common.h"
++
++static int spacemit_reset_update(struct reset_controller_dev *rcdev,
++				 unsigned long id, bool assert)
++{
++	struct ccu_reset_controller *controller;
++	const struct ccu_reset_data *data;
++	u32 mask;
++	u32 val;
++
++	controller = container_of(rcdev, struct ccu_reset_controller, rcdev);
++	data = &controller->data->reset_data[id];
++	mask = data->assert_mask | data->deassert_mask;
++	val = assert ? data->assert_mask : data->deassert_mask;
++
++	return regmap_update_bits(controller->regmap, data->offset, mask, val);
++}
++
++static int spacemit_reset_assert(struct reset_controller_dev *rcdev,
++				 unsigned long id)
++{
++	return spacemit_reset_update(rcdev, id, true);
++}
++
++static int spacemit_reset_deassert(struct reset_controller_dev *rcdev,
++				   unsigned long id)
++{
++	return spacemit_reset_update(rcdev, id, false);
++}
++
++static const struct reset_control_ops spacemit_reset_control_ops = {
++	.assert		= spacemit_reset_assert,
++	.deassert	= spacemit_reset_deassert,
++};
++
++static int spacemit_reset_controller_register(struct device *dev,
++					      struct ccu_reset_controller *controller)
++{
++	struct reset_controller_dev *rcdev = &controller->rcdev;
++
++	rcdev->ops = &spacemit_reset_control_ops;
++	rcdev->owner = dev->driver->owner;
++	rcdev->of_node = dev->of_node;
++	rcdev->nr_resets = controller->data->count;
++
++	return devm_reset_controller_register(dev, &controller->rcdev);
++}
++
++int spacemit_reset_probe(struct auxiliary_device *adev,
++			 const struct auxiliary_device_id *id)
++{
++	struct spacemit_ccu_adev *rdev = to_spacemit_ccu_adev(adev);
++	struct ccu_reset_controller *controller;
++	struct device *dev = &adev->dev;
++
++	controller = devm_kzalloc(dev, sizeof(*controller), GFP_KERNEL);
++	if (!controller)
++		return -ENOMEM;
++	controller->data = (const struct ccu_reset_controller_data *)id->driver_data;
++	controller->regmap = rdev->regmap;
++
++	return spacemit_reset_controller_register(dev, controller);
++}
++EXPORT_SYMBOL_NS_GPL(spacemit_reset_probe, "RESET_SPACEMIT");
++
++MODULE_DESCRIPTION("SpacemiT reset controller driver - common code");
++MODULE_LICENSE("GPL");
+diff --git a/drivers/reset/spacemit/reset-spacemit-common.h b/drivers/reset/spacemit/reset-spacemit-common.h
+new file mode 100644
+index 000000000000..ffaf2f86eb39
+--- /dev/null
++++ b/drivers/reset/spacemit/reset-spacemit-common.h
+@@ -0,0 +1,42 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/*
++ * SpacemiT reset controller driver - common definitions
++ */
++
++#ifndef _RESET_SPACEMIT_COMMON_H_
++#define _RESET_SPACEMIT_COMMON_H_
++
++#include <linux/auxiliary_bus.h>
++#include <linux/regmap.h>
++#include <linux/reset-controller.h>
++#include <linux/types.h>
++
++struct ccu_reset_data {
++	u32 offset;
++	u32 assert_mask;
++	u32 deassert_mask;
++};
++
++struct ccu_reset_controller_data {
++	const struct ccu_reset_data *reset_data;	/* array */
++	size_t count;
++};
++
++struct ccu_reset_controller {
++	struct reset_controller_dev rcdev;
++	const struct ccu_reset_controller_data *data;
++	struct regmap *regmap;
++};
++
++#define RESET_DATA(_offset, _assert_mask, _deassert_mask)	\
++	{							\
++		.offset		= (_offset),			\
++		.assert_mask	= (_assert_mask),		\
++		.deassert_mask	= (_deassert_mask),		\
++	}
++
++/* Common probe function */
++int spacemit_reset_probe(struct auxiliary_device *adev,
++			 const struct auxiliary_device_id *id);
++
++#endif /* _RESET_SPACEMIT_COMMON_H_ */
+diff --git a/drivers/reset/spacemit/reset-spacemit-k1.c b/drivers/reset/spacemit/reset-spacemit-k1.c
+index cc7fd1f8750d..8f3b5329ea5f 100644
+--- a/drivers/reset/spacemit/reset-spacemit-k1.c
++++ b/drivers/reset/spacemit/reset-spacemit-k1.c
+@@ -1,41 +1,13 @@
+ // SPDX-License-Identifier: GPL-2.0-only
+ 
+-/* SpacemiT reset controller driver */
++/* SpacemiT K1 reset controller driver */
+ 
+-#include <linux/auxiliary_bus.h>
+-#include <linux/container_of.h>
+-#include <linux/device.h>
+ #include <linux/module.h>
+-#include <linux/regmap.h>
+-#include <linux/reset-controller.h>
+-#include <linux/types.h>
+ 
+-#include <soc/spacemit/k1-syscon.h>
+ #include <dt-bindings/clock/spacemit,k1-syscon.h>
++#include <soc/spacemit/k1-syscon.h>
+ 
+-struct ccu_reset_data {
+-	u32 offset;
+-	u32 assert_mask;
+-	u32 deassert_mask;
+-};
+-
+-struct ccu_reset_controller_data {
+-	const struct ccu_reset_data *reset_data;	/* array */
+-	size_t count;
+-};
+-
+-struct ccu_reset_controller {
+-	struct reset_controller_dev rcdev;
+-	const struct ccu_reset_controller_data *data;
+-	struct regmap *regmap;
+-};
+-
+-#define RESET_DATA(_offset, _assert_mask, _deassert_mask)	\
+-	{							\
+-		.offset		= (_offset),			\
+-		.assert_mask	= (_assert_mask),		\
+-		.deassert_mask	= (_deassert_mask),		\
+-	}
++#include "reset-spacemit-common.h"
+ 
+ static const struct ccu_reset_data k1_mpmu_resets[] = {
+ 	[RESET_WDT]	= RESET_DATA(MPMU_WDTPCR,		BIT(2), 0),
+@@ -214,91 +186,30 @@ static const struct ccu_reset_controller_data k1_apbc2_reset_data = {
+ 	.count		= ARRAY_SIZE(k1_apbc2_resets),
+ };
+ 
+-static int spacemit_reset_update(struct reset_controller_dev *rcdev,
+-				 unsigned long id, bool assert)
+-{
+-	struct ccu_reset_controller *controller;
+-	const struct ccu_reset_data *data;
+-	u32 mask;
+-	u32 val;
+-
+-	controller = container_of(rcdev, struct ccu_reset_controller, rcdev);
+-	data = &controller->data->reset_data[id];
+-	mask = data->assert_mask | data->deassert_mask;
+-	val = assert ? data->assert_mask : data->deassert_mask;
+-
+-	return regmap_update_bits(controller->regmap, data->offset, mask, val);
+-}
+-
+-static int spacemit_reset_assert(struct reset_controller_dev *rcdev,
+-				 unsigned long id)
+-{
+-	return spacemit_reset_update(rcdev, id, true);
+-}
+-
+-static int spacemit_reset_deassert(struct reset_controller_dev *rcdev,
+-				   unsigned long id)
+-{
+-	return spacemit_reset_update(rcdev, id, false);
+-}
+-
+-static const struct reset_control_ops spacemit_reset_control_ops = {
+-	.assert		= spacemit_reset_assert,
+-	.deassert	= spacemit_reset_deassert,
+-};
+-
+-static int spacemit_reset_controller_register(struct device *dev,
+-					      struct ccu_reset_controller *controller)
+-{
+-	struct reset_controller_dev *rcdev = &controller->rcdev;
+-
+-	rcdev->ops = &spacemit_reset_control_ops;
+-	rcdev->owner = THIS_MODULE;
+-	rcdev->of_node = dev->of_node;
+-	rcdev->nr_resets = controller->data->count;
+-
+-	return devm_reset_controller_register(dev, &controller->rcdev);
+-}
+-
+-static int spacemit_reset_probe(struct auxiliary_device *adev,
+-				const struct auxiliary_device_id *id)
+-{
+-	struct spacemit_ccu_adev *rdev = to_spacemit_ccu_adev(adev);
+-	struct ccu_reset_controller *controller;
+-	struct device *dev = &adev->dev;
+-
+-	controller = devm_kzalloc(dev, sizeof(*controller), GFP_KERNEL);
+-	if (!controller)
+-		return -ENOMEM;
+-	controller->data = (const struct ccu_reset_controller_data *)id->driver_data;
+-	controller->regmap = rdev->regmap;
+-
+-	return spacemit_reset_controller_register(dev, controller);
+-}
+-
+ #define K1_AUX_DEV_ID(_unit) \
+ 	{ \
+ 		.name = "spacemit_ccu.k1-" #_unit "-reset", \
+ 		.driver_data = (kernel_ulong_t)&k1_ ## _unit ## _reset_data, \
+ 	}
+ 
+-static const struct auxiliary_device_id spacemit_reset_ids[] = {
++static const struct auxiliary_device_id spacemit_k1_reset_ids[] = {
+ 	K1_AUX_DEV_ID(mpmu),
+ 	K1_AUX_DEV_ID(apbc),
+ 	K1_AUX_DEV_ID(apmu),
+ 	K1_AUX_DEV_ID(rcpu),
+ 	K1_AUX_DEV_ID(rcpu2),
+ 	K1_AUX_DEV_ID(apbc2),
+-	{ },
++	{ /* sentinel */ }
+ };
+-MODULE_DEVICE_TABLE(auxiliary, spacemit_reset_ids);
++MODULE_DEVICE_TABLE(auxiliary, spacemit_k1_reset_ids);
+ 
+ static struct auxiliary_driver spacemit_k1_reset_driver = {
+ 	.probe          = spacemit_reset_probe,
+-	.id_table       = spacemit_reset_ids,
++	.id_table       = spacemit_k1_reset_ids,
+ };
+ module_auxiliary_driver(spacemit_k1_reset_driver);
+ 
++MODULE_IMPORT_NS("RESET_SPACEMIT");
+ MODULE_AUTHOR("Alex Elder <elder@kernel.org>");
+-MODULE_DESCRIPTION("SpacemiT reset controller driver");
++MODULE_DESCRIPTION("SpacemiT K1 reset controller driver");
+ MODULE_LICENSE("GPL");
 
 -- 
 2.43.0
