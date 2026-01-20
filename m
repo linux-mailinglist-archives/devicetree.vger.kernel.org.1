@@ -1,82 +1,81 @@
-Return-Path: <devicetree+bounces-257226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id C67CFD3C287
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 09:49:59 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9872ED3C267
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 09:44:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4DA2A620EF7
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 08:31:04 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 98CD64C0BF2
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 08:33:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFF5D3C0083;
-	Tue, 20 Jan 2026 08:27:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09F6A3D1CA5;
+	Tue, 20 Jan 2026 08:30:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KkLjRuKV"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="c5dKmkuH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8CA63BBA09
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 08:27:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 159563BC4D5
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 08:30:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768897632; cv=none; b=Kh+rpss6FHspMHf2gnpiTWCeZmu9Y409ud8Kf9xqx+PAe5ju/rSmzyoV30cUxbFE6k8oXUus++FBfdf0/fgOZsD50o5K7nyRbfS4F0KAsKty1vxEEJRmAbI4dP1MwIWO/BKJ/QOTTRhbQOVg3tm43wS4PbaiE4FTbNLWUM08uTY=
+	t=1768897812; cv=none; b=u/zY4GFpi80Q7s2W5spMtL5KRdnL/sPcRKFARmt0dR3960pUfrISnqdRHDAV50ohdGdtOZUO0IsWbfR/CTyEE8/nHCjbRLYyw4jvaVlNmwJgnXW0bGGoD3GIayVJl+DR9O8JtwbJUFkx9u5NYg/yLQtBx1o/mn1OFPNHnoWXzHE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768897632; c=relaxed/simple;
-	bh=b3F9T8wKon4w49RwF+HKEQBLY8ObyScOEG6oxY6rFMc=;
+	s=arc-20240116; t=1768897812; c=relaxed/simple;
+	bh=95sPAOS16vc879VaWaNJxzLMmeJgfmIe/hqtTxVzJpE=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=SSCzA4+zPPEPs/f0aPZt+y6C/DtHnvo+Fa0tzbjc6fR2nJvgF2m99O+JsihzGtzDJVth2OIn/dT6TeE9NMWwHVAQxUlWqSuzMdJU8+CKGWzlThAbHfFZ8z1rMX/f0JBCR13cFQxoIxrHYnWOE3r/GK5IkCnmdJTqRkXqKYlxMBU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KkLjRuKV; arc=none smtp.client-ip=209.85.128.51
+	 In-Reply-To:Content-Type; b=CG0Xx1hD06MHY9bAxWYNjGjqSug2pS8zUz1QqaMNppn9lW1hIWzk92rGFLIU/QIpObXYtpc160qKxdRZFMHEIFvlp9CKaKMYmiCYRxaoxQl9To8oAq8IuuB1Tbkz2l/jwDIDsYVcdy+2SIBY8pAvXKoK6bFbGMCB1z4jcIEE0xs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=c5dKmkuH; arc=none smtp.client-ip=209.85.128.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-47edd9024b1so31192145e9.3
-        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 00:27:10 -0800 (PST)
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4801eb2c0a5so31759045e9.3
+        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 00:30:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1768897629; x=1769502429; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1768897809; x=1769502609; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=jhpKp4EOdc/uAxidXP5+DjIvtbDmc1Iqu+qiPd4ztK8=;
-        b=KkLjRuKVLDj/ZOvuKaN8MRaLxkMgNZ/fmye5o4chiugyQ79/cY8bQJf1kjBuLtcEXW
-         mYBhu01pqnVvde+Bc45tqW3d1OGOAJPfdqHmxVw89c3+Um2o3hilyzB4OVq8h7x7oaRt
-         2+ppQsczrtDlh6ab5jGghPx4BpTQfrY7KRwN3N6aHf2gzEALYyiyOr4ZG6NL7eOCHy27
-         +SQi/Re/O3nLP7xXAbax/lSRbC8OkEmRMK5uXgVyopb3misXjGj4kH10olswCrdeJLKl
-         F3L8QNVIZEzXbfJN2AiVmRuORsilwUsyeokD77IAoqSsx68rtgfgRQ0h+3/53tlyrjiz
-         Rb5Q==
+        bh=p3+3UUuGy/B6GuVgP/n+D0fJxxzWSK2/g/0DLsfuws8=;
+        b=c5dKmkuH6RHYXPFkPDdNJPyEksKCo1QJCtnmCGgBiOxQtpemx0bwTwrPFJk/c0uK1b
+         8f+jC/rNaDBjZ6WcL5nfSsKFdgl3WK1e+esRgjzCzFZAw+quyhAqL0fIboG3fZr0WqOH
+         FoJIbE1FwaFF3k3C7suI0oFnhNzfe1H1E8mM1XmFTKEOdZ8t+KE4Ziig4u4JfZtf7x03
+         Qh6t1qUg+sTHsE0pyv+yeoAu1D/X6dU6TjORZteJcxUR/lCtUBwXO4lYoyodX9GL/KT3
+         1u3aQjpR3OQflUCmJhVCPW2gN0NdaDNFsGp6zzJWMseV9bjLHLMZVjG+wqlK19/VOFRa
+         6mBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768897629; x=1769502429;
+        d=1e100.net; s=20230601; t=1768897809; x=1769502609;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=jhpKp4EOdc/uAxidXP5+DjIvtbDmc1Iqu+qiPd4ztK8=;
-        b=KT2uTYLkDtWHMdwL59o43RXYVQvEIktMTZPa00Ot/WsJ+RdV0n5icEyJLOx7D0WBfe
-         axngHTitv+ptMMVtQx4wCFgWyrm7tc2eCqYbREgbIs+TR27yaJl1xtzNQdX8U0M+UmCc
-         E/5LOU6MWeeoHA631RAPnP3whumf7Na+MC/agcphxzpDMO/7GB+7rQRaAaqzNLnbwDe/
-         ig6b4e0578f1JnN9h7MxgvEJjuIJFhNSKm2/uhTujDIHhG9lH6Z+hIZ3/E0cFTvN2Z3S
-         xcVU0BRmEyuP2DLOeIyI0ja+RqPhf2fTM280NEaEpFTkG632U9dAZCz+4tq3NhmehEsz
-         aArQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXFH0ut/vD7tMU9IoCzJwF7wv0NgcIKie/pM9kR62nUdeqW5MzoEq8hUj6D1bToNtVg6Yb2Sukc9Fid@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzlcir3Apq31r85l2HEitzVvHeK/uq5NtvbLDCY0apVtrTx6j6y
-	yFTqCS90JrREb1s8dchDzVAC/rBMuaYsHosU9tkSLyXnXo42Mv5oIQJbSiHEfcTw27c=
-X-Gm-Gg: AY/fxX6+M8rAIlik7bz9vIE1+niuq7qnSNOUzkquhKzGn4UasVMuE4OC0lNh451dh8d
-	KD5q73OYiE5y7Ewt8Q4eu9rctDogD1C20Q0ftj3yn90dO9YLl5QurDYfZNqrQUEm+I6qove0f0+
-	/fQsZhsfjROTJ97F0keBfzVJWwTbLQawfvogW85/VNaKXMQSfXbpp+OBjeWvNqsZdbeZd6aIk0A
-	OcpsTWDl/BNsbgHiX07MiZsAygFslLlBe11yZr7EIlLPecibfgBsQM8QcYkh+4Z0eISxt4O3PLT
-	1Mukf4MdOJhJoumpdgrzy5t0MfBo+4D2/cauC3ge2oP9lhEJFURmigeDTJZ4AffavbhJNQUvy5k
-	3VBT1iYJpISzd0D2+k8pMr7oQEVwGNLKTWdZRBa2+oYdGy4l4LvzkMlyACzwhH9C60Kog4EJfWV
-	+6it7Ini7o8tvsIDveB/UJAKb9WpRtbWJKuPf5vLaCbh2ifM4H2k9a5n5PeUFSmno=
-X-Received: by 2002:a05:600c:4748:b0:480:1c85:88bf with SMTP id 5b1f17b1804b1-4801eb10a4amr178650505e9.27.1768897628697;
-        Tue, 20 Jan 2026 00:27:08 -0800 (PST)
+        bh=p3+3UUuGy/B6GuVgP/n+D0fJxxzWSK2/g/0DLsfuws8=;
+        b=iyRsGec+B/WZykTYODeF7j+1vUbOTyo+Fbq86YyQ5lzcxoPC2h7ZMYb40Kc7Ez09kr
+         XCJpqzSebm3lzh7l3FU4OBCY4uf1BEV3QcZNhS56T8njURsX/H5ie39frrRUG+BpNiEs
+         +dWtXfiM+/7qMG0qXacYNhTm1bK9yOHtrVRkD5ERc2EptuBH4hkDOp1pKEwy/SXh1svL
+         PB/slMTjMIIhCLJ4mQO2wJeTpnNeU8TvPrkgCv/ZPFWbfP+NmBwZVEfSuQZmg69ODNcV
+         h5CJ3taxDfivTQnkjv5IQmQ3obRwz+gnieXnGmqR95cMHndilLEay6SesScjOtuH1YY5
+         wt7Q==
+X-Gm-Message-State: AOJu0YyOPwzYED/0ZzvIBs+puiUPjJpkLDwrvRfzNnYfLl+FRJi20exe
+	3Wsw7lvHkO1VFSA1zox2PxLJhrSeG0tIEoASKJXRwNnJTQ2ZkLtbnpFFFBhPHVfXXVY=
+X-Gm-Gg: AY/fxX7BEnq3p6AqLUu1bxXbHFWqwFHJuGXUFZ8DDGIlVK7krwUNGiwdjPJta8woBqA
+	lfGuZUrv63C2wk7aJ5jzAJ5HHgQXturYyiQH+VnlVeju9TZufUYkOPJxO9hmS0xLaDC3iKg5t8H
+	dJE5lO4D1N0UvbI4Vm8FmXJVKNwfkh2J6mu5llu0spvVwtUqLS13kjode+nTGza/SgdOiCv+wpA
+	/TJxemfB6cE/Kd/o/oVuZf7IjOSvmIj1V+XoreKfLK0FyOpVgHp/cabrj1RQs0UI4ynUtfWh7Zx
+	KkTZs8EWaQM6rsGOabYMxKT6h8afHx5c9aVbRbvkuKnqToIeFLT6Ii2LHcChcWohKXFoscSUh3S
+	y740tthajyKVFTfNISKu5nYYWCQnMMdQJ7q8YSnm1EDmPhdEF8M1oi0nP3IYBPfXZPDdTeuwsIx
+	H7mUYmIpdMgJAY7+7rnrzPQSrhmtjJwJtmHlds+MRWdqjLIUmyZOZs5LeugpliOJA=
+X-Received: by 2002:a05:600c:3b8e:b0:47b:d949:9ba9 with SMTP id 5b1f17b1804b1-4801e2fe362mr172842035e9.13.1768897809018;
+        Tue, 20 Jan 2026 00:30:09 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:3d9:2080:f0d5:3a84:e303:190e? ([2a01:e0a:3d9:2080:f0d5:3a84:e303:190e])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4801e80c477sm274167845e9.0.2026.01.20.00.27.07
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4801e9d8ba8sm101682935e9.3.2026.01.20.00.30.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Jan 2026 00:27:08 -0800 (PST)
-Message-ID: <3bf9ab54-6d9d-4d17-bd43-9f6ad10c48bb@linaro.org>
-Date: Tue, 20 Jan 2026 09:27:07 +0100
+        Tue, 20 Jan 2026 00:30:08 -0800 (PST)
+Message-ID: <23f8d531-26fb-4049-a0d3-6ffbaae46b3e@linaro.org>
+Date: Tue, 20 Jan 2026 09:30:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,25 +83,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>
+From: Neil Armstrong <neil.armstrong@linaro.org>
 Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: =?UTF-8?B?UmU6IOWbnuWkjTogW1BBVENIIHYxXSBhcm02NDogZHRzOiBhbWxvZ2lj?=
- =?UTF-8?Q?=3A_meson-s4-s905y4-khadas-vim1s=3A_enable_SDIO_interface?=
-To: Nick Xie <nick@khadas.com>,
+Subject: Re: [PATCH v2] arm64: dts: amlogic: add the type-c controller on
+ Radxa Zero 2
+To: ricardo@pardini.net, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: "khilman@baylibre.com" <khilman@baylibre.com>,
- "jbrunet@baylibre.com" <jbrunet@baylibre.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "robh@kernel.org"
- <robh@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "xieqinick@gmail.com" <xieqinick@gmail.com>
-References: <20260116023900.2036657-1-nick@khadas.com>
- <CAFBinCAeNcKW_dK+1LD7U_+JkcozxmMw9J4oGUt1=OcvJ95dFQ@mail.gmail.com>
- <PS1PPF62EEA9B1D468A8845F947D26A387BAE89A@PS1PPF62EEA9B1D.apcprd03.prod.outlook.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20260115-arm64-dts-amlogic-radxa-zero2-additions-v2-1-948bb0479a45@pardini.net>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -129,84 +121,110 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <PS1PPF62EEA9B1D468A8845F947D26A387BAE89A@PS1PPF62EEA9B1D.apcprd03.prod.outlook.com>
+In-Reply-To: <20260115-arm64-dts-amlogic-radxa-zero2-additions-v2-1-948bb0479a45@pardini.net>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 1/20/26 02:34, Nick Xie wrote:
-> [...]
->>> +&sdio {
->>> +       status = "okay";
->>> +       pinctrl-0 = <&sdio_pins>;
->>> +       pinctrl-1 = <&sdio_clk_gate_pins>;
->>> +       pinctrl-names = "default", "clk-gate";
->>> +       #address-cells = <1>;
->>> +       #size-cells = <0>;
->>> +       bus-width = <4>;
->>> +       cap-sd-highspeed;
->>> +       sd-uhs-sdr50;
->>> +       sd-uhs-sdr104;
->>> +       max-frequency = <50000000>;
->>> +       non-removable;
->>> +       disable-wp;
->>> +
->>> +       amlogic,dram-access-quirk;
->> Have you tried without this property? To my knowledge only early G12A
->> and G12B SoCs required this.
->> The mode enabled by this property limits the SDIO throughput. So it
->> should only be used if the silicon requires this.
+On 1/15/26 18:52, Ricardo Pardini via B4 Relay wrote:
+> From: Ricardo Pardini <ricardo@pardini.net>
 > 
-> Without this property it will get an warning:
+> The Radxa Zero2 has an FUSB302 controller on i2c3 at address 0x22 and
+> INT# wired to GPIOA-13; include a minimal connector.
 > 
-> meson-gx-mmc fe088000.mmc: unaligned sg len 96 blksize 512, disabling descriptor DMA for transfer
+> Signed-off-by: Ricardo Pardini <ricardo@pardini.net>
+> ---
+> This series adds a few things missing from the Radxa Zero 2:
 > 
->>> +       no-sd;
->>> +       no-mmc;
->>> +       mmc-pwrseq = <&sdio_pwrseq>
->>> +       vmmc-supply = <&vddao_3v3>;
->>> +       vqmmc-supply = <&vddio_ao1v8>;
->> I'm missing:
->>    clocks = <&sdio_32k>;
->>    clock-names = "lpo";
+> 1) NPU (etnaviv), just enable the node, similar to what was done for VIM3
+>     (dropped as was already picked up in [1])
+> 2) i2c3 (also exposed on the 40-pin header) and the FUSB302 at 0x22.
+>     Describes it minimally, adding no functionality, but reserving the 0x22
+>     address since i2c3 is also exposed on user-accessible 40-pin header.
 > 
-> Maybe it is not needed? This clock property looks for the bluetooth not for the Wi-Fi ?
+> Krzysztof: v1 followed the node name I had found used in amlogic; I've
+>             looked around more broadly and found 'fusb0: typec-portc@22'
+>             to be quite popular, so went with this. Hope it is acceptable.
 > 
->>> +       brcmf: wifi@1 {
->>> +               reg = <1>;
->>> +               compatible = "brcm,bcm4329-fmac";
->> Is AP6256 using a bcm43456 chip? If so then this should be (according
->> to Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml):
->>     compatible = "brcm,bcm43456-fmac", "brcm,bcm4329-fmac";
+> Neil: I've fixed the interrupts pin, and described the required connector
+>        even more minimally than you suggested, as to avoid including pd.h.
+>        It is also done this way in a few other boards, hope it's correct.
+>        I've rebased your/Christian's full-enablement patches on top of this,
+>        tested with an r8152 which then works both ways, it's available at [2]
 > 
-> OK, I will fix it in next version.
+> [1] https://git.kernel.org/amlogic/c/29deec49146162d06b17739c627d062191e03814
+> [2] https://github.com/rpardini/linux/tree/radxa-zero2-fusb302-minimal-plus-full-impl-rebase
+> ---
+> Changes in v2:
+> - npu: dropped NPU enablement patch as it was already picked up by Neil
+> - fusb302: dropped 'status = "okay"'
+> - fusb302: declare as 'fusb0: typec-portc@22' instead of 'fusb302@22'
+> - fusb302: use correct pin (74 -> gpioA13) for interrupts
+> - fusb302: add a (very minimal) connector so dtbs_check passes
+> - Link to v1: https://lore.kernel.org/r/20260114-arm64-dts-amlogic-radxa-zero2-additions-v1-0-8b5cdf328fde@pardini.net
+> ---
+>   .../boot/dts/amlogic/meson-g12b-radxa-zero2.dts    | 34 ++++++++++++++++++++++
+>   1 file changed, 34 insertions(+)
 > 
-> With this SDIO patch, the SDIO card detected well, but when try to connect the wifi, it still failed.
-> So maybe extra patches are needed to make Wi-Fi working.
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
+> index 1e5c6f9849456..5d32c04de938e 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
+> @@ -364,12 +364,46 @@ hdmi_tx_tmds_out: endpoint {
+>   	};
+>   };
+>   
+> +/* Also exposed on the 40-pin header: SDA pin 3, SCL pin 5 */
+> +&i2c3 {
+> +	pinctrl-0 = <&i2c3_sda_a_pins>, <&i2c3_sck_a_pins>;
+> +	pinctrl-names = "default";
+> +	status = "okay";
+> +
+> +	fusb0: typec-portc@22 {
+> +		compatible = "fcs,fusb302";
+> +		reg = <0x22>;
+> +
+> +		pinctrl-0 = <&fusb302_irq_pins>;
+> +		pinctrl-names = "default";
+> +		interrupt-parent = <&gpio_intc>;
+> +		interrupts = <74 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +		vbus-supply = <&ao_5v>;
+> +
+> +		connector {
+> +			compatible = "usb-c-connector";
+> +		};
+> +	};
+> +};
+> +
+>   &ir {
+>   	status = "disabled";
+>   	pinctrl-0 = <&remote_input_ao_pins>;
+>   	pinctrl-names = "default";
+>   };
+>   
+> +&periphs_pinctrl {
+> +	fusb302_irq_pins: fusb302-irq {
+> +		mux {
+> +			groups = "GPIOA_13";
+> +			function = "gpio_periphs";
+> +			bias-pull-up;
+> +			output-disable;
+> +		};
+> +	};
+> +};
+> +
+>   &pwm_ab {
+>   	pinctrl-0 = <&pwm_a_e_pins>;
+>   	pinctrl-names = "default";
 > 
-> [    5.909858] meson-gx-mmc fe088000.mmc: allocated mmc-pwrseq
-> [    6.113160] mmc2: new UHS-I speed SDR104 SDIO card at address 0001
-> [   19.206019] brcmfmac: brcmf_fw_alloc_request: using brcm/brcmfmac43456-sdio for chip BCM4345/9
-> [   19.208638] brcmfmac mmc2:0001:1: Direct firmware load for brcm/brcmfmac43456-sdio.khadas,vim1s.bin failed with error -2
-> [   19.218170] brcmfmac mmc2:0001:1: Direct firmware load for brcm/brcmfmac43456-sdio.clm_blob failed with error -2
-> [   19.332091] brcmfmac: brcmf_c_process_clm_blob: no clm_blob available (err=-2), device may have limited channels available
-> [   19.332113] brcmfmac: brcmf_c_process_txcap_blob: no txcap_blob available (err=-2)
-> [   19.332327] brcmfmac: brcmf_c_preinit_dcmds: Firmware: BCM4345/9 wl0: Jun 25 2021 17:13:38 version 7.45.96.94 (7bb6b14@SYNA) (r745790) FWID 01-2bdfb64c es7.c5.n4.a3
-> [   19.332731] brcmfmac: brcmf_sdio_read_control: read 232 control bytes failed: -84
-> [   19.332988] brcmfmac: brcmf_sdio_rxfail: abort command, terminate frame, send NAK
-> [   21.939090] brcmfmac: brcmf_sdio_bus_rxctl: resumed on timeout
-> [   35.587422] meson-gx-mmc fe088000.mmc: unaligned sg len 96 blksize 512, disabling descriptor DMA for transfer
-
-This is an issue with the driver, it's unrelated with the amlogic,dram-access-quirk, which fixes this because we use a bounce buffer.
-
-> [   44.412677] ieee80211 phy0: brcmf_cfg80211_connect: BRCMF_C_SET_SSID failed (-52)
-> [   45.696901] ieee80211 phy0: brcmf_cfg80211_connect: BRCMF_C_SET_SSID failed (-52)
-> [   47.491768] ieee80211 phy0: brcmf_cfg80211_connect: BRCMF_C_SET_SSID failed (-52)
-> [   53.292090] ieee80211 phy0: brcmf_cfg80211_connect: BRCMF_C_SET_SSID failed (-52)
-> [   59.866328] ieee80211 phy0: brcmf_cfg80211_connect: BRCMF_C_SET_SSID failed (-52)
-> 
+> ---
+> base-commit: 0f61b1860cc3f52aef9036d7235ed1f017632193
+> change-id: 20260114-arm64-dts-amlogic-radxa-zero2-additions-905549fbed3e
 > 
 > Best regards,
-> Nick
-> 
 
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+Thanks,
+Neil
 
