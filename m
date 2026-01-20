@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-257625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257626-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kM+gE0AHcGlyUwAAu9opvQ
-	(envelope-from <devicetree+bounces-257625-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 23:52:48 +0100
+	id gDodHlgIcGlyUwAAu9opvQ
+	(envelope-from <devicetree+bounces-257626-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 23:57:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2D074D4C9
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 23:52:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B57B4D5A9
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 23:57:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EADEB90E7FA
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 21:45:39 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 99FB5B0C89B
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 21:45:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 716903D3009;
-	Tue, 20 Jan 2026 21:45:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B09663D1CBA;
+	Tue, 20 Jan 2026 21:45:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PNCvNBL3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rOWXQOxH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28DC43BC4E6;
-	Tue, 20 Jan 2026 21:45:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 562963D3CEB;
+	Tue, 20 Jan 2026 21:45:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768945520; cv=none; b=Bw+Wx9DIGZFITqAGngJwxlkP0bZQBJGsZcUyBteRmvhNc62JExgB1t/oDMjdwcOFMw/NMW0aaPLaxtWZF7/MsvTgLKd//oOKQT9iaiVmPDg77h83NUGWkcaaMkD3j9W7AMbWzXwlmYUMd2Se2BuyV4INc46IEI1+g7iXZm1GpVE=
+	t=1768945523; cv=none; b=RAxF9l730RfNs6SQUuQWufNcJGA64sFgujLia6MXNgT2ejh7OfPdQJ4E/Gkr3nffwwLx1IZbmK1pl+XmAIRIAwKLzM2HAirqNofGGpy5m/JRJUkk/3xf/OLJbqRdv3Py4dGVWk7OkdkzMm15IJsYFZovImdHAZQD0Pcw/+6BI/4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768945520; c=relaxed/simple;
-	bh=B/Jpd2h10wvWa+lrJ6oaIxQzQ53idOkFruEhSsWvmd4=;
+	s=arc-20240116; t=1768945523; c=relaxed/simple;
+	bh=iGmQTrcxjtgfmMDdD54wE5OCeQ2v++Q+BpE3G+cHjVo=;
 	h=From:Date:Content-Type:MIME-Version:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=f0293+sa7kWt9T7ytzk9NV8sSAY2LJSKQeH4mzlZONKPiF0wzIXOjrAi4k8/NAn3Ayjbbma0gH3bLtgTS0nGHjl0IChn8pfpQ5kuHujViNC7Swu3DAc0ENBPpcVXydBPDWK2lVfFeFw8FZtRy37Ydeb4Pk2BnBJ7cied1s5WOFo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PNCvNBL3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DD51C19421;
-	Tue, 20 Jan 2026 21:45:18 +0000 (UTC)
+	 Message-Id:Subject; b=P/WwQeXncEnvycZ+sEVfPtNR59z3XpHb5XpzeEHiBPPqlQe0wBXcSEfDqZAHnkuOHn+xsJpcu2GrQ37l8I7zrmdqT9Xboy+akQKa+4BY5EENYkG/5jChMn9xX6kvr/bUolQJGWOOyaOT2OP1DMMMgHhYpTkndz3a6EdQbiJdhBY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rOWXQOxH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 806E8C16AAE;
+	Tue, 20 Jan 2026 21:45:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768945519;
-	bh=B/Jpd2h10wvWa+lrJ6oaIxQzQ53idOkFruEhSsWvmd4=;
+	s=k20201202; t=1768945521;
+	bh=iGmQTrcxjtgfmMDdD54wE5OCeQ2v++Q+BpE3G+cHjVo=;
 	h=From:Date:Cc:To:In-Reply-To:References:Subject:From;
-	b=PNCvNBL3rplmrx3H378LbvSJ7Cqd20YVOmWRxWmtxYOXkmKJo3oKdfynLXcvW78Ik
-	 cJ+tvz6pBkcaA1ZR7f3RLJ8MglXUnpBJZpsjJAHD2JdjDC3GLnbUrWNQlQjFBQr6G5
-	 XYWaoQDOIQSipph2yePrN4npMNrLYq0e2+ECZeYMugtNzSK6XpCC/8i1SHMSV45fpN
-	 KhvTLe6WphISgjyE4XEeYSsClVInCna6H38wcrgLmgYaK7xo51K3hoMOopAlbSeDNv
-	 S+l0COi8I2cRyv4NExoQyqv6A2NJhdEcSfHyLdJfVRXcWIz3YbMywA7K6nxkXpLAic
-	 QjpOAHza0SL8w==
+	b=rOWXQOxHQszpyhaIrGB3VjPh14nhOZrx73IUhV7HSwSXqaI0Eh/kaSt/S8v+wtEzY
+	 pJV5DZpDpV2ekat1rC3GcyHWhK7OjurBKMMqaUuk1dmFJIrBy1tYbaU5a8rcq+b0Gk
+	 hQ92Fhi8lf6SbSSpnyTZZYuy2LYGmQLkbsSgPcDbO4Cby4B/x4uJU7xkwYhNuObMDl
+	 YTwJ8rUtwsEMM1xJoLC8a0RUJqlDvSbHwAdA47XUS6AlYSIUdlQPCQlShBzOBpTKnc
+	 WTAR7f9EefWdSztnrYPEOE13ZLC6s+yk9fW/5dOZt3KZE9XNMLlr9zPSV7TBlgFJFC
+	 XG+dbVBrKnIrg==
 From: Rob Herring <robh@kernel.org>
-Date: Tue, 20 Jan 2026 15:45:17 -0600
+Date: Tue, 20 Jan 2026 15:45:19 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -56,21 +56,20 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Cc: Taniya Das <quic_tdas@quicinc.com>, linux-kernel@vger.kernel.org, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, linux-clk@vger.kernel.org, 
- Kalyan Thota <quic_kalyant@quicinc.com>, linux-arm-msm@vger.kernel.org, 
- Val Packett <val@packett.cool>, cros-qcom-dts-watchers@chromium.org, 
- Michael Turquette <mturquette@baylibre.com>, devicetree@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, 
- Harigovindan P <harigovi@codeaurora.org>, Stephen Boyd <sboyd@kernel.org>, 
+Cc: devicetree@vger.kernel.org, Shawn Lin <shawn.lin@rock-chips.com>, 
+ Quentin Schulz <quentin.schulz@cherry.de>, 
+ Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+ "Martin K. Petersen" <martin.petersen@oracle.com>, 
+ Heiko Stuebner <heiko@sntech.de>, stable@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Douglas Anderson <dianders@chromium.org>
-To: Konrad Dybcio <konradybcio@kernel.org>
-In-Reply-To: <20260120-topic-7180_dispcc_bcr-v1-0-0b1b442156c3@oss.qualcomm.com>
-References: <20260120-topic-7180_dispcc_bcr-v1-0-0b1b442156c3@oss.qualcomm.com>
-Message-Id: <176894531206.1201519.7083808409439106818.robh@kernel.org>
-Subject: Re: [PATCH 0/3] SC7180 MDSS core reset
+ Manivannan Sadhasivam <mani@kernel.org>, linux-rockchip@lists.infradead.org
+To: Alexey Charkov <alchark@gmail.com>
+In-Reply-To: <20260120-ufs-rst-v2-1-b5735f1996f6@gmail.com>
+References: <20260120-ufs-rst-v2-1-b5735f1996f6@gmail.com>
+Message-Id: <176894531223.1201556.243460289333921566.robh@kernel.org>
+Subject: Re: [PATCH v2] arm64: dts: rockchip: Explicitly request UFS reset
+ pin on RK3576
 X-Spamd-Result: default: False [0.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
@@ -80,56 +79,92 @@ X-Spamd-Result: default: False [0.54 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-257625-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-257626-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,qualcomm.com:email]
-X-Rspamd-Queue-Id: E2D074D4C9
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,2a2d0000:email,devicetree.org:url,cherry.de:email]
+X-Rspamd-Queue-Id: 0B57B4D5A9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
-On Tue, 20 Jan 2026 12:19:24 +0100, Konrad Dybcio wrote:
-> Add the missing reset for the display subsystem and wire it up, so that
-> drivers can consume it.
+On Tue, 20 Jan 2026 16:53:54 +0400, Alexey Charkov wrote:
+> Rockchip RK3576 UFS controller uses a dedicated pin to reset the connected
+> UFS device, which can operate either in a hardware controlled mode or as a
+> GPIO pin.
 > 
-> Compile-tested only.
+> Power-on default is GPIO mode, but the boot ROM reconfigures it to a
+> hardware controlled mode if it uses UFS to load the next boot stage.
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Given that existing bindings (and rk3576.dtsi) expect a GPIO-controlled
+> device reset, request the required pin config explicitly.
+> 
+> This doesn't appear to affect Linux, but it does affect U-boot:
+> 
+> Before:
+> => md.l 0x2604b398
+> 2604b398: 00000011 00000000 00000000 00000000  ................
+> < ... snip ... >
+> => ufs init
+> ufshcd-rockchip ufshc@2a2d0000: [RX, TX]: gear=[3, 3], lane[2, 2], pwr[FASTAUTO_MODE, FASTAUTO_MODE], rate = 2
+> => md.l 0x2604b398
+> 2604b398: 00000011 00000000 00000000 00000000  ................
+> 
+> After:
+> => md.l 0x2604b398
+> 2604b398: 00000011 00000000 00000000 00000000  ................
+> < ... snip ...>
+> => ufs init
+> ufshcd-rockchip ufshc@2a2d0000: [RX, TX]: gear=[3, 3], lane[2, 2], pwr[FASTAUTO_MODE, FASTAUTO_MODE], rate = 2
+> => md.l 0x2604b398
+> 2604b398: 00000010 00000000 00000000 00000000  ................
+> 
+> (0x2604b398 is the respective pin mux register, with its BIT0 driving the
+> mode of UFS_RST: unset = GPIO, set = hardware controlled UFS_RST)
+> 
+> This helps ensure that GPIO-driven device reset actually fires when the
+> system requests it, not when whatever black box magic inside the UFSHC
+> decides to reset the flash chip.
+> 
+> Cc: stable@vger.kernel.org
+> Fixes: c75e5e010fef ("scsi: arm64: dts: rockchip: Add UFS support for RK3576 SoC")
+> Reported-by: Quentin Schulz <quentin.schulz@cherry.de>
+> Signed-off-by: Alexey Charkov <alchark@gmail.com>
 > ---
-> Konrad Dybcio (3):
->       dt-bindings: clock: qcom,dispcc-sc7180: Define MDSS resets
->       clk: qcom: dispcc-sc7180: Add missing MDSS resets
->       arm64: dts: qcom: sc7180: Add missing MDSS core reset
+> This has originally surfaced during the review of UFS patches for U-boot
+> at [1], where it was found that the UFS reset line is not requested to be
+> configured as GPIO but used as such. This leads in some cases to the UFS
+> driver appearing to control device resets, while in fact it is the
+> internal controller logic that drives the reset line (perhaps in
+> unexpected ways).
 > 
->  arch/arm64/boot/dts/qcom/sc7180.dtsi           | 2 ++
->  drivers/clk/qcom/dispcc-sc7180.c               | 8 ++++++++
->  include/dt-bindings/clock/qcom,dispcc-sc7180.h | 7 ++++++-
->  3 files changed, 16 insertions(+), 1 deletion(-)
+> Thanks Quentin Schulz for spotting this issue.
+> 
+> [1] https://lore.kernel.org/u-boot/259fc358-f72b-4a24-9a71-ad90f2081335@cherry.de/
 > ---
-> base-commit: 46fe65a2c28ecf5df1a7475aba1f08ccf4c0ac1b
-> change-id: 20260120-topic-7180_dispcc_bcr-f7ac25c21f89
-> 
-> Best regards,
-> --
-> Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> 
-> 
+> Changes in v2:
+> - Change default pin pull to pull-down in line with the SoC power-on default
+> - Link to v1: https://lore.kernel.org/r/20260119-ufs-rst-v1-1-c8e96493948c@gmail.com
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3576-pinctrl.dtsi | 7 +++++++
+>  arch/arm64/boot/dts/rockchip/rk3576.dtsi         | 2 +-
+>  2 files changed, 8 insertions(+), 1 deletion(-)
 > 
 
 
@@ -154,175 +189,28 @@ If this is not the correct base, please add 'base-commit' tag
 (or use b4 which does this automatically)
 
 
-Warnings in base: 429
-Warnings after series: 164
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/rockchip/' for 20260120-ufs-rst-v2-1-b5735f1996f6@gmail.com:
 
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20260120-topic-7180_dispcc_bcr-v1-0-0b1b442156c3@oss.qualcomm.com:
-
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-FATAL ERROR: Syntax error parsing input tree
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-FATAL ERROR: Syntax error parsing input tree
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dtb] Error 1
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-idp.dtb] Error 1
-FATAL ERROR: Syntax error parsing input tree
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-FATAL ERROR: Syntax error parsing input tree
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dtb] Error 1
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r3.dtb] Error 1
-FATAL ERROR: Syntax error parsing input tree
-FATAL ERROR: Syntax error parsing input tree
-FATAL ERROR: Syntax error parsing input tree
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r2.dtb] Error 1
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r3.dtb] Error 1
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r4.dtb] Error 1
-FATAL ERROR: Syntax error parsing input tree
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dtb] Error 1
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-FATAL ERROR: Syntax error parsing input tree
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r3-lte.dtb] Error 1
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-FATAL ERROR: Syntax error parsing input tree
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dtb] Error 1
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-FATAL ERROR: Syntax error parsing input tree
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1-lte.dtb] Error 1
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-FATAL ERROR: Syntax error parsing input tree
-FATAL ERROR: Syntax error parsing input tree
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-lte.dtb] Error 1
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3.dtb] Error 1
-FATAL ERROR: Syntax error parsing input tree
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-kb.dtb] Error 1
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-FATAL ERROR: Syntax error parsing input tree
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-FATAL ERROR: Syntax error parsing input tree
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9.dtb] Error 1
-FATAL ERROR: Syntax error parsing input tree
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3-lte.dtb] Error 1
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-kb.dtb] Error 1
-FATAL ERROR: Syntax error parsing input tree
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-lte.dtb] Error 1
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-FATAL ERROR: Syntax error parsing input tree
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10.dtb] Error 1
-FATAL ERROR: Syntax error parsing input tree
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10-kb.dtb] Error 1
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-FATAL ERROR: Syntax error parsing input tree
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-r4.dtb] Error 1
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-FATAL ERROR: Syntax error parsing input tree
-FATAL ERROR: Syntax error parsing input tree
-FATAL ERROR: Syntax error parsing input tree
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-FATAL ERROR: Syntax error parsing input tree
-FATAL ERROR: Syntax error parsing input tree
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3-kb.dtb] Error 1
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-r9.dtb] Error 1
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-r10.dtb] Error 1
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r4.dtb] Error 1
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-FATAL ERROR: Syntax error parsing input tree
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r5.dtb] Error 1
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r10.dtb] Error 1
-FATAL ERROR: Syntax error parsing input tree
-FATAL ERROR: Syntax error parsing input tree
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10-lte.dtb] Error 1
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r9.dtb] Error 1
-FATAL ERROR: Syntax error parsing input tree
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dtb] Error 1
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-Unexpected 'DISPCC_MDSS_CORE_BCR'
-FATAL ERROR: Syntax error parsing input tree
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-ti.dtb] Error 1
-FATAL ERROR: FATAL ERROR: Syntax error parsing input tree
-Syntax error parsing input tree
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-ti.dtb] Error 1
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-parade.dtb] Error 1
-Unexpected 'DISPCC_MDSS_CORE_BCR'
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-FATAL ERROR: Syntax error parsing input tree
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2.dtb] Error 1
-FATAL ERROR: Syntax error parsing input tree
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2-lte.dtb] Error 1
-FATAL ERROR: Syntax error parsing input tree
-FATAL ERROR: Syntax error parsing input tree
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1.dtb] Error 1
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1-lte.dtb] Error 1
-FATAL ERROR: Syntax error parsing input tree
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360-lte.dtb] Error 1
-FATAL ERROR: Syntax error parsing input tree
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r3.dtb] Error 1
-FATAL ERROR: Syntax error parsing input tree
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r3-lte.dtb] Error 1
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-FATAL ERROR: Syntax error parsing input tree
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-quackingstick-r0.dtb] Error 1
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-FATAL ERROR: Syntax error parsing input tree
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360-wifi.dtb] Error 1
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-FATAL ERROR: Syntax error parsing input tree
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe.dtb] Error 1
-FATAL ERROR: Syntax error parsing input tree
-FATAL ERROR: Syntax error parsing input tree
-FATAL ERROR: Syntax error parsing input tree
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-quackingstick-r0-lte.dtb] Error 1
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx.dtb] Error 1
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx-rt5682s.dtb] Error 1
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-FATAL ERROR: Syntax error parsing input tree
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-r1-lte.dtb] Error 1
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-FATAL ERROR: Syntax error parsing input tree
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dtb] Error 1
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-FATAL ERROR: Syntax error parsing input tree
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sm7125-xiaomi-curtana.dtb] Error 1
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-Lexical error: arch/arm64/boot/dts/qcom/sc7180.dtsi:3224.22-42 Unexpected 'DISPCC_MDSS_CORE_BCR'
-FATAL ERROR: Syntax error parsing input tree
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sm7125-xiaomi-joyeuse.dtb] Error 1
-FATAL ERROR: Syntax error parsing input tree
-make[5]: *** [scripts/Makefile.dtbs:142: arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe-rt5682s.dtb] Error 1
-make[5]: Target 'arch/arm64/boot/dts/qcom/' not remade because of errors.
-make[4]: *** [scripts/Makefile.build:544: arch/arm64/boot/dts/qcom] Error 2
-make[4]: Target 'arch/arm64/boot/dts/qcom/' not remade because of errors.
-make[3]: *** [scripts/Makefile.build:544: arch/arm64/boot/dts] Error 2
-make[3]: Target 'arch/arm64/boot/dts/qcom/' not remade because of errors.
-make[2]: *** [scripts/Makefile.build:544: arch/arm64] Error 2
-make[2]: Target 'arch/arm64/boot/dts/qcom/' not remade because of errors.
-make[1]: *** [/home/rob/proj/linux-dt-testing/Makefile:2080: .] Error 2
-make[1]: Target 'arch/arm64/boot/dts/qcom/' not remade because of errors.
-make: *** [Makefile:248: __sub-make] Error 2
-make: Target 'arch/arm64/boot/dts/qcom/' not remade because of errors.
+arch/arm64/boot/dts/rockchip/rk3576-luckfox-omni3576.dtb: ufs: ufs-rst-gpio: {'rockchip,pins': [[4, 24, 0, 29]], 'phandle': 113} is not of type 'array'
+	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml
+arch/arm64/boot/dts/rockchip/rk3576-100ask-dshanpi-a1.dtb: ufs: ufs-rst-gpio: {'rockchip,pins': [[4, 24, 0, 29]], 'phandle': 130} is not of type 'array'
+	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml
+arch/arm64/boot/dts/rockchip/rk3576-nanopi-r76s.dtb: ufs: ufs-rst-gpio: {'rockchip,pins': [[4, 24, 0, 29]], 'phandle': 116} is not of type 'array'
+	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml
+arch/arm64/boot/dts/rockchip/rk3576-roc-pc.dtb: ufs: ufs-rst-gpio: {'rockchip,pins': [[4, 24, 0, 29]], 'phandle': 117} is not of type 'array'
+	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml
+arch/arm64/boot/dts/rockchip/rk3576-nanopi-m5.dtb: ufs: ufs-rst-gpio: {'rockchip,pins': [[4, 24, 0, 29]], 'phandle': 133} is not of type 'array'
+	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml
+arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dtb: ufs: ufs-rst-gpio: {'rockchip,pins': [[4, 24, 0, 29]], 'phandle': 122} is not of type 'array'
+	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml
+arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dtb: ufs: ufs-rst-gpio: {'rockchip,pins': [[4, 24, 0, 29]], 'phandle': 134} is not of type 'array'
+	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml
+arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dtb: ufs: ufs-rst-gpio: {'rockchip,pins': [[4, 24, 0, 29]], 'phandle': 130} is not of type 'array'
+	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml
+arch/arm64/boot/dts/rockchip/rk3576-evb1-v10-pcie1.dtb: ufs: ufs-rst-gpio: {'rockchip,pins': [[4, 24, 0, 29]], 'phandle': 134} is not of type 'array'
+	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml
+arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5-v1.2-wifibt.dtb: ufs: ufs-rst-gpio: {'rockchip,pins': [[4, 24, 0, 29]], 'phandle': 130} is not of type 'array'
+	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml
 
 
 
