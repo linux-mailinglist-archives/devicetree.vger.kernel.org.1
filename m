@@ -1,170 +1,126 @@
-Return-Path: <devicetree+bounces-257541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257492-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uFjoLhvQb2mgMQAAu9opvQ
-	(envelope-from <devicetree+bounces-257541-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 19:57:31 +0100
+	id 6JOSNzO0b2nHMAAAu9opvQ
+	(envelope-from <devicetree+bounces-257492-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 17:58:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5776B49E5A
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 19:57:31 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48F474825E
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 17:58:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 53D1AA27913
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 17:50:26 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5626596584F
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 16:12:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25FCB43E9E8;
-	Tue, 20 Jan 2026 17:48:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E255646AF02;
+	Tue, 20 Jan 2026 15:53:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b="D6fet0kb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tda9PqQf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.thorsis.com (mail.thorsis.com [217.92.40.78])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34AC632E13B;
-	Tue, 20 Jan 2026 17:48:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.92.40.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A10D11C01;
+	Tue, 20 Jan 2026 15:53:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768931324; cv=none; b=t50skWCQYLD2wPXFCzTs/ixlvf1sMFTXcDDuPHL1R+3ns+EeAZ4CBa9OkaVF7kuaZ3D76SPxFVNS2FOc//QrcYT2DWM+xcdDZLQKqr1SdZBkoKC+/WEK2OG7h4dexxX6e+ALum5e4LlHGAj3dz/gGMesl85n3uMWKVPfBit2u5o=
+	t=1768924430; cv=none; b=TcuZoxpRafURRHCXlCud8gzxMfX06LGlz7oBkt5yrTDcCJ94BsyLQEeB7IYaOMfJfCkVyz9lgU6sZTLAqH4AbHsrCcFrxo9zpdNcY2D+KCQ6/l/JoRlKvC4QeZCj0lQTJQw9zGxlRL1w2t6uMjlbV3s0b7C/XMr85qlATfPsDvA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768931324; c=relaxed/simple;
-	bh=1xwAICfXCH1TEL3LBSz/2pauvpaeQkFCkY5QAoW2FB0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=YP0iWiF0GSckRnFIwnwmm6BfM65HvMvxJylTQheKsnxb7927LIs7C3aMIWHNus6lPYNB+mm0bBXYfwIZi7NSf0g2CZrpVDV2uSfzlucesLNqEja0JYVMjTzf/yQMQC7UwknW+3Ps8RjIXsuzHa18eWoeOs5jak5/pY6ObRFyvzo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com; spf=pass smtp.mailfrom=thorsis.com; dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b=D6fet0kb; arc=none smtp.client-ip=217.92.40.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thorsis.com
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7572F148AD9A;
-	Tue, 20 Jan 2026 18:48:39 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thorsis.com; s=dkim;
-	t=1768931319; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=6cczDl0ufO9mJ/Siyzg20rZ/XUvl4siWVGvmBLx6NBY=;
-	b=D6fet0kbbNfXjut+g/Doqhm3/My1YMBeSaGdN8nbnojEwwvokLALeChgt1M46OXRrM3rfI
-	buDIaEVh0EhbZqo142JbxbxAtCOYO8STPEOfFJXHJ1Ki3p8dMTtorwteWwKUP5k/AK9Y2V
-	hdSnNApr3bQG/UlrZQBPUX96N8jB03RfB8SB8qbSeKN3H0jkJRpMdjxQc0X9vR5J/pVLUy
-	CFDWFS9VR2RVfGhT0cZB6zMqY/8QeVvfgd3hRnS3L/jo9/fcEoUOslYDoEWfb2RmsXiqZv
-	ELrVm3eXkBhSPlkDEnebLy/Pt5B7w5ICk7kUqpVgw3/BYGQgA6dottO2SlNE+w==
-From: Alexander Dahl <ada@thorsis.com>
-To: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Cc: Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Ryan Wanner <ryan.wanner@microchip.com>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: [PATCH v3 19/19] dt-bindings: clock: at91: Remove old PMC definitions
-Date: Tue, 20 Jan 2026 16:44:53 +0100
-Message-ID: <20260120154502.1280938-13-ada@thorsis.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260120154502.1280938-1-ada@thorsis.com>
-References: <20260120143759.904013-1-ada@thorsis.com>
- <20260120154502.1280938-1-ada@thorsis.com>
+	s=arc-20240116; t=1768924430; c=relaxed/simple;
+	bh=2lyQ956y/cjzj/E2Ndhkr/nFnx1nEeiq4PAxUbapuuU=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=ZVJIHOfGIoHuSYYBKcFyBvCQdYwBWhBItxuZBWeZecRtSMsT2wn2NVAyAM6EM9MicQ5PFAJCq+9k0wiX3UWVtNQtguWVnPwyoj3B+DBJtaRLdBPZdsxj1xnlR7I1WjorqAmkoUHzPyeyOTT6m9tOm7AwR3hEZF3XiXrtS7+iVk0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tda9PqQf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2DF38C2BCB6;
+	Tue, 20 Jan 2026 15:53:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768924430;
+	bh=2lyQ956y/cjzj/E2Ndhkr/nFnx1nEeiq4PAxUbapuuU=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=tda9PqQf6mdU5ZN2ASc03cnbHIaazXkfER9jbCeHOVDKmaYXcnps15COS5KzH9sk9
+	 q8b4Aa0lwNs26Nrq6ObHD2+UYOeAUb+PmoWGV4v5Rf0qj/hRiRV4irKDn7SxXLsI+X
+	 A4C8phW1WNMqXH4vQKTyAJm2LWz5zZCMnVB4HfGGA+q2YSbruVNNX+9c3/nu6Xi8ZW
+	 7biB1Ph8RRFoUdg7mXSUjARCaQhrJ3IcDgm92qSiY8USKG5kSK4pQSSiSljFezBN7H
+	 tatat8ZmbUyGWWnHJ2hZCQ3YnD6MOGK2P+BYCAfmLdIcWadbT8fFTEyV7Dv9shvaDl
+	 ZSEpuqTQeljdA==
+From: Lee Jones <lee@kernel.org>
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com, 
+ claudiu.beznea@tuxon.dev, herbert@gondor.apana.org.au, davem@davemloft.net, 
+ vkoul@kernel.org, andi.shyti@kernel.org, lee@kernel.org, 
+ andrew+netdev@lunn.ch, edumazet@google.com, kuba@kernel.org, 
+ pabeni@redhat.com, linusw@kernel.org, Steen.Hegelund@microchip.com, 
+ daniel.machon@microchip.com, UNGLinuxDriver@microchip.com, 
+ olivia@selenic.com, radu_nicolae.pirea@upb.ro, richard.genoud@bootlin.com, 
+ gregkh@linuxfoundation.org, jirislaby@kernel.org, broonie@kernel.org, 
+ lars.povlsen@microchip.com, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-crypto@vger.kernel.org, dmaengine@vger.kernel.org, 
+ linux-i2c@vger.kernel.org, netdev@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org, 
+ linux-serial@vger.kernel.org, linux-usb@vger.kernel.org, 
+ Robert Marko <robert.marko@sartura.hr>
+Cc: luka.perkov@sartura.hr, Conor Dooley <conor.dooley@microchip.com>
+In-Reply-To: <20251229184004.571837-3-robert.marko@sartura.hr>
+References: <20251229184004.571837-3-robert.marko@sartura.hr>
+Subject: Re: (subset) [PATCH v4 02/15] dt-bindings: mfd:
+ atmel,sama5d2-flexcom: add microchip,lan9691-flexcom
+Message-Id: <176892442293.2297977.2838802915163703902.b4-ty@kernel.org>
+Date: Tue, 20 Jan 2026 15:53:42 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
-X-Spamd-Result: default: False [1.04 / 15.00];
+X-Mailer: b4 0.15-dev-52d38
+X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[thorsis.com:s=dkim];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-257541-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-257492-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	RCPT_COUNT_TWELVE(0.00)[40];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[thorsis.com:+];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ada@thorsis.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FROM_HAS_DN(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[thorsis.com,quarantine];
-	R_SPF_SOFTFAIL(0.00)[~all:c];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[thorsis.com:email,thorsis.com:dkim,thorsis.com:mid,dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: 5776B49E5A
+	R_SPF_SOFTFAIL(0.00)[~all:c];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
+	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo]
+X-Rspamd-Queue-Id: 48F474825E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Those were split up per SoC and are not used anymore.
+On Mon, 29 Dec 2025 19:37:43 +0100, Robert Marko wrote:
+> Add binding documentation for Microchip LAN969x.
+> 
+> 
 
-Signed-off-by: Alexander Dahl <ada@thorsis.com>
----
+Applied, thanks!
 
-Notes:
-    v3:
-    - new patch, not present in v2
+[02/15] dt-bindings: mfd: atmel,sama5d2-flexcom: add microchip,lan9691-flexcom
+        commit: 41d1f3cf1f52c75f72ce1a3e2f2ee82e7c6eb59a
 
- include/dt-bindings/clock/at91.h | 32 --------------------------------
- 1 file changed, 32 deletions(-)
-
-diff --git a/include/dt-bindings/clock/at91.h b/include/dt-bindings/clock/at91.h
-index f2a7b7d39c0d0..ebc41cb4edb92 100644
---- a/include/dt-bindings/clock/at91.h
-+++ b/include/dt-bindings/clock/at91.h
-@@ -14,38 +14,6 @@
- #define PMC_TYPE_GCK		3
- #define PMC_TYPE_PROGRAMMABLE	4
- 
--#define PMC_SLOW		0
--#define PMC_MCK			1
--#define PMC_UTMI		2
--#define PMC_MAIN		3
--#define PMC_MCK2		4
--#define PMC_I2S0_MUX		5
--#define PMC_I2S1_MUX		6
--#define PMC_PLLACK		7
--#define PMC_PLLBCK		8
--#define PMC_AUDIOPLLCK		9
--#define PMC_AUDIOPINCK		10
--
--/* SAMA7G5 */
--#define PMC_CPUPLL		(PMC_MAIN + 1)
--#define PMC_SYSPLL		(PMC_MAIN + 2)
--#define PMC_DDRPLL		(PMC_MAIN + 3)
--#define PMC_IMGPLL		(PMC_MAIN + 4)
--#define PMC_BAUDPLL		(PMC_MAIN + 5)
--#define PMC_AUDIOPMCPLL		(PMC_MAIN + 6)
--#define PMC_AUDIOIOPLL		(PMC_MAIN + 7)
--#define PMC_ETHPLL		(PMC_MAIN + 8)
--#define PMC_CPU			(PMC_MAIN + 9)
--#define PMC_MCK1		(PMC_MAIN + 10)
--
--/* SAM9X7 */
--#define PMC_PLLADIV2		(PMC_MAIN + 11)
--#define PMC_LVDSPLL		(PMC_MAIN + 12)
--
--/* SAMA7D65 */
--#define PMC_MCK3		(PMC_MAIN + 13)
--#define PMC_MCK5		(PMC_MAIN + 14)
--
- #ifndef AT91_PMC_MOSCS
- #define AT91_PMC_MOSCS		0		/* MOSCS Flag */
- #define AT91_PMC_LOCKA		1		/* PLLA Lock */
--- 
-2.47.3
+--
+Lee Jones [李琼斯]
 
 
