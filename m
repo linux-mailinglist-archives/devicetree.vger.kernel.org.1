@@ -1,152 +1,153 @@
-Return-Path: <devicetree+bounces-257648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257704-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IBNxFYAScGlyUwAAu9opvQ
-	(envelope-from <devicetree+bounces-257648-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 00:40:48 +0100
+	id OEG8FQA5cGmgXAAAu9opvQ
+	(envelope-from <devicetree+bounces-257704-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 03:25:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEDD04DFAB
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 00:40:47 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 097894FB8F
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 03:25:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DE0C1AC2887
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 22:49:35 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1AAADB825AE
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:24:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AF283ECBC9;
-	Tue, 20 Jan 2026 22:49:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC52233A9F7;
+	Wed, 21 Jan 2026 02:24:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="FVbssmC7"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="qWN0ItoC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEDE83DA7D9
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 22:49:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C23D32DC321;
+	Wed, 21 Jan 2026 02:24:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768949371; cv=none; b=iEH75DekBIDjzgckpQPhhr9XHNVGmIHSON8kuXjW48C2o+XFtgOrjwG9CLEYlZFVgAD280omy534cH5P0vFI1bXKZKPvxth++oQe65Aj/H1SCOQobGSUR8CrH2AOuHA73Mxz43I4hFXaJ/Duo9Hs+e9+bhF1yYD6dl0HTxFkbd0=
+	t=1768962252; cv=none; b=sK3RT5L3Yn4ckJJId66ARUtZWECBNgtDhNDEqgROyHSWVAnWu6z38SDU9+9Zm8chyym3VQ0JTRLpuNCpWKxRHjjHJX21o2T1w1d6s1GH/1ESgZOC4UNyWJXyvf7HfQ+ay2EJXI4YB+beFSn4l0tohQAd8cfaBft9lo4aShtrHaM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768949371; c=relaxed/simple;
-	bh=q2BBqQqtjFB8ySi+/D20hdD9Q7tjuVZO2BGEmvHHnRY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SNQYVbKJs6V3xy2cxmnaMCrVfJilA8LaZjtOUZyhpMmHMf6DWcHXeIGkV0wBxLt73P1pBhh7OcyHLSvrSrpxJf3FHTVQNxFWhfcsr43TBCErSjOLNz7UAD+UIRYR/2RFUJ2VNx3Q1r3+WdeoOBJitZrzPl5jHK2YrcBx1fvKZpw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=FVbssmC7; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 75F441A295C;
-	Tue, 20 Jan 2026 22:49:26 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 47D8E606AB;
-	Tue, 20 Jan 2026 22:49:26 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 03583119B01D6;
-	Tue, 20 Jan 2026 23:49:20 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1768949365; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=fugztaeaHNRM37Axp9dzYHeQYhLSc0vSFllOB04u4oQ=;
-	b=FVbssmC7V7KjEftXArVr20pRSRzONvUahw0c/uJ9yIFlGaZmiYtUxGfBee25jY8gKO30Xd
-	D+WL9xihZY5l7M+nXRjiEvyU5oId/pwZA9cbcN2b9cAaYJ3E8KZVfiZAn4BVV/Y1MO+yfV
-	FviIYTMllbUerHXjqioQukTcvkH8CxECbjzxPbXrlUQOkJ3boj1X+Fot+uiMXPVlMzejPy
-	K9Ca1t+D5obGrBqQNk2D8sOkIg6Z4vbGFRtQCSKs2SuHWMGy0GnAEogK6DKae9UFwplXx8
-	C8+H8R1NfB7MxVPqwlkYpNuoT57OyjRNZpnm1bcyN+tTAvkbzrqd7rrTu3FiNQ==
-Date: Tue, 20 Jan 2026 23:49:20 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>,
-	Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
-	Xiaochuang Mao <maoxiaochuan@loongson.cn>,
-	Huacai Chen <chenhuacai@kernel.org>,
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-	Keguang Zhang <keguang.zhang@gmail.com>
-Subject: Re: [PATCH v3 1/3] dt-bindings: rtc: loongson: Correct Loongson-1C
- interrupts property
-Message-ID: <20260120224920df0cf2ac@mail.local>
-References: <cover.1768616276.git.zhoubinbin@loongson.cn>
- <b6295c907410f6708115cba4df0959ee6629f8a5.1768616276.git.zhoubinbin@loongson.cn>
- <20260119-tricking-premiere-ada70700f804@spud>
- <20260120075045e7e864ba@mail.local>
- <20260120-cubical-harmonica-a7b7bbb26b08@spud>
+	s=arc-20240116; t=1768962252; c=relaxed/simple;
+	bh=uuWVUoGYHrkj4GBzW9gouueDc89AxfZzyrX4/ByjEcw=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=P+MQ17HyiWqeoBMowuMZppJObO9mRfMvWZzAeEqEuC7MX1cwtSE8et/mf4ulKgyg5Gwp3E1xhxy/xidIQnItlS6MIYvvrb3aYjDXcdtB2bRLwz2PvdjH/VgRu70yZkkvv8kGQqfzeBxvGSJuG2ksvx4MTIz4yIPsbQJAYbPy1bY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=qWN0ItoC; arc=none smtp.client-ip=80.241.56.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:b231:465::1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4dwp0d3nKCz9tZ4;
+	Wed, 21 Jan 2026 03:24:01 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1768962241;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=/Xk0V5+/P35y4eNpECrp9bUD8/V60w+BQqMMOVLK4aU=;
+	b=qWN0ItoCokIwMsaZfw4q6fd5BUBVEn0eRnrtWwIS+QcLqPyPZX40pQqakewBBjiN4Ekqyb
+	STPWPBkR651BjeF0giGiDwOJn6+Gznd3L+PvdF7L3XpTF1U6QV4UTeYpZ1xIQpXcNg8mg/
+	JqUSzekqy6inJyohz+mX70+ia40TaKA9PDvZWqT1xRHuPM4f8msSkurQikuV35MyTKTzYd
+	71FCwfTnpjNjxHiwQbtMs5cmxlO5soLxROUWZuMJeCjHs1MXsD/LvDeK6tsYQs/STb2r/f
+	g2bJqaUP0E27kCVf9Dyzpveuz7mNT42mY7fVmYO7jayJ0i6wbyPH1y7mTJx5LQ==
+Message-ID: <bbb7fb54-5b04-4c38-840b-8cab58eeec7b@mailbox.org>
+Date: Tue, 20 Jan 2026 23:50:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260120-cubical-harmonica-a7b7bbb26b08@spud>
-X-Last-TLS-Session-Version: TLSv1.3
+From: Marek Vasut <marek.vasut@mailbox.org>
+Subject: Re: [PATCH v4 3/3] Input: ili210x - add support for polling mode
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: linux-input@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Frank Li <Frank.Li@nxp.com>, Job Noorman <job@noorman.info>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org
+References: <20260117001215.59272-1-marek.vasut+renesas@mailbox.org>
+ <20260117001215.59272-3-marek.vasut+renesas@mailbox.org>
+ <wv3vil4b4lgfrqt4qnzxiffnniw422xjfdiz4svkklnfrslz3g@yzqc265pj5t5>
+Content-Language: en-US
+In-Reply-To: <wv3vil4b4lgfrqt4qnzxiffnniw422xjfdiz4svkklnfrslz3g@yzqc265pj5t5>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-META: ghmmbmxexk636ps4qygwgcegrqmzh68d
+X-MBO-RS-ID: 1594bc70bcdd82069f5
 X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FREEMAIL_CC(0.00)[loongson.cn,gmail.com,kernel.org,vger.kernel.org,xen0n.name,lists.linux.dev];
-	TAGGED_FROM(0.00)[bounces-257648-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-257704-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com];
+	DMARC_POLICY_ALLOW(0.00)[mailbox.org,reject];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[bootlin.com,reject];
-	DKIM_TRACE(0.00)[bootlin.com:+];
+	DKIM_TRACE(0.00)[mailbox.org:+];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexandre.belloni@bootlin.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:url,bootlin.com:dkim,dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,mail.local:mid]
-X-Rspamd-Queue-Id: BEDD04DFAB
+	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,mailbox.org:mid,mailbox.org:dkim]
+X-Rspamd-Queue-Id: 097894FB8F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 20/01/2026 19:24:09+0000, Conor Dooley wrote:
-> On Tue, Jan 20, 2026 at 08:50:45AM +0100, Alexandre Belloni wrote:
-> > On 19/01/2026 18:24:36+0000, Conor Dooley wrote:
-> > > On Sat, Jan 17, 2026 at 10:26:48AM +0800, Binbin Zhou wrote:
-> > > > The `interrupts` property indicates an RTC alarm interrupt, which is
-> > > > required for RTCs that support the alarm feature, which is not supported
-> > > > by the Loongson-1C RTC. We exclude it for a more accurate description.
-> > > > 
-> > > > Changing the `allowed` property is ABI-breaking behavior, but
-> > > > throughout the existing Loongson DTS{i}, the description of the RTC
-> > > > nodes conforms to the modified bingding rules.
-> > > 
-> > > Right, changing properties is an ABI break, but when following the ABI
-> > > would've produced something non-functional, breaking it is not really
-> > > relevant.
-> > 
-> > 
-> > But the HW has the interrupt, the fact that is not functional doesn't
-> > mean it isn't there. I thought we should describe the hardware?
+On 1/20/26 7:31 PM, Dmitry Torokhov wrote:
+> Hi Marek,
 > 
-> Does the hardware have it? My interpretation of the commit message was
-> that it didn't have the alarm feature and thus no interrupt? Unless the
-> interrupt has some other purpose, in which case yeah we shouldn't accept
-> this change and only the new device should permit there being no
-> interrupt.
+> On Sat, Jan 17, 2026 at 01:12:04AM +0100, Marek Vasut wrote:
+>> @@ -860,16 +893,12 @@ static ssize_t ili210x_firmware_update_store(struct device *dev,
+>>   	 * the touch controller to disable the IRQs during update, so we have
+>>   	 * to do it this way here.
+>>   	 */
+>> -	scoped_guard(disable_irq, &client->irq) {
+>> -		dev_dbg(dev, "Firmware update started, firmware=%s\n", fwname);
+>> -
+>> -		ili210x_hardware_reset(priv->reset_gpio);
+>> -
+>> -		error = ili210x_do_firmware_update(priv, fwbuf, ac_end, df_end);
+>> -
+>> -		ili210x_hardware_reset(priv->reset_gpio);
+>> -
+>> -		dev_dbg(dev, "Firmware update ended, error=%i\n", error);
+>> +	if (client->irq > 0) {
+>> +		scoped_guard(disable_irq, &client->irq) {
+>> +			error = ili210x_firmware_update_noirq(dev, fwbuf, ac_end, df_end);
+>> +		}
+> 
+> You already have a scope here, no need to establish a new one:
+> 
+> 		guard(disable_irq)(&client->irq);
+> 		error = ili210x_firmware_update_noirq(dev, fwbuf, ac_end, df_end);
 
-The datasheet shows the interrupt coming out of the RTC and it has the
-proper registers. Why it is not functional is not clear to me.
+This part ^ I do not understand. If there is no IRQ defined in DT, I 
+need to call ili210x_firmware_update_noirq() without the guard because I 
+cannot disable_irq() with client->irq < 0, else I need to call 
+ili210x_firmware_update_noirq() within the scoped_guard() to disable 
+IRQs to avoid spurious IRQs that would interfere with the firmware update ?
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+> BTW, not a fan of the "_noirq" suffix... Maybe drop it and add
+> lockdep_is_held() there?
+
+This part I understand even less, how does lockdep play into this ? The 
+scoped_guard() disables and enables IRQs if they are available.
 
