@@ -1,140 +1,186 @@
-Return-Path: <devicetree+bounces-257147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257154-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BC30D3BDED
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 04:28:11 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE7DCD3BE1D
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 05:02:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0CDDF4E2FFA
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 03:28:10 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 73E91350622
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 04:02:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F7FF326943;
-	Tue, 20 Jan 2026 03:28:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 089373396F0;
+	Tue, 20 Jan 2026 04:02:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CilRYqUI"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="RpwlWdwR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m1973172.qiye.163.com (mail-m1973172.qiye.163.com [220.197.31.72])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97ABA326930
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 03:28:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A557E33375D;
+	Tue, 20 Jan 2026 04:02:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768879687; cv=none; b=c8U79vpyJJGxaXq39bP1+uw7Lr8pg6Is7sbmX4Qpds6yZ8yBqr0YpufcEtrAkCl4asufgn8duYz8jzw+6S+DF04IerFf+fBtCW7M5BClQUyKKnBGEYj3mtKUfDp6RDxUPpCJyLQekXFMXXNlDQin1lWV3sjLLVdJ+abd96Nuqsg=
+	t=1768881734; cv=none; b=pHvFOWV3TZWPpi7PbN9TX0AKs2nj0mfZubZyKvKgVvIQfKDwTWcxaY4DYXHthYuUcj+poSGAoYAdZZiyR1Wt/QHeamJNgc5PpL7RtmacDFqcPR4Z86biK7fFxXUOm9onYZ/DIiZIcqlqR/fwCzpkkyoO8MvVVRzzhjaKsgGLrTk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768879687; c=relaxed/simple;
-	bh=TnrWvLiHpwdAR1oIsgz5dmEGTJ7Pw1ADVefNWrpsJwk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Z3SDtnGDE2fsfTtlyC4ILOH7Khiw7afTY4SRt4BbiwUNJXINPpVaHHy/XwZ4YRDxh9T2GJw48AHbB8SXubJCNE4eDeTa8ID8109iEPVhOBZo0N9IMDlBIWhkDn0XArJLFj9dvgsZQCEJhVPpWP8D4OLdF7A1mNIwZ1p4f/pccIY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CilRYqUI; arc=none smtp.client-ip=209.85.222.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-8c6a7638f42so612677185a.2
-        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 19:28:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768879683; x=1769484483; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hlh3awqwpSDVfosrs2ZgXu5CLF0C481abnvSQYVV+dg=;
-        b=CilRYqUIhPWDXpyHmzz4aOx/LNwxTQS6n25lXtJF0M1R9wg6+iWyX2FAVAKO1E5lxx
-         e/vK9ZVdtATNIk2sr26l1vdIfIQUDGoaNoDgCup2SV34uKAyHsoEDlbpvvk7hOJsBq7x
-         SNWHU/gLWPfQo9kif/66phOyZi4QNPFz6GvVVIOj9ujXFBP4h+PSdSopw14KjvsOtlD/
-         2owkbL3LVedTkVCX9I91zsVB4D4HSuRC2jcNKVegE21QIzXmLvrc8xwrk2oU4tOaFolq
-         M5E5dv84OPLwSU55S7YZ5KiPJbANIoCgk3l23F9TIJdghezJuU+eyLP7D/oxshHaYhlD
-         Uiuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768879683; x=1769484483;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=hlh3awqwpSDVfosrs2ZgXu5CLF0C481abnvSQYVV+dg=;
-        b=ZETTV2ZK6RObXtRcEggrvoPJ6TgTKIAlr9Unrkxw1xYyNQONqWYmSCi+7DCQE2Cd5c
-         CNOV7vdlvA7Du0jt7RgEB8yZB5345HAyol+CSd21EzccauPJKM50uPyjTyAwWuqd/q9W
-         zQtFhraZBRtpR92kmXzksWL/Ht6IdAzPzseBzkxdwGdshnHE6Cfrc039qe+QpIXEiJoL
-         2LrokWJSGjkwjxz2LoUrbM+uNcgbta5NhL9zHKgm5+bNeeMQiqUQFuH+fRUfi+MX6GFw
-         RMVvSzOXA48IdCxwp3QwjnYHOgnXEDZfmnxR7PQYFK28BjAvGI4hZ1ta0izoaEMF4Vea
-         z+PQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW1ytXZtHgMAQ2c90WJc0Guv7OAc5PDJQKuCrq9XbUV9/xmneLbtIO6oZ+hSZFzr5SIbX4iD1aoQkCX@vger.kernel.org
-X-Gm-Message-State: AOJu0YwpmPMddxKa/Fh/cEb9xspyujkk0LvOBfa7QkRBtg+IipjlYy7w
-	aNG9sk464U/IPHl2RbdE3ExZFiyQTC2t6fGIWmFg1i0AcnDsnv/P0UppQCUemFSi
-X-Gm-Gg: AY/fxX7ZhSy3AsIAhZqvoV39S31yZnJF0Mt9C5/BBcf+5isCo2LU6FRtBh3Yj41DEx7
-	47UJorK1WYj7bZg0u9EeDfP6VpkLqdQSWfaH/QHSKyu1mTiqBxLK05FODtbIR3/zsje7z1E3XWP
-	7x5FlNLGJr1xm20UJa8kVAjN6G/Ym3SfI5VdKGP/8F4YSA7cJQki91FudiUZAN6bHG36YGAE8vC
-	mle9kaYmJG4Gw4wac9AvHLe+AAAC6TP+ph5AGB+La/8p4TR73Ba8vfpwQTg6FCl8q0OrkD4NY7U
-	OT+ixGbVYvavUpRoArw+Zic45kjFJiGCU5khp3s0Q18faqU8F3TflWCAAntOaUtOR9FjBBeEf0x
-	oarkkMq3hNPvtfMHPCotTiYXVc1VuCCb5Cs5+BhXq5AOxyNIVeomMjV4MI9Awh/UjwDpVFvpSlV
-	jH9hYyjJ2wKQ==
-X-Received: by 2002:a05:7300:6c89:b0:2ae:4f61:892e with SMTP id 5a478bee46e88-2b6b4eaddf6mr9178898eec.36.1768873045971;
-        Mon, 19 Jan 2026 17:37:25 -0800 (PST)
-Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b6b36550dfsm15337344eec.25.2026.01.19.17.37.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Jan 2026 17:37:25 -0800 (PST)
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-	Longbin Li <looong.bin@gmail.com>,
-	Ze Huang <huangze@whut.edu.cn>
-Cc: dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	sophgo@lists.linux.dev,
-	linux-riscv@lists.infradead.org,
-	Yixun Lan <dlan@gentoo.org>,
-	"Anton D. Stavinskii" <stavinsky@gmail.com>
-Subject: [PATCH v3 3/3] riscv: dts: sophgo: cv180x: Allow the DMA multiplexer to set channel number for DMA controller
-Date: Tue, 20 Jan 2026 09:37:05 +0800
-Message-ID: <20260120013706.436742-4-inochiama@gmail.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260120013706.436742-1-inochiama@gmail.com>
-References: <20260120013706.436742-1-inochiama@gmail.com>
+	s=arc-20240116; t=1768881734; c=relaxed/simple;
+	bh=ZLf0T+z9/Q95LTTYGu5XIAtLfLv12VAB4DowO3lzBR0=;
+	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=iV+vXMk0+5APV1ljLqjCq97OK697mPNQ1TZQOCC7xFpwJUYkYBJV0FDyK6XE0+E17WrRbO6oDGfWZ/TWgdPxtWIMXq0Badja5VqsX4dJGkZ3DjCOUvg4hjavWbXEdCoapEIdmpRccgUO1Ts1vY4O5L3Op6OJvlRUgI5JG6/hBXI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=RpwlWdwR; arc=none smtp.client-ip=220.197.31.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.14] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 3139770be;
+	Tue, 20 Jan 2026 09:39:29 +0800 (GMT+08:00)
+Message-ID: <6479d7b8-7712-4181-9c82-0021da94d1a8@rock-chips.com>
+Date: Tue, 20 Jan 2026 09:39:28 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Cc: shawn.lin@rock-chips.com, Quentin Schulz <quentin.schulz@cherry.de>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Explicitly request UFS reset pin on
+ RK3576
+To: Alexey Charkov <alchark@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ "Martin K. Petersen" <martin.petersen@oracle.com>,
+ Manivannan Sadhasivam <mani@kernel.org>
+References: <20260119-ufs-rst-v1-1-c8e96493948c@gmail.com>
+From: Shawn Lin <shawn.lin@rock-chips.com>
+In-Reply-To: <20260119-ufs-rst-v1-1-c8e96493948c@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9bd90e901f09cckunmca3c291e9e5067
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGR8fH1ZCHUpMH0hCQk5ISkJWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=RpwlWdwR4M5y3riZVJjUTSCD/0J510nEIm61VuQOicb7e5VAD7YF+SIKGxUl4BQyEfxSiKNPdjl/C8ma2YRe1ugqLoMFm7WYE/8uLhnPgVaqqq0wnFEqml2qFNTbUTP+/QRcNMRvOZvKiNYk7wfeUHHQAV/yrGWUx5Gtdie/1lU=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=aWYGu5J9V5z11TMqc+8jFIAluBajua9+OLQjTlFfPqI=;
+	h=date:mime-version:subject:message-id:from;
 
-Change the DMA controller compatible to the sophgo,cv1800b-axi-dma,
-which supports setting DMA channel number in DMA phandle args.
+在 2026/01/19 星期一 17:22, Alexey Charkov 写道:
+> Rockchip RK3576 UFS controller uses a dedicated pin to reset the connected
+> UFS device, which can operate either in a hardware controlled mode or as a
+> GPIO pin.
+> 
 
-Fixes: 514951a81a5e ("riscv: dts: sophgo: cv18xx: add DMA controller")
-Reported-by: Anton D. Stavinskii <stavinsky@gmail.com>
-Closes: https://github.com/sophgo/linux/issues/9
-Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-Tested-by: Anton D. Stavinskii <stavinsky@gmail.com>
----
- arch/riscv/boot/dts/sophgo/cv180x.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+It's the only one 1.2V IO could be used on RK3576 to reset ufs devices,
+except ufs refclk. So it's a dedicated pin for sure if using ufs, that's
+why we put it into rk3576.dtsi.
 
-diff --git a/arch/riscv/boot/dts/sophgo/cv180x.dtsi b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
-index 1b2b1969a648..e1b515b46466 100644
---- a/arch/riscv/boot/dts/sophgo/cv180x.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
-@@ -417,7 +417,7 @@ sdhci1: mmc@4320000 {
- 		};
- 
- 		dmac: dma-controller@4330000 {
--			compatible = "snps,axi-dma-1.01a";
-+			compatible = "sophgo,cv1800b-axi-dma";
- 			reg = <0x04330000 0x1000>;
- 			interrupts = <SOC_PERIPHERAL_IRQ(13) IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&clk CLK_SDMA_AXI>, <&clk CLK_SDMA_AXI>;
--- 
-2.52.0
+> Power-on default is GPIO mode, but the boot ROM reconfigures it to a
+> hardware controlled mode if it uses UFS to load the next boot stage.
+> 
+
+ROM code could be specific, but the linux/loader driver is compatible，
+so for the coming SoCs, with more 1.2V IO could be used, it's more
+flexible to use gpio-based instead of hardware controlled(of course,
+move reset pinctrl settings into board dts).
+
+> Given that existing bindings (and rk3576.dtsi) expect a GPIO-controlled
+> device reset, request the required pin config explicitly.
+> 
+> This doesn't appear to affect Linux, but it does affect U-boot:
+> 
+
+IIUC, it's more or less a fix for loader, more precisely U-boot here?
+I'm not entirely certain about the handling here, is it standard
+convention to add a fixes tag in this context?
+
+
+> Before:
+> => md.l 0x2604b398
+> 2604b398: 00000011 00000000 00000000 00000000  ................
+> < ... snip ... >
+> => ufs init
+> ufshcd-rockchip ufshc@2a2d0000: [RX, TX]: gear=[3, 3], lane[2, 2], pwr[FASTAUTO_MODE, FASTAUTO_MODE], rate = 2
+> => md.l 0x2604b398
+> 2604b398: 00000011 00000000 00000000 00000000  ................
+> 
+> After:
+> => md.l 0x2604b398
+> 2604b398: 00000011 00000000 00000000 00000000  ................
+> < ... snip ...>
+> => ufs init
+> ufshcd-rockchip ufshc@2a2d0000: [RX, TX]: gear=[3, 3], lane[2, 2], pwr[FASTAUTO_MODE, FASTAUTO_MODE], rate = 2
+> => md.l 0x2604b398
+> 2604b398: 00000010 00000000 00000000 00000000  ................
+> 
+> (0x2604b398 is the respective pin mux register, with its BIT0 driving the
+> mode of UFS_RST: unset = GPIO, set = hardware controlled UFS_RST)
+> 
+> This helps ensure that GPIO-driven device reset actually fires when the
+> system requests it, not when whatever black box magic inside the UFSHC
+> decides to reset the flash chip.
+> 
+> Cc: stable@vger.kernel.org
+> Fixes: c75e5e010fef ("scsi: arm64: dts: rockchip: Add UFS support for RK3576 SoC")
+> Reported-by: Quentin Schulz <quentin.schulz@cherry.de>
+> Signed-off-by: Alexey Charkov <alchark@gmail.com>
+> ---
+> This has originally surfaced during the review of UFS patches for U-boot
+> at [1], where it was found that the UFS reset line is not requested to be
+> configured as GPIO but used as such. This leads in some cases to the UFS
+> driver appearing to control device resets, while in fact it is the
+> internal controller logic that drives the reset line (perhaps in
+> unexpected ways).
+> 
+> Thanks Quentin Schulz for spotting this issue.
+> 
+> [1] https://lore.kernel.org/u-boot/259fc358-f72b-4a24-9a71-ad90f2081335@cherry.de/
+> ---
+>   arch/arm64/boot/dts/rockchip/rk3576-pinctrl.dtsi | 7 +++++++
+>   arch/arm64/boot/dts/rockchip/rk3576.dtsi         | 2 +-
+>   2 files changed, 8 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3576-pinctrl.dtsi b/arch/arm64/boot/dts/rockchip/rk3576-pinctrl.dtsi
+> index 0b0851a7e4ea..20cfd3393a75 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3576-pinctrl.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3576-pinctrl.dtsi
+> @@ -5228,6 +5228,13 @@ ufs_rst: ufs-rst {
+>   				/* ufs_rstn */
+>   				<4 RK_PD0 1 &pcfg_pull_none>;
+>   		};
+> +
+> +		/omit-if-no-ref/
+> +		ufs_rst_gpio: ufs-rst-gpio {
+> +			rockchip,pins =
+> +				/* ufs_rstn */
+> +				<4 RK_PD0 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+>   	};
+>   
+>   	ufs_testdata0 {
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+> index 3a29c627bf6d..db610f57c845 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+> @@ -1865,7 +1865,7 @@ ufshc: ufshc@2a2d0000 {
+>   			assigned-clock-parents = <&cru CLK_REF_MPHY_26M>;
+>   			interrupts = <GIC_SPI 361 IRQ_TYPE_LEVEL_HIGH>;
+>   			power-domains = <&power RK3576_PD_USB>;
+> -			pinctrl-0 = <&ufs_refclk>;
+> +			pinctrl-0 = <&ufs_refclk &ufs_rst_gpio>;
+>   			pinctrl-names = "default";
+>   			resets = <&cru SRST_A_UFS_BIU>, <&cru SRST_A_UFS_SYS>,
+>   				 <&cru SRST_A_UFS>, <&cru SRST_P_UFS_GRF>;
+> 
+> ---
+> base-commit: 46fe65a2c28ecf5df1a7475aba1f08ccf4c0ac1b
+> change-id: 20260119-ufs-rst-ffbc0ec88e07
+> 
+> Best regards,
 
 
