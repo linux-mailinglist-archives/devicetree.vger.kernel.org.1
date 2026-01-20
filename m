@@ -1,236 +1,335 @@
-Return-Path: <devicetree+bounces-257202-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257203-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4A01D3C06F
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 08:30:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8301D3C088
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 08:34:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5CECD508731
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 07:05:38 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 033DA4F3E6A
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 07:08:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B273D37F0F5;
-	Tue, 20 Jan 2026 07:05:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 294CD38FF1D;
+	Tue, 20 Jan 2026 07:07:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="juYRaAKB"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JIWWyzlt";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="DSIYmKeI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CH1PR05CU001.outbound.protection.outlook.com (mail-northcentralusazon11010017.outbound.protection.outlook.com [52.101.193.17])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52EA632D0FD;
-	Tue, 20 Jan 2026 07:05:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.193.17
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768892731; cv=fail; b=kiBhX7kTye9h5Jqz7Cq9JT3Ghd17H/MRaA1Vdo7YiwKCJnb2SfmZKJwdpfzM9Nn7Bp4K5YW/nxmuOa7rAKnwrLNR7Duz+1RA9kVtitoiXQcf6jPX7ozX8aLFpmdCHprinTQaYnDk335IZygNDz/tGQinX4P7en4Y6L2Xv+BdWiA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768892731; c=relaxed/simple;
-	bh=7v/5AqtAYANIPVE/w5hys0COL6FTBwi3yOOmfrKCFZI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=LYVm0smBGengFxTXXfaGhLaXMahbllwX1hH1m/SAByFQPX3Xajo3kJHwfDpYunb5+tM8i5T3SxR/Ctc5v2M4qKBnckdPnZVXqoBfGsqPbtSyXrEFXjP9Iy+qUJiHwvDqel6Mg3VTTr/ZlWGZkcka3UY1ydI0BLtz4KOKOO0Qibs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=juYRaAKB; arc=fail smtp.client-ip=52.101.193.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ji+JUc9MuUzKGrO78j11mb0S9fijbXI+BH0jJgzt9RZ4nrCL8shAist66u6jKnXI0dmdpUBA0VFMv+C9LnJpvPkDiYwaO+VZx9SkgzoAkZeF07Gtwt2X4etogqF+v9zJx6zBqHEpGTsuItDbp1ag0QrYRhb75MxIZxr3EtqZzMhvWm6nlbxHGtRjwtkhf5HcDLWljDMtNKgPMqLax88vZ9TILanJrPjqI13Xz4JZ9EGkNnIJrlJALXRRfAHE3N5zJgIT962pJPghmWISSnkVjp7mms6TkgGmqBO6YnQFwEd58b/XNcx62xSvb4hvwZvhBdGctFJYPdnz26kNXK0++Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bvtwzHjKtt0s5gg1llPGWdHbFCTPj71VQgzt/yx9ScI=;
- b=xSKUvMkFOQ4+nAlo8od9tM2AEX9k9RRg/5ClMjHihFJNmyaDdyV0D5qCF3lzvlWPUyuDA3oeFQt0xBFW84KZF+Y8f0qSb8iBPKB4WkcZSCfUUU6FsWEbfanBng8FGryuIgRxmbhOK9jFR/JWAP2HNbiZC6ionvUUbmvF99qYDybcscogwnhGnBHVjvKPCeui5ybrCQzwWpPg2/foRNv8qoyS06P1Q5Q85HSnegy8+3SofStTNb362ohwZ86xEbo9eFN4l+VoR0xYWc/YizqnVmACnMHYz+zMDepOftb+9zaeDo1nPc+H1wcDrYCtlde+oAIibC5ApOrsE6+j5BtRZQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bvtwzHjKtt0s5gg1llPGWdHbFCTPj71VQgzt/yx9ScI=;
- b=juYRaAKBSArAsJWZpOcww14ZABi7urhp5sXWwK07C0ysj1gfxlnvk0dTK18KMdAOz1gf3WHJsJILpOa/zgfTcMtf1iU3woQ3ZJ7geQplhTPVLVrAFDRZWjbr5YBKPpg6cO0gZR5IWabcyW4nmrOdKM9nNBV5te/YGZhUARBNrHjhUPD7n/39MffUfox+jEmnHafOwuoblmRsSyI9ZwtGCPsm9saPQLdBDIGLytssGq1C0II6i7G0L35k/XPdOT1XiP5ChFrXza70YwVB+vSgTUhbBGn1LryQwly5NwtKe7PEYY116rUzvALJDPtx6eVFgJh88E863XhIQo+u/w5v8w==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from SJ2PR12MB9161.namprd12.prod.outlook.com (2603:10b6:a03:566::20)
- by PH0PR12MB8007.namprd12.prod.outlook.com (2603:10b6:510:28e::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.12; Tue, 20 Jan
- 2026 07:05:20 +0000
-Received: from SJ2PR12MB9161.namprd12.prod.outlook.com
- ([fe80::1f16:244a:2a9d:2c93]) by SJ2PR12MB9161.namprd12.prod.outlook.com
- ([fe80::1f16:244a:2a9d:2c93%3]) with mapi id 15.20.9499.002; Tue, 20 Jan 2026
- 07:05:20 +0000
-From: Mikko Perttunen <mperttunen@nvidia.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding <treding@nvidia.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>,
- Prashant Gaikwad <pgaikwad@nvidia.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- Dmitry Osipenko <digetx@gmail.com>, MyungJoo Ham <myungjoo.ham@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>, Svyatoslav Ryhel <clamor95@gmail.com>,
- Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-tegra@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-pm@vger.kernel.org
-Subject:
- Re: [PATCH v4 08/12] soc: tegra: common: add Tegra114 support to
- devm_tegra_core_dev_init_opp_table
-Date: Tue, 20 Jan 2026 16:05:16 +0900
-Message-ID: <5263501.ejJDZkT8p0@senjougahara>
-In-Reply-To: <20251125120559.158860-9-clamor95@gmail.com>
-References:
- <20251125120559.158860-1-clamor95@gmail.com>
- <20251125120559.158860-9-clamor95@gmail.com>
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-ClientProxiedBy: TYWPR01CA0012.jpnprd01.prod.outlook.com
- (2603:1096:400:a9::17) To SJ2PR12MB9161.namprd12.prod.outlook.com
- (2603:10b6:a03:566::20)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33EAB288C20
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 07:07:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768892827; cv=none; b=CmFC0ZiPzFgoK1KWDWLxyLj63jhD/mikWwEmCSUyxeIlJZbt1Q/QMit8FPRyHH/o18YpiautRwQDyngMjVCOWFm+qRAefoDmMzoRIOSq9E9pciePJg9FDzuGEw4YvXwksBd4LjhA/ldbmZwhQxDiR8mbj4e4fgiS1Nfm6jsJWHk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768892827; c=relaxed/simple;
+	bh=Heybbx0oLSiM1n7CM/ikkK7NiNFSOBj3WsbNoCr8C2g=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nZ3Pya/yABrNOlFWffA1yB96720SIBAM94hVK70+r/uqtxwPQYKPnufBydcy1S5A0ewEbCN6yCXHQzHXAg4A34RGDn5Ta41NkNmCO3Mgxu0sFFCIbp0+I+R84OddkZhTbGDCQS0yAeqOcvNL5Y+TQaQ7Ku66pGn6Q9l5Skv4t/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JIWWyzlt; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=DSIYmKeI; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60K18pwH3367154
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 07:06:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=LgmaNJfrCLG7PrqhwEP+tUt+Itejs18DV5R
+	fEVDgXOc=; b=JIWWyzltFbzDgHnyLVCk0/SUn8SXmo+xkkuoK/C8km0yHpePeSy
+	m+fF+ZJP7YlzUDGE9PUVpM2A1KzbJveDzaykkl5tREWGP37ypnr3BFXt6LGuMCn7
+	TeAdwNW8myRjgoXTQs8tcw5tkl7xE8hBKP/YFtxkrBcI3p9lc/+FAq2pvoAFX3kI
+	jDTFWFsa3R/HF7ju2pljA0iJ0UcfafurtkUsDBisFLQh4a+Ciik8CL2LI8VE0G3E
+	jgVC0qRtJvQoxq7r9C1Wl2Q+T4YWg9WiCKhL5Q5hAc/tQX/RXOzxPuVoFP8Klnzj
+	McXU5Gd6riwPegXqBueaR5VhWdfifGi2+oA==
+Received: from mail-dl1-f72.google.com (mail-dl1-f72.google.com [74.125.82.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bsysb0vkw-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 07:06:58 +0000 (GMT)
+Received: by mail-dl1-f72.google.com with SMTP id a92af1059eb24-1232dd9a256so5180966c88.1
+        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 23:06:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1768892818; x=1769497618; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LgmaNJfrCLG7PrqhwEP+tUt+Itejs18DV5RfEVDgXOc=;
+        b=DSIYmKeIvVlA0doAbx+98dIew2F0C41S8E7iGRErcVOkOLpcYPjfaJUAGC8yqfVqvv
+         APDEs5j5uo9VcwuwM4uSRNH6Gu3KnRlnZ2ESEEVeF6gA5mu5Lw2Z0LQrEJgxkT1uBVxD
+         HEj1kTY58rirMRf6UM4ZqH91befL8KoE5EgPYqH6Trl05D5eYsE0rNrXmaHgj0N8Nuy5
+         r91E2m3XIZsjPQbLMa8hICcZ6US4ZGCo6De2sHZWSgMcP1tIK4SFz7jvcTQhaUhKTwLq
+         SVt9uOzq6PHd8fghGKkfJMiTfe9cH9+G0eZAT0dmGOEW+UuarPCjPXJmX5se7rXXtGje
+         MSlQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768892818; x=1769497618;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LgmaNJfrCLG7PrqhwEP+tUt+Itejs18DV5RfEVDgXOc=;
+        b=I8+pyago7o1nmjRIUbbRynp1nC+T2wuCUZkPIMap+u++Up+tZ+G40UFOXMSVV++ntC
+         MKzi0kWHazT3V/gIXZpp3bg5tS9TVI5xssux0LKB5YlLlc19oPsVyBy1qP/53fsMr5Ni
+         sVYKZix/bHjCSjLm1JN2ldlaExRsj31IvrkS1xgoLHSzS5+3xewsgM78Hfav2eWjbMWR
+         yayxNnm9D4ErufCK3J0FZR5HjIMloIMvTrhvzBvNPjCrOK0l/gepXQNvcVBbRRsuYPRj
+         0Fn8jnI7BvOeTM3O1J2/EmwfLgNAHx90iUp4cLKVCu8paR3263cTXCNhqAgGS8EWxPFY
+         pWGA==
+X-Forwarded-Encrypted: i=1; AJvYcCUG1Ao9mAx1d9IGlxZv5lvpNEWifOghbu5g1S5MQFx0aLFNLiezNhaNZbR0wAEHUk7RlaxthD3fIhMq@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy5ietcsJq5+WUGV9+Pgxx7M8nBxdQF9w0saX/CeUmV/ypo2S5u
+	mgl04kuk9BLG7uc6PhnBWksUhajgkLPnDPjK/Rqk9GEHTgmx/VT8Utn1nnUJKDkDIOeykdwK2r6
+	9lGpfiX3x6GhTgGT1xd+QNZvYVYM6k349ST2lWv4CgaDLuRtHosa0/tkV5m2gcusb
+X-Gm-Gg: AY/fxX7x9I2fX1yZ1Qahuy05Wrozsoa1OXHo4yxM1YqiBlQwC+1Erir7ZkFuwzWymRb
+	42P0rS3WvnEFlBQ/cLFrif1SF7IuA2tx3KNiUMd1xTxbyKuec5G5hUoXBZC8tAZyqX1dN4BJDBU
+	nffyctvXQGd4OfmflIdHxuslpaJFhLixUQjrMmk6DfEMxEEd53ZGmQQhf0mqRke5X+q2VINZY1q
+	7W9PQCtUl+HwobGm8vgWjDcuVXx/OJtM3lohqObJZTgZoqgJLit/ObnDZxnyij2QXDe7wFeG7BW
+	9wSkIR8tT30kZwJwLTNRZLja4esUUjkp3nxPDmKawbse3sYtSo301TTDCutB+a1yJMWmz+rVd/V
+	ZTSPspMvRXKHFMGXex04zYrwW71wwl0QORRGJQj4G71saS2non2xF34oJtyaAGyPVbA==
+X-Received: by 2002:a05:7022:2381:b0:11a:4ffb:984f with SMTP id a92af1059eb24-1244ac400cbmr9688052c88.11.1768892817732;
+        Mon, 19 Jan 2026 23:06:57 -0800 (PST)
+X-Received: by 2002:a05:7022:2381:b0:11a:4ffb:984f with SMTP id a92af1059eb24-1244ac400cbmr9688042c88.11.1768892817046;
+        Mon, 19 Jan 2026 23:06:57 -0800 (PST)
+Received: from san-w175-na3-01.qualcomm.com (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1244ad740c5sm20492756c88.8.2026.01.19.23.06.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Jan 2026 23:06:56 -0800 (PST)
+From: Wei Zhang <wei.zhang@oss.qualcomm.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Wei Zhang <wei.zhang@oss.qualcomm.com>
+Subject: [PATCH v8] arm64: dts: qcom: qcs8300-ride: enable WLAN on qcs8300-ride
+Date: Mon, 19 Jan 2026 23:06:49 -0800
+Message-ID: <20260120070650.3192679-1-wei.zhang@oss.qualcomm.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ2PR12MB9161:EE_|PH0PR12MB8007:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6c9f7841-089d-41c8-eca6-08de57f245fa
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|10070799003|1800799024|376014|7416014|366016|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?Mk5raGw4NFk4Mmc3ZDRQR0xwSVR2RjRrbTk2Qnd6dUcvbHVVRUhiUnc0eEdE?=
- =?utf-8?B?VzZzSG9vRks1UzdkWktMOFN3SlM5WG9wTm05Rms4clB6aVJ0VjFTMVRMUVdP?=
- =?utf-8?B?VExYd2QyUlMwakp6OUdrUmkrb2hYTkI1Q0kxNEMzeDhGeWo0Vm5EWU9tM0Vk?=
- =?utf-8?B?djV2VEs2aWRia3NLUDNiMys2UEtEZzd4bTYrOVowcmJTV0FUKzZiTm5jUXRw?=
- =?utf-8?B?UW1qTWNadU1xeVp0NHFJdmdoTEkyN2FibWQxd0phMk5oTTdOTTJHeW1jZ2hO?=
- =?utf-8?B?YS9ONHJHNWE4SElMdTZCN0h6YWlvM2VkUmJ1MXp6dnYwSGtGU3VNR2E3Z29w?=
- =?utf-8?B?ZWZEcnFuNTNrME05ejdBbWJpblRkZTU5TWljdHd2bGNQNmZWQk5sc2ROQ0Ni?=
- =?utf-8?B?WjdwVng3UXA4S1FhQ3NTaDJKWEtmcFRyeUVnajVOTGlWZ2d4N0VpQkZTclla?=
- =?utf-8?B?bGdZTzRMcDBPUDJZRDJHVmdrU21UaHdjSGl2QkQ2MHB4UWtaZU5HZGRzMDBY?=
- =?utf-8?B?QVJhcjJDN1B3KzRiZC9JU3BHazVPa3M1TmYwM0xjVUw3L21kQlZ2NGo2RDFN?=
- =?utf-8?B?alhxVElsWUp3UHhibFVEOTF1cnVJNkhIa1h1MVFBUE5CSnJHM2Ivc2tXSjRF?=
- =?utf-8?B?eXNhMGFLWHAvNWJGY2ErT0pLUU05bno1QStIZHYzNzRwRzVXNll2L3gvVzJz?=
- =?utf-8?B?RzNHYk85TDNQdm14ZlhIVWFiZ0RsVjg3cTRIWWtYWmJVRVpYYU1veUt6VE9Y?=
- =?utf-8?B?dS9vSVZQZkFxZjhSeUF6MzkyKzh3UGttcTIzL2g1UkJEQlhWMUducjdOZVhF?=
- =?utf-8?B?cWdESXhKS2pwb2ZGbFJrVXVkSDlQM2E2azZlQ01LdHBNM0FDQ2M2VG1GRXo3?=
- =?utf-8?B?ZjdJdDlwbjJHaVdvRTY0ZHIrMTZNVEFtOS92elE2L1QzZmUrSGV3a0V5VnhH?=
- =?utf-8?B?OHQ0V0pmNFVIUFRxVkNHSVowT3Mrdko5eml6TzFOT0ZsQld2WGlFRDFKQ1BF?=
- =?utf-8?B?aEw1TTZFaGQ0QmJwSXlGMXgyWnFWR3FpbFBuWGdHdlI1aTFWT2llY1hYOUtq?=
- =?utf-8?B?UldpTzkwK2Z1NVNUNlRkTTBxN3VUeVc4QUd5NUVSaHdvUlZEVHJma3BvQ1N2?=
- =?utf-8?B?Q0J4aVhaYnIwdjZ2YmZGaTcvdTlGajR4cGorbEwvT0VvSFFmZlNBZjgwVE45?=
- =?utf-8?B?OHZ2OHFxRFh5bjVuY1lKcmlNVzVUUjF5RkpQVUNrR01MTlFZRmN3Yzh1MFA5?=
- =?utf-8?B?RjVXNUxoOWFZYngzUEp3NDVlMDloYm9aYnN0aFRWV3dxOEdKMkNMd1RROEVL?=
- =?utf-8?B?cmlNK09JMDJGMmRxQi9wT1FScnpsQzFET3NQd1p3Mm9aT3U0ZW5ETHV0S1Av?=
- =?utf-8?B?VWg2TnpUSnI0bmdIVlZ0V3hEL1BPTnJKSkNaVUdOTm5QZ1lZUWNGK2RPNnd3?=
- =?utf-8?B?TFRRakhJelM3aGpYVzYwL1VqdThUMDJhOHZzWEdPWE1SU0tWN2pvNUhhdmpL?=
- =?utf-8?B?bkh0ZjN0N1ZQMEhnQkh0My9EdTVZa2E5eGpoU1JzSEZXNTdvSWF3ckEvVVVh?=
- =?utf-8?B?aFMyaHJ0SUtZL1M5UVN6RVYvN1Q4SjhvZDRjQ0t1cTJQdm9KcXE3c044aGtj?=
- =?utf-8?B?RmtHL3ViMUNRWVBtbUcvbGVFUVMwbXEwd2theWVDTFk1cUo1aWVwdE42eTJD?=
- =?utf-8?B?UGNFOFNPUzd0RjhzZUJUVzBWTWhQQ1krUjkxUnQxb1cyT3BrdS95djcrOFAw?=
- =?utf-8?B?Q2ptUHpEQmZ6eTNoVEdzOTU3Tzc0S1Z6U21jbUpnejk3TnhDTHFhZGJwOUx4?=
- =?utf-8?B?MldKSlp1Q0pVa2prNWxQODRNWVVabFZBL0dvd0Ficm9sSFJEd1FoWWl6UGV5?=
- =?utf-8?B?YW1WRVV6MExjVkIwUDdzN1p4cXZLc3padlpHZFVaaEo0amJxOFA1eTU5NHR6?=
- =?utf-8?B?dXhhaVc3c2ZsQ2V4VytZazY5bmlEVzJKTTJCZXp6LzJWa2tLYjRNRHhyR2tT?=
- =?utf-8?B?QUVUc3BkU293WFJhYU5ZVkFWTjJMNlRtcWRmb2Y2VWFQWldlSlRoOURlYWtL?=
- =?utf-8?B?U3k2TlFYTndLenY2bXRDQ0lhdVRsMGpPZTgxQXNlR2dNNVNaMkFIdTdjQy9w?=
- =?utf-8?B?c3NSS1FuckZnRFU1Wjc2OHdlNDk1UkNibERudWQ0ZXMvcW5OR1ZTL2hrOWta?=
- =?utf-8?B?V2c9PQ==?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR12MB9161.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(1800799024)(376014)(7416014)(366016)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?bGxjd2MzblpUQUJWY1hna2c1MGh3UnlIZngwM3dlcG51VWdCTm14dFJnRTVM?=
- =?utf-8?B?d3QxcG10MUFhQ3djdUV4QjEyS0dlb2tNL1ZNTTNzRHpYbEJZb3NaQTR2d0ov?=
- =?utf-8?B?ZFprS2NDdEc5OHkwdW44b2NUcGxEeStnVFVtRlQrZzlDU2UyMXZ1dlh6R2Ir?=
- =?utf-8?B?ckFRNmI5QnV4WWJ5Z0U5VTNBazhmME9WaHpVSTl2MVBXOHBMamNzTmU2bXRz?=
- =?utf-8?B?K1RZbUtzZVRVY0o0NVI3SmV6b1BsV21sRkhXZTNScGxRVXU2ZHl6ZEtST3pk?=
- =?utf-8?B?Mko1dEdGZ1cxdk45ZHQwb1BzTDhyaUJjN2EzdHk2b25qQURQU1lSMnVsTXZq?=
- =?utf-8?B?ems0WGNhS3B5bXZDRllDRzZ0NUZWblVvQjRXaER3K0pPS25HRldmSGJ3NTlJ?=
- =?utf-8?B?cUM2RnMwTlBzYmNRSC9YbTkwNWxkSEwrQmxlSTEvUFBOWTJqMklKS2NsNmVv?=
- =?utf-8?B?UExubnkyUFdLeURXTVNIaGgyaEtuaEhhMkRjUnZRckk2ZjBYTEhxZEZmUVpN?=
- =?utf-8?B?QnQ1VnNZNWxpSWZvMDEzZHFqdlMvQ21HU3NTL0FNN3psbDc1MkIrRmMrTVpJ?=
- =?utf-8?B?UXlrbEt4eThNbFp3L1Y5bmJiMXpkSVg4Q3VzbjZXL3NJYnVZWFVINFZTd3BC?=
- =?utf-8?B?dUNSMllScTRBNzdwdjE4MXpGaFJqQ0xvU2JQUGV5VjJnaWlKMVI0ZEM4UHlN?=
- =?utf-8?B?Szh2cUUrdENiY1IvdkRKVEsyRGxQdE9WMURJM2JYTXRrSm5md2g5U3oycXNL?=
- =?utf-8?B?c1lzL3oyQXZhYzJVVHhOd2VSajBScjBKTkFLbFRNcTBvdStYUW1sTG9NY1Qy?=
- =?utf-8?B?YUQvRHYyQ3gvcjRNRkRvVzhZZlJPNTNvUXNhK0NSbmVLc3VtdEZ6V3dsV2N4?=
- =?utf-8?B?OWVCQnR4bVlEeE1rZitlbGpLSERVREJyQm9tcHFDUGwzOHJBN0dpNHhMak12?=
- =?utf-8?B?ejBiYnlCaVhwT1hId2ltS2pTNzBJQ3A4QVJGSmUyQjhiTVFTOFF4MGZBeEZT?=
- =?utf-8?B?cnNUVFBQN29MSmxVOENYTDg0TXBmdGx2bW40alFSV0hBaFdEMmdZdDZDZ0xy?=
- =?utf-8?B?NDg3SlJjT2J4RHNlV2ptcnhhUFRhaDJLYXFidDd6UENwUlVSUWR3REZXdkxT?=
- =?utf-8?B?VytpNStpcUNQTUNNSlhhYTFhUkdWRUNLcFQzOE1aUWpRWm10eElqa2ZnUzNx?=
- =?utf-8?B?cHVPOGFTWGtYT1V0WC9makNRck90SS9yMlhIVDJsbzR0bXlPUTlibFQzVXFB?=
- =?utf-8?B?NEs3YVFQRnlPSnBiaHRBT3VFVzVuK2llN3E0SHZLR0NFY2ZoUEJiZDh1VEhD?=
- =?utf-8?B?YzkzQ0NmSkJobEEvMitoOFhwbGV0RGFDTXhzL1llMWk4MGs3QTZNUWtJcFNp?=
- =?utf-8?B?R0hjSi9aV1lTV0RrR25VZ0VjekRTNjBPc1c4U3E4dzZnWWI5QmdIRi90c2Jj?=
- =?utf-8?B?L1VTZmhMQXR0VFY2aW9hNEdHVXBZelNBUTVEMG8wRjdNWEl0U2xUR0lYQlNj?=
- =?utf-8?B?bmk0bEJzelFsMXc0elJ0UWtyQUdhV3pOb2JPQUZxYWN2RXo0RmNjY0RKOEhq?=
- =?utf-8?B?VkE2dHg4aUt6MnJBZTZ2SVUvREhUNVNvZGxyNlZabGVxVXJFeHpKbW1RZngz?=
- =?utf-8?B?TzlPM1dZbXY5YlBLLzE2c3ZWNkFkS3daeXUvMUc5UVFkb2VJM0dDdUsvUWZ5?=
- =?utf-8?B?V0Myc0psSGM3VUErRC8yNGhmcGczelg0VHlCTytDNmVucTQyWWFlTEdYTmZE?=
- =?utf-8?B?UjFKaHE2azlXUy9WbU01UkI3ck1UZVRpMmp4ZWlvRDRDVHZ0S0I3MkNiVVF1?=
- =?utf-8?B?UFcraHFWZzNNSUtOWG9NRXlIS1hMem05QWs1cjNjUEtCV1plUE11azhYaFlN?=
- =?utf-8?B?b3lCQTRKNDVoWmNiOTlqZ1VCQ0UvQ0MzekVFWFdhU1hKSWZ0N3ZicDRXWHVG?=
- =?utf-8?B?U0hCVFF6UnFuZHpoeXovQTVaNVNsbzROSnVEV1pRQWU0OVdDQmNCRFlpM2hZ?=
- =?utf-8?B?VDM5bEZFU0ZOdXhBQ0hUSVMxeFIrYzdTK3I1T2hIMGE4cGg2MG1ZOVNzL1FN?=
- =?utf-8?B?Zy9hOVNYbWNCMzhnMXgxNlpDenZyc1NoTFE4TDVSRkJvZkVlSitEZSsxUEJo?=
- =?utf-8?B?UEhBc1dIcmw5bXdJL01hQlQzZVhiYWxMSWJJak44U3pvR1A3M3RmWmZMcEwz?=
- =?utf-8?B?WUhUVjgyUHRXNXcvN3JsTE01NCtsaUtDWkthQ2s4a09RMDlFRUgvdHJ1Y2FM?=
- =?utf-8?B?MjZHY1U1VXVDQ29qVVE1RUZYUWRGdGJMOHdrWU5SS1BVM250OHR6Y3NYbVMr?=
- =?utf-8?B?SEk5S3BkOXJCWnhya2ZDNVdKV0kzc1pOT0V6bHdFeGlzdmdrYzY4OUNzYkxB?=
- =?utf-8?Q?8bx3j52LD2yGwkJHfwC1lb3k9CRIZQxRQujKz2AoS4Yx1?=
-X-MS-Exchange-AntiSpam-MessageData-1: 599FCkNbjKfGXQ==
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6c9f7841-089d-41c8-eca6-08de57f245fa
-X-MS-Exchange-CrossTenant-AuthSource: SJ2PR12MB9161.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2026 07:05:20.2195
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 91SwusCD/F8HFbaU8MwaFvvxFvzDrULMnbhQmWO9DHrgHW40ESMSYzyAR24kzpp8XB13MzgVjyyt1huc3m4Rtw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8007
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: OOP7pRlsR0dI7BP6dU6kQESrkiYfFnbP
+X-Authority-Analysis: v=2.4 cv=XJ89iAhE c=1 sm=1 tr=0 ts=696f2992 cx=c_pps
+ a=bS7HVuBVfinNPG3f6cIo3Q==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8 a=b5B5FA7t-L3a07aDtOMA:9
+ a=vBUdepa8ALXHeOFLBtFW:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: OOP7pRlsR0dI7BP6dU6kQESrkiYfFnbP
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIwMDA1OCBTYWx0ZWRfXzmX79jUBgLIo
+ QLQevhWieIebQMqfeADRnuGr8/M6gzi0rG+fXNUGra1xQAZChrXEK5b9Q40lU9vXDTj8b3sb4+E
+ wRUWU+hlpeo/6DVMqAhMajsUC/JhmkDQ3S3xVzyKr8o6C7genUT5Ij3A+VoFzLpiIYp9yRFBDXc
+ XZDqRObqMgj5cf+H3s7RVqLKpcDJqW4HiKm44Yb4RmVcTBuXuvoKtrbl3vMiFohAsyf9XxNmDmu
+ CW785+dMHFIRHUIKW+h+IjfExp102N50G8btgIrZnQZm6hIBz61qJvaY8nE/ye/cesygEKqYO1P
+ w3mYkDMPeF7nZ+6MhFhiEaG9VJ/3Db1B7d9IZGZSHsgxTMtF4ZGWRDpCc1u7W0MlvdoqeDSAofd
+ jgyxyujbyt/o3Jnjr7026XWd9AmQzF7arh7xZBF+7ZA8nEP8Ri2Q8wm2MwPe4IL4RCMNDif1Kxf
+ EnqukFDkl6cx04IceZA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-20_01,2026-01-19_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 malwarescore=0 suspectscore=0 impostorscore=0 adultscore=0
+ bulkscore=0 spamscore=0 clxscore=1015 lowpriorityscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601200058
 
-On Tuesday, November 25, 2025 9:05=E2=80=AFPM Svyatoslav Ryhel wrote:
-> Determine the Tegra114 hardware version using the SoC Speedo ID bit macro=
-,
-> mirroring the approach already used for Tegra30 and Tegra124.
->=20
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> ---
->  drivers/soc/tegra/common.c | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/soc/tegra/common.c b/drivers/soc/tegra/common.c
-> index 6292a1c72071..2264dd38893a 100644
-> --- a/drivers/soc/tegra/common.c
-> +++ b/drivers/soc/tegra/common.c
-> @@ -143,7 +143,8 @@ int devm_tegra_core_dev_init_opp_table(struct device =
-*dev,
->  		hw_version =3D BIT(tegra_sku_info.soc_process_id);
->  		config.supported_hw =3D &hw_version;
->  		config.supported_hw_count =3D 1;
-> -	} else if (of_machine_is_compatible("nvidia,tegra30")) {
-> +	} else if (of_machine_is_compatible("nvidia,tegra30") ||
-> +		   of_machine_is_compatible("nvidia,tegra114")) {
->  		hw_version =3D BIT(tegra_sku_info.soc_speedo_id);
->  		config.supported_hw =3D &hw_version;
->  		config.supported_hw_count =3D 1;
-> @@ -156,7 +157,7 @@ int devm_tegra_core_dev_init_opp_table(struct device =
-*dev,
->  	}
-> =20
->  	/*
-> -	 * Tegra114+ doesn't support OPP yet, return early for non tegra20/30
-> +	 * Tegra124+ doesn't support OPP yet, return early for pre-Tegra124
->  	 * case.
->  	 */
->  	if (!config.supported_hw)
->=20
+Enable WLAN on qcs8300-ride by adding a node for the PMU module
+of the WCN6855 and assigning its LDO power outputs to the existing
+WiFi module.
 
-Reviewed-by: Mikko Perttunen <mperttunen@nvidia.com>
+On the qcs8300-ride platform, the corresponding firmware and BDF
+are QCA6698AQ instead of WCN6855, which have been added in the
+20250211 release.
 
+Signed-off-by: Wei Zhang <wei.zhang@oss.qualcomm.com>
+---
+This patch depends on:
+- PCIe
+https://lore.kernel.org/all/20251128104928.4070050-1-ziyue.zhang@oss.qualcomm.com/
+
+Changes in v8:
+- Reordered regulator nodes to maintain alphabetical consistency (Dmitry)
+- Place wifi@0 node under existing pcieport0 label
+- Link to v7: https://lore.kernel.org/all/20260119090758.2780678-1-wei.zhang@oss.qualcomm.com/
+
+Changes in v7:
+- Align regulator node names to match the existing naming style in the dts (Dmitry)
+- Link to v6: https://lore.kernel.org/all/20260119080125.2761623-1-wei.zhang@oss.qualcomm.com/
+
+Changes in v6:
+- Rebase patches
+- Remove unintended 'output-low' from wlan-en-state pinctrl (Konrad)
+- Link to v5: https://lore.kernel.org/all/20251113055148.2729943-1-wei.zhang@oss.qualcomm.com/
+
+Changes in v5:
+- Rebase patches
+- Flip the order of property-n and property-names (Konrad)
+- Flip the order of bias and output property (Konrad)
+- Link to v4: https://lore.kernel.org/all/20250325075331.1662306-1-quic_stonez@quicinc.com/
+
+Changes in v4:
+- Rename the symbol pcieport0 to pcie0_port0 (Konrad)
+- Adjust the property order in node pcie0_port0 (Konrad)
+- Add to the commit message mentioning FW and BDF used by QCS8300 (Dmitry)
+- Specify the calibration data using the correct variant (Dmitry)
+- Link to v3: https://lore.kernel.org/all/20250318093350.2682132-1-quic_stonez@quicinc.com/
+
+Changes in v3:
+- Complete the nodes property definitions according to DTS binding requirements (Bjorn)
+- Link to v2: https://lore.kernel.org/all/20250227065439.1407230-1-quic_stonez@quicinc.com/
+
+Changes in v2:
+- Rename the nodes name according to DTS coding style (Konrad & Krzysztof)
+- Provide regulator-min/max-microvolt to the regulators (Konrad)
+- Link to v1: https://lore.kernel.org/all/20250210062910.3618336-1-quic_stonez@quicinc.com/
+---
+ arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 105 ++++++++++++++++++++++
+ 1 file changed, 105 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
+index 68691f7b5f94..864b32503d29 100644
+--- a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
++++ b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
+@@ -24,6 +24,26 @@ chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
+ 
++	vreg_conn_1p8: regulator-conn-1p8 {
++		compatible = "regulator-fixed";
++		regulator-name = "vreg_conn_1p8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		startup-delay-us = <4000>;
++		enable-active-high;
++		gpio = <&pmm8650au_1_gpios 4 GPIO_ACTIVE_HIGH>;
++	};
++
++	vreg_conn_pa: regulator-conn-pa {
++		compatible = "regulator-fixed";
++		regulator-name = "vreg_conn_pa";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		startup-delay-us = <4000>;
++		enable-active-high;
++		gpio = <&pmm8650au_1_gpios 6 GPIO_ACTIVE_HIGH>;
++	};
++
+ 	regulator-usb2-vbus {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "USB2_VBUS";
+@@ -33,6 +53,68 @@ regulator-usb2-vbus {
+ 		enable-active-high;
+ 		regulator-always-on;
+ 	};
++
++	wcn6855-pmu {
++		compatible = "qcom,wcn6855-pmu";
++
++		pinctrl-0 = <&wlan_en_state>;
++		pinctrl-names = "default";
++
++		vddio-supply = <&vreg_conn_pa>;
++		vddaon-supply = <&vreg_conn_1p8>;
++		vddpmu-supply = <&vreg_conn_pa>;
++		vddpmumx-supply = <&vreg_conn_1p8>;
++		vddpmucx-supply = <&vreg_conn_pa>;
++		vddrfa0p95-supply = <&vreg_conn_1p8>;
++		vddrfa1p3-supply = <&vreg_conn_pa>;
++		vddrfa1p9-supply = <&vreg_conn_1p8>;
++		vddpcie1p3-supply = <&vreg_conn_pa>;
++		vddpcie1p9-supply = <&vreg_conn_1p8>;
++
++		wlan-enable-gpios = <&tlmm 54 GPIO_ACTIVE_HIGH>;
++
++		regulators {
++			vreg_pmu_rfa_cmn: ldo0 {
++				regulator-name = "vreg_pmu_rfa_cmn";
++			};
++
++			vreg_pmu_aon_0p59: ldo1 {
++				regulator-name = "vreg_pmu_aon_0p59";
++			};
++
++			vreg_pmu_wlcx_0p8: ldo2 {
++				regulator-name = "vreg_pmu_wlcx_0p8";
++			};
++
++			vreg_pmu_wlmx_0p85: ldo3 {
++				regulator-name = "vreg_pmu_wlmx_0p85";
++			};
++
++			vreg_pmu_btcmx_0p85: ldo4 {
++				regulator-name = "vreg_pmu_btcmx_0p85";
++			};
++
++			vreg_pmu_rfa_0p8: ldo5 {
++				regulator-name = "vreg_pmu_rfa_0p8";
++			};
++
++			vreg_pmu_rfa_1p2: ldo6 {
++				regulator-name = "vreg_pmu_rfa_1p2";
++			};
++
++			vreg_pmu_rfa_1p7: ldo7 {
++				regulator-name = "vreg_pmu_rfa_1p7";
++			};
++
++			vreg_pmu_pcie_0p9: ldo8 {
++				regulator-name = "vreg_pmu_pcie_0p9";
++			};
++
++			vreg_pmu_pcie_1p8: ldo9 {
++				regulator-name = "vreg_pmu_pcie_1p8";
++			};
++		};
++	};
+ };
+ 
+ &apps_rsc {
+@@ -327,6 +409,23 @@ &pcie0 {
+ &pcieport0 {
+ 	reset-gpios = <&tlmm 2 GPIO_ACTIVE_LOW>;
+ 	wake-gpios = <&tlmm 0 GPIO_ACTIVE_HIGH>;
++
++	wifi@0 {
++		compatible = "pci17cb,1103";
++		reg = <0x10000 0x0 0x0 0x0 0x0>;
++
++		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
++		vddaon-supply = <&vreg_pmu_aon_0p59>;
++		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
++		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
++		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
++		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
++		vddrfa1p8-supply = <&vreg_pmu_rfa_1p7>;
++		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
++		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
++
++		qcom,calibration-variant = "QC_QCS8300_Ride";
++	};
+ };
+ 
+ &pcie0_phy {
+@@ -461,6 +560,12 @@ perst-pins {
+ 			bias-pull-down;
+ 		};
+ 	};
++
++	wlan_en_state: wlan-en-state {
++		pins = "gpio54";
++		function = "gpio";
++		bias-pull-up;
++	};
+ };
+ 
+ &uart7 {
+
+base-commit: 24d479d26b25bce5faea3ddd9fa8f3a6c3129ea7
+prerequisite-patch-id: 0e8aad7b8514142fb33c17829386f17c3a55127a
+prerequisite-patch-id: e641f09d4139ac77c34757bd08af2db746de3963
+prerequisite-patch-id: 4d16e87cf6213d6e25b2c40e2753d4e629778d53
+prerequisite-patch-id: 40187dae2c9518a10866104b9fcd5a481ac67d51
+prerequisite-patch-id: dd3bdf2aebda74f3603aff24a2c9aaa7f4fd6763
+-- 
+2.34.1
 
 
