@@ -1,513 +1,260 @@
-Return-Path: <devicetree+bounces-257550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257557-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OIjWJz7Pb2mgMQAAu9opvQ
-	(envelope-from <devicetree+bounces-257550-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 19:53:50 +0100
+	id MF2cOlHMb2mgMQAAu9opvQ
+	(envelope-from <devicetree+bounces-257557-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 19:41:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E15D49D73
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 19:53:50 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4855449A36
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 19:41:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B32E97668F7
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 18:02:22 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AE3E954DD22
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 18:18:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09C7F44CF2F;
-	Tue, 20 Jan 2026 18:01:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A43AE4534A7;
+	Tue, 20 Jan 2026 18:16:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Mfc7xhxd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c/MWJttb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFA2C44CADE
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 18:01:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64B1D44E02C;
+	Tue, 20 Jan 2026 18:16:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768932080; cv=none; b=HiI2C/JyIHLAX1sljSq2o8zya35DTo+xVZZTmelxu91iRviVfDAnJ24tPDILj5xoe/v/0cV7jYNmw79ZoAzZx+IMgEYMibMlxognzrhnuOfXBg5zvb18UfFgry8UzSXCn+7+9Wgg0pKKNHJ6A0uXbAJK9ty5ru+lbiWOlcDPO3Q=
+	t=1768932976; cv=none; b=fc7t5YYU88OeLb+s8hXL0ZCypUwJDnT8rWbanxNjCaGdmAwDc65LFPmSrPuK5UI1U0B4GRN5rn7M2He3zFEdgRD1T/c+9gsek7dtHXBtCHNgWUFoS9K02SpEPtIoYXNf6huiK+TF3C5T2iQeGdcO2UMYYQopL9wYdMxfzne53e0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768932080; c=relaxed/simple;
-	bh=UtIGYYPsmVU0cdAjltDJ/bhj9TOFnyfz8pZYAdGwY+U=;
+	s=arc-20240116; t=1768932976; c=relaxed/simple;
+	bh=Aw4O/tAH2CFoL17mTtGgcACPbZ5HoHxw5W7CgBBZw4w=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=RWGX2iRbAbvVNsVz1pCMdXkzTIbpK9kJjZjMDYr8W3EqD4BAHyVp33j9244JMTTNDFAkvc0E+bQwEX8NiXCdsTQ3TJlrioL8kLYYSJfY+1a+OFbSuonTWSjaXF03kig38d03i1ZCONddh16SGLep2zedrDjxOvuKJvGW6Sr5vho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Mfc7xhxd; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-47edffe5540so49203715e9.0
-        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 10:01:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768932077; x=1769536877; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rbfcP16YMUeLb4fc2ECoe5H8Z84bCAdkWDIyOMOcBSI=;
-        b=Mfc7xhxdd4gCufWMkMh3pZkHow4ilHUHunxP7osPGvqw+zUy4Zw4qfpR3ms1xN9kLw
-         hmqWk56uCvBK0A4C7X07fqK7740dt08vQcg8glGuKfFL/cG2nvdNNs5KNE5qMmEBgWGc
-         AWpx4Cio90bHc/x2xsOvFBCB6olOeNDNwC/2CGQee191Ao2OHslOTf5hs8Qx+TZkMo1f
-         zhuU0nK8x7rErWogAIHWywwyDVyaCaR8GIFZ3PJRWFhJgDcbA+9Sko5l37Wqn1ixsTX5
-         1LcvbqoDkHshP9737Boc0USWRGBlxASP6h60wm1Xe6KlKvPcAg74DWhBdj44FXUiyN+E
-         WryA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768932077; x=1769536877;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=rbfcP16YMUeLb4fc2ECoe5H8Z84bCAdkWDIyOMOcBSI=;
-        b=ZaCXBk8eX86zXg2fb2JPe1+454fZipJJYY/SVMfgCWFUNkvP/QK3r+ffmDiV2Ze5tk
-         1zW4btGoVxCeknuKDk3PKDwHrBx9gyEBPVsSbLYnzxCKNZbpe1XtfEpKIow53+60qXNy
-         +0+dDMxuHFAi9h7I3wIgeGfQ9jztqxixJo3MGWBrun2mH+zIRswhZY039+mrOpO8Nyb8
-         dpjYXSfKP+ddRSruj59AWESDDNGCooNFjI2drUvYEfP8pbu+3JGtXB7ChO/0Bqv+Wybk
-         ZBcBmOxjBrwz1k9kPTsexXnnftIRNiGyWxRVlheLz/KFsGNZSRSBPejDarUXwhutu5GG
-         lxzg==
-X-Forwarded-Encrypted: i=1; AJvYcCUaMnIM603xI9rBo45nU3bEluOtvu/Vip74PKH4aXZ2Qz6rwpNFQPLY/QqZHWxfdR+psjksUZs0f7a/@vger.kernel.org
-X-Gm-Message-State: AOJu0Yws4Vr9djE/DKoeXO9Ma9Pn9U2TJaekvbfV7DZXmB5yfa0WomVP
-	yiQmx/DcmXy/CVhBzZBwD2wunGUJlDPP1rOldcVCkAZAgn9LYXOoPwaJ
-X-Gm-Gg: AY/fxX6GvjhP0nbdKqvKcz6n1OIGYnVY+/C2NuD1zZZA9Lsq7CpS/8EVVYGWALRsgen
-	LHuwCbx42i5irvANriwM7LTkXBQmJP4QcFMXfne1xENrwQKb8NjDMBlTIIVAI0USndjgHP9VTj7
-	rf+3pr1bwowjl4vvOjDcDkpAbCXuYQWUFjz91Smi2qXPvjLhbw0yoTeWGEO/W8JmBUH/NNuPM4+
-	9O1aDut/EfuIXrY44kmAAQIJhIlswv8D4W3YWSXN6zp2wzghOtpRKhLPqmyXIAD3BofxsXMNS8t
-	pPSOal887Bj3LaNC6EkvhBS++lqTPfNEqMmlR1Nc7zJvqX83wmZK92tunyEiYAh5ZpKHCQ+Qt1s
-	dgQXXQ0/5/1pRA6wOnXlvyM7ai0taY1UJmtggVKSyPcLpfYr5dt1FTzZjD/urBRusJIrHIelxYo
-	727PdliE+/ZBdO3wXnliIi
-X-Received: by 2002:a05:600c:608b:b0:479:1b0f:dfff with SMTP id 5b1f17b1804b1-4803e7a2cc0mr41444185e9.10.1768932076674;
-        Tue, 20 Jan 2026 10:01:16 -0800 (PST)
-Received: from unknown.zextras.com ([78.208.157.140])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-47f429071a2sm312013015e9.11.2026.01.20.10.01.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jan 2026 10:01:16 -0800 (PST)
-From: Gianluca Boiano <morf3089@gmail.com>
-To: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: andersson@kernel.org,
-	konradybcio@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	robh@kernel.org,
-	david@ixit.cz,
-	Gianluca Boiano <morf3089@gmail.com>,
-	Joe Mason <buddyjojo06@outlook.com>
-Subject: [PATCH 6/7] arm64: dts: qcom: add device tree for Xiaomi Mi A2 (jasmine)
-Date: Tue, 20 Jan 2026 19:00:51 +0100
-Message-ID: <20260120180052.1031231-7-morf3089@gmail.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260120180052.1031231-1-morf3089@gmail.com>
-References: <20260120180052.1031231-1-morf3089@gmail.com>
+	 MIME-Version; b=orvhJKfuL4y1bVzoDBFKFv4qTkYJLEzIpwVPyL9qVM2hH3pa361DacvYLaIqEFAvvcrC6Qo+eyP2xp+yOkAAAq6ZkuGo2CjKJoyxI+Odw5P0XTfhzbqDPZVxOSqyBcR+zZ4Nk23f/OqxDN5Spe0E42i44+vi3Cle/RAJTaV46Mw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c/MWJttb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45169C19422;
+	Tue, 20 Jan 2026 18:16:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768932976;
+	bh=Aw4O/tAH2CFoL17mTtGgcACPbZ5HoHxw5W7CgBBZw4w=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=c/MWJttbYfAmbqgCLFmTGX0Iey78I51XLUgF27hikzLFvcSvrwc/Ipu//2HAnWNSL
+	 BQKKuAHQQHugKm4rfkW7mWp2DFy2HVoHBLQ5GnPMkRM/oewrErJGxKGa7PSR0LXtqW
+	 o4tTpbvEy/rrVfrSaOFRhjEaCtMNYmr/p6YGuUcIxet2+ozXcfMt3rkWaYFKpmFhi8
+	 5vEiSFv55htLGk8t4mHFiIJ3CKmVsPT8bmoe0biPzSA7+J2jAmSrIfZEG8qjdnlFRG
+	 iXH//4RgbZalDWDbXHhGtwIEVffcA645T42v/6tiIPqFuZgYnjQvDGlH2NmD+q8Lh0
+	 P+UuxV0KJqCUw==
+From: Conor Dooley <conor@kernel.org>
+To: linusw@kernel.org
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Valentina.FernandezAlanis@microchip.com
+Subject: [PATCH v4 3/5] dt-bindings: pinctrl: document polarfire soc mssio pin controller
+Date: Tue, 20 Jan 2026 18:15:41 +0000
+Message-ID: <20260120-crewman-unmapped-27c32b5d3163@spud>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20260120-elixir-salute-dd6ec3d9f5fe@spud>
+References: <20260120-elixir-salute-dd6ec3d9f5fe@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5136; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=4O8W1Kk5A/8Bu7EPK38qeO65/dXnbeqNTeICHehav8g=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJn5x7wyOMpO7F0RaSJW/GnptuUGLXKrEj/W1vgYmpxd3 5S3XD62o5SFQYyLQVZMkSXxdl+L1Po/Ljuce97CzGFlAhnCwMUpABP58YHhr2jq1nbj99sPpy/5 f8t9zflkUb1ToT6/23NMY8quVP/sW8HIcMFumRurpWBT7QaRC95rikXl5WfqaZixO8i8//XFeg4 fNwA=
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [1.04 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-0.96 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-257550-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,ixit.cz,gmail.com,outlook.com];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[morf3089@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	R_SPF_SOFTFAIL(0.00)[~all];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
-	PRECEDENCE_BULK(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-257557-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,outlook.com:email,a0000000:email,0.0.0.1:email]
-X-Rspamd-Queue-Id: 3E15D49D73
+	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	R_SPF_SOFTFAIL(0.00)[~all:c];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	DBL_PROHIBIT(0.00)[0.0.0.204:email];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,microchip.com:email]
+X-Rspamd-Queue-Id: 4855449A36
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add initial device tree support for the Xiaomi Mi A2
-(codename: jasmine), a smartphone based on Qualcomm SDM660 SoC with
-4/6GB RAM and a 5.99" 1080x2160 display.
+From: Conor Dooley <conor.dooley@microchip.com>
 
-This enables:
-- Booting to a framebuffer console
-- USB support
-- Touchscreen (Novatek NT36672A)
-- Battery monitoring
-- Charging (pm660_charger)
+On Polarfire SoC, the Bank 2 and Bank 4 IOs connected to the
+Multiprocessor Subsystem (MSS) are controlled by IOMUX_CRs 1 through 6,
+which determine what function in routed to them, and
+MSSIO_BANK#_IO_CFG_CRs, which determine the configuration of each pin.
 
-Co-developed-by: Joe Mason <buddyjojo06@outlook.com>
-Signed-off-by: Joe Mason <buddyjojo06@outlook.com>
-Signed-off-by: Gianluca Boiano <morf3089@gmail.com>
+Document it, including several custom configuration options that stem
+from MSS Configurator options (the MSS Configurator is part of the FPGA
+tooling for this device). "ibufmd" unfortunately is not a 1:1 mapping
+with an MSS Configurator option, unlike clamp-diode or lockdown, and I
+do not know the effect of any bits in the field. I have no been able to
+find an explanation for these bits in documentation.
+
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- arch/arm64/boot/dts/qcom/Makefile             |   1 +
- .../boot/dts/qcom/sdm660-xiaomi-jasmine.dts   | 333 ++++++++++++++++++
- 2 files changed, 334 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sdm660-xiaomi-jasmine.dts
+ .../pinctrl/microchip,mpfs-pinctrl-mssio.yaml | 109 ++++++++++++++++++
+ .../microchip,mpfs-mss-top-sysreg.yaml        |   4 +
+ 2 files changed, 113 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/microchip,mpfs-pinctrl-mssio.yaml
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index a1cf067fdfeb..8f7b66bee6be 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -245,6 +245,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm632-motorola-ocean.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm636-sony-xperia-ganges-mermaid.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm636-xiaomi-tulip.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm636-xiaomi-whyred.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sdm660-xiaomi-jasmine.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm660-xiaomi-lavender.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm670-google-sargo.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-db845c.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sdm660-xiaomi-jasmine.dts b/arch/arm64/boot/dts/qcom/sdm660-xiaomi-jasmine.dts
+diff --git a/Documentation/devicetree/bindings/pinctrl/microchip,mpfs-pinctrl-mssio.yaml b/Documentation/devicetree/bindings/pinctrl/microchip,mpfs-pinctrl-mssio.yaml
 new file mode 100644
-index 000000000000..784a6c41be6d
+index 000000000000..fe05196160f4
 --- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sdm660-xiaomi-jasmine.dts
-@@ -0,0 +1,333 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2022, Joe Mason <buddyjojo06@outlook.com>
-+ */
++++ b/Documentation/devicetree/bindings/pinctrl/microchip,mpfs-pinctrl-mssio.yaml
+@@ -0,0 +1,109 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pinctrl/microchip,mpfs-pinctrl-mssio.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+/dts-v1/;
++title: Microchip Polarfire SoC MSSIO pinctrl
 +
-+#include "sdm660.dtsi"
-+#include "sdm660-xiaomi-common.dtsi"
++maintainers:
++  - Conor Dooley <conor.dooley@microchip.com>
 +
-+/ {
-+	model = "Xiaomi Mi A2";
-+	compatible = "xiaomi,jasmine", "qcom,sdm660";
-+	chassis-type = "handset";
++properties:
++  compatible:
++    oneOf:
++      - const: microchip,mpfs-pinctrl-mssio
++      - items:
++          - const: microchip,pic64gx-pinctrl-mssio
++          - const: microchip,mpfs-pinctrl-mssio
 +
-+	battery: battery {
-+		compatible = "simple-battery";
-+		charge-full-design-microamp-hours = <3000000>;
-+		voltage-min-design-microvolt = <3400000>;
-+		voltage-max-design-microvolt = <4400000>;
-+	};
++  reg:
++    maxItems: 1
 +
-+	reserved-memory {
-+		ramoops@a0000000 {
-+			compatible = "ramoops";
-+			reg = <0x0 0xa0000000 0x0 0x400000>;
-+			console-size = <0x20000>;
-+			record-size = <0x20000>;
-+			ftrace-size = <0x0>;
-+			pmsg-size = <0x20000>;
-+		};
-+	};
-+};
++  pinctrl-use-default: true
 +
-+&blsp_i2c1 {
-+	status = "okay";
++patternProperties:
++  '-cfg$':
++    type: object
++    additionalProperties: false
 +
-+	touchscreen@1 {
-+		compatible = "novatek,nt36672a-ts";
-+		reg = <0x1>;
-+		iovcc-supply = <&vreg_l11a_1p8>;
-+		interrupts-extended = <&tlmm 67 IRQ_TYPE_EDGE_RISING>;
-+		pinctrl-0 = <&ts_active>;
-+		pinctrl-names = "default";
-+		reset-gpios = <&tlmm 66 GPIO_ACTIVE_LOW>;
-+		touchscreen-size-x = <1080>;
-+		touchscreen-size-y = <2160>;
-+	};
-+};
++    patternProperties:
++      '-pins$':
++        type: object
++        additionalProperties: false
 +
-+&framebuffer0 {
-+	width = <1080>;
-+	height = <2160>;
-+	stride = <(1080 * 4)>;
++        allOf:
++          - $ref: pincfg-node.yaml#
++          - $ref: pinmux-node.yaml#
 +
-+	status = "okay";
-+};
++        properties:
++          pins:
++            description:
++              The list of IOs that properties in the pincfg node apply to.
 +
-+&pm660_charger {
-+	monitored-battery = <&battery>;
++          function:
++            description:
++              A string containing the name of the function to mux for these
++              pins. The "reserved" function tristates a pin.
++            enum: [ sd, emmc, qspi, spi, usb, uart, i2c, can, mdio, misc
++                    reserved, gpio, fabric-test, tied-low, tied-high, tristate ]
 +
-+	status = "okay";
-+};
++          bias-bus-hold: true
++          bias-disable: true
++          bias-pull-down: true
++          bias-pull-up: true
++          input-schmitt-enable: true
++          low-power-enable: true
 +
-+&pm660l_wled {
-+	status = "okay";
-+};
++          drive-strength:
++            enum: [ 2, 4, 6, 8, 10, 12, 16, 20 ]
 +
-+&rpm_requests {
-+	regulators-0 {
-+		compatible = "qcom,rpm-pm660l-regulators";
++          power-source:
++            description:
++              Which bank voltage to use. This cannot differ for pins in a
++              given bank, the whole bank uses the same voltage.
++            enum: [ 1200000, 1500000, 1800000, 2500000, 3300000 ]
 +
-+		vdd_s1-supply = <&vph_pwr>;
-+		vdd_s2-supply = <&vph_pwr>;
-+		vdd_s3_s4-supply = <&vph_pwr>;
-+		vdd_s5-supply = <&vph_pwr>;
-+		vdd_s6-supply = <&vph_pwr>;
++          microchip,clamp-diode:
++            $ref: /schemas/types.yaml#/definitions/flag
++            description:
++              Reflects the "Clamp Diode" setting in the MSS Configurator for
++              this pin. This setting controls whether or not input voltage
++              clamping should be enabled.
 +
-+		vdd_l1_l9_l10-supply = <&vreg_s2b_1p05>;
-+		vdd_l2-supply = <&vreg_bob>;
-+		vdd_l3_l5_l7_l8-supply = <&vreg_bob>;
-+		vdd_l4_l6-supply = <&vreg_bob>;
-+		vdd_bob-supply = <&vph_pwr>;
++          microchip,ibufmd:
++            $ref: /schemas/types.yaml#/definitions/uint32
++            default: 0
++            description:
++              Reflects the "IBUFMD" bits in the MSS Configurator output files
++              for this pin.
 +
-+		vreg_s1b_1p125: s1 {
-+			regulator-min-microvolt = <1125000>;
-+			regulator-max-microvolt = <1125000>;
-+			regulator-enable-ramp-delay = <200>;
-+		};
++        required:
++          - pins
++          - function
++          - power-source
 +
-+		vreg_s2b_1p05: s2 {
-+			regulator-min-microvolt = <1050000>;
-+			regulator-max-microvolt = <1050000>;
-+			regulator-enable-ramp-delay = <200>;
-+		};
++required:
++  - compatible
++  - reg
 +
-+		/* LDOs */
-+		vreg_l1b_0p925: l1 {
-+			regulator-min-microvolt = <800000>;
-+			regulator-max-microvolt = <925000>;
-+			regulator-enable-ramp-delay = <250>;
-+			regulator-allow-set-load;
-+		};
++additionalProperties: false
 +
-+		/* SDHCI 3.3V signal doesn't seem to be supported. */
-+		vreg_l2b_2p95: l2 {
-+			regulator-min-microvolt = <1648000>;
-+			regulator-max-microvolt = <2696000>;
-+			regulator-enable-ramp-delay = <250>;
-+			regulator-allow-set-load;
-+		};
++examples:
++  - |
++    pinctrl@204 {
++      compatible = "microchip,mpfs-pinctrl-mssio";
++      reg = <0x204 0x7c>;
 +
-+		vreg_l3b_3p3: l3 {
-+			regulator-min-microvolt = <1700000>;
-+			regulator-max-microvolt = <3300000>;
-+			regulator-enable-ramp-delay = <250>;
-+			regulator-allow-set-load;
-+			regulator-always-on;
-+		};
++      ikrd-spi1-cfg {
++        spi1-pins {
++          pins = <30>, <31>, <32>, <33>;
++          function = "spi";
++          bias-pull-up;
++          drive-strength = <8>;
++          power-source = <3300000>;
++          microchip,ibufmd = <0x1>;
++        };
++      };
++    };
++...
+diff --git a/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-mss-top-sysreg.yaml b/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-mss-top-sysreg.yaml
+index 39987f722411..44e4a50c3155 100644
+--- a/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-mss-top-sysreg.yaml
++++ b/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-mss-top-sysreg.yaml
+@@ -42,6 +42,10 @@ properties:
+     type: object
+     $ref: /schemas/pinctrl/microchip,mpfs-pinctrl-iomux0.yaml
+ 
++  pinctrl@204:
++    type: object
++    $ref: /schemas/pinctrl/microchip,mpfs-pinctrl-mssio.yaml
 +
-+		vreg_l4b_2p95: l4 {
-+			regulator-min-microvolt = <2944000>;
-+			regulator-max-microvolt = <2952000>;
-+			regulator-enable-ramp-delay = <250>;
-+
-+			regulator-min-microamp = <200>;
-+			regulator-max-microamp = <600000>;
-+			regulator-system-load = <570000>;
-+			regulator-allow-set-load;
-+		};
-+
-+		/*
-+		 * Downstream specifies a range of 1721-3600mV,
-+		 * but the only assigned consumers are SDHCI2 VMMC
-+		 * and Coresight QPDI that both request pinned 2.95V.
-+		 * Tighten the range to 1.8-3.328 (closest to 3.3) to
-+		 * make the mmc driver happy.
-+		 */
-+		vreg_l5b_2p95: l5 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <3328000>;
-+			regulator-enable-ramp-delay = <250>;
-+			regulator-allow-set-load;
-+			regulator-system-load = <800000>;
-+		};
-+
-+		vreg_l7b_3p125: l7 {
-+			regulator-min-microvolt = <2700000>;
-+			regulator-max-microvolt = <3125000>;
-+			regulator-enable-ramp-delay = <250>;
-+		};
-+
-+		vreg_l8b_3p3: l8 {
-+			regulator-min-microvolt = <3200000>;
-+			regulator-max-microvolt = <3400000>;
-+			regulator-enable-ramp-delay = <250>;
-+		};
-+
-+		vreg_bob: bob {
-+			regulator-min-microvolt = <3300000>;
-+			regulator-max-microvolt = <3600000>;
-+			regulator-enable-ramp-delay = <500>;
-+		};
-+	};
-+
-+	regulators-1 {
-+		compatible = "qcom,rpm-pm660-regulators";
-+
-+		vdd_s1-supply = <&vph_pwr>;
-+		vdd_s2-supply = <&vph_pwr>;
-+		vdd_s3-supply = <&vph_pwr>;
-+		vdd_s4-supply = <&vph_pwr>;
-+		vdd_s5-supply = <&vph_pwr>;
-+		vdd_s6-supply = <&vph_pwr>;
-+
-+		vdd_l1_l6_l7-supply = <&vreg_s5a_1p35>;
-+		vdd_l2_l3-supply = <&vreg_s2b_1p05>;
-+		vdd_l5-supply = <&vreg_s2b_1p05>;
-+		vdd_l8_l9_l10_l11_l12_l13_l14-supply = <&vreg_s4a_2p04>;
-+		vdd_l15_l16_l17_l18_l19-supply = <&vreg_bob>;
-+
-+		/*
-+		 * S1A (FTAPC0), S2A (FTAPC1), S3A (HFAPC1) are managed
-+		 * by the Core Power Reduction hardened (CPRh) and the
-+		 * Operating State Manager (OSM) HW automatically.
-+		 */
-+
-+		vreg_s4a_2p04: s4 {
-+			regulator-min-microvolt = <1805000>;
-+			regulator-max-microvolt = <2040000>;
-+			regulator-enable-ramp-delay = <200>;
-+			regulator-always-on;
-+		};
-+
-+		vreg_s5a_1p35: s5 {
-+			regulator-min-microvolt = <1224000>;
-+			regulator-max-microvolt = <1350000>;
-+			regulator-enable-ramp-delay = <200>;
-+		};
-+
-+		vreg_s6a_0p87: s6 {
-+			regulator-min-microvolt = <504000>;
-+			regulator-max-microvolt = <992000>;
-+			regulator-enable-ramp-delay = <150>;
-+		};
-+
-+		/* LDOs */
-+		vreg_l1a_1p225: l1 {
-+			regulator-min-microvolt = <1150000>;
-+			regulator-max-microvolt = <1250000>;
-+			regulator-enable-ramp-delay = <250>;
-+			regulator-allow-set-load;
-+		};
-+
-+		vreg_l2a_1p0: l2 {
-+			regulator-min-microvolt = <950000>;
-+			regulator-max-microvolt = <1010000>;
-+			regulator-enable-ramp-delay = <250>;
-+		};
-+
-+		vreg_l3a_1p0: l3 {
-+			regulator-min-microvolt = <950000>;
-+			regulator-max-microvolt = <1010000>;
-+			regulator-enable-ramp-delay = <250>;
-+		};
-+
-+		vreg_l5a_0p848: l5 {
-+			regulator-min-microvolt = <525000>;
-+			regulator-max-microvolt = <950000>;
-+			regulator-enable-ramp-delay = <250>;
-+		};
-+
-+		vreg_l6a_1p3: l6 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1370000>;
-+			regulator-allow-set-load;
-+			regulator-enable-ramp-delay = <250>;
-+		};
-+
-+		vreg_l7a_1p2: l7 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-enable-ramp-delay = <250>;
-+		};
-+
-+		vreg_l8a_1p8: l8 {
-+			regulator-min-microvolt = <1750000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-enable-ramp-delay = <250>;
-+			regulator-system-load = <325000>;
-+			regulator-allow-set-load;
-+		};
-+
-+		vreg_l9a_1p8: l9 {
-+			regulator-min-microvolt = <1750000>;
-+			regulator-max-microvolt = <1900000>;
-+			regulator-enable-ramp-delay = <250>;
-+			regulator-allow-set-load;
-+		};
-+
-+		vreg_l10a_1p8: l10 {
-+			regulator-min-microvolt = <1780000>;
-+			regulator-max-microvolt = <1950000>;
-+			regulator-enable-ramp-delay = <250>;
-+			regulator-allow-set-load;
-+			regulator-system-load = <14000>;
-+		};
-+
-+		vreg_l11a_1p8: l11 {
-+			regulator-min-microvolt = <1780000>;
-+			regulator-max-microvolt = <1950000>;
-+			regulator-enable-ramp-delay = <250>;
-+		};
-+
-+		vreg_l12a_1p8: l12 {
-+			regulator-min-microvolt = <1780000>;
-+			regulator-max-microvolt = <1950000>;
-+			regulator-enable-ramp-delay = <250>;
-+		};
-+
-+		/* This gives power to the LPDDR4: never turn it off! */
-+		vreg_l13a_1p8: l13 {
-+			regulator-min-microvolt = <1780000>;
-+			regulator-max-microvolt = <1950000>;
-+			regulator-enable-ramp-delay = <250>;
-+			regulator-boot-on;
-+			regulator-always-on;
-+		};
-+
-+		vreg_l14a_1p8: l14 {
-+			regulator-min-microvolt = <1710000>;
-+			regulator-max-microvolt = <1900000>;
-+			regulator-enable-ramp-delay = <250>;
-+		};
-+
-+		vreg_l15a_1p8: l15 {
-+			regulator-min-microvolt = <1650000>;
-+			regulator-max-microvolt = <2950000>;
-+			regulator-enable-ramp-delay = <250>;
-+		};
-+
-+		vreg_l16a_2p7: l16 {
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <2800000>;
-+			regulator-enable-ramp-delay = <250>;
-+			regulator-always-on;
-+		};
-+
-+		vreg_l17a_1p8: l17 {
-+			regulator-min-microvolt = <1648000>;
-+			regulator-max-microvolt = <2952000>;
-+			regulator-enable-ramp-delay = <250>;
-+		};
-+
-+		vreg_l19a_3p3: l19 {
-+			regulator-min-microvolt = <3312000>;
-+			regulator-max-microvolt = <3400000>;
-+			regulator-enable-ramp-delay = <250>;
-+			regulator-allow-set-load;
-+		};
-+	};
-+};
-+
-+&tlmm {
-+	gpio-reserved-ranges = <8 4>; /* Fingerprint SPI */
-+
-+	ts_active: ts-active-state {
-+		pins = "gpio66", "gpio67";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-up;
-+	};
-+};
+ required:
+   - compatible
+   - reg
 -- 
-2.52.0
+2.51.0
 
 
