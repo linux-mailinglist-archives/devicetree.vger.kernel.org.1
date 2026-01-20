@@ -1,271 +1,477 @@
-Return-Path: <devicetree+bounces-257528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257525-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GC7kJTHRb2mgMQAAu9opvQ
-	(envelope-from <devicetree+bounces-257528-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 20:02:09 +0100
+	id OMC7I0y9b2kOMQAAu9opvQ
+	(envelope-from <devicetree+bounces-257525-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 18:37:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BBD049F39
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 20:02:07 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E9A048AE5
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 18:37:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9B7E18AE439
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 17:24:37 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8569C9C5733
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 17:23:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 360CC421EEB;
-	Tue, 20 Jan 2026 17:23:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E6C33DA7F9;
+	Tue, 20 Jan 2026 17:23:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MvyvrnH2";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="FdP26bMd"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="FsMNEHS3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from TYVP286CU001.outbound.protection.outlook.com (mail-japaneastazon11011059.outbound.protection.outlook.com [52.101.125.59])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC7123F23B1
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 17:23:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768929830; cv=none; b=Pn/1ggZOLW2jkgHkM0EXHuoDRn0CTab3cFAnsGTiZLCpphWYUL5iH5W01epI2EvCh/g811RkMvd3fZw/MSWSfPWQu8y27Fs6EKQ2iy1CGvp47A8ov0w4yK5qi4ewTwTRiUkUSCNE2jcjL/Qky2C/DL763CFG85x/nTgxGBotEDA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768929830; c=relaxed/simple;
-	bh=xOKCUEK79jZEMU0XsZlL2vcpGR/Zktrh+jM8ZBiVhRI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ALvGAxBgJhS9C/DL4VidP1Z4d+QXcUUSi+1IeXA7p2SloZIvfZDCPk1Qzu33rfVXtitmQJfzH2Y7sC9u0o/xmkhdBLWZwdbUBdG81y8RXiGZ830dDtuGuRs1+ov69FHVv+/BvmebK5ngPMR2XgVJwbU5sX5iLxjOfWtnPVfHnno=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MvyvrnH2; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=FdP26bMd; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60KH4ChN3257519
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 17:23:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Js6BTGG/ZwNb6rGbBE6BzKASIp33EAZbXoHw3fRr6Dc=; b=MvyvrnH2yKPJQxut
-	FxsL7eLSD0vPm7/8qrALcscQ2y98faVaPZ48GhUN7DiAICB0FUpw3+CuDohOyoo7
-	l2AGsHpBiWNfCApiJlcWKiq7uq6ZrKYagY32cUol3WaeQvRRMR88IyR65U/0OI9H
-	m1ukWUNCx4ZbuKQgxHik4PLeygTQzpy3VEWTXKhNgEYzTfcJrrvEXxvLOVSM60GS
-	M0llj+ViWLTqPKzmVSBay8Gb6/DKVZPhNihBSQB7gvDKgPZKKvO5ihOdIZXwvGMd
-	oHsQIlBxHPFV8bu8cpEJT9EJuqExKS2MTIKP5lmsiuWzoIuz3xFn7SjVsgaTiORw
-	UGM9Mw==
-Received: from mail-dy1-f199.google.com (mail-dy1-f199.google.com [74.125.82.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bt6u7sgqm-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 17:23:46 +0000 (GMT)
-Received: by mail-dy1-f199.google.com with SMTP id 5a478bee46e88-2b6f0b345e3so7306125eec.0
-        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 09:23:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768929825; x=1769534625; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Js6BTGG/ZwNb6rGbBE6BzKASIp33EAZbXoHw3fRr6Dc=;
-        b=FdP26bMdDn/T/z8ZNi+bLVi62gHz7s6cRhtr1lydVhGAkHxNAXS2t4M8nDJKy220Cx
-         yiO/AzMWukC2d7taxqxKZWy2dwHYILiKHaOmUkZ8FANTsM1uRyXSBcmeCIWq1mzLemoe
-         RY+tk1YYyCTWTYaRFH0F63lxBOOcn/s4laTIDyA5uVstT0ZnjoCPiQLCqx4I7j5xF/tq
-         PIJ2YlKEtbK0p90Y9zRrTUrY9y1uSbHFpv2NsDpK4/ZZJU/e5AZnhHNymJr0Y3Y0CJF2
-         jyhcHPbidCtrngL6TXmltoRRNDstiayiUKoc7ejm0NruWu38xRVHJK6onje0DdFU3XlA
-         5p/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768929825; x=1769534625;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Js6BTGG/ZwNb6rGbBE6BzKASIp33EAZbXoHw3fRr6Dc=;
-        b=L1ctJ2JbN+xs7UG2WlEuOZ+ziL7PQVfYyXNryRJs69P/KxnAefgWDwZk4s2HstDiVN
-         OqDpyXOvuGFqMaF5nqppUUGrPfMlqhHcoSd/epX45jCBNNt3wbMyiTltCEyemQLWgqTn
-         aeogmJcml1JuK6gncO6OqGAFY2vQEi37UljldAtVjcCmNQdZ3tRK48jxRgzcPTrwIsZ4
-         aa8GVuiKMiD5rSzVXHgr8rcwqodh77e9ia91Znu0DE7njg4C8mVXKLxXYYrGxjakKO2Y
-         eKuiNcvSk5xTIwl63ZJNOqJg1t4DPcl004XM+qZNUCHWzcL1DNfh6QI+UxXi6WpYk4Ae
-         QsBA==
-X-Forwarded-Encrypted: i=1; AJvYcCW+DR8MVpWEWut33cKRXjlefC5WENH6G8+1RLJdHu/tpnSi0i56VA6PRc2j/BpmJJsb8pA+9YaRvhOC@vger.kernel.org
-X-Gm-Message-State: AOJu0YzTJTdPudzSzdyLM1ishTzICrqyhH6L4NAP2L6wegXjuIpo6PR9
-	ylrwU/juUBkSi30LQTouJpfIZ/i7bMe3VCPUCPOfrzsARYACG0V/0bFIIHzFA8ILitZzq6KhC/P
-	WZ8Kv9STI9dyknlfzXJGnxGSgA4z8bJEbdG/JRycJTQzmf+Gh3UtS1NKEXW/blz8V
-X-Gm-Gg: AY/fxX69FFlKXei6MXiM2JSE3IbmSbCepAssI4C42i+SBb3HFM7VA+9qGHXx2COsXcR
-	toNdUKm3llNq+5HG23HQsQD7RSq33vvjqW9N+PL2YBpHtu0uuLl3uUtJbV2/GHjqIPcAyMUQ8fa
-	r+R+yyy/aNGHVrli+UKBg2DF3HftsXXfis1x5XPj+5REjBADxPOjTDsBsbU1CZlGAu41bSPRwlX
-	BxJm75KC/o/fkn1FLYKqTdGJdrCQ14pqA9aBGO6H2B1u9SSM07+z8YgpYAOLCmEaB3eQ8R0BaOI
-	oEpO7VSqZ7alFY87iJ8a5taZL84IhTzmvsO/RO93HmOWYkjmh0zfzVDoBo/LqFZ/dMoEjHEgI3A
-	4pdRKnbbO54ndYRvFkDsO+zVcY24Ec86FN5hnvuwUdSZ1WD4n14aIVRnUg7l/HSmEJRuQBOBZ8w
-	==
-X-Received: by 2002:a05:7022:128b:b0:11f:3483:bbb0 with SMTP id a92af1059eb24-1244a72aef2mr13665627c88.19.1768929824993;
-        Tue, 20 Jan 2026 09:23:44 -0800 (PST)
-X-Received: by 2002:a05:7022:128b:b0:11f:3483:bbb0 with SMTP id a92af1059eb24-1244a72aef2mr13665588c88.19.1768929824362;
-        Tue, 20 Jan 2026 09:23:44 -0800 (PST)
-Received: from hu-ggarmidi-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1244af22aaasm18714842c88.17.2026.01.20.09.23.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jan 2026 09:23:44 -0800 (PST)
-From: Gopikrishna Garmidi <gopikrishna.garmidi@oss.qualcomm.com>
-Date: Tue, 20 Jan 2026 09:22:51 -0800
-Subject: [PATCH v3 2/2] pinctrl: qcom: glymur: Add Mahua TLMM support
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2DE73BC4D2;
+	Tue, 20 Jan 2026 17:23:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.125.59
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768929807; cv=fail; b=lUBT0fNHkAmqTl8TMqc065g+JZGR1WZAgLB1KbhMIKZvsYCIMVcLL3Xpz4W+iPAgcUo7yxI+HYCMGchl3DLsVK/QWfdAjIVAl2GWUjHnHSbhDQDv+f94UsKambcHyJCGi753Kp4j++e0xdXKpZmKxIBHETzDr5BYX54IXv/TCn4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768929807; c=relaxed/simple;
+	bh=4QjpyFmhiCxKea0yGSsjOiYvxnP4PjMOl2xjjYMzzpI=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=emiEslHdtYFjUwlmgUcLagkXa5VEiiGNLlythL7HCBhJ9m+BWWyXvm9izDkjNcuAAXMjC4f5ymGbTrSaJeJ4czLapdzsyI32E75lgYgz4lyUkeXYnoGOJo+CSiANdXHqVg50BYQRzEm+Q6fCdsY18Gso1MNNj4D4q/WFfChL8r4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=FsMNEHS3; arc=fail smtp.client-ip=52.101.125.59
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=oWs23LYFEh18+CjjpoOXAuIWtpoS8DqIPbS7nmF7MxJ38VHQvUW1cU3xsYh/h5Cb6ISVZtx/CcU8BHcILlAvc3Bw7VfXwhESLh416b2Ksrwz0GTgas+u4dx0KSPzObmTt3LBARAwHIQGSFKJiLBMJoME0Z3bAQJ4XrXBn9QzbxAJBvdtSO0a9fzmXgHnJqUaQH5W/WxHjPYbaCXYTRerc/9jCi2ibHuit1PFr46N4boGFwTlVgMi8PqErVJAuER5jK7d5rIyXM258IJheqmRCIpc+F650nIqfMfhgO+p8eky95bmiyRg7Yq/3Q7d68yFNQ9kEWzX3MmU3wYuAHdzTA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=XPeb0ujRR9oL5HEs3JWm58EMvfJRD15BHQyf70SMIRQ=;
+ b=LnXem5pB5HSwhX/y9slxMQN5fhfdCNoHwk9UhdS/lbSPDVmyW9RHBjBOlAUNGzAuGKFM5awuRmSVDYJaI++BRuscVJYochU/e2+Ap1avHBFMKXZ8UheCfr7rPin22NgIt2UWws8WURTO0ymrEMnm91X3kud/WyHXr6gh8ywKMPIULsL30fI6S7uMs217NqRGJfGiggJt7QeTHqnESFcDnAaS+s6S+UseLTa/1i7tecKOlqK84oHgQuNeKUEBawjQOMBXVZtQkeVl8G9zoYpn/Swkw9hSIbT064gAtwNJM2UbdvfZeD3JhFFLGH/4by/OkcDU18SvziPGeA7b+ssZMQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XPeb0ujRR9oL5HEs3JWm58EMvfJRD15BHQyf70SMIRQ=;
+ b=FsMNEHS3Q12CBuFwV6nLS48aaCryHoQ5U1+Rhw5jEpObkI9RWGh4AxTHHMlTPz99rT0RiWj+DsRXRq5Zf2kCPMQs7GKlU7NzJVfGTF+dQjZwWneaDWle0usE9S8tZvhCts7b+aAjJ8VoFZqZC2pbNtKz3yuSYTBI/m9mFnzmQfo=
+Received: from TYCPR01MB12093.jpnprd01.prod.outlook.com (2603:1096:400:448::7)
+ by TYRPR01MB12140.jpnprd01.prod.outlook.com (2603:1096:405:104::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.12; Tue, 20 Jan
+ 2026 17:23:22 +0000
+Received: from TYCPR01MB12093.jpnprd01.prod.outlook.com
+ ([fe80::439:42dd:2bf:a430]) by TYCPR01MB12093.jpnprd01.prod.outlook.com
+ ([fe80::439:42dd:2bf:a430%4]) with mapi id 15.20.9520.011; Tue, 20 Jan 2026
+ 17:23:22 +0000
+From: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+To: Ovidiu Panait <ovidiu.panait.rb@renesas.com>, "geert+renesas@glider.be"
+	<geert+renesas@glider.be>, magnus.damm <magnus.damm@gmail.com>,
+	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"mturquette@baylibre.com" <mturquette@baylibre.com>, "sboyd@kernel.org"
+	<sboyd@kernel.org>, Biju Das <biju.das.jz@bp.renesas.com>
+CC: "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
+Subject: RE: [PATCH v2 3/5] clk: versaclock3: Add freerunning 32.768kHz clock
+ support
+Thread-Topic: [PATCH v2 3/5] clk: versaclock3: Add freerunning 32.768kHz clock
+ support
+Thread-Index: AQHcih5b82bJ+45qdEe0zF4VtdWSjbVbTqfw
+Date: Tue, 20 Jan 2026 17:23:22 +0000
+Message-ID:
+ <TYCPR01MB12093A737BC3CD4DCC22A6F10C289A@TYCPR01MB12093.jpnprd01.prod.outlook.com>
+References: <20260120150606.7356-1-ovidiu.panait.rb@renesas.com>
+ <20260120150606.7356-4-ovidiu.panait.rb@renesas.com>
+In-Reply-To: <20260120150606.7356-4-ovidiu.panait.rb@renesas.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYCPR01MB12093:EE_|TYRPR01MB12140:EE_
+x-ms-office365-filtering-correlation-id: ff7f1ddb-fcd3-47f2-a99c-08de58489cab
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|366016|7416014|376014|7053199007|38070700021;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?HaeuV0vnXBRetOPtx+fpJj+8y4LezACxFdfpRUCfX6OBDqbZyXQBcdjSM0Qs?=
+ =?us-ascii?Q?WTrhwpZbw+CrlTlICmUQnFgNU6wpzx0z3N7j1Gc3G1hQjc630QmWCyF1gQK7?=
+ =?us-ascii?Q?B3SV/PpMg7fN6ci98Tutdc3U5HtvpORRS7ImFeBWweVq3b4WShZk+/a7afQv?=
+ =?us-ascii?Q?krlZCTMvfPMrMiyGvMCdi6CKC+vFSpzAbYVKbAp/5h1o8RXIt4Wh/LyfEq4C?=
+ =?us-ascii?Q?FibvJfWop8C6pxxABcneVcRjQV1Ev/gpRMd7wwknpZoM9s2raoQ6Cutl/5ra?=
+ =?us-ascii?Q?J+hMPoz+2ZI0wnZznYOsRMORmf8TWtBAYHQrAn4XiT+PRnUM+2gkpp1b2/xd?=
+ =?us-ascii?Q?YstOiNTWtmJzLbJcbzftnrxQs1Qc4i51D1V4ilQScKI2GLrUTgkprwvO5Vk5?=
+ =?us-ascii?Q?8y2ozXTgwNChAmu8xGd8Xj2Mpaay4eyzCQp+QX0vyDeyUvMaJ4sK4jweV/6X?=
+ =?us-ascii?Q?ypIPpyBWqgb8Bbqn8M0clVJst86Gr+a5/zGfxbEUD3ZQzGKEadXZA32hrQ9i?=
+ =?us-ascii?Q?Lbvx6APR+e1W3nRW6ix5xHGDhwta0IkfcwrHH6jJp30fRyZXGgSSBmyAdfhE?=
+ =?us-ascii?Q?2MAb6OAT8AIkhXK5p5dQlDJfvrqiAaGQO8Y11bHSQ0jbprRGTDVrdKCVOiMY?=
+ =?us-ascii?Q?vJpiwV7ZOeHatHHkZhv7i+ezxBvECy88UTnGt7QkyrRF94VzmlRQ/JgKuZJQ?=
+ =?us-ascii?Q?b4PClXcTEs2bNict7aXcSKw8w7q2pOUmimX83ysWAki7LRnsEJmgW4+c/4tb?=
+ =?us-ascii?Q?xcHr5jE+wZFwkGmasb/jr7kzDr0GkkjR3JcBGubwMtKZ5P5qM0gQKWwupfAz?=
+ =?us-ascii?Q?sX0HN00cN8nHNMFcI7oojnW2o2CcFBRjOrRf5tGTwNch1Mj7Z1Ix2Nk56cX8?=
+ =?us-ascii?Q?MrUD28t9IAJyN9CyIZuKFX/2dMZ+L/ejOJ9e/mjiwrXk7WLX5qbC0wV94bTb?=
+ =?us-ascii?Q?71RWV5Jf3hrV2p3wsIKPUS6y8C33Gf7bVRigU6KimF0cBOm8ajknjWwBRav8?=
+ =?us-ascii?Q?y0+rzzPPfpoRhlvGygVEybrL8FLlYyNTSjwkdlIkbOlOF8YLSIl5P+49b/4X?=
+ =?us-ascii?Q?y8M6OZTfaOtRWUerEGct7qowmfg1tTDmngjBxX8dOS7V9ZDGkRSa8NiieWd8?=
+ =?us-ascii?Q?FAay/H/EWjw1vHvMumBdShw5zh+geFfyvOelJ+qZKkIU+DiBhbkVe2SDEwUE?=
+ =?us-ascii?Q?JY04di+5o0yCQmbGiF/zkTWLCGSuUuo/p37bN75tI7NEh9STyylEQ5DYAQMT?=
+ =?us-ascii?Q?O498LGBhL7M6/fTgsbbW8JfNky4XOZ39VfnuKiY7rk3OQgFC77bzV9a5Grmw?=
+ =?us-ascii?Q?dzecqomnGKd4ddgaH+CdR5u9GzFrjpYs9z1bYmbUra2/uDeafDeIj8tpdRKV?=
+ =?us-ascii?Q?MZIGJGsUTkr7TRVt4fwosvxS0HBYQyGV0bPEpw6q2EQtrvNGHzjCtD5rEMhi?=
+ =?us-ascii?Q?EH9qc+S14Mhf61a2Kf+VGNHB4TMDFkJfQCi8QmqXE6DZwtGqm0rRc+L91J01?=
+ =?us-ascii?Q?RxZ8unIlHuF+wKQpVA7QsAKuGqf62DXmjT9Mf9QaJvWwHHlLv+4Kv7CA3t1d?=
+ =?us-ascii?Q?E3brp8W51ZfRC7LczcMz5QLP+RDykbbDT7WhNBPWNPKp5ZSWPpSBvbimnxEu?=
+ =?us-ascii?Q?WCyvTEZmLbd0h39BWJg+hjo=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB12093.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(7053199007)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?Y5nRgHF8ESvlCJ0l8PssDUh5YRbRSHeh+TPyHIVFxT3FB+HWlpTvt/8dEYUA?=
+ =?us-ascii?Q?ppnYxTaR6diFE3b/ViyrQyy1VmsKPxgJNYJrvHtjeaitmSkNHqupuAWA6vu5?=
+ =?us-ascii?Q?dVIbJMI9VguXTTcSforBZR+VLURrPTUfDFlij1cv4/eDvdrkXvXDZPa0Ub2h?=
+ =?us-ascii?Q?EfMC6MBpsY02qPtRCiUHuBUnaUAfhVdS2scBK2yOqHrh0XVwDNQEWsrdgADF?=
+ =?us-ascii?Q?Bu+BpXfeFR8TpC6s968CAYYWNT6wSUoOaBDvCF+WzDXBPZUYMFIPtRLejNjF?=
+ =?us-ascii?Q?57hiKGglpphIcTQiRe35Bp2r05m03BEuEmVzhs0S6zygxU3o1znULarHNTjS?=
+ =?us-ascii?Q?ivmW3YLGxTovoDYVHSWuI1lkXWllUORogjzQjVt9QJxhVwp2l+5IstQv9YFA?=
+ =?us-ascii?Q?aeL8DJ2ZVxrsH0SpmHqM6HuUKgYbFeBiSaGjB7bhkesbKQyP6XEFhwU/KELg?=
+ =?us-ascii?Q?tfoklGNzF62Zp50lAdnIPlCfaVZiHZwe942cd7DYAOSISY1msVhc/Cs74W7y?=
+ =?us-ascii?Q?57/QKol7CERphjM/EunGpNNayfndyUQ+GgcU2qq7PAipMUegKMAlXliSbWY/?=
+ =?us-ascii?Q?8/EDc1+GObDEj/nPqwVmKZuLwHl4r8Ha/jIzkCHOiSgPpC82KIV30RJrjaZ3?=
+ =?us-ascii?Q?PM/HsjCMPqNZDG70R1mo0JGrBTMewJ9Ga2XLoMuvTQK5QlpWudTtpKtgTGZd?=
+ =?us-ascii?Q?2IzoUf5tPNB9SI5niHmFuW67vNjNIpFqrXiApo0436Gg6535jNLxMGwUVGwA?=
+ =?us-ascii?Q?W15MaUoLkCAXl693qPlpNfYzCEFDSi1E6gB92fLFxnL3Sq5R9q4e52tRCO9P?=
+ =?us-ascii?Q?OzBI/sadExUYCvhmG6Lu/laON6E6YW4oZ3Qm8IsMgWtHMFRlCQ/CdgtNmn88?=
+ =?us-ascii?Q?MkWzmAEy4Ha+8r02qbygnmNDFnO08YUT4gxN6JcJqakWIjisS+dE///EYMJI?=
+ =?us-ascii?Q?haieNggjFw3clZRypwwj6H+aN6vK8RTf4PYzUSt2FwFR3DtuVejsomnxHTmV?=
+ =?us-ascii?Q?VLbCzPx7TRX9GpqSs99l1bgwrr67VXvpg5QFnZgRCLHOJMeAp7JFuD7HDIc3?=
+ =?us-ascii?Q?DKoP2+uoLYJcpH9YIBRyhf9PYlbL2NNZZAhhktGfdDGYZysATFEpt+SxBH8W?=
+ =?us-ascii?Q?vZW9dsgO4W9MU9mUGBHk9lV319x9VIB6dRFTGmBapBYefCZGSUzozlFR82Tl?=
+ =?us-ascii?Q?C7Zlv462BSFZjqAdzpvobYAOP0CGQNrJXo1GRhDIYtQvSKbJMs4NELHArWgY?=
+ =?us-ascii?Q?UFarwT7gV/whte2EiDH02dNWPJqQIFM2C6R4Ce0jKYuFH4ApXEedp9TZX0i6?=
+ =?us-ascii?Q?V0UwdcsqefmrujMIFKvDqOHjwSiRvcwZLBt7QWge/fuxu4iUcnd/Vl9uKSX+?=
+ =?us-ascii?Q?CXnhHZL/F3AGxnJ5HOlQM5ZsjFLNOftp6/JMipW0jO743b986sU7e1kAefv+?=
+ =?us-ascii?Q?phXO4KcVYr3VRBhDEKpuak1LaAffCkTExJHgMFCrWjFPeHyVJE6MbGGqdyxh?=
+ =?us-ascii?Q?ercu5gWvPpWHtslvXVXFdKWabFRRnhkRHsRb86yx0YccT2L/ymbQ9PLOOc/v?=
+ =?us-ascii?Q?YhocRO144pUNkks8yHZdxda2cBgB4ckM4yWjA4CrVjD7tcCfJipdNS65gyhD?=
+ =?us-ascii?Q?9e3eUQpu07QfEakVcyQ+ghLFedaGDgattOXzYHKu33iXx/n8CK9TJeNDMKcl?=
+ =?us-ascii?Q?nmtd6jG+SWGfFotW5n2P54iiLiiz+Rla9FLofxdfm1wkkGEIouYkFMv0n+7+?=
+ =?us-ascii?Q?Wtsw71o107DM4Vo9WFjoGuONWk2xh4s=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260120-pinctrl-qcom-mahua-tlmm-v3-2-8809a09dc628@oss.qualcomm.com>
-References: <20260120-pinctrl-qcom-mahua-tlmm-v3-0-8809a09dc628@oss.qualcomm.com>
-In-Reply-To: <20260120-pinctrl-qcom-mahua-tlmm-v3-0-8809a09dc628@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>, Linus Walleij <linusw@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Rajendra Nayak <rajendra.nayak@oss.qualcomm.com>,
-        Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
-        Sibi Sankar <sibi.sankar@oss.qualcomm.com>
-Cc: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Gopikrishna Garmidi <gopikrishna.garmidi@oss.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1768929822; l=3365;
- i=gopikrishna.garmidi@oss.qualcomm.com; s=20260102;
- h=from:subject:message-id; bh=xOKCUEK79jZEMU0XsZlL2vcpGR/Zktrh+jM8ZBiVhRI=;
- b=qrUCFFOijYpi0NRnPuwotZ0+mtkgYDX/J8Ma/yrxiniHFiTgZMsI1/oUcU41BuL7lMC4DE6KH
- f+SgnrQfjL6DaMdS6weSdiIui5skgoxLGS3/3cj7yVMUYU0Jeue7mvl
-X-Developer-Key: i=gopikrishna.garmidi@oss.qualcomm.com; a=ed25519;
- pk=TkSjNEhrfsj90i3wkABTZtAjLNr2cfYsujaTvyOIDsE=
-X-Authority-Analysis: v=2.4 cv=P/w3RyAu c=1 sm=1 tr=0 ts=696fba22 cx=c_pps
- a=cFYjgdjTJScbgFmBucgdfQ==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=p1T0IFexb8msloUdZnoA:9
- a=QEXdDO2ut3YA:10 a=scEy_gLbYbu1JhEsrz4S:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIwMDE0NSBTYWx0ZWRfX2ReKHuKr7ffZ
- ybC+LdDu5bUpXK08kRNS1qWEdkWnabeZlIEQCuEU/rKpCwR4CrmtcAByqda8aW+WRPs0C8jhEJN
- KWSNiKVingKMpj/cWQiLF1oZr0W+VAKRBjZE4xT0zQQ4KTGuA9w3N8+1Gr21tcPIrFElXHNC0sp
- f32FD3VPg2sNFw10lunTVrbH6QStBNLW6j7G+ZoEofyeD1f3/l+a/u1ZpTmB1CiDdzB9/hiF21f
- kcSOKUxSvqLXvWBHyXMYALT8WNvJ5nJfVAmKq1kXWvnFr+eUSbW7878O8r+MaoQJ+YfTDwAaVnB
- 6QXmVAqdh8+Nbm0briRmEpqlo0jeJefxoTkrzkfuc14zEefK7RSmm4o91DP/2885mKEEZmJy1VF
- 5tiqzZ4NTGINXtgIAUULxozA8Iftpc194gSBz+8cdvIyGUdelbHngZ276sezhWSkR1TW4FvAKI4
- 28SIpNxcSu5GhANjq7g==
-X-Proofpoint-ORIG-GUID: KnILJe2wU-LZ_Pg8KZzakWD5AePYyUgn
-X-Proofpoint-GUID: KnILJe2wU-LZ_Pg8KZzakWD5AePYyUgn
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
- definitions=2026-01-20_04,2026-01-20_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 suspectscore=0 bulkscore=0 lowpriorityscore=0 adultscore=0
- clxscore=1015 spamscore=0 phishscore=0 impostorscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601200145
-X-Spamd-Result: default: False [-1.96 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB12093.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ff7f1ddb-fcd3-47f2-a99c-08de58489cab
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Jan 2026 17:23:22.2250
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: wEfBudaRgVPv62tixmeiAafUDw9NUF/zpvbd4gYP7iOZweyYY6h/jyH/W5Xfd9B6fqTJzkJFHmJVwLddHDQjvWF08bmdSmFK3KHG2pV2xuc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYRPR01MB12140
+X-Spamd-Result: default: False [1.54 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_DKIM_ALLOW(-0.20)[renesas.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_POLICY_ALLOW(0.00)[qualcomm.com,reject];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	TAGGED_FROM(0.00)[bounces-257528-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,qualcomm.com:email,qualcomm.com:dkim];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-257525-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[renesas.com,glider.be,gmail.com,kernel.org,baylibre.com,bp.renesas.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
+	DMARC_POLICY_ALLOW(0.00)[renesas.com,none];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gopikrishna.garmidi@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[fabrizio.castro.jz@renesas.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[renesas.com:+];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 6BBD049F39
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[glider.be:email,renesas.com:email,renesas.com:dkim,dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo]
+X-Rspamd-Queue-Id: 6E9A048AE5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Mahua TLMM block is identical to Glymur, but the PDC wake IRQ map
-differs since PDC handles the interrupt for GPIO 155 instead of GPIO 143
-as seen on Glymur. Hence add the Mahua-specific PDC map to the Glymur
-TLMM driver.
+> From: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
+> Sent: 20 January 2026 15:06
+> To: geert+renesas@glider.be; magnus.damm <magnus.damm@gmail.com>; robh@ke=
+rnel.org; krzk+dt@kernel.org;
+> conor+dt@kernel.org; mturquette@baylibre.com; sboyd@kernel.org; Biju Das =
+<biju.das.jz@bp.renesas.com>;
+> Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> Cc: linux-renesas-soc@vger.kernel.org; devicetree@vger.kernel.org; linux-=
+kernel@vger.kernel.org; linux-
+> clk@vger.kernel.org
+> Subject: [PATCH v2 3/5] clk: versaclock3: Add freerunning 32.768kHz clock=
+ support
+>=20
+> The Versa 3 clock generator has an internal 32.768kHz oscillator that can
+> be routed to the SE1, SE2 and SE3 outputs. This patch exposes it as a
+> fixed-rate clock ("vc3-clk-32k") and makes it available as a parent for
+> the SE1/SE2/SE3 muxes.
+>=20
+> The 32.768kHz clock is only intended to be used when explicitly requested
+> (i.e. when a rate of exactly 32768Hz is set). Selecting it as a fallback
+> for other rates can cause issues, for example in audio configurations.
+>=20
+> To enforce this, introduce a new helper function,
+> _vc3_clk_mux_determine_rate() which rejects configurations where the
+> 32.768kHz parent would otherwise be chosen implicitly.
+>=20
+> Two new fields are added to struct vc3_clk_data:
+>   - clk_32k_bitmsk: bit mask for selecting the 32.768kHz oscillator
+>   - clk_32k_index: index of the 32.768kHz clock in the mux parent list
+>=20
+> They are used by clk_mux callbacks to select the appropriate parent clock=
+.
+>=20
+> Signed-off-by: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
 
-Signed-off-by: Gopikrishna Garmidi <gopikrishna.garmidi@oss.qualcomm.com>
----
- drivers/pinctrl/qcom/pinctrl-glymur.c | 46 ++++++++++++++++++++++++++++++++---
- 1 file changed, 43 insertions(+), 3 deletions(-)
+Reviewed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
 
-diff --git a/drivers/pinctrl/qcom/pinctrl-glymur.c b/drivers/pinctrl/qcom/pinctrl-glymur.c
-index 335005084b6b..44f9745325b7 100644
---- a/drivers/pinctrl/qcom/pinctrl-glymur.c
-+++ b/drivers/pinctrl/qcom/pinctrl-glymur.c
-@@ -1729,6 +1729,26 @@ static const struct msm_gpio_wakeirq_map glymur_pdc_map[] = {
- 	{ 232, 206 }, { 234, 172 }, { 235, 173 }, { 242, 158 }, { 244, 156 },
- };
- 
-+static const struct msm_gpio_wakeirq_map mahua_pdc_map[] = {
-+	{ 0, 116 },   { 2, 114 },   { 3, 115 },	  { 4, 175 },	{ 5, 176 },
-+	{ 7, 111 },   { 11, 129 },  { 13, 130 },  { 15, 112 },	{ 19, 113 },
-+	{ 23, 187 },  { 27, 188 },  { 28, 121 },  { 29, 122 },	{ 30, 136 },
-+	{ 31, 203 },  { 32, 189 },  { 34, 174 },  { 35, 190 },	{ 36, 191 },
-+	{ 39, 124 },  { 43, 192 },  { 47, 193 },  { 51, 123 },	{ 53, 133 },
-+	{ 55, 125 },  { 59, 131 },  { 64, 134 },  { 65, 150 },	{ 66, 186 },
-+	{ 67, 132 },  { 68, 195 },  { 71, 135 },  { 75, 196 },	{ 79, 197 },
-+	{ 83, 198 },  { 84, 181 },  { 85, 199 },  { 87, 200 },	{ 91, 201 },
-+	{ 92, 182 },  { 93, 183 },  { 94, 184 },  { 95, 185 },	{ 98, 202 },
-+	{ 105, 157 }, { 113, 128 }, { 121, 117 }, { 123, 118 }, { 125, 119 },
-+	{ 129, 120 }, { 131, 126 }, { 132, 160 }, { 133, 194 }, { 134, 127 },
-+	{ 141, 137 }, { 144, 138 }, { 145, 139 }, { 147, 140 }, { 148, 141 },
-+	{ 150, 146 }, { 151, 147 }, { 153, 148 }, { 154, 144 }, { 155, 159 },
-+	{ 156, 149 }, { 157, 151 }, { 163, 142 }, { 172, 143 }, { 181, 145 },
-+	{ 193, 161 }, { 196, 152 }, { 203, 177 }, { 208, 178 }, { 215, 162 },
-+	{ 217, 153 }, { 220, 154 }, { 221, 155 }, { 228, 179 }, { 230, 180 },
-+	{ 232, 206 }, { 234, 172 }, { 235, 173 }, { 242, 158 }, { 244, 156 },
-+};
-+
- static const struct msm_pinctrl_soc_data glymur_tlmm = {
- 	.pins = glymur_pins,
- 	.npins = ARRAY_SIZE(glymur_pins),
-@@ -1742,14 +1762,34 @@ static const struct msm_pinctrl_soc_data glymur_tlmm = {
- 	.egpio_func = 11,
- };
- 
-+static const struct msm_pinctrl_soc_data mahua_tlmm = {
-+	.pins = glymur_pins,
-+	.npins = ARRAY_SIZE(glymur_pins),
-+	.functions = glymur_functions,
-+	.nfunctions = ARRAY_SIZE(glymur_functions),
-+	.groups = glymur_groups,
-+	.ngroups = ARRAY_SIZE(glymur_groups),
-+	.ngpios = 251,
-+	.wakeirq_map = mahua_pdc_map,
-+	.nwakeirq_map = ARRAY_SIZE(mahua_pdc_map),
-+	.egpio_func = 11,
-+};
-+
- static const struct of_device_id glymur_tlmm_of_match[] = {
--	{ .compatible = "qcom,glymur-tlmm", },
--	{ }
-+	{ .compatible = "qcom,glymur-tlmm", .data = &glymur_tlmm },
-+	{ .compatible = "qcom,mahua-tlmm", .data = &mahua_tlmm },
-+	{ },
- };
- 
- static int glymur_tlmm_probe(struct platform_device *pdev)
- {
--	return msm_pinctrl_probe(pdev, &glymur_tlmm);
-+	const struct msm_pinctrl_soc_data *data;
-+
-+	data = of_device_get_match_data(&pdev->dev);
-+	if (!data)
-+		return -ENODEV;
-+
-+	return msm_pinctrl_probe(pdev, data);
- }
- 
- static struct platform_driver glymur_tlmm_driver = {
-
--- 
-2.34.1
+> ---
+> v2 changes: None.
+>=20
+>  drivers/clk/clk-versaclock3.c | 85 +++++++++++++++++++++++++++++------
+>  1 file changed, 71 insertions(+), 14 deletions(-)
+>=20
+> diff --git a/drivers/clk/clk-versaclock3.c b/drivers/clk/clk-versaclock3.=
+c
+> index ebd9d75d7f55..b5df349f497d 100644
+> --- a/drivers/clk/clk-versaclock3.c
+> +++ b/drivers/clk/clk-versaclock3.c
+> @@ -61,8 +61,10 @@
+>  #define VC3_OUTPUT_CTR_DIV4_SRC_SEL	BIT(3)
+>=20
+>  #define VC3_SE2_CTRL_REG0		0x1f
+> +#define VC3_SE2_CTRL_REG0_SE2_FREERUN_32K	BIT(7)
+>=20
+>  #define VC3_SE3_DIFF1_CTRL_REG		0x21
+> +#define VC3_SE3_DIFF1_CTRL_REG_SE3_FREERUN_32K	BIT(7)
+>  #define VC3_SE3_DIFF1_CTRL_REG_SE3_CLK_SEL	BIT(6)
+>=20
+>  #define VC3_DIFF1_CTRL_REG		0x22
+> @@ -72,6 +74,7 @@
+>  #define VC3_DIFF2_CTRL_REG_DIFF2_CLK_SEL	BIT(7)
+>=20
+>  #define VC3_SE1_DIV4_CTRL		0x24
+> +#define VC3_SE1_DIV4_CTRL_SE1_FREERUN_32K	BIT(4)
+>  #define VC3_SE1_DIV4_CTRL_SE1_CLK_SEL	BIT(3)
+>=20
+>  #define VC3_PLL1_VCO_MIN		300000000UL
+> @@ -83,6 +86,9 @@
+>  #define VC3_2_POW_16			(U16_MAX + 1)
+>  #define VC3_DIV_MASK(width)		((1 << (width)) - 1)
+>=20
+> +#define VC3_CLK_32K_NAME		"vc3-clk-32k"
+> +#define VC3_CLK_32K_FREQ		32768
+> +
+>  enum vc3_pfd_mux {
+>  	VC3_PFD2_MUX,
+>  	VC3_PFD3_MUX,
+> @@ -134,6 +140,9 @@ enum vc3_clk_mux {
+>  struct vc3_clk_data {
+>  	u8 offs;
+>  	u8 bitmsk;
+> +
+> +	u8 clk_32k_bitmsk;
+> +	u8 clk_32k_index;
+>  };
+>=20
+>  struct vc3_pfd_data {
+> @@ -213,6 +222,7 @@ static const struct clk_div_table div3_divs[] =3D {
+>  	{}
+>  };
+>=20
+> +static struct clk_hw *clk_32k;
+>  static struct clk_hw *clk_out[6];
+>=20
+>  static u8 vc3_pfd_mux_get_parent(struct clk_hw *hw)
+> @@ -549,19 +559,40 @@ static const struct clk_ops vc3_div_ops =3D {
+>  	.set_rate =3D vc3_div_set_rate,
+>  };
+>=20
+> +static int _vc3_clk_mux_determine_rate(struct clk_hw *hw,
+> +				       struct clk_rate_request *req)
+> +{
+> +	bool is_32k_req =3D (req->rate =3D=3D VC3_CLK_32K_FREQ);
+> +	struct clk_rate_request tmp_req;
+> +	int ret;
+> +
+> +	clk_hw_init_rate_request(hw, &tmp_req, req->rate);
+> +
+> +	ret =3D clk_mux_determine_rate_flags(hw, &tmp_req, CLK_SET_RATE_PARENT)=
+;
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Select the 32.768 kHz parent only when explicitly requested. */
+> +	if ((tmp_req.best_parent_rate =3D=3D VC3_CLK_32K_FREQ) && !is_32k_req)
+> +		return -EINVAL;
+> +
+> +	memcpy(req, &tmp_req, sizeof(*req));
+> +
+> +	return 0;
+> +}
+> +
+>  static int vc3_clk_mux_determine_rate(struct clk_hw *hw,
+>  				      struct clk_rate_request *req)
+>  {
+>  	int frc;
+>=20
+> -	if (clk_mux_determine_rate_flags(hw, req, CLK_SET_RATE_PARENT)) {
+> +	if (_vc3_clk_mux_determine_rate(hw, req)) {
+>  		/* The below check is equivalent to (best_parent_rate/rate) */
+>  		if (req->best_parent_rate >=3D req->rate) {
+>  			frc =3D DIV_ROUND_CLOSEST_ULL(req->best_parent_rate,
+>  						    req->rate);
+>  			req->rate *=3D frc;
+> -			return clk_mux_determine_rate_flags(hw, req,
+> -							    CLK_SET_RATE_PARENT);
+> +			return _vc3_clk_mux_determine_rate(hw, req);
+>  		}
+>  	}
+>=20
+> @@ -576,6 +607,9 @@ static u8 vc3_clk_mux_get_parent(struct clk_hw *hw)
+>=20
+>  	regmap_read(vc3->regmap, clk_mux->offs, &val);
+>=20
+> +	if (clk_mux->clk_32k_bitmsk && !(val & clk_mux->clk_32k_bitmsk))
+> +		return clk_mux->clk_32k_index;
+> +
+>  	return !!(val & clk_mux->bitmsk);
+>  }
+>=20
+> @@ -583,9 +617,15 @@ static int vc3_clk_mux_set_parent(struct clk_hw *hw,=
+ u8 index)
+>  {
+>  	struct vc3_hw_data *vc3 =3D container_of(hw, struct vc3_hw_data, hw);
+>  	const struct vc3_clk_data *clk_mux =3D vc3->data;
+> +	unsigned int bitmsk =3D clk_mux->clk_32k_bitmsk;
+> +	unsigned int val =3D 0;
+> +
+> +	if (index !=3D clk_mux->clk_32k_index) {
+> +		bitmsk |=3D clk_mux->bitmsk;
+> +		val =3D clk_mux->clk_32k_bitmsk | (index ? clk_mux->bitmsk : 0);
+> +	}
+>=20
+> -	return regmap_update_bits(vc3->regmap, clk_mux->offs, clk_mux->bitmsk,
+> -				  index ? clk_mux->bitmsk : 0);
+> +	return regmap_update_bits(vc3->regmap, clk_mux->offs, bitmsk, val);
+>  }
+>=20
+>  static const struct clk_ops vc3_clk_mux_ops =3D {
+> @@ -900,18 +940,21 @@ static struct vc3_hw_data clk_div[] =3D {
+>  	}
+>  };
+>=20
+> -static const struct clk_parent_data clk_mux_parent_data[][2] =3D {
+> +static const struct clk_parent_data clk_mux_parent_data[][3] =3D {
+>  	[VC3_SE1_MUX] =3D {
+>  		{ .hw =3D &clk_div[VC3_DIV5].hw },
+> -		{ .hw =3D &clk_div[VC3_DIV4].hw }
+> +		{ .hw =3D &clk_div[VC3_DIV4].hw },
+> +		{ .name =3D VC3_CLK_32K_NAME, .index =3D -1 }
+>  	},
+>  	[VC3_SE2_MUX] =3D {
+>  		{ .hw =3D &clk_div[VC3_DIV5].hw },
+> -		{ .hw =3D &clk_div[VC3_DIV4].hw }
+> +		{ .hw =3D &clk_div[VC3_DIV4].hw },
+> +		{ .name =3D VC3_CLK_32K_NAME, .index =3D -1 }
+>  	},
+>  	[VC3_SE3_MUX] =3D {
+>  		{ .hw =3D &clk_div[VC3_DIV2].hw },
+> -		{ .hw =3D &clk_div[VC3_DIV4].hw }
+> +		{ .hw =3D &clk_div[VC3_DIV4].hw },
+> +		{ .name =3D VC3_CLK_32K_NAME, .index =3D -1 }
+>  	},
+>  	[VC3_DIFF1_MUX] =3D {
+>  		{ .hw =3D &clk_div[VC3_DIV1].hw },
+> @@ -927,38 +970,44 @@ static struct vc3_hw_data clk_mux[] =3D {
+>  	[VC3_SE1_MUX] =3D {
+>  		.data =3D &(struct vc3_clk_data) {
+>  			.offs =3D VC3_SE1_DIV4_CTRL,
+> -			.bitmsk =3D VC3_SE1_DIV4_CTRL_SE1_CLK_SEL
+> +			.bitmsk =3D VC3_SE1_DIV4_CTRL_SE1_CLK_SEL,
+> +			.clk_32k_bitmsk =3D VC3_SE1_DIV4_CTRL_SE1_FREERUN_32K,
+> +			.clk_32k_index =3D 2
+>  		},
+>  		.hw.init =3D &(struct clk_init_data) {
+>  			.name =3D "se1_mux",
+>  			.ops =3D &vc3_clk_mux_ops,
+>  			.parent_data =3D clk_mux_parent_data[VC3_SE1_MUX],
+> -			.num_parents =3D 2,
+> +			.num_parents =3D 3,
+>  			.flags =3D CLK_SET_RATE_PARENT
+>  		}
+>  	},
+>  	[VC3_SE2_MUX] =3D {
+>  		.data =3D &(struct vc3_clk_data) {
+>  			.offs =3D VC3_SE2_CTRL_REG0,
+> +			.clk_32k_bitmsk =3D VC3_SE2_CTRL_REG0_SE2_FREERUN_32K,
+> +			.clk_32k_index =3D 2
+>  		},
+>  		.hw.init =3D &(struct clk_init_data) {
+>  			.name =3D "se2_mux",
+>  			.ops =3D &vc3_clk_mux_ops,
+>  			.parent_data =3D clk_mux_parent_data[VC3_SE2_MUX],
+> -			.num_parents =3D 2,
+> +			.num_parents =3D 3,
+>  			.flags =3D CLK_SET_RATE_PARENT
+>  		}
+>  	},
+>  	[VC3_SE3_MUX] =3D {
+>  		.data =3D &(struct vc3_clk_data) {
+>  			.offs =3D VC3_SE3_DIFF1_CTRL_REG,
+> -			.bitmsk =3D VC3_SE3_DIFF1_CTRL_REG_SE3_CLK_SEL
+> +			.bitmsk =3D VC3_SE3_DIFF1_CTRL_REG_SE3_CLK_SEL,
+> +			.clk_32k_bitmsk =3D VC3_SE3_DIFF1_CTRL_REG_SE3_FREERUN_32K,
+> +			.clk_32k_index =3D 2
+>  		},
+>  		.hw.init =3D &(struct clk_init_data) {
+>  			.name =3D "se3_mux",
+>  			.ops =3D &vc3_clk_mux_ops,
+>  			.parent_data =3D clk_mux_parent_data[VC3_SE3_MUX],
+> -			.num_parents =3D 2,
+> +			.num_parents =3D 3,
+>  			.flags =3D CLK_SET_RATE_PARENT
+>  		}
+>  	},
+> @@ -1038,6 +1087,14 @@ static int vc3_probe(struct i2c_client *client)
+>  		return ret;
+>  	}
+>=20
+> +	/* Register fixed 32.768kHz clock */
+> +	clk_32k =3D devm_clk_hw_register_fixed_rate(dev, VC3_CLK_32K_NAME, NULL=
+,
+> +						  0, VC3_CLK_32K_FREQ);
+> +	if (IS_ERR(clk_32k))
+> +		return dev_err_probe(dev, PTR_ERR(clk_32k),
+> +				     "Failed to register %dHz fixed clock\n",
+> +				     VC3_CLK_32K_FREQ);
+> +
+>  	/* Register pfd muxes */
+>  	for (i =3D 0; i < ARRAY_SIZE(clk_pfd_mux); i++) {
+>  		clk_pfd_mux[i].regmap =3D regmap;
+> --
+> 2.51.0
 
 
