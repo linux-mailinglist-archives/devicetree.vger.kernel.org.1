@@ -1,248 +1,187 @@
-Return-Path: <devicetree+bounces-257410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257411-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aP+4JehXcGlvXQAAu9opvQ
-	(envelope-from <devicetree+bounces-257410-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 05:36:56 +0100
+	id aB6OE6RacWnLGAAAu9opvQ
+	(envelope-from <devicetree+bounces-257411-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 00:00:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3D9B51160
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 05:36:55 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD0375F338
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 00:00:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 161A88A4B7C
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 13:01:31 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id DEBD66C155D
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 13:02:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35D57429834;
-	Tue, 20 Jan 2026 12:54:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CC9C42315A;
+	Tue, 20 Jan 2026 12:56:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="heUv2y+T"
+	dkim=pass (2048-bit key) header.d=fooishbar.org header.i=@fooishbar.org header.b="S6/lUwie"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BFCE42981F
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 12:54:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768913643; cv=none; b=lI/ad16J9elMzzUSkt+DCE8/mE95RPgTbANj7p90s7uWDBdRzll+xZW5X21cJGig1X/uWxCjzLkUD5OOgbSgozwJ4u8c0lVU7p34fyYlAou6AweLGa0pVNSvrldJmRA+xVX2U1SSGNtJGRtj4mo2XTzBaDNspHjlOMQF1Rv2Cmw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768913643; c=relaxed/simple;
-	bh=rfOiA6dgd2q0nYUa0afVp2YzXs7KfO8y6Iz2Tj9FhBc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=CokRxKSkvlY4imFDKo+2vIQRDrkX88/FPhQhAbNiInXcnDs5fzkIxwF/xc0j44XgIplNVHho5DZIpGl2ANWXadCs3dFXqWqmblWpCdnaxjWc5Yu4PanBXmNFs+4IFjOO59CP/mRKl4R2ybo4g3ukbB+iJi2m4gyQFkHgITG7XLU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=heUv2y+T; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-42fb4eeb482so2930836f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 04:54:01 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ACEF3D3D17
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 12:56:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.219.47
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768913764; cv=pass; b=cvl/0ARHgGHn3GfS1C0D6ndakGzDYRuNivYEMaHmPd0jUFYQDhTF+Fe7TgU4H9sYBYpMy47ARsfF3iqcI1A5OAyCNWQzZ7HwyPhNsFt0hgpwOpL65oavEcvq1rSHJJPkC+nuUwx4nLakz1uvF6yUkuIZKkJlD2iokoEkgW5PqYk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768913764; c=relaxed/simple;
+	bh=JdvXIE7d7vOjdBIjkdkTCadRaLJD/dzpk1kdKBasKBo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=mQjzZBmA9L6uqxou/OWROSw7GpyadYA9hdb+4UpPKz9iXhJKvfntwtVVNdWnmj6OGjz5rvTjz0/QlXFW+BWVnyLqOt4LlLWX0PSjx83wzunSM1DkYwjwnSqIdhgWOYIVByFeL3L2CGzpDK6E7jKfiHYA1/V01v83lHx5Unj9M/M=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fooishbar.org; spf=pass smtp.mailfrom=fooishbar.org; dkim=pass (2048-bit key) header.d=fooishbar.org header.i=@fooishbar.org header.b=S6/lUwie; arc=pass smtp.client-ip=209.85.219.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fooishbar.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fooishbar.org
+Received: by mail-qv1-f47.google.com with SMTP id 6a1803df08f44-894676e6863so4513216d6.2
+        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 04:56:01 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1768913760; cv=none;
+        d=google.com; s=arc-20240605;
+        b=PvvoqjJdb2hdbbV/sxe/Ew3lqIIV8YDllmMbG0PDPX0at4Yj8bwrsQFVHvCPEs2iZ6
+         UggMvchY2WIReQo7ieD65AnIoM6Na7oDdhRgRJvfgaKVKteA6pZ1pZRZH+WBvRT2dQ+O
+         w/tnPKDgpsSgFPnEbEJLCBlyO0Ris05QJzTZW09LxrkRByuRt+GOPmyVFLDmpxLYoTk6
+         Umg8+4QEU1UCbMvQ/M8xTSLztBzo9n6GaDu1XTaZOLB7ohMzgNQXMVnJB4Xsdi69pebf
+         PjNk86X+JmRaEDgbAkzxKgJSP3tY/BLhfVhFMpw3B6tQExlCOooPNuzmLX6EIPw92FAl
+         cmRQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=xIKhuYFw63DINEPQxv2wgmdGn5ZNASi1pTjZrRr4yhE=;
+        fh=p5tuz+smvl4ECYwIYlCmByT85ibZYnb/A9DlI/3BFGU=;
+        b=Yhwe+OOgAVOsqC3WSc1YxhmcsPIC8jIokCuxlnfzd3mzC/gJYeNGAtiHx6W0ITDc++
+         vZkXp9cNJZnKATOEjRjMxO78cTOpbobQzaywsPSzgqhuluU30ItsFUkVeOfPEt2SwSJq
+         gSeTmb+2QJ396F3fwg/J4+nwbAVhH72yo1at05AmHVpOegncTROaVFXY8Ad7rACMqmkb
+         P2ZU7//fDWkisQSnsariBSFnGGtuOd1TP4pTz5AEzSSCsKVQvUmATYCZ+tfyuIeJn4zP
+         zE6UagnM/wpl6yIUEOK4x3tTzoSlHAUdlvUpVC7Jz5N8YnUU2vDqVAs43UKQAaObhwy0
+         2byA==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768913640; x=1769518440; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=upZyTdYXHRuOjxM2BwCRC4m8vkbpnnQvQrullGYrig8=;
-        b=heUv2y+TMHiWn6IA7nGdNuGL/S8dk2BDaRhb7KvKxravXK/9Dbc6gLzlKjDaVHFH3k
-         UWD+gRKMf930f9ByccAZENXFA6hdOQ3l8b2xVpbuI3e+EXwlwvDVWuoyDzQfYP9RxoEL
-         2J0flEEBJN+cNkdLj/PQ9VGA48ee1Rn5HuAh69gXYPETfl93ehQyfIlsfoZzftDXRcnt
-         dyL3B4qUGOuRildIetl6LeYHqMGdM4DPSQbvVVPF4/MigyBpHRrVJIUrQru8s5hlZ74b
-         ZUksKlkArtDJGVskoODKawrZ5rQ4KSVWmRqlxy1qKm0Ok19hcLJJ7Iu7gkyd4D7tsjl3
-         NFIQ==
+        d=fooishbar.org; s=google; t=1768913760; x=1769518560; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=xIKhuYFw63DINEPQxv2wgmdGn5ZNASi1pTjZrRr4yhE=;
+        b=S6/lUwiehgVFiK4/1ZmY11+LnCQIJHi+aRrskHGezsoCKVwQXoulOPqOTAoRdendf/
+         TLp31ANKVryXw7tm7qzIRxCjQ6kPBLnk6c+gQ1bSkGOpl0iX3QC23JGU5y05sAdYPMY5
+         eFr4hdNSF1tkoJW62bby8jY+L4WHG1tU6oF6//zGpLFMHf+6Mm/GI5ifPZMLlwUI7Nh3
+         7tMYv6GLVMAQBfbOT8GJF98gL15Tyg3xD1ZLq56YLiv60pPxQANqv2ZhvdCOnwC05zK1
+         jVySOaq0Kji+CkkdtCeAXzztPOAWEVCK/O6puD9LawE9r9b9j7J8pmLGgPvz06b6B+Ex
+         d0hQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768913640; x=1769518440;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1768913760; x=1769518560;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=upZyTdYXHRuOjxM2BwCRC4m8vkbpnnQvQrullGYrig8=;
-        b=MiNKmL/FdWS0sPT6RBrFuFHiLizVVjUq/BHD/IcjXGZSeOp/K5JyJCHu3Oee5t7krt
-         UTbyfWcrO4S5bSs4P0d5hL8ryBN+az67To6R8zbSzLpP4TObCCEi54flyYL28t3im4Kz
-         78dR52/O7z/hPCMxEeqIQjoyPr3byPbETG35KDaUqK96SO5NJXrw0Up5j6OiMu031RFG
-         29SThYcbsvvYiSzkBv06/dv85QKOm3Ib3HAhlO5285Fpzbmrjp5NriM3qZMdj1eVMjf7
-         RXV44fWwfXatbl1P49/6E+GMBizZUYHDkmkLv2XD9Rn7KDJf+CQT+HKW/oVFvugm58bF
-         JdAw==
-X-Forwarded-Encrypted: i=1; AJvYcCWaNGfOgNrHC1V8SIad/UdeQk+CLTEUX42WCeZiu7cik1SPTUSe9uvjwCBKd7G+1h4YEVqnlTuwoOHj@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy9Pj/+66eeZERjcaC6/0/GHO++pz6u5NfK5nRSyIoFph5jQCTp
-	h4+EKk+j75EXkn8q7JJI5l5Bs7kMXuDRpGEyWfp4K1ViRluhzWcd8HFn
-X-Gm-Gg: AZuq6aLvovPP/UuLyrDE6ijeV1v5J5kud9bC68yEC7TyuPcPUeraUqdhDjVBCHTGCIE
-	rrWbPhT+VDj5ZzomxCJ/WZnzUzK1mel6kqn/mQ06U4oRAJycZFXMyFHjDOgolxJ9BUEm6KJF1K8
-	NlhltUMrXLrdlmLx4zQiVm4w+//uDoeR8BXSt99lh6TpXJMQPxxt/F6cTp9fQIqT6uFzt2tdHz7
-	YSVI5x1sktLu673pXaFY4LsF+NQHFQ/llGWwKHScYG8GnpYgJjSOJ7Z/xdmSKWqJf00o3q32B0j
-	wOy82/NQWfG8S04dJb9z0BQuKc4XrAAwtvG9YIOzFrc8yTqT6M8nSqf+9rqvAUZggBFvL5WE/h8
-	k1NMpTvS2O5hV/HICjD2agutQJqKDZDSR1LxNRtaImLHKAEC70jmV7k/fJ/J8lmlAmeSPD4Tr6f
-	cZgdKH4UOR1LXtK/HbKj1hcywU9XDuP19SE5YSzIfvJE8gug0BBPeSSgooEGkZy1c=
-X-Received: by 2002:a05:6000:2504:b0:430:f58d:40cf with SMTP id ffacd0b85a97d-4356a02c4c3mr18942565f8f.16.1768913639446;
-        Tue, 20 Jan 2026 04:53:59 -0800 (PST)
-Received: from alchark-surface.localdomain (bba-83-110-134-52.alshamil.net.ae. [83.110.134.52])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4359314bbc6sm2404931f8f.12.2026.01.20.04.53.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jan 2026 04:53:58 -0800 (PST)
-From: Alexey Charkov <alchark@gmail.com>
-Date: Tue, 20 Jan 2026 16:53:54 +0400
-Subject: [PATCH v2] arm64: dts: rockchip: Explicitly request UFS reset pin
- on RK3576
+        bh=xIKhuYFw63DINEPQxv2wgmdGn5ZNASi1pTjZrRr4yhE=;
+        b=rIFH/FjmstFl0FF4/SLTOJ0B0sCN8zCgWh5UGGCIL1reJL855CQV3j7sNdvkRmH84A
+         iV9iyJgkdtbVvLtZ0nEj99yXQibX0sEmPwgb4B+3R/MsPivGnodnpIipbx8MF6N7+GTz
+         0CxmWhVmM2C9SCS9qaVQHMo2DA7rX0Aw40cPsH9aPLlTdRrTroMfmFhwfztrLmlUm9Vl
+         tF9mXR3y4RU9HM0iDU1ywj3QorsL52XmfrXCHuTFZuOz98Jti5eq9/yFZd8Q991LRCTy
+         BGDnw8U4RQ9960mUd3aAoC4LNXPoqVBlqy9BofDnbCQ+BTvlz6pybyjLt2NebIZaAS5s
+         OSRA==
+X-Forwarded-Encrypted: i=1; AJvYcCWIYVRyrVGP4Lcyk7jAwumFvkBySjazeDJSXSaKswdiupyTcUwKkhj0DbFe1I7PIgAbHRN6hC2v+jp/@vger.kernel.org
+X-Gm-Message-State: AOJu0YwqaATVjONb8CUlKxjrNC6R5mXe7oUnI6AqQsvK8Vh8se1kx1tq
+	5/WBZADvSeerqZu7YUe/oJy01sWbu6twIpzYg6eLABBqyALHgsvT8sn8MZqUnxa9uzU2csCxrPr
+	O21/u7Imyor5eLbioJ7qGQgp9Jo/uEc1HUcH3922qfA==
+X-Gm-Gg: AZuq6aKpKD0qrSLZy11e5bukQe8zVXbfEQyXeJJj0Jh/+yV6Ds4Jn9nlDjXYmrDXXeN
+	MOfP05GIPtQCsLIk0LCGKHVkg8ZPVqLUQnP0YT63zNtj1m7nvAzEg6XbhjiZZQX0Gr9zxpsau5d
+	rQ7/qHR0/F5EvSKToVyZgw+/GFIwSa0jBLdJPMk1B8f1eG9M1tVTuOJgtBDoHHyuyAPqLESIuat
+	22TmmscClOOkfSGsUDoXCA42hJFVE4T8Dr+ETBz58ayQNyEehpATmMZxfjzL717ohWpukxbR47N
+	bkg=
+X-Received: by 2002:a05:6214:19c5:b0:894:6dc8:924d with SMTP id
+ 6a1803df08f44-8946dc893a8mr4189616d6.24.1768913760251; Tue, 20 Jan 2026
+ 04:56:00 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260120-ufs-rst-v2-1-b5735f1996f6@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAOJ6b2kC/2XMQQ6CMBCF4auQWTumrQRbV97DsMA6hUmEkg4SD
- endrWxd/i8v3wZCiUngUm2QaGXhOJUwhwr80E09IT9Kg1GmUVo7fAXBJAuGcPeKvLWkzlDec6L
- A7126taUHliWmzw6v+rf+G6tGjd6Sa2p3crX1137s+Hn0cYQ25/wFnfrYUZ4AAAA=
-X-Change-ID: 20260119-ufs-rst-ffbc0ec88e07
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- "Martin K. Petersen" <martin.petersen@oracle.com>, 
- Shawn Lin <shawn.lin@rock-chips.com>, 
- Manivannan Sadhasivam <mani@kernel.org>
-Cc: Quentin Schulz <quentin.schulz@cherry.de>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, stable@vger.kernel.org, 
- Alexey Charkov <alchark@gmail.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3949; i=alchark@gmail.com;
- h=from:subject:message-id; bh=rfOiA6dgd2q0nYUa0afVp2YzXs7KfO8y6Iz2Tj9FhBc=;
- b=owGbwMvMwCW2adGNfoHIK0sZT6slMWTmVz3XL1lyvd75GNP0eb61RZziFU95Xl/9JufO+euHZ
- 1/TbTO5joksDGJcDJZiiixzvy2xnWrEN2uXh8dXmDmsTCBDpEUaGICAhYEvNzGv1EjHSM9U21DP
- 0FDHWMeIgYtTAKZ6kgYjw5mWgCsLt615obBhzdf1sW2hq2tunGW/kRGw+7/1kR2F63QY/ns83rl
- iguGy5HC/X5uftM4tUF5Y53WUyeLuSZFLLwNOczAAAA==
-X-Developer-Key: i=alchark@gmail.com; a=openpgp;
- fpr=9DF6A43D95320E9ABA4848F5B2A2D88F1059D4A5
-X-Spamd-Result: default: False [-0.46 / 15.00];
+References: <20260120-cpitchen-mainline_gfx2d-v6-0-1a16cd1d70b8@microchip.com> <20260120-cpitchen-mainline_gfx2d-v6-2-1a16cd1d70b8@microchip.com>
+In-Reply-To: <20260120-cpitchen-mainline_gfx2d-v6-2-1a16cd1d70b8@microchip.com>
+From: Daniel Stone <daniel@fooishbar.org>
+Date: Tue, 20 Jan 2026 12:55:47 +0000
+X-Gm-Features: AZwV_QhsNtOa999KaX-_EQFOd0iUAVt0uZ4iVZSigcVCX1SaDa3SaynZsl9mIpQ
+Message-ID: <CAPj87rPwJ_FHpzn-4wQ_3kG=iJfLbnF=KpCrOA8a59WrSW9c2Q@mail.gmail.com>
+Subject: Re: [PATCH v6 2/5] drm/microchip: add a driver for the Microchip
+ GFX2D GPU
+To: Cyrille Pitchen <cyrille.pitchen@microchip.com>
+Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Nicolas Ferre <nicolas.ferre@microchip.com>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
+	Russell King <linux@armlinux.org.uk>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+X-Rspamd-Server: lfdr
+X-Spamd-Result: default: False [1.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DATE_IN_PAST(1.00)[34];
+	R_DKIM_ALLOW(-0.20)[fooishbar.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[cherry.de,vger.kernel.org,lists.infradead.org,gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-257410-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-257411-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_NA(0.00)[fooishbar.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[fooishbar.org:+];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alchark@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[daniel@fooishbar.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,microchip.com,bootlin.com,tuxon.dev,armlinux.org.uk,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[2a2d0000:email,dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,cherry.de:email]
-X-Rspamd-Queue-Id: D3D9B51160
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns,mail.gmail.com:mid,fooishbar.org:dkim]
+X-Rspamd-Queue-Id: BD0375F338
 X-Rspamd-Action: no action
-X-Rspamd-Server: lfdr
 
-Rockchip RK3576 UFS controller uses a dedicated pin to reset the connected
-UFS device, which can operate either in a hardware controlled mode or as a
-GPIO pin.
+Hi Cyrille,
 
-Power-on default is GPIO mode, but the boot ROM reconfigures it to a
-hardware controlled mode if it uses UFS to load the next boot stage.
+On Tue, 20 Jan 2026 at 12:06, Cyrille Pitchen
+<cyrille.pitchen@microchip.com> wrote:
+> +static int mchp_gfx2d_ioctl_alloc_buffer(struct drm_device *dev, void *data,
+> +                                        struct drm_file *file_priv)
+> +{
+> +       struct drm_mchp_gfx2d_alloc_buffer *args = data;
+> +       struct mchp_gfx2d_gem_object *gfx2d_obj;
+> +       enum dma_data_direction dir;
+> +       struct drm_gem_object *obj;
+> +       int ret;
+> +
+> +       ret = to_dma_data_direction(args->direction, &dir);
+> +       if (ret)
+> +               return ret;
+> +
+> +       if (!valid_pixel_format(args->format))
+> +               return -EINVAL;
+> +
+> +       gfx2d_obj = mchp_gfx2d_gem_create_with_handle(file_priv, dev,
+> +                                                     args->size, dir,
+> +                                                     &args->handle);
+> +       if (IS_ERR(gfx2d_obj))
+> +               return PTR_ERR(gfx2d_obj);
+> +
+> +       gfx2d_obj->width = args->width;
+> +       gfx2d_obj->height = args->height;
+> +       gfx2d_obj->stride = args->stride;
 
-Given that existing bindings (and rk3576.dtsi) expect a GPIO-controlled
-device reset, request the required pin config explicitly.
+You need to validate height*stride vs. the size here. Same on the import path.
 
-This doesn't appear to affect Linux, but it does affect U-boot:
-
-Before:
-=> md.l 0x2604b398
-2604b398: 00000011 00000000 00000000 00000000  ................
-< ... snip ... >
-=> ufs init
-ufshcd-rockchip ufshc@2a2d0000: [RX, TX]: gear=[3, 3], lane[2, 2], pwr[FASTAUTO_MODE, FASTAUTO_MODE], rate = 2
-=> md.l 0x2604b398
-2604b398: 00000011 00000000 00000000 00000000  ................
-
-After:
-=> md.l 0x2604b398
-2604b398: 00000011 00000000 00000000 00000000  ................
-< ... snip ...>
-=> ufs init
-ufshcd-rockchip ufshc@2a2d0000: [RX, TX]: gear=[3, 3], lane[2, 2], pwr[FASTAUTO_MODE, FASTAUTO_MODE], rate = 2
-=> md.l 0x2604b398
-2604b398: 00000010 00000000 00000000 00000000  ................
-
-(0x2604b398 is the respective pin mux register, with its BIT0 driving the
-mode of UFS_RST: unset = GPIO, set = hardware controlled UFS_RST)
-
-This helps ensure that GPIO-driven device reset actually fires when the
-system requests it, not when whatever black box magic inside the UFSHC
-decides to reset the flash chip.
-
-Cc: stable@vger.kernel.org
-Fixes: c75e5e010fef ("scsi: arm64: dts: rockchip: Add UFS support for RK3576 SoC")
-Reported-by: Quentin Schulz <quentin.schulz@cherry.de>
-Signed-off-by: Alexey Charkov <alchark@gmail.com>
----
-This has originally surfaced during the review of UFS patches for U-boot
-at [1], where it was found that the UFS reset line is not requested to be
-configured as GPIO but used as such. This leads in some cases to the UFS
-driver appearing to control device resets, while in fact it is the
-internal controller logic that drives the reset line (perhaps in
-unexpected ways).
-
-Thanks Quentin Schulz for spotting this issue.
-
-[1] https://lore.kernel.org/u-boot/259fc358-f72b-4a24-9a71-ad90f2081335@cherry.de/
----
-Changes in v2:
-- Change default pin pull to pull-down in line with the SoC power-on default
-- Link to v1: https://lore.kernel.org/r/20260119-ufs-rst-v1-1-c8e96493948c@gmail.com
----
- arch/arm64/boot/dts/rockchip/rk3576-pinctrl.dtsi | 7 +++++++
- arch/arm64/boot/dts/rockchip/rk3576.dtsi         | 2 +-
- 2 files changed, 8 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576-pinctrl.dtsi b/arch/arm64/boot/dts/rockchip/rk3576-pinctrl.dtsi
-index 0b0851a7e4ea..7bcfa393416f 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576-pinctrl.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3576-pinctrl.dtsi
-@@ -5228,6 +5228,13 @@ ufs_rst: ufs-rst {
- 				/* ufs_rstn */
- 				<4 RK_PD0 1 &pcfg_pull_none>;
- 		};
-+
-+		/omit-if-no-ref/
-+		ufs_rst_gpio: ufs-rst-gpio {
-+			rockchip,pins =
-+				/* ufs_rstn */
-+				<4 RK_PD0 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
- 	};
- 
- 	ufs_testdata0 {
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-index 3a29c627bf6d..db610f57c845 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-@@ -1865,7 +1865,7 @@ ufshc: ufshc@2a2d0000 {
- 			assigned-clock-parents = <&cru CLK_REF_MPHY_26M>;
- 			interrupts = <GIC_SPI 361 IRQ_TYPE_LEVEL_HIGH>;
- 			power-domains = <&power RK3576_PD_USB>;
--			pinctrl-0 = <&ufs_refclk>;
-+			pinctrl-0 = <&ufs_refclk &ufs_rst_gpio>;
- 			pinctrl-names = "default";
- 			resets = <&cru SRST_A_UFS_BIU>, <&cru SRST_A_UFS_SYS>,
- 				 <&cru SRST_A_UFS>, <&cru SRST_P_UFS_GRF>;
-
----
-base-commit: 46fe65a2c28ecf5df1a7475aba1f08ccf4c0ac1b
-change-id: 20260119-ufs-rst-ffbc0ec88e07
-
-Best regards,
--- 
-Alexey Charkov <alchark@gmail.com>
-
+Cheers,
+Daniel
 
