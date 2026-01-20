@@ -1,72 +1,89 @@
-Return-Path: <devicetree+bounces-257497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257498-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IAJNGGfRb2mgMQAAu9opvQ
-	(envelope-from <devicetree+bounces-257497-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 20:03:03 +0100
+	id uBJ+EZ+5b2kOMQAAu9opvQ
+	(envelope-from <devicetree+bounces-257498-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 18:21:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA56A49F56
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 20:03:02 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id E342E48762
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 18:21:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 17F8698C3B6
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 16:26:08 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 3F75D824F5E
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 16:27:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F31504611FE;
-	Tue, 20 Jan 2026 16:11:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B9784508FC;
+	Tue, 20 Jan 2026 16:12:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q/u7R5+h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ErlGRcgB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C38774611C6;
-	Tue, 20 Jan 2026 16:11:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77D0E4508F2
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 16:12:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768925503; cv=none; b=rqTvebrT3asfK+lAf3+Eb6IYHKOV5LbB/rgM3de37gcmF26Rq+ZXY0GQxlFM8W8ha6krx11yINbOF1NfSdXWaF60hXt3MjExxi90Xo2cfIwdxk9UkO1UXO1iXC2HLRQECAxNyI45Ux7JcJBl8C31ps+yMAORr6EL6+XQyVtbSQM=
+	t=1768925571; cv=none; b=FfZFXIPtUQuMfXMDfyLBm/9p0IxLEbcxXLr9Fx26hMT65fn1T/+WRFt7bdYXp9LWPZ0X1cVD+pMB4aGfik3YnNIQDr+Ir3fRvD6WZnHIz3dzxP4b8Ac51wNr27jzemom4hXkkoRI2xmLI4lb8bFZZdxJaYfvgwjOBHW5XsKPSXQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768925503; c=relaxed/simple;
-	bh=dtUUx6lrNtFdy5/+TdTkG7ihJmXBG5s769rXUFmDzMI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=ity3BPwRNulrLXtYeH1VAR33KLekeQSjNOZw/94qBlmpyx9M7GAu0Edz3TWpocfeQxSroNgc6xc/JjTFW9AFoIWPstVeiF2byQTp++vOpiPVze2VR8t3zG/XmJ1RNvo1kqB52JYzEbHOLWYRw8r88f1WlDstX4w4Iqb+BqvrkvE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q/u7R5+h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 917DFC19422;
-	Tue, 20 Jan 2026 16:11:40 +0000 (UTC)
+	s=arc-20240116; t=1768925571; c=relaxed/simple;
+	bh=UcHmwn1TYbgAgdsr2pglxCwUR0tcKPNVHmODeLgjiHY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZHgR54J1pXs3trdx6dt2HSTMRlFNYy22sdk0kge9K1yoFnaUGU8Vt+LpQHRE7C/uDtlFPhXmC7D07jXdcXUcBnl3Eq9KrBL6Y59u/zf5NF5IrDiG1vP6jArTuL5hHbOGLgXzG+Q/8sBYw6SUXug2sDwqbA4TjXeASN+mpryWNqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ErlGRcgB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D73DC2BCB4
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 16:12:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768925503;
-	bh=dtUUx6lrNtFdy5/+TdTkG7ihJmXBG5s769rXUFmDzMI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=Q/u7R5+hPtnkQdHXwUr7rplCFmrjMp4ucJKF8+aAi3t7ObI8CWsk0ZSfwI2io9TZ7
-	 G6EbSPqS4sXfMKzDNh5GSXbSGpIISgDcUrJMWmzja95XaHObaUlILHsr5XgCSsWKhb
-	 7qMkL67ioXva9EhwO+PnYksEku/pLjVj6CZksFLRUP6imyuZdoOPyeEYoHWjwIlGFs
-	 6EKRGNbnVm8vBdW8bhIjp1UxjN8BPlOcjvYuxAQVZkxWQutGufu2KT0fxNRtiJ+IV6
-	 9UO1GfSxJPVLxKQPtc7UVb6Yd36nARBmjMoT6v5md7iNsxE6VUbOI+AGqpaPQJEkQU
-	 eFZHFcX9c7H0w==
-From: Lee Jones <lee@kernel.org>
-To: lee@kernel.org, Nam Tran <trannamatk@gmail.com>
-Cc: pavel@kernel.org, gregkh@linuxfoundation.org, rdunlap@infradead.org, 
- christophe.jaillet@wanadoo.fr, krzk+dt@kernel.org, robh@kernel.org, 
- conor+dt@kernel.org, corbet@lwn.net, linux-leds@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-doc@vger.kernel.org
-In-Reply-To: <20260115161013.40706-1-trannamatk@gmail.com>
-References: <20260115161013.40706-1-trannamatk@gmail.com>
-Subject: Re: [PATCH v22 0/2] leds: add new LED driver for TI LP5812
-Message-Id: <176892550028.2317951.10477367628623153628.b4-ty@kernel.org>
-Date: Tue, 20 Jan 2026 16:11:40 +0000
+	s=k20201202; t=1768925571;
+	bh=UcHmwn1TYbgAgdsr2pglxCwUR0tcKPNVHmODeLgjiHY=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=ErlGRcgBk1cmfwN0J9rwzMURpmIWBwb5ghXbPS+sr8NndVAEuqSZaHWm+z4XP1ofw
+	 Zt8L3MjqWg5U66adMWEtTE66ySwHP/g9gpfvGCEeM9nAFkS3kL+HGpgRSDqAJWpsdM
+	 sc5tHFr1i/H7H5IM5MOaaX2JgBuxbOAXKsDEtTYgo0o+VKg7yONxigfT8GLr+d7isi
+	 1Yp57trDLzcGqDY1z4beLCa5UuKBvETzMSQXSZR8IbyzH1iY+5q5Lm9eSci5fUVwH0
+	 2zg5YIR/Y3sRJIsN5hx+FvJqOIS1jA580BPTG+oGaBpIewwVvyZ2Uk28z24zifRm7y
+	 l6WKgc9PhuXFA==
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-6580dbdb41eso728539a12.0
+        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 08:12:50 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCW/46Qf5hJQIn0gyLQ9qvIHDb6TljhFQgJHuo256eFBmYh6GAatPXIBY/jZKVTfOHAaxYxGSLd33dUN@vger.kernel.org
+X-Gm-Message-State: AOJu0YxQNfAvU9BdoKdAIjmTVz9uK9low1wf9ARrR7vVdZGzYZUUzJpV
+	i11un6u0E0GzAM7B0q4dSVKMdpQfaiAE7jX849q1gi5YPSS5jH0ke5RxrAYE0V1851L/mgqLmH8
+	HTANgn505B4sm2WiMP4fWP73QXWDhgA==
+X-Received: by 2002:a17:907:9495:b0:b87:d664:860f with SMTP id
+ a640c23a62f3a-b8800364e56mr203884366b.51.1768925569451; Tue, 20 Jan 2026
+ 08:12:49 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.15-dev-52d38
+References: <20260108-dt-mtd-partitions-v1-0-124a53ce6279@kernel.org>
+ <87tswhswsp.fsf@bootlin.com> <CAL_JsqJ7_yKRTCOrxcq0QDy_MRMCRMQqhH=TKiBs=nubqNN9HA@mail.gmail.com>
+ <87ikcws57d.fsf@bootlin.com>
+In-Reply-To: <87ikcws57d.fsf@bootlin.com>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 20 Jan 2026 10:12:38 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKQO1XjPELmfd2xStto1xFbnno5GLr7KheNcn6hZM9L5Q@mail.gmail.com>
+X-Gm-Features: AZwV_Qiq51kWXEGrScowLw75flgyDCvIcgtUbbfsaaGBjWwlXhd42mhTMjoSRsk
+Message-ID: <CAL_JsqKQO1XjPELmfd2xStto1xFbnno5GLr7KheNcn6hZM9L5Q@mail.gmail.com>
+Subject: Re: [PATCH 00/10] dt-bindings: mtd: Partition binding fixes and restructuring
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Brian Norris <computersforpeace@gmail.com>, Kamal Dasu <kdasu.kdev@gmail.com>, 
+	William Zhang <william.zhang@broadcom.com>, Nick Terrell <terrelln@fb.com>, 
+	David Sterba <dsterba@suse.com>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
+	Simon Glass <sjg@chromium.org>, Linus Walleij <linusw@kernel.org>, 
+	Ulf Hansson <ulf.hansson@linaro.org>, Marcus Folkesson <marcus.folkesson@gmail.com>, 
+	Tony Lindgren <tony@atomide.com>, Roger Quadros <rogerq@kernel.org>, Hauke Mehrtens <hauke@hauke-m.de>, 
+	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
@@ -75,49 +92,54 @@ X-Spamd-Result: default: False [-0.46 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-257497-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	FREEMAIL_CC(0.00)[nod.at,ti.com,kernel.org,gmail.com,broadcom.com,fb.com,suse.com,milecki.pl,chromium.org,linaro.org,atomide.com,hauke-m.de,lists.infradead.org,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,linuxfoundation.org,infradead.org,wanadoo.fr,lwn.net,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	R_SPF_SOFTFAIL(0.00)[~all:c];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-257498-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
-	MID_RHS_MATCH_FROM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	R_SPF_SOFTFAIL(0.00)[~all];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: BA56A49F56
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: E342E48762
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, 15 Jan 2026 23:10:11 +0700, Nam Tran wrote:
-> This patch series adds initial support for the TI LP5812,
-> a 4x3 matrix RGB LED driver with autonomous engine control.
-> This version provides a minimal, clean implementation focused
-> on core functionality only. The goal is to upstream a solid
-> foundation, with the expectation that additional features can
-> be added incrementally in future patches.
-> 
-> [...]
+On Tue, Jan 20, 2026 at 8:56=E2=80=AFAM Miquel Raynal <miquel.raynal@bootli=
+n.com> wrote:
+>
+> Hello,
+>
+> >> The series does not apply cleanly, I tried mtd/next and then
+> >> v6.19-rc1. Can you please rebase it and fix the conflicts (at least 2
+> >> patches fail, and then I stopped)?
+> >
+> > I rebased on mtd/next and sent v2. I only saw one conflict though, and
+> > that was with seama.yaml. That's going to conflict with Linus' tree,
+> > but the resolution is take the deleted file.
+>
+> I didn't see where this seama file was modified, except for Linus W.'s
+> address change. Is there an -rc I need to pull? Or an immutable tag?
 
-Applied, thanks!
+That's the only modification and it is in 6.19-rc2.
 
-[1/2] leds: add basic support for TI/National Semiconductor LP5812 LED Driver
-      commit: 4301afd6b3cbd428082b55ec7a6a840b3c8ec749
-[2/2] docs: leds: Document TI LP5812 LED driver
-      commit: 974d724e58fd2eee0fe46299901deae6fa9ebad1
+> Maybe this series applies on top of your next branch? I can give an ack
+> for the full series if that's the case and you can take it.
+>
+> I generally try my best to avoid conflicts at merge.
 
---
-Lee Jones [李琼斯]
+That's not really necessary for trivial merge resolutions like this one.
 
+Rob
 
