@@ -1,145 +1,146 @@
-Return-Path: <devicetree+bounces-257427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257428-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KKnhONNocGkVXwAAu9opvQ
-	(envelope-from <devicetree+bounces-257427-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 06:49:07 +0100
+	id qDemJIiMcGkEYQAAu9opvQ
+	(envelope-from <devicetree+bounces-257428-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 09:21:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id A44DB51B29
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 06:49:07 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 206B5536C0
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 09:21:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 1304972655D
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 13:51:00 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C6D1B727131
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 13:51:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99C9A43900B;
-	Tue, 20 Jan 2026 13:48:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F63A42982D;
+	Tue, 20 Jan 2026 13:51:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Sxbab9wU"
+	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="qcE20BdS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mail-244116.protonmail.ch (mail-244116.protonmail.ch [109.224.244.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB1D43EF0B4;
-	Tue, 20 Jan 2026 13:48:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DB4130EF63;
+	Tue, 20 Jan 2026 13:51:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=109.224.244.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768916932; cv=none; b=J1HIwov2F9dpre9A+ZxkFNBRtP5nv0ZOnfq1Gib9DDxSr+RsSW03y3XnJwhAmAHgCTTHaUGrY7Mr9rxFGJ8as3x0udl7V7i7SyptaR23bZjX48YY74HbVu3NnhQRtd3UD+7kGkJtoPL3RGvVXL5g6DunI5pZ/0m4A8M8adY54xY=
+	t=1768917074; cv=none; b=D12I1HXnyPEzOr0Bm9T4kFfSg43UBgH4jPmdD0+PWivYNH8mZtucGyWOZ0ghikcqThw+7FOTiJS7UeDACe7q1sor+i+4EAeJD2bKkJtyIKl5u4ymrVdbqpNBhwbu860IA5gJejKpdNPc6OQpA6zSKHjbyyCr12OnAQJvxCmoKns=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768916932; c=relaxed/simple;
-	bh=LETeOTo2J7pSknqlHUKIDWdt3aghLlL9yWsh8I0B2E0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rFO3prUA5QEGnsf7EvUCrIfoS+SCPCMK/QHKI1ARdQgCSPbg8jzaSf3kd6F1k/aMZjsDjUxk9YTSwEoBYdto2epR7NlJeYpWtzPceoBsSXnUldlibjDjWels5RWDS2MnkoDcsp6iwcQnkBQnrVHE4Hl0jzOqmWkClwptvAU0Dhs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Sxbab9wU; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=qyLmoKDip8mb9xeBIhPS2JElYYtGvtICGd4heml4sBM=; b=Sxbab9wUBTL3beDPBjlCANIkOu
-	0pvVFyMTIUssN8KrOHq2Ohdgune2ofMMYij8VIOwcnEonn1KJM3X4MrFmt1RtFGU3r4KEubWXyuxF
-	s4S6Fqly7efORJ5dkw/biM3rPfErfBr34I3BA2QdIFhst29jEQbmpqL9aTu6h95/OVbE=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1viC5c-003gSB-9P; Tue, 20 Jan 2026 14:48:12 +0100
-Date: Tue, 20 Jan 2026 14:48:12 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Inochi Amaoto <inochiama@gmail.com>
-Cc: Yao Zi <me@ziyao.cc>, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-	Yanteng Si <siyanteng@cqsoftware.com.cn>,
-	Yao Zi <ziyao@disroot.org>,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Choong Yong Liang <yong.liang.choong@linux.intel.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Shangjuan Wei <weishangjuan@eswincomputing.com>,
-	Boon Khai Ng <boon.khai.ng@altera.com>,
-	Quentin Schulz <quentin.schulz@cherry.de>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH net-next 1/3] dt-bindings: net: Add support for Spacemit
- K3 dwmac
-Message-ID: <9334905d-d11b-49d4-92b1-61e8cf644f0f@lunn.ch>
-References: <20260120043609.910302-1-inochiama@gmail.com>
- <20260120043609.910302-2-inochiama@gmail.com>
- <aW9fL7r0AM0flALJ@pie>
- <aW9ou-lsQQ5dVzqW@inochi.infowork>
+	s=arc-20240116; t=1768917074; c=relaxed/simple;
+	bh=GlsBR4c+63bafGGmpnlsMkWHz03KHLKQuk0j0NtOaGk=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=GOqzJBJspjuHNOgL7LaVYuJA/jO2eLHdomxW1BBoucXOJaaiF6Q33PIbNmkagAzCWShKr8RgjtDxKCS0SlP9kTwF+ctIHOp9wTNGOA7yRxXdKqWYTRRrqb7RSvmpM6b1jlQSj0FcOScAyZExf2cFhAMVwIxuc1U+U9fjYvSphno=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=qcE20BdS; arc=none smtp.client-ip=109.224.244.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1768917069; x=1769176269;
+	bh=GlsBR4c+63bafGGmpnlsMkWHz03KHLKQuk0j0NtOaGk=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=qcE20BdSu9+O+/8zkq0dP2w1kkWz14VZCZ6HPvoMJhO9eRS4ti0HaiMigVIqdk+2R
+	 3GP8WcT8awmBea6xkp68xMPAiMRWzRN5/yXlEHfroJ9dTTLDFab62e/VeffeIf5Uq0
+	 7rGoKpaPso5leqrj5MWpqvt7DLFeZ47CjOq5oy9J3clrFQlOCn6XbLxYp3NBYA5+Ww
+	 m61wsEDiz5Wpxq6YzwZtIAO07aHXQQkAACaHMNsFF97YFgDHjbKmhS1ebwTW8nNOZN
+	 /Xp96YkZ/xYZMlVKPzdcPpWSmYF7t4kXx5f7/4qPTaYcefo6r9tgGJwaFZQj2RLsxZ
+	 ibM2lrLoqiIfA==
+Date: Tue, 20 Jan 2026 13:51:03 +0000
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+From: phodina <petr.hodina@protonmail.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, =?utf-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, David Heidelberg <david@ixit.cz>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 2/3] iio: light: add AMS TCS3400 RGB and RGB-IR color sensor driver
+Message-ID: <iRHbGC3J-Do8RXQIaOqoVYAtebUbQGrJ_H63p4NBgKPUeTBw9dDHGK0YXwd-BhARpOTr_t-C1-rzj-W08AqfiUaLhzXd-4T62V3c82ASQDY=@protonmail.com>
+In-Reply-To: <aW-EFdqRQRFDJ-EO@smile.fi.intel.com>
+References: <20260119-tsc3400-v1-0-82a65c5417aa@protonmail.com> <20260119-tsc3400-v1-2-82a65c5417aa@protonmail.com> <6ad1855a-acf9-43e9-a8ab-303f553eae77@oss.qualcomm.com> <aW-EFdqRQRFDJ-EO@smile.fi.intel.com>
+Feedback-ID: 23468634:user:proton
+X-Pm-Message-ID: e949b899b5cd61cc9350ba8f01e6fcad28f49193
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aW9ou-lsQQ5dVzqW@inochi.infowork>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	R_DKIM_ALLOW(-0.20)[protonmail.com:s=protonmail3];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-257427-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-257428-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[39];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[ziyao.cc,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gentoo.org,gmail.com,foss.st.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,armlinux.org.uk,cqsoftware.com.cn,disroot.org,nxp.com,bp.renesas.com,linux.intel.com,bootlin.com,eswincomputing.com,altera.com,cherry.de,st.com,synopsys.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,st-md-mailman.stormreply.com];
+	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_FROM(0.00)[protonmail.com];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	DMARC_POLICY_ALLOW(0.00)[protonmail.com,quarantine];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[lunn.ch:+];
+	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	DMARC_POLICY_ALLOW(0.00)[lunn.ch,none];
+	FROM_NEQ_ENVFROM(0.00)[petr.hodina@protonmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[protonmail.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
-	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,lunn.ch:mid,lunn.ch:dkim]
-X-Rspamd-Queue-Id: A44DB51B29
+	DBL_BLOCKED_OPENRESOLVER(0.00)[protonmail.com:email,protonmail.com:dkim,protonmail.com:mid,intel.com:email,ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,ams-osram.com:url,digikey.com:url]
+X-Rspamd-Queue-Id: 206B5536C0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-> IIRC, the "phy" clock is used to pass the phy from the mac core, I will
-> double check if it is possible to connect to the phy directly.
+Thanks Konrad for posting the datasheet.
 
-Are you saying this is the reference clock output from the MAC being
-fed to the PHY? That would be a clock provider, not a clock consumer.
+I used directly the link from the vendor site.
 
-Or is it the reference clock output from the PHY going to the MAC?
-Then the MAC would be a consumer.
+https://look.ams-osram.com/m/595d46c644740603/original/TCS3400-Color-Light-=
+to-Digital-Converter.pdf
 
-And there are some designs which have a third party generate the
-clock, and both the MAC and the PHY consume it.
+Will add the link to the driver commit.
 
-     Andrew
+Kind regards
+Petr Hodina
+
+
+On Tuesday, January 20th, 2026 at 2:33 PM, Andy Shevchenko <andriy.shevchen=
+ko@intel.com> wrote:
+
+> On Tue, Jan 20, 2026 at 12:03:26PM +0100, Konrad Dybcio wrote:
+>=20
+> > On 1/19/26 6:19 PM, Petr Hodina via B4 Relay wrote:
+>=20
+> > > Add support for the AMS TCS3400 I2C color light-to-digital converter.
+> > > The driver supports RGBC and RGB-IR modes, programmable integration
+> > > time, optional interrupt-driven buffered capture, and regulator-based
+> > > power control.
+> > >=20
+> > > Signed-off-by: Petr Hodina petr.hodina@protonmail.com
+> > > ---
+> >=20
+> > FYI this is the driver that shipped on Sony phones:
+> >=20
+> > https://github.com/LineageOS/android_kernel_sony_sdm845/blob/lineage-23=
+.0/drivers/misc/tcs3490.c
+> >=20
+> > And it seems there's a datasheet available:
+> >=20
+> > https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/897/TCS349=
+0.pdf
+>=20
+>=20
+> Thanks for finding this! It can be transformed to Datasheet tag
+> in the commit message.
+>=20
+> --
+> With Best Regards,
+> Andy Shevchenko
 
