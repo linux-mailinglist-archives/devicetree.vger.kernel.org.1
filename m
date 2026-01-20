@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-257176-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257177-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BF50D3BE7C
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 05:37:59 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEC6BD3BE80
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 05:38:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 08B2F4EBD2A
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 04:37:08 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1EC134EC405
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 04:37:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC622352FB6;
-	Tue, 20 Jan 2026 04:36:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA695357A27;
+	Tue, 20 Jan 2026 04:36:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fDIrnssH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fVAfMYHL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f179.google.com (mail-dy1-f179.google.com [74.125.82.179])
+Received: from mail-dl1-f52.google.com (mail-dl1-f52.google.com [74.125.82.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FFE8352F99
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 04:36:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 279C93570C5
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 04:36:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768883792; cv=none; b=j1tlJn+Sx6pYbwJ2uBnc7x8U4OWK+XjvDqdT8mQt2CXjRJEi4jANQj9hZpMlIXZWrN+Rd+YiWUIdwN0CtEDkNtoDImU1bWxIzR5O1UlqvCrbaEpvFG0F/QTm8WlYJSWTfkBWygwAmHaTdxB4pnb+wlF6muB32ONqWzKVqyMfxak=
+	t=1768883797; cv=none; b=kyyRE3GDEU8vDka9TJU7IaYjBeweLcEAMX0afWUcDfAV0ibmL/HB356/Gpe8wHSLkPOGqSBinI+ORhrsd2Dw4BI6UnRVGSxQjDJUO6qc3QhDI5PgnnYLOYu2naUd3DsZBh8k6/8x8GQIbJiTejuh8zF9z0M5Ffy4q3QE8W/rRNE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768883792; c=relaxed/simple;
-	bh=RbmYS+GbmO5r9aIsVbkZb99LO5fpXfIwGvbgj9g6qUI=;
+	s=arc-20240116; t=1768883797; c=relaxed/simple;
+	bh=3tH/+6lIxO4URvJgO1n8gy+tjRuroAKNkBz1xRvUGX4=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=O4iaLI0JF5pJzaVuLLo+4Hxfnxn7Uac5/CM5esPtvt2t7XRvZyCrZQLWeR18tirOeKVlFMC1Avq+TdDeCigHu/JhFRZz5SP15EPc2xDYi8ptfSpPhhXrrQ9ISdMeyQwR7nHeaFPYqQIKhiZsTonohIANaRxZtyQE+Y6t7S+PSSo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fDIrnssH; arc=none smtp.client-ip=74.125.82.179
+	 MIME-Version; b=sVgZf2fwFmCCp/Pja1DLfbi87xLk5i7TE2L5wwfb+rL+vZf1AP9Fx3dxAxwJMZ54lzyqg4FnHSvCDBNTgvz1nP2Hj9Xa0L8TNwAAbyELAxBZEHVStoPGpTiFEMRQGX08WIDm9msxQERfNz43dUCiAU/4ounz78Pwd/fUsN70HoI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fVAfMYHL; arc=none smtp.client-ip=74.125.82.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f179.google.com with SMTP id 5a478bee46e88-2b1981ca515so5361517eec.1
-        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 20:36:30 -0800 (PST)
+Received: by mail-dl1-f52.google.com with SMTP id a92af1059eb24-12332910300so7388278c88.0
+        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 20:36:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768883790; x=1769488590; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1768883794; x=1769488594; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=yB8/RdUGEfLZjhmXdp52kQTD2QqD1w42DdvzuHTbkg0=;
-        b=fDIrnssHsZHhl1JrOcn8DT3G7fCEhTDqkTCHS/kruE5DdkNGBzbJskcjkpVIdd6uc2
-         Al25X2f+DM6rXYGCeEk3f1URs566WG8zRjrj0Yn1HO1Gs/+X+Ruenv2yNjhxoNIQNAhi
-         ONDG2V1qjwkGB3AUuXEvHd+UGzxip9nrhPmQTQ7v9YfGA2RiqmcWEUKEdKiacUyEMyVo
-         DZkJLS+Ea8NXwENx3TbfMgBpdDQ4Ieh5nNksR9HUszR974MCHG6T6kqImpS47lCZB86v
-         1FZQQIzcA3XcGO4StBhMaRSkZcDu6XQOVexIbZ4TnkHsAC8FHL5vxJKj8JxZgI+0ypog
-         I/Fw==
+        bh=wyReD0FGPHyCNo3ka9EshiTdpLiW7lhhWJbYHeoeAsk=;
+        b=fVAfMYHLBeYXHSXJgPefI7JpULQC9uRR0QbhaMokhm6Rx39lwV0LtTQhPIkkEIDNIn
+         de7h1bY0g68d+uUyPVY/bk4X4Lu+sG5BrPJ+GNWpNcRZNUy50OPdgcT7W//nbvvEjKRs
+         p8sFe8fdDruhx8PftdzaFjo2feu1gl+OUW79ED0nfDyFlGHGU7tFujSs9yf0KCKjq/Gi
+         y7KGLEaqJpofig9U4bg7UDjCmvyvtKlYqM0iPfDGFFzB++t+cgr1qmFpQobYDE+++6Ts
+         w7W4gAJF70w72yvylTri5PFvkrVKkouqZjHAJrnCT6n30g0047V4qLX2+XgWNQEFx0wg
+         pAGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768883790; x=1769488590;
+        d=1e100.net; s=20230601; t=1768883794; x=1769488594;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=yB8/RdUGEfLZjhmXdp52kQTD2QqD1w42DdvzuHTbkg0=;
-        b=kDuimvhqyezxG02U3of+UDvP5U1lcxqEPN1W3ROgjpebwimndXu7AlI6OQ/4nVGMzQ
-         OWTkkT+auTEU4wQ3WKANL5eBDh21HOQSbYCD4/QiAvbhe2ANOW7WTJwlegd4rCoWlgWQ
-         KT8oxD9euK8LTEP9Bj1d+OUsrUBIUtbpixyWZZaqc8ukoYdUYXVHakfvOVKc4ubnzIg9
-         vJJUZlCRyfDiYquRNa2R2Mx6wZWpO5U+2g/tA8rhAutZCjDvQuunq75Xshitzmz8BETN
-         BKKMpchaGiatgHUoTxRDmQYGZ/O4TWQK2+7CZJWWwX1mt+OqKGLplsybNHOq0j9PMtvZ
-         6Kcg==
-X-Forwarded-Encrypted: i=1; AJvYcCXLDQVtB6UXySvCro8KvlTLM3UxaHboUUX8nRbGuBLto6YVTsw4ZubT7SIv0xmdHTC4zoi4TRjKJCNW@vger.kernel.org
-X-Gm-Message-State: AOJu0YzD2joZb5cZxw33H+kNcgJl/zPkwbTwop1nT1BBBiBMWUVmHdQa
-	3agLxjYKCy/jZrFMujFdaUc7kOpiYUxxKkdHx/SaPUj3eHutyhXOHmsC
-X-Gm-Gg: AZuq6aKUuEK3fm/zgFFy3WEVAQPx70UhzdnJ42bZvdFInSSxNoXaqLkuRzXr9aErv7s
-	0/mrC2E8NVXC9fpT83F6rwjpKH/XsNZjKWku9DNV3QWK5AX750tyGXx5vanLHay5dSCTVlOxTBU
-	k3ibtoSahOykhHXzB9R3AgVFL6ExBZ6ya7uLRMH0rz3DXngBG7UnYznhHMuyXUEOgSkD7B5/ElJ
-	McUJxGBS3/91zTlx5Tinye9zSkrX5V13mcJJWCz8hOaaBzWEWrfpLsTvJs0KlTzUeUZv0o3Rcff
-	m/EMtjk6b9LbeprtrKibXK2oub7jfar/DoqHN/sxO3ZQZfA5RIBLj/wNkfm3cSCyMqgG+VqLa1E
-	RDUCjIeofwv+BDvYdV9sX+mNfFClGf+7fMNGKEsGxvF9ijOCpP1hGGg3RARw8QOPI7J3mLeTgRe
-	efk8OHQb9kdJBuU9X546Jc
-X-Received: by 2002:a05:7301:9f09:b0:2ae:5e93:b6d with SMTP id 5a478bee46e88-2b6fd7e55f9mr304430eec.38.1768883790053;
-        Mon, 19 Jan 2026 20:36:30 -0800 (PST)
+        bh=wyReD0FGPHyCNo3ka9EshiTdpLiW7lhhWJbYHeoeAsk=;
+        b=JEBWBgSr+XhpDVIGf7NeFh6RpRCNEs82jxvYv41ycV4w7Hvs3LMElJLmXFOJ6MZd5I
+         TGcWaegTUBEotw/BVpQWnelkEc5BEP5T6Ln1yUWPhN6K/h+JXtFX2WF/rj58voOZvgtG
+         VWwfuRWv7tWpliyOYQ4eoJPoeZINT3TTGM5e0/BscMpOVu715wKhGjppIyq6F3Lpd/Ym
+         z1URr/AGDQFurX9zcHWh2bORKfmrvWIIXHkOJu5UjdWyYO4H0fURaAH1G791x1uDZGOI
+         SMI9qIxhx+A3cWHEv71DPo/jGQbzpaP820lRnlH0sC2heJgegAJQHm3NyEeKQTpH7nDd
+         p18w==
+X-Forwarded-Encrypted: i=1; AJvYcCWsoQeoUnaiVIWtCpuMNjy6OTI/N+yuCXFId6yZtLIG/LbXF3FuVzPlTytaWjuWBPj3ga+I34Qy2axE@vger.kernel.org
+X-Gm-Message-State: AOJu0YxQZekl6sYLPukSZ6bB6M/pDaAeKroP99bqi9ZtAfh2gFlCSgeM
+	nz5aS37NbEb78W6ZShnT1J56SwMOSIE4LPJ6TuX1IyqSUOQlpwFvoZSn
+X-Gm-Gg: AY/fxX6WRUq6GaDw4u8/vujIoxJFHsUeX7CKxDfCEuTwimrihoSUoeqv+S+ycHSNH8C
+	FKyaF/71rmcU2FXVh5XMHnWd9FmfUxr8ZR0VF/RlcYj+hQWQGhs6dKxAqOqaXIpqKyzbYBhnQ9Q
+	HAk7z5SG84/JgwVQJXXHWMW8swm7RL2Zv0BQJvi80RC5+JmYbK1YGjpzKPvFnCX+qzmB7BVtdFa
+	ae1o1zkd0VAOWLFmV459VddH0G1yKctCp5P63368MGM/4Jn58YK35aWIvy8BwS40dit5QNrE1Yg
+	MHZ5Bjjxq+VwSzWsZRpYh3uV++Mb70ANyPsunrhCXrnJr7VRNz4/t5i4iUcvjcaqRa8YQLZO3kW
+	sX5cqViA9GlPn3bRXlms/wtI0dXlraeKZgGOX8RlWBXAx6RPD9Pq2joIdeIJVFEvc8iVG6zdGNm
+	co2uWOSucKIG3dwHOZV+Oc
+X-Received: by 2002:a05:7022:2385:b0:119:e569:fb9b with SMTP id a92af1059eb24-1244a6fca7cmr8955362c88.10.1768883794022;
+        Mon, 19 Jan 2026 20:36:34 -0800 (PST)
 Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b6fc2820a2sm1030314eec.35.2026.01.19.20.36.29
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b6bd8e7cd9sm14617890eec.16.2026.01.19.20.36.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Jan 2026 20:36:29 -0800 (PST)
+        Mon, 19 Jan 2026 20:36:33 -0800 (PST)
 From: Inochi Amaoto <inochiama@gmail.com>
 To: Andrew Lunn <andrew+netdev@lunn.ch>,
 	"David S. Miller" <davem@davemloft.net>,
@@ -112,9 +112,9 @@ Cc: netdev@vger.kernel.org,
 	linux-stm32@st-md-mailman.stormreply.com,
 	linux-arm-kernel@lists.infradead.org,
 	Longbin Li <looong.bin@gmail.com>
-Subject: [PATCH net-next 2/3] net: stmmac: platform: Add snps,dwmac-5.40a IP compatible string
-Date: Tue, 20 Jan 2026 12:36:07 +0800
-Message-ID: <20260120043609.910302-3-inochiama@gmail.com>
+Subject: [PATCH net-next 3/3] net: stmmac: Add glue layer for Spacemit K3 SoC
+Date: Tue, 20 Jan 2026 12:36:08 +0800
+Message-ID: <20260120043609.910302-4-inochiama@gmail.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260120043609.910302-1-inochiama@gmail.com>
 References: <20260120043609.910302-1-inochiama@gmail.com>
@@ -126,26 +126,281 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add compatible string for 5.40a version that can avoid to define some
-platform data in the glue layer.
+Adds Spacemit dwmac driver support on the Spacemit K3 SoC.
 
 Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
 ---
- drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/net/ethernet/stmicro/stmmac/Kconfig   |  12 +
+ drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+ .../ethernet/stmicro/stmmac/dwmac-spacemit.c  | 224 ++++++++++++++++++
+ 3 files changed, 237 insertions(+)
+ create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-spacemit.c
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-index 8979a50b5507..54c7b1537ab9 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-@@ -396,6 +396,7 @@ static const char * const stmmac_gmac4_compats[] = {
- 	"snps,dwmac-5.10a",
- 	"snps,dwmac-5.20",
- 	"snps,dwmac-5.30a",
-+	"snps,dwmac-5.40a",
- 	NULL
- };
+diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
+index 907fe2e927f0..583a4692f5da 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
++++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
+@@ -216,6 +216,18 @@ config DWMAC_SOPHGO
+ 	  for the stmmac device driver. This driver is used for the
+ 	  ethernet controllers on various Sophgo SoCs.
  
++config DWMAC_SPACEMIT
++	tristate "Spacemit dwmac support"
++	depends on OF && (ARCH_SPACEMIT || COMPILE_TEST)
++	select MFD_SYSCON
++	default m if ARCH_SPACEMIT
++	help
++	  Support for ethernet controllers on Spacemit RISC-V SoCs
++
++	  This selects the Spacemit platform specific glue layer support
++	  for the stmmac device driver. This driver is used for the
++	  Spacemit K3 ethernet controllers.
++
+ config DWMAC_STARFIVE
+ 	tristate "StarFive dwmac support"
+ 	depends on OF && (ARCH_STARFIVE || COMPILE_TEST)
+diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/drivers/net/ethernet/stmicro/stmmac/Makefile
+index 7bf528731034..9e32045631d8 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/Makefile
++++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
+@@ -27,6 +27,7 @@ obj-$(CONFIG_DWMAC_RZN1)	+= dwmac-rzn1.o
+ obj-$(CONFIG_DWMAC_S32)		+= dwmac-s32.o
+ obj-$(CONFIG_DWMAC_SOCFPGA)	+= dwmac-altr-socfpga.o
+ obj-$(CONFIG_DWMAC_SOPHGO)	+= dwmac-sophgo.o
++obj-$(CONFIG_DWMAC_SPACEMIT)	+= dwmac-spacemit.o
+ obj-$(CONFIG_DWMAC_STARFIVE)	+= dwmac-starfive.o
+ obj-$(CONFIG_DWMAC_STI)		+= dwmac-sti.o
+ obj-$(CONFIG_DWMAC_STM32)	+= dwmac-stm32.o
+diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-spacemit.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-spacemit.c
+new file mode 100644
+index 000000000000..72744e60d02a
+--- /dev/null
++++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-spacemit.c
+@@ -0,0 +1,224 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * Spacemit DWMAC platform driver
++ *
++ * Copyright (C) 2026 Inochi Amaoto <inochiama@gmail.com>
++ */
++
++#include <linux/clk.h>
++#include <linux/mfd/syscon.h>
++#include <linux/math.h>
++#include <linux/mod_devicetable.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/platform_device.h>
++#include <linux/property.h>
++#include <linux/regmap.h>
++
++#include "stmmac_platform.h"
++
++/* ctrl register bits */
++#define PHY_INTF_RGMII			BIT(3)
++#define PHY_INTF_MII			BIT(4)
++
++#define WAKE_IRQ_EN			BIT(9)
++#define PHY_IRQ_EN			BIT(12)
++
++/* dline register bits */
++#define RGMII_RX_DLINE_EN		BIT(0)
++#define RGMII_RX_DLINE_STEP		GENMASK(5, 4)
++#define RGMII_RX_DLINE_CODE		GENMASK(15, 8)
++#define RGMII_TX_DLINE_EN		BIT(16)
++#define RGMII_TX_DLINE_STEP		GENMASK(21, 20)
++#define RGMII_TX_DLINE_CODE		GENMASK(31, 24)
++
++#define MAX_DLINE_DELAY_CODE		0xff
++
++struct spacemit_dwmac {
++	struct device *dev;
++	struct clk *tx;
++};
++
++/* Note: the delay step value is at 0.1ps */
++static const unsigned int k3_delay_step_10x[4] = {
++	367, 493, 559, 685
++};
++
++static int spacemit_dwmac_set_delay(struct regmap *apmu,
++				    unsigned int dline_offset,
++				    unsigned int tx_code, unsigned int tx_config,
++				    unsigned int rx_code, unsigned int rx_config)
++{
++	unsigned int mask, val;
++
++	mask = RGMII_RX_DLINE_STEP | RGMII_TX_DLINE_CODE | RGMII_TX_DLINE_EN |
++	       RGMII_TX_DLINE_STEP | RGMII_RX_DLINE_CODE | RGMII_RX_DLINE_EN;
++	val = FIELD_PREP(RGMII_TX_DLINE_CODE, tx_config) |
++	      FIELD_PREP(RGMII_TX_DLINE_CODE, tx_code) | RGMII_TX_DLINE_EN |
++	      FIELD_PREP(RGMII_TX_DLINE_CODE, rx_config) |
++	      FIELD_PREP(RGMII_RX_DLINE_CODE, rx_code) | RGMII_RX_DLINE_EN;
++
++	return regmap_update_bits(apmu, dline_offset, mask, val);
++}
++
++static int spacemit_dwmac_detected_delay_value(unsigned int delay,
++					       unsigned int *config)
++{
++	int i;
++	int code, best_code = 0;
++	unsigned int best_delay = 0;
++	unsigned int best_config = 0;
++
++	if (delay == 0)
++		return 0;
++
++	for (i = 0; i < ARRAY_SIZE(k3_delay_step_10x); i++) {
++		unsigned int step = k3_delay_step_10x[i];
++
++		for (code = 1; code <= MAX_DLINE_DELAY_CODE; code++) {
++			/*
++			 * Note K3 require a specific factor for calculate
++			 * the delay, in this scenario it is 0.9. So the
++			 * formula is code * step / 10 * 0.9
++			 */
++			unsigned int tmp = code * step * 9 / 10 / 10;
++
++			if (abs(tmp - delay) < abs(best_delay - delay)) {
++				best_code = code;
++				best_delay = tmp;
++				best_config = i;
++			}
++		}
++	}
++
++	*config = best_config;
++
++	return best_code;
++}
++
++static int spacemit_dwmac_fix_delay(struct plat_stmmacenet_data *plat_dat,
++				    struct regmap *apmu,
++				    unsigned int dline_offset,
++				    unsigned int tx_delay, unsigned int rx_delay)
++{
++	bool mac_rxid = rx_delay != 0;
++	bool mac_txid = tx_delay != 0;
++	unsigned int rx_config = 0;
++	unsigned int tx_config = 0;
++	unsigned int rx_code;
++	unsigned int tx_code;
++
++	plat_dat->phy_interface = phy_fix_phy_mode_for_mac_delays(plat_dat->phy_interface,
++								  mac_txid,
++								  mac_rxid);
++
++	if (plat_dat->phy_interface == PHY_INTERFACE_MODE_NA)
++		return -EINVAL;
++
++	rx_code = spacemit_dwmac_detected_delay_value(rx_delay, &rx_config);
++	tx_code = spacemit_dwmac_detected_delay_value(tx_delay, &tx_config);
++
++	return spacemit_dwmac_set_delay(apmu, dline_offset,
++					tx_code, tx_config,
++					rx_code, rx_config);
++}
++
++static int spacemit_dwmac_update_ifconfig(struct plat_stmmacenet_data *plat_dat,
++					  struct stmmac_resources *stmmac_res,
++					  struct regmap *apmu,
++					  unsigned int ctrl_offset)
++{
++	unsigned int mask = PHY_INTF_MII | PHY_INTF_RGMII | WAKE_IRQ_EN;
++	unsigned int val = 0;
++
++	switch (plat_dat->phy_interface) {
++	case PHY_INTERFACE_MODE_MII:
++		val |= PHY_INTF_MII;
++		break;
++
++	case PHY_INTERFACE_MODE_RMII:
++		break;
++
++	case PHY_INTERFACE_MODE_RGMII:
++	case PHY_INTERFACE_MODE_RGMII_ID:
++	case PHY_INTERFACE_MODE_RGMII_RXID:
++	case PHY_INTERFACE_MODE_RGMII_TXID:
++		val |= PHY_INTF_RGMII;
++		break;
++
++	default:
++		return -EOPNOTSUPP;
++	}
++
++	if (stmmac_res->wol_irq >= 0)
++		val |= WAKE_IRQ_EN;
++
++	return regmap_update_bits(apmu, ctrl_offset, mask, val);
++}
++
++static int spacemit_dwmac_probe(struct platform_device *pdev)
++{
++	struct plat_stmmacenet_data *plat_dat;
++	struct stmmac_resources stmmac_res;
++	struct device *dev = &pdev->dev;
++	unsigned int rx_delay = 0;
++	unsigned int tx_delay = 0;
++	struct regmap *apmu;
++	unsigned int offset[2];
++	int ret;
++
++	ret = stmmac_get_platform_resources(pdev, &stmmac_res);
++	if (ret)
++		return dev_err_probe(dev, ret,
++				     "failed to get platform resources\n");
++
++	plat_dat = devm_stmmac_probe_config_dt(pdev, stmmac_res.mac);
++	if (IS_ERR(plat_dat))
++		return dev_err_probe(dev, PTR_ERR(plat_dat),
++				     "failed to parse DT parameters\n");
++
++	plat_dat->clk_tx_i = devm_clk_get_enabled(&pdev->dev, "tx");
++	if (IS_ERR(plat_dat->clk_tx_i))
++		return dev_err_probe(&pdev->dev, PTR_ERR(plat_dat->clk_tx_i),
++				     "failed to get tx clock\n");
++
++	apmu = syscon_regmap_lookup_by_phandle_args(pdev->dev.of_node, "spacemit,apmu", 2, offset);
++	if (IS_ERR(apmu))
++		return dev_err_probe(dev, PTR_ERR(apmu),
++				"Failed to get apmu regmap\n");
++
++	ret = spacemit_dwmac_update_ifconfig(plat_dat, &stmmac_res,
++					     apmu, offset[0]);
++	if (ret)
++		return dev_err_probe(dev, ret, "Failed to configure ifconfig\n");
++
++	of_property_read_u32(pdev->dev.of_node, "tx-internal-delay-ps", &tx_delay);
++	of_property_read_u32(pdev->dev.of_node, "rx-internal-delay-ps", &rx_delay);
++
++	ret = spacemit_dwmac_fix_delay(plat_dat, apmu, offset[1], tx_delay, rx_delay);
++	if (ret)
++		return dev_err_probe(dev, ret, "Failed to configure delay\n");
++
++	return stmmac_dvr_probe(dev, plat_dat, &stmmac_res);
++}
++
++static const struct of_device_id spacemit_dwmac_match[] = {
++	{ .compatible = "spacemit,k3-dwmac" },
++	{ /* sentinel */ }
++};
++MODULE_DEVICE_TABLE(of, spacemit_dwmac_match);
++
++static struct platform_driver spacemit_dwmac_driver = {
++	.probe  = spacemit_dwmac_probe,
++	.remove = stmmac_pltfr_remove,
++	.driver = {
++		.name = "spacemit-dwmac",
++		.pm = &stmmac_pltfr_pm_ops,
++		.of_match_table = spacemit_dwmac_match,
++	},
++};
++module_platform_driver(spacemit_dwmac_driver);
++
++MODULE_AUTHOR("Inochi Amaoto <inochiama@gmail.com>");
++MODULE_DESCRIPTION("Spacemit DWMAC platform driver");
++MODULE_LICENSE("GPL");
 -- 
 2.52.0
 
