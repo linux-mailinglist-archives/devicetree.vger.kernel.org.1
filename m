@@ -1,262 +1,156 @@
-Return-Path: <devicetree+bounces-257211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257212-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F2B3D3C05F
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 08:28:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4A75D3C08E
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 08:35:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2ABD74FF00C
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 07:16:21 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CC57D50218D
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 07:17:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A44A8392B9A;
-	Tue, 20 Jan 2026 07:16:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE1C8392C2E;
+	Tue, 20 Jan 2026 07:17:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="HDkj4vfh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JoRpSNXa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013071.outbound.protection.outlook.com [52.101.83.71])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5BFB392817
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 07:16:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.71
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768893372; cv=fail; b=TfED/xk041BzN301OKZcAbQt9fAoP2WY2me4ZgDr1XlsZpI+RdAb2BLb4cuZvW6TecI2lRFijRHvXwsTYdg+rjwQIVSKDUQzX7TKH6/eoFXQXxtkU6nBDWOh0+WvW7Ms/SWkDHZjQy62bQ4lDGCEt6uck5DXo+yS4zAxq3VKjvE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768893372; c=relaxed/simple;
-	bh=zj6Nbg21yFk+5WxCrxesnmaptzaxlKfQ+R6P64EpIuY=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=E96Ow6M3FXe6mehEEbijxrqGq5k18pCeSWd5lNiNAf8verWODVfaB2oq6zSTXxFmAF3IMt2aN0a0aUJ/r/j8jBVGjdlgPxqRjzksw6H+Zy4G2j26WBcoytyl6tPG9/r1XERux0747FRJm9AhjjkOL07Zse4buwRaGpnn7rKUSLQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=HDkj4vfh; arc=fail smtp.client-ip=52.101.83.71
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=HGP1DroFnd5vEoL7E8jRRqz3sESsme+KA+tjAEpFHObA1UKkS5diVK5vxViNVQBKyAgDL9y0bO+B2sGCtQ7dX57f7R7RpK/qu4rQs6TZ/05giYAt9bFHJffbWRSlE5RX33DBeTS3PKZALQrtYD6SefbS7E/sOVDGqloge0Ejec6ljz7MuBSxs1SybRKFiIhmzC/ImI4MU7RREomyUvf0l65tGNKPFs/0EPsPJyylryK7zjwYoQ6vCX5JWlSHcbuF+JOy/73upkD/8WcQLGXuP09L1GymHlJoNzVROc51A1FJgC3kKTPAw2xcH5LsIpnvA9CTibBXGywzY5GmtXNh6Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Vi51lcor39tAlIxEjB7lptBxOIgHmS6qQ6KsspS1FSg=;
- b=PFPOtOCnge7MUdHMLyarT/q4BNIh2rAcnVQVFwHihsnJ3HM/WJC+kva4xWWS7qApIbBJ/an6CKBFp/+ZnNAbdsNJy/1swJIeeLFV0dXzLIRpfZPhvwHZ2Q4caXpZbxLH2kMRqRMM3Y4O7noR4gN/7ppA+Jik4d1oO/qACOhB7t1xg6RHeanOP4KP1trGZ+axbgfwl+nnwR5DwGyPu3MR6pDicEBcru8lES5rhJmkESPCxn9D0/BvljNf0u5AW+TwZSDZwL5pEsamemTmgfnFaycRtxSAkE60g2+rf1EGFeWSKu0P6yKiJ7BIn6piqJSI9Jy9LaUK+mLzuCNYY3QqGg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Vi51lcor39tAlIxEjB7lptBxOIgHmS6qQ6KsspS1FSg=;
- b=HDkj4vfhBfhAiy5yYUjhFOA1mvsYGP/KcNx4AUvebbmTh8p8Si3dlzjsv9911Tvsk395gL77AVaWjtHbRG5wedGLOFgVVcVYfgxa0f42dD7YrYeJ8iuElNEgYy13es5yQaw9hzlqgc024sBTDmitm69Odyu772bD0hSic8B2NwWhAE0nZ860EM7LkMbqieB1Gz0DxpfD9XzjuDVZkrJUGtFutTghwj7rF7D5Qdp919d9CnMFCdNVrvAtFEhUyXvRZl9Nati1fvOoQcSghkoguNpRprzDLwdLTWwdXdN34M1iIBV4E2rIt8KCjRokbMaMa87Ah7PQ0rKqC6MTeSZIkA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
- by PA2PR04MB10373.eurprd04.prod.outlook.com (2603:10a6:102:416::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.5; Tue, 20 Jan
- 2026 07:15:57 +0000
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::4609:64af:8a4b:fd64]) by AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::4609:64af:8a4b:fd64%4]) with mapi id 15.20.9520.011; Tue, 20 Jan 2026
- 07:15:57 +0000
-Message-ID: <ef68dcc9-6a3d-40e2-bcc4-3d3e3bb2a011@nxp.com>
-Date: Tue, 20 Jan 2026 15:16:47 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v2 2/2] drm/bridge: fsl-ldb: Allow the termination
- resistor to be enabled
-To: Fabio Estevam <festevam@gmail.com>
-Cc: marek.vasut@mailbox.org, neil.armstrong@linaro.org,
- dri-devel@lists.freedesktop.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org
-References: <20251218110626.605558-1-festevam@gmail.com>
- <20251218110626.605558-2-festevam@gmail.com>
-From: Liu Ying <victor.liu@nxp.com>
-Content-Language: en-US
-In-Reply-To: <20251218110626.605558-2-festevam@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SI2PR02CA0044.apcprd02.prod.outlook.com
- (2603:1096:4:196::17) To AM7PR04MB7046.eurprd04.prod.outlook.com
- (2603:10a6:20b:113::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D50C2EFDBB;
+	Tue, 20 Jan 2026 07:17:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768893441; cv=none; b=kcoOEy8D2Zkr/yBHDEU/vCu7pnwG3LnT+ifDfHwohUhsdqVlTuFz78LsMQYEkbULluuuk1kZx+4R+uP1YpbSDwyVMzMH90RdaO9m4p1JW4TqPAOnogYquP9+SE1wydwQ/vrFSDOGzyh9bx3mWPfGptXnQAfQX526iBwHYg9W1ho=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768893441; c=relaxed/simple;
+	bh=PavEgEip3CFvVrh74VGbDNPmCTt9qpNGuJnIFz1n5vg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cVwqi7wFZGb1a3CRjeFXVCFi02UQWD01diKsht2r5/n+mKgU9V29JrPyecw1w8xmTepBivTB9pOTKUFCxb/OXww8QY670BtQyB361NLRompla6ki+7OtHcM0uPm0KeHaszi0BXQKHc5Oc8pGIVIzgVL8k3wU2Pqa5QwIHs31YxA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JoRpSNXa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20288C16AAE;
+	Tue, 20 Jan 2026 07:17:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768893439;
+	bh=PavEgEip3CFvVrh74VGbDNPmCTt9qpNGuJnIFz1n5vg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=JoRpSNXaKVROkNPtSD0+O0l6+cSPAzCFnkkfJzxFModPsbeLxLKJ5OayG9Dy+J8VB
+	 cqApXI2oXEgZVEDnCefNfXCcXEuXaBKcuUkBwZupNUJ3koAiTao3HrGvJL1St8F3EK
+	 n/DPEg9fY7s9qgAQ0eRSb/LFc6MIKipV2ue0zQA0H7ifC6LPmO9uwNWIf94wijzx1L
+	 lQcgLNDZYZy0F/5g0QZCv6tj0VuL3CAJrUYyDtp0ftpfWrw5uJHAD74ogHWzd1jZVZ
+	 bp1PcuKtQVRHrrUnB7MgOmCJlB/eYn2PPPA7ZmcFNO/tSSUyikgiuERUufWoHCYlUf
+	 B/7tKyTB4NaPw==
+Message-ID: <a7ab2c3f-bbd0-435e-a707-44101428a39b@kernel.org>
+Date: Tue, 20 Jan 2026 08:17:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|PA2PR04MB10373:EE_
-X-MS-Office365-Filtering-Correlation-Id: d39d953b-106b-4336-030a-08de57f3c1b2
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|366016|19092799006|1800799024|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?eTNkSFhuZlhzbTVSMWxFb1E3Y2I4aEhpbEZjWjQrZjVBUGpxZkFiYUpKTTU4?=
- =?utf-8?B?TTNvQ295TmdML2t5UThjQVAyaXVTQXdxUmF6OFlHREwzNFg1M1cvZFhQWFZU?=
- =?utf-8?B?RktyNk9rb0k0MVNPZGdMSWdRbW5RNmxCSmdwVXVMdFdjQzIrR2dkSmNyMmp4?=
- =?utf-8?B?a3JlV05tUHNDa3lUZXhLL2VJNGpMc09VbEhzTlA2bXMwcGNZN3hMRXpIUkx5?=
- =?utf-8?B?VEgxYlFyZ0R2dnp1aTY0Ym9mcGZRYVpWQTBkb3ZzZEZzbUx5YUxLUDd3RU5L?=
- =?utf-8?B?V1R0azR2L0tHL3NNUEpBUkUzdmxmKzkyeW9TUHQ3K01BY1M1UGI3RE1vWms3?=
- =?utf-8?B?UCtESjY4Nk9GUEpwUVdodE1CVDg4Wk9OZE9DUGdZc2ZrL01YZUtvdDk2aTNn?=
- =?utf-8?B?Z0UzRTJLZ2lqSE5OSmJSQ2IyN2pRZ2JTY0oxMFRqaEpJUGc1akxSNFFTOXRy?=
- =?utf-8?B?cHFxdk5ERXdGUmc3VTIyN3h4VlFGdkJYVEhMeE5vNkpoRkpkWnAyM1Zic293?=
- =?utf-8?B?b2JUWC9MU2ZCL2lvVDhoTFcwdHpvSU54dC92T1JsQUttRVJFNWdYUUlObzVv?=
- =?utf-8?B?cUhnYnNvNy8wRCsyZGU0NVJHNXJkZ2lxdHdmWUFYdUh1YTZBa1VjWVN5UHB6?=
- =?utf-8?B?bEE3dWJZRDgzNDlueDZ4R2k2SjBsbG51MXhwWTRYanRwNHFJTWcyODlhN0FL?=
- =?utf-8?B?c0k4VnpJS2VsNU9kbWF4RFFvNldNbkdiN0V1ZnpXc3BrcVByd3h2bU1nOXRS?=
- =?utf-8?B?bnNpYWpWTW1rN2R3Y2hkVTF3OGR1WkVzOWFmMUd0TlJkUmozdVlYaXh2cTl3?=
- =?utf-8?B?VEl2amluMFA5TjYyekpQME85RjRsL1MyNGRjblZQbTd4UCt4R25PZzNXUktD?=
- =?utf-8?B?V24xbEJVSmF4T1BsR0YyZWE3Y0lqeURmUi9ZcFBxNmtaN2dJSjJQZlc4dks5?=
- =?utf-8?B?a3VWVE1rb2RtQnFaQm0xcDZJRkdxK1FLUjlFSGNpT0R0c2xxZWZ3UitaS3ZG?=
- =?utf-8?B?cFl2YVNsQkNhNkQwRFl0VTNWd0tsMzVzaUpzek5mN3FiZFQ2bmpORklxazV4?=
- =?utf-8?B?L2lWSFZGRWh0ZEdqTHdJU1pzVHZhM0RhM3g4SEpVbjYydzlBTS9kaHREN0E1?=
- =?utf-8?B?MlVDa1Q3d1R5Wlp2OFVxK3I4TXpKYW9ZdzVySFVid3pDaXlIaVpJbExiNFJr?=
- =?utf-8?B?bTIvQ25DOXJteFNnekUwSnhsVUNVS3U3OUEvd3pGK25NVlFKOTZNcHJ0NEUz?=
- =?utf-8?B?bUpOMVErWnVheldxRmZOVFJIV1R2SGhVVzgxL3BkU3NaL1pxdytUY2RXSkdX?=
- =?utf-8?B?ZVlNTG1pYTB3RnBTYjUzREpWcEpYRmFCM1J0cEUrYlY5RkdUcEpSN0QyOTJt?=
- =?utf-8?B?WG1KZTRxMC82VnZ4aEt0bktrMzg3L1hyU0pFejhodHdUNEhBditaK2xobHU0?=
- =?utf-8?B?NXBReE85K0YrdW5aaDRiY3pvdk1zL1dHalZiQlAzYUFrMWhobFNoWW5PL3pI?=
- =?utf-8?B?ZWo1TWRLZ2UxdkxoZGNSeG5vclM1UUgwYU9wRnF5UmtmQXdhR2pobDJFQ0Vp?=
- =?utf-8?B?b2dvYlRnTTBnMG1iSEhtdDlveDZqVk5vVEpzVW1vNTRSN3IyNDAwbm82Unhn?=
- =?utf-8?B?anFuTjF6K3Z3OU1YOGpMRkhpekxsVTlPaWVoc1QzMUdnOGRyQ1p3aE5pN1g2?=
- =?utf-8?B?OEFzQkNIQW1RTU9SVEVhMHRnM042eURZanhKaXZqRVlqcncweDJRRjdXb2VD?=
- =?utf-8?B?NWIvQ3BYOEtLRGUwUUhsZ3Ntcys2dTByWUJNN3RtWFJ3MlZ6WFk2L0xYak9K?=
- =?utf-8?B?TXYyb2hncUI3L0FXcEU2a213bzc4WDNrTVhEcEZuZ2Z4NUJWOGF4T2ZrNGxa?=
- =?utf-8?B?dTJrSGY2TXVMWHN3cXk0QUFnaE9FM2swYlRNZ0pzTEtQY09hK2ZKNmJ6anJt?=
- =?utf-8?B?Z0hhaWw5MnFHU0tYZzB1WHZQcG4za1N0dVNOK1Z6OC81K0dHa1JDQnprUzR0?=
- =?utf-8?B?aHJrVzRwanR4OHQyekpZMzhMRDhWZ2hnSGk4RFZaVHc0YUQ0VFJ0bDY2d0JP?=
- =?utf-8?B?REdGbExWN2xKa1hIUkRTSWhUQ2VzM2txeEM0VXA1YzJacklwa0pKOGRWdzZL?=
- =?utf-8?Q?p1s0=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(19092799006)(1800799024)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?WGtURWQ2dWwySEd4K1pOY3hQcTZaWUx2LzVvTng1SkxzOGZwaEFWemozSVky?=
- =?utf-8?B?Sm13bEx1TVR6b2w0L1ZGYnc1THhoLzJlb3BEWjFablMvZEYzMUhTNVpaTERz?=
- =?utf-8?B?SXI1VWl1M2JXdDEvTWRYY0FuakVIQVJodGkyR1RTRWQ0UEFKWFdlN3BudFhu?=
- =?utf-8?B?bUhkZ3Q3dzNxWVhXR2hQYUlMTm5GOHZMdFY5NXFweStZUUtkSzhMVkFiN0tN?=
- =?utf-8?B?anB3eWlYczlKU3hRVEZXenNhVFJ2R2pQVjlsWnkxVkhHMUlVdEVLcnYyTzdK?=
- =?utf-8?B?UGdCbVhUQXorNTJuaTJiUytBcTlPVWJNTlo2T21lRlk1NHhsTTFsVnd4N1Yw?=
- =?utf-8?B?cWkybVg5ZlVwL21pdzFjUHhpaldwUFNrRGFZSnhKRUhoSWI4Q1VlQStDbmoy?=
- =?utf-8?B?Nk9uS3RCbDBHNTR1VlJaWFQxWEpUbzFiNFB5TUpGM0h5VFBad1NHYVp0R0pS?=
- =?utf-8?B?Qy8yc05JV3F2WlNjL2hQY1NtdzBHYitkeUVTaHRIY2V0OG9DM1JJSUczME10?=
- =?utf-8?B?YVlkQU1TQ1RqWXd4cWRlYWJXYXo0NmpkUFIvWXVWZllYV3d4SDB5bUJOdGln?=
- =?utf-8?B?eVd0SFZWY0tZdnZaczZoeldKTEtQYUZxd1dSbDRQbGEvUk9PZnRXM1ZJNklq?=
- =?utf-8?B?RFo5NHkwMVduMnoxa1p6ZC82RWNCYkZYSWlyUmJYenpXdkFFUnpNNmFjTFAx?=
- =?utf-8?B?ajZaNVNmbDZBb1NGMkZlc3JJMzRlaUV3M3FYdmJNY1o3Kzc0N3pqU3VkSkw0?=
- =?utf-8?B?VHFDaG5tMTVHb2Zrckx1OE1QWmJoWHM3N2d2UWx0Qkk0Y283V3dLUzFMYkVs?=
- =?utf-8?B?MmY1anNwUWg5SzdzcjZUUnJsdkk0eXRIQzN6OXp6MUw5RUlUakxyTml5REM0?=
- =?utf-8?B?STNVblJmUUo0bHF2YVpmZFg5UnJoZkF6NW9aMnFXekJGOGNYc3Q0NFlGK3U3?=
- =?utf-8?B?MDk1Q09KN0pOTTFKd3BQTTc5TlBvVlhjWmtlb3FqUzUyRlhOWjZ4M3V3bFJW?=
- =?utf-8?B?QmFaNjh0ZzB1eXowdHFkNkEzeW9pV2tWZm5GczN5VU04OEx6bEphSjBrWFVa?=
- =?utf-8?B?STRmZ1hoV3dFeHlKNmpzdncxTkxFUnpIeVJkMUR0SzNsOVJEcW5aKzhRQkFQ?=
- =?utf-8?B?cXl2NUhIa05zWlFWaVA0RVBUcUdwY1BLSWt5UTNRWkJtSzJLa0swYnFOaERw?=
- =?utf-8?B?cWdYMDd4aTRlTDFPM3lrblFOOTBlZEk3aFJvRGpUVlNuVzlraHpTN0krcFpm?=
- =?utf-8?B?SGNBV283TEJEb054cTlWN3NaWVVaeVFWMVFzdDB2Umd2ZVlZREZMcng4WlJR?=
- =?utf-8?B?OURXWGJieURrMXNmTkV5a2NpdFI1ZEI5SndnTkVVT0NOSXFJOUI2VXJITWlq?=
- =?utf-8?B?UXBZVTBJLzI5Ly93djVYNnpzTVFNL2lnM0RXMHg4M0hYMDAxL3dCMVZqQTRO?=
- =?utf-8?B?eTlBZ0dKcEJBcGNsbkc2WnNkRHlUUHd6bjNiRzBYQm0vcXBYZ0puQ2FjaHB0?=
- =?utf-8?B?dVlQbEc5Y0VYYzJJK1pBS3I2YkFlTWlRUjgyZFdxbFRhYkI1am5qalpOWndG?=
- =?utf-8?B?R0VUSm9lRVI5YVpmaG04ZnFZRGNCdE9DUEVINmJORXFyZjA2dnVhVVNhbUFC?=
- =?utf-8?B?a2ZNcDQrTE1NSFo5ZzJvUCtDMUNEd29nd2JSNkc0WWxxVDNFcmZDS2NYU3Z1?=
- =?utf-8?B?U3JaR2MwRE9LY2xrQkdvY2NEdk1uYS8yeTMwQnYxRzVSVjFOUmcxdzhPOGFU?=
- =?utf-8?B?aHo2aUttbUtHUm1pdkdRaVNMc05hMkY0Qzh5UThGRFFxdlA3NzY1TklHdnE5?=
- =?utf-8?B?QzI4MFoxcWpNRmZ3eEt0TU9xVHUvNUx0OGRRNW9ValBTVEM2Z0xzVFhiYmsx?=
- =?utf-8?B?WXBMdXF6UWN2N2s4QVV3WG8xZ2Q2UDByNGUyaGUyaWY3Zm9YbXV1aTBBRGc5?=
- =?utf-8?B?b2RJNFR5ZHNvcWt4TVdrYm5MajA0NlM4M0xzQzhqVERMNHAyOWluNWp5RnhI?=
- =?utf-8?B?OEcwY1F5RFBDRXZ5ajdObmd5MmR2dGVQeC9RNTRZSW1hSkpSUys4MnhFcm1G?=
- =?utf-8?B?ZlduNUVEVVV4VEg0dGVMZWUyVEY3SlVRbTUvUlpMcWtHUjJNdHlWSTlsRGln?=
- =?utf-8?B?T0k2WHlvZkIrY2hiZEFqRmlGeVp2WS9aek9BTTlqQlJRelJTN21HRnYrTHFD?=
- =?utf-8?B?THVaYmF6U3BmcnpMUi9pZUhEWmVvNFl2UEQzMGRyRmZPREU5amk1N3hDQmY4?=
- =?utf-8?B?aTc4elBXbWMzMklXZEdsSFZoRjFTcHFRU0RrdmJVWFdVV3M5VzJXSGJjMnJn?=
- =?utf-8?B?TzE2V1ZTZ05uUlZKMXlpL2dSV1dmVCtHR0xwVWQ3dkk0NTBaTERaZz09?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d39d953b-106b-4336-030a-08de57f3c1b2
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2026 07:15:57.5741
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Z7mjyAk7VSHClboSQ+31VfnWRSF6TMFOF5yx/i1azOINn8M19lH14gbTq8XMrGmljzDtt2fRet5f/rbawzS1Fg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA2PR04MB10373
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 4/4] arm64: dts: qcom: Add base PURWA-IOT-EVK board
+To: Yijie Yang <yijie.yang@oss.qualcomm.com>, andersson@kernel.org,
+ konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20260116-purwa-v4-0-89b2adae9f09@oss.qualcomm.com>
+ <20260116104136.2922032-4-yijie.yang@oss.qualcomm.com>
+ <d15bbe2a-a88a-4a88-a685-ecd4f058c3af@kernel.org>
+ <3404f2f4-7edb-4bff-925b-0a6a7a450f5c@oss.qualcomm.com>
+ <0cb38b14-13bd-43e9-8dca-3d78afd62a28@kernel.org>
+ <ba0f5539-011b-4778-8025-16950f5e5a62@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <ba0f5539-011b-4778-8025-16950f5e5a62@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Fabio,
-
-On Thu, Dec 18, 2025 at 08:06:26AM -0300, Fabio Estevam wrote:
-> The LVDS Control Register (LVDS_CTRL) register has an HS_EN bit that allows
-> the 100 Ohm termination resistor in the chip to be enabled.
+On 20/01/2026 07:49, Yijie Yang wrote:
 > 
-> Add support to setting the HS_EN bit when the optional property
-> "nxp,enable-termination-resistor" is present.
 > 
-> The motivation for introducing this property was a custom i.MX8MP board
-> that was showing visual artifacts. After enabling the 100 Ohm termination
-> resistor the LVDS signal quality improved causing the artifacts to
-> disappear.
+> On 1/19/2026 3:05 PM, Krzysztof Kozlowski wrote:
+>> On 19/01/2026 04:13, Yijie Yang wrote:
+>>>
+>>>
+>>> On 1/17/2026 12:19 AM, Krzysztof Kozlowski wrote:
+>>>> On 16/01/2026 11:41, YijieYang wrote:
+>>>>> From: Yijie Yang <yijie.yang@oss.qualcomm.com>
+>>>>>
+>>>>> The PURWA-IOT-EVK is an evaluation platform for IoT products, composed of
+>>>>> the Purwa IoT SoM and a carrier board. Together, they form a complete
+>>>>> embedded system capable of booting to UART.
+>>>>>
+>>>>> PURWA-IOT-EVK uses the PS8833 as a retimer for USB0, unlike HAMOA-IOT-EVK.
+>>>>> Meanwhile, USB0 bypasses the SBU selector FSUSB42.
+>>>>>
+>>>>
+>>>> NAK.
+>>>>
+>>>> Warnings were reported at v3. Did you address them? No, you completely
+>>>> ignored them, so warnings are reported again at v4.
+>>>>
+>>>> What do you think these emails are for?
+>>>
+>>> This warning is caused by the pcie3_phy node in purwa.dtsi, which is not
+>>> introduced by this patch set. Since it does not impact functionality,
+>>
+>> Your patchset introduces that warning. There was no such warning before.
+>>
+>> My NAK still stays, such patchset must not be merged.
 > 
-> Signed-off-by: Fabio Estevam <festevam@gmail.com>
-> ---
-> Changes since v1:
-> - Change the property name to nxp,enable-termination-resistor (Frank).
-> 
->  drivers/gpu/drm/bridge/fsl-ldb.c | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/bridge/fsl-ldb.c b/drivers/gpu/drm/bridge/fsl-ldb.c
-> index 5c3cf37200bc..b4b9130de32c 100644
-> --- a/drivers/gpu/drm/bridge/fsl-ldb.c
-> +++ b/drivers/gpu/drm/bridge/fsl-ldb.c
-> @@ -92,6 +92,7 @@ struct fsl_ldb {
->  	const struct fsl_ldb_devdata *devdata;
->  	bool ch0_enabled;
->  	bool ch1_enabled;
-> +	bool termination_resistor;
+> This patch series can continue to be reviewed with the dependency noted, 
+> right?
+> https://lore.kernel.org/linux-arm-msm/20260119-topic-purwa_phy_shutup_warning-v1-1-997a692b31c6@oss.qualcomm.com/T/#u
 
-Nit: To make this flag a bit more readable, I think it'd be better to
-rename it to something like termination_resistor_en or use_termination_resistor.
+It's not a dependency. You only need to mention where the bindings are
+addressing the issue, preferably in patch changelog.
 
->  };
->  
->  static bool fsl_ldb_is_dual(const struct fsl_ldb *fsl_ldb)
-> @@ -212,6 +213,10 @@ static void fsl_ldb_atomic_enable(struct drm_bridge *bridge,
->  	/* Program LVDS_CTRL */
->  	reg = LVDS_CTRL_CC_ADJ(2) | LVDS_CTRL_PRE_EMPH_EN |
->  	      LVDS_CTRL_PRE_EMPH_ADJ(3) | LVDS_CTRL_VBG_EN;
-> +
-> +	reg &= ~LVDS_CTRL_HS_EN;
-
-This is redundant since reg is set without the LVDS_CTRL_HS_EN bit just
-beforehand.
-
-> +	if (fsl_ldb->termination_resistor)
-> +		reg |= LVDS_CTRL_HS_EN;
->  	regmap_write(fsl_ldb->regmap, fsl_ldb->devdata->lvds_ctrl, reg);
->  
->  	/* Wait for VBG to stabilize. */
-> @@ -292,6 +297,7 @@ static const struct drm_bridge_funcs funcs = {
->  static int fsl_ldb_probe(struct platform_device *pdev)
->  {
->  	struct device *dev = &pdev->dev;
-> +	struct device_node *np = dev->of_node;
-
-'dev->of_node' is already directly used by function calls in fsl_ldb_probe(),
-so I'd suggest to keep using it, instead of introducing 'np'.
-
->  	struct device_node *panel_node;
->  	struct device_node *remote1, *remote2;
->  	struct drm_panel *panel;
-> @@ -340,6 +346,9 @@ static int fsl_ldb_probe(struct platform_device *pdev)
->  	if (IS_ERR(panel))
->  		return PTR_ERR(panel);
->  
-> +	if (of_property_present(np, "nxp,enable-termination-resistor"))
-> +		fsl_ldb->termination_resistor = true;
-> +
->  	fsl_ldb->panel_bridge = devm_drm_panel_bridge_add(dev, panel);
->  	if (IS_ERR(fsl_ldb->panel_bridge))
->  		return PTR_ERR(fsl_ldb->panel_bridge);
-
--- 
-Regards,
-Liu Ying
+Best regards,
+Krzysztof
 
