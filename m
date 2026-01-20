@@ -1,209 +1,178 @@
-Return-Path: <devicetree+bounces-257183-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257184-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E526D3BEA2
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 06:09:21 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83D9CD3BED3
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 06:36:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id CD6A93510B8
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 05:09:20 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 019A24E5B54
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 05:36:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D64023612C4;
-	Tue, 20 Jan 2026 05:09:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DBDA34B438;
+	Tue, 20 Jan 2026 05:36:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OYSvMI0C";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="BEv2uUYg"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="Q/g9EdWX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ED8735F8D5
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 05:09:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9204346A12;
+	Tue, 20 Jan 2026 05:36:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768885755; cv=none; b=bTDJeIGkUtLyYiSNvZ3RDb6gP0yRnqZgBME/y3btjTCRWW33hUar0copWrDF7WUCiH/HFc8kKlMxCN1lsiLlMra7wGzAHuPCnuADKQs1QqsA7VnK1iA+pe+hUKjxfcRiw2ISzJrS8ixb5bCAwYiDG8NOvW3vrcbkd4jjwtgMJSs=
+	t=1768887369; cv=none; b=rjgjR4APQH3ilnn+RssbvqA9lYVRxW7O3fR/pSXevYVntifo4BAsKUIXCbNA9uZ8IQgohGVkks/7Qj7HqT+Wd27QvvwOe1oKTzHqW7ubjmz/uTGcaxfiOrOnqfrEIZI1qm34ZzGO24zQ+fi+pV85zQshIkxhHtP1uc1OUEX7he4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768885755; c=relaxed/simple;
-	bh=K1IYJXSSKDWu5UKmGyUbEhNCMTskwp5NnY0mdDrWYeo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pbuPYuafDpGGncXvsFGpBFrn8A0DNJME86pKUufuhnUBsqOLsJF1LVKU4778F5VGvnyEMC3CQ3tMGpkDnvzUS1GfOsmgJjhEBmpK5MdC22omqikNcr3tBnQ4lrtiojK8hjqAbNcLmVWUNOaQ22La+12HGzeNSjsxapWdsEpzGW4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OYSvMI0C; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=BEv2uUYg; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60JJVPWr597652
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 05:09:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	sO6aluZ9Uf62E+brerNOD1AWTtDlE3A6nF5RKTkPA2s=; b=OYSvMI0C7JS2MB0d
-	ZifeoZWL7hvpmiyG6QptpQaIXiW3paQnVdty73bgHXQyOuK4w6D8yo/CueTz26al
-	3gScAVP4MS1JgPuvP5v0EqOZHQ1DN1WWZviM3jsE9bAv92eJxRbSWfCPAk+pXxQY
-	WGuxAWEJVTciEEYCInxcDlqHdevWyNNPe3Gc5EhNTshc0KhrgLEKr5ls49cwN/3w
-	Xvh4mhqn69Y6IS5LG8XqGmyiwRxr0ZNIG3gjfg69fKAq6vpgnIBlZnD7AE62FSMk
-	H0xJtStpT/NHHmie6jd/kjU09lbX3BkB4kUeWLYndGf0CeqQO+aW2U/zyY6lcG1V
-	YwOfuA==
-Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bsjk7jjvp-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 05:09:12 +0000 (GMT)
-Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-81eef665b49so9348358b3a.0
-        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 21:09:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768885752; x=1769490552; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sO6aluZ9Uf62E+brerNOD1AWTtDlE3A6nF5RKTkPA2s=;
-        b=BEv2uUYgcEkWhRqiyWEEdQWxyquIvopMIG1uU9oNc6vmRaC7LZ/n/FkexpXe70t88w
-         aGMcWDj9uLCBkarOHxpSUhewmWcU77S7zmnytXiYWEraoXtfy6hV/h6j01KRWEscR/ur
-         W+dQyyv3XF6kJyV1V1L+eBINHbwkVJqKa7vfkyBGbGU9y+n9weQHUvcau7PHbtz9wpak
-         Iwfie8FEJpNaQvMQvmBAk5eKEMocHDPcDnMXaNECfYOusyD0VHphfoS/sVXpjRiiM26y
-         3lMKcTlzrumwTbW2CH0iNLTGB5mxsnWMkTuB7uBFs9KzLCppLCaKespCHm6r15DpckIl
-         wVOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768885752; x=1769490552;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sO6aluZ9Uf62E+brerNOD1AWTtDlE3A6nF5RKTkPA2s=;
-        b=T/qaNzThj1ru8ZJ6+AW+rorKW7pHvSM4wfLpov1dKYAtukMtiI1A1pclUMu4Pt0SjE
-         tuVSigRal1mchyudJc0GspRdT5i4y2yOyZrHsLaSXDSxp2r4JAZ3luTA+1jbPIRGM6g5
-         GXtfAybtA0fHwcR98fSBT3ugvG78OAPIebQmVtBYuh+Px2NQ/IXCT5XzabHw8y+ovlqh
-         IYewiGDBsahdXkJdkPNnjeF/CfE4p+ZVMplJEVcOlCoHQFxrGcMkG+ZHultWHS205GuS
-         R1wrC7vlENxUC+em2WbcZVIbbOkC8MqyATpDfUHXAhxP7c/YvSGaE0vRl34/ld92DMq5
-         Zthw==
-X-Forwarded-Encrypted: i=1; AJvYcCWrxAk3OLyiuol0ZW4AkzpLLlb1qLbqKfuVlritTMAnpPBS7n7StxVYm3IvVaOnuhNPqUsoLSu0MyQg@vger.kernel.org
-X-Gm-Message-State: AOJu0YyIxsJZ2ximl6aOsOh26rJLssGUmDTaYaoHFtPQ5jjoqOCJc1pl
-	KdkXArfERIO2PgtiSVu6Bh86YF1twvp3LsEfm8enJCO+pN6SQTgETTskH19Bgpa9LQ4/gxtQFMr
-	uBE7uujlbl/D3oNYHLciGr6N3u5eQ0ayWMaGnasrurKhxBsfo5Z3XfPVwRQZNJjJB
-X-Gm-Gg: AZuq6aKOVcmcPSsDRLwgIbrTWsnyxbTZO2N0FpCv+8TJ2sLsAtsvhPN14K0P3ildZko
-	6odqt7Vahm8bf5/uLzo7oxecJL6G41QcUerOwW5Q1zD5TELNq0tVjxYdEVFc07+cn6lLEDqYqtj
-	yXj5H3T0R1gTdj5mh48jKh7cZzdXXhmkWXUJmtws9E5vrlxEJg/MDvXPIFbNlpqQFgfFijo/g8i
-	b4Y6PP5bEhd+3bgI6Lpfy9pmBRZJ/SmNRyA1iFWgvAjvgE5SS9YotT+DMiRCBumgtz2sJxDxejC
-	9AzqY09ryynbYqkyoahdV5kQTUUNaGtHfegJXbk9NFHvm0l8ybZgYlbQgAHjc+aIs3TNItrsVIb
-	/2phTC556BYF6wM92cD2Tymfeamq3RjSbO5Yz0sc6toVS
-X-Received: by 2002:a05:6a00:4fd6:b0:81f:4e4d:a139 with SMTP id d2e1a72fcca58-81fe87b28f1mr856127b3a.7.1768885751896;
-        Mon, 19 Jan 2026 21:09:11 -0800 (PST)
-X-Received: by 2002:a05:6a00:4fd6:b0:81f:4e4d:a139 with SMTP id d2e1a72fcca58-81fe87b28f1mr856099b3a.7.1768885751367;
-        Mon, 19 Jan 2026 21:09:11 -0800 (PST)
-Received: from [10.219.57.109] ([202.46.23.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-81fa10e6ec7sm10733715b3a.28.2026.01.19.21.09.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Jan 2026 21:09:11 -0800 (PST)
-Message-ID: <ea437861-4fa8-4e49-a59e-04f89de87bbc@oss.qualcomm.com>
-Date: Tue, 20 Jan 2026 10:38:00 +0530
+	s=arc-20240116; t=1768887369; c=relaxed/simple;
+	bh=VOj+F6b04Uvx4/PTkL71kSg9cehOK6lgT4rpT5ehCHY=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=rjSgQxvVcaxgHjZhbFzXtloVyz/2O6A+1lPyWoPVMygvAUDVacWhEFfnnDxpSw2I82Y7dkOV1q2LXNgA8eC4T1dQrM2HkfprBPMd5BsJXpmgUcRmLO+ZMq0q8iv3F5L8AZC7PdowSHkzUz7jtRt3xfaJ4MJiIs0DBkiGmzAhQCE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=Q/g9EdWX; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60K425dP1516483;
+	Tue, 20 Jan 2026 00:35:57 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=7rYxDrIcVr2E4+RXPzSRm5J4zpJ
+	/hjmnUtEmsBJrIic=; b=Q/g9EdWXVfbPIpU5KveBRj6j0SY4y/QUsUUN8Z20Cuw
+	oFBdEGciSQBrmPccpTkdu9Db52kSrqqWZnQ+3OkMkFux+Y3QOKDme5hWoqEbH/V6
+	XjWMySszc2C+/3fDpzFFA/BGSfGTu1wiO1GMVmqRJHuXafOJYF10OsYHH0muakCm
+	IwJ7e8aCeirlm9lvf5KkQUJ7JCEtwcfP9I0ulZJwKcBkqVj5VwweN19FLNkVe0lT
+	mdnDf/T6YL/OUp8zVMMCCx+vT2ua77RgnbxtTRwNIZhJkrWodZlDHilkbmIbIe1M
+	pjHx76KUUqVd5jxuxPdnTet78RHJN6ewt6tgbvw2cfQ==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4bt2ax88wy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 20 Jan 2026 00:35:56 -0500 (EST)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 60K5ZtoX049129
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 20 Jan 2026 00:35:55 -0500
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.37; Tue, 20 Jan
+ 2026 00:35:55 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
+ Transport; Tue, 20 Jan 2026 00:35:55 -0500
+Received: from HYB-7P5GeKnsiiX.ad.analog.com (HYB-7P5GeKnsiiX.ad.analog.com [10.118.4.31])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 60K5ZhRH026625;
+	Tue, 20 Jan 2026 00:35:46 -0500
+From: Edelweise Escala <edelweise.escala@analog.com>
+Subject: [PATCH v3 0/2] Add Support for LTC3220 18 Channel LED Driver
+Date: Tue, 20 Jan 2026 13:35:05 +0800
+Message-ID: <20260120-ltc3220-driver-v3-0-fef612ec4faa@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/3] of: Respect #{iommu,msi}-cells in maps
-To: kernel test robot <lkp@intel.com>, robin.murphy@arm.com, will@kernel.org,
-        joro@8bytes.org, robh@kernel.org, dmitry.baryshkov@oss.qualcomm.com,
-        konrad.dybcio@oss.qualcomm.com, bjorn.andersson@oss.qualcomm.com,
-        bod@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
-        prakash.gupta@oss.qualcomm.com, vikash.garodia@oss.qualcomm.com
-Cc: oe-kbuild-all@lists.linux.dev, iommu@lists.linux.dev,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20260118181125.1436036-4-vijayanand.jitta@oss.qualcomm.com>
- <202601190432.C5Aya7rJ-lkp@intel.com>
-Content-Language: en-US
-From: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
-In-Reply-To: <202601190432.C5Aya7rJ-lkp@intel.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIwMDAzOSBTYWx0ZWRfX5KjyUDGjt8I5
- EUOgXwe2WxWgQaxINlmqjaTrZZp/uu66Zk3iBF/kJALaq/LxneJAQernVO4Fi15hrp5cQbdUeW+
- 3nli+tLT2exPo5O72kii06p4QQkEOkyLUyg59ASiJTPP+2FRewI9LYDnJam8WOcYk+lz0U3/IvG
- kvhNSkJFoibcz4ZlX88oqWFXiAYPVXiIRuXyGPfTpfA8FLPSyQpdTS3fkITW+tKQquuzQbRS1Hz
- BbL8OBVFgB4wfN44uixoIV9Kkv4OXXgjUuX89EBz0Ix1J1sDGVxQV6kzci3nqVzSJoICzY1mlsZ
- e9cRjjxS8Ip+NP3A7May1V7Hqh+Pv4FNRQqeUTktyyizdtDEbG2JwizftyYjRRlF6BOxaIBacIj
- cGyVZ/tmT/kkD+QMoGiYeEA+v9NqjK47cgy0Zfyr1fkyS4nmWVV2KBJDd0bxJ5JuXw4Eaq15cT+
- Lk7bJ/JlZhol48tyPyg==
-X-Proofpoint-ORIG-GUID: JO1bAgJYU6lrA_rhnQwweejd0KdxThSa
-X-Authority-Analysis: v=2.4 cv=WoAm8Nfv c=1 sm=1 tr=0 ts=696f0df8 cx=c_pps
- a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=anyJmfQTAAAA:8 a=NEAV23lmAAAA:8 a=VwQbUJbxAAAA:8
- a=EUspDBNiAAAA:8 a=i3X5FwGiAAAA:8 a=QyXUC8HyAAAA:8 a=xZjNoXBi-oPUJddKU2kA:9
- a=QEXdDO2ut3YA:10 a=2VI0MkxyNR6bbpdq8BZq:22 a=mmqRlSCDY2ywfjPLJ4af:22
-X-Proofpoint-GUID: JO1bAgJYU6lrA_rhnQwweejd0KdxThSa
+X-B4-Tracking: v=1; b=H4sIAAoUb2kC/3WMwQ7CIBAFf8VwFrMsiNaT/2E8ICwtSS0GGqJp+
+ u/SnjTG47yXmYllSoEyO20mlqiEHOJQQW43zHZmaIkHV5khoAYBmvejlYjAXQqFEveNuWlrGyd
+ IsSo9EvnwXIOXa+Uu5DGm19ovYln/porgwA+yfk57oVVzNoPpY7uz8c6WVsEPX+CPj9V3oCTsj
+ 94q57/8eZ7fzYpzx+0AAAA=
+X-Change-ID: 20260106-ltc3220-driver-f9ab6cc9d1e4
+To: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Edelweise Escala
+	<edelweise.escala@analog.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768887343; l=2337;
+ i=edelweise.escala@analog.com; s=20260106; h=from:subject:message-id;
+ bh=VOj+F6b04Uvx4/PTkL71kSg9cehOK6lgT4rpT5ehCHY=;
+ b=FlPRLQJf0yNWI3TOI9YdO4Xo4IpkJVSJA819tpOiSCWYxizL+Auw3sDdxbEx7awBueJDk1Llv
+ LeO73BMvTvfA7/vPeK7QzHN/rM9B+S9S2eJJ830a5kqXjGyQHGwjz+L
+X-Developer-Key: i=edelweise.escala@analog.com; a=ed25519;
+ pk=lf5HLFe8ZeQjXZgkBkFMK+u9qH5/tqZhCIushTKduNQ=
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Authority-Analysis: v=2.4 cv=Hvl72kTS c=1 sm=1 tr=0 ts=696f143c cx=c_pps
+ a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=gAnH3GRIAAAA:8 a=G8gMnhxpCVIOteuZxq0A:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-ORIG-GUID: WHQb3Na_da3QWaoTHUK1Xm5b72JlGfzi
+X-Proofpoint-GUID: WHQb3Na_da3QWaoTHUK1Xm5b72JlGfzi
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIwMDA0NCBTYWx0ZWRfX31ZESog3YBZh
+ CfDrf6+dxfsJJ6Xx+X2ijbAaCImdaQ/HWleJDCg3zMRDkQUv5s+1yNjdrF6xe93tG74O/QUSIHj
+ fiT5hlVoGbde8bnw1XlnWJA05QDxdCodrsDxkMWWLij0lMHdG69xnz9guQhYTec1rT08bcQDhz4
+ hHHfJzcDlX/8qvbXAwanamsT02vTXRKwMWc36sER52qKie2waITT6jen0M69QkO5Jb9b+KM5r3b
+ v6ya9+NdOrTqVqOtXvH8hZ7sHxbV397TWk7g9DDLSzIWACu8gOtL0tRDUT/sNWcnzrxQ7B4WBbe
+ uRrqSHYmqwHiszQQtUe0p1F3BbdQ0iZxPaYlV6IvGT6/KGy6F9TjfXnoqHm8XyhBkO3RzDV3Brl
+ OXM+AZtAxBbXRCgQ6J17gCj79Kr+L9bZTrZ7aNAkga+irqZhUAYZxiL4Nmq0UtiD4Pjhb8xmkn3
+ AALhQ2vV2x9CZEhom7g==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2026-01-20_01,2026-01-19_03,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 suspectscore=0 malwarescore=0 impostorscore=0 phishscore=0
- clxscore=1015 bulkscore=0 priorityscore=1501 adultscore=0 spamscore=0
+ clxscore=1015 lowpriorityscore=0 bulkscore=0 adultscore=0 suspectscore=0
+ malwarescore=0 priorityscore=1501 spamscore=0 phishscore=0 impostorscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601200039
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601200044
 
+The LTC3220/LTC3220-1 is a multi-display LED driver, which contains a
+high-efficiency, low-noise charge pump to provide power to up to
+18 LED current sources. The LEDs are individually configurable to
+64-step linear brightness control, blinking and gradation control
+via 2-wire I2C interface. The blinking and gradation configuration
+is shared across all LED.
 
+LTC3220 has a quick write function which allows changing the brightness
+on all LEDS simultaneously when the brightness is changed on led 1.
+For this we made quick write a device property which user can set on the 
+device tree. We would like to know if this approach is alright?
+Another way we might want to know is, is it alright to just make a
+virtual led for the quick write function. Changing brightness on 
+the virtual led will change the brightness for all.
 
-On 1/19/2026 2:34 AM, kernel test robot wrote:
-> Hi Vijayanand,
-> 
-> kernel test robot noticed the following build errors:
-> 
-> [auto build test ERROR on robh/for-next]
-> [also build test ERROR on pci/next pci/for-linus xen-tip/linux-next linus/master v6.19-rc5 next-20260116]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch#_base_tree_information]
-> 
-> url:    https://github.com/intel-lab-lkp/linux/commits/Vijayanand-Jitta/of-Add-convenience-wrappers-for-of_map_id/20260119-021706
-> base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-> patch link:    https://lore.kernel.org/r/20260118181125.1436036-4-vijayanand.jitta%40oss.qualcomm.com
-> patch subject: [PATCH v5 3/3] of: Respect #{iommu,msi}-cells in maps
-> config: i386-allnoconfig (https://download.01.org/0day-ci/archive/20260119/202601190432.C5Aya7rJ-lkp@intel.com/config)
-> compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
-> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260119/202601190432.C5Aya7rJ-lkp@intel.com/reproduce)
-> 
-> If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202601190432.C5Aya7rJ-lkp@intel.com/
-> 
-> All error/warnings (new ones prefixed by >>):
-> 
->    In file included from include/linux/cpufreq.h:17,
->                     from kernel/sched/sched.h:31,
->                     from kernel/sched/rq-offsets.c:5:
->>> include/linux/of.h:937:1: error: expected identifier or '(' before '{' token
->      937 | {
->          | ^
->>> include/linux/of.h:934:19: warning: 'of_map_id' used but never defined
->      934 | static inline int of_map_id(const struct device_node *np, u32 id, const char *map_name,
->          |                   ^~~~~~~~~
->    make[3]: *** [scripts/Makefile.build:182: kernel/sched/rq-offsets.s] Error 1
->    make[3]: Target 'prepare' not remade because of errors.
->    make[2]: *** [Makefile:1314: prepare0] Error 2
->    make[2]: Target 'prepare' not remade because of errors.
->    make[1]: *** [Makefile:248: __sub-make] Error 2
->    make[1]: Target 'prepare' not remade because of errors.
->    make: *** [Makefile:248: __sub-make] Error 2
->    make: Target 'prepare' not remade because of errors.
-> 
-> 
-> vim +937 include/linux/of.h
-> 
-> 0384e8c6c6fa49 Pantelis Antoniou 2015-01-21  933  
-> eb8f695e71ec36 Robin Murphy      2026-01-18 @934  static inline int of_map_id(const struct device_node *np, u32 id, const char *map_name,
-> eb8f695e71ec36 Robin Murphy      2026-01-18  935  			    const char *cells_name, const char *map_mask_name,
-> eb8f695e71ec36 Robin Murphy      2026-01-18  936  			    struct of_map_id_arg *arg);
-> 2a6db719c92dbf Nipun Gupta       2018-09-10 @937  {
-> 2a6db719c92dbf Nipun Gupta       2018-09-10  938  	return -EINVAL;
-> 2a6db719c92dbf Nipun Gupta       2018-09-10  939  }
-> 2a6db719c92dbf Nipun Gupta       2018-09-10  940  
-> 
+Signed-off-by: Edelweise Escala <edelweise.escala@analog.com>
+---
+Changes in v3:
+- Dropped quick-write on bindings and added aggregated led instead.
+- Add aggregated led example.
+- Modify quick write to check if there is aggregated led, if there is
+  aggregated led enable quick write.
+- Use DEFINE_SIMPLE_DEV_PM_OPS instead of SIMPLE_DEV_PM_OPS.
+- Link to v2: https://lore.kernel.org/r/20260112-ltc3220-driver-v2-0-d043058fc4df@analog.com
 
-Acknowledged. Apologies for the oversight, I will fix this and submit v6 shortly.
+Changes in v2:
+leds-ltc3220.yaml changes
+-Fix wrapping on description
+-Improve description and commit messge to describe hardware
+-Drop ltc3220-1
+-Drop charge pump
+ltc3220.c changes
+-Fix wrapping
+-Drop ltc3220-1
+-Drop devname_mandatory
+- Link to v1: https://lore.kernel.org/r/20260106-ltc3220-driver-v1-0-73601d6f1649@analog.com
 
-Thanks,
-Vijay
+---
+Edelweise Escala (2):
+      dt-bindings: leds: Add LTC3220 18 channel LED Driver
+      leds: ltc3220: Add Support for LTC3220 18 channel LED Driver
+
+ .../devicetree/bindings/leds/leds-ltc3220.yaml     | 120 ++++++
+ MAINTAINERS                                        |   8 +
+ drivers/leds/Kconfig                               |  10 +
+ drivers/leds/Makefile                              |   1 +
+ drivers/leds/leds-ltc3220.c                        | 457 +++++++++++++++++++++
+ 5 files changed, 596 insertions(+)
+---
+base-commit: 8856d7fe1758937ac528770f552ec58c388c255b
+change-id: 20260106-ltc3220-driver-f9ab6cc9d1e4
+
+Best regards,
+-- 
+Edelweise Escala <edelweise.escala@analog.com>
+
 
