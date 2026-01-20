@@ -1,183 +1,241 @@
-Return-Path: <devicetree+bounces-257308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257309-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +HRLKewwcGkSXAAAu9opvQ
-	(envelope-from <devicetree+bounces-257308-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:50:36 +0100
+	id 0OhqMYA1cGl9XAAAu9opvQ
+	(envelope-from <devicetree+bounces-257309-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 03:10:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 507FA4F5B8
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:50:36 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CA3A4F8AA
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 03:10:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id AFDFC5E24DF
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 10:57:40 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A3EB35E5C2C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 10:59:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0672407577;
-	Tue, 20 Jan 2026 10:57:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0833D40759F;
+	Tue, 20 Jan 2026 10:59:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ziyao.cc header.i=me@ziyao.cc header.b="UfbY76hC"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="b0+hYcV7";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="L8o0hKI9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF8313E9F82;
-	Tue, 20 Jan 2026 10:57:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768906654; cv=pass; b=hc0WYYOGV8GW2yUFYpvoEUe9Pe5soBIKruSrJU9gYPEeSiwekdwUdHZBTjibzmWLGgYJ74brp6DKBbQoplAKDsViRvMekDZEts4Ysl3hX5W3SLtPqjKD2U4W936/fFsyDftDpvOgwKHWVoaKC3lmekwHdHYI8qbqyQMqooIwQDA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768906654; c=relaxed/simple;
-	bh=hLhhaaiGUK4UAPYUo2Wht+3suThBEz9Cj77yr1RmrCs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EpudcmA2hZGJs/+tFpmU8VmPmdI25O1yejkUsr5fdCs6zT8A0eYyzeDAgc1/lUR4ZK21hJXurv77F4Tko7zOjYqqrfznPeoQvtk/8kLpuwskQ6hMwtk7OYxOGn0zigh7R43XAdiRgHm8NzPyYSE2X3FXT3y0L0rZcbfHyJFhQxU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc; spf=pass smtp.mailfrom=ziyao.cc; dkim=pass (1024-bit key) header.d=ziyao.cc header.i=me@ziyao.cc header.b=UfbY76hC; arc=pass smtp.client-ip=136.143.188.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziyao.cc
-ARC-Seal: i=1; a=rsa-sha256; t=1768906567; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=Ak6+zhg/djoSET/jxpadpQyRcrriZ+Hb4IrbOf1xk69NlUklGQMlAFWHFwmYe3Yesq3b5hQ22GYGsF+HGH1Bt05MaD92p74uwnxUUFvPhFQ84McpHwHIm1iz+EQW9QgEc5Xc5zFv6FwCsoa2iYSN8/h5UXVatAvvTisNw1EldZo=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1768906567; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=ONSVQRKcPO7Hdq9rjeCJBLbi+rJef9ClGejj6CnM0wY=; 
-	b=NOJakvj5baRnkmXoB7LumnUit/KQxGV92PkXR478iuA98Tdt3Of/28od+qlx0Eepp+TIkIeLBAt5wPapNsAjtx9Doj78v/gkaJqNN5QnZPeD1wRDB6IAZiGhCl9gjGgBF3uF+8QEDy5fAE724YLlr0+UDLbM8smzAJ233CuTkzg=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=ziyao.cc;
-	spf=pass  smtp.mailfrom=me@ziyao.cc;
-	dmarc=pass header.from=<me@ziyao.cc>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1768906567;
-	s=zmail; d=ziyao.cc; i=me@ziyao.cc;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=ONSVQRKcPO7Hdq9rjeCJBLbi+rJef9ClGejj6CnM0wY=;
-	b=UfbY76hCP8zX5WETuGgn6VZM3NN+FjaN8LWv69wwAVNk0zvq8H3HC8pdZHJp2V4c
-	sfOY8cbsd+bhCiZhPaWpES7/nq72N3qz3r2DaTdaXMj1PJmH1Q7eUkPXygOtrxsg6XT
-	wISiqo24iESoNSprYd3gvxcv3ZhFDNNxXiO9pccg=
-Received: by mx.zohomail.com with SMTPS id 1768906565127972.0399174349235;
-	Tue, 20 Jan 2026 02:56:05 -0800 (PST)
-Date: Tue, 20 Jan 2026 10:55:43 +0000
-From: Yao Zi <me@ziyao.cc>
-To: Inochi Amaoto <inochiama@gmail.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-	Yanteng Si <siyanteng@cqsoftware.com.cn>,
-	Yao Zi <ziyao@disroot.org>,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Choong Yong Liang <yong.liang.choong@linux.intel.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Shangjuan Wei <weishangjuan@eswincomputing.com>,
-	Boon Khai Ng <boon.khai.ng@altera.com>,
-	Quentin Schulz <quentin.schulz@cherry.de>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev, linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH net-next 1/3] dt-bindings: net: Add support for Spacemit
- K3 dwmac
-Message-ID: <aW9fL7r0AM0flALJ@pie>
-References: <20260120043609.910302-1-inochiama@gmail.com>
- <20260120043609.910302-2-inochiama@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 453D540756F
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 10:59:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768906784; cv=none; b=BQRQO5Tx02hKXwtn9OMIIw7sYjuSw0jx5JR833huhYG/E1r+TVUt630DnSyvVxBZpJ3PixaNUkNFoqTQfhBytQWWh/pU416Tb/L8Ch8jnAtO0sc3skoZdBEAIo0DNMHPlpMzAOnumjB+/3DateJyOzmMoJqOILch42JoJ2c6rq4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768906784; c=relaxed/simple;
+	bh=QFcWsuGU1XbJEMhdiMHYLDk6GYsh6udTdZlWowBZQ58=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ANMjZR0blxvIBI9W98rRnJRjwDeoUPPltf8uoikw8vNDwzXwLMVnMwiwcSa40flAGaUWg9P6REw7A5m0LKsgxQ9b2ncoaXKUn47TlDPcVszjjLeeKzLFXgtExWb2uiJIKjXNUv/30slt5hTF15/1lmPoA3EASnv76zKW8zuR/HU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=b0+hYcV7; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=L8o0hKI9; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60K61UxH3772348
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 10:59:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	cGaJ88H80cfxfBrRL86RdWbbJjprUh8y72Uii+8lJUc=; b=b0+hYcV7JzSjnOWA
+	j2oD1VGcGn12iSCT/YlGWaVEdWdBOXpJlWVo0sjjKGthKswNbYZFbhUZoydkj1R5
+	XQQFvFmDCjKtshw8UxShzGnbM0aYHJEOGOScSyNU+8O5jaClOIZ53RaXaXNhcbhy
+	KOAShZxO8TrYpKsVI+MPPhNJ68GkL5AvV71trRoGk8O51apEWtuakT0SOlYvMlv0
+	EzQYDa8dxWDTvrSj1b/WzLYlJxm0Vte8m8IjocZslTbSbjUqrPcMJG58K3tNMbR6
+	BaKYhbzCXILYS8negaDJ6yC3PSt0YRz/rmg6gTTC0b0VYUFQiPrtZwjVwy538ELf
+	AnAEEQ==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bt42wrww5-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 10:59:40 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8c533f07450so115319785a.0
+        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 02:59:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1768906779; x=1769511579; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cGaJ88H80cfxfBrRL86RdWbbJjprUh8y72Uii+8lJUc=;
+        b=L8o0hKI9NSOAY8UHUEynaC3FbM7YGbHa24EFZSHLs5cU3jUYeTIWBKVZziStbSpvNc
+         ab3gVc2Yf5R0tioUKeNKA7bTkWF3Rvf8lYkxrSi9O9upoOBypkgw27Akq8QIn0MU4psK
+         /23lTV8xAfjuwH++hYP5etUeXYxzWHVHDiMORWzIfIZuEc8bKiv8JP+f1piIqYw8bFnJ
+         4sYmDokUDWeLmrtJJz/O8uzfDKTU1mBScRBGSRIw7FfJpuzkUJSF5AeUUO9Bt4uCMsN3
+         HE4Pp0oRBrpslWopEte1YpZ8p7110YbFnCUeIk9Neks24k8L4r6hanuhpXCo/KC+wS50
+         iz3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768906779; x=1769511579;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cGaJ88H80cfxfBrRL86RdWbbJjprUh8y72Uii+8lJUc=;
+        b=BreTCHl+XvUFMCAFUcjxytV0xBYmtA2iHwTYscdeg5wOm2l1Rnck/DYU5XJj9WAmib
+         zL+ucQAfNHSy+Rv2W4J2u4ATcNlRJ6Ig2I8KSCTHHJKnwEtK+ofb36zfrRzsf3c4thSu
+         fBvIib8Fl8w6XlY342uZecWG/KYiPsnx2e7i3CuDoafb9AMWpKiCCxiVgjHYje77Y3DJ
+         gmx3+cz2RZHGsxDnZqgA8OYkLOaYapph3KOFJIxdhUHRCMBBQlx41KdCzasBEOE3mwWx
+         ybPQGWZmchKjNAswTJjH41SVAiXELOZPfvWYpC9gSuJX2+CRCN6rPQQt3Fzla2LFNQsT
+         aX4Q==
+X-Forwarded-Encrypted: i=1; AJvYcCV9YwxUL2E1tMNzKVb/oTu42WYmfjh5VByCIo16CWR/sTZTcvywbkcCLbeaZwFe2uvD5kZKu83v1L+4@vger.kernel.org
+X-Gm-Message-State: AOJu0YxnMeGHZhWbxmHZHWoPCUTyJTdJbxf+03A1kIBH0ej92H/oODa9
+	eO1zHjREEzAGhSLk6NzSr5rY3JCgao3bJQnzcPWBTS7QvRQSnasuNkxLU8MVCHpCQ3WQBqgi+Vq
+	tGLcMe082f7oSo/v+XZdoEuZnSjj147INX++N4fR+vtg5Yb3Z/uznHmhOb6t/3y6X
+X-Gm-Gg: AY/fxX7kgJP46X/ZflyO811EtLrplOH5qonoQQCBAbkXKv0jTQDAuHMH8MRq73cJicb
+	Qgd63VPcjb6p4ezvJFsoIg1lRujgo+ZvfbJZgAHW/+CjbjEdRa69WHKBtuj93WuiMe2AKffc6Zt
+	mtv+kGa6HxcT4GIMnOVHuaboYDHOnRu0jJz8qFmETcVBCwKvI5BPkQtWtGck/8XDdQSDAyTz5u3
+	x2ypwXBCtPQjPVxjIWj7vP6f4ShG0dNUyYng6UnDuE2c0I9p0rKMIt0L1kj0zz009K9KvJsRFNo
+	P4xlQh2meXeIipAjKfEzWpV+7yQVDb/yK7OyBuEdb1DJiJkai1D+z1ZNOi9jkgm4k0eFXkR37v7
+	7mVkdThPtsF0yqglreibaemstv9qn+Ve3yAZ9uQm70E0J05dmuD4mwfqcUp/b9XwL0GU=
+X-Received: by 2002:a05:620a:4085:b0:8b2:5af3:7fce with SMTP id af79cd13be357-8c6a678d49cmr1456057685a.7.1768906779232;
+        Tue, 20 Jan 2026 02:59:39 -0800 (PST)
+X-Received: by 2002:a05:620a:4085:b0:8b2:5af3:7fce with SMTP id af79cd13be357-8c6a678d49cmr1456055585a.7.1768906778763;
+        Tue, 20 Jan 2026 02:59:38 -0800 (PST)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b87959fc273sm1345590366b.54.2026.01.20.02.59.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Jan 2026 02:59:38 -0800 (PST)
+Message-ID: <8f7d6dca-d594-413c-81a9-bf51e0d8fdc0@oss.qualcomm.com>
+Date: Tue, 20 Jan 2026 11:59:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260120043609.910302-2-inochiama@gmail.com>
-X-ZohoMailClient: External
-X-Spamd-Result: default: False [9.34 / 15.00];
-	URIBL_BLACK(7.50)[ziyao.cc:dkim];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] arm64: dts: qcom: milos: Add CCI busses
+To: Luca Weiss <luca.weiss@fairphone.com>,
+        Bartosz Golaszewski <brgl@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Loic Poulain <loic.poulain@oss.qualcomm.com>,
+        Robert Foss <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20260116-milos-cci-v1-0-28e01128da9c@fairphone.com>
+ <20260116-milos-cci-v1-3-28e01128da9c@fairphone.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20260116-milos-cci-v1-3-28e01128da9c@fairphone.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: DmVBKg8IJaeg3oMssI-6tLEzn_a0P8iY
+X-Authority-Analysis: v=2.4 cv=eJMeTXp1 c=1 sm=1 tr=0 ts=696f601c cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=6H0WHjuAAAAA:8 a=KdqX6l0VmMaWkiEhp-gA:9
+ a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22 a=Soq9LBFxuPC4vsCAQt-j:22
+X-Proofpoint-ORIG-GUID: DmVBKg8IJaeg3oMssI-6tLEzn_a0P8iY
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIwMDA5MSBTYWx0ZWRfX6b6Sajl0rF+S
+ UPEGQ2cLoZE4kI7NJ+uirlxMOehbNAZSNLQYwNMmOBowoynMipjjdxHr3U+RNBA6EwoEbu+gshj
+ FfU+BA/LPWAkNwPtr5Aq13MEh9Er0QkrettyRVr9Ig0hQ+ibMroA1tv3jTegQibnqJZas2sMcIr
+ 3BEPAVpUrpxX6OHEYMq4aEtFJ+1z+EnZ2ZkPNRZHl8VY49/XizKAQMYaFNDttoQXfGpd2Jhf1ZP
+ 7dYv6gGa4m2HMhtJyjLE18ovsJGiU8Z9LKaQyE03ZrDvt0e3/PgB1SaV5yEQvl1z3zZ6GQcBB7s
+ wEUeFu03GX2jWu0FcJF2Tn6Spk8xtl1hccIYql4KdOmnYxQeHTViLfzSO8Tybu6kmg87ION3M7g
+ ssYEoD9TUSP26BfOaIKGW/BjPy/yYJqc5RyFzOiBDGHYZumj9WL4R4r+aONBQQw6j6aN5TWWyP4
+ j1iQk4WXzOAf3s9JxOw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
+ definitions=2026-01-20_02,2026-01-20_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 clxscore=1015 priorityscore=1501 malwarescore=0 spamscore=0
+ impostorscore=0 adultscore=0 bulkscore=0 suspectscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601200091
+X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_RHS_NOT_FQDN(0.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	BAD_REP_POLICIES(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	R_DKIM_ALLOW(0.00)[ziyao.cc:s=zmail];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gentoo.org,foss.st.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,armlinux.org.uk,cqsoftware.com.cn,disroot.org,nxp.com,bp.renesas.com,linux.intel.com,bootlin.com,eswincomputing.com,altera.com,cherry.de,st.com,synopsys.com];
-	GREYLIST(0.00)[pass,body];
-	RCPT_COUNT_TWELVE(0.00)[38];
-	TAGGED_FROM(0.00)[bounces-257308-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	DMARC_POLICY_ALLOW(0.00)[qualcomm.com,reject];
+	TAGGED_FROM(0.00)[bounces-257309-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,fairphone.com:email,aaf0000:email];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.linux.dev,st-md-mailman.stormreply.com,gmail.com];
-	DMARC_POLICY_ALLOW(0.00)[ziyao.cc,quarantine];
-	R_SPF_SOFTFAIL(0.00)[~all:c];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[me@ziyao.cc,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
 	TO_DN_SOME(0.00)[];
-	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	MISSING_XM_UA(0.00)[];
-	DKIM_TRACE(0.00)[ziyao.cc:+];
-	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DMARC_POLICY_ALLOW_WITH_FAILURES(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,ziyao.cc:dkim]
-X-Rspamd-Queue-Id: 507FA4F5B8
-X-Rspamd-Action: add header
+	R_SPF_SOFTFAIL(0.00)[~all:c];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 6CA3A4F8AA
+X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spam: Yes
 
-On Tue, Jan 20, 2026 at 12:36:06PM +0800, Inochi Amaoto wrote:
-> The GMAC IP on Spacemit K3 is almost a standard Synopsys DesignWare
-> MAC (version 5.40a) with some extra clock.
+On 1/16/26 2:38 PM, Luca Weiss wrote:
+> Add the nodes and the pinctrl for the CCI I2C busses on the Milos SoC.
 > 
-> Add necessary compatible string for this device.
-> 
-> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 > ---
->  .../devicetree/bindings/net/snps,dwmac.yaml   |   3 +
->  .../bindings/net/spacemit,k3-dwmac.yaml       | 107 ++++++++++++++++++
->  2 files changed, 110 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/spacemit,k3-dwmac.yaml
+>  arch/arm64/boot/dts/qcom/milos.dtsi | 194 ++++++++++++++++++++++++++++++++++++
+>  1 file changed, 194 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/milos.dtsi b/arch/arm64/boot/dts/qcom/milos.dtsi
+> index 58b4c2966df1..c8771beffa9b 100644
+> --- a/arch/arm64/boot/dts/qcom/milos.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/milos.dtsi
+> @@ -1652,6 +1652,72 @@ videocc: clock-controller@aaf0000 {
+>  			#power-domain-cells = <1>;
+>  		};
+>  
+> +		cci0: cci@ac15000 {
+> +			compatible = "qcom,milos-cci", "qcom,msm8996-cci";
+> +			reg = <0x0 0x0ac15000 0x0 0x1000>;
+> +			interrupts = <GIC_SPI 426 IRQ_TYPE_EDGE_RISING 0>;
+> +			power-domains = <&camcc CAM_CC_CAMSS_TOP_GDSC>;
+> +			clocks = <&camcc CAM_CC_SOC_AHB_CLK>,
+> +				 <&camcc CAM_CC_CPAS_AHB_CLK>,
+> +				 <&camcc CAM_CC_CCI_0_CLK>;
+> +			clock-names = "soc_ahb",
+> +				      "cpas_ahb",
+> +				      "cci";
+> +			pinctrl-0 = <&cci0_0_default &cci0_1_default>;
+> +			pinctrl-1 = <&cci0_0_sleep &cci0_1_sleep>;
+> +			pinctrl-names = "default", "sleep";
+> +			status = "disabled";
 
-...
+With the pins moving to the child nodes, we may as well move the
+disablement there, peeking at the code, I think it should handle it
+well
 
-> diff --git a/Documentation/devicetree/bindings/net/spacemit,k3-dwmac.yaml b/Documentation/devicetree/bindings/net/spacemit,k3-dwmac.yaml
-> new file mode 100644
-> index 000000000000..58dd98f79e8a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/spacemit,k3-dwmac.yaml
+[...]
 
-...
+>  		camcc: clock-controller@adb0000 {
+>  			compatible = "qcom,milos-camcc";
+>  			reg = <0x0 0x0adb0000 0x0 0x40000>;
+> @@ -1791,6 +1857,134 @@ tlmm: pinctrl@f100000 {
+>  
+>  			wakeup-parent = <&pdc>;
+>  
+> +			cci0_0_default: cci0-0-default-state {
+> +				sda-pins {
+> +					pins = "gpio88";
+> +					function = "cci_i2c_sda";
+> +					drive-strength = <2>;
+> +					bias-pull-up = <2200>;
+> +				};
 
-> +  clocks:
-> +    minItems: 3
-> +    items:
-> +      - description: GMAC main clock
-> +      - description: PTP clock
-> +      - description: TX clock
-> +      - description: PHY clock
+It would be fantastic if the GPIOs remained sorted by the GPIO num
 
-Why does the MAC require "phy" clock? Shouldn't this be handled in PHY
-driver instead, or I get its meaning wrong?
-
-Also, I don't see "phy" clock is acquired anywhere in the driver. Is it
-really necessary for the MAC?
-
-Best regards,
-Yao Zi
+Konrad
 
