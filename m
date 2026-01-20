@@ -1,206 +1,166 @@
-Return-Path: <devicetree+bounces-257620-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257622-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aA1YGTX/b2mUUgAAu9opvQ
-	(envelope-from <devicetree+bounces-257620-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 23:18:29 +0100
+	id SLaLG4kDcGmUUgAAu9opvQ
+	(envelope-from <devicetree+bounces-257622-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 23:36:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id C55BB4CDB1
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 23:18:28 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44B5D4D107
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 23:36:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 236D7A8E627
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 21:38:47 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 1A0C392A8C4
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 21:41:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76E0244A721;
-	Tue, 20 Jan 2026 21:38:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EABB543C06B;
+	Tue, 20 Jan 2026 21:41:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lQVA7v3q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bpFfmmxH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDC3E43DA38;
-	Tue, 20 Jan 2026 21:38:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF2BB3F23DC;
+	Tue, 20 Jan 2026 21:41:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768945110; cv=none; b=dTP+VpmIKn2y8gCA2CU9x01gyEof+mglPpa0Bb7o/A7cyvfVQao43ZaVo+EOWj6gD+3Wh0WuXEoMRPWWKJxNZdMGl18hZ549u6Ot3deWUafwfeTFnosAaUkRoe9zrb0URAi0UVxqy6FnciZAaENOZsShqXuYXzZ74aWjU6Kz5Jg=
+	t=1768945264; cv=none; b=gYuGivfpI8x78J6kb53lgnWfGHhbuBGBQQ0tellzXFalzIeFHNHufncByuIIXQmp2KVLvH2LKlJkvp2IK9bnbk9pji2mQ8BPcyHOoc3Y+QSqgoh/wjc4CsMb0U9hnjdfNKn4fBs7U2EOtj1YZ5Iic7i7bJKsKHCoKBXhEYUQ6uE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768945110; c=relaxed/simple;
-	bh=CT6zt3Dtq5dxWE4pQyre7nUMsP7URChsL+MVv8cGisY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JEfXBXhrgGiRYBWammH77h7bduuSQbJdSwWbHHTiuGAHvXHTZzzTTYu4ovv7r12DKR1Ihb+b3DQT6hjLyJYhTXuB+xkxZ6xjXjcQeQLFVT1Hc1EDvc+5bvJ7iOQJQ29835Q/xNkjEb/LN5qtyrs+4pEDd1MlpJ++PEcuQQVT/S4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lQVA7v3q; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1768945108; x=1800481108;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=CT6zt3Dtq5dxWE4pQyre7nUMsP7URChsL+MVv8cGisY=;
-  b=lQVA7v3qllw3SXtfioFE8rsrovlT4Y137/MMR/l/n30q1tKDtND+jq9W
-   wDRfgSiEXQBJmNEbHR/SFe+enYaQIp0UPLpzYg8bjjoR+z2mIclsraeuB
-   rWQLR8q7fuft/NDseJozfduZOjF7Ef7+e2nTRlhCiEo/l1iN2343HMbCY
-   3nenOQB4KHuXgmyj18XRXAdA0TD6Lxk8a+4T1mFtdo7Ql5Lw3Vjl57gQw
-   5g+Jx81p+vJi2VK9Q0TA5Y4sO3+e2g1NzKWQI076ZixQcU/QJQt1b8eCp
-   urmPlRjfnYml4Ykm8w/EAgPoU06IcLcpO9NmRJhp6xSxk/l/iHg5rckLV
-   g==;
-X-CSE-ConnectionGUID: 2DdhlTKMS7KWeNb49tK7nw==
-X-CSE-MsgGUID: uMj3kPhPSz+swkNAK1aoog==
-X-IronPort-AV: E=McAfee;i="6800,10657,11677"; a="74034176"
-X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; 
-   d="scan'208";a="74034176"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jan 2026 13:38:27 -0800
-X-CSE-ConnectionGUID: qdantrLwSeeMgjF7htm/+g==
-X-CSE-MsgGUID: FI1WJXHwTC2cKZFbtBadXQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; 
-   d="scan'208";a="210686552"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost) ([10.245.244.240])
-  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jan 2026 13:38:24 -0800
-Date: Tue, 20 Jan 2026 23:38:22 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Mark Brown <broonie@kernel.org>
-Cc: Abdurrahman Hussain <abdurrahman@nexthop.ai>,
-	Michal Simek <michal.simek@amd.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/3] spi: xilinx: use device property accessors.
-Message-ID: <aW_1zlEdaPNwiXuI@smile.fi.intel.com>
-References: <b03307f7-93f6-4680-9241-cf28b5456fd0@sirena.org.uk>
- <a3fcef3a-d1e9-4b46-b114-3a82575e052e@amd.com>
- <980ad372-a2c7-417c-91f9-4958d3d1aaca@sirena.org.uk>
- <4831B269-DFC1-40E0-96B7-67981AC72562@nexthop.ai>
- <6e06696e-09a4-46e0-98fa-252690b888e0@sirena.org.uk>
- <BF71A04E-7FFB-42D1-8C8D-6FD13415EED5@nexthop.ai>
- <c3fc04a4-4b09-4c6a-a0f1-e5aa92a22976@sirena.org.uk>
- <80A8F67E-7A01-4F9F-9D84-29722678A2CE@nexthop.ai>
- <817bcc43-7f10-4329-8924-6c375eb73ff2@sirena.org.uk>
- <aW_zjaRLtewa_NV1@smile.fi.intel.com>
+	s=arc-20240116; t=1768945264; c=relaxed/simple;
+	bh=YJzJJUi++2uUYfkEQ8T6yu3Qy4wq058C1WeL4Qj82gQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=GvENUCi7wXd5SoAX3eRcGIK0U/gdf970M/sd19AfBxdkXgPUoJL4UTRXS4UdCYH2zZp6xsENl2pGimRvNLDRchIyKn7qRIpV51HLTRniEc2+/ybz/jNlZPpVkHZb4Abm+d9cqOKdhQba6nK8V2CtwAIpVfOmyKhCDKKLZPQIV68=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bpFfmmxH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id EF394C16AAE;
+	Tue, 20 Jan 2026 21:41:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768945264;
+	bh=YJzJJUi++2uUYfkEQ8T6yu3Qy4wq058C1WeL4Qj82gQ=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=bpFfmmxH04HO+Wio1J56kcbTMV7GG5KKhVT53MYEZah3wB57kpSR03IpsEdEIKEdb
+	 +kvdMwWUPLGP3137bN/AHntqQMo2zwfwq9A3W1LQvXeuBCFtvfou963wkLV64kFWGL
+	 CITDRwo0l/hHf/CI6a/ysIBTSJftucWN3eduVz2bOXu+KIPRnqXMEUG0m6ynC7qMrj
+	 aEKI1cm+rs7VziTpF8ie6uavDS1etfM5XlhJRO+XPVhJX1WYpl3LzprtqvEPWorMxc
+	 XS5+oFCZrAtXvEgynQP6mOQh40sHauvwFMWssPLZs/ThBSer0L6320ySPa861xOEdO
+	 sQe9bEDTZajiQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DAECCD2629F;
+	Tue, 20 Jan 2026 21:41:03 +0000 (UTC)
+From: Yedaya Katsman via B4 Relay <devnull+yedaya.ka.gmail.com@kernel.org>
+Subject: [PATCH v4 0/3] Support FT3518 touchscreen in xiaomi-laurel
+Date: Tue, 20 Jan 2026 23:40:53 +0200
+Message-Id: <20260120-touchscreen-patches-v4-0-30145da9d6d3@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aW_zjaRLtewa_NV1@smile.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Spamd-Result: default: False [-0.46 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/33NTQ6DIBCG4as0rEsDI/jTVe/RdAE4CkkVA9a0M
+ d696Mo0psv3S+aZmUQMDiO5nmYScHLR+T6FOJ+Isapvkbo6NQEGOeM8o6N/GRtNQOzpoEZjMVK
+ NGiTkupaNJulyCNi496beH6mti6MPn+3JxNf1vzdxyqjirJJFk0Fdl7e2U+55Mb4jqzfB3hDHB
+ iRDAJdNJUyptPo1sr1RHhtZMrjJVQGVkajF3liW5QsMz2LjPgEAAA==
+X-Change-ID: 20260113-touchscreen-patches-beb2526bd5fb
+To: =?utf-8?q?Kamil_Go=C5=82da?= <kamil.golda@protonmail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ Yedaya Katsman <yedaya.ka@gmail.com>, SzczurekYT <szczurek@szczurek.yt>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768945262; l=1661;
+ i=yedaya.ka@gmail.com; s=20260113; h=from:subject:message-id;
+ bh=YJzJJUi++2uUYfkEQ8T6yu3Qy4wq058C1WeL4Qj82gQ=;
+ b=P9IIClJs67VvxEvmdkAc9XXIk6TJyBBK8SZjxJggcpfStBtgXVdTjJnTHYtdHSVJW9WT3q0pW
+ mlUti4myNM7ATfiWvqf6d4FeyHa16sOcvwJ5P3UbJIDACWfqGVu/s8s
+X-Developer-Key: i=yedaya.ka@gmail.com; a=ed25519;
+ pk=CgNmxD3tYSws5dZfpmJfc6re/bV/f47veVijddHLytk=
+X-Endpoint-Received: by B4 Relay for yedaya.ka@gmail.com/20260113 with
+ auth_id=601
+X-Original-From: Yedaya Katsman <yedaya.ka@gmail.com>
+Reply-To: yedaya.ka@gmail.com
+X-Spamd-Result: default: False [1.54 / 15.00];
+	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_POLICY_ALLOW(0.00)[intel.com,none];
-	DKIM_TRACE(0.00)[intel.com:+];
-	TAGGED_FROM(0.00)[bounces-257620-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
+	TAGGED_FROM(0.00)[bounces-257622-lists,devicetree=lfdr.de,yedaya.ka.gmail.com];
 	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FREEMAIL_REPLYTO(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[protonmail.com,kernel.org];
 	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[yedaya.ka@gmail.com];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,szczurek.yt];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[uefi.org:url,intel.com:dkim,dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,nexthop.ai:url,smile.fi.intel.com:mid]
-X-Rspamd-Queue-Id: C55BB4CDB1
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[postmarketos.org:url,ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
+X-Rspamd-Queue-Id: 44B5D4D107
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Jan 20, 2026 at 11:28:50PM +0200, Andy Shevchenko wrote:
-> On Tue, Jan 20, 2026 at 09:04:58PM +0000, Mark Brown wrote:
-> > On Tue, Jan 20, 2026 at 11:11:44AM -0800, Abdurrahman Hussain wrote:
-> > > > On Jan 20, 2026, at 10:45 AM, Mark Brown <broonie@kernel.org> wrote:
-> > > > On Mon, Jan 19, 2026 at 04:20:06PM -0800, Abdurrahman Hussain wrote:
-> > 
-> > Let me once more renew my plea:
-> > 
-> > > > To repeat once again:
-> > 
-> > > > | Please fix your mail client to word wrap within paragraphs at something
-> > > > | substantially less than 80 columns.  Doing this makes your messages much
-> > > > | easier to read and reply to.
-> > 
-> > > > To drivers that are used on ACPI systems, yes.  Many devices wouldn't be
-> > > > used on ACPI systems, or would be expected to be exposed differently
-> > > > (for example, hidden behind AML).
-> > 
-> > > This is not for a normal off the shelf server. In our case we are building an embedded
-> > > switch with an AMD CPU and Xilinx FPGAs that happens to use EDK2 based BIOS and ACPI.
-> > 
-> > Sure, AFAICT it's mostly a PCI card with a bunch of stuff on it from a
-> > software point of view.
-> > 
-> > > >> I am just trying to get this 2-line small change merged so we can start using the standard spi-xilinx driver today. I am not trying to boil the ocean.
-> > 
-> > > > I mean, adding a HID wouldn't take substantially more code.
-> > 
-> > > We could, but we don’t own the Xilinx IP blocks. Are we not justified in using PRP0001
-> > > hack until the driver owner adds the HIDs? Wasn’t PRP0001 created as an escape hatch for
-> > > these kind of scenarios?
-> > 
-> > No, it's more there for the cases where embedded ACPI systems need to
-> > import non-trivial DT bindings so they can avoid having to respecify
-> > things that ACPI really doesn't cope with or for local hacks.  See
-> > Andy's reply earlier in the thread:
-> > 
-> >    https://lore.kernel.org/r/aW9JihlsjnJ-uBul@black.igk.intel.com
-> > 
-> > AFAICT for ACPI the HID assigment is a bit of a free for all in practice
-> > - board vendors generally seem perfectly happy to just pick something if
-> > the silicon vendor didn't do something.  Just look at all the parts with
-> > INTxxxx IDs!  That said Michal is on the thread so hopefully that's not
-> 
-> INTxxxx was a (historical) mistake, but look at the correct one INTCxxxx
-> which has listed several components Intel doesn't own. Because ACPI HID
-> it's not only about the component in use, it's also about integration of
-> that component in the platform environment. Hence it might require (platform)
-> specific quirks.
+Adds support for the touchscreen in the Xiaomi Mi A3 (xiaomi-laurel)
+ smartphone, FocalTech FT3518
 
-Btw, you can look at the MIPI I3C HCI case. MIPI as an owner allocated generic
-ID (which is usually represented as _CID in ACPI), AMD allocated their own one
-_HID (compatible with _CID) exactly for the purpose of having platform quirks.
+Original tree was here:
+ Link: https://gitlab.postmarketos.org/SzczurekYT/linux/-/commits/laurel
 
-TL;DR: if you are 100% sure you have no HW integration issues, requirements, etc
-and everything works as is, you can use Xilinx allocated id (assuming it will come)
-for the given IP and use it directly as _HID, otherwise use that as _CID and
-allocate your own for _HID.
+Signed-off-by: Yedaya Katsman <yedaya.ka@gmail.com>
+---
+Changes in v4:
+- Follow dts coding style for pinctrl nodes
+- Don't refrence touchscreen "release" gpio config
+- Link to v3: https://lore.kernel.org/r/20260118-touchscreen-patches-v3-0-1c6a729c5eb4@gmail.com
 
-> > an issue and we can get something from Xilinx fairly easily.
-> 
-> Exactly! Either from them, or AMD can do, or even NextHop.AI.
-> If you have not yet registered vendor ID, it's pretty much
-> straightforward process.
-> 
-> Here is the pointer for your convenience:
-> https://uefi.org/PNP_ACPI_Registry
+Changes in v3:
+- Rename regulator node and reorder nodes
+- Add gpio pin configuration for pmx_ts_* in sm6125, and reference in the
+  touchscreen configuration as pinctrl-*. Doesn't have configuration for
+  the gpio 83 pin since it isn't documented downstream.
+- Link to v2: https://lore.kernel.org/r/20260114-touchscreen-patches-v2-0-4215f94c8aba@gmail.com
 
+Changes in v2:
+- Fixed name and email in signoffs
+- Link to v1: https://lore.kernel.org/r/20260113-touchscreen-patches-v1-0-a10957f32dd8@gmail.com
+
+---
+Yedaya Katsman (3):
+      dt-bindings: input: touchscreen: edt-ft5x06: Add FocalTech FT3518
+      drivers: input: touchscreen: edt-ft5x06: Add FocalTech FT3518
+      arm64: dts: qcom: sm6125-xiaomi-laurel-sprout: Add Focaltech FT3518 touchscreen
+
+ .../bindings/input/touchscreen/edt-ft5x06.yaml     |  1 +
+ .../boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts  | 65 ++++++++++++++++++++++
+ drivers/input/touchscreen/edt-ft5x06.c             |  6 ++
+ 3 files changed, 72 insertions(+)
+---
+base-commit: b71e635feefc852405b14620a7fc58c4c80c0f73
+change-id: 20260113-touchscreen-patches-beb2526bd5fb
+
+Best regards,
 -- 
-With Best Regards,
-Andy Shevchenko
+Yedaya Katsman <yedaya.ka@gmail.com>
 
 
 
