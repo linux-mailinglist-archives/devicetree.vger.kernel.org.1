@@ -1,116 +1,134 @@
-Return-Path: <devicetree+bounces-257258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 449BBD3C4F2
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 11:19:22 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 910D2D3C4B8
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 11:12:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9B679582B1D
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 10:03:03 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 23502583E00
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 10:04:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA0713D6495;
-	Tue, 20 Jan 2026 10:01:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DB343E9581;
+	Tue, 20 Jan 2026 10:02:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="Qtk1k5b3"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="nXcYyEHE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C8553A89BD;
-	Tue, 20 Jan 2026 10:01:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 054413D1CCE;
+	Tue, 20 Jan 2026 10:02:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768903295; cv=none; b=cAHm0tGKYnHdChlToacKkSwl/O8+BHSEijtugv+fMEUflc68sc2C0GIfmB1gNjqUvPD5jmpjpCqMuEAUHuI27IkIS4xAYt9w+lGQjgzashlFxtPsVsZlb5wCHtTVSGzqtNhfM06WVflCLldANZVHW8KJhTq9g0l41AwsmZxldzU=
+	t=1768903357; cv=none; b=pf8JiprLWKeSW/JAzkyPzuRsWDWahDjbZgM2HXnVShwEpAHucWJ93zbjr+9t8QJbYf5UQ+205IGhrzeu84eSNHahe7ESKwPXogX5Hiu4ZY9Ni4E2J1yFVXGd7m4lN5Q8ujkIIDqmfTNY84GSbEimwiKX2Jtgh4C/fG/vaecsiqg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768903295; c=relaxed/simple;
-	bh=zKBx8VMw5ku5/+n9R0KcMRjMo3zLd5gqui5jroBnXGM=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=TnGAveACRdr1Gsp1aktSb9+G5mZ1hl/xd6mTlEiUQPrc1h0SaAB7xN+tm+QDLE4hTHs5lIEST3xv4gX4+AxP+zuWWc4vy3L1xqnlNj8LefPZJMqkU5GaAAXf79lfivwpzFztyb/o+OXsZyFx/NeafP5cYBOTeHXQ0R3mxcI+ZGU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=Qtk1k5b3; arc=none smtp.client-ip=80.241.56.161
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:b231:465::1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4dwNBs6cMWz9v0b;
-	Tue, 20 Jan 2026 11:01:25 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1768903286;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=mKfE1HagS5zYjDz3V0NjsZ5zkfW7JXAOUyzpd++NnY0=;
-	b=Qtk1k5b3KnAA/8INIZcES60MabXbu9GWnCj/bVKXTNIirJsxIc45R410nnkxcaLDY7tX2m
-	msBx5XbN89BWIx/G6asUqmGSSBqY1mSDlrQGaVRzH84L3Oxey29PyBLEDa2ZPKFsAOKwCg
-	MOr1yDiYmpApX6mM2kN2Em90o3JLHjIp/EbBq9O3I/vwfsi9hUd4WnFkaYfRQNeP52RewL
-	ZeUzu/IN/DLT3yEL1r4hpyyGBnVUgI8tzonScZTQD6V0Xx0YuhBqUMA5Ujv1WBnu4GWPVB
-	O2l8hldV0T//t4VSO9ziqm/v9zAUwjMKBYDPKJeBLqQN3UhLndh9iYbO1VPWlA==
-Message-ID: <4db9e78d-ec91-4ff1-a395-cdd2d08225bd@mailbox.org>
-Date: Tue, 20 Jan 2026 11:01:21 +0100
+	s=arc-20240116; t=1768903357; c=relaxed/simple;
+	bh=9EpXo9mJfLq62gWnbq0y8rqmR84/Ag97tDfBxlzXkB8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=sUtA50Lkuy2q2NMLblmhuAMuhC6JLWEuT3HTaLWY3xsu9kcJOOYVVa8wP1QGwTErOosYNYmHzQ3ytFjnBYkjo0/f9aeguJdDfYoZh2W3o5lL83WWy8fSsi2PwdLUevI9C+/6bF16WKsRnktQwy8Iyx+Q7szekffKzWYHyDgvhGg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=nXcYyEHE; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb.corp.toradex.com (248.201.173.83.static.wline.lns.sme.cust.swisscom.ch [83.173.201.248])
+	by mail11.truemail.it (Postfix) with ESMTPA id 95CA11FA75;
+	Tue, 20 Jan 2026 11:02:25 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1768903346;
+	bh=S7951CmhBfNyeg6X5oFR/k3HQrKbwIeGqG50J+wopCs=; h=From:To:Subject;
+	b=nXcYyEHE74KQFgZYlqNEYOwELUmuiRjg5OfOpQzSJvGrksJAWOIapHaax/BFHmdNC
+	 vOaAziDCQq3TIVmDnugwbW0XJ2MKVA1pw6krg6+geqjdL35ykM3PqyEIs9otZRD2LT
+	 u3JEsfuVeLKiMCPc0hocUoKRafgn2CV46g7diXpLkJZRL093EqxNPOEuvU2RCZA16X
+	 nbR+kW27/OcRIovle8po3kwtzEuhEXrP8u+qZoXByFtpI5cfV8DmPyAUpGSme9T9xn
+	 svducdGRKvgP5kMeMQxLK0U5Lvcl99tmNh+gnaigXi9OsRV7eyreWaXVXF+wlUOeqW
+	 0QLZ759V9jyWQ==
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1] arm64: dts: imx8-apalis: Disable the audmix
+Date: Tue, 20 Jan 2026 11:02:20 +0100
+Message-ID: <20260120100221.47274-1-francesco@dolcini.it>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Marek Vasut <marek.vasut@mailbox.org>
-Subject: Re: [PATCH v3 1/2] drm/panel: simple: Add Waveshare 13.3" panel
- support
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: dri-devel@lists.freedesktop.org, Conor Dooley <conor+dt@kernel.org>,
- David Airlie <airlied@gmail.com>, Jessica Zhang <jesszhan0024@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Magnus Damm <magnus.damm@gmail.com>, Maxime Ripard <mripard@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
- Sam Ravnborg <sam@ravnborg.org>, Simona Vetter <simona@ffwll.ch>,
- Thierry Reding <thierry.reding@gmail.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-References: <20260117005028.126361-1-marek.vasut+renesas@mailbox.org>
- <CAMuHMdXHKJYcP78WLUfGrN8v+PmChj7jEsjhnVXYnSOzZ7mkpw@mail.gmail.com>
- <926a0b23-5159-4f4e-b278-b545ae281410@mailbox.org>
- <CAMuHMdXa=NSu788E5G-aY4CA3hrM8s8fO9ABpEN_wy+5A=JHNg@mail.gmail.com>
-Content-Language: en-US
-In-Reply-To: <CAMuHMdXa=NSu788E5G-aY4CA3hrM8s8fO9ABpEN_wy+5A=JHNg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-META: esnahd1odebpirxkdfyrm89nieiddxnx
-X-MBO-RS-ID: f259ff1c79d53f602e1
+Content-Transfer-Encoding: 8bit
 
-On 1/20/26 10:33 AM, Geert Uytterhoeven wrote:
+From: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-Hello Geert,
+The audmix is not used on apalis imx8, disable it.
 
->>> That looks like the plain standard 60Hz Full HD mode.
->>> Is there really no other copy of that structure available in the kernel?
->>>
->>> auo_t215hvn01_mode is almost the same, except for .clock and .flags.
->>> drivers/video/fbdev/core/modedb.c has the same mode, but in a different
->>> structure.
->>
->> The panel-simple.c is full of similar-ish panel timings . The timings
->> above are adapted from the waveshare DTO for this panel. What else would
->> you suggest I do/use for this device ?
-> 
-> I am just wondering if there is a better way for panels that use
-> standard timings.
+This solves the following warning message
 
-I sent a support request to waveshare to get hw details, but I am not 
-holding my breath.
+  imx-audmix imx-audmix.0: failed to find SAI platform device
+  imx-audmix imx-audmix.0: probe with driver imx-audmix failed with error -22
 
-I don't think this panel should use standard timings in the first place, 
-it should use timings which match the panel, but those are unknown, 
-because the content of the metal case is unknown. For now, the timings 
-come from the waveshare DTO, which only by coincidence matches the 
-standard timings, but that may have to be updated in the future, at 
-which point the use of standard timings would have to be removed anyway.
+Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+---
+ arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi       | 4 ----
+ arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi | 4 ----
+ arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi | 4 ----
+ 3 files changed, 12 deletions(-)
 
-I don't think we should press for standard timings for this particular 
-panel. For other panels, the timings come from their EDID/DPCD/... so 
-that is already a solved problem.
+diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi
+index 06790255a764..6f5af37ba9af 100644
+--- a/arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi
+@@ -22,10 +22,6 @@ &adc1 {
+ 	status = "okay";
+ };
+ 
+-&amix {
+-	status = "okay";
+-};
+-
+ &asrc0 {
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi
+index 7022de46b8bf..97fcd865fe3e 100644
+--- a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi
+@@ -62,10 +62,6 @@ &adc1 {
+ 	status = "okay";
+ };
+ 
+-&amix {
+-	status = "okay";
+-};
+-
+ &asrc0 {
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi
+index 12732ed7f811..b70cf3e8f8c1 100644
+--- a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi
+@@ -94,10 +94,6 @@ &adc1 {
+ 	status = "okay";
+ };
+ 
+-&amix {
+-	status = "okay";
+-};
+-
+ &asrc0 {
+ 	status = "okay";
+ };
+-- 
+2.47.3
+
 
