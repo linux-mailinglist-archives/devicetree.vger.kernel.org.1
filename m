@@ -1,279 +1,234 @@
-Return-Path: <devicetree+bounces-257189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78AA3D3BF2F
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 07:30:46 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 040BDD3BF70
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 07:44:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 43A4D4F4167
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 06:25:37 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 353313A2A50
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 06:43:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C54C37A49D;
-	Tue, 20 Jan 2026 06:24:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B17B3815DB;
+	Tue, 20 Jan 2026 06:43:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="SWPq7p5/";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="caEEgNFD"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="WjbvOy6a";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="HFBmFVWi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 618DA36CDF4
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 06:24:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEF3D36D4EF
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 06:43:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768890251; cv=none; b=Z3LIrIoktF7DScoU/XobG3Q4mJ3u+WGrXXX+1xOsCPtN8CIm1WO6uVyZLwi64LjtAKxDukMlwLKnFsS6+1pet/eZ511F83cnNLQQI1/RIp+/v5P+wrUia62p+RB0qT9i+yxwse02rWco5J5hS103uHQwqBMqhR/GiYtuV+L6ipA=
+	t=1768891400; cv=none; b=FXDEm9dLMNlMov1Vo1vo2XF5B+VbU9Olza7ikIUSNTJ8tKlJ/JcQQfp5+a0IKmFlDjR83I0w18lCe5temOWKW2N/W4go4jdC4C9B5b69UCqSpi491OUzfiU06syvT/TM0fsEMrOqT/CAl1w/+Fd4PXcEcJRZd9E5Ngcy+CxA8ec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768890251; c=relaxed/simple;
-	bh=KQvTe851Bvsh8j+PgLjhAYuShFSOrpuVnlKmfK6Ke38=;
-	h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-	 In-Reply-To:Content-Type; b=i3/fxKK04DesM0YhY8gH3VcTCAOGdI7k2klEUWEY1Ny19ODwNgnLzSyuAOV5WNVTnLiYsDzSAYG4s8m9jDK8cqiJfq0UZxPjL5RztdWlKS8zbRu8MMLXmOmHmek1RwMN3e5MX8XFuzTJn0WTb13RPbFP9buVSDdiTiP2s1KOzQE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=SWPq7p5/; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=caEEgNFD; arc=none smtp.client-ip=205.220.168.131
+	s=arc-20240116; t=1768891400; c=relaxed/simple;
+	bh=hfoAzXLqTI0yuJFaKhOjgbfjuP6BlxPjmFABx3KYJhk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=QJUOGpTm1GKJr7h3inXElZCs9DPNN05YgoZiZw/Xiqqnjz7c7qITJlm3tGGfEeWNRSum3TNovWanIfSBmABtbo22YNu19Y/9yBP2G4g1F53g+Q1V/Km3NWQDqOiDmRueFVjXjHOJuvasbe+SNyqOONW5+klDAzUX3oM249LfrrE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=WjbvOy6a; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=HFBmFVWi; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60K33GGO3805028
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 06:24:08 GMT
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60JMDJM22411745
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 06:43:03 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	dqnUnHSglS08Ezs/9IFZQZo2vw1kZKcPcP5C+SqXBDc=; b=SWPq7p5/mpy3ncPK
-	dpVzkW82+ZaSyhmIATF4mHMBuToZR+U03nPCxrtoCZiz6AlO7qXY37dRUI+Ojip3
-	6NXIBTIX+HSxAFgq/qXni6B5fZeXxA8CS4fUWpdLMMrvHRy/gKEkZf89JpyzWig8
-	SMaxjp4/hNDdDecNa11ZYPPzcGR9P4S7SHJWNjR3By4+4zANhrsNVJf8GHf09/xL
-	Q8DvkSu8dw9lwBcY/KkVE1cGjKm5uuKyBqPYQY3hUbhtO6kFf/RZME4wgEuGRv6N
-	JpOvs8Hk1ZgFbT+tBOdZEIaxbUSqoE/rVNzwAaPL9sxAFTrSsniEpirYsAoo5mnK
-	xf3r9Q==
-Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bt1f88fvp-1
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=rKbpxgXZo3AMg7pqeE0a16
+	yE8K6ApJHO+VrUYMiH+O8=; b=WjbvOy6aNshECftZ0Sghqh59lsvtO42VrPcfoj
+	BDw3251MSRbX708q8AiPR40RTStKoq9wAhTlj8R22w0YRFWR5MYy9Wu40Qm1XjhC
+	o4mbZEWb0R9Q3NvTCTZ0voy+bK6wJje9MbRZadtNEYmUWtaCEoSKb7b3IGPtx1BO
+	yL1nL7lqmxMiF3ffXw3Kk6+MWuSw9OE2HscA9wUO46/LrrS3SokXr7XtCAfwfNTC
+	x0I8nqC4ZwgPRFSZdQB6frMfGb6NtW0DH58SpPXulDfTRoTHkOuFU4kio2s7pybj
+	VHxIhs/Cn3zykyWDib5JIuZImn579uK4swb28zoSI5Yi8zlA==
+Received: from mail-dl1-f72.google.com (mail-dl1-f72.google.com [74.125.82.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bsnpdj6ss-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 06:24:07 +0000 (GMT)
-Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-81f73452300so9128871b3a.1
-        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 22:24:07 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 06:43:03 +0000 (GMT)
+Received: by mail-dl1-f72.google.com with SMTP id a92af1059eb24-12454b0a1a2so5458490c88.0
+        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 22:43:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768890247; x=1769495047; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dqnUnHSglS08Ezs/9IFZQZo2vw1kZKcPcP5C+SqXBDc=;
-        b=caEEgNFDKVvs27oMBxCLi8MFS1XesEsHLGNmIxPx6qeaFvSwDrEfFBI/Bcs0nVIIo5
-         uUT7i3VjvwLOlLiVzOAxm7eVbxiPCCJaJ78c/ez+ZbaJ08fmD+zLjjUtYZEKDPnzlzaX
-         Vv4pZ7euEk+gobOEvYolAinesQQGtCPorN4YBXfPF8bFwU8QhqPuta7zJoU1yEXhj+nG
-         ELAFX0zAMXQgjtMSACK974uOMsjGXTd8RNLKGiQmMJGJr1jDd2ffT6M5yuHYuDxRN/2l
-         vZ+FCC2O98YZaVhf+tNyKEWNUvxpWGcq2A+kI5mij2I0xGtajDjqqBrBkP2hJFAsRJqB
-         TgpA==
+        d=oss.qualcomm.com; s=google; t=1768891383; x=1769496183; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rKbpxgXZo3AMg7pqeE0a16yE8K6ApJHO+VrUYMiH+O8=;
+        b=HFBmFVWi4ys1W7TLfxRtVJ3DdErWnhcY1CDzP5O71TU6GxiqEV+o3PjZsUp1g/pulY
+         XT5Z3owrAes+vdkKhArXQbJZxuaXPUVUDbul+sq8i5xnVucG2g/7jhWQncvAJBljx3fX
+         bftlNUgM5+1CyocY2kZ4VMfwNX+TbAOXyfq43bP8YUN1FMXzN3KJAK7RBwnnimzVY1b9
+         uRo3BfC3cQgls68dMk4qnjIZzHuimG2ikrhL2WWCirXSMXCmJI4rZtTqvAb96LrnbDEa
+         Pr+vkWXEOCyp7lTy4xeUaNG6cLT20+lzN3q6DDN3/hQ0qvUbpDUV4U+rCwJ/DxsbrM2c
+         yrDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768890247; x=1769495047;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dqnUnHSglS08Ezs/9IFZQZo2vw1kZKcPcP5C+SqXBDc=;
-        b=uwIRNO/CHcF1t1kI8JctO2/WFx6fVuJXvb4L/khoSH+5KdZsNnDN9FpaR+Z3Dv7OqU
-         vwh6wP2gsiis5oG0gMdPDi2ILYTsHvinLwODt5F6NwP3wSdoj8JdVI+apwMv/Im1Y283
-         tJXMBQSS/UodmBu0rOv51o4n9CrhN8+fJGQOd5qT4AmXf9J/d8ZhkRDOQQjm8HVaTsRa
-         gK070DenC/+NXYDmZRzJcIWmIAJRWtLbkI5ZWLOwl5ZC6dlX/Csa5SX00hUVIDQsm+1C
-         LndCA2AdlzAMJ5GxqIjW7G/Z4TZy7w3jGr2MNT0xZLa9mqwz5sEhyYRkSMyPbOl/Insn
-         xn8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWxln7mnH5t3vED14RWInAYPrxCAKGqUFLoB8YxYolVyJVHgoWzftYz4l5f93soFFD1zs8sC5Ao4jN9@vger.kernel.org
-X-Gm-Message-State: AOJu0YyqCZaIboMnUenHHPtsqg7qzzYSnIbX9nUrRI+z5GOLxVjeA65F
-	BOC+ijZ9ZxkfIffJtsC10PTYJTs+LkVcNpdYSR04xYsBP+0/DTSfOCDgwxx50HKjwuq3rO987w+
-	Gaexz43IzsgMvJIE0Jnw2+RG1eqbGEqGaJa54PwYXkK06roj0S7a+EyJIgwc61tFs
-X-Gm-Gg: AY/fxX49A1AaVna7BPoiGVGqH/3ZYYAWLPq/XRrAi+4ejYnL78/Go/kFtz/eldwUcPm
-	uv3MRpX7luYNn7c/5n1BAY4PusBcBJWCH6e7iAOjY/HmAYfgrUAB2HXOLyCtNswM/1MSVmo6kSc
-	msESgdxIoKK3/uCiPRBAlACBrA/9SQTpbPYfbVf5RKi0/PNbUs4oeoCqvFb8ufB/bJfVv6MbzVf
-	D7ybpwzeZBiDiDbvXgjb+XuPccL5CGl7gxOGt5ILjRohPfNhrJL8Hn/YluCE1EOyeIoJ+f4Oack
-	e4FriQ72DsaCB+bfMUv3kgReVaUcAFKu3F72PWdbi8WaoJdtkEwc0sioH5AjgUdjUhQIfQHRHxg
-	B0sS0gs5nqUYdND8CeCtnwd6QayZrDudaeKPWNCw=
-X-Received: by 2002:a05:6a21:a92:b0:34f:28f7:ed75 with SMTP id adf61e73a8af0-38e45d08641mr914497637.8.1768890247102;
-        Mon, 19 Jan 2026 22:24:07 -0800 (PST)
-X-Received: by 2002:a05:6a21:a92:b0:34f:28f7:ed75 with SMTP id adf61e73a8af0-38e45d08641mr914469637.8.1768890246585;
-        Mon, 19 Jan 2026 22:24:06 -0800 (PST)
-Received: from [10.217.223.153] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-81fa1291ca2sm10975787b3a.54.2026.01.19.22.24.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Jan 2026 22:24:06 -0800 (PST)
-Subject: Re: [PATCH v2 0/2] Enable Inline crypto engine for kodiak
-To: Rob Herring <robh@kernel.org>
-Cc: linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        krzk+dt@kernel.org, ulf.hansson@linaro.org, devicetree@vger.kernel.org,
-        andersson@kernel.org, konradybcio@kernel.org, conor+dt@kernel.org
-References: <20260114094848.3790487-1-neeraj.soni@oss.qualcomm.com>
- <176840729246.2734238.959231359705262987.robh@kernel.org>
- <9c21bc87-326a-aa0b-ba81-31b10e119acb@oss.qualcomm.com>
- <CAL_JsqLVOLwC5fdQUoU-0QXcyjH0tK7cTE_7B6kVa6kFE8zF3g@mail.gmail.com>
-From: Neeraj Soni <neeraj.soni@oss.qualcomm.com>
-Message-ID: <96ca9dd8-2d92-262f-8bb7-0f0c30cabd74@oss.qualcomm.com>
-Date: Tue, 20 Jan 2026 11:54:02 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.1
+        d=1e100.net; s=20230601; t=1768891383; x=1769496183;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rKbpxgXZo3AMg7pqeE0a16yE8K6ApJHO+VrUYMiH+O8=;
+        b=LVqdbgi2B5j28sQqj4/GtUXq26YW94o0s5NC1OaTlouwyLXFP8KvoDax5+CIGTl9KO
+         IwocLE4b9B+iLvm3x5d2OywIinxsmjp521S5AVg6Py7VHUWAE5k7XgoLM3CUZtBPk1tz
+         OG233FqtAvU+B6ZLCvoJej7nk6rNWavVKINIveGkkM3pC2Mha1eFST0w/YQxV+Bxyhs9
+         IaOVxpBwQsmRLLYS0DA8jYcW+JmUanlL1Rfv1GJ71sItL44y/whpFVj98VFJ38dC102u
+         CuQH+2KREkAx+LPbdlxpMyBOMeU920Vy5sktA7+RIpdvF/1spZsJ8jK1HTur2kkg+0cN
+         CjcQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWOEgl3+m6ckuT1sjLNn1uSZHyjTIqJRJxMzH2MgFX3zjDolyAF1o+fYepH6sW+Mk93SNBZZAe8/Uol@vger.kernel.org
+X-Gm-Message-State: AOJu0YwX4c94dSPT7BNJwTVGF3RlseVGWmQgwO461x5jfwdlXhabBiQA
+	T4/6Mf6oiKdhnnLNJiLdvY5e6PIAZKTbgDRuP6/uXFNg71u+abymQ+eJkzIfZmNQG+psU8E9Fae
+	OjyNnhVF9zfmItAJeupd5AIZqnaqYYlxRhNYElT7YWqm/uYF7Zcgg8mdZ253/2beF
+X-Gm-Gg: AY/fxX6Cw/BR5IhVGaV1nMmV4ceRvDp5S4lhIl0nDyuKmcZ8S4apcwxyXiljoF8VUVe
+	FhsGJ9IY4L/AD/UnxIjW0prjqtqtOyYgwR3l8LY0Cxx7pfgLO+OJStYZ7szX1MhZkYRi9QVY4yg
+	92sx7iuFGd3k8j17h8gu1FNxPe5h5xOLofKeDvsheHTAkg5h1fnZ1PqqAhFRhpeOvZq3mMvJIDc
+	7aEHFVNpbWlzGrZ3ZuVYebjWIVr50IQeA5L+t9/cd8tKwcOId4qK8qww1tbh4NEyaOYsSeNYxVj
+	P8KIXQFCCzhcsuXcnqOphmm6koUMZ+3rIDaZGN7o0ePCkHRJN0g1VpZooY4zK7oFrgM4fA+tnJr
+	tx5PlF1Vsn1qsW8CjjSObVfHXVTsGA+EIJIotVHy+Tl9jN5PLjhmXCIi8U19uadsV
+X-Received: by 2002:a05:7022:4184:b0:11d:e40f:ee69 with SMTP id a92af1059eb24-1244b380f9dmr11966050c88.36.1768891382725;
+        Mon, 19 Jan 2026 22:43:02 -0800 (PST)
+X-Received: by 2002:a05:7022:4184:b0:11d:e40f:ee69 with SMTP id a92af1059eb24-1244b380f9dmr11965983c88.36.1768891380662;
+        Mon, 19 Jan 2026 22:43:00 -0800 (PST)
+Received: from hu-hangxian-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1244ad7201fsm19128658c88.7.2026.01.19.22.43.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Jan 2026 22:43:00 -0800 (PST)
+From: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
+Subject: [PATCH RESEND v2 0/5] media: qcom: camss: Add SM8750 support
+Date: Mon, 19 Jan 2026 22:42:50 -0800
+Message-Id: <20260119-add-support-for-camss-on-sm8750-v2-0-3e06583a0a81@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqLVOLwC5fdQUoU-0QXcyjH0tK7cTE_7B6kVa6kFE8zF3g@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIwMDA1MSBTYWx0ZWRfX0DGqkYyQl7sX
- mDoD7GVltpIJ/44AGMcoe3lOrRuuuh3OUBIzgks12zUJAoKKuebuYDET+Zo1hmJHSVr0bRo9gu6
- LegknLVo04YmZ03pvDKBrbpFH+/3twahk+dAFdV1hbZeovmCdJVa/UYbCXaiSHrOT2ofS4Gzlof
- 8IRb4PlAAQ3WIDsYKvov85H+wBPpwdMG01hYzTiE5hH/4PwNpn2QG8yDC8KBeuY07XqFd6U3cRx
- 4RuS3KWbXD9ZcIczA7ui2vTzgNx2UVCxEEeCsVX1p4kaR/Lrl592Hv+Xu3drkr73t5ExxOEOx0b
- /k+KSPr/+J9pc5UOuBScOJnfcxNYsp9uMeWq98y1y4UGDUijxPgpJHiXXgdPj/zXkVKkURmP7Uc
- ffJ72cRBPVWEnzB9njrENIWvFkmcSFu76elbrrJymY9r5zfTiVDEf542Gjy9W9tYYYUkI4ITZBV
- kna1L9zk57lzvtldfJg==
-X-Proofpoint-GUID: R_6KJfnmuaSSsUne7xiqzcRkPBPMfx77
-X-Proofpoint-ORIG-GUID: R_6KJfnmuaSSsUne7xiqzcRkPBPMfx77
-X-Authority-Analysis: v=2.4 cv=LdQxKzfi c=1 sm=1 tr=0 ts=696f1f87 cx=c_pps
- a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOsjb2kC/42QsW6DMBCGXyXy3IvsA2zC1KFZO7Rj1cHgo7ESM
+ LHBShXl3esA6dShy0l31n3f+b+yQN5SYNXmyjxFG6zrU4NPG9YcdP9FYE3qGXIshEAJ2hgI0zA
+ 4P0LrPDS6CwFcD6ErVcGh4LLJDWXSlCVLlMFTay+z4YO97d/3ry/sM80PNozOf8/iKObXfzuiA
+ A4yly0RUq2QP7sQtudJnxrXddtUZkXEB1ZyIbLH9kKLmBhU5KWqdyVpo/9g3Jb7PZ2nFMy4fuI
+ 3lxTTgkY4at3rQZ/sSleZUmjynNpWVVHgPYlaB4I73I7VpqfLCOv6LpluP/J0MYKKAQAA
+X-Change-ID: 20251126-add-support-for-camss-on-sm8750-506c4de36d88
+To: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        jeyaprakash.soundrapandian@oss.qualcomm.com,
+        Vijay Kumar Tumati <vijay.tumati@oss.qualcomm.com>,
+        Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
+        Atiya Kailany <atiya.kailany@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Authority-Analysis: v=2.4 cv=NtncssdJ c=1 sm=1 tr=0 ts=696f23f7 cx=c_pps
+ a=bS7HVuBVfinNPG3f6cIo3Q==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
  a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=gEfo2CItAAAA:8 a=EUspDBNiAAAA:8
- a=oVZI_Enn05QVDH3hfaoA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=2VI0MkxyNR6bbpdq8BZq:22 a=sptkURWiP4Gy88Gu7hUp:22
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=yK2hPAVbfSE63nI4_cYA:9 a=QEXdDO2ut3YA:10 a=vBUdepa8ALXHeOFLBtFW:22
+X-Proofpoint-GUID: PaHqhkEthRjHILhlo6BEVivnITua1Pyq
+X-Proofpoint-ORIG-GUID: PaHqhkEthRjHILhlo6BEVivnITua1Pyq
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIwMDA1NCBTYWx0ZWRfX4OLkM8K6ROgO
+ vZNi+qptwTjyLBEpThgeYqkl4ivP7TeNxxsMW2iSED9YaCvhBtfTkC6OSfXNCazjiviHtmv29po
+ i1ILhwFNpZ2XT/0K6LuO/C/1VGWE/MaTJMnzD5x5uKOFcb2E+j0Fp8HfSGtmw2c/7IJwXdKlKDK
+ U0Xwf1U1A7NMgPREvGkIRWKcCaFUyMSczUT2aFjeP3xrw+bi391hQ7lTON58LS/pvv8FUi982gT
+ tJqEwf6H147HL/rwSW7sM5M1vGHZxUzb8yIBU5P+GR52/VaiuSrdAgUnlBwiFxYHUEEIEXG5lJ+
+ w9ff83+gkXhCPHQocMJpbg0prMtECTsxj+Z4DC1lhk8TvCXAhz22oPhn906GkpPx9mzVoH8+bCQ
+ 8u6N1NwYrw+l3+vU2PqNFWZGy9fl2cQazL/qXJc9Th7FmYJWP6fAo/VCDJe+mv5v66HHauhX9WW
+ u22bKfUDu1UDQmden8Q==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2026-01-20_01,2026-01-19_03,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 bulkscore=0 clxscore=1015 impostorscore=0 spamscore=0
- priorityscore=1501 lowpriorityscore=0 adultscore=0 suspectscore=0
- malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2601200051
+ bulkscore=0 clxscore=1015 lowpriorityscore=0 phishscore=0 suspectscore=0
+ priorityscore=1501 malwarescore=0 impostorscore=0 spamscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601200054
 
+Add support for the RDI only CAMSS camera driver on SM8750. Enabling
+RDI path involves adding the support for a set of CSIPHY, CSID and TFE
+modules, with each TFE having multiple RDI ports. This hardware
+architecture requires 'qdss_debug_xo' clock for CAMNOC to be functional.
 
-On 1/20/2026 6:55 AM, Rob Herring wrote:
-> On Mon, Jan 19, 2026 at 6:49 AM Neeraj Soni
-> <neeraj.soni@oss.qualcomm.com> wrote:
->>
->> Hi,
->>
->> On 1/14/2026 9:48 PM, Rob Herring wrote:
->>>
->>> On Wed, 14 Jan 2026 15:18:46 +0530, Neeraj Soni wrote:
->>>> Document Inline Crypto Engine (ICE) handle for SDHC and add its device-tree
->>>> node to enable it for kodiak.
->>>>
->>>> How this patch was tested:
->>>> - export ARCH=arm64
->>>> - export CROSS_COMPILE=aarch64-linux-gnu-
->>>> - make menuconfig
->>>> - make defconifg
->>>> - make DT_SCHEMA_FILES=Documentation/devicetree/bindings/mmc/sdhci-msm.yaml dt_binding_check
->>>> - make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- CHECK_DTBS=y dtbs
->>>>
->>>> ---
->>>> Changes in v2:
->>>> - Removed the "if: required:" description for "qcom,ice" dt-binding
->>>>   as the ICE node is optional.
->>>> - Corrected the ICE dt node entry according to the dt-binding description.
->>>> - Added test details.
->>>>
->>>> Changes in v1:
->>>> - Updated the dt-binding for ICE node.
->>>> - Added the dt node for ICE for kodiak.
->>>>
->>>> Neeraj Soni (2):
->>>>   dt-bindings: mmc: sdhci-msm: Add ICE phandle
->>>>   arm64: dts: qcom: kodiak: enable the inline crypto engine for SDHC
->>>>
->>>>  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 4 ++++
->>>>  arch/arm64/boot/dts/qcom/kodiak.dtsi                 | 9 +++++++++
->>>>  2 files changed, 13 insertions(+)
->>>>
->>>> --
->>>> 2.34.1
->>>>
->>>>
->>>>
->>>
->>>
->>> My bot found new DTB warnings on the .dts files added or changed in this
->>> series.
->>>
->>> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
->>> are fixed by another series. Ultimately, it is up to the platform
->>> maintainer whether these warnings are acceptable or not. No need to reply
->>> unless the platform maintainer has comments.
->>>
->>> If you already ran DT checks and didn't see these error(s), then
->>> make sure dt-schema is up to date:
->>>
->>>   pip3 install dtschema --upgrade
->>>
->>>
->>> This patch series was applied (using b4) to base:
->>>  Base: attempting to guess base-commit...
->>>  Base: tags/v6.19-rc1-102-g3af51501e2b8 (exact match)
->>>  Base: tags/v6.19-rc1-102-g3af51501e2b8 (use --merge-base to override)
->>>
->>> If this is not the correct base, please add 'base-commit' tag
->>> (or use b4 which does this automatically)
->>>
->>> New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20260114094848.3790487-1-neeraj.soni@oss.qualcomm.com:
->>>
->>> arch/arm64/boot/dts/qcom/sm7325-nothing-spacewar.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
->>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
->>> arch/arm64/boot/dts/qcom/sc7280-herobrine-crd-pro.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
->>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
->>> arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
->>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
->>> arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dtb: pmic@2 (qcom,pm8350c): pwm:nvmem: [[386, 387]] is too short
->>>       from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml
->>> arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dtb: pwm (qcom,pm8350c-pwm): nvmem: [[386, 387]] is too short
->>>       from schema $id: http://devicetree.org/schemas/leds/leds-qcom-lpg.yaml
->>> arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
->>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
->>> arch/arm64/boot/dts/qcom/qcm6490-idp.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
->>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
->>> arch/arm64/boot/dts/qcom/qcm6490-particle-tachyon.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
->>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
->>> arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
->>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
->>> arch/arm64/boot/dts/qcom/sc7280-idp.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
->>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
->>> arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker-lte.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
->>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
->>> arch/arm64/boot/dts/qcom/sc7280-idp2.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
->>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
->>> arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
->>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
->>> arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie-lte.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
->>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
->>> arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
->>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
->>> arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie-nvme-lte.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
->>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
->>> arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie-nvme.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
->>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
->>> arch/arm64/boot/dts/qcom/sc7280-crd-r3.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
->>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
->>> arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
->>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
->>> arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
->>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
->>> arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
->>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
->>> arch/arm64/boot/dts/qcom/qcs6490-thundercomm-rubikpi3.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
->>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
->>> arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1-lte.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
->>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
->>> arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
->>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
->>> arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
->>>       from schema $id: http://devicetree.org/schemas/simple-bus.yaml
->>>
->> The crypto node i added is not a "bus" node but a leaf node for Inline Crypto Engine (ICE). There are no props like "compatible = "simple-bus"" or "#address-cells" and "#size-cells"
->> added in the ICE dt which indicates it is bus device so why the tool expects "ranges" prop? Adding "ranges" as a property in ICE node will be wrong since it is not a "bus" device.
-> 
-> The issue is your unit-address is upper case hex.
-> 
-Thanks and i will fix upper case in next patch but the logs are bit confusing to indicate upper case issue as "ranges" prop missing.
+SM8750 camera subsystem provides
 
-> Rob
-> 
-Regards
-Neeraj
+- 3 x VFE (Video Front End), 5 RDI per VFE
+- 2 x VFE Lite, 4 RDI per VFE Lite
+- 3 x CSID (CSI Decoder)
+- 2 x CSID Lite
+- 6 x CSIPHY (CSI Physical Layer)
+- 2 x ICP (Image Control Processor)
+- 1 x IPE (Image Processing Engine)
+- 2 x JPEG DMA & Downscaler
+- 2 x JPEG Encoder
+- 1 x OFE (Offline Front End)
+- 5 x RT CDM (Camera Data Mover)
+- 3 x TPG (Test Pattern Generator)
+
+This series has been tested using the following commands with a
+downstream driver for S5KJN5 sensor.
+
+- media-ctl --reset
+- media-ctl -V '"msm_csiphy2":0[fmt:SGBRG10/4096x3072]'
+- media-ctl -V '"msm_csid0":0[fmt:SGBRG10/4096x3072]'
+- media-ctl -V '"msm_vfe0_rdi0":0[fmt:SGBRG10/4096x3072]'
+- media-ctl -l '"msm_csiphy2":1->"msm_csid0":0[1]'
+- media-ctl -l '"msm_csid0":1->"msm_vfe0_rdi0":0[1]'
+- yavta  --capture=20 -I -n 5 -f SGBRG10P -s 4096x3072 -F  /dev/video0
+
+Dependencies:
+- https://lore.kernel.org/all/20260112-kaanapali-camss-v12-0-15b7af73401e@oss.qualcomm.com/
+
+Signed-off-by: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
+---
+Changes in v2:
+- Rebase this series due to conflict - bod
+- Add module descriptions in binding commit message and cover letter
+- Update property names to align with previous generations - Krzysztof
+- Update the vdd supply names with 0p88 to 0p9 in binding to keep such name
+  style consistency - Krzysztof/Vladimir
+- Add missing Kaanapali dependency - Krzysztof
+- Add regulator current in csiphy resource due to interface changed - bod
+- Make csid board level code style consistent and add comments to explain
+  the differences between csid full and lite configurations - bod
+- Remove reduandant initialization for empty set in csid and vfe - bod
+- Remove DTS patch due to conflict with camcc dependency. Will post it
+  as an individual series.
+- Update vfe commit message as renaming work done in Kaanapali series
+- Revert change-id to v1 to avoid increasing reviewers' workload
+- Link to v1: https://lore.kernel.org/r/20251126-add-support-for-camss-on-sm8750-v1-0-646fee2eb720@oss.qualcomm.com
+
+---
+Hangxiang Ma (5):
+      media: dt-bindings: Add CAMSS device for SM8750
+      media: qcom: camss: Add SM8750 compatible camss driver
+      media: qcom: camss: csiphy: Add support for v2.3.0 two-phase CSIPHY
+      media: qcom: camss: csid: Add support for CSID 980
+      media: qcom: camss: vfe: Add support for VFE 980
+
+ .../bindings/media/qcom,sm8750-camss.yaml          | 663 +++++++++++++++++++++
+ drivers/media/platform/qcom/camss/Makefile         |   1 +
+ drivers/media/platform/qcom/camss/camss-csid-980.c | 442 ++++++++++++++
+ drivers/media/platform/qcom/camss/camss-csid.h     |   1 +
+ .../platform/qcom/camss/camss-csiphy-3ph-1-0.c     |   5 +-
+ drivers/media/platform/qcom/camss/camss-vfe-gen4.c |  10 +-
+ drivers/media/platform/qcom/camss/camss-vfe.c      |   2 +
+ drivers/media/platform/qcom/camss/camss.c          | 357 +++++++++++
+ drivers/media/platform/qcom/camss/camss.h          |   1 +
+ 9 files changed, 1478 insertions(+), 4 deletions(-)
+---
+base-commit: 6ada99659c6d6a0cde83e6c0f4ed0ef0ba1867e1
+change-id: 20251126-add-support-for-camss-on-sm8750-506c4de36d88
+prerequisite-change-id: 20260112-kaanapali-camss-73772d44eff7:v12
+prerequisite-patch-id: c3758c408ebf6ab407b1977ccd51cd7179316c73
+prerequisite-patch-id: 7bb9332e44b93bb9f063bfa0626dd38ff450aaa8
+prerequisite-patch-id: eb308d8bf8e0f942d5a0dd1826cf3e1963b05378
+prerequisite-patch-id: 8c62245a3b0a2527d4ddf47438926d3b1fe3ff41
+prerequisite-patch-id: 36bed25998858225c8e1d6beeb977236cc1b76d6
+
+Best regards,
+-- 
+Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
+
 
