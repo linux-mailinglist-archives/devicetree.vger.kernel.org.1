@@ -1,195 +1,252 @@
-Return-Path: <devicetree+bounces-257414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257415-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MKRMNCp2cWngHgAAu9opvQ
-	(envelope-from <devicetree+bounces-257414-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 01:58:18 +0100
+	id CNDTA/BXcWkNEwAAu9opvQ
+	(envelope-from <devicetree+bounces-257415-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 23:49:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6581660218
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 01:58:18 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57F085F0A2
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 23:49:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 08D7464BF5F
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 13:10:39 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9D8618C17A9
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 13:13:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FA4842DFEE;
-	Tue, 20 Jan 2026 13:08:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E74164219E0;
+	Tue, 20 Jan 2026 13:11:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d76yzj44"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="YwuJvVR/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (mail-southcentralusazon11011014.outbound.protection.outlook.com [40.93.194.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE951426D04
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 13:07:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768914484; cv=none; b=RS+lxq66cZw5GdYz5CZziOp78hhjfltskCXjaMDELkFQJpCleqSxz4j0AWfsbDT7MMx8QhWdLY5RyeDbx3Wyw0W9Q/3vZWzgkeGx1j8XCbnDoF4El5v5t59h1n06E/ZaqSTZqKVwZOTuPxRXCUPV84fbhfLU5bS1oF2k5cPbcTQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768914484; c=relaxed/simple;
-	bh=bYMQBpe4FCapv9lWaTVjMR/wpnPps8cMKnJ2IUEsQXg=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oYZ4feTigvcqVozrKmxQ3SV5qGaIQj/9GSqqZUfOJQJOi84kLoPkSU4bKfCBqpRo4/pwz76ekI4m7dBx7GriTHHjbL/riyyy/AL/LkNgCdbwNvFRmRfAHzkT/l7DRM0qYbcPFlP2vwPepUHZ4R7Fo8pfU46RAforGgC4zYLa3WM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=d76yzj44; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-430f2ee2f00so2806785f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 05:07:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768914478; x=1769519278; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:date:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=SCg4baVejIBy6xrHVH6t/kFxefY8hFGPXKceU7pFofU=;
-        b=d76yzj44o/R9AJJiUfKn6x9P5vyO92Yx3QGXamQkGKFEYkHs2t21tPPD4RbWqvoPvU
-         QnEZEMRTM0n75T8wDsmP4awtJn/ppMwns/oBfYqtlA3RU0uhNRVWkY66WuWtnDo2Uv/e
-         X0wLVAAu5u6vfR2v/Mx5sIkrQR95qFJzdvLg/7klzAmVmWMPlYyBlg+nXP97gYOAXZWY
-         yUc2ZMc7U9FuHhypKLgkJ0Igg+PLTnnTQ9QQohwiZs41VpJ92r21RXfxzZXCMaK223EY
-         wOeIsG34SMhVJOs6/ahwfSchNfusd/RmAZ23sYlTs6FuPBLvarBmpj0/Wzmq0ccj1YlQ
-         Fn/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768914478; x=1769519278;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SCg4baVejIBy6xrHVH6t/kFxefY8hFGPXKceU7pFofU=;
-        b=P6NY0u7EEyzhmE4VHFGUtsgtSF3Uc/pgN55DACa7218ri70XMFmfCO3xJzDrCwGxmE
-         u7ytGdKAjknUi+eGPCZi+6fzielsD/n+7FUL4fq3a/3zVuVzXK2bUY2KMTnkbAnPj5s7
-         IQ/NesrPG7XuK9CJyzZPsxFElLxssQIGk2IP6dTlttQLinEixK2sb9WO/OJJCJzafIx+
-         jrRWoqNcdffJZWwyKKjyKkANvHexlybfqzuh7bNtVLzaPtRiJ4QCIxbImfUruCHQcQFW
-         cJ8hrfxL9Jo1lJRVtG1sUh9cyNveZ911azAQJ1/O9PX4gHMnr3KwWT2gBt7j1cypHjsq
-         VKoQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVlO6FW6dNnQs/VSZJvW6SqdiVLCTeENz7EIfgYRHVQ5dZC8JwT0BjzBKpvPQEkm9kj6hI5wOAtIwgK@vger.kernel.org
-X-Gm-Message-State: AOJu0YyykEQjwLnvPU836zaQnFnXkixgiRf65KeR1O2DoXnJhMPzxZw+
-	G0VXdLFlztljJb9PWqBWVGBMtdBxTT2G9sEgx/sjwStAH6oplUSPnKsC
-X-Gm-Gg: AZuq6aJKrwyrJc62rR5p3uUvVROl/F1z3aBX0YjDDgNGMtozjwodeFp8+RLrm4eSpx3
-	455OgNT65/ga7eGDWB4UqrlSbV9jQyYGDmEMbu5s2W2y12d14pbmmGpEq6J96s9jAfSHtvHA8a/
-	wY5sjSCOq9N/1kCQgXK35DBMCqdu7c2MqB2O22HwXw6KOGfzTMQFswao0FzA8tSanAk8jbLZy/W
-	2yURDyduKsKfVFxsJgrhPuWSI+OKPpaw/tgaZvySbhMQzflINugc9tZGM6hnYPQWTzOeBkeoZoA
-	0amYKVCfDrdcXN0gT2sZG/H1xDoedZZYnwlbExG7xv90G9LO0v57dOFXg5/5SoAQI4ob0g8Vp09
-	ZCWYSxlRQMPW2XEydpMmNHuEjfs/o+fvyEQxAzwCrqKvh+OaUME2XribRpmcgI7lpAF2OzNx2GW
-	GPu0ttRQOA2drLvo3zK1851aT5rxcz3p7eWSSAS3v+L3UCxNoqiu6eleQl88FhqXmnIIIUpXKKS
-	iD7Z7OtyPWSTKA=
-X-Received: by 2002:a05:6000:2486:b0:432:5bf9:cf2e with SMTP id ffacd0b85a97d-4358ff3efb4mr3038834f8f.13.1768914477693;
-        Tue, 20 Jan 2026 05:07:57 -0800 (PST)
-Received: from RDEALENC-L01.ad.analog.com ([24.206.116.103])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4356992201csm30156484f8f.2.2026.01.20.05.07.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jan 2026 05:07:57 -0800 (PST)
-From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
-Date: Tue, 20 Jan 2026 13:07:49 +0000
-To: Andy Shevchenko <andy.shevchenko@gmail.com>, 
-	Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-Cc: Andy Shevchenko <andriy.shevchenko@intel.com>, 
-	rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>, 
-	David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
-Subject: Re: [PATCH v4 3/7] iio: frequency: adf41513: driver implementation
-Message-ID: <vvdk3whhwua73g63eetnmn46t2cpbpkzzkx7m6wsbverp7gcvs@mi7cipis3i4t>
-References: <20260116-adf41513-iio-driver-v4-0-dbb7d6782217@analog.com>
- <20260116-adf41513-iio-driver-v4-3-dbb7d6782217@analog.com>
- <aW3dxuelYDM67pqZ@smile.fi.intel.com>
- <texwv5s2tvcy34bwr4iruj5xofmea663pwletmpqpuh66zulmv@m7qvjgqbhalv>
- <aW40ylvMwVhqNQMw@smile.fi.intel.com>
- <hgy3bcrqqsvt7pobhnzuvwzhb2taetpxltkaxpigmmlvmlirod@v6anhmrsvv2r>
- <aW5kk6K30Izckvg5@smile.fi.intel.com>
- <e5lcg5kkey3c6u2l4rlzzpolp7qkudhcofyzcx5s2tjbh2iwkg@js3fisv23zyj>
- <CAHp75VepcSZo_E4_UxhKRfHrMFDd7huJg14m8=6zVo4ENKFXkA@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7336C3491F6;
+	Tue, 20 Jan 2026 13:11:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.194.14
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768914672; cv=fail; b=bX03w6EZ/nYJOvBFldgKc7/6pb/xBYudP5ORn8AXKQ297eY26gbBfsTbnjOioC2TYTVbzAt9zbub4NzxGqTkiwFTkPibqdZOoITECb9L1SoBGiYgME7FJE3t7Xomp2y2/rHE7mubJpWk4DZZbCgfoc/FidkQwb+Z0DJTTxxpwrk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768914672; c=relaxed/simple;
+	bh=84/DJt/aFZ90cfcSQaLANoeOkeV0F9t2x2fqdW+Km8Q=;
+	h=Message-ID:Subject:From:To:CC:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=IR3Q8zbn+WB0Jtv7WUP/ileFcgzujLSspn1SWzQyItmFaelEIK1Vruf2aOOFNPbdnh7n2G9I1gHLxt6wequIzYZMydgfL5bFBzOaz0jswh0TIeVjfp/KUCmroDdBKePvxe3VRq5W5p+wH3AJesu8Fqx11xXTbDNUlSkcCdF/fc0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=YwuJvVR/; arc=fail smtp.client-ip=40.93.194.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=kpIMl7nzI9aVC/8DiMZql42Eo4zz6hx/D7+H9/e6oel1Ey8UgY86NbPSeMr5f7dZrAPG4/yKrQrfyQL1mcJuurb2oCN2mCrTBrZ7lY0WGlHVYZEphyCEF7cuhK3fEcMIk0GhC/N7gPCDQyZVQLMNg2LFfa8FGbhVGQp17AR5L13Gkus55AVyswySeV4+ph3o0TJNGGom00bp0nfcgBx25vwS1ZrBTiy0zQMb2Lb+xsHlT8O+d0yfzu+ejTXRkWlg0wH+4fONftqLemtAy6o/d2rGYFjHJid/VlyP7emCLqRgmAGqMyDpzJUktOF5QCvO6eYpNiTCWtj8czAVXsAfFA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=84/DJt/aFZ90cfcSQaLANoeOkeV0F9t2x2fqdW+Km8Q=;
+ b=p2DTvXJ8us0JHV1BgzBN7ZOrVZO+d/0H/z+k/qhuRKStO8VY6v/7FzpHGi0qygvdDTcMfNoKseMQn29FHLJo1R53tU31+/HOzyNSuPr2OnKozdtqYW7nF93SMchIHfm+l88VaYpsX5zchAKBO/DQD8LgQn/m03Poltn2pCRD5jknczxxDmvopLEv7udntZllmzOmefuFzqWD/5SOlya/VkZ8oXTc1iZ0QDHZtm4fnNiiUOker6V5M3YdxLz64m3pc5U5uwAZ9zwDc6lYFS10OA4PgvdSQakIMIEGeMj/zaRpMErMqJYppPnTuxVJchyPn5QZdb98GQcp8ZGiOT+EXA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.194) smtp.rcpttodomain=lists.infradead.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=84/DJt/aFZ90cfcSQaLANoeOkeV0F9t2x2fqdW+Km8Q=;
+ b=YwuJvVR/HOd/1aPdjsYrNznLmP/Y8GRpidMpvKzBfRq9Lo91aUD4RZKhoULrAF8I8WOjuXLJx0e54W/O2mC41Ewu2w8vBrJVeLzEA1iDPfmG5x/T1M87RDWsFiCj/L9izlWMQEK3AVx50usW2L23u0RcD4S73uF4Oh85i3oaGnY=
+Received: from BY5PR04CA0013.namprd04.prod.outlook.com (2603:10b6:a03:1d0::23)
+ by PH0PR10MB4743.namprd10.prod.outlook.com (2603:10b6:510:3e::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.12; Tue, 20 Jan
+ 2026 13:11:08 +0000
+Received: from CO1PEPF000042AC.namprd03.prod.outlook.com
+ (2603:10b6:a03:1d0:cafe::b7) by BY5PR04CA0013.outlook.office365.com
+ (2603:10b6:a03:1d0::23) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9542.9 via Frontend Transport; Tue,
+ 20 Jan 2026 13:11:06 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
+Received: from flwvzet200.ext.ti.com (198.47.21.194) by
+ CO1PEPF000042AC.mail.protection.outlook.com (10.167.243.41) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9542.4 via Frontend Transport; Tue, 20 Jan 2026 13:11:05 +0000
+Received: from DFLE210.ent.ti.com (10.64.6.68) by flwvzet200.ext.ti.com
+ (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 20 Jan
+ 2026 07:11:01 -0600
+Received: from DFLE205.ent.ti.com (10.64.6.63) by DFLE210.ent.ti.com
+ (10.64.6.68) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 20 Jan
+ 2026 07:11:01 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE205.ent.ti.com
+ (10.64.6.63) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Tue, 20 Jan 2026 07:11:01 -0600
+Received: from [10.24.73.74] (uda0492258.dhcp.ti.com [10.24.73.74])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60KDAuKu1108751;
+	Tue, 20 Jan 2026 07:10:57 -0600
+Message-ID: <d918d66a4fb7ae603eb1b67533fc0ae9cbf062dd.camel@ti.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am62d2-evm: Fix missing RX delay for
+ DP83867 PHY
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: Hari Prasath <gehariprasath@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+	<kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <bb@ti.com>, <afd@ti.com>, <p-bhagat@ti.com>
+CC: <stable@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<srk@ti.com>, <s-vadapalli@ti.com>
+Date: Tue, 20 Jan 2026 18:42:16 +0530
+In-Reply-To: <6650770b-2e9c-4f9a-8310-1f335ffa69f8@ti.com>
+References: <20260120061335.1497832-1-s-vadapalli@ti.com>
+	 <6650770b-2e9c-4f9a-8310-1f335ffa69f8@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-0+deb13u1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAHp75VepcSZo_E4_UxhKRfHrMFDd7huJg14m8=6zVo4ENKFXkA@mail.gmail.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF000042AC:EE_|PH0PR10MB4743:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9a9c1dd0-5e10-4a29-486e-08de58255eb3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|376014|1800799024|82310400026|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?bUNFQm1aVEtOUVdXSUc2WDl1SEM4VWNFTS9sSGh5Vi8veXA2d0hKNWlMZksy?=
+ =?utf-8?B?WUw3UVlTNnplVFh6NjdGZkY1VGdMMm13bUR5THM2NVQwbE82ejc2ZzU4eTln?=
+ =?utf-8?B?b0VzUkhYdFVGQTE2Zkw3NDRYMks4VDBIeWtjSmYwV3BMK3FhaUFYb1lhUkNB?=
+ =?utf-8?B?WUhvYk80SC8vVUtISEdOeDQ3Tzg4bkpISWNyd1piTXlscVdqZXFHdXZzbFdl?=
+ =?utf-8?B?emdHdDRobjhGQllCZElMcHhZMkFDc1dkTDBCK1FDZ3A1Ti8ydUVIaW5qMWo2?=
+ =?utf-8?B?U0dTR1BvdkZHZ0xaOXVzaERXSFo2L2ZXcDlwZ3pqQ1lCRkZBR0N5Z1c2R0hC?=
+ =?utf-8?B?Sng0M252SWgvaENGM1dROFdmRWMwMENPUkFWRzluOU1RZXl1N2ZLcHZnai9w?=
+ =?utf-8?B?emJxTFg3dEFacUgxRWhMVEhWaXp0Nko3NGhBWGFBZ3VGZ0JRa1lmM2U0WDZs?=
+ =?utf-8?B?c01ISGpKejNMQmJMOGRyVGNCMjFMN2cxL0x5VDNZUlNUTGYzbzluNWp5QXZB?=
+ =?utf-8?B?cVIzY01NNmgveGJ3bW1DUlJQUWFoaFNUNUxWWERaNVhxbFRFUDh2aElxYVg4?=
+ =?utf-8?B?bHhZR211SVh1Ky9Pa01BVkFNV1ZzWS9kanFLa0tnSGZpaStXQ09VZXd0YWg4?=
+ =?utf-8?B?Q0RBVWtVRVM3eW1ZZGxNcWxmOUo3N0NhaDNvZkNjTTMxSUdzTis4bTVzM1hN?=
+ =?utf-8?B?Z2lKamRnM1c3UmZabTEyVWdEVHdmWVJaaDRndk9FTUtDODJpSEJVd3dqR3la?=
+ =?utf-8?B?ZWRqUkxoYVg4SFJuMjdaMXI3U2sxYXcvQnFIRnFyZ1QrSTJRZFhFU2JFOGYz?=
+ =?utf-8?B?emNQQ3BYQW5McW1odk41ZWNxYU5Nei9KMm9pZm4wWHJmbDJwbWJUbVRNSHVT?=
+ =?utf-8?B?MmlkOGVHMUZiaGZvRWdLOFFHby91b2lSeWlGQy9ISEJqUmJVdWx4M3NaaHVZ?=
+ =?utf-8?B?bkVBbGF1RGlzMlFrbVhWSmVCUllJdlNXUWFsRHlEN0R1L2N0TUI1UEpJL3dO?=
+ =?utf-8?B?ZzUzb1dzSjJFNHZwRDRSVHpMdk1LKzlnUTZGU3FYbHJpTUJKNjhHY3Naa0RH?=
+ =?utf-8?B?TytmR01CY2VLZFJOZGltUlJsQ2Z3cmZJMm1KSnlsbW54QkQzNVJheWlNNEIx?=
+ =?utf-8?B?dythcnNrNGk2OE5zR2xqaEZ4QjE2Q0hoVUFXKzRVODBubTBQanZRUWVnT3JT?=
+ =?utf-8?B?UG1FMmd1Smo0bUxjY3gxbHFwR1Y0TmZaWVlaTEpNTUVIUERHRzNDY3BwODZW?=
+ =?utf-8?B?VVF5RXlFSUlLYXgvcEY0cU03UHA5NCtIM0k5U1ZOZERURnRNbFFGbFk1V291?=
+ =?utf-8?B?YndpOGhMTWkyWU9OTDVrekg2MGpvOS9ONVdWL0Y1aysxYWgzNlRXeWtBbENB?=
+ =?utf-8?B?Zmp3WElJVktzamNFT1RoOEFtejRXSEYySzIvSUh0YWIwenQ0UlpRU0RPOHR0?=
+ =?utf-8?B?OSszVDlTT1MyS1NyVU8wc0ZiRVdadnM0NllSbHJlQzY2WXI5WjFuemQ2TElr?=
+ =?utf-8?B?Ym9WYS9rSXh6R2REaW5qbDRRLzh2YWVHQVppZVVocHhZOVF1T2JJQncxS2Fa?=
+ =?utf-8?B?R2hVeHdHWExDZndSaG01bnJ4cnhmaHkxNHovQ3BDcm1Tb0pDUklMMzYxMUEx?=
+ =?utf-8?B?VXFPakdCRzdvTzRqMEZRemZyU0cwVlNNNDVPaDdXcjhvSDVrYVdZV3V1UE44?=
+ =?utf-8?B?c2lUWWxqUEJqQ3F6T0E2R3NPQ0dqQU16U0wzS2RjbDJXTFYvSkp3WDVjdjVM?=
+ =?utf-8?B?bUpFSm1pTWNqZEk2WkNUU200bmdTUjNiVkVBU1JnTFV1VU83aFJML01QcUE4?=
+ =?utf-8?B?djdhL3NySklRUUVGLzBLS1E5TzBmTHBGNGMyWGRDTG5oUWlvcDRsbHQwUmF1?=
+ =?utf-8?B?cENORGhvTHNmVFRldisvL0tGVnJPWndkbUcrd3I5LzNweTZuY3BlZWxpSTU2?=
+ =?utf-8?B?QzkxdjFwVC9nMXNobStLSHVmRU14OTVkMEJsemozQnhOckdQSjEvRnNNR2tH?=
+ =?utf-8?B?bitDMDhUbUZJcElOcWNDMUNPM09IZlpTSjZaWmtLV1pNeDQyS2drOVJpNXc2?=
+ =?utf-8?B?V1I2YzIxZW4vUWxuVHpsWXd6Z1NoYndmcmhHbWpzWlhZeEtuUUdtbWg5emRR?=
+ =?utf-8?B?TTdLby8rMkFnRUNJNVhIV0ZpcTdPQmFvNjNuNDRBQUxOakVkb3RzblpYdEpr?=
+ =?utf-8?B?cW9SRFEwTFpjaDRib0JhNm0zUW9CWHhUY0YzcUQ2M0IvQjdRR3Y3MGlJOTA3?=
+ =?utf-8?Q?yd+Ti2zWLDK1oGC5zyix41mqhiM3fynxPpVf+Cnjaw=3D?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(36860700013)(376014)(1800799024)(82310400026)(921020);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2026 13:11:05.7734
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9a9c1dd0-5e10-4a29-486e-08de58255eb3
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CO1PEPF000042AC.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR10MB4743
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.04 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DATE_IN_PAST(1.00)[35];
-	MID_RHS_NOT_FQDN(0.50)[];
+	DATE_IN_PAST(1.00)[33];
+	ARC_REJECT(1.00)[cv is fail on i=2];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-257414-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	DMARC_POLICY_ALLOW(0.00)[ti.com,quarantine];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-257415-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[ti.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:helo,dfw.mirrors.kernel.org:rdns,ti.com:email,ti.com:dkim,ti.com:mid];
 	TO_DN_SOME(0.00)[];
-	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[s-vadapalli@ti.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	R_SPF_SOFTFAIL(0.00)[~all:c];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:helo,dfw.mirrors.kernel.org:rdns]
-X-Rspamd-Queue-Id: 6581660218
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
+	REDIRECTOR_URL(0.00)[proofpoint.com];
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: 57F085F0A2
 X-Rspamd-Action: no action
 
-On 26/01/20 01:24PM, Andy Shevchenko wrote:
-> On Tue, Jan 20, 2026 at 12:43 PM Rodrigo Alencar
-> <455.rodrigo.alencar@gmail.com> wrote:
-> > On 26/01/19 07:07PM, Andy Shevchenko wrote:
-> > > On Mon, Jan 19, 2026 at 04:37:09PM +0000, Rodrigo Alencar wrote:
-> > > > On 26/01/19 03:42PM, Andy Shevchenko wrote:
-> > > > > On Mon, Jan 19, 2026 at 11:21:59AM +0000, Rodrigo Alencar wrote:
-> > > > > > On 26/01/19 09:31AM, Andy Shevchenko wrote:
-> > > > > > > On Fri, Jan 16, 2026 at 02:32:22PM +0000, Rodrigo Alencar via B4 Relay wrote:
+On Tue, 2026-01-20 at 18:33 +0530, Hari Prasath wrote:
+> On 20/01/26 11:43 am, Siddharth Vadapalli wrote:
+> > MAC Ports 1 and 2 of the CPSW3G Ethernet Switch in the AM62D2 SoC are=
+=20
+> > both connected to different instances of the DP83867 Ethernet PHY on th=
+e=20
+> > AM62D2 EVM, with the 'phy-mode' set to 'rgmii-id'. The DP83867 Ethernet=
+=20
+> > PHY has to add a 2 nanosecond
+> > ZjQcmQRYFpfptBannerStart
+> > This message was sent from outside of Texas Instruments.
+> > Do not click links or open attachments unless you recognize the source=
+=20
+> > of this email and know the content is safe.
+> > Report=C2=A0Suspicious
+> > <https://us-phishalarm-ewt.proofpoint.com/EWT/v1/G3vK!=20
+> > uRdqXRfPtm07agZk_PPjvDYD9oe_mpoIkkjINUyRhGSu--0mQdy1pi4MPng-=20
+> > ix3RK2L1V3y4DrnTdaCm8zj7QGx0QX2i$>
+> > ZjQcmQRYFpfptBannerEnd
+> >=20
+> > MAC Ports 1 and 2 of the CPSW3G Ethernet Switch in the AM62D2 SoC are b=
+oth
+> > connected to different instances of the DP83867 Ethernet PHY on the AM6=
+2D2
+> > EVM, with the 'phy-mode' set to 'rgmii-id'. The DP83867 Ethernet PHY ha=
+s to
+> > add a 2 nanosecond delay on receive (from wire) based on the EVM design=
+.
+> >=20
+> > Since the device driver for the DP83867 Ethernet PHY coincidentally ass=
+umes
+> > that the a 2 nanosecond receive delay has to be added in the absence of=
+ the
+>=20
+> 'the' can be removed here.Verified this claim on default value in the=20
+> driver without this DT property.
 
-...
- 
-> > > > > > The current implementation is kind of a stripped version of
-> > > > > > __iio_str_to_fixpoint(). Would you prefer something like this, then?:
-> > > > >
-> > > > > Do they have most of the parts in common? If so, why can't we use
-> > > > > __iio_str_to_fixpoint() directly? Or why can't we slightly refactor
-> > > > > that to give us the results we need here?
-> > > >
-> > > > __iio_str_to_fixpoint() only parses "int" chunks, adf41513_parse_uhz
-> > > > was modified to accomodate the u64 parsing removing unnecessary stuff.
-> > >
-> > > But why? The fractional part most likely will be kept int (it's up to 10⁻⁹).
-> > > The integer can be bigger than 10⁹?
-> > >
-> >
-> > Correct, integer part of the frequency value goes up to 26.5 GHz
-> > (uint_max is approx 4.3 GHz). Also, with the dual modulus, the PLL can
-> > achieve micro Hz resolution.
-> 
-> µHz is not a problem since it's up to nHz.
-> So, the difference so far is the integer part that can be 64-bit.
-> Again, can we factor out something to be used for this and for the
-> __iio_str_to_fixpoint() cases?
+Thank you for pointing this out. While rephrasing the sentence, I forgot to
+remove 'the'.
 
-I am not sure what you are suggesting, but I am avoiding changes to
-iio core at this point. If any other user needs similar behavior,
-I'd say we would need to have __iio_str_to_fixpoint() implementation
-modified, so to create a version of iio_str_to_fixpoint() that handles
-long long variables. Possibly consuming simple_strtoull instead of
-doing the manual parsing.
+>=20
+> Reviewed-by: Hari Prasath Gujulan Elango <gehariprasath@ti.com>
 
-Kind regards,
+Thank you for reviewing the patch. I will fix the commit message and
+include your tag in the v2 patch.
 
-Rodrigo Alencar
+Regards,
+Siddharth.
 
