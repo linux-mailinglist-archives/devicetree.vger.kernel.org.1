@@ -1,143 +1,125 @@
-Return-Path: <devicetree+bounces-257542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257495-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SHNTAPfgb2n8RwAAu9opvQ
-	(envelope-from <devicetree+bounces-257542-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 21:09:27 +0100
+	id GFkjAlHYb2n8RwAAu9opvQ
+	(envelope-from <devicetree+bounces-257495-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 20:32:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0AEB4B0BE
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 21:09:26 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id A397B4A783
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 20:32:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 03C39881829
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 17:50:37 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 88234981BD9
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 16:25:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C66C944A72B;
-	Tue, 20 Jan 2026 17:48:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1238F44DB82;
+	Tue, 20 Jan 2026 16:11:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b="fNeDGe8m"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C3W5RTc9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.thorsis.com (mail.thorsis.com [217.92.40.78])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D7C22222D1;
-	Tue, 20 Jan 2026 17:48:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.92.40.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D71FF441042;
+	Tue, 20 Jan 2026 16:11:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768931324; cv=none; b=HNQv67RkpqxYbuC0TAxt9uxqwBnm07MwHpDP5sqhFA3CkAOFhzEwsy65nDWXIoMDoVecIlD1lz7x3CL/nZ9hDHS5R8zQE7flLaWq3yFvPzhgRZHd/F6yaYwVDFHg84g2fd5KAgD4O8CIzf+QBYnTDFivwo+Fqgo+SPsi7U2MYj8=
+	t=1768925497; cv=none; b=tKoZ83eR7IkV7VmAy6CmgBnVfBrgdo7D4bx4b0M0bkD52R2uzJ6nZ5Sh+Cda9KgJa3OwonAwRz+/THVy2OWsYnNUPiH2J1AhzWHklmMmIBS7Luw1rhlGXicTK0iRYFcqSnNmWHMfa2ArZsnOZg1dMz7A9duFyIXI5YQqrJ8xQ9g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768931324; c=relaxed/simple;
-	bh=7LL3M4/ffFk/vEeEKW3RCEzG5kttOyLYdkUAYHMBdRw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=hEKZCuVy1RE2obKSL1X5ki9hRqCJzVe1Nqp9glduKziEi4Cwjev5YFGn0CB0QifmOidYvAsSJmpB48Ylnd8DUkcbiD8jonbdpCOWHFkktxgsywXeHEVqtS9aj6zlI7KmxJoH9EkCU9KUZHRCGfCL7AXglzZddk4LVXsUkNmURt4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com; spf=pass smtp.mailfrom=thorsis.com; dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b=fNeDGe8m; arc=none smtp.client-ip=217.92.40.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thorsis.com
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B4F55148AD87;
-	Tue, 20 Jan 2026 18:48:38 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thorsis.com; s=dkim;
-	t=1768931318; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=a9iLuhBBaWFw/vFGauqBf+tR/cYKN7IjXcWrjMcj1kg=;
-	b=fNeDGe8mv6Rlfr8cFOjBCpX+6Qmj8jO2iHS0qT5DPCfu4kLq0d6MoX4LWa/qi7nti2x986
-	l86EFkt6kwe9acw/UA0VDcYTZsAmnUy6AcOAxbKwC5x0FHU5eAMA0P36+DdjYJEn+B8QJv
-	da9NlyO2unJsV0tgojRgayTkcmCf//0dLZq5VmZ3GIgFGoEX+opu745SyoyOA81DrHr68p
-	vaZqnWRhiiKfCMsGAbq+0BzxZ8Uiix5UmKp6mVcCWoP4ZgDgjpYdOlRG4zqoTfQdPEGaaK
-	UWxnIk4AYFJXctNntwVvB5Pde7e37dKAylQjq907GDl0GlIGnoOlVTaYyNMjTg==
-From: Alexander Dahl <ada@thorsis.com>
-To: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Cc: Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Ryan Wanner <ryan.wanner@microchip.com>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: [PATCH v3 18/19] ARM: dts: microchip: sam9x60_curiosity: Enable OTP Controller
-Date: Tue, 20 Jan 2026 16:44:52 +0100
-Message-ID: <20260120154502.1280938-12-ada@thorsis.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260120154502.1280938-1-ada@thorsis.com>
-References: <20260120143759.904013-1-ada@thorsis.com>
- <20260120154502.1280938-1-ada@thorsis.com>
+	s=arc-20240116; t=1768925497; c=relaxed/simple;
+	bh=HXBV3Lx/h+H7VdEBJ3BfmE6klv68lSG5XkCtGO3hs6E=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=QUOeHn95v9rJpkcXdNKp5ZncF1laaJLU/Y3NuLoG2BrByuvqRPV39FeuJmoOX6vFkaaOzrOiyVxlEnUB3uJwg6NPhG94kfbc4VoFBzy5NibJLByw/BDtFectvTenFiQ6W4mSyEThH4Im4JI4YNTSrzHxMlhtdCC1+XGpuhhQhO8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C3W5RTc9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BCD9C16AAE;
+	Tue, 20 Jan 2026 16:11:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768925496;
+	bh=HXBV3Lx/h+H7VdEBJ3BfmE6klv68lSG5XkCtGO3hs6E=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=C3W5RTc9BDp+2tl/P41YC7OFToe0242b3ObhNOj343jvSEcE5i4Df7WCOiz5L/WvB
+	 Q5OuquBfIbmIBbdcd5cdB7+krmmqYmEn6PWMmzCVNdU9utkubtF8CRqvRuTwh0kyjT
+	 hWAJuPDx7Bdw0IjE3BK3nL4tQSWDMqtLYh5mXliRDdBlNx1RLJC0urKSnzbxqRrHIo
+	 Bugnab4PPc/2R9Dagphp5Z12HSzhryBKONAIMUKMQaT+k7obwDdkYJlp0w5poHL0Jt
+	 IPdkOu7SA5VgMqf/T2FFcbbCs4tVXT3j5wh/foK8HiEasB1YrhwdDgJCApBPF1MQSf
+	 lOLiNN/awpH+Q==
+From: Lee Jones <lee@kernel.org>
+To: lee@kernel.org, Nam Tran <trannamatk@gmail.com>
+Cc: pavel@kernel.org, gregkh@linuxfoundation.org, rdunlap@infradead.org, 
+ christophe.jaillet@wanadoo.fr, krzk+dt@kernel.org, robh@kernel.org, 
+ conor+dt@kernel.org, corbet@lwn.net, linux-leds@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-doc@vger.kernel.org
+In-Reply-To: <20260111135519.28112-1-trannamatk@gmail.com>
+References: <20260111135519.28112-1-trannamatk@gmail.com>
+Subject: Re: [PATCH v21 0/3] leds: add new LED driver for TI LP5812
+Message-Id: <176892549321.2317951.5782623090623899229.b4-ty@kernel.org>
+Date: Tue, 20 Jan 2026 16:11:33 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
-X-Spamd-Result: default: False [1.04 / 15.00];
+X-Mailer: b4 0.15-dev-52d38
+X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[thorsis.com:s=dkim];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-257495-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-257542-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[ada@thorsis.com,devicetree@vger.kernel.org];
-	DMARC_POLICY_ALLOW(0.00)[thorsis.com,quarantine];
-	DKIM_TRACE(0.00)[thorsis.com:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	FREEMAIL_CC(0.00)[kernel.org,linuxfoundation.org,infradead.org,wanadoo.fr,lwn.net,vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,thorsis.com:email,thorsis.com:dkim,thorsis.com:mid,0.0.0.0:email]
-X-Rspamd-Queue-Id: A0AEB4B0BE
+	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo]
+X-Rspamd-Queue-Id: A397B4A783
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Allows to access the OTP memory and Product UID now.
+On Sun, 11 Jan 2026 20:55:16 +0700, Nam Tran wrote:
+> This patch series adds initial support for the TI LP5812,
+> a 4x3 matrix RGB LED driver with autonomous engine control.
+> This version provides a minimal, clean implementation focused
+> on core functionality only. The goal is to upstream a solid
+> foundation, with the expectation that additional features can
+> be added incrementally in future patches.
+> 
+> [...]
 
-Signed-off-by: Alexander Dahl <ada@thorsis.com>
----
+Applied, thanks!
 
-Notes:
-    v3:
-    - Reworded commit message after reordering patches
-    
-    v2:
-    - same as in v1, no changes
+[1/3] dt-bindings: leds: add TI/National Semiconductor LP5812 LED Driver
+      commit: 014efef297240de5933b121f59f04800f732a09a
+[2/3] leds: add basic support for TI/National Semiconductor LP5812 LED Driver
+      (no commit info)
+[3/3] docs: leds: Document TI LP5812 LED driver
+      commit: 974d724e58fd2eee0fe46299901deae6fa9ebad1
 
- arch/arm/boot/dts/microchip/at91-sam9x60_curiosity.dts | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/arch/arm/boot/dts/microchip/at91-sam9x60_curiosity.dts b/arch/arm/boot/dts/microchip/at91-sam9x60_curiosity.dts
-index b9ffd9e5faacc..c110a8e87568a 100644
---- a/arch/arm/boot/dts/microchip/at91-sam9x60_curiosity.dts
-+++ b/arch/arm/boot/dts/microchip/at91-sam9x60_curiosity.dts
-@@ -252,6 +252,10 @@ ethernet-phy@0 {
- 	};
- };
- 
-+&otpc {
-+	status = "okay";
-+};
-+
- &pinctrl {
- 	adc {
- 		pinctrl_adc_default: adc-default {
--- 
-2.47.3
+--
+Lee Jones [李琼斯]
 
 
