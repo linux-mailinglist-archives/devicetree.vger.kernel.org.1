@@ -1,169 +1,201 @@
-Return-Path: <devicetree+bounces-257334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257445-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4NVMB8bOb2mgMQAAu9opvQ
-	(envelope-from <devicetree+bounces-257334-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 19:51:50 +0100
+	id 6Hw0Lxawb2nMKgAAu9opvQ
+	(envelope-from <devicetree+bounces-257445-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 17:40:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CEA649CF7
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 19:51:49 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60C5B47C81
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 17:40:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A1A367C13B3
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 11:32:27 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 3776D66CD2E
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 14:43:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 272E2421F0C;
-	Tue, 20 Jan 2026 11:32:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC12A44DB8A;
+	Tue, 20 Jan 2026 14:33:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC1103E9594;
-	Tue, 20 Jan 2026 11:32:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13B9644B69F;
+	Tue, 20 Jan 2026 14:33:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.84
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768908744; cv=none; b=YYUwWchs0ixxHVo66o142/tl01bLyiz/PDNZhrhbzNK68RyIMQ2/IIKd9Cf6N/L+HlHn26ha1SC03CMGKqSL3JFudmFkrdH+VkwvE2yd/oisauLaZXXtvcseBJjpZgY+5EdfhbmGpRCqn3VDOIXeqZBz2qWXoss8N5TkPJ28RD8=
+	t=1768919598; cv=none; b=poEspiX8XqWOnLi4af/CbTNsLVJO2qjRYi0yWuGxJ1EoVcNZtt2eKH6Rk+bTCVcUkE70O6zrr2hYnEvR0VLqjcD37WdU9XqKnNl+Y5nJqeEIdwgU2Sg3MjB90ur3d+0VZMlW7ivHWTmMBY/Wgf2vl/xRIQ/lzH/1qo0TDM7fs5U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768908744; c=relaxed/simple;
-	bh=XjDhwPI4WMJsvQYN9WpNAugsQnaD8nxjol8hVGKtflI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eMDbliNWQsUbXK/nQrQGE+asOA++5JxRiSAm7Px7AO8+rhPR++bqJ1qC6oLPVX0tFarlZGPFf01uJrKqlZYH2TNvUYvxhz8EWzkZnMwiN/0pSSc/c1VTUBJIlWDm60kHmUlehPSGZXsbZebWFKEj+M5EomKQ88tFV1YoUvcskLw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [116.232.27.242])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id B15B9341064;
-	Tue, 20 Jan 2026 11:32:18 +0000 (UTC)
-Date: Tue, 20 Jan 2026 19:32:07 +0800
-From: Yixun Lan <dlan@gentoo.org>
-To: Yao Zi <me@ziyao.cc>
-Cc: Inochi Amaoto <inochiama@gmail.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-	Yanteng Si <siyanteng@cqsoftware.com.cn>,
-	Yao Zi <ziyao@disroot.org>,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Choong Yong Liang <yong.liang.choong@linux.intel.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Shangjuan Wei <weishangjuan@eswincomputing.com>,
-	Boon Khai Ng <boon.khai.ng@altera.com>,
-	Quentin Schulz <quentin.schulz@cherry.de>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH net-next 3/3] net: stmmac: Add glue layer for Spacemit K3
- SoC
-Message-ID: <20260120113207-GYB56672@gentoo.org>
-References: <20260120043609.910302-1-inochiama@gmail.com>
- <20260120043609.910302-4-inochiama@gmail.com>
- <aW9jbqBSgkiLLw8r@pie>
+	s=arc-20240116; t=1768919598; c=relaxed/simple;
+	bh=y3j7a8AHlwqdtV7We7unMDy7szHzimBFoijdXbjyjJU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=P6wBRIXI3YffaEa5l0A1PXEOgNc0bNrrTrR2eTt/3C19L0fqMca9lItbfro2Wt998DHL4oQEKR794nyiOWQVORWP93z0fXVvHeDFcBNhvcEz0v338bwaYBYMnCvTaaclkIfhAnL9RI8BPETPuPEF1nX/NuYtZew6tWlTLAMXbkc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.84
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
+Received: from duge-virtual-machine (unknown [183.192.221.134])
+	by APP-05 (Coremail) with SMTP id zQCowACn_hESkm9p+zDJBQ--.5466S6;
+	Tue, 20 Jan 2026 22:32:55 +0800 (CST)
+From: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+To: vkoul@kernel.org,
+	gregkh@linuxfoundation.org,
+	conor@kernel.org
+Cc: neil.armstrong@linaro.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	pjw@kernel.org,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	alex@ghiti.fr,
+	jiayu.riscv@isrc.iscas.ac.cn,
+	linux-phy@lists.infradead.org,
+	linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v4 4/4] riscv: dts: canaan: Add syscon and USB nodes for K230
+Date: Tue, 20 Jan 2026 22:32:43 +0800
+Message-ID: <20260120143243.71937-5-jiayu.riscv@isrc.iscas.ac.cn>
+X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20260120143243.71937-1-jiayu.riscv@isrc.iscas.ac.cn>
+References: <20260120143243.71937-1-jiayu.riscv@isrc.iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aW9jbqBSgkiLLw8r@pie>
-X-Spamd-Result: default: False [0.34 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:zQCowACn_hESkm9p+zDJBQ--.5466S6
+X-Coremail-Antispam: 1UD129KBjvJXoW7tF1xZr1fCrykZF47JFy5Jwb_yoW8tw4xp3
+	srCFZ8Gr93Wr4S93Wak348KFyfGF4kGFyfWrn8AryUGr4UZas09w1fJ34fXFyUXw47J3y2
+	kasYqryxKF4jyw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUmS14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2048vs2IY020E87I2jVAFwI0_JF0E3s1l82xGYI
+	kIc2x26xkF7I0E14v26ryj6s0DM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2
+	z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Cr0_Gr
+	1UM28EF7xvwVC2z280aVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4UJVWx
+	Jr1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2I
+	x0cI8IcVAFwI0_JrI_JrylYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8
+	JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2Y2
+	ka0xkIwI1lc7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Y
+	z7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zV
+	AF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_JFI_Gr1l
+	IxAIcVC0I7IYx2IY6xkF7I0E14v26F4j6r4UJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF
+	4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8Jr0_Cr1UYxBI
+	daVFxhVjvjDU0xZFpf9x0JUWMKtUUUUU=
+X-CM-SenderInfo: 5mld534oul2uny6l223fol2u1dvotugofq/
+X-Spamd-Result: default: False [1.74 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[gentoo.org : No valid SPF, No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-257334-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[iscas.ac.cn];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-257445-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[38];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,foss.st.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,armlinux.org.uk,cqsoftware.com.cn,disroot.org,nxp.com,bp.renesas.com,linux.intel.com,bootlin.com,eswincomputing.com,altera.com,cherry.de,st.com,synopsys.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,st-md-mailman.stormreply.com];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlan@gentoo.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[jiayu.riscv@isrc.iscas.ac.cn,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
+	DBL_PROHIBIT(0.00)[5.116.45.224:email];
+	TO_DN_NONE(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
 	R_DKIM_NA(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: 7CEA649CF7
+	RCPT_COUNT_TWELVE(0.00)[16];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[isrc.iscas.ac.cn:mid,ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,iscas.ac.cn:email,5.114.182.224:email,5.116.202.32:email,5.117.121.232:email]
+X-Rspamd-Queue-Id: 60C5B47C81
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Yao,
+Add top syscon and USB PHY subdevice nodes, USB0/USB1 dwc2 controller
+to K230 DTSI, and enable UART0 and USB0/USB1 in DshanPI DT.
 
-On 11:13 Tue 20 Jan     , Yao Zi wrote:
-> On Tue, Jan 20, 2026 at 12:36:08PM +0800, Inochi Amaoto wrote:
-> > Adds Spacemit dwmac driver support on the Spacemit K3 SoC.
-> > 
-> > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-> > ---
-> >  drivers/net/ethernet/stmicro/stmmac/Kconfig   |  12 +
-> >  drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
-> >  .../ethernet/stmicro/stmmac/dwmac-spacemit.c  | 224 ++++++++++++++++++
-> >  3 files changed, 237 insertions(+)
-> >  create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-spacemit.c
-> 
-> 
-> ...
-> 
-> > +static int spacemit_dwmac_probe(struct platform_device *pdev)
-> > +{
-> 
-> ...
-> 
-> > +	of_property_read_u32(pdev->dev.of_node, "tx-internal-delay-ps", &tx_delay);
-> > +	of_property_read_u32(pdev->dev.of_node, "rx-internal-delay-ps", &rx_delay);
-> 
-> According to of.h, of_property_read_u32, which in turn calls
-> of_property_read_u32_array, could fail with -ENODATA if there's no value
-> associated with the property. Should the case be handled?
-> 
-I think it should be safe, see the comment
+Signed-off-by: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+---
+ .../boot/dts/canaan/k230-canmv-dshanpi.dts    | 17 +++++++++
+ arch/riscv/boot/dts/canaan/k230.dtsi          | 35 +++++++++++++++++++
+ 2 files changed, 52 insertions(+)
 
- *
- * The out_values is modified only if a valid u64 value can be decoded.
- */
-static inline int of_property_read_u64_array(const struct device_node *np,
-                                             const char *propname,
-                                             u64 *out_values, size_t sz)
-{
-..
-if the function fail then it will use default value which assigned already
-at initialization stage.
-
+diff --git a/arch/riscv/boot/dts/canaan/k230-canmv-dshanpi.dts b/arch/riscv/boot/dts/canaan/k230-canmv-dshanpi.dts
+index 4f95b534ee87..55197cfc25b4 100644
+--- a/arch/riscv/boot/dts/canaan/k230-canmv-dshanpi.dts
++++ b/arch/riscv/boot/dts/canaan/k230-canmv-dshanpi.dts
+@@ -80,3 +80,20 @@ &uart0 {
+ 	pinctrl-0 = <&uart0_pins>;
+ 	status = "okay";
+ };
++
++&usb0 {
++	vusb_d-supply = <&vdd_3v3>;
++	vusb_a-supply = <&vdd_1v8>;
++	status = "okay";
++};
++
++&usb1 {
++	dr_mode = "host";
++	vusb_d-supply = <&vdd_3v3>;
++	vusb_a-supply = <&vdd_1v8>;
++	status = "okay";
++};
++
++&usbphy {
++	status = "okay";
++};
+diff --git a/arch/riscv/boot/dts/canaan/k230.dtsi b/arch/riscv/boot/dts/canaan/k230.dtsi
+index 8ca5c7dee427..b369b7d8dc83 100644
+--- a/arch/riscv/boot/dts/canaan/k230.dtsi
++++ b/arch/riscv/boot/dts/canaan/k230.dtsi
+@@ -148,5 +148,40 @@ uart4: serial@91404000 {
+ 			reg-shift = <2>;
+ 			status = "disabled";
+ 		};
++
++		usb0: usb@91500000 {
++			compatible = "canaan,k230-usb", "snps,dwc2";
++			reg = <0x0 0x91500000 0x0 0x40000>;
++			interrupts = <173 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&sysclk K230_HS_USB0_AHB_GATE>;
++			clock-names = "otg";
++			g-rx-fifo-size = <512>;
++			g-np-tx-fifo-size = <64>;
++			g-tx-fifo-size = <512 1024 64 64 64 64>;
++			phys = <&usbphy 0>;
++			phy-names = "usb2-phy";
++			status = "disabled";
++		};
++
++		usb1: usb@91540000 {
++			compatible = "canaan,k230-usb", "snps,dwc2";
++			reg = <0x0 0x91540000 0x0 0x40000>;
++			interrupts = <174 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&sysclk K230_HS_USB1_AHB_GATE>;
++			clock-names = "otg";
++			g-rx-fifo-size = <512>;
++			g-np-tx-fifo-size = <64>;
++			g-tx-fifo-size = <512 1024 64 64 64 64>;
++			phys = <&usbphy 1>;
++			phy-names = "usb2-phy";
++			status = "disabled";
++		};
++
++		usbphy: usb-phy@91585000 {
++			compatible = "canaan,k230-usb-phy";
++			reg = <0x0 0x91585000 0x0 0x400>;
++			#phy-cells = <1>;
++			status = "disabled";
++		};
+ 	};
+ };
 -- 
-Yixun Lan (dlan)
+2.52.0
+
 
