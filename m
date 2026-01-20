@@ -1,548 +1,145 @@
-Return-Path: <devicetree+bounces-257551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257552-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4CatFArdb2n8RwAAu9opvQ
-	(envelope-from <devicetree+bounces-257551-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 20:52:42 +0100
+	id CHPeI9rjb2n8RwAAu9opvQ
+	(envelope-from <devicetree+bounces-257552-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 21:21:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id B29EF4ACB7
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 20:52:41 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37B1E4B352
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 21:21:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id ED9FD6ADF8B
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 18:02:26 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D709750DCBD
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 18:05:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D63BA44CF3E;
-	Tue, 20 Jan 2026 18:01:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15EA244A717;
+	Tue, 20 Jan 2026 18:05:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U/8Kphoa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RkCZO1v4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE83C44CF28
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 18:01:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD8A543634B;
+	Tue, 20 Jan 2026 18:05:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768932082; cv=none; b=k+yDIr2Q4DAlNkU6xH3AoKVdDYizk4XVwIUOfbrx0L3eqBaT+ssyQE/eDwFIln8BQPadVxQZ2RCGQXmsqIWjgOP3CLjRGcAZ6iO4DMnouOtJPL2F++vRfiRlzVjB/ubVZwjBpDZXs1JoJyY1h/8Db+SHcYagwuf39+ihZSEx0sM=
+	t=1768932309; cv=none; b=B/MnDVp0WjB4DLycLILjOtbzt0Rx5vLLQ3Bx6cETQIFqqM91WmpYg92qKFaiLWgXJClThra8j+FQgsCzCF0DT2Q6f6SzGgbr0TlST6BhhdYpTGFqsauU305K4/XsSLWhXWJKsGf6iWpciR07cvwhY2o78msFmL60rdNxlg9UqkY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768932082; c=relaxed/simple;
-	bh=kzcoFVGN8pND34AM6BpAivg5/H7QIwyrSsZN9PDu6vU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=iFiPeNQhk4J37k5t9N9S6CJ0OOrKWrFyh8iuVyq1vwdOqXuqbFB1FQGVjAqFWs7Ir8tGMgZv53x+3JNpZoHciGDKU+TkakYVckefhKLr7pFd47XWayqu4hXjc00MvmqzGSsaU3ef3CbIkQ+NPAkaKbSr2mKbtpZg35oxodeYmMM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U/8Kphoa; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4801d98cf39so26391405e9.1
-        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 10:01:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768932079; x=1769536879; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oX5dy+QTue7Dgbmu5PAND/J/yiiRJs/48sYG9nHrQn8=;
-        b=U/8KphoajCg9RzZclR6+KJ0HsZ/uDwAWnHu9YYkOQVztyquoVu5Ss88Kg59jBsTVY5
-         o05+8YkEbUnCX35Mo61WS/C17fDM8JrEd78eN/UMVeGwBC5rdOF5i10TruPiwnHTgtKg
-         aId0XY4rEzh0RH4kKyDNxqoEdmL+r5VBsrJLZGUlvVyIR/qklplLvp9v7c3x/vZG5AzB
-         tuEgErBxz61QPjmrmVXcMGJjxy0uHiEABQdVr6yYCx9W9iD2S8lK0QCsQhua2ZHTAvq7
-         oTidieK9s03+OIs0GuftwmJfSUq935sPpgqvKhpN8ERcZyz2RRz/aoZA+n0GbREzN+FF
-         9y2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768932079; x=1769536879;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=oX5dy+QTue7Dgbmu5PAND/J/yiiRJs/48sYG9nHrQn8=;
-        b=Zz2JbaMpwwluCl8g5YjzafhjlzekzB1ZJDarVLtvTlKkwR3FhC/uU9f9dx7q9+AFhM
-         F36UpFDZH4AQr6hp6gmLiJ2xp2vMSpHEbfFoXWvME3yXgbZ3IkJZb11CnLUWeWRxOMWf
-         OlY1OGkTlGYN98URROUJaakzqfKPq2qDr7ryYLpm27okakSySe4fHzk6h8gbmW6Oaga5
-         A1XFGM2nKtpOzf/eoFvE8p4p+PIkKepVnNNT6K7ucKgX3i3wQC6JWApPgeRb0P/nDd1S
-         5UUlYMFBF/hVY08pTJ6ObK2oWclgnR+4u2DnohMXPS5ZFIMrpOioUnL0MO3aiVh1Z0zF
-         i6yQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVf5/N3/O5IW4AVL2dET/pulx3yUa0wrQlw7VW4yUHdgiV5WuI+9JYc6e1WQXUeIHGWOKhCCq5d39uf@vger.kernel.org
-X-Gm-Message-State: AOJu0YyUS4SBC3xh00NWmQJSvcO3ReVQcXgvScsABKT2of+6t7agLFgQ
-	Op4ZA7EsdUaERPetwhjvqoQ9mXjJ7//PD8M1y4ddz2o7VB/wsrEjhSfs
-X-Gm-Gg: AY/fxX48PhoKKNLNjTes9s7xaSG1trU0Ze6VxwmaxnLZfubzIA3YDDSpyaQzBRNQUAI
-	Mlf2Q+T6WVK2aPLpSj7+I/C/ls6HpNC3cnJ0KSUKd3haclDU2HqzDrWPy3DDTX5Eqd7mGQa4+Bq
-	JyjSwn9zt8iBKN0lysUwdR7XKr3SMk1+VOBJrxQLEXSSXnlS0kIxRfuYsCz1g1L4zP2XKLXmdkl
-	r1eaAvlZTpQ4FcOUjDVQqtp785wy11DZDMg43T6DmptnNzP7YEazkC1Ts7JrbdL2s/FEGQx17lY
-	WhDweH7/b4cw7eNyenVzLtTeiWymB6r3sAc/JOB9OGbkXBDrg3jI/H0wsULoxt/xDipy6C+daHe
-	vxFesgNk6BF4tGC8Dl5cdhOe2I27X/lj8snNXQcSYvkcDN2GKkuGV9c9nMccIZ6ouzxnzBAMgMd
-	6O/LzGIa9FT7dVKHeYUU3EW6AsUUojYUo=
-X-Received: by 2002:a05:600c:8109:b0:480:1c69:9d36 with SMTP id 5b1f17b1804b1-4801eb04f54mr192590675e9.17.1768932078844;
-        Tue, 20 Jan 2026 10:01:18 -0800 (PST)
-Received: from unknown.zextras.com ([78.208.157.140])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-47f429071a2sm312013015e9.11.2026.01.20.10.01.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jan 2026 10:01:18 -0800 (PST)
-From: Gianluca Boiano <morf3089@gmail.com>
-To: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: andersson@kernel.org,
-	konradybcio@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	robh@kernel.org,
-	david@ixit.cz,
-	Gianluca Boiano <morf3089@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
-	Molly Sophia <mollysophia379@gmail.com>
-Subject: [PATCH 7/7] arm64: dts: qcom: add device tree for Xiaomi Mi 8 Lite (platina)
-Date: Tue, 20 Jan 2026 19:00:52 +0100
-Message-ID: <20260120180052.1031231-8-morf3089@gmail.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260120180052.1031231-1-morf3089@gmail.com>
-References: <20260120180052.1031231-1-morf3089@gmail.com>
+	s=arc-20240116; t=1768932309; c=relaxed/simple;
+	bh=XQmS2kPpeKX0VHtoWiz/3XMk2cOzgvJPzSee+Ir9Ap0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LXjJ/92gSlRiyqDwZP57i3sbF+u2wujWNV4DGuAIGm5CAm8qc3x/pAejbhvcSSrq6+iKqt2JfTf1FidJzs74CecR5qwWDQ6/xsxSwDBFI/XFW5MD4QW2mqoGc4yvXqQg3TaG40WShrRWxT+qExZhl3JNbReDurW55eCXp+PQX1A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RkCZO1v4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65322C16AAE;
+	Tue, 20 Jan 2026 18:05:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768932308;
+	bh=XQmS2kPpeKX0VHtoWiz/3XMk2cOzgvJPzSee+Ir9Ap0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RkCZO1v4exqk4GpedTDx04NjYU2VgqKsJ/lO1OAYc9CCLwz6CjsIxwc+C7WXooQ7r
+	 M0EelZTSlY93r5H+U3gOQsWX1Gi2rWFboQ7qn7trp3TPEjN69zuIxehZcaJYquhlle
+	 lzblPsw0/sdLjvmkJnHyGrMtVqiFe2bYPE1zdXu99KS0NBQr483OnPa2ieVqCUqQP0
+	 wJdnyUIWG6vk8zXUQ1lR4w3E5j3RIRaqo4KU1LRjPQ+CjJNn/eOWNSLJ/0U0IClXO7
+	 u2ROjtIVVsSPu2BWaurK8OLCLVEn1hMXOk0+Hm8b+GJR1HNQQ9NjJRBYciMpJmNt2Q
+	 V2derN1L4f/hQ==
+Date: Tue, 20 Jan 2026 18:05:04 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Linus Walleij <linusw@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, Valentina.FernandezAlanis@microchip.com
+Subject: Re: [PATCH v3 0/6] Microchip mpfs/pic64gx pinctrl part 2
+Message-ID: <20260120-deplete-headgear-6bfec966d312@spud>
+References: <20260119-rearrange-germproof-3e3096cc0da4@spud>
+ <CAD++jL=i5o5JbqD_7jhFY5cR-420Vb3hnNXv5nrTd6-FHon5Dw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [1.04 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="sJWRsDVAgMp+UCTJ"
+Content-Disposition: inline
+In-Reply-To: <CAD++jL=i5o5JbqD_7jhFY5cR-420Vb3hnNXv5nrTd6-FHon5Dw@mail.gmail.com>
+X-Spamd-Result: default: False [-3.56 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	MID_RHS_NOT_FQDN(0.50)[];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-257551-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-257552-lists,devicetree=lfdr.de];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,ixit.cz,gmail.com,somainline.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[morf3089@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
-	PRECEDENCE_BULK(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,0.0.0.1:email,ffc00000:email,somainline.org:email]
-X-Rspamd-Queue-Id: B29EF4ACB7
+	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
+X-Rspamd-Queue-Id: 37B1E4B352
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add initial device tree support for the Xiaomi Mi 8 Lite
-(codename: platina), a smartphone based on Qualcomm SDM660 SoC with
-4/6GB RAM and a 6.26" 1080x2280 display.
 
-This enables:
-- Booting to a framebuffer console
-- USB support
-- Hall effect sensor
-- Touchscreen (Novatek NT36672A)
-- Battery monitoring
-- Charging (pm660_charger)
+--sJWRsDVAgMp+UCTJ
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Co-developed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-Co-developed-by: Molly Sophia <mollysophia379@gmail.com>
-Signed-off-by: Molly Sophia <mollysophia379@gmail.com>
-Signed-off-by: Gianluca Boiano <morf3089@gmail.com>
----
- arch/arm64/boot/dts/qcom/Makefile             |   1 +
- .../boot/dts/qcom/sdm660-xiaomi-platina.dts   | 364 ++++++++++++++++++
- 2 files changed, 365 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sdm660-xiaomi-platina.dts
+On Tue, Jan 20, 2026 at 12:45:05AM +0100, Linus Walleij wrote:
+> On Mon, Jan 19, 2026 at 12:04=E2=80=AFPM Conor Dooley <conor@kernel.org> =
+wrote:
+>=20
+> > v3 here, with the rfc dropped. I've still got the property checking
+> > stuff in my todo-list but not tested it sufficiently after the changes
+> > to add generic string properties yet.
+> > I only moved my drivers into the microchip dir, I'll come along and do a
+> > pass on the rest if you're happy with what's here.
+>=20
+> Looks good!
+>=20
+> I could not apply the patches because I have Johans patch removing
+> the default y in my tree, could you rebase on my "devel" branch?
+> https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git/=
+log/?h=3Ddevel
+>=20
+> Pls make sure patch 1 does not re-introduce default y...
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 8f7b66bee6be..d76e955b4144 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -247,6 +247,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm636-xiaomi-tulip.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm636-xiaomi-whyred.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm660-xiaomi-jasmine.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm660-xiaomi-lavender.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sdm660-xiaomi-platina.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm670-google-sargo.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-db845c.dtb
- 
-diff --git a/arch/arm64/boot/dts/qcom/sdm660-xiaomi-platina.dts b/arch/arm64/boot/dts/qcom/sdm660-xiaomi-platina.dts
-new file mode 100644
-index 000000000000..c8ebe2405ee0
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sdm660-xiaomi-platina.dts
-@@ -0,0 +1,364 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2021, AngeloGioacchino Del Regno
-+ *                     <angelogioacchino.delregno@somainline.org>
-+ * Copyright (c) 2022, Molly Sophia <mollysophia379@gmail.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "sdm660.dtsi"
-+#include "sdm660-xiaomi-common.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+
-+/ {
-+	model = "Xiaomi Mi 8 Lite";
-+	compatible = "xiaomi,platina", "qcom,sdm660";
-+	chassis-type = "handset";
-+
-+	battery: battery {
-+		compatible = "simple-battery";
-+		charge-full-design-microamp-hours = <3350000>;
-+		voltage-min-design-microvolt = <3400000>;
-+		voltage-max-design-microvolt = <4400000>;
-+	};
-+
-+	reserved-memory {
-+		ramoops@ffc00000 {
-+			compatible = "ramoops";
-+			reg = <0x0 0xffc00000 0x0 0x100000>;
-+			record-size = <0x10000>;
-+			console-size = <0x60000>;
-+			ftrace-size = <0x10000>;
-+			pmsg-size = <0x20000>;
-+			ecc-size = <16>;
-+		};
-+	};
-+};
-+
-+&blsp_i2c4 {
-+	status = "okay";
-+
-+	touchscreen@1 {
-+		compatible = "novatek,nt36672a-ts";
-+		reg = <0x1>;
-+		iovcc-supply = <&vreg_l11a_1p8>;
-+		interrupts-extended = <&tlmm 67 IRQ_TYPE_EDGE_RISING>;
-+		pinctrl-0 = <&ts_active>;
-+		pinctrl-names = "default";
-+		reset-gpios = <&tlmm 66 GPIO_ACTIVE_LOW>;
-+		touchscreen-size-x = <1080>;
-+		touchscreen-size-y = <2280>;
-+	};
-+};
-+
-+&framebuffer0 {
-+	width = <1080>;
-+	height = <2280>;
-+	stride = <(1080 * 4)>;
-+
-+	status = "okay";
-+};
-+
-+&gpio_hall_sensor {
-+	status = "okay";
-+};
-+
-+&pm660_charger {
-+	monitored-battery = <&battery>;
-+
-+	status = "okay";
-+};
-+
-+&pm660l_wled {
-+	status = "okay";
-+};
-+
-+&rpm_requests {
-+	regulators-0 {
-+		compatible = "qcom,rpm-pm660l-regulators";
-+
-+		vdd_s1-supply = <&vph_pwr>;
-+		vdd_s2-supply = <&vph_pwr>;
-+		vdd_s3_s4-supply = <&vph_pwr>;
-+		vdd_s5-supply = <&vph_pwr>;
-+		vdd_s6-supply = <&vph_pwr>;
-+
-+		vdd_l1_l9_l10-supply = <&vreg_s2b_1p05>;
-+		vdd_l2-supply = <&vreg_bob>;
-+		vdd_l3_l5_l7_l8-supply = <&vreg_bob>;
-+		vdd_l4_l6-supply = <&vreg_bob>;
-+		vdd_bob-supply = <&vph_pwr>;
-+
-+		vreg_s1b_1p125: s1 {
-+			regulator-min-microvolt = <1125000>;
-+			regulator-max-microvolt = <1125000>;
-+			regulator-enable-ramp-delay = <200>;
-+		};
-+
-+		vreg_s2b_1p05: s2 {
-+			regulator-min-microvolt = <1050000>;
-+			regulator-max-microvolt = <1050000>;
-+			regulator-enable-ramp-delay = <200>;
-+		};
-+
-+		/* LDOs */
-+		vreg_l1b_0p925: l1 {
-+			regulator-min-microvolt = <920000>;
-+			regulator-max-microvolt = <928000>;
-+			regulator-enable-ramp-delay = <250>;
-+			regulator-allow-set-load;
-+		};
-+
-+		vreg_l2b_2p95: l2 {
-+			/*
-+			 * This regulator supports 1.648 - 3.104V on this board
-+			 * but we set a max voltage of anything less than 2.7V
-+			 * to satisfy a condition in sdhci.c that will disable
-+			 * 3.3V SDHCI signaling, which happens to be not really
-+			 * supported on this platform.
-+			 */
-+			regulator-min-microvolt = <1648000>;
-+			regulator-max-microvolt = <2696000>;
-+			regulator-enable-ramp-delay = <250>;
-+			regulator-allow-set-load;
-+		};
-+
-+		vreg_l3b_3p3: l3 {
-+			regulator-min-microvolt = <3296000>;
-+			regulator-max-microvolt = <3312000>;
-+			regulator-enable-ramp-delay = <250>;
-+			regulator-min-microamp = <200>;
-+			regulator-max-microamp = <600000>;
-+			regulator-system-load = <100000>;
-+			regulator-allow-set-load;
-+		};
-+
-+		vreg_l4b_2p95: l4 {
-+			regulator-min-microvolt = <2944000>;
-+			regulator-max-microvolt = <2952000>;
-+			regulator-enable-ramp-delay = <250>;
-+
-+			regulator-min-microamp = <200>;
-+			regulator-max-microamp = <600000>;
-+			regulator-system-load = <570000>;
-+			regulator-allow-set-load;
-+		};
-+
-+		/*
-+		 * Downstream specifies a range of 1721-3600mV,
-+		 * but the only assigned consumers are SDHCI2 VMMC
-+		 * and Coresight QPDI that both request pinned 2.95V.
-+		 * Tighten the range to 1.8-3.328 (closest to 3.3) to
-+		 * make the mmc driver happy.
-+		 */
-+		vreg_l5b_2p95: l5 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <3328000>;
-+			regulator-enable-ramp-delay = <250>;
-+			regulator-allow-set-load;
-+			regulator-system-load = <800000>;
-+		};
-+
-+		vreg_l7b_3p125: l7 {
-+			regulator-min-microvolt = <2704000>;
-+			regulator-max-microvolt = <3128000>;
-+			regulator-enable-ramp-delay = <250>;
-+		};
-+
-+		vreg_l8b_3p3: l8 {
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <3400000>;
-+			regulator-enable-ramp-delay = <250>;
-+		};
-+
-+		vreg_bob: bob {
-+			regulator-min-microvolt = <3304000>;
-+			regulator-max-microvolt = <3624000>;
-+			regulator-enable-ramp-delay = <500>;
-+		};
-+	};
-+
-+	regulators-1 {
-+		compatible = "qcom,rpm-pm660-regulators";
-+
-+		vdd_s1-supply = <&vph_pwr>;
-+		vdd_s2-supply = <&vph_pwr>;
-+		vdd_s3-supply = <&vph_pwr>;
-+		vdd_s4-supply = <&vph_pwr>;
-+		vdd_s5-supply = <&vph_pwr>;
-+		vdd_s6-supply = <&vph_pwr>;
-+
-+		vdd_l1_l6_l7-supply = <&vreg_s5a_1p35>;
-+		vdd_l2_l3-supply = <&vreg_s2b_1p05>;
-+		vdd_l5-supply = <&vreg_s2b_1p05>;
-+		vdd_l8_l9_l10_l11_l12_l13_l14-supply = <&vreg_s4a_2p04>;
-+		vdd_l15_l16_l17_l18_l19-supply = <&vreg_bob>;
-+
-+		/*
-+		 * S1A (FTAPC0), S2A (FTAPC1), S3A (HFAPC1) are managed
-+		 * by the Core Power Reduction hardened (CPRh) and the
-+		 * Operating State Manager (OSM) HW automatically.
-+		 */
-+
-+		vreg_s4a_2p04: s4 {
-+			regulator-min-microvolt = <2040000>;
-+			regulator-max-microvolt = <2040000>;
-+			regulator-enable-ramp-delay = <200>;
-+			regulator-always-on;
-+		};
-+
-+		vreg_s5a_1p35: s5 {
-+			regulator-min-microvolt = <1224000>;
-+			regulator-max-microvolt = <1350000>;
-+			regulator-enable-ramp-delay = <200>;
-+		};
-+
-+		vreg_s6a_0p87: s6 {
-+			regulator-min-microvolt = <504000>;
-+			regulator-max-microvolt = <992000>;
-+			regulator-enable-ramp-delay = <150>;
-+		};
-+
-+		/* LDOs */
-+		vreg_l1a_1p225: l1 {
-+			regulator-min-microvolt = <1226000>;
-+			regulator-max-microvolt = <1250000>;
-+			regulator-enable-ramp-delay = <250>;
-+			regulator-allow-set-load;
-+		};
-+
-+		vreg_l2a_1p0: l2 {
-+			regulator-min-microvolt = <944000>;
-+			regulator-max-microvolt = <1008000>;
-+			regulator-enable-ramp-delay = <250>;
-+		};
-+
-+		vreg_l3a_1p0: l3 {
-+			regulator-min-microvolt = <944000>;
-+			regulator-max-microvolt = <1008000>;
-+			regulator-enable-ramp-delay = <250>;
-+		};
-+
-+		vreg_l5a_0p848: l5 {
-+			regulator-min-microvolt = <800000>;
-+			regulator-max-microvolt = <952000>;
-+			regulator-enable-ramp-delay = <250>;
-+		};
-+
-+		vreg_l6a_1p3: l6 {
-+			regulator-min-microvolt = <1304000>;
-+			regulator-max-microvolt = <1368000>;
-+			regulator-allow-set-load;
-+			regulator-enable-ramp-delay = <250>;
-+		};
-+
-+		vreg_l7a_1p2: l7 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-enable-ramp-delay = <250>;
-+		};
-+
-+		vreg_l8a_1p8: l8 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-enable-ramp-delay = <250>;
-+			regulator-system-load = <325000>;
-+			regulator-allow-set-load;
-+		};
-+
-+		vreg_l9a_1p8: l9 {
-+			regulator-min-microvolt = <1804000>;
-+			regulator-max-microvolt = <1896000>;
-+			regulator-enable-ramp-delay = <250>;
-+			regulator-allow-set-load;
-+		};
-+
-+		vreg_l10a_1p8: l10 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1944000>;
-+			regulator-enable-ramp-delay = <250>;
-+			regulator-allow-set-load;
-+			regulator-system-load = <14000>;
-+		};
-+
-+		vreg_l11a_1p8: l11 {
-+			regulator-min-microvolt = <1784000>;
-+			regulator-max-microvolt = <1944000>;
-+			regulator-enable-ramp-delay = <250>;
-+		};
-+
-+		vreg_l12a_1p8: l12 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1944000>;
-+			regulator-enable-ramp-delay = <250>;
-+		};
-+
-+		/* This gives power to the LPDDR4: never turn it off! */
-+		vreg_l13a_1p8: l13 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1944000>;
-+			regulator-enable-ramp-delay = <250>;
-+			regulator-boot-on;
-+			regulator-always-on;
-+		};
-+
-+		vreg_l14a_1p8: l14 {
-+			regulator-min-microvolt = <1710000>;
-+			regulator-max-microvolt = <1952000>;
-+			regulator-enable-ramp-delay = <250>;
-+		};
-+
-+		vreg_l15a_1p8: l15 {
-+			regulator-min-microvolt = <1648000>;
-+			regulator-max-microvolt = <2952000>;
-+			regulator-enable-ramp-delay = <250>;
-+		};
-+
-+		vreg_l16a_2p7: l16 {
-+			regulator-min-microvolt = <2704000>;
-+			regulator-max-microvolt = <2712000>;
-+			regulator-enable-ramp-delay = <250>;
-+		};
-+
-+		vreg_l17a_1p8: l17 {
-+			regulator-min-microvolt = <1648000>;
-+			regulator-max-microvolt = <2952000>;
-+			regulator-enable-ramp-delay = <250>;
-+		};
-+
-+		vreg_l19a_3p3: l19 {
-+			regulator-min-microvolt = <3312000>;
-+			regulator-max-microvolt = <3328000>;
-+			regulator-enable-ramp-delay = <250>;
-+			regulator-allow-set-load;
-+		};
-+	};
-+};
-+
-+/*
-+ * Override sdhc_1 from common: platina uses mmc-ddr-1_8v instead of mmc-hs200-1_8v
-+ */
-+&sdhc_1 {
-+	/delete-property/ mmc-hs200-1_8v;
-+	mmc-ddr-1_8v;
-+};
-+
-+&tlmm {
-+	gpio-reserved-ranges = <8 4>; /* Fingerprint SPI */
-+
-+	/* Override common pinctrl for platina-specific settings */
-+	gpio_hall_sensor_default: gpio-hall-sensor-default-state {
-+		pins = "gpio75";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	ts_active: ts-active-state {
-+		pins = "gpio66", "gpio67";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-up;
-+	};
-+};
--- 
-2.52.0
+Oh, I didn't notice that patch. Guess it went in over Christmas - I had
+a month off basically and barely read the lists :)
 
+
+--sJWRsDVAgMp+UCTJ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaW/DpQAKCRB4tDGHoIJi
+0ummAP4+Ga+fgyvHW+/bnVu1GLYzB8cNCJD/okQn3jUk829+KgEA58I0iM5kBbTl
+k3B/5bFc/D4LueRK3I18rRJBZQWpvgY=
+=HDit
+-----END PGP SIGNATURE-----
+
+--sJWRsDVAgMp+UCTJ--
 
