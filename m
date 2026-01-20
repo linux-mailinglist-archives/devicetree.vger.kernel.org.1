@@ -1,106 +1,85 @@
-Return-Path: <devicetree+bounces-257272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257285-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id A076DD3C641
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 11:55:36 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E7F5D3C63C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 11:54:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2816D7428F2
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 10:19:28 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id F226B589D80
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 10:31:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 534EA3E95B9;
-	Tue, 20 Jan 2026 10:18:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EF763F0755;
+	Tue, 20 Jan 2026 10:31:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="j4SndC9f"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QnLBqnYC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58E363ECBDA
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 10:18:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E7083F0741;
+	Tue, 20 Jan 2026 10:31:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768904330; cv=none; b=fIMWF/+H1cHlJaEJ7TSh8EBc5XnSZsAe68Irc8CNAYP8wzurmk7hFKb6478EL69c8OolUoyNYRZZh4b3kK3YGeozOlSHfQs8dfHX1faAiEIWiFrE8MSOmrA8FvGTAR1CyfvzUVJrCVVqQbr/8/XjOnqBVHjSY4d66IapWdeAWLY=
+	t=1768905091; cv=none; b=u/YvQVx2gzFvxMEnEJhCSeJ+loseqYPvv+SpDeRauoV6UsIx59Knp8STSoUPtCULeFhkpJtfXVIyoNwQWO3TurjIXiAI3q3xeJGw1RUQ4n3vvyo6MR4MhVEcIyRGWyLDes3kFRD4z7mNxVNy84T7rrZuI8IA1zlhF2R76USEmBc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768904330; c=relaxed/simple;
-	bh=YGkG8m1PTfb4IZa9/MIu9CWYSqXN5u2kmhDsQs+55OI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dRXwg1CF1y4D3oRqfZIlvdkb+y53/D5oI++sajQsnX9eJw+dwqxH7F8Zx/AfKGB/rariXQ1EPkqrT5cdqBcvoezYn8cz7jOyCy64BrMW4rpuvO20J/MPlkwyrdepVTlXCRkvaANfwfEf9y6TfX8G4GWWXeTgIZUqAeZgo21+XXI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=j4SndC9f; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=ADVKS6qARuLQqspgyQSl1SCmeeYdkuiNNwIVmocQcrw=; b=j4SndC9fdWLH0WE9/XwlxWHDg1
-	u+D+GdXaLixMtIuKWnt7P40XG1y9d8odzhXeRWRj6OH+kbRLHk6jHzT5kFRNJ2SUHK8oK23evypj4
-	KvBUfVDiPgXg4DIPW18MSXwcAqfeNG9ebIJRXA6hp50V+NOKy5HTDV0oIT4Jjsn+pBps2W/04Y74X
-	fHHatb6pKKJqw+Rggw6RnAd8hdDM3NbPVAY/GVhWBEhzvbw5huFBbBhTHtjIYsDOWIkyuRYgTB6o1
-	Hci1f3BXlA/jvTnr5cZ8hooqVqfFsvmwOvhOemEDwqO/04JrbiGu0bGWKd2B3MqQJV0mgoIqUmZxF
-	fm0SMQCQ==;
-Received: from [192.76.154.238] (helo=phil.dip.tu-dresden.de)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1vi8or-003MG3-DM; Tue, 20 Jan 2026 11:18:42 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: linux-rockchip@lists.infradead.org,
-	Chris Morgan <macroalpha82@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	dmitry.torokhov@gmail.com,
-	simona@ffwll.ch,
-	airlied@gmail.com,
-	tzimmermann@suse.de,
-	mripard@kernel.org,
-	maarten.lankhorst@linux.intel.com,
-	jesszhan0024@gmail.com,
-	neil.armstrong@linaro.org,
-	jagan@edgeble.ai,
-	conor+dt@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	aweinzerl13@yahoo.com,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: (subset) [PATCH 0/6] Add Anbernic RG-DS
-Date: Tue, 20 Jan 2026 11:18:38 +0100
-Message-ID: <176890429960.373062.3240608231791332011.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20260113195721.151205-1-macroalpha82@gmail.com>
-References: <20260113195721.151205-1-macroalpha82@gmail.com>
+	s=arc-20240116; t=1768905091; c=relaxed/simple;
+	bh=bJN0DSC6Ua6pKsP/DOPJJOTlRRY5NsWRrEymD+za6QQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gAxIKO/rf1Dh1LZuSdELnEOagocSUuH+Ck1mhgBB6EesMNB6hD+EIgxrdOepN9AjTLFxsrJ73NVfm+Zj82H/qUHuXCNUq+kunz53CpwnynjiGPPKCMY7EHyFK2yA2uaaz9RTmpN/ZlyWwGa8a/By4pMc3j0mmrWmv/p/d7q6xEI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QnLBqnYC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FFE6C16AAE;
+	Tue, 20 Jan 2026 10:31:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768905090;
+	bh=bJN0DSC6Ua6pKsP/DOPJJOTlRRY5NsWRrEymD+za6QQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QnLBqnYCradIChvnsPAVk/kjMSoR0YsDiYIOor1O0d9cH9wbEnXp8CTydAOCkEgXu
+	 Bvz8+eDdEFeE51Gcr6zRaGUmcEL23vGwDrATnru+LbA/emXS9oybE9d7RjiOm+y2M2
+	 eEVdL+vllEgtoNTtKpbjgldvtggYDbX4IqrZMTTHaOBe2zOdfvI44O0bfj570y/jps
+	 W3UuGYSyRzFBPkAP+3/apHuoq0rZgsoqRgpWnQkt472JPPtUTrJ/UbyfbyFfULhRLU
+	 VWgllMGl6qeUHxoGl9+KZYH3wEDHWWR6kLgMLXDfrJYYcdRUVe+t9dgSyTVCQpvRS0
+	 KerF2z2I0oooA==
+Date: Tue, 20 Jan 2026 11:31:28 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc: shengjiu.wang@gmail.com, Xiubo.Lee@gmail.com, festevam@gmail.com, 
+	nicoleotsuka@gmail.com, lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz, 
+	tiwai@suse.com, linux-sound@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
+	linux-kernel@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, 
+	kernel@pengutronix.de, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/4] ASoC: dt-bindings: fsl,audmix: Add support for
+ i.MX952 platform
+Message-ID: <20260120-fractal-lemming-of-chemistry-6f21df@quoll>
+References: <20260120035210.1593742-1-shengjiu.wang@nxp.com>
+ <20260120035210.1593742-2-shengjiu.wang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260120035210.1593742-2-shengjiu.wang@nxp.com>
 
+On Tue, Jan 20, 2026 at 11:52:07AM +0800, Shengjiu Wang wrote:
+> There is no power domain defined on i.MX952, so make power-domains to be
 
-On Tue, 13 Jan 2026 13:57:15 -0600, Chris Morgan wrote:
-> Add support for the Anbernic RG-DS. The Anbernic RG-DS is a dual-screen
-> handheld from Anbernic powered by the Rockchip RK3568 SoC. It has
-> dual DSI displays with touchscreens, multiple face buttons, and is in
-> a foldable clamshell form-factor.
+There is no defined or there is no power domain? If the first, then this
+patch is incomplete. Please read writing bindings part about complete
+bindings. If the latter, then you miss constraints ":false" and commit
+msg phrasing is incorrect (and remember that in such case you won't be
+able to add power domains later because now you add complete binding).
+
+> dedicated to i.MX8QM.
 > 
-> https://anbernic.com/products/rgds
-> 
-> [...]
-
-Applied, thanks!
-
-[1/6] drm: panel: jd9365da: Use gpiod_set_value_cansleep()
-      commit: 388df23fda2db75abe988015a1dd681a43fcdf94
-[2/6] dt-bindings: display: panel: Add compatible for Anbernic RG-DS
-      commit: b83a3a48edd26da7db2414797c7a428ba8b5c5e5
-[3/6] drm/panel: jd9365da: Support for Anbernic RG-DS Panel
-      commit: ce76a267341cb306016beedb24a205e892613716
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> ---
 
 Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+Krzysztof
+
 
