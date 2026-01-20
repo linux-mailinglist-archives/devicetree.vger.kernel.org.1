@@ -1,131 +1,89 @@
-Return-Path: <devicetree+bounces-257370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257371-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MIwnJoyEcGktYAAAu9opvQ
-	(envelope-from <devicetree+bounces-257370-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 08:47:24 +0100
+	id YA9DL1NwcGktYAAAu9opvQ
+	(envelope-from <devicetree+bounces-257371-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 07:21:07 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DE0D5302D
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 08:47:24 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5154551FC4
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 07:21:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id CC4BF5CA0B3
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 12:13:45 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E1C5680440D
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 12:17:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9C6D3D7D6D;
-	Tue, 20 Jan 2026 12:13:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F2824218AC;
+	Tue, 20 Jan 2026 12:16:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IGZdCx7N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PHXepppr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB0293D3CF4;
-	Tue, 20 Jan 2026 12:13:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40C28413238;
+	Tue, 20 Jan 2026 12:16:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768911184; cv=none; b=nzN6vQWlIKt+QeK/FS33TVnaFaN7iQpxHQXVxJiiGWUzabRHayoHPlo3vd3yUbahB7B7vLMJNlbaZht8LrPMR/yJX4iuwPUVHteQMLQfgk/sXoJvWLQaA3/f6J3wW//QdkPFvO9cG4/Map9O3qUlwj8DjErIjNe4B29OBzD5yZE=
+	t=1768911379; cv=none; b=MGnWoYLwS9CpTeVqhiX5eQoerGbx9qSdmb5Ga4ALruiLWh6dZb+uUp+o4LJIZCrQQAqCeilCkfZ4MQJAASeL2Clt8d6QXQODPXp5W1I1kTcmKJgSlI7d8bnBnwVb/ITz9FfrvNxkQOxtvBe32vN+1mdW4Mn7gr5P14rFN/4A3zQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768911184; c=relaxed/simple;
-	bh=cQavtXRfI3u4KztW86vPo3O2a8HplyqLeGiawtgz3xs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nyb7d/ytf4MXT7sTEEOoGebnS+qMTkffTzMh4XhpNMpXzco9U1atmTBNgSALwgDELCn2IUXl32C5JlI3+nPSugyGxBTK4qeHx66y7Rxr8rlt4uN4tWF4MiCoiNB3DWLnvRtWIc7CJzDQM3ekhzaU10bT6auDUlJDs4zlvpO/lw0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IGZdCx7N; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3230C16AAE;
-	Tue, 20 Jan 2026 12:13:00 +0000 (UTC)
+	s=arc-20240116; t=1768911379; c=relaxed/simple;
+	bh=cNyXP78+8Y7zCYZgFwWzYLzq2q5zJjdWzQFvTztl1mc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mHL/q21w2devptmDK79OVALi6B+x2P4zJs9QTeiGRqXbO2ANLhi2EY888NBM72ROayw9GTGsMNHiOTF8GnEsowkmXdazzDkXUE/2jHvwOTdBh29K06fjRcASiXHdTha6rQpQLo7o58FKJDmaKNoJDvz958kexJKwINSmgslUTpE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PHXepppr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A168AC19422;
+	Tue, 20 Jan 2026 12:16:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768911184;
-	bh=cQavtXRfI3u4KztW86vPo3O2a8HplyqLeGiawtgz3xs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=IGZdCx7N6W3P6BdiheOz8GnY8jt6HJSaxh0falyH99QYGzA61M4PlGpMxT2ZiUfwD
-	 jB0Oc/Xd2M0bEkD0SGna7iE7qFSjvhqr8A3z9Bvn76h19bIA+C8L18+ENT7+b2c+Wy
-	 ScRYuQRkYlETHyt9jQ4FvwURGJ7BFio3zwcFypdr+nAkIeLPrg/C19Wefc39feodP6
-	 Rvsv/cHZrtFdpV7jfs4HQBZxnWmuMRwW76DgtzPo0EMDQcVhFVyXuSiCkgsK57+JxJ
-	 yPguRHbRN3DUa994puFNEBEc4qNgrYnDfVqDaCaY7Gn9hTAr+3RzeUNij4seaFi9qP
-	 5yuwSUAzJedIg==
-Message-ID: <85579870-370a-4bbf-94d5-6e70d3bdc944@kernel.org>
-Date: Tue, 20 Jan 2026 13:12:58 +0100
+	s=k20201202; t=1768911378;
+	bh=cNyXP78+8Y7zCYZgFwWzYLzq2q5zJjdWzQFvTztl1mc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PHXeppprizloiV52cPXwiPogpdyFps4FuThsQXVRXbKyYkAKbppDWVTYAMJmQFuwr
+	 e36JT1j8Hy59tOHgkjMxSNbck5/2Jc0udc+jsp96AaGSmrIUAnwv6uizQcDhL4UkiG
+	 D1MernXJEBBmO9nfJWsHY0wREbix+XkfOuo+ie3zr91lP1DAgwDEBnCkqxnXbEnbwJ
+	 QUVSGvkGJTRyTf8Fd7pzckXTocClnZAnI+y+EMRue5AbmqkNWoMxTGhYeZpBvApnwv
+	 j4hCMYQbwZusqscQB5iqjyN+T635bfM3UCf3gjicu5dztSqhQ4RlntNSf/C0kDixCN
+	 l8C4XR3xgjeaw==
+Date: Tue, 20 Jan 2026 17:46:08 +0530
+From: Sumit Garg <sumit.garg@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, akhilpo@oss.qualcomm.com,
+	vikash.garodia@oss.qualcomm.com, dikshita.agarwal@oss.qualcomm.com,
+	robin.clark@oss.qualcomm.com, lumag@kernel.org,
+	loic.poulain@oss.qualcomm.com, jorge.ramirez@oss.qualcomm.com,
+	linux-kernel@vger.kernel.org,
+	Sumit Garg <sumit.garg@oss.qualcomm.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: display: msm: qcm2290-mdss: Fix
+ iommus property
+Message-ID: <aW9yCK0rPjRcqplk@sumit-xelite>
+References: <20260116062004.237356-1-sumit.garg@kernel.org>
+ <20260116062004.237356-2-sumit.garg@kernel.org>
+ <20260116-transparent-dexterous-nightingale-c029cb@quoll>
+ <aWo0t1EoVhStmOj7@sumit-xelite>
+ <6020af2a-5baa-4594-8cbc-bf7241f0128e@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] Add compatible strings for AST2700 pinctrl to the
- SCU binding.
-To: Billy Tsai <billy_tsai@aspeedtech.com>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@codeconstruct.com.au>,
- Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>
-Cc: Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
- linux-gpio@vger.kernel.org, bmc-sw@aspeedtech.com
-References: <20260120-upstream_pinctrl-v3-0-868fbf8413b5@aspeedtech.com>
- <20260120-upstream_pinctrl-v3-1-868fbf8413b5@aspeedtech.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260120-upstream_pinctrl-v3-1-868fbf8413b5@aspeedtech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.46 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6020af2a-5baa-4594-8cbc-bf7241f0128e@kernel.org>
+X-Spamd-Result: default: False [-1.46 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-257370-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-257371-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
@@ -136,26 +94,96 @@ X-Spamd-Result: default: False [-0.46 / 15.00];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sumit.garg@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: 4DE0D5302D
+	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,qualcomm.com:email]
+X-Rspamd-Queue-Id: 5154551FC4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 20/01/2026 12:43, Billy Tsai wrote:
-> AST2700 consists of two interconnected SoC instances. Each SoC has
-> its own pinctrl register block, which needs to be described
-> independently in the device tree.
+On Fri, Jan 16, 2026 at 02:15:02PM +0100, Krzysztof Kozlowski wrote:
+> On 16/01/2026 13:53, Sumit Garg wrote:
+> > On Fri, Jan 16, 2026 at 09:46:54AM +0100, Krzysztof Kozlowski wrote:
+> >> On Fri, Jan 16, 2026 at 11:50:02AM +0530, Sumit Garg wrote:
+> >>> From: Sumit Garg <sumit.garg@oss.qualcomm.com>
+> >>>
+> >>> Fix IOMMU DT propety for display via dropping SMMU stream IDs which
+> >>> relates to secure context bank. Assigning Linux kernel (HLOS) VMID
+> >>> to secure context bank stream IDs is incorrect.
+> >>>
+> >>> The min value is added for iommus property to ensure in future when
+> >>> secure context bank stream IDs are properly supported then the iommus
+> >>> property is extensible.
+> >>>
+> >>> These DT bindings changes should be backwards compatible.
+> >>>
+> >>> Signed-off-by: Sumit Garg <sumit.garg@oss.qualcomm.com>
+> >>> ---
+> >>>  .../devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml   | 5 ++---
+> >>>  1 file changed, 2 insertions(+), 3 deletions(-)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml
+> >>> index f0cdb5422688..5c888f07bc0b 100644
+> >>> --- a/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml
+> >>> +++ b/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml
+> >>> @@ -33,6 +33,7 @@ properties:
+> >>>        - const: core
+> >>>  
+> >>>    iommus:
+> >>> +    minItems: 1
+> >>
+> >> Same comment as other changes like that, which I already gave guideline
+> >> - you need to list the items (minItems stay), because you now claim the
+> >> order matters and is strictly defined.
+> > 
+> > Not sure if I claimed that order matters now but rather the secure bank
+> > stream IDs were incorrectly represented earlier in the DT.
+> 
+> The code claims this by saying that one specific entry is allowed, so
+> that entry is somehow distinctive, special, different than the other entry.
 
-You lost subject.
+If that's the implicit understanding then I will rather just modify
+maxItems here to say only the supported non-secure stream IDs. The
+secure bank stream IDs can come later once a proper DT description comes
+in place.
 
+> 
+> > 
+> > There has been ongoing disscusion related to how stream ID associated
+> > with different translation context can be represented in DT here [1].
+> > With that only the secure bank stream IDs can be properly represented.
+> > 
+> > Here I just followed the approach taken by Adreno GPU bindings for the
+> > iommus property [2].
+> > 
+> > [2] Documentation/devicetree/bindings/display/msm/gpu.yaml +82
+> 
+> Such justifications are pointless. What about commit msg which explains
+> why this was added? What about entire public discussion happening with
+> this patch? What about all previous revisions of that patch and
+> discussions leading to this piece of code? So you just found few lines
+> of code, ignored entire background and any other arguments, and copied
+> it here.
 
+Looks like you are mixing other patch-set with this one.
 
-Best regards,
-Krzysztof
+> 
+> That's the approach - I found a piece of some buggy code, so I can do
+> the same.
+> 
+> Again, we discussed it 2-3 months ago for the same patch and I gave
+> exactly same reason why this patch is incomplete.
+
+Sorry you are just mixing different discussions here. I am trying to fix
+the SMMU stream IDs for Agatti SoC which listed secure bank stream IDs
+incorrectly.
+
+And this is the first version of this patch only for DT bindings fix for
+Agatti, there are no prior discussions I had on this aspect upstream.
+
+-Sumit
 
