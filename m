@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-257169-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2043FD3BE44
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 05:18:21 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA434D3BE3F
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 05:17:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AE1554E9451
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 04:17:16 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9BE92351E95
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 04:17:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4D4E33E35D;
-	Tue, 20 Jan 2026 04:15:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26A1A33D513;
+	Tue, 20 Jan 2026 04:15:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o5O6wA2S"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NCOBNF3y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 273A433CEBC;
-	Tue, 20 Jan 2026 04:15:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A845D33E361;
+	Tue, 20 Jan 2026 04:15:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768882526; cv=none; b=YQ9uKX5lZFLqoFzgq0AC93ladeYT/7YwYpKSlIds2TohvN5kaRlT8BGIvZsieL5EvyPsHQIPJQtuEDgm2VFw8Y1tPD8X4Y9sG6CGxzJCG1QEiUShC7N4vIZdbUep0pFUQDLFprjfge9KVxHF3tl+oawQzgS/YuVno3B08SXkR6E=
+	t=1768882526; cv=none; b=uYaZUUcgapSm71nmKdav02El5568Ok4XuIxEbVnXtqcHqNMkUBxVGl6WBxvQnRcDu8Fbtiksvs00/YTHi0n7bs22sKzDTSIOkhxap3IwPVGZaS8csPEjZtHmYn4vX7O7DaNt4lBMeALQejQx7vpoiXQM9bNQ9nE7VcivSgLAKmA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1768882526; c=relaxed/simple;
-	bh=R1lDGdU7iIiekrd1oymtfCVNrLHfj85DdbG3x9sBksw=;
+	bh=3hAMXnvjLCvZuLkN0WdyCAoEU5EJcEF/iWW3PasfPck=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To; b=OklOgfga1uWZFbhSnXfflRGn+dhmpr+TMIyaSa6AEQk8TnO9CQ/rlJYnqcGwqaefBWvKzwm04alegOOeRpN/aQ0Ck8q4jEo/9dB8hJX6bqKOmQUNE1msztuE3enYsbWAvPs324MldQwAo8Npy2JH1BEYgDu/EEK9d7d0rEArYKc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o5O6wA2S; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2260C2BC87;
-	Tue, 20 Jan 2026 04:15:24 +0000 (UTC)
+	 In-Reply-To:To; b=V3xnBaIalh1zYm7cJKMACe08SMHd7r6HNaxY/8RamAr/KGN3PVlR8CkYO3KOTnFdzDs5Ijwp3ZqOksgwwxHM1s2hYMW3YSKQIylja+rq3EI2lwPmp1P0FsdMAlcBVpYKbNHYPn8ZAAAYv4Suz8oa/xI6cUBQjf6g5UnX23jbBmk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NCOBNF3y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EBC7C2BCAF;
+	Tue, 20 Jan 2026 04:15:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768882525;
-	bh=R1lDGdU7iIiekrd1oymtfCVNrLHfj85DdbG3x9sBksw=;
+	s=k20201202; t=1768882526;
+	bh=3hAMXnvjLCvZuLkN0WdyCAoEU5EJcEF/iWW3PasfPck=;
 	h=From:Date:Subject:References:In-Reply-To:To:From;
-	b=o5O6wA2Sa7mj9exOhlWMr60IUo9V+uZYDFgj/AhtuKNokK4T3QyFOibJGyRd/1tvh
-	 OlI8fL+nnGEs9NWYESHV2Ln6pnEEjX1xeBGGxoAFo6Yjtgv4DJxBR67E1V19Ji1w0T
-	 ru6gkzgY1nuC/RU8Nt7mQvtbTH1brAy6rmgME1DwHJBF7uTBQ/uheBfPdA85pqFZy0
-	 TTpO4Ua/33Wtye91iWendEhluYKw7bEVDuNHZuECacmYeyVzJIQ8R7fPgk9c9Gsn5f
-	 QQJVQkom/0DVWSGuPP29AUkhY8ygZTpcvbJCaOZQeOJbb4SBneVreDS6c0YgELxqKh
-	 UtBt/nasszGpg==
+	b=NCOBNF3y+UrdmyS49PT7n0srA8e8n9hSaC3seECAgp50Q29iJX+lJJju7IyABKaNj
+	 0ZqtZ9RlOStNPHWd4U0F/H/+3qBxj1MEvFnwpC83RzNZyI78xb/vIWCC6hcAdw0VGD
+	 A9LpOmmSnUs8xiyo/SvLZXdalZM8F8a3wW7ipqqxUt5s6jBi/pW6cO4QlBWOyw4eJj
+	 6nCT8Mrn7aTLKaDrmdjiI3xlLDYupPhtUXTNFcL1Htmjxhl1brpJKYaxjcyr/wB4uY
+	 o02xbB6cimgvS9YRjgUjSge82H2YfjV8Q/Tg4V5ETAKE2uLy99yyfoYy41NYyVx3d4
+	 PR1IBl0ZWTMQw==
 From: Drew Fustini <fustini@kernel.org>
-Date: Mon, 19 Jan 2026 20:14:51 -0800
-Subject: [PATCH NFU RFC 14/19] resctrl: riscv: add CBQRI cache controller
- driver
+Date: Mon, 19 Jan 2026 20:14:52 -0800
+Subject: [PATCH NFU RFC 15/19] resctrl: riscv: add CBQRI bandwidth
+ controller driver
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,7 +53,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260119-ssqosid-cbqri-v1-14-aa2a75153832@kernel.org>
+Message-Id: <20260119-ssqosid-cbqri-v1-15-aa2a75153832@kernel.org>
 References: <20260119-ssqosid-cbqri-v1-0-aa2a75153832@kernel.org>
 In-Reply-To: <20260119-ssqosid-cbqri-v1-0-aa2a75153832@kernel.org>
 To: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
@@ -79,53 +79,52 @@ To: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-riscv@lists.infradead.org, x86@kernel.org
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3582; i=fustini@kernel.org;
- h=from:subject:message-id; bh=R1lDGdU7iIiekrd1oymtfCVNrLHfj85DdbG3x9sBksw=;
- b=owGbwMvMwCV2+43O4ZsaG3kYT6slMWTmMwbPd3m6brnUfHdzF68gA205o7A5f5Y/vX7961zf9
- V6HTss+6yhlYRDjYpAVU2TZ9CHvwhKv0K8L5r/YBjOHlQlkCAMXpwBM5KMZI0NvyR13W+maSyv5
- 81fnPVsf/LTjXeQOW5t5nClJBgc62h4y/I/4cJxpakut2He/3U9mLlK4Eq8vvf2afgnHv7lGHCu
- mf2IDAA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2638; i=fustini@kernel.org;
+ h=from:subject:message-id; bh=3hAMXnvjLCvZuLkN0WdyCAoEU5EJcEF/iWW3PasfPck=;
+ b=owGbwMvMwCV2+43O4ZsaG3kYT6slMWTmMwbn/8v13chTdUpN9lEOU8TzUPZ6q5NPfpVN+XD97
+ YUp//+YdpSyMIhxMciKKbJs+pB3YYlX6NcF819sg5nDygQyhIGLUwAmcteKkeHIlWjJa+pxD7ce
+ /vPsxKZFU05HrNv17dgzo74fFj9EzyhZMvzhbTQpOxrXseyb0cPUHecEewqvcl0Qmbft0sG+/uy
+ 2viNMAA==
 X-Developer-Key: i=fustini@kernel.org; a=openpgp;
  fpr=1B6F948213EA489734F3997035D5CD577C1E6010
 
 [NOT FOR UPSTREAM]
 
-Add example driver for a cache controller that implements CBQRI capacity
-allocation.
+Add example driver for a CBQRI bandwidth controller.
 
 Co-developed-by: Adrien Ricciardi <aricciardi@baylibre.com>
 Signed-off-by: Adrien Ricciardi <aricciardi@baylibre.com>
 Signed-off-by: Drew Fustini <fustini@kernel.org>
 ---
- drivers/resctrl/riscv/cbqri_cache.c | 106 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 106 insertions(+)
+ drivers/resctrl/riscv/cbqri_bandwidth.c | 79 +++++++++++++++++++++++++++++++++
+ 1 file changed, 79 insertions(+)
 
-diff --git a/drivers/resctrl/riscv/cbqri_cache.c b/drivers/resctrl/riscv/cbqri_cache.c
+diff --git a/drivers/resctrl/riscv/cbqri_bandwidth.c b/drivers/resctrl/riscv/cbqri_bandwidth.c
 new file mode 100644
-index 000000000000..0bee65eefb2d
+index 000000000000..13649d56b7dc
 --- /dev/null
-+++ b/drivers/resctrl/riscv/cbqri_cache.c
-@@ -0,0 +1,106 @@
++++ b/drivers/resctrl/riscv/cbqri_bandwidth.c
+@@ -0,0 +1,79 @@
 +// SPDX-License-Identifier: GPL-2.0-only
-+#define pr_fmt(fmt) "cbqri-cache: " fmt
++#define pr_fmt(fmt) "cbqri-bandwidth: " fmt
 +
 +#include <linux/device.h>
 +#include <linux/of.h>
 +#include <linux/riscv_qos.h>
 +
-+static const struct of_device_id cbqri_cache_ids[] = {
-+	{ .compatible = "riscv,cbqri-cache" },
++static const struct of_device_id cbqri_mem_ctrl_ids[] = {
++	{ .compatible = "riscv,cbqri-bandwidth" },
 +	{ }
 +};
 +
-+static int __init cbqri_cache_init(void)
++static int __init cbqri_mem_ctrl_init(void)
 +{
 +	struct cbqri_controller_info *ctrl_info;
 +	struct device_node *np;
 +	u32 value;
 +	int err;
 +
-+	for_each_matching_node(np, cbqri_cache_ids) {
++	for_each_matching_node(np, cbqri_mem_ctrl_ids) {
 +		if (!of_device_is_available(np)) {
 +			of_node_put(np);
 +			continue;
@@ -134,7 +133,7 @@ index 000000000000..0bee65eefb2d
 +		ctrl_info = kzalloc(sizeof(*ctrl_info), GFP_KERNEL);
 +		if (!ctrl_info)
 +			goto err_node_put;
-+		ctrl_info->type = CBQRI_CONTROLLER_TYPE_CAPACITY;
++		ctrl_info->type = CBQRI_CONTROLLER_TYPE_BANDWIDTH;
 +
 +		err = of_property_read_u32_index(np, "reg", 1, &value);
 +		if (err) {
@@ -150,20 +149,6 @@ index 000000000000..0bee65eefb2d
 +		}
 +		ctrl_info->size = value;
 +
-+		err = of_property_read_u32(np, "cache-level", &value);
-+		if (err) {
-+			pr_err("Failed to read cache level (%d)", err);
-+			goto err_kfree_ctrl_info;
-+		}
-+		ctrl_info->cache.cache_level = value;
-+
-+		err = of_property_read_u32(np, "cache-size", &value);
-+		if (err) {
-+			pr_err("Failed to read cache size (%d)", err);
-+			goto err_kfree_ctrl_info;
-+		}
-+		ctrl_info->cache.cache_size = value;
-+
 +		err = of_property_read_u32(np, "riscv,cbqri-rcid", &value);
 +		if (err) {
 +			pr_err("Failed to read RCID count (%d)", err);
@@ -178,23 +163,10 @@ index 000000000000..0bee65eefb2d
 +		}
 +		ctrl_info->mcid_count = value;
 +
-+		/*
-+		 * For CBQRI, any cpu (technically a hart in RISC-V terms)
-+		 * can access the memory-mapped registers of any CBQRI
-+		 * controller in the system. Therefore, set the CPU mask
-+		 * to 'FF' to allow all 8 cores in the example Qemu SoC
-+		 */
-+		err = cpumask_parse("FF", &ctrl_info->cache.cpu_mask);
-+		if (err) {
-+			pr_err("Failed to convert cores mask string to cpumask (%d)", err);
-+			goto err_kfree_ctrl_info;
-+		}
-+
 +		of_node_put(np);
 +
-+		pr_debug("addr=0x%lx max-rcid=%u max-mcid=%u level=%d size=%u",
-+			 ctrl_info->addr, ctrl_info->rcid_count, ctrl_info->mcid_count,
-+			 ctrl_info->cache.cache_level, ctrl_info->cache.cache_size);
++		pr_debug("addr=0x%lx max-rcid=%u max-mcid=%u", ctrl_info->addr,
++			 ctrl_info->rcid_count, ctrl_info->mcid_count);
 +
 +		/* Fill the list shared with RISC-V QoS resctrl */
 +		INIT_LIST_HEAD(&ctrl_info->list);
@@ -211,7 +183,7 @@ index 000000000000..0bee65eefb2d
 +
 +	return err;
 +}
-+device_initcall(cbqri_cache_init);
++device_initcall(cbqri_mem_ctrl_init);
 
 -- 
 2.43.0
