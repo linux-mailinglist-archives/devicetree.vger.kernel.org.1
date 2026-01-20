@@ -1,86 +1,86 @@
-Return-Path: <devicetree+bounces-257646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257647-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kLV1DUkPcGlyUwAAu9opvQ
-	(envelope-from <devicetree+bounces-257646-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 00:27:05 +0100
+	id mEQCMIkLcGlyUwAAu9opvQ
+	(envelope-from <devicetree+bounces-257647-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 00:11:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2DC74DC72
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 00:27:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 67A594D8D0
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 00:11:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id ACF1EB28204
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 22:38:25 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9B68A66F244
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 22:39:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED42B44D039;
-	Tue, 20 Jan 2026 22:31:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2328C3EF0BF;
+	Tue, 20 Jan 2026 22:36:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UoGyE5XA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nLAySThh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f173.google.com (mail-dy1-f173.google.com [74.125.82.173])
+Received: from mail-dy1-f172.google.com (mail-dy1-f172.google.com [74.125.82.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA5B13ED134
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 22:31:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C8F03D3CEF
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 22:36:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768948302; cv=none; b=BrdYKcSG8O7qbfOi3+Tim5RxYiGeZw3ZCS6AMs9aHGl+k5eCHRLQbHCYXmRNPA3mU6komx0Cf6HfUI+9fRetKaUKxyllga9aUO3wXpNSShg+PLPoQSHYnId5+CEhjejCv0eynGxf7UjiRzwAN0ZkZN8CYhmrTsNeQxba0Xp0bI8=
+	t=1768948575; cv=none; b=mNWU6dQWUgIGrq4LOAy/+RQ9nnoiS0olR3jpi9hd+rWQHMMXy6VTIn6Oc8pWCKnKNw+SyGMHdocTGsm+RiFqY5NGC+R96bGX38FIOblGdb3WXAwzd7iWaVaolri2J2yX49qrjydOt/sTuZshuqxq6AQkxoMkLJdk1lCuQ2NMMas=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768948302; c=relaxed/simple;
-	bh=KT7crfYGC+gc35aZUssQokbzc2G2zw05Q7/bzVHxgsc=;
+	s=arc-20240116; t=1768948575; c=relaxed/simple;
+	bh=lYHvzcjsxYt0A+0br3h1GQXTMMOJydVerfEIbtr67k0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fZCWU+kvFUpQKKmtRb7XmepEqTytI5GFSoRj458rfRwcZStXSWDA8fRBKWDW9GasFGjyeHFCSLdayPX0ujhiWDARm9tZXAKkt09DXx5W8vqL9B727cyTqZeeKfx5vHZqth0DzUDjbin9xYNhTsfkUZY9KLO1aoZvDEAS5tcoKME=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UoGyE5XA; arc=none smtp.client-ip=74.125.82.173
+	 Content-Type:Content-Disposition:In-Reply-To; b=A3DrBrHKEHFMiAtN3mxxXI36wN9QafCqCzi6eY9uSFazci6FWbQ/vgHgXuvuNu9vtlKCYcPVHCF93LNb5VFBvXZPeccPJmqon4es65prG6KKxuxa0fq4OkzmEmxhnjAa8RKGoMvlFOzBID0zhDyGid9NgyW0pnAsY20z+zlf2ec=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nLAySThh; arc=none smtp.client-ip=74.125.82.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f173.google.com with SMTP id 5a478bee46e88-2b0ea1edf11so11111609eec.0
-        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 14:31:36 -0800 (PST)
+Received: by mail-dy1-f172.google.com with SMTP id 5a478bee46e88-2b1981ca515so6439818eec.1
+        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 14:36:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768948292; x=1769553092; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1768948572; x=1769553372; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=oK1Xva04K7ygLWg0U7fdlOWooXBJszh65DA1fNcqFD8=;
-        b=UoGyE5XA/4IPLlWoyVdKaPXt4eHUQ1cD1T38G7F4r1Q4XuH3aPJIpHv/EETsZBvDy9
-         nMCL69ZE0bhsgASs8dhuTIzuDxkRlcH+Y55gL73D6C3CnQx7UlrY2saYyZdTuE8LZ+gL
-         19L8eP9nolk2Y9l19T4oHZyFiDtS99R4t4Lp06Eu2f1EGM7HnUfpaMQA1pdXZ51ZSXJg
-         Ebl/Bk+FdsT5WeAwipH8uHYAmBmOV64dll/aDFNmt1/orFHr+yEtS2GQnWjPmP87MBrL
-         6NiDws33UUAjVxiGt5h8I1C1+IVSaYk1S15OEZKaJ3s5jUf20Lq0Wdr1Pq6vVWp71Fzi
-         V/Kg==
+        bh=NrbRZd+8qIGar6808P7aL6qI6sgZozZ7npqpjV5nqsk=;
+        b=nLAySThhSy9ij1N6pkNJ3zrxUaeBB9cBuZ2D9wLwaAJeOXfnxse+ncUymem/fqpAkd
+         6Jk2oqyzl0tL9e+19CcPWLDlKI3w0l9C8oZvmuqW1HYVVDopUIU/m7cdfaHX6ieGkT/a
+         LiyWtyq9I64CVKznXcO5MIgvCnrcbUSwmRsjFEQ9NAOZqEdm5QQSv2RCjXro2UJECv5U
+         jPfplYci6HglXUE4HnIH7S1vneLStxQaSOUu924efKy3I2OHYmYLE9Q+2Fy6vmCJWAOB
+         GswoYeifv0egiGt5I0Z96ac4ircx48NW5Sew8Ur2V5YsF2Ia3w0KZEsz0usMr/lFKn4W
+         GX8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768948292; x=1769553092;
+        d=1e100.net; s=20230601; t=1768948572; x=1769553372;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=oK1Xva04K7ygLWg0U7fdlOWooXBJszh65DA1fNcqFD8=;
-        b=vDNWjouUGTxlkELcFJLMh6/ClWM94UMHDzdXn4FMDX7wFipGf76L51Zt63P0VCAHI8
-         2RbGRMicjJKIblIMFGwmirzbYbsssEMFmn32Oi+2q9CMfnB/JhjnY374WZRcJ7/mPpyS
-         eDtMIIdUsSNXzrjn9O2rJQh8wGvgL7UMSgqsMdCX32AF85/cjnC8nsbPpA8aHCW9KuCP
-         ldJ0resvSUdXrRmOYurnVwHpjQF78yqMFxDgbzF4RD33wEE0vnggTqMjN6Qc0hOSPuwn
-         MktHhE4Pic3Pk3A+Y+HIrIPaOthARo5lKOX/7ZSLBVCjIHB1xUwR9vCYIrgONW6Ijf+4
-         IHdw==
-X-Forwarded-Encrypted: i=1; AJvYcCUIbTetoPWgdEp79IszYXBnSf05/ZmTHVndSOw6uvHJHGB5gSGyte20U4gj+2Ioiqp10JQHexa++qrr@vger.kernel.org
-X-Gm-Message-State: AOJu0YwzyK+2I4XxDq219C8PrTCF/9S/e5gkMm9QIR0N+1725owT0ZeR
-	XUS7eYeOHo3qLOF5zcUSsUy9gmpDIGmgoTLsRmGQj/QyzIo7dVPS30+N
-X-Gm-Gg: AZuq6aKwNnLVFhXDdrU6OrrPcHDisDDy+f9Zsu+wOjbAAGQt/CA9eNW6XZmWtpJ9RyT
-	VJoobUKLah87U+zdpYCg8wXSXsszXE5/HQWZnXV96bkm2g8zlQLf0iLcPzD0r12koVSnMFC3t71
-	YCMURpMyy1MgQ+drZ23L1ZJlzZTbpfQwimwLGUaRqrHd76Vudq4y4CJm80hgIr3tf459xvFXL34
-	yzijHO4uGMm81JLDweJGCzhUSwQRG7o5K2dHjVVexnlYxqWrLDpMDg9cQQRVU1X4Mqm13lVhAGP
-	4JNpYUEe3Gt/gl9Ymk0daP8mho06UcvmNxaj0Qrf32DhoWJisS3NFoQPErtkIbiCu1/S30VZ/s0
-	ONIfKsHiDmWrEvr9cZ5MuDtotLd6kFvI0EiWqcoTN0afB0lFPeO30873bMAwKhOzEZov72GDI/0
-	OzPz0m1/EOJNT9jBbck7m9
-X-Received: by 2002:a05:7300:1493:b0:2ae:5a55:fc0a with SMTP id 5a478bee46e88-2b6b4e287acmr16477739eec.7.1768948292340;
-        Tue, 20 Jan 2026 14:31:32 -0800 (PST)
+        bh=NrbRZd+8qIGar6808P7aL6qI6sgZozZ7npqpjV5nqsk=;
+        b=tJ4ZxiOjz4mC6asDm+bCXXV5mLpboV+WbMXHAdoU92zqS8IVCPBDbSXQPfy0DWcdhg
+         ITQXn1UlxhaVOMKocjpcVq3lQNlKaOxuGhFFigJURnRvC5wIeeyeWHQuPz5+eBWU87rD
+         t3rPImgZyxUeGmnLo4uP2JNiHTtw11S+lUghwG2IPBYguSrEh5QJX5FWnPYKzBjT4NnL
+         7sq53siLnJENCRXUDnyowdcLDRUGhZGX8TALLftKwEvyD4lLwPpqjrc2W2QT/OAiyJ7M
+         d/WDpXDR+ZaND78NPj5C9vyybEvbwSD3J6YOUEC5+LsC3hDnUz1NmCHWlcw9DbKtxjFY
+         z3zw==
+X-Forwarded-Encrypted: i=1; AJvYcCU1e1EzGuwxhywzUgdwb5+JDdK1TRbMwDiqjtYSfVrbu5QymSVWSq2CxiAwxxVN2fR9w+TsRL3o6hn1@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz6yOUeE++RqaS25SqMGAKxNcD2EdZ5iRC7/ncT/BrJBE2y1OvS
+	mVzncCj9/FzGRAOMS5V/WabU6rN5aRX4LnGolDFR1e7VHogNsGxy8VzV
+X-Gm-Gg: AZuq6aK/eLU4cMzBKpsnWGrBiytxMYH5fndqabIQk8eSf4blhnF6r4vfkLDExsqyZnU
+	yopnRNWx2AgoOMfyBOAVO6xjZBi8vbdcAlzRyAPNSGEjqcZTZ+dxeDC2q316v9FCfMvmGWW+7A+
+	Lb2D2TXiuqQEH8ooDZGq/dpkE1aLQfNeEHO8h2ChpL1m1aLWeJhZi2x71hi/D47tY/KSc5vWypG
+	W3vLEo/MFVEbVI2XQOM970SEVy3BK0SHOZg/hTfUDbvx58Wp4RARHQ8uI4EiiHE8exysJfvnMUK
+	1+yTXy2Z8/VFtrtbdOQdpT2Jb6cu2sITPPgsCkg/EuXbbELSkTbWsfogSSsgAhALmrmoFbK+jTx
+	TfWv1PJ8/T8j8Jxnq7j6NtYy06PfJdccB1RXs/LbjiNGQQ6IeIwWVgnZ75DqJDxCCsvz5DCU21S
+	qOBqcUCFWe2w==
+X-Received: by 2002:a05:7300:fb94:b0:2ae:614a:3307 with SMTP id 5a478bee46e88-2b6fd7eee95mr2453605eec.42.1768948572147;
+        Tue, 20 Jan 2026 14:36:12 -0800 (PST)
 Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b712881482sm499886eec.5.2026.01.20.14.31.31
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b6b367cbc9sm21042996eec.32.2026.01.20.14.36.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jan 2026 14:31:32 -0800 (PST)
-Date: Wed, 21 Jan 2026 06:31:22 +0800
+        Tue, 20 Jan 2026 14:36:11 -0800 (PST)
+Date: Wed, 21 Jan 2026 06:36:01 +0800
 From: Inochi Amaoto <inochiama@gmail.com>
 To: Andrew Lunn <andrew@lunn.ch>, Inochi Amaoto <inochiama@gmail.com>
-Cc: Yao Zi <me@ziyao.cc>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
 	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
 	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
@@ -97,14 +97,12 @@ Cc: Yao Zi <me@ziyao.cc>, Andrew Lunn <andrew+netdev@lunn.ch>,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
 	spacemit@lists.linux.dev, linux-stm32@st-md-mailman.stormreply.com, 
 	linux-arm-kernel@lists.infradead.org, Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH net-next 1/3] dt-bindings: net: Add support for Spacemit
- K3 dwmac
-Message-ID: <aXABw0zVz8n3jLlm@inochi.infowork>
+Subject: Re: [PATCH net-next 3/3] net: stmmac: Add glue layer for Spacemit K3
+ SoC
+Message-ID: <aXACRN7BaumIySp3@inochi.infowork>
 References: <20260120043609.910302-1-inochiama@gmail.com>
- <20260120043609.910302-2-inochiama@gmail.com>
- <aW9fL7r0AM0flALJ@pie>
- <aW9ou-lsQQ5dVzqW@inochi.infowork>
- <9334905d-d11b-49d4-92b1-61e8cf644f0f@lunn.ch>
+ <20260120043609.910302-4-inochiama@gmail.com>
+ <f8e4c5ec-94b1-4da0-8a40-976770514828@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -113,7 +111,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <9334905d-d11b-49d4-92b1-61e8cf644f0f@lunn.ch>
+In-Reply-To: <f8e4c5ec-94b1-4da0-8a40-976770514828@lunn.ch>
 X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
@@ -122,16 +120,16 @@ X-Spamd-Result: default: False [-0.46 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-257646-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-257647-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FREEMAIL_TO(0.00)[lunn.ch,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[40];
+	RCPT_COUNT_TWELVE(0.00)[39];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[ziyao.cc,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gentoo.org,gmail.com,foss.st.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,armlinux.org.uk,cqsoftware.com.cn,disroot.org,nxp.com,bp.renesas.com,linux.intel.com,bootlin.com,eswincomputing.com,altera.com,cherry.de,st.com,synopsys.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,st-md-mailman.stormreply.com];
+	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gentoo.org,gmail.com,foss.st.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,armlinux.org.uk,cqsoftware.com.cn,disroot.org,nxp.com,bp.renesas.com,linux.intel.com,bootlin.com,eswincomputing.com,altera.com,cherry.de,st.com,synopsys.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,st-md-mailman.stormreply.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
@@ -144,29 +142,66 @@ X-Spamd-Result: default: False [-0.46 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: B2DC74DC72
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,inochi.infowork:mid]
+X-Rspamd-Queue-Id: 67A594D8D0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Jan 20, 2026 at 02:48:12PM +0100, Andrew Lunn wrote:
-> > IIRC, the "phy" clock is used to pass the phy from the mac core, I will
-> > double check if it is possible to connect to the phy directly.
+On Tue, Jan 20, 2026 at 02:56:26PM +0100, Andrew Lunn wrote:
+> > +/* Note: the delay step value is at 0.1ps */
+> > +static const unsigned int k3_delay_step_10x[4] = {
+> > +	367, 493, 559, 685
+> > +};
 > 
-> Are you saying this is the reference clock output from the MAC being
-> fed to the PHY? That would be a clock provider, not a clock consumer.
+> Am i reading it correctly that RGMII delays are limited to these four
+> values?
 > 
-> Or is it the reference clock output from the PHY going to the MAC?
-> Then the MAC would be a consumer.
-> 
-> And there are some designs which have a third party generate the
-> clock, and both the MAC and the PHY consume it.
+> If so, please add this list to the DT binding.
 > 
 
-I have confirmed the clock is directly from the the clock tree and
-is consumed only by the PHY. It seems like I have got a wrong
-information about this. So let's remove it and let the phy consume
-the clock if it use this clock.
+No, these value are just adjustment interval, and it is also
+controlled by another code register, the final delay is calculated
+by the following formula:
+
+delay = delay_step * delay_code * 0.9;
+
+So the delay configuration needs to be calculated instead of
+directly assigned.
+
+> > +static int spacemit_dwmac_detected_delay_value(unsigned int delay,
+> > +					       unsigned int *config)
+> > +{
+> > +	int i;
+> > +	int code, best_code = 0;
+> > +	unsigned int best_delay = 0;
+> > +	unsigned int best_config = 0;
+> > +
+> > +	if (delay == 0)
+> > +		return 0;
+> > +
+> > +	for (i = 0; i < ARRAY_SIZE(k3_delay_step_10x); i++) {
+> > +		unsigned int step = k3_delay_step_10x[i];
+> > +
+> > +		for (code = 1; code <= MAX_DLINE_DELAY_CODE; code++) {
+> > +			/*
+> > +			 * Note K3 require a specific factor for calculate
+> > +			 * the delay, in this scenario it is 0.9. So the
+> > +			 * formula is code * step / 10 * 0.9
+> > +			 */
+> > +			unsigned int tmp = code * step * 9 / 10 / 10;
+> > +
+> > +			if (abs(tmp - delay) < abs(best_delay - delay)) {
+> > +				best_code = code;
+> > +				best_delay = tmp;
+> > +				best_config = i;
+> > +			}
+> > +		}
+> > +	}
+> 
+> With the four values listed in DT, i would make this a straight match,
+> not the nearest, and return -EINVAL otherwise.
+> 
+>     Andrew
 
 Regards,
 Inochi
