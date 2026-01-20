@@ -1,53 +1,86 @@
-Return-Path: <devicetree+bounces-257589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257590-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gNTNLTLtb2m+UQAAu9opvQ
-	(envelope-from <devicetree+bounces-257589-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 22:01:38 +0100
+	id MIaIFifdb2n8RwAAu9opvQ
+	(envelope-from <devicetree+bounces-257590-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 20:53:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63B864BE7A
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 22:01:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1975A4AD07
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 20:53:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4F44F8E016E
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 19:40:47 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 56ABA8E112E
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 19:43:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B22DE426D18;
-	Tue, 20 Jan 2026 19:40:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 215C547B438;
+	Tue, 20 Jan 2026 19:43:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JvPktp/r"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CLMcHqyq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f68.google.com (mail-wm1-f68.google.com [209.85.128.68])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 728FB332EDE;
-	Tue, 20 Jan 2026 19:40:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2035130DEC0
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 19:43:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.68
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768938034; cv=none; b=X89RLsUCPYzRSPWQPNFHVL0Bj/pKOtIlkTRavomZ7H/BG29GWDsjDl+mR2aAw7ePncRSGGgVmhEI6Gzy2rDRgPSb+WJBR+zuEN0JMxkwxCWILnfIxsyhZXScx7YDBMw1D2BD0R3S25gUh7oo6K6/cbtojNj5WWHYLMLfjnf7MSE=
+	t=1768938221; cv=none; b=aOq9XWzWQnX82Btldbj4stybygJK8558Mmk77Q7UIGPkQJw2C9LwJ9fIAqQdN6I8g3MBMdc5nPDuqaytNWC/FKGEpXUl55snylUkUOd5fuSpEaMnVztw6OPkCaInAzXA25rCVApHBeRIuotVLxIC8V57rErD2yiimQs2+bEg+0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768938034; c=relaxed/simple;
-	bh=A86HiTGdeay1Qm6gVy1xjuUwe/ZurTakL/i4nzwnxfM=;
+	s=arc-20240116; t=1768938221; c=relaxed/simple;
+	bh=GKWq3qNE+QoMVDzsvfKNUwlNGiGFagl4gqpCzyoCY3o=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=j6c8/XyWv+RwkAKOk8mmFN6Ix1mBztsK6kRx4xHQpp54wIc1PZ1SLvHsuY8/482X/WcA2wlQ/cijIc6LObrF6Oy5YhpbwQUqIfeF8nbSJzZ2dNNkdrRkmONLuWbX6WcAP9XOxlTKzTyirqyQrggpz3bQN4JVXw8tqHVDBrYVtOg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JvPktp/r; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAA54C16AAE;
-	Tue, 20 Jan 2026 19:40:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768938033;
-	bh=A86HiTGdeay1Qm6gVy1xjuUwe/ZurTakL/i4nzwnxfM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JvPktp/r9fF70Yi+kkvVdIvLvdRX6hMlVniyKB22/rSI6V5EvWFmKhirAOKND+Lp/
-	 6HkPqdn4APlMo5AxNKPl5M3IRLhnk4WBq8y8jNOvnlfRFeUuDsO5HfgRmKhaiY14aQ
-	 XWUcBGJ+kosW4SZG0zzaETQg0IVJ6SaOfI90jAOEdONndTIRhj7HccT241CNppSr5s
-	 BuDOZXVVNhmHkAbfx5dVCQzMsLkbyiV3/zMtjdz4Zr+wHkjbuDD4xgepPnGZU08GGu
-	 APVnzMfQZZcA/9xnGp4OEgH5cjxGGcUZFFnJ64UIQ3kccY/CMNAkSOTFTPDexz6xhm
-	 UoANmSzm+CqBg==
-Message-ID: <b7d27dc1-05c7-4525-b483-1712e9d497ee@kernel.org>
-Date: Tue, 20 Jan 2026 20:40:29 +0100
+	 In-Reply-To:Content-Type; b=QyqpUaaaoNvenHQqxz3kh9ioiS1D+6tOQG6te+M+Rz9ZDBgVW21h3X+zlGI4cJKrbtDDnka70oi+h0wHlETGRX41/TPY/EAG+V1AT0RX07I3YIg8O/p3y/1I+WqFynQ0zfUFnRz5M9PZPIDzr3Jnc8IrwVXPm0mxA1Mx4PGXLEQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CLMcHqyq; arc=none smtp.client-ip=209.85.128.68
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f68.google.com with SMTP id 5b1f17b1804b1-4801c314c84so37621415e9.0
+        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 11:43:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1768938218; x=1769543018; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=sy76whdWsr2+0uhdxqV/7DmqprCp9p5S0npWuG2odvI=;
+        b=CLMcHqyq18QGIbHDHKxhvQzUNYpLwtxU8CkC/ajU14Qlkhg5FB+b7s3OUPe0kCFpcn
+         P0Vp5Up/zxJAdC+FOVnpkKtNDj0Ey7runCp2ExbNQOHgVmj5LusIR1uIcW60VPJDNNJJ
+         yBaYSoLJJjkuR2VteezvqyUt6A38dEahrzbjM2eawzoFqJ1/PLZtQQ9W02zYXkKC5nOg
+         f9bkEzfDlDGHeL3xFSQOnNfIiO3B2coMPGeFDDneQLiwiewTAah3nFG+yr5DMb4r3/v4
+         z1ZmhSwYEgkYXAqv16E1tc8AlQd6VK2jIf7AgIGB5SF6I2tFIM6g3qqx1xSQ5qnqYBRa
+         ao2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768938218; x=1769543018;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sy76whdWsr2+0uhdxqV/7DmqprCp9p5S0npWuG2odvI=;
+        b=wtiOwtCrPr1lYUEii3o4Zx1Rc7KeDgKtKg8jUwtJ0ucPX4dMIS5oPa7emXIYNS0Kci
+         09d0CenUo/p/HE2lViPwUHKCEYksonuNZoZj1ZnVgdoqL6/qkJbsz3LHdCeJIdqEzxxk
+         b3/gwTb3fNM58VdBGTsgsMo9tCcDu4rIAyc6DUI5y8BnMbAmZ0VtpkMWVk4FTN3d1wN0
+         ezZDtAzVbrSkOP5R1UNoWMjR4DqKNECAlyMVGyzYUtfSTuj7QqPCUoeSYE9FAkTl5Pvn
+         uA9qpIf+P9ywg2sqeQfDcbAhe98FY6qfaqjzMHW8vQrF/PTesuLf8hrK+SDopNkW0qWn
+         fCJw==
+X-Forwarded-Encrypted: i=1; AJvYcCXxAXIMd78lOJA9g69iXCyPf/vVkUxUfsA7/otT9XeiWbKm0epdZX+ZcSh6h4tw+7BAgJVXESH5jt83@vger.kernel.org
+X-Gm-Message-State: AOJu0YwzYynC4MmPxZpWh6PCYIfBY3NL0OGSPdydpI+ayG4nPLsIATON
+	9nUaYvVFcFFca0HcXDc7eYveHnn35b0D79N+IMIvmaQcL/EE5vOMtRuqquttbbyxSbg=
+X-Gm-Gg: AY/fxX6WNKUEqHJ4sCyeVoDYhOgBbF1oCF9egjFpmPslSjOe6SoEHTljJ8CYtEvYPwd
+	BQVtvhjQbxoJB2++kqdzHlmRUxjHZHiRNQPNPW4byxJS4JgkG2rfgnULzZrKI9Nho2iGA+5U4sC
+	MP4910iAHAkQBhQajsgwP5J/TOXScNIi5ooxOJX4UhlAP3LdUqlW93SA+fZ4723k41a+2RZPsoK
+	Uxgvr7L/qIgvn9ujjLROir07cow+Y5ZURW2IXUIhXb0p1KZsD8pZTtbq2Ou4LiFHL9OnVRkw8Pr
+	D1kGO2OltOLR/XtP0VXOu0Sy1RzneJQnd1mtj89JIqu8tzdCK6i1AN81PNL9/Wb4/o4xsLYQ/P3
+	j1ldvV993Oe7k/r0v1EdSFSrVNB2ED4voNG+lCWitzw/7ZekfhoBHbMuPO8MmD7ePK+ixqK4pay
+	hpMyW1x3D8IHkO1e3Df8BHgx0TUGffCtSfZ3VQ5XltHE1WHKhnqgVQhri5DFUaS0U=
+X-Received: by 2002:a05:600c:458d:b0:47f:f952:d207 with SMTP id 5b1f17b1804b1-4801e341e2emr173523155e9.19.1768938218443;
+        Tue, 20 Jan 2026 11:43:38 -0800 (PST)
+Received: from ?IPV6:2a05:6e02:1041:c10:ebda:5627:9bc:1ede? ([2a05:6e02:1041:c10:ebda:5627:9bc:1ede])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-4801e86c1b2sm257889055e9.3.2026.01.20.11.43.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Jan 2026 11:43:37 -0800 (PST)
+Message-ID: <b43cae11-e67c-4979-9e9f-b49a0cd640e0@linaro.org>
+Date: Tue, 20 Jan 2026 20:43:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,141 +88,77 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] ARM: dts: aspeed: add an alt 128M flash layout
-To: Marc Olberding <molberding@nvidia.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-References: <20260120-alt-128-v3-0-a81bdafc00a7@nvidia.com>
- <20260120-alt-128-v3-1-a81bdafc00a7@nvidia.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v5 0/8] Add thermal sensor driver support for Mediatek
+ MT8196
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ srini@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ rafael@kernel.org, rui.zhang@intel.com, lukasz.luba@arm.com,
+ matthias.bgg@gmail.com
+Cc: nfraprado@collabora.com, arnd@arndb.de, colin.i.king@gmail.com,
+ u.kleine-koenig@baylibre.com, andrew-ct.chen@mediatek.com,
+ lala.lin@mediatek.com, bchihi@baylibre.com, frank-w@public-files.de,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, kernel@collabora.com,
+ wenst@chromium.org, fshao@chromium.org, Laura Nao <laura.nao@collabora.com>
+References: <20251125-mt8196-lvts-v4-v5-0-6db7eb903fb7@collabora.com>
+ <382ef406-6abf-4d6f-9f0c-42b0bbbd6918@collabora.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260120-alt-128-v3-1-a81bdafc00a7@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <382ef406-6abf-4d6f-9f0c-42b0bbbd6918@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
-	TAGGED_FROM(0.00)[bounces-257589-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	FREEMAIL_CC(0.00)[collabora.com,arndb.de,gmail.com,baylibre.com,mediatek.com,public-files.de,vger.kernel.org,lists.infradead.org,chromium.org];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[collabora.com,kernel.org,intel.com,arm.com,gmail.com];
+	TAGGED_FROM(0.00)[bounces-257590-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[linaro.org,none];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[daniel.lezcano@linaro.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
+	REDIRECTOR_URL(0.00)[twitter.com];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: 63B864BE7A
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,linaro.org:dkim,linaro.org:mid,linaro.org:url]
+X-Rspamd-Queue-Id: 1975A4AD07
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 20/01/2026 20:26, Marc Olberding wrote:
-> Add a 128M layout for the BMC flash chip we didn't boot from. Including
-> this allows the user to write to each partition on the alternate spi
-> chip. This dtsi follows the existing standard of using the same layout
-> as non alt version and prepending `alt` to each partition's name.
+On 1/19/26 13:06, AngeloGioacchino Del Regno wrote:
+> Il 25/11/25 17:16, Laura Nao ha scritto:
+>> This patch series extends the MediaTek LVTS thermal driver to support the
+>> MT8196 SoC.
+>>
 > 
-> Tested by running on target and catting sysfs nodes
-
-You cannot test this patch that way - DTSI is not included by anything.
-This probably should be squashed with next one because makes little
-benefit on its own,
-
->     for devdir in /sys/class/mtd/mtd*; do
->          [[ -d $devdir && -r $devdir/name ]] || continue
->          name=$(<"$devdir/name")
->          [[ $name == alt* ]] || continue
+> This series has been there on the lists for *5 months* now, and it still
+> applies as-is.
 > 
->          size=$(<"$devdir/size")
->          offset=0
->          [[ -r $devdir/offset ]] && offset=$(<"$devdir/offset")
-> 
->          dev=$(basename "$devdir")
->          printf "%s name=%s offset=0x%X size=0x%X\n" "$dev" "$name" \
->             "$offset" "$size"
->     done
-> 
->     mtd10 name=alt-rofs offset=0xA00000 size=0x5600000
->     mtd11 name=alt-rwfs offset=0x6000000 size=0x2000000
->     mtd7 name=alt-u-boot offset=0x0 size=0xE0000
->     mtd8 name=alt-u-boot-env offset=0xE0000 size=0x20000
->     mtd9 name=alt-kernel offset=0x100000 size=0x900000
-> 
-> Ran dtbs check, no errors from the msx4 dts
+> Can we *please* get this picked?
 
-Drop this sentence, it's implied. There is no point to state obvious,
-e.g. that you build source code, in the commit msg. It serves no purpose
-in the git history. You also have changelog for such things, if you want
-to emphasize.
+Sorry for the delay, it is applied now
 
-> 
-> running diff between the main and alt flash layouts shows that the only
-> diff is alt prepended to the partition labels, as expected.
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-? Not sure what you want to say, but please do not explain us how DTS
-works (in case this was about DTS).
-
-
-Best regards,
-Krzysztof
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
