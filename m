@@ -1,143 +1,145 @@
-Return-Path: <devicetree+bounces-257268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257274-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0Jn/Cd1WcGlvXQAAu9opvQ
-	(envelope-from <devicetree+bounces-257268-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 05:32:29 +0100
+	id mPUpL1VMcWkahAAAu9opvQ
+	(envelope-from <devicetree+bounces-257274-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 22:59:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7597C510B7
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 05:32:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 095D05E697
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 22:59:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5DBAA6A8477
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 10:17:55 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4DB76743FC2
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 10:20:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C215C3DA7C3;
-	Tue, 20 Jan 2026 10:17:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AyvlNeeD"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAD913ECBC7;
+	Tue, 20 Jan 2026 10:20:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com [209.85.221.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97B013D7D8C;
-	Tue, 20 Jan 2026 10:17:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E166129A9E9
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 10:20:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768904270; cv=none; b=ArRD18E6t0mYJpYM5FcVBm5Mmm5gNE7Kam/mONPwFFMIqCdYc5TNOND+Y722tI4aCPKDEn6SzCaKXcOE7jK73WHmxmLQpgLj+kpl8JeUEgNnxcnGoJj4Z+kTFLohlU1+t1dtgXrmg7EEBYy5/Jt5idY7ElF96K36NB8IAWujPpI=
+	t=1768904446; cv=none; b=VSvxaVbiCmwWhhvt5C4K5uc3W6QhaktuL30jn3QDha6kTINArd6X5+LKRS+AJ/BmHww1NEGYV3Nq78spAfpPe1NO/faZ72GTfmQI6/pVeEEdlpfYJzwJJKtIjws/wDc1ktSPNhx9NE+5F01MtfLJNw39T9pkTAKF//qx30jDSMw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768904270; c=relaxed/simple;
-	bh=KO+K1i+AhFEyWElV5V29fhgrpXDoQ8qehhOTJGwc4xo=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=L+uJN5rvaKfIEJmZYptE8esu9A4j0bOdhfbqi1/OkrfFkIFdizMK9KIh9P6OvRIhuK8wy0nfKvLH7sNNopMur05EXjPYcB4MSF8sdTgAOwD3BNnjBtEvbvCdBkiJcMp4KOuuZyCAQFThtWuNmEQuAiL7J8EYO6aSvnlBxeve/00=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AyvlNeeD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94BFDC16AAE;
-	Tue, 20 Jan 2026 10:17:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768904270;
-	bh=KO+K1i+AhFEyWElV5V29fhgrpXDoQ8qehhOTJGwc4xo=;
-	h=From:Subject:Date:To:Cc:From;
-	b=AyvlNeeD+z+5r8oFKfnkDh7hAQc96IEoFclF/RDuQ+bgidBpDJePKCFT60rvyEU0E
-	 oSaYX6yvovRPTlJYAdzhdpfq2Eym4jxiVuqPNMR/F+9mWkI8vW8z79Ct7EVW8d/OVj
-	 HEeF0RGAhwg18nxls4K0MkE3R5pekCj7QEMkV995NUu9LainqMTzd56rTOfV4rMbqB
-	 heIGUM9s5mf5Atk7gn4mVLIv18nIHag11G/VPmmI3zk91Oy7nK/g6649HdjwZQLd2y
-	 3yFR+tACAS8OS4ik+X3aEnDySKldljelZeUx9ePgYELGP1Z+SITVBtlEaJav9XNUH7
-	 X+ClNHFRbAUng==
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-Subject: [PATCH net-next v4 0/2] airoha: Add the capability to read
- firmware binary names from dts for Airoha NPU driver
-Date: Tue, 20 Jan 2026 11:17:16 +0100
-Message-Id: <20260120-airoha-npu-firmware-name-v4-0-88999628b4c1@kernel.org>
+	s=arc-20240116; t=1768904446; c=relaxed/simple;
+	bh=aAg7Ezp3FuZ606SiZuKQuwvHZ2cnjOgD6370edqmDyI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Q2g6zPG6bOKFgDTex3IR7OLfVR0pCdhp1IXkOm/vBKhGReYQGWRSALSl8ZBaEVcCNkWjPDRhxKaQ4F0dVp7UI5K6fMCoggGVZcLPycePA6wIiHgNQmw+Zn4YsNa/Hkd3+6IOzrz1dqJ0sKKNfz8P2rp1yJAsAHD4FdW54dfV1iQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f176.google.com with SMTP id 71dfb90a1353d-55ab217bb5eso649359e0c.3
+        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 02:20:44 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768904444; x=1769509244;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Nyv07j23r/do4ZgfLqH89KjdmB98dkcyShTfl8D+6CI=;
+        b=OE6MFywRfY12nBEHbUHu/ZIUbDTRVShcJRF30pQkdUnN9esBeuaGbn1kXOArem5Xmo
+         VO8PIXq09EA+5KURL4NJogw6XGKsknEkklFBH5m276iHEDM+lxcyNR0g+x5vwrm5pYb4
+         WDAHKXFKBIOI+2EKNvoy72f96/62/fi4VbU7M6yJk3gYLkFVDu81W6F04dSByFR4/6HD
+         q9b47UDVeMhGr/Ap32z7+fL0WD6Zu8nQ3pTEq4RpuvtcFaH6eJkhK1uujsQs2fhynmeY
+         k7QvUlkG49MxNDP2FageTaITao9uw06k1mr846oe3Ery9cKBxJaeT+yBK8lD3SEtc7c0
+         bA8A==
+X-Forwarded-Encrypted: i=1; AJvYcCWwx3iCJfPMyg0CmAuIPH9ERw4rIJo9p6TfiCfTGBhJpmyzbwaKd34ZOvWtHjsdeXVs6gg4DaEe8Ijw@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxza8woc0T6eXXuYbTuJXCZcIIr4kpqGdVgIfl2h4Atk5b/GHJP
+	TfXfsHLn34CHtYQ5kv8yekwesfkXKz8P7oxBqOKWyA87+Vt8l6atdZ48bOXCVZXD
+X-Gm-Gg: AZuq6aLmG6cgtq0TqZzKSfTZ+z74Nkzm6HdlZupHOiXl7S9nNQoKbZhe5Qo6g3RK+uU
+	UeZ3+A8iY34S3MQ5HSUPW/sRSI1t8QkrZKshGG0xile2TFigCQd5bCcLLkycNKsZVJu1An5jROY
+	xN88+LHA/p7x9au89D67s55PcMkQRpYKuSVc8vx2shTeiiMb4Ghu96MzP8Yi3QND/OsUdzqBS99
+	Q0CpTTVhQDvGyTO93JRNYCFBwzRMlSu7U0UZ8LMWy0i017p14kJmM+Rsxz+ltexbocmBo5rhVPA
+	zKlxxBUSqvuBnEAGMuuhB10i6AfTA05AcPmh8ZLS5ajbum2HYYPWEJfdN7WwNck3La2mI8BxY+v
+	LO6dEHw/6LbN2cTaQBj9ei+3Qg374RUp+bleGshneM4T7ahDuIw+4kzf15hyT3luk19sjnVSSTK
+	vYvmlwgbXvBVX22I7XrkQQaDkJJCU/wx7EsyJHgADsNwUaUix+
+X-Received: by 2002:a05:6122:a0d:b0:55b:305b:4e38 with SMTP id 71dfb90a1353d-563b5cd6446mr4392964e0c.19.1768904443658;
+        Tue, 20 Jan 2026 02:20:43 -0800 (PST)
+Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com. [209.85.217.54])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-563b6fdb23asm3363805e0c.4.2026.01.20.02.20.43
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Jan 2026 02:20:43 -0800 (PST)
+Received: by mail-vs1-f54.google.com with SMTP id ada2fe7eead31-5eef115c781so2153630137.2
+        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 02:20:43 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUM9n2WmszMEhWJDnBFDaZqZ8Es+30MNt7cKEouYg/70wbapGHEOYy/IAjIFtJgkWpV5xQfrI1jJw2o@vger.kernel.org
+X-Received: by 2002:a05:6102:374c:b0:5e5:5ed7:60b6 with SMTP id
+ ada2fe7eead31-5f1a55b92famr3532144137.39.1768904443274; Tue, 20 Jan 2026
+ 02:20:43 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/33NQQ6CMBCF4auYrq2ZThHRlfcwLko7SKMWMlXUE
- O5uIS40Rpf/S+abXkRiT1FsZr1g6nz0TUiRzWfC1iYcSHqXWiBgDgpW0nhuaiNDe5WV5/PNMMl
- gziR1RksANMroSqTzlqny94ne7VPXPl4afkyfOjWuL1Thb7RTEqSDUmVFma8UVNsjcaDTouGDG
- NUO3yX9R8IkYWFL7VADQv4l6Xdp/UfSSbKlKQoit86t/ZCGYXgCRbU9EFUBAAA=
-X-Change-ID: 20260107-airoha-npu-firmware-name-34e5002a1a3f
-To: Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- Andrew Lunn <andrew@lunn.ch>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Spamd-Result: default: False [-0.46 / 15.00];
+References: <20260117001215.59272-1-marek.vasut+renesas@mailbox.org> <20260117001215.59272-2-marek.vasut+renesas@mailbox.org>
+In-Reply-To: <20260117001215.59272-2-marek.vasut+renesas@mailbox.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 20 Jan 2026 11:20:32 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVWrnn0vkgKra8mPzTLk5sWzE=CeQv-FXJ7-Jb+-mqU0A@mail.gmail.com>
+X-Gm-Features: AZwV_QjATqdrAwQiQ-9Ivrk8GAW5lhpXxjdgsjHmeMx-cj4-rn9YTbwg6Jsj-98
+Message-ID: <CAMuHMdVWrnn0vkgKra8mPzTLk5sWzE=CeQv-FXJ7-Jb+-mqU0A@mail.gmail.com>
+Subject: Re: [PATCH v4 2/3] Input: ili210x - convert to dev_err_probe()
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-input@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Frank Li <Frank.Li@nxp.com>, 
+	Job Noorman <job@noorman.info>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spamd-Result: default: False [1.24 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DATE_IN_PAST(1.00)[35];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-257268-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,gmail.com,nxp.com,noorman.info];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
+	TAGGED_FROM(0.00)[bounces-257274-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lorenzo@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
 	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: 7597C510B7
+	RCVD_COUNT_FIVE(0.00)[6];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,mailbox.org:email,linux-m68k.org:email,glider.be:email]
+X-Rspamd-Queue-Id: 095D05E697
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-This patch is needed because NPU firmware binaries are board specific since
-they depend on the MediaTek WiFi chip used on the board (e.g. MT7996 or
-MT7992). This is a preliminary patch to enable MT76 NPU offloading if
-the Airoha SoC is equipped with MT7996 (Eagle) WiFi chipset.
+On Sat, 17 Jan 2026 at 01:12, Marek Vasut
+<marek.vasut+renesas@mailbox.org> wrote:
+> Simplify error return handling, use dev_err_probe() where possible.
+> No functional change.
+>
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 
----
-Changes in v4:
-- Add missing MODULE_FIRMWARE definitions for EN7581_7996_FIRMWARE
-  binaries
-- Link to v3: https://lore.kernel.org/r/20260119-airoha-npu-firmware-name-v3-0-cba88eed96cc@kernel.org
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Changes in v3:
-- Roll-back to approach proposed in v1 using firmware-name property
-- Link to v2: https://lore.kernel.org/r/20260113-airoha-npu-firmware-name-v2-0-28cb3d230206@kernel.org
+Gr{oetje,eeting}s,
 
-Changes in v2:
-- Introduce "airoha,en7581-npu-7996" compatible string to specify the
-  firmware and drop "firmware-name" property
-- Link to v1: https://lore.kernel.org/r/20260112-airoha-npu-firmware-name-v1-0-d0b148b6710f@kernel.org
+                        Geert
 
----
-Lorenzo Bianconi (2):
-      dt-bindings: net: airoha: npu: Add firmware-name property
-      net: airoha: npu: Add the capability to read firmware names from dts
-
- .../devicetree/bindings/net/airoha,en7581-npu.yaml |  7 ++++
- drivers/net/ethernet/airoha/airoha_npu.c           | 46 +++++++++++++++++++---
- 2 files changed, 47 insertions(+), 6 deletions(-)
----
-base-commit: 4515ec4ad58a37e70a9e1256c0b993958c9b7497
-change-id: 20260107-airoha-npu-firmware-name-34e5002a1a3f
-
-Best regards,
 -- 
-Lorenzo Bianconi <lorenzo@kernel.org>
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
