@@ -1,104 +1,106 @@
-Return-Path: <devicetree+bounces-257631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257632-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QH15Bd4EcGmUUgAAu9opvQ
-	(envelope-from <devicetree+bounces-257631-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 23:42:38 +0100
+	id +FntLucKcGlyUwAAu9opvQ
+	(envelope-from <devicetree+bounces-257632-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 00:08:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6E6A4D247
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 23:42:37 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3340A4D83D
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 00:08:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5BB7476F2E2
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 22:06:40 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 89831B238CA
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 22:06:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A7DC3D649A;
-	Tue, 20 Jan 2026 22:06:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 859E03DA7EB;
+	Tue, 20 Jan 2026 22:06:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JBQQ8f0o";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="h597SXkq"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OojlrFUT";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="RPUD/fck"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1AA03D332E
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 22:06:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80BDA3D5250
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 22:06:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768946780; cv=none; b=qH2LcKGb/FVqYF2hYfGpcvU6TyA5QeDOE1ucFLRAw0GRg8yW+TcMgsd4qNGkw4XpR+Jt1J7OiyHu2VAnhI1ppYJ2PIVETFEbccWjkLARf0KQEaRb3AmrB6ArBo5RAc4Mb6qTeflRy38hlzOLuYvEc5be0q6j5gtb9iazlGRHwLg=
+	t=1768946788; cv=none; b=uSQ+kCF9S3nzCAKJAsQqAt9UdgR+UfTW/SVm8mNceHZOPgMHLqi4HidO0QYvW8DcySnYejSgmZpXB/ffbXBTPP3kUuVn/CMqIoIKXCxiKUpy3seYK8sbxII/Pc2mWvTopzk/1ybNhlUZENwRPS9IVculMfpRMfIvjJNSd+AsMR8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768946780; c=relaxed/simple;
-	bh=9qFuBOJpVm4NZ5jGLP9VDemKSpzt4dZj5vBYO/y0ZNQ=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=s1a615TEda8wBEdRSD/FS1to2qigAI8ox4zv8nq4mJnde4NisNfrYijBSC2pirc6rSiyDH5LZq5fw+6ZfcbbgRVaYQLB5QkJY65TwX1i8rkeNmN8mKGbN19WqToBUgCYPon7WZDfkXfymVkVkvHuW+hJFlVHUj4ETgXJCAuhUE4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JBQQ8f0o; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=h597SXkq; arc=none smtp.client-ip=205.220.180.131
+	s=arc-20240116; t=1768946788; c=relaxed/simple;
+	bh=rOZoJgZslmXUXLyWF+4vAn8VvrseOBKyOxW6jyGygc0=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=EHONL6M4mQyq1zXiKFN6G/8fVP4QqQ52kmO6Qy2guyJgfFHQ1eAKK7KfollZ8q+teMd2a9ew0eUjhsQCBe+V5SVjxWfClR7lDsuT6xdLD4HkKt7XKOlW+3kTasYoDKlbdIWFIN2zPoA6bi6Np2cZKLx7Dlm9ATBTFC/JGs18jtU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OojlrFUT; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=RPUD/fck; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
 Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60KH1LsS3256591
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 22:06:15 GMT
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60KH58du3256429
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 22:06:21 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=Y4GljF2FtDKElu8MwDlEd8
-	tYfMNw95VHPGCXbVyVaEc=; b=JBQQ8f0oU+K7TYKOy5GgG3cUx0J7ZZi/I44vCH
-	3EXhBjPeYR1MqTsge4fJONc1Sz/lgplglxtV0zvBaaPBgnlsNFsfs3X+GWX19kXT
-	g04lQADJIyO8dGZ+YstRLjX2jVAkZVmWj8SXi1rN7PA7vr4sda/KZbTZ+/lOpHnN
-	TiOPjGqAmcZnBj2OjUCpwqJIIf6ZQI9pIX8WPJOk11wC2c8NEUxBnh4S5oboDYAK
-	ni/BAt/BFZ7rIWwSR5cnqAbBWbH952LgS4nYklYiTWfEftvIMDAy+G6+6017TvaW
-	5ik2kweD9sM8oALuxXsHydejEowGp+4Gys83vQvY7d/DFEeQ==
-Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bt6u7tfge-1
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	aG6yLE+iMJcps9v9V3RlJvutgLy5xcCphtOU6pbn8jI=; b=OojlrFUTVPOkZSHu
+	YisPKoO5N3VUJzZFZv0TQNuKnBKNYzscj8Hmv2aFPx4T33otI7UNzPWqkHwHN96T
+	2kDbnCG6YOlbyjAWN9uG3fuYSVF9zYFuMA39N/eRWiGAyxI5I4GEqqFB7UOG6ysY
+	YwC/1NKTuEAwRhqdEoEvNCvJur3D+82peKeoA/wiOA8F87iGdjA140zEXX8hSsTz
+	pwwjVwYB5ikHeYNmquMicFLOEgzeWemt1uMSpaGfFSlqVTMPGliRV4KwkYDilEAu
+	/QWPIUiLtVT4mA8aJeab5xqJrAB89DupQm8axOjtQnzXnQQHcvoMyHx8H+oCAKod
+	wGeeKw==
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bt6u7tfgv-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 22:06:14 +0000 (GMT)
-Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-81d9b88caf2so4091304b3a.1
-        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 14:06:14 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 22:06:21 +0000 (GMT)
+Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-81e6ec1da28so4547080b3a.0
+        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 14:06:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768946774; x=1769551574; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y4GljF2FtDKElu8MwDlEd8tYfMNw95VHPGCXbVyVaEc=;
-        b=h597SXkqTXRqzrLuINtdZuGSQmZ1TEHUCcM1SBwhv1VlBA7TAfoeo4+pvt0LRra1Iq
-         02FDLnsXe8dRTHBsvW9XC2+nwYONNWX2b4rnqwsv0ftFhuH2z3oRhjaXQ4inxZYbDqDO
-         V8f8cyv5c+HZawExjvDSoDN2tdSFJymZTBA5dBPmvWdij/Og2Ul0EHZYugyg1W6atpUG
-         IziOlxPqUHFjjF82kKEiS76+8v5106sQPYDyyGtHt2fa7Bxa/IosKNtYDd/dls9Pa0oN
-         X77S46uqceNu8Czia3kfgmID7sZD1lXw2L9HpaDxxc3a2V4lIzZ9gXz4G+qkiUl41/e1
-         ar4A==
+        d=oss.qualcomm.com; s=google; t=1768946781; x=1769551581; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aG6yLE+iMJcps9v9V3RlJvutgLy5xcCphtOU6pbn8jI=;
+        b=RPUD/fck9wqLHbtG85x7JzFdA6NhPK0PT/dEVBaZRy/wGQC8xYi0gbSzaHPHJZaHFa
+         xxLOaUokCKHhERxljyqK0cdouH6cfkz9XFDScoGd/Ey9aej5SI0wlkJceIqEmrNi8QwX
+         f1WXKtHD8lpNYMlCc/VdmwBdmlbUitBikwFgLL8bIaEVHXR4kKRYmc+2Rr/bkchp/8Ff
+         a8B1Yso8jcja1guZMa0tYbhB+F5FispAK0MwZ23xBw6j36j033su5/AxLrPVYgIrIZKi
+         R3g57/h5NQS426Mefe5XvZ4zkvxlU4VLyYfloHcKirV3Ov1RXRgVTgJprHXCn5H590ZL
+         n0zw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768946774; x=1769551574;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Y4GljF2FtDKElu8MwDlEd8tYfMNw95VHPGCXbVyVaEc=;
-        b=hRs6PgCBKeTLdC3UQ2Cs2qDEMwOhCeCXjC+4jC2FA68yffcVjE11h/KAUG8y2f5FVX
-         xkfzvyWw5F0UinRi0PDxuGj+YXt1JmCSj2TsMIKyqe0ewXTSxrgYPiJXecxVr5qUaYkM
-         2wNgZdhq9TuWvA3X0MqH/wUk5GFuRQo4XpcmuZSf6HvKG42k2Saa9uACZ4kik5PFgE85
-         7A/JhdQM4EIoyV6wCG5wPAO+teJ7c8iO2IsnMfVyWnY/9crg3VTNXh8qhyQr+1lFZiC/
-         Tlcr2PkXWz75R/2toeuokqoh6HeUKqCVwDGMsal1oPoDXNpbSGJOj0GHWcafxn6x6h/A
-         bJrQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU8cpvnvZEyIPQwM296K4+389GogrqJMTEoOTD006g4PaEz0UbUv07du8Lb3xTUkf8Q+E0EEN7RN2Je@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxkyt9oov5/la9NjOoBo/oQs+Nix1tjo6pGPJpSAt+5tZT9qKUW
-	HUJvuNLDKZoEcgKf3WbxVLLXZCC2okbhDX4MLzHy0KBfzbn8CDq5+xyq169A8s7XNeYcIu9c4QD
-	QjSiMJ/e2hswLorqBsGvARH45664W2asWhZtyZ6sm73fsO9rhGZ2lvknuD8Re7e6j
-X-Gm-Gg: AZuq6aLRVovgaEj5Qwz7u6ALvF27h9SZ/4o/RQ//8LdIcFFRDmB91tWiMhFYsialm0x
-	GbGqRETBTF7l1B3xFbmcILZkDMLR1dHSUzJG4Ob0od8RSgfc5nub7w6fIhCOTjAX+p7PPnDbRZT
-	D1Rg9SpZznn9vskW+iwhvqXOso9mWeM8/3GXtfiNrgroilgdbpjr6RPHRCuucqlXfWL0n9HQe1Q
-	c9nbHRuos4ZCRZL7of4/6ev1SCnn+obP9HVYmzYNjzO26YG94Do2/prJDumKDXODlvUcN955ST1
-	/esuafI4AhEqn1buqOeL/uC8J+xXPOCPr1C2idkaPjcFGornntN1LMQ2pVfPEXuxtoWigMfcERC
-	XS2mEZ3Q6m9xYi5i+k8XE9QPHUxiOpC0DTA==
-X-Received: by 2002:a05:6a00:3a02:b0:81f:4294:6080 with SMTP id d2e1a72fcca58-81fe87e9f5emr2873024b3a.20.1768946773441;
-        Tue, 20 Jan 2026 14:06:13 -0800 (PST)
-X-Received: by 2002:a05:6a00:3a02:b0:81f:4294:6080 with SMTP id d2e1a72fcca58-81fe87e9f5emr2873000b3a.20.1768946772893;
-        Tue, 20 Jan 2026 14:06:12 -0800 (PST)
+        d=1e100.net; s=20230601; t=1768946781; x=1769551581;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=aG6yLE+iMJcps9v9V3RlJvutgLy5xcCphtOU6pbn8jI=;
+        b=u9wYj8PCZZaks7nU5LHK5WeNqdzCXkWVx7KXU/pytI35SyTd/2eSZ26M/YZBygcEvo
+         x2etFvu3kHlPRmaKPp7Bh4HgLquzYa3AWKepCsiK+HY6Nww9bqvgUQ/TEv6hWNHuXrEx
+         zjpbRjLACwKbnt3TLPbQHwcMvL+APwM9/FmzoQkrZvn142L96QYmCg6nM/Piv774/ULg
+         8O44xEj3pj/hG5uMykHC/ltLUT2npREo8gkF+W5z5nd/7yu1C4DaEUn5+frDk/gdIgeL
+         nUI0VtgIqi2rjqgVIs5NLh730fvS4Gg6j30Mx9VyH0TWt1chM4PxfGiuXpljb14pVIKV
+         E4dg==
+X-Forwarded-Encrypted: i=1; AJvYcCVRdYXrqefvMc9xYRxOt0EeiB435DHjdAKCU3FvTTaJaeIUMoaDXXCoChHVOXMqrHCHfiA9rP3mdzEw@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz7zbQFPmKGpg+oigAetaIr3kyt0vpW6DCR0bhK6l9yD1A0B/w4
+	k8G0Cr36p54BdrwiV521Xnkz5EsJvdYPJpp6jf8cFNgwNw3WmIAiFk2W+dYEf6NObgPt2aUxTTg
+	+9u8rrN1bBuGbh6dBLes+6lOE/FqLtCI/+Gdc6UZ/58Ig+D1Xqwg2fdVHMFttd/kj
+X-Gm-Gg: AZuq6aJJZ7becjeHc6wxiXf6o/hUFQeBlum9B4X5v50le18JhrB0nKZcM9rgGYHBXIU
+	Vjf2MdxL2PHo6Zs84rILOxYPScZlnvDlXn9BSCTgU5yPerjT0t+vbVTsE2pEkwDPscfJow8wP6p
+	1f158+JZLKuQIRcl3MIbsWQuzFMBeVv/MK/m53DfO3SfHgH6/9tduc9vXDLnmtReNvv7bPYhZ1c
+	5pFP/FS2WUR6sjKFn0ayhdKcFnr2+a7IWTGj6dSrdW3oC6kfQHcnBQmSWBCViLYRvoJWrZf98Ms
+	ouRac9TloLyer7jAVC4YI+x7WXV5aXpDO9Tj/8wk2RHBtx6RwEr31wfhygapSdBRu3rN38I0oeF
+	0GEY2hbMxCaO8e+0aAHIEzUsr90sZrHJLTg==
+X-Received: by 2002:a05:6a00:1743:b0:81f:31c3:2e38 with SMTP id d2e1a72fcca58-81fa17a0472mr13858724b3a.19.1768946780648;
+        Tue, 20 Jan 2026 14:06:20 -0800 (PST)
+X-Received: by 2002:a05:6a00:1743:b0:81f:31c3:2e38 with SMTP id d2e1a72fcca58-81fa17a0472mr13858695b3a.19.1768946780157;
+        Tue, 20 Jan 2026 14:06:20 -0800 (PST)
 Received: from hu-akhilpo-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-81fa12b30f0sm12867088b3a.61.2026.01.20.14.06.05
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-81fa12b30f0sm12867088b3a.61.2026.01.20.14.06.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jan 2026 14:06:12 -0800 (PST)
+        Tue, 20 Jan 2026 14:06:19 -0800 (PST)
 From: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-Subject: [PATCH v7 0/4] Support for Adreno 612 GPU - Respin
-Date: Wed, 21 Jan 2026 03:35:51 +0530
-Message-Id: <20260121-qcs615-spin-2-v7-0-52419b263e92@oss.qualcomm.com>
+Date: Wed, 21 Jan 2026 03:35:52 +0530
+Subject: [PATCH v7 1/4] arm64: dts: qcom: talos: add the GPU SMMU node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -107,13 +109,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAD/8b2kC/3XRTW7DIBAF4KtErEs6YBjjrHqPqgt+W6QmjsGxW
- kW5eydOpURuvQEe0nw8iTOrseRY2W5zZiVOueb+QKF92jD/YQ/vkedAmUmQWoDQfPAVaavHfOC
- Sx6C0gxBd1xlGM8cSU/6avde3Wy5xOBE73i6ZszVy3+/3edxtBjrwMD7bskfFU184biWw6+RHr
- mNfvudik5hHfzu0iw6T4MDBWatUMtCBfulr3Q4n+3l9ZkvLDE7yjgj4g0hCrAytV8kljLiCNA+
- IlEukIaRLKihv2qRFWEHUHZGglogiJGkL4LVDbNIKoh8QiUtEE9JoFQwqBO/dCoIPSCOWCBISr
- GnpfxMa0/yDXC6XHxUpNRVEAgAA
-X-Change-ID: 20251015-qcs615-spin-2-ed45b0deb998
+Message-Id: <20260121-qcs615-spin-2-v7-1-52419b263e92@oss.qualcomm.com>
+References: <20260121-qcs615-spin-2-v7-0-52419b263e92@oss.qualcomm.com>
+In-Reply-To: <20260121-qcs615-spin-2-v7-0-52419b263e92@oss.qualcomm.com>
 To: Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
         Konrad Dybcio <konradybcio@kernel.org>,
         Dmitry Baryshkov <lumag@kernel.org>,
@@ -135,32 +133,31 @@ Cc: Dan Carpenter <dan.carpenter@linaro.org>, linux-arm-msm@vger.kernel.org,
         Akhil P Oommen <akhilpo@oss.qualcomm.com>,
         Qingqing Zhou <quic_qqzhou@quicinc.com>,
         Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Jie Zhang <quic_jiezh@quicinc.com>
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1768946765; l=4503;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768946765; l=1901;
  i=akhilpo@oss.qualcomm.com; s=20240726; h=from:subject:message-id;
- bh=9qFuBOJpVm4NZ5jGLP9VDemKSpzt4dZj5vBYO/y0ZNQ=;
- b=SFJvj/OwQhzKaZu7LBOCkLayme1MJ1wDmFGR9S15KPB11NXSJCyo6p31ClGL7lTlUFU1wME4S
- UItKvlbxZMSCICaElyGGY3HnlOLd87FjUIhei6gOPPcCZuKImJoaiyl
+ bh=auGzOt6EwZwwOo/iQK/twL4Y/TItrT+w7eLe1hI4xbQ=;
+ b=INpKM61F6lNusR29d4hLWQMtrqGVGwx3XbgDAKwYw0FmRdESF+NrTtBQkmuVPBLdd6CfGyg0g
+ ilOGDMYijygAzpb6DI12T0FNjYhmr9Ihjd/kRwDo2/Z3Ko2O4c+aXgv
 X-Developer-Key: i=akhilpo@oss.qualcomm.com; a=ed25519;
  pk=lmVtttSHmAUYFnJsQHX80IIRmYmXA4+CzpGcWOOsfKA=
-X-Authority-Analysis: v=2.4 cv=P/w3RyAu c=1 sm=1 tr=0 ts=696ffc56 cx=c_pps
- a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+X-Authority-Analysis: v=2.4 cv=P/w3RyAu c=1 sm=1 tr=0 ts=696ffc5d cx=c_pps
+ a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
  a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
- a=Vfy2LTQACiyTdmKGC14A:9 a=QEXdDO2ut3YA:10 a=IoOABgeZipijB_acs4fv:22
+ a=VkNPw1HP01LnGYTKEx00:22 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
+ a=Qd8OTwLUrmNk7h6opE0A:9 a=QEXdDO2ut3YA:10 a=2VI0MkxyNR6bbpdq8BZq:22
  a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIwMDE4MyBTYWx0ZWRfXwxwf24rO4q6g
- 68P6naiejFgXj570Ri6uDC+OpKGR6LrKdEwhUHViaEzSQ2P203c2zUX+Dk9TGERDq3FKglQXQm3
- Ob6JvwzRnHiMy6oVMcQwmLbkm7WVvs902mDP0ZnLNn9AfqdCRdu7z1XUpmfOUC+tjmyvOdVcdZP
- ZSku2ywxNHtp9mzT/7V5TtuQeOwWepMau52P2RE7TFIlHrnkGtDM4CGsJOGBCUfgQc7gK5m5jid
- uk3h+VySxXtlD+QFuw9hHeQv5notY/cU6CtZuCGgNhFt34iNqhJOhCBwPuAKx3Ogfp2pGodKzw0
- DXb+qfImJRcGEgCJdx/OJCYZ0agQ/ZnWMwM6SFclwku767qXh+z+JKlwH5H2/OAO2fCyrLGhH5e
- X4JI+W0LrTKLhQfTowkKPmRhwCRL4fkO/xiFxaByq+DwlBCYATX1vFq7aHj8/8k13tPyJTB2qQu
- kbU5mY+3W+6AAkfxjkA==
-X-Proofpoint-ORIG-GUID: WkaMBZHoSpY-oV8kMFC1YHaobrvHNiM7
-X-Proofpoint-GUID: WkaMBZHoSpY-oV8kMFC1YHaobrvHNiM7
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIwMDE4MyBTYWx0ZWRfX0eNnPytpzRXP
+ GhaH3uh0Z9nCpVmEE1ErW2f605Nug24UKUy/CTH5xPJC0VHP3XhuuMo2G2Txz5l0xf5TNRGs2c+
+ MYaU4gd4bkfi/lei60jU9R41RKg+88fWcp23UNt4jlCPex6iZNoc0QhLKBPoai9dhCS+qLQSlGR
+ BWtAWLlZn9VNGjId26D99yi8tFA2bTyzCAMEylZu4OJ7JguLIUXhojt8KN23HiLWtUpoubdcCWq
+ zgMT476kHrqvdY0dkAXnwiQB4JcMkF9HXd9mqM5Dh8gyi4TYDePp3TwLeP8vKoLm9xdaZ/Vtq+X
+ dHGm4UeVN93nskDYxpoQJ98C0kCgG/9SS7IpxNYMjhh5sBOFCpsA/eGsgZaV+7xDPchNjnSwD2G
+ B2aVCnbSriyMwk9NIUdbIk82fyP58m4/q3GQ3Oc/NU8WvVM/HebG0hJ26S30jROgzUTT0OjkO9Q
+ Ty/RLHuvRmmyFb2UhlA==
+X-Proofpoint-ORIG-GUID: 3VJVD8UoJUoQMeO2cT9Axb3erSo2HIqn
+X-Proofpoint-GUID: 3VJVD8UoJUoQMeO2cT9Axb3erSo2HIqn
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
  definitions=2026-01-20_06,2026-01-20_01,2025-10-01_01
@@ -178,14 +175,14 @@ X-Spamd-Result: default: False [-0.46 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[29];
-	TAGGED_FROM(0.00)[bounces-257631-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[28];
+	TAGGED_FROM(0.00)[bounces-257632-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_TO(0.00)[oss.qualcomm.com,poorly.run,kernel.org,linux.dev,somainline.org,gmail.com,ffwll.ch,linux.intel.com,suse.de];
 	DMARC_POLICY_ALLOW(0.00)[qualcomm.com,reject];
 	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,0.77.170.208:email,50a0000:email,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,0.91.149.80:email];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[akhilpo@oss.qualcomm.com,devicetree@vger.kernel.org];
@@ -194,111 +191,64 @@ X-Spamd-Result: default: False [-0.46 / 15.00];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: E6E6A4D247
+X-Rspamd-Queue-Id: 3340A4D83D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-This is a respin of an old series [1] that aimed to add support for
-Adreno 612 GPU found in SM6150/QCS615 chipsets. In this version, we
-have consolidated the previously separate series for DT and driver
-support, along with some significant rework.
+From: Qingqing Zhou <quic_qqzhou@quicinc.com>
 
-Regarding A612 GPU, it falls under ADRENO_6XX_GEN1 family and is a cut
-down version of A615 GPU. A612 has a new IP called Reduced Graphics
-Management Unit or RGMU, a small state machine which helps to toggle
-GX GDSC (connected to CX rail) to implement the IFPC feature. Unlike a
-full-fledged GMU, the RGMU does not support features such as clock
-control, resource voting via RPMh, HFI etc. Therefore, we require linux
-clock driver support similar to gmu-wrapper implementations to control
-gpu core clock and GX GDSC.
+Add the Adreno GPU SMMU node for Talos chipset.
 
-In this series, the description of RGMU hardware in devicetree is more
-complete than in previous version. However, the RGMU core is not
-initialized from the driver as there is currently no need for it. We do
-perform a dummy load of RGMU firmware (now available in linux-firmware)
-to ensure that enabling RGMU core in the future won't break backward
-compatibility for users.
-
-Bjorn, I have rebased the pending DT patches on top of arm64-for-6.20
-branch to make it convenient for you to pick them. All dependencies
-including dt-binding doc patches are now available in linux-next. They
-are ready to pick up right away. In case you test dt checkers, please
-use the latest linux-next tag.
-
-[1] Driver: https://lore.kernel.org/lkml/20241213-a612-gpu-support-v3-1-0e9b25570a69@quicinc.com/
-    Devicetree: https://lore.kernel.org/lkml/fu4rayftf3i4arf6l6bzqyzsctomglhpiniljkeuj74ftvzlpo@vklca2giwjlw/
-
+Signed-off-by: Qingqing Zhou <quic_qqzhou@quicinc.com>
+Signed-off-by: Jie Zhang <jie.zhang@oss.qualcomm.com>
 Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 ---
-Changes in v7:
-- Drop msm driver and dt binding doc patches as they got picked up by Rob Clark
-- Update interrupt property to use 4 cells
-- Rebase on top of arm64-for-6.20 branch in Bjorn's tree
-- Capture trailers
-- Link to v6: https://lore.kernel.org/r/20251231-qcs615-spin-2-v6-0-da87debf6883@oss.qualcomm.com
+ arch/arm64/boot/dts/qcom/talos.dtsi | 25 +++++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
 
-Changes in v6:
-- Move the rgmu register range update from patch#8 to patch#6.
-- Capture trailers
-- Link to v5: https://lore.kernel.org/r/20251226-qcs615-spin-2-v5-0-354d86460ccb@oss.qualcomm.com
+diff --git a/arch/arm64/boot/dts/qcom/talos.dtsi b/arch/arm64/boot/dts/qcom/talos.dtsi
+index 88980d8c3ee3983fb56b2ccd170fdd41b22c222a..9495514dda1a32e21f53f4afca677dc13fd9cd5e 100644
+--- a/arch/arm64/boot/dts/qcom/talos.dtsi
++++ b/arch/arm64/boot/dts/qcom/talos.dtsi
+@@ -1843,6 +1843,31 @@ gpucc: clock-controller@5090000 {
+ 			#power-domain-cells = <1>;
+ 		};
+ 
++		adreno_smmu: iommu@50a0000 {
++			compatible = "qcom,qcs615-smmu-500", "qcom,adreno-smmu",
++				     "qcom,smmu-500", "arm,mmu-500";
++			reg = <0x0 0x050a0000 0x0 0x40000>;
++			#iommu-cells = <2>;
++			#global-interrupts = <1>;
++			interrupts = <GIC_SPI 585 IRQ_TYPE_LEVEL_HIGH 0>,
++				     <GIC_SPI 590 IRQ_TYPE_LEVEL_HIGH 0>,
++				     <GIC_SPI 591 IRQ_TYPE_LEVEL_HIGH 0>,
++				     <GIC_SPI 592 IRQ_TYPE_LEVEL_HIGH 0>,
++				     <GIC_SPI 593 IRQ_TYPE_LEVEL_HIGH 0>,
++				     <GIC_SPI 594 IRQ_TYPE_LEVEL_HIGH 0>,
++				     <GIC_SPI 595 IRQ_TYPE_LEVEL_HIGH 0>,
++				     <GIC_SPI 596 IRQ_TYPE_LEVEL_HIGH 0>,
++				     <GIC_SPI 597 IRQ_TYPE_LEVEL_HIGH 0>;
++			clocks = <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
++				 <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>,
++				 <&gcc GCC_GPU_SNOC_DVM_GFX_CLK>;
++			clock-names = "mem",
++				      "hlos",
++				      "iface";
++			power-domains = <&gpucc CX_GDSC>;
++			dma-coherent;
++		};
++
+ 		stm@6002000 {
+ 			compatible = "arm,coresight-stm", "arm,primecell";
+ 			reg = <0x0 0x06002000 0x0 0x1000>,
 
-Changes in v5:
-- Rebase on v6.19-rc2
-- Make the reg list in A612 GPU's binding doc stricter (Krzysztof)
-- Link to v4: https://lore.kernel.org/r/20251204-qcs615-spin-2-v4-0-f5a00c5b663f@oss.qualcomm.com
-
-Changes in v4:
-- Rebased on top of next-20251204 tag
-- Added a new patch to simplify gpu dt schema (Krzysztof)
-- Added a new patch for GPU cooling support (Gaurav)
-- Updated the gpu/gmu register range in DT to be more accurate
-- Remove 290Mhz corner for GPU as that is not present in downstream
-- Link to v3: https://lore.kernel.org/r/20251122-qcs615-spin-2-v3-0-9f4d4c87f51d@oss.qualcomm.com
-
-Changes in v3:
-- Rebased on top of next-20251121 tag
-- Drop a612 driver support patch as it got picked up
-- Rename rgmu.yaml -> qcom,adreno-rgmu.yaml (Krzysztof)
-- Remove reg-names property for rgmu node (Krzysztof)
-- Use 'gmu' instead of 'rgmu' as node name (Krzysztof)
-- Describe cx_mem and cx_dgc register ranges (Krzysztof)
-- A new patch to retrieve gmu core reg resource by id
-- Link to v2: https://lore.kernel.org/r/20251107-qcs615-spin-2-v2-0-a2d7c4fbf6e6@oss.qualcomm.com
-
-Changes in v2:
-- Rebased on next-20251105
-- Fix hwcg configuration (Dan)
-- Reuse a few gmu-wrapper routines (Konrad)
-- Split out rgmu dt schema (Krzysztof/Dmitry)
-- Fixes for GPU dt binding doc (Krzysztof)
-- Removed VDD_CX from rgmu dt node. Will post a separate series to
-address the gpucc changes (Konrad)
-- Fix the reg range size for adreno smmu node and reorder the properties (Konrad)
-- Link to v1: https://lore.kernel.org/r/20251017-qcs615-spin-2-v1-0-0baa44f80905@oss.qualcomm.com
-
----
-Gaurav Kohli (1):
-      arm64: dts: qcom: talos: Add GPU cooling
-
-Jie Zhang (2):
-      arm64: dts: qcom: talos: Add gpu and rgmu nodes
-      arm64: dts: qcom: qcs615-ride: Enable Adreno 612 GPU
-
-Qingqing Zhou (1):
-      arm64: dts: qcom: talos: add the GPU SMMU node
-
- arch/arm64/boot/dts/qcom/qcs615-ride.dts |   8 ++
- arch/arm64/boot/dts/qcom/talos.dtsi      | 149 +++++++++++++++++++++++++++++++
- 2 files changed, 157 insertions(+)
----
-base-commit: ebd1eb365caef3c815cb8a041d300dfe4263faea
-change-id: 20251015-qcs615-spin-2-ed45b0deb998
-
-Best regards,
 -- 
-Akhil P Oommen <akhilpo@oss.qualcomm.com>
+2.51.0
 
 
