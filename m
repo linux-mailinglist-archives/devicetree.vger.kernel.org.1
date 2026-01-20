@@ -1,99 +1,102 @@
-Return-Path: <devicetree+bounces-257252-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257253-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C692D3C4AF
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 11:11:20 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9128D3C4B0
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 11:11:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id BA39256980A
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 09:57:33 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2E29B6AAFB9
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 09:57:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 339AC3D3309;
-	Tue, 20 Jan 2026 09:57:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEFF33D34BD;
+	Tue, 20 Jan 2026 09:57:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="mMlsLV3Z";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="dYFVJNYa"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fCVZiF7X";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ZeFHQL7S"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D32D3D3012
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 09:57:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82C853D2FF2
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 09:57:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768903024; cv=none; b=E+fFmCRRIJ+Nx/QnEgCW94vsWrEkkhvpEE2J7qMw05X8HKZufRN5N78zyOCsYoHY6OJoBHAh+yQVGltkVR2ja7+BlYzGrDlErvx3n6hEmzgL/TTVPHJXiOfUhvbxBYsrZPU1PDDMYmZSzWKjF/EihCAjgA14qc3pASG6UwD+XRs=
+	t=1768903026; cv=none; b=PkFcqFZPRtRww/xSRl6f/i1p/JxCnEs2PxxGI6GeFG1vWZDSvv1A8AaLowXmD0SqY5RO4xlTmMdFBaAtKcg7Lbh8YPnVuyCw+MxznF8pX5D9sYxEgMt/nn9aCxe5aQxEuUxTNPGsXNYyj0xqfpd0Gd02pCPsK3oYQBM/WFE40t8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768903024; c=relaxed/simple;
-	bh=FzH3FXVIZ4sYtWn5IF8efd7H+UrV06X/7FFmsV/Erq8=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=kBkvQ4+/4E+SoTogA2svLK7ToJiLJVWBa7s+r+3WYaMw/EIaNUO98ZdGGcvyunwYHlSOA8LYnkccfRWGf0Xv5nD1GoxVadT82IhvH5qu/TqbTmq4ewaFiT+0Ij8k0dVIWAFl37nodiUUMeEk+ATdeEKt1NGSsf92qDtPvemdn5Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mMlsLV3Z; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=dYFVJNYa; arc=none smtp.client-ip=205.220.168.131
+	s=arc-20240116; t=1768903026; c=relaxed/simple;
+	bh=e1Ei+Vg6/eqnOVvDJH79AZ/tLbgMbADWxoq4raCL2dQ=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=hUOCvKYcFlwthPSa60tg/X6yxFeqNgGZ3kg8NVw0A55edDcGksabIFPrSfldolS7coymb5xKrIw3nrq/nyBLKFlUtXheQmdN7jXdTV56ta7nRxbZDMmWjovcj/qAvX5K3Xqj5cLsobA1/moQr3Tav14AUU7jDd4GcUrvKVdue+0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fCVZiF7X; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ZeFHQL7S; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60K71aCc1408494
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 09:57:01 GMT
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60K61Z2T3772487
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 09:57:02 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=SnG6fJCRZE7y7BN7GndMWu
-	n9/Ei2lFxmtqiFlXiBylA=; b=mMlsLV3ZjWqaASrLJPHtMb47IpfszxZVgrOKw3
-	kWnB2FHI31GXfDtdmeDiwP050lXuj0QNUKP0NTZ6l9RAKX6RKruKPoULErwENulN
-	AlN7iJXGLAs1GNHX1PkjtXKzMIoilxj1NGYNI8fDyLqr3t53juanrzMJgPnwrIwK
-	O4kCfOzxNYLlSkcm1Tg4cfjvF0fzTQoDyHSdATzRyGQEBoV2qJw1h7WAfN/b1Pbd
-	K+Oa8Om/+DrAXyGUsOzIy/cEcKlPzHVJQKEbRFmQ4xLqj2hjup87FxTrEyCZVYcL
-	yHUa6VavQABDp6HXq9uq+IfB3G5wReDZ6hDETFCNE8hZK6rA==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bt4y2rhmx-1
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Uzm1SobnY00hEMmsJKkt8iXWNak+ayoq8nsnUXqD3Io=; b=fCVZiF7XllNuSkNU
+	EcyFZqaihgZNxcxrWHWf5W/BT/B7deIyFPP8YSyZ8X9d717Ku0NqA9fDdtpVzegE
+	g4IrKDEY5yZ/rEdegsBIncdMba4xkzEW14yVG+tGMrOUJy17I/mz7ZAQ8HLh1NJf
+	YuU1C3RbjwcSBRi0O7JQTIim+yugQBg13E2mMVmb21hH9C0YeYgZ+bEqaFzw2v5A
+	5+ec9/nFOgZdSfcYcSyHBhuXqqn0HPVo1cz+8zeh9jCcZ1x5lN9Pg119H3cF3U+9
+	nPRULbygZW+rgGOgD6aG66QBUe+QZEg8uoAa5Wsmt768SWGuWP1TelYMX3gLvI7p
+	HZ6cAA==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bt42wrr4m-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 09:57:01 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-5013d63b3f1so127049301cf.1
-        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 01:57:01 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 09:57:02 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-50145222233so137412471cf.0
+        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 01:57:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768903020; x=1769507820; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=SnG6fJCRZE7y7BN7GndMWun9/Ei2lFxmtqiFlXiBylA=;
-        b=dYFVJNYaHo5MV06LohLD3CDrO6apOz9AGwsH6JuVYEJF5sHB7zwzG062pf+SaOMdNX
-         AynnRkZEP0kHLPBw8vW5ILAOL03SmKQ6V70XT6uBgPb7hrFZ19ZoDRWtPxMme6J+fEwP
-         C/klO57cxU3dg9FNikb3dMeWjTreBfVlP84zO+De/W4leGpQ5DCKFQsxBJKa+htQ5eLI
-         PQJw7oi9PE6gcmZU6XD7MYfBSuWGUVOcxcNz8XRfLQUM7Cikwpv1Cd+QJIKJwORzKUbw
-         IevZmup7kM050HQIS2gaTcQOY9hx3XyA/kjA5ZpzHp/9asi8Yb0AqBDM43sMzTzFnxwJ
-         u3uQ==
+        d=oss.qualcomm.com; s=google; t=1768903021; x=1769507821; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Uzm1SobnY00hEMmsJKkt8iXWNak+ayoq8nsnUXqD3Io=;
+        b=ZeFHQL7SHjPSubgnFC4nRFgCnJ1eyo5Ilm16htkqc1F/qp6Q+1MPYiDf7/vCZETGdj
+         Om3C2mx154QazDRy2zxmgNk5IS3FJwRr2fD/0hfeNPDdYqMGqys2+A4NVdakqy4866do
+         ll8rF60gbtQigMU8HiQOWSd79zJdvC3jcH2J1HO+btGitZvLsu0zi6OR0ez3q5HYgziQ
+         SgqC7xS6eILffZV6D+2FZS4Woki/GJFLhZfT1q/pWwVqkjWx6VKDJC3oK4Jyz+51I2gw
+         lUvnjKZNEaKWADGc6uXarRBJAXsuDaZXfQfsZlEOFseHoloaD2h7WyOCVR2/4cmLTT45
+         dXCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768903020; x=1769507820;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SnG6fJCRZE7y7BN7GndMWun9/Ei2lFxmtqiFlXiBylA=;
-        b=SfyKva710y201LoqQxjfP6PSNaICqn6lCDk5b1YIxiE7yH9DdHF0Q6ElVCWC7mXzSu
-         xLeCbYFfFDU8OKjaQ6C7U1ERuj/G6fAFrikJM595TEei0pkD3339cvwO5ex+8ihTt7W+
-         zHajSYo6AWRAOaUrF6HKbE/qYx4ptWLqil/ZXC0fVz6pnCbCTm7i6IEe5K3yXoNx9QtG
-         SPx0edKhm+eI+jd+zqRH2a3OhfEd9gTFL8LjwToOn20DTwazDNUAiB198mqmgEN7CeSz
-         cQuh3ggDIQPsKmiNwLE35q+uNfYLJ+HZ1ipWwbd5Yff69VMBMd1aO/5xrWtc13CYkLOK
-         ftcQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUjowjkJx6xbORFpUlzfN1w1J6hvNMv6O18tzCX+2yvbO3e0KruYPf0kIsX/6nXvl0kbKawyS8tknQc@vger.kernel.org
-X-Gm-Message-State: AOJu0YwvZL1p8Z/F/XLtxxB7pDEzi64IvttIQRG/pY+RhrrHHRwFUX4m
-	H/Z6e9/DEveaeWHxdRSHZD0MJp7+v0udJ+tFfZl9Ntxw9DPBxD3ljHb+oJCIhiLTrQn03/sOCYw
-	hrZSVy5R1YPnmFcCibpd3i6mLkU4nGrGbBtYz3IR5CJykMFcA7Eeon1bXCrT3aX52
-X-Gm-Gg: AY/fxX5aPTkFMaH2a3mOrK7uM7gAZEF+cQHbkMGnUw8ZNV0niU2qdXI22bnH4IvMWFc
-	M+QJEBomTLnDJpzhda6yenHUzKdmd7TVk3IwBABsVi2v2VnBnfYXgTZlq6r234ocGvcEPRfhWs7
-	2lEIQGI/mifxZR2lnPhHl70pK//y+/huoiezNGqf9I13bCcWFWBVsNaXr5Xu29dWr32I2UkYF2m
-	E1CIqrc2D5EbblueDHNc/tr5DRIQyRGaSIzTWRnKrnKEQk7/Nq4Yz/y/Nwi9M0xM0PLo4Qk3uKg
-	KtsILJLt6sbmH54PYwGNY1d8vfeUoaK6LL8NkY2D+xlZEFCEN9E4XrvsU5WWRXSBCSKxPKraP0G
-	dZqiF4wMEOPjXNCMWcg==
-X-Received: by 2002:a05:622a:95:b0:4ee:191e:adea with SMTP id d75a77b69052e-502a163d0fdmr178747201cf.35.1768903020067;
+        d=1e100.net; s=20230601; t=1768903021; x=1769507821;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Uzm1SobnY00hEMmsJKkt8iXWNak+ayoq8nsnUXqD3Io=;
+        b=W5Lw4N16TE0XPkvqr8uJ+hQEODawRhxnzr9+LYFUdv6z9UEgGTOOEn2oHQgPFlZOpf
+         ksaM7Ss/ePoRpbkgxMdfImYQAYKyGmiqGyFZwXVPkw7pxghs8qphEaiNkCd1CINqJGrW
+         sW8fJUbTTBGGdFVUsI0e47jwiVK9FRQcbTTIC82kv2exC7d094txu2G/Q0Ag5u88JJhK
+         t1Q82HfnAIQPsVufVSmyIt3E84aPS/0ROi3bQhp6GVd5uMC8haYxfMaG4l1YG+WXVerY
+         q76y4Qnk1XGh2L7fPn0bWEUzjkXuv2Ls0vLcjIxlKhgY4s968FcMU0bgxxOUHUS6i+ph
+         il8A==
+X-Forwarded-Encrypted: i=1; AJvYcCV3c0bb5SSdLNuuEHELHqXKiJv0cdxbFvwryOkwr0VWcP+0OlVWJfuGkl76g3mOMtYckiEIc+CmCQcb@vger.kernel.org
+X-Gm-Message-State: AOJu0YyjQ1kE/B1BQ4l5hc8slfJAafZvlVPjrtxVSh5FkVdmb2+dLt++
+	wMEVTduaRWosn32btP62y/MMLUgjVWivD91/5PKPZsX5lDyzHH579xQzu2G3L+mes8+mJzpaRkT
+	vJRfkUFg7DVN4aTLRVtxBD/LmnVvXTeFQY8gQFpcZv807aNYsslKex35vvRhbBvdy
+X-Gm-Gg: AY/fxX4Fbu1Y1gJ566JDYo0V9bsd//ihr2mN0OkTSTNYJSNiua/uXgh+L84haRCajq7
+	Khvp6UW6ltwKvXhLJX6isBK0deywiI4V8eFLliBJnHnF9ezCoC6kHh9YvyFKWT1QkOFHua0Zf6i
+	M3/CpRji0wv+jn5xWPYSb/foQXc8IgZq07e1Cd3h4HQsagnB8GNxAIzhUOelOv7orap3K3BW7Y8
+	/9JFTX4tCtycdrIb1kkmEU7wVtQV/G0ADn+GIkuZhGzz1n5E0CXEfQYZvx3CYcY7Je+eGi7K8so
+	vWpxE7f2gADHzWOpNZMWF+WPKwQuPB4BMN0h0tPsi9Ye5Xc/i1vJsMlZi5RAaYLNFhA1N1NPnp3
+	hkkgRiKS4I4yL6McBnw==
+X-Received: by 2002:ac8:7dc3:0:b0:502:9f6b:a3b3 with SMTP id d75a77b69052e-502a1e60bbamr183631881cf.37.1768903021433;
+        Tue, 20 Jan 2026 01:57:01 -0800 (PST)
+X-Received: by 2002:ac8:7dc3:0:b0:502:9f6b:a3b3 with SMTP id d75a77b69052e-502a1e60bbamr183631621cf.37.1768903020805;
         Tue, 20 Jan 2026 01:57:00 -0800 (PST)
-X-Received: by 2002:a05:622a:95:b0:4ee:191e:adea with SMTP id d75a77b69052e-502a163d0fdmr178746921cf.35.1768903019439;
-        Tue, 20 Jan 2026 01:56:59 -0800 (PST)
 Received: from hackbox.lan ([86.121.163.152])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-654533cc543sm12697032a12.20.2026.01.20.01.56.58
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-654533cc543sm12697032a12.20.2026.01.20.01.56.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jan 2026 01:56:58 -0800 (PST)
+        Tue, 20 Jan 2026 01:57:00 -0800 (PST)
 From: Abel Vesa <abel.vesa@oss.qualcomm.com>
-Subject: [PATCH 0/3] pinctrl: qcom: Add support for Qualcomm Eliza SoC
-Date: Tue, 20 Jan 2026 11:56:39 +0200
-Message-Id: <20260120-eliza-pinctrl-v1-0-b31c3f85a5d5@oss.qualcomm.com>
+Date: Tue, 20 Jan 2026 11:56:40 +0200
+Subject: [PATCH 1/3] dt-bindings: pinctrl: document the Eliza Top Level
+ Mode Multiplexer
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,10 +105,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAFdRb2kC/yXMQQ5AMBBA0avIrDVpKwhXEYu2BiNS0pYIcXfF8
- i3+v8CjI/RQJxc43MnTYiNEmoAZlR2QURcNksuCC8kZznQqtpI1wc2s1DqvpOqKrBcQm9VhT8f
- 3a9rfftMTmvBO4L4f5a3x9XEAAAA=
-X-Change-ID: 20260120-eliza-pinctrl-7bb592ad63f1
+Message-Id: <20260120-eliza-pinctrl-v1-1-b31c3f85a5d5@oss.qualcomm.com>
+References: <20260120-eliza-pinctrl-v1-0-b31c3f85a5d5@oss.qualcomm.com>
+In-Reply-To: <20260120-eliza-pinctrl-v1-0-b31c3f85a5d5@oss.qualcomm.com>
 To: Bjorn Andersson <andersson@kernel.org>, Linus Walleij <linusw@kernel.org>,
         Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -114,70 +116,201 @@ Cc: linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Abel Vesa <abel.vesa@oss.qualcomm.com>
 X-Mailer: b4 0.15-dev-47773
-X-Developer-Signature: v=1; a=openpgp-sha256; l=892;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5286;
  i=abel.vesa@oss.qualcomm.com; h=from:subject:message-id;
- bh=FzH3FXVIZ4sYtWn5IF8efd7H+UrV06X/7FFmsV/Erq8=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBpb1Ffa++4e/D5/abuIIXQA45h3fb+68lmL9fqB
- wtBEzvBiwyJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCaW9RXwAKCRAbX0TJAJUV
- VhXYEADBf+0NS6KjFQ6ZDlmQpwIq9NRAJAIcZ6u30sOffxG+/wziu/zgbXoZuG04PC16KWMQp6P
- ar0UaU8C8IUcs2INdg6KqPOWiYn4Xo2creB3habv5hS1Xd9yTFSVr+b4q2deY50jS+5x5eR4kZA
- V2Nn1TXGVVFxzoT35XNKv9g4Z/JjyJK5Bx29z3FxZQc5K38O8tFooexvpIv7LlI9fc26Ex3uiOh
- HtS+aq+5RQaNnAjAULAMBSwgwyDTfaGeLTqL2MlFfsTZTPDv3lBIQtP+52XguNPQDaG3lSuC1UM
- d94Q6Hdn32UK1CKMZoMbKLPzLY7ida/WtF6B6y+/81Ob98/Jzg+9J2e+AM57YIfY98jdBsX+1W9
- MzezyRKL9+67GhcMbodPffXCOIzszPvJ1dzVjIV5bIunt7wwVnVJJiiswJw5/iWEwaqPNe1972n
- dPV8WTdsVlHE20fYdQ1pkGW0hgEjRDzxmtJoFmYjnvWbFKvbVCaOuRlxe0zvw42EQEqf0jAqBNN
- hVMvzNz1zY62KGdiwTDGC03mwlLUdhhHG3Tv2+1hjJqQE7/QhuPTsvC9k8V/yLHTZ6wBhjvAFtG
- i/5F93uHQwpO9nP+45umIz/lpPFm9v7c5wETe+Vo+2xnoP31w0868tvzoLMn4dNzK66Iw4wiCp8
- taT6xkLqTLT2EyQ==
+ bh=e1Ei+Vg6/eqnOVvDJH79AZ/tLbgMbADWxoq4raCL2dQ=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBpb1FmHh6EVn8GDdgqbPM71dQ+Xv3++cIXfnARy
+ jf8+kqCvdeJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCaW9RZgAKCRAbX0TJAJUV
+ VvBLD/9UyWk4DMA2oAPjtdWJ0tobHcrWrxyAUyWuz01JkkW9LpiG1B0EyL6vQcQz+AULg2O2JXM
+ +ZIEeUubKdgu+p3tZEH71npEiNksOCb97dZSuYeAuN/KCbraba3JdXNO21bei/myowEy9svl18m
+ Vi4FlV3ug9P5sMD3kXh/7ZLKXf5PsIwiSK+0hQHBiBKvdA/54SreTCtRFRXR8jbucRZ9DrBbopt
+ eu/Oc/hjT/FFNT7eVK7JTsEacxJXvge3DatfeHfWtq3qqPNWPuhebVrF+pQtBHTBINRvDaSEiBw
+ tZ4KoUItsY1t531frY+k3I+1SD4ItYPwWPR03sSF8GjHg4OguzQtADLwqNRbgaSCXvut+YlDcli
+ 4bIuOb6RAObDRVDk0KNBedZDR6GxIwlTg5PKH7/W8f4Hjy25e4YW4rt2VLiRKSqWu3Ap3S3HavW
+ VrlwhYXZWyxbcnlib+86ZBsJyRNPxKMTUoxFEd8f26SebzUlNZsfuo3Uan77sgdUnYyBJHviGH1
+ rBcDFRK3M+3nIdZrc4Mu73r+775CL7cIJz8I3h6TxCWyvdkJJev4w7KgZFemNWiAaBaep5A6iS/
+ B8oaDz2aS2rEKLd67TsSNmskdaHIJXZYPysj9wqb5ABtWY3v12ec1pcJ3sGc+ZtPTJkmI7N9BAO
+ Jj78uiSmkdamcKg==
 X-Developer-Key: i=abel.vesa@oss.qualcomm.com; a=openpgp;
  fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIwMDA4MiBTYWx0ZWRfX5DrTk7yIVcqA
- 87wOR1c0qQoIlaguASNXGNstjNartFggHXbTJLy63ZvY4eZuXrtlVZ8uwl50hnX0VetHQGjrGW3
- iqEP9BQ2Rmfvf6q4xyGY8mndZX+7R/K4MuCSVhiTFhP2hhhGTbGCTu+MlHZTaAw/3brS1EPsX14
- 79cuJqSdkiolNozj003zo+SlxlhX1iolqJX3PLleE8CCffSpPEz2aXr174AV1bbYfen7uOwZH1X
- 3Rz66L8kmOV4mciRvqYnRBAn8IrrW9wDrXgTVFi3O0A2xWpYTXvMVr8Jr0IhmhO22tP0bvKGhIi
- 9fknTAPvf4wYuoOep2iAaiVPoid/WRY8Y72you9rZdR2tyvBmCr92vC3hl+8U5wQWhl1lI4Qc94
- Dy8FEMwyERKJ63Qe7epzuN1lRc4lpYfsb2FrXyJB8+xahNsBe3IJRaLCz1mv30doahO5l8O1JPP
- BN+VB5yAr0sdu2kW8IA==
-X-Authority-Analysis: v=2.4 cv=Ds1bOW/+ c=1 sm=1 tr=0 ts=696f516d cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=RUlelSpolvTNyr7Sls5SJA==:17
+X-Proofpoint-GUID: m-9GknxDUDuqZ7mrv4GT9exvwBAgNyul
+X-Authority-Analysis: v=2.4 cv=eJMeTXp1 c=1 sm=1 tr=0 ts=696f516e cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=RUlelSpolvTNyr7Sls5SJA==:17
  a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=OwXYu7Csgvg7BBQfv-AA:9
- a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-GUID: 1Ons2Vf_hQ9HTkNWUKhxaqF6oyeOzdMP
-X-Proofpoint-ORIG-GUID: 1Ons2Vf_hQ9HTkNWUKhxaqF6oyeOzdMP
+ a=VkNPw1HP01LnGYTKEx00:22 a=gEfo2CItAAAA:8 a=EUspDBNiAAAA:8
+ a=RS--hHaVoNrYE_hnkMsA:9 a=QEXdDO2ut3YA:10 a=a_PwQJl-kcHnX1M80qC6:22
+ a=sptkURWiP4Gy88Gu7hUp:22
+X-Proofpoint-ORIG-GUID: m-9GknxDUDuqZ7mrv4GT9exvwBAgNyul
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIwMDA4MiBTYWx0ZWRfX6xgmBDsFUO0o
+ ILmzAS5fRxmME8RABAhoT0IkkkF7RDobusRLqjKmKyzRWYQuE8iLVxDgE1mDt2Jjpjl53UAEQJi
+ yMNCduUzGN3xl0Ijn/GWTFQIitLb6CGAdrvaVNQYygAnu0veaeC4X4rHMr6Q3Ul42623X3TxkhF
+ frTJ2ziz2XE9uClYSvKQg8NqSa9HDaxO5LElrEbqTjtD7oEYAJvSSvYeY8AfPO8jwxCD2D80+WJ
+ DXZLXPxCN4YgBT68OpqCotLQaY5jDIlGzmG3YIRlCSgKQZmFW7lTzY6bmk4bq8SiIVqfclLCNp5
+ 2lk+Vf98OIFATdUrblkyBngRd2/8u0GyLLVz9LHTuiTdvm8fYXAzEG2weJA76/TmCtdwgHjl3Jw
+ dX6YdytkHwYUIM6K2mFdPwPv/jqUpNs+9a48Dy4zJ/KOvny9iLRuXemTmeb0c0oq5Z9ehb8K2Kk
+ D/jMtSIw095MU2A+j7g==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2026-01-20_02,2026-01-19_03,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 malwarescore=0 clxscore=1015 impostorscore=0 spamscore=0
- phishscore=0 lowpriorityscore=0 adultscore=0 suspectscore=0
- priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2601200082
+ phishscore=0 clxscore=1015 priorityscore=1501 malwarescore=0 spamscore=0
+ impostorscore=0 adultscore=0 bulkscore=0 suspectscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601200082
 
-Add the pinctrl driver, document the bindings and enable the
-driver in defconfig as built-in.
+Document the Top Level Mode Multiplexer on the Eliza Platform.
 
 Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
 ---
-Abel Vesa (3):
-      dt-bindings: pinctrl: document the Eliza Top Level Mode Multiplexer
-      pinctrl: qcom: Add Eliza pinctrl driver
-      arm64: defconfig: Enable Qualcomm Eliza pinctrl
+ .../bindings/pinctrl/qcom,eliza-tlmm.yaml          | 138 +++++++++++++++++++++
+ 1 file changed, 138 insertions(+)
 
- .../bindings/pinctrl/qcom,eliza-tlmm.yaml          |  138 ++
- arch/arm64/configs/defconfig                       |    1 +
- drivers/pinctrl/qcom/Kconfig.msm                   |   10 +
- drivers/pinctrl/qcom/Makefile                      |    1 +
- drivers/pinctrl/qcom/pinctrl-eliza.c               | 1548 ++++++++++++++++++++
- 5 files changed, 1698 insertions(+)
----
-base-commit: d08c85ac8894995d4b0d8fb48d2f6a3e53cd79ab
-change-id: 20260120-eliza-pinctrl-7bb592ad63f1
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,eliza-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,eliza-tlmm.yaml
+new file mode 100644
+index 000000000000..3a07ee8d7218
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,eliza-tlmm.yaml
+@@ -0,0 +1,138 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pinctrl/qcom,eliza-tlmm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm Technologies, Inc. Eliza TLMM block
++
++maintainers:
++  - Abel Vesa <abel.vesa@oss.qualcomm.com>
++
++description:
++  Top Level Mode Multiplexer pin controller in Qualcomm Eliza SoC.
++
++allOf:
++  - $ref: /schemas/pinctrl/qcom,tlmm-common.yaml#
++
++properties:
++  compatible:
++    const: qcom,eliza-tlmm
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  gpio-reserved-ranges:
++    minItems: 1
++    maxItems: 84
++
++  gpio-line-names:
++    maxItems: 167
++
++patternProperties:
++  "-state$":
++    oneOf:
++      - $ref: "#/$defs/qcom-eliza-tlmm-state"
++      - patternProperties:
++          "-pins$":
++            $ref: "#/$defs/qcom-eliza-tlmm-state"
++        additionalProperties: false
++
++$defs:
++  qcom-eliza-tlmm-state:
++    type: object
++    description:
++      Pinctrl node's client devices use subnodes for desired pin configuration.
++      Client device subnodes use below standard properties.
++    $ref: qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state
++    unevaluatedProperties: false
++
++    properties:
++      pins:
++        description:
++          List of gpio pins affected by the properties specified in this
++          subnode.
++        items:
++          oneOf:
++            - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-5][0-9]|16[0-7])$"
++            - enum: [ ufs_reset, sdc2_clk, sdc2_cmd, sdc2_data ]
++        minItems: 1
++        maxItems: 36
++
++      function:
++        description:
++          Specify the alternative function to be configured for the specified
++          pins.
++        enum: [ gpio, aoss_cti, atest_char, atest_usb, audio_ext_mclk0,
++                audio_ref_clk, cam_mclk, cci_async_in, cci_i2c_scl,
++                cci_i2c_sda, cci_timer, coex_uart1_rx, coex_uart1_tx,
++                coex_uart2_rx, coex_uart2_tx, dbg_out_clk,
++                ddr_bist_complete, ddr_bist_fail, ddr_bist_start,
++                ddr_bist_stop, ddr_pxi0, ddr_pxi1, dp0_hot, egpio,
++                gcc_gp1, gcc_gp2, gcc_gp3, gnss_adc0, gnss_adc1,
++                hdmi_ddc_scl, hdmi_ddc_sda, hdmi_dtest0, hdmi_dtest1,
++                hdmi_hot_plug, hdmi_pixel_clk, hdmi_rcv_det, hdmi_tx_cec,
++                host2wlan_sol, i2s0_data0, i2s0_data1, i2s0_sck, i2s0_ws,
++                ibi_i3c, jitter_bist, mdp_esync0_out, mdp_esync1_out,
++                mdp_vsync, mdp_vsync0_out, mdp_vsync11_out,
++                mdp_vsync1_out, mdp_vsync2_out, mdp_vsync3_out,
++                mdp_vsync_e, nav_gpio0, nav_gpio1, nav_gpio2, nav_gpio3,
++                pcie0_clk_req_n, pcie1_clk_req_n, phase_flag,
++                pll_bist_sync, pll_clk_aux, prng_rosc0, prng_rosc1,
++                prng_rosc2, prng_rosc3, qdss_cti, qdss_gpio_traceclk,
++                qdss_gpio_tracectl, qdss_gpio_tracedata, qlink_big_enable,
++                qlink_big_request, qlink_little_enable,
++                qlink_little_request, qlink_wmss, qspi0, qspi_clk,
++                qspi_cs, qup1_se0, qup1_se1, qup1_se2, qup1_se3, qup1_se4,
++                qup1_se5, qup1_se6, qup1_se7, qup2_se0, qup2_se1,
++                qup2_se2, qup2_se3, qup2_se4, qup2_se5, qup2_se6,
++                qup2_se7, resout_gpio, sd_write_protect, sdc1, sdc2,
++                sdc2_fb_clk, tb_trig_sdc1, tb_trig_sdc2, tmess_prng0,
++                tmess_prng1, tmess_prng2, tmess_prng3, tsense_pwm1,
++                tsense_pwm2, tsense_pwm3, tsense_pwm4, uim0_clk,
++                uim0_data, uim0_present, uim0_reset, uim1_clk, uim1_data,
++                uim1_present, uim1_reset, usb0_hs, usb_phy, vfr_0, vfr_1,
++                vsense_trigger_mirnat, wcn_sw_ctrl ]
++    required:
++      - pins
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    tlmm: pinctrl@f100000 {
++        compatible = "qcom,eliza-tlmm";
++        reg = <0x0f100000 0x300000>;
++
++        interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
++
++        gpio-controller;
++        #gpio-cells = <2>;
++
++        interrupt-controller;
++        #interrupt-cells = <2>;
++
++        gpio-ranges = <&tlmm 0 0 184>;
++
++        gpio-wo-state {
++            pins = "gpio1";
++            function = "gpio";
++        };
++
++        qup-uart14-default-state {
++            pins = "gpio18", "gpio19";
++            function = "qup2_se5";
++            drive-strength = <2>;
++            bias-disable;
++        };
++    };
++...
 
-Best regards,
---  
-Abel Vesa <abel.vesa@oss.qualcomm.com>
+-- 
+2.48.1
 
 
