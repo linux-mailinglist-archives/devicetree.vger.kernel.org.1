@@ -1,251 +1,343 @@
-Return-Path: <devicetree+bounces-257153-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257155-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA7A9D3BE16
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 04:54:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D50F1D3BE28
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 05:15:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 056CD4E7B71
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 03:54:02 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6EDB84E1483
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 04:15:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFE3C3382CF;
-	Tue, 20 Jan 2026 03:53:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF2782D978A;
+	Tue, 20 Jan 2026 04:15:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="hobRgqqz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kNbjyKf0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011048.outbound.protection.outlook.com [40.107.130.48])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB8793382D3;
-	Tue, 20 Jan 2026 03:53:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.48
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768881197; cv=fail; b=E9DgB3VmvjhDF+ippnycBZLGDzqyaoXhLhbtF91iDjCW3nuafA1KqkFq0mRyoHVf5h1cKRwk4HIeDxrqWybRAegebWqPHbWrXVfOq65sJT3mud3k4WOOrfXCv5XlrPI68V4J1OLM2ZxqqF+EG3J4UYuQGu53d9NJrGYxYCVs8b8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768881197; c=relaxed/simple;
-	bh=h+OkxIwuCZXapqeNZnXXRksmiLUCbWy1R2B4rtR270M=;
-	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=I299sAi2RO4DSsIjdUbG0A2liyRdQOWQK07gG0rgAjNxL123xHtiq+Q/Qw28wim4cC7cEqtylMHHiVD93RAsNVTef1THrUUgXiGMpXQ1BAo+wz5wlDkArCpof//h9yXMqc6upngz1v7Tu/ofUvcyrGkqs4gToy2L9dPst8XwPkk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=hobRgqqz; arc=fail smtp.client-ip=40.107.130.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Za23qeb/1mkoQs/TWM2Z0lX9SX6ByKrVZuiY23UCIXDucTVpco1lACLYt6n/adB6oyOC80IhE+dWz7NFoZRsy3Ux+4B9Rb6VORLnrluXE+mREhSCUkZX8Efln6NbDAhXkMAJW2lpv7FCV1dnaRaJgGWwoz/ZzLiBywZsRIaKggXVxjdkXtMGYxwXDUB98S3VIZ3ibXIi1dbf8hJvpMKfjGDNPnJQB0zAygzzBScbqjGNX8C5/moLY2Sc6ul6CluDiEjzbscxDp+FRpCCP9e5p/ByvD4ghxE3ZSyHiv2Suq0iJ8zJWInef6/LV5bJQHO3GdkxFBZFg+6RVMMnL99hOA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LeFGoEWsSWDhNcyLGGYBwNWJwiiZ4UjXbKENET8uby4=;
- b=goUu/nyZ6YPRB/hiZ4PKWf/d3WRabZ0Q24DiWTSg0iFxKJjUPeNBrcwdOpfj7oRbGfHAfKGA5J6QbYsX+qbkrVSOOinMR7ySqtfbok3L3xPB2p7HPYSic72hwvN8e09jdCbFrEWDze5uN9V4Z85vLBc9HbOkZTtAY0+d0QkhkD6+IS5583Z/bVSkoEY7wB/S+RJB49Asn91dcvsPWLq//hKanXpb+Y6zc97UZ85MYk0c23MGxqdQaG+hsstnrp4I5T6enh4zh4in1ooPXgvEe4ScN7UMEc6coqy7FsbZIO0yUoFS1AWOYFZPpDTeLpTXvCw0fA/C068HVa93VycLHQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LeFGoEWsSWDhNcyLGGYBwNWJwiiZ4UjXbKENET8uby4=;
- b=hobRgqqzZH/pjcjvX6Ok+dUy+KnowHzumGVw6BP45z7LXbz9nDvL49fR6Yi/y/mWR20fg3InixOJ2ZpVjksbRmg/niV8ZJTL7mzMq2JF4hWI59zQa8+lhYBEGuuywwE6fZ0Ds52Jh7FmCKtmRggeXavQWzcBLHBeAgxbseqTHI8/TWh1eNpar+nVIcRC9dDAAIlXOzVdwussK2aJiysv2pqowrodiUWLmSrRE3KyCoph1jc/Y9w1jQLV+WzYLx+XUGdgoxCHSTwBGAa5ITnLmr87i9B2Ibw9Tq3FpiHuqqRXutJYxo8cH3HYbA57/n/I1CUpZ7qaUL7kHJNRG/IRtw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM0PR04MB7044.eurprd04.prod.outlook.com (2603:10a6:208:191::20)
- by VE1PR04MB7343.eurprd04.prod.outlook.com (2603:10a6:800:1a2::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.12; Tue, 20 Jan
- 2026 03:53:13 +0000
-Received: from AM0PR04MB7044.eurprd04.prod.outlook.com
- ([fe80::bab2:d15c:fcf8:ef2b]) by AM0PR04MB7044.eurprd04.prod.outlook.com
- ([fe80::bab2:d15c:fcf8:ef2b%7]) with mapi id 15.20.9520.011; Tue, 20 Jan 2026
- 03:53:13 +0000
-From: Shengjiu Wang <shengjiu.wang@nxp.com>
-To: shengjiu.wang@gmail.com,
-	Xiubo.Lee@gmail.com,
-	festevam@gmail.com,
-	nicoleotsuka@gmail.com,
-	lgirdwood@gmail.com,
-	broonie@kernel.org,
-	perex@perex.cz,
-	tiwai@suse.com,
-	linux-sound@vger.kernel.org,
-	linuxppc-dev@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 4/4] ASoC: fsl_sai: Add AUDMIX mode support on i.MX952
-Date: Tue, 20 Jan 2026 11:52:10 +0800
-Message-Id: <20260120035210.1593742-5-shengjiu.wang@nxp.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20260120035210.1593742-1-shengjiu.wang@nxp.com>
-References: <20260120035210.1593742-1-shengjiu.wang@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: MA5P287CA0074.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1b3::8) To AM0PR04MB7044.eurprd04.prod.outlook.com
- (2603:10a6:208:191::20)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 942982D7812;
+	Tue, 20 Jan 2026 04:15:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768882517; cv=none; b=pnIpm36/X18mwBApcDI7XtZvDWRRdcQWsTBdkse6sHPP17Y2KO8U4k206iL/j94Quh2oTqFZtv/WDXfikjBlc88I2fNvA78ch7xKLyRp10g+kH0vZKRSnjnz7YX8a6qaXsTh5zzgLX7ngrh9SVarZXscnMpsHKJpQyIOObfx4dQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768882517; c=relaxed/simple;
+	bh=6sisZqiC0hHclKdH/nGj0mfmQcZPf0CcsEWodDjCCCY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=MiEXZFoG/+RtLZGebCSixukslJEkAUpkihJ1u2rO0k4iI9OQW+0sMiTbkn54vYoFJ0kJGrUevHIfeDeIPeD7i/9lTPq3jmVYQ9fYS6MyKxsbDzPiN0UC6DIQGzUfqXwuiLe9B6jZ7n2R0eytiyRXVGwfoU8bKyt4dHBSCN8qzUE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kNbjyKf0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC191C16AAE;
+	Tue, 20 Jan 2026 04:15:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768882517;
+	bh=6sisZqiC0hHclKdH/nGj0mfmQcZPf0CcsEWodDjCCCY=;
+	h=From:Subject:Date:To:Cc:From;
+	b=kNbjyKf0T9l9Misi9pZK6efHgZLVu1+Nv5ROKroKCW7G1ZATgWpbjpHBou+dnUBv0
+	 i92vYTEbnfiyXBoJGM4k2luPKyuUeGTDMOpyOVHhk9vWYpQzKzxVG5Me9f+Vd9dG+X
+	 g4eIr+apKTE2DTDK8YlOw0DjEuiJAnK3uTyA4Px/TyygGKHvXRE1gby7kK313fPYab
+	 FoPRvchLdZF1gG9nkVRcwNfxZsmIglSGvFuAb3tJlMocD5F2wgbUf6wHCyrwRYNk8d
+	 46pBUzZ5lMnkQpm+nYMSwxaonWJPG9M4LFUGi3fL461UriGhRRgvdctergSfIzO2Jt
+	 4IVdb/3K4QXOA==
+From: Drew Fustini <fustini@kernel.org>
+Subject: [PATCH RFC 00/19] RISC-V: QoS: add CBQRI resctrl interface
+Date: Mon, 19 Jan 2026 20:14:37 -0800
+Message-Id: <20260119-ssqosid-cbqri-v1-0-aa2a75153832@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM0PR04MB7044:EE_|VE1PR04MB7343:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2f35df32-cf2b-48bb-e35f-08de57d76f0d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|52116014|376014|7416014|1800799024|19092799006|38350700014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?R161th2mZxxKvZT5GK0eGGOs0y46m+0Issq9Hg7nxBdsoOuaVrJ4msSUFTVT?=
- =?us-ascii?Q?jJupH7HRLxjthKwr6E0mEU2NSqGV4L5pP+2iwUuxOMnaR/PSpqxbu3PMklZz?=
- =?us-ascii?Q?SvUzep2Hb575rOxkFjxRagYyfuQP/7zYDuVJrulIQeMn66mVVCOk0gGZA7qf?=
- =?us-ascii?Q?NOyhlFqtmcQZpFcZ0c2rLsYo8ttSpdvGlyo/AuPyXKrWHePTkcZNyzTwzt2b?=
- =?us-ascii?Q?1FnbCYU8vcvybyMr8MuJpw+lNU+naA5rYhuF9YIasNvu3OHob2fsvJcy4OMs?=
- =?us-ascii?Q?psEKWbUEsqxxtrO7omKKCc4vTmbt2Amm/jUtcZXD6MYGssaDwqXJrjgdRNzL?=
- =?us-ascii?Q?rW7HX2CGJRyFLvaN1xFJknKJLG5ZVFf2RVW2MqloLY3WPv1uVNyxysR/Ao6n?=
- =?us-ascii?Q?7Ct3hVWUEepGKx7qFbNIhg3tdDxpTKVC8xhbXGTZEklHdNUm+sEehFV/YcCf?=
- =?us-ascii?Q?/1A+u38HGwUzoFSZIu6T4iQ6kbrcoVcoDBYX8lBcnCd5eEMzFYjEKW+5c2MV?=
- =?us-ascii?Q?PC/h2nUauB/k7AxwfMvNCu1u9miKpayG83++kV3KzjmW7Vw040Lecs9TDNN8?=
- =?us-ascii?Q?1n+X7q3HFvod8jT+oim10eFQCFUnz+i0Ujm07f/hg6KXNbUay93E97InXgYE?=
- =?us-ascii?Q?DzSO7Rw3vPH3u5Xjdax8iWo1BIjZCAa67SGef5UL0MK6JQcN3m8ElPVj2MSX?=
- =?us-ascii?Q?bF/csCGnQtEtoiW+UD3h8Aq0HDQlIKzTQHb5wtS6fStyzSY3Tf7j4hOAnOcT?=
- =?us-ascii?Q?jTc2Ce/63zlFdodTWUO+2kDdCrx4rQYW1gbNBpHh8wL+08/FZndb/QEgtbQq?=
- =?us-ascii?Q?ZMZv+f+JiR/Giyo0PBguB9Bai8l4uSj0hyl3BlO2U6BvSwV1zWAcAhSQS6AU?=
- =?us-ascii?Q?CIPPoGnx+JVz/R+5PrOuv0OTWEL48cd1dOcczyY/N/7ax92MlSsYCgGl9E8A?=
- =?us-ascii?Q?MrJeergbk3PvRvmZxsfOXQboGAx2GyMDOVVmbxvgWFi/+m7RHm+pNsi2ZV7J?=
- =?us-ascii?Q?227jAw0CzQ6xGstxhwUypZ7cLfYef9DCMsNooIeFTfzfWFScfRZmhtOoWuGp?=
- =?us-ascii?Q?w0+nI8PALPvI3581jCjr3HpEDMJhfFzbl89S6VwfG5KJ1rWwfILLjC5MV3Kk?=
- =?us-ascii?Q?L8FqlBrmQWOpowotgCg2DUf4pF8lDKQbRyWUpEhU31NudkWCy0yZLbqC71qL?=
- =?us-ascii?Q?c/Vsdoi6FJTmUKs3lPANnUCnkLnueDMVkmd1mEVeHW/TsZYMXHcmFcUN71ra?=
- =?us-ascii?Q?d7oQWs6q0iABDHSW41W6BI5uO2FqnAQta7SD2xbdAHuJ3biijlasyMLvebYg?=
- =?us-ascii?Q?M0vFKn3yALFTArXu+AlmRBUJNsoy9XMmgw7mXnoL6PZNMTWm+1hkvh2ENdt6?=
- =?us-ascii?Q?6z3FgJdZjMuWR2iqdQPTWQqc/Of7JXaOHzOG+KHcFJ9WPUBCBrpy3GiWI0mW?=
- =?us-ascii?Q?KdFon2f9a3DNLeYldJW3RCQHCX0oOHUaVGYr8cc2qPTqgBLX57jRBX/0iOnJ?=
- =?us-ascii?Q?1ZtUnrrKCkn9PlEsBGMTk/pa2l5wpVK31Pa1t+laejam8cWDk5589zFq5qhd?=
- =?us-ascii?Q?zBU+v8/DW3+oct4ZRVTLp1Tm12cHHhRHSF6MPLNB67NMmol1to1PP5XGIhfA?=
- =?us-ascii?Q?tGiHY/hJViXVO673lw/gtAeWFFatlYBW2e4IKGWndc2R?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB7044.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(376014)(7416014)(1800799024)(19092799006)(38350700014)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?AVMgjNGYhBQEZw15x62nwu4Q0pkeumyQmvihYs0D/xodS+SsPBv4mX3FDDbJ?=
- =?us-ascii?Q?g5BSoW2CdDH95iy+c5aiXlaqzZIew7b+DB4Ptp3mAxC5158H2y1PzmK/nHUr?=
- =?us-ascii?Q?VQAs1X6TvZIx2CP1eGl9Ih8RaQmzO4Mo+2pBzqPg8VS68CVNMuLoUqCEqY+s?=
- =?us-ascii?Q?2aCX7VtoKVnqNB37H3Wj2F4ATl/gNt31QZucURDmMHZh4IX9pguHxpICEsrA?=
- =?us-ascii?Q?TW/Ww1V8DZU0u6VyNiqhaIK/wWbxqa2OwAI8wIW2swo7T+knuf+njZQ6cIMp?=
- =?us-ascii?Q?OQALaqbzVmEnAge7l0mPZ+/5tSSJ8F3xY/VsDVleTlm343pYlDbvmRvlITpS?=
- =?us-ascii?Q?z13ThFD3CYyKwO9qOfD3vZRbWwlqjp+HJuOyAcepkdt9IH5tJNLSBW9TDdkG?=
- =?us-ascii?Q?cKcw0hF+nEEc3s/0FgTGlRghItPwG6jVki5z/06ht8zsP+fVdf0ESIcaZ7sT?=
- =?us-ascii?Q?KSZoyReM95exIjYf6NOtsiiUah3UiXA8c1y+wMzVUf4JCs8ZBaktyHI32SQ3?=
- =?us-ascii?Q?+4i8NWjLAcW7CqwFjEkOkxEOpHzhA9qZMPEGPtRBnxWTd8V3/vZuDShvqvZu?=
- =?us-ascii?Q?PCM2wboeb7gZLEux3insSFY4VpCMDjlyBnYEc6DtHn8h0R/IM2Vw5KuVvDf6?=
- =?us-ascii?Q?6zdsPHFVYvycsofQx3B7genbH1yzFPWPLHhsaPGkTZQeYX9TIXFGPUDsm68G?=
- =?us-ascii?Q?UQfmCGc+UlSUTcNEBSExNCNhKeUjylI633MrL8SyakzuBA+pf2AUA9nitAfc?=
- =?us-ascii?Q?vZo6JhGmyAaGDTHm3qwszSLUe5ktA28qZm08ij+xIx1iU90qnDsk+wKjXYz+?=
- =?us-ascii?Q?sxTpOKD/lbTKIFu+V4eLeJeJvgQWV9WKJ8vU67GP7zFLQ3uU6QxXt+5/ynCY?=
- =?us-ascii?Q?7rWdcHXLh6xloACKU5wvrgCnIZSDdB6d3d+8N/wbSII90scRlMr51Ugduwq4?=
- =?us-ascii?Q?X+UjQn2ZRt/NU+koLz6yuG4ZZULeSdBgv2O9veKtimo+nxWoRj+sDlVBzjmJ?=
- =?us-ascii?Q?sC2/Z1eRRUHEs3rgwYV+UmLWnnlbVFTzNf0SoHYNKT3vA+PT6pRVqEHoyBEO?=
- =?us-ascii?Q?Zs5rohHBR6MDgQ1qJ/uXAcC5M6HWPtuZcDiU+JkO86stuWBaogaleYtwDT+N?=
- =?us-ascii?Q?6HXAQOKAZRQeqEoncNnbDM+m4lCWq/Vn2QP4BSP4Mu8dL2QT2hXrTFPeLEH6?=
- =?us-ascii?Q?oD4P/T+YQ7eXOkrML38YeXQf5vid1YLnqyzrnQt00k+4TTb+XUKLZ3XyBSV9?=
- =?us-ascii?Q?A/TYgIy8uUtNa4kKFg0IbUYJUCiPkPOG470w4nujFhLZVka2lXNF08T1Gnkv?=
- =?us-ascii?Q?yWkCoPJDS/o1KVlov3TkrsAsD1JI05NrxecJaNBXc/ZtuNLk8WGBAoJfna4M?=
- =?us-ascii?Q?JzysYT1314UVmoyQwL33FO4dnygpWXRSpcRYFMbaa4Q3bECp1pZSnqgm2v0Q?=
- =?us-ascii?Q?yHh6C7gbaistgOI1AkRfxFDyBsLkAgm/a8CmR5rM+ZWMNn29a920ZWD/wVaD?=
- =?us-ascii?Q?eAlwqS5UBP7ql8hRQVQUmLEBoF0fxZSGNWntpGYJC+KuFNB2qLGOO1zDJk45?=
- =?us-ascii?Q?a3NEnEdM7xzAB353B8M9j1g/RhnJFyOSOaXu1dGQjGmTK4MpO775/lt0QJ+a?=
- =?us-ascii?Q?3euyJSwH/M6ATbwXILzf8/pddXF6FpPfPIGkM+W2MZiMOtXyxo2HdodeVqqc?=
- =?us-ascii?Q?x/gXAt1SVgdlMWTkOWVoyKUyzRIeZIygYkqeh5XHPWF1WkiACMXOFHnlRbYM?=
- =?us-ascii?Q?o9lTppp6ig=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2f35df32-cf2b-48bb-e35f-08de57d76f0d
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB7044.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2026 03:53:13.0652
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vH0rKKGq2wC68nfgIA8G5+e/QybG0pBhvmh8Aaf6tqP7oKTW/zbZoHYx5BGpUTqrawk9Sub4hrTWc7WmAbFcaA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7343
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAC0Bb2kC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDQ0Mj3eLiwvzizBTd5KTCokxdEwPz5LTklETLtDQTJaCegqLUtMwKsHn
+ RSkFuzkqxtbUAe7UY9WQAAAA=
+X-Change-ID: 20260112-ssqosid-cbqri-407cfcda9ff4
+To: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+ =?utf-8?q?Radim_Kr=C4=8Dm=C3=A1=C5=99?= <rkrcmar@ventanamicro.com>, 
+ Samuel Holland <samuel.holland@sifive.com>, 
+ Adrien Ricciardi <aricciardi@baylibre.com>, 
+ Nicolas Pitre <npitre@baylibre.com>, 
+ =?utf-8?q?Kornel_Dul=C4=99ba?= <mindal@semihalf.com>, 
+ Atish Patra <atish.patra@linux.dev>, 
+ Atish Kumar Patra <atishp@rivosinc.com>, 
+ Vasudevan Srinivasan <vasu@rivosinc.com>, Ved Shanbhogue <ved@rivosinc.com>, 
+ yunhui cui <cuiyunhui@bytedance.com>, Chen Pei <cp0613@linux.alibaba.com>, 
+ Liu Zhiwei <zhiwei_liu@linux.alibaba.com>, Weiwei Li <liwei1518@gmail.com>, 
+ guo.wenjia23@zte.com.cn, liu.qingtao2@zte.com.cn, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Reinette Chatre <reinette.chatre@intel.com>, 
+ Tony Luck <tony.luck@intel.com>, Babu Moger <babu.moger@amd.com>, 
+ Peter Newman <peternewman@google.com>, Fenghua Yu <fenghua.yu@intel.com>, 
+ James Morse <james.morse@arm.com>, Ben Horgan <ben.horgan@arm.com>, 
+ Dave Martin <Dave.Martin@arm.com>, Drew Fustini <fustini@kernel.org>, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, x86@kernel.org
+Cc: Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=12510; i=fustini@kernel.org;
+ h=from:subject:message-id; bh=6sisZqiC0hHclKdH/nGj0mfmQcZPf0CcsEWodDjCCCY=;
+ b=owGbwMvMwCV2+43O4ZsaG3kYT6slMWTmMwbapWuopycckZ8adp01j1ehq/9qKOvW/6uXTOZUq
+ Uq3m3Smo5SFQYyLQVZMkWXTh7wLS7xCvy6Y/2IbzBxWJpAhDFycAjARjkRGhr0M5QpHl/jejHVJ
+ WJy1ucTG2nh3UdVuaelPO9OrOnis2RgZlp82SFlV2Ho8oD/otsVTvpOLFRT915x/9/OsdZaUvYk
+ eHwA=
+X-Developer-Key: i=fustini@kernel.org; a=openpgp;
+ fpr=1B6F948213EA489734F3997035D5CD577C1E6010
 
-One of SAI interfaces is connected to AUDMIX in the i.MX952 chip, but
-AUDMIX can be bypassed or not bypassed on the i.MX952 platform.
+This RFC series implements the RISC-V Quality-of-Service Identifiers
+(Ssqosid) extension [1] which adds the srmcfg register. It also
+implements the RISC-V Capacity and Bandwidth Controller QoS Register
+Interface (CBQRI) specification [2] and integrates resctrl [3] support.
+The patches are also available as a branch [4].
 
-so add 'fsl,sai-amix-mode' property for this feature, with this
-property present,then SAI driver will try to config the setting,
-fsl,sai-amix-mode = <0> is bypass mode, fsl,sai-amix-mode = <1> is
-the AUDMIX mode.
+There is a Qemu patch series [5] that implements Ssqosid and CBQRI, and
+a corresponding Qemu branch with those patches too [6].
 
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+[1] https://github.com/riscv/riscv-ssqosid/releases/tag/v1.0
+[2] https://github.com/riscv-non-isa/riscv-cbqri/releases/tag/v1.0
+[3] https://docs.kernel.org/filesystems/resctrl.html
+[4] https://git.kernel.org/pub/scm/linux/kernel/git/fustini/linux.git/log/?h=b4/ssqosid-cbqri
+[5] https://lore.kernel.org/qemu-devel/20260105-riscv-ssqosid-cbqri-v4-0-9ad7671dde78@kernel.org/
+[6] https://github.com/tt-fustini/qemu/tree/b4/riscv-ssqosid-cbqri
+
+RISC-V QoS
+----------
+QoS (Quality of Service) in this context is concerned with shared
+resources on an SoC such as cache capacity and memory bandwidth.
+
+The Sssqosid extension defines the srmcfg CSR which configures a hart
+with two identifiers:
+
+ - Resource Control ID (RCID)
+ - Monitoring Counter ID (MCID)
+
+These identifiers accompany each request issued by the hart to shared
+resource controllers. This allows the capacity and bandwidth resources
+used by a software workload (e.g. a process or a set of processes) to be
+controlled and monitored.
+
+CBQRI defines operations to configure resource usage limits, in the form
+of capacity or bandwidth, for an RCID. CBQRI also defines operations to
+configure counters to track resource utilization per MCID. Furthermore,
+the Access Type (AT) field allows resource usage to be differentiated
+between data and code.
+
+x86 comparison
+--------------
+The existing QoS identifiers on x86 map well:
+
+  CLOSID (Class of Service ID) on x86 is RCID on RISC-V
+    RMID (Resource Monitoring ID) on x86 is MCID on RISC-V
+
+In addition, CDP (code data prioritization) on x86 is similar to the
+AT (access type) field in CBQRI which defines code and data types.
+
+One aspect of CBQRI that simplifies the RISC-V resctrl interface is that
+any cpu (technically a hart, or hardware thread, in RISC-V terminology)
+can access the memory-mapped registers of any CBQRI controller in the
+system. This means it does not matter which cpu runs the resctrl code.
+
+Example SoC
+-----------
+This series also includes a Qemu device tree and platform drivers for a
+hypothetical SoC with a cache controller that implements CBQRI capacity
+operations and a memory controller that implements CBQRI bandwidth
+operations.
+
+  - L2 cache controllers
+    - Resource type: Capacity
+    - Number of capacity blocks (NCBLKS): 12
+    	- In the context of a set-associative cache, the number of
+	  capacity blocks can be thought of as the number of ways
+    - Number of access types: 2 (code and data)
+    - Usage monitoring not supported
+    - Capacity allocation operations: CONFIG_LIMIT, READ_LIMIT
+
+  - Last-level cache (LLC) controller
+    - Resource type: Capacity
+    - Number of capacity blocks (NCBLKS): 16
+    - Number of access types: 2 (code and data)
+    - Usage monitoring operations: CONFIG_EVENT, READ_COUNTER
+    - Event IDs supported: None, Occupancy
+    - Capacity allocation ops: CONFIG_LIMIT, READ_LIMIT, FLUSH_RCID
+
+  - Memory controllers
+    - Resource type: Bandwidth
+    - Number of bandwidth blocks (NBWBLKS): 1024
+       - Bandwidth blocks do not have a unit but instead represent a
+         portion of the total bandwidth resource. For NWBLKS of 1024,
+	 each block represents about 0.1% of the bandwidth resource.
+    - Maximum reserved bandwidth blocks (MRBWB): 819 (80% of NBWBLKS)
+    - Number of access types: 1 (no code/data differentiation)
+    - Usage monitoring operations: CONFIG_EVENT, READ_COUNTER
+    - Event IDs supported: None, Total read/write byte count, Total
+                           read byte count, Total write byte count
+    - Bandwidth allocation operations: CONFIG_LIMIT, READ_LIMIT
+
+The memory map for this example SoC:
+
+  Base addr  Size
+  0x4820000  4KB  Cluster 0 L2 cache controller
+  0x4821000  4KB  Cluster 1 L2 cache controller
+  0x4828000  4KB  Memory controller 0
+  0x4829000  4KB  Memory controller 1
+  0X482a000  4KB  Memory controller 2
+  0X482b000  4KB  Shared LLC cache controller
+
+This configuration is only meant to provide a "concrete" example, and it
+represents just one of many possible ways that hardware can implement
+the CBQRI spec.
+
+The example SoC configuration is created with the following:
+
+  qemu-system-riscv64 \
+        -M virt \
+        -nographic \
+        -smp 8 \
+        -device riscv.cbqri.capacity,max_mcids=256,max_rcids=64,ncblks=12,alloc_op_flush_rcid=false,mon_op_config_event=false,mon_op_read_counter=false,mon_evt_id_none=false,mon_evt_id_occupancy=false,mmio_base=0x04820000 \
+        -device riscv.cbqri.capacity,max_mcids=256,max_rcids=64,ncblks=12,alloc_op_flush_rcid=false,mon_op_config_event=false,mon_op_read_counter=false,mon_evt_id_none=false,mon_evt_id_occupancy=false,mmio_base=0x04821000 \
+        -device riscv.cbqri.capacity,max_mcids=256,max_rcids=64,ncblks=16,mmio_base=0x0482B000 \
+        -device riscv.cbqri.bandwidth,max_mcids=256,max_rcids=64,nbwblks=1024,mrbwb=819,mmio_base=0x04828000 \
+        -device riscv.cbqri.bandwidth,max_mcids=256,max_rcids=64,nbwblks=1024,mrbwb=819,mmio_base=0x04829000 \
+        -device riscv.cbqri.bandwidth,max_mcids=256,max_rcids=64,nbwblks=1024,mrbwb=819,mmio_base=0x0482a000
+
+In addition, please note that this series only implements the register
+interface that CBQRI specifies. It does not attempt to emulate the
+performance impact of configuring limits on shared resources like cache
+and memory bandwidth. 
+
+Versioning
+----------
+I chose to make this series v1 as there have been many changes from the
+old proof-of-concept. However, here are previous series to make the
+history clear:
+
+ [RFC PATCH 00/21] RISC-V: QoS: add CBQRI resctrl interface
+ https://lore.kernel.org/all/20230419111111.477118-1-dfustini@baylibre.com/
+ The original RFC from the CBQRI proof-of-concept in 2023 that worked
+ in conjunction with the Qemu patch series for the proof-of-concept.
+
+ [PATCH v4 0/3] RISC-V: Detect Ssqosid extension and handle srmcfg CSR
+ https://lore.kernel.org/all/20251007-ssqosid-v4-0-e8b57e59d812@kernel.org/
+ More recently I thought it would be simpler to upstream just the
+ Ssqosid patches first. However, I got feedback that it was hard to
+ review without the CBQRI patches in the same series.
+
+Open issues:
+------------
+ - Checkpatch false positive: there is a checkpatch warning about
+   "Argument '__next' is not used in function-like macro"
+   - __switch_to_srmcfg(__next) is needed to avoid the error reported
+     by LKP for riscv-allnoconfig:
+     https://lore.kernel.org/oe-kbuild-all/202509162355.wByessnb-lkp@intel.com/
+   - __switch_to_srmcfg() will trigger a build error in clang when
+     CONFIG_RISCV_ISA_SSQOSID is turned off.
+
+ - The number of CBQRI controllers is hard coded
+   - This was done as a simple approach in the proof-of-concept as there
+     were 6 controllers
+   - I need to refactor this so that it is dynamically allocated based
+     on the number of controllers present in the system
+
+ - Stub platform drivers are included to demonstrate device tree integration
+   - I am expecting a real CBQRI-enabled hardware platform using device
+     tree would have real platform drivers for controllers that
+     implement CBQRI.
+   - To demonstrate the interaction with the qemu model, I have included
+     patches which create "stub" drivers for a cache controller and a
+     generic bandwidth controller. These patches are not meant for
+     upstream, so I did not create binding documentation for the
+     compatibles.
+
+ - Add RQSC table support for ACPI platforms
+   - My kernel patches from the RQSC proof-of-concept were based on
+     v6.14, so I need to rebase them.
+   - The necessary PPTT helpers are already in 6.19 thanks to the MPAM
+     driver series. This should help reduce the number of patches in my
+     RQSC series.
+   - My Qemu patches for RQSC will also take some work to rebase on top
+     of my recent Qemu CBQRI+Ssqosid v4 series.
+
+ - No L2 and L3 cache occupancy monitoring
+   - This is not currently implemented and I have to decided to leave
+     it as an enhancement for a future series after the Ssqosid and
+     CBQRI core are merged.
+
+ - No MBM (bandwidth monitoring)
+   - MBA schema works ok for the CBQRI-enabled memory controllers, but
+     resctrl does not currently have solution for representing MBM for
+     bandwidth resources that are not associated with a L3 cache.
+   - For the old CBQRI proof-of-concept RFC, two separate domains were
+     created for each memory controller: one for MB (allocation) and one
+     for MBM (monitoring).
+   - The monitoring domains had to pretend that these memory controllers
+     were L3 caches which is not the case. I have removed this as it was
+     too complicated and not the right solution.
+   - Fenghua Yu talked about a similar problem last month at LPC in the
+     resctrl BoF during the "MBA/MBM on CPU-less Memory Node" topic:
+     https://lpc.events/event/19/contributions/2093/
+   - I hope to work with resctrl developers on finding a solution.
+
 ---
- include/linux/firmware/imx/sm.h |  2 ++
- sound/soc/fsl/fsl_sai.c         | 17 +++++++++++++++++
- 2 files changed, 19 insertions(+)
+Drew Fustini (19):
+      dt-bindings: riscv: Add Ssqosid extension description
+      RISC-V: Detect the Ssqosid extension
+      RISC-V: Add support for srmcfg CSR from Ssqosid ext
+      RISC-V: QoS: define properties of CBQRI controllers
+      RISC-V: QoS: define CBQRI capacity and bandwidth capabilities
+      RISC-V: QoS: define CBQRI resctrl resources and domains
+      RISC-V: QoS: define prototypes for resctrl interface
+      RISC-V: QoS: add resctrl interface for CBQRI controllers
+      RISC-V: QoS: expose implementation to resctrl
+      RISC-V: QoS: add late_initcall to setup resctrl interface
+      RISC-V: QoS: add to build when CONFIG_RISCV_ISA_SSQOSID set
+      RISC-V: QoS: make CONFIG_RISCV_ISA_SSQOSID select resctrl
+      dt-bindings: riscv: add riscv,cbqri bindings
+      [NFU] resctrl: riscv: add CBQRI cache controller driver
+      [NFU] resctrl: riscv: add CBQRI bandwidth controller driver
+      [NFU] resctrl: riscv: build CBQRI drivers
+      [NFU] riscv: dts: qemu: add dump from virt machine
+      [NFU] riscv: dts: qemu: add CBQRI controller nodes
+      [NFU] riscv: dts: build qemu dtb for CONFIG_ARCH_VIRT
 
-diff --git a/include/linux/firmware/imx/sm.h b/include/linux/firmware/imx/sm.h
-index a33b45027356..ba5d93bd6158 100644
---- a/include/linux/firmware/imx/sm.h
-+++ b/include/linux/firmware/imx/sm.h
-@@ -26,6 +26,8 @@
- #define SCMI_IMX94_CTRL_SAI3_MCLK	5U	/*!< WAKE SAI3 MCLK */
- #define SCMI_IMX94_CTRL_SAI4_MCLK	6U	/*!< WAKE SAI4 MCLK */
- 
-+#define SCMI_IMX952_CTRL_BYPASS_AUDMIX	8U      /* WAKE AUDMIX */
-+
- #if IS_ENABLED(CONFIG_IMX_SCMI_MISC_DRV)
- int scmi_imx_misc_ctrl_get(u32 id, u32 *num, u32 *val);
- int scmi_imx_misc_ctrl_set(u32 id, u32 val);
-diff --git a/sound/soc/fsl/fsl_sai.c b/sound/soc/fsl/fsl_sai.c
-index 2fa14fbdfe1a..9facb7c5ee0d 100644
---- a/sound/soc/fsl/fsl_sai.c
-+++ b/sound/soc/fsl/fsl_sai.c
-@@ -7,6 +7,7 @@
- #include <linux/clk.h>
- #include <linux/delay.h>
- #include <linux/dmaengine.h>
-+#include <linux/firmware/imx/sm.h>
- #include <linux/module.h>
- #include <linux/of.h>
- #include <linux/pinctrl/consumer.h>
-@@ -1429,6 +1430,7 @@ static int fsl_sai_probe(struct platform_device *pdev)
- 	int irq, ret, i;
- 	int index;
- 	u32 dmas[4];
-+	u32 val;
- 
- 	sai = devm_kzalloc(dev, sizeof(*sai), GFP_KERNEL);
- 	if (!sai)
-@@ -1598,6 +1600,21 @@ static int fsl_sai_probe(struct platform_device *pdev)
- 	if (ret < 0 && ret != -ENOSYS)
- 		goto err_pm_get_sync;
- 
-+	if (of_property_present(np, "fsl,sai-amix-mode") &&
-+	    of_device_is_compatible(np, "fsl,imx952-sai")) {
-+		ret = of_property_read_u32(np, "fsl,sai-amix-mode", &val);
-+		if (ret || val > 1) {
-+			dev_err_probe(dev, ret, "Invalid audmix mode\n");
-+			goto err_pm_get_sync;
-+		}
-+
-+		ret = scmi_imx_misc_ctrl_set(SCMI_IMX952_CTRL_BYPASS_AUDMIX, val);
-+		if (ret) {
-+			dev_err_probe(dev, ret, "Error setting audmix mode\n");
-+			goto err_pm_get_sync;
-+		}
-+	}
-+
- 	/*
- 	 * Register platform component before registering cpu dai for there
- 	 * is not defer probe for platform component in snd_soc_add_pcm_runtime().
+ .../devicetree/bindings/riscv/extensions.yaml      |    6 +
+ .../devicetree/bindings/riscv/riscv,cbqri.yaml     |   28 +
+ MAINTAINERS                                        |   10 +
+ arch/riscv/Kconfig                                 |   20 +
+ arch/riscv/boot/dts/Makefile                       |    1 +
+ arch/riscv/boot/dts/qemu/Makefile                  |    3 +
+ arch/riscv/boot/dts/qemu/qemu-virt-cbqri.dts       |  458 ++++++++
+ arch/riscv/include/asm/csr.h                       |    8 +
+ arch/riscv/include/asm/hwcap.h                     |    1 +
+ arch/riscv/include/asm/processor.h                 |    3 +
+ arch/riscv/include/asm/qos.h                       |   41 +
+ arch/riscv/include/asm/resctrl.h                   |    2 +
+ arch/riscv/include/asm/switch_to.h                 |    3 +
+ arch/riscv/kernel/Makefile                         |    2 +
+ arch/riscv/kernel/cpufeature.c                     |    1 +
+ arch/riscv/kernel/qos/Makefile                     |    2 +
+ arch/riscv/kernel/qos/internal.h                   |  155 +++
+ arch/riscv/kernel/qos/qos.c                        |   32 +
+ arch/riscv/kernel/qos/qos_resctrl.c                | 1191 ++++++++++++++++++++
+ drivers/resctrl/Kconfig                            |    2 +
+ drivers/resctrl/Makefile                           |    2 +
+ drivers/resctrl/riscv/Kconfig                      |   25 +
+ drivers/resctrl/riscv/Makefile                     |    4 +
+ drivers/resctrl/riscv/cbqri_bandwidth.c            |   79 ++
+ drivers/resctrl/riscv/cbqri_cache.c                |  106 ++
+ include/linux/riscv_qos.h                          |   78 ++
+ 26 files changed, 2263 insertions(+)
+---
+base-commit: 9ace4753a5202b02191d54e9fdf7f9e3d02b85eb
+change-id: 20260112-ssqosid-cbqri-407cfcda9ff4
+
+Best regards,
 -- 
-2.34.1
+Drew Fustini <fustini@kernel.org>
 
 
