@@ -1,158 +1,168 @@
-Return-Path: <devicetree+bounces-257372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257373-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uMWjM/GMcWkLJAAAu9opvQ
-	(envelope-from <devicetree+bounces-257372-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 03:35:29 +0100
+	id yHu/LtRgcGkVXwAAu9opvQ
+	(envelope-from <devicetree+bounces-257373-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 06:15:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 471F260FB6
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 03:35:29 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48BD55166D
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 06:15:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A2AF68245A3
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 12:17:28 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 26C0B848A4A
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 12:18:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B711425CD4;
-	Tue, 20 Jan 2026 12:16:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07603426EA8;
+	Tue, 20 Jan 2026 12:16:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KjL3GeaZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fTJ59fvI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3697D423146
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 12:16:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75166362127
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 12:16:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768911380; cv=none; b=SXWuK3azt6ady4fxzYMlnj8edEWpVexaiUwuvhKakodTJBQzxXmubdLty7sG/vbX+gOHtmP49PmIIgWeWgt1mqwxjUdzOqDUkRsRBRsETsOBXAYEcP6Aj5LQMvzG/86L1bCPpUrW9oHYmmNNOriHAYD9ZI3nKCmwTBz1N1s8NYE=
+	t=1768911391; cv=none; b=kBbnqEu3asjWzGlTq2yK6IKsj4DihdgD9f313gfDNo/Djh+UrL5qqTtBcs+RIgcxm78AwuphlNRGzMbzk8Otg4Ot/R13VtVuflSVoTGwC5Y/NPDqYJAT5TbbaJW6S1Pm+HKLbgDcDKYIKFqS5zM5iwe6fSNrrOA/44AmxOEW1Mk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768911380; c=relaxed/simple;
-	bh=+zZx1UCGop6TYPZIxrfkSxnpM9rhdSNLbAwPt6AGnAU=;
-	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VYvwM906AMSry6rKtUn/6kJ+aXKc8TwCIGRwXr548F9uZTbYyteAd31ExRgX0qs3C86tKQXHZ+L2TNORhMei89Ut/Hu0l3BtXtlgWVsp8KxU+JG/QNdvK6PAFxwYerTSftriEa51wuFytPsjGkN+1wxfSYpb3yaPNMn4c0aPi/c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KjL3GeaZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DAC6DC2BCB7
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 12:16:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768911379;
-	bh=+zZx1UCGop6TYPZIxrfkSxnpM9rhdSNLbAwPt6AGnAU=;
-	h=From:In-Reply-To:References:Date:Subject:To:Cc:From;
-	b=KjL3GeaZzuJ416a7GxI+F11kDaKsrYLK0V6IMppL8/mVFXv4yIPkzLLACjnXs3zJu
-	 yAPWb1yuPbjMTkV5MjhigVb5P2fgp1CMxOqZdAEFoMc75UVPsFI5YPzB3oYX/1ye+a
-	 QBZczAamyqfW5Z8dUucGo/bRJl16usMiTt+vdEaVLt8xzpnIkAQqmG6XPysWnFwAkK
-	 pkFZlUxT09h/U5Oaj4n5IIdL3Qq7UtOGBnR5oFPASgQLkE6KxE9aKvFStC5Hicw8+C
-	 zCibngRXB6CoJ4VdyqFqQ0js/x0njel6NQarfEty25OwhNJXB1JVqfdXm8gZcxXChw
-	 lGHo9JLia0YBQ==
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-59b6d5bd575so5296967e87.1
-        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 04:16:19 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU6RCDKrj//AvCZ/tBovH3ZH1vAnRMw7sv85fnLFToBUxmcW1KZtTcmaqU4P5m5EkPv2xi32ShPNby6@vger.kernel.org
-X-Gm-Message-State: AOJu0YxU6hG1m4u0WvhdTG3jvoIQ5b7/2fqAeT2B08VFajXQAnDt7lKZ
-	8SPBB5d2KDvsBnNiH/xfjlhSxzYeG04U//dSgWhdFCOdOCfSzqb4t4I/dVLWn0SJA7HO7uRMpn3
-	zJ8I5jUwYdObfaOnusi58gRRSJhLlIW4Ij//+n1zixA==
-X-Received: by 2002:a05:6512:2526:b0:59b:6853:f085 with SMTP id
- 2adb3069b0e04-59dc8f2348fmr709971e87.16.1768911378444; Tue, 20 Jan 2026
- 04:16:18 -0800 (PST)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 20 Jan 2026 06:16:17 -0600
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 20 Jan 2026 06:16:17 -0600
-From: Bartosz Golaszewski <brgl@kernel.org>
-In-Reply-To: <20260120115923.3463866-11-khristineandreea.barbulescu@oss.nxp.com>
+	s=arc-20240116; t=1768911391; c=relaxed/simple;
+	bh=9vuH11vqZu29gsum/hoeAJ7Zy2fpKXOeqC/I7bxBlA8=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=YzVf5+RB7BJOYRj8OWL+SYnlIpAeWEErZBuzw7pCyTGtKleaJsStU29iX2hEo+7R4iHqLBaAFEZBSjawFLQbcHKvdmqt6MHnLHq4MFSfYXLPfx37MRac6WHbmuTXm6IMJKn1lySqNzX9ypMSDSi8328tWA/6Pg0U9zJI4TvyrbQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fTJ59fvI; arc=none smtp.client-ip=209.85.210.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-81dab89f286so2537360b3a.2
+        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 04:16:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1768911390; x=1769516190; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=9vuH11vqZu29gsum/hoeAJ7Zy2fpKXOeqC/I7bxBlA8=;
+        b=fTJ59fvI+29697Q7JKksBkmBnL6vcEIJhQkhOxh3sCKGnxFknP7k03dUf6LEd0f6tN
+         SVYteULHF4zNEplJarwkzdtOhzkthlQv4aVgg2M/KywS7G1ERppCC1M/P4n8x+UmqGvU
+         IzeRfC7o5oZXsjn1fPRCrEHO1cFYDvvKxGwhcsdrTViaMe73ajyaaxij1N5AxZg/VYco
+         FIvWeVeUXLkKvZre0h8sTrmCXNzU7a5iHN+/LhgFn3XIosFR3Tykq5dbEuoH1HU5ol/B
+         Rq8OyGO5IWmesTA+yZueUl0NpoQw4ZigQVpFmeMpjNT6DkdUnGOQOE7/rypOFa+khZ6+
+         VagA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768911390; x=1769516190;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9vuH11vqZu29gsum/hoeAJ7Zy2fpKXOeqC/I7bxBlA8=;
+        b=SjyOdmAgG/AiUyfieVJ5gEn9ToVNGLh8i/pDTWvycuFb1I+xl2OHsJrgNddNE4/Hca
+         NZW9GhAiCUk6c2y6l0PCJYnE+B/GZps/b0SW+wgsND392LcV3RDxbcjnm9f+knC/iUlb
+         HJo9XPhDLtW1lTv2wjM/sPiLDwuZXs7vAv4ZwpaNxcHnNW5ert8Bqx2RGKasbdtAfsTf
+         vJQjSukApfTUfk/DXV6+PECtGKztS6UleAFYMN6h6//DmA6DzphH/ctkAY/p7CJ+k7WI
+         MdeVRW1HCkSkufeNUlpxIxpBQOe82hWwrNON/1c96X+JMa3UyjbS7JeGAYQuM3CcivAa
+         wCRg==
+X-Forwarded-Encrypted: i=1; AJvYcCVPxgQPx5uoJcMeKGOiHyeOKRgjyPcTin0sWD5Lb6rsKOwhjhN5QShrud/IaurtPMpqnnw2XTYMJKia@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw79DFL4xHHNNWliY7oh1zynF5ofYXRNcseLZXso+VEJM1Biw+Y
+	8PE09QUHmg9OZA1o+cXLcBeoozlo8NCf4c6fzCDfkHf+DER3ceshBWl5Xr4l5vmteD8=
+X-Gm-Gg: AY/fxX7g3EzJkhBrFTzV5ghYpRtVkaxSwjdWulFHwdKbDTiTIgq16/sqY0oT06EAJcR
+	XIQE4uo5AcNGfHkDxeVGyV8UneH6jUXEOD9Vmc2Zav3/wm5UECihulxqosPSfMCNuyxnu1NO7mY
+	y7JyVNjpeuJsTyqKRgn90k+IBHwbaMou5bTRJuWE3XniczqgZYckQcuwk3VHxA6/Oqo0rJaax7y
+	nTeLQ30mv9Alg5c1SgE01gH97unrCsCgrMIUKUSRcp/QRBEUwTPKIiP0d7XatJDRiUj4ZbTLlId
+	gdo0j9OgnXNZVFQkSTfzyALs8j7Qj54tEW2PKHQpszky5kew8bKdpd/ceV6/F6Hdvcj2o+WMNGn
+	cWfpSLuEDWIW1dFdcSTCak4Abd0Ame/Y6PzMgsNqMtU92O4BZQgzBiv0HuXLoYAEDQegJu55+oe
+	nMIOtS5G4AQ5MDpmJB
+X-Received: by 2002:a05:6a21:6f07:b0:33f:4e3d:afff with SMTP id adf61e73a8af0-38e45d0eb85mr1912793637.14.1768911389547;
+        Tue, 20 Jan 2026 04:16:29 -0800 (PST)
+Received: from draszik.lan ([212.129.80.47])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-352da1eb6a5sm897758a91.0.2026.01.20.04.16.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Jan 2026 04:16:29 -0800 (PST)
+Message-ID: <17cb0fffa7531e75b8cbe11252deaca1bf377a39.camel@linaro.org>
+Subject: Re: [PATCH v6 00/20] Samsung S2MPG10 regulator and S2MPG11 PMIC
+ drivers
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Lee Jones <lee@kernel.org>
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>,  Bartosz Golaszewski	 <brgl@bgdev.pl>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Linus Walleij	
+ <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, Peter Griffin	
+ <peter.griffin@linaro.org>, Will McVicker <willmcvicker@google.com>, Juan
+ Yescas <jyescas@google.com>, kernel-team@android.com,
+ linux-kernel@vger.kernel.org, 	linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, 	linux-gpio@vger.kernel.org, Bartosz
+ Golaszewski	 <bartosz.golaszewski@oss.qualcomm.com>, Mark Brown
+ <broonie@kernel.org>
+Date: Tue, 20 Jan 2026 12:16:22 +0000
+In-Reply-To: <b9df01e9-c4ba-4e2c-b458-bc93663ab78e@sirena.org.uk>
+References: <20260105-s2mpg1x-regulators-v6-0-80f4b6d1bf9d@linaro.org>
+	 <20260113112244.GE1902656@google.com>
+	 <6ace23c4-d858-4bdf-9987-104e706190cd@sirena.org.uk>
+	 <20260114155011.GC2842980@google.com>
+	 <b9df01e9-c4ba-4e2c-b458-bc93663ab78e@sirena.org.uk>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2+build3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260120115923.3463866-1-khristineandreea.barbulescu@oss.nxp.com> <20260120115923.3463866-11-khristineandreea.barbulescu@oss.nxp.com>
-Date: Tue, 20 Jan 2026 06:16:17 -0600
-X-Gmail-Original-Message-ID: <CAMRc=McD0cRxtb3RCzzYPewFisto=4OjvA4gjaTcOk8ghTw_qA@mail.gmail.com>
-X-Gm-Features: AZwV_QiTyzFRnq5hh7hZRZvq1Kgy4gAD4D9HxCaMuBiHbH1GRoIc82NCrITXf6Y
-Message-ID: <CAMRc=McD0cRxtb3RCzzYPewFisto=4OjvA4gjaTcOk8ghTw_qA@mail.gmail.com>
-Subject: Re: [PATCH v8 10/10] pinctrl: s32cc: set num_custom_params to 0
-To: Khristine Andreea Barbulescu <khristineandreea.barbulescu@oss.nxp.com>
-Cc: Alberto Ruiz <aruizrui@redhat.com>, Christophe Lizzi <clizzi@redhat.com>, devicetree@vger.kernel.org, 
-	Enric Balletbo <eballetb@redhat.com>, Eric Chanudet <echanude@redhat.com>, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, NXP S32 Linux Team <s32@nxp.com>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	"Vincent Guittot devicetree @ vger . kernel . org" <vincent.guittot@linaro.org>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chester Lin <chester62515@gmail.com>, Matthias Brugger <mbrugger@suse.com>, 
-	Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>, Larisa Grigore <larisa.grigore@nxp.com>, 
-	Lee Jones <lee@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	Dong Aisheng <aisheng.dong@nxp.com>, Jacky Bai <ping.bai@nxp.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.54 / 15.00];
+X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	DATE_IN_PAST(1.00)[38];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[30];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	FREEMAIL_CC(0.00)[linaro.org,kernel.org,gmail.com,bgdev.pl,google.com,android.com,vger.kernel.org,oss.qualcomm.com];
 	MIME_TRACE(0.00)[0:+];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
-	TAGGED_FROM(0.00)[bounces-257372-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-257373-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[redhat.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,nxp.com,pengutronix.de,linaro.org,bgdev.pl,kernel.org,gmail.com,suse.com,linuxfoundation.org];
+	DMARC_POLICY_ALLOW(0.00)[linaro.org,none];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[andre.draszik@linaro.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 471F260FB6
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo]
+X-Rspamd-Queue-Id: 48BD55166D
 X-Rspamd-Action: no action
+X-Rspamd-Server: lfdr
 
-On Tue, 20 Jan 2026 12:59:22 +0100, Khristine Andreea Barbulescu
-<khristineandreea.barbulescu@oss.nxp.com> said:
-> From: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
->
-> The `num_custom_params` was not set to 0 and the pinctrl_desc structure
-> was not initialized with 0. This would result in errors when parsing
-> pinconf properties from the device tree.
->
+Hi Lee,
 
-Shoudn't this come as first in the series and with a Fixes tag?
+On Wed, 2026-01-14 at 16:02 +0000, Mark Brown wrote:
+> On Wed, Jan 14, 2026 at 03:50:11PM +0000, Lee Jones wrote:
+> > On Tue, 13 Jan 2026, Mark Brown wrote:
+>=20
+> > > Given that the bulk of the series is regulator changes I'd been
+> > > expecting to take it?
+>=20
+> > I have no issues with that, providing you offer a succinct immutable
+> > branch containing just this set for me to pull from.
+>=20
+> > Failing that, I have the machinery in place to offer you the same.
+>=20
+> Yeah, given what Andr=C3=A9 said about dependencies if you could apply th=
+e
+> MFD commits and send a PR that'd be great.
 
-Bartosz
+Friendly ping. Is there anything else required to get this going please?
 
-> Signed-off-by: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
-> ---
->  drivers/pinctrl/nxp/pinctrl-s32cc.c | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/drivers/pinctrl/nxp/pinctrl-s32cc.c b/drivers/pinctrl/nxp/pinctrl-s32cc.c
-> index 3e0c48068f08..27ea0b44a7aa 100644
-> --- a/drivers/pinctrl/nxp/pinctrl-s32cc.c
-> +++ b/drivers/pinctrl/nxp/pinctrl-s32cc.c
-> @@ -1272,6 +1272,7 @@ int s32_pinctrl_probe(struct platform_device *pdev,
->  	s32_pinctrl_desc->pctlops = &s32_pctrl_ops;
->  	s32_pinctrl_desc->pmxops = &s32_pmx_ops;
->  	s32_pinctrl_desc->confops = &s32_pinconf_ops;
-> +	s32_pinctrl_desc->num_custom_params = 0;
->  	s32_pinctrl_desc->owner = THIS_MODULE;
->
->  	ipctl->regions = devm_kcalloc(&pdev->dev, soc_data->mem_regions,
-> --
-> 2.50.1
->
->
+
+Thanks,
+Andre'
 
