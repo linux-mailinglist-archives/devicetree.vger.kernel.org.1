@@ -1,64 +1,65 @@
-Return-Path: <devicetree+bounces-257552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257553-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CHPeI9rjb2n8RwAAu9opvQ
-	(envelope-from <devicetree+bounces-257552-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 21:21:46 +0100
+	id EP1kGv3ob2lhUQAAu9opvQ
+	(envelope-from <devicetree+bounces-257553-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 21:43:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37B1E4B352
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 21:21:46 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id D76AB4B825
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 21:43:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D709750DCBD
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 18:05:13 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4A480A6267C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 18:10:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15EA244A717;
-	Tue, 20 Jan 2026 18:05:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 017E644BCA6;
+	Tue, 20 Jan 2026 18:10:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RkCZO1v4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mb9RRNfJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD8A543634B;
-	Tue, 20 Jan 2026 18:05:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA124314A9D;
+	Tue, 20 Jan 2026 18:10:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768932309; cv=none; b=B/MnDVp0WjB4DLycLILjOtbzt0Rx5vLLQ3Bx6cETQIFqqM91WmpYg92qKFaiLWgXJClThra8j+FQgsCzCF0DT2Q6f6SzGgbr0TlST6BhhdYpTGFqsauU305K4/XsSLWhXWJKsGf6iWpciR07cvwhY2o78msFmL60rdNxlg9UqkY=
+	t=1768932633; cv=none; b=ElbZCt+bBI7vtWLjJeM4vgVrRj8zvXXFJbV1+EZjfQCwEugVebe7Bf3vVO7WYeGf2ej0th4uT/0dA5mxhdSG+N3/GZkhkTnP4EFToD8BgFoaYXMKjqKyY+BioCjmUjrr11XoGA3xfSfxYkWWdrHNa9EYoD1d3zCbpKQUhQW+A0Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768932309; c=relaxed/simple;
-	bh=XQmS2kPpeKX0VHtoWiz/3XMk2cOzgvJPzSee+Ir9Ap0=;
+	s=arc-20240116; t=1768932633; c=relaxed/simple;
+	bh=z4qhv19x14mJR2BlyaLHoajY1A4AII07YFtQh1gYJc4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LXjJ/92gSlRiyqDwZP57i3sbF+u2wujWNV4DGuAIGm5CAm8qc3x/pAejbhvcSSrq6+iKqt2JfTf1FidJzs74CecR5qwWDQ6/xsxSwDBFI/XFW5MD4QW2mqoGc4yvXqQg3TaG40WShrRWxT+qExZhl3JNbReDurW55eCXp+PQX1A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RkCZO1v4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65322C16AAE;
-	Tue, 20 Jan 2026 18:05:06 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=tixF7bf4/v/TUNkaa0ZXFrscZkG2XTU5y/78VCSdSk3e+sC2MsKUdFFmvfvN5QcYl3FyedgMXOySDHEN8ATWc7CUXuqClnwUw9dRn4Am148pZIw67eFE/KCHpMO2niiIuKAoI/T/TBkOxDoZc1KJxM2i/hRNs4Atd52SNtmzqtU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mb9RRNfJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED289C16AAE;
+	Tue, 20 Jan 2026 18:10:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768932308;
-	bh=XQmS2kPpeKX0VHtoWiz/3XMk2cOzgvJPzSee+Ir9Ap0=;
+	s=k20201202; t=1768932632;
+	bh=z4qhv19x14mJR2BlyaLHoajY1A4AII07YFtQh1gYJc4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RkCZO1v4exqk4GpedTDx04NjYU2VgqKsJ/lO1OAYc9CCLwz6CjsIxwc+C7WXooQ7r
-	 M0EelZTSlY93r5H+U3gOQsWX1Gi2rWFboQ7qn7trp3TPEjN69zuIxehZcaJYquhlle
-	 lzblPsw0/sdLjvmkJnHyGrMtVqiFe2bYPE1zdXu99KS0NBQr483OnPa2ieVqCUqQP0
-	 wJdnyUIWG6vk8zXUQ1lR4w3E5j3RIRaqo4KU1LRjPQ+CjJNn/eOWNSLJ/0U0IClXO7
-	 u2ROjtIVVsSPu2BWaurK8OLCLVEn1hMXOk0+Hm8b+GJR1HNQQ9NjJRBYciMpJmNt2Q
-	 V2derN1L4f/hQ==
-Date: Tue, 20 Jan 2026 18:05:04 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Linus Walleij <linusw@kernel.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, Valentina.FernandezAlanis@microchip.com
-Subject: Re: [PATCH v3 0/6] Microchip mpfs/pic64gx pinctrl part 2
-Message-ID: <20260120-deplete-headgear-6bfec966d312@spud>
-References: <20260119-rearrange-germproof-3e3096cc0da4@spud>
- <CAD++jL=i5o5JbqD_7jhFY5cR-420Vb3hnNXv5nrTd6-FHon5Dw@mail.gmail.com>
+	b=Mb9RRNfJjyLzKjUI+XE6tHgNWbzbonmZ5QYGFcUdZzQnvC/RY/e19MfQaUgxhk4g7
+	 sBGlUtufESyYxhFpuyB1h1IydMzrTULYsg/rZKSjW/rHKBn0iij8MRHFKUfq3dIyoZ
+	 kpH2KgoUTipvxYCZOYT3oYO1/b0jK6RHFhyhsMGD6gVPHFYH0Xo91ilJQpnboEdjB2
+	 hjd+FaeFC62PL1duTxbwjH0dRzRmrRG0r33w4fyETblshDJVpdAkF7jeuoIWJDkRiq
+	 q2WcmTvUiPpdaH0epXI16mQPlwYLlXjqvjT8epRDh3bquK3RFunEeT6mi02nLm6wob
+	 6fOdEybrMVxRA==
+Date: Tue, 20 Jan 2026 19:10:30 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Vladimir Zapolskiy <vz@mleia.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
+	Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/2] dt-bindings: pwm: nxp,lpc32xx-pwm: Add optional
+ Motor Control PWM interrupt
+Message-ID: <b3r6azklrc2p5v7eb22hjh6uivxfm3uevrfvalmgz5ijrzeqgp@c2rfbscdhaij>
+References: <20260110014524.3379187-1-vz@mleia.com>
+ <20260110014524.3379187-2-vz@mleia.com>
+ <20260112-garnet-axolotl-of-acceptance-3978fd@quoll>
+ <20bd5723-212b-474d-84ea-52dec73a5333@mleia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,11 +67,12 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="sJWRsDVAgMp+UCTJ"
+	protocol="application/pgp-signature"; boundary="amfavhcheyxo4tm4"
 Content-Disposition: inline
-In-Reply-To: <CAD++jL=i5o5JbqD_7jhFY5cR-420Vb3hnNXv5nrTd6-FHon5Dw@mail.gmail.com>
-X-Spamd-Result: default: False [-3.56 / 15.00];
+In-Reply-To: <20bd5723-212b-474d-84ea-52dec73a5333@mleia.com>
+X-Spamd-Result: default: False [-2.06 / 15.00];
 	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
 	MID_RHS_NOT_FQDN(0.50)[];
@@ -78,68 +80,109 @@ X-Spamd-Result: default: False [-3.56 / 15.00];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-257552-lists,devicetree=lfdr.de];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	TAGGED_FROM(0.00)[bounces-257553-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[ukleinek@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: 37B1E4B352
+	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,mleia.com:email]
+X-Rspamd-Queue-Id: D76AB4B825
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
---sJWRsDVAgMp+UCTJ
-Content-Type: text/plain; charset=utf-8
+--amfavhcheyxo4tm4
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 1/2] dt-bindings: pwm: nxp,lpc32xx-pwm: Add optional
+ Motor Control PWM interrupt
+MIME-Version: 1.0
 
-On Tue, Jan 20, 2026 at 12:45:05AM +0100, Linus Walleij wrote:
-> On Mon, Jan 19, 2026 at 12:04=E2=80=AFPM Conor Dooley <conor@kernel.org> =
-wrote:
->=20
-> > v3 here, with the rfc dropped. I've still got the property checking
-> > stuff in my todo-list but not tested it sufficiently after the changes
-> > to add generic string properties yet.
-> > I only moved my drivers into the microchip dir, I'll come along and do a
-> > pass on the rest if you're happy with what's here.
->=20
-> Looks good!
->=20
-> I could not apply the patches because I have Johans patch removing
-> the default y in my tree, could you rebase on my "devel" branch?
-> https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git/=
-log/?h=3Ddevel
->=20
-> Pls make sure patch 1 does not re-introduce default y...
+Hello,
 
-Oh, I didn't notice that patch. Guess it went in over Christmas - I had
-a month off basically and barely read the lists :)
+On Mon, Jan 12, 2026 at 12:14:39PM +0200, Vladimir Zapolskiy wrote:
+> On 1/12/26 11:10, Krzysztof Kozlowski wrote:
+> > On Sat, Jan 10, 2026 at 03:45:23AM +0200, Vladimir Zapolskiy wrote:
+> > > NXP LPC32xx Motor Control PWM has an interrupt line shared with TIMER=
+4,
+> > > and the interrupt may be used to report events from programmable coun=
+ters
+> > > e.g. timer counter limit (period), match counter (pulse-width), or fr=
+om
+> > > counters on input lines of PWM channels.
+> > >=20
+> > > As a reference and for more details see NXP LPC32xx User Manual, tabl=
+e 595.
+> > >=20
+> > > Signed-off-by: Vladimir Zapolskiy <vz@mleia.com>
+> > > ---
+> > >   .../devicetree/bindings/pwm/nxp,lpc3220-pwm.yaml       | 10 +++++++=
++++
+> > >   1 file changed, 10 insertions(+)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/pwm/nxp,lpc3220-pwm.ya=
+ml b/Documentation/devicetree/bindings/pwm/nxp,lpc3220-pwm.yaml
+> > > index cdd83ac29caf..53520f005acb 100644
+> > > --- a/Documentation/devicetree/bindings/pwm/nxp,lpc3220-pwm.yaml
+> > > +++ b/Documentation/devicetree/bindings/pwm/nxp,lpc3220-pwm.yaml
+> > > @@ -32,6 +32,16 @@ required:
+> > >   allOf:
+> > >     - $ref: pwm.yaml#
+> > > +  - if:
+> > > +      properties:
+> > > +        compatible:
+> > > +          contains:
+> > > +            enum:
+> > > +              - nxp,lpc3220-motor-pwm
+> > > +    then:
+> > > +      properties:
+> > > +        interrupts:
+> > > +          maxItems: 1
+> >=20
+> > Properties must be defined in top-level. You only narrow constraints or
+> > disallow them :false per variant in if:then: blocks.
+>=20
+> It makes sense. In this case would it be better to split the schema file
+> into two, one for each PWM type? Two described PWM types are too unsimila=
+r,
+> apparently it was wrong to merge them under a single .yaml file in the co=
+mmit
+> 4cd2f417a0ac ("dt-bindings: pwm: Convert lpc32xx-pwm.txt to yaml format").
 
+No strong feeling either way from my side. I marked this patch as
+"changes requested" in patchwork and drop if from my mailbox.
 
---sJWRsDVAgMp+UCTJ
+Best regards
+Uwe
+
+--amfavhcheyxo4tm4
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaW/DpQAKCRB4tDGHoIJi
-0ummAP4+Ga+fgyvHW+/bnVu1GLYzB8cNCJD/okQn3jUk829+KgEA58I0iM5kBbTl
-k3B/5bFc/D4LueRK3I18rRJBZQWpvgY=
-=HDit
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmlvxRMACgkQj4D7WH0S
+/k7LjQgArQ9OG0El4KPIYCalTIisTIEIwv4joOjv55eqJE0bjoWhg6KaFm9l59Sw
+WNLOOAT5qSrdCtehO6+D3We5OEFUvS85BSvpB1Kgd9Ka4Uk4/M98zxrJILTEw6/s
+5ZrgxvBb/5fPg2XWueaZ43KWCxPPe5QQa3k4/0AJluJd8azKAVKI0BROw8dzHEt6
++BdT12rgpYzVPpzmqPPlYJMcCscXrkMtAq+8zMUACcw4Ufgv57+nU4aMzqRJwvgP
+CK6Iv7bxhMOpMyngWfg8EKFduZeGd6MuJBgPY+UQl7HXcvb1/GfKKSORhMk8qznC
+Mn+DpQ607KeYZH7phzglWRKALeMucw==
+=Znar
 -----END PGP SIGNATURE-----
 
---sJWRsDVAgMp+UCTJ--
+--amfavhcheyxo4tm4--
 
