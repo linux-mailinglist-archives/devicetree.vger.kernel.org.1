@@ -1,158 +1,204 @@
-Return-Path: <devicetree+bounces-257307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257306-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iN3vGKFQcGlvXQAAu9opvQ
-	(envelope-from <devicetree+bounces-257307-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 05:05:53 +0100
+	id +JJGKelNcWkahAAAu9opvQ
+	(envelope-from <devicetree+bounces-257306-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 23:06:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0ABD450C9C
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 05:05:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D92A5E7BF
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 23:06:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 337A55C1389
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 10:56:05 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4AFCE5E4C77
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 10:54:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E3B63DA7F9;
-	Tue, 20 Jan 2026 10:56:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8C9B3B8BBB;
+	Tue, 20 Jan 2026 10:53:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=machinesoul.in header.i=@machinesoul.in header.b="SXnUHz+0";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="0SK9V55E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fout-a5-smtp.messagingengine.com (fout-a5-smtp.messagingengine.com [103.168.172.148])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58C0B3446C6
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 10:55:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13352F507;
+	Tue, 20 Jan 2026 10:53:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.148
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768906561; cv=none; b=BHgaLAVzKAXKYLZugtPAOcozVgM1TbfTwCNrQrUfKxaD7k1In46EDHqoGk5kO2vy2d/65hjCtrrbxrBv7xBLVHBMU9y6wGLXpE3HRjX9abPSU+s/RzhUas6XRjBnnmHQIXqmr1VmQ3Y2YxYFtw9aPRJo1H90hzpTb6sI66gPrQE=
+	t=1768906434; cv=none; b=o1KD8RaoP4s+gqxGExpY9S7z43DrPyRvepGzj4ePnodvDNavOWGDTGkGx7FQKveraUIyb+t5Qmye0KjUoCkBpZgQQh3jCJ6LdRgwgCUy/P2U5DX7FYo6QdE2Cbf5tqGoRQQEmOEqO/3t8+nW1Rja0+ygTR3imrGV+p1j8wwxifQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768906561; c=relaxed/simple;
-	bh=Jo14SNVvgAvpmCa6sHx3d7iO2VYD3GagcaTjUOnITWw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qpsPSKhv+OeJUA5BSH1O0DvIwq1pDIFxq+WrxIlRDc+76L8j6hGnHry85qZHJMmEF8q1z5pCKSBQZS5H/FIq2pn50zzqy388X8m9uXCsOCAMgilXLcRHwA6sabkj79DFhqlgrpX3Jr3mZjljsE66XGxPpUt9eghGXUwdAZ5GgbY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f178.google.com with SMTP id 5614622812f47-45c7a6de470so3384133b6e.3
-        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 02:55:59 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768906558; x=1769511358;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EZ0wVYmrXY0w9NWoQKTsT/lFDBKGzH8gk5CbiyOvxNo=;
-        b=drA3BevZ/P6E/6Euk9kyqzVi0nZZqc5CE0EeHledNwwSjffcGvT3z2eJj8lwqvw2Mf
-         urU3bpld0Ak1zarPBUYS073jWs4WNo/yfhEGEmhNMf29LDnUjqS6sEaaikab6Qiem4ym
-         boATqjlrMpQMrVWysT/nfhCPOfcXUeBOLBFwL4zzjPBb1xWTy2zw3/Ck/RPPY5ciwxRd
-         6fgGt+eGUlaVg2yftvkD1uirxrt3tZpQky0KOZ0fsKqCS+V98CM6IMQuNa6sQ/bgQ4K4
-         z2l/+j6wxunJusSU+DJgjrXuVw1l6h9LJjDeoqGIKSenlDVuaT00fx7xmor0ijtFQFWL
-         0pfg==
-X-Forwarded-Encrypted: i=1; AJvYcCXO1jXVJV0pAUpIxcQORRFc9nwG2JZNruLy8tKIKUEX3uvKfrsL56CiLbjFr+N3X6QYnQhTteKf8N8m@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz2u7ppgJhPn6MLenXTICUjplcaNskvnk4RIytuWlTzM3rACzIs
-	rB9nEOequ+GCThHp8U/yRVcfvXZK5NuNHjiShwc43Op4bToVjUeYPUOwbSIhlh2K
-X-Gm-Gg: AY/fxX5JXuiXtfcWvKis6SJb0wkqkS9CfZ1HMG/O9YI3sS88dqaFu2dy8THYYkiVtri
-	YmAqgJ1JXz8W4yP7q0q/lJAvj36RdJwplu8PILy4im/IPNhza29r2bvxcW6RkDmjoDjfx0fF/cp
-	9ZBJprXKn9txRpLn5fHRXLdeBsvBtECVK14ZWX0d6Laf+d+/li+xiRnT7d9vuM3ZiU12aApxT/C
-	DFFBfQ/U561joQoHa+y1GgSwbgO4c63e2EWXj7dlRS1yHO43Q0e6eNPr5GFoa+5PqKRx9LblBDg
-	2AcTnmDr8tlhk0DLyqgGfr2JLkm0xi/loGHogEbEjhY2pW26v/lJk884w8BWeLV99lVqbKAm2w/
-	lOXeNf2k0Bt6+YxB2qygZh96hsdapcVpPel8vdMeMXhWt8zvR90Ndb63kM009qQC0gIUqcTpeRt
-	OAHvtRPWmAJ1Eqd9wtEPIEdfEkQhXBUzbdslC3SqskIm5o3eEk
-X-Received: by 2002:a05:6808:2382:b0:45e:851c:7ee7 with SMTP id 5614622812f47-45e8a93bd98mr611684b6e.24.1768906557915;
-        Tue, 20 Jan 2026 02:55:57 -0800 (PST)
-Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com. [209.85.210.43])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4044bb545b9sm8657338fac.9.2026.01.20.02.55.57
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Jan 2026 02:55:57 -0800 (PST)
-Received: by mail-ot1-f43.google.com with SMTP id 46e09a7af769-7cfcc131958so3409827a34.0
-        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 02:55:57 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVs37qPbyFKYbPOqdQo1lGC6oskEXEduAVbrDJmF6AYnCgQU2h38/R7t8GS83fm+BxeKOl7LUNodhPM@vger.kernel.org
-X-Received: by 2002:a05:6102:3f56:b0:5f1:4fb8:6b92 with SMTP id
- ada2fe7eead31-5f50a9d3b46mr342934137.22.1768906183803; Tue, 20 Jan 2026
- 02:49:43 -0800 (PST)
+	s=arc-20240116; t=1768906434; c=relaxed/simple;
+	bh=PvYuqTp/zxnJTZa25yGtnsjIHXl1URwdBAeM8AzczX4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ahkIBUj7bWHnHP+LSDjY7dNiha4kCjh8hK2HEmUEt+krJE+T0bPs2Alx2clFtH9Y2amN2cp0EXEHlC1o9laSfFiuQUj8uRNZRjbd/ayH+YmizQ0xYrCgxzNvqaWDRXAnjmnorpXAr1uJ9O8LoFAyl+EbhykBrq5A+pmnMC08etA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=machinesoul.in; spf=pass smtp.mailfrom=machinesoul.in; dkim=pass (2048-bit key) header.d=machinesoul.in header.i=@machinesoul.in header.b=SXnUHz+0; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=0SK9V55E; arc=none smtp.client-ip=103.168.172.148
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=machinesoul.in
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=machinesoul.in
+Received: from phl-compute-08.internal (phl-compute-08.internal [10.202.2.48])
+	by mailfout.phl.internal (Postfix) with ESMTP id 35441EC00AA;
+	Tue, 20 Jan 2026 05:53:51 -0500 (EST)
+Received: from phl-frontend-03 ([10.202.2.162])
+  by phl-compute-08.internal (MEProxy); Tue, 20 Jan 2026 05:53:51 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=machinesoul.in;
+	 h=cc:cc:content-transfer-encoding:content-type:content-type
+	:date:date:from:from:in-reply-to:in-reply-to:message-id
+	:mime-version:references:reply-to:subject:subject:to:to; s=fm2;
+	 t=1768906431; x=1768992831; bh=qgTGHf8ClPccFRWlPfS+X4BvRns7/Og7
+	S6s/d/ixkhY=; b=SXnUHz+0T31QiJEFnL9AjbRBW4wSAL4Dn8aeBN0UPG/tNMC8
+	meQB3MWFSjn2Jtk8Ic0IaUxUwHWuu8Kp8nbcxfjHNFUqZWaziiNFhJRYPt8XX6R0
+	Cy67NJNne6qc3YeMIywR1KnT0PdEM1xE3Hqg7YhnzbMldw7Qli+8l5xK7JQWt18V
+	kGCVz1eVYds0KsdH8vxGdB8eG23T8erif6aDz0e/ca36SFBTtNyxcvtD0e2B/SuH
+	HbjzkhK093DvKamTojymbhqLukxKqc+OrBrh3zFfeSh6M02l2Byq5V3UxkWDKxpp
+	0c2BOr+MRg2kl2h13DL8T91k6yzaIE+TG2Uvdg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1768906431; x=
+	1768992831; bh=qgTGHf8ClPccFRWlPfS+X4BvRns7/Og7S6s/d/ixkhY=; b=0
+	SK9V55EHagBbtGe32nEWvO+zJrizFoarwweKoz/HZR2EaDC9NMfku+Mc+gRNmm8k
+	kaA9L3FRGc8xD+Uat00VmeOyA05Izv5XtMXtvU1U40vPJuKccjxhHZsajK8uC78F
+	h8BcPlGPJY+Uxr6xZDnXG4OR7nWQnl3FfQo4KK+T4KRau1ixlDGCpADewdpkyaen
+	khv479+76X0RLEKZalrEl20duj6VQZ5xAonQIDL7qy69gdlPQYyFxMPJzUKkeBCr
+	/SVG2NS2BJFilxwM2V2/9x4McFEYbYwnS+2NHYYUsUWZIpmFSPGnbO+P0VOFBdCi
+	2PHV9JEq25qkVlTOgI6jg==
+X-ME-Sender: <xms:vl5vafx8UJowe6X0TsF3R1eKVbKt41-MN--8OxgvEuUYVsWKwgbw0Q>
+    <xme:vl5vaRq0FEyZOhVCnrmAXdv2wUNIQ5n9tJrjvHYRMTdoltxH68oDgXbT7r7He6ryO
+    NGogXdNpbfOKXmhlgL6sW8mqybK_aOqQuD16NL3Kd0s7MJJJ5G0a5w>
+X-ME-Received: <xmr:vl5vafeqXj_ML_IYUJ5N9gjjkYmfsdx7ugSotsnTHdbnyp9iklvQUP8MhhR9QLdFErk>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgddugedtvddvucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
+    gurhephffvvefufffkjghfggfgtgesthfuredttddtjeenucfhrhhomhepuehhuhhshhgr
+    nhcuufhhrghhuceosghhuhhshhgrnhdrshhhrghhsehmrggthhhinhgvshhouhhlrdhinh
+    eqnecuggftrfgrthhtvghrnhepgeeftdeuheetjeevveehkeegledttdeikeejledvgfdu
+    tddvteevkeehudduledvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrg
+    hilhhfrhhomhepsghhuhhshhgrnhdrshhhrghhsehmrggthhhinhgvshhouhhlrdhinhdp
+    nhgspghrtghpthhtohepudegpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopegrnh
+    guvghrshhsohhnsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkohhnrhgrugihsggt
+    ihhosehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorh
+    hgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohep
+    tghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtrhhoshdqqhgtoh
+    hmqdguthhsqdifrghttghhvghrshestghhrhhomhhiuhhmrdhorhhgpdhrtghpthhtohep
+    sghhrghrrggufigrjhdrrhgrjhhusehmrggthhhinhgvshhouhhlrdhinhdprhgtphhtth
+    hopegrlhgvgigrnhgurhgvrdhfvghrrhhivghugiesohhrrghnghgvrdgtohhmpdhrtghp
+    thhtoheplhhutggrrdifvghishhssehfrghirhhphhhonhgvrdgtohhm
+X-ME-Proxy: <xmx:vl5vaUrZA_IyR7wk44KuMoYOAXibJmCRKudnFKbB9vX5MEfqH6BX2w>
+    <xmx:vl5vaZkFP5Ey3Bp4i8rb2JQUY-cXACD5PwoR3gd7gjmYUYGU7E-3sw>
+    <xmx:vl5vaVRLk4G_g1tCkaEhck1gh4QUeT8AqixjwxiXCQJecabDYePuPw>
+    <xmx:vl5vafb6tytaSZYEOA282o6iJqsWix3gha5A-d_61nCKvucyBa1_Qg>
+    <xmx:v15vaWbD-b1kgzJ4rRcC6bFgSmbDNsHS-mr5QJLEBXZJBsF8ZBupfsSj>
+Feedback-ID: i6b0e4831:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 20 Jan 2026 05:53:46 -0500 (EST)
+From: Bhushan Shah <bhushan.shah@machinesoul.in>
+To: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ cros-qcom-dts-watchers@chromium.org,
+ Bharadwaj Raju <bharadwaj.raju@machinesoul.in>,
+ Alexandre Ferrieux <alexandre.ferrieux@orange.com>,
+ Luca Weiss <luca.weiss@fairphone.com>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH] arm64: dts: qcom: kodiak: Add missing clock votes for lpass_tlmm
+Date: Tue, 20 Jan 2026 16:23:09 +0530
+Message-ID: <5976946.DvuYhMxLoT@antlia>
+In-Reply-To: <6749502.DvuYhMxLoT@antlia>
+References:
+ <20260109-kodiak-lpass-tlmm-clocks-v1-1-746112687772@fairphone.com>
+ <6749502.DvuYhMxLoT@antlia>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260114153337.46765-1-john.madieu.xa@bp.renesas.com> <20260114153337.46765-4-john.madieu.xa@bp.renesas.com>
-In-Reply-To: <20260114153337.46765-4-john.madieu.xa@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 20 Jan 2026 11:49:32 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXAAUe_0kboQ9C0AMPn5re-1kCagecp1fMCGramDpXGRA@mail.gmail.com>
-X-Gm-Features: AZwV_QiaybW_I-1gR5s_n3JOLx29V6BZF-xoPK94FskYw67mu-RW2omq6aWspo4
-Message-ID: <CAMuHMdXAAUe_0kboQ9C0AMPn5re-1kCagecp1fMCGramDpXGRA@mail.gmail.com>
-Subject: Re: [PATCH 03/16] clk: renesas: rzv2h-cpg: Add support for init_off clocks
-To: John Madieu <john.madieu.xa@bp.renesas.com>
-Cc: claudiu.beznea.uj@bp.renesas.com, lpieralisi@kernel.org, 
-	kwilczynski@kernel.org, mani@kernel.org, krzk+dt@kernel.org, robh@kernel.org, 
-	bhelgaas@google.com, conor+dt@kernel.org, magnus.damm@gmail.com, 
-	biju.das.jz@bp.renesas.com, linux-pci@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-clk@vger.kernel.org, john.madieu@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spamd-Result: default: False [0.24 / 15.00];
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
+X-Spamd-Result: default: False [2.24 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	DATE_IN_PAST(1.00)[35];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	CTE_CASE(0.50)[];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-257307-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FREEMAIL_CC(0.00)[bp.renesas.com,kernel.org,google.com,gmail.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-257306-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[machinesoul.in];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[bhushan.shah@machinesoul.in,devicetree@vger.kernel.org];
 	MISSING_XM_UA(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,mail.gmail.com:mid,ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,linux-m68k.org:email]
-X-Rspamd-Queue-Id: 0ABD450C9C
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[fairphone.com:email,ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,machinesoul.in:email]
+X-Rspamd-Queue-Id: 4D92A5E7BF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi John,
+On Friday, 9 January 2026 21:08:32 IST Bhushan Shah wrote:
+> On Friday, 9 January 2026 20:44:34 IST Luca Weiss wrote:
+> > Without the correct clock votes set, we may be hitting a synchronous
+> > external abort error when touching the lpi registers.
+> > 
+> >   Internal error: synchronous external abort: 0000000096000010 [#1]  SMP
+> >   <...>
+> >   
+> >   Call trace:
+> >    lpi_gpio_read.isra.0+0x2c/0x58 (P)
+> >    pinmux_enable_setting+0x218/0x300
+> >    pinctrl_commit_state+0xb0/0x280
+> >    pinctrl_select_state+0x28/0x48
+> >    pinctrl_bind_pins+0x1f4/0x2a0
+> >    really_probe+0x64/0x3a8
+> > 
+> > Add the clocks to fix that.
+> > 
+> > Platforms with this SoC using AudioReach won't be impacted due to
+> > qcs6490-audioreach.dtsi already setting clocks & clock-names for
+> > q6prmcc. The sc7280-chrome-common.dtsi has also been adjusted to keep
+> > the behavior the same as they also do not use Elite with q6afecc.
+> > 
+> > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> 
+> Tested-by: Bhushan Shah <bhushan.shah@machinesoul.in> # On fairphone-fp5
 
-On Wed, 14 Jan 2026 at 16:36, John Madieu <john.madieu.xa@bp.renesas.com> wrote:
-> Some peripherals may be left enabled by the bootloader but should be
-> explicitly disabled by the kernel to ensure a known initial state.
-> This is particularly important for PCIe which requires proper
-> initialization sequencing.
->
-> Add new macros DEF_MOD_INIT_OFF() to declare module clocks that should be
-> turned off during CPG probe if found in the opposite state.
->
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
+As a follow-up;
 
-Thanks for your patch!
+While this fixes original abort, it seems on some coldboots or as such(?); it fails
+to vote the clocks and then eventually soundcard fails to probe, so there is still
+some issue that needs to be solved.
 
-LGTM, so
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+[   17.944296] Bluetooth: hci0: Frame reassembly failed (-84)
+[   20.961100] qcom-q6afe aprsvc:service:4:4: AFE failed to vote (3)
+[   20.961131] Failed to prepare clk 'core': -110                                                                                           
+[   20.961137] qcom-sc7280-lpass-lpi-pinctrl 33c0000.pinctrl: error -ETIMEDOUT: Can't enable clocks
+[   20.961144] qcom-sc7280-lpass-lpi-pinctrl 33c0000.pinctrl: probe with driver qcom-sc7280-lpass-lpi-pinctrl failed with error -110
 
-However, I am still wondering if there are any possible bad side effects
-of disabling the PCIe clocks, e.g. when PCIe is in use (network card,
-SATA card, ...)?
+So far I was not able to find a precise pattern to this, but doing bunch of coldboots
+is most easiest way to reproduce I have found.
 
-Gr{oetje,eeting}s,
+If anyone has any inputs on this, I would love to hear.
 
-                        Geert
+Best Regards,
+Bhushan
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
