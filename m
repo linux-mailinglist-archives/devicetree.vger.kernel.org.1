@@ -1,115 +1,201 @@
-Return-Path: <devicetree+bounces-257658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257659-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aCGVMYkTcGlyUwAAu9opvQ
-	(envelope-from <devicetree+bounces-257658-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 00:45:13 +0100
+	id GEcMMAgWcGlyUwAAu9opvQ
+	(envelope-from <devicetree+bounces-257659-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 00:55:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 433864E0C1
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 00:45:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 357614E2EE
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 00:55:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 35E00B665B8
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 23:23:57 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AE6A7B4698B
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 23:25:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C0B63D7D8C;
-	Tue, 20 Jan 2026 23:23:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E1573EDADB;
+	Tue, 20 Jan 2026 23:25:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sqqIKHXG"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="r3lZNB7L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4580C33A6F8;
-	Tue, 20 Jan 2026 23:23:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D961F3A63EA;
+	Tue, 20 Jan 2026 23:25:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768951409; cv=none; b=N9tkbeJeyzzOnjTgozRB/yW/CrV9EAVwg2hTuczOU1vkFjG2xutzeWf9bTu+WDE/fIhW2EKKflbebQDb0U1xhcy1vMFuljJsvJ17FJcAdNuE8HhC3DC57fwrAS2hOWhWo7Gj/SWnLvQXnwPo2Wlemn53BBFIqa/PFPgXOT9sCu8=
+	t=1768951534; cv=none; b=oQTwrzsKhC9tZ3jCivHKDVFoJVU9P3Yj4XTXkH+qrbrV3sHVGDwI4nFBe/+GVsc+YGXKlWH/0cflKMhqYKiZcKNitnqNSC7Fy/mrBChoEM95I9VwklI08ESaBJuC/aMiR3ur4r8X49X90Ymaqntplt2IhtzV9FB1l4HKlU8zus4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768951409; c=relaxed/simple;
-	bh=LdToKQzIadhn2PyOS8O3OWl0iFO9YJxxP4wDuHYoNvo=;
-	h=Subject:From:In-Reply-To:References:Message-Id:Date:To:Cc; b=uHcxiyVVtjSIkVvAJsQWAKMHhKrC1CuPTsZH5NHDNdzArQ+5hR/FfHG89kbRfUh90EioHhmx+jNXtNLgWPWaQ4vuNo1ZPZLn3W1cqwbtRtm2LMKb4W356vuY8e1vNCUcvwqvaMz/byddCEvTxEKxEffjf4cCVtJHUgDrBfYjTRM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sqqIKHXG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2434FC16AAE;
-	Tue, 20 Jan 2026 23:23:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768951409;
-	bh=LdToKQzIadhn2PyOS8O3OWl0iFO9YJxxP4wDuHYoNvo=;
-	h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
-	b=sqqIKHXG/dgrH9zQYLVGfNLqCGTMLLIHAgNEPs0ACSUjeS98yOE0r8Cyzm4GFK67S
-	 j3TZousC5+87/uljm0CxeAj6pIaxx9p4/K/3tsP1PJ4m5iWlLJ151/je0Y6MWiuCNB
-	 /DK1YP/xVpeKSS3fJVYlIpd4OWSRy7vpGoHJ4ROjAcN2YfTRI7KkuQuWDhVQnCgl9I
-	 2UcTy00nf6kEAvAw8HSunaQat3iW1wucZS//I7qAY3ww7+wu6ZDFma4++q9F2LNcyG
-	 b5mb5tx4pROGG82HJBZtKCqAElkBD7EZum/NA75TMQ+aVyF6qyy8VQZ9um3rw+lp6g
-	 E9YpgzZURw9sQ==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id C8D25380820D;
-	Tue, 20 Jan 2026 23:23:27 +0000 (UTC)
-Subject: Re: [GIT PULL] Devicetree fixes for v6.19, part 3
-From: pr-tracker-bot@kernel.org
-In-Reply-To: <20260120222753.GA1357911-robh@kernel.org>
-References: <20260120222753.GA1357911-robh@kernel.org>
-X-PR-Tracked-List-Id: <devicetree.vger.kernel.org>
-X-PR-Tracked-Message-Id: <20260120222753.GA1357911-robh@kernel.org>
-X-PR-Tracked-Remote: ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.19-3
-X-PR-Tracked-Commit-Id: 81122fba08fa3ccafab6ed272a5c6f2203923a7e
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: 6c790212c588fddeb0d852f2790840753bb604b1
-Message-Id: <176895140638.649372.7933851720396875803.pr-tracker-bot@kernel.org>
-Date: Tue, 20 Jan 2026 23:23:26 +0000
-To: Rob Herring <robh@kernel.org>
-Cc: Linus Torvalds <torvalds@linux-foundation.org>, Saravana Kannan <saravanak@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+	s=arc-20240116; t=1768951534; c=relaxed/simple;
+	bh=sPKT4KvfCoXRPR+r6N17wH36IDR6kR4DtjYt5ed6NZU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=n4O0YFYdlcYuI7H94OZqpSb0MSzuvCZt5pMvFO3YCiiy2jk0LQEUc00Tp4PzksvKmnirSU+xuB/oz3ym08cp37KAk0sUvbPyYORvEWZuPysszEyhFFKwPPDM6m1pRQpUIOf68RC5dFcJPx6Ixo83RwXJDKT5YxtSSMQ1ZZJVHmk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=r3lZNB7L; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (2001-14ba-703d-e500--2a1.rev.dnainternet.fi [IPv6:2001:14ba:703d:e500::2a1])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 9410F9CE;
+	Wed, 21 Jan 2026 00:24:51 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1768951491;
+	bh=sPKT4KvfCoXRPR+r6N17wH36IDR6kR4DtjYt5ed6NZU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=r3lZNB7LYmBf5M750V1KCTcDYBuvBOZ9bKELPoaavbXvscY6/2mXR8CcUg6EGxq/j
+	 rJhIaq9k4h5U/NZu+8NMXC5NmZwvG1C6BMkDOFcgbLast29jHXuAkaKUtAk3DafKPW
+	 Q8tZSye3eQWxJ3+wjYvwRkWg/KAtvHW8+hEoTK9o=
+Date: Wed, 21 Jan 2026 01:25:21 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: Jai Luthra <jai.luthra@ideasonboard.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	y-abhilashchandra@ti.com, devarsht@ti.com, s-jain1@ti.com,
+	vigneshr@ti.com, mchehab@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, p.zabel@pengutronix.de, conor+dt@kernel.org,
+	hverkuil-cisco@xs4all.nl, changhuang.liang@starfivetech.com,
+	jack.zhu@starfivetech.com, sjoerd@collabora.com,
+	dan.carpenter@linaro.org, hverkuil+cisco@kernel.org,
+	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, jai.luthra@linux.dev,
+	mripard@kernel.org, Rishikesh Donadkar <r-donadkar@ti.com>
+Subject: Re: [PATCH v9 06/19] media: ti: j721e-csi2rx: add a subdev for the
+ core device
+Message-ID: <20260120232521.GE173080@killaraus>
+References: <20251230083220.2405247-1-r-donadkar@ti.com>
+ <20251230083220.2405247-7-r-donadkar@ti.com>
+ <ee8152c0-daf5-48dd-a2d1-2fafcfeca797@ideasonboard.com>
+ <176845899846.9154.18009615769864845946@freya>
+ <d9f3335a-d8f4-40cc-b4c4-a93b797a89fd@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [-0.46 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <d9f3335a-d8f4-40cc-b4c4-a93b797a89fd@ideasonboard.com>
+X-Spamd-Result: default: False [0.04 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-257658-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NO_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-257659-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	FREEMAIL_CC(0.00)[ideasonboard.com,linux.intel.com,ti.com,kernel.org,pengutronix.de,xs4all.nl,starfivetech.com,collabora.com,linaro.org,vger.kernel.org,linux.dev];
+	DKIM_TRACE(0.00)[ideasonboard.com:+];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[pr-tracker-bot@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
+	DMARC_POLICY_ALLOW(0.00)[ideasonboard.com,none];
+	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
 	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[7];
 	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: 433864E0C1
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,ideasonboard.com:dkim]
+X-Rspamd-Queue-Id: 357614E2EE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The pull request you sent on Tue, 20 Jan 2026 16:27:53 -0600:
+On Thu, Jan 15, 2026 at 02:56:21PM +0200, Tomi Valkeinen wrote:
+> On 15/01/2026 08:36, Jai Luthra wrote:
+> > Quoting Tomi Valkeinen (2026-01-14 20:51:49)
+> >> On 30/12/2025 10:32, Rishikesh Donadkar wrote:
+> >>> From: Jai Luthra <j-luthra@ti.com>
+> >>>
+> >>> With single stream capture, it was simpler to use the video device as
+> >>> the media entity representing the main TI CSI2RX device. Now with multi
+> >>> stream capture coming into the picture, the model has shifted to each
+> >>> video device having a link to the main device's subdev. The routing
+> >>> would then be set on this subdev.
+> >>>
+> >>> Add this subdev, link each context to this subdev's entity and link the
+> >>> subdev's entity to the source. Also add an array of media pads. It will
+> >>> have one sink pad and source pads equal to the number of contexts.
+> >>>
+> >>> Support the new enable_stream()/disable_stream() APIs in the subdev
+> >>> instead of s_stream() hook.
+> >>>
+> >>> Reviewed-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+> >>> Co-developed-by: Pratyush Yadav <p.yadav@ti.com>
+> >>> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> >>> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> >>> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
+> >>> ---
+> > 
+> > [...]
+> > 
+> >>> @@ -981,48 +1138,52 @@ static int ti_csi2rx_link_validate(struct media_link *link)
+> >>>       struct ti_csi2rx_ctx *ctx = container_of(vdev, struct ti_csi2rx_ctx, vdev);
+> >>>       struct ti_csi2rx_dev *csi = ctx->csi;
+> >>>       struct v4l2_pix_format *csi_fmt = &ctx->v_fmt.fmt.pix;
+> >>> -     struct v4l2_subdev_format source_fmt = {
+> >>> -             .which  = V4L2_SUBDEV_FORMAT_ACTIVE,
+> >>> -             .pad    = link->source->index,
+> >>> -     };
+> >>> +     struct v4l2_mbus_framefmt *format;
+> >>> +     struct v4l2_subdev_state *state;
+> >>>       const struct ti_csi2rx_fmt *ti_fmt;
+> >>> -     int ret;
+> >>>  
+> >>> -     ret = v4l2_subdev_call_state_active(csi->source, pad,
+> >>> -                                         get_fmt, &source_fmt);
+> >>> -     if (ret)
+> >>> -             return ret;
+> >>> +     state = v4l2_subdev_lock_and_get_active_state(&csi->subdev);
+> >>> +     format = v4l2_subdev_state_get_format(state, link->source->index, 0);
+> >>> +     v4l2_subdev_unlock_state(state);
+> >>>  
+> >>> -     if (source_fmt.format.width != csi_fmt->width) {
+> >>> +     if (!format) {
+> >>> +             dev_dbg(csi->dev,
+> >>> +                     "Skipping validation as no format present on \"%s\":%u:0\n",
+> >>> +                     link->source->entity->name, link->source->index);
+> >>> +             return 0;
+> >>
+> >> Isn't this an error?
+> > 
+> > Well, the j7 shim subdev introduced here has immutable and active links to
+> > all the video nodes, for each DMA channel (taken from DT), many of which
+> > may be unused for certain setups, and thus there might not be any valid
+> > format on the subdev source pad corresponding to an unused video node.
+> > 
+> > Jacopo had a similar comment on v2, see this discussion (grep for Mali):
+> > https://lore.kernel.org/linux-media/4mnlnsj4co3agvln4qsasmgvgwiyoo7yu2h5wyh4rmzzafhm5u@avhnbw7iknms/
+> > 
+> > I know other drivers use a different approach with mutable links, so it
+> > would be good if you/Laurent/Sakari can give your opinions on if only one
+> > of these two approaches should be taken for multi-stream pipelines.
+>
+> I see.
+> 
+> Well, I don't have a definite answer. With some thinking both options
+> make certain sense. It makes sense to keep the links immutable and
+> always enabled, as there's no configuration that can be done. On the
+> other hand, it makes sense to require the unused links to be disabled,
+> as, well, they are not used.
 
-> ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.19-3
-
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/6c790212c588fddeb0d852f2790840753bb604b1
-
-Thank you!
+I'm not familiar with the implications this would have on this driver,
+but generally speaking, if a stream is added to the media pipeline by
+the pipeline build algorithm, then it is expected that applications
+would have configured it correctly. Streams that are not used are
+expected to be disabled if they would otherwise be added to the
+pipeline.
 
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/prtracker.html
+Regards,
+
+Laurent Pinchart
 
