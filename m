@@ -1,132 +1,248 @@
-Return-Path: <devicetree+bounces-257493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257532-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +NL5OmHBb2lsMQAAu9opvQ
-	(envelope-from <devicetree+bounces-257493-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 18:54:41 +0100
+	id gOagNDy/b2kOMQAAu9opvQ
+	(envelope-from <devicetree+bounces-257532-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 18:45:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D18148E97
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 18:54:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A8CE48C8C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 18:45:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 97ABA8ADBF6
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 16:14:12 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1B261A007D4
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 17:32:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BEB642DFFA;
-	Tue, 20 Jan 2026 15:56:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r6w/78DN"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C9053D3486;
+	Tue, 20 Jan 2026 17:32:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0834F318132;
-	Tue, 20 Jan 2026 15:56:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB08341322C
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 17:31:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768924584; cv=none; b=XRXrmVVYOdqwEBtcCGsf7M9dLVYtYflummgwLXoZrqvRnMhSUUTs0uiNVgVR9OSx4zrLQn3cB+cVdu0GJ/4/7gMOEoCbeQJi1HE3fzv1uQ3XE/o4+DqGdG4iMhqVn1y7HulNxq9dD9PXkWPUv4TIoF9qopPjPdYxTwFuK8vl+KE=
+	t=1768930320; cv=none; b=mOJCtdFvDuqDPlHHTYenxV76QwZAtFjEDygnPBPxP220HjAtRkmW00bmlqrgqqCGvO4yUFclQvOrJBJBudDuoNBvbaUuY0U4p0+7EzzXJu3l+k9qBhWOz0+RiMO7GYSfTyCSi49m2STW0BfEp9+1gzklJZ7MQbCPnaZgaiwMrPQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768924584; c=relaxed/simple;
-	bh=rSnO2feB5EiBNnb+J7F2y47pDPabNMsyZVGuP2G3Me4=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=hgyM77ueFknrDf5ghP9GMlrsVkRmRJgOHaOpXl3lS/vsgfbW81CfJ/9bifGSkvAxRH8h1XTs9Ee6EfhCkB5U3HL36z7pt1xETbBZtOzMmR8SPAsj6nJHI3PJokiC9b53+KG4S44Z9L9w4zndneTrtjPPpOxS6I8qSWTcab+1BW0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r6w/78DN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C92DC19422;
-	Tue, 20 Jan 2026 15:56:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768924583;
-	bh=rSnO2feB5EiBNnb+J7F2y47pDPabNMsyZVGuP2G3Me4=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=r6w/78DNUnD4q+ZazBqHFykSpmDASwle1jvKAY2RW9wyLAp/h8G9L5/tjcaI9R/jM
-	 9pRu6XIQK58sNBOix3DUSxJAq7MGN3x7E8NTjrtIOI/uILhVnbs0VkuqcaXhSSbzSx
-	 swptr9+aCpYx581VWAng2j1zVu/RRPFuuWnCouU8btpDxdR6WRbaoJr10df8ytCsFY
-	 UkrqYgEkKKCWWIF25sQTEzeJKUEZJ3Dqe1gPvToi/kSr2kbxMprL3cXbeRU3Qhfmbo
-	 qFnEWJIFDqk8tL7fjcl7l7VdEtHtZGx0jqyXBGygOjnA8UewhShmk7XC0A7k+OUeXr
-	 NZ9th1dp5NoLw==
-From: Lee Jones <lee@kernel.org>
-To: linux-mediatek@lists.infradead.org, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- sen.chu@mediatek.com, sean.wang@mediatek.com, macpaul.lin@mediatek.com, 
- lee@kernel.org, matthias.bgg@gmail.com, lgirdwood@gmail.com, 
- broonie@kernel.org, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- kernel@collabora.com
-In-Reply-To: <20260113110000.36953-1-angelogioacchino.delregno@collabora.com>
-References: <20260113110000.36953-1-angelogioacchino.delregno@collabora.com>
-Subject: Re: (subset) [PATCH 0/6] Fix dtbs_check warnings for MediaTek
- Helio X10 platform
-Message-Id: <176892458032.2302579.3859197830409835881.b4-ty@kernel.org>
-Date: Tue, 20 Jan 2026 15:56:20 +0000
+	s=arc-20240116; t=1768930320; c=relaxed/simple;
+	bh=3/JP3tCIvtYedAAyMYL0a51zMnc14SZU20ikWY9BXqM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Ska2ctubHAvgidcfpUcx3iiCCTpxHVoJ4HuO3akQhZRrdE0zKm+mU3mJCJHvsrmtWi/VKpEwR7tHJ7ddvVmO1yXrm5JGhYQZlQNbYfQSUi1fkoWxRwYAjZFdAToBAaYvqIhRVt1nAl+DdV3mGrTNVEDlAV5NcOXVVQxhDAFrLS0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.161.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f42.google.com with SMTP id 006d021491bc7-6611ca93e45so2215869eaf.3
+        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 09:31:57 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768930316; x=1769535116;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dcPNSr1vco6+E9e0XJi5xyBPxmbRiBl/7/yDisLqrnI=;
+        b=K/MBIXMbF+Y1e2ItB4tiDsROEGLopRAndFUA71FERHxnF5doN7b3JLgqTPdXFy5e6p
+         87I9dHwNG0Mf3u+Z87r0E4HJZZQKZz5gorBC1LF1eFQRT3XEeC0b3Jh/ekXpUTaw3fGZ
+         j+AHZ+rtVbcxXrui66ZlNqkGuHaS25wT/42xN29wJqD9qnMhKHnN5Wq/6IF3CcUTnOMA
+         qYJL6qXp6cOmHA76lOJ0XfVyNzyLi5DEYj/D0Bk+B9zaZVObZLP0q4wZ6u/846UipSGZ
+         gG1GcSj/Fq29CjLLanSK5sMCE0R70p0Ccz776/fWQHQd+zhKH75h3Yi/9iR0UaMgye2A
+         tU1g==
+X-Forwarded-Encrypted: i=1; AJvYcCXg2hCywF1zN/ziSZ75SnxnXTmAn7Zd7hGQ+bQ13Ue5QKB3B4tPTEiRpqrqWKrkBSccSf+wWe8SWiRR@vger.kernel.org
+X-Gm-Message-State: AOJu0YwdUgxdeqwY80bJz52g89mULcFhLCNZGYU+PGTdZe2G/Ebz8RZd
+	LxnJepahFbhXQ78bRHw63G06W3MKvaSdblcJLVpFUJw+F7LMXUjNoDhWsVS2xfj6
+X-Gm-Gg: AY/fxX7PdxDoUgsuKUtamzlYlfV9NXKvJsaVjJEBK+2aHr6s0InA4jmUSiYZ6mH8ynG
+	fgZ69SJyzuOdm2DnF1Kx6xysyrV1HrP+Wtn2p4Z7OnvqqJBGSFc/BLHiKJLAEzEfoNvYOyKilAB
+	ylKTjebvPvd8Ajzde5pGmvDI73AlI0IktPZVrdmBcn4IOkePRQ6ROcKSu3MWoQ+d6OFhZV3/0c/
+	FzakuA2Aa6UvD5lTuSk+6LBGdpw4zLo6zB870mz0kda+xjBLUu1IfHWwx1omkIP8lEGLwoTT9DU
+	y8iXFfsWje8FNSTN8BVuLFuRykTFo3iBmLtH80fYxuIevcDq1g+JKXw+U+/3k2dliBsNEqPBxRz
+	NicoNCN+SN5JeoWC1nKMewpoMl7ZTSdHJtdP20ZzHJetXwtb97Xp7abH6D07MBTdUFGxrWw4zuD
+	QEmzJ+HqALsyHvsSmEAwP5tZbgHKjZZ3ijYqIvnJ7zmvu7hS0yLo4/KyPNx40=
+X-Received: by 2002:a05:6122:91e:b0:563:7b3e:d853 with SMTP id 71dfb90a1353d-563b730d033mr3899269e0c.9.1768924654494;
+        Tue, 20 Jan 2026 07:57:34 -0800 (PST)
+Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com. [209.85.222.46])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-563b6ffeebdsm3664958e0c.8.2026.01.20.07.57.32
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Jan 2026 07:57:32 -0800 (PST)
+Received: by mail-ua1-f46.google.com with SMTP id a1e0cc1a2514c-93f56a97064so1682609241.1
+        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 07:57:32 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXN0h/XzQVNjCor0tKo8dbaRDaLBRBc/tN1z3pwwRib7qBOR5wkE0hkweHJDPZYXckZ5lAkZaD1wMLM@vger.kernel.org
+X-Received: by 2002:a05:6102:b15:b0:5df:c094:628d with SMTP id
+ ada2fe7eead31-5f1a6fa3ca2mr4116825137.3.1768924652088; Tue, 20 Jan 2026
+ 07:57:32 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.15-dev-52d38
-X-Spamd-Result: default: False [-1.96 / 15.00];
+References: <20260118-rz-sdio-mux-v5-0-3c37e8872683@solid-run.com> <20260118-rz-sdio-mux-v5-2-3c37e8872683@solid-run.com>
+In-Reply-To: <20260118-rz-sdio-mux-v5-2-3c37e8872683@solid-run.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 20 Jan 2026 16:57:21 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdU=wDmDJFYvtzxptAkkOQ8r7sPGUxp9u71e64ikY85+Zw@mail.gmail.com>
+X-Gm-Features: AZwV_QgiDRrYV1BByFjO2lg9vbxQpf_lMefb8OE6E5E-nZ3iF4svsU32o-Zkiz4
+Message-ID: <CAMuHMdU=wDmDJFYvtzxptAkkOQ8r7sPGUxp9u71e64ikY85+Zw@mail.gmail.com>
+Subject: Re: [PATCH v5 2/7] mux: Add helper functions for getting optional and
+ selected mux-state
+To: Josua Mayer <josua@solid-run.com>
+Cc: Marc Kleine-Budde <mkl@pengutronix.de>, Vincent Mailhol <mailhol@kernel.org>, 
+	Vinod Koul <vkoul@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Peter Rosin <peda@axentia.se>, Aaro Koskinen <aaro.koskinen@iki.fi>, 
+	Andreas Kemnade <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>, 
+	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, 
+	Janusz Krzysztofik <jmkrzyszt@gmail.com>, Vignesh R <vigneshr@ti.com>, 
+	Andi Shyti <andi.shyti@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Yazan Shhady <yazan.shhady@solid-run.com>, Jon Nettleton <jon@solid-run.com>, 
+	Mikhail Anikin <mikhail.anikin@solid-run.com>, linux-can@vger.kernel.org, 
+	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-omap@vger.kernel.org, linux-i2c@vger.kernel.org, 
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spamd-Result: default: False [0.24 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-257493-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,mediatek.com,gmail.com,vger.kernel.org,lists.infradead.org,collabora.com];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_FROM(0.00)[bounces-257532-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
+	RCPT_COUNT_TWELVE(0.00)[32];
+	FREEMAIL_CC(0.00)[pengutronix.de,kernel.org,linaro.org,axentia.se,iki.fi,kemnade.info,baylibre.com,atomide.com,gmail.com,ti.com,glider.be,sang-engineering.com,solid-run.com,vger.kernel.org,lists.infradead.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: 5D18148E97
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux-m68k.org:email,mail.gmail.com:mid,dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo]
+X-Rspamd-Queue-Id: 6A8CE48C8C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, 13 Jan 2026 11:59:54 +0100, AngeloGioacchino Del Regno wrote:
-> This series fixes various dtbs_check warnings happening on the MediaTek
-> Helio X10 platform devicetrees.
-> 
-> Depending on correctness, either the bindings or the devicetree was
-> changed as a dtbs_check warning fix.
-> 
-> AngeloGioacchino Del Regno (6):
->   dt-bindings: mfd: mediatek,mt8195-scpsys: Add mediatek,mt6795-scpsys
->   dt-bindings: mfd: mediatek: mt6397: Add missing MT6331 regulator
->     compat
->   dt-bindings: regulator: mediatek,mt6331: Add missing ldo-vio28 vreg
->   arm64: dts: mediatek: mt6331: Fix VCAM IO regulator name
->   arm64: dts: mediatek: mt6795: Fix issues in SCPSYS node
->   arm64: dts: mediatek: mt6795-xperia-m5: Rename PMIC leds node
-> 
-> [...]
+Hi Josua,
 
-Applied, thanks!
+On Sun, 18 Jan 2026 at 11:29, Josua Mayer <josua@solid-run.com> wrote:
+> In-tree phy-can-transceiver driver has already implemented a local
+> version of devm_mux_state_get_optional.
+>
+> The omap-i2c driver gets and selects an optional mux in its probe
+> function without using any helper.
+>
+> Add new helper functions covering both aforementioned use-cases:
+>
+> - mux_control_get_optional:
+>   Get a mux-control if specified in dt, return NULL otherwise.
+> - devm_mux_state_get_optional:
+>   Get a mux-state if specified in dt, return NULL otherwise.
+> - devm_mux_state_get_selected:
+>   Get and select a mux-state specified in dt, return error otherwise.
+> - devm_mux_state_get_optional_selected:
+>   Get and select a mux-state if specified in dt, return error or NULL.
+>
+> Existing mux_get helper function is changed to take an extra argument
+> indicating whether the mux is optional.
+> In this case no error is printed, and NULL returned in case of ENOENT.
+>
+> Calling code is adapted to handle NULL return case, and to pass optional
+> argument as required.
+>
+> To support automatic deselect for _selected helper, a new structure is
+> created storing an exit pointer similar to clock core which is called on
+> release.
+>
+> To facilitate code sharing between optional/mandatory/selected helpers,
+> a new internal helper function is added to handle quiet (optional) and
+> verbose (mandatory) errors, as well as storing the correct callback for
+> devm release: __devm_mux_state_get
+>
+> Due to this structure devm_mux_state_get_*_selected can no longer print
+> a useful error message when select fails. Instead callers should print
+> errors where needed.
+>
+> Commit e153fdea9db04 ("phy: can-transceiver: Re-instate "mux-states"
+> property presence check") noted that "mux_get() always prints an error
+> message in case of an error, including when the property is not present,
+> confusing the user."
+>
+> The first error message covers the case that a mux name is not matched
+> in dt. The second error message is based on of_parse_phandle_with_args
+> return value.
+>
+> In optional case no error is printed and NULL is returned.
+> This ensures that the new helper functions will not confuse the user
+> either.
+>
+> With the addition of optional helper functions it became clear that
+> drivers should compile and link even if CONFIG_MULTIPLEXER was not enabled.
+> Add stubs for all symbols exported by mux core.
+>
+> Signed-off-by: Josua Mayer <josua@solid-run.com>
 
-[1/6] dt-bindings: mfd: mediatek,mt8195-scpsys: Add mediatek,mt6795-scpsys
-      commit: bbdf8911f92c84c7ebd4a214200391748a1d2ff1
-[2/6] dt-bindings: mfd: mediatek: mt6397: Add missing MT6331 regulator compat
-      commit: cbc07585c95e08c7223bea753afba85fbe86e54a
+Thanks for your patch!
 
---
-Lee Jones [李琼斯]
+> --- a/drivers/mux/core.c
+> +++ b/drivers/mux/core.c
+> @@ -46,6 +46,16 @@ static const struct class mux_class = {
+>         .name = "mux",
+>  };
+>
+> +/*
+> + * struct devm_mux_state_state -       Tracks managed resources for mux-state objects.
 
+Please run scripts/checkpatch.pl:
+
+    WARNING: please, no space before tabs
+    #80: FILE: drivers/mux/core.c:50:
+    + * struct devm_mux_state_state - ^ITracks managed resources for
+mux-state objects.$
+
+> + * @mux:                               Pointer to a mux state.
+> + * @exit:                              An optional callback to execte before free.
+> + */
+> +struct devm_mux_state_state {
+> +       struct mux_state *mstate;
+> +       int (*exit)(struct mux_state *mstate);
+> +};
+> +
+>  static DEFINE_IDA(mux_ida);
+>
+>  static int __init mux_init(void)
+
+> --- a/include/linux/mux/consumer.h
+> +++ b/include/linux/mux/consumer.h
+
+> +static inline void mux_control_put(struct mux_control *mux)
+> +{
+> +       return;
+> +}
+
+    WARNING: void function return statements are not generally useful
+    #441: FILE: include/linux/mux/consumer.h:139:
+    + return;
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
