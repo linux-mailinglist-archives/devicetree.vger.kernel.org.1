@@ -1,60 +1,62 @@
-Return-Path: <devicetree+bounces-257287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257265-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57490D3C5CD
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 11:44:06 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B659D3C63E
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 11:55:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 47F0E5C25E2
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 10:33:44 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 631FF5E2390
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 10:12:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2350D3F23A0;
-	Tue, 20 Jan 2026 10:33:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C82B93D6696;
+	Tue, 20 Jan 2026 10:12:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rmsXChc5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SJqHM+qr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBD4A3B8D60;
-	Tue, 20 Jan 2026 10:33:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99D673D667D;
+	Tue, 20 Jan 2026 10:12:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768905209; cv=none; b=L8KKH5/qhiW5LsNIFBEQoMTdfNEoKO9Z2UxRN+BCY9ntS9o6RwjI4V26bce7jOnXi3glI1JLalcSk11/Fr/favb9hF+RCMM0q9h7Ll67+rGts374SAlwPGRF4QsnineVNdHBEiCIMTEwjAtsRovmqkA+DOcZt7fuegHP2ei0Z4E=
+	t=1768903946; cv=none; b=IUX1opdVp0ZTwA5gr+nku8vTMZMBMv/7amAjM8uZZrnhhKW4MuWx9Tgdlr4cNTqjpKrhh3hVzTLeLdHaOqCSNSiTNO53payFhQuP7fbAopUXn8zJpZVCeBkhS83FjM3qPU7q8TuOaUkto+C7qHoMvp3GigH+2Y7q9z/KR3vVXj8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768905209; c=relaxed/simple;
-	bh=JmobZY0MC5V+D0VELbz0Keuoc4LhR7cCkroCWV7u844=;
+	s=arc-20240116; t=1768903946; c=relaxed/simple;
+	bh=Zl0EKiX/vDiGriw8Csf4K6DbilEEJTuZv+esRqz9RV8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nyTat6G30B8fCSALVn4QuXWU0XLjHb4Jif+xwGZve5nFnCs7nD8roQVOoa1rObDHBJxi22pjKHWymOgoIMWJiHyn3XjPVUMW05OaqDRVI7WeRDtboKFT3SU+cXvYcATQ1vGtGHnj4YxV0CBgJXF3a3MgMj0IUdZnjnbbPEJ3BRM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rmsXChc5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFB03C2BC86;
-	Tue, 20 Jan 2026 10:33:27 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lzpBcEmMDkyyU6nvosRh1DpH0NtcaUe+vSfadX6NedvGxa6QQ95tRMWIG9iKbi27RVBvmYyFaoOWFdcv3Pke+R5NTcCDBcIhj4gV+bTRxx+1RmUNa9rsugxeUuuWS1pKg2BytvcYA9zpbSZgRX0wrSeC1teCotxq9DSEisKJbkQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SJqHM+qr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6444C19423;
+	Tue, 20 Jan 2026 10:12:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768905208;
-	bh=JmobZY0MC5V+D0VELbz0Keuoc4LhR7cCkroCWV7u844=;
+	s=k20201202; t=1768903946;
+	bh=Zl0EKiX/vDiGriw8Csf4K6DbilEEJTuZv+esRqz9RV8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rmsXChc59v3HDNf1zBlLAALhRMCpJPF0kvwxI4M37TKg/T8Bd1OMIA8VLOLd4X283
-	 Ol5Bu0AA19xkbF+Bsh8/Y0F7MVMchKAKzhi5eq/4fCbdhnYqK50KVcgG0pVzS/hyA1
-	 aOAvkAjcyR7OlB4TkQAwCSs35u7eRdIKqg0NhJQELak9NyeD024w9ccD2AIIwpJ70h
-	 jhz8Hfkp3auXq9qJfTWcGBMVMCQ6eQvXefyQoxW+shSjtJbn3N91Layp2PMwn8QXWT
-	 gB3Hwy5DEigSI01eKI3gRaVImrBqrCov/QlkL4+gC0r0SxcdVGAN+bZpURyOUoQyW4
-	 FVAhw2Jhypo/w==
-Date: Tue, 20 Jan 2026 11:33:26 +0100
+	b=SJqHM+qrlsFxzvU5PfoSZMk0yau5k4To/SOce72gwQHGF9Bp5bqjOdXiSE/wvePXf
+	 ZKVrqbgKTk8WtX9YlMv0F01flen843N1+lXC/bf2emOHP0IjJ3+bInHA+og4e8y/Gs
+	 kVfDBltHb3mav2HykfFTSrTPIJkCJQgFvpwd1HKp7wW91hoxRNuAwTrb+5t9cpH7/5
+	 W7SoC5N8hQ73lmn9PvY/x72YlEypXQ8mwz/kH0onseWS6xukT8EBFyr1+/tH82t73o
+	 hqM2cyUaANs8nEkfLV71BAXwsaA5aIMYbpRdjEfPP1ZdVOUO+TR0OnPSbC0T4YIoII
+	 n6SIvs0MsM5YQ==
+Date: Tue, 20 Jan 2026 11:12:23 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Petr Hodina <petr.hodina@protonmail.com>
-Cc: Song Qiang <songqiang1304521@gmail.com>, 
-	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	David Heidelberg <david@ixit.cz>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/4] iio: proximity: vl53l0x-i2c: Fix reset sequence
-Message-ID: <20260120-dragon-of-fascinating-felicity-b0cf4d@quoll>
-References: <20260119-vl53l0x-v1-0-cf71715a1353@protonmail.com>
- <20260119-vl53l0x-v1-3-cf71715a1353@protonmail.com>
+To: "Anton D. Stavinskii" <stavinsky@gmail.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, 
+	Inochi Amaoto <inochiama@gmail.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, linux-sound@vger.kernel.org, 
+	devicetree@vger.kernel.org, sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v3 3/6] dt-bindings: codecs: sophgo,cv1800b: codecs: add
+ ADC/DAC
+Message-ID: <20260120-rapid-turaco-of-discourse-fe3fe6@quoll>
+References: <20260119-cv1800b-i2s-driver-v3-0-04006f4111d7@gmail.com>
+ <20260119-cv1800b-i2s-driver-v3-3-04006f4111d7@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,47 +65,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260119-vl53l0x-v1-3-cf71715a1353@protonmail.com>
+In-Reply-To: <20260119-cv1800b-i2s-driver-v3-3-04006f4111d7@gmail.com>
 
-On Mon, Jan 19, 2026 at 06:19:57PM +0100, Petr Hodina wrote:
-> Fix the reset GPIO handling and power-up timing to better match the
-> VL53L0X reset requirements.
+On Mon, Jan 19, 2026 at 08:30:44PM +0400, Anton D. Stavinskii wrote:
+> Document the internal ADC and DAC audio codecs integrated
+> in the Sophgo CV1800B SoC.
 > 
-> Signed-off-by: Petr Hodina <petr.hodina@protonmail.com>
+> Signed-off-by: Anton D. Stavinskii <stavinsky@gmail.com>
 > ---
->  drivers/iio/proximity/vl53l0x-i2c.c | 12 ++++++++----
->  1 file changed, 8 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/iio/proximity/vl53l0x-i2c.c b/drivers/iio/proximity/vl53l0x-i2c.c
-> index 7bfab396377a..6901ce7dd835 100644
-> --- a/drivers/iio/proximity/vl53l0x-i2c.c
-> +++ b/drivers/iio/proximity/vl53l0x-i2c.c
-> @@ -275,9 +275,13 @@ static int vl53l0x_power_on(struct vl53l0x_data *data)
->  			return ret;
->  	}
->  
-> -	gpiod_set_value_cansleep(data->reset_gpio, 0);
-> -
-> -	usleep_range(3200, 5000);
-> +	usleep_range(5000, 6000);
-> +	if (data->reset_gpio) {
-> +		gpiod_set_value_cansleep(data->reset_gpio, 1);
-> +		usleep_range(5000, 6000);
-> +		gpiod_set_value_cansleep(data->reset_gpio, 0);
-> +		usleep_range(5000, 6000);
-> +	}
->  
->  	return 0;
->  }
-> @@ -354,7 +358,7 @@ static int vl53l0x_probe(struct i2c_client *client)
->  		return dev_err_probe(&client->dev, PTR_ERR(data->vio_supply),
->  				     "Unable to get VDDIO regulator\n");
->  
-> -	data->reset_gpio = devm_gpiod_get_optional(&client->dev, "reset", GPIOD_OUT_HIGH);
-> +	data->reset_gpio = devm_gpiod_get_optional(&client->dev, "reset", GPIOD_OUT_LOW);
+>  .../bindings/sound/sophgo,cv1800b-sound-adc.yaml   | 43 ++++++++++++++++++++++
+>  .../bindings/sound/sophgo,cv1800b-sound-dac.yaml   | 43 ++++++++++++++++++++++
 
-This feels wrong - you are now bringing the device out of reset without
-observing any of the reset sequence constraints.
+This is not what I asked. I did not say squash patches. I asked to
+squash into the binding. COMBINE the bindings. We do not need multiple
+documents.
 
 Best regards,
 Krzysztof
