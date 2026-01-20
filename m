@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-257166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257167-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD189D3BE3B
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 05:17:25 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2908ED3BE41
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 05:18:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id EDBC1351B07
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 04:17:00 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D99B44E8744
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 04:17:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DB6333DECA;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 032BD33DEF1;
 	Tue, 20 Jan 2026 04:15:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NjkctdjK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EjlSLzA7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C3D133C538;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EB0633C1B7;
 	Tue, 20 Jan 2026 04:15:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768882524; cv=none; b=rz4Q9a3aE9pGBgxZz4wKUCtY0S4ugNJxiC3MbMMy79xZ79V0w4rBwTYsEZsvIoGcu8pwUE2ekjgdTHe8lT8vCJWAbwrDap71i6MwykMq3/L9bYhK3bEW/scWgRxzpKr2kY3wHChuI1I8G3OKTHYU9yAxIYm7ztUloxtpQYtz01I=
+	t=1768882525; cv=none; b=Exu1DSWcBXqz3KtLB8jyu1J1shyw7OcEyDb7cTdhs7ipm3Yy30m2kQsFKL6a3j2uUAdPnOw6G/T4/x7KRj2peAKuUrIovNGcbdo48VhTrdYOKzcEr1XXpgHywHs8wMz1I+NfvJxh2V+jBbRD5Q/uWGedopOz7ssEh1sh/XLi5os=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768882524; c=relaxed/simple;
-	bh=LLcYCf8E3m+c3NEGM6PLVB/b2aK0eRa7uHCxUc0B8eM=;
+	s=arc-20240116; t=1768882525; c=relaxed/simple;
+	bh=uFVTMJOPvCbobzJzlLLOywkmk/8YKf9YQOLxRrQYfB8=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To; b=SriRoQni/JDNdoZXJnEWagQbrZN2HQDK2ekb7eGCP77SOZ460JyBZysQt2ooetQ82hQIWs8bakor8E5Pm0H26O9G9X7xRt2LAnFBmmrNdtzW2ZWhw9/pfqVVBUW9305sWjtnK1MeH2sK+s9JnO/jAndcRf20/3BLATaiUh0QVsc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NjkctdjK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 549EAC2BCC6;
+	 In-Reply-To:To; b=JGD44URNbZN0HRPhTM96PFxdds1fY6cav7v7ItNBmQmKJrwSaBD4vSvDWALOzKYpma432JaCrcA0h1QBavchsFYGL0gBAoSwdJuRbK+FgKJDecyyu1QsCAUkVDtm/pyJoDEIdO+O7Tdq694+7hTy7sjLgSd+NR39pJtRLJNxINY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EjlSLzA7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAC85C2BCB0;
 	Tue, 20 Jan 2026 04:15:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768882523;
-	bh=LLcYCf8E3m+c3NEGM6PLVB/b2aK0eRa7uHCxUc0B8eM=;
+	s=k20201202; t=1768882524;
+	bh=uFVTMJOPvCbobzJzlLLOywkmk/8YKf9YQOLxRrQYfB8=;
 	h=From:Date:Subject:References:In-Reply-To:To:From;
-	b=NjkctdjKUn0SLqbTQurxBFfLInhgoQWsPREXXMtKwABJ/gYwDhLfCUs8qJtBs06rc
-	 EUaBhI2ahtDB8PBFbcHF5tCQl1GzV1TZdEqVEDdKoB4hJkz+LqtjEayxp6d+28gFE8
-	 3ABLnRkLQPtnbfcmjEIIUs7xDEA+B4pluqyp1dkgwdmiqtqqtrMmERzCcuE3zeTV53
-	 NoZia7WtAER7IlZZVsX/H+NT6nWzcWrp9vpmUzk7d0PbNOeq1moTRsUKI1lcK+6Vrh
-	 /lpV9aJzxiRiuX6iEMy0eT/YDrf8e9SePo2PA9hEHQ7H7RV8fEx8GeUbuUfigHfv0v
-	 G9hZ+ZbdjOglg==
+	b=EjlSLzA7PLfg5Brd4VelzPqUk2McwqgKEHr9LXbNSZS1+tB4h3R6KaBUUFgXrV3Pq
+	 NeRpnqofz2UV8XK4Muf+zWbpA0QXbXhZkcP/uKyzYuYhPJWyHrzvjL1SsOxEfTTsvO
+	 HXoDxTUh3eXXCg3X3F0nl/OBW3pE6FeK2JZDQH1ej1Xv/tm2CCPicpgkwwWl1zoynm
+	 +54/6E4DgDxiSdAgXcW9mGIg0ZX3VAqLhCuSkFZvbCMB84n0UQWlaMVAknhbyJmBuv
+	 IV9YxR1gpH3Zo8EZbJ88jv6A3QlFy8WZ3S91sbl/tpFrL1ZxQlOqCJbklLdbNzgDfF
+	 b3p/Co+to5Ddw==
 From: Drew Fustini <fustini@kernel.org>
-Date: Mon, 19 Jan 2026 20:14:48 -0800
-Subject: [PATCH RFC 11/19] RISC-V: QoS: add to build when
- CONFIG_RISCV_ISA_SSQOSID set
+Date: Mon, 19 Jan 2026 20:14:49 -0800
+Subject: [PATCH RFC 12/19] RISC-V: QoS: make CONFIG_RISCV_ISA_SSQOSID
+ select resctrl
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,7 +53,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260119-ssqosid-cbqri-v1-11-aa2a75153832@kernel.org>
+Message-Id: <20260119-ssqosid-cbqri-v1-12-aa2a75153832@kernel.org>
 References: <20260119-ssqosid-cbqri-v1-0-aa2a75153832@kernel.org>
 In-Reply-To: <20260119-ssqosid-cbqri-v1-0-aa2a75153832@kernel.org>
 To: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
@@ -79,33 +79,39 @@ To: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-riscv@lists.infradead.org, x86@kernel.org
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=738; i=fustini@kernel.org;
- h=from:subject:message-id; bh=LLcYCf8E3m+c3NEGM6PLVB/b2aK0eRa7uHCxUc0B8eM=;
- b=owGbwMvMwCV2+43O4ZsaG3kYT6slMWTmMwbdjty3TG5LQAHrWZZdIf/E2jMXGsx4bdseHx+2s
- 0fuqKVwRykLgxgXg6yYIsumD3kXlniFfl0w/8U2mDmsTCBDGLg4BWAii20ZGd6Wzr7z0Wshw7Je
- jeDaqElRHatnO7xLi2dY+6hi7mvPLzsYGc7V2kZWJvycdatwx5ufb6pO+ChkSX88qvOua0PZlo8
- +3/kB
+X-Developer-Signature: v=1; a=openpgp-sha256; l=875; i=fustini@kernel.org;
+ h=from:subject:message-id; bh=uFVTMJOPvCbobzJzlLLOywkmk/8YKf9YQOLxRrQYfB8=;
+ b=owGbwMvMwCV2+43O4ZsaG3kYT6slMWTmMwb3zA5w3fvmloVYg6G7fU/96pqPs/8adhgHbkh+x
+ mGT1XO7o5SFQYyLQVZMkWXTh7wLS7xCvy6Y/2IbzBxWJpAhDFycAjCRnkiG/2FrmKxCF/OkvLi5
+ 21L3RcairRvZVMwv8r5v1n5XuNa3/AbDH76jCXrvFvms41hTJSsSMf2x4m2JNqVCL5Wq0j1yCtN
+ n8gIA
 X-Developer-Key: i=fustini@kernel.org; a=openpgp;
  fpr=1B6F948213EA489734F3997035D5CD577C1E6010
 
-Add the srmcfg CSR handling and the resctrl interface to the build when
-CONFIG_RISCV_ISA_SSQOSID is set.
+Make CONFIG_RISCV_ISA_SSQOSID select the config options for resctrl:
+ARCH_HAS_CPU_RESCTRL, RESCTRL_FS and MISC_FILESYSTEMS.
 
 Co-developed-by: Adrien Ricciardi <aricciardi@baylibre.com>
 Signed-off-by: Adrien Ricciardi <aricciardi@baylibre.com>
 Signed-off-by: Drew Fustini <fustini@kernel.org>
 ---
- arch/riscv/kernel/qos/Makefile | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/riscv/Kconfig | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/arch/riscv/kernel/qos/Makefile b/arch/riscv/kernel/qos/Makefile
-index 9f996263a86d..9ed0c13a854d 100644
---- a/arch/riscv/kernel/qos/Makefile
-+++ b/arch/riscv/kernel/qos/Makefile
-@@ -1,2 +1,2 @@
- # SPDX-License-Identifier: GPL-2.0
--obj-$(CONFIG_RISCV_ISA_SSQOSID) += qos.o
-+obj-$(CONFIG_RISCV_ISA_SSQOSID) += qos.o qos_resctrl.o
+diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+index 35a6238b02c5..8ff6d962b6b2 100644
+--- a/arch/riscv/Kconfig
++++ b/arch/riscv/Kconfig
+@@ -598,6 +598,9 @@ config RISCV_ISA_SVNAPOT
+ config RISCV_ISA_SSQOSID
+ 	bool "Ssqosid extension support for supervisor mode Quality of Service ID"
+ 	default y
++	select ARCH_HAS_CPU_RESCTRL
++	select RESCTRL_FS
++	select MISC_FILESYSTEMS
+ 	help
+ 	  Adds support for the Ssqosid ISA extension (Supervisor-mode
+ 	  Quality of Service ID).
 
 -- 
 2.43.0
