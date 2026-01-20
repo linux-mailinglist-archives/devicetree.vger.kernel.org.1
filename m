@@ -1,176 +1,133 @@
-Return-Path: <devicetree+bounces-257215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03EAED3C0DE
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 08:48:52 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C506D3C0AE
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 08:40:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3CB574F7EBD
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 07:41:09 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id AC71E385A57
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 07:36:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C973638A2BE;
-	Tue, 20 Jan 2026 07:41:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AB963A89AC;
+	Tue, 20 Jan 2026 07:36:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baodeep.com header.i=@baodeep.com header.b="F/ZuUzVe"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JMuXGQkh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.adeep.su (mx.adeep.su [185.250.0.168])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C682C38BF61;
-	Tue, 20 Jan 2026 07:40:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.250.0.168
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6C443A63E7;
+	Tue, 20 Jan 2026 07:36:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768894864; cv=none; b=tafxc/zmAgbn4VwePKmrNKl+FV9nHYAPpKdNRq5p1mKXXyCpIDuhfKVrfrxX8r1NDW8OH3YSBMWwlRyfO/8EdjtarTFw7xwg5YOxfqZH05XHaP+V2cFJhG4IS96VDKBIJD7fUfKZhcb6GcSu7koOBFAow1aSGWnF3RaNdp+cPfY=
+	t=1768894601; cv=none; b=jydBtOgwfRtzn+YAX6GSHw/3tJr4g5UPwvj1LAV0UTSvZFiKKGG7ZwO1jBWiLxvcLSzWOObihd5Cr9sEj7OziIMVd0uqLRJaQJad/KrddAq4ZZ3A1hbDbm+E0Ft7n/s1SiXEF8Bg6zh8t1Cxf2k1a65H/fx1WXNERLKfqRxs2aQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768894864; c=relaxed/simple;
-	bh=8eRYWgMg6ekHyFZFZsTP/jA7GzqvBe57VKHD/EiJNyM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AeCE2IluzaCSSSWzFik+lDi4mEBAGPbvWep5N3Q1obNz1LuuS04MfxqveynwNwEHzdNBWXHiIJCkRZVfoXIrPrOB4ae15E8wyHqfdorYrkdJuFE1WuXzUJj+AG/3N0rTI0c2BewlaQPg8431faAZFvqWNYd6hNv5g9EueN7ZAU4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=baodeep.com; spf=pass smtp.mailfrom=baodeep.com; dkim=fail (2048-bit key) header.d=baodeep.com header.i=@baodeep.com header.b=F/ZuUzVe reason="signature verification failed"; arc=none smtp.client-ip=185.250.0.168
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=baodeep.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baodeep.com
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D56C3270AA;
-	Tue, 20 Jan 2026 10:33:41 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=baodeep.com; s=dkim;
-	t=1768894425; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references:
-	 disposition-notification-to; bh=7vazJlY7f+ipRlmtxy6NEiiscVonh33GVCHIMR/axgI=;
-	b=F/ZuUzVedI+o80QCH+G05kHTJddLLaWdVlPdUavvyOGNDKf+A+lJdf5lDmvmrsyoaKQYNO
-	dodA2pAX5FVq3aS74mcfcBY0euu2VNPRmUfuzmGiMZurJfjOeU/k6ojkdv6Y6543A1m4Io
-	09I4pB8BKtctoYCoMNYwdAlHlKRdqmlhBO4gatSt1oQrK5UVAU/U+NiNgGLXSX/pGoI0vJ
-	UsiHSweUomrl7azJxZmErSouaRTSPhRRsNnC6RdxudfgLpxd+kEmfxquQQo39Z+ckxAykE
-	UXnbD8clpyKdBUmxMcq4iGS1epRu7ZOVSf31vkB6/tcriwYKONCeVAedqyKZqw==
-Message-ID: <f923c800-d7f5-4c99-9f41-b75f00fecca1@baodeep.com>
-Date: Tue, 20 Jan 2026 10:33:23 +0300
+	s=arc-20240116; t=1768894601; c=relaxed/simple;
+	bh=kflwB9hwIvmK+Oy08ll3v/Yug/n19dtiNekmWNd0qTE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ow0pwXElihpaRG1YkRh30sdMmYFfWFS+ttt5aTv4U1yRAnjyMvRTtgpdbJqEGfGJT6UYI6QUB8AhBZNImlWaxXg+03I41Kzb83g00zrmFsMiakbMzSHzIVa54mr1i4kBz2rZ769vQyIezsxy3p4MvgcK/FnQ9h+UoTJgBZKo7L8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JMuXGQkh; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1768894599; x=1800430599;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=kflwB9hwIvmK+Oy08ll3v/Yug/n19dtiNekmWNd0qTE=;
+  b=JMuXGQkhwqqOPf+Cb3P77gkbZpCXx5W1DJssUQhZZtgB+wQGmabPZ+H2
+   JEexzo2aP0aUzxDsDiE89ToI7PASLDeavFH361CCDi2raB/zJHaNbp9Wj
+   tW5XzRw5pSGIwOUCZC9whpgINsYsd2MkX8nu1WOONaCDxkiYltPuz9j1x
+   peN3H4B33iWMvvtySqAc10PflALrrgwHd+ZU/JKECqunMtFqSqOAXR+1E
+   RXn0FpiljFwZ8MD/A5Ks/fjb2jctn6jonClFz7Zg+KPJNmlmveliIDZ4I
+   X2cdKkunh5RGqdhulnDK4uYKrndRk6nZnRky82lDcSArBGOG5Bt2o/WPM
+   A==;
+X-CSE-ConnectionGUID: d2q5/AEaS6KfYk89+1ZxSg==
+X-CSE-MsgGUID: dwYE0qjkTe23AIZof5mzeQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11676"; a="73961925"
+X-IronPort-AV: E=Sophos;i="6.21,240,1763452800"; 
+   d="scan'208";a="73961925"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jan 2026 23:36:38 -0800
+X-CSE-ConnectionGUID: N4UjKKQ+RhaaDr8lAETjgw==
+X-CSE-MsgGUID: w4TotQL4Q/iUQn3gEvIL+Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,240,1763452800"; 
+   d="scan'208";a="206478182"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.244.188])
+  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jan 2026 23:36:35 -0800
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 7DCDE11FCC8;
+	Tue, 20 Jan 2026 09:36:38 +0200 (EET)
+Date: Tue, 20 Jan 2026 09:36:38 +0200
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Richard Acayan <mailingradian@gmail.com>
+Cc: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Tianshu Qiu <tian.shu.qiu@intel.com>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	Robert Mader <robert.mader@collabora.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	David Heidelberg <david@ixit.cz>, phone-devel@vger.kernel.org
+Subject: Re: [PATCH v7 2/5] media: i2c: imx355: Support devicetree and power
+ management
+Message-ID: <aW8whjXGK-rXHhlc@kekkonen.localdomain>
+References: <20260117040657.27043-1-mailingradian@gmail.com>
+ <20260117040657.27043-3-mailingradian@gmail.com>
+ <a29ff1e4-117c-4703-b0c7-73ad4e369201@linaro.org>
+ <aW77kXzBjAlIMG1C@rdacayan>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] Eliminate Odroid HC4 power glitches during boot.
-To: Eric.Neulight@linuxdev.slmail.me, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260116-odroid-hc4-dts-v1-1-459b601cd5cf@linuxdev.slmail.me>
-From: Viacheslav <v@baodeep.com>
-Content-Language: en-US
-Disposition-Notification-To: Viacheslav <v@baodeep.com>
-In-Reply-To: <20260116-odroid-hc4-dts-v1-1-459b601cd5cf@linuxdev.slmail.me>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aW77kXzBjAlIMG1C@rdacayan>
 
-Hi!
+On Mon, Jan 19, 2026 at 10:50:41PM -0500, Richard Acayan wrote:
+> On Sat, Jan 17, 2026 at 02:03:02PM +0200, Vladimir Zapolskiy wrote:
+> > On 1/17/26 06:06, Richard Acayan wrote:
+> (snip)
+> > > +static int imx355_power_on(struct device *dev)
+> > > +{
+> > > +	struct i2c_client *client = container_of(dev, struct i2c_client, dev);
+> > > +	struct v4l2_subdev *sd = i2c_get_clientdata(client);
+> > > +	struct imx355 *imx355 = to_imx355(sd);
+> > > +	int ret;
+> > > +
+> > > +	ret = clk_prepare_enable(imx355->clk);
+> > > +	if (ret) {
+> > > +		dev_err(dev, "failed to enable clocks: %d\n", ret);
+> > > +		return ret;
+> > > +	}
+> > > +
+> > > +	ret = regulator_bulk_enable(ARRAY_SIZE(imx355_supplies),
+> > > +				    imx355->supplies);
+> > > +	if (ret) {
+> > > +		dev_err(dev, "failed to enable regulators: %d\n", ret);
+> > > +		goto error_disable_clocks;
+> > > +	}
+> > > +
+> > > +	gpiod_set_value_cansleep(imx355->reset_gpio, 1);
+> > > +	usleep_range(1000, 2000);
+> > 
+> > The deassert above is not needed IMO, anyway.
+> 
+> This assert is for clarity, otherwise it isn't obvious that the GPIO is
+> asserted low when the function is called. It should stay.
 
-On 17/01/2026 07.02, Eric Neulight via B4 Relay wrote:
-> From: Eric Neulight <Eric.Neulight@linuxdev.slmail.me>
-> 
-> Fix issue with Odroid HC4 (and all meson-sm1-odroid) DTS that causes
-> regulator power to momentarily glitch OFF-ON during boot.  Add
-> regulator-boot-on to all regulator-fixed and regulator-gpio entries
-> that (1) define a gpio AND (2) define regulator-always-on.
-> 
-> U-boot powers on devices necessary for boot then hands off the DTB to
-> the kernel.  During probe, linux drivers/regulator/fixed.c and
-> gpio-regulator.c both first set the regulator control gpio (that U-boot
-> already turned ON) to default OFF before then setting it to the defined
-> (ON) state. This glitches the power to the affected devices, unless
-> regulator-boot-on is specified with it.  In fact, U-boot has the same
-> behavior.  So, during reboot, a power glitch can actually happen twice:
-> once when U-boot reads the DTB and probes the gpio and again when the
-> kernel reads the DTB and probes the gpio.
-> 
-> Problem this fixes: On the Odroid HC4, power to the SATA ports glitches
-> during boot and causes some HDDs to do emergency head retract, which
-> should be avoided.  On the HC4, power glitches to the SD card, USB,
-> SATA, and HDMI interfaces during boot.  These are all boot devices.
-> A power glitch can potentially cause a problem for any sensitive devices
-> during boot.
-> 
-> NOTE: This is not limited to just the HC4, likely an issue with ALL DTS
-> with regulator-fixed or regulator-gpio entries that (1) define a gpio
-> AND (2) define regulator-always-on.  All such entries should also
-> include regulator-boot-on in order to avoid potential power glitches.
-> At worst, adding regulator-boot-on in such cases is harmless because of
-> regulator-always-on, and, at best, it eliminates detrimental power
-> glitches during boot.  So, this is best-practice.
-> 
-> Fixes: 164147f094ec5d0fc2c2098a888f4b50cf3096a7 ("arm64: dts: meson-sm1-odroid-hc4: add regulators controlled by GPIOH_8")
-> Fixes: 45d736ab17b44257e15e75e0dba364139fdb0983 ("arm64: dts: meson-sm1-odroid: add 5v regulator gpio")
-> Fixes: 1f80a5cf74a60997b92d2cde772edec093bec4d9 ("arm64: dts: meson-sm1-odroid: add missing enable gpio and supply for tf_io regulator")
-> Fixes: 88d537bc92ca035e2a9920b0abc750dd62146520 ("arm64: dts: meson: convert meson-sm1-odroid-c4 to dtsi")
-> 
-> Signed-off-by: Eric Neulight <Eric.Neulight@linuxdev.slmail.me>
-> ---
->   arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts | 2 ++
->   arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi    | 3 +++
->   2 files changed, 5 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
-> index 0170139b8d32f4274ad991b0f3d9a0f6c67969ce..3ece30a0a1fff736c544cf89ed0a8cca0890f128 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
-> @@ -52,6 +52,7 @@ p12v_0: regulator-p12v-0 {
->   
->   		gpio = <&gpio GPIOH_8 GPIO_OPEN_DRAIN>;
->   		enable-active-high;
-> +		regulator-boot-on;
->   		regulator-always-on;
->   	};
->   
-> @@ -65,6 +66,7 @@ p12v_1: regulator-p12v-1 {
->   
->   		gpio = <&gpio GPIOH_8 GPIO_OPEN_DRAIN>;
->   		enable-active-high;
-> +		regulator-boot-on;
->   		regulator-always-on;
->   	};
->   
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-> index c4524eb4f0996dfbccec16ca5b936a5c3b2663a5..0bce4e8d965f2c83e6ba677fef2ede2726de6ed1 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-> @@ -37,6 +37,7 @@ tflash_vdd: regulator-tflash-vdd {
->   
->   		gpio = <&gpio_ao GPIOAO_3 GPIO_OPEN_DRAIN>;
->   		enable-active-high;
-> +		regulator-boot-on;
->   		regulator-always-on;
->   	};
->   
-> @@ -50,6 +51,7 @@ tf_io: gpio-regulator-tf-io {
->   
->   		enable-gpios = <&gpio_ao GPIOE_2 GPIO_OPEN_DRAIN>;
->   		enable-active-high;
-> +		regulator-boot-on;
->   		regulator-always-on;
->   
->   		gpios = <&gpio_ao GPIOAO_6 GPIO_OPEN_SOURCE>;
-> @@ -81,6 +83,7 @@ vcc_5v: regulator-vcc-5v {
->   		regulator-name = "5V";
->   		regulator-min-microvolt = <5000000>;
->   		regulator-max-microvolt = <5000000>;
-> +		regulator-boot-on;
->   		regulator-always-on;
->   		vin-supply = <&main_12v>;
->   		gpio = <&gpio GPIOH_8 GPIO_OPEN_DRAIN>;
-> 
-> ---
-> base-commit: b71e635feefc852405b14620a7fc58c4c80c0f73
-> change-id: 20260116-odroid-hc4-dts-54f4254d8554
-> 
-> Best regards,
+I'd also remove it: it's redundant.
 
-Acked-by: Viacheslav Bocharov <v@baodeep.com>
-
-Thanks,
-Viacheslav
+-- 
+Sakari Ailus
 
