@@ -1,195 +1,195 @@
-Return-Path: <devicetree+bounces-257588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257589-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wD3hDOnnb2lhUQAAu9opvQ
-	(envelope-from <devicetree+bounces-257588-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 21:39:05 +0100
+	id gNTNLTLtb2m+UQAAu9opvQ
+	(envelope-from <devicetree+bounces-257589-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 22:01:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id D06954B6E4
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 21:39:04 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63B864BE7A
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 22:01:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5DD118C6E04
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 19:38:07 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4F44F8E016E
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 19:40:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF84C47D948;
-	Tue, 20 Jan 2026 19:36:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B22DE426D18;
+	Tue, 20 Jan 2026 19:40:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Jch5is9l"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JvPktp/r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AB16438FE5
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 19:36:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 728FB332EDE;
+	Tue, 20 Jan 2026 19:40:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768937811; cv=none; b=r6uZChK7TBIOFMXekcJee94M92IofBTimjsI6zEWqKJ2OL4O84vclqiqDwFzfKt7wYVZCiZEUCxnPmxe300elKLBVsEmShUpuQSQhCQuLKsN0RoPCI/UuUJJ4kk56ddzSdyiwGRMARpiWHOodBMvrkmvGTWvqVQIHwOygYApS4M=
+	t=1768938034; cv=none; b=X89RLsUCPYzRSPWQPNFHVL0Bj/pKOtIlkTRavomZ7H/BG29GWDsjDl+mR2aAw7ePncRSGGgVmhEI6Gzy2rDRgPSb+WJBR+zuEN0JMxkwxCWILnfIxsyhZXScx7YDBMw1D2BD0R3S25gUh7oo6K6/cbtojNj5WWHYLMLfjnf7MSE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768937811; c=relaxed/simple;
-	bh=t6wsKS4Mv3ldNLxq4tVreWNmfuoojtATZJcpIorvR7Q=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=EaAqXAN5W+LzmFaEd/82bZSuztxB+W50U1q10po/PXeTsPBSHnPNMKaDpEWlmCG6GG1Cqul041med4bK3LIGF6KFmyXi+/8x00yL+p3bWsp6THM3teDq6tqEDKmlZusM+9d6FQDk8Xr6Kov8rtMzO6q28DwTktGDvz6TRz/d10I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Jch5is9l; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4801ea9bafdso15499815e9.3
-        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 11:36:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768937807; x=1769542607; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=I12N906HgVHTbvGqoi2UPUu+CNEO7P3/9i+Vob4xl7c=;
-        b=Jch5is9l4OUhYJP9sHZbW/bki9DSPuO7Z73ZiJV08Hgo9W4P1gjY/OYt8d2uzjapjO
-         RYp7mOW99vK5Z60QblP1n3QmyTrIK6SXPAQjMcQcLkLRj89LuO1zhZS5BVV1KvUG/oXh
-         tazKud6S3wBRd4CkVPXVntoFH3mZDP700z3rBFnC+I2A6h/WPzpjqeCdK70WUfIzfuOh
-         cDqT5xelKnxOQF/jvGSR+QPz6sEgf/lFNoWqK9tOIETkroXEjOgREZ/lvss6r8QcsMfX
-         +hSeuUnfKTqhJ0u+ezUaVqeLlWi290vyYFLgw7gEBxe3N5AbjNPjKtkBIIqHFz8J5kml
-         4dWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768937807; x=1769542607;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=I12N906HgVHTbvGqoi2UPUu+CNEO7P3/9i+Vob4xl7c=;
-        b=k1NFnd+YfZ9xFnrR5Ah7601z7LAZCxdd5U7693zHVhH54aOUoJApx9BdRexJyHGIFq
-         OSbZwNUhM0GZtnZGLXGC3ZQ9yb5C9UeYqetZXLbNcx1iTGLrY9VSvyx5rxGltu+4m/6K
-         0npaMrFtbtwMjfu6Fx5de10JmuQs1LraHvFv6UF8KlFTaD28d/CnWSMRYuwKXYzW9cvg
-         EuiPntd53uB55gwfEYncreRWcZBI2/UjpWn6DKPK7EZ8sDOKlbAU9x3LZk1JwIH660jN
-         DZ88zvy14CyoZyZ/LS90rnUD7f3GlKPwABiARxLbxDudnMUaLgJOAmJW3LcmR1pGnrLk
-         Gw2w==
-X-Forwarded-Encrypted: i=1; AJvYcCW6NEag94RHFjLwEij1bNCv9JsrtJc1q8ElGxEAMHNa9zSehdfNdAKTvsSRD6U9BQbT8G5jaydjVql9@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzpzeg6qiQDwJo63F/iRGxL0/YkS0U6q3DXc+Kh8qHYlT8LF3mg
-	Mdqc0DHz95cfwY43RYaIEMuz2lKC/EfagvKyfeoDMROvp2D0+z0LBWex
-X-Gm-Gg: AY/fxX6IQcmDUQy/9UkG93OLXINXh1MoQ7NVwaTXCqOOxQlPWvJ+xn6/WjWMZUeBcEX
-	KEGAz3z+FfTHAoZcniPcYxo+0HuBnfq2No1ytKIEsPfm06SEmIOmV0UGavn4dI6pFMDjhF8M562
-	QEigDYgpYmfQtlP0PxCj2AeZNPlwbpXoR/2NZd8QqiDIIsaSicvqNfqFNe221kq/rKE0Z6hme45
-	xgl9iuOd3PIcZ72WMioe6DprPWzaMl/ALnRuz2FCqusI9KhzONI4CQWHh991xsVPZ/vkWha4fPf
-	84gihlXJkXoLsavwJ5eTcGpANetSTkVApdKjWI4Euq7sP8rWqOCrRqtyFqulBo+rT6nIh09MkMK
-	+5dHCemrj0Tz0A3dsG9OAnuYdxAjyX8z32wsCjwg6+gMM4lpnZIOjGnvYbh1JzXTIG1W/6qikI2
-	GF1ynUe9vEylxYBfA0Z2Md
-X-Received: by 2002:a05:600c:1387:b0:477:df7:b020 with SMTP id 5b1f17b1804b1-4801e34301amr200601805e9.18.1768937806632;
-        Tue, 20 Jan 2026 11:36:46 -0800 (PST)
-Received: from unknown.zextras.com ([78.208.157.140])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-4801e8c05c3sm256267695e9.11.2026.01.20.11.36.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jan 2026 11:36:46 -0800 (PST)
-From: Gianluca Boiano <morf3089@gmail.com>
-To: andersson@kernel.org
-Cc: konradybcio@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Gianluca Boiano <morf3089@gmail.com>
-Subject: [PATCH] arm64: dts: qcom: sdm630: add SPI7 interface
-Date: Tue, 20 Jan 2026 20:36:34 +0100
-Message-ID: <20260120193634.1089688-1-morf3089@gmail.com>
-X-Mailer: git-send-email 2.52.0
+	s=arc-20240116; t=1768938034; c=relaxed/simple;
+	bh=A86HiTGdeay1Qm6gVy1xjuUwe/ZurTakL/i4nzwnxfM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=j6c8/XyWv+RwkAKOk8mmFN6Ix1mBztsK6kRx4xHQpp54wIc1PZ1SLvHsuY8/482X/WcA2wlQ/cijIc6LObrF6Oy5YhpbwQUqIfeF8nbSJzZ2dNNkdrRkmONLuWbX6WcAP9XOxlTKzTyirqyQrggpz3bQN4JVXw8tqHVDBrYVtOg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JvPktp/r; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAA54C16AAE;
+	Tue, 20 Jan 2026 19:40:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768938033;
+	bh=A86HiTGdeay1Qm6gVy1xjuUwe/ZurTakL/i4nzwnxfM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=JvPktp/r9fF70Yi+kkvVdIvLvdRX6hMlVniyKB22/rSI6V5EvWFmKhirAOKND+Lp/
+	 6HkPqdn4APlMo5AxNKPl5M3IRLhnk4WBq8y8jNOvnlfRFeUuDsO5HfgRmKhaiY14aQ
+	 XWUcBGJ+kosW4SZG0zzaETQg0IVJ6SaOfI90jAOEdONndTIRhj7HccT241CNppSr5s
+	 BuDOZXVVNhmHkAbfx5dVCQzMsLkbyiV3/zMtjdz4Zr+wHkjbuDD4xgepPnGZU08GGu
+	 APVnzMfQZZcA/9xnGp4OEgH5cjxGGcUZFFnJ64UIQ3kccY/CMNAkSOTFTPDexz6xhm
+	 UoANmSzm+CqBg==
+Message-ID: <b7d27dc1-05c7-4525-b483-1712e9d497ee@kernel.org>
+Date: Tue, 20 Jan 2026 20:40:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] ARM: dts: aspeed: add an alt 128M flash layout
+To: Marc Olberding <molberding@nvidia.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+References: <20260120-alt-128-v3-0-a81bdafc00a7@nvidia.com>
+ <20260120-alt-128-v3-1-a81bdafc00a7@nvidia.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260120-alt-128-v3-1-a81bdafc00a7@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.46 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	TAGGED_FROM(0.00)[bounces-257589-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-257588-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[morf3089@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,c1b7000:email,0.62.65.128:email]
-X-Rspamd-Queue-Id: D06954B6E4
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
+X-Rspamd-Queue-Id: 63B864BE7A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add spi7 interface to SDM630 device tree.
+On 20/01/2026 20:26, Marc Olberding wrote:
+> Add a 128M layout for the BMC flash chip we didn't boot from. Including
+> this allows the user to write to each partition on the alternate spi
+> chip. This dtsi follows the existing standard of using the same layout
+> as non alt version and prepending `alt` to each partition's name.
+> 
+> Tested by running on target and catting sysfs nodes
 
-Signed-off-by: Gianluca Boiano <morf3089@gmail.com>
----
- arch/arm64/boot/dts/qcom/sdm630.dtsi | 34 ++++++++++++++++++++++++++++
- 1 file changed, 34 insertions(+)
+You cannot test this patch that way - DTSI is not included by anything.
+This probably should be squashed with next one because makes little
+benefit on its own,
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-index 8b1a45a4e56e..92afb5428e3c 100644
---- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-@@ -1013,6 +1013,20 @@ data-pins {
- 					drive-strength = <2>;
- 				};
- 			};
-+
-+			spi7_default: spi7-default-state {
-+				pins = "gpio24", "gpio25", "gpio26", "gpio27";
-+				function = "blsp_spi7";
-+				drive-strength = <6>;
-+				bias-disable;
-+			};
-+
-+			spi7_sleep: spi7-sleep-state {
-+				pins = "gpio24", "gpio25", "gpio26", "gpio27";
-+				function = "blsp_spi7";
-+				drive-strength = <6>;
-+				bias-disable;
-+			};
- 		};
- 
- 		remoteproc_mss: remoteproc@4080000 {
-@@ -1944,6 +1958,26 @@ blsp_i2c7: i2c@c1b7000 {
- 			status = "disabled";
- 		};
- 
-+		blsp_spi7: spi@c1b7000 {
-+			compatible = "qcom,spi-qup-v2.2.1";
-+			reg = <0x0c1b7000 0x600>;
-+			interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
-+
-+			clocks = <&gcc GCC_BLSP2_QUP3_SPI_APPS_CLK>,
-+				 <&gcc GCC_BLSP2_AHB_CLK>;
-+			clock-names = "core", "iface";
-+
-+			dmas = <&blsp2_dma 8>, <&blsp2_dma 9>;
-+			dma-names = "tx", "rx";
-+
-+			pinctrl-names = "default", "sleep";
-+			pinctrl-0 = <&spi7_default>;
-+			pinctrl-1 = <&spi7_sleep>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		blsp_i2c8: i2c@c1b8000 {
- 			compatible = "qcom,i2c-qup-v2.2.1";
- 			reg = <0x0c1b8000 0x600>;
--- 
-2.52.0
+>     for devdir in /sys/class/mtd/mtd*; do
+>          [[ -d $devdir && -r $devdir/name ]] || continue
+>          name=$(<"$devdir/name")
+>          [[ $name == alt* ]] || continue
+> 
+>          size=$(<"$devdir/size")
+>          offset=0
+>          [[ -r $devdir/offset ]] && offset=$(<"$devdir/offset")
+> 
+>          dev=$(basename "$devdir")
+>          printf "%s name=%s offset=0x%X size=0x%X\n" "$dev" "$name" \
+>             "$offset" "$size"
+>     done
+> 
+>     mtd10 name=alt-rofs offset=0xA00000 size=0x5600000
+>     mtd11 name=alt-rwfs offset=0x6000000 size=0x2000000
+>     mtd7 name=alt-u-boot offset=0x0 size=0xE0000
+>     mtd8 name=alt-u-boot-env offset=0xE0000 size=0x20000
+>     mtd9 name=alt-kernel offset=0x100000 size=0x900000
+> 
+> Ran dtbs check, no errors from the msx4 dts
 
+Drop this sentence, it's implied. There is no point to state obvious,
+e.g. that you build source code, in the commit msg. It serves no purpose
+in the git history. You also have changelog for such things, if you want
+to emphasize.
+
+> 
+> running diff between the main and alt flash layouts shows that the only
+> diff is alt prepended to the partition labels, as expected.
+
+? Not sure what you want to say, but please do not explain us how DTS
+works (in case this was about DTS).
+
+
+Best regards,
+Krzysztof
 
