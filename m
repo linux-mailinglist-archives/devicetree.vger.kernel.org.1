@@ -1,49 +1,50 @@
-Return-Path: <devicetree+bounces-257174-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B278D3BE4B
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 05:19:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C679D3BE4C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 05:19:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5D2354E9DF5
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 04:17:58 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 349144E9E38
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 04:18:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B6FA33F8DD;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9450F33FE26;
 	Tue, 20 Jan 2026 04:15:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q9O4T3Iw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M/h1V+Pq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCC7333F396;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6E1A33F394;
 	Tue, 20 Jan 2026 04:15:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768882528; cv=none; b=PTgQxmbZIM5VD5ANrMQOKkuyPqH7m8kxuu1u1yLl/I3SkuisIttpgLj5D/Gb+8nxosDRh/mkPx1urbbYDHWgEU/by49Ij+wpIOnZVZmZ4vXReSzX8sl5t0hD95jjkAd+6HhJH6MnXv91j+ve+qQuFXC+YvEcKZOX7W/h36MyCmc=
+	t=1768882528; cv=none; b=otwLAGRBWFUOeAL4unW87IiO2mDkvZE/nF6Q154wSBmHYPWIZLa+FlIwOzLNXghyKnlkkbeEbjcVgdJ0Mvh3EO1vfmB4soRj5TU2wcCll5be8F2NQZ40Y3yP5VuV0s1+aciApOVRZ3lQQiGAt8kHlwsg7bEgaV0VRgDwAYDLoNk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1768882528; c=relaxed/simple;
-	bh=udCB56ewUuBczR6ctM7up8XACViyJiWY/ibyZC1jejs=;
+	bh=vOomva/hR4ZN3wCiusAiE7WWWgswq+7ShOke7S7qUXU=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To; b=MCX2nUj1xPbqkpS3/ibFQ87x27B/LQEgNU87DPYS/kbbU615YwTdp3lUX6kzu9g9nMH1t316mPbpxKPBtZFXRAInqEI1hhG+knRTN0FVRSyHFYRl0934El9LSyYQisv1A3VtyQNLEYQBcGWVjn1HTCg9Hxb8bhLHOQiEwtmKKqs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q9O4T3Iw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A3A1C2BC87;
-	Tue, 20 Jan 2026 04:15:27 +0000 (UTC)
+	 In-Reply-To:To; b=buPLWO4FHk0sPHp8ebov6TXoQnyKKdW04illegb54WsgLAD0+8vTZ/Vi0B2AoDAZSYzVWinQEkgoaC1f6H1m1zQ+EIeELB4oNtSqPOx3y4hxwQFuAC/iiqC2Yl94kzHi7W/vuPFL6s1umWqoagI6L5Qj5y1N/VEzjC8Ln3iBW8s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M/h1V+Pq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0649CC19424;
+	Tue, 20 Jan 2026 04:15:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768882527;
-	bh=udCB56ewUuBczR6ctM7up8XACViyJiWY/ibyZC1jejs=;
+	s=k20201202; t=1768882528;
+	bh=vOomva/hR4ZN3wCiusAiE7WWWgswq+7ShOke7S7qUXU=;
 	h=From:Date:Subject:References:In-Reply-To:To:From;
-	b=q9O4T3Iwp5YU9aTtmeJpgqm4DzAdGefVfEQ9vaci4fasVdHhxCtxtl06PwRBg9ERG
-	 h4nBCUYcBujNBC5VaUWllNPthZII8W19hZEeJqcnU3cXhADKEIYf43qj2Zw5g6iZQT
-	 4IxMq95bY1ARP4MJGC/HikCdl+ip+UlakSpBKhDw0yU/aSRBfRzW0ME6L770zJ+EmK
-	 KL8Se3YCpBA+/ETMQAyiACgFGsljmdcS9hlV3ygaw3oBdg8ecLy6/zjUjYxezXL+Tq
-	 GiVchXxe9h9bw8OO0rmUuYaZma252RfrfXycAmNh4t+/ryn8mJXFugVqp8kRktGuAH
-	 o+5SG6ii9Ve1Q==
+	b=M/h1V+PqX4zXCxzDt8NUnxPgoXVnQhg8WoUICA3PhEemyl3VhMSjOI+Jhe2Z/juZu
+	 4LzN06174ZXaIUomWcFT6yWpULBfZLnKcJq4MwvkZzJU+zL6GgcmiqWS7BmB0zX3ay
+	 c3W25/l9jvnz+XskL4ygAJKq2U9z/cZWxzZm3MkuttSw7kX0fXcBUPQjXap6qENSVd
+	 aGdHVuClMkeF865an2gkhILh0i0Gk+6M3LWWMoL88VbborkXjYpkt+zBeJftYDmnEl
+	 neaBBG41Qb/GBi20/OQ8qtkbzg7XVHrwr2/0KFMknZ4Kjb9386ohhInvLs6XO6n5TF
+	 uK2cKiLbdKAtQ==
 From: Drew Fustini <fustini@kernel.org>
-Date: Mon, 19 Jan 2026 20:14:55 -0800
-Subject: [PATCH NFU RFC 18/19] riscv: dts: qemu: add CBQRI controller nodes
+Date: Mon, 19 Jan 2026 20:14:56 -0800
+Subject: [PATCH NFU RFC 19/19] riscv: dts: build qemu dtb for
+ CONFIG_ARCH_VIRT
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,7 +53,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260119-ssqosid-cbqri-v1-18-aa2a75153832@kernel.org>
+Message-Id: <20260119-ssqosid-cbqri-v1-19-aa2a75153832@kernel.org>
 References: <20260119-ssqosid-cbqri-v1-0-aa2a75153832@kernel.org>
 In-Reply-To: <20260119-ssqosid-cbqri-v1-0-aa2a75153832@kernel.org>
 To: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
@@ -78,96 +79,49 @@ To: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-riscv@lists.infradead.org, x86@kernel.org
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2591; i=fustini@kernel.org;
- h=from:subject:message-id; bh=udCB56ewUuBczR6ctM7up8XACViyJiWY/ibyZC1jejs=;
- b=owGbwMvMwCV2+43O4ZsaG3kYT6slMWTmMwZb8NY27P2ru04ycsMpxgV11wKXXXzt/+/TjxdWZ
- TE1O+tXd5SyMIhxMciKKbJs+pB3YYlX6NcF819sg5nDygQyhIGLUwAmknWb4X9CjeiBp9XGT/dk
- pz9Kmhp1gzl0e4QFn1Tk+51p269ymuoy/Ga5duGYup/rg52s59Ycknr2elF+qdEf8z9LK+1r/gj
- Lp/MBAA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1198; i=fustini@kernel.org;
+ h=from:subject:message-id; bh=vOomva/hR4ZN3wCiusAiE7WWWgswq+7ShOke7S7qUXU=;
+ b=owGbwMvMwCV2+43O4ZsaG3kYT6slMWTmMwZb9fXLx8458y/0Pfe5tgalmf87g9JnbxHbYqs6L
+ XJ21GyFjlIWBjEuBlkxRZZNH/IuLPEK/bpg/ottMHNYmUCGMHBxCsBEbqxl+O/57GxiscP8Tb3V
+ knN/5t+90yOx1HDzHp+elU+MXJZnRSYwMnzd8TT9wTaPd2YLMy/lvH8bdczy/q5F/ZPdHptcYE8
+ 9GMUCAA==
 X-Developer-Key: i=fustini@kernel.org; a=openpgp;
  fpr=1B6F948213EA489734F3997035D5CD577C1E6010
 
 [NOT FOR UPSTREAM]
 
-Add nodes to for CBQRI-capable cache and bandwidth controllers.
+Build DTB based on Qemu generated DTS when CONFIG_ARCH_VIRT is enabled.
+The resulting dtb will be consumed by qemu-system-riscv64.
 
-Link: https://github.com/tt-fustini/qemu/tree/b4/riscv-ssqosid-cbqri
 Co-developed-by: Adrien Ricciardi <aricciardi@baylibre.com>
 Signed-off-by: Adrien Ricciardi <aricciardi@baylibre.com>
 Signed-off-by: Drew Fustini <fustini@kernel.org>
 ---
- arch/riscv/boot/dts/qemu/qemu-virt-cbqri.dts | 59 ++++++++++++++++++++++++++++
- 1 file changed, 59 insertions(+)
+ arch/riscv/boot/dts/Makefile      | 1 +
+ arch/riscv/boot/dts/qemu/Makefile | 3 +++
+ 2 files changed, 4 insertions(+)
 
-diff --git a/arch/riscv/boot/dts/qemu/qemu-virt-cbqri.dts b/arch/riscv/boot/dts/qemu/qemu-virt-cbqri.dts
-index 4c6257bec42d..9f65de65f758 100644
---- a/arch/riscv/boot/dts/qemu/qemu-virt-cbqri.dts
-+++ b/arch/riscv/boot/dts/qemu/qemu-virt-cbqri.dts
-@@ -395,5 +395,64 @@ pci@30000000 {
- 			#interrupt-cells = <0x01>;
- 			#address-cells = <0x03>;
- 		};
-+
-+		cluster0_l2: controller@4820000 {
-+			compatible = "riscv,cbqri-cache";
-+			reg = <0x0 0x4820000 0x0 0x1000>; /* 4KB at 0x04820000 */
-+			cache-unified;
-+			cache-line-size = <64>;
-+			cache-level = <2>;
-+			cache-sets = <1000>;
-+			cache-size = <768000>; /* 750 KiB */
-+			next-level-cache = <&shared_llc>;
-+			riscv,cbqri-rcid = <64>;
-+			riscv,cbqri-mcid = <256>;
-+		};
-+
-+		cluster1_l2: controller@4821000 {
-+			compatible = "riscv,cbqri-cache";
-+			reg = <0x0 0x4821000 0x0 0x1000>; /* 4KB at 0x04821000 */
-+			cache-unified;
-+			cache-line-size = <64>;
-+			cache-level = <2>;
-+			cache-sets = <1000>;
-+			cache-size = <768000>; /* 750 KiB */
-+			next-level-cache = <&shared_llc>;
-+			riscv,cbqri-rcid = <64>;
-+			riscv,cbqri-mcid = <256>;
-+		};
-+
-+		shared_llc: controller@482b000 {
-+			compatible = "riscv,cbqri-cache";
-+			reg = <0x0 0x482b000 0x0 0x1000>; /* 4KB at 0x0482B000 */
-+			cache-unified;
-+			cache-line-size = <64>;
-+			cache-level = <3>;
-+			cache-sets = <4096>;
-+			cache-size = <3145728>; /* 3 MiB */
-+			riscv,cbqri-rcid = <64>;
-+			riscv,cbqri-mcid = <256>;
-+		};
-+
-+		mem0: controller@4828000 {
-+			compatible = "riscv,cbqri-bandwidth";
-+			reg = <0x0 0x4828000 0x0 0x1000>; /* 4KB at 0x04828000 */
-+			riscv,cbqri-rcid = <64>;
-+			riscv,cbqri-mcid = <256>;
-+		};
-+
-+		mem1: controller@4829000 {
-+			compatible = "riscv,cbqri-bandwidth";
-+			reg = <0x0 0x4829000 0x0 0x1000>; /* 4KB at 0x04829000 */
-+			riscv,cbqri-rcid = <64>;
-+			riscv,cbqri-mcid = <256>;
-+		};
-+
-+		mem2: controller@482a000 {
-+			compatible = "riscv,cbqri-bandwidth";
-+			reg = <0x0 0x482a000 0x0 0x1000>; /* 4KB at 0x0482A000 */
-+			riscv,cbqri-rcid = <64>;
-+			riscv,cbqri-mcid = <256>;
-+		};
- 	};
- };
+diff --git a/arch/riscv/boot/dts/Makefile b/arch/riscv/boot/dts/Makefile
+index 69d8751fb17c..edd25cf000cc 100644
+--- a/arch/riscv/boot/dts/Makefile
++++ b/arch/riscv/boot/dts/Makefile
+@@ -5,6 +5,7 @@ subdir-y += anlogic
+ subdir-y += canaan
+ subdir-y += eswin
+ subdir-y += microchip
++subdir-y += qemu
+ subdir-y += renesas
+ subdir-y += sifive
+ subdir-y += sophgo
+diff --git a/arch/riscv/boot/dts/qemu/Makefile b/arch/riscv/boot/dts/qemu/Makefile
+new file mode 100644
+index 000000000000..a6b06ef1a75a
+--- /dev/null
++++ b/arch/riscv/boot/dts/qemu/Makefile
+@@ -0,0 +1,3 @@
++# SPDX-License-Identifier: GPL-2.0
++dtb-$(CONFIG_ARCH_VIRT) += qemu-virt-cbqri.dtb
++obj-$(CONFIG_BUILTIN_DTB) += $(addsuffix .o, $(dtb-y))
 
 -- 
 2.43.0
