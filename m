@@ -1,213 +1,253 @@
-Return-Path: <devicetree+bounces-257732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257733-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8PZLMepicGkVXwAAu9opvQ
-	(envelope-from <devicetree+bounces-257732-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 06:23:54 +0100
+	id iCfqEBBocGkVXwAAu9opvQ
+	(envelope-from <devicetree+bounces-257733-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 06:45:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FE095177F
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 06:23:54 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFCC651A99
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 06:45:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8983A429482
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 05:23:47 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5859B6C061E
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 05:45:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FAB934E751;
-	Wed, 21 Jan 2026 05:23:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B4C5425CEB;
+	Wed, 21 Jan 2026 05:45:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PEPjFqFR"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="iIBDqRWC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f175.google.com (mail-dy1-f175.google.com [74.125.82.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from BL2PR02CU003.outbound.protection.outlook.com (mail-eastusazon11011052.outbound.protection.outlook.com [52.101.52.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B97E7363C7E
-	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 05:23:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.175
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768973018; cv=none; b=Yyljh4Rvvfb1Zus0TtoW7EHMdU63Zz0eadEsO6c3XtwkDtq+becL0AHzDZXoWyUdihrvDHEBCetf7RE5KgAcPkNFiruQ9sUVUoNAQ2/aVg8Ev7HN5MMfOw+l3NGvqcvDMabTp1K7WL51H3nRDO95vW9ihIrfAcD7GFNk83n4+GU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768973018; c=relaxed/simple;
-	bh=Dw9HsdmJOjzl+Kv7hLQdOCfLXTyunVYFcP72pCiv2D4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sljPrJr3N2RQk/4KozcZJ9WhIOQQxCHdRATT9NL4Zp/LZovYM9naT2lNhZXZAOMYoYP7aANsOtILJ+a1guiBY7aEuUvJNEF+UnK5blScz+j7VUf/6VQCOi91ki9wHoAIJivwiQrBPZocTk5QqMLSkSkaIUNanUL1Iu9Y+AdtsNA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PEPjFqFR; arc=none smtp.client-ip=74.125.82.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f175.google.com with SMTP id 5a478bee46e88-2ad70765db9so7158404eec.1
-        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 21:23:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768973016; x=1769577816; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=7xHJElSAdSqvbGqx9RRBRVuePrz2/MCvNfCaMRCbPdA=;
-        b=PEPjFqFRghO1tmToodI9M6hMlNh3UmQVP4M4XujxRrWcReM1xzsFqk+fhRNQeOXwyG
-         qZeb6l4g44wSdY828zaMOqqV2sCt0iNAXw0xS9lK2eOFEpISnzxYRExmPPkefliqKifY
-         HJoBbGELDC3fYpH26mAgSgXPjBh2mZh1KGXnjr5zmkWNHVdzQtKxUhT6BiualpPxCwWZ
-         OLb6tjCFDC/JCWE6hEhzKfCU5hU5Ld9cOncB07LDxR1UYvVLFpdng8OeQ+mlhDXTcmuo
-         xGB8/oq+Uz4q3uqVoKRQf0QiuPFlsM7h2Whc57r2UnuWIrPI0bOGuhB8FPtM57tUbo2A
-         0F4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768973016; x=1769577816;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7xHJElSAdSqvbGqx9RRBRVuePrz2/MCvNfCaMRCbPdA=;
-        b=Cc33c7zoOJBIQFC9FLj4d5yBVhu4901gALgf9/t3B6WJWgJPN3ukn2wgra14GK5hQZ
-         mM4LJG1Oy8bf1GTSCXF+VMEz40klZGyCNg7Vi+r7AO3bcxdZcq2Y++0stJy5em/giW3J
-         cMh6VOFB1quNNRAcYYbEfyLuJttvXlJj5WpRIwHMs+fbuTGzzJd9Yd+6jq0qo7YUmvqb
-         PU3iUz255BRogdefzyy6CMDnV4bH6aLqy9P4xYkYNapyAsJ5KGxWJwqL916g3nfYEU/Z
-         z0z+9IEzyApXWxNp5uCw2LCp4xC2x7L0aa7g1R9fM8zn+5hSKbNXVeo5pnORK8pkp5Vi
-         +daw==
-X-Forwarded-Encrypted: i=1; AJvYcCVdJ5nhQjEwW1MibzQN+UISgsedBfRJoivnTDIP3ZfEF1CXm/jr/x4vIvmxmW8lMzVX/u+0FR/AzqLu@vger.kernel.org
-X-Gm-Message-State: AOJu0YyxP/7wUxiLtcOqT31LhIaf107JiPJsr7FWNufnSdNpSpfo7duG
-	aKmyD9H49k7UWXZIoSFnpPiqegumcajrDdgTa9Q5UJRuN3BcysJ4gbi8
-X-Gm-Gg: AZuq6aKaLX/hOeBgojwikb0RkakscwycNZ7Uvz4kS5HTSl4VT2HC+VX6CQVSIloUlUC
-	8OCxCsrsacF1AA5cGWgc5fcvawWuZvE96jgF3dCfOc+nVerylXnWp75MHkYmdowclK33sKyn1gd
-	KiRFGHqChZvXF6RDu1cPIAE+m7vX4aUDeQn4GCLLAVWcdtVdiCy39BH9lN+7R+u6cVZQzrfOyDW
-	GtSL4i4ufOCJNw+zL6q/+9gPYrgX4rdfBtfkv/e2yPCQA/E0WdZpXUQ420/en4wVoVEVWewy5Hh
-	qZsxVIEBXsXTKKTcHY+qEEY3HjpfTqbxDyKVmM0EFBauqWNM7ze8v0iqbiXqqlrjYLazwTVUlUL
-	MhtIhBKRvWJ9exDn7XIHQ8K9w93WaWOZtwwNGEatGR5ShFs0Aw31C50IBt6PkzotJGHygkLUvyR
-	wSQP0kmfEQxYu4lSrlgYnZDTf9SA0b/uDUY+VKUHCAkA5G8n8cqbQTZwDv2KclE1Y=
-X-Received: by 2002:a05:7022:4399:b0:123:3bc6:1ff7 with SMTP id a92af1059eb24-1244b3700a5mr10142956c88.27.1768973015688;
-        Tue, 20 Jan 2026 21:23:35 -0800 (PST)
-Received: from google.com ([2a00:79e0:2ebe:8:abb8:3a31:328a:3594])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1244ac57fd0sm22877361c88.3.2026.01.20.21.23.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jan 2026 21:23:35 -0800 (PST)
-Date: Tue, 20 Jan 2026 21:23:32 -0800
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Marek Vasut <marek.vasut@mailbox.org>
-Cc: linux-input@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
-	Frank Li <Frank.Li@nxp.com>, Job Noorman <job@noorman.info>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v4 3/3] Input: ili210x - add support for polling mode
-Message-ID: <nk5qn7ye44lbtppp2opa273ut7lxkcz7jsw6giagwngiwhg7rr@puexvdzd2ymq>
-References: <20260117001215.59272-1-marek.vasut+renesas@mailbox.org>
- <20260117001215.59272-3-marek.vasut+renesas@mailbox.org>
- <wv3vil4b4lgfrqt4qnzxiffnniw422xjfdiz4svkklnfrslz3g@yzqc265pj5t5>
- <bbb7fb54-5b04-4c38-840b-8cab58eeec7b@mailbox.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 060C9425CCE;
+	Wed, 21 Jan 2026 05:44:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.52.52
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768974296; cv=fail; b=RCM7Ff5v/Enlb66o1xxPjjNkkk58RBLJ5yFz70kz9wippnUD2hfbv0yDEIK8e8TEDEwYnR+2dyvdZBr+7hKOo9iEQMJRmT2zeE3sUDD15zehC+0+hRc7u+rWO9gsf5J7G3ybiEcBYBieKXxGIXth3iRTQrpYJ1GpTd1zLHva6vI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768974296; c=relaxed/simple;
+	bh=bco/h2FvogNC2nRT+E1RufPPpSSuacJ7Q/KYzHJr02E=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=RcY0waxo1dPIbqsOMNhSfP7Lgn63r72IMI5UGdyp4WLOsNauJ9x7i+21J9nz4Tz/BIgZiA9AqUwfQBLu/16lr2UPLGrQwb6Q3J2/CmtvXQjQIKhMQwZEWg1n4/9wFMufWu9OwLoyIdl8OY4QrQwSlxwWTkLLwXCJzfUhumkFylA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=iIBDqRWC; arc=fail smtp.client-ip=52.101.52.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=JSngYZAw3XmXRQ//HLVf4iGkwaEPqUtoKWZmbzwGX2pejxcs8P6JDsNCyeV2Ue60gr40aMc+MN1h+7tVjqGoi3NvcIkK1C845pdMk6Uo067MhO/y9a2sCZagC3UgT/gyGvFyax57fjQXXViYa9yOC6KFSJYAsc7nsfgh3lTkZe73AhEehCaTYyi5gsi9jYifqG47XY3zh8OlTVUWz6UPeifDw3qk+lyrCnfk7SAJE8tBBMf+1IVjEB2BzPrn9tPRla4YA2g0FoakAHmGJNHHJwrwLB2XerPy+tJfr7ENQaJC8QVOTzTWdo1o2t1FJ+6Te00BhQx8963837v9Zs/p+w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6dQIm0BHOTGHpR6soWJLiPDn99WTp8i9bUIveaQNyTY=;
+ b=PNiaZ2/sUvTFMUF0NceHAySHZLEyvQkNJDy13EfqYda6YRHAeuyUO/L2tZ7dJi5G617dJR6PtI1g1fttEQKEU9QX2zqirbB0ZVAtuWwzafQMHCd3CLjU2eavUu5358vRRg2iye+j6pan+37BHJ/tW2gK80PQJyh1Tmnk5YmJ1URBh1O6IJTKkCmWBBBVTRL4OHSRo4wqAtdwZJCUKNLW+RMCDSfwd9rlh/QbrD+fV6c6mqwJ0Zwqids8k1hkdJTMWEUyAiQNGPuEpxV/ZjBTg/X00gYv3thcAl4lOv7efHGNqo2y4cq52De3OB1U+qkcTn/US/4fdYCtQSK2wOfdOg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.195) smtp.rcpttodomain=lists.infradead.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6dQIm0BHOTGHpR6soWJLiPDn99WTp8i9bUIveaQNyTY=;
+ b=iIBDqRWCXJZ1xR56C8rHY5Bui+OhaLW/lCa/Lwz5UFNQHwgvSZnioD1hBnowRx8M+BJIB/GFWy4wk/PRYdW96L133MGbsdZ1li5ulWoT7eIpuuwy9GPVK9xMtXl4Kw03dS5PVW1Smza2SC99KwtcWSPEGXZaidYkF1YeyWk6/SM=
+Received: from BY5PR03CA0026.namprd03.prod.outlook.com (2603:10b6:a03:1e0::36)
+ by DM3PPF5F5663669.namprd10.prod.outlook.com (2603:10b6:f:fc00::c2b) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.13; Wed, 21 Jan
+ 2026 05:44:41 +0000
+Received: from SJ5PEPF000001CD.namprd05.prod.outlook.com
+ (2603:10b6:a03:1e0:cafe::c) by BY5PR03CA0026.outlook.office365.com
+ (2603:10b6:a03:1e0::36) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9520.13 via Frontend Transport; Wed,
+ 21 Jan 2026 05:44:40 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
+Received: from lewvzet201.ext.ti.com (198.47.23.195) by
+ SJ5PEPF000001CD.mail.protection.outlook.com (10.167.242.42) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9542.4 via Frontend Transport; Wed, 21 Jan 2026 05:44:39 +0000
+Received: from DLEE204.ent.ti.com (157.170.170.84) by lewvzet201.ext.ti.com
+ (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 20 Jan
+ 2026 23:44:39 -0600
+Received: from DLEE201.ent.ti.com (157.170.170.76) by DLEE204.ent.ti.com
+ (157.170.170.84) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 20 Jan
+ 2026 23:44:37 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE201.ent.ti.com
+ (157.170.170.76) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Tue, 20 Jan 2026 23:44:37 -0600
+Received: from toolbox.dhcp.ti.com (uda0492258.dhcp.ti.com [10.24.73.74])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60L5iWqa2323641;
+	Tue, 20 Jan 2026 23:44:32 -0600
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <bb@ti.com>, <afd@ti.com>,
+	<p-bhagat@ti.com>, <gehariprasath@ti.com>
+CC: <stable@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<srk@ti.com>, <s-vadapalli@ti.com>
+Subject: [PATCH v2] arm64: dts: ti: k3-am62d2-evm: Fix missing RX delay for DP83867 PHY
+Date: Wed, 21 Jan 2026 11:15:50 +0530
+Message-ID: <20260121054552.1650926-1-s-vadapalli@ti.com>
+X-Mailer: git-send-email 2.51.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <bbb7fb54-5b04-4c38-840b-8cab58eeec7b@mailbox.org>
-X-Spamd-Result: default: False [0.04 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001CD:EE_|DM3PPF5F5663669:EE_
+X-MS-Office365-Filtering-Correlation-Id: 28720447-32ae-4ba6-0590-08de58b02b49
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|1800799024|36860700013|82310400026|13003099007|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?TlAvRiX0lptlugi+h1KCCirT33bXt8zPrQDJkHPHVEVaeMIfXNcu1W8NqJ73?=
+ =?us-ascii?Q?x/MVdWzGtI7XrjVbDNvytg8NRmGARhbwd7FculDk+DurMkC6mI6x83bPvk7a?=
+ =?us-ascii?Q?vcCPUFhKFeD/eov/ysl6Fs25oaXJeIYy1yy3GLASwm8Cy/+mMCJRNBoh4Tt1?=
+ =?us-ascii?Q?3GeQeYeSlihFFVPkt232Bo7SdVh9wR8TH689rCPEuR78vTZXGRTE68UlA7OT?=
+ =?us-ascii?Q?KQgmFAWY8fXZuXiIfDB/M++csF6jx1N7C8PS8f1tznIVzHwgZqXyUasEYsU4?=
+ =?us-ascii?Q?mB3RjeHrR1BE91oviSVbSwJ6FNNAGisERniLGLJ8s0L14TB0Bbn9M/v1sqcQ?=
+ =?us-ascii?Q?YHDyzvVUnuJ04xnZUeVzE6SteM4rtlKxFUPGOHPOXxDHKTpcEGdsU7BLDvLz?=
+ =?us-ascii?Q?/pZXuQaSAhYalyLpbkUwMZVFy+QEUByWQEY/YfiI4Idf3cCChjwx/7hsC1GN?=
+ =?us-ascii?Q?204Aa1yvE9sOgFc9JLbFMrL0JMH8Iwk8ege9kMGY4j1napeKzgNjmzq586MF?=
+ =?us-ascii?Q?JEhOM1VqouCEgZeFIN4J6dW1SFqsApdquxZ6TUr+1HVrp9vFJif17FoTDXH+?=
+ =?us-ascii?Q?Wy53TScBGpZ+ohH8w0rpjCExq3LFbMqzgREam/f0lwoO7gAz4hd6lqUqvPAd?=
+ =?us-ascii?Q?oB74VVYrdClbK2h0/lBxcse0bv3oNhBya2uREOBNYY4QRb/bq0AUlkUDyXdJ?=
+ =?us-ascii?Q?NPvkjdUFMhCuBkLhdaq6pqEYIoGQkKKcCqUbFJbN/pRwi8piJa7ROz4tioy2?=
+ =?us-ascii?Q?WpkaJxJSDyE3hl4oLfz0GHv/Z8A2nVUJ2PJBpe9z6zlByoboh4bG4wvDeAu1?=
+ =?us-ascii?Q?OPOFkiVIcbTfU9PyGoCKQZYFXNlH8DCUB0Uf6+cV5gYak8qnYIGMp+B+PsoB?=
+ =?us-ascii?Q?P8MkIrlAwODUDIjPkAy6uaRQt6X+xm39GHFs5Jq08/2yaCh3azhmyp3VjXMe?=
+ =?us-ascii?Q?EGawoV0ay5BK/MMVPYQw/ExI99xLk9x/MKZbV2Z2xNLXJkETcfRKUNThGgxN?=
+ =?us-ascii?Q?2Lg61h7c7JHL14+D6N7D1dbao4WwX7d5G78AjyZENTif+OIej+0aUTGYLz/T?=
+ =?us-ascii?Q?PQ7gVHqGmPjeE8wgJGtIPO5detvC9Og5NjkDGz1q5+4tRlYMZ2SxmWPG9BdA?=
+ =?us-ascii?Q?Zk0Rrok1a9DYrFaUQoYlqB+H3+1kwC7Tcccqwqq54HmPxNV8p05oAc5gyORW?=
+ =?us-ascii?Q?3QOB33VZbMi3elp7ssxgBC5tUarcMc3HSrctDWGuXZc6YiR4cNMXcm1wEoQl?=
+ =?us-ascii?Q?njLeEE76E0cch3ME/qnayJdlDCHTi8y+ScfFcKVZ3eTXu117OJ6CdlEliwQ+?=
+ =?us-ascii?Q?w6Tz/Qbt6YvDKlYVQYxCe/3QEvHBQ7Lc3xUTxoYy8I3A/Hfh3UiGZmXqvErE?=
+ =?us-ascii?Q?wzu+hrJzdM7NZ2qZ1vTS07jAUr6HXJRKaD9SYSirxBg3kps9txFMzd6jn46M?=
+ =?us-ascii?Q?Tc5NE/lcgIoDpms5FkWJCaEQeBSagCT7HZYBmbO0kEkcJp4j9BWXC2Z7plCs?=
+ =?us-ascii?Q?80i3xWGTBmq+yMpA1nzxuK/Yxo/I0VCp8IjYh/+gw2ZGpTX57uz8ijTF71Gx?=
+ =?us-ascii?Q?ii7gd+HlqdKDP6xTkDpzgAWUv6y62p45ybbz4sW6fOSCCSBhW8cb/BDPzCBn?=
+ =?us-ascii?Q?iwDXqZ+GcXWN2M3JxjZsZz1HzSAWrJj0Mi+44tX5c+0pVr6ttdDRcuXsYcbB?=
+ =?us-ascii?Q?NFWJ+M7+z82b1C6bVikvEameh9Y=3D?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026)(13003099007)(921020);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2026 05:44:39.5564
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 28720447-32ae-4ba6-0590-08de58b02b49
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ5PEPF000001CD.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PPF5F5663669
+X-Spamd-Result: default: False [1.54 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
-	TAGGED_FROM(0.00)[bounces-257732-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MISSING_XM_UA(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-257733-lists,devicetree=lfdr.de];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitrytorokhov@gmail.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[s-vadapalli@ti.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	DMARC_POLICY_ALLOW(0.00)[ti.com,quarantine];
+	DKIM_TRACE(0.00)[ti.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,0.0.0.0:email,ti.com:email,ti.com:dkim,ti.com:mid,0.0.0.3:email];
+	TO_DN_NONE(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: 9FE095177F
+	RCPT_COUNT_TWELVE(0.00)[16];
+	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: AFCC651A99
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Jan 20, 2026 at 11:50:53PM +0100, Marek Vasut wrote:
-> On 1/20/26 7:31 PM, Dmitry Torokhov wrote:
-> > Hi Marek,
-> > 
-> > On Sat, Jan 17, 2026 at 01:12:04AM +0100, Marek Vasut wrote:
-> > > @@ -860,16 +893,12 @@ static ssize_t ili210x_firmware_update_store(struct device *dev,
-> > >   	 * the touch controller to disable the IRQs during update, so we have
-> > >   	 * to do it this way here.
-> > >   	 */
-> > > -	scoped_guard(disable_irq, &client->irq) {
-> > > -		dev_dbg(dev, "Firmware update started, firmware=%s\n", fwname);
-> > > -
-> > > -		ili210x_hardware_reset(priv->reset_gpio);
-> > > -
-> > > -		error = ili210x_do_firmware_update(priv, fwbuf, ac_end, df_end);
-> > > -
-> > > -		ili210x_hardware_reset(priv->reset_gpio);
-> > > -
-> > > -		dev_dbg(dev, "Firmware update ended, error=%i\n", error);
-> > > +	if (client->irq > 0) {
-> > > +		scoped_guard(disable_irq, &client->irq) {
-> > > +			error = ili210x_firmware_update_noirq(dev, fwbuf, ac_end, df_end);
-> > > +		}
-> > 
-> > You already have a scope here, no need to establish a new one:
-> > 
-> > 		guard(disable_irq)(&client->irq);
-> > 		error = ili210x_firmware_update_noirq(dev, fwbuf, ac_end, df_end);
-> 
-> This part ^ I do not understand. If there is no IRQ defined in DT, I need to
-> call ili210x_firmware_update_noirq() without the guard because I cannot
-> disable_irq() with client->irq < 0, else I need to call
-> ili210x_firmware_update_noirq() within the scoped_guard() to disable IRQs to
-> avoid spurious IRQs that would interfere with the firmware update ?
+MAC Ports 1 and 2 of the CPSW3G Ethernet Switch in the AM62D2 SoC are both
+connected to different instances of the DP83867 Ethernet PHY on the AM62D2
+EVM, with the 'phy-mode' set to 'rgmii-id'. The DP83867 Ethernet PHY has to
+add a 2 nanosecond delay on receive (from wire) based on the EVM design.
 
-You do not need to use scoped_guard() because you already define a scope
-in your if statement:
+Since the device driver for the DP83867 Ethernet PHY coincidentally assumes
+that a 2 nanosecond receive delay has to be added in the absence of the
+'ti,rx-internal-delay' property, Ethernet is functional.
 
-if (client->irq > 0) {
-	guard(disable_irq)(&client->irq);
-	error = ili210x_firmware_update_noirq(dev, fwbuf, ac_end, df_end);
-} else {
-	error = ili210x_firmware_update_noirq(dev, fwbuf, ac_end, df_end);
-}
+However, since the device-tree is intended to describe the Hardware, and,
+the device driver for the DP83867 Ethernet PHY may change in the future,
+add the 'ti,rx-internal-delay' property and assign it the value
+'DP83867_RGMIIDCTL_2_00_NS' which corresponds to a 2 nanosecond
+delay.
 
-This is sill a bit awkward. Maybe we could add to interrupt.h
+Fixes: 1544bca2f188 ("arm64: dts: ti: Add support for AM62D2-EVM")
+Cc: <stable@vger.kernel.org>
+Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+Reviewed-by: Hari Prasath Gujulan Elango <gehariprasath@ti.com>
+---
 
-void __disable_valid_irq(unsigned int irq)
-{
-	if (irq > 0)
-		disable_irq(irq);
-}
+Hello,
 
-void __enable_valid_irq(unsigned int irq)
-{
-	if (irq > 0)
-		enable_irq(irq);
-}
+v1 of this patch is at:
+https://lore.kernel.org/r/20260120061335.1497832-1-s-vadapalli@ti.com/
+Changes since v1:
+- Fixed typo in the commit message based on the feedback at:
+  https://lore.kernel.org/r/6650770b-2e9c-4f9a-8310-1f335ffa69f8@ti.com/
+- Collected Reviewed-by tag from
+  Hari Prasath Gujulan Elango <gehariprasath@ti.com>
+  https://lore.kernel.org/r/6650770b-2e9c-4f9a-8310-1f335ffa69f8@ti.com/
 
-DEFINE_LOCK_GUARD_1(disable_valid_irq, int,
-		    disable_valid_irq(*_T->lock), enable_valid_irq(*_T->lock))
+Patch is based on commit
+6c790212c588 Merge tag 'devicetree-fixes-for-6.19-3' of git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux
+of Mainline Linux.
 
-and then we'd be able to keep the driver as is (just adjust the type of
-the original scoped_guard).
+Regards,
+Siddharth.
 
-> 
-> > BTW, not a fan of the "_noirq" suffix... Maybe drop it and add
-> > lockdep_is_held() there?
-> 
-> This part I understand even less, how does lockdep play into this ? The
-> scoped_guard() disables and enables IRQs if they are available.
+ arch/arm64/boot/dts/ti/k3-am62d2-evm.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Ah, sorry, brainfart on my part. I got confused by _noirq suffix.
-
-Thanks.
-
+diff --git a/arch/arm64/boot/dts/ti/k3-am62d2-evm.dts b/arch/arm64/boot/dts/ti/k3-am62d2-evm.dts
+index 2b233bc0323d..17c64af4f97b 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62d2-evm.dts
++++ b/arch/arm64/boot/dts/ti/k3-am62d2-evm.dts
+@@ -649,12 +649,14 @@ &cpsw3g_mdio {
+ 
+ 	cpsw3g_phy0: ethernet-phy@0 {
+ 		reg = <0>;
++		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+ 		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+ 		ti,min-output-impedance;
+ 	};
+ 
+ 	cpsw3g_phy1: ethernet-phy@3 {
+ 		reg = <3>;
++		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+ 		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+ 		ti,min-output-impedance;
+ 	};
 -- 
-Dmitry
+2.51.1
+
 
