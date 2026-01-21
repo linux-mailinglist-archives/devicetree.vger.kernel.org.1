@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-257713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257714-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0NxIN8c7cGmgXAAAu9opvQ
-	(envelope-from <devicetree+bounces-257713-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 03:36:55 +0100
+	id WOXQMv47cGmgXAAAu9opvQ
+	(envelope-from <devicetree+bounces-257714-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 03:37:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84F0D4FDAF
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 03:36:55 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id B187A4FE09
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 03:37:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 18004BC34FD
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:36:21 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 35B37A2CF92
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:37:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 663DF2C21F0;
-	Wed, 21 Jan 2026 02:36:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B696F346AF2;
+	Wed, 21 Jan 2026 02:36:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iHGwGUKF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tELJxsNq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 362D5280A58;
-	Wed, 21 Jan 2026 02:35:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87AAC346ACE;
+	Wed, 21 Jan 2026 02:36:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768962960; cv=none; b=o37FDVKMmykLyuuYHYgFITnELVVZGSPUy23XQlcWPnoaS4p0aPDf+HNh6iq+vIPov3U/33+KjLiVKdieikrbzXf+116SdNYlaFvjCDV6GUAys8YIq2ErhK1PCFRqHVAFYiuoFOJLZpRWDcOFTTNv+cpwMDb6h+BQOm7XEjEfcP0=
+	t=1768962963; cv=none; b=NDsUJYJa6IhvxnVqJfkEvo1e1+/vaWPWaVYzGSIaFM/vNxBKAjMGeAOYB9fy3InfMnpQs+pevoXhUFJtVvyPewkeiMTJ1aCocCAB2MpCAezDfVZbFqILcKszUc3WNI7h4PWsGRWdIaL2Ky3cks5U9kGFixxqh72bq3nbwQt09wQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768962960; c=relaxed/simple;
-	bh=sbPTIWew4vQwvO9ifzVqvJA6OQEcLFxftNmgMIjEunQ=;
+	s=arc-20240116; t=1768962963; c=relaxed/simple;
+	bh=XGS/C4+dQ/MQcbeNze+TLdbIkN63FPlGdIp9X0YopKQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=aJGztBMCZDib6aAhpi7c6SIAQdaaTyLZVS1qfGj/rjJkgtbpdDzhMNnGYMoAwdvXjZz9F+ItBPOSqyryRxbT0iPg4N7P6kWRB2zrcBAat4XqHwcD8FDghoGEQbEScI6dDvNx2ROaTFTe51ZBgL06v/B3/iUS49o8D2kY9Hv0/lI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iHGwGUKF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4002C16AAE;
-	Wed, 21 Jan 2026 02:35:58 +0000 (UTC)
+	 MIME-Version:Content-Type; b=MVMWNnaX8PZUE8HhuzDKECI9+Z+rKGkBuZEYQv67vo5YHX4TEx288hg2nn/hpoOokdHcMxCBlgP7VtRlYh90qGkavnKY0xIKUDBY94NSNKyKqd1hZaNugGfazBh2O4EEQmVeufHuBC2NFEDw4oF4KdzheuNhpN2+vmLvOeZHU/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tELJxsNq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF703C2BC87;
+	Wed, 21 Jan 2026 02:36:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768962959;
-	bh=sbPTIWew4vQwvO9ifzVqvJA6OQEcLFxftNmgMIjEunQ=;
+	s=k20201202; t=1768962963;
+	bh=XGS/C4+dQ/MQcbeNze+TLdbIkN63FPlGdIp9X0YopKQ=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=iHGwGUKFYd9/KJL2sHYqinKrl57/aoPjaJORgj+6eSrDY34Tg02du4nP4h7A2v7KY
-	 ovAQti4Dc3qhJOLfxXfPVifD9ONeuEL+SbAy4Wz9WUcGVkn39//HtUtwjP6ammo9n4
-	 LhNtCZd3RN3TP9LP6Dy4RgdutqK/4Y52FP+iMIIHUaqHFJzoZFz2fZWhn81khhiAVY
-	 ATOxgoOQekFYEjxwS/VF+AAoyFPvJclULxZyupBFGUuNKnLowFjCLLCeisTo8wEg2Y
-	 JOszSl2DE4WSKBWfYLtIatAaBxVVve3eQpyIzbAq2+Oe1FyPj/L5r5fY+sC4oQ+ZbU
-	 NCX0qg1WG2WPQ==
+	b=tELJxsNqzZMYdqxd+6NcnANbM+4awqj5BUrHvwLfi1q3teM32VjaTW3BmbTjdidPx
+	 hTIxnzdwEsjDGbJE8/tCufDDLBNwYJf7mZw+vLAdNGetoMzytYHkfSG+GEvUlCb3Ko
+	 1tg5U41FUe0oEVMw5cALlHkO3grXdTOg/BY1nUqr9Ce0sl68NkM1TTPIcgm3siG0dm
+	 +UOZi1kSSEB4K/Z53IWJMbf2FRZtLc7dOney/F94r4wvcQqwsino0JBdBiHpChjWWg
+	 QitmQFqAQ6oSVVKx9k3ThuHK8F2ledH9Ey1l9rlC2AFJZ0MvwW9lQnOjXrtTNedBjM
+	 eT0exqfYTgQyg==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
+To: Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Rajendra Nayak <quic_rjendra@quicinc.com>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Abel Vesa <abel.vesa@oss.qualcomm.com>
-Cc: Stephan Gerhold <stephan.gerhold@linaro.org>,
-	linux-arm-msm@vger.kernel.org,
-	linux-watchdog@vger.kernel.org,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Rudraksha Gupta <guptarud@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Subject: Re: [PATCH v3 0/3] arm64: dts: qcom: x1e80100: Enable APSS watchdog in EL2
-Date: Tue, 20 Jan 2026 20:35:49 -0600
-Message-ID: <176896294109.1060469.3539173222403649911.b4-ty@kernel.org>
+	linux-iio@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: (subset) [PATCH v4 0/6] ARM: dts: qcom: msm8960: expressatt: Add more peripherals
+Date: Tue, 20 Jan 2026 20:35:52 -0600
+Message-ID: <176896294106.1060469.2033786103404524478.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20251224-arm64-dts-qcom-x1e80100-el2-add-apss-wdt-v3-0-1801c55d2883@oss.qualcomm.com>
-References: <20251224-arm64-dts-qcom-x1e80100-el2-add-apss-wdt-v3-0-1801c55d2883@oss.qualcomm.com>
+In-Reply-To: <20251124-expressatt_nfc_accel_magn_light-v4-0-9c5686ad67e2@gmail.com>
+References: <20251124-expressatt_nfc_accel_magn_light-v4-0-9c5686ad67e2@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,46 +83,60 @@ X-Spamd-Result: default: False [-0.46 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-257713-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-257714-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,baylibre.com,analog.com,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FROM_HAS_DN(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: 84F0D4FDAF
+	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
+X-Rspamd-Queue-Id: B187A4FE09
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
-On Wed, 24 Dec 2025 12:45:19 +0200, Abel Vesa wrote:
-> On X1E80100 platforms, in EL2, the APSS watchdog is accessible.
-> The APSS WDT HW is compatible with the one from SC8280XP, SM8250 and the
-> like. So describe it in the SoC dtsi, mark it as reserved and enable it
-> the EL2 overlay. Also document its compatible.
+On Mon, 24 Nov 2025 15:35:21 -0800, Rudraksha Gupta wrote:
+> Intro:
+> =================
+> The following is now working on the Samsung Galaxy Express SGH-I437, an
+> old 2012 Android phone:
+> - Light Sensor
+>     - Proximity is currently floating, even though it matches downstream
+>       GPIO pin
+> - Magnetometer
+>     - Regardless of orientation:
+>         - X axis seems to always be negative
+>         - Y and Z axis seems to always be positive
+> - NFC
+> - Accelerometer
 > 
-> 
+> [...]
 
 Applied, thanks!
 
-[1/3] dt-bindings: watchdog: Document X1E80100 compatible
-      commit: 6609c1976e64b6ce31fc2de11136dd7703372f20
-[2/3] arm64: dts: qcom: hamoa: Add the APSS watchdog
-      commit: 4da4883613f62d4d60ada443d09ac36644f27d8a
-[3/3] arm64: dts: qcom: x1-el2: Enable the APSS watchdog
-      commit: f010e0b997035d82586e32e3427d88ef76edb3cb
+[1/6] ARM: dts: qcom: msm8960: Add GSBI2 & GSBI7
+      commit: 4535af3dc91c43c16c31e4e2ad9e79cead0ef308
+[2/6] ARM: dts: qcom: msm8960: expressatt: Add Light/Proximity Sensor
+      commit: 72c6158e17cd3ef2069423ae70a24b955b1c0b72
+[3/6] ARM: dts: qcom: msm8960: expressatt: Add NFC
+      commit: 7f07c27808e68af92cbf6d352f675248c3ea7cab
+[4/6] ARM: dts: qcom: msm8960: expressatt: Add Magnetometer
+      commit: 3649a120a7106aca89a4eddbddbc2e5a85aa64f9
+[6/6] ARM: dts: qcom: msm8960: expressatt: Add Accelerometer
+      commit: 7f45d77240f9fc9948ba4d9c4eec3b97c3e2c51d
 
 Best regards,
 -- 
