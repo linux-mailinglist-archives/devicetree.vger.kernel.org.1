@@ -1,394 +1,298 @@
-Return-Path: <devicetree+bounces-258125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258126-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qFl9HEY0cWlQfQAAu9opvQ
-	(envelope-from <devicetree+bounces-258125-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 21:17:10 +0100
+	id eBTHOKQ3cWnKfQAAu9opvQ
+	(envelope-from <devicetree+bounces-258126-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 21:31:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CACB5CFBE
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 21:17:09 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id A468E5D451
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 21:31:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6E83B7E6AAC
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 20:00:37 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 74C624EDDD6
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 20:05:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 629EF40FDB9;
-	Wed, 21 Jan 2026 19:57:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A7A635CB60;
+	Wed, 21 Jan 2026 20:05:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sXC2qbqe"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="STxFThMd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010007.outbound.protection.outlook.com [52.101.84.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCD5940FD90;
-	Wed, 21 Jan 2026 19:57:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769025426; cv=none; b=aDx5G2hFkghnEwKDXo5SVJQ6ddB2BllZcsunofzcS3WN+7oH7yTeRdaW/0xcJ42aF0Q20Z11ggx5NEKo91okiqXmHyxde6YE8yY3vxR59NBDASLjsesJaXqhmt92BZxjc8ZvMOZCZy1YJgRKYZX10GNRucymwsNntz/MLzN+tzQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769025426; c=relaxed/simple;
-	bh=n3Q69h1zMEMSvW5ZzgCOXYmarGF2KajKkMB4dfwSc78=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=YdVV3L1bFMKOXIEdg7Eo6s9EmjHIqBGPAdtkJFtMgOFGpUkBqjutQLXTnL1Ii2hOnj04NgMjq0PJZqk/fnuh3OJJcmBxeK6TWM7dOVTqQfIRDerk8ixAxS1lNEefbY6uXO/7RZexZA6Oga3uGl4tQEFctSmGftoU1xJDo0OFXNs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sXC2qbqe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB46CC19422;
-	Wed, 21 Jan 2026 19:57:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769025425;
-	bh=n3Q69h1zMEMSvW5ZzgCOXYmarGF2KajKkMB4dfwSc78=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=sXC2qbqee3jiXBJd10dUAVH6Ig7P9ZfT09/8pPlRBpSPdtMO+O2UU8i/E0g8rM0eU
-	 Wi5poWvJCllNCFdjIYeSI3mnmqdxn/MtG1bgaghlR7QbqCxmkAR7fK6GIAm5ZYePjo
-	 cEP2Ulo9ZY5yY/T5XwREtH5ahP8MlPsOAxVwfTbX25fxck7Fd2sgSDd5etXB1dWEwR
-	 wDVTK93vBJ3jSuBh1CXMtzdvWBN+lqnFQqEoMTGgMhhSnJombYNzr7Lzbrf6E69FgY
-	 htbZcE4D1asYdJYzD+JDpGKMeQSdGyqOW7qSblcWOJv17QAH7YFevnuoB2aWUCxmJv
-	 OQVB+M1BTIpqw==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Date: Wed, 21 Jan 2026 13:56:43 -0600
-Subject: [PATCH v3 10/10] dt-bindings: mtd: partitions: Combine simple
- partition bindings
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00EF7500965;
+	Wed, 21 Jan 2026 20:05:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.7
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769025929; cv=fail; b=chdt/nCPotyUQTo5plFQNUsoXNhZMepVwyittDJJBkR6nyT+Jasgo4uaiWfFMzniWiiaSx2flrZeFJNE4BPY4010ftEO/MvKPU2qPKysexFwH2fCd8l0SdDmMpLQya2xYRRTQXxdXJa4F4m7Z01rIgQw8W6CgSsf9QHCwbT9RAE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769025929; c=relaxed/simple;
+	bh=ow92wcEeMxREp5BQR+RzEMnF+RxcnMiiqisdt+S7Wfg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=WEWBcii70WH0gcwgTeSx207VTb1QNepExdpTjz5ZEfACJnRxtr44+W5vgRW2HK8tTB2sfGrHd+2qpWD0aBydFUjLkqrWPVhmBhzegHdA1BZQVq2Qc/ctMX4kUMabPs+LGwvwaUMCcolwG55WK0KLax5BYoK/8Ti1V0aP2radms0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=STxFThMd; arc=fail smtp.client-ip=52.101.84.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=mDsyfvb+Kr9BZQyjsyI/Neo/pfSzVHAa8yIhqoktxt8Fll9OnVLLEq9xMfHRU+3xGesDmNk2eE8MZjsBc+n0qN/M0KCg2dwNTVNdPGNTsoLaSXfizHgQgqaZBdE7FhG1q3N9O2MTGPBAMy+U+YIvSftcLjdfoe7Dz+4dmjlnsJk2tkm5NmYYtXs22qWz93Qz/cwWvRvR5ArzsWM/IwUB34S0aP52tUwLn39p7XxiCUfK4v59VcOH6GMYdRZ4d6Kzk1FBHBMjMwVUrIgTCLEByv56/W6Q+4UjkKiPKZp40kXYOKi3yKjATtD3WUhjGHbLpm9tPhfoT7X9fPIjZicLRg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xsovVrkBgH43clmg3SuW+mi4DQBVVu69QHWs5Yc3dOg=;
+ b=hnrDlPdVpS6cjpKRhMynAUMdlN0eJyDWRlTGmHDhqDrgOI0VNi215oBfiKeUdPHq6py7awjPGtu72nEhpFSp/SqI8lqnwjpFeBXLGxX7XRZYmMCy3FIuydwOE7gfxzcD8xV/QBixVxUi5aK18VQ3ww6QE1WyjYwY5SR39ib6HiNBD4A3ENdJTzt0hfb93G69awQ4ZP94acmncTvPSvCz0riX8Ever9NVRp6fYCVDGMoZjOw+Om2gUJXYBGYDHBkqyM2Y862hLSLo9JRgGGi8Uws2MyjJeDAhnnN1EsShGH/x4lXGaq5QS1olnAzXPNlDyzgtvBkKpIsCmP8CZf2W9w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xsovVrkBgH43clmg3SuW+mi4DQBVVu69QHWs5Yc3dOg=;
+ b=STxFThMd5kUDt0W7L6EXuS68jh0eCdI8FRXXjpMegz7/w9yA5hTiHdp04R5q5QMrxEGQGl64bKRF9sRiErV/UgGWP0Vpq+EB6dLNoB7obDCDz50+RwGdxDW0RKYSVz0yMNam+0FTw0+pLFOjIoi9MVJaEYd+YJJytAwIIKGQkcFg9xF7Kw7hW/PUoW968PYH2WON57ybqi3ZSTVnFaWznhBhNmgace6myBcgNPtyeQdAZROsD1WvVnIIIbvSZfP0sKmk6wDVnN8lj8nVm9AD8hQDlX9x/pmcM5pe4wp7ItfakTXktxnWrSGWPiO6tjjui1EZQluLQ4McVawHZ4EZgg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DU2PR04MB8951.eurprd04.prod.outlook.com (2603:10a6:10:2e2::22)
+ by AM9PR04MB8097.eurprd04.prod.outlook.com (2603:10a6:20b:3e9::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.9; Wed, 21 Jan
+ 2026 20:05:23 +0000
+Received: from DU2PR04MB8951.eurprd04.prod.outlook.com
+ ([fe80::753c:468d:266:196]) by DU2PR04MB8951.eurprd04.prod.outlook.com
+ ([fe80::753c:468d:266:196%4]) with mapi id 15.20.9520.011; Wed, 21 Jan 2026
+ 20:05:23 +0000
+Date: Wed, 21 Jan 2026 15:05:14 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Francesco Dolcini <francesco@dolcini.it>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] arm64: dts: imx8-apalis: Fix LEDs name collision
+Message-ID: <aXExepw/T8OLcNwF@lizhi-Precision-Tower-5810>
+References: <20260119103411.50397-1-francesco@dolcini.it>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260119103411.50397-1-francesco@dolcini.it>
+X-ClientProxiedBy: PH8P220CA0019.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:510:345::10) To DU2PR04MB8951.eurprd04.prod.outlook.com
+ (2603:10a6:10:2e2::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260121-dt-mtd-partitions-v3-10-ec3af93c8f93@kernel.org>
-References: <20260121-dt-mtd-partitions-v3-0-ec3af93c8f93@kernel.org>
-In-Reply-To: <20260121-dt-mtd-partitions-v3-0-ec3af93c8f93@kernel.org>
-To: Miquel Raynal <miquel.raynal@bootlin.com>, 
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Brian Norris <computersforpeace@gmail.com>, 
- Kamal Dasu <kdasu.kdev@gmail.com>, 
- William Zhang <william.zhang@broadcom.com>, Nick Terrell <terrelln@fb.com>, 
- David Sterba <dsterba@suse.com>, 
- =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, 
- Simon Glass <sjg@chromium.org>, Linus Walleij <linusw@kernel.org>, 
- Ulf Hansson <ulf.hansson@linaro.org>, 
- Marcus Folkesson <marcus.folkesson@gmail.com>, 
- Tony Lindgren <tony@atomide.com>, Roger Quadros <rogerq@kernel.org>, 
- Hauke Mehrtens <hauke@hauke-m.de>
-Cc: linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org
-X-Mailer: b4 0.15-dev
-X-Spamd-Result: default: False [-0.46 / 15.00];
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PR04MB8951:EE_|AM9PR04MB8097:EE_
+X-MS-Office365-Filtering-Correlation-Id: e94edb99-8371-4c1a-7a16-08de59286977
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|7416014|376014|52116014|19092799006|366016|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+ =?us-ascii?Q?+MnbkIsuuViqo+gqFVbh2NQZtOZx0Fi0bbZymhggBW+9n13vJW8pVGDp4S5C?=
+ =?us-ascii?Q?neiS4dQfydOvPiZgV9PQX1gpyag0PIloFOCigIuQt0hPF2zArtGrLf2QAtgE?=
+ =?us-ascii?Q?gFY96CseDFc17s5r+tj9eE4HTakf7Eq31hbRrZm2wZwg0Q62BeWrV8ZD0yfy?=
+ =?us-ascii?Q?03mp7UefnU3xHamZO2nkzyc2U+0a1p0m/V0svu6F1K988+Vch2bYIDVKcihB?=
+ =?us-ascii?Q?Cwkgi/bBPxscCg+pUeEIFuPy20RYP4JK0Dg5XGStw0XMnYQbqTIytwrK05j+?=
+ =?us-ascii?Q?PuC4gdYIKVw/d5cpNpn/A76Jw09kdlTssT6+IIWdneRVOk8vEwkxOM4J8NUg?=
+ =?us-ascii?Q?Ccr8z2uXPEBsbU1Z9j6c4iFmfu+bSfi00pAEKLw+kb6Pb+SvfGfU9tQgegXY?=
+ =?us-ascii?Q?mQASOu2Wk8WRI0JnGsiqPlt8wcToL7dbCRcM5YgjRzPlRq8Qu6y/tUoVq9Gh?=
+ =?us-ascii?Q?cttqOJpHrF+SiUtQuu5YQzfrEtCGIsa11NJftNz55IC1sd3ofxXG5NHvpwTK?=
+ =?us-ascii?Q?SUyhn7OeLFbM4WKOEb9kqeUUvpGBhHhRfvflVsr/SP+zghF4PZsP5jSTlOLB?=
+ =?us-ascii?Q?txoeiZm6DxCt/XrbMod+4B5gh5elWJ7VI4KROU/+y/lvMGsAYPhh9YnAaavP?=
+ =?us-ascii?Q?iOaR4LntWsRxwv5t1xJ8GsEY2le2SQAMWQuye/OZD+bYVx5Nfii0z9X3PVdc?=
+ =?us-ascii?Q?d0ercucW+HTSyYHgSbWiNkE2IgcSN4ae8oUhg0K6hT61fecb7L2gjSlnVkTp?=
+ =?us-ascii?Q?Asfmcg9llbuQdtiGcih9yryK92E4cfTXxTv0VQvVDc14t+XP7M9mtPF4EPGj?=
+ =?us-ascii?Q?9mrFJrvczjIgzPuH9tRyvxC5AxjawpnnTQYu0ukULj5wKq+ruNKrOpmSQTjl?=
+ =?us-ascii?Q?UDo7Ath71m2nEPKPiU/VxNQZrLbvaXV6puhd+TTu405A5yhbh0L146kpDCED?=
+ =?us-ascii?Q?KKa89VIbfMTWSKvqB0T3kmGhJXd2JN/MpMQ3SG5EX99lXrOWuBuO8EyeAMPe?=
+ =?us-ascii?Q?ffSBDjPcOBBiea3pUDF8LKj1M6yb6Du6EetBCXzER0qskBhY+U9IXKYDYlTX?=
+ =?us-ascii?Q?2KnVzb4KGES76oQZNnLMrJVNHRsdbcIu3PmLA/ZrIbl3ciZujNp4YK+ENL3v?=
+ =?us-ascii?Q?QH18qHacru+UpVMyghixEZcMSFe+ResF0eT+dsLtEo8IrVVLuEHfaI8TeG0T?=
+ =?us-ascii?Q?6Qnn3zQL+bZ7tmAHRsFtfrwnssuBAXYCOgK1tit5w43v3jgtsLZVKJvSlJwI?=
+ =?us-ascii?Q?W5LNu/BDRUeslggs3FeeHbyqk4eCjEbu2UIZfq0HsTSuePuzhnfjGSNYy0cL?=
+ =?us-ascii?Q?2T1IUT6vtIsO1TxIgOLFS/CNI0TCKSwQ5tGRc2Id65KatHgRnfSUKhoYLOlV?=
+ =?us-ascii?Q?QcsD+Oo4N0YVYlwzabl/aVesEcCpst2/2AzgOKrz4C6pmpAXH1RF1rzUKrHX?=
+ =?us-ascii?Q?kNqvIVEjUmwz5jTi50Rdl/RaPXKgZaNylqizLmyvayn49DzujIF15Njv6hG+?=
+ =?us-ascii?Q?pb1YwiUxLv1FzvW+vrVfRdyOoC1b1MSiZ4IqBIq3uUGXPzc12uJeld6MO9GY?=
+ =?us-ascii?Q?6zQDsLP7b/tFH/ue61LZovIYb0F6n22a/RgNwCtcBcMtRS6tMDeifrOQq6mX?=
+ =?us-ascii?Q?C+GGxfgTDubx3orzduUi8fs=3D?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8951.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(52116014)(19092799006)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?tp0wNZ2aXPB2/YIXlzbmCMTgd2zKa9udTXu2EcHt4gDkMo0AyK115oBQmtXE?=
+ =?us-ascii?Q?1YXo2MBVF3vb1jRymc29z+l91Pdf7xjwutUU4JrCuzQiz8VD5IIR5PQg/mnp?=
+ =?us-ascii?Q?gRNMNIyZhwYQH1XfK/RrX6xRbXeYBEAXFKDyzuZFzPOUhMSW9y0VCbI4FlqN?=
+ =?us-ascii?Q?Ah7roU6w0TV277SWqOaqmGJfNqJfjgtGUqcG6v52LqanoscJDmBs78U83dTF?=
+ =?us-ascii?Q?EGsA2hv74ixKaUragY9x7Rtl5SnxKqVWrgpFNob/PJDd3k2XiJdReNITw5IW?=
+ =?us-ascii?Q?GM92nS1bnPkUBFlxPSD4qE/wdvpF1hKtwQeTHrtUYi/V4Q5Az3IfHw8SwSHu?=
+ =?us-ascii?Q?EpshbIQ45n/yVAqWBj44gsEZLaJxhN6MDpMh7jNuIoCIfUFbkXgjBoyNiasO?=
+ =?us-ascii?Q?w3rqWkNzOYbjH5f9ZE2HADqAd43QkIOsXVNF99hSn6BlrzbgsDnk86ygvFOv?=
+ =?us-ascii?Q?Th5BUktMbAgPG7jIVy09sDYzbElzXuaI+C1LngbWdjcIrZTk31rjLBGEKmby?=
+ =?us-ascii?Q?QTzr3ObN/vaitwTSQ8ZDdC7+WdbYsPehQqszjCMSCVQebj8TIk5j7hDbHcZu?=
+ =?us-ascii?Q?29ei7URfA8EAMxx5uIeSWwWxZnXpQNN/9Wvlm5LPA//GIIkIR0EjdThAkgxx?=
+ =?us-ascii?Q?P5rMspQLvl8VX+hqwZYJC4kk47+LZhXQzDyNuzOzzeTrUXRQ70s2Lb5DLCfR?=
+ =?us-ascii?Q?/peifBldGq2XNgqIA61qQWaM/kJOv3+sv+cN2FNoc3wg5/DsG1MKB4Y33Eqd?=
+ =?us-ascii?Q?+Bmu9HoKLqU59EOkzhUffZdloKm0g6m5p62aMDLEr9SFsj9e9BFAFw8DxTos?=
+ =?us-ascii?Q?8FMQU3EXpNfhfoL8+mLbwMlKq6HarOB/f3LcN1hyN16vpp/G9GlVXTgaktNA?=
+ =?us-ascii?Q?rGlp92H7T+pVKyths3skDLYCBviPh9URhG7v2VuSuPbAlO08nsznzy7msV4e?=
+ =?us-ascii?Q?H9dcBnuvLl5NVzScKHNvja1NVH3agf/SuA8YfH9H/hMh+kwx/deeQCoflFut?=
+ =?us-ascii?Q?Ded4d7yXysFxF+vEZQQgFQ7pGbF8v5l3vnEo40O9p2xNJG9epnmj0Lxxpc9S?=
+ =?us-ascii?Q?Xggl69VbfV9ktKuwJtOcTIhGOfkEVk13yVxCuvBjYnKmQvS8fHpsM8Nh6/WU?=
+ =?us-ascii?Q?8XlacMROA5FvPW7aIc1bkRMnecoeNJ/rcIZxPciTJrJuIFJMev4Zl/u4qVf6?=
+ =?us-ascii?Q?1xyNKqio+TP9/2r5MpmQcdvfPVVAQiwkuZWU5UguUUgnCglWdmaI7eP6BxhO?=
+ =?us-ascii?Q?H//LLgplCJk8IOtfZT7u6g20B/CLUCKZ7iMk+2EgWv4KorKpEsGhu3QdEOuK?=
+ =?us-ascii?Q?SVemaCfioFCCv3TQdXxettx9n+y5FAlzfdB4L7cveqsXfVyHUvQXJnnINuej?=
+ =?us-ascii?Q?S4xM8UXORc3ICiJEZXVRdzfBiif02NLwWTF3KBUla1lxguCecgkVK4x2yiMn?=
+ =?us-ascii?Q?ZbOh5/5tf6jbV9ah9+nGAFMlHNjwEzxGR2Jqdh6ryMAXNf7BJOsjlasPbh0A?=
+ =?us-ascii?Q?JU1PIj93QEC2BxNYxJEQ8sUYhR42ipmjsXrsG18ps5RNv3A4swiHw61sTu/L?=
+ =?us-ascii?Q?9KyaUiKTcx8nmIWbzjRxMHK/A87LFKZYSvHlbakG4KN93ycUb9tplpsn6ZIJ?=
+ =?us-ascii?Q?GKdqhagcB7h6iwVUQkHKVov/yDxEJ/Ub8ko11fYtMAxem0j0CJ0yQxUFF5iv?=
+ =?us-ascii?Q?u/kMhsX54CiSdiUhSHzu/0ncu6h7fw1/1tf9PRo40G9NhoHz?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e94edb99-8371-4c1a-7a16-08de59286977
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8951.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2026 20:05:23.8319
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: DfnNulLh+18Qkpm+bPsYOEgz7BnE9n8x8H3iv9Y2bjkgCncauTbpdWN0qJtal0M1YcuMqWUgjexEMW5bCEUAEw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8097
+X-Spamd-Result: default: False [2.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258125-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-258126-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[bootlin.com,nod.at,ti.com,kernel.org,gmail.com,broadcom.com,fb.com,suse.com,milecki.pl,chromium.org,linaro.org,atomide.com,hauke-m.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[22];
 	MIME_TRACE(0.00)[0:+];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,toradex.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	DKIM_TRACE(0.00)[nxp.com:+];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
+	DMARC_POLICY_ALLOW(0.00)[nxp.com,none];
+	RCVD_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: 9CACB5CFBE
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,nxp.com:dkim,ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,toradex.com:email]
+X-Rspamd-Queue-Id: A468E5D451
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Several partition node bindings are just a compatible plus properties
-defined in partition.yaml. Move all of these bindings to a single schema
-file.
+On Mon, Jan 19, 2026 at 11:34:09AM +0100, Francesco Dolcini wrote:
+> From: Francesco Dolcini <francesco.dolcini@toradex.com>
+>
+> Ixora boards have multiple instances of status leds, to avoid a name
+> collision add the function-enumerator property.
+>
+> This fixes the following Linux kernel warnings:
+>
+>   leds-gpio leds: Led green:status renamed to green:status_1 due to name collision
+>   leds-gpio leds: Led red:status renamed to red:status_1 due to name collision
+>
+> Fixes: c083131c9021 ("arm64: dts: freescale: add apalis imx8 aka quadmax carrier board support")
+> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
-v3:
- - Add $ref to partition.yaml for brcm,bcm4908-partitions child nodes
----
- .../devicetree/bindings/mtd/partitions/binman.yaml | 53 -------------------
- .../mtd/partitions/brcm,bcm4908-partitions.yaml    |  6 +--
- .../mtd/partitions/brcm,bcm963xx-imagetag.txt      | 45 ----------------
- .../devicetree/bindings/mtd/partitions/seama.yaml  | 44 ----------------
- .../bindings/mtd/partitions/simple-partition.yaml  | 61 ++++++++++++++++++++++
- MAINTAINERS                                        |  5 --
- 6 files changed, 62 insertions(+), 152 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/mtd/partitions/binman.yaml b/Documentation/devicetree/bindings/mtd/partitions/binman.yaml
-deleted file mode 100644
-index bb4b08546184..000000000000
---- a/Documentation/devicetree/bindings/mtd/partitions/binman.yaml
-+++ /dev/null
-@@ -1,53 +0,0 @@
--# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
--%YAML 1.2
-----
--$id: http://devicetree.org/schemas/mtd/partitions/binman.yaml#
--$schema: http://devicetree.org/meta-schemas/core.yaml#
--
--title: Binman entries
--
--description: |
--  This corresponds to a binman 'entry'. It is a single partition which holds
--  data of a defined type.
--
--  Binman uses the type to indicate what data file / type to place in the
--  partition. There are quite a number of binman-specific entry types, such as
--  section, fill and files, to be added later.
--
--maintainers:
--  - Simon Glass <sjg@chromium.org>
--
--allOf:
--  - $ref: /schemas/mtd/partitions/partition.yaml#
--
--properties:
--  compatible:
--    enum:
--      - u-boot       # u-boot.bin from U-Boot project
--      - tfa-bl31     # bl31.bin or bl31.elf from TF-A project
--
--required:
--  - compatible
--
--unevaluatedProperties: false
--
--examples:
--  - |
--    partitions {
--        compatible = "fixed-partitions";
--        #address-cells = <1>;
--        #size-cells = <1>;
--
--        partition@100000 {
--            compatible = "u-boot";
--            reg = <0x100000 0xf00000>;
--            align-size = <0x1000>;
--            align-end = <0x10000>;
--        };
--
--        partition@200000 {
--            compatible = "tfa-bl31";
--            reg = <0x200000 0x100000>;
--            align = <0x4000>;
--        };
--    };
-diff --git a/Documentation/devicetree/bindings/mtd/partitions/brcm,bcm4908-partitions.yaml b/Documentation/devicetree/bindings/mtd/partitions/brcm,bcm4908-partitions.yaml
-index 159b32d12803..d9fefb46d2fa 100644
---- a/Documentation/devicetree/bindings/mtd/partitions/brcm,bcm4908-partitions.yaml
-+++ b/Documentation/devicetree/bindings/mtd/partitions/brcm,bcm4908-partitions.yaml
-@@ -29,11 +29,7 @@ properties:
- 
- patternProperties:
-   "^partition@[0-9a-f]+$":
--    $ref: partition.yaml#
--    properties:
--      compatible:
--        const: brcm,bcm4908-firmware
--    unevaluatedProperties: false
-+    $ref: partition.yaml#/$defs/partition-node
- 
- required:
-   - "#address-cells"
-diff --git a/Documentation/devicetree/bindings/mtd/partitions/brcm,bcm963xx-imagetag.txt b/Documentation/devicetree/bindings/mtd/partitions/brcm,bcm963xx-imagetag.txt
-deleted file mode 100644
-index f8b7418ed817..000000000000
---- a/Documentation/devicetree/bindings/mtd/partitions/brcm,bcm963xx-imagetag.txt
-+++ /dev/null
-@@ -1,45 +0,0 @@
--Broadcom BCM963XX ImageTag Partition Container
--==============================================
--
--Some Broadcom BCM63XX SoC based devices contain additional, non discoverable
--partitions or non standard bootloader partition sizes. For these a mixed layout
--needs to be used with an explicit firmware partition.
--
--The BCM963XX ImageTag is a simple firmware header describing the offsets and
--sizes of the rootfs and kernel parts contained in the firmware.
--
--Required properties:
--- compatible : must be "brcm,bcm963xx-imagetag"
--
--Example:
--
--flash@1e000000 {
--	compatible = "cfi-flash";
--	reg = <0x1e000000 0x2000000>;
--	bank-width = <2>;
--
--	partitions {
--		compatible = "fixed-partitions";
--		#address-cells = <1>;
--		#size-cells = <1>;
--
--		cfe@0 {
--			reg = <0x0 0x10000>;
--			read-only;
--		};
--
--		firmware@10000 {
--			reg = <0x10000 0x7d0000>;
--			compatible = "brcm,bcm963xx-imagetag";
--		};
--
--		caldata@7e0000 {
--			reg = <0x7e0000 0x10000>;
--			read-only;
--		};
--
--		nvram@7f0000 {
--			reg = <0x7f0000 0x10000>;
--		};
--	};
--};
-diff --git a/Documentation/devicetree/bindings/mtd/partitions/seama.yaml b/Documentation/devicetree/bindings/mtd/partitions/seama.yaml
-deleted file mode 100644
-index 4c1cbf43e81a..000000000000
---- a/Documentation/devicetree/bindings/mtd/partitions/seama.yaml
-+++ /dev/null
-@@ -1,44 +0,0 @@
--# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
--%YAML 1.2
-----
--$id: http://devicetree.org/schemas/mtd/partitions/seama.yaml#
--$schema: http://devicetree.org/meta-schemas/core.yaml#
--
--title: Seattle Image Partitions
--
--description: The SEAttle iMAge (SEAMA) partition is a type of partition
--  used for NAND flash devices. This type of flash image is found in some
--  D-Link routers such as DIR-645, DIR-842, DIR-859, DIR-860L, DIR-885L,
--  DIR890L and DCH-M225, as well as in WD and NEC routers on the ath79
--  (MIPS), Broadcom BCM53xx, and RAMIPS platforms. This partition type
--  does not have children defined in the device tree, they need to be
--  detected by software.
--
--allOf:
--  - $ref: partition.yaml#
--
--maintainers:
--  - Linus Walleij <linus.walleij@linaro.org>
--
--properties:
--  compatible:
--    const: seama
--
--required:
--  - compatible
--
--unevaluatedProperties: false
--
--examples:
--  - |
--    partitions {
--        compatible = "fixed-partitions";
--        #address-cells = <1>;
--        #size-cells = <1>;
--
--        partition@0 {
--            compatible = "seama";
--            reg = <0x0 0x800000>;
--            label = "firmware";
--        };
--    };
-diff --git a/Documentation/devicetree/bindings/mtd/partitions/simple-partition.yaml b/Documentation/devicetree/bindings/mtd/partitions/simple-partition.yaml
-new file mode 100644
-index 000000000000..14f5006c54a8
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mtd/partitions/simple-partition.yaml
-@@ -0,0 +1,61 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mtd/partitions/simple-partition.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Simple partition types
-+
-+description:
-+  Simple partition types which only define a "compatible" value and no custom
-+  properties.
-+
-+maintainers:
-+  - Rafał Miłecki <rafal@milecki.pl>
-+  - Simon Glass <sjg@chromium.org>
-+
-+allOf:
-+  - $ref: partition.yaml#
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: brcm,bcm4908-firmware
-+        description:
-+          Broadcom BCM4908 CFE bootloader firmware partition
-+
-+      - const: brcm,bcm963xx-imagetag
-+        description:
-+          The BCM963XX ImageTag is a simple firmware header describing the
-+          offsets and sizes of the rootfs and kernel parts contained in the
-+          firmware.
-+
-+      - const: seama
-+        description:
-+          The SEAttle iMAge (SEAMA) partition is a type of partition used for
-+          NAND flash devices. This type of flash image is found in some D-Link
-+          routers such as DIR-645, DIR-842, DIR-859, DIR-860L, DIR-885L, DIR890L
-+          and DCH-M225, as well as in WD and NEC routers on the ath79 (MIPS),
-+          Broadcom BCM53xx, and RAMIPS platforms. This partition type does not
-+          have children defined in the device tree, they need to be detected by
-+          software.
-+
-+      - const: u-boot
-+        description: >
-+          u-boot.bin from U-Boot project.
-+
-+          This corresponds to a binman 'entry'. It is a single partition which holds
-+          data of a defined type.
-+
-+          Binman uses the type to indicate what data file / type to place in the
-+          partition. There are quite a number of binman-specific entry types, such as
-+          section, fill and files, to be added later.
-+
-+      - const: tfa-bl31
-+        description: >
-+          bl31.bin or bl31.elf from TF-A project
-+
-+          This corresponds to a binman 'entry'. It is a single partition which holds
-+          data of a defined type.
-+
-+unevaluatedProperties: false
-diff --git a/MAINTAINERS b/MAINTAINERS
-index c856aed83bb0..c3087c282ee3 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -4403,11 +4403,6 @@ F:	Documentation/filesystems/bfs.rst
- F:	fs/bfs/
- F:	include/uapi/linux/bfs_fs.h
- 
--BINMAN
--M:	Simon Glass <sjg@chromium.org>
--S:	Supported
--F:	Documentation/devicetree/bindings/mtd/partitions/binman*
--
- BITMAP API
- M:	Yury Norov <yury.norov@gmail.com>
- R:	Rasmus Villemoes <linux@rasmusvillemoes.dk>
-
--- 
-2.51.0
-
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi | 4 ++++
+>  arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi | 4 ++++
+>  2 files changed, 8 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi
+> index 7022de46b8bf..abb131d247c3 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi
+> @@ -21,6 +21,7 @@ led-1 {
+>  			color = <LED_COLOR_ID_GREEN>;
+>  			default-state = "off";
+>  			function = LED_FUNCTION_STATUS;
+> +			function-enumerator = <1>;
+>  			gpios = <&lsio_gpio5 27 GPIO_ACTIVE_HIGH>;
+>  		};
+>
+> @@ -29,6 +30,7 @@ led-2 {
+>  			color = <LED_COLOR_ID_RED>;
+>  			default-state = "off";
+>  			function = LED_FUNCTION_STATUS;
+> +			function-enumerator = <1>;
+>  			gpios = <&lsio_gpio5 29 GPIO_ACTIVE_HIGH>;
+>  		};
+>
+> @@ -37,6 +39,7 @@ led-3 {
+>  			color = <LED_COLOR_ID_GREEN>;
+>  			default-state = "off";
+>  			function = LED_FUNCTION_STATUS;
+> +			function-enumerator = <2>;
+>  			gpios = <&lsio_gpio5 20 GPIO_ACTIVE_HIGH>;
+>  		};
+>
+> @@ -45,6 +48,7 @@ led-4 {
+>  			color = <LED_COLOR_ID_RED>;
+>  			default-state = "off";
+>  			function = LED_FUNCTION_STATUS;
+> +			function-enumerator = <2>;
+>  			gpios = <&lsio_gpio5 21 GPIO_ACTIVE_HIGH>;
+>  		};
+>  	};
+> diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi
+> index 12732ed7f811..a0b452b92b3e 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi
+> @@ -21,6 +21,7 @@ led-1 {
+>  			color = <LED_COLOR_ID_GREEN>;
+>  			default-state = "off";
+>  			function = LED_FUNCTION_STATUS;
+> +			function-enumerator = <1>;
+>  			gpios = <&lsio_gpio5 27 GPIO_ACTIVE_HIGH>;
+>  		};
+>
+> @@ -29,6 +30,7 @@ led-2 {
+>  			color = <LED_COLOR_ID_RED>;
+>  			default-state = "off";
+>  			function = LED_FUNCTION_STATUS;
+> +			function-enumerator = <1>;
+>  			gpios = <&lsio_gpio5 29 GPIO_ACTIVE_HIGH>;
+>  		};
+>
+> @@ -37,6 +39,7 @@ led-3 {
+>  			color = <LED_COLOR_ID_GREEN>;
+>  			default-state = "off";
+>  			function = LED_FUNCTION_STATUS;
+> +			function-enumerator = <2>;
+>  			gpios = <&lsio_gpio5 20 GPIO_ACTIVE_HIGH>;
+>  		};
+>
+> @@ -45,6 +48,7 @@ led-4 {
+>  			color = <LED_COLOR_ID_RED>;
+>  			default-state = "off";
+>  			function = LED_FUNCTION_STATUS;
+> +			function-enumerator = <2>;
+>  			gpios = <&lsio_gpio5 21 GPIO_ACTIVE_HIGH>;
+>  		};
+>  	};
+> --
+> 2.47.3
+>
 
