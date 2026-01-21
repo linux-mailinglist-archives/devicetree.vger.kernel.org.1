@@ -1,145 +1,225 @@
-Return-Path: <devicetree+bounces-257881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257880-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sKSaBp+3cGlwZQAAu9opvQ
-	(envelope-from <devicetree+bounces-257881-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 12:25:19 +0100
+	id iFGuBNuycGndZAAAu9opvQ
+	(envelope-from <devicetree+bounces-257880-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 12:04:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94E7455F5F
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 12:25:18 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B56A55AF3
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 12:04:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AB6D384A81D
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 10:53:48 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 433858ECC58
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 10:52:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0B7840F8E8;
-	Wed, 21 Jan 2026 10:53:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 809CD44102D;
+	Wed, 21 Jan 2026 10:52:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="CtlDS4Z6"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="vMyCOHUh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8BB03D3CF5;
-	Wed, 21 Jan 2026 10:53:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8468C427A1D;
+	Wed, 21 Jan 2026 10:52:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768992823; cv=none; b=dEOc9dUHamzrCvBGBpxz2hkfdvBtvK6un//PDVndL3SLgSWCRco1rCrYz2dJZwW4DaNbFkvljl3OEL2E46YShNkQde2V+ikounYfKda8o1tKzHkvXsJ6WymqAFEIfXjUvxAZSZgoqVP7smiGsbvRpCPUNiY5Yf2hEY1qOmNInd0=
+	t=1768992760; cv=none; b=TCkX678+OJywNoscMqBoK1nNVY1eZ5nAG4+rJLBerT+Mkt1dvfZTdJmi7by19WFukF/EY7QMWDiTN3j8yBg8v8/6XlP+Mt+B7kbZA1o8IUsmXxNqOfGTCi3Y0vP67tleZOLd+BpIVwV90aBtvzCmV5COITNuwzgHoLH9wbmCQo8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768992823; c=relaxed/simple;
-	bh=u3Uvvc89ZyhC/2l0kWHUOv8Kh0Rk4Djzn4cHdBmAl+0=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=sVOhy9SNmK0DJ+gd8Ijd53sRLM7at4skdJOgllY1jMSMJtqLV9bN2QwSknHWla14H8aXlkWJog0Zn1Q6yG9JSROobdWqFE8PUYzgoGMIA0jCjH6KgTawaJ1ekoBOKd66McDSXxhdntgApqNg3fCK4rcucBfgSGVGL3EYiQglWVo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=CtlDS4Z6; arc=none smtp.client-ip=211.75.126.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
-X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 60LAopAkB2904314, This message is accepted by code: ctloc85258
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
-	t=1768992651; bh=u3Uvvc89ZyhC/2l0kWHUOv8Kh0Rk4Djzn4cHdBmAl+0=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:Content-Transfer-Encoding:MIME-Version;
-	b=CtlDS4Z6gHC5VrGSu890zUQSnhQsMQ/FwWOyur8QIMr1/715Q7rKN9So1Rd7yydCO
-	 bSHyCBeSNdNBgMsQ4+3rVk9syV/3uWcxp9G3TG0dkUmV7GU2l6wMvnkh6K+P85lilF
-	 sjz+YMk0Ck9ex6uFyWgmnvlvKrmTVstsGkoFFHTVRixpvoarpntZuBUIKfo5ZMJAGw
-	 QvplglYk5J4Nqq1oaIYmDCuEqJCR70VkLOZNqTTB3HUEWo5GfywaGrUYNMhBSpopm7
-	 xweEcgIc6tRUxNtIB0xnuhR5a77w1hKy6YtkkazdNWpaoFLXUZq2uzzSM7rH8aYY4x
-	 Sc/s41YhlBFPA==
-Received: from mail.realtek.com (rtkexhmbs03.realtek.com.tw[10.21.1.53])
-	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 60LAopAkB2904314
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 21 Jan 2026 18:50:51 +0800
-Received: from RTKEXHMBS05.realtek.com.tw (10.21.1.55) by
- RTKEXHMBS03.realtek.com.tw (10.21.1.53) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Wed, 21 Jan 2026 18:50:51 +0800
-Received: from RTKEXHMBS06.realtek.com.tw (10.21.1.56) by
- RTKEXHMBS05.realtek.com.tw (10.21.1.55) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Wed, 21 Jan 2026 18:50:51 +0800
-Received: from RTKEXHMBS06.realtek.com.tw ([fe80::4cbd:6c6c:b92b:3913]) by
- RTKEXHMBS06.realtek.com.tw ([fe80::4cbd:6c6c:b92b:3913%10]) with mapi id
- 15.02.1748.010; Wed, 21 Jan 2026 18:50:51 +0800
-From: =?utf-8?B?WXUtQ2h1biBMaW4gW+ael+elkOWQm10=?= <eleanor.lin@realtek.com>
-To: =?utf-8?B?WXUtQ2h1biBMaW4gW+ael+elkOWQm10=?= <eleanor.lin@realtek.com>,
-        "afaerber@suse.de" <afaerber@suse.de>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "conor+dt@kernel.org"
-	<conor+dt@kernel.org>,
-        =?utf-8?B?SmFtZXMgVGFpIFvmiLTlv5fls7Bd?=
-	<james.tai@realtek.com>
-CC: "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>,
-        "linux-realtek-soc@lists.infradead.org"
-	<linux-realtek-soc@lists.infradead.org>,
-        "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>,
-        =?utf-8?B?Q1lfSHVhbmdb6buD6Ymm5pmPXQ==?=
-	<cy.huang@realtek.com>,
-        =?utf-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?=
-	<stanley_chang@realtek.com>
-Subject: RE: [PATCH v3 0/2 RESEND] arm64: dts: Add support for Kent SoC family
-Thread-Topic: [PATCH v3 0/2 RESEND] arm64: dts: Add support for Kent SoC
- family
-Thread-Index: AQHcba4KFMPhbTEwDkm0WvNwlSh3kbVcrAYw
-Date: Wed, 21 Jan 2026 10:50:51 +0000
-Message-ID: <d8af877bd3fb4291b0d09a80a981e6e1@realtek.com>
-References: <20251215103157.27039-1-eleanor.lin@realtek.com>
-In-Reply-To: <20251215103157.27039-1-eleanor.lin@realtek.com>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1768992760; c=relaxed/simple;
+	bh=yTO8jiWPy0JTRMih9wPEYaDnyW0tT35H1Sui+h1SpLM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LPltSpVGng7CJYyfKvwe8QoH1w814aY9y4rAc6+mXOw2wWhPzJgzGlwruRVOrZ1JJmDCNYyEO584x7cSOf8yk9ChQPet9idFarwi5/WaX+c7twUMvSVsXDU2ct1E5iJB+H4SSaF+8EiWGkr3kiEHKtk8+jWVtyt0G77iv0/Csv8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=vMyCOHUh; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (2001-14ba-703d-e500--2a1.rev.dnainternet.fi [IPv6:2001:14ba:703d:e500::2a1])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id EB55DA06;
+	Wed, 21 Jan 2026 11:52:01 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1768992722;
+	bh=yTO8jiWPy0JTRMih9wPEYaDnyW0tT35H1Sui+h1SpLM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=vMyCOHUhMl+WSRUGjb4Evlo+u50imJRCgUhz4X7o8suJaM0l/+gCs+GP/d26zUa84
+	 2iRrgZluwDObB7SHpdKHJW+5PXqQ6PTz1OFvKCXgbv/zUtUyzWrT+ZkdwPQ/Z1huCO
+	 5byU5NaBbxzSSzZs4YgYK/D3sfK2CWPO+jOZ4bCc=
+Date: Wed, 21 Jan 2026 12:52:32 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: Jai Luthra <jai.luthra@ideasonboard.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	y-abhilashchandra@ti.com, devarsht@ti.com, s-jain1@ti.com,
+	vigneshr@ti.com, mchehab@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, p.zabel@pengutronix.de, conor+dt@kernel.org,
+	hverkuil-cisco@xs4all.nl, changhuang.liang@starfivetech.com,
+	jack.zhu@starfivetech.com, sjoerd@collabora.com,
+	dan.carpenter@linaro.org, hverkuil+cisco@kernel.org,
+	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, jai.luthra@linux.dev,
+	mripard@kernel.org, Rishikesh Donadkar <r-donadkar@ti.com>
+Subject: Re: [PATCH v9 06/19] media: ti: j721e-csi2rx: add a subdev for the
+ core device
+Message-ID: <20260121105232.GD382676@killaraus>
+References: <20251230083220.2405247-1-r-donadkar@ti.com>
+ <20251230083220.2405247-7-r-donadkar@ti.com>
+ <ee8152c0-daf5-48dd-a2d1-2fafcfeca797@ideasonboard.com>
+ <176845899846.9154.18009615769864845946@freya>
+ <d9f3335a-d8f4-40cc-b4c4-a93b797a89fd@ideasonboard.com>
+ <20260120232521.GE173080@killaraus>
+ <8b8e603f-5d04-44ce-91ab-85df8fe0ae94@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Spamd-Result: default: False [-1.86 / 15.00];
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <8b8e603f-5d04-44ce-91ab-85df8fe0ae94@ideasonboard.com>
+X-Spamd-Result: default: False [0.04 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[realtek.com:s=dkim];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_POLICY_ALLOW(0.00)[realtek.com,none];
-	DKIM_TRACE(0.00)[realtek.com:+];
-	TAGGED_FROM(0.00)[bounces-257881-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,realtek.com:mid,realtek.com:dkim];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[eleanor.lin@realtek.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-257880-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	FREEMAIL_CC(0.00)[ideasonboard.com,linux.intel.com,ti.com,kernel.org,pengutronix.de,xs4all.nl,starfivetech.com,collabora.com,linaro.org,vger.kernel.org,linux.dev];
+	DKIM_TRACE(0.00)[ideasonboard.com:+];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 94E7455F5F
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
+	DMARC_POLICY_ALLOW(0.00)[ideasonboard.com,none];
+	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,ideasonboard.com:dkim,ti.com:email]
+X-Rspamd-Queue-Id: 9B56A55AF3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-SGkgS3J6eXN6dG9mLA0KDQpJIHdvdWxkIGxpa2UgdG8gYXNrIGZvciBndWlkYW5jZSBvbiBob3cg
-dG8gcHJvY2VlZCB3aXRoIHRoaXMgcGF0Y2guDQoNClRoZSBsaXN0ZWQgbWFpbnRhaW5lciBmb3Ig
-UmVhbHRlayBTb0NzLCBBbmRyZWFzIEbDpHJiZXIsIHNlZW1zIHRvIGJlIGluYWN0aXZlDQoobm8g
-YWN0aXZpdHkgc2luY2UgTWF5IDIwMjMpLCBhbmQgbXkgcmVjZW50IGVtYWlscyB0byBoaW0gYm91
-bmNlZCB3aXRoDQoiVW5kZWxpdmVyZWQgTWFpbCBSZXR1cm5lZCB0byBTZW5kZXIiLg0KDQpTaG91
-bGQgSSByZXNlbmQgdGhpcyBwYXRjaCBhbmQgZXhwbGljaXRseSBDYyBzb2NAa2VybmVsLm9yZyBh
-bmQgdGhlIEFSTSBTb0MNCm1haW50YWluZXJzIChlLmcuLCBBcm5kIEJlcmdtYW5uKSBzbyBpdCBj
-YW4gYmUgcGlja2VkIHVwIGRpcmVjdGx5IGJ5IHRoZSBTb0MgdGVhbT8NCg0KQmVzdCByZWdhcmRz
-LA0KWXUtQ2h1bg0K
+On Wed, Jan 21, 2026 at 09:38:29AM +0200, Tomi Valkeinen wrote:
+> On 21/01/2026 01:25, Laurent Pinchart wrote:
+> > On Thu, Jan 15, 2026 at 02:56:21PM +0200, Tomi Valkeinen wrote:
+> >> On 15/01/2026 08:36, Jai Luthra wrote:
+> >>> Quoting Tomi Valkeinen (2026-01-14 20:51:49)
+> >>>> On 30/12/2025 10:32, Rishikesh Donadkar wrote:
+> >>>>> From: Jai Luthra <j-luthra@ti.com>
+> >>>>>
+> >>>>> With single stream capture, it was simpler to use the video device as
+> >>>>> the media entity representing the main TI CSI2RX device. Now with multi
+> >>>>> stream capture coming into the picture, the model has shifted to each
+> >>>>> video device having a link to the main device's subdev. The routing
+> >>>>> would then be set on this subdev.
+> >>>>>
+> >>>>> Add this subdev, link each context to this subdev's entity and link the
+> >>>>> subdev's entity to the source. Also add an array of media pads. It will
+> >>>>> have one sink pad and source pads equal to the number of contexts.
+> >>>>>
+> >>>>> Support the new enable_stream()/disable_stream() APIs in the subdev
+> >>>>> instead of s_stream() hook.
+> >>>>>
+> >>>>> Reviewed-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+> >>>>> Co-developed-by: Pratyush Yadav <p.yadav@ti.com>
+> >>>>> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> >>>>> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> >>>>> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
+> >>>>> ---
+> >>>
+> >>> [...]
+> >>>
+> >>>>> @@ -981,48 +1138,52 @@ static int ti_csi2rx_link_validate(struct media_link *link)
+> >>>>>       struct ti_csi2rx_ctx *ctx = container_of(vdev, struct ti_csi2rx_ctx, vdev);
+> >>>>>       struct ti_csi2rx_dev *csi = ctx->csi;
+> >>>>>       struct v4l2_pix_format *csi_fmt = &ctx->v_fmt.fmt.pix;
+> >>>>> -     struct v4l2_subdev_format source_fmt = {
+> >>>>> -             .which  = V4L2_SUBDEV_FORMAT_ACTIVE,
+> >>>>> -             .pad    = link->source->index,
+> >>>>> -     };
+> >>>>> +     struct v4l2_mbus_framefmt *format;
+> >>>>> +     struct v4l2_subdev_state *state;
+> >>>>>       const struct ti_csi2rx_fmt *ti_fmt;
+> >>>>> -     int ret;
+> >>>>>  
+> >>>>> -     ret = v4l2_subdev_call_state_active(csi->source, pad,
+> >>>>> -                                         get_fmt, &source_fmt);
+> >>>>> -     if (ret)
+> >>>>> -             return ret;
+> >>>>> +     state = v4l2_subdev_lock_and_get_active_state(&csi->subdev);
+> >>>>> +     format = v4l2_subdev_state_get_format(state, link->source->index, 0);
+> >>>>> +     v4l2_subdev_unlock_state(state);
+> >>>>>  
+> >>>>> -     if (source_fmt.format.width != csi_fmt->width) {
+> >>>>> +     if (!format) {
+> >>>>> +             dev_dbg(csi->dev,
+> >>>>> +                     "Skipping validation as no format present on \"%s\":%u:0\n",
+> >>>>> +                     link->source->entity->name, link->source->index);
+> >>>>> +             return 0;
+> >>>>
+> >>>> Isn't this an error?
+> >>>
+> >>> Well, the j7 shim subdev introduced here has immutable and active links to
+> >>> all the video nodes, for each DMA channel (taken from DT), many of which
+> >>> may be unused for certain setups, and thus there might not be any valid
+> >>> format on the subdev source pad corresponding to an unused video node.
+> >>>
+> >>> Jacopo had a similar comment on v2, see this discussion (grep for Mali):
+> >>> https://lore.kernel.org/linux-media/4mnlnsj4co3agvln4qsasmgvgwiyoo7yu2h5wyh4rmzzafhm5u@avhnbw7iknms/
+> >>>
+> >>> I know other drivers use a different approach with mutable links, so it
+> >>> would be good if you/Laurent/Sakari can give your opinions on if only one
+> >>> of these two approaches should be taken for multi-stream pipelines.
+> >>
+> >> I see.
+> >>
+> >> Well, I don't have a definite answer. With some thinking both options
+> >> make certain sense. It makes sense to keep the links immutable and
+> >> always enabled, as there's no configuration that can be done. On the
+> >> other hand, it makes sense to require the unused links to be disabled,
+> >> as, well, they are not used.
+> > 
+> > I'm not familiar with the implications this would have on this driver,
+> > but generally speaking, if a stream is added to the media pipeline by
+> > the pipeline build algorithm, then it is expected that applications
+> > would have configured it correctly. Streams that are not used are
+> > expected to be disabled if they would otherwise be added to the
+> > pipeline.
+> 
+> I think the thing here is that the driver creates immutable
+> always-enabled media links between the videodevs and the first subdev.
+> Then, say, if only one stream is being used, only one of those links is
+> actually used, and for every other link the above check fails as there's
+> no stream, so no format.
+> 
+> In TI CAL driver the links were mutable, and unused links had to be
+> disabled. There it made sense as the links had to be configurable (there
+> were two PHYs). Here, there's no configuration needed, so immutable
+> links make sense, but then they're enabled even when actually not used.
+
+If the routing table in the subdev does not contain any route that goes
+towards a video node, then that video node should not be added to the
+pipeline by the validation code, and no validation will be attempted. At
+least that's the theory.
+
+I see that this driver implements .link_validate() as a
+media_entity_operations, not a subdev operation. I wonder if that could
+explain the issue.
+
+-- 
+Regards,
+
+Laurent Pinchart
 
