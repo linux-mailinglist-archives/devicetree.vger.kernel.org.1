@@ -1,167 +1,176 @@
-Return-Path: <devicetree+bounces-257965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257966-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cDT3GF/XcGkOaAAAu9opvQ
-	(envelope-from <devicetree+bounces-257965-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 14:40:47 +0100
+	id UM/BHqfbcGnCaQAAu9opvQ
+	(envelope-from <devicetree+bounces-257966-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 14:59:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 096A857A56
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 14:40:47 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F0D3580AE
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 14:59:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5A0886AA4F0
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 13:32:47 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B37C366643C
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 13:46:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00EAB49551A;
-	Wed, 21 Jan 2026 13:26:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94D4033D4EA;
+	Wed, 21 Jan 2026 13:46:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WC59cq54"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="5b+lJUiF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C6B549550D
-	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 13:26:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5562030FC1F;
+	Wed, 21 Jan 2026 13:46:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769002009; cv=none; b=Jr1iBSMgbp7W/Um4LXZGacMobaBlJXBqg1h/7FpwCUCi1yynUjB4rSAEzwnk2zJGPEfR+PnEd/YK7iKvfP/LSUYma4GaTY1K/NoufGI0ZH2iwQFE61rkVbiwq4UhXNlwS2SLe3WItL/2m0JXNe9RYh6gJqnno3tlZ5T7Y9e/vbE=
+	t=1769003165; cv=none; b=b/66lrxzmwu2sQKlJ5XaF1MaP+LqGZ/3GpZwH59o6vu+zoGhi71cOM5vutS+voREsiUEtmSEtpj/rNFwm0l9vBJYWeKnBMFC6T+HQWbQ1EtvFwA2wwjl41OlH2YejMF2k8njurovIaPgqy4YvcTNaoFb7kOSb8Ekl8YJ2IRlN60=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769002009; c=relaxed/simple;
-	bh=RZ6L5kG6KnttCqZHYH2jeIzUhBdGGcKDyqVGSs/BMTw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=sps1+SdVXRyvA9QyXuUKnr1yXArxgc874kbu9nU1yC3/RHgONrJmUAXp+WNTum8sWR/0QWm8VpcI131i+DMUVV7fiMpnFGKA1XKPMPezp2zlbD4ecov7p6BfNTyer0J/KMQ4NiMz741OJg6OLv36b1O+RZg3EtmQsMbkeRkhzjU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WC59cq54; arc=none smtp.client-ip=209.85.214.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-2a1388cdac3so45509165ad.0
-        for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 05:26:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769002008; x=1769606808; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RpR/stwl1z8brk4SsorW5KRgaoHVnvVVxmk1S9SRSNY=;
-        b=WC59cq54wcnmyqyUiRehjHQiraMhZkPI/UE3zRz24yPozhrJB1wgQRVufedXMG5uYZ
-         U/M6VS1ZEA4JWP0e4wQDizNrKBmp61VXMiJvUCFL6P/NyRVXfjkhUEIVtcAAeR3OqbeM
-         QjJwn5k17G0rT2RIG4gtEfEyx/U3cEcAEiEd07JUtmoE3FGCy+UrlCUinEaHTi1LEdNn
-         51vKzeMdgQKMCy2k9DB0tWN3zU3EvACiHaslPt6GGd4lSjUvSp6o0e4LdiyONmoJ3lgh
-         GoJBtGZs3ANCKYNjWuvv/0QzCA0+yjxrCbfggE5Tio6gBjD/BJMIwm4U0vCRpQsBAEL4
-         NWlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769002008; x=1769606808;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=RpR/stwl1z8brk4SsorW5KRgaoHVnvVVxmk1S9SRSNY=;
-        b=RgyRW9jBm0d98GEZT33kYhTqezGLBUa5FhfgZgq0r1qc3AlbKPOGt+200gF+vZRL+h
-         RGQKi8AY8ZDDfuJnkLOfwrUUpbA23MvZGodHXtY9Skk8p0ZDGKEbTHZwfTIkK9tJJt4b
-         GsxTCsshNTgsuNJRCA50LX8BuegLhXCrHwhyWGtXQzqaqZl/j4vglBvx9ggoGnlkD218
-         ve2Zsd1F9SPbcWhNB2ZTv6l0OeGBn06KAeB6/ZcHIvCYLRQfjZVXqoNKZQj/uVWiAsSL
-         1LNsnpJvZfuUK360+PKf/m4iJ5nVk5CiLaHIDrcMjWkV/yTKH41QS9U0wg4WrsCG0Fzu
-         OamA==
-X-Forwarded-Encrypted: i=1; AJvYcCX5Olf1tHkONsGTMI56n6HaDyRQdERSLPB2oTSL4GxCmU+MCWjD5v2/eO8ottFHd6h9mOpkVaudZq94@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz0THMHWQMSzTtrokQ+gOYqonBhoGLBEjxKfHh8aIGLrgl70Ebl
-	IC4ewZLSM+cMVKO66erBDZ21TfwXrDXU4dnK79Kx2EK0RqAqly8YekSr
-X-Gm-Gg: AZuq6aLd0p0C5PvS0y3dioqVFw/WeKOsfV8ozGb2vsIcP2U56So4PphFfKffG6Tfcb7
-	gqlmeuok5Hc5yIuRSD/4c00mfPOpe3HGukGAghh/DR5AhDvjBdTwTCtS51jWwNY15HBbpobfJQu
-	xoV1EdkU3bieWDQs4L5CKhf/jvJDY0i4mxv8zYOpYGs+8G3NZBJfRHToJuurnUvDNHp11/kA3RM
-	td2P3+n/US8Z6jXaQ5AOqlbLlNA7Y3Q1GaieN8nshRyTgVQgTtkEGPuCvkX8uqfxqxQsIc9nQdk
-	cqgCaQu9HYvE3Tjvyo1jiduvKQNBjT71XdjpNvY1MkSow/Q2Vxj8RKraR/19t7ahLDXa1nclTUG
-	Pi/rniL12hStUFEtMyHxRM9g1x6nNzpVWdI1A6hOdev9qfI47pDSMLPzoyamALWHRook4gYnwzA
-	v2iogvUzUz9SKLts9XiuYyzg4Kj5k=
-X-Received: by 2002:a17:903:124f:b0:29d:7b9b:515b with SMTP id d9443c01a7336-2a717518f89mr159861135ad.20.1769002007797;
-        Wed, 21 Jan 2026 05:26:47 -0800 (PST)
-Received: from [192.168.0.101] ([45.113.101.30])
-        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-2a7194164dfsm151487235ad.88.2026.01.21.05.26.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Jan 2026 05:26:47 -0800 (PST)
-From: Biswapriyo Nath <nathbappai@gmail.com>
-Date: Wed, 21 Jan 2026 13:26:21 +0000
-Subject: [PATCH v2 5/5] arm64: dts: qcom: pm6125: Enable RTC by default
+	s=arc-20240116; t=1769003165; c=relaxed/simple;
+	bh=TNCu1diURZVRHV/wlAOkTYXVb/7LpU8vSsy5ih5Ik6A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qcpt/l6t+SpzcKBl2gotUacuiq2Lx/a1JovJotL5teh8j3aqkCGdG7eiVADQCZDSqHpuJG2nmouSknHYjCXUGpUYlwXFJq0t4H0H5rbRMOeTvD65eSWUg7cmmZDE1dnkTCgYJGXGjHwrHsNDJnrFgdimNnKG92hM8gM2GOmPVg4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=5b+lJUiF; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=GA0E+2lExoLTrBoxDpukALnUWndmDpxiv7DFZKJpltk=; b=5b+lJUiFPwVO4dTWd/qFReIVHI
+	7f99yyhyqXgdhUMCdDHEPQCqc1MLMgQKanORtkFU4U6RCDNpUqvSXjBSwcTdCc7xJv69ahZoiVGVN
+	k8+LEDN5Wjx8rpjwbhFUTfrwdpdMpHdB3asxlQfgxxUCsjamsFoUEg21HcN8Scc4H/oo=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1viYWS-003p7S-MM; Wed, 21 Jan 2026 14:45:24 +0100
+Date: Wed, 21 Jan 2026 14:45:24 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Inochi Amaoto <inochiama@gmail.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Yao Zi <ziyao@disroot.org>,
+	Yanteng Si <siyanteng@cqsoftware.com.cn>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Chen-Yu Tsai <wens@kernel.org>,
+	Choong Yong Liang <yong.liang.choong@linux.intel.com>,
+	Shangjuan Wei <weishangjuan@eswincomputing.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Boon Khai Ng <boon.khai.ng@altera.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Quentin Schulz <quentin.schulz@cherry.de>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	Longbin Li <looong.bin@gmail.com>
+Subject: Re: [PATCH net-next v2 3/3] net: stmmac: Add glue layer for Spacemit
+ K3 SoC
+Message-ID: <73bf2977-ad1a-45fa-9b06-5df083c060a8@lunn.ch>
+References: <20260121071315.940130-1-inochiama@gmail.com>
+ <20260121071315.940130-4-inochiama@gmail.com>
+ <aXDBCsfaNrgfGjNK@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260121-xiaomi-ginkgo-features-v2-5-fb3ee94922d0@gmail.com>
-References: <20260121-xiaomi-ginkgo-features-v2-0-fb3ee94922d0@gmail.com>
-In-Reply-To: <20260121-xiaomi-ginkgo-features-v2-0-fb3ee94922d0@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
- phone-devel@vger.kernel.org, Biswapriyo Nath <nathbappai@gmail.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1769001984; l=641;
- i=nathbappai@gmail.com; s=20260118; h=from:subject:message-id;
- bh=RZ6L5kG6KnttCqZHYH2jeIzUhBdGGcKDyqVGSs/BMTw=;
- b=wFm7x5dv3jz+UuxY5G5CpNmEH9BbjfI4Zjwnm6k3n8KphNLpwjvIIzZ7Lk0ztv6aj/S9qSat/
- 4+X96ondt8GBu7bJ4cTswfiMFbtpW3LTkeF0VUrpJ4NjgB+zjkgj/u/
-X-Developer-Key: i=nathbappai@gmail.com; a=ed25519;
- pk=slmb/9yXbet+KTiT3EYLCp0p0MEOYa3EdjUXP+HXfjg=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aXDBCsfaNrgfGjNK@shell.armlinux.org.uk>
 X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.sr.ht,gmail.com];
-	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	TAGGED_FROM(0.00)[bounces-257965-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-257966-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gentoo.org,foss.st.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,disroot.org,cqsoftware.com.cn,nxp.com,bp.renesas.com,linux.intel.com,eswincomputing.com,altera.com,bootlin.com,cherry.de,st.com,synopsys.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,st-md-mailman.stormreply.com];
+	RCPT_COUNT_TWELVE(0.00)[39];
+	MIME_TRACE(0.00)[0:+];
+	DMARC_POLICY_ALLOW(0.00)[lunn.ch,none];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nathbappai@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[lunn.ch:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.23.112:email];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,c000:email]
-X-Rspamd-Queue-Id: 096A857A56
+	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,lunn.ch:mid,lunn.ch:dkim]
+X-Rspamd-Queue-Id: 5F0D3580AE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-sm6125 soc uses this for real time clock.
+On Wed, Jan 21, 2026 at 12:05:30PM +0000, Russell King (Oracle) wrote:
+> On Wed, Jan 21, 2026 at 03:13:11PM +0800, Inochi Amaoto wrote:
+> > +	mask = RGMII_RX_DLINE_STEP | RGMII_TX_DLINE_CODE | RGMII_TX_DLINE_EN |
+> > +	       RGMII_TX_DLINE_STEP | RGMII_RX_DLINE_CODE | RGMII_RX_DLINE_EN;
+> > +	val = FIELD_PREP(RGMII_TX_DLINE_STEP, tx_config) |
+> > +	      FIELD_PREP(RGMII_TX_DLINE_CODE, tx_code) | RGMII_TX_DLINE_EN |
+> > +	      FIELD_PREP(RGMII_RX_DLINE_STEP, rx_config) |
+> > +	      FIELD_PREP(RGMII_RX_DLINE_CODE, rx_code) | RGMII_RX_DLINE_EN;
+> 
+> So your reply where you basically stated that all the RGMII.*DLINE.*
+> constants here should be the same was nonsense. How can we trust your
+> replies?
+> 
+> > +static int spacemit_dwmac_fix_delay(struct plat_stmmacenet_data *plat_dat,
+> > +				    struct regmap *apmu,
+> > +				    unsigned int dline_offset,
+> > +				    unsigned int tx_delay, unsigned int rx_delay)
+> > +{
+> > +	bool mac_rxid = rx_delay != 0;
+> > +	bool mac_txid = tx_delay != 0;
+> > +	unsigned int rx_config = 0;
+> > +	unsigned int tx_config = 0;
+> > +	int rx_code;
+> > +	int tx_code;
+> > +
+> > +	plat_dat->phy_interface = phy_fix_phy_mode_for_mac_delays(plat_dat->phy_interface,
+> > +								  mac_txid,
+> > +								  mac_rxid);
+> 
+> Maybe Andrew can confirm, but this function was to fix up existing
+> broken DT, and shouldn't be used by brand new drivers.
 
-Signed-off-by: Biswapriyo Nath <nathbappai@gmail.com>
----
- arch/arm64/boot/dts/qcom/pm6125.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+Hi Russell, thanks for pointing this out.
 
-diff --git a/arch/arm64/boot/dts/qcom/pm6125.dtsi b/arch/arm64/boot/dts/qcom/pm6125.dtsi
-index d0db28336..cb067adb7 100644
---- a/arch/arm64/boot/dts/qcom/pm6125.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm6125.dtsi
-@@ -138,7 +138,6 @@ pm6125_rtc: rtc@6000 {
- 			reg = <0x6000>, <0x6100>;
- 			reg-names = "rtc", "alarm";
- 			interrupts = <0x0 0x61 0x1 IRQ_TYPE_EDGE_RISING>;
--			status = "disabled";
- 		};
- 
- 		pm6125_gpios: gpio@c000 {
+This function should not be used in this case. MAC drivers in general
+only add small delays, in order to do fine tuning. The PHY adds the
+2ns delay. There are however some MACs who cannot disable their 2ns
+delay, or have historically been broken, and add 2ns delay. In such
+cases, the phy_interface passed to the PHY needs masking, to indicate
+the PHY should not add the 2ns delays. That is what this function
+does.
 
--- 
-2.52.0
+Please don't call it. Pass phy_interface as is to the PHY.
 
+       Andrew
 
