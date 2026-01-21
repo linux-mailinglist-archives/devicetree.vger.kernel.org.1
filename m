@@ -1,80 +1,82 @@
-Return-Path: <devicetree+bounces-257778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257780-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wIWgAHSHcGkEYQAAu9opvQ
-	(envelope-from <devicetree+bounces-257778-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 08:59:48 +0100
+	id ILjsMNeHcGkEYQAAu9opvQ
+	(envelope-from <devicetree+bounces-257780-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 09:01:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0717532B6
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 08:59:47 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 775AE53301
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 09:01:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8096E4A5FAD
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 07:59:25 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 47C3E4E71F9
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 08:00:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61507410D26;
-	Wed, 21 Jan 2026 07:59:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E3774779B2;
+	Wed, 21 Jan 2026 07:59:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RZddl4+4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FMhLPQSD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30C0C3382E2;
-	Wed, 21 Jan 2026 07:59:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F0D83587C4;
+	Wed, 21 Jan 2026 07:59:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768982361; cv=none; b=K8XBfJW1ziaLOPRaPEGbcWoEvYz5AoXc2yW0BlaC1mEcQFDSg79HZknnKum4yDR+H05jUT4wtRInEtKrt3MKYX7pDXkeX7uB0BuV025wAJ2KcKhC9lC7ClIOyseMX5YrT+RIVi9H3h9KoYQqe3OFT+G9tHfaq9C1+0V78GJUp9o=
+	t=1768982395; cv=none; b=PI9Cs67SlY5tMR+ygHD/PRKDU3Z+bjvGyD5hor9YEiyf8rb8f7OXq3W7c0AfGTJa2hnO2jPAHl4cYy7VCRbOcljenXqgZuiXynm0hugNFo+wJdPxTIbdohrlOyg3BAvoVUgFk3nHRTFc1FKE8Gx4JGQMM5tu+0toAjOG5bkdey0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768982361; c=relaxed/simple;
-	bh=B/7SxcFDchYAOxBFM3nekD6F3BNUoh6xpZYaOFcjPWg=;
+	s=arc-20240116; t=1768982395; c=relaxed/simple;
+	bh=io1fuLM2bPpdo2pOtJh3tY79IVh9SYXi8xNbc0XZ0kc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RZnh2/gq+jJ1LMdSMOhi9PJZurmuN1Hk9jnugAe4RdNy/XddH2or0aSNsiqqQTqwIzNHR2nM9Wvf/xJ2N44cmTaag8IxU2H7BlL2oJ7F35wibvnayjrleF3MUK7PsZsQ94b0KINRHOhYy6eXsTLNJNTOfq4yGCEe1fCodrrHJV0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RZddl4+4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3865CC116D0;
-	Wed, 21 Jan 2026 07:59:20 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=vEu0mBas1AZrkm39Kl6TZZ1FA9kBke51TCMTC3FcE/MUg0VBlnHK0qvegw8At7GEeuWDgj8XI6DAyS3jhEO32YmMYjgY25UhK7ByaIS9jgApD4MXXFgufJgu0KCmSneT/ZQkn0tEiWizMHbupXYF9whAnnzdauBiv2NvSaySH8k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FMhLPQSD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22C97C116D0;
+	Wed, 21 Jan 2026 07:59:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768982360;
-	bh=B/7SxcFDchYAOxBFM3nekD6F3BNUoh6xpZYaOFcjPWg=;
+	s=k20201202; t=1768982394;
+	bh=io1fuLM2bPpdo2pOtJh3tY79IVh9SYXi8xNbc0XZ0kc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RZddl4+40tnL7hWPWTaNGYdQMXa2Iw5iaLuiEt06W7iElk1M3kUOr+OXOXVx+SLuh
-	 6ZemwgMGYVzfaH7MS9JcRXM4ZE6blUG8ZB8iwrRs0DcDft/A8L9S+eh2A4u91jvGG0
-	 TZS7Sn24xKexfKOqcrX84UhWlZEJEcnjt5eeEPM3i0w1njHAEX8FkAohIwT8H17FSW
-	 Sz6NxzyJclSwoct9qszl2ONMxltY9ItMshi0FcyIhD6fMy8vP2ILkQA2fKOU/l6rOW
-	 PNttevoIvyYCZRzpkLo+xGlAgA5xdAe4Aao/LK/Atv3h/jnshApMG5Q+ZAsJCPJTsz
-	 OFg02BDz+AhZQ==
-Date: Wed, 21 Jan 2026 08:59:18 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Shengjiu Wang <shengjiu.wang@gmail.com>
-Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, Xiubo.Lee@gmail.com, 
-	festevam@gmail.com, nicoleotsuka@gmail.com, lgirdwood@gmail.com, broonie@kernel.org, 
-	perex@perex.cz, tiwai@suse.com, linux-sound@vger.kernel.org, 
-	linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/4] ASoC: dt-bindings: fsl,audmix: Add support for
- i.MX952 platform
-Message-ID: <20260121-uber-adder-of-radiance-0ebda7@quoll>
-References: <20260120035210.1593742-1-shengjiu.wang@nxp.com>
- <20260120035210.1593742-2-shengjiu.wang@nxp.com>
- <20260120-fractal-lemming-of-chemistry-6f21df@quoll>
- <CAA+D8APePw6BnRP=Wnw+zna+oc4_aoMWZewYC7yx-XYLBrSKbQ@mail.gmail.com>
+	b=FMhLPQSDomns64O2lPYMFkd75nzhtoAPl5JrY0O5Cuu4G9ZWA6L629DTzfulg1e+9
+	 ZbUV+mR7zX7/sF4PQlGl+2shFvoEIRZV6bbIFLy1XRXJhEtjoyofIormF6/jzzAf9h
+	 lO38tdbaS4N+L0IB3WmyL5/e1eIiUpepL1d6R5mv2EFC4IykBZ6+Vjg2V/ZVYl4gh8
+	 bFEqCVrBPv5eu4f5eWfGHebPBzvvqMEwTnuoWmifo7ofwLu0xyLIH3FmjpEuN0SXhG
+	 wI1R/iNA6IizuhZ9JBTtA2EiR3Uf37rrq54pe+x2fXaa0L91TCPGxqFXUNDUp6v/HS
+	 cvKPFoiDcVI3Q==
+Date: Wed, 21 Jan 2026 13:29:44 +0530
+From: Sumit Garg <sumit.garg@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, akhilpo@oss.qualcomm.com,
+	vikash.garodia@oss.qualcomm.com, dikshita.agarwal@oss.qualcomm.com,
+	robin.clark@oss.qualcomm.com, lumag@kernel.org,
+	loic.poulain@oss.qualcomm.com, jorge.ramirez@oss.qualcomm.com,
+	linux-kernel@vger.kernel.org,
+	Sumit Garg <sumit.garg@oss.qualcomm.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: display: msm: qcm2290-mdss: Fix
+ iommus property
+Message-ID: <aXCHcCMu47JRHyLt@sumit-xelite>
+References: <20260116062004.237356-1-sumit.garg@kernel.org>
+ <20260116062004.237356-2-sumit.garg@kernel.org>
+ <20260116-transparent-dexterous-nightingale-c029cb@quoll>
+ <aWo0t1EoVhStmOj7@sumit-xelite>
+ <6020af2a-5baa-4594-8cbc-bf7241f0128e@kernel.org>
+ <aW9yCK0rPjRcqplk@sumit-xelite>
+ <bdc8011b-6501-43e5-815b-a981df665e03@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CAA+D8APePw6BnRP=Wnw+zna+oc4_aoMWZewYC7yx-XYLBrSKbQ@mail.gmail.com>
-X-Spamd-Result: default: False [0.04 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+In-Reply-To: <bdc8011b-6501-43e5-815b-a981df665e03@kernel.org>
+X-Spamd-Result: default: False [-1.46 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
 	MID_RHS_NOT_FQDN(0.50)[];
@@ -83,52 +85,124 @@ X-Spamd-Result: default: False [0.04 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-257778-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-257780-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[nxp.com,gmail.com,kernel.org,perex.cz,suse.com,vger.kernel.org,lists.ozlabs.org,pengutronix.de,lists.linux.dev,lists.infradead.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sumit.garg@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: D0717532B6
+X-Rspamd-Queue-Id: 775AE53301
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Jan 20, 2026 at 07:07:48PM +0800, Shengjiu Wang wrote:
-> On Tue, Jan 20, 2026 at 6:31=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.=
-org> wrote:
-> >
-> > On Tue, Jan 20, 2026 at 11:52:07AM +0800, Shengjiu Wang wrote:
-> > > There is no power domain defined on i.MX952, so make power-domains to=
- be
-> >
-> > There is no defined or there is no power domain? If the first, then this
-> > patch is incomplete. Please read writing bindings part about complete
-> > bindings. If the latter, then you miss constraints ":false" and commit
-> > msg phrasing is incorrect (and remember that in such case you won't be
-> > able to add power domains later because now you add complete binding).
->=20
-> Thanks for pointing this out.
->=20
-> There is a power domain on i.MX952 for the mix system of AUDMIX.
-> But it is enabled by default,  AUDMIX device don't need to enable it.
+On Tue, Jan 20, 2026 at 01:30:13PM +0100, Krzysztof Kozlowski wrote:
+> On 20/01/2026 13:16, Sumit Garg wrote:
+> > 
+> >>
+> >>>
+> >>> There has been ongoing disscusion related to how stream ID associated
+> >>> with different translation context can be represented in DT here [1].
+> >>> With that only the secure bank stream IDs can be properly represented.
+> >>>
+> >>> Here I just followed the approach taken by Adreno GPU bindings for the
+> >>> iommus property [2].
+> >>>
+> >>> [2] Documentation/devicetree/bindings/display/msm/gpu.yaml +82
+> >>
+> >> Such justifications are pointless. What about commit msg which explains
+> >> why this was added? What about entire public discussion happening with
+> >> this patch? What about all previous revisions of that patch and
+> >> discussions leading to this piece of code? So you just found few lines
+> >> of code, ignored entire background and any other arguments, and copied
+> >> it here.
+> > 
+> > Looks like you are mixing other patch-set with this one.
+> 
+> How different? You found some old code and use it as argument that you
+> can do the same:
+> 
+> "Here I just followed the approach taken by Adreno GPU bindings for the"
+> 
+> so how I am mixing patchsets in my response above?
 
-This should be explained in the commit msg.
+You are referring to discussions of which I wasn't part of. The reason I
+mentioned Adreno GPU binding here is because I had to drop the secure
+bank stream ID for Adreno GPU as well here [1]. But it didn't required
+any DT bindings change while the venus and display IOMMU property
+required this change.
 
-Best regards,
-Krzysztof
+So how do you justify that GPU iommu DT bindings are correct while the
+venus and display iommu DT bindings require update.
 
+Is there any documented behaviour for how the minItems/maxItems need to
+be used? Or is this just implementation defined based on mailing list
+discussions? And for sure all kernel contributors won't be aware about
+all those discussions happening.
+
+[1] https://lore.kernel.org/all/20260116062004.237356-4-sumit.garg@kernel.org/
+
+> 
+> 
+> > 
+> >>
+> >> That's the approach - I found a piece of some buggy code, so I can do
+> >> the same.
+> >>
+> >> Again, we discussed it 2-3 months ago for the same patch and I gave
+> >> exactly same reason why this patch is incomplete.
+> > 
+> > Sorry you are just mixing different discussions here. I am trying to fix
+> 
+> How am I mixing? Exactly same approach was posted for other SoC. I gave
+> same comments. Same comments apply here.
+
+I still don't know which other SoC discussions you are reffering too.
+Care to provide a link?
+
+> 
+> > the SMMU stream IDs for Agatti SoC which listed secure bank stream IDs
+> > incorrectly.
+> 
+> You explain what you did, but you did not explain why or how I mixed
+> anything.
+
+I tried my best to describe the why part in commit descriptions:
+
+"
+Fix IOMMU DT propeties for GPU, display and video peripherals via
+dropping SMMU stream IDs which relates to secure context bank.
+
+This problem only surfaced when the Gunyah based firmware stack is
+ported on Agatti replacing the legacy QHEE based firmware stack. Assigning
+Linux kernel (HLOS) VMID to secure context bank stream IDs is treated
+as a fault by Gunyah hypervisor which were previously ignored by QHEE
+hypervisor.
+"
+
+Let me know if the why part is still unclear.
+
+> 
+> > 
+> > And this is the first version of this patch only for DT bindings fix for
+> > Agatti, there are no prior discussions I had on this aspect upstream.
+> 
+> I did not say you had discussions before. I said exactly same problems
+> were being solved and I give here and there exactly the same feedback.
+> 
+
+Care to provide link to earlier discussions?
+
+-Sumit
 
