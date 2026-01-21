@@ -1,393 +1,128 @@
-Return-Path: <devicetree+bounces-258060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258061-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MAwMNYIecWmodQAAu9opvQ
-	(envelope-from <devicetree+bounces-258060-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 19:44:18 +0100
+	id uAvaL6kjcWl8eQAAu9opvQ
+	(envelope-from <devicetree+bounces-258061-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 20:06:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45DFF5B728
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 19:44:18 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47F685BCFF
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 20:06:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 68062B48B1B
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 17:14:18 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 881AE5700D6
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 17:17:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D49894B8DEF;
-	Wed, 21 Jan 2026 16:57:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3FFE4C6EFC;
+	Wed, 21 Jan 2026 16:58:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BKz09Hgl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FEaPKSmG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5708C4ADDAD
-	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 16:57:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.128.45
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769014665; cv=pass; b=KSaCq151oPOtKyxdg+ccqkVtuJSiSq9zHCf1z4hAjOySR1xwfcThZ+cDDcIOLNxIjWzzpHUv9uCvkTkfStVcQnkZ6KWaZ+hqrCpXZZrGYg96C73/uatRcq4vAcjDq9eX/XxY18DaLgK4XzkZSH6pcGlQHox8WggzCVhLeOU1tKU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769014665; c=relaxed/simple;
-	bh=n9LGtCCoNWJYT6s8g8s+u64o/APoDWxPMT01RQqJz/o=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Gfzwb6w0jiIVnEoXcH+FYF4r06wUzIK8aKqebq2gT7m6bTLbbG7c1MjA7TPU0ViZS1/iBaX8xy+peuNuUJ6uLMqa6ccrKN7ybh2zwfwUAT0XY1bGWP4+otyPVtVaz4Mfx1xFUPhX43FCEX0kZI56nnaOlHQIGoZgqYUSRLAQUgo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BKz09Hgl; arc=pass smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-47d59da3d81so7785155e9.0
-        for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 08:57:42 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1769014660; cv=none;
-        d=google.com; s=arc-20240605;
-        b=if4LVzwFazZzAd1eCOmGwWhF2ECDwoZ/Egdz8ADcKc6XzhAjnc4gTeHHeb6sUPixWW
-         aAG0JUo9uvpNj35EalWqjNIJWyMRvq1oz4NFBZPpSXhpqWpS+mno9IEX043rL5AWCDNz
-         Ke8Wd0aiz4rpuh6C2hdxVFvMba4Ziw3w9QWlD8Y8vS5BGE/sIQgU+rB+S6BCwIl04LGP
-         5cMABDMFG4AxuvSN6WW7eE8VF6Qlo5cW0kxhNYFBF7wHUjQLzRg3k5wWMryxX3zE9ZKx
-         ikTaf3NCIaC88x6GvXpCpLBHlHNGbPs5qdB4W74bz/hGwxwQzwplMmaHfjLrg5ZSNgtP
-         lDrw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=bnUdOq88S5jzPpVoyj19K4zXbAbMVOiRE4Y/7ikog0w=;
-        fh=8htxwvDhxbfCHyZOmGRWVvn3zd2jNtnUtuUxsNJalpc=;
-        b=gsJ4PKh2PwXGM59MANPzipFeLmAxgqSZ0/K72kKNYcwF8JVEcjO6232lZIHUlBsptX
-         7K8bsX0vZ7guNECLxIxz8KedLwogKDKOJKpF32otp+I37l7d9YUVBgQQfJOEM7Hzzitx
-         WEN/BFGbkpUIJ0HF83efWzdKbOQIBjB57E35ZWTG+iVZ1q2GN9qxnUEzwmbp6B2lb3Vr
-         HtOQFXGDYANti3uAowKQfLlAp332FXeVdhB9+2NjihFKQTqmk1bJmEKUpCsxPGqW6WSd
-         g7DmvwyLjvbHFjgDCAFn5uYQ25x/CjBtihqzLdkIOLTdH9z7ipBXBKF00OzkpwSWgNBg
-         GQXQ==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769014660; x=1769619460; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bnUdOq88S5jzPpVoyj19K4zXbAbMVOiRE4Y/7ikog0w=;
-        b=BKz09Hgl3lIelVXmMkIqX51HjoGjTyR2dhIE4AhhoglxZ5zn1Y4dJ2dkNgJw9DHpXc
-         40UJVULiUxwCH5WMZqOlaaTf+OswEQUN7TDnLsay4Aqkcw6CFtLmKix+5lIzoHtk79kv
-         qZggeVrVpC3hWqBlMM5K9hpgyut79Gv0uTDHyvEyh/idpZrBMDRaYsFDxolodney3tKA
-         AzrHabBYwzjNEeEWJcw7KMhybgAx+OvE7ex3wTPfqgHiuBHjtx//INyhBmaTNJOATNr/
-         5PzIGGAio2YjyEaRFSIMoZINuWMERWCxVO6tlMZnScnM0P/DTqhbJN3hWqYk+l/nLjUI
-         BH/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769014660; x=1769619460;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=bnUdOq88S5jzPpVoyj19K4zXbAbMVOiRE4Y/7ikog0w=;
-        b=mtYp5hpKgARY4Dub1FuM6wVw/05LQErVCrlwXoL5/b+9CdorqmTLfIFIgLRj1rDu6U
-         O2aWfSjvy2j8if1ceXsPNSNwHWZmZ6AFejkyhrVI0YudPBB/A6LY8g8ZCaCBY8NBYA9E
-         xsYpXl7htr0ZTIJxbUZZ/bzIUYL1J5JbeFTOpwCgejQTcLh4CmCC7ry+UgEx1k9t47AL
-         NVLQ6rvywUxxgOMAuKGd5dShLLcThvd4wdHrnUncLHLi1cvFZTJ0TBAQ9ccnOFk0SEc2
-         7oIIVbQv4FN5yrJTGJTz0e7c8Jp2bMhI9PseY7OifBR1823WT3sRTI1r4jGcZqejT70r
-         g51w==
-X-Forwarded-Encrypted: i=1; AJvYcCXhczqIg0jKYSLqULvgi5kpP3MiXVE45KWHjmeysGr/+UvLJAKHDuIPYiT6b1qky548uDRwD71tIuDO@vger.kernel.org
-X-Gm-Message-State: AOJu0YyPUeoqtYuLVCgPR+hM2DYQBwK7lhCEJig6B83zo3TfH8QE59wb
-	phH89wUSQCxFlJqDjKP+W3QvxxyqxIIIx8x5NkqAyIUP2LXEu6rjF6Mwga3JHUV+S3Ozhb/bOf2
-	4GU4rHAhzduC2F858HIOOTpRJQHyoQFI=
-X-Gm-Gg: AZuq6aLzI6XtuQLIhGyyzhVoQzIX+Z2LB80qQp1GgXDb0ySZPUV8ove8Y1jqDr5xg0H
-	sxaw086Zflsl+eLPw3soRkCkCYRlPEx/LnnQ4AnzI+UJWMNzjdZkoXzKtBpNp7rH5bL0IXyaZzQ
-	HvGgZAaX/9eP6HFNJqzLerXgwghQdQ42FCEEYr4l9YECAjSA4UVbqqPrWyK/0T48O3cpNky/IBn
-	ZoDJgQ572D6LGt3Yf21y1U2EaQlZlgrmIdrv9jO6b4QkAoWe9pbQJKo+JBNtXBxjIpQFnTC
-X-Received: by 2002:a5d:64c4:0:b0:435:9144:13fe with SMTP id
- ffacd0b85a97d-435a5ff8c0fmr101536f8f.26.1769014660302; Wed, 21 Jan 2026
- 08:57:40 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B2724C6EF3;
+	Wed, 21 Jan 2026 16:58:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769014689; cv=none; b=iOuH6cF6jvtOez7kIrXAyYaw3LB5S7cJFVF1EFipeQbI3nq6LRkBAbhJyITsLW+XFYe0diZElOBNTOxk52vMDINBElQIgERGGt9YqisCq+UYjEYVhp/njQ9O6L/Pu6U2CP03/ahQJTep85AriVe1wQB4Vqz1K2zybe6krBHGRE0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769014689; c=relaxed/simple;
+	bh=8mVm4qk4DUumclESly4z3e748Q+xyMOgnnuV9PRkTWs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mBLYhFQ6KVxrXPLbiphbqvpAG6aDUAqdniZYz8pdItti+npwJsfP773gLZ3JnhI+1iibYvwIqP7d/NeAGM/blyW9TOsnEktsP4hPgaKTVMA2us5hZBrTkNTjcdKUd+tlpd6e8pgfk0Q3EztlrILVbCEmt9qhBubppnR3ORcn4WY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FEaPKSmG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90DB8C4CEF1;
+	Wed, 21 Jan 2026 16:58:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769014688;
+	bh=8mVm4qk4DUumclESly4z3e748Q+xyMOgnnuV9PRkTWs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FEaPKSmG7mqv4htn3odBzDvoMYxCrf8wG8nuzuGjOj6gVzwHQOhDSB+9e88aTciYT
+	 qsu3TFfUeJKMPV2hl7D3ZgJtNrcGc3ooptrzOM5+46CqLcBVgFzEtcYpVfSselbW3v
+	 LbPhZb34uOnmEddhlMMgzYgWnb6VlwxQAUQfyU1C84VTklD5wr2PMB6+fqeWS2rnpF
+	 tVyEMTiCfVbJqSb/Nyr219PVtkQ8mMUcyHiPRz93Gt8EL+smnmj/pAXj92D3o6x7KN
+	 45A+s9l0zPddJwiDwxajKdiJxDbRp923bkhLt2vSVGvtxqRH29uoMNzKIeCPcz7lNm
+	 FkCSlEhTfGVIg==
+Date: Wed, 21 Jan 2026 10:58:07 -0600
+From: Rob Herring <robh@kernel.org>
+To: Akiyoshi Kurita <weibu@redadmin.org>
+Cc: krzk+dt@kernel.org, conor+dt@kernel.org, andrew@lunn.ch,
+	olteanv@gmail.com, devicetree@vger.kernel.org,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: net: dsa: fix typos in bindings docs
+Message-ID: <20260121165807.GA3453180-robh@kernel.org>
+References: <20260121130704.2236452-1-weibu@redadmin.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251125120559.158860-1-clamor95@gmail.com> <20251125120559.158860-12-clamor95@gmail.com>
- <4370037.mvXUDI8C0e@senjougahara>
-In-Reply-To: <4370037.mvXUDI8C0e@senjougahara>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Wed, 21 Jan 2026 18:57:29 +0200
-X-Gm-Features: AZwV_QgURCnhkWoxVxcJP63yhkPm-ScQ-p0XP69L3txSPXMFGvGuHj06hr84FTs
-Message-ID: <CAPVz0n1zqo1TyaV=+fc6YzOKH9TqOBEatruZTAVGg9hFEWmXsQ@mail.gmail.com>
-Subject: Re: [PATCH v4 11/12] ARM: tegra: Add EMC OPP and ICC properties to
- Tegra114 EMC and ACTMON device-tree nodes
-To: Mikko Perttunen <mperttunen@nvidia.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <treding@nvidia.com>, Thierry Reding <thierry.reding@gmail.com>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, Prashant Gaikwad <pgaikwad@nvidia.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Dmitry Osipenko <digetx@gmail.com>, MyungJoo Ham <myungjoo.ham@samsung.com>, 
-	Kyungmin Park <kyungmin.park@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-1.96 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260121130704.2236452-1-weibu@redadmin.org>
+X-Spamd-Result: default: False [0.54 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,nvidia.com,gmail.com,baylibre.com,samsung.com,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-258060-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,lunn.ch,gmail.com,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	TAGGED_FROM(0.00)[bounces-258061-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 45DFF5B728
+X-Rspamd-Queue-Id: 47F685BCFF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-=D1=81=D1=80, 21 =D1=81=D1=96=D1=87. 2026=E2=80=AF=D1=80. =D0=BE 09:56 Mikk=
-o Perttunen <mperttunen@nvidia.com> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Tuesday, November 25, 2025 9:05=E2=80=AFPM Svyatoslav Ryhel wrote:
-> > Add EMC OPP tables and interconnect paths that will be used for
-> > dynamic memory bandwidth scaling based on memory utilization statistics=
-.
-> >
-> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > ---
-> >  .../dts/nvidia/tegra114-peripherals-opp.dtsi  | 151 ++++++++++++++++++
-> >  arch/arm/boot/dts/nvidia/tegra114.dtsi        |   9 ++
-> >  2 files changed, 160 insertions(+)
-> >  create mode 100644 arch/arm/boot/dts/nvidia/tegra114-peripherals-opp.d=
-tsi
-> >
-> > diff --git a/arch/arm/boot/dts/nvidia/tegra114-peripherals-opp.dtsi b/a=
-rch/arm/boot/dts/nvidia/tegra114-peripherals-opp.dtsi
-> > new file mode 100644
-> > index 000000000000..1a0e68f22039
-> > --- /dev/null
-> > +++ b/arch/arm/boot/dts/nvidia/tegra114-peripherals-opp.dtsi
-> > @@ -0,0 +1,151 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +
-> > +/ {
-> > +     emc_icc_dvfs_opp_table: opp-table-emc {
-> > +             compatible =3D "operating-points-v2";
-> > +
-> > +             opp-12750000-900 {
-> > +                     opp-microvolt =3D <900000 900000 1390000>;
-> > +                     opp-hz =3D /bits/ 64 <12750000>;
-> > +                     opp-supported-hw =3D <0x000F>;
-> > +             };
->
-> What's the source of the opp data?
->
+On Wed, Jan 21, 2026 at 10:07:04PM +0900, Akiyoshi Kurita wrote:
+> Fix "alway" -> "always" in lan9303.txt and marvell,mv88e6xxx.yaml.
+> 
+> Signed-off-by: Akiyoshi Kurita <weibu@redadmin.org>
+> ---
+>  Documentation/devicetree/bindings/net/dsa/lan9303.txt         | 4 ++--
+>  .../devicetree/bindings/net/dsa/marvell,mv88e6xxx.yaml        | 4 ++--
+>  2 files changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/dsa/lan9303.txt b/Documentation/devicetree/bindings/net/dsa/lan9303.txt
+> index 94f4f286cef9..46a732087f5c 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/lan9303.txt
+> +++ b/Documentation/devicetree/bindings/net/dsa/lan9303.txt
+> @@ -16,9 +16,9 @@ Optional properties:
+>  Subnodes:
+>  
+>  The integrated switch subnode should be specified according to the binding
+> -described in dsa/dsa.txt. The CPU port of this switch is alway port 0.
+> +described in dsa/dsa.txt. The CPU port of this switch is always port 0.
+>  
+> -Note: alway use 'reg = <0/1/2>;' for the three DSA ports, even if the device is
+> +Note: always use 'reg = <0/1/2>;' for the three DSA ports, even if the device is
+>  configured to use 1/2/3 instead. This hardware configuration will be
+>  auto-detected and mapped accordingly.
 
-I have used tf701t (T40X) and tegratab (T40S) kernel sources, to be
-more specific board-*-memory.c files. Timing struct for each clock
-contains min voltage field which was used to compose these opps.
-1390000 is the max core regulator voltage, taken from tegra11_dvfs.c
+Please don't send further fixes to .txt bindings. If you are interested 
+in fixing them, convert them to schema.
 
-I have converted an entire core_dvfs_table table from tegra11_dvfs.c
-and I am planning to submit those later on too along with
-powergates/domains configuration for tegra114, but that is for another
-time :)
-
-> Cheers,
-> Mikko
->
-> > +
-> > +             opp-20400000-900 {
-> > +                     opp-microvolt =3D <900000 900000 1390000>;
-> > +                     opp-hz =3D /bits/ 64 <20400000>;
-> > +                     opp-supported-hw =3D <0x000F>;
-> > +             };
-> > +
-> > +             opp-40800000-900 {
-> > +                     opp-microvolt =3D <900000 900000 1390000>;
-> > +                     opp-hz =3D /bits/ 64 <40800000>;
-> > +                     opp-supported-hw =3D <0x000F>;
-> > +             };
-> > +
-> > +             opp-68000000-900 {
-> > +                     opp-microvolt =3D <900000 900000 1390000>;
-> > +                     opp-hz =3D /bits/ 64 <68000000>;
-> > +                     opp-supported-hw =3D <0x000F>;
-> > +             };
-> > +
-> > +             opp-102000000-900 {
-> > +                     opp-microvolt =3D <900000 900000 1390000>;
-> > +                     opp-hz =3D /bits/ 64 <102000000>;
-> > +                     opp-supported-hw =3D <0x000F>;
-> > +             };
-> > +
-> > +             opp-204000000-900 {
-> > +                     opp-microvolt =3D <900000 900000 1390000>;
-> > +                     opp-hz =3D /bits/ 64 <204000000>;
-> > +                     opp-supported-hw =3D <0x000F>;
-> > +                     opp-suspend;
-> > +             };
-> > +
-> > +             opp-312000000-1000 {
-> > +                     opp-microvolt =3D <1000000 1000000 1390000>;
-> > +                     opp-hz =3D /bits/ 64 <312000000>;
-> > +                     opp-supported-hw =3D <0x000F>;
-> > +             };
-> > +
-> > +             opp-408000000-1000 {
-> > +                     opp-microvolt =3D <1000000 1000000 1390000>;
-> > +                     opp-hz =3D /bits/ 64 <408000000>;
-> > +                     opp-supported-hw =3D <0x000F>;
-> > +             };
-> > +
-> > +             opp-528000000-1050 {
-> > +                     opp-microvolt =3D <1050000 1050000 1390000>;
-> > +                     opp-hz =3D /bits/ 64 <528000000>;
-> > +                     opp-supported-hw =3D <0x000E>;
-> > +             };
-> > +
-> > +             opp-528000000-1100 {
-> > +                     opp-microvolt =3D <1100000 1100000 1390000>;
-> > +                     opp-hz =3D /bits/ 64 <528000000>;
-> > +                     opp-supported-hw =3D <0x0001>;
-> > +             };
-> > +
-> > +             opp-624000000-1100 {
-> > +                     opp-microvolt =3D <1100000 1100000 1390000>;
-> > +                     opp-hz =3D /bits/ 64 <624000000>;
-> > +                     opp-supported-hw =3D <0x000F>;
-> > +             };
-> > +
-> > +             opp-792000000-1100 {
-> > +                     opp-microvolt =3D <1100000 1100000 1390000>;
-> > +                     opp-hz =3D /bits/ 64 <792000000>;
-> > +                     opp-supported-hw =3D <0x000F>;
-> > +             };
-> > +     };
-> > +
-> > +     emc_bw_dfs_opp_table: opp-table-actmon {
-> > +             compatible =3D "operating-points-v2";
-> > +
-> > +             opp-12750000 {
-> > +                     opp-hz =3D /bits/ 64 <12750000>;
-> > +                     opp-supported-hw =3D <0x000F>;
-> > +                     opp-peak-kBps =3D <204000>;
-> > +             };
-> > +
-> > +             opp-20400000 {
-> > +                     opp-hz =3D /bits/ 64 <20400000>;
-> > +                     opp-supported-hw =3D <0x000F>;
-> > +                     opp-peak-kBps =3D <326400>;
-> > +             };
-> > +
-> > +             opp-40800000 {
-> > +                     opp-hz =3D /bits/ 64 <40800000>;
-> > +                     opp-supported-hw =3D <0x000F>;
-> > +                     opp-peak-kBps =3D <652800>;
-> > +             };
-> > +
-> > +             opp-68000000 {
-> > +                     opp-hz =3D /bits/ 64 <68000000>;
-> > +                     opp-supported-hw =3D <0x000F>;
-> > +                     opp-peak-kBps =3D <1088000>;
-> > +             };
-> > +
-> > +             opp-102000000 {
-> > +                     opp-hz =3D /bits/ 64 <102000000>;
-> > +                     opp-supported-hw =3D <0x000F>;
-> > +                     opp-peak-kBps =3D <1632000>;
-> > +             };
-> > +
-> > +             opp-204000000 {
-> > +                     opp-hz =3D /bits/ 64 <204000000>;
-> > +                     opp-supported-hw =3D <0x000F>;
-> > +                     opp-peak-kBps =3D <3264000>;
-> > +                     opp-suspend;
-> > +             };
-> > +
-> > +             opp-312000000 {
-> > +                     opp-hz =3D /bits/ 64 <312000000>;
-> > +                     opp-supported-hw =3D <0x000F>;
-> > +                     opp-peak-kBps =3D <4992000>;
-> > +             };
-> > +
-> > +             opp-408000000 {
-> > +                     opp-hz =3D /bits/ 64 <408000000>;
-> > +                     opp-supported-hw =3D <0x000F>;
-> > +                     opp-peak-kBps =3D <6528000>;
-> > +             };
-> > +
-> > +             opp-528000000 {
-> > +                     opp-hz =3D /bits/ 64 <528000000>;
-> > +                     opp-supported-hw =3D <0x000F>;
-> > +                     opp-peak-kBps =3D <8448000>;
-> > +             };
-> > +
-> > +             opp-624000000 {
-> > +                     opp-hz =3D /bits/ 64 <624000000>;
-> > +                     opp-supported-hw =3D <0x000F>;
-> > +                     opp-peak-kBps =3D <9984000>;
-> > +             };
-> > +
-> > +             opp-792000000 {
-> > +                     opp-hz =3D /bits/ 64 <792000000>;
-> > +                     opp-supported-hw =3D <0x000F>;
-> > +                     opp-peak-kBps =3D <12672000>;
-> > +             };
-> > +     };
-> > +};
-> > diff --git a/arch/arm/boot/dts/nvidia/tegra114.dtsi b/arch/arm/boot/dts=
-/nvidia/tegra114.dtsi
-> > index a920ad041c14..6221423b81d1 100644
-> > --- a/arch/arm/boot/dts/nvidia/tegra114.dtsi
-> > +++ b/arch/arm/boot/dts/nvidia/tegra114.dtsi
-> > @@ -8,6 +8,8 @@
-> >  #include <dt-bindings/soc/tegra-pmc.h>
-> >  #include <dt-bindings/thermal/tegra114-soctherm.h>
-> >
-> > +#include "tegra114-peripherals-opp.dtsi"
-> > +
-> >  / {
-> >       compatible =3D "nvidia,tegra114";
-> >       interrupt-parent =3D <&lic>;
-> > @@ -323,6 +325,9 @@ actmon: actmon@6000c800 {
-> >               clock-names =3D "actmon", "emc";
-> >               resets =3D <&tegra_car TEGRA114_CLK_ACTMON>;
-> >               reset-names =3D "actmon";
-> > +             operating-points-v2 =3D <&emc_bw_dfs_opp_table>;
-> > +             interconnects =3D <&mc TEGRA114_MC_MPCORER &emc>;
-> > +             interconnect-names =3D "cpu-read";
-> >               #cooling-cells =3D <2>;
-> >       };
-> >
-> > @@ -655,6 +660,7 @@ mc: memory-controller@70019000 {
-> >
-> >               #reset-cells =3D <1>;
-> >               #iommu-cells =3D <1>;
-> > +             #interconnect-cells =3D <1>;
-> >       };
-> >
-> >       emc: external-memory-controller@7001b000 {
-> > @@ -665,6 +671,9 @@ emc: external-memory-controller@7001b000 {
-> >               clock-names =3D "emc";
-> >
-> >               nvidia,memory-controller =3D <&mc>;
-> > +             operating-points-v2 =3D <&emc_icc_dvfs_opp_table>;
-> > +
-> > +             #interconnect-cells =3D <0>;
-> >       };
-> >
-> >       hda@70030000 {
-> >
->
->
->
->
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
