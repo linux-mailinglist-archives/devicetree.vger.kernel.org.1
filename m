@@ -1,299 +1,296 @@
-Return-Path: <devicetree+bounces-258038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258039-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YJEPO3UacWmodQAAu9opvQ
-	(envelope-from <devicetree+bounces-258038-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 19:27:01 +0100
+	id KJB/DqgncWniewAAu9opvQ
+	(envelope-from <devicetree+bounces-258039-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 20:23:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3C7D5B3F8
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 19:27:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB8515C15A
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 20:23:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 47A345ED745
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 16:21:57 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 406087ED4B7
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 16:25:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79DED32FA29;
-	Wed, 21 Jan 2026 16:17:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8E6F37F757;
+	Wed, 21 Jan 2026 16:21:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="Z18vNEvJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cFjVUj4H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B70CE2D0C94
-	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 16:16:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C7072FFFA5;
+	Wed, 21 Jan 2026 16:21:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769012221; cv=none; b=GHSptVQc3n5xjDywym7LdS4/DqSwgbHef5Eiu6jHStZcaY5aj4KaEf6CgXYHWLhUVhGXSsIRY9dzcWQXb/njQdBDYSTPFork4+ayDkSGzArWjXHfpQr1rybSFDbb3EfzNmSGsMzYaS4gLSnhGM2307k6zQ1yiUCKQJ4432+GvvM=
+	t=1769012472; cv=none; b=rPKsxcTBqcoafus/kMvQ61C6n+1of8lLloehXNF2pTpsgnOvXV7Yhjrgc34lKLvVesZRQiKz7DGirmepI+IT6kADmSZls/IEfBnoCxr99onaMtfIGCKeahKD85SnWpBg/EHPiM2Jo7DNPDGOA6JjDLukmxk40U+9OdICNIn9PtY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769012221; c=relaxed/simple;
-	bh=DyXg/G7iri322bhIBm8DDllUjPJ9msomjgd9hyUfkhM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LV10OFD1sMVkg1ivHtUAeODI5NFJIyORABFzdG4vxLgib+TB5gOecHudUMK/tuDuX7OsxweMQxZvYeaqZ1JrnUPYO2pztwRL5JFGaz2iT5l9rarDdjTVy1NMPXulBrPH+ePpenIJx2RCcLpFiw5YA1jOXSK8VsdJhLWUA7Flr3M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=Z18vNEvJ; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-430f2ee2f00so3677957f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 08:16:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1769012217; x=1769617017; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=BzzB/JdMiWn1k4ZgZ9PFa4Ldz6czCrDQgy/x5b2bitI=;
-        b=Z18vNEvJPtK3YQHwQYS0ICvgaMgicSZzqNQEPTJ2HjXMz5CDGDAITJVS1fTTldJv73
-         MOGkzmw+583yx/QC223V7pZZoreGOddAzYmgkq3ecqAziLCSN8IIhqhd3ahSjPZCPS2x
-         dKrZY/cIHEhj3NqxvdHXKR75bKlI/RpZnIKBPof6GrayOJMY9NhmtwXkKQweoh/+bUZl
-         dD2+RSJ32qvv1qkom47Q0sRgDb4d9NVBJDZPROZMinYcPHnrE0ggW7g9s//rUeK/imua
-         NCzDE4LYcyyLobXMqoF9V6vWBgtwRPlMbgJQRj/xS5SEUyRAohWBxdF/2ljJBO5Whb/y
-         ECUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769012217; x=1769617017;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BzzB/JdMiWn1k4ZgZ9PFa4Ldz6czCrDQgy/x5b2bitI=;
-        b=U/EJAawnr+yv5oPBkcbI6gaN7/ys+SVXSAH5bKT7BlHHE1aqprAT7u6Hgo2hLFwSvl
-         Qiqe/M57HsX6R1ik85jFzK+4mCW2zlFgqQo3EoS22DaJxg9ZV6X9XB/qOePB60F19oKL
-         1TY8KZXzeboJAWJ8oJq5xP7/JcB1cq6e8JnbIsK3GBhRnskNHi4SmnhJ1lQZav80Szs7
-         4YIOeaekBI9HAth1fpichNegPEtZ/MUOM7WVIih6AuWPL93h9IXP5z4QOJolMcch67eG
-         s6wFBsi2Cw3yWmOQwGC/3Msw+WMlKu4bBwMm7b4zKuqASl3IKDcYWppLz3Szk2Aftwxc
-         4xMA==
-X-Forwarded-Encrypted: i=1; AJvYcCVz1ACZOePDOkWAtYdx3l7lZmdB2FHEhV96ZotfgUI83XsASj7FT5pTqSNP44XuiEO8AtHmNPOp6k5J@vger.kernel.org
-X-Gm-Message-State: AOJu0YxaAmIWk6KTsjm3zHlAFFi42MbEXx8gGrJIewsR7dZEWF9mmZEc
-	al6U8Y6e/tDvMHcVvgiTNokAlgj532waeAhOsJzRf7D+XqEThN7VZh4+l88ImSKgmsw=
-X-Gm-Gg: AZuq6aKSCCKFNHHpGKPtpB7t7z4DBKmaJPJGTpN/58DZA4qTd017CjvHl1J1ofFGXCz
-	E+YtrEzQ3binIe65ii6VRprxulB28zM69yeUVIit27UtfdKS2FHvvorBF4WDJhUzAdbvv1yD03V
-	eepZu5opTSC25ErdW4j8dwDogSy3uVrYUEoLtOu1isjUTFv0mUB7EIoOD4vtmpJxZI+kmbwPkA+
-	wCNNAedSj5V/UTOXtngRFYgSlhUUteWpDygSX6hd9Zsyo1yHINdLsmMAkLaYckHlDiO8U98xeM+
-	FqBQtKLTTdHgSgWSxPEyx8WOKV2uIBM+taBXusqI2CzETRu7gEpcTsoH1/0dHS1kXBKmQdlnBGE
-	aGwMMA+ATfSZDFuNu97vB17g97Ys3KU/yshjD+P68l5bmjuWh5HHsFTTjd+Nwf6cL9T9O32/FX5
-	XAnQt+6haRL7wMkAp+rjtU+iBWlS55QyReVucR/PA0aokEGGSMoEzWQc9M2cGc13VK
-X-Received: by 2002:a05:6000:220e:b0:435:9770:9eb8 with SMTP id ffacd0b85a97d-4359770a243mr7280369f8f.25.1769012216858;
-        Wed, 21 Jan 2026 08:16:56 -0800 (PST)
-Received: from [192.168.0.29] (static-95-59-231-77.ipcom.comunitel.net. [77.231.59.95])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4358e24cef3sm12633429f8f.0.2026.01.21.08.16.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Jan 2026 08:16:56 -0800 (PST)
-Message-ID: <1e2d0c75-35d1-4096-a96f-c3fc6f7ce52a@suse.com>
-Date: Wed, 21 Jan 2026 17:16:54 +0100
+	s=arc-20240116; t=1769012472; c=relaxed/simple;
+	bh=NGyz5uwtzeGyvCVcwevBJVgXM2mV1JFZjaxPNVyzlf8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fk3WwPSdJlkcEWHIUHAhJ8AMDQKqJ506rd5YszxFN9Q0dKHAFSlP8C1fnzQaJ5RrFHC5WQ2OJphDbJpzl6YAdQWHoB4zsd/XVMklnQnOfq+UUpRvHmhDOT18qsa44BYLfowEXjz4qZ0lndnjfcuuZfEFcQaftdrXQx3NSyClCas=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cFjVUj4H; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97712C4CEF1;
+	Wed, 21 Jan 2026 16:21:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769012471;
+	bh=NGyz5uwtzeGyvCVcwevBJVgXM2mV1JFZjaxPNVyzlf8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cFjVUj4H0wsckTkiSoxCEJxs+g1YF+sMLWNTHKCN39KcZ9O/bqtqPigbyqBHcrl6N
+	 3hG/VgHHw8puwjROLu4lRTxSQpWTe/Cjs6i2kC6GYqqS2VIZEymFmeLkboIuxnyf3F
+	 K8OYBfpuLkC8lVrd1wruo+keYfzUfqkD6uccp+TGLQ6v31JrUFlzWilKaBFXtIu/lH
+	 O664njCntVWQIdJx/nLzAbpY2KUQxxwCk4WVXgK3pINcQ96LXfWJrKZqg2kq38r4cC
+	 /6L4R9+46JTP7u5WegP+KZCt3suZdhkwS3TzQeLvVmzX4tROTrrGM7V5HItgn6mKYb
+	 kfuFuG65fgl5g==
+Date: Wed, 21 Jan 2026 10:21:10 -0600
+From: Rob Herring <robh@kernel.org>
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+	Yao Zi <ziyao@disroot.org>,
+	Yanteng Si <siyanteng@cqsoftware.com.cn>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Chen-Yu Tsai <wens@kernel.org>,
+	Choong Yong Liang <yong.liang.choong@linux.intel.com>,
+	Shangjuan Wei <weishangjuan@eswincomputing.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Boon Khai Ng <boon.khai.ng@altera.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Quentin Schulz <quentin.schulz@cherry.de>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	Longbin Li <looong.bin@gmail.com>
+Subject: Re: [PATCH net-next v2 1/3] dt-bindings: net: Add support for
+ Spacemit K3 dwmac
+Message-ID: <20260121162110.GA3314848-robh@kernel.org>
+References: <20260121071315.940130-1-inochiama@gmail.com>
+ <20260121071315.940130-2-inochiama@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v2 4/4] stmmac: s32: enable support for Multi-IRQ mode
-To: jan.petrous@oss.nxp.com, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Chester Lin <chester62515@gmail.com>,
- Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
- NXP S32 Linux Team <s32@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, devicetree@vger.kernel.org
-References: <20260121-dwmac_multi_irq-v2-0-3b829230d071@oss.nxp.com>
- <20260121-dwmac_multi_irq-v2-4-3b829230d071@oss.nxp.com>
-Content-Language: en-US, ca-ES, es-ES
-From: Matthias Brugger <mbrugger@suse.com>
-Autocrypt: addr=mbrugger@suse.com; keydata=
- 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
- PVrr2NoUqi/bxI8fFQJD1jVj8K0=
-In-Reply-To: <20260121-dwmac_multi_irq-v2-4-3b829230d071@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.46 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260121071315.940130-2-inochiama@gmail.com>
+X-Spamd-Result: default: False [0.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[suse.com:s=google];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[24];
-	TAGGED_FROM(0.00)[bounces-258038-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-258039-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[38];
+	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gentoo.org,gmail.com,foss.st.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,armlinux.org.uk,disroot.org,cqsoftware.com.cn,nxp.com,bp.renesas.com,linux.intel.com,eswincomputing.com,altera.com,bootlin.com,cherry.de,st.com,synopsys.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,st-md-mailman.stormreply.com];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[oss.nxp.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,nxp.com,pengutronix.de];
-	DMARC_POLICY_ALLOW(0.00)[suse.com,quarantine];
-	DKIM_TRACE(0.00)[suse.com:+];
 	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mbrugger@suse.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
 	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,s32g399aevb3:email,suse.com:email,suse.com:dkim,suse.com:mid]
-X-Rspamd-Queue-Id: A3C7D5B3F8
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,devicetree.org:url]
+X-Rspamd-Queue-Id: DB8515C15A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-
-
-On 21/01/2026 15:23, Jan Petrous via B4 Relay wrote:
-> From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
+On Wed, Jan 21, 2026 at 03:13:09PM +0800, Inochi Amaoto wrote:
+> The GMAC IP on Spacemit K3 is almost a standard Synopsys DesignWare
+> MAC (version 5.40a) with some extra clock.
 > 
-> To get enabled Multi-IRQ mode, the driver checks:
+> Add necessary compatible string for this device.
 > 
->    1) property of 'snps,mtl-xx-config' subnode
->       defines 'snps,xx-queues-to-use' bigger then one, ie:
-> 
->       ethernet@4033c000 {
->           compatible = "nxp,s32g2-dwmac";
->           ...
->           snps,mtl-rx-config = <&mtl_rx_setup>;
->           ...
-> 
->           mtl_rx_setup: rx-queues-config {
->               snps,rx-queues-to-use = <2>;
->           };
-> 
->    2) queue based IRQs are set, ie:
-> 
->       ethernet@4033c000 {
->           compatible = "nxp,s32g2-dwmac";
->           ...
->           interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>,
->                        /* CHN 0: tx, rx */
->                        <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>,
->                        <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>,
->                        /* CHN 1: tx, rx */
->                        <GIC_SPI 60 IRQ_TYPE_LEVEL_HIGH>,
->                        <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>;
->           interrupt-names = "macirq",
->                             "tx-queue-0", "rx-queue-0",
->                             "tx-queue-1", "rx-queue-1";
-> 
-> If those prerequisites are met, the driver switch to Multi-IRQ mode,
-> using per-queue IRQs for rx/tx data pathr:
-> 
-> [    1.387045] s32-dwmac 4033c000.ethernet: Multi-IRQ mode (per queue IRQ) selected
-> 
-> Now the driver owns all queues IRQs:
-> 
-> root@s32g399aevb3:~# grep eth /proc/interrupts
->   29:    0    0    0    0    0    0    0    0    GICv3  89 Level   eth0:mac
->   30:    0    0    0    0    0    0    0    0    GICv3  91 Level   eth0:rx-0
->   31:    0    0    0    0    0    0    0    0    GICv3  93 Level   eth0:rx-1
->   32:    0    0    0    0    0    0    0    0    GICv3  95 Level   eth0:rx-2
->   33:    0    0    0    0    0    0    0    0    GICv3  97 Level   eth0:rx-3
->   34:    0    0    0    0    0    0    0    0    GICv3  99 Level   eth0:rx-4
->   35:    0    0    0    0    0    0    0    0    GICv3  90 Level   eth0:tx-0
->   36:    0    0    0    0    0    0    0    0    GICv3  92 Level   eth0:tx-1
->   37:    0    0    0    0    0    0    0    0    GICv3  94 Level   eth0:tx-2
->   38:    0    0    0    0    0    0    0    0    GICv3  96 Level   eth0:tx-3
->   39:    0    0    0    0    0    0    0    0    GICv3  98 Level   eth0:tx-4
-> 
-> Otherwise, if one of the prerequisite don't met, the driver
-> continue with MAC IRQ mode:
-> 
-> [    1.387045] s32-dwmac 4033c000.ethernet: MAC IRQ mode selected
-> 
-> And only MAC IRQ will be attached:
-> 
-> root@s32g399aevb3:~# grep eth /proc/interrupts
->   29:    0    0    0    0    0    0    0    0    GICv3  89 Level   eth0:mac
-> 
-> What represents the original MAC IRQ mode and is fully backward
-> compatible.
-> 
-> Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
-
-Reviewed-by: Matthias Brugger <mbrugger@suse.com>
-
+> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
 > ---
->   drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c | 13 ++++++++++++-
->   1 file changed, 12 insertions(+), 1 deletion(-)
+>  .../devicetree/bindings/net/snps,dwmac.yaml   |   3 +
+>  .../bindings/net/spacemit,k3-dwmac.yaml       | 103 ++++++++++++++++++
+>  2 files changed, 106 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/spacemit,k3-dwmac.yaml
 > 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
-> index 5a485ee98fa7..823700219534 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
-> @@ -2,7 +2,7 @@
->   /*
->    * NXP S32G/R GMAC glue layer
->    *
-> - * Copyright 2019-2024 NXP
-> + * Copyright 2019-2026 NXP
->    *
->    */
->   
-> @@ -149,6 +149,17 @@ static int s32_dwmac_probe(struct platform_device *pdev)
->   	plat->core_type = DWMAC_CORE_GMAC4;
->   	plat->pmt = 1;
->   	plat->flags |= STMMAC_FLAG_SPH_DISABLE;
-> +
-> +	/* Check for multi-IRQ config. Assumption: symetrical rx/tx queues */
-> +	if (plat->rx_queues_to_use > 1 &&
-> +	    (res.rx_irq[0] >= 0 || res.tx_irq[0] >= 0)) {
-> +		plat->flags |= STMMAC_FLAG_MULTI_MSI_EN;
-> +		dev_info(dev, "Multi-IRQ mode (per queue IRQ) selected\n");
-> +	} else {
-> +		dev_info(dev, "MAC IRQ mode selected\n");
-> +	}
-> +
-> +	plat->flags |= STMMAC_FLAG_MULTI_MSI_EN;
->   	plat->rx_fifo_size = 20480;
->   	plat->tx_fifo_size = 20480;
->   
-> 
+> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> index dd3c72e8363e..3c2c6cb6b10b 100644
+> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> @@ -34,6 +34,7 @@ select:
+>            - snps,dwmac-5.10a
+>            - snps,dwmac-5.20
+>            - snps,dwmac-5.30a
+> +          - snps,dwmac-5.40a
 
+You don't need this in select as the spacemit schema references this 
+one.
+
+>            - snps,dwxgmac
+>            - snps,dwxgmac-2.10
+>  
+> @@ -108,6 +109,7 @@ properties:
+>          - snps,dwmac-5.10a
+>          - snps,dwmac-5.20
+>          - snps,dwmac-5.30a
+> +        - snps,dwmac-5.40a
+>          - snps,dwxgmac
+>          - snps,dwxgmac-2.10
+>          - sophgo,sg2042-dwmac
+> @@ -653,6 +655,7 @@ allOf:
+>                  - snps,dwmac-5.10a
+>                  - snps,dwmac-5.20
+>                  - snps,dwmac-5.30a
+> +                - snps,dwmac-5.40a
+>                  - snps,dwxgmac
+>                  - snps,dwxgmac-2.10
+>                  - st,spear600-gmac
+> diff --git a/Documentation/devicetree/bindings/net/spacemit,k3-dwmac.yaml b/Documentation/devicetree/bindings/net/spacemit,k3-dwmac.yaml
+> new file mode 100644
+> index 000000000000..e69f3b60c51f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/spacemit,k3-dwmac.yaml
+> @@ -0,0 +1,103 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/spacemit,k3-dwmac.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Spacemit K3 DWMAC glue layer
+> +
+> +maintainers:
+> +  - Inochi Amaoto <inochiama@gmail.com>
+> +
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        const: spacemit,k3-dwmac
+> +  required:
+> +    - compatible
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: spacemit,k3-dwmac
+> +      - const: snps,dwmac-5.40a
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: GMAC main clock
+> +      - description: PTP clock
+> +      - description: TX clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: stmmaceth
+> +      - const: ptp_ref
+> +      - const: tx
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    items:
+> +      - description: MAC interrupt
+> +      - description: MAC wake interrupt
+> +
+> +  interrupt-names:
+> +    minItems: 1
+> +    items:
+> +      - const: macirq
+> +      - const: eth_wake_irq
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  reset-names:
+> +    const: stmmaceth
+> +
+> +  spacemit,apmu:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    items:
+> +      - items:
+> +          - description: phandle to the syscon node which control the glue register
+> +          - description: offset of the control register
+> +          - description: offset of the dline register
+> +
+
+Drop blank line
+
+> +    description:
+> +      A phandle to syscon with offset to control registers for this MAC
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - interrupts
+> +  - interrupt-names
+> +  - resets
+> +  - reset-names
+
+spacemit,apmu is not required? Looks like the driver requires it.
+
+> +
+> +allOf:
+> +  - $ref: snps,dwmac.yaml#
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    eth0: ethernet@cac80000 {
+
+Drop unused label.
+
+> +      compatible = "spacemit,k3-dwmac", "snps,dwmac-5.40a";
+> +      reg = <0xcac80000 0x2000>;
+> +      clocks = <&syscon_apmu 66>, <&syscon_apmu 68>,
+> +               <&syscon_apmu 69>;
+> +      clock-names = "stmmaceth", "ptp_ref", "tx";
+> +      interrupts = <131 IRQ_TYPE_LEVEL_HIGH>, <276 IRQ_TYPE_LEVEL_HIGH>;
+> +      interrupt-names = "macirq", "eth_wake_irq";
+> +      phy-mode = "rgmii-id";
+> +      phy-handle = <&phy0>;
+> +      resets = <&syscon_apmu 67>;
+> +      reset-names = "stmmaceth";
+> +      spacemit,apmu = <&syscon_apmu 0x384 0x38c>;
+> +    };
+> +
+> -- 
+> 2.52.0
+> 
 
