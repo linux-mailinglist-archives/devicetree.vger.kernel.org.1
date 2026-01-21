@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-257725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257726-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0DOAIUpFcGnXXAAAu9opvQ
-	(envelope-from <devicetree+bounces-257725-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 04:17:30 +0100
+	id eMLcBmdFcGnXXAAAu9opvQ
+	(envelope-from <devicetree+bounces-257726-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 04:17:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5393150515
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 04:17:30 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81DBE50524
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 04:17:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B2D05566D69
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 03:16:51 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8E75F80108D
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 03:17:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BC453563FF;
-	Wed, 21 Jan 2026 03:16:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 789623587DF;
+	Wed, 21 Jan 2026 03:16:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b="nUwFejXV"
+	dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b="oRjIIg6q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbguseast2.qq.com (smtpbguseast2.qq.com [54.204.34.130])
+Received: from smtpbgjp3.qq.com (smtpbgjp3.qq.com [54.92.39.34])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84C663587B0;
-	Wed, 21 Jan 2026 03:16:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.204.34.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9514358D12;
+	Wed, 21 Jan 2026 03:16:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.92.39.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768965399; cv=none; b=Z61TIJWUxIskY9qroBXM++2mkRqp9PHYF8FDOgCIf0kKO2Z1Oyir1HczCb6cRQS9AOJ1GffGur0iyhKOKhIQeVH5QYbVDadfdCLOENXvvkXW52tUzC0kYoKJzg9mkpPvGvcwu59/fWFJ37HBc7eDU4UQTuTbEvNEoprKSGZry2k=
+	t=1768965409; cv=none; b=cWRmQEYPVOXYmMlqcdfuEHvpMtBTq5AhHUeh+/hL6zjyrFdmty4W+LGTkd0+pyieUZbOnPKUZT7BOGfa5Os8OXwZJc0JXNRO5bNXg1JHImRihuEyX2l00aZUqIkzZMEThY6No4NT+WenMEhaypUVpORExd0CWmi+stsBBGm6w/E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768965399; c=relaxed/simple;
-	bh=7oxcn5fsjigsdz/GrR5FhDMpAiMvzV6DeC6wKedg8Cw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=MVERrVtApxJdChbDg7bmVFy1G7Xw+v4FZCqTwHx+hBu62NZGbFPXgq22D+zDfuONeQhnAvPTctX1UKi5ELzMcuGvqq7BasXI1Ns+611SdLoRuvFovKrwVkdCAb5EC9gKn+nD7WGnCPlIERKJKo5J6AECmZupzJNqwwbNDT3LWEc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com; spf=pass smtp.mailfrom=airkyi.com; dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b=nUwFejXV; arc=none smtp.client-ip=54.204.34.130
+	s=arc-20240116; t=1768965409; c=relaxed/simple;
+	bh=3HmJfCffrUe1ZBIo9h7t9Lz7UpaJuF6w6P21KpnlI0A=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=iTtdsdcdwDoc7UJFar9cskDLoGAOe22DRubR3ljsfQkrEJjwgDkXcXXToO1Unh1QwkBa0nKu3EnQ4vqQ/7kwXH14AOrcGW1oTX9dl2WaWUTrkc+FwC5tBty5tfXlNAdPghAhjIZTWyZ0LgQcGJNrwF23uzelW/RDjGlPonAiPY4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com; spf=pass smtp.mailfrom=airkyi.com; dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b=oRjIIg6q; arc=none smtp.client-ip=54.92.39.34
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=airkyi.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=airkyi.com;
-	s=altu2504; t=1768965378;
-	bh=+7ef0kRiiQt4A42xSOCDW234pfzMWnquuL8cWqdlfIU=;
+	s=altu2504; t=1768965385;
+	bh=ctNKz6GvD5lNelhXcStrNf6BJ2QP0yZh2qHptZE/lF0=;
 	h=From:To:Subject:Date:Message-Id;
-	b=nUwFejXVp7cpO2EfX8TnmM2u7Bzv6Ky//Uzbqwn+w1V4wOMuCE0Ona8Yd9AuD6cHl
-	 DQluPjXxlsWxNVzvQySNCMYHQvvL+BFEegVOPLwHpwb8YK0gsyFATXp5IUJLtEVaxQ
-	 3gXNhrPIjwjWkzHwhu2mSn2d+cdI0h5B0G7oOv+w=
-X-QQ-mid: esmtpgz12t1768965377t5427cce8
-X-QQ-Originating-IP: 6vOSUOst9aL6W1nwt6MmCRWo9HAZ1hehzumRBuhyWPo=
+	b=oRjIIg6qPg9Fdqzv6VYv8vQ0TxbgAvKL3CtOOaM1DlI9AOxHRqEuU7kXOB4lqtpYi
+	 0QW6FOXw9ZazdbSThiZRm0JxZ4LuKqmwaM6P5Y/xtuNLDvii5I23jkqqqehJu5Ylbz
+	 ClOwL1yXYMXeb9CQNpamT+q8MYdpBQ8+ZU4RLhIA=
+X-QQ-mid: esmtpgz12t1768965384t76fb5e45
+X-QQ-Originating-IP: B2IrWSjdGtlvJ617ZVrhL2KEc0TQ5HHEsEwPVrRu0Jw=
 Received: from DESKTOP-8BT1A2O.localdomain ( [58.22.7.114])
 	by bizesmtp.qq.com (ESMTP) with 
-	id ; Wed, 21 Jan 2026 11:16:09 +0800 (CST)
+	id ; Wed, 21 Jan 2026 11:16:18 +0800 (CST)
 X-QQ-SSF: 0000000000000000000000000000000
 X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 16986462623485192806
+X-BIZMAIL-ID: 3622662477851760804
 EX-QQ-RecipientCnt: 17
 From: Chaoyi Chen <kernel@airkyi.com>
 To: Andrew Lunn <andrew@lunn.ch>,
@@ -69,31 +69,31 @@ Cc: devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/3] arm64: dts: rockchip: Change gmac phy-mode to rgmii-id for roc-rk3576-pc
-Date: Wed, 21 Jan 2026 11:15:47 +0800
-Message-Id: <20260121031548.402-3-kernel@airkyi.com>
+Subject: [PATCH 3/3] arm64: dts: rockchip: Change gmac phy-mode to rgmii-id for ROCK 4D
+Date: Wed, 21 Jan 2026 11:15:48 +0800
+Message-Id: <20260121031548.402-4-kernel@airkyi.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20260121031548.402-1-kernel@airkyi.com>
 References: <20260121031548.402-1-kernel@airkyi.com>
 X-QQ-SENDSIZE: 520
 Feedback-ID: esmtpgz:airkyi.com:qybglogicsvrgz:qybglogicsvrgz6b-0
-X-QQ-XMAILINFO: MMnP0fEUKo/h1gszTyQemga6XEBbj18HMfJzoA836+qw3OiZnnwM82Lv
-	dHcS2Z5RfVleXuQQVB32cFmvzZSJpFbYP3zs3ufvtqd4CkGM7efhA9Fo25uzQULFEdaT6d+
-	n0lL4MMOhB3KDdFUzbv20t/etUV6UT+2jdXHzX+vlKLqPUMC/foG9j/W0mFV+2bLxNjyKnO
-	CcZ/5o2qcAisS3uqQSNx/yqp9H8u4Yp0xGZtYtJxX7ExVYFSZG50CiBLnzaHl24Ufd8+UD0
-	jOdcdWMimYxAC09Q/2TcX4dWDdbBFKXt87R7dPOGN74YT/J4yGOGrRLNV48zGRYtmD4YcAv
-	01RetXZdn6ePdEhwZK+9syE8geEIha+bNnEJUCM3bCedXLsgKsr0c3mqq79T/z54su3v6XL
-	kfzgv5+MhhynB4IaPaveFVmT9GNDhQ3wP1dS3dTwDf6UysZdCG75xlmdpTfJFqyjkko3afu
-	49XMKaSTC5qtab+NZMqQLBveHCcOGXv2mb/WvMM8VboGI/HGk98t7CwJppuRCEyVVzRRmQ9
-	LD62KYuMRNPONEi5rbN0AB1beI8Ds+VlnYXRXgTlNW2q5iy7/SRzG8W+L64TQ3rP36TlAmN
-	LTg8eKuQqLdeVpVbRPckUIERFr3MhLbBxyOkjmm/yOX3TArrlbTNSt65J4vQVU+6Cc1+/PV
-	gWo/IwyWAWLbgXaGIIJU8jczLt5ziF3joyJsZtOUA4vLSVIeLB+E9HN+96t8tNbkm8cX1fn
-	ZckBZLXZitMWwj9pLkOWF9Kb464WxuTseH4AWcNTF1RMN7a3OLyUzajPe6gWy6h57ztCQnU
-	efyD8t2ZgBR22F1iDWaG5fHA90DPEqnrODtQO9vP2tNOCjlt+hWI4nfzHB9bIvSqvpROQ4H
-	R8LMtzmnyjSGkukP+nKK0H3ta1cIZvnIx6Lwcz2ie9pmIVV11x9aAoAC6XeCcuLV34Gma/C
-	dNBLkAyDclrIJWq5j7PFSPFKEsSsG40nauuEGkphOiPcb4QEtpouEpkx5FNpBE4u3Q9Bo9f
-	W3F9vsNc2QO6uo/a4ZCYXt1ZFxkkNJ1yBHq1D2dg==
-X-QQ-XMRINFO: M/715EihBoGS47X28/vv4NpnfpeBLnr4Qg==
+X-QQ-XMAILINFO: NuZvjORXcxgLpzKPlhu92FmVX2PxvQ3KdEeCT8k9K5Ye6qb4nDtzUoCm
+	GWWurq5m/Hqz5STTDy/9drUJsickFYvep6kfOwIkSfJ3RNughvCW4IfvVM3reUebUA+YMXt
+	T+oQwh2wfrHQb1SzIRTFmBR1NpXN/Ht89aOWSx0L0LVtcSsg0uWGCMbOZbbE9yf3kjAEhry
+	RLE3T8GTRbUt0ay9+q1AC/en6JjhLIkb/vD8r6nxZ25plWilMFIOZ+q6Zk3qqBq34+JarrQ
+	RYkrk/hI4Tcz3aqlB+BTw7680BTFT0+adUSLtKDJb5YXHJjnTtLZ8w+TO3aBJu9m/+r7ftw
+	GSuRKVW8IXovTaT/L8Pclhah+OFZzmxqS0UDgALnDi7Cdwv03ajesTf2C3df9vqgHwaUHxi
+	NUF3l6HsJxbkim59cAlYUnkqi/4f1QsE0nw/v5qHie3YHqNpuXBGROlfv7jdbtamtt690/a
+	JT9n27T/Msq7gJyVw9OvJgBdr1LDf/f361d6heoIAX18OGOleaTDe+B2WReM5n/kLglyffO
+	C1P+/ZFnUtOzfv+M0IPN6FdTS+3IOKOhOnIJTcuTn9XEQZuLtedhG+0buPguxauBjo2z8L5
+	ez9yVHDa9agamLQaSmULZRyzGPdcxhw599cF2RAsbq1yztXs2dHoDn4uEjxRcG/R/Lxttan
+	qkWUEjeJgFGx/SUo5zZ+Hfpdx/V+Ay+AC19PzsHMsKDfi2IYCbSKSf+M/SS43Lj/Q3wTOSb
+	/fRKbQX2ynQ5TbccvTDQx1ecBpe3HgM9ZgbWM+40LZA/peT3rL7+HbP+zln5tUhdD2s0r/t
+	5CtSUiL+xn3AyaJYPh4LyoG3XHQ2FSCluLap4SsBm+otutkAfKByUAxUGFr0UjgDDUeXSPy
+	dG96zIxy0TTjr4IvLkpkv+wxNeUf4pD52lHwEaS2an3qWl9hjMcDCY57S4d5Hd/IxKA17DD
+	z6URXp+JL+MKl59T7CeLGwQfLEV8ZzNbz+JNpz/7FV9dGyITiQWxcFsmP4VQ/rIQ8IFKZTC
+	oi4QJbMU+Jtu8KAC/uheQOIwR3zJbPA8gEmYe8GQ==
+X-QQ-XMRINFO: NyFYKkN4Ny6FuXrnB5Ye7Aabb3ujjtK+gg==
 X-QQ-RECHKSPAM: 0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -111,7 +111,7 @@ X-Spamd-Result: default: False [1.04 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-257725-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-257726-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_TO(0.00)[lunn.ch,kernel.org,sntech.de,gmail.com,rock-chips.com,collabora.com,radxa.com];
@@ -124,11 +124,11 @@ X-Spamd-Result: default: False [1.04 / 15.00];
 	FROM_HAS_DN(0.00)[];
 	DMARC_POLICY_ALLOW(0.00)[airkyi.com,none];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
-	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,0.0.0.1:email,airkyi.com:mid,airkyi.com:dkim]
-X-Rspamd-Queue-Id: 5393150515
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,rock-chips.com:email,0.0.0.1:email,airkyi.com:mid,airkyi.com:dkim]
+X-Rspamd-Queue-Id: 81DBE50524
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
@@ -147,29 +147,35 @@ reasonable "rgmii-id" mode.
 
 Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
 ---
- arch/arm64/boot/dts/rockchip/rk3576-roc-pc.dts | 5 ++---
+ arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts | 5 ++---
  1 file changed, 2 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576-roc-pc.dts b/arch/arm64/boot/dts/rockchip/rk3576-roc-pc.dts
-index d0ab1d1e0e11..edef483d37c4 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576-roc-pc.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3576-roc-pc.dts
-@@ -275,10 +275,8 @@ &eth0m0_rx_bus2
- 		     &eth0m0_rgmii_clk
- 		     &eth0m0_rgmii_bus
- 		     &ethm0_clk0_25m_out>;
--	/* Use rgmii-rxid mode to disable rx delay inside Soc */
+diff --git a/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts b/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
+index 3e9c294cab91..70018c34cf08 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
+@@ -329,7 +329,7 @@ &cpu_l3 {
+ &gmac0 {
+ 	clock_in_out = "output";
+ 	phy-handle = <&rgmii_phy0>;
 -	phy-mode = "rgmii-rxid";
 +	phy-mode = "rgmii-id";
- 	phy-handle = <&rgmii_phy0>;
--	tx_delay = <0x21>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&eth0m0_miim
+ 		     &eth0m0_tx_bus2
+@@ -338,8 +338,6 @@ &eth0m0_rgmii_clk
+ 		     &eth0m0_rgmii_bus
+ 		     &ethm0_clk0_25m_out>;
  	status = "okay";
+-	tx_delay = <0x20>;
+-	rx_delay = <0x00>;
  };
  
-@@ -313,6 +311,7 @@ rgmii_phy0: phy@1 {
- 		reset-delay-us = <20000>;
+ &gpu {
+@@ -772,6 +770,7 @@ rgmii_phy0: ethernet-phy@1 {
+ 		reset-assert-us = <20000>;
+ 		reset-deassert-us = <100000>;
  		reset-gpios = <&gpio2 RK_PB5 GPIO_ACTIVE_LOW>;
- 		reset-post-delay-us = <100000>;
 +		tx-internal-delay-ps = <1950>;
  	};
  };
