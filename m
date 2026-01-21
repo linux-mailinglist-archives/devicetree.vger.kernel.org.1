@@ -1,226 +1,294 @@
-Return-Path: <devicetree+bounces-257956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257957-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eKj+CO/UcGkOaAAAu9opvQ
-	(envelope-from <devicetree+bounces-257956-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 14:30:23 +0100
+	id 4FdBNpfXcGkOaAAAu9opvQ
+	(envelope-from <devicetree+bounces-257957-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 14:41:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BDB7578B3
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 14:30:22 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3666E57A86
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 14:41:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id BDDE1687328
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 13:13:27 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B248580D8AE
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 13:16:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ABA2337B92;
-	Wed, 21 Jan 2026 13:12:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F5612E11AA;
+	Wed, 21 Jan 2026 13:15:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TGCNMi0i"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="SKnXEFAK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from TYVP286CU001.outbound.protection.outlook.com (mail-japaneastazon11011066.outbound.protection.outlook.com [52.101.125.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 029A52D97BA;
-	Wed, 21 Jan 2026 13:12:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769001145; cv=none; b=sV3i2ciA5xHxTC+uT9CwWy93jBjqYsDg06kBk2pra4bEPpV2nNRBwBUJL4YRWVCBUmH9YnIEqxmFLTvmTfdi0M6w4Sl5chV2fl5ymvA5cxSi1RxfWIsDS+jeOKTY211Eawp/dnduhlhIBziERBTu/uD798N4K+5cBlJ2kapoU9g=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769001145; c=relaxed/simple;
-	bh=pAedfPJEP3DosBpvlz4qlMwAAxJO/97R82wvPcm1/sY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o7QfWr5+fZ0aY02D/agsjWK/jI6NG22ElVjo29wBd+aC4r/doKAFSRAwq+LPazKpLvdvIl17Za/+5Vu5s2lEoe+rNgR3ICw0yzrronSy4/pIdPvu6st/DN6beWn2NGErCyqg5FNQGlPNCISMdyLVbYIqj4ydKUHDIovqOcWotEA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TGCNMi0i; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62E18C116D0;
-	Wed, 21 Jan 2026 13:12:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769001144;
-	bh=pAedfPJEP3DosBpvlz4qlMwAAxJO/97R82wvPcm1/sY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TGCNMi0iZqEDe/bUeJoM/Dprr7edC87Gb4yRpXsiJB+GA6tOLeJXuz1nMck7bz4Rc
-	 XKf9GlySJLaabNUUkqctwZerXiq/GDpX71Z0W8dNmkFjFUD08ccjl6tixr9Yx6UrIE
-	 vlML2narXX7pIyjEEBJwZAVg1WyN7YDQyVodCyCE266Tx5RXI9OzX8EHTBgBNih+nG
-	 Bl+g6N3ShWn9K7qDjKtsr/2h7gGxkUNvSSUAEniEXykHBas/Or/zpzUv1jQgNbhx6v
-	 4F3t1sUUuPq+uXhVjTES1JwT5CUYVB0XzHOM+l4h2OvGlgSi3qPjnP8thfZ7rTKxwd
-	 n7rW0k/aLFIOg==
-Date: Wed, 21 Jan 2026 18:42:11 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: zhangsenchuan <zhangsenchuan@eswincomputing.com>
-Cc: Bjorn Helgaas <helgaas@kernel.org>, bhelgaas@google.com, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, lpieralisi@kernel.org, 
-	kwilczynski@kernel.org, robh@kernel.org, p.zabel@pengutronix.de, jingoohan1@gmail.com, 
-	gustavo.pimentel@synopsys.com, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, christian.bruel@foss.st.com, mayank.rana@oss.qualcomm.com, 
-	shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com, thippeswamy.havalige@amd.com, 
-	inochiama@gmail.com, Frank.li@nxp.com, ningyu@eswincomputing.com, 
-	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com, 
-	Niklas Cassel <cassel@kernel.org>
-Subject: Re: [PATCH v9 2/2] PCI: eic7700: Add Eswin PCIe host controller
- driver
-Message-ID: <mpfjjsrihmauddt5qwayarmylctowgme6izi6mslc7mhfild4q@ngipeevjuaxv>
-References: <20260106174348.GA365798@bhelgaas>
- <6607c5b8.21d6.19ba27df74f.Coremail.zhangsenchuan@eswincomputing.com>
- <58a8c0fe.292f.19be06d6ce0.Coremail.zhangsenchuan@eswincomputing.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA6F034D4F5;
+	Wed, 21 Jan 2026 13:15:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.125.66
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769001314; cv=fail; b=B42tWcQ8ycSDkTHiY7Pjvfgy8XQ9xSH3nP9+0ROP9eyenx5du0qTGS0+5IsHXSteCgPfYf+/Mc77Qry2DzJZZFpoVCX9rov+v2TtY+ghPS6xExt9rwNbawMLhxFcjMzTQM60Saa9/9M1aB/g/lAK/O0Ck/WJ15NDOIlfgnHzZLo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769001314; c=relaxed/simple;
+	bh=jxBwqz67+pV5j2dlZ5Duzk/iRXidrHg34S2IL6m+gFo=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=UcsEY/LFK5dI0lECwFIPEmMKyztat44abyxHt7quaADCPsqNo4gs9hDLoz8GU4RgzjZIcVs9j6R2dE28jkRFsJXpvtI2oEbE2aCGWBK2U6ORFYM0iBxGvdLxEAA8u1y8yLn6ahQrinOK8v6k089223eUoCk+XywxnseRA7f4ddQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=SKnXEFAK; arc=fail smtp.client-ip=52.101.125.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=kZgR7vdFIVHKZ9qwpk8jOHjJQDLyW9IRfBaselyseAOPSDobdsMFhXZvpz/wBoCI5cKF635sgs/xMObaqiOtpc8JBwtGn2OW00kDQKcmav5DexHDWJt56fVYLRrwlyrcJwrPCD3xNQuBogeR59F3KYjTjzJ96ymg7h9xDHxzMiki7YFrz9lBixB37FkLhYgPelqptSDIDq/CD740PAB81Yzy3whHiZUZDho2wCYTOc/Ku/WBs4s1CF7LI7Mgzlq9htklAGmzRhJvgckeS+zvSfLKHdiH1mkOViaCW8buGlfZWAWdB4hqrwvxkYNA8LqFO/1qnpRAgYecJteo81+7Sg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jxBwqz67+pV5j2dlZ5Duzk/iRXidrHg34S2IL6m+gFo=;
+ b=Q93wFIrh7qy21wFZrmjZuoIYHn6ZQzZrnC5S3qcYFJNd+SMcNLH2+oVZI/L4gf/FThRJiucU9+4xRMthrdhFfKZ8o1QOr8CuryiiZySDM3zsDODKjb35Txp3U8EY2rSjDtI1sI2bMmsRruE+asKNyPwwCcO0kc912Eg6VIioo94lWMpunO7m5NYqMRPycJdGM21mfkzlmwtt2Iix6F4JhiEy/9xIVTO86MwosWbFWdnMDOE093CVYOE0/GxP83GwnMz0P2dn2BIoTtyNWmZAsgiAifZkYT17r53/RVZ2hq23ELlPX0is7tBnEFI6EflnelksbTLBlZX4KCG01/EyjQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jxBwqz67+pV5j2dlZ5Duzk/iRXidrHg34S2IL6m+gFo=;
+ b=SKnXEFAKzE4ME0k3GzQscmb6fkzogVN4pqEhLBkipRTd5+u/XeST+GQkP2DRur2bbOceDEb/rJmgyRoFcW3JvRnvNLeVqPiiVb/OzuqMl8rNGQmBzUCPVaFjao/+AQvdGNZeJjwH3dGydKRA9Rzv/96MNefawMMQBKF6CmzazkM=
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
+ by OS9PR01MB13254.jpnprd01.prod.outlook.com (2603:1096:604:313::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.9; Wed, 21 Jan
+ 2026 13:15:04 +0000
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1%6]) with mapi id 15.20.9542.008; Wed, 21 Jan 2026
+ 13:15:04 +0000
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: geert <geert@linux-m68k.org>, biju.das.au <biju.das.au@gmail.com>
+CC: magnus.damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, Prabhakar
+ Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: RE: [PATCH 09/12] arm64: dts: renesas: Add initial DTSI for RZ/G3L
+ SoC
+Thread-Topic: [PATCH 09/12] arm64: dts: renesas: Add initial DTSI for RZ/G3L
+ SoC
+Thread-Index: AQHcigussp6BaW6sl0KPgSMDNLM2dLVcmRQAgAAAybA=
+Date: Wed, 21 Jan 2026 13:15:04 +0000
+Message-ID:
+ <TY3PR01MB113464D31C247317F76992AEA8696A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+References: <20260120125232.349708-1-biju.das.jz@bp.renesas.com>
+ <20260120125232.349708-10-biju.das.jz@bp.renesas.com>
+ <CAMuHMdVvtDs3xKwMODJ=8gHr4qWt8Lw76WNd-kPyDVNyV3xUEA@mail.gmail.com>
+In-Reply-To:
+ <CAMuHMdVvtDs3xKwMODJ=8gHr4qWt8Lw76WNd-kPyDVNyV3xUEA@mail.gmail.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|OS9PR01MB13254:EE_
+x-ms-office365-filtering-correlation-id: b8d296b0-27c4-4c71-0e12-08de58ef173a
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|376014|1800799024|366016|38070700021;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?RWVMN3lDZG5lSzliczI2REtEbG5UTTNIQndrU0RrMEtSY1dIY0R4SHlSWnFv?=
+ =?utf-8?B?Y0FvbUJ4K2NYVmdaV2tOU3RrSFBjQ3ZUS3YrdHUvMnZsOUpiVkl2cmREc20w?=
+ =?utf-8?B?MDF2SHZLemVxeHVzazlDZ09mclh6VHRFWkdzM1VLL3VIYnZCZXBXYkpjZGR0?=
+ =?utf-8?B?NHJGdUZkL1dJcjFKcUpCc1B1bjNIaU1HK0hDU1ZaakVUbVRrZHQvVnBlTGY1?=
+ =?utf-8?B?MHp1REpKVkZtSXFZc1dVVGRnMzV3WGxkaENOUVF4TU9OQlpqTURrVjdBcVBZ?=
+ =?utf-8?B?VzQxZFNHek1QN3FNY3RuQlRzWHVlVG9rcENBUis3YUJwWmxnRm5xT0R5YXNZ?=
+ =?utf-8?B?Q0dVUTgzRkUzOWlFTmhYR3BvMFlrekN5elQ3NjBQWFRza0xzR05heTcvZE1T?=
+ =?utf-8?B?NitDMGN3dVRjOWtET202VThMR25jRGwrYmNOd3VuaW50dDNEalBXdmIxRVUr?=
+ =?utf-8?B?ZHg2bkV2U01kYlJ6Z3gxUkVobzlyZDFySEdtSkNWUU9WdWVLMUZQMXptanlv?=
+ =?utf-8?B?Vno3dHB5WDVkNDNseld0MXVwSWxEVElVRmpCN29kMG41Y09VT2c3d3BRZHds?=
+ =?utf-8?B?cFdBdkpvTVMvZnpDMlZFNDJFSThLWlVqOEg5Vlo5anRFNmozeGRnYmF0SHBR?=
+ =?utf-8?B?MFFnSk4vcThGZG1sMkp4UnM0NmRRYVVENmFONWNzY1NuTXpuMFRrR1hmcm1S?=
+ =?utf-8?B?QitZc1k4NHFoQzM2RnY4ZHBueWFjMW1SaVRsNXJCdXBnRWRwNUVkZ3d4c3F6?=
+ =?utf-8?B?clFPN1d6RGdBWGRkNlRZQVBWNmk2Q051bnNYbU1NcG1UQUt6bHZCRWJpdTYx?=
+ =?utf-8?B?UExPcHUyWXpQcEZXdW83azNYbE9vNWlOMDhrNmtTcDBwWHVnVGRHMDd6azdS?=
+ =?utf-8?B?eUwxZjI0aitHemtFTkNmUThvN0ZFQTlnTnFhbE1OcDl6V3crV1NieWRGWkhx?=
+ =?utf-8?B?ci9USDZIeVllWStiUVd2MFFWV0xJbkI0Z05PTjhRWUtIVlRUNk90N21yQ1VE?=
+ =?utf-8?B?dnY1bjVtWnJnWkpseTRpb05jdk0vVWllUWZXa3paVUc0NVROSjhqZ09mSE5G?=
+ =?utf-8?B?OGNoUW4xczJWd0xpTTJvQVBvK0JXNVpoemxTU2cyTXh1U2Y3NnBldFhuclht?=
+ =?utf-8?B?MUR4eDhNQWpJeWhpKy9ZQXp3UVBuam5vWkdQTGtJMm42czlNaDk5dWVqVmN0?=
+ =?utf-8?B?bXNsK0hsYXIzR09wYzZXTklNZmg4YXZUbVFERHFCbnhnbW9ucmRYeXYzVWlJ?=
+ =?utf-8?B?VHAvWjI3bkowTG41cFRvRk1QMUpEdWRkSEtEQUgwQUpsUndDYjAyRzUrRk9E?=
+ =?utf-8?B?TTJEZ081d1VvN0w0UGgzV2FzZWsyWmdPVEhCcSt4VFdWUkU5ZjNSZTN2cmZZ?=
+ =?utf-8?B?bjNBRzVNSnpBaFg2UUlKREt0UURsVkFacjE3U3BDNjBlck9HanRLQUc3YUdu?=
+ =?utf-8?B?U2lWQzM4aXlyYnljcmtyYms4eTBNSk5OVEVxWTYvUzgyV3hjdms1WTZWYWo2?=
+ =?utf-8?B?OGFNcHJBYUhQRHc1TmFYMEg0dVBWNFlDQjBJYk43dC9FZTdoVHRJUjJ2c2t4?=
+ =?utf-8?B?NGluTlFlZitHN3FheHlwREgxcVo0cktjV2NVR0ZWSHpYNzJyYmJyYmlUVFAz?=
+ =?utf-8?B?eTZ5VlRVV1JwOE43K0UyMG5GdDFsMktKQTROUXhUeTNBMEdvN1FTanE5bEw1?=
+ =?utf-8?B?cGp6RnNjWW51RlJMamlWdGx6MWJyYSs3dG1ITE5xdEhPUWl6am1HQjE2UVJD?=
+ =?utf-8?B?NlJPUnVKSEEyZnVMOUlmTGpSS0Q5TmpoL3JSTjNPUTMyS3dRTWtMMWpSeEJT?=
+ =?utf-8?B?TXBldE5ya2xJSHpIb040bkVyYVc1d0hvcmlXaXRHd3VPV2JUc2U3NG83VTNw?=
+ =?utf-8?B?V1MveDJxL3ljR21OZStuK2pUY1FlaG1yZkQ2emxLY3lzcCtRUGg0dmFZeGdm?=
+ =?utf-8?B?eTJqLzBZYmE5ZUhQbXVHM3ltUmQrUitzUHpMTXpuRU9VRjdGM2thc3gySkg3?=
+ =?utf-8?B?Y3diNlNTNGYvQ05MeUFhK2lXZm0zMzVlbmNyYlEvdFBwWFFhelVnWFlLQlVi?=
+ =?utf-8?B?NGU5dGgwL1NnUmxzbjVrMk9nM1Zmc2dLeXl1RzR4YnFIcEl2dStwaEMwMlUv?=
+ =?utf-8?B?RU1kWVpNdHpGdVB3RnhPYUprdS9RTTllOXpDclNVWVozY1V4QmQycjZPSU00?=
+ =?utf-8?Q?bzEsLZV4fP9SRi3KMe5uxs4=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?bXlMdVJ0Z3E1ZDcybXY2blc5VTBvTnlKRzB3UzhheEZRZHRHZ09RaE1KNGsz?=
+ =?utf-8?B?RTdLTC8yOUpuN0J6ZmtIR1pRaStxNHIzVWlKT29KSjlKb2svWWI4dVV4ZEVD?=
+ =?utf-8?B?dWFiNDgrb2d5NzRWM2Q2NWI4aDRkZ2RWWnlFK2xxclJVeHVLZ1BXN3A3V2dI?=
+ =?utf-8?B?Y2dkdmJkWTY3R1hUM0pwTWRvMkxKVGdKZkVlZUhtazZVMVB0d0xlc05RNE1a?=
+ =?utf-8?B?V284eVpUUzlmSFRSVFRFbHpRZk9qbDFONkdIVWJQR1I0bDQyWFB1R1F0N0pN?=
+ =?utf-8?B?aWF0RGcySXl4aVdiNWJ0MTBQMmp4RkwxdXkyNFZiMnQ0WTkzZUcyWFFXTmpM?=
+ =?utf-8?B?RGp0eUEvZVA2QkNlOXJWTUdxVEVPcjkvWTBnMEU5UWZLSWU2aEY5dnkra2I2?=
+ =?utf-8?B?N2l6OWROQTJncE1uOHVMYWgya3JaaDh1Q01FUHJLdlhIeDdBZ2xqS25BQnMz?=
+ =?utf-8?B?UlJIWFJjMVM5UWZKckNZM2poaFBUNGhvbGNDbUpsU1h0K3NTd29BVldLTldz?=
+ =?utf-8?B?VndLS1gwc2xjcng4bE5NU24wR0NqSXJtNGtKRVJwN1NBZWxDanEvSGg1V3du?=
+ =?utf-8?B?UGJJTngzaVhjZGo2QjB2WkxnTVJYWDhUM1I4dnhsUnZRNUNnSkVnallSd3Ja?=
+ =?utf-8?B?Umw3ekRvcmpDZ3pHK1o1cWgvMy80K21QTEZRZlEwZ003Qlg4OHBnckZhbUJv?=
+ =?utf-8?B?VlNIVUxmci9uK1JCOUR1d3ZESjN5Q3FweFBIalVBS0hXeXNzUWFXZmt2WEN2?=
+ =?utf-8?B?dWpINlEvN2w5LzU1eHNRYTVpamNlRzd3K3dLVUFZM0dmRUd1TUV0RVl1alV3?=
+ =?utf-8?B?NHNBZEZLbW80eUpWdUVjYTFONDBvQldYWkRLb1RaZmVDVkdRd09aSlVDdHNa?=
+ =?utf-8?B?RGJjbHdhOUxoMmNuRlBubnBNNGtRRjIwVWZ4VmNLMm9yY0Z0OE1zZllrcDRX?=
+ =?utf-8?B?RGxlSkw2T1pBeGxxTFdGSHBYS29ONlp3aElKZlI2cldrZ3k2dGlZd3lpWFY4?=
+ =?utf-8?B?dzZSaGkvZExxMU9vcUVjSzFwV2paUVo2MW8yQUlnVUhaSzlQeGptQTJrVER3?=
+ =?utf-8?B?RXFqdmVXVUJDbzlRRFk0cXZFWFpPeFhBU1pmaGcraVVnNGIrME5rd2poNUZQ?=
+ =?utf-8?B?RUJjazNPMkprNmJ0OUNCamcxaWl2dEpGRGxSZE1xRW11bWxmSmhXVkViQ0NT?=
+ =?utf-8?B?eU80YWNVMjZCSmVPU3JhY3UxZmxkU1QydjhMOC9scWtFOHYwWTlRV3U2NFNB?=
+ =?utf-8?B?YkNQSm94V1FKYnhwM043VWxPN0tlRjNhaElvWW5NL1FhMVkxdUFISi9BcmZS?=
+ =?utf-8?B?SEFwM0wrU3lLNGlmZ0l3dHExbW9nbHFYbHFseHJQeDJmU2JCc25zRENRVlc2?=
+ =?utf-8?B?L1FxZkxwU0M4dFhNWXZQVWcxdU9nQzF3ZHVBSFhPSzdQWHNlWjhQMkh3eGlx?=
+ =?utf-8?B?RDdIMWgvSm5BRjBmNVl0QW9kMjZCaWFEMEJCamk5SFdvYW1PM0ZNaGR3UHFt?=
+ =?utf-8?B?RmxEaTZITVpGV3ZsM01Kdjl4TklUTCtyY013elR1RE9pUEJqU0QwanV0V05T?=
+ =?utf-8?B?RGk1MGMvWkdIbDYwZDRsMDU5TVlHcTl3d0U5SkhHNWhwQzljQTZGcmUyRnFy?=
+ =?utf-8?B?Y3h1c3cwMTdBZ2xjenVvVkVUeEFLYTlqd1RoN0QxTzJGWExtK3dXYzFWNXpV?=
+ =?utf-8?B?ZGQ3NFUxblFwaXZ4Q2tSY3l5TTVCaW5ZMVAwSjFLekFkaEJpdUNIemp1TWFL?=
+ =?utf-8?B?Q29ac1k5TkxhcUI4UTlZQUVxTThzc3I4ZmpTcURZYXNqRlpjNm8zZHF4Nk9R?=
+ =?utf-8?B?SnhHUk94R0RUTmM3d2o2bkVJcDcydE9uK0JFSzRORURBRWNIUTRCcVBYOHRU?=
+ =?utf-8?B?TkZKckhwQ3VweEc1MG1FaTZEOVcyanYxS1FmU1pPd1NmaVBNTURBaTRVZEZW?=
+ =?utf-8?B?aXBxV1c5RzBMa1dXNHp1TzJxMGoyVmJWdElpY1dudVo0MDJyTE5oUHZXZ0t2?=
+ =?utf-8?B?V0ZvaG9URE9rQUVTOE1NQzJjTXVWcHFibjFXRDM0QS9CdHdYSEVXWXVGMzY4?=
+ =?utf-8?B?aHB1NU9wMlFzVEZjWDBTcFZGWlAyY2dxRmdONXlwYVdpTWFQVmJPNHdGNWd4?=
+ =?utf-8?B?RTNiMzVDSk5WT2JIVU4zU2NTeFJqeEx5dVErcFBYK0dwcEYwbFZNNDIzQTFD?=
+ =?utf-8?B?dGtXV3BtdU5zbmRNZVJTQnBLaGRkeDFWNGpEblZKck9kaTlOc3V3M2R2YWFF?=
+ =?utf-8?B?SHZxcURjZEZUZjdkdHRwN1BWMkd5dnM2czFGQTFiV2ZXNXZORVN4YVAvbERi?=
+ =?utf-8?B?YTExTFVZVmlNdVdGd2ExTndSOEdDT3dScmRDbDFJT2ZLYytUMHV3dz09?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <58a8c0fe.292f.19be06d6ce0.Coremail.zhangsenchuan@eswincomputing.com>
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b8d296b0-27c4-4c71-0e12-08de58ef173a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Jan 2026 13:15:04.3235
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Kjv5epconSBpY14dJNOuyXMP23Vj8AsW3ghwpzibHBOTk28cDd3Is9XfKk1mWUUG9BzF9FVjn6W6vpVFmRzAtdMjkKA4lon/j8UZ0BIIdAQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS9PR01MB13254
+X-Spamd-Result: default: False [2.64 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MIME_BASE64_TEXT_BOGUS(1.00)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[bp.renesas.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-257956-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-257957-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[26];
-	FREEMAIL_CC(0.00)[kernel.org,google.com,pengutronix.de,gmail.com,synopsys.com,vger.kernel.org,foss.st.com,oss.qualcomm.com,samsung.com,amd.com,nxp.com,eswincomputing.com,einfochips.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	R_SPF_SOFTFAIL(0.00)[~all:c];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[linux-m68k.org,gmail.com];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org,bp.renesas.com];
+	DKIM_TRACE(0.00)[bp.renesas.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	R_SPF_SOFTFAIL(0.00)[~all:c];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[biju.das.jz@bp.renesas.com,devicetree@vger.kernel.org];
+	DMARC_POLICY_ALLOW(0.00)[renesas.com,none];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[eswincomputing.com:email,ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: 9BDB7578B3
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo]
+X-Rspamd-Queue-Id: 3666E57A86
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Jan 21, 2026 at 08:00:26PM +0800, zhangsenchuan wrote:
-> > Subject: Re: Re: [PATCH v9 2/2] PCI: eic7700: Add Eswin PCIe host controller driver
-> > 
-> > > > On Tue, Jan 06, 2026 at 08:43:11PM +0800, zhangsenchuan wrote:
-> > > > > > On Mon, Dec 29, 2025 at 07:32:07PM +0800, zhangsenchuan@eswincomputing.com wrote:
-> > > > > > > From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-> > > > > > > 
-> > > > > > > Add driver for the Eswin EIC7700 PCIe host controller, which is based on
-> > > > > > > the DesignWare PCIe core, IP revision 5.96a. The PCIe Gen.3 controller
-> > > > > > > supports a data rate of 8 GT/s and 4 channels, support INTx and MSI
-> > > > > > > interrupts.
-> > > > > > 
-> > > > > > > +config PCIE_EIC7700
-> > > > > > > +	tristate "Eswin EIC7700 PCIe controller"
-> > > > > > 
-> > > > > > > +/* Vendor and device ID value */
-> > > > > > > +#define PCI_VENDOR_ID_ESWIN		0x1fe1
-> > > > > > > +#define PCI_DEVICE_ID_ESWIN		0x2030
-> > > > > > 
-> > > > > > Usually the device name is a little more than just the vendor.  What
-> > > > > > if Eswin ever makes a second device?
-> > > > > 
-> > > > > Okey, thanks.
-> > > > > Perhaps it's a problem. Maybe PCI_DEVICE_ID_EIC7700 is better?
-> > > 
-> > > Check pci_ids.h and follow the style used there.  Device ID macros
-> > > typically include both the vendor and the device.
-> > 
-> > Okey, thanks.
-> > 
-> > > 
-> > > > > > > +static struct platform_driver eic7700_pcie_driver = {
-> > > > > > > +	.probe = eic7700_pcie_probe,
-> > > > > > 
-> > > > > > This driver is tristate but has no .remove() callback.  Seems like it
-> > > > > > should have one?
-> > > > > 
-> > > > > In v2 patch, I referred to Mani's comments and removed the .remove()
-> > > > > callback, as follows:
-> > > > > "Since this controller implements irqchip using the DWC core driver,
-> > > > > it is not safe to remove it during runtime."
-> > > > > https://lore.kernel.org/linux-pci/jghozurjqyhmtunivotitgs67h6xo4sb46qcycnbbwyvjcm4ek@vgq75olazmoi/
-> > > > > 
-> > > > > In addition, remove .remove() callback, because this driver has been 
-> > > > > modified to builtin_platform_driver and does not support HotPlug, 
-> > > > > therefore, the .remove() callback is not needed. Do you have any
-> > > > > better suggestions?
-> > > > 
-> > > > Yes, builtin_platform_driver() wouldn't allow the users to remove
-> > > > the module. So remove() callback will become useless. The reason why
-> > > > this driver is tristate is that it could be loaded from rootfs and
-> > > > not always statically built to the kernel image.
-> > > 
-> > > This .remove() vs IRQ thing is a perennial issue and it's hard to know
-> > > what style new drivers should copy.
-> > > 
-> > > There are lots of DWC-based drivers that are tristate, implement
-> > > .remove(), and use module_platform_driver() (e.g., bt1, kirin,
-> > > tegra194, rcar-gen4, exynos, k1, stm32).  Is there something different
-> > > about the way they implement irqchip that makes .remove() safe?
-> > 
-> > Hi Bjorn, Mani,
-> > 
-> > The comments are as follows:
-> > "You can make it tristate as you've used builtin_platform_driver() which
-> > guarantees that this driver won't be removed once loaded."
-> > https://lore.kernel.org/linux-pci/uijg47suvluvamftyxwc65kl34eo2eu2af2o5aia4nu45hanqc@grcr2bjgph2i/
-> > 
-> > Do not add the remove callback. It needs to be set to a bool：
-> > In v6 patch, it was mentioned to set tristate. Now, after careful 
-> > consideration, setting tristate can allow loading as a module, but the 
-> > driver implementation does not have a remove function. If it exists in 
-> > the form of a module, after testing, When insmod driver is followed by 
-> > rmmod driver, the resources cannot be released, and problems will occur
-> > when insmod driver is used again. So I think that if the remove callback
-> > function is not provided in the form of builtin, it can only be set to 
-> > bool.
-> > 
-> > Add the remove callback. It can make it tristate:
-> > Questions about removing it during runtime. I don't have a very good idea.
-> > I still don't quite understand why it's not safe. Could you explain it to 
-> > me?
-> > 
-> > At present, refer to other manufacturers, i think there are two ways to 
-> > achieve it.
-> > 1.Set a bool. Do not add the remove function, module loading is not 
-> > allowed, and the driver currently does not support HotPlug.
-> > 2.Set a tristate, add .remove callback.
-> > 
-> > I think the first one might be better for me, because there is no need 
-> > to add the remove function, my understanding might also be incorrect. 
-> > Please review it for me. Thanks！
-> > 
-> 
-> Hi Bjorn, Mani,
-> 
-> Regarding the issue of whether to add the.remove callback, could you 
-> please help me review it again? Thanks very much!
-> 
-> By the way, for the patch that parses multiple Root Ports, will it be 
-> updated later? Do I need to wait for it to send the next version?
-> 
-
-If you are referring to the patch from Sumit [1], then no need to wait for it as
-it is not a dependency for this driver.
-
-- Mani
-
-[1] https://lore.kernel.org/all/20260105-dt-parser-v1-0-b11c63cb5e2c@oss.qualcomm.com/
-
-> Kind regards,
-> Senchuan
-> 
-
--- 
-மணிவண்ணன் சதாசிவம்
+SGkgR2VlcnQsDQoNClRoYW5rcyBmb3IgdGhlIGZlZWRiYWNrLg0KDQo+IC0tLS0tT3JpZ2luYWwg
+TWVzc2FnZS0tLS0tDQo+IEZyb206IEdlZXJ0IFV5dHRlcmhvZXZlbiA8Z2VlcnRAbGludXgtbTY4
+ay5vcmc+DQo+IFNlbnQ6IDIxIEphbnVhcnkgMjAyNiAxMzowNQ0KPiBTdWJqZWN0OiBSZTogW1BB
+VENIIDA5LzEyXSBhcm02NDogZHRzOiByZW5lc2FzOiBBZGQgaW5pdGlhbCBEVFNJIGZvciBSWi9H
+M0wgU29DDQo+IA0KPiBIaSBCaWp1LA0KPiANCj4gT24gVHVlLCAyMCBKYW4gMjAyNiBhdCAxMzo1
+MiwgQmlqdSA8YmlqdS5kYXMuYXVAZ21haWwuY29tPiB3cm90ZToNCj4gPiBGcm9tOiBCaWp1IERh
+cyA8YmlqdS5kYXMuanpAYnAucmVuZXNhcy5jb20+DQo+ID4NCj4gPiBBZGQgdGhlIGluaXRpYWwg
+RFRTSSBmb3IgdGhlIFJaL0czTCBTb0MuDQo+ID4gVGhlIGZpbGVzIGluIHRoaXMgY29tbWl0IGhh
+dmUgdGhlIGZvbGxvd2luZyBtZWFuaW5nOg0KPiA+ICAgLSByOWEwOGcwNDYuZHRzaTogICAgUlov
+RzNMIGZhbWlseSBTb0MgY29tbW9uIHBhcnRzDQo+ID4gICAtIHI5YTA4ZzA0Nmw0OC5kdHNpOiBS
+Wi9HM0wgUjBBMDhHMDQ2THs0Niw0OH0gU29DIHNwZWNpZmljIHBhcnRzDQo+ID4NCj4gPiBBZGRl
+ZCBwbGFjZSBob2xkZXJzIHRvIHJldXNlIHRoZSBjb2RlIGZvciBSZW5lc2FzIFNNQVJDIElJIGNh
+cnJpZXINCj4gPiBib2FyZC4NCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IEJpanUgRGFzIDxiaWp1
+LmRhcy5qekBicC5yZW5lc2FzLmNvbT4NCj4gDQo+IFRoYW5rcyBmb3IgeW91ciBwYXRjaCENCj4g
+DQo+ID4gLS0tIC9kZXYvbnVsbA0KPiA+ICsrKyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvcmVuZXNh
+cy9yOWEwOGcwNDYuZHRzaQ0KPiA+IEBAIC0wLDAgKzEsMjE5IEBADQo+IA0KPiA+ICsgICAgICAg
+c29jOiBzb2Mgew0KPiA+ICsgICAgICAgICAgICAgICBjb21wYXRpYmxlID0gInNpbXBsZS1idXMi
+Ow0KPiA+ICsgICAgICAgICAgICAgICAjYWRkcmVzcy1jZWxscyA9IDwyPjsNCj4gPiArICAgICAg
+ICAgICAgICAgI3NpemUtY2VsbHMgPSA8Mj47DQo+ID4gKyAgICAgICAgICAgICAgIHJhbmdlczsN
+Cj4gPiArDQo+ID4gKyAgICAgICAgICAgICAgIHNjaWYwOiBzZXJpYWxAMTAwYWMwMDAgew0KPiA+
+ICsgICAgICAgICAgICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAicmVuZXNhcyxzY2lmLXI5YTA4
+ZzA0NiIsICJyZW5lc2FzLHNjaWYtcjlhMDdnMDQ0IjsNCj4gPiArICAgICAgICAgICAgICAgICAg
+ICAgICByZWcgPSA8MCAweDEwMGFjMDAwIDAgMHg0MDA+Ow0KPiA+ICsgICAgICAgICAgICAgICAg
+ICAgICAgIGludGVycnVwdHMgPSA8R0lDX1NQSSAzODYgSVJRX1RZUEVfTEVWRUxfSElHSD4sDQo+
+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxHSUNfU1BJIDM4OCBJUlFf
+VFlQRV9MRVZFTF9ISUdIPiwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgPEdJQ19TUEkgMzg5IElSUV9UWVBFX0xFVkVMX0hJR0g+LA0KPiA+ICsgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICA8R0lDX1NQSSAzODcgSVJRX1RZUEVfTEVWRUxfSElHSD4s
+DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxHSUNfU1BJIDM5MCBJ
+UlFfVFlQRV9MRVZFTF9ISUdIPiwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgPEdJQ19TUEkgMzkwIElSUV9UWVBFX0xFVkVMX0hJR0g+Ow0KPiA+ICsgICAgICAgICAg
+ICAgICAgICAgICAgIGludGVycnVwdC1uYW1lcyA9ICJlcmkiLCAicnhpIiwgInR4aSIsDQo+ID4g
+KyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgImJyaSIsICJkcmkiLCAi
+dGVpIjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICBjbG9ja3MgPSA8JmNwZyBDUEdfTU9E
+IFI5QTA4RzA0Nl9TQ0lGMF9DTEtfUENLPjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICBj
+bG9jay1uYW1lcyA9ICJmY2siOw0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgIHBvd2VyLWRv
+bWFpbnMgPSA8JmNwZz47DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgcmVzZXRzID0gPCZj
+cGcgUjlBMDhHMDQ2X1NDSUYwX1JTVF9TWVNURU1fTj47DQo+ID4gKyAgICAgICAgICAgICAgICAg
+ICAgICAgc3RhdHVzID0gImRpc2FibGVkIjsNCj4gPiArICAgICAgICAgICAgICAgfTsNCj4gPiAr
+DQo+ID4gKyAgICAgICAgICAgICAgIGkyYzA6IGkyY0AxMDBhZTAwMCB7DQo+ID4gKyAgICAgICAg
+ICAgICAgICAgICAgICAgI2FkZHJlc3MtY2VsbHMgPSA8MT47DQo+ID4gKyAgICAgICAgICAgICAg
+ICAgICAgICAgI3NpemUtY2VsbHMgPSA8MD47DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAg
+cmVnID0gPDAgMHgxMDBBRTAwMCAwIDB4NDAwPjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAg
+ICAvKiBwbGFjZWhvbGRlciAqLw0KPiA+ICsgICAgICAgICAgICAgICB9Ow0KPiA+ICsNCj4gPiAr
+ICAgICAgICAgICAgICAgY2FuZmQ6IGNhbkAxMDBjMDAwMCB7DQo+ID4gKyAgICAgICAgICAgICAg
+ICAgICAgICAgcmVnID0gPDAgMHgxMDBjMDAwMCAwIDB4MjAwMDA+Ow0KPiA+ICsgICAgICAgICAg
+ICAgICAgICAgICAgIC8qIHBsYWNlaG9sZGVyICovDQo+ID4gKyAgICAgICAgICAgICAgIH07DQo+
+ID4gKw0KPiANCj4gRWFybHkgZmVlZGJhY2s6IGRlcGVuZGluZyBvbiB3aGVuIHRoaXMgZ29lcyB1
+cHN0cmVhbSwgd2UgbWF5IG5lZWQgYSBmZXcgbW9yZToNCj4gDQo+ICsgICAgICAgICAgICAgICBv
+aGNpMDogdXNiQDExZTEwMDAwIHsNCj4gKyAgICAgICAgICAgICAgICAgICAgICAgLyogcGxhY2Vo
+b2xkZXIgKi8NCj4gKyAgICAgICAgICAgICAgIH07DQo+ICsNCj4gKyAgICAgICAgICAgICAgIG9o
+Y2kxOiB1c2JAMTFlOTAwMDAgew0KPiArICAgICAgICAgICAgICAgICAgICAgICAvKiBwbGFjZWhv
+bGRlciAqLw0KPiArICAgICAgICAgICAgICAgfTsNCj4gKw0KPiArICAgICAgICAgICAgICAgZWhj
+aTA6IHVzYkAxMWUxMDEwMCB7DQo+ICsgICAgICAgICAgICAgICAgICAgICAgIC8qIHBsYWNlaG9s
+ZGVyICovDQo+ICsgICAgICAgICAgICAgICB9Ow0KPiArDQo+ICsgICAgICAgICAgICAgICBlaGNp
+MTogdXNiQDExZTkwMTAwIHsNCj4gKyAgICAgICAgICAgICAgICAgICAgICAgLyogcGxhY2Vob2xk
+ZXIgKi8NCj4gKyAgICAgICAgICAgICAgIH07DQo+ICsNCj4gKyAgICAgICAgICAgICAgIGhzdXNi
+OiB1c2JAMTFlMzAwMDAgew0KPiArICAgICAgICAgICAgICAgICAgICAgICAvKiBwbGFjZWhvbGRl
+ciAqLw0KPiArICAgICAgICAgICAgICAgfTsNCj4gKw0KPiArICAgICAgICAgICAgICAgcGNpZTog
+cGNpZUAxMWU0MDAwMCB7DQo+ICsgICAgICAgICAgICAgICAgICAgICAgIC8qIHBsYWNlaG9sZGVy
+ICovDQo+ICsgICAgICAgICAgICAgICB9Ow0KDQpPSywgSSB3aWxsIGtlZXAgYW4gZXllIG9uIHRo
+ZXNlIHBhdGNoIHNlcmllcy4NCg0KQ2hlZXJzLA0KQmlqdQ0K
 
