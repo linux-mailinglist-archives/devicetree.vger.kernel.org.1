@@ -1,197 +1,159 @@
-Return-Path: <devicetree+bounces-257859-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257860-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oA6QKuCscGkgZAAAu9opvQ
-	(envelope-from <devicetree+bounces-257859-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 11:39:28 +0100
+	id UCWcG/WtcGkgZAAAu9opvQ
+	(envelope-from <devicetree+bounces-257860-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 11:44:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50A3B555A1
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 11:39:28 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id E26ED55685
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 11:44:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A177266127D
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 10:26:18 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4139382BDB9
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 10:26:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 372A5481232;
-	Wed, 21 Jan 2026 10:22:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3454477E37;
+	Wed, 21 Jan 2026 10:23:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="l+gOzbcc"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YEXMcezP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9626947DD5F;
-	Wed, 21 Jan 2026 10:22:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EE74500978;
+	Wed, 21 Jan 2026 10:23:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768990971; cv=none; b=m/m84uqyJSQo83BUe7v9KUMqNqSARM5z4t6Z8QJYm5NyDS8SoMO+iu1QkZvnCKqug2yiCzGsNK21vFufT7U4sEpB7m5ni++W7h/dVXe95tXWSBorsscZ/4lGN519xUe/+seGUeJ2E1NoB3+IjCNRCLXu+J/5PDv97blJK6590nw=
+	t=1768991014; cv=none; b=q9FDnr6nL9XgrqXw30kkIOrT+zs+IHS6GzMIet8+jgIirDVY1Pa9bCoSjwCfv4IEIbKlMdqLZnfd+r4m63uN2B4n/ASswa1zoBmYHRama9RLjeqrlXJmgDPll6P3TCla058wWQ6dAOzmod6xWGNQL+//dTy+1sMOdioqdJEwLi8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768990971; c=relaxed/simple;
-	bh=cCVsmWD5x2Wp9Uyksc6R5cDwZAzUv2EH8wUugsqaG70=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Brof52Qyir5Sorub8+NXmgRihk9tM2XAjxWjPW1ATt9oMGoAqCIYY0qmtix/yd7BCuL9U8X//J6ySi1Bpa2HJlnBwfYMLKX7lBy7G/feMOy0s4Dn4doVMaUPH9A9CEoBerfgiDtP4YsDjuHr9CFK96uSYzznEmGrYdZ1dB9vUIs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=l+gOzbcc; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=Cc:From:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References;
-	bh=M+S91k9FvN+Q1z+KwnvmtonUBdwa1+ZfBnBC0GNchH8=; b=l+gOzbccaGtAI89KYpjIi8YMkD
-	mT6L3IrJSaEGMhm6/fuiIhAJ+RjEOe5TI/Cbh2/5y7rZ+UO/x8y0g7MKuo771qnsrf8Uti5rXi3IK
-	v0vYfd6TsdTiXh+ImJcsL24EKwEnasvwsbekwuiibylVZHp+3gZMwPtiTTzcUk7pwnbIiYjxAFrz4
-	OZZiQEuoCvURVyk47agKV76CaqZeV81Qk6TbH5bGmkqVK9yduZuRySKqmZgcrxosT8EYq8tmiIpgw
-	ZDjs6gltBunfdBTSoYb4njUw/YnXvHY37cKoiuo/TPyf/Ts5sLfGPWqF5LrRJwFr/JQMHDKmScMa1
-	93ogGfjQ==;
-From: Andreas Kemnade <andreas@kemnade.info>
-Date: Wed, 21 Jan 2026 11:22:37 +0100
-Subject: [PATCH] arm64: dts: rockchip: Add TPS65185 for PineNote
+	s=arc-20240116; t=1768991014; c=relaxed/simple;
+	bh=ekDTccZ4XTF8np5t2ube3xIR0jfbzSJiWbsY/k+ToHY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Fpnkdpk9qJDnt1+OtwM3CwcuXtcJNTbj7wR9m0wMTcJpeJGIb5nM17NnVV4yijltT0MCMvhhn8/Sq7cm4nXjcZy6uW2YY6VL+4w5+qM8zrvgpWSFX8R9aBAL3uZZJI0i7Wr+OeLJet5u9GqXSjdUnVGaZCYGT7OIH+REiEuKTwM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YEXMcezP; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1768991012; x=1800527012;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ekDTccZ4XTF8np5t2ube3xIR0jfbzSJiWbsY/k+ToHY=;
+  b=YEXMcezPzrWibpq/L/WCfRFbll7iyqMaP+71L7VQD95IP6J0768IYh5E
+   v2eABcfKUqhrl3MIiEkVyTabNo7SZoRoN4PwIuc4k/DQyx8LI7GZPUWZ3
+   lHge1D3l8e+2YNUgr140NJ/DGZUPOuwd4vaVvGFqqOmocwl9gASgcVaH6
+   tdplzIkBkwKVcQNmWvuCSqoJCrrpaXgzIhdDgZUzmb9RIlUKA+Z2DsNLU
+   /2401GLF/B6GzQleRcaLNUYkifA3NeuXNcV8oRmaOOEu0s12FKPguT6GG
+   fPX779L20eC+IoLtp3LQwdLw5w4HEBl5cpOvPM8+2JpY48bArnZVvDy1g
+   g==;
+X-CSE-ConnectionGUID: +WPeGwEvR6qKyewkmk8wPg==
+X-CSE-MsgGUID: PKbYdFhaSv+qPgzyC9xsxQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11677"; a="81659649"
+X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; 
+   d="scan'208";a="81659649"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jan 2026 02:23:31 -0800
+X-CSE-ConnectionGUID: rgl4xNtUQLqUWuD6vG3TOw==
+X-CSE-MsgGUID: pcvavRLZT9yqHognu0MnsA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; 
+   d="scan'208";a="206226548"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.69])
+  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jan 2026 02:23:29 -0800
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 69B9C121D78;
+	Wed, 21 Jan 2026 12:23:31 +0200 (EET)
+Date: Wed, 21 Jan 2026 12:23:31 +0200
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: dumitru.ceclan@analog.com
+Cc: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Julien Massot <julien.massot@collabora.com>,
+	Rob Herring <robh@kernel.org>,
+	Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund@ragnatech.se>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-staging@lists.linux.dev, mitrutzceclan@gmail.com,
+	Cosmin Tanislav <demonsingur@gmail.com>
+Subject: Re: [PATCH RESEND v8 20/21] media: i2c: remove MAX96717 driver
+Message-ID: <aXCpI-6sAmz7cDX9@kekkonen.localdomain>
+References: <20251208-gmsl2-3_serdes-v8-0-7b8d457e2e04@analog.com>
+ <20251208-gmsl2-3_serdes-v8-20-7b8d457e2e04@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260121-rk-tps-v1-1-bc867e1dd200@kemnade.info>
-X-B4-Tracking: v=1; b=H4sIAOyocGkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIzMDQyND3aJs3ZKCYl1D4zRLM/PkxMTk1GQloOKCotS0zAqwQdGxtbUA7lg
- bUlgAAAA=
-X-Change-ID: 20260121-rk-tps-13f967caacec
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Diederik de Haas <didi.debian@cknow.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Andreas Kemnade <andreas@kemnade.info>
-X-Mailer: b4 0.15-dev-a6db3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2572; i=andreas@kemnade.info;
- h=from:subject:message-id; bh=cCVsmWD5x2Wp9Uyksc6R5cDwZAzUv2EH8wUugsqaG70=;
- b=owGbwMvMwCUm/rzkS6lq2x3G02pJDJkFKz5pxyVy+dUFzN1zyLO5aVXGdOa6o3ZqyVYtuTe/P
- K5+cN2xo4SFQYyLQVZMkeWXtYLbJ5VnucFTI+xh5rAygQxh4OIUgIkUdzF8L7m4worHwSC1tvbS
- ygmB2x2dTSd5rRHZbeV49N+1z/vcGf7Kbdb59mh5Wvy55R0fSlkrDW9e2Osa5lirdmjuOqUNTX6
- cAA==
-X-Developer-Key: i=andreas@kemnade.info; a=openpgp;
- fpr=EEC0DB858E66C0DA70620AC07DBD6AC74DE29324
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251208-gmsl2-3_serdes-v8-20-7b8d457e2e04@analog.com>
 X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[kemnade.info:s=20220719];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-257859-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_CC(0.00)[ideasonboard.com,kernel.org,collabora.com,ragnatech.se,linuxfoundation.org,vger.kernel.org,lists.linux.dev,gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[kemnade.info,none];
-	DKIM_TRACE(0.00)[kemnade.info:+];
-	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
+	TAGGED_FROM(0.00)[bounces-257860-lists,devicetree=lfdr.de];
+	DMARC_POLICY_ALLOW(0.00)[intel.com,none];
+	DKIM_TRACE(0.00)[intel.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andreas@kemnade.info,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sakari.ailus@linux.intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,0.0.0.68:email,kemnade.info:email,kemnade.info:dkim,kemnade.info:mid,ayakael.net:url]
-X-Rspamd-Queue-Id: 50A3B555A1
+	R_SPF_SOFTFAIL(0.00)[~all:c];
+	TAGGED_RCPT(0.00)[devicetree,renesas];
+	RCVD_COUNT_FIVE(0.00)[6];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[kekkonen.localdomain:mid,dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,intel.com:dkim]
+X-Rspamd-Queue-Id: E26ED55685
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-As the TPS65185 driver is now upsteram, add it to the PineNote devietrees.
-This is based on https://ayakael.net/forge/linux-pinenote but modified to
-the binding requirements.
-Without any other out-of-tree materials applied, this enables the
-hwmon temperature reporting and the interrupt counter increments
-by one per reading.
+Hi Cosmin, Dumitru,
 
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
----
- arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi | 49 +++++++++++++++++++++++
- 1 file changed, 49 insertions(+)
+On Mon, Dec 08, 2025 at 04:13:12PM +0200, Dumitru Ceclan via B4 Relay wrote:
+> From: Cosmin Tanislav <demonsingur@gmail.com>
+> 
+> The previous MAX96717 driver has been removed and its functionality has
+> been moved to a MAX96717 driver which makes use of the Maxim GMSL2/3
+> serializer framework.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
-index 5c6f8cc401c9..7d490926dbc9 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
-@@ -499,6 +499,40 @@ typec_hs_usb2phy0: endpoint {
- 			};
- 		};
- 	};
-+
-+	ebc_pmic: pmic@68 {
-+		compatible = "ti,tps65185";
-+		reg = <0x68>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <RK_PA6 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-0 = <&ebc_pmic_pins>;
-+		pinctrl-names = "default";
-+		enable-gpios = <&gpio3 RK_PB0 GPIO_ACTIVE_HIGH>;
-+		pwr-good-gpios = <&gpio3 RK_PA7 GPIO_ACTIVE_HIGH>;
-+		vcom-ctrl-gpios = <&gpio4 RK_PB2 GPIO_ACTIVE_HIGH>;
-+		vin-supply = <&vcc_bat>;
-+		wakeup-gpios = <&gpio3 RK_PA5 GPIO_ACTIVE_HIGH>;
-+
-+		regulators {
-+			v3p3: v3p3 {
-+				regulator-name = "v3p3";
-+				/* Keep it always on because IRQ is pulled up against this line */
-+				regulator-always-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+			};
-+
-+			vcom: vcom {
-+				regulator-name = "vcom";
-+			};
-+
-+			vposneg: vposneg {
-+				regulator-name = "vposneg";
-+				regulator-min-microvolt = <15000000>;
-+				regulator-max-microvolt = <15000000>;
-+			};
-+		};
-+	};
- };
- 
- &i2c5 {
-@@ -563,6 +597,21 @@ bt_wake_h: bt-wake-h {
- 		};
- 	};
- 
-+	ebc-pmic {
-+		ebc_pmic_pins: ebc-pmic-pins {
-+			rockchip,pins = /* wakeup */
-+					<3 RK_PA5 RK_FUNC_GPIO &pcfg_pull_none>,
-+					/* int */
-+					<3 RK_PA6 RK_FUNC_GPIO &pcfg_pull_up>,
-+					/* pwr_good */
-+					<3 RK_PA7 RK_FUNC_GPIO &pcfg_pull_none>,
-+					/* pwrup */
-+					<3 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>,
-+					/* vcom_ctrl */
-+					<4 RK_PB2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
- 	led {
- 		led_pin: led-pin {
- 			rockchip,pins = <3 RK_PC5 RK_FUNC_GPIO &pcfg_pull_none>;
+Please use imperative form when describing what the patch does.
 
----
-base-commit: 053966c344dbd346e71305f530e91ea77916189f
-change-id: 20260121-rk-tps-13f967caacec
+> 
+> Signed-off-by: Cosmin Tanislav <demonsingur@gmail.com>
+> ---
+>  MAINTAINERS                |  1 -
+>  drivers/media/i2c/Kconfig  | 16 ----------------
+>  drivers/media/i2c/Makefile |  1 -
 
-Best regards,
---  
-Andreas Kemnade <andreas@kemnade.info>
+This patch doesn't actually remove the driver, same for the next one.
 
+It'd be good to have comments (acks hopefully!) from the authors (and
+users) of the existing drivers on how does the new driver work for them.
+
+There's also no need to resend patchsets to get more attention, please just
+ping instead.
+
+-- 
+Kind regards,
+
+Sakari Ailus
 
