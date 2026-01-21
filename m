@@ -1,86 +1,86 @@
-Return-Path: <devicetree+bounces-258035-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258036-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wIUdARUKcWmPcQAAu9opvQ
-	(envelope-from <devicetree+bounces-258035-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 18:17:09 +0100
+	id GMc0Co0acWmodQAAu9opvQ
+	(envelope-from <devicetree+bounces-258036-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 19:27:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 910285A677
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 18:17:08 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 947415B407
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 19:27:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7ADED50EDE5
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 16:19:03 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C882FA2FCAB
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 16:19:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B3383D7D92;
-	Wed, 21 Jan 2026 16:14:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 912493A35B9;
+	Wed, 21 Jan 2026 16:14:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="X3JWojWG"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="f0f04g+y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E907B39E6E4
-	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 16:14:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4494338F23C
+	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 16:14:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769012087; cv=none; b=MEfHqjiXHwM9YudiV76UajrHNa1L11y3tYjsIuA9rVg45HQsNJDys7r8Pi0sEuY/pCtkZi4m1O9e56S9oFwUHHxm7BOpKkhHHj6DJ8T0kLtIFAA4CN62qDx6d+7ZwRppOej82jYCRH+gbCleASTmaB5MEdo5U/OQD7U/N+mPHNA=
+	t=1769012098; cv=none; b=SIrD2+7PmNxXQOul77+NwWfimihblAvh7zsTT7q/FCoR4byPk3K+d4pBEZJN6orHxFafs+HaQw9DIs6mMJQnjKLvw3EnkYlITrBR8Bxi6lpf0IF60aKKzRAD4GkfBue3VLZpToHHjORzcgNZzV7ccP2VnJsdJ8ttZROP57sZZYo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769012087; c=relaxed/simple;
-	bh=ztT3Jxg2RK7QwYwHsvp0gV/8n4Cdoel747/kLfr8Ztc=;
+	s=arc-20240116; t=1769012098; c=relaxed/simple;
+	bh=zIuSoMgJqAYcCGMiETp2ZAMaZrK+fTmd7PCFpBvK3IE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=prxsjVPCiFqVPzrazqeq9VcUuMzPffNEy9uOa+DMSq8gKB2A64wGg792kBA0bXqj492LutsfqagLmZU5s50ha+SVDzg/fs61iXEjtWHuFKY7K7IwYGMINzhUUPnZuuH/afZQFByPKftaqyc3/oTJUXg4BMXAchZUBGZgF2l8urA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=X3JWojWG; arc=none smtp.client-ip=209.85.128.43
+	 In-Reply-To:Content-Type; b=ZKBNjruLHouOr89Q48NfoIBh8Tj3yDvy+Vaqs8nJCgENwimJ661VpFQsCe0x7KXFtqaRpZHwSkPmgdjfTQuHuCRXix3vaB7l5xbd7zrr6/ebPL3RZUgi2CpVbgVCCas1/KRtBazG/tkjg37juemH1FhKPLcpQmM7zEyZr7tWCJw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=f0f04g+y; arc=none smtp.client-ip=209.85.221.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4801c731d0aso191165e9.1
-        for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 08:14:43 -0800 (PST)
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-42fb6ce71c7so5942535f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 08:14:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1769012081; x=1769616881; darn=vger.kernel.org;
+        d=suse.com; s=google; t=1769012093; x=1769616893; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=LZ3qwhJNcH5+4YbV5ZvnYBYobY8Ojt5xHzmjqqUjXH8=;
-        b=X3JWojWGu3UfC9/PURUy9jiBuP+0Q9Xpn0x4WSHbr5E3LJHLSBtNjRRURuwTJohKOj
-         sG9fAPRZ+N4weO8t0wITAgL7ZMxynh7vSbNclIgxPanrRyo3qw0Q68cnIMiAyHhTX7PJ
-         6hLiJMdxdWx8tvb2QHviInzco90yom2gH/Lc9f9hRFTTBakugmVafUW3LSta5MSYqBCo
-         S0VB5g5zoW960A1gq48xXOBlU/bOiFa5igTni4XzADHMEou07CFC78foeyiosKVjqZ4W
-         N8QGDIfHFmC3eLY39N8ifjnBaNNGTAlq91E9/Z947KhWItR0hA7pLGpifX529fQcXAYm
-         y01g==
+        bh=hlXlhcr6/DYLKPgrxbgTpw1meSaotSsfgIntKJEXx9Y=;
+        b=f0f04g+yoAnbMFcMslDJr5g7/leJ2cnJqkUeKHIMKJ00mp2KAMQ/hj8lNy4UqqpLK+
+         gPimR7pP6yBZcuPWuK5GsUXNIKCCsluOXE5laWg63DJ01GtxKy/E5GozktXIBHEjf8Xu
+         WfteJXIgIDcYsET5QvGKtUytRRGUjt2DWPaTQConMfnlS1zac911iX720UwSyrGllRkY
+         1k6iQhsEhNEIeLerwfhZGgxZ5YJdjW0B/cNrJgOQ3btxLD8ASNxnXjG7qoF7EL2OptHH
+         7JCrjfrB5kAWOke1ukmjM1hpqIup3sFceGM6QNdtdf/K+JPzeGZTt8dgqxinYolRpgvj
+         Xi8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769012081; x=1769616881;
+        d=1e100.net; s=20230601; t=1769012093; x=1769616893;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=LZ3qwhJNcH5+4YbV5ZvnYBYobY8Ojt5xHzmjqqUjXH8=;
-        b=fDq3Bhp25ZBFCLLHmv++AjEhPZlTfVA9/9J45SaJmhn5qU5wYwfBm02MwUu5oeDoWz
-         QVFVubO3W/Ugo9cz+rVnak3N68mR4fnJLHgHj6L1m+PNBuiXUrNsx8z/xSJmj6GASZrh
-         EcxgxFebspUlAKy9W3Vsw/KBs/kImILJ8bLOQf3wHC67QmJkYrix29+PY5FpuNCir05D
-         RBV0sAVTbUnPihJXEi5wd2z5/Shgp30yqApw4gL+LC7xy/mobKm/xjQbEnC9stG6Auhe
-         4mIp872aZDLvo1NC28qEKPNQGqpFEK+dUrkD+OV8Jp2GfobfTBfTUw6Hj6km95qsCLC5
-         zXCg==
-X-Forwarded-Encrypted: i=1; AJvYcCW1abWF0wsqDnDmicch5FOuUK4TWv4IBku8xgX9iSvOhKNOouUqhYMFCn2021BwazvxXl0956RQpt6t@vger.kernel.org
-X-Gm-Message-State: AOJu0YxdnfFjN5sFX/tlOEUp0h6nt6HAtIkBDbLQpV43utkRW5Nfh4XD
-	dndMbvIdr6eb9CSUDfrOfAoQZO7c2YauUWH11gaYWv6Ihr3RSdIT2NsmPtOeBEJ9SUs=
-X-Gm-Gg: AZuq6aIDhh08F/PAWLOWVkutxGusevTZrW5byemjHXyesQblWipP6bEvbFjxaFFZgGz
-	ekBXvL2u3t5St9+thyzs+6EtYlSmYamwWptLLupZuLG+uCsKmLoih+gLl0eHQH+luh1Xa5xgj21
-	yi63TGtXkrzHjBnqBtJUBduJTw4XY7EMAcfe1egg6wDOBuK5IKBIIERKV6GEfMtmRMV2dTruyCH
-	a9GVIFoKkKRPx1zNPUN1+pWoTbeEvwGOy8uHRHCWVlJLG7yYiV8w2kVQkZd1vEvPhBDJR29azhT
-	p3VTYpe5zXX7VB2YaGC9hVy44QpDKDNI6Kipa7FYLudOVXpCi2EH1GPZl2U/8z7c925zvgREhzV
-	9cE3WrSw22BUFFc3Heu93qh1WJmHLrrJuEBzrf2rROzM6fh5W+OrT0MpW1XXbtc09dt0n7GOKlC
-	1hSWMYkBTPbITloZXE4Fwpvh35fcsUZ5i/YlfsYKZDRVeaVBigGZN0w6IRuN4/tAlc
-X-Received: by 2002:a05:600c:8a0c:20b0:480:1e9e:f9c with SMTP id 5b1f17b1804b1-4801e9e10aemr205911945e9.10.1769012080766;
-        Wed, 21 Jan 2026 08:14:40 -0800 (PST)
+        bh=hlXlhcr6/DYLKPgrxbgTpw1meSaotSsfgIntKJEXx9Y=;
+        b=DW6jeXo3M91IvU2AftVarkGbxi3M2nt3kzrGsj+iNgoDHtVrzllEOVw6rQWiLxdLtp
+         oY480gJ++QkkteBJsh5Lc2CQFBHzVCXMKAz10+NWM+cY+eYaZV6hmHW+1X2qEnBCgQXi
+         //lgXZGaPoPsx75QLCSRJuVycRtcX12Ma079cubCHAPGBSDhjik6M9YJ+n/0tTXAxOQ8
+         ofie4CXhB5z+5x/qCXjvLS5auIpBT+SrPmE1T0+PrSaqDg4Sh8siOS7+JnE7dN3VlyxV
+         7eC1chGDveyq1SW9/kb0Gn335Djekx49ogaAKMq23AGCdU7FdvxmQ2t7PjO19CprWRJq
+         aMkQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXeK0b81uz1hblt9NCUxsX2gUxO22zwefFYyqWI2TPeKkxDD5qx2IXHRBgaDZt5q33WmtIWIEqjVFRa@vger.kernel.org
+X-Gm-Message-State: AOJu0YwLnKroppCCb+MT9x9foYOAgKrmBHzDJOKoMsjsp4PalZSaDVD4
+	cdGdvGgjfCKDGJ0TkfGaRZ0o18QQoEIBbJBy6xsThqwoAJCDcfH/qQ6paZpQpVguIOY=
+X-Gm-Gg: AZuq6aJtFeXMSYmFyyeOoA9SZBIFr3OcA7vBkfYTUx+uURbgF5/bnm0cqR0D1M/f/K5
+	LlKOqRFUuZGtvWVGhs4pWdU72hyssKfJB9DlmVGvz3/6GffDQveviBEB0kYoGoW44ci4VGZpQ1T
+	6mmCEz7QZ0Cv3QqEfvEMAdg2UNInO824Dk0bzWgXXdtU9+fYAdT04BSPHFGXXigi5RvPcPp6b6A
+	SZi4hHa+edNW5/rFpD8EWM9ogAnU87OE58vjGSF94BO76PDlpDCXx2x9CTyX/SwvNmtutzUsaky
+	pkuHa+YuTwI8FLVQrRc4sjQps25AnhYW3TH2Opn0hzJnrqCuHPKLvLmwiAx4LciMJTU9+ssYxJ8
+	SarTW75TJmH8RR83csg4EN9vzqwH1CDFE1rWksawbhbDcaC96OQ/THinhbgBdfj/wIYtnpvCfXC
+	uasnJ0hEg6Wt9xpOKdeypfDb4b1vpW3nhIJNHaeEQuiiSYeQrZxKH+tQ==
+X-Received: by 2002:a05:6000:2dc9:b0:432:8504:f67a with SMTP id ffacd0b85a97d-43569998f9cmr26906178f8f.20.1769012092538;
+        Wed, 21 Jan 2026 08:14:52 -0800 (PST)
 Received: from [192.168.0.29] (static-95-59-231-77.ipcom.comunitel.net. [77.231.59.95])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43597719d1fsm8416963f8f.23.2026.01.21.08.14.39
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43569926ffcsm36687408f8f.18.2026.01.21.08.14.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Jan 2026 08:14:40 -0800 (PST)
-Message-ID: <6573c875-7ee4-4ca9-90b2-d78ca3b4ae55@suse.com>
-Date: Wed, 21 Jan 2026 17:14:37 +0100
+        Wed, 21 Jan 2026 08:14:52 -0800 (PST)
+Message-ID: <122dceeb-3221-4715-91e9-3bad43889ee6@suse.com>
+Date: Wed, 21 Jan 2026 17:14:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,7 +88,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v2 1/4] net: stmmac: platform: read channels irq
+Subject: Re: [PATCH RFC v2 2/4] dt-bindings: net: nxp,s32-dwmac: Declare
+ per-queue interrupts
 To: jan.petrous@oss.nxp.com, Andrew Lunn <andrew+netdev@lunn.ch>,
  "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
  Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
@@ -105,7 +106,7 @@ Cc: netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
  imx@lists.linux.dev, devicetree@vger.kernel.org
 References: <20260121-dwmac_multi_irq-v2-0-3b829230d071@oss.nxp.com>
- <20260121-dwmac_multi_irq-v2-1-3b829230d071@oss.nxp.com>
+ <20260121-dwmac_multi_irq-v2-2-3b829230d071@oss.nxp.com>
 Content-Language: en-US, ca-ES, es-ES
 From: Matthias Brugger <mbrugger@suse.com>
 Autocrypt: addr=mbrugger@suse.com; keydata=
@@ -151,7 +152,7 @@ Autocrypt: addr=mbrugger@suse.com; keydata=
  LV6nybxdRG/jp8ZQdQQixPA9azZDzuTu+NjKtzIA5qtfZfmm8xC+kAwAMZ/ZnfCsKwN0bbnD
  YfO3B5Q131ASmu0kbwY03Mw4PhxDzZNrt4a89Y95dq5YkMtVH2Me1ZP063cFCCYCkvEAK/C8
  PVrr2NoUqi/bxI8fFQJD1jVj8K0=
-In-Reply-To: <20260121-dwmac_multi_irq-v2-1-3b829230d071@oss.nxp.com>
+In-Reply-To: <20260121-dwmac_multi_irq-v2-2-3b829230d071@oss.nxp.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.46 / 15.00];
@@ -164,7 +165,7 @@ X-Spamd-Result: default: False [-0.46 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[24];
-	TAGGED_FROM(0.00)[bounces-258035-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-258036-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_TO(0.00)[oss.nxp.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,nxp.com,pengutronix.de];
@@ -179,10 +180,10 @@ X-Spamd-Result: default: False [-0.46 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
+	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:email,suse.com:dkim,suse.com:mid,dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: 910285A677
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:email,suse.com:dkim,suse.com:mid,nxp.com:email,devicetree.org:url]
+X-Rspamd-Queue-Id: 947415B407
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
@@ -191,73 +192,84 @@ X-Rspamd-Server: lfdr
 On 21/01/2026 15:23, Jan Petrous via B4 Relay wrote:
 > From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
 > 
-> Read IRQ resources for all rx/tx channels, to allow Multi-IRQ mode
-> for platform glue drivers.
+> The DWMAC IP on NXP S32G/R SoCs has connected queue-based IRQ lines,
+> set them to allow using Multi-IRQ mode when supported.
 > 
 > Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
 
 Reviewed-by: Matthias Brugger <mbrugger@suse.com>
 
 > ---
->   .../net/ethernet/stmicro/stmmac/stmmac_platform.c  | 38 +++++++++++++++++++++-
->   1 file changed, 37 insertions(+), 1 deletion(-)
+>   .../devicetree/bindings/net/nxp,s32-dwmac.yaml     | 42 +++++++++++++++++++---
+>   1 file changed, 37 insertions(+), 5 deletions(-)
 > 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-> index 8979a50b5507..f10a691b8add 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-> @@ -700,6 +700,9 @@ EXPORT_SYMBOL_GPL(stmmac_pltfr_find_clk);
->   int stmmac_get_platform_resources(struct platform_device *pdev,
->   				  struct stmmac_resources *stmmac_res)
->   {
-> +	char name[16];
-> +	int i;
-> +
->   	memset(stmmac_res, 0, sizeof(*stmmac_res));
+> diff --git a/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml b/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml
+> index 2b8b74c5feec..e1ebc3bea095 100644
+> --- a/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml
+> @@ -1,5 +1,5 @@
+>   # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> -# Copyright 2021-2024 NXP
+> +# Copyright 2021-2026 NXP
+>   %YAML 1.2
+>   ---
+>   $id: http://devicetree.org/schemas/net/nxp,s32-dwmac.yaml#
+> @@ -33,10 +33,22 @@ properties:
+>         - description: GMAC PHY mode control register
 >   
->   	/* Get IRQ information early to have an ability to ask for deferred
-> @@ -743,7 +746,40 @@ int stmmac_get_platform_resources(struct platform_device *pdev,
+>     interrupts:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 11
 >   
->   	stmmac_res->addr = devm_platform_ioremap_resource(pdev, 0);
+>     interrupt-names:
+> -    const: macirq
+> +    - items:
+> +        - const: macirq
+> +        - const: rx-queue-0
+> +        - const: tx-queue-0
+> +        - const: rx-queue-1
+> +        - const: tx-queue-1
+> +        - const: rx-queue-2
+> +        - const: tx-queue-2
+> +        - const: rx-queue-3
+> +        - const: tx-queue-3
+> +        - const: rx-queue-4
+> +        - const: tx-queue-4
 >   
-> -	return PTR_ERR_OR_ZERO(stmmac_res->addr);
-> +	if (IS_ERR(stmmac_res->addr))
-> +		return PTR_ERR(stmmac_res->addr);
-> +
-> +	/* RX channels irq */
-> +	for (i = 0; i < MTL_MAX_RX_QUEUES; i++) {
-> +		scnprintf(name, sizeof(name), "rx-queue-%d", i);
-> +		stmmac_res->rx_irq[i] = platform_get_irq_byname_optional(pdev,
-> +									 name);
-> +		if (stmmac_res->rx_irq[i] < 0) {
-> +			if (stmmac_res->rx_irq[i] == -EPROBE_DEFER)
-> +				return -EPROBE_DEFER;
-> +			dev_dbg(&pdev->dev, "IRQ rx-queue-%d not found\n", i);
-> +
-> +			/* Stop on first unset rx-queue-%i property member */
-> +			break;
-> +		}
-> +	}
-> +
-> +	/* TX channels irq */
-> +	for (i = 0; i < MTL_MAX_TX_QUEUES; i++) {
-> +		scnprintf(name, sizeof(name), "tx-queue-%d", i);
-> +		stmmac_res->tx_irq[i] = platform_get_irq_byname_optional(pdev,
-> +									 name);
-> +		if (stmmac_res->tx_irq[i] < 0) {
-> +			if (stmmac_res->tx_irq[i] == -EPROBE_DEFER)
-> +				return -EPROBE_DEFER;
-> +			dev_dbg(&pdev->dev, "IRQ tx-queue-%d not found\n", i);
-> +
-> +			/* Stop on first unset tx-queue-%i property member */
-> +			break;
-> +		}
-> +	}
-> +
-> +	return 0;
->   }
->   EXPORT_SYMBOL_GPL(stmmac_get_platform_resources);
->   
+>     clocks:
+>       items:
+> @@ -75,8 +87,28 @@ examples:
+>           reg = <0x0 0x4033c000 0x0 0x2000>, /* gmac IP */
+>                 <0x0 0x4007c004 0x0 0x4>;    /* GMAC_0_CTRL_STS */
+>           interrupt-parent = <&gic>;
+> -        interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
+> -        interrupt-names = "macirq";
+> +        interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>,
+> +                     /* CHN 0: tx, rx */
+> +                     <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>,
+> +                     /* CHN 1: tx, rx */
+> +                     <GIC_SPI 60 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>,
+> +                     /* CHN 2: tx, rx */
+> +                     <GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 63 IRQ_TYPE_LEVEL_HIGH>,
+> +                     /* CHN 3: tx, rx */
+> +                     <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>,
+> +                     /* CHN 4: tx, rx */
+> +                     <GIC_SPI 66 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 67 IRQ_TYPE_LEVEL_HIGH>;
+> +        interrupt-names = "macirq",
+> +                          "tx-queue-0", "rx-queue-0",
+> +                          "tx-queue-1", "rx-queue-1",
+> +                          "tx-queue-2", "rx-queue-2",
+> +                          "tx-queue-3", "rx-queue-3",
+> +                          "tx-queue-4", "rx-queue-4";
+>           snps,mtl-rx-config = <&mtl_rx_setup>;
+>           snps,mtl-tx-config = <&mtl_tx_setup>;
+>           clocks = <&clks 24>, <&clks 17>, <&clks 16>, <&clks 15>;
 > 
 
 
