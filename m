@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-257690-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257691-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MJYIHU4ycGkSXAAAu9opvQ
-	(envelope-from <devicetree+bounces-257690-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:56:30 +0100
+	id cD0dCHUycGkSXAAAu9opvQ
+	(envelope-from <devicetree+bounces-257691-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:57:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07A074F6A6
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:56:30 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6FE64F6AE
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:57:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 96684B60941
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 01:55:59 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 78E8858FA7A
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 01:56:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6700332572F;
-	Wed, 21 Jan 2026 01:55:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AA64329392;
+	Wed, 21 Jan 2026 01:55:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b="uadAQwnY"
+	dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b="ODS4KFkY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtpbgau1.qq.com (smtpbgau1.qq.com [54.206.16.166])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3B7C320393;
-	Wed, 21 Jan 2026 01:55:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91F4E322740;
+	Wed, 21 Jan 2026 01:55:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.206.16.166
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768960532; cv=none; b=AN4mxNufbhK+zNAHZdHS6SvEuW9fny53xV+HZn2I5kgNkMZsBQJfR/dakh48RIz4/zYFr6RGhaEZ/FH3VIDS3x+IvPMBoLUJnJEbBND12x6XlQuErMLeHDKuMuU1c59nk1K6cfSL2IgDFIy79vVKyJdSqsOuFK9L3jAqqmJ2ao4=
+	t=1768960535; cv=none; b=nNjBwaHeYEWmqhHl2YByyOkvTbRMdyKwdje2qgnulZq1NdU2/K1KLjG4va+YnUk7RZQuKRdirTOtAkOXTU7wl7kSDhTQa3jWrAfGWzHRNllzqKiLjqiePFDqttr+vWE93hbQxLzMGzfs7eOuzrR+Fs/b4R2SFRP+2r//qsyoF0I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768960532; c=relaxed/simple;
-	bh=8iikIqq2O9lK4mqJZ4o2znQUuCWy7RGzIZV3LKsOuik=;
-	h=From:To:Cc:Subject:Date:Message-Id; b=D3okMCFCN2jS7cPnYQl+H9s92lE707xebSHy+Th/a88KFRiYK5BsWKmpZkIJs/f7PspAG/obnuPy5kt/j2aBbboJ//KlQZr711JR5mJVKuJrMhuj710+H1YYONwzkNbrCJrF65qyrP3MmUWOoQVNVIQ0EsqafsDcMympPDnPI54=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com; spf=pass smtp.mailfrom=airkyi.com; dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b=uadAQwnY; arc=none smtp.client-ip=54.206.16.166
+	s=arc-20240116; t=1768960535; c=relaxed/simple;
+	bh=hm4d4Jo6MYzCFgIfLXlHqtIrkJCFJYpmcnHUPsDDNYI=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=EcHm/eXV1RYYXI/Tlj5c1aYndLKqNOhWGgpfr026FfnTXjxRyTnojVKWtdQ3nIEh8jOZN6Cmzfu6Fn4tSza1yfL1KmlvxKQHQn0gHNelDT7bUgXubySZTVyZdAEsnUP/9vhJQJsRrfAByJjAPTG0LG7tHzl7ByLHGT6ombBGdes=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com; spf=pass smtp.mailfrom=airkyi.com; dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b=ODS4KFkY; arc=none smtp.client-ip=54.206.16.166
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=airkyi.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=airkyi.com;
-	s=altu2504; t=1768960450;
-	bh=WZq7zIP7/86ZusWmfGwlEuQbY/grzwNqfRgaU1ANOgM=;
+	s=altu2504; t=1768960456;
+	bh=EMiVJUqDKq7YKJIu3ZUJNtEQU6Eyi5qop1Aw2z7vqEc=;
 	h=From:To:Subject:Date:Message-Id;
-	b=uadAQwnYj9uDJdocpzElGXKwxCahIq8KGRKuToX6UEztVmOg8XbbLawEPucvuaL5j
-	 qxTczyBb0uRtIf5B8kX/AikwWBhzQadrlVGutwxxS2ercjkXA1zSTJMqTp67EMpleN
-	 xyFGC4t10q/uLkWz/hQPAd9oLJ8Y7o+4YrhDxX4s=
-X-QQ-mid: zesmtpsz3t1768960443te5516434
-X-QQ-Originating-IP: ZazM54AfZm2RdLLOT68vt/up/bzHgtB6O8CyHXWTUiM=
+	b=ODS4KFkYUJM9P5JQe7KcA++voyQwBuPmDxf3HV/nwkkoXuiSDK9KhPvpVRQTtiw3C
+	 iGUF5XyeVo3t8+Fry5wVHczC5Mgn0+g5ovku1uJCDo84eTtBt4jbRtplfRAyDwrltz
+	 OMkkOEYIZeYmXOFTScOP10MljWFG6Bx4g4hxqV0Q=
+X-QQ-mid: zesmtpsz3t1768960449t34e3db31
+X-QQ-Originating-IP: trgEGomIIScwtOw4X+5nDC8xLSpkC8M3hxjgA5wCodo=
 Received: from DESKTOP-8BT1A2O.localdomain ( [58.22.7.114])
 	by bizesmtp.qq.com (ESMTP) with 
-	id ; Wed, 21 Jan 2026 09:54:00 +0800 (CST)
+	id ; Wed, 21 Jan 2026 09:54:05 +0800 (CST)
 X-QQ-SSF: 0000000000000000000000000000000
 X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 16337528738947552159
+X-BIZMAIL-ID: 13469771434486797081
 EX-QQ-RecipientCnt: 21
 From: Chaoyi Chen <kernel@airkyi.com>
 To: Rob Herring <robh@kernel.org>,
@@ -73,29 +73,31 @@ Cc: devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 0/2] arm64: dts: rockchip: Add rk3576 evb2 board
-Date: Wed, 21 Jan 2026 09:53:55 +0800
-Message-Id: <20260121015357.291-1-kernel@airkyi.com>
+Subject: [PATCH v4 1/2] dt-bindings: arm: rockchip: Add rk3576 evb2 board
+Date: Wed, 21 Jan 2026 09:53:56 +0800
+Message-Id: <20260121015357.291-2-kernel@airkyi.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20260121015357.291-1-kernel@airkyi.com>
+References: <20260121015357.291-1-kernel@airkyi.com>
 X-QQ-SENDSIZE: 520
 Feedback-ID: zesmtpsz:airkyi.com:qybglogicsvrgz:qybglogicsvrgz6b-0
-X-QQ-XMAILINFO: OWISOlifo4Hy2L7zlMA5PXytslX1F8lCFf0c2cb0emBivGiLxZc1zxYN
-	aEFdXtkSKsMGC87CnbuwxnFva3ONuiVQwcR2MatNQtVmBNU8pVWP47zBuSmAGnQD6FsoIB0
-	d3/9KXMd3AiB9z4Clp3LearMwcy1LhZndtOvegsU7+BS/JHDqpYZyNchFpPzUFk1tc4RH/+
-	O0HtwafRh3c1OcvDvhRJeODzlcsECCOi4URvO8hwlo8WX7tVeJ3kqd06p3QCOHnlOv6oR27
-	dzZQJTbIyIfTa0X1R6ZESfD7MtHhZDUBSq0xpAgABMvCKWCtJjYHUCZVCWbeXukxoEg24lt
-	kf+pNoADXT5tdGkmr17HfGSoGxoCOE31DABDgsgHA+tqs3+j/douUpGsGnJRLqyVsSaJhol
-	JZ4CS7V+3XGNvgT0G2rvCMazfHbXTwjvfonYnhig35geabVdsp3ke34EwVD6429/6+ZPCng
-	A2PuB3YPIvnVS2ctxHNIZD20aiIXSes9lWvHR9rAsPIfjuI6xkoa6KDvyatqBNeYV0/89ma
-	po9DQJ8ag6AqWrOBVV+9A0edt3z+NT0+lFvjR1uWZxEM0xY4hEKn4N70I65AZ5kiNnwFYkw
-	45NxZu3APJVMXOZtDSWvI1TnRkFogs6KrxjgU1mXhe7KJw0oFKsNSA7QWCwZPT5i2gzyLv+
-	FYhukI9bFksiX0RCnS99gcqBfqQ0/gwjWd0bVbkek68Bk2GGSZylRIK38SNWtAQLcWf+3rn
-	PGNDyRYR4Ave/rCedSLCueJOyxEOglnu/IsYVO4gqS9OyvzfUy7al+QVE+ihr03/vsCGfjM
-	d88EJ18Cc6wAHxuSyfNfxMYhmrggqjd7oPJgCxCN1udLn9dsK3eC8OPbDIG//5GmXjb7HS0
-	Buby02ZP+dtrMTgiTwmGHbE5cEYezT+2PXeMEFB+QRqtQtu6q30KlRzb5xIEJ2EIJJ47pV2
-	1CYiu6AWKvW8Qp6I+95bm82cV97m2TQ6T38FpgXzp0n7kn7JvX8swi2S1DziLCb9siTz9gT
-	2XdE45DT+U+yaMkcT4cQiW334bqJAGni3t49Tpqw==
-X-QQ-XMRINFO: MPJ6Tf5t3I/ylTmHUqvI8+Wpn+Gzalws3A==
+X-QQ-XMAILINFO: N2K7JO7TcIoEKhrUTvTn9Ag1/8SN/fVQEb2I75WRUufQLbVg9udwaZK7
+	5D6EjWWcbXMDdIAlbgSfjlk0my9tKnt2DF3ts2camqYtpr6K2whrsouTg6pbLryH9zfwMvO
+	+T6Fuqqz5YmUGqm2eSt5RMK9DNyZ5kqP7LVQuHMxl+YoROcEt3wXulO6EeA0HVnapTHoPv2
+	Bteao2+k1B6oR7GCvASVQJ3peGEivfsTLL3yctK3IPGkX1HegUIhueU/JqU4c2ZHaMz7N/D
+	3+WjwdG9EN9gogsOyvnRuDSLdrOhJJH8MvIWrLIO9SHxpqj78wfVSS3EJvApBe068FJ9/39
+	RbNrJQXN0vD/bmaQce1bXbBYATpzJ8IvoKI6UD2F2QAOiuujH245/1SvQ6ruw5aq0Ps/9+A
+	nksZo4KxtInA0F7JSkKnOB1r/3psqUemG+sPtKLIN0PZRtU697hLfRHb3/K9VAt3153B0eV
+	nHn8xIu+o3EMLudIyKe9lxceimZ1saBI9cWR10qxLlaWV9c3IVRfEXRwj+nv2u4eQq+eC1Q
+	dB1ydb4torZDKAJivPZO4OsdlMp1dr4e3t19RQmubVeR72lCVYAK3xnFuxRFLBTN21gzbm0
+	WS5emVS66gtfvaRyJJu4H9nh6+DwOl9pw8Ur+xLHVJKtUmojdTK/ljXfLvFuU1eqouzMxz1
+	CJ4JlpnjU2Lh7QJiH+oXB7mE9ilZElOkTD1BSDghRsJUF8H6KPAGkL5aw1a8f23la+VLyQY
+	JrNFXzIiWsCdmOFBnUK5qV/dL7F5hDdWjbJYzU/Ij0fASXCDg5dhTQXseIogrd3Tfp4Tu2y
+	uIoY1ATTMnB6Rd/eQUZ2SQAr96BAKTE/TEHcKb0bbpzXtLT/5vftCsJAZ+y88Gb2pprh6fO
+	mpXV7RXJrGqtA0Vx00qVyenD5/h2bQDz/UrYK4mb6tdfkgP5wk97+CUIlbFuwbOHwG2J/pG
+	E+tQQw3LG8rcQCXMZm5RNhaLpnqHhcmZ2fI8UpzhoN6ZhFB6D+159GqrIgbUSKR97y+6ACD
+	4goX+ej/NZSvczUTUL
+X-QQ-XMRINFO: Nq+8W0+stu50tPAe92KXseR0ZZmBTk3gLg==
 X-QQ-RECHKSPAM: 0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -113,7 +115,7 @@ X-Spamd-Result: default: False [1.04 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-257690-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-257691-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[21];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_TO(0.00)[kernel.org,sntech.de,cherry.de,kwiboo.se,rock-chips.com,chainsx.cn,gmail.com,manjaro.org,collabora.com];
@@ -125,80 +127,43 @@ X-Spamd-Result: default: False [1.04 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[kernel@airkyi.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	DMARC_POLICY_ALLOW(0.00)[airkyi.com,none];
-	R_SPF_SOFTFAIL(0.00)[~all];
-	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
+	R_SPF_SOFTFAIL(0.00)[~all:c];
+	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,rock-chips.com:email,airkyi.com:mid,airkyi.com:dkim]
-X-Rspamd-Queue-Id: 07A074F6A6
+	DBL_BLOCKED_OPENRESOLVER(0.00)[rock-chips.com:email,qualcomm.com:email,airkyi.com:mid,airkyi.com:dkim,ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
+X-Rspamd-Queue-Id: B6FE64F6AE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
 
-Hi,
+Add devicetree binding for the rk3576 evb2 board.
 
-This series add support for rk3576 evb2 board.
+Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+---
+(no changes since v1)
+---
+ Documentation/devicetree/bindings/arm/rockchip.yaml | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-General features for rk3576 evb2 board:
-    - Rockchip RK3576
-    - LPDDR4/4X
-    - eMMC5.1
-    - RK806-2x2pcs + DiscretePower
-    - 1x HDMI2.1 TX / HDMI2.0 RX
-    - 1x full size DP1.4 TX (Only 2 Lanes)
-    - 2x 10/100/1000M Ethernet
-    - 5x SATA3.0 7Pin Slot
-    - 2x USB3.2 Gen1 Host
-    - 3x USB2.0 Host
-    - WIFI/BT
-    - ...
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index 6aceaa8acbb2..59ed57082003 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -1136,7 +1136,9 @@ properties:
 
-To make the USB hub work, the additional patch from usb-next is required:
+       - description: Rockchip RK3576 Evaluation board
+         items:
+-          - const: rockchip,rk3576-evb1-v10
++          - enum:
++              - rockchip,rk3576-evb1-v10
++              - rockchip,rk3576-evb2-v10
+           - const: rockchip,rk3576
 
-[0] https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git/commit/?h=usb-next&id=00fcc9c86a134c488fd857b5460a7925228272c1
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git/commit/?h=usb-next&id=fa3bb5011f33cccd246072954e64d64483d0d774
-
-Changes in v4:
-- Link to v3: https://lore.kernel.org/all/20260112022823.91-1-kernel@airkyi.com/
-- Move the USB hub code into a separate patch series, and that series have
-  already been merged into usb-next.
-- Fix supply and reset for usb hub.
-- Add cd-gpios for sdmmc.
-
-Changes in v3:
-- Link to v2: https://lore.kernel.org/all/20260107070322.323-1-kernel@airkyi.com/ 
-- Add binding for WCH CH334/CH335 hub controller.
-- Add alias for mmc.
-- Rename some usb vbus regulator.
-- Add DP regulator.
-- Change gmac phy-mode to rgmii-id.
-- Add target-supply for sata.
-- Change vcc-supply for ufshc.
-- Add usb hub.
-- ...
-
-Changes in v2:
-- Link to v1: https://lore.kernel.org/all/20260104023703.118-1-kernel@airkyi.com/
-- Enable hdmi_sound and sai6.
-- Add more cpu-supply.
-- Use regulator to control sata power.
-- Remove "cap-mmc-highspeed" prop in sdmmc.
-- Add regulator supply for ufshc.
-- Add the missing vcc3v3_hubreset regulator.
-- Add otg capability for usb_drd0_dwc3.
-
-Chaoyi Chen (2):
-  dt-bindings: arm: rockchip: Add rk3576 evb2 board
-  arm64: dts: rockchip: Add rk3576 evb2 board
-
- .../devicetree/bindings/arm/rockchip.yaml     |    4 +-
- arch/arm64/boot/dts/rockchip/Makefile         |    1 +
- .../boot/dts/rockchip/rk3576-evb2-v10.dts     | 1004 +++++++++++++++++
- 3 files changed, 1008 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3576-evb2-v10.dts
-
--- 
+       - description: Rockchip RK3588 Evaluation board
+--
 2.51.1
 
 
