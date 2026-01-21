@@ -1,229 +1,160 @@
-Return-Path: <devicetree+bounces-257680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257681-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SGarCikqcGmyWwAAu9opvQ
-	(envelope-from <devicetree+bounces-257680-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:21:45 +0100
+	id wM5VBycscGniWwAAu9opvQ
+	(envelope-from <devicetree+bounces-257681-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:30:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B5144F023
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:21:44 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87F584F1B7
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:30:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 14FB180D646
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 01:21:20 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1BC3864FB3D
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 01:30:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1629B30DD16;
-	Wed, 21 Jan 2026 01:20:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17E6230BBB0;
+	Wed, 21 Jan 2026 01:30:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="EGIQMPlX";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="WLYmxcMl"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="YMq82Iem"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 847FF30C371
-	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 01:20:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F06B82C21D0;
+	Wed, 21 Jan 2026 01:29:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768958431; cv=none; b=PRneYVHSeL7QQPxeyWtOUpI+vffvGdZHFgVD5MW+X4XaJ62BeMpFN/+NQ6atyGOGd/ZgSCPPXGHRw6kECz5+0xLhK7BMumoQ7iwjRWq4NMya3qFe9R9yaRAtODAkWuf84O97CZRpurb9QTCaTXe186KUsTAXoXBwM2wmN2wcZ0E=
+	t=1768959003; cv=none; b=uDE74me19YXuDdF80hw2/2MqWKCjf/IcRED2pfwxSJ2vbTMiTP8+0hMDAH3HE1v5rW4FDYwApAArWbm0xy6ahEeAck7V2Z4NJcAd0E//+ws3JOn5Oi0UZEjCbhvaPeYF3TNCUrcGhiEVF5BsrfN3sWTebWll2jhlI3FYVTrSNCw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768958431; c=relaxed/simple;
-	bh=UFxsZFjoBBxzDzolWUEiJPPHs9TpgdaiRQINz1dfp/g=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=a+vKWem8ZhqU6XBUMfqicVqZIBtrZHcxY5EWVjZ/C8MQ1v3Y5Ae/RpXbA048DSorpWHSgBjWe5CoFBXsPg+VaaBZpRqJ49mLg4m6eZreT0uuHNJBjm1Kg7bIvfF8GxR1nIporEhinviMlVtxmxlkpeHHmSr9pdXhQcg/37YtUVA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=EGIQMPlX; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=WLYmxcMl; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60KKKoTC877914
-	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 01:20:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	GxiQLmlTsdvKzrs2ro8tcxJmpLG39Vy46ft+XTCJ8eU=; b=EGIQMPlX7EZRAgMc
-	EphulYo16uZm3gNPXZVtG6QlkM4PEm0hKFMrdC6ooiU1mFVUggTMtOaSI9AoC0CJ
-	wNFSqblAJyXpTCO/5Vn21upvjgBAeAe8X3/LV2qSerYw74G38zSB1IcRSEQLM6KH
-	9bPqZpPmfqH8j+LfYy6bDoI3vF913ROCJA/A1Qp48IdEAMiIdv5nkGCdOltKrR7K
-	P7lU+G3bzxgDbVP8qLgJkZRIAHmQSkOBhG3kX4cLTlxEf7s7hl8b2jHBPcYxQxPP
-	xikq+e6F0rO1Nb0MCW1eMag+/ESBLwe4xttPn+y2BffTvGM8nYzgXl0WVjYbqzYl
-	vVCIew==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bta42jbs8-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 01:20:28 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8c6b4058909so774326685a.3
-        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 17:20:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768958428; x=1769563228; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GxiQLmlTsdvKzrs2ro8tcxJmpLG39Vy46ft+XTCJ8eU=;
-        b=WLYmxcMlo/Zq4keyluzgV5Z7BJgGYmvRY8oWrHMhx2O9SahqlZxPtU0VxtrytJCb6+
-         wMpbgGN4J/uCxPdk2DPpxG5zmLTscbVxsqh9sMbNqKo4JMtN+7IfmaK7/1LMLdAUVIFD
-         qTVdTOQ9lr3VDAh66r2MIckAIJ9hMqTchUOd1vG62zDq84apnPNEefo/uLLtr1LdiK+z
-         4v924DVv1JkGBB1FJvv8UHRvaFcGqb4Bwx1QGCE4iit0LkTckszwvmWiIne5TWt8FFQF
-         bHlgvFqg9CFkPePGR3DL/vaom+BMqTA0Q3Vcm8aYNPS+CBgTPK8YW58uBRDS8h2S7gE9
-         4iLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768958428; x=1769563228;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=GxiQLmlTsdvKzrs2ro8tcxJmpLG39Vy46ft+XTCJ8eU=;
-        b=g4srVp3lSm95WNKTTWGgEGsASQ5E3Fl6JZ7WUFqWpWvgQkC+p60r2d5Qdr+xtuvZ7t
-         cl/zAEap1cQRXrND8d+a2BuhHzDlUc0W9iGzBdPmAb+S4AisOnJrB3GpaXEeomkKbYFL
-         z8UqdvUXTsRz+O3gppwRWTaJpiCl/BN+GLKxTNNo81NUtOQV2IHNm6RgT6QlSAmkaHMd
-         Z/9L0muBzuNzl5xq7k/lRpwFr2G96JlSDHvV1GjiK/vYchvg23XYpDx6N3yNScYLODir
-         tdVGl1PTgGjPYM9egizcOLtMWZ5FbtdamLQzKeJJtsnfMrptNB/1klaqxHxoWbnn6id4
-         QhjA==
-X-Forwarded-Encrypted: i=1; AJvYcCWZLM/NnfB+c9P9eMAsN7Dy6I4Ws0lrxOBVOjrnlHiWLwGNTr2X4XaAJl2Z3QRdqgawLZ/i89CzXgdW@vger.kernel.org
-X-Gm-Message-State: AOJu0YyDzf6OMA2bL5hi6xqMhErgN+a6WrjnSguI+Pvh0tOxj7EQjo0O
-	b3L9LbiDocwsnmwosN3pkGDljD0HJJs2jErg+X4oMutYH+z7pPEbtTnzewc/x2YhmHN3uNfnOBu
-	XkUMNnA7RHu+ucaMFCqPGCev89Wa4TOFUJUSoVGSOvShp8aK1cVl8j9O37aEuT1LD
-X-Gm-Gg: AZuq6aI7DlIHKIi8ZC3JZP8JQBf7WEWH+p3Kd4FBQ2Q97F+VtgKTCRvSkzMRfpCQC+u
-	m36edvjR4ZdJ+xlxu9/j839J+46xFo7K6LYOzhRkNqM3/FUrxnOvf8g4j3Z9VSD/1At6F3K/7gq
-	O06Q4ma6lmoehJNmqvU+ChpVW7qJVBTZTGU37dTdYFRLx+sCOQ8jAHy5dIdXG6GwH++UhaIhnQu
-	ztDhmCFeuFSlH+YgmO4vT5qyHfHPHufBR9pbBeFJ2EzWNIJBb+zPi3ZQuoKvwNwNFrWtpZJebVF
-	bMtt1LMUzzwElMzE50EnAO/pOhKShix9Hsf73ZtFu1MeMaYbFLVaduKXUI1K3FcmcpCPHc9cAWZ
-	wC4unDuPUbD1sPaGyoEgExwhCfDrdP1mP/IcJLvSLN5x6eq5pj494QYfKEM8xqmg3+thBbt4qbv
-	hCTp+XhUVb1BcaYbGOMjRcMqY=
-X-Received: by 2002:a05:620a:19a9:b0:8a6:e2b4:ba73 with SMTP id af79cd13be357-8c6a676deefmr2388902185a.51.1768958427664;
-        Tue, 20 Jan 2026 17:20:27 -0800 (PST)
-X-Received: by 2002:a05:620a:19a9:b0:8a6:e2b4:ba73 with SMTP id af79cd13be357-8c6a676deefmr2388899585a.51.1768958427183;
-        Tue, 20 Jan 2026 17:20:27 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59baf3543d2sm4383110e87.43.2026.01.20.17.20.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jan 2026 17:20:25 -0800 (PST)
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: robin.clark@oss.qualcomm.com, lumag@kernel.org, jesszhan0024@gmail.com,
-        sean@poorly.run, marijn.suijten@somainline.org, airlied@gmail.com,
-        simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-        tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, neil.armstrong@linaro.org,
-        konrad.dybcio@oss.qualcomm.com,
-        yuanjie yang <yuanjie.yang@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, tingwei.zhang@oss.qualcomm.com,
-        aiqun.yu@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com
-Subject: Re: [PATCH v6 00/12] drm/msm: Add support for Kaanapali
-Date: Wed, 21 Jan 2026 03:20:21 +0200
-Message-ID: <176895840440.3580355.4970268867453461816.b4-ty@oss.qualcomm.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260115092749.533-1-yuanjie.yang@oss.qualcomm.com>
-References: <20260115092749.533-1-yuanjie.yang@oss.qualcomm.com>
+	s=arc-20240116; t=1768959003; c=relaxed/simple;
+	bh=Ns7IxwF8dX9CnOQFdLcvYQgbUOvN8sw152BxjUxpi34=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=opriAlzuTozfNnHdfCHHbEyL0fOfYddant0go0c3Yt9H5c3nHgdnC9AMUMTYn15/BqlIBGHQ9UUsjQPX/nP4gLsFcZMwngzF2Dr6oB8ZZx5ZVoRJcLyjK46b+xgsLrROBubvdHXUrfBKb/25ofJ1q8Ev1Ar85/8ue5hv6uNJVzA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=YMq82Iem; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=BDOJWUmdk5su3pn932MroBf+XrhEzSL8mJ7nZmaOaZY=; b=YMq82IemHhQwH5ZmuAYjfxC2ca
+	SiARZTjIS9ursQLhJulw2hwL2pS9h8JGcdqkhS5tzb73fNnp+WPXGxnC84w8j98KyuLvs4SzlC+1a
+	KFPU2ljW13NNkUUIyxAh+nJj5WIIU+BtsAuiYoKCLAQ3cVDhElltuenA/diVPsOkYdvw=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1viN2B-003lN7-E1; Wed, 21 Jan 2026 02:29:23 +0100
+Date: Wed, 21 Jan 2026 02:29:23 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+	Yanteng Si <siyanteng@cqsoftware.com.cn>,
+	Yao Zi <ziyao@disroot.org>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Choong Yong Liang <yong.liang.choong@linux.intel.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Chen-Yu Tsai <wens@kernel.org>,
+	Shangjuan Wei <weishangjuan@eswincomputing.com>,
+	Boon Khai Ng <boon.khai.ng@altera.com>,
+	Quentin Schulz <quentin.schulz@cherry.de>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	Longbin Li <looong.bin@gmail.com>
+Subject: Re: [PATCH net-next 3/3] net: stmmac: Add glue layer for Spacemit K3
+ SoC
+Message-ID: <cd5c882e-1632-4623-92d3-8a433c8ccdbb@lunn.ch>
+References: <20260120043609.910302-1-inochiama@gmail.com>
+ <20260120043609.910302-4-inochiama@gmail.com>
+ <f8e4c5ec-94b1-4da0-8a40-976770514828@lunn.ch>
+ <aXACRN7BaumIySp3@inochi.infowork>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIxMDAwOSBTYWx0ZWRfX8xIUqtrOkg7J
- 3wZG2tZdsHmsmEIEeRW7brMRyWSWnwuaPRi/i/Yj96K6aolxZdce6ODAsShQb8hqpMkoJJZQr+b
- wlLqXTY/ValGAl1hdfVsR/UZVpxOic5t1DeE9EvR1mhO5rNjrU0Xruj1RP6aJNXX+eqK8fJl1yF
- 87liFX7GLhENoLf2wKUHE7xZAjb3gsEP3158JyAAiJ1+duoiY7ryE6wJ/HkDPGfR+krdRF6QnBF
- EzUKiQFb/AOttUhe1wFJVHysxCtNXnICsp54oV50S2ztOHZbivOZyYLAJ3hoIBiVT4voZRTf1ey
- /Ci7qTAd2eaz4pMT0N1NvqKJV7ursKMmvFqlFt65UO/9h8oXl2luWS6em8QwSzJOvAhIBgnwyQh
- x1srasaQWxLMU0WVW1ffkxf22XnumokUTpVeRDxZ0LyGO0mwjfXaXSOYyje4sujjkrjNFyu3OQe
- YOO54SH3tlN4+i8IAfg==
-X-Proofpoint-GUID: K0V6XCBNkxRVeNtRUnQPEzN_WGcQQpL3
-X-Proofpoint-ORIG-GUID: K0V6XCBNkxRVeNtRUnQPEzN_WGcQQpL3
-X-Authority-Analysis: v=2.4 cv=JeSxbEKV c=1 sm=1 tr=0 ts=697029dc cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=e5mUnYsNAAAA:8 a=s59xupi2FMclaisc2rYA:9 a=QEXdDO2ut3YA:10
- a=IoWCM6iH3mJn3m4BftBB:22 a=Vxmtnl_E_bksehYqCbjh:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
- definitions=2026-01-20_06,2026-01-20_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 bulkscore=0 priorityscore=1501 lowpriorityscore=0
- impostorscore=0 adultscore=0 spamscore=0 phishscore=0 clxscore=1015
- malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2601210009
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aXACRN7BaumIySp3@inochi.infowork>
 X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[24];
-	TAGGED_FROM(0.00)[bounces-257680-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-257681-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,gmail.com,poorly.run,somainline.org,ffwll.ch,linux.intel.com,suse.de,linaro.org];
-	DMARC_POLICY_ALLOW(0.00)[qualcomm.com,reject];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[38];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gentoo.org,gmail.com,foss.st.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,armlinux.org.uk,cqsoftware.com.cn,disroot.org,nxp.com,bp.renesas.com,linux.intel.com,bootlin.com,eswincomputing.com,altera.com,cherry.de,st.com,synopsys.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,st-md-mailman.stormreply.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[lunn.ch:+];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	DMARC_POLICY_ALLOW(0.00)[lunn.ch,none];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 8B5144F023
+	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
+	TO_DN_SOME(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,lunn.ch:mid,lunn.ch:dkim]
+X-Rspamd-Queue-Id: 87F584F1B7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, 15 Jan 2026 17:27:37 +0800, yuanjie yang wrote:
-> The Kaanapali MDSS has some differences compared to the SM8750 MDSS:
-> - DSI PHY/DSI base address have some changes.
-> - DPU 13.0:
->   - SSPP layout has a great change.
->   - interrupt INTF layout has some changes.
+On Wed, Jan 21, 2026 at 06:36:01AM +0800, Inochi Amaoto wrote:
+> On Tue, Jan 20, 2026 at 02:56:26PM +0100, Andrew Lunn wrote:
+> > > +/* Note: the delay step value is at 0.1ps */
+> > > +static const unsigned int k3_delay_step_10x[4] = {
+> > > +	367, 493, 559, 685
+> > > +};
+> > 
+> > Am i reading it correctly that RGMII delays are limited to these four
+> > values?
+> > 
+> > If so, please add this list to the DT binding.
+> > 
 > 
-> This patchset contains DSI PHY, DSI Controller, DPU & MDSS bindings
-> in addition to the driver changes.
+> No, these value are just adjustment interval, and it is also
+> controlled by another code register, the final delay is calculated
+> by the following formula:
 > 
-> [...]
+> delay = delay_step * delay_code * 0.9;
+> 
+> So the delay configuration needs to be calculated instead of
+> directly assigned.
 
-Applied to msm-next, thanks!
+O.K.
 
-[01/12] dt-bindings: display/msm: qcom,kaanapali-dpu: Add Kaanapali
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/60772c225f0f
-[02/12] dt-bindings: display/msm: dsi-phy-7nm: Add Kaanapali DSI PHY
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/b92efcf5197e
-[03/12] dt-bindings: display/msm: dsi-controller-main: Add Kaanapali
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/ac9d8bf74862
-[04/12] dt-bindings: display/msm: qcom,kaanapali-mdss: Add Kaanapali
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/526015977816
-[05/12] drm/msm/mdss: Add support for Kaanapali
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/3d2d7a3386e8
-[06/12] drm/msm/dsi/phy: Add support for Kaanapali
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/223bff623c7d
-[07/12] drm/msm/dsi: Add support for Kaanapali
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/2482c6f93aa6
-[08/12] drm/msm/dpu: Add interrupt registers for DPU 13.0.0
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/b78956dc9ed7
-[09/12] drm/msm/dpu: Refactor SSPP to compatible DPU 13.0.0
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/cc4b81f178c7
-[10/12] drm/msm/dpu: Add Kaanapali SSPP sub-block support
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/688c7734002a
-[11/12] drm/msm/dpu: Add Kaanapali WB support
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/c6c9f129e98e
-[12/12] drm/msm/dpu: Add support for Kaanapali DPU
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/83fe2cd56b1d
+So what is the actual range? Can is do 1000ps? 2000ps? 3000ps? Should
+there be a basic range check to avoid dumb typos?
 
-Best regards,
--- 
-With best wishes
-Dmitry
-
-
+  Andrew
 
