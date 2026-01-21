@@ -1,79 +1,76 @@
-Return-Path: <devicetree+bounces-258054-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258055-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gPCfJj0UcWkwdQAAu9opvQ
-	(envelope-from <devicetree+bounces-258054-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 19:00:29 +0100
+	id qDtFO0MucWmcfAAAu9opvQ
+	(envelope-from <devicetree+bounces-258055-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 20:51:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id F31125AE98
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 19:00:28 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C84A5C924
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 20:51:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1764AB08344
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 16:55:45 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5A46780C4DA
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 16:56:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8238A329386;
-	Wed, 21 Jan 2026 16:46:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 121DC33C189;
+	Wed, 21 Jan 2026 16:46:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BY301fyr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="meoGeEWM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5423830BBA9;
-	Wed, 21 Jan 2026 16:46:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D71992FBE12;
+	Wed, 21 Jan 2026 16:46:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769013962; cv=none; b=FnxpK5pmUGGEtuKGSJP1SIVUZLVJwE0miH0c9rggaAbCfPZbEV2jnd2BmusMW9RrG5aiY9A3Cz3twQ/du3P85UQOyzFBojXBI1v5WMTweyd7ZJuzz6ceykcAmcrBo4NSxOup1p20ji5ukBoQFjhTzDg3LNyD7GmQsUVm2eSeYTE=
+	t=1769014016; cv=none; b=mcfsbsI59lwL1dt2dwJZIrsgeiWWjuRGlPhVQwafqfaX1OkHGeaASn7HqjOkXWyt5Q5kUva14iTD9ZLyzFEoo1aUFrXzZMW8AxAPNuq/4heToiakOimoOKdKG1+uC/oDDxcrX0FUe3b6kyGq4lZR83Zq5sr8GWk7DjMivVgh7KY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769013962; c=relaxed/simple;
-	bh=6FTv1CZdasXJxXvNY8q0BTonxazYYIAqlcCzJRiTQso=;
+	s=arc-20240116; t=1769014016; c=relaxed/simple;
+	bh=Z7AKcqKCdVo5K9fbbsB5xIAy1McNGsgeezfpuSs7aiA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IH6APMeNeF5A0vq5hOYLdt3KIMG8Nwljr+pMUo+reU0oF9vScZ/1d3BuhBtPVVcX2w0SCQK70dWub5w1k9QZrAnUiH0XJCcnUg2UzQq2+PWJdWQ8LKXIyrqK2NvhcMUC2lmZWhOh5QwbQYQezWH1tzQrzqfDiT6IaLMDNP/Xt4E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BY301fyr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81515C4CEF1;
-	Wed, 21 Jan 2026 16:46:01 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=jx2vtybnYGxQUAtbShVb1gHPcWZ5FOzKUO4Z+AiHf0iqgTiQ1TTudADBQ5El1YqXtq/rsDyis+Unt5k2CayknTccWjc/bOVMuJT7w2b/N0zpczBZ6eMQdaWsf5InVpUw1EF8/ViSlpbtpqyeUIoXZUOqQmGyWZ6YH7QKnXhOOPw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=meoGeEWM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6122FC4CEF1;
+	Wed, 21 Jan 2026 16:46:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769013961;
-	bh=6FTv1CZdasXJxXvNY8q0BTonxazYYIAqlcCzJRiTQso=;
+	s=k20201202; t=1769014015;
+	bh=Z7AKcqKCdVo5K9fbbsB5xIAy1McNGsgeezfpuSs7aiA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BY301fyrwRQn+ZDj42LlRm4T1xqnbh3vlaf6Gildunhg3TPPpdxM7uCmvK8LQXwEp
-	 rbIYw//yeFWwtlnC9CL5VedlPulbKWnE22M1y7951wBrFn9VKESPHES4EaM795N6Jc
-	 5cTTiKHkYxT3ibZJlNb7OHEiJBl3mtK19sGWUpADW2yiqF7+57MX+VcDQxzBKmBGBg
-	 8DYv1O8qAjGim3IrNwOGWfNike4Yhq/BCPLknGQa19TAlw3fJmALfpuTQhbnm2H96+
-	 1cDi635210mbc4sOtCs/c2Vz8uvKz4kg7jXRX3mGbPJWvMVPAAcqRu9uSmPGUTGkt6
-	 pK47Q+JtSVI+g==
-Date: Wed, 21 Jan 2026 10:46:00 -0600
+	b=meoGeEWMh9HsFWabKvkgvplnCsGRr9lNvPY7lZVMnK8hGssgoTaOyapsiLs/RwxCV
+	 X47RUwGKe3P6y8dfoZZesztRtEBVwLTS7j5eHnScJyUmz9VjwkDbsx9pMM1MZUfj/E
+	 yz7ZcQOmkT4DFfJjsc4FDTDcn4WlX6n/4rhXIScKGO0zSzNOKAmKzIq6XLnPHUAx7c
+	 bC7pB4wBDciqkeECt+/tqbLYJzZLgDXEh1lJ8O3+X/WKikNo7YBGWV2xreq2DM4lC7
+	 oLhoXwW7F6vbYQs7NGoipsuaAHQ8Z7jAWZsHX57sX/cL+ndIWYHO5yqtyKZuWTjBDg
+	 PO1o9Y2bPhg7w==
+Date: Wed, 21 Jan 2026 10:46:54 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Jens Emil Schulz =?iso-8859-1?Q?=D8stergaard?= <jensemil.schulzostergaard@microchip.com>
-Cc: linux-gpio@vger.kernel.org, Linus Walleij <linusw@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lars Povlsen <lars.povlsen@microchip.com>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+To: Yixun Lan <dlan@kernel.org>
+Cc: linux-mmc@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	linux-kernel@vger.kernel.org, spacemit@lists.linux.dev,
+	linux-riscv@lists.infradead.org,
+	Ulf Hansson <ulf.hansson@linaro.org>, devicetree@vger.kernel.org,
+	Adrian Hunter <adrian.hunter@intel.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: ocelot: Add LAN9645x SoC
- support
-Message-ID: <176901395988.3438237.9655033303007124364.robh@kernel.org>
-References: <20260119-pinctrl_ocelot_extend_support_for_lan9645x-v1-0-1228155ed0ee@microchip.com>
- <20260119-pinctrl_ocelot_extend_support_for_lan9645x-v1-1-1228155ed0ee@microchip.com>
+Subject: Re: [PATCH 1/2] dt-bindings: mmc: spacemit,sdhci: add support for K3
+ SoC
+Message-ID: <176901401388.3439509.9465691892166826989.robh@kernel.org>
+References: <20260121-07-k3-mmc-v1-0-ff77c07bfdf6@kernel.org>
+ <20260121-07-k3-mmc-v1-1-ff77c07bfdf6@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260119-pinctrl_ocelot_extend_support_for_lan9645x-v1-1-1228155ed0ee@microchip.com>
-X-Spamd-Result: default: False [-0.96 / 15.00];
+In-Reply-To: <20260121-07-k3-mmc-v1-1-ff77c07bfdf6@kernel.org>
+X-Spamd-Result: default: False [0.54 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
@@ -81,13 +78,12 @@ X-Spamd-Result: default: False [-0.96 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258054-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
-	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-258055-lists,devicetree=lfdr.de];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
@@ -95,32 +91,26 @@ X-Spamd-Result: default: False [-0.96 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,microchip.com:email]
-X-Rspamd-Queue-Id: F31125AE98
+	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
+X-Rspamd-Queue-Id: 8C84A5C924
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
-On Mon, 19 Jan 2026 16:06:09 +0100, Jens Emil Schulz Østergaard wrote:
-> Add documentation for the compatibles designated for the following SKUs
-> in the LAN9645x family:
+On Wed, 21 Jan 2026 15:27:35 +0800, Yixun Lan wrote:
+> The SDHCI controller found on SpacemiT K3 SoC share the same IP with
+> K1 generation, while fixed the broken 64BIT DMA issue. Introduce a
+> compatible string to enable support for it.
 > 
-> lan96455f
-> lan96457f
-> lan96459f
-> 
-> with fallback a compatible for the smallest 5-ported SKUs lan96455f.
-> 
-> Reviewed-by: Steen Hegelund <Steen.Hegelund@microchip.com>
-> Reviewed-by: Daniel Machon <daniel.machon@microchip.com>
-> Signed-off-by: Jens Emil Schulz Østergaard <jensemil.schulzostergaard@microchip.com>
+> Signed-off-by: Yixun Lan <dlan@kernel.org>
 > ---
->  Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  Documentation/devicetree/bindings/mmc/spacemit,sdhci.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 > 
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
