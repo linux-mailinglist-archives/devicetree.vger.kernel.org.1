@@ -1,151 +1,148 @@
-Return-Path: <devicetree+bounces-257806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257807-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aI+gOnyUcGlyYgAAu9opvQ
-	(envelope-from <devicetree+bounces-257806-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 09:55:24 +0100
+	id 4OJTAlGVcGlyYgAAu9opvQ
+	(envelope-from <devicetree+bounces-257807-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 09:58:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85C4E53ECA
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 09:55:24 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94C6D53F69
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 09:58:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 131CE561719
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 08:53:54 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id ED44E802D05
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 08:54:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A71647799C;
-	Wed, 21 Jan 2026 08:52:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D618B47799C;
+	Wed, 21 Jan 2026 08:54:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bJqvQW8S"
+	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b="NRwYxfeg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx.nabladev.com (mx.nabladev.com [178.251.229.89])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1F6B44A72F;
-	Wed, 21 Jan 2026 08:52:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A786845BD68;
+	Wed, 21 Jan 2026 08:54:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.251.229.89
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768985563; cv=none; b=eTqrJKF1+SL1Qe5/hSrxneGcxJPHkvsrUTo60E5m4e9XJA3hPxj1PHOY0eQbmu9h2hdxNQ6ULnsHWyFnx1NTLabruS7FaFyRWM79+g6VfzbYJviSPis3eMzGXpY6Tg/jHxGwR7kyyTjdLEXbJ3BIqYGXQnB6h007LcwjTA7igFY=
+	t=1768985650; cv=none; b=Bv4+1hdR0HVjFJ0VBkSOQtceaM792dyZXuB/4FmUqpZuDwy5wcn4dI/3sVoWxSdfSIf1Ww+2oLLqVzZeuMogXEmN5PESmQPJRK/P1mnWpiS0jZJ5QoZcoHhJBHxtGYiHHomDr6bbZ8Nhv3INoJC26WyF2/UwJNeRQVV0E0wLFrY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768985563; c=relaxed/simple;
-	bh=7IuyeTBGB9vtwVg0fjXb+TNVGCpGAtkhW8RPfN7komg=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=FR01tJ8lg/usRPLwg2VPSsAmIEBZep63smSzRTwe+QTUe8EpHQOmmK/YGJrTAdEnjwdrFzl2EZWChes8/AjIgEtI6UTOoCSkYEu60TvhJMFDoQh1Te8uHDniTpeVoyzrjLBC0pa1vzwlV9RfJR162KdgBJi97k4Laqtye7jc4mA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bJqvQW8S; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0B2CC19422;
-	Wed, 21 Jan 2026 08:52:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768985562;
-	bh=7IuyeTBGB9vtwVg0fjXb+TNVGCpGAtkhW8RPfN7komg=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=bJqvQW8SGmylTnXNovPHWavczfeprMh59Ggezw1TJszWg6jbLyu7DTdJJcaAw80E8
-	 TH6UpSk2kTTDummOiISVBfjL8oFtEGMM4ynUpLoJuhIWumJAiXlq07TmzYhExocczA
-	 q6bj2feluW+3mXXA5yy8/O2JRXksAUn+fnjd8bQJ7QlogMNGC8zgxBTjLbtJEXMVGW
-	 3uIaBpuQitKneqfyaOl+1JfwdfnDFR58TD1rEkd7tpbZzVnBLEkgOZ1ZuqcM9EdV6n
-	 6qd0bL9PDJv3CfgpfNrnORHE+y5ZjPvj12vqTx7gee+SWg0P0WUmRR+OYSl4nUGslP
-	 CF6vpzLyWKEtw==
-From: Vinod Koul <vkoul@kernel.org>
-To: tomm.merciai@gmail.com, 
- Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-Cc: linux-renesas-soc@vger.kernel.org, biju.das.jz@bp.renesas.com, 
- Peter Rosin <peda@axentia.se>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- Magnus Damm <magnus.damm@gmail.com>, 
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>, 
- Georgi Djakov <djakov@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Arnd Bergmann <arnd@arndb.de>, 
- Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-phy@lists.infradead.org
-In-Reply-To: <cover.1766405010.git.tommaso.merciai.xr@bp.renesas.com>
-References: <cover.1766405010.git.tommaso.merciai.xr@bp.renesas.com>
-Subject: Re: (subset) [PATCH v6 00/14] Add USB2.0 support for RZ/G3E
-Message-Id: <176898555102.1268719.14451101267712525788.b4-ty@kernel.org>
-Date: Wed, 21 Jan 2026 14:22:31 +0530
+	s=arc-20240116; t=1768985650; c=relaxed/simple;
+	bh=iBq2eCb9yGsM21cA51Huon012CEvpyLY6bdwwNf5N3Y=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QNf8PKw3e2fOsSGg7IA+v9tIPTrR5AZibh3XYI6WWrmIVzeCs1C8w1Mc1FJMZftOZM4hIiaSGs6au5rpUg7+r07UU19aN+XBCTRBVGglBQT7PwClKl0/sAjRxg9A3YLlWMCdBrwawcUvlb5b8tcVtM7z6Wz56HZgKmm0oZ6OCsk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=NRwYxfeg; arc=none smtp.client-ip=178.251.229.89
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nabladev.com
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8227210DEDB;
+	Wed, 21 Jan 2026 09:53:56 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
+	s=dkim; t=1768985640; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=r18FX95Gy1+St6A2bMtsgn3QcT2950JmTo6var6SRro=;
+	b=NRwYxfegIgmMjNoGAqpQ3d7lv2FlY2RYnm04ddvp79w/R5pxKSNTWnA7nuJeMcIWuUJcqz
+	IABC4/0PubVKshMgwJeCJQAAQyURYr6nur+0LGZ9CzMO1DF8TVjbzf+X3Cmm4g7SX4WOZG
+	A0WpnLLbyBK3pypCuDWSglBxmdTetNoc2lxhaGunC1oh3HXg2wIJ36yBgNESbtNiiaGiHM
+	qGmnVFMlosCpNcl3sQ3vlDdilqPTs4uLckD2N3fDHUbp9kbvPPWtDeh3M1JdPyn1bLqgE/
+	ITl2jpf2MAREAMtBNo9H0XY5KWZPjpO5x14IJgYVEIOeguk/VrQCO3YYQfW1qg==
+From: Marek Vasut <marex@nabladev.com>
+To: linux-arm-kernel@lists.infradead.org
+Cc: Marek Vasut <marex@nabladev.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Amelie Delaunay <amelie.delaunay@foss.st.com>,
+	Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Raphael Gallais-Pou <rgallaispou@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org,
+	kernel@dh-electronics.com,
+	linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: [PATCH 1/3] dt-bindings: eeprom: at25: Document Microchip 25AA010A
+Date: Wed, 21 Jan 2026 09:53:19 +0100
+Message-ID: <20260121085347.10368-1-marex@nabladev.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13.0
-X-Spamd-Result: default: False [-0.46 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [1.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[nabladev.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-257806-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,bp.renesas.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[23];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-257807-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,bp.renesas.com,axentia.se,kernel.org,linaro.org,renesas.com,pengutronix.de,glider.be,gmail.com,collabora.com,linuxfoundation.org,arndb.de,lists.infradead.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	R_SPF_SOFTFAIL(0.00)[~all:c];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vkoul@kernel.org,devicetree@vger.kernel.org];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[nabladev.com,foss.st.com,dh-electronics.com,kernel.org,gmail.com,linaro.org,vger.kernel.org,st-md-mailman.stormreply.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[nabladev.com:+];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: 85C4E53ECA
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[marex@nabladev.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[nabladev.com,reject];
+	R_SPF_SOFTFAIL(0.00)[~all:c];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo]
+X-Rspamd-Queue-Id: 94C6D53F69
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+The Microchip 25AA010A is a 1 Kbit SPI EEPROM with 16 Byte page.
+Product page is at https://www.microchip.com/en-us/product/25AA010A
 
-On Mon, 22 Dec 2025 14:43:34 +0100, Tommaso Merciai wrote:
-> This patch series adds USB2.0 support for the Renesas
-> RZ/G3E (a.k.a R9A09G047) R9A09G047 SoC.
-> 
-> RZ/G3E has USB2.0 IP that is identical to the one's found into
-> the RZ/V2H SoC (R9A09G057).
-> 
-> Merge strategy, if any:
-> 
-> [...]
+Signed-off-by: Marek Vasut <marex@nabladev.com>
+---
+Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: Amelie Delaunay <amelie.delaunay@foss.st.com>
+Cc: Christoph Niedermaier <cniedermaier@dh-electronics.com>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Raphael Gallais-Pou <rgallaispou@gmail.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: kernel@dh-electronics.com
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-stm32@st-md-mailman.stormreply.com
+---
+ Documentation/devicetree/bindings/eeprom/at25.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Applied, thanks!
-
-[07/14] dt-bindings: phy: renesas,usb2-phy: Document USB VBUS regulator
-        commit: 274038b82f413a754ffc6fbdb771a3ac62d1bb4b
-[08/14] dt-bindings: phy: renesas,usb2-phy: Document mux-states property
-        commit: cd597ce6460dc01f30f0f4158bbf20624c33c594
-[09/14] dt-bindings: phy: renesas,usb2-phy: Document RZ/G3E SoC
-        commit: 642c462854bf1f20e4d61a06e880c1b73bf6e542
-[10/14] phy: renesas: rcar-gen3-usb2: Factor out VBUS control logic
-        commit: d6db3b3af74a26b65d1ec1e86f9738c784e7ae29
-[11/14] phy: renesas: rcar-gen3-usb2: Use devm_pm_runtime_enable()
-        commit: 230c817a1601af3ac2c9fdf3fbde9a3fee6bd26c
-[12/14] phy: renesas: rcar-gen3-usb2: Add regulator for OTG VBUS control
-        commit: b6d7dd157763e0c8937f60241fb4af9eb546a7fb
-[13/14] phy: renesas: rcar-gen3-usb2: Use mux-state for phyrst management
-        commit: 8bb92fd7a04077925c8330f46a6ab44c80ca59f4
-
-Best regards,
+diff --git a/Documentation/devicetree/bindings/eeprom/at25.yaml b/Documentation/devicetree/bindings/eeprom/at25.yaml
+index e1599ce109165..bb78e12b8823b 100644
+--- a/Documentation/devicetree/bindings/eeprom/at25.yaml
++++ b/Documentation/devicetree/bindings/eeprom/at25.yaml
+@@ -31,6 +31,7 @@ properties:
+               - fujitsu,mb85rs1mt
+               - fujitsu,mb85rs256
+               - fujitsu,mb85rs64
++              - microchip,25aa010a
+               - microchip,at25160bn
+               - microchip,25lc040
+               - st,m95m02
 -- 
-~Vinod
-
+2.51.0
 
 
