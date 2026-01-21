@@ -1,162 +1,215 @@
-Return-Path: <devicetree+bounces-257701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257702-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aBtKFLE4cGmgXAAAu9opvQ
-	(envelope-from <devicetree+bounces-257701-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 03:23:45 +0100
+	id kLH9Lss4cGmgXAAAu9opvQ
+	(envelope-from <devicetree+bounces-257702-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 03:24:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 034D94FB41
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 03:23:44 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A3CC4FB50
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 03:24:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 16901A2A003
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:21:22 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C2DBC60FC1B
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:21:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EAFF31DDB8;
-	Wed, 21 Jan 2026 02:21:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD54A329384;
+	Wed, 21 Jan 2026 02:21:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y0dT+Dvd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iz98ZNR0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 179E02F60A3;
-	Wed, 21 Jan 2026 02:21:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80C722F60A3;
+	Wed, 21 Jan 2026 02:21:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768962079; cv=none; b=dXMl8Y7bEoHtBeK/gYa/oCwsSkxAxisxF3j5J58jVBIWEsDbOm6zVa2M82mTrO3Z8fl6BjqUS6n+PThcCD2JGCgUopefxAoMyzPV+VnS2YO9HAQnX5NHX9PbkPCgRFVzNTulZkgqBkN/hCDFw9dcWqP1tefdRfA750VYNVwREyE=
+	t=1768962094; cv=none; b=sksnpzfh6nB7cij+bpCVT1LDDKBMWYI6xNFR3eewTI2hE0pE9j9KWBmzApIbdMm0cEWlMj1osqNcR6+Pp7PONGpBIrFFJ2cAUt13pialDU7MO48+R4db3Wn7yoB541hcuAmOkLW2rtI3Qe5r7Wk5hce2/GgbqGkwGAhOPIDnnDg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768962079; c=relaxed/simple;
-	bh=j7waV8NWZBtuhNIY6TrRP+nVW1vx7BHTzf5Bh5U439w=;
+	s=arc-20240116; t=1768962094; c=relaxed/simple;
+	bh=rwFYIhlg90jmywlJZCXUWi2xc01CWNMPcq6ftxOzJiY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=M7NmTmGMhgmV+qboSqq4o4zXbF/aK5G+Ps0SuwhG/azkBfffM4ZrSFJczXNillgITLBGaGlKZFmiPLLrwtLCLSuReyxOWsTQY9TP2oXRcfp/IN4WZuJhi24J8WD9Qzwy+qVH2rPU6RDIDqbF8nyZxEhFXVDTJYMjQhnUeYkZZgw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y0dT+Dvd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 820ACC16AAE;
-	Wed, 21 Jan 2026 02:21:18 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=oCfS83Q10OTO1/9kBv5h3+wnjpR9+NtQM35duMDNGuXbNV2qN8cd8jcWAHwbTomiatE2k0+/3iVgDDt5nhLeQ//cK7+P8+j4uzpdz4e6je5KuIoU/d6U+DbwuMTFR8FvbMDK9mJXmsMB3bMWO1BmwkguSRpIj0w9CNx09+XmweI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iz98ZNR0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75EC5C16AAE;
+	Wed, 21 Jan 2026 02:21:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768962078;
-	bh=j7waV8NWZBtuhNIY6TrRP+nVW1vx7BHTzf5Bh5U439w=;
+	s=k20201202; t=1768962094;
+	bh=rwFYIhlg90jmywlJZCXUWi2xc01CWNMPcq6ftxOzJiY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Y0dT+DvdxyNk7sHMlklvwtNBRATnVqp+LcOt79ZRKCFlY2stWywHTziP8aWB9Tp2P
-	 QddRl1zKRfah8ixukRdy60c3nLahYvxjnqhDlo1fC60rJZNlPLFCIF+/205iDc6B1V
-	 S7i9gSptjqviHQX9WTB23Pt4BsRCtkZxi9In8Rvn6QkawwrAT8u+I5IwDdfG0GQs8B
-	 PWB1bOJpBT75zVhW/G0uzPnSAH4+j3PBkHY+dTqmvMQOhNzhHh27Iyinnxt4Msn/FI
-	 Q4FihIF6uKe0BoeFWcCGn1ZYKtDX0ichSb/SZTVuBQuJP12mM8OPzaqgwF/FP2lZ20
-	 BW8/IlX9ddLFQ==
-Date: Tue, 20 Jan 2026 20:21:17 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	devicetree@vger.kernel.org, David Airlie <airlied@gmail.com>,
-	Michal Wilczynski <m.wilczynski@samsung.com>,
-	Guo Ren <guoren@kernel.org>, Drew Fustini <fustini@kernel.org>,
-	Maxime Ripard <mripard@kernel.org>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Icenowy Zheng <uwu@icenowy.me>, Robert Foss <rfoss@kernel.org>,
-	dri-devel@lists.freedesktop.org, Fu Wei <wefu@redhat.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Han Gao <rabenda.cn@gmail.com>, linux-riscv@lists.infradead.org,
-	Dmitry Baryshkov <lumag@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	Thomas Zimmermann <tzimmermann@suse.de>, Yao Zi <ziyao@disroot.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>
-Subject: Re: [PATCH v5 2/9] dt-bindings: display: add verisilicon,dc
-Message-ID: <176896207692.1787158.10124540284354506229.robh@kernel.org>
-References: <20260116043746.336328-1-zhengxingda@iscas.ac.cn>
- <20260116043746.336328-3-zhengxingda@iscas.ac.cn>
+	b=iz98ZNR0DpMwiv3kp7J+tXO9gXPtlllCj+KLaPcy4/lVyG+dkFPvsQf//lYjxRkSV
+	 C2v5mFq32tiT4MeBXRtGKJa+qnngjkob5XeqDT6qUgDpqFWf5aVxEBeASCwKjSV/00
+	 flvqrjZi3JHFxstXRjWg22hF7Yb6CwFJTR07A657YAaMBqNYPoZxKLUl+OJHfxw2G7
+	 hDgN/Q2bYfBg2VbjxyG4EyPaq9UoaI4+CesNSyiwqguXHsM9SAM5aMEjxST6u9rIHu
+	 s1/vTY4BMSAjVDLohUSeQMuXemDMDKqh7MhZ1lgC/krhdpVhvIv+1PRdV615aPQhU0
+	 LdL7zZDlAYOqw==
+Date: Tue, 20 Jan 2026 20:21:31 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Elson Serrao <elson.serrao@oss.qualcomm.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Souradeep Chowdhury <quic_schowdhu@quicinc.com>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-usb@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/9] dt-bindings: soc: qcom: eud: Restructure to model
+ multi-path hardware
+Message-ID: <l2gv232wwct4px45rb27eouehx7nmy4b6n6lb4aoa6e3npeun6@dih26d4gzmuo>
+References: <20260116232106.2234978-1-elson.serrao@oss.qualcomm.com>
+ <20260116232106.2234978-2-elson.serrao@oss.qualcomm.com>
+ <20260117-courageous-chamois-of-focus-20d5d5@quoll>
+ <sfazro75vspadpe4wco7zvlalcy2wbrbdjx2wn7lyonjgw22sf@z73u67pinusx>
+ <4d6ffe96-2113-42fd-97e5-42247f073aef@kernel.org>
+ <5cec9127-bdc5-49d7-80e1-2ae26f81163c@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260116043746.336328-3-zhengxingda@iscas.ac.cn>
-X-Spamd-Result: default: False [0.54 / 15.00];
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <5cec9127-bdc5-49d7-80e1-2ae26f81163c@oss.qualcomm.com>
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[linaro.org,bootlin.com,ffwll.ch,pengutronix.de,linux.intel.com,vger.kernel.org,gmail.com,samsung.com,kernel.org,intel.com,icenowy.me,lists.freedesktop.org,redhat.com,kwiboo.se,ideasonboard.com,lists.infradead.org,suse.de,disroot.org];
-	TAGGED_FROM(0.00)[bounces-257701-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-257702-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	DBL_PROHIBIT(0.00)[0.0.0.0:email];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[iscas.ac.cn:email,icenowy.me:email,ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: 034D94FB41
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
+X-Rspamd-Queue-Id: 6A3CC4FB50
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On Tue, Jan 20, 2026 at 02:16:17PM -0800, Elson Serrao wrote:
+> 
+> 
+> On 1/19/2026 11:20 PM, Krzysztof Kozlowski wrote:
+> > On 19/01/2026 20:58, Bjorn Andersson wrote:
+> >> On Sat, Jan 17, 2026 at 12:57:58PM +0100, Krzysztof Kozlowski wrote:
+> >>> On Fri, Jan 16, 2026 at 03:20:58PM -0800, Elson Serrao wrote:
+> >>>> The Qualcomm Embedded USB Debugger (EUD) hardware can intercept up to
+> >>>> two independent High-Speed UTMI data paths, depending on the SoC
+> >>>> configuration. Each path operates independently with:
+> >>>>
+> >>>> - Dedicated PHY interface
+> >>>> - Distinct USB connector and controller associations
+> >>>> - Role dependent routing
+> >>>>
+> >>>> Model these hardware paths as separate eud-path nodes to accurately
+> >>>> represent the physical topology and add below per-path properties:
+> >>>>
+> >>>> phys: EUD exposes a High-Speed debug hub that relies on HS-PHY for its
+> >>>> operation. This property references the HS-PHY associated with the UTMI
+> >>>> path.
+> >>>>
+> >>>> usb-role-switch: Indicates that the USB port on this UTMI path supports
+> >>>> role switching. In device role, debug mode inserts the EUD hub into the
+> >>>> UTMI path. In host role, the EUD hub is bypassed and UTMI traffic flows
+> >>>> directly between the PHY and the USB controller.
+> >>>>
+> >>>> This change breaks backwards compatibility, but the previous binding
+> >>>> omitted critical resources like PHY and did not describe per-path
+> >>>> topology. Without these modifications EUD cannot be guaranteed to
+> >>>> function.
+> >>>
+> >>> It was working for 3 years, so your guarantees are just imprecise. FUD
+> >>> is not an argument.
+> >>>
+> >>> Qualcomm task at 2022 was to post complete bindings. These were posted
+> >>> and accepted. Three years later you say that previous posting was
+> >>> bollocks and this cannot even work?
+> >>>
+> >>
+> >> That is correct. The description of the hardware that was provided when
+> >> this was upstreamed and the binding that was accepted based on this
+> >> description is wrong.
+> >>
+> >> There's absolutely a value in maintainting backwards compatibility in
+> >> general, but is this one of those cases?
+> >>
+> >>> Nah, take responsibility of what you did in the past.
+> >>>
+> >>
+> >> In my view the responsible thing is to accept that we got it wrong and
+> >> make sure EUD is enabled end-to-end so people can actually use it.
+> > 
+> > I would expect to see what is not working. This is in mainline for three
+> > years, so the assumption is that it was working for these three years.
+> > If it wasn't, this should be described and "cannot be guaranteed to
+> > function" is just imprecise.
+> > 
 
-On Fri, 16 Jan 2026 12:37:39 +0800, Icenowy Zheng wrote:
-> From: Icenowy Zheng <uwu@icenowy.me>
+I see, that I agree with.
+
+> Thanks, Bjorn and Krzysztof, for the feedback.
 > 
-> Verisilicon has a series of display controllers prefixed with DC and
-> with self-identification facility like their GC series GPUs.
+> Let me clarify what I meant by “cannot be guaranteed to work”, as I agree
+> the phrasing can be improved to more precisely convey the intent.
 > 
-> Add a device tree binding for it.
+> The concern is not that EUD did not or could not work historically.
+> Rather, the issue is that the hardware description provided by the
+> binding does not explicitly describe ownership and control of hardware
+> resources that EUD depends on. As a result, correctness of EUD operation
+> relies on behavior outside of what is expressed in the description.
 > 
-> Depends on the specific DC model, it can have either one or two display
-> outputs, and each display output could be set to DPI signal or "DP"
-> signal (which seems to be some plain parallel bus to HDMI controllers).
+> Concretely, the binding does not reference the HS-PHY. In practice,
+> EUD may function because the USB controller (e.g. DWC3) keeps the
+> PHY powered and configured.
 > 
-> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-> ---
-> Changes in v5:
-> - Dropped the requirement of port@0.
-> - Dropped the if clause for TH1520, which seems to be not needed because
->   of implicit DT binding rules.
+> However, this relationship is not described as a contract in the
+> binding. The USB controller may legitimately relinquish PHY control as
+> part of its own power-management or low-power transitions. The EUD
+> hardware is capable of operating independently, but doing so requires
+> EUD to have explicit control of the PHY.
 > 
-> Changes in v4:
-> - Added a comment for "verisilicon,dc" that says the ID/revision is
->   discoverable via registers.
-> - Removed clock minItems constraint w/o specific compatible strings.
+> The hardware specification lists the PHY as a required resource of the
+> EUD debug hub. Not modeling it in the binding therefore leaves the
+> description incomplete, because EUD resource requirements are being met
+> implicitly through another hardware block (USB controller) rather than
+> being described directly.
 > 
-> Changes in v3:
-> - Added SoC-specific compatible string, and arm the binding with clock /
->   port checking for the specific SoC (with a 2-output DC).
+> In addition, the hardware can expose multiple UTMI paths (dual-port
+> EUD), which the current binding cannot represent.
 > 
-> Changes in v2:
-> - Fixed misspelt "versilicon" in title.
-> - Moved minItems in clock properties to be earlier than items.
-> - Re-aligned multi-line clocks and resets in example.
+> The intent of this patch is therefore to correct and tighten the
+> binding so that the hardware resources and topology EUD depends on are
+> explicitly modeled, rather than relying on side effects of USB controller.
 > 
->  .../bindings/display/verisilicon,dc.yaml      | 122 ++++++++++++++++++
->  1 file changed, 122 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+> I will update the backwards compatibility justification accordingly.
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Please try to consolidate this whole explanation a bit and include it in
+the commit message.
 
+Regards,
+Bjorn
+
+> Thanks
+> Elson
 
