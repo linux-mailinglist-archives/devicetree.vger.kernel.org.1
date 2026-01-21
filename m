@@ -1,174 +1,208 @@
-Return-Path: <devicetree+bounces-257837-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257839-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2DBPL7+kcGlyYgAAu9opvQ
-	(envelope-from <devicetree+bounces-257837-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 11:04:47 +0100
+	id AJAWIpajcGlyYgAAu9opvQ
+	(envelope-from <devicetree+bounces-257839-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 10:59:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4103954E3E
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 11:04:47 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2F2D54CF7
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 10:59:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id F19F18C2E25
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 09:49:38 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BD0EA8C5ED0
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 09:51:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD37B480957;
-	Wed, 21 Jan 2026 09:48:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D94D480350;
+	Wed, 21 Jan 2026 09:51:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ziyao.cc header.i=me@ziyao.cc header.b="EnhSRich"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="TfYz9nVO";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="DPa/QTX5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 774F8480958;
-	Wed, 21 Jan 2026 09:48:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768988928; cv=pass; b=UAnyTUIxn/SoFBIA7seyvmQEgVsaNGpABA9LZhAV8ZVxCXla4uxe7w/EEVkoj8j6JzIxLqX5hSI/+0hhxXx2pC2kzeyHvjh4av14VnsZmAKrOETJfGTzcPc/CQPHmLtxFz9xDYYB7z2iTkPoWsPOVTAkWeYb1qB76OxHn54R9fA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768988928; c=relaxed/simple;
-	bh=sd7IA0A7SQWL2T3hI/68jTZfSCthKxNTO4tyqSxyWBw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GoGxfalc8V3YxG3P1wUTNNcYT9Uq0cks+wPA4de/GbCtt5fiv4VLwM0lRau9Jjw3J1Np8W09rI2w9CiJRtbgwdhDsfaQ5HZyVZ9DZRuAYmvTsId9l4C/Ewn5pC69P1EeZdPqX2AjdbEpk2VMY6LqSHJHPfTsVp32NTfIOktpfbo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc; spf=pass smtp.mailfrom=ziyao.cc; dkim=pass (1024-bit key) header.d=ziyao.cc header.i=me@ziyao.cc header.b=EnhSRich; arc=pass smtp.client-ip=136.143.188.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziyao.cc
-ARC-Seal: i=1; a=rsa-sha256; t=1768988912; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=bD2gp45kFPvNMwF3ySU1AMZfN1sFmTE7Xt+QTbOj6iJge6qIgzPo67l/PxzlZoGXrOZBal0KQTKc27WYISBjNmA61s5rt3idyOt6AsguIkHfW8KeX81+E3HB/l+FFaxJ7eUFpYL/2GYJAZBJFI6pPbIQ8wv/XuBBUp+rILn/uFQ=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1768988912; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=ufXXGD5mAV0c390kumAehnWTdRsR7RIJF5HIUbbINyE=; 
-	b=QksGkK7pE7yHtBoDPFiKXPc0abDGyjlDOHtrGGi80yCI+wy9NKPXeTJo691VUGeZCUYVKenczQNPeUNgaMC+q3vgLj/iAoHYPIq4j3tC1zq8i/qb7ExD3/HpYiJCQaflzF4sznXEcCvR/P15wGZdr32WrIqJnncCTLxk7VaZ5Ro=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=ziyao.cc;
-	spf=pass  smtp.mailfrom=me@ziyao.cc;
-	dmarc=pass header.from=<me@ziyao.cc>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1768988912;
-	s=zmail; d=ziyao.cc; i=me@ziyao.cc;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=ufXXGD5mAV0c390kumAehnWTdRsR7RIJF5HIUbbINyE=;
-	b=EnhSRichXNJut4xGlUb1vfKj2oR2wVBdjsmeaFWIJa7v/9FxEFOwDVUeRRGSDySK
-	PZckRIoKS6hkqpxlxnrxTSfxjYV17/g3CgAY2J4UXJJEDhRTBlQ/+47nfj7oRREioTD
-	kWtdAAYvNVdMafUv/3/jLxYo1GfLR1Otx5/4CtTM=
-Received: by mx.zohomail.com with SMTPS id 1768988910308507.3525632519347;
-	Wed, 21 Jan 2026 01:48:30 -0800 (PST)
-Date: Wed, 21 Jan 2026 09:48:19 +0000
-From: Yao Zi <me@ziyao.cc>
-To: Yixun Lan <dlan@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Adrian Hunter <adrian.hunter@intel.com>
-Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] mmc: sdhci-of-k1: spacemit: Add support for K3 SoC
-Message-ID: <aXCg43ZepMm1DNHq@pie>
-References: <20260121-07-k3-mmc-v1-0-ff77c07bfdf6@kernel.org>
- <20260121-07-k3-mmc-v1-2-ff77c07bfdf6@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9956B283FC5
+	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 09:51:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768989066; cv=none; b=KytHn6/doejtLdQsYQhFYup8wNkvwWucjh47xyXHpIJw8CBjR2huXqNRbcOjyqGkr7eN5BixCC6R0jOtemUh9fqD6/x/wrD8YdWwMduusOHIUb+LYmh2Uj16fw5xejkGXUjnPaZyu0AKPKxX25NULzsdk+K7pATMp01kNXc839s=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768989066; c=relaxed/simple;
+	bh=BNcIuJH8EUE2zF3vZQG9OzcXb+leeeY7urfxxzy60hY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=MWQ5Y+3HSbA1HGbk3MqKV8oZtr6kdEvJSO4nevojTvDOKfVocgpIPzrH27MRBOnt2nEW0rviihbi6CXzAChy+goNfE6JU+iBBnAL0lB5sl72Q0Tsd/Qoca2dvsIpTsF7o/TClJm8UwxaLvj9h9SFbiHSDO341I5cmdkz4gL+s2M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=TfYz9nVO; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=DPa/QTX5; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60L8vGv12946325
+	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 09:51:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=PURqCEKMifr6B1GEdQBwSJlrDsBZNunu+PW
+	kWKYvso4=; b=TfYz9nVOCmQAgibu+/xtDg1dYxQXsrIANkLIhx+JpxA9gqJlih9
+	En7CCPNu54wGiQK06QIRvaS6HXUmzWjzpR1dEU6xkx9trQiu+FJHyvvRjL3rZX6m
+	UQyCA/HoEFufwfeOlpuDS/xbrIykEk24f78BnT7TVJF7rV0CCt57CxkjI7zyKrbd
+	1wSQWfI6+n5+GLC+knxiv8TcRaQC7VcnaKiUMC37MEEYzPRlJFcUfJbmroYgwKLg
+	r7F45cYSERx5PQyIi49Efz2aTiewWA4ODBBMCNo5njoD1luNTzxAuyaEAd1a6+YU
+	Uc+8GCT6gJVZF1buvDFkKEouXHcj1GMEyOg==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4btur98c8k-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 09:51:03 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2a78c094ad6so10106365ad.1
+        for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 01:51:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1768989063; x=1769593863; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=PURqCEKMifr6B1GEdQBwSJlrDsBZNunu+PWkWKYvso4=;
+        b=DPa/QTX5LmZk996l2ZVkN3ep4wiYX4vpR+FoYrcDz4NxT1CoxQxpeDsTTbEHluq8bi
+         M0cgknKkq/GwAA/s7/+ZBCMYN0Fx986bhk7YITZxaQJ1X0n+DLxhsmmMavNfjshts9q4
+         qxFnKP1flfD8aAMwVZ19K0fSbKMj0WK1sfwW793vnGjwSvkETTVO4iiBT6DaEiypnU6t
+         l+NhUgjnSU5QZJchfSJQPni8Vo2iTK+5bOrzsppqNl9N3FmaZcIgKarhNJUfaY8qdBCg
+         qq/0sb5t9c/NKStfLLp//yFmRwhkfA7IwNxai6XwlUeneUV/c+AP6gUf4e6mwj+9T/6s
+         PZHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768989063; x=1769593863;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PURqCEKMifr6B1GEdQBwSJlrDsBZNunu+PWkWKYvso4=;
+        b=f09kqbJeB8gogK8FMmGyegUiX1MbN0b7OMpGSy53tpq8s0qqaNVx08Ls4SUnwRYT2a
+         lRwBXHSbf2eKnWMtdnC3SLtshufkabUJBTroSGcMGc7wTlmARFNl4ynhEkwCVk6XX5CC
+         Ny15gUrxGca2aJelFL3mkF4p0vIiHMPdJ9ugHCoTewo1FN1EahpayMZ7ADtsNwj9HiYe
+         vzfdxR7E6lqS8r2SgIYksaM4XSeCmYmNvbpSKwLQsrj2K6k8UfD+SWkpCEWgnRjZFs39
+         7etgmzBdI9hX4xvHObs/Hehkg45Dpe1cXCSBeBcJm7YvdY4o+fEUMDxmWKpkhi1F3lc3
+         cDPw==
+X-Forwarded-Encrypted: i=1; AJvYcCVqB4R39jHmV2qbZ42vvL7OdANzFDmzA1jZbSwrAO+4NICt8vH+gO4mrpnANnKv9f3CJNEFfQIOE92O@vger.kernel.org
+X-Gm-Message-State: AOJu0YzEys2QR0HyPQOvjd851E56VvlIkjKduNmsMxr/B/I5PTI3+hdC
+	lYqgZqxXGdZUx7B+5Rza3BExqSsJfRyb2yBFkJ3R4/TNqmSVWhZrzaUOTnz+DqfJETgSz1pFeSq
+	H5TLB6IKaL5PoRVMen4KRQeusVvrjng0tgHd9jQywgGrvLNCsBh9IEzedqnpFXbJZ
+X-Gm-Gg: AZuq6aKtY+oVUpv8O2yzWbfSg7Ppd2xzOZMz4kmqeaFK3xdmJUHcoF3LrkKTMc1MHIc
+	UHuTII5CcRfCelGr5t115YPAB7ElTppkiX72kKc1zmmUY2hZ17Fxg5iFu2pWB4f8gb4OYpb7Wd8
+	mSPTn5XqEJIp+57sHsZbr7YhdMTm+szKxGgTO9BSfXwxrWDIzW9QU5aZIhN+kxtnmXC3LjqzPr8
+	BB89/eIeF4S32347jIjeOFSVOkBk+k/oC+HxjeYf4hlKrdwxFsGirTIdkXzovEDuyUiXD7Y4GfO
+	A8v0Ff/PGCI7HdSKsoDVUgR1uiZ6stCFUsMyA0dUcxxHHK1XQd/3uV9gO+QbqAI0lQNL+56qgOp
+	oU/cTBxQMUfqsZauUy5rhRjdTeFaN7C2IcajjsqKaYgKzzUbY5w+I25jFviEw4ESLFqNa
+X-Received: by 2002:a17:902:cccb:b0:2a7:5171:921f with SMTP id d9443c01a7336-2a76b066dfcmr44438245ad.46.1768989062956;
+        Wed, 21 Jan 2026 01:51:02 -0800 (PST)
+X-Received: by 2002:a17:902:cccb:b0:2a7:5171:921f with SMTP id d9443c01a7336-2a76b066dfcmr44437935ad.46.1768989062449;
+        Wed, 21 Jan 2026 01:51:02 -0800 (PST)
+Received: from Z2-SFF-G9-MQ.ap.qualcomm.com (i-global052.qualcomm.com. [199.106.103.52])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-352678af047sm16997295a91.10.2026.01.21.01.50.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Jan 2026 01:51:02 -0800 (PST)
+From: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
+To: jjohnson@kernel.org, johannes@sipsolutions.net, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        jonas.gorski@gmail.com, krzk@kernel.org,
+        Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
+Subject: [PATCH v4 ath-current 0/2] wifi: ath11k: add usecase firmware handling based on device compatible
+Date: Wed, 21 Jan 2026 17:50:53 +0800
+Message-Id: <20260121095055.3683957-1-miaoqing.pan@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260121-07-k3-mmc-v1-2-ff77c07bfdf6@kernel.org>
-X-ZohoMailClient: External
-X-Spamd-Result: default: False [9.34 / 15.00];
-	URIBL_BLACK(7.50)[ziyao.cc:dkim];
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: EyrewgKVyy29h-pI2QfC7nVCbH6WNtHG
+X-Proofpoint-ORIG-GUID: EyrewgKVyy29h-pI2QfC7nVCbH6WNtHG
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIxMDA4MiBTYWx0ZWRfXxDVYNfGczTZ8
+ SEYzBIWtJQvXwcoo7UNH3RUPPtXj1HZ4w/8D9eGhfEPbrlHOEYATa8c4HYxRRxh8sek99QP679X
+ golQP0pcFubRlzKj7LY0+VYkRz1fSg/lpad4Gek2XnIaN5KXb1tmW1efEO9oHO1sG2fC9UAwHRL
+ Rq112pwaRe3fML7n0ugAiA02IXAOqoWlzUweg/hR4cyzS8ogDF2yBwMcg/mSgKaIKMnDcj69nTv
+ PlY9X5A5PAt0Zi93yQTxm7ZZhVAcCXpwpmsAVJkyQery9+lkDzzi4ShcN1d1TJmpJHpV0keK3rQ
+ KAsNa1SFMsVJ4nlCweN2er2fbF435Z5Uku6SJmgJggXF6VRYGI7lKp9supW/Jz09/XMWIC5tRZy
+ exXb4yYHvG0CI6K6H5sSd730g4xdUq+iR4Qit4L0HadS3uh7Mul2r11RlD6CIFqQBa0/cVQ6LBV
+ OPe9V4tqnwy1/VsgVKQ==
+X-Authority-Analysis: v=2.4 cv=QstTHFyd c=1 sm=1 tr=0 ts=6970a187 cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=b9+bayejhc3NMeqCNyeLQQ==:17
+ a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=AnkVv3gU2zmn-KRWxgsA:9 a=1OuFwYUASf3TG4hYMiVC:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
+ definitions=2026-01-21_01,2026-01-20_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 spamscore=0 priorityscore=1501 bulkscore=0 clxscore=1015
+ adultscore=0 impostorscore=0 phishscore=0 malwarescore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601210082
+X-Spamd-Result: default: False [1.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_RHS_NOT_FQDN(0.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
-	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-257837-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	R_DKIM_ALLOW(0.00)[ziyao.cc:s=zmail];
+	TAGGED_FROM(0.00)[bounces-257839-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	GREYLIST(0.00)[pass,body];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,qualcomm.com:dkim];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[ziyao.cc,quarantine];
-	DKIM_TRACE(0.00)[ziyao.cc:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	R_SPF_SOFTFAIL(0.00)[~all:c];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[me@ziyao.cc,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,gmail.com,kernel.org,oss.qualcomm.com];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FROM_NEQ_ENVFROM(0.00)[miaoqing.pan@oss.qualcomm.com,devicetree@vger.kernel.org];
+	DMARC_POLICY_ALLOW(0.00)[qualcomm.com,reject];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
-	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW_WITH_FAILURES(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,ziyao.cc:dkim]
-X-Rspamd-Queue-Id: 4103954E3E
-X-Rspamd-Action: add header
+	R_SPF_SOFTFAIL(0.00)[~all:c];
+	PRECEDENCE_BULK(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: F2F2D54CF7
+X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spam: Yes
 
-On Wed, Jan 21, 2026 at 03:27:36PM +0800, Yixun Lan wrote:
-> The SDHCI controller found on SpacemiT K3 SoC share the same IP with K1
-> generation and introduce a compatible data to denote the change that broken
-> 64BIT DMA issue has been fixed.
-> 
-> Signed-off-by: Yixun Lan <dlan@kernel.org>
-> ---
->  drivers/mmc/host/sdhci-of-k1.c | 22 ++++++++++++++++++++--
->  1 file changed, 20 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/mmc/host/sdhci-of-k1.c b/drivers/mmc/host/sdhci-of-k1.c
-> index a160e1d5d9bd..a56cb8a36982 100644
-> --- a/drivers/mmc/host/sdhci-of-k1.c
-> +++ b/drivers/mmc/host/sdhci-of-k1.c
-> @@ -259,8 +259,20 @@ static const struct sdhci_pltfm_data spacemit_sdhci_k1_pdata = {
->  		   SDHCI_QUIRK2_PRESET_VALUE_BROKEN,
->  };
->  
-> +static const struct sdhci_pltfm_data spacemit_sdhci_k3_pdata = {
-> +	.ops = &spacemit_sdhci_ops,
-> +	.quirks = SDHCI_QUIRK_DATA_TIMEOUT_USES_SDCLK |
-> +		  SDHCI_QUIRK_NO_ENDATTR_IN_NOPDESC |
-> +		  SDHCI_QUIRK_32BIT_ADMA_SIZE |
-> +		  SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN |
-> +		  SDHCI_QUIRK_BROKEN_CARD_DETECTION |
-> +		  SDHCI_QUIRK_BROKEN_TIMEOUT_VAL,
-> +	.quirks2 = SDHCI_QUIRK2_PRESET_VALUE_BROKEN,
-> +};
-> +
->  static const struct of_device_id spacemit_sdhci_of_match[] = {
-> -	{ .compatible = "spacemit,k1-sdhci" },
-> +	{ .compatible = "spacemit,k1-sdhci", .data = &spacemit_sdhci_k1_pdata },
-> +	{ .compatible = "spacemit,k3-sdhci", .data = &spacemit_sdhci_k3_pdata },
->  	{ /* sentinel */ }
->  };
->  MODULE_DEVICE_TABLE(of, spacemit_sdhci_of_match);
-> @@ -271,10 +283,16 @@ static int spacemit_sdhci_probe(struct platform_device *pdev)
->  	struct spacemit_sdhci_host *sdhst;
->  	struct sdhci_pltfm_host *pltfm_host;
->  	struct sdhci_host *host;
-> +	const struct sdhci_pltfm_data *data;
->  	struct mmc_host_ops *mops;
->  	int ret;
->  
-> -	host = sdhci_pltfm_init(pdev, &spacemit_sdhci_k1_pdata, sizeof(*sdhst));
-> +
-> +	data = of_device_get_match_data(&pdev->dev);
-> +	if (!data)
-> +		return dev_err_probe(dev, -EINVAL, "failed to get platform data\n");
+The 'firmware-name' property was introduced to allow end-users and
+integrators to select use-case-specific firmware for the WCN6855.
+But for M.2 WLAN chips, there is no suitable DTS node to specify
+the 'firmware-name' property. In addition, assigning firmware for
+the M.2 PCIe interface causes chips that do not use use-case-specific
+firmware to fail. Therefore, abandoning the approach of specifying
+firmware in DTS. As an alternative, propose a static lookup table
+mapping device compatible to firmware names.
 
-Is there a need to check against return value of
-of_device_get_match_data()? It isn't a user input, instead missing the
-data seems a kernel bug to me, and shouldn't happen in production.
+---
+v2:
+- Drops `firmware-name` from completely.
+- Updates the commit message to clearly state that the property is
+  obsolete and the change is ABI-breaking but safe for upstream.
+v3:
+ - Deprecate 'firmware-name' property instead of obsolete.
+ - Keep the ABI backwards compatible.
+v4:
+ - Use of_machine_is_compatible() to simplify the code.
+ - Add back Acked-by tag. 
+---
 
-Regards,
-Yao Zi
+Miaoqing Pan (2):
+  wifi: ath11k: add usecase firmware handling based on device compatible
+  dt-bindings: net: wireless: ath11k-pci: deprecate 'firmware-name'
+    property
+
+ .../net/wireless/qcom,ath11k-pci.yaml         |  1 +
+ drivers/net/wireless/ath/ath11k/core.c        | 27 +++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/core.h        |  4 +++
+ 3 files changed, 32 insertions(+)
+
+
+base-commit: d8e1f4a193101a72235416f189b01131a57e26e9
+-- 
+2.34.1
+
 
