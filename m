@@ -1,50 +1,52 @@
-Return-Path: <devicetree+bounces-257807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257808-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4OJTAlGVcGlyYgAAu9opvQ
-	(envelope-from <devicetree+bounces-257807-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 09:58:57 +0100
+	id CF4OJ7qUcGlyYgAAu9opvQ
+	(envelope-from <devicetree+bounces-257808-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 09:56:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94C6D53F69
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 09:58:56 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id C157053F15
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 09:56:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id ED44E802D05
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 08:54:31 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 67A98469C6C
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 08:54:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D618B47799C;
-	Wed, 21 Jan 2026 08:54:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60870478845;
+	Wed, 21 Jan 2026 08:54:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b="NRwYxfeg"
+	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b="OO/uCmha"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx.nabladev.com (mx.nabladev.com [178.251.229.89])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A786845BD68;
-	Wed, 21 Jan 2026 08:54:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8724A46AEF4;
+	Wed, 21 Jan 2026 08:54:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.251.229.89
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768985650; cv=none; b=Bv4+1hdR0HVjFJ0VBkSOQtceaM792dyZXuB/4FmUqpZuDwy5wcn4dI/3sVoWxSdfSIf1Ww+2oLLqVzZeuMogXEmN5PESmQPJRK/P1mnWpiS0jZJ5QoZcoHhJBHxtGYiHHomDr6bbZ8Nhv3INoJC26WyF2/UwJNeRQVV0E0wLFrY=
+	t=1768985651; cv=none; b=DQSKSN44XGkhfad9dve8gqaci3gL88bGEtZw0bbX+b8ma+UUKjEbBPovNxPB3nXSdVhxuNkgAz0H7OCHIMloCEu6GmwG1G8zA8cr9gLJ9SMfrul4LngtgOUu/6XvvxUnnQDHXUKTit0okizXQa8O8C07GcNnW7WuFVHDUWy07PQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768985650; c=relaxed/simple;
-	bh=iBq2eCb9yGsM21cA51Huon012CEvpyLY6bdwwNf5N3Y=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QNf8PKw3e2fOsSGg7IA+v9tIPTrR5AZibh3XYI6WWrmIVzeCs1C8w1Mc1FJMZftOZM4hIiaSGs6au5rpUg7+r07UU19aN+XBCTRBVGglBQT7PwClKl0/sAjRxg9A3YLlWMCdBrwawcUvlb5b8tcVtM7z6Wz56HZgKmm0oZ6OCsk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=NRwYxfeg; arc=none smtp.client-ip=178.251.229.89
+	s=arc-20240116; t=1768985651; c=relaxed/simple;
+	bh=6Y99bkamz5A8+5GRh7DigeUaEn1O4PK5llr9JeT5M6Q=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=WT7rcm2nubx5FBYCgVWeXpTPwFv4vZhOEdU1OdIsSiqBIINoYRgN4+0fXg2s9Y7QeDJxwq4LwBFGk24i9dnQ7E+33Ar5+NmRYvfJ6mTUe/JF5OOaJmT9uwwTXewu0LxnxGSoLxrPUAM7p6ica7nT38KrxOoXfDEvQaYw8RjnE60=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=OO/uCmha; arc=none smtp.client-ip=178.251.229.89
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nabladev.com
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8227210DEDB;
-	Wed, 21 Jan 2026 09:53:56 +0100 (CET)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4AEA010ED29;
+	Wed, 21 Jan 2026 09:54:01 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
-	s=dkim; t=1768985640; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding; bh=r18FX95Gy1+St6A2bMtsgn3QcT2950JmTo6var6SRro=;
-	b=NRwYxfegIgmMjNoGAqpQ3d7lv2FlY2RYnm04ddvp79w/R5pxKSNTWnA7nuJeMcIWuUJcqz
-	IABC4/0PubVKshMgwJeCJQAAQyURYr6nur+0LGZ9CzMO1DF8TVjbzf+X3Cmm4g7SX4WOZG
-	A0WpnLLbyBK3pypCuDWSglBxmdTetNoc2lxhaGunC1oh3HXg2wIJ36yBgNESbtNiiaGiHM
-	qGmnVFMlosCpNcl3sQ3vlDdilqPTs4uLckD2N3fDHUbp9kbvPPWtDeh3M1JdPyn1bLqgE/
-	ITl2jpf2MAREAMtBNo9H0XY5KWZPjpO5x14IJgYVEIOeguk/VrQCO3YYQfW1qg==
+	s=dkim; t=1768985642; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=bUVTHSFyhpP3KoH2TYsrDt5SMZIodTsOSXs60GNNZeI=;
+	b=OO/uCmha/RdjT+PvfzcKCVNGzrlnS3l/vmqC3xZ3ro7B/zGqyk7qn03skq2YOHj/KDl5xT
+	fNBpQv4GeuSa7NsTttmlr86GqDGzwhYwyug0dJ1BWuJMsneEPLOB0pEtooXQSN2zj6/KT8
+	xeTPYqp6Yd2VdjHPyA+VPJSGS1MjspAC87QMs5MOZ08vEqzawVAAivtF5CvHxAuGq+jgln
+	c0kMKH2rdt2MtgGMlH8+77ZWzd3WyREwT0I5kBcXsbOM0gVTbyHzT3oa17qz3gDwUPoYPt
+	Z+hTkxBnTig/qWwP0zm/f00ReBRPDly8L8kshGZsh1rTwyM5PUqAa00ywApAsQ==
 From: Marek Vasut <marex@nabladev.com>
 To: linux-arm-kernel@lists.infradead.org
 Cc: Marek Vasut <marex@nabladev.com>,
@@ -61,10 +63,12 @@ Cc: Marek Vasut <marex@nabladev.com>,
 	kernel@dh-electronics.com,
 	linux-kernel@vger.kernel.org,
 	linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH 1/3] dt-bindings: eeprom: at25: Document Microchip 25AA010A
-Date: Wed, 21 Jan 2026 09:53:19 +0100
-Message-ID: <20260121085347.10368-1-marex@nabladev.com>
+Subject: [PATCH 2/3] dt-bindings: display/lvds-codec: Document OnSemi FIN3385
+Date: Wed, 21 Jan 2026 09:53:20 +0100
+Message-ID: <20260121085347.10368-2-marex@nabladev.com>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20260121085347.10368-1-marex@nabladev.com>
+References: <20260121085347.10368-1-marex@nabladev.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +88,7 @@ X-Spamd-Result: default: False [1.04 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCPT_COUNT_TWELVE(0.00)[15];
-	TAGGED_FROM(0.00)[bounces-257807-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-257808-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
@@ -101,14 +105,13 @@ X-Spamd-Result: default: False [1.04 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: 94C6D53F69
+	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
+X-Rspamd-Queue-Id: C157053F15
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The Microchip 25AA010A is a 1 Kbit SPI EEPROM with 16 Byte page.
-Product page is at https://www.microchip.com/en-us/product/25AA010A
+Add compatible string for OnSemi FIN3385, a FlatLink LVDS transmitter.
 
 Signed-off-by: Marek Vasut <marex@nabladev.com>
 ---
@@ -127,21 +130,21 @@ Cc: linux-arm-kernel@lists.infradead.org
 Cc: linux-kernel@vger.kernel.org
 Cc: linux-stm32@st-md-mailman.stormreply.com
 ---
- Documentation/devicetree/bindings/eeprom/at25.yaml | 1 +
+ Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/eeprom/at25.yaml b/Documentation/devicetree/bindings/eeprom/at25.yaml
-index e1599ce109165..bb78e12b8823b 100644
---- a/Documentation/devicetree/bindings/eeprom/at25.yaml
-+++ b/Documentation/devicetree/bindings/eeprom/at25.yaml
-@@ -31,6 +31,7 @@ properties:
-               - fujitsu,mb85rs1mt
-               - fujitsu,mb85rs256
-               - fujitsu,mb85rs64
-+              - microchip,25aa010a
-               - microchip,at25160bn
-               - microchip,25lc040
-               - st,m95m02
+diff --git a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
+index 4f7d3e9cf0c22..4f52e35d02537 100644
+--- a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
+@@ -33,6 +33,7 @@ properties:
+     oneOf:
+       - items:
+           - enum:
++              - onnn,fin3385  # OnSemi FIN3385
+               - ti,ds90c185   # For the TI DS90C185 FPD-Link Serializer
+               - ti,ds90c187   # For the TI DS90C187 FPD-Link Serializer
+               - ti,sn75lvds83 # For the TI SN75LVDS83 FlatLink transmitter
 -- 
 2.51.0
 
