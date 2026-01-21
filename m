@@ -1,58 +1,122 @@
-Return-Path: <devicetree+bounces-257678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257680-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IEoENz0lcGlRVwAAu9opvQ
-	(envelope-from <devicetree+bounces-257678-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:00:45 +0100
+	id SGarCikqcGmyWwAAu9opvQ
+	(envelope-from <devicetree+bounces-257680-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:21:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 700E04ECE7
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:00:45 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B5144F023
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:21:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CBC338AAC93
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 01:00:39 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 14FB180D646
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 01:21:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B882D2EFD9B;
-	Wed, 21 Jan 2026 01:00:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1629B30DD16;
+	Wed, 21 Jan 2026 01:20:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lY9lYTlB"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="EGIQMPlX";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="WLYmxcMl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 167132EA168;
-	Wed, 21 Jan 2026 01:00:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 847FF30C371
+	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 01:20:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768957215; cv=none; b=Fz9YkKC8j1+VSyn1H1NU9cnIqoZ+Djk1nFhV+6g2XMMtjkVfKHv45myOhDeEXPYXKFG/2TMoGCCMJHGLXZhedAdHIPKITVSli6uDUZcR2/u64svhjY9gXBzSLafdsus3yDn/TeXHvidawtJx91IRReAvLUs7XTzcsD789JPpro4=
+	t=1768958431; cv=none; b=PRneYVHSeL7QQPxeyWtOUpI+vffvGdZHFgVD5MW+X4XaJ62BeMpFN/+NQ6atyGOGd/ZgSCPPXGHRw6kECz5+0xLhK7BMumoQ7iwjRWq4NMya3qFe9R9yaRAtODAkWuf84O97CZRpurb9QTCaTXe186KUsTAXoXBwM2wmN2wcZ0E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768957215; c=relaxed/simple;
-	bh=XsHeBPquA+X8hq4tjBVOXmmlym62FAzaGNliMr6+S5k=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=EKyfbMHnQsGgHOvcARcYd1Dapb3J6zmyEXvgK4iwcB5xa6Jk4F1zX0HSH6ki7bJ0wFI9m4k9ZSW/kgYQtmdGWUDz6I5VxyfX7hpGqXLl69P7ql4wXdMF0gO+xJrYDuhEEBKODBQEYnG9fmXCanqW7uzMaL/UKvaf1c3pymeUul4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lY9lYTlB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 7AA1CC2BCB0;
-	Wed, 21 Jan 2026 01:00:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768957214;
-	bh=XsHeBPquA+X8hq4tjBVOXmmlym62FAzaGNliMr6+S5k=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=lY9lYTlBwe/NqvbZHlCG8DaF//A9Eu1wnFVse0PYXzztteMvSDk0jScClDcKsAC/6
-	 wPhFHGX4Oy20mllT6jtxevO66Lyw8hjX4f3VhOks7wB6rGH8VM5vAXkecxHaUCbsD9
-	 RWclnzqP9Aj6g+qHt7tpVHjUKPLayDZFJkRenKQ1Cm+9YkDhHe6rQGElypK26d2qV9
-	 xZpieJsgF8LpREnjOasz52LWKKZNYBLcV45r+K3V9OG0CJQf6obyunnsrCfkZIMDyN
-	 7RCGz51Kcplx7egceqq9uY4ugjSw3A0259mvgpJOmPTM9l2Fg1e5qFUdqOk2vUoAUe
-	 fRegVYTicwsLg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 70161D262B3;
-	Wed, 21 Jan 2026 01:00:14 +0000 (UTC)
-From: Amit Sunil Dhamne via B4 Relay <devnull+amitsd.google.com@kernel.org>
-Date: Wed, 21 Jan 2026 00:59:39 +0000
-Subject: [PATCH v4 5/5] usb: typec: tcpm/tcpci_maxim: deprecate WAR for
- setting charger mode
+	s=arc-20240116; t=1768958431; c=relaxed/simple;
+	bh=UFxsZFjoBBxzDzolWUEiJPPHs9TpgdaiRQINz1dfp/g=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=a+vKWem8ZhqU6XBUMfqicVqZIBtrZHcxY5EWVjZ/C8MQ1v3Y5Ae/RpXbA048DSorpWHSgBjWe5CoFBXsPg+VaaBZpRqJ49mLg4m6eZreT0uuHNJBjm1Kg7bIvfF8GxR1nIporEhinviMlVtxmxlkpeHHmSr9pdXhQcg/37YtUVA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=EGIQMPlX; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=WLYmxcMl; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60KKKoTC877914
+	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 01:20:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	GxiQLmlTsdvKzrs2ro8tcxJmpLG39Vy46ft+XTCJ8eU=; b=EGIQMPlX7EZRAgMc
+	EphulYo16uZm3gNPXZVtG6QlkM4PEm0hKFMrdC6ooiU1mFVUggTMtOaSI9AoC0CJ
+	wNFSqblAJyXpTCO/5Vn21upvjgBAeAe8X3/LV2qSerYw74G38zSB1IcRSEQLM6KH
+	9bPqZpPmfqH8j+LfYy6bDoI3vF913ROCJA/A1Qp48IdEAMiIdv5nkGCdOltKrR7K
+	P7lU+G3bzxgDbVP8qLgJkZRIAHmQSkOBhG3kX4cLTlxEf7s7hl8b2jHBPcYxQxPP
+	xikq+e6F0rO1Nb0MCW1eMag+/ESBLwe4xttPn+y2BffTvGM8nYzgXl0WVjYbqzYl
+	vVCIew==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bta42jbs8-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 01:20:28 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8c6b4058909so774326685a.3
+        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 17:20:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1768958428; x=1769563228; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GxiQLmlTsdvKzrs2ro8tcxJmpLG39Vy46ft+XTCJ8eU=;
+        b=WLYmxcMlo/Zq4keyluzgV5Z7BJgGYmvRY8oWrHMhx2O9SahqlZxPtU0VxtrytJCb6+
+         wMpbgGN4J/uCxPdk2DPpxG5zmLTscbVxsqh9sMbNqKo4JMtN+7IfmaK7/1LMLdAUVIFD
+         qTVdTOQ9lr3VDAh66r2MIckAIJ9hMqTchUOd1vG62zDq84apnPNEefo/uLLtr1LdiK+z
+         4v924DVv1JkGBB1FJvv8UHRvaFcGqb4Bwx1QGCE4iit0LkTckszwvmWiIne5TWt8FFQF
+         bHlgvFqg9CFkPePGR3DL/vaom+BMqTA0Q3Vcm8aYNPS+CBgTPK8YW58uBRDS8h2S7gE9
+         4iLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768958428; x=1769563228;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=GxiQLmlTsdvKzrs2ro8tcxJmpLG39Vy46ft+XTCJ8eU=;
+        b=g4srVp3lSm95WNKTTWGgEGsASQ5E3Fl6JZ7WUFqWpWvgQkC+p60r2d5Qdr+xtuvZ7t
+         cl/zAEap1cQRXrND8d+a2BuhHzDlUc0W9iGzBdPmAb+S4AisOnJrB3GpaXEeomkKbYFL
+         z8UqdvUXTsRz+O3gppwRWTaJpiCl/BN+GLKxTNNo81NUtOQV2IHNm6RgT6QlSAmkaHMd
+         Z/9L0muBzuNzl5xq7k/lRpwFr2G96JlSDHvV1GjiK/vYchvg23XYpDx6N3yNScYLODir
+         tdVGl1PTgGjPYM9egizcOLtMWZ5FbtdamLQzKeJJtsnfMrptNB/1klaqxHxoWbnn6id4
+         QhjA==
+X-Forwarded-Encrypted: i=1; AJvYcCWZLM/NnfB+c9P9eMAsN7Dy6I4Ws0lrxOBVOjrnlHiWLwGNTr2X4XaAJl2Z3QRdqgawLZ/i89CzXgdW@vger.kernel.org
+X-Gm-Message-State: AOJu0YyDzf6OMA2bL5hi6xqMhErgN+a6WrjnSguI+Pvh0tOxj7EQjo0O
+	b3L9LbiDocwsnmwosN3pkGDljD0HJJs2jErg+X4oMutYH+z7pPEbtTnzewc/x2YhmHN3uNfnOBu
+	XkUMNnA7RHu+ucaMFCqPGCev89Wa4TOFUJUSoVGSOvShp8aK1cVl8j9O37aEuT1LD
+X-Gm-Gg: AZuq6aI7DlIHKIi8ZC3JZP8JQBf7WEWH+p3Kd4FBQ2Q97F+VtgKTCRvSkzMRfpCQC+u
+	m36edvjR4ZdJ+xlxu9/j839J+46xFo7K6LYOzhRkNqM3/FUrxnOvf8g4j3Z9VSD/1At6F3K/7gq
+	O06Q4ma6lmoehJNmqvU+ChpVW7qJVBTZTGU37dTdYFRLx+sCOQ8jAHy5dIdXG6GwH++UhaIhnQu
+	ztDhmCFeuFSlH+YgmO4vT5qyHfHPHufBR9pbBeFJ2EzWNIJBb+zPi3ZQuoKvwNwNFrWtpZJebVF
+	bMtt1LMUzzwElMzE50EnAO/pOhKShix9Hsf73ZtFu1MeMaYbFLVaduKXUI1K3FcmcpCPHc9cAWZ
+	wC4unDuPUbD1sPaGyoEgExwhCfDrdP1mP/IcJLvSLN5x6eq5pj494QYfKEM8xqmg3+thBbt4qbv
+	hCTp+XhUVb1BcaYbGOMjRcMqY=
+X-Received: by 2002:a05:620a:19a9:b0:8a6:e2b4:ba73 with SMTP id af79cd13be357-8c6a676deefmr2388902185a.51.1768958427664;
+        Tue, 20 Jan 2026 17:20:27 -0800 (PST)
+X-Received: by 2002:a05:620a:19a9:b0:8a6:e2b4:ba73 with SMTP id af79cd13be357-8c6a676deefmr2388899585a.51.1768958427183;
+        Tue, 20 Jan 2026 17:20:27 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59baf3543d2sm4383110e87.43.2026.01.20.17.20.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Jan 2026 17:20:25 -0800 (PST)
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: robin.clark@oss.qualcomm.com, lumag@kernel.org, jesszhan0024@gmail.com,
+        sean@poorly.run, marijn.suijten@somainline.org, airlied@gmail.com,
+        simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, neil.armstrong@linaro.org,
+        konrad.dybcio@oss.qualcomm.com,
+        yuanjie yang <yuanjie.yang@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, tingwei.zhang@oss.qualcomm.com,
+        aiqun.yu@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com
+Subject: Re: [PATCH v6 00/12] drm/msm: Add support for Kaanapali
+Date: Wed, 21 Jan 2026 03:20:21 +0200
+Message-ID: <176895840440.3580355.4970268867453461816.b4-ty@oss.qualcomm.com>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20260115092749.533-1-yuanjie.yang@oss.qualcomm.com>
+References: <20260115092749.533-1-yuanjie.yang@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,191 +125,105 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20260121-max77759-charger-v4-5-694234c8ded1@google.com>
-References: <20260121-max77759-charger-v4-0-694234c8ded1@google.com>
-In-Reply-To: <20260121-max77759-charger-v4-0-694234c8ded1@google.com>
-To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
- Lee Jones <lee@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Badhri Jagan Sridharan <badhri@google.com>, 
- Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
- Peter Griffin <peter.griffin@linaro.org>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>
-Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-usb@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- RD Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>, 
- Amit Sunil Dhamne <amitsd@google.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1768957213; l=4043;
- i=amitsd@google.com; s=20241031; h=from:subject:message-id;
- bh=gNnVByQLieKyAsnu80J6+t0cbNJjF7NR+Dggwv66Dvg=;
- b=a2qWTsPaLRBPgYtyC9nrykgm9MHHNBIWDmGasd1ExwNCbAyccZMhE6yNyVEzqdxwL276xA5mi
- 177B1gJG8FpDcyyKsX8HymqgZ4ttdGoNiryQwI+aNtGjKCKqqsTyt3Y
-X-Developer-Key: i=amitsd@google.com; a=ed25519;
- pk=wD+XZSST4dmnNZf62/lqJpLm7fiyT8iv462zmQ3H6bI=
-X-Endpoint-Received: by B4 Relay for amitsd@google.com/20241031 with
- auth_id=262
-X-Original-From: Amit Sunil Dhamne <amitsd@google.com>
-Reply-To: amitsd@google.com
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIxMDAwOSBTYWx0ZWRfX8xIUqtrOkg7J
+ 3wZG2tZdsHmsmEIEeRW7brMRyWSWnwuaPRi/i/Yj96K6aolxZdce6ODAsShQb8hqpMkoJJZQr+b
+ wlLqXTY/ValGAl1hdfVsR/UZVpxOic5t1DeE9EvR1mhO5rNjrU0Xruj1RP6aJNXX+eqK8fJl1yF
+ 87liFX7GLhENoLf2wKUHE7xZAjb3gsEP3158JyAAiJ1+duoiY7ryE6wJ/HkDPGfR+krdRF6QnBF
+ EzUKiQFb/AOttUhe1wFJVHysxCtNXnICsp54oV50S2ztOHZbivOZyYLAJ3hoIBiVT4voZRTf1ey
+ /Ci7qTAd2eaz4pMT0N1NvqKJV7ursKMmvFqlFt65UO/9h8oXl2luWS6em8QwSzJOvAhIBgnwyQh
+ x1srasaQWxLMU0WVW1ffkxf22XnumokUTpVeRDxZ0LyGO0mwjfXaXSOYyje4sujjkrjNFyu3OQe
+ YOO54SH3tlN4+i8IAfg==
+X-Proofpoint-GUID: K0V6XCBNkxRVeNtRUnQPEzN_WGcQQpL3
+X-Proofpoint-ORIG-GUID: K0V6XCBNkxRVeNtRUnQPEzN_WGcQQpL3
+X-Authority-Analysis: v=2.4 cv=JeSxbEKV c=1 sm=1 tr=0 ts=697029dc cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=e5mUnYsNAAAA:8 a=s59xupi2FMclaisc2rYA:9 a=QEXdDO2ut3YA:10
+ a=IoWCM6iH3mJn3m4BftBB:22 a=Vxmtnl_E_bksehYqCbjh:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
+ definitions=2026-01-20_06,2026-01-20_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 bulkscore=0 priorityscore=1501 lowpriorityscore=0
+ impostorscore=0 adultscore=0 spamscore=0 phishscore=0 clxscore=1015
+ malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
+ definitions=main-2601210009
 X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-257678-lists,devicetree=lfdr.de,amitsd.google.com];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
-	RCPT_COUNT_TWELVE(0.00)[21];
 	MIME_TRACE(0.00)[0:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[amitsd@google.com];
-	R_SPF_SOFTFAIL(0.00)[~all:c];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	TAGGED_FROM(0.00)[bounces-257680-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,gmail.com,poorly.run,somainline.org,ffwll.ch,linux.intel.com,suse.de,linaro.org];
+	DMARC_POLICY_ALLOW(0.00)[qualcomm.com,reject];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,linaro.org:email]
-X-Rspamd-Queue-Id: 700E04ECE7
+	R_SPF_SOFTFAIL(0.00)[~all:c];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 8B5144F023
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Amit Sunil Dhamne <amitsd@google.com>
+On Thu, 15 Jan 2026 17:27:37 +0800, yuanjie yang wrote:
+> The Kaanapali MDSS has some differences compared to the SM8750 MDSS:
+> - DSI PHY/DSI base address have some changes.
+> - DPU 13.0:
+>   - SSPP layout has a great change.
+>   - interrupt INTF layout has some changes.
+> 
+> This patchset contains DSI PHY, DSI Controller, DPU & MDSS bindings
+> in addition to the driver changes.
+> 
+> [...]
 
-TCPCI maxim driver directly writes to the charger's register space to
-set charger mode depending on the power role. As MAX77759 chg driver
-exists, this WAR is not required.
+Applied to msm-next, thanks!
 
-Instead, use a regulator interface to source vbus when typec is in
-source power mode. In other power modes, this regulator will be turned
-off if active.
+[01/12] dt-bindings: display/msm: qcom,kaanapali-dpu: Add Kaanapali
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/60772c225f0f
+[02/12] dt-bindings: display/msm: dsi-phy-7nm: Add Kaanapali DSI PHY
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/b92efcf5197e
+[03/12] dt-bindings: display/msm: dsi-controller-main: Add Kaanapali
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/ac9d8bf74862
+[04/12] dt-bindings: display/msm: qcom,kaanapali-mdss: Add Kaanapali
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/526015977816
+[05/12] drm/msm/mdss: Add support for Kaanapali
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/3d2d7a3386e8
+[06/12] drm/msm/dsi/phy: Add support for Kaanapali
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/223bff623c7d
+[07/12] drm/msm/dsi: Add support for Kaanapali
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/2482c6f93aa6
+[08/12] drm/msm/dpu: Add interrupt registers for DPU 13.0.0
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/b78956dc9ed7
+[09/12] drm/msm/dpu: Refactor SSPP to compatible DPU 13.0.0
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/cc4b81f178c7
+[10/12] drm/msm/dpu: Add Kaanapali SSPP sub-block support
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/688c7734002a
+[11/12] drm/msm/dpu: Add Kaanapali WB support
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/c6c9f129e98e
+[12/12] drm/msm/dpu: Add support for Kaanapali DPU
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/83fe2cd56b1d
 
-Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
-Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Reviewed-by: André Draszik <andre.draszik@linaro.org>
----
- drivers/usb/typec/tcpm/tcpci_maxim.h      |  1 +
- drivers/usb/typec/tcpm/tcpci_maxim_core.c | 54 +++++++++++++++++++------------
- 2 files changed, 34 insertions(+), 21 deletions(-)
-
-diff --git a/drivers/usb/typec/tcpm/tcpci_maxim.h b/drivers/usb/typec/tcpm/tcpci_maxim.h
-index b33540a42a953dc6d8197790ee4af3b6f52791ce..b314606eb0f67ddbc80d8760244aa6dee61bebc1 100644
---- a/drivers/usb/typec/tcpm/tcpci_maxim.h
-+++ b/drivers/usb/typec/tcpm/tcpci_maxim.h
-@@ -60,6 +60,7 @@ struct max_tcpci_chip {
- 	struct tcpm_port *port;
- 	enum contamiant_state contaminant_state;
- 	bool veto_vconn_swap;
-+	struct regulator *vbus_reg;
- };
- 
- static inline int max_tcpci_read16(struct max_tcpci_chip *chip, unsigned int reg, u16 *val)
-diff --git a/drivers/usb/typec/tcpm/tcpci_maxim_core.c b/drivers/usb/typec/tcpm/tcpci_maxim_core.c
-index 19f63865079658fb2a446dc390262d141b940e9a..e9e2405c5ca036e28c307088d4b785726834e71f 100644
---- a/drivers/usb/typec/tcpm/tcpci_maxim_core.c
-+++ b/drivers/usb/typec/tcpm/tcpci_maxim_core.c
-@@ -10,6 +10,7 @@
- #include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
- #include <linux/usb/pd.h>
- #include <linux/usb/tcpci.h>
- #include <linux/usb/tcpm.h>
-@@ -35,12 +36,6 @@
-  */
- #define TCPC_RECEIVE_BUFFER_LEN				32
- 
--#define MAX_BUCK_BOOST_SID				0x69
--#define MAX_BUCK_BOOST_OP				0xb9
--#define MAX_BUCK_BOOST_OFF				0
--#define MAX_BUCK_BOOST_SOURCE				0xa
--#define MAX_BUCK_BOOST_SINK				0x5
--
- static const struct regmap_range max_tcpci_tcpci_range[] = {
- 	regmap_reg_range(0x00, 0x95)
- };
-@@ -202,32 +197,49 @@ static void process_rx(struct max_tcpci_chip *chip, u16 status)
- 	tcpm_pd_receive(chip->port, &msg, rx_type);
- }
- 
-+static int get_vbus_regulator_handle(struct max_tcpci_chip *chip)
-+{
-+	if (IS_ERR_OR_NULL(chip->vbus_reg)) {
-+		chip->vbus_reg = devm_regulator_get_exclusive(chip->dev,
-+							      "vbus");
-+		if (IS_ERR_OR_NULL(chip->vbus_reg)) {
-+			dev_err(chip->dev,
-+				"Failed to get vbus regulator handle");
-+			return -ENODEV;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
- static int max_tcpci_set_vbus(struct tcpci *tcpci, struct tcpci_data *tdata, bool source, bool sink)
- {
- 	struct max_tcpci_chip *chip = tdata_to_max_tcpci(tdata);
--	u8 buffer_source[2] = {MAX_BUCK_BOOST_OP, MAX_BUCK_BOOST_SOURCE};
--	u8 buffer_sink[2] = {MAX_BUCK_BOOST_OP, MAX_BUCK_BOOST_SINK};
--	u8 buffer_none[2] = {MAX_BUCK_BOOST_OP, MAX_BUCK_BOOST_OFF};
--	struct i2c_client *i2c = chip->client;
- 	int ret;
- 
--	struct i2c_msg msgs[] = {
--		{
--			.addr = MAX_BUCK_BOOST_SID,
--			.flags = i2c->flags & I2C_M_TEN,
--			.len = 2,
--			.buf = source ? buffer_source : sink ? buffer_sink : buffer_none,
--		},
--	};
--
- 	if (source && sink) {
- 		dev_err(chip->dev, "Both source and sink set\n");
- 		return -EINVAL;
- 	}
- 
--	ret = i2c_transfer(i2c->adapter, msgs, 1);
-+	ret = get_vbus_regulator_handle(chip);
-+	if (ret) {
-+		/*
-+		 * Regulator is not necessary for sink only applications. Return
-+		 * success in cases where sink mode is being modified.
-+		 */
-+		return source ? ret : 1;
-+	}
-+
-+	if (source) {
-+		if (!regulator_is_enabled(chip->vbus_reg))
-+			ret = regulator_enable(chip->vbus_reg);
-+	} else {
-+		if (regulator_is_enabled(chip->vbus_reg))
-+			ret = regulator_disable(chip->vbus_reg);
-+	}
- 
--	return  ret < 0 ? ret : 1;
-+	return ret < 0 ? ret : 1;
- }
- 
- static void process_power_status(struct max_tcpci_chip *chip)
-
+Best regards,
 -- 
-2.52.0.457.g6b5491de43-goog
+With best wishes
+Dmitry
 
 
 
