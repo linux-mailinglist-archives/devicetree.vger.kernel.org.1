@@ -1,183 +1,268 @@
-Return-Path: <devicetree+bounces-257944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257945-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2PW6MKjQcGkOaAAAu9opvQ
-	(envelope-from <devicetree+bounces-257944-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 14:12:08 +0100
+	id GC9xC33PcGkOaAAAu9opvQ
+	(envelope-from <devicetree+bounces-257945-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 14:07:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11039575FE
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 14:12:04 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 536EA57518
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 14:07:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8B87B9E944B
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 12:55:04 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 90142649B0D
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 12:56:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EF11481FB3;
-	Wed, 21 Jan 2026 12:52:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E08848A2C7;
+	Wed, 21 Jan 2026 12:52:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qwfIypJ9"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ebvK0CBa";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="VgapmqDL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02C8D3ECBC2;
-	Wed, 21 Jan 2026 12:52:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7314B2C3261
+	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 12:52:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768999928; cv=none; b=eiXg3R178tjERCxGk0Rb72oAbD+SNaW9zxvGy4gnizvfPaBZ4P96p5X3rPCXswM3/hx6nC+bgE0lcq2hkdQ0q+NVZ7T7hwnzglFCOwTwpW3rhTrZVnEk4w3rR6/cwSUOdfYEpw1Z2SkscHBMZywPNBSPvXXZlW/9vpBAWU2xHqg=
+	t=1768999954; cv=none; b=ghYR3hmE5kB6bd3yDhdXMhK3qu6fPBy9wDVsfCXf2eTozFsSDJDMaQ7yADT+NIIg5WqVfcb2aD6/1CAHmSjXeRl7M1nVwdwsfMIj0CUCwsFrUY1VfUqswemPpnU1l4o/8M1F7ItHzAz6CO3CNiS74QIgVfnJqKSqJe/9MWEapSo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768999928; c=relaxed/simple;
-	bh=leMl3oXeQbKOezU9GD2iOvYdF5WK3q971ctFN7xMINA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LC92MGNkA2Gnc+/pnTvDG+tCS266oZ4R3mLDvSBtxhaQU1TEA5sqeAYRtTfEpYuSRIgwa8BkjjswILq0qnrv9j/a6vYL0+trgrUef5JKhjb+Gy3yQqP3YtfriuPfU9DGxYWHJ5FgDvaLhCNpOq0IIGoU5b+XHE6VH9On1mEfFo0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qwfIypJ9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A23A4C116D0;
-	Wed, 21 Jan 2026 12:51:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768999925;
-	bh=leMl3oXeQbKOezU9GD2iOvYdF5WK3q971ctFN7xMINA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qwfIypJ9fvTP86b+8ps3bKi5uNt/qfCcnIhDlKqBJaDY0XfKo2Sw+FRNZGtIQGEmM
-	 c+UhLxU14VcL2MMHjqKDWIBpcd9MKRDZt9EQj/r6HjjlsP8bHJG+5VyKcb0fuwtoes
-	 ySjLISh6wTUkTeP/1Ps3U+K32n9lASZ9pLUGDCTP8vGdaPl4cvRcrC7HuOXPOg1YSy
-	 Cnh0WXptqyCIUDBBHJTxaDp79evgPt2GzpSd8aLLlZBpJCRtk/7/XnKApsWbjXEy4B
-	 Oco4ERF3ehjfho3AgR6bdEPsBPymlYbJPUldkYhqJ9/3yj1JJHr1hfMUdgAKqDHRam
-	 BQ1k3WMLRa0zg==
-Date: Wed, 21 Jan 2026 18:21:45 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: zhangsenchuan <zhangsenchuan@eswincomputing.com>, bhelgaas@google.com, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, lpieralisi@kernel.org, 
-	kwilczynski@kernel.org, robh@kernel.org, p.zabel@pengutronix.de, jingoohan1@gmail.com, 
-	gustavo.pimentel@synopsys.com, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, christian.bruel@foss.st.com, mayank.rana@oss.qualcomm.com, 
-	shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com, thippeswamy.havalige@amd.com, 
-	inochiama@gmail.com, Frank.li@nxp.com, ningyu@eswincomputing.com, 
-	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com, 
-	Niklas Cassel <cassel@kernel.org>
-Subject: Re: [PATCH v9 2/2] PCI: eic7700: Add Eswin PCIe host controller
- driver
-Message-ID: <cl2gdo6ledszdkubyimullksobtzuh4stplrctrsjxvi4u4xc4@s5daay4pwukx>
-References: <4f3rhkrlp3jypajh77rohqgpoujivpxq6g3o6vrt6u7u5j2atd@gd5o3vtlhapp>
- <20260106174348.GA365798@bhelgaas>
+	s=arc-20240116; t=1768999954; c=relaxed/simple;
+	bh=rwSf8fNWqiNDBYgYMkPuKN7RGY1I7zi468jEYarcFXg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=caUDvguhAs3NEdrbrmWCauTtITlM3rZQE7HhrHw5okxL/u91NtSNHXqgUZONsVDaOjkjYCEzVJyIEs9wcheUyP+Nmt4/ffQIm1UwaBR6uMSYNF65lC5fpcIhGrvvPwN5WLoUbRqO2TxrRZkFHRnea0jhnLZ4of04rHNJUQrjUWU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ebvK0CBa; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=VgapmqDL; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60L8vDGb2946271
+	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 12:52:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Vm2c7TjrTcvjEHOS1OuxOVPHSsAoS1MO82JHEbyQX00=; b=ebvK0CBa7bhuGS5K
+	L727dqEzVzP+f3RSR14AQImHB5doXAcZ0cxFc/c9LCobesB88dNQi+IXwPS6LRzG
+	0KDwsoZfJ6/yHXebbz5+RCVoF3F3jrTiuPEeFKCCz2K50QEGvm4ita4TFG9EkBKS
+	AKhGRBfqwDXsc5hTqDYS81T34vm9GgavzWkvi1esdrekdGiCfyHbLZr27p1seu9Z
+	OBTaBsW9x07f4UzuPCql3D8DF7UFdq+bfnI5tUkTUQ4MOh0OhNZK27/rfgErGrqz
+	aaAbriBDo/wwxvcRKx+eAf46+q6YVDArtoUXKN7IeAyvoRwhYp50OHBe6DS+hLML
+	1L2jBw==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4btur98ytu-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 12:52:31 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8c6a182d4e1so157401985a.0
+        for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 04:52:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1768999950; x=1769604750; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Vm2c7TjrTcvjEHOS1OuxOVPHSsAoS1MO82JHEbyQX00=;
+        b=VgapmqDL1WfqWsReskyK5QL7Bp420SeYyRtFLNpC45osi+8YcIfdQcWHwSSfobGc82
+         fmshSmdyFvDSGh8J3bemxhkqXYVypJwbK7hOEPyiQBVSFtQHqPeuHC7VjnE6fdy5qFoi
+         ukRLKhdhyOvxaA55nIO0ORvkJExBPQsvk3kUYQh1WrZAGrPM+ECnk3he2KUiP9TcenA8
+         sPxe8x/Uht8hTCmRqkiyG0zQH131WqTiaGbpCk3KwWoWdisVPi6CN5NTNLWlHZAQqNN+
+         T0ycPE5Ee/WoEbhJ6rtKM91hrb+BYq7qJg0uxR2O8blyW0J0vlT/1vELOCvuWwLdis4h
+         jU/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768999950; x=1769604750;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Vm2c7TjrTcvjEHOS1OuxOVPHSsAoS1MO82JHEbyQX00=;
+        b=wrUrdozqkFsSVH99401wZBtc/97a9opYq2/jPZxlA2oLzHVxwwsD/fQmyXIDOPZb7S
+         yFP7h4plPx3iow+IwsT+x2v1YYSaUGQ1XEReAEWLc86Tky+5BIRYmzyKjDniHglCVAen
+         +fD17vxiSJAiTuWRyfBw1p9aMH6m6ztRdy+oX5hWh/9281LJMHCCHYcasKh5qO9Qrxzv
+         EknP4C0F+28GkruYgpW2Sv0O7fQzn7oVox1N/M1W02MgE3hrO3AaXYUDfknnHainrSr5
+         VEB0jpLTrI7ysV2eI3YYGeOTOfnn/qaD1+AyJL+PyIvTsF6EcsFdSLXWTIpFPKg9WbgN
+         nuOg==
+X-Forwarded-Encrypted: i=1; AJvYcCU1xsqDPk8WL5SnjE6mN7bJJDSxk3LVxmjbvO+5MB9HYIueIbN+XF4TICsE8f6USpuvNVzg6pGFvIYC@vger.kernel.org
+X-Gm-Message-State: AOJu0YwplkU/zFRulco3CECXqvUdpgX5xhmoX2V8dVZRaax98cDlEeU8
+	vZy9jmtshHSBM6AxWcpYxQwLtm4ULJ93tkuDsloWNBTwlO2jiRUhsdi2K2Oa5xJtNzCVjMsrggW
+	TXyzRsSEVtZK8x/NUnwkqK700g9pIyeZkRgjvcvXDmNkZa3hwGJYlAZh20OOe9BGl
+X-Gm-Gg: AZuq6aKV9Wm1mDCUiN/OVYAvaHqhmpyInxtaF0MPE2cpJahljPZhEAtAOl1wWOIxRD2
+	kgDjbfJ4ru37EEV0SkjlddlSet2lk7dKT3a+3QYvO7yY/VEZnePPjeW4Ibfy8KtwoXpLk6+C+dt
+	JQWaWAWcfg4am3GUNbkOLkU6YLFMbNdDKWmIpz+OyP7YtlpsjJh+ed5k/NYUbwVnrm8Cd0A+Cco
+	KGk0dJPHvYmTSc9DcuBrZ9Fx3pmHnIas2Es+eOVtMTP3AByG8//fyPbmmUr4DCRujfosuJ5kAgm
+	QzpJPonOxLSC8eb3yWqr/kbcbLJkO1qdVxTrgAfX5nIdlEJVsqSbl7UhPIfU6evCiSNSqKPANKU
+	J4gdyb0uz11knbPZFAN0TRPuuoRH9sT7fez7os5eArvCdB88Wt8PR1vTnX/AsbUKoZ+8=
+X-Received: by 2002:a05:620a:172a:b0:8b9:e0ea:af3b with SMTP id af79cd13be357-8c6ca3deb59mr626855285a.5.1768999950424;
+        Wed, 21 Jan 2026 04:52:30 -0800 (PST)
+X-Received: by 2002:a05:620a:172a:b0:8b9:e0ea:af3b with SMTP id af79cd13be357-8c6ca3deb59mr626852985a.5.1768999949974;
+        Wed, 21 Jan 2026 04:52:29 -0800 (PST)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8795169017sm1580399366b.18.2026.01.21.04.52.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Jan 2026 04:52:29 -0800 (PST)
+Message-ID: <39e2bd90-8566-42d9-8ecd-6c5ba0f9747d@oss.qualcomm.com>
+Date: Wed, 21 Jan 2026 13:52:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260106174348.GA365798@bhelgaas>
-X-Spamd-Result: default: False [0.04 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: SM8750: Enable CPUFreq support
+To: Akhil P Oommen <akhilpo@oss.qualcomm.com>,
+        Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>
+Cc: Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
+        Imran Shaik <imran.shaik@oss.qualcomm.com>,
+        Taniya Das <taniya.das@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+References: <20251211-sm8750-cpufreq-v1-0-394609e8d624@oss.qualcomm.com>
+ <20251211-sm8750-cpufreq-v1-2-394609e8d624@oss.qualcomm.com>
+ <d8c24f26-3ee7-4966-a11b-1e2afcad93cd@oss.qualcomm.com>
+ <908b64f1-f6ac-4c5e-9c72-1174cba62017@oss.qualcomm.com>
+ <f10ade51-b29f-45cc-9895-d66a319ab26c@oss.qualcomm.com>
+ <99796cc0-f29b-40d0-b8bb-ebcbcc950b23@oss.qualcomm.com>
+ <996f47de-5900-4a3a-9372-e5ea3ae31c8b@oss.qualcomm.com>
+ <417f77ba-a0b0-4ba5-824d-8814b776c557@oss.qualcomm.com>
+ <b98eae93-dae6-4036-90c4-8fc02a122e97@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <b98eae93-dae6-4036-90c4-8fc02a122e97@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: aDQ4uVkiyUHDMK8Hka2YJBoadvIcULJC
+X-Proofpoint-ORIG-GUID: aDQ4uVkiyUHDMK8Hka2YJBoadvIcULJC
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIxMDEwOCBTYWx0ZWRfX0Zk3xBxrUZ/i
+ eUgm3qgmfAhaeQa4oq7RhgkG5rojUg1oBWvn9oWDKcWIa8ZNWI2KPe6plIq3r4QHNnPrHgKC7Av
+ EWH5RUFmCmwWfeuLvg1kegmbe/Qnk9Cr+MsLD/WCCKP23wHFB1VnQ2IEBs0vLTuuC5bVI6LkfJ8
+ RfoD4Uk5wnmsXggDnOta7UQYspnaiIUAo1Iai2OC1a7DMGUuQ4dK8IeaW9YGmItUOnR2Czw4Axz
+ 9RirAjSqbcfEstgYk05T3PRo5s5ihPgdKw7b3um/cQSAlKNF/cqRx6+cuN6R4A8VVFye4u6UP89
+ 14+fBZZ1B54lT/YTyHSdCYGmx3BP2n7lARKLiY55v7zCvV0kEWZM7E5ptt88otjK9x0Z3FWQi38
+ y1QpqCsMApgxLdX26tMYTjEH3OZNONvkfhhdRFXrpBEiXM0juK0y5xL28QNcNHlkiKXRBlO2OqP
+ z7bV6rZpv+c6eqUNfqw==
+X-Authority-Analysis: v=2.4 cv=QstTHFyd c=1 sm=1 tr=0 ts=6970cc0f cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=t3_i3bCFRmu7eDRSzYAA:9
+ a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
+ definitions=2026-01-21_01,2026-01-20_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 spamscore=0 priorityscore=1501 bulkscore=0 clxscore=1015
+ adultscore=0 impostorscore=0 phishscore=0 malwarescore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601210108
+X-Spamd-Result: default: False [-1.96 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-257944-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[oss.qualcomm.com,vger.kernel.org,gmail.com,kernel.org];
+	DMARC_POLICY_ALLOW(0.00)[qualcomm.com,reject];
+	TAGGED_FROM(0.00)[bounces-257945-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim,ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[26];
-	FREEMAIL_CC(0.00)[eswincomputing.com,google.com,kernel.org,pengutronix.de,gmail.com,synopsys.com,vger.kernel.org,foss.st.com,oss.qualcomm.com,samsung.com,amd.com,nxp.com,einfochips.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	R_SPF_SOFTFAIL(0.00)[~all:c];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
 	TO_DN_SOME(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,eswincomputing.com:email]
-X-Rspamd-Queue-Id: 11039575FE
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	R_SPF_SOFTFAIL(0.00)[~all:c];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 536EA57518
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Jan 06, 2026 at 11:43:48AM -0600, Bjorn Helgaas wrote:
-> On Tue, Jan 06, 2026 at 06:49:58PM +0530, Manivannan Sadhasivam wrote:
-> > On Tue, Jan 06, 2026 at 08:43:11PM +0800, zhangsenchuan wrote:
-> > > > On Mon, Dec 29, 2025 at 07:32:07PM +0800, zhangsenchuan@eswincomputing.com wrote:
-> > > > > From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-> > > > > 
-> > > > > Add driver for the Eswin EIC7700 PCIe host controller, which is based on
-> > > > > the DesignWare PCIe core, IP revision 5.96a. The PCIe Gen.3 controller
-> > > > > supports a data rate of 8 GT/s and 4 channels, support INTx and MSI
-> > > > > interrupts.
-> > > > 
-> > > > > +config PCIE_EIC7700
-> > > > > +	tristate "Eswin EIC7700 PCIe controller"
-> > > > 
-> > > > > +/* Vendor and device ID value */
-> > > > > +#define PCI_VENDOR_ID_ESWIN		0x1fe1
-> > > > > +#define PCI_DEVICE_ID_ESWIN		0x2030
-> > > > 
-> > > > Usually the device name is a little more than just the vendor.  What
-> > > > if Eswin ever makes a second device?
-> > > 
-> > > Okey, thanks.
-> > > Perhaps it's a problem. Maybe PCI_DEVICE_ID_EIC7700 is better?
+On 1/21/26 1:47 PM, Akhil P Oommen wrote:
+> On 1/21/2026 5:06 PM, Konrad Dybcio wrote:
+>> On 1/20/26 9:54 PM, Akhil P Oommen wrote:
+>>> On 1/20/2026 8:13 PM, Konrad Dybcio wrote:
+>>>> On 1/20/26 12:25 PM, Akhil P Oommen wrote:
+>>>>> On 1/20/2026 3:44 PM, Konrad Dybcio wrote:
+>>>>>> On 1/19/26 8:00 PM, Akhil P Oommen wrote:
+>>>>>>> On 12/11/2025 12:32 AM, Jagadeesh Kona wrote:
+>>>>>>>> Add the cpucp mailbox, sram and SCMI nodes required to enable
+>>>>>>>> the CPUFreq support using the SCMI perf protocol on SM8750 SoCs.
+>>>>>>>>
+>>>>>>>> Signed-off-by: Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>
+>>>>>>>
+>>>>>>> Just curious, does this patch enable thermal mitigation for CPU clusters
+>>>>>>> too?
+>>>>>>
+>>>>>> If nothing changed, we have lets-not-explode type mitigations via LMH,
+>>>>>> but lets-not-burn-the-user would require a skin temp sensor to be
+>>>>>> wired up, which then could be used to enable some cooling action
+>>>>>
+>>>>> In some chipsets, I have noticed that the gpu cooling device throttles
+>>>>> GPU to the lowest OPP even with not-so-heavy GPU workloads, making it
+>>>>> unusable-ly slow. My hypothesis was that it was due to unmitigated CPU
+>>>>> temperature tripping up GPU Tsens.
+>>>>>
+>>>>> So, I am wondering if there are any additional CPU cooling related
+>>>>> changes required to get a reasonable overall performance under thermal
+>>>>> constraints.
+>>>>
+>>>> Yes, something like the aforementioned skin-temp sensor at least..
+>>>
+>>> I suppose this sensor is off-chip and slow to react.
+>>
+>> Yes, this would be placed somewhere on the chassis of the device to
+>> reflect the actual temperature that the user could experience (since
+>> there are regulations about maximum values of that)
+>>
+>>>> Today Linux will not throttle the CPUs at all (they're not even declared
+>>>> as cooling devices) and we sorta agreed that in general it's a good thing
+>>>> (tm), because otherwise we'd be coding in a cooling profile into the SoC
+>>>> DTSI without taking into account the cooling capabilities of a given end
+>>>> device (i.e. in an extreme case, a PC with SM8650 with a cooler that's
+>>>> 3kg of aluminium vs a Steam Frame headset where the SoC is centimeters
+>>>> away from your face)
+>>>>
+>>>> Currently, we have cooling policies for devices with fans and the only
+>>>> other action is based on a skin temperature sensor (sc8280xp + x13s).
+>>>> Everything else is left up to the LMH defaults. AFAIK work is ongoing to
+>>>> create a more informed solution, that would have to (quite obviously)
+>>>> live in userland.
+>>>
+>>> I can understand that the skin-temp based mitigation is influenced by
+>>> various design decision outside of the SoC die. But I think there should
+>>> an on-chip sensor based mitigation which is fast and usually for a short
+>>> duration which helps to avoid extreme temperature or violating the
+>>> maximum operating point of the chipset. I guess it should depend only on
+>>> the SoC characteristics as it is a last resort. It may be implemented in
+>>> SW (like cooling device for Adreno GPU) or in HW. Probably the LMH
+>>> hardware you mentioned offers this functionality for CPU clusters. I
+>>> have no clue. :(
+>>
+>> Yes, the CPUs are covered.
 > 
-> Check pci_ids.h and follow the style used there.  Device ID macros
-> typically include both the vendor and the device.
-> 
-> > > > > +static struct platform_driver eic7700_pcie_driver = {
-> > > > > +	.probe = eic7700_pcie_probe,
-> > > > 
-> > > > This driver is tristate but has no .remove() callback.  Seems like it
-> > > > should have one?
-> > > 
-> > > In v2 patch, I referred to Mani's comments and removed the .remove()
-> > > callback, as follows:
-> > > "Since this controller implements irqchip using the DWC core driver,
-> > > it is not safe to remove it during runtime."
-> > > https://lore.kernel.org/linux-pci/jghozurjqyhmtunivotitgs67h6xo4sb46qcycnbbwyvjcm4ek@vgq75olazmoi/
-> > > 
-> > > In addition, remove .remove() callback, because this driver has been 
-> > > modified to builtin_platform_driver and does not support HotPlug, 
-> > > therefore, the .remove() callback is not needed. Do you have any
-> > > better suggestions?
-> > 
-> > Yes, builtin_platform_driver() wouldn't allow the users to remove
-> > the module. So remove() callback will become useless. The reason why
-> > this driver is tristate is that it could be loaded from rootfs and
-> > not always statically built to the kernel image.
-> 
-> This .remove() vs IRQ thing is a perennial issue and it's hard to know
-> what style new drivers should copy.
-> 
-> There are lots of DWC-based drivers that are tristate, implement
-> .remove(), and use module_platform_driver() (e.g., bt1, kirin,
-> tegra194, rcar-gen4, exynos, k1, stm32).  Is there something different
-> about the way they implement irqchip that makes .remove() safe?
+> Does this LMH based thermal migitation require any initialization from
+> Linux? If yes, could you please share a link to a patch which enables it
+> for any recent chipset for my reference?
 
-Yes, there are differences currently. Mostly due to some drivers missed the
-IRQ maintainers eyes when they got added (way before my involvement with PCI
-controller drivers). I will fix them to maintain uniformity.
+It used to, see drivers/thermal/qcom/lmh.c
 
-But the general undocumented rule is that if the controller driver implement
-any irqchip (MSI/MSI-X/INTx), they should not get removed. So they can be
-tristate, but builtin_platform_driver(). If they use any external irqchip
-controller for receiving interrupts, they can safely be removed. This is the
-case for dwc/pcie-stm32.
+I believe it went away roughly with 8250 where the firmware now takes
+care of all that.
 
-This prompts me to write the controller driver documentation that I was planning
-for a while...
+FYI I think it first appeared with 8994
 
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+Konrad
 
