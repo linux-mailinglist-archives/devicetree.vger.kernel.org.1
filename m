@@ -1,128 +1,194 @@
-Return-Path: <devicetree+bounces-257959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257960-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mP4mEOzXcGkOaAAAu9opvQ
-	(envelope-from <devicetree+bounces-257959-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 14:43:08 +0100
+	id cBBdCSvbcGnCaQAAu9opvQ
+	(envelope-from <devicetree+bounces-257960-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 14:56:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07D9557AD9
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 14:43:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D0855805B
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 14:56:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E6DC44EBDEF
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 13:24:55 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 299AF688668
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 13:31:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6738B410D39;
-	Wed, 21 Jan 2026 13:22:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1846148B373;
+	Wed, 21 Jan 2026 13:26:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="LJWr3+y2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q9Kc8f2y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFF073BC4CE;
-	Wed, 21 Jan 2026 13:22:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 347DF365A1F
+	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 13:26:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769001730; cv=none; b=e+QftvsWo2s03pmi6gb6ow5J2uF+P0LwtmxulH4bOIcZ6xKuRsDtf4yr2hYqSu+ruSKWwBZGhMPOk7mM7P0/mzMhgLak1d+4XJlFFafXxQl0a7CDN7zqa8QUT+rdB+L8b5PEaDMfJ3t7bfBLAgVPmUBw3cJfJnC1RJLVI4cfRTY=
+	t=1769001991; cv=none; b=IqMeR6jPgMK4Qg3s477+ZJ8mPqc3HVd/NdVCex11G8iFp4CDjZ/jQ1LZZPwzvVzbfitdv4CgmmDQTqTroed+WVH/E1xcPPuZ18FoTbI9aOyEVDKttssWKPf9yZO8MJJlacSO4w86o/hSzo5fu6NmC+WvXmlznWdYFH9Rgou1wlM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769001730; c=relaxed/simple;
-	bh=MQSzl+4nqOijdGa5k2w8X7c/UD0ynPlSkFE9VBKNSkU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mJH/39LkOMqCpQFx+w7ciY/nux8Bhg01/jCFQxIpJ8Xjn54W6Oqq6YQCdIrdtdb2Q8aWEz9APq3bzxC/+Q3GZwjjY0qaocYUia/5uMpmxbHeg9zkAC//1wlam7/yLWH7qCObYhQCtFrHT/Bjss8Ppjc39J9WrIEKmmiPXMPo5ls=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=LJWr3+y2; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=h8u/ykkVY6Qh746PzwCjfRYHw91IzldDAx4C04yrZ78=; b=LJWr3+y2k3VQPMYowZWyW+OLQ5
-	d6isFOBsOLwtJETmABPUnAbF0lxzfrWfHiQsP3dHC7bSzDqyP5F4DiYyJwSRRllhlhBB4yXMV04sz
-	t2xR672cZXCz+7MsrceKGgc2fRjrCja7/GOT7+NkuTc0XimqEgtnNqn41oHb+07dIEEc=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1viY9s-003oz2-E5; Wed, 21 Jan 2026 14:22:04 +0100
-Date: Wed, 21 Jan 2026 14:22:04 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Siddharth Vadapalli <s-vadapalli@ti.com>
-Cc: nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, bb@ti.com, afd@ti.com,
-	p-bhagat@ti.com, gehariprasath@ti.com, stable@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, srk@ti.com
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-am62d2-evm: Fix missing RX delay
- for DP83867 PHY
-Message-ID: <32265181-6a16-4cb3-9cc8-52d4265c6646@lunn.ch>
-References: <20260121054552.1650926-1-s-vadapalli@ti.com>
+	s=arc-20240116; t=1769001991; c=relaxed/simple;
+	bh=Ilw6wqzweYkqw4rgm0eEkLzCzIBlYAKWRV8Bde+ERSs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=KStNokTSnHrwGKnQKcUE3hpREYESorRKe7vS2hWXC56fNQYd7vb/PphQ2+mNd9ngU29Ks93DQgYeApd1pMmSQx5HhotgdSiwX8lQo3Z6wNZug0bJ22MiKTTOniN/5zyokoDqqiRLpXBmQ30pQCGzXcBNS5fJUl5MeYeYUWkRIlU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q9Kc8f2y; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-2a0d52768ccso44694395ad.1
+        for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 05:26:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1769001988; x=1769606788; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=iA08QGHrnMq/tvd0L88F2y5YQ7L4I/IIm3WGKx28378=;
+        b=Q9Kc8f2yrVRGFAM8YrZyw5S+gLL3GdK/Tw3iLVodZIw46urko3vpMgJHhAjIPnPOts
+         BiQnD0y9OVKHK/iusjwYavdgsTT2ao0PbbG/mgFVMpGrm25UyieEu7Yb8/Q0tp/xYu8d
+         IgMyOmkUTSDXpEU38ZVt7Bbr+KZs0lxIMVtUt9np4YyRiaON46kAbLtjAbs8rbsBfpBn
+         qtjYx3TzOBg4EYHSj+eISsqc042F8YCZEB6AkfyV1d35grdLiJSLN+Ajuhi4Qaokh8xO
+         W2c0ItsZKrL27kZ6NrX7ra0dED3XLvWOAAn9//HD61AOjp9R/AdZz/vnh74GaY6kse9O
+         0jwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769001988; x=1769606788;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iA08QGHrnMq/tvd0L88F2y5YQ7L4I/IIm3WGKx28378=;
+        b=OsOhmpkJAn6bZKRC5yPWBzR/NPyrq+oCPP6jsrZAMHqPOneDygjMGjALjlPmXYZzSs
+         ng2CJT7jMEjkRXaiHbXO2OsSvGzTJ19TFtAFg5SmjMwPXS3ourR2wvsQus6WKb/2B+CS
+         B9/P6gr9/IRMcr1dZE3F3W/+3unX4ykYOFfllWHec2xaJzhdr6YEk/5L5BVFoHIy3VzZ
+         nX9gXdOnJBcw03jvdIht6aoyDhYKErx2qi65aeuWPtPDd06KDJQK0675hqiMnQc2SXJ8
+         YXWw7Oyt5UVXa1UjSXwt+tCIppmyJZ+/G2+TqId8MZ94Fb+knSWdQCeAV34P+kYwbDx6
+         p8qw==
+X-Forwarded-Encrypted: i=1; AJvYcCUCeYII4Re3MD1IK6ztV65rb3xFNg3Q9BueppO5MS9ZaB051J6oYuQKNFIKsuX3YLQ3fA42zcEkLTTx@vger.kernel.org
+X-Gm-Message-State: AOJu0YxPNCxA5r1T/NBI6Au1QahCb83AHS8tKRKhhBZ97smgjp3GYwpL
+	wG4gDD/RNMXnSUo+LXy9az+1EIoK+1697Myo78QIqDzH0bFHyiT/kNe+
+X-Gm-Gg: AZuq6aLUfT7jcgwe9yWHIFkJoLWh8fGLagQYrJ/es+f9Dovr/LruX5NCvAYUmyftSl3
+	5HqefA76W4CtzGRn7bdut5xLBzgfCsQtYcUjVf5plm/k1nWAFwasWalVPZ2PN5LBDd/NWzHxgUH
+	zaurtQnIzzXRX2BmT76ol9xX2ljgwEKi3OSitM4NIa/Xn6P5LCMZwe8a2slBZgFHaAasdfPYtqv
+	HcS0y5yL2/xj3R9YO5ZrKpRlMa9OYSdUP4sbPkSGi90fWUZSAs05iFWbGLOlOOtP2clmrDDm+Ao
+	CVzScrc5ibhyk0Or2KX7HGsRfIWpq2r64Qzv2cn/DXNwXDvR5sPi0YZlLbdyVFIXOD0K1fEH40v
+	k+0J7Gb0vf2OpmjlNbu2vncrY5GH95x3PchAdgvmw6ATryLqoS5K4QMrvQHpk6oqpAOnDYvX5tc
+	fk2NKvhItmXRhbH3xA
+X-Received: by 2002:a17:903:2b10:b0:2a7:90f2:2dea with SMTP id d9443c01a7336-2a790f231ecmr30187935ad.28.1769001988312;
+        Wed, 21 Jan 2026 05:26:28 -0800 (PST)
+Received: from [192.168.0.101] ([45.113.101.30])
+        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-2a7194164dfsm151487235ad.88.2026.01.21.05.26.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Jan 2026 05:26:28 -0800 (PST)
+From: Biswapriyo Nath <nathbappai@gmail.com>
+Subject: [PATCH v2 0/5] Fix volume up and add RTC, PRNG, UART in
+ xiaomi-ginkgo
+Date: Wed, 21 Jan 2026 13:26:16 +0000
+Message-Id: <20260121-xiaomi-ginkgo-features-v2-0-fb3ee94922d0@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260121054552.1650926-1-s-vadapalli@ti.com>
-X-Spamd-Result: default: False [-1.96 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/3XPwQ6CMAyA4VchPTuzTYJgjOE9jIcxutkIm26IG
+ sO7O1GPHv8m/dI+IWIgjLDJnhBwpEjepZCLDPRROYuM2tQguSy4ECW7k/I9MUvuZD0zqIZrwMi
+ KUuYouEEtBaTlc0BD9xneHz4d8HJN/vAZQo8xqtnfZNsvX/z4G3Wdv7FRMs7yosoNNmuu26buF
+ bmOHDm79MHu4G0fKQ4+POYfRjHjX6/6d+4oErzSpVFYlXnTqtomuVtq38NhmqYXM80iCxgBAAA
+ =
+X-Change-ID: 20260118-xiaomi-ginkgo-features-6824e10fec21
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ phone-devel@vger.kernel.org, Biswapriyo Nath <nathbappai@gmail.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1769001984; l=1928;
+ i=nathbappai@gmail.com; s=20260118; h=from:subject:message-id;
+ bh=Ilw6wqzweYkqw4rgm0eEkLzCzIBlYAKWRV8Bde+ERSs=;
+ b=hFjjXM4oiWiG0Texx/nnnzzFHgGJaQs86B0Q1cZ2Dx0FO3INl8wd4n/N8QAL/fxHV+7Tt2K9z
+ 2V6bOeUfh4TBuqL3X1lZte+ha9l2V1iWgA3IKcsUqosx6NO8OKdMnX1
+X-Developer-Key: i=nathbappai@gmail.com; a=ed25519;
+ pk=slmb/9yXbet+KTiT3EYLCp0p0MEOYa3EdjUXP+HXfjg=
+X-Spamd-Result: default: False [-0.46 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-257959-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.sr.ht,gmail.com,oss.qualcomm.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[lunn.ch,none];
-	DKIM_TRACE(0.00)[lunn.ch:+];
+	TAGGED_FROM(0.00)[bounces-257960-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[nathbappai@gmail.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lunn.ch:mid,lunn.ch:dkim,ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: 07D9557AD9
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,mainlining.org:email]
+X-Rspamd-Queue-Id: 4D0855805B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Jan 21, 2026 at 11:15:50AM +0530, Siddharth Vadapalli wrote:
-> MAC Ports 1 and 2 of the CPSW3G Ethernet Switch in the AM62D2 SoC are both
-> connected to different instances of the DP83867 Ethernet PHY on the AM62D2
-> EVM, with the 'phy-mode' set to 'rgmii-id'. The DP83867 Ethernet PHY has to
-> add a 2 nanosecond delay on receive (from wire) based on the EVM design.
-> 
-> Since the device driver for the DP83867 Ethernet PHY coincidentally assumes
-> that a 2 nanosecond receive delay has to be added in the absence of the
-> 'ti,rx-internal-delay' property, Ethernet is functional.
-> 
-> However, since the device-tree is intended to describe the Hardware, and,
-> the device driver for the DP83867 Ethernet PHY may change in the future,
-> add the 'ti,rx-internal-delay' property and assign it the value
-> 'DP83867_RGMIIDCTL_2_00_NS' which corresponds to a 2 nanosecond
-> delay.
+The patch series fixes an issue and adds some components.
 
-The driver will not change. Doing so will break boards, causing
-regressions. Also, passing PHY_INTERFACE_MODE_RGMII_ID to the PHY
-means the PHY should add 2ns, or the closet it can achieve. The PHY
-driver does not coincidentally assumes that a 2 nanosecond receive
-delay is required, it is required a 2ns delay is added.
+Changes:
+- Fix volume up button gpio and power source in xiaomi ginkgo.
+- Enable RTC from pm6125 in xiaomi ginkgo.
+- Add prng node in sm6125.
+- Add debug uart node in sm6125.
+- Enable debug uart in xiaomi ginkgo.
 
-So this patch is pointless.
+Depends on:
+[1] https://lore.kernel.org/linux-arm-msm/20260116-xiaomi-willow-v2-0-4694feb70cdb@mainlining.org/
 
-Please drop it.
+Signed-off-by: Biswapriyo Nath <nathbappai@gmail.com>
+---
+Changes in v2:
+- Enable RTC in pm6125 by default as requested.
+- Link to v1: https://lore.kernel.org/r/20260119-xiaomi-ginkgo-features-v1-0-3c8fae984bda@gmail.com
 
-       Andrew
+---
+Biswapriyo Nath (5):
+      arm64: dts: qcom: sm6125-xiaomi-ginkgo: Fix volume up button
+      arm64: dts: qcom: sm6125: Add PRNG node
+      arm64: dts: qcom: sm6125: Add debug UART node
+      arm64: dts: qcom: sm6125-xiaomi-ginkgo: Enable debug UART
+      arm64: dts: qcom: pm6125: Enable RTC by default
+
+ arch/arm64/boot/dts/qcom/pm6125.dtsi               |  1 -
+ .../boot/dts/qcom/sm6125-xiaomi-ginkgo-common.dtsi | 18 +++++++++++++---
+ arch/arm64/boot/dts/qcom/sm6125.dtsi               | 25 ++++++++++++++++++++++
+ 3 files changed, 40 insertions(+), 4 deletions(-)
+---
+base-commit: e5d16f0daba655b8c63032f7b0ae1f21881d821f
+change-id: 20260118-xiaomi-ginkgo-features-6824e10fec21
+prerequisite-message-id: <20260116-xiaomi-willow-v2-0-4694feb70cdb@mainlining.org>
+prerequisite-patch-id: 97a500cccd7099f84f02d24b79f9632264ff0919
+prerequisite-patch-id: a76649864084c6349d5bbd425c84489621e3d950
+prerequisite-patch-id: 88844031b714eecc8185b968927ece52795237cd
+prerequisite-patch-id: 7f01d4e3dafb4911244d6bf03db9ac03395f8609
+prerequisite-patch-id: c339d93729aee842cce74ba1316f5b5c8d01d04e
+prerequisite-patch-id: daad11c94235247984631a78b2c2cda74f8af5bf
+prerequisite-patch-id: 816740927f2e464864884584e6af596b038074dd
+
+Best regards,
+-- 
+Biswapriyo Nath <nathbappai@gmail.com>
+
 
