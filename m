@@ -1,197 +1,199 @@
-Return-Path: <devicetree+bounces-257891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257890-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OE83D7a1cGndZAAAu9opvQ
-	(envelope-from <devicetree+bounces-257891-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 12:17:10 +0100
+	id MIjtE5W1cGndZAAAu9opvQ
+	(envelope-from <devicetree+bounces-257890-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 12:16:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB87D55DF9
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 12:17:09 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF01B55DB7
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 12:16:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B0ED5389E1E
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 11:08:04 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9F410687875
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 11:07:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28B124657E0;
-	Wed, 21 Jan 2026 11:06:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFDF443634E;
+	Wed, 21 Jan 2026 11:05:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="H7Tm8dLc";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="dfJbhW+E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14D5A3EDAB3
-	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 11:06:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CE03421A1A
+	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 11:05:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768993568; cv=none; b=efuimx0sxJrQMydGUSWIg3k+y0+tYDFosMRoaxSuoejSFJeOSqW/RUafeK6B/rANs3+B4QZDOHZSPLhg0KEDJiny2dXQkMp69Qty20bDegrbkYwQoQWKeTc142VU93pXTcGl8UuwqUe1X2dslE54kgwjjvKT3JSPCXrqI8Xi7Wg=
+	t=1768993541; cv=none; b=DXa63V2EtRO/EzS4nyk3w36HSTJefNIIJahjZCrg7LbdmW6JD5QJMxLG3KOW8r5/jE1lGQ3A4ynh8Tae7wYQvQrUK77yCkjyytf608qYyuMBGKt9tg1YVt5NevI8jTD8+nMIYb/ciV6fJFioq1vZWAInaxSch0NCyQ4D9uks/14=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768993568; c=relaxed/simple;
-	bh=cysOwS5g5dZRSxtVrJ3zv/VB5w+D2iLkyCuaPMhXFP4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dcqIuJppTiC814zgZ5aFEil5vxDHiaXFRJorpweVCx0Bi1wBI9+H1R80+3GNejKM6sxsF/kvv3rQ+XYbCdvDNrtd/ZyGDZ3eUHWBIcmXQUk0MSGWiGitsnpNfacZxDjYOrqS8qnmEXdbaVdqT/0+FcJ4T/VFbldY22D6UacX25s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f42.google.com with SMTP id 6a1803df08f44-89473dca8aaso5049486d6.0
-        for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 03:06:06 -0800 (PST)
+	s=arc-20240116; t=1768993541; c=relaxed/simple;
+	bh=N2pGDS/a9wFApEvBD5D6DlUyIUa4xe6Ed7BTBkbfaHo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KDBrjD4A6PvXlNZwye8MVG5BDnH50kw1EzyykoHTILbAjvy6bu39iAiVzQY1UOt7q9hMcN7V0RMitnGfpdwMVfF8nL+OwuWKgV8jg90T/TSOzw52PW1aK7+j927AgR9lDcvWZCEJAS6kYrgiGevhG7lVY8fbvhI3h3nZdhc7jFk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=H7Tm8dLc; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=dfJbhW+E; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60LAeGiD2816866
+	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 11:05:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ld8GqU3D2r4/C65SErwrhAuPQ5LtbJ6Mpvp8+G50/No=; b=H7Tm8dLcmPfjMxW6
+	s3McJIPA45uK5tmZSifE5nlsTOaNRNo+I+4maAkSVbs6z8376WLopnu09rnjEyq5
+	8nDAvhrcEPl1u4r8xzmg1UcFlNdCEp2HZWWi8+pbdFAqX0oiMYRJGbdbR34GJ/Ed
+	tfR6eF4fWIaNeEPQFo0iSadjhWTgqNy6SsGQmYUv4Ye55ODpjrwP7Fy5T4J4oFhk
+	ZDe2tQEPmDz/2GsfHJtwL9N5Tho5aJk34esjqOkBaB+nooOmC5AbOtI+R+wN9BLH
+	zntwzYU1KVKHx20Ocjt3lytZEAewoq6N0MTctcmZ8/xVFHoDzKlAEq/X8FgjdJxt
+	Z26EsQ==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4btw8kg2bu-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 11:05:39 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8c523d611ffso67767185a.2
+        for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 03:05:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1768993538; x=1769598338; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ld8GqU3D2r4/C65SErwrhAuPQ5LtbJ6Mpvp8+G50/No=;
+        b=dfJbhW+E+qVXdqMvFtmbPTYoXyTz5YZcZlTYqM9weDMK8lf3QDM+B3GKT+NssjBWn0
+         JuBTX/pqeWAW8YUQWYZ6ihrWVYhym8BwDnNezEF0m+7BxvPBblvyMCoQBQcadfdey8AA
+         QVOqFMj6hOWAhlh/B/ketuSTa86L6Lpf5SDgLXdKNQoDo5xX69T1Wl3GfeJtAvQRSqu8
+         4uU8xs2ATzV0EsL9zWpoLkysoENWhcqzT+eKDLegPqakmetoWk0Gx3M5sxFP0OhDK3yY
+         tNqQx2Y+WglaC4nVaQKG5RYmijfkGnHwAgjtsjze+WVkHBAEW5i/O6AuoJ16CcM1zs/D
+         JRIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768993566; x=1769598366;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VSYJm8i9wWqRvGvRTZz6VIsl7/oMewZT8tw/+hAgWzw=;
-        b=fv2NpJFFl89w7TTTXcmbsBUrmydBwIsLOMkOIKKl8F4sBn+Nu/1Z07uHSKDZ6Iqkwp
-         aDPWOZFbSVNsp1FZ3Me8CFYr+9ZEBMqxD53qiMDoFEkdLIfmGsiTPaiJBreut8J7x+a1
-         3PAax75Rq9nqVx2EUs9Y4src/Pglaui1wJTduI8L31n3JFvLx+XlaQu+J5XNRcHdHW3j
-         r6JR2FAM5ZfC9PwrcrITghQGEZPsj9mevJEKbm+KeRJo9u1M5PtHUZ0vqG1rs2Qn/kZG
-         mlby9BUgNWYt/r+nSdLZR8OOcRiZxfO2chEPVZc9aSIUOIkcGFZBBW1QqwsOwWof+m4a
-         KeGQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX6NGPuDJ9ihr+qZZxMVpAo+zUzdvPZjC1SP6iCm9u+mBECGVoTk0TDBT5C42yeTqy8UOorwFLv8/qN@vger.kernel.org
-X-Gm-Message-State: AOJu0YyXZviij58XsWwaGlKrGyD9LNcOdusBFoEaWY3AU6vphbjpQA6q
-	DTEnsXpcQg+Nq4J5yc9g9VDCPw3FRGnhpxVUISEjhBhDSFSiktyyjovIZVUPHBH3
-X-Gm-Gg: AZuq6aLvrQWbNKuvitXWQPrfJLKMbKAkWsnvCQgOeW3he8WBlXmLJZxKyrNwo8+thbC
-	gC+IL8E4Wo+lhbezA+Fy9100Tvc6DuVk6Cm0IxczKPp4OX/XNoDTOzASyYgMIgP/S+Ob/rzN5zA
-	GyYY5qEB4fsXhA4Hj3EO2eGfdWmFljeVBeuIsQNKjcHo/IJFrOZNLn0InqIRdY+5rPaasdzr6ZA
-	5dOKHMiP4ip5Nk7Z5ZJI7xgoBS2AccvXwUzclkuMRTAqZd4pGhGqVucjzE/XS1f5HqIcyU4kGZY
-	PntifoVx9Jkh3fdMRyR7KV+Kjbhvd8bOIPOVpyt+KauZCkhK5Pa73pp+JLFYM412j6Fju1ch0HU
-	wcy8RxQhevsk+D/Fs/WeEkPDV/vxzD+N2g1f9ARPJttJ6hows1QSge9/v/D+ZrC8tM7UkSRgRA+
-	Q+tFSAqFA+JwTJuUIdkx68eokI0S79eoL/YoV6RZ/EEdBhp3CFsT+2
-X-Received: by 2002:a05:6214:76a:b0:894:62b2:12a0 with SMTP id 6a1803df08f44-89462b214b1mr75746866d6.22.1768993565754;
-        Wed, 21 Jan 2026 03:06:05 -0800 (PST)
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com. [209.85.222.179])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-502a1ed2479sm110210391cf.21.2026.01.21.03.06.05
-        for <devicetree@vger.kernel.org>
+        d=1e100.net; s=20230601; t=1768993538; x=1769598338;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ld8GqU3D2r4/C65SErwrhAuPQ5LtbJ6Mpvp8+G50/No=;
+        b=WQL5yS6zJC8HwOhLtI/8KUVb7cg5iJgk7/jDBZ4FAxj7LK9oy+jRXpfbcFjOw7jc0r
+         ETVRMvyvH6Bn5zWPZxX9Tu9JmbZbbqwcPyecYPYWPSAOumUD28bMlLibwj7IvrCf3yE4
+         fKxCc6uO52N7mtNSWPRVIZNHUUUH9VcYtKEJiBJMqEC8l0QCRGWH+uN+Lr3x8/HkodWQ
+         c4yfrYfX2G3E2NiKhj6TTl17I1N/txl+7fpW172dvs/X7VTaEda913UNJ1g+1m2cC+os
+         UKYpXX6Sv47rBdzVjRu2gNDIua6s6eGNEiXoiGEJ9OCiYBRJ0rwG//PycJguKGpGAcym
+         8DqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU2yUas4z2D3YiKbov3zMcinpxyLeQrMT4ViJpIErjO5CvfrSuLBhsdcdUFz4DaOTkQdpkePz2hm13H@vger.kernel.org
+X-Gm-Message-State: AOJu0YwWsMnRiObl77XGOQq7lf8xwVjIJoL31zdJDz+UvDB5vsHaB3Nb
+	WfA+DQ2u/BWRXIcB0nraKPspb5kBRIkxzu3WRJRRIvXxA413lBGch8jabYuWbUHQP5bh/mGDnok
+	6MIiqPwBuM+QRpuHiEcL7pEhSCQKIfnTOVK73wT+2DZ1QMVWIKhNpeAWuUDvH/zWa
+X-Gm-Gg: AZuq6aJPM2uZJic+7EALT+uRRF8uqh0XFGXuw6PGjARL1Aqyg6sEIrB1JNfP7gVaUmQ
+	ckfFgaiGbNo6QsSp9IvxtTbUOEBM6MkSPeED23GA6evCJ+BgvGDECt/p7moN5QTFDJgk/nWf/+Y
+	n1bBBReaZ6BVImnCnZc185UQnDjahjBS5ANHLPjcKr5ppw73EKwciv26yYqh1pJg65veBNTG5TD
+	Al21MaoCO97JH1JPkpgARyM4Ctxfwpg82Kvj4KPtE6z7WThVEF8DmF+xnUrKW3z2oHtXUpZm8zC
+	ZqETfKgqqn9S6GIW+J7Hhb5djPvLMSjWxSxrJYTyW16/ngCHDKJtNSAzzJAXSh9Vziw3CBu/FS5
+	nJYe6fOeQLH5472rGFfBMmA/M8z0tcxLVYGjiXri15IyapAFMvyj0ziJiOTu0gHB5Dgg=
+X-Received: by 2002:a05:620a:19a9:b0:8c5:340b:415f with SMTP id af79cd13be357-8c6a67054f0mr1785396285a.4.1768993538418;
+        Wed, 21 Jan 2026 03:05:38 -0800 (PST)
+X-Received: by 2002:a05:620a:19a9:b0:8c5:340b:415f with SMTP id af79cd13be357-8c6a67054f0mr1785394285a.4.1768993537980;
+        Wed, 21 Jan 2026 03:05:37 -0800 (PST)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b87959c9fbbsm1588611566b.38.2026.01.21.03.05.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Jan 2026 03:06:05 -0800 (PST)
-Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-8c5386f1c9fso929548285a.1
-        for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 03:06:05 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWewE1iUL4/wTjXyh5jEa0EQtWsDWop49csE/ahOL7S3ghW7XbUlUxD+sPan27NC0Wo/IpXdER1j7sy@vger.kernel.org
-X-Received: by 2002:a05:6102:2ad6:b0:5ef:248b:d533 with SMTP id
- ada2fe7eead31-5f1a716fcbcmr6150752137.31.1768993204250; Wed, 21 Jan 2026
- 03:00:04 -0800 (PST)
+        Wed, 21 Jan 2026 03:05:37 -0800 (PST)
+Message-ID: <6251ac32-a3ec-460a-bf0b-23d6f356b93c@oss.qualcomm.com>
+Date: Wed, 21 Jan 2026 12:05:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260121-rz-sdio-mux-v6-0-38aa39527928@solid-run.com> <20260121-rz-sdio-mux-v6-3-38aa39527928@solid-run.com>
-In-Reply-To: <20260121-rz-sdio-mux-v6-3-38aa39527928@solid-run.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 21 Jan 2026 11:59:52 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdX_rKgfusHP5qVny8OZufU6VAiA6sqg1LP3T2jikSz7yQ@mail.gmail.com>
-X-Gm-Features: AZwV_QifTISU05sQ0lYySqx5XyPjAzUqa1H8fmOUOfLhWhGN7rzCzfM2UGq26-s
-Message-ID: <CAMuHMdX_rKgfusHP5qVny8OZufU6VAiA6sqg1LP3T2jikSz7yQ@mail.gmail.com>
-Subject: Re: [PATCH v6 3/7] mux: add help text for MULTIPLEXER config option
-To: Josua Mayer <josua@solid-run.com>
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>, Vincent Mailhol <mailhol@kernel.org>, 
-	Vinod Koul <vkoul@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Peter Rosin <peda@axentia.se>, Aaro Koskinen <aaro.koskinen@iki.fi>, 
-	Andreas Kemnade <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>, 
-	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, 
-	Janusz Krzysztofik <jmkrzyszt@gmail.com>, Vignesh R <vigneshr@ti.com>, 
-	Andi Shyti <andi.shyti@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	Yazan Shhady <yazan.shhady@solid-run.com>, Jon Nettleton <jon@solid-run.com>, 
-	Mikhail Anikin <mikhail.anikin@solid-run.com>, linux-can@vger.kernel.org, 
-	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-omap@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spamd-Result: default: False [0.24 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: document the Eliza Top Level
+ Mode Multiplexer
+To: Bjorn Andersson <andersson@kernel.org>,
+        Abel Vesa <abel.vesa@oss.qualcomm.com>
+Cc: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20260120-eliza-pinctrl-v1-0-b31c3f85a5d5@oss.qualcomm.com>
+ <20260120-eliza-pinctrl-v1-1-b31c3f85a5d5@oss.qualcomm.com>
+ <kb3eolcpmz7yqme6menjdjmypap7cadkqdnrgc3wxiwjmslmf2@lbwum5kox5ls>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <kb3eolcpmz7yqme6menjdjmypap7cadkqdnrgc3wxiwjmslmf2@lbwum5kox5ls>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIxMDA5MyBTYWx0ZWRfX6vbwOai+4Zlt
+ m4V06inmmt9BR7G4YZBsUZN7lE4olMO3cM/hcHOX9Ga9u7SN1focGOd+BA34utGwuHZ3Z5+zr7y
+ faCbyaC8KhxxtXPZbxZ/yZjJK4k6+4gRiPcwf33RdsV3gkKKMFYnnnj51xjVWPXFF0xKFG7L3Am
+ ZJi5ze0rdCftxETOAVly4/XvAmHNL+/XcPkqD+/cYGUujIv+nyUmkgOAbyikz3lW4q23s14tPN8
+ Z0h905exNqoGmD9m+mdspmhbEZDdjsQ0IlczX2GcS3f3jYekLnwoxCM7DVmy7miEHhxyBtYITwW
+ mmbAdDQ92Vm9zkRU/XYxqYBspH4yi+ZcjvIAxsth+/Y6WEx2jwcmou+cTBCydIf/1wOwVUIl4Je
+ bCTjsFjUSpT0UjUfb4CKs6pjtp9+d5AIyfCo1jitNsCTXUC4byniKkYFk6gymHQR5tNbyE/k8NM
+ NrUF+L17NMDOXQP8zPw==
+X-Proofpoint-GUID: Rr58PQTpn_9QcE0ZO6KlrQzMhTV1hRhK
+X-Authority-Analysis: v=2.4 cv=BPW+bVQG c=1 sm=1 tr=0 ts=6970b303 cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=nxOKBEek44l0jo_vI_YA:9
+ a=QEXdDO2ut3YA:10 a=NFOGd7dJGGMPyQGDc5-O:22
+X-Proofpoint-ORIG-GUID: Rr58PQTpn_9QcE0ZO6KlrQzMhTV1hRhK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
+ definitions=2026-01-21_01,2026-01-20_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 spamscore=0 phishscore=0 bulkscore=0 malwarescore=0
+ suspectscore=0 clxscore=1015 priorityscore=1501 adultscore=0
+ lowpriorityscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
+ definitions=main-2601210093
+X-Spamd-Result: default: False [-1.96 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-257891-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
-	RCPT_COUNT_TWELVE(0.00)[32];
-	FREEMAIL_CC(0.00)[pengutronix.de,kernel.org,linaro.org,axentia.se,iki.fi,kemnade.info,baylibre.com,atomide.com,gmail.com,ti.com,glider.be,sang-engineering.com,solid-run.com,vger.kernel.org,lists.infradead.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[qualcomm.com,reject];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-257890-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	R_DKIM_NA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,linux-m68k.org:email,solid-run.com:email,ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: DB87D55DF9
+	RCPT_COUNT_SEVEN(0.00)[10];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: EF01B55DB7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Josua,
+On 1/21/26 12:40 AM, Bjorn Andersson wrote:
+> On Tue, Jan 20, 2026 at 11:56:40AM +0200, Abel Vesa wrote:
+>> Document the Top Level Mode Multiplexer on the Eliza Platform.
+>>
+>> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+>> ---
 
-On Wed, 21 Jan 2026 at 11:02, Josua Mayer <josua@solid-run.com> wrote:
-> Add help text for CONFIG_MULTIPLEXER to allow enabling this option
-> through the kernel configuration without explicit "select" driver
-> dependencies.
->
-> Signed-off-by: Josua Mayer <josua@solid-run.com>
+[...]
 
-Thanks for your patch!
+>> +        gpio-ranges = <&tlmm 0 0 184>;
+> 
+> I think this should be 186.
 
-> --- a/drivers/mux/Kconfig
-> +++ b/drivers/mux/Kconfig
-> @@ -5,6 +5,14 @@
->
->  config MULTIPLEXER
->         tristate
-> +       help
-> +         Generic Multiplexer Support.
-> +
-> +         This framework is designed to abstract multiplexer handling for
-> +         devices via various GPIO-, MMIO/Regmap or specific multiplexer
-> +         controller chips.
-> +
-> +         If unsure, say no.
->
->  menu "Multiplexer drivers"
->         depends on MULTIPLEXER
->
+I concur
 
-Unfortunately it doesn't work like that. As the tristate has no prompt
-specified, the user will never be asked about this.
-You should use something like below:
-
---- a/drivers/mux/Kconfig
-+++ b/drivers/mux/Kconfig
-@@ -4,10 +4,8 @@
- #
-
- config MULTIPLEXER
--       tristate
-+       tristate "Generic Multiplexer Support" if COMPILE_TEST
-        help
--         Generic Multiplexer Support.
--
-          This framework is designed to abstract multiplexer handling for
-          devices via various GPIO-, MMIO/Regmap or specific multiplexer
-          controller chips.
-
-Sorry for not noticing before.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Konrad
 
