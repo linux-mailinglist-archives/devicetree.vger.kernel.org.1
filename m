@@ -1,64 +1,71 @@
-Return-Path: <devicetree+bounces-257708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257709-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KK7YKB06cGmgXAAAu9opvQ
-	(envelope-from <devicetree+bounces-257708-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 03:29:49 +0100
+	id YJepNnc6cGmgXAAAu9opvQ
+	(envelope-from <devicetree+bounces-257709-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 03:31:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id D50A94FC8E
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 03:29:48 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E73A4FCBF
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 03:31:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2A408AA90BE
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:29:46 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 2F9A43EF5AC
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:30:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4CB3340D91;
-	Wed, 21 Jan 2026 02:29:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FBFF23D7CA;
+	Wed, 21 Jan 2026 02:30:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sICbYdva"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uoItEJWm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C27212EA168;
-	Wed, 21 Jan 2026 02:29:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09D7A286D5E;
+	Wed, 21 Jan 2026 02:30:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768962580; cv=none; b=mbZkuPLMONA/v/qsHQxBhdQFOE6uNcqo+zmGSwp88lZ+fOmdixPjf3r4JX9jNNNrNPI/I73QG8x7TOmBFCvRWbangBhaEl7ln1EnkAgg6cXNxNkrrPWvFN4oRj965uA4kHDhnD/MAylVhKhybw1wPULdXcHDoDgx5E4YCE/CJtE=
+	t=1768962619; cv=none; b=aV4ZgurRtEvJjHKte34DAxoZf181Z3hoxZhVemYPBC4Ceai5vZzI88sPzmTgKjcSLI3Fg2pFvL0iWRLc51nwMjMajm2FW3eirvs3ZdnuZeK+Ypbp1PJMkv7PnYxqYNzzdMNyLaRVkUEjdBs7oHusY3ktbPzGXJZ/60lOZAOQ98w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768962580; c=relaxed/simple;
-	bh=3lC6v7ujAzRgIyKEbWMlVoEHJi+BKzKTq/eIu/NT1dk=;
+	s=arc-20240116; t=1768962619; c=relaxed/simple;
+	bh=qGrGq+WjO+0/AMaXMyyeImAUN8v9eq1Kl4YybbLFXzs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Afl9aWXKoGhcfyVU8uISuWisiblRV7Mo7IaKWBoJHTs3byNqDlrs2xlzzp6i2IhESxNnzTFE+hzgRwzkTgF3zn1/yMeU+LZQ5ge0yIhbghCacVHjm4wqz3nah5FDKcdu7UTtHC1SK2oaBwRjFjS33PgxWv+6nkufNWl3rxLDr9E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sICbYdva; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDD9EC16AAE;
-	Wed, 21 Jan 2026 02:29:38 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=u/8rAu+ti1NVMN4YMPpUsCKL+V/lqfht9kr9L7/5bZFoYs2s1OKKw7Yuodns7uXC5sHH/8ooN4BtLWdYg+y4g5c/+qFdi1Uqte0DqnNzOc3MPj/EVCbrguedeGZgVqll+QEqPVRMC1lxIHI+OxSRJ4UTqp1qszMGsEEVtekV8LM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uoItEJWm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DD35C16AAE;
+	Wed, 21 Jan 2026 02:30:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768962579;
-	bh=3lC6v7ujAzRgIyKEbWMlVoEHJi+BKzKTq/eIu/NT1dk=;
+	s=k20201202; t=1768962617;
+	bh=qGrGq+WjO+0/AMaXMyyeImAUN8v9eq1Kl4YybbLFXzs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sICbYdvaxi5YfqkJrmwsCVnvj/92IXQPhOKdNNuCoEzpwKXlB9w45ytNrf7nNu5cV
-	 jJNIuSGNQTnqYMX25AAR3MLtiTwxIWxlVFPYaQ7NloxZ1u4JF6D+qL4Wlb8cGA3r+o
-	 O8YXkQihujjm+ohlpLMpCZPudV0hBMX8D2Fo7CZ8BowGTRgzdUe/XhqOLUPrd7UOjB
-	 w2TrPiq3U5zcl5L1zXG7RHBCyemgNe3JYv8dYlXRXJKGxLMjNoxvQiDrnxTt2YYJlX
-	 Ljv31NuFoVn5j+dM/zi7E87SDRhTY4rz23XlfU44TRP531obyWNwco4cPsME2x85kf
-	 dwa80dbfI2oCA==
-Date: Tue, 20 Jan 2026 20:29:38 -0600
+	b=uoItEJWm0LVFPE7anJieBvxWmwVdoDk558iLW23WzQAstABvo9/zQOVi3jsMtCgf/
+	 LYtsmpG0gywjuHq5Rq0fxpUgBlzXovRd7O4jBMXMQRoA9elWM3sATYZIDlE/6W0QiX
+	 SSNx4dWROuFb+mwg9jc460Dv9W52IYBWmgOtfO5yLoPvErbsBnpET3+OsWLHoXkNb/
+	 Y0QLjO/JkpKPDDG8WtlusYBHvzuh5A4yzZM4jOd+IsvDgu8xCxLHY9vG3XB+csdibZ
+	 4tlHUe16S0cma/Dhken9DepdXsLgTgrIFLNKPzHXa/YN98KD7QK0vBqIBfOY3JN+G0
+	 NIXcnGRpnqV2A==
+Date: Tue, 20 Jan 2026 20:30:16 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: devicetree@vger.kernel.org, linusw@kernel.org,
-	Valentina.FernandezAlanis@microchip.com, linux-gpio@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH v4 3/5] dt-bindings: pinctrl: document polarfire soc
- mssio pin controller
-Message-ID: <176896257768.1835066.8192982391842226399.robh@kernel.org>
-References: <20260120-elixir-salute-dd6ec3d9f5fe@spud>
- <20260120-crewman-unmapped-27c32b5d3163@spud>
+To: "Anton D. Stavinskii" <stavinsky@gmail.com>
+Cc: Chen Wang <unicorn_wang@outlook.com>, Takashi Iwai <tiwai@suse.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	devicetree@vger.kernel.org, Paul Walmsley <pjw@kernel.org>,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Inochi Amaoto <inochiama@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Jaroslav Kysela <perex@perex.cz>, linux-sound@vger.kernel.org,
+	sophgo@lists.linux.dev, Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>
+Subject: Re: [PATCH v4 3/6] ASoC: dt-bindings: sophgo,cv1800b: add ADC/DAC
+ codec
+Message-ID: <176896261596.1836014.8166453734393092086.robh@kernel.org>
+References: <20260120-cv1800b-i2s-driver-v4-0-6ef787dc6426@gmail.com>
+ <20260120-cv1800b-i2s-driver-v4-3-6ef787dc6426@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,8 +74,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260120-crewman-unmapped-27c32b5d3163@spud>
-X-Spamd-Result: default: False [-0.96 / 15.00];
+In-Reply-To: <20260120-cv1800b-i2s-driver-v4-3-6ef787dc6426@gmail.com>
+X-Spamd-Result: default: False [0.54 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
@@ -76,51 +84,40 @@ X-Spamd-Result: default: False [-0.96 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
-	TAGGED_FROM(0.00)[bounces-257708-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-257709-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FREEMAIL_CC(0.00)[outlook.com,suse.com,kernel.org,vger.kernel.org,lists.infradead.org,gmail.com,dabbelt.com,perex.cz,lists.linux.dev,eecs.berkeley.edu,ghiti.fr];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,microchip.com:email]
-X-Rspamd-Queue-Id: D50A94FC8E
+	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
+X-Rspamd-Queue-Id: 7E73A4FCBF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
-On Tue, 20 Jan 2026 18:15:41 +0000, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
+On Tue, 20 Jan 2026 23:06:05 +0400, Anton D. Stavinskii wrote:
+> Document the internal ADC and DAC audio codecs integrated
+> in the Sophgo CV1800B SoC.
 > 
-> On Polarfire SoC, the Bank 2 and Bank 4 IOs connected to the
-> Multiprocessor Subsystem (MSS) are controlled by IOMUX_CRs 1 through 6,
-> which determine what function in routed to them, and
-> MSSIO_BANK#_IO_CFG_CRs, which determine the configuration of each pin.
-> 
-> Document it, including several custom configuration options that stem
-> from MSS Configurator options (the MSS Configurator is part of the FPGA
-> tooling for this device). "ibufmd" unfortunately is not a 1:1 mapping
-> with an MSS Configurator option, unlike clamp-diode or lockdown, and I
-> do not know the effect of any bits in the field. I have no been able to
-> find an explanation for these bits in documentation.
-> 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Anton D. Stavinskii <stavinsky@gmail.com>
 > ---
->  .../pinctrl/microchip,mpfs-pinctrl-mssio.yaml | 109 ++++++++++++++++++
->  .../microchip,mpfs-mss-top-sysreg.yaml        |   4 +
->  2 files changed, 113 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/microchip,mpfs-pinctrl-mssio.yaml
+>  .../bindings/sound/sophgo,cv1800b-codecs.yaml      | 46 ++++++++++++++++++++++
+>  1 file changed, 46 insertions(+)
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
