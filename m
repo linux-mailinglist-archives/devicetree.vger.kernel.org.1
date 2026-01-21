@@ -1,269 +1,144 @@
-Return-Path: <devicetree+bounces-257682-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257683-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id INqUG9AscGniWwAAu9opvQ
-	(envelope-from <devicetree+bounces-257682-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:33:04 +0100
+	id uKbuFo4tcGniWwAAu9opvQ
+	(envelope-from <devicetree+bounces-257683-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:36:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 594EE4F22D
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:33:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25A6E4F29E
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:36:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 0C98A3EF018
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 01:32:56 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A3BF2A20080
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 01:36:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B50E5305E32;
-	Wed, 21 Jan 2026 01:32:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 401B530EF9A;
+	Wed, 21 Jan 2026 01:36:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="A5BCDI+7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dTJwq257"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D77C2367D3
-	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 01:32:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.52
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768959161; cv=pass; b=tilyWEXvYt93Zwv+be6y6ATTjtkA+C61zNoPI6FweOHoCMSaZXDpirjS+x+VJrLrWywI4zvF3LeFcVSkr7d6RR/oRIrFFnXMP9GO3k+pYCV7haJ0GvrRwrY7QbnXD+tmj7HC6hEfNIJFh29uvab6C+Imr/Ww0kOPWky3Nkn3iSY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768959161; c=relaxed/simple;
-	bh=ShWRak8oUy88OSaopaw+aLPDpDo1ZpJd6cDyp++LarM=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A10530E82D
+	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 01:36:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768959368; cv=none; b=a74hlHJrvImDVNPOAkSorzo8pC9MaQ+I8MNQfCKxNFAfEv8NP+mQSIIJXEEA01drt5V+A+uRWPvaPIdKoCQljwNeiI2YaG1fH0bpBr4MhLyN1rGID7DLWX5nHkYsj7mF1m/kv4Vt0j8dRIw6jkGOVEyiYqocIxYXDxXCT8dms6Q=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768959368; c=relaxed/simple;
+	bh=1DQpMwysIx72w8i2TKT1MsIQPymniahlCBATcSMN3dc=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Ybv4Mp2UtNfKnb9kWB0BlGYdqlKonhi732KiuQdur/2nZNV9ivtq9NoBoqQpp22ULWWSwsCHzMSaQpPqd7QCgh42W/hOvA3XjAeZnw2IDKK1KRJSStrHnc1kKTMjHMu4MCwDL48l+Lu7HI5Zu1C3BzBCjjXP54zpXdvUjJWtZog=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=A5BCDI+7; arc=pass smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-65815ec51d3so377841a12.2
-        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 17:32:34 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1768959152; cv=none;
-        d=google.com; s=arc-20240605;
-        b=K9qhi3dd/fD0ikIcPMu676BN3pyUQfgGY/nyvV71smRtfKi7JbPUEmqpttFJ3TRuSx
-         5/97lStP8cMmMMeo8v4dn+VPNj26Tm9Z+eNPJiUBI1LzBfxsizMsSBFDJEGWhIwYP4O4
-         ZO6LBMysuaWFF/Fp6Aye+uovh8WoF+X0cAMef2R1uTTmIkA8Im9bFoypuGiRtxRBB+xh
-         L76NtsoJiyvcU8snLJwTiKiQCuwbTu1bnMl4Bq3s8OplX5speSTsNgSE2n+uaQFUH2gq
-         oAJ3cXwnzKAdrhE/bf8Qx6eANSPcxMmgnM3i8y++v/SPp+1WocTkWeyuKulH6X299cSK
-         q9Mw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=phhznUg1me3aMCDh6RtpPgdrBfYLQTkKfqDDafoKBZI=;
-        fh=xWkQdKeiAw+kNKsgImtuZcpE0LCKRJNjM28rAv+ZQ6c=;
-        b=Hfy/Egj0xeqou2/mmuJ+AvG7iLsyb6f4wa2m2xSQijDRQ3yBGHsaZWYklF0EJZbOBI
-         Jfdq0uwwVO7yrcNaClZNdGRTXtSr58FqwhaN/jWMwmNptKx/gvSzN1MS6d+Q7yfCSjHf
-         sk4nzda5wDuDCBEPSg/pJmQKQw6Aidfx6eH5lSsPO/AVXNLjpnf5AEmvghVSIvwtz/qD
-         ahNJ8BgtqFfP0oi8f/FTVr5GWxfFFoGCuEyGCStjMvXe6aoI8S7rqnF2B2CktVrN+kdu
-         lRgwiSLTmvN3LmsWSaX6T6SE1cw9ccwg46m1gMYQ2NneiqWk+623460c7BidRRybw1QX
-         j7Vg==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1768959152; x=1769563952; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=phhznUg1me3aMCDh6RtpPgdrBfYLQTkKfqDDafoKBZI=;
-        b=A5BCDI+7uaow+L1pkR0/vhbZZn6AJyq7brkzi3g5PXQfBD4lA4/eE0X3H0eaNyQ9uI
-         BhpW1W5q/SgcOo9bLiXBhGEOuJjNOLdsgI1yomjhhtiMc4yYgjkRRCEZEjOgjfqf0UZm
-         alaado9gHlyuyjKWjd2TKsKjKgLfd7fX9KqgYnaBHFx227Fx+cmQlNknKxxjjBc6MhHc
-         tG3tvKjpIj28uMUF7HVJL7ZayB6r9Ecpz7T11yD3GxnJ2kYCvSe5zS/YTgO0OkPIEynl
-         85aax+WRhLPNanwVxq+Dtb0SSQHEK2jnBzPJpDYm/K1qIbTkzVoB1lPQoyDUEHDmqQ9K
-         uN2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768959152; x=1769563952;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=phhznUg1me3aMCDh6RtpPgdrBfYLQTkKfqDDafoKBZI=;
-        b=ujfu5p+aFP0/UT3omOlsIAYmXg9ggyyojVti3ENstU0eg4NL6U1AOI/hNB0dhbxC/U
-         VHeFMgQCLzX7r9hB/9d5X9wWJw/IC7y8Jg8jaei4vZeL6RCgVDSIB4KmfTj/a0m7VbVW
-         aMYSulQHoxLBrg+Ziv6O+f4/FtemH9usbzQ5BCbPr+kJp2Wa6iAK5LbFcttTfwQlT3BW
-         JyOWdl3NRcRsomrhhniJboeT/3zKLrhbrkUp6jTW6Bi19WTkjO7PboDCM3trvaL1b91g
-         BZuoNC0NogWtgWXj6PjFzZn/aG+VMN0axArNxJy+nOv6CRecL04xRJDzTcZe9xff9k76
-         lz6Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXg51/i//cVJrShAndUWK2a0L97IIvGQkLZmN/mW6Ks7a7Nw5ffKXRTpVkSffXJNDEeOlMbYDCtW8kU@vger.kernel.org
-X-Gm-Message-State: AOJu0YzlDzUp3bavvFYg8CqjiufcvPoOjOIEqbR3eOOcDBPLG9BZtia0
-	3K5vSzdaElpsCAjDs73rX7DGhPcTuwEwdRwM433lCxlVsdmzcYL0isQWu1GI44iAxEgmUIVUnlt
-	yY00T0vRkkkuIzapmKfwZvqGXnJnfmM6P2SEox9w4Pg==
-X-Gm-Gg: AZuq6aLlA/9tw+9cvTE1gqY0PYR5l9J1yfZEhqIBanR55YjpNGBgUAGnpqfr2Ow75Ns
-	fVPuLSbw3xA9pqdYF6kkjARZRK50+XB51y1K+jlP8MP+lKhY8cyQnC5/EEuPVkE95GDUm5CiRFd
-	45TpMyzNeFRUkSw+HarS2YFLqqFvtPO8pLcxtAkrutbzK1JGlcP7HHkGPltzniDVAktGrvAwj/p
-	8w0LJ/e1Jw0qKa66O41bYraUZ3N4yYFymLqYCQkTRVheiy6JO4ZBvoeUV0HZej9pilsHXa3rQ==
-X-Received: by 2002:a17:907:9488:b0:b87:7634:b20c with SMTP id
- a640c23a62f3a-b8796b215a4mr1301363166b.38.1768959152268; Tue, 20 Jan 2026
- 17:32:32 -0800 (PST)
+	 To:Cc:Content-Type; b=gzfRqwp5Hq0s+NhqpXW6XWjT57CSGj0p2Nnp6zZ0BLwLWUdu35/WOmuag255S834yULpGqAo646+XLJCwO3LXpT+PsR7LnxoinqVgTrKTS/qpXhEq9XB7CJbvgbkGCR3boK1Cmi9uLFpaftD7UiuSsSibBymtSIfxdtRk15g9Ls=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dTJwq257; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66B5CC19425
+	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 01:36:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768959366;
+	bh=1DQpMwysIx72w8i2TKT1MsIQPymniahlCBATcSMN3dc=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=dTJwq257ozafQb4dLnHNV5BR/Um2bb2uOcEyTEvcq4gOJnRQXtL8/LX4miQRGBV9H
+	 vrmiKxzd1RYZfFLUmxUDkVTzE+lvzcC8wS2jsLchrOeFb3xuCy8/z/TgZlyiKKBihC
+	 Q6aItSgX951TTV36pf1VVo4CW42OE68Q12uAzGrKlQ5aERje4Yobzd5wDrFqW9qKhO
+	 v0bQaAgqJsxvpkAVFz4EUQVmDLL4WcgySBzJXPVtIXEIsoB6GuKNsrg15xuMDamt9R
+	 QSHyoB6MUoJ01BS5RIh4tCOft9+Ak1jgbDlRbvyzm29Gn97nySYtvg/HDbMMd1z4uI
+	 r663trZmigqLw==
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-6505cac9879so10025118a12.1
+        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 17:36:06 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWWjXytlKMRpd99I2fe+EPm2MGcv6dDTZEPn0hZgg9hv/LG7a78m4j6agjfWPBv5sooMjeyqmRohvP/@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw1/nnlS7dj1m4vCuUlXpbirdfsiILTVw7k6PP/Kqdt9dsuqyKb
+	gMuqLTVjGckHaJ7lvS7BNQCSAUqcuWSgJ1y2R9SWXmnMkpGMWyXfJLPUSaTIIJUrxkEZ1eEJuUI
+	xv5d6FvwpUsYdS3tHEYcccuKBToBilA==
+X-Received: by 2002:a05:6402:5113:b0:64d:2920:ef17 with SMTP id
+ 4fb4d7f45d1cf-65452bcebebmr13577113a12.28.1768959364990; Tue, 20 Jan 2026
+ 17:36:04 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251211-v5_user_cfi_series-v26-0-f0f419e81ac0@rivosinc.com>
- <e052745b-6bf0-c2a3-21b2-5ecd8b04ec70@kernel.org> <aTxf7IGlkGLgHgI2@debug.ba.rivosinc.com>
- <CAKC1njQ-hS+kUJ0C_v0oqZW1EZw2zAXMp-SnnA-ZXh_H-SoVdQ@mail.gmail.com>
-In-Reply-To: <CAKC1njQ-hS+kUJ0C_v0oqZW1EZw2zAXMp-SnnA-ZXh_H-SoVdQ@mail.gmail.com>
-From: Zong Li <zong.li@sifive.com>
-Date: Wed, 21 Jan 2026 09:32:20 +0800
-X-Gm-Features: AZwV_QgpJ38WsQTA-JLh1W5jk7su1plcAErfmIKl7ceT3yMsB0wZBJHvBBZ5Ujw
-Message-ID: <CANXhq0rpjSvOThACrB6_MMc8S34--xJsUYZ+HtMu1GUNyk8zOg@mail.gmail.com>
-Subject: Re: [PATCH v26 00/28] riscv control-flow integrity for usermode
-To: Deepak Gupta <debug@rivosinc.com>
-Cc: Paul Walmsley <pjw@kernel.org>, x86@kernel.org, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
-	Christian Brauner <brauner@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
-	Oleg Nesterov <oleg@redhat.com>, Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, Jann Horn <jannh@google.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Miguel Ojeda <ojeda@kernel.org>, 
-	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
-	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
-	Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
-	Trevor Gross <tmgross@umich.edu>, Benno Lossin <lossin@kernel.org>, linux-kernel@vger.kernel.org, 
-	linux-fsdevel@vger.kernel.org, linux-mm@kvack.org, 
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-arch@vger.kernel.org, linux-doc@vger.kernel.org, 
-	linux-kselftest@vger.kernel.org, alistair.francis@wdc.com, 
-	richard.henderson@linaro.org, jim.shu@sifive.com, 
-	Andy Chiu <andybnac@gmail.com>, kito.cheng@sifive.com, charlie@rivosinc.com, 
-	atishp@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com, 
-	alexghiti@rivosinc.com, samitolvanen@google.com, broonie@kernel.org, 
-	rick.p.edgecombe@intel.com, rust-for-linux@vger.kernel.org, 
-	Andreas Korb <andreas.korb@aisec.fraunhofer.de>, 
-	Valentin Haudiquet <valentin.haudiquet@canonical.com>, Charles Mirabile <cmirabil@redhat.com>, 
-	Jesse Huang <jesse.huang@sifive.com>
+References: <20260108143158.351223-1-jonathanh@nvidia.com> <176861152450.1947082.2637987844354037789.b4-ty@nvidia.com>
+In-Reply-To: <176861152450.1947082.2637987844354037789.b4-ty@nvidia.com>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 20 Jan 2026 19:35:53 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+LUsfcU_-zPo88acsL_C6red=4jzmeca3ZCeyPgHDBvA@mail.gmail.com>
+X-Gm-Features: AZwV_Qgjihn8pIRDJhY0BskwrbGpVtGIevu7oNI1Z4PftYc5SIvKgELrXXAp5Ic
+Message-ID: <CAL_Jsq+LUsfcU_-zPo88acsL_C6red=4jzmeca3ZCeyPgHDBvA@mail.gmail.com>
+Subject: Re: [PATCH 0/3] ASoC: dt-bindings: realtek,rt5640: Various fixes
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jon Hunter <jonathanh@nvidia.com>, linux-sound@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[sifive.com:s=google];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,sifive.com,dabbelt.com,eecs.berkeley.edu,arndb.de,infradead.org,redhat.com,xmission.com,lwn.net,google.com,gmail.com,garyguo.net,protonmail.com,umich.edu,vger.kernel.org,kvack.org,lists.infradead.org,wdc.com,linaro.org,rivosinc.com,intel.com,aisec.fraunhofer.de,canonical.com];
-	TAGGED_FROM(0.00)[bounces-257682-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[sifive.com,reject];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[sifive.com:+];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,nvidia.com,vger.kernel.org];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	TAGGED_FROM(0.00)[bounces-257683-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zong.li@sifive.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[54];
-	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sifive.com:dkim,mail.gmail.com:mid,ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: 594EE4F22D
+	RCPT_COUNT_SEVEN(0.00)[9];
+	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,nvidia.com:email]
+X-Rspamd-Queue-Id: 25A6E4F29E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Jan 8, 2026 at 11:10=E2=80=AFPM Deepak Gupta <debug@rivosinc.com> w=
-rote:
+On Fri, Jan 16, 2026 at 6:59=E2=80=AFPM Thierry Reding <thierry.reding@gmai=
+l.com> wrote:
 >
-> Hi Paul,
+> From: Thierry Reding <treding@nvidia.com>
 >
-> I have a bugfix for a bug reported by Jesse Huang (thanks Jesse) in riscv
-> implementation of `map_shadow_stack`.
 >
-> Should I send a new series or only the bugfix-patch for implementation
-> of `map_shadow_stack`
+> On Thu, 08 Jan 2026 14:31:55 +0000, Jon Hunter wrote:
+> > This series includes fixes for the realtek,rt5640 dt-binding to address
+> > a few warnings that are observed when running the CHECK_DTBS=3Dy for so=
+me
+> > DTBs that use this codec.
+> >
+> > Jon Hunter (3):
+> >   ASoC: dt-bindings: realtek,rt5640: Document mclk
+> >   ASoC: dt-bindings: realtek,rt5640: Update jack-detect
+> >   ASoC: dt-bindings: realtek,rt5640: Document port node
+> >
+> > [...]
 >
+> Applied, thanks!
+>
+> [1/3] ASoC: dt-bindings: realtek,rt5640: Document mclk
+>       commit: 601a821631c55014b02371740c39748d0af916c1
+> [2/3] ASoC: dt-bindings: realtek,rt5640: Update jack-detect
+>       commit: 2efe28d11cc19b69b19b9bcdb6f498c1bf842fbc
+> [3/3] ASoC: dt-bindings: realtek,rt5640: Document port node
+>       commit: b2788f6320722d6059f849f35a77eb082608c627
 
-Hi Deepak,
-Not sure if I missed the bugfix patch, I couldn't find it on the
-mailing list. Could I know have you submitted it? If so, could you
-please point me where the patch is?
-Thanks
+Please drop these. linux-next is broken. Plus Mark already said he applied =
+them.
 
-> Let me know. Thanks.
->
-> -Deepak
->
-> -Deepak
->
->
->
-> On Fri, Dec 12, 2025 at 10:33=E2=80=AFAM Deepak Gupta <debug@rivosinc.com=
-> wrote:
-> >
-> > On Fri, Dec 12, 2025 at 01:30:29AM -0700, Paul Walmsley wrote:
-> > >On Thu, 11 Dec 2025, Deepak Gupta via B4 Relay wrote:
-> > >
-> > >> v26: CONFIG_RISCV_USER_CFI depends on CONFIG_MMU (dependency of shad=
-ow stack
-> > >> on MMU). Used b4 to pick tags, apparantly it messed up some tag pick=
-s. Fixing it
-> > >
-> > >Deepak: I'm now (at least) the third person to tell you to stop resend=
-ing
-> > >this entire series over and over again.
-> >
-> > To be very honest I also feel very bad doing and DOSing the lists. Sorr=
-y to you
-> > and everyone else.
-> >
-> > But I have been sitting on this patch series for last 3-4 merge windows=
- with
-> > patches being exactly same/similar. So I have been a little more than d=
-esperate
-> > to get it in.
-> >
-> > I really haven't had any meaningful feedback on patch series except sta=
-lling
-> > just before each merge window for reasons which really shouldn't stall =
-its
-> > merge. Sure that's the nature of open source development and it's maint=
-ainer's
-> > call at the end of the day. And I am new to this. I'll improve.
-> >
-> > >
-> > >First, a modified version of the CFI v23 series was ALREADY SITTING IN
-> > >LINUX-NEXT.  So there's no reason you should be resending the entire
-> > >series, UNLESS your intention for me is to drop the entire existing se=
-ries
-> > >and wait for another merge window.
-> > >
-> > >Second: when someone asks you questions about an individual patch, and=
- you
-> > >want to answer those questions, it's NOT GOOD for you to resend the en=
-tire
-> > >28 series as the response!  You are DDOSing a bunch of lists and E-mai=
-l
-> > >inboxes.  Just answer the question in a single E-mail.  If you want to
-> > >update a single patch, just send that one patch.
-> >
-> > Noted. I wasn't sure about it. I'll explicitly ask next time if you wan=
-t me to
-> > send another one.
-> >
-> > >
-> > >If you don't start paying attention to these rules then people are goi=
-ng
-> > >to start ignoring you -- at best! -- and it's going to give the entire
-> > >community a bad reputation.
-> >
-> > Even before this, this patch series has been ignored largely. I don't k=
-now
-> > how to get attention. All I wanted was either feedback or get it in. An=
-d as I
-> > said I've been desparate to get it in. Also as I said, I'll improve.
-> >
-> > >
-> > >Please acknowledge that you understand this,
-> >
-> > ACKed.
-> >
-> > >
-> > >
-> > >- Paul
+Rob
 
