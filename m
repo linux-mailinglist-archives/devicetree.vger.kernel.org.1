@@ -1,76 +1,62 @@
-Return-Path: <devicetree+bounces-258032-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258034-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CETEOu0CcWmgbAAAu9opvQ
-	(envelope-from <devicetree+bounces-258032-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 17:46:37 +0100
+	id SL3rMdYUcWkEdgAAu9opvQ
+	(envelope-from <devicetree+bounces-258034-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 19:03:02 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94A1E5A186
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 17:46:37 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65BC15AF39
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 19:03:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 725D84CC955
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 16:08:31 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D0E317E8964
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 16:15:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC5B3357A48;
-	Wed, 21 Jan 2026 16:02:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D302425CCB;
+	Wed, 21 Jan 2026 16:11:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WenfTo0r"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CjH6/1HZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 894993563DE;
-	Wed, 21 Jan 2026 16:02:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A5903DA7FF;
+	Wed, 21 Jan 2026 16:11:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769011361; cv=none; b=f6t+rPQx2Oiltt9gLqFr/f+53CQzbdUUIK7oenv2dRjVrvLrzXI5BC1OrhW/it4uGSX4Y/C4oCIsuySSwVzyXhJDu8w8fZPo4rGHqSmpLz4OdbQObq+grLYD/cO4Yr9wvCcdqzggMawtkKI1f6Y6b2TV8V1Hw3CiL5kPEW3Fde0=
+	t=1769011897; cv=none; b=dC+d6v5JiNdsej6UA+/8DF8XUxhpEEsRJQApyLI9pujnEgApKHthpS/rkWwAJbbXs1p7KJwCLZ5eyntSwxdhaceUhjb4XEEC1ZQZ9dqTBSkgW+my0izVn7j1ved9ZYmwPqdLOwtkBdrECtxlJJC+28G/OM2xKp1vUka0G/qnR88=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769011361; c=relaxed/simple;
-	bh=s3XpPRssPWCk4SPsWJWdTukbpa6Bkklf5AXcN7vN9zA=;
+	s=arc-20240116; t=1769011897; c=relaxed/simple;
+	bh=V2uPC8qCjAB3AyCXXwB0jIWRbx8pyVz0OgnL1DHGJN4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=p3z+cJNADt4GXN7JFYhtwsKDK+wf0DeUaZ0FbCAylwlCVfTahnwiny3t4OwIDitdCn+hJ4CqDEOqVa8DRoicbN19HYQFPEi06qqbSpyvUH+InwNr8wu/+m4T+z8Wry0J8FfZSGWKO/BZfBdGBJOszAQirA/uHuLsmcywOZLBV0o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WenfTo0r; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB6D9C4CEF1;
-	Wed, 21 Jan 2026 16:02:40 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZWBQGljHpYCIoMTbTKYwvk/+701gguGV4c2SlsZVzB/wYHcWbssdB+Wocg0yv7PfcmJwk1smZ3kuGTPcExxnmbiLolJj49KwY96fVqSi68pV5s/8ZC68YdJqyONnqXhmkm51fj0sQuS52FxYYNaZZL+02AcKPCvz8xjhBkFNrfY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CjH6/1HZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6264C4CEF1;
+	Wed, 21 Jan 2026 16:11:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769011361;
-	bh=s3XpPRssPWCk4SPsWJWdTukbpa6Bkklf5AXcN7vN9zA=;
+	s=k20201202; t=1769011896;
+	bh=V2uPC8qCjAB3AyCXXwB0jIWRbx8pyVz0OgnL1DHGJN4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WenfTo0rD++V0c/6izuN+kVheJq6ZXs1S5L/MLJ71yNEUIXYDSvC/Axs6hzL5MZEn
-	 m7as4iM7XG86H+md5VlBg4rRwCUXC10xmv+VjWxrSLhhsNw6c//c7RwdjEmdlwFD6u
-	 JOvFOFmQmJJa+tgTrmZAyu1DS/Eedbgdx7ScLYXcaBsvDOv9E5VRYWyotH38sIIe+u
-	 hHcqEB4GCDTagXD0oc5V4x7DkEn9c5fL8CQ953HM3tlqsVLpQZT1sjBJVWJqa3wkR7
-	 J+j9C5BVuPTzwHORPKaJQQgBOyGsH5lEEQqSymgZNtEdM6GRbN/QLMeNXm6NrFgqkk
-	 LgWVSaPQtLxig==
-Date: Wed, 21 Jan 2026 21:32:37 +0530
-From: Vinod Koul <vkoul@kernel.org>
-To: Koichiro Den <den@valinux.co.jp>
-Cc: Frank Li <Frank.li@nxp.com>, dave.jiang@intel.com, cassel@kernel.org,
-	mani@kernel.org, kwilczynski@kernel.org, kishon@kernel.org,
-	bhelgaas@google.com, geert+renesas@glider.be, robh@kernel.org,
-	jdmason@kudzu.us, allenbh@gmail.com, jingoohan1@gmail.com,
-	lpieralisi@kernel.org, linux-pci@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	dmaengine@vger.kernel.org, iommu@lists.linux.dev,
-	ntb@lists.linux.dev, netdev@vger.kernel.org,
-	linux-kselftest@vger.kernel.org, arnd@arndb.de,
-	gregkh@linuxfoundation.org, joro@8bytes.org, will@kernel.org,
-	robin.murphy@arm.com, magnus.damm@gmail.com, krzk+dt@kernel.org,
-	conor+dt@kernel.org, corbet@lwn.net, skhan@linuxfoundation.org,
-	andriy.shevchenko@linux.intel.com, jbrunet@baylibre.com,
-	utkarsh02t@gmail.com
-Subject: Re: [RFC PATCH v4 02/38] dmaengine: dw-edma: Add per-channel
- interrupt routing control
-Message-ID: <aXD4ncvjZWljUyxe@vaman>
-References: <20260118135440.1958279-1-den@valinux.co.jp>
- <20260118135440.1958279-3-den@valinux.co.jp>
- <aW0SVx11WCxfTHoY@lizhi-Precision-Tower-5810>
- <32egn4uhx3dll5es4nzpivg5rdv3hvvrceyznsnnnbbyze7qxu@5z6w45v3jwyf>
+	b=CjH6/1HZgrFT//oGtTljMKhxg2FxyZPoxE1TrtPGZruiZHdoTEpLgJeTRLdb7RObA
+	 RNCxjpTI224lrdg9FswF/sRmaH0qKU0BBMq93rNFfQVEn2Qv132OhG8gDsbFk7We0w
+	 lMwxD7oNuJIJ0C3fx6MCP8e1sD5FlhBIGnQNwcevOV8d/l08fpzgcP0pv/2LNPxkdZ
+	 9vx2HdETXyORW9IINUWKT9QJPUV7FbC0Vppg+gLfE9dYc5nKT2mtlZyiL8k1uKBPl7
+	 rvCd6TIY+CChqM9YZuy6e3A7DHe8UTn3q4lT/klQdmG/Bh+194glab9fCuXdg7hzsD
+	 iTzY6mWHF3h3A==
+Date: Wed, 21 Jan 2026 10:11:35 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Andreas Kemnade <andreas@kemnade.info>
+Cc: Tony Lindgren <tony@atomide.com>, Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Roger Quadros <rogerq@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, Aaro Koskinen <aaro.koskinen@iki.fi>,
+	Kevin Hilman <khilman@baylibre.com>
+Subject: Re: [PATCH v2] dt-bindings: omap: ti,prm-inst: Convert to DT schema
+Message-ID: <176901189053.3298295.8466412681618003898.robh@kernel.org>
+References: <20260120-prm-inst-v2-1-a025873cee27@kemnade.info>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,296 +65,56 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <32egn4uhx3dll5es4nzpivg5rdv3hvvrceyznsnnnbbyze7qxu@5z6w45v3jwyf>
-X-Spamd-Result: default: False [0.04 / 15.00];
+In-Reply-To: <20260120-prm-inst-v2-1-a025873cee27@kemnade.info>
+X-Spamd-Result: default: False [0.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258032-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[37];
-	FREEMAIL_CC(0.00)[nxp.com,intel.com,kernel.org,google.com,glider.be,kudzu.us,gmail.com,vger.kernel.org,lists.linux.dev,arndb.de,linuxfoundation.org,8bytes.org,arm.com,lwn.net,linux.intel.com,baylibre.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-258034-lists,devicetree=lfdr.de];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vkoul@kernel.org,devicetree@vger.kernel.org];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,valinux.co.jp:email,synopsys.com:email]
-X-Rspamd-Queue-Id: 94A1E5A186
+	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[msgid.link:url,ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,kemnade.info:email]
+X-Rspamd-Queue-Id: 65BC15AF39
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 19-01-26, 23:26, Koichiro Den wrote:
-> On Sun, Jan 18, 2026 at 12:03:19PM -0500, Frank Li wrote:
-> > On Sun, Jan 18, 2026 at 10:54:04PM +0900, Koichiro Den wrote:
-> > > DesignWare EP eDMA can generate interrupts both locally and remotely
-> > > (LIE/RIE). Remote eDMA users need to decide, per channel, whether
-> > > completions should be handled locally, remotely, or both. Unless
-> > > carefully configured, the endpoint and host would race to ack the
-> > > interrupt.
-> > >
-> > > Introduce a per-channel interrupt routing mode and export small APIs to
-> > > configure and query it. Update v0 programming so that RIE and local
-> > > done/abort interrupt masking follow the selected mode. The default mode
-> > > keeps the original behavior, so unless the new APIs are explicitly used,
-> > > no functional changes.
-> > >
-> > > Signed-off-by: Koichiro Den <den@valinux.co.jp>
-> > > ---
-> > >  drivers/dma/dw-edma/dw-edma-core.c    | 52 +++++++++++++++++++++++++++
-> > >  drivers/dma/dw-edma/dw-edma-core.h    |  2 ++
-> > >  drivers/dma/dw-edma/dw-edma-v0-core.c | 26 +++++++++-----
-> > >  include/linux/dma/edma.h              | 44 +++++++++++++++++++++++
-> > >  4 files changed, 116 insertions(+), 8 deletions(-)
-> > >
-> > > diff --git a/drivers/dma/dw-edma/dw-edma-core.c b/drivers/dma/dw-edma/dw-edma-core.c
-> > > index b9d59c3c0cb4..059b3996d383 100644
-> > > --- a/drivers/dma/dw-edma/dw-edma-core.c
-> > > +++ b/drivers/dma/dw-edma/dw-edma-core.c
-> > > @@ -768,6 +768,7 @@ static int dw_edma_channel_setup(struct dw_edma *dw, u32 wr_alloc, u32 rd_alloc)
-> > >  		chan->configured = false;
-> > >  		chan->request = EDMA_REQ_NONE;
-> > >  		chan->status = EDMA_ST_IDLE;
-> > > +		chan->irq_mode = DW_EDMA_CH_IRQ_DEFAULT;
-> > >
-> > >  		if (chan->dir == EDMA_DIR_WRITE)
-> > >  			chan->ll_max = (chip->ll_region_wr[chan->id].sz / EDMA_LL_SZ);
-> > > @@ -1062,6 +1063,57 @@ int dw_edma_remove(struct dw_edma_chip *chip)
-> > >  }
-> > >  EXPORT_SYMBOL_GPL(dw_edma_remove);
-> > >
-> > > +int dw_edma_chan_irq_config(struct dma_chan *dchan,
-> > > +			    enum dw_edma_ch_irq_mode mode)
-> > > +{
-> > > +	struct dw_edma_chan *chan;
-> > > +
-> > > +	switch (mode) {
-> > > +	case DW_EDMA_CH_IRQ_DEFAULT:
-> > > +	case DW_EDMA_CH_IRQ_LOCAL:
-> > > +	case DW_EDMA_CH_IRQ_REMOTE:
-> > > +		break;
-> > > +	default:
-> > > +		return -EINVAL;
-> > > +	}
-> > > +
-> > > +	if (!dchan || !dchan->device)
-> > > +		return -ENODEV;
-> > > +
-> > > +	chan = dchan2dw_edma_chan(dchan);
-> > > +	if (!chan)
-> > > +		return -ENODEV;
-> > > +
-> > > +	chan->irq_mode = mode;
-> > > +
-> > > +	dev_vdbg(chan->dw->chip->dev, "Channel: %s[%u] set irq_mode=%u\n",
-> > > +		 str_write_read(chan->dir == EDMA_DIR_WRITE),
-> > > +		 chan->id, mode);
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +EXPORT_SYMBOL_GPL(dw_edma_chan_irq_config);
-> > > +
-> > > +bool dw_edma_chan_ignore_irq(struct dma_chan *dchan)
-> > > +{
-> > > +	struct dw_edma_chan *chan;
-> > > +	struct dw_edma *dw;
-> > > +
-> > > +	if (!dchan || !dchan->device)
-> > > +		return false;
-> > > +
-> > > +	chan = dchan2dw_edma_chan(dchan);
-> > > +	if (!chan)
-> > > +		return false;
-> > > +
-> > > +	dw = chan->dw;
-> > > +	if (dw->chip->flags & DW_EDMA_CHIP_LOCAL)
-> > > +		return chan->irq_mode == DW_EDMA_CH_IRQ_REMOTE;
-> > > +	else
-> > > +		return chan->irq_mode == DW_EDMA_CH_IRQ_LOCAL;
-> > > +}
-> > > +EXPORT_SYMBOL_GPL(dw_edma_chan_ignore_irq);
-> > > +
-> > >  MODULE_LICENSE("GPL v2");
-> > >  MODULE_DESCRIPTION("Synopsys DesignWare eDMA controller core driver");
-> > >  MODULE_AUTHOR("Gustavo Pimentel <gustavo.pimentel@synopsys.com>");
-> > > diff --git a/drivers/dma/dw-edma/dw-edma-core.h b/drivers/dma/dw-edma/dw-edma-core.h
-> > > index 71894b9e0b15..8458d676551a 100644
-> > > --- a/drivers/dma/dw-edma/dw-edma-core.h
-> > > +++ b/drivers/dma/dw-edma/dw-edma-core.h
-> > > @@ -81,6 +81,8 @@ struct dw_edma_chan {
-> > >
-> > >  	struct msi_msg			msi;
-> > >
-> > > +	enum dw_edma_ch_irq_mode	irq_mode;
-> > > +
-> > >  	enum dw_edma_request		request;
-> > >  	enum dw_edma_status		status;
-> > >  	u8				configured;
-> > > diff --git a/drivers/dma/dw-edma/dw-edma-v0-core.c b/drivers/dma/dw-edma/dw-edma-v0-core.c
-> > > index 2850a9df80f5..80472148c335 100644
-> > > --- a/drivers/dma/dw-edma/dw-edma-v0-core.c
-> > > +++ b/drivers/dma/dw-edma/dw-edma-v0-core.c
-> > > @@ -256,8 +256,10 @@ dw_edma_v0_core_handle_int(struct dw_edma_irq *dw_irq, enum dw_edma_dir dir,
-> > >  	for_each_set_bit(pos, &val, total) {
-> > >  		chan = &dw->chan[pos + off];
-> > >
-> > > -		dw_edma_v0_core_clear_done_int(chan);
-> > > -		done(chan);
-> > > +		if (!dw_edma_chan_ignore_irq(&chan->vc.chan)) {
-> > > +			dw_edma_v0_core_clear_done_int(chan);
-> > > +			done(chan);
-> > > +		}
-> > >
-> > >  		ret = IRQ_HANDLED;
-> > >  	}
-> > > @@ -267,8 +269,10 @@ dw_edma_v0_core_handle_int(struct dw_edma_irq *dw_irq, enum dw_edma_dir dir,
-> > >  	for_each_set_bit(pos, &val, total) {
-> > >  		chan = &dw->chan[pos + off];
-> > >
-> > > -		dw_edma_v0_core_clear_abort_int(chan);
-> > > -		abort(chan);
-> > > +		if (!dw_edma_chan_ignore_irq(&chan->vc.chan)) {
-> > > +			dw_edma_v0_core_clear_abort_int(chan);
-> > > +			abort(chan);
-> > > +		}
-> > >
-> > >  		ret = IRQ_HANDLED;
-> > >  	}
-> > > @@ -331,7 +335,8 @@ static void dw_edma_v0_core_write_chunk(struct dw_edma_chunk *chunk)
-> > >  		j--;
-> > >  		if (!j) {
-> > >  			control |= DW_EDMA_V0_LIE;
-> > > -			if (!(chan->dw->chip->flags & DW_EDMA_CHIP_LOCAL))
-> > > +			if (!(chan->dw->chip->flags & DW_EDMA_CHIP_LOCAL) &&
-> > > +			    chan->irq_mode != DW_EDMA_CH_IRQ_LOCAL)
-> > >  				control |= DW_EDMA_V0_RIE;
-> > >  		}
-> > >
-> > > @@ -408,12 +413,17 @@ static void dw_edma_v0_core_start(struct dw_edma_chunk *chunk, bool first)
-> > >  				break;
-> > >  			}
-> > >  		}
-> > > -		/* Interrupt unmask - done, abort */
-> > > +		/* Interrupt mask/unmask - done, abort */
-> > >  		raw_spin_lock_irqsave(&dw->lock, flags);
-> > >
-> > >  		tmp = GET_RW_32(dw, chan->dir, int_mask);
-> > > -		tmp &= ~FIELD_PREP(EDMA_V0_DONE_INT_MASK, BIT(chan->id));
-> > > -		tmp &= ~FIELD_PREP(EDMA_V0_ABORT_INT_MASK, BIT(chan->id));
-> > > +		if (chan->irq_mode == DW_EDMA_CH_IRQ_REMOTE) {
-> > > +			tmp |= FIELD_PREP(EDMA_V0_DONE_INT_MASK, BIT(chan->id));
-> > > +			tmp |= FIELD_PREP(EDMA_V0_ABORT_INT_MASK, BIT(chan->id));
-> > > +		} else {
-> > > +			tmp &= ~FIELD_PREP(EDMA_V0_DONE_INT_MASK, BIT(chan->id));
-> > > +			tmp &= ~FIELD_PREP(EDMA_V0_ABORT_INT_MASK, BIT(chan->id));
-> > > +		}
-> > >  		SET_RW_32(dw, chan->dir, int_mask, tmp);
-> > >  		/* Linked list error */
-> > >  		tmp = GET_RW_32(dw, chan->dir, linked_list_err_en);
-> > > diff --git a/include/linux/dma/edma.h b/include/linux/dma/edma.h
-> > > index ffad10ff2cd6..6f50165ac084 100644
-> > > --- a/include/linux/dma/edma.h
-> > > +++ b/include/linux/dma/edma.h
-> > > @@ -60,6 +60,23 @@ enum dw_edma_chip_flags {
-> > >  	DW_EDMA_CHIP_LOCAL	= BIT(0),
-> > >  };
-> > >
-> > > +/*
-> > > + * enum dw_edma_ch_irq_mode - per-channel interrupt routing control
-> > > + * @DW_EDMA_CH_IRQ_DEFAULT:   LIE=1/RIE=1, local interrupt unmasked
-> > > + * @DW_EDMA_CH_IRQ_LOCAL:     LIE=1/RIE=0
-> > > + * @DW_EDMA_CH_IRQ_REMOTE:    LIE=1/RIE=1, local interrupt masked
-> > > + *
-> > > + * Some implementations require using LIE=1/RIE=1 with the local interrupt
-> > > + * masked to generate a remote-only interrupt (rather than LIE=0/RIE=1).
-> > > + * See the DesignWare endpoint databook 5.40, "Hint" below "Figure 8-22
-> > > + * Write Interrupt Generation".
-> > > + */
-> > > +enum dw_edma_ch_irq_mode {
-> > > +	DW_EDMA_CH_IRQ_DEFAULT	= 0,
-> > > +	DW_EDMA_CH_IRQ_LOCAL,
-> > > +	DW_EDMA_CH_IRQ_REMOTE,
-> > > +};
-> > > +
-> > >  /**
-> > >   * struct dw_edma_chip - representation of DesignWare eDMA controller hardware
-> > >   * @dev:		 struct device of the eDMA controller
-> > > @@ -105,6 +122,22 @@ struct dw_edma_chip {
-> > >  #if IS_REACHABLE(CONFIG_DW_EDMA)
-> > >  int dw_edma_probe(struct dw_edma_chip *chip);
-> > >  int dw_edma_remove(struct dw_edma_chip *chip);
-> > > +/**
-> > > + * dw_edma_chan_irq_config - configure per-channel interrupt routing
-> > > + * @chan: DMA channel obtained from dma_request_channel()
-> > > + * @mode: interrupt routing mode
-> > > + *
-> > > + * Returns 0 on success, -EINVAL for invalid @mode, or -ENODEV if @chan does
-> > > + * not belong to the DesignWare eDMA driver.
-> > > + */
-> > > +int dw_edma_chan_irq_config(struct dma_chan *chan,
-> > > +			    enum dw_edma_ch_irq_mode mode);
-> > > +
-> > > +/**
-> > > + * dw_edma_chan_ignore_irq - tell whether local IRQ handling should be ignored
-> > > + * @chan: DMA channel obtained from dma_request_channel()
-> > > + */
-> > > +bool dw_edma_chan_ignore_irq(struct dma_chan *chan);
-> > >  #else
-> > >  static inline int dw_edma_probe(struct dw_edma_chip *chip)
-> > >  {
-> > > @@ -115,6 +148,17 @@ static inline int dw_edma_remove(struct dw_edma_chip *chip)
-> > >  {
-> > >  	return 0;
-> > >  }
-> > > +
-> > > +static inline int dw_edma_chan_irq_config(struct dma_chan *chan,
-> > > +					  enum dw_edma_ch_irq_mode mode)
-> > > +{
-> > > +	return -ENODEV;
-> > > +}
-> > > +
-> > > +static inline bool dw_edma_chan_ignore_irq(struct dma_chan *chan)
-> > > +{
-> > > +	return false;
-> > > +}
-> > 
-> > I think it'd better go thought
-> > 
-> > struct dma_slave_config {
-> > 	...
-> >         void *peripheral_config;
-> > 	size_t peripheral_size;
-> > 
-> > };
-> > 
-> > So DMA consumer can use standard DMAengine API, dmaengine_slave_config().
+
+On Tue, 20 Jan 2026 19:54:23 +0100, Andreas Kemnade wrote:
+> Convert prm-inst binding to DT schema. Use the closest matching standard
+> node name in the example.
 > 
-> Using .peripheral_config wasn't something I had initially considered, but I
-> agree that this is preferable in the sense that it avoids introducing the
-> additional exported APIs. I'm not entirely sure whether it's clean to use
-> it for non-peripheral settings in the strict sense, but there seem to be
-> precedents such as stm32_mdma_dma_config, so I guess it seems acceptable.
-> If I'm missing something, please correct me.
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> ---
+> Changes in v2:
+> - rename and move file to the place where also omap board compatibles
+>   reside
+> - Link to v1: https://patch.msgid.link/20260102-prm-inst-v1-1-e85402b86885@kemnade.info
+> ---
+>  .../devicetree/bindings/arm/omap/prm-inst.txt      | 31 ------------
+>  .../bindings/arm/ti/ti,omap-prm-inst.yaml          | 55 ++++++++++++++++++++++
+>  2 files changed, 55 insertions(+), 31 deletions(-)
+> 
 
-Strictly speaking slave config should be used for peripheral transfers.
-For memcpy users (this seems more like that), I would argue slave config
-does not make much sense.
+Applied, thanks!
 
--- 
-~Vinod
 
