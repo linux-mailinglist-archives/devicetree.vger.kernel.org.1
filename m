@@ -1,77 +1,73 @@
-Return-Path: <devicetree+bounces-257946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257948-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yE70HODPcGkOaAAAu9opvQ
-	(envelope-from <devicetree+bounces-257946-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 14:08:48 +0100
+	id aKQRMiHPcGkOaAAAu9opvQ
+	(envelope-from <devicetree+bounces-257948-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 14:05:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27A1A57571
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 14:08:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E999574D7
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 14:05:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 3AC5762604E
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 12:56:37 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6D98E6817D7
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 12:58:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17D89481659;
-	Wed, 21 Jan 2026 12:53:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B3D048AE30;
+	Wed, 21 Jan 2026 12:56:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="HG5oS4Qb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3540F2528FD;
-	Wed, 21 Jan 2026 12:53:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85823481FBB;
+	Wed, 21 Jan 2026 12:56:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769000037; cv=none; b=Y8JDBpWcJpfwhZdVay6RTqOwKI7iWUNLHP10fUVT3tNuMRJnYD8lfsBOTjC9Ose8uW5SGx58H6YmMycTYYTbJjN/o9oin69nRqLg+p7irKHfaRqrCxxuI7GTwQMtWSXvYFlUP1lUJSzG2w0w1k+6xAnd1Ipny/GEev72HIN8hL8=
+	t=1769000180; cv=none; b=ZjEarPLXVynfz78Osm4b8i4FCaJu5tZdzSEcFuZYFPmPfiA1zlZCdZPIQg001fvVa2s3eNeXXfHDzXJtB6ap7WXp2KU9obkd7U+pgtNE9qfAjYlioiVqLNj32yJjK1pBrttM60XeD6uGxXQiCRz32rmOE99E01dO7Ppym7JbFOQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769000037; c=relaxed/simple;
-	bh=4phmGtycrcO8LPIqtsNwl4dIFnOcrk0E/9SXScOpNis=;
+	s=arc-20240116; t=1769000180; c=relaxed/simple;
+	bh=66z6mDXJKNQlh26TNqfhAkuHv1OKeUZGPN22b6g7GpE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ma1yRfEBfm6ukVA99FVuR/HleXUmK/JhvmBl5vPgQvXNH+C3jP3qMmxbGgy854+wua9LytVYA9Xv1h5rff0/uENcutd69UT+8hqEutQayEF1OtxpOqdKt9c1HgMkBxIvWNZPcbOY8JjDO0NSYglGj/jlRWVvK03xPl7uLN5rEnI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.99)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1viXiS-000000002FK-49Nh;
-	Wed, 21 Jan 2026 12:53:45 +0000
-Date: Wed, 21 Jan 2026 12:53:36 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=YfR6cR+Vi1UEoOiUxJSOVmLf0U8FcUW3rhYrPP93R97BwLPGX/WKGfel/aFNNbMjhvRzIpXBWAeyz3UTAt7AFtmvbc6/aEjUtOvj2THWeg5cshEgwm0V9NzfhHOg9jIW6nmR/gpVdhKhnaIEUoMJVgOGgcssnupyJDrBWzYMnww=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=HG5oS4Qb; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=QjCA++DUfFEMwVur9OmsdI0vgUZoTw8UrQCFGMt/NHM=; b=HG5oS4Qb2N80+3woHabiOAIFBS
+	3e+uV4TVaFVFGmHiQqkHBvce3bOE4MIAFDFCGpEBrg1ltRGpAUlRUlBqZZCzlFGUOcX0gjNnRokNy
+	zu4SjkKqcTkxxKQYraItvTWlSs95lvP1TkY54JUgu7RJVqYSi/spCRsWu00FhmraSx8Q=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1viXkb-003oo1-FE; Wed, 21 Jan 2026 13:55:57 +0100
+Date: Wed, 21 Jan 2026 13:55:57 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Chaoyi Chen <kernel@airkyi.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Simon Horman <horms@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Frank Wunderlich <frankwu@gmx.de>, Chad Monroe <chad@monroe.io>,
-	Cezary Wilmanski <cezary.wilmanski@adtran.com>,
-	Avinash Jayaraman <ajayaraman@maxlinear.com>,
-	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
-	Juraj Povazanec <jpovazanec@maxlinear.com>,
-	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
-	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
-	"Livia M. Rosu" <lrosu@maxlinear.com>,
-	John Crispin <john@phrozen.org>
-Subject: Re: [PATCH net-next v5 4/4] net: dsa: add basic initial driver for
- MxL862xx switches
-Message-ID: <aXDMUEepq1sU_kfH@makrotopia.org>
-References: <cover.1768225363.git.daniel@makrotopia.org>
- <cover.1768225363.git.daniel@makrotopia.org>
- <169e8a64d3f4db3139f2c85ac5164c52ca861156.1768225363.git.daniel@makrotopia.org>
- <169e8a64d3f4db3139f2c85ac5164c52ca861156.1768225363.git.daniel@makrotopia.org>
- <20260114225736.c7w3tpfol7bdc4so@skbuf>
- <aWgjnJEAV4M3WrcP@makrotopia.org>
- <20260114232259.2bvvijqa3rwrsgsu@skbuf>
+	Heiko Stuebner <heiko@sntech.de>,
+	Alexey Charkov <alchark@gmail.com>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Chaoyi Chen <chaoyi.chen@rock-chips.com>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+	Detlev Casanova <detlev.casanova@collabora.com>,
+	Stephen Chen <stephen@radxa.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] arm64: dts: rockchip: Change gmac phy-mode to
+ rgmii-id for rk3576 evb1
+Message-ID: <b87d0c82-b8b7-4e14-85c3-c4ba88aa4000@lunn.ch>
+References: <20260121031548.402-1-kernel@airkyi.com>
+ <20260121031548.402-2-kernel@airkyi.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,86 +76,50 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260114232259.2bvvijqa3rwrsgsu@skbuf>
-X-Spamd-Result: default: False [0.24 / 15.00];
+In-Reply-To: <20260121031548.402-2-kernel@airkyi.com>
+X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-257946-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[makrotopia.org];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-257948-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[26];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,sntech.de,gmail.com,rock-chips.com,collabora.com,radxa.com,vger.kernel.org,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,armlinux.org.uk,vger.kernel.org,gmx.de,monroe.io,adtran.com,maxlinear.com,phrozen.org];
-	MISSING_XM_UA(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[lunn.ch,none];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[daniel@makrotopia.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	R_DKIM_NA(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[lunn.ch:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,makrotopia.org:mid]
-X-Rspamd-Queue-Id: 27A1A57571
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,0.0.0.1:email]
+X-Rspamd-Queue-Id: 6E999574D7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Vladimir,
+> @@ -721,6 +719,7 @@ rgmii_phy0: ethernet-phy@1 {
+>  		reset-assert-us = <20000>;
+>  		reset-deassert-us = <100000>;
+>  		reset-gpios = <&gpio2 RK_PB5 GPIO_ACTIVE_LOW>;
+> +		tx-internal-delay-ps = <1950>;
 
-On Thu, Jan 15, 2026 at 01:22:59AM +0200, Vladimir Oltean wrote:
-> On Wed, Jan 14, 2026 at 11:15:40PM +0000, Daniel Golle wrote:
-> > [...]
-> > In order to avoid the detour via staging, from my perspective there are two
-> > ways to go from here:
-> > 
-> > a) Keep nagging MaxLinear to provide a switch firmware with an additional
-> > firmware command which flushes the pre-configuration and puts the switch
-> > in a well-defined state (all ports isolated, learning disabled) for DSA.
-> > 
-> > b) Extend the patch to cover all the API calls needed to do this
-> > manually (more than double of LoC).
-> > 
-> > Obviously a) would be better for me and you, but MaxLinear indicated they
-> > prefer not to release an new firmware adding that feature at this point.
-> > 
-> > b) would allow me to proceed right away, but it would burden reviewers
-> > with a rather huge patch for initial support for this switch.
-> > For the sake of making review more easy I'd prefer to still keep this
-> > in a series of not terribly huge patches rather than a single patch
-> > which immediately brings in everything (ie. have bridge and bridgeport
-> > configuration in one patch, FDB access in the next, ...). Would a
-> > series adding everything needed to end up with isolated ports be
-> > acceptable?
-> > 
-> > Please let me know what you think.
-> 
-> Do you have the additional work required to isolate user ports prepared
-> on some branch that can be pre-reviewed? I'm not sure that I have all
-> information to make an informed comment.
+The PHY should add 2000ps, as required by the RGMII standard. The
+difference is so small there is no need for tx-internal-delay.
 
-I've sent a follow-up version of the series[1] adding support for the
-switch which includes basic usage of BRIDGE and BRIDGEPORT firmware API
-to make sure ports are always isolated.
+In most cases, 'rmgii-id' should be sufficient, unless the PCB is
+badly designed.
 
-The function mxl862xx_isolate_port() introduced for this purpose is
-going to be changed quite a lot in upcoming follow-up series, as we do
-need to track and free allocated bridges used for port isolation for now
-once bridge offloading is going to be implemented.
-
-Please let me know if this is acceptable.
-
-Thank you!
-
-Daniel
-
-[1]: https://patchwork.kernel.org/project/netdevbpf/list/?series=1043728
+      Andrew
 
