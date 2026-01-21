@@ -1,444 +1,197 @@
-Return-Path: <devicetree+bounces-257889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257891-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EG1ZCyC1cGndZAAAu9opvQ
-	(envelope-from <devicetree+bounces-257889-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 12:14:40 +0100
+	id OE83D7a1cGndZAAAu9opvQ
+	(envelope-from <devicetree+bounces-257891-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 12:17:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id C43FA55D03
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 12:14:39 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB87D55DF9
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 12:17:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id AF5DD686F39
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 11:06:43 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B0ED5389E1E
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 11:08:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 722A547ECF4;
-	Wed, 21 Jan 2026 11:05:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="VwcMeXZs"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28B124657E0;
+	Wed, 21 Jan 2026 11:06:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o16.zoho.com (sender4-op-o16.zoho.com [136.143.188.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 114F247ECCB;
-	Wed, 21 Jan 2026 11:05:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.16
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768993510; cv=pass; b=UWV3f3bhTyassX3N+SY1ZM4SLOn+BzFCSJFpX5OwIv3zK7OqEuoOgWyN8WnSPNmujpudsRriemfOslhIVl8ULsihueiLQS5/t3ipKs2r3YINTrW62WHxB6qJBnRVjBD87d/2O8abZjcn9KSn8QpDM+Yu2Wq4rrORFmRXvMhQ59E=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768993510; c=relaxed/simple;
-	bh=XzyKX1iXhjH/xe6SwbPUU2TPiS68z964fkgnLa/Ll7U=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=h59/JSmMs+UzQwbtPYmfUPW+P69GyorHc73+GjmWxYedeuXMqbK9ti/jr/CSPl82g40+QdToHlk5+H0gikIbX/mo4M/BTG5XO5phh5OkgjsKPCDjsFasBli0ZD3mryUqQ3lOwtZh5L6Z33rPTP+YLoVXUJ9nm19QnxkW0t8Shnw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=VwcMeXZs; arc=pass smtp.client-ip=136.143.188.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
-ARC-Seal: i=1; a=rsa-sha256; t=1768993490; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=CnmSDABxcOhHqfA89YMjM7rS8TBHbSfyJtkC0E2Ocxunxj81oT5Mznny52K1c3/HWQ1hYkV3LhIoOKxSqBXNpJOdJ29zat1+HPf5mhtt7SbE2ok93TR4YnIg/oSFp0pI7ICcrcdoK/eBE2fCKkRnVAWmvj3QsSSrf/WuRAlgHcI=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1768993490; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=c+vBV4VT1dMjsTAU9tsfPgC8rjnBjBQSGpwb/wpSV2s=; 
-	b=npwVALibQKN7qOrX1A002P2CXw+xmBWvEDswr6yxXYApGVbH+NwmAusZcDCSeapkh6kKBBkQXqfSASeNAJsfSAQaeohqOWlzCGVR9EbPrvG9hQvDCRhVOF2XHLNZH7zgkLLmx8o45Hu7btXlZP/pzFhNFQZodcScSVOusPG35Lw=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=pigmoral.tech;
-	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
-	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1768993490;
-	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
-	h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
-	bh=c+vBV4VT1dMjsTAU9tsfPgC8rjnBjBQSGpwb/wpSV2s=;
-	b=VwcMeXZs8A2M9bULzdko8GAaqWCwf+mUEITdtkXoVVqqJ+A5pVUTDkkPkBJE0wQZ
-	TZdJrcLTqxo41HD7j6oGYIb/DkaAoFLYQNJlnm+vbn1DKdF4GuqOOYr4dCgcDOiuxuY
-	SgehDodgCmb4wvVOjdMyI+OPkgbjhq8JJ8hDjN4k=
-Received: by mx.zohomail.com with SMTPS id 1768993486830785.6868370776832;
-	Wed, 21 Jan 2026 03:04:46 -0800 (PST)
-From: Junhui Liu <junhui.liu@pigmoral.tech>
-Date: Wed, 21 Jan 2026 18:59:13 +0800
-Subject: [PATCH 7/7] clk: sunxi-ng: Add Allwinner A733 RTC CCU support
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14D5A3EDAB3
+	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 11:06:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.42
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768993568; cv=none; b=efuimx0sxJrQMydGUSWIg3k+y0+tYDFosMRoaxSuoejSFJeOSqW/RUafeK6B/rANs3+B4QZDOHZSPLhg0KEDJiny2dXQkMp69Qty20bDegrbkYwQoQWKeTc142VU93pXTcGl8UuwqUe1X2dslE54kgwjjvKT3JSPCXrqI8Xi7Wg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768993568; c=relaxed/simple;
+	bh=cysOwS5g5dZRSxtVrJ3zv/VB5w+D2iLkyCuaPMhXFP4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dcqIuJppTiC814zgZ5aFEil5vxDHiaXFRJorpweVCx0Bi1wBI9+H1R80+3GNejKM6sxsF/kvv3rQ+XYbCdvDNrtd/ZyGDZ3eUHWBIcmXQUk0MSGWiGitsnpNfacZxDjYOrqS8qnmEXdbaVdqT/0+FcJ4T/VFbldY22D6UacX25s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f42.google.com with SMTP id 6a1803df08f44-89473dca8aaso5049486d6.0
+        for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 03:06:06 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768993566; x=1769598366;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VSYJm8i9wWqRvGvRTZz6VIsl7/oMewZT8tw/+hAgWzw=;
+        b=fv2NpJFFl89w7TTTXcmbsBUrmydBwIsLOMkOIKKl8F4sBn+Nu/1Z07uHSKDZ6Iqkwp
+         aDPWOZFbSVNsp1FZ3Me8CFYr+9ZEBMqxD53qiMDoFEkdLIfmGsiTPaiJBreut8J7x+a1
+         3PAax75Rq9nqVx2EUs9Y4src/Pglaui1wJTduI8L31n3JFvLx+XlaQu+J5XNRcHdHW3j
+         r6JR2FAM5ZfC9PwrcrITghQGEZPsj9mevJEKbm+KeRJo9u1M5PtHUZ0vqG1rs2Qn/kZG
+         mlby9BUgNWYt/r+nSdLZR8OOcRiZxfO2chEPVZc9aSIUOIkcGFZBBW1QqwsOwWof+m4a
+         KeGQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX6NGPuDJ9ihr+qZZxMVpAo+zUzdvPZjC1SP6iCm9u+mBECGVoTk0TDBT5C42yeTqy8UOorwFLv8/qN@vger.kernel.org
+X-Gm-Message-State: AOJu0YyXZviij58XsWwaGlKrGyD9LNcOdusBFoEaWY3AU6vphbjpQA6q
+	DTEnsXpcQg+Nq4J5yc9g9VDCPw3FRGnhpxVUISEjhBhDSFSiktyyjovIZVUPHBH3
+X-Gm-Gg: AZuq6aLvrQWbNKuvitXWQPrfJLKMbKAkWsnvCQgOeW3he8WBlXmLJZxKyrNwo8+thbC
+	gC+IL8E4Wo+lhbezA+Fy9100Tvc6DuVk6Cm0IxczKPp4OX/XNoDTOzASyYgMIgP/S+Ob/rzN5zA
+	GyYY5qEB4fsXhA4Hj3EO2eGfdWmFljeVBeuIsQNKjcHo/IJFrOZNLn0InqIRdY+5rPaasdzr6ZA
+	5dOKHMiP4ip5Nk7Z5ZJI7xgoBS2AccvXwUzclkuMRTAqZd4pGhGqVucjzE/XS1f5HqIcyU4kGZY
+	PntifoVx9Jkh3fdMRyR7KV+Kjbhvd8bOIPOVpyt+KauZCkhK5Pa73pp+JLFYM412j6Fju1ch0HU
+	wcy8RxQhevsk+D/Fs/WeEkPDV/vxzD+N2g1f9ARPJttJ6hows1QSge9/v/D+ZrC8tM7UkSRgRA+
+	Q+tFSAqFA+JwTJuUIdkx68eokI0S79eoL/YoV6RZ/EEdBhp3CFsT+2
+X-Received: by 2002:a05:6214:76a:b0:894:62b2:12a0 with SMTP id 6a1803df08f44-89462b214b1mr75746866d6.22.1768993565754;
+        Wed, 21 Jan 2026 03:06:05 -0800 (PST)
+Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com. [209.85.222.179])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-502a1ed2479sm110210391cf.21.2026.01.21.03.06.05
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Jan 2026 03:06:05 -0800 (PST)
+Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-8c5386f1c9fso929548285a.1
+        for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 03:06:05 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWewE1iUL4/wTjXyh5jEa0EQtWsDWop49csE/ahOL7S3ghW7XbUlUxD+sPan27NC0Wo/IpXdER1j7sy@vger.kernel.org
+X-Received: by 2002:a05:6102:2ad6:b0:5ef:248b:d533 with SMTP id
+ ada2fe7eead31-5f1a716fcbcmr6150752137.31.1768993204250; Wed, 21 Jan 2026
+ 03:00:04 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260121-a733-rtc-v1-7-d359437f23a7@pigmoral.tech>
-References: <20260121-a733-rtc-v1-0-d359437f23a7@pigmoral.tech>
-In-Reply-To: <20260121-a733-rtc-v1-0-d359437f23a7@pigmoral.tech>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Maxime Ripard <mripard@kernel.org>
-Cc: linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
- linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
- Junhui Liu <junhui.liu@pigmoral.tech>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1768993386; l=10406;
- i=junhui.liu@pigmoral.tech; s=20251228; h=from:subject:message-id;
- bh=XzyKX1iXhjH/xe6SwbPUU2TPiS68z964fkgnLa/Ll7U=;
- b=b3o2BSCLMzB6Z0pr+Id6k3NBkfOa2eF/19I1MilbZG3CXD9a9RyaTnEkxci/Tc9KoV401PqlJ
- 43O28YMPUdjBktQNZ+pnuzGTdv0Vd+zXnkhvII5PThTjnoTTTwFRW1a
-X-Developer-Key: i=junhui.liu@pigmoral.tech; a=ed25519;
- pk=3vU0qIPJAH8blXmLyqBhKx+nLOjcLwwYhZXelEpw7h4=
-X-ZohoMailClient: External
-X-Spamd-Result: default: False [0.04 / 15.00];
+References: <20260121-rz-sdio-mux-v6-0-38aa39527928@solid-run.com> <20260121-rz-sdio-mux-v6-3-38aa39527928@solid-run.com>
+In-Reply-To: <20260121-rz-sdio-mux-v6-3-38aa39527928@solid-run.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 21 Jan 2026 11:59:52 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdX_rKgfusHP5qVny8OZufU6VAiA6sqg1LP3T2jikSz7yQ@mail.gmail.com>
+X-Gm-Features: AZwV_QifTISU05sQ0lYySqx5XyPjAzUqa1H8fmOUOfLhWhGN7rzCzfM2UGq26-s
+Message-ID: <CAMuHMdX_rKgfusHP5qVny8OZufU6VAiA6sqg1LP3T2jikSz7yQ@mail.gmail.com>
+Subject: Re: [PATCH v6 3/7] mux: add help text for MULTIPLEXER config option
+To: Josua Mayer <josua@solid-run.com>
+Cc: Marc Kleine-Budde <mkl@pengutronix.de>, Vincent Mailhol <mailhol@kernel.org>, 
+	Vinod Koul <vkoul@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Peter Rosin <peda@axentia.se>, Aaro Koskinen <aaro.koskinen@iki.fi>, 
+	Andreas Kemnade <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>, 
+	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, 
+	Janusz Krzysztofik <jmkrzyszt@gmail.com>, Vignesh R <vigneshr@ti.com>, 
+	Andi Shyti <andi.shyti@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Yazan Shhady <yazan.shhady@solid-run.com>, Jon Nettleton <jon@solid-run.com>, 
+	Mikhail Anikin <mikhail.anikin@solid-run.com>, linux-can@vger.kernel.org, 
+	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-omap@vger.kernel.org, linux-i2c@vger.kernel.org, 
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spamd-Result: default: False [0.24 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	R_DKIM_ALLOW(-0.20)[pigmoral.tech:s=zmail];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-257891-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[baylibre.com,kernel.org,gmail.com,sholland.org,bootlin.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[pigmoral.tech];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	DMARC_NA(0.00)[linux-m68k.org];
+	RCPT_COUNT_TWELVE(0.00)[32];
+	FREEMAIL_CC(0.00)[pengutronix.de,kernel.org,linaro.org,axentia.se,iki.fi,kemnade.info,baylibre.com,atomide.com,gmail.com,ti.com,glider.be,sang-engineering.com,solid-run.com,vger.kernel.org,lists.infradead.org];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-257889-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[pigmoral.tech:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[junhui.liu@pigmoral.tech,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pigmoral.tech:email,pigmoral.tech:dkim,pigmoral.tech:mid,ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: C43FA55D03
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,linux-m68k.org:email,solid-run.com:email,ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
+X-Rspamd-Queue-Id: DB87D55DF9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add support for the internal CCU found in the RTC module of the Allwinner
-A733 SoC. While the basic 16MHz (IOSC) and 32kHz logic remains compatible
-with older SoCs like the sun6i, the A733 introduces several new features.
+Hi Josua,
 
-The A733 RTC CCU supports choosing one of three external crystal
-frequencies: 19.2MHz, 24MHz, and 26MHz. It features hardware detection
-logic to automatically identify the frequency used on the board and
-exports this DCXO signal as the "hosc" clock.
+On Wed, 21 Jan 2026 at 11:02, Josua Mayer <josua@solid-run.com> wrote:
+> Add help text for CONFIG_MULTIPLEXER to allow enabling this option
+> through the kernel configuration without explicit "select" driver
+> dependencies.
+>
+> Signed-off-by: Josua Mayer <josua@solid-run.com>
 
-Furthermore, the driver implements logic to derive a 32kHz reference
-from the HOSC. This is achieved through a muxed clock path using fixed
-pre-dividers to normalize the different crystal frequencies to ~32kHz.
-This path reuses the same hardware mux registers as the HOSC clock.
+Thanks for your patch!
 
-Additionally, this CCU provides several gate clocks for specific
-peripherals, including SerDes, HDMI, and UFS. The driver is implemented
-as an auxiliary driver to be bound to the sun6i-rtc driver.
+> --- a/drivers/mux/Kconfig
+> +++ b/drivers/mux/Kconfig
+> @@ -5,6 +5,14 @@
+>
+>  config MULTIPLEXER
+>         tristate
+> +       help
+> +         Generic Multiplexer Support.
+> +
+> +         This framework is designed to abstract multiplexer handling for
+> +         devices via various GPIO-, MMIO/Regmap or specific multiplexer
+> +         controller chips.
+> +
+> +         If unsure, say no.
+>
+>  menu "Multiplexer drivers"
+>         depends on MULTIPLEXER
+>
 
-Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
----
- drivers/clk/sunxi-ng/Kconfig               |   5 +
- drivers/clk/sunxi-ng/Makefile              |   2 +
- drivers/clk/sunxi-ng/ccu-sun60i-a733-rtc.c | 204 +++++++++++++++++++++++++++++
- drivers/clk/sunxi-ng/ccu-sun60i-a733-rtc.h |  18 +++
- drivers/clk/sunxi-ng/ccu_rtc.h             |   7 +
- 5 files changed, 236 insertions(+)
+Unfortunately it doesn't work like that. As the tristate has no prompt
+specified, the user will never be asked about this.
+You should use something like below:
 
-diff --git a/drivers/clk/sunxi-ng/Kconfig b/drivers/clk/sunxi-ng/Kconfig
-index 6af2d020e03e..16afbf249f26 100644
---- a/drivers/clk/sunxi-ng/Kconfig
-+++ b/drivers/clk/sunxi-ng/Kconfig
-@@ -67,6 +67,11 @@ config SUN55I_A523_R_CCU
- 	default ARCH_SUNXI
- 	depends on ARM64 || COMPILE_TEST
- 
-+config SUN60I_A733_RTC_CCU
-+	tristate "Support for the Allwinner A733 RTC CCU"
-+	default ARCH_SUNXI
-+	depends on ARM64 || COMPILE_TEST
-+
- config SUN4I_A10_CCU
- 	tristate "Support for the Allwinner A10/A20 CCU"
- 	default ARCH_SUNXI
-diff --git a/drivers/clk/sunxi-ng/Makefile b/drivers/clk/sunxi-ng/Makefile
-index c3f810a025a8..b0d823440c33 100644
---- a/drivers/clk/sunxi-ng/Makefile
-+++ b/drivers/clk/sunxi-ng/Makefile
-@@ -39,6 +39,7 @@ obj-$(CONFIG_SUN50I_H616_CCU)	+= sun50i-h616-ccu.o
- obj-$(CONFIG_SUN55I_A523_CCU)	+= sun55i-a523-ccu.o
- obj-$(CONFIG_SUN55I_A523_MCU_CCU)	+= sun55i-a523-mcu-ccu.o
- obj-$(CONFIG_SUN55I_A523_R_CCU)	+= sun55i-a523-r-ccu.o
-+obj-$(CONFIG_SUN60I_A733_RTC_CCU)	+= sun60i-a733-rtc-ccu.o
- obj-$(CONFIG_SUN4I_A10_CCU)	+= sun4i-a10-ccu.o
- obj-$(CONFIG_SUN5I_CCU)		+= sun5i-ccu.o
- obj-$(CONFIG_SUN6I_A31_CCU)	+= sun6i-a31-ccu.o
-@@ -67,6 +68,7 @@ sun50i-h616-ccu-y		+= ccu-sun50i-h616.o
- sun55i-a523-ccu-y		+= ccu-sun55i-a523.o
- sun55i-a523-mcu-ccu-y		+= ccu-sun55i-a523-mcu.o
- sun55i-a523-r-ccu-y		+= ccu-sun55i-a523-r.o
-+sun60i-a733-rtc-ccu-y		+= ccu-sun60i-a733-rtc.o
- sun4i-a10-ccu-y			+= ccu-sun4i-a10.o
- sun5i-ccu-y			+= ccu-sun5i.o
- sun6i-a31-ccu-y			+= ccu-sun6i-a31.o
-diff --git a/drivers/clk/sunxi-ng/ccu-sun60i-a733-rtc.c b/drivers/clk/sunxi-ng/ccu-sun60i-a733-rtc.c
-new file mode 100644
-index 000000000000..d17aceffa16e
---- /dev/null
-+++ b/drivers/clk/sunxi-ng/ccu-sun60i-a733-rtc.c
-@@ -0,0 +1,204 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2026 Junhui Liu <junhui.liu@pigmoral.tech>
-+ */
-+
-+#include <linux/array_size.h>
-+#include <linux/auxiliary_bus.h>
-+#include <linux/clk-provider.h>
-+#include <linux/device.h>
-+#include <linux/module.h>
-+
-+#include "ccu_common.h"
-+
-+#include "ccu_gate.h"
-+#include "ccu_mux.h"
-+#include "ccu_rtc.h"
-+
-+#include "ccu-sun60i-a733-rtc.h"
-+
-+static struct ccu_common iosc_clk = {
-+	.reg		= DCXO_CTRL_REG,
-+	.features	= CCU_FEATURE_IOSC_CALIBRATION,
-+	.hw.init	= CLK_HW_INIT_NO_PARENT("iosc", &ccu_iosc_ops,
-+						CLK_GET_RATE_NOCACHE),
-+};
-+
-+static struct ccu_common iosc_32k_clk = {
-+	.features	= CCU_FEATURE_IOSC_CALIBRATION,
-+	.hw.init	= CLK_HW_INIT_HW("iosc-32k", &iosc_clk.hw,
-+					 &ccu_iosc_32k_ops,
-+					 CLK_GET_RATE_NOCACHE),
-+};
-+
-+static SUNXI_CCU_GATE_FW(ext_osc32k_gate_clk, "ext-osc32k-gate",
-+			 "ext-osc32k", 0x0, BIT(4), 0);
-+
-+static const struct clk_hw *osc32k_parents[] = {
-+	&iosc_32k_clk.hw,
-+	&ext_osc32k_gate_clk.common.hw,
-+};
-+
-+static struct ccu_mux osc32k_clk = {
-+	.mux	= _SUNXI_CCU_MUX(0, 1),
-+	.common	= {
-+		.reg		= LOSC_CTRL_REG,
-+		.features	= CCU_FEATURE_KEY_FIELD,
-+		.hw.init	= CLK_HW_INIT_PARENTS_HW("osc32k",
-+							 osc32k_parents,
-+							 &ccu_mux_ops,
-+							 0),
-+	},
-+};
-+
-+static const struct clk_parent_data hosc_parents[] = {
-+	{ .fw_name = "osc24M" },
-+	{ .fw_name = "osc19M" },
-+	{ .fw_name = "osc26M" },
-+	{ .fw_name = "osc24M" },
-+};
-+
-+struct ccu_mux hosc_clk = {
-+	.enable	= DCXO_CTRL_DCXO_EN,
-+	.mux	= _SUNXI_CCU_MUX(14, 2),
-+	.common	= {
-+		.reg		= DCXO_CTRL_REG,
-+		.hw.init	= CLK_HW_INIT_PARENTS_DATA("hosc",
-+							   hosc_parents,
-+							   &ccu_mux_ro_ops,
-+							   0),
-+	},
-+};
-+
-+static const struct ccu_mux_fixed_prediv hosc_32k_predivs[] = {
-+	{ .index = 0, .div = 732 },
-+	{ .index = 1, .div = 586 },
-+	{ .index = 2, .div = 793 },
-+	{ .index = 3, .div = 732 },
-+};
-+
-+static struct ccu_mux hosc_32k_mux_clk = {
-+	.enable		= DCXO_CTRL_DCXO_EN,
-+	.mux		= {
-+		.shift		= 14,
-+		.width		= 2,
-+		.fixed_predivs	= hosc_32k_predivs,
-+		.n_predivs	= ARRAY_SIZE(hosc_32k_predivs),
-+	},
-+	.common		= {
-+		.reg		= DCXO_CTRL_REG,
-+		.features	= CCU_FEATURE_FIXED_PREDIV,
-+		.hw.init	= CLK_HW_INIT_PARENTS_DATA("hosc-32k-mux",
-+							   hosc_parents,
-+							   &ccu_mux_ro_ops,
-+							   0),
-+	},
-+};
-+
-+static SUNXI_CCU_GATE_HW(hosc_32k_clk, "hosc-32k", &hosc_32k_mux_clk.common.hw,
-+			 LOSC_OUT_GATING_REG, BIT(16), 0);
-+
-+static const struct clk_hw *rtc_32k_parents[] = {
-+	&osc32k_clk.common.hw,
-+	&hosc_32k_clk.common.hw,
-+};
-+
-+static struct ccu_mux rtc_32k_clk = {
-+	.mux	= _SUNXI_CCU_MUX(1, 1),
-+	.common	= {
-+		.reg		= LOSC_CTRL_REG,
-+		.features	= CCU_FEATURE_KEY_FIELD,
-+		.hw.init	= CLK_HW_INIT_PARENTS_HW("rtc-32k",
-+							 rtc_32k_parents,
-+							 &ccu_mux_ops,
-+							 0),
-+	},
-+};
-+
-+static const struct clk_parent_data osc32k_fanout_parents[] = {
-+	{ .hw = &osc32k_clk.common.hw },
-+	{ .hw = &ext_osc32k_gate_clk.common.hw },
-+	{ .hw = &hosc_32k_clk.common.hw },
-+};
-+
-+static SUNXI_CCU_MUX_DATA_WITH_GATE(osc32k_fanout_clk, "osc32k-fanout", osc32k_fanout_parents,
-+				    LOSC_OUT_GATING_REG,
-+				    1, 2,	/* mux */
-+				    BIT(0),	/* gate */
-+				    0);
-+
-+static SUNXI_CCU_GATE_HW(hosc_serdes1_clk, "hosc-serdes1", &hosc_clk.common.hw,
-+			 DCXO_GATING_REG, DCXO_SERDES1_GATING, 0);
-+static SUNXI_CCU_GATE_HW(hosc_serdes0_clk, "hosc-serdes0", &hosc_clk.common.hw,
-+			 DCXO_GATING_REG, DCXO_SERDES0_GATING, 0);
-+static SUNXI_CCU_GATE_HW(hosc_hdmi_clk, "hosc-hdmi", &hosc_clk.common.hw,
-+			 DCXO_GATING_REG, DCXO_HDMI_GATING, 0);
-+static SUNXI_CCU_GATE_HW(hosc_ufs_clk, "hosc-ufs", &hosc_clk.common.hw,
-+			 DCXO_GATING_REG, DCXO_UFS_GATING, 0);
-+
-+static struct ccu_common *sun60i_rtc_ccu_clks[] = {
-+	&iosc_clk,
-+	&iosc_32k_clk,
-+	&ext_osc32k_gate_clk.common,
-+	&osc32k_clk.common,
-+	&hosc_clk.common,
-+	&hosc_32k_mux_clk.common,
-+	&hosc_32k_clk.common,
-+	&rtc_32k_clk.common,
-+	&osc32k_fanout_clk.common,
-+	&hosc_serdes1_clk.common,
-+	&hosc_serdes0_clk.common,
-+	&hosc_hdmi_clk.common,
-+	&hosc_ufs_clk.common,
-+};
-+
-+static struct clk_hw_onecell_data sun60i_rtc_ccu_hw_clks = {
-+	.num = CLK_NUMBER,
-+	.hws = {
-+		[CLK_IOSC]		= &iosc_clk.hw,
-+		[CLK_OSC32K]		= &osc32k_clk.common.hw,
-+		[CLK_HOSC]		= &hosc_clk.common.hw,
-+		[CLK_RTC_32K]		= &rtc_32k_clk.common.hw,
-+		[CLK_OSC32K_FANOUT]	= &osc32k_fanout_clk.common.hw,
-+		[CLK_HOSC_SERDES1]	= &hosc_serdes1_clk.common.hw,
-+		[CLK_HOSC_SERDES0]	= &hosc_serdes0_clk.common.hw,
-+		[CLK_HOSC_HDMI]		= &hosc_hdmi_clk.common.hw,
-+		[CLK_HOSC_UFS]		= &hosc_ufs_clk.common.hw,
-+		[CLK_IOSC_32K]		= &iosc_32k_clk.hw,
-+		[CLK_EXT_OSC32K_GATE]	= &ext_osc32k_gate_clk.common.hw,
-+		[CLK_HOSC_32K_MUX]	= &hosc_32k_mux_clk.common.hw,
-+		[CLK_HOSC_32K]		= &hosc_32k_clk.common.hw,
-+	},
-+};
-+
-+static const struct sunxi_ccu_desc sun60i_rtc_ccu_desc = {
-+	.ccu_clks	= sun60i_rtc_ccu_clks,
-+	.num_ccu_clks	= ARRAY_SIZE(sun60i_rtc_ccu_clks),
-+
-+	.hw_clks	= &sun60i_rtc_ccu_hw_clks,
-+};
-+
-+static int sun60i_rtc_ccu_probe(struct auxiliary_device *adev,
-+				const struct auxiliary_device_id *id)
-+{
-+	struct device *dev = &adev->dev;
-+	void __iomem *reg = dev->platform_data;
-+
-+	return devm_sunxi_ccu_probe(dev, reg, &sun60i_rtc_ccu_desc);
-+}
-+
-+static const struct auxiliary_device_id sun60i_ccu_rtc_ids[] = {
-+	{ .name = SUN6I_RTC_AUX_ID(sun60i) },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(auxiliary, sun60i_ccu_rtc_ids);
-+
-+static struct auxiliary_driver sun60i_ccu_rtc_driver = {
-+	.probe = sun60i_rtc_ccu_probe,
-+	.id_table = sun60i_ccu_rtc_ids,
-+};
-+module_auxiliary_driver(sun60i_ccu_rtc_driver);
-+
-+MODULE_IMPORT_NS("SUNXI_CCU");
-+MODULE_DESCRIPTION("Support for the Allwinner A733 RTC CCU");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/clk/sunxi-ng/ccu-sun60i-a733-rtc.h b/drivers/clk/sunxi-ng/ccu-sun60i-a733-rtc.h
-new file mode 100644
-index 000000000000..41ec6195b5e7
---- /dev/null
-+++ b/drivers/clk/sunxi-ng/ccu-sun60i-a733-rtc.h
-@@ -0,0 +1,18 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/*
-+ * Copyright (C) 2026 Junhui Liu <junhui.liu@pigmoral.tech>
-+ */
-+
-+#ifndef _CCU_SUN60I_A733_RTC_H_
-+#define _CCU_SUN60I_A733_RTC_H_
-+
-+#include <dt-bindings/clock/sun60i-a733-rtc.h>
-+
-+#define CLK_IOSC_32K		9
-+#define CLK_EXT_OSC32K_GATE	10
-+#define CLK_HOSC_32K_MUX	11
-+#define CLK_HOSC_32K		12
-+
-+#define CLK_NUMBER		(CLK_HOSC_32K + 1)
-+
-+#endif /* _CCU_SUN60I_A733_RTC_H_ */
-diff --git a/drivers/clk/sunxi-ng/ccu_rtc.h b/drivers/clk/sunxi-ng/ccu_rtc.h
-index 1c44c2206a25..665162723796 100644
---- a/drivers/clk/sunxi-ng/ccu_rtc.h
-+++ b/drivers/clk/sunxi-ng/ccu_rtc.h
-@@ -27,8 +27,15 @@
- #define LOSC_OUT_GATING_REG		0x60
- 
- #define DCXO_CTRL_REG			0x160
-+#define DCXO_CTRL_DCXO_EN		BIT(1)
- #define DCXO_CTRL_CLK16M_RC_EN		BIT(0)
- 
-+#define DCXO_GATING_REG			0x16c
-+#define DCXO_SERDES1_GATING		BIT(5)
-+#define DCXO_SERDES0_GATING		BIT(4)
-+#define DCXO_HDMI_GATING		BIT(1)
-+#define DCXO_UFS_GATING			BIT(0)
-+
- #define SUN6I_RTC_AUX_ID(_name)		"rtc_sun6i." #_name
- 
- extern const struct clk_ops ccu_iosc_ops;
+--- a/drivers/mux/Kconfig
++++ b/drivers/mux/Kconfig
+@@ -4,10 +4,8 @@
+ #
+
+ config MULTIPLEXER
+-       tristate
++       tristate "Generic Multiplexer Support" if COMPILE_TEST
+        help
+-         Generic Multiplexer Support.
+-
+          This framework is designed to abstract multiplexer handling for
+          devices via various GPIO-, MMIO/Regmap or specific multiplexer
+          controller chips.
+
+Sorry for not noticing before.
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-2.52.0
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
