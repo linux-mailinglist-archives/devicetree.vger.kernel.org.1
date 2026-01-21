@@ -1,191 +1,195 @@
-Return-Path: <devicetree+bounces-257910-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257912-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eAd6H6/AcGmKZgAAu9opvQ
-	(envelope-from <devicetree+bounces-257910-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 13:03:59 +0100
+	id qBdNEfTCcGkNZwAAu9opvQ
+	(envelope-from <devicetree+bounces-257912-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 13:13:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F5425673D
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 13:03:59 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7D7056957
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 13:13:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B23754261D9
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 12:01:13 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 164F59A38CA
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 12:04:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D86F3D3CE5;
-	Wed, 21 Jan 2026 12:01:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B22963BBA03;
+	Wed, 21 Jan 2026 12:04:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="mto1Zpx3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [13.75.44.102])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E085410D13;
-	Wed, 21 Jan 2026 12:01:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.75.44.102
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D0193D348C;
+	Wed, 21 Jan 2026 12:04:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768996867; cv=none; b=cftOKbZq8lR7RscgSr5fiP0X8WFciTgSgIUCYAK6KkaE3jRBER7fbBIboS95cQpi34swzJomuldIDxxzkLepsiecIy0MnD8T4SsYF2IWScuqXDdeSLNM6BA9re1nwaAGV8AwJfoSmNSGC7ZjvqDA3e7dIdCTLD5jpdF08LpybaM=
+	t=1768997074; cv=none; b=dDGS1rNaIUI8YJooj/QvyCekAfXpFVtY+ns6Ogp6sq0/aTlMYs9NmDwxPShTOe2YYKMZWWD4mv8HmCH1+81GOHxk3Gfp4qtO7U+kH+5Q58W5YfHiEjQk8PqBjXj2Q1XhFbnuvBY2BLEUqwpZHX/Mn2LJ3P9PrHBhdEmZUi4ncW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768996867; c=relaxed/simple;
-	bh=F5gD4RVtQHitPr4ixCMasUs+IhmSxtRTKSjxaRo61GY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=lYNgv9uVkymV0P4kZXAzrHolCVEowVQfOgvs+nTDlYrbVOyoI+sMZP0sMq2cVkwPvLc1Tb3lzMp3Vu4rhosPpmi3qOcfAOzO+nupq8tyuPbQM4nhh4SHiW8b1HWfUSythS1Ykm5g5mbF/cz0UmT5d2Kqe8RC7xrYrDCP6z+S4gg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=13.75.44.102
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from zhangsenchuan$eswincomputing.com ( [10.12.96.83] ) by
- ajax-webmail-app2 (Coremail) ; Wed, 21 Jan 2026 20:00:26 +0800 (GMT+08:00)
-Date: Wed, 21 Jan 2026 20:00:26 +0800 (GMT+08:00)
-X-CM-HeaderCharset: UTF-8
-From: zhangsenchuan <zhangsenchuan@eswincomputing.com>
-To: "Bjorn Helgaas" <helgaas@kernel.org>,
-	"Manivannan Sadhasivam" <mani@kernel.org>
-Cc: bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
-	lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org,
-	p.zabel@pengutronix.de, jingoohan1@gmail.com,
-	gustavo.pimentel@synopsys.com, linux-pci@vger.kernel.org,
+	s=arc-20240116; t=1768997074; c=relaxed/simple;
+	bh=YK9zh0Ep6DWTX4vTsz5QYyGRak2PjgX8bV+rgw/6iHA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XfHF43Mu5pa/xgwNeYP8Sj4TCFO/Bb1CgP3bZVerl1WfuRdrRWWezKkbt9XzONTzybOeImnF8YXPol0Xle6Tc0dFAbU5YWkIqwQVgnoq2MdwYzqcdDAmC1AvWZplxlNa7VyYS8ia8KvtoQqp5luml81Dic6Bp5wM06V6qa6Hr30=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=mto1Zpx3; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=FpPajyycP6hR8UaVkW71uLW018aze8MN50EScuTtwQU=; b=mto1Zpx3LkWT4BlB+EH50113Nb
+	gD+8T7D+2WAtGQq/HAETjWDP9VjyUv0Zasp+mlwBBJM04gLMpIW89udAEmz0zL+R4JNQd+rXs+PY4
+	USSP0T2O6gNnTn70MPBH5jdo6z8YgUfyFRirWq2Tdz2Gw4zd9r4L65P//5N1ynOsg2l7TAuicxjP6
+	pGTRuUj70fLX9dSQS/IJJpvxKeml9OwJP/7gY9jCdnner/ChJebJ2/6jm6tSsTTsHzq6t8RGzRX8J
+	mDoh8xcKRYL9T2uWFq+YyJ7ioJN2ZBtPvrNsVJYdxw+n90kPlQUz+vbO864VHSfMySk3q0BDAeUZa
+	DuvPldTQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:39012)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1viWw8-000000007Ns-1ncE;
+	Wed, 21 Jan 2026 12:03:48 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1viWvw-000000008QZ-3jNS;
+	Wed, 21 Jan 2026 12:03:36 +0000
+Date: Wed, 21 Jan 2026 12:03:36 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Yanteng Si <siyanteng@cqsoftware.com.cn>,
+	Yao Zi <ziyao@disroot.org>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Choong Yong Liang <yong.liang.choong@linux.intel.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Chen-Yu Tsai <wens@kernel.org>,
+	Shangjuan Wei <weishangjuan@eswincomputing.com>,
+	Boon Khai Ng <boon.khai.ng@altera.com>,
+	Quentin Schulz <quentin.schulz@cherry.de>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	christian.bruel@foss.st.com, mayank.rana@oss.qualcomm.com,
-	shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com,
-	thippeswamy.havalige@amd.com, inochiama@gmail.com, Frank.li@nxp.com,
-	ningyu@eswincomputing.com, linmin@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com,
-	"Niklas Cassel" <cassel@kernel.org>
-Subject: Re: Re: Re: [PATCH v9 2/2] PCI: eic7700: Add Eswin PCIe host
- controller driver
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
- 20241203(6b039d88) Copyright (c) 2002-2026 www.mailtech.cn
- mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
-In-Reply-To: <6607c5b8.21d6.19ba27df74f.Coremail.zhangsenchuan@eswincomputing.com>
-References: <20260106174348.GA365798@bhelgaas>
- <6607c5b8.21d6.19ba27df74f.Coremail.zhangsenchuan@eswincomputing.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	Longbin Li <looong.bin@gmail.com>
+Subject: Re: [PATCH net-next 3/3] net: stmmac: Add glue layer for Spacemit K3
+ SoC
+Message-ID: <aXDAmDEpUArE1_en@shell.armlinux.org.uk>
+References: <20260120043609.910302-1-inochiama@gmail.com>
+ <20260120043609.910302-4-inochiama@gmail.com>
+ <aW8LAFhCRWlMVemz@shell.armlinux.org.uk>
+ <aW8MJpERR3TmsiKg@inochi.infowork>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <58a8c0fe.292f.19be06d6ce0.Coremail.zhangsenchuan@eswincomputing.com>
-X-Coremail-Locale: en_US
-X-CM-TRANSID:TQJkCgAHeizav3BpZR4EAA--.987W
-X-CM-SenderInfo: x2kd0wpvhquxxxdqqvxvzl0uprps33xlqjhudrp/1tbiAgEOBmlvr
-	oAgCgABsI
-X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
-	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
-	daVFxhVjvjDU=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aW8MJpERR3TmsiKg@inochi.infowork>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	R_DKIM_REJECT(1.00)[armlinux.org.uk:s=pandora-2019];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	MIME_BASE64_TEXT(0.10)[];
+	DMARC_POLICY_SOFTFAIL(0.10)[armlinux.org.uk : No valid SPF,none];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-257912-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-257910-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[eswincomputing.com];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[26];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[google.com,kernel.org,pengutronix.de,gmail.com,synopsys.com,vger.kernel.org,foss.st.com,oss.qualcomm.com,samsung.com,amd.com,nxp.com,eswincomputing.com,einfochips.com];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[37];
+	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gentoo.org,gmail.com,foss.st.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,cqsoftware.com.cn,disroot.org,nxp.com,bp.renesas.com,linux.intel.com,bootlin.com,eswincomputing.com,altera.com,cherry.de,st.com,synopsys.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,st-md-mailman.stormreply.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[armlinux.org.uk:-];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zhangsenchuan@eswincomputing.com,devicetree@vger.kernel.org];
-	HAS_X_PRIO_THREE(0.00)[3];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[eswincomputing.com:email,eswincomputing.com:mid,ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: 1F5425673D
+	FROM_NEQ_ENVFROM(0.00)[linux@armlinux.org.uk,devicetree@vger.kernel.org];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[shell.armlinux.org.uk:mid,armlinux.org.uk:url,dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo]
+X-Rspamd-Queue-Id: A7D7056957
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-PiBTdWJqZWN0OiBSZTogUmU6IFtQQVRDSCB2OSAyLzJdIFBDSTogZWljNzcwMDogQWRkIEVzd2lu
-IFBDSWUgaG9zdCBjb250cm9sbGVyIGRyaXZlcgo+IAo+ID4gPiBPbiBUdWUsIEphbiAwNiwgMjAy
-NiBhdCAwODo0MzoxMVBNICswODAwLCB6aGFuZ3NlbmNodWFuIHdyb3RlOgo+ID4gPiA+ID4gT24g
-TW9uLCBEZWMgMjksIDIwMjUgYXQgMDc6MzI6MDdQTSArMDgwMCwgemhhbmdzZW5jaHVhbkBlc3dp
-bmNvbXB1dGluZy5jb20gd3JvdGU6Cj4gPiA+ID4gPiA+IEZyb206IFNlbmNodWFuIFpoYW5nIDx6
-aGFuZ3NlbmNodWFuQGVzd2luY29tcHV0aW5nLmNvbT4KPiA+ID4gPiA+ID4gCj4gPiA+ID4gPiA+
-IEFkZCBkcml2ZXIgZm9yIHRoZSBFc3dpbiBFSUM3NzAwIFBDSWUgaG9zdCBjb250cm9sbGVyLCB3
-aGljaCBpcyBiYXNlZCBvbgo+ID4gPiA+ID4gPiB0aGUgRGVzaWduV2FyZSBQQ0llIGNvcmUsIElQ
-IHJldmlzaW9uIDUuOTZhLiBUaGUgUENJZSBHZW4uMyBjb250cm9sbGVyCj4gPiA+ID4gPiA+IHN1
-cHBvcnRzIGEgZGF0YSByYXRlIG9mIDggR1QvcyBhbmQgNCBjaGFubmVscywgc3VwcG9ydCBJTlR4
-IGFuZCBNU0kKPiA+ID4gPiA+ID4gaW50ZXJydXB0cy4KPiA+ID4gPiA+IAo+ID4gPiA+ID4gPiAr
-Y29uZmlnIFBDSUVfRUlDNzcwMAo+ID4gPiA+ID4gPiArCXRyaXN0YXRlICJFc3dpbiBFSUM3NzAw
-IFBDSWUgY29udHJvbGxlciIKPiA+ID4gPiA+IAo+ID4gPiA+ID4gPiArLyogVmVuZG9yIGFuZCBk
-ZXZpY2UgSUQgdmFsdWUgKi8KPiA+ID4gPiA+ID4gKyNkZWZpbmUgUENJX1ZFTkRPUl9JRF9FU1dJ
-TgkJMHgxZmUxCj4gPiA+ID4gPiA+ICsjZGVmaW5lIFBDSV9ERVZJQ0VfSURfRVNXSU4JCTB4MjAz
-MAo+ID4gPiA+ID4gCj4gPiA+ID4gPiBVc3VhbGx5IHRoZSBkZXZpY2UgbmFtZSBpcyBhIGxpdHRs
-ZSBtb3JlIHRoYW4ganVzdCB0aGUgdmVuZG9yLiAgV2hhdAo+ID4gPiA+ID4gaWYgRXN3aW4gZXZl
-ciBtYWtlcyBhIHNlY29uZCBkZXZpY2U/Cj4gPiA+ID4gCj4gPiA+ID4gT2tleSwgdGhhbmtzLgo+
-ID4gPiA+IFBlcmhhcHMgaXQncyBhIHByb2JsZW0uIE1heWJlIFBDSV9ERVZJQ0VfSURfRUlDNzcw
-MCBpcyBiZXR0ZXI/Cj4gPiAKPiA+IENoZWNrIHBjaV9pZHMuaCBhbmQgZm9sbG93IHRoZSBzdHls
-ZSB1c2VkIHRoZXJlLiAgRGV2aWNlIElEIG1hY3Jvcwo+ID4gdHlwaWNhbGx5IGluY2x1ZGUgYm90
-aCB0aGUgdmVuZG9yIGFuZCB0aGUgZGV2aWNlLgo+IAo+IE9rZXksIHRoYW5rcy4KPiAKPiA+IAo+
-ID4gPiA+ID4gPiArc3RhdGljIHN0cnVjdCBwbGF0Zm9ybV9kcml2ZXIgZWljNzcwMF9wY2llX2Ry
-aXZlciA9IHsKPiA+ID4gPiA+ID4gKwkucHJvYmUgPSBlaWM3NzAwX3BjaWVfcHJvYmUsCj4gPiA+
-ID4gPiAKPiA+ID4gPiA+IFRoaXMgZHJpdmVyIGlzIHRyaXN0YXRlIGJ1dCBoYXMgbm8gLnJlbW92
-ZSgpIGNhbGxiYWNrLiAgU2VlbXMgbGlrZSBpdAo+ID4gPiA+ID4gc2hvdWxkIGhhdmUgb25lPwo+
-ID4gPiA+IAo+ID4gPiA+IEluIHYyIHBhdGNoLCBJIHJlZmVycmVkIHRvIE1hbmkncyBjb21tZW50
-cyBhbmQgcmVtb3ZlZCB0aGUgLnJlbW92ZSgpCj4gPiA+ID4gY2FsbGJhY2ssIGFzIGZvbGxvd3M6
-Cj4gPiA+ID4gIlNpbmNlIHRoaXMgY29udHJvbGxlciBpbXBsZW1lbnRzIGlycWNoaXAgdXNpbmcg
-dGhlIERXQyBjb3JlIGRyaXZlciwKPiA+ID4gPiBpdCBpcyBub3Qgc2FmZSB0byByZW1vdmUgaXQg
-ZHVyaW5nIHJ1bnRpbWUuIgo+ID4gPiA+IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2xpbnV4LXBj
-aS9qZ2hvenVyanF5aG10dW5pdm90aXRnczY3aDZ4bzRzYjQ2cWN5Y25iYnd5dmpjbTRla0B2Z3E3
-NW9sYXptb2kvCj4gPiA+ID4gCj4gPiA+ID4gSW4gYWRkaXRpb24sIHJlbW92ZSAucmVtb3ZlKCkg
-Y2FsbGJhY2ssIGJlY2F1c2UgdGhpcyBkcml2ZXIgaGFzIGJlZW4gCj4gPiA+ID4gbW9kaWZpZWQg
-dG8gYnVpbHRpbl9wbGF0Zm9ybV9kcml2ZXIgYW5kIGRvZXMgbm90IHN1cHBvcnQgSG90UGx1Zywg
-Cj4gPiA+ID4gdGhlcmVmb3JlLCB0aGUgLnJlbW92ZSgpIGNhbGxiYWNrIGlzIG5vdCBuZWVkZWQu
-IERvIHlvdSBoYXZlIGFueQo+ID4gPiA+IGJldHRlciBzdWdnZXN0aW9ucz8KPiA+ID4gCj4gPiA+
-IFllcywgYnVpbHRpbl9wbGF0Zm9ybV9kcml2ZXIoKSB3b3VsZG4ndCBhbGxvdyB0aGUgdXNlcnMg
-dG8gcmVtb3ZlCj4gPiA+IHRoZSBtb2R1bGUuIFNvIHJlbW92ZSgpIGNhbGxiYWNrIHdpbGwgYmVj
-b21lIHVzZWxlc3MuIFRoZSByZWFzb24gd2h5Cj4gPiA+IHRoaXMgZHJpdmVyIGlzIHRyaXN0YXRl
-IGlzIHRoYXQgaXQgY291bGQgYmUgbG9hZGVkIGZyb20gcm9vdGZzIGFuZAo+ID4gPiBub3QgYWx3
-YXlzIHN0YXRpY2FsbHkgYnVpbHQgdG8gdGhlIGtlcm5lbCBpbWFnZS4KPiA+IAo+ID4gVGhpcyAu
-cmVtb3ZlKCkgdnMgSVJRIHRoaW5nIGlzIGEgcGVyZW5uaWFsIGlzc3VlIGFuZCBpdCdzIGhhcmQg
-dG8ga25vdwo+ID4gd2hhdCBzdHlsZSBuZXcgZHJpdmVycyBzaG91bGQgY29weS4KPiA+IAo+ID4g
-VGhlcmUgYXJlIGxvdHMgb2YgRFdDLWJhc2VkIGRyaXZlcnMgdGhhdCBhcmUgdHJpc3RhdGUsIGlt
-cGxlbWVudAo+ID4gLnJlbW92ZSgpLCBhbmQgdXNlIG1vZHVsZV9wbGF0Zm9ybV9kcml2ZXIoKSAo
-ZS5nLiwgYnQxLCBraXJpbiwKPiA+IHRlZ3JhMTk0LCByY2FyLWdlbjQsIGV4eW5vcywgazEsIHN0
-bTMyKS4gIElzIHRoZXJlIHNvbWV0aGluZyBkaWZmZXJlbnQKPiA+IGFib3V0IHRoZSB3YXkgdGhl
-eSBpbXBsZW1lbnQgaXJxY2hpcCB0aGF0IG1ha2VzIC5yZW1vdmUoKSBzYWZlPwo+IAo+IEhpIEJq
-b3JuLCBNYW5pLAo+IAo+IFRoZSBjb21tZW50cyBhcmUgYXMgZm9sbG93czoKPiAiWW91IGNhbiBt
-YWtlIGl0IHRyaXN0YXRlIGFzIHlvdSd2ZSB1c2VkIGJ1aWx0aW5fcGxhdGZvcm1fZHJpdmVyKCkg
-d2hpY2gKPiBndWFyYW50ZWVzIHRoYXQgdGhpcyBkcml2ZXIgd29uJ3QgYmUgcmVtb3ZlZCBvbmNl
-IGxvYWRlZC4iCj4gaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGludXgtcGNpL3Vpamc0N3N1dmx1
-dmFtZnR5eHdjNjVrbDM0ZW8yZXUyYWYybzVhaWE0bnU0NWhhbnFjQGdyY3IyYmpncGgyaS8KPiAK
-PiBEbyBub3QgYWRkIHRoZSByZW1vdmUgY2FsbGJhY2suIEl0IG5lZWRzIHRvIGJlIHNldCB0byBh
-IGJvb2zvvJoKPiBJbiB2NiBwYXRjaCwgaXQgd2FzIG1lbnRpb25lZCB0byBzZXQgdHJpc3RhdGUu
-IE5vdywgYWZ0ZXIgY2FyZWZ1bCAKPiBjb25zaWRlcmF0aW9uLCBzZXR0aW5nIHRyaXN0YXRlIGNh
-biBhbGxvdyBsb2FkaW5nIGFzIGEgbW9kdWxlLCBidXQgdGhlIAo+IGRyaXZlciBpbXBsZW1lbnRh
-dGlvbiBkb2VzIG5vdCBoYXZlIGEgcmVtb3ZlIGZ1bmN0aW9uLiBJZiBpdCBleGlzdHMgaW4gCj4g
-dGhlIGZvcm0gb2YgYSBtb2R1bGUsIGFmdGVyIHRlc3RpbmcsIFdoZW4gaW5zbW9kIGRyaXZlciBp
-cyBmb2xsb3dlZCBieSAKPiBybW1vZCBkcml2ZXIsIHRoZSByZXNvdXJjZXMgY2Fubm90IGJlIHJl
-bGVhc2VkLCBhbmQgcHJvYmxlbXMgd2lsbCBvY2N1cgo+IHdoZW4gaW5zbW9kIGRyaXZlciBpcyB1
-c2VkIGFnYWluLiBTbyBJIHRoaW5rIHRoYXQgaWYgdGhlIHJlbW92ZSBjYWxsYmFjawo+IGZ1bmN0
-aW9uIGlzIG5vdCBwcm92aWRlZCBpbiB0aGUgZm9ybSBvZiBidWlsdGluLCBpdCBjYW4gb25seSBi
-ZSBzZXQgdG8gCj4gYm9vbC4KPiAKPiBBZGQgdGhlIHJlbW92ZSBjYWxsYmFjay4gSXQgY2FuIG1h
-a2UgaXQgdHJpc3RhdGU6Cj4gUXVlc3Rpb25zIGFib3V0IHJlbW92aW5nIGl0IGR1cmluZyBydW50
-aW1lLiBJIGRvbid0IGhhdmUgYSB2ZXJ5IGdvb2QgaWRlYS4KPiBJIHN0aWxsIGRvbid0IHF1aXRl
-IHVuZGVyc3RhbmQgd2h5IGl0J3Mgbm90IHNhZmUuIENvdWxkIHlvdSBleHBsYWluIGl0IHRvIAo+
-IG1lPwo+IAo+IEF0IHByZXNlbnQsIHJlZmVyIHRvIG90aGVyIG1hbnVmYWN0dXJlcnMsIGkgdGhp
-bmsgdGhlcmUgYXJlIHR3byB3YXlzIHRvIAo+IGFjaGlldmUgaXQuCj4gMS5TZXQgYSBib29sLiBE
-byBub3QgYWRkIHRoZSByZW1vdmUgZnVuY3Rpb24sIG1vZHVsZSBsb2FkaW5nIGlzIG5vdCAKPiBh
-bGxvd2VkLCBhbmQgdGhlIGRyaXZlciBjdXJyZW50bHkgZG9lcyBub3Qgc3VwcG9ydCBIb3RQbHVn
-Lgo+IDIuU2V0IGEgdHJpc3RhdGUsIGFkZCAucmVtb3ZlIGNhbGxiYWNrLgo+IAo+IEkgdGhpbmsg
-dGhlIGZpcnN0IG9uZSBtaWdodCBiZSBiZXR0ZXIgZm9yIG1lLCBiZWNhdXNlIHRoZXJlIGlzIG5v
-IG5lZWQgCj4gdG8gYWRkIHRoZSByZW1vdmUgZnVuY3Rpb24sIG15IHVuZGVyc3RhbmRpbmcgbWln
-aHQgYWxzbyBiZSBpbmNvcnJlY3QuIAo+IFBsZWFzZSByZXZpZXcgaXQgZm9yIG1lLiBUaGFua3Pv
-vIEKPiAKCkhpIEJqb3JuLCBNYW5pLAoKUmVnYXJkaW5nIHRoZSBpc3N1ZSBvZiB3aGV0aGVyIHRv
-IGFkZCB0aGUucmVtb3ZlIGNhbGxiYWNrLCBjb3VsZCB5b3UgCnBsZWFzZSBoZWxwIG1lIHJldmll
-dyBpdCBhZ2Fpbj8gVGhhbmtzIHZlcnkgbXVjaCEKCkJ5IHRoZSB3YXksIGZvciB0aGUgcGF0Y2gg
-dGhhdCBwYXJzZXMgbXVsdGlwbGUgUm9vdCBQb3J0cywgd2lsbCBpdCBiZSAKdXBkYXRlZCBsYXRl
-cj8gRG8gSSBuZWVkIHRvIHdhaXQgZm9yIGl0IHRvIHNlbmQgdGhlIG5leHQgdmVyc2lvbj8KCktp
-bmQgcmVnYXJkcywKU2VuY2h1YW4KCg==
+On Tue, Jan 20, 2026 at 01:05:39PM +0800, Inochi Amaoto wrote:
+> > > +	mask = RGMII_RX_DLINE_STEP | RGMII_TX_DLINE_CODE | RGMII_TX_DLINE_EN |
+> > > +	       RGMII_TX_DLINE_STEP | RGMII_RX_DLINE_CODE | RGMII_RX_DLINE_EN;
+> > > +	val = FIELD_PREP(RGMII_TX_DLINE_CODE, tx_config) |
+> > > +	      FIELD_PREP(RGMII_TX_DLINE_CODE, tx_code) | RGMII_TX_DLINE_EN |
+> > > +	      FIELD_PREP(RGMII_TX_DLINE_CODE, rx_config) |
+> > > +	      FIELD_PREP(RGMII_RX_DLINE_CODE, rx_code) | RGMII_RX_DLINE_EN;
+> > 
+> > These FIELD_PREP() fields look wrong. Did you mean to use DLINE_CODE
+> > both tx_config and tx_code, and did you mean to use TX_DLINE_CODE for
+> > rx_config ?
+> > 
+> 
+> This should be RGMII_TX_DLINE_CODE. This is a copy paste error, I
+> will fix it.
+
+Are you sure?
+
+In that case, please change this to:
+
+	val = FIELD_PREP(RGMII_TX_DLINE_CODE, tx_config | tx_code |
+					      rx_config | rx_code) |
+	      RGMII_TX_DLINE_EN | RGMII_RX_DLINE_EN;
+
+If that isn't what you meant, then your reply is wrong, and it seems
+you're confused, which makes me then question how reliable your
+replies are.
+
+> > > +	plat_dat->clk_tx_i = devm_clk_get_enabled(&pdev->dev, "tx");
+> > > +	if (IS_ERR(plat_dat->clk_tx_i))
+> > > +		return dev_err_probe(&pdev->dev, PTR_ERR(plat_dat->clk_tx_i),
+> > > +				     "failed to get tx clock\n");
+> > 
+> > You set plat_dat->clk_tx_i, but you don't point
+> > plat_dat->set_clk_tx_rate at anything, which means the stmmac core
+> > does nothing with this.
+> > 
+> 
+> Yes, the vendor told me that the internal tx clock rate will be auto
+> changed when the speed rate is changed. So no software interaction
+> is needed.
+
+Please do not assign a clock to clk_tx_i that is not the dwmac
+clk_tx_i input. clk_tx_i is a name used by the Synopsys DWMAC for a
+specific clock.
+
+As you don't need to do anything with it other than to get and enable
+it, consider using just a local variable here.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
