@@ -1,81 +1,78 @@
-Return-Path: <devicetree+bounces-257943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257944-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KDAeDC3PcGkOaAAAu9opvQ
-	(envelope-from <devicetree+bounces-257943-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 14:05:49 +0100
+	id 2PW6MKjQcGkOaAAAu9opvQ
+	(envelope-from <devicetree+bounces-257944-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 14:12:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB066574DE
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 14:05:48 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11039575FE
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 14:12:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4017646A497
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 12:54:17 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8B87B9E944B
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 12:55:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC9CA48AE3A;
-	Wed, 21 Jan 2026 12:51:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EF11481FB3;
+	Wed, 21 Jan 2026 12:52:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DL94ys3M"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qwfIypJ9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E018306D36;
-	Wed, 21 Jan 2026 12:51:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02C8D3ECBC2;
+	Wed, 21 Jan 2026 12:52:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768999903; cv=none; b=lGS2PWjieAslmT9VBmBhkpXQXKFIubqXAOiMtt+Vwt7fpiImeWTgXxJDNST2cM4lOtCpt9T8fmuENJoXlRz1cRihS2WUu7z0X7cFc5cfjGqMKlMqkTA4CUJ7sD9XkIuZOrlRxx5Mf+7zjuQ8QlPFbOchEQn9gmFJIL0tZGAbslU=
+	t=1768999928; cv=none; b=eiXg3R178tjERCxGk0Rb72oAbD+SNaW9zxvGy4gnizvfPaBZ4P96p5X3rPCXswM3/hx6nC+bgE0lcq2hkdQ0q+NVZ7T7hwnzglFCOwTwpW3rhTrZVnEk4w3rR6/cwSUOdfYEpw1Z2SkscHBMZywPNBSPvXXZlW/9vpBAWU2xHqg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768999903; c=relaxed/simple;
-	bh=brbeUf/uHaUwIvWYg3FBssw/lRpSOlGRll71yV5ZVq4=;
+	s=arc-20240116; t=1768999928; c=relaxed/simple;
+	bh=leMl3oXeQbKOezU9GD2iOvYdF5WK3q971ctFN7xMINA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MBhAjubDXSDEmWCRWaWmDujTjzKUyp04nDP+BKdDeOPWSvR2iAx/4BPa4FwlDYZY9/halqI3++aSczO7eE3OW3ARYr8UIbwR6ayOMyK2B//PvRzngMLzRA5Ey8q3fqCMrP7iU5aPg94mqnaf5jYoiyE2+VlkrGkaLhahH50oN5E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DL94ys3M; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAC07C19421;
-	Wed, 21 Jan 2026 12:51:39 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=LC92MGNkA2Gnc+/pnTvDG+tCS266oZ4R3mLDvSBtxhaQU1TEA5sqeAYRtTfEpYuSRIgwa8BkjjswILq0qnrv9j/a6vYL0+trgrUef5JKhjb+Gy3yQqP3YtfriuPfU9DGxYWHJ5FgDvaLhCNpOq0IIGoU5b+XHE6VH9On1mEfFo0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qwfIypJ9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A23A4C116D0;
+	Wed, 21 Jan 2026 12:51:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768999903;
-	bh=brbeUf/uHaUwIvWYg3FBssw/lRpSOlGRll71yV5ZVq4=;
+	s=k20201202; t=1768999925;
+	bh=leMl3oXeQbKOezU9GD2iOvYdF5WK3q971ctFN7xMINA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DL94ys3MfP15mHhCxt/gWnaL3hYzfGSS458Wm3B3oFfMNSwhEvzoMizLJCYhS7Dt+
-	 sAyLDZEAoC8kFGwSXZbp4a4bAQBgBC7Uc7yy47ONTEn/ZMJvlnrcloLsfKZ0f0ijDx
-	 62ABgJ6K0ymEb72d0BjWPwEfKI1bxfQX0Kt1H50UqicrqokcexIze+E9nLMoIAU9yP
-	 VpmwA5Wt4lt5q+m79eyJRYkUE4cQGVIPxgm61liIll3OtfqjM+Z8UrkdvUo8MsnQXh
-	 /uym0TGMQOG4u9zMoCH0OpjLN7mkG/6VtNK0T4r1Il7nNyJXY3NQpn4P0Y1CUoRVGW
-	 vA+kHJKGdBE8g==
-Date: Wed, 21 Jan 2026 12:51:36 +0000
-From: Will Deacon <will@kernel.org>
-To: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Cc: joro@8bytes.org, robin.murphy@arm.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
-	nicolas.dufresne@collabora.com, p.zabel@pengutronix.de,
-	mchehab@kernel.org, iommu@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org,
-	kernel@collabora.com
-Subject: Re: [PATCH v11 3/7] iommu: Add verisilicon IOMMU driver
-Message-ID: <aXDL2JH_4RCDmAJv@willie-the-truck>
-References: <20260107101005.84039-1-benjamin.gaignard@collabora.com>
- <20260107101005.84039-4-benjamin.gaignard@collabora.com>
- <aWZui-rn5RDPwpEO@willie-the-truck>
- <68a49f8b-178c-4fa2-b4a9-315ad602271d@collabora.com>
- <aWeTQ50DOtntcniN@willie-the-truck>
- <db0950f1-b357-47c2-9829-e33262ab456d@collabora.com>
- <aW4kb5EbxbrhTOxK@willie-the-truck>
- <b8f43fe8-3e07-4d98-a50d-817c31370710@collabora.com>
+	b=qwfIypJ9fvTP86b+8ps3bKi5uNt/qfCcnIhDlKqBJaDY0XfKo2Sw+FRNZGtIQGEmM
+	 c+UhLxU14VcL2MMHjqKDWIBpcd9MKRDZt9EQj/r6HjjlsP8bHJG+5VyKcb0fuwtoes
+	 ySjLISh6wTUkTeP/1Ps3U+K32n9lASZ9pLUGDCTP8vGdaPl4cvRcrC7HuOXPOg1YSy
+	 Cnh0WXptqyCIUDBBHJTxaDp79evgPt2GzpSd8aLLlZBpJCRtk/7/XnKApsWbjXEy4B
+	 Oco4ERF3ehjfho3AgR6bdEPsBPymlYbJPUldkYhqJ9/3yj1JJHr1hfMUdgAKqDHRam
+	 BQ1k3WMLRa0zg==
+Date: Wed, 21 Jan 2026 18:21:45 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: zhangsenchuan <zhangsenchuan@eswincomputing.com>, bhelgaas@google.com, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, lpieralisi@kernel.org, 
+	kwilczynski@kernel.org, robh@kernel.org, p.zabel@pengutronix.de, jingoohan1@gmail.com, 
+	gustavo.pimentel@synopsys.com, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, christian.bruel@foss.st.com, mayank.rana@oss.qualcomm.com, 
+	shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com, thippeswamy.havalige@amd.com, 
+	inochiama@gmail.com, Frank.li@nxp.com, ningyu@eswincomputing.com, 
+	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com, 
+	Niklas Cassel <cassel@kernel.org>
+Subject: Re: [PATCH v9 2/2] PCI: eic7700: Add Eswin PCIe host controller
+ driver
+Message-ID: <cl2gdo6ledszdkubyimullksobtzuh4stplrctrsjxvi4u4xc4@s5daay4pwukx>
+References: <4f3rhkrlp3jypajh77rohqgpoujivpxq6g3o6vrt6u7u5j2atd@gd5o3vtlhapp>
+ <20260106174348.GA365798@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <b8f43fe8-3e07-4d98-a50d-817c31370710@collabora.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260106174348.GA365798@bhelgaas>
 X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
@@ -86,79 +83,101 @@ X-Spamd-Result: default: False [0.04 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-257943-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-257944-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	FREEMAIL_CC(0.00)[eswincomputing.com,google.com,kernel.org,pengutronix.de,gmail.com,synopsys.com,vger.kernel.org,foss.st.com,oss.qualcomm.com,samsung.com,amd.com,nxp.com,einfochips.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[will@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: CB066574DE
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,eswincomputing.com:email]
+X-Rspamd-Queue-Id: 11039575FE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Jan 19, 2026 at 03:03:44PM +0100, Benjamin Gaignard wrote:
-> > > > > > > +static const struct iommu_ops vsi_iommu_ops = {
-> > > > > > > +	.identity_domain = &vsi_identity_domain,
-> > > > > > > +	.release_domain = &vsi_identity_domain,
-> > > > > > > +	.domain_alloc_paging = vsi_iommu_domain_alloc_paging,
-> > > > > > > +	.of_xlate = vsi_iommu_of_xlate,
-> > > > > > > +	.probe_device = vsi_iommu_probe_device,
-> > > > > > > +	.release_device = vsi_iommu_release_device,
-> > > > > > > +	.device_group = generic_single_device_group,
-> > > > > > > +	.owner = THIS_MODULE,
-> > > > > > > +	.default_domain_ops = &(const struct iommu_domain_ops) {
-> > > > > > > +		.attach_dev		= vsi_iommu_attach_device,
-> > > > > > > +		.map_pages		= vsi_iommu_map,
-> > > > > > > +		.unmap_pages		= vsi_iommu_unmap,
-> > > > > > > +		.flush_iotlb_all	= vsi_iommu_flush_tlb_all,
-> > > > > > This has no callers and so your unmap routine appears to be broken.
-> > > > > It is a leftover of previous attempt to allow video decoder to clean/flush
-> > > > > the iommu by using a function from the API.
-> > > > > Now it is using vsi_iommu_restore_ctx().
-> > > > > I while remove it in version 12.
-> > > > Don't you still need some invalidation on the unmap path?
-> > > In vsi_iommu_unmap_iova() page is invalided by calling vsi_mk_pte_invalid().
-> > But that just writes an invalid descriptor and doesn't appear to invalidate
-> > the TLB at all.
-> > 
-> > > That clear BIT(0) so the hardware knows the page is invalid.
-> > > Do I have miss something here ?
-> > Yes, the TLB structure needs to be invalidated so that the page-table
-> > walker sees the new value that you have written in memory.
-> > 
-> > The rockchip driver gets this correct...
+On Tue, Jan 06, 2026 at 11:43:48AM -0600, Bjorn Helgaas wrote:
+> On Tue, Jan 06, 2026 at 06:49:58PM +0530, Manivannan Sadhasivam wrote:
+> > On Tue, Jan 06, 2026 at 08:43:11PM +0800, zhangsenchuan wrote:
+> > > > On Mon, Dec 29, 2025 at 07:32:07PM +0800, zhangsenchuan@eswincomputing.com wrote:
+> > > > > From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+> > > > > 
+> > > > > Add driver for the Eswin EIC7700 PCIe host controller, which is based on
+> > > > > the DesignWare PCIe core, IP revision 5.96a. The PCIe Gen.3 controller
+> > > > > supports a data rate of 8 GT/s and 4 channels, support INTx and MSI
+> > > > > interrupts.
+> > > > 
+> > > > > +config PCIE_EIC7700
+> > > > > +	tristate "Eswin EIC7700 PCIe controller"
+> > > > 
+> > > > > +/* Vendor and device ID value */
+> > > > > +#define PCI_VENDOR_ID_ESWIN		0x1fe1
+> > > > > +#define PCI_DEVICE_ID_ESWIN		0x2030
+> > > > 
+> > > > Usually the device name is a little more than just the vendor.  What
+> > > > if Eswin ever makes a second device?
+> > > 
+> > > Okey, thanks.
+> > > Perhaps it's a problem. Maybe PCI_DEVICE_ID_EIC7700 is better?
 > 
-> Rockchip hardware have a ZAP_ONE_LINE register which didn't exist on Verisilicon
-> hardware.
+> Check pci_ids.h and follow the style used there.  Device ID macros
+> typically include both the vendor and the device.
+> 
+> > > > > +static struct platform_driver eic7700_pcie_driver = {
+> > > > > +	.probe = eic7700_pcie_probe,
+> > > > 
+> > > > This driver is tristate but has no .remove() callback.  Seems like it
+> > > > should have one?
+> > > 
+> > > In v2 patch, I referred to Mani's comments and removed the .remove()
+> > > callback, as follows:
+> > > "Since this controller implements irqchip using the DWC core driver,
+> > > it is not safe to remove it during runtime."
+> > > https://lore.kernel.org/linux-pci/jghozurjqyhmtunivotitgs67h6xo4sb46qcycnbbwyvjcm4ek@vgq75olazmoi/
+> > > 
+> > > In addition, remove .remove() callback, because this driver has been 
+> > > modified to builtin_platform_driver and does not support HotPlug, 
+> > > therefore, the .remove() callback is not needed. Do you have any
+> > > better suggestions?
+> > 
+> > Yes, builtin_platform_driver() wouldn't allow the users to remove
+> > the module. So remove() callback will become useless. The reason why
+> > this driver is tristate is that it could be loaded from rootfs and
+> > not always statically built to the kernel image.
+> 
+> This .remove() vs IRQ thing is a perennial issue and it's hard to know
+> what style new drivers should copy.
+> 
+> There are lots of DWC-based drivers that are tristate, implement
+> .remove(), and use module_platform_driver() (e.g., bt1, kirin,
+> tegra194, rcar-gen4, exynos, k1, stm32).  Is there something different
+> about the way they implement irqchip that makes .remove() safe?
 
-Presumably you have some sort of Verisilicon datasheet or downstream driver
-from which you can infer the TLB invalidation runes?
+Yes, there are differences currently. Mostly due to some drivers missed the
+IRQ maintainers eyes when they got added (way before my involvement with PCI
+controller drivers). I will fix them to maintain uniformity.
 
-> I have tried to use VSI_MMU_BIT_FLUSH on VSI driver after unmapping iova
-> but it doesn't work.
+But the general undocumented rule is that if the controller driver implement
+any irqchip (MSI/MSI-X/INTx), they should not get removed. So they can be
+tristate, but builtin_platform_driver(). If they use any external irqchip
+controller for receiving interrupts, they can safely be removed. This is the
+case for dwc/pcie-stm32.
 
-What do you mean by "doesn't work"? If it works without doing any
-invalidation at all, then it's very peculiar that adding the invalidation
-would introduce issues.
+This prompts me to write the controller driver documentation that I was planning
+for a while...
 
-> So far calling dma_sync_single_for_device() seems to be enough to make iommu
-> and video decoder work together.
+- Mani
 
-I don't think we should settle for "seems to enough"! If we can reason
-about the operation of the hardware then the driver will be undebuggable
-when it eventually goes wrong.
-
-Will
+-- 
+மணிவண்ணன் சதாசிவம்
 
