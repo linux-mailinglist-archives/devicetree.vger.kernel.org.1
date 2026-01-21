@@ -1,235 +1,169 @@
-Return-Path: <devicetree+bounces-258012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258013-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ILjQCygAcWmgbAAAu9opvQ
-	(envelope-from <devicetree+bounces-258012-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 17:34:48 +0100
+	id 8LWVI5zucGk+awAAu9opvQ
+	(envelope-from <devicetree+bounces-258013-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 16:19:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id C892459F65
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 17:34:47 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D48659134
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 16:19:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 2168376CF45
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 15:12:17 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id F39B976D30B
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 15:12:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1942494A18;
-	Wed, 21 Jan 2026 14:55:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FgyhDwsK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4AD23F0756;
+	Wed, 21 Jan 2026 14:55:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 716702494F0
-	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 14:55:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.47
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769007302; cv=pass; b=A9LQ9C9UqBtju8CvHLL7jVvnsbG6jIYFhVvHAP6e3z6xKaiHJiZI5r/EtLbn6Re5aOHLwJclZa5JEiJsO3j95EAdHLecK3pDHF8NFCG5kzndz0f8nok8mnzc930KC8a9YNtijsk1jStUqJ43+Vf4/lXKcIZKQRm11MQdYMf5bws=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769007302; c=relaxed/simple;
-	bh=yNWgMaR8oi9I8/XxPbf7ddsV49C99BlKrBmh1kPGTcc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Z/BaxAvAVPyl1JhLBRm74QYRRGIHssHfI0bmVfQNdnSAg40JnRGCSma6odO7RMP+vbeDsU0eI4Pmff4NaSPUO0GmeCnQZk1BPl5LntYPYeIf2rUYITk1EyWh13bqHBwZN6RA+VD6c3Xf6g3CByjgj0eli/SImXz1hQFE8unn0Ms=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FgyhDwsK; arc=pass smtp.client-ip=209.85.167.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-59dd3e979ceso670836e87.1
-        for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 06:55:00 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1769007298; cv=none;
-        d=google.com; s=arc-20240605;
-        b=bd0WDIqlxjewCJkZiNLFk/TJiH609j1lUEpo+j9+dbJU+9gNfs9FVzkqWYSbg8Dp8N
-         k+C3RMrPBtUmk4sEn2R9MzjXdWtp/76tldcDfH713vgMvFfj+bM5o2HhHsdbfiWMagbe
-         jnoBLlhldY38d27kwzEotEWvl2KH6sceti9sxq81+Sbea5cXOY+/uQHifG1H07IuyIdu
-         W/9zHdWBV0YmAqc4TK6TOyPkvAecP4Jf1hnv9X/gHe56AtaHfJYfth6YsRZCSGBww1w2
-         dxu49NuZH02juS0fDEJPADAkqfoQP9RQMeHf4DM89THI7OKpL9eIcWxvBpURMSKDr239
-         U0cg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=A6330N1LFD4XBCM84aMPcZjMDcowYLAuIIeheUGm2Io=;
-        fh=M/s+WBfiYPdJG8oqcnaIuXRwz+S7FErmyrVzp/m+L8I=;
-        b=ZhBsygZP/1lWcPgP3tSt5IIC2Ewegu/7jfiLo8tU9IQjQ8CmeaiaR52DKWX7KbiGez
-         zLXLbpczEzV25YkWZyZuWxyNDuuzkwpuN+xOljijO989vX+1IFs40fjdHSyNSJd+Y0Oi
-         BqCcDaHeuxtsimxB0FyOCpQ3f2TnGMNc5SX+GIvGncBlXF+w1t9O3ER7J+ZTIHoiEzyO
-         HznSpLlmyip/l+Ookk9q/OFa/SXIRmQ9kK//BynoN456MOtaQDeUgQQ9yRcgmlo0qgiq
-         K76HrZuN+Wi1WVWpQCneOT9TEsa+YxHNgZcfJQh53gE0mcdM8FkJ95H2GAyzSkqb/5fk
-         j8iA==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1769007298; x=1769612098; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=A6330N1LFD4XBCM84aMPcZjMDcowYLAuIIeheUGm2Io=;
-        b=FgyhDwsKgrrP5UmJqvirWQO/uKCkovlWtQ1Ss3voJ7tCvyUwrJHN0cQ87A1CVAMWf+
-         shmTaO1DZkFfMCypdFYkwyQB3RIHC8NmvXw9FGzYxYdjVWKaBBYquhJgAUIGCk7kXCJ5
-         0ZJll1oHKLld5ZBCAqrVF1AZRpStFmF+qXjpWPMZo1HfZXRMWmAeildShh83C3HQQWBQ
-         VYXuOss8OYJvbi/4QHkJj1+RVzzVjd56/QSyaFx2tOvJWbdI/YMOg80PnemYh46Dtuij
-         XOagpTBq/F1NOleyP4E0fI/JG8SOydwb0raWTqvO8ePomV1C/8n+UJGW4CpVhDa5O5rG
-         rueA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769007298; x=1769612098;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=A6330N1LFD4XBCM84aMPcZjMDcowYLAuIIeheUGm2Io=;
-        b=pRF5uAnZmkouVQO/gxX19l1r9yCX1HTyW45RPzcWzOQQentJlCcvEdvii4SwG+vD/5
-         VYk/oif+kyx5dmWBhpAFEtZ6oLGPf4+xOaVr9E6KCOZValcidHkfPCZUZgzgWQ2C1RVK
-         qGC47tPsgLy+paqbv+Ed77TX+gxxvPH0sjJk5TRBjYJwiye4bmWnlr8kT3Ss3I8D8tsi
-         lNjewfpx8KvM6Ar0Ki2jzTQqvLQCRf7ZKb32lsk8gKGigahgGSK3j1YMOakY9Iy/R3rE
-         Nz8z0Zy9f3+QbJ9RIPKqNU9buzXNpB0LguCcEHvUz5fbdn/JPpIyu3MYoxPnHwzLC0zw
-         JaVQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUFdmITM5lpAXKzNlF/hD33VPFd1hVNnuUevBUNPBQLKO7T5eYTindPvmcXjG3yNC5P6Yb7b67le/d/@vger.kernel.org
-X-Gm-Message-State: AOJu0YyQdTL9VIo1cC5uqkJTpCMP8z72t0b/gWXtsGttrMVcW5KNSxt6
-	csweFIkrJAcvGJ5p4QH6jfNcojxnkEl7BwkAJaoK2BIQeitRdxq0IPYj+TwAIxI7IZmgSmsmUmA
-	fHs0nwfdzqT48pwzEWtuRVOu6fwGFt0a4CLwu1DgjaQ==
-X-Gm-Gg: AZuq6aI0WmFv/owytizNIOhIz9cYfhzy8wDESJ4DuomO/MbzNfcpPvOL4kjZ9C89DAu
-	l/Pf+KE+sDkNLXjVljAP3CRQkml7TPOzQICa9HdidUYUPrkrylVmEpp/3iSKgIjxXRTk6YRQDDi
-	6oOUHMIQ34moxxyMDLWVpm4SJqqHthEVlKUslAqbzRL6QK0Ulia9iXDQz9N5Km2oAE1XA6tQxNy
-	4dcU65OSJbym/e080UjcUjKtJdMploLSXFrXzFPf86zcXxVN53WfqdP0ODnz6Ebf9acXSb9
-X-Received: by 2002:a05:6512:3b07:b0:59b:b3e3:c7fb with SMTP id
- 2adb3069b0e04-59bb3e3c825mr5593429e87.9.1769007298426; Wed, 21 Jan 2026
- 06:54:58 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B3B72EFDA4;
+	Wed, 21 Jan 2026 14:55:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769007350; cv=none; b=L1VdpcQazPDiCjEgLizntcPJCZY3XZICXOlDkZ1O3a93wpCEGCK9Oljo6RZZoXDJcHvn4KVSIPCxH2cxSwFjus6Ws02wV5fhshk9R+y6/kk9IdlDsLtwx7kgLB+uweIzEiSIZ4sBkTdReDhCDV6qhBKieBjcAnoAPfJ3AVIJ1Ks=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769007350; c=relaxed/simple;
+	bh=LW75dvhBZU0Akb2mNX8jGopvzR2nEv1ihu3WkjyC/Go=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=m6tA7txOwsEh5FQz/XaDW+xkMraPLFjOHOMStjrnumktcSPsC/FSBqax3xoDOtBrD82yvu42pTXZLyUmdSwnh5sSbTA1wk75DxlU8+A2JAEd7aaaGfynGCUeK8av1N5D/WuWdh9zaPYIQCMgRzOVW7THssx5pmwwJA471/k2Hzk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
+Received: from duge-virtual-machine (unknown [183.192.221.134])
+	by APP-01 (Coremail) with SMTP id qwCowACXP2vl6HBpCoqlBQ--.20720S2;
+	Wed, 21 Jan 2026 22:55:34 +0800 (CST)
+From: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+To: vkoul@kernel.org,
+	gregkh@linuxfoundation.org,
+	conor@kernel.org
+Cc: neil.armstrong@linaro.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	pjw@kernel.org,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	alex@ghiti.fr,
+	jiayu.riscv@isrc.iscas.ac.cn,
+	linux-phy@lists.infradead.org,
+	linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v5 0/4] Add USB support for Canaan K230
+Date: Wed, 21 Jan 2026 22:55:21 +0800
+Message-ID: <20260121145526.14672-1-jiayu.riscv@isrc.iscas.ac.cn>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <1768524932-163929-1-git-send-email-shawn.lin@rock-chips.com> <1768524932-163929-4-git-send-email-shawn.lin@rock-chips.com>
-In-Reply-To: <1768524932-163929-4-git-send-email-shawn.lin@rock-chips.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Wed, 21 Jan 2026 15:54:21 +0100
-X-Gm-Features: AZwV_QhAFWP6FlwdmN7VDr70aTTu8jbqo16cWKBC4DG2eUryPHPCQFlBbqWCxU4
-Message-ID: <CAPDyKFqbv0Vrb8a2bHN8gAdY7iEh_Sx8iWF7VWiQ71rjbWGBsg@mail.gmail.com>
-Subject: Re: [PATCH v4 3/5] mmc: dw_mmc-rockchip: Fix runtime PM support for
- internal phase support
-To: Shawn Lin <shawn.lin@rock-chips.com>
-Cc: Heiko Stuebner <heiko@sntech.de>, linux-rockchip@lists.infradead.org, 
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
-	FUKAUMI Naoki <naoki@radxa.com>, Marco Schirrmeister <mschirrmeister@gmail.com>, 
-	John Clark <inindev@gmail.com>, Tianling Shen <cnsztl@gmail.com>, 
-	Detlev Casanova <detlev.casanova@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spamd-Result: default: False [-1.96 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:qwCowACXP2vl6HBpCoqlBQ--.20720S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7uF1UZryxGw18Jr1xJFyrZwb_yoW8tFW5pa
+	y7CFW3uFsrtFW2qan3tw48WF9xX3Z5Jry3Wryaq345Xa1UZFyUAws3urW5ZF1UGFsrCFWj
+	vFs0kFyxGFWUAaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9Y14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26r1j6r1xM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+	6F4UM28EF7xvwVC2z280aVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4UJV
+	WxJr1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lc7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x
+	0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2
+	zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF
+	4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWU
+	CwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCT
+	nIWIevJa73UjIFyTuYvjfUonmRUUUUU
+X-CM-SenderInfo: 5mld534oul2uny6l223fol2u1dvotugofq/
+X-Spamd-Result: default: False [1.74 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258012-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[sntech.de,lists.infradead.org,vger.kernel.org,radxa.com,gmail.com,collabora.com];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DMARC_POLICY_ALLOW(0.00)[linaro.org,none];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	DMARC_NA(0.00)[iscas.ac.cn];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ulf.hansson@linaro.org,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-258013-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
-	TAGGED_RCPT(0.00)[devicetree];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,linaro.org:dkim,mail.gmail.com:mid,rock-chips.com:email]
-X-Rspamd-Queue-Id: C892459F65
+	PRECEDENCE_BULK(0.00)[];
+	R_DKIM_NA(0.00)[];
+	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jiayu.riscv@isrc.iscas.ac.cn,devicetree@vger.kernel.org];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,isrc.iscas.ac.cn:mid]
+X-Rspamd-Queue-Id: 9D48659134
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, 16 Jan 2026 at 01:56, Shawn Lin <shawn.lin@rock-chips.com> wrote:
->
-> RK3576 is the first platform to introduce internal phase support, and
-> subsequent platforms are expected to adopt a similar design. In this
-> architecture, runtime suspend powers off the attached power domain, which
-> resets registers, including vendor-specific ones such as SDMMC_TIMING_CON0,
-> SDMMC_TIMING_CON1, and SDMMC_MISC_CON. These registers must be saved and
-> restored, a requirement that falls outside the scope of the dw_mmc core.
->
-> Fixes: 59903441f5e4 ("mmc: dw_mmc-rockchip: Add internal phase support")
-> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
-> Tested-by: Marco Schirrmeister <mschirrmeister@gmail.com>
+Add support for the USB PHY and DWC2 IP which is used by Canaan K230,
+and made relevant changes to the DTS.
 
-Following Heiko's approach, applied for next and by adding a stable-tag, thanks!
+This series is based on the initial 100ask K230 DshanPi series [1] which
+is based on the clock and pinctrl series. Check the details in the link.
 
-Kind regards
-Uffe
+Link: https://lore.kernel.org/all/20260115060801.16819-1-jiayu.riscv@isrc.iscas.ac.cn/ [1]
 
+Changes in v5:
+- Changed the year of Copyright to 2026.
+- Add blank line after the declaration of variables
+- Fix wrong alignment.
+- Link to v4: https://lore.kernel.org/all/20260120143243.71937-1-jiayu.riscv@isrc.iscas.ac.cn/
 
-> ---
->
-> Changes in v3: None
-> Changes in v2: None
->
->  drivers/mmc/host/dw_mmc-rockchip.c | 38 +++++++++++++++++++++++++++++++++++++-
->  1 file changed, 37 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/mmc/host/dw_mmc-rockchip.c b/drivers/mmc/host/dw_mmc-rockchip.c
-> index 879188f..2fe0896 100644
-> --- a/drivers/mmc/host/dw_mmc-rockchip.c
-> +++ b/drivers/mmc/host/dw_mmc-rockchip.c
-> @@ -36,6 +36,8 @@ struct dw_mci_rockchip_priv_data {
->         int                     default_sample_phase;
->         int                     num_phases;
->         bool                    internal_phase;
-> +       int                     sample_phase;
-> +       int                     drv_phase;
->  };
->
->  /*
-> @@ -573,9 +575,43 @@ static void dw_mci_rockchip_remove(struct platform_device *pdev)
->         dw_mci_pltfm_remove(pdev);
->  }
->
-> +static int dw_mci_rockchip_runtime_suspend(struct device *dev)
-> +{
-> +       struct platform_device *pdev = to_platform_device(dev);
-> +       struct dw_mci *host = platform_get_drvdata(pdev);
-> +       struct dw_mci_rockchip_priv_data *priv = host->priv;
-> +
-> +       if (priv->internal_phase) {
-> +               priv->sample_phase = rockchip_mmc_get_phase(host, true);
-> +               priv->drv_phase = rockchip_mmc_get_phase(host, false);
-> +       }
-> +
-> +       return dw_mci_runtime_suspend(dev);
-> +}
-> +
-> +static int dw_mci_rockchip_runtime_resume(struct device *dev)
-> +{
-> +       struct platform_device *pdev = to_platform_device(dev);
-> +       struct dw_mci *host = platform_get_drvdata(pdev);
-> +       struct dw_mci_rockchip_priv_data *priv = host->priv;
-> +       int ret;
-> +
-> +       ret = dw_mci_runtime_resume(dev);
-> +       if (ret)
-> +               return ret;
-> +
-> +       if (priv->internal_phase) {
-> +               rockchip_mmc_set_phase(host, true, priv->sample_phase);
-> +               rockchip_mmc_set_phase(host, false, priv->drv_phase);
-> +               mci_writel(host, MISC_CON, MEM_CLK_AUTOGATE_ENABLE);
-> +       }
-> +
-> +       return ret;
-> +}
-> +
->  static const struct dev_pm_ops dw_mci_rockchip_dev_pm_ops = {
->         SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend, pm_runtime_force_resume)
-> -       RUNTIME_PM_OPS(dw_mci_runtime_suspend, dw_mci_runtime_resume, NULL)
-> +       RUNTIME_PM_OPS(dw_mci_rockchip_runtime_suspend, dw_mci_rockchip_runtime_resume, NULL)
->  };
->
->  static struct platform_driver dw_mci_rockchip_pltfm_driver = {
-> --
-> 2.7.4
->
+Changes in v4:
+- Shrink reg length to match the address/size-cells in k230-usb-phy yaml.
+- Move all PHY instance creation and initialization from xlate to probe.
+- Modify xlate function to only perform index lookup for PHY instances.
+- Define all register base offsets macros at the top of file instead of
+  hard-coding magic numbers directly in probe.
+- Link to v2: https://lore.kernel.org/all/20260115064223.21926-1-jiayu.riscv@isrc.iscas.ac.cn/
+
+Changes in v3:
+- Please ignore v3.
+
+Changes in v2:
+- Fold the child into the parent in dtsi.
+- Define one usbphy with phy-cells=1.
+- Delete the clock of the usbphy as it is not needed.
+- Link to v1: https://lore.kernel.org/all/20251230023725.15966-1-jiayu.riscv@isrc.iscas.ac.cn/
+
+Jiayu Du (4):
+  dt-bindings: phy: Add Canaan K230 USB PHY
+  dt-bindings: usb: dwc2: Add support for Canaan K230 SoC
+  phy: usb: Add driver for Canaan K230 USB 2.0 PHY
+  riscv: dts: canaan: Add syscon and USB nodes for K230
+
+ .../bindings/phy/canaan,k230-usb-phy.yaml     |  35 +++
+ .../devicetree/bindings/usb/dwc2.yaml         |   3 +
+ .../boot/dts/canaan/k230-canmv-dshanpi.dts    |  17 ++
+ arch/riscv/boot/dts/canaan/k230.dtsi          |  35 +++
+ drivers/phy/Kconfig                           |   1 +
+ drivers/phy/Makefile                          |   1 +
+ drivers/phy/canaan/Kconfig                    |  14 +
+ drivers/phy/canaan/Makefile                   |   2 +
+ drivers/phy/canaan/phy-k230-usb.c             | 284 ++++++++++++++++++
+ 9 files changed, 392 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/canaan,k230-usb-phy.yaml
+ create mode 100644 drivers/phy/canaan/Kconfig
+ create mode 100644 drivers/phy/canaan/Makefile
+ create mode 100644 drivers/phy/canaan/phy-k230-usb.c
+
+-- 
+2.52.0
+
 
