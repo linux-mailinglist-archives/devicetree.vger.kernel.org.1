@@ -1,155 +1,259 @@
-Return-Path: <devicetree+bounces-257711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257730-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6Ft0BkE7cGmgXAAAu9opvQ
-	(envelope-from <devicetree+bounces-257711-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 03:34:41 +0100
+	id EI4VC7VZcGlvXQAAu9opvQ
+	(envelope-from <devicetree+bounces-257730-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 05:44:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86C4F4FD3B
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 03:34:40 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id A020F5124C
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 05:44:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8AB0776FE4C
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:34:30 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 780374F4015
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 04:44:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0D51343D98;
-	Wed, 21 Jan 2026 02:34:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D32F13D3D05;
+	Wed, 21 Jan 2026 04:44:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="EIyCBy58"
+	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="ZA2eF+Ny"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F4C633D6EC;
-	Wed, 21 Jan 2026 02:34:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F4E63D349E;
+	Wed, 21 Jan 2026 04:44:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768962849; cv=none; b=UFeS7xHOvuAgh2fQoJS5M2unbp5w4fvcc7ETGV+ShyEL2S5OrOcu2BYqZSOPRjJ5RylPUwhTFw8a3RpgCukbSHNFEla2HHy0aFpdRzDq+bOekyhzjfjjv3E/G23sX2KnUKf3xaJcT8JoBtOvMKf7V4lOkkGS6tfbNamxKhosHko=
+	t=1768970646; cv=none; b=dh/FZAb2+Awba3KDO0J/xyqU+O0H9+GYqQQV/X9rv0xpCYkgMKl0u1dV1EBjBu2c0gtFb5COyc6/LSQbRKlOIc3qSbwKj7IjgKAGZubK222FtJhp29iVJHi7wIKuSVz6nicV51rPN/baDBgFT08w+5F+pYUyAPGHc8vBtGF2I0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768962849; c=relaxed/simple;
-	bh=QBNQ/I1r8NovuausWue8wwoPJ7os3wHapXP8evct0vs=;
+	s=arc-20240116; t=1768970646; c=relaxed/simple;
+	bh=qAii6QgdL7jNKvduUac6KHBcuSw94ItyGA9jGBwPO68=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iwJfTGSTcfH4hpWfhwNq9Wkftb4wqpk3LFFSavTRd9Psv6cC630NA7HV4LOA88ieGM6bCkGvxgxNw4JT7bo88zyIU/18He1BwguIXhmo4aFqBC17PBNX9MnDIatflXjcoTAk8Kn0VWdJj6VQBPNrPjuIXHWJ9zfJhVbM39Cb5Gw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=EIyCBy58; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (2001-14ba-703d-e500--2a1.rev.dnainternet.fi [IPv6:2001:14ba:703d:e500::2a1])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 50D492D7;
-	Wed, 21 Jan 2026 03:33:32 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1768962812;
-	bh=QBNQ/I1r8NovuausWue8wwoPJ7os3wHapXP8evct0vs=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=kHL1EZw2T6LNeO3I7bqSjl+bg8ASoouwDjXJYRkPe2TSqtJGACUVlnipQGyqXPliN+Ay5Rc3x+9FRD9Sgkh80zpM7lx2g/BUSExO46WPnsmVtElbla+vs8Z0TalAlIN9g1aEJtML2OV/0kf/RmGn07WRu6UrzdJouwas/6fBDVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=ZA2eF+Ny; arc=none smtp.client-ip=150.107.74.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gibson.dropbear.id.au; s=202512; t=1768970636;
+	bh=TBU1vLJlZkxvDPvJysewmpBzqtdpCRwm54Kioswt+Cg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EIyCBy582wdwDT/LJgOB1qeQZ8wZqWbjw0jPIerrtHoeF8wOSiQK8c+0WhJRqzlLG
-	 GSlzonrPYZiIitU7uTop3HBzIG5gp9UiY1kYE9E/lGnk7vtrnXKXvSP4c2SezWRVad
-	 kkI07Skm3d7uLdw03lAnWhsIXGhmid6ouBRHnHHw=
-Date: Wed, 21 Jan 2026 04:34:02 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	b=ZA2eF+NyeBpDNw9qrZ8XvxxWwNx9AOAqxIpTmvh91D1xtXdcY3uxIhcOrc+ba//3g
+	 3WRDxpPHI4oWRmrQat3fDZjOIppaTXcAdHJx8H30lVh8e/5ROucMl109KjHx3hXUv0
+	 yY9b7/e0dBFz7e7gw3d+NsqhThbfVL7X4tqbqLaNXPZrH9fa3ZgJT+hgk9h+uxVaIg
+	 hDrCVayWSZKK+kaseXYb0hcJSDkmDf8ottKYFZr+SHQBqMzHJXCMcM4wZUYM+jgkwy
+	 XC95yAsXymxYyLEVsSCmMp8vqogaDhms/iblWkZ6hGyShJMjo06PXgItdEMlQ/Na0E
+	 kyVOM8ZukTJ+Q==
+Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
+	id 4dws646QkBz4wDL; Wed, 21 Jan 2026 15:43:56 +1100 (AEDT)
+Date: Wed, 21 Jan 2026 13:35:34 +1100
+From: David Gibson <david@gibson.dropbear.id.au>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-	Hans Verkuil <hverkuil@kernel.org>, linux-media@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH] media: dt-bindings: media: renesas,fcp: Allow three
- clocks for RZ/V2N SoC
-Message-ID: <20260121023402.GA409142@killaraus>
-References: <20251103194554.54313-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251104120141.GC27255@pendragon.ideasonboard.com>
- <CA+V-a8sP6o2GUju2ub0q1exiV87zHrkTddvkv8GKR_7wBF+vSA@mail.gmail.com>
+	Ayush Singh <ayush@beagleboard.org>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org,
+	Hui Pu <hui.pu@gehealthcare.com>,
+	Ian Ray <ian.ray@gehealthcare.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [RFC PATCH 19/77] dtc: Introduce export symbols
+Message-ID: <aXA7drNb-0lJXxMY@zatzit>
+References: <20260112142009.1006236-1-herve.codina@bootlin.com>
+ <20260112142009.1006236-20-herve.codina@bootlin.com>
+ <aWiAmjfMiKpC4sdp@zatzit>
+ <20260116172735.757c1872@bootlin.com>
+ <aW3GWZl8AmzsTEu0@zatzit>
+ <20260119145120.724c419d@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="WleWFhIMSXWjX9mx"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CA+V-a8sP6o2GUju2ub0q1exiV87zHrkTddvkv8GKR_7wBF+vSA@mail.gmail.com>
-X-Spamd-Result: default: False [-1.46 / 15.00];
+In-Reply-To: <20260119145120.724c419d@bootlin.com>
+X-Spamd-Result: default: False [-1.56 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[gibson.dropbear.id.au:s=202512];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-257711-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[glider.be,kernel.org,gmail.com,ideasonboard.com,vger.kernel.org,bp.renesas.com,renesas.com];
-	DKIM_TRACE(0.00)[ideasonboard.com:+];
-	TO_DN_SOME(0.00)[];
-	R_SPF_SOFTFAIL(0.00)[~all:c];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
-	DMARC_POLICY_ALLOW(0.00)[ideasonboard.com,none];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
+	DMARC_NA(0.00)[dropbear.id.au];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TAGGED_FROM(0.00)[bounces-257730-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: 86C4F4FD3B
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[david@gibson.dropbear.id.au,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gibson.dropbear.id.au:+];
+	R_SPF_SOFTFAIL(0.00)[~all:c];
+	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,dropbear.id.au:email]
+X-Rspamd-Queue-Id: A020F5124C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Jan 12, 2026 at 04:44:07PM +0000, Lad, Prabhakar wrote:
-> On Tue, Nov 4, 2025 at 12:01 PM Laurent Pinchart wrote:
-> > On Mon, Nov 03, 2025 at 07:45:54PM +0000, Prabhakar wrote:
-> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > >
-> > > Update the FCP DT schema to permit three clock inputs for the RZ/V2N SoC.
-> > > The FCP block on this SoC requires three separate clocks, unlike other
-> > > variants which use only one.
-> > >
-> > > Fixes: f42eddf44fbf ("media: dt-bindings: media: renesas,fcp: Document RZ/V2N SoC")
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> >
-> > > ---
-> > > Note, there are no current users of the RZ/V2N FCP compatible string in
-> > > the kernel tree.
-> > > ---
-> > >  Documentation/devicetree/bindings/media/renesas,fcp.yaml | 1 +
-> > >  1 file changed, 1 insertion(+)
-> > >
->
-> Can you please pick this patch.
 
-Done. I'll send a pull request as soon as CI finishes.
+--WleWFhIMSXWjX9mx
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> > > diff --git a/Documentation/devicetree/bindings/media/renesas,fcp.yaml b/Documentation/devicetree/bindings/media/renesas,fcp.yaml
-> > > index cf92dfe69637..b5eff6fec8a9 100644
-> > > --- a/Documentation/devicetree/bindings/media/renesas,fcp.yaml
-> > > +++ b/Documentation/devicetree/bindings/media/renesas,fcp.yaml
-> > > @@ -77,6 +77,7 @@ allOf:
-> > >                - renesas,r9a07g043u-fcpvd
-> > >                - renesas,r9a07g044-fcpvd
-> > >                - renesas,r9a07g054-fcpvd
-> > > +              - renesas,r9a09g056-fcpvd
-> > >                - renesas,r9a09g057-fcpvd
-> > >      then:
-> > >        properties:
+On Mon, Jan 19, 2026 at 02:51:20PM +0100, Herve Codina wrote:
+> Hi David,
+>=20
+> On Mon, 19 Jan 2026 16:51:21 +1100
+> David Gibson <david@gibson.dropbear.id.au> wrote:
+>=20
+> > On Fri, Jan 16, 2026 at 05:27:35PM +0100, Herve Codina wrote:
+> > > Hi David,
+> > >=20
+> > > On Thu, 15 Jan 2026 16:52:26 +1100
+> > > David Gibson <david@gibson.dropbear.id.au> wrote:
+> > >  =20
+> > > > On Mon, Jan 12, 2026 at 03:19:09PM +0100, Herve Codina wrote: =20
+> > > > > Export symbols allow to define a list of symbols exported at a gi=
+ven
+> > > > > node level. Those exported symbols can be used by an addon when t=
+he
+> > > > > addon is applied on the node exporting the symbols.   =20
+> > > >=20
+> > > > This seems to imply an addon always applies at a single node locati=
+on.
+> > > > I'm not sure that's a good design choice, since I don't see how it
+> > > > covers the case of something that connects to several connectors. =
+=20
+> > >=20
+> > > Apply the addon on a node that knows about those connectors. =20
+> >=20
+> > That seems limiting to me, because it requires the base tree to know
+> > about all possible connector combinations, which I'm not sure is
+> > feasible.  If I understood Geert(?)'s case properly, there are use
+> > cases where a board might have, say, six "type foo" connectors, and an
+> > addon board could connect to any two of those.  Of a board might have
+> > 3 "type foo" and 3 "type bar" connectors and an addon board needs to
+> > connect to (any) of each.  It seems much more natural to me that at
+> > attach time you say
+> > 	"addon foo 0 =3D> board foo 1, addon foo 1 =3D> board foo 5"
+> > or	"addon foo 0 =3D> board foo 2, addon bar 0 =3D> board bar 1"
+>=20
+> Who can perform this mapping ?
+>=20
+> The user applying the addon if a tool is used such as fdtaddon for instan=
+ce
+> (even if this kind of mapping is not yet available in fdtaddon I proposed=
+).
+>=20
+> Or a driver that knows about the board connectors.
 
--- 
-Regards,
+Either or.  From the point of view of the design, I'm thinking of this
+being specified by the "client" - that is by whatever is initiating
+the application of the addon.  That could come directly from user
+input, but in cases where the connectors are sufficiently probable,
+something automated could also supply the information.
 
-Laurent Pinchart
+> This driver will apply the addon dtb and provide custom mapping between
+> symbols expected by the addon (/import/) and symbols provided by the boar=
+d.
+>=20
+> >=20
+> > Rather than the board itself having to anticipate all combinations.
+> >=20
+> > > > > In order to perform
+> > > > > its symbol resolution. Any unresolved phandle value will be resol=
+ved
+> > > > > using those exported symbols.
+> > > > >=20
+> > > > > The feature is similar to __symbols__ involved with overlay but w=
+hile
+> > > > > all symbols are visible with __symbols__, only specific symbols
+> > > > > (exported symbols) are visible with export symbols.   =20
+> > > >=20
+> > > > This paragraph doesn't make sense to me.  What's a "symbol" if it's
+> > > > not something in __symbols__ or export symbols? =20
+> > >=20
+> > > An imported symbols ?
+> > >=20
+> > > /import/ foo "blabla";
+> > >=20
+> > > from the addon point of view where this /import/ is present, 'foo' is=
+ a
+> > > symbol. =20
+> >=20
+> > I guess, but existing plugin stuff doesn't really have imported
+> > symbols, so the example doesn't really illuminate the difference from
+> > the status quo.
+>=20
+> A plugin need to know about all possible symbols available on the board
+> is applied too. This is the purpose of __symbols__. This just means that =
+for
+> plugin all possible symbols are imported and symbol translation is not po=
+ssible.
+>=20
+> A plugin is designed for a specific base board. It needs to know about ea=
+ch
+> busses and how they are wired.
+>=20
+> I mean a plugin references i2c5, the i2c controller number 5, and i2c5 ne=
+eds
+> to be present in __symbols__.
+>=20
+> The target property in __overlay__ identify the target node. Here also, t=
+his
+> is dependent on the board the plugin is applied to.
+>=20
+> Addons depend only on the node, describing the connector, they are applied
+> to. They do not depend on the full specific board where this connector is
+> available.
+>=20
+> Two different boards can have the same connector available and a given bo=
+ard
+> can have two connectors of the same family the addon can be connected to.
+
+Ok, I think I see what you're getting at.
+
+--=20
+David Gibson (he or they)	| I'll have my music baroque, and my code
+david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
+				| around.
+http://www.ozlabs.org/~dgibson
+
+--WleWFhIMSXWjX9mx
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmlwO2gACgkQzQJF27ox
+2GdOOQ/+ILSnO3ZrAJSJMxf5lqEnxa5NuX+W4JC56ID9CZZX4/L6YQ6fB/wHDijh
+EJ7R8xizkJdTZNgjIoERa/mH3AYJpMVBHvcL4FtNV1srJV2XpIZ4XluEVsGr21As
+tO/7joHwBokZyH2n2ZBMX+H29VPgvCtWyVLgwwVDHShW8vipvqKrMbTIyQlq6EoI
+Ij/zQQa4hoSNaOa7RbIwl7EjwciYdQN6+V9eYs/GC0T2OGIjqx2ya5a/aOCPSAzW
+C5ow31/UaxyHs1oPxdocuwIDmfC46JmMzCb1HB03lQmFp0zpXv1+2XeyJVX0E1Qd
+ys6p6By19JlvXcQEvwiU+7nTHDHuJwJ9Xtb3VN47OhcD+m8Dpkh96RQwYGyr4/Ck
+34sH3NJ/LoIN6aTn9/le313ZAvqDJCuDpjIrz4Dzy+0heCoptbLXhUVdyI2+9MWk
+25BXeWGtVKRiSGh1wrYI8N9rc+wF92Pn2gHixfkaUrrn7UOWPzJgyTIVFelGxoKs
+d7NULSXOVKhSG2yPvKvhbfO5bjC5QplutwflMaiI0EMDcBh31yaE7K+P29IWAHg4
+DUaOu/AtB1fZGgNRHkke63SP/qEWU7aZA0THa9e6D7odEbtkWd6UV4VYQLW0JuxF
+jOik99na7Qcn2zMnGpsEwleSeIWpBHV9ccPezO3EnJc4SFiCSb0=
+=U0iQ
+-----END PGP SIGNATURE-----
+
+--WleWFhIMSXWjX9mx--
 
