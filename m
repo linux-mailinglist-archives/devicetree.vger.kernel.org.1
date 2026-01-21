@@ -1,225 +1,167 @@
-Return-Path: <devicetree+bounces-257843-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257844-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8Br0FFykcGlyYgAAu9opvQ
-	(envelope-from <devicetree+bounces-257843-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 11:03:08 +0100
+	id MGcIBnOlcGlyYgAAu9opvQ
+	(envelope-from <devicetree+bounces-257844-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 11:07:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id E047654DCC
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 11:03:07 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5D4C54F02
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 11:07:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2273B82A755
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 09:53:41 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EC63F8CA8D9
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 09:55:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59EF547AF5E;
-	Wed, 21 Jan 2026 09:52:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC11A481224;
+	Wed, 21 Jan 2026 09:53:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PkCvd3mU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AeTaM+kt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4839738B7D0;
-	Wed, 21 Jan 2026 09:52:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A10FA480DCD;
+	Wed, 21 Jan 2026 09:53:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768989136; cv=none; b=IHmBw3uXRK1cesBZSNOugx5TyPVp/cXsqZsh8Zih6lslln4+dMqXsg9OafauTdWW3ciiskgXFNA1LK3kYzvfqidOiNqY72+jZLaKevchYaBWME+rNfXjvRpHwTp4ri8O7dkDz+Nocjl670aDZNAaEJB+pRi46PbcyXrKk2M+4fU=
+	t=1768989198; cv=none; b=RHIUrKF04QTffUiGG4aSPmKQbEHmnbi7Fl65dwQdKMa87WSEKEti9IMvkzn/+09+kJUcUKriQRtaqukr1KpIW02zDA6LUWs2ZjK0t7H9vsQWLPzEktACQIvbNAhAF0H49K1lFr+u1VC8msogqqNwElzM1Vb9iCVA4fCmGBUQs0A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768989136; c=relaxed/simple;
-	bh=EPkQjhxLIdSfzGwc60b0/0B/7SwCxHhP12hfLgUdfD4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j7WuEVSULoctLjFgM2XZCMgwXdeURV0kkpsXp78GPHIAKfFFa5lVy15UA2KpjzaRAd+un9OkPZUYPEAkU/gRf+0DOh3emFQIE9bK8lEjOX1Nfasr5dg/gpgNyar7BLy5b7sxyEAHeYiPYtu018hDvbDvz9IrtvtVvyNIQaXaIAU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PkCvd3mU; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1768989134; x=1800525134;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=EPkQjhxLIdSfzGwc60b0/0B/7SwCxHhP12hfLgUdfD4=;
-  b=PkCvd3mU9uR5ut37+nbhj8p/xYlytoGGN8wuA4zJHfmI2MUWzXujXG5v
-   VDLJapoFpw3vFp1Rnr8LFTmti7IY2/slOuSfIBQWRvClMXpTI0nUOFRxH
-   FB2TDmoCMGFei/QF6U796CtguLPNV8A2Zg6uCwZwZxRd5gDH9AF1b85W6
-   cMg50wrR08Q0Q0nHuZ5N/0txJRIPzPqvy7HlmXZqoXTs1KzKHN84PUczw
-   9ymsdukchvBCCleTGuXlpHULMXYQawo3jxw0bTofQyhYH05x6tTtdhESR
-   MJn1SIrcw9LbsqCTOCTM+ZROcjOTORy3kM84/Y2wr8ra/fIQHWIYUuSqD
-   g==;
-X-CSE-ConnectionGUID: b1X38CyNQ1itkgEhk5k00w==
-X-CSE-MsgGUID: 1FVvTx9IR2CS+Gp7pFEtDQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11677"; a="81591883"
-X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; 
-   d="scan'208";a="81591883"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jan 2026 01:52:12 -0800
-X-CSE-ConnectionGUID: 5WFzXOo5SrWFn4GHCW+v4Q==
-X-CSE-MsgGUID: 4XM1BOWJTe6YBCuU41qFuw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; 
-   d="scan'208";a="210910529"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.73])
-  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jan 2026 01:52:08 -0800
-Date: Wed, 21 Jan 2026 11:52:06 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-Cc: Andy Shevchenko <andy.shevchenko@gmail.com>, rodrigo.alencar@analog.com,
-	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>
-Subject: Re: [PATCH v4 3/7] iio: frequency: adf41513: driver implementation
-Message-ID: <aXChxvlZxKVrOMsW@smile.fi.intel.com>
-References: <aW3dxuelYDM67pqZ@smile.fi.intel.com>
- <texwv5s2tvcy34bwr4iruj5xofmea663pwletmpqpuh66zulmv@m7qvjgqbhalv>
- <aW40ylvMwVhqNQMw@smile.fi.intel.com>
- <hgy3bcrqqsvt7pobhnzuvwzhb2taetpxltkaxpigmmlvmlirod@v6anhmrsvv2r>
- <aW5kk6K30Izckvg5@smile.fi.intel.com>
- <e5lcg5kkey3c6u2l4rlzzpolp7qkudhcofyzcx5s2tjbh2iwkg@js3fisv23zyj>
- <CAHp75VepcSZo_E4_UxhKRfHrMFDd7huJg14m8=6zVo4ENKFXkA@mail.gmail.com>
- <vvdk3whhwua73g63eetnmn46t2cpbpkzzkx7m6wsbverp7gcvs@mi7cipis3i4t>
- <aW-Fai68pk1tAeyY@smile.fi.intel.com>
- <kmdqcaewxxg7isappgfxuf5ode5fepbywrdriksmvrzmaykcjd@crpr27tt3bmf>
+	s=arc-20240116; t=1768989198; c=relaxed/simple;
+	bh=sgHLvdiYH0ctUHHwHYIfRo6V1QGR3Q0o/e7nTsoFxYE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EpbngJjssXhHbHDlEWbMWgQXlJ+NpAqjKYe23xlTZC9Ywc1JCcHPYscgkb5Fx42kGji4qbImwDyFVzNkOT0IQe4qJa41e5KiCbD7J9mxJypC86+NU5J5BHsKedO0ZC9x7WACzMtFNWlCpu3q4l/9ryR0qFNv8/P5RxhlzY8c4ow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AeTaM+kt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8EFE0C116D0;
+	Wed, 21 Jan 2026 09:53:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768989196;
+	bh=sgHLvdiYH0ctUHHwHYIfRo6V1QGR3Q0o/e7nTsoFxYE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=AeTaM+ktw5cvQDxq1I/2ZqXy8IrsS4831ffWcZy3WlbVku/JWim9oAaCPK/8ObENl
+	 JiaGUHDLM7runCyMqX1Rdg/KTzovPMxOhqWnpGxP5tRRikpv6z2OUPTCDiY+50YDnN
+	 c4LPsQkyKKBza6wpnK2qfAqkNAeKKhlqcvG/LTIHQnqHpETbW/zrLIeQVV+iU8/lJU
+	 ROaCHaEwZ0MZR0mJaVs8gsOodwjcADX/TfOP8eAw0vNx7Mg3r6JFzHf9UY/AzLvFe5
+	 WpKfwcFOSsQEKXVnDMoU/8KWgjrCBcjG1GWWxxg9cEy/tnmpzwMDtIeBq41dQQmaDz
+	 bEicWFcyt2QXw==
+Message-ID: <69c50416-452a-43ca-8ea1-d98d570f93a8@kernel.org>
+Date: Wed, 21 Jan 2026 10:53:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <kmdqcaewxxg7isappgfxuf5ode5fepbywrdriksmvrzmaykcjd@crpr27tt3bmf>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Spamd-Result: default: False [-0.46 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/7] dt-bindings: vendor-prefixes: Add AlgolTek
+To: Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260120234029.419825-2-val@packett.cool>
+ <20260120234029.419825-4-val@packett.cool>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260120234029.419825-4-val@packett.cool>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-1.96 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FREEMAIL_CC(0.00)[gmail.com,analog.com,vger.kernel.org,kernel.org,baylibre.com,metafoo.de,lwn.net];
-	FREEMAIL_TO(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-257843-lists,devicetree=lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[intel.com,none];
-	DKIM_TRACE(0.00)[intel.com:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	R_SPF_SOFTFAIL(0.00)[~all:c];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	TAGGED_FROM(0.00)[bounces-257844-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	R_SPF_SOFTFAIL(0.00)[~all:c];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,intel.com:dkim,smile.fi.intel.com:mid]
-X-Rspamd-Queue-Id: E047654DCC
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,packett.cool:email]
+X-Rspamd-Queue-Id: B5D4C54F02
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Jan 21, 2026 at 09:41:25AM +0000, Rodrigo Alencar wrote:
-> On 26/01/20 03:38PM, Andy Shevchenko wrote:
-> > On Tue, Jan 20, 2026 at 01:07:49PM +0000, Rodrigo Alencar wrote:
-> > > On 26/01/20 01:24PM, Andy Shevchenko wrote:
-> > > > On Tue, Jan 20, 2026 at 12:43 PM Rodrigo Alencar
-> > > > <455.rodrigo.alencar@gmail.com> wrote:
-> > > > > On 26/01/19 07:07PM, Andy Shevchenko wrote:
-> > > > > > On Mon, Jan 19, 2026 at 04:37:09PM +0000, Rodrigo Alencar wrote:
-> > > > > > > On 26/01/19 03:42PM, Andy Shevchenko wrote:
-> > > > > > > > On Mon, Jan 19, 2026 at 11:21:59AM +0000, Rodrigo Alencar wrote:
-> > > > > > > > > On 26/01/19 09:31AM, Andy Shevchenko wrote:
-> > > > > > > > > > On Fri, Jan 16, 2026 at 02:32:22PM +0000, Rodrigo Alencar via B4 Relay wrote:
-
-...
-
-> > > > > > > > > The current implementation is kind of a stripped version of
-> > > > > > > > > __iio_str_to_fixpoint(). Would you prefer something like this, then?:
-> > > > > > > >
-> > > > > > > > Do they have most of the parts in common? If so, why can't we use
-> > > > > > > > __iio_str_to_fixpoint() directly? Or why can't we slightly refactor
-> > > > > > > > that to give us the results we need here?
-> > > > > > >
-> > > > > > > __iio_str_to_fixpoint() only parses "int" chunks, adf41513_parse_uhz
-> > > > > > > was modified to accomodate the u64 parsing removing unnecessary stuff.
-> > > > > >
-> > > > > > But why? The fractional part most likely will be kept int (it's up to 10⁻⁹).
-> > > > > > The integer can be bigger than 10⁹?
-> > > > >
-> > > > > Correct, integer part of the frequency value goes up to 26.5 GHz
-> > > > > (uint_max is approx 4.3 GHz). Also, with the dual modulus, the PLL can
-> > > > > achieve micro Hz resolution.
-> > > > 
-> > > > µHz is not a problem since it's up to nHz.
-> > > > So, the difference so far is the integer part that can be 64-bit.
-> > > > Again, can we factor out something to be used for this and for the
-> > > > __iio_str_to_fixpoint() cases?
-> > > 
-> > > I am not sure what you are suggesting,
-> > 
-> > To make changes to reuse the code.
-> > 
-> > > but I am avoiding changes to iio core at this point.
-> > 
-> > Why?
+On 21/01/2026 00:30, Val Packett wrote:
+> AlgolTek is a Taiwanese chip manufacturer specialized in high-speed
+> signal and power transmission and conversion.
 > 
-> I understood that core changes would require more than one user
-> supporting the change.
+> Signed-off-by: Val Packett <val@packett.cool>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
-At least one. And we have tons of them as the callers of
-__iio_str_to_fixpoint() are not going to disappear. Basically it's a surgery in
-the middle of the existing chain of APIs. To me one user is enough justification
-for such a surgery. For the newly introduced API (imagine __iio_str_to_fixpoint()
-as an example) it's indeed one user not enough.
+I initially silently ignored this patch because this is churn to deal
+with such one liners. This should be squashed. But after talk with
+Dmitry let's clarify.
 
-> > > If any other user needs similar behavior,
-> > > I'd say we would need to have __iio_str_to_fixpoint() implementation
-> > > modified, so to create a version of iio_str_to_fixpoint() that handles
-> > > long long variables. Possibly consuming simple_strtoull instead of
-> > > doing the manual parsing.
-> > 
-> > That's the problem here. With Yet Another Cool Parser this all becomes
-> > unmaintainable very soon
-> 
-> Considering that the need for a new parser for 64-bit parts is only driven
-> by this specific PLL driver, I wonder how things become that unmaintainable.
+If you target different trees, then:
+1. Do not combine them into one patchset
+2. If combining, do not mix the order like 1/7 goes to foo, 2/7 goes to
+bar, 3/7 goes to foo again, 4/7 goes to bar again.
 
-Because there is a duplication of the code (to some extent) and if we found
-a bug in the one implementation it will be hard to fix (or even remeber) about
-the other.
+Make it easy for maintainers, so we won't spend time deciphering this or
+acking multiple of such single liners (I asked this on mailing list
+multiple times).
 
-> > (basically as you said when new comer needs a third
-> > variant of it). This is not good. Instead better to create (amend, expand)
-> > existing test cases, split out a foundation API that parses 64-bit parts
-> > (maybe even for fractional as well, dunno) and evolve a needed (sub)API
-> > from it.
-> 
-> I don't disagree with you though, I suppose I will need a green light to
-> move on with this?
-
-Fine with me, let's gather opinions of David, Nuno, Jonathan, and others.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Best regards,
+Krzysztof
 
