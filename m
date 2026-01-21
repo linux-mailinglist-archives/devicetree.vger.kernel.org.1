@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-257765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257766-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sGJjEfSAcGktYAAAu9opvQ
-	(envelope-from <devicetree+bounces-257765-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 08:32:04 +0100
+	id ANgpCHWBcGktYAAAu9opvQ
+	(envelope-from <devicetree+bounces-257766-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 08:34:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC75352D74
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 08:32:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EAC6952DD5
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 08:34:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id CE7C7406B48
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 07:30:48 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 63C8E4073A9
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 07:33:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5467A45BD6A;
-	Wed, 21 Jan 2026 07:30:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A02E3322C65;
+	Wed, 21 Jan 2026 07:33:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eP89B557"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hl2uz5cd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF7714611C1;
-	Wed, 21 Jan 2026 07:30:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B163C33F384;
+	Wed, 21 Jan 2026 07:33:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768980644; cv=none; b=S6JlvMize5X4XPf8XTCzvb3+5oj9UT1acAf0MA7AQeRNdAQR/K9SyOtlYAgI6n+7eFccgBxkw8/s/Sm1/CPBd6FTUaSKP3HcCBdrjZDOu0WJRE5eo0KdOrNrBrAXjQ0ZNyMJhVZEpNk6MmiESLDULlzAzxyZj+MjUq2Y4nUTAdE=
+	t=1768980800; cv=none; b=sstTY5beZMIfPp89gd8PLN1ZpexrLxaa1Og1qIjhRpnRyGEc9cgwL9XHe6Z0mwxOcKFSIlLSHGQ0DUZBZaW5IWiZuNtgr0CunZE7ni3UHujZvD6a7Rp6DxVM1XaSLX1hObYdr7t+X6bZnynWDk2dsyANIqrLWhrDuaRnrDElUIg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768980644; c=relaxed/simple;
-	bh=k+/cKm1hTwOSEgmKy4PfI8eWdUKeR8g/LdvonwxaaKA=;
+	s=arc-20240116; t=1768980800; c=relaxed/simple;
+	bh=/eubXyZzEZmp7uxmC/oKS5UYcR/xs8pejSmk3QWw5XI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ok5975MDjuh9hZPZI19BmeGSo3/0THWp/jd9YTPC3+6l+Wvihbw1IXYmA3DDl5rHPvrOyNKhelPbbDx7D7VzD+FPUuQ18P1doo3vlOjS/wIYArRMVqYlYSC24CWlEJ3BenoJEf1VuSiU8HNsr1aV0E0xpc8P91Ts3+xX+x5FRK4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eP89B557; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D115EC116D0;
-	Wed, 21 Jan 2026 07:30:39 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=g9N0LpvqwVCzeLPnR0XEisX8DTcKbwclKFLrbBZTWk33J/Gec8gSYVh5SEnit93rahZHh+uo31j5Jn/RyVQ6BbMpreXIPYxEjTcQIoegrIYuS8W40qNq20sQ+YfLRQlf25gHYlI9+8ma0apgdjv27XsZQzRP+LWSIiEWcClCHMk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hl2uz5cd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B374AC116D0;
+	Wed, 21 Jan 2026 07:33:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768980644;
-	bh=k+/cKm1hTwOSEgmKy4PfI8eWdUKeR8g/LdvonwxaaKA=;
+	s=k20201202; t=1768980799;
+	bh=/eubXyZzEZmp7uxmC/oKS5UYcR/xs8pejSmk3QWw5XI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=eP89B557iYnIYeowRFb2Ohy3I6TxkSjxHgC3tJyW3nd5io2QF84AYdgoe4e1pSrg8
-	 /MPsJz2dbex7UNrd5mkRpohPBxx6E13XHomnqa3kY3b2rme797ssgk6LXvfTKgcjlT
-	 BoFPUuQAlxXLGKc5CJ1gsiSi9kMeJb23j1k5UWk5gHdcDSQUymDQ5lzCnufMHcYl96
-	 jM0VZUpKoPTjfQ1FQGHIue0VM0htJ8s4qW4B4pDPzjzUKN26vxp+AWTUXYWSPoWAYD
-	 uI1uHkMF7Uomu/T6g/mFg0HNq7zh0yNqvEJSAA6EhSa2AvWPqD4XyXoxcTk72cd1gv
-	 dFCzSqP0UqItQ==
-Message-ID: <2394637b-f85b-47b7-ae30-f7ac2be49c59@kernel.org>
-Date: Wed, 21 Jan 2026 08:30:37 +0100
+	b=Hl2uz5cdd+PoHMqrna9VRU1KYmVO0z6JIXMEnuyzeS0UyHZGo3hlWhwKza9ae+EsB
+	 vF/9qDOy6l6Tw49hDnrUlIN24AWuNXF9GMnfbH0E3dWUjgElaOonY+ohamyUd2CtpU
+	 4laIwjqI8SpPWwM19QtQh3Ue/6LwkXrVCfiAuiZ7kjHlJEkxHb7+i3jmoyFdFOAyAM
+	 rIkPLPIHYAtse9GAleIdsd9rltWdL0IDELOa9x665cwikwROgexttyJn1sNVBvAflL
+	 Hf8gJRGJyU0BbUM9qLqNPpyxcYZdfC7LVWaR45lpEbXEyKGZidA7eiwpApB7n6NlsC
+	 lits4V7MgTyMQ==
+Message-ID: <ea45bd40-203f-4812-97b6-0f40cdb791e2@kernel.org>
+Date: Wed, 21 Jan 2026 08:33:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,33 +55,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: Add i.MX93W EVK board
-To: Sherry Sun <sherry.sun@nxp.com>, Frank Li <frank.li@nxp.com>
-Cc: "robh@kernel.org" <robh@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "shawnguo@kernel.org" <shawnguo@kernel.org>,
- Daniel Baluta <daniel.baluta@nxp.com>,
- "dario.binacchi@amarulasolutions.com" <dario.binacchi@amarulasolutions.com>,
- "alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>,
- "Markus.Niebel@tq-group.com" <Markus.Niebel@tq-group.com>,
- "matthias.schiffer@tq-group.com" <matthias.schiffer@tq-group.com>,
- "y.moog@phytec.de" <y.moog@phytec.de>,
- "josua@solid-run.com" <josua@solid-run.com>,
- Francesco Dolcini <francesco.dolcini@toradex.com>,
- "primoz.fiser@norik.com" <primoz.fiser@norik.com>,
- "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
- "festevam@gmail.com" <festevam@gmail.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "kernel@pengutronix.de" <kernel@pengutronix.de>
-References: <20260120102604.1989725-1-sherry.sun@nxp.com>
- <20260120102604.1989725-2-sherry.sun@nxp.com>
- <aW+ullwMtDq0RpNt@lizhi-Precision-Tower-5810>
- <VI0PR04MB121146CD3EDDE9C4771B83A939296A@VI0PR04MB12114.eurprd04.prod.outlook.com>
+Subject: Re: [PATCH 3/3] arm64: defconfig: Enable Qualcomm Eliza pinctrl
+To: Abel Vesa <abel.vesa@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>, Linus Walleij <linusw@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260120-eliza-pinctrl-v1-0-b31c3f85a5d5@oss.qualcomm.com>
+ <20260120-eliza-pinctrl-v1-3-b31c3f85a5d5@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -127,78 +109,45 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <VI0PR04MB121146CD3EDDE9C4771B83A939296A@VI0PR04MB12114.eurprd04.prod.outlook.com>
+In-Reply-To: <20260120-eliza-pinctrl-v1-3-b31c3f85a5d5@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.46 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.96 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FREEMAIL_CC(0.00)[kernel.org,nxp.com,amarulasolutions.com,ew.tq-group.com,tq-group.com,phytec.de,solid-run.com,toradex.com,norik.com,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-257765-lists,devicetree=lfdr.de];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	TAGGED_FROM(0.00)[bounces-257766-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	R_SPF_SOFTFAIL(0.00)[~all:c];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	R_SPF_SOFTFAIL(0.00)[~all:c];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: EC75352D74
+X-Rspamd-Queue-Id: EAC6952DD5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 21/01/2026 04:18, Sherry Sun wrote:
-> 
-> 
->> Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: Add i.MX93W EVK board
->>
->> On Tue, Jan 20, 2026 at 06:26:03PM +0800, Sherry Sun wrote:
->>> Add DT compatible string for NXP i.MX93W EVK board.
->>>
->>> Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
->>> ---
->>>  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
->>>  1 file changed, 1 insertion(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml
->> b/Documentation/devicetree/bindings/arm/fsl.yaml
->>> index 93ad6f0027d0..1769f243d70f 100644
->>> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
->>> @@ -1432,6 +1432,7 @@ properties:
->>>                - fsl,imx93-11x11-evk       # i.MX93 11x11 EVK Board
->>>                - fsl,imx93-11x11-frdm      # i.MX93 11x11 FRDM Board
->>>                - fsl,imx93-14x14-evk       # i.MX93 14x14 EVK Board
->>> +              - fsl,imx93w-evk            # i.MX93W EVK Board
->>
->> Is 93w 11x11 or 14x14? can you add suffix to keep align existing one.
->>
-> 
-> Hi Frank,
-> 
-> IMX93W-EVK is the official board name, it basically reuse the  i.MX93 11x11
-> EVK board, as described in the cover letter and dts patch. I prefer to still use
-> this name (imx93w-evk) to keep align with the board official name. 
-It's second case, previous was frdm, with the same argument. I don't
-care what you prefer internally. You must align to upstream and all NXP
-boards are called soc-foo. Not socfoo.
+On 20/01/2026 10:56, Abel Vesa wrote:
+> The Qualcomm Eliza SoC needs the pinctrl build-in in order to boot.
+> So enable it.
 
+Based on this patch is not needed - we don't have Eliza SoC upstream and
+even if we had it, it would be impossible to boot the soc alone...
 
 Best regards,
 Krzysztof
