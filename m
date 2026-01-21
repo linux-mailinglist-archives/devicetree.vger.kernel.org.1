@@ -1,101 +1,82 @@
-Return-Path: <devicetree+bounces-258023-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258024-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KG3mJNYMcWmPcQAAu9opvQ
-	(envelope-from <devicetree+bounces-258023-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 18:28:54 +0100
+	id gNIyOcD6cGmgbAAAu9opvQ
+	(envelope-from <devicetree+bounces-258024-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 17:11:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3ED815A886
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 18:28:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 974F659BA2
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 17:11:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6F4527A2E20
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 15:30:56 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8B5C57A6C51
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 15:36:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 626AA48BD4E;
-	Wed, 21 Jan 2026 15:15:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1496F4C9015;
+	Wed, 21 Jan 2026 15:20:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iIVrbQlJ"
+	dkim=pass (2048-bit key) header.d=amazon.com header.i=@amazon.com header.b="OhUlxv1j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fra-out-005.esa.eu-central-1.outbound.mail-perimeter.amazon.com (fra-out-005.esa.eu-central-1.outbound.mail-perimeter.amazon.com [63.176.194.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81EB648B373
-	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 15:15:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D23849250E;
+	Wed, 21 Jan 2026 15:20:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=63.176.194.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769008528; cv=none; b=oAviKxmHvha3N7HNfnENOXXlIIG24g9w8Mk8p86zC5OW4Rpn4mXyzxRf7/hIfwAqrp7n2FloIIqXLPgFqMGy9+DTRtn4ejHMFyBbe/YsjEGT1rjzagWRYZLRRuYvabefFwZ295fB7zwt5socZd8DeXCW9xQ3ZdLDqAT6tzN/ocw=
+	t=1769008817; cv=none; b=kWe+glW8A42tA7hiCJKdIPoATy/MMVziJ7fHpZUYXjy8CgOTIDkkAG0YjQrcAeJsaFKjWsiENPvDxkck82TI7ylcjUzAem5pusfuDFUEK1egYWDoIDbJLnninPopz11RJ86iVuqyIgDqYEtn/1tnFIZoc0AMNe1CAbEAHfszim0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769008528; c=relaxed/simple;
-	bh=GTDYEFiega8YxWihJVfzhrRVHZNr2+ykLR1wXxa9TVc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=A5fNbLRVHjB9zIE1kdtwCwkv0y9gcjcpEd2QrEq0VE4B1s7/284/Y1WtvZxarUhI5hqqqbSILHngtr0hN2T3p+QzBF44cxpQ7buH1Xv1l9FIfp6ax2c5VnhPjUeV2nUm3F90BmLsmiDjYMMcQh4CB1prP3w6HPsqNVIMGVgJW98=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iIVrbQlJ; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-47edd9024b1so46844895e9.3
-        for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 07:15:26 -0800 (PST)
+	s=arc-20240116; t=1769008817; c=relaxed/simple;
+	bh=qO27uL9zZ+o9v61KUO6CGF6z1TLJMeFnTlhwtmrrULc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=LFSMyuYlNGej/yNEE321q9P0Wfc5I3ionE+yrKe0vBMBt1yulARXYsru/1dCpR0/pnW6NyWz3vkk+QkfV0u0eNaGfK+/A2gZwIcmYYvzxcPRvLLzakm9WvjkQ9FMEhJYhpijLu5lRRISCze6EBy3iq7/l5GrUvkFWX23RP1hAl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.com; spf=pass smtp.mailfrom=amazon.com; dkim=pass (2048-bit key) header.d=amazon.com header.i=@amazon.com header.b=OhUlxv1j; arc=none smtp.client-ip=63.176.194.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769008525; x=1769613325; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=W91/nThu/hrkiQ9f4tK/HK4NnadCCD9MyZ0A6Cw7s6o=;
-        b=iIVrbQlJ8IRL4p92YCZExrCKxYZhahtuE+EvuDoA81fggK3To6zpphtJRvyOsdfm8t
-         +TJQ5X42sYmiIuElcuyubG+NBL4TqrkEmOnqQeAOh5PEOCGau3XoDks55zFquBG8fDlv
-         h+9xsofcdtb3Jk107JovolPGJnEgElNZjuCbnes0auBToB6vONv5c6o+RXOnqYY4w+PD
-         +DqH0n3lBp4NkSbOJbed/VX3m0Aw230HkyvHvNUOPNNqsXpVtMI8xNUGvKCEfY9Rx0fD
-         0DAreSwEDO+utU8hX93t/9PUBCGdkg3MmrgZIeqXjZIMGJVxyqFDRhqZa0pWURF1ScsO
-         nzkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769008525; x=1769613325;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=W91/nThu/hrkiQ9f4tK/HK4NnadCCD9MyZ0A6Cw7s6o=;
-        b=cF3FfScv5NBpSqdMuzWMqux/aBXZUjZlWSTr6dMKM7oR3N3qwFPrBMg8l2As7wqpiB
-         s9Yid7GHKUN2Pg9S9qZX7cK5Vd82wT1Tl+B45DhzOr1EN4GQTrG1IK182B9bsXsgbaNX
-         wYMyR4MfXRHZ495Dspaz8OpAPAMHZuJ7id9WRC3c4Cm0m3C3+yvJ43GtND1NpDvMWwHt
-         3rphTXMrWgJK214u9x6Q2nbgmOUzprRscD3EOCd5zrcEP/f6/za61y1O7VlmimD3PQJ1
-         +27yb1OHkBDmc7JGmzIAIMmWEJdQkd0VXHh6IjxQju1xfpVx77mWLfIXDmRp2praUdjq
-         dA+g==
-X-Forwarded-Encrypted: i=1; AJvYcCUYGevS5F7eziC1j1ToN9lDARdl+OXbSTTNALRuhfShTDZOSzAZkdJJbcdXUT7O0s4xWelzy/zfBiJ/@vger.kernel.org
-X-Gm-Message-State: AOJu0YwChHY0aUTlcChNsw4uJoo91O9TSCvav1NrD+D3A5cmvjFERxK6
-	GcGRl8Aflpf1zhFry4ZLwwLmjqVj9ZddGomDyXRmP7P7IySe5P5a/gut
-X-Gm-Gg: AZuq6aJxjzkyg5TVaqRp5SVrRcCdq2/QhHI00cxdQiV0kMmaZV3S1TJChCMpzWM8HsQ
-	yFKoYqEW8fcThrm6pNiDcYe3igD7iGzXss+31/ITfrDAJSkk5QAI7nGWXGK+HAfnmTE4FP611T2
-	8g251kR53lusSsPRF+9I/KI3QF+vQK6ARp6M2yzwWhRN/2EctacWVxS2F4Br2ntrGBY+LIyuC4i
-	5AOXLXHiAcj7wh8RfwYnLme4MfAr6o5EqpcAqDWuGwx5vKwuMt3VmKmrkaPxKLJmm8urt/YIzjv
-	2pspf2c5ftv4EFRKBGOK+7pMlemPaecselCN67ynJhKtS0+lTzdRbOCAjigCkLl8Wr4r5n7MZ9S
-	bRQQqqq2xVRmV//LLdWNrkRaBkbgxj9y9vqjwXiHPcavRfEyd1frv8Jn+V9JyPoMWM4kIgDl79p
-	h9MUoRIA/wl4w=
-X-Received: by 2002:a05:600c:608a:b0:477:2f7c:314f with SMTP id 5b1f17b1804b1-48025ccb812mr216647125e9.10.1769008524782;
-        Wed, 21 Jan 2026 07:15:24 -0800 (PST)
-Received: from nas.local ([2001:912:1ac0:1e00:c662:37ff:fe09:93df])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435924ae6f1sm10534349f8f.33.2026.01.21.07.15.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Jan 2026 07:15:24 -0800 (PST)
-From: Damien Dejean <dam.dejean@gmail.com>
-To: andrew@lunn.ch,
-	krzk+dt@kernel.org
-Cc: netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	edumazet@google.com,
-	davem@davemloft.net,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	hkallweit1@gmail.com,
-	Damien Dejean <dam.dejean@gmail.com>
-Subject: [PATCH v2 4/4] net: phy: realtek: add RTL8224 polarity support
-Date: Wed, 21 Jan 2026 16:15:06 +0100
-Message-ID: <20260121151506.813783-4-dam.dejean@gmail.com>
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazoncorp2;
+  t=1769008815; x=1800544815;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=hFO7A4s2JePRTkdn9h5WE2GYgmdjAN2L9FXVGZvIuZI=;
+  b=OhUlxv1j/x5u++I/L/epzDx+zeCOS98kdH7htfAIwYQsX9mW9ycT+kJT
+   /hddZ9z4ExqigfOhsf+qaxQKD6bBwTpwSRXc7eu+Ijztyw1DuwpF8eK5g
+   W1AYFNyBTtbwCPw2vd+9+4vaiKdVKNLF6d7AXVFKhIcBbgQGmvl2l22he
+   QQ1F+iRYoYC906c19i85yst5BPS/EMISDCz39A1lFBzAvqGEkG+c408M2
+   3iRhKpDxvzqIxRZUJXz3xtAmjqikoAawqgYj0HrKiWc9ytdzlDCtbG5w/
+   nLbmq/FIZKxQZfYIp2NOGFiwCZoDukm8F/euWb2ta4BA1e83f98d7x8NK
+   w==;
+X-CSE-ConnectionGUID: Uh6DVqPyT2OG2TAPY3O9XQ==
+X-CSE-MsgGUID: XKC/OzDjRFyu4iBE1t+FVw==
+X-IronPort-AV: E=Sophos;i="6.21,242,1763424000"; 
+   d="scan'208";a="8247390"
+Received: from ip-10-6-3-216.eu-central-1.compute.internal (HELO smtpout.naws.eu-central-1.prod.farcaster.email.amazon.dev) ([10.6.3.216])
+  by internal-fra-out-005.esa.eu-central-1.outbound.mail-perimeter.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jan 2026 15:19:57 +0000
+Received: from EX19MTAEUC001.ant.amazon.com [54.240.197.225:7254]
+ by smtpin.naws.eu-central-1.prod.farcaster.email.amazon.dev [10.0.16.24:2525] with esmtp (Farcaster)
+ id c8a7da5c-d2eb-4d46-8d7e-a84c071ce546; Wed, 21 Jan 2026 15:19:57 +0000 (UTC)
+X-Farcaster-Flow-ID: c8a7da5c-d2eb-4d46-8d7e-a84c071ce546
+Received: from EX19D003EUB004.ant.amazon.com (10.252.51.121) by
+ EX19MTAEUC001.ant.amazon.com (10.252.51.193) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.35;
+ Wed, 21 Jan 2026 15:19:54 +0000
+Received: from dev-dsk-almogbs-1b-998410db.eu-west-1.amazon.com
+ (172.19.74.107) by EX19D003EUB004.ant.amazon.com (10.252.51.121) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.35; Wed, 21 Jan 2026
+ 15:19:51 +0000
+From: Almog Ben Shaul <almogbs@amazon.com>
+To: <linux-hwmon@vger.kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-doc@vger.kernel.org>, <itamark@amazon.com>, <talel@amazon.com>,
+	<farbere@amazon.com>, <ayalstei@amazon.com>, <dwmw@amazon.com>,
+	<almogbs@amazon.com>
+Subject: [PATCH 0/2] hwmon: Add JEDEC PMIC50x0 driver for DDR5 PMICs
+Date: Wed, 21 Jan 2026 15:19:45 +0000
+Message-ID: <20260121151947.37719-1-almogbs@amazon.com>
 X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260121151506.813783-1-dam.dejean@gmail.com>
-References: <20260121151506.813783-1-dam.dejean@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -103,116 +84,69 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.04 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Type: text/plain
+X-ClientProxiedBy: EX19D044UWA002.ant.amazon.com (10.13.139.11) To
+ EX19D003EUB004.ant.amazon.com (10.252.51.121)
+X-Spamd-Result: default: False [-7.46 / 15.00];
+	WHITELIST_DMARC(-7.00)[amazon.com:D:+];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_DKIM_ALLOW(-0.20)[amazon.com:s=amazoncorp2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
+	DMARC_POLICY_ALLOW(0.00)[amazon.com,quarantine];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-258024-lists,devicetree=lfdr.de];
+	TO_DN_NONE(0.00)[];
+	DKIM_TRACE(0.00)[amazon.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,google.com,davemloft.net,kernel.org,redhat.com,gmail.com];
-	TAGGED_FROM(0.00)[bounces-258023-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[almogbs@amazon.com,devicetree@vger.kernel.org];
 	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[damdejean@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: 3ED815A886
+	TAGGED_RCPT(0.00)[devicetree];
+	PRECEDENCE_BULK(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 974F659BA2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The RTL8224 has a register to configure the polarity of every pair of
-each port. It provides device designers more flexbility when wiring the
-chip.
+This series adds support for JEDEC PMIC50x0 compliant DDR5 Power
+Management ICs. These devices provide comprehensive hardware monitoring
+capabilities including voltage, current, power, and temperature
+monitoring across multiple channels.
 
-Unfortunately, the register is left in an unknown state after a reset.
-Thus on devices where the bootloader don't initialize it, the driver has
-to do it to detect and use a link.
+The driver implements:
+- Voltage monitoring for 4 channels
+- Current monitoring for 4 channels
+- Power monitoring for 5 channels (including sum)
+- Temperature monitoring
+- Error detection and reporting with per-error counters
 
-The MDI polarity swap can be set in the device tree using the property
-realtek,mdi-cfg-polarity. The u32 value is a bitfield where bit[0..3]
-control the polarity of pairs A..D.
+Tested on TI,TPS53830 DDR5 PMICs at I2C addresses 0x4a and 0x4b.
 
-Signed-off-by: Damien Dejean <dam.dejean@gmail.com>
----
- drivers/net/phy/realtek/realtek_main.c | 39 +++++++++++++++++++++++++-
- 1 file changed, 38 insertions(+), 1 deletion(-)
+Almog Ben Shaul (2):
+  dt-bindings: trivial-devices: Add jedec,pmic50x0
+  hwmon: Add JEDEC PMIC50x0 driver
 
-diff --git a/drivers/net/phy/realtek/realtek_main.c b/drivers/net/phy/realtek/realtek_main.c
-index 85b0eea936e4..d2dc4f7a1971 100644
---- a/drivers/net/phy/realtek/realtek_main.c
-+++ b/drivers/net/phy/realtek/realtek_main.c
-@@ -164,6 +164,7 @@
- #define RTL8224_SRAM_RTCT_LEN(pair)		(0x8028 + (pair) * 4)
- 
- #define RTL8224_VND1_MDI_PAIR_SWAP		0xa90
-+#define RTL8224_VND1_MDI_POLARITY_SWAP		0xa94
- 
- #define RTL8366RB_POWER_SAVE			0x15
- #define RTL8366RB_POWER_SAVE_ON			BIT(12)
-@@ -1719,9 +1720,45 @@ static int rtl8224_mdi_config_order(struct phy_device *phydev)
- 				       RTL8224_VND1_MDI_PAIR_SWAP, val);
- }
- 
-+static int rtl8224_mdi_config_polarity(struct phy_device *phydev)
-+{
-+	struct device_node *np = phydev->mdio.dev.of_node;
-+	u8 port_offset = phydev->mdio.addr & 3;
-+	u32 polarity, val;
-+	int ret;
-+
-+	ret = of_property_read_u32(np, "realtek,mdi-cfg-polarity", &polarity);
-+
-+	/* Do nothing if the property is not present */
-+	if (ret == -EINVAL)
-+		return 0;
-+
-+	if (!ret)
-+		return ret;
-+
-+	if (polarity & ~0xf)
-+		return -EINVAL;
-+
-+	val = __phy_package_read_mmd(phydev, 0, MDIO_MMD_VEND1,
-+				     RTL8224_VND1_MDI_POLARITY_SWAP);
-+	if (val < 0)
-+		return val;
-+
-+	val &= ~(0xf << port_offset);
-+	val |= polarity << port_offset;
-+	return __phy_package_write_mmd(phydev, 0, MDIO_MMD_VEND1,
-+				       RTL8224_VND1_MDI_POLARITY_SWAP, val);
-+}
-+
- static int rtl8224_config_init(struct phy_device *phydev)
- {
--	return rtl8224_mdi_config_order(phydev);
-+	int ret;
-+
-+	ret = rtl8224_mdi_config_order(phydev);
-+	if (!ret)
-+		return ret;
-+
-+	return rtl8224_mdi_config_polarity(phydev);
- }
- 
- static int rtl8224_probe(struct phy_device *phydev)
+ .../devicetree/bindings/trivial-devices.yaml  |   2 +
+ Documentation/hwmon/index.rst                 |   1 +
+ Documentation/hwmon/pmic50x0.rst              | 113 +++
+ MAINTAINERS                                   |   6 +
+ drivers/hwmon/Kconfig                         |  10 +
+ drivers/hwmon/Makefile                        |   1 +
+ drivers/hwmon/pmic50x0.c                      | 839 ++++++++++++++++++
+ 7 files changed, 972 insertions(+)
+ create mode 100644 Documentation/hwmon/pmic50x0.rst
+ create mode 100644 drivers/hwmon/pmic50x0.c
+
 -- 
 2.47.3
 
