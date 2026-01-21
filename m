@@ -1,266 +1,132 @@
-Return-Path: <devicetree+bounces-257994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257995-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eJBTOoHmcGk+awAAu9opvQ
-	(envelope-from <devicetree+bounces-257994-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 15:45:21 +0100
+	id SE8FDsnqcGk+awAAu9opvQ
+	(envelope-from <devicetree+bounces-257995-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 16:03:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id D801758983
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 15:45:21 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 970BA58E51
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 16:03:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E5E846A7F01
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 14:24:33 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E2122A802F8
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 14:26:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2469448C3E8;
-	Wed, 21 Jan 2026 14:20:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9421147A0A4;
+	Wed, 21 Jan 2026 14:22:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q93RR6f8"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="FW8EMShm";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="8vmWBwT+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DA65481FDD
-	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 14:20:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A9C247ECD9;
+	Wed, 21 Jan 2026 14:22:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769005221; cv=none; b=pxSFa0fuY6lebcbF+yKJtVPlxuOdvl48KrLdTkAnD26RSW7eKRhw2LJbXb31Hjq46EO6uBliY22iqPf2jer2P5sjXuAL5u+mFYQf4xHm1E7JUonkBWlj8bFxW8VtPbeeCDtaE4pMqNMpbs6dSe9hCW4gqF1UutxSnX+Q8sMtlM4=
+	t=1769005370; cv=none; b=NdD12TXgAv2dw2fL3gESj9RuX7lrLeDyARJQ3/yNFnYCRBajlXppMY+pZ93tWHpadyb8pJh8VT/vPi5ODMlZLxBJPLUGy9kTnT/xoW5M283w6QZ3D5QNStAZi0FaRVU3ZfoVt9qF4lI2s3H6jPwXfdgy8/8VJja06ZJt0JnvQAg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769005221; c=relaxed/simple;
-	bh=O7m4ZpKhedGqokJhJAmLBqTyG3gdL+OWB9GtYVZR0c4=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=JjfwdliYQVaUQW1rb70CxHBK64eCkT/d9rn/0qVMmnfwXQy3wEh+UOji9dDe9AcaEVItCEsD1+kASUKgg4T6u6ZI5r5AQ20QuVpdyPaR6+plgSPwpA/CvzorfD9JyBWsqd972dJnS66JO4FxUfTc5y+ZEL4vPiSfpr/eKj7FjmM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q93RR6f8; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-47d63594f7eso48740715e9.0
-        for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 06:20:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769005217; x=1769610017; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=O7m4ZpKhedGqokJhJAmLBqTyG3gdL+OWB9GtYVZR0c4=;
-        b=Q93RR6f81EvQkB7iBQ5VLbGCFlzm6A6J8eQHyh9cWoZYBy4CBEySyHTFCFXSQ/F1Kx
-         tPzkABGWcmySKGB4bYXWrV8iTKxWYOjAjPcK2TdxTlGWlftBxFkPEjrwFyzzU0DDoMYt
-         zl3HYaYU4ce0nGCSZYp7nHjJTmX1uIRk1sfv7nMlTMkmVnWVaq7DO3PiVHJfPYqV1vNr
-         nA3XKRB0HsMBysyxW9HhNHHCrj8X/vYIrPX9zXeA0S9JDAHdQkZqHvqTNCm4HnzlOShb
-         v5JUJul67ZvarcQTIOPQ32UHuCBSpn1AVKdy+ybwXIALXjsUrm9wdFDKA+P/sNiJxs+P
-         45cg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769005217; x=1769610017;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=O7m4ZpKhedGqokJhJAmLBqTyG3gdL+OWB9GtYVZR0c4=;
-        b=hnauU3nXvdSfe4DLkEfSGOOK9VYoAzWY1s2tlXET8l+IQoJKiVQRo5vQ0spcPP+ZKB
-         oz4SEfes49098eo53z8YRCDY6x+Szf5154i2t9WJFOzQ32RC3Iu7wUdkkzUNcrpJOmym
-         Khn7sBCBWfU5TSWBuXGILlrjjFy20QTS22CPcSo24bgbVTry/rJoAhmPaAa96T0VA1JU
-         gfijajyQGZcRq1uQYS6/B2nrH0aKznfrc3NkzEMdf9GbFziRoeHwgMvLzbdTGPgrag/I
-         qnXrfKhb9sIPhWepdlG/9AxIOZVPZ0LRtQfpKysb6kKK5bOn//XpX3kiDyX6AJUWfkxm
-         zQpQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV5hC8Ca4+/wh184SXrO6iC1L19iU531rFpM7Ee/gYUpOYcVqG4N1I91bNcMFa97hGkK5mH61EnxWQi@vger.kernel.org
-X-Gm-Message-State: AOJu0YwVPuMTmanS4TygrDPQSNsXwxQRwkCG9ST/9trt5hy+2ExcsEAz
-	HihriYJn93kfxfN0ZJ/goY8KbwdjzfoikFSd4/2d3u5MJZ6AhTdm3P2T
-X-Gm-Gg: AZuq6aIWghSxPu7soIZc6A7vp9rwH4lG1s18KGyPqU/UWN2ziCteuWyQC88qhvqov0/
-	obtBQjHWZa/bAxss3fID4SZ6exgMj9z2RSaMQ0BApBzLatQrgrmfut2yNoMqqNp5IOvjQ9sKYII
-	HEWLEXDrd6Yx7vUDPTs0rl1cCkQFg9vvvQ0MRujT5mMw/If+CBqnbpprSmNxGQ1uCi4LhbfJvfI
-	1JmlxyYE0yDusxiIpayjH7VsILRR9BDFWKFRAP/7LrSv/afhkJ0yZCMQT/sT9bpkIoKHQTV08Dh
-	gtnUKbhQXTC/cUmyHf4kAJlUF7HUYp3ZAaipgvTHsarap/0od00dam9XXEMaxtZDkbCJ5nbV48D
-	JxCLpb0rUlWLBVCGGaIMVl6YT9/FumxNtOg+95L2gLef1muUYWNSsPQJo7TML7a+M+Fpmp4TjPe
-	F7Wnt0r8GQzquqIhTOnzA=
-X-Received: by 2002:a05:600c:4e50:b0:47e:e2ec:9947 with SMTP id 5b1f17b1804b1-4801e34dfdamr242339415e9.33.1769005217144;
-        Wed, 21 Jan 2026 06:20:17 -0800 (PST)
-Received: from [192.168.1.187] ([148.63.225.166])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4801e886829sm311971825e9.8.2026.01.21.06.20.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Jan 2026 06:20:16 -0800 (PST)
-Message-ID: <99789eb34873eca976a3324c363a1dc70a2f0d3d.camel@gmail.com>
-Subject: Re: [PATCH v4 3/7] iio: frequency: adf41513: driver implementation
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>, Rodrigo Alencar
-	 <455.rodrigo.alencar@gmail.com>
-Cc: Andy Shevchenko <andy.shevchenko@gmail.com>, rodrigo.alencar@analog.com,
- 	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, Jonathan Cameron	
- <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, Andy Shevchenko	
- <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich	
- <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>
-Date: Wed, 21 Jan 2026 14:21:00 +0000
-In-Reply-To: <aXChxvlZxKVrOMsW@smile.fi.intel.com>
-References: <aW3dxuelYDM67pqZ@smile.fi.intel.com>
-	 <texwv5s2tvcy34bwr4iruj5xofmea663pwletmpqpuh66zulmv@m7qvjgqbhalv>
-	 <aW40ylvMwVhqNQMw@smile.fi.intel.com>
-	 <hgy3bcrqqsvt7pobhnzuvwzhb2taetpxltkaxpigmmlvmlirod@v6anhmrsvv2r>
-	 <aW5kk6K30Izckvg5@smile.fi.intel.com>
-	 <e5lcg5kkey3c6u2l4rlzzpolp7qkudhcofyzcx5s2tjbh2iwkg@js3fisv23zyj>
-	 <CAHp75VepcSZo_E4_UxhKRfHrMFDd7huJg14m8=6zVo4ENKFXkA@mail.gmail.com>
-	 <vvdk3whhwua73g63eetnmn46t2cpbpkzzkx7m6wsbverp7gcvs@mi7cipis3i4t>
-	 <aW-Fai68pk1tAeyY@smile.fi.intel.com>
-	 <kmdqcaewxxg7isappgfxuf5ode5fepbywrdriksmvrzmaykcjd@crpr27tt3bmf>
-	 <aXChxvlZxKVrOMsW@smile.fi.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.2 
+	s=arc-20240116; t=1769005370; c=relaxed/simple;
+	bh=dkzuheJ31BzgkjrYV8XBN7j2kGChh0nJwWSdIgvsGc0=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=KZ7QqT8shndj8JSxNFyVkR8MJ8Ll1qWn/HMwLIl1G+WNNkrlEYyhx/P4NHKcrRTSzmTLyXaDcF/ePYK3iiA/KHqax3E4boF+9tJPXYa9hUcnwO6UpmgoV0ndasq0HISG8H0dPiWYGZqfZd1mo9Yhb4caM/LIZo2ss2Cp2lhkEc0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=FW8EMShm; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=8vmWBwT+; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=Message-ID:Subject:To:From:Date; t=1769005288; bh=m1dJb0UHr6qP/RgS7yZiTdk
+	diumzv85zdR8iC7uFHho=; b=FW8EMShmzIbDymUGF2JdrpOFddb+W0VJ1X6W3qL7KZqptjZjNJ
+	8+acRTlrI/+HKsPkandZ/3wIoxZkVLQoH3lGB1QBBelNkISe+NiN02UKTt5VA6Rq7/90KB9MqW1
+	Y96o2weWbx9autijSndd0QXu8uaI62/EX4C9jSYsjnKjbnRjwsmpk3Z2X/RXfl2kh6EB/qMvF+v
+	uni5vf508hs3UGRKLxLCiMuYeXbvhNvq0E1DcByZaJfdPaXl+Az81WJiSVejSfVDuP8MPdCZYZx
+	BXIbo/m1JyCLKpZKip9DDyMSsjDlvfEhOZeLkzM33BwVJCQ0poXpm0VdLKK7g1iBI1Q==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=Message-ID:Subject:To:From:Date; t=1769005288; bh=m1dJb0UHr6qP/RgS7yZiTdk
+	diumzv85zdR8iC7uFHho=; b=8vmWBwT+ong3nosUITjncBdVXdqrGsVYAScfE7ns12mrD69zl7
+	wvaXc7qJs9Ov7Z0m/3IaXzxkBPhz3Kul0nCA==;
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Date: Wed, 21 Jan 2026 15:21:28 +0100
+From: barnabas.czeman@mainlining.org
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio
+ <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Gabriel Gonzales
+ <semfault@disroot.org>, Kees Cook <kees@kernel.org>, Tony Luck
+ <tony.luck@intel.com>, "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
+ Biswapriyo Nath <nathbappai@gmail.com>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-hardening@vger.kernel.org, phone-devel@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht, linux@mainlining.org
+Subject: Re: [PATCH v2 2/7] arm64: dts: qcom: sm6125-xiaomi-ginkgo: Correct
+ reserved memory ranges
+In-Reply-To: <01d254f7-8c62-4061-ba7e-f358f1904ba5@oss.qualcomm.com>
+References: <20260116-xiaomi-willow-v2-0-4694feb70cdb@mainlining.org>
+ <20260116-xiaomi-willow-v2-2-4694feb70cdb@mainlining.org>
+ <01d254f7-8c62-4061-ba7e-f358f1904ba5@oss.qualcomm.com>
+Message-ID: <90a74369a2c4d9453de733a46fdd0ef1@mainlining.org>
+X-Sender: barnabas.czeman@mainlining.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_DKIM_ALLOW(-0.20)[mainlining.org:s=202507r,mainlining.org:s=202507e];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-257995-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-257994-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[intel.com,gmail.com];
+	FROM_NEQ_ENVFROM(0.00)[barnabas.czeman@mainlining.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[3];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[gmail.com,analog.com,vger.kernel.org,kernel.org,baylibre.com,metafoo.de,lwn.net];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	FREEMAIL_CC(0.00)[kernel.org,disroot.org,intel.com,igalia.com,gmail.com,vger.kernel.org,lists.sr.ht,mainlining.org];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
-	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
+	DMARC_POLICY_ALLOW(0.00)[mainlining.org,reject];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
+	DKIM_TRACE(0.00)[mainlining.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: D801758983
+	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,mainlining.org:email,mainlining.org:dkim,mainlining.org:mid]
+X-Rspamd-Queue-Id: 970BA58E51
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 2026-01-21 at 11:52 +0200, Andy Shevchenko wrote:
-> On Wed, Jan 21, 2026 at 09:41:25AM +0000, Rodrigo Alencar wrote:
-> > On 26/01/20 03:38PM, Andy Shevchenko wrote:
-> > > On Tue, Jan 20, 2026 at 01:07:49PM +0000, Rodrigo Alencar wrote:
-> > > > On 26/01/20 01:24PM, Andy Shevchenko wrote:
-> > > > > On Tue, Jan 20, 2026 at 12:43=E2=80=AFPM Rodrigo Alencar
-> > > > > <455.rodrigo.alencar@gmail.com> wrote:
-> > > > > > On 26/01/19 07:07PM, Andy Shevchenko wrote:
-> > > > > > > On Mon, Jan 19, 2026 at 04:37:09PM +0000, Rodrigo Alencar wro=
-te:
-> > > > > > > > On 26/01/19 03:42PM, Andy Shevchenko wrote:
-> > > > > > > > > On Mon, Jan 19, 2026 at 11:21:59AM +0000, Rodrigo Alencar=
- wrote:
-> > > > > > > > > > On 26/01/19 09:31AM, Andy Shevchenko wrote:
-> > > > > > > > > > > On Fri, Jan 16, 2026 at 02:32:22PM +0000, Rodrigo Ale=
-ncar via B4 Relay wrote:
->=20
-> ...
->=20
-> > > > > > > > > > The current implementation is kind of a stripped versio=
-n of
-> > > > > > > > > > __iio_str_to_fixpoint(). Would you prefer something lik=
-e this, then?:
-> > > > > > > > >=20
-> > > > > > > > > Do they have most of the parts in common? If so, why can'=
-t we use
-> > > > > > > > > __iio_str_to_fixpoint() directly? Or why can't we slightl=
-y refactor
-> > > > > > > > > that to give us the results we need here?
-> > > > > > > >=20
-> > > > > > > > __iio_str_to_fixpoint() only parses "int" chunks, adf41513_=
-parse_uhz
-> > > > > > > > was modified to accomodate the u64 parsing removing unneces=
-sary stuff.
-> > > > > > >=20
-> > > > > > > But why? The fractional part most likely will be kept int (it=
-'s up to 10=E2=81=BB=E2=81=B9).
-> > > > > > > The integer can be bigger than 10=E2=81=B9?
-> > > > > >=20
-> > > > > > Correct, integer part of the frequency value goes up to 26.5 GH=
-z
-> > > > > > (uint_max is approx 4.3 GHz). Also, with the dual modulus, the =
-PLL can
-> > > > > > achieve micro Hz resolution.
-> > > > >=20
-> > > > > =C2=B5Hz is not a problem since it's up to nHz.
-> > > > > So, the difference so far is the integer part that can be 64-bit.
-> > > > > Again, can we factor out something to be used for this and for th=
-e
-> > > > > __iio_str_to_fixpoint() cases?
-> > > >=20
-> > > > I am not sure what you are suggesting,
-> > >=20
-> > > To make changes to reuse the code.
-> > >=20
-> > > > but I am avoiding changes to iio core at this point.
-> > >=20
-> > > Why?
-> >=20
-> > I understood that core changes would require more than one user
-> > supporting the change.
->=20
-> At least one. And we have tons of them as the callers of
-> __iio_str_to_fixpoint() are not going to disappear. Basically it's a surg=
-ery in
-> the middle of the existing chain of APIs. To me one user is enough justif=
-ication
-> for such a surgery. For the newly introduced API (imagine __iio_str_to_fi=
-xpoint()
-> as an example) it's indeed one user not enough.
->=20
-> > > > If any other user needs similar behavior,
-> > > > I'd say we would need to have __iio_str_to_fixpoint() implementatio=
-n
-> > > > modified, so to create a version of iio_str_to_fixpoint() that hand=
-les
-> > > > long long variables. Possibly consuming simple_strtoull instead of
-> > > > doing the manual parsing.
-> > >=20
-> > > That's the problem here. With Yet Another Cool Parser this all become=
-s
-> > > unmaintainable very soon
-> >=20
-> > Considering that the need for a new parser for 64-bit parts is only dri=
-ven
-> > by this specific PLL driver, I wonder how things become that unmaintain=
-able.
->=20
-> Because there is a duplication of the code (to some extent) and if we fou=
-nd
-> a bug in the one implementation it will be hard to fix (or even remeber) =
-about
-> the other.
-
-Agreed!
-
->=20
-> > > (basically as you said when new comer needs a third
-> > > variant of it). This is not good. Instead better to create (amend, ex=
-pand)
-> > > existing test cases, split out a foundation API that parses 64-bit pa=
-rts
-> > > (maybe even for fractional as well, dunno) and evolve a needed (sub)A=
-PI
-> > > from it.
-> >=20
-> > I don't disagree with you though, I suppose I will need a green light t=
-o
-> > move on with this?
->=20
-> Fine with me, let's gather opinions of David, Nuno, Jonathan, and others.
-
-
-Fine with me.
-
-- Nuno S=C3=A1
+On 2026-01-21 13:45, Konrad Dybcio wrote:
+> On 1/16/26 4:54 PM, Barnabás Czémán wrote:
+>> The device was crashing on high memory load because the reserved 
+>> memory
+>> ranges was wrongly defined. Correct the ranges for avoid the crashes.
+>> Change the ramoops memory range to match with the values from the 
+>> recovery
+>> to be able to get the results from the device.
+>> 
+>> Fixes: 9b1a6c925c88 ("arm64: dts: qcom: sm6125: Initial support for 
+>> xiaomi-ginkgo")
+>> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+>> ---
+> 
+> Have you verified this new and improved(tm) map e.g. by booting up
+> the kernel with memtest=1 in cmdline?
+I have verified with cat /dev/zero | tail | sleep 5
+I can test with memtest=1 also
+> 
+> Konrad
 
