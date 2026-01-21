@@ -1,223 +1,128 @@
-Return-Path: <devicetree+bounces-257712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257708-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mD3qDZM7cGmgXAAAu9opvQ
-	(envelope-from <devicetree+bounces-257712-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 03:36:03 +0100
+	id KK7YKB06cGmgXAAAu9opvQ
+	(envelope-from <devicetree+bounces-257708-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 03:29:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id A73FA4FD78
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 03:36:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D50A94FC8E
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 03:29:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 840C27C36F9
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:35:12 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2A408AA90BE
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 02:29:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37232305064;
-	Wed, 21 Jan 2026 02:34:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4CB3340D91;
+	Wed, 21 Jan 2026 02:29:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="JITe9yhl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sICbYdva"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m32105.qiye.163.com (mail-m32105.qiye.163.com [220.197.32.105])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41A0331AA8B;
-	Wed, 21 Jan 2026 02:34:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.105
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C27212EA168;
+	Wed, 21 Jan 2026 02:29:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768962880; cv=none; b=LlTzN1e969li8LxJNhH6uPcIj17s1MLpHq24Kc0ufzQVzqDMn2ywRWJ4o2S4UxJmGJSw3rqzi2USH2wo06hEveU3FT4EttEeQZJYaxgtgSPyiC1Fx88mMCYJ7CWTc4wG6HMkc6yZKLLsECpurWs1CUa+OFZb7GDho8Kc/MPUM44=
+	t=1768962580; cv=none; b=mbZkuPLMONA/v/qsHQxBhdQFOE6uNcqo+zmGSwp88lZ+fOmdixPjf3r4JX9jNNNrNPI/I73QG8x7TOmBFCvRWbangBhaEl7ln1EnkAgg6cXNxNkrrPWvFN4oRj965uA4kHDhnD/MAylVhKhybw1wPULdXcHDoDgx5E4YCE/CJtE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768962880; c=relaxed/simple;
-	bh=xi2lvJLh3o+cvXrjrh/IXzlRZkXABYzhCPFM+aSYf1o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jrsU8cqTFsLBDD/pNhNvdVowuwTtXP8Pu2H42MsOzqSKsrhsN40KZAeElz1GMi5PDTo09+1vxDpvl+adfCPHk9mxQOYGb1KV1ulUvqDIlzQuBXZyAdBBZSM8IXRVZuHMHnTM7eYhkH8InY23OWAVYQhVQLvz0H8klpJs0lOtI+s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=JITe9yhl; arc=none smtp.client-ip=220.197.32.105
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.51] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 3160d3b68;
-	Wed, 21 Jan 2026 10:29:16 +0800 (GMT+08:00)
-Message-ID: <e9cf22c2-a41d-464e-b6cb-ec36149aeb50@rock-chips.com>
-Date: Wed, 21 Jan 2026 10:29:14 +0800
+	s=arc-20240116; t=1768962580; c=relaxed/simple;
+	bh=3lC6v7ujAzRgIyKEbWMlVoEHJi+BKzKTq/eIu/NT1dk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Afl9aWXKoGhcfyVU8uISuWisiblRV7Mo7IaKWBoJHTs3byNqDlrs2xlzzp6i2IhESxNnzTFE+hzgRwzkTgF3zn1/yMeU+LZQ5ge0yIhbghCacVHjm4wqz3nah5FDKcdu7UTtHC1SK2oaBwRjFjS33PgxWv+6nkufNWl3rxLDr9E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sICbYdva; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDD9EC16AAE;
+	Wed, 21 Jan 2026 02:29:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768962579;
+	bh=3lC6v7ujAzRgIyKEbWMlVoEHJi+BKzKTq/eIu/NT1dk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sICbYdvaxi5YfqkJrmwsCVnvj/92IXQPhOKdNNuCoEzpwKXlB9w45ytNrf7nNu5cV
+	 jJNIuSGNQTnqYMX25AAR3MLtiTwxIWxlVFPYaQ7NloxZ1u4JF6D+qL4Wlb8cGA3r+o
+	 O8YXkQihujjm+ohlpLMpCZPudV0hBMX8D2Fo7CZ8BowGTRgzdUe/XhqOLUPrd7UOjB
+	 w2TrPiq3U5zcl5L1zXG7RHBCyemgNe3JYv8dYlXRXJKGxLMjNoxvQiDrnxTt2YYJlX
+	 Ljv31NuFoVn5j+dM/zi7E87SDRhTY4rz23XlfU44TRP531obyWNwco4cPsME2x85kf
+	 dwa80dbfI2oCA==
+Date: Tue, 20 Jan 2026 20:29:38 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: devicetree@vger.kernel.org, linusw@kernel.org,
+	Valentina.FernandezAlanis@microchip.com, linux-gpio@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH v4 3/5] dt-bindings: pinctrl: document polarfire soc
+ mssio pin controller
+Message-ID: <176896257768.1835066.8192982391842226399.robh@kernel.org>
+References: <20260120-elixir-salute-dd6ec3d9f5fe@spud>
+ <20260120-crewman-unmapped-27c32b5d3163@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] arm64: dts: rockchip: Add rk3576 evb2 board
-To: Shawn Lin <shawn.lin@rock-chips.com>
-Cc: Chaoyi Chen <kernel@airkyi.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Quentin Schulz <quentin.schulz@cherry.de>, Jonas Karlman <jonas@kwiboo.se>,
- Hsun Lai <i@chainsx.cn>, John Clark <inindev@gmail.com>,
- Jimmy Hon <honyuenkwun@gmail.com>, Dragan Simic <dsimic@manjaro.org>,
- Michael Riesch <michael.riesch@collabora.com>,
- Peter Robinson <pbrobinson@gmail.com>, Alexey Charkov <alchark@gmail.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Andy Yan <andy.yan@rock-chips.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20260121015357.291-1-kernel@airkyi.com>
- <20260121015357.291-3-kernel@airkyi.com>
- <07082578-f56a-4ad2-9ea0-a4ef20a86cfe@rock-chips.com>
-Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <07082578-f56a-4ad2-9ea0-a4ef20a86cfe@rock-chips.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9bde62830503abkunm076ac87eafb1c1
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGR4eHVZOTE9JQxhPSUJLSB5WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=JITe9yhlKbMe3EXkJwwJc/dpKo2i2d37oUt6cOXPuLbzPmU575Zk9T6dwQeBv0Z9F0QGFEUdGHWmBzzzQPgn/IcwNow6/o0HlrePFp8cpTk7rjXYBqJpl7RQ5VA49kfhxALCFvwIEUMHB0XQwk1z7o7vWyZkwXDwqRHRV58jOMI=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=2eh4KD7y1g6vQGusKiA5g415ChW3lPdxO7SBQzAgVns=;
-	h=date:mime-version:subject:message-id:from;
-X-Spamd-Result: default: False [-0.46 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260120-crewman-unmapped-27c32b5d3163@spud>
+X-Spamd-Result: default: False [-0.96 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-257712-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	TAGGED_FROM(0.00)[bounces-257708-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	FREEMAIL_CC(0.00)[airkyi.com,kernel.org,sntech.de,cherry.de,kwiboo.se,chainsx.cn,gmail.com,manjaro.org,collabora.com,rock-chips.com,vger.kernel.org,lists.infradead.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[rock-chips.com:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[chaoyi.chen@rock-chips.com,devicetree@vger.kernel.org];
-	DMARC_POLICY_ALLOW(0.00)[rock-chips.com,none];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[rock-chips.com:email,rock-chips.com:dkim,rock-chips.com:mid,dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,0.0.0.1:email]
-X-Rspamd-Queue-Id: A73FA4FD78
+	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,microchip.com:email]
+X-Rspamd-Queue-Id: D50A94FC8E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Shawn,
 
-On 1/21/2026 10:09 AM, Shawn Lin wrote:
-> 在 2026/01/21 星期三 9:53, Chaoyi Chen 写道:
->> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
->>
->> General features for rk3576 evb2 board:
->>      - Rockchip RK3576
->>      - LPDDR4/4X
->>      - eMMC5.1
->>      - RK806-2x2pcs + DiscretePower
->>      - 1x HDMI2.1 TX / HDMI2.0 RX
->>      - 1x full size DP1.4 TX (Only 2 Lanes)
->>      - 2x 10/100/1000M Ethernet
->>      - 5x SATA3.0 7Pin Slot
->>      - 2x USB3.2 Gen1 Host
->>      - 3x USB2.0 Host
->>      - WIFI/BT
->>      - ...
->>
->> Tested with eMMC/SDMMC/HDMI/USB/Ethernet/WIFI/BT module.
->>
->> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
->> Reviewed-by: Alexey Charkov <alchark@gmail.com>
->> ---
+On Tue, 20 Jan 2026 18:15:41 +0000, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
 > 
-> ---8<----
+> On Polarfire SoC, the Bank 2 and Bank 4 IOs connected to the
+> Multiprocessor Subsystem (MSS) are controlled by IOMUX_CRs 1 through 6,
+> which determine what function in routed to them, and
+> MSSIO_BANK#_IO_CFG_CRs, which determine the configuration of each pin.
 > 
->> +
->> +&sdio {
->> +    #address-cells = <1>;
->> +    #size-cells = <0>;
->> +    bus-width = <4>;
->> +    cap-sd-highspeed;
->> +    cap-sdio-irq;
->> +    disable-wp;
+> Document it, including several custom configuration options that stem
+> from MSS Configurator options (the MSS Configurator is part of the FPGA
+> tooling for this device). "ibufmd" unfortunately is not a 1:1 mapping
+> with an MSS Configurator option, unlike clamp-diode or lockdown, and I
+> do not know the effect of any bits in the field. I have no been able to
+> find an explanation for these bits in documentation.
 > 
-> disable-wp is not used for SDIO case, could be removed.
-> 
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  .../pinctrl/microchip,mpfs-pinctrl-mssio.yaml | 109 ++++++++++++++++++
+>  .../microchip,mpfs-mss-top-sysreg.yaml        |   4 +
+>  2 files changed, 113 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/microchip,mpfs-pinctrl-mssio.yaml
 > 
 
-Will fix in v5.
-
->> +    keep-power-in-suspend;
->> +    max-frequency = <150000000>;
->> +    mmc-pwrseq = <&sdio_pwrseq>;
->> +    no-sd;
->> +    no-mmc;
->> +    non-removable;
->> +    pinctrl-names = "default";
->> +    pinctrl-0 = <&sdmmc1m0_bus4 &sdmmc1m0_clk &sdmmc1m0_cmd>;
->> +    sd-uhs-sdr104;
->> +    status = "okay";
->> +
->> +    brcmf: wifi@1 {
->> +        compatible = "brcm,bcm4329-fmac";
->> +        reg = <1>;
->> +        interrupt-parent = <&gpio0>;
->> +        interrupts = <RK_PB0 IRQ_TYPE_LEVEL_HIGH>;
->> +        interrupt-names = "host-wake";
->> +        pinctrl-names = "default";
->> +        pinctrl-0 = <&wifi_host_wake>;
->> +    };
->> +};
->> +
->> +&sdhci {
->> +    bus-width = <8>;
->> +    full-pwr-cycle-in-suspend;
->> +    mmc-hs400-1_8v;
->> +    mmc-hs400-enhanced-strobe;
->> +    no-sdio;
->> +    no-sd;
->> +    non-removable;
->> +    status = "okay";
->> +};
->> +
->> +&sdmmc {
->> +    bus-width = <4>;
->> +    cap-sd-highspeed;
->> +    cd-gpios = <&gpio0 RK_PA7 GPIO_ACTIVE_LOW>;
->> +    disable-wp;
->> +    no-sdio;
->> +    no-mmc;
->> +    sd-uhs-sdr104;
->> +    vqmmc-supply = <&vccio_sd_s0>;
-> 
-> Should use vmmc-supply to contrl the power, the same as EVB1[1].
-> 
-> [1] https://lore.kernel.org/linux-rockchip/1768524932-163929-5-git-send-email-shawn.lin@rock-chips.com/T/#u
-> 
-
-That make sense. Will fix in v5.
-
->> +    status = "okay";
->> +};
->> +
->> +&u2phy0 {
->> +    status = "okay";
->> +};
->> +
-> 
-> 
-> 
-> 
-
--- 
-Best, 
-Chaoyi
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
