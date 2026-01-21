@@ -1,129 +1,302 @@
-Return-Path: <devicetree+bounces-257751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257752-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2DFlE+Z4cGktYAAAu9opvQ
-	(envelope-from <devicetree+bounces-257751-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 07:57:42 +0100
+	id SK/oJCR6cGktYAAAu9opvQ
+	(envelope-from <devicetree+bounces-257752-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 08:03:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 076B152791
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 07:57:42 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0021F52885
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 08:02:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id F3CD7421538
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 06:56:14 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CB8264E05FB
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 07:00:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 629F83D349B;
-	Wed, 21 Jan 2026 06:56:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4AF440F8EB;
+	Wed, 21 Jan 2026 06:59:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MlTpD4+y"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="bwTdlkkO";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="eBvAfi/9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07EA132B9A6;
-	Wed, 21 Jan 2026 06:56:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E74933148C3
+	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 06:59:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768978568; cv=none; b=kEaJe9IN18NLbxX07RvOvE5QHPox9RaSUQRluqBvdOY09mzLk2g8qHY9nPCDJaI2nMqwR3xKwHKwG5nOMlNxCQPT+vWeLIxBKtYViSJGmukga78WmruvNahdEb1CSHYBhQRG2mOxaJmXjnubza1Mxe0uUbqcErp4cVaOJPlxIQY=
+	t=1768978795; cv=none; b=Ub2DOdmIea+OlpVVfXGmh24Bh8Dv+5otJRLXr80oak9O0/iZA021QHikbBJbiT4EgNE4r5KvvqCSPSWlOYa5Wgkli1l92eSthRMDJEiC9tGirMDb4fBsLuUbnKtmxVIldCtkRTyj86/te6DMa6uYoiyCH4il3IU0xr1a40ZuEG4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768978568; c=relaxed/simple;
-	bh=yOVaNladVEcNrJfwkbxw/j7oi6o2x8nlGkpscTpRLgc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FW0aZR3P3Otoq0oPS/czyXqp2VwzZjqcHQEmleH6YAahGclx6LKnL6UCtH8+ilikEbbEbLPWGZNQ/ousvQglRh2NssC6ZlHWz7A193SQ58FCw0YEAglWXKdxH5Wp3vOqSatYm/Fben2SJhawsouy1WdCq4XIByYdxRCySdehLmE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MlTpD4+y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EA81C116D0;
-	Wed, 21 Jan 2026 06:56:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768978566;
-	bh=yOVaNladVEcNrJfwkbxw/j7oi6o2x8nlGkpscTpRLgc=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=MlTpD4+yIL0mM3n1qXpxh2CplqAAt2MHScyfFqj6aSHDC4qTGVJkR/1WGdRJ4tAf4
-	 aBJGz0QImBlSgJsavzIberDdMg6nmlWQ8Zttr75aK7LQ0NVmJkFbO1H8itJsn47y92
-	 qE6XKTiuFKexUmUwT69PWv+t1N9UalMMR1W5c5fFSfOW3qsR0qwYjn6eEZxaXLccmB
-	 4xbH/fOvt63lJiLyXkop8GcrE3N0K1LphPHVoz7Kqqdxw54nRfB6AQkmER8jzrlzs0
-	 NGqG9fh2FBvjcYwrM+Pz9xfRMw0jV/x/O7Lc6XDD/XeiLi2Q1wQ4Mhw5L6R0v7v6dd
-	 LQhxd0XL8GVtw==
-From: Yixun Lan <dlan@kernel.org>
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: Yixun Lan <dlan@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	spacemit@lists.linux.dev
-Subject: Re: [PATCH 0/1] riscv: dts: spacemit: Disable ETH PHY sleep mode for OrangePi
-Date: Wed, 21 Jan 2026 14:55:53 +0800
-Message-ID: <176895691233.28343.4094639440954032303.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260120100001.1285624-1-amadeus@jmu.edu.cn>
-References: <20260120100001.1285624-1-amadeus@jmu.edu.cn>
+	s=arc-20240116; t=1768978795; c=relaxed/simple;
+	bh=+VmfiF6q1AJoQSkRpXQ/F/cBZuggrkXNhPRZ0UNCgzY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hpJxeFfrPTsZ8rAbJUUgcAlcAOCvPIkcdqszrMaLEyyUuxNB5RqksT9DkddNFxmD7nwQalSvJCrlbT/BCFsLpqujJeIUSPeUuze/bnz+sepU+gd21lsm+ZSdDQBV76Cq9ble/hsgmGALZnm+z52VQWoJnBWKuQMnxpIHMMnGHrI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=bwTdlkkO; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=eBvAfi/9; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60L4XaMp3229214
+	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 06:59:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	44gRnAKBKMmfl1NDqW9q0LpAxwiIZ6f2VPZlXasmGE0=; b=bwTdlkkOHsM+d4Fd
+	w0k21PcKq29F7JaBmyFIwIX4CDhqTbvp8MpNrwN2h8RgLSreCCoAyKflk7HaiCbg
+	YegpcDAe7UpFr9cECH3cPMrQdwKgHO7IEx/PWO0egiJL647v+jKFx9TVswDMwlrO
+	ZfXnARzMKGmexT+gbx+ZE4kA2AYIwlNoKYHhBGJ0OLEEJ9lWdaV/fjK0wtYr0Rvh
+	nXnzzMnNG+uJh7wH4reqhVY2VkbmroAxkl9enj7Ptt7U7NO1OMxlM9ZtgU3PQg3n
+	LBU9Sh/edR0Q/TwBc6HvVncqzf7sHLD5PkFktveofsluq/B3ObE1JK11kJqxKsE1
+	aCne3w==
+Received: from mail-dy1-f200.google.com (mail-dy1-f200.google.com [74.125.82.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4btqvp8cyv-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 06:59:52 +0000 (GMT)
+Received: by mail-dy1-f200.google.com with SMTP id 5a478bee46e88-2b6e47d2fdfso2967449eec.1
+        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 22:59:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1768978792; x=1769583592; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=44gRnAKBKMmfl1NDqW9q0LpAxwiIZ6f2VPZlXasmGE0=;
+        b=eBvAfi/91cU9f7JF9XlMDgovVDWz9xjK383lNilsThsaXUQcT0JgyeW8UzIigEoUNM
+         74gptPLid9EYZKKi7QDS0t/dMMXjp7GweQmrEl2WuC5VMTPW1N3lLU0HYa5EGsjEWTkX
+         CmfSGRNmeLQ3brJ1wEfRkqd/JbANT8cOGtXonnRs+f2nnSJpClkaiSazqQDxPBOLq33A
+         vPdStCIlICZIzRm2rvl82xIeDcQUdPiX3ujcQnoJy5z3IG9Ni2el0lOyOWQRcy6ROQeE
+         M5rnpXCM8qBVpjev7FTA18ERpDeK9P7reXRc0uIFkC460Psx/aAkiA1Ncgkx5wR2YadN
+         Nj5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768978792; x=1769583592;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=44gRnAKBKMmfl1NDqW9q0LpAxwiIZ6f2VPZlXasmGE0=;
+        b=I96uhtSdgG6RmNSZpzMcFdVnYKqXYP5GgwHVKHgiXLqG+r58rJrNIJJmCjiM+1NJsq
+         Xy2fYAoZKrC9Mae2E701a+Lsbc3TU0dTMSC2JgxnbnoBVv+ZAxbrHIXdKTpH0HytE09o
+         pGZ1YiwciD9/HN+F/e1u08omii/oe4wqSPJX0hhXkgK9n/AnwNNd4cJzWx8xcxgU1MjW
+         o2J7kRrPJ+wxkpGogmzcYGIh//k5gGDdfLm3hbYVwvevXBIyfqK1xAe0xD2MH5JWRJ0x
+         zuoxb0nqZhnZbWFSKGic+7Q5lLsHk5HWYPqIwQJ34+gUaotelLyok7vGe7yufejJIkki
+         R3nQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUz1niwd3C/BKQQDC6TZ2clkuj1Grzj1kMygqrAMw50yFYczag8vzEukH9+ry6kASBIuk1j0x9s4LzO@vger.kernel.org
+X-Gm-Message-State: AOJu0YxX5kW95/E5/X4J5odLnLZ0CsNPrciMPJOyIflJgSF4V3gogGhl
+	WBSijnUbAiBsFfiH1gpmZmDvygbBlbTXWUdwnSQDR1fIa52xAzFM24n9yE0TTxOPdfEpIrIbujU
+	gujZIgMXR/FW7R1I9t/q5fAMmsdwbcwTwKdAgGlQnRibZcxBB1r2fT44pTtCFOzfK
+X-Gm-Gg: AZuq6aLuxGrC1UWgZPJd+tYs9vDjUnRT3bK0DdUUX6+Qb3gqhP9YRqLCFh7Qar+s00k
+	eO+BqGxiy2oBof9sx2s+UkbQ5O3wZ2NXRObZrGGCnGB9t7ksMgeXE0VZEBd6Aw0DC01emMUihcU
+	CjXdW//692JEDyCSQBdu6h3f1kl/J9+LRbDk++1rhD/Hse8FvvDjNoLLDeFPaUFK47kH5yW+vy3
+	qPDcpDIbxBL0mYyOWuhO8raZ+yghbFiJI4Z5XgkYerp2+mM5mXx1dTt5ygQ+Q/aUWXzbU/Ewfy0
+	qD1r83qUdwGKb2yQD9znbIWVTgIAcKLKJG5Wxr5EalNY0fq3v5E6tX8rhHNURlyPXtoLXOLs1mF
+	N1qbdbcoORUuDFrNOKUz6nFJ8u7HtSG7mVkhPteTLI179sIbF4Js3lwtAej5QLFEm
+X-Received: by 2002:a05:7022:6b91:b0:11b:9386:a37b with SMTP id a92af1059eb24-1244a78d435mr11430961c88.42.1768978791534;
+        Tue, 20 Jan 2026 22:59:51 -0800 (PST)
+X-Received: by 2002:a05:7022:6b91:b0:11b:9386:a37b with SMTP id a92af1059eb24-1244a78d435mr11430951c88.42.1768978790893;
+        Tue, 20 Jan 2026 22:59:50 -0800 (PST)
+Received: from [10.110.110.132] (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b6fb72e477sm5575769eec.29.2026.01.20.22.59.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Jan 2026 22:59:50 -0800 (PST)
+Message-ID: <135000f3-b444-44e3-bbce-e5e274e6180a@oss.qualcomm.com>
+Date: Wed, 21 Jan 2026 14:59:45 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8] arm64: dts: qcom: qcs8300-ride: enable WLAN on
+ qcs8300-ride
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260120070650.3192679-1-wei.zhang@oss.qualcomm.com>
+ <i77z7i45g72k4hqzd33z643xiuol7olbk65dzv62fgdhcllsmc@kcixnktiyknq>
+Content-Language: en-US
+From: "Wei Zhang (Stone)" <wei.zhang@oss.qualcomm.com>
+In-Reply-To: <i77z7i45g72k4hqzd33z643xiuol7olbk65dzv62fgdhcllsmc@kcixnktiyknq>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-0.46 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Proofpoint-GUID: SpF6jFU6d6ce7MP4kVSQUHdqUr5U8Hfq
+X-Proofpoint-ORIG-GUID: SpF6jFU6d6ce7MP4kVSQUHdqUr5U8Hfq
+X-Authority-Analysis: v=2.4 cv=cdPfb3DM c=1 sm=1 tr=0 ts=69707968 cx=c_pps
+ a=PfFC4Oe2JQzmKTvty2cRDw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8
+ a=uRIq5cPlbIFpHDivVdoA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=6Ab_bkdmUrQuMsNx7PHu:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIxMDA1NiBTYWx0ZWRfX+8BSr8Kk/gW6
+ stGJtE0hlp9pOXM72WWo7LkYnzpbvxkQRvGqAZld4Qw4eNs/5Qz8b7u9cSqlDyUjUdANOEvJ6Ho
+ gdyrByiiX6aC7rALdAJ3eI+0TTlMlDIUOkuDcnpAiHedRkaN2fyceFdUQcxI1mtQIhQeAzIuvbV
+ ddwv8exgMGPPxsOJLD8B1VUYN45+X9q4Lst7j2Zs64TSlTLX2bC8H9uPjGbaPCQ3ZDRzJ7AaZ6E
+ hIGrhyXbep6nVirhcW7S5lC7I49A2iUvkDQ6hyQKUWrfuKLu8e2/nBNsGbJnWh+9bnxrkbm8fta
+ DPeo1Yw/4oFYS4djo5dBa/pzwOKj6FwQBXDmkF89kpeMfB3vPbS3n+WGEPw22gpPyt5GRCss5po
+ XBtv3yn5XwO84i8/l8K3LvefY5GcOxTXgFHnfEpikVa2QFTpUUwiyobu10Zq7XOLLRIJglzkxfo
+ hy/1EUFaP1sT2GfmAyA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
+ definitions=2026-01-21_01,2026-01-20_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 lowpriorityscore=0 bulkscore=0 adultscore=0 priorityscore=1501
+ impostorscore=0 malwarescore=0 spamscore=0 suspectscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601210056
+X-Spamd-Result: default: False [-1.96 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-257751-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	DMARC_POLICY_ALLOW(0.00)[qualcomm.com,reject];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_FROM(0.00)[bounces-257752-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,0.0.0.0:email];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wei.zhang@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,openwrt:email]
-X-Rspamd-Queue-Id: 076B152791
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 0021F52885
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
-On Tue, 20 Jan 2026 18:00:00 +0800, Chukun Pan wrote:
-> On OrangePi R2S and RV2 boards, when the interface link down,
-> reading statistics will print several timeout logs:
-> 
-> root@OpenWrt:~# ethtool -S eth1
-> [   71.725539] k1_emac cac81000.ethernet eth1: Read stat timeout
-> NIC statistics:
->      rx_drp_fifo_full_pkts: 0
->      rx_truncate_fifo_full_pkts: 0
-> 
-> [...]
-
-Applied, thanks!
-
-[1/1] riscv: dts: spacemit: Disable ETH PHY sleep mode for OrangePi
-      https://github.com/spacemit-com/linux/commit/5164e95565d3fd508ca8a95351323f5716dfb695
-
-Best regards,
--- 
-Yixun Lan <dlan@kernel.org>
+On 1/20/2026 3:44 PM, Dmitry Baryshkov wrote:
+> On Mon, Jan 19, 2026 at 11:06:49PM -0800, Wei Zhang wrote:
+>> Enable WLAN on qcs8300-ride by adding a node for the PMU module
+>> of the WCN6855 and assigning its LDO power outputs to the existing
+>> WiFi module.
+>>
+>> On the qcs8300-ride platform, the corresponding firmware and BDF
+>> are QCA6698AQ instead of WCN6855, which have been added in the
+>> 20250211 release.
+>>
+>> Signed-off-by: Wei Zhang <wei.zhang@oss.qualcomm.com>
+>> ---
+>> This patch depends on:
+>> - PCIe
+>> https://lore.kernel.org/all/20251128104928.4070050-1-ziyue.zhang@oss.qualcomm.com/
+>>
+>> Changes in v8:
+>> - Reordered regulator nodes to maintain alphabetical consistency (Dmitry)
+>> - Place wifi@0 node under existing pcieport0 label
+>> - Link to v7: https://lore.kernel.org/all/20260119090758.2780678-1-wei.zhang@oss.qualcomm.com/
+>>
+>> Changes in v7:
+>> - Align regulator node names to match the existing naming style in the dts (Dmitry)
+>> - Link to v6: https://lore.kernel.org/all/20260119080125.2761623-1-wei.zhang@oss.qualcomm.com/
+>>
+>> Changes in v6:
+>> - Rebase patches
+>> - Remove unintended 'output-low' from wlan-en-state pinctrl (Konrad)
+>> - Link to v5: https://lore.kernel.org/all/20251113055148.2729943-1-wei.zhang@oss.qualcomm.com/
+>>
+>> Changes in v5:
+>> - Rebase patches
+>> - Flip the order of property-n and property-names (Konrad)
+>> - Flip the order of bias and output property (Konrad)
+>> - Link to v4: https://lore.kernel.org/all/20250325075331.1662306-1-quic_stonez@quicinc.com/
+>>
+>> Changes in v4:
+>> - Rename the symbol pcieport0 to pcie0_port0 (Konrad)
+>> - Adjust the property order in node pcie0_port0 (Konrad)
+>> - Add to the commit message mentioning FW and BDF used by QCS8300 (Dmitry)
+>> - Specify the calibration data using the correct variant (Dmitry)
+>> - Link to v3: https://lore.kernel.org/all/20250318093350.2682132-1-quic_stonez@quicinc.com/
+>>
+>> Changes in v3:
+>> - Complete the nodes property definitions according to DTS binding requirements (Bjorn)
+>> - Link to v2: https://lore.kernel.org/all/20250227065439.1407230-1-quic_stonez@quicinc.com/
+>>
+>> Changes in v2:
+>> - Rename the nodes name according to DTS coding style (Konrad & Krzysztof)
+>> - Provide regulator-min/max-microvolt to the regulators (Konrad)
+>> - Link to v1: https://lore.kernel.org/all/20250210062910.3618336-1-quic_stonez@quicinc.com/
+>> ---
+>>   arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 105 ++++++++++++++++++++++
+>>   1 file changed, 105 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
+>> index 68691f7b5f94..864b32503d29 100644
+>> --- a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
+>> +++ b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
+>> @@ -24,6 +24,26 @@ chosen {
+>>   		stdout-path = "serial0:115200n8";
+>>   	};
+>>   
+>> +	vreg_conn_1p8: regulator-conn-1p8 {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "vreg_conn_1p8";
+>> +		regulator-min-microvolt = <1800000>;
+>> +		regulator-max-microvolt = <1800000>;
+>> +		startup-delay-us = <4000>;
+>> +		enable-active-high;
+>> +		gpio = <&pmm8650au_1_gpios 4 GPIO_ACTIVE_HIGH>;
+>> +	};
+>> +
+>> +	vreg_conn_pa: regulator-conn-pa {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "vreg_conn_pa";
+>> +		regulator-min-microvolt = <1800000>;
+>> +		regulator-max-microvolt = <1800000>;
+>> +		startup-delay-us = <4000>;
+>> +		enable-active-high;
+>> +		gpio = <&pmm8650au_1_gpios 6 GPIO_ACTIVE_HIGH>;
+>> +	};
+>> +
+>>   	regulator-usb2-vbus {
+>>   		compatible = "regulator-fixed";
+>>   		regulator-name = "USB2_VBUS";
+>> @@ -33,6 +53,68 @@ regulator-usb2-vbus {
+>>   		enable-active-high;
+>>   		regulator-always-on;
+>>   	};
+>> +
+>> +	wcn6855-pmu {
+>> +		compatible = "qcom,wcn6855-pmu";
+>> +
+>> +		pinctrl-0 = <&wlan_en_state>;
+>> +		pinctrl-names = "default";
+>> +
+>> +		vddio-supply = <&vreg_conn_pa>;
+>> +		vddaon-supply = <&vreg_conn_1p8>;
+>> +		vddpmu-supply = <&vreg_conn_pa>;
+>> +		vddpmumx-supply = <&vreg_conn_1p8>;
+>> +		vddpmucx-supply = <&vreg_conn_pa>;
+>> +		vddrfa0p95-supply = <&vreg_conn_1p8>;
+> How comes that 0.95V pin is powred on by 1.8V? How comes that 1.3V
+> pin is powered on by 1.8V?
+On this platform, all power domains of the WLAN module are enabled 
+through external buck converters controlled by PMIC GPIO4.
+PMIC‑C GPIO_4 is used for DBU3 ENABLE (PWR_CTRL2_VDD_1P8), and it is 
+also used to enable the core voltages required by the WLAN card (1.95 V, 
+1.35 V, 1.05 V. etc).
+Do we also need to define a regulator for vddrfa1p3-supply, 
+vddrfa1p9-supply, vddrfa0p95-supply, etc?
+>
+>> +		vddrfa1p3-supply = <&vreg_conn_pa>;
+>> +		vddrfa1p9-supply = <&vreg_conn_1p8>;
+>> +		vddpcie1p3-supply = <&vreg_conn_pa>;
+>> +		vddpcie1p9-supply = <&vreg_conn_1p8>;
+>> +
+>> +		wlan-enable-gpios = <&tlmm 54 GPIO_ACTIVE_HIGH>;
+>> +
 
