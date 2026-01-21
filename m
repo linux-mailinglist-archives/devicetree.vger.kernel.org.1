@@ -1,176 +1,195 @@
-Return-Path: <devicetree+bounces-258146-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258147-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IFc7KklWcWkNEwAAu9opvQ
-	(envelope-from <devicetree+bounces-258146-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 23:42:17 +0100
+	id 8K6IFKZXcWkNEwAAu9opvQ
+	(envelope-from <devicetree+bounces-258147-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 23:48:06 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76FEF5EF9E
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 23:42:17 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 063AE5F04A
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 23:48:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 97C666270D6
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 22:41:28 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 901AC882499
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 22:46:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA0CF44E027;
-	Wed, 21 Jan 2026 22:40:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39F0E44CAC9;
+	Wed, 21 Jan 2026 22:43:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c0AazBor"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="MF4BYXuD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f44.google.com (mail-dl1-f44.google.com [74.125.82.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC01E44D694
-	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 22:40:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44F503A9607;
+	Wed, 21 Jan 2026 22:43:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769035213; cv=none; b=MVD/SSWEV1NWKntOdRsj0hy0/u7v8v18bzOjNHHjRXTrcxLI4TRrXxyGYlX00tb/xXCFffCbPVw5U9aRuAOf/vFBL989rmAH/NEezsrfxFG+ru3RTFhK4MOCRGIhMNeLYXXFUmFVYRRKmcyvo80+LRe0E9/ft1IXtyV/0nNvJxc=
+	t=1769035384; cv=none; b=dIDCrsXQiD+nuvvvUAE7Jccs9dfJodc0j1I4cYu0peZ2QffhZuiGHTSQguXHT2OaP1cQHp8w0REYJaT1ILmfHPk+daEcsOvxGhmaKoH5O9zhFz4tzZ1lbXbzMxV8jCtMU4/uHTnqosZ85iN1y7qWM69frdrq/0+5nApJfX9m6N8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769035213; c=relaxed/simple;
-	bh=JdgXeLjUwvEesiS0RCBqXWrFZLcAAAi4LcdoGUe7jds=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oejRlArtJWPQ3lYV+tStc3bHifBlG9/P5ehzwDwmQM2FzIuPSgcucqbsiLfAbg3xo1QE8TOGrhk6XonILJLSXtXU2YhjUft6g29/soRjZ2/56+nDTmC+9V3RyDcKlUasOfG0BIjByC/g8ws2FV0f4zGHcI8dzByUAGQ367lK/8c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c0AazBor; arc=none smtp.client-ip=74.125.82.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f44.google.com with SMTP id a92af1059eb24-12339e2e2c1so273524c88.1
-        for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 14:40:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769035211; x=1769640011; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=8oqHlhFvEc8dTBSDMJ627w8lGEZ+DhUI7JdmSEBy0EU=;
-        b=c0AazBortZlYBNSLLhstayLY2lYhRjJopS/CRsrU60C803MFi2EyujexFiSHwa7KDV
-         o7HASyJc171k5gNjSeyXlWBk9tyu5g1+1fNz5s0NCKQ6+MP9GfvN4wuaGV/CjkKTzRT1
-         q1WUzRqhbPvUVooJtjTx8sa+JaMwCowgoF8q5pWUUNsMEpfrRYv1qFOOKp/ckTZDt79I
-         PhyweF5QTel9gsQyF5MEEDvpXAGQksEpjm+HQlFaNXa33whGSahkrvcVj3Kp0F2VzOKi
-         zQ1FGxmmtGp3BkGu2fO1PKZWMqGzJbGwrdztZkcy/VkF0FwYcIoaimsA6IGS6Gsk6tOG
-         PkKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769035211; x=1769640011;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8oqHlhFvEc8dTBSDMJ627w8lGEZ+DhUI7JdmSEBy0EU=;
-        b=cvjZGWM/iOalcF5W3bhxIZVGG4h4drihemUmo0fM5+2tMpS/JrJrywqFHPnRhx1BpS
-         hoLhyJ9OI4Sys9PX1IFT1dJKgQ3RAL8CCmwYtXCoTbaQ6xXzzRd8XUjLmn0mDPqUf2w6
-         Osk6ah0jsBh9d2wmIu/p9BQPritxl9+5wdqikFh/5YUVpfx6Q4ULr9f9C9KobIszUPz4
-         okBqvuIg/DMqpRZ3Tv0Fg2oe/ss4l+TNTjA3Scf3gEePfS5YeWprXneFc8PGgOFIPcb1
-         Pu1X39bxomVYVQO+bVANymn+g5bD6bu2bE68OUtvUJLrT+/aQH5edw2nq7N0KFCw1Bln
-         mqDA==
-X-Forwarded-Encrypted: i=1; AJvYcCXLcQ7y+9kX+LlPm5vrcpo1dok4VgHuWVm3sVaquWLGC/x9O+0cTC1u2H+lfuVzsHwxAkgsC2IG04zm@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxbh1xRTtYiB2Ell/UANpWr6MW2Jwx9XDUx0uejjLvDOBOGZEgg
-	CjZgZAuBIqbPaDYbyYfjsKP5aHt+U5S97DmHTkaSSlKssx2JZP8kXits
-X-Gm-Gg: AZuq6aJHfzuMVpnNqEzHEXJVoNi1JPkLeuxnv6nu5JbXRjE9qmVeBybFgH+Ie7z1mXj
-	KahIqNnA8l/UhDRIsgzb7xnHL3E+7Gnvn0UDwiRUTjdQelBT9+OABrqXFrcnJTTkjPfoFjtvHST
-	i7NknH63zefHAABLnNYsaImaKcOAIqQZr1t3IYT/9ZKLX41n1VZA7zcQ2i1z2YQ1BaCOW3/daBp
-	3xx8HvHe9IvtCW9Xl4gsK1sKUxBynkoKNWV9OkBWqftogpl4Xq9G+AezU04zOP+K+EIPieJb+Mz
-	szSTRUbqaVRA/WQBVRfPg2FP4A8He7fUSj2Lok4wiaVWUHzSroUrq8VSgAatdtE2rJ2EG9Ok9Pd
-	st3E+LMct6sb7FtH3LMfNWiAMFMB6cLaU5jm2tf/H7hW4Uv+6b+fKm6DmmjBg6L6C150IHmGW82
-	hRFJfNvgXzXXt6g43vxzhKuoJBzqXxcxHxSvOr3R+0nJ4zkLe3Bjz/
-X-Received: by 2002:a05:7022:a91:b0:11f:19f9:c5f9 with SMTP id a92af1059eb24-12476ab27edmr594415c88.12.1769035210731;
-        Wed, 21 Jan 2026 14:40:10 -0800 (PST)
-Received: from google.com ([2a00:79e0:2ebe:8:abb8:3a31:328a:3594])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b6fb72e477sm8717342eec.29.2026.01.21.14.40.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Jan 2026 14:40:10 -0800 (PST)
-Date: Wed, 21 Jan 2026 14:40:07 -0800
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>, 
-	Benjamin Tissoires <bentiss@kernel.org>, Jiri Kosina <jikos@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	dianders@chromium.org, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V3 RESEND 2/2] HID: i2c-hid: elan: Add parade-tc3408
- timing
-Message-ID: <ffqvva5kgyh25mpquackob7fnlaxseu5stgevneqynwa7m77b3@totpb762p6te>
-References: <20260108063524.742464-1-yelangyan@huaqin.corp-partner.google.com>
- <20260108063524.742464-3-yelangyan@huaqin.corp-partner.google.com>
+	s=arc-20240116; t=1769035384; c=relaxed/simple;
+	bh=fg8Xk9PX7JILvXU8e++2P0P2K8c7zescrN7pFCtqjB0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=a7H3Dahj6A+KL7jY4G6W0BpRXM3KA8WnzniGho8+y9AwHxuCLIUtWIt+xnzdQ8GjUtstqQdPn5nZFsLn//ZInNFRMOc5X4MEmbYK0VaeDwKIxtA05zBVluxLJOLf/vYynsKpUAMq36oORUxL/aEPN4qMDXyLFe/b5gsC8M4lfr4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=MF4BYXuD; arc=none smtp.client-ip=80.241.56.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4dxK363Jmjz9tSn;
+	Wed, 21 Jan 2026 23:42:58 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1769035378;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=UY17E3F+Snom4B2+4ldWn4VuYehY/YFwS5WM3KAejnk=;
+	b=MF4BYXuDH1uTLN6WU0zw1cVzx4xzSQxrfCG9wUgGaoFr8r8IUicFDYUBEaxUT4vRC5qc4X
+	vQna4Xb4hBI0QPGj9phekxn/krGmQzH7ze9+RKd0pj0Cw5R9/D/XcOhicwcN3+eQ84+PSu
+	9ytqMZ9PJWpPuunF0VcAUbMlB9WcHjphIEbqTWLe69xIDl9JPbe07zgkiqJ53ta0zeYkoa
+	gStgtuduuKttaSykpXwox8CcfphDvCwWYJxhpdHveONadqgiMXLtPg1VkIJeLksWxN4seK
+	j8LVUCXzuvMD4mKEwZ1K5XSeg654abUTEVmhy3ruzALLlcbbPsoNA6V/OpO3mg==
+Message-ID: <cd8f71db-c2d1-4c85-8148-83822762a916@mailbox.org>
+Date: Wed, 21 Jan 2026 23:42:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260108063524.742464-3-yelangyan@huaqin.corp-partner.google.com>
+Subject: Re: [PATCH v4 3/3] Input: ili210x - add support for polling mode
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: linux-input@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Frank Li <Frank.Li@nxp.com>, Job Noorman <job@noorman.info>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org
+References: <20260117001215.59272-1-marek.vasut+renesas@mailbox.org>
+ <20260117001215.59272-3-marek.vasut+renesas@mailbox.org>
+ <wv3vil4b4lgfrqt4qnzxiffnniw422xjfdiz4svkklnfrslz3g@yzqc265pj5t5>
+ <bbb7fb54-5b04-4c38-840b-8cab58eeec7b@mailbox.org>
+ <nk5qn7ye44lbtppp2opa273ut7lxkcz7jsw6giagwngiwhg7rr@puexvdzd2ymq>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <nk5qn7ye44lbtppp2opa273ut7lxkcz7jsw6giagwngiwhg7rr@puexvdzd2ymq>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-META: xyueama6a8jsbrxfa3gfqf1wsw768fui
+X-MBO-RS-ID: 7ab20b14f0adaa54e52
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
-	TAGGED_FROM(0.00)[bounces-258146-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-258147-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com];
+	DMARC_POLICY_ALLOW(0.00)[mailbox.org,reject];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MISSING_XM_UA(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[mailbox.org:+];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitrytorokhov@gmail.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[chromium.org:email,ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns]
-X-Rspamd-Queue-Id: 76FEF5EF9E
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:helo,dfw.mirrors.kernel.org:rdns,mailbox.org:mid,mailbox.org:dkim]
+X-Rspamd-Queue-Id: 063AE5F04A
 X-Rspamd-Action: no action
 
-On Thu, Jan 08, 2026 at 02:35:24PM +0800, Langyan Ye wrote:
-> Parade-tc3408 requires reset to pull down time greater than 10ms,
-> so the configuration post_power_delay_ms is 10, and the chipset
-> initial time is required to be greater than 300ms,
-> so the post_gpio_reset_on_delay_ms is set to 300.
+On 1/21/26 6:23 AM, Dmitry Torokhov wrote:
+> On Tue, Jan 20, 2026 at 11:50:53PM +0100, Marek Vasut wrote:
+>> On 1/20/26 7:31 PM, Dmitry Torokhov wrote:
+>>> Hi Marek,
+>>>
+>>> On Sat, Jan 17, 2026 at 01:12:04AM +0100, Marek Vasut wrote:
+>>>> @@ -860,16 +893,12 @@ static ssize_t ili210x_firmware_update_store(struct device *dev,
+>>>>    	 * the touch controller to disable the IRQs during update, so we have
+>>>>    	 * to do it this way here.
+>>>>    	 */
+>>>> -	scoped_guard(disable_irq, &client->irq) {
+>>>> -		dev_dbg(dev, "Firmware update started, firmware=%s\n", fwname);
+>>>> -
+>>>> -		ili210x_hardware_reset(priv->reset_gpio);
+>>>> -
+>>>> -		error = ili210x_do_firmware_update(priv, fwbuf, ac_end, df_end);
+>>>> -
+>>>> -		ili210x_hardware_reset(priv->reset_gpio);
+>>>> -
+>>>> -		dev_dbg(dev, "Firmware update ended, error=%i\n", error);
+>>>> +	if (client->irq > 0) {
+>>>> +		scoped_guard(disable_irq, &client->irq) {
+>>>> +			error = ili210x_firmware_update_noirq(dev, fwbuf, ac_end, df_end);
+>>>> +		}
+>>>
+>>> You already have a scope here, no need to establish a new one:
+>>>
+>>> 		guard(disable_irq)(&client->irq);
+>>> 		error = ili210x_firmware_update_noirq(dev, fwbuf, ac_end, df_end);
+>>
+>> This part ^ I do not understand. If there is no IRQ defined in DT, I need to
+>> call ili210x_firmware_update_noirq() without the guard because I cannot
+>> disable_irq() with client->irq < 0, else I need to call
+>> ili210x_firmware_update_noirq() within the scoped_guard() to disable IRQs to
+>> avoid spurious IRQs that would interfere with the firmware update ?
 > 
-> Signed-off-by: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
-
-Jiri, Benjamin, another I2C hid with bindings...
-
-> ---
->  drivers/hid/i2c-hid/i2c-hid-of-elan.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
+> You do not need to use scoped_guard() because you already define a scope
+> in your if statement:
 > 
-> diff --git a/drivers/hid/i2c-hid/i2c-hid-of-elan.c b/drivers/hid/i2c-hid/i2c-hid-of-elan.c
-> index 0215f217f6d8..2a6548fd234a 100644
-> --- a/drivers/hid/i2c-hid/i2c-hid-of-elan.c
-> +++ b/drivers/hid/i2c-hid/i2c-hid-of-elan.c
-> @@ -188,11 +188,19 @@ static const struct elan_i2c_hid_chip_data ilitek_ili2901_chip_data = {
->  	.main_supply_name = "vcc33",
->  };
->  
-> +static const struct elan_i2c_hid_chip_data parade_tc3408_chip_data = {
-> +	.post_power_delay_ms = 10,
-> +	.post_gpio_reset_on_delay_ms = 300,
-> +	.hid_descriptor_address = 0x0001,
-> +	.main_supply_name = "vcc33",
-> +};
-> +
->  static const struct of_device_id elan_i2c_hid_of_match[] = {
->  	{ .compatible = "elan,ekth6915", .data = &elan_ekth6915_chip_data },
->  	{ .compatible = "elan,ekth6a12nay", .data = &elan_ekth6a12nay_chip_data },
->  	{ .compatible = "ilitek,ili9882t", .data = &ilitek_ili9882t_chip_data },
->  	{ .compatible = "ilitek,ili2901", .data = &ilitek_ili2901_chip_data },
-> +	{ .compatible = "parade,tc3408", .data = &parade_tc3408_chip_data },
->  	{ }
->  };
->  MODULE_DEVICE_TABLE(of, elan_i2c_hid_of_match);
+> if (client->irq > 0) {
+> 	guard(disable_irq)(&client->irq);
+> 	error = ili210x_firmware_update_noirq(dev, fwbuf, ac_end, df_end);
+> } else {
+> 	error = ili210x_firmware_update_noirq(dev, fwbuf, ac_end, df_end);
+> }
+> 
+> This is sill a bit awkward. Maybe we could add to interrupt.h
 
--- 
-Dmitry
+Let me do the part above in V5 , and then the part below as a separate 
+follow up patch/series. I already added the later in tree so it won't be 
+lost. Does that work for you ?
+
+> void __disable_valid_irq(unsigned int irq)
+> {
+> 	if (irq > 0)
+> 		disable_irq(irq);
+> }
+> 
+> void __enable_valid_irq(unsigned int irq)
+> {
+> 	if (irq > 0)
+> 		enable_irq(irq);
+> }
+> 
+> DEFINE_LOCK_GUARD_1(disable_valid_irq, int,
+> 		    disable_valid_irq(*_T->lock), enable_valid_irq(*_T->lock))
+> 
+> and then we'd be able to keep the driver as is (just adjust the type of
+> the original scoped_guard).
+> 
+>>
+>>> BTW, not a fan of the "_noirq" suffix... Maybe drop it and add
+>>> lockdep_is_held() there?
+>>
+>> This part I understand even less, how does lockdep play into this ? The
+>> scoped_guard() disables and enables IRQs if they are available.
+> 
+> Ah, sorry, brainfart on my part. I got confused by _noirq suffix.
+OK
 
