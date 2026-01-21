@@ -1,124 +1,190 @@
-Return-Path: <devicetree+bounces-257915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257916-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KEcvDD3EcGkNZwAAu9opvQ
-	(envelope-from <devicetree+bounces-257915-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 13:19:09 +0100
+	id iIeXMNXFcGkNZwAAu9opvQ
+	(envelope-from <devicetree+bounces-257916-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 13:25:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11F4756A3D
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 13:19:09 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 513E056B91
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 13:25:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9B2395A4DE2
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 12:14:55 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id DAA6A52A019
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 12:23:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE3E9466B4B;
-	Wed, 21 Jan 2026 12:14:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1788548033B;
+	Wed, 21 Jan 2026 12:22:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qA9aeMCM"
+	dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b="FDjSf5/9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from box.trvn.ru (box.trvn.ru [45.141.101.25])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D93E44DB64
-	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 12:14:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6789A3ACA6B;
+	Wed, 21 Jan 2026 12:22:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.141.101.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768997669; cv=none; b=S8zfUBZbgIch7Pxs5bKccX4C9x6fj5nIQ8piPcLqpgdP355LT4tAKKLFxpUuc0oHx1buOA/jMXoJb225ip5iQPwtdZG4XU2WqCjyyoLcZCTsOV8GzJc4qOe5088dqsEUNjMDcszfWq82PAk4VkrgXHGTW+BdxRfJC/YAUrAseDU=
+	t=1768998167; cv=none; b=hUMwI76Iz7EdDsppeOFBi3LD2BlKY4eqJ2e05AkMmhYktKQJASvPz7PgnEZM6/eCVKIMw+bBKckjqWlfyBOmHr3g2glFnmNJWJpS08zMznDTWVR1Wd4AzwXUfJEku/QDRkIvDlLWJlw7w9hYZdTgU515pG9gfXC6KdF9PB90nag=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768997669; c=relaxed/simple;
-	bh=MxAb/KOfj0fTzSsftS+TuyTlZQjPgm8LRuldwJMvBAw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=M5WIW2n6+BQXq5UymGaZS2q+pRThqpU7vPoTZ3DNa2MAUGQe/yXSXxdr0d8K9omu2du1IF5pOlA4jm1B6GFydj/w303X8eXLoZputm1BaVSIL546EZnGdTL6UyqEqvVUhqsF1G6+m/KP6EQ7RCepf6wDtF+74V+bPP+Yg8RrNfA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qA9aeMCM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36860C2BC9E
-	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 12:14:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768997669;
-	bh=MxAb/KOfj0fTzSsftS+TuyTlZQjPgm8LRuldwJMvBAw=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=qA9aeMCM70d/lIgRo9XveyJzh2U4zy0Cgmw1XNf/c9KGq7MgJvaPy3l0FzZ2AsrOX
-	 rGKbHySsF0r049G+5gCJOOUSg1w7lwXzAQVOOMIN0Z5xXaS0/6xyPrc+FCNG/5IKZo
-	 enj4K44GiCkcsQz9uBdLJ1kwk+LCH0p8dUlkKCoh5EKx9t//iCA+6jhl0YzmLAGv6t
-	 qqMMisOyR/i9De9zXYBGkx1fk/FEOcQQnphghpOwyd//lUYAOK0C3U5wCy97IsIGIp
-	 peUi3NgCmN8PFM+3hc1sXjGFiO+maBZpeXZVQZ2CvopdTI0X+tGcsMYu9g0r1vaAcn
-	 wwh7B/PXqgsCg==
-Received: by mail-yx1-f41.google.com with SMTP id 956f58d0204a3-649278a69c5so3508574d50.3
-        for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 04:14:29 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUrciUY54+5MDnpwTVPltwR4Ma90eqnPH6PmN9fk/e4hSVvoCtU87wSOn+/7aHMoF990JQOKuTlONb8@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx8SUguOaGVLNpfD1ZmHpnixsy4ERUjpGlsc19kYVDb5GbR8Kc5
-	gUytwos/AWQdDPcDb6jgiH/q+blt/jAB6JuQJKcQP2rPYI105hCI188m6BfhLxoFQqUqcz6U6wP
-	BWZbqkzSD5GVRrRcw7USkIaMyoUX5HxM=
-X-Received: by 2002:a05:690e:120d:b0:644:53c0:299f with SMTP id
- 956f58d0204a3-6491650dfa8mr14643804d50.74.1768997668593; Wed, 21 Jan 2026
- 04:14:28 -0800 (PST)
+	s=arc-20240116; t=1768998167; c=relaxed/simple;
+	bh=B64XqHb0oVPQWEXKYQIWHeIvouUQHv7heMgcEaAUGmQ=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=iar/JRoUSjD4iSwhMtg+z2r3U38Dbvm3NSvFhRFf0lRqVqijvnw9YSns41Zh/vF5tnyaIIIO2i8OsRpqpu0V8uCGLLvomSRNasLDTE/wVtIq8bdMZG7Fn0KWy+vkrHawGSgpDuBhlXwfeY2YpXMFqLjxDhOd2HEX+ugO4IwDYHg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru; spf=pass smtp.mailfrom=trvn.ru; dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b=FDjSf5/9; arc=none smtp.client-ip=45.141.101.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=trvn.ru
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+	t=1768997761; bh=B64XqHb0oVPQWEXKYQIWHeIvouUQHv7heMgcEaAUGmQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=FDjSf5/9ZudvSKdXmpn87FAerZd6LulSBkQGqz89ibvdKrAwGE2GykP8lLDxHifRc
+	 1ljVr7btqN2xP5Fo5N+Wezm6Nw1ZvAHxczJcLJ6cNim0dJpehQfXr9P2allEsbPKm8
+	 DcQD5msufBqq5FW7exIUBk1YZwgfndEFvrIoQ3ni58T8LWAxMsq3Q3QY2qWlRy5Mbu
+	 xpFgGYdgrbDJfXp1Uw1lY/raQMUve2+RF7+u0TzEk3QWDIqe288B8UGg3+lVMP2BxN
+	 J1IR1em8DJecPtvKCxNTMM9Eu1s+G3AUAE8FN19os/E7fxjJe7pCSHRXt20i5ydBpX
+	 LiPefQ0mJDGwQ==
+Received: from authenticated-user (box.trvn.ru [45.141.101.25])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by box.trvn.ru (Postfix) with ESMTPSA id 7FADB69760;
+	Wed, 21 Jan 2026 17:16:01 +0500 (+05)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260120-elixir-salute-dd6ec3d9f5fe@spud>
-In-Reply-To: <20260120-elixir-salute-dd6ec3d9f5fe@spud>
-From: Linus Walleij <linusw@kernel.org>
-Date: Wed, 21 Jan 2026 13:14:17 +0100
-X-Gmail-Original-Message-ID: <CAD++jL=EL8yMGJfUCVtcbDHCH4NtUYCjnJLpnXDUXOW=2e2R6w@mail.gmail.com>
-X-Gm-Features: AZwV_QgRSTxqPkvEjhSuHvrEvLq-M0kHecgsqzZs-SN8L9p0Qy5A7sM1G0FOtnk
-Message-ID: <CAD++jL=EL8yMGJfUCVtcbDHCH4NtUYCjnJLpnXDUXOW=2e2R6w@mail.gmail.com>
-Subject: Re: [PATCH v4 0/5] Microchip mpfs/pic64gx pinctrl part 2
-To: Conor Dooley <conor@kernel.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	Valentina.FernandezAlanis@microchip.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-1.96 / 15.00];
+Date: Wed, 21 Jan 2026 17:16:01 +0500
+From: Nikita Travkin <nikita@trvn.ru>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Val Packett <val@packett.cool>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org, Dmitry Baryshkov
+ <dmitry.baryshkov@oss.qualcomm.com>, Neil Armstrong
+ <neil.armstrong@linaro.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 6/7] arm64: dts: qcom: Add support for ECS LIVA QC710
+In-Reply-To: <c706c227-6f3c-42a5-95bd-9ac739d2fa16@oss.qualcomm.com>
+References: <20260120234029.419825-2-val@packett.cool>
+ <20260120234029.419825-10-val@packett.cool>
+ <c706c227-6f3c-42a5-95bd-9ac739d2fa16@oss.qualcomm.com>
+Message-ID: <376b932a192d0070b4435542fae62178@trvn.ru>
+X-Sender: nikita@trvn.ru
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-0.46 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[trvn.ru:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-257916-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-257915-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[trvn.ru,quarantine];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[trvn.ru:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	FROM_NEQ_ENVFROM(0.00)[nikita@trvn.ru,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 11F4756A3D
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
+X-Rspamd-Queue-Id: 513E056B91
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Jan 20, 2026 at 7:16=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
-te:
+Konrad Dybcio писал(а) 21.01.2026 16:20:
+> On 1/21/26 12:30 AM, Val Packett wrote:
+>> Add a device tree for the ECS LIVA QC710 (Snapdragon 7c) mini PC/devkit.
+>> 
+>> Working:
+>> - Wi-Fi (wcn3990 hw1.0)
+>> - Bluetooth
+>> - USB Type-A (USB3 and USB2)
+>> - Ethernet (over USB2)
+>> - HDMI Display
+>> - eMMC
+>> - SDHC (microSD slot)
+>> 
+>> Not included:
+>> - HDMI Audio
+>> - EC (IT8987)
+>> 
+>> Signed-off-by: Val Packett <val@packett.cool>
+>> ---
+> 
+> [...]
+>> +&tlmm {
+>> +	/*
+>> +	 * The TZ seem to protect those because some boards can have
+>> +	 * fingerprint sensor connected to this range. Not connected
+>> +	 * on this board
+>> +	 */
+>> +	gpio-reserved-ranges = <58 5>;
+> 
+> Would it still work with <59 4>? 58 seems to not be related to a QUP,
+> rather as an audio MCLK output (would that be why +Nikita couldn't get
+> some sort of audio working on his aspire1? That DT has it reserved too)
+> 
 
-> From: Conor Dooley <conor.dooley@microchip.com>
->
-> Hey Linus,
->
-> Rebased as requested, with the dts patch that snuck in dropped.
+FWIW according to aspire1 schematic GPIO 57 is codec mclk (which is
+implemented and works perfectly, only DMIC connected to the soc
+instead of said codec is broken); GPIO 58~62 are NC with a note
+"Finger Printer" [sic] near them. There is no bracket annotation to
+associate the note to specific pin range, but it's smack in the
+middle of 58~62 range and from the fact that 63 (speaker amp bclk)
+and pretty much every other pin later is also used, I guessed all 5
+are actually reserved. It's possible that one of them is not
+actually reserved by the firmware but probably not the source of
+aspire1 issues (the dmic is connected to lpass tlmm anyway) or
+perhaps they reserved 58 to be an interrupt input for the fp, or
+something like that...
 
-Excellent, patches applied!
+Nikita
 
-Thanks Conor!
-
-Yours,
-Linus Walleij
+> [...]
+> 
+>> +		data-pins {
+>> +			pins = "sdc1_data";
+>> +			drive-strength = <2>;
+>> +			bias-pull-up;
+> 
+> here you do:
+> 
+> drive-strength
+> bias-
+> 
+> [...]
+> 
+>> +	sdc2_default: sdc2-default-state {
+>> +		clk-pins {
+>> +			pins = "sdc2_clk";
+>> +			bias-disable;
+>> +			drive-strength = <16>;
+>> +		};
+> 
+> here you do the inverse
+> 
+> (the former is preferred/more common)
+> 
+> otherwise
+> 
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> 
+> Konrad
 
