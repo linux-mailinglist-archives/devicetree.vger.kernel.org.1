@@ -1,146 +1,219 @@
-Return-Path: <devicetree+bounces-258132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258134-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YKfKN7g4cWnKfQAAu9opvQ
-	(envelope-from <devicetree+bounces-258132-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 21:36:08 +0100
+	id OKIIGHs/cWnKfQAAu9opvQ
+	(envelope-from <devicetree+bounces-258134-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 22:04:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63BFD5D5C0
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 21:36:08 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id C65F35DC5F
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 22:04:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 832A64F8714
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 20:30:19 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 79F53A64D01
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 20:55:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C3E33ACF10;
-	Wed, 21 Jan 2026 20:30:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B9523A784C;
+	Wed, 21 Jan 2026 20:55:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eQQM99/0"
+	dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b="FEBN5CCS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0046e701.pphosted.com (mx0b-0046e701.pphosted.com [67.231.157.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63A3C36D4FF
-	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 20:30:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 424A1340279;
+	Wed, 21 Jan 2026 20:55:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.157.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769027415; cv=none; b=Po3ndjIPcvSimeW2NmoCO1ZXL+h+F+glncG+0DNC+hF7LYDNkVeENLwtAOv6v2Vz1t50aD2nXUe3jASxm3P5oaSKiKFwaw0N7XIzQs4ZFTGkI7rJV7Zr2OIE6DiheHlWGE7FEpDmycxX8pIR/juRo9Xg9BA6UBYGIixytB9cFBY=
+	t=1769028947; cv=none; b=NF0l/RqFXC9imckug9ekt0kGzv2nCgC/Cp32f0/C30wrXAsy2sKXfClQXtUzIVCA7Xdy9HRw7JWEsoWIxPCIjlVKB2FMROfKHlFYT1qlOxvxB5ECPJGy1HqJ3hvptq3ilopW+OMThjFo7jvQN9gNCTra6LZUB8UmpukbEXAHfKY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769027415; c=relaxed/simple;
-	bh=IkKGhXlv8BXOPrsRFO93I4wdNC5DdD4TsBzL7eCwAyg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=VSnVPcunMxoDtlEp6wA7o2pq3WX7rlnSR8BxWg+oU/0DLskEkYztYy/T9D/5wcfTQOVQQtgbu0AUmAvOxo7j/ZdT/4n/eeny2oMnqHBIfyzQX2zTA9eOOOSQyBqdtNtnZqDkxLAi+xzNai9ocAVczX7pu66+oBMKlQSgPjPSM78=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eQQM99/0; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-47ee3da7447so1985345e9.0
-        for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 12:30:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769027412; x=1769632212; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IkKGhXlv8BXOPrsRFO93I4wdNC5DdD4TsBzL7eCwAyg=;
-        b=eQQM99/0StpN6/62jjR/nF+rr4EFUkMnRaLAg16qqRIt6U+rhZGe7VV2J7GAncRfbl
-         D6fV/vLef9baa2usGYuMH4tWpymYgdTc93wSw3wlD3GQ+cdr9MESHrQwbPLIcP72WkBN
-         qBEK5EKAJCxeep3HZafM/3v4V0lpsoEBnAlEAnwbM8GQJ3sDN5vbh+94pesszLMWDZbh
-         zJfJwIToQXVgro3zJn/Wx2+TAanTALqDPZviGQ1DjChxpV4CXDRVEBV3kzL5sQgDCyMj
-         JiDkS7wRWGudEJNgDpiqVO+ENzev+8v1KQ0EjAZbdi6AwXq0ZFzTLXfR+XupAJVyXB17
-         i97A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769027412; x=1769632212;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=IkKGhXlv8BXOPrsRFO93I4wdNC5DdD4TsBzL7eCwAyg=;
-        b=scu6gn+vlEqbjWFHlts/uTp+HpQMzh0rPjOsDMC8oS/+sTnVICMgjmKffaWBxtbEs0
-         yBzN0riElDRx3hcLnT2SahoA0W0QfiBuQGk8isr2V9n/feMM5pzbq/keyo2rs9P89Ou3
-         8CFnA3vEnFX1m/3Xdtab+GOW5S6cHFZiHUYZgA4/z7C5EhcIxHu+AjFpt2NW4q8YhngC
-         i+vxELbFkMYg62Qfbp7E1G7el5m7e9iXKieXGP5FNbOT2BrdbG1RTCQk2P7/7aGtC61a
-         PEw8/0lTAAOHjpFXxBgPkX8m4GqBF3frRuMmgciwplmL1bGBax7aN6LSEeb/HiAC1A86
-         t/kg==
-X-Forwarded-Encrypted: i=1; AJvYcCUooVkMKBviqAaa+iyoI3UjvwHGaVL446rVhd6w7Bcj/XsPVZrGiGaEI5o4Hi14a/9ujkhvHAvKWsAs@vger.kernel.org
-X-Gm-Message-State: AOJu0YxjiQGqBu67Le80/NSDa/0d11r+s9OdArjFO8mMO88h/9jpfKNL
-	smuGJ9WL3FE0kceY0YVMcTpMO/7cWsjYWg0ZOC5nlSCcfXeZkerwof/v
-X-Gm-Gg: AZuq6aJkJlg8e4DBc2+kvHbFS0u0TQjdq6k9aiFm52cWV3FkI4+A45R4vaEWjl86zAm
-	aLToHaO+EzmV8vkv5qEKTfDVRCp2OtPeGUNBUEfyNOl8QzNF18kMGr4Zei7RSLCvcgdRD0CY+G2
-	+s3B0fAUT391ovH8Z3UGBsU091jCqm4wyCYlzxvkdXe8SikJ+ZcOARyKuGPTYW9ezNxLgR9qIT3
-	RhzxbFf+F+zBYKmoAPR57uNCllbAcCe1K5yRjEP7x7F+gZfpUbqrqjwHs0Lt66FcEh4KzvoFwB6
-	uUgLnj+rIBPz+6Y0iMBgos9qTj3SELnTF8gdoMEPx+khoDYwmkMtHX2/FckTMNlqdLuSLGJAbvH
-	Z01ZYUwk+DbhxL9R4A5ySul0qfrqaOxlS6W83icCWMW4OJ+j4FpSU6BVtRqXXnqDhnHqPHCMIjb
-	z05xSL3nDehzxrN21m2kYS0dOfUKSt8IeXDzuh
-X-Received: by 2002:a05:600c:3b9c:b0:477:af07:dd1c with SMTP id 5b1f17b1804b1-4801e3495c1mr286348815e9.35.1769027411529;
-        Wed, 21 Jan 2026 12:30:11 -0800 (PST)
-Received: from unknown.tail46804.ts.net ([78.209.12.160])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-4804245245esm35494995e9.0.2026.01.21.12.30.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Jan 2026 12:30:11 -0800 (PST)
-From: Gianluca Boiano <morf3089@gmail.com>
-To: konrad.dybcio@oss.qualcomm.com
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 4/7] arm64: dts: qcom: add device tree for Xiaomi Redmi Note 6 Pro (tulip)
-Date: Wed, 21 Jan 2026 21:30:09 +0100
-Message-ID: <20260121203009.13540-1-morf3089@gmail.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <d2aff319-d98a-4007-bfb5-8766e3c3c206@oss.qualcomm.com>
-References: <d2aff319-d98a-4007-bfb5-8766e3c3c206@oss.qualcomm.com>
+	s=arc-20240116; t=1769028947; c=relaxed/simple;
+	bh=shB/nOEZf0SYoyLaiDU22nArcNeEHHkYrPQXpXLOs1s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z4NQsPbldj8xtWre9sXxajh/2RJYEsN41Q680YS3r6DyVPfj3jmv5c1Rep5O4Rvxs+CVwhk++7vOPUM98vZFLzjQfA3Vf71qUCGCR03bmVBgQ+4QiqO9o4Iq4S3VPs53Ypo3ugUlWsWTZZswjC+U0zAXX7SfX5GSrcIP4EPenV8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=plexus.com; spf=pass smtp.mailfrom=plexus.com; dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b=FEBN5CCS; arc=none smtp.client-ip=67.231.157.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=plexus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=plexus.com
+Received: from pps.filterd (m0425992.ppops.net [127.0.0.1])
+	by mx0b-0046e701.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60LINccc935887;
+	Wed, 21 Jan 2026 14:42:18 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=plexus.com; h=cc
+	:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=pps1; bh=kMMai344yfdBNxNdwSNfQ16I3p0AQ
+	MOlkHJ1FGcTdfw=; b=FEBN5CCSNlfloCBAtkAcdUPSsPRT3QQX9Zjf6itCthuLP
+	EgTCSUxdrJilSo/0FSPSwTDstOi/Fmyyy3C0Ui8dAkCmfhkEwsbwGqainQFYRY9k
+	bgvSzx1zDHN+0Yb0GT/Fw9//ddKicNElaeoKNtM2BYrF8Yh96DbF+7bVjJqmd9n4
+	qh3/y2DRwX5M5gX1/mBSpYMaeK3ZGPpPJQN2YLvJvqTIL5XO1v/N+jrzkB9hZEWf
+	Kvwvb1FBFlRURNr41WhksLhugbH0CcHELuHsLUA7Jh9RaALnweTbGu7Eqi1of/c9
+	FyNnDvoNyJRpLe6NjvjMG1W5yu2jkH0Vc/ZTGIIPQ==
+Received: from intranet-smtp.plexus.com ([64.215.193.254])
+	by mx0b-0046e701.pphosted.com (PPS) with ESMTPS id 4btae3jyru-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Wed, 21 Jan 2026 14:42:17 -0600 (CST)
+Received: from localhost (unknown [10.255.48.203])
+	by intranet-smtp.plexus.com (Postfix) with ESMTP id D7E133C87A;
+	Wed, 21 Jan 2026 14:42:16 -0600 (CST)
+Date: Wed, 21 Jan 2026 14:38:45 -0600
+From: Danny Kaehn <danny.kaehn@plexus.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Benjamin Tissoires <bentiss@kernel.org>,
+        Andi Shyti <andi.shyti@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+        Jiri Kosina <jikos@kernel.org>, devicetree@vger.kernel.org,
+        linux-input@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Ethan Twardy <ethan.twardy@plexus.com>, linux-i2c@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Leo Huang <leohu@nvidia.com>,
+        Arun D Patil <arundp@nvidia.com>, Willie Thai <wthai@nvidia.com>,
+        Ting-Kai Chen <tingkaic@nvidia.com>
+Subject: Re: [PATCH v12 2/3] HID: cp2112: Fwnode Support
+Message-ID: <20260121203845.GA7162@LNDCL34533.neenah.na.plexus.com>
+References: <20251126-cp2112-dt-v12-0-2cdba6481db3@plexus.com>
+ <20251126-cp2112-dt-v12-2-2cdba6481db3@plexus.com>
+ <aSdGh3i_KYocE3L3@smile.fi.intel.com>
+ <20251126193251.GA269764@LNDCL34533.neenah.na.plexus.com>
+ <aSdvv3Qss5oz_o6P@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aSdvv3Qss5oz_o6P@smile.fi.intel.com>
+X-Proofpoint-Reinject: loops=2 maxloops=12
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIxMDE3MyBTYWx0ZWRfX4ptEQFKdvfEP
+ aHBLwBp6qRd6jztlDhS7R5JlBSofX/GNbDJqvWjJBuik5y3i+5nfuqX/Oq/pV0oMNR3Uqvpx26k
+ PNw/ChhLIZJn2SgcdMxHxUnLuMVZW9Ky2E7kHWhYFGCI4/2xnwzeiiv+QZ/aqRic2mR45waqnhQ
+ CtTslosnbrF2kjyHsvqWqpC0D9Pimv8Ms34pUjrDrh4IkpLK7nu+O3Osi3dBZeeMHFzGcwrXpf5
+ B/Lr4WM0Ldrh8VzU0T93zSvqIG8gY9EH028aZC4eEAoUkjRjKhpPEEytFxzrk9L8ZftnaFHOAef
+ jgVULHwlGwclYmQkoTPOeYf5n0l/DWT3RUBK5sIFMwoOJN05Ehx35pV/5gKVjoyak5r9D3/zx7l
+ FVrcNaJJb+C/ynBN0PQdwRhKkDAn/3VYmhgksr6gWqLCoG2o4OqWMCAm5Y/aD4od5Wc7kVeUqK2
+ Ay1iCe/z7Jn291dqfmQ==
+X-Authority-Analysis: v=2.4 cv=QcJrf8bv c=1 sm=1 tr=0 ts=69713a29 cx=c_pps
+ a=356DXeqjepxy6lyVU6o3hA==:117 a=356DXeqjepxy6lyVU6o3hA==:17
+ a=kj9zAlcOel0A:10 a=vUbySO9Y5rIA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=tAhwIOlm_SVqoVGHtKUA:9 a=CjuIK1q_8ugA:10
+X-Proofpoint-GUID: Ol9HgFKk7FHVl5mCE0V7C4XPjzoIwDnK
+X-Proofpoint-ORIG-GUID: Q5Kkz-6HkIs5f-A0W5gg_agwLKFeBTgl
+X-Proofpoint-Spam-Reason: orgsafe
 X-Spamd-Result: default: False [-0.46 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_DKIM_ALLOW(-0.20)[plexus.com:s=pps1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258132-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com,linaro.org,plexus.com,nvidia.com];
+	TAGGED_FROM(0.00)[bounces-258134-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
-	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
-	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[morf3089@gmail.com,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[plexus.com,reject];
+	DKIM_TRACE(0.00)[plexus.com:+];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	R_SPF_SOFTFAIL(0.00)[~all:c];
-	TO_DN_NONE(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: 63BFD5D5C0
+	TO_DN_SOME(0.00)[];
+	R_SPF_SOFTFAIL(0.00)[~all];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[danny.kaehn@plexus.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[plexus.com:dkim,dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,LNDCL34533.neenah.na.plexus.com:mid]
+X-Rspamd-Queue-Id: C65F35DC5F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Jan 21, 2026, Konrad Dybcio wrote:
-> Consolidate ramoops, hall sensor, pm660_charger, pm660l_wled, regulators
+Hi Andy,
 
-Good suggestions. For v2 I will:
+Finally was able to perform the last tests needed before sending out
+v13, but wanted to close the loop on your final questions from v12:
 
-1. Move ramoops to common with default configuration
-2. Enable hall sensor by default in common, disable in devices without it
-3. Move pm660_charger and pm660l_wled enable to common
-4. Move common gpio-reserved-ranges to common dtsi
-5. Compare and consolidate regulator settings where identical
+On Wed, Nov 26, 2025 at 11:23:11PM +0200, Andy Shevchenko wrote:
+> On Wed, Nov 26, 2025 at 01:32:51PM -0600, Danny Kaehn wrote:
+> > On Wed, Nov 26, 2025 at 08:27:19PM +0200, Andy Shevchenko wrote:
+> > > On Wed, Nov 26, 2025 at 11:05:25AM -0600, Danny Kaehn wrote:
+> > > > For ACPI, the i2c_adapter will use the child with _ADR Zero and the
+> > > > gpio_chip will use the child with _ADR One. For DeviceTree, the
+> > > > i2c_adapter will use the child with name "i2c", but the gpio_chip
+> > > > will share a firmware node with the CP2112.
+> > > 
+> > > Hmm... Is there any explanation why DT decided to go that way?
+> > 
+> > I don't have an explanation, but Rob H. had directed that I make this
+> > change in [1].
+> > 
+> > In v11, I then removed that child node for both ACPI and DT, hoping to
+> > maintain unity, but you had directed that wouldn't be intuitive for ACPI
+> > in [2].
+> > 
+> > Thus, in this v12, I have just entirely split the two, as it seemed
+> > unlikely that any compromise to unify the schema between the two
+> > firmware languages would be possible for a change/driver this
+> > inconsquential to the overall kernel.
+> 
+> Even though, would be nice to try to get a rationale from Rob on this.
+> Then we can put it in the commit message to explain. Otherwise it will
+> confuse history diggers in the future.
+>
 
-sdhc_2 status must remain per-device since jasmine/platina lack SD slots.
+Will attempt to see if I can get them to weigh in.
 
-Thanks for the review!
+> ...
+> 
+> > > > +		device_set_node(&dev->adap.dev,
+> > > > +			device_get_named_child_node(&hdev->dev, "i2c"));
+> > > 
+> > > Here we bump the reference count, where is it going to be dropped?
+> > > 
+> > > Note, in the other branch (ACPI) the reference count is not bumped in
+> > > the current code.
+> > 
+> > Great point, forgot that I had dropped that handling in v9. The old
+> > behavior was that the CP2112 driver maintained a reference to each node
+> > during the lifetime of the device (and released during probe errors,
+> > etc..). I'm still a bit confused as to whether that is correct or not,
+> > or if the references should immediately be dropped once they're done
+> > being parsed during probe()... My understanding previously was that I
+> > should keep the reference count for the child fwnodes for the lifetime
+> > of the CP2112, since the pointers to those are stored in the child
+> > devices but would usually be managed by the parent bus-level code, does
+> > that seem correct?
+> 
+> While there is a (theoretical) possibility to have lifetime of fwnode shorter
+> than a device's, I don't think we have or ever will have such a practical
+> example. So, assumption is that, the fwnode that struct device holds has
+> the same or longer lifetime.
+> 
+> Note, I haven't investigated overlays (DT and ACPI) behaviour. IIRC you
+> experimented with ACPI SSDT on this device, perhaps you can try to see
+> what happens if there is a confirmed that the above is not only a theoretical
+> problem.
+> 
+> TL;DR: I would drop reference count just after we got a respective fwnode.
+> 
 
-Gianluca
+Finally got a chance to test this, attempting to apply SSDT overlays at
+runtime via configfs to instantiate an I2C device on the CP2112's I2C
+bus. I didn't dig terribly deep, but both with and without the fwnode
+reference count bumped, the I2C device instantiation happened as
+expected when loading the overlay. I'm sure there's more nuanced cases
+and things to dig in here, but seems like leving those references
+dropped is the right thing, as you say.
+
+
+
+Thanks,
+
+Danny Kaehn
 
