@@ -1,277 +1,129 @@
-Return-Path: <devicetree+bounces-258108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258109-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eCrvDnY2cWnKfQAAu9opvQ
-	(envelope-from <devicetree+bounces-258108-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 21:26:30 +0100
+	id oKkUKTM8cWnKfQAAu9opvQ
+	(envelope-from <devicetree+bounces-258109-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 21:50:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBEBA5D2DE
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 21:26:29 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 516F55D9CD
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 21:50:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 0BE9136C5A5
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 19:17:12 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C4E02AACB05
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 19:56:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 129BE36A024;
-	Wed, 21 Jan 2026 19:17:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E10303BC4DD;
+	Wed, 21 Jan 2026 19:56:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="S7vgo0dO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cX1GuQ6M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 315C532FA29;
-	Wed, 21 Jan 2026 19:17:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8878238A9AB;
+	Wed, 21 Jan 2026 19:56:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769023026; cv=none; b=pcIfDRL3UK4/1Cl//BFmybzYpm8We3nOFXtXdwH9CNUqaLtiQgZZWJifKjIdqyFUwZ0d+HCdNT1kDwzS3P5oiRt3uu061U+jnx6qOunKp8ljk211x141x2oK61HGmlEdkc+iz1Yw7GEWWBaF02OpCxoTB0w00kgtZrxxFtN1K6M=
+	t=1769025372; cv=none; b=qYet6nHq5FSrpA9rSpyLfMDj6URX1Bg9D/fMEoHqd7s8DtffqQxp1GDh2HmX7tp4KVEluVgm8lCNXld/DxCHUTTE6MsXONx6tb+rKONKwv9SdwarzEsvZ851+Mee6AGRIyBLzPEwH75QbrfD2IlXfabtODX44NSLTHrl3HwtYJM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769023026; c=relaxed/simple;
-	bh=WKT4K2OWmXphrsrK+FZH1Be2GwH/CcJ9u3AFpmT0jUc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lLIt/DtAU0Zfz4yur72JN0W1HRR9UWSDR5Ca5E1MFjl/Lyh2qf1kcO7selklxlc5gR6VzUQnSn7Q2ZCGyHQLD/qcg0dXQ0IHXRcSBIHnUYqNaDcDzjfyyE2RXzIftA14nvvc5uYW9Fr7OAOYtkb6BKI4G+TlYHhsGDdPbmsBVrM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=S7vgo0dO; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1769023024; x=1800559024;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=WKT4K2OWmXphrsrK+FZH1Be2GwH/CcJ9u3AFpmT0jUc=;
-  b=S7vgo0dOM4IOJB0wGE6TAsDGsvJMY4WIGGOaKsi8cOh6s/h0bHMxOo0w
-   lGgq3byDl/N0atmKCDR2Ckgw8ETSpZTqoeiBvGmP6auDvzM/8u77MUT1h
-   LNrf1jUQUydniLoJH5mpkARVyviyHKlB9lDd+yitKLb+2dkkRVIi14NbG
-   5Z5AFeTQNm5nPHYTHxGfo73YkIfKODWx9aW2y1PFE+j5WreqMNYAZwZkm
-   MI1LekXXiQr5sZ7Tzpjq3Oy8PwV2nqEsQUT/GR35dToYG4tsBMRt8X8q4
-   PnrQHlapxbHVTe4sS172EAktqKajVV1ww6BIvyQBxSuQHMjB1v7aCExuC
-   A==;
-X-CSE-ConnectionGUID: QDmoLWEmT2KCzgbfvNTzHQ==
-X-CSE-MsgGUID: Pq6XxXLtTNSVT4/ves8lww==
-X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="70425235"
-X-IronPort-AV: E=Sophos;i="6.21,244,1763452800"; 
-   d="scan'208";a="70425235"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jan 2026 11:17:04 -0800
-X-CSE-ConnectionGUID: Sl+Ls0l+QDGO8dgpVVM22g==
-X-CSE-MsgGUID: lCBgPaCASaOclwJwG4zQLw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,244,1763452800"; 
-   d="scan'208";a="211550219"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by orviesa005.jf.intel.com with ESMTP; 21 Jan 2026 11:16:59 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vidhI-00000000RgL-3W1o;
-	Wed, 21 Jan 2026 19:16:56 +0000
-Date: Thu, 22 Jan 2026 03:16:16 +0800
-From: kernel test robot <lkp@intel.com>
-To: Pankaj Gupta <pankaj.gupta@nxp.com>, Jonathan Corbet <corbet@lwn.net>,
+	s=arc-20240116; t=1769025372; c=relaxed/simple;
+	bh=KRuQ5pNsRsyb6ku5DqaFz+TODnZO/V4iVGcayYbM/Cc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ZvIi6pbJhWoBvg4y2x44JeSTo8rxF6W6QOofBVXXaJyDUtch70Bm2hr49Oo49m9415O+Lfn5pXcdqI5XxRFVny2vEzRrItHGTJm1CsRGRwPRNxiD1L5lugkrv+jGWnGezU8Mmks95z1Y98uD8ixU5lLbgKT5Fw55Ucnzt1nOzME=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cX1GuQ6M; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F02FC16AAE;
+	Wed, 21 Jan 2026 19:56:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769025372;
+	bh=KRuQ5pNsRsyb6ku5DqaFz+TODnZO/V4iVGcayYbM/Cc=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=cX1GuQ6MePm+8zs+7Dfc/i09+ZZMItUNvuWzlz7sILdsGJOovHrsV0FS+IleKAmA4
+	 q/Cz7iq5RrLNsmCOqesznG67j4j5xh45HiMAZlnyx19rucsbjbX8oV/Q7mWI0/x8L7
+	 emdQHeJyyNTIt8o38/U3YUP8K/pmx2AZCL7HWkX9nUCmCjPKzL49P2ixUJbGGU9/xM
+	 pvlBvwqTn7sSZprzE3baiXiWOOKvsNS0DdaCijhwwZFkjyp9rOsjetPjnGkbpP8gpy
+	 7S2fRioZx1oR2k5fWscBtAFJuFzVytvvGdf4Aa/rQohzIJKkmZgUoC5nLFv7JT5yvu
+	 VZ46WFvY04SAw==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	Frank Li <Frank.Li@nxp.com>
-Subject: Re: [PATCH v24 5/7] firmware: drivers: imx: adds miscdev
-Message-ID: <202601220225.eSj782As-lkp@intel.com>
-References: <20260121-imx-se-if-v24-5-c5222df51cc2@nxp.com>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexey Klimov <alexey.klimov@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Srinivas Kandagatla <srini@kernel.org>,
+	Ekansh Gupta <quic_ekangupt@quicinc.com>
+Subject: Re: [RFT PATCH v3 0/2] Adsp fastrpc support for sm8750
+Date: Wed, 21 Jan 2026 13:56:02 -0600
+Message-ID: <176902536623.1171053.13192258652095595279.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20251209-sm8750-fastrpc-adsp-v3-0-ccfff49a8af9@linaro.org>
+References: <20251209-sm8750-fastrpc-adsp-v3-0-ccfff49a8af9@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260121-imx-se-if-v24-5-c5222df51cc2@nxp.com>
-X-Spamd-Result: default: False [0.54 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258108-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	TAGGED_FROM(0.00)[bounces-258109-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[nxp.com,lwn.net,kernel.org,pengutronix.de,gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DMARC_POLICY_ALLOW(0.00)[intel.com,none];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[6];
-	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[01.org:url,intel.com:email,intel.com:dkim,intel.com:mid,ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: EBEBA5D2DE
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo]
+X-Rspamd-Queue-Id: 516F55D9CD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Pankaj,
 
-kernel test robot noticed the following build warnings:
+On Tue, 09 Dec 2025 07:37:58 +0000, Alexey Klimov wrote:
+> Please test these changes therefore RFT tag. The fastrpc testing
+> application under linux doesn't work for me but I was told there
+> is a setup available somewhere in Qualcomm where this can be tested
+> (perhaps android?).
+> 
+> Changes from prev version:
+> - split patches into two: one adds mem node, second one
+>   adds fasrpc nodes.
+> - updated commit description.
+> 
+> [...]
 
-[auto build test WARNING on 6c790212c588fddeb0d852f2790840753bb604b1]
+Applied, thanks!
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Pankaj-Gupta/Documentation-firmware-add-imx-se-to-other_interfaces/20260121-171044
-base:   6c790212c588fddeb0d852f2790840753bb604b1
-patch link:    https://lore.kernel.org/r/20260121-imx-se-if-v24-5-c5222df51cc2%40nxp.com
-patch subject: [PATCH v24 5/7] firmware: drivers: imx: adds miscdev
-config: sh-allyesconfig (https://download.01.org/0day-ci/archive/20260122/202601220225.eSj782As-lkp@intel.com/config)
-compiler: sh4-linux-gcc (GCC) 15.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260122/202601220225.eSj782As-lkp@intel.com/reproduce)
+[1/2] arm64: dts: qcom: sm8750: add memory node for adsp fastrpc
+      commit: 0bcf9ca23a873e5208a32a7e8b908a6002babc8f
+[2/2] arm64: dts: qcom: sm8750: add ADSP fastrpc-compute-cb nodes
+      commit: be9d54c35312479ed92c85aec3cd43153513210d
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202601220225.eSj782As-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/firmware/imx/se_ctrl.c: In function 'se_ioctl_cmd_snd_rcv_rsp_handler':
->> drivers/firmware/imx/se_ctrl.c:504:51: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
-     504 |         if (copy_from_user(&cmd_snd_rcv_rsp_info, (u8 __user *)arg,
-         |                                                   ^
-   drivers/firmware/imx/se_ctrl.c:585:26: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
-     585 |         if (copy_to_user((void __user *)arg, &cmd_snd_rcv_rsp_info,
-         |                          ^
-   drivers/firmware/imx/se_ctrl.c: In function 'se_ioctl_get_mu_info':
-   drivers/firmware/imx/se_ctrl.c:619:26: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
-     619 |         if (copy_to_user((u8 __user *)arg, &if_info, sizeof(if_info))) {
-         |                          ^
-   drivers/firmware/imx/se_ctrl.c: In function 'se_ioctl_setup_iobuf_handler':
-   drivers/firmware/imx/se_ctrl.c:640:33: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
-     640 |         if (copy_from_user(&io, (u8 __user *)arg, sizeof(io))) {
-         |                                 ^
-   drivers/firmware/imx/se_ctrl.c:702:26: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
-     702 |         if (copy_to_user((u8 __user *)arg, &io, sizeof(io))) {
-         |                          ^
-   drivers/firmware/imx/se_ctrl.c: In function 'se_ioctl_get_se_soc_info_handler':
-   drivers/firmware/imx/se_ctrl.c:720:28: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
-     720 |         err = copy_to_user((u8 __user *)arg, (u8 *)(&soc_info), sizeof(soc_info));
-         |                            ^
-
-
-vim +504 drivers/firmware/imx/se_ctrl.c
-
-   496	
-   497	static int se_ioctl_cmd_snd_rcv_rsp_handler(struct se_if_device_ctx *dev_ctx,
-   498						    u64 arg)
-   499	{
-   500		struct se_ioctl_cmd_snd_rcv_rsp_info cmd_snd_rcv_rsp_info = {0};
-   501		struct se_if_priv *priv = dev_ctx->priv;
-   502		int err = 0;
-   503	
- > 504		if (copy_from_user(&cmd_snd_rcv_rsp_info, (u8 __user *)arg,
-   505				   sizeof(cmd_snd_rcv_rsp_info))) {
-   506			dev_err(priv->dev,
-   507				"%s: Failed to copy cmd_snd_rcv_rsp_info from user.",
-   508				dev_ctx->devname);
-   509			err = -EFAULT;
-   510			goto exit;
-   511		}
-   512	
-   513		if (cmd_snd_rcv_rsp_info.tx_buf_sz < SE_MU_HDR_SZ) {
-   514			dev_err(priv->dev, "%s: User buffer too small(%d < %d)",
-   515				dev_ctx->devname, cmd_snd_rcv_rsp_info.tx_buf_sz, SE_MU_HDR_SZ);
-   516			err = -ENOSPC;
-   517			goto exit;
-   518		}
-   519	
-   520		err = se_chk_tx_msg_hdr(priv, (struct se_msg_hdr *)cmd_snd_rcv_rsp_info.tx_buf);
-   521		if (err)
-   522			goto exit;
-   523	
-   524		struct se_api_msg *rx_msg __free(kfree) =
-   525			kzalloc(cmd_snd_rcv_rsp_info.rx_buf_sz, GFP_KERNEL);
-   526		if (!rx_msg) {
-   527			err = -ENOMEM;
-   528			goto exit;
-   529		}
-   530	
-   531		struct se_api_msg *tx_msg __free(kfree) =
-   532			memdup_user(cmd_snd_rcv_rsp_info.tx_buf,
-   533				    cmd_snd_rcv_rsp_info.tx_buf_sz);
-   534		if (IS_ERR(tx_msg)) {
-   535			err = PTR_ERR(tx_msg);
-   536			goto exit;
-   537		}
-   538	
-   539		if (tx_msg->header.tag != priv->if_defs->cmd_tag) {
-   540			err = -EINVAL;
-   541			goto exit;
-   542		}
-   543	
-   544		if (tx_msg->header.ver == priv->if_defs->fw_api_ver &&
-   545		    get_load_fw_instance(priv)->is_fw_tobe_loaded) {
-   546			err = se_load_firmware(priv);
-   547			if (err) {
-   548				dev_err(priv->dev, "Could not send msg as FW is not loaded.");
-   549				err = -EPERM;
-   550				goto exit;
-   551			}
-   552		}
-   553		set_se_rcv_msg_timeout(priv, SE_RCV_MSG_LONG_TIMEOUT);
-   554	
-   555		err = ele_msg_send_rcv(dev_ctx, tx_msg, cmd_snd_rcv_rsp_info.tx_buf_sz,
-   556				       rx_msg, cmd_snd_rcv_rsp_info.rx_buf_sz);
-   557		if (err < 0)
-   558			goto exit;
-   559	
-   560		dev_dbg(priv->dev, "%s: %s %s.", dev_ctx->devname, __func__,
-   561			"message received, start transmit to user");
-   562	
-   563		/* We may need to copy the output data to user before
-   564		 * delivering the completion message.
-   565		 */
-   566		err = se_dev_ctx_cpy_out_data(dev_ctx);
-   567		if (err < 0)
-   568			goto exit;
-   569	
-   570		/* Copy data from the buffer */
-   571		print_hex_dump_debug("to user ", DUMP_PREFIX_OFFSET, 4, 4, rx_msg,
-   572				     cmd_snd_rcv_rsp_info.rx_buf_sz, false);
-   573	
-   574		if (copy_to_user(cmd_snd_rcv_rsp_info.rx_buf, rx_msg,
-   575				 cmd_snd_rcv_rsp_info.rx_buf_sz)) {
-   576			dev_err(priv->dev, "%s: Failed to copy to user.", dev_ctx->devname);
-   577			err = -EFAULT;
-   578		}
-   579	
-   580	exit:
-   581	
-   582		/* shared memory is allocated before this IOCTL */
-   583		se_dev_ctx_shared_mem_cleanup(dev_ctx);
-   584	
-   585		if (copy_to_user((void __user *)arg, &cmd_snd_rcv_rsp_info,
-   586				 sizeof(cmd_snd_rcv_rsp_info))) {
-   587			dev_err(priv->dev, "%s: Failed to copy cmd_snd_rcv_rsp_info from user.",
-   588				dev_ctx->devname);
-   589			err = -EFAULT;
-   590		}
-   591	
-   592		return err;
-   593	}
-   594	
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Bjorn Andersson <andersson@kernel.org>
 
