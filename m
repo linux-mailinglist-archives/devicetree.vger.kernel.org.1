@@ -1,225 +1,175 @@
-Return-Path: <devicetree+bounces-257880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257882-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iFGuBNuycGndZAAAu9opvQ
-	(envelope-from <devicetree+bounces-257880-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 12:04:59 +0100
+	id cPuYChW3cGndZAAAu9opvQ
+	(envelope-from <devicetree+bounces-257882-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 12:23:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B56A55AF3
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 12:04:58 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84EC255EF8
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 12:23:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 433858ECC58
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 10:52:51 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 70D4894AF8D
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 11:03:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 809CD44102D;
-	Wed, 21 Jan 2026 10:52:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF5613E8C63;
+	Wed, 21 Jan 2026 11:03:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="vMyCOHUh"
+	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="CjTbgVW8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from sender4-op-o16.zoho.com (sender4-op-o16.zoho.com [136.143.188.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8468C427A1D;
-	Wed, 21 Jan 2026 10:52:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768992760; cv=none; b=TCkX678+OJywNoscMqBoK1nNVY1eZ5nAG4+rJLBerT+Mkt1dvfZTdJmi7by19WFukF/EY7QMWDiTN3j8yBg8v8/6XlP+Mt+B7kbZA1o8IUsmXxNqOfGTCi3Y0vP67tleZOLd+BpIVwV90aBtvzCmV5COITNuwzgHoLH9wbmCQo8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768992760; c=relaxed/simple;
-	bh=yTO8jiWPy0JTRMih9wPEYaDnyW0tT35H1Sui+h1SpLM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LPltSpVGng7CJYyfKvwe8QoH1w814aY9y4rAc6+mXOw2wWhPzJgzGlwruRVOrZ1JJmDCNYyEO584x7cSOf8yk9ChQPet9idFarwi5/WaX+c7twUMvSVsXDU2ct1E5iJB+H4SSaF+8EiWGkr3kiEHKtk8+jWVtyt0G77iv0/Csv8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=vMyCOHUh; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (2001-14ba-703d-e500--2a1.rev.dnainternet.fi [IPv6:2001:14ba:703d:e500::2a1])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id EB55DA06;
-	Wed, 21 Jan 2026 11:52:01 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1768992722;
-	bh=yTO8jiWPy0JTRMih9wPEYaDnyW0tT35H1Sui+h1SpLM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=vMyCOHUhMl+WSRUGjb4Evlo+u50imJRCgUhz4X7o8suJaM0l/+gCs+GP/d26zUa84
-	 2iRrgZluwDObB7SHpdKHJW+5PXqQ6PTz1OFvKCXgbv/zUtUyzWrT+ZkdwPQ/Z1huCO
-	 5byU5NaBbxzSSzZs4YgYK/D3sfK2CWPO+jOZ4bCc=
-Date: Wed, 21 Jan 2026 12:52:32 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: Jai Luthra <jai.luthra@ideasonboard.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	y-abhilashchandra@ti.com, devarsht@ti.com, s-jain1@ti.com,
-	vigneshr@ti.com, mchehab@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, p.zabel@pengutronix.de, conor+dt@kernel.org,
-	hverkuil-cisco@xs4all.nl, changhuang.liang@starfivetech.com,
-	jack.zhu@starfivetech.com, sjoerd@collabora.com,
-	dan.carpenter@linaro.org, hverkuil+cisco@kernel.org,
-	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, jai.luthra@linux.dev,
-	mripard@kernel.org, Rishikesh Donadkar <r-donadkar@ti.com>
-Subject: Re: [PATCH v9 06/19] media: ti: j721e-csi2rx: add a subdev for the
- core device
-Message-ID: <20260121105232.GD382676@killaraus>
-References: <20251230083220.2405247-1-r-donadkar@ti.com>
- <20251230083220.2405247-7-r-donadkar@ti.com>
- <ee8152c0-daf5-48dd-a2d1-2fafcfeca797@ideasonboard.com>
- <176845899846.9154.18009615769864845946@freya>
- <d9f3335a-d8f4-40cc-b4c4-a93b797a89fd@ideasonboard.com>
- <20260120232521.GE173080@killaraus>
- <8b8e603f-5d04-44ce-91ab-85df8fe0ae94@ideasonboard.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F17312ECEAC;
+	Wed, 21 Jan 2026 11:03:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.16
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768993433; cv=pass; b=V13wyvNgyvQgnTYrGznOy8+gZylqEDIgybnVI5cy2QlvIRR7igO032eKbPtJAvsEnvT9/aslHW+W3QX16a0xt2EthaSgRBfcZfpXadwLA/gV4wJBVEx6p3viwPAAwhK/s2ap17gK7B2J7l4YJ/s348VfjylwcEul4p20MeHMBdk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768993433; c=relaxed/simple;
+	bh=ChAE11uB2J9P96UiiuYNslcAUUgF4nuthjgSsDtHVF0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ELhyzqlaVfPWBK0iWok6AAe3iZiab11b3e0nrX7TKFbE5opRB6Pif3CyHlt9Vf4MNTiKYGGopONo3Ee0oklbwH3Ra7/674Kegejhm0FsEYWJn1wnZKeGFuAhJbrWsan8CGLy4+szd3nHKbe41LPtjCVMR/G87X8GbRXLAMUhtEc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=CjTbgVW8; arc=pass smtp.client-ip=136.143.188.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
+ARC-Seal: i=1; a=rsa-sha256; t=1768993399; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=NxKL92tnsCo6rQLAN9YJNpmmDqvjzt9U4JGe1g7aiwG6AjuvGgMM29zvZN/UuDwVNO4xTRmPvnlbr8Qto9c9vhvO2S5CC2UtaOih6qsYSsNfga1i9DNekZ2zxCTw1VhxEgDXimU0wk8IBBKBq/skYtAinjucySgx5SXuzqV0fgk=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1768993399; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=8lJlN0ug6yApIS1+JqeiBezclov7WidFA1UiDZN5V9U=; 
+	b=efPAjUeiloqUEzONBIcm104uCSYV+Jd7sosEuBvl055uP86GX+KZ5U5CcrcDoRu/hoalQGfjvTbIMHU+zQ2To0W6S39JMHRXpNRaJDepCFAkLjqTv5oP2XUAbgOFgszsV/8NKx3x5p5vn0VlM0++W/sWGd7TJrTcHOHnNaW4OAM=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=pigmoral.tech;
+	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
+	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1768993399;
+	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
+	h=From:From:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:To:Cc:Cc:Reply-To;
+	bh=8lJlN0ug6yApIS1+JqeiBezclov7WidFA1UiDZN5V9U=;
+	b=CjTbgVW8EfrZNxEdESlIHMgnfutX4+6+3f+to8Kp/yx9l8lYvD0k/iIaEY7tKavc
+	pV1m/d6wIrZhRyffdyPIuS4bNTGdSuQuMaU8H68vrRDYsUXj08unjWBHyba0IwvLdBA
+	ce4qJoMXPMrfRcPX8j1hSk9KeAzGC4O7NGe9UNMg=
+Received: by mx.zohomail.com with SMTPS id 1768993396228245.11544303994697;
+	Wed, 21 Jan 2026 03:03:16 -0800 (PST)
+From: Junhui Liu <junhui.liu@pigmoral.tech>
+Subject: [PATCH 0/7] rtc: sun6i: Add support for Allwinner A733 SoC
+Date: Wed, 21 Jan 2026 18:59:06 +0800
+Message-Id: <20260121-a733-rtc-v1-0-d359437f23a7@pigmoral.tech>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <8b8e603f-5d04-44ce-91ab-85df8fe0ae94@ideasonboard.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1NDIyMz3URzY2PdopJk3WRTQzPzlDRDk1SzVCWg8oKi1LTMCrBR0bG1tQB
+ d2m3lWgAAAA==
+X-Change-ID: 20251226-a733-rtc-c5167df14e6e
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Maxime Ripard <mripard@kernel.org>
+Cc: linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
+ Junhui Liu <junhui.liu@pigmoral.tech>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768993386; l=2495;
+ i=junhui.liu@pigmoral.tech; s=20251228; h=from:subject:message-id;
+ bh=ChAE11uB2J9P96UiiuYNslcAUUgF4nuthjgSsDtHVF0=;
+ b=bBFnSuz+/bl9OC2UgQWtIVt3n7YgeDUpeh8pSxTE8n661CU44HU8TTshZjDZ6+L6/JWiLFmCR
+ fqRC/Pat1bsAJ5yrD039wyRQNtfu1ddmLFoVDYojR9IhQvWwLmeUqQG
+X-Developer-Key: i=junhui.liu@pigmoral.tech; a=ed25519;
+ pk=3vU0qIPJAH8blXmLyqBhKx+nLOjcLwwYhZXelEpw7h4=
+X-ZohoMailClient: External
 X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	R_DKIM_ALLOW(-0.20)[pigmoral.tech:s=zmail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-257880-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[baylibre.com,kernel.org,gmail.com,sholland.org,bootlin.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[24];
-	FREEMAIL_CC(0.00)[ideasonboard.com,linux.intel.com,ti.com,kernel.org,pengutronix.de,xs4all.nl,starfivetech.com,collabora.com,linaro.org,vger.kernel.org,linux.dev];
-	DKIM_TRACE(0.00)[ideasonboard.com:+];
+	DMARC_NA(0.00)[pigmoral.tech];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-257882-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[pigmoral.tech:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[junhui.liu@pigmoral.tech,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
-	DMARC_POLICY_ALLOW(0.00)[ideasonboard.com,none];
-	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,ideasonboard.com:dkim,ti.com:email]
-X-Rspamd-Queue-Id: 9B56A55AF3
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,pigmoral.tech:email,pigmoral.tech:dkim,pigmoral.tech:mid]
+X-Rspamd-Queue-Id: 84EC255EF8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Jan 21, 2026 at 09:38:29AM +0200, Tomi Valkeinen wrote:
-> On 21/01/2026 01:25, Laurent Pinchart wrote:
-> > On Thu, Jan 15, 2026 at 02:56:21PM +0200, Tomi Valkeinen wrote:
-> >> On 15/01/2026 08:36, Jai Luthra wrote:
-> >>> Quoting Tomi Valkeinen (2026-01-14 20:51:49)
-> >>>> On 30/12/2025 10:32, Rishikesh Donadkar wrote:
-> >>>>> From: Jai Luthra <j-luthra@ti.com>
-> >>>>>
-> >>>>> With single stream capture, it was simpler to use the video device as
-> >>>>> the media entity representing the main TI CSI2RX device. Now with multi
-> >>>>> stream capture coming into the picture, the model has shifted to each
-> >>>>> video device having a link to the main device's subdev. The routing
-> >>>>> would then be set on this subdev.
-> >>>>>
-> >>>>> Add this subdev, link each context to this subdev's entity and link the
-> >>>>> subdev's entity to the source. Also add an array of media pads. It will
-> >>>>> have one sink pad and source pads equal to the number of contexts.
-> >>>>>
-> >>>>> Support the new enable_stream()/disable_stream() APIs in the subdev
-> >>>>> instead of s_stream() hook.
-> >>>>>
-> >>>>> Reviewed-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
-> >>>>> Co-developed-by: Pratyush Yadav <p.yadav@ti.com>
-> >>>>> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
-> >>>>> Signed-off-by: Jai Luthra <j-luthra@ti.com>
-> >>>>> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
-> >>>>> ---
-> >>>
-> >>> [...]
-> >>>
-> >>>>> @@ -981,48 +1138,52 @@ static int ti_csi2rx_link_validate(struct media_link *link)
-> >>>>>       struct ti_csi2rx_ctx *ctx = container_of(vdev, struct ti_csi2rx_ctx, vdev);
-> >>>>>       struct ti_csi2rx_dev *csi = ctx->csi;
-> >>>>>       struct v4l2_pix_format *csi_fmt = &ctx->v_fmt.fmt.pix;
-> >>>>> -     struct v4l2_subdev_format source_fmt = {
-> >>>>> -             .which  = V4L2_SUBDEV_FORMAT_ACTIVE,
-> >>>>> -             .pad    = link->source->index,
-> >>>>> -     };
-> >>>>> +     struct v4l2_mbus_framefmt *format;
-> >>>>> +     struct v4l2_subdev_state *state;
-> >>>>>       const struct ti_csi2rx_fmt *ti_fmt;
-> >>>>> -     int ret;
-> >>>>>  
-> >>>>> -     ret = v4l2_subdev_call_state_active(csi->source, pad,
-> >>>>> -                                         get_fmt, &source_fmt);
-> >>>>> -     if (ret)
-> >>>>> -             return ret;
-> >>>>> +     state = v4l2_subdev_lock_and_get_active_state(&csi->subdev);
-> >>>>> +     format = v4l2_subdev_state_get_format(state, link->source->index, 0);
-> >>>>> +     v4l2_subdev_unlock_state(state);
-> >>>>>  
-> >>>>> -     if (source_fmt.format.width != csi_fmt->width) {
-> >>>>> +     if (!format) {
-> >>>>> +             dev_dbg(csi->dev,
-> >>>>> +                     "Skipping validation as no format present on \"%s\":%u:0\n",
-> >>>>> +                     link->source->entity->name, link->source->index);
-> >>>>> +             return 0;
-> >>>>
-> >>>> Isn't this an error?
-> >>>
-> >>> Well, the j7 shim subdev introduced here has immutable and active links to
-> >>> all the video nodes, for each DMA channel (taken from DT), many of which
-> >>> may be unused for certain setups, and thus there might not be any valid
-> >>> format on the subdev source pad corresponding to an unused video node.
-> >>>
-> >>> Jacopo had a similar comment on v2, see this discussion (grep for Mali):
-> >>> https://lore.kernel.org/linux-media/4mnlnsj4co3agvln4qsasmgvgwiyoo7yu2h5wyh4rmzzafhm5u@avhnbw7iknms/
-> >>>
-> >>> I know other drivers use a different approach with mutable links, so it
-> >>> would be good if you/Laurent/Sakari can give your opinions on if only one
-> >>> of these two approaches should be taken for multi-stream pipelines.
-> >>
-> >> I see.
-> >>
-> >> Well, I don't have a definite answer. With some thinking both options
-> >> make certain sense. It makes sense to keep the links immutable and
-> >> always enabled, as there's no configuration that can be done. On the
-> >> other hand, it makes sense to require the unused links to be disabled,
-> >> as, well, they are not used.
-> > 
-> > I'm not familiar with the implications this would have on this driver,
-> > but generally speaking, if a stream is added to the media pipeline by
-> > the pipeline build algorithm, then it is expected that applications
-> > would have configured it correctly. Streams that are not used are
-> > expected to be disabled if they would otherwise be added to the
-> > pipeline.
-> 
-> I think the thing here is that the driver creates immutable
-> always-enabled media links between the videodevs and the first subdev.
-> Then, say, if only one stream is being used, only one of those links is
-> actually used, and for every other link the above check fails as there's
-> no stream, so no format.
-> 
-> In TI CAL driver the links were mutable, and unused links had to be
-> disabled. There it made sense as the links had to be configurable (there
-> were two PHYs). Here, there's no configuration needed, so immutable
-> links make sense, but then they're enabled even when actually not used.
+Add support for the Allwinner A733 RTC and its internal Clock Control
+Unit (CCU). Reuse the rtc-sun6i rtc driver while introducing a new
+SoC-specific RTC CCU driver to handle the hardware's evolved clock
+structure.
 
-If the routing table in the subdev does not contain any route that goes
-towards a video node, then that video node should not be added to the
-pipeline by the validation code, and no validation will be attempted. At
-least that's the theory.
+To facilitate this addition and improve driver modularity, transition
+the binding between the RTC and its internal CCU from direct
+cross-subsystem function calls to the auxiliary bus. Also extract shared
+IOSC and 32kHz clock logic into a standalone ccu_rtc module for reuse
+across newer SoC generations.
 
-I see that this driver implements .link_validate() as a
-media_entity_operations, not a subdev operation. I wonder if that could
-explain the issue.
+The A733 implementation supports hardware detection of three external
+crystal frequencies (19.2MHz, 24MHz and 26MHz), which is represented in
+the driver via read-only mux operations. Implement logic to derive a
+normalized 32kHz reference from these DCXO sources using fixed
+pre-dividers. Additionally, provide several new DCXO gate clocks for
+peripherals, including SerDes, HDMI, and UFS.
 
+---
+Junhui Liu (7):
+      dt-bindings: rtc: sun6i: Add Allwinner A733 support
+      rtc: sun6i: Bind internal CCU via auxiliary bus
+      clk: sunxi-ng: sun6i-rtc: Add feature bit for IOSC calibration
+      clk: sunxi-ng: Extract common RTC CCU clock logic
+      clk: sunxi-ng: mux: Add mux read-only clock operations
+      rtc: sun6i: Add support for A733 RTC
+      clk: sunxi-ng: Add Allwinner A733 RTC CCU support
+
+ .../bindings/rtc/allwinner,sun6i-a31-rtc.yaml      |  38 +++-
+ drivers/clk/sunxi-ng/Kconfig                       |   5 +
+ drivers/clk/sunxi-ng/Makefile                      |   5 +
+ drivers/clk/sunxi-ng/ccu-sun60i-a733-rtc.c         | 204 +++++++++++++++++++++
+ drivers/clk/sunxi-ng/ccu-sun60i-a733-rtc.h         |  18 ++
+ drivers/clk/sunxi-ng/ccu-sun6i-rtc.c               | 184 +++----------------
+ drivers/clk/sunxi-ng/ccu_common.h                  |   1 +
+ drivers/clk/sunxi-ng/ccu_mux.c                     |  11 ++
+ drivers/clk/sunxi-ng/ccu_mux.h                     |   1 +
+ drivers/clk/sunxi-ng/ccu_rtc.c                     | 136 ++++++++++++++
+ drivers/clk/sunxi-ng/ccu_rtc.h                     |  44 +++++
+ drivers/rtc/rtc-sun6i.c                            |  38 +++-
+ include/dt-bindings/clock/sun60i-a733-rtc.h        |  16 ++
+ include/linux/clk/sunxi-ng.h                       |   2 -
+ 14 files changed, 533 insertions(+), 170 deletions(-)
+---
+base-commit: 24d479d26b25bce5faea3ddd9fa8f3a6c3129ea7
+change-id: 20251226-a733-rtc-c5167df14e6e
+
+Best regards,
 -- 
-Regards,
+Junhui Liu <junhui.liu@pigmoral.tech>
 
-Laurent Pinchart
 
