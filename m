@@ -1,134 +1,86 @@
-Return-Path: <devicetree+bounces-258156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258157-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qL3uN4JhcWkHGgAAu9opvQ
-	(envelope-from <devicetree+bounces-258156-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 00:30:10 +0100
+	id uGHHFIRncWmaGgAAu9opvQ
+	(envelope-from <devicetree+bounces-258157-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 00:55:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57E145F886
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 00:30:10 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id F31F45FB6B
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 00:55:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 856DF4FB402
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 23:28:21 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E63F24C26E1
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 23:55:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79BB8347FE1;
-	Wed, 21 Jan 2026 23:28:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0365C449EA6;
+	Wed, 21 Jan 2026 23:55:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lpdbYA78";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="fjaaT9ST"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="UqAc/n8A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EEC93491C2
-	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 23:28:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2B1F3E9F76
+	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 23:55:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769038097; cv=none; b=j/fmP9MJvrwk1t7BrkAYu2APWHNIsLt+ir+ewZ2FL+7rjKdugsM2BYw9He+SlCz/c4AYb5y2fauUbmcUv7RfGThFuwPbYLi7yykuM8tBQHHvcFyKReYWJkYc09O+6mfqTvQW8hfq54QcG2XZDG1UouqxYfs9XTDM6m/D06OHfZo=
+	t=1769039738; cv=none; b=HKTLmHjSlkZXirvs+wx+HFzsloYvkRWpPYIK8tcy3lAvvgpCzUf0nJZga5XF9CHp8MIK4GW4jhpLNGlv4uqU5ejm6qcop81EleS7o1NdrmHTyupvmlqruxD0bYVq+zSF7y/Q+egR4yETvTmV/8GH1CGf938PFfA6GDqNrWzEjK4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769038097; c=relaxed/simple;
-	bh=2wdp9GH8GOWp/loXnQjcloFEnSMbf9d5DNbDdTk75vQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FjMMwAjfxQ8KugqBEhquCe47gzN4kPrsuOwQjkpaBDqt8Hlf75qAUpJMYlExepO9i6AWNpBumC6eWMa62FJ9pSTPWkpnMAtwEKJY2FdKj0CjuQTVoLHwNJaZOtg6D6eYpv1QJQJW6rxa0q/VW9YX67HsSv5xTM/otY15/XbFtLA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lpdbYA78; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=fjaaT9ST; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60LDxm6G3620342
-	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 23:28:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	+eZGwYuNL/9pmtkPhO1CHKv5sEsHAdFAmDE3I8abf10=; b=lpdbYA781GOrNi3B
-	+vtAccJhathnY7Tv8DoTtgLyMDS8oWWIEhOim0DftASW0deFLXViBYAEnRUUz8oB
-	wX62B1552q+qpYUK9fjgDRphdHyPxFTgzRQGkIobX9WQ6sKxZdNQLxtPlqmlPKdl
-	rsfTvUCIn56R/gb6Os+MvqAXtcGRLh2HZ7hfG/eX4X7372hRT9ggawwZBxqbGWWv
-	Lwezhs1mmKWsDXM87vUhFfBPPjOJo77DbcittOzDU/r8xFnk5UrHG0yTmAOgG/7r
-	GQuZz4cRfSYTpU4j9gOW3OZMqMwVE6PQdXRzTDXXpvC9KKSrUkXNyFJyTHWqVs/M
-	Bxwvfg==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bu062ht7r-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 23:28:14 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8c6ae763d03so47211985a.3
-        for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 15:28:14 -0800 (PST)
+	s=arc-20240116; t=1769039738; c=relaxed/simple;
+	bh=wqs3ot1lzYp1uxjm9+RCV8ylRHq0mF6h93+LA8PtmTw=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=ngowAj0pCtZXEoh1ni6F+v6yjZObFkYPKLViTL2SthH9O8PTjgBFpEZMomhUvFyXHK7NXla2HxordO9Hq0lh7TYStzGRr1baZoyIMnRutQt+pH283G+l9aycZOvgfT84NBn0Fd4XidYQflAEUmtI76Xi0aGT+/8IhoBl5z0yBGk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=UqAc/n8A; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-29efd139227so2877095ad.1
+        for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 15:55:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769038093; x=1769642893; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+eZGwYuNL/9pmtkPhO1CHKv5sEsHAdFAmDE3I8abf10=;
-        b=fjaaT9STCe138Lc7dnRJAdsw1oKi46H4qhY6TBuj/QjxVzYHccPWVAsvO7IvifQIrf
-         JJafuXM9n4lcSXwwuwDdSWuwEdEsHkSbULI9aSKX+UhQDJ939Vx5YLeuISfEt3UfFmKO
-         CBJr7JimU6ejebGt9qTDTvsPTuKlUWt/StaCxxbKmbk0EMkIZJFp5vB0YXLxtGOcio5N
-         /Kt3y+qGKilIyk+R+/JaP4CcOwKy0LHlMYynk7aJh+Ts1V5Y9LwcnYyvyTqdz3ceVXJM
-         5oPlAMbpwsbDCZavbtakl0OeVl6Q20mNRN73irZuWb4edlXfgxCOLFpYH+//hYnBUdEN
-         aGyA==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1769039735; x=1769644535; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=PjllSAPGQe9z4wytVvsWXJp6Q+2QEqXJfq4b/O+DazI=;
+        b=UqAc/n8AoHRDmZF/KIIQqbnV6wOhlWf7BQky21fuHrQMoa8G0mPnIrEk2sYfuu8jxf
+         vHqcOxiI8Px4E/2qkzkkokAyAWq8W9EpNQ9+Gg+Vp9H6wsV+Q+36GCVyQpoS4yUaUkzb
+         8oBmRVFwnVGQ+ZA0xrZg1Kx9mt5UoEZ1H2/NTIw5vP9gebjbSAvkEEcMXwLu/vcDub4O
+         ZDhdCbTQOWOAv8lA4UOtxINXrQGyQ7IWl5lYpRerROsWu2ENHnfZ3auhxd9zzZ+ucZ9Q
+         K+bmdkI1O2nIZPxitYlNWUyFYF0+B6Mfg97OKCrajV8zgq/6MKCCoWBW/oJlQErMkl8Q
+         bZ0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769038093; x=1769642893;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=+eZGwYuNL/9pmtkPhO1CHKv5sEsHAdFAmDE3I8abf10=;
-        b=tKCH7OfXqNiAsdn29GNu4jtM5SfCSIZEE/LRnI/ZUG7sQva3PsyVHV0s4YCX0p1rE4
-         MNlGgg49LY07oiCikiZu3lwTnoJ75u5erN/8cNXvSRKZNvOATknDdgM+A31L0jy4/Fh/
-         mOIY9g/F9nNhM19VzUOUquD6kmdCmFgkzwmtsFXYj0E1nt+3uQ0fzZHEGoZk8QU9BYXe
-         ulJB4Ti99W1gQ6vdvzAyqxOMh88XCc9kdQtnhfMXC2bi6V04zwPJJsqKXIvB3rbCw07K
-         UTmggMtXfXoH+eMI1cr3Qar/xCTgiYidhb9J8ZpaLy05rLUBBlz2SaLUKa7T89Z7iY/5
-         jrHg==
-X-Forwarded-Encrypted: i=1; AJvYcCXsRA8Z/uLaucuJ46dEmIXNStoUXVJiqTTXp23mnjnW9Tdg7WeovZOCQ7I8bDuLyz7dxEAQFpNrC0ha@vger.kernel.org
-X-Gm-Message-State: AOJu0YwI6GrTVR+vYBUx/PeORi5XZonNmy1SMlbouyPSxTzUXwMlIauv
-	ypSbi6uW4kaUzwU//2gGDmLnSnZOX4UpOyyGBubITRYDdED+gl8WECFiJC5bnjbq1K4oBQ9X7Tk
-	+hG8tHgrxQXhwIn0o1ip9jksRdqgd8e3ou6NNB6Xj17Iq2PCF+q5fFrojpDw6Zwty
-X-Gm-Gg: AZuq6aLsyBub5xVk3YXjUJ8fIdKS48T7ccrJQqfRgsecNQGsBqSiVMDg5ZF6qnKJ1ZI
-	edc+DDhuCCXn/YEvdmo11xY4oy8qN/uDzGBiDMcCXayir6YtdPtksQPisRiJllx8d7ndSyH6LJt
-	MLpVsAjZiyMbl4dfn1iAqkEWTTLCTLorm2Qw4oaAwy6tzONQcUIBfODLuZtPj2UZ9e4nWECsrgy
-	pZh5GMtF0W9E9ByqBrKbVONlI9oT3tY+3pvxc+hnjQw3dTqccr4fyknGhXZpquC1LcfwMEflDbe
-	AiNzCVdiEhhvtmQQEQ20El3conMVgOknNOEM7f1XOe/kpwT/pdHwf3xccc72nsKxWMRlYzU/8pw
-	h73zBI63cGpdpON5Bc3rLDhPIzAP4Z5e9O4ZJWPFU0Hm3JBUfzyp5fPd0qu8lyr1UhyJvDZEERg
-	LmPPETThCBOVdV4CWa84Qf4aI=
-X-Received: by 2002:a05:620a:1992:b0:8c5:3143:84ef with SMTP id af79cd13be357-8c6ccf06c21mr849192885a.47.1769038093525;
-        Wed, 21 Jan 2026 15:28:13 -0800 (PST)
-X-Received: by 2002:a05:620a:1992:b0:8c5:3143:84ef with SMTP id af79cd13be357-8c6ccf06c21mr849190485a.47.1769038093060;
-        Wed, 21 Jan 2026 15:28:13 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59baf3976dbsm5159393e87.66.2026.01.21.15.28.11
+        d=1e100.net; s=20230601; t=1769039735; x=1769644535;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PjllSAPGQe9z4wytVvsWXJp6Q+2QEqXJfq4b/O+DazI=;
+        b=F3W812gnmL+yMhXxc45xrO01M11y0PZMtXtPyK2Prjz6rTeZT8kcEUEsFHt2FC1wON
+         /le32liL5OvkIvvR3eds9xwNP22Fy285ViIaa11LZ5lIYBgu6x2uKP4dkykBa4Gj6szm
+         AZFKquQZxLnDmR6BBAlkGDqSHd7nEMFlC2fViDpM+VgV+N/3G0zHzOI1uJ9+3D8tFvVX
+         5M4JsNYiZ3c4q5RpaysD3lWDNiLNgxYcm888EDoL0Vnv9y1LU7zd5NPcnZZHlzktXH8A
+         jcTK4vBLJVLSd3btH63tD+f332zxsieQy3Us6GcQGJAKcjVZmJsr2CXVuVyrC3q3o7TW
+         O+/w==
+X-Forwarded-Encrypted: i=1; AJvYcCUMtNSeg1tDCVatpgVy/vRVhw1mo2CqKXHAJq4xEgVzEm4oLBmNd/lrVqJQBPzUoKTvweotTY1RivTl@vger.kernel.org
+X-Gm-Message-State: AOJu0YzWe/zs/pMbGmk6cHfsTmny1vDxdqYitEhKCwHhFaw7ij4EvVqC
+	Vgf+Z+htLawUpl485mKhHQ+4vrlgpy42kPaG3FM2KpQ/q8oTaqJqYT9cSPI2qdNnS/iQbkpYuU0
+	Juqc73Xs=
+X-Gm-Gg: AZuq6aIA75L9nKz9AgMp1a4crHzuf+AjD6It34oyYdWfc2R1C8qN8z+/WF+8Ku1F4hu
+	2x8kNsP3JOCnpBV8AiiRH3H9e6aBAgMYvaZWMP08dVfswdNN8DE1KLXIDTvLw5g1xLJnBs0u6cW
+	HtwqfMOmrFtdV6Go49JWLZG7YYqcuz20cE2UnVzHctOUXEE0wEWoDnk2WMh6if8+Z16gqF5+ZA9
+	ORd8L+Qrn8KvVx0PwMEywh2/xAsbSdfrC1vyRkZZxw9vduLKFptA+nVn7Sk5Tx1IR44jKlXRGZL
+	/R6UjJ+k9FHwIla3P9IEgZTa/QiMJBS1bRu6g5DV0016yCYDqLkqB8g30eB7DFRnRYjRuJJ2Zul
+	YKonCh22nxtSos0C66NMqBhEPPfsheMJj1UZD+j6rL2kXPc+Npz6mog2+PS97gqthZCYaDybT4W
+	Yocb6aIn6f
+X-Received: by 2002:a17:902:e750:b0:2a7:7872:8f52 with SMTP id d9443c01a7336-2a77872a27bmr53983595ad.26.1769039734673;
+        Wed, 21 Jan 2026 15:55:34 -0800 (PST)
+Received: from localhost ([71.212.200.220])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a7190d16a8sm165990235ad.39.2026.01.21.15.55.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Jan 2026 15:28:12 -0800 (PST)
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Rob Clark <robin.clark@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Sean Paul <sean@poorly.run>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jesszhan0024@gmail.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Jordan Crouse <jordan@cosmicpenguin.net>,
-        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Connor Abbott <cwabbott0@gmail.com>,
-        Akhil P Oommen <akhilpo@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v5] drm/msm/a8xx: Add UBWC v6 support
-Date: Thu, 22 Jan 2026 01:28:09 +0200
-Message-ID: <176903808259.3665431.13908205509840299317.b4-ty@oss.qualcomm.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260121-kaana-gpu-support-v5-1-984848af12e4@oss.qualcomm.com>
-References: <20260121-kaana-gpu-support-v5-1-984848af12e4@oss.qualcomm.com>
+        Wed, 21 Jan 2026 15:55:33 -0800 (PST)
+From: "Kevin Hilman (TI)" <khilman@baylibre.com>
+Date: Wed, 21 Jan 2026 15:55:33 -0800
+Subject: [PATCH RFC v2] of: Add of_parse_map_iter() helper for nexus node
+ map iteration
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -136,76 +88,308 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=B5i0EetM c=1 sm=1 tr=0 ts=6971610e cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=e5mUnYsNAAAA:8 a=75Vji5L2PsKrzm2Ba-oA:9 a=QEXdDO2ut3YA:10
- a=PEH46H7Ffwr30OY-TuGO:22 a=Vxmtnl_E_bksehYqCbjh:22
-X-Proofpoint-ORIG-GUID: 1gzV0bv7n04r2nXnyD2IHZA9ecgLc8rV
-X-Proofpoint-GUID: 1gzV0bv7n04r2nXnyD2IHZA9ecgLc8rV
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIxMDE5NyBTYWx0ZWRfX1iv06zPdfeff
- BZ5wv0b1sHSoMklP2cK+xzPxiVlrNbAErStd0HbLvOeEEVXTopX1T648isLaYsgfWmoNtJy3gzZ
- a45kxRA4x/UIIYsgYUlj0RYlsX/AcgXCjcAwDDp4oWVEAsAYsF3N84VrZ8Oh2n/G9KvzpgGDDgG
- NODxX9dilFA6X6Yx9fIxTwa3qhu/VgsApj2cqH1WQlgOIu05fRrpd6r0vilCIc2T7mczDan5h0I
- KWRiiTjcxQguTowR9Ej1tuMzH0ciExmuE0CvaaPsFR67kHTn1qdMt4s99j2T7MH1ikpkRC5M/Ls
- bkn/hpuflIwGXvESZAs1gdkaRzRv8y77ZbjL2HoOgthw6ABt05e2VC3f9YvKMjQ+42d9BnHqnix
- 76Xtmj00S8/WXkMMNsm0Whist/gqXvrwDWtpRHqBjzVUXoEPzvbKdvMTdybXf1hNyP4tAKx3vdD
- aBqXqncnZKmXIb2dzhw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
- definitions=2026-01-21_04,2026-01-20_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 spamscore=0 priorityscore=1501 impostorscore=0
- malwarescore=0 adultscore=0 bulkscore=0 phishscore=0 suspectscore=0
- clxscore=1015 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2601210197
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260121-topic-lpm-of-map-iterator-v6-18-v2-1-a40bf8e91045@baylibre.com>
+X-B4-Tracking: v=1; b=H4sIAHRncWkC/42PQQrCQAxFr1KyNtLU2qorQfAAbsXFdJpqoHXqz
+ Dgo4t0N1QNIVj8//z/ygsBeOMAme4HnJEHcVUUxy8BezPXMKK1qKPJiSURrjG4Ui/04oOtwMCN
+ KZG+i85gqpBWaisqyLouFaS1oy+i5k8dEOMJhv4OTLi8SNPGcqIkm629AItTp8rxetnVNZrFtz
+ LOXxvPcugFO7y/U8+2u38QfuTGBUf1B4iZL1VxB3pJevz9Yh9CQAwEAAA==
+X-Change-ID: 20251119-topic-lpm-of-map-iterator-v6-18-a61447423adc
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ devicetree@vger.kernel.org
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, linux-pm@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+X-Mailer: b4 0.15-dev-47773
+X-Developer-Signature: v=1; a=openpgp-sha256; l=8833; i=khilman@baylibre.com;
+ h=from:subject:message-id; bh=wqs3ot1lzYp1uxjm9+RCV8ylRHq0mF6h93+LA8PtmTw=;
+ b=owEBbQKS/ZANAwAIAVk3GJrT+8ZlAcsmYgBpcWd1WL993O8PYDXTzo62Wq4RlUwG0W/MaQPWh
+ eF9IsQAKHmJAjMEAAEIAB0WIQR7h0YOFpJ/qfW/8QxZNxia0/vGZQUCaXFndQAKCRBZNxia0/vG
+ ZXicD/9NPuh6q7O6rUhTKer/d8KxiaMnleU+oRey6slWvjYWEV5yzUH1zc+Gho2G6bmwjz7vjMH
+ OQvvJS/D4Fz3JGhdiOF0jaiSV6NmAq8WE2qqGHG7ar/rWgaOSUTl7YfUjkVyLtaVMO5Z6nlocTO
+ jvQXEINNDxPvGtv6zX9heQ2h3E9Rk9Dnaxh2YIfntzvl/YApQzB5Jgts6N4FB+AI7W0Et7zDoSU
+ W1k/I5wWJMk804zV27QNX2IhnNxZM0P9mW3DR24GVI4c+lpJ8lR3Oe5HncwjFWqWemdJnXhhq8Z
+ Ck2WPFjm1AfrozOYp6U630WWR3RVeDCVUO9o8JqvjmNbL+BsALf85TBQBhBTBG4HZ/XgeqNVZaR
+ NUmaz5UWmba2eco9kplFLd10gkGJhxfs7eTxP8JllHsnv+fssQV/LXK5JRXgy7BOrV4l1/qWaH7
+ X/Xmd/+GyLCszXKAGmA7vFWLdJsiRZFeXKM12iERrujgi9pmfsyw5aY+FlofXPe7Fq46Y280pJ8
+ g3BrAvqwJvnaE9lqgyTSAHKLAoFhvN5UgbSxhc6NoeidfLbO0WMmB/Jxw4oEru/XGSPSSx8A+5j
+ s0FI974Yuhr28Lxp8RLfO0ez8NLnNoANEbvJnsAVm/450uvr2phJsunjHwp1ArmPjelJXb/CJIl
+ kTUtz6pYUY3pfrg==
+X-Developer-Key: i=khilman@baylibre.com; a=openpgp;
+ fpr=7B87460E16927FA9F5BFF10C5937189AD3FBC665
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.46 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.46 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258156-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,poorly.run,linux.dev,gmail.com,somainline.org,ffwll.ch,marek.ca,cosmicpenguin.net,arm.com,8bytes.org,linux.intel.com,suse.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[qualcomm.com,reject];
-	RCPT_COUNT_TWELVE(0.00)[30];
+	TAGGED_FROM(0.00)[bounces-258157-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[baylibre.com];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[khilman@baylibre.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 57E145F886
+	RCPT_COUNT_FIVE(0.00)[6]
+X-Rspamd-Queue-Id: F31F45FB6B
 X-Rspamd-Action: no action
 
-On Wed, 21 Jan 2026 21:31:57 +0530, Akhil P Oommen wrote:
-> Adreno 840 GPU supports UBWC v6. Add support for this.
-> 
-> 
+Add a new helper function of_parse_map_iter() to simplify parsing of
+nexus node maps as defined in the DT spec, section 2.5.1.
 
-Applied to msm-next, thanks!
+This function provides an iterator interface for traversing map entries,
+handling the complexity of variable-sized entries based on #<stem>-cells
+properties. Each map entry follows the format:
+  <child_specifier phandle parent_specifier>
 
-[1/1] drm/msm/a8xx: Add UBWC v6 support
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/50c4a49f7292
+The iterator extracts both the child specifier and parent phandle+args
+for each entry, managing all the details of:
+- Reading #<stem>-cells from both child and parent nodes
+- Calculating variable entry sizes
+- Resolving phandles
+- Proper node reference management
+
+This eliminates the need for subsystems to manually parse map properties,
+reducing code duplication and potential bugs.
+
+This code was developed in collaboration with Claude Code (model:
+Sonnet 4.5), which needed some guidance to use existing OF helpers,
+iterators etc.
+
+Signed-off-by: Kevin Hilman (TI) <khilman@baylibre.com>
+---
+Changes in v2:
+- Use helpers of_phandle_iterator_init() and of_phandle_iterator_next()
+- add missing of_node_put() pointed out in v1
+- Link to v1: https://patch.msgid.link/20251119-topic-lpm-of-map-iterator-v6-18-v1-1-1f0075d771a3@baylibre.com
+---
+ drivers/of/base.c  | 163 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ include/linux/of.h |  13 +++++++++++++
+ 2 files changed, 176 insertions(+)
+
+diff --git a/drivers/of/base.c b/drivers/of/base.c
+index 0b65039ece53..8392fe54cf60 100644
+--- a/drivers/of/base.c
++++ b/drivers/of/base.c
+@@ -1641,6 +1641,169 @@ int of_parse_phandle_with_args_map(const struct device_node *np,
+ }
+ EXPORT_SYMBOL(of_parse_phandle_with_args_map);
+ 
++/**
++ * of_parse_map_iter() - Iterate through entries in a nexus node map
++ * @np:			pointer to a device tree node containing the map
++ * @stem_name:		stem of property names (e.g., "power-domain" for "power-domain-map")
++ * @index:		pointer to iteration index (set to 0 for first call)
++ * @child_args:		pointer to structure to fill with child specifier (can be NULL)
++ * @parent_args:	pointer to structure to fill with parent phandle and specifier
++ *
++ * This function iterates through a nexus node map property as defined in DT spec 2.5.1.
++ * Each map entry has the format: <child_specifier phandle parent_specifier>
++ *
++ * On each call, it extracts one map entry and fills child_args (if provided) with the
++ * child specifier and parent_args with the parent phandle and specifier.
++ * The index pointer is updated to point to the next entry for the following call.
++ *
++ * Example usage::
++ *
++ *  int index = 0;
++ *  struct of_phandle_args child_args, parent_args;
++ *
++ *  while (!of_parse_map_iter(np, "power-domain", &index, &child_args, &parent_args)) {
++ *      // Process child_args and parent_args
++ *      of_node_put(parent_args.np);
++ *  }
++ *
++ * Caller is responsible for calling of_node_put() on parent_args.np.
++ *
++ * Return: 0 on success, -ENOENT when iteration is complete, or negative error code on failure.
++ */
++int of_parse_map_iter(const struct device_node *np,
++		       const char *stem_name,
++		       int *index,
++		       struct of_phandle_args *child_args,
++		       struct of_phandle_args *parent_args)
++{
++	char *cells_name __free(kfree) = kasprintf(GFP_KERNEL, "#%s-cells", stem_name);
++	char *map_name __free(kfree) = kasprintf(GFP_KERNEL, "%s-map", stem_name);
++	char *mask_name __free(kfree) = kasprintf(GFP_KERNEL, "%s-map-mask", stem_name);
++	char *pass_name __free(kfree) = kasprintf(GFP_KERNEL, "%s-map-pass-thru", stem_name);
++	static const __be32 dummy_mask[] = { [0 ... MAX_PHANDLE_ARGS] = cpu_to_be32(~0) };
++	static const __be32 dummy_pass[] = { [0 ... MAX_PHANDLE_ARGS] = cpu_to_be32(0) };
++	struct of_phandle_iterator it;
++	const __be32 *map, *mask, *pass;
++	__be32 child_spec[MAX_PHANDLE_ARGS];
++	u32 child_cells, parent_cells;
++	int i, entry_idx, ret;
++
++	if (!np || !stem_name || !index || !parent_args)
++		return -EINVAL;
++
++	if (!cells_name || !map_name || !mask_name || !pass_name)
++		return -ENOMEM;
++
++	/* Initialize iterator to get the map property */
++	ret = of_phandle_iterator_init(&it, np, map_name, cells_name, -1);
++	if (ret)
++		return ret;
++
++	map = it.cur;
++
++	/* Get child #cells */
++	if (of_property_read_u32(np, cells_name, &child_cells))
++		return -EINVAL;
++
++	/* Get the mask property (optional) */
++	mask = of_get_property(np, mask_name, NULL);
++	if (!mask)
++		mask = dummy_mask;
++
++	/* Get the pass-thru property (optional) */
++	pass = of_get_property(np, pass_name, NULL);
++	if (!pass)
++		pass = dummy_pass;
++
++	/* Iterate through map to find the entry at the requested index */
++	entry_idx = 0;
++	while (it.cur + child_cells + 1 < it.list_end) {
++		/* If this is the entry we're looking for, extract it */
++		if (entry_idx == *index) {
++			/* Save masked child specifier for pass-thru processing */
++			for (i = 0; i < child_cells && i < MAX_PHANDLE_ARGS; i++)
++				child_spec[i] = map[i] & mask[i];
++
++			/* Extract child specifier if requested */
++			if (child_args) {
++				child_args->np = (struct device_node *)np;
++				child_args->args_count = child_cells;
++				for (i = 0; i < child_cells && i < MAX_PHANDLE_ARGS; i++)
++					child_args->args[i] = be32_to_cpu(map[i]);
++			}
++
++			/* Move past child specifier */
++			it.cur += child_cells;
++
++			/* Use iterator to read phandle and get parent node/cells */
++			it.phandle_end = it.cur;
++			ret = of_phandle_iterator_next(&it);
++			if (ret) {
++				if (it.node)
++					of_node_put(it.node);
++				return ret;
++			}
++
++			parent_args->np = it.node;
++			it.node = NULL; /* Ownership transferred to parent_args */
++			parent_cells = it.cur_count;
++			map = it.cur;
++
++			/* Check for malformed properties */
++			if (WARN_ON(parent_cells > MAX_PHANDLE_ARGS)) {
++				of_node_put(parent_args->np);
++				return -EINVAL;
++			}
++
++			/*
++			 * Copy parent specifier into the out_args structure, keeping
++			 * the bits specified in <stem>-map-pass-thru per DT spec 2.5.1
++			 */
++			parent_args->args_count = parent_cells;
++			for (i = 0; i < parent_cells; i++) {
++				__be32 val = map[i];
++
++				if (i < child_cells) {
++					val &= ~pass[i];
++					val |= child_spec[i] & pass[i];
++				}
++
++				parent_args->args[i] = be32_to_cpu(val);
++			}
++
++			/* Advance index for next iteration */
++			(*index)++;
++			return 0;
++		}
++
++		/* Skip this entry: child_cells + phandle + parent_cells */
++		it.cur += child_cells;
++
++		/* Use iterator to read phandle and skip parent cells */
++		it.phandle_end = it.cur;
++		ret = of_phandle_iterator_next(&it);
++		if (ret) {
++			if (it.node)
++				of_node_put(it.node);
++			return ret;
++		}
++
++		/* Move forward to next entry and clean up node reference */
++		it.cur = it.phandle_end;
++		map = it.cur;
++		of_node_put(it.node);
++		it.node = NULL;
++
++		entry_idx++;
++	}
++
++	/* Reached end of map without finding the requested index */
++	if (it.node)
++		of_node_put(it.node);
++	return -ENOENT;
++}
++EXPORT_SYMBOL(of_parse_map_iter);
++
+ /**
+  * of_count_phandle_with_args() - Find the number of phandles references in a property
+  * @np:		pointer to a device tree node containing a list
+diff --git a/include/linux/of.h b/include/linux/of.h
+index 9bbdcf25a2b4..4908b78ac3e1 100644
+--- a/include/linux/of.h
++++ b/include/linux/of.h
+@@ -387,6 +387,10 @@ extern int __of_parse_phandle_with_args(const struct device_node *np,
+ extern int of_parse_phandle_with_args_map(const struct device_node *np,
+ 	const char *list_name, const char *stem_name, int index,
+ 	struct of_phandle_args *out_args);
++extern int of_parse_map_iter(const struct device_node *np,
++	const char *stem_name, int *index,
++	struct of_phandle_args *child_args,
++	struct of_phandle_args *parent_args);
+ extern int of_count_phandle_with_args(const struct device_node *np,
+ 	const char *list_name, const char *cells_name);
+ 
+@@ -797,6 +801,15 @@ static inline int of_parse_phandle_with_args_map(const struct device_node *np,
+ 	return -ENOSYS;
+ }
+ 
++static inline int of_parse_map_iter(const struct device_node *np,
++				     const char *stem_name,
++				     int *index,
++				     struct of_phandle_args *child_args,
++				     struct of_phandle_args *parent_args)
++{
++	return -ENOSYS;
++}
++
+ static inline int of_count_phandle_with_args(const struct device_node *np,
+ 					     const char *list_name,
+ 					     const char *cells_name)
+
+---
+base-commit: 3e7f562e20ee87a25e104ef4fce557d39d62fa85
+change-id: 20251119-topic-lpm-of-map-iterator-v6-18-a61447423adc
 
 Best regards,
--- 
-With best wishes
-Dmitry
-
+--  
+Kevin Hilman (TI) <khilman@baylibre.com>
 
 
