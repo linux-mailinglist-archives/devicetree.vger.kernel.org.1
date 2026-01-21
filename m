@@ -1,161 +1,240 @@
-Return-Path: <devicetree+bounces-258090-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258091-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OAtmEPYlcWl8eQAAu9opvQ
-	(envelope-from <devicetree+bounces-258090-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 20:16:06 +0100
+	id CPzjDREtcWl1fAAAu9opvQ
+	(envelope-from <devicetree+bounces-258091-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 20:46:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id B07915BF1E
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 20:16:05 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DE805C785
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 20:46:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 014828EFD6F
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 18:07:43 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E879C901535
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 18:29:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F6BB354ACB;
-	Wed, 21 Jan 2026 18:07:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F29F734D392;
+	Wed, 21 Jan 2026 18:29:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="c7QJ7UVs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pNWsEkZ7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f66.google.com (mail-wm1-f66.google.com [209.85.128.66])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B32B1352956
-	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 18:07:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF31839B4BB;
+	Wed, 21 Jan 2026 18:29:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769018856; cv=none; b=lIbjNcImdMXVT4l3SF5vM28VQmyo9NM0WO95kM83oqbuPKEymLHc/0KmfvWZ99C/GBQN5vxKXguSAZNAugEsiMfz8rdJMgh3fueDTJbQPkxbroBxK/w6TM5MT2Cxy/jRWSsn9H8X/KMzMeYA+b20u5ttHmkXH+J2R9epPVdKG6s=
+	t=1769020140; cv=none; b=rBje9tnhu7w67LTFnQ2yE3mYfd/wc3J3dOGg4dxQfTXNjYqXo2S00B47jXxzc5417M0JI3wTJF28xEd9vo7NXofsQpzDq1vdR/TNi56MD9s8/WfPm4kUZyZznrhSvFpAzrd6gDPdPB41ajYlbHaqCqIK7EJLytGminUJ1UtewoM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769018856; c=relaxed/simple;
-	bh=0wix78J+oRKHXLt6hmkz9fVUcHgh7+lJ2gOgzCD/oXw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=B8SG4/XrFpE84TPVV/FXv8HZ171FkUERMQgIm4rFMh1yaO1Epim+/tYvD5WZhB7tPdNdl5pshSm/uRJ4BrDCFo0q1eyDlmVPTw9et4R7jISbTD1TsXQ0a0e0CXpueYBuj5Yk6klevxKfS5B2wowHEKoNqrsrTUmtxPhaYfBC4QA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=c7QJ7UVs; arc=none smtp.client-ip=209.85.128.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f66.google.com with SMTP id 5b1f17b1804b1-47ee0291921so1211635e9.3
-        for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 10:07:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1769018852; x=1769623652; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nL8x1nhynzlORWDLr//wqOzaruj70zMwzKxcsaB/Ebw=;
-        b=c7QJ7UVsd+TuyWE16el0eX81HUT9pCnk06lL2tgZGUWpB9pP4kMKma5JRL4qQbXz/H
-         lQP4cAPbxegP5a1V4xVEf/Aduw0DFQyltyl9StaZ4U4r/3nCQ9Q6wpg4AvEBvOF6Vd6w
-         wSyVLXuztxuC7rkrtXnfZAZBP8XWgq8mNNrooPLRy8nVyY8u6pqmIxyOf5OsBN5mvFXj
-         97BMrxOqqgIotilBrdGbXTKCF7uJ90cEJWVTdAHhb7+WLrDSgWbxavGqx/eO401Vz5kH
-         rgBI0ZgRMPULCQXDWAdfPbY+Q5BCvEf1qgHyp/5PsXuKysz98WimgHr3HJY8dTHBl0iL
-         /tTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769018852; x=1769623652;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nL8x1nhynzlORWDLr//wqOzaruj70zMwzKxcsaB/Ebw=;
-        b=ikd1uJJfudpLE4ao5/pZb8GrQ/tEtoAdGHnPYvuDr20Qq7bGquFpRrrSthisG96HPT
-         z1YMjGFRyXbnwbLSWHB+xM2sw4u11bFIeF3CcQPVPUoE7IR2kjPLIZ/NhtomJWkEUJPn
-         GWQ/6b8C5MI+ilkUNeYgdrS2cYvjmqeW5Lwm6XzTR6rTg3h8tOZf13mm6N2VymLY0HmR
-         IZ0PQQ1c0HixlP5Svw8OLFPO5+7jn+I8BfJ1RwaLSzcKPxoElSTvzw1Ij+sBBySfAQlB
-         XhqKbla6+mTtg+Hzkr3BT8Zju0S+Hl5V0UKqKuqUoPt5xTu8Zk8+5rlprEUGck1JtQMY
-         dpqQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVK4WEHLI5B7td1Mnbu6r60SU9BV+gee51Z6uhL/K+oTHplW8TFz76LRMsla0617dGG+2INmBKc19HO@vger.kernel.org
-X-Gm-Message-State: AOJu0YyETf09ZC8doofNxoigRXROopb0KS1RK2xKnyJY1/550qPyf/Z8
-	j+EDEdFcsXKY6s8dfRM02F/tyrqMuQqa/jVzlsEJGe5d6Bs19HxYOfdRtKElXw0Mwo4=
-X-Gm-Gg: AZuq6aKMWuT8FzK2hUtWBTK49tpdSscWnB83oOSTuPVXQJiZUn7lSYi3aswEnVySkyM
-	s2qZwJF2c6GXQcCiQxp6LB8TMqy2Awanflje3ClOMXlxQBIy7BEN2yLvNrRwpuQbCgFreUJS/dW
-	bZMSylgTxZDep7mbGaM9/v296Jb93rttUYvtcDXTGjTthj2dqNvhtgd6Hlf4xZ876NnnGBuvoHO
-	XOsyOzQkycWCXPIVW3e02Es8lpky3d/obJ8Vyxfo0NwE1bPLtL0x4njt8zxkM+5/JthpRqqCXHy
-	E92gZNgT3Zkk1jsS7lcy0/5dajR0JgcCoH7SukWMcdU9LEILQd3642e/Uhvmqdbza0o5l6S/xKv
-	qOYQ7m8p5/SP1vb68TEdin2sVj21IE0u80ZxCsVIxo5jqfobixb2dQIMZnVT1M6CFbMTkbIrFIr
-	KSYM3uvqfxeZM7nXR07Orega/DXoue6GcaVH1VBNPXHy05Ke41LWlKadJFDXG15Cb5ig==
-X-Received: by 2002:a05:600c:811a:b0:480:1dc6:2686 with SMTP id 5b1f17b1804b1-4801eac0cfcmr217187915e9.13.1769018851700;
-        Wed, 21 Jan 2026 10:07:31 -0800 (PST)
-Received: from ?IPV6:2a05:6e02:1041:c10:c29a:525d:d900:4d71? ([2a05:6e02:1041:c10:c29a:525d:d900:4d71])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-435a431c189sm2135611f8f.24.2026.01.21.10.07.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Jan 2026 10:07:31 -0800 (PST)
-Message-ID: <eea8470c-6659-4d9d-9b91-28fbbd1d2814@linaro.org>
-Date: Wed, 21 Jan 2026 19:07:30 +0100
+	s=arc-20240116; t=1769020140; c=relaxed/simple;
+	bh=l6+u6Dylp0WfC6wdeLiE99rgNBwsRoiJbYc85FgW5Fo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CbvN3mqkRNEDZO4WMFGLcLPXprsfohaQZ+E0QMYgL8J7fLkF4JfmibTiPLFPPp9HsHWbY8ADZwOxD8/YZ/UoxF7bBU1cVnx35yLlSCxK+wnZmTELUT7CA/iAfEMvLr42E0l3oE5qL9lKWIZikxTY0KvjDqOZLly3JA3Xi7k4z5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pNWsEkZ7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87027C4CEF1;
+	Wed, 21 Jan 2026 18:28:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769020140;
+	bh=l6+u6Dylp0WfC6wdeLiE99rgNBwsRoiJbYc85FgW5Fo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pNWsEkZ7St50nxE07dRB0tDto39+JiwHq185jDR4NO8xP6EgsbhJohlntKIrEKYm1
+	 etWasqI2WlRnwHTinOziFVvUPQv9J5OdDk8Xq05bghdF+VUmy4SYdG7yr871dgfoUC
+	 pNmOTv3H6VaioaZ3cfIvePZLY5/nczx1uaneKaDzHmjD3jhgZ9yr15DTgi2UgQ4+yg
+	 IOIISPfDlKydxKEH0/zvhU6+CWGoDjzvtQzxYsOmUTm4tKH82uwDjNzafpILD4F6hV
+	 saPOq6fcNWWvE3KhYJ8/xx89NJcAJ/tf40mxTYvgB9DZ9KfAp0W9U1beU8U8HTBHmY
+	 8zFZ6ib5glnkA==
+Date: Wed, 21 Jan 2026 18:28:54 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Binbin Zhou <zhoubinbin@loongson.cn>,
+	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
+	Xiaochuang Mao <maoxiaochuan@loongson.cn>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+	Keguang Zhang <keguang.zhang@gmail.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: rtc: loongson: Correct Loongson-1C
+ interrupts property
+Message-ID: <20260121-sadness-operating-8bffd4250085@spud>
+References: <cover.1768616276.git.zhoubinbin@loongson.cn>
+ <b6295c907410f6708115cba4df0959ee6629f8a5.1768616276.git.zhoubinbin@loongson.cn>
+ <20260119-tricking-premiere-ada70700f804@spud>
+ <20260120075045e7e864ba@mail.local>
+ <20260120-cubical-harmonica-a7b7bbb26b08@spud>
+ <20260120224920df0cf2ac@mail.local>
+ <20260120-proposal-retry-d0a1f3de10ea@spud>
+ <CAMpQs4Lm1Oq8L+dY8OnseV-NNUoD3+0QjnZATRkmR-sejCKAdA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/5] thermal: renesas: rzg3e: make reset optional
-To: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>,
- John Madieu <john.madieu.xa@bp.renesas.com>,
- "Rafael J . Wysocki" <rafael@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-References: <20260108195223.193531-1-cosmin-gabriel.tanislav.xa@renesas.com>
- <20260108195223.193531-2-cosmin-gabriel.tanislav.xa@renesas.com>
-Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20260108195223.193531-2-cosmin-gabriel.tanislav.xa@renesas.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-0.46 / 15.00];
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ytcyEvQbqLkTzetR"
+Content-Disposition: inline
+In-Reply-To: <CAMpQs4Lm1Oq8L+dY8OnseV-NNUoD3+0QjnZATRkmR-sejCKAdA@mail.gmail.com>
+X-Spamd-Result: default: False [-2.06 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_POLICY_ALLOW(0.00)[linaro.org,none];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	TAGGED_FROM(0.00)[bounces-258090-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[renesas.com,bp.renesas.com,kernel.org,intel.com,arm.com,pengutronix.de,glider.be,gmail.com];
+	TAGGED_FROM(0.00)[bounces-258091-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_CC(0.00)[bootlin.com,loongson.cn,kernel.org,vger.kernel.org,xen0n.name,lists.linux.dev,gmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[daniel.lezcano@linaro.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	MID_RHS_MATCH_FROM(0.00)[];
-	REDIRECTOR_URL(0.00)[twitter.com];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: B07915BF1E
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,loongson.cn:url]
+X-Rspamd-Queue-Id: 9DE805C785
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 1/8/26 20:52, Cosmin Tanislav wrote:
-> The Renesas RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs do not have a
-> reset line.
-> 
-> Prepare for them by making it optional.
-> 
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Reviewed-by: John Madieu <john.madieu.xa@bp.renesas.com>
-> Tested-by: John Madieu <john.madieu.xa@bp.renesas.com>
-> Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-> ---
 
-Applied, thanks
+--ytcyEvQbqLkTzetR
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+On Wed, Jan 21, 2026 at 02:52:06PM +0800, Binbin Zhou wrote:
+> Hi Conor & Alexandre:
+>=20
+> Thanks for your reply.
+>=20
+> On Wed, Jan 21, 2026 at 7:39=E2=80=AFAM Conor Dooley <conor@kernel.org> w=
+rote:
+> >
+> > On Tue, Jan 20, 2026 at 11:49:20PM +0100, Alexandre Belloni wrote:
+> > > On 20/01/2026 19:24:09+0000, Conor Dooley wrote:
+> > > > On Tue, Jan 20, 2026 at 08:50:45AM +0100, Alexandre Belloni wrote:
+> > > > > On 19/01/2026 18:24:36+0000, Conor Dooley wrote:
+> > > > > > On Sat, Jan 17, 2026 at 10:26:48AM +0800, Binbin Zhou wrote:
+> > > > > > > The `interrupts` property indicates an RTC alarm interrupt, w=
+hich is
+> > > > > > > required for RTCs that support the alarm feature, which is no=
+t supported
+> > > > > > > by the Loongson-1C RTC. We exclude it for a more accurate des=
+cription.
+> > > > > > >
+> > > > > > > Changing the `allowed` property is ABI-breaking behavior, but
+> > > > > > > throughout the existing Loongson DTS{i}, the description of t=
+he RTC
+> > > > > > > nodes conforms to the modified bingding rules.
+> > > > > >
+> > > > > > Right, changing properties is an ABI break, but when following =
+the ABI
+> > > > > > would've produced something non-functional, breaking it is not =
+really
+> > > > > > relevant.
+> > > > >
+> > > > >
+> > > > > But the HW has the interrupt, the fact that is not functional doe=
+sn't
+> > > > > mean it isn't there. I thought we should describe the hardware?
+> > > >
+> > > > Does the hardware have it? My interpretation of the commit message =
+was
+> > > > that it didn't have the alarm feature and thus no interrupt? Unless=
+ the
+> > > > interrupt has some other purpose, in which case yeah we shouldn't a=
+ccept
+> > > > this change and only the new device should permit there being no
+> > > > interrupt.
+> > >
+> > > The datasheet shows the interrupt coming out of the RTC and it has the
+> > > proper registers. Why it is not functional is not clear to me.
+> >
+> > Right.. Perhaps Binbin can explain that then? If the interrupt is
+> > actually there then the dts should get fixed instead IMO.
+>=20
+> I carefully reviewed the manual again and believe this patch is still nec=
+essary.
+>=20
+> First, the Loongson-1C RTC does not define the timing interrupt
+> register (`TOY_MATCH0_REG`)[1], meaning it lacks hardware support for
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+I don't understand Chinese, so I'll take your word for it that this
+particular model doesn't have this interrupt and that there's no other
+interrupt used by the rtc via a different register :) My ack for the
+patch remains valid.
+
+Also, I looked at the existing binding again, and there's no ABI break
+anyway cos the interrupts property wasn't required in the first place,
+so any driver has to be written to permit the absence of an interrupts
+property. I think you should remove mention of ABI break from the commit
+message, since it's not actually one.
+
+> alarms. Consequently, `interrupts` are also unnecessary.
+> The Loongson-2K0300 is different. It defines `TOY_MATCH0_REG`, but due
+> to a hardware design flaw, accessing this register causes system
+> crashes. Therefore, I must also classify it as lacking alarm support.
+
+This logic also seems fair to me, assuming that this is the only
+interrupt that the device has.
+
+> Additionally, in patch-3 [2], I rewrote the alarm logic to decouple
+> the `interrupts` property from the alarm feature: I defined
+> corresponding workaround bits in `loongson_rtc_config->flags`. This
+> should be considered a SoC-specific attribute.
+>=20
+> Finally, two thoughts:
+> 1. Retain this patch; it is correct for Loongson-1C.
+> 2. For Patch-2, still add the `interrupts` property to the
+> Loongson-2K0300 RTC node (as it exists in hardware), combined with the
+> workaround bit setting in patch-3 to avoid the hardware flaw.
+
+Personally, I think what you've done in patch 2 is okay, since that
+interrupt is non-functional.
+
+>=20
+> Would this approach be acceptable?
+>=20
+> [1]: https://www.loongson.cn/uploads/images/2022051616223977135.%E9%BE%99=
+%E8%8A%AF1C300%E5%A4%84%E7%90%86%E5%99%A8%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%=
+8C.pdf
+> (section 21.2.1)
+> [2]: https://lore.kernel.org/linux-rtc/abff68dda2fe6a6601a9e58b31e278d941=
+297fce.1768616276.git.zhoubinbin@loongson.cn/
+>=20
+> --
+> Thanks.
+> Binbin
+
+--ytcyEvQbqLkTzetR
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaXEa4wAKCRB4tDGHoIJi
+0r1UAPwNOFlUehj5qXpainyk5Vw+hUB3Cwtlc5EQxTrSF5q6IAD7BzUEiHUCKTUg
+z1kTbYXkiG5phJRz1IVmRBTWgLPA2wM=
+=zJht
+-----END PGP SIGNATURE-----
+
+--ytcyEvQbqLkTzetR--
 
