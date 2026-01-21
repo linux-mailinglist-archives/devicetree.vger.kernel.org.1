@@ -1,265 +1,311 @@
-Return-Path: <devicetree+bounces-257727-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257728-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IIRnF6VFcGnXXAAAu9opvQ
-	(envelope-from <devicetree+bounces-257727-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 04:19:01 +0100
+	id UI1OM2pGcGnXXAAAu9opvQ
+	(envelope-from <devicetree+bounces-257728-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 04:22:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF25A50559
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 04:19:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15698505CB
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 04:22:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5486B4E4256
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 03:18:59 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 817474E1164
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 03:22:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A29953246ED;
-	Wed, 21 Jan 2026 03:18:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C53773563C7;
+	Wed, 21 Jan 2026 03:22:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="GfByMygT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fiBNDyLm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010001.outbound.protection.outlook.com [52.101.84.1])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A991298CDE;
-	Wed, 21 Jan 2026 03:18:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.1
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768965536; cv=fail; b=PPahKTvwGFed1Kwg2136mn12d0/rgmeLiHcqOIho8MYkeSrgJD2iSq1e+a4DdmF3HF6/qhZKWKFCIryl3hZhsozLk15db5j6fwzK83eIUbobTjh9tTT5a0ZwAP3f+9iVBphjt8Dq1Z/cIeGgV35xjs4leQLjTdxxGtIC9USDKJY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768965536; c=relaxed/simple;
-	bh=KBtnFCoHVIL0JgEndJOG9zeULqp8jgn+2hv/Mhy4THs=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=YMJhYmSAw6iRPYYwvoYEzraYqpfwZPGiDPUuK0A6gJ4oTC7RMJpAKg+M0pSYUg7DeolcFQpeT9EpZoZKxh7CGdExcMOcguEDCiATdLdrWdXPp6wBxk4bxEtuhl5C1GdUfz0TXlKIQ+/GvaRumm0wgYHhqlXwnrxS+QH47lmQESE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=GfByMygT; arc=fail smtp.client-ip=52.101.84.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=urK+OENQVa9Kz4sIhBZIgEJ3F3+kq/5Z6xtpgVn4a6Y4IcjncySt2EzbK6Rfgue/2yPMoEwp99xmya8hH7RzX+I5GDYGB6GLvNPHVHkYi8m5UwVCKst03A0CrQjxpJY+D+14D6zMd/LyOVbigyVNzoUJus9UNUxtE6VjN/e8JnV4jUuMQYFr5KPiNzi0tEx7OVFmrIBgve7iAzawmOA2RaEN8Gmi6b2sX8kImMb3BsL0p4kBz1YqBKYc0bJU8qQg9h6Y4gjZ+S8iCOtBRzZdicVGcHnO68MumfdWStvmt60F91j3hYixGSdqE9/8cql/PoGsVrwJt1kb4q/kZLQADw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=igLeyTsdShAwRG+FmbRm7Zf1P7EqZyStLSiLfJPXMtE=;
- b=p6tRPZKy/9RRPoxN90keHVXu/MXANWdlyu85jjOp6S88KnVoC6MqKbV9//C9b7ICy2OGQ4kZbRSqcgLt5Tp8qRatHbD8MaHSySQvrc0D35Q1aXhmikjs6ygYSwz6eHRZ2QNpunJPlC3cH5fyg8UhobchcnwsrCS6Ehn1VpB76RTaAgiF+SepppIfQThcGHA/XRakIKQGQOGFRafOrTJHA9Rqpl1FM4NjmM2hspS0ERUJyIgSk0D66CxasuMYIM1M7ytbJkq2gxcCwtS1C2tKz7BHYbOn1IlGJMtCp04A+f7KwT+y2b8BLRJS3p215/B1airwap6S0uY4dAtw8n5NIA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=igLeyTsdShAwRG+FmbRm7Zf1P7EqZyStLSiLfJPXMtE=;
- b=GfByMygT8n6ykZMHR/C4+Jx2dSypYX3EFqxvQ/yB2vT5Bil2cPkFI7SBxbWxHl04wqjFp3BiAlF7KJvJhtx7DgJ30o9OPq5VUiTwAfb0l1oag3TRKBPJW0owGIHNx483D/1VMU784JelBrVYIOtDyJFWpQGuBRqubKCxm8juFBAPVn0lFzl2hH+n8RoDP5MJrvVnXlV58liufyFNabiMqqILpuAdHuWTCm0LROQPORb/2gPYstxT3VbW4FYKHVMvi1v4ugVL8ergNSbygOn+cC0Cyc82j05C3kJF7wJHakIe9Bbb0O4kHZo3kyM0idhMbV4uANssbrUFKGAuMQZwsA==
-Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
- (2603:10a6:800:315::13) by PAXPR04MB8491.eurprd04.prod.outlook.com
- (2603:10a6:102:1df::8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.2; Wed, 21 Jan
- 2026 03:18:45 +0000
-Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
- ([fe80::2943:c36f:6a8c:81f7]) by VI0PR04MB12114.eurprd04.prod.outlook.com
- ([fe80::2943:c36f:6a8c:81f7%5]) with mapi id 15.20.9542.008; Wed, 21 Jan 2026
- 03:18:45 +0000
-From: Sherry Sun <sherry.sun@nxp.com>
-To: Frank Li <frank.li@nxp.com>
-CC: "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"shawnguo@kernel.org" <shawnguo@kernel.org>, Daniel Baluta
-	<daniel.baluta@nxp.com>, "dario.binacchi@amarulasolutions.com"
-	<dario.binacchi@amarulasolutions.com>, "alexander.stein@ew.tq-group.com"
-	<alexander.stein@ew.tq-group.com>, "Markus.Niebel@tq-group.com"
-	<Markus.Niebel@tq-group.com>, "matthias.schiffer@tq-group.com"
-	<matthias.schiffer@tq-group.com>, "y.moog@phytec.de" <y.moog@phytec.de>,
-	"josua@solid-run.com" <josua@solid-run.com>, Francesco Dolcini
-	<francesco.dolcini@toradex.com>, "primoz.fiser@norik.com"
-	<primoz.fiser@norik.com>, "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-	"festevam@gmail.com" <festevam@gmail.com>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "kernel@pengutronix.de"
-	<kernel@pengutronix.de>
-Subject: RE: [PATCH 1/2] dt-bindings: arm: fsl: Add i.MX93W EVK board
-Thread-Topic: [PATCH 1/2] dt-bindings: arm: fsl: Add i.MX93W EVK board
-Thread-Index: AQHcifdNxgpxUKCRjUq4wrVjC4rAhrVbQV4AgACxmRA=
-Date: Wed, 21 Jan 2026 03:18:45 +0000
-Message-ID:
- <VI0PR04MB121146CD3EDDE9C4771B83A939296A@VI0PR04MB12114.eurprd04.prod.outlook.com>
-References: <20260120102604.1989725-1-sherry.sun@nxp.com>
- <20260120102604.1989725-2-sherry.sun@nxp.com>
- <aW+ullwMtDq0RpNt@lizhi-Precision-Tower-5810>
-In-Reply-To: <aW+ullwMtDq0RpNt@lizhi-Precision-Tower-5810>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: VI0PR04MB12114:EE_|PAXPR04MB8491:EE_
-x-ms-office365-filtering-correlation-id: dd097457-4372-49ea-3c2a-08de589bc97b
-x-ld-processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|376014|19092799006|7416014|366016|38070700021;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?JfCVlxiwSEbuF8y7FFESFcJSftDV90Er0VGqNssQZ9yAytqqB4YgfB2H/DWf?=
- =?us-ascii?Q?R5zqFWg9Io8tyHfkig69IFa2NC/HEsh49B7NyKGJbmAPz62Ax6wHeL27QWgt?=
- =?us-ascii?Q?mkwZ0IkLyZjr8xOx4AEbEQTDh3D3LGDYz3ni6gbAKABP31KYZumv6wGSBCqm?=
- =?us-ascii?Q?vErBff22bTwsiEa9eQO1vANNkMu4psljmreehHk+5q1GrcRc9dKfCmvISmLm?=
- =?us-ascii?Q?R/G8zdtvRGLlnAnlE533ShCqBQRAnoqyZLpANqy3aiWkE0dXMmtbCM7j5437?=
- =?us-ascii?Q?1iiDPHGaJJpFU16NG0s793cXtL8UknlxxGCIRVGCsoYEnh6eaRz1csGJ/rUC?=
- =?us-ascii?Q?O3++b390KrU+fBhnLPEjUCXZ4cZo2S+tO9CeozI5jUAMcMOLmXAlumvGBEui?=
- =?us-ascii?Q?BpgpIo0LIbfBfUlldoY/GDqlpBJ6eby9WKFhYsFOWIoS3eB6OejbQhT86lFe?=
- =?us-ascii?Q?l3e7xs8Ijn6l0iLp6uATbn7CKRS2OsnPGbLr3a6BSB4C+D74TIn5aVxSSKUc?=
- =?us-ascii?Q?CTbzXAhw7XlP3wUhlxg3SC5xW9cv73LG+U3E5i8a/TM26TUl9Oy30B/f+FMT?=
- =?us-ascii?Q?kBEdwcOUFp6JdiQyh5LIDjMSd69+rSJZAfCxEtT5PQsjfA84YqK0TcRbLCcP?=
- =?us-ascii?Q?yn4f1k/SU1yzxqHSHLLbTmpUkPsyGxfv9if+2f8+dGW58UlUeaPdxKvCsgFL?=
- =?us-ascii?Q?iZ4NbgE2W5DLHHIx9cBocn++DYmsD8R2w6BHpbgDN6Dn8SEPyySfa0uvNLQb?=
- =?us-ascii?Q?MS0y+Y56aedafVPk6xvCJ70mGI1fFK9eetRcz8jjeN7H/UPJAkVin5GuFWuh?=
- =?us-ascii?Q?5Y4O6wXoDpFnL298tDvHlmA/lqD5kADPOKdZEb+c44DS0qTNQl5mhd/PMqWA?=
- =?us-ascii?Q?t+Z0Jc47T7fs93sANKLv3zdpVT185WJNCZsDQhTe0KloHCI2z7L3E/jFjaHZ?=
- =?us-ascii?Q?Xa80GWTfLjJnzPGWNBThLhMyUJo5MAKWeJcSm38dIT08Gco1lsLPxI/jrYs/?=
- =?us-ascii?Q?vUZI/8Q50SNM4jNQ5M+d847UjJQfhl6MLTAFVsWMpVcHBmPVrIU8WlUEJ6dN?=
- =?us-ascii?Q?JrUJbjvTeopQ3QCqnbOJpoCgO7VE8ZyUavQ1Um0XDuRp/1m7Yu2rWEFC8Skr?=
- =?us-ascii?Q?js4mEvGIycw/DJ3Ilj0rdOG9ksIAWN/qxvnKxRpbRk9j93zSGg5pOc03zDRc?=
- =?us-ascii?Q?F2QODmTrd9FPMIk1UCpLIh4zP1EVL1lvFkZfz26GUaYdcNSrVreK2wu/Ndtv?=
- =?us-ascii?Q?q3G0mhFp+g3tnQpfPkgtUqPM5jf8R8HMp0/SgCu4kW2Y85IJI7cm/c/QvMAq?=
- =?us-ascii?Q?tm3F7mx5cW9VUt9VzVWDFWGCXKvjwhfirYOSMCh9ZeNKRhMzeLCLw6P1qv8F?=
- =?us-ascii?Q?ZaxKSlh4Ym9Zif33m2/RBRVxCpHJhIzNQZjmHVHLdyLMANNbSVv9ETJ7Sgfj?=
- =?us-ascii?Q?MfKlQQ2DJeSfP5EqfvPrz6v8/cjDayFfOzHZjtJ0EXMylwumOThKSwOtQt9o?=
- =?us-ascii?Q?9PD1ga7jiHzFx6mnw3jGfltTeKLV6mkO/7Uj+YtmpBtonZgy1Pcnq2Hv2Uhu?=
- =?us-ascii?Q?AIfCCRy4WzOqf/ZwYGjKqe5kh+uua8smoe4CFLXs3XR+Ni1wjlECUos0GDch?=
- =?us-ascii?Q?vQDGd02HhzeccNuSOsIzD9w=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI0PR04MB12114.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(19092799006)(7416014)(366016)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?5okU53WwJmlZ76nJREk8M8/AYfZwnoDye66LsZ0KIBKPoT+bZRgRkcICOtMQ?=
- =?us-ascii?Q?nGmT1f0hN6z4CEh2kEyGUS1OOcIhZom+Me3bIH2H4zCy93o+t34sQgiSxltn?=
- =?us-ascii?Q?UGS71N7U5UGfbbkMga2xAW7PaXDN66uuycihqkzq4Qgd2ffCIaKUpvIo+YQH?=
- =?us-ascii?Q?EJTctFPUE/SHNfktgvyog7f7Y2zvOa2XkM7WaEHXZ3gyl37+3Sg2b53KAo0V?=
- =?us-ascii?Q?p44OYW0jqJt6sDkCJ9DVHOdwxDtZjlqNYji4E8M5b0kLQJVISCeWbYViSCU+?=
- =?us-ascii?Q?IYUmqPREH8RGH1cUDD3A/j0xM+rY8Hx5kZtWIPTCDBo42VDj4ZRq+PmG8KBO?=
- =?us-ascii?Q?wfE/Xs9t4OLFPpXiMRYYS5pJup1YlbmODyQZi1wSNC5ZCb6tYZ7Qw7K68Xg0?=
- =?us-ascii?Q?AT85kzNKAPipcGmhKgLgC6h5xoU4WYImpNn1jTRiTSnlMQVG920zkQ0kpC3w?=
- =?us-ascii?Q?3WLXPrTHtSap2ZSEFESbwG8fhq6LOsh0wML4GWb3wJ1+snlvG+rycj2R/dij?=
- =?us-ascii?Q?86Ejr1ZEdXXzpAHQkJUZQX+JUl3ipCbSKyXSpMKyBf4axuHWEjuFFVNfc9Bw?=
- =?us-ascii?Q?zyo3j8uw0xIWF0aYxi41tjLpUs68sWMUoB0KwBJ8LSJ1lJCad6LDGXtqpWFL?=
- =?us-ascii?Q?MtY9ynwfIMPP2iqvYuHlHhbHNgKMhaWvIcCJrvc4XSpzc4S/+MmS3EQ6nKVO?=
- =?us-ascii?Q?w5FXXiRt5nZ5isebf+jD6r81ZYKtvY2gQnWECBN/rb0mU50XOeuyLH7riNJ1?=
- =?us-ascii?Q?9k4zapIDrcVfTJIw8cWHkDyQnV6vX4qf9LpRF2J+PEuPs26fiAc9x+BhTZvG?=
- =?us-ascii?Q?Pi7d7CFEYa3kmiPdGSpzFMl/E0/IjpSggGtt1vjM//Kbdeo/sJcNhPyzj5dE?=
- =?us-ascii?Q?jkvk+lIA29+wcbhS+xhZCQAF4xs8SFeeMu7SxuBXlDI8e+muuHvPt1enb8oh?=
- =?us-ascii?Q?H+Tpv1hbx4m3zIB32S7x+tlu2JJztZLLDGh9JHT374RRgQ4kK+ed0GAl+l5B?=
- =?us-ascii?Q?c8BIM97v/HZwAiYEJYulzpJnZJ4FzT2PJE3ZqhsYb0vL2wAlqFAtJcm9IwU1?=
- =?us-ascii?Q?HKWyIqlqQxsI0A/vU6Cq5wnKuQtVLIDcuoqonaiIVF+sb2EMjxe9rYGDAFDG?=
- =?us-ascii?Q?p3fNfrdLy/g01Iz65j4eKfWni740qSv9dKxSiNvOVIIZyEkAJx+fkz/QQMiy?=
- =?us-ascii?Q?REwxrVf5GVXMQQggGlVwgk1Er9iH+JfInTqHJUcGNCioiPQlsn5C5mFrw5+7?=
- =?us-ascii?Q?Op/iHrO4N4H+Bn2vAJU5RUeT2krwYZ1niaeUadqvmkwrcH7dbryZcazRUBbp?=
- =?us-ascii?Q?0vtnjfMmlz9re1h+jtPjMyu/42j9cpptOKZsA0f9UyXoA13Xq6HmC0d8Bw6K?=
- =?us-ascii?Q?7spz0+qLy8UNEmDbPSbsG6+yoelyittWQjNg/xRSVPq7pVRjWfRMvj+c19Yy?=
- =?us-ascii?Q?vHKuQHXOtUnrPBjS9948eB5Xjm9oJNlsOFJe2JUJb69FuCWcQzQLQ6HE9Y52?=
- =?us-ascii?Q?lb+dxEGkK3h2IXwaGlJI0333Yg7+PuTJ9o7nEA0sypXKZNszoEWKuQopRtyy?=
- =?us-ascii?Q?/OkNB7ENiP9mkmx0yOQ+KrLBMQXNeVQnNV7n69xGqXbx/+/dWoGC6E72w6E5?=
- =?us-ascii?Q?JLBlJ7L/S/TSVDqsdqrJ4F8nLZ0ie7v8xDCrJGWbRU8uKcJmldZOh3KGJJ1f?=
- =?us-ascii?Q?Tsr+PfQhlspr2OmrzK+PD/7tLeQX77bdDwybKyFn0g7D0Csd?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CA4E32AAC4
+	for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 03:22:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768965732; cv=none; b=inCdr4zpw8P3GPYURIkzYcquT9CiwE6eVR9WMbA7NkA0EEH98ONAR/7etS2OzzAsobUFu6n1QreYzRihwtmM1cQyQenBtIiaQb+IfQGBXPWHYSTDxwGzijf1w6+gvG7smrjBO9s7oSmoZB8fHCDeaITqrt6pWm7fQb0Nd1jhjt8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768965732; c=relaxed/simple;
+	bh=Js3T4IvOaXPj4fPOtMtJbaWGL24WVy0ZxTTlddVnvJg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kY0ztaHdbz95hA2bm6OPllsixYF3pCkXHBibVaLoaG+lLdCPQRTLhI7u7+wnxL44vB7XsPJ3EiX/HC2x3gj8QJrcobNqsOCins/YH4tHIhWGNJMZnZe8MTqEDtPq6F9LjkzEnaMQBGAUPdmAzufPoXd2MrGgZXhv4mhFPE4dMFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fiBNDyLm; arc=none smtp.client-ip=209.85.210.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-81e8b1bdf0cso3499131b3a.3
+        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 19:22:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1768965730; x=1769570530; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=17+DNkkNcmMDigIJBL8XgDaqQaWKVbdBHFS6qgPE1RU=;
+        b=fiBNDyLmBKQT9W4Mop06iQfKJ6IkuCsCLfceil7HV3XN/0H4cqiZfoTEQETVDnYP9u
+         VQKdKzHyjz8+pbUKMfdgD2zu0qeKln0oSb5DYhq7Djih6za8s7Mt5sUmzSeWQ3hVdJBx
+         NtchlpzjY9OuvvWtMw0WzyON8yu0bdPVql/j/ZpNzA3qvBJHb3olyXm9bKcTuHGWSVQ6
+         EQSC4Oslm644OWmbqyisi4ahAq6d6S6ba7AFI3qjTFAj3tGGF/fyFXwGchaJ8OvhqMs8
+         93jw+NYjiEWVT7GzijKhE2DcNTdA10oVvVdpFdA/Y2IIOHwwG0ON2vzZinBILQsy75aU
+         JbrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768965730; x=1769570530;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=17+DNkkNcmMDigIJBL8XgDaqQaWKVbdBHFS6qgPE1RU=;
+        b=s7REv2Hn/tbORS3rKlWnFANYNobjJw0uOuhm0CSNCcv1FVgtNKE3CGmOHOBcommZnA
+         Qb7wYTGpc1x6BN3lRhS/LN9YkBB7bMuOl2Knpn5MNmPGAObr6ahu5Jb5T3quv8VQ09V5
+         2WH4Hnt5jXvhm3vP5pX6hI4Rmnz96wh5ERHRC7vMcBYdlP/yOSYt56sMQQE9OUc3kPXe
+         y2NWvonGCIFvmvaCjsChzXnB8SQCnmU5nkc0BQaBGHySvCBRB6pwoKbk4qmjdFBA/oK8
+         KYKCA+pLvQ4740d6zoLwwhWxmnYweT5cjE3m/xeJEqyQcCWzEukZLm/IMlFUSThJm2cE
+         dbYg==
+X-Forwarded-Encrypted: i=1; AJvYcCUyfcnv3xfRnOpXp38+hE0+uZd0cnTDS/6iIXWv84Pc/s8iO94hyV6bUaWMhgxtauWZ87zp/ksouRLC@vger.kernel.org
+X-Gm-Message-State: AOJu0YyuiTRqWAthm6RL/C9IFGHj+FjrWKsiYlPHXtt4jybYm/AN3Wlq
+	zZX93BHXFpnsWzbPEXyoZi48bQewqVHeLLZagktvzoBi/tvfGLbv0C7C
+X-Gm-Gg: AZuq6aIEMhJzfGmMbuo7o30h+mrVFoi7ENfCWhOEcq2p2TKeF+N20YtNOyUD0MtWuzT
+	Lt2IdOaIu2b4ZwDNmIKHkK6uQgM1WaOE9e46Ygd8XM+ZEQ05Tx94JeOp2+kRSoFNzz1brZEjcsG
+	ciFlppduvC+dARSTSx/nP6RYSFpYercpLRvF2LgzAoo8NUAZS8gmso2R6wXWc2wYs3RHTEWoC9E
+	c/iF2kO/HEtfrCAdiEcXcX3u1ROeIeJt5nDX2rFlo8mIbitRMPqTXM9ar0PpAfovdKG7ETFCpLk
+	FxM/Dps1i6CRtwuugVxy5sknyH1nMGyGKbuyjv2bJ4E6N1npydUiFfGF88fg4OL7iIPyxxfT42w
+	LYVS256vp8EoK1rmknOIM2LBz2ZJzU6m9uEJ6/eWpV5cRnIrFO3cT77SYzQ4tsGcuzW+ykUm/SX
+	Ac0AupaDrmiBX9lAjBpDk0RcirhgWKaddqJezlozyFln0dP3gFz86x255WaiJ4NcN/
+X-Received: by 2002:aa7:888b:0:b0:81e:81fb:b392 with SMTP id d2e1a72fcca58-81fe87db4bamr3212275b3a.11.1768965730358;
+        Tue, 20 Jan 2026 19:22:10 -0800 (PST)
+Received: from [192.168.0.102] (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-81fa1291135sm13268978b3a.47.2026.01.20.19.22.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Jan 2026 19:22:10 -0800 (PST)
+Message-ID: <7a43bedf-6d31-4ae1-b2c6-97cb3757ad9f@gmail.com>
+Date: Wed, 21 Jan 2026 11:22:03 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI0PR04MB12114.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dd097457-4372-49ea-3c2a-08de589bc97b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Jan 2026 03:18:45.6364
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: DdEYiqpoRqTzxHCt+zwM4cs3AjZX05vtqmjv7VB9s23uff4PHuF1dzdakwdo3e/dc/fpEHTvIpJaV7OxWJW3hA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8491
-X-Spamd-Result: default: False [1.54 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v8 1/3] dt-bindings: net: nuvoton: Add schema for
+ Nuvoton MA35 family GMAC
+To: Rob Herring <robh@kernel.org>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+ mcoquelin.stm32@gmail.com, richardcochran@gmail.com,
+ alexandre.torgue@foss.st.com, joabreu@synopsys.com, ychuang3@nuvoton.com,
+ schung@nuvoton.com, yclu4@nuvoton.com, peppe.cavallaro@st.com,
+ linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ openbmc@lists.ozlabs.org, linux-stm32@st-md-mailman.stormreply.com
+References: <20260119073342.3132502-1-a0987203069@gmail.com>
+ <20260119073342.3132502-2-a0987203069@gmail.com>
+ <20260121020728.GA1671298-robh@kernel.org>
+Content-Language: en-US
+From: Joey Lu <a0987203069@gmail.com>
+In-Reply-To: <20260121020728.GA1671298-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-257727-lists,devicetree=lfdr.de];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,synopsys.com,nuvoton.com,st.com,lists.infradead.org,vger.kernel.org,lists.ozlabs.org,st-md-mailman.stormreply.com];
+	RCPT_COUNT_TWELVE(0.00)[22];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	FREEMAIL_CC(0.00)[kernel.org,nxp.com,amarulasolutions.com,ew.tq-group.com,tq-group.com,phytec.de,solid-run.com,toradex.com,norik.com,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	TAGGED_FROM(0.00)[bounces-257728-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[nxp.com,none];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sherry.sun@nxp.com,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
+	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[a0987203069@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,nxp.com:email,nxp.com:dkim,VI0PR04MB12114.eurprd04.prod.outlook.com:mid]
-X-Rspamd-Queue-Id: BF25A50559
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[2.100.46.192:email,dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,0.0.0.0:email]
+X-Rspamd-Queue-Id: 15698505CB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
+Rob Herring 於 1/21/2026 10:07 AM 寫道:
+> On Mon, Jan 19, 2026 at 03:33:39PM +0800, Joey Lu wrote:
+>> Create initial schema for Nuvoton MA35 family Gigabit MAC.
+>>
+>> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+>> Signed-off-by: Joey Lu <a0987203069@gmail.com>
+>> ---
+>>   .../bindings/net/nuvoton,ma35d1-dwmac.yaml    | 126 ++++++++++++++++++
+>>   .../devicetree/bindings/net/snps,dwmac.yaml   |   1 +
+>>   2 files changed, 127 insertions(+)
+>>   create mode 100755 Documentation/devicetree/bindings/net/nuvoton,ma35d1-dwmac.yaml
+> This should not be executable.
+>
+> Rob
+Thanks for catching this.
 
-> Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: Add i.MX93W EVK board
->=20
-> On Tue, Jan 20, 2026 at 06:26:03PM +0800, Sherry Sun wrote:
-> > Add DT compatible string for NXP i.MX93W EVK board.
-> >
-> > Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
-> > ---
-> >  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml
-> b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > index 93ad6f0027d0..1769f243d70f 100644
-> > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > @@ -1432,6 +1432,7 @@ properties:
-> >                - fsl,imx93-11x11-evk       # i.MX93 11x11 EVK Board
-> >                - fsl,imx93-11x11-frdm      # i.MX93 11x11 FRDM Board
-> >                - fsl,imx93-14x14-evk       # i.MX93 14x14 EVK Board
-> > +              - fsl,imx93w-evk            # i.MX93W EVK Board
->=20
-> Is 93w 11x11 or 14x14? can you add suffix to keep align existing one.
->=20
+I will fix the file mode in the next revision.
 
-Hi Frank,
+Joey
 
-IMX93W-EVK is the official board name, it basically reuse the  i.MX93 11x11
-EVK board, as described in the cover letter and dts patch. I prefer to stil=
-l use
-this name (imx93w-evk) to keep align with the board official name.=20
-
-Please let me know if there any other concerns. Thanks!
-
-Best Regards
-Sherry
-
-
-> Frank
->=20
-> >            - const: fsl,imx93
-> >
-> >        - description: i.MX94 based Boards
-> > --
-> > 2.37.1
-> >
+>> diff --git a/Documentation/devicetree/bindings/net/nuvoton,ma35d1-dwmac.yaml b/Documentation/devicetree/bindings/net/nuvoton,ma35d1-dwmac.yaml
+>> new file mode 100755
+>> index 000000000000..8eaddfdc937c
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/net/nuvoton,ma35d1-dwmac.yaml
+>> @@ -0,0 +1,126 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/net/nuvoton,ma35d1-dwmac.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Nuvoton DWMAC glue layer controller
+>> +
+>> +maintainers:
+>> +  - Joey Lu <yclu4@nuvoton.com>
+>> +
+>> +description:
+>> +  Nuvoton 10/100/1000Mbps Gigabit Ethernet MAC Controller is based on
+>> +  Synopsys DesignWare MAC (version 3.73a).
+>> +
+>> +allOf:
+>> +  - $ref: snps,dwmac.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
+>> +      - enum:
+>> +          - nuvoton,ma35d1-dwmac
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +    description:
+>> +      Register range should be one of the GMAC interface.
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: MAC clock
+>> +      - description: PTP clock
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: stmmaceth
+>> +      - const: ptp_ref
+>> +
+>> +  nuvoton,sys:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>> +    items:
+>> +      - items:
+>> +          - description: phandle to access syscon registers.
+>> +          - description: GMAC interface ID.
+>> +            enum:
+>> +              - 0
+>> +              - 1
+>> +    description:
+>> +      A phandle to the syscon with one argument that configures system registers
+>> +      for MA35D1's two GMACs. The argument specifies the GMAC interface ID.
+>> +
+>> +  resets:
+>> +    maxItems: 1
+>> +
+>> +  reset-names:
+>> +    items:
+>> +      - const: stmmaceth
+>> +
+>> +  phy-mode:
+>> +    enum:
+>> +      - rmii
+>> +      - rgmii
+>> +      - rgmii-id
+>> +      - rgmii-txid
+>> +      - rgmii-rxid
+>> +
+>> +  tx-internal-delay-ps:
+>> +    default: 0
+>> +    minimum: 0
+>> +    maximum: 2000
+>> +    description:
+>> +      RGMII TX path delay used only when PHY operates in RGMII mode with
+>> +      internal delay (phy-mode is 'rgmii-id' or 'rgmii-txid') in pico-seconds.
+>> +      Allowed values are from 0 to 2000.
+>> +
+>> +  rx-internal-delay-ps:
+>> +    default: 0
+>> +    minimum: 0
+>> +    maximum: 2000
+>> +    description:
+>> +      RGMII RX path delay used only when PHY operates in RGMII mode with
+>> +      internal delay (phy-mode is 'rgmii-id' or 'rgmii-rxid') in pico-seconds.
+>> +      Allowed values are from 0 to 2000.
+>> +
+>> +required:
+>> +  - clocks
+>> +  - clock-names
+>> +  - nuvoton,sys
+>> +  - resets
+>> +  - reset-names
+>> +
+>> +unevaluatedProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    #include <dt-bindings/clock/nuvoton,ma35d1-clk.h>
+>> +    #include <dt-bindings/reset/nuvoton,ma35d1-reset.h>
+>> +    ethernet@40120000 {
+>> +        compatible = "nuvoton,ma35d1-dwmac";
+>> +        reg = <0x40120000 0x10000>;
+>> +        interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
+>> +        interrupt-names = "macirq";
+>> +        clocks = <&clk EMAC0_GATE>, <&clk EPLL_DIV8>;
+>> +        clock-names = "stmmaceth", "ptp_ref";
+>> +
+>> +        nuvoton,sys = <&sys 0>;
+>> +        resets = <&sys MA35D1_RESET_GMAC0>;
+>> +        reset-names = "stmmaceth";
+>> +
+>> +        phy-mode = "rgmii-id";
+>> +        phy-handle = <&eth_phy0>;
+>> +        mdio {
+>> +            compatible = "snps,dwmac-mdio";
+>> +            #address-cells = <1>;
+>> +            #size-cells = <0>;
+>> +
+>> +            eth_phy0: ethernet-phy@0 {
+>> +                reg = <0>;
+>> +            };
+>> +        };
+>> +    };
+>> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+>> index dd3c72e8363e..10cb5e555750 100644
+>> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+>> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+>> @@ -69,6 +69,7 @@ properties:
+>>           - ingenic,x2000-mac
+>>           - loongson,ls2k-dwmac
+>>           - loongson,ls7a-dwmac
+>> +        - nuvoton,ma35d1-dwmac
+>>           - nxp,s32g2-dwmac
+>>           - qcom,qcs404-ethqos
+>>           - qcom,sa8775p-ethqos
+>> -- 
+>> 2.43.0
+>>
 
