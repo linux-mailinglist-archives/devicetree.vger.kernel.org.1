@@ -1,363 +1,472 @@
-Return-Path: <devicetree+bounces-258166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258167-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UCgyNy17cWkvHwAAu9opvQ
-	(envelope-from <devicetree+bounces-258166-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 02:19:41 +0100
+	id kPvOGNF7cWm0HwAAu9opvQ
+	(envelope-from <devicetree+bounces-258167-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 02:22:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82BB36041E
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 02:19:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 305E26047F
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 02:22:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id AB6373C7685
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 01:19:39 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E38EB387B67
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 01:22:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C52634E777;
-	Thu, 22 Jan 2026 01:19:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4987130FC31;
+	Thu, 22 Jan 2026 01:22:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=valinux.co.jp header.i=@valinux.co.jp header.b="VwYuu+TA"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="O777Nvcd";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="IFPgWkeO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TY3P286CU002.outbound.protection.outlook.com (mail-japaneastazon11020079.outbound.protection.outlook.com [52.101.229.79])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 035962BF00B;
-	Thu, 22 Jan 2026 01:19:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.229.79
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769044772; cv=fail; b=ofJlXoIf7xe3RJTCcA3+JFf75ASdwySOkRD4pvazj10PsWde690ObaF9NTuDXBZE1/HJwXrUA6GuiY2yTBLj6dtV0CyRlMh9YY1BbooeNqoZWttimApsebqNVRuiYKfoR3aAQ3HxMkbLrIqAlIC+SeSzzEEktWBTrRVWhV5WeHM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769044772; c=relaxed/simple;
-	bh=o2NQLMS/embWth5RzuLVwrEMh0pQn2Vc7mYfETjCulM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=DeFVEkAKzuy823jAVfO1E7yG/E9dLVYx+K4+vYYGe4gv1knloY+1KM287qAz4eI9AIAhyS3kSJzEcVc8EIACORsQMBOsHKD2cHazVb61mPAeFGTcmWP/Il26n0D5k0PXncNcgWDMqS3xbHMC0bdTCdZdBd9NvR+7YGzu4T7V8i0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=valinux.co.jp; spf=pass smtp.mailfrom=valinux.co.jp; dkim=pass (1024-bit key) header.d=valinux.co.jp header.i=@valinux.co.jp header.b=VwYuu+TA; arc=fail smtp.client-ip=52.101.229.79
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=valinux.co.jp
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=valinux.co.jp
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=eNC9AgpikQfyd7xEXdlfw6XImwxJdv0QtRXX+r4AWm6YUifJry7fcuEncV6WR+PVvczKYy1zN1y3QfM8QgXYRam6AyhW8YvnII3RVpC0d6Npc2CKVyzsBTV/t7RZHi2he/TdCM0cx8OsjXWKc3ygP64U7LXbcJ9XSBvin7Pbv7WypurWEGnPxsOScD78kEn/MUn/2GSJ1Rmm/m103sNiKlqXAbf8wZADk2BrcRFOuprJNYyIfTrQuN/tcKVUFlhHD6nMIMjow7+2fhEEOx2VjojwA7BiX/vpWlvFuUIqoObBlWH+enNtNPs24owPjN6CPRajbt1+SThln/Fryf6TSw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FsHuvGeytFBSKIZe5jzERdo52s0CnCoK3SAaFRhEnj0=;
- b=PH4dvxhNgUfx7W+H4X7na7h2WKmHHH6W59MPr9cngZTu2EkIuwUp7Y7RJOT+dQv1q0iBfQgNnXgf+Uy++iHHnN3q2sTxnWg/JYNsI6r8/+SieAEQndA5zHiVMTOj4H4xnq52tQkhNx6sZj6IN3ApavVL+RWBheXIFJIZR5WSbpDViSV2MNm9WvYnnpwucFUaDizXjSDxC+TE7Rk30T9fNNhEV0fz/Eu/UBOje5PPBONgyer2ckEwwIrads4fL1sCZCBDRjZX4PBIs0rMp6i4Y4JUj8br2T8kYgUmnEp6F8UDkE5whPMHaZY57l9D0e5NAoA4KXMx8ckQDVwQFLy5YA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=valinux.co.jp; dmarc=pass action=none
- header.from=valinux.co.jp; dkim=pass header.d=valinux.co.jp; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=valinux.co.jp;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FsHuvGeytFBSKIZe5jzERdo52s0CnCoK3SAaFRhEnj0=;
- b=VwYuu+TAbNMDl1nEbkGxYD9kIfpGz5iYuRTMxU3eymSGO3ewdPH36bI6zv5dPpEMM4pUIdQIdIz8DymHTf0UQ008yHZil0RDpnHRQ0wYgzEL8145kt4D+siJ+jOYLMklcAzfcvOSRWDuwptqFWYf7VRyPBLbcnm4T1ImMZ+6WNg=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=valinux.co.jp;
-Received: from TY7P286MB7722.JPNP286.PROD.OUTLOOK.COM (2603:1096:405:38f::10)
- by TY7P286MB6210.JPNP286.PROD.OUTLOOK.COM (2603:1096:405:329::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.10; Thu, 22 Jan
- 2026 01:19:25 +0000
-Received: from TY7P286MB7722.JPNP286.PROD.OUTLOOK.COM
- ([fe80::2305:327c:28ec:9b32]) by TY7P286MB7722.JPNP286.PROD.OUTLOOK.COM
- ([fe80::2305:327c:28ec:9b32%5]) with mapi id 15.20.9542.009; Thu, 22 Jan 2026
- 01:19:25 +0000
-Date: Thu, 22 Jan 2026 10:19:24 +0900
-From: Koichiro Den <den@valinux.co.jp>
-To: Frank Li <Frank.li@nxp.com>
-Cc: dave.jiang@intel.com, cassel@kernel.org, mani@kernel.org, 
-	kwilczynski@kernel.org, kishon@kernel.org, bhelgaas@google.com, geert+renesas@glider.be, 
-	robh@kernel.org, vkoul@kernel.org, jdmason@kudzu.us, allenbh@gmail.com, 
-	jingoohan1@gmail.com, lpieralisi@kernel.org, linux-pci@vger.kernel.org, 
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, dmaengine@vger.kernel.org, iommu@lists.linux.dev, 
-	ntb@lists.linux.dev, netdev@vger.kernel.org, linux-kselftest@vger.kernel.org, 
-	arnd@arndb.de, gregkh@linuxfoundation.org, joro@8bytes.org, will@kernel.org, 
-	robin.murphy@arm.com, magnus.damm@gmail.com, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	corbet@lwn.net, skhan@linuxfoundation.org, andriy.shevchenko@linux.intel.com, 
-	jbrunet@baylibre.com, utkarsh02t@gmail.com
-Subject: Re: [RFC PATCH v4 05/38] dmaengine: dw-edma: Add a helper to query
- linked-list region
-Message-ID: <42qzkekk6yqbtcynxny3f7pl3xg6tqkywxvjsgfmrdpnr7zy53@i7ebpgazbi4z>
-References: <20260118135440.1958279-1-den@valinux.co.jp>
- <20260118135440.1958279-6-den@valinux.co.jp>
- <aW0S60D2uALBXdtQ@lizhi-Precision-Tower-5810>
- <e4y664ylum35wvj4endwprzpp4cvfaggklik5mxvdkgmakuqyj@lgevmhllem72>
- <tuhaxwmmcjfltih7ckfo2l5ltzicnj6zfc5ka3pvqlljn7ldu2@ibo5eo62lndn>
- <aXDvkRCZXQ/dPwRd@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aXDvkRCZXQ/dPwRd@lizhi-Precision-Tower-5810>
-X-ClientProxiedBy: TYCP301CA0008.JPNP301.PROD.OUTLOOK.COM
- (2603:1096:400:386::6) To TY7P286MB7722.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:405:38f::10)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71B90309F0D
+	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 01:22:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769044935; cv=none; b=Cr8wQvQ1oQIALHmIPhMLcQJPqEuMET+IYJg1CG34V+4PLoO1ljEH06ooYKhMJplLBEFm7AsPlUInjZ/OxkHoAiUvidAp6/aiWR4D0V7SFL5PSjDYlrAnJL5iSmjXTgGdsNn8kN2fGFow0teeal1jeLpB6Cqk2wFdzGv211ogHwg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769044935; c=relaxed/simple;
+	bh=IJpye2ZSjDSFvA3vIutKWKKL6jBfIdG0bBPWhPiDk2E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q1JA8BlK21JXTIMilca280hmFE1o/b9jgvWMoo8wAQGJgPsbfR5PeqkW/A0YQTkVVx8CpazorTkDLJKiBYYxZQv7jfcUP3xvWSUA87REIhKgS0ofJRteVrCfUeEsZApamteCl2xiOCEaFpR3wqDjilYFElvktLfnAQzLV2ZYTUg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=O777Nvcd; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=IFPgWkeO; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60LLOUvB483784
+	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 01:22:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	6N3XpqNLxBK2CAf6KcJ5efxaB+ErQWCrL4MhdjpILf8=; b=O777NvcdCRONLlwc
+	KBrw86rVTskoct+BaniYz/O/9Jp4Icx2eL1YQY9GAHd8OOAOpBhODyA7jxJlBday
+	BLNAfkr3K60kXzBiReOXf5UH2G+I2cp4tJw8C+z3Dim1ilUaB44gD5E/KPaFcHGw
+	A/cf7h0KABnrEUxc35rWDrc/xsFA3LB5mcnhIz6EgN7p+6D98JmZmTUi+4tHq4hI
+	Yz3eKHV57PM1d6k11bTiegz+ilS1Xj2Nn2LyjO6n7xtxiLXhjnmvCOyQhXZWAkV+
+	Jrne3NHZp48UzSZfC+HN4r0KmuVoZ9TCS1Bb/HlhJ912D0vqtLVbZR7RvSF+9Cd1
+	gR2Leg==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bu6pj0hp8-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 01:22:12 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8c53919fbfcso107076885a.2
+        for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 17:22:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1769044931; x=1769649731; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=6N3XpqNLxBK2CAf6KcJ5efxaB+ErQWCrL4MhdjpILf8=;
+        b=IFPgWkeOj4ykRVAZ05wptX0GOAGmZQwg0n7JvEdqPL8K8vAi8JXO7HgQUdB1I5nZT9
+         p+3qSBd3f5x8lszhlwHOtO0oO9vP293j/rMIxy96lrm4q4/3wB8roBmNZlqvEpQ1vt/5
+         bNuBSPm3JBYP7onlXy3MYjwg2mAYe/83MVN7biXOWchNzBbYp6Ha2cfu4f2mUZr1gQrM
+         XUuyCRWfTmThkq8TMK3/T06/H50nyG788gW3obWJwtjWl7mNVsLnMq1x/MdSlfm2jBCV
+         7tcfhUHamCv6X4o848hWMPZmmYeK1yz10KdiKPIcjiWEx8UP4ufW/FRdyBX4i0ubVqwN
+         7iCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769044931; x=1769649731;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6N3XpqNLxBK2CAf6KcJ5efxaB+ErQWCrL4MhdjpILf8=;
+        b=o86HP1rCVUZhqtyrDBLH8j56xK3FBRB9gXat28HoW+ECB8fV5SHe1BhqcCirQLn3OG
+         vUYo9b0quKeAF6uJL7Hvj5mttNa4Ts/7q+pewilhHdoDHH8Ssq0D+yCMzu2GwHW7T8Xy
+         LVPf3GORHFiyko0nqdB7jkJfDUcFu9ws9Mfj35H0ChnK4VOFZFNsowQr9WnxocOFyzoF
+         lyIFUGEJqC9QbvRu64A4ECC7G8s+07kYaaaX2M6qfNNt775LNfh8vWXDoth9bpLUjLmd
+         69P05u7LhTmFegUSYHbAut/2GUTgSqhaHWZgxk6Xr5+BEe5m2dhRbGnxadugrtN5IXFO
+         iEXw==
+X-Forwarded-Encrypted: i=1; AJvYcCXciuHVpP/c9ydtvVgJG9Srj3sokoEL9stAHCj5PNq03ca0VJQa5yVxjTg0YYkb/pqaRGa+Mvy7s8i/@vger.kernel.org
+X-Gm-Message-State: AOJu0YzM4Xnq394XGN/OQqa2OMGfj+Zu5j6D7UJ6n/x6+HT+n/2F8dGT
+	E8ygLbI2IR9l/bc0Fx1mw+whPFq3zzZzh8phNbKHixGsOBebFfwgNDbTgfL06R6Rmnvfy4GHn5s
+	i74LAFtwxLS6Dp9YtrkDf1Y4uQ6tpAHRxXr+OTtJo4yX2VrSefCnkLHs8Bpl5iHgo
+X-Gm-Gg: AZuq6aITRbx3iVryQQwg8HCx9kVbjmPZgCX2lm56qGk8Pli3K5t5B/eDFZutDGgQvj7
+	5TvG6e4IHA3syaA1wstlTrxlsqfUNs3YNHhhc2OvoF4AKo4feBJ/1JPsM/A4QZX27d6+xhyEfSg
+	09oAyyohBze5ne8mdoZxAbNt6BYch/GSm5ovu3kMmGQtK+zlgn8mrLznWujGDhJuVXOSYKqnhAF
+	qYom4cH6wstehBJTK374B0AhSxl8DVfCBQbWZ6Gl4O3S4KhJoIRmP/5bmCnX3GlAdQ0lTAA3AIw
+	BCOtTET7eeM6fkHjDox5i9Wbt4zwOQnL7EPl/SMRumH23vU9hRCfXG6g10krReSk6cKdScqEag1
+	apXrDy2MDUSA2HKN91qhjwKh7GszC1/BR8iqARNHBgQHby/0oJ3U+fFOtmsAFRcOOcz1JPrvQAa
+	1xgiXqnGzy1tY93DRUldXZtWQ=
+X-Received: by 2002:a05:620a:7102:b0:8a7:2373:1c75 with SMTP id af79cd13be357-8c6a675aee6mr2553713385a.49.1769044931439;
+        Wed, 21 Jan 2026 17:22:11 -0800 (PST)
+X-Received: by 2002:a05:620a:7102:b0:8a7:2373:1c75 with SMTP id af79cd13be357-8c6a675aee6mr2553710085a.49.1769044930872;
+        Wed, 21 Jan 2026 17:22:10 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59baf39c02fsm5054567e87.86.2026.01.21.17.22.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Jan 2026 17:22:08 -0800 (PST)
+Date: Thu, 22 Jan 2026 03:22:05 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>,
+        Maulik Shah <maulik.shah@oss.qualcomm.com>,
+        Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
+        Taniya Das <taniya.das@oss.qualcomm.com>,
+        Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
+        Qiang Yu <qiang.yu@oss.qualcomm.com>,
+        Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>,
+        Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
+        Abel Vesa <abelvesa@kernel.org>
+Subject: Re: [PATCH v5 3/4] arm64: dts: qcom: Introduce Glymur base dtsi
+Message-ID: <pmkxaslxodh2cnxbxy6wnyalb4zl64xek5l4cfhtw3k3ywatfk@hyzhbh7wzzji>
+References: <20260122-upstream_v3_glymur_introduction-v5-0-8ba76c354e9a@oss.qualcomm.com>
+ <20260122-upstream_v3_glymur_introduction-v5-3-8ba76c354e9a@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TY7P286MB7722:EE_|TY7P286MB6210:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0d12f959-3cb4-4ebc-9d46-08de595447c6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|10070799003|1800799024|7416014|366016;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?ri9IMbMDzUHAwQNCR3d8X5Q4Q/vspMT0v/N8X/JKM1aRLgoUvqqFP2/vgJis?=
- =?us-ascii?Q?0Fo2dV1b1brgpIsrYSJyD74wxizw6zseErTvFIbZN0LoVOfwh47xpa/IhWt4?=
- =?us-ascii?Q?iKCHhSm4/XXuVcLKj7ChLOJWp+Z9PT97wALTKCAXGM4AqTxQ9a0PtR97s1dh?=
- =?us-ascii?Q?gQEAEXmt66nNSLmpDMQSVvOXj6Spcv7HrW1aD/nZj4MF7xeTPV7gG9A6erRO?=
- =?us-ascii?Q?Pt89V5PwW1mUfrl2DFvBeYClxGXBqLMk9OzQSWA+03NNBVyOMbgQQMVc+vwJ?=
- =?us-ascii?Q?uxvTv6W3K4m2c9Lg04GxgbPdeU4mh8r57xaICXcpLowulZ1t0igaI7Km4MyP?=
- =?us-ascii?Q?G/xXiy+UHgvSOWHm1vR2IyeatPShiG1W9CjUpwKQeg8WM0dxb3ftwf/uQgRH?=
- =?us-ascii?Q?FQkyTyTvvyr4H6AZskrCFJUAGP/81zZ7lGjTiooFrxthThHV9k3dGu5D5/+D?=
- =?us-ascii?Q?GUwCI+IrQu9LKsasebPvHZdVgtKbam+9XqHoaOlRg+Up/LYmW12Cg49LE2pg?=
- =?us-ascii?Q?q9GnsxKRxWWGPlzyTGwn7UsW2Okli1T7S3td7LFirZyVLKxQxS9J3J40SmLu?=
- =?us-ascii?Q?FtJ/ZBFgnzqDLhwDHjp42Jd6iD2GL9iAE6gvv5zASd7wG5D2nTUQ8NwVA7Qy?=
- =?us-ascii?Q?tE0obssEjRFwMvL6J1ehn12ToNfk3tclyHBQo4qX+GNilLFbD688Q84nFCzP?=
- =?us-ascii?Q?wt16KPdfXXsPFfSb467ZMib4g0gFIi8t+oK1i83JbYyCdwivVTfdUyAkVt9I?=
- =?us-ascii?Q?hDwLNpL/1BlXg1b/aJDYNe03EJpe/XnizqGXRPU+8uDx8/pI9LKPgxKxIGBM?=
- =?us-ascii?Q?Ql33NNaFYNWMqnnE+/EOKqBUhjEYmvTE4ek5U1z2c48WN/EEOiyoQ/sLw01r?=
- =?us-ascii?Q?HmycC+nUHYWrFIJyXUIzFeBVND2I8qhSgn/8CzvcNyQGMMQCoqgyqi12m6Qa?=
- =?us-ascii?Q?JYHqXGrMyPulkz0oZPHeuApWiRgWF/3vKA9wRDKB+sTtX/IGNYrCBzoRbtj4?=
- =?us-ascii?Q?6mLGcZh4eGz1PzWEhF07ft4HVjdB6/B8rCcrVwy2QKBmv2ToZfeVyYAiu8Ch?=
- =?us-ascii?Q?EKEiEcg+84JrJkRF9dWfFWfioI2+4ZVCSAUGlA8QH9L76HDUbh9vQmAwE9qU?=
- =?us-ascii?Q?9QAO/A6perKwpFRWgNVxGCTrhTN7EjWGMYYGvpI/EMnYZw9/nyIqCpQRcBbY?=
- =?us-ascii?Q?VaLjAbJKH3mKtATvN8h1fbCd1Xh9JIQsPsj/q8m1et1PV5eZfsXJ8+06LBWO?=
- =?us-ascii?Q?ZAFyUGozA5RHZgwIesaGjfHvvl8b2Q38YcQqXGvEHP0TQIA/k4eg6K7oQVAX?=
- =?us-ascii?Q?qivqlTE57x8mj6ho0Cgate5QctH9Kv/cYAqseny5U3vMbuQv1/ROYm98f4G3?=
- =?us-ascii?Q?u+fWGGW2yLb//fARpEXU+WtMn4FjQFWuTeT8lFOnd8jrXZ6XmGwnyhYEud9Z?=
- =?us-ascii?Q?o+D042fbFXnjqUtuurr4iEFgMfHUKrs/jZGRkQODfEuY5dnikuTlKkEZcFzo?=
- =?us-ascii?Q?4VUAGh+As8HevjDsRlW+2qIY5dJQpe/URKasvK22ZTGAYJ2kd39tRV59//s3?=
- =?us-ascii?Q?73pDfz6CMSEZ5SkssQc=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY7P286MB7722.JPNP286.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(10070799003)(1800799024)(7416014)(366016);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?bXy7xrG0lGJtw1cchbaUNrCcnmrVtyCFzAPVssZ89skuzZhnIDcHTMtcvq49?=
- =?us-ascii?Q?CUrsv9qQ6GeqqbF35qxFtdUzk+GISzl8sGA1uJJcx9IKgRhaMCo0u/PnD9d2?=
- =?us-ascii?Q?4RlOixdLH59Roz/1uqgTS4Gt0Lre+ovWTp+Xh+ZzXcDql+Si7Ceeh359M0AH?=
- =?us-ascii?Q?9BL0OFmvF5kdDTt+zrc8QrUr+/orhDxTqpwFLZuYei1PnE+v5hpIslMKGYAB?=
- =?us-ascii?Q?ApBUwjw/Pd8nh9//L3lnpNnqpHMcgzvvOBV067mjGXojOijzkkHiudRMenn4?=
- =?us-ascii?Q?9BwwmuAlJbGGdYGQ3zuFf4RhVunsLklnTDFnMOGnXLc+6w1H6ehXLnKvxGOx?=
- =?us-ascii?Q?lV7tfP8HHTlD6+k8BiOXe5lvkABmCTHRz3vfXfrNXB05zK+ZvSvAHqP/i+54?=
- =?us-ascii?Q?FFvp9piuKKZKRlSysRrSuJE2CUyNrmQAny7qA49bqUQShrvyclGgCXxnf/In?=
- =?us-ascii?Q?M50wMBgd+76s1PioHtNvQPrztqEiiWnFbB145x5Uoi4Q+HGrXEqsqhoTcUwe?=
- =?us-ascii?Q?d1CGEhRwiWtGi1poWLlFUNACiz0wyVD4Bv/s3iuRXyLOmzLA59mfgS+9gAei?=
- =?us-ascii?Q?UkSs6Ecldn8MHJW65ydLMXo4vlPkwFZX5XCX6EL/PGkt+Lb8V7PgMKV/rNMX?=
- =?us-ascii?Q?+gAfAucdeCZGSavhoLGzvEF/HiDeG03OY1V1Y6gxeBIwUHzcLq0tZ5Q9xtVU?=
- =?us-ascii?Q?d9T8bmWjUe1qnwXPAwPDlqxr5UsmfW2cjDdcTeSP04TAzB7a27Ivj5neI53f?=
- =?us-ascii?Q?sU+PxYC4aDNXapTEtad/qt83MKEnjbWzjeKVX+BdkCdjIQ/cYLak50fypbD1?=
- =?us-ascii?Q?T2IB17QwHSQ+YmOVm2JCOWIdCkTds3fS+H5F0BGH/gcUwomYg1Pec9vkVfZM?=
- =?us-ascii?Q?jfyCGjFR5Q7yMop0i4Us3drUX9+5aFVHYTiyMtRL/ZG5GpQm4rlEIAruSvtl?=
- =?us-ascii?Q?vJyoy7Sg89wMu5lsuaU+7ctB9VMtkidwTRrm5HFrBmxP0d/BK/DZkF23QFIL?=
- =?us-ascii?Q?uAQaYaJviRiC0hbwl3+Raf772Ab7B0ZdKXWgHR6VTVGilInRl1EGOFIJWbGy?=
- =?us-ascii?Q?NmNNSj0qqQnIbVPqmr42poA2rOJFrRYQJl78e+/yQStGbg5wW6JoSqMet+54?=
- =?us-ascii?Q?Yy2VZEPmiwEB5B274jptIA9KDfbYvrZwZTKNhW47rtvN08WpUNdaB3jZpqDx?=
- =?us-ascii?Q?+FCI8wJu3nUVba2rcILjkUGC/bjuXEJStMif8OJb8CKgez04cZa/CJH+nOe4?=
- =?us-ascii?Q?vHBAUdCnnIbsrtijAoR5V9o1Nqo950uWfmf33R14usmWWa4RlVzYJP4h947X?=
- =?us-ascii?Q?6uGKBINEGVgeU/3NnZDFFBZdKJvu2IeelV8IldW2HrPay0emAmLAsr0P/cG4?=
- =?us-ascii?Q?XjxJ/Mtw7i2YU7u4AC8K418B06tz4cvD7saF86sWrv30gIKmPZWxDJe6u6u6?=
- =?us-ascii?Q?XHDxjFyB7oXDmBXiaCcFlZA7PXvkbU9gq8OmGdFchZJEX/fxPSWsNh1SVFs1?=
- =?us-ascii?Q?98gwShnASmxZglhEt+ivITiOJVSinWdqUOZXWu7lx+dnWYjQ+4t1dCAeFvT7?=
- =?us-ascii?Q?JasbshOVkW8RPKZXW1qdw6N9TkziBEOSznsAYyk7y9wpqIDNR1TWHU/ASZA+?=
- =?us-ascii?Q?3T3MhVCCV/lzPJigBFNzS6mrSbSI95OZhqZXcM+dA/KdMJ2WxwEAs1ZMkpuu?=
- =?us-ascii?Q?a6+Azw8r7t993sgp7utMbjjue0v5PTm34J2k21QA6tAy1F4DMfK/q9ffltlL?=
- =?us-ascii?Q?IirjCHo2eQI5EwsXKr/KW4wuH7HsHRoGGd2Gwc2y2PSWoDGV8gi0?=
-X-OriginatorOrg: valinux.co.jp
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0d12f959-3cb4-4ebc-9d46-08de595447c6
-X-MS-Exchange-CrossTenant-AuthSource: TY7P286MB7722.JPNP286.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2026 01:19:25.0576
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 7a57bee8-f73d-4c5f-a4f7-d72c91c8c111
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gDgf4Icprdvhem44vuCWTIxFiodQz1mn/xaBFvUQRo6q6HCwbmIvzC8Iq4X5AgjlxU9Dh/H+XCSUUpWwHtectQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY7P286MB6210
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260122-upstream_v3_glymur_introduction-v5-3-8ba76c354e9a@oss.qualcomm.com>
+X-Authority-Analysis: v=2.4 cv=D8pK6/Rj c=1 sm=1 tr=0 ts=69717bc4 cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8 a=-JAtPEll0wwCws6h7MkA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIyMDAwOSBTYWx0ZWRfX+22uMTwDi0Gl
+ 1H7Tneurlfcx4/KdUTsQFdW0rKaBU7nU7bR49XCAl+BRr2pyohNz1MqdTMUo+oOP3ex2jGtlh9u
+ WnAb14wnn4OGfbuYoOoqjhcSTCrF0rH9gGadhLzey5tO5r/Zvw/vz3GvIwIE30MkmmQmDiiCs7x
+ NsnUG0Kqxk8dQWpu3xQ9HsLO7u3FM8g5eUbKlHU5y98nGqhHu0sGVOyhcz2GZiwFxUIElVbABNE
+ Uz1qnj1dU5wFRaHNJRlsiHo7IaafV78UBnsyX2kIqpQjqz9EWUzz8Fq5o8l1KuWOXQCwfEobNW9
+ XI8FjVMpz88pbh4L//ieirKixkWL1tUdHHgEBfaJAZIywhxO/1TLh/GLiaK/UOGp8hpKDOux3CK
+ 6IY0i1toOhfPNMCKGF7RCDLYGfRU4KMI2sjJT+8JLH8fRiX8wn2D28NimoLaPMpDNChTtbSE2PG
+ WG+4jlgtiiLNAlWHT+g==
+X-Proofpoint-ORIG-GUID: Lgwvksv6pRrd2aA175dyYgj-y81HvFkK
+X-Proofpoint-GUID: Lgwvksv6pRrd2aA175dyYgj-y81HvFkK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
+ definitions=2026-01-21_04,2026-01-20_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 malwarescore=0 adultscore=0 phishscore=0 impostorscore=0
+ priorityscore=1501 clxscore=1015 spamscore=0 suspectscore=0
+ lowpriorityscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
+ definitions=main-2601220009
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.04 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
+X-Spamd-Result: default: False [-1.46 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[valinux.co.jp:s=selector1];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258166-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-258167-lists,devicetree=lfdr.de];
+	DMARC_POLICY_ALLOW(0.00)[qualcomm.com,reject];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns,linaro.org:email,qualcomm.com:email,qualcomm.com:dkim];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[37];
-	FREEMAIL_CC(0.00)[intel.com,kernel.org,google.com,glider.be,kudzu.us,gmail.com,vger.kernel.org,lists.linux.dev,arndb.de,linuxfoundation.org,8bytes.org,arm.com,lwn.net,linux.intel.com,baylibre.com];
-	DKIM_TRACE(0.00)[valinux.co.jp:+];
-	TO_DN_SOME(0.00)[];
-	R_SPF_SOFTFAIL(0.00)[~all:c];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[den@valinux.co.jp,devicetree@vger.kernel.org];
-	DMARC_POLICY_ALLOW(0.00)[valinux.co.jp,none];
-	RCVD_COUNT_FIVE(0.00)[5];
-	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[valinux.co.jp:email,valinux.co.jp:dkim,ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns]
-X-Rspamd-Queue-Id: 82BB36041E
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	R_SPF_SOFTFAIL(0.00)[~all:c];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 305E26047F
 X-Rspamd-Action: no action
 
-On Wed, Jan 21, 2026 at 10:24:01AM -0500, Frank Li wrote:
-> On Wed, Jan 21, 2026 at 05:41:11PM +0900, Koichiro Den wrote:
-> > On Wed, Jan 21, 2026 at 10:38:53AM +0900, Koichiro Den wrote:
-> > > On Sun, Jan 18, 2026 at 12:05:47PM -0500, Frank Li wrote:
-> > > > On Sun, Jan 18, 2026 at 10:54:07PM +0900, Koichiro Den wrote:
-> > > > > A remote eDMA provider may need to expose the linked-list (LL) memory
-> > > > > region that was configured by platform glue (typically at boot), so the
-> > > > > peer (host) can map it and operate the remote view of the controller.
-> > > > >
-> > > > > Export dw_edma_chan_get_ll_region() to return the LL region associated
-> > > > > with a given dma_chan.
-> > > >
-> > > > This informaiton passed from dwc epc driver. Is it possible to get it from
-> > > > EPC driver.
-> > >
-> > > That makes sense, from an API cleanness perspective, thanks.
-> > > I'll add a helper function dw_pcie_edma_get_ll_region() in
-> > > drivers/pci/controller/dwc/pcie-designware.c, instead of the current
-> > > dw_edma_chan_get_ll_region() in dw-edma-core.c.
-> >
-> > Hi Frank,
-> >
-> > I looked into exposing LL regions from the EPC driver side, but the key
-> > issue is channel identification under possibly concurrent dmaengine users.
-> > In practice, the only stable handle a consumer has is a pointer to struct
-> > dma_chan, and the only reliable way to map that to the eDMA hardware
-> > channel is via dw_edma_chan->id.
+On Thu, Jan 22, 2026 at 12:05:13AM +0530, Pankaj Patil wrote:
+> Introduce the base device tree support for Glymur – Qualcomm's
+> next-generation compute SoC. The new glymur.dtsi describes the core SoC
+> components, including:
 > 
-> If possible, I suggest change to one page pre-channel. So there are a fixed
-> ll mapping.
-
-I agree that this would make the LL layout more deterministic and would
-indeed simplify locating the region for a given dw_edma_chan ID. That said,
-my concern was that even with a fixed per-channel layout, we still need a
-reliable way to map a struct dma_chan obtained by a consumer to the
-corresponding dw_edma_chan ID, especially in the presence of potentially
-concurrent dmaengine users.
-
+> - CPUs and CPU topology
+> - Interrupt controller and TLMM
+> - GCC,DISPCC and RPMHCC clock controllers
+> - Reserved memory and interconnects
+> - APPS and PCIe SMMU and firmware SCM
+> - Watchdog, RPMHPD, APPS RSC and SRAM
+> - PSCI and PMU nodes
+> - QUPv3 serial engines
+> - CPU power domains and idle states, plus SCMI/ SRAM pieces for CPU DVFS
+> - PDP0 mailbox, IPCC and AOSS
+> - Display clock controller
+> - SPMI PMIC arbiter with SPMI0/1/2 buses
+> - SMP2P nodes
+> - TSENS and thermal zones (8 instances, 92 sensors)
 > 
-> > I think an EPC-facing API would still need
-> > that mapping in any case, so keeping the helper in dw-edma seems simpler
-> > and more robust.
-> > If you have another idea, I'd appreciate your insights.
+> Add dtsi files for PMH0101, PMK8850, PMCX0102, SMB2370, PMH0104,
+> PMH0110 along with temp-alarm and GPIO nodes needed on Glymur
 > 
-> I suggest add generally DMA engine API to get such property, some likes
-> a kind ioctrl \ dma_get_config().
-
-I think such a helper, combined with your one page per-channel idea, would
-resolve the issue cleanly. For example, a helper like dma_get_hw_info()
-returning struct dma_hw_info, whose first field is a hw_id, could work
-well. Consumers could then use this helper, and if they know they are
-dealing with a dw-edma channel, they can derive the LL location
-straightforwardly as {hw_id * fixed_stride (e.g. PAGE_SIZE)}. Adding hw_id
-to struct dma_slave_caps would make the necessary diff smaller, but I think
-it would not semantically fit in the structure.
-
-Thanks,
-Koichiro
-
+> Enabled PCIe controllers and associated PHY to support boot to
+> shell with nvme storage,
+> List of PCIe instances enabled:
 > 
-> Frank
+> - PCIe3b
+> - PCIe4
+> - PCIe5
+> - PCIe6
 > 
-> >
-> > Regards,
-> > Koichiro
-> >
-> > >
-> > > Thanks for the review,
-> > > Koichiro
-> > >
-> > > >
-> > > > Frank
-> > > > >
-> > > > > Signed-off-by: Koichiro Den <den@valinux.co.jp>
-> > > > > ---
-> > > > >  drivers/dma/dw-edma/dw-edma-core.c | 26 ++++++++++++++++++++++++++
-> > > > >  include/linux/dma/edma.h           | 14 ++++++++++++++
-> > > > >  2 files changed, 40 insertions(+)
-> > > > >
-> > > > > diff --git a/drivers/dma/dw-edma/dw-edma-core.c b/drivers/dma/dw-edma/dw-edma-core.c
-> > > > > index 0eb8fc1dcc34..c4fb66a9b5f5 100644
-> > > > > --- a/drivers/dma/dw-edma/dw-edma-core.c
-> > > > > +++ b/drivers/dma/dw-edma/dw-edma-core.c
-> > > > > @@ -1209,6 +1209,32 @@ int dw_edma_chan_register_notify(struct dma_chan *dchan,
-> > > > >  }
-> > > > >  EXPORT_SYMBOL_GPL(dw_edma_chan_register_notify);
-> > > > >
-> > > > > +int dw_edma_chan_get_ll_region(struct dma_chan *dchan,
-> > > > > +			       struct dw_edma_region *region)
-> > > > > +{
-> > > > > +	struct dw_edma_chip *chip;
-> > > > > +	struct dw_edma_chan *chan;
-> > > > > +
-> > > > > +	if (!dchan || !region || !dchan->device)
-> > > > > +		return -ENODEV;
-> > > > > +
-> > > > > +	chan = dchan2dw_edma_chan(dchan);
-> > > > > +	if (!chan)
-> > > > > +		return -ENODEV;
-> > > > > +
-> > > > > +	chip = chan->dw->chip;
-> > > > > +	if (!(chip->flags & DW_EDMA_CHIP_LOCAL))
-> > > > > +		return -EINVAL;
-> > > > > +
-> > > > > +	if (chan->dir == EDMA_DIR_WRITE)
-> > > > > +		*region = chip->ll_region_wr[chan->id];
-> > > > > +	else
-> > > > > +		*region = chip->ll_region_rd[chan->id];
-> > > > > +
-> > > > > +	return 0;
-> > > > > +}
-> > > > > +EXPORT_SYMBOL_GPL(dw_edma_chan_get_ll_region);
-> > > > > +
-> > > > >  MODULE_LICENSE("GPL v2");
-> > > > >  MODULE_DESCRIPTION("Synopsys DesignWare eDMA controller core driver");
-> > > > >  MODULE_AUTHOR("Gustavo Pimentel <gustavo.pimentel@synopsys.com>");
-> > > > > diff --git a/include/linux/dma/edma.h b/include/linux/dma/edma.h
-> > > > > index 3c538246de07..c9ec426e27ec 100644
-> > > > > --- a/include/linux/dma/edma.h
-> > > > > +++ b/include/linux/dma/edma.h
-> > > > > @@ -153,6 +153,14 @@ bool dw_edma_chan_ignore_irq(struct dma_chan *chan);
-> > > > >  int dw_edma_chan_register_notify(struct dma_chan *chan,
-> > > > >  				 void (*cb)(struct dma_chan *chan, void *user),
-> > > > >  				 void *user);
-> > > > > +
-> > > > > +/**
-> > > > > + * dw_edma_chan_get_ll_region - get linked list (LL) memory for a dma_chan
-> > > > > + * @chan: the target DMA channel
-> > > > > + * @region: output parameter returning the corresponding LL region
-> > > > > + */
-> > > > > +int dw_edma_chan_get_ll_region(struct dma_chan *chan,
-> > > > > +			       struct dw_edma_region *region);
-> > > > >  #else
-> > > > >  static inline int dw_edma_probe(struct dw_edma_chip *chip)
-> > > > >  {
-> > > > > @@ -182,6 +190,12 @@ static inline int dw_edma_chan_register_notify(struct dma_chan *chan,
-> > > > >  {
-> > > > >  	return -ENODEV;
-> > > > >  }
-> > > > > +
-> > > > > +static inline int dw_edma_chan_get_ll_region(struct dma_chan *chan,
-> > > > > +					     struct dw_edma_region *region)
-> > > > > +{
-> > > > > +	return -EINVAL;
-> > > > > +}
-> > > > >  #endif /* CONFIG_DW_EDMA */
-> > > > >
-> > > > >  struct pci_epc;
-> > > > > --
-> > > > > 2.51.0
-> > > > >
+> Co-developed-by: Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
+> Signed-off-by: Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
+> Co-developed-by: Maulik Shah <maulik.shah@oss.qualcomm.com>
+> Signed-off-by: Maulik Shah <maulik.shah@oss.qualcomm.com>
+> Co-developed-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+> Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+> Co-developed-by: Taniya Das <taniya.das@oss.qualcomm.com>
+> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
+> Co-developed-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+> Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+> Co-developed-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
+> Signed-off-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
+> Co-developed-by: Abel Vesa <abel.vesa@linaro.org>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> Co-developed-by: Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
+> Signed-off-by: Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
+> Co-developed-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+> Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+> ---
+>  arch/arm64/boot/dts/qcom/glymur.dtsi         | 6122 ++++++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/pmcx0102.dtsi       |  107 +
+>  arch/arm64/boot/dts/qcom/pmh0101.dtsi        |   45 +
+>  arch/arm64/boot/dts/qcom/pmh0104-glymur.dtsi |   83 +
+>  arch/arm64/boot/dts/qcom/pmh0110-glymur.dtsi |   83 +
+>  arch/arm64/boot/dts/qcom/pmk8850.dtsi        |   70 +
+>  arch/arm64/boot/dts/qcom/smb2370.dtsi        |   45 +
+>  7 files changed, 6555 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/glymur.dtsi b/arch/arm64/boot/dts/qcom/glymur.dtsi
+> new file mode 100644
+> index 000000000000..c0ecc64202c7
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/glymur.dtsi
+> +
+> +		pmh0101-thermal {
+
+Why do we have PMIC thermal zones as a part of SoC DTSI?
+
+> +			polling-delay-passive = <100>;
+> +			thermal-sensors = <&pmh0101_temp_alarm>;
+> +
+> +			trips {
+> +				trip0 {
+> +					temperature = <95000>;
+> +					hysteresis = <0>;
+> +					type = "passive";
+> +				};
+> +
+> +				trip1 {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "critical";
+> +				};
+> +			};
+> +		};
+> +
+> +		pmcx0102-c0-thermal {
+> +			polling-delay-passive = <100>;
+> +			thermal-sensors = <&pmcx0102_c_e0_temp_alarm>;
+> +
+> +			trips {
+> +				trip0 {
+> +					temperature = <95000>;
+> +					hysteresis = <0>;
+> +					type = "passive";
+> +				};
+> +
+> +				trip1 {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "critical";
+> +				};
+> +			};
+> +		};
+> +
+> +		pmcx0102-d0-thermal {
+> +			polling-delay-passive = <100>;
+> +			thermal-sensors = <&pmcx0102_d_e0_temp_alarm>;
+> +
+> +			trips {
+> +				trip0 {
+> +					temperature = <95000>;
+> +					hysteresis = <0>;
+> +					type = "passive";
+> +				};
+> +
+> +				trip1 {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "critical";
+> +				};
+> +			};
+> +		};
+> +
+> +		pmcx0102-c1-thermal {
+> +			polling-delay-passive = <100>;
+> +			thermal-sensors = <&pmcx0102_c_e1_temp_alarm>;
+> +
+> +			trips {
+> +				trip0 {
+> +					temperature = <95000>;
+> +					hysteresis = <0>;
+> +					type = "passive";
+> +				};
+> +
+> +				trip1 {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "critical";
+> +				};
+> +			};
+> +		};
+> +
+> +		pmcx0102-d1-thermal {
+> +			polling-delay-passive = <100>;
+> +			thermal-sensors = <&pmcx0102_d_e1_temp_alarm>;
+> +
+> +			trips {
+> +				trip0 {
+> +					temperature = <95000>;
+> +					hysteresis = <0>;
+> +					type = "passive";
+> +				};
+> +
+> +				trip1 {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "critical";
+> +				};
+> +			};
+> +		};
+> +
+> +		pmh0110-f0-thermal {
+> +			polling-delay-passive = <100>;
+> +			thermal-sensors = <&pmh0110_f_e0_temp_alarm>;
+> +
+> +			trips {
+> +				trip0 {
+> +					temperature = <95000>;
+> +					hysteresis = <0>;
+> +					type = "passive";
+> +				};
+> +
+> +				trip1 {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "critical";
+> +				};
+> +			};
+> +		};
+> +
+> +		pmh0110-h0-thermal {
+> +			polling-delay-passive = <100>;
+> +			thermal-sensors = <&pmh0110_h_e0_temp_alarm>;
+> +
+> +			trips {
+> +				trip0 {
+> +					temperature = <95000>;
+> +					hysteresis = <0>;
+> +					type = "passive";
+> +				};
+> +
+> +				trip1 {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "critical";
+> +				};
+> +			};
+> +		};
+> +
+> +		pmh0110-f1-thermal {
+> +			polling-delay-passive = <100>;
+> +			thermal-sensors = <&pmh0110_f_e1_temp_alarm>;
+> +
+> +			trips {
+> +				trip0 {
+> +					temperature = <95000>;
+> +					hysteresis = <0>;
+> +					type = "passive";
+> +				};
+> +
+> +				trip1 {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "critical";
+> +				};
+> +			};
+> +		};
+> +
+> +		pmh0104-i0-thermal {
+> +			polling-delay-passive = <100>;
+> +			thermal-sensors = <&pmh0104_i_e0_temp_alarm>;
+> +
+> +			trips {
+> +				trip0 {
+> +					temperature = <95000>;
+> +					hysteresis = <0>;
+> +					type = "passive";
+> +				};
+> +
+> +				trip1 {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "critical";
+> +				};
+> +			};
+> +		};
+> +
+> +		pmh0104-j0-thermal {
+> +			polling-delay-passive = <100>;
+> +			thermal-sensors = <&pmh0104_j_e0_temp_alarm>;
+> +
+> +			trips {
+> +				trip0 {
+> +					temperature = <95000>;
+> +					hysteresis = <0>;
+> +					type = "passive";
+> +				};
+> +
+> +				trip1 {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "critical";
+> +				};
+> +			};
+> +		};
+> +
+> +		pmh0104-l1-thermal {
+> +			polling-delay-passive = <100>;
+> +			thermal-sensors = <&pmh0104_l_e1_temp_alarm>;
+> +
+> +			trips {
+> +				trip0 {
+> +					temperature = <95000>;
+> +					hysteresis = <0>;
+> +					type = "passive";
+> +				};
+> +
+> +				trip1 {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "critical";
+> +				};
+> +			};
+> +		};
+> +	};
+> +};
+
+-- 
+With best wishes
+Dmitry
 
