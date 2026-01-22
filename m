@@ -1,64 +1,92 @@
-Return-Path: <devicetree+bounces-258396-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258397-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QIw2L40pcmmadwAAu9opvQ
-	(envelope-from <devicetree+bounces-258396-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:43:41 +0100
+	id eDWEI2UccmnrbwAAu9opvQ
+	(envelope-from <devicetree+bounces-258397-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 13:47:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 682B467712
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:43:41 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6C6666CEB
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 13:47:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 36B7E3AC032
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 12:26:56 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B8B7C945151
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 12:27:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A74393803FD;
-	Thu, 22 Jan 2026 12:23:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E1DD3EF0BF;
+	Thu, 22 Jan 2026 12:23:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="DYIou064"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C287538171D;
-	Thu, 22 Jan 2026 12:23:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FA783D6465;
+	Thu, 22 Jan 2026 12:23:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769084592; cv=none; b=cFUeM3ZCKBPNQ6OCP4Sihj16VxpuVhbjGTcXbu6xjdkaJV45RyhKMkuAD3lKX5KIhlZwb3Ym4C9TNQc8JGPQFei0mUGYT514TqxsVSX9uKdFzRGWze/UxuzYD47HiTU1rDzstR7s1yIGDxN1LS89mbdIknbqeTcnw8C56+N+JWM=
+	t=1769084609; cv=none; b=N2uv/0FtpPkRKo1b1kyakmlOjSi75n04QyPYNH/e7n1YOUGiBa1LoaN426nho/D+ou0FHIAfxbuwwr3IEVDqsHBzzbx0UTSW1/lM8ox3KQcOTQpo/+q+cFHrw3c6AT+inzsgqSPmPggfPY0/5TyNrWBX7nS5GMXNlvHON5PxX0s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769084592; c=relaxed/simple;
-	bh=AEXK4Uo79H93u4Zg/6ykx8c4qSUS2DgD3vMxYcWlTso=;
+	s=arc-20240116; t=1769084609; c=relaxed/simple;
+	bh=Cj2+/kcs97ULFQET2IYCmmZHMP/yfxbtQCjdqvLuw0o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V+95yp+taGidBW3m67IogRQCDFAUpYd+v8A+QGSbmnviN1XvSVYNo/abVjof3pVQ9I6jhsvMhUgzwrBLWJlWXqZNKb9Sm4Yv+CrarSYWdiRwDtqfAlolJy3p3jN9zZjNDv3g6phGpju2izpdgMUctb4Lzju7jjbBgIGvRJwhYYw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [116.232.27.242])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id 9116E341A11;
-	Thu, 22 Jan 2026 12:23:09 +0000 (UTC)
-Date: Thu, 22 Jan 2026 20:23:05 +0800
-From: Yixun Lan <dlan@gentoo.org>
-To: Guodong Xu <guodong@riscstar.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Alex Elder <elder@riscstar.com>, Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=cBq/eB9+uGp7763fp+/+1wwk6oXLSOTzEcdJ+kJszuQ1vQ6iiEomzl1kfmEIX4frW1QMkfZyGR2UT8tsuas+HOK2+haA2OI1oGfQkOFdQJxclBtq3cYQKg5KGmxPJv+NDtdxdZu7gTeLh9HbJMN7BA1yhpSw/rGPDeQXJYmhqEA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=DYIou064; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1769084607; x=1800620607;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Cj2+/kcs97ULFQET2IYCmmZHMP/yfxbtQCjdqvLuw0o=;
+  b=DYIou064g5Iob5DGp0X3pl1m4cvpHcX9Y6kACfttvjHZBQ0RtrqUGzIL
+   vLKlZuEQxOsXTjn8TA4MpQx1Ame7qvgpIuyEWVMkLv4yG2bH9mZ/hvSPh
+   06XnUQhIitZDz8ybmtLD7c4L7tKSlgza9s2jQ5Ccgz+Vw2ftHhO4noc/M
+   8XNRTWUMYlpiMVlXr7S8fYUvv4qVEp0j3foMJmZ6Vo+VY44Hj/4iWbHVa
+   sH5Ps5H+tFWv9NhjTPlmJkHw/BTiHZp8vAyI3ILXCWVi7fDrOOOC4XU2x
+   qGN0cQFL9cx+t8uWSVu4Vne5FdeJ3WCM1yV5SEB3WsZO4nFTlKZGDQOsa
+   g==;
+X-CSE-ConnectionGUID: PHNAjXiwRC2ndBPgRtjsQQ==
+X-CSE-MsgGUID: MzF4PramRFiPxG63ZwgYkQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="70295924"
+X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; 
+   d="scan'208";a="70295924"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2026 04:23:26 -0800
+X-CSE-ConnectionGUID: U6vzPU6nT++c7MhEOW0iJg==
+X-CSE-MsgGUID: RMhjbgxdTk25LjYGF6jUeg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; 
+   d="scan'208";a="211236098"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.225])
+  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2026 04:23:20 -0800
+Date: Thu, 22 Jan 2026 14:23:18 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc: netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	linux-kernel@vger.kernel.org,
+	Herve Codina <herve.codina@bootlin.com>,
+	Mark Brown <broonie@kernel.org>,
+	Serge Semin <fancer.lancer@gmail.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Troy Mitchell <troy.mitchell@linux.spacemit.com>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/4] dt-bindings: mfd: spacemit,p1: Add individual
- regulator supply properties
-Message-ID: <20260122122305-GYD63789@gentoo.org>
-References: <20260122-spacemit-p1-v1-0-309be27fbff9@riscstar.com>
- <20260122-spacemit-p1-v1-2-309be27fbff9@riscstar.com>
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Choong Yong Liang <yong.liang.choong@linux.intel.com>,
+	Jiawen Wu <jiawenwu@trustnetic.com>
+Subject: Re: [PATCH v2 net-next 04/15] net: dsa: sja1105: prepare regmap for
+ passing to child devices
+Message-ID: <aXIWttaIcR-yq0nx@smile.fi.intel.com>
+References: <20260122105654.105600-1-vladimir.oltean@nxp.com>
+ <20260122105654.105600-5-vladimir.oltean@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,156 +95,90 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260122-spacemit-p1-v1-2-309be27fbff9@riscstar.com>
+In-Reply-To: <20260122105654.105600-5-vladimir.oltean@nxp.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[gentoo.org : No valid SPF, No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258396-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,riscstar.com,linux.spacemit.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,vger.kernel.org,lists.infradead.org,lists.linux.dev];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lunn.ch,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,bootlin.com,linux.intel.com,trustnetic.com];
+	DMARC_POLICY_ALLOW(0.00)[intel.com,none];
+	TAGGED_FROM(0.00)[bounces-258397-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	R_SPF_SOFTFAIL(0.00)[~all:c];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlan@gentoo.org,devicetree@vger.kernel.org];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
 	MISSING_XM_UA(0.00)[];
-	R_DKIM_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	R_SPF_SOFTFAIL(0.00)[~all:c];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 682B467712
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,dfw.mirrors.kernel.org:helo,dfw.mirrors.kernel.org:rdns,smile.fi.intel.com:mid]
+X-Rspamd-Queue-Id: A6C6666CEB
 X-Rspamd-Action: no action
 
-Hi Guodong,
+On Thu, Jan 22, 2026 at 12:56:43PM +0200, Vladimir Oltean wrote:
+> Prepare a single regmap covering the entire SPI address space of the
+> SJA1105 and SJA1110 switches which can be given to MDIO buses, XPCS,
+> irqchip drivers etc.
+> 
+> This regmap is address-zero-based (can access the entire switch address
+> space) and child devices are supposed to access their respective memory
+> region with the help of struct resource (IORESOURCE_REG, to be precise).
+> 
+> Nothing is currently done with the regmap, it is just allocated and
+> added to the device's devres list, so it doesn't need to be freed.
 
-On 17:43 Thu 22 Jan     , Guodong Xu wrote:
-> Add supply properties that match the P1 PMIC's actual hardware topology
-> where each buck converter has its own VIN pin and LDO groups share
-> common input pins. Supply names are defined according to the pinout
-> names in the P1 datasheet.
-> 
-While checking schematics/docs, I found the SWIN/SWOUT are not
-described in the dt-binding? is this intentional? I have no problem
-if you plan to implement it separately later, just curious to ask..
+...
 
-In Bananapi F3/Jupiter board, it's used as LCD_VCC5V0 out
+> --- a/drivers/net/dsa/sja1105/sja1105.h
+> +++ b/drivers/net/dsa/sja1105/sja1105.h
 
-> This allows different boards to describe their actual
-> power tree connections in devicetree rather than hardcoding supply
-> relationships in the driver.
-> 
-> Signed-off-by: Guodong Xu <guodong@riscstar.com>
-> ---
->  .../devicetree/bindings/mfd/spacemit,p1.yaml       | 58 +++++++++++++++++++++-
->  1 file changed, 56 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/spacemit,p1.yaml b/Documentation/devicetree/bindings/mfd/spacemit,p1.yaml
-> index c6593ac6ef6adb72fc48af570dc13fc9edf77ccb..abdc93b9a67b1872c8fe6955abd950622a0b69e8 100644
-> --- a/Documentation/devicetree/bindings/mfd/spacemit,p1.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/spacemit,p1.yaml
-> @@ -27,8 +27,41 @@ properties:
->    interrupts:
->      maxItems: 1
->  
-> -  vin-supply:
-> -    description: Input supply phandle.
-> +  vin1-supply:
-> +    description:
-> +      Power supply for BUCK1. Required if BUCK1 is defined.
+>  #include <linux/dsa/8021q.h>
+>  #include <net/dsa.h>
+>  #include <linux/mutex.h>
+> +#include <linux/regmap.h>
 > +
-> +  vin2-supply:
-> +    description:
-> +      Power supply for BUCK2. Required if BUCK2 is defined.
-> +
-> +  vin3-supply:
-> +    description:
-> +      Power supply for BUCK3. Required if BUCK3 is defined.
-> +
-> +  vin4-supply:
-> +    description:
-> +      Power supply for BUCK4. Required if BUCK4 is defined.
-> +
-> +  vin5-supply:
-> +    description:
-> +      Power supply for BUCK5. Required if BUCK5 is defined.
-> +
-> +  vin6-supply:
-> +    description:
-> +      Power supply for BUCK6. Required if BUCK6 is defined.
-> +
-> +  aldoin-supply:
-> +    description:
-> +      Power supply for ALDO1-4. Required if any are defined.
-> +
-> +  dldoin1-supply:
-> +    description:
-> +      Power supply for DLDO1-4. Required if any are defined.
-> +
-> +  dldoin2-supply:
-> +    description:
-> +      Power supply for DLDO5-7. Required if any are defined.
->  
->    regulators:
->      type: object
-> @@ -50,6 +83,15 @@ unevaluatedProperties: false
->  
->  examples:
->    - |
-> +    / {
-> +        reg_vcc_5v: regulator-vcc-5v {
-> +            compatible = "regulator-fixed";
-> +            regulator-name = "vcc_5v";
-> +            regulator-min-microvolt = <5000000>;
-> +            regulator-max-microvolt = <5000000>;
-> +        };
-> +    };
-> +
->      i2c {
->          #address-cells = <1>;
->          #size-cells = <0>;
-> @@ -58,6 +100,10 @@ examples:
->              compatible = "spacemit,p1";
->              reg = <0x41>;
->              interrupts = <64>;
-> +            vin1-supply = <&reg_vcc_5v>;
-> +            vin5-supply = <&reg_vcc_5v>;
-> +            aldoin-supply = <&reg_vcc_5v>;
-> +            dldoin1-supply = <&buck5>;
->  
->              regulators {
->                  buck1 {
-> @@ -68,6 +114,14 @@ examples:
->                      regulator-always-on;
->                  };
->  
-> +                buck5: buck5 {
-> +                    regulator-name = "buck5";
-> +                    regulator-min-microvolt = <500000>;
-> +                    regulator-max-microvolt = <3450000>;
-> +                    regulator-ramp-delay = <5000>;
-> +                    regulator-always-on;
-> +                };
-> +
->                  aldo1 {
->                      regulator-name = "aldo1";
->                      regulator-min-microvolt = <500000>;
-> 
-> -- 
-> 2.43.0
-> 
+>  #include "sja1105_static_config.h"
+
+It looks to me that somebody missed grouping above (not this change) and it's
+better to have it done:
+
+#include <linux/dsa/8021q.h>
+#include <linux/mutex.h>
+#include <linux/regmap.h>
+
+#include <net/dsa.h>
+
+#include "sja1105_static_config.h"
+
+...
+
+> +	rc = devm_sja1105_create_regmap(priv);
+> +	if (rc < 0) {
+> +		dev_err(dev, "Failed to create regmap: %pe\n", ERR_PTR(rc));
+> +		return rc;
+> +	}
+
+Hmm... Perhaps return dev_err_probe(...); ?
 
 -- 
-Yixun Lan (dlan)
+With Best Regards,
+Andy Shevchenko
+
+
 
