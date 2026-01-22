@@ -1,164 +1,138 @@
-Return-Path: <devicetree+bounces-258435-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258436-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eCmNDVs/cmnpfAAAu9opvQ
-	(envelope-from <devicetree+bounces-258435-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:16:43 +0100
+	id oIjtJY8zcmkiewAAu9opvQ
+	(envelope-from <devicetree+bounces-258436-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 15:26:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A6A5688A7
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:16:43 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23DE767E98
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 15:26:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 235B67C22CA
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:09:49 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D96178E7F80
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:12:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC013345CC0;
-	Thu, 22 Jan 2026 14:09:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF23034678C;
+	Thu, 22 Jan 2026 14:12:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="zHWCnTcV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hODvGDmj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB2D934845C;
-	Thu, 22 Jan 2026 14:09:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C732C30BB93;
+	Thu, 22 Jan 2026 14:12:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769090951; cv=none; b=BDnthck769mDrgL49qCSiEcQe66bhbhNzPB0EU0QlavyDeOl8AKtyV72Z73HzpBsm1l2NQ2PxC/0GRzAEa9fsT7q+fhTWnayjn237T6Eawz1hHv1wYFdm9qGZg2F8RvEACLHDnuh1aGnm1DmZFv8PwjEe7I41rotwB8nS95DSYU=
+	t=1769091159; cv=none; b=lUdhSgV89f/3VXP+DoPxf37xm6peV+g8/Iu7tIbjoh3IBwlVy7sO4ydf0frvSSbmB8pdmpy1BBbpCbuf6oebh4nn2Ou9KS0isKZhvrjcVyHjsUvTuUd6dsar0Oj1GTkU5FDLZk7PpSP4w7xnIDaigQLOQ7jtICGWIFpoO9JAfo0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769090951; c=relaxed/simple;
-	bh=x3sJVvDigPgMi2h61A9uOlOFpSEZSSupoGaBjQ+gxnA=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=AxfxXEiV9mHhGWb5kVAbNDmEpbzRYlKedlJyMjujtrcuMFvHCi+ACl/EbXnifSXLhAQ6hH3IhbUTYwFrU5gXx6QW+SkTsLgnzjtGTh6YB1A84oQkDhKi9qVXuTGYD/XY0CPXeSyKSz4CF0V7y2Nlh/z5aRktM5YwqQ+q3yc52Rw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=zHWCnTcV; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 3C6F41A2A8D;
-	Thu, 22 Jan 2026 14:09:08 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 0D4FB606B6;
-	Thu, 22 Jan 2026 14:09:08 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7C6B7119B8228;
-	Thu, 22 Jan 2026 15:09:01 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1769090946; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=6+Yuq4xZjcH9MgIV1g5wa3zzuRe006S3/bFlowjAhxo=;
-	b=zHWCnTcVrhE0UWdTmd0D+01VgqI1SCsW6KHIS2YK/V1Eb22U64CmQXhM/KBKhs4HZQq7jv
-	l4Yi8EmYq3ABN5fZdJYU0YHqTWoPG1NR8VHU9u5OcfhFQuVMI4Y7Ww63mvFxY9kA2d8nmP
-	ZFsFn1uh+PTbdMQaAPax2pm2J7yW1aauFHZwS4r7m8esdZjBHb+HACMNpVYxPVFVeeoeX5
-	ALsjsEb7a0m5ZeEAJs/Kp9W/fbMjckmq0+tbetZERZn0oPLypV6vN5/6zC27MvdE5VABKx
-	P/KdH/MOEu3ucDmKRjtDSynohVWOATS0E5WXDpQGgoXbE5YFOoqhJbnLjW/lrQ==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Richard Weinberger <richard@nod.at>, 
- Vignesh Raghavendra <vigneshr@ti.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Brian Norris <computersforpeace@gmail.com>, 
- Kamal Dasu <kdasu.kdev@gmail.com>, 
- William Zhang <william.zhang@broadcom.com>, Nick Terrell <terrelln@fb.com>, 
- David Sterba <dsterba@suse.com>, 
- =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, 
- Simon Glass <sjg@chromium.org>, Linus Walleij <linusw@kernel.org>, 
- Ulf Hansson <ulf.hansson@linaro.org>, 
- Marcus Folkesson <marcus.folkesson@gmail.com>, 
- Tony Lindgren <tony@atomide.com>, Roger Quadros <rogerq@kernel.org>, 
- Hauke Mehrtens <hauke@hauke-m.de>, "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
- Simon Glass <simon.glass@canonical.com>
-In-Reply-To: <20260121-dt-mtd-partitions-v3-0-ec3af93c8f93@kernel.org>
-References: <20260121-dt-mtd-partitions-v3-0-ec3af93c8f93@kernel.org>
-Subject: Re: [PATCH v3 00/10] dt-bindings: mtd: Partition binding fixes and
- restructuring
-Message-Id: <176909094128.3112602.14299487418440318214.b4-ty@bootlin.com>
-Date: Thu, 22 Jan 2026 15:09:01 +0100
+	s=arc-20240116; t=1769091159; c=relaxed/simple;
+	bh=ymxs9hipH3MSqO+EtSgebsTWpLkwdhKqEdneib0tRSw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jZnavkunj4P3bbsHzO9h7jfbac9z661x9KyDKqPBZJcpxc1CRWWWlgkXA8d1N6rfFStUJGSRbAjAwV6Yplz5yr5Iif4k+DYS4XXR98xYGxhEFoxo3hApzKftHDG5VGoadT7vOesDZ4cMFiTCmf1kxrud+j8+8GnmGe9w9hypjxY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hODvGDmj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8684C116C6;
+	Thu, 22 Jan 2026 14:12:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769091159;
+	bh=ymxs9hipH3MSqO+EtSgebsTWpLkwdhKqEdneib0tRSw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hODvGDmjEMpnNSE/AOUDtxnF6/OV7V6piVNP+5RR6/2HKcDHe28W+kp/NIv49sT+l
+	 tosLBcyWDzhINlcaAedBwHLjIjWvKMCcC0Q6zqDTcFtBD3Nk1BTAKeLBJJXpSUKvQ+
+	 ykQ9RFg405pb7DpzxmcP8ghnnvrHQIimvJtQjdhcfzYWeXZ6Wk4AHQjwJAlrXU9Sgf
+	 O5EROBbioRHV3gtjEClqORtd+8ZPT/38sBn2oubpmMEfgnyK2m+CbnZVRbqnHMMsQn
+	 VUXeNEE7zkq4E60i+HnVAjz6HeHdC5f+NhuXURm11BGSUCX9MJlCkxQXgSKExzJMPw
+	 H7NgjxCWRG8lg==
+Date: Thu, 22 Jan 2026 14:12:33 +0000
+From: Lee Jones <lee@kernel.org>
+To: Joseph Chen <chenjh@rock-chips.com>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org
+Subject: [GIT PULL] Immutable branch between MFD and Regulator due for the
+ v6.20 merge window
+Message-ID: <20260122141233.GJ3831112@google.com>
+References: <20260112124351.17707-1-chenjh@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.14.3
-X-Last-TLS-Session-Version: TLSv1.3
+In-Reply-To: <20260112124351.17707-1-chenjh@rock-chips.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258435-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[24];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[nod.at,ti.com,kernel.org,gmail.com,broadcom.com,fb.com,suse.com,milecki.pl,chromium.org,linaro.org,atomide.com,hauke-m.de];
-	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[bootlin.com,reject];
-	DKIM_TRACE(0.00)[bootlin.com:+];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,sntech.de,vger.kernel.org,lists.infradead.org];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-258436-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:mid,bootlin.com:dkim,ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns]
-X-Rspamd-Queue-Id: 0A6A5688A7
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 23DE767E98
 X-Rspamd-Action: no action
 
-On Wed, 21 Jan 2026 13:56:33 -0600, Rob Herring (Arm) wrote:
-> The partition bindings fail to restrict undefined properties. This is
-> primarily on fixed-partitions which can be nested and partition nodes
-> without a compatible string. This series fixes those issues and then
-> several problems exposed by restricting undefined properties. As part of
-> this, the schema structure is reworked to follow more conventional
-> structure of applying schemas by compatible and a schema only checks 1
-> level of nodes (unless possible child nodes are fixed).
-> 
-> [...]
+Enjoy!
 
-Applied to mtd/next, thanks!
+The following changes since commit 8f0b4cce4481fb22653697cced8d0d04027cb1e8:
 
-[01/10] dt-bindings: mtd: brcm,brcmnand: Drop "brcm,brcmnand" compatible for iProc
-        commit: 4db35366d6dcda7475b75887f89078a11fb2d89a
-[02/10] dt-bindings: mtd: fixed-partitions: Move "compression" to partition node
-        commit: 30f138c078525fc49b0694e879a1eb60eda437d4
-[03/10] dt-bindings: mtd: partitions: Move "sercomm,scpart-id" to partition.yaml
-        commit: ac83f4fa911dbe6b7ccadeb82c35f2e42d7ce2f1
-[04/10] dt-bindings: mtd: partitions: Allow "nvmem-layout" in generic partition nodes
-        commit: 9f30ba0a22b79d46689c686546fb3fea28d475a3
-[05/10] dt-bindings: mtd: partitions: Define "#{address,size}-cells" in specific schemas
-        commit: 002d2fe7992220fab57497d3d78de526982cf511
-[06/10] dt-bindings: mtd: partitions: Drop partitions.yaml
-        commit: 95af1e641b0f245d1d6820bb0c8696fa6a07f5f5
-[07/10] dt-bindings: mtd: Ensure partition node properties are documented
-        commit: 1eb9fabd52933cdf9be349de5391920fac4ed30b
-[08/10] dt-bindings: mtd: fixed-partitions: Restrict undefined properties
-        commit: 6ecd7715d64ee3bf0b55b374f731d1518b57bc81
-[09/10] dt-bindings: mtd: partitions: Convert brcm,trx to DT schema
-        commit: a1fa0f8ca1fb108d2cbf67fad8056f07bce898f8
-[10/10] dt-bindings: mtd: partitions: Combine simple partition bindings
-        commit: 125981ffa1674573d3a9200e72ed93a2270344b1
+  Linux 6.19-rc1 (2025-12-14 16:05:07 +1200)
 
-Patche(s) should be available on mtd/linux.git and will be
-part of the next PR (provided that no robot complains by then).
+are available in the Git repository at:
 
-Kind regards,
-Miquèl
+  git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git ib-mfd-regulator-v6.20
 
+for you to fetch changes up to 3e10bbd9c8a6d5d016b8e52c5d4ceba93a2304a0:
+
+  regulator: rk808: Add RK801 support (2026-01-20 14:58:12 +0000)
+
+----------------------------------------------------------------
+Immutable branch between MFD and Regulator due for the v6.20 merge window
+
+----------------------------------------------------------------
+Joseph Chen (3):
+      dt-bindings: mfd: Add rk801 binding
+      mfd: rk8xx: Add RK801 support
+      regulator: rk808: Add RK801 support
+
+ .../devicetree/bindings/mfd/rockchip,rk801.yaml    | 197 +++++++++++++++++
+ drivers/mfd/Kconfig                                |   6 +-
+ drivers/mfd/rk8xx-core.c                           |  81 +++++++
+ drivers/mfd/rk8xx-i2c.c                            |  33 ++-
+ drivers/regulator/rk808-regulator.c                | 243 +++++++++++++++++++++
+ include/linux/mfd/rk808.h                          | 118 ++++++++++
+ 6 files changed, 674 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk801.yaml
+
+-- 
+Lee Jones [李琼斯]
 
