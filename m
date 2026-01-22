@@ -1,222 +1,286 @@
-Return-Path: <devicetree+bounces-258648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258649-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4NG8LBGzcmn5ogAAu9opvQ
-	(envelope-from <devicetree+bounces-258648-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 00:30:25 +0100
+	id UO5NLcCzcmn5ogAAu9opvQ
+	(envelope-from <devicetree+bounces-258649-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 00:33:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6B2F6E81B
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 00:30:24 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFE586E86D
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 00:33:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id CF57A3004408
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 23:30:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B9652300D30F
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 23:33:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EADE33AEF54;
-	Thu, 22 Jan 2026 23:30:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C97F337104A;
+	Thu, 22 Jan 2026 23:33:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="vfuge5Ea"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P1uGCuTD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 073D43806BE
-	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 23:30:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.128.181
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769124617; cv=pass; b=VyK/+UNPaOpU4wu6vy8raTmHYleS1i/hNECw+8BIe4YdwqUMaPwvndjMes5QPksWWPWZEWXDkFRrzsZTh5w2RRw9jmP7zn7jCFNPhh447rMEtGMZ9P5QAIBBmrpHcs29proMRFul/0WL146GqsVfXcghTE7APHJIrfW7dIcIfDA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769124617; c=relaxed/simple;
-	bh=OJl8OR7tWivzQ8P6uHzy1/uVTypLBbYCG83LS5eB9w4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RFj53MelPA17k2a3G9anlv+mTfmO1RXTpipa5JkWUAy8JSW7l5NqgF8pUH2ubh03KIutjVPBF2cOXgywtzFExwjib0AFkWMTHAKaxu7XFWqyjqTXge8RAORVUSsWwn7017xzxC0p8BABrkFPv+fbyXYPZyJOVkOdpcp2E/JQejA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=vfuge5Ea; arc=pass smtp.client-ip=209.85.128.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-7941578064bso11048547b3.2
-        for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 15:30:06 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1769124604; cv=none;
-        d=google.com; s=arc-20240605;
-        b=IEFr65iQZxdAYidVTe6GQhXU/7b/2pzm3tuUiGrPhsKYPi8/ZWeLMpIQL+vIYNPlR7
-         7xiJVDXAu+7lRHJm5Sbnota+kmclxg7qGnoJA5DYBKqA03zPWQWLUKURdPYMcqBdvoEU
-         SyT6juc0k8l7+CbRXcHCAvHzCidHwu/Ia16U4f8+lyoPnfvlByzsKR/iI4PSKASfXMvT
-         1k7jg7M881izGD8AR9BJPJMD/M/M/LQbMbZe+NKWN2fDv9y1wt3BBYIo/EFmbn3SfAk9
-         cjrKoelXiYCc4sdDjnTiyxRxY/oisSX4VG65lnfujxhoXhB4wLy9Qa9bwxvnmTL1Q6y9
-         w6CQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=ZzbVEphzp0lpFkdctOwCC3UitWwAMjzu6W2b8ZRmyrc=;
-        fh=MjvlM4xoc90sbYDjK32pS+qCJolMvTx0sZBvxzRWlbM=;
-        b=f5vIrKPtRCu5ycTEYnxS3jUh/2kz8caXwbfvsunAFEOj2+6ItzqL6m/Mw1ZfMTylKN
-         Pq34KPmmcubvNFiUcGeItGaEEG2gSL1ElS4fk1Doty+M37gTs/cpBciK43/VSQQZNeTc
-         cwNRl3FUFgI/Q/hwUjbzF1aurePef2sL+sBS1gTEJHb6M2L1Rm1ALwjQ99YNxaPQutvv
-         13MQGZn+F6n2WKzZvv91KvpRT9umPDmVRyBbTWrAMx0giflS3lZ4I0Ewt75IqJbYuiq2
-         Db7SrcRGEOcwzKDaOzQ9VoMVfO1l5YzlEXXazomfUQ4IyF64hg0oPrFlZOaUsZrStRac
-         W6mA==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1769124604; x=1769729404; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZzbVEphzp0lpFkdctOwCC3UitWwAMjzu6W2b8ZRmyrc=;
-        b=vfuge5Ea3ZSiUSXi8HKg4QV3scVCsVWAxxycWhMIMbpT+TzvAkS5bB44G/Yo4mdhBZ
-         i22qTMune1B+LWI6OzSYUR3osdxWCqN7sQYpvEUsazUG7oRlDwZCsHNQ2JqbfdXHGF2J
-         seNQJ/kNErtLv49S7k51j/gVdiij2N8r+a+PltQvtFc2ax9YwsNN4FOIs2Aucxm1L1U3
-         Df0n//XngG89iFpyK2SBoevsGomip9P+5zpCXrMJgR5ucTk7D5tVHNkAMF4tO+CYxFhS
-         koqTyZ8mjd2LcHn5nvptlg3FwVlJ6Y/1j8BGg6LR046QWEZFdEISQDzy1zfpbYRdN4pY
-         b1SA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769124604; x=1769729404;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=ZzbVEphzp0lpFkdctOwCC3UitWwAMjzu6W2b8ZRmyrc=;
-        b=dSiIAiLz5TttXQFDtgMjnOpngpXLAx6wbKUjMXFZ9r5MRhxxPJ1yXXu76iWGFDm/SH
-         vXlueWbsBWDl57Fqpg6BGnpx1LCYINgbHqVJwBHk762WdgbSdwuoTR4w5yCNCPEL7uH3
-         8NdCBc5bM2Jbf0nbeytN6nmbHint2h32Awgr+QPwhKeCbNYRDfy4+lRB6uioXEGIKV8d
-         hiN+lp4Jsq0mGJU+7fZukllsJVNrhgKLkLafabL+j7aMLLWG3al0C5xAh75Pq0+onBGn
-         DG0vk/0yxFcy2vSohxGafqKQDe/ZAv+n/6+3PYqUhwquddnmVGjPWCrlgip3jpzUEy9l
-         INuA==
-X-Forwarded-Encrypted: i=1; AJvYcCX90CVI1cRG3TxIJCaizFoEg5PTg4gyaNbBK1iBVUSI9lZk36h0R8WlVZOf/BXZNMgIpre83Vp/dO8j@vger.kernel.org
-X-Gm-Message-State: AOJu0YwACiMh5GY63+ZLUrLCOux5dw2kwkWQ66SDpwW26SUYdI6FUk56
-	42NGfce4ls0BrsR30srz13YItlaAs84NN7QSEspm9HqqzJeEfTimQroPEUPkj6ohkHuZHAdPJ4u
-	mqli3nCn+XPsiiEqABvSL0pjvtr5AGL7fdrcAGn9P3A==
-X-Gm-Gg: AZuq6aLHnT3EIJJnjYID4wSXMRSUmTE/6g1ct+iQxvxAKdWUiXs6MAooI+SHhC1jzjx
-	d7TPpkBmc/NGlB0axiOHU51tTUBvS2KmZiWnvB0yugtZZpIZZVRxzlOelomqNFbGK39/o22zoM8
-	VNOManQ3hTLCRYtJbOj+ECgJlim0GpisD4NnKIKnCIT0RpwbdhokiSqR8JfQjXH//88yiXWaO/L
-	pgPmqXEmz2JBkVVHzt1DBElxoNUL4je/T5o65l148SF+gtwhRSMgoasdWxrLLwfy9R1yu2BaOtk
-	aoX126jwbEJcnkhozmUHt071T4mCGmJxi4IdBJpeocDe
-X-Received: by 2002:a05:690c:6606:b0:794:148d:cafa with SMTP id
- 00721157ae682-794398bad32mr11667487b3.11.1769124604288; Thu, 22 Jan 2026
- 15:30:04 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A13F29D269;
+	Thu, 22 Jan 2026 23:33:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769124791; cv=none; b=HDX1CcRN4ebXbeN0pVVfzHWtqc01XBc9rQ4XbzjDdKXN9bKKuViYBxN6NCtPDBF0265AuKlKfpaWHB++2Mksq1QcIJOcC7fvIeYvR3H1KSfLsxANabvFIqzSwVa8Xx9xQoAZ4Rtuf1F5V+s1Bcj2KI/yNIx/Rd10BGE0Wm9inm8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769124791; c=relaxed/simple;
+	bh=pBgcuHfBsqcGYcCM6kh6/0Vu9yimUU85rjqw19OCR0I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ruyeJ4rmNz+24j3AQhJUijb0Lyh3Dt6f5B27eWSbnSOJOjuKtSyq5AI/r0KOsWxgSD/HIiNhUNfLOsBrUWRHjbEAj/ehP37ifG04uKEgKSmDmetVosBbLY1g19qRzTLrod/ugLzpXZuJAmvHPLFjbKKIw2D0GjysExUvgMobvJo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P1uGCuTD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB2D6C116C6;
+	Thu, 22 Jan 2026 23:33:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769124790;
+	bh=pBgcuHfBsqcGYcCM6kh6/0Vu9yimUU85rjqw19OCR0I=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=P1uGCuTDNyTkmsGdbFmg459/LcvE7BzbhHNL2MCOqmEefZokLc1gUITpg/wk+yrGz
+	 0lZGpoYWUvaz8cfDtQv47PwNRH+Wzb6TU5oVBxDlpZ+29relYZFR2ag8+hRuPL18eO
+	 DcpgzHfgpbEE6JGRaCDiPa19vnzfBMqRmfu52wjo8ZNauXRVSiswRe3O0o1R3geHUY
+	 74PSqonp8FXGvk16LNAZ4pQYOIS0eFqdzjn6FyEwhh410LJYUYZa8DEVu+WrtmQRmy
+	 S7MjJg6dsGGc6WVKeT4Ev+URk3l3mpzXKqLbls2bIUZUbxRw6EZ4taWlWC77gHsD2f
+	 N7JO82/xWpFTw==
+Date: Thu, 22 Jan 2026 17:33:09 -0600
+From: Rob Herring <robh@kernel.org>
+To: Charan Pedumuru <charan.pedumuru@gmail.com>
+Cc: Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Aaro Koskinen <aaro.koskinen@iki.fi>,
+	Andreas Kemnade <andreas@kemnade.info>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
+	Roger Quadros <rogerq@ti.com>, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-omap@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] dt-bindings: phy: ti,phy-usb3: convert to DT
+ schema
+Message-ID: <20260122233309.GA3730160-robh@kernel.org>
+References: <20260122-ti-phy-v3-0-751619729433@gmail.com>
+ <20260122-ti-phy-v3-2-751619729433@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260116-supm-ext-id-v1-0-5fcf778ba4a6@riscstar.com>
- <20260116-supm-ext-id-v1-1-5fcf778ba4a6@riscstar.com> <20260122-headlamp-champion-0bbad2551d33@spud>
-In-Reply-To: <20260122-headlamp-champion-0bbad2551d33@spud>
-From: Guodong Xu <guodong@riscstar.com>
-Date: Fri, 23 Jan 2026 07:29:52 +0800
-X-Gm-Features: AZwV_QiqHltdWQztFinjYgs1YM-vgVBcGnLo6nlvKPcvIzhDDwENE-Jg4kp04ew
-Message-ID: <CAH1PCMY+FrxkT+qnAXbS75T=PTzGB_BkKWY1f3-anOjHwG9CkA@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: riscv: Add Supm extension description
-To: Conor Dooley <conor@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Samuel Holland <samuel.holland@sifive.com>, 
-	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>, Paul Walmsley <pjw@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Evan Green <evan@rivosinc.com>, 
-	Andrew Jones <ajones@ventanamicro.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260122-ti-phy-v3-2-751619729433@gmail.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.06 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[riscstar-com.20230601.gappssmtp.com:s=20230601];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[riscstar.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-258649-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-258648-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[guodong@riscstar.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[riscstar-com.20230601.gappssmtp.com:+];
-	NEURAL_HAM(-0.00)[-0.998];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: A6B2F6E81B
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,ti.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,4a084400:email,4a096000:email]
+X-Rspamd-Queue-Id: DFE586E86D
 X-Rspamd-Action: no action
 
-On Fri, Jan 23, 2026 at 2:52=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
-te:
->
-> On Fri, Jan 16, 2026 at 10:10:31AM +0800, Guodong Xu wrote:
-> > Add description for the Supm extension. Supm indicates support for poin=
-ter
-> > masking in user mode. Supm is mandatory for RVA23S64.
-> >
-> > The Supm extension is ratified in commit d70011dde6c2 ("Update to ratif=
-ied
-> > state") of riscv-j-extension.
-> >
-> > Signed-off-by: Guodong Xu <guodong@riscstar.com>
-> > ---
-> >  Documentation/devicetree/bindings/riscv/extensions.yaml | 17 +++++++++=
-++++++++
-> >  1 file changed, 17 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/=
-Documentation/devicetree/bindings/riscv/extensions.yaml
-> > index 4ffd61926505..1922dff03787 100644
-> > --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-> > +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> > @@ -262,6 +262,23 @@ properties:
-> >              ratified in RISC-V Profiles Version 1.0, with commit b1d80=
-6605f87
-> >              ("Updated to ratified state.")
-> >
-> > +        - const: supm
-> > +          description: |
-> > +            The standard Supm extension for pointer masking support in=
- user
-> > +            mode (U-mode) as ratified at commit d70011dde6c2 ("Update =
-to
-> > +            ratified state") of riscv-j-extension.
-> > +
-> > +            Supm represents a combination of underlying hardware capab=
-ility
-> > +            (Smnpm or Ssnpm), U-mode consumer privilege level, and M/S=
--mode
->
-> Should we therefore make this require that Smnpm or Ssnpm are present?
+On Thu, Jan 22, 2026 at 05:52:58PM +0000, Charan Pedumuru wrote:
+> Convert TI PIPE3 PHY binding to DT schema.
+> Changes during conversion:
+> - Define a new pattern 'pcie-phy' to match nodes defined in DT.
+> - Drop obsolete "id" property from the schema.
+> 
+> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+> ---
+>  .../devicetree/bindings/phy/ti,phy-usb3.yaml       | 135 +++++++++++++++++++++
+>  1 file changed, 135 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/ti,phy-usb3.yaml b/Documentation/devicetree/bindings/phy/ti,phy-usb3.yaml
+> new file mode 100644
+> index 000000000000..605f12f0f79a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/ti,phy-usb3.yaml
+> @@ -0,0 +1,135 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/ti,phy-usb3.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI PIPE3 PHY Module
+> +
+> +maintainers:
+> +  - Roger Quadros <rogerq@ti.com>
+> +
+> +description:
+> +  The TI PIPE3 PHY is a high-speed SerDes (Serializer/Deserializer)
+> +  transceiver integrated in OMAP5, DRA7xx/AM57xx, and similar SoCs.
+> +  It supports multiple protocols (USB3, SATA, PCIe) using the PIPE3
+> +  interface standard, which defines a common physical layer for
+> +  high-speed serial interfaces.
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^(pcie-phy|usb3-phy|phy)@[0-9a-f]+$"
+> +
+> +  compatible:
+> +    enum:
+> +      - ti,omap-usb3
+> +      - ti,phy-pipe3-pcie
+> +      - ti,phy-pipe3-sata
+> +      - ti,phy-usb3
+> +
+> +  reg:
+> +    minItems: 2
+> +    maxItems: 3
+> +
+> +  reg-names:
+> +    minItems: 2
+> +    items:
+> +      - const: phy_rx
+> +      - const: phy_tx
+> +      - const: pll_ctrl
+> +
+> +  "#phy-cells":
+> +    const: 0
+> +
+> +  clocks:
+> +    minItems: 2
+> +    maxItems: 7
+> +
+> +  clock-names:
+> +    minItems: 2
+> +    maxItems: 7
+> +    items:
+> +      enum: [wkupclk, sysclk, refclk, dpll_ref,
+> +             dpll_ref_m2, phy-div, div-clk]
+> +
+> +  syscon-phy-power:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    items:
+> +      items:
+> +        - description: Phandle to the system control module
+> +        - description: Register offset controlling PHY power
 
-I'm not sure. Would U-mode DTBs typically omit the privileged extensions li=
-ke
-Smnpm/Ssnpm, making such a dependency impractical?
+This allows N entries of 2 cells each. You need either:
 
--Guodong
+items:
+  - items:
+      - description: ...
+      - description: ...
 
->
-> > +            software configuration that enables pointer masking for U-=
-mode.
-> > +
-> > +            DO NOT include this property in device trees targeting pri=
-vileged
-> > +            system software (S-mode or M-mode).
-> > +
-> > +            This property is only appropriate in device trees provided=
- to
-> > +            U-mode software where the next-higher-privilege-mode suppo=
-rts
-> > +            Smnpm or Ssnpm and enables it for U-mode.
-> > +
-> >          - const: svade
-> >            description: |
-> >              The standard Svade supervisor-level extension for SW-manag=
-ed PTE A/D
-> >
-> > --
-> > 2.43.0
-> >
+(the hyphen is important!)
+
+Or:
+
+maxItems: 1
+items:
+  items:
+    - description: ...
+    - description: ...
+
+> +
+> +  syscon-pllreset:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    items:
+> +      items:
+> +        - description: Phandle to the system control module
+> +        - description: Register offset of CTRL_CORE_SMA_SW_0
+> +
+> +  syscon-pcs:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    items:
+> +      items:
+> +        - description: Phandle to the system control module
+> +        - description: Register offset for PCS delay programming
+> +
+> +  ctrl-module:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Phandle of control module for PHY power on.
+> +    deprecated: true
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: ti,phy-pipe3-sata
+> +    then:
+> +      properties:
+> +        syscon-pllreset: true
+> +    else:
+> +      properties:
+> +        syscon-pllreset: false
+> +
+> +required:
+> +  - reg
+> +  - compatible
+> +  - reg-names
+> +  - "#phy-cells"
+> +  - clocks
+> +  - clock-names
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    /* TI PIPE3 USB3 PHY */
+> +    usb3-phy@4a084400 {
+> +        compatible = "ti,phy-usb3";
+> +        reg = <0x4a084400 0x80>,
+> +              <0x4a084800 0x64>,
+> +              <0x4a084c00 0x40>;
+> +        reg-names = "phy_rx", "phy_tx", "pll_ctrl";
+> +        #phy-cells = <0>;
+> +        clocks = <&usb_phy_cm_clk32k>,
+> +                 <&sys_clkin>,
+> +                 <&usb_otg_ss_refclk960m>;
+> +        clock-names = "wkupclk", "sysclk", "refclk";
+> +        ctrl-module = <&omap_control_usb>;
+> +    };
+> +
+> +  - |
+> +    /* TI PIPE3 SATA PHY */
+> +    phy@4a096000 {
+> +        compatible = "ti,phy-pipe3-sata";
+> +        reg = <0x4A096000 0x80>,  /* phy_rx */
+> +              <0x4A096400 0x64>,  /* phy_tx */
+> +              <0x4A096800 0x40>;  /* pll_ctrl */
+
+Use lowercase hex.
+
+> +        reg-names = "phy_rx", "phy_tx", "pll_ctrl";
+> +        clocks = <&sys_clkin1>, <&sata_ref_clk>;
+> +        clock-names = "sysclk", "refclk";
+> +        syscon-pllreset = <&scm_conf 0x3fc>;
+> +        #phy-cells = <0>;
+> +    };
+> +...
+> 
+> -- 
+> 2.52.0
+> 
 
