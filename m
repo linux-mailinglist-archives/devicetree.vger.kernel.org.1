@@ -1,143 +1,145 @@
-Return-Path: <devicetree+bounces-258553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258554-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AGK+KohfcmnbjAAAu9opvQ
-	(envelope-from <devicetree+bounces-258553-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:34:00 +0100
+	id cLQeCJBacmkpiwAAu9opvQ
+	(envelope-from <devicetree+bounces-258554-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:12:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D07A6B637
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:34:00 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AA7D6AEAF
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:12:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 8FB9C30A1E34
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 17:02:15 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4D9E230223F6
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 17:02:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E0763D8096;
-	Thu, 22 Jan 2026 16:37:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B+NVTcEP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 617EC3D9F38;
+	Thu, 22 Jan 2026 16:39:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCD6A344DB4;
-	Thu, 22 Jan 2026 16:37:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7370336604F;
+	Thu, 22 Jan 2026 16:38:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769099874; cv=none; b=VodfCsFVKfw+Q9tWmKfkq+B50yoC/HeLc9NIcej+OthjjcFaTKtS+uNSiWv6hukguZrRy55/xbOrurZ8/LixVZgZNiLutaDvFUL9NT9jCZhDnTTB4uKr44F7gAFmogtYdtMPZ3SbVvlIFo4wrar9rIcGzuUPJEZ6xEuzfTS2teM=
+	t=1769099940; cv=none; b=VkzkMIGNrwOMNRzfyInVgvMO7Ert3e122ks8i/XnYh1aRvElwJ/xQAmLa0VYnc32spPnVQl0snpl79oVy0FEB5lb77jjtnylDNP+dOm5z2A4NgVAcQwNlfmIq/tDc0CX36WaPfzb3g7xWmx3BiYsT4B+r145mw98Y1H1xerga3k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769099874; c=relaxed/simple;
-	bh=w1LYDYW51F2ISpaORHR8Ql0YyjJzm/3wGhKNlRf9l2I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GIY9SAmyt/fFl/+kYXzl+dzWOSRTcxridZovPRbuFOhASZyOCinYV6xwB3Lm3iEqxX16i5ZTcNuXf6VYXU6qL+Y+24vIs9P5RTaRkpHOL88nBAU0H6mQX7qlv5qK1Ej04e93ZdCAf/LZh0Mxc3ekWH5lKWt54Zc12LZBMdUEFyw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B+NVTcEP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 952CCC116C6;
-	Thu, 22 Jan 2026 16:37:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769099871;
-	bh=w1LYDYW51F2ISpaORHR8Ql0YyjJzm/3wGhKNlRf9l2I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=B+NVTcEP6AKnolrE1CYMeYNPVHJp46Dyr0EJStO/q6V4GoiwCADXuz0GTzwOmJF8y
-	 DuhbG8z7K3XwG89hRzYbvomvkL9MpP1P+TNIqEWlhr5+nHcWS99lAsv0Dmd0vVEV++
-	 oFnVq8YFyiwUvRy3/4M1YhVPgirhV5WOjZ+DGhf/8kB4qEgJ9+4I3R8OF6JOT0KRVo
-	 qAQKEvMGs5u3qX9QXYiEv2dCNclaW1+nyXJRZd0PSjXxO65mhr4PNiziP9s9pQNwIo
-	 RatX+f7jfrjTy5WmKUH0IVKgqD2636OAxgnKx9UgYF5YcRcGg8Px/FqWNO09gVrjVf
-	 K/xJOHau9ZXQw==
-Date: Thu, 22 Jan 2026 16:37:44 +0000
-From: Lee Jones <lee@kernel.org>
-To: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
+	s=arc-20240116; t=1769099940; c=relaxed/simple;
+	bh=q3BLYaETzihHTjn3740y+fY1++XF0dwoVviNbivMTww=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=lz1WojhUGrfyR4PZ6KMoMkXtfqjMvB9JqRphnAHCXNPmeIGf2gp5aUk54Sumu499rBAiQHAEy+nqy9BHr0fq8XA11a4opZxq9B7aED7lP+QyOKvdiyCbjFBb+q2dEkSgle48FCqtgmVMghhCXsk/2C4hRoHGfFdNAi/t+u9wQzo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.99)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1vixhf-000000001Q4-1o9E;
+	Thu, 22 Jan 2026 16:38:39 +0000
+Date: Thu, 22 Jan 2026 16:38:36 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-Cc: Peter Griffin <peter.griffin@linaro.org>,
-	Will McVicker <willmcvicker@google.com>,
-	Juan Yescas <jyescas@google.com>, kernel-team@android.com,
-	linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Subject: Re: (subset) [PATCH v7 00/20] Samsung S2MPG10 regulator and S2MPG11
- PMIC drivers
-Message-ID: <20260122163744.GM3831112@google.com>
-References: <20260122-s2mpg1x-regulators-v7-0-3b1f9831fffd@linaro.org>
- <176909970862.4046298.23888884171864307.b4-ty@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Chen Minqiang <ptpt52@gmail.com>, Xinfa Deng <xinfa.deng@gl-inet.com>
+Subject: [PATCH net-next v6 0/6] net: dsa: lantiq: add support for Intel
+ GSW150
+Message-ID: <cover.1769099517.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <176909970862.4046298.23888884171864307.b4-ty@kernel.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-258554-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258553-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[linaro.org,kernel.org,gmail.com,bgdev.pl];
+	DMARC_NA(0.00)[makrotopia.org];
+	FREEMAIL_TO(0.00)[hauke-m.de,lunn.ch,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,armlinux.org.uk,vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
+	R_DKIM_NA(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[daniel@makrotopia.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,gl-inet.com];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 5D07A6B637
+	DBL_BLOCKED_OPENRESOLVER(0.00)[makrotopia.org:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 5AA7D6AEAF
 X-Rspamd-Action: no action
 
-On Thu, 22 Jan 2026, Lee Jones wrote:
+The Intel GSW150 Ethernet Switch (aka. Lantiq PEB7084) is the predecessor of
+MaxLinear's GSW1xx series of switches. It shares most features, but has a
+slightly different port layout and different MII interfaces.
+Adding support for this switch to the mxl-gsw1xx driver is quite trivial.
+---
+Changes since v5:
+ * rebase on top of current net-next
+ * update Kconfig to mention GSW150
+ * allow configuring RGMII slewrate introduced by commit dbf24ab58fec3
+   ("net: dsa: mxl-gsw1xx: Support R(G)MII slew rate configuration")
 
-> On Thu, 22 Jan 2026 15:43:27 +0000, André Draszik wrote:
-> > This series extends the existing S2MPG10 PMIC driver to add support for
-> > the regulators, and adds new S2MPG11 core and regulator drivers.
-> > 
-> > --- dependency note ---
-> > This series must be applied in-order, due to the regulator drivers
-> > depending on headers & definitions added by the bindings and core
-> > drivers.
-> > 
-> > [...]
-> 
-> Applied, thanks!
-> 
-> [04/20] dt-bindings: mfd: samsung,s2mps11: Split s2mpg10-pmic into separate file
->         commit: c19ccbf37758f90064f7b1e32ec291954d97b426
-> [05/20] dt-bindings: mfd: samsung,s2mpg10-pmic: Link to its regulators
->         commit: ac1068790221a421e7bc4dacadfe8d39d6bec3a9
-> [06/20] dt-bindings: mfd: Add samsung,s2mpg11-pmic
->         commit: d0cd9ded4bdef73303e65abbeae47b00b7288059
-> [08/20] mfd: sec: s2mpg10: reorder regulators for better probe performance
->         commit: 40b82c61c044e5ae7bbd532e841bd01507028c33
-> [09/20] mfd: sec: Add support for S2MPG11 PMIC via ACPM
->         commit: 8e6c6e8ef5e241385eff14d4c8b8e45d5e762e84
+Changes since v4:
+ * fix wrong indexes in array default initializers
 
-Note to self: ib-mfd-for-regulator-firmware-6.20
+Changes since v3:
+ * spell out mii_cfg and mii_pcdu values in struct gswip_hw_info instead
+   of using default initializer which requires diag exception
+
+Changes since v2:
+ * enclose the gswip_hw_info initializers in compiler diag exception
+   to prevent triggering -Woverride-init
+
+Changes since initial submission:
+ * add patch fixing node naming convention for dt-bindings
+ * introduce GSWIP_MAX_PORTS macro
+ * don't assert SGMII PCS reset in case chip doesn't have SGMII
+ * use case ranges in phylink_get_caps
+
+
+Daniel Golle (6):
+  dt-bindings: net: dsa: lantiq,gswip: use correct node name
+  dt-bindings: net: dsa: lantiq,gswip: add Intel GSW150
+  net: dsa: lantiq: allow arbitrary MII registers
+  net: dsa: lantiq: clean up phylink_get_caps switch statement
+  net: dsa: mxl-gsw1xx: only setup SerDes PCS if it exists
+  net: dsa: mxl-gsw1xx: add support for Intel GSW150
+
+ .../bindings/net/dsa/lantiq,gswip.yaml        |   6 +-
+ drivers/net/dsa/lantiq/Kconfig                |   4 +-
+ drivers/net/dsa/lantiq/lantiq_gswip.c         |  46 ++++--
+ drivers/net/dsa/lantiq/lantiq_gswip.h         |   6 +-
+ drivers/net/dsa/lantiq/lantiq_gswip_common.c  |  27 +---
+ drivers/net/dsa/lantiq/mxl-gsw1xx.c           | 151 ++++++++++++++----
+ drivers/net/dsa/lantiq/mxl-gsw1xx.h           |   2 +
+ 7 files changed, 168 insertions(+), 74 deletions(-)
 
 -- 
-Lee Jones [李琼斯]
+2.52.0
 
