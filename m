@@ -1,146 +1,203 @@
-Return-Path: <devicetree+bounces-258619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258620-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AIlKHbN0cmlpkwAAu9opvQ
-	(envelope-from <devicetree+bounces-258619-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 20:04:19 +0100
+	id IM5mI6V5cmlSlQAAu9opvQ
+	(envelope-from <devicetree+bounces-258620-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 20:25:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B1896CDE4
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 20:04:18 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id F02FC6CFCC
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 20:25:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 3F19E3002913
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 19:04:16 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 5F41D300B47B
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 19:25:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DF3438A9B4;
-	Thu, 22 Jan 2026 19:04:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B5F3392809;
+	Thu, 22 Jan 2026 19:25:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IacF3okU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DalGajo2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 070B525C6EE;
-	Thu, 22 Jan 2026 19:04:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5499C37AA8C;
+	Thu, 22 Jan 2026 19:25:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769108648; cv=none; b=lXunKU+1I8goy2PyKLDaZBAJbnCayQCB6Jp+YsfFhq1X9NyzqGKd88XyTQBWRSe/NsQJL40x+FsugiiPj3n+XsPq0TLBMo6hP8pcchpUXGXxqlkjLzORUDrFVUOEz2WuSGedtPhacAX1aF1voJNMgLST9MgMnv1m/J/dkQU5qps=
+	t=1769109916; cv=none; b=ajcDpPrxsoWcJKlt6uScmt5lz6gfu0lUtgRkpKAr0ChW0c6ViEAS9yrsatEZiz15x6GJwfpV5ESVzqKLPjREkxbUDnAP9DTn6Ugw568U9bZwTdE+uQ+QkQZ9nu3vz/GwQQMuh1AZNvnk62baQOzrt3+3z/Upt28J63UFQt7jhaE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769108648; c=relaxed/simple;
-	bh=GGNI4GHUk/83jvoB2PweFxVkxnSkX6D4xd6OKpOsssE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hjeZZkRiHpU9I79pyAQgIH3WD+4EDJ8zdg2uBtfhqEmx0IGB/mP6XJ+2jLgLt69qM5P3COPPYwbF04APuypZiNMWdwt80PoX3CzzaSKss5VX2R9ti3seCIZmkgNGo5+HV+mxBd7GrfgRfw1Jaeg2xXakcoYGrTZDTzqcVBOGW8o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IacF3okU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35B26C116C6;
-	Thu, 22 Jan 2026 19:04:05 +0000 (UTC)
+	s=arc-20240116; t=1769109916; c=relaxed/simple;
+	bh=UJu3K3bF88v0FaUNuJcWEqAzwX7bWZHeFfViNYORMJ4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=XFaxiF6u4wAYTKHp8W1PAmQ6+Y9sTURL0mEfQQKRhPkmgkz2EvnfRCQYQeriWt4mHCGHICRNviTwMY7Pwn+tIVwxQakBPlUz7/Yp9AhsuIYEeW9ZUTcVBSG97sMwV5lDcf7dlMp6PlnYPYry/mESFl9JD5iUrAHB2Ky69n4b7Ak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DalGajo2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4454DC116D0;
+	Thu, 22 Jan 2026 19:25:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769108646;
-	bh=GGNI4GHUk/83jvoB2PweFxVkxnSkX6D4xd6OKpOsssE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IacF3okUd4cuRjmez3UIYogvaxcWbxGBjtYmdQ6grRmIORwC7RFpLBNW/xOodsXsm
-	 AA08qBM2O6O9xYQrYDqy2bYZOXcQEqt9wdmFOmTBrWufi4SWhhtYs/6ktTn0cpYwOH
-	 QOOvQ0Dr/LZT71PSvlwIcN1HkJzVoypC0NhzfDQKFu+y3RGfa0xiXwZ/qwy40znvLd
-	 TT6g02FlXPUnPbxeFSWrT2HJTd1nRsZ7h+ESfrA/FCXf39GBSJmDoWdyHhK69N3sGo
-	 IgUY7/it/beuz7FYjGJim7ESQS2WGNVVmSTSR0LH6WxK16NDZgAI3xpaVuR4wBNLS3
-	 MzhaGxK8zLUtg==
-Date: Thu, 22 Jan 2026 19:04:03 +0000
-From: Conor Dooley <conor@kernel.org>
-To: tzeyee.ng@altera.com
-Cc: Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] arm64: dts: socfpga: stratix10: Add emmc support
-Message-ID: <20260122-carnival-mandatory-91115c410d74@spud>
-References: <cover.1769089199.git.tzeyee.ng@altera.com>
- <32c1ae8735c80629757ace0c35a62da0c40911d0.1769089199.git.tzeyee.ng@altera.com>
+	s=k20201202; t=1769109915;
+	bh=UJu3K3bF88v0FaUNuJcWEqAzwX7bWZHeFfViNYORMJ4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=DalGajo2TIxThMlDYyguXTzvEfVuPWe4O8IHdoXLsbOVmMgSIyKtYXz26kmCpvzR1
+	 x7VHlDvRVqGvfJHioDc8qIBs8PAdvJP6R29JGXzwKJMyrE8bk5grSh83Zc6xevTugB
+	 Y2EA9PCr03Doknf1mVhRUl3jWoh4DRctFMPuHeiKAj3uC/2z1CpLGd4OH8elFOGmRL
+	 ZkDdshViBfPhlwBORHNhw2Bed8B8GJi3oicC4TOlDI8fbK57pDF+2afGxQIRZ39S7Z
+	 xBCOd0TJ7fVJrlZHc3JdlI2qty7vrfB1+Ta78TF/3hidWL9q4RdsXFBeHgvbI1mJRj
+	 949daoarO5lZw==
+Date: Thu, 22 Jan 2026 19:25:06 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Jonathan Santos <Jonathan.Santos@analog.com>
+Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <lars@metafoo.de>,
+ <Michael.Hennerich@analog.com>, <dlechner@baylibre.com>,
+ <nuno.sa@analog.com>, <andy@kernel.org>, <robh@kernel.org>,
+ <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <jonath4nns@gmail.com>
+Subject: Re: [PATCH v6 0/5] Add support for ADAQ776x-1 ADC Family
+Message-ID: <20260122192506.06ca7a4f@jic23-huawei>
+In-Reply-To: <cover.1768350772.git.Jonathan.Santos@analog.com>
+References: <cover.1768350772.git.Jonathan.Santos@analog.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="iM19+XLOo0mop+Pa"
-Content-Disposition: inline
-In-Reply-To: <32c1ae8735c80629757ace0c35a62da0c40911d0.1769089199.git.tzeyee.ng@altera.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-3.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258619-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-258620-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 9B1896CDE4
+	NEURAL_HAM(-0.00)[-0.995];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,metafoo.de,analog.com,baylibre.com,kernel.org,gmail.com];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: F02FC6CFCC
 X-Rspamd-Action: no action
 
+On Wed, 14 Jan 2026 06:26:22 -0300
+Jonathan Santos <Jonathan.Santos@analog.com> wrote:
 
---iM19+XLOo0mop+Pa
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Jan 22, 2026 at 05:47:43AM -0800, tzeyee.ng@altera.com wrote:
-> From: Ng Tze Yee <tzeyee.ng@altera.com>
->=20
-> The Stratix10 devkit supports a separate eMMC daughter card. The eMMC
-> daughter card replaces the SDMMC slot that is on the default daughter card
-> and thus requires a separate board dts file.
->=20
-> Signed-off-by: Ng Tze Yee <tzeyee.ng@altera.com>
+> This adds support for the ADAQ7767-1, ADAQ7768-1 and ADAQ7769-1 devices. 
+> 
+> The ADAQ7768-1 and ADAQ7769-1 integrate a programmable gain amplifier (PGA)
+> with 7 and 8 gain options, respectively. The ADAQ7767-1 and ADAQ7769-1 
+> also feature a 3-pin selectable Anti-aliasing filter (AAF) gain.
+> 
 > ---
+> Changes in v6:
+> * Use Pattern PER* for all percentage-related macros and include macros 
+>   for Per mille and per cent mille units.
+> * Refactored ad7768_parse_aaf_gain() to improve cleanliness and readability.
+> * Link to v5: https://lore.kernel.org/linux-iio/cover.1765900411.git.Jonathan.Santos@analog.com/T/#t/
+> 
+> Changes in v5:
+> * Added PERCENT macro along with BASIS_POINTS in units.h.
+> * Added new patch to allow writing attributes without direct mode claim.
+> * Write scale attribute without direct mode claim to avoid deadlock
+>   when using GPIOs from the device's own controller.
+> * Link to v4: https://lore.kernel.org/linux-iio/cover.1764101647.git.Jonathan.Santos@analog.com/T/#t
+> 
+> 
+> Changes in v4:
+> * Removed u64_fract type patch, as it is not used. u32_fract is sufficient
+>   for the PGA gain calculations.
+> * Added new patch adding BASIS_POINTS macro to units.h.
+> * Included pga-gpios property for parts that support PGA gain.
+>   Before we were using the internal gpio controller to manage the PGA pins,
+>   but still exposing the controller for external use (causing possible conflicts).
+> * Addressed other review comments, see individual patches.
+> * Link to v3: https://lore.kernel.org/linux-iio/cover.1757001160.git.Jonathan.Santos@analog.com/T/#t
+> 
+> Changes in v3:
+> * Renamed adi,gain-milli to adi,aaf-gain-bp. Now it represents basis points
+>   (one hundredth of a percent).
+> * ad7768_channel_masks removed along with available_masks element in
+>   ad7768_chip_info struct. It does not add anything for single channels,
+>   so not needed, at least for now.
+> * New patch adding 64-bit fractional number types to math.h.
+> * Moved aaf gain parsing to its own function, and now returning after
+>   warning to avoid setting a variable when it shouldn't (avoid confusion).
+> * ad7768_set_pga_gain(): removed the pgia enable check, relying on the
+>   regmap cache.
+> * Addressed other review comments, see individual patches.
+> 
 > Changes in v2:
-> - Introduced socfpga_stratix10_socdk.dtsi for common board settings
-> - Updated socfpga_stratix10_socdk_emmc.dts to include the new dtsi
-> - Added fallback compatible string "altr,socfpga-stratix10-socdk" in
->   the socfpga_stratix10_socdk_emmc.dts
+> * adi,aaf-gain property renamed to adi,gain-milli. Default value added.
+> * fixed some commit messages. 
+> * Added 'select RATIONAL' to Kconfig.
+> * Added lock to protect PGA value access.
+> * rewrote AAF gain check and replaced error returns with warnings.
+> * Addressed other review comments, see individual patches.
+> * Link to v1: https://lore.kernel.org/linux-iio/cover.1754617360.git.Jonathan.Santos@analog.com/T/#t
+> 
+> Jonathan Santos (5):
+>   dt-bindings: iio: adc: ad7768-1: add new supported parts
+>   iio: adc: ad7768-1: introduce chip info for future multidevice support
+>   units: add conversion macros for percentage related units
+>   iio: adc: ad7768-1: refactor ad7768_write_raw()
+>   iio: adc: ad7768-1: add support for ADAQ776x-1 ADC Family
+Applied with this diff to last patch.  Will first push out as testing to
+let 0-day take a look.
 
-You forgot to modify the existing socdk dts to use the common dtsi,
-as-is you've just moved the duplication to a different file.
+Shout if the change is a problem.
 
-> ---
->  arch/arm64/boot/dts/altera/Makefile           |   1 +
->  .../dts/altera/socfpga_stratix10_socdk.dtsi   | 131 ++++++++++++++++++
->  .../altera/socfpga_stratix10_socdk_emmc.dts   |  21 +++
->  3 files changed, 153 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dt=
-si
->  create mode 100644 arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_em=
-mc.dts
+diff --git a/drivers/iio/adc/ad7768-1.c b/drivers/iio/adc/ad7768-1.c
+index 980c079ab41a..dc5be3d14664 100644
+--- a/drivers/iio/adc/ad7768-1.c
++++ b/drivers/iio/adc/ad7768-1.c
+@@ -535,9 +535,10 @@ static void ad7768_fill_scale_tbl(struct iio_dev *dev)
+ {
+        struct ad7768_state *st = iio_priv(dev);
+        const struct iio_scan_type *scan_type;
+-       int val, val2, tmp0, tmp1, i;
++       int val, val2, tmp0, i;
+        struct u32_fract fract;
+        unsigned long n, d;
++       u32 tmp1;
+        u64 tmp2;
+ 
+        scan_type = iio_get_current_scan_type(dev, &dev->channels[0]);
+@@ -563,7 +564,7 @@ static void ad7768_fill_scale_tbl(struct iio_dev *dev)
+                tmp2 = ((u64)val * MICRO) >> val2;
+                tmp0 = div_u64_rem(tmp2, NANO, &tmp1);
+                st->scale_tbl[i][0] = tmp0; /* Integer part */
+-               st->scale_tbl[i][1] = abs(tmp1); /* Fractional part */
++               st->scale_tbl[i][1] = tmp1; /* Fractional part */
+        }
+ }
+ 
 
---iM19+XLOo0mop+Pa
-Content-Type: application/pgp-signature; name="signature.asc"
+> 
+>  .../bindings/iio/adc/adi,ad7768-1.yaml        |  64 ++-
+>  drivers/iio/adc/Kconfig                       |   1 +
+>  drivers/iio/adc/ad7768-1.c                    | 423 +++++++++++++++---
+>  include/linux/units.h                         |  19 +
+>  4 files changed, 453 insertions(+), 54 deletions(-)
+> 
+> 
+> base-commit: e0bc6d7e258486c10bb11e31fd4421c134063b1d
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaXJ0ogAKCRB4tDGHoIJi
-0rN9AQDk7a/mC3YkLXwJeonpC3fK/YDhAHdUH4b4zaaP5rK0dgEAmn9VyTG3hjyG
-XvFe0Nw5Q7oUr2OLaLpIr2zuhwy4Cws=
-=s/sr
------END PGP SIGNATURE-----
-
---iM19+XLOo0mop+Pa--
 
