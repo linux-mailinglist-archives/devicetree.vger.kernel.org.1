@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-258606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258607-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qPVwBfxucmlpkwAAu9opvQ
-	(envelope-from <devicetree+bounces-258606-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 19:39:56 +0100
+	id wNymB4xqcmnckQAAu9opvQ
+	(envelope-from <devicetree+bounces-258607-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 19:21:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 059FB6C8DE
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 19:39:54 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id D08AE6C429
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 19:20:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 6B04030131EF
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:07:24 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 53D1E302B518
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:07:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D21335D5F8;
-	Thu, 22 Jan 2026 18:07:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7D3C322B61;
+	Thu, 22 Jan 2026 18:07:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c4MgO7ir"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XBhXOPPU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3829354ACA;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D578D355039;
 	Thu, 22 Jan 2026 18:07:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769105236; cv=none; b=qkLkRSqsgsMQkNY42fBuK0TiMUXRUkarpTuCYZHgAKQXLOpdz3LM2ngj5woXxt5TsHIa+HzFBPd3/k2QEfXnmS3SlDa91QN6PmF/e49ZYGNv1QC6xnHZkJ+jcGu8K4tmq1+YpC94ZaKlDm0XOYWwYMHS6ixsLei5OCD4oSHWwYQ=
+	t=1769105237; cv=none; b=hFtV/718R/x/8Bqyo4tW+TI5i4SMA6mI+60hvSKh91iiL8kBw5ljRdF4oKYzHgCGMic9AxJ+6eAVz6wyBNqY+VvP46oi7/BdJzRCPksjNAgBdFyQVWxXqr9t2AbGMKOQfcQ2viB31CgtgfAYiZEuUBdBmbr8fpeplEpRCkUaJ68=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769105236; c=relaxed/simple;
-	bh=wN9ZCmjUsgfm4qkKjFTDF64YeJA5BNp7YAJTNuGgBb4=;
+	s=arc-20240116; t=1769105237; c=relaxed/simple;
+	bh=+fwHNj/sBzsP9jbPu66xDy8PTX/Ooptl1XCgHZ3wOUg=;
 	h=From:Date:Content-Type:MIME-Version:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=rffCI6mdaC7/02/RMrC6i0kWO/YgclN1uuIewbI+sxIKyIHPi0qmZ5f5q+DgjhJ6XxdceJLnJYnlc0XU3xG8oYpJLNfhaEprlBgoS7zH8Z4jOobFLwZ3yhqYN0q72XEOL7dUolyPL0pjnMoMaRU63GSdw6QATwBHkzacUSeZHiI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c4MgO7ir; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 341C7C116D0;
-	Thu, 22 Jan 2026 18:07:15 +0000 (UTC)
+	 Message-Id:Subject; b=JIPjhPs5a8eROkc/8gvKEJmm9FVjThXYMtinYg4XC3+9jCWKrFk7J6j6IUiJNYHYJfcC/sygA9ywHjbqzv2qTfCPRd8MZYHXVDmpyvsjwC4t/GvblV/Twe/s6lwGx9jsz5kvxhSIBhF8YBWeVUg3cAYi/4q2r29YGlz/Z59tRHY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XBhXOPPU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36666C116C6;
+	Thu, 22 Jan 2026 18:07:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769105235;
-	bh=wN9ZCmjUsgfm4qkKjFTDF64YeJA5BNp7YAJTNuGgBb4=;
+	s=k20201202; t=1769105236;
+	bh=+fwHNj/sBzsP9jbPu66xDy8PTX/Ooptl1XCgHZ3wOUg=;
 	h=From:Date:Cc:To:In-Reply-To:References:Subject:From;
-	b=c4MgO7irYFYpWutLr0jQKY0uG14Vqd4Y/5+kkzg9eaGXtd56moCVDxGqPKiepWBth
-	 QKKK5QmGYbs7p1OgqhKnF1tCMz8p9C3Y9m/jDkESZoIh+8C5H1KXSA4tOK7dYDPpwO
-	 +eNOn+ODS83WwbgX+ofyDqd35rV7WfjoddjsUz0hJa/6YHobjeC1/fm1xWJSDBt8LS
-	 /tN278Ak1fBKL8azaz3kyPlindBX+8nxnipLvX0aw4YASoMIoyjl4lSE2FE/gsZe7K
-	 KFJIXjZp7X+DfcW3A0f5H3fyk3U0Vbo0XRh0bJ75o1nyA15lU6Nwx99NfFJ0PlyW6K
-	 L/nW7xTaA2aTQ==
+	b=XBhXOPPULYedgmdXDj3jz6oVUV/4pMWOF0FKzZ7/nNjz1+MYS97tytTk+6omHWuHa
+	 1OXEnnQaihfBJe6CAB9RZdPk1daEAkW3SEK76vMm6/nW2t2WWGQ5MEKIpv135Tv8Rl
+	 hUbs5rTsLKlwVJ0v9zsBMfT/R4Nt/HhaTQia0c5rjiDfPLUpR9JqJ4hpoRUaBz9LKK
+	 BKMOBNeiVXwKNKzCmyWgCARoWv/F/1WCvlMlo9ASt3KRr4bvnSjFdM7I1tfRq4ooGx
+	 5Hx4ksCWD1AgxqwAlnw8rl9VFWLw65W/7qZMMWE53/EgJKglbAoFnsBK/iGd72H5Pz
+	 QlqIXlb3+QkBg==
 From: Rob Herring <robh@kernel.org>
-Date: Thu, 22 Jan 2026 12:07:14 -0600
+Date: Thu, 22 Jan 2026 12:07:15 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -54,133 +54,182 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Cc: Conor Dooley <conor+dt@kernel.org>, Simona Vetter <simona@ffwll.ch>, 
- Andrew Morton <akpm@linux-foundation.org>, Mike Rapoport <rppt@kernel.org>, 
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- David Hildenbrand <david@redhat.com>, 
- "T . J . Mercier" <tjmercier@google.com>, David Airlie <airlied@gmail.com>, 
- Brian Starkey <Brian.Starkey@arm.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linaro-mm-sig@lists.linaro.org, 
- Sumit Garg <sumit.garg@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>, 
- linux-tegra@vger.kernel.org, linux-mm@kvack.org, 
- Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
- John Stultz <jstultz@google.com>
-To: Thierry Reding <thierry.reding@kernel.org>
-In-Reply-To: <20260122161009.3865888-1-thierry.reding@kernel.org>
-References: <20260122161009.3865888-1-thierry.reding@kernel.org>
-Message-Id: <176910484137.3006995.3850336645613910946.robh@kernel.org>
-Subject: Re: [PATCH v2 00/10] dma-bug: heaps: Add Tegra VPR support
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Maulik Shah <maulik.shah@oss.qualcomm.com>, 
+ Taniya Das <taniya.das@oss.qualcomm.com>, 
+ Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>, 
+ Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Sibi Sankar <sibi.sankar@oss.qualcomm.com>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Qiang Yu <qiang.yu@oss.qualcomm.com>, 
+ Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ linux-arm-msm@vger.kernel.org, Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Abel Vesa <abelvesa@kernel.org>
+To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+In-Reply-To: <20260122-upstream_v3_glymur_introduction-v6-0-245f408ed82a@oss.qualcomm.com>
+References: <20260122-upstream_v3_glymur_introduction-v6-0-245f408ed82a@oss.qualcomm.com>
+Message-Id: <176910484203.3007057.6301998080301909826.robh@kernel.org>
+Subject: Re: [PATCH v6 0/4] arm64: dts: qcom: Introduce Glymur SoC dtsi and
+ Glymur CRD dts
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-1.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,ffwll.ch,linux-foundation.org,lists.freedesktop.org,vger.kernel.org,redhat.com,google.com,gmail.com,arm.com,lists.linaro.org,linaro.org,kvack.org,collabora.com];
-	TAGGED_FROM(0.00)[bounces-258606-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-258607-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.980];
+	DBL_PROHIBIT(0.00)[1.12.142.0:email];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.997];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,0.103.194.128:email,1c:email,devicetree.org:url,0.236.52.192:email,6a00000:email,31e0000:email,0.0.0.0:email,nvidia.com:email,31c0000:email,0.105.73.32:email,1.3.102.64:email,0.53.182.0:email,0.234.17.224:email]
-X-Rspamd-Queue-Id: 059FB6C8DE
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[1c00000:email,0.0.0.0:email,1bf0000:email,devicetree.org:url,1b40000:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:url,qualcomm.com:email]
+X-Rspamd-Queue-Id: D08AE6C429
 X-Rspamd-Action: no action
 
 
-On Thu, 22 Jan 2026 17:09:59 +0100, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
+On Thu, 22 Jan 2026 20:53:57 +0530, Pankaj Patil wrote:
+> Introduce dt-bindings and initial device tree support for Glymur,
+> Qualcomm's next-generation compute SoC and it's associated
+> Compute Reference Device (CRD) platform.
 > 
-> Hi,
+> https://www.qualcomm.com/products/mobile/snapdragon/laptops-and-tablets/snapdragon-x2-elite
+> https://www.qualcomm.com/news/releases/2025/09/new-snapdragon-x2-elite-extreme-and-snapdragon-x2-elite-are-the-
 > 
-> This series adds support for the video protection region (VPR) used on
-> Tegra SoC devices. It's a special region of memory that is protected
-> from accesses by the CPU and used to store DRM protected content (both
-> decrypted stream data as well as decoded video frames).
+> The base support enables booting to shell with rootfs on NVMe,
+> demonstrating functionality for PCIe and NVMe subsystems.
+> DCVS is also enabled, allowing dynamic frequency scaling for the CPUs.
+> TSENS (Thermal Sensors) enabled for monitoring SoC temperature and
+> thermal management. The platform is capable of booting kernel at EL2
+> with kvm-unit tests performed on it for sanity.
 > 
-> Patches 1 and 2 add DT binding documentation for the VPR and add the VPR
-> to the list of memory-region items for display and host1x.
+> Added dtsi files for the PMIC's enabled PMH0101, PMK8850, PMCX0102,
+> SMB2370, PMH0104, PMH0110 along with temp-alarm and GPIO nodeS.
 > 
-> Patch 3 adds bitmap_allocate(), which is like bitmap_allocate_region()
-> but works on sizes that are not a power of two.
+> For CPU compatible naming, there is one discussion which is not specific
+> to Glymur, Kaanapali and Glymur use the same Oryon cores.
+> https://lore.kernel.org/all/20251119-oryon-binding-v1-1-f79a101b0391@oss.qualcomm.com/
+> We've kept the "qcom,oryon" compatible
 > 
-> Patch 4 introduces new APIs needed by the Tegra VPR implementation that
-> allow CMA areas to be dynamically created at runtime rather than using
-> the fixed, system-wide list. This is used in this driver specifically
-> because it can use an arbitrary number of these areas (though they are
-> currently limited to 4).
+> Features enabled in this patchset:
+> 1. NVMe storage support
+> 2. PCIe controller and PCIe PHY
+> 3. RPMH Regulators
+> 4. Clocks and reset controllers - GCC, TCSRCC, DISPCC, RPMHCC
+> 5. Interrupt controller
+> 6. TLMM (Top-Level Mode Multiplexer)
+> 7. QUP Block
+> 8. Reserved memory regions
+> 9. PMIC support with regulators
+> 10. CPU Power Domains
+> 11. TSENS (Thermal Sensors)
+> 12. DCVS: CPU DCVS with scmi perf protocol
 > 
-> Patch 5 adds some infrastructure for DMA heap implementations to provide
-> information through debugfs.
+> Dependencies:
 > 
-> The Tegra VPR implementation is added in patch 6. See its commit message
-> for more details about the specifics of this implementation.
+> dt-bindings:
+> 1. https://lore.kernel.org/all/20260121-glymur-pmic-mfd-v1-1-2aab4f21e79c@oss.qualcomm.com/
+> 2. https://lore.kernel.org/all/20251215-knp-pmic-leds-v3-2-5e583f68b0e5@oss.qualcomm.com/
+> 3. https://lore.kernel.org/all/20260121110828.2267061-1-pankaj.patil@oss.qualcomm.com/
+> 4. https://lore.kernel.org/all/20260111155234.5829-1-pankaj.patil@oss.qualcomm.com/
 > 
-> Finally, patches 7-10 add the VPR placeholder node on Tegra234 and hook
-> it up to the host1x and GPU nodes so that they can make use of this
-> region.
+> Linux-next based tree with Glymur patches is available at:
+> https://git.codelinaro.org/clo/linux-kernel/kernel-qcom/-/tree/b4/v6_glymur_introduction
+> 
+> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+> ---
+> Changes in v6:
+> - Moved pmic thermal zones to their respective pmic dtsi files
+> - Link to v5: https://lore.kernel.org/r/20260122-upstream_v3_glymur_introduction-v5-0-8ba76c354e9a@oss.qualcomm.com
+> 
+> Changes in v5:
+> - Added opp entries for pcie nodes
+> - Dropped qup-memory interconnect from uart nodes
+> - Update trip1 type to critical for pmic thermal zones
+> - Alignment and newline fixes according to comments
+> - Link to v4: https://lore.kernel.org/r/20260112-upstream_v3_glymur_introduction-v4-0-8a0366210e02@oss.qualcomm.com
+> 
+> Changes in v4:
+> - Enabled PCIe SMMU for all 4 PCIe instances
+> - Updated dispcc required opps level to "rpmhpd_opp_low_svs"
+> - Updated watchdog compatible
+> - Renamed gic-its to msi-controller
+> - Updated GCC clocks property to 43 from 44
+> - Moved cpu-idle-states to domain-idle-states
+> - Fixed alignment and zero padding issues according to review comments
+> - Dropped glymur-pmics.dtsi
+> - Moved pmic thermal zones from board dts to soc dtsi
+> - Link to v3: https://lore.kernel.org/r/20251219-upstream_v3_glymur_introduction-v3-0-32271f1f685d@oss.qualcomm.com
+> 
+> Changes in v3:
+> - Enabled system-cache-controller
+> - Squashed all initial features to boot to shell with nvme as storage
+> - Updated tsens nodes according to comments
+> - Merged tcsr and tcsrcc node
+> - Addressed review comments
+> - Link to v1: https://lore.kernel.org/all/20250925-v3_glymur_introduction-v1-0-24b601bbecc0@oss.qualcomm.com
 > 
 > Changes in v2:
-> - Tegra VPR implementation is now more optimized to reduce the number of
->   (very slow) resize operations, and allows cross-chunk allocations
-> - dynamic CMA areas are now trackd separately from static ones, but the
->   global number of CMA pages accounts for all areas
+> - Series was sent erroneously
+> - Link to v1: https://lore.kernel.org/r/20250925-v3_glymur_introduction-v1-0-5413a85117c6@oss.qualcomm.com
 > 
-> Thierry
+> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
 > 
-> Thierry Reding (10):
->   dt-bindings: reserved-memory: Document Tegra VPR
->   dt-bindings: display: tegra: Document memory regions
->   bitmap: Add bitmap_allocate() function
->   mm/cma: Allow dynamically creating CMA areas
->   dma-buf: heaps: Add debugfs support
->   dma-buf: heaps: Add support for Tegra VPR
->   arm64: tegra: Add VPR placeholder node on Tegra234
->   arm64: tegra: Add GPU node on Tegra234
->   arm64: tegra: Hook up VPR to host1x
->   arm64: tegra: Hook up VPR to the GPU
+> ---
+> Pankaj Patil (4):
+>       dt-bindings: arm: qcom: Document Glymur SoC and board
+>       arm64: defconfig: Enable Glymur configs for boot to shell
+>       arm64: dts: qcom: Introduce Glymur base dtsi
+>       arm64: dts: qcom: glymur: Enable Glymur CRD board support
 > 
->  .../display/tegra/nvidia,tegra186-dc.yaml     |   10 +
->  .../display/tegra/nvidia,tegra20-dc.yaml      |   10 +-
->  .../display/tegra/nvidia,tegra20-host1x.yaml  |    7 +
->  .../nvidia,tegra-video-protection-region.yaml |   55 +
->  arch/arm/mm/dma-mapping.c                     |    2 +-
->  arch/arm64/boot/dts/nvidia/tegra234.dtsi      |   60 +
->  arch/s390/mm/init.c                           |    2 +-
->  drivers/dma-buf/dma-heap.c                    |   56 +
->  drivers/dma-buf/heaps/Kconfig                 |    7 +
->  drivers/dma-buf/heaps/Makefile                |    1 +
->  drivers/dma-buf/heaps/cma_heap.c              |    2 +-
->  drivers/dma-buf/heaps/tegra-vpr.c             | 1265 +++++++++++++++++
->  include/linux/bitmap.h                        |   25 +-
->  include/linux/cma.h                           |    7 +-
->  include/linux/dma-heap.h                      |    2 +
->  include/trace/events/tegra_vpr.h              |   57 +
->  mm/cma.c                                      |  187 ++-
->  mm/cma.h                                      |    5 +-
->  18 files changed, 1713 insertions(+), 47 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/reserved-memory/nvidia,tegra-video-protection-region.yaml
->  create mode 100644 drivers/dma-buf/heaps/tegra-vpr.c
->  create mode 100644 include/trace/events/tegra_vpr.h
+>  Documentation/devicetree/bindings/arm/qcom.yaml |    5 +
+>  arch/arm64/boot/dts/qcom/Makefile               |    1 +
+>  arch/arm64/boot/dts/qcom/glymur-crd.dts         |  601 +++
+>  arch/arm64/boot/dts/qcom/glymur.dtsi            | 5913 +++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/pmcx0102.dtsi          |  187 +
+>  arch/arm64/boot/dts/qcom/pmh0101.dtsi           |   68 +
+>  arch/arm64/boot/dts/qcom/pmh0104-glymur.dtsi    |  144 +
+>  arch/arm64/boot/dts/qcom/pmh0110-glymur.dtsi    |  144 +
+>  arch/arm64/boot/dts/qcom/pmk8850.dtsi           |   70 +
+>  arch/arm64/boot/dts/qcom/smb2370.dtsi           |   45 +
+>  arch/arm64/configs/defconfig                    |    5 +
+>  11 files changed, 7183 insertions(+)
+> ---
+> base-commit: 46fe65a2c28ecf5df1a7475aba1f08ccf4c0ac1b
+> change-id: 20251007-upstream_v3_glymur_introduction-5a105b54493d
+> prerequisite-message-id: <20260121-glymur-pmic-mfd-v1-1-2aab4f21e79c@oss.qualcomm.com>
+> prerequisite-patch-id: bd5a4703a5a7fc530418337680cf1e2ea1518f35
+> prerequisite-message-id: <20251215-knp-pmic-leds-v3-0-5e583f68b0e5@oss.qualcomm.com>
+> prerequisite-patch-id: 6bbaff642cfd1f1386ff0ccd746739b68cdbeb45
+> prerequisite-patch-id: e30603778b23b7f7586b1c01a362e45af7bd0aa3
+> prerequisite-message-id: <20260121110828.2267061-1-pankaj.patil@oss.qualcomm.com>
+> prerequisite-patch-id: 14469fd166b31b251b98bf25e783ab6f57ddd13a
 > 
+> Best regards,
 > --
-> 2.52.0
+> Pankaj Patil <pankaj.patil@oss.qualcomm.com>
 > 
 > 
 > 
@@ -201,181 +250,53 @@ make sure dt-schema is up to date:
 
 
 This patch series was applied (using b4) to base:
- Base: attempting to guess base-commit...
- Base: tags/next-20260121 (exact match)
- Base: tags/next-20260121 (use --merge-base to override)
+ Deps: looking for dependencies matching 4 patch-ids
+ Deps: Applying prerequisite patch: [PATCH] dt-bindings: mfd: qcom,spmi-pmic: Document PMICs present on Glymur
+ Deps: Applying prerequisite patch: [PATCH v3 1/2] dt-bindings: leds: leds-qcom-lpg: Add support for PMH0101 PWM
+ Deps: Applying prerequisite patch: [PATCH v3 2/2] dt-bindings: leds: qcom,spmi-flash-led: Add PMH0101 compatible
+ Deps: Applying prerequisite patch: [PATCH v2] dt-bindings: dma: qcom,gpi: Update max interrupt lines to 16
+ Base: 46fe65a2c28ecf5df1a7475aba1f08ccf4c0ac1b (use --merge-base to override)
 
 If this is not the correct base, please add 'base-commit' tag
 (or use b4 which does this automatically)
 
 
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/nvidia/' for 20260122161009.3865888-1-thierry.reding@kernel.org:
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20260122-upstream_v3_glymur_introduction-v6-0-245f408ed82a@oss.qualcomm.com:
 
-arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dtb: video-protection-region@0 (nvidia,tegra-video-protection-region): {'compatible': ['nvidia,tegra-video-protection-region'], 'status': ['disabled'], 'no-map': True, 'reg': [[0, 0, 0, 0]], 'size': 1879048192, 'alignment': 1048576, 'reusable': True, 'phandle': 263, '$nodename': ['video-protection-region@0']} should not be valid under {'required': ['reusable']}
-	from schema $id: http://devicetree.org/schemas/reserved-memory/nvidia,tegra-video-protection-region.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dtb: video-protection-region@0 (nvidia,tegra-video-protection-region): {'compatible': ['nvidia,tegra-video-protection-region'], 'status': ['disabled'], 'no-map': True, 'reg': [[0, 0, 0, 0]], 'size': 1879048192, 'alignment': 1048576, 'reusable': True, 'phandle': 263, '$nodename': ['video-protection-region@0']} should not be valid under {'required': ['no-map']}
-	from schema $id: http://devicetree.org/schemas/reserved-memory/nvidia,tegra-video-protection-region.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dtb: video-protection-region@0 (nvidia,tegra-video-protection-region): 'oneOf' conditional failed, one must be fixed:
-	{'compatible': ['nvidia,tegra-video-protection-region'], 'status': ['disabled'], 'no-map': True, 'reg': [[0, 0, 0, 0]], 'size': 1879048192, 'alignment': 1048576, 'reusable': True, 'phandle': 263, '$nodename': ['video-protection-region@0']} is valid under each of {'required': ['size']}, {'required': ['reg']}
-arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dtb: video-protection-region@0 (nvidia,tegra-video-protection-region): 'oneOf' conditional failed, one must be fixed:
-		'iommu-addresses' is a required property
-	from schema $id: http://devicetree.org/schemas/reserved-memory/nvidia,tegra-video-protection-region.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dtb: video-protection-region@0 (nvidia,tegra-video-protection-region): {'compatible': ['nvidia,tegra-video-protection-region'], 'status': ['disabled'], 'no-map': True, 'reg': [[0, 0, 0, 0]], 'size': 1879048192, 'alignment': 1048576, 'reusable': True, 'phandle': 263, '$nodename': ['video-protection-region@0']} is valid under each of {'required': ['compatible', 'size']}, {'required': ['compatible', 'reg']}
-	from schema $id: http://devicetree.org/schemas/reserved-memory/nvidia,tegra-video-protection-region.yaml
-arch/arm64/boot/dts/nvidia/tegra234-sim-vdk.dtb: video-protection-region@0 (nvidia,tegra-video-protection-region): {'compatible': ['nvidia,tegra-video-protection-region'], 'status': ['disabled'], 'no-map': True, 'reg': [[0, 0, 0, 0]], 'size': 1879048192, 'alignment': 1048576, 'reusable': True, 'phandle': 248, '$nodename': ['video-protection-region@0']} should not be valid under {'required': ['reusable']}
-	from schema $id: http://devicetree.org/schemas/reserved-memory/nvidia,tegra-video-protection-region.yaml
-arch/arm64/boot/dts/nvidia/tegra234-sim-vdk.dtb: video-protection-region@0 (nvidia,tegra-video-protection-region): {'compatible': ['nvidia,tegra-video-protection-region'], 'status': ['disabled'], 'no-map': True, 'reg': [[0, 0, 0, 0]], 'size': 1879048192, 'alignment': 1048576, 'reusable': True, 'phandle': 248, '$nodename': ['video-protection-region@0']} should not be valid under {'required': ['no-map']}
-	from schema $id: http://devicetree.org/schemas/reserved-memory/nvidia,tegra-video-protection-region.yaml
-arch/arm64/boot/dts/nvidia/tegra234-sim-vdk.dtb: video-protection-region@0 (nvidia,tegra-video-protection-region): 'oneOf' conditional failed, one must be fixed:
-	{'compatible': ['nvidia,tegra-video-protection-region'], 'status': ['disabled'], 'no-map': True, 'reg': [[0, 0, 0, 0]], 'size': 1879048192, 'alignment': 1048576, 'reusable': True, 'phandle': 248, '$nodename': ['video-protection-region@0']} is valid under each of {'required': ['size']}, {'required': ['reg']}
-arch/arm64/boot/dts/nvidia/tegra234-sim-vdk.dtb: video-protection-region@0 (nvidia,tegra-video-protection-region): 'oneOf' conditional failed, one must be fixed:
-		'iommu-addresses' is a required property
-	from schema $id: http://devicetree.org/schemas/reserved-memory/nvidia,tegra-video-protection-region.yaml
-arch/arm64/boot/dts/nvidia/tegra234-sim-vdk.dtb: video-protection-region@0 (nvidia,tegra-video-protection-region): {'compatible': ['nvidia,tegra-video-protection-region'], 'status': ['disabled'], 'no-map': True, 'reg': [[0, 0, 0, 0]], 'size': 1879048192, 'alignment': 1048576, 'reusable': True, 'phandle': 248, '$nodename': ['video-protection-region@0']} is valid under each of {'required': ['compatible', 'size']}, {'required': ['compatible', 'reg']}
-	from schema $id: http://devicetree.org/schemas/reserved-memory/nvidia,tegra-video-protection-region.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dtb: video-protection-region@0 (nvidia,tegra-video-protection-region): {'compatible': ['nvidia,tegra-video-protection-region'], 'status': ['disabled'], 'no-map': True, 'reg': [[0, 0, 0, 0]], 'size': 1879048192, 'alignment': 1048576, 'reusable': True, 'phandle': 260, '$nodename': ['video-protection-region@0']} should not be valid under {'required': ['reusable']}
-	from schema $id: http://devicetree.org/schemas/reserved-memory/nvidia,tegra-video-protection-region.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dtb: video-protection-region@0 (nvidia,tegra-video-protection-region): {'compatible': ['nvidia,tegra-video-protection-region'], 'status': ['disabled'], 'no-map': True, 'reg': [[0, 0, 0, 0]], 'size': 1879048192, 'alignment': 1048576, 'reusable': True, 'phandle': 260, '$nodename': ['video-protection-region@0']} should not be valid under {'required': ['no-map']}
-	from schema $id: http://devicetree.org/schemas/reserved-memory/nvidia,tegra-video-protection-region.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dtb: video-protection-region@0 (nvidia,tegra-video-protection-region): 'oneOf' conditional failed, one must be fixed:
-	{'compatible': ['nvidia,tegra-video-protection-region'], 'status': ['disabled'], 'no-map': True, 'reg': [[0, 0, 0, 0]], 'size': 1879048192, 'alignment': 1048576, 'reusable': True, 'phandle': 260, '$nodename': ['video-protection-region@0']} is valid under each of {'required': ['size']}, {'required': ['reg']}
-arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dtb: video-protection-region@0 (nvidia,tegra-video-protection-region): 'oneOf' conditional failed, one must be fixed:
-		'iommu-addresses' is a required property
-	from schema $id: http://devicetree.org/schemas/reserved-memory/nvidia,tegra-video-protection-region.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dtb: video-protection-region@0 (nvidia,tegra-video-protection-region): {'compatible': ['nvidia,tegra-video-protection-region'], 'status': ['disabled'], 'no-map': True, 'reg': [[0, 0, 0, 0]], 'size': 1879048192, 'alignment': 1048576, 'reusable': True, 'phandle': 260, '$nodename': ['video-protection-region@0']} is valid under each of {'required': ['compatible', 'size']}, {'required': ['compatible', 'reg']}
-	from schema $id: http://devicetree.org/schemas/reserved-memory/nvidia,tegra-video-protection-region.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0005.dtb: video-protection-region@0 (nvidia,tegra-video-protection-region): {'compatible': ['nvidia,tegra-video-protection-region'], 'status': ['disabled'], 'no-map': True, 'reg': [[0, 0, 0, 0]], 'size': 1879048192, 'alignment': 1048576, 'reusable': True, 'phandle': 260, '$nodename': ['video-protection-region@0']} should not be valid under {'required': ['reusable']}
-	from schema $id: http://devicetree.org/schemas/reserved-memory/nvidia,tegra-video-protection-region.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0005.dtb: video-protection-region@0 (nvidia,tegra-video-protection-region): {'compatible': ['nvidia,tegra-video-protection-region'], 'status': ['disabled'], 'no-map': True, 'reg': [[0, 0, 0, 0]], 'size': 1879048192, 'alignment': 1048576, 'reusable': True, 'phandle': 260, '$nodename': ['video-protection-region@0']} should not be valid under {'required': ['no-map']}
-	from schema $id: http://devicetree.org/schemas/reserved-memory/nvidia,tegra-video-protection-region.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0005.dtb: video-protection-region@0 (nvidia,tegra-video-protection-region): 'oneOf' conditional failed, one must be fixed:
-	{'compatible': ['nvidia,tegra-video-protection-region'], 'status': ['disabled'], 'no-map': True, 'reg': [[0, 0, 0, 0]], 'size': 1879048192, 'alignment': 1048576, 'reusable': True, 'phandle': 260, '$nodename': ['video-protection-region@0']} is valid under each of {'required': ['size']}, {'required': ['reg']}
-arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0005.dtb: video-protection-region@0 (nvidia,tegra-video-protection-region): 'oneOf' conditional failed, one must be fixed:
-		'iommu-addresses' is a required property
-	from schema $id: http://devicetree.org/schemas/reserved-memory/nvidia,tegra-video-protection-region.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0005.dtb: video-protection-region@0 (nvidia,tegra-video-protection-region): {'compatible': ['nvidia,tegra-video-protection-region'], 'status': ['disabled'], 'no-map': True, 'reg': [[0, 0, 0, 0]], 'size': 1879048192, 'alignment': 1048576, 'reusable': True, 'phandle': 260, '$nodename': ['video-protection-region@0']} is valid under each of {'required': ['compatible', 'size']}, {'required': ['compatible', 'reg']}
-	from schema $id: http://devicetree.org/schemas/reserved-memory/nvidia,tegra-video-protection-region.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dtb: video-protection-region@0 (nvidia,tegra-video-protection-region): {'compatible': ['nvidia,tegra-video-protection-region'], 'status': ['disabled'], 'no-map': True, 'reg': [[0, 0, 0, 0]], 'size': 1879048192, 'alignment': 1048576, 'reusable': True, 'phandle': 272, '$nodename': ['video-protection-region@0']} should not be valid under {'required': ['reusable']}
-	from schema $id: http://devicetree.org/schemas/reserved-memory/nvidia,tegra-video-protection-region.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dtb: video-protection-region@0 (nvidia,tegra-video-protection-region): {'compatible': ['nvidia,tegra-video-protection-region'], 'status': ['disabled'], 'no-map': True, 'reg': [[0, 0, 0, 0]], 'size': 1879048192, 'alignment': 1048576, 'reusable': True, 'phandle': 272, '$nodename': ['video-protection-region@0']} should not be valid under {'required': ['no-map']}
-	from schema $id: http://devicetree.org/schemas/reserved-memory/nvidia,tegra-video-protection-region.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dtb: video-protection-region@0 (nvidia,tegra-video-protection-region): 'oneOf' conditional failed, one must be fixed:
-	{'compatible': ['nvidia,tegra-video-protection-region'], 'status': ['disabled'], 'no-map': True, 'reg': [[0, 0, 0, 0]], 'size': 1879048192, 'alignment': 1048576, 'reusable': True, 'phandle': 272, '$nodename': ['video-protection-region@0']} is valid under each of {'required': ['size']}, {'required': ['reg']}
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dtb: video-protection-region@0 (nvidia,tegra-video-protection-region): 'oneOf' conditional failed, one must be fixed:
-		'iommu-addresses' is a required property
-	from schema $id: http://devicetree.org/schemas/reserved-memory/nvidia,tegra-video-protection-region.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dtb: video-protection-region@0 (nvidia,tegra-video-protection-region): {'compatible': ['nvidia,tegra-video-protection-region'], 'status': ['disabled'], 'no-map': True, 'reg': [[0, 0, 0, 0]], 'size': 1879048192, 'alignment': 1048576, 'reusable': True, 'phandle': 272, '$nodename': ['video-protection-region@0']} is valid under each of {'required': ['compatible', 'size']}, {'required': ['compatible', 'reg']}
-	from schema $id: http://devicetree.org/schemas/reserved-memory/nvidia,tegra-video-protection-region.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: video-protection-region@0 (nvidia,tegra-video-protection-region): {'compatible': ['nvidia,tegra-video-protection-region'], 'status': ['disabled'], 'no-map': True, 'reg': [[0, 0, 0, 0]], 'size': 1879048192, 'alignment': 1048576, 'reusable': True, 'phandle': 272, '$nodename': ['video-protection-region@0']} should not be valid under {'required': ['reusable']}
-	from schema $id: http://devicetree.org/schemas/reserved-memory/nvidia,tegra-video-protection-region.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: video-protection-region@0 (nvidia,tegra-video-protection-region): {'compatible': ['nvidia,tegra-video-protection-region'], 'status': ['disabled'], 'no-map': True, 'reg': [[0, 0, 0, 0]], 'size': 1879048192, 'alignment': 1048576, 'reusable': True, 'phandle': 272, '$nodename': ['video-protection-region@0']} should not be valid under {'required': ['no-map']}
-	from schema $id: http://devicetree.org/schemas/reserved-memory/nvidia,tegra-video-protection-region.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: video-protection-region@0 (nvidia,tegra-video-protection-region): 'oneOf' conditional failed, one must be fixed:
-	{'compatible': ['nvidia,tegra-video-protection-region'], 'status': ['disabled'], 'no-map': True, 'reg': [[0, 0, 0, 0]], 'size': 1879048192, 'alignment': 1048576, 'reusable': True, 'phandle': 272, '$nodename': ['video-protection-region@0']} is valid under each of {'required': ['size']}, {'required': ['reg']}
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: video-protection-region@0 (nvidia,tegra-video-protection-region): 'oneOf' conditional failed, one must be fixed:
-		'iommu-addresses' is a required property
-	from schema $id: http://devicetree.org/schemas/reserved-memory/nvidia,tegra-video-protection-region.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: video-protection-region@0 (nvidia,tegra-video-protection-region): {'compatible': ['nvidia,tegra-video-protection-region'], 'status': ['disabled'], 'no-map': True, 'reg': [[0, 0, 0, 0]], 'size': 1879048192, 'alignment': 1048576, 'reusable': True, 'phandle': 272, '$nodename': ['video-protection-region@0']} is valid under each of {'required': ['compatible', 'size']}, {'required': ['compatible', 'reg']}
-	from schema $id: http://devicetree.org/schemas/reserved-memory/nvidia,tegra-video-protection-region.yaml
-arch/arm64/boot/dts/nvidia/tegra234-sim-vdk.dtb: ethernet@6800000 (nvidia,tegra234-mgbe): 'snps,axi-config', 'stmmac-axi-config' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/net/nvidia,tegra234-mgbe.yaml
-arch/arm64/boot/dts/nvidia/tegra234-sim-vdk.dtb: ethernet@6900000 (nvidia,tegra234-mgbe): 'snps,axi-config', 'stmmac-axi-config' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/net/nvidia,tegra234-mgbe.yaml
-arch/arm64/boot/dts/nvidia/tegra234-sim-vdk.dtb: ethernet@6a00000 (nvidia,tegra234-mgbe): 'snps,axi-config', 'stmmac-axi-config' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/net/nvidia,tegra234-mgbe.yaml
-arch/arm64/boot/dts/nvidia/tegra234-sim-vdk.dtb: vic@15340000 (nvidia,tegra234-vic): 'memory-region', 'memory-region-names' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/display/tegra/nvidia,tegra124-vic.yaml
-arch/arm64/boot/dts/nvidia/tegra234-sim-vdk.dtb: nvdec@15480000 (nvidia,tegra234-nvdec): 'memory-region', 'memory-region-names' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/gpu/host1x/nvidia,tegra234-nvdec.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dtb: /bus@0/i2c@31e0000/audio-codec@1c: failed to match any schema with compatible: ['realtek,rt5640']
-arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dtb: padctl@3520000 (nvidia,tegra234-xusb-padctl): ports:usb2-0: 'connector' is a dependency of 'usb-role-switch'
-	from schema $id: http://devicetree.org/schemas/phy/nvidia,tegra194-xusb-padctl.yaml
-arch/arm64/boot/dts/nvidia/tegra234-sim-vdk.dtb: /gpu@17000000: failed to match any schema with compatible: ['nvidia,ga10b']
-arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dtb: /bus@0/i2c@31c0000/audio-codec@1c: failed to match any schema with compatible: ['realtek,rt5640']
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dtb: padctl@3520000 (nvidia,tegra234-xusb-padctl): ports:usb2-0: 'port' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/phy/nvidia,tegra194-xusb-padctl.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dtb: padctl@3520000 (nvidia,tegra234-xusb-padctl): ports:usb2-0: 'connector' is a dependency of 'usb-role-switch'
-	from schema $id: http://devicetree.org/schemas/phy/nvidia,tegra194-xusb-padctl.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dtb: padctl@3520000 (nvidia,tegra234-xusb-padctl): ports:usb2-1: 'port' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/phy/nvidia,tegra194-xusb-padctl.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dtb: padctl@3520000 (nvidia,tegra234-xusb-padctl): ports:usb3-0: 'port' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/phy/nvidia,tegra194-xusb-padctl.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dtb: padctl@3520000 (nvidia,tegra234-xusb-padctl): ports:usb3-1: 'port' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/phy/nvidia,tegra194-xusb-padctl.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dtb: ethernet@6800000 (nvidia,tegra234-mgbe): 'snps,axi-config', 'stmmac-axi-config' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/net/nvidia,tegra234-mgbe.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dtb: padctl@3520000 (nvidia,tegra234-xusb-padctl): ports:usb2-0: 'connector' is a dependency of 'usb-role-switch'
-	from schema $id: http://devicetree.org/schemas/phy/nvidia,tegra194-xusb-padctl.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dtb: ethernet@6900000 (nvidia,tegra234-mgbe): 'snps,axi-config', 'stmmac-axi-config' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/net/nvidia,tegra234-mgbe.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dtb: ethernet@6a00000 (nvidia,tegra234-mgbe): 'snps,axi-config', 'stmmac-axi-config' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/net/nvidia,tegra234-mgbe.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dtb: ethernet@6800000 (nvidia,tegra234-mgbe): 'snps,axi-config', 'stmmac-axi-config' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/net/nvidia,tegra234-mgbe.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dtb: ethernet@6800000 (nvidia,tegra234-mgbe): phy-mode: ['10gbase-r'] does not contain items matching the given schema
-	from schema $id: http://devicetree.org/schemas/net/nvidia,tegra234-mgbe.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dtb: ethernet@6900000 (nvidia,tegra234-mgbe): 'snps,axi-config', 'stmmac-axi-config' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/net/nvidia,tegra234-mgbe.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dtb: ethernet@6a00000 (nvidia,tegra234-mgbe): 'snps,axi-config', 'stmmac-axi-config' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/net/nvidia,tegra234-mgbe.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dtb: vic@15340000 (nvidia,tegra234-vic): 'memory-region', 'memory-region-names' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/display/tegra/nvidia,tegra124-vic.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dtb: nvdec@15480000 (nvidia,tegra234-nvdec): 'memory-region', 'memory-region-names' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/gpu/host1x/nvidia,tegra234-nvdec.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dtb: ethernet@6800000 (nvidia,tegra234-mgbe): 'snps,axi-config', 'stmmac-axi-config' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/net/nvidia,tegra234-mgbe.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dtb: ethernet@6900000 (nvidia,tegra234-mgbe): 'snps,axi-config', 'stmmac-axi-config' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/net/nvidia,tegra234-mgbe.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dtb: ethernet@6a00000 (nvidia,tegra234-mgbe): 'snps,axi-config', 'stmmac-axi-config' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/net/nvidia,tegra234-mgbe.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dtb: vic@15340000 (nvidia,tegra234-vic): 'memory-region', 'memory-region-names' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/display/tegra/nvidia,tegra124-vic.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dtb: nvdec@15480000 (nvidia,tegra234-nvdec): 'memory-region', 'memory-region-names' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/gpu/host1x/nvidia,tegra234-nvdec.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dtb: vic@15340000 (nvidia,tegra234-vic): 'memory-region', 'memory-region-names' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/display/tegra/nvidia,tegra124-vic.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dtb: nvdec@15480000 (nvidia,tegra234-nvdec): 'memory-region', 'memory-region-names' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/gpu/host1x/nvidia,tegra234-nvdec.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dtb: /gpu@17000000: failed to match any schema with compatible: ['nvidia,ga10b']
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dtb: /gpu@17000000: failed to match any schema with compatible: ['nvidia,ga10b']
-arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dtb: /gpu@17000000: failed to match any schema with compatible: ['nvidia,ga10b']
-arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0005.dtb: padctl@3520000 (nvidia,tegra234-xusb-padctl): ports:usb2-0: 'connector' is a dependency of 'usb-role-switch'
-	from schema $id: http://devicetree.org/schemas/phy/nvidia,tegra194-xusb-padctl.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0005.dtb: ethernet@6800000 (nvidia,tegra234-mgbe): 'snps,axi-config', 'stmmac-axi-config' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/net/nvidia,tegra234-mgbe.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0005.dtb: ethernet@6900000 (nvidia,tegra234-mgbe): 'snps,axi-config', 'stmmac-axi-config' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/net/nvidia,tegra234-mgbe.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0005.dtb: ethernet@6a00000 (nvidia,tegra234-mgbe): 'snps,axi-config', 'stmmac-axi-config' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/net/nvidia,tegra234-mgbe.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0005.dtb: vic@15340000 (nvidia,tegra234-vic): 'memory-region', 'memory-region-names' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/display/tegra/nvidia,tegra124-vic.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0005.dtb: nvdec@15480000 (nvidia,tegra234-nvdec): 'memory-region', 'memory-region-names' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/gpu/host1x/nvidia,tegra234-nvdec.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0005.dtb: /gpu@17000000: failed to match any schema with compatible: ['nvidia,ga10b']
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: /bus@0/i2c@31e0000/audio-codec@1c: failed to match any schema with compatible: ['realtek,rt5640']
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: padctl@3520000 (nvidia,tegra234-xusb-padctl): ports:usb2-0: 'port' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/phy/nvidia,tegra194-xusb-padctl.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: padctl@3520000 (nvidia,tegra234-xusb-padctl): ports:usb2-0: 'connector' is a dependency of 'usb-role-switch'
-	from schema $id: http://devicetree.org/schemas/phy/nvidia,tegra194-xusb-padctl.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: padctl@3520000 (nvidia,tegra234-xusb-padctl): ports:usb2-1: 'port' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/phy/nvidia,tegra194-xusb-padctl.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: padctl@3520000 (nvidia,tegra234-xusb-padctl): ports:usb3-0: 'port' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/phy/nvidia,tegra194-xusb-padctl.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: padctl@3520000 (nvidia,tegra234-xusb-padctl): ports:usb3-1: 'port' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/phy/nvidia,tegra194-xusb-padctl.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: ethernet@6800000 (nvidia,tegra234-mgbe): 'snps,axi-config', 'stmmac-axi-config' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/net/nvidia,tegra234-mgbe.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: ethernet@6800000 (nvidia,tegra234-mgbe): phy-mode: ['10gbase-r'] does not contain items matching the given schema
-	from schema $id: http://devicetree.org/schemas/net/nvidia,tegra234-mgbe.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: ethernet@6900000 (nvidia,tegra234-mgbe): 'snps,axi-config', 'stmmac-axi-config' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/net/nvidia,tegra234-mgbe.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: ethernet@6a00000 (nvidia,tegra234-mgbe): 'snps,axi-config', 'stmmac-axi-config' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/net/nvidia,tegra234-mgbe.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: vic@15340000 (nvidia,tegra234-vic): 'memory-region', 'memory-region-names' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/display/tegra/nvidia,tegra124-vic.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: nvdec@15480000 (nvidia,tegra234-nvdec): 'memory-region', 'memory-region-names' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/gpu/host1x/nvidia,tegra234-nvdec.yaml
-arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: /gpu@17000000: failed to match any schema with compatible: ['nvidia,ga10b']
+arch/arm64/boot/dts/qcom/glymur-crd.dtb: pci@1bf0000 (qcom,glymur-pcie): compatible:0: 'qcom,pcie-x1e80100' was expected
+	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-x1e80100.yaml
+arch/arm64/boot/dts/qcom/glymur-crd.dtb: pci@1bf0000 (qcom,glymur-pcie): compatible: ['qcom,glymur-pcie', 'qcom,pcie-x1e80100'] is too long
+	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-x1e80100.yaml
+arch/arm64/boot/dts/qcom/glymur-crd.dtb: /soc@0/pci@1bf0000: failed to match any schema with compatible: ['qcom,glymur-pcie', 'qcom,pcie-x1e80100']
+arch/arm64/boot/dts/qcom/glymur-crd.dtb: pci@1b40000 (qcom,glymur-pcie): compatible:0: 'qcom,pcie-x1e80100' was expected
+	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-x1e80100.yaml
+arch/arm64/boot/dts/qcom/glymur-crd.dtb: pci@1b40000 (qcom,glymur-pcie): compatible: ['qcom,glymur-pcie', 'qcom,pcie-x1e80100'] is too long
+	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-x1e80100.yaml
+arch/arm64/boot/dts/qcom/glymur-crd.dtb: /soc@0/pci@1b40000: failed to match any schema with compatible: ['qcom,glymur-pcie', 'qcom,pcie-x1e80100']
+arch/arm64/boot/dts/qcom/glymur-crd.dtb: pci@1c00000 (qcom,glymur-pcie): compatible:0: 'qcom,pcie-x1e80100' was expected
+	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-x1e80100.yaml
+arch/arm64/boot/dts/qcom/glymur-crd.dtb: pci@1c00000 (qcom,glymur-pcie): compatible: ['qcom,glymur-pcie', 'qcom,pcie-x1e80100'] is too long
+	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-x1e80100.yaml
+arch/arm64/boot/dts/qcom/glymur-crd.dtb: /soc@0/pci@1c00000: failed to match any schema with compatible: ['qcom,glymur-pcie', 'qcom,pcie-x1e80100']
+arch/arm64/boot/dts/qcom/glymur-crd.dtb: pci@1b80000 (qcom,glymur-pcie): compatible:0: 'qcom,pcie-x1e80100' was expected
+	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-x1e80100.yaml
+arch/arm64/boot/dts/qcom/glymur-crd.dtb: pci@1b80000 (qcom,glymur-pcie): compatible: ['qcom,glymur-pcie', 'qcom,pcie-x1e80100'] is too long
+	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-x1e80100.yaml
+arch/arm64/boot/dts/qcom/glymur-crd.dtb: /soc@0/pci@1b80000: failed to match any schema with compatible: ['qcom,glymur-pcie', 'qcom,pcie-x1e80100']
+arch/arm64/boot/dts/qcom/glymur-crd.dtb: mailbox@3e04000 (qcom,glymur-ipcc): compatible:0: 'qcom,glymur-ipcc' is not one of ['qcom,milos-ipcc', 'qcom,qcs8300-ipcc', 'qcom,qdu1000-ipcc', 'qcom,sa8255p-ipcc', 'qcom,sa8775p-ipcc', 'qcom,sar2130p-ipcc', 'qcom,sc7280-ipcc', 'qcom,sc8280xp-ipcc', 'qcom,sdx75-ipcc', 'qcom,sm6350-ipcc', 'qcom,sm6375-ipcc', 'qcom,sm8250-ipcc', 'qcom,sm8350-ipcc', 'qcom,sm8450-ipcc', 'qcom,sm8550-ipcc', 'qcom,sm8650-ipcc', 'qcom,sm8750-ipcc', 'qcom,x1e80100-ipcc']
+	from schema $id: http://devicetree.org/schemas/mailbox/qcom-ipcc.yaml
+arch/arm64/boot/dts/qcom/glymur-crd.dtb: /soc@0/mailbox@3e04000: failed to match any schema with compatible: ['qcom,glymur-ipcc', 'qcom,ipcc']
+arch/arm64/boot/dts/qcom/glymur-crd.dtb: watchdog@17600000 (qcom,apss-wdt-glymur): compatible: 'oneOf' conditional failed, one must be fixed:
+	['qcom,apss-wdt-glymur', 'qcom,kpss-wdt'] is too long
+	['qcom,apss-wdt-glymur', 'qcom,kpss-wdt'] is too short
+	'qcom,apss-wdt-glymur' is not one of ['qcom,kpss-wdt-ipq4019', 'qcom,apss-wdt-ipq5018', 'qcom,apss-wdt-ipq5332', 'qcom,apss-wdt-ipq5424', 'qcom,apss-wdt-ipq9574', 'qcom,apss-wdt-kaanapali', 'qcom,apss-wdt-msm8226', 'qcom,apss-wdt-msm8974', 'qcom,apss-wdt-msm8994', 'qcom,apss-wdt-qcm2290', 'qcom,apss-wdt-qcs404', 'qcom,apss-wdt-qcs615', 'qcom,apss-wdt-qcs8300', 'qcom,apss-wdt-sa8255p', 'qcom,apss-wdt-sa8775p', 'qcom,apss-wdt-sc7180', 'qcom,apss-wdt-sc7280', 'qcom,apss-wdt-sc8180x', 'qcom,apss-wdt-sc8280xp', 'qcom,apss-wdt-sdm845', 'qcom,apss-wdt-sdx55', 'qcom,apss-wdt-sdx65', 'qcom,apss-wdt-sm6115', 'qcom,apss-wdt-sm6350', 'qcom,apss-wdt-sm8150', 'qcom,apss-wdt-sm8250']
+	'qcom,kpss-wdt' was expected
+	'qcom,scss-timer' was expected
+	'qcom,apss-wdt-glymur' is not one of ['qcom,kpss-wdt-apq8064', 'qcom,kpss-wdt-ipq8064', 'qcom,kpss-wdt-mdm9615', 'qcom,kpss-wdt-msm8960']
+	'qcom,msm-timer' was expected
+	'qcom,kpss-timer' was expected
+	from schema $id: http://devicetree.org/schemas/watchdog/qcom-wdt.yaml
+arch/arm64/boot/dts/qcom/glymur-crd.dtb: /soc@0/watchdog@17600000: failed to match any schema with compatible: ['qcom,apss-wdt-glymur', 'qcom,kpss-wdt']
 
 
 
