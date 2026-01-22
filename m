@@ -1,60 +1,84 @@
-Return-Path: <devicetree+bounces-258512-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258513-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sJGmCNBXcmkpiwAAu9opvQ
-	(envelope-from <devicetree+bounces-258512-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:01:04 +0100
+	id EIzSMT9XcmkpiwAAu9opvQ
+	(envelope-from <devicetree+bounces-258513-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 17:58:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76E026A95A
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:01:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 008F16A84A
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 17:58:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id CE4D03009E39
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:58:16 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 43D223004CB3
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:56:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4B7A4A5B06;
-	Thu, 22 Jan 2026 16:01:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88153367F36;
+	Thu, 22 Jan 2026 16:03:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="0XGPstaG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (unknown [159.226.251.21])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 018EA48C3FD;
-	Thu, 22 Jan 2026 16:01:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8582A280335;
+	Thu, 22 Jan 2026 16:03:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769097716; cv=none; b=nX2VSNHiPhwvL7iNq0GKTUYXW3UhtCOz4gSXgAEaTl6P4RnAfOTvC7px1+3xxbLlNoGvC6QYFA+gfya/9/T1uySaY5m8HUKHuCNhqbVERX+QqVxS9dXMNZVdwJ2VYDQE/kADK2bSOzV3nucTKjMimRa4XdzXFITSic2323s4CuI=
+	t=1769097798; cv=none; b=fXpqIamU9Yy9EUbzdNRnFuKzen0OIL+J4UVto/NcV05rwrRC2qvsZC09vuu2DNQRAPGoaCMgAy//56gpvWWPAiGiMKizC1SCphoP3bfMwKfe5FLnh7s70+W/uN2F5Kli/TM45Q66LkkXag57aWDMh/2l4uvkMw3bD6OzzVqSI0A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769097716; c=relaxed/simple;
-	bh=MS7wBS31az3nY8BubQfwrrIXlXvQJt6kkKLP4ntO8jU=;
+	s=arc-20240116; t=1769097798; c=relaxed/simple;
+	bh=gBvQ60GKc7I9V/a3CO+WvejVjWR6BZA+gRiNMOaIiI8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BNoasqgdOs8zyD8OvgNM3/wc4QiSYBD4OnCt5PdCV2A+MCJltnZ4Eoxk00wvloiqQ11BFceBK3DdAlW0xn47mEmPS4oNCNmc4Nsrxh23Ul8djidxIfYeK29/Yw21ZUGcj47XS6jntZ2tsaZ7moMntOZiNONYsSq+AsiOCKWTP7s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
-Received: from duge-virtual-machine (unknown [183.192.221.134])
-	by APP-01 (Coremail) with SMTP id qwCowACXP2vcSXJpCLXLBQ--.27565S2;
-	Fri, 23 Jan 2026 00:01:34 +0800 (CST)
-Date: Fri, 23 Jan 2026 00:01:32 +0800
-From: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
-To: Xukai Wang <kingxukai@zohomail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Troy Mitchell <TroyMitchell988@gmail.com>
-Subject: Re: [PATCH v10 2/3] clk: canaan: Add clock driver for Canaan K230
-Message-ID: <aXJJ3MjQSq8Rq084@duge-virtual-machine>
-References: <20260116-b4-k230-clk-v10-0-de59033c5d30@zohomail.com>
- <20260116-b4-k230-clk-v10-2-de59033c5d30@zohomail.com>
- <aW3o8xVziqb9iRBN@duge-virtual-machine>
- <bf39fdb8-6698-418b-bd4a-6d8d40ccc9a0@zohomail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ykgn5Ivmwczf4UXFl+NRnH0NV7KVF2NZ/pZwWnAsjjtWyEnN4A0VsSrOqYchXqS8bqmcTUW0E7xtBdjokWszhDpiPzrmI44y9zW9+4i4FcPHsm1sVkEndjphqV8Hwo78ikO2Hus5hZHrZrwf+o71ud8/MfQ7NEqfwbV4A+DXkKo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=0XGPstaG; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=GKZNUPjuUcl3IiH9k6+6nqxg1HkcAU/xUmRgMsq4Sgk=; b=0XGPstaGKvgp6pakaMES7f0WAJ
+	+9zfLPL944OOtUXCK1x7qXcdrXb+t3DXPH37LZqZEgHPihvNeS2zTOyp9jMkIIwGOeAwzkKjw31jn
+	sqeFFSUdCVqvcNvGoRD1ua81TO7IinO/BH5Sd4Nz1gbOVY2vkRZ8Pp/0FpFUGzMkm54p9OdeMBtiY
+	5RSK1z4FO1Ac3suhOa/iGzR4/mcIaH1XDW/4lPQ2HKy6PxkGXmM6Atzd/X5qP55Kmu1wwlSfacZsG
+	YonhOxnvDHzt0VGLVp07pXX6WVdj5ovCebu5eWRnqblzHAmyUlEj3Fu27s7YeD6pXcYkTeQRw71z8
+	ToTt42jw==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:51058)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1vix9F-000000000dd-31Mk;
+	Thu, 22 Jan 2026 16:03:05 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1vix9A-0000000017C-2p65;
+	Thu, 22 Jan 2026 16:03:00 +0000
+Date: Thu, 22 Jan 2026 16:03:00 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: =?utf-8?B?5p2O5b+X?= <lizhi2@eswincomputing.com>,
+	Andrew Lunn <andrew@lunn.ch>
+Cc: Bo Gan <ganboing@gmail.com>, devicetree@vger.kernel.org,
+	andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, netdev@vger.kernel.org, pabeni@redhat.com,
+	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	ningyu@eswincomputing.com, linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com, weishangjuan@eswincomputing.com
+Subject: Re: Re: [PATCH v1 1/2] dt-bindings: ethernet: eswin: add clock
+ sampling control
+Message-ID: <aXJKNBAifG6qv80M@shell.armlinux.org.uk>
+References: <20260109080601.1262-1-lizhi2@eswincomputing.com>
+ <20260109080859.1285-1-lizhi2@eswincomputing.com>
+ <00b7b42f-2f9d-402a-82f0-21641ea894a1@lunn.ch>
+ <aWKZvEW7rKFFwZLG@shell.armlinux.org.uk>
+ <0d54ddca-9270-40a5-aa82-d8a7b65027ff@gmail.com>
+ <1a622916.2d28.19bb105feab.Coremail.lizhi2@eswincomputing.com>
+ <d010a6b8-5bf0-40ff-8e76-18362a238d50@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,89 +87,65 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <bf39fdb8-6698-418b-bd4a-6d8d40ccc9a0@zohomail.com>
-X-CM-TRANSID:qwCowACXP2vcSXJpCLXLBQ--.27565S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7KF4DKFWDKr43Gr13Xr43KFg_yoW8Wr1kp3
-	93uF18CFWDK34I9F1jvw4xCw1DtFs5ta18JFnav348Aw43Z34kZF1I9w42vayjvrnrCayU
-	Ar48Jwn8tFW2v3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUvvb7Iv0xC_tr1lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
-	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
-	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xII
-	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWUJVW8JwA2z4x0Y4vEx4
-	A2jsIEc7CjxVAFwI0_Gr0_Gr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
-	64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8Jw
-	Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkIwI1l
-	c7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr
-	1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE
-	14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7
-	IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E
-	87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73Uj
-	IFyTuYvjxU2wIDUUUUU
-X-CM-SenderInfo: 5mld534oul2uny6l223fol2u1dvotugofq/
+In-Reply-To: <d010a6b8-5bf0-40ff-8e76-18362a238d50@lunn.ch>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.54 / 15.00];
+X-Spamd-Result: default: False [1.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	R_DKIM_REJECT(1.00)[armlinux.org.uk:s=pandora-2019];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[armlinux.org.uk : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[iscas.ac.cn];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258512-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-258513-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jiayu.riscv@isrc.iscas.ac.cn,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,sifive.com,gmail.com];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,foss.st.com,st-md-mailman.stormreply.com,lists.infradead.org,eswincomputing.com,einfochips.com];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[armlinux.org.uk:-];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 76E026A95A
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[linux@armlinux.org.uk,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[armlinux.org.uk:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,shell.armlinux.org.uk:mid]
+X-Rspamd-Queue-Id: 008F16A84A
 X-Rspamd-Action: no action
 
-On Thu, Jan 22, 2026 at 07:40:29PM +0800, Xukai Wang wrote:
+On Thu, Jan 22, 2026 at 02:27:34PM +0100, Andrew Lunn wrote:
+> > We also intend
+> > to upstream complete DTS files for EIC7700 so the bindings can be validated
+> > against real hardware.
 > 
-> On 2026/1/19 16:18, Jiayu Du wrote:
-> >> +
-> >> +K230_CLK_GATE_FORMAT(hs_hclk_src_gate,
-> >> +		     K230_HS_HCLK_SRC_GATE,
-> >> +		     0x18, 0, 0, 0,
-> >> +		     &hs_hclk_high_src_rate.clk.hw);
-> > Here, you replaced hs_hclk_high_gate(in v9) with hs_hclk_high_src_rate,
+> I suggest you prioritise this. ARM-SOC is pretty flexible for
+> accepting work in progress support for new SoCs. All you really need
+> is for the board to boot to a login prompt on a serial port using an
+> initramsfs. So the .dtsi and .dts file can be very slim, CPUs, memory
+> and UARTs.
 > 
-> I'm a bit confused, as I don't recall making these specific changes.
-> Looking at the code below, the only difference between v9 and v10 is
-> within the K230_CLK_GATE_FORMAT(hs_hclk_src_gate, ...) definition, where
-> the second parameter changed from 1 to 0. Everything else appears
-> consistent. Could you clarify which change you were referring to?
-
-> > but after my board test, I find that when hs_hclk_high_gate is turned
-> > off, the mmc/sd and other high-speed subsystems can not work. So maybe
-> > you should not change the hs_hclk_high_gate to hs_hclk_high_src_rate.
+> Once you have that merged you can work on the other drivers, their
+> bindings, etc.
 > 
-> Regarding the clock management, I recommend explicitly enabling
-> hs_hclk_high_gateas it will be closed by `close unused clocks`.
+> As Russell pointed out, at the moment, most of the code you have in
+> the kernel is unusable, so it is a candidate for being thrown out.
 
-Sorry, you are right. It was me who made the changes locally. And I
-saw your reply to this email[1], which you said According to the vendor's
-code, the parent clock of hs_hclk_src is hs_hclk_high_src.
+Indeed, and we've had drivers merged before for platforms that never
+made it in, and they just hang around for decades, adding to the
+maintainer's burden for no benefit what so ever.
 
-Indeed, the parent clock of hs_hclk_src is hs_hclk_high_src. but
-hs_hclk_high_gate is the gate of hs_hclk_high_src. So, what you mean is
-that you will add the CLK_IS_CRITICAL flag to the hs_hclk_high_gate?
+So please, no more drivers for EIC7700 until there is functional
+support for the platform, as Andrew states.
 
-Link: https://lore.kernel.org/all/159615d3-cc52-43be-bf6d-5fe717ef1cc4@zohomail.com/ [1]
-
-Regards,
-Jiayu Du
-
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
