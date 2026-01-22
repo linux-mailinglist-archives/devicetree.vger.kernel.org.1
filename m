@@ -1,687 +1,335 @@
-Return-Path: <devicetree+bounces-258416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258417-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iDDMNMwwcmmadwAAu9opvQ
-	(envelope-from <devicetree+bounces-258416-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 15:14:36 +0100
+	id AAHFL2cxcmmadwAAu9opvQ
+	(envelope-from <devicetree+bounces-258417-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 15:17:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CCD367C57
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 15:14:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E14867C95
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 15:17:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id F3468980E45
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 13:33:59 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3108F92C7C8
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 13:35:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 612D933BBD0;
-	Thu, 22 Jan 2026 13:30:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFEB632E698;
+	Thu, 22 Jan 2026 13:31:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="g3nsizjm"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="aRb1T3SV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011000.outbound.protection.outlook.com [40.107.130.0])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF2982868A9;
-	Thu, 22 Jan 2026 13:30:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769088612; cv=none; b=YrGpsTfYjdSD9PlCyo83uNmtYbRrV9T4Z7TywBWoCKgAsZjTa1Kel2WZgwpidGYv/x69aeZ1Eo0QEvbUN/mE6O6k7/625RGTNuo0BMymD5TBML4yLxxbw6miFiTQ6Zy4wOPdMJH41x1pfzaYq978MElSuyEIlA9sLdJqwWt9wLg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769088612; c=relaxed/simple;
-	bh=abhpFTNTYWOIEv6PHoTIk6PWoHgwpm6or9oH4TqKy68=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Yon6Fq3T2Izu6fpZsFEfsQl4TxaenrGNyROl6s6rd3N0Pqp+gpplKvKuZCPmjgqFd84d3q+SBl/8vwroAq19/J9UH9qGq/d2/u78n8U/YfRkwEXbiC13S7qpw5XxEsJB6POndeTkF9LH3sn+OA0xf/5tZcFj0KILz6DltNUoAs4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=g3nsizjm; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60M7dmRK107391;
-	Thu, 22 Jan 2026 13:30:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	QhQr5y4qjuOh3Wxc85PTJV+QFtr+sgRL9EFxFX7UV4I=; b=g3nsizjmrvLcMgj3
-	zZHwUUWfz4Y6zCpw4g42og9uORMwldaPgW6Vi9zqiEqlTjuAgBizIBaZXgN9DGNK
-	zzVkkM8WLQfK1Em3OPB87oLsbrgEtXgHioRyrc2/Y+Q6oQ0xB6HZMUXEtNjNosPu
-	QiayChTOEqv6hOLaIx1CYxhRyPdBxdIfr1EPPjLs7tXcdXvL7n0k7jA6B6ODEwJ3
-	KJevHq2CaxT2vPf3bMhMHnF8nf9LYdxPEm9NLzgD4/qLd24LJrqqf3Ymxi/XSIUD
-	W2c2BE9RC7ToLkVv/4lrAZFVVxJTHyI3bNAr96ZXMdyxBdVXKOwwVuW3813jAvL9
-	pLnrwg==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bu6pgtjab-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 22 Jan 2026 13:30:01 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 60MDU0VQ004918
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 22 Jan 2026 13:30:00 GMT
-Received: from [10.217.216.18] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Thu, 22 Jan
- 2026 05:29:56 -0800
-Message-ID: <7317bfd0-8d81-42f4-a22e-d6e1be6b5e5b@quicinc.com>
-Date: Thu, 22 Jan 2026 18:59:53 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D0513148C3;
+	Thu, 22 Jan 2026 13:31:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.0
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769088693; cv=fail; b=W/3inROLNlrmLmd1GUXM5AYmr4RtPkmBo62bgY2yInP0TOIH7PhNg/cD9/PuLbB7ti3O5paOntClnfdHK2ywkG88aQ350mg6GKvC7X8fK6jijKt9xf28VDTJOTz7W83U6tTC0J2B76llLEowsOJNyFIaln8JiK8rkgMPAnIvrbw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769088693; c=relaxed/simple;
+	bh=Ca1XbwuuGcl4L8X7dQsqFx1W2FtuIlYXAnfdfIg3M0E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=rdtpH53oTOnwlpoz05N4H9H3+4VZJgkUax/I9RR9tnClXCfuf1BMZWSybs+F0AvIYy4x70jvxqep90XLHUrM+hSI2/wBAGVZZbzJX1CrLGA3chQQ9nVf6U63iOY/o+fzDmA7G11YuUIHlaOMXzcyhTeXyCy0QDJK7QbKz9qjHA4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=aRb1T3SV; arc=fail smtp.client-ip=40.107.130.0
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=RfyKeZM0dVyOAmNmmCXDUVooj25PRRD4koKF5WvzCMkSDWtxqnkdcfqCIswSee4H58hkPartH55KN9zzFuGtHVF5sJl/SHPayAjIq3Og7axeXJBrboMIfWLc45XEAi1RcA1R9asNayxhGe9j6dCMo7MuXySTZ1nXz7Kuze9vWwEInv4yrBnTlfXTrkRfAEMat7g4ESRBPkY+pog/512OqglkthYQp6hCT4oz2K9Q6okHTeeo2/t0B295iRsgg6Z00T5b/qg1Ko3xsOdK5nDsiy0Omuf50LfpPxy/2OxT0fKf9GX1d6Tzr17kQ9WJpJOyHPZc5N4d9MGXZQDnGQmKLg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=NpjzwiDI8Z4D8jntqRmpJ1KPDJJMygGWMRntQGcrI0U=;
+ b=UK1yiZv0XwghCYsm1Vybj4Sn8CpNeKdXacavc7Yprc0gUZT8GQFUMfuogeYd614GcXmchV4qMDXZHQ99QgMZJFiQvSwX5+Qg9fcIUHN91rU704q+XTdFn9dCMQUoxiagj9hsE7MPWN9IfrSa6PXeiauD6oen4boCl975AQNH97My76hYI2yB7W7aAv2t9zOv207QjQ+3dhruJmy8ZnMjjZvBdNdCO3la56hIkbGwLHSHONDTFSyeZoVeCQCX1kk9hwCzGu+MR2E2wax8kPyJeXQKEayag5cc9hh1y1yXIStDdRLGAXsPZn5HYcEx7dS/Ekvg+ZUOVsdAKZpgH4GVJw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NpjzwiDI8Z4D8jntqRmpJ1KPDJJMygGWMRntQGcrI0U=;
+ b=aRb1T3SVw0Qh9Z2YjHf7jr7wX4K5+zisS2Sg3daNRS9pK+9JoBs1Hb659f4sLFzTrZG3Vu8lIAK1mPHNVdmEwTFj/vaf74YHpdlUpv8t/RVaLcdt6eLGiaMQfzi4XipEwURyxVmEKjJc2uN55Xbuzd4zOULXl3TMB3CSZF8VBb87aMcvFVOURqVBAKBjKUHgYwM6bxWIMCuCKfqPRxCTBx3YnOAnrn8A/uJNhu3oFtnHb2/pya5tmNrxcTtNzMZcUvOmqZNTzFgSwvDFKuq2wHeL7q59T1Fd9HMjMAfBk6MnbN8E7Ulrsxs2McDwk5PnwhmyiLQpq2q8CBgTmzcpRQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM9PR04MB8585.eurprd04.prod.outlook.com (2603:10a6:20b:438::13)
+ by DBBPR04MB7866.eurprd04.prod.outlook.com (2603:10a6:10:1ef::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.12; Thu, 22 Jan
+ 2026 13:31:27 +0000
+Received: from AM9PR04MB8585.eurprd04.prod.outlook.com
+ ([fe80::f010:fca8:7ef:62f4]) by AM9PR04MB8585.eurprd04.prod.outlook.com
+ ([fe80::f010:fca8:7ef:62f4%4]) with mapi id 15.20.9520.011; Thu, 22 Jan 2026
+ 13:31:27 +0000
+Date: Thu, 22 Jan 2026 15:31:23 +0200
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	linux-kernel@vger.kernel.org,
+	Herve Codina <herve.codina@bootlin.com>,
+	Mark Brown <broonie@kernel.org>,
+	Serge Semin <fancer.lancer@gmail.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Choong Yong Liang <yong.liang.choong@linux.intel.com>,
+	Jiawen Wu <jiawenwu@trustnetic.com>
+Subject: Re: [PATCH v2 net-next 03/15] net: mdio: add generic driver for NXP
+ SJA1110 100BASE-TX embedded PHYs
+Message-ID: <20260122133123.w3jr7gdga4fhlj5z@skbuf>
+References: <20260122105654.105600-1-vladimir.oltean@nxp.com>
+ <20260122105654.105600-4-vladimir.oltean@nxp.com>
+ <aXIWBpIvp7KZYZCn@smile.fi.intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aXIWBpIvp7KZYZCn@smile.fi.intel.com>
+X-ClientProxiedBy: VI1PR10CA0107.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:803:28::36) To AM9PR04MB8585.eurprd04.prod.outlook.com
+ (2603:10a6:20b:438::13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 5/5] mmc: sdhci-msm: Rectify DLL programming sequence
- for SDCC
-To: Bjorn Andersson <andersson@kernel.org>
-CC: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Adrian Hunter
-	<adrian.hunter@intel.com>, <linux-mmc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <dmitry.baryshkov@oss.qualcomm.com>
-References: <20251215120009.3877889-1-quic_rampraka@quicinc.com>
- <20251215120009.3877889-6-quic_rampraka@quicinc.com>
- <vlikwopeugo43v72tu7u6rdf2ervm3gcvvwe66dycyfqf22572@wgcretfpawme>
-Content-Language: en-US
-From: Ram Prakash Gupta <quic_rampraka@quicinc.com>
-In-Reply-To: <vlikwopeugo43v72tu7u6rdf2ervm3gcvvwe66dycyfqf22572@wgcretfpawme>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIyMDEwMSBTYWx0ZWRfXxThJmgGKSwy4
- Iegq+LVxWurBCn4xPxcmocasgNGURsxhI6u3tdYYYnOypZjZ257vAFTGOXblSkPZJOpT0VUw68l
- iNgxw9Jkj6axx8iT3zx1m0xxM4cSpsc2IfIyIuRp2NfJ1KmdJym7rMk7pICSOgUWY4B7Xv5WWdX
- 2Hd4eg7mhdcUu8ofImqmJKpvh+ZgsMoqd+HRDBjFNA4OZVAMNslk0AB10t/XM2hauCrNp+H3bxs
- zTFaJ3SgDYlMPR9WsQVRu1pJodf8NqM5B5zaH1yipPHRv1tktZcG0xWMNN2lemo7bztirmgd/NH
- PdirND5kXubeVFd94qMiqRvKlEbUb2tFQcU+WprQxoKSa2vtMERBBwTR43C7IZzUPLjiyRhBf6d
- Y4i7CXVh1xcHpM4pU4yXqzFOEIy2SzmD1NdLf1O5/PwYyVv2Hni6kNVinLrB0afoeb+hGcJcmv6
- k9rWLVU57eWot8r2q5A==
-X-Authority-Analysis: v=2.4 cv=OZGVzxTY c=1 sm=1 tr=0 ts=69722659 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=COk6AnOGAAAA:8 a=8iq2cssvTpq8CIre4ToA:9
- a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: fuXITFhgLegO5NKu03ZPYssmviROJ-pp
-X-Proofpoint-GUID: fuXITFhgLegO5NKu03ZPYssmviROJ-pp
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
- definitions=2026-01-22_01,2026-01-22_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 lowpriorityscore=0 malwarescore=0 impostorscore=0 adultscore=0
- suspectscore=0 clxscore=1015 phishscore=0 spamscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601220101
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM9PR04MB8585:EE_|DBBPR04MB7866:EE_
+X-MS-Office365-Filtering-Correlation-Id: ed256242-dcb4-41c0-2ebd-08de59ba8b74
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|19092799006|7416014|376014|10070799003|366016|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?IGnscPuA9cFr0/JXVBDJgWFcCHYgXu1r4pS4Oyosjd3Isrmo2yon5VQ+kO1/?=
+ =?us-ascii?Q?z2DL9RpVlwEBxZ6AtUEu1xhclAsWKcpPQQ34UhLHnwQd4JGueiI/3QrBE3hX?=
+ =?us-ascii?Q?XxoxeW9GR1ASbwnJx/JhXjd222crHQlTPClT3LD7qAHSugaFlRqBb9/Z8rST?=
+ =?us-ascii?Q?hcLeJiOtwJVKkR4tH2b2biL/NdpDFQvPPE9pLtCz5tYuw9se4SYtMWgPK1db?=
+ =?us-ascii?Q?WPkWTSrfI9o2y62CjGUJJdfcTdZDyBq/xyFyCDf5wREL5tYcVom7U2PeUMnW?=
+ =?us-ascii?Q?CfCLJ/sxyKTsIetfoUIFjRGT3KNKHPIpepQC3iFaNCDHV3re1GSgvPSc8hsN?=
+ =?us-ascii?Q?2PziglUqM2IPdi0llSm56GaVJGiM0r+cFVebGPuq1qA8xGgRQsZlghNaicJd?=
+ =?us-ascii?Q?hJ9HV4LWQ9DDnRlxdJYB9iofLXwglt89W3sw8QB49F/wTXH9e4imZp/vypej?=
+ =?us-ascii?Q?HRVL15cwpuRz6Lgzd9gbeb/N97Y3L1h354iUVNKi2CM3H5Fume7nGcvNDdbT?=
+ =?us-ascii?Q?tucdAb3Vq28aB5JL7o8RZWPzW59ugaQQ0NU0J0dvjhyUmOYpaADhVlGxva04?=
+ =?us-ascii?Q?vCycBMshdC7Nz+vr89jsJ+4+Z9ZbVdLuiq0Z6dbuCY2VZwClZNGd9RImVFdn?=
+ =?us-ascii?Q?qdcIp1veC09CTbXJHzxIaDSjiMILobFBW0nYB4bExkRjHH1xkWdnqEpUWKL8?=
+ =?us-ascii?Q?5euFHI08jwxxN/TsPcUa8p/2sHtSLPsvR1FPKNk6sHWB6xxbjBqBzBJbWSHB?=
+ =?us-ascii?Q?kGQc6BsdU4acxASt20HYsSLYrh/YL4hqGsEGG6xCMXAefEBS6uWZkfQ0Wwy0?=
+ =?us-ascii?Q?9U8Ag7CN699GqLHr4Jc2aORpen0JKu6mSRNg6hhYF/+xajJxMmRTQVk01KjL?=
+ =?us-ascii?Q?iRT6nNFnY8A0Md44NfE518DHQO0KAQkj6c3yYnQAzPA/tfjis3ltk5rRJRig?=
+ =?us-ascii?Q?tf66YGRAKbGUuwrNWwQFIQ+Tcf3mvfVcCGrOsJlGmPY4zOl3/5P+Jc8YPs7M?=
+ =?us-ascii?Q?kv7RqD6gFNLiZJ17a5ScL4P/KPJxx8Pz07nJ4k605bPaBzkot1yg/+qXVl7s?=
+ =?us-ascii?Q?ZwpMLF4FFhXcQUknxDb2t+gHcl6pq9So6u1wPDdtjy8b2lQ+0l4S/uVUY1iL?=
+ =?us-ascii?Q?LeDwVinZzdXganFLdneyhZPQT4KrW66eHofzwGQsOWr6Gz0Ef8r6D6kzHGLk?=
+ =?us-ascii?Q?c7ZX8HT18/I0I9tz1+5LF3uc0u6/3CblPGKPVpobUDLs2PkTMEHjyUWfePM+?=
+ =?us-ascii?Q?ENispONpCRRn9S3UUSjDLvEX4b8viFOlHCJv5E+xKV1Q7XZUr9vOhl8k9wPX?=
+ =?us-ascii?Q?ESDGOHURs5bbpoXWzEJVv28b9yv6oyqHS5au1wGpQ49VzFslUeo3e+ydxpOo?=
+ =?us-ascii?Q?lkz5MRJWLzrqzXN5Rg/A7OpxjF36EjOAzHIkWPpPBApSr+PhJTtlz5MDyPs/?=
+ =?us-ascii?Q?zPNrYhQOmAkRp8N4eXQEHvGQ5WUm+/+oEbQokir0En0DGe1LExpns0qgG/G+?=
+ =?us-ascii?Q?WzOceKmH3/AYcRueIK8zoLAttVA2MFQka96ERHY8bRfwnLv0eWLNJ/njmh5O?=
+ =?us-ascii?Q?5g5X7bmbBV0HfeUybuo=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8585.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(7416014)(376014)(10070799003)(366016)(1800799024);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?OrWdfu7IQaxSYS/FyczJTbVCn8uJIw5s8MPeSyOcqX8wAduW7KLebfT10aiZ?=
+ =?us-ascii?Q?iyaefnYp7+uk/kDd4rAKpzdRa3JlkeJqXloA1HH1aRwkeI7UoPokUk/r26Tf?=
+ =?us-ascii?Q?fBAzNVePjkonchfnnPiYVIB1b7FhVX+HNmaCTl/NlqByAd5uDgazBZcUb0sm?=
+ =?us-ascii?Q?udfU/e/yQE1emOyvsKnIENchA5r6oYdvHy4U98P1dxZMUEQ8U2iiKMTvagbT?=
+ =?us-ascii?Q?hSSGYNbCCmnjm9viYdj2vMkfiKS6ANKHz7HWd7ZMimzaROqZ+6gL7fvd1hD3?=
+ =?us-ascii?Q?XheWqQ2Tls/G1NmACmMLq3uyOPXt+JbhqzMK0v77oR5WsGQ6dVCS2h6TBrU/?=
+ =?us-ascii?Q?gZmK5/3yGF8a4CFqb8t+aIfhgDcHRM0vjtEWM1wCi41q19LN5YgdF8HS9dHn?=
+ =?us-ascii?Q?V4UbiOuY/dLbk9oWdRp63JBVpITO/qZuDGTJGgzoGSB8c8v7+Ukyk6oEWHlh?=
+ =?us-ascii?Q?zxkyORKnh7YS2mD0sBQ3eyOl5l+5Lj/UHInQZ/WDKQA8wNRgVCE8U50tZ5p8?=
+ =?us-ascii?Q?j2YZenirOQO7q2QJPiyL8STT7FQinba70Oe18bdEyqUPa4uapEaNG2Qml/mi?=
+ =?us-ascii?Q?XpO2xVV+au862vN3s+iPh9KKxjR1X4LDkN4YLnMGTzcQv3JsRCyVfGD7PNVE?=
+ =?us-ascii?Q?V3+RaQJ2/VGsworVn5Zoq3M/MDVUIkGBpAgj9bWdwl6aH3kMBf4Fg0BWzr+0?=
+ =?us-ascii?Q?/B+aWMCfwCdcJrRU4bRhmJnfJG4SvbjQMRjVuv66fnE1FEntkJwgyvWpIoD5?=
+ =?us-ascii?Q?8PaS+sG7hAnqgIu+4udwtO3pffT5NvXjmQghORQSPaI+MMAF+dfnG+Iency6?=
+ =?us-ascii?Q?j9aUE72Sv8cpLnsmg4TqkUti5T2X0IPxycjuO/VEh4gtQPghwLtBXQZLt8tq?=
+ =?us-ascii?Q?q8x2unRO5KdK6lxZj3h/61pdlEwcyNa4LpH3UVTZOzj8TFlKj9i3oFCsCA0F?=
+ =?us-ascii?Q?MW70c4dMCMkyb2PEp9rQ/MjKoXHXsWagnWKB75BAr+kf9BKpedFenubiTDKj?=
+ =?us-ascii?Q?IkvRrFa17AyciLk58YgvKZC+fMUlozMcew9U5/uFngA+0DQC5TmVUgr8V6aB?=
+ =?us-ascii?Q?CJSVGuOGincXlu3qzo3J7cyZDnNAi2FCKG5PLLIrUYmN+c0D3dN9FK6VcFHr?=
+ =?us-ascii?Q?Q/wW4e5Mgk55+3XbXX7tjqS5mdXBAG7e+/fUinzG1eti4psR+n/fVIYc3yYB?=
+ =?us-ascii?Q?qYZeRgSmspQEhGEif+XMA98T04XMGyqpbnY/tFbA3jrcQnjzk8hTnGOonVs0?=
+ =?us-ascii?Q?ryjtvddNTTq47BYZ1YQaDv8S0wvXfmaBoud61REzt48HtTiydqA7S9Vy84ZZ?=
+ =?us-ascii?Q?6YE/zxON7Vag29Cvpt433LsDXHjKmJ3n/CA/Qsxe3OGKciDEdupw225l2L94?=
+ =?us-ascii?Q?YBQ10B0qz7VkXSku1usF94/dL+Yt2PRhxfwDYDyWgokd0QFUcmRCU5ZwnXTW?=
+ =?us-ascii?Q?pSxnIDh9hq14KqMoXFPRZBs/KoqSz8YDqFRBpBal+OIuSAOa/g+k5qX+NUWJ?=
+ =?us-ascii?Q?XuDf0QVfxkeoDUKXzmXNVxGT4e3shA8lrVJYA7P0DL0kXCIYjgJ+B+cr8l2O?=
+ =?us-ascii?Q?YnUf83u5p+h5k5sHsVbPt8da7DrZ7V+aMPcLI87skfyEoLmnEYT8dq0Hi9HB?=
+ =?us-ascii?Q?v06tgFHJN9L40uM3ht532lfzSh7lGB2s/rcMUbm0jFVj4OWnyH4Dg5KYwDtc?=
+ =?us-ascii?Q?Ezi+3Q9Y52ouMjW5s1pGJ2n+M2EbuThE+/0i6ee6KAzHgWs6+AsALHf9QmWs?=
+ =?us-ascii?Q?2B85H8cvwR7t7SnVFIE1ihrG+kzxcQhz7GbeF1Pd/wMvjAZSCwSomtfZJ2Qw?=
+X-MS-Exchange-AntiSpam-MessageData-1: fUf0Ug2Bmb2C6zSVuxwK1FpXauGMT8tY4TY=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ed256242-dcb4-41c0-2ebd-08de59ba8b74
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8585.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2026 13:31:27.3794
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: GaB9l4SF1SAmMzy/rOtscKb3QSGRCsKUj0E4JoFIHGsUcylZHD1HBJARG2fm1aaVnBUSHbkr/WLJcv0W13CiMg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7866
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.46 / 15.00];
+X-Spamd-Result: default: False [2.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	ARC_REJECT(1.00)[cv is fail on i=2];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[quicinc.com:s=qcppdkim1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258416-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-258417-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lunn.ch,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,bootlin.com,linux.intel.com,trustnetic.com];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[quicinc.com,none];
-	DKIM_TRACE(0.00)[quicinc.com:+];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[quic_rampraka@quicinc.com,devicetree@vger.kernel.org];
+	DMARC_POLICY_ALLOW(0.00)[nxp.com,none];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[vladimir.oltean@nxp.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 4CCD367C57
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 1E14867C95
 X-Rspamd-Action: no action
 
+On Thu, Jan 22, 2026 at 02:20:22PM +0200, Andy Shevchenko wrote:
+> On Thu, Jan 22, 2026 at 12:56:42PM +0200, Vladimir Oltean wrote:
+> > This is the standalone variant of drivers/net/dsa/sja1105/sja1105_mdio.c.
+> > Same kind of differences between this driver and the embedded DSA one
+> > apply: regmap is being used for register access, and addresses are
+> > multiplied by 4 with regmap.
+> > 
+> > In fact this is so generic that there is nothing NXP SJA1110 specific
+> > about it at all, and just instantiates mdio-regmap. I decided to name it
+> > mdio-regmap-simple.c in the style of drivers/mfd/simple-mfd-i2c.c which
+> > has support for various vendor compatible strings.
+> 
+> ...
+> 
+> > +#include <linux/module.h>
+> > +#include <linux/of_mdio.h>
+> > +#include <linux/phy.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/regmap.h>
+> > +#include <linux/mdio/mdio-regmap.h>
+> 
+> ...
+> 
+> > +static const struct mdio_regmap_simple_data nxp_sja1110_base_tx = {
+> > +	.valid_addr = 0,
+> > +	.autoscan = false,
+> > +};
+> 
+> Actually the  { } is enough to initialise that. But if you want to be super
+> explicit... :-)
+> ...
 
-On 12/18/2025 7:48 PM, Bjorn Andersson wrote:
-> On Mon, Dec 15, 2025 at 05:30:09PM +0530, Ram Prakash Gupta wrote:
->> From: Sachin Gupta <quic_sachgupt@quicinc.com>
->>
->> With the current DLL sequence stability issues for data
->> transfer seen in HS400 and HS200 modes.
->>
->> "mmc0: cqhci: error IRQ status: 0x00000000 cmd error -84
->> data error 0"
->>
->> Rectify the DLL programming sequence as per latest hardware
->> programming guide
-> You're talking about how things are unstable, but what the commit
-> message completely fails to mention is that all this new spaghetti is
-> conditional on msm_host->artanis_dll, so I believe this statement
-> only applies to a single supported SoC?
+Yes, I guess I do.
+
+> > +static int mdio_regmap_simple_probe(struct platform_device *pdev)
+> > +{
+> > +	const struct mdio_regmap_simple_data *data;
+> > +	struct mdio_regmap_config config = {};
+> > +	struct device *dev = &pdev->dev;
+> > +	struct regmap *regmap;
+> > +	struct mii_bus *bus;
+> > +
+> > +	if (!dev->of_node || !dev->parent)
+> 
+> dev->of_node check is not needed, see below.
+
+Oh.... this is a bug. dev->of_node should have been propagated to
+devm_mdio_regmap_register() -> devm_mdiobus_register(), turning it into
+devm_of_mdiobus_register().
+
+It shows that my SJA1110 testing platform (Bluebox 3) doesn't have the
+CBTX PHY routed to pinout, since I didn't catch this... I'll fix this
+for v3.
+
+> > +		return -ENODEV;
+> > +
+> > +	regmap = dev_get_regmap(dev->parent, NULL);
+> > +	if (!regmap)
+> > +		return -ENODEV;
+> > +
+> > +	data = device_get_match_data(dev);
+> > +
+> > +	config.regmap = regmap;
+> > +	config.parent = dev;
+> > +	config.name = dev_name(dev);
+> > +	/* The resource is optional, provided for finding the registers
+> > +	 * within a device-wide non-MMIO regmap
+> > +	 */
+> > +	config.resource = platform_get_resource(pdev, IORESOURCE_REG, 0);
+> 
+> > +	if (data) {
+> 
+> We may always require data to be present. As you use a default one anyway.
+> 
+> > +		config.valid_addr = data->valid_addr;
+> > +		config.autoscan = data->autoscan;
+> > +	}
+> 
+> And if it is not provided we will have a crash which is fine. It will just
+> point that the code was not ever been run on real HW.
+
+Hmm. This patch is super old, so I'm revisiting it with foreign eyes,
+same as you.
+
+I think the case with .valid_addr = 0 and .autoscan = false will
+constitute the vast majority of instantiations of this driver.
+I would like to avoid the proliferation of the same basic config with
+100 different names (nxp_sja1110_base_tx, etc).
+
+So for v3 I'm planning to:
+- rename nxp_sja1110_base_tx to mdio_regmap_simple_default_data
+- delete the "if (data)" conditional and directly assign from
+  device_get_match_data() to the config structure
+
+Thanks for taking a look.
+
+> > +	return PTR_ERR_OR_ZERO(devm_mdio_regmap_register(dev, &config));
+> > +}
+> 
+> ...
+> 
+> > +static struct platform_driver mdio_regmap_simple_driver = {
+> > +	.probe = mdio_regmap_simple_probe,
+> > +	.driver = {
+> > +		.name = "mdio-regmap-simple",
+> > +		.of_match_table = mdio_regmap_simple_match,
+> > +	},
+> > +};
+> 
+> > +
+> 
+> Unneeded blank line.
+
+Ok.
+
+> > +module_platform_driver(mdio_regmap_simple_driver);
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
+> 
 >
-> No where in this series do you mention that this only (?) applies to
-> QDU1000. 
-
-This DLL change is required to work with SoCs having artanis DLL.
-This applies to multiple targets but QDU1000 is what is picked up to
-start with, and gradually after testing this with other artanis DLL
-supported target, dt change will be updated for other targets.
-
-And this doesn't apply only to QDU1000, this would go for SM8650, SM8750
-and upcoming SoCs for SDC2 instance (SDCard) and other targets for SDC1
-instance if supported.
-
-I will further update the commit message in to show, artanis dll
-support addition with this work.
-
->> Signed-off-by: Sachin Gupta <quic_sachgupt@quicinc.com>
->> Signed-off-by: Ram Prakash Gupta <quic_rampraka@quicinc.com>
->> ---
->>  drivers/mmc/host/sdhci-msm.c | 277 ++++++++++++++++++++++++++++++++---
->>  1 file changed, 260 insertions(+), 17 deletions(-)
->>
->> diff --git a/drivers/mmc/host/sdhci-msm.c b/drivers/mmc/host/sdhci-msm.c
->> index 1fcd92158bee..f459b40db41c 100644
->> --- a/drivers/mmc/host/sdhci-msm.c
->> +++ b/drivers/mmc/host/sdhci-msm.c
->> @@ -28,6 +28,7 @@
->>  #define CORE_VERSION_MAJOR_SHIFT	28
->>  #define CORE_VERSION_MAJOR_MASK		(0xf << CORE_VERSION_MAJOR_SHIFT)
->>  #define CORE_VERSION_MINOR_MASK		0xff
->> +#define SDHCI_MSM_MIN_V_7FF		0x6e
->>  
->>  #define CORE_MCI_GENERICS		0x70
->>  #define SWITCHABLE_SIGNALING_VOLTAGE	BIT(29)
->> @@ -119,7 +120,8 @@
->>  #define CORE_PWRSAVE_DLL	BIT(3)
->>  
->>  #define DDR_CONFIG_POR_VAL	0x80040873
->> -
->> +#define DLL_CONFIG_3_POR_VAL	0x10
->> +#define TCXO_FREQ               19200000
-> If you read the current implementation of msm_init_cm_dll() you'll see
-> that we don't hard code the XO clock...
-
-Thanks for point out.I will remove this and use xo_clock.
-
->
->>  
->>  #define INVALID_TUNING_PHASE	-1
->>  #define SDHCI_MSM_MIN_CLOCK	400000
->> @@ -319,6 +321,15 @@ struct sdhci_msm_host {
->>  	bool artanis_dll;
->>  };
->>  
->> +enum dll_init_context {
->> +	DLL_INIT_NORMAL,
-> What is the purpose of a single-entry enum to capture the value 0?
-
-I will remove this and make the further changes in code accordingly.
-
->
->> +};
->> +
->> +enum mode {
->> +	HS400, // equivalent to SDR104 mode for DLL.
->> +	HS200, // equivalent to SDR50 mode for DLL.
-> This is effectively a bool, with a terribly generic name.
-
-ok, will update to HS400_DLL_CONFIG_VAL and HS200_DLL_CONFIG_VAL if this
-is ok.
-
->
->> +};
->> +
->>  static const struct sdhci_msm_offset *sdhci_priv_msm_offset(struct sdhci_host *host)
->>  {
->>  	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
->> @@ -805,6 +816,207 @@ static int msm_init_cm_dll(struct sdhci_host *host)
->>  	return 0;
->>  }
->>  
->> +static unsigned int sdhci_msm_get_min_clock(struct sdhci_host *host)
->> +{
->> +	return SDHCI_MSM_MIN_CLOCK;
->> +}
->> +
->> +static unsigned int sdhci_msm_get_clk_rate(struct sdhci_host *host, u32 req_clk)
->> +{
->> +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
->> +	struct sdhci_msm_host *msm_host = sdhci_pltfm_priv(pltfm_host);
->> +	struct clk *core_clk = msm_host->bulk_clks[0].clk;
->> +	struct mmc_ios ios = host->mmc->ios;
->> +	unsigned int sup_clk;
->> +
->> +	if (req_clk < sdhci_msm_get_min_clock(host))
->> +		return sdhci_msm_get_min_clock(host);
->> +
->> +	sup_clk = clk_get_rate(core_clk);
->> +
->> +	if (ios.timing == MMC_TIMING_MMC_HS400 ||
->> +	    host->flags & SDHCI_HS400_TUNING)
->> +		sup_clk = sup_clk / 2;
->> +
->> +	return sup_clk;
-> Isn't sup_clk the same as host->mmc->actual_clock? Isn't this already
-> calculated for you?
-
-Thanks for pointing out, I will use this. And remove this code, will update
-this in next patchset.
-
->
->> +}
->> +
->> +/* Initialize the DLL (Programmable Delay Line) */
-> So now we're going to have two functions that are named pretty much the
-> same and look pretty similar?
->
-> With the main difference that the slightly more generically named
-> sdhci_msm_configure_dll() is only called if we have a artanis_dll,
-> otherwise msm_init_cm_dll() is used?
-
-They appear similar as artanis_dll have multiple common sequence
-with the previous one. The new addition in the existing function
-was adding multiple if/else checks making the function cluttered.
-This approach keeps the implementation cleaner.
-
->> +static int sdhci_msm_configure_dll(struct sdhci_host *host, enum dll_init_context
->> +				 init_context, enum mode index)
->> +{
-> Large parts of this function is duplicated from msm_init_cm_dll(). This
-> isn't okay.
-
-Right it may look like a duplicate but the new required sequence shares many
-steps with the existing sequence but the new addition in the existing function
-was adding multiple if/else checks making the function cluttered and hard to
-read. To keep the code clean, a separate function was created instead.
-
->
->> +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
->> +	struct sdhci_msm_host *msm_host = sdhci_pltfm_priv(pltfm_host);
->> +	const struct sdhci_msm_offset *msm_offset = msm_host->offset;
->> +	struct mmc_host *mmc = host->mmc;
->> +	u32 ddr_cfg_offset, core_vendor_spec, config;
->> +	void __iomem *ioaddr = host->ioaddr;
->> +	unsigned long flags, dll_clock;
->> +	int rc = 0;
->> +	u32 dll_lock;
->> +
->> +	dll_clock = sdhci_msm_get_clk_rate(host, host->clock);
->> +	spin_lock_irqsave(&host->lock, flags);
->> +
->> +	core_vendor_spec = readl_relaxed(ioaddr + msm_offset->core_vendor_spec);
->> +
->> +	/*
->> +	 * Always disable PWRSAVE during the DLL power
->> +	 * up regardless of its current setting.
->> +	 */
->> +	core_vendor_spec &= ~CORE_CLK_PWRSAVE;
->> +	writel_relaxed(core_vendor_spec, ioaddr + msm_offset->core_vendor_spec);
->> +
->> +	if (msm_host->use_14lpp_dll_reset) {
->> +		/* Disable CK_OUT */
->> +		config = readl_relaxed(ioaddr + msm_offset->core_dll_config);
->> +		config &= ~CORE_CK_OUT_EN;
->> +		writel_relaxed(config, ioaddr + msm_offset->core_dll_config);
->> +
->> +		/* Disable the DLL clock */
->> +		config = readl_relaxed(ioaddr + msm_offset->core_dll_config_2);
->> +		config |= CORE_DLL_CLOCK_DISABLE;
->> +		writel_relaxed(config, ioaddr + msm_offset->core_dll_config_2);
->> +	}
->> +
->> +	/*
->> +	 * Write 1 to DLL_RST bit of DLL_CONFIG register
->> +	 * and Write 1 to DLL_PDN bit of DLL_CONFIG register.
->> +	 */
->> +	config = readl_relaxed(ioaddr + msm_offset->core_dll_config);
->> +	config |= (CORE_DLL_RST | CORE_DLL_PDN);
->> +	writel_relaxed(config, ioaddr + msm_offset->core_dll_config);
->> +
->> +	/*
->> +	 * Configure DLL_CONFIG_3 and USER_CTRL
->> +	 * (Only applicable for 7FF projects).
-> What is a 7FF project?
-
-This refers to 7nm technode.
-
->
->> +	 */
->> +	if (msm_host->core_minor >= SDHCI_MSM_MIN_V_7FF) {
->> +		writel_relaxed(msm_host->dll[index].dll_config_3,
->> +			       ioaddr + msm_offset->core_dll_config_3);
->> +		writel_relaxed(msm_host->dll[index].dll_usr_ctl,
->> +			       ioaddr + msm_offset->core_dll_usr_ctl);
->> +	}
->> +
->> +	/*
->> +	 * Set DDR_CONFIG since step 7 is setting TEST_CTRL that can be skipped.
->> +	 */
->> +	ddr_cfg_offset = msm_host->updated_ddr_cfg ? msm_offset->core_ddr_config
->> +					: msm_offset->core_ddr_config_old;
->> +
->> +	config = msm_host->dll[index].ddr_config;
->> +	writel_relaxed(config, ioaddr + ddr_cfg_offset);
->> +
->> +	/* Set DLL_CONFIG_2 */
->> +	if (msm_host->use_14lpp_dll_reset) {
->> +		u32 mclk_freq;
->> +		int cycle_cnt;
->> +
->> +		/*
->> +		 * Only configure the mclk_freq in normal DLL init
->> +		 * context. If the DLL init is coming from
->> +		 * CX Collapse Exit context, the host->clock may be zero.
->> +		 * The DLL_CONFIG_2 register has already been restored to
->> +		 * proper value prior to getting here.
->> +		 */
->> +		if (init_context == DLL_INIT_NORMAL) {
-> Guess what...enum mode only has a single possible value, so init_context
-> is DLL_INIT_NORMAL...
-
-I will remove this completely and update the code.
-
->> +			cycle_cnt = readl_relaxed(ioaddr +
->> +					msm_offset->core_dll_config_2)
->> +					& CORE_FLL_CYCLE_CNT ? 8 : 4;
->> +
->> +			mclk_freq = DIV_ROUND_CLOSEST_ULL(dll_clock * cycle_cnt, TCXO_FREQ);
->> +
->> +			if (dll_clock < 100000000) {
->> +				pr_err("%s: %s: Non standard clk freq =%u\n",
->> +				       mmc_hostname(mmc), __func__, dll_clock);
->> +				rc = -EINVAL;
->> +				goto out;
->> +			}
->> +
->> +			config = readl_relaxed(ioaddr + msm_offset->core_dll_config_2);
->> +			config = (config & ~GENMASK(17, 10)) |
->> +					FIELD_PREP(GENMASK(17, 10), mclk_freq);
->> +			writel_relaxed(config, ioaddr + msm_offset->core_dll_config_2);
->> +		}
->> +		/* wait for 5us before enabling DLL clock */
->> +		udelay(5);
->> +	}
->> +
->> +	config = msm_host->dll[index].dll_config;
->> +	writel_relaxed(config, ioaddr + msm_offset->core_dll_config);
->> +
->> +	/* Wait for 52us */
->> +	spin_unlock_irqrestore(&host->lock, flags);
-> How come this isn't racy? What is the purpose of holding this spinlock
-> throughout this method and are you certain that whatever concurrent
-> execution might happen doesn't happen here?
-
-Since the delay needed is 60u, usleep_range was added, and to avoid sleep
-holding lock, unlock and lock were used. And I got your point. But is it ok
-to use udelay here for 60u second? I don't see any other way.
-
->
->> +	usleep_range(60, 70);
->> +	spin_lock_irqsave(&host->lock, flags);
->> +
->> +	/*
->> +	 * Write 0 to DLL_RST bit of DLL_CONFIG register
->> +	 * and Write 0 to DLL_PDN bit of DLL_CONFIG register.
->> +	 */
->> +	config &= ~CORE_DLL_RST;
->> +	writel_relaxed(config, ioaddr + msm_offset->core_dll_config);
->> +
->> +	config &= ~CORE_DLL_PDN;
->> +	writel_relaxed(config, ioaddr + msm_offset->core_dll_config);
->> +	/* Write 1 to DLL_RST bit of DLL_CONFIG register */
->> +	config |= CORE_DLL_RST;
->> +	writel_relaxed(config, ioaddr + msm_offset->core_dll_config);
->> +
->> +	/* Write 0 to DLL_RST bit of DLL_CONFIG register */
->> +	config &= ~CORE_DLL_RST;
->> +	writel_relaxed(config, ioaddr + msm_offset->core_dll_config);
->> +
->> +	/* Set CORE_DLL_CLOCK_DISABLE to 0 */
->> +	if (msm_host->use_14lpp_dll_reset) {
->> +		config = readl_relaxed(ioaddr + msm_offset->core_dll_config_2);
->> +		config &= ~CORE_DLL_CLOCK_DISABLE;
->> +		writel_relaxed(config, ioaddr + msm_offset->core_dll_config_2);
->> +	}
->> +
->> +	/* Set DLL_EN bit to 1. */
->> +	config = readl_relaxed(ioaddr + msm_offset->core_dll_config);
->> +	config |= CORE_DLL_EN;
->> +	writel_relaxed(config, ioaddr + msm_offset->core_dll_config);
->> +
->> +	/*
->> +	 * Wait for 8000 input clock. Here we calculate the
->> +	 * delay from fixed clock freq 192MHz, which turns out 42us.
->> +	 */
->> +	spin_unlock_irqrestore(&host->lock, flags);
-> As above, how do we know that this isn't racy?
-
-Will update as per other review comment about race.
-
->
->> +	usleep_range(50, 60);
->> +	spin_lock_irqsave(&host->lock, flags);
->> +
->> +	/* Set CK_OUT_EN bit to 1. */
->> +	config |= CORE_CK_OUT_EN;
->> +	writel_relaxed(config, ioaddr + msm_offset->core_dll_config);
->> +
->> +	/*
->> +	 * Wait until DLL_LOCK bit of DLL_STATUS register
->> +	 * becomes '1'.
->> +	 */
->> +	rc = readl_relaxed_poll_timeout(ioaddr +
->> +					msm_offset->core_dll_status,
->> +					dll_lock,
->> +					dll_lock & CORE_DLL_LOCK,
->> +					10,
->> +					100);
->> +	if (rc == -ETIMEDOUT)
->> +		pr_err("%s: Unable to get DLL_LOCK, dll_status: 0x%08x\n",
-> Don't pr_err() when you have a struct device.
-
-ok, will update to dev_err.
-
->
->> +		       mmc_hostname(host->mmc), dll_lock);
->> +
->> +out:
->> +	if (core_vendor_spec & CORE_CLK_PWRSAVE) {
->> +		/* Reenable PWRSAVE as needed */
->> +		config = readl_relaxed(ioaddr + msm_offset->core_vendor_spec);
->> +		config |= CORE_CLK_PWRSAVE;
->> +		writel_relaxed(config, ioaddr + msm_offset->core_vendor_spec);
->> +	}
->> +
->> +	spin_unlock_irqrestore(&host->lock, flags);
->> +	return rc;
->> +}
->> +
->>  static void msm_hc_select_default(struct sdhci_host *host)
->>  {
->>  	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
->> @@ -927,6 +1139,24 @@ static void sdhci_msm_hc_select_mode(struct sdhci_host *host)
->>  		msm_hc_select_default(host);
->>  }
->>  
->> +static int sdhci_msm_init_dll(struct sdhci_host *host, enum dll_init_context init_context)
->> +{
->> +	if (host->mmc->ios.timing == MMC_TIMING_UHS_SDR104 ||
->> +	    host->mmc->ios.timing == MMC_TIMING_MMC_HS400)
->> +		return sdhci_msm_configure_dll(host, init_context, HS400);
->> +
->> +	return sdhci_msm_configure_dll(host, init_context, HS200);
->> +}
->> +
->> +static int sdhci_msm_dll_config(struct sdhci_host *host, enum dll_init_context init_context)
->> +{
->> +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
->> +	struct sdhci_msm_host *msm_host = sdhci_pltfm_priv(pltfm_host);
->> +
->> +	return msm_host->artanis_dll ? sdhci_msm_init_dll(host, init_context) :
->> +		msm_init_cm_dll(host);
-> So dll_config() calls init_dll() or init_cm_dll() which then might call
-> configure_dll(). Is it init or config?!
-
-init is what is needed, but I see this can be improved.
-I will use dll_config -> init_dll, will remove the other function calls.
-
->
->> +}
->> +
->>  static int sdhci_msm_cdclp533_calibration(struct sdhci_host *host)
->>  {
->>  	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
->> @@ -942,7 +1172,7 @@ static int sdhci_msm_cdclp533_calibration(struct sdhci_host *host)
->>  	 * Retuning in HS400 (DDR mode) will fail, just reset the
->>  	 * tuning block and restore the saved tuning phase.
->>  	 */
->> -	ret = msm_init_cm_dll(host);
->> +	ret = sdhci_msm_dll_config(host, DLL_INIT_NORMAL);
->>  	if (ret)
->>  		goto out;
->>  
->> @@ -1030,7 +1260,7 @@ static int sdhci_msm_cdclp533_calibration(struct sdhci_host *host)
->>  	return ret;
->>  }
->>  
->> -static int sdhci_msm_cm_dll_sdc4_calibration(struct sdhci_host *host)
->> +static int sdhci_msm_cm_dll_sdc4_calibration(struct sdhci_host *host, enum mode index)
->>  {
->>  	struct mmc_host *mmc = host->mmc;
->>  	u32 dll_status, config, ddr_cfg_offset;
->> @@ -1053,7 +1283,11 @@ static int sdhci_msm_cm_dll_sdc4_calibration(struct sdhci_host *host)
->>  		ddr_cfg_offset = msm_offset->core_ddr_config;
->>  	else
->>  		ddr_cfg_offset = msm_offset->core_ddr_config_old;
->> -	writel_relaxed(msm_host->ddr_config, host->ioaddr + ddr_cfg_offset);
->> +
->> +	if (msm_host->artanis_dll)
->> +		writel_relaxed(msm_host->dll[index].ddr_config, host->ioaddr + ddr_cfg_offset);
->> +	else
->> +		writel_relaxed(msm_host->ddr_config, host->ioaddr + ddr_cfg_offset);
->>  
->>  	if (mmc->ios.enhanced_strobe) {
->>  		config = readl_relaxed(host->ioaddr +
->> @@ -1122,7 +1356,8 @@ static int sdhci_msm_hs400_dll_calibration(struct sdhci_host *host)
->>  	 * Retuning in HS400 (DDR mode) will fail, just reset the
->>  	 * tuning block and restore the saved tuning phase.
->>  	 */
->> -	ret = msm_init_cm_dll(host);
->> +	ret = sdhci_msm_dll_config(host, DLL_INIT_NORMAL);
->> +
->>  	if (ret)
->>  		goto out;
->>  
->> @@ -1142,7 +1377,7 @@ static int sdhci_msm_hs400_dll_calibration(struct sdhci_host *host)
->>  	if (msm_host->use_cdclp533)
->>  		ret = sdhci_msm_cdclp533_calibration(host);
->>  	else
->> -		ret = sdhci_msm_cm_dll_sdc4_calibration(host);
->> +		ret = sdhci_msm_cm_dll_sdc4_calibration(host, HS400);
->>  out:
->>  	pr_debug("%s: %s: Exit, ret %d\n", mmc_hostname(host->mmc),
->>  		 __func__, ret);
->> @@ -1185,7 +1420,8 @@ static int sdhci_msm_restore_sdr_dll_config(struct sdhci_host *host)
->>  		return 0;
->>  
->>  	/* Reset the tuning block */
->> -	ret = msm_init_cm_dll(host);
->> +	ret = sdhci_msm_dll_config(host, DLL_INIT_NORMAL);
->> +
->>  	if (ret)
->>  		return ret;
->>  
->> @@ -1227,6 +1463,7 @@ static int sdhci_msm_execute_tuning(struct mmc_host *mmc, u32 opcode)
->>  	struct sdhci_msm_host *msm_host = sdhci_pltfm_priv(pltfm_host);
->>  	const struct sdhci_msm_offset *msm_offset = msm_host->offset;
->>  	u32 config;
->> +	bool hs400_tuning;
->>  
->>  	if (!sdhci_msm_is_tuning_needed(host)) {
->>  		msm_host->use_cdr = false;
->> @@ -1256,17 +1493,23 @@ static int sdhci_msm_execute_tuning(struct mmc_host *mmc, u32 opcode)
->>  	 * - select MCLK/2 in VENDOR_SPEC
->>  	 * - program MCLK to 400MHz (or nearest supported) in GCC
->>  	 */
->> -	if (host->flags & SDHCI_HS400_TUNING) {
->> +	hs400_tuning = !!(host->flags & SDHCI_HS400_TUNING);
-> I don't see the reason for this change. If it actually impact the
-> behavior of the init/config dll, did you ensure that it doesn't impact
-> all currently supported targets?
->
-> Regards,
-> Bjorn
-
-I had changed this to get right sup_clk value by retaining the tuning flag,
-but will use actual_clk as suggested in top review comment and this change won't
-be required anymore.
-
-Thanks,
-Ram
-
->
->> +	if (hs400_tuning) {
->>  		sdhci_msm_hc_select_mode(host);
->>  		msm_set_clock_rate_for_bus_mode(host, ios.clock, ios.timing);
->> -		host->flags &= ~SDHCI_HS400_TUNING;
->>  	}
->>  
->>  retry:
->>  	/* First of all reset the tuning block */
->> -	rc = msm_init_cm_dll(host);
->> -	if (rc)
->> +	rc = sdhci_msm_dll_config(host, DLL_INIT_NORMAL);
->> +	if (rc) {
->> +		if (hs400_tuning)
->> +			host->flags &= ~SDHCI_HS400_TUNING;
->>  		return rc;
->> +	}
->> +
->> +	if (hs400_tuning)
->> +		host->flags &= ~SDHCI_HS400_TUNING;
->>  
->>  	phase = 0;
->>  	do {
->> @@ -1297,6 +1540,8 @@ static int sdhci_msm_execute_tuning(struct mmc_host *mmc, u32 opcode)
->>  				mmc_hostname(mmc));
->>  			if (--tuning_seq_cnt) {
->>  				tuned_phase_cnt = 0;
->> +				if (hs400_tuning)
->> +					host->flags |= SDHCI_HS400_TUNING;
->>  				goto retry;
->>  			}
->>  		}
->> @@ -1319,8 +1564,11 @@ static int sdhci_msm_execute_tuning(struct mmc_host *mmc, u32 opcode)
->>  		dev_dbg(mmc_dev(mmc), "%s: Setting the tuning phase to %d\n",
->>  			 mmc_hostname(mmc), phase);
->>  	} else {
->> -		if (--tuning_seq_cnt)
->> +		if (--tuning_seq_cnt) {
->> +			if (hs400_tuning)
->> +				host->flags |= SDHCI_HS400_TUNING;
->>  			goto retry;
->> +		}
->>  		/* Tuning failed */
->>  		dev_dbg(mmc_dev(mmc), "%s: No tuning point found\n",
->>  		       mmc_hostname(mmc));
->> @@ -1847,11 +2095,6 @@ static unsigned int sdhci_msm_get_max_clock(struct sdhci_host *host)
->>  	return clk_round_rate(core_clk, ULONG_MAX);
->>  }
->>  
->> -static unsigned int sdhci_msm_get_min_clock(struct sdhci_host *host)
->> -{
->> -	return SDHCI_MSM_MIN_CLOCK;
->> -}
->> -
->>  /*
->>   * __sdhci_msm_set_clock - sdhci_msm clock control.
->>   *
->> -- 
->> 2.34.1
->>
 
