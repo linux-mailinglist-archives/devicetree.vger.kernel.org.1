@@ -1,57 +1,57 @@
-Return-Path: <devicetree+bounces-258203-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258204-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gOXCHb2gcWmgKQAAu9opvQ
-	(envelope-from <devicetree+bounces-258203-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 04:59:57 +0100
+	id eGz6NLygcWmgKQAAu9opvQ
+	(envelope-from <devicetree+bounces-258204-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 04:59:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F97C618B1
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 04:59:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 73823618AA
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 04:59:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B75314651D2
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 03:53:46 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 87717461011
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 03:53:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73E4C3D6461;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76E5A3DA7DC;
 	Thu, 22 Jan 2026 03:53:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fhREJzOH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bpGMLl4m"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2930238FF04;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E34738FF0F;
 	Thu, 22 Jan 2026 03:53:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769054014; cv=none; b=GeOL6yYUNeSNEYoyOEnQKuyfbkrwnjR6k6NtzbLvHbP5TA4rtMFB01afBMzHzDhN+xhSJcjHhDWgsruz0Zhj8/OFcwdZypuUkDFdrczC3BI8TKBJCviTsxzTIMve96EMZrtMKy/UzT/Hz5yaYoXA79Asn2uxu6nKRvq/1NPSA5k=
+	t=1769054014; cv=none; b=SjfKkkNuMvsYTZ+K/lZh2L4nOOPvguGmEFrualQOM01ysiLtcN/jZbPhl47kYaDkSAHtCe6EU9OtlHPe8ruHMJwtlKQFLvjaBjwSTbc8cERyu9UvYgors1ESv7sQLcN0vFgzl/7LVhNOurmMK6Oj6r3hjyL77UC8uMaREz1geI8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1769054014; c=relaxed/simple;
-	bh=orgXr9zmHCBms+ytEAP7IDI/EZXaKPysvA5ieVEr3Ew=;
+	bh=YUyTnratnqlECwzSAzk6FREP35eA7ZpjXULZWweNn00=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=HbaXXCnApr6UtSjTA+B+3BX6oqf2awgnVZ44UujeoultyrF9uE1PY8ez+vAOzmvTAC0fRE0Xu5gdyd+scYdFQSBJcMqaSUQ1czb85Qt9waBzLow4ifwVxT+nTs//2lN5+P318BkVaJ0sTqJUKsNcd0E+/Dodb+NnBjQE8RmKMHM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fhREJzOH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id B4BB9C2BC87;
+	 In-Reply-To:To:Cc; b=KyGw/WyNDfqRZNdEvT592KqBkPE4ipYox+H3mQbRjKy8nYuuNLez30Fnelte8UU/BuZhnMz5gGgSIB8GbkhtOJSjjbRjrgXFWA0f7CQ35iT6MurOhWanFi4jo6kQB74ZGrglvfI5jI0zUpnw6ut7nFSDzKIh8uY8kovnkLeFMaE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bpGMLl4m; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id C7DC6C19423;
 	Thu, 22 Jan 2026 03:53:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1769054013;
-	bh=orgXr9zmHCBms+ytEAP7IDI/EZXaKPysvA5ieVEr3Ew=;
+	bh=YUyTnratnqlECwzSAzk6FREP35eA7ZpjXULZWweNn00=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=fhREJzOHffx6T8npPEpP/KlJePfThT4OZaG8GQxNvQswFdFjj5h7Fgz0J/i57S7TI
-	 uShHYTWrbpvXrqA7s35ZN31FB2xJqbHoEmPKOFQb+eWEzgdxe6PcGPRrSuNVtkCLb4
-	 ojcg0iITC6G9CofAl+bODRv0xvWchpmcO64BDxNZkjjma4zEKWLY33F8oFBJBLeW+/
-	 OuUx1Sx1d5VpkW7mS3drXO5LlTs9wC25eDgRRWLFgRX06w/YrEoTBFPKzAWZ6xs3Pu
-	 PPjjNLskge9jZmTfBN+lh3+R8CJ6UrR2bn1JkiHSckD8YV30XSPY1HJ/AbWR5Qx7vo
-	 tI9BxPVfDSJ/Q==
+	b=bpGMLl4mIFgV61A9Q2THHlMjzlDs6K7ieCZNsfNdZb9KBAcRDsE5RtPxlTjmPy5vc
+	 mtalZMlIjwXm5BLp7UP4Dq33+WbtXb5D2vT1Soi5Em2dLowP5DtXaaEdOYISTdoxFb
+	 ns0VocjMMpRNQh9K8QhanaaJLqF4r8HjsEeb279G/wO7xbHFInZQs7DT9jueejEsAn
+	 r9msHCLe+/4Vl1B+AzSBUapG7r9wUjk15sVOTQpjOZSGj9zWkYevssBIzjeYBa7pu+
+	 p3ZnyYqzGQCXulSKmxhP/KEaWNYiY8cj8nvDhzb3gNOPwChrJz18DfE/FMIY6fJdec
+	 pR+svBXIhDvVQ==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AA94FC44536;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BEC92D625E9;
 	Thu, 22 Jan 2026 03:53:33 +0000 (UTC)
 From: Ben Zong-You Xie via B4 Relay <devnull+ben717.andestech.com@kernel.org>
-Date: Thu, 22 Jan 2026 11:53:20 +0800
-Subject: [PATCH v2 3/4] MAINTAINERS: add an entry for Andes I2C driver
+Date: Thu, 22 Jan 2026 11:53:21 +0800
+Subject: [PATCH v2 4/4] riscv: dts: andes: qilai: add I2C controller
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,8 +59,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260122-atciic100-v2-3-7559136d07cf@andestech.com>
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260122-atciic100-v2-4-7559136d07cf@andestech.com>
 References: <20260122-atciic100-v2-0-7559136d07cf@andestech.com>
 In-Reply-To: <20260122-atciic100-v2-0-7559136d07cf@andestech.com>
 To: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -72,11 +72,11 @@ Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
  Ben Zong-You Xie <ben717@andestech.com>
 X-Mailer: b4 0.15-dev-47773
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1769054012; l=725;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1769054012; l=723;
  i=ben717@andestech.com; s=20260120; h=from:subject:message-id;
- bh=3+hkSp62Y0BxAKsBp1ZxlSLfzIge4HcMfARxzT3H5hA=;
- b=e7/vVAFZV27UkQ/Y8zBjVN4l0NYgFJh+kCZNDbRFv2AD8POEZ9jRu368iAIFWqvLny0r0aGH6
- D4kYM/XQK4BBUW8e/e525q+toe9lHBit4IS/Bt6rRUDZ+ZxTm2MT61R
+ bh=lHt2jE6+LDmM/nXD6n9TCCx5A6rJ3cqG+Q1RYfyMh24=;
+ b=iQnJZd47qVd7XoSMvzcJ5R5zVO+zQfuzU0q0WaUJznzsDZ59v88OiVEbBZPkzjzFOhclrG4vg
+ k/KD4r89D2YAmX40WHr5xetJkK4m8lyEL3ckbopFs6NGdMUp6uLwRzV
 X-Developer-Key: i=ben717@andestech.com; a=ed25519;
  pk=nb8L7zQKGJpYk0yvrYKjViOZ34A36g1ZIsCmCsP518s=
 X-Endpoint-Received: by B4 Relay for ben717@andestech.com/20260120 with
@@ -92,7 +92,7 @@ X-Spamd-Result: default: False [-0.46 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258203-lists,devicetree=lfdr.de,ben717.andestech.com];
+	TAGGED_FROM(0.00)[bounces-258204-lists,devicetree=lfdr.de,ben717.andestech.com];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -111,35 +111,35 @@ X-Spamd-Result: default: False [-0.46 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
 	HAS_REPLYTO(0.00)[ben717@andestech.com]
-X-Rspamd-Queue-Id: 3F97C618B1
+X-Rspamd-Queue-Id: 73823618AA
 X-Rspamd-Action: no action
 
 From: Ben Zong-You Xie <ben717@andestech.com>
 
-Add an entry for the Andes I2C driver to the MAINTAINERS file.
+Add the I2C node to QiLai DTS.
 
 Signed-off-by: Ben Zong-You Xie <ben717@andestech.com>
 ---
- MAINTAINERS | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/riscv/boot/dts/andes/qilai.dtsi | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index dc731d37c8fe..c1145ee1038e 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1817,6 +1817,12 @@ S:	Supported
- F:	drivers/clk/analogbits/*
- F:	include/linux/clk/analogbits*
- 
-+ANDES I2C DRIVER
-+M:	Ben Zong-You Xie <ben717@andestech.com>
-+S:	Supported
-+F:	Documentation/devicetree/bindings/i2c/andestech,ae350-i2c.yaml
-+F:	drivers/i2c/busses/i2c-andes.c
+diff --git a/arch/riscv/boot/dts/andes/qilai.dtsi b/arch/riscv/boot/dts/andes/qilai.dtsi
+index de3de32f8c39..8b40f4d7f8d5 100644
+--- a/arch/riscv/boot/dts/andes/qilai.dtsi
++++ b/arch/riscv/boot/dts/andes/qilai.dtsi
+@@ -182,5 +182,12 @@ uart0: serial@30300000 {
+ 			reg-io-width = <4>;
+ 			no-loopback-test;
+ 		};
 +
- ANDROID DRIVERS
- M:	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
- M:	Arve Hjønnevåg <arve@android.com>
++		i2c: i2c@30800000 {
++			compatible = "andestech,qilai-i2c",
++				     "andestech,ae350-i2c";
++			reg = <0x0 0x30800000 0x0 0x100000>;
++			interrupts = <6 IRQ_TYPE_LEVEL_HIGH>;
++		};
+ 	};
+ };
 
 -- 
 2.34.1
