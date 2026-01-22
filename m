@@ -1,245 +1,251 @@
-Return-Path: <devicetree+bounces-258260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258261-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QOXHAyDrcWl6ZAAAu9opvQ
-	(envelope-from <devicetree+bounces-258260-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 10:17:20 +0100
+	id yAJaHFzscWl6ZAAAu9opvQ
+	(envelope-from <devicetree+bounces-258261-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 10:22:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4F046464B
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 10:17:19 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id E03006473C
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 10:22:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id BC3335EA27D
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 09:05:53 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3BE537C6A9A
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 09:14:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CD0F352FAD;
-	Thu, 22 Jan 2026 09:03:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D781C3644C3;
+	Thu, 22 Jan 2026 09:14:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Ru4bBBOn";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="QzH6DqD3"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="BbS87uL+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from DM5PR21CU001.outbound.protection.outlook.com (mail-centralusazon11011050.outbound.protection.outlook.com [52.101.62.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B01E933F8A1
-	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 09:03:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769072593; cv=none; b=HPE1by//QJEoaXcYdnEkOLlB8/Bi9nzpOSdnwAE18FFBWJ1kVkdNhAle74VWHfCXz6pyq8TiNgDodTvTouejyt89HmRGiFShcvyNi6sxhIXt7sB8MziMV0paG3imWlWYD4WSrqqE1A98cLGursUOs599vR1DYiRIxKxBsdueFRs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769072593; c=relaxed/simple;
-	bh=2Hrv+j1tWU8YnEBQngovvIVQoz6lKZdMV2tctghYn4I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RteaZZwYwkg/fjMjzblREB5T/hk5M2eol0HlLHNYVKHiZpW6nFGXlJHys8YnnbpU03vhA4wcHP1H4jvN88In9MD1DXe3AUaxAF8hpdHMTw3w1pO0YEsXYMTW5hMNhs7hYedDPn+xnA145RTExamWb1KidigxfgJJpajacbFBhlQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Ru4bBBOn; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=QzH6DqD3; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60M6rf4H724879
-	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 09:03:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	fwwrGrKrcG1G62yRGUdibMxWjeG3sF/NPoAYvMYnMDk=; b=Ru4bBBOn99KE9MnK
-	9dTMH3Wz7NgPcS++FYNCT+9T5OXRanrNdhFJAFQ+SjX1aVAeQIJzpcm+DdsaqX5m
-	EBu5H/WbBvyHAWQMqxtJVwFy8+6K87PvRQGiYonOgi3EBvqki4o8O23nD64QbYBH
-	3YcjfKq7RuVzCMK4B8q41suKA801uDhT2sjuseEFOQXbmFBfPTJb+5hiWdO0bQT+
-	g767do/1dGEKbKEPRUEFs8o1C2CyPK1sW7k+y1C5wFGNAKXMT1JSpEAAydIw7TUz
-	xWdJFPV6Mw1bTSjRlDIKO23LPFkOl7wS/qMtK7SIK159BeSMsNNymXa2wDXn5jIf
-	Rungog==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4buf1bgc85-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 09:03:10 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8c52de12a65so17774785a.2
-        for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 01:03:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769072590; x=1769677390; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fwwrGrKrcG1G62yRGUdibMxWjeG3sF/NPoAYvMYnMDk=;
-        b=QzH6DqD3jJuq0f/FU/J9yJ0d25JHPI87ZCV/1s8dB4Hg3tfs7BesF+2UnvDKA4IA47
-         lxAXQbJsvzeG8QNRvVZuYSl4flKf+KyIWfe/BaAErQCNOpsRqIQDDAjCMbSa0MQgX7hI
-         Cqmg6BOqhqYILSUTmjjmzZvc21U1Dh67jenjapxdcGKHAK9W6qfIT7BnQg58ggcdpEJv
-         +PlcCwHTQFVnANOle2SFt+7oWmIgTYOYfGEnQBvS33IOBlsY4nIe9fJiRmNgxyMQKvE4
-         /2HyjjRKfaVCna2xTKP0VRwhnECBFM4Ros9Leg8RtVRu4ZOG3s/4UQsC+5q1A5ams/87
-         yvJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769072590; x=1769677390;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fwwrGrKrcG1G62yRGUdibMxWjeG3sF/NPoAYvMYnMDk=;
-        b=bZAEacj5d04Gdq511DUDfQ2OwfhGAuRn6gS+oMm2Tj1sxNEknf3fywaWHj8WVJfbAm
-         Or7ahoBYqCrg2lgqRtQlDMJEBLPFSFXRDuGQVddJEzBnD5fFSmcCQ6KtuHExGjmrq6ys
-         TKPW1QkzYy6H7+ICSTmjSMRJ5HBkF7d2isSCNFNWmUXTUzPxtWTCj9t/WtplfxaVoUfd
-         qoBvBD1eNQs1ABwpcSjQdAZAXmZoKaXUcw3RjCLKzniSWjSINdnxRH1dHdX6ig5tm18O
-         fsIxhjroMhQbPkP5wdwHBaYflCw3J8+9+o9n4fkw569rTAxUK8Q1sjqV7VVUqGs+NdbC
-         2ciQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVrvseKX2a3U+tEgBkAOI15hL7Re4KrabLa1W2mQqp7PSowNmnFXRjjSGaFsMbNO5vYBYF+g8Ctmuw3@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyxe0bizutfBXO8k34cZv/0P8XUc+RpZIAEyzgy4sAj90nWGcSU
-	Tzvyki6aKvwSb4m5VPACRJ/IIme6n+4zk1O6oiHwNl0JnqAlWjf2fvLXZtJ0Sw/ia6wct9HzLct
-	jVoond5PoyoXnyn4vPxu5ojnN/Kjhq7ylF9V2O3/Z6kqzgvgwJlVGVEiN2SmZiZrc
-X-Gm-Gg: AZuq6aLkn0yGZD+2s1SMT72KfwEosvHvua0U8llDNjGrIl427ayifWZRPDiktUzS8yl
-	q5AgiQEcNUJMPj/ZzcANGZv4aWb5GjethnldPdsTqBN7VMNsmP5MMtjIQoTOChQ8vo4JfeGQvE8
-	y9VGWHB3Loo0qoostNSah+cFYv2fhW+8x2/AMgbYEFSA5hhCLLtXx8kmcQskM+wJFIrcNcrms30
-	4K/PWbg3vu2Oo+eUwoYMHDfcpBSjNLKAEenjCoA4CMSVku1Xbrqjw6KzgQ2GeUlDnMyqfcHrkJk
-	PLwpdNixe54hTGtJ8mFPYwW64eFdX0hR+nyDYG7W1cdLLjQ/ULpfMIZ0dpahbhlp/CjuVqY6wZ0
-	SktUAi9d+IpVmsRemm4Lc73941w4qXe0F4NkEqOHxtoLvEKuGJKlVwtsgxV5GUgdGx60=
-X-Received: by 2002:a05:620a:1920:b0:8b2:e704:55fe with SMTP id af79cd13be357-8c6dafed670mr212637885a.10.1769072589819;
-        Thu, 22 Jan 2026 01:03:09 -0800 (PST)
-X-Received: by 2002:a05:620a:1920:b0:8b2:e704:55fe with SMTP id af79cd13be357-8c6dafed670mr212634185a.10.1769072589243;
-        Thu, 22 Jan 2026 01:03:09 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b879cd85b55sm1586206166b.21.2026.01.22.01.03.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Jan 2026 01:03:08 -0800 (PST)
-Message-ID: <e65fa35b-44dd-44c7-bda9-0e1ff5fd745a@oss.qualcomm.com>
-Date: Thu, 22 Jan 2026 10:03:04 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FA183233ED;
+	Thu, 22 Jan 2026 09:14:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.62.50
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769073245; cv=fail; b=AdvX7i6cNTVvzgYPfXtYMdaf5En52KmWl9Rdh9wnTQFAGwlZstOClCOB0RId2KigZZwv7mfhSwz1UBaV4kl2zEi6Eh5TONkJpddrucYIbw87HGU7wVkAQ7nIK9LFA61quJzjeVZ+/Fv/OL6x/JP70tr8ufNkUE93iA8NRxvUjJ8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769073245; c=relaxed/simple;
+	bh=aPfEMHCQ9Qw0eJ73zQKZUyNcCH4T3nLHpg9kykTUvfw=;
+	h=Message-ID:Date:Subject:From:To:Cc:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=SGPDAKOYDj+DjzBQKXAMBAzqflMwA4s8H1HKebiWHgtOrBFGt9Hj3ratRFaf3OQHkBHLayMELag7w7oT1mOx769mEVX5J86Ihp+qNpPcGctbwxu4awnbl8B3WcMwwljajpvltB+6acj+TwF1xx0Lpq+XfS/B72um5eCAwKf5pLw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=BbS87uL+; arc=fail smtp.client-ip=52.101.62.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=XoY/0F6QqYA7zeduC7m4zxUmm4yckEgpcBz608F2nFVym28iaTbOKgbMbItZqmMRmTmHHnP48nqdIy6CHUefEpdQo70wTw9fzYPDceAqIjpdfxHkXsd/FrRe6Btu3oY2jjf6lJBTtCb1NXZU8f/LpnUkgU3nhjSnRmIuZmfVUOUdO5aEewIr8eUrJube75Iq4nW1yUQwalJjrXDH+LDjzS/RO5Z/Dq5xMWnvMH0EwuNTvdm5Czw3QEU1rBjM5I0wLGB93E/1YOGomeUzSwMTS9YS+cLHN22I/1axArJH9dPDeOFQaw3OmSCfdsiiRasqpUQBmT5sft/riv0DQsxUgA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=G4uwq8CXdXnyuk4Rr5SN02SZo+yzMQMkBD3SBJBQyrM=;
+ b=KI7Gcl9XMocfjSrTvMC3y+O9/qnpWEV606yvaOasiWLqPQ2cAwuZjEq12oELzD/XjLRe/Il1lDVukictjGKhZdoojGxurbwa1hxodB9ATXzUpExdd0szwJtc1DGRpH31FnRA91QS/QqAMo+Hc+k3nZpIxcFE2iHp3XATE6/KxYgNP1wqBx5iKDFl3vmy6Ipq5CiFeFRkJdehjVfI8wtH/JXR2MdsdM7NyRcLuWG/7TTMt7GXdWpOKDBN1cjaUuulzUnKl0I+4BZYsmVAHqSpJauP8XLtNhhjADof/RazpyjG3ShUnVlPjdw0mj5EkbWEj/Hs28hRSBZ0QgNVPdYTXQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=G4uwq8CXdXnyuk4Rr5SN02SZo+yzMQMkBD3SBJBQyrM=;
+ b=BbS87uL+J5LfORp063dgT0NvihAd3AkhxxNakqNt4CaiOZ7IX0jAj7y4nx226IIDaiAQIiG2byLYbpiKrjJ+QvoW/afdmvTHJQEm37Ss0nc8Wn2cB4/AhL5APyKQT3Z8qQ8P7NwWKRQgPoPUT8Qm6Gsynpvwhcozp0eSz9hsrap3iyhMDAUTlCzgR2+DuvOU4G6vSV08JHOBRNQ+ZYOwd7XVnyuCSmD3v4JijF/iDx27U6/rSTV9MXh0FK+XNcOzEGkj7H0UjTw0pPDLTZNWrjp00E78N61zEp3ruXFUJSppqATTIQ48xb7dJUEbYenc6lWZYR6p28gMLMdgIrQp5w==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from DS2PR12MB9750.namprd12.prod.outlook.com (2603:10b6:8:2b0::12)
+ by PH8PR12MB7253.namprd12.prod.outlook.com (2603:10b6:510:226::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.9; Thu, 22 Jan
+ 2026 09:13:57 +0000
+Received: from DS2PR12MB9750.namprd12.prod.outlook.com
+ ([fe80::56a8:d6bf:e24c:b391]) by DS2PR12MB9750.namprd12.prod.outlook.com
+ ([fe80::56a8:d6bf:e24c:b391%5]) with mapi id 15.20.9542.008; Thu, 22 Jan 2026
+ 09:13:57 +0000
+Message-ID: <c0abf651-ecbd-4ca7-b49a-a74197ed92b5@nvidia.com>
+Date: Thu, 22 Jan 2026 09:13:52 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: gpio: Add Tegra264 support
+From: Jon Hunter <jonathanh@nvidia.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Prathamesh Shete <pshete@nvidia.com>
+Cc: linusw@kernel.org, brgl@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, thierry.reding@gmail.com, robh@kernel.org,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260114103846.687338-1-pshete@nvidia.com>
+ <20260115-tactful-porcupine-of-felicity-ead58d@quoll>
+ <931207bd-a24e-46a5-b0e5-eb5307c5c8bb@nvidia.com>
+Content-Language: en-US
+In-Reply-To: <931207bd-a24e-46a5-b0e5-eb5307c5c8bb@nvidia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: LO6P123CA0040.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:2fe::18) To DS2PR12MB9750.namprd12.prod.outlook.com
+ (2603:10b6:8:2b0::12)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: add basic devicetree for Ayaneo
- Pocket S2 gaming console
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov
- <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, KancyJoe <kancy2333@outlook.com>
-References: <20260121-topic-sm8650-ayaneo-pocket-s2-base-v1-0-bb3f95f1c085@linaro.org>
- <20260121-topic-sm8650-ayaneo-pocket-s2-base-v1-3-bb3f95f1c085@linaro.org>
- <hmnyvxz7ashufiiil6hf4lg5g435e53zd3xla7qeqcb2styrqg@jkbjl6arm33g>
- <5c54dffe-f8eb-4b45-97b0-512a9658c212@linaro.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <5c54dffe-f8eb-4b45-97b0-512a9658c212@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: HOY1PsNY6ekJNw3HGSt1A5SavhfKkUas
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIyMDA2MSBTYWx0ZWRfX69jxpMnZxf99
- J7ANsrypsy3gTf016TKL1fQGb7y7Qi8vKYDv256erldw+a8UE/2QovyElToDoD+rdkF8pD/k2dQ
- SwUCnMCq0Ffz8k+rlCUpkRJlokfp3k4RVksudBXUn955zGoQi1X3r+rnV1WyVtpnmWcaB+hyYWh
- vLqWEmiwcw1HdtdSU2Xu1OMxNnIkmGZcnXVvjoURjzk7wRJhtjcrOt9AnoY35fOvphVNd/w5j3p
- P9lmZDwMhY0hSwxniDA1k7muEPzzGpeWF65qiUEz1MI/2TxbS30ubFp3dTY1lumrWwX/uBUe953
- yL0I5ihcmxNT2hJDarjoDQeTjyKC+8yQ5S2hT1I3O9cvpxf1nhqQvEAlY+UhvtxCgcqPX6yUljq
- q2x/VvMd1c422A51eO9PVpvjKhwiHoXmd++ygTClhcA95qIBM0TC5/z1El0uxAirarL8Uqy0sl8
- 2N0jyLBtc8MwkuS2GgQ==
-X-Authority-Analysis: v=2.4 cv=G+0R0tk5 c=1 sm=1 tr=0 ts=6971e7ce cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=UqCG9HQmAAAA:8 a=KKAkSRfTAAAA:8
- a=hk5onNUDdM5l80mYchIA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=bTQJ7kPSJx9SKPbeHEYW:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-GUID: HOY1PsNY6ekJNw3HGSt1A5SavhfKkUas
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
- definitions=2026-01-21_04,2026-01-20_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 priorityscore=1501 malwarescore=0 phishscore=0 adultscore=0
- spamscore=0 suspectscore=0 lowpriorityscore=0 impostorscore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601220061
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS2PR12MB9750:EE_|PH8PR12MB7253:EE_
+X-MS-Office365-Filtering-Correlation-Id: defcd109-50ae-46a7-dc7e-08de5996928e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7416014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?L2FSUExReDgwZS9BY1UzYWJxdVQxN3g2V3lKN1NtK3RVLzR3U3J3OE4zQUFH?=
+ =?utf-8?B?N2RxUmJ6NFNkRTc1cmQ4cE5XemFYNWFkZW9mN1R5TG1FMWdxWFNRaHVjMEJj?=
+ =?utf-8?B?VkkvbjVKQkFGeEhEbDAyV2JZWVdGM25LQkVVWDlkRmwxeGFqZTlXaDR6T0Ir?=
+ =?utf-8?B?M3NQTEhWSmR6bmZPVjNOWHRkeTh4S3BkcjAySWJwTVlOMldNOTNYYjVaT2pI?=
+ =?utf-8?B?T1IzU1gwLzhBeTBkVXNLZnprRS9qa1ozVHZ5dnFYN2xLamdVbW4vbmd2YWQy?=
+ =?utf-8?B?dlpqckliYjFyWDQ2WGtGUVl2TkJhREJCcVVUQ1c5V0lLbFZ1SS9ZZ3BPU2tP?=
+ =?utf-8?B?Sm53ODBsWkdOZ0Z1bG1pZU1SZ2pXSm04R1dYcEdsVWF5aUJZVXF4Umh1V013?=
+ =?utf-8?B?WUx3M1Z1NFl1RzY2OUJrT1AyL3BBbDM1MTdsM3l4S2xXS0o1dFJSTW5qRnND?=
+ =?utf-8?B?MHQ4b016ZjAvb0xJbWd1bW1LcGtvQytWa0tETjRaUUFEU2R5V2RiRklPOXZX?=
+ =?utf-8?B?Qll2UzZidnVJY1JnZVpFd2pzWUNGaHhQOTYwMjR4VkwxczRFaVRTVko5WXVu?=
+ =?utf-8?B?bU1EWDhIbk1vQUhNMXBlS1FjczlmZ0V3VUdhQWpPMmxyZ09oeUtRVlFQOHpa?=
+ =?utf-8?B?bVY3czJ3YlhXRlJqcXFDaE1TQ0F5UDEwcUU1Z2M0OE9QUEpJdkV1TG5LY0J5?=
+ =?utf-8?B?K0Q0K2VTRHFOSWgyZE1BcGdlYS9Ka25YZkxMdDdib0JpeEx0TTNJOWdsOWwy?=
+ =?utf-8?B?TlJvS281WHdMeEYzSUpKMlVoSUNTMjAxTUlpRmVCMWFueEVoVE82WngvanBJ?=
+ =?utf-8?B?ZmlBajJ0YzVtZHAxb1Rrb3R5UFl2ZGFIaTVKTStDNUhoUmpGZTdNRnJBWngr?=
+ =?utf-8?B?aVRQdGYzV2MxTmFVY1prMmU0Y3phQWI0b29KR2wySmVsVEpvZFgyUCt6MkR4?=
+ =?utf-8?B?aWJoSW9MZ1dQSDFVM3dHaXZvZ1RrejhZZGs2bXRDOS8rR0N6cm5pSHA4dWVP?=
+ =?utf-8?B?dTZGNnI4RzlpZXBIc0NVS0h1N3NXUFc1ZjhZc1dGTzdWOEtqZWw2QUxzcEtm?=
+ =?utf-8?B?R2VJNDJwcXAvNDVYR1RrNzkrS3E0ck1Wb09VOUZvem9XM3c0Snl4djNTeGxm?=
+ =?utf-8?B?emxCR3RBUmpMdlA1NE5WSy9KcU5rNzRNaXJveFVMR3JEM2F5ZjV6c1J5eHc2?=
+ =?utf-8?B?ODlJd25YZWVCdXVvdVhtSTBIZkx3WDBTTGg1a1BoeFlQUjRLeTM0Z0lMbW0y?=
+ =?utf-8?B?QkRSV2g1U0dDRnpGUTNmcXBFemp5Y21nSzk3Zm92UVk4UnBoTi9TbGN4RGpy?=
+ =?utf-8?B?Q1hzcHZUWGJpeTFxNDA5RXNxd29zWkN0Wk9paHRUV0pVV3FPQmhwYVBvTnFS?=
+ =?utf-8?B?TlFVRVFMRVFGbVVtRkw2TFFwNnFGcGpRZWhtZFhTUjN1QmdTNkJGNDBUaHhn?=
+ =?utf-8?B?QWNHeDdsWTcrYzhBRnpoaHRERUY4NndYUHJIYW05a1hFeWJnRG1NSHByVmdn?=
+ =?utf-8?B?Y1BCMjJlbEc0VlZhWDk4alo4ZFkrY3g0Mm1tNVU1eTBmYm5SdlJiQ09VT0x5?=
+ =?utf-8?B?cnJBRyt1STl1S0YrRGFFMHk1UjNTQkVsVHY3a3FrN1ViNktWTEhpZ3ZVU0xT?=
+ =?utf-8?B?L2o3ZThPVFQ3SHhoNzZIMVZhS0hjRjJWWGRhMytZTHJjOFcxWWthV3htK0JB?=
+ =?utf-8?B?V2luQ3NBQ2tkU2o1TXZhak05eWdTYW9YVUNvbzAwZG5PUlhNNWxNTWFSM0pL?=
+ =?utf-8?B?cG9FU0h3UlgreFZvNnVWbFNoUUg1S0htU29LRElPVXlSdEhYd1BJQ2JnRk96?=
+ =?utf-8?B?bVpVdHl0L1JRWlI0azl6ZzEzV0gzcFRwR0ZYVTJnS3ZxbFE5OCtSbFlTUk45?=
+ =?utf-8?B?U3JhY3FRRlR6TFZFUDF0YzhuZUxyRlViUDJGeWdBN2ZHWVdoOEphWmNxRkRt?=
+ =?utf-8?B?NDNxenN4Y3UvaTl3clJHOWFQYjlVNnYyZVh6N3BCcm41bnJBSmI0eVZQTmxR?=
+ =?utf-8?B?YXZ4YUE4cFZxeGtlZ25PRWxKNGU5M0FSYlJvNjhQVjIwSndFYTBDYmg5NGFW?=
+ =?utf-8?B?bW5RNGhSTnNnSTRCY1VFYlNjQmRvSUg3UFJ4d21ERmdmYUo1MkEwVC9IYmlz?=
+ =?utf-8?Q?Ay70=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS2PR12MB9750.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?YTVLVWtlNXVTQUYxQnNhR3p4ZHJLamorNjdwYWcwdlkzdWpjdnBreW40U012?=
+ =?utf-8?B?eVNVakRGclpnQ0FqdFcreHAzODQzd1Vndlg4RFRieGVsRVFBK3BoY3RKL3JD?=
+ =?utf-8?B?dWh1Vk9GUUhOM3RnWS8yeGVtVzNtazZOWGF5bVFrSXF5TXFZY2YyV1hNVHVU?=
+ =?utf-8?B?WTBLNlpkdEJDc0FZQ3dSdk9uRENEU3phQW5XdUl4OGhTbWdVV0ZNNG1QS21M?=
+ =?utf-8?B?Q1hLTDg4djIyanFuR0lqbnFQVkVaOEVqeDZXTml4aVRONHczWklBem9wb1Uv?=
+ =?utf-8?B?Uy90RUd1S0pHNG9ZWW5Mc3hPZE90V3dTa1dhL1o3L3hPOElQV3hQNWtpRW1w?=
+ =?utf-8?B?R28wREJ3QVQ0bHVyZC9CMmJnOWZQdVEzNXg5c0ZJd0thUFJKT25qZmhUUENQ?=
+ =?utf-8?B?RlZyOUtudzBKNktmREIwRG0vdmkwL0V2MXg5K25TUVEvMVkxUFpQU0l5Uk1E?=
+ =?utf-8?B?QUxZa0RicGRzVW9uM0RPZXV1NlYvZG9NbnF3aitHNG5MRFh6TDZCWDV4ZFNF?=
+ =?utf-8?B?MkY0VWxmVnJvb2d3OTJYNC92Q09iQ3prMDdGbzcrZ1IrU1FDaDUzVTI3M1U5?=
+ =?utf-8?B?bmtlU1JPVEc3aUxFd3VnUnpiR1YvK3J2c0I1T0JYL1AwZ1JmN216WitOTGt4?=
+ =?utf-8?B?V1VkaHFnWGJUZC9TTEtBdGUxYVNHR1RTcTliL2FDcTk1MXpFOUFValBWRTJi?=
+ =?utf-8?B?MGJrc21tQU1Bd04vbUZBYkFJYWpMa3FVMEJjUzJWR0dVNGYyU2hQRUk0TDgx?=
+ =?utf-8?B?SUIxeGZib0IrbVNLdURqVWRhOVI3NU1vVWVsZjJGaVh3NytJSmNsTDhnbS9y?=
+ =?utf-8?B?R05MMU4vQVFISjRTVTN1Zm1EQTZiTE5URzdkREtuYkRVWTVIdWtJeU82cGVN?=
+ =?utf-8?B?QUNzS2pjVUFGaXVEN2dxbldjS2JtZU14WVNobG1BZnNmZmxtQ0RzNis1bFlI?=
+ =?utf-8?B?Y2lBb2U1eTRnakJGMktNTmZCU0VvR3YrdWh5aXN6L2hicDY4Yi9uRnRteHc0?=
+ =?utf-8?B?Qk9FcG5hekxQMCtabTliMDlxUm1BYWhZY3U0ZjNqaUlNUGNTamN6VEdkZUFM?=
+ =?utf-8?B?OTFkUVdxRDlzaHRzOEh3YzV1YjNjYmdJTGltWDZiK1N2VXRFZzg2MFNTVGNo?=
+ =?utf-8?B?azNadmh4ZW8zQTE1a1ZUOWhaNFNLN3lPQVV6TmN3RTBzUzRFOTdTUVhLYVR0?=
+ =?utf-8?B?ZWg4Rk1YMHFNZmR0NFZCVEE1d05tSmJxSkJnajFWb2ZoN0dxMCtKdVR3RnZM?=
+ =?utf-8?B?VHNUY1dKd2lnaVc1TDhybXExNEhHWXRsb2VkVGtIbVNzdEptZEJpWmJzdUE4?=
+ =?utf-8?B?YnBVZUFPUUhZYllXb0tQQmRZOFYremJicUl2Y2xSZm85dUNkb05XZzhIYU1C?=
+ =?utf-8?B?RkMwWFNnMmZJam5acWxDWkN5ZmozM3lDR1Z5UGJHajFNTkl3VnI4SkppcG15?=
+ =?utf-8?B?TUtjMlI4RmE5Qm9KRzBuZkk3MEFUY05FSHFURmo3UGxaa3BvTEcveDhkeFkr?=
+ =?utf-8?B?Zk1oUVR3QnB1NlRiaUVHTldKRUdxMFFMV1FiNVVOOEg0dUN3Z01mSGU5M0xD?=
+ =?utf-8?B?YkxJRXl5ZG9LUWZhZVFoeXVjbEIraEFXMlNZMmlQV21USHEyVWRHZElwSnhQ?=
+ =?utf-8?B?OG42MCtuSjRNK1lRRXAvOUtqa3FpclhJamd1c0htTDBsN2M3bldwU042b2Jk?=
+ =?utf-8?B?bTRlUFYwTjQ3d2t5bG95OERJME0zUnRNU01XUS9EUGFLQk1Zdlo4SEhPRWdS?=
+ =?utf-8?B?QzhoL1pYK0pBbExCVTBIT2NCamdxZzZSSjVObzM4SUp2Vjgya1RZdTFFKzFy?=
+ =?utf-8?B?Z3VESEFaMFhDc3RCWVJrUmNGZXNhMXRWNnJ4Y2tzSisxVjB3V1gzZTJ3VXov?=
+ =?utf-8?B?VTRCWGJRN1BnSlQ1dE9yZksrLzlWYUxlbm9RcXg2ZWp1T0ZLQ2tDSnZoamtN?=
+ =?utf-8?B?SlpkdkJjaWtiSjN2VmU4bWkvaGY5SkE3UTdJaHgrRkNCdm9NajFTTW9WcE9N?=
+ =?utf-8?B?OCsrbVg4VXA5SFYzR21iVk1ReFZEeTR6WmsrZWN6NlAyWERlRUdTYUZhRmww?=
+ =?utf-8?B?dGlZWlFlYTFyNlRoRFl2MjdmUnV2UkxPYXYzZGc0MEU5elFidFdaZTE4eERj?=
+ =?utf-8?B?aS9rVklvSk9LbVF5bERIVWh6V0E5MXBSVENiYktBN1NSSU96R3o2U0dKYnpz?=
+ =?utf-8?B?bFdRNytnTEJZRG85cHBaZkN2RmdHbkkyODRmbGp2RmUyK280aEd5ZTV1NElP?=
+ =?utf-8?B?ZTJPaWxkT0F2MjBQc0pObnZ2SUZjZjdTdmpUQjVVY3BIbVN3N0JYTWJjQVYr?=
+ =?utf-8?B?cWE2a1BRM2VrckdVYUJ3eVhuNk9KTk92WTNha0lrV2c2eFF5bHlwUT09?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: defcd109-50ae-46a7-dc7e-08de5996928e
+X-MS-Exchange-CrossTenant-AuthSource: DS2PR12MB9750.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2026 09:13:57.3843
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5e/MkoSZiL5m+umWK8vpanPBObYYaVhwFguo/w74xuM0O6mr87AbUSKSgsknnI6p3z2rElhmAukqlCPsXMbH+g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7253
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.46 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+X-Spamd-Result: default: False [0.04 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=2];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	FREEMAIL_CC(0.00)[kernel.org,oss.qualcomm.com,linux.dev,gmail.com,poorly.run,somainline.org,ffwll.ch,vger.kernel.org,lists.freedesktop.org,outlook.com];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-258260-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[qualcomm.com,reject];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,outlook.com:email,qualcomm.com:dkim,ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-258261-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	DMARC_POLICY_ALLOW(0.00)[nvidia.com,reject];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jonathanh@nvidia.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: A4F046464B
+	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:helo,dfw.mirrors.kernel.org:rdns,Nvidia.com:dkim,nvidia.com:mid]
+X-Rspamd-Queue-Id: E03006473C
 X-Rspamd-Action: no action
 
-On 1/22/26 9:38 AM, Neil Armstrong wrote:
-> On 1/22/26 02:30, Dmitry Baryshkov wrote:
->> On Wed, Jan 21, 2026 at 05:40:28PM +0100, Neil Armstrong wrote:
->>> From: KancyJoe <kancy2333@outlook.com>
->>>
->>> Add initial Device Tree for the Ayaneo Pocket S2 gaming console based
->>> on the Qualcomm Snapdragon 8 Gen 3 platform.
->>>
->>> The design is similar to a phone wihout the modem, the game control
->>> is handled via a standalone controller connected to a PCIe USB
->>> controller.
->>>
->>> Display support will be added in a second time.
->>>
->>> Signed-off-by: KancyJoe <kancy2333@outlook.com>
->>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->>> ---
->>>   arch/arm64/boot/dts/qcom/Makefile                  |    1 +
->>>   .../boot/dts/qcom/sm8650-ayaneo-pocket-s2.dts      | 1445 ++++++++++++++++++++
->>>   arch/arm64/boot/dts/qcom/sm8650.dtsi               |    2 +-
->>>   drivers/gpu/drm/msm/dsi/dsi.c                      |    4 +-
->>>   4 files changed, 1449 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
->>> index 6f34d5ed331c..1ba29755e5ba 100644
->>> --- a/arch/arm64/boot/dts/qcom/Makefile
->>> +++ b/arch/arm64/boot/dts/qcom/Makefile
->>> @@ -313,6 +313,7 @@ dtb-$(CONFIG_ARCH_QCOM)    += sm8550-mtp.dtb
->>>   dtb-$(CONFIG_ARCH_QCOM)    += sm8550-qrd.dtb
->>>   dtb-$(CONFIG_ARCH_QCOM)    += sm8550-samsung-q5q.dtb
->>>   dtb-$(CONFIG_ARCH_QCOM)    += sm8550-sony-xperia-yodo-pdx234.dtb
->>> +dtb-$(CONFIG_ARCH_QCOM)    += sm8650-ayaneo-pocket-s2.dtb
->>>     sm8650-hdk-display-card-dtbs    := sm8650-hdk.dtb sm8650-hdk-display-card.dtbo
->>>   diff --git a/arch/arm64/boot/dts/qcom/sm8650-ayaneo-pocket-s2.dts b/arch/arm64/boot/dts/qcom/sm8650-ayaneo-pocket-s2.dts
->>> new file mode 100644
->>> index 000000000000..141d92933957
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/qcom/sm8650-ayaneo-pocket-s2.dts
->>> +
->>> +&i2c3 {
->>
->> clock-frequency?
+
+
+On 19/01/2026 22:12, Jon Hunter wrote:
 > 
-> We never did so far we we didn't need more than 100KHz
+> On 15/01/2026 13:29, Krzysztof Kozlowski wrote:
+>> On Wed, Jan 14, 2026 at 10:38:44AM +0000, Prathamesh Shete wrote:
+>>> Extend the existing Tegra186 GPIO controller device tree bindings with
+>>> support for the GPIO controller found on Tegra264. The number of pins
+>>> is slightly different, but the programming model remains the same.
+>>>
+>>> Add a new header, include/dt-bindings/gpio/tegra264-gpio.h,
+>>> that defines port IDs as well as the TEGRA264_MAIN_GPIO() helper,
+>>> both of which are used in conjunction to create a unique specifier
+>>> for each pin.
+>>>
+>>> Document nvidia,pmc property referencing the PMC node providing the
+>>> parent interrupt domain. GPIO driver uses this to select the correct
+>>
+>> Why do you need to reference parent interrupt not via interrupts but
+>> custom phandle?
+> 
+> Good point. So for this specific case this is a wake-up parent and so 
+> would using the 'wakeup-parent' property be OK for this?
 
-Let's at least make it explicit then
+Prathamesh, can you update this to use 'wakeup-parent' for this?
 
-If you have the original vendor firwmare, you can read back some
-registers to know what they're set to
+Thanks
+Jon
 
-Konrad
+-- 
+nvpublic
+
 
