@@ -1,176 +1,178 @@
-Return-Path: <devicetree+bounces-258574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258575-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UA2DC+FicmnfjQAAu9opvQ
-	(envelope-from <devicetree+bounces-258574-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:48:17 +0100
+	id YDp8DHpgcmnbjAAAu9opvQ
+	(envelope-from <devicetree+bounces-258575-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:38:02 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6358E6BA42
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:48:16 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B3F16B7A3
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:38:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 62DF2311BB1C
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 17:29:58 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7C5F730B2C6F
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 17:30:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16D4F3033CF;
-	Thu, 22 Jan 2026 17:12:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0F9B36EAA6;
+	Thu, 22 Jan 2026 17:15:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=minlexx.ru header.i=@minlexx.ru header.b="soa+UBw5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jTQTg8Gu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sm24.hosting.reg.ru (sm24.hosting.reg.ru [31.31.198.150])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0CAB264617;
-	Thu, 22 Jan 2026 17:12:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=31.31.198.150
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF4A936CE04;
+	Thu, 22 Jan 2026 17:15:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769101968; cv=none; b=SVkLFGcV0VBwH5T6RozZeWnXKYYVgri74PihZ6BqTnx6LsCeczXTg/CAeditHUuF6iYbjAC3ETNMJMRIkCDvkokuo/gx8Y0FTarcnbXRTerGFDUd1CcLT1ua81bGs8nKUaFRl7Z16ZRFYjRcdfopZvJF8RFXkr67Ml2VcRtrASs=
+	t=1769102141; cv=none; b=VX66WQpIsEPHrh02BFHKrM7D4g+rjNsaoEbg609kOtaPGsLqtrK4Ha3EBFTfR6kB9/4++MNj2AwSxaIKF1BTX0kowEwCHbzJHOCu4is8iiUmgDNlMtl5W71vRQYd2RbqgqeB1jEILaIQpISoBTX3iXMQnRqkxTqc2fVwXWdLxdE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769101968; c=relaxed/simple;
-	bh=McwNkBdBbVI3lKPxwBMVRD3ZrpjNRQBNMdX/j3SUp10=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sFIM7LNWZWVS2utNF0RKJbUDgWu4vJqk2nK5JSWM4KNu9a3S6LiOzGRiI3Ypz4YD3dwVUqFCBLufLOliARjm83hzd6KLw0OxIOyJJAWlJ101uT0ou+HYiTnx8klyOtC/dgGuH5SCkdTRJl+UG/ZQ4rG8jEgazkkvqQa9lk+Fsck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=minlexx.ru; spf=none smtp.mailfrom=minlexx.ru; dkim=pass (1024-bit key) header.d=minlexx.ru header.i=@minlexx.ru header.b=soa+UBw5; arc=none smtp.client-ip=31.31.198.150
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=minlexx.ru
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=minlexx.ru
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=minlexx.ru;
-	s=dkim; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:
-	Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=zSSKJTpdy9TXkwfbj76vqHdgLMiL4P0TtwRoVF0tQ3M=; b=soa+UBw57t7Za7BL5h3p7LYBGp
-	CmjGZZuqDvVk7zcf28vbxZeAPVuzMb34wdkikfA1lHbScD70dLyMLWv8FkWYv6gHa3rDydgL8A9e3
-	WsCpdXtz2OtrevhoKjMdnD0EvdKzS0/7v9Hz8GhshkkwZRn+WTUkkuE7V7KNP3GNrqeA=;
-Received: 
-	by sm24.hosting.reg.ru with esmtpsa (TLS1.3) tls TLS_AES_128_GCM_SHA256
-	(envelope-from <alexeymin@minlexx.ru>)
-	id 1viyES-00000006IfC-238Z;
-	Thu, 22 Jan 2026 20:12:32 +0300
-Message-ID: <577de3fc-f21e-4ddc-8f22-57fa05f2ac34@minlexx.ru>
-Date: Thu, 22 Jan 2026 20:12:32 +0300
+	s=arc-20240116; t=1769102141; c=relaxed/simple;
+	bh=Y3D9E7japclI7UuExtcL6bPuCRUqGKopPtgcI3tpo7Y=;
+	h=From:Date:Content-Type:MIME-Version:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=QCnNHd66kCM2CODr6fdrAPNnhhtgTxzUXVo5p4Z3Lk3pEPJsrQKi4WDT+ufxX68qQ5qusQ8+I999gOtT/1PSYD9+u1mMsE1FasXB/U5qZ1vyArTD0N4cJ6JZDgg5NLFfx1Y054ZpOiBLQP0H2GlORzIlpS2FmvlGFgt2v0f8CnE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jTQTg8Gu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC466C116C6;
+	Thu, 22 Jan 2026 17:15:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769102139;
+	bh=Y3D9E7japclI7UuExtcL6bPuCRUqGKopPtgcI3tpo7Y=;
+	h=From:Date:Cc:To:In-Reply-To:References:Subject:From;
+	b=jTQTg8Gu2G1yoe/UvGnuAwgLgBGxCYlqGnyfSceJG959OW2YlVwhPsA/PR0l2qA9w
+	 8zdYytO9RmmHcwx7lGtPhbxjvtUszkOMmSk1gGd6xSGHTwNbK0/jXMHjM9ZgqksdNJ
+	 zOoWhDmtS6HdKUpqyb4zk5SwropokIu3Y5vEX2eWIbg82ohHpB8RHiVQaa8qtSK7GG
+	 OkB7ha3F1qdqLg2DlrHm76NbY4Guja+oBX3TWdgSnvlH2THT/rCgYDER3Kv3JSPVmX
+	 vGrfH7RiYDRIWz5zden6QseDozqL/maNI66WE4Y73NorzzXTGu3KGnglxL4eU8yLgP
+	 wg6bKKvp7MGgQ==
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 22 Jan 2026 11:15:38 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/7] arm64: dts: qcom: add device tree for Xiaomi Redmi
- Note 6 Pro (tulip)
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Gianluca Boiano <morf3089@gmail.com>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: andersson@kernel.org, konradybcio@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, robh@kernel.org, david@ixit.cz
-References: <20260120180052.1031231-1-morf3089@gmail.com>
- <20260120180052.1031231-5-morf3089@gmail.com>
- <d2aff319-d98a-4007-bfb5-8766e3c3c206@oss.qualcomm.com>
-Content-Language: en-US
-From: Alexey Minnekhanov <alexeymin@minlexx.ru>
-In-Reply-To: <d2aff319-d98a-4007-bfb5-8766e3c3c206@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Cc: alim.akhtar@samsung.com, conor+dt@kernel.org, krzk+dt@kernel.org, 
+ linux-arm-kernel@lists.infradead.org, rosa.pila@samsung.com, 
+ selvarasu.g@samsung.com, linux-samsung-soc@vger.kernel.org, 
+ muhammed.ali@samsung.com, faraz.ata@samsung.com, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ dev.tailor@samsung.com
+To: Pritam Manohar Sutar <pritam.sutar@samsung.com>
+In-Reply-To: <20260122130721.205664-1-pritam.sutar@samsung.com>
+References: <CGME20260122125130epcas5p4ac37f540c609f3016ff02f5708e897a2@epcas5p4.samsung.com>
+ <20260122130721.205664-1-pritam.sutar@samsung.com>
+Message-Id: <176910209177.2703219.7993114273484886473.robh@kernel.org>
+Subject: Re: [PATCH v2 0/3] Add and enable USB nodes for ExynosAutov920 SoC
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.14 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.16 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_REJECT(1.00)[minlexx.ru:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[minlexx.ru : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258574-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,gmail.com,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-258575-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[minlexx.ru:-];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.992];
-	FROM_NEQ_ENVFROM(0.00)[alexeymin@minlexx.ru,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.995];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,minlexx.ru:mid]
-X-Rspamd-Queue-Id: 6358E6BA42
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,samsung.com:email,devicetree.org:url]
+X-Rspamd-Queue-Id: 6B3F16B7A3
 X-Rspamd-Action: no action
 
-On 21.01.2026 15:42, Konrad Dybcio wrote:
-> On 1/20/26 7:00 PM, Gianluca Boiano wrote:
->> Add initial device tree support for the Xiaomi Redmi Note 6 Pro
->> (codename: tulip), a smartphone based on Qualcomm SDM636 SoC with
->> 4GB RAM and a 6.26" 1080x2280 display.
->>
->> This enables:
->> - Booting to a framebuffer console
->> - USB support
->> - Hall effect sensor
->> - Battery monitoring
->> - Charging (pm660_charger)
->> - Status LED (pm660l_lpg)
->>
->> Signed-off-by: Gianluca Boiano <morf3089@gmail.com>
->> ---
 
-
->> +&pm660l_wled {
->> +	status = "okay";
->> +};
+On Thu, 22 Jan 2026 18:37:18 +0530, Pritam Manohar Sutar wrote:
+> This SoC has 2 USB typeC and 2 typeA ports those are DWC3 DRD
+> controllers and among them, one single USB3.1 DRD combo phy and three
+> USB2.0 only phy controllers. This patchset adds and enables USB and
+> USB-PHY nodes in dts.
 > 
-> This seems to as well
-
-There is a tablet named Mi PAD 4 (xiaomi-clover) which is not
-included in this series, but it uses separate backlight driver
-and does not use WLED.
-
->> +
->> +&rpm_requests {
->> +	regulators-0 {
->> +		compatible = "qcom,rpm-pm660l-regulators";
->> +
->> +		vdd_s1-supply = <&vph_pwr>;
->> +		vdd_s2-supply = <&vph_pwr>;
->> +		vdd_s3_s4-supply = <&vph_pwr>;
->> +		vdd_s5-supply = <&vph_pwr>;
->> +		vdd_s6-supply = <&vph_pwr>;
->> +
->> +		vdd_l1_l9_l10-supply = <&vreg_s2b_1p05>;
->> +		vdd_l2-supply = <&vreg_bob>;
->> +		vdd_l3_l5_l7_l8-supply = <&vreg_bob>;
->> +		vdd_l4_l6-supply = <&vreg_bob>;
->> +		vdd_bob-supply = <&vph_pwr>;
->> +
->> +		vreg_s1b_1p125: s1 {
+> PMIC is not implemented yet, we rely on USB LDOs being enabled by the
+> bootloader and used dummy regulators for now.
 > 
-> Please diff the regulator settings, they're likely mostly common
+> To drive vbus for host mode, it needs GPIO pin to enable vbus regulator.
+> GPIO expander is present in the dts, we used it to enable the regulator
+> using GPIO.
+> 
+> USB ports are configured as OTG, and default mode is configured as
+> peripheral. It will be changed based on requirements.
+> 
+> changelog
+> ----------
+> Changes in v2:
+> - As v1 was pushed 3 months back, resending this patchset.
+> - Since dependencies are merged, removed links from coverletter.
+>   link for v1: https://lore.kernel.org/linux-devicetree/20251024114845.2395166-1-pritam.sutar@samsung.com/
+> 
+> Pritam Manohar Sutar (3):
+>   arm64: dts: exynos: ExynosAutov920: Add USB and USB-phy nodes
+>   arm64: dts: exynos: ExynosAutov920: Add regulators for the USB
+>   arm64: dts: exynos: ExynosAutov920: Enable USB nodes
+> 
+>  .../boot/dts/exynos/exynosautov920-sadk.dts   | 160 +++++++++++++++++
+>  .../arm64/boot/dts/exynos/exynosautov920.dtsi | 162 ++++++++++++++++++
+>  2 files changed, 322 insertions(+)
+> 
+> --
+> 2.34.1
+> 
+> 
 > 
 
-It should be doable IMO.
 
->> +
->> +&tlmm {
->> +	gpio-reserved-ranges = <8 4>; /* Fingerprint SPI */
->> +};
-> 
-> This setting is common to all of them too
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-Once again clover is exception here, all 3 variants of clover
-are using
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
-      gpio-reserved-ranges = <0 4>;
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
 
-I think it might be better to leave this setting to board files?
+  pip3 install dtschema --upgrade
 
---
-Regards,
-Alexey Minnekhanov
+
+This patch series was applied (using b4) to base:
+ Base: attempting to guess base-commit...
+ Base: tags/next-20260121 (exact match)
+ Base: tags/next-20260121 (use --merge-base to override)
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/exynos/' for 20260122130721.205664-1-pritam.sutar@samsung.com:
+
+arch/arm64/boot/dts/exynos/exynosautov920-sadk.dtb: usb-phy0 (usb-nop-xceiv): '#phy-cells' is a required property
+	from schema $id: http://devicetree.org/schemas/usb/usb-nop-xceiv.yaml
+arch/arm64/boot/dts/exynos/exynosautov920-sadk.dtb: usb-phy1 (usb-nop-xceiv): '#phy-cells' is a required property
+	from schema $id: http://devicetree.org/schemas/usb/usb-nop-xceiv.yaml
+arch/arm64/boot/dts/exynos/exynosautov920-sadk.dtb: usb-phy2 (usb-nop-xceiv): '#phy-cells' is a required property
+	from schema $id: http://devicetree.org/schemas/usb/usb-nop-xceiv.yaml
+arch/arm64/boot/dts/exynos/exynosautov920-sadk.dtb: usb-phy3 (usb-nop-xceiv): '#phy-cells' is a required property
+	from schema $id: http://devicetree.org/schemas/usb/usb-nop-xceiv.yaml
+
+
+
+
+
 
