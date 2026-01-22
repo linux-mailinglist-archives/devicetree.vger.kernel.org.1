@@ -1,179 +1,193 @@
-Return-Path: <devicetree+bounces-258441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258442-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wGDRJvhCcmnpfAAAu9opvQ
-	(envelope-from <devicetree+bounces-258441-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:32:08 +0100
+	id 4GOyDoBGcmnpfAAAu9opvQ
+	(envelope-from <devicetree+bounces-258442-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:47:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 598CE68E53
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:32:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DDDBA69241
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:47:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 0023A4AC496
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:28:53 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id F30A976A9FA
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:35:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 615C234D3A4;
-	Thu, 22 Jan 2026 14:28:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C910133D6C5;
+	Thu, 22 Jan 2026 14:35:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WibVxrQi"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="e9yOhMb/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F41629CB3A;
-	Thu, 22 Jan 2026 14:28:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 930E133A03A;
+	Thu, 22 Jan 2026 14:35:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769092127; cv=none; b=fsxj6u3OvwMImnxd1isZd3YG3CQegQwVmpbq3XFXHBmEgMXMax1EsI8ZzMihhTj2L5f/4EUj7Kqy1prFCIbf85dqXhoXGe/kS4fw3tBbCoMpJTGUY6lk98a8So3MN+Dggvvr1TCA2t2dJu8Qot3FnTd6Gc2msxe+pbbD1NYowzg=
+	t=1769092553; cv=none; b=s249IQfDB6zSvSXF8OwlWByAb4J9FPV1MCw/kmxrhqJLjwfYKj4BYTLRM5iwKKmCYWI3ru/4wKm5ZwMC9NnzFXGs/fo2qXJ64yl8W6GzPn+3GXVeqjWIXonVeRl+Ku1weBg/CiQg6Kg4xHX6IZtR5by8/+8cWPiyPfcBUK1WWS4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769092127; c=relaxed/simple;
-	bh=q+1sYBA9PQtb89RfW6pjRHDbl1q/Q0h/ZePbba5ii7U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BtEJbch6LV7t5Gjc42Itfi2LxbCemxetUnQrypAovoiZ6RHddbW+52cLwhKi3NlY/mtIbMj64bCIYupZ4vFas9ZMNm+VXAXB8tWUge4vUtAOI0rLLyOdqRCf2YHkL9Am75eZjtk+XOVlE4l5l5tMeDeDtIsbtVtGjcnGn807tss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=WibVxrQi; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1769092125; x=1800628125;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=q+1sYBA9PQtb89RfW6pjRHDbl1q/Q0h/ZePbba5ii7U=;
-  b=WibVxrQiDMSgws6vqRl9nqs2CZLTPvWbUkDht/cW7xFuS3zNFivJfW23
-   omaQyojJrONog65fmJ2PIUFqAuPPw4rD5IDFYO5M5tggcx9ltulQgDXfk
-   jDH4BuLnRv/3IPuN0to/190Ucu5Z+1gKZIWoWfk30i/UXJF/3xR4hR0Cp
-   e8I90OWW6jg9J5v5BS/J6de1OyTnSftP6vprx3nv8VK6Hhb7rBh6gQaXY
-   IZhUhqLMWfitWdq0KHzmAF836p/OsvENlUZL95JGvIPh4d4PobTVdn363
-   nwDCuxwR7YG4GPaelt0CfJY4d2llvxCRyPXSME9ih7RKYkdbho3kqxOxE
-   w==;
-X-CSE-ConnectionGUID: zgrHAWwpRnaeWVi6SFpaxQ==
-X-CSE-MsgGUID: vbXOMJK7QzK0O2DVQ+1rEA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11679"; a="70389188"
-X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; 
-   d="scan'208";a="70389188"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2026 06:28:44 -0800
-X-CSE-ConnectionGUID: MtVen+tNTfmkXZF5GblPbA==
-X-CSE-MsgGUID: WloQCkRlSz69zIISyvigYg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; 
-   d="scan'208";a="206648487"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.225])
-  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2026 06:28:39 -0800
-Date: Thu, 22 Jan 2026 16:28:37 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc: netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	linux-kernel@vger.kernel.org,
-	Herve Codina <herve.codina@bootlin.com>,
-	Mark Brown <broonie@kernel.org>,
-	Serge Semin <fancer.lancer@gmail.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Choong Yong Liang <yong.liang.choong@linux.intel.com>,
-	Jiawen Wu <jiawenwu@trustnetic.com>
-Subject: Re: [PATCH v2 net-next 01/15] net: mdio-regmap: permit working with
- non-MMIO regmaps
-Message-ID: <aXI0FdE66sejdvng@smile.fi.intel.com>
-References: <20260122105654.105600-1-vladimir.oltean@nxp.com>
- <20260122105654.105600-2-vladimir.oltean@nxp.com>
- <aXISv3Acm1v6yS4V@smile.fi.intel.com>
- <20260122121301.cyxyevi7xvqw2axk@skbuf>
+	s=arc-20240116; t=1769092553; c=relaxed/simple;
+	bh=6JKagdpu1NW0MWhde9QrcjagRAxxNS3tGFdkj/BcMwc=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=KjhU8AVwsyMbSD/jj4hXeD4lCzyRBjgHuj6UMSO9hq7SSyXwo8ob9o9EZSl/atPjBG8qylgcOw9BTWDsVBb8q4dBFFvb0NacoJf37eKG3Zc1NNwatL6sWshW9evDsoTozE3RN5b1BzNL44PmGzFiiszU8Ott16zncNcO/6nw7wA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=e9yOhMb/; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 05F304E421F0;
+	Thu, 22 Jan 2026 14:35:50 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id C2DE0606B6;
+	Thu, 22 Jan 2026 14:35:49 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B05FA119B828C;
+	Thu, 22 Jan 2026 15:35:44 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1769092548; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=FMQ6v9PWs/W6+3N3+tONMG1XpsHmPJ52wzgsGbqmIs4=;
+	b=e9yOhMb/V7CMe2+OK/aVHvBNkZ19aKgRlCFCK3B8oYkqO89HRlqzo3Bbw2X58ds2W4eCeP
+	N6AXTv1lsHrNgv+yWnlw0Jg3oJVE5yhSMjZE9en5+iGDzTxQ8ILeMzhqezmdrf6ZQoOrPJ
+	iXcCXmULKYoVhNBU+mJ9ZKb2e46Ol7GSYaMyemA3u5IC3oKimT81X3gFh16lBJn9biLF5u
+	HDKHQu8d2bynyWD/P7JJT38btHyIsLDAIc0bHDSXdD8LMY9xd0RK2qdO7iva3I+0M/3uFu
+	pE3UVdhSaaV4x1J0ElDa7GvRfl4cIrIDYZjZ8oNEFoIRVtibS3RaHvWimJqjVQ==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Mark Brown <broonie@kernel.org>,  Krzysztof Kozlowski
+ <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Geert
+ Uytterhoeven <geert+renesas@glider.be>,  Magnus Damm
+ <magnus.damm@gmail.com>,  Vaishnav Achath <vaishnav.a@ti.com>,  Thomas
+ Petazzoni <thomas.petazzoni@bootlin.com>,  =?utf-8?Q?Herv=C3=A9?= Codina
+ <herve.codina@bootlin.com>,  Wolfram Sang
+ <wsa+renesas@sang-engineering.com>,  Vignesh Raghavendra
+ <vigneshr@ti.com>,  Santhosh Kumar K <s-k6@ti.com>,  Pratyush Yadav
+ <pratyush@kernel.org>,  Pascal Eberhard <pascal.eberhard@se.com>,
+  linux-spi@vger.kernel.org,  devicetree@vger.kernel.org,
+  linux-kernel@vger.kernel.org,  linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v3 03/17] spi: dt-bindings: cdns,qspi-nor: Add examples
+ for testing the specific cases
+In-Reply-To: <20260121230759.GA223990-robh@kernel.org> (Rob Herring's message
+	of "Wed, 21 Jan 2026 17:07:59 -0600")
+References: <20260121-schneider-6-19-rc1-qspi-v3-0-43e70fab4444@bootlin.com>
+	<20260121-schneider-6-19-rc1-qspi-v3-3-43e70fab4444@bootlin.com>
+	<20260121230759.GA223990-robh@kernel.org>
+User-Agent: mu4e 1.12.7; emacs 30.2
+Date: Thu, 22 Jan 2026 15:35:44 +0100
+Message-ID: <874iodpven.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260122121301.cyxyevi7xvqw2axk@skbuf>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.46 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.96 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lunn.ch,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,bootlin.com,linux.intel.com,trustnetic.com];
-	DMARC_POLICY_ALLOW(0.00)[intel.com,none];
-	TAGGED_FROM(0.00)[bounces-258441-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,glider.be,gmail.com,ti.com,bootlin.com,sang-engineering.com,se.com,vger.kernel.org];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	TAGGED_FROM(0.00)[bounces-258442-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[bootlin.com,reject];
+	DKIM_TRACE(0.00)[bootlin.com:+];
 	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	R_SPF_SOFTFAIL(0.00)[~all:c];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	R_SPF_SOFTFAIL(0.00)[~all];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_COUNT_FIVE(0.00)[6];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smile.fi.intel.com:mid,ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns,bootlin.com:url,bootlin.com:email,intel.com:dkim,nxp.com:email]
-X-Rspamd-Queue-Id: 598CE68E53
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.198.132.80:email,ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns,0.0.9.96:email,bootlin.com:mid,bootlin.com:dkim]
+X-Rspamd-Queue-Id: DDDBA69241
 X-Rspamd-Action: no action
 
-On Thu, Jan 22, 2026 at 02:13:01PM +0200, Vladimir Oltean wrote:
-> On Thu, Jan 22, 2026 at 02:06:23PM +0200, Andy Shevchenko wrote:
-> > > Cc: Mark Brown <broonie@kernel.org>
-> > > Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>
-> > 
-> > FWIW, Cc list may be located after --- line. It will have the same effect on
-> > emails (as regular tooling will parse and put them into email headers), but
-> > will reduce unneeded noise in the commit message. List will be still available
-> > on lore.kernel.org in the mail archives.
-> 
-> Thanks for the comment. I know it may be located after ---, but for me,
-> doing that implies an extra step which I find unnecessary (moving them
-> there after the git format-patch stage). I keep the Cc: in the commit
-> message in git so that it's preserved across revisions.
+Hi Rob,
 
-You can keep them in your commit message. Many --- lines are also allowed!
+On 21/01/2026 at 17:07:59 -06, Rob Herring <robh@kernel.org> wrote:
 
-> > > Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-> > > Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
-> > > ---
-> > 
-> >   Cc: ...
-> >   ...
+> On Wed, Jan 21, 2026 at 06:04:59PM +0100, Miquel Raynal (Schneider Electr=
+ic) wrote:
+>> It is very painful to modify this file because the core IP described is
+>> so common, it has been implemented in many SoCs from different
+>> architectures. Both `dtbs_check` and `dt_binding_check` are rather long
+>> commands, even when restricted to a single schema files, and letting
+>> this file evolve without risking to break other DTSs is painful, because
+>> there are arm, arm64 and riscv platforms impacted and no way to check
+>> all of them at the same time.
+>
+> OTOH, examples aren't meant to be exhaustive test cases of all=20
+> possibilities. If it was me, I'd actually just get rid of all the=20
+> examples. They are generally just a copy from some .dts we already
+> have.
 
-...
+I will align with this idea the day `make dtbs_check` (or something
+similarly simple) is exhaustive and cross platform :-)
 
-> > > +	unsigned int base;
-> > 
-> > Hmm... resource_size_t ?
-> 
-> Well, regmap_read() takes "unsigned int reg".
-> https://elixir.bootlin.com/linux/v6.18.6/source/include/linux/regmap.h#L1297
-> So in practice, a truncation will be done somewhere if the register base
-> exceeds unsigned int storage capacity. But I didn't feel that it's worth
-> handling that.
+Maybe cdns,qspi-nor is an exception, but it impacts different
+architectures, which means the output of `make dtbs_check` is
+meaningless because it only covers a subset of the possible cases. Hence
+my attempt to gather all specific cases in the bindings, so I could run
+all the meaningful checks I wanted more easily.
 
-Maybe a comment near to the assignment?
+I think this patch has its usefulness, but I don't mind dropping it.
 
--- 
-With Best Regards,
-Andy Shevchenko
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    #include <dt-bindings/reset/starfive,jh7110-crg.h>
+>> +    #include <dt-bindings/clock/starfive,jh7110-crg.h>
+>> +    spi@13010000 {
+>> +        compatible =3D "starfive,jh7110-qspi", "cdns,qspi-nor";
+>> +        reg =3D <0x13010000 0x10000>, <0x21000000 0x400000>;
+>> +        interrupts =3D <25>;
+>> +        clocks =3D <&syscrg JH7110_SYSCLK_QSPI_REF>, <&syscrg JH7110_SY=
+SCLK_QSPI_AHB>,
+>> +                 <&syscrg JH7110_SYSCLK_QSPI_APB>;
+>> +        clock-names =3D "ref", "ahb", "apb";
+>> +        resets =3D <&syscrg JH7110_SYSRST_QSPI_APB>, <&syscrg JH7110_SY=
+SRST_QSPI_AHB>,
+>> +                 <&syscrg JH7110_SYSRST_QSPI_REF>;
+>> +        reset-names =3D "qspi", "qspi-ocp", "rstc_ref";
+>> +        #address-cells =3D <1>;
+>> +        #size-cells =3D <0>;
+>> +        cdns,fifo-depth =3D <256>;
+>> +        cdns,fifo-width =3D <4>;
+>> +        cdns,trigger-address =3D <0x0>;
+>> +    };
+>> +
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    spi@2400 {
+>> +        compatible =3D "amd,pensando-elba-qspi", "cdns,qspi-nor";
+>> +        reg =3D <0x2400 0x400>, <0x7fff0000 0x1000>;
+>> +        interrupts =3D <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>;
+>> +        clocks =3D <&flash_clk>;
+>> +        #address-cells =3D <1>;
+>> +        #size-cells =3D <0>;
+>> +        cdns,fifo-depth =3D <1024>;
+>> +        cdns,fifo-width =3D <4>;
+>> +        cdns,trigger-address =3D <0x7fff0000>;
+>
+> This one really just looks like a subset of the others.
 
+The fifo-depth possibilities are extended just for this
+compatible. Basically I captured in the examples every specific case
+covered with an 'if' schema.
 
+Miqu=C3=A8l
 
