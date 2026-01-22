@@ -1,175 +1,323 @@
-Return-Path: <devicetree+bounces-258388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258389-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eI3OMFAZcmnrbwAAu9opvQ
-	(envelope-from <devicetree+bounces-258388-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 13:34:24 +0100
+	id 2MW4CH4hcmmPdQAAu9opvQ
+	(envelope-from <devicetree+bounces-258389-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:09:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A6E166B14
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 13:34:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DB2B67101
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:09:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CAEFB92A985
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 12:17:47 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8E27B92ABA1
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 12:18:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7C3B47F2E4;
-	Thu, 22 Jan 2026 12:11:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F69B3C1FCE;
+	Thu, 22 Jan 2026 12:12:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uX6L16LN"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YR74msmD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BA9347F2CA;
-	Thu, 22 Jan 2026 12:11:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5123D2BEFE5;
+	Thu, 22 Jan 2026 12:12:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769083873; cv=none; b=YsBcJpFiUub0wpbCrQzgzx1pJme8Kkm2gwCz2NJZz1V4xxDih80WcXz9Qu/d5gYtn8zvxX25mOvmsc0reIUMCwXRs3wK9oC3G2uhS7ANc2guehtAeD2s94xYNhylb0D4Roie/mhNydON2xztFsq5YokvSWxgdSZxquoKybFcYyc=
+	t=1769083951; cv=none; b=e+dULSAGgnc/C6oT/SyCXE3QoKXvha9AmzjzSex8wE6jjGY5OJ1TJOA9a4+1NeefQXvjvQp506YC+THyVmtEo5Lm6ZThBA+j2FEt7j2TJ7kXPSD5bgIo6LijneODAZYDAdpfQ8s7w6Vto+q30czWa4n5OFnfQdYKoEuICoeRl7I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769083873; c=relaxed/simple;
-	bh=RrAU4MCpxG40dMN3gl21TIoYABcckcN7SRx1uchoCMA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Yh36tv9UI8fNA8XqTPT4PG0FHAiCqFO1CHZ+WhmyzF9vKUT2KecST4/YWfpclK71MIq7acWuQD8panmoFaAO5WqvM+pS++dkQVceJOXo9b60q/x0DcJsNVyR3RdcH411U5jTvUFsNMf8bVWW1TGf/uHlyXTt44I+yVRTqGzA7uY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uX6L16LN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8A3FC4AF09;
-	Thu, 22 Jan 2026 12:11:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769083872;
-	bh=RrAU4MCpxG40dMN3gl21TIoYABcckcN7SRx1uchoCMA=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=uX6L16LNUkUtLcoLstMeL++s5uiA+4G5esbf6tQb2ifWsinwNIXGRSzqAmq1p//xq
-	 knhDyk8b+VSVxgPZDYiUpWBpxeux5pLiePvloHLlVL8Jhg5bTR3tfq54y0EPc2v7rk
-	 h92je/cFZSYtH/oVXdb+9U2VTHEU/Qv1KFUiYQZQ6VjUcly5szKOyAoD/gBJ1F3XzK
-	 rOEAMueLqiUGpYKj4wkfOe4UkdIIHqAC+Z6667oVPjdS7ZbmIvhxh/szBI8usDWEFH
-	 kl1l/VaVSFftkBrB39C1D4gkeK1AUxtXBdGkhFyGA0BU0bB7Te+IH7vB8X1o6klf17
-	 VkNUdFC46SS+A==
-From: Sumit Garg <sumit.garg@kernel.org>
-To: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: andersson@kernel.org,
-	konradybcio@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	akhilpo@oss.qualcomm.com,
-	vikash.garodia@oss.qualcomm.com,
-	dikshita.agarwal@oss.qualcomm.com,
-	robin.clark@oss.qualcomm.com,
-	lumag@kernel.org,
-	loic.poulain@oss.qualcomm.com,
-	jorge.ramirez@oss.qualcomm.com,
+	s=arc-20240116; t=1769083951; c=relaxed/simple;
+	bh=omQkOAJnr6QMt1U3a7G037McjhcvdHWTLffUlhypiP8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BznRZR8Z8Z9lbXOwAwWcrGm0b2+p0ymyvBvcBus4iyZi7W+Ze3Qd+P28u3+bSDAPi6gr4DyveGislWJC9IB0QevRvv7aiVDfZnPbJ9GAoFjKLfbtAuaz0lDPh8PqhGvyySKauQl2IEN5CSSL1hR9zyKXpRhZoc+vqiBIBraRR7Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YR74msmD; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1769083949; x=1800619949;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=omQkOAJnr6QMt1U3a7G037McjhcvdHWTLffUlhypiP8=;
+  b=YR74msmDHNfAqCv5CiwNl8rTQzSIIoRKGG4m3QfZCkGav6/0I53kAjvX
+   pVIQnBMihqn2LT/U3MZ2voh9X+jTMoVMc0x49FfoR5CreR23LRKSeGvZr
+   yHhKuShwkE6wvJT0E63AmGrjHnM30SyOJxdV8VSygla+C/IFS/nwOj+3b
+   vM12xu99S8jdkKHCa2GM8Z4HupTbx8KwjHDyN+vJGHaVgEt9yM2QsLw07
+   Lg3598hA498IHVM4rj43sRjPVPK8SF7KcoH4K+0wBUjgPOL+Xa22gqN6g
+   HQZ1StegALZwFoNvp9GDlp7tZ2PcoX/lr/FjOoZpmulSoJXgsVgG0d+ww
+   A==;
+X-CSE-ConnectionGUID: TECl+sJjQwCAOOemE8wO0w==
+X-CSE-MsgGUID: N0g5JWi+TX+dk+FI948Xig==
+X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="87900720"
+X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; 
+   d="scan'208";a="87900720"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2026 04:12:28 -0800
+X-CSE-ConnectionGUID: rBA7Xh1jRq+wVwNasISHBQ==
+X-CSE-MsgGUID: hwHkNLqwR22Yjsz/qyDHXw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; 
+   d="scan'208";a="229684882"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.225])
+  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2026 04:12:24 -0800
+Date: Thu, 22 Jan 2026 14:12:21 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc: netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	linux-kernel@vger.kernel.org,
-	Sumit Garg <sumit.garg@oss.qualcomm.com>,
-	Prakash Gupta <guptap@qti.qualcomm.com>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Subject: [PATCH v3 3/3] arm64: dts: qcom: agatti: Fix IOMMU DT properties
-Date: Thu, 22 Jan 2026 17:40:42 +0530
-Message-ID: <20260122121042.579270-4-sumit.garg@kernel.org>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260122121042.579270-1-sumit.garg@kernel.org>
-References: <20260122121042.579270-1-sumit.garg@kernel.org>
+	Herve Codina <herve.codina@bootlin.com>,
+	Mark Brown <broonie@kernel.org>,
+	Serge Semin <fancer.lancer@gmail.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Choong Yong Liang <yong.liang.choong@linux.intel.com>,
+	Jiawen Wu <jiawenwu@trustnetic.com>
+Subject: Re: [PATCH v2 net-next 02/15] net: mdio: add driver for NXP SJA1110
+ 100BASE-T1 embedded PHYs
+Message-ID: <aXIUJbEwnAvIkeKK@smile.fi.intel.com>
+References: <20260122105654.105600-1-vladimir.oltean@nxp.com>
+ <20260122105654.105600-3-vladimir.oltean@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260122105654.105600-3-vladimir.oltean@nxp.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.46 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	R_SPF_SOFTFAIL(0.00)[~all:c];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-258388-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lunn.ch,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,bootlin.com,linux.intel.com,trustnetic.com];
+	DMARC_POLICY_ALLOW(0.00)[intel.com,none];
+	TAGGED_FROM(0.00)[bounces-258389-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	PRECEDENCE_BULK(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
-	FROM_NEQ_ENVFROM(0.00)[sumit.garg@kernel.org,devicetree@vger.kernel.org];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:helo,dfw.mirrors.kernel.org:rdns,0.90.6.224:email,qualcomm.com:email]
-X-Rspamd-Queue-Id: 1A6E166B14
+	R_SPF_SOFTFAIL(0.00)[~all:c];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,dfw.mirrors.kernel.org:helo,dfw.mirrors.kernel.org:rdns,smile.fi.intel.com:mid]
+X-Rspamd-Queue-Id: 8DB2B67101
 X-Rspamd-Action: no action
 
-From: Sumit Garg <sumit.garg@oss.qualcomm.com>
+On Thu, Jan 22, 2026 at 12:56:41PM +0200, Vladimir Oltean wrote:
+> This driver is the standalone variant of drivers/net/dsa/sja1105/sja1105_mdio.c.
+> In terms of differences:
+> 
+> - this one uses regmaps provided by the parent as a method to abstract
+>   away the sja1105_xfer_u32() calls for register access
+> - the driver prefix has been changed from sja1105 to sja1110 (this MDIO
+>   controller is not present on the older SJA1105 family)
+> - in the sja1105 driver, each memory word has 32 bits, so addresses as
+>   seen by regmap need to be multiplied by 4. This affects what
+>   sja1110_base_t1_encode_addr() returns, and is different compared to
+>   sja1105_base_t1_encode_addr().
 
-Fix IOMMU DT propeties for GPU, display and video peripherals via
-dropping SMMU stream IDs which relates to secure context bank.
+...
 
-This problem only surfaced when the Gunyah based firmware stack is
-ported on Agatti replacing the legacy QHEE based firmware stack. Assigning
-Linux kernel (HLOS) VMID to secure context bank stream IDs is treated
-as a fault by Gunyah hypervisor which were previously ignored by QHEE
-hypervisor.
+> +static int sja1110_base_t1_mdio_read_c22(struct mii_bus *bus, int phy, int reg)
+> +{
+> +	struct sja1110_base_t1_private *priv = bus->priv;
+> +	struct regmap *regmap = priv->regmap;
+> +	unsigned int addr, val;
+> +	int err;
+> +
+> +	addr = sja1110_base_t1_encode_addr(phy, SJA1110_C22, reg & 0x1f);
 
-The DT changes should be backwards compatible with legacy QHEE based
-firmware stack too.
+GENMASK() ? Or do you have already a defined mask for this?
 
-Suggested-by: Prakash Gupta <guptap@qti.qualcomm.com>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Reviewed-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Signed-off-by: Sumit Garg <sumit.garg@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/agatti.dtsi | 11 +++--------
- 1 file changed, 3 insertions(+), 8 deletions(-)
+> +	err = regmap_read(regmap, priv->base + addr, &val);
+> +	if (err)
+> +		return err;
+> +
+> +	return val & 0xffff;
 
-diff --git a/arch/arm64/boot/dts/qcom/agatti.dtsi b/arch/arm64/boot/dts/qcom/agatti.dtsi
-index 7815ece261ea..7c1a636e51f0 100644
---- a/arch/arm64/boot/dts/qcom/agatti.dtsi
-+++ b/arch/arm64/boot/dts/qcom/agatti.dtsi
-@@ -1665,8 +1665,7 @@ gpu: gpu@5900000 {
- 					 &bimc SLAVE_EBI1 RPM_ALWAYS_TAG>;
- 			interconnect-names = "gfx-mem";
- 
--			iommus = <&adreno_smmu 0 1>,
--				 <&adreno_smmu 2 0>;
-+			iommus = <&adreno_smmu 0 1>;
- 			operating-points-v2 = <&gpu_opp_table>;
- 			power-domains = <&rpmpd QCM2290_VDDCX>;
- 			qcom,gmu = <&gmu_wrapper>;
-@@ -1947,8 +1946,7 @@ mdss: display-subsystem@5e00000 {
- 
- 			power-domains = <&dispcc MDSS_GDSC>;
- 
--			iommus = <&apps_smmu 0x420 0x2>,
--				 <&apps_smmu 0x421 0x0>;
-+			iommus = <&apps_smmu 0x420 0x2>;
- 			interconnects = <&mmrt_virt MASTER_MDP0 RPM_ALWAYS_TAG
- 					 &bimc SLAVE_EBI1 RPM_ALWAYS_TAG>,
- 					<&bimc MASTER_APPSS_PROC RPM_ALWAYS_TAG
-@@ -2391,10 +2389,7 @@ venus: video-codec@5a00000 {
- 
- 			memory-region = <&pil_video_mem>;
- 			iommus = <&apps_smmu 0x860 0x0>,
--				 <&apps_smmu 0x880 0x0>,
--				 <&apps_smmu 0x861 0x04>,
--				 <&apps_smmu 0x863 0x0>,
--				 <&apps_smmu 0x804 0xe0>;
-+				 <&apps_smmu 0x880 0x0>;
- 
- 			interconnects = <&mmnrt_virt MASTER_VIDEO_P0 RPM_ALWAYS_TAG
- 					 &bimc SLAVE_EBI1 RPM_ALWAYS_TAG>,
+lower_16_bits() from wordpart.h?
+
+> +}
+
+...
+
+> +static int sja1110_base_t1_mdio_read_c45(struct mii_bus *bus, int phy,
+> +					 int mmd, int reg)
+> +{
+> +	struct sja1110_base_t1_private *priv = bus->priv;
+> +	struct regmap *regmap = priv->regmap;
+> +	unsigned int addr, val;
+> +	int err;
+> +
+> +	addr = sja1110_base_t1_encode_addr(phy, SJA1110_C45_ADDR, mmd);
+> +	err = regmap_write(regmap, priv->base + addr, reg);
+> +	if (err)
+> +		return err;
+> +
+> +	addr = sja1110_base_t1_encode_addr(phy, SJA1110_C45_DATA, mmd);
+> +	err = regmap_read(regmap, priv->base + addr, &val);
+> +	if (err)
+> +		return err;
+> +
+> +	return val & 0xffff;
+
+Ditto.
+
+> +}
+
+...
+
+> +static int sja1110_base_t1_mdio_write_c22(struct mii_bus *bus, int phy, int reg,
+> +					  u16 val)
+> +{
+> +	struct sja1110_base_t1_private *priv = bus->priv;
+> +	struct regmap *regmap = priv->regmap;
+> +	unsigned int addr;
+> +
+> +	addr = sja1110_base_t1_encode_addr(phy, SJA1110_C22, reg & 0x1f);
+> +	return regmap_write(regmap, priv->base + addr, val & 0xffff);
+
+val is already u16.
+
+> +}
+
+...
+
+> +static int sja1110_base_t1_mdio_write_c45(struct mii_bus *bus, int phy,
+> +					  int mmd, int reg, u16 val)
+> +{
+> +	struct sja1110_base_t1_private *priv = bus->priv;
+> +	struct regmap *regmap = priv->regmap;
+> +	unsigned int addr;
+> +	int err;
+> +
+> +	addr = sja1110_base_t1_encode_addr(phy, SJA1110_C45_ADDR, mmd);
+> +	err = regmap_write(regmap, priv->base + addr, reg);
+> +	if (err)
+> +		return err;
+> +
+> +	addr = sja1110_base_t1_encode_addr(phy, SJA1110_C45_DATA, mmd);
+> +	return regmap_write(regmap, priv->base + addr, val & 0xffff);
+
+Ditto.
+
+> +}
+
+...
+
+> +static int sja1110_base_t1_mdio_probe(struct platform_device *pdev)
+> +{
+> +	struct sja1110_base_t1_private *priv;
+> +	struct device *dev = &pdev->dev;
+> +	struct regmap *regmap;
+> +	struct resource *res;
+> +	struct mii_bus *bus;
+> +	int err;
+
+> +	if (!dev->of_node || !dev->parent)
+
+Can we avoid dereferencing? And perhaps dev_fwnode(dev)?
+
+> +		return -ENODEV;
+> +
+> +	regmap = dev_get_regmap(dev->parent, NULL);
+> +	if (!regmap)
+> +		return -ENODEV;
+> +
+> +	bus = mdiobus_alloc_size(sizeof(*priv));
+> +	if (!bus)
+> +		return -ENOMEM;
+> +
+> +	bus->name = "SJA1110 100base-T1 MDIO bus";
+> +	snprintf(bus->id, MII_BUS_ID_SIZE, "%s", dev_name(dev));
+> +	bus->read = sja1110_base_t1_mdio_read_c22;
+> +	bus->write = sja1110_base_t1_mdio_write_c22;
+> +	bus->read_c45 = sja1110_base_t1_mdio_read_c45;
+> +	bus->write_c45 = sja1110_base_t1_mdio_write_c45;
+> +	bus->parent = dev;
+> +	priv = bus->priv;
+> +	priv->regmap = regmap;
+> +
+> +	res = platform_get_resource(pdev, IORESOURCE_REG, 0);
+> +	if (res)
+> +		priv->base = res->start;
+> +
+> +	err = of_mdiobus_register(bus, dev->of_node);
+> +	if (err)
+> +		goto err_free_bus;
+> +
+> +	priv->bus = bus;
+> +	platform_set_drvdata(pdev, priv);
+> +
+> +	return 0;
+> +
+> +err_free_bus:
+> +	mdiobus_free(bus);
+> +
+> +	return err;
+> +}
+
+...
+
+> +static const struct of_device_id sja1110_base_t1_mdio_match[] = {
+> +	{ .compatible = "nxp,sja1110-base-t1-mdio", },
+
+Inner comma is redundant.
+
+> +	{},
+
+Terminator is terminator, trailing comma is confusing here.
+
+> +};
+
+...
+
+> +static struct platform_driver sja1110_base_t1_mdio_driver = {
+> +	.probe = sja1110_base_t1_mdio_probe,
+> +	.remove = sja1110_base_t1_mdio_remove,
+> +	.driver = {
+> +		.name = "sja1110-base-t1-mdio",
+> +		.of_match_table = sja1110_base_t1_mdio_match,
+> +	},
+> +};
+
+> +
+
+Redundant blank line.
+
+> +module_platform_driver(sja1110_base_t1_mdio_driver);
+
 -- 
-2.51.0
+With Best Regards,
+Andy Shevchenko
+
 
 
