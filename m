@@ -1,198 +1,156 @@
-Return-Path: <devicetree+bounces-258274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258275-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kBofMQHycWlKZwAAu9opvQ
-	(envelope-from <devicetree+bounces-258274-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 10:46:41 +0100
+	id ECT9CqfxcWlKZwAAu9opvQ
+	(envelope-from <devicetree+bounces-258275-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 10:45:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C23464C15
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 10:46:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2A0D64BAC
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 10:45:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 842EA62243B
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 09:36:15 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D0E22623948
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 09:38:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34E05346A15;
-	Thu, 22 Jan 2026 09:35:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74A6431AA80;
+	Thu, 22 Jan 2026 09:38:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b="WMmVf+cD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pyM9rVvA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5461B30ACE3
-	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 09:35:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.45
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769074550; cv=pass; b=dVuesGfyNkch1vgdb1+5tepw7+1Qc5lEYJ4ZaRXEi8N+oHmoKyMmuHkvdvU4KBChlk4cIJKHm25mld49H/TInGuu0K3g42gWVKYQzBPKbvmkudatM84AdK26VidNmdRLrmTWn8wjNpYDKJYXSBpLCpcJmeS0RJDzZwNGcYujwNs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769074550; c=relaxed/simple;
-	bh=CpowxPIs9WsIvTj4/MuMW1Y5/GmzHzBIUQWzh9qqtsQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=j9zYBsULlqoxZ2l8qZkQv4GgxrInsfEsgzARU043cZMePY5uSuKAzGQsxdwI8ZcVBmh6qkHK8bhqnERLRuSEaA6wQzC3LQykczYQYhYI1zCmHDud3QCqFme5KRlaU6jPrbHVBpFO9XvM+4XDx5A2RVHIpZ/ThTdKqTmoDj2IxvY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr; spf=pass smtp.mailfrom=sartura.hr; dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b=WMmVf+cD; arc=pass smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sartura.hr
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-65807298140so1141735a12.2
-        for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 01:35:46 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1769074545; cv=none;
-        d=google.com; s=arc-20240605;
-        b=RmvQdhw/vYYLZP08ESxeyDVi6sr8aDt0El3aXCJTGKUIlXnOgJGrSe8ax34yV1871p
-         ABwP0GVxJ66CulzLnPeriRSGFbcHzBc5he8/z22VHgB69uVx3SHg2NJBzx+JbOckE+eD
-         DVSKl141lFmKxdwiDqEIbEXaWdiaOcsO0dhc9qT9XUJhvrFI8wR0NtuQtZD+7EmWhQqk
-         ZHaN0k/trOEOlmSngT70SAiDWbv2KFZJbZxEIMoQoavFctrdGcTzc5LLyUafDUBC14ac
-         e1XznhEiVbJeaDGDvigf7RfQh7pEfIRJ/FpoKeOUXeakLE1pt2dRchZ8336dJ195pPk0
-         ddxQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=CpowxPIs9WsIvTj4/MuMW1Y5/GmzHzBIUQWzh9qqtsQ=;
-        fh=bRrOauWXgOCQNMlm+mVkm01Uz6kH8OPRLfDRrcc2rjY=;
-        b=dhZOkgXVGmVpuAzBh0FKx5DP+fGcGs0IHP25IiMOjsyK4opYDKMzToakB0I4AH8J7C
-         aA9Q2s0YfYKZ4O6p62WFv7gU4fSUXess5ncosXMkjevZKHlDHz0zKpC7c2j6cnlC14Aa
-         9DLQzFwa+QzpaTVfQy+jkUQj/vjDrMvKhS8Utak2pzdSQ8cuEs/L7L/vuyYYtT1AHvnE
-         z38M/b0FqCZ5hc9As6uFXbnHdtQll1ltmZ3fGWKe6EA375i1ukHDOofg5dE/SvBarrVk
-         ytVBkr3Jlg0OC1fjGlqlFPiOaq0rC7LV7H4KNlED5UhUBY+znjJ6WcggaWNtd1qhYZqr
-         DVJA==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura.hr; s=sartura; t=1769074545; x=1769679345; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CpowxPIs9WsIvTj4/MuMW1Y5/GmzHzBIUQWzh9qqtsQ=;
-        b=WMmVf+cDPVXyzKm73nlXhVqX/GgwBPysyw+V8fdoMVElEaKbT5iIB+JX6bg1SMgNHp
-         BZ/xpZLXmDtL49wkbLH6Qe5t/c1FlVbMBwB35Yj2bfbomiTfVmmlbRHxUoEZR/oQWck+
-         Be74nd4grwTHoU8lZrxh7rK5Z11b36UuyBJ2+hjYl8aOJ18c08LpQdSkzjpNZL7dXtFS
-         T9v9pdYZUJX2F6R2ZKeQUFJ7x2iA+DdPl0QupDzrrWAwUT1dVBgpkasAEVxZ/M05ccks
-         CyBCrEYEw1asEPFNKbUBuBO1ZPFruijEtPlo7DqxHXrUhxmMxMlp5rmrVyWYwRFOfOVs
-         sNLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769074545; x=1769679345;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=CpowxPIs9WsIvTj4/MuMW1Y5/GmzHzBIUQWzh9qqtsQ=;
-        b=cBWlXlGuzGa/WLnkd3p9JoC1L518a4qGUONu1nnrQJC2E5jReEM9ZVtyvyIdRPsjg2
-         bGx4dfYjrJE/UKzBJi8V9ZyweuPxQGteLRxCUaxr7K3OPcvkGOFy4S2Ga34p5jTM7lvq
-         pey+o/9twzOuQALAmfZMjx+hJzOxrmKt7RHCtcwjbzve70n60w0KX0xx+jhwkt3wjVwm
-         Ho7jabFo1/owYJW0F4+IyUxHvJP/jH5MHNH3cq8lE1/Y/SVnSVuuftxO7S9Dq88jPL37
-         mp/XrfFDF8nEQZ6ui5/B3FMnAnGwjCqRGcWx5oLNz7eJrZGxMmZIXkwtki5siD1zrXIt
-         QhUw==
-X-Forwarded-Encrypted: i=1; AJvYcCWiSxgv+96YL5RTIIIUiFSX8oVdUDKFZ6RT6DRYYq7cWEN29UeCcjGmUliTV/a/vIgtxSyRQALYswau@vger.kernel.org
-X-Gm-Message-State: AOJu0YxbyiN5qhnpAepUnGjqcShVxazU8n6xehwhV75KjThow2SjkzQ3
-	gXOA8/7ADTzet77lDhiMxtdaB3yFRXZ8OJnOd4RUBzqokDzkgCealUPCNal7mm/7NilKR1T1fg+
-	QcK3wOSft46P2h66uBnmRFQYW7Cy16mOoa5VsApIBZQ==
-X-Gm-Gg: AZuq6aK8DrfVHftKGjYAaBfmcojOM4RTZ2ZUsp4AcoRnD2RE1/G8/EOxyvxo+zFeH10
-	iquDY7KZMdEPvdyfAmLnHpDpMelzpXQ0q/knBsYTOSY26OxvoU6c/U3c9UPeGpaufAI9FHLfm6l
-	xk0iPov88g+wKJ6IqQh+imM10DOSWa3MpP5Bqeds7h0b0UYPqi3fG8JEMlFvFUaIlBm5JnVYmIf
-	beilMe+w5PiHKktVB/aODGaVWetT7WGhADaOU2AcZ18pm7Byexd8AP/Jfq9os9ouS2zmQrUAZ1Z
-	IAdI1SE2dFRAMDscRXIQnte59TFQIv7NWfHj/pihr3kAqPunao9HpeDwO3MyjQ==
-X-Received: by 2002:a05:6402:f02:b0:658:1304:b68b with SMTP id
- 4fb4d7f45d1cf-6581304b771mr3388171a12.15.1769074544348; Thu, 22 Jan 2026
- 01:35:44 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23B692DC76A;
+	Thu, 22 Jan 2026 09:38:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769074699; cv=none; b=lZI1mIJkyCMjJmZQKots6EokFubAoOvw68t9XbuG1EILyUWwVtW8aW7o2tXli1OuweMC4ZtkLbVFfzbO26aENnDn7VXfYXSLxNUybk6fR09ydkapuG48GUxD/EFeA2twNKnMFJ+fYTVwR2cjStaIcrwn3Vout34w97qf+gWw0+4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769074699; c=relaxed/simple;
+	bh=EWgAvMz5SU18vwREMMzZWEEapD5INKu1KRD7ZdxGh6w=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=f0T09z84X7Gcj5wEiIQbmfYbHRtUxdyj+zCbkc2v+aTAsXz7GczqxY5hCooyYWt1hk248MrvNIJZNSjey7ZQGcj/joG/AlHuWmvClJb7nXBHH48xOs2WYYykHoLm49KIJKWvNB8ZMnZl2+YXmhltEkU8TEfhtnKdSuodaJvLeE0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pyM9rVvA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56991C116C6;
+	Thu, 22 Jan 2026 09:38:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769074698;
+	bh=EWgAvMz5SU18vwREMMzZWEEapD5INKu1KRD7ZdxGh6w=;
+	h=From:Subject:Date:To:Cc:From;
+	b=pyM9rVvAhHDtByBv2Oha4vhuJsRAOUMauVOR/OMgEcAQfuT6NzTUADMg1Qp+LM7ZI
+	 1IazcLADEbfaWtqOLy28S2f1CBv0Y/iSra+mZ3ip7QGGEb+fEPl5rKRnK9ZJK1jkt0
+	 5oEGQLa/GBdPSHRMvIlV9AiAmNNDDLlZr/oIvZ/R6jXaITi7QrRN3itUH+MGSlH1+a
+	 LY4Ma9YYp7MqDtYS1lE+2JaaPLBbyFMVtGHAaYjQxd35EE7Suqh5ISDIvxQktV7LwG
+	 IyPEo9I18TbZ/gxY7wyThKOEGlgaYVgqO6fLYBKxsRypbmNToDLAEqGJ0ToMODYMAb
+	 LZisFdWcR8e0w==
+From: Yixun Lan <dlan@kernel.org>
+Subject: [PATCH v2 0/2] mmc: spacemit: Add support for K3 SoC
+Date: Thu, 22 Jan 2026 17:37:29 +0800
+Message-Id: <20260122-07-k3-mmc-v2-0-3c3ffef25e94@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260115114021.111324-1-robert.marko@sartura.hr>
- <20260115114021.111324-7-robert.marko@sartura.hr> <CAD++jLmitNVhWmUf9BBqLR2_WsAR7V-+ykVJsLK3MuOSUKQF0A@mail.gmail.com>
-In-Reply-To: <CAD++jLmitNVhWmUf9BBqLR2_WsAR7V-+ykVJsLK3MuOSUKQF0A@mail.gmail.com>
-From: Robert Marko <robert.marko@sartura.hr>
-Date: Thu, 22 Jan 2026 10:35:33 +0100
-X-Gm-Features: AZwV_QgGcZewelkI3QjoxNf_Rdp39oV_bH_54mEjrqvn-sBMKJLuqze3gq5di5o
-Message-ID: <CA+HBbNEw_9FNOFxx8Mo63Aq49MxWvvuQ4Sc75mXFYpwtMmETiw@mail.gmail.com>
-Subject: Re: [PATCH v5 06/11] dt-bindings: pinctrl: pinctrl-microchip-sgpio:
- add LAN969x
-To: Linus Walleij <linusw@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com, 
-	claudiu.beznea@tuxon.dev, herbert@gondor.apana.org.au, davem@davemloft.net, 
-	lee@kernel.org, andrew+netdev@lunn.ch, edumazet@google.com, kuba@kernel.org, 
-	pabeni@redhat.com, Steen.Hegelund@microchip.com, daniel.machon@microchip.com, 
-	UNGLinuxDriver@microchip.com, olivia@selenic.com, richard.genoud@bootlin.com, 
-	radu_nicolae.pirea@upb.ro, gregkh@linuxfoundation.org, 
-	richardcochran@gmail.com, horatiu.vultur@microchip.com, 
-	Ryan.Wanner@microchip.com, tudor.ambarus@linaro.org, 
-	kavyasree.kotagiri@microchip.com, lars.povlsen@microchip.com, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-crypto@vger.kernel.org, 
-	netdev@vger.kernel.org, linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org, 
-	linux-serial@vger.kernel.org, luka.perkov@sartura.hr, 
-	Conor Dooley <conor.dooley@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANnvcWkC/03MQQ7CIBCF4as0s3YMUAPGlfcwXVQ6tKQWmsEQT
+ cPdxcaFy//l5dsgEXtKcGk2YMo++RhqqEMDdurDSOiH2qCE0kJKhcLg3OKyWNS2F1JpQ+f2BPW
+ /Mjn/2q1bV3vy6Rn5vdNZftefouSfkmugc8ZYYe5ucPo6Ewd6HCOP0JVSPrbwJqyjAAAA
+X-Change-ID: 20260112-07-k3-mmc-6ca01267e834
+To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>
+Cc: Yixun Lan <dlan@kernel.org>, linux-mmc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1295; i=dlan@kernel.org;
+ h=from:subject:message-id; bh=EWgAvMz5SU18vwREMMzZWEEapD5INKu1KRD7ZdxGh6w=;
+ b=owEB6QIW/ZANAwAKATGq6kdZTbvtAcsmYgBpce/+HinEMWPgByCb1BEgVBcsMFS+EUvwcnC8v
+ l1uUlX4WLiJAq8EAAEKAJkWIQS1urjJwxtxFWcCI9wxqupHWU277QUCaXHv/hsUgAAAAAAEAA5t
+ YW51MiwyLjUrMS4xMSwyLDJfFIAAAAAALgAoaXNzdWVyLWZwckBub3RhdGlvbnMub3BlbnBncC5
+ maWZ0aGhvcnNlbWFuLm5ldEI1QkFCOEM5QzMxQjcxMTU2NzAyMjNEQzMxQUFFQTQ3NTk0REJCRU
+ QACgkQMarqR1lNu+22YA/6A50NF0MEca1IiK/og/EQsOKYCKWNcMud0+nfCq+qq8XZEg6vanipM
+ 4RzNH3O5z0dIyHqeCAZ+XVnTz8r6cIxoRKKHBLBYn/Ck0CIsLwlEN+9f3DMWeddwPY0WcsEt9cG
+ QTXVDD9wk1uornaqw0j7Z7CAJJ8Mf/9enPXJVKa76uIrMvuIJDkMRfYyTg4IgWJfEo+ngMso1eF
+ nEDKJBSGJs6JZiAjNhyPmeUL5J5TMG1GH5pymhYaNvkGAX3zRrKaKamm+uv3+ocWGc3F5Db8pW5
+ H6PAfZpyXt1nrSWxAl/kRucGMHQx4texhY5zZOAsjCSwBX6YpYLHJ1bzEBDJUG2LuVjZv3Bk5XX
+ 6sBfCtZG47hl76dThzICc1ZXczPW61Se9gaWx+fVnCcGrpZSPTzbdgLaCTUjK7cxfa2rJmTZsPJ
+ 3/4UOshLgZrg3rrJqjaCR7Vax0scjaoyyaKY25zhfoGrXAP4r8B8OtdgkQyEmzhNL7MROThED3g
+ /F8U3CwQzEg+gncEOE4PnwESYlHQF7lL/R5V83Dbsy8LK6Q5HnbUySAzj4MA0C2oADv9xWyRXQ5
+ WYg5S37+RNK3gYvEo/3W/Vsf2TlgKNPmY1zYZxnY71OWx/165kpGMKHoNLQ3Prvd7ye8VAEuJ+B
+ WNM3TvYd4lurJxs0sNP9B6vkaOH3Ac=
+X-Developer-Key: i=dlan@kernel.org; a=openpgp;
+ fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[sartura.hr:s=sartura];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258274-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	TAGGED_FROM(0.00)[bounces-258275-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[37];
-	FREEMAIL_CC(0.00)[kernel.org,microchip.com,bootlin.com,tuxon.dev,gondor.apana.org.au,davemloft.net,lunn.ch,google.com,redhat.com,selenic.com,upb.ro,linuxfoundation.org,gmail.com,linaro.org,vger.kernel.org,lists.infradead.org,sartura.hr];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[sartura.hr:+];
-	R_SPF_SOFTFAIL(0.00)[~all:c];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robert.marko@sartura.hr,devicetree@vger.kernel.org];
-	DMARC_POLICY_ALLOW(0.00)[sartura.hr,reject];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
-	MISSING_XM_UA(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tuxon.dev:email,microchip.com:email,mail.gmail.com:mid,ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns,sartura.hr:email,sartura.hr:url,sartura.hr:dkim]
-X-Rspamd-Queue-Id: 6C23464C15
+	R_SPF_SOFTFAIL(0.00)[~all:c];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns]
+X-Rspamd-Queue-Id: D2A0D64BAC
 X-Rspamd-Action: no action
 
-On Wed, Jan 21, 2026 at 1:44=E2=80=AFPM Linus Walleij <linusw@kernel.org> w=
-rote:
->
-> Hi Robert,
->
-> On Thu, Jan 15, 2026 at 12:41=E2=80=AFPM Robert Marko <robert.marko@sartu=
-ra.hr> wrote:
->
-> > Document LAN969x compatibles for SGPIO.
-> >
-> > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > Reviewed-by: Claudiu Beznea <claudiu.beznea@tuxon.dev>
->
-> Should I just merge this one patch to the pinctrl tree?
+Enable SDHCI controller support on new SpacemiT K3 SoC, while as before
+only the third controller and the eMMC device has been tested which using
+vendor K3 evb board. This board has not acquired support in mainline
+kernel, so I've omitted the DT part patches for now.
 
-That would be great as other bindings are slowly being picked into
-their respective trees.
+The new SDHCI controller almost reuse the same IP as old K1 generation,
+while fixed the broken 64BIT DMA issue.
 
-Regards,
-Robert
-> Looks good to me.
->
-> Yours,
-> Linus Walleij
+Hi Ulf,
+ Any chance to queue this for v6.20? I know it's a little bit late,
+but the patch itself is quite simple and we've tested on evb board.
 
+Signed-off-by: Yixun Lan <dlan@kernel.org>
+---
+Changes in v2:
+- collect Rob's Ack
+- drop uncessary blank line
+- drop return check from of_device_get_match_data
+- Link to v1: https://lore.kernel.org/r/20260121-07-k3-mmc-v1-0-ff77c07bfdf6@kernel.org
 
+---
+Yixun Lan (2):
+      dt-bindings: mmc: spacemit,sdhci: add support for K3 SoC
+      mmc: sdhci-of-k1: spacemit: Add support for K3 SoC
 
---=20
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura d.d.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+ .../devicetree/bindings/mmc/spacemit,sdhci.yaml       |  4 +++-
+ drivers/mmc/host/sdhci-of-k1.c                        | 19 +++++++++++++++++--
+ 2 files changed, 20 insertions(+), 3 deletions(-)
+---
+base-commit: 6cefff068d030786d63fa50970d6581c354630b2
+change-id: 20260112-07-k3-mmc-6ca01267e834
+
+Best regards,
+-- 
+Yixun Lan <dlan@kernel.org>
+
 
