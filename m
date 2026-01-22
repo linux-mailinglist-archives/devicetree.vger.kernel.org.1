@@ -1,87 +1,100 @@
-Return-Path: <devicetree+bounces-258221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258228-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id INdKHb3OcWnSMQAAu9opvQ
-	(envelope-from <devicetree+bounces-258221-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 08:16:13 +0100
+	id YOzhEn3TcWk+MgAAu9opvQ
+	(envelope-from <devicetree+bounces-258228-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 08:36:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 181BC626E3
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 08:16:13 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id F13ED6290B
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 08:36:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 2595F508A00
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 07:15:45 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5001B564DEA
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 07:32:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFBF028640B;
-	Thu, 22 Jan 2026 07:15:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31F7548094F;
+	Thu, 22 Jan 2026 07:31:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="oVSd3dxd"
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="BKIEXhPB";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="DSWkRW5B";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="KLPH+UJU";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="adwSttq3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010014.outbound.protection.outlook.com [52.101.84.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1A2A33469F;
-	Thu, 22 Jan 2026 07:15:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.14
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769066139; cv=fail; b=m7LfALzwDeNaj7Uz0ZSM5946vrcA+QtOR6X2k0vGVR4qzIbZSdmquxHJL0PLnpDqP1+VPDSPqdEwMM+jz1kZ6MHAvOcBeBbrENObrHAs5vOt3S0frunrFHSzOfW5KrNzOBAFLbwNvHPobKvJELQleulmiuPV1vzKBKZiyuyaVjw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769066139; c=relaxed/simple;
-	bh=/bJlqx7sMA3AWEHbC4X8KjXOJl5fGYnF8B0+3fPVNiQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=gXYj4hHQ2XMtCRzFgCprj5U8SAqpNyJD2u6dP3SSxuyjit4L19V4OK7ZVanqkEz0x6edKcp7ntHlh7IFWvUAOVKwrmb43jjILnd/RX8opOwBDMQxG+fZnskFGOLSIRIeCUVJb4UsXKjNFpIIRiey3yMtJdN51p3Wuk4W0aW5CEE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=oVSd3dxd; arc=fail smtp.client-ip=52.101.84.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fclG4YEAzvhLZXDuoGiePNXkPa0DD34cAkK16d0CaBoAcDcNPIwFSve9F8Ht7gl/S4GqigC2mdGoyOcy7pnw6DqP2n9fWpXTCKYcZFxNGN9kdR/N6gsyy/NNETq+2AA/wC1to51DYVtnWhdOrqXXW9HTenxeWLb+dEw5sJv76OTv9GCbVywwZ5l9w6QSGy5/pcY2ulYVszxB64W6zpGNg7ceOOW6DPVd1oxJ8a9NU/S74hDBj3sZAAJEAHmBklxf7NVgMvb2+79yywJ5JclMfnXb0VJUBHGkJpfGZu4hCTc7JZ+/h15UjUJJRvNkUvudcQ2zFAbK6CNqshAmIgaxdg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sW+z01Gtpwb/2mqrid4Y8qcEjub3Wkvn2hLahGAskD4=;
- b=iYm+AmOs08/jdKbqMJ08rihRr51jL7GtGBpgCo8CeIxDJFCeUf3oIU7GDrBwiLIZpImonbB5sNAqttrb+0Alyc4OXaV69MQCA2JVIn6XDBaOSqJbMYoqdeotubOk20kcSISEQZzLKAWgGkpb7MzXleg8Rl//VGYrKLsQizmoAiYV6TNpYcB3uUihVzbcZsNT52Vz6Pv+xyrYi/M0m+BeQD+X/PT4Vd2Id1LnzKuyVQfqp4NUafSJTaLHU++8cpuEAJDbKHo25cuXaFptMmGao2SOCqLfWpD/88JnGbyCkORJJ3sxbNAaWoA0AkSEvtCoxhd+lykKshh5IFsxdTUZfg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 164.130.1.60) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sW+z01Gtpwb/2mqrid4Y8qcEjub3Wkvn2hLahGAskD4=;
- b=oVSd3dxdWIUZ8XK1xJVBo9sm6D2/MXY5fzd3+nnNYD3S/nZ+KCoHfsiPig5fkLma9vQ1F28wriCDUmYQ3h1UgfXfCmHVM5yPdQmLV3F3KSCYmZBygfOnQfpAKkh9w9C6H75bTWV/KzaC/vggnOt8iMgLv90o9dzP6RCqA94vSSxRYToAQb0pUm5a5hHqtyDRcAIbubmqZhqptfW6EPg9XoIxrXVYmiaGhkn7wad4GTn96+vBR08KMTIHZCKA1jKVA6eebqGvZRm+8UZPDhfUlpwSb5n0n/EcwqbUs6v76TjeJes+hZGW04maojwtk/qViCwLr+vytDBzaWpRJm9gpQ==
-Received: from AS4P190CA0036.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:5d1::7)
- by PR3PR10MB3883.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:40::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.9; Thu, 22 Jan
- 2026 07:15:24 +0000
-Received: from AM4PEPF00027A69.eurprd04.prod.outlook.com
- (2603:10a6:20b:5d1:cafe::6) by AS4P190CA0036.outlook.office365.com
- (2603:10a6:20b:5d1::7) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9542.11 via Frontend Transport; Thu,
- 22 Jan 2026 07:15:19 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.60)
- smtp.mailfrom=foss.st.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=foss.st.com;
-Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
- designate 164.130.1.60 as permitted sender) receiver=protection.outlook.com;
- client-ip=164.130.1.60; helo=smtpO365.st.com;
-Received: from smtpO365.st.com (164.130.1.60) by
- AM4PEPF00027A69.mail.protection.outlook.com (10.167.16.87) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9564.3 via Frontend Transport; Thu, 22 Jan 2026 07:15:23 +0000
-Received: from STKDAG1NODE1.st.com (10.75.128.132) by smtpO365.st.com
- (10.250.44.72) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Thu, 22 Jan
- 2026 08:16:43 +0100
-Received: from [10.48.87.93] (10.48.87.93) by STKDAG1NODE1.st.com
- (10.75.128.132) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Thu, 22 Jan
- 2026 08:15:22 +0100
-Message-ID: <7ee1a963-4e55-4499-b316-0d352683c6c1@foss.st.com>
-Date: Thu, 22 Jan 2026 08:15:23 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E6ED320393
+	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 07:31:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769067074; cv=none; b=HPyuWb12rX8oabF+R/AGWWBC+x/NNcFMd7EZ8rRsEk5qZwXtG5PEtLhF+MYvXDAU/tRXHLKm4jT1a9IOTL7PIxujmP4PNlaTMbpI4Z5vmecwUv/JGrlX5sbQJhyS08cdzYRl1rlwlm6aaWvVv+ToGECtzao0Tx1MTRFo/P1hm+g=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769067074; c=relaxed/simple;
+	bh=a1ZUuu2z3Bankj9gC3h0TOy1MrtZCDi7Wl3+auQODUw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JruK9lpxDW3LqhZ9b4MuUJ6USNKHk/RfkvB7qGGG4+hCCNP8rmQulTLaWPe7Yjex6EuuhcF+udcPbq9cDBruDFHURRHrxfyqiOvhbLnl2Jei0fXDUqNFSH/j4d995bDkUNcShYRDp7TbB1BP7xvX1dDWOaz/uwe9X7Uyw/DExcM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=BKIEXhPB; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=DSWkRW5B; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=KLPH+UJU; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=adwSttq3; arc=none smtp.client-ip=195.135.223.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id AD4EE5BCC2;
+	Thu, 22 Jan 2026 07:31:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1769067063; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=Zds7ar7v5g5Zfy6nZu/sZddvRqj3tHHgtYNUyPDMLOY=;
+	b=BKIEXhPBNlMqa4KA8MBPHDeo1upbzEK5MlzQVoYAVsP4ZE8VuLcCgfybohU+Akj6f4gXKO
+	qTYo7ZDbD7AjcRUL08vstlLQMA4YPv0pgzdozsXUE4LP8VvjENjm3vtmRPmr7+hUE8CwIJ
+	Sgw5R6tnHVwFonOvGDoipAzWBb0tfWM=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1769067063;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=Zds7ar7v5g5Zfy6nZu/sZddvRqj3tHHgtYNUyPDMLOY=;
+	b=DSWkRW5BL/88o66JJrlt/grExPXRl81+3a0vwaFfseFFxrpzKLj8yLP6nb5EjaWkZcwJeN
+	JW5XDiaer0mGt+DA==
+Authentication-Results: smtp-out2.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1769067062; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=Zds7ar7v5g5Zfy6nZu/sZddvRqj3tHHgtYNUyPDMLOY=;
+	b=KLPH+UJUTgCGGYf5v3FE0sBLnssT/o1ijNyISC9uSSyEE93Criz1ItQ9fWwYW/u/zcyOqX
+	e7JmzlyxvsPaCEXeTcXxNbx0+RpVh3rWl6Cjxf46csAQlfBLCkdPUFDpDaTgtkZt6dV0JN
+	0ZUjABmwFwM+KBdADjSIsp+Jh4oLj6A=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1769067062;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=Zds7ar7v5g5Zfy6nZu/sZddvRqj3tHHgtYNUyPDMLOY=;
+	b=adwSttq3Z5xu6VHu//dn9CYagj9e0n0IdCPfR+7LUVEYJN83X+fdwqL7+k3jOCMtfBEPm0
+	iPWFGXPCPulOHNAQ==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id D07563EA63;
+	Thu, 22 Jan 2026 07:31:01 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id T43fMDXScWnMLwAAD6G6ig
+	(envelope-from <tzimmermann@suse.de>); Thu, 22 Jan 2026 07:31:01 +0000
+Message-ID: <f49d5e01-1e01-4393-9ba3-2079006984ae@suse.de>
+Date: Thu, 22 Jan 2026 08:31:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,196 +102,149 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/6] Add boot phase tags for STMicroelectronics boards
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Patrick Delaunay <patrick.delaunay@foss.st.com>
-CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20260109-upstream_uboot_properties-v4-0-75e06657c600@foss.st.com>
+Subject: Re: [PATCH v5 3/9] drm: verisilicon: add a driver for Verisilicon
+ display controllers
+To: Icenowy Zheng <uwu@icenowy.me>, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Drew Fustini <fustini@kernel.org>,
+ Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>,
+ Dmitry Baryshkov <lumag@kernel.org>,
+ Michal Wilczynski <m.wilczynski@samsung.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, Han Gao <rabenda.cn@gmail.com>,
+ Yao Zi <ziyao@disroot.org>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, Han Gao <gaohan@iscas.ac.cn>
+References: <20260116043746.336328-1-zhengxingda@iscas.ac.cn>
+ <20260116043746.336328-4-zhengxingda@iscas.ac.cn>
+ <56e1974c-0fe6-4bdb-918d-fcf6a8b866c1@suse.de>
+ <4afa6f3110790c701c5e24901e9e66560cf21ad0.camel@icenowy.me>
 Content-Language: en-US
-From: Patrice CHOTARD <patrice.chotard@foss.st.com>
-In-Reply-To: <20260109-upstream_uboot_properties-v4-0-75e06657c600@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE1.st.com
- (10.75.128.132)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM4PEPF00027A69:EE_|PR3PR10MB3883:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0e2e7432-c320-4289-4d1e-08de598602ac
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|376014|1800799024|36860700013|13003099007;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?YjNISExrRk9tbUs5ZUJaZVpsMHJWTTdUT243TDFzQlRZY2FSZi9aTFkxS2ZW?=
- =?utf-8?B?TWpFWExZU0VySkdsSHFuS0xva3ZvWkhHVkV2ZDJNbE50S0tlY2RmRkErZG9t?=
- =?utf-8?B?YWl3RExDTnFWd3d0Q29LUDVBY2tMRm11QldRSnhVMFNrRXEzaHlCMHdzYzgx?=
- =?utf-8?B?cXZSQkJlN3VBekF5S1pSNWFJN3FxM1RXYUFneWFjNzdWaUFxNTkwT3Fabnl3?=
- =?utf-8?B?YkVLWHVMeVhqUGY3KzJaOVEyamJnWHA2c2kvTGtMVmEyK1FmWFl2SEhrUUdL?=
- =?utf-8?B?TWE2SnZTVi9IN2RMM2dzS0FoaklqalJsS3kxdTUxWUpWd3FXM1BTQVcycHJK?=
- =?utf-8?B?SzlaZFkvVE0ySVZHZVh0d0E1ejFMbHUwRzBPNHZ2dzJQRDBrSFkxWEZ5dGcx?=
- =?utf-8?B?SW1saHBBd0JWN2VoaHVkOStDQ0pMWUJiSTFkOXJSZ09KRXQ3cDZDaEV6N1dL?=
- =?utf-8?B?aWtmaVdic3pFV1YwaUNmNDJGVkZYeDRjMTB2NlFuSmFITUR5UFpMVVJCbndY?=
- =?utf-8?B?MVRBNlBCQThTUFZ6Z2NJa2hWVlRnOFA0MzJCMlVvZkphZGZFSHpBYW1RV04v?=
- =?utf-8?B?WUVqdjlreXZTRStWbjZldE9rK1lic2lvalpTdjlGaWJ1N3NVYnZBaGgwV3BJ?=
- =?utf-8?B?QTBXSnBwbUpEN2ZOeUlvd0RQL1NzOGh0bzl2NEdVY1ZkdlpRUXN4STVnSnZX?=
- =?utf-8?B?TmpuVWJ6RUpZR2lLSktpUmVRUnh6RzhWa0lLTHMwbld6R1dhSmdPRnhYT2RX?=
- =?utf-8?B?QnlNMmpGTXIzVHpVRjJWcWJud2VoSDdlSHQxREZpdzU4VmJka0c5Y2ZXWHMv?=
- =?utf-8?B?ME9pMVpsN3NSSWsvelJQelRNL0lQWnk2dTVvNHN0KzVtR3Z4NWlDeDdIRlNx?=
- =?utf-8?B?RnFxQkg1QVpMR0VMaDNGeWNkdUZrS0V5czBjRWNaWVk3Y1ZBQ1VnZEhMT2lh?=
- =?utf-8?B?MG1GZlJMdkRMUUpielhqem9yQnpPenA1N2NyL2JYZjcwMVpQUlhHMForclRa?=
- =?utf-8?B?K092UndZM2N1b1p0MnZUWHN1N3RXZE1zOWM3SjJsRUw1dTF2dXloREV4VHd1?=
- =?utf-8?B?Uko5bDU5S0xOR0MvTm9ZRlNubzMrY1A5TldBb0Vwa2d2a0NJRG9pYXRNcEcr?=
- =?utf-8?B?Znc1cTZtSnFIRHF1eG1rL2ZlVlJ0d1RTKzN0OVQ5eHhtaDFLeHRBUk5VOE9z?=
- =?utf-8?B?TjJHTG50NWZOSWRMc2xvTXc5WG83enlhYlVoZ2tZa1JJTWh4bWlDOG9LU3FV?=
- =?utf-8?B?MVlEYUQ3eVY4VkkvNFZvb0s5aVFidU02VE1kbVQ4L1pISk4wL3pEMTRGMmFU?=
- =?utf-8?B?NXF0N1M2a3lqb24vRWJTUGJtR2tNSmFGcWFxVGIwY2IyRXAxb3ZsSXZmanNz?=
- =?utf-8?B?SG1nZng1SitVckR3eUFxN3ljbEhCUnU0ei9aNHRuZVhvMHprNW8zbHRKeTcz?=
- =?utf-8?B?cHhoOXppM2dvdXU5cnpjMlZNQVEzQ3NHSFFUS1QrRG55Y0ZzYUFDSVBEMUF4?=
- =?utf-8?B?VHNMTzEwOEZCeXpRVlMxQ2RvbXBFdE5pYW9oRi9WM3BxOTQvWEdaYndXQW12?=
- =?utf-8?B?dTFXdzJIQjdGRFVTZ1BmMGZJOUNyZUJVRzU2SXl5Q1JuQTlGVDJzR25HVVVE?=
- =?utf-8?B?aWlQR243TFlSOGlxL1orWU02NFlYNUtSUU1oRkoxcm5rVnBuVUxjcUYrVzI5?=
- =?utf-8?B?R0VuLzF2ckY2S0tqb1JIUnF3UEFDYXUwd3NkN0ZjMFk4TTFKY2l0YXE5VXkx?=
- =?utf-8?B?Vmg4SlZZdXc5emNSNld3ZFYyZjJFcC9abnY0Ym8waEtOMm5FaVlMZ0lqNE9G?=
- =?utf-8?B?dXdxVyt1ZHQ2aCtBNFc3NWdsaXdkek1CdGxyQ3RFWEtzTEVUaExGK3NLNWZN?=
- =?utf-8?B?RUQyaTVyNTc3MkF2L1RSMWxBM2VweDVqYmw2ZG95amVkVTQ3YjA3YTR4WC9w?=
- =?utf-8?B?cmthdjIxV3YxdVpzdG5meEZsZ2xaMDR3Zjg5UlZZaldCZVlvOUZWZUxnaWVS?=
- =?utf-8?B?NENlVTdsK1R4d2poYUJWZVNmcmh4VHorYy9oMVdoOW43NWpwNFBmWHNLTlBN?=
- =?utf-8?B?Mnd1b3U4MWEwUGEyNE04MkNNUDE1cTNxOC9tNUs1MW1HVVllYjAwR3hGemN0?=
- =?utf-8?B?dDgxRDc5Znd2YVZRTEU4YWVBUng3SHFIZHQ0cXBxSDZySFRQVFB2Mm9YQUN4?=
- =?utf-8?B?akV2dENlZWF3Mm9jNlR6WlBoNE4zcmdiS2FuL1BZSmpDWndPTGdjR0ptK0xo?=
- =?utf-8?Q?HS+MWYNfXI1Btg+y0MtBhOvHABxY40V63fc8k+urOU=3D?=
-X-Forefront-Antispam-Report:
-	CIP:164.130.1.60;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(1800799024)(36860700013)(13003099007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0:
-	VovF8RatRRekLrovR7P9Uff0rRD6EW0OPsXm8gLkdFE6TSpqgMrJ09Q3Crqu0gm72JNOzxpFMnW3w7EjJ4GG9ZVT0yurk9i3U0XePNY7Jw4LYNpbgiMArUJUXjUuPHW9CsJvutvEEarEVJjG369PHdvd2fRXiMw6tsOnDNvJ5cuQfMkT+po/xu0/gqApuI9DhbPofx46rVOl1kr5UFLoYsiV/FR1aIwQrayR4Boij1hd4GNaRYhtK3i0lxl+xc+gr++sAlbHpZkj7LqP/jto33tZd313nsox3q1zgaohtJE9GkDzNlGqsF+fHeaSpkG5amU1qnMiU92hS9THa3S7RlVTIWlZyAekzCqMIvl5zKe2Nndx7zx009+ish/hOC5mUGq/LsBYnELvb+lTXv6T5XG+CxDMDRdYYFcxVZzbZhaNTwIQGe05nXDS6o7mNpMqsMoXZoERLfhaw1pbmF2Hb6DPReRP3Q0Gzkt5uMuCq8LWvTtvdbvFA8gXwUEaeikQ38vB2Smfru+5IJvgUjWcKZRxskJzPfg+chtnsM+Z+5qAxGdDqFBGyYJmA7F2FN/yvImFgOi/bz5EvkhmlFcce7uLNWRfMBfbclXl76KqQr6ze56/JiF5DL77gn0n1zyy2v64Vc/nKquXZyDH+XpnQy6Q+hekt9y9xpXLlW+VOldisaBXSZjje6BWlizxWxIQ
-X-OriginatorOrg: foss.st.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2026 07:15:23.7759
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0e2e7432-c320-4289-4d1e-08de598602ac
-X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.60];Helo=[smtpO365.st.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	AM4PEPF00027A69.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3PR10MB3883
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <4afa6f3110790c701c5e24901e9e66560cf21ad0.camel@icenowy.me>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Flag: NO
+X-Spam-Score: -2.80
+X-Spam-Level: 
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.54 / 15.00];
+X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[foss.st.com:s=selector2];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[28];
+	FREEMAIL_CC(0.00)[pengutronix.de,kernel.org,samsung.com,bootlin.com,gmail.com,disroot.org,vger.kernel.org,lists.freedesktop.org,lists.infradead.org,iscas.ac.cn];
 	MIME_TRACE(0.00)[0:+];
-	DMARC_POLICY_ALLOW(0.00)[foss.st.com,none];
-	TAGGED_FROM(0.00)[bounces-258221-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,foss.st.com];
+	FREEMAIL_TO(0.00)[icenowy.me,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,ffwll.ch,redhat.com];
+	TAGGED_FROM(0.00)[bounces-258228-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[foss.st.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[st.com:email,ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns,foss.st.com:mid,foss.st.com:dkim];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[patrice.chotard@foss.st.com,devicetree@vger.kernel.org];
+	DMARC_POLICY_ALLOW(0.00)[suse.de,none];
+	DKIM_TRACE(0.00)[suse.de:+];
 	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	R_SPF_SOFTFAIL(0.00)[~all:c];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tzimmermann@suse.de,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	R_SPF_SOFTFAIL(0.00)[~all];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
+	RCVD_COUNT_FIVE(0.00)[6];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: 181BC626E3
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns,suse.com:url]
+X-Rspamd-Queue-Id: F13ED6290B
 X-Rspamd-Action: no action
 
+Hi
 
+Am 22.01.26 um 08:06 schrieb Icenowy Zheng:
+> 在 2026-01-21星期三的 13:56 +0100，Thomas Zimmermann写道：
+>
+> =============== 8< =================
+>>> +
+>>> +       if (irqs)
+>>> +               pr_warn("Unknown Verisilicon DC interrupt 0x%x
+>>> fired!\n", irqs);
+>> I'd avoid pr_warn() here. This can fill your logs quickly.
+> Then is pr_warn_once() okay?
 
-On 1/9/26 10:22, Patrice Chotard wrote:
-> The bootph-all flag was introduced in dt-schema
-> (dtschema/schemas/bootph.yaml) to define node usage across
-> different boot phases.
->     
-> To ensure SD boot, timer, gpio, syscfg, clock and uart nodes need to be
-> present in all boot stages, so add missing bootph-all phase flag
-> to these nodes to support SD boot.
-> 
-> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
-> ---
-> Changes in v4:
-> - Remove useless nodes in stm32mp15-scmi.dtsi
-> - Link to v3: https://lore.kernel.org/r/20260108-upstream_uboot_properties-v3-0-c1b9d4f2ce8d@foss.st.com
-> 
-> Changes in v3:
-> - Remove duplicate bootph-all property in ltdc node
-> - Link to v2: https://lore.kernel.org/r/20251114-upstream_uboot_properties-v2-0-3784ff668ae0@foss.st.com
-> 
-> Changes in v2:
-> - Fix 'pinmux' is a required property for arch/arm/boot/dts/st/stm32mp157c-ev1-scmi.dtb
-> - Add bootph-all property for lvds and ltdc nodes for stm32mp2
-> 
-> ---
+Yeah, warn_once should be fine.
 
-Initial implementation allows to factorize and add bootph-* properties in a limited number of DT files.
+>
+>>> +
+>>> +       return IRQ_HANDLED;
+>>> +}
+> =============== 8< =================
 
-But after internal discussion with Alexandre, choice has been done to add bootph-* properties in board 
-DT files only instead of SoCs/pinctrl/boards DT files. 
+Maybe consider returning IRQ_NONE if the (irq) tests succeeds.
 
-This impacts a greater number of DT boards files.
-A new series revision will be send to match this requirement.
+>
+>>> +       /* Fixup framebuffer address for src coordinates */
+>>> +       dma_addr += (state->src.x1 >> 16) * bpp;
+>> bpp is deprecated and should be avoided in new code. You can compute
+>> the
+>> offset with drm_format_min_pitch():
+>>
+>> drm_format_min_pitch(fb->format, 0, state->src.x1 >> 16 )
+> Well it seems quite difficult to track what's deprecated in the DRM
+> subsystem, is there anything like a bulletin?
 
-Patrice
+No, you either know or find out during the review. :) We also tend to 
+leave comments in the code. [1]
 
+[1] 
+https://elixir.bootlin.com/linux/v6.18.6/source/include/drm/drm_fourcc.h#L82
 
-> Patrice Chotard (6):
->       ARM: dts: stm32: Add boot phase tags for STMicroelectronics f4 boards
->       ARM: dts: stm32: Add boot phase tags for STMicroelectronics f7 boards
->       ARM: dts: stm32: Add boot phase tags for STMicroelectronics h7 boards
->       ARM: dts: stm32: Add boot phase tags for STMicroelectronics mp13 boards
->       ARM: dts: stm32: Add boot phase tags for STMicroelectronics mp15 boards
->       arm64: dts: st: Add boot phase tags for STMicroelectronics mp2 boards
-> 
->  arch/arm/boot/dts/st/stm32429i-eval.dts       | 11 +++++
->  arch/arm/boot/dts/st/stm32746g-eval.dts       | 10 +++++
->  arch/arm/boot/dts/st/stm32f4-pinctrl.dtsi     | 12 ++++++
->  arch/arm/boot/dts/st/stm32f429-disco.dts      | 11 +++++
->  arch/arm/boot/dts/st/stm32f429.dtsi           |  9 ++++
->  arch/arm/boot/dts/st/stm32f469-disco.dts      | 12 ++++++
->  arch/arm/boot/dts/st/stm32f7-pinctrl.dtsi     | 11 +++++
->  arch/arm/boot/dts/st/stm32f746-disco.dts      | 12 ++++++
->  arch/arm/boot/dts/st/stm32f746.dtsi           |  5 +++
->  arch/arm/boot/dts/st/stm32f769-disco.dts      | 12 ++++++
->  arch/arm/boot/dts/st/stm32h743.dtsi           | 19 +++++++++
->  arch/arm/boot/dts/st/stm32mp131.dtsi          | 21 ++++++++++
->  arch/arm/boot/dts/st/stm32mp135f-dk.dts       | 11 +++++
->  arch/arm/boot/dts/st/stm32mp15-scmi.dtsi      |  2 +
->  arch/arm/boot/dts/st/stm32mp151.dtsi          | 29 +++++++++++++
->  arch/arm/boot/dts/st/stm32mp157a-dk1-scmi.dts | 14 +++++++
->  arch/arm/boot/dts/st/stm32mp157a-dk1.dts      | 43 +++++++++++++++++++
->  arch/arm/boot/dts/st/stm32mp157c-dk2.dts      | 43 +++++++++++++++++++
->  arch/arm/boot/dts/st/stm32mp157c-ed1-scmi.dts | 14 +++++++
->  arch/arm/boot/dts/st/stm32mp157c-ed1.dts      | 60 +++++++++++++++++++++++++++
->  arch/arm/boot/dts/st/stm32mp157c-ev1-scmi.dts | 25 +++++++++++
->  arch/arm/boot/dts/st/stm32mp157c-ev1.dts      | 36 ++++++++++++++++
->  arch/arm64/boot/dts/st/stm32mp211.dtsi        |  7 ++++
->  arch/arm64/boot/dts/st/stm32mp215f-dk.dts     |  1 +
->  arch/arm64/boot/dts/st/stm32mp231.dtsi        | 22 ++++++++++
->  arch/arm64/boot/dts/st/stm32mp235f-dk.dts     | 11 +++++
->  arch/arm64/boot/dts/st/stm32mp251.dtsi        | 25 +++++++++++
->  arch/arm64/boot/dts/st/stm32mp255.dtsi        |  3 +-
->  arch/arm64/boot/dts/st/stm32mp257f-dk.dts     | 11 +++++
->  arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    | 11 +++++
->  30 files changed, 512 insertions(+), 1 deletion(-)
-> ---
-> base-commit: 53c18dc078bb6d9e9dfe2cc0671ab78588c44723
-> change-id: 20251112-upstream_uboot_properties-22480b0b4b1c
-> 
-> Best regards,
+Best regards
+Thomas
+
+>
+>
+> Thanks,
+> Icenowy
+
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
+GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
+
 
 
