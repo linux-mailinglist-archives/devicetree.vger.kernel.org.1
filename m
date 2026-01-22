@@ -1,228 +1,206 @@
-Return-Path: <devicetree+bounces-258393-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258394-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kLLAC48rcmmadwAAu9opvQ
-	(envelope-from <devicetree+bounces-258393-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:52:15 +0100
+	id wL09CGMncmmadwAAu9opvQ
+	(envelope-from <devicetree+bounces-258394-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:34:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26C15678F0
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:52:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D880B67591
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:34:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4DA9D3CA116
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 12:24:39 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 99BA640C21B
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 12:25:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99A6F43636E;
-	Thu, 22 Jan 2026 12:20:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C076F42EEAC;
+	Thu, 22 Jan 2026 12:21:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="n/2nK+gA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Qvg5Hahh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dy1-f177.google.com (mail-dy1-f177.google.com [74.125.82.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AE4837C0E9;
-	Thu, 22 Jan 2026 12:20:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6734429817
+	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 12:21:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769084431; cv=none; b=KlMKR5joqgu1aSjr5Yn/UhGzQ+9/edADBKgdDyE22Os423hr07anSpl598tdQ9E3d1O4NMDICv17Js/HsbVWO9Pv09z4M5wdCnmnXIHPvuHpb4z/ziNH0oyLXl/UFK35r5TKt45hn7aoR2oGuMOea/YaTVNpxfEA7Gx8Ru4benA=
+	t=1769084493; cv=none; b=KTZN6Vzt49jERAliPZ/Bc1PxyJTU3RHp9JZcjhvNpWDpMiPuqvJfqTclew5i9YlxamzjJplHyFqyTwp8JpJGn/RR0TSHtTkAa6zwx5kJcnIzFtaTZXkcZAMCOIwewxMsuAoy58G3zkNmORYSHDCRvuD7dpwIln8U7MbS12qFTBs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769084431; c=relaxed/simple;
-	bh=yz6FOb3lnDARnNOGEJctM9K6WyoQbGOoJ6ZUxNZ6L5s=;
+	s=arc-20240116; t=1769084493; c=relaxed/simple;
+	bh=8Ql8ng4jzLVZ0547/16u+Y8Cip3PkkHJaihg88NYbG8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=goZem5LgBz5r5MgevxuL5zEduSmhwezcZ4z5X9i7GT0ZcQtxRU/QD3WrPlxbOy2yBAP1poVOGWjkNnsf0BPSlI1JV4MLIyX+lEYXgaSyM6+wB/GorHvMnWiNn1K/Uhd0cW9pTkXc6Yh0InqlrGgPUKDIEQ9qAgqEBJ1d570eoho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=n/2nK+gA; arc=none smtp.client-ip=198.175.65.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1769084429; x=1800620429;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=yz6FOb3lnDARnNOGEJctM9K6WyoQbGOoJ6ZUxNZ6L5s=;
-  b=n/2nK+gAfyl0PZJf6xMEvyIaprO+3V5hOQXHzNS3rdU+PDn/gjUy849B
-   N6xHr67/HPLZ6eylG6JIdIyLbABAtQO8yBn5XaaxaSD/STooz177BPLs/
-   Huq7swhsFd3KZ6pkgAnKjbSop7MasYCZxAJjcIJj0hgsWg411zxLx+uUl
-   kA4kRmsGR05C+tnQvE3pRx04/2tLjnUmifbOwsG9oJfVHkUUCAaEymm8g
-   g3F+amHv5lzfUp/O0hQX9ISVp2rDugeK8+lIzV2tGtWhawRRl7tEpFCYe
-   CSPyBjAXRg3zk0UqgD96TVRG7+uTpG15/7sUQEdlMcicpZnUFjU5+xLtL
-   w==;
-X-CSE-ConnectionGUID: 4e/Y1aEIS2yLlDTXH9Xmlw==
-X-CSE-MsgGUID: W4vQ4q7nQ96gMgS0+XJUQw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="74177784"
-X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; 
-   d="scan'208";a="74177784"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2026 04:20:29 -0800
-X-CSE-ConnectionGUID: WmjDF6CIQX654NEDE0gy/w==
-X-CSE-MsgGUID: 7OSp1yG4St60iyih1dlMig==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; 
-   d="scan'208";a="206623316"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.225])
-  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2026 04:20:24 -0800
-Date: Thu, 22 Jan 2026 14:20:22 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc: netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	linux-kernel@vger.kernel.org,
-	Herve Codina <herve.codina@bootlin.com>,
-	Mark Brown <broonie@kernel.org>,
-	Serge Semin <fancer.lancer@gmail.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Choong Yong Liang <yong.liang.choong@linux.intel.com>,
-	Jiawen Wu <jiawenwu@trustnetic.com>
-Subject: Re: [PATCH v2 net-next 03/15] net: mdio: add generic driver for NXP
- SJA1110 100BASE-TX embedded PHYs
-Message-ID: <aXIWBpIvp7KZYZCn@smile.fi.intel.com>
-References: <20260122105654.105600-1-vladimir.oltean@nxp.com>
- <20260122105654.105600-4-vladimir.oltean@nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Pzfgpw9cnaLfzSocC6F2wtIdLY5LlegNvtlwG7813ZSaoV0EGmd1PWoIQAmibjntfNN8Qc0wxEv0D1ve4NoZM8EqIs8NH6zmCLqieqvc6YPDPDtL6VfLQ2fHI7XTzDtGEmYFcPvHoy+5NP5gmi9qS1IZo2Z/EHVDMXI0Pjd/FMI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Qvg5Hahh; arc=none smtp.client-ip=74.125.82.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dy1-f177.google.com with SMTP id 5a478bee46e88-2b720bb90d0so846397eec.0
+        for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 04:21:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1769084491; x=1769689291; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ox7VDCdcqo61Lj8ef2HrYPccmfuXyWilwLZW5OHdUzM=;
+        b=Qvg5Hahh9n709kUAS52/10Q+nhDJ6rq7/NEJ37Dz285+fPYfogbo6De3u65P9v2SLj
+         1ZRp1O0/DrKINvtJKjkwSjMRYuM5+3OtO19jCAyOxjZjCOAoptJgjjUOczajO0EHoPqd
+         Iaw6rTrjQHvvFbJA+BWqbMs926G9I/52IXvDLSAImBMnvHsc+usA3dfZUOyl21kQt3gs
+         50I3OwVW/MY37ZnDSGx8tOyGig7iItbNOBXzZXDVpMpKkQmnggPHk7S023p1vKzvydFO
+         yFuuBSc7sCoGwzVvX4NDGLFSVFNTbsmKA3D86d5+coquRoiaxa9mqj+a7HFYbM1LWsHW
+         ug6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769084491; x=1769689291;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ox7VDCdcqo61Lj8ef2HrYPccmfuXyWilwLZW5OHdUzM=;
+        b=r4BZNUzarzbXHuhB8e8Ti2cOM8beeGM5lNiM7baQU9wPUjymJoJXFEFl9fOZT8RWDc
+         9D5Gpon6n5iHDff2GI9ckbCX5ruB8g/UVCD8rkL5gs7iyiZ5EW3Y06Wk+chAlUE0iKa6
+         9i/AFQRB/8ZNheDa/PafiJi6HDSBZjzKiTzeGZxn8v0CyCXQBMngxp2hEkKzwsv3XwFF
+         iQ0vHf9X1lJ+uetMX8UILn8Ok9enLPrLgbyZF8a7LX+bDlwPvQB3f8w/iboC0ysDSRRS
+         GPAuQMrtAX82Rc+CgGl0+InWxs7aL4b6bljOpbk2ljDnrPFDVe8tCrqKr6iSMddLTCWA
+         1jTw==
+X-Forwarded-Encrypted: i=1; AJvYcCXOXYF5MHXms/t4PUCdC+a7PCcqxu7aRlzsaYwXU3FEMFlaAu9MBGKLX6SU6XCT3RG4YcKWRTpI7kAH@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8Li8EilKxt6AjIHDb05ctk50IcFO5/3xVY6zKJIuj3mF83WKz
+	dlDM52CMB9SUoB3qKMKK4FU2YWj0qY+XVVF/suK6/5PyUHaWDGPg4AR+
+X-Gm-Gg: AZuq6aKfmSbHEctNfk+xZPNayZyocC2Ya9cZ9cKtCKxN8gV6x5iWRAIx4UNQ6dCA15e
+	HV4gQlhsxBX8Hxh9s2U3XOpmn336i9T5Uydjc5nxDQvkAjxMJd7Gj9PtY/7OO5BC/l3HTiMS/TN
+	leRda0pOBuXfl5pq2Z9OmXtEIuzfdldUalov9k/CEbqbPVs4VtZJrAp12l1RIlS7D3+lUOgpraw
+	d+PRF+gIIc/KRXpi65bloX4k8SRiXY6SHphlkmCEdJItJIxaliq8ZoOLWKKXqeJKqA+/5/XmT+p
+	ShNDziN0W0mcfB3oF7AK549Tyut13e36Si8+yd+mTTMQ1RkBAPmkOZMnivNhwS+WO805z1Pt3U2
+	AGcJN1vKfKqFYVXVMU32tbovaBH5DbTdAzm9F2rt2lz03HTXnumGXw8RkGpHw22jvLLWwPzZQYh
+	WCeOHK5hCNdCN3FmL3XAwtaG5LH5qU2lds3nvJ+d5c0ZM00L/Pd8autV6fn4G+qKcGO80b+SUlL
+	Q==
+X-Received: by 2002:a05:7300:550:b0:2b6:a622:25f5 with SMTP id 5a478bee46e88-2b6b470d64bmr11703766eec.11.1769084490654;
+        Thu, 22 Jan 2026 04:21:30 -0800 (PST)
+Received: from orome (p200300e41f0ffa00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f0f:fa00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b70b3c8ea3sm7949855eec.22.2026.01.22.04.21.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Jan 2026 04:21:29 -0800 (PST)
+Date: Thu, 22 Jan 2026 13:21:24 +0100
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jon Hunter <jonathanh@nvidia.com>, linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org
+Subject: Re: [PATCH 0/3] ASoC: dt-bindings: realtek,rt5640: Various fixes
+Message-ID: <aXIWEP9lH1CyacnO@orome>
+References: <20260108143158.351223-1-jonathanh@nvidia.com>
+ <176861152450.1947082.2637987844354037789.b4-ty@nvidia.com>
+ <CAL_Jsq+LUsfcU_-zPo88acsL_C6red=4jzmeca3ZCeyPgHDBvA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="vmeb32i2knrpyiuh"
 Content-Disposition: inline
-In-Reply-To: <20260122105654.105600-4-vladimir.oltean@nxp.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+In-Reply-To: <CAL_Jsq+LUsfcU_-zPo88acsL_C6red=4jzmeca3ZCeyPgHDBvA@mail.gmail.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.46 / 15.00];
+X-Spamd-Result: default: False [-2.06 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lunn.ch,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,bootlin.com,linux.intel.com,trustnetic.com];
-	DKIM_TRACE(0.00)[intel.com:+];
-	DMARC_POLICY_ALLOW(0.00)[intel.com,none];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258393-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,nvidia.com,vger.kernel.org];
+	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-258394-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[thierryreding@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 26C15678F0
+	RCPT_COUNT_SEVEN(0.00)[9];
+	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com]
+X-Rspamd-Queue-Id: D880B67591
 X-Rspamd-Action: no action
 
-On Thu, Jan 22, 2026 at 12:56:42PM +0200, Vladimir Oltean wrote:
-> This is the standalone variant of drivers/net/dsa/sja1105/sja1105_mdio.c.
-> Same kind of differences between this driver and the embedded DSA one
-> apply: regmap is being used for register access, and addresses are
-> multiplied by 4 with regmap.
-> 
-> In fact this is so generic that there is nothing NXP SJA1110 specific
-> about it at all, and just instantiates mdio-regmap. I decided to name it
-> mdio-regmap-simple.c in the style of drivers/mfd/simple-mfd-i2c.c which
-> has support for various vendor compatible strings.
 
-...
+--vmeb32i2knrpyiuh
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 0/3] ASoC: dt-bindings: realtek,rt5640: Various fixes
+MIME-Version: 1.0
 
-> +#include <linux/module.h>
-> +#include <linux/of_mdio.h>
-> +#include <linux/phy.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +#include <linux/mdio/mdio-regmap.h>
+On Tue, Jan 20, 2026 at 07:35:53PM -0600, Rob Herring wrote:
+> On Fri, Jan 16, 2026 at 6:59=E2=80=AFPM Thierry Reding <thierry.reding@gm=
+ail.com> wrote:
+> >
+> > From: Thierry Reding <treding@nvidia.com>
+> >
+> >
+> > On Thu, 08 Jan 2026 14:31:55 +0000, Jon Hunter wrote:
+> > > This series includes fixes for the realtek,rt5640 dt-binding to addre=
+ss
+> > > a few warnings that are observed when running the CHECK_DTBS=3Dy for =
+some
+> > > DTBs that use this codec.
+> > >
+> > > Jon Hunter (3):
+> > >   ASoC: dt-bindings: realtek,rt5640: Document mclk
+> > >   ASoC: dt-bindings: realtek,rt5640: Update jack-detect
+> > >   ASoC: dt-bindings: realtek,rt5640: Document port node
+> > >
+> > > [...]
+> >
+> > Applied, thanks!
+> >
+> > [1/3] ASoC: dt-bindings: realtek,rt5640: Document mclk
+> >       commit: 601a821631c55014b02371740c39748d0af916c1
+> > [2/3] ASoC: dt-bindings: realtek,rt5640: Update jack-detect
+> >       commit: 2efe28d11cc19b69b19b9bcdb6f498c1bf842fbc
+> > [3/3] ASoC: dt-bindings: realtek,rt5640: Document port node
+> >       commit: b2788f6320722d6059f849f35a77eb082608c627
+>=20
+> Please drop these. linux-next is broken. Plus Mark already said he applie=
+d them.
 
-...
+Sorry, I missed that. Unfortunately neither patchwork nor b4 show this
+information, and I must've scolled by Mark's reply (or forgotten about
+it). Dropped from the Tegra tree now.
 
-> +static const struct mdio_regmap_simple_data nxp_sja1110_base_tx = {
-> +	.valid_addr = 0,
-> +	.autoscan = false,
-> +};
+Thanks,
+Thierry
 
-Actually the  { } is enough to initialise that. But if you want to be super
-explicit... :-)
+--vmeb32i2knrpyiuh
+Content-Type: application/pgp-signature; name="signature.asc"
 
-...
+-----BEGIN PGP SIGNATURE-----
 
-> +static int mdio_regmap_simple_probe(struct platform_device *pdev)
-> +{
-> +	const struct mdio_regmap_simple_data *data;
-> +	struct mdio_regmap_config config = {};
-> +	struct device *dev = &pdev->dev;
-> +	struct regmap *regmap;
-> +	struct mii_bus *bus;
-> +
-> +	if (!dev->of_node || !dev->parent)
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmlyFkQACgkQ3SOs138+
+s6G2BRAAiyQGv7ENIC4Ij28gXQyq++Mls11rEUIZnWFjjk15Xl4H8TX91YlKO2jn
+ZpChZBdkAXWmyHimb9KIHxPxRj4cwThb23RSKkZ1r8NK34CdRN9AKAJkvMZiUIdx
+Lu05l9JrIw0Y/FEmQPwswEWEWh5LfgXSiXxvBJvDP1qFJRLc7ey+Q2rkLiKnfYVk
+hRFOWPeMqvSMiwrK3YEIqHQmTyLaJYWcX+YrbOmZKdScaju+LI9FXTFeDic686Ww
+8QYEuSuEPKYabfHJes56wyOadP9fuZ7wukOo+buzNtt7uHhhiuIOCwiXUG3HaFrN
+Yldnkgi0Pc9A8qyJozcSUphUxIEE8wMCir1PdfOtxRMTY8l12Se7rGiDDp/Lt/E9
+kk9J45AxPeicDcPdKft9BuWz4QeHdWChwvTSoF+tQlu/x0jsMNG3ZwKlQvhPHm+V
+IodvdQjBQb436qh3Ap3uvoLPX8lRsjxzgy3v6prCGLLBqXcH2I3tfea4FCin5M6g
+HzR2Xzl406wT6mae4LJqlAlqkN14WopNJuTBR7hJ/aeLia0GTUCE5RFlJn/Z00mk
+jo8rFieHqXJBEPShR7VMcRctdQBPnHwZYh8yh2OTCJCSQx/fbG+a55/FCgOtmfIL
+78GtymU42ca8oKDT1fXORTvTTM+eV0ywph3m08Mq9BP/HQEkcKg=
+=tFKc
+-----END PGP SIGNATURE-----
 
-dev->of_node check is not needed, see below.
-
-> +		return -ENODEV;
-> +
-> +	regmap = dev_get_regmap(dev->parent, NULL);
-> +	if (!regmap)
-> +		return -ENODEV;
-> +
-> +	data = device_get_match_data(dev);
-> +
-> +	config.regmap = regmap;
-> +	config.parent = dev;
-> +	config.name = dev_name(dev);
-> +	/* The resource is optional, provided for finding the registers
-> +	 * within a device-wide non-MMIO regmap
-> +	 */
-> +	config.resource = platform_get_resource(pdev, IORESOURCE_REG, 0);
-
-> +	if (data) {
-
-We may always require data to be present. As you use a default one anyway.
-
-> +		config.valid_addr = data->valid_addr;
-> +		config.autoscan = data->autoscan;
-> +	}
-
-And if it is not provided we will have a crash which is fine. It will just
-point that the code was not ever been run on real HW.
-
-> +	return PTR_ERR_OR_ZERO(devm_mdio_regmap_register(dev, &config));
-> +}
-
-...
-
-> +static struct platform_driver mdio_regmap_simple_driver = {
-> +	.probe = mdio_regmap_simple_probe,
-> +	.driver = {
-> +		.name = "mdio-regmap-simple",
-> +		.of_match_table = mdio_regmap_simple_match,
-> +	},
-> +};
-
-> +
-
-Unneeded blank line.
-
-> +module_platform_driver(mdio_regmap_simple_driver);
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+--vmeb32i2knrpyiuh--
 
