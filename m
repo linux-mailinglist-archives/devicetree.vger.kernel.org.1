@@ -1,169 +1,166 @@
-Return-Path: <devicetree+bounces-258549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258551-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aES8LUhacmkpiwAAu9opvQ
-	(envelope-from <devicetree+bounces-258549-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:11:36 +0100
+	id cNpwHGtfcmnbjAAAu9opvQ
+	(envelope-from <devicetree+bounces-258551-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:33:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 455E56AE5A
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:11:36 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CDB26B620
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:33:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7169B301FC9C
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 17:01:11 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 38D233083404
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 17:01:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07BC239F313;
-	Thu, 22 Jan 2026 16:34:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 505E53A7317;
+	Thu, 22 Jan 2026 16:35:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MSCco9OU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PN3C61Q1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A659529D29E;
-	Thu, 22 Jan 2026 16:34:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A5A43A7335;
+	Thu, 22 Jan 2026 16:35:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769099680; cv=none; b=B58rgPBB6tnBOE062YKZ8slWN5LLF01TU7vY8QPqSbM9gtgDhpbtpP725Vh0ZXSEkKO2fHb2mYiT6Jnyyhmjq7fm33M/LHc5KzmsCar2cy25AJhZM4v2Q1qW6Akrpstue+aa9TirLUVdCCKvIwPyXkVmbBdDBoh18dvS2O6eVUY=
+	t=1769099709; cv=none; b=oEovhsg0MdWH4cVFW7r9zCLOFpOAwSBshbsAxsSUh2CBECIU/0aDAUYLeQlECHcdSmdl/Up+/FeRKYw00pun9JZKAuLGbrmoSJxkfOd9eQBQQMjfzbyeb5PxzMQpwzD+/b/SdvsDPdWVyGKdrj7RtPTrn30nzi6N/l3qF3ViBzE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769099680; c=relaxed/simple;
-	bh=ICOSaMUxWOeV8CMsW7YgfJmE2btAc+ylLFLc9HTkF2E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N5wqe1P6qDj8u2EIjUtASr/j3OHtOSxaobfMOKUr5lqw4qnrVwyAyAYH2t1CqFJIkCJm1Lq9Uj3wnHlEw991tg3+BZw9mz5nD/Kynp8rTqBWDUmYSEwDlVVFG0iVLg3UXz1LeEIT4+q6FvW8SW2uvRCEXAJj3lMNQdBHBCBBPbg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MSCco9OU; arc=none smtp.client-ip=198.175.65.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1769099673; x=1800635673;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ICOSaMUxWOeV8CMsW7YgfJmE2btAc+ylLFLc9HTkF2E=;
-  b=MSCco9OU4sujNBBbNOXgTqZmtni4xQlASwBxEzMGEVhsafMTxGfN6VC5
-   GHwQIC0R8vy0AuZDVduUUZoiqu5e/mQAp1YWEKRSrs8NvCFRjbefKsUbQ
-   BjmmWc0fMFIj0DKChqDym30KQJBsQl6P5TSHbkEcADU9F+kho4WDJ8Ms0
-   2L7Wx1jbHFsgCRkjNTA0WN0n5Oz1bSDQ0lNpqmoXwdbPYvhfBI5JjJ+Mn
-   Gy6Nyvd3tCaO7oWNKmJZqK/Tuvs9f+KPNbtr/KFgLfCDefDxilfgkOi5h
-   bWajBsRevH7A8pmt2EcKM9t9/rGoMMNZGEyBeUA+oNPHqT7K5seCIvOZ3
-   w==;
-X-CSE-ConnectionGUID: 1OKF+G6cRHyti1SS4PyCdg==
-X-CSE-MsgGUID: ITGuCPMGTam9iAV+gJqbRw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11679"; a="70254659"
-X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; 
-   d="scan'208";a="70254659"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2026 08:34:28 -0800
-X-CSE-ConnectionGUID: 3/BOsD87TSSDkXJ4s3YWfA==
-X-CSE-MsgGUID: 1aoWwdbrSYOWdIPMgzZz8Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; 
-   d="scan'208";a="244391801"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.225])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2026 08:34:24 -0800
-Date: Thu, 22 Jan 2026 18:34:21 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org,
-	Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	linux-kernel@vger.kernel.org,
-	Herve Codina <herve.codina@bootlin.com>,
-	Mark Brown <broonie@kernel.org>,
-	Serge Semin <fancer.lancer@gmail.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Choong Yong Liang <yong.liang.choong@linux.intel.com>,
-	Jiawen Wu <jiawenwu@trustnetic.com>
-Subject: Re: [PATCH v2 net-next 04/15] net: dsa: sja1105: prepare regmap for
- passing to child devices
-Message-ID: <aXJRjfeoHZ_TnnxL@smile.fi.intel.com>
-References: <20260122105654.105600-1-vladimir.oltean@nxp.com>
- <20260122105654.105600-5-vladimir.oltean@nxp.com>
- <aXIWttaIcR-yq0nx@smile.fi.intel.com>
- <20260122134245.i5rocwklpcauk3hw@skbuf>
- <aXI6E4-n25aYn-0y@smile.fi.intel.com>
- <aXJNtz0i--EZXQUR@shell.armlinux.org.uk>
+	s=arc-20240116; t=1769099709; c=relaxed/simple;
+	bh=Rs467JyGSGcxdTUssKwPcVP4PNnxqvgEetOOOSvVhmk=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=Vs8WG3I6nLUJAAEmebJaNKnH2EKJ8OvjFJ25aPzEiI2Os10VG4LBT3Oi4FgGnQ8BwUr8MrCqTqHI84lJulLjKM3MPI8zrfwfZmc13W0hKlPCI0EZ4s40SvD35mawDdXeJCpxJFiOL/WLXkbk01XiBjrkFV9xLvWBL873NGWDrOk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PN3C61Q1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AE5EC19422;
+	Thu, 22 Jan 2026 16:35:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769099708;
+	bh=Rs467JyGSGcxdTUssKwPcVP4PNnxqvgEetOOOSvVhmk=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=PN3C61Q1pYpwpl8D3l6CC7Dix4/VBdKxJ/dO+Ix8ZBgkj49eYYt44d3OFf7t+qWDO
+	 pWhZqfkRdJmn7BWkvsWF8b8o7tS0cKxzs/O6m6NsgWFPqP5gAnq1aDuLcaj4+LeLkv
+	 +EcYnKn5Ir0roUXJXb3acFE7xiapmUCdF08mEJsjQZ0r5EuOkct6aOR5MgYDymnlf4
+	 mx6JbaqrELVFleI9BTtbs7UP+4DeDb0s5/VKDt1oyBHg+Q+w75EWEAEQhnqsGTj3fV
+	 3V4SUb6z8UsZFLoQJAfQtL+jRF4phkjSssqgaEky2aohxTLkypZ8Bs+H9NfpsK/vEz
+	 lYPZqox8vty7Q==
+From: Lee Jones <lee@kernel.org>
+To: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Lee Jones <lee@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Linus Walleij <linusw@kernel.org>, 
+ Bartosz Golaszewski <brgl@kernel.org>, Linus Walleij <linusw@kernel.org>, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: Peter Griffin <peter.griffin@linaro.org>, 
+ Will McVicker <willmcvicker@google.com>, Juan Yescas <jyescas@google.com>, 
+ kernel-team@android.com, linux-kernel@vger.kernel.org, 
+ linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, 
+ Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20260105-s2mpg1x-regulators-v6-0-80f4b6d1bf9d@linaro.org>
+References: <20260105-s2mpg1x-regulators-v6-0-80f4b6d1bf9d@linaro.org>
+Subject: Re: [PATCH v6 00/20] Samsung S2MPG10 regulator and S2MPG11 PMIC
+ drivers
+Message-Id: <176909970391.4046298.17325200147518692917.b4-ty@kernel.org>
+Date: Thu, 22 Jan 2026 16:35:03 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aXJNtz0i--EZXQUR@shell.armlinux.org.uk>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.15-dev-52d38
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[nxp.com,vger.kernel.org,lunn.ch,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,bootlin.com,linux.intel.com,trustnetic.com];
-	TAGGED_FROM(0.00)[bounces-258549-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	TAGGED_FROM(0.00)[bounces-258551-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[linaro.org,kernel.org,gmail.com,bgdev.pl];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:dkim]
-X-Rspamd-Queue-Id: 455E56AE5A
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 0CDB26B620
 X-Rspamd-Action: no action
 
-On Thu, Jan 22, 2026 at 04:17:59PM +0000, Russell King (Oracle) wrote:
-> On Thu, Jan 22, 2026 at 04:54:11PM +0200, Andy Shevchenko wrote:
-> > On Thu, Jan 22, 2026 at 03:42:45PM +0200, Vladimir Oltean wrote:
-> > > I never understood the point of dev_err_probe() when you know the return
-> > > code can never be -EPROBE_DEFER.
-> > 
-> > i) Smaller code; ii) no need to care about: a) deferred probe cases;
-> > b) -ENOMEM cases.  I see only benefits here by using it.
+On Mon, 05 Jan 2026 09:01:36 +0000, André Draszik wrote:
+> This series extends the existing S2MPG10 PMIC driver to add support for
+> the regulators, and adds new S2MPG11 core and regulator drivers.
 > 
-> Isn't it also used for /sys/kernel/debug/devices_deferred to report to
-> the user ?
+> --- dependency note ---
+> This series must be applied in-order, due to the regulator drivers
+> depending on headers & definitions added by the bindings and core
+> drivers. I would expect them all to go via the MFD tree.
 > 
-> E.g.
-> 
-> supply-voltage-monitor  iio_hwmon: Failed to get channels
-> 
-> produced by drivers/hwmon/iio_hwmon.c::iio_hwmon_probe():
-> 
->         channels = devm_iio_channel_get_all(dev);
->         if (IS_ERR(channels)) {
->                 ret = PTR_ERR(channels);
->                 if (ret == -ENODEV)
->                         ret = -EPROBE_DEFER;
->                 return dev_err_probe(dev, ret,
->                                      "Failed to get channels\n");
->         }
+> [...]
 
-Yes, that's what I imply by "deferred probe cases".
+Applied, thanks!
 
--- 
-With Best Regards,
-Andy Shevchenko
+[01/20] dt-bindings: firmware: google,gs101-acpm-ipc: convert regulators to lowercase
+        (no commit info)
+[02/20] regulator: dt-bindings: add s2mpg10-pmic regulators
+        (no commit info)
+[03/20] regulator: dt-bindings: add s2mpg11-pmic regulators
+        (no commit info)
+[04/20] dt-bindings: mfd: samsung,s2mps11: Split s2mpg10-pmic into separate file
+        commit: c19ccbf37758f90064f7b1e32ec291954d97b426
+[05/20] dt-bindings: mfd: samsung,s2mpg10-pmic: Link to its regulators
+        commit: ac1068790221a421e7bc4dacadfe8d39d6bec3a9
+[06/20] dt-bindings: mfd: Add samsung,s2mpg11-pmic
+        commit: d0cd9ded4bdef73303e65abbeae47b00b7288059
+[07/20] dt-bindings: firmware: google,gs101-acpm-ipc: add S2MPG11 secondary PMIC
+        (no commit info)
+[08/20] mfd: sec: s2mpg10: reorder regulators for better probe performance
+        (no commit info)
+[09/20] mfd: sec: Add support for S2MPG11 PMIC via ACPM
+        commit: 8e6c6e8ef5e241385eff14d4c8b8e45d5e762e84
+[10/20] regulator: add REGULATOR_LINEAR_VRANGE macro
+        (no commit info)
+[11/20] regulator: s2mps11: drop two needless variable initialisations
+        (no commit info)
+[12/20] regulator: s2mps11: use dev_err_probe() where appropriate
+        (no commit info)
+[13/20] regulator: s2mps11: place constants on right side of comparison tests
+        (no commit info)
+[14/20] regulator: s2mps11: update node parsing (allow -supply properties)
+        (no commit info)
+[15/20] regulator: s2mps11: refactor handling of external rail control
+        (no commit info)
+[16/20] regulator: s2mps11: add S2MPG10 regulator
+        (no commit info)
+[17/20] regulator: s2mps11: refactor S2MPG10 ::set_voltage_time() for S2MPG11 reuse
+        (no commit info)
+[18/20] regulator: s2mps11: refactor S2MPG10 regulator macros for S2MPG11 reuse
+        (no commit info)
+[19/20] regulator: s2mps11: add S2MPG11 regulator
+        (no commit info)
+[20/20] regulator: s2mps11: more descriptive gpio consumer name
+        (no commit info)
 
+--
+Lee Jones [李琼斯]
 
 
