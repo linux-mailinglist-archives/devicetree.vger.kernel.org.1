@@ -1,63 +1,61 @@
-Return-Path: <devicetree+bounces-258242-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258243-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ELVeHcrccWk+MgAAu9opvQ
-	(envelope-from <devicetree+bounces-258242-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 09:16:10 +0100
+	id CJ9lLx3dcWk+MgAAu9opvQ
+	(envelope-from <devicetree+bounces-258243-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 09:17:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC01B62E84
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 09:16:09 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id E614B62EBC
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 09:17:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2F98F7A8C21
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 08:09:44 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 41F937AAA92
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 08:10:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A19F48124E;
-	Thu, 22 Jan 2026 08:09:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6789481238;
+	Thu, 22 Jan 2026 08:10:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tSaYinXl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WOFIQx06"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CFBD22F16E;
-	Thu, 22 Jan 2026 08:09:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C37F314B62;
+	Thu, 22 Jan 2026 08:10:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769069366; cv=none; b=Y6Ax5rcQgVKfO9omTqBIp6q8YTWNpKBO+FfQZQFuNWUY7NByl9LJpaeaS+nT3hO89eYNc1QQ+8f1uqjgPHBy9AbAfjQgh3q0E+ber9pHZW8Zg0RfTADL+t5n3XCZJ6giGwwyzZC2QmNrElfRntTRahzy+sqvLuJDZ/SI3f9uyEM=
+	t=1769069430; cv=none; b=kip9F2EIfmSgSyjXL1Ra9OOBEOZZEooPgwWCkPXKsY78P357ZKW0SdGCx4wZtrmlYld1qoNB3jet+Ed0mFdxB7uyxqaStGHGeVRwGENl8DTnM/+WYLzXJ7yHSuINpqp1BPNegbkELbvUrsKZS+z51IF4WXq4c03r5noJ3wSrtJ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769069366; c=relaxed/simple;
-	bh=fOklhs6iunL4lUPDllYNI7Q83nACQ0gHAGFO8a9aP2M=;
+	s=arc-20240116; t=1769069430; c=relaxed/simple;
+	bh=xtiAKioPF55Csp+syPDDXWp4DrqoYErvhMbJETv9olY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QCVUMQGR/slwuuMGEWXB9+WHVF7p+z2vXEv3E0Nc19ZmPI0MvYLAHxRMMn2IkeNe6HX2L6yB6+E25LmW0ckwYQHlQq4JkaQcQTXjaWaUZ8PM9JH5hZ70buFKS1IbLzqXNccOLWlba8VGMShL3mXhK7jXwSCcH9szcL/aSTcCy9g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tSaYinXl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42005C116C6;
-	Thu, 22 Jan 2026 08:09:25 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ivt0CIf69ksVCfB5l/XmzT7YlhBYkMGU2gf9/0o52WMoJJAnKP383ebp5XXOK4EFnMdDnrhoTGuv8y+3CrIifZE8iVGhGfwkfMYuG1+wqPNIhq5tL3YYufdS0/RfzoVqJwHX8vGEzHh/I3c1mmLg7aZlE6l4gt6eLOfkedOmOjE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WOFIQx06; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BE7FC116C6;
+	Thu, 22 Jan 2026 08:10:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769069365;
-	bh=fOklhs6iunL4lUPDllYNI7Q83nACQ0gHAGFO8a9aP2M=;
+	s=k20201202; t=1769069429;
+	bh=xtiAKioPF55Csp+syPDDXWp4DrqoYErvhMbJETv9olY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tSaYinXls7B7nIDgGKh9uCFVFUjlSaVBgSBykepGXiAs/8yCSVBtjq89ko7rx6gjc
-	 N+G6ZbR5zbGZ+GdEnx24rTDUpGrD198qvsw8k1fu6PPy7UAie3G9Wt/26wVLVQ/PtB
-	 5zazkua8wKKFYgqf8x3SM90UeOCk6A0gw3o8KZf450OZysZ28SB73U3TAIGSm0IAr5
-	 DWgStTwOIDmQlyJ5uw4zGSvgfyXeiZyTuy2uK4VBp0arGThamPXsMwvhv2t3hhFvf1
-	 kZSBxnRW93NB6KQc21WOI4rKacBMUOdbW4u/U9HIkYCMuISTkFbFmFxklRENaI44Zv
-	 T52OCy7R6CkZw==
-Date: Thu, 22 Jan 2026 09:09:23 +0100
+	b=WOFIQx06vreMNLR7fzsvnpfx8h8oqeK+VSOP7e8dKogDkDe1UgZzEJEBLWPuw84Sr
+	 dYqBigINwkPW7KTAGzfoM2sJN2Vv8d7M7L3ka05FN2OWHIXhPmSNNNcIzfDRZKK7h4
+	 BhX5H4LheHIRPHxXFz7/u74Y9oC/3jElrM0bIWbR0W4klzbtvxKb7X/ko0VQrpnIvX
+	 55Rr3vTbvguuq6JLDIO9J/oPnlWMhU5WM6mJASvg9AfwYWCNE5TEXPJAc+P+Y20ER6
+	 n+sXE1HZbuLxDPM21ocaIwCtxGYbOAIAL1fr0PmYpRvBaKCHpHUB4zKRVQU2BpjnNH
+	 rJGjRr1OpxDdQ==
+Date: Thu, 22 Jan 2026 09:10:27 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, jingyi.wang@oss.qualcomm.com, aiqun.yu@oss.qualcomm.com, 
-	kamal.wadhwa@oss.qualcomm.com, yijie.yang@oss.qualcomm.com
-Subject: Re: [PATCH] dt-bindings: mfd: qcom,spmi-pmic: Document PMICs present
- on Glymur
-Message-ID: <20260122-colossal-heron-from-lemuria-56aeaf@quoll>
-References: <20260121-glymur-pmic-mfd-v1-1-2aab4f21e79c@oss.qualcomm.com>
+To: Almog Ben Shaul <almogbs@amazon.com>
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, itamark@amazon.com, talel@amazon.com, 
+	farbere@amazon.com, ayalstei@amazon.com, dwmw@amazon.com
+Subject: Re: [PATCH 1/2] dt-bindings: trivial-devices: Add jedec,pmic50x0
+Message-ID: <20260122-fair-aloof-dove-0f1fe3@quoll>
+References: <20260121151947.37719-1-almogbs@amazon.com>
+ <20260121151947.37719-2-almogbs@amazon.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,47 +64,78 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260121-glymur-pmic-mfd-v1-1-2aab4f21e79c@oss.qualcomm.com>
+In-Reply-To: <20260121151947.37719-2-almogbs@amazon.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-1.46 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
 	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258242-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-258243-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	R_SPF_SOFTFAIL(0.00)[~all];
+	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:helo,dfw.mirrors.kernel.org:rdns,qualcomm.com:email]
-X-Rspamd-Queue-Id: BC01B62E84
+	TAGGED_RCPT(0.00)[devicetree];
+	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:helo,dfw.mirrors.kernel.org:rdns]
+X-Rspamd-Queue-Id: E614B62EBC
 X-Rspamd-Action: no action
 
-On Wed, Jan 21, 2026 at 03:52:03PM +0530, Jishnu Prakash wrote:
-> Document compatibles for the pmcx0102 and smb2370 SPMI PMICs.
+On Wed, Jan 21, 2026 at 03:19:46PM +0000, Almog Ben Shaul wrote:
+> Add devicetree binding for JEDEC PMIC50x0 compliant I2C DDR5 PMICs.
+> https://www.jedec.org/standards-documents/docs/jesd301-1a03
 > 
-> Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+> Signed-off-by: Almog Ben Shaul <almogbs@amazon.com>
 > ---
->  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 2 ++
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
 >  1 file changed, 2 insertions(+)
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+You did not Cc any maintainers, but you Cc-ed 5 Amazon people. Great.
+
+Drop unrelated Cc list and start using kernel tools for development.
+
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC (and consider --no-git-fallback argument, so you will
+not CC people just because they made one commit years ago). It might
+happen, that command when run on an older kernel, gives you outdated
+entries. Therefore please be sure you base your patches on recent Linux
+kernel.
+
+Tools like b4 or scripts/get_maintainer.pl provide you proper list of
+people, so fix your workflow. Tools might also fail if you work on some
+ancient tree (don't, instead use mainline) or work on fork of kernel
+(don't, instead use mainline). Just use b4 and everything should be
+fine, although remember about 'b4 prep --auto-to-cc' if you added new
+patches to the patchset.
+
+> 
+> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+> index d0f7dbf15d6f..fb16bd91c76c 100644
+> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> @@ -171,6 +171,8 @@ properties:
+>            - isil,isl76682
+>              # JEDEC JESD300 (SPD5118) Hub and Serial Presence Detect
+>            - jedec,spd5118
+> +            # JEDEC PMIC50X0 DDR5 Power Management ICs
+> +          - jedec,pmic50x0
+
+Mis ordered. s > p
 
 Best regards,
 Krzysztof
