@@ -1,280 +1,150 @@
-Return-Path: <devicetree+bounces-258286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258287-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8PZRMCX5cWmvZwAAu9opvQ
-	(envelope-from <devicetree+bounces-258286-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 11:17:09 +0100
+	id QOrlK/b4cWmvZwAAu9opvQ
+	(envelope-from <devicetree+bounces-258287-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 11:16:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74009651DB
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 11:17:09 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24B29651C4
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 11:16:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4B34D6809A3
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 10:08:11 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2F5464FEEF8
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 10:11:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 648FD36C594;
-	Thu, 22 Jan 2026 10:08:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 193823A9DB8;
+	Thu, 22 Jan 2026 10:11:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 312BF36AB7B;
-	Thu, 22 Jan 2026 10:08:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53AD4366579;
+	Thu, 22 Jan 2026 10:11:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769076488; cv=none; b=szal9kwTBPk6cTmvcJynIv7b6koUp2h4+gXwquGIf6AktK8GLIUjV9fX9K+UFyzONJrFd0FtyxD4r9DV/avUjVcgwD3gyqI6QApB01ZUNAlEkGwGKuCF/ROMoS6deavJINyLNqDiGjPGqXzu3nrcpyGQ1dAQajxF87MHEqbZiAw=
+	t=1769076697; cv=none; b=LlFHf8wVq/JhuYj9u5MxhXTFrdwJsC+TzqsZmyH4hj9YPCRe3/un/nTMCSv7wmU614/6rKV1SjPWHFBC1NQJo60YlvdGLWMWyUXeqyn+P1wuRp/au2LH5Jw+8ko75b4EtTHmCnUnQdisEf8YKFF7mh6GhMY9Y0RsN8LrACNtKNk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769076488; c=relaxed/simple;
-	bh=/IZJ43DMXTsidp4+uOtb0424hHkYMwj/G8r5vHAeT10=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=T0sF7xsTFT9YMiLw218gphFzsgDOFykjpCw2tDYt0kviLpazmq8Vn7wYKTMhmh1A0Mul/IiTdDtueuPLHDgyEp95k18W9Gd4VtKt908NM98CeBEjrvVll6yVId37R4jqscnP1u8R6fahliHmsZTGhBUlzdG6ohvaYi3xLvckJM0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B15EC1476;
-	Thu, 22 Jan 2026 02:07:57 -0800 (PST)
-Received: from [10.57.9.125] (unknown [10.57.9.125])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8D5243F740;
-	Thu, 22 Jan 2026 02:08:01 -0800 (PST)
-Message-ID: <f78f72ec-9b57-4373-a7f0-a9295326832b@arm.com>
-Date: Thu, 22 Jan 2026 10:07:59 +0000
+	s=arc-20240116; t=1769076697; c=relaxed/simple;
+	bh=6R4gG9+TiV1zEt9QzN6VdOfwqXjtMSM/z3VQOQTcCII=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WZgwTxC/JD53EV/JBrGCKgZecgzra02lMbXVWiWybwc8lGZWsQsQKHwhfG9qQjEGtuKwVeeFA3xeC6kkBRfSeAtzIceG7v7z7WHj0i3W2L0yx9SXbSRnH95/4i7e0h1/hEefmAOuWVyRx34JTPMWxyIIdAyxVoyG1L5eXKSA5zc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.27.242])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 603E0341E75;
+	Thu, 22 Jan 2026 10:11:34 +0000 (UTC)
+Date: Thu, 22 Jan 2026 18:11:22 +0800
+From: Yixun Lan <dlan@gentoo.org>
+To: Guodong Xu <guodong@riscstar.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Alex Elder <elder@riscstar.com>, Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Troy Mitchell <troy.mitchell@linux.spacemit.com>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/4] regulator: spacemit-p1: Fix voltage ranges and
+ support board power tree
+Message-ID: <20260122101122-GYA63789@gentoo.org>
+References: <20260122-spacemit-p1-v1-0-309be27fbff9@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 3/8] coresight: tmc: Introduce sysfs_read_ops to wrap
- sysfs read operations
-Content-Language: en-GB
-To: Jie Gan <jie.gan@oss.qualcomm.com>, Mike Leach <mike.leach@linaro.org>,
- James Clark <james.clark@linaro.org>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
- Mao Jinlong <jinlong.mao@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20260122-enable-byte-cntr-for-ctcu-v10-0-22978e3c169f@oss.qualcomm.com>
- <20260122-enable-byte-cntr-for-ctcu-v10-3-22978e3c169f@oss.qualcomm.com>
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20260122-enable-byte-cntr-for-ctcu-v10-3-22978e3c169f@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260122-spacemit-p1-v1-0-309be27fbff9@riscstar.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[arm.com : No valid SPF, No valid DKIM,none];
+	DMARC_POLICY_SOFTFAIL(0.10)[gentoo.org : No valid SPF, No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258286-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-258287-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[suzuki.poulose@arm.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,riscstar.com,linux.spacemit.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlan@gentoo.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	R_DKIM_NA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[desc.name:url,qualcomm.com:email,ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns,arm.com:mid,linaro.org:email]
-X-Rspamd-Queue-Id: 74009651DB
+	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:helo,dfw.mirrors.kernel.org:rdns]
+X-Rspamd-Queue-Id: 24B29651C4
 X-Rspamd-Action: no action
 
-On 22/01/2026 02:08, Jie Gan wrote:
-> Introduce sysfs_read_ops as a wrapper, wrap sysfs read operations, for reading
-> trace data from the TMC buffer.
+Hi Guodong,
+
+On 17:43 Thu 22 Jan     , Guodong Xu wrote:
+> This series fixes hardware voltage constraints and enables flexible power
+> tree configurations for the SpacemiT P1 PMIC.
 > 
-> Reviewed-by: Mike Leach <mike.leach@linaro.org>
-> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
+> Patch 1, n_voltages is corrected to match hardware register widths, as the
+> previous values prevented regulators from reaching higher operational
+> voltages (e.g., 3.3V on LDOs).
+> 
+> Patch 2-4, hardcoded supply assumptions are replaced with explicit
+> devicetree properties. PMIC supply connections are board-design decisions.
+> Moving this to DT allows supporting varied topologies without driver
+> modifications.
+> 
+> Note: Patch 3 introduces a bisect breakage by transitioning to
+> pin-specific supply names. Probe failures will occur on existing board
+> (K1 Bananapi F3) until Patch 4 updates the corresponding DTS file.
+This patch bring system-wide change that not only affect Bananapi F3..
+
+Please also provide fix for other boards, I think you may not be able
+to test all boards, but make sure the patches are available, so people
+who interested can test, P.S I can help on milkv jupiter board
+
+> 
+> Signed-off-by: Guodong Xu <guodong@riscstar.com>
 > ---
->   drivers/hwtracing/coresight/coresight-tmc-core.c | 50 +++++++++++-------------
->   drivers/hwtracing/coresight/coresight-tmc.h      | 17 ++++++++
->   2 files changed, 40 insertions(+), 27 deletions(-)
+> Guodong Xu (4):
+>       regulator: spacemit-p1: Fix n_voltages for BUCK and LDO regulators
+>       dt-bindings: mfd: spacemit,p1: Add individual regulator supply properties
+>       regulator: spacemit-p1: Update supply names
+>       riscv: dts: spacemit: k1-bananapi-f3: Update PMIC supply properties
 > 
-> diff --git a/drivers/hwtracing/coresight/coresight-tmc-core.c b/drivers/hwtracing/coresight/coresight-tmc-core.c
-> index 1ea255ffa67c..8b0397a77e57 100644
-> --- a/drivers/hwtracing/coresight/coresight-tmc-core.c
-> +++ b/drivers/hwtracing/coresight/coresight-tmc-core.c
-> @@ -232,17 +232,10 @@ static int tmc_read_prepare(struct tmc_drvdata *drvdata)
->   {
->   	int ret = 0;
->   
-> -	switch (drvdata->config_type) {
-> -	case TMC_CONFIG_TYPE_ETB:
-> -	case TMC_CONFIG_TYPE_ETF:
-> -		ret = tmc_read_prepare_etb(drvdata);
-> -		break;
-> -	case TMC_CONFIG_TYPE_ETR:
-> -		ret = tmc_read_prepare_etr(drvdata);
-> -		break;
-> -	default:
-> +	if (drvdata->sysfs_ops)
-> +		ret = drvdata->sysfs_ops->read_prepare(drvdata);
-> +	else
->   		ret = -EINVAL;
-> -	}
->   
->   	if (!ret)
->   		dev_dbg(&drvdata->csdev->dev, "TMC read start\n");
-> @@ -254,17 +247,10 @@ static int tmc_read_unprepare(struct tmc_drvdata *drvdata)
->   {
->   	int ret = 0;
->   
-> -	switch (drvdata->config_type) {
-> -	case TMC_CONFIG_TYPE_ETB:
-> -	case TMC_CONFIG_TYPE_ETF:
-> -		ret = tmc_read_unprepare_etb(drvdata);
-> -		break;
-> -	case TMC_CONFIG_TYPE_ETR:
-> -		ret = tmc_read_unprepare_etr(drvdata);
-> -		break;
-> -	default:
-> +	if (drvdata->sysfs_ops)
-> +		ret = drvdata->sysfs_ops->read_unprepare(drvdata);
-> +	else
->   		ret = -EINVAL;
-> -	}
->   
->   	if (!ret)
->   		dev_dbg(&drvdata->csdev->dev, "TMC read end\n");
-> @@ -291,13 +277,8 @@ static int tmc_open(struct inode *inode, struct file *file)
->   static ssize_t tmc_get_sysfs_trace(struct tmc_drvdata *drvdata, loff_t pos, size_t len,
->   				   char **bufpp)
->   {
-> -	switch (drvdata->config_type) {
-> -	case TMC_CONFIG_TYPE_ETB:
-> -	case TMC_CONFIG_TYPE_ETF:
-> -		return tmc_etb_get_sysfs_trace(drvdata, pos, len, bufpp);
-> -	case TMC_CONFIG_TYPE_ETR:
-> -		return tmc_etr_get_sysfs_trace(drvdata, pos, len, bufpp);
-> -	}
-> +	if (drvdata->sysfs_ops)
-> +		return drvdata->sysfs_ops->get_trace_data(drvdata, pos, len, bufpp);
-
-minor nit: Please could we bail out in tmc_open() if the 
-drvdata->sysfs_ops is not set. That way, we don't have to sprinkle it 
-everywhere. And also, we don't expect to see this case anyways.
-
->   
->   	return -EINVAL;
->   }
-> @@ -769,6 +750,18 @@ static void register_crash_dev_interface(struct tmc_drvdata *drvdata,
->   			"Valid crash tracedata found\n");
->   }
->   
-> +static const struct sysfs_read_ops tmc_etb_sysfs_read_ops = {
-
-minor nit: please could we rename the struct type to :
-
-struct tmc_sysfs_ops
-
-and then use
-
-etb_sysfs_ops = {}
-etr_sysfs_ops = {}
-
-
-Rest looks fine to me
-
-Suzuki
-
-> +	.read_prepare	= tmc_read_prepare_etb,
-> +	.read_unprepare	= tmc_read_unprepare_etb,
-> +	.get_trace_data	= tmc_etb_get_sysfs_trace,
-> +};
-> +
-> +static const struct sysfs_read_ops tmc_etr_sysfs_read_ops = {
-> +	.read_prepare	= tmc_read_prepare_etr,
-> +	.read_unprepare	= tmc_read_unprepare_etr,
-> +	.get_trace_data	= tmc_etr_get_sysfs_trace,
-> +};
-> +
->   static int __tmc_probe(struct device *dev, struct resource *res)
->   {
->   	int ret = 0;
-> @@ -828,6 +821,7 @@ static int __tmc_probe(struct device *dev, struct resource *res)
->   		desc.subtype.sink_subtype = CORESIGHT_DEV_SUBTYPE_SINK_BUFFER;
->   		desc.ops = &tmc_etb_cs_ops;
->   		dev_list = &etb_devs;
-> +		drvdata->sysfs_ops = &tmc_etb_sysfs_read_ops;
->   		break;
->   	case TMC_CONFIG_TYPE_ETR:
->   		desc.groups = coresight_etr_groups;
-> @@ -841,6 +835,7 @@ static int __tmc_probe(struct device *dev, struct resource *res)
->   		mutex_init(&drvdata->idr_mutex);
->   		dev_list = &etr_devs;
->   		INIT_LIST_HEAD(&drvdata->etr_buf_list);
-> +		drvdata->sysfs_ops = &tmc_etr_sysfs_read_ops;
->   		break;
->   	case TMC_CONFIG_TYPE_ETF:
->   		desc.groups = coresight_etf_groups;
-> @@ -849,6 +844,7 @@ static int __tmc_probe(struct device *dev, struct resource *res)
->   		desc.subtype.link_subtype = CORESIGHT_DEV_SUBTYPE_LINK_FIFO;
->   		desc.ops = &tmc_etf_cs_ops;
->   		dev_list = &etf_devs;
-> +		drvdata->sysfs_ops = &tmc_etb_sysfs_read_ops;
->   		break;
->   	default:
->   		pr_err("%s: Unsupported TMC config\n", desc.name);
-> diff --git a/drivers/hwtracing/coresight/coresight-tmc.h b/drivers/hwtracing/coresight/coresight-tmc.h
-> index 9b3c4e6f0a5e..c9a82ff6cd00 100644
-> --- a/drivers/hwtracing/coresight/coresight-tmc.h
-> +++ b/drivers/hwtracing/coresight/coresight-tmc.h
-> @@ -221,6 +221,8 @@ struct etr_buf_node {
->   	struct list_head	node;
->   };
->   
-> +struct sysfs_read_ops;
-> +
->   /**
->    * struct tmc_drvdata - specifics associated to an TMC component
->    * @atclk:	optional clock for the core parts of the TMC.
-> @@ -258,6 +260,7 @@ struct etr_buf_node {
->    *		 Used by ETR/ETF.
->    * @etr_buf_list: List that is used to manage allocated etr_buf.
->    * @reading_node: Available buffer_node for byte-cntr reading.
-> + * @sysfs_ops:	Read operations for sysfs mode.
->    */
->   struct tmc_drvdata {
->   	struct clk		*atclk;
-> @@ -290,6 +293,20 @@ struct tmc_drvdata {
->   	struct tmc_resrv_buf	crash_mdata;
->   	struct list_head        etr_buf_list;
->   	struct etr_buf_node     *reading_node;
-> +	const struct sysfs_read_ops	*sysfs_ops;
-> +};
-> +
-> +/**
-> + * struct sysfs_read_ops - read operations for TMC and its helper devices
-> + * @read_prepare:	prepare operation.
-> + * @read_unprepare:	unprepare operation.
-> + * @get_trace_data:	read operation.
-> + */
-> +struct sysfs_read_ops {
-> +	int (*read_prepare)(struct tmc_drvdata *drvdata);
-> +	int (*read_unprepare)(struct tmc_drvdata *drvdata);
-> +	ssize_t (*get_trace_data)(struct tmc_drvdata *drvdata, loff_t pos,
-> +				  size_t len, char **bufpp);
->   };
->   
->   struct etr_buf_operations {
+>  .../devicetree/bindings/mfd/spacemit,p1.yaml       | 58 +++++++++++++++++++++-
+>  arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts    | 12 ++++-
+>  drivers/regulator/spacemit-p1.c                    | 25 ++++++----
+>  3 files changed, 80 insertions(+), 15 deletions(-)
+> ---
+> base-commit: c8a4a774a9b0d2c86593492625874e27e9cbc9a9
+> change-id: 20260122-spacemit-p1-ae596efe885f
+> 
+> Best regards,
+> -- 
+> Guodong Xu <guodong@riscstar.com>
 > 
 
+-- 
+Yixun Lan (dlan)
 
