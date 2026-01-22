@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-258555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258557-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QJ1PGZxacmkpiwAAu9opvQ
-	(envelope-from <devicetree+bounces-258555-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:13:00 +0100
+	id eI6EJMJacmn5iwAAu9opvQ
+	(envelope-from <devicetree+bounces-258557-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:13:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC4676AED4
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:12:59 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE09C6AF12
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:13:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 979913008E27
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 17:03:00 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 331B2304B18B
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 17:03:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D39A3DA2EA;
-	Thu, 22 Jan 2026 16:39:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16E4A3DB239;
+	Thu, 22 Jan 2026 16:39:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1947B3915B6;
-	Thu, 22 Jan 2026 16:38:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 895863A7307;
+	Thu, 22 Jan 2026 16:39:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769099941; cv=none; b=eI/hbagUNCbn486e5Gh7Pfv2NPHKA3Br2Rvl4VDnYHrSG9z9RMHA2XZWHLzF/lzTsMj/gEltBcgQh1RrsZ5UU0fscEq3j4O2JQp4t/VUE/DwZFFtGO6NiKedDeuK6MuGUv96XJS34k+yMtavYDzx5ZNfofwvTBHaqzpNIso+DeQ=
+	t=1769099950; cv=none; b=dsQ6YLSm9WePL+Fg3h9l/+3esyJZU1lYCom5bIQH2YnPvYFA/Lt0B6pp2ZQw36misOAeN6VBp8Oc8BDMjwz2KVLT18RyQUp5kSAJ8H9jIPH9dccRIE2aur/tMJT00353y0j4z0zABlhaVvgTDZyKi1/Zv54zKueiFYUHbjTf+jM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769099941; c=relaxed/simple;
-	bh=izyHUOuQ28kBl2O6xLzOuS/7H5QGRIgSWTu7/BmY7RE=;
+	s=arc-20240116; t=1769099950; c=relaxed/simple;
+	bh=SUv1kz7Re+v18XIfxtii3aYqvP3ypcAnZxoXcK4I49k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SONulLNqSzGqkyHJCO9UOaGCtW/OsysnI0X2e9qUfKmeCY3go33lcMEdJz4p3glQVZu5JTpofO9dPqJXUHprNkucmNwHeK6gVyRSeMPSawHehGTb4kPom6/yc8e9fdyHmGsogLnxMOXlJnaPwldGAFw4GS9f5xN/1mThdlKjd1A=
+	 Content-Type:Content-Disposition:In-Reply-To; b=AQ09tqHiQanrfL78Ng9xEV26vhr0R5Bc2JcyNdh+nGlBRPciP/othff//+7j8hnhV26HRzQxzgnYUY7SmNBn2+9xUNx2dEZR5Gdp38YeYF3un6Uvpf1vII/Wy1cLNq4GeE0Jlz5C++AROoDUByzH5bL0HFTmzG75vjZdgTJMef0=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
@@ -36,9 +36,9 @@ Received: from local
 	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
 	 (Exim 4.99)
 	(envelope-from <daniel@makrotopia.org>)
-	id 1vixho-000000001QQ-28pf;
-	Thu, 22 Jan 2026 16:38:48 +0000
-Date: Thu, 22 Jan 2026 16:38:45 +0000
+	id 1vixhw-000000001R2-1CPb;
+	Thu, 22 Jan 2026 16:38:56 +0000
+Date: Thu, 22 Jan 2026 16:38:53 +0000
 From: Daniel Golle <daniel@makrotopia.org>
 To: Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>,
 	Vladimir Oltean <olteanv@gmail.com>,
@@ -51,9 +51,9 @@ To: Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>,
 	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc: Chen Minqiang <ptpt52@gmail.com>, Xinfa Deng <xinfa.deng@gl-inet.com>
-Subject: [PATCH net-next v6 1/6] dt-bindings: net: dsa: lantiq,gswip: use
- correct node name
-Message-ID: <94f439aa17d7b51fb367877df4fb84c8c07c7ce4.1769099517.git.daniel@makrotopia.org>
+Subject: [PATCH net-next v6 2/6] dt-bindings: net: dsa: lantiq,gswip: add
+ Intel GSW150
+Message-ID: <1dc62de5263e8536d5960b837bc5dad7b8f42fad.1769099517.git.daniel@makrotopia.org>
 References: <cover.1769099517.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -69,11 +69,11 @@ X-Spamd-Result: default: False [1.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258555-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-258557-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	DMARC_NA(0.00)[makrotopia.org];
 	FREEMAIL_TO(0.00)[hauke-m.de,lunn.ch,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,armlinux.org.uk,vger.kernel.org];
@@ -89,15 +89,16 @@ X-Spamd-Result: default: False [1.04 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[daniel@makrotopia.org,devicetree@vger.kernel.org];
 	FREEMAIL_CC(0.00)[gmail.com,gl-inet.com];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.1:email,makrotopia.org:mid,makrotopia.org:email,0.0.0.0:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: EC4676AED4
+	DBL_BLOCKED_OPENRESOLVER(0.00)[makrotopia.org:mid,makrotopia.org:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: BE09C6AF12
 X-Rspamd-Action: no action
 
-Ethernet PHYs should use nodes named 'ethernet-phy@'.
-Rename the Ethernet PHY nodes in the example to comply.
+Add compatible strings for the Intel GSW150 which is apparently
+identical or at least compatible with the Lantiq PEB7084 Ethernet
+switch IC.
 
 Signed-off-by: Daniel Golle <daniel@makrotopia.org>
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
@@ -106,33 +107,24 @@ v6: rebase on top of current net-next
 v5: no changes
 v4: no changes
 v3: no changes
-v2: new patch
+v2: no changes
 
- Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml b/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
-index 37d64b8a76ac7..027a91d276158 100644
+index 027a91d276158..f601e5f9fa6ad 100644
 --- a/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
 +++ b/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
-@@ -338,7 +338,7 @@ examples:
-                 #address-cells = <1>;
-                 #size-cells = <0>;
- 
--                switchphy0: switchphy@0 {
-+                switchphy0: ethernet-phy@0 {
-                     reg = <0>;
- 
-                     leds {
-@@ -353,7 +353,7 @@ examples:
-                     };
-                 };
- 
--                switchphy1: switchphy@1 {
-+                switchphy1: ethernet-phy@1 {
-                     reg = <1>;
- 
-                     leds {
+@@ -19,6 +19,8 @@ maintainers:
+ properties:
+   compatible:
+     enum:
++      - intel,gsw150
++      - lantiq,peb7084
+       - lantiq,xrx200-gswip
+       - lantiq,xrx300-gswip
+       - lantiq,xrx330-gswip
 -- 
 2.52.0
 
