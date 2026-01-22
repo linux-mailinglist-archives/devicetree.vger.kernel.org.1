@@ -1,431 +1,536 @@
-Return-Path: <devicetree+bounces-258401-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258402-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UGIXLFgfcmmPdQAAu9opvQ
-	(envelope-from <devicetree+bounces-258401-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:00:08 +0100
+	id wBFqKFwrcmmadwAAu9opvQ
+	(envelope-from <devicetree+bounces-258402-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:51:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B39966F6A
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:00:08 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 627F8678BB
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:51:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8547C949160
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 12:47:28 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 0509D781534
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 12:48:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E91D72BD58A;
-	Thu, 22 Jan 2026 12:47:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20B4B2DFA31;
+	Thu, 22 Jan 2026 12:47:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Bn9Welt1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ban/JxDo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011014.outbound.protection.outlook.com [52.101.70.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99CFB296BA9;
-	Thu, 22 Jan 2026 12:47:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.14
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769086036; cv=fail; b=ChZjibt19qHs/yUr7iwu3C5yzJ3bt4bDMv7MJxQYDoIfrk5HdfjUkt4nG5wHWmTdJhUnwHQ1qXaTOF3aWMX3sS4/HcXnz0Rle/J7LWhDRxfomth3A+wZIMrIYjZc/8vZr0eP6fA1C9xRCbGodOLTxMAuc4iGD7fbWzUtr6BFjlc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769086036; c=relaxed/simple;
-	bh=6rAQnupXaAV6DvTP+ieGDupkuBic6xuN0tnwVARpuI4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=LZC4zu8c6i14O9pcc/p+oZDJsouCfzvlOXPOsPwL77Gr9z2TkuDUnz/1bmmpeQP2M/JhgGg+KNWDn0XLDAIxuATyrLKlVJAbY43T/7eGqwjQ3aFPSEL7P05dxoYP+yqOwIjrB/CWho8+OUQVV5McU7E+qSyKhb+PkznhwuYSOCI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Bn9Welt1; arc=fail smtp.client-ip=52.101.70.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=b4JCf+UALlkofZDVT4Ie42+sK4BaBfTHStxeTa5z1XGj8WwUL+xTsr1BfZMhDtpA481IlAD1+ZOca4aTUqKW8IS8Z/uTEtUgrrqEFEpYupeBitol4I+xh63PSt9jYkI+JD2YFpYRFk2LY4H04iT5k3YiLKnR79OZrwQ7WKsvNhWsmqdgrjAWxRctLQYfTTtlOdGVuRMvNYxkmGatcAuxridHR+5jAW0RwideO8tzzl/+FPP0Ayozaz5MmqFjHntUUbGAC72y0UY1h4yMDP6YPe4DTfDMVKsCr7AN4EpeKqicOjk3eNetzGpvYFNrBSHc7dgnX0V+yr9VircIsVCoNg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=C04cBgaZDloCOa5v02MgZH5NGE6IOtP8EGv+fjINo90=;
- b=xmNTXOntRFXAb1uOtMFewx6ZuUw9KA/21U9S98aaXkdk5jGC3lQr4rTJvNh7JfuDgID65or1P2mGAvhrs5PxBZOV20sCnOdm1iBDSx+DmuhBl99fjNsjW5ig6dgeQn1dI2G3n+En5VEgxM9L9LzMMZ9/c4Y7cTR2+QWdBDSWOCtb4VMQPNMfVtBMtfCx5eIf8FnksNoP1Vgba9Q7+0BGAo2w0+s8x7fCqKw1zXnop1ix7miFyxKoPGCiVktbH0Yd44oLpULSpn2qM/BhVceUmm1aDii9WwM/93406cuyVVttH+coS1DDgoOeq6hFIzzT0D/8p+FcW7KOtr9prEcbwQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=C04cBgaZDloCOa5v02MgZH5NGE6IOtP8EGv+fjINo90=;
- b=Bn9Welt1Sq3yb/IRSrTI2j8npQ/iXrFmhfvwcQ9lSHQYWWogCxqpiU17F/VuCIH/3OFYoQ1DEpokPl+GQ4B4kgLQ/4u1Kx4F3cS1oLhTz95hdGGVo91Sr297xQVdUDYyHFzJFXuYUM60VJUt1z/0alfoovW7BN73sAjU1ecehQDE7H80sCn64yeqvWMC/CmjHDL8Avj0OcHfxZr7/0D+qPFqAsgLoezXBoXla+6ZwCuXinDPn+XpFAdu5VfECkaNnzoPsxC1HRSl3lJgD63kD/3vHXIWHwNnfspf9KF3xv981imvd3gfMxuwzUa5Q2YbTf01tX2LjVe10EjjDxR4Iw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM9PR04MB8585.eurprd04.prod.outlook.com (2603:10a6:20b:438::13)
- by PAXPR04MB8441.eurprd04.prod.outlook.com (2603:10a6:102:1d8::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.10; Thu, 22 Jan
- 2026 12:47:11 +0000
-Received: from AM9PR04MB8585.eurprd04.prod.outlook.com
- ([fe80::f010:fca8:7ef:62f4]) by AM9PR04MB8585.eurprd04.prod.outlook.com
- ([fe80::f010:fca8:7ef:62f4%4]) with mapi id 15.20.9520.011; Thu, 22 Jan 2026
- 12:47:11 +0000
-Date: Thu, 22 Jan 2026 14:47:08 +0200
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	linux-kernel@vger.kernel.org,
-	Herve Codina <herve.codina@bootlin.com>,
-	Mark Brown <broonie@kernel.org>,
-	Serge Semin <fancer.lancer@gmail.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Choong Yong Liang <yong.liang.choong@linux.intel.com>,
-	Jiawen Wu <jiawenwu@trustnetic.com>
-Subject: Re: [PATCH v2 net-next 02/15] net: mdio: add driver for NXP SJA1110
- 100BASE-T1 embedded PHYs
-Message-ID: <20260122124708.pxckp6vgi2rvagmm@skbuf>
-References: <20260122105654.105600-1-vladimir.oltean@nxp.com>
- <20260122105654.105600-3-vladimir.oltean@nxp.com>
- <aXIUJbEwnAvIkeKK@smile.fi.intel.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aXIUJbEwnAvIkeKK@smile.fi.intel.com>
-X-ClientProxiedBy: VI1P191CA0008.EURP191.PROD.OUTLOOK.COM
- (2603:10a6:800:1ba::6) To AM9PR04MB8585.eurprd04.prod.outlook.com
- (2603:10a6:20b:438::13)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE4F2DCF41
+	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 12:47:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769086070; cv=none; b=evI3zLjYGgiKn7wyICPn8YQbkOLKd9WY6mx5l6QB1n4tpwZBVOPmLyqOI4wgl+SvbLrElsG7BUdjp2rzm6+HdB3nTYK85Sfou8AEMCfZLibEoqkNBVy2SPgEn24Ozh5skCkv1l5BIipUoIeVcpyuV8OgOMU5nEqfR8vVcPI32x4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769086070; c=relaxed/simple;
+	bh=Y8V6CKcNojV8HRrII5E6HfkCcNZzGlwLbAhz6WgF2x4=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ndp4+2mRwKmT3o1CqgXxQZePZ1kMaBpxssr64dUQ0plQ7VPr8gqsIOiVZdoIFAd3Yc+PN9nEudhMpeaoCu8hxPEEAH3vyD5mYJZUHgqf0rZf79FYxGL3eXLVg6q45w2mhaSoaqX0b9cDmuHMTW0R63UktIiOavEO+N81GheLm4A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ban/JxDo; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-47ff94b46afso7608745e9.1
+        for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 04:47:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1769086065; x=1769690865; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=95tsFmD7Ja2GRVmxXF2uLu+IyBhZM5hWCUVaQbU26sM=;
+        b=Ban/JxDoVcJqzosS9H2AWCVN/qh2/WmXNGNtCH7QfA5ApzWwyOQxnOHCeogWKO+FB+
+         shkn553wiH7/X4gggqjaXc7WjG4sRvZKms7aw7CJ8dDhtyvAmB+qwBg2cyLkZjSZsGJ5
+         nkzts0rzSLUReF6xcyTg5Y2nLHtr5vVqFPfX6OjiVR22z9lBk+Kklw0bilcIhZB5sjuh
+         50gBND9nCrjKGQvgckLW09eWMhd9PBy2cWXq7JARU7R5Khsyu0p5nhYarOmufViCjFae
+         gpAN3ETzjr9UtcQW7pQVxFMw5mIMNWbEk2grdLvhA0huhwo4hBT55QZhzI662qBEu3jA
+         4QqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769086065; x=1769690865;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=95tsFmD7Ja2GRVmxXF2uLu+IyBhZM5hWCUVaQbU26sM=;
+        b=aTHCQ9c66DFeB+IDZeUBgmomr8CeTTQD/D62pdzDmwwcJFYXPC2akSmKcWUQoYfMLX
+         oP5mic8jdVxuPwBk121jLn/t7xLKdq1l6VYS4+GYyhjwDdA44odpS/sEUzQmxfUYYCHg
+         t45i2CMnlDrtjVkUH7+XfFlGx9S76liQVPHCjSmlUOMOdQb7fQaZIvdu/VhjZe92J6vM
+         9OfO5VANkTnDV5joj/iry6s6NKRkF/iDF5iCEoX+OYDRNvnjZEoFc/J26iXuHnUaoti6
+         kTcYPWDZxC0n0xSIsdV+sXCFIdeRHP2DqE07Sxr+YUDciXJeTkHODzQSglvnvDkrqmkF
+         jyRQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXVXd+02fTntsf61sZhSPyAUvvwrAdzTVewh5hbQRa66J5pxmR7gP5+d2ZvIAmAHzxjFSuu1LhF1bNv@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx4a0hhsK4hzRVKCEY+BZ7MtMxnBkU+5RxsauGXjYPMgJpW3T9F
+	5RgQO3AvlQdbJqMCXZsiYMUDn+Hfw/q+pjObd4Bmi0uY5w5HB9MR6Q+o0d+6m0qSYAU=
+X-Gm-Gg: AZuq6aJXI13mLWvvIdiSXB/9RLT+595LERPTdMD8rIxg6A9ONbPXe15PCSTpCQZOMYk
+	4LX8L5qVVeFCf5U0bp/4qHnfOeZl5hQ0w4uCQ/FOBd45Ce69sPSuxqX743RUql1YyXfmHndRKl7
+	EOlhkN9tNqJLIC8CvYirRn/wqCICj8WVgexC/nzSCbrjOsJGiqPG8DKdJOddB21fZB8/lapDRVe
+	eZaH3jL6i1HXYjwdbjY9qc+jODPvnoe651d4Fqq8F+4G+4liJrMo6PQ5rJGUR3UeWbWjGBkNWqY
+	Qyp1O2fPpNJI2TMdI9nZQUuNx37k62T7rakY+BNWERBKKMWBNvVgbTaaf5df4+9jd+Krl7NQdQH
+	uyPY0yczKiQpJrD9s/lysyySsR6BkPX6qJZRJ3uegKzyMAQfkY08jWUBhg3Eom2EYBs0yXS8n32
+	TQ8POjK7NXmgIG45+93uUGX0bhmm/83o3Lo2es3WM=
+X-Received: by 2002:a05:600c:4f4a:b0:46e:59bd:f7e2 with SMTP id 5b1f17b1804b1-48047087235mr52615475e9.11.1769086065232;
+        Thu, 22 Jan 2026 04:47:45 -0800 (PST)
+Received: from draszik.lan ([212.129.87.109])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-480470401cbsm68365535e9.4.2026.01.22.04.47.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Jan 2026 04:47:44 -0800 (PST)
+Message-ID: <71d816c5ed4ee2d13ec63b8fd4acd49f4e418284.camel@linaro.org>
+Subject: Re: [PATCH v4 4/5] power: supply: max77759: add charger driver
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: amitsd@google.com, Sebastian Reichel <sre@kernel.org>, Rob Herring	
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
+ <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, Greg Kroah-Hartman	
+ <gregkh@linuxfoundation.org>, Badhri Jagan Sridharan <badhri@google.com>, 
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>, Peter Griffin
+ <peter.griffin@linaro.org>, Tudor Ambarus	 <tudor.ambarus@linaro.org>, Alim
+ Akhtar <alim.akhtar@samsung.com>
+Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-usb@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, RD
+ Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
+Date: Thu, 22 Jan 2026 12:47:44 +0000
+In-Reply-To: <20260121-max77759-charger-v4-4-694234c8ded1@google.com>
+References: <20260121-max77759-charger-v4-0-694234c8ded1@google.com>
+	 <20260121-max77759-charger-v4-4-694234c8ded1@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2+build3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM9PR04MB8585:EE_|PAXPR04MB8441:EE_
-X-MS-Office365-Filtering-Correlation-Id: dbd57ff6-69ad-4a14-5f71-08de59b45c6f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|376014|366016|10070799003|7416014|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?OcNqytP1WQRglarKtrc49S79Q4VJZ7ooerIDQv91GbaMcCg/xNirgjt7yiWZ?=
- =?us-ascii?Q?gc4ChrX2MIw2yxzse8MF5Zs4jRsS/V/9WGnNBqEq9cyZf6x6Heut1TqoQEFB?=
- =?us-ascii?Q?JOSXKrtInNOWcGSidqU/DgKwpcz8SwXQQp9I7PTqaz7oMzYvWlbGyNNghwwR?=
- =?us-ascii?Q?EWN/6h6i9NA2yApAq0c9t87V04ryMXlEdi5/4Gju8p5LABojxhS/AH+PszE1?=
- =?us-ascii?Q?m270uiaBQ9xIBG2j7fevKGoFRP/5MQr6utMFFORMEgBX0QZBpAFAXBZ6k4iw?=
- =?us-ascii?Q?uyDUKpkNgjHCQV2fEbs6WSV++NlP+lbx0hQOnRyBsF8ugjQuxnbgQVQWjbW/?=
- =?us-ascii?Q?DbeDsxPEvpTwZqhaNWS0uFTocBR5VfOinUyLJSb+Qifnk3y125v4JyecqizO?=
- =?us-ascii?Q?ti0IVYSz5/nkJKZoto2ch/T7SeCyR4g+x/UaT+V/NLguynOzenQoilSZZMoh?=
- =?us-ascii?Q?40YEglTRDh1+Whiz0m3rwou6d54sB2zKtGBaK28N1BkB+oqFBArWmCWjrTCn?=
- =?us-ascii?Q?GX6zrxxRlzEM2fZLZokfPys1xzfZCG2rYYk/D4k3N2bUVofeTF2tuCDrRWkr?=
- =?us-ascii?Q?X/6w0LRPoddzCvQnV8YdWnCCdsL46cvaINWzKo+w0CBzzwlyWdiQpkJSdJrW?=
- =?us-ascii?Q?N9xhDYeoWBnjOX6ycPftmsU5/WDpS0fDief1fSo7Y/QrCm6evQVE3OXMiPZv?=
- =?us-ascii?Q?yOzorHma4Sh+rj/HmUdEE3hGUUZtISjEYAlKRA/YV1OZzSZBrCgPXuzszMvn?=
- =?us-ascii?Q?DO9GEoKngFTRQQvli1lpXNuwstjuR+NZGdw3OWhY++t2QaIuvuduOjmNuMcn?=
- =?us-ascii?Q?JF5A5yoeTkqYArKdFG5MZDXT4n7fW1T0nYd/4GgPugmcj6iBn/DN7aAC4F17?=
- =?us-ascii?Q?00Ts7WTrwzwiCJKLwRezAEZIqWFCLcWqC0N5oVff49Y8LqOJMKaAx+nAbdcN?=
- =?us-ascii?Q?u5juA0RXlC6zuS67T+TtIU9f5Vdx+QxRwe9SmmvxAYn3fdf1oDixiHOL1KbH?=
- =?us-ascii?Q?Wh4yZ6LzEApyBgJcbVcN3/p1Ucu8esBdjD49d3Ci2InKaq4LE46Dq/ahCVIa?=
- =?us-ascii?Q?EjN6/bjx9Yk52hoVuwotieyUmGMqM73RXHLfjkBjdxfbI1vQKv60kmLHhWC0?=
- =?us-ascii?Q?+0NMHaNSYcJHYtZbLRPQcRHhFSJJdKs/tl70YZyv+KuwrYwY8s8dtn3fTI2E?=
- =?us-ascii?Q?3qeqpHYZ2UdH3FcgGcozBfed9hZ7Lw9+FPm3jqiRGMSD5X4RnU0Y1JUTE+UO?=
- =?us-ascii?Q?FeffVhzWyd6+TSuETEkTiNaPa6Yx7suUNOZ7gTiQibBFj11VHeM6pHhaFH1p?=
- =?us-ascii?Q?DUIGxoamEG7ANOX0SmW0o9lP2+7JYSHLkFl2SGZBVlkXDKe0wr5rKnVjjj7e?=
- =?us-ascii?Q?Bus7e09mCLR0XTG1KxS/t7/wHglJDC2AmY5X5OulUcw3+vHE+U6F3KIGzQ9C?=
- =?us-ascii?Q?rjRTDPSVTtETTIURWg8wLpkyQ5vGqPuF0GMmZi4vi83sQEEolIXD2UnAMuli?=
- =?us-ascii?Q?zlFHy7I12EMtAiwTU+b+/p8Bk1YQhM5Flvr8PnG4+P5ltgModKaAYy+T6M39?=
- =?us-ascii?Q?ylwEpJsOf7vqpFZ9Kao=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8585.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(376014)(366016)(10070799003)(7416014)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?gMWHPMQn3sRPQoJkMbqEIcVJQZGcGEO131injmxYYNr5ml23SRF5iP/sWfVg?=
- =?us-ascii?Q?Og3AQgwNuoqfRlEiGb//niQWZFpvV+AcFi8cIvCfa012PwXjaXCl9TKUSbIA?=
- =?us-ascii?Q?QWI6ef4efxNP++kYmQXjFLGJFWpJSdlyQ5elwErpFNW7NIlon+AStvxqAK3S?=
- =?us-ascii?Q?ueXpDKQj2FQn7fJD/Bz9TWB+IvhN7PYNV6tTMjqOT0qtgqjqX5onPXxQvTZB?=
- =?us-ascii?Q?5ni7ry48rviZiWpRupXRZAiHxf3gHqX7U3dNxRLlib6VbMphqscazgxs9odH?=
- =?us-ascii?Q?bjnXwhJVqZcSTas5IMXI9lFEqh5E8LBc/TdkOUCXCvArjmxBAp2f8oOjbaIC?=
- =?us-ascii?Q?PpYE1NR9z3ZhQ5mRS8RUBhG2SpBA3zb0rzx1/hPx1SffHbO7IVKE/nNHoGO1?=
- =?us-ascii?Q?0qIGqcD0uVT0c7DLi8V8ycotlFiVHG+7OTJUHfopAjUUCznW6UVi9f/U+p8M?=
- =?us-ascii?Q?L4LOusim6Rt0tj38CfRNoKAouh6Q/Jee19BYGEYivpz3xBV8ESJ/NqP6E970?=
- =?us-ascii?Q?Vkt6ABzpkD7UmdIWtVNQwLCtDmVc71QyfFgzkjaTl5jxhWYwdnKoYtHlmE76?=
- =?us-ascii?Q?OumK/HJH6b4x7Wo2LlrwqtTpwLtWykNANpiqL+vb8S/uVKjGPnBafnvgcKMH?=
- =?us-ascii?Q?KNMBBwUbs5Ooi1W28p6JNjuSlQWFqSqo7ijaPcvt6A7m5nuo4zTCzFItc43+?=
- =?us-ascii?Q?2saLaXSPTK7K8hcNG/HCLx1nEt7eXQRixqyf4F/lMeTlBdUpR3Ol+sKuYwdS?=
- =?us-ascii?Q?x67WrMZPw0jBCVe1pe6jc+gfNmt1+7JVsmHuXo/swdZFaSAO6KZHJhEayCBW?=
- =?us-ascii?Q?/lA0FtDEo3t7qjxf6IJzVDCZo6uENMcQdNgyNDeNckF4c63rWcNkpxCQS1hR?=
- =?us-ascii?Q?cZFbpn2P1FBpON0aDr+H0WzoXjo+JOUUMnY80iw101QbnVKMXSTxvDXLiYTu?=
- =?us-ascii?Q?K5ciX2eVdyERUYV7eda/2GDD0qN6slk9uBudqf1v8HGQeHlxYZzddvjf0GU7?=
- =?us-ascii?Q?M9SEZJWTrG+A8Vkc2wrs9LmVP6WQtJ4riqtiSo2OGsGNV4gMKt4O/A9J/CDR?=
- =?us-ascii?Q?uw1gxoSvUrd+xtvAqkLV64GBg60tD62fn3VW1lN8wC7JWyxiR6z+v5ae5sUv?=
- =?us-ascii?Q?KsjII0BZ5b1NOzKFZK4C98p07ByFs5TuSDDQvUrqOVfEd/L/LyLisdryOsWi?=
- =?us-ascii?Q?kx9IDLGPIXxRgsKCzzTH5JWf/j2GuSGty2QdUAznCyFyIOR0lEVjozLcdw3n?=
- =?us-ascii?Q?U+FBr0hh8vyibht1xRqTdlZb5c95qq++DJaRJLO/THiMebg9ehsfOjt5g4+B?=
- =?us-ascii?Q?UlwJWIstuaAsHNtzybCCiKb9Bur1T3hEDUzUwBo1MsFS7Z83UeNf4qjBXyxu?=
- =?us-ascii?Q?QTIF91R3wjkGvSgqTsvgXnCGE2F+B5Ubf1evtn8a3jfaEbWSiazi+ckXTeVT?=
- =?us-ascii?Q?H2sVD2tV0KdjHsnOj3MPS1ZFEgvcnFgNV0V6/iK3oQKtAlPOqc7Y2/LjS4gj?=
- =?us-ascii?Q?BYrkZQ/Ix4hk80RslceNTB753CHiKfbI/mRj6LIZduJT+Nbmv2mg9ajeseTy?=
- =?us-ascii?Q?5TcqwU1D6e+YyAgYp+ubqXf+pUSMfdUKzqbs8uW/a3pDTLrhDTWAIJyFmhRI?=
- =?us-ascii?Q?tpUKvGxMWFvFTh6Gl9hTPjQ0UURIYotg7H8Pkwc4U067VeOZChMXcCa8FySN?=
- =?us-ascii?Q?1lypbEHrxWMP8wTHbVEzha+FoHXWm1pmtiPTprLTVOvD3CexOThVJvS2ZId7?=
- =?us-ascii?Q?kY+xr6AklqNjE5UcVPNtpxqgVt2DFKX2f5azmjAHctW8sAW48KOZufwwBOtP?=
-X-MS-Exchange-AntiSpam-MessageData-1: sLzR+Ni4hGBmuvLQq1aRGWvLik57bt2Ak74=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dbd57ff6-69ad-4a14-5f71-08de59b45c6f
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8585.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2026 12:47:11.4224
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: QmMlmr6UwcLO5h31fph2/9xWWF7fvDXapAqFLPeAMwVRW1Kkdxy6RuaRXW5IrwtYxBEN6O1q8Xmv8h9LmmDeFg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8441
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.04 / 15.00];
+X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258401-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	DMARC_POLICY_ALLOW(0.00)[linaro.org,none];
 	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-258402-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lunn.ch,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,bootlin.com,linux.intel.com,trustnetic.com];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	TO_DN_SOME(0.00)[];
-	R_SPF_SOFTFAIL(0.00)[~all:c];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vladimir.oltean@nxp.com,devicetree@vger.kernel.org];
-	DMARC_POLICY_ALLOW(0.00)[nxp.com,none];
-	RCVD_COUNT_FIVE(0.00)[5];
-	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:helo,dfw.mirrors.kernel.org:rdns,nxp.com:dkim]
-X-Rspamd-Queue-Id: 4B39966F6A
+	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andre.draszik@linaro.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	R_SPF_SOFTFAIL(0.00)[~all:c];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 627F8678BB
 X-Rspamd-Action: no action
 
-On Thu, Jan 22, 2026 at 02:12:21PM +0200, Andy Shevchenko wrote:
-> On Thu, Jan 22, 2026 at 12:56:41PM +0200, Vladimir Oltean wrote:
-> > This driver is the standalone variant of drivers/net/dsa/sja1105/sja1105_mdio.c.
-> > In terms of differences:
-> > 
-> > - this one uses regmaps provided by the parent as a method to abstract
-> >   away the sja1105_xfer_u32() calls for register access
-> > - the driver prefix has been changed from sja1105 to sja1110 (this MDIO
-> >   controller is not present on the older SJA1105 family)
-> > - in the sja1105 driver, each memory word has 32 bits, so addresses as
-> >   seen by regmap need to be multiplied by 4. This affects what
-> >   sja1110_base_t1_encode_addr() returns, and is different compared to
-> >   sja1105_base_t1_encode_addr().
-> 
-> ...
-> 
-> > +static int sja1110_base_t1_mdio_read_c22(struct mii_bus *bus, int phy, int reg)
-> > +{
-> > +	struct sja1110_base_t1_private *priv = bus->priv;
-> > +	struct regmap *regmap = priv->regmap;
-> > +	unsigned int addr, val;
-> > +	int err;
-> > +
-> > +	addr = sja1110_base_t1_encode_addr(phy, SJA1110_C22, reg & 0x1f);
-> 
-> GENMASK() ? Or do you have already a defined mask for this?
+Hi Amit,
 
-Hmm, I can't find a definition for this. In the MDIO world it is
-"well known" that clause 22 offers a 5-bit register address space.
-So the 0x1f number doesn't seem too magical to me.
+Thanks for your patches, just a few minor comments below.
 
-But I think my assumptions date since before the MDIO bus API was split
-between separate clause 22 and clause 45 reads/writes. I don't know
-whether masking reg & 0x1f is the best practice. I'm surprised that
-__mdiobus_read() doesn't enforce a limit on "regnum", and I don't see
-other MDIO bus drivers explicitly C22 registers >= 32. I really don't
-know what is the best practice.
+On Wed, 2026-01-21 at 00:59 +0000, Amit Sunil Dhamne via B4 Relay wrote:
+> From: Amit Sunil Dhamne <amitsd@google.com>
+>=20
+> Add support for MAX77759 battery charger driver. This is a 4A 1-Cell
+> Li+/LiPoly dual input switch mode charger. While the device can support
+> USB & wireless charger inputs, this implementation only supports USB
+> input. This implementation supports both buck and boost modes.
+>=20
+> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
+> ---
+> =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 6 +
+> =C2=A0drivers/power/supply/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 11 +
+> =C2=A0drivers/power/supply/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
+> =C2=A0drivers/power/supply/max77759_charger.c | 737 +++++++++++++++++++++=
++++++++++++
+> =C2=A04 files changed, 755 insertions(+)
+>=20
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 0d044a58cbfe0f2b97f3682a86708e1ece108e9f..38354964a85c34611b1b54e20=
+651b360f3b9c11e 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -15546,6 +15546,12 @@ F:	drivers/mfd/max77759.c
+> =C2=A0F:	drivers/nvmem/max77759-nvmem.c
+> =C2=A0F:	include/linux/mfd/max77759.h
+> =C2=A0
+> +MAXIM MAX77759 BATTERY CHARGER DRIVER
+> +M:	Amit Sunil Dhamne <amitsd@google.com>
+> +L:	linux-kernel@vger.kernel.org
+> +S:	Maintained
+> +F:	drivers/power/supply/max77759_charger.c
+> +
+> =C2=A0MAXIM MAX77802 PMIC REGULATOR DEVICE DRIVER
+> =C2=A0M:	Javier Martinez Canillas <javier@dowhile0.org>
+> =C2=A0L:	linux-kernel@vger.kernel.org
+> diff --git a/drivers/power/supply/Kconfig b/drivers/power/supply/Kconfig
+> index 92f9f7aae92f249aa165e68dbcd4cebb569286ea..3a2cdb95c98e44324151ac2b8=
+6d740ae2923ee77 100644
+> --- a/drivers/power/supply/Kconfig
+> +++ b/drivers/power/supply/Kconfig
+> @@ -631,6 +631,17 @@ config CHARGER_MAX77705
+> =C2=A0	help
+> =C2=A0	=C2=A0 Say Y to enable support for the Maxim MAX77705 battery char=
+ger.
+> =C2=A0
+> +config CHARGER_MAX77759
+> +	tristate "Maxim MAX77759 battery charger driver"
+> +	depends on MFD_MAX77759 && REGULATOR
+> +	default MFD_MAX77759
+> +	help
+> +	=C2=A0 Say M or Y here to enable the MAX77759 battery charger. MAX77759
+> +	=C2=A0 charger is a function of the MAX77759 PMIC. This is a dual input
+> +	=C2=A0 switch-mode charger. This driver supports buck and OTG boost mod=
+es.
+> +
+> +	=C2=A0 If built as a module, it will be called max77759_charger.
+> +
+> =C2=A0config CHARGER_MAX77976
+> =C2=A0	tristate "Maxim MAX77976 battery charger driver"
+> =C2=A0	depends on I2C
+> diff --git a/drivers/power/supply/Makefile b/drivers/power/supply/Makefil=
+e
+> index 4b79d5abc49a7fd1e37a26d0c89f94d9fe3a916f..6af905875ad5e3b393a703040=
+5355b9a975870f6 100644
+> --- a/drivers/power/supply/Makefile
+> +++ b/drivers/power/supply/Makefile
+> @@ -128,3 +128,4 @@ obj-$(CONFIG_CHARGER_SURFACE)	+=3D surface_charger.o
+> =C2=A0obj-$(CONFIG_BATTERY_UG3105)	+=3D ug3105_battery.o
+> =C2=A0obj-$(CONFIG_CHARGER_QCOM_SMB2)	+=3D qcom_smbx.o
+> =C2=A0obj-$(CONFIG_FUEL_GAUGE_MM8013)	+=3D mm8013.o
+> +obj-$(CONFIG_CHARGER_MAX77759)	+=3D max77759_charger.o
+> diff --git a/drivers/power/supply/max77759_charger.c b/drivers/power/supp=
+ly/max77759_charger.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..34b5ea0967eb7b4716e81ee1a=
+55227ac872493b0
+> --- /dev/null
+> +++ b/drivers/power/supply/max77759_charger.c
+> @@ -0,0 +1,737 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * max77759_charger.c - Battery charger driver for MAX77759 charger devi=
+ce.
+> + *
+> + * Copyright 2025 Google LLC.
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/cleanup.h>
+> +#include <linux/device.h>
+> +#include <linux/devm-helpers.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/irq.h>
+> +#include <linux/math64.h>
+> +#include <linux/mfd/max77759.h>
+> +#include <linux/module.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/mutex.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/power_supply.h>
+> +#include <linux/regmap.h>
+> +#include <linux/regulator/driver.h>
+> +#include <linux/string_choices.h>
+> +
+> +/* Default values for Fast Charge Current & Float Voltage */
+> +#define CHG_CC_DEFAULT_UA			2266770
+> +#define CHG_FV_DEFAULT_MV			4300
+> +
+> +#define FOREACH_IRQ(S)			\
+> +	S(AICL),			\
+> +	S(CHGIN),			\
+> +	S(CHG),				\
+> +	S(INLIM),			\
+> +	S(BAT_OILO),			\
+> +	S(CHG_STA_CC),			\
+> +	S(CHG_STA_CV),			\
+> +	S(CHG_STA_TO),			\
+> +	S(CHG_STA_DONE)
+> +
+> +#define GENERATE_ENUM(e)		e
+> +#define GENERATE_STRING(s)		#s
+> +
+> +enum {
+> +	FOREACH_IRQ(GENERATE_ENUM)
+> +};
+> +
+> +static const char *const chgr_irqs_str[] =3D {
+> +	FOREACH_IRQ(GENERATE_STRING)
+> +};
+> +
+> +#define NUM_IRQS			ARRAY_SIZE(chgr_irqs_str)
+> +
+> +struct max77759_charger {
+> +	struct device *dev;
+> +	struct regmap *regmap;
+> +	struct power_supply *psy;
+> +	struct regulator_dev *chgin_otg_rdev;
+> +	struct notifier_block nb;
+> +	struct power_supply *tcpm_psy;
+> +	struct work_struct psy_work;
+> +	int irqs[NUM_IRQS];
+> +	struct mutex lock; /* protects the state below */
+> +	enum max77759_chgr_mode mode;
+> +};
+> +
+> +static inline int regval_to_val(int reg, int reg_offset, int step, int m=
+inval)
+> +{
+> +	return ((reg - reg_offset) * step) + minval;
+> +}
+> +
+> +static inline int val_to_regval(int val, int minval, int step, int reg_o=
+ffset)
+> +{
+> +	s64 dividend;
+> +
+> +	if (unlikely(step =3D=3D 0))
+> +		return reg_offset;
 
-> > +	err = regmap_read(regmap, priv->base + addr, &val);
-> > +	if (err)
-> > +		return err;
-> > +
-> > +	return val & 0xffff;
-> 
-> lower_16_bits() from wordpart.h?
+Does it really make an impact on performance to specify unlikely? Also, I s=
+eem to
+remember that the if branch is treated as unlikely anyway, but can't find a=
+ny hard
+evidence on that right now.
 
-Ok, let's say so.
+> +
+> +	dividend =3D (s64)val - minval;
+> +	return DIV_S64_ROUND_CLOSEST(dividend, step) + reg_offset;
+> +}
 
-> > +}
-> 
-> ...
-> 
-> > +static int sja1110_base_t1_mdio_read_c45(struct mii_bus *bus, int phy,
-> > +					 int mmd, int reg)
-> > +{
-> > +	struct sja1110_base_t1_private *priv = bus->priv;
-> > +	struct regmap *regmap = priv->regmap;
-> > +	unsigned int addr, val;
-> > +	int err;
-> > +
-> > +	addr = sja1110_base_t1_encode_addr(phy, SJA1110_C45_ADDR, mmd);
-> > +	err = regmap_write(regmap, priv->base + addr, reg);
-> > +	if (err)
-> > +		return err;
-> > +
-> > +	addr = sja1110_base_t1_encode_addr(phy, SJA1110_C45_DATA, mmd);
-> > +	err = regmap_read(regmap, priv->base + addr, &val);
-> > +	if (err)
-> > +		return err;
-> > +
-> > +	return val & 0xffff;
-> 
-> Ditto.
-> 
-> > +}
-> 
-> ...
-> 
-> > +static int sja1110_base_t1_mdio_write_c22(struct mii_bus *bus, int phy, int reg,
-> > +					  u16 val)
-> > +{
-> > +	struct sja1110_base_t1_private *priv = bus->priv;
-> > +	struct regmap *regmap = priv->regmap;
-> > +	unsigned int addr;
-> > +
-> > +	addr = sja1110_base_t1_encode_addr(phy, SJA1110_C22, reg & 0x1f);
-> > +	return regmap_write(regmap, priv->base + addr, val & 0xffff);
-> 
-> val is already u16.
+For these two functions above, have you considered using the APIs from
+include/linux/linear_range.h instead of duplicating in this driver? The
+implementations of the above match linear_range_get_value() and
+linear_range_get_selector_low() quite nicely.
 
-Ok.
+> +
+> +static inline int unlock_prot_regs(struct max77759_charger *chg, bool un=
+lock)
+> +{
+> +	return regmap_update_bits(chg->regmap, MAX77759_CHGR_REG_CHG_CNFG_06,
+> +				=C2=A0 MAX77759_CHGR_REG_CHG_CNFG_06_CHGPROT, unlock
+> +				=C2=A0 ? MAX77759_CHGR_REG_CHG_CNFG_06_CHGPROT : 0);
+> +}
+> +
 
-> > +}
-> 
-> ...
-> 
-> > +static int sja1110_base_t1_mdio_write_c45(struct mii_bus *bus, int phy,
-> > +					  int mmd, int reg, u16 val)
-> > +{
-> > +	struct sja1110_base_t1_private *priv = bus->priv;
-> > +	struct regmap *regmap = priv->regmap;
-> > +	unsigned int addr;
-> > +	int err;
-> > +
-> > +	addr = sja1110_base_t1_encode_addr(phy, SJA1110_C45_ADDR, mmd);
-> > +	err = regmap_write(regmap, priv->base + addr, reg);
-> > +	if (err)
-> > +		return err;
-> > +
-> > +	addr = sja1110_base_t1_encode_addr(phy, SJA1110_C45_DATA, mmd);
-> > +	return regmap_write(regmap, priv->base + addr, val & 0xffff);
-> 
-> Ditto.
-> 
-> > +}
-> 
-> ...
-> 
-> > +static int sja1110_base_t1_mdio_probe(struct platform_device *pdev)
-> > +{
-> > +	struct sja1110_base_t1_private *priv;
-> > +	struct device *dev = &pdev->dev;
-> > +	struct regmap *regmap;
-> > +	struct resource *res;
-> > +	struct mii_bus *bus;
-> > +	int err;
-> 
-> > +	if (!dev->of_node || !dev->parent)
-> 
-> Can we avoid dereferencing? And perhaps dev_fwnode(dev)?
+[...]
 
-Avoid dereferencing what?
+> +static irqreturn_t irq_handler(int irq, void *data)
+> +{
+> +	struct max77759_charger *chg =3D data;
+> +	struct device *dev =3D chg->dev;
+> +	int i;
+> +
+> +	for (i =3D 0; i < NUM_IRQS && chg->irqs[i] !=3D irq; i++)
+> +		;
+> +
+> +	if (i =3D=3D NUM_IRQS) {
+> +		dev_err(dev, "Unable to handle irq=3D%d", irq);
+> +		return IRQ_NONE;
+> +	} else if (i =3D=3D BAT_OILO) {
+> +		dev_warn(dev, "Battery over-current threshold crossed");
+> +	}
 
-> > +		return -ENODEV;
-> > +
-> > +	regmap = dev_get_regmap(dev->parent, NULL);
-> > +	if (!regmap)
-> > +		return -ENODEV;
-> > +
-> > +	bus = mdiobus_alloc_size(sizeof(*priv));
-> > +	if (!bus)
-> > +		return -ENOMEM;
-> > +
-> > +	bus->name = "SJA1110 100base-T1 MDIO bus";
-> > +	snprintf(bus->id, MII_BUS_ID_SIZE, "%s", dev_name(dev));
-> > +	bus->read = sja1110_base_t1_mdio_read_c22;
-> > +	bus->write = sja1110_base_t1_mdio_write_c22;
-> > +	bus->read_c45 = sja1110_base_t1_mdio_read_c45;
-> > +	bus->write_c45 = sja1110_base_t1_mdio_write_c45;
-> > +	bus->parent = dev;
-> > +	priv = bus->priv;
-> > +	priv->regmap = regmap;
-> > +
-> > +	res = platform_get_resource(pdev, IORESOURCE_REG, 0);
-> > +	if (res)
-> > +		priv->base = res->start;
-> > +
-> > +	err = of_mdiobus_register(bus, dev->of_node);
+Generally, no 'else' is required after return.
 
-Why would I use dev_fwnode() if I need to pass it as OF to
-of_mdiobus_register() here?
+> +
+> +	power_supply_changed(chg->psy);
+> +	return IRQ_HANDLED;
+> +}
+> +
 
-> > +	if (err)
-> > +		goto err_free_bus;
-> > +
-> > +	priv->bus = bus;
-> > +	platform_set_drvdata(pdev, priv);
-> > +
-> > +	return 0;
-> > +
-> > +err_free_bus:
-> > +	mdiobus_free(bus);
-> > +
-> > +	return err;
-> > +}
-> 
-> ...
-> 
-> > +static const struct of_device_id sja1110_base_t1_mdio_match[] = {
-> > +	{ .compatible = "nxp,sja1110-base-t1-mdio", },
-> 
-> Inner comma is redundant.
+[...]
 
-Ok.
+> +static void psy_work_item(struct work_struct *work)
+> +{
+> +	struct max77759_charger *chg =3D
+> +		container_of(work, struct max77759_charger, psy_work);
+> +	union power_supply_propval current_limit, online;
+> +	int ret;
+> +
+> +	ret =3D power_supply_get_property(chg->tcpm_psy,
+> +					POWER_SUPPLY_PROP_CURRENT_MAX,
+> +					&current_limit);
+> +	if (ret) {
+> +		dev_err(chg->dev,
+> +			"Failed to get CURRENT_MAX psy property, ret=3D%d",
+> +			ret);
+> +		return;
+> +	}
+> +
+> +	ret =3D power_supply_get_property(chg->tcpm_psy, POWER_SUPPLY_PROP_ONLI=
+NE,
+> +					&online);
+> +	if (ret) {
+> +		dev_err(chg->dev,
+> +			"Failed to get ONLINE psy property, ret=3D%d",
+> +			ret);
+> +		return;
+> +	}
+> +
+> +	if (online.intval && current_limit.intval) {
+> +		ret =3D set_input_current_limit(chg, current_limit.intval);
+> +		if (ret)
+> +			dev_err(chg->dev,
+> +				"Unable to set current limit, ret=3D%d", ret);
+> +
+> +		charger_set_mode(chg, MAX77759_CHGR_MODE_CHG_BUCK_ON);
+> +	} else {
+> +		charger_set_mode(chg, MAX77759_CHGR_MODE_OFF);
+> +	}
 
-> > +	{},
-> 
-> Terminator is terminator, trailing comma is confusing here.
+For all the possible errors in this function, should the driver try a bit
+harder, even if unlikely to occur? What if the current limit needed to be
+reduced, e.g. due to thermal or any other reasons?
 
-Ok.
+Could rescheduling the work be something to consider?
 
-> > +};
-> 
-> ...
-> 
-> > +static struct platform_driver sja1110_base_t1_mdio_driver = {
-> > +	.probe = sja1110_base_t1_mdio_probe,
-> > +	.remove = sja1110_base_t1_mdio_remove,
-> > +	.driver = {
-> > +		.name = "sja1110-base-t1-mdio",
-> > +		.of_match_table = sja1110_base_t1_mdio_match,
-> > +	},
-> > +};
-> 
-> > +
-> 
-> Redundant blank line.
+> +}
+> +
+> +static int psy_changed(struct notifier_block *nb, unsigned long evt, voi=
+d *data)
+> +{
+> +	struct max77759_charger *chg =3D container_of(nb, struct max77759_charg=
+er,
+> +						=C2=A0=C2=A0=C2=A0 nb);
+> +	const char *psy_name =3D "tcpm-source";
 
-Ok.
+This can be static const char.
 
-> > +module_platform_driver(sja1110_base_t1_mdio_driver);
-> 
-> -- 
-> With Best Regards,
-> Andy Shevchenko
-> 
->
+> +	struct power_supply *psy =3D data;
+> +
+> +	if (!strnstr(psy->desc->name, psy_name, strlen(psy_name)) ||
+> +	=C2=A0=C2=A0=C2=A0 evt !=3D PSY_EVENT_PROP_CHANGED)
+> +		return NOTIFY_OK;
+> +
+> +	chg->tcpm_psy =3D psy;
+> +	schedule_work(&chg->psy_work);
+> +
+> +	return NOTIFY_OK;
+> +}
+> +
+> +static void max_tcpci_unregister_psy_notifier(void *nb)
+> +{
+> +	power_supply_unreg_notifier(nb);
+> +}
+> +
+> +static int max77759_charger_probe(struct platform_device *pdev)
+> +{
+> +	struct regulator_config chgin_otg_reg_cfg;
+> +	struct power_supply_config psy_cfg;
+> +	struct device *dev =3D &pdev->dev;
+> +	struct max77759_charger *chg;
+> +	int ret;
+> +
+> +	device_set_of_node_from_dev(dev, dev->parent);
+> +	chg =3D devm_kzalloc(dev, sizeof(*chg), GFP_KERNEL);
+> +	if (!chg)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, chg);
+> +	chg->dev =3D dev;
+> +	chg->regmap =3D dev_get_regmap(dev->parent, "charger");
+> +	if (!chg->regmap)
+> +		return dev_err_probe(dev, -ENODEV, "Missing regmap");
+> +
+> +	ret =3D devm_mutex_init(dev, &chg->lock);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to initialize lock");
+> +
+> +	psy_cfg.fwnode =3D dev_fwnode(dev);
+> +	psy_cfg.drv_data =3D chg;
+> +	chg->psy =3D devm_power_supply_register(dev, &max77759_charger_desc,
+> +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &psy_cfg);
+> +	if (IS_ERR(chg->psy))
+> +		return dev_err_probe(dev, -EPROBE_DEFER,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0 "Failed to register psy, ret=3D%ld",
+> +				=C2=A0=C2=A0=C2=A0=C2=A0 PTR_ERR(chg->psy));
+> +
+> +	ret =3D max77759_charger_init(chg);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0 "Failed to initialize max77759 charger");
+> +
+> +	chgin_otg_reg_cfg.dev =3D dev;
+> +	chgin_otg_reg_cfg.driver_data =3D chg;
+> +	chgin_otg_reg_cfg.of_node =3D dev_of_node(dev);
+> +	chg->chgin_otg_rdev =3D devm_regulator_register(dev, &chgin_otg_reg_des=
+c,
+> +						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &chgin_otg_reg_cfg);
+> +	if (IS_ERR(chg->chgin_otg_rdev))
+> +		return dev_err_probe(dev, PTR_ERR(chg->chgin_otg_rdev),
+> +				=C2=A0=C2=A0=C2=A0=C2=A0 "Failed to register chgin otg regulator");
+> +
+> +	ret =3D devm_work_autocancel(dev, &chg->psy_work, psy_work_item);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to initialize psy work");
+> +
+> +	chg->nb.notifier_call =3D psy_changed;
+> +	ret =3D power_supply_reg_notifier(&chg->nb);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0 "Unable to register psy notifier");
+> +
+> +	ret =3D devm_add_action_or_reset(dev, max_tcpci_unregister_psy_notifier=
+,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &chg->nb);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0 "Failed to add devm action to unregister ps=
+y notifier");
+> +
+> +	return max77759_init_irqhandler(chg);
+> +}
+> +
+> +static const struct platform_device_id max77759_charger_id[] =3D {
+> +	{"max77759-charger",},
+
+Minor formatting nit - I believe common practice is to use named initialize=
+rs:
+
++	{ .compatible =3D "max77759-charger", },
+
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(platform, max77759_charger_id);
+> +
+> +static struct platform_driver max77759_charger_driver =3D {
+> +	.driver =3D {
+> +		.name =3D "max77759-charger",
+
+Can it be async, or are there issues with that?
+
+                .probe_type =3D PROBE_PREFER_ASYNCHRONOUS,
+
+
+Thanks again Amit!
+
+Cheers,
+Andre'
+
+> +	},
+> +	.probe =3D max77759_charger_probe,
+> +	.id_table =3D max77759_charger_id,
+> +};
+> +module_platform_driver(max77759_charger_driver);
+> +
+> +MODULE_AUTHOR("Amit Sunil Dhamne <amitsd@google.com>");
+> +MODULE_DESCRIPTION("Maxim MAX77759 charger driver");
+> +MODULE_LICENSE("GPL");
 
