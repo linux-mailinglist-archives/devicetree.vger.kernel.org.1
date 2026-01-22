@@ -1,61 +1,68 @@
-Return-Path: <devicetree+bounces-258244-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258246-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WFH8EyHecWk+MgAAu9opvQ
-	(envelope-from <devicetree+bounces-258244-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 09:21:53 +0100
+	id 2DcnMmHecWk+MgAAu9opvQ
+	(envelope-from <devicetree+bounces-258246-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 09:22:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0120462F96
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 09:21:52 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70D9662FEE
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 09:22:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6CFB75A4212
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 08:13:31 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B60DE5A498E
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 08:14:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5155044DB8E;
-	Thu, 22 Jan 2026 08:13:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9B6D480DCA;
+	Thu, 22 Jan 2026 08:14:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h2dXxySR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K2oLUkEX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 182F830C373;
-	Thu, 22 Jan 2026 08:13:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C9AD21CC5C;
+	Thu, 22 Jan 2026 08:14:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769069606; cv=none; b=l7ywujhEizq1YOad5tjW1ZxL4bauoiqBZn7JVenG62CiLt+RNSPNhWt611QEVp+YHRokzl8PHJAfyLx5WlbSw3JpuzRN/yRKDmsKJ44xD5TeiLuQXYeOFAqQzAIbsWOLUHiuwjXhAxpOXW/MIA6lgJdYILuRgslbjUM1MWJzzOQ=
+	t=1769069654; cv=none; b=EGm1VhiFyEKdIp3NEbDfP1+BnwPCBoslROqKcct2PVLIouQsIqb5HTRmoLoN3QLhIohD0lk1l1wJpYGmlQnmbGkTz9EklrY6sGE4vmP8X6+AsxgXB9mO7NJxNuMR4gQ1o772A01RWQB8eMq+g6FIHrC7+fWk1ecNy1nEDhJL7Og=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769069606; c=relaxed/simple;
-	bh=CAHeg8HSLTyL4u5efT4cjYDAE+GmmJmalQvHMcYAods=;
+	s=arc-20240116; t=1769069654; c=relaxed/simple;
+	bh=WMoT0mf6Lg2CNc02jIE/68BPu0AshjGraHHEYMvCEk4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F8UdaweQPEpBMv5uPPXHRmNk3QNwuSbPiqCyVO/HOrbComPlBnR0QoAuUseWy8gD8Oc/kUVIYq88rlZ3kYophenZ0W0yE0u24OoFcH3WlWlaQ/kmQV6YEBCXyVcR4A2NNIPBrq7SwdMCa++nWJg3vqVK30aXMoZPsVbLRIf8vmE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h2dXxySR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13828C116C6;
-	Thu, 22 Jan 2026 08:13:24 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=jD5my9YXKoZ58g2EDb4eDDkojJyQSFaMJeYtztWXX54WzKfYA+u0XzfUvgvb2E614mU0llTkgmKZJ4JiinXJwhUJGrjTVweypq7iMhwTqecC8DQrO6QdysoMpBnvSiN2Z4tmIlQND+VuTSD3nunCGkgsY9H7KX3OztJwkRihkmI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K2oLUkEX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A24EC116C6;
+	Thu, 22 Jan 2026 08:14:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769069605;
-	bh=CAHeg8HSLTyL4u5efT4cjYDAE+GmmJmalQvHMcYAods=;
+	s=k20201202; t=1769069654;
+	bh=WMoT0mf6Lg2CNc02jIE/68BPu0AshjGraHHEYMvCEk4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=h2dXxySR/ulwB4O7X4zV7anKO5F8kKbHAObixPR5JDllkA7RAVkwSd745KdZ1rRQF
-	 acf+kbH0tZ2KiO8tG+sXsJwplHshXKVKDZCv6gB4co/KcBTg9IrF3BU3FL9LBFbiGn
-	 vwExwVR6zwgxFi4mvK8sPm4OCwQS9o/ihgeYrrBIGVxaxkHCH2vA76zVMoPDvJ8CtY
-	 jrIFB1qCkwQnM891NCtn+gPzWACAf9BH/gxhMmDFF5WJ/1Zsk3ckCF7m36t1ADC47N
-	 2ptABpCDnb/jpi8Vemw850lf2kOsDFhOY8A718Sm0ndEI+bQ8JojBinYBAvep/5K+2
-	 WFsTGNuBD5okA==
-Date: Thu, 22 Jan 2026 09:13:23 +0100
+	b=K2oLUkEXULmcMCjAM7ccX3CMcow+rAdlFj99xOjyn+GYeZC3xcVmlp/8dq/cr+9P4
+	 BygoREJoqiHHX3Ugv46US6OPGKMht2cbUEl4mu3QaEtB0uqvvFo13KDc00/hS5dgpY
+	 uqUnkGuoa/kYzFnZJQaaYTTKslhyHC3key3MNrGV+9ig3Yqt1JsT4cU0b1R1uA5Eh4
+	 p7O3PLNsE+DppfiYPwIQnN2XgF/Q2jobKsUi2Mr4nK/QdkvTtwFqtWhHoR+6vJe3XE
+	 OpaMtwj5cpn3WXWI1dpv897gfDtZeQyYEjBCqfTCELXucWenXfvg9LpKvfoKhDeCa6
+	 7DN4sUHFrUGaA==
+Date: Thu, 22 Jan 2026 09:14:11 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Almog Ben Shaul <almogbs@amazon.com>
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, itamark@amazon.com, talel@amazon.com, 
-	farbere@amazon.com, ayalstei@amazon.com, dwmw@amazon.com
-Subject: Re: [PATCH 2/2] hwmon: Add JEDEC PMIC50x0 driver
-Message-ID: <20260122-adamant-stereotyped-bird-e7deec@quoll>
-References: <20260121151947.37719-1-almogbs@amazon.com>
- <20260121151947.37719-3-almogbs@amazon.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov <lumag@kernel.org>, 
+	Abhinav Kumar <abhinav.kumar@linux.dev>, Jessica Zhang <jesszhan0024@gmail.com>, 
+	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	freedreno@lists.freedesktop.org
+Subject: Re: [PATCH 1/3] dt-binding: vendor-prefixes: document the Ayeneo
+ brand
+Message-ID: <20260122-skinny-garnet-pigeon-0eb5cf@quoll>
+References: <20260121-topic-sm8650-ayaneo-pocket-s2-base-v1-0-bb3f95f1c085@linaro.org>
+ <20260121-topic-sm8650-ayaneo-pocket-s2-base-v1-1-bb3f95f1c085@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,99 +71,50 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260121151947.37719-3-almogbs@amazon.com>
+In-Reply-To: <20260121-topic-sm8650-ayaneo-pocket-s2-base-v1-1-bb3f95f1c085@linaro.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.46 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
-	TAGGED_FROM(0.00)[bounces-258244-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-258246-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_CC(0.00)[kernel.org,oss.qualcomm.com,linux.dev,gmail.com,poorly.run,somainline.org,ffwll.ch,vger.kernel.org,lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns]
-X-Rspamd-Queue-Id: 0120462F96
+	TO_DN_SOME(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns,ayaneo.com:url,qualcomm.com:email]
+X-Rspamd-Queue-Id: 70D9662FEE
 X-Rspamd-Action: no action
 
-On Wed, Jan 21, 2026 at 03:19:47PM +0000, Almog Ben Shaul wrote:
-> Add hardware monitoring driver for JEDEC PMIC50x0 compliant I2C DDR5
-> PMICs.
+On Wed, Jan 21, 2026 at 05:40:26PM +0100, Neil Armstrong wrote:
+> Document the Ayaneo from the Anyun Intelligent Technology
+> (Hong Kong) Co., Ltd company.
+> Website: https://www.ayaneo.com/product/ayaneobrand.html
 > 
-> The driver provides monitoring for voltage, current, power, and
-> temperature across multiple channels, along with comprehensive error
-> reporting.
-> 
-> Signed-off-by: Almog Ben Shaul <almogbs@amazon.com>
-> Tested-by: Almog Ben Shaul <almogbs@amazon.com>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-Drop. You cannot send it untested, read submitting patches. The tag is
-for OTHER people to test, not create impression that all code is
-untested but here you did some testing.
+Subject: dt-bindings:
 
-> ---
-
-...
-
-> +
-> +static int pmic50x0_panic_callback(struct notifier_block *nb,
-> +				   unsigned long action, void *data)
-> +{
-> +	struct pmic50x0 *pmic50x0 = container_of(nb, struct pmic50x0, panic_notifier);
-> +
-> +	dev_emerg(pmic50x0->dev, "volt(mV): A=%ld, B=%ld, C=%ld, D=%ld\n",
-> +		  pmic50x0->last_voltage[0], pmic50x0->last_voltage[1],
-> +		  pmic50x0->last_voltage[2], pmic50x0->last_voltage[3]);
-
-You did not Cc any maintainers, so maybe one of your 5 CCs from Amazon
-can explain me why exactly random hwmon driver should receive panic
-callbacks? Do you see such pattern in hwmon?
-
-> +
-> +	return NOTIFY_DONE;
-> +}
-> +
-> +static void pmic50x0_panic_notifier_unregister(void *data)
-> +{
-> +	struct pmic50x0 *pmic50x0 = data;
-> +
-> +	atomic_notifier_chain_unregister(&panic_notifier_list, &pmic50x0->panic_notifier);
-> +}
-> +
-> +static int pmic50x0_panic_notifier_register(struct pmic50x0 *pmic50x0)
-> +{
-> +	struct notifier_block *panic_notifier = &pmic50x0->panic_notifier;
-> +	struct device *dev = pmic50x0->dev;
-> +	int ret;
-> +
-> +	panic_notifier->notifier_call = pmic50x0_panic_callback;
-> +	panic_notifier->priority = 0;
-> +
-> +	ret = atomic_notifier_chain_register(&panic_notifier_list, panic_notifier);
-> +	if (ret) {
-> +		dev_err(dev, "failed to register panic notifier (%d)\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	return devm_add_action_or_reset(dev, pmic50x0_panic_notifier_unregister, pmic50x0);
-> +}
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
