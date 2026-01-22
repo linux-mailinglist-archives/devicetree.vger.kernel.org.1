@@ -1,62 +1,67 @@
-Return-Path: <devicetree+bounces-258620-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258621-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IM5mI6V5cmlSlQAAu9opvQ
-	(envelope-from <devicetree+bounces-258620-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 20:25:25 +0100
+	id EPpKFOV5cmlSlQAAu9opvQ
+	(envelope-from <devicetree+bounces-258621-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 20:26:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id F02FC6CFCC
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 20:25:24 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BEA06D006
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 20:26:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5F41D300B47B
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 19:25:24 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id EB2E73007A5F
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 19:26:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B5F3392809;
-	Thu, 22 Jan 2026 19:25:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8B233921E9;
+	Thu, 22 Jan 2026 19:26:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DalGajo2"
+	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b="ebpqZnaf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx.nabladev.com (mx.nabladev.com [178.251.229.89])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5499C37AA8C;
-	Thu, 22 Jan 2026 19:25:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9EF2392809;
+	Thu, 22 Jan 2026 19:26:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.251.229.89
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769109916; cv=none; b=ajcDpPrxsoWcJKlt6uScmt5lz6gfu0lUtgRkpKAr0ChW0c6ViEAS9yrsatEZiz15x6GJwfpV5ESVzqKLPjREkxbUDnAP9DTn6Ugw568U9bZwTdE+uQ+QkQZ9nu3vz/GwQQMuh1AZNvnk62baQOzrt3+3z/Upt28J63UFQt7jhaE=
+	t=1769109979; cv=none; b=NYOKbhlGtKdE2x/3dlcVsToUtLfqO20a4WKUJd2Q2eTZ5diazhqYPN/hzFOdmnArb4XLeFplydNXhzRSQVaMIYeD3cyyKG2jBRQAtPc5sqhNc47rkpKiU7S4ME+IrDSjgCz7OhQIFIgsagTVgGDtHrPRP4Nm3AlpIleyj2W7CjA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769109916; c=relaxed/simple;
-	bh=UJu3K3bF88v0FaUNuJcWEqAzwX7bWZHeFfViNYORMJ4=;
+	s=arc-20240116; t=1769109979; c=relaxed/simple;
+	bh=zxxq46v5js8lUD8p0sx9+eGgFG6sU+S22vthEVmEdjA=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=XFaxiF6u4wAYTKHp8W1PAmQ6+Y9sTURL0mEfQQKRhPkmgkz2EvnfRCQYQeriWt4mHCGHICRNviTwMY7Pwn+tIVwxQakBPlUz7/Yp9AhsuIYEeW9ZUTcVBSG97sMwV5lDcf7dlMp6PlnYPYry/mESFl9JD5iUrAHB2Ky69n4b7Ak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DalGajo2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4454DC116D0;
-	Thu, 22 Jan 2026 19:25:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769109915;
-	bh=UJu3K3bF88v0FaUNuJcWEqAzwX7bWZHeFfViNYORMJ4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=DalGajo2TIxThMlDYyguXTzvEfVuPWe4O8IHdoXLsbOVmMgSIyKtYXz26kmCpvzR1
-	 x7VHlDvRVqGvfJHioDc8qIBs8PAdvJP6R29JGXzwKJMyrE8bk5grSh83Zc6xevTugB
-	 Y2EA9PCr03Doknf1mVhRUl3jWoh4DRctFMPuHeiKAj3uC/2z1CpLGd4OH8elFOGmRL
-	 ZkDdshViBfPhlwBORHNhw2Bed8B8GJi3oicC4TOlDI8fbK57pDF+2afGxQIRZ39S7Z
-	 xBCOd0TJ7fVJrlZHc3JdlI2qty7vrfB1+Ta78TF/3hidWL9q4RdsXFBeHgvbI1mJRj
-	 949daoarO5lZw==
-Date: Thu, 22 Jan 2026 19:25:06 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Jonathan Santos <Jonathan.Santos@analog.com>
-Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <lars@metafoo.de>,
- <Michael.Hennerich@analog.com>, <dlechner@baylibre.com>,
- <nuno.sa@analog.com>, <andy@kernel.org>, <robh@kernel.org>,
- <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <jonath4nns@gmail.com>
-Subject: Re: [PATCH v6 0/5] Add support for ADAQ776x-1 ADC Family
-Message-ID: <20260122192506.06ca7a4f@jic23-huawei>
-In-Reply-To: <cover.1768350772.git.Jonathan.Santos@analog.com>
-References: <cover.1768350772.git.Jonathan.Santos@analog.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	 MIME-Version:Content-Type; b=i9/59b74lnRbZRLKzeNOpucGCVHYWseOlFFPGoaQwiSPk8jrvJuXequSwwF2BV6tZuCxFg0B2LPx9MGwxaV+voGwt0TE6cR1ScGz5vEB5DYbG2j3gkf/tRH/bUFz4DtVnyurg207x6ojNVq91otfTGbM/Mg0o3666P6UMDbP+HY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=ebpqZnaf; arc=none smtp.client-ip=178.251.229.89
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nabladev.com
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4FE9110D9BD;
+	Thu, 22 Jan 2026 20:26:07 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
+	s=dkim; t=1769109968;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=Wz6lkBEoBXvIqyOZ6bUTu0I2QkHz950er/oSi1wDSSk=;
+	b=ebpqZnafk6S3u70+36FIAojJmLevDfR1tcdtZKYEMCnEoy/mZJLrrBaSWKQ5CXBTC35GpM
+	kAYBkWeowZdvjOCatE5SrSQZI+Bmy/fyxDhlhAvFzFpgntdWpG18unHm7TFqJ/vmQt3TnW
+	1L3Bks4xg+XOSq09udIw1O9bvT7XvW8912kjyrMQZDuiGeXa6md1fKlycSpk5HmO2MkgCf
+	sa5W3ho+TZNFaZ09gAwicQKp+SM/RoXa0ZXuMlkbmCZnPZvIKns8yZFDhYFZCDLrownw+p
+	CBE4ZbRYtRWqgu8vpgjYcgpe1NSdz+W26bDuOg5ziihAT40kn/sd+cWbXD7h4w==
+Date: Thu, 22 Jan 2026 20:26:03 +0100
+From: =?UTF-8?B?xYF1a2Fzeg==?= Majewski <lukma@nabladev.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: clock: vf610: Add definitions for MTIP L2
+ switch
+Message-ID: <20260122202603.36ed7944@wsk>
+In-Reply-To: <20260122-unlaced-porthole-1983bc69c03c@spud>
+References: <20260122125838.4144700-1-lukma@nabladev.com>
+	<20260122-unlaced-porthole-1983bc69c03c@spud>
+Organization: Nabla
+X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,139 +70,104 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[nabladev.com,reject];
+	R_DKIM_ALLOW(-0.20)[nabladev.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258620-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-258621-lists,devicetree=lfdr.de];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	HAS_ORG_HEADER(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.995];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,metafoo.de,analog.com,baylibre.com,kernel.org,gmail.com];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: F02FC6CFCC
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lukma@nabladev.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[nabladev.com:+];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,nabladev.com:email,nabladev.com:dkim]
+X-Rspamd-Queue-Id: 7BEA06D006
 X-Rspamd-Action: no action
 
-On Wed, 14 Jan 2026 06:26:22 -0300
-Jonathan Santos <Jonathan.Santos@analog.com> wrote:
+Hi Conor,
 
-> This adds support for the ADAQ7767-1, ADAQ7768-1 and ADAQ7769-1 devices. 
+> On Thu, Jan 22, 2026 at 01:58:38PM +0100, Lukasz Majewski wrote:
+> > This patch adds VF610_CLK_ESW and VF610_CLK_ESW_MAC_TAB{0123}
+> > macros definitions for L2 switch.
+> > 
+> > Those definitions describe clocks for MoreThanIP switch IP block;
+> > the switch itself and the MAC address lookup table clocks.
+> > 
+> > Signed-off-by: Lukasz Majewski <lukma@nabladev.com>
+> > ---
+> >  include/dt-bindings/clock/vf610-clock.h | 7 ++++++-
+> >  1 file changed, 6 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/include/dt-bindings/clock/vf610-clock.h
+> > b/include/dt-bindings/clock/vf610-clock.h index
+> > 373644e46747..b6f7b1745cc2 100644 ---
+> > a/include/dt-bindings/clock/vf610-clock.h +++
+> > b/include/dt-bindings/clock/vf610-clock.h @@ -197,6 +197,11 @@
+> >  #define VF610_CLK_TCON1			188
+> >  #define VF610_CLK_CAAM			189
+> >  #define VF610_CLK_CRC			190
+> > -#define VF610_CLK_END			191  
 > 
-> The ADAQ7768-1 and ADAQ7769-1 integrate a programmable gain amplifier (PGA)
-> with 7 and 8 gain options, respectively. The ADAQ7767-1 and ADAQ7769-1 
-> also feature a 3-pin selectable Anti-aliasing filter (AAF) gain.
-> 
-> ---
-> Changes in v6:
-> * Use Pattern PER* for all percentage-related macros and include macros 
->   for Per mille and per cent mille units.
-> * Refactored ad7768_parse_aaf_gain() to improve cleanliness and readability.
-> * Link to v5: https://lore.kernel.org/linux-iio/cover.1765900411.git.Jonathan.Santos@analog.com/T/#t/
-> 
-> Changes in v5:
-> * Added PERCENT macro along with BASIS_POINTS in units.h.
-> * Added new patch to allow writing attributes without direct mode claim.
-> * Write scale attribute without direct mode claim to avoid deadlock
->   when using GPIOs from the device's own controller.
-> * Link to v4: https://lore.kernel.org/linux-iio/cover.1764101647.git.Jonathan.Santos@analog.com/T/#t
-> 
-> 
-> Changes in v4:
-> * Removed u64_fract type patch, as it is not used. u32_fract is sufficient
->   for the PGA gain calculations.
-> * Added new patch adding BASIS_POINTS macro to units.h.
-> * Included pga-gpios property for parts that support PGA gain.
->   Before we were using the internal gpio controller to manage the PGA pins,
->   but still exposing the controller for external use (causing possible conflicts).
-> * Addressed other review comments, see individual patches.
-> * Link to v3: https://lore.kernel.org/linux-iio/cover.1757001160.git.Jonathan.Santos@analog.com/T/#t
-> 
-> Changes in v3:
-> * Renamed adi,gain-milli to adi,aaf-gain-bp. Now it represents basis points
->   (one hundredth of a percent).
-> * ad7768_channel_masks removed along with available_masks element in
->   ad7768_chip_info struct. It does not add anything for single channels,
->   so not needed, at least for now.
-> * New patch adding 64-bit fractional number types to math.h.
-> * Moved aaf gain parsing to its own function, and now returning after
->   warning to avoid setting a variable when it shouldn't (avoid confusion).
-> * ad7768_set_pga_gain(): removed the pgia enable check, relying on the
->   regmap cache.
-> * Addressed other review comments, see individual patches.
-> 
-> Changes in v2:
-> * adi,aaf-gain property renamed to adi,gain-milli. Default value added.
-> * fixed some commit messages. 
-> * Added 'select RATIONAL' to Kconfig.
-> * Added lock to protect PGA value access.
-> * rewrote AAF gain check and replaced error returns with warnings.
-> * Addressed other review comments, see individual patches.
-> * Link to v1: https://lore.kernel.org/linux-iio/cover.1754617360.git.Jonathan.Santos@analog.com/T/#t
-> 
-> Jonathan Santos (5):
->   dt-bindings: iio: adc: ad7768-1: add new supported parts
->   iio: adc: ad7768-1: introduce chip info for future multidevice support
->   units: add conversion macros for percentage related units
->   iio: adc: ad7768-1: refactor ad7768_write_raw()
->   iio: adc: ad7768-1: add support for ADAQ776x-1 ADC Family
-Applied with this diff to last patch.  Will first push out as testing to
-let 0-day take a look.
+> If end is modifiable, it is removable. If you need the define for the
+> driver, please move it there.
 
-Shout if the change is a problem.
+Could you be more specific regarding your comment?
 
-diff --git a/drivers/iio/adc/ad7768-1.c b/drivers/iio/adc/ad7768-1.c
-index 980c079ab41a..dc5be3d14664 100644
---- a/drivers/iio/adc/ad7768-1.c
-+++ b/drivers/iio/adc/ad7768-1.c
-@@ -535,9 +535,10 @@ static void ad7768_fill_scale_tbl(struct iio_dev *dev)
- {
-        struct ad7768_state *st = iio_priv(dev);
-        const struct iio_scan_type *scan_type;
--       int val, val2, tmp0, tmp1, i;
-+       int val, val2, tmp0, i;
-        struct u32_fract fract;
-        unsigned long n, d;
-+       u32 tmp1;
-        u64 tmp2;
- 
-        scan_type = iio_get_current_scan_type(dev, &dev->channels[0]);
-@@ -563,7 +564,7 @@ static void ad7768_fill_scale_tbl(struct iio_dev *dev)
-                tmp2 = ((u64)val * MICRO) >> val2;
-                tmp0 = div_u64_rem(tmp2, NANO, &tmp1);
-                st->scale_tbl[i][0] = tmp0; /* Integer part */
--               st->scale_tbl[i][1] = abs(tmp1); /* Fractional part */
-+               st->scale_tbl[i][1] = tmp1; /* Fractional part */
-        }
- }
- 
+The VF610_CLK_END has now value 191.
+
+However, there are other clocks in this SoC - like CLK_ESW and
+CLK_MAC_TAB{x} - which were not taken into account earlier.
+
+What shall be done?
+
+Shall I remove the VF610_CLK_END entirely?
+
+Or move to the new "end" (as done with this patch)?
 
 > 
->  .../bindings/iio/adc/adi,ad7768-1.yaml        |  64 ++-
->  drivers/iio/adc/Kconfig                       |   1 +
->  drivers/iio/adc/ad7768-1.c                    | 423 +++++++++++++++---
->  include/linux/units.h                         |  19 +
->  4 files changed, 453 insertions(+), 54 deletions(-)
+> pw-bot: changes-requested
 > 
-> 
-> base-commit: e0bc6d7e258486c10bb11e31fd4421c134063b1d
+> > +#define VF610_CLK_ESW			191
+> > +#define VF610_CLK_ESW_MAC_TAB0		192
+> > +#define VF610_CLK_ESW_MAC_TAB1		193
+> > +#define VF610_CLK_ESW_MAC_TAB2		194
+> > +#define VF610_CLK_ESW_MAC_TAB3		195
+> > +#define VF610_CLK_END			196
+> >  
+> >  #endif /* __DT_BINDINGS_CLOCK_VF610_H */
+> > -- 
+> > 2.39.5
+> >   
 
+
+-- 
+Best regards,
+
+Lukasz Majewski
+
+--
+Nabla Software Engineering GmbH
+HRB 40522 Augsburg
+Phone: +49 821 45592596
+E-Mail: office@nabladev.com
+Managing Director : Stefano Babic
 
