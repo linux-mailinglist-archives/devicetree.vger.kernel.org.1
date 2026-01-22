@@ -1,158 +1,207 @@
-Return-Path: <devicetree+bounces-258352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258354-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eN+vJWoOcmksawAAu9opvQ
-	(envelope-from <devicetree+bounces-258352-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 12:47:54 +0100
+	id qCCcDrcPcmksawAAu9opvQ
+	(envelope-from <devicetree+bounces-258354-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 12:53:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 550E466359
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 12:47:54 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0AA266412
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 12:53:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8D4C1903D13
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 11:36:23 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C3E516CAAE5
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 11:41:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6479349AEB;
-	Thu, 22 Jan 2026 11:32:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25CCC3ED122;
+	Thu, 22 Jan 2026 11:41:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EbbcHAcf"
+	dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b="BqgP/0+k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-pp-o92.zoho.com (sender4-pp-o92.zoho.com [136.143.188.92])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAD1C33F8A2;
-	Thu, 22 Jan 2026 11:32:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769081576; cv=none; b=YQniUJjAXUfvVx2Fcxp5zJRKWxeBY6fl5qygiPCfd02iZ78qCOxlyF5jEmSiEejJlW9K439bUhkKijT5c9EaOgSikp5CyE2ZFgOTFsRuKc+mkzbzl8ThdY89/LbnU8aUKmvv6Unk+YkQbrfaKhRpATi4LUPZ4qOXbrvBFRBpyuQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769081576; c=relaxed/simple;
-	bh=9F44Mz4Z12fSoodmWG8gkmg6dJaFsGYZtL80+pf+7Pc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fJSgK4JfnAIIxzSznDIhGspVqqKRjJbAtXuCSKO+CKd88gHya2i+FJdlV3lbXGpkohYwuFMJzVORoLjsMrkLoE8EtbnWlT0ajIHHSWCPDZVwHAua37n1a25Qh6Op1dxw619D2QA5pKAB+frGEhOGsLybVTOm2c+oUsd6N/NIrA0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EbbcHAcf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AB65C116C6;
-	Thu, 22 Jan 2026 11:32:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769081576;
-	bh=9F44Mz4Z12fSoodmWG8gkmg6dJaFsGYZtL80+pf+7Pc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EbbcHAcfi5w6orn6Jp7Hqf95kC+RtcBvoBnoixgZVL5FT1mUtvGY5EvEvvRe5PxX0
-	 79LwRo5M1XQeUlowv5/qXOe3ETU7GYbIz3oHmiViz2wZuwELUgIzVSoSFYgZFgvxrs
-	 T10UssFqPuOLama+F+VfNI1tTfAf9vn4UhZxr+7aezdwGTerE+QE7VTQsH4CMbm2tb
-	 QIkp3lT8+EQc1ELBNsF8rhKa/DF4pRhOMCCkERBwr1L/3ee2vYVSBngzm9ep7z7603
-	 HppZegKuPze7N7Z60+MS9Pj7JZ+0XC/Cpg75kuOJoBaSNS9nAGhWCzATXTy5ShNP3Z
-	 lnMnTlspY1atw==
-Date: Thu, 22 Jan 2026 11:32:50 +0000
-From: Lee Jones <lee@kernel.org>
-To: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, aiqun.yu@oss.qualcomm.com,
-	kamal.wadhwa@oss.qualcomm.com, jingyi.wang@oss.qualcomm.com,
-	yijie.yang@oss.qualcomm.com, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>
-Subject: Re: (subset) [PATCH v2] dt-bindings: mfd: qcom,spmi-pmic: Document
- PMICs present on Kaanapali
-Message-ID: <20260122113250.GD3831112@google.com>
-References: <20251215-knp-pmic-mfd-v2-1-1e91138c6fc6@oss.qualcomm.com>
- <176789374037.1117798.14242637055422802029.b4-ty@kernel.org>
- <b393f218-df47-4119-88df-9b3ce23180ae@oss.qualcomm.com>
- <45e5526b-d565-4420-965b-1c6a687cbbe0@oss.qualcomm.com>
- <20260122112721.GB3831112@google.com>
- <20260122113018.GC3831112@google.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F6EA33A9E5;
+	Thu, 22 Jan 2026 11:41:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.92
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769082084; cv=pass; b=QNTuGAqoelzr81WwBCmyAEEep7d9Dfo0dMc9QUfSZRcc5B+Ulf8Jyh2+SVdHcZAqbjEdXVPCf+ksx6tqknDybS+f8+zM7CGMAcpAyZosJEJSkVp97THkPCRG35/hK4Wii7Z/Xdxo5sz9rZOEu8esgX26Tz53bozQ0sWrd3xAJUU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769082084; c=relaxed/simple;
+	bh=Rn5ETJg3JFh9/Aya73cchV97ZT+c0jzGg2d/Ng9LrXU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dZee0pJBBuDHLPcOckBF1unoY5iZj2aC7H779AwU0kve/W7t8bkVDxiGtqD2BOesziGN0YCYh1jWXXE/dD7hZSIvx1t70ZRJ4dkUanSbBxgzDEdl3kfOgFZfOY3O5yxzV2egeM4dcRId29q/Zv4ZPYmLkAdoEqGzH0iZpGo6LKg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com; spf=pass smtp.mailfrom=zohomail.com; dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b=BqgP/0+k; arc=pass smtp.client-ip=136.143.188.92
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zohomail.com
+ARC-Seal: i=1; a=rsa-sha256; t=1769082054; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=Pb8wiJACOCATzEXc4PgWeHIX19E6c8dIl0diDlAgtpiB0IAwUMTZURj9rCubMT0CuzRWrb2BPGCqmrhgshV3wU+jAIfwilYbnYY9NjhFMNLLPXHi7Y3s3tB6cKDIy29ifBkwYWuvZYwnOj6XXaOZ8nTabaya4N+xCJCDWSHzxhE=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1769082054; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=kG2AIxIWH9YRnqrSVj4qktDyQAM1oSw/ZIFoeBq6s78=; 
+	b=Dj4aFJGUyrUKNT48CUlGd3wNqeM8ZFloOsQ90iuc4DIUrjrzDt3EV1ltEGMvJIRegNKk5apzWRMdelYfKACU5hIxhjUeJR/sOdGlyx9s/HrvvsSpZjuQnHabxf5u7eJfd7RUBbFQQRV6fUboqX1EqgRgu1UNWnS7Fvi/xTYbvbk=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=zohomail.com;
+	spf=pass  smtp.mailfrom=kingxukai@zohomail.com;
+	dmarc=pass header.from=<kingxukai@zohomail.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1769082054;
+	s=zm2022; d=zohomail.com; i=kingxukai@zohomail.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Feedback-ID:Message-Id:Reply-To;
+	bh=kG2AIxIWH9YRnqrSVj4qktDyQAM1oSw/ZIFoeBq6s78=;
+	b=BqgP/0+kjtY5+I2wZdBhES5UOLW9z1ic0VLtrQkGNlJ7QWvS9+jpKGeGORrH+7kB
+	eUHuZ79RxGH2zG0JY1ZMWSVqESzpwtdokYeP8JXMY0tzcC7Vjz2zjwiS8D66YXfaarc
+	/srXBXlWqzXyCep56oIBWOFMZ32N71mASZEWajLE=
+Received: by mx.zohomail.com with SMTPS id 176908204557861.379657628005475;
+	Thu, 22 Jan 2026 03:40:45 -0800 (PST)
+Message-ID: <bf39fdb8-6698-418b-bd4a-6d8d40ccc9a0@zohomail.com>
+Date: Thu, 22 Jan 2026 19:40:29 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260122113018.GC3831112@google.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 2/3] clk: canaan: Add clock driver for Canaan K230
+To: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Conor Dooley <conor@kernel.org>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ Samuel Holland <samuel.holland@sifive.com>,
+ Troy Mitchell <TroyMitchell988@gmail.com>
+References: <20260116-b4-k230-clk-v10-0-de59033c5d30@zohomail.com>
+ <20260116-b4-k230-clk-v10-2-de59033c5d30@zohomail.com>
+ <aW3o8xVziqb9iRBN@duge-virtual-machine>
+From: Xukai Wang <kingxukai@zohomail.com>
+Content-Language: en-US
+In-Reply-To: <aW3o8xVziqb9iRBN@duge-virtual-machine>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Feedback-ID: rr080112278a99ca22fe3413b8502573b80000d112c6c8de0269d35716262045f3868d8834dff19452d12e59:zu080112270525b0f9423d0c1823811a910000b1028f03cb95fe0534d1fd2bc67e39b74b00cfd63973a25f42:rf0801122c843053e5f5fb5ac981c0487f000022c182bfb45a1df9df852c4ef67ed102773d21a27587345871b15b159e36:ZohoMail
+X-ZohoMailClient: External
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.96 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+X-Spamd-Result: default: False [-0.46 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[zohomail.com:s=zm2022];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-258354-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258352-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,sifive.com,gmail.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[zohomail.com:+];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kingxukai@zohomail.com,devicetree@vger.kernel.org];
+	DMARC_POLICY_ALLOW(0.00)[zohomail.com,reject];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:helo,dfw.mirrors.kernel.org:rdns]
-X-Rspamd-Queue-Id: 550E466359
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns,zohomail.com:mid,zohomail.com:dkim]
+X-Rspamd-Queue-Id: C0AA266412
 X-Rspamd-Action: no action
 
-On Thu, 22 Jan 2026, Lee Jones wrote:
 
-> On Thu, 22 Jan 2026, Lee Jones wrote:
-> 
-> > On Wed, 21 Jan 2026, Jishnu Prakash wrote:
-> > 
-> > > On 1/21/2026 11:36 AM, Jishnu Prakash wrote:
-> > > > Hi Lee,
-> > > > 
-> > > > On 1/8/2026 11:05 PM, Lee Jones wrote:
-> > > >> On Mon, 15 Dec 2025 16:39:35 +0530, Jishnu Prakash wrote:
-> > > >>> Document compatibles for the pmh0101, pmh0104, pmh0110 and pmk8850
-> > > >>> SPMI PMICs.
-> > > >>>
-> > > >>>
-> > > >>
-> > > >> Applied, thanks!
-> > > >>
-> > > >> [1/1] dt-bindings: mfd: qcom,spmi-pmic: Document PMICs present on Kaanapali
-> > > >>       commit: 2a84a41a8c2d3cbc2460d2bc60569a35c4157e76
-> > > >>
-> > > > 
-> > > > I had pushed a V3 version of this patch earlier and Krzysztof
-> > > > had acked it the day before you applied this V2 version:
-> > > > 
-> > > > https://lore.kernel.org/all/7c56b471-5fab-4cad-bf48-4da261d5bd9f@kernel.org/
-> > > > 
-> > > > Is it possible for you to drop the V2 patch and pick the V3 patch instead,
-> > > > or do you prefer me to send the delta between the versions as a separate
-> > > > patch ?
-> > > > 
-> > > 
-> > > If you prefer picking the delta patch on top of V2, I have pushed it here:
-> > > https://lore.kernel.org/all/20260121-glymur-pmic-mfd-v1-1-2aab4f21e79c@oss.qualcomm.com/.
-> > 
-> > I applied v3 already:
-> > 
-> > https://lore.kernel.org/all/176892549681.2317951.17154378493870916934.b4-ty@kernel.org/
-> 
-> Scratch that!
-> 
-> I don't appear to have v3 in my inbox.  Please submit a [RESEND].
+On 2026/1/19 16:18, Jiayu Du wrote:
+>> +
+>> +K230_CLK_GATE_FORMAT(hs_hclk_src_gate,
+>> +		     K230_HS_HCLK_SRC_GATE,
+>> +		     0x18, 0, 0, 0,
+>> +		     &hs_hclk_high_src_rate.clk.hw);
+> Here, you replaced hs_hclk_high_gate(in v9) with hs_hclk_high_src_rate,
 
-Ah, the subject line was changed to:
+I'm a bit confused, as I don't recall making these specific changes.
+Looking at the code below, the only difference between v9 and v10 is
+within the K230_CLK_GATE_FORMAT(hs_hclk_src_gate, ...) definition, where
+the second parameter changed from 1 to 0. Everything else appears
+consistent. Could you clarify which change you were referring to?
 
-  dt-bindings: mfd: qcom,spmi-pmic: Document PMICs present on Glymur and Kaanapali
+The code
 
-I have applied it now.
+in v8:
 
--- 
-Lee Jones [李琼斯]
++K230_CLK_RATE_FORMAT(hs_hclk_high_src_rate, +
+K230_HS_HCLK_HIGH_SRC_RATE, + 1, 1, 0, 0, + 1, 8, 0, 0x7, + 0x1C, 31,
+div, 0x0, + false, 0, + &pll0_div4.hw); +
++K230_CLK_GATE_FORMAT(hs_hclk_high_gate, + K230_HS_HCLK_HIGH_GATE, +
+0x18, 1, 0, 0, + &hs_hclk_high_src_rate.clk.hw); +
++K230_CLK_GATE_FORMAT(hs_hclk_src_gate, + K230_HS_HCLK_SRC_GATE, + 0x18,
+1, 0, 0, + &hs_hclk_high_src_rate.clk.hw); +
++K230_CLK_RATE_FORMAT(hs_hclk_src_rate, + K230_HS_HCLK_SRC_RATE, + 1, 1,
+0, 0, + 1, 8, 3, 0x7, + 0x1C, 31, div, 0x0, + false, 0, +
+&hs_hclk_src_gate.clk.hw);
+
+in v9:
+
++K230_CLK_RATE_FORMAT(hs_hclk_high_src_rate, +
+K230_HS_HCLK_HIGH_SRC_RATE, + 1, 1, 0, 0, + 1, 8, 0, 0x7, + 0x1C, 31,
+div, 0x0, + false, 0, + &pll0_div4.hw); +
++K230_CLK_GATE_FORMAT(hs_hclk_high_gate, + K230_HS_HCLK_HIGH_GATE, +
+0x18, 1, 0, 0, + &hs_hclk_high_src_rate.clk.hw); +
++K230_CLK_GATE_FORMAT(hs_hclk_src_gate, + K230_HS_HCLK_SRC_GATE, + 0x18,
+1, 0, 0, + &hs_hclk_high_src_rate.clk.hw); +
++K230_CLK_RATE_FORMAT(hs_hclk_src_rate, + K230_HS_HCLK_SRC_RATE, + 1, 1,
+0, 0, + 1, 8, 3, 0x7, + 0x1C, 31, div, 0x0, + false, 0, +
+&hs_hclk_src_gate.clk.hw); +
+
+in v10:
+
++K230_CLK_RATE_FORMAT(hs_hclk_high_src_rate, +
+K230_HS_HCLK_HIGH_SRC_RATE, + 1, 1, 0, 0, + 1, 8, 0, 0x7, + 0x1C, 31,
+div, 0x0, + false, 0, + &pll0_div4.hw); +
++K230_CLK_GATE_FORMAT(hs_hclk_high_gate, + K230_HS_HCLK_HIGH_GATE, +
+0x18, 1, 0, 0, + &hs_hclk_high_src_rate.clk.hw); +
++K230_CLK_GATE_FORMAT(hs_hclk_src_gate, + K230_HS_HCLK_SRC_GATE, + 0x18,
+0, 0, 0, + &hs_hclk_high_src_rate.clk.hw); +
++K230_CLK_RATE_FORMAT(hs_hclk_src_rate, + K230_HS_HCLK_SRC_RATE, + 1, 1,
+0, 0, + 1, 8, 3, 0x7, + 0x1C, 31, div, 0x0, + false, 0, +
+&hs_hclk_src_gate.clk.hw);
+
+> but after my board test, I find that when hs_hclk_high_gate is turned
+> off, the mmc/sd and other high-speed subsystems can not work. So maybe
+> you should not change the hs_hclk_high_gate to hs_hclk_high_src_rate.
+
+Regarding the clock management, I recommend explicitly enabling
+hs_hclk_high_gateas it will be closed by `close unused clocks`.
+
+>
+> When I used clk_ignore_unused, I saw the log as follows, while the enable
+> and prepare count of hs_hclk_high_gate is zero. Here is the log:
+>        pll0_div4                     5  5  0  400000000   0   0     50000      Y  deviceless   no_connection_id
+>           hs_hclk_high_src_rate      1  1  0  400000000   0   0     50000      Y     deviceless   no_connection_id
+>              hs_hclk_high_gate       0  0  0  400000000   0   0     50000      Y        deviceless   no_connection_id
+>              hs_hclk_src_gate        1  1  0  400000000   0   0     50000      Y        deviceless   no_connection_id
+>                 hs_hclk_src_rate     4  4  0  200000000   0   0     50000      Y           deviceless   no_connection_id
+>                    hs_sd0_ahb_gate   1  1  0  200000000   0   0     50000      Y              91580000.mmc   ahb
+>                                                                                             deviceless   no_connection_id
+>                    hs_sd1_ahb_gate   1  1  0  200000000   0   0     50000      Y              91581000.mmc   ahb
+>                                                                                             deviceless   no_connection_id
+>                    hs_ssi1_ahb_gate  0  0  0  200000000   0   0     50000      Y              deviceless   no_connection_id
+>                    hs_ssi2_ahb_gate  0  0  0  200000000   0   0     50000      Y              deviceless   no_connection_id
+>                    hs_usb0_ahb_gate  1  1  0  200000000   0   0     50000      Y              91500000.usb   otg
+>                                                                                             deviceless   no_connection_id
+>                    hs_usb1_ahb_gate  1  1  0  200000000   0   0     50000      Y              91540000.usb   otg
+>
+> Regards,
+> Jiayu Du
+>> +
+>> +K230_CLK_RATE_FORMAT(hs_hclk_src_rate,
+>> +		     K230_HS_HCLK_SRC_RATE,
 
