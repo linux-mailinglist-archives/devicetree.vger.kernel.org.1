@@ -1,78 +1,72 @@
-Return-Path: <devicetree+bounces-258643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258644-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CA0lG8iucmmyogAAu9opvQ
-	(envelope-from <devicetree+bounces-258643-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 00:12:08 +0100
+	id QGPoDwuxcmnaogAAu9opvQ
+	(envelope-from <devicetree+bounces-258644-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 00:21:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6A586E6B0
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 00:12:07 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B8E16E722
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 00:21:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D5BB4301D311
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 23:12:06 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 080EB3004DAA
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 23:21:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E890238C16;
-	Thu, 22 Jan 2026 23:12:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3490C3A9603;
+	Thu, 22 Jan 2026 23:21:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="fU3KMWft"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lekxa4Nh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E67BD35CB80;
-	Thu, 22 Jan 2026 23:12:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73D2A330B3E;
+	Thu, 22 Jan 2026 23:21:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769123525; cv=none; b=CO1FDpYQg5E0KNQ+m+hLr1CilfS+X0QPoYjL4k1Hp3AA38MMBWqQDlFBSWuPT3L7aP4DzhkgiWvM2p0unKhHxy2Sj7nnu0AN2+7c0umfnU1ZNWe4EcAjv5wBVvOWOtPhSddCZ832giyupiwiWtModYeu0ZQMFV/n0K2nG3NimuY=
+	t=1769124101; cv=none; b=knn1tHBe0n7mlrjrHePi0pQhoz/DvdmMa4AyN5pIZGIo6J7Z4SouLCNRg18hXgIi5ggpuF8+CxquJzsZthU2mEn/HgHRQ09hpcsA4yxqlXhxOSTNLV9xk8mCCaG85OUfHa/Q1PVAzaFw6xrPUqCXNu/dlqd/b22kwflV0E5SyOM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769123525; c=relaxed/simple;
-	bh=5Ach7FQh0kSIfmJrAu7ACPYtsNfM+oR2FY6U6x+dxT0=;
+	s=arc-20240116; t=1769124101; c=relaxed/simple;
+	bh=vUOqLJV03qwaBfmuHwqXoOQ/IdKsiWbk/K4GdntR+BM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Zb2m0DD9SwAX1aaq8qPL+FVWILvGHd+yJoD941tY7OUnVr9BNZclFB2TomZfK4CSW/x+6/zw90tXDMAzOU2dKMOgPYXzEn08A+aEcDdzGDi6ayYRt/GSPX0UK6gAGSJFfkQ2joTIEx4Q41HTrPx30T1oSWkHjHJp0ZwuSKQzApo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=fU3KMWft; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=FxLcaXRPfi9zcjCrv3XME+vG698ByHEWZmdDgcDOrwk=; b=fU3KMWfta0rG3ErYDO2wLNeQa5
-	gstN+V9ikpsZPqf1cucuIbBmuNDi68wcR5+SXU3lQ3cOB0HN9qgrTChsCNGAXZd4g8JriwvAJOXMT
-	sm61w0mZUo5DvskZiU9l4h8Rg87A1sWFLCXj11wmI/bZ/kHiwQqnF/vchPfhJHywkb+k=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vj3q4-0042bT-Si; Fri, 23 Jan 2026 00:11:44 +0100
-Date: Fri, 23 Jan 2026 00:11:44 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	netdev@vger.kernel.org, Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	linux-kernel@vger.kernel.org,
-	Herve Codina <herve.codina@bootlin.com>,
-	Mark Brown <broonie@kernel.org>,
-	Serge Semin <fancer.lancer@gmail.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=bwX/kvxEIJIF4Dx1q2walqEhc+7VE9KeGl3rW2xKObYuNMkHS+gQPcdhefKPpID4Taf+W0FgoHZnn/1sr3SLRz4up15fGkxYAEu/GGVG48TFqTv0rNtiP3GM66tEQ5pv01PLhzJ+wCudB9181XL32/L+xP6CmP/JXKdJ8/eJwAQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lekxa4Nh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D927C116C6;
+	Thu, 22 Jan 2026 23:21:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769124100;
+	bh=vUOqLJV03qwaBfmuHwqXoOQ/IdKsiWbk/K4GdntR+BM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lekxa4NhA2b+jIufWjek4xt/AQ3UGxjRXVopuVx1/yJ3TyznR95IhK28K94qlOC/r
+	 tpV6+BC7k9LYA8mY2TdXOpSrt2T0yF+mJTw6i8m2OHig9F1tS3l/Sk1L/d0cVM0CVt
+	 oK74KFnQgA5DDSTwKyG74sZTZ+wce0e/PocViI6eAvbGwbtrSlqbsIqD71V5IjQOLA
+	 dv9AKO58oxXnJ+aiqVLuWEyt0KUrdvfIL4tKzqm/6uw++PY4MUC4yHtMwZmW0A5z9+
+	 ui5GBZeoi2YRPwQBZUkLHTD6I2D/AjciWG+/gVNRAsDgxex/iI5ywdTjUUuv4Fka8/
+	 TfVxHvjFAtCKw==
+Date: Thu, 22 Jan 2026 17:21:39 -0600
+From: Rob Herring <robh@kernel.org>
+To: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Mike Leach <mike.leach@linaro.org>,
+	James Clark <james.clark@linaro.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Choong Yong Liang <yong.liang.choong@linux.intel.com>,
-	Jiawen Wu <jiawenwu@trustnetic.com>
-Subject: Re: [PATCH v2 net-next 02/15] net: mdio: add driver for NXP SJA1110
- 100BASE-T1 embedded PHYs
-Message-ID: <bfd1058d-5acc-4147-9609-2b257070f7a3@lunn.ch>
-References: <20260122105654.105600-1-vladimir.oltean@nxp.com>
- <20260122105654.105600-3-vladimir.oltean@nxp.com>
- <aXIUJbEwnAvIkeKK@smile.fi.intel.com>
- <20260122124708.pxckp6vgi2rvagmm@skbuf>
- <aXI339TiHFaEAWXE@smile.fi.intel.com>
- <20260122221003.p2cbemzvi2mayety@skbuf>
+	Conor Dooley <conor+dt@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Leo Yan <leo.yan@linux.dev>,
+	=?iso-8859-1?Q?Cl=E9ment?= Le Goffic <legoffic.clement@gmail.com>,
+	Linus Walleij <linusw@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	jens.wiklander@linaro.org, coresight@lists.linaro.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH v4 03/12] dt-bindings: bus: document the stm32 debug bus
+Message-ID: <20260122232139.GA3717629-robh@kernel.org>
+References: <20260122-debug_bus-v4-0-28f0f2a25f2c@foss.st.com>
+ <20260122-debug_bus-v4-3-28f0f2a25f2c@foss.st.com>
+ <b8175f5e-f6fc-43ff-a36a-dfb8e15230da@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,50 +75,153 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260122221003.p2cbemzvi2mayety@skbuf>
+In-Reply-To: <b8175f5e-f6fc-43ff-a36a-dfb8e15230da@foss.st.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
-	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258643-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[linux.intel.com,vger.kernel.org,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,bootlin.com,trustnetic.com];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	FREEMAIL_CC(0.00)[arm.com,linaro.org,kernel.org,linux.dev,gmail.com,foss.st.com,lists.linaro.org,lists.infradead.org,vger.kernel.org,st-md-mailman.stormreply.com];
+	TAGGED_FROM(0.00)[bounces-258644-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.972];
+	DBL_PROHIBIT(0.00)[2.252.95.176:email,2.252.41.0:email];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[lunn.ch:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-0.994];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,lunn.ch:mid,lunn.ch:dkim]
-X-Rspamd-Queue-Id: E6A586E6B0
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 7B8E16E722
 X-Rspamd-Action: no action
 
-> I wasn't prepared to go down this rabbit hole, but it turns out that the
-> __mdiobus_read() and __mdiobus_write() functions do support regnum >= 32.
+On Thu, Jan 22, 2026 at 05:22:21PM +0100, Gatien CHEVALLIER wrote:
+> 
+> 
+> On 1/22/26 17:19, Gatien Chevallier wrote:
+> > Document the stm32 debug bus. The debug bus is responsible for
+> > checking the debug sub-system accessibility before probing any related
+> > drivers.
+> > 
+> > Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
+> > ---
+> >   .../bindings/bus/st,stm32mp131-dbg-bus.yaml        | 77 ++++++++++++++++++++++
+> >   1 file changed, 77 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/bus/st,stm32mp131-dbg-bus.yaml b/Documentation/devicetree/bindings/bus/st,stm32mp131-dbg-bus.yaml
+> > new file mode 100644
+> > index 000000000000..57f01d301e75
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/bus/st,stm32mp131-dbg-bus.yaml
+> > @@ -0,0 +1,77 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/bus/st,stm32mp131-dbg-bus.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: STM32 Coresight bus
+> > +
+> > +maintainers:
+> > +  - Gatien Chevallier <gatien.chevallier@foss.st.com>
+> > +
+> > +description:
+> > +  The STM32 debug bus is in charge of checking the debug configuration
+> > +  of the platform before probing the peripheral drivers that rely on the debug
+> > +  domain.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +          - st,stm32mp131-dbg-bus
+> > +          - st,stm32mp151-dbg-bus
+> > +
+> > +  "#address-cells":
+> > +    const: 1
+> > +
+> > +  "#size-cells":
+> > +    const: 1
+> > +
+> > +  ranges: true
+> 
+> Maybe maxItems:2 is preferred here, no?
 
-It could be historical, from before their were C22 and C45 operations.
+Wouldn't it be 1 as there is only 1 range? Up to you whether you want to 
+limit it or not.
 
-Previously, both transaction types were passed through one call. The
-MSB indicated if C45 should be performed, and there were some macros
-to split the number part into MMD and register.
+> 
+> > +
+> > +  reg:
+> > +    maxItems: 1
 
-With the current implementation, it should be O.K. to add a range
-change.
+Should be dropped?
 
-	Andrew
+> > +
+> > +  "#access-controller-cells":
+> > +    const: 1
+> > +    description:
+> > +      Contains the debug profile necessary to access the peripheral.
+> > +
+> > +patternProperties:
+> > +  "^.*@[0-9a-f]+$":
+
+This can be: "@[0-9a-f]+$"
+
+> > +    description: Debug related peripherals
+> > +    type: object
+> > +
+> > +    additionalProperties: true
+> > +
+> > +    required:
+> > +      - access-controllers
+> > +
+> > +required:
+> > +  - "#access-controller-cells"
+> > +  - "#address-cells"
+> > +  - "#size-cells"
+> > +  - compatible
+> > +  - ranges
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/stm32mp1-clks.h>
+> > +
+> > +    dbg_bus: bus@50080000 {
+
+Drop unused labels.
+
+> > +      compatible = "st,stm32mp131-dbg-bus";
+> > +      #address-cells = <1>;
+> > +      #size-cells = <1>;
+> > +      #access-controller-cells = <1>;
+> > +      ranges = <0x50080000 0x50080000 0x3f80000>;
+> > +
+> > +      cs_cti_trace: cti@50094000 {
+> > +        compatible = "arm,coresight-cti", "arm,primecell";
+> > +        reg = <0x50094000 0x1000>;
+> > +        clocks = <&rcc CK_DBG>;
+> > +        clock-names = "apb_pclk";
+> > +        access-controllers = <&dbg_bus 0>;
+> > +      };
+> > +    };
+> > 
+> 
 
