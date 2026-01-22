@@ -1,248 +1,189 @@
-Return-Path: <devicetree+bounces-258355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258356-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sOqGOGsPcmksawAAu9opvQ
-	(envelope-from <devicetree+bounces-258355-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 12:52:11 +0100
+	id +AdnFt0VcmksawAAu9opvQ
+	(envelope-from <devicetree+bounces-258356-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 13:19:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39543663F2
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 12:52:11 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2D0966880
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 13:19:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A6AD484C057
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 11:43:00 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 878A272B146
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 11:44:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8175042980C;
-	Thu, 22 Jan 2026 11:41:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA302428487;
+	Thu, 22 Jan 2026 11:42:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="UEFpYXOg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dRKl3+Pr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dy1-f173.google.com (mail-dy1-f173.google.com [74.125.82.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DB7C429801;
-	Thu, 22 Jan 2026 11:41:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769082108; cv=none; b=T7pUyXQ9ui0d4yMOy8sqZL8PVWM5T/g3/UgX0OlIR0f/YQKOmHWFSuGXqBeySlmJUc0zynluKcv+kQd5NTWSnv+tZRjeWwkyIF6NOLDUKvVJWzMneiWWArtVvxyvAHYt00ZaSmeusKUZq+qBVr7DFQUoG29uBYztZ/3/6TEmyV8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769082108; c=relaxed/simple;
-	bh=NqQtXUERc3v4NzNZ99SDCcNfgBv7D/bmH0cyLocfDQo=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qsweMJqw5vGSTvAAem1FrZsEFu0UZ551e6YGpbxxY+PtBh3yAv6RTNhgctYu+pJI9BjrZdgT8rdDZGHJp/6JDvZwA74Ryir5P2SlDa0Q1Hi8gKb1cVg/VBYzb71Jr1Lb9KHfgfpw/v96JpOpvYTDILglHb814rm2EQCZLFCGHnM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=UEFpYXOg; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id A8075C21AA0;
-	Thu, 22 Jan 2026 11:41:37 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id B573A606B6;
-	Thu, 22 Jan 2026 11:41:37 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B0CD5119B0105;
-	Thu, 22 Jan 2026 12:41:16 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1769082094; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=Fl2SnsCgDRhlccmCWpsQ4CBlDuamahnW5kxpsohCwvo=;
-	b=UEFpYXOgJL+WIY89Mx/EpOyceBBILQiL0TxFQWpW01yiEySAJH2g1HcWGNeQm8jHeKv+xN
-	O2csc+HhLdo2gWFITsAzh6mTWYo9h+2QnQHxO2GdqZlsPvpTAG/XFqvOefokUsJca73PWu
-	919NjC9kftG/xECA0iNKY+BT7G6XeddTLl+YrGq6EFQ7innqv2Qzt9u7ZQzupbkT37WFhV
-	mgEsWUeGSzIj/19gb+Tq8BosxVfyi4TFbwa3Kmjo2kuM+uE7HxnX7idMvi9PAvs7Wiw+OR
-	Jl3h0x9NzvUaJ7inKLTNk1kZu+isqj/tgMXHTzscOm2flBtD/RFBursuZs9FuQ==
-Date: Thu, 22 Jan 2026 12:41:14 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Matti Vaittinen <mazziesaccount@gmail.com>, Rob Herring
- <robh@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Ulf Hansson
- <ulf.hansson@linaro.org>, Kalle Niemi <kaleposti@gmail.com>,
- linux-arm-kernel@lists.infradead.org, Andrew Lunn <andrew@lunn.ch>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Danilo Krummrich <dakr@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
- Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
- <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Michael
- Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Andi
- Shyti <andi.shyti@kernel.org>, Wolfram Sang
- <wsa+renesas@sang-engineering.com>, Peter Rosin <peda@axentia.se>, Arnd
- Bergmann <arnd@arndb.de>, Bjorn Helgaas <bhelgaas@google.com>, Charles
- Keepax <ckeepax@opensource.cirrus.com>, Richard Fitzgerald
- <rf@opensource.cirrus.com>, David Rhodes <david.rhodes@cirrus.com>, Linus
- Walleij <linus.walleij@linaro.org>, Mark Brown <broonie@kernel.org>, Andy
- Shevchenko <andriy.shevchenko@linux.intel.com>, Daniel Scally
- <djrscally@gmail.com>, Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, Len Brown <lenb@kernel.org>,
- Davidlohr Bueso <dave@stgolabs.net>, Jonathan Cameron
- <jonathan.cameron@huawei.com>, Dave Jiang <dave.jiang@intel.com>, Alison
- Schofield <alison.schofield@intel.com>, Vishal Verma
- <vishal.l.verma@intel.com>, Ira Weiny <ira.weiny@intel.com>, Dan Williams
- <dan.j.williams@intel.com>, Wolfram Sang <wsa@kernel.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-clk@vger.kernel.org, linux-i2c@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-sound@vger.kernel.org,
- patches@opensource.cirrus.com, linux-gpio@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-spi@vger.kernel.org,
- linux-acpi@vger.kernel.org, linux-cxl@vger.kernel.org, Allan Nielsen
- <allan.nielsen@microchip.com>, Horatiu Vultur
- <horatiu.vultur@microchip.com>, Steen Hegelund
- <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Saravana Kannan
- <saravanak@kernel.org>
-Subject: Re: [PATCH v4 01/29] Revert "treewide: Fix probing of devices in DT
- overlays"
-Message-ID: <20260122124114.44812cc7@bootlin.com>
-In-Reply-To: <CAMuHMdWGk5ig3v9tGy1cMOg1LmKu3KrxQq2HO1vcQeZPuRxWBQ@mail.gmail.com>
-References: <20251015071420.1173068-1-herve.codina@bootlin.com>
-	<5cf2a12a-7c66-4622-b4a9-14896c6df005@gmail.com>
-	<CAL_JsqJjm12LxpDg6LmpY=Ro_keHwnrWiYMLVnG=s_pSP4X2WQ@mail.gmail.com>
-	<072dde7c-a53c-4525-83ac-57ea38edc0b5@gmail.com>
-	<CAL_JsqKyG98pXGKpL=gxSc92izpzN7YCdq62ZJByhE6aFYs1fw@mail.gmail.com>
-	<55076f4b-d523-4f8c-8bd4-0645b790737e@gmail.com>
-	<20251202102619.5cd971cc@bootlin.com>
-	<088af3ff-bd04-4bc9-b304-85f6ed555f2a@gmail.com>
-	<20251202175836.747593c0@bootlin.com>
-	<dc813fc2-28d2-4f2c-a2a3-08e33eec8ec7@gmail.com>
-	<20251204083839.4fb8a4b1@bootlin.com>
-	<CAMuHMdXdwf7La1EYBWTJadsTAJG3nKQVW6wtBn-bUqshA=XHRw@mail.gmail.com>
-	<20251210132140.32dbc3d7@bootlin.com>
-	<c50c40cc-69f6-436c-a94e-94a3a10f6727@gmail.com>
-	<20251211132044.10f5b1ea@bootlin.com>
-	<1b9fa77b-d74a-4fa7-b2e7-8b389d59a5a0@gmail.com>
-	<20251211161902.11ef4248@bootlin.com>
-	<CAMuHMdWGk5ig3v9tGy1cMOg1LmKu3KrxQq2HO1vcQeZPuRxWBQ@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 178983BF30A
+	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 11:42:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.82.173
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769082178; cv=pass; b=X0AJoplaVcXLozhun+2aGCw3jd5Thy/EhDBN+lWoqIZxAV2n5vvDA2i6PnalIHLyebe5V34FbUTyPh0NsQAGgPos49jlv2E/SpdlkY9MUGqvvZrFKp1o5EBrSF/tcJsSqr+KbcbdPtS57IhWKJ2iN9yMtAcrV/tE+WyTMmDsbSY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769082178; c=relaxed/simple;
+	bh=F8Yc9cXJy+2eoQ7TPFhwVWvrGAhXxpTI6YyYLtkj6vw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=gK+hOdd2AubYykEWrhPkWAsRXOxEBLcENs4T2kiTo5g1rCfBX/6qSpdt0CjdIjFJgjrerkT2C32yB7uBPSlPI6EbIu4GDeN5hB6VAwVs549nj0CDEAL23U4Mb1lEMXl8Tm42RLP+UgorFdOvgut093tpfZwsu4TVkvbMMX+q01Y=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dRKl3+Pr; arc=pass smtp.client-ip=74.125.82.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dy1-f173.google.com with SMTP id 5a478bee46e88-2b72e49776eso465254eec.1
+        for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 03:42:56 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1769082176; cv=none;
+        d=google.com; s=arc-20240605;
+        b=B8HCrTFwVhJ+F4FKCAc0GkeMEODlLLrWTeKjloxpAg5gibg0iGs8vO/n44cXAniEVJ
+         j6i/dg7bSiYjj4PWkNOsI4an+44j7Z7tAyF5wwyqXHZL33G9z1tvcIhNUbPUiie+I8rZ
+         zIZoaTcT2yjsYNWG+gGuresarvI5yAjvKk+WO6DXNHG2MOw6WmkOa8E8Fg0ZOyk3IM2x
+         j+IPydIlB82uIdh01JD02E0dP6vpQ/FbHaXKRIiFHfkrzxYeli+S30OILMPQlbTmILds
+         0Wl8JzPgvUaCRCQ8kAiFLPHsVF//PIxx8Z0vxlxebnbR/8NyNjzwcxQSrGp3TbgGjk9p
+         9kIQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=HE/sohNG8mICW2nj1/0OeJe/N3MzO12zyrycF9gVJ5s=;
+        fh=eaenkslZxYvj05z9M67fHq0VZlw8SyLYt70oBP+fVVc=;
+        b=BEcjo2bE4gyXIbe7Sh4VLqj8SBWS2O0mAWgTqEDK07Sh1h/dABGfKBJOMEofNv88OV
+         nDUFm2OKzX88ONzhDQCC3ghbCVhHqjS52iC5B9FUQU+prUDlVSeOQNtqiRTr9dUIvJUw
+         8vXKa3N71Mf0xHXZ+zt2JnAYUl71hoQEp8dOBhHopU16nB29kLc/uIjopG6adNQhV5Cb
+         yXs1Sav7Yqgk0YjvqhOn527YNSDuii2TbdJPS9arUbEa+jXJ4O9YZz2TObDkZ1YbM7Hj
+         YejPeGq/bxy+RbFqh1O7Im3jWj70oefIsKZHh95KfGmG5RAQhuLXF+gIe1USLzTIpK88
+         Pqng==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1769082176; x=1769686976; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HE/sohNG8mICW2nj1/0OeJe/N3MzO12zyrycF9gVJ5s=;
+        b=dRKl3+PrFRsUkEla7QbEOv8VjtEX5B2S8UmxykIR+St9sW9mIVmn374Q7v0QzCJHtt
+         cRpgFDM+1eHwoLplWkajzCd73HCoaaRZmdDIRQO2H0Q41/t2k/J29SoTw/v37b1nETZM
+         875mtEtWwcC62/NMQU1tOgBlvAyNkJ9q91fCC8EVnee8eyhVfVZqOImCtxfDM3d9wyS1
+         CqIXxk7Zmc3tNEf/b9xrSLdlDC2QsMakyLpJNtbaaGhaVTC9qbYVV9oJuVR2iJNpYBlZ
+         QGUONbMsWbFu64xHLWEb7KXx1JXTif6Wx7Hv9C0MNV6HH2+ox9N4ab1n3X8xcT/OmjVY
+         3o3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769082176; x=1769686976;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=HE/sohNG8mICW2nj1/0OeJe/N3MzO12zyrycF9gVJ5s=;
+        b=UjQLbB8xEqeBuX828feDpjrTZENIjH6rqNqu7CmZJKW8hy2ZfQ0rO0THX4qGIWBeaY
+         HdwvhE9x3DqXvn+xl2yQXUBnLOozXOMXyA4WzrArgrA38Z8q888QmD2tLCnf790xxbT1
+         QkiGolB0Bng57J42QmlgQ2ivhz3KLfI5DcTcsvyP9thNM+4/sSovfuT/cI6bgkhoKLKT
+         3DujRkQgGnjg6dHKszWNuO1gDL1p8SaAzPAad2Gwg03gbQeLFIZ2am2VQNh8EUT15Pkw
+         UR4b3Czo9n6SqBmpVxB2B75S4meJtfNKe6F+0FnYQgM8Y5xruNR6Jyb9l5o07HsEvUjU
+         DZ+g==
+X-Forwarded-Encrypted: i=1; AJvYcCWcxEWjJ69IMY1QCW+Sp2uI8SLbSn/ULWu/OcIwMWKTn3iMZ2Mc2Q+HYPfv5dI0EZN3DiFX9dexz55W@vger.kernel.org
+X-Gm-Message-State: AOJu0Yym+WU4hMJyMoEdRhlb5THv/wVBoF5EjjexGFPXumS3o9r1xmqO
+	dzz7oqNNjcMspBbUmC3Tn/LRksK+hLvMh2JNU8Oj31EMPOvpzfyD5Ogw0ETJk6sT0uHCuv+viiC
+	1WKCNNO2nwHu+Ewzgk4y5E00VzLiOCQQ=
+X-Gm-Gg: AZuq6aJoZENWDFulhTAWya3/Cdh+odW2EfHmXTwp6/3cQARCS8JIDEWj1ftdTgPxDUp
+	r1fSBrl+mtJG6C2+W5YhOcVmQd8To0QeAruXdGVRDvAf5TZq2fVT99BbfB0zoArm6IHE7/hjF0f
+	YEPc9BBdkE859x/giBFsEt7zcjZk2HgSSTgskPTliSXn5brV45hf6BWbGfZ+uTEHMczmVrDh/yz
+	ddECAzeuKBNzzyGZHiA6aqW6IYSshNtBzOtMla7zVChbKupJcTqgEEeoCGRr2x2wqR62xrX
+X-Received: by 2002:a05:7300:188a:b0:2b7:1d5d:47dc with SMTP id
+ 5a478bee46e88-2b71d5d49cfmr2705056eec.22.1769082176019; Thu, 22 Jan 2026
+ 03:42:56 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+References: <20260107144507.46491-1-Ashish.Yadav@infineon.com>
+ <03da3b10-dfe9-466a-9dc9-b51e29938e3e@roeck-us.net> <CAJKbuCYcRMrX5H5rWXWXOz4FCZi5iu8CCE2Oi3WEsWqEikqsYg@mail.gmail.com>
+ <f0d230be-676b-47b9-9565-22319b8e62cc@roeck-us.net>
+In-Reply-To: <f0d230be-676b-47b9-9565-22319b8e62cc@roeck-us.net>
+From: ashish yadav <ashishyadav78@gmail.com>
+Date: Thu, 22 Jan 2026 17:12:44 +0530
+X-Gm-Features: AZwV_Qg5AVdgqRe_8IaQnW6DxlahFcEHezmvgXFNpYdUF-cPzZtqukJhMahbLU8
+Message-ID: <CAJKbuCYUCr-R-91Ou1y6XDEPdqabSDvCxUypc-YmW=-EPxgNyQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] hwmon:(pmbus/tda38740a) TDA38740A Voltage
+ Regulator Driver
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	ASHISH YADAV <Ashish.Yadav@infineon.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,linaro.org,lists.infradead.org,lunn.ch,linuxfoundation.org,pengutronix.de,baylibre.com,sang-engineering.com,axentia.se,arndb.de,google.com,opensource.cirrus.com,cirrus.com,linux.intel.com,stgolabs.net,huawei.com,intel.com,vger.kernel.org,lists.linux.dev,microchip.com,bootlin.com];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258355-lists,devicetree=lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
+	TAGGED_FROM(0.00)[bounces-258356-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[bootlin.com,reject];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[herve.codina@bootlin.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[ashishyadav78@gmail.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[60];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux-m68k.org:email,bootlin.com:email,bootlin.com:dkim,bootlin.com:mid,dfw.mirrors.kernel.org:helo,dfw.mirrors.kernel.org:rdns]
-X-Rspamd-Queue-Id: 39543663F2
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[roeck-us.net:email,ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: D2D0966880
 X-Rspamd-Action: no action
 
-Hi Geert,
+Hi Guenter,
 
-On Wed, 21 Jan 2026 13:59:26 +0100
-Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+Please find my response inline.
 
-> Hi Hervé,
-> 
-> Revisiting his old thread (sorry for the delay)...
-> 
-> On Thu, 11 Dec 2025 at 16:19, Herve Codina <herve.codina@bootlin.com> wrote:
-> > On Thu, 11 Dec 2025 15:52:28 +0200
-> > Matti Vaittinen <mazziesaccount@gmail.com> wrote:  
-> > > On 11/12/2025 14:20, Herve Codina wrote:  
-> > > > On Thu, 11 Dec 2025 10:34:46 +0200
-> > > > Matti Vaittinen <mazziesaccount@gmail.com> wrote:
-> > > > Do you see the same trace with:
-> > > > - "pinctrl-0 = <&i2c1_pins>;" in your overlay
-> > > > - fragment0 removed from the overlay (i2c1_pins definition removed from
-> > > >    the overlay.
-> > > > - i2c1_pins node defined in your base DT.  
-> > >
-> > > Just tested. The i2c1 appears and the test-overlay probe gets called,
-> > > when the i2c1_pins is in the base-dt and not in the overlay.  
+Thanks & Regards
+   Ashish Yadav
+
+On Tue, Jan 13, 2026 at 8:40=E2=80=AFPM Guenter Roeck <linux@roeck-us.net> =
+wrote:
+>
+> On 1/12/26 23:24, ashish yadav wrote:
+>
+> >> The need for this, especially why it would only be needed for PMBUS_RE=
+AD_VOUT
+> >> but not for any other VOUT related commands, is still insufficiently e=
+xplained
+> >> (and I failed to understand the rationale provided earlier).
+> >>
 > >
-> > Geert, do you expirement same results?  
-> 
-> Yes, after moving the pin control subnode from the overlay[1] to the
-> base DTS, the SPI bus and FLASH work after loading the overlay for
-> the first time.
-
-Ok. What I said for Matti's use-case is also valid for your use-case.
-
-> 
-> > > > In other word, is the issues related to adding a pinctrl sub-node (pinctrl
-> > > > pins definition) in the overlay or is it something else?  
-> > >
-> > > Seems to be related to the pinctrl.  
+> > It is specifically needed for READ_VOUT as it is being used by
+> > external controller to monitor the rail health.
+> > Other Vout related parameters are used internally in the IC to for
+> > output voltage related protections and does not impact any external
+> > decision making.
 > >
-> > I don't think that the issue is related to pinctrl itself.
-> >
-> > IMHO, I think the issue is related to overlays and fw_devlink.
-> > The distinction between "a new node is going to lead to a device" vs "a new
-> > node is just data and will never been attached to a new device" when an
-> > overlay is applied is broken.
-> >
-> > This is broken with the upstream "treewide: Fix probing of devices in DT
-> > overlays" commit I've tried to revert. Indeed, on the LAN966x PCI device
-> > use case devlinks created are not correct with this commit applied.
-> >
-> > I am not sure also that devlinks created with a more complex overlay will be
-> > correct. For instance, Matti, with your overlay not sure that a phandle from
-> > the oscillator node referencing the pmic node will lead to a correct
-> > provider/consumer devlink between the pmic device and the oscillator device.
-> >
-> > On the other hand, this is broken with "of: dynamic: Fix overlayed devices
-> > not probing because of fw_devlink" works for the LAN966x PCI device use case
-> > an lead to correct devlinks but breaks your use cases.  
-> 
-> Loading my overlay[1] causes the following changes under
-> /sys/class/devlink/:
-> 
->     + genpd_provider:ca53-cpu0--platform:e6e90000.spi ->
-> ../../devices/virtual/devlink/genpd_provider:ca53-cpu0--platform:e6e90000.spi
->     + platform:e6055000.gpio--platform:e6e90000.spi ->
-> ../../devices/virtual/devlink/platform:e6055000.gpio--platform:e6e90000.spi
->     + platform:e6060000.pinctrl--platform:e6e90000.spi ->
-> ../../devices/virtual/devlink/platform:e6060000.pinctrl--platform:e6e90000.spi
->     - platform:e6060000.pinctrl--platform:keys ->
-> ../../devices/virtual/devlink/platform:e6060000.pinctrl--platform:keys
->     + platform:e6150000.clock-controller--platform:e6e90000.spi ->
-> ../../devices/virtual/devlink/platform:e6150000.clock-controller--platform:e6e90000.spi
->     + platform:soc--platform:e6e90000.spi ->
-> ../../devices/virtual/devlink/platform:soc--platform:e6e90000.spi
-> 
-> Note that these changes are exactly the same in the working and the
-> non-working case.
-> 
-> Removing the overlay again removes all added links, but does not
-> restore the keys link:
+>
+> Sorry, that doesn't really make sense. How would the chip know to match
+> VOUT with its VOUT limits if both don't use the same scale ?
+>
+The chip telemetry would still show Vout as 0.7V as it does not know
+about the external feedback resistors.
+Hence, no need to scale internal Vout related parameters.
+This scale is only for external vendor use to tweak their telemetry
+output voltage reading.
 
-I think you should have the exact same behavior with and without my
-modification.
-
-Can you confirm?
-
-Best regards,
-Hervé
+> Guenter
+>
 
