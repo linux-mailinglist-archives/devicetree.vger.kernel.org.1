@@ -1,372 +1,336 @@
-Return-Path: <devicetree+bounces-258174-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258175-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QJ6rG16EcWk1IAAAu9opvQ
-	(envelope-from <devicetree+bounces-258174-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 02:58:54 +0100
+	id WCKQDqaHcWlaIwAAu9opvQ
+	(envelope-from <devicetree+bounces-258175-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 03:12:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 510A7609DF
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 02:58:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 258D460C29
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 03:12:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 1C1734414F7
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 01:55:58 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 014724068D9
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 02:08:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 517BC369235;
-	Thu, 22 Jan 2026 01:54:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C59CC369995;
+	Thu, 22 Jan 2026 02:08:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="lauFpQof"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OyfHjI1I";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="WNhGPYDh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013038.outbound.protection.outlook.com [52.101.83.38])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D5DE352FBC;
-	Thu, 22 Jan 2026 01:54:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.38
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769046893; cv=fail; b=bYbC+WGjM9sSgPFunXcujBPi9zOKxevC62UP08OtYqNc3nTwaneNJCm6v1oDiNVRtAzUD6r0/HD/KML/EhdT6MosiWLwCx9DjSJ4eClYZdK6mN4O7w3Oq8CoeODDaPPyD2gLBBVTHpuuV3EH5EG5FH41nu+GFXVPZir/Xd+ZZ9g=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769046893; c=relaxed/simple;
-	bh=P8/5iFOZz+JTsI88gu/UH9NLz99r1RNahGof64RXfLk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=jNYpK7rOJyDcYvZPNZuQr+V7tNFV4qRytNnLbQYR1YekN9jnrKk9y2wzWhxHYtDPJaeygkjrLOwcqWR3VN8c6K2yoxFEv0vFaV7b29xI1qIywPwr0VPL3Ctf/sA/QmZClZj3n7mUQhqKmaPiz1c7e8UG66K+oEOVOfNCbzyWu4M=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=lauFpQof; arc=fail smtp.client-ip=52.101.83.38
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=IpAAc9lgIzn9pWlrWlSWIucDnPZ3f4qCkn7yGZ9XnTkFry4R4g6WlFZvfzcpU9LU46FDW+5WslkJnn2RbqyiCisbwArfLL7FI8K8xI8gJyngWCeLb75Z18ZE3hCOc3n3TknZ1Vcx0BjcdRR+MFpsOZfORNubzcX6fszpNAwXDC3unuEJ7RDJU6WaCnYXTipNoKsyGnf19TanjbC5KSIxpZz0/908tchvqfNKkcbWbv+YRF5dSIj2XBK6wPtTq4NvFzmDWsIzz2BB+Q0HmE7glJj35whw3g6jUDLBeaTeqb59VrtvTmrsDJkpBRHLZ1zVfhdx01P5zbOBKoJtesXWsw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5q17GNhgc/zv000IMHJ/KLnICDEBcIN8cM2Oub6Hbxw=;
- b=XxpG6InwualJc93vFy1sQj3aMo8ZkKwDonGXz6msgrw5tHCOK+kx7m+n5q+ycbX6PqiNKBLfZxoltpKQ+zp6u53w8x1EB80/r55kSvzkBtnL7ae7tlXhsqw7c7ojbqjmD9GzAI+gbubVsrjUijf9kRiHjNEciPeglb5dfBPsZeHPYlmRQ/3tT+tC4V0EzQ5GlF5zOK0Gtl9gvCvO884w7KPEpk8+BM7jMRr/23wEtauxm7fkqOEMHuKWDG0useak2yRfbI7EUMoRH8nswEUlPDFi+cUdh3bGDVyMSRDYpO2OeQLKf8cQcqHL42qOSXWxaPPOxLdrRTbMvjZDH23hMw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5q17GNhgc/zv000IMHJ/KLnICDEBcIN8cM2Oub6Hbxw=;
- b=lauFpQofenKpUIjtxbqIMsFC4sxdU19gmmsIHwz+0IvV50DqlKsFeIt2UM2Y6Hy6gwamQ0fdaGDXc2vWIkTJVuayVM9lJxW78TjzidPEPPUxo+TTkrGA+UpHn5Np75eVgcmqhg4SCvYadUhMSgqKyrEW1J/uhUWy836Rc2sFR8jFWvMa2CvM+w2L/EI76NVZst+8yOGU8IeuKwNBctDDfkWhOwFpHkwSEtXtsS8vi6SUNXw8+wRngwyUXmQdOJG/jtFGrCxsK5j3tnpaiVrbHm7r8yQZXo73tmB57XR/dcpej/P0z3GsH2yk+lq2gRcC6DP4qVlr8f//E0Mwvm/1Ag==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DU2PR04MB8951.eurprd04.prod.outlook.com (2603:10a6:10:2e2::22)
- by AM0PR04MB11854.eurprd04.prod.outlook.com (2603:10a6:20b:6fc::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.10; Thu, 22 Jan
- 2026 01:54:45 +0000
-Received: from DU2PR04MB8951.eurprd04.prod.outlook.com
- ([fe80::753c:468d:266:196]) by DU2PR04MB8951.eurprd04.prod.outlook.com
- ([fe80::753c:468d:266:196%4]) with mapi id 15.20.9520.011; Thu, 22 Jan 2026
- 01:54:45 +0000
-Date: Wed, 21 Jan 2026 20:54:34 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Koichiro Den <den@valinux.co.jp>
-Cc: dave.jiang@intel.com, cassel@kernel.org, mani@kernel.org,
-	kwilczynski@kernel.org, kishon@kernel.org, bhelgaas@google.com,
-	geert+renesas@glider.be, robh@kernel.org, vkoul@kernel.org,
-	jdmason@kudzu.us, allenbh@gmail.com, jingoohan1@gmail.com,
-	lpieralisi@kernel.org, linux-pci@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	dmaengine@vger.kernel.org, iommu@lists.linux.dev,
-	ntb@lists.linux.dev, netdev@vger.kernel.org,
-	linux-kselftest@vger.kernel.org, arnd@arndb.de,
-	gregkh@linuxfoundation.org, joro@8bytes.org, will@kernel.org,
-	robin.murphy@arm.com, magnus.damm@gmail.com, krzk+dt@kernel.org,
-	conor+dt@kernel.org, corbet@lwn.net, skhan@linuxfoundation.org,
-	andriy.shevchenko@linux.intel.com, jbrunet@baylibre.com,
-	utkarsh02t@gmail.com
-Subject: Re: [RFC PATCH v4 05/38] dmaengine: dw-edma: Add a helper to query
- linked-list region
-Message-ID: <aXGDWiAxesCy1/yA@lizhi-Precision-Tower-5810>
-References: <20260118135440.1958279-1-den@valinux.co.jp>
- <20260118135440.1958279-6-den@valinux.co.jp>
- <aW0S60D2uALBXdtQ@lizhi-Precision-Tower-5810>
- <e4y664ylum35wvj4endwprzpp4cvfaggklik5mxvdkgmakuqyj@lgevmhllem72>
- <tuhaxwmmcjfltih7ckfo2l5ltzicnj6zfc5ka3pvqlljn7ldu2@ibo5eo62lndn>
- <aXDvkRCZXQ/dPwRd@lizhi-Precision-Tower-5810>
- <42qzkekk6yqbtcynxny3f7pl3xg6tqkywxvjsgfmrdpnr7zy53@i7ebpgazbi4z>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <42qzkekk6yqbtcynxny3f7pl3xg6tqkywxvjsgfmrdpnr7zy53@i7ebpgazbi4z>
-X-ClientProxiedBy: PH8PR07CA0030.namprd07.prod.outlook.com
- (2603:10b6:510:2cf::16) To DU2PR04MB8951.eurprd04.prod.outlook.com
- (2603:10a6:10:2e2::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F23A34F256
+	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 02:08:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769047726; cv=none; b=mD64E0a6IN6Xsla+s+q3PO4AVgsDbvJ9yn+VoV7X3JwOBabnNDVq3EXmH3z8/VFxi+e+QOOL1MDtKqTZPDr/aWU+w2++Jy3fzLAfILZTYlm0FstT7+G/WfICklXqDY3DhdcP3YmJVJbkTGRrpL3XyFb4eL7mVMYcy+m+vRvSpig=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769047726; c=relaxed/simple;
+	bh=wsPMFRTGVtujrwEckG9FwibRpPp8G9fD/l0bRmCc/xo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=oZXvMBXlkZLuqJBXl1ZtjvZ6a8IwhB8iaCg6J2ggtGZavbFWV0nan7ZURdWzPC1vs+5ResSfyq08Mt63nF3dCMDhpTSLoM9yxhQgqKOtDp1lOkYUClCEL4zHx1BOi297Hz5tSpN04puPOAYCD+ZWT8OvZpiFynkoobSMAc9uVoA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OyfHjI1I; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=WNhGPYDh; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60LNNqYg2727204
+	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 02:08:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=w6PObcjwIg/Fosc91JX07i
+	vYl/s0K1Jex2A4JyQ5NLk=; b=OyfHjI1IU/5DBhyr6u+2+uFo/r/tB5mGP6CSda
+	/VbVCMO0ExMfmx48FAVklooV7MYgox1e0V9zxpfpHUi/9E6aONKJG4SthRW5D4nv
+	e5wwgoT0j81apwPWsp69OJmGciVuoFbjqbfW7RXaFuFymeN6XSC5ogZY2gJ3mAas
+	xZ+5B+LNprQy+oeUj7PKGhCbMfokBESQ0cZllZ8ggkoHy7Lt8G2apLBTx8ZzEcjm
+	dTkywbZ0VzTRvvVX9QLRoPn6q5MKpylUv4nGpl+2WEbc3SG5O03TAuTYvqTQo7no
+	hfbRkM2/R+Qboe6wkzU70xQxcuJ+yFWo8uTbV4p37tYXx9BQ==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4btysft6st-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 02:08:42 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-29f2381ea85so10523595ad.0
+        for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 18:08:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1769047722; x=1769652522; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=w6PObcjwIg/Fosc91JX07ivYl/s0K1Jex2A4JyQ5NLk=;
+        b=WNhGPYDh6rQ2xtI+pmXTkg0+xYWcY8oWZFDLmqSmndb8tQUdjYL13oDfxl4gyuPPia
+         VssGRdZ0VafQGwi5i4ZmIVKlySP2SK6QetnkqKAKphOZ8w04SnvGMo9JJrregptkZPzG
+         bnRqCFW84bMAahEO3PVTcbamGwI4JnMCU/1wl+Y4FxRbttFqlRWcNb7CBbZhGf24cXUE
+         mRrtbBh2A0mcRtj+3beA7e52E2zeOOTLQ/KjKDml0DWhlRCRYJ7js3+VP1HeI2RBSb+L
+         5QVwNWVMsnxuSy2hxdATP5Di5RglZGd3k6VpUjfsl2/23t2JKrkJzoFtmKvxYi5B6r1U
+         BAow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769047722; x=1769652522;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=w6PObcjwIg/Fosc91JX07ivYl/s0K1Jex2A4JyQ5NLk=;
+        b=D20bQH07bhz4CtW56p/WE+Nxq6m1QgemWFJMRjhLCaiZ70pJqq/L+1sVy9XcTAgEkG
+         OzZL4KFkGlS8l107QTSXm1bn7DzqfpWIS7jbhKzyEvNQ4ARWDfroA9bzfqRNo7flOLRs
+         mCmksShIpisOeH5IV6gwEN5T2UPT3WvTFZ8iX2/S58L+pyHW21i6F9xe7kh3PxfgPOci
+         QpYHN0jdNrq/V+7KE6Iw/J6bSUJ28I5Nr0SJ8RhcZek4V3ZSS5AVxNRIiJQYN+6pLyMw
+         vblpumQM9AlBPT2ZPKH8uRwvbSgQozSzOVngQPusiWZIQruuhPsMClJPrzyHgQXfDLZf
+         DZAQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXV8j+cTgCsVa51ktne3KIrUAz0/6IN6oYnYNqd0UOAEy7FNvfvNMv7NQ8RhjFCVinQ0Or2h0gTOX1d@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz6nh+l3CKqwebDe4FwM5sKORMMFLFywNX2Jo8RC+wUX8w/UL96
+	WdU9VOcc4fCNF33ootxAkupEYt10flav+PJimOfocKKpnjHTPWz+QDB+OnGYNFMrooGUGa5VKsZ
+	0MfloW6+v5lTn93jKPDYznr11tZNYs44Li+w8gKGYOa+TuagspjPr7EyxqDjWdHoZ
+X-Gm-Gg: AZuq6aIoa15n1KTtsXB8CjQAuzwRi8AwtQ5F3B8yim8R0QOqxHT+lYOe1lpHz88SnzW
+	99CTZocwgj2UlUl3RLCVSZ0EC5W3HoO35bG3tR1FswxEmv/DcWHGWbFBW9rPfDMRZ/7WwDUPo2K
+	BQ8Sec0YotVXHefNS4FMtrqxuGVctxAq0kHkgmR3DqDgwrV0qD0En/PXxzyc7Eb1UykfqryRyMp
+	3YALe9p59pdNvatpsNB7mIHOFrshOgk2rIbtIL7prDcPbASoRmSLghzYnjdkUU0VfBoK6uGfGQT
+	wsXyaJC1efRu/eDpMaRbLLk2yTj83D9hk3gcplDA+hJBtoyNDtZ08AWcTI447u8VrlAAF95wFnV
+	QHyb4Md4m+SubLpLOgADAvcD81+GCt9HX9hFV3pFJZvYs2xo29C/Ge9q0115mVrkUDDhxXPoK
+X-Received: by 2002:a17:902:d4c7:b0:295:1e50:e7cb with SMTP id d9443c01a7336-2a718894b9fmr176740615ad.23.1769047721837;
+        Wed, 21 Jan 2026 18:08:41 -0800 (PST)
+X-Received: by 2002:a17:902:d4c7:b0:295:1e50:e7cb with SMTP id d9443c01a7336-2a718894b9fmr176740265ad.23.1769047721212;
+        Wed, 21 Jan 2026 18:08:41 -0800 (PST)
+Received: from jiegan-gv.ap.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a780a4631csm49710305ad.18.2026.01.21.18.08.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Jan 2026 18:08:40 -0800 (PST)
+From: Jie Gan <jie.gan@oss.qualcomm.com>
+Subject: [PATCH v10 0/8] coresight: ctcu: Enable byte-cntr function for TMC
+ ETR
+Date: Thu, 22 Jan 2026 10:08:13 +0800
+Message-Id: <20260122-enable-byte-cntr-for-ctcu-v10-0-22978e3c169f@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8951:EE_|AM0PR04MB11854:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5c432791-f2e2-4983-e9c2-08de595937b8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|376014|7416014|19092799006|1800799024|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?iT3hu6WJQZ+tV8SPg2SKOIQAT3CneD9rxXorJkwHhYAy0ABdMbom019AuI8i?=
- =?us-ascii?Q?J+ody5JanrFDIbSDjSiFX+Rjld96mwM6mdk/kVjZy6IkRGK2+hFKGBswPUyo?=
- =?us-ascii?Q?X+MYq3OmSg1MuWilAcIH/6eUlSZgel3Bpp7/XV6ZETqU4n2ySrwBBL6MEqCm?=
- =?us-ascii?Q?pc2X47eMLqnMLQV6jQ+Hk4L54+LcuKY2ucXgUFN51D6Mx58meNbYdtx27hx/?=
- =?us-ascii?Q?dt9eATIqWLzP6xCKx1KkCJRlIMc4+Jfyteg9mzYL4e5ugDmilkQL1nmjbwHG?=
- =?us-ascii?Q?css3AChXKAq0JuNh6rfZN/EwFK4nujdhGSeUKfsK3t7JklTeUIKJKjn8p7Qs?=
- =?us-ascii?Q?Sa5DoaPfeezC+hoCNiHgl/QGy9c4VJDQHTse5vXtTef1CQP2rkeJn2g1fnNN?=
- =?us-ascii?Q?LTsT7Ue7MPxi8nlKcPCe3en4/z8jVb08I4rFAhurRWuxAj8cfd34yH0xv9eO?=
- =?us-ascii?Q?+HhjmfumGXyO+v3lh2bfzoAOsvY0F0zRbqqtN4x7TLYIxsfQy+JD1bIeRe3h?=
- =?us-ascii?Q?11R3ezRgZSFeY66hjtpiEYe9VUnctBNBKVyN3QYkhOSMESe6vRDUHCpynC7t?=
- =?us-ascii?Q?hIOp9+r1kBK0x1bbhH9zIGzVXVbvZzhXfrPa/r+85ZfxgnXASm37/Hea36Az?=
- =?us-ascii?Q?x4vppBkIE5E83cINaqBy6m1cyRx+kDRt0V3FxKwSnUw/OFtUkt0XFh3aw1TG?=
- =?us-ascii?Q?gVq0TQ0wc+5+AB43/Qh7Yk7d08edCNTARQEiLVyIEkFoH+ScjDN7+9NzMTnf?=
- =?us-ascii?Q?IfuW7mfilvXUinMH0sYAt149+F6iWGJ4WgQxMRFypWN1RUAApLheluYZ3/09?=
- =?us-ascii?Q?AsMSjncr9DTYPwjyoKr63/MbO98kj57wbOf9cFRMV3QFoaWT6r1skV30lt4Z?=
- =?us-ascii?Q?QYPY2gShtC5UOVJ5lC/VDQnBeG+axt/IEfOWLlBrBMNo5b4BZnKLGZThtdZB?=
- =?us-ascii?Q?huhuGrFqgs9AKwsDGmXyzWcmVrU8S4TzOroC8wPcDjJYC3UOF/Tu5ddlw115?=
- =?us-ascii?Q?gxxStzz8qEDS0IFsKiiJIribGTMfw87Xf0vC6Y1JU1UVTWM7igspin/+QIrf?=
- =?us-ascii?Q?9nduxzRqJepKNH7d/4FlBD2GZPxXr6dNlSrx/40xBlt2GV6sxNFKSVpv94Kj?=
- =?us-ascii?Q?mm0WAV6dKXNVdwxbZSoDmIIrr/sianqqO71xsULzwjxxCR8rz9rqiJ66YDvl?=
- =?us-ascii?Q?Y7BOPTOp3YUJqRwyJlbkXBUjRlRFpFl/WULuZ0CMrx5+hYzPcVjrb9frNTfy?=
- =?us-ascii?Q?vhHyrkI68ZoGwPGrLRx2PWJeUHYi/KsZp11EvsQYYIM0KGSQVmNmfGRXtoV7?=
- =?us-ascii?Q?+vVSwnkj5p689esjaLIFYZpTb+BXBVQzfX6FdVVFXISSi/vbVDVwGd9ex8Mz?=
- =?us-ascii?Q?EkajlLehcuJHeETyBn2OLXEZfz5iERbIJKZG4wHQKt28nBVXPliWLI3QAnVE?=
- =?us-ascii?Q?EPJM3SZv/loG+ntvo4Z05BzbhzI4YVAw3UrnmeNAqzLhSb6vjl+jpoGf0Jcy?=
- =?us-ascii?Q?/UejtYK1dK2fRvvqmorgp+KFYFGwyuP0ILYvBxYvuF7/IhHU0wLHaiYwi9FG?=
- =?us-ascii?Q?/eX4aAHwigk4Vgo8o0pwDbpYUPYBO5Wem+1QJ+ykV5+2Ums9tCRmgduEd+Zx?=
- =?us-ascii?Q?cNM72Y+k5ra7ngOWdTVI6EY=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8951.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(7416014)(19092799006)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?fRSBEWjqRI27otdZLvIFNIjb52nsVcDZArYbEAnRAXdazot5v94R2drZkaXW?=
- =?us-ascii?Q?aTt2rZKiCF5wuzppSZv5gAV7kMn18phss2s4rFMMRN97ueJwsoB61fNDPQqy?=
- =?us-ascii?Q?kdqoYZ+9+ReJiKoovdWnju7cUAUd0EIhWdjUZvC4dVdyKqe1QHfQ+ncpnNe/?=
- =?us-ascii?Q?+D+THix0u0UwWXuGI1jwH3i5bMfmuIP17DeN+2Expg2TafsJUuntCZqF8TuS?=
- =?us-ascii?Q?+qRokOGPM9p4inivR38/Jvf3Yq7molqJrdvyRWJxN4giXbf7jnHttL2PtX8d?=
- =?us-ascii?Q?ibrjjzf17Jh37LHigwiDtySlXkEGufK+9cq8EuFENzUgFOFFBJX5d1ATwHEY?=
- =?us-ascii?Q?f1ksfXQASBycbXQPz0bAgAQUCZ3y6DmNRnls84NCMS7VC+CyM+8KNxAwSTaa?=
- =?us-ascii?Q?2bm7nLOO6LSdg3xZEaVpcoaKNpqbmT2cKHC3yGCVVAFN8wPyQ4ynzMuYO2vq?=
- =?us-ascii?Q?TyNMV0Y5/eP1u2L8/Ajgga5cgksTsnW1TU+pnsqV1iyZ3y+HJC0q+UirP5DZ?=
- =?us-ascii?Q?zO8Iy99nL78XiF0umODjwEBQuX/ss8CDhTYQZWos41o+CiFU6k42dWnqTKr/?=
- =?us-ascii?Q?FlyRBvzIrqrxeC9QWxqyD2yg59wcJA0OlF3awea1WypxavVg94dotIW5q13n?=
- =?us-ascii?Q?dRSkNigPCzBav41jn2XNjtM3GtmIUuTzKHfrRd9yuYqykCMo6SgZAfA33Do2?=
- =?us-ascii?Q?f+119BymbiDIbS9NMxcuyUxLBWGHv4FookhhxkghCbVSLlurm2HkX1OklQ60?=
- =?us-ascii?Q?2t48ElvCF9Mpyb3sy5E4WOodcByvE3pv1T6R/fj8c36dznn3IHPsd7Yqn5Gw?=
- =?us-ascii?Q?qKGVle7uCjxWSrM+HDgeneQptYi2fEI2VQfQdTiAO8YXkk9Llg4gshXjZLxk?=
- =?us-ascii?Q?GGcyVPRn/HZCI4+ISKDFDykf0LefdnHBgSLc2hj4ePJNoSbOGcxOFXzZU9jD?=
- =?us-ascii?Q?NaldKQSyL8ZbTuN3Zek1OfJGsBC5zbjOPbnnqT/LmWk9l1eth5RQ6+ZRGFu5?=
- =?us-ascii?Q?dJB2gitZV7LpqXzv4Tr6jBcFLm4yVPr4kjB2F/a1WzQcFNtNOA9F+3g0/NAt?=
- =?us-ascii?Q?6iwT67ECBj1bVQgy7cdkrtT40BjFwaaEJk3bC9S7RRN9zhREK985HR9mG8mR?=
- =?us-ascii?Q?6yolxBbv4gk6kAzIM7ZPrLcY/VhvbSab2X7wetBQYBT9ly8X0KIKt8AhuCYN?=
- =?us-ascii?Q?rk4/+4NeSE7/wC6IyQIYC6WkAJF/+6mr6Vo4bV1sQidZTIhkhLJLx3HhUCVQ?=
- =?us-ascii?Q?9w+l365Om3XIZUh0ZzPCvmfzGZCxVGBBkdUpj8HI/ceYefoxhmo/Lq9lD+pC?=
- =?us-ascii?Q?GSlPPnwf6wksABtTe7/VIOdnISS/0dg+rlkbEiNaPF9FgwdKxMA/cRB8AUeg?=
- =?us-ascii?Q?PvAaCyWFTJJegG/XSmWdC+1kpc54PrriT1HiLmdPmnYRV0xhoqYf0tYByBoE?=
- =?us-ascii?Q?DUqUkqjYzImrDcMR+n0farZuSugvYq6CaguLLsP0DsFnbJ/sgwHzoKeE4Ck6?=
- =?us-ascii?Q?/JYuYNCbm6U3SMuQ5+9/2gSwcWqmjUCYgpAcD5zHJo5zdJ5qgtipuIkjd9u/?=
- =?us-ascii?Q?wPI+JiRDkEz9W74neXAFapFOqzNihCJc8XwjZbHd5Q4ccj7AS3qh5fdxkk8p?=
- =?us-ascii?Q?ikgQ8PeCF0ra9QHJwyB/n6ZaTaoOiiCRX1NnR/6Rv0odV7hlsmm1mNH395UZ?=
- =?us-ascii?Q?M8zJYkqQ+WSW7RVNPOLJfDHk0qZZSMmpXREfzPYeke2FxJpK?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5c432791-f2e2-4983-e9c2-08de595937b8
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8951.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2026 01:54:45.7347
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: i6Dlg9lY0m5feEOvHmtsv/+DdmJtjNIGhBmOG8g/zK4v9X3EPQ2EciRgO+Qk1hStCjU0oAR3PaxehT1MHLbffA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB11854
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAI6GcWkC/33NTQqDMBAF4KuUrDtifpSkq96jdKFxUgNq2kRDR
+ bx7o3TRRXEz8B68bxYS0FsM5HJaiMdog3VDCjQ/n4huq+GBYJtUEJazgrKcAw5V3SHU84igh9G
+ DcR70qCcoKlFLaZjBWpG0f3o09r3jt3vKrQ2j8/P+K8qt/aqUHqhRQg4cKTOGU04VvboQstdUd
+ dr1fZYO2fCofkAmjkCVQClLLYQqDTbiD7iu6wfn3lWgGwEAAA==
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        James Clark <james.clark@linaro.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
+        Mao Jinlong <jinlong.mao@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, Jie Gan <jie.gan@oss.qualcomm.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1769047714; l=6693;
+ i=jie.gan@oss.qualcomm.com; s=20250909; h=from:subject:message-id;
+ bh=wsPMFRTGVtujrwEckG9FwibRpPp8G9fD/l0bRmCc/xo=;
+ b=RW2TC1pv1lh0GmYuJa7Ycm5bYI0F9NlbbS+/OvQpzyn9KNe9HymW/na/+8SXRCzCPVoxTwZU/
+ 7IVYkXRqlhKDO60lFuBBWd91Vo4kFejtBz0btjJk31vXUaFM6PzZqkG
+X-Developer-Key: i=jie.gan@oss.qualcomm.com; a=ed25519;
+ pk=3LxxUZRPCNkvPDlWOvXfJNqNO4SfGdy3eghMb8puHuk=
+X-Authority-Analysis: v=2.4 cv=N8Ik1m9B c=1 sm=1 tr=0 ts=697186ab cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8
+ a=VhXNoj4JT-yUwxqwOhYA:9 a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: a7cvF7_jyO2Mya3PXAMbYUo1apWEevWb
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIyMDAxNSBTYWx0ZWRfX0chOrvVPeXBQ
+ 56Ijci4vp0Wd37QO3FdPUjHC5GtqzgPMKmTM5S+3r1HQFEvaK8s33s8p/vr2m25PTTiU5/xX9by
+ IOJNGhK2+AhX/FCdtvp+pgMd83qnb763Akx1MANhf0sTEBnZSg37gJAPqkn20wm6cV4pMEa5fbP
+ scQ3GWnYHonLnpnLtWoGkuTmtTkvXaOrMJHL5ektRT9h79iyx2K6Cywl2RNPZS0qnjr0GxZDYLH
+ XbgWifwZZabaQZcPanDGpSAi0ZsMebWzFA2GefzSkwYZKdrbu7Phk+HkhlDodEhNn6oOLFT3h6v
+ NJb17xbtRgd4AqBWKqLS4RKqRZCcQTvpN/sNUbPjvhnHB+CepXMMczBhVlOLs/5u8S/C/lWxrin
+ KZLr3CqeoOC197UTbYHW1Fr1mZG4loKCcS9Eh6KgiSfSVU/vJ2lZfgB6VYhfxMIe1r7ejZc5mS8
+ 1y6j38YFQ+9vIEgqfCA==
+X-Proofpoint-ORIG-GUID: a7cvF7_jyO2Mya3PXAMbYUo1apWEevWb
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
+ definitions=2026-01-21_04,2026-01-20_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 phishscore=0 lowpriorityscore=0 impostorscore=0
+ priorityscore=1501 bulkscore=0 malwarescore=0 adultscore=0 spamscore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
+ definitions=main-2601220015
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.04 / 15.00];
+X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258174-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	DMARC_POLICY_ALLOW(0.00)[qualcomm.com,reject];
+	TAGGED_FROM(0.00)[bounces-258175-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[37];
-	FREEMAIL_CC(0.00)[intel.com,kernel.org,google.com,glider.be,kudzu.us,gmail.com,vger.kernel.org,lists.linux.dev,arndb.de,linuxfoundation.org,8bytes.org,arm.com,lwn.net,linux.intel.com,baylibre.com];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	TO_DN_SOME(0.00)[];
-	R_SPF_SOFTFAIL(0.00)[~all:c];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
-	DMARC_POLICY_ALLOW(0.00)[nxp.com,none];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jie.gan@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:dkim,valinux.co.jp:email,ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns]
-X-Rspamd-Queue-Id: 510A7609DF
+	R_SPF_SOFTFAIL(0.00)[~all:c];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 258D460C29
 X-Rspamd-Action: no action
 
-On Thu, Jan 22, 2026 at 10:19:24AM +0900, Koichiro Den wrote:
-> On Wed, Jan 21, 2026 at 10:24:01AM -0500, Frank Li wrote:
-> > On Wed, Jan 21, 2026 at 05:41:11PM +0900, Koichiro Den wrote:
-> > > On Wed, Jan 21, 2026 at 10:38:53AM +0900, Koichiro Den wrote:
-> > > > On Sun, Jan 18, 2026 at 12:05:47PM -0500, Frank Li wrote:
-> > > > > On Sun, Jan 18, 2026 at 10:54:07PM +0900, Koichiro Den wrote:
-> > > > > > A remote eDMA provider may need to expose the linked-list (LL) memory
-> > > > > > region that was configured by platform glue (typically at boot), so the
-> > > > > > peer (host) can map it and operate the remote view of the controller.
-> > > > > >
-> > > > > > Export dw_edma_chan_get_ll_region() to return the LL region associated
-> > > > > > with a given dma_chan.
-> > > > >
-> > > > > This informaiton passed from dwc epc driver. Is it possible to get it from
-> > > > > EPC driver.
-> > > >
-> > > > That makes sense, from an API cleanness perspective, thanks.
-> > > > I'll add a helper function dw_pcie_edma_get_ll_region() in
-> > > > drivers/pci/controller/dwc/pcie-designware.c, instead of the current
-> > > > dw_edma_chan_get_ll_region() in dw-edma-core.c.
-> > >
-> > > Hi Frank,
-> > >
-> > > I looked into exposing LL regions from the EPC driver side, but the key
-> > > issue is channel identification under possibly concurrent dmaengine users.
-> > > In practice, the only stable handle a consumer has is a pointer to struct
-> > > dma_chan, and the only reliable way to map that to the eDMA hardware
-> > > channel is via dw_edma_chan->id.
-> >
-> > If possible, I suggest change to one page pre-channel. So there are a fixed
-> > ll mapping.
->
-> I agree that this would make the LL layout more deterministic and would
-> indeed simplify locating the region for a given dw_edma_chan ID. That said,
-> my concern was that even with a fixed per-channel layout, we still need a
-> reliable way to map a struct dma_chan obtained by a consumer to the
-> corresponding dw_edma_chan ID, especially in the presence of potentially
-> concurrent dmaengine users.
->
-> >
-> > > I think an EPC-facing API would still need
-> > > that mapping in any case, so keeping the helper in dw-edma seems simpler
-> > > and more robust.
-> > > If you have another idea, I'd appreciate your insights.
-> >
-> > I suggest add generally DMA engine API to get such property, some likes
-> > a kind ioctrl \ dma_get_config().
->
-> I think such a helper, combined with your one page per-channel idea, would
-> resolve the issue cleanly. For example, a helper like dma_get_hw_info()
-> returning struct dma_hw_info, whose first field is a hw_id, could work
-> well. Consumers could then use this helper, and if they know they are
-> dealing with a dw-edma channel, they can derive the LL location
-> straightforwardly as {hw_id * fixed_stride (e.g. PAGE_SIZE)}. Adding hw_id
-> to struct dma_slave_caps would make the necessary diff smaller, but I think
-> it would not semantically fit in the structure.
+The byte-cntr function provided by the CTCU device is used to count the
+trace data entering the ETR. An interrupt is triggered if the data size
+exceeds the threshold set in the BYTECNTRVAL register. The interrupt
+handler counts the number of triggered interruptions.
 
-It is worth to try.
+Based on this concept, the irq_cnt can be used to determine whether
+the etr_buf is full. The ETR device will be disabled when the active
+etr_buf is nearly full or a timeout occurs. The nearly full buffer will
+be switched to background after synced. A new buffer will be picked from
+the etr_buf_list, then restart the ETR device.
 
-Frank
->
-> Thanks,
-> Koichiro
->
-> >
-> > Frank
-> >
-> > >
-> > > Regards,
-> > > Koichiro
-> > >
-> > > >
-> > > > Thanks for the review,
-> > > > Koichiro
-> > > >
-> > > > >
-> > > > > Frank
-> > > > > >
-> > > > > > Signed-off-by: Koichiro Den <den@valinux.co.jp>
-> > > > > > ---
-> > > > > >  drivers/dma/dw-edma/dw-edma-core.c | 26 ++++++++++++++++++++++++++
-> > > > > >  include/linux/dma/edma.h           | 14 ++++++++++++++
-> > > > > >  2 files changed, 40 insertions(+)
-> > > > > >
-> > > > > > diff --git a/drivers/dma/dw-edma/dw-edma-core.c b/drivers/dma/dw-edma/dw-edma-core.c
-> > > > > > index 0eb8fc1dcc34..c4fb66a9b5f5 100644
-> > > > > > --- a/drivers/dma/dw-edma/dw-edma-core.c
-> > > > > > +++ b/drivers/dma/dw-edma/dw-edma-core.c
-> > > > > > @@ -1209,6 +1209,32 @@ int dw_edma_chan_register_notify(struct dma_chan *dchan,
-> > > > > >  }
-> > > > > >  EXPORT_SYMBOL_GPL(dw_edma_chan_register_notify);
-> > > > > >
-> > > > > > +int dw_edma_chan_get_ll_region(struct dma_chan *dchan,
-> > > > > > +			       struct dw_edma_region *region)
-> > > > > > +{
-> > > > > > +	struct dw_edma_chip *chip;
-> > > > > > +	struct dw_edma_chan *chan;
-> > > > > > +
-> > > > > > +	if (!dchan || !region || !dchan->device)
-> > > > > > +		return -ENODEV;
-> > > > > > +
-> > > > > > +	chan = dchan2dw_edma_chan(dchan);
-> > > > > > +	if (!chan)
-> > > > > > +		return -ENODEV;
-> > > > > > +
-> > > > > > +	chip = chan->dw->chip;
-> > > > > > +	if (!(chip->flags & DW_EDMA_CHIP_LOCAL))
-> > > > > > +		return -EINVAL;
-> > > > > > +
-> > > > > > +	if (chan->dir == EDMA_DIR_WRITE)
-> > > > > > +		*region = chip->ll_region_wr[chan->id];
-> > > > > > +	else
-> > > > > > +		*region = chip->ll_region_rd[chan->id];
-> > > > > > +
-> > > > > > +	return 0;
-> > > > > > +}
-> > > > > > +EXPORT_SYMBOL_GPL(dw_edma_chan_get_ll_region);
-> > > > > > +
-> > > > > >  MODULE_LICENSE("GPL v2");
-> > > > > >  MODULE_DESCRIPTION("Synopsys DesignWare eDMA controller core driver");
-> > > > > >  MODULE_AUTHOR("Gustavo Pimentel <gustavo.pimentel@synopsys.com>");
-> > > > > > diff --git a/include/linux/dma/edma.h b/include/linux/dma/edma.h
-> > > > > > index 3c538246de07..c9ec426e27ec 100644
-> > > > > > --- a/include/linux/dma/edma.h
-> > > > > > +++ b/include/linux/dma/edma.h
-> > > > > > @@ -153,6 +153,14 @@ bool dw_edma_chan_ignore_irq(struct dma_chan *chan);
-> > > > > >  int dw_edma_chan_register_notify(struct dma_chan *chan,
-> > > > > >  				 void (*cb)(struct dma_chan *chan, void *user),
-> > > > > >  				 void *user);
-> > > > > > +
-> > > > > > +/**
-> > > > > > + * dw_edma_chan_get_ll_region - get linked list (LL) memory for a dma_chan
-> > > > > > + * @chan: the target DMA channel
-> > > > > > + * @region: output parameter returning the corresponding LL region
-> > > > > > + */
-> > > > > > +int dw_edma_chan_get_ll_region(struct dma_chan *chan,
-> > > > > > +			       struct dw_edma_region *region);
-> > > > > >  #else
-> > > > > >  static inline int dw_edma_probe(struct dw_edma_chip *chip)
-> > > > > >  {
-> > > > > > @@ -182,6 +190,12 @@ static inline int dw_edma_chan_register_notify(struct dma_chan *chan,
-> > > > > >  {
-> > > > > >  	return -ENODEV;
-> > > > > >  }
-> > > > > > +
-> > > > > > +static inline int dw_edma_chan_get_ll_region(struct dma_chan *chan,
-> > > > > > +					     struct dw_edma_region *region)
-> > > > > > +{
-> > > > > > +	return -EINVAL;
-> > > > > > +}
-> > > > > >  #endif /* CONFIG_DW_EDMA */
-> > > > > >
-> > > > > >  struct pci_epc;
-> > > > > > --
-> > > > > > 2.51.0
-> > > > > >
+The byte-cntr reading functions can access data from the synced and
+deactivated buffer, transferring trace data from the etr_buf to userspace
+without stopping the ETR device.
+
+The byte-cntr read operation has integrated with the file node tmc_etr,
+for example:
+/dev/tmc_etr0
+/dev/tmc_etr1
+
+There are two scenarios for the tmc_etr file node with byte-cntr function:
+1. BYTECNTRVAL register is configured and byte-cntr is enabled -> byte-cntr read
+2. BYTECNTRVAL register is reset or byte-cntr is disabled -> original behavior
+
+Shell commands to enable byte-cntr reading for etr0:
+echo 0x10000 > /sys/bus/coresight/devices/ctcu0/irq_threshold0
+echo 1 > /sys/bus/coresight/devices/tmc_etr0/enable_sink
+echo 1 > /sys/bus/coresight/devices/etm0/enable_source
+cat /dev/tmc_etr0
+
+Reset the BYTECNTR register for etr0:
+echo 0 > /sys/bus/coresight/devices/ctcu0/irq_threshold0
+
+Changes in v10:
+1. fix a free memory issue that is reported by robot for patch 2.
+Link to v9: https://lore.kernel.org/r/20251224-enable-byte-cntr-for-ctcu-v9-0-886c4496fed4@oss.qualcomm.com
+
+Changes in v9:
+1. Drop the patch: add a new API to retrieve the helper device
+2. Add a new patch to refactor the tmc_etr_get_catu_device function,
+   making it generic to support all types of helper devices associated with ETR.
+3. Optimizing the code for creating irq_threshold sysfs node.
+4. Remove interrupt-name property and obtain the IRQ based on the
+   in-port number.
+Link to v8: https://lore.kernel.org/r/20251211-enable-byte-cntr-for-ctcu-v8-0-3e12ff313191@oss.qualcomm.com
+
+Changes in V8:
+1. Optimizing the patch 1 and patch 2 according to Suzuki's comments.
+2. Combine the patch 3 and patch 4 together.
+3. Rename the interrupt-name to prevent confusion, for example:etr0->etrirq0.
+Link to V7 - https://lore.kernel.org/all/20251013-enable-byte-cntr-for-ctcu-v7-0-e1e8f41e15dd@oss.qualcomm.com/
+
+Changes in V7:
+1. rebased on tag next-20251010
+2. updated info for sysfs node document
+Link to V6 - https://lore.kernel.org/all/20250908-enable-byte-cntr-for-tmc-v6-0-1db9e621441a@oss.qualcomm.com/
+
+Changes in V6:
+1. rebased on next-20250905.
+2. fixed the issue that the dtsi file has re-named from sa8775p.dtsi to
+   lemans.dtsi.
+3. fixed some minor issues about comments.
+Link to V5 - https://lore.kernel.org/all/20250812083731.549-1-jie.gan@oss.qualcomm.com/
+
+Changes in V5:
+1. Add Mike's reviewed-by tag for patchset 1,2,5.
+2. Remove the function pointer added to helper_ops according to Mike's
+   comment, it also results the patchset has been removed.
+3. Optimizing the paired create/clean functions for etr_buf_list.
+4. Remove the unneeded parameter "reading" from the etr_buf_node.
+Link to V4 - https://lore.kernel.org/all/20250725100806.1157-1-jie.gan@oss.qualcomm.com/
+
+Changes in V4:
+1. Rename the function to coresight_get_in_port_dest regarding to Mike's
+comment (patch 1/10).
+2. Add lock to protect the connections regarding to Mike's comment
+(patch 2/10).
+3. Move all byte-cntr functions to coresight-ctcu-byte-cntr file.
+4. Add tmc_read_ops to wrap all read operations for TMC device.
+5. Add a function in helper_ops to check whether the byte-cntr is
+enabkled.
+6. Call byte-cntr's read_ops if byte-cntr is enabled when reading data
+from the sysfs node.
+Link to V3 resend - https://lore.kernel.org/all/20250714063109.591-1-jie.gan@oss.qualcomm.com/
+
+Changes in V3 resend:
+1. rebased on next-20250711.
+Link to V3 - https://lore.kernel.org/all/20250624060438.7469-1-jie.gan@oss.qualcomm.com/
+
+Changes in V3:
+1. The previous solution has been deprecated.
+2. Add a etr_buf_list to manage allcated etr buffers.
+3. Add a logic to switch buffer for ETR.
+4. Add read functions to read trace data from synced etr buffer.
+Link to V2 - https://lore.kernel.org/all/20250410013330.3609482-1-jie.gan@oss.qualcomm.com/
+
+Changes in V2:
+1. Removed the independent file node /dev/byte_cntr.
+2. Integrated the byte-cntr's file operations with current ETR file
+   node.
+3. Optimized the driver code of the CTCU that associated with byte-cntr.
+4. Add kernel document for the export API tmc_etr_get_rwp_offset.
+5. Optimized the way to read the rwp_offset according to Mike's
+   suggestion.
+6. Removed the dependency of the dts patch.
+Link to V1 - https://lore.kernel.org/all/20250310090407.2069489-1-quic_jiegan@quicinc.com/
+
+Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
+---
+Jie Gan (8):
+      coresight: core: Refactoring ctcu_get_active_port and make it generic
+      coresight: tmc: add create/clean functions for etr_buf_list
+      coresight: tmc: Introduce sysfs_read_ops to wrap sysfs read operations
+      coresight: etr: refactor the tmc_etr_get_catu_device function
+      dt-bindings: arm: add an interrupt property for Coresight CTCU
+      coresight: ctcu: enable byte-cntr for TMC ETR devices
+      coresight: tmc: integrate byte-cntr's read_ops with sysfs file_ops
+      arm64: dts: qcom: lemans: add interrupts to CTCU device
+
+ .../ABI/testing/sysfs-bus-coresight-devices-ctcu   |   8 +
+ .../bindings/arm/qcom,coresight-ctcu.yaml          |  10 +
+ arch/arm64/boot/dts/qcom/lemans.dtsi               |   3 +
+ drivers/hwtracing/coresight/Makefile               |   2 +-
+ drivers/hwtracing/coresight/coresight-catu.c       |   3 +-
+ drivers/hwtracing/coresight/coresight-core.c       |  24 ++
+ .../hwtracing/coresight/coresight-ctcu-byte-cntr.c | 366 +++++++++++++++++++++
+ drivers/hwtracing/coresight/coresight-ctcu-core.c  | 122 +++++--
+ drivers/hwtracing/coresight/coresight-ctcu.h       |  77 ++++-
+ drivers/hwtracing/coresight/coresight-priv.h       |   2 +
+ drivers/hwtracing/coresight/coresight-tmc-core.c   | 104 ++++--
+ drivers/hwtracing/coresight/coresight-tmc-etr.c    | 144 +++++++-
+ drivers/hwtracing/coresight/coresight-tmc.h        |  40 ++-
+ 13 files changed, 833 insertions(+), 72 deletions(-)
+---
+base-commit: 47b7b5e32bb7264b51b89186043e1ada4090b558
+change-id: 20251203-enable-byte-cntr-for-ctcu-5a4b88f2feb9
+
+Best regards,
+-- 
+Jie Gan <jie.gan@oss.qualcomm.com>
+
 
