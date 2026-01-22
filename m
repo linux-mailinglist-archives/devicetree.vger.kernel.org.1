@@ -1,187 +1,166 @@
-Return-Path: <devicetree+bounces-258227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258278-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mBt3LwbTcWk+MgAAu9opvQ
-	(envelope-from <devicetree+bounces-258227-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 08:34:30 +0100
+	id 8L0SCHrzcWmvZwAAu9opvQ
+	(envelope-from <devicetree+bounces-258278-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 10:52:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68D37628BB
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 08:34:30 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id C530264D66
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 10:52:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 683AD4E8090
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 07:31:31 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8E42A6228F8
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 09:46:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19365480DEC;
-	Thu, 22 Jan 2026 07:30:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A0013233ED;
+	Thu, 22 Jan 2026 09:46:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="1Ynneswv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mZaW4WHe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F8F2330338
-	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 07:30:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C1882DECCC;
+	Thu, 22 Jan 2026 09:46:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769067049; cv=none; b=fxWejtQsdtvv17Ql+Kd2BUfxTogrg4bizxtfr2NHCNInlt7rs6V0L0JoVjcVAzYyJHX7gKXfmR/BCCT2DryHw/JhOfdJIEL5g5AmaZSNgzPAxBVVPTERUXbmIxxWn+yo4DxiLlqyFSK1uNvh1+5vhKrM+GNRRGstwKzjRTdmOwI=
+	t=1769075214; cv=none; b=pInxXo9a7bZu0TViBSCD0pgDtcOc33gfebFT4DoL9Rqeu+70eU7Gx1ORANOFZy3GaffdAkNZVcUVv9CAyAtR39HiU+tMAQMMbrg/+FyDJFFHSZhVuCDovxIa+OV27qf7jxeh+BHZ2Z++rJy/tiRVsqyjM8OJo/hgx1/OLwy8wO4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769067049; c=relaxed/simple;
-	bh=55Er+0qEI0xEXO6z26TVSp4tDOzpRg7OsSMHH3Yxn6g=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=KGG5uHUtE3Pop/D3FXKh4M/xdQbIg7dhTSWlewyhiBEDa5VV3pZNJ4i5UhREHWfEwcXsqF9nUiAlFlEuzT3xToV8YykK6By7Ja3QVb/fCjghZT1NVezGSl4dfOYgO2dRUy8TNtgSNyu0xP9xGnxL7/iqlIbJf5cADjXQhcvCPl0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=1Ynneswv; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2a1388cdac3so5068935ad.0
-        for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 23:30:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1769067040; x=1769671840; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/f7NGLJwOVQXgq1cgcrLkHsXysP/8ctDFHDwjeS7Sis=;
-        b=1Ynneswv19RzqiDHduQIcqBlnRJqDIj66+JDj4evBD+rE/B3rgStLzxXR3MMo++sfA
-         rB1q6tUHgqK4itthywvAapaocazlhB3MrozzBuQ3aBeqxxDSyY6oZgHu2QXJ8zX0A3jZ
-         IlzDMUA45WwgPeo53iXwIiDLPrI1nPC3vRaCkh9lV2TDWFtJWmEpJ1Sbm0f7A9FdUWaa
-         ybI8kv9PdeJfev2gegl+IOFr+B0LkEv/q9twJ5qZHEI4CTOdxzHnzGWcv8KKcXO+tdvZ
-         bBJscpst5+PCgL5JnnAj3G4nSDUs1OsAbRIuz9DzU0fUHUkG+LS+JbxX/ThAPeH8e16u
-         Fh+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769067040; x=1769671840;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=/f7NGLJwOVQXgq1cgcrLkHsXysP/8ctDFHDwjeS7Sis=;
-        b=nUqAfRgCtHp3v37/koX1RAYUuuyb9EZjg/yLlC9nLgjcTrRPUy8/akabGwtUjrX4GZ
-         2ZQYuq8XFceR+uglx8bM8BQVcak1SABGk/ZlLyK9JbPXve32BkpfkdHMO8zjFtkxSvO0
-         GQ3Lt727+JyVdfuMkB1kdaRO0faEw37c5BT1Z8t6flKWPyOtyPBQnW4qivXnH6PLPPF7
-         KsydhYR+LwEQhHgFyh2nl4oC9UySJqAsS0ohyZWmTybG2XqxTRVOQWuBoBV4tbEYUtvL
-         Ynhv8QV4fbj/Lj6ENyqqW2Dt9Cs//mtoZ4WQpi+i/pjFTD9SLpWO/qRG3K0sebiasemZ
-         yagw==
-X-Forwarded-Encrypted: i=1; AJvYcCWahwoRuHfoYvQyW8JLzxQ/GSz7q7RR4Y76EkneOkWhdb/xRvfzp6h95wQhOMA1LYoTw6OYNSf22Jjc@vger.kernel.org
-X-Gm-Message-State: AOJu0YxoBBMrpVFW4bbTWQAKhRcV/YPaSqX50hhIQ0ZWY1fNHFq/I3I4
-	eME0V8oQgLnWefo0a/uAPz5LnRI2j8hqUaLynm3k+Ia3HpT8r1Ydf8cGQbKtTkNsUvc=
-X-Gm-Gg: AZuq6aIXB5ULofIzXtxBlyjcfEKdHnRHF6IDevYQeVMim9USCtovjKtIDbmGg+E1IP/
-	Dt4JeKKFRoaJ3n0T2zUNNS98ece8Mxhl+Dz7xP1bEnErqejlTeFQuNZhqAZtMso58UkCZ2WGBW1
-	88OX8aBe78C9V/1Ycqpw6W95RRX1gSUyFcNZ7oCv00tQMwq2t++LXnz1VFt4xby5yMvbiDOFF62
-	Mf532rTEUQtbg9522dK8uXYRM6w6hyvcqcTgU1fv/QpItpHJx+5AF7cPY4OhOqx4/4ZRCeK2pPM
-	9hVR8p+mYMBWk0uaePhFf2Vu1TOTzzg5ehaxXGm1Po9JpOG/QoumDnw94ltryYLFe4nqEIH1Z+X
-	5fx9CMVzddJZzVfwDR9ovz4K9ZfCChGaYxFkcP+yXu7LujOyd11Dw7jmu5ko13L6fV7sQpdH5ix
-	8/vV7QuEfo/z1ninESuY/JN2mQBMEzFyk=
-X-Received: by 2002:a17:903:11c5:b0:2a1:deb:c460 with SMTP id d9443c01a7336-2a7175a279bmr175677135ad.33.1769067040167;
-        Wed, 21 Jan 2026 23:30:40 -0800 (PST)
-Received: from [127.0.1.1] ([2a12:a305:4::30fc])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a7190c9edesm171691845ad.23.2026.01.21.23.30.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Jan 2026 23:30:39 -0800 (PST)
-From: Guodong Xu <guodong@riscstar.com>
-Date: Thu, 22 Jan 2026 17:43:45 +0800
-Subject: [PATCH 4/4] riscv: dts: spacemit: k1-bananapi-f3: Update PMIC
- supply properties
+	s=arc-20240116; t=1769075214; c=relaxed/simple;
+	bh=FMq5sIzKLaFDtDwugY3xHi/nM8CmAFiujOj5wQFGmC4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=MXkxbXJ3cNbA2jZv5xQUKC03kE0conAF2xeRv6fOZ/fg7mLYXdPsIm1o5heWvrtMhYfvbLroyqkDUDyIBN7dPFleEEiBZ+FSU+rIx3sAbq4jWZ9Ho3C06E+hRfA19l0xaHfNzvMGYyzOS7Fj8fMCxbqhv/r9y4YI2ey48VDnnNo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mZaW4WHe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2279C116C6;
+	Thu, 22 Jan 2026 09:46:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769075213;
+	bh=FMq5sIzKLaFDtDwugY3xHi/nM8CmAFiujOj5wQFGmC4=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=mZaW4WHeGD9dPxLDfJIIQ8jVjX20wijRK1NSpNrID2ZpF+Kp7P4TX8MKIvnPGP6ax
+	 w3/uXyuAkX2ptsttK1TaVp9LTcpeb1x73UW5kb5cDjqJj1jQ37qNNVLsxYu1Ihw/wH
+	 95eYHSEf6uce2IUHsYcwS14BAsWP/LQt2J6JVAaiXAFNn5eO/fwAuJwCZPDUgz4XaL
+	 uE6oATe4qDYh9GxKN1AhjoiBaHxmsT/j5yhptmoBjHwx+1N6o+p8P9pSuO/0jKUHdb
+	 IlzX4rnYdUwUtzTWK0eNBCB8JSTPz3VwMTP6dEBixRaDOsRox29MfAtt/wqCA5ymfN
+	 RJDhKSSXuBJSA==
+Message-ID: <0d6180b5-33ec-41d4-b26e-8b0c194b030c@kernel.org>
+Date: Thu, 22 Jan 2026 10:46:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: sram: qcom,imem: Document glymur as
+ compatible
+To: Ananthu C V <ananthu.cv@oss.qualcomm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260122093319.2124906-1-ananthu.cv@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260122093319.2124906-1-ananthu.cv@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260122-spacemit-p1-v1-4-309be27fbff9@riscstar.com>
-References: <20260122-spacemit-p1-v1-0-309be27fbff9@riscstar.com>
-In-Reply-To: <20260122-spacemit-p1-v1-0-309be27fbff9@riscstar.com>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Yixun Lan <dlan@gentoo.org>, Alex Elder <elder@riscstar.com>, 
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Troy Mitchell <troy.mitchell@linux.spacemit.com>, 
- Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
-Cc: linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
- spacemit@lists.linux.dev, devicetree@vger.kernel.org, 
- Guodong Xu <guodong@riscstar.com>
-X-Mailer: b4 0.14.2
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [4.14 / 15.00];
-	DATE_IN_FUTURE(4.00)[2];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.96 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[riscstar-com.20230601.gappssmtp.com:s=20230601];
+	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[riscstar.com : No valid SPF, DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258227-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,gentoo.org,riscstar.com,linux.spacemit.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr];
-	GREYLIST(0.00)[pass,meta];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	TAGGED_FROM(0.00)[bounces-258278-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[guodong@riscstar.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[riscstar-com.20230601.gappssmtp.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns,riscstar-com.20230601.gappssmtp.com:dkim,0.0.0.41:email,riscstar.com:mid,riscstar.com:email]
-X-Rspamd-Queue-Id: 68D37628BB
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns]
+X-Rspamd-Queue-Id: C530264D66
 X-Rspamd-Action: no action
 
-Update individual supply properties in pmic node to accurately specify
-the board's power tree topology.
+On 22/01/2026 10:34, Ananthu C V wrote:
+> Add compatible for Qualcomm's glymur IMEM.
+> 
+> Signed-off-by: Ananthu C V <ananthu.cv@oss.qualcomm.com>
+> ---
+>  Documentation/devicetree/bindings/sram/qcom,imem.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sram/qcom,imem.yaml b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+> index 6a627c57ae2f..7a4ff0ecd2f4 100644
+> --- a/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+> +++ b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+> @@ -49,6 +49,7 @@ properties:
+>            - qcom,sm8650-imem
+>            - qcom,sm8750-imem
+>            - qcom,x1e80100-imem
+> +          - qcom,glymur-imem
 
-Previously these relationships were hardcoded in the driver; now they
-are explicitly defined in the devicetree per the updated binding
-document spacemit,p1.yaml.
+Wrongly placed. Please read internal guide which answered this already.
 
-Signed-off-by: Guodong Xu <guodong@riscstar.com>
----
- arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
-
-diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-index 02f218a16318e5b6f512bcc37035fac37c25ee84..c30697732b627d764bdae9bc8ba44d7b503f0897 100644
---- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-@@ -157,7 +157,15 @@ pmic@41 {
- 		compatible = "spacemit,p1";
- 		reg = <0x41>;
- 		interrupts = <64>;
--		vin-supply = <&reg_vcc_4v>;
-+		vin1-supply = <&reg_vcc_4v>;
-+		vin2-supply = <&reg_vcc_4v>;
-+		vin3-supply = <&reg_vcc_4v>;
-+		vin4-supply = <&reg_vcc_4v>;
-+		vin5-supply = <&reg_vcc_4v>;
-+		vin6-supply = <&reg_vcc_4v>;
-+		aldoin-supply = <&reg_vcc_4v>;
-+		dldoin1-supply = <&buck5>;
-+		dldoin2-supply = <&buck5>;
- 
- 		regulators {
- 			buck1 {
-@@ -188,7 +196,7 @@ buck4 {
- 				regulator-always-on;
- 			};
- 
--			buck5 {
-+			buck5: buck5 {
- 				regulator-min-microvolt = <500000>;
- 				regulator-max-microvolt = <3450000>;
- 				regulator-ramp-delay = <5000>;
-
--- 
-2.43.0
-
+Best regards,
+Krzysztof
 
