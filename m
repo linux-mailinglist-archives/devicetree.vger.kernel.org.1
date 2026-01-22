@@ -1,204 +1,164 @@
-Return-Path: <devicetree+bounces-258434-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258435-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aAxUMs85cmlMfAAAu9opvQ
-	(envelope-from <devicetree+bounces-258434-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 15:53:03 +0100
+	id eCmNDVs/cmnpfAAAu9opvQ
+	(envelope-from <devicetree+bounces-258435-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:16:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 455F2682A9
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 15:53:03 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A6A5688A7
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:16:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 3196670D2E9
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:03:30 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 235B67C22CA
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:09:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24D7B32D422;
-	Thu, 22 Jan 2026 14:03:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC013345CC0;
+	Thu, 22 Jan 2026 14:09:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OkiQK3Bs"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="zHWCnTcV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA91831AF3B;
-	Thu, 22 Jan 2026 14:03:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB2D934845C;
+	Thu, 22 Jan 2026 14:09:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769090605; cv=none; b=gwcYSQYt/Ue1MUUhDw/3C4Evt9NZCIYRkhYjPKx8utY7GBw9YQYnAYo78eQ68hczG14m9oGBNWyhLg+JYBXAK8IP/sYydpTl7yJHaQF6fPpq9r2LYD0dTwO4rWXbXkU/jxP+Ds4Zer9LfSi0DCGkPiESCsQk4sNlLfM+aFJUrPY=
+	t=1769090951; cv=none; b=BDnthck769mDrgL49qCSiEcQe66bhbhNzPB0EU0QlavyDeOl8AKtyV72Z73HzpBsm1l2NQ2PxC/0GRzAEa9fsT7q+fhTWnayjn237T6Eawz1hHv1wYFdm9qGZg2F8RvEACLHDnuh1aGnm1DmZFv8PwjEe7I41rotwB8nS95DSYU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769090605; c=relaxed/simple;
-	bh=3SHkyRGYKQ9i0FYPx3pRbT9QJT80ZePTrHdczjnXiWo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TM7hYf37m//hlXenva3inQKcVHzXqQrhW1OejyjYHOsh2BxGYqAXob4/9m1iLBXFDxGJJi741hClAFa2+WTFrOKz0gsIs5kJ4FulvzFqVM9vwnVB5tQEy5CsicjgAbJV6OZxDgZQdYUeC/+bc5/zwYHbLrG+EwTmzhQYXtVgais=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OkiQK3Bs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8EDDC116D0;
-	Thu, 22 Jan 2026 14:03:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769090604;
-	bh=3SHkyRGYKQ9i0FYPx3pRbT9QJT80ZePTrHdczjnXiWo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OkiQK3BsP1UxoTEIDr+vIclBy0qGP6nUp9EjpTxDWH9+CXX0/Yg8JbgmmhpdMGcmE
-	 m94q7Pd0mQ7BV6F03TkQSVNiAafPQovTzjZc94OJCSjdokwbyUwLcYO+AEewleCh48
-	 AcsaREyJ5cy9B2bPVQHiGkMVPQpUkuL9V66imBc/Bwb0ta+3tfFvB1849FiTOvBRVz
-	 QyW3l/vevpPBhqN/QiaV1oSh+AQNTJGMdZDqHiI8caRNophFKmbgV8E636M1tVj4BS
-	 yjU5uAkTD0p85/R/NXcxrqZ8/TIaiSvPHehb33T9zC58dBVZgS4SDAYmyFgCBi9inm
-	 E0yYHmJO68rlQ==
-Date: Thu, 22 Jan 2026 15:03:21 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>, 
-	Jyri Sarha <jyri.sarha@iki.fi>, Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Russell King <linux@armlinux.org.uk>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Tony Lindgren <tony@atomide.com>, Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Markus Schneider-Pargmann <msp@baylibre.com>, 
-	Bajjuri Praneeth <praneeth@ti.com>, Louis Chauvet <louis.chauvet@bootlin.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Miguel Gazquez <miguel.gazquez@bootlin.com>, 
-	Herve Codina <herve.codina@bootlin.com>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org
-Subject: Re: [PATCH v4 20/25] drm/tilcdc: Use devm_drm_of_get_bridge() helper
-Message-ID: <20260122-camouflaged-cat-of-sorcery-7af8cf@houat>
-References: <20260116-feature_tilcdc-v4-0-2c1c22143087@bootlin.com>
- <20260116-feature_tilcdc-v4-20-2c1c22143087@bootlin.com>
- <DFSVNE16870S.ABQUMH9BWMDY@bootlin.com>
+	s=arc-20240116; t=1769090951; c=relaxed/simple;
+	bh=x3sJVvDigPgMi2h61A9uOlOFpSEZSSupoGaBjQ+gxnA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=AxfxXEiV9mHhGWb5kVAbNDmEpbzRYlKedlJyMjujtrcuMFvHCi+ACl/EbXnifSXLhAQ6hH3IhbUTYwFrU5gXx6QW+SkTsLgnzjtGTh6YB1A84oQkDhKi9qVXuTGYD/XY0CPXeSyKSz4CF0V7y2Nlh/z5aRktM5YwqQ+q3yc52Rw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=zHWCnTcV; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 3C6F41A2A8D;
+	Thu, 22 Jan 2026 14:09:08 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 0D4FB606B6;
+	Thu, 22 Jan 2026 14:09:08 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7C6B7119B8228;
+	Thu, 22 Jan 2026 15:09:01 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1769090946; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=6+Yuq4xZjcH9MgIV1g5wa3zzuRe006S3/bFlowjAhxo=;
+	b=zHWCnTcVrhE0UWdTmd0D+01VgqI1SCsW6KHIS2YK/V1Eb22U64CmQXhM/KBKhs4HZQq7jv
+	l4Yi8EmYq3ABN5fZdJYU0YHqTWoPG1NR8VHU9u5OcfhFQuVMI4Y7Ww63mvFxY9kA2d8nmP
+	ZFsFn1uh+PTbdMQaAPax2pm2J7yW1aauFHZwS4r7m8esdZjBHb+HACMNpVYxPVFVeeoeX5
+	ALsjsEb7a0m5ZeEAJs/Kp9W/fbMjckmq0+tbetZERZn0oPLypV6vN5/6zC27MvdE5VABKx
+	P/KdH/MOEu3ucDmKRjtDSynohVWOATS0E5WXDpQGgoXbE5YFOoqhJbnLjW/lrQ==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Richard Weinberger <richard@nod.at>, 
+ Vignesh Raghavendra <vigneshr@ti.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Brian Norris <computersforpeace@gmail.com>, 
+ Kamal Dasu <kdasu.kdev@gmail.com>, 
+ William Zhang <william.zhang@broadcom.com>, Nick Terrell <terrelln@fb.com>, 
+ David Sterba <dsterba@suse.com>, 
+ =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, 
+ Simon Glass <sjg@chromium.org>, Linus Walleij <linusw@kernel.org>, 
+ Ulf Hansson <ulf.hansson@linaro.org>, 
+ Marcus Folkesson <marcus.folkesson@gmail.com>, 
+ Tony Lindgren <tony@atomide.com>, Roger Quadros <rogerq@kernel.org>, 
+ Hauke Mehrtens <hauke@hauke-m.de>, "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Simon Glass <simon.glass@canonical.com>
+In-Reply-To: <20260121-dt-mtd-partitions-v3-0-ec3af93c8f93@kernel.org>
+References: <20260121-dt-mtd-partitions-v3-0-ec3af93c8f93@kernel.org>
+Subject: Re: [PATCH v3 00/10] dt-bindings: mtd: Partition binding fixes and
+ restructuring
+Message-Id: <176909094128.3112602.14299487418440318214.b4-ty@bootlin.com>
+Date: Thu, 22 Jan 2026 15:09:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="koxasmrivanfnujl"
-Content-Disposition: inline
-In-Reply-To: <DFSVNE16870S.ABQUMH9BWMDY@bootlin.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.14.3
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.06 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-258435-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[nod.at,ti.com,kernel.org,gmail.com,broadcom.com,fb.com,suse.com,milecki.pl,chromium.org,linaro.org,atomide.com,hauke-m.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258434-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[31];
-	FREEMAIL_CC(0.00)[bootlin.com,iki.fi,ideasonboard.com,linux.intel.com,suse.de,gmail.com,ffwll.ch,kernel.org,armlinux.org.uk,bgdev.pl,atomide.com,intel.com,linaro.org,kwiboo.se,baylibre.com,ti.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	DMARC_POLICY_ALLOW(0.00)[bootlin.com,reject];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mripard@kernel.org,devicetree@vger.kernel.org];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns,bootlin.com:email]
-X-Rspamd-Queue-Id: 455F2682A9
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:mid,bootlin.com:dkim,ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns]
+X-Rspamd-Queue-Id: 0A6A5688A7
 X-Rspamd-Action: no action
 
+On Wed, 21 Jan 2026 13:56:33 -0600, Rob Herring (Arm) wrote:
+> The partition bindings fail to restrict undefined properties. This is
+> primarily on fixed-partitions which can be nested and partition nodes
+> without a compatible string. This series fixes those issues and then
+> several problems exposed by restricting undefined properties. As part of
+> this, the schema structure is reworked to follow more conventional
+> structure of applying schemas by compatible and a schema only checks 1
+> level of nodes (unless possible child nodes are fixed).
+> 
+> [...]
 
---koxasmrivanfnujl
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v4 20/25] drm/tilcdc: Use devm_drm_of_get_bridge() helper
-MIME-Version: 1.0
+Applied to mtd/next, thanks!
 
-Hi,
+[01/10] dt-bindings: mtd: brcm,brcmnand: Drop "brcm,brcmnand" compatible for iProc
+        commit: 4db35366d6dcda7475b75887f89078a11fb2d89a
+[02/10] dt-bindings: mtd: fixed-partitions: Move "compression" to partition node
+        commit: 30f138c078525fc49b0694e879a1eb60eda437d4
+[03/10] dt-bindings: mtd: partitions: Move "sercomm,scpart-id" to partition.yaml
+        commit: ac83f4fa911dbe6b7ccadeb82c35f2e42d7ce2f1
+[04/10] dt-bindings: mtd: partitions: Allow "nvmem-layout" in generic partition nodes
+        commit: 9f30ba0a22b79d46689c686546fb3fea28d475a3
+[05/10] dt-bindings: mtd: partitions: Define "#{address,size}-cells" in specific schemas
+        commit: 002d2fe7992220fab57497d3d78de526982cf511
+[06/10] dt-bindings: mtd: partitions: Drop partitions.yaml
+        commit: 95af1e641b0f245d1d6820bb0c8696fa6a07f5f5
+[07/10] dt-bindings: mtd: Ensure partition node properties are documented
+        commit: 1eb9fabd52933cdf9be349de5391920fac4ed30b
+[08/10] dt-bindings: mtd: fixed-partitions: Restrict undefined properties
+        commit: 6ecd7715d64ee3bf0b55b374f731d1518b57bc81
+[09/10] dt-bindings: mtd: partitions: Convert brcm,trx to DT schema
+        commit: a1fa0f8ca1fb108d2cbf67fad8056f07bce898f8
+[10/10] dt-bindings: mtd: partitions: Combine simple partition bindings
+        commit: 125981ffa1674573d3a9200e72ed93a2270344b1
 
-On Mon, Jan 19, 2026 at 10:18:12PM +0100, Luca Ceresoli wrote:
-> Maxime, I'd appreciate your opinion about the topic below.
->=20
-> On Fri Jan 16, 2026 at 6:02 PM CET, Kory Maincent (TI.com) wrote:
-> > Replace drm_of_find_panel_or_bridge() with the newer
-> > devm_drm_of_get_bridge() helper which simplifies the code by:
-> > - Automatically handling both panel and bridge cases internally
-> > - Managing the panel-to-bridge conversion when needed
-> > - Using devres for resource management, eliminating manual cleanup
-> >
-> > This removes the need for explicit panel-to-bridge conversion via
-> > devm_drm_panel_bridge_add_typed() and the associated error handling pat=
-h.
-> >
-> > Signed-off-by: Kory Maincent (TI.com) <kory.maincent@bootlin.com>
-> > ---
-> >
-> > Change in v4:
-> > - New patch
-> > ---
-> >  drivers/gpu/drm/tilcdc/tilcdc_encoder.c | 18 ++++--------------
-> >  1 file changed, 4 insertions(+), 14 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/tilcdc/tilcdc_encoder.c b/drivers/gpu/drm/=
-tilcdc/tilcdc_encoder.c
-> > index a34a10337f6a8..546fe7e6ee815 100644
-> > --- a/drivers/gpu/drm/tilcdc/tilcdc_encoder.c
-> > +++ b/drivers/gpu/drm/tilcdc/tilcdc_encoder.c
-> > @@ -55,15 +55,12 @@ int tilcdc_encoder_create(struct drm_device *ddev)
-> >  	struct tilcdc_drm_private *priv =3D ddev_to_tilcdc_priv(ddev);
-> >  	struct tilcdc_encoder *encoder;
-> >  	struct drm_bridge *bridge;
-> > -	struct drm_panel *panel;
-> > -	int ret;
-> >
-> > -	ret =3D drm_of_find_panel_or_bridge(ddev->dev->of_node, 0, 0,
-> > -					  &panel, &bridge);
-> > -	if (ret =3D=3D -ENODEV)
-> > +	bridge =3D devm_drm_of_get_bridge(ddev->dev, ddev->dev->of_node, 0, 0=
-);
-> > +	if (PTR_ERR(bridge) =3D=3D -ENODEV)
->=20
-> This patch is technically OK in the sense that the code before and after
-> would be equivalent. However if it were me I would not do this change. The
-> reason is that both drm_of_find_panel_or_bridge() and *_of_get_bridge() a=
-re
-> problematic when introducing drm_bridge hotplug, which is the long-term
-> goal I am working for, but *_of_get_bridge() is more problematic than
-> drm_of_find_panel_or_bridge().
->=20
-> These functions are still there and not deprecated because there is
-> currently no better replacement (and drm_bridge hotplug is not yet
-> supported because of this and other things still to be done). To have a
-> replacement, the panel_bridge lifetime needs to be reworked first and
-> that's not going to happen overnight. So, all in all, if this patch is not
-> crucial to your series I'd consider dropping it. But if it is important I=
-'m
-> fine with applying it, it won't make a huge difference.
+Patche(s) should be available on mtd/linux.git and will be
+part of the next PR (provided that no robot complains by then).
 
-Eh. I'm fine either way. I understand what you're saying, but this patch
-doesn't introduce any *new* problem while it cleans up the driver, so I
-guess we could merge it still. And further clean it up with what you
-were suggesting later on.
+Kind regards,
+Miquèl
 
-Maxime
-
---koxasmrivanfnujl
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaXIuKQAKCRAnX84Zoj2+
-dmgwAYDLY4OXhO7mg+WUhmw0Yc4L5lUQhZ+IdcuEGFz8PoHCodhBLdEMRMEQeyrZ
-Lg3ek6YBgKnjvmAsvQieYruFGJdc16JOzCVf95Xa7TlPn2/TL9Du2bGHrv7SWGiW
-2GbEtp3WOw==
-=T8Px
------END PGP SIGNATURE-----
-
---koxasmrivanfnujl--
 
