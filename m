@@ -1,243 +1,147 @@
-Return-Path: <devicetree+bounces-258622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258623-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6FYRKBB8cmmklQAAu9opvQ
-	(envelope-from <devicetree+bounces-258622-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 20:35:44 +0100
+	id yPx3LE59cmmklQAAu9opvQ
+	(envelope-from <devicetree+bounces-258623-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 20:41:02 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CC3A6D147
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 20:35:44 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6AEE6D24C
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 20:41:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id F19373017F0B
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 19:33:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F0C9E3038AD8
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 19:36:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D633C39570C;
-	Thu, 22 Jan 2026 19:33:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C6C939BA28;
+	Thu, 22 Jan 2026 19:36:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TnxDSKT6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XfdMYZjG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com [209.85.128.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BFB21FF7C8;
-	Thu, 22 Jan 2026 19:33:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47A1533F8B3
+	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 19:36:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769110405; cv=none; b=jbZPUAYIYTn4NvSosDUsctkOxW+kuQ3wjWhPmfdNUlLtbdJ0zx3LbIvskqde1+ICEupViYMFplFbqITJLVhh+ESo+ghrY5n1fB6MCEGgb3GgrXUsx8zTkVyz9iGAegwRNlwrkVF+IRlwAJ/7ws3HXGEV8TCsIFw0Z7ZetlgqT5E=
+	t=1769110568; cv=none; b=J/ZaUPJZhq8kCav+l0feHrdD0tov7AKxSp9pjWnwZdUPHE4GIJZUc9SHecAbwLEpk4dCe+y/VqcMvMW1a1r7CGCrTes7SjLRWjsfRNO4RhSjEGADCmQ2D6M+vknJDXCL+ADO8oH+3VVpllVW+/aGlXLDQu53IP4ZkyrNkIIVXbM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769110405; c=relaxed/simple;
-	bh=7SgLk2UDB0FZRkvj2BvFR8LJLwcq8f+XoFkuLPLDdVo=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=omU2jqMKdn8NfZL6T4jDTdHGicUWZOXlUwVEThKHmPE/l6GwZ1ni6zCkXYQfvg8H+egUcfoNB0Pk+YvgmxjjlAeQXEzXIiJsVMIm9ZhCRXjGcIMGlZpXQVZ38cxoLunQSGnHBdvCm64nPsySvj9itDiXO20k90N3G6j1vpgFYHM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TnxDSKT6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C694C116C6;
-	Thu, 22 Jan 2026 19:33:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769110404;
-	bh=7SgLk2UDB0FZRkvj2BvFR8LJLwcq8f+XoFkuLPLDdVo=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=TnxDSKT6W31tNcauhdZq7Ceg+ocFPLhOBPnJQJ7V4b9UXh2OSldzBbpzgfkzavZZJ
-	 LZOvczhZlGS275G6tQI6IfrmKgTwpvUs/QmlUmXAs+FeD47+rl0Dr9yLn1UUYs0SgP
-	 qq4S/Z15Vj27fTz7WJQakvB4lsWegvHtucW7J5dC61c8rhxj6Gw7lCZnvG3n/AFNKZ
-	 WmJSwYUcm/6VZWvzne2j//rWFa8iV6U0BhEzB7rDot5Y3VbJCMDpGB29G9uqO+2c83
-	 chpzbj+sJgd4x+ufdd0LgdYfOLQ6YZJpyu1AJx87zdHV4j/CyqCr2m3LJK1hfrkGl/
-	 3CX8qsVTL/cTg==
-Date: Thu, 22 Jan 2026 19:33:12 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
-Cc: Andy Shevchenko <andriy.shevchenko@intel.com>, Rodrigo Alencar 
- <455.rodrigo.alencar@gmail.com>, Andy Shevchenko
- <andy.shevchenko@gmail.com>, rodrigo.alencar@analog.com,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org, David Lechner
- <dlechner@baylibre.com>, Andy Shevchenko	 <andy@kernel.org>, Lars-Peter
- Clausen <lars@metafoo.de>, Michael Hennerich	
- <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>
-Subject: Re: [PATCH v4 3/7] iio: frequency: adf41513: driver implementation
-Message-ID: <20260122193312.0a84ac33@jic23-huawei>
-In-Reply-To: <99789eb34873eca976a3324c363a1dc70a2f0d3d.camel@gmail.com>
-References: <aW3dxuelYDM67pqZ@smile.fi.intel.com>
-	<texwv5s2tvcy34bwr4iruj5xofmea663pwletmpqpuh66zulmv@m7qvjgqbhalv>
-	<aW40ylvMwVhqNQMw@smile.fi.intel.com>
-	<hgy3bcrqqsvt7pobhnzuvwzhb2taetpxltkaxpigmmlvmlirod@v6anhmrsvv2r>
-	<aW5kk6K30Izckvg5@smile.fi.intel.com>
-	<e5lcg5kkey3c6u2l4rlzzpolp7qkudhcofyzcx5s2tjbh2iwkg@js3fisv23zyj>
-	<CAHp75VepcSZo_E4_UxhKRfHrMFDd7huJg14m8=6zVo4ENKFXkA@mail.gmail.com>
-	<vvdk3whhwua73g63eetnmn46t2cpbpkzzkx7m6wsbverp7gcvs@mi7cipis3i4t>
-	<aW-Fai68pk1tAeyY@smile.fi.intel.com>
-	<kmdqcaewxxg7isappgfxuf5ode5fepbywrdriksmvrzmaykcjd@crpr27tt3bmf>
-	<aXChxvlZxKVrOMsW@smile.fi.intel.com>
-	<99789eb34873eca976a3324c363a1dc70a2f0d3d.camel@gmail.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1769110568; c=relaxed/simple;
+	bh=6bcOzK12X2n239i0z2HYrans52sIg6wjGl8x+aSjd6c=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=YYp8unyAOVc/BlKDZxduNtUjfptlEM1j7iR7P12suJsh9YkU0ubomckiZvCz9umaomZ2ZcNpMpdaMTFKbf7SCQu4VJXWTFtjE195/wuhrsqm04nkVfj/N5K/siwmiQgxJ5eEBxNmr57guBKjd9McDvkJM9VeaI7JuvMOTjPpkPQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XfdMYZjG; arc=none smtp.client-ip=209.85.128.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f65.google.com with SMTP id 5b1f17b1804b1-47ee3a63300so15431295e9.2
+        for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 11:36:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1769110560; x=1769715360; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Kwi4ZRaqC0fLP1GDcRU6oR980s6aWRwXFTKbG3IWwZ0=;
+        b=XfdMYZjG8R3OOWYd0TwAsNMqvuEnUG6PTMHnSDc9fWYqJWgmGuQ+8l8zcV9QXm6Ee7
+         rvvEaAa15aNufjEjStqtQ1a7wsPzwegI8rcpCBpYMwBe1uC0YW6P5wXJSUkEzd2WcyzE
+         XO7JwKfBxlKt3B21pRIG9g9o8VPuQqAGxLcZWNjS2/yjDOZlaXjcqzbHm/vB8TI2lEnI
+         bXgKMImoRSi+n2nJ+pB64w6InsrUEc+SK7mjA7T4njUhVuG56PyJduPi99t+VbYXXxD1
+         zbOxKgAi1Qx5ApjjhEl62RpXcoOpMStuhBGh6fTVTIOYoDzgaDecjwbF5MOF/nBOULgq
+         bafA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769110560; x=1769715360;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Kwi4ZRaqC0fLP1GDcRU6oR980s6aWRwXFTKbG3IWwZ0=;
+        b=uIG4fU4mZMWK3T76c+tYJvBK6RMNrp9FYc81Cm1+fGe2juklTHetz1tEoE3PiKK10E
+         dw3qvPnJG7r/MMcaoxZRAT0I81FGdVjofVzlf0fQ8FXzPBnK/boj5Vmhe3CTQLuPwqzf
+         UJbTZvUrpzRekH8twFi+XjVlK6Xi1sqUFLpg1fakTTk6gOsum8lpC5WHy3fOLh11N/Un
+         HLXVSO0RplWUhJEpR8GUXvJ7HFjNCzMBvIUHWJQYqBA1+liMTgSpS/UrcxZqxozoL6zO
+         Q8dL5vHW9rZRG8jwNsX9x4wYknzqV5xKSXAbq4nEuINz3QsgOMERg8iGGXzPH1Hc3vTR
+         DmdA==
+X-Forwarded-Encrypted: i=1; AJvYcCUBvt0ptcHWO74TE2t01uXCtTrfAz1hOgaDSET7TsUXMUG0Sb2MXW9UgK4vg7TufVaDJSr0/CU+aN0l@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx9tS45HoEs57nYTP1FrBtKIricFoO31T6sl9Cvim8s46qRImiv
+	XNRehtqyklJCY+Tiib5JxOuT2y8boqZVbfTN1Ceg0gKP2D4o7zG2ze0e
+X-Gm-Gg: AZuq6aJJJRCSYhMoMtGvuY3sFB17nAigIef6Ttwh0iXURknAewA6ZEsw4mHiYWOv696
+	VbDQsRgFmT8DsCxY4Bbu+znBDwJeFy5doFyFo3aKWcCyG5yeGsrelmX+izvgMYXLjIHEBoOmj7T
+	Q1RwS8tRHpe/ZRNZmcbUXTuCLNlS7tHyPTkl2kk8X1K45MkEVkgZm5sz9BKEvIJsuc+yv+vOwyl
+	lhA/34UO2IjkAZzifQaa4DhwBFAy3yQeLEWRjP7CN0eqT3exK6Ta3YUUw6qU+1Gs8iaSlbXbgkX
+	jTGFfAbNeisOzM0oicBVZrmwPXulEAJTC/nqzaukcqdvXY2obfEP6qmO/unFp1MhrhDAsE1Rc8L
+	dDT6oig/u+vR5wImizjisIEGdwHcFpKsqxod/3TZE0Zpee7EwwlwxZ93rUsWIWCZCHZkHtwmMK8
+	+L
+X-Received: by 2002:a05:600c:3f0f:b0:477:7975:30ea with SMTP id 5b1f17b1804b1-4804c9c0ba8mr11723685e9.29.1769110560378;
+        Thu, 22 Jan 2026 11:36:00 -0800 (PST)
+Received: from xeon ([188.163.112.49])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435b1f745e6sm843027f8f.33.2026.01.22.11.35.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Jan 2026 11:35:59 -0800 (PST)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Svyatoslav Ryhel <clamor95@gmail.com>,
+	Frank Li <Frank.Li@nxp.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Andreas Kemnade <andreas@kemnade.info>
+Cc: linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/1] dt-bindings: input: touchscreen: tsc2007: document '#io-channel-cells'
+Date: Thu, 22 Jan 2026 21:35:48 +0200
+Message-ID: <20260122193549.29858-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258622-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.994];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,nxp.com,kemnade.info];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-258623-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[intel.com,gmail.com,analog.com,vger.kernel.org,baylibre.com,kernel.org,metafoo.de,lwn.net];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 1CC3A6D147
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C6AEE6D24C
 X-Rspamd-Action: no action
 
-On Wed, 21 Jan 2026 14:21:00 +0000
-Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
+The tsc2007 can be used not only as resistive touchscreen controller but
+also as a ADC IIO sensor. The second use case requires '#io-channel-cells'
+property, hence add it.
 
-> On Wed, 2026-01-21 at 11:52 +0200, Andy Shevchenko wrote:
-> > On Wed, Jan 21, 2026 at 09:41:25AM +0000, Rodrigo Alencar wrote: =20
-> > > On 26/01/20 03:38PM, Andy Shevchenko wrote: =20
-> > > > On Tue, Jan 20, 2026 at 01:07:49PM +0000, Rodrigo Alencar wrote: =20
-> > > > > On 26/01/20 01:24PM, Andy Shevchenko wrote: =20
-> > > > > > On Tue, Jan 20, 2026 at 12:43=E2=80=AFPM Rodrigo Alencar
-> > > > > > <455.rodrigo.alencar@gmail.com> wrote: =20
-> > > > > > > On 26/01/19 07:07PM, Andy Shevchenko wrote: =20
-> > > > > > > > On Mon, Jan 19, 2026 at 04:37:09PM +0000, Rodrigo Alencar w=
-rote: =20
-> > > > > > > > > On 26/01/19 03:42PM, Andy Shevchenko wrote: =20
-> > > > > > > > > > On Mon, Jan 19, 2026 at 11:21:59AM +0000, Rodrigo Alenc=
-ar wrote: =20
-> > > > > > > > > > > On 26/01/19 09:31AM, Andy Shevchenko wrote: =20
-> > > > > > > > > > > > On Fri, Jan 16, 2026 at 02:32:22PM +0000, Rodrigo A=
-lencar via B4 Relay wrote: =20
-> >=20
-> > ...
-> >  =20
-> > > > > > > > > > > The current implementation is kind of a stripped vers=
-ion of
-> > > > > > > > > > > __iio_str_to_fixpoint(). Would you prefer something l=
-ike this, then?: =20
-> > > > > > > > > >=20
-> > > > > > > > > > Do they have most of the parts in common? If so, why ca=
-n't we use
-> > > > > > > > > > __iio_str_to_fixpoint() directly? Or why can't we sligh=
-tly refactor
-> > > > > > > > > > that to give us the results we need here? =20
-> > > > > > > > >=20
-> > > > > > > > > __iio_str_to_fixpoint() only parses "int" chunks, adf4151=
-3_parse_uhz
-> > > > > > > > > was modified to accomodate the u64 parsing removing unnec=
-essary stuff. =20
-> > > > > > > >=20
-> > > > > > > > But why? The fractional part most likely will be kept int (=
-it's up to 10=E2=81=BB=E2=81=B9).
-> > > > > > > > The integer can be bigger than 10=E2=81=B9? =20
-> > > > > > >=20
-> > > > > > > Correct, integer part of the frequency value goes up to 26.5 =
-GHz
-> > > > > > > (uint_max is approx 4.3 GHz). Also, with the dual modulus, th=
-e PLL can
-> > > > > > > achieve micro Hz resolution. =20
-> > > > > >=20
-> > > > > > =C2=B5Hz is not a problem since it's up to nHz.
-> > > > > > So, the difference so far is the integer part that can be 64-bi=
-t.
-> > > > > > Again, can we factor out something to be used for this and for =
-the
-> > > > > > __iio_str_to_fixpoint() cases? =20
-> > > > >=20
-> > > > > I am not sure what you are suggesting, =20
-> > > >=20
-> > > > To make changes to reuse the code.
-> > > >  =20
-> > > > > but I am avoiding changes to iio core at this point. =20
-> > > >=20
-> > > > Why? =20
-> > >=20
-> > > I understood that core changes would require more than one user
-> > > supporting the change. =20
-> >=20
-> > At least one. And we have tons of them as the callers of
-> > __iio_str_to_fixpoint() are not going to disappear. Basically it's a su=
-rgery in
-> > the middle of the existing chain of APIs. To me one user is enough just=
-ification
-> > for such a surgery. For the newly introduced API (imagine __iio_str_to_=
-fixpoint()
-> > as an example) it's indeed one user not enough.
-> >  =20
-> > > > > If any other user needs similar behavior,
-> > > > > I'd say we would need to have __iio_str_to_fixpoint() implementat=
-ion
-> > > > > modified, so to create a version of iio_str_to_fixpoint() that ha=
-ndles
-> > > > > long long variables. Possibly consuming simple_strtoull instead of
-> > > > > doing the manual parsing. =20
-> > > >=20
-> > > > That's the problem here. With Yet Another Cool Parser this all beco=
-mes
-> > > > unmaintainable very soon =20
-> > >=20
-> > > Considering that the need for a new parser for 64-bit parts is only d=
-riven
-> > > by this specific PLL driver, I wonder how things become that unmainta=
-inable. =20
-> >=20
-> > Because there is a duplication of the code (to some extent) and if we f=
-ound
-> > a bug in the one implementation it will be hard to fix (or even remeber=
-) about
-> > the other. =20
->=20
-> Agreed!
->=20
-> >  =20
-> > > > (basically as you said when new comer needs a third
-> > > > variant of it). This is not good. Instead better to create (amend, =
-expand)
-> > > > existing test cases, split out a foundation API that parses 64-bit =
-parts
-> > > > (maybe even for fractional as well, dunno) and evolve a needed (sub=
-)API
-> > > > from it. =20
-> > >=20
-> > > I don't disagree with you though, I suppose I will need a green light=
- to
-> > > move on with this? =20
-> >=20
-> > Fine with me, let's gather opinions of David, Nuno, Jonathan, and other=
-s. =20
->=20
->=20
-> Fine with me.
-Likewise. A common / foundational function with specialized wrappers would
-be good.
+Svyatoslav Ryhel (1):
+  dt-bindings: input: touchscreen: tsc2007: document '#io-channel-cells'
 
->=20
-> - Nuno S=C3=A1
->=20
+ .../devicetree/bindings/input/touchscreen/ti,tsc2007.yaml      | 3 +++
+ 1 file changed, 3 insertions(+)
+
+-- 
+2.51.0
 
 
