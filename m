@@ -1,501 +1,227 @@
-Return-Path: <devicetree+bounces-258214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258215-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uKHhALK5cWnrLgAAu9opvQ
-	(envelope-from <devicetree+bounces-258214-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 06:46:26 +0100
+	id 8K6YOwjBcWmQLwAAu9opvQ
+	(envelope-from <devicetree+bounces-258215-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 07:17:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C7D7620D9
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 06:46:25 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F73462343
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 07:17:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B2F224F0048
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 05:46:17 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D63F0501A04
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 06:17:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D10347AF4D;
-	Thu, 22 Jan 2026 05:46:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B465B47D927;
+	Thu, 22 Jan 2026 06:17:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="LXTxGt2H"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cCEo8lZK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from BYAPR05CU005.outbound.protection.outlook.com (mail-westusazon11010060.outbound.protection.outlook.com [52.101.85.60])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f68.google.com (mail-wm1-f68.google.com [209.85.128.68])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DAD027F18B;
-	Thu, 22 Jan 2026 05:46:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.85.60
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769060772; cv=fail; b=nGes7JMyY3fjRMYUL0mbqfuRd33m1L/Jmoo1m35yEVa5IdrKEmLNNRspn+XHYeU6hpEObdHnz6D1ocCTIoDTcgyhqF1cd/+EP2DH4S2/nd/Lz7IQWBk1TBdw9VXkvUYNt2p88H9OQa81Q5ADrYMxQbtPt0DVM9XMxaAv0CR2lZk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769060772; c=relaxed/simple;
-	bh=sjVoiXk7Pf5RTR/OKOrT3wisnTGcftsCl9CI1VwgB+k=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=uL1IRt33+wPKntktBsTnTTjJVqY3RJmGBd3tOtj5AjBdYxvx7DsCwi+Onm46f+YR6Adb/dp30qCDCmvKkwjVL0aXDko64qTHJL1FUUYnOB8qad1XtjOU8yi+U7qIOUvnGLylsYXwvGGhpBR6xxLuBirhudFFJS7ORG8B2QVGl/A=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=LXTxGt2H; arc=fail smtp.client-ip=52.101.85.60
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=iEK7JwpwooriPFybQcI+OWfDuGNZjcRnY1tC/JsigwYW2eMzl8b7+N/Aq2Wr+kHeExA3x5d8T+kSgiFm+UfpzONWaHl+gE4ACQzCE9zoLkPyDTCoNTqcwOsk1DQwhH6H1vJcME+TTCK0gW3BPDBxV2L3M2pP1ItFBH2pL8rAYg/iZ32CLZdj/reBSg3XspLeS/j1pUICHMU4au/Y2MvFnvKQ489pvvZGSNkNUWGGFLkZhH9BSFHozyZwc/9IO31EWrqHQ9btMsVweiR1dADkL/7SG+S9pQkZU6ngHOzudDGipsMOsxufcD/yFVBtPYqX7Tj/gjQGD8yuk7twsMplNQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/LUCiAYgljG6cPJ0g2a/4/hrpHA/FCZGOlvHufOxhUw=;
- b=ONZect4qOBrICgo9Hxwffe4p26N/QXImJqaDnHfYuTpFnHnPoH4JP2dx837xyTkH+MYcaNOIiWzO+ajkzm2a2IBWmskBgDNkaztIOLPGgds1fHaQinhydnCcv2zRhVJmzGQc69wTtAJfhrjX+J40rJ1vUwvlWZZ630WROh3dyA63gY5rZ/sX4jh/hH3AS9tzcQxxeWimj0l8eSgN2SxnSwIgPxEF+1Cu0hE3mNZDeJXX3Ej/E/qOl+ylfudjcDece+eidbjaF8bCltpVB1gTKBFUEedDNyZrXM668hISBZ8WQD6FMv4S1x5EjUeqSZxUqFssC49K6v1YvfTXR8PIuQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/LUCiAYgljG6cPJ0g2a/4/hrpHA/FCZGOlvHufOxhUw=;
- b=LXTxGt2HgOjs3bOKxdtdPVGS1rfsMy0X6dG/QJaJwis58MHe4+3rLOCk67Upe+vuE8a3juB44naTHk/N8x2ywQBYmQxIZl4AgluhwOSjNVnGgBlNlOVlSJtHvCA6JeL1KKIn0CsKDRpi+wuM4cy3lsCaBVYrcIg+IeNqt/M1rwi7UzQb1Y2aO/a/ajZtSdnvQg/qjwnodsijl4hF0kviKHYCkJ6hEd/1PY3zSvsNX4HzbouGqa3JsJU2FnedwED58+7wAgiLQGw1KiiDH79sZJ9SPvqe7tJgxxvkLi6qmcXe/RKgzRTp4E4XlAz4SFZg3bvTxig5B/pkDVK0Xz2aDQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from SJ2PR12MB9161.namprd12.prod.outlook.com (2603:10b6:a03:566::20)
- by PH7PR12MB7938.namprd12.prod.outlook.com (2603:10b6:510:276::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.9; Thu, 22 Jan
- 2026 05:45:52 +0000
-Received: from SJ2PR12MB9161.namprd12.prod.outlook.com
- ([fe80::1f16:244a:2a9d:2c93]) by SJ2PR12MB9161.namprd12.prod.outlook.com
- ([fe80::1f16:244a:2a9d:2c93%3]) with mapi id 15.20.9499.002; Thu, 22 Jan 2026
- 05:45:52 +0000
-From: Mikko Perttunen <mperttunen@nvidia.com>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding <treding@nvidia.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>,
- Prashant Gaikwad <pgaikwad@nvidia.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- Dmitry Osipenko <digetx@gmail.com>, MyungJoo Ham <myungjoo.ham@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-pm@vger.kernel.org
-Subject:
- Re: [PATCH v4 11/12] ARM: tegra: Add EMC OPP and ICC properties to Tegra114
- EMC and ACTMON device-tree nodes
-Date: Thu, 22 Jan 2026 14:45:48 +0900
-Message-ID: <7678982.MhkbZ0Pkbq@senjougahara>
-In-Reply-To:
- <CAPVz0n1zqo1TyaV=+fc6YzOKH9TqOBEatruZTAVGg9hFEWmXsQ@mail.gmail.com>
-References:
- <20251125120559.158860-1-clamor95@gmail.com>
- <4370037.mvXUDI8C0e@senjougahara>
- <CAPVz0n1zqo1TyaV=+fc6YzOKH9TqOBEatruZTAVGg9hFEWmXsQ@mail.gmail.com>
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-ClientProxiedBy: TY4PR01CA0112.jpnprd01.prod.outlook.com
- (2603:1096:405:378::14) To SJ2PR12MB9161.namprd12.prod.outlook.com
- (2603:10b6:a03:566::20)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3DBF3C00B5
+	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 06:17:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.68
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769062652; cv=none; b=cNXnVJcGC9coUSMQyEShc7PivMicnu0R/hw/2WhQsepWw6zO9V8XNE6APJmtvY3b5bPY3f9EAWF83e1U1Id3HktjvHjyGNlQZgtAQhS6Uv4yfixcgcSb9mGQUrsm3Ruaa6kOpBr1LtzJsGVGLmmhGQGRrjlWMjMTXne17BDLDqM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769062652; c=relaxed/simple;
+	bh=HwQQ/e13d2XeVp13BFe2FpMedQM5DZhp8KcD4K71ego=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=RUqLvkzURom97Vm/+GwaY6N5jHE5I0cASCGhncGNat3wtIRRcfZ5WkhH8dE2Xb6cb8KHu75XdGQZnLJaZ4KNBL2YMo+7SsNurvhVlllVDtlmdXmvptGwh2VpB4IbNM0lL51XXIhteRi38PoTwaJVTJ2ftlEeY+mFVt//zYJCh7A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cCEo8lZK; arc=none smtp.client-ip=209.85.128.68
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f68.google.com with SMTP id 5b1f17b1804b1-4801eb2c0a5so5706465e9.3
+        for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 22:17:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1769062644; x=1769667444; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=XFWxi+AFltNFDVpcrpAcnDmVTxmCRVFES1AkiIw22SY=;
+        b=cCEo8lZKAs1wr4lfPYM6lISHc7OyocCVXHgQM1twwkXLb2NuRB1HERaaxW76fYKOgR
+         Kv9d/riU2OCb5wtfxfGlcANv57LjTxWKE/VrxnT/EMzxLh+ZAtT99J00GtjHh/KR8S4H
+         7MHMP7DnxML999Bi32tWLzr9OZISoLZDdJd9644F++z6At/8GHg3JQEG5GpMQKOJrnyh
+         c7/vuVQ9CMDAM2UjiUYpfX5tnOaHhPIn/ynUJ6NfW1bsDsxriBKfbdNSnKcZL100q8a3
+         81xHngoT8wYXu4xVfTTg0hCauJDEExfpnclEk4qxnchsokJMNLy6sERO2HSZVj1o8xbb
+         bTHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769062644; x=1769667444;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XFWxi+AFltNFDVpcrpAcnDmVTxmCRVFES1AkiIw22SY=;
+        b=oTFO/P4KtBRS/qTIoWk/7/N0DdtBX0rAiKE92eYyNG5Ws4/MArMpTBOUnJ/Kt4tt8A
+         M1EeHlLhNFUgIreDkEPucgvEmgu6QycPeVHlQU+38ScTN9FkoAInfelN50ORlX/3DnYa
+         eBq0+gEAxJh/oX8s09wb4/suSeCpsYvzTeqpuJXv7c877NXUkNSmTGg4CQvq09uIgf4v
+         /2kdxYFdzeiJdolnnEA2IA1lDNTK0Jgrmx2zach15NENRfNlEAinjYs3EgZBZt2cHSwK
+         3JFc7Nq9sz5IqXA8VeRJnICg/X42QAUwo0J23OpE6slivWtUajAKSDntwJ/sqQrAkZcc
+         Kzag==
+X-Forwarded-Encrypted: i=1; AJvYcCWkxzevaLwbLKdcQKs05/Y8gPJSKOMEj2gUQhU7Xb32R+X+hjmGp93/AJpYucDNCsL5yIPkCJ4+gC7w@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywrx64k0nQ0TO2BTJOX2GsXZEP9i5KJ+mxx0LXrvbtmXFR+sDk+
+	yg8YeMpUO17/OBT1nalQ9zwI8+xMgJytXIzazurMrm0RluhZW2GmIByWzcMx+nbuzmM=
+X-Gm-Gg: AZuq6aLA4bOLzCkfTByghIzfD8fO/gbgr0ETjhuxtuGqaVGniigUdAlXFZBI+ak1SNX
+	crwRCfKulLYRQw80EeinT7AZfRkmVJT8Tj3wcNpdfXUj4YSROEyimvD23aZPLPX341xjdAfelUd
+	7XJHEphLeokFUz+YxVNd3kzD8ZULvOlaeQgXPW8Gd7vcgmEcY4yXmkC0rX3+y4vzCm3RtIqJbAp
+	8QiEJJSlTmfKZIYeapc1Y8gYpIVUaiP+HBIPe6SHExb3SHwT8X5eOzcOHSlELEYkxPEJjnH0JCf
+	j6hgzTV1DDA1pOe3EI4EAvXqS8/qUD699M7REgcrAO8sb/ImCAF2+H7roPQif84+KZGDq8fyt93
+	W5wtd466utFcjx52DAFvBQp2Jgs8VzQRVPghtdDPdDhcXgosiaXxH1Gn4OAdNpYVBja5AA+5V0L
+	zIiO7VQant4+DFgvHj
+X-Received: by 2002:a05:600c:83c8:b0:477:7b16:5fb1 with SMTP id 5b1f17b1804b1-48028360726mr235733975e9.7.1769062643924;
+        Wed, 21 Jan 2026 22:17:23 -0800 (PST)
+Received: from localhost ([196.207.164.177])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4804704b89bsm40122255e9.9.2026.01.21.22.17.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Jan 2026 22:17:23 -0800 (PST)
+Date: Thu, 22 Jan 2026 09:17:20 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: oe-kbuild@lists.linux.dev, Josua Mayer <josua@solid-run.com>,
+	Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Peter Rosin <peda@axentia.se>, Aaro Koskinen <aaro.koskinen@iki.fi>,
+	Andreas Kemnade <andreas@kemnade.info>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
+	Janusz Krzysztofik <jmkrzyszt@gmail.com>,
+	Vignesh R <vigneshr@ti.com>, Andi Shyti <andi.shyti@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Wolfram Sang <wsa-dev@sang-engineering.com>
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
+	Yazan Shhady <yazan.shhady@solid-run.com>,
+	Jon Nettleton <jon@solid-run.com>,
+	Mikhail Anikin <mikhail.anikin@solid-run.com>,
+	linux-can@vger.kernel.org, linux-phy@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+	linux-i2c@vger.kernel.org, linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 2/7] mux: Add helper functions for getting optional
+ and selected mux-state
+Message-ID: <202601221036.J0kR78Uw-lkp@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ2PR12MB9161:EE_|PH7PR12MB7938:EE_
-X-MS-Office365-Filtering-Correlation-Id: 87657f2f-dce4-44b4-1155-08de59798110
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|10070799003|376014|7416014|366016|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?U0RIb1pKd014ZFA5Nkg1OXdGbHBVYlhMUEJpYmlBZnRjcGFIY0d2cjlBbWZ1?=
- =?utf-8?B?NGpVTzIyRVBsOFVMQ3dtMHZ1ZjlOZ3hJaHlFVHN3OE9QS09uWmZEUXl6YU5V?=
- =?utf-8?B?UkJvckFwZE9weFhSZ3RMSjhYUnpiWGhZa29sU2dOMkhRNU1Tc3d0OERZb0NQ?=
- =?utf-8?B?QVlDYldEbXdzTWRWY2NuYTRuUDVNeGpOMi9OSEl6cXR4T1p0emp1RGpMWG1H?=
- =?utf-8?B?T3BqRlcraVlzVSs0K1NBUEJ0Ym1XdnB0WFRkeUVOQTZQNElxaG5nOEU0OHZm?=
- =?utf-8?B?UVRlTldZUzN4R3F5bnRTS0IzdVplZ2Ruc1NBa0IzR2JtNStwOXMyNDBlc1Vr?=
- =?utf-8?B?ZDV2ejNJbGZjNzZVQ3cwN0E3NUh6di9pc0x5alNRSkloa3YzbUFpemlSUWhw?=
- =?utf-8?B?M1hLc1JEazRiQVZPUW4xYlplQ2FldXlTV0JldGd1N2hNamtYKzFiK2p3T3po?=
- =?utf-8?B?NTNyZ3JNSWFyaDA5RHUySlZRb0UvQ1MzRDVHbjhucVhockFjQ1dDbHViNmo2?=
- =?utf-8?B?Q2VwTmx3WUk5N25tWkNSeTZBS1hUdmhhQUdsMCt6NEVZMHRBdnlxaWxEM1RM?=
- =?utf-8?B?M2xSTXYzNG5KQWNlM3UrNGhMNjdmRFo5ZWlNenRoaDFpTU9XOVdEVzNiWHUy?=
- =?utf-8?B?QzBTRXBudUFjd1RpWmNzMnhuSkpqOVVpTFJQK3dQekY0QlJWWlBYS2VIWmhP?=
- =?utf-8?B?c1JQT0JRalQyMndwbWNpa1BzUjlNcVVPQmFXNU9iajltbmhVMWRES0orNTRX?=
- =?utf-8?B?MWpVcjVoNDRIcE95R1FDajNHQ3hhYXNWSDJKTUZEZ254akhDODh0VGJPelZZ?=
- =?utf-8?B?TkRKWmZPcHNMY3Z5NkhQaFQxQUlaTkJjU3JCWHdNV2pNSFNkc1FSNWJacmpa?=
- =?utf-8?B?djZWZ2dicEVqREVzTFZybDVIQW9NL0xzeGVwdUgrYU4vcmlXK3h5Y2g0cHVm?=
- =?utf-8?B?dU5FOTFiQkJtc3dOV0xRTGVtbW5ubWVhd1h1Ynd5SHBWSlBsQk1vZ1dnWjVR?=
- =?utf-8?B?RkNTcFlVVDEyNXhLbU80aXY3L2JvK0xRczByWm1Nd2pBWHAwUVd4cksvVlll?=
- =?utf-8?B?Qmg0dFUxTjRZQ2FUeU5OaFQxRVdneG9IRVRKSVNSYmduYkFKN0FmVFpNeFp1?=
- =?utf-8?B?Nm1rNENNTzd2ejg4bUo3ME1BM1E1cTV3c3NkaDdtWTdCb2hxdnUvNFRFa1Q1?=
- =?utf-8?B?V0FaQU9ybEJLeDB0Z0RDejRXYTBnMkdZNU1uK08zNUZ0Rnl6Tm9VNHE1dU5r?=
- =?utf-8?B?UFJNbzVMOFJKelN6MnZFa0RLeWdDcjhNeW1qVkhNSmJZdi90UFBuQ1UvL2FJ?=
- =?utf-8?B?RWc5Q2lzWFhyVWJ4MUl4VnI3WlN6aHlySkpMaktla1JWRnE1eGwvRmxhS2Vw?=
- =?utf-8?B?SUxNZ1V1TXlKdWtiNEN6R3NWNW1vVDMxN3ZkYWhaRE9FQ2tPTE5RQko3czll?=
- =?utf-8?B?bElBMVpIbWJOaS9naEszSnF2L3pxQzlZUXZreXM1VS9WYWh3bkYwMDBBV1V1?=
- =?utf-8?B?Z3doQVhvWC9TWUNPbUE1WU1CWndqQmV3V3d6ZHJxbDJ2SWR6YjdlTjl5cUZ0?=
- =?utf-8?B?cFBHN3NsSExBeUpWWkh1encrY3VLem95ZHJQUXFDaG10cW9DeHorS1pLMllU?=
- =?utf-8?B?YWdCdE1CTEdVampRTG9oY2JaSlVsYU1uVnhuMjV2OXdHTUFaOVVLUmp1TWpB?=
- =?utf-8?B?SkY0a1ZzNlhnZE5lbWMvTThMK2dmN0sycVNIOWZ0ZE5OR0FEY3JMb0FZYXlN?=
- =?utf-8?B?ZTVodHV2RTEzaEdKUy9GV3pPS1BKdzFvS2VFamVoVVpUVGtYei9PKzRvenJC?=
- =?utf-8?B?cWVNNFcySVRUUHlNcHJDamhEWFhkbGpUMXhTcDhiVUkxTXFDcHk4TytLelJi?=
- =?utf-8?B?Q2lEbHFXaDRnc0x5RGwvcnpzMDdzWlRoR29VY0lwa1JhbC8yZHpPcXl5Sy9C?=
- =?utf-8?B?VTNWVGduVGtWcUIvLzZwZjRzaHUwT09SYU01Vk5iSkhiYkxqd2tLbUtuNTNw?=
- =?utf-8?B?akhQQWpnRyt2ZXd6ZFZwREFxbFhKMUhVeFlhZGlMWmc4bjlFdENZLzRCQ3Rk?=
- =?utf-8?B?anYrVDRIUG9mTDVEYmZBQTZuajlmbnVwa3lrbXhwVjlTcUNmc1l4ZnVXbjFn?=
- =?utf-8?Q?akAU=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR12MB9161.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(10070799003)(376014)(7416014)(366016)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?R0VvTmtDZ1k3NWg2VzVHWlZkS1cwWE9uNitVaHRDY0JBWmhiSGNWckp3VTRt?=
- =?utf-8?B?NllLR2VXOFUzQ2p3TDF1dW9mWmZOWVg1eXFtUy9XQVBkZVl5VzBsS0srNEVH?=
- =?utf-8?B?Wkx0aHRSdGJnN1hIMUZ0ZU9hM05Vd3E1aGNVOFZDeTkxNG1vYlNvOHZtWm5E?=
- =?utf-8?B?TmFhZjNZSWNpK3hNUzdYT29OZXdwQWZmR0JFMFNpUHJrYzJkSG1Lc3hQdkpN?=
- =?utf-8?B?aWE1Rk9nWHNhZlMzK0oyMm9IUWx2ZUhyK05qSU16ajNKUlBLWExIY0FKYXZx?=
- =?utf-8?B?T2FKRWVCaFJmMVRJSnltOXZOdWlTcFpvcUxNYU5JcXpnQUhTNVpkckMwZWJt?=
- =?utf-8?B?TEtybDBWNWJiYmErYlhSZkg4MHI4Zm50VS9UTEhINlNYYjIwN3lNOFZ3d1BM?=
- =?utf-8?B?MXFwVDlhTFk3aUR1eEh3b1FsK2JHakl4YkVNZEtLeCtlaTFFb05iTncxazJK?=
- =?utf-8?B?NDdsQWJ0RGFzR01FRnBFNitkZEhieEcyNnBqY2JkT21wOTlmbkJJM3FDOUth?=
- =?utf-8?B?WStXb2d1WU5BSXh5RHIvc0JsbHBQam5WbjYxQzdVOXdkWDNTZ1o1WmVxTElJ?=
- =?utf-8?B?VENXcjIxN21QUXRvVEJjOVRkNnRyRHB5Nm5qL0JFaDZvc2VYT0RNaU9VQlll?=
- =?utf-8?B?S1hVdG8rejV4dzFnT0xHYmRkbE9PSnptLzVwUlR3U3luMW5vYVVpMjJONFps?=
- =?utf-8?B?TkhTV3UreTZ2QnM1UnIwSzRmSWFaQWIxYkUwZHkxWXJ6MUpZRyt4dmEzUitE?=
- =?utf-8?B?c09IaUQ0aTQ5a0JzNWJZdCtGMDN6cFBYUGMxZmtQdXVlZnV3SFpuMU9tblYw?=
- =?utf-8?B?akY5akRqcDlHdktoMkZxbEJ4cWFENXF2T2pPd21XYnBtUXp6Qmk3eG9qQnFO?=
- =?utf-8?B?UFprY2l4clZ6czRHUkQwWGt6cG1EK1lSeE5EOWd1ZzE5eTQ2azFTTzMySnd1?=
- =?utf-8?B?OXhyRC9qcklWejBCVzA3Z01ZWnc2dDRTOFBsd0VFRklXRzBQVDJVcmdwVngx?=
- =?utf-8?B?dHp3b3IxZWs4ZFRPck5yRWxMSnB0S2o4OW1ObE5DdXl4Q2I3dWVIRzlIUExI?=
- =?utf-8?B?Y1R6ZitpUG5oWDJTa3RQWjBXMjBEY21PNVA0VndtK3JJVzNxSVBaQ0RLN1lk?=
- =?utf-8?B?UE5lV3ZaVnlEUS9iN1FuN1VNTWZBTnI0NlJtTWU5U2hPUEJFRWF2bXZBTUJ5?=
- =?utf-8?B?YkVCWmpkK2xuMTdtcVBaZkxRMlIyRzRmRitnSkFHemhSWVNtU3l4S2QvWXlC?=
- =?utf-8?B?M09vWGdnVTZpNkltZGZjRzlDWUFmKzJFY1p0aU5kNGxVOFJFc2xlTjhFSVhk?=
- =?utf-8?B?V2dmVThYWWI3d2FYWmVaOVhGRk81M3dlUXhYVi9wUXVNT3dFU1R4bWc5QU1r?=
- =?utf-8?B?QWV5MHBYelp1TGhZeStId0tGNmhtRVcyYmh2Q2QvVXZ0SVh4L3pMR0kwTXRa?=
- =?utf-8?B?ZjBKeThzZjVOQWhYSmdQV1VyNnZZOXh3WURNK3VQSEdlYUVKK3laUjJJbHAw?=
- =?utf-8?B?TDEzcTUrOXNCMFhnUGpSdGIyTFVPdFZLNVNGaDJZdktyL2F6VDBybGR1WmJs?=
- =?utf-8?B?eEdCUDF6TklnMkZSR0JhT1l2aFF1cGdHS21pMk9SMGVtTHV6QlR6RUNSSmNR?=
- =?utf-8?B?OTczOS91QjI0NjVZQ3Z4citsaUZ2N0FTQTJSRm0zQzcxdGdIZk9qN1NlUFlw?=
- =?utf-8?B?WkdQSzR5VW9tbW1yYzIvYUpSeEJtQk5EdG1DWU1GTlY3ekhiSW1yWkx3Y29l?=
- =?utf-8?B?VUtRa0VEdHltYW9oWjF5c2ZBUVJncHB1ZDZSei9yZW5FaFJ2V1d5TDd2MWVR?=
- =?utf-8?B?VjAvUGNobHBzd3ErNlQvbWhQcS9NNzVTRHNnbkJhTWZhZ2xvOUxuSnBncnJB?=
- =?utf-8?B?ZU1QTzBNRTBtWVJJZ3QvRXlzN0dKaXZWY3dISHVuUFdBRURPYW4wNDZjc3Nq?=
- =?utf-8?B?cTVCQ05DRXY5YlpCVVR2eXQ1czNYcGZNR01jZ1hoczhQVmYvbE84Qm1xcmIr?=
- =?utf-8?B?eUxWN29SSEp3VExxRWNlbnl3Z2JnK1Q4dnc3S1VnYVc5YlBlb1dLUjJpSnNF?=
- =?utf-8?B?VHhGR29FSzBmc2I0SlpKTFFjWFNlVzhVc2xyb2VuQ0oxMEdFcTYrTjJKYWJV?=
- =?utf-8?B?dlpidS93WGlnT3pIdW1WVFRDbWRqUDZTMHdxdWY4eHRBRlc5OE1JUDEzSHlq?=
- =?utf-8?B?Rk8rZGtRcnljZ2RPWWJKVVlyS1BPcXh3YmhYaUczTTh1V00vMnNKQnh2cjQ1?=
- =?utf-8?B?Skg3R00vVnVwc2RNUjN5ZnJmZmwyTitrbGthMlAwN0NXd0RwTHc5RzhSbGJt?=
- =?utf-8?B?ME1JTmJqQjk4M2Z4aEk5K1dVMUgvVnp0dEF4M2xPVnplaWlUV05sNmg3M1c1?=
- =?utf-8?Q?09gjIlZuAaqiB1oYNw3zXwrfYmmCRtvIKjwJgtGH9f118?=
-X-MS-Exchange-AntiSpam-MessageData-1: nj6nWhr5/t2Wrw==
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 87657f2f-dce4-44b4-1155-08de59798110
-X-MS-Exchange-CrossTenant-AuthSource: SJ2PR12MB9161.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2026 05:45:52.6501
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rfa/ulBE7v1wgpVfIHm0DRJknkrdVZMxb1e11xsSCTEr8hwYleJrbeWH4ThaBT0sy9YbAuYKP1veF4DtukfMBQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7938
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260121-rz-sdio-mux-v6-2-38aa39527928@solid-run.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.54 / 15.00];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
+X-Spamd-Result: default: False [-0.46 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-258215-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[34];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258214-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_TO(0.00)[lists.linux.dev,solid-run.com,pengutronix.de,kernel.org,linaro.org,axentia.se,iki.fi,kemnade.info,baylibre.com,atomide.com,gmail.com,ti.com,glider.be,sang-engineering.com];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,nvidia.com,gmail.com,baylibre.com,samsung.com,vger.kernel.org];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[linaro.org,none];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mperttunen@nvidia.com,devicetree@vger.kernel.org];
-	DMARC_POLICY_ALLOW(0.00)[nvidia.com,reject];
-	RCVD_COUNT_FIVE(0.00)[5];
-	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[dan.carpenter@linaro.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:helo,dfw.mirrors.kernel.org:rdns,7001b000:email,4.44.103.184:email,Nvidia.com:dkim,nvidia.com:email,4.44.146.176:email]
-X-Rspamd-Queue-Id: 6C7D7620D9
+	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[01.org:url,linaro.org:email,linaro.org:dkim,ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8F73462343
 X-Rspamd-Action: no action
 
-On Thursday, January 22, 2026 1:57=E2=80=AFAM Svyatoslav Ryhel wrote:
-> =D1=81=D1=80, 21 =D1=81=D1=96=D1=87. 2026=E2=80=AF=D1=80. =D0=BE 09:56 Mi=
-kko Perttunen <mperttunen@nvidia.com> =D0=BF=D0=B8=D1=88=D0=B5:
-> >
-> > On Tuesday, November 25, 2025 9:05=E2=80=AFPM Svyatoslav Ryhel wrote:
-> > > Add EMC OPP tables and interconnect paths that will be used for
-> > > dynamic memory bandwidth scaling based on memory utilization statisti=
-cs.
-> > >
-> > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > > ---
-> > >  .../dts/nvidia/tegra114-peripherals-opp.dtsi  | 151 ++++++++++++++++=
-++
-> > >  arch/arm/boot/dts/nvidia/tegra114.dtsi        |   9 ++
-> > >  2 files changed, 160 insertions(+)
-> > >  create mode 100644 arch/arm/boot/dts/nvidia/tegra114-peripherals-opp=
-.dtsi
-> > >
-> > > diff --git a/arch/arm/boot/dts/nvidia/tegra114-peripherals-opp.dtsi b=
-/arch/arm/boot/dts/nvidia/tegra114-peripherals-opp.dtsi
-> > > new file mode 100644
-> > > index 000000000000..1a0e68f22039
-> > > --- /dev/null
-> > > +++ b/arch/arm/boot/dts/nvidia/tegra114-peripherals-opp.dtsi
-> > > @@ -0,0 +1,151 @@
-> > > +// SPDX-License-Identifier: GPL-2.0
-> > > +
-> > > +/ {
-> > > +     emc_icc_dvfs_opp_table: opp-table-emc {
-> > > +             compatible =3D "operating-points-v2";
-> > > +
-> > > +             opp-12750000-900 {
-> > > +                     opp-microvolt =3D <900000 900000 1390000>;
-> > > +                     opp-hz =3D /bits/ 64 <12750000>;
-> > > +                     opp-supported-hw =3D <0x000F>;
-> > > +             };
-> >
-> > What's the source of the opp data?
-> >
->=20
-> I have used tf701t (T40X) and tegratab (T40S) kernel sources, to be
-> more specific board-*-memory.c files. Timing struct for each clock
-> contains min voltage field which was used to compose these opps.
-> 1390000 is the max core regulator voltage, taken from tegra11_dvfs.c
+Hi Josua,
 
-Thanks! I also looked through SHIELD Portable (roth, T40T) memory tables an=
-d this appears to match except for the 528MHz opp.
+kernel test robot noticed the following build warnings:
 
-The opp table here is setting the voltage for the 528MHz opp to 1050mV for =
-the high end SKUs (T40X and T40T)[1] and 1100mV for the lower end T40S, whi=
-ch makes sense. However, the roth memory table (rel-roth branch) specifies =
-1100mV for the 528MHz opp. My understanding is T40T is supposed to be at le=
-ast as good silicon as T40X, so it doesn't make sense to me that it would r=
-equire a higher voltage, but memory timings are a dark art and I would err =
-on the baseline side and keep the voltage at 1100mV. Let me know what you t=
-hink or if you have additional information.
+url:    https://github.com/intel-lab-lkp/linux/commits/Josua-Mayer/phy-can-transceiver-rename-temporary-helper-function-to-avoid-conflict/20260121-173607
+base:   8f0b4cce4481fb22653697cced8d0d04027cb1e8
+patch link:    https://lore.kernel.org/r/20260121-rz-sdio-mux-v6-2-38aa39527928%40solid-run.com
+patch subject: [PATCH v6 2/7] mux: Add helper functions for getting optional and selected mux-state
+config: arm64-randconfig-r073-20260121 (https://download.01.org/0day-ci/archive/20260122/202601221036.J0kR78Uw-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 8.5.0
+smatch version: v0.5.0-8985-g2614ff1a
 
-FWIW, roth also specifies a 900MHz opp. I think in principle T40X/T40T in g=
-eneral can reach this but it might only have been characterized for roth.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+| Closes: https://lore.kernel.org/r/202601221036.J0kR78Uw-lkp@intel.com/
 
-[1] T40X is SKU 0x3 and T40T is SKU 0x4, and these are mapped to soc_speedo=
-_id=3D1 -> supported_hw BIT(1).
+New smatch warnings:
+drivers/mux/core.c:776 __devm_mux_state_get() warn: passing zero to 'PTR_ERR'
+drivers/mux/core.c:796 __devm_mux_state_get() warn: passing zero to 'ERR_PTR'
 
->=20
-> I have converted an entire core_dvfs_table table from tegra11_dvfs.c
-> and I am planning to submit those later on too along with
-> powergates/domains configuration for tegra114, but that is for another
-> time :)
+Old smatch warnings:
+drivers/mux/core.c:722 mux_state_get() warn: passing zero to 'ERR_CAST'
 
-Sounds good!
+vim +/PTR_ERR +776 drivers/mux/core.c
 
-Thanks,
-Mikko
+0610cc3159b786 Josua Mayer       2026-01-21  761  static struct mux_state *__devm_mux_state_get(struct device *dev, const char *mux_name,
+0610cc3159b786 Josua Mayer       2026-01-21  762  					      bool optional,
+0610cc3159b786 Josua Mayer       2026-01-21  763  					      int (*init)(struct mux_state *mstate),
+0610cc3159b786 Josua Mayer       2026-01-21  764  					      int (*exit)(struct mux_state *mstate))
+0610cc3159b786 Josua Mayer       2026-01-21  765  {
+0610cc3159b786 Josua Mayer       2026-01-21  766  	struct devm_mux_state_state *devm_state;
+0610cc3159b786 Josua Mayer       2026-01-21  767  	struct mux_state *mstate;
+0610cc3159b786 Josua Mayer       2026-01-21  768  	int ret;
+84564481bc4520 Aswath Govindraju 2022-01-07  769  
+0610cc3159b786 Josua Mayer       2026-01-21  770  	devm_state = devres_alloc(devm_mux_state_release, sizeof(*devm_state), GFP_KERNEL);
+0610cc3159b786 Josua Mayer       2026-01-21  771  	if (!devm_state)
+0610cc3159b786 Josua Mayer       2026-01-21  772  		return ERR_PTR(-ENOMEM);
+0610cc3159b786 Josua Mayer       2026-01-21  773  
+0610cc3159b786 Josua Mayer       2026-01-21  774  	mstate = mux_state_get(dev, mux_name, optional);
+0610cc3159b786 Josua Mayer       2026-01-21  775  	if (IS_ERR_OR_NULL(mstate)) {
 
->=20
-> > Cheers,
-> > Mikko
-> >
-> > > +
-> > > +             opp-20400000-900 {
-> > > +                     opp-microvolt =3D <900000 900000 1390000>;
-> > > +                     opp-hz =3D /bits/ 64 <20400000>;
-> > > +                     opp-supported-hw =3D <0x000F>;
-> > > +             };
-> > > +
-> > > +             opp-40800000-900 {
-> > > +                     opp-microvolt =3D <900000 900000 1390000>;
-> > > +                     opp-hz =3D /bits/ 64 <40800000>;
-> > > +                     opp-supported-hw =3D <0x000F>;
-> > > +             };
-> > > +
-> > > +             opp-68000000-900 {
-> > > +                     opp-microvolt =3D <900000 900000 1390000>;
-> > > +                     opp-hz =3D /bits/ 64 <68000000>;
-> > > +                     opp-supported-hw =3D <0x000F>;
-> > > +             };
-> > > +
-> > > +             opp-102000000-900 {
-> > > +                     opp-microvolt =3D <900000 900000 1390000>;
-> > > +                     opp-hz =3D /bits/ 64 <102000000>;
-> > > +                     opp-supported-hw =3D <0x000F>;
-> > > +             };
-> > > +
-> > > +             opp-204000000-900 {
-> > > +                     opp-microvolt =3D <900000 900000 1390000>;
-> > > +                     opp-hz =3D /bits/ 64 <204000000>;
-> > > +                     opp-supported-hw =3D <0x000F>;
-> > > +                     opp-suspend;
-> > > +             };
-> > > +
-> > > +             opp-312000000-1000 {
-> > > +                     opp-microvolt =3D <1000000 1000000 1390000>;
-> > > +                     opp-hz =3D /bits/ 64 <312000000>;
-> > > +                     opp-supported-hw =3D <0x000F>;
-> > > +             };
-> > > +
-> > > +             opp-408000000-1000 {
-> > > +                     opp-microvolt =3D <1000000 1000000 1390000>;
-> > > +                     opp-hz =3D /bits/ 64 <408000000>;
-> > > +                     opp-supported-hw =3D <0x000F>;
-> > > +             };
-> > > +
-> > > +             opp-528000000-1050 {
-> > > +                     opp-microvolt =3D <1050000 1050000 1390000>;
-> > > +                     opp-hz =3D /bits/ 64 <528000000>;
-> > > +                     opp-supported-hw =3D <0x000E>;
-> > > +             };
-> > > +
-> > > +             opp-528000000-1100 {
-> > > +                     opp-microvolt =3D <1100000 1100000 1390000>;
-> > > +                     opp-hz =3D /bits/ 64 <528000000>;
-> > > +                     opp-supported-hw =3D <0x0001>;
-> > > +             };
-> > > +
-> > > +             opp-624000000-1100 {
-> > > +                     opp-microvolt =3D <1100000 1100000 1390000>;
-> > > +                     opp-hz =3D /bits/ 64 <624000000>;
-> > > +                     opp-supported-hw =3D <0x000F>;
-> > > +             };
-> > > +
-> > > +             opp-792000000-1100 {
-> > > +                     opp-microvolt =3D <1100000 1100000 1390000>;
-> > > +                     opp-hz =3D /bits/ 64 <792000000>;
-> > > +                     opp-supported-hw =3D <0x000F>;
-> > > +             };
-> > > +     };
-> > > +
-> > > +     emc_bw_dfs_opp_table: opp-table-actmon {
-> > > +             compatible =3D "operating-points-v2";
-> > > +
-> > > +             opp-12750000 {
-> > > +                     opp-hz =3D /bits/ 64 <12750000>;
-> > > +                     opp-supported-hw =3D <0x000F>;
-> > > +                     opp-peak-kBps =3D <204000>;
-> > > +             };
-> > > +
-> > > +             opp-20400000 {
-> > > +                     opp-hz =3D /bits/ 64 <20400000>;
-> > > +                     opp-supported-hw =3D <0x000F>;
-> > > +                     opp-peak-kBps =3D <326400>;
-> > > +             };
-> > > +
-> > > +             opp-40800000 {
-> > > +                     opp-hz =3D /bits/ 64 <40800000>;
-> > > +                     opp-supported-hw =3D <0x000F>;
-> > > +                     opp-peak-kBps =3D <652800>;
-> > > +             };
-> > > +
-> > > +             opp-68000000 {
-> > > +                     opp-hz =3D /bits/ 64 <68000000>;
-> > > +                     opp-supported-hw =3D <0x000F>;
-> > > +                     opp-peak-kBps =3D <1088000>;
-> > > +             };
-> > > +
-> > > +             opp-102000000 {
-> > > +                     opp-hz =3D /bits/ 64 <102000000>;
-> > > +                     opp-supported-hw =3D <0x000F>;
-> > > +                     opp-peak-kBps =3D <1632000>;
-> > > +             };
-> > > +
-> > > +             opp-204000000 {
-> > > +                     opp-hz =3D /bits/ 64 <204000000>;
-> > > +                     opp-supported-hw =3D <0x000F>;
-> > > +                     opp-peak-kBps =3D <3264000>;
-> > > +                     opp-suspend;
-> > > +             };
-> > > +
-> > > +             opp-312000000 {
-> > > +                     opp-hz =3D /bits/ 64 <312000000>;
-> > > +                     opp-supported-hw =3D <0x000F>;
-> > > +                     opp-peak-kBps =3D <4992000>;
-> > > +             };
-> > > +
-> > > +             opp-408000000 {
-> > > +                     opp-hz =3D /bits/ 64 <408000000>;
-> > > +                     opp-supported-hw =3D <0x000F>;
-> > > +                     opp-peak-kBps =3D <6528000>;
-> > > +             };
-> > > +
-> > > +             opp-528000000 {
-> > > +                     opp-hz =3D /bits/ 64 <528000000>;
-> > > +                     opp-supported-hw =3D <0x000F>;
-> > > +                     opp-peak-kBps =3D <8448000>;
-> > > +             };
-> > > +
-> > > +             opp-624000000 {
-> > > +                     opp-hz =3D /bits/ 64 <624000000>;
-> > > +                     opp-supported-hw =3D <0x000F>;
-> > > +                     opp-peak-kBps =3D <9984000>;
-> > > +             };
-> > > +
-> > > +             opp-792000000 {
-> > > +                     opp-hz =3D /bits/ 64 <792000000>;
-> > > +                     opp-supported-hw =3D <0x000F>;
-> > > +                     opp-peak-kBps =3D <12672000>;
-> > > +             };
-> > > +     };
-> > > +};
-> > > diff --git a/arch/arm/boot/dts/nvidia/tegra114.dtsi b/arch/arm/boot/d=
-ts/nvidia/tegra114.dtsi
-> > > index a920ad041c14..6221423b81d1 100644
-> > > --- a/arch/arm/boot/dts/nvidia/tegra114.dtsi
-> > > +++ b/arch/arm/boot/dts/nvidia/tegra114.dtsi
-> > > @@ -8,6 +8,8 @@
-> > >  #include <dt-bindings/soc/tegra-pmc.h>
-> > >  #include <dt-bindings/thermal/tegra114-soctherm.h>
-> > >
-> > > +#include "tegra114-peripherals-opp.dtsi"
-> > > +
-> > >  / {
-> > >       compatible =3D "nvidia,tegra114";
-> > >       interrupt-parent =3D <&lic>;
-> > > @@ -323,6 +325,9 @@ actmon: actmon@6000c800 {
-> > >               clock-names =3D "actmon", "emc";
-> > >               resets =3D <&tegra_car TEGRA114_CLK_ACTMON>;
-> > >               reset-names =3D "actmon";
-> > > +             operating-points-v2 =3D <&emc_bw_dfs_opp_table>;
-> > > +             interconnects =3D <&mc TEGRA114_MC_MPCORER &emc>;
-> > > +             interconnect-names =3D "cpu-read";
-> > >               #cooling-cells =3D <2>;
-> > >       };
-> > >
-> > > @@ -655,6 +660,7 @@ mc: memory-controller@70019000 {
-> > >
-> > >               #reset-cells =3D <1>;
-> > >               #iommu-cells =3D <1>;
-> > > +             #interconnect-cells =3D <1>;
-> > >       };
-> > >
-> > >       emc: external-memory-controller@7001b000 {
-> > > @@ -665,6 +671,9 @@ emc: external-memory-controller@7001b000 {
-> > >               clock-names =3D "emc";
-> > >
-> > >               nvidia,memory-controller =3D <&mc>;
-> > > +             operating-points-v2 =3D <&emc_icc_dvfs_opp_table>;
-> > > +
-> > > +             #interconnect-cells =3D <0>;
-> > >       };
-> > >
-> > >       hda@70030000 {
-> > >
-> >
-> >
-> >
-> >
+Please, change this to if (IS_ERR(mstate)) {.  The mux_state_get() never
+returns NULL.  I have written a blog about functions which return both
+error pointers and NULL.
 
+https://staticthinking.wordpress.com/2022/08/01/mixing-error-pointers-and-null/
 
+0610cc3159b786 Josua Mayer       2026-01-21 @776  		ret = PTR_ERR(mstate);
+0610cc3159b786 Josua Mayer       2026-01-21  777  		goto err_mux_state_get;
+0610cc3159b786 Josua Mayer       2026-01-21  778  	}
+0610cc3159b786 Josua Mayer       2026-01-21  779  
+0610cc3159b786 Josua Mayer       2026-01-21  780  	if (init) {
+0610cc3159b786 Josua Mayer       2026-01-21  781  		ret = init(mstate);
+0610cc3159b786 Josua Mayer       2026-01-21  782  		if (ret)
+0610cc3159b786 Josua Mayer       2026-01-21  783  			goto err_mux_state_init;
+0610cc3159b786 Josua Mayer       2026-01-21  784  	}
+0610cc3159b786 Josua Mayer       2026-01-21  785  
+0610cc3159b786 Josua Mayer       2026-01-21  786  	devm_state->mstate = mstate;
+0610cc3159b786 Josua Mayer       2026-01-21  787  	devm_state->exit = exit;
+0610cc3159b786 Josua Mayer       2026-01-21  788  	devres_add(dev, devm_state);
+0610cc3159b786 Josua Mayer       2026-01-21  789  
+0610cc3159b786 Josua Mayer       2026-01-21  790  	return mstate;
+0610cc3159b786 Josua Mayer       2026-01-21  791  
+0610cc3159b786 Josua Mayer       2026-01-21  792  err_mux_state_init:
+84564481bc4520 Aswath Govindraju 2022-01-07  793  	mux_state_put(mstate);
+0610cc3159b786 Josua Mayer       2026-01-21  794  err_mux_state_get:
+0610cc3159b786 Josua Mayer       2026-01-21  795  	devres_free(devm_state);
+0610cc3159b786 Josua Mayer       2026-01-21 @796  	return ERR_PTR(ret);
+84564481bc4520 Aswath Govindraju 2022-01-07  797  }
 
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
 
