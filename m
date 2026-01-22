@@ -1,119 +1,131 @@
-Return-Path: <devicetree+bounces-258589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258590-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6GEYKp9qcmnckQAAu9opvQ
-	(envelope-from <devicetree+bounces-258589-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 19:21:19 +0100
+	id qCP3HixrcmnckQAAu9opvQ
+	(envelope-from <devicetree+bounces-258590-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 19:23:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD27E6C442
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 19:21:18 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71B4D6C538
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 19:23:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 68FF931545A9
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 17:40:28 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 39EFB304D125
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 17:42:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCE7039571C;
-	Thu, 22 Jan 2026 17:29:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0868360730;
+	Thu, 22 Jan 2026 17:35:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P+YUJzDW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s3OkG3p6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50F2B313261;
-	Thu, 22 Jan 2026 17:29:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 676A63191DF;
+	Thu, 22 Jan 2026 17:35:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769102959; cv=none; b=GG8OWnH3AqFXVRVsHD7sgKmHQWRcG5CAh1ZCo0xFn+YfyGxw8UJCSmX/lMEmJFdvKOwuUK8XVY8NzZQBTjNWfqkcHtg7k0ysBt484hS+Iig9uApYiFkaT48mlv/iJcH77RR62WLDn0rBb4SXC72jj8oNP+/pOxNEPi92rKgOdGA=
+	t=1769103322; cv=none; b=reDRqPcGllUmOKb+32HtgMIRLCl5HPXMNaRpzjg4BwRbGoZtpYDMGK9sEOj95bnLdXdMbd84f8xPXLdONj6mxWK48sW+l5yaNL/HxzEzRoleHuTcFuA2bOFmuf6aVvrfh4Xq0P5lcXmUs9GSSeZDZReaEoaIPY2IQKDLqEY5xHM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769102959; c=relaxed/simple;
-	bh=uSEbdNAo1zxxGYJsmeUKvFejyrNBN4QQuq90etN3b3g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Kfi/JwhJCRcQkAmWcUUszCQSz0WOi23wCNl0CCQfM2vIJ51HMg/5MgAhC0+ybAN4RAJfLZY5/mZs5orJJ3LZI1iTB3RmsRuo+pfozT9RojNYpcbJ8V5/H5ZgIxzlvrWYKo4RiE40NeMXVXnn1UB189ZXbrmb0oa012Cx0Pf91Y8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P+YUJzDW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0519EC116C6;
-	Thu, 22 Jan 2026 17:29:16 +0000 (UTC)
+	s=arc-20240116; t=1769103322; c=relaxed/simple;
+	bh=x6oKsK4tsX/k/NIRjfg4qq6ZO9RvracVhuSMqKYde28=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=I0Nefqsh6MxFV4lWBZZf1eSRuIYJXNsX15Dp8kDL3vPVFciM7xOe47dMjitbM3t1XJbPjXSaJQvkB0h3DO4/Oz52tkKO9bHTC2uRCDJmaGkV1DQ9zaZbbLwltooDVzj/LxuP28CcJ731ofYxaqkgdErgEexQ6q9JPyQW5qT1fK4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s3OkG3p6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0567C116C6;
+	Thu, 22 Jan 2026 17:35:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769102957;
-	bh=uSEbdNAo1zxxGYJsmeUKvFejyrNBN4QQuq90etN3b3g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=P+YUJzDW0B+XYuD0fIB170q90K3eqrgtOCu19dcGNYfiiYyQPzEmi+MSEXidHrVsP
-	 ARpLRDV3s7rg4Rnjo3EuKhXhoxf/P2h9EZGtHJAbEF11Llf8aIdsq8SAJ4W6quXkcO
-	 6k63TVPCsKS7U0NMxidkTN+Cbcdhyk+b8dkU74+YUT0Vji/sYmA6g+cHcs0qppeVTn
-	 7G63K81s8GpiQTljNG7ldel8su2iiquwqPCkAZhu/EsCgMmc358Ba+n8naL9d/Ws/v
-	 jm4cmzft/RWOSKIgKlQ051UbCNzFSDrIs/57zU6YQafT9X1PBLMB88dPLrJVgAfjOK
-	 OJTHOB/QF8Rkg==
-Date: Thu, 22 Jan 2026 11:29:16 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: tzeyee.ng@altera.com
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Dinh Nguyen <dinguyen@kernel.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: altera: Add fallback compatible for
- Stratix 10 SoCDK eMMC variant
-Message-ID: <176910295520.2819853.4905202656262501884.robh@kernel.org>
-References: <cover.1769089199.git.tzeyee.ng@altera.com>
- <66f1d82240123ca71ef4850ee745747effa0042e.1769089199.git.tzeyee.ng@altera.com>
+	s=k20201202; t=1769103321;
+	bh=x6oKsK4tsX/k/NIRjfg4qq6ZO9RvracVhuSMqKYde28=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=s3OkG3p6323vXxuW6xvJKOwIrhDIiIBPZvL0xeeA8lCOSRG/MZTUcXBPs1vU4rY8R
+	 i6aze9u6G+sP6l8FCIlUSk+CtSLn51D4Owe8rVvxQAUj23VJ2S+QYeJMUE8s0glO99
+	 sC0EZ46oTtYI6sFAL5yS7SZkppWMyS100iuTtoSStV0D1OcvZwdBCaP9WtW/5nHUbi
+	 eVMZW7yhpXQ05l1Xw3guwvKRoO3tl+3dsBOk9iY7M6eI2+sCtBux3N7kav6/CQqnat
+	 ijjGNalKxRSUJD13nlTPgxpsN7g+2AclyiZXwCCzGfNJ0UmhptC9WUrleR5qFGawhU
+	 amnF3EVxVxkkg==
+Received: from wens.tw (localhost [127.0.0.1])
+	by wens.tw (Postfix) with ESMTP id 05AAB5FBF7;
+	Fri, 23 Jan 2026 01:35:17 +0800 (CST)
+From: Chen-Yu Tsai <wens@kernel.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, Paul Walmsley <pjw@kernel.org>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>, Lukas Schmid <lukas.schmid@netcube.li>
+Cc: linux-sunxi@lists.linux.dev, Alex Studer <alex@studer.dev>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+In-Reply-To: <20260113182951.1059690-1-lukas.schmid@netcube.li>
+References: <20260113182951.1059690-1-lukas.schmid@netcube.li>
+Subject: Re: [PATCH v2] riscv: dts: allwinner: d1: Add CPU thermal sensor
+ and zone
+Message-Id: <176910331795.3372333.1441179153534465132.b4-ty@kernel.org>
+Date: Fri, 23 Jan 2026 01:35:17 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <66f1d82240123ca71ef4850ee745747effa0042e.1769089199.git.tzeyee.ng@altera.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.16 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258589-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-258590-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.992];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,sholland.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,netcube.li];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wens@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[altera.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: CD27E6C442
+	DBL_BLOCKED_OPENRESOLVER(0.00)[studer.dev:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,0.30.169.56:email]
+X-Rspamd-Queue-Id: 71B4D6C538
 X-Rspamd-Action: no action
 
+On Tue, 13 Jan 2026 19:29:48 +0100, Lukas Schmid wrote:
+> The sun20i THS (built in CPU thermal sensor) is supported in code, but
+> was never added to the device tree. So, add it to the device tree,
+> along with a thermal zone for the CPU.
+> 
+> Signed-off-by: Alex Studer <alex@studer.dev>
+> 
+> Changes since v1:
+>  - Move include before defines in sun20i-d1s.dtsi
+>  - Fix register size for thermal-sensor@2009400
+>  - Move thermal-sensor@2009400 in SoC to match register address sorting
+>  - Add thermal-zone for sun8i-t113s.dtsi and fix missing cooling-cells
+> 
+> [...]
 
-On Thu, 22 Jan 2026 05:47:42 -0800, tzeyee.ng@altera.com wrote:
-> From: Ng Tze Yee <tzeyee.ng@altera.com>
-> 
-> Stratix 10 devkit support a separate eMMC daughter card. Add compatible
-> string for the Stratix 10 SoCDK eMMC daughter board with
-> "altr,socfpga-stratix10-socdk" as a fallback, since this variant is based
-> on the standard SoCDK board.
-> 
-> Signed-off-by: Ng Tze Yee <tzeyee.ng@altera.com>
-> ---
-> Changes in v2:
-> - Added fallback compatible string "altr,socfpga-stratix10-socdk" in the
->   binding documentation for broader compatibility
-> ---
->  Documentation/devicetree/bindings/arm/altera.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
+Applied to sunxi/dt-for-6.20 in local tree, thanks!
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+[1/1] riscv: dts: allwinner: d1: Add CPU thermal sensor and zone
+      commit: f36e738549d483878ebf4cc9826c46d9dc4aa496
+
+Best regards,
+-- 
+Chen-Yu Tsai <wens@kernel.org>
 
 
