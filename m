@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-258575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258576-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YDp8DHpgcmnbjAAAu9opvQ
-	(envelope-from <devicetree+bounces-258575-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:38:02 +0100
+	id +J6NCBJjcmnfjQAAu9opvQ
+	(envelope-from <devicetree+bounces-258576-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:49:06 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B3F16B7A3
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:38:01 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AEB16BA60
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:49:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7C5F730B2C6F
+	by tor.lore.kernel.org (Postfix) with ESMTP id 62F48300E5C7
 	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 17:30:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0F9B36EAA6;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0CD036EA92;
 	Thu, 22 Jan 2026 17:15:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jTQTg8Gu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e1j5uwa2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF4A936CE04;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3570B34F466;
 	Thu, 22 Jan 2026 17:15:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769102141; cv=none; b=VX66WQpIsEPHrh02BFHKrM7D4g+rjNsaoEbg609kOtaPGsLqtrK4Ha3EBFTfR6kB9/4++MNj2AwSxaIKF1BTX0kowEwCHbzJHOCu4is8iiUmgDNlMtl5W71vRQYd2RbqgqeB1jEILaIQpISoBTX3iXMQnRqkxTqc2fVwXWdLxdE=
+	t=1769102142; cv=none; b=KyWsmdXW78Va3kF6Dm5HtkKsUwR3vhWfrEbH1qZWK0eihc5k2w+N2TRgWi3f2rhwhO3DhAm9ttnJiF+qqlUS4CUNMYbfTTd8BcJXR6yiqD69tZtG5nAiRufVnmt+NUuUoRBMMQmnHhIyQLnzWVTTX0UJdcVeNmmIYOnGlzqrJ/I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769102141; c=relaxed/simple;
-	bh=Y3D9E7japclI7UuExtcL6bPuCRUqGKopPtgcI3tpo7Y=;
+	s=arc-20240116; t=1769102142; c=relaxed/simple;
+	bh=N9oFGV1anFSCqAhvjOLt+RZdXVcBw3i84bo9rshL1SQ=;
 	h=From:Date:Content-Type:MIME-Version:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=QCnNHd66kCM2CODr6fdrAPNnhhtgTxzUXVo5p4Z3Lk3pEPJsrQKi4WDT+ufxX68qQ5qusQ8+I999gOtT/1PSYD9+u1mMsE1FasXB/U5qZ1vyArTD0N4cJ6JZDgg5NLFfx1Y054ZpOiBLQP0H2GlORzIlpS2FmvlGFgt2v0f8CnE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jTQTg8Gu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC466C116C6;
-	Thu, 22 Jan 2026 17:15:39 +0000 (UTC)
+	 Message-Id:Subject; b=MCWJFwyyiSmpi6nyRmqkpAbKrjkNSdGvXAue/OX+VLN9VHsPiPoFzpZ5AndDkQRpY3B59QAHN5VCKopwzGuz8dmciYijN/aLU58yzGpoh5UKzmLQSmZ+JsliulwdGGtbjttDBCssy8jbL6Af7BZE95ZPy47h6d2H9zEGmLGaXqM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e1j5uwa2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5D8EC116D0;
+	Thu, 22 Jan 2026 17:15:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769102139;
-	bh=Y3D9E7japclI7UuExtcL6bPuCRUqGKopPtgcI3tpo7Y=;
+	s=k20201202; t=1769102141;
+	bh=N9oFGV1anFSCqAhvjOLt+RZdXVcBw3i84bo9rshL1SQ=;
 	h=From:Date:Cc:To:In-Reply-To:References:Subject:From;
-	b=jTQTg8Gu2G1yoe/UvGnuAwgLgBGxCYlqGnyfSceJG959OW2YlVwhPsA/PR0l2qA9w
-	 8zdYytO9RmmHcwx7lGtPhbxjvtUszkOMmSk1gGd6xSGHTwNbK0/jXMHjM9ZgqksdNJ
-	 zOoWhDmtS6HdKUpqyb4zk5SwropokIu3Y5vEX2eWIbg82ohHpB8RHiVQaa8qtSK7GG
-	 OkB7ha3F1qdqLg2DlrHm76NbY4Guja+oBX3TWdgSnvlH2THT/rCgYDER3Kv3JSPVmX
-	 vGrfH7RiYDRIWz5zden6QseDozqL/maNI66WE4Y73NorzzXTGu3KGnglxL4eU8yLgP
-	 wg6bKKvp7MGgQ==
+	b=e1j5uwa2Jh9xvShduArkxH2jrqY6+wIqNScwE+maPU9o59yceVhFbRw4jX9+wjK7B
+	 o4+19Sp1fdtWOBbFRSEGz24FD3nO7xWYEQe46nK8Zx05wkMSjsUrTmf/5Tz6KpZmPg
+	 cXuT/UaUKp2KZel1MiUvgv3DQLtf/Ou0IGoWDhfKzWIXN7aAldcfT5t01rCAZ8vpPl
+	 2S3WSfGsJwQEtYzFlQcAhXYYL0q7fOpk1empJ7AMYAY5Owu5q7BtZLschxquM36vLi
+	 igq1QdZ96Y4in3jUpzHUqDPo39nDnATSA4rqkLJSH1SiiXO+W8i+ew9FN01rFy+Zve
+	 XGTjQDah2U6Zg==
 From: Rob Herring <robh@kernel.org>
-Date: Thu, 22 Jan 2026 11:15:38 -0600
+Date: Thu, 22 Jan 2026 11:15:40 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -54,85 +54,186 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Cc: alim.akhtar@samsung.com, conor+dt@kernel.org, krzk+dt@kernel.org, 
- linux-arm-kernel@lists.infradead.org, rosa.pila@samsung.com, 
- selvarasu.g@samsung.com, linux-samsung-soc@vger.kernel.org, 
- muhammed.ali@samsung.com, faraz.ata@samsung.com, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- dev.tailor@samsung.com
-To: Pritam Manohar Sutar <pritam.sutar@samsung.com>
-In-Reply-To: <20260122130721.205664-1-pritam.sutar@samsung.com>
-References: <CGME20260122125130epcas5p4ac37f540c609f3016ff02f5708e897a2@epcas5p4.samsung.com>
- <20260122130721.205664-1-pritam.sutar@samsung.com>
-Message-Id: <176910209177.2703219.7993114273484886473.robh@kernel.org>
-Subject: Re: [PATCH v2 0/3] Add and enable USB nodes for ExynosAutov920 SoC
+Cc: Michael Turquette <mturquette@baylibre.com>, imx@lists.linux.dev, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Peng Fan <peng.fan@nxp.com>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, dri-devel@lists.freedesktop.org, 
+ Robert Foss <rfoss@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Fabio Estevam <festevam@gmail.com>, Marek Vasut <marex@denx.de>, 
+ devicetree@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>, 
+ linux-kernel@vger.kernel.org, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Frank Li <Frank.Li@nxp.com>, 
+ Abel Vesa <abelvesa@kernel.org>, David Airlie <airlied@gmail.com>, 
+ linux-clk@vger.kernel.org, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Simona Vetter <simona@ffwll.ch>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ linux-arm-kernel@lists.infradead.org, 
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, Maxime Ripard <mripard@kernel.org>, 
+ Francesco Valla <francesco@valla.it>
+To: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+In-Reply-To: <20260122-dcif-upstreaming-v7-0-19ea17eb046f@oss.nxp.com>
+References: <20260122-dcif-upstreaming-v7-0-19ea17eb046f@oss.nxp.com>
+Message-Id: <176910209242.2703312.10656685930266629109.robh@kernel.org>
+Subject: Re: [PATCH v7 0/9] Add support for i.MX94 DCIF
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.16 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCPT_COUNT_TWELVE(0.00)[34];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[baylibre.com,lists.linux.dev,linux.intel.com,kwiboo.se,nxp.com,gmail.com,lists.freedesktop.org,kernel.org,suse.de,denx.de,vger.kernel.org,ideasonboard.com,linaro.org,pengutronix.de,ffwll.ch,intel.com,lists.infradead.org,bootlin.com,valla.it];
+	TAGGED_FROM(0.00)[bounces-258576-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258575-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.995];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.980];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,samsung.com:email,devicetree.org:url]
-X-Rspamd-Queue-Id: 6B3F16B7A3
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,lkml.org:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,devicetree.org:url]
+X-Rspamd-Queue-Id: 5AEB16BA60
 X-Rspamd-Action: no action
 
 
-On Thu, 22 Jan 2026 18:37:18 +0530, Pritam Manohar Sutar wrote:
-> This SoC has 2 USB typeC and 2 typeA ports those are DWC3 DRD
-> controllers and among them, one single USB3.1 DRD combo phy and three
-> USB2.0 only phy controllers. This patchset adds and enables USB and
-> USB-PHY nodes in dts.
+On Thu, 22 Jan 2026 09:01:38 +0000, Laurentiu Palcu wrote:
+> Hi,
 > 
-> PMIC is not implemented yet, we rely on USB LDOs being enabled by the
-> bootloader and used dummy regulators for now.
+> This patch-set adds support for the i.MX94 Display Control Interface.
+> It depends on Peng Fan's DTS patch [1] that was not yet merged.
 > 
-> To drive vbus for host mode, it needs GPIO pin to enable vbus regulator.
-> GPIO expander is present in the dts, we used it to enable the regulator
-> using GPIO.
+> Also, included in the patch-set are a few extra patches that the DCIF
+> driver depends on for functioning properly:
+>  * 1/9 - 3/9 : add support for i.MX94 to fsl-ldb driver. It also
+>                contains a patch (2/9) from Liu Ying that was already reviewed
+>                and was part of another patch-set ([2]), but was never merged;
 > 
-> USB ports are configured as OTG, and default mode is configured as
-> peripheral. It will be changed based on requirements.
+> Thanks,
+> Laurentiu
 > 
-> changelog
-> ----------
+> [1] https://lkml.org/lkml/2025/7/7/84
+> [2] https://lkml.org/lkml/2024/11/14/262
+> 
+> ---
+> Changes in v7:
+> - Rebased to latest linux-next;
+> - Addressed some new checkpatch warnings: kzalloc -> kzalloc_obj;
+> - Fixed a couple of static check warnings in probe();
+> - Added Luca's r-b tag for bridge refcounting;
+> - Link to v6: https://lore.kernel.org/r/20251103-dcif-upstreaming-v6-0-76fcecfda919@oss.nxp.com
+> 
+> Changes in v6:
+> - 2/9: Collected r-b tag from Francesco;
+> - 3/9: Removed ch_max_clk_khz variable as suggested by Luca and added
+>   his r-b tag;
+> - 4/9: Collected r-b tag;
+> - 5/9: Call drm_bridge_put() automatically in
+>   dcif_crtc_query_output_bus_format() by using a cleanup action (Luca);
+> - 6/9: Moved allOf: block after required: block (Krzysztof). Collected
+>   r-b tag;
+> - Link to v5: https://lore.kernel.org/r/20250911-dcif-upstreaming-v5-0-a1e8dab8ae40@oss.nxp.com
+> 
+> Changes in v5:
+> - 4/9: Removed "bindings for" from the title, changed the port
+>   definition and simplified the example;
+> - 6/9: Fixed the way 'ldb' child node is declared: declare the
+>   'ldb' child node out of if:then: block and set the property
+>   to false for compatibles other than nxp,imx94-lvds-csr;
+> - Link to v4: https://lore.kernel.org/r/20250903123332.2569241-1-laurentiu.palcu@oss.nxp.com
+> 
+> Changes in v4:
+> - Addressed remaining DCIF driver comments from Frank;
+> - Limit the 'ldb' child node only to CSRs compatible with 'nxp,imx94-lvds-csr'
+>   in the binding file. Since LVDS CSRs are a minority, I chose to
+>   use the if:then: construct instead of if:not:then:;
+> - Remove the '#address-cells' and '#size-cells' from the ldb node, in
+>   imx94.dtsi, as they're not needed;
+> - Link to v3: https://lore.kernel.org/r/20250806150521.2174797-1-laurentiu.palcu@oss.nxp.com
+> 
+> Changes in v3:
+> - Removed the BLK CTL patches and created a separate patch set [2] for them;
+> - Collected r-b tags for 1/9, 2/9, 3/9 and 9/9;
+> - Removed the DCIF QoS functionality until I find a better way to
+>   implement it through syscon. QoS functionality will be added in
+>   subsequent patches. Also, used devm_clk_bulk_get_all() and used
+>   dev_err_probe() as suggested;
+> - Addressed Frank's and Krzysztof's comments on the DCIF bindings;
+> - Addressed Frank's comments on dtsi and dts files;
+> - Added a new binding patch, 6/9, for adding 'ldb' optional property to
+>   nxp,imx95-blk-ctl.yaml;
+> - Link to v2: https://lore.kernel.org/r/20250716081519.3400158-1-laurentiu.palcu@oss.nxp.com
+> 
 > Changes in v2:
-> - As v1 was pushed 3 months back, resending this patchset.
-> - Since dependencies are merged, removed links from coverletter.
->   link for v1: https://lore.kernel.org/linux-devicetree/20251024114845.2395166-1-pritam.sutar@samsung.com/
+> - reworked the BLK_CTL patch and split in 2 to make it easier for
+>   review;
+> - split the dts and dtsi patch in 2 separate ones;
+> - addressed Frank's comments in DCIF driver;
+> - addressed Rob's comments for the bindings files;
+> - addressed a couple of checkpatch issues;
+> - Link to v1: https://lore.kernel.org/r/20250709122332.2874632-1-laurentiu.palcu@oss.nxp.com
 > 
-> Pritam Manohar Sutar (3):
->   arm64: dts: exynos: ExynosAutov920: Add USB and USB-phy nodes
->   arm64: dts: exynos: ExynosAutov920: Add regulators for the USB
->   arm64: dts: exynos: ExynosAutov920: Enable USB nodes
+> ---
+> Laurentiu Palcu (7):
+>       dt-bindings: display: fsl,ldb: Add i.MX94 LDB
+>       drm/bridge: fsl-ldb: Add support for i.MX94
+>       dt-bindings: display: imx: Add i.MX94 DCIF
+>       dt-bindings: clock: nxp,imx95-blk-ctl: Add ldb child node
+>       arm64: dts: imx943: Add display pipeline nodes
+>       arm64: dts: imx943-evk: Add display support using IT6263
+>       MAINTAINERS: Add entry for i.MX94 DCIF driver
 > 
->  .../boot/dts/exynos/exynosautov920-sadk.dts   | 160 +++++++++++++++++
->  .../arm64/boot/dts/exynos/exynosautov920.dtsi | 162 ++++++++++++++++++
->  2 files changed, 322 insertions(+)
+> Liu Ying (1):
+>       drm/bridge: fsl-ldb: Get the next non-panel bridge
 > 
+> Sandor Yu (1):
+>       drm/imx: Add support for i.MX94 DCIF
+> 
+>  .../bindings/clock/nxp,imx95-blk-ctl.yaml          |  26 +
+>  .../bindings/display/bridge/fsl,ldb.yaml           |   2 +
+>  .../bindings/display/imx/nxp,imx94-dcif.yaml       |  82 +++
+>  MAINTAINERS                                        |   9 +
+>  arch/arm64/boot/dts/freescale/imx943-evk.dts       |  59 ++
+>  arch/arm64/boot/dts/freescale/imx943.dtsi          |  53 +-
+>  drivers/gpu/drm/bridge/fsl-ldb.c                   |  46 +-
+>  drivers/gpu/drm/imx/Kconfig                        |   1 +
+>  drivers/gpu/drm/imx/Makefile                       |   1 +
+>  drivers/gpu/drm/imx/dcif/Kconfig                   |  15 +
+>  drivers/gpu/drm/imx/dcif/Makefile                  |   5 +
+>  drivers/gpu/drm/imx/dcif/dcif-crc.c                | 211 +++++++
+>  drivers/gpu/drm/imx/dcif/dcif-crc.h                |  52 ++
+>  drivers/gpu/drm/imx/dcif/dcif-crtc.c               | 695 +++++++++++++++++++++
+>  drivers/gpu/drm/imx/dcif/dcif-drv.c                | 228 +++++++
+>  drivers/gpu/drm/imx/dcif/dcif-drv.h                |  86 +++
+>  drivers/gpu/drm/imx/dcif/dcif-kms.c                | 100 +++
+>  drivers/gpu/drm/imx/dcif/dcif-plane.c              | 269 ++++++++
+>  drivers/gpu/drm/imx/dcif/dcif-reg.h                | 267 ++++++++
+>  19 files changed, 2185 insertions(+), 22 deletions(-)
+> ---
+> base-commit: cd8eb1cf3dad15dad65060f5d18a59ab99485d01
+> change-id: 20250911-dcif-upstreaming-3e16d89c3385
+> prerequisite-patch-id: b2acaaf7e92a5c8e377e6b56f3a9ee7409f64b00
+> 
+> Best regards,
 > --
-> 2.34.1
-> 
+> Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
 > 
 > 
 
@@ -152,24 +253,37 @@ make sure dt-schema is up to date:
 
 
 This patch series was applied (using b4) to base:
+ Deps: looking for dependencies matching 1 patch-ids
+ Deps: Applying prerequisite patch: [PATCH v3 6/6] arm64: dts: imx943: Add LVDS/DISPLAY CSR nodes
+ Base: base-commit cd8eb1cf3dad15dad65060f5d18a59ab99485d01 not known, ignoring
  Base: attempting to guess base-commit...
- Base: tags/next-20260121 (exact match)
+ Base: tags/next-20260121 (best guess, 6/8 blobs matched)
  Base: tags/next-20260121 (use --merge-base to override)
 
 If this is not the correct base, please add 'base-commit' tag
 (or use b4 which does this automatically)
 
 
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/exynos/' for 20260122130721.205664-1-pritam.sutar@samsung.com:
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/freescale/' for 20260122-dcif-upstreaming-v7-0-19ea17eb046f@oss.nxp.com:
 
-arch/arm64/boot/dts/exynos/exynosautov920-sadk.dtb: usb-phy0 (usb-nop-xceiv): '#phy-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/usb/usb-nop-xceiv.yaml
-arch/arm64/boot/dts/exynos/exynosautov920-sadk.dtb: usb-phy1 (usb-nop-xceiv): '#phy-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/usb/usb-nop-xceiv.yaml
-arch/arm64/boot/dts/exynos/exynosautov920-sadk.dtb: usb-phy2 (usb-nop-xceiv): '#phy-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/usb/usb-nop-xceiv.yaml
-arch/arm64/boot/dts/exynos/exynosautov920-sadk.dtb: usb-phy3 (usb-nop-xceiv): '#phy-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/usb/usb-nop-xceiv.yaml
+arch/arm64/boot/dts/freescale/imx943-evk.dtb: lvds-to-hdmi-bridge@4c (ite,it6263): 'ivdd-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/display/bridge/ite,it6263.yaml
+arch/arm64/boot/dts/freescale/imx943-evk.dtb: lvds-to-hdmi-bridge@4c (ite,it6263): 'ovdd-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/display/bridge/ite,it6263.yaml
+arch/arm64/boot/dts/freescale/imx943-evk.dtb: lvds-to-hdmi-bridge@4c (ite,it6263): 'txavcc18-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/display/bridge/ite,it6263.yaml
+arch/arm64/boot/dts/freescale/imx943-evk.dtb: lvds-to-hdmi-bridge@4c (ite,it6263): 'txavcc33-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/display/bridge/ite,it6263.yaml
+arch/arm64/boot/dts/freescale/imx943-evk.dtb: lvds-to-hdmi-bridge@4c (ite,it6263): 'pvcc1-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/display/bridge/ite,it6263.yaml
+arch/arm64/boot/dts/freescale/imx943-evk.dtb: lvds-to-hdmi-bridge@4c (ite,it6263): 'pvcc2-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/display/bridge/ite,it6263.yaml
+arch/arm64/boot/dts/freescale/imx943-evk.dtb: lvds-to-hdmi-bridge@4c (ite,it6263): 'avcc-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/display/bridge/ite,it6263.yaml
+arch/arm64/boot/dts/freescale/imx943-evk.dtb: lvds-to-hdmi-bridge@4c (ite,it6263): 'anvdd-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/display/bridge/ite,it6263.yaml
+arch/arm64/boot/dts/freescale/imx943-evk.dtb: lvds-to-hdmi-bridge@4c (ite,it6263): 'apvdd-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/display/bridge/ite,it6263.yaml
 
 
 
