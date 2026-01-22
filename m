@@ -1,187 +1,206 @@
-Return-Path: <devicetree+bounces-258604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258605-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aDGMOU9ncmmrjwAAu9opvQ
-	(envelope-from <devicetree+bounces-258604-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 19:07:11 +0100
+	id GLYVIfducmlpkwAAu9opvQ
+	(envelope-from <devicetree+bounces-258605-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 19:39:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 828816BFA1
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 19:07:11 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 509E26C8D7
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 19:39:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 75F603029E4C
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:04:41 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D4D56300532A
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:07:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B6BE322B61;
-	Thu, 22 Jan 2026 18:04:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24F52313524;
+	Thu, 22 Jan 2026 18:07:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UcNfPHvw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BckzC+SQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EF72274FDB
-	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 18:04:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.41
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769105069; cv=pass; b=PZ2QTIflp75ClKItOZqBRXMbTK1K+0AXX4YILI9luTo97dbmYwSVgqoyaiZ471Ap8HUcTy6V004IOA2NifDgY4iqqS6SfdPh9XjXt8ezCsRundd9pB6ujH3dhTZ28N3SKdEeLrZKM24tr+aCxom6VOfvviWvAv8ViSoV81NdCnU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769105069; c=relaxed/simple;
-	bh=JoJqK6ZMjXBJh/XZxPRXUeBhD4yr+ijhekfGT0tzlJk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=mtSzYcyma3sEqRiVQYxJjgM+gr5U293sY/71ob+Auh01UWz/mmofker0JVJhfspl74JWO4vgXCtKx3z+8+93SWxXqftEXtLQVX2kCXtqeiO5EGrhiAyw7mXe7dnItQ+auRmGoatY6jxnSz62gG7NQqUJD645m10DWCWHDslSF7U=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UcNfPHvw; arc=pass smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-59b6d5bd575so1178719e87.1
-        for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 10:04:16 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1769105054; cv=none;
-        d=google.com; s=arc-20240605;
-        b=lukBZInbQWakXMGFpJoENVGBpOjeiieIhZj0CitMBH+savjPeN8ZEIctgHUKbWzMh1
-         8g9LHdVkNodJpGe++fvDy3cUiHiBYi0ynN73pmlEN3iMXrbfo+QpEnITKojBSRzhs1kl
-         0bIjagUmbxKUslEsbGokmGDuhDfo+TP3OxzoD8aOnxxYUkMYr4cpDHFiJtROuQoZWavK
-         rs59X5+F1oA5Mlxp+zI4rJNiAVDznHIoOMqTqcY1PfvPVv9ziDdtP/ezaoNrwYbhqqyd
-         YwN10u4osojQhQ3rr3xBLIaTjkQ/ntgNkPZQBU8FyODX0NX24v+QN/Q0jj2lOvrZkCil
-         ZcZw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=1dAdnI02pT5EuloFaObahJw7pcpTRooaOZFcQF4dsRc=;
-        fh=dnQLiB9c9eSkTWr2oV3EBORh/NbbZudqe+zxv8kZBUY=;
-        b=MEnE8jLNwnyasplD0sMHGgbyhVTpjUbpeC7POSfxnY4C6QfEDyqCEAh/J2i7ZTBB3N
-         HRnO1KQtaXSBmXaeYJpxpB6FHiEUIpodcNc++kHA8+pHT2FojO0fAphy6RZe9Gxj8qp0
-         ehkf88/n0aoBZBRYkVJtMASIls6pMk5LG8dayQPjCdOss5OzMT5sP8SboW7/APq8vzRs
-         GCDgkWsmA41Z5gcNAyzZhw9GJ1ncuj3o4x0wwNgyDxQIw5AMw2/66sza5qqVg/KrZQPM
-         OXyvShpCrlTHOzhXyDNO9fMXmODHORkJrmbD27g1RdCakBo3bmWTwIk860gBldb2w7uQ
-         fPNg==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1769105054; x=1769709854; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=1dAdnI02pT5EuloFaObahJw7pcpTRooaOZFcQF4dsRc=;
-        b=UcNfPHvwthfAkHTUj1Epxq0cIarHw3rNWTwVAe1VGU+BLEXOkkA+kjUlqRiPMDs13G
-         r0pXd8j21YV7sZe07ICWpqsl/2sjkQl31CoEaI2ZLVH5+DW/ZpTFiXonSpqOjrwIqdjw
-         jhj59cqA4DYhtIZsDELGC5eqQj3dwVKcplinjAhYxMDWNHVekUzTlh6Wemh/XJyf8A2A
-         grF9EOtUZvNWfBtCpDhdZXsyijQTBmh0ARm8NNsZs17J6tgmDAqzKD7cA5hc9WK8svSe
-         uBGHhLfZohoS71lR8iHlsujYo9FW5+MLEPv02fqjd2V0OxwXKmHWIQYLrxDjAUaNr4do
-         lczw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769105054; x=1769709854;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1dAdnI02pT5EuloFaObahJw7pcpTRooaOZFcQF4dsRc=;
-        b=ZiHZZZ6+k+euOvzngDq8px/cJqSqgxgiz0KcrLu45l1wluYhy0vNzcfbniJY+wH97L
-         zZjFxfoI2qEXB1aEZspL3CaZzvYEbMv97avAvbNUi3lKc+IzdQI/cftpVc0OH8E3Qxdy
-         cHhxHQCj4wluKQptEgbmmn9m9cRHHsKYcUQnF3uiEfnW6dwBwl2BkUm0hIjwpPkekW0P
-         KalmjnHbGW48VmvWMX8ikXDB3Uu6jXxdlQaMyCJBzzT7g/+bx/4bjscadRCw6LBCSRxV
-         JEfxDSQS76rLerAd8OjLbV0xNV3hx1Dz5ZSWxrWGnZY9Hw3fh1q7D8Mjo9ZcRx8/Yt2b
-         lszA==
-X-Forwarded-Encrypted: i=1; AJvYcCUrb+eBBTgRokupNpYKguaOLCA1HzNQ+TBcYBvtZmMk2Ps93q97iROZfwHJk4Gfbe6tmuhozm4cMoX+@vger.kernel.org
-X-Gm-Message-State: AOJu0YxHOwjkA6OCD4vP7rmoyK18m2kHXRNUg/rSt+O6b6qtlEcJ2VUg
-	5248AJxfRO3U8qDSgR+rT1/9TC0Kxo68/NOsthgIDcEJRtFibOv9XXguGgqWB7JZeD7gtmEUSaU
-	lKvRm79gzlz2ng4jZv6GPpnW2Ct9UH5ZTC0JSujzaMg==
-X-Gm-Gg: AZuq6aLkax3JhN48KWA8Gj90i9MDWs409sBvDhaQz/HU8luR/O3usCIgvnh+Y2tbjpf
-	IDlwXUzci4mVPkAJhNwAbAmSYqVRn69JW76WpD9GwrosvY3ZsbXwUVmHTjEDOVGK9ei0MCWQ3cY
-	e0/O0ZMxCxh4lArUWon48CZ9eLGuGSYtyRfjNlZqEml/MTmq2IvYn4HDTfZi9uqrFp97s7t3nDI
-	g/c0absL8LUFCkwxAE+d+iqDHxLsP1olJZ0Y0eGAfRbZ4HEVrkO6LIxi7u55aIfRRfDRfy/CUwp
-	+ELCBck=
-X-Received: by 2002:a05:6512:2513:b0:59d:e07e:8f38 with SMTP id
- 2adb3069b0e04-59de48f58f7mr64524e87.10.1769105053659; Thu, 22 Jan 2026
- 10:04:13 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8102E33121F;
+	Thu, 22 Jan 2026 18:07:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769105235; cv=none; b=BDDeZbQC67/AtN4xaKSoYlAV3akNJ+kLGMo7fj+TI85YysOlN3cUiiAJMfzQCL8s5nkymUDYHFr09G9sd/BOwL9/5KtjRhcskkGoyN629srrV2QgprtTAXd1/pe7rW9UqRZp6doNGD9pKWmgB1vWCLZl+SkIJp4uerSJKUrrBDM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769105235; c=relaxed/simple;
+	bh=Hsd3ZQlD1HlwYxcnrBzb04fEmgDWvYyBfv030RV9lPk=;
+	h=From:Date:Content-Type:MIME-Version:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=Rk8zdRauOPpmafq/Unae1Nh4sm7/sIJ0sITE/i16Il6W97c5uxXSirr6Sp4Wgmh1/bY36LG8nLgWCmeZOC+U5AXi0tXNnHqj4Ahse3yNYZu0PmE1AHHhvNFpvywDyhA/u+KDZaBQftSEQr9OMX2fU6CLZXDH8gnXE7GS2+70rwM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BckzC+SQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31A9DC116C6;
+	Thu, 22 Jan 2026 18:07:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769105234;
+	bh=Hsd3ZQlD1HlwYxcnrBzb04fEmgDWvYyBfv030RV9lPk=;
+	h=From:Date:Cc:To:In-Reply-To:References:Subject:From;
+	b=BckzC+SQiWY/8mtYq5ZVAQeBDytz58TDKZ94CPGeSE1QtiNGk/6tGWwPS/jN2KUw6
+	 JRD9BC7j5bvjYqe0JhoYJHw+bIOcMWbBESjqwXU+Zbk+oRC4tdZcsV9CtKAkblTsDI
+	 DLbnX+qRaOuRigna2IC0Xdnv8z4+hIV36kQUN/4m1W842HcbtN8/KYcutjHfYOt6xi
+	 Cdfu4ICbrXdegK30/KqJ1cz3GJc2VPtzDwQ+MRy5+yK+aciJTY81knItfXPjjS7gYM
+	 Fg2QiAbLfHK/WIVroI4y+xJeLgCESVnXbJwSK/KvXlHlCheJ8nTDdGhmO9Fym5g42U
+	 VWNDPjZ4eRIpw==
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 22 Jan 2026 12:07:13 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260122-07-k3-mmc-v2-0-3c3ffef25e94@kernel.org>
-In-Reply-To: <20260122-07-k3-mmc-v2-0-3c3ffef25e94@kernel.org>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 22 Jan 2026 19:03:36 +0100
-X-Gm-Features: AZwV_Qi_ZbdqQa48xiUnmVYX5skEPfI-gSYl1dRWblEnVxVJaaRBzgmXmm23av4
-Message-ID: <CAPDyKFrXNj-FwGvCet6rw3NA8zshLAi02AGPeUQ8zLy6iQ3uiw@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] mmc: spacemit: Add support for K3 SoC
-To: Yixun Lan <dlan@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>, linux-mmc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Cc: devicetree@vger.kernel.org, 
+ =?utf-8?q?Jonas_Schw=C3=B6bel?= <jonasschwoebel@yahoo.de>, 
+ Conor Dooley <conor+dt@kernel.org>, linux-tegra@vger.kernel.org, 
+ Jonathan Hunter <jonathanh@nvidia.com>, Thierry Reding <treding@nvidia.com>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+In-Reply-To: <20260122152713.8311-1-clamor95@gmail.com>
+References: <20260122152713.8311-1-clamor95@gmail.com>
+Message-Id: <176910484081.3006932.4278499225364273753.robh@kernel.org>
+Subject: Re: [PATCH v1 0/3] ARM: tegra: lg-x3: add missing nodes
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+X-Spamd-Result: default: False [-1.16 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258604-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_CC(0.00)[vger.kernel.org,yahoo.de,kernel.org,nvidia.com,gmail.com];
+	TAGGED_FROM(0.00)[bounces-258605-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[linaro.org:+];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ulf.hansson@linaro.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.963];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,linaro.org:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 828816BFA1
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,0.0.11.184:email,7000c500:email,devicetree.org:url,7000e200:email,c:email,0.0.0.0:email,0.0.0.48:email,0.0.0.1:email,4.45.86.0:email,0.0.0.2:email,1c:email,7000d000:email,4.44.64.168:email,7d:email]
+X-Rspamd-Queue-Id: 509E26C8D7
 X-Rspamd-Action: no action
 
-On Thu, 22 Jan 2026 at 10:38, Yixun Lan <dlan@kernel.org> wrote:
->
-> Enable SDHCI controller support on new SpacemiT K3 SoC, while as before
-> only the third controller and the eMMC device has been tested which using
-> vendor K3 evb board. This board has not acquired support in mainline
-> kernel, so I've omitted the DT part patches for now.
->
-> The new SDHCI controller almost reuse the same IP as old K1 generation,
-> while fixed the broken 64BIT DMA issue.
->
-> Hi Ulf,
->  Any chance to queue this for v6.20? I know it's a little bit late,
-> but the patch itself is quite simple and we've tested on evb board.
->
-> Signed-off-by: Yixun Lan <dlan@kernel.org>
-> ---
-> Changes in v2:
-> - collect Rob's Ack
-> - drop uncessary blank line
-> - drop return check from of_device_get_match_data
-> - Link to v1: https://lore.kernel.org/r/20260121-07-k3-mmc-v1-0-ff77c07bfdf6@kernel.org
->
-> ---
-> Yixun Lan (2):
->       dt-bindings: mmc: spacemit,sdhci: add support for K3 SoC
->       mmc: sdhci-of-k1: spacemit: Add support for K3 SoC
->
->  .../devicetree/bindings/mmc/spacemit,sdhci.yaml       |  4 +++-
->  drivers/mmc/host/sdhci-of-k1.c                        | 19 +++++++++++++++++--
->  2 files changed, 20 insertions(+), 3 deletions(-)
-> ---
-> base-commit: 6cefff068d030786d63fa50970d6581c354630b2
-> change-id: 20260112-07-k3-mmc-6ca01267e834
->
-> Best regards,
+
+On Thu, 22 Jan 2026 17:27:10 +0200, Svyatoslav Ryhel wrote:
+> With the recent kernel updates, Tegra30-based LG smartphones now support
+> several additional features, including an RGB-DSI bridge, DSI panels,
+> MUIC, a charger, a battery temperature sensor, OTG mode, and capacitive
+> buttons on the P895. Add required nodes to device trees.
+> 
+> Svyatoslav Ryhel (3):
+>   ARM: tegra: lg-x3: add panel and bridge nodes
+>   ARM: tegra: lg-x3: add USB and power related nodes
+>   ARM: tegra: lg-x3: add node for capacitive buttons
+> 
+>  arch/arm/boot/dts/nvidia/tegra30-lg-p880.dts |  23 +++
+>  arch/arm/boot/dts/nvidia/tegra30-lg-p895.dts |  33 ++++
+>  arch/arm/boot/dts/nvidia/tegra30-lg-x3.dtsi  | 174 ++++++++++++++++++-
+>  3 files changed, 227 insertions(+), 3 deletions(-)
+> 
 > --
-> Yixun Lan <dlan@kernel.org>
->
+> 2.51.0
+> 
+> 
+> 
 
-The series applied for next, thanks!
 
-Kind regards
-Uffe
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: attempting to guess base-commit...
+ Base: tags/next-20260121 (exact match)
+ Base: tags/next-20260121 (use --merge-base to override)
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+
+New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/nvidia/' for 20260122152713.8311-1-clamor95@gmail.com:
+
+arch/arm/boot/dts/nvidia/tegra30-lg-p880.dtb: /pcie@3000: failed to match any schema with compatible: ['nvidia,tegra30-pcie']
+arch/arm/boot/dts/nvidia/tegra30-lg-p895.dtb: /pcie@3000: failed to match any schema with compatible: ['nvidia,tegra30-pcie']
+arch/arm/boot/dts/nvidia/tegra30-lg-p880.dtb: /gmi@70009000: failed to match any schema with compatible: ['nvidia,tegra30-gmi']
+arch/arm/boot/dts/nvidia/tegra30-lg-p895.dtb: /gmi@70009000: failed to match any schema with compatible: ['nvidia,tegra30-gmi']
+arch/arm/boot/dts/nvidia/tegra30-lg-p880.dtb: adc@48 (ti,tsc2007): '#io-channel-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/input/touchscreen/ti,tsc2007.yaml
+arch/arm/boot/dts/nvidia/tegra30-lg-p895.dtb: adc@48 (ti,tsc2007): '#io-channel-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/input/touchscreen/ti,tsc2007.yaml
+arch/arm/boot/dts/nvidia/tegra30-lg-p880.dtb: coil@c (dongwoon,dw9714): 'enable-gpios' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/media/i2c/dongwoon,dw9714.yaml
+arch/arm/boot/dts/nvidia/tegra30-lg-p880.dtb: /i2c@7000c500/camera-pmic@7d: failed to match any schema with compatible: ['ti,lp8720']
+arch/arm/boot/dts/nvidia/tegra30-lg-p895.dtb: coil@c (dongwoon,dw9714): 'enable-gpios' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/media/i2c/dongwoon,dw9714.yaml
+arch/arm/boot/dts/nvidia/tegra30-lg-p895.dtb: /i2c@7000c500/camera-pmic@7d: failed to match any schema with compatible: ['ti,lp8720']
+arch/arm/boot/dts/nvidia/tegra30-lg-p880.dtb: /i2c@7000d000/max77663@1c: failed to match any schema with compatible: ['maxim,max77663']
+arch/arm/boot/dts/nvidia/tegra30-lg-p895.dtb: /i2c@7000d000/max77663@1c: failed to match any schema with compatible: ['maxim,max77663']
+arch/arm/boot/dts/nvidia/tegra30-lg-p880.dtb: dsi@2 (solomon,ssd2825): '#address-cells', '#size-cells', 'panel@1' do not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/display/bridge/solomon,ssd2825.yaml
+arch/arm/boot/dts/nvidia/tegra30-lg-p880.dtb: dsi@2 (solomon,ssd2825): ports:port@0:endpoint: Unevaluated properties are not allowed ('data-lines' was unexpected)
+	from schema $id: http://devicetree.org/schemas/display/bridge/solomon,ssd2825.yaml
+arch/arm/boot/dts/nvidia/tegra30-lg-p895.dtb: dsi@2 (solomon,ssd2825): '#address-cells', '#size-cells', 'panel@1' do not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/display/bridge/solomon,ssd2825.yaml
+arch/arm/boot/dts/nvidia/tegra30-lg-p895.dtb: dsi@2 (solomon,ssd2825): ports:port@0:endpoint: Unevaluated properties are not allowed ('data-lines' was unexpected)
+	from schema $id: http://devicetree.org/schemas/display/bridge/solomon,ssd2825.yaml
+arch/arm/boot/dts/nvidia/tegra30-lg-p880.dtb: panel@1 (jdi,dx12d100vm0eaa): 'backlight' is a required property
+	from schema $id: http://devicetree.org/schemas/display/panel/renesas,r69328.yaml
+arch/arm/boot/dts/nvidia/tegra30-lg-p895.dtb: panel@1 (koe,tx13d100vm0eaa): 'renesas,inversion' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/display/panel/renesas,r61307.yaml
+arch/arm/boot/dts/nvidia/tegra30-lg-p895.dtb: panel@1 (koe,tx13d100vm0eaa): 'backlight' is a required property
+	from schema $id: http://devicetree.org/schemas/display/panel/renesas,r61307.yaml
+arch/arm/boot/dts/nvidia/tegra30-lg-p880.dtb: /kbc@7000e200: failed to match any schema with compatible: ['nvidia,tegra30-kbc', 'nvidia,tegra20-kbc']
+arch/arm/boot/dts/nvidia/tegra30-lg-p880.dtb: /kbc@7000e200: failed to match any schema with compatible: ['nvidia,tegra30-kbc', 'nvidia,tegra20-kbc']
+arch/arm/boot/dts/nvidia/tegra30-lg-p895.dtb: /kbc@7000e200: failed to match any schema with compatible: ['nvidia,tegra30-kbc', 'nvidia,tegra20-kbc']
+arch/arm/boot/dts/nvidia/tegra30-lg-p895.dtb: /kbc@7000e200: failed to match any schema with compatible: ['nvidia,tegra30-kbc', 'nvidia,tegra20-kbc']
+arch/arm/boot/dts/nvidia/tegra30-lg-p880.dtb: /ahub@70080000: failed to match any schema with compatible: ['nvidia,tegra30-ahub']
+arch/arm/boot/dts/nvidia/tegra30-lg-p895.dtb: /ahub@70080000: failed to match any schema with compatible: ['nvidia,tegra30-ahub']
+arch/arm/boot/dts/nvidia/tegra30-lg-p895.dtb: gpio-leds (gpio-leds): led-power:linux,default-trigger: 'oneOf' conditional failed, one must be fixed:
+	'battery-charging' is not one of ['backlight', 'default-on', 'heartbeat', 'disk-activity', 'disk-read', 'disk-write', 'timer', 'pattern', 'audio-micmute', 'audio-mute', 'bluetooth-power', 'flash', 'kbd-capslock', 'mtd', 'nand-disk', 'netdev', 'none', 'rc-feedback', 'torch', 'usb-gadget', 'usb-host', 'usbport']
+	'battery-charging' does not match '^cpu[0-9]*$'
+	'battery-charging' does not match '^hci[0-9]+-power$'
+	'battery-charging' does not match '^mmc[0-9]+$'
+	'battery-charging' does not match '^phy[0-9]+tx$'
+	from schema $id: http://devicetree.org/schemas/leds/leds-gpio.yaml
+arch/arm/boot/dts/nvidia/tegra30-lg-p880.dtb: sound (lg,tegra-audio-max98089-p880): nvidia,audio-routing:13: 'Mic Jack' is not one of ['Int Spk', 'Headphone Jack', 'Earpiece', 'Headset Mic', 'Internal Mic 1', 'Internal Mic 2', 'HPL', 'HPR', 'SPKL', 'SPKR', 'RECL', 'RECR', 'INA1', 'INA2', 'INB1', 'INB2', 'MIC1', 'MIC2', 'MICBIAS']
+	from schema $id: http://devicetree.org/schemas/sound/nvidia,tegra-audio-max9808x.yaml
+arch/arm/boot/dts/nvidia/tegra30-lg-p880.dtb: thermal-sensor-battery (generic-adc-thermal): Unevaluated properties are not allowed ('#io-channel-cells' was unexpected)
+	from schema $id: http://devicetree.org/schemas/thermal/generic-adc-thermal.yaml
+arch/arm/boot/dts/nvidia/tegra30-lg-p895.dtb: sound (lg,tegra-audio-max98089-p895): nvidia,audio-routing:13: 'Mic Jack' is not one of ['Int Spk', 'Headphone Jack', 'Earpiece', 'Headset Mic', 'Internal Mic 1', 'Internal Mic 2', 'HPL', 'HPR', 'SPKL', 'SPKR', 'RECL', 'RECR', 'INA1', 'INA2', 'INB1', 'INB2', 'MIC1', 'MIC2', 'MICBIAS']
+	from schema $id: http://devicetree.org/schemas/sound/nvidia,tegra-audio-max9808x.yaml
+arch/arm/boot/dts/nvidia/tegra30-lg-p895.dtb: thermal-sensor-battery (generic-adc-thermal): Unevaluated properties are not allowed ('#io-channel-cells' was unexpected)
+	from schema $id: http://devicetree.org/schemas/thermal/generic-adc-thermal.yaml
+
+
+
+
+
 
