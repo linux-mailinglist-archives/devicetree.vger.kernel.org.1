@@ -1,154 +1,153 @@
-Return-Path: <devicetree+bounces-258618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258616-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kISoM8J0cmlpkwAAu9opvQ
-	(envelope-from <devicetree+bounces-258618-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 20:04:34 +0100
+	id 2Pf1NDFycmlpkwAAu9opvQ
+	(envelope-from <devicetree+bounces-258616-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 19:53:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50FD76CDEC
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 20:04:34 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71BAD6CBE7
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 19:53:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 44BEA3025913
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 19:00:51 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D317530054F2
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:53:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF69838E5DA;
-	Thu, 22 Jan 2026 19:00:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1ADC388846;
+	Thu, 22 Jan 2026 18:53:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b="scWXGvmN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rC3oc/Bc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from polaris.svanheule.net (polaris.svanheule.net [84.16.241.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EF003859E5
-	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 19:00:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=84.16.241.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B57F43803EE;
+	Thu, 22 Jan 2026 18:53:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769108450; cv=none; b=Bv40udN19DZNdWSI4Th0cE964FmK+Nr0f1ySj8usvV03evA//AAJq8Qz++x9sF7CapmdqboFNRTjqb9lAtkSEfZSZZg0wkGqjS1viwMkWTgV/A4NshiWAuh0hj2blxYFM1oYEru3paLF+/kxLnIYLYvwruMvAY4++OC0SU4d5xg=
+	t=1769108012; cv=none; b=dRCZlCvfNz2aLJfuHobGVxluswiwyTk/bt04t2FmSkjb4nrhB7ClLawg+BkD78FHP2zUY4irVcSCtgkE/7oBJ6+Y1UzQx5HJ0GS4u0VG7lqhr2H6SiFBZwz21RssOruYB+brNCOJbAhcCSLUJjH58hY+eMPG7y9yufVi9lQ6cgg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769108450; c=relaxed/simple;
-	bh=swrlHPUBKtlnhMtciE5+QOaGnR0HJsJDWjwTDiXUfRA=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=cc9naQDHLrs8beouZevbQ5PvG9mf04HbUg1dCyqXXgbtbDLCvHfb03IPF9c2qIhms5k15gjusgcHCKw0xTnOYlXH86NeYJKO5Usm7Zsi0DsSeWVt4wFIVH4azKb2VpKQfNnM0hUnu+tOhVrp/vVzbUyy8DYgYqvWRN1vH10NQy0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net; spf=pass smtp.mailfrom=svanheule.net; dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b=scWXGvmN; arc=none smtp.client-ip=84.16.241.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=svanheule.net
-Received: from [IPv6:2a02:1812:162c:8f00:19d9:5e35:1cd7:5d5d] (2a02-1812-162c-8f00-19d9-5e35-1cd7-5d5d.ip6.access.telenet.be [IPv6:2a02:1812:162c:8f00:19d9:5e35:1cd7:5d5d])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sander@svanheule.net)
-	by polaris.svanheule.net (Postfix) with ESMTPSA id AD3656CF57C;
-	Thu, 22 Jan 2026 19:52:59 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
-	s=mail1707; t=1769107980;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=XN4B5DCK0dBB222GFaDnpJxzaLb0lnsfXuQUUNsyrak=;
-	b=scWXGvmNainY1kQ77gLARjznXHp6TO+wM6m+tn1/+83ESV/HT6d1twjbe2ueHYcn1LskEI
-	zCr4pexsV9ktEqIDhFMO2pRHYvqeI7AHUV7/yHj+EkGt2iP49UTW/3ueGTDHwboGX3dvSZ
-	h14cTdHbs8+iEL5vkbS2Z80FBJK2hYZ/UMIhrYxEBV9i2JMKWw7pzbF2wFBU4hBbfE8M9x
-	AstzPZbmUZjsJWC48dlWh1KuePneV3+CR4beym6x8oIAxl+pXz+0lc6YdJEt/hKuVdTMmL
-	PF4hyJpcpvSr/gPWmCLK6jCr4eOBp4C4GPP+C3WgHnHGgI2ru28Cs7B8/8OaHQ==
-Message-ID: <25fb1bb85424e9d27348a51ce5bb1fe727d363ed.camel@svanheule.net>
-Subject: Re: [PATCH v8 02/10] mfd: nxp-siul2: add support for NXP SIUL2
-From: Sander Vanheule <sander@svanheule.net>
-To: Khristine Andreea Barbulescu <khristineandreea.barbulescu@oss.nxp.com>, 
- Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
- <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski	
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chester Lin	
- <chester62515@gmail.com>, Matthias Brugger <mbrugger@suse.com>, Ghennadi
- Procopciuc <ghennadi.procopciuc@nxp.com>, Larisa Grigore
- <larisa.grigore@nxp.com>, Lee Jones	 <lee@kernel.org>, Shawn Guo
- <shawnguo@kernel.org>, Sascha Hauer	 <s.hauer@pengutronix.de>, Fabio
- Estevam <festevam@gmail.com>, Dong Aisheng	 <aisheng.dong@nxp.com>, Jacky
- Bai <ping.bai@nxp.com>, Greg Kroah-Hartman	 <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>
-Cc: Alberto Ruiz <aruizrui@redhat.com>, Christophe Lizzi
- <clizzi@redhat.com>, 	devicetree@vger.kernel.org, Enric Balletbo
- <eballetb@redhat.com>, Eric Chanudet	 <echanude@redhat.com>,
- imx@lists.linux.dev, 	linux-arm-kernel@lists.infradead.org,
- linux-gpio@vger.kernel.org, 	linux-kernel@vger.kernel.org, NXP S32 Linux
- Team <s32@nxp.com>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Vincent Guittot <vincent.guittot@linaro.org>
-Date: Thu, 22 Jan 2026 19:52:57 +0100
-In-Reply-To: <20260120115923.3463866-3-khristineandreea.barbulescu@oss.nxp.com>
-References: 
-	<20260120115923.3463866-1-khristineandreea.barbulescu@oss.nxp.com>
-	 <20260120115923.3463866-3-khristineandreea.barbulescu@oss.nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.2 (3.58.2-1.fc43) 
+	s=arc-20240116; t=1769108012; c=relaxed/simple;
+	bh=VmJ9sqj17xV5Zbk4rgoIv/RmlLU7TZGxf6/Oa0sRVn4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=K745vba62fOrGWm5SOq7Feaf8lsEk3PXR9ThwWFHPj1QOpI1TPlxj5chr/O5JVMVg0izviJ2IhYZmbGUduqIL9Xu+GdQM/v4TpZzFNVj3PynUYnImGp4M2nRAMPuxPZsrjHrDUHaFKnoNsg1ZYpss18b5Re0UL11Ns/1yEoVCx0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rC3oc/Bc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 513D2C116D0;
+	Thu, 22 Jan 2026 18:53:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769108011;
+	bh=VmJ9sqj17xV5Zbk4rgoIv/RmlLU7TZGxf6/Oa0sRVn4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=rC3oc/BcatVYpQtoUSMa8C0YHABf6BP7726gpuhvH4K4BvNbwsaBtaXstFce8inCj
+	 yI7hscCYhaMQga9ow1edE1N7Hi0Ln75zY5OGbhU60Gu85y/+yGk6WGRMzehDqV8djD
+	 hppMJu9mRS73SgHzAcv7PmzSMK480oSHLXXeOpaw+MQ7njKs6yqgA9DGDTm0dO3V9L
+	 iF0jtVVwk7zk9vjX+GNicOrBR/+2TGUZWCOFfmxXFK8UWFp3Db9SdUHWgRd0Q0W8iR
+	 dfRALyfBu33qjqoR8c4izAbydHzftG+95Xooe2o2jaZSysJK2R/A9MuXQOb4mpoH96
+	 SUKbEavvA4rbA==
+Date: Thu, 22 Jan 2026 18:53:26 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Guodong Xu <guodong@riscstar.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Evan Green <evan@rivosinc.com>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] riscv: cpufeature: Add ISA extension parsing for Supm
+Message-ID: <20260122-brethren-overeager-fa3d3b6fb0cf@spud>
+References: <20260116-supm-ext-id-v1-0-5fcf778ba4a6@riscstar.com>
+ <20260116-supm-ext-id-v1-2-5fcf778ba4a6@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="nFzC1n/eaWCMm4yj"
+Content-Disposition: inline
+In-Reply-To: <20260116-supm-ext-id-v1-2-5fcf778ba4a6@riscstar.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[svanheule.net,none];
-	R_DKIM_ALLOW(-0.20)[svanheule.net:s=mail1707];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258618-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[oss.nxp.com,linaro.org,bgdev.pl,kernel.org,gmail.com,suse.com,nxp.com,pengutronix.de,linuxfoundation.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-258616-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[30];
-	MIME_TRACE(0.00)[0:+];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sander@svanheule.net,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[svanheule.net:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[svanheule.net:mid,svanheule.net:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 50FD76CDEC
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,microchip.com:email,riscstar.com:email]
+X-Rspamd-Queue-Id: 71BAD6CBE7
 X-Rspamd-Action: no action
 
-Hi Khristine,
 
-On Tue, 2026-01-20 at 13:59 +0200, Khristine Andreea Barbulescu wrote:
-> +static const struct regmap_config nxp_siul2_regmap_pgpdo_conf =3D {
-> +	.val_bits =3D 16,
-> +	.val_format_endian =3D REGMAP_ENDIAN_LITTLE,
-> +	.reg_bits =3D 32,
-> +	.reg_stride =3D 2,
-> +	.cache_type =3D REGCACHE_FLAT,
-> +	.use_raw_spinlock =3D true,
-> +};
+--nFzC1n/eaWCMm4yj
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I see you are using REGCACHE_FLAT ...
+On Fri, Jan 16, 2026 at 10:10:32AM +0800, Guodong Xu wrote:
+> Supm has been ratified in the RISC-V Pointer Masking specification
+> (Version 1.0, 10/2024) and is mandated in RVA23 Profiles (Version 1.0,
+> 2024-10-17) for RVA23U64. Supm indicates userspace pointer masking
+> support.
+>=20
+> Remove the previous macro aliasing of Supm to Ssnpm/Smnpm in hwcap.h,
+> treating Supm as a distinct RISC-V ISA extension ID.
+>=20
+> Add ISA parsing logic for Supm, and implement a validator to ensure
+> that Supm is only reported as available if Kconfig allows it and the
+> underlying Ssnpm (for supervisor mode) or Smnpm (for machine mode)
+> extension is present. Supm relies on Ssnpm or Smnpm to provide the
+> underlying hardware implementation.
+>=20
+> With this change, "supm" will be reported (when available) in
+> /proc/cpuinfo as part of the "isa" and "hart isa" string.
+>=20
+> Link: https://lore.kernel.org/lkml/20260101-legume-engraved-0fae8282cfbe@=
+spud/#r [1]
+> Link: https://lore.kernel.org/all/4ebbe14b-2579-4ba6-808d-d50c24641d04@si=
+five.com/#r [2]
+> Signed-off-by: Guodong Xu <guodong@riscstar.com>
 
-> +		if (tmp_conf.cache_type !=3D REGCACHE_NONE)
-> +			tmp_conf.num_reg_defaults_raw =3D
-> +				1 + tmp_conf.max_register /
-> tmp_conf.reg_stride;
-
-... and initialize the cache defaults from hardware.
-
-This series predates the addition of REGCACHE_FLAT_S in v6.19 with commit
-9c7f7262bc1a ("regmap: add flat cache with sparse validity"), but I think
-switching to the sparse flat cache would allow you to drop this. Then the c=
-ache
-will just be initialized on the first hardware access instead of at regmap =
-init.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
 
-Best,
-Sander
+--nFzC1n/eaWCMm4yj
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaXJyJQAKCRB4tDGHoIJi
+0vxhAP98emYlV/YPlTwFITYQlict8vtx331zGKNy8TAOE/EJ6AD/SHI7LdDv0iri
+frFLLIWZ2Fxk/eX/8IRmBqeBsryTtAs=
+=ZsAJ
+-----END PGP SIGNATURE-----
+
+--nFzC1n/eaWCMm4yj--
 
