@@ -1,176 +1,167 @@
-Return-Path: <devicetree+bounces-258455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258456-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0I6RLWA9cmnpfAAAu9opvQ
-	(envelope-from <devicetree+bounces-258455-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:08:16 +0100
+	id CJArBRc+cmnpfAAAu9opvQ
+	(envelope-from <devicetree+bounces-258456-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:11:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 232EC68643
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:08:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C8F06873E
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:11:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DE9953002F91
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 15:03:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 951373012C5F
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 15:06:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25BB13093B5;
-	Thu, 22 Jan 2026 15:03:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 505FE322B71;
+	Thu, 22 Jan 2026 15:06:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="bT6zFJXH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RUMTE2jl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 084762EFDBA
-	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 15:03:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2122D32BF43;
+	Thu, 22 Jan 2026 15:06:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769094203; cv=none; b=A4sbTKBUU6JLoXS++vxg6b/1h+KJX3dFR42kvIMKwHxc7gvU8lXDLC45xaWrotpMNBY9MCGJQMHkwCqw3CV/MWVo5rFKnUDapg8A5bzldIbFhTUMlPzlLIyLg7cPXxACQKO6HQcCwbGgTg3Trm2ec/MJ7Yg2rrfMuB4zNog7zVk=
+	t=1769094401; cv=none; b=kyDCtSao1m4K4os+O6MXL6xVSOJ/9g8Q3TxUTs0kcVK06Gvfftze9YRM2HDavdsQ6iv1WUfi4D9AYn620Lgddl5xUEnCKLNGA7E3wMoySkl2sDHCi4uUQv1pMqJEqFKc1gVWqb0vUqYi0ALreJ3O2ZXV0dn1gGKfCzNZKHh0gHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769094203; c=relaxed/simple;
-	bh=L3LXWOEw30hR/WGWej9pBIBlonvnC2+4uM+luFxj4VQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kVexffhs0tkM+pb6Jj+6dmNBcH7EcM0SCiLml6ervpqsWtlKK7nFkFKpM8LteHDbw9aVtLRf3WSdgK/zr4lZ+78VZQdBlF88WhlnbcFbd7M/8UwwHBMLlcInfkxgjz7cXsMbN9KsHJnn8AOdYmkci2x7focl4pjsWIxvNSugH3Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=bT6zFJXH; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 6FB7C4E421F2;
-	Thu, 22 Jan 2026 15:03:19 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 37575606B6;
-	Thu, 22 Jan 2026 15:03:19 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 47242119B82C7;
-	Thu, 22 Jan 2026 16:03:12 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1769094197; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=cNoOeyLdRbrJPSI/I28lkpAsBvsGiM1vvz72sBr9geA=;
-	b=bT6zFJXHZg4b/0Yur0HKyDxB7YVrRbw3CMxP+5Ir+R40QcBKAyqf+FJzlDonCEznoyVNhA
-	CCIHPkx+8/4GfsBmOyxq6hpQXyXd70tOyjrkZ1mWoKbBcueernf7T74/w7ABXAppVSQiJW
-	gDaaxcO7w2GjB17wCIKYfJ9NoXRjJZZRzjuDGxH5yMy0DAUsRJc3+mgmkPcPsf2LgQ9S45
-	H0XQkUyNrcZeWp/BK1JoD1rGYKDTSlEW4BU1MHdTqjT6VF1rtFC/yC6cD8knyTdXTEnCjH
-	i3JPQ0RGKBnqI0NzKNB/ifdENXRodl2vEY9kS+4LCNKTKV66j0jey1UVBH9f2Q==
-Date: Thu, 22 Jan 2026 16:03:11 +0100
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>, Jyri Sarha
- <jyri.sarha@iki.fi>, Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter
- <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Russell King
- <linux@armlinux.org.uk>, Bartosz Golaszewski <brgl@bgdev.pl>, Tony Lindgren
- <tony@atomide.com>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Laurent
- Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
- <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Markus
- Schneider-Pargmann <msp@baylibre.com>, Bajjuri Praneeth <praneeth@ti.com>,
- Louis Chauvet <louis.chauvet@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, Miguel Gazquez
- <miguel.gazquez@bootlin.com>, Herve Codina <herve.codina@bootlin.com>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-omap@vger.kernel.org
-Subject: Re: [PATCH v4 20/25] drm/tilcdc: Use devm_drm_of_get_bridge()
- helper
-Message-ID: <20260122160311.658cc219@kmaincent-XPS-13-7390>
-In-Reply-To: <20260122-camouflaged-cat-of-sorcery-7af8cf@houat>
-References: <20260116-feature_tilcdc-v4-0-2c1c22143087@bootlin.com>
-	<20260116-feature_tilcdc-v4-20-2c1c22143087@bootlin.com>
-	<DFSVNE16870S.ABQUMH9BWMDY@bootlin.com>
-	<20260122-camouflaged-cat-of-sorcery-7af8cf@houat>
-Organization: bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1769094401; c=relaxed/simple;
+	bh=grnlzAExfoV6G9ahrdpKeaFu1Zp25XCBFXmtxypYY1k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Jbh1skCh/s7E4ULUFkgk+UyHNwO3bm73XK4G96BOB1mW6J4voOm6fh0ybFtRUmAdavJdGrv2tHb/n94Jx8KpvHBRzMTN5J095yKt6RK5k2vqyz2Q8rpe+9lux1PMMf7Tw59gFTwXdx3GEXNTLv9d1+sk6o/o0J6l+p9NUNt52SU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RUMTE2jl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15BA2C116C6;
+	Thu, 22 Jan 2026 15:06:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769094401;
+	bh=grnlzAExfoV6G9ahrdpKeaFu1Zp25XCBFXmtxypYY1k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RUMTE2jlvNOo76xSxS65vqSRwG4ztLTz5IIzNF6k/k8JshLCqUyf87eG3oVTdIgi5
+	 S2aPE0aWCPVaKzRG6jkxJShzFB5LTvTQWXDbs0gIQ6AEwN+IHJyoYq8sQmoxfXJM3G
+	 ScYX2nQKbnEAFsjD8HqJCij0WgMQ5WX+LZlH3mkGof7IAZl3fKb6mq+qe41MT+yvPV
+	 PNQ/UvAJEDco6i0ZklZfTWubZg3ANkYNfzXKhGytYQE38Ajye128u3ZUzDzqx7uZRj
+	 nzY40lUO/cQApEK0VfBMH2JlDA7jWziOlKgdJB64N5IjdeIggAUqQwXS7IYFzFIELs
+	 19Jt/A/1AC++w==
+Date: Thu, 22 Jan 2026 15:06:34 +0000
+From: Lee Jones <lee@kernel.org>
+To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Will McVicker <willmcvicker@google.com>,
+	Juan Yescas <jyescas@google.com>, kernel-team@android.com,
+	linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Subject: Re: [PATCH v6 00/20] Samsung S2MPG10 regulator and S2MPG11 PMIC
+ drivers
+Message-ID: <20260122150634.GK3831112@google.com>
+References: <20260105-s2mpg1x-regulators-v6-0-80f4b6d1bf9d@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260105-s2mpg1x-regulators-v6-0-80f4b6d1bf9d@linaro.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258455-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-258456-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[31];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[bootlin.com,iki.fi,ideasonboard.com,linux.intel.com,suse.de,gmail.com,ffwll.ch,kernel.org,armlinux.org.uk,bgdev.pl,atomide.com,intel.com,linaro.org,kwiboo.se,baylibre.com,ti.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
+	FREEMAIL_CC(0.00)[linaro.org,kernel.org,gmail.com,bgdev.pl,google.com,android.com,vger.kernel.org,oss.qualcomm.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kory.maincent@bootlin.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	RCVD_COUNT_FIVE(0.00)[6];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:url,bootlin.com:dkim]
-X-Rspamd-Queue-Id: 232EC68643
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:email]
+X-Rspamd-Queue-Id: 8C8F06873E
 X-Rspamd-Action: no action
 
-On Thu, 22 Jan 2026 15:03:21 +0100
-Maxime Ripard <mripard@kernel.org> wrote:
+On Mon, 05 Jan 2026, André Draszik wrote:
 
-> Hi,
->=20
-> On Mon, Jan 19, 2026 at 10:18:12PM +0100, Luca Ceresoli wrote:
-> > Maxime, I'd appreciate your opinion about the topic below.
-> >=20
-> > > -	int ret;
-> > >
-> > > -	ret =3D drm_of_find_panel_or_bridge(ddev->dev->of_node, 0, 0,
-> > > -					  &panel, &bridge);
-> > > -	if (ret =3D=3D -ENODEV)
-> > > +	bridge =3D devm_drm_of_get_bridge(ddev->dev, ddev->dev->of_node,
-> > > 0, 0);
-> > > +	if (PTR_ERR(bridge) =3D=3D -ENODEV) =20
-> >=20
-> > This patch is technically OK in the sense that the code before and after
-> > would be equivalent. However if it were me I would not do this change. =
-The
-> > reason is that both drm_of_find_panel_or_bridge() and *_of_get_bridge()=
- are
-> > problematic when introducing drm_bridge hotplug, which is the long-term
-> > goal I am working for, but *_of_get_bridge() is more problematic than
-> > drm_of_find_panel_or_bridge().
-> >=20
-> > These functions are still there and not deprecated because there is
-> > currently no better replacement (and drm_bridge hotplug is not yet
-> > supported because of this and other things still to be done). To have a
-> > replacement, the panel_bridge lifetime needs to be reworked first and
-> > that's not going to happen overnight. So, all in all, if this patch is =
-not
-> > crucial to your series I'd consider dropping it. But if it is important=
- I'm
-> > fine with applying it, it won't make a huge difference. =20
->=20
-> Eh. I'm fine either way. I understand what you're saying, but this patch
-> doesn't introduce any *new* problem while it cleans up the driver, so I
-> guess we could merge it still. And further clean it up with what you
-> were suggesting later on.
+> This series extends the existing S2MPG10 PMIC driver to add support for
+> the regulators, and adds new S2MPG11 core and regulator drivers.
+> 
+> --- dependency note ---
+> This series must be applied in-order, due to the regulator drivers
+> depending on headers & definitions added by the bindings and core
+> drivers. I would expect them all to go via the MFD tree.
+> 
+> The MFD patches in this series also depend on my Samsung MFD patches
+> due to patch context:
+> https://lore.kernel.org/all/20251217-s5m-alarm-v2-0-b7bff003e94c@linaro.org/
+> 
+> While these patches compile, regulator probe will only be successful
+> with my deferrable regulators patches from
+> https://lore.kernel.org/r/20251227-regulators-defer-v1-0-3104b22d84cb@linaro.org
+> --- end ---
+> 
+> The patches are kept together in one series, due to S2MPG11 and its
+> regulators being very similar to S2MPG10.
+> 
+> The Samsung S2MPG11 PMIC is a Power Management IC for mobile
+> applications with buck converters, various LDOs, power meters, and
+> additional GPIO interfaces. It typically complements an S2MPG10 PMIC in
+> a main/sub configuration as the sub-PMIC and both are used on the
+> Google Pixel 6 and 6 Pro (oriole / raven).
+> 
+> A DT update for Oriole / Raven to enable these is required which I will
+> send out separately.
+> 
+> Cheers,
+> Andre'
+> 
+> Signed-off-by: André Draszik <andre.draszik@linaro.org>
 
-As you want. I will then keep the patch. If anyone has reasons why these
-patch should not be merged, speak now or forever hold your peace! ^^
+Applying patch(es)
+Applying: dt-bindings: mfd: samsung,s2mps11: Split s2mpg10-pmic into separate file
+Applying: dt-bindings: mfd: samsung,s2mpg10-pmic: Link to its regulators
+Applying: dt-bindings: mfd: Add samsung,s2mpg11-pmic
+Applying: mfd: sec: s2mpg10: reorder regulators for better probe performance
+Applying: mfd: sec: Add support for S2MPG11 PMIC via ACPM
+error: invalid object 100644 11a56154d36d251d40b40e91da514db0faa15ae3 for 'drivers/mfd/sec-irq.c'
+error: Repository lacks necessary blobs to fall back on 3-way merge.
+Patch failed at 0005 mfd: sec: Add support for S2MPG11 PMIC via ACPM
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+hint: When you have resolved this problem, run "git am --continue".
+hint: If you prefer to skip this patch, run "git am --skip" instead.
+hint: To restore the original branch and stop patching, run "git am --abort".
+hint: Disable this message with "git config set advice.mergeConflict false"
 
-Regards,
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+Doesn't apply to `for-mfd-next` or `ib-mfd-rtc-v6.20`.
+
+Please rebase.
+
+-- 
+Lee Jones [李琼斯]
 
