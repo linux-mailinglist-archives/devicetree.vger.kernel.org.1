@@ -1,67 +1,67 @@
-Return-Path: <devicetree+bounces-258403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258404-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OHh1ByogcmmPdQAAu9opvQ
-	(envelope-from <devicetree+bounces-258403-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:03:38 +0100
+	id AA4NNc8hcmmIdgAAu9opvQ
+	(envelope-from <devicetree+bounces-258404-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:10:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8603466FFA
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:03:36 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5071467154
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:10:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id ADDD6929706
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 12:53:38 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7FB9E8E5E73
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 12:53:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBEF93AE6F0;
-	Thu, 22 Jan 2026 12:51:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 774763D648C;
+	Thu, 22 Jan 2026 12:51:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="XsD2TwKO"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="fJrTo6wf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B87693AA1B3
-	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 12:51:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18C293ACEE2
+	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 12:51:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769086298; cv=none; b=WZ6wJkjPmAYd6V/XuDTUzID49f+kP6qXV2bwTd5Q0HGTkWcXJIldfcesVOn1MQdUt9k+V9UbhQu+63FMEa8eBakmLPdQlxjEmbqQSPLPgISYa1HKtIP1VAZx5nsTGQ5/o2Vihs64Ia81IaO4oQUvNkW5aD0gZtP5UP2s/jMm3UM=
+	t=1769086300; cv=none; b=fwDHZ+TIOVp8JZnbMZjXsbCo2eWjU/F6737LZJRd8PzfSew0p1SlDZ0PfHDKhGq4Zbpr6agSB47BJXOmqDKlAdVB7mPeXTB1LTvW4WgcPyY6yxyA+p++0Yd1p/S4EEK6RwE5RlwM/3DTPfGduLTG8H6Mt70RZ56myLOlxODACvU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769086298; c=relaxed/simple;
-	bh=8LwI9l35aWFCznA9tYtPt7+sdhTJwEuqglb7Ot9Jl68=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type:
-	 References; b=u4kFLepl8LGPY11lenPTcDoUJWCN8yhDiEu9E7nqtqvI0pbzG03WvNXgX/2DGccn+rKO8ahninDkcR+LhDPEehiL3AUU+X5ALkyNgfyCbeplt0Rjq6VwWGormI+tTxaZCeXirsodZjI83/lTLeDuGUWDM46YpEtDrUMgnnQ6MWI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=XsD2TwKO; arc=none smtp.client-ip=203.254.224.25
+	s=arc-20240116; t=1769086300; c=relaxed/simple;
+	bh=xz2EPHBWVJdezG347TZCIbfjnTVUV9iyVSI7gh0Gtlk=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:MIME-Version:
+	 Content-Type:References; b=V5DQUkaCoaytxRmUitFJX31orWQyAVucFlU38oiQqiuv9TtxlY1sOmNt9gvZd8dQ3FYzc67r6HwSy6M7loP/KeYZ5tIU++qB8GAmjEp0ro3A31VsxqKb4aIsebKIOE8HyMcPynvhPovFx5x/drb+On5G5/PG2gXXxpTbICn9mGc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=fJrTo6wf; arc=none smtp.client-ip=203.254.224.24
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20260122125132epoutp025104194e8ffa805d156d46eada7e9a12~NDpwhO-Gp2051020510epoutp02t
-	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 12:51:32 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20260122125132epoutp025104194e8ffa805d156d46eada7e9a12~NDpwhO-Gp2051020510epoutp02t
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20260122125134epoutp017326277e5f1db931217ffcc48ff963d5~NDpynBisd0409004090epoutp01m
+	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 12:51:34 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20260122125134epoutp017326277e5f1db931217ffcc48ff963d5~NDpynBisd0409004090epoutp01m
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1769086292;
-	bh=1YEdIuy+mVK4BJTKeVyMQ8ipqgyiyzWXJoHQTOrtzcA=;
-	h=From:To:Cc:Subject:Date:References:From;
-	b=XsD2TwKOve6Ati77Wwp+/RvQEfcOw+eTOzWSbk+crGiOixRiSjmryWmQrJTqnyNJn
-	 RGLbmKuP5akum2YfUsisN/opU0gjC1NRR68FV/cKsJT+KMwyrrOmjpOL7Ofu3/DOYG
-	 jYbJM6KXI59XWw4fRgSch8NAFRP3GJS4TF3F8Dvg=
-Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTPS id
-	20260122125131epcas5p4f312c87b94c2c65a742b0199a077c0d7~NDpv4ZN_q1352113521epcas5p4S;
-	Thu, 22 Jan 2026 12:51:31 +0000 (GMT)
-Received: from epcas5p4.samsung.com (unknown [182.195.38.93]) by
-	epsnrtp02.localdomain (Postfix) with ESMTP id 4dxgtB55j9z2SSKY; Thu, 22 Jan
-	2026 12:51:30 +0000 (GMT)
+	s=mail20170921; t=1769086294;
+	bh=AoUG/T5AIUKvYaQRsMkuZD7Lh5kCOolnvexdKu1KO+I=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=fJrTo6wfBsSAvzr2dox8IdeR3KEukgDcZWvG8kTE8R1mCKIJSmdIrbmRJEwdOkVPO
+	 bluPTL0uKRd32NKOAWVP6y+SrAVtOqC4NC7gL8ClrqpMGhGZbASiHHjZoOBRqk0JsX
+	 9JedPCTtxD5LZz20lkGmqn0lUHuJBuEzB2BCVF40=
+Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPS id
+	20260122125133epcas5p2b4ebcb632607f8555debbbfdd4e686f8~NDpyB-kCf2606226062epcas5p2B;
+	Thu, 22 Jan 2026 12:51:33 +0000 (GMT)
+Received: from epcas5p3.samsung.com (unknown [182.195.38.95]) by
+	epsnrtp04.localdomain (Postfix) with ESMTP id 4dxgtF00d2z6B9m8; Thu, 22 Jan
+	2026 12:51:33 +0000 (GMT)
 Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
-	20260122125130epcas5p4ac37f540c609f3016ff02f5708e897a2~NDpuh5Hhf1109211092epcas5p4b;
-	Thu, 22 Jan 2026 12:51:30 +0000 (GMT)
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
+	20260122125132epcas5p32bb4d76dc0a08851d9acb77bfb005bdc~NDpwkS2ac1556515565epcas5p3F;
+	Thu, 22 Jan 2026 12:51:32 +0000 (GMT)
 Received: from bose.samsungds.net (unknown [107.108.83.9]) by
 	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20260122125128epsmtip1fdc3cb93ecb73e4058921f2ecf8443a7~NDpsvxkan0713007130epsmtip1R;
-	Thu, 22 Jan 2026 12:51:28 +0000 (GMT)
+	20260122125130epsmtip13f02033c5180a88f7fe2feb7788ed812~NDpuxKaiC0713007130epsmtip1S;
+	Thu, 22 Jan 2026 12:51:30 +0000 (GMT)
 From: Pritam Manohar Sutar <pritam.sutar@samsung.com>
 To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
 	alim.akhtar@samsung.com
@@ -69,10 +69,12 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
 	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
 	rosa.pila@samsung.com, dev.tailor@samsung.com, faraz.ata@samsung.com,
 	muhammed.ali@samsung.com, selvarasu.g@samsung.com, pritam.sutar@samsung.com
-Subject: [PATCH v2 0/3] Add and enable USB nodes for ExynosAutov920 SoC
-Date: Thu, 22 Jan 2026 18:37:18 +0530
-Message-Id: <20260122130721.205664-1-pritam.sutar@samsung.com>
+Subject: [PATCH v2 1/3] arm64: dts: exynos: ExynosAutov920: Add USB and
+ USB-phy nodes
+Date: Thu, 22 Jan 2026 18:37:19 +0530
+Message-Id: <20260122130721.205664-2-pritam.sutar@samsung.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260122130721.205664-1-pritam.sutar@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,14 +82,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20260122125130epcas5p4ac37f540c609f3016ff02f5708e897a2
+X-CMS-MailID: 20260122125132epcas5p32bb4d76dc0a08851d9acb77bfb005bdc
 X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
 CMS-TYPE: 105P
 cpgsPolicy: CPGSC10-542,Y
 X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20260122125130epcas5p4ac37f540c609f3016ff02f5708e897a2
-References: <CGME20260122125130epcas5p4ac37f540c609f3016ff02f5708e897a2@epcas5p4.samsung.com>
+X-CMS-RootMailID: 20260122125132epcas5p32bb4d76dc0a08851d9acb77bfb005bdc
+References: <20260122130721.205664-1-pritam.sutar@samsung.com>
+	<CGME20260122125132epcas5p32bb4d76dc0a08851d9acb77bfb005bdc@epcas5p3.samsung.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.96 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
@@ -97,58 +100,208 @@ X-Spamd-Result: default: False [-0.96 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[samsung.com:+];
 	DMARC_POLICY_ALLOW(0.00)[samsung.com,none];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[samsung.com:mid,samsung.com:dkim,dfw.mirrors.kernel.org:helo,dfw.mirrors.kernel.org:rdns];
+	DKIM_TRACE(0.00)[samsung.com:+];
+	TAGGED_FROM(0.00)[bounces-258404-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258403-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[pritam.sutar@samsung.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.253.75.192:email,samsung.com:email,samsung.com:dkim,samsung.com:mid,0.0.0.0:email,0.251.1.208:email,0.254.210.96:email,dfw.mirrors.kernel.org:helo,dfw.mirrors.kernel.org:rdns,0.252.19.64:email,0.251.197.32:email,0.251.236.48:email,16b00000:email,1.1.223.160:email];
 	RCPT_COUNT_TWELVE(0.00)[14];
 	PRECEDENCE_BULK(0.00)[];
-	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[pritam.sutar@samsung.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
+	DBL_PROHIBIT(0.00)[0.251.119.0:email,1.0.89.0:email,0.251.158.16:email];
+	TO_DN_NONE(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: 8603466FFA
+X-Rspamd-Queue-Id: 5071467154
 X-Rspamd-Action: no action
 
-This SoC has 2 USB typeC and 2 typeA ports those are DWC3 DRD
-controllers and among them, one single USB3.1 DRD combo phy and three
-USB2.0 only phy controllers. This patchset adds and enables USB and
-USB-PHY nodes in dts.
+Add USB and USB PHY controller nodes.
 
-PMIC is not implemented yet, we rely on USB LDOs being enabled by the
-bootloader and used dummy regulators for now.
-
-To drive vbus for host mode, it needs GPIO pin to enable vbus regulator.
-GPIO expander is present in the dts, we used it to enable the regulator
-using GPIO.
-
-USB ports are configured as OTG, and default mode is configured as
-peripheral. It will be changed based on requirements.
-
-changelog
-----------
-Changes in v2:
-- As v1 was pushed 3 months back, resending this patchset.
-- Since dependencies are merged, removed links from coverletter.
-  link for v1: https://lore.kernel.org/linux-devicetree/20251024114845.2395166-1-pritam.sutar@samsung.com/
-
-Pritam Manohar Sutar (3):
-  arm64: dts: exynos: ExynosAutov920: Add USB and USB-phy nodes
-  arm64: dts: exynos: ExynosAutov920: Add regulators for the USB
-  arm64: dts: exynos: ExynosAutov920: Enable USB nodes
-
- .../boot/dts/exynos/exynosautov920-sadk.dts   | 160 +++++++++++++++++
+Signed-off-by: Pritam Manohar Sutar <pritam.sutar@samsung.com>
+---
  .../arm64/boot/dts/exynos/exynosautov920.dtsi | 162 ++++++++++++++++++
- 2 files changed, 322 insertions(+)
+ 1 file changed, 162 insertions(+)
 
+diff --git a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+index 02bf2ca52fdc..843f2aec3567 100644
+--- a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+@@ -1409,6 +1409,168 @@ pinctrl_hsi1: pinctrl@16450000 {
+ 			interrupts = <GIC_SPI 456 IRQ_TYPE_LEVEL_HIGH>;
+ 		};
+ 
++		usbdrd31_ssphy: phy@16480000 {
++			compatible = "samsung,exynosautov920-usb31drd-combo-ssphy";
++			reg = <0x16480000 0x0200>;
++			clocks = <&cmu_hsi1 CLK_MOUT_HSI1_NOC_USER>,
++				 <&cmu_hsi1 CLK_MOUT_HSI1_USBDRD>;
++			clock-names = "phy", "ref";
++			#phy-cells = <1>;
++			samsung,pmu-syscon = <&pmu_system_controller>;
++			status = "disabled";
++		};
++
++		usbdrd31_hsphy: phy@16490000 {
++			compatible = "samsung,exynosautov920-usbdrd-combo-hsphy";
++			reg = <0x16490000 0x0200>;
++			clocks = <&cmu_hsi1 CLK_MOUT_HSI1_NOC_USER>,
++				 <&cmu_hsi1 CLK_MOUT_HSI1_USBDRD>;
++			clock-names = "phy", "ref";
++			#phy-cells = <1>;
++			samsung,pmu-syscon = <&pmu_system_controller>;
++			status = "disabled";
++		};
++
++		usbdrd20_phy0: phy@16500000 {
++			compatible = "samsung,exynosautov920-usbdrd-phy";
++			reg = <0x16500000 0x0200>;
++			clocks = <&cmu_hsi1 CLK_MOUT_HSI1_NOC_USER>,
++				 <&cmu_hsi1 CLK_MOUT_HSI1_USBDRD>;
++			clock-names = "phy", "ref";
++			#phy-cells = <1>;
++			samsung,pmu-syscon = <&pmu_system_controller>;
++			status = "disabled";
++		};
++
++		usbdrd20_phy1: phy@16510000 {
++			compatible = "samsung,exynosautov920-usbdrd-phy";
++			reg = <0x16510000 0x0200>;
++			clocks = <&cmu_hsi1 CLK_MOUT_HSI1_NOC_USER>,
++				 <&cmu_hsi1 CLK_MOUT_HSI1_USBDRD>;
++			clock-names = "phy", "ref";
++			#phy-cells = <1>;
++			samsung,pmu-syscon = <&pmu_system_controller>;
++			status = "disabled";
++		};
++
++		usbdrd20_phy2: phy@16520000 {
++			compatible = "samsung,exynosautov920-usbdrd-phy";
++			reg = <0x16520000 0x0200>;
++			clocks = <&cmu_hsi1 CLK_MOUT_HSI1_NOC_USER>,
++				 <&cmu_hsi1 CLK_MOUT_HSI1_USBDRD>;
++			clock-names = "phy", "ref";
++			#phy-cells = <1>;
++			samsung,pmu-syscon = <&pmu_system_controller>;
++			status = "disabled";
++		};
++
++		/* This usb port supports usb31 and usb20 speeds */
++		usbdrd31: usb@16600000 {
++			compatible = "samsung,exynosautov920-dwusb3";
++			ranges = <0x0 0x16600000 0x10000>;
++			clocks = <&cmu_hsi1 CLK_MOUT_HSI1_USBDRD>,
++				 <&cmu_hsi1 CLK_MOUT_HSI1_USBDRD>;
++			clock-names = "ref", "susp_clk";
++			#address-cells = <1>;
++			#size-cells = <1>;
++			status = "disabled";
++
++			usbdrd31_dwc3: usb@0 {
++				compatible = "snps,dwc3";
++				reg = <0x0 0x10000>;
++				clocks = <&cmu_hsi1 CLK_MOUT_HSI1_USBDRD>,
++					 <&cmu_hsi1 CLK_MOUT_HSI1_USBDRD>;
++				clock-names = "ref", "susp_clk";
++				interrupts = <GIC_SPI 491 IRQ_TYPE_LEVEL_HIGH>;
++				phys = <&usbdrd31_hsphy 0>, <&usbdrd31_ssphy 0>;
++				phy-names = "usb2-phy", "usb3-phy";
++				snps,has-lpm-erratum;
++				snps,dis_u2_susphy_quirk;
++				snps,dis_u3_susphy_quirk;
++			};
++		};
++
++		/* This usb port supports only usb20 speeds */
++		usbdrd20_0: usb@16700000 {
++			compatible = "samsung,exynosautov920-dwusb3";
++			ranges = <0x0 0x16700000 0x10000>;
++			clocks = <&cmu_hsi1 CLK_MOUT_HSI1_USBDRD>,
++				 <&cmu_hsi1 CLK_MOUT_HSI1_USBDRD>;
++			clock-names = "ref", "susp_clk";
++			#address-cells = <1>;
++			#size-cells = <1>;
++			status = "disabled";
++
++			usbdrd20_dwc3_0: usb@0 {
++				compatible = "snps,dwc3";
++				reg = <0x0 0x10000>;
++				clocks = <&cmu_hsi1 CLK_MOUT_HSI1_USBDRD>,
++					 <&cmu_hsi1 CLK_MOUT_HSI1_USBDRD>;
++				clock-names = "ref", "susp_clk";
++				interrupts = <GIC_SPI 479 IRQ_TYPE_LEVEL_HIGH>;
++				phys = <&usbdrd20_phy0 0>;
++				phy-names = "usb2-phy";
++				snps,has-lpm-erratum;
++				snps,dis_u2_susphy_quirk;
++				snps,dis_u3_susphy_quirk;
++				snps,quirk-frame-length-adjustment = <0x20>;
++			};
++		};
++
++		/* This usb port supports only usb20 speeds */
++		usbdrd20_1: usb@16800000 {
++			compatible = "samsung,exynosautov920-dwusb3";
++			ranges = <0x0 0x16800000 0x10000>;
++			clocks = <&cmu_hsi1 CLK_MOUT_HSI1_USBDRD>,
++				 <&cmu_hsi1 CLK_MOUT_HSI1_USBDRD>;
++			clock-names = "ref", "susp_clk";
++			#address-cells = <1>;
++			#size-cells = <1>;
++			status = "disabled";
++
++			usbdrd20_dwc3_1: usb@0 {
++				compatible = "snps,dwc3";
++				reg = <0x0 0x10000>;
++				clocks = <&cmu_hsi1 CLK_MOUT_HSI1_USBDRD>,
++					 <&cmu_hsi1 CLK_MOUT_HSI1_USBDRD>;
++				clock-names = "ref", "susp_clk";
++				interrupts = <GIC_SPI 481 IRQ_TYPE_LEVEL_HIGH>;
++				phys = <&usbdrd20_phy1 0>;
++				phy-names = "usb2-phy";
++				snps,has-lpm-erratum;
++				snps,dis_u2_susphy_quirk;
++				snps,dis_u3_susphy_quirk;
++				snps,quirk-frame-length-adjustment = <0x20>;
++			};
++		};
++
++		/* This usb port supports only usb20 speeds */
++		usbdrd20_2: usb@16900000 {
++			compatible = "samsung,exynosautov920-dwusb3";
++			ranges = <0x0 0x16900000 0x10000>;
++			clocks = <&cmu_hsi1 CLK_MOUT_HSI1_USBDRD>,
++				 <&cmu_hsi1 CLK_MOUT_HSI1_USBDRD>;
++			clock-names = "ref", "susp_clk";
++			#address-cells = <1>;
++			#size-cells = <1>;
++			status = "disabled";
++
++			usbdrd20_dwc3_2: usb@0 {
++				compatible = "snps,dwc3";
++				reg = <0x0 0x10000>;
++				clocks = <&cmu_hsi1 CLK_MOUT_HSI1_USBDRD>,
++					 <&cmu_hsi1 CLK_MOUT_HSI1_USBDRD>;
++				clock-names = "ref", "susp_clk";
++				interrupts = <GIC_SPI 483 IRQ_TYPE_LEVEL_HIGH>;
++				phys = <&usbdrd20_phy2 0>;
++				phy-names = "usb2-phy";
++				snps,has-lpm-erratum;
++				snps,dis_u2_susphy_quirk;
++				snps,dis_u3_susphy_quirk;
++				snps,quirk-frame-length-adjustment = <0x20>;
++			};
++		};
++
+ 		cmu_hsi2: clock-controller@16b00000 {
+ 			compatible = "samsung,exynosautov920-cmu-hsi2";
+ 			reg = <0x16b00000 0x8000>;
 -- 
 2.34.1
 
