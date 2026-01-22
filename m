@@ -1,549 +1,207 @@
-Return-Path: <devicetree+bounces-258407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258408-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QIDlJzcqcmmadwAAu9opvQ
-	(envelope-from <devicetree+bounces-258407-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:46:31 +0100
+	id SFrFBukqcmmadwAAu9opvQ
+	(envelope-from <devicetree+bounces-258408-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:49:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27C60677C2
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:46:31 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0635F67827
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:49:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 0B75142BE76
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 12:57:35 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 847FE58B1B4
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 12:59:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 840E837E30A;
-	Thu, 22 Jan 2026 12:52:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA4DF31352A;
+	Thu, 22 Jan 2026 12:58:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cFNwmOm3"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="IXaUfK14"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3984443CEED
-	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 12:52:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A67C26A0A7
+	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 12:57:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769086370; cv=none; b=HYVb0bcdcZb2wBS0AG7M/DtCvWlRw8agBuRnk5bsC3CDceJLF1smYa1Rm4gGUQ4NRxmR64xco2/FaAhk2P3WAI7HU3wd4IPOFVrlCTjEDfJm3QXn0CWvtY7mLNnOmpu0HxHwzU+83OAe64wsJBrtibRTSD/bq3O4iyZEvm5AXGE=
+	t=1769086681; cv=none; b=IMvHyUUdypJnNTpU5ruXduXNARvnByT5PXcCJjjaPykJPbIKOnDp0rbsR96U/sqkFgyMbOv6ldNy/JIOlDGfNtjmcCOpnYvy+v+HM9taLSuJlhcXzsIb98zxtrv0PRbU5EvfkCaKYhalmPJJkgo91rm8nmPd66MSfztjOOKcHS4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769086370; c=relaxed/simple;
-	bh=XTuqXHvT8Cr6T7pDZrgJyEidpgdxSODcC9clmr1SaMc=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=kuZM9+Pno5alGtukF8qzcViwHRISEbBQCUdEGCEHGIXzqTNfHJh/zI09gJLdPd6FbOBu/ltYv74M56qgeK/94RTLf92fjJl8beLBY3+eXWVJtV/qCuY5W/ofI8KSk7rsasSKhf09LQ7sd+eRgY9EFTCdbH0v9r5xdohjJR2wvk8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cFNwmOm3; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-47eddddcdcfso5428415e9.1
-        for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 04:52:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1769086365; x=1769691165; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=eyqVOa6s69CjgzVgN8BfaJxlh8wbJetzdCv2p81XMIY=;
-        b=cFNwmOm3T4nlHzfXxGzzqGr0WasweD8hjEtIWLb0KCJaJh499gcF7O/GDmVAe+hRr4
-         58ESIx6f+tgBi8hhdeaEUsKBti00Z+2WJQRe2/WyX9FdHDUMi0l9lUeHEe+bk0Fx4g1Y
-         sSnhL0LSESTnj5EfEarpamX6CL2QCNdZZDI67b/A5EojPUpggcvsJyPgqFnLi1KMEoe1
-         kWEgAG1No6zo02jSHIA2LYeX7MkIq/B81XsDUy+FDeXkQhowQKsiTzytlDpyvOWmB5tp
-         Pvbq0yD5Z6sn57yRHV9JAm3/4SbSlLi0EesyB+fWsF9ngzKLKhLUBIJJEDYtAUvqI0v2
-         ekTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769086365; x=1769691165;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eyqVOa6s69CjgzVgN8BfaJxlh8wbJetzdCv2p81XMIY=;
-        b=OpjAROWYdQfX2XE2gcQKVhnWtgMXRHChrbwGxfTuLF84wc+5vj/l5TLeDWGR73jFCZ
-         1CSeiN52xMUmgIH6ZtP3Ozn3qgjaoVmLIH6N4Xe3CGzhpV2x/VHyG9BLM4WVDX8H1DDT
-         2mTbK7HplIbueV7DUiIZ08U3m9dCy1zL3Kjato+ttWftXAv7AoGX2ZODlMExCcuKpe0A
-         vbn6MdcKWTYqPfMkRvr8A1Ye/oh5HIQAQDryeF6QLQvTUNFcMfK53tw+EhmUtVygfrtJ
-         QHXckpQyINnbdCF6+9YUw7Cm+SiJ5PaENOusluMnfBm/vks7zBHAYIBQF54ylSGjC58K
-         7sZw==
-X-Forwarded-Encrypted: i=1; AJvYcCX101yRvDzGindoPBT1U6AELpiqejtv2XsydDtDx+0KGA3mSon+QjP5IzQuQ5PiZKyttITmyx4GZQ5u@vger.kernel.org
-X-Gm-Message-State: AOJu0YwO6a19uJtIDcbxkQirLAr6iVSfp0FkFL4jbPIUVJR1Xr9kQGBY
-	KM2k3d/zbCnlHVGKZaAGj7uG49u6ynEvk0Hr5FXjiXuCWYZ4O6ABTvAYKCfChcuI2t4=
-X-Gm-Gg: AZuq6aKQeCzub8OTFNJGBMElhkNPgAJ3mLbHLRVpy2A05MSnTf3zOIv18HiR2YyU1qF
-	O91HuNQuOI2OAfeZJmL4PXNkgrql1yZA79+MV2RCvIbFr6yPngTKqIcOV3Cw/rNNQ3g4n6mTw+g
-	MoYsiKipqDkrMtsGp9Mjx7yJpaQhYOzo8YZYko3IGflbXuHAwaSaLw/uWK4/vyglLtnTOKdz9S7
-	Yps6mRUY9cldHK/vHFR/FvwhFzQraYGQj+f2O5YeRQBo09SvPl1sOoIAbbm76TSZ/RmIflQbKmT
-	5CnWw6IEgwpC6Y9mCZ1x6lZmm9ra0yvj6om2N5cK9yQp84B5qLUDMldfLUb+svxCAFQTiYaX1V8
-	iMJkWThXsX3RpGVB2HRrM/vEPYWuOJlZTbBlSw+60d1bh1MV6bJCE04lMe5XkkZe0uYPuOvOi8k
-	sVNVpBhNcmdXzt5Bo1hA==
-X-Received: by 2002:a05:600d:6450:10b0:477:58af:a91d with SMTP id 5b1f17b1804b1-480215e1ad9mr230076045e9.5.1769086365383;
-        Thu, 22 Jan 2026 04:52:45 -0800 (PST)
-Received: from draszik.lan ([212.129.87.109])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4804706f351sm70589485e9.14.2026.01.22.04.52.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Jan 2026 04:52:45 -0800 (PST)
-Message-ID: <606f3de66ec16accfb82d4ea77d0ca9b7e8790d8.camel@linaro.org>
-Subject: Re: [PATCH v4 4/5] power: supply: max77759: add charger driver
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: amitsd@google.com, Sebastian Reichel <sre@kernel.org>, Rob Herring	
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
- <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, Greg Kroah-Hartman	
- <gregkh@linuxfoundation.org>, Badhri Jagan Sridharan <badhri@google.com>, 
- Heikki Krogerus <heikki.krogerus@linux.intel.com>, Peter Griffin
- <peter.griffin@linaro.org>, Tudor Ambarus	 <tudor.ambarus@linaro.org>, Alim
- Akhtar <alim.akhtar@samsung.com>
-Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-usb@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, RD
- Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
-Date: Thu, 22 Jan 2026 12:52:44 +0000
-In-Reply-To: <71d816c5ed4ee2d13ec63b8fd4acd49f4e418284.camel@linaro.org>
-References: <20260121-max77759-charger-v4-0-694234c8ded1@google.com>
-		 <20260121-max77759-charger-v4-4-694234c8ded1@google.com>
-	 <71d816c5ed4ee2d13ec63b8fd4acd49f4e418284.camel@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-2+build3 
+	s=arc-20240116; t=1769086681; c=relaxed/simple;
+	bh=HJTjhb+LT3DW9L50eBmFAh1TbPHorN/neuHBhCO7dDw=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=ZFmcGcz7inrPwNhhrzBjzoBHPK0pNdxfqLLahMZQ/HpzoSzgPIVGzmxEB4Pgf6ciIHrOzmHNksYe+nXdz9+xQEvE/rh6An/zY2k+KPJkMsSpOI+m6ixkyJzmbsJK/M5Q8hlf6aBtXLnUmewfAO/VtyIH8ENcvVE+NHJyquHo54I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=IXaUfK14; arc=none smtp.client-ip=203.254.224.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20260122125757epoutp01c8720f501f3e108e5b54d6af6e0af218~NDvXZMVB50953509535epoutp01j
+	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 12:57:57 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20260122125757epoutp01c8720f501f3e108e5b54d6af6e0af218~NDvXZMVB50953509535epoutp01j
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1769086677;
+	bh=HJTjhb+LT3DW9L50eBmFAh1TbPHorN/neuHBhCO7dDw=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=IXaUfK148re5M9zeGZLL3qow8llSs14gfukM0TWelEPRN11o2LAwaXNQs8hs/kI7G
+	 pUXyEe61Zi6/VpEo8RoneABmC3GRU2fMBWdePfpdkoYBfxA8Tcq88lGCDPeKF0EwCd
+	 kEeHZG8jniJCAjKMRaPgoCA/qeavhVPDafj8nsMA=
+Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPS id
+	20260122125757epcas5p4bc09f5a132e3fb2659feddf42bd0d791~NDvW2gFb11233712337epcas5p49;
+	Thu, 22 Jan 2026 12:57:57 +0000 (GMT)
+Received: from epcas5p4.samsung.com (unknown [182.195.38.94]) by
+	epsnrtp02.localdomain (Postfix) with ESMTP id 4dxh1c2nf0z2SSKX; Thu, 22 Jan
+	2026 12:57:56 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
+	20260122125755epcas5p4bb865a596b685d044c32f420dd705fb7~NDvVprkyU2134921349epcas5p4S;
+	Thu, 22 Jan 2026 12:57:55 +0000 (GMT)
+Received: from INBRO001840 (unknown [107.122.3.105]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20260122125753epsmtip1292701b241f40cfe998c50d3fd6d7ebb~NDvTx4icF1131111311epsmtip1h;
+	Thu, 22 Jan 2026 12:57:53 +0000 (GMT)
+From: "Pritam Manohar Sutar" <pritam.sutar@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <alim.akhtar@samsung.com>
+Cc: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-samsung-soc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<rosa.pila@samsung.com>, <dev.tailor@samsung.com>, <faraz.ata@samsung.com>,
+	<muhammed.ali@samsung.com>, <selvarasu.g@samsung.com>
+In-Reply-To: <15119728-7a22-4e2c-8716-9b0c9def24ae@kernel.org>
+Subject: RE: [PATCH 0/3] Add and enable USB nodes for ExynosAutov920 SoC
+Date: Thu, 22 Jan 2026 18:27:49 +0530
+Message-ID: <000a01dc8b9e$b82c0ae0$288420a0$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQJC10xQ5cnsV5/dezQFmmCfFyZ4QgFqW1wVAUtqIAYBvejB87Rt8GNw
+Content-Language: en-in
+X-CMS-MailID: 20260122125755epcas5p4bb865a596b685d044c32f420dd705fb7
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20251024114018epcas5p4e09ca8ea47ff2295a08a162864a47284
+References: <CGME20251024114018epcas5p4e09ca8ea47ff2295a08a162864a47284@epcas5p4.samsung.com>
+	<20251024114845.2395166-1-pritam.sutar@samsung.com>
+	<000001dc8b8a$543269d0$fc973d70$@samsung.com>
+	<15119728-7a22-4e2c-8716-9b0c9def24ae@kernel.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.46 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.96 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_DKIM_ALLOW(-0.20)[samsung.com:s=mail20170921];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	DMARC_POLICY_ALLOW(0.00)[linaro.org,none];
-	FROM_HAS_DN(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[samsung.com,none];
+	TAGGED_FROM(0.00)[bounces-258408-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258407-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	DKIM_TRACE(0.00)[samsung.com:+];
+	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andre.draszik@linaro.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	FROM_NEQ_ENVFROM(0.00)[pritam.sutar@samsung.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 27C60677C2
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: 0635F67827
 X-Rspamd-Action: no action
 
-On Thu, 2026-01-22 at 12:47 +0000, Andr=C3=A9 Draszik wrote:
-> Hi Amit,
->=20
-> Thanks for your patches, just a few minor comments below.
->=20
-> On Wed, 2026-01-21 at 00:59 +0000, Amit Sunil Dhamne via B4 Relay wrote:
-> > From: Amit Sunil Dhamne <amitsd@google.com>
-> >=20
-> > Add support for MAX77759 battery charger driver. This is a 4A 1-Cell
-> > Li+/LiPoly dual input switch mode charger. While the device can support
-> > USB & wireless charger inputs, this implementation only supports USB
-> > input. This implementation supports both buck and boost modes.
-> >=20
-> > Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
-> > ---
-> > =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 6 +
-> > =C2=A0drivers/power/supply/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 11 +
-> > =C2=A0drivers/power/supply/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
-> > =C2=A0drivers/power/supply/max77759_charger.c | 737 +++++++++++++++++++=
-+++++++++++++
-> > =C2=A04 files changed, 755 insertions(+)
-> >=20
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 0d044a58cbfe0f2b97f3682a86708e1ece108e9f..38354964a85c34611b1b54e=
-20651b360f3b9c11e 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -15546,6 +15546,12 @@ F:	drivers/mfd/max77759.c
-> > =C2=A0F:	drivers/nvmem/max77759-nvmem.c
-> > =C2=A0F:	include/linux/mfd/max77759.h
-> > =C2=A0
-> > +MAXIM MAX77759 BATTERY CHARGER DRIVER
-> > +M:	Amit Sunil Dhamne <amitsd@google.com>
-> > +L:	linux-kernel@vger.kernel.org
-> > +S:	Maintained
-> > +F:	drivers/power/supply/max77759_charger.c
-> > +
-> > =C2=A0MAXIM MAX77802 PMIC REGULATOR DEVICE DRIVER
-> > =C2=A0M:	Javier Martinez Canillas <javier@dowhile0.org>
-> > =C2=A0L:	linux-kernel@vger.kernel.org
-> > diff --git a/drivers/power/supply/Kconfig b/drivers/power/supply/Kconfi=
-g
-> > index 92f9f7aae92f249aa165e68dbcd4cebb569286ea..3a2cdb95c98e44324151ac2=
-b86d740ae2923ee77 100644
-> > --- a/drivers/power/supply/Kconfig
-> > +++ b/drivers/power/supply/Kconfig
-> > @@ -631,6 +631,17 @@ config CHARGER_MAX77705
-> > =C2=A0	help
-> > =C2=A0	=C2=A0 Say Y to enable support for the Maxim MAX77705 battery ch=
-arger.
-> > =C2=A0
-> > +config CHARGER_MAX77759
-> > +	tristate "Maxim MAX77759 battery charger driver"
-> > +	depends on MFD_MAX77759 && REGULATOR
-> > +	default MFD_MAX77759
-> > +	help
-> > +	=C2=A0 Say M or Y here to enable the MAX77759 battery charger. MAX777=
-59
-> > +	=C2=A0 charger is a function of the MAX77759 PMIC. This is a dual inp=
-ut
-> > +	=C2=A0 switch-mode charger. This driver supports buck and OTG boost m=
-odes.
-> > +
-> > +	=C2=A0 If built as a module, it will be called max77759_charger.
-> > +
-> > =C2=A0config CHARGER_MAX77976
-> > =C2=A0	tristate "Maxim MAX77976 battery charger driver"
-> > =C2=A0	depends on I2C
-> > diff --git a/drivers/power/supply/Makefile b/drivers/power/supply/Makef=
-ile
-> > index 4b79d5abc49a7fd1e37a26d0c89f94d9fe3a916f..6af905875ad5e3b393a7030=
-405355b9a975870f6 100644
-> > --- a/drivers/power/supply/Makefile
-> > +++ b/drivers/power/supply/Makefile
-> > @@ -128,3 +128,4 @@ obj-$(CONFIG_CHARGER_SURFACE)	+=3D surface_charger.=
-o
-> > =C2=A0obj-$(CONFIG_BATTERY_UG3105)	+=3D ug3105_battery.o
-> > =C2=A0obj-$(CONFIG_CHARGER_QCOM_SMB2)	+=3D qcom_smbx.o
-> > =C2=A0obj-$(CONFIG_FUEL_GAUGE_MM8013)	+=3D mm8013.o
-> > +obj-$(CONFIG_CHARGER_MAX77759)	+=3D max77759_charger.o
-> > diff --git a/drivers/power/supply/max77759_charger.c b/drivers/power/su=
-pply/max77759_charger.c
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..34b5ea0967eb7b4716e81ee=
-1a55227ac872493b0
-> > --- /dev/null
-> > +++ b/drivers/power/supply/max77759_charger.c
-> > @@ -0,0 +1,737 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * max77759_charger.c - Battery charger driver for MAX77759 charger de=
-vice.
-> > + *
-> > + * Copyright 2025 Google LLC.
-> > + */
-> > +
-> > +#include <linux/bitfield.h>
-> > +#include <linux/cleanup.h>
-> > +#include <linux/device.h>
-> > +#include <linux/devm-helpers.h>
-> > +#include <linux/interrupt.h>
-> > +#include <linux/irq.h>
-> > +#include <linux/math64.h>
-> > +#include <linux/mfd/max77759.h>
-> > +#include <linux/module.h>
-> > +#include <linux/mod_devicetable.h>
-> > +#include <linux/mutex.h>
-> > +#include <linux/of.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/power_supply.h>
-> > +#include <linux/regmap.h>
-> > +#include <linux/regulator/driver.h>
-> > +#include <linux/string_choices.h>
-> > +
-> > +/* Default values for Fast Charge Current & Float Voltage */
-> > +#define CHG_CC_DEFAULT_UA			2266770
-> > +#define CHG_FV_DEFAULT_MV			4300
-> > +
-> > +#define FOREACH_IRQ(S)			\
-> > +	S(AICL),			\
-> > +	S(CHGIN),			\
-> > +	S(CHG),				\
-> > +	S(INLIM),			\
-> > +	S(BAT_OILO),			\
-> > +	S(CHG_STA_CC),			\
-> > +	S(CHG_STA_CV),			\
-> > +	S(CHG_STA_TO),			\
-> > +	S(CHG_STA_DONE)
-> > +
-> > +#define GENERATE_ENUM(e)		e
-> > +#define GENERATE_STRING(s)		#s
-> > +
-> > +enum {
-> > +	FOREACH_IRQ(GENERATE_ENUM)
-> > +};
-> > +
-> > +static const char *const chgr_irqs_str[] =3D {
-> > +	FOREACH_IRQ(GENERATE_STRING)
-> > +};
-> > +
-> > +#define NUM_IRQS			ARRAY_SIZE(chgr_irqs_str)
-> > +
-> > +struct max77759_charger {
-> > +	struct device *dev;
-> > +	struct regmap *regmap;
-> > +	struct power_supply *psy;
-> > +	struct regulator_dev *chgin_otg_rdev;
-> > +	struct notifier_block nb;
-> > +	struct power_supply *tcpm_psy;
-> > +	struct work_struct psy_work;
-> > +	int irqs[NUM_IRQS];
-> > +	struct mutex lock; /* protects the state below */
-> > +	enum max77759_chgr_mode mode;
-> > +};
-> > +
-> > +static inline int regval_to_val(int reg, int reg_offset, int step, int=
- minval)
-> > +{
-> > +	return ((reg - reg_offset) * step) + minval;
-> > +}
-> > +
-> > +static inline int val_to_regval(int val, int minval, int step, int reg=
-_offset)
-> > +{
-> > +	s64 dividend;
-> > +
-> > +	if (unlikely(step =3D=3D 0))
-> > +		return reg_offset;
->=20
-> Does it really make an impact on performance to specify unlikely? Also, I=
- seem to
-> remember that the if branch is treated as unlikely anyway, but can't find=
- any hard
-> evidence on that right now.
->=20
-> > +
-> > +	dividend =3D (s64)val - minval;
-> > +	return DIV_S64_ROUND_CLOSEST(dividend, step) + reg_offset;
-> > +}
->=20
-> For these two functions above, have you considered using the APIs from
-> include/linux/linear_range.h instead of duplicating in this driver? The
-> implementations of the above match linear_range_get_value() and
-> linear_range_get_selector_low() quite nicely.
->=20
-> > +
-> > +static inline int unlock_prot_regs(struct max77759_charger *chg, bool =
-unlock)
-> > +{
-> > +	return regmap_update_bits(chg->regmap, MAX77759_CHGR_REG_CHG_CNFG_06,
-> > +				=C2=A0 MAX77759_CHGR_REG_CHG_CNFG_06_CHGPROT, unlock
-> > +				=C2=A0 ? MAX77759_CHGR_REG_CHG_CNFG_06_CHGPROT : 0);
-> > +}
-> > +
->=20
-> [...]
->=20
-> > +static irqreturn_t irq_handler(int irq, void *data)
-> > +{
-> > +	struct max77759_charger *chg =3D data;
-> > +	struct device *dev =3D chg->dev;
-> > +	int i;
-> > +
-> > +	for (i =3D 0; i < NUM_IRQS && chg->irqs[i] !=3D irq; i++)
-> > +		;
-> > +
-> > +	if (i =3D=3D NUM_IRQS) {
-> > +		dev_err(dev, "Unable to handle irq=3D%d", irq);
-> > +		return IRQ_NONE;
-> > +	} else if (i =3D=3D BAT_OILO) {
-> > +		dev_warn(dev, "Battery over-current threshold crossed");
-> > +	}
->=20
-> Generally, no 'else' is required after return.
->=20
-> > +
-> > +	power_supply_changed(chg->psy);
-> > +	return IRQ_HANDLED;
-> > +}
-> > +
->=20
-> [...]
->=20
-> > +static void psy_work_item(struct work_struct *work)
-> > +{
-> > +	struct max77759_charger *chg =3D
-> > +		container_of(work, struct max77759_charger, psy_work);
-> > +	union power_supply_propval current_limit, online;
-> > +	int ret;
-> > +
-> > +	ret =3D power_supply_get_property(chg->tcpm_psy,
-> > +					POWER_SUPPLY_PROP_CURRENT_MAX,
-> > +					&current_limit);
-> > +	if (ret) {
-> > +		dev_err(chg->dev,
-> > +			"Failed to get CURRENT_MAX psy property, ret=3D%d",
-> > +			ret);
-> > +		return;
-> > +	}
-> > +
-> > +	ret =3D power_supply_get_property(chg->tcpm_psy, POWER_SUPPLY_PROP_ON=
-LINE,
-> > +					&online);
-> > +	if (ret) {
-> > +		dev_err(chg->dev,
-> > +			"Failed to get ONLINE psy property, ret=3D%d",
-> > +			ret);
-> > +		return;
-> > +	}
-> > +
-> > +	if (online.intval && current_limit.intval) {
-> > +		ret =3D set_input_current_limit(chg, current_limit.intval);
-> > +		if (ret)
-> > +			dev_err(chg->dev,
-> > +				"Unable to set current limit, ret=3D%d", ret);
-> > +
-> > +		charger_set_mode(chg, MAX77759_CHGR_MODE_CHG_BUCK_ON);
-> > +	} else {
-> > +		charger_set_mode(chg, MAX77759_CHGR_MODE_OFF);
-> > +	}
->=20
-> For all the possible errors in this function, should the driver try a bit
-> harder, even if unlikely to occur? What if the current limit needed to be
-> reduced, e.g. due to thermal or any other reasons?
->=20
-> Could rescheduling the work be something to consider?
->=20
-> > +}
-> > +
-> > +static int psy_changed(struct notifier_block *nb, unsigned long evt, v=
-oid *data)
-> > +{
-> > +	struct max77759_charger *chg =3D container_of(nb, struct max77759_cha=
-rger,
-> > +						=C2=A0=C2=A0=C2=A0 nb);
-> > +	const char *psy_name =3D "tcpm-source";
->=20
-> This can be static const char.
->=20
-> > +	struct power_supply *psy =3D data;
-> > +
-> > +	if (!strnstr(psy->desc->name, psy_name, strlen(psy_name)) ||
-> > +	=C2=A0=C2=A0=C2=A0 evt !=3D PSY_EVENT_PROP_CHANGED)
-> > +		return NOTIFY_OK;
-> > +
-> > +	chg->tcpm_psy =3D psy;
-> > +	schedule_work(&chg->psy_work);
-> > +
-> > +	return NOTIFY_OK;
-> > +}
-> > +
-> > +static void max_tcpci_unregister_psy_notifier(void *nb)
-> > +{
-> > +	power_supply_unreg_notifier(nb);
-> > +}
-> > +
-> > +static int max77759_charger_probe(struct platform_device *pdev)
-> > +{
-> > +	struct regulator_config chgin_otg_reg_cfg;
-> > +	struct power_supply_config psy_cfg;
-> > +	struct device *dev =3D &pdev->dev;
-> > +	struct max77759_charger *chg;
-> > +	int ret;
-> > +
-> > +	device_set_of_node_from_dev(dev, dev->parent);
-> > +	chg =3D devm_kzalloc(dev, sizeof(*chg), GFP_KERNEL);
-> > +	if (!chg)
-> > +		return -ENOMEM;
-> > +
-> > +	platform_set_drvdata(pdev, chg);
-> > +	chg->dev =3D dev;
-> > +	chg->regmap =3D dev_get_regmap(dev->parent, "charger");
-> > +	if (!chg->regmap)
-> > +		return dev_err_probe(dev, -ENODEV, "Missing regmap");
-> > +
-> > +	ret =3D devm_mutex_init(dev, &chg->lock);
-> > +	if (ret)
-> > +		return dev_err_probe(dev, ret, "Failed to initialize lock");
-> > +
-> > +	psy_cfg.fwnode =3D dev_fwnode(dev);
-> > +	psy_cfg.drv_data =3D chg;
-> > +	chg->psy =3D devm_power_supply_register(dev, &max77759_charger_desc,
-> > +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &psy_cfg);
-> > +	if (IS_ERR(chg->psy))
-> > +		return dev_err_probe(dev, -EPROBE_DEFER,
-> > +				=C2=A0=C2=A0=C2=A0=C2=A0 "Failed to register psy, ret=3D%ld",
-> > +				=C2=A0=C2=A0=C2=A0=C2=A0 PTR_ERR(chg->psy));
-> > +
-> > +	ret =3D max77759_charger_init(chg);
-> > +	if (ret)
-> > +		return dev_err_probe(dev, ret,
-> > +				=C2=A0=C2=A0=C2=A0=C2=A0 "Failed to initialize max77759 charger");
-> > +
-> > +	chgin_otg_reg_cfg.dev =3D dev;
-> > +	chgin_otg_reg_cfg.driver_data =3D chg;
-> > +	chgin_otg_reg_cfg.of_node =3D dev_of_node(dev);
-> > +	chg->chgin_otg_rdev =3D devm_regulator_register(dev, &chgin_otg_reg_d=
-esc,
-> > +						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &chgin_otg_reg_cfg);
-> > +	if (IS_ERR(chg->chgin_otg_rdev))
-> > +		return dev_err_probe(dev, PTR_ERR(chg->chgin_otg_rdev),
-> > +				=C2=A0=C2=A0=C2=A0=C2=A0 "Failed to register chgin otg regulator")=
-;
-> > +
-> > +	ret =3D devm_work_autocancel(dev, &chg->psy_work, psy_work_item);
-> > +	if (ret)
-> > +		return dev_err_probe(dev, ret, "Failed to initialize psy work");
-> > +
-> > +	chg->nb.notifier_call =3D psy_changed;
-> > +	ret =3D power_supply_reg_notifier(&chg->nb);
-> > +	if (ret)
-> > +		return dev_err_probe(dev, ret,
-> > +				=C2=A0=C2=A0=C2=A0=C2=A0 "Unable to register psy notifier");
-> > +
-> > +	ret =3D devm_add_action_or_reset(dev, max_tcpci_unregister_psy_notifi=
-er,
-> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &chg->nb);
-> > +	if (ret)
-> > +		return dev_err_probe(dev, ret,
-> > +				=C2=A0=C2=A0=C2=A0=C2=A0 "Failed to add devm action to unregister =
-psy notifier");
-> > +
-> > +	return max77759_init_irqhandler(chg);
-> > +}
-> > +
-> > +static const struct platform_device_id max77759_charger_id[] =3D {
-> > +	{"max77759-charger",},
->=20
-> Minor formatting nit - I believe common practice is to use named initiali=
-zers:
->=20
-> +	{ .compatible =3D "max77759-charger", },
+Hi Krzysztof,
 
-.name of course for platform_device_id
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzk=40kernel.org>
+> Sent: 22 January 2026 04:10 PM
+> To: Pritam Manohar Sutar <pritam.sutar=40samsung.com>; robh=40kernel.org;
+> krzk+dt=40kernel.org; conor+dt=40kernel.org; alim.akhtar=40samsung.com
+> Cc: devicetree=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org;=
+ linux-
+> samsung-soc=40vger.kernel.org; linux-kernel=40vger.kernel.org;
+> rosa.pila=40samsung.com; dev.tailor=40samsung.com; faraz.ata=40samsung.co=
+m;
+> muhammed.ali=40samsung.com; selvarasu.g=40samsung.com
+> Subject: Re: =5BPATCH 0/3=5D Add and enable USB nodes for ExynosAutov920 =
+SoC
+>=20
+> On 22/01/2026 11:31, Pritam Manohar Sutar wrote:
+> > Hi All,
+> >
+> >> -----Original Message-----
+> >> From: Pritam Manohar Sutar <pritam.sutar=40samsung.com>
+> >> Sent: 24 October 2025 05:19 PM
+> >> To: robh=40kernel.org; krzk+dt=40kernel.org; conor+dt=40kernel.org;
+> >> alim.akhtar=40samsung.com
+> >> Cc: devicetree=40vger.kernel.org; linux-arm-kernel=40lists.infradead.o=
+rg;
+> >> linux- samsung-soc=40vger.kernel.org; linux-kernel=40vger.kernel.org;
+> >> rosa.pila=40samsung.com; dev.tailor=40samsung.com;
+> faraz.ata=40samsung.com;
+> >> muhammed.ali=40samsung.com; selvarasu.g=40samsung.com;
+> >> pritam.sutar=40samsung.com
+> >> Subject: =5BPATCH 0/3=5D Add and enable USB nodes for ExynosAutov920 S=
+oC
+> >>
+> >> This SoC has 2 USB typeC and 2 typeA ports those are DWC3 DRD
+> >> controllers and amoung them, one is USB3.1 DRD combo phy and three
+> >> USB2.0 phy controllers. This patchset adds and enables USB and
+> >> USB-PHY nodes in dts.
+> >>
+> >> PMIC driver is not implmented yet, we rely on USB LDOs being enabled
+> >> by the bootloader and used dummy regulators for now.
+> >>
+> >> To drive vbus for host mode, it needs GPIO pin to enable vbus regulato=
+r.
+> >> GPIO expander is present in the dts, we used it to enable the vbus
+> >> regulator using GPIO.
+> >>
+> >> USB ports are configured as OTG, and default mode is configured as
+> peripheral.
+> >> These configurations might be changed based on requirements.
+> >>
+> >> This patchset has dependancy on schema and driver implementation=5B1=
+=5D
+> >> and role switch control from userspace=5B2=5D patches.
+> >> =5B1=5D: https://lore.kernel.org/linux-phy/20251010070912.3758334-1-
+> >> pritam.sutar=40samsung.com/
+> >> =5B2=5D: https://lore.kernel.org/linux-usb/20251024085455.789555-1-
+> >> pritam.sutar=40samsung.com/
+>=20
+> This wasn't even a dependency...
+>=20
+> >
+> > Above dependent patches are merged, can you please review the patchset?
+>=20
+> I closed my tree few days ago, so next cycle, but please resend, because =
+this is
+> three months old now. I dropped it from my queue long time ago.
 
-A.
+Noted and resent same patch series as v2 patchset.=20
+Link for v2: https://lore.kernel.org/linux-devicetree/20260122130721.205664=
+-1-pritam.sutar=40samsung.com/
 
 >=20
-> > +	{ }
-> > +};
-> > +MODULE_DEVICE_TABLE(platform, max77759_charger_id);
-> > +
-> > +static struct platform_driver max77759_charger_driver =3D {
-> > +	.driver =3D {
-> > +		.name =3D "max77759-charger",
->=20
-> Can it be async, or are there issues with that?
->=20
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 .probe_type =3D PROBE_PREFER_ASYNCHRONOUS,
->=20
->=20
-> Thanks again Amit!
->=20
-> Cheers,
-> Andre'
->=20
-> > +	},
-> > +	.probe =3D max77759_charger_probe,
-> > +	.id_table =3D max77759_charger_id,
-> > +};
-> > +module_platform_driver(max77759_charger_driver);
-> > +
-> > +MODULE_AUTHOR("Amit Sunil Dhamne <amitsd@google.com>");
-> > +MODULE_DESCRIPTION("Maxim MAX77759 charger driver");
-> > +MODULE_LICENSE("GPL");
+> Best regards,
+> Krzysztof
+
+Thank you.
+
+Regards,
+Pritam
+
 
