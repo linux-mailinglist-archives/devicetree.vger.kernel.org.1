@@ -1,479 +1,255 @@
-Return-Path: <devicetree+bounces-258216-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258217-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4JDREpjHcWknMAAAu9opvQ
-	(envelope-from <devicetree+bounces-258216-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 07:45:44 +0100
+	id 9t3FHqHJcWlBMQAAu9opvQ
+	(envelope-from <devicetree+bounces-258217-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 07:54:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id B66F262549
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 07:45:43 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 131206259A
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 07:54:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3319D4E36F2
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 06:45:41 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4B9E3385AE8
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 06:54:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0178833438D;
-	Thu, 22 Jan 2026 06:45:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A86C43D668E;
+	Thu, 22 Jan 2026 06:54:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dvZbpRy6";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="MCN0WUjX"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="HPljRIDc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8115D335573
-	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 06:45:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 224A53469E4;
+	Thu, 22 Jan 2026 06:53:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769064333; cv=none; b=lhl1LrVaxXkZisbbI3PHhc8OThu+uHmwdusFCyjrYPcA0AVBcD3PccTg+sN+S8F1divFegY7v+GZcWmVp8dnxTNCIoIP9ilu9zazuu2elrx3El1PGBCAK8nM1vdc+E/h5w7xPl5qhl7Mus004gX1yWgUIZKJ+7w5wVhG0IwBEis=
+	t=1769064846; cv=none; b=G43cNL/QK05cqNp1Lomet7if43n+UIeTQIhnUPYE0phjpsGpA5wzC4Yag8EDyBZVqDXWzq4pxjl1PC1YFtVX/f8yO+gLGLCC0LK2cohP5egTxzHZg9gTY627AZG7KABxG/OjlP+FCTVOTj16/tFjKoi2bvsptPcU8NtjDGDIeSE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769064333; c=relaxed/simple;
-	bh=h9IappXemjSPuKBkHpH8jOqmBX+lqCFBU35ibbnL74g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ENSWdAXxIlBdQg2ghmD33dNK7C9jQb4nHdhfwlLd89eK4cC7qnEk6WxwIdmZVRF1R02HPG6zAHyeOEi1gemN/GW052/Gi+xiT/oTyMJ4Zva4iOAnNONXTYstCjg6gDMop5hOwnQD0H7osleo0TDSZzJjeoVTmJX9NxyssOot3Ys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dvZbpRy6; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=MCN0WUjX; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60LLOi9Y107530
-	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 06:45:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	c3hWvxUHhpF5011W4/euO3pCXAEb/R4xavbCazJ9uN0=; b=dvZbpRy66RxDOhP5
-	TMu5WOwfxbcTnhgZ2VbpDnKxvEBQBtMkCto3DakoJeg/7lMZ/hXlqOiYyXdAQCUg
-	L1PU1MTZB36oqs/w8AmHr4OrJIhnjicziIBhHUg1lW32E4n91PH9HFjBl4CTWniz
-	0BxA3KYP661iqMFNlEXWWmFzhrErr4tRhfUiaEDWmk223RnJSPEwkQL+WZKMRKvA
-	lyE4c3+/mlf1ntKWF9x3TmDc3HgarBw8u9lQdpnVQ1DL9hFnCkn8fHZa2ubCn2+H
-	OZH8EDXhPIaqTwE6OtEyAISb2LYeW8ImLlmaHa4KcN5pahBXUl2vSvy6tpCHM6IF
-	KBhjxQ==
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bu6pgsc9e-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 06:45:25 +0000 (GMT)
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-82181fdf3d5so388581b3a.0
-        for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 22:45:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769064324; x=1769669124; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=c3hWvxUHhpF5011W4/euO3pCXAEb/R4xavbCazJ9uN0=;
-        b=MCN0WUjXUTMq4+OkPU9wMTfiY5VF9yePODrozEFNxKfrRNU+uuvBDL0r96wRKjD3Oq
-         q5WKhRz+MdbyrIzXT/VZzTKO1Uv/2JbF3/RWZyn635eCPPLNV+sRGdp4fqffqSaz7Clw
-         WCs0cAhX8ltUDPLaMiAdG6S0uhOcniGoRQWgnYc15BdC5wSUWsrCaXICsX4qlYENprly
-         d5oeFYDTKHOwP/rqHdH1boXLQ/vO/bSkh3Xd0qzmke01+SOXRzrPBOGf1Q7Wzwe0nXfz
-         jos1WBaqa5xmvjH6+I0uVD67VueNnCMi6XFN++KOZDFO5yvQNP9JIEqK++JCxG/Nt8hE
-         K/HQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769064324; x=1769669124;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=c3hWvxUHhpF5011W4/euO3pCXAEb/R4xavbCazJ9uN0=;
-        b=iJUQ0btSI+tayNXrAnfs8AJBgW2Rt7u0PfUiU2QyrE7W9gwl+7OePWNnOBH92xa47w
-         OAazxOd4zH+Kkcq/0N2pNGboGlPxGlDCcezNUYmEBHC/WyBP3QWE8iYSYXQ1e/DU1xYw
-         TCP3HCiO7wQAkdQIXYSfmwyt7Cj8NBg1nUjtYfLELE+xmkUsr0/+ctZZt6DWTpYJ3T1o
-         qQEZzvNU14myZJNc0hqNMsqTBYfeofQkUbDNVcugqais0R1mU8DNIh8mu5CTY9bSe9vJ
-         kznCnLgfVkJu+IBGHuvqRHpH5YvDUsU7UIxHZ7YPpxYIwUDz/s7JbjLjrmFiBsKaN79Z
-         5MTg==
-X-Forwarded-Encrypted: i=1; AJvYcCXZWd4ct9zMzgM50KA1RTp80vqIJS/r1+Uulcqp7CiLjzfdPzTXkT2WcM642JWNnWwSpssF0VLgWTdr@vger.kernel.org
-X-Gm-Message-State: AOJu0YyIJyV3eZj781rCZVzc8yCTAdcvQ5wmufb0ezCkwmLEBnJwMfSp
-	Y03bs5y5wqdxeNagBJmYpBigrfRk8V5w529NDWlzRp1i46yfVvgkCzoYSUI2k9KSYFD+0gRV+SQ
-	lK/6SI9ACGITh8eJRtYTZC/Uha/WHTodDEbgOQgxxl90hq98iIWvcb1LTc0o02Kpi
-X-Gm-Gg: AZuq6aK0rS5CoRhxTRZFqLL9kM+9E92LoirslcDiZL+/CuF+IZjyjUM/fVB4G6GJ4vV
-	0ggIGYo3atWH5HpVQnHGnafp0gDdXHG5tuch7hQE1uh0P/M1WMV/KNp4GcXOU7erur/cs1x6Qmi
-	HJS28MTbITTABX2TJTwgLvxyEVkxAFTh8cWWjmU+U7c+PDt4mprP0Pf7FaGNiAPt7bnVe5REq+e
-	WKpU77cq6KLFkJa5VHXCUM0S+EqJj2wTUdbhrefjHh/Etdo9rPjn1faSCn1Hrvd5R63G65bL9Ev
-	ROWBj5sp/7aMGBz2W9o2qcgQZxnndYxG52fO1cg4LnhwpB6za1zET45z6msIk5LblPQebvNcbfF
-	27Hiq8d8vm7EDtRSD0POqOXhOCpg2OoyRJ0tW9x6XolW6pz+6JazukAlSlYArFdaFE6ggnrUw8i
-	3c5ykSV9TTun5edf8Sth8Hvk09kKVG
-X-Received: by 2002:a05:6a00:3a0d:b0:81f:4346:6870 with SMTP id d2e1a72fcca58-81f9fce68ccmr19457687b3a.28.1769064324326;
-        Wed, 21 Jan 2026 22:45:24 -0800 (PST)
-X-Received: by 2002:a05:6a00:3a0d:b0:81f:4346:6870 with SMTP id d2e1a72fcca58-81f9fce68ccmr19457646b3a.28.1769064323853;
-        Wed, 21 Jan 2026 22:45:23 -0800 (PST)
-Received: from [10.190.200.191] (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-823098cb1basm751620b3a.32.2026.01.21.22.45.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Jan 2026 22:45:23 -0800 (PST)
-Message-ID: <d3ec2d98-eb43-4de8-a356-006f0df43c54@oss.qualcomm.com>
-Date: Thu, 22 Jan 2026 12:15:17 +0530
+	s=arc-20240116; t=1769064846; c=relaxed/simple;
+	bh=db7aoSPMOdaAxKR2GkeLzT3tSNPa5SqmM9lF8NleXV0=;
+	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
+	 To:Date:Message-ID; b=GyAPgOWuxwmO1DsRZKcmuC+R9BUQ2eN8fDWZrLkiewzfjiTTLUfSHRTNw3OtrynAG1G7Kzn3NCx9KYJi4dF7rb0OEveJn01ya9JD89vQatl5pVajc9NldD0qErV0DtLhAhFkof29T/ecZTwfZnH7v7MlylOlfI3fiSNOlIgxM8w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=HPljRIDc; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from mail.ideasonboard.com (unknown [IPv6:2401:4900:1c30:59ca:af14:f475:ddf6:11d2])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id B6818324;
+	Thu, 22 Jan 2026 07:53:22 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1769064803;
+	bh=db7aoSPMOdaAxKR2GkeLzT3tSNPa5SqmM9lF8NleXV0=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=HPljRIDc10KQK3rq4rmZ7HSzXylDHxmqDXqWjygTikcwYWIDLnN2KUz+rU2xrqwap
+	 Pcsyiw3IqPeMtkgNa65Bo9G49iueKTeGHlWKsCQdCOrCIPgufmeu8uIM66y8YF1Mxk
+	 VH0NtDdca51kkbGLolZn54rHew0CWkSk/bsCnsPU=
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/4] arm64: dts: qcom: Introduce Glymur base dtsi
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>,
-        Maulik Shah <maulik.shah@oss.qualcomm.com>,
-        Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
-        Taniya Das <taniya.das@oss.qualcomm.com>,
-        Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
-        Qiang Yu <qiang.yu@oss.qualcomm.com>,
-        Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>,
-        Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
-        Abel Vesa <abelvesa@kernel.org>
-References: <20260122-upstream_v3_glymur_introduction-v5-0-8ba76c354e9a@oss.qualcomm.com>
- <20260122-upstream_v3_glymur_introduction-v5-3-8ba76c354e9a@oss.qualcomm.com>
- <pmkxaslxodh2cnxbxy6wnyalb4zl64xek5l4cfhtw3k3ywatfk@hyzhbh7wzzji>
-Content-Language: en-US
-From: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-In-Reply-To: <pmkxaslxodh2cnxbxy6wnyalb4zl64xek5l4cfhtw3k3ywatfk@hyzhbh7wzzji>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIyMDA0MyBTYWx0ZWRfX+igKvsd7cbBA
- YdYAXUXxFCnkXBWxq/aoIKKFKQlwrwc2O3mXwa1rwYQakgd7nrvJGl+EuHleJInDsM00qaU2Orq
- iu/oY9DMDNq6LlNMDqz5Ysb+YDpQzPKYY4btbfHzoJgIl1OVlraCSVDWZQKxzkAA5sS60TCss7C
- CSReffc3TUj2pvCP8EGigIyGmMzfVsNAX4+P/LEXQZAxnew0Al1nRzfW/10oF8r33XRXhvObOBt
- Pn02+qUOYMReLAt5auSFlNwfVdRTq2FgPZ6CiMStlb2qA+3VyrcYLjVSapCQbg89lT/4Xj86li8
- a9nyVfaqAjeHQltmwJECV6da/hnowvXUlxqtabpTA8KqIqNow7f1e+Y7qUEvpO10xv8p1La5bX/
- eaB5InbQdfWVZ/V2l53XJJy8XZz8Opvb/zYIhUK7vPFCg0toHFFodtg0OiDfmjVJX7Ju8e+ZSvX
- qIqECzlkn0+VC/pRXhA==
-X-Authority-Analysis: v=2.4 cv=OZGVzxTY c=1 sm=1 tr=0 ts=6971c785 cx=c_pps
- a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8
- a=HCOLv22quEAogWv70kkA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=OpyuDcXvxspvyRM73sMx:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: i1nlAliimZgzjMhz_GP94B_YGaj2-pZN
-X-Proofpoint-GUID: i1nlAliimZgzjMhz_GP94B_YGaj2-pZN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
- definitions=2026-01-21_04,2026-01-20_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 lowpriorityscore=0 malwarescore=0 impostorscore=0 adultscore=0
- suspectscore=0 clxscore=1015 phishscore=0 spamscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601220043
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20260121105232.GD382676@killaraus>
+References: <20251230083220.2405247-1-r-donadkar@ti.com> <20251230083220.2405247-7-r-donadkar@ti.com> <ee8152c0-daf5-48dd-a2d1-2fafcfeca797@ideasonboard.com> <176845899846.9154.18009615769864845946@freya> <d9f3335a-d8f4-40cc-b4c4-a93b797a89fd@ideasonboard.com> <20260120232521.GE173080@killaraus> <8b8e603f-5d04-44ce-91ab-85df8fe0ae94@ideasonboard.com> <20260121105232.GD382676@killaraus>
+Subject: Re: [PATCH v9 06/19] media: ti: j721e-csi2rx: add a subdev for the core device
+From: Jai Luthra <jai.luthra@ideasonboard.com>
+Cc: Sakari Ailus <sakari.ailus@linux.intel.com>, y-abhilashchandra@ti.com, devarsht@ti.com, s-jain1@ti.com, vigneshr@ti.com, mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, p.zabel@pengutronix.de, conor+dt@kernel.org, hverkuil-cisco@xs4all.nl, changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com, sjoerd@collabora.com, dan.carpenter@linaro.org, hverkuil+cisco@kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org, jai.luthra@linux.dev, mripard@kernel.org, Rishikesh Donadkar <r-donadkar@ti.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Date: Thu, 22 Jan 2026 12:23:50 +0530
+Message-ID: <176906483058.9154.2619844247504630480@freya>
+User-Agent: alot/0.12.dev62+gb9d6144a6
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.96 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_POLICY_ALLOW(0.00)[qualcomm.com,reject];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	TAGGED_FROM(0.00)[bounces-258216-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:helo,dfw.mirrors.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[pankaj.patil@oss.qualcomm.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-258217-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	FREEMAIL_CC(0.00)[linux.intel.com,ti.com,kernel.org,pengutronix.de,xs4all.nl,starfivetech.com,collabora.com,linaro.org,vger.kernel.org,linux.dev];
+	DKIM_TRACE(0.00)[ideasonboard.com:+];
 	TO_DN_SOME(0.00)[];
+	R_SPF_SOFTFAIL(0.00)[~all];
 	PRECEDENCE_BULK(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_SPF_SOFTFAIL(0.00)[~all:c];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: B66F262549
+	FROM_NEQ_ENVFROM(0.00)[jai.luthra@ideasonboard.com,devicetree@vger.kernel.org];
+	DMARC_POLICY_ALLOW(0.00)[ideasonboard.com,none];
+	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
+	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns,ideasonboard.com:dkim,ti.com:email]
+X-Rspamd-Queue-Id: 131206259A
 X-Rspamd-Action: no action
 
-On 1/22/2026 6:52 AM, Dmitry Baryshkov wrote:
-> On Thu, Jan 22, 2026 at 12:05:13AM +0530, Pankaj Patil wrote:
->> Introduce the base device tree support for Glymur – Qualcomm's
->> next-generation compute SoC. The new glymur.dtsi describes the core SoC
->> components, including:
->>
->> - CPUs and CPU topology
->> - Interrupt controller and TLMM
->> - GCC,DISPCC and RPMHCC clock controllers
->> - Reserved memory and interconnects
->> - APPS and PCIe SMMU and firmware SCM
->> - Watchdog, RPMHPD, APPS RSC and SRAM
->> - PSCI and PMU nodes
->> - QUPv3 serial engines
->> - CPU power domains and idle states, plus SCMI/ SRAM pieces for CPU DVFS
->> - PDP0 mailbox, IPCC and AOSS
->> - Display clock controller
->> - SPMI PMIC arbiter with SPMI0/1/2 buses
->> - SMP2P nodes
->> - TSENS and thermal zones (8 instances, 92 sensors)
->>
->> Add dtsi files for PMH0101, PMK8850, PMCX0102, SMB2370, PMH0104,
->> PMH0110 along with temp-alarm and GPIO nodes needed on Glymur
->>
->> Enabled PCIe controllers and associated PHY to support boot to
->> shell with nvme storage,
->> List of PCIe instances enabled:
->>
->> - PCIe3b
->> - PCIe4
->> - PCIe5
->> - PCIe6
->>
->> Co-developed-by: Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
->> Signed-off-by: Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
->> Co-developed-by: Maulik Shah <maulik.shah@oss.qualcomm.com>
->> Signed-off-by: Maulik Shah <maulik.shah@oss.qualcomm.com>
->> Co-developed-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
->> Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
->> Co-developed-by: Taniya Das <taniya.das@oss.qualcomm.com>
->> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
->> Co-developed-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
->> Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
->> Co-developed-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
->> Signed-off-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
->> Co-developed-by: Abel Vesa <abel.vesa@linaro.org>
->> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
->> Co-developed-by: Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
->> Signed-off-by: Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
->> Co-developed-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
->> Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
->> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
->> ---
->>  arch/arm64/boot/dts/qcom/glymur.dtsi         | 6122 ++++++++++++++++++++++++++
->>  arch/arm64/boot/dts/qcom/pmcx0102.dtsi       |  107 +
->>  arch/arm64/boot/dts/qcom/pmh0101.dtsi        |   45 +
->>  arch/arm64/boot/dts/qcom/pmh0104-glymur.dtsi |   83 +
->>  arch/arm64/boot/dts/qcom/pmh0110-glymur.dtsi |   83 +
->>  arch/arm64/boot/dts/qcom/pmk8850.dtsi        |   70 +
->>  arch/arm64/boot/dts/qcom/smb2370.dtsi        |   45 +
->>  7 files changed, 6555 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/glymur.dtsi b/arch/arm64/boot/dts/qcom/glymur.dtsi
->> new file mode 100644
->> index 000000000000..c0ecc64202c7
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/glymur.dtsi
->> +
->> +		pmh0101-thermal {
-> 
-> Why do we have PMIC thermal zones as a part of SoC DTSI?
+Hi Laurent,
 
-There were comments on v3 about moving them to out of board dts,
-https://lore.kernel.org/all/aUko20ORsgrlZrIn@linaro.org/
-glymur-pmics.dtsi was dropped in v4, the changes were moved to glymur.dtsi
+Quoting Laurent Pinchart (2026-01-21 16:22:32)
+> On Wed, Jan 21, 2026 at 09:38:29AM +0200, Tomi Valkeinen wrote:
+> > On 21/01/2026 01:25, Laurent Pinchart wrote:
+> > > On Thu, Jan 15, 2026 at 02:56:21PM +0200, Tomi Valkeinen wrote:
+> > >> On 15/01/2026 08:36, Jai Luthra wrote:
+> > >>> Quoting Tomi Valkeinen (2026-01-14 20:51:49)
+> > >>>> On 30/12/2025 10:32, Rishikesh Donadkar wrote:
+> > >>>>> From: Jai Luthra <j-luthra@ti.com>
+> > >>>>>
+> > >>>>> With single stream capture, it was simpler to use the video devic=
+e as
+> > >>>>> the media entity representing the main TI CSI2RX device. Now with=
+ multi
+> > >>>>> stream capture coming into the picture, the model has shifted to =
+each
+> > >>>>> video device having a link to the main device's subdev. The routi=
+ng
+> > >>>>> would then be set on this subdev.
+> > >>>>>
+> > >>>>> Add this subdev, link each context to this subdev's entity and li=
+nk the
+> > >>>>> subdev's entity to the source. Also add an array of media pads. I=
+t will
+> > >>>>> have one sink pad and source pads equal to the number of contexts.
+> > >>>>>
+> > >>>>> Support the new enable_stream()/disable_stream() APIs in the subd=
+ev
+> > >>>>> instead of s_stream() hook.
+> > >>>>>
+> > >>>>> Reviewed-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+> > >>>>> Co-developed-by: Pratyush Yadav <p.yadav@ti.com>
+> > >>>>> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> > >>>>> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> > >>>>> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
+> > >>>>> ---
+> > >>>
+> > >>> [...]
+> > >>>
+> > >>>>> @@ -981,48 +1138,52 @@ static int ti_csi2rx_link_validate(struct =
+media_link *link)
+> > >>>>>       struct ti_csi2rx_ctx *ctx =3D container_of(vdev, struct ti_=
+csi2rx_ctx, vdev);
+> > >>>>>       struct ti_csi2rx_dev *csi =3D ctx->csi;
+> > >>>>>       struct v4l2_pix_format *csi_fmt =3D &ctx->v_fmt.fmt.pix;
+> > >>>>> -     struct v4l2_subdev_format source_fmt =3D {
+> > >>>>> -             .which  =3D V4L2_SUBDEV_FORMAT_ACTIVE,
+> > >>>>> -             .pad    =3D link->source->index,
+> > >>>>> -     };
+> > >>>>> +     struct v4l2_mbus_framefmt *format;
+> > >>>>> +     struct v4l2_subdev_state *state;
+> > >>>>>       const struct ti_csi2rx_fmt *ti_fmt;
+> > >>>>> -     int ret;
+> > >>>>> =20
+> > >>>>> -     ret =3D v4l2_subdev_call_state_active(csi->source, pad,
+> > >>>>> -                                         get_fmt, &source_fmt);
+> > >>>>> -     if (ret)
+> > >>>>> -             return ret;
+> > >>>>> +     state =3D v4l2_subdev_lock_and_get_active_state(&csi->subde=
+v);
+> > >>>>> +     format =3D v4l2_subdev_state_get_format(state, link->source=
+->index, 0);
+> > >>>>> +     v4l2_subdev_unlock_state(state);
+> > >>>>> =20
+> > >>>>> -     if (source_fmt.format.width !=3D csi_fmt->width) {
+> > >>>>> +     if (!format) {
+> > >>>>> +             dev_dbg(csi->dev,
+> > >>>>> +                     "Skipping validation as no format present o=
+n \"%s\":%u:0\n",
+> > >>>>> +                     link->source->entity->name, link->source->i=
+ndex);
+> > >>>>> +             return 0;
+> > >>>>
+> > >>>> Isn't this an error?
+> > >>>
+> > >>> Well, the j7 shim subdev introduced here has immutable and active l=
+inks to
+> > >>> all the video nodes, for each DMA channel (taken from DT), many of =
+which
+> > >>> may be unused for certain setups, and thus there might not be any v=
+alid
+> > >>> format on the subdev source pad corresponding to an unused video no=
+de.
+> > >>>
+> > >>> Jacopo had a similar comment on v2, see this discussion (grep for M=
+ali):
+> > >>> https://lore.kernel.org/linux-media/4mnlnsj4co3agvln4qsasmgvgwiyoo7=
+yu2h5wyh4rmzzafhm5u@avhnbw7iknms/
+> > >>>
+> > >>> I know other drivers use a different approach with mutable links, s=
+o it
+> > >>> would be good if you/Laurent/Sakari can give your opinions on if on=
+ly one
+> > >>> of these two approaches should be taken for multi-stream pipelines.
+> > >>
+> > >> I see.
+> > >>
+> > >> Well, I don't have a definite answer. With some thinking both options
+> > >> make certain sense. It makes sense to keep the links immutable and
+> > >> always enabled, as there's no configuration that can be done. On the
+> > >> other hand, it makes sense to require the unused links to be disable=
+d,
+> > >> as, well, they are not used.
+> > >=20
+> > > I'm not familiar with the implications this would have on this driver,
+> > > but generally speaking, if a stream is added to the media pipeline by
+> > > the pipeline build algorithm, then it is expected that applications
+> > > would have configured it correctly. Streams that are not used are
+> > > expected to be disabled if they would otherwise be added to the
+> > > pipeline.
+> >=20
+> > I think the thing here is that the driver creates immutable
+> > always-enabled media links between the videodevs and the first subdev.
+> > Then, say, if only one stream is being used, only one of those links is
+> > actually used, and for every other link the above check fails as there's
+> > no stream, so no format.
+> >=20
+> > In TI CAL driver the links were mutable, and unused links had to be
+> > disabled. There it made sense as the links had to be configurable (there
+> > were two PHYs). Here, there's no configuration needed, so immutable
+> > links make sense, but then they're enabled even when actually not used.
+>=20
+> If the routing table in the subdev does not contain any route that goes
+> towards a video node, then that video node should not be added to the
+> pipeline by the validation code, and no validation will be attempted. At
+> least that's the theory.
 
-> 
->> +			polling-delay-passive = <100>;
->> +			thermal-sensors = <&pmh0101_temp_alarm>;
->> +
->> +			trips {
->> +				trip0 {
->> +					temperature = <95000>;
->> +					hysteresis = <0>;
->> +					type = "passive";
->> +				};
->> +
->> +				trip1 {
->> +					temperature = <115000>;
->> +					hysteresis = <0>;
->> +					type = "critical";
->> +				};
->> +			};
->> +		};
->> +
->> +		pmcx0102-c0-thermal {
->> +			polling-delay-passive = <100>;
->> +			thermal-sensors = <&pmcx0102_c_e0_temp_alarm>;
->> +
->> +			trips {
->> +				trip0 {
->> +					temperature = <95000>;
->> +					hysteresis = <0>;
->> +					type = "passive";
->> +				};
->> +
->> +				trip1 {
->> +					temperature = <115000>;
->> +					hysteresis = <0>;
->> +					type = "critical";
->> +				};
->> +			};
->> +		};
->> +
->> +		pmcx0102-d0-thermal {
->> +			polling-delay-passive = <100>;
->> +			thermal-sensors = <&pmcx0102_d_e0_temp_alarm>;
->> +
->> +			trips {
->> +				trip0 {
->> +					temperature = <95000>;
->> +					hysteresis = <0>;
->> +					type = "passive";
->> +				};
->> +
->> +				trip1 {
->> +					temperature = <115000>;
->> +					hysteresis = <0>;
->> +					type = "critical";
->> +				};
->> +			};
->> +		};
->> +
->> +		pmcx0102-c1-thermal {
->> +			polling-delay-passive = <100>;
->> +			thermal-sensors = <&pmcx0102_c_e1_temp_alarm>;
->> +
->> +			trips {
->> +				trip0 {
->> +					temperature = <95000>;
->> +					hysteresis = <0>;
->> +					type = "passive";
->> +				};
->> +
->> +				trip1 {
->> +					temperature = <115000>;
->> +					hysteresis = <0>;
->> +					type = "critical";
->> +				};
->> +			};
->> +		};
->> +
->> +		pmcx0102-d1-thermal {
->> +			polling-delay-passive = <100>;
->> +			thermal-sensors = <&pmcx0102_d_e1_temp_alarm>;
->> +
->> +			trips {
->> +				trip0 {
->> +					temperature = <95000>;
->> +					hysteresis = <0>;
->> +					type = "passive";
->> +				};
->> +
->> +				trip1 {
->> +					temperature = <115000>;
->> +					hysteresis = <0>;
->> +					type = "critical";
->> +				};
->> +			};
->> +		};
->> +
->> +		pmh0110-f0-thermal {
->> +			polling-delay-passive = <100>;
->> +			thermal-sensors = <&pmh0110_f_e0_temp_alarm>;
->> +
->> +			trips {
->> +				trip0 {
->> +					temperature = <95000>;
->> +					hysteresis = <0>;
->> +					type = "passive";
->> +				};
->> +
->> +				trip1 {
->> +					temperature = <115000>;
->> +					hysteresis = <0>;
->> +					type = "critical";
->> +				};
->> +			};
->> +		};
->> +
->> +		pmh0110-h0-thermal {
->> +			polling-delay-passive = <100>;
->> +			thermal-sensors = <&pmh0110_h_e0_temp_alarm>;
->> +
->> +			trips {
->> +				trip0 {
->> +					temperature = <95000>;
->> +					hysteresis = <0>;
->> +					type = "passive";
->> +				};
->> +
->> +				trip1 {
->> +					temperature = <115000>;
->> +					hysteresis = <0>;
->> +					type = "critical";
->> +				};
->> +			};
->> +		};
->> +
->> +		pmh0110-f1-thermal {
->> +			polling-delay-passive = <100>;
->> +			thermal-sensors = <&pmh0110_f_e1_temp_alarm>;
->> +
->> +			trips {
->> +				trip0 {
->> +					temperature = <95000>;
->> +					hysteresis = <0>;
->> +					type = "passive";
->> +				};
->> +
->> +				trip1 {
->> +					temperature = <115000>;
->> +					hysteresis = <0>;
->> +					type = "critical";
->> +				};
->> +			};
->> +		};
->> +
->> +		pmh0104-i0-thermal {
->> +			polling-delay-passive = <100>;
->> +			thermal-sensors = <&pmh0104_i_e0_temp_alarm>;
->> +
->> +			trips {
->> +				trip0 {
->> +					temperature = <95000>;
->> +					hysteresis = <0>;
->> +					type = "passive";
->> +				};
->> +
->> +				trip1 {
->> +					temperature = <115000>;
->> +					hysteresis = <0>;
->> +					type = "critical";
->> +				};
->> +			};
->> +		};
->> +
->> +		pmh0104-j0-thermal {
->> +			polling-delay-passive = <100>;
->> +			thermal-sensors = <&pmh0104_j_e0_temp_alarm>;
->> +
->> +			trips {
->> +				trip0 {
->> +					temperature = <95000>;
->> +					hysteresis = <0>;
->> +					type = "passive";
->> +				};
->> +
->> +				trip1 {
->> +					temperature = <115000>;
->> +					hysteresis = <0>;
->> +					type = "critical";
->> +				};
->> +			};
->> +		};
->> +
->> +		pmh0104-l1-thermal {
->> +			polling-delay-passive = <100>;
->> +			thermal-sensors = <&pmh0104_l_e1_temp_alarm>;
->> +
->> +			trips {
->> +				trip0 {
->> +					temperature = <95000>;
->> +					hysteresis = <0>;
->> +					type = "passive";
->> +				};
->> +
->> +				trip1 {
->> +					temperature = <115000>;
->> +					hysteresis = <0>;
->> +					type = "critical";
->> +				};
->> +			};
->> +		};
->> +	};
->> +};
-> 
+Okay that sounds reasonable. I can take a look into the media pipeline
+validation code next week. @Rishikesh, given you already have a working
+setup, feel free to test if the link_validate callback is triggered on
+video nodes that don't have any streams/routes pointing to them.
 
+>=20
+> I see that this driver implements .link_validate() as a
+> media_entity_operations, not a subdev operation. I wonder if that could
+> explain the issue.
+>=20
+
+Well earlier I was partially confused, now I'm fully confused :-)
+
+How is v4l2_subdev_pad_ops.link_validate different from
+media_entity_operations.link_validate?
+
+I see mc-core.rst and v4l2-subdev.rst both talk about their own variant,
+without making it clear which should be used for a subdev.
+
+Anyway, I'll try to dig through the framework code to understand what's
+going wrong.
+
+> --=20
+> Regards,
+>=20
+> Laurent Pinchart
+
+Thanks,
+Jai
 
