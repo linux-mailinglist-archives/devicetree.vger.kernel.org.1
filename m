@@ -1,339 +1,191 @@
-Return-Path: <devicetree+bounces-258444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258445-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YLduOHo8cmnpfAAAu9opvQ
-	(envelope-from <devicetree+bounces-258444-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:04:26 +0100
+	id mLOPC19Dcmn5fwAAu9opvQ
+	(envelope-from <devicetree+bounces-258445-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:33:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AEC66850E
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:04:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 984AA68F39
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:33:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 53114929FA8
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:37:24 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4367E88CABC
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:38:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0727934DB59;
-	Thu, 22 Jan 2026 14:37:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49A7A2D94B2;
+	Thu, 22 Jan 2026 14:38:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ny19b9Yg"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PToFGCwC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CO1PR03CU002.outbound.protection.outlook.com (mail-westus2azon11010025.outbound.protection.outlook.com [52.101.46.25])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18BD8331A5B;
-	Thu, 22 Jan 2026 14:36:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.46.25
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769092621; cv=fail; b=sRwj7uVEPVIo9Y8VPiDMKNbVIu7JQDA5S31/8EvdpdPyN18MUeRsT8h4hQ5RZaf2UOlFVk5ZRqgl2jJEx4FseSrofvneSB5c0jKiccQ111qYmKIfcaJfipmsGjcJPLLxisw52qbe9Ws6CtEpl9/NzHOFOAK7gDNU2L7oOjYIegw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769092621; c=relaxed/simple;
-	bh=OaoSRki5oYieaEPJKgO+X4b7IgBn4Fv6NpLOL94fUEA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Nb3DdKRJc4pF3hhUIl9qGcw6BAPMVyaGZLt9JOzXU7LcdCoWIXVT+VN/EIx06Sf2nxrh6d4jv6LxlweDoMjBraWicpH2MLrZa1W3QE2pZ5qOrbDuGu2sou2XmdDBtbqTJLcjwrk5mLSi3OjIZYHVJxkK4HZ6+8KUDjVs+5bBgJ4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ny19b9Yg; arc=fail smtp.client-ip=52.101.46.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gio+y2p3JiJ0eeskOxwWnmq+X8ZCzjqtYduwr7YLSPV4FaAxj+3ZVG8WHW+niHpxNN0Wckd2sW+Z5izEploQy9Eiuay8TPxADuUulfc8H0M24Y/3e2SpQJq89g2phUkv6eMMzsHfWqL0CNlzvvsO8UHksydoCi5jvMoolzNp1jeT35IYLJCnsiLuQ2EvOkEPYWazoeLT/ferKJ7Jfqi5ABhi2XGpgnrYNsTTzcGH6G9EitxtAqLMUTewDkbPBKu4FMZjr5qdwY+JwYE13paKc98J1D5d970+1Zigq62DkL6K8VNbEhyPyirCQ5259Z/+sza7nXUmjnQ1zgswUbLQCQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UI8MNGlFqb4iswiqM+0G8SxoXKWkEl6ay/RaEOXRPNc=;
- b=GxEBA1ZVfdJ0GiI1/ZX/MmFVN9vHwn3kq/IqMVCOxPBHfBti1OD/N19tkSm0CChNfNtw+GjoD3UBtUafk35T1Fm0prl4WW7/u0oClGLZpDjvvoxgVDVXX/WceQeL2QT6zB960RQIO8iSoDDY7DmBwQzN2cIT7UJv1lObAmKTz6WnmwAlHwtl9kf+gnzKsFnBLWVV/5WZP/M4DvwYqCB8dhVRCmhWhf3nZ1MzwlWWwqNn9tTiMe29zqO2H3tB0JtTpddekO5PVnvo7+xv0i2SRjCwxUM/bURs2XtKdUg6G2v0KpiYf+kJJwzr/PnzEXN8uUW2y2vSLcwGJbHpFRTyww==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.194) smtp.rcpttodomain=linaro.org smtp.mailfrom=ti.com; dmarc=pass
- (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
- (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UI8MNGlFqb4iswiqM+0G8SxoXKWkEl6ay/RaEOXRPNc=;
- b=ny19b9YgouHw+thfYpyb2YWrDifuLsIeEKd5Ys5LUq0xgzXPh8vhXsy8mu8c/MiC619erdOHxD4AUGXVQ2z9UZea51OZpxvHja5qOBxhMSP77vC+htvdcP2kCH2o2riRJvjNeuBlmqdmkhhjUPZbvxnN55zKlsu0bUury6df9xo=
-Received: from BY5PR13CA0021.namprd13.prod.outlook.com (2603:10b6:a03:180::34)
- by IA1PR10MB7216.namprd10.prod.outlook.com (2603:10b6:208:3f0::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.10; Thu, 22 Jan
- 2026 14:36:55 +0000
-Received: from SJ5PEPF000001E8.namprd05.prod.outlook.com
- (2603:10b6:a03:180:cafe::31) by BY5PR13CA0021.outlook.office365.com
- (2603:10b6:a03:180::34) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9564.3 via Frontend Transport; Thu,
- 22 Jan 2026 14:36:55 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
-Received: from flwvzet200.ext.ti.com (198.47.21.194) by
- SJ5PEPF000001E8.mail.protection.outlook.com (10.167.242.196) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9564.3 via Frontend Transport; Thu, 22 Jan 2026 14:36:54 +0000
-Received: from DFLE209.ent.ti.com (10.64.6.67) by flwvzet200.ext.ti.com
- (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 22 Jan
- 2026 08:36:46 -0600
-Received: from DFLE215.ent.ti.com (10.64.6.73) by DFLE209.ent.ti.com
- (10.64.6.67) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 22 Jan
- 2026 08:36:46 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE215.ent.ti.com
- (10.64.6.73) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Thu, 22 Jan 2026 08:36:46 -0600
-Received: from [128.247.81.19] (uda0506412.dhcp.ti.com [128.247.81.19])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60MEaj94570707;
-	Thu, 22 Jan 2026 08:36:45 -0600
-Message-ID: <77815f93-e5cc-407b-8e09-93b007f3ecc9@ti.com>
-Date: Thu, 22 Jan 2026 08:36:45 -0600
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9306C314D03;
+	Thu, 22 Jan 2026 14:38:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769092726; cv=none; b=m3xnYnpPrhFKtAO7aKcIuyIYccigoAJqGb4gbUKV2xuadSwKcoHVWS6AG681CVvuWgMKvVdhYKsR4fpk0QQsiz+BTu1FotqdaVtaLOJOgHC5AOGmzfLc6rJgXzhLFHrAwFxqqvWLB5VqeRtYVOKblW2M+qXRqX3BwealrGSN/iw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769092726; c=relaxed/simple;
+	bh=KtZZpyl9pEcc1bhKq2hcSBFmtlut5n1uOTpvrtP6wi0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eZmM9BhWkJcwMBFxgu4KhiZs8VXmRSKKn40tuac8FNjeJacpsLTmwNFJakujAFg8mwfFLYJrUOinvBNlrIZkSgUxijLVBgPiMLbiKyQbz2UdevDpLoNRgYFGmTSOwajBTGr+43ysE0pMRDk2jP382uK7dbmgCItE3Pc61wbymc0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PToFGCwC; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1769092724; x=1800628724;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=KtZZpyl9pEcc1bhKq2hcSBFmtlut5n1uOTpvrtP6wi0=;
+  b=PToFGCwC2fq52atNEig3HwX+j3+FWojNNTvNqP7KO0d9oy3uOShOuNCh
+   Bs7BanuPGz6nzUULwOkMCsIYaMZupF0GMePMaSjdsvpmxma3iCzzHcAoq
+   nLjtgQZ+kXhyQYhCNC15YWO3QXt3aeoQBnA/pXaJmdHaX7rr7pH1DtN0C
+   41uLHmMqh2fKEQGflrx8c2IAXpPQCkYCUjrZWgznjNN36/LaNHJoKlcrB
+   aF2GgToaYuTzkn6tmDe83v7fy+vkVcGAi0y7ojvnSsWYJsZpwr7dW0gl0
+   pxsfC4ZmIuVF6YkKeokkCibU2pL+L24qKE0ju38g7C6kfIvBMKaJh3WQS
+   Q==;
+X-CSE-ConnectionGUID: cp+apLRRT9eeZk2vZqibAA==
+X-CSE-MsgGUID: odLG9keKS1WYuJpR0k8GgQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11679"; a="80960995"
+X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; 
+   d="scan'208";a="80960995"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2026 06:38:43 -0800
+X-CSE-ConnectionGUID: 1KXmE5QlREG6g0Q8Cb6ilw==
+X-CSE-MsgGUID: p0JWiMHeSoq0rGS9N2MNng==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; 
+   d="scan'208";a="211606126"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.225])
+  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2026 06:38:39 -0800
+Date: Thu, 22 Jan 2026 16:38:37 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc: netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	linux-kernel@vger.kernel.org,
+	Herve Codina <herve.codina@bootlin.com>,
+	Mark Brown <broonie@kernel.org>,
+	Serge Semin <fancer.lancer@gmail.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Choong Yong Liang <yong.liang.choong@linux.intel.com>,
+	Jiawen Wu <jiawenwu@trustnetic.com>
+Subject: Re: [PATCH v2 net-next 01/15] net: mdio-regmap: permit working with
+ non-MMIO regmaps
+Message-ID: <aXI2bWhDtNNfr8M8@smile.fi.intel.com>
+References: <20260122105654.105600-1-vladimir.oltean@nxp.com>
+ <20260122105654.105600-2-vladimir.oltean@nxp.com>
+ <aXISv3Acm1v6yS4V@smile.fi.intel.com>
+ <20260122121301.cyxyevi7xvqw2axk@skbuf>
+ <20260122134704.pxeikyk4q7nhay55@skbuf>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: ti: k3-am62l: support cpufreq
-To: Dhruva Gole <d-gole@ti.com>, Nishanth Menon <nm@ti.com>, "Vignesh
- Raghavendra" <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, Bryan Brattlof <bb@ti.com>, Viresh Kumar
-	<viresh.kumar@linaro.org>
-References: <20260122-am62l-dt-cpufreq-v1-1-fabcc15e25fa@ti.com>
-Content-Language: en-US
-From: Kendall Willis <k-willis@ti.com>
-In-Reply-To: <20260122-am62l-dt-cpufreq-v1-1-fabcc15e25fa@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001E8:EE_|IA1PR10MB7216:EE_
-X-MS-Office365-Filtering-Correlation-Id: b6eef398-ed3a-4173-73eb-08de59c3b060
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|376014|1800799024|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?NzFYQURTbm5ic1hMbW44d2Y4cWZIMWE2Tm91Y0pCU0d0QkZhdWNOemJCMjVD?=
- =?utf-8?B?VWNnTDFXSWNiRTBoVjcvdnNQRzk5STc1dTJXdkVyWlJ6SGVjcy9hbENwa1lL?=
- =?utf-8?B?K1I5Y1U3QWRHaGxoSnNjZ2ExNUhhTUVKdEc0cDU5OWZBUmVYam43S3hJQU9X?=
- =?utf-8?B?YlQ1NzJHek8zUE9CTXMyQzFXbmRQV1BJRkhRQ2J6Zzg2cC9pSENZdlF6blBH?=
- =?utf-8?B?S1AvNEtiNFg2TzZNUmhFQUllNUJ3NHZBZGRueVZxVlRHcUlrR0NDMWxkeDRH?=
- =?utf-8?B?ejdqL2lPbEtGOWZESVgyc1NWai9sbE5oS0RiWTBVVTN6MkFrK0FTR21vaFhR?=
- =?utf-8?B?a2ZRVTlWTjUyeHBRdjJaVUQ4Y3pYZUZGNEtiSUYxemx4UDk2dVJpaFlkWlc3?=
- =?utf-8?B?N1FyZFFFWnp3RVlDWk1UNmFYMjhHT1A0RXlSZ3ZrY2o4QjI0ajhKdXRQSFFU?=
- =?utf-8?B?eDdTUmlxUURhYURVYUVUakZ5RVFhTHpPcHlFUnhHZkdFMUZXSzgzSVNFZFlo?=
- =?utf-8?B?ZVd3ZElKUytuV25zVWd2V1J5Z2Zhc01Fd0JZN1lXL2dCWmN0MXRxOEpocUVx?=
- =?utf-8?B?UmhNRGVyYW10Z0VNRmRsRWRBQmx0ZEJGSk5jOEZvbXY2S0R6UE8zMlFoNGZM?=
- =?utf-8?B?VFpnWEkwVmN4b3pRd01qTm43dzVpWjladlhuVXlYaG95Yjl3TmYyVENkZ3da?=
- =?utf-8?B?OTI2SU5LUzFvOE1ncmRaeTB3MWxPSy82ZS9abkhxb3o3RE5Ka0ZoRFpFc2dw?=
- =?utf-8?B?NDBvVGRWWk4vTHlNaTJSc29sQUdkMVY1THlxRW5DNEs1T0sxWnFic1Foa1FO?=
- =?utf-8?B?ZnA0d2Rpek1RZXdUNll1bExMVHBOeG02MnAyUEc4RXQ2R0RJTitZK2hZL2p1?=
- =?utf-8?B?MDNMRG83ajBtVC9xYnphUnZQNGZzUE9tZm02Y3FsVjVINXRjS2NYNGV3c2po?=
- =?utf-8?B?cm52MGVBY0FPRG5qM0xRUFYxR2JoMW9kVlVFOGV3WVVYczZScnoxUDA3NnRG?=
- =?utf-8?B?Z3JjbXZQSFl1aHBtVlEvbUswdzVJVGQ1MnMrWER3c1NYYkVjbkx2aHpJcXJk?=
- =?utf-8?B?TlRsMzFkcW9TbWY0WjE0RFpvcVJWVWwyZUVySFZnQW5VRTR3QmxuajZsSnR1?=
- =?utf-8?B?SVhMcElvSzY4bXFSRXR6SmloOENzMUZmOFRTUVJka3BqTnJ1YnhuM0JMeEpP?=
- =?utf-8?B?azRRNlJjOEk0WTJBQ2tycnRidEdjcTRNMFhTUWNmVGc5Qm51S20wbVRUaVh2?=
- =?utf-8?B?Q2lDeWFCWVlrWTEvSHhzbURaWEE2UzBGakZ1b3FtYjhmNnBHT1hZa2pxbE1K?=
- =?utf-8?B?ck9COXd4cis5UkNQMDVhTk9DT1hQNXFxTzNiakI3NVJhWjV0THNWMStpVktY?=
- =?utf-8?B?cFlFUWx1ZkFZYyszeERvTzFhRk5oVkQ1Z3NacTBqcW1Taktwc0c0enFwM2xT?=
- =?utf-8?B?aE43MWxQaFljZlJqRGNZL2xVWnFSMURGMjdpYVFoZVdjWDhkbW9BS1hZSWpH?=
- =?utf-8?B?WHh0QnlFWXBuMENQZ2x4ME9pL3JsQVI1MnJlY1gwSmFQMjRqcDlmMTl3Tk5P?=
- =?utf-8?B?WWtzTzNaWnY4d3JMN1VHQll2QUtxWmF2RHZVc3dKeG1TR2JYakwrblVxNmVH?=
- =?utf-8?B?ZXJ2d3VoY2pEUy9LMkxTa1FUbGMrb3dhTDV5Q3N1aUhXWVJQK3VnQ2I4bWJy?=
- =?utf-8?B?c0ZqR2hDdGpqZ1RCL1dPVFlYa1NFV0IyWWhNc1hzd0FhbThYWWRpY2R0aUZV?=
- =?utf-8?B?elNPd2JKSCs3cUF4c1BFT0ZFMEM0OS95T2RaV0Q0MzNvU0NvS2FwQU5aRWNX?=
- =?utf-8?B?VzE2QTJKcko0ZmVIcEMzeS9hVGp0NnZrc0dyMFlodUp3c21KZzNpRVMrVUNr?=
- =?utf-8?B?TmpKbncrVjhJanJOSWY5UTc2R0dLakJ6RzFuWmk0OHA2WWd1QnVZQWxOZlNE?=
- =?utf-8?B?UDNzTkN5VXZSYzJ6dkRNNFBHVDZvZGxTUnFlZ3V6enR4S1NmYUxzaXhrZit3?=
- =?utf-8?B?Y1BKQk9ZMHB3UWYvU3NtTXgvY0x2NmpxWmI1ZUVMR25ZUngzRnlMQXQyODdp?=
- =?utf-8?B?L3kvTy9rZkZVbTQvVVI0SzhDa3dMNHN3clU3Q0ljWVJwVkJMelBVVkVZNUdO?=
- =?utf-8?B?ZlppQkN6cCt2dmh5SUluUTBESVRtSmxvcmNzMzNtQkJQd0gvbzBYcFNwSzZX?=
- =?utf-8?B?V0tjR2hNTlRXWFdZVXV4SytLOWZ4akpkeFNmQzRKbGxiUXZsUGRMVmxoYmxL?=
- =?utf-8?B?UnhIMWE3RkN5S244UHZ0eUtMT1l3PT0=?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(36860700013)(376014)(1800799024)(82310400026);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2026 14:36:54.4517
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b6eef398-ed3a-4173-73eb-08de59c3b060
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SJ5PEPF000001E8.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR10MB7216
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260122134704.pxeikyk4q7nhay55@skbuf>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.54 / 15.00];
+X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258444-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lunn.ch,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,bootlin.com,linux.intel.com,trustnetic.com];
+	DMARC_POLICY_ALLOW(0.00)[intel.com,none];
+	TAGGED_FROM(0.00)[bounces-258445-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[ti.com,quarantine];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[142.0.200.124:from];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[ti.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:email,ti.com:dkim,ti.com:mid,0.0.0.0:email,dfw.mirrors.kernel.org:helo,dfw.mirrors.kernel.org:rdns,0.0.0.18:email,am62lxx-evm:email,0.0.0.1:email,0.0.7.208:email];
+	HAS_ORG_HEADER(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[k-willis@ti.com,devicetree@vger.kernel.org];
+	R_SPF_SOFTFAIL(0.00)[~all:c];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	R_SPF_SOFTFAIL(0.00)[~all:c];
-	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.14:email];
+	RCVD_COUNT_FIVE(0.00)[5];
+	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[52.25.139.140:received];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: 2AEC66850E
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smile.fi.intel.com:mid,dfw.mirrors.kernel.org:helo,dfw.mirrors.kernel.org:rdns,bootlin.com:url,intel.com:dkim]
+X-Rspamd-Queue-Id: 984AA68F39
 X-Rspamd-Action: no action
 
-On 1/22/26 04:49, Dhruva Gole wrote:
-> Enable CPUFreq support for AM62L SoC by adding the relevant OPP efuse table
-> syscon to k3-am62l-wakeup.dtsi for speed grade detection.
-> 
-> Add the operating-points-v2 table with CPU frequency steps from 200MHz to
-> 1.25GHz to k3-am62l3.dtsi
-> 
-> Configure CPU clocks to reference the SCMI clock controller for frequency
-> scaling
-> 
-> This enables proper CPU frequency scaling capabilities for the AM62L SoC
-> using the ARM SCMI protocol to interact with the power management firmware.
-> 
-> Signed-off-by: Dhruva Gole <d-gole@ti.com>
-> ---
-> The driver changes were merged previously [0], and so the DT patch
-> is now being posted seperately.
-> 
-> Logs:
-> 
-> root@am62lxx-evm:~# cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_available_frequencies
-> 200000 400000 600000 800000 1000000 1250000
-> 200000 400000 600000 800000 1000000 1250000
-> 
-> Changelog:
-> - fix the bit fiels in the OPPs as per Kendall's suggestion
-> - Fix the scmi_clk ID of the second A53 core
-> 
-> [1] https://lore.kernel.org/all/20260120-am62l-cpufreq-v3-0-8c69b80168a3@ti.com/
-> ---
->   arch/arm64/boot/dts/ti/k3-am62l-wakeup.dtsi |  5 +++
->   arch/arm64/boot/dts/ti/k3-am62l3.dtsi       | 47 +++++++++++++++++++++++++++++
->   2 files changed, 52 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62l-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62l-wakeup.dtsi
-> index 61bfcdcfc66ea8d802a36ed43cd01fbbf3decc70..a42ccd0d2fcc4d204cae81508f839c44ce83f558 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62l-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62l-wakeup.dtsi
-> @@ -127,6 +127,11 @@ chipid: chipid@14 {
->   			bootph-all;
->   		};
->   
-> +		opp_efuse_table: syscon@18 {
-> +			compatible = "ti,am62-opp-efuse-table", "syscon";
-> +			reg = <0x18 0x4>;
-> +		};
-> +
->   		cpsw_mac_syscon: ethernet-mac-syscon@2000 {
->   			compatible = "ti,am62p-cpsw-mac-efuse", "syscon";
->   			reg = <0x2000 0x8>;
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62l3.dtsi b/arch/arm64/boot/dts/ti/k3-am62l3.dtsi
-> index da220b85151227c63f59b2b8ec48ae2ebb37e7bf..26d3040ff53259daba21b39a55bb8a2ed65d4e8f 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62l3.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62l3.dtsi
-> @@ -39,6 +39,8 @@ cpu0: cpu@0 {
->   			d-cache-line-size = <64>;
->   			d-cache-sets = <128>;
->   			next-level-cache = <&l2_0>;
-> +			operating-points-v2 = <&a53_opp_table>;
-> +			clocks = <&scmi_clk 356>;
->   		};
->   
->   		cpu1: cpu@1 {
-> @@ -53,6 +55,8 @@ cpu1: cpu@1 {
->   			d-cache-line-size = <64>;
->   			d-cache-sets = <128>;
->   			next-level-cache = <&l2_0>;
-> +			operating-points-v2 = <&a53_opp_table>;
-> +			clocks = <&scmi_clk 357>;
->   		};
->   	};
->   
-> @@ -64,4 +68,47 @@ l2_0: l2-cache0 {
->   		cache-line-size = <64>;
->   		cache-sets = <256>;
->   	};
-> +
-> +	a53_opp_table: opp-table {
-> +		compatible = "operating-points-v2-ti-cpu";
-> +		opp-shared;
-> +		syscon = <&opp_efuse_table>;
-> +
-> +		opp-200000000 {
-> +			opp-hz = /bits/ 64 <200000000>;
-> +			opp-supported-hw = <0x01 0x0003>;
-> +			clock-latency-ns = <6000000>;
-> +		};
-> +
-> +		opp-400000000 {
-> +			opp-hz = /bits/ 64 <400000000>;
-> +			opp-supported-hw = <0x01 0x0003>;
-> +			clock-latency-ns = <6000000>;
-> +		};
-> +
-> +		opp-600000000 {
-> +			opp-hz = /bits/ 64 <600000000>;
-> +			opp-supported-hw = <0x01 0x0003>;
-> +			clock-latency-ns = <6000000>;
-> +		};
-> +
-> +		opp-800000000 {
-> +			opp-hz = /bits/ 64 <800000000>;
-> +			opp-supported-hw = <0x01 0x0003>;
-> +			clock-latency-ns = <6000000>;
-> +		};
-> +
-> +		opp-1000000000 {
-> +			opp-hz = /bits/ 64 <1000000000>;
-> +			opp-supported-hw = <0x01 0x0003>;
-> +			clock-latency-ns = <6000000>;
-> +		};
+On Thu, Jan 22, 2026 at 03:47:04PM +0200, Vladimir Oltean wrote:
+> On Thu, Jan 22, 2026 at 02:13:01PM +0200, Vladimir Oltean wrote:
 
-Thanks for implementing the feedback! One last thing is I think 
-opp-1000000000 should have the opp-supported-hw value of 0x02 because 
-speed grade E only supports up to 833 MHz.
+...
 
-> +
-> +		opp-1250000000 {
-> +			opp-hz = /bits/ 64 <1250000000>;
-> +			opp-supported-hw = <0x01 0x0002>;
-> +			clock-latency-ns = <6000000>;
-> +			opp-suspend;
-> +		};
-> +	};
->   };
-> 
-> ---
-> base-commit: e3b32dcb9f23e3c3927ef3eec6a5842a988fb574
-> change-id: 20260122-am62l-dt-cpufreq-c24f0236ad15
-> 
-> Best regards,
+> > > > +	unsigned int base;
+> > > 
+> > > Hmm... resource_size_t ?
 
-Best,
-Kendall Willis <k-willis@ti.com>
+> > Well, regmap_read() takes "unsigned int reg".
+> > https://elixir.bootlin.com/linux/v6.18.6/source/include/linux/regmap.h#L1297
+> > So in practice, a truncation will be done somewhere if the register base
+> > exceeds unsigned int storage capacity. But I didn't feel that it's worth
+> > handling that.
+> 
+> Would this address your feedback?
+
+Yes and no. See my remarks below.
+
+> diff --git a/drivers/net/mdio/mdio-regmap.c b/drivers/net/mdio/mdio-regmap.c
+> index 2a0e9c519fa3..416ff4e13e8f 100644
+> --- a/drivers/net/mdio/mdio-regmap.c
+> +++ b/drivers/net/mdio/mdio-regmap.c
+> @@ -67,8 +67,15 @@ struct mii_bus *devm_mdio_regmap_register(struct device *dev,
+>  	mr = mii->priv;
+>  	mr->regmap = config->regmap;
+>  	mr->valid_addr = config->valid_addr;
+> -	if (config->resource)
+> +	if (config->resource) {
+
+Btw, this might be not enough, one should check size and flags as well
+before use. There was a discussion about this recently. Maybe we should
+just move to a simple unsigned int in the config for now? Because handling
+resources maybe considered as over engineering in this case.
+
+> +		if (config->resource->start > U32_MAX ||
+> +		    config->resource->end > U32_MAX) {
+
+Ideally it should be resource_overlaps() check. But see above.
+
+> +			dev_err(config->parent,
+> +				"Resource exceeds regmap API addressing possibilities\n");
+> +			return ERR_PTR(-EINVAL);
+> +		}
+>  		mr->base = config->resource->start;
+> +	}
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
