@@ -1,69 +1,69 @@
-Return-Path: <devicetree+bounces-258445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258446-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mLOPC19Dcmn5fwAAu9opvQ
-	(envelope-from <devicetree+bounces-258445-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:33:51 +0100
+	id 0MxZBGNLcmnuiQAAu9opvQ
+	(envelope-from <devicetree+bounces-258446-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 17:08:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 984AA68F39
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:33:50 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id C260E69961
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 17:08:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4367E88CABC
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:38:51 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8E3017C6A50
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:45:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49A7A2D94B2;
-	Thu, 22 Jan 2026 14:38:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C826334A793;
+	Thu, 22 Jan 2026 14:44:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PToFGCwC"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KN94QSbT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9306C314D03;
-	Thu, 22 Jan 2026 14:38:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B3292E7F07;
+	Thu, 22 Jan 2026 14:44:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769092726; cv=none; b=m3xnYnpPrhFKtAO7aKcIuyIYccigoAJqGb4gbUKV2xuadSwKcoHVWS6AG681CVvuWgMKvVdhYKsR4fpk0QQsiz+BTu1FotqdaVtaLOJOgHC5AOGmzfLc6rJgXzhLFHrAwFxqqvWLB5VqeRtYVOKblW2M+qXRqX3BwealrGSN/iw=
+	t=1769093097; cv=none; b=Eh6yKtdWOyi3fCeSMJvUCzFB0Lnb9TCUf09gS61ZdUFWLhQV2nc/RxQWU6qN41uB1Nifb4Q3IW+fa0lrbu/Hj60GyYL+8JgHHH7NjZ+L3LfEvLnaS79nsVd0Zo/qtf0OeLuwC8aYEK4dBoNMvM9UJfi00VOkfbYwlBEHdICgybM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769092726; c=relaxed/simple;
-	bh=KtZZpyl9pEcc1bhKq2hcSBFmtlut5n1uOTpvrtP6wi0=;
+	s=arc-20240116; t=1769093097; c=relaxed/simple;
+	bh=Lp+G6RNRNa1qqAWbsVbuiD5hhNvMHAeZ7fl9TFEhFn4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eZmM9BhWkJcwMBFxgu4KhiZs8VXmRSKKn40tuac8FNjeJacpsLTmwNFJakujAFg8mwfFLYJrUOinvBNlrIZkSgUxijLVBgPiMLbiKyQbz2UdevDpLoNRgYFGmTSOwajBTGr+43ysE0pMRDk2jP382uK7dbmgCItE3Pc61wbymc0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PToFGCwC; arc=none smtp.client-ip=192.198.163.11
+	 Content-Type:Content-Disposition:In-Reply-To; b=hG77N2qQg7TNkoPtmoHAxkutFy7RTsd+a5siK4DMl9GgSNhspL77bJzVu37MJQXERIU4p+z1ucc+EYC+w0HAmy1eWF17IjJVYwDcJIQ9F8nCQbEioiU5LnVzTrESH3aNQOcE/QF+jUgNCxNbrX53kGTo1CILVqMBwmUf5MglGZQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KN94QSbT; arc=none smtp.client-ip=192.198.163.16
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1769092724; x=1800628724;
+  t=1769093096; x=1800629096;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=KtZZpyl9pEcc1bhKq2hcSBFmtlut5n1uOTpvrtP6wi0=;
-  b=PToFGCwC2fq52atNEig3HwX+j3+FWojNNTvNqP7KO0d9oy3uOShOuNCh
-   Bs7BanuPGz6nzUULwOkMCsIYaMZupF0GMePMaSjdsvpmxma3iCzzHcAoq
-   nLjtgQZ+kXhyQYhCNC15YWO3QXt3aeoQBnA/pXaJmdHaX7rr7pH1DtN0C
-   41uLHmMqh2fKEQGflrx8c2IAXpPQCkYCUjrZWgznjNN36/LaNHJoKlcrB
-   aF2GgToaYuTzkn6tmDe83v7fy+vkVcGAi0y7ojvnSsWYJsZpwr7dW0gl0
-   pxsfC4ZmIuVF6YkKeokkCibU2pL+L24qKE0ju38g7C6kfIvBMKaJh3WQS
-   Q==;
-X-CSE-ConnectionGUID: cp+apLRRT9eeZk2vZqibAA==
-X-CSE-MsgGUID: odLG9keKS1WYuJpR0k8GgQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11679"; a="80960995"
+  bh=Lp+G6RNRNa1qqAWbsVbuiD5hhNvMHAeZ7fl9TFEhFn4=;
+  b=KN94QSbTRWXVBryiyfXhKEfWN6FQl0v361LSmZh0nCt3e3M8fLIi3O7d
+   3l1PPJlOjWUx32uVS4lKxUIRF3ONsg542zFIHDnprkyH2YnRYwcILXbpC
+   c9+lTj/UXtPzVIBQkvSWMU+86N2RH7zUBYbXWbS52IFAuH82tUFnGBfGR
+   S8VJ8bGwLB3EtM0Wi9wzZOa23RXIsppANKg0VKwVp93PjSmM4IuFMMMHg
+   aGHkWajEqdu1K97nNGJuwrYd+RrWUwYfc7ew/GC+9SJqTUnitdMdDvjIe
+   2yBDiib5ROKC9dIzN+JLMOyB5DnkIk8iyOb+GaPpxhWEnPWbCCGMAjegn
+   w==;
+X-CSE-ConnectionGUID: 1OOLouz3QOyeJyQUeodu/g==
+X-CSE-MsgGUID: 1xA66/e7R6uYO5sgmlgixQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11679"; a="57901265"
 X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; 
-   d="scan'208";a="80960995"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2026 06:38:43 -0800
-X-CSE-ConnectionGUID: 1KXmE5QlREG6g0Q8Cb6ilw==
-X-CSE-MsgGUID: p0JWiMHeSoq0rGS9N2MNng==
+   d="scan'208";a="57901265"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2026 06:44:55 -0800
+X-CSE-ConnectionGUID: q/F6B0UHRvaQexLJIydWqA==
+X-CSE-MsgGUID: LBnmNTG9R0W4LcVLy678jg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; 
-   d="scan'208";a="211606126"
+   d="scan'208";a="206801848"
 Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.225])
-  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2026 06:38:39 -0800
-Date: Thu, 22 Jan 2026 16:38:37 +0200
+  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2026 06:44:50 -0800
+Date: Thu, 22 Jan 2026 16:44:47 +0200
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Vladimir Oltean <vladimir.oltean@nxp.com>
 Cc: netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
@@ -82,14 +82,13 @@ Cc: netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
 	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
 	Choong Yong Liang <yong.liang.choong@linux.intel.com>,
 	Jiawen Wu <jiawenwu@trustnetic.com>
-Subject: Re: [PATCH v2 net-next 01/15] net: mdio-regmap: permit working with
- non-MMIO regmaps
-Message-ID: <aXI2bWhDtNNfr8M8@smile.fi.intel.com>
+Subject: Re: [PATCH v2 net-next 02/15] net: mdio: add driver for NXP SJA1110
+ 100BASE-T1 embedded PHYs
+Message-ID: <aXI339TiHFaEAWXE@smile.fi.intel.com>
 References: <20260122105654.105600-1-vladimir.oltean@nxp.com>
- <20260122105654.105600-2-vladimir.oltean@nxp.com>
- <aXISv3Acm1v6yS4V@smile.fi.intel.com>
- <20260122121301.cyxyevi7xvqw2axk@skbuf>
- <20260122134704.pxeikyk4q7nhay55@skbuf>
+ <20260122105654.105600-3-vladimir.oltean@nxp.com>
+ <aXIUJbEwnAvIkeKK@smile.fi.intel.com>
+ <20260122124708.pxckp6vgi2rvagmm@skbuf>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,7 +97,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260122134704.pxeikyk4q7nhay55@skbuf>
+In-Reply-To: <20260122124708.pxckp6vgi2rvagmm@skbuf>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
@@ -112,76 +111,128 @@ X-Spamd-Result: default: False [-0.46 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	FREEMAIL_CC(0.00)[vger.kernel.org,lunn.ch,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,bootlin.com,linux.intel.com,trustnetic.com];
 	DMARC_POLICY_ALLOW(0.00)[intel.com,none];
-	TAGGED_FROM(0.00)[bounces-258445-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-258446-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[142.0.200.124:from];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[intel.com:+];
 	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	R_SPF_SOFTFAIL(0.00)[~all:c];
 	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[52.25.139.140:received];
+	R_SPF_SOFTFAIL(0.00)[~all:c];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
+	RCVD_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smile.fi.intel.com:mid,dfw.mirrors.kernel.org:helo,dfw.mirrors.kernel.org:rdns,bootlin.com:url,intel.com:dkim]
-X-Rspamd-Queue-Id: 984AA68F39
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns,intel.com:dkim,smile.fi.intel.com:mid]
+X-Rspamd-Queue-Id: C260E69961
 X-Rspamd-Action: no action
 
-On Thu, Jan 22, 2026 at 03:47:04PM +0200, Vladimir Oltean wrote:
-> On Thu, Jan 22, 2026 at 02:13:01PM +0200, Vladimir Oltean wrote:
+On Thu, Jan 22, 2026 at 02:47:08PM +0200, Vladimir Oltean wrote:
+> On Thu, Jan 22, 2026 at 02:12:21PM +0200, Andy Shevchenko wrote:
+> > On Thu, Jan 22, 2026 at 12:56:41PM +0200, Vladimir Oltean wrote:
 
 ...
 
-> > > > +	unsigned int base;
-> > > 
-> > > Hmm... resource_size_t ?
-
-> > Well, regmap_read() takes "unsigned int reg".
-> > https://elixir.bootlin.com/linux/v6.18.6/source/include/linux/regmap.h#L1297
-> > So in practice, a truncation will be done somewhere if the register base
-> > exceeds unsigned int storage capacity. But I didn't feel that it's worth
-> > handling that.
+> > > +static int sja1110_base_t1_mdio_read_c22(struct mii_bus *bus, int phy, int reg)
+> > > +{
+> > > +	struct sja1110_base_t1_private *priv = bus->priv;
+> > > +	struct regmap *regmap = priv->regmap;
+> > > +	unsigned int addr, val;
+> > > +	int err;
+> > > +
+> > > +	addr = sja1110_base_t1_encode_addr(phy, SJA1110_C22, reg & 0x1f);
+> > 
+> > GENMASK() ? Or do you have already a defined mask for this?
 > 
-> Would this address your feedback?
+> Hmm, I can't find a definition for this. In the MDIO world it is
+> "well known" that clause 22 offers a 5-bit register address space.
+> So the 0x1f number doesn't seem too magical to me.
+> 
+> But I think my assumptions date since before the MDIO bus API was split
+> between separate clause 22 and clause 45 reads/writes. I don't know
+> whether masking reg & 0x1f is the best practice. I'm surprised that
+> __mdiobus_read() doesn't enforce a limit on "regnum", and I don't see
+> other MDIO bus drivers explicitly C22 registers >= 32. I really don't
+> know what is the best practice.
 
-Yes and no. See my remarks below.
+Me neither. At bare minimum to check / perform two things:
+- make sure this approach is consistent across the kernel
+- define the magic with meaningful name
 
-> diff --git a/drivers/net/mdio/mdio-regmap.c b/drivers/net/mdio/mdio-regmap.c
-> index 2a0e9c519fa3..416ff4e13e8f 100644
-> --- a/drivers/net/mdio/mdio-regmap.c
-> +++ b/drivers/net/mdio/mdio-regmap.c
-> @@ -67,8 +67,15 @@ struct mii_bus *devm_mdio_regmap_register(struct device *dev,
->  	mr = mii->priv;
->  	mr->regmap = config->regmap;
->  	mr->valid_addr = config->valid_addr;
-> -	if (config->resource)
-> +	if (config->resource) {
+Maybe (assuming second one is done) fix the rest in the future
+via some helper function?
 
-Btw, this might be not enough, one should check size and flags as well
-before use. There was a discussion about this recently. Maybe we should
-just move to a simple unsigned int in the config for now? Because handling
-resources maybe considered as over engineering in this case.
+...
 
-> +		if (config->resource->start > U32_MAX ||
-> +		    config->resource->end > U32_MAX) {
+> > > +static int sja1110_base_t1_mdio_probe(struct platform_device *pdev)
+> > > +{
+> > > +	struct sja1110_base_t1_private *priv;
+> > > +	struct device *dev = &pdev->dev;
+> > > +	struct regmap *regmap;
+> > > +	struct resource *res;
+> > > +	struct mii_bus *bus;
+> > > +	int err;
+> > 
+> > > +	if (!dev->of_node || !dev->parent)
+> > 
+> > Can we avoid dereferencing? And perhaps dev_fwnode(dev)?
+> 
+> Avoid dereferencing what?
 
-Ideally it should be resource_overlaps() check. But see above.
+of_node
 
-> +			dev_err(config->parent,
-> +				"Resource exceeds regmap API addressing possibilities\n");
-> +			return ERR_PTR(-EINVAL);
-> +		}
->  		mr->base = config->resource->start;
-> +	}
+> > > +		return -ENODEV;
+> > > +
+> > > +	regmap = dev_get_regmap(dev->parent, NULL);
+> > > +	if (!regmap)
+> > > +		return -ENODEV;
+> > > +
+> > > +	bus = mdiobus_alloc_size(sizeof(*priv));
+> > > +	if (!bus)
+> > > +		return -ENOMEM;
+> > > +
+> > > +	bus->name = "SJA1110 100base-T1 MDIO bus";
+> > > +	snprintf(bus->id, MII_BUS_ID_SIZE, "%s", dev_name(dev));
+> > > +	bus->read = sja1110_base_t1_mdio_read_c22;
+> > > +	bus->write = sja1110_base_t1_mdio_write_c22;
+> > > +	bus->read_c45 = sja1110_base_t1_mdio_read_c45;
+> > > +	bus->write_c45 = sja1110_base_t1_mdio_write_c45;
+> > > +	bus->parent = dev;
+> > > +	priv = bus->priv;
+> > > +	priv->regmap = regmap;
+> > > +
+> > > +	res = platform_get_resource(pdev, IORESOURCE_REG, 0);
+> > > +	if (res)
+> > > +		priv->base = res->start;
+> > > +
+> > > +	err = of_mdiobus_register(bus, dev->of_node);
+> 
+> Why would I use dev_fwnode() if I need to pass it as OF to
+> of_mdiobus_register() here?
+
+dev_of_node() then. Wondering if we can use fwnode_mdiobus_register_phy() here
+(I remember that OF/fwnode code in MDIO/PHY is not trivial, but I don't know
+ all the details).
+
+> > > +	if (err)
+> > > +		goto err_free_bus;
+> > > +
+> > > +	priv->bus = bus;
+> > > +	platform_set_drvdata(pdev, priv);
+> > > +
+> > > +	return 0;
+> > > +
+> > > +err_free_bus:
+> > > +	mdiobus_free(bus);
+> > > +
+> > > +	return err;
+> > > +}
 
 -- 
 With Best Regards,
