@@ -1,151 +1,578 @@
-Return-Path: <devicetree+bounces-258513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258514-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EIzSMT9XcmkpiwAAu9opvQ
-	(envelope-from <devicetree+bounces-258513-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 17:58:39 +0100
+	id QGyKFEZScmnpfAAAu9opvQ
+	(envelope-from <devicetree+bounces-258514-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 17:37:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 008F16A84A
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 17:58:38 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D92AE6A12B
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 17:37:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 43D223004CB3
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:56:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5B3D532D6EC1
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:29:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88153367F36;
-	Thu, 22 Jan 2026 16:03:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD4063A733E;
+	Thu, 22 Jan 2026 16:10:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="0XGPstaG"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="GChQ+vEi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8582A280335;
-	Thu, 22 Jan 2026 16:03:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B4B73A7305;
+	Thu, 22 Jan 2026 16:10:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769097798; cv=none; b=fXpqIamU9Yy9EUbzdNRnFuKzen0OIL+J4UVto/NcV05rwrRC2qvsZC09vuu2DNQRAPGoaCMgAy//56gpvWWPAiGiMKizC1SCphoP3bfMwKfe5FLnh7s70+W/uN2F5Kli/TM45Q66LkkXag57aWDMh/2l4uvkMw3bD6OzzVqSI0A=
+	t=1769098209; cv=none; b=MeUbl6Qa/YDedbhjiVq6/geL5xSFrAoIQBr4oi3AEX6/fbG7maLSJMovlBOKRmeQvKlDL4hbaVcxUtMEsykoTvUFwFaDZG/giZCvADzvvMhUsOR2dsJi1pCY20zuvYapr9KRiqLxYnTaKbljDcsmdJySJ/9MRL3HkBcBZnO/u1E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769097798; c=relaxed/simple;
-	bh=gBvQ60GKc7I9V/a3CO+WvejVjWR6BZA+gRiNMOaIiI8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ykgn5Ivmwczf4UXFl+NRnH0NV7KVF2NZ/pZwWnAsjjtWyEnN4A0VsSrOqYchXqS8bqmcTUW0E7xtBdjokWszhDpiPzrmI44y9zW9+4i4FcPHsm1sVkEndjphqV8Hwo78ikO2Hus5hZHrZrwf+o71ud8/MfQ7NEqfwbV4A+DXkKo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=0XGPstaG; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=GKZNUPjuUcl3IiH9k6+6nqxg1HkcAU/xUmRgMsq4Sgk=; b=0XGPstaGKvgp6pakaMES7f0WAJ
-	+9zfLPL944OOtUXCK1x7qXcdrXb+t3DXPH37LZqZEgHPihvNeS2zTOyp9jMkIIwGOeAwzkKjw31jn
-	sqeFFSUdCVqvcNvGoRD1ua81TO7IinO/BH5Sd4Nz1gbOVY2vkRZ8Pp/0FpFUGzMkm54p9OdeMBtiY
-	5RSK1z4FO1Ac3suhOa/iGzR4/mcIaH1XDW/4lPQ2HKy6PxkGXmM6Atzd/X5qP55Kmu1wwlSfacZsG
-	YonhOxnvDHzt0VGLVp07pXX6WVdj5ovCebu5eWRnqblzHAmyUlEj3Fu27s7YeD6pXcYkTeQRw71z8
-	ToTt42jw==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:51058)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1vix9F-000000000dd-31Mk;
-	Thu, 22 Jan 2026 16:03:05 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1vix9A-0000000017C-2p65;
-	Thu, 22 Jan 2026 16:03:00 +0000
-Date: Thu, 22 Jan 2026 16:03:00 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: =?utf-8?B?5p2O5b+X?= <lizhi2@eswincomputing.com>,
-	Andrew Lunn <andrew@lunn.ch>
-Cc: Bo Gan <ganboing@gmail.com>, devicetree@vger.kernel.org,
-	andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, netdev@vger.kernel.org, pabeni@redhat.com,
-	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	ningyu@eswincomputing.com, linmin@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com, weishangjuan@eswincomputing.com
-Subject: Re: Re: [PATCH v1 1/2] dt-bindings: ethernet: eswin: add clock
- sampling control
-Message-ID: <aXJKNBAifG6qv80M@shell.armlinux.org.uk>
-References: <20260109080601.1262-1-lizhi2@eswincomputing.com>
- <20260109080859.1285-1-lizhi2@eswincomputing.com>
- <00b7b42f-2f9d-402a-82f0-21641ea894a1@lunn.ch>
- <aWKZvEW7rKFFwZLG@shell.armlinux.org.uk>
- <0d54ddca-9270-40a5-aa82-d8a7b65027ff@gmail.com>
- <1a622916.2d28.19bb105feab.Coremail.lizhi2@eswincomputing.com>
- <d010a6b8-5bf0-40ff-8e76-18362a238d50@lunn.ch>
+	s=arc-20240116; t=1769098209; c=relaxed/simple;
+	bh=k7QW3qPKlTntPWlZbEnFujv5B/X+vJaJYGTzqWriX0E=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=gbAKogvDPfegr0kzX8UygCDXuTnF6i+BcNoQt2S+ymw/OzjBPR1CFJLccTQjzcHKsa8xRgA0DYew6LxtLSsHt3Q8nxJWp7pFFjoPot37jb3oHAmRnkHNESqkPPfjYgDR/AeOul0GN0lTK4Q3De2J0CV9xBep00926bKFAGYPizI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=GChQ+vEi; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id BA5A71A2ABF;
+	Thu, 22 Jan 2026 16:10:00 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 8B53560711;
+	Thu, 22 Jan 2026 16:10:00 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 09487119A836B;
+	Thu, 22 Jan 2026 17:09:56 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1769098199; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=foXvwYKbYB8CyKEYmZ4+Fr8gBVI1/yFp9iUKgNiyQ0I=;
+	b=GChQ+vEiWnYyfng9HTHtiOKy6C18v4CXN/G5K3X4JkgfXLGiZpjLkQq0pCFI5lHExcS5VE
+	/Mt6uNde8abCqUd0/ztnyplmplLJ+RXF5o3nt5MGZCbMZRT/vYSVSI/3+sJ++k3nC/2N3+
+	TGkCeyaxom5wizhxTNLPgLS2hcXmL4AA3oWzI0MtAXR8G6AZ4XLCDeDQfxQSYfLKg14T4j
+	QbaQnavUKZl9LwpNTfyatjJ0iw9vLUFnv0I5Dbskv/jKgCSSDqtKa+uaS8LxCYbmW1c7gh
+	0NbuZxCG1vHfNUjOeuy1Mdqh5Hrd07CWG/GphlLmrT180epC0vgEwDwdznfU1g==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: Elad Nachman <enachman@marvell.com>, "Rob Herring (Arm)"
+ <robh@kernel.org>, Andrew Lunn <andrew@lunn.ch>, Sebastian Hesselbarth
+ <sebastian.hesselbarth@gmail.com>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
+ <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>
+Subject: RE: [EXTERNAL] Re: [PATCH] arm/arm64: dts: marvell: Drop unused .dtsi
+In-Reply-To: <BN9PR18MB4251D2180A5AB41DC29DB5EFDB97A@BN9PR18MB4251.namprd18.prod.outlook.com>
+References: <20260113200744.4174940-1-robh@kernel.org>
+ <87fr7yklud.fsf@BLaptop.bootlin.com>
+ <BN9PR18MB4251D2180A5AB41DC29DB5EFDB97A@BN9PR18MB4251.namprd18.prod.outlook.com>
+Date: Thu, 22 Jan 2026 17:09:55 +0100
+Message-ID: <87cy31ljcc.fsf@BLaptop.bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d010a6b8-5bf0-40ff-8e76-18362a238d50@lunn.ch>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.14 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_REJECT(1.00)[armlinux.org.uk:s=pandora-2019];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[armlinux.org.uk : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258513-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,foss.st.com,st-md-mailman.stormreply.com,lists.infradead.org,eswincomputing.com,einfochips.com];
-	RCPT_COUNT_TWELVE(0.00)[22];
+	TAGGED_FROM(0.00)[bounces-258514-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[armlinux.org.uk:-];
-	MISSING_XM_UA(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[marvell.com,kernel.org,lunn.ch,gmail.com];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[linux@armlinux.org.uk,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	DBL_PROHIBIT(0.00)[0.0.0.3:email,0.0.0.2:email,0.0.0.1:email];
 	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gregory.clement@bootlin.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[armlinux.org.uk:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,shell.armlinux.org.uk:mid]
-X-Rspamd-Queue-Id: 008F16A84A
+	DBL_BLOCKED_OPENRESOLVER(0.00)[infradead.org:email,lunn.ch:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.0:email,bootlin.com:email,bootlin.com:url,bootlin.com:dkim,lkml.org:url,0.0.70.80:email,BLaptop.bootlin.com:mid]
+X-Rspamd-Queue-Id: D92AE6A12B
 X-Rspamd-Action: no action
 
-On Thu, Jan 22, 2026 at 02:27:34PM +0100, Andrew Lunn wrote:
-> > We also intend
-> > to upstream complete DTS files for EIC7700 so the bindings can be validated
-> > against real hardware.
-> 
-> I suggest you prioritise this. ARM-SOC is pretty flexible for
-> accepting work in progress support for new SoCs. All you really need
-> is for the board to boot to a login prompt on a serial port using an
-> initramsfs. So the .dtsi and .dts file can be very slim, CPUs, memory
-> and UARTs.
-> 
-> Once you have that merged you can work on the other drivers, their
-> bindings, etc.
-> 
-> As Russell pointed out, at the moment, most of the code you have in
-> the kernel is unusable, so it is a candidate for being thrown out.
+Elad Nachman <enachman@marvell.com> writes:
 
-Indeed, and we've had drivers merged before for platforms that never
-made it in, and they just hang around for decades, adding to the
-maintainer's burden for no benefit what so ever.
+> Hi,
+>
+>>=20
+>>=20
+>> From: Gregory CLEMENT <gregory.clement@bootlin.com>
+>> Sent: Thursday, January 22, 2026 12:01 PM
+>> To: Rob Herring (Arm) <robh@kernel.org>; Andrew Lunn <andrew@lunn.ch>; S=
+ebastian Hesselbarth <sebastian.hesselbarth@gmail.com>; Krzysztof Kozlowski=
+ <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>; Elad Nachman <en=
+achman@marvell.com>
+>> Cc: linux-arm-kernel@lists.infradead.org; devicetree@vger.kernel.org; li=
+nux-kernel@vger.kernel.org
+>> Subject: [EXTERNAL] Re: [PATCH] arm/arm64: dts: marvell: Drop unused .dt=
+si
+>>=20
+>> Hello Rob,
+>> > These .dtsi files are not included anywhere in the tree and can't be
+>> > tested.
+>> > > Signed-off-by: Rob Herring (Arm) <robh@=E2=80=8Akernel.=E2=80=8Aorg>=
+ > ---
+>> > arch/arm/boot/dts/marvell/armada-380.=E2=80=8Adtsi | 148
+>> Hello Rob,
+>>=20
+>> > These .dtsi files are not included anywhere in the tree and can't be
+>> > tested.
+>> >
+>> > Signed-off-by: Rob Herring (Arm) <mailto:robh@kernel.org>
+>> > ---
+>> >  arch/arm/boot/dts/marvell/armada-380.dtsi     | 148 ------------------
+>> >  arch/arm64/boot/dts/marvell/armada-7020.dtsi  |  10 --
+>> >  arch/arm64/boot/dts/marvell/armada-8020.dtsi  |  20 ---
+>> >  .../boot/dts/marvell/armada-ap806-dual.dtsi   |  60 -------
+>>=20
+>> For these ones I agree removing them
+>
+> armada-7020.dtsi uses armada-ap806-dual.dtsi
+> armada-7020.dtsi is used by several of our boards, I have submitted the f=
+ollowing commit:
+> https://lkml.org/lkml/2023/12/18/1024
+> But for some reason I did not get any response for it.
+> If we merge it, these two DTSI files (7020 and ap806-dual) will be
+> used.
 
-So please, no more drivers for EIC7700 until there is functional
-support for the platform, as Andrew states.
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+Even in the lore, it is not easy to find these emails, and indeed I
+missed them while I merged the previous series sent.
+Could you rebase and send it again ?
+
+Gregory
+
+>
+>>=20
+>> >  .../dts/marvell/cn9130-db-comexpress.dtsi     |  96 ------------
+>>=20
+>> I am a bit more concerned about this one, as it really seems to be an
+>> existing module. I would like to get feedback from Elad Nachman, who
+>> submitted it, to find out if there is any dts board that can be
+>> submitted to keep this dtsi or, conversely, if we can indeed remove the
+>> dtsi.
+>
+> Currently we only have a Com-Express board for CN9131, so for now you can=
+ drop this one.
+>
+>>=20
+>> Gregory
+>>=20
+>> >  5 files changed, 334 deletions(-)
+>> >  delete mode 100644 arch/arm/boot/dts/marvell/armada-380.dtsi
+>> >  delete mode 100644 arch/arm64/boot/dts/marvell/armada-7020.dtsi
+>> >  delete mode 100644 arch/arm64/boot/dts/marvell/armada-8020.dtsi
+>> >  delete mode 100644 arch/arm64/boot/dts/marvell/armada-ap806-dual.dtsi
+>> >  delete mode 100644 arch/arm64/boot/dts/marvell/cn9130-db-comexpress.d=
+tsi
+>> >
+>> > diff --git a/arch/arm/boot/dts/marvell/armada-380.dtsi b/arch/arm/boot=
+/dts/marvell/armada-380.dtsi
+>> > deleted file mode 100644
+>> > index e94f22b0e9b5..000000000000
+>> > --- a/arch/arm/boot/dts/marvell/armada-380.dtsi
+>> > +++ /dev/null
+>> > @@ -1,148 +0,0 @@
+>> > -// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>> > -/*
+>> > - * Device Tree Include file for Marvell Armada 380 SoC.
+>> > - *
+>> > - * Copyright (C) 2014 Marvell
+>> > - *
+>> > - * Lior Amsalem <mailto:alior@marvell.com>
+>> > - * Gregory CLEMENT <mailto:gregory.clement@free-electrons.com>
+>> > - * Thomas Petazzoni <mailto:thomas.petazzoni@free-electrons.com>
+>> > - */
+>> > -
+>> > -#include "armada-38x.dtsi"
+>> > -
+>> > -/ {
+>> > -	model =3D "Marvell Armada 380 family SoC";
+>> > -	compatible =3D "marvell,armada380";
+>> > -
+>> > -	cpus {
+>> > -		#address-cells =3D <1>;
+>> > -		#size-cells =3D <0>;
+>> > -		enable-method =3D "marvell,armada-380-smp";
+>> > -
+>> > -		cpu@0 {
+>> > -			device_type =3D "cpu";
+>> > -			compatible =3D "arm,cortex-a9";
+>> > -			reg =3D <0>;
+>> > -		};
+>> > -	};
+>> > -
+>> > -	soc {
+>> > -		internal-regs {
+>> > -			pinctrl@18000 {
+>> > -				compatible =3D "marvell,mv88f6810-pinctrl";
+>> > -			};
+>> > -		};
+>> > -
+>> > -		pcie {
+>> > -			compatible =3D "marvell,armada-370-pcie";
+>> > -			status =3D "disabled";
+>> > -			device_type =3D "pci";
+>> > -
+>> > -			#address-cells =3D <3>;
+>> > -			#size-cells =3D <2>;
+>> > -
+>> > -			msi-parent =3D <&mpic>;
+>> > -			bus-range =3D <0x00 0xff>;
+>> > -
+>> > -			ranges =3D
+>> > -			       <0x82000000 0 0x80000 MBUS_ID(0xf0, 0x01) 0x80000 0 0x00002=
+000
+>> > -				0x82000000 0 0x40000 MBUS_ID(0xf0, 0x01) 0x40000 0 0x00002000
+>> > -				0x82000000 0 0x44000 MBUS_ID(0xf0, 0x01) 0x44000 0 0x00002000
+>> > -				0x82000000 0 0x48000 MBUS_ID(0xf0, 0x01) 0x48000 0 0x00002000
+>> > -				0x82000000 0x1 0     MBUS_ID(0x08, 0xe8) 0 1 0 /* Port 0 MEM */
+>> > -				0x81000000 0x1 0     MBUS_ID(0x08, 0xe0) 0 1 0 /* Port 0 IO  */
+>> > -				0x82000000 0x2 0     MBUS_ID(0x04, 0xe8) 0 1 0 /* Port 1 MEM */
+>> > -				0x81000000 0x2 0     MBUS_ID(0x04, 0xe0) 0 1 0 /* Port 1 IO  */
+>> > -				0x82000000 0x3 0     MBUS_ID(0x04, 0xd8) 0 1 0 /* Port 2 MEM */
+>> > -				0x81000000 0x3 0     MBUS_ID(0x04, 0xd0) 0 1 0 /* Port 2 IO  */>;
+>> > -
+>> > -			/* x1 port */
+>> > -			pcie@1,0 {
+>> > -				device_type =3D "pci";
+>> > -				assigned-addresses =3D <0x82000800 0 0x80000 0 0x2000>;
+>> > -				reg =3D <0x0800 0 0 0 0>;
+>> > -				#address-cells =3D <3>;
+>> > -				#size-cells =3D <2>;
+>> > -				interrupt-names =3D "intx";
+>> > -				interrupts-extended =3D <&gic GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>;
+>> > -				#interrupt-cells =3D <1>;
+>> > -				ranges =3D <0x82000000 0 0 0x82000000 0x1 0 1 0
+>> > -					  0x81000000 0 0 0x81000000 0x1 0 1 0>;
+>> > -				bus-range =3D <0x00 0xff>;
+>> > -				interrupt-map-mask =3D <0 0 0 7>;
+>> > -				interrupt-map =3D <0 0 0 1 &pcie1_intc 0>,
+>> > -						<0 0 0 2 &pcie1_intc 1>,
+>> > -						<0 0 0 3 &pcie1_intc 2>,
+>> > -						<0 0 0 4 &pcie1_intc 3>;
+>> > -				marvell,pcie-port =3D <0>;
+>> > -				marvell,pcie-lane =3D <0>;
+>> > -				clocks =3D <&gateclk 8>;
+>> > -				status =3D "disabled";
+>> > -
+>> > -				pcie1_intc: interrupt-controller {
+>> > -					interrupt-controller;
+>> > -					#interrupt-cells =3D <1>;
+>> > -				};
+>> > -			};
+>> > -
+>> > -			/* x1 port */
+>> > -			pcie@2,0 {
+>> > -				device_type =3D "pci";
+>> > -				assigned-addresses =3D <0x82001000 0 0x40000 0 0x2000>;
+>> > -				reg =3D <0x1000 0 0 0 0>;
+>> > -				#address-cells =3D <3>;
+>> > -				#size-cells =3D <2>;
+>> > -				interrupt-names =3D "intx";
+>> > -				interrupts-extended =3D <&gic GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
+>> > -				#interrupt-cells =3D <1>;
+>> > -				ranges =3D <0x82000000 0 0 0x82000000 0x2 0 1 0
+>> > -					  0x81000000 0 0 0x81000000 0x2 0 1 0>;
+>> > -				bus-range =3D <0x00 0xff>;
+>> > -				interrupt-map-mask =3D <0 0 0 7>;
+>> > -				interrupt-map =3D <0 0 0 1 &pcie2_intc 0>,
+>> > -						<0 0 0 2 &pcie2_intc 1>,
+>> > -						<0 0 0 3 &pcie2_intc 2>,
+>> > -						<0 0 0 4 &pcie2_intc 3>;
+>> > -				marvell,pcie-port =3D <1>;
+>> > -				marvell,pcie-lane =3D <0>;
+>> > -				clocks =3D <&gateclk 5>;
+>> > -				status =3D "disabled";
+>> > -
+>> > -				pcie2_intc: interrupt-controller {
+>> > -					interrupt-controller;
+>> > -					#interrupt-cells =3D <1>;
+>> > -				};
+>> > -			};
+>> > -
+>> > -			/* x1 port */
+>> > -			pcie@3,0 {
+>> > -				device_type =3D "pci";
+>> > -				assigned-addresses =3D <0x82001800 0 0x44000 0 0x2000>;
+>> > -				reg =3D <0x1800 0 0 0 0>;
+>> > -				#address-cells =3D <3>;
+>> > -				#size-cells =3D <2>;
+>> > -				interrupt-names =3D "intx";
+>> > -				interrupts-extended =3D <&gic GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>;
+>> > -				#interrupt-cells =3D <1>;
+>> > -				ranges =3D <0x82000000 0 0 0x82000000 0x3 0 1 0
+>> > -					  0x81000000 0 0 0x81000000 0x3 0 1 0>;
+>> > -				bus-range =3D <0x00 0xff>;
+>> > -				interrupt-map-mask =3D <0 0 0 7>;
+>> > -				interrupt-map =3D <0 0 0 1 &pcie3_intc 0>,
+>> > -						<0 0 0 2 &pcie3_intc 1>,
+>> > -						<0 0 0 3 &pcie3_intc 2>,
+>> > -						<0 0 0 4 &pcie3_intc 3>;
+>> > -				marvell,pcie-port =3D <2>;
+>> > -				marvell,pcie-lane =3D <0>;
+>> > -				clocks =3D <&gateclk 6>;
+>> > -				status =3D "disabled";
+>> > -
+>> > -				pcie3_intc: interrupt-controller {
+>> > -					interrupt-controller;
+>> > -					#interrupt-cells =3D <1>;
+>> > -				};
+>> > -			};
+>> > -		};
+>> > -	};
+>> > -};
+>> > diff --git a/arch/arm64/boot/dts/marvell/armada-7020.dtsi b/arch/arm64=
+/boot/dts/marvell/armada-7020.dtsi
+>> > deleted file mode 100644
+>> > index 570f901b4f4a..000000000000
+>> > --- a/arch/arm64/boot/dts/marvell/armada-7020.dtsi
+>> > +++ /dev/null
+>> > @@ -1,10 +0,0 @@
+>> > -// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>> > -/*
+>> > - * Copyright (C) 2016 Marvell Technology Group Ltd.
+>> > - *
+>> > - * Device Tree file for the Armada 7020 SoC, made of an AP806 Dual and
+>> > - * one CP110.
+>> > - */
+>> > -
+>> > -#include "armada-ap806-dual.dtsi"
+>> > -#include "armada-70x0.dtsi"
+>> > diff --git a/arch/arm64/boot/dts/marvell/armada-8020.dtsi b/arch/arm64=
+/boot/dts/marvell/armada-8020.dtsi
+>> > deleted file mode 100644
+>> > index b6fc18876093..000000000000
+>> > --- a/arch/arm64/boot/dts/marvell/armada-8020.dtsi
+>> > +++ /dev/null
+>> > @@ -1,20 +0,0 @@
+>> > -// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>> > -/*
+>> > - * Copyright (C) 2016 Marvell Technology Group Ltd.
+>> > - *
+>> > - * Device Tree file for the Armada 8020 SoC, made of an AP806 Dual and
+>> > - * two CP110.
+>> > - */
+>> > -
+>> > -#include "armada-ap806-dual.dtsi"
+>> > -#include "armada-80x0.dtsi"
+>> > -
+>> > -/* The RTC requires external oscillator. But on Aramda 80x0, the RTC =
+clock
+>> > - * in CP master is not connected (by package) to the oscillator. So
+>> > - * disable it. However, the RTC clock in CP slave is connected to the
+>> > - * oscillator so this one is let enabled.
+>> > - */
+>> > -
+>> > -&cp0_rtc {
+>> > -	status =3D "disabled";
+>> > -};
+>> > diff --git a/arch/arm64/boot/dts/marvell/armada-ap806-dual.dtsi b/arch=
+/arm64/boot/dts/marvell/armada-ap806-dual.dtsi
+>> > deleted file mode 100644
+>> > index 82f4dedfc25e..000000000000
+>> > --- a/arch/arm64/boot/dts/marvell/armada-ap806-dual.dtsi
+>> > +++ /dev/null
+>> > @@ -1,60 +0,0 @@
+>> > -// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>> > -/*
+>> > - * Copyright (C) 2016 Marvell Technology Group Ltd.
+>> > - *
+>> > - * Device Tree file for Marvell Armada AP806.
+>> > - */
+>> > -
+>> > -#include "armada-ap806.dtsi"
+>> > -
+>> > -/ {
+>> > -	cpus {
+>> > -		#address-cells =3D <1>;
+>> > -		#size-cells =3D <0>;
+>> > -
+>> > -		cpu0: cpu@0 {
+>> > -			device_type =3D "cpu";
+>> > -			compatible =3D "arm,cortex-a72";
+>> > -			reg =3D <0x000>;
+>> > -			enable-method =3D "psci";
+>> > -			#cooling-cells =3D <2>;
+>> > -			clocks =3D <&cpu_clk 0>;
+>> > -			i-cache-size =3D <0xc000>;
+>> > -			i-cache-line-size =3D <64>;
+>> > -			i-cache-sets =3D <256>;
+>> > -			d-cache-size =3D <0x8000>;
+>> > -			d-cache-line-size =3D <64>;
+>> > -			d-cache-sets =3D <256>;
+>> > -			next-level-cache =3D <&l2>;
+>> > -		};
+>> > -		cpu1: cpu@1 {
+>> > -			device_type =3D "cpu";
+>> > -			compatible =3D "arm,cortex-a72";
+>> > -			reg =3D <0x001>;
+>> > -			enable-method =3D "psci";
+>> > -			#cooling-cells =3D <2>;
+>> > -			clocks =3D <&cpu_clk 0>;
+>> > -			i-cache-size =3D <0xc000>;
+>> > -			i-cache-line-size =3D <64>;
+>> > -			i-cache-sets =3D <256>;
+>> > -			d-cache-size =3D <0x8000>;
+>> > -			d-cache-line-size =3D <64>;
+>> > -			d-cache-sets =3D <256>;
+>> > -			next-level-cache =3D <&l2>;
+>> > -		};
+>> > -
+>> > -		l2: l2-cache {
+>> > -			compatible =3D "cache";
+>> > -			cache-size =3D <0x80000>;
+>> > -			cache-line-size =3D <64>;
+>> > -			cache-sets =3D <512>;
+>> > -			cache-level =3D <2>;
+>> > -			cache-unified;
+>> > -		};
+>> > -	};
+>> > -
+>> > -	thermal-zones {
+>> > -		/delete-node/ ap-thermal-cpu2;
+>> > -		/delete-node/ ap-thermal-cpu3;
+>> > -	};
+>> > -};
+>> > diff --git a/arch/arm64/boot/dts/marvell/cn9130-db-comexpress.dtsi b/a=
+rch/arm64/boot/dts/marvell/cn9130-db-comexpress.dtsi
+>> > deleted file mode 100644
+>> > index 028496ebc473..000000000000
+>> > --- a/arch/arm64/boot/dts/marvell/cn9130-db-comexpress.dtsi
+>> > +++ /dev/null
+>> > @@ -1,96 +0,0 @@
+>> > -// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>> > -/*
+>> > - * Copyright (C) 2023 Marvell International Ltd.
+>> > - *
+>> > - * Device tree for the CN9130-DB Com Express CPU module board.
+>> > - */
+>> > -
+>> > -#include "cn9130-db.dtsi"
+>> > -
+>> > -/ {
+>> > -	model =3D "Marvell Armada CN9130-DB COM EXPRESS type 7 CPU module bo=
+ard";
+>> > -	compatible =3D "marvell,cn9130-cpu-module", "marvell,cn9130",
+>> > -		     "marvell,armada-ap807-quad", "marvell,armada-ap807";
+>> > -
+>> > -};
+>> > -
+>> > -&ap0_reg_sd_vccq {
+>> > -	regulator-max-microvolt =3D <1800000>;
+>> > -	states =3D <1800000 0x1 1800000 0x0>;
+>> > -	/delete-property/ gpios;
+>> > -};
+>> > -
+>> > -&cp0_reg_usb3_vbus0 {
+>> > -	/delete-property/ gpio;
+>> > -};
+>> > -
+>> > -&cp0_reg_usb3_vbus1 {
+>> > -	/delete-property/ gpio;
+>> > -};
+>> > -
+>> > -&cp0_reg_sd_vcc {
+>> > -	status =3D "disabled";
+>> > -};
+>> > -
+>> > -&cp0_reg_sd_vccq {
+>> > -	status =3D "disabled";
+>> > -};
+>> > -
+>> > -&cp0_sdhci0 {
+>> > -	status =3D "disabled";
+>> > -};
+>> > -
+>> > -&cp0_eth0 {
+>> > -	status =3D "disabled";
+>> > -};
+>> > -
+>> > -&cp0_eth1 {
+>> > -	status =3D "okay";
+>> > -	phy =3D <&phy0>;
+>> > -	phy-mode =3D "rgmii-id";
+>> > -};
+>> > -
+>> > -&cp0_eth2 {
+>> > -	status =3D "disabled";
+>> > -};
+>> > -
+>> > -&cp0_mdio {
+>> > -	status =3D "okay";
+>> > -	pinctrl-0 =3D <&cp0_ge_mdio_pins>;
+>> > -	phy0: ethernet-phy@0 {
+>> > -		status =3D "okay";
+>> > -	};
+>> > -};
+>> > -
+>> > -&cp0_syscon0 {
+>> > -	cp0_pinctrl: pinctrl {
+>> > -		compatible =3D "marvell,cp115-standalone-pinctrl";
+>> > -
+>> > -		cp0_ge_mdio_pins: ge-mdio-pins {
+>> > -			marvell,pins =3D "mpp40", "mpp41";
+>> > -			marvell,function =3D "ge";
+>> > -		};
+>> > -	};
+>> > -};
+>> > -
+>> > -&cp0_sdhci0 {
+>> > -	status =3D "disabled";
+>> > -};
+>> > -
+>> > -&cp0_spi1 {
+>> > -	status =3D "okay";
+>> > -};
+>> > -
+>> > -&cp0_usb3_0 {
+>> > -	status =3D "okay";
+>> > -	usb-phy =3D <&cp0_usb3_0_phy0>;
+>> > -	phy-names =3D "usb";
+>> > -	/delete-property/ phys;
+>> > -};
+>> > -
+>> > -&cp0_usb3_1 {
+>> > -	status =3D "okay";
+>> > -	usb-phy =3D <&cp0_usb3_0_phy1>;
+>> > -	phy-names =3D "usb";
+>> > -	/delete-property/ phys;
+>> > -};
+>> > --
+>> > 2.51.0
+>> >
+>>=20
+>> --
+>> Gr=C3=A9gory CLEMENT, Bootlin
+>> Embedded Linux and Kernel engineering
+>
+> Thanks,
+>
+> Elad.
+
+--=20
+Gr=C3=A9gory CLEMENT, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
