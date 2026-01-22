@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-258561-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258562-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +PytByBgcmnbjAAAu9opvQ
-	(envelope-from <devicetree+bounces-258561-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:36:32 +0100
+	id aMVuLJNccmn5iwAAu9opvQ
+	(envelope-from <devicetree+bounces-258562-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:21:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 069336B749
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:36:32 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83B416B1E4
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:21:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5AEBC3001FD4
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 17:04:53 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 7BD0C3064E87
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 17:07:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAE203DC110;
-	Thu, 22 Jan 2026 16:39:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06A323D9F44;
+	Thu, 22 Jan 2026 16:42:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3680627934B;
-	Thu, 22 Jan 2026 16:39:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71DCC3DC96F;
+	Thu, 22 Jan 2026 16:42:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769099986; cv=none; b=aO1pFQ7Zl2c7pO9u4Jyz283KwUP1Z0KTF1aElhI2mx2W/QEopZN+JHT921Mx4sq067FxyFbKIXQKoeXmGPQmdwA2bF1/gSAdmhJZgJPNi25t95uFxRU0w/J8sIwj9P7eQaEWahJuA3sShwmXf/0hAAfMocS8/8TtdBNneDTBTX8=
+	t=1769100173; cv=none; b=uN/rSQlcbKNdMao2Jqz3QDZRSRXbbgzuK0HRVMCMl7/CLxCtn97mlkZOcTbWnX734arxo2rg49pIk2ImQfcg2lXK67oAPQXwNNf0MP3FsVLkIDl84sr5IdkESRza3QeJTQavzxuCEp3nBbz6vFYBg2SPs73+eQlUUK4hfbn57qA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769099986; c=relaxed/simple;
-	bh=9/wOEAP9Z70YlA94ausVaW4pw/bf8VxiowP0V8TIO9U=;
+	s=arc-20240116; t=1769100173; c=relaxed/simple;
+	bh=6P0n0yRlYMIV56MqouKV3LIVah5f3lMN4f0w/T0gbNY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZrD8TFIbgIxOjVTpadf0UYZI6WzuhO8yPpFa0fZh/F2Sp/eawtaIjyeIJuy1IBeceJ4jHorZHS9hSQU553AnkTxHFUIhv8OHTyKX4AMv4HDYkpxnt2z4H0UAm5dmlHo25gWC042CaZJKPBqdJMSXTBZBGD9cHikfyDaPG4+WjVc=
+	 Content-Type:Content-Disposition:In-Reply-To; b=Mpi2yqQs5nMyrIJ+VqlCtzovgrJc3b6lzlcDlhp/SqJZN0fYaDs8Lx7FOw6mS06V4LO7cIEJeOjmUbIwpD0DQjCcbpZ+nGxIx8bGFwoGMS+b9XnT9XHcTWy9l/95OcGxn8AF44xllqYfmywAWj+ZJ35WT4Ra8kbsX+/ImMGzWYM=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
@@ -36,25 +36,37 @@ Received: from local
 	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
 	 (Exim 4.99)
 	(envelope-from <daniel@makrotopia.org>)
-	id 1vixiX-000000001S0-0svo;
-	Thu, 22 Jan 2026 16:39:33 +0000
-Date: Thu, 22 Jan 2026 16:39:30 +0000
+	id 1vixlK-000000001Tb-1Okc;
+	Thu, 22 Jan 2026 16:42:26 +0000
+Date: Thu, 22 Jan 2026 16:42:23 +0000
 From: Daniel Golle <daniel@makrotopia.org>
-To: Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: "Rob Herring (Arm)" <robh@kernel.org>,
+	Chad Monroe <chad.monroe@adtran.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Chen Minqiang <ptpt52@gmail.com>, Xinfa Deng <xinfa.deng@gl-inet.com>
-Subject: [PATCH net-next v6 6/6] net: dsa: mxl-gsw1xx: add support for Intel
- GSW150
-Message-ID: <c84cf94337bf1be30940841b338b6368468c6e17.1769099517.git.daniel@makrotopia.org>
-References: <cover.1769099517.git.daniel@makrotopia.org>
+	Brian Norris <computersforpeace@gmail.com>,
+	Kamal Dasu <kdasu.kdev@gmail.com>,
+	William Zhang <william.zhang@broadcom.com>,
+	Nick Terrell <terrelln@fb.com>, David Sterba <dsterba@suse.com>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+	Simon Glass <sjg@chromium.org>, Linus Walleij <linusw@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Marcus Folkesson <marcus.folkesson@gmail.com>,
+	Tony Lindgren <tony@atomide.com>, Roger Quadros <rogerq@kernel.org>,
+	Hauke Mehrtens <hauke@hauke-m.de>, linux-mtd@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mmc@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: Re: [PATCH v3 06/10] dt-bindings: mtd: partitions: Drop
+ partitions.yaml
+Message-ID: <aXJTb0-YMu9gf5SB@makrotopia.org>
+References: <20260121-dt-mtd-partitions-v3-0-ec3af93c8f93@kernel.org>
+ <20260121-dt-mtd-partitions-v3-6-ec3af93c8f93@kernel.org>
+ <aXFCws0XUToQ03UH@makrotopia.org>
+ <87tsweos4l.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,201 +75,66 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cover.1769099517.git.daniel@makrotopia.org>
+In-Reply-To: <87tsweos4l.fsf@bootlin.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.04 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-258562-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258561-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[makrotopia.org];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[hauke-m.de,lunn.ch,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,armlinux.org.uk,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	FREEMAIL_CC(0.00)[kernel.org,adtran.com,nod.at,ti.com,gmail.com,broadcom.com,fb.com,suse.com,milecki.pl,chromium.org,linaro.org,atomide.com,hauke-m.de,lists.infradead.org,vger.kernel.org,oss.qualcomm.com];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	DMARC_NA(0.00)[makrotopia.org];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com,gl-inet.com];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.964];
+	NEURAL_HAM(-0.00)[-0.973];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[daniel@makrotopia.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	R_DKIM_NA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,makrotopia.org:mid,makrotopia.org:email]
-X-Rspamd-Queue-Id: 069336B749
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[makrotopia.org:mid,makrotopia.org:email]
+X-Rspamd-Queue-Id: 83B416B1E4
 X-Rspamd-Action: no action
 
-Add support for the Intel GSW150 (aka. Lantiq PEB7084) switch IC to
-the mxl-gsw1xx driver. This switch comes with 5 Gigabit Ethernet
-copper ports (Intel XWAY PHY11G (xRX v1.2 integrated) PHYs) as well as
-one GMII/RGMII and one RGMII port.
+On Thu, Jan 22, 2026 at 11:31:54AM +0100, Miquel Raynal wrote:
+> On 21/01/2026 at 21:18:58 GMT, Daniel Golle <daniel@makrotopia.org> wrote:
+> 
+> > On Wed, Jan 21, 2026 at 01:56:39PM -0600, Rob Herring (Arm) wrote:
+> >> The partitions.yaml schema is an unusual structure in that it includes
+> >> all possible partition types, and it disables the normal matching by
+> >> compatible strings. As partitions.yaml has nothing to match on, it is
+> >> only applied when explicitly referenced. The use of "oneOf" also results
+> >> in misleading warnings which are difficult to understand. Drop
+> >> partitions.yaml and rely on the standard compatible matching instead.
+> >> 
+> >> The "mmc-card" case previously allowed any partition type, but now only
+> >> allows "fixed-partitions". There aren't any users and the original
+> >> intent appeared to be only for "fixed-partitions".
+> >
+> > It would actually be great to also allow 'gpt-partitions' as compatible
+> > type with #address-cells = <0> and #size-cells = <0> and allow matching
+> > on partition UUID, name or index. This has previously been discussed and
+> > would avoid having to extract MAC addresses and WiFi EEPROM data in
+> > userspace on many devices which rely on such conventions.
+> 
+> Out of curiosity, why not exposing this data through an NVMEM cell
+> instead? Anyway, this (re?)addition can probably be part of a follow-up
+> series and is almost orthogonal to this cleanup IMO.
 
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
----
-v6:
- * rebase on top of current net-next
- * update Kconfig to mention GSW150
- * allow configuring RGMII slewrate introduced by commit dbf24ab58fec3
-   ("net: dsa: mxl-gsw1xx: Support R(G)MII slew rate configuration")
-
-v5: no changes
-
-v4: spell out mii_cfg and mii_pcdu values in struct gswip_hw_info instead
-    of using default initializer which requires diag exception
-
-v3: enclose the gswip_hw_info initializers in compiler diag exception
-    to prevent triggering -Woverride-init
-
-v2: clean-up phylink_get_caps
-
-
- drivers/net/dsa/lantiq/Kconfig      |  4 +-
- drivers/net/dsa/lantiq/mxl-gsw1xx.c | 67 ++++++++++++++++++++++++++---
- drivers/net/dsa/lantiq/mxl-gsw1xx.h |  2 +
- 3 files changed, 67 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/net/dsa/lantiq/Kconfig b/drivers/net/dsa/lantiq/Kconfig
-index 4a9771be5d588..bad13817af257 100644
---- a/drivers/net/dsa/lantiq/Kconfig
-+++ b/drivers/net/dsa/lantiq/Kconfig
-@@ -16,9 +16,11 @@ config NET_DSA_MXL_GSW1XX
- 	select NET_DSA_TAG_MXL_GSW1XX
- 	select NET_DSA_LANTIQ_COMMON
- 	help
--	  This enables support for the MaxLinear GSW1xx family of 1GE switches
-+	  This enables support for the Intel/MaxLinear GSW1xx family of 1GE
-+	  switches.
- 	    GSW120 4 port, 2 PHYs, RGMII & SGMII/2500Base-X
- 	    GSW125 4 port, 2 PHYs, RGMII & SGMII/2500Base-X, industrial temperature
- 	    GSW140 6 port, 4 PHYs, RGMII & SGMII/2500Base-X
- 	    GSW141 6 port, 4 PHYs, RGMII & SGMII
- 	    GSW145 6 port, 4 PHYs, RGMII & SGMII/2500Base-X, industrial temperature
-+	    GSW150 7 port, 5 PHYs, 1x GMII/RGMII, 1x RGMII
-diff --git a/drivers/net/dsa/lantiq/mxl-gsw1xx.c b/drivers/net/dsa/lantiq/mxl-gsw1xx.c
-index c6fa93229349a..79cf72cc77be9 100644
---- a/drivers/net/dsa/lantiq/mxl-gsw1xx.c
-+++ b/drivers/net/dsa/lantiq/mxl-gsw1xx.c
-@@ -502,6 +502,14 @@ static const struct phylink_pcs_ops gsw1xx_pcs_ops = {
- 	.pcs_link_up = gsw1xx_pcs_link_up,
- };
- 
-+static void gsw1xx_phylink_get_lpi_caps(struct phylink_config *config)
-+{
-+	config->lpi_capabilities = MAC_100FD | MAC_1000FD;
-+	config->lpi_timer_default = 20;
-+	memcpy(config->lpi_interfaces, config->supported_interfaces,
-+	       sizeof(config->lpi_interfaces));
-+}
-+
- static void gsw1xx_phylink_get_caps(struct dsa_switch *ds, int port,
- 				    struct phylink_config *config)
- {
-@@ -535,10 +543,32 @@ static void gsw1xx_phylink_get_caps(struct dsa_switch *ds, int port,
- 		break;
- 	}
- 
--	config->lpi_capabilities = MAC_100FD | MAC_1000FD;
--	config->lpi_timer_default = 20;
--	memcpy(config->lpi_interfaces, config->supported_interfaces,
--	       sizeof(config->lpi_interfaces));
-+	gsw1xx_phylink_get_lpi_caps(config);
-+}
-+
-+static void gsw150_phylink_get_caps(struct dsa_switch *ds, int port,
-+				    struct phylink_config *config)
-+{
-+	config->mac_capabilities = MAC_ASYM_PAUSE | MAC_SYM_PAUSE |
-+				   MAC_10 | MAC_100 | MAC_1000;
-+
-+	switch (port) {
-+	case 0 ... 4: /* built-in PHYs */
-+		__set_bit(PHY_INTERFACE_MODE_INTERNAL,
-+			  config->supported_interfaces);
-+		break;
-+
-+	case 5: /* GMII or RGMII */
-+		__set_bit(PHY_INTERFACE_MODE_GMII,
-+			  config->supported_interfaces);
-+		fallthrough;
-+
-+	case 6: /* RGMII */
-+		phy_interface_set_rgmii(config->supported_interfaces);
-+		break;
-+	}
-+
-+	gsw1xx_phylink_get_lpi_caps(config);
- }
- 
- static struct phylink_pcs *gsw1xx_phylink_mac_select_pcs(struct phylink_config *config,
-@@ -809,11 +839,38 @@ static const struct gswip_hw_info gsw141_data = {
- 	.tag_protocol		= DSA_TAG_PROTO_MXL_GSW1XX,
- };
- 
-+static const struct gswip_hw_info gsw150_data = {
-+	.max_ports		= GSW150_PORTS,
-+	.allowed_cpu_ports	= BIT(5) | BIT(6),
-+	.mii_cfg = {
-+		[0 ... 4] = -1,
-+		[5] = 0,
-+		[6] = 10,
-+	},
-+	.mii_pcdu = {
-+		[0 ... 4] = -1,
-+		[5] = 1,
-+		[6] = 11,
-+	},
-+	.phylink_get_caps	= gsw150_phylink_get_caps,
-+	/* There is only a single RGMII_SLEW_CFG register in GSW150 and it is
-+	 * unknown if RGMII slew configuration affects both RGMII ports
-+	 * or only port 5. Use .port_setup which assumes it affects port 5
-+	 * for now.
-+	 */
-+	.port_setup		= gsw1xx_port_setup,
-+	.pce_microcode		= &gsw1xx_pce_microcode,
-+	.pce_microcode_size	= ARRAY_SIZE(gsw1xx_pce_microcode),
-+	.tag_protocol		= DSA_TAG_PROTO_MXL_GSW1XX,
-+};
-+
- /*
-  * GSW125 is the industrial temperature version of GSW120.
-  * GSW145 is the industrial temperature version of GSW140.
-  */
- static const struct of_device_id gsw1xx_of_match[] = {
-+	{ .compatible = "intel,gsw150", .data = &gsw150_data },
-+	{ .compatible = "lantiq,peb7084", .data = &gsw150_data },
- 	{ .compatible = "maxlinear,gsw120", .data = &gsw12x_data },
- 	{ .compatible = "maxlinear,gsw125", .data = &gsw12x_data },
- 	{ .compatible = "maxlinear,gsw140", .data = &gsw140_data },
-@@ -837,5 +894,5 @@ static struct mdio_driver gsw1xx_driver = {
- mdio_module_driver(gsw1xx_driver);
- 
- MODULE_AUTHOR("Daniel Golle <daniel@makrotopia.org>");
--MODULE_DESCRIPTION("Driver for MaxLinear GSW1xx ethernet switch");
-+MODULE_DESCRIPTION("Driver for Intel/MaxLinear GSW1xx Ethernet switch");
- MODULE_LICENSE("GPL");
-diff --git a/drivers/net/dsa/lantiq/mxl-gsw1xx.h b/drivers/net/dsa/lantiq/mxl-gsw1xx.h
-index 8c0298b2b7663..d1fded56e9678 100644
---- a/drivers/net/dsa/lantiq/mxl-gsw1xx.h
-+++ b/drivers/net/dsa/lantiq/mxl-gsw1xx.h
-@@ -10,6 +10,8 @@
- #include <linux/bitfield.h>
- 
- #define GSW1XX_PORTS				6
-+#define GSW150_PORTS				7
-+
- /* Port used for RGMII or optional RMII */
- #define GSW1XX_MII_PORT				5
- /* Port used for SGMII */
--- 
-2.52.0
+Exposing this data via NVMEM cell is exactly what I'd like to see.
+However, for that the location of the data to be exposed as NVMEM cell
+needs to be identified in the same way as done by the stock firmware,
+which uses a GPT partition name in case of Adtran, for example.
 
