@@ -1,172 +1,431 @@
-Return-Path: <devicetree+bounces-258400-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258401-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kLPlKxYicmmPdQAAu9opvQ
-	(envelope-from <devicetree+bounces-258400-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:11:50 +0100
+	id UGIXLFgfcmmPdQAAu9opvQ
+	(envelope-from <devicetree+bounces-258401-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:00:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E7F267199
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:11:50 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B39966F6A
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:00:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7DE7B8A62E7
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 12:44:25 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8547C949160
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 12:47:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F50E39C659;
-	Thu, 22 Jan 2026 12:44:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E91D72BD58A;
+	Thu, 22 Jan 2026 12:47:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sR03JANX"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Bn9Welt1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011014.outbound.protection.outlook.com [52.101.70.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E25EE330B06;
-	Thu, 22 Jan 2026 12:44:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769085859; cv=none; b=Ah0pLKvCXeGQi+srEzLY9+AHefWwPfqKpkpDD2ffOwqAw6C77ZQok3rSdFWfYTBNX0L6jzALZI9FfE0DmEcoO8knLW6N+YwoTculPr0Lld8TVoogRUJrasftrDHFPKyYfcQDVS7OuDxHLBn/KUpGX3FFyl8mtmxaKdacG85Rik8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769085859; c=relaxed/simple;
-	bh=+LlmDCs02l5fbu8GGDRoEbgQ/bQmz8N+HS6zTl8OEAY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lu5/EsI3FbBd+jRVnyfW4Lzl/0kgH3qgDN6nDOKnfqXLu0L2L4tMNzMCX2PXf0Fm/Zug1PEM+NoFqokW7WDHoCNSAkW9q/7jq5e7cW9hJgrrzCMcaZRCSRq7DLysXCfjRX0Isuv+EG07Xe3wAHcd4STNE8FdYBmEoDMHyLpH6rI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sR03JANX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A89DC116C6;
-	Thu, 22 Jan 2026 12:44:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769085858;
-	bh=+LlmDCs02l5fbu8GGDRoEbgQ/bQmz8N+HS6zTl8OEAY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=sR03JANXf+/I2X/nYp4YOpnIRi9/xahqToqVBbiSraOnMv7+h+nAAsMQfs/uAsrpQ
-	 fpDW/sl/Z3lIlFgB9HR4uc5daEhu139yAhtcaDeFWKtbyIdBg3yhZkTSWWTZizAoPz
-	 AIcCnxHPOSJwujab7Y5bE/aZFdpPVfp9n2jHFxeXJAJ8BVYm7W2YcfY8X55SRsf36f
-	 nMXIuXEzkSmkHyKU817w5qF2/1PXr6KAl5R+rJ6aEnH+RYdRLJWCRk8yNgFgRhJgf6
-	 rH0H5w4yn0dyq26j+i53DyR9AwrAXY2cI19hhw44c5Aq5fkVMgoExuJ+LzR/W2ct6L
-	 XLx16t5bjg8hQ==
-Message-ID: <6f252535-6b12-4142-8a8f-1b840c28718f@kernel.org>
-Date: Thu, 22 Jan 2026 13:44:14 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99CFB296BA9;
+	Thu, 22 Jan 2026 12:47:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.14
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769086036; cv=fail; b=ChZjibt19qHs/yUr7iwu3C5yzJ3bt4bDMv7MJxQYDoIfrk5HdfjUkt4nG5wHWmTdJhUnwHQ1qXaTOF3aWMX3sS4/HcXnz0Rle/J7LWhDRxfomth3A+wZIMrIYjZc/8vZr0eP6fA1C9xRCbGodOLTxMAuc4iGD7fbWzUtr6BFjlc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769086036; c=relaxed/simple;
+	bh=6rAQnupXaAV6DvTP+ieGDupkuBic6xuN0tnwVARpuI4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=LZC4zu8c6i14O9pcc/p+oZDJsouCfzvlOXPOsPwL77Gr9z2TkuDUnz/1bmmpeQP2M/JhgGg+KNWDn0XLDAIxuATyrLKlVJAbY43T/7eGqwjQ3aFPSEL7P05dxoYP+yqOwIjrB/CWho8+OUQVV5McU7E+qSyKhb+PkznhwuYSOCI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Bn9Welt1; arc=fail smtp.client-ip=52.101.70.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=b4JCf+UALlkofZDVT4Ie42+sK4BaBfTHStxeTa5z1XGj8WwUL+xTsr1BfZMhDtpA481IlAD1+ZOca4aTUqKW8IS8Z/uTEtUgrrqEFEpYupeBitol4I+xh63PSt9jYkI+JD2YFpYRFk2LY4H04iT5k3YiLKnR79OZrwQ7WKsvNhWsmqdgrjAWxRctLQYfTTtlOdGVuRMvNYxkmGatcAuxridHR+5jAW0RwideO8tzzl/+FPP0Ayozaz5MmqFjHntUUbGAC72y0UY1h4yMDP6YPe4DTfDMVKsCr7AN4EpeKqicOjk3eNetzGpvYFNrBSHc7dgnX0V+yr9VircIsVCoNg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=C04cBgaZDloCOa5v02MgZH5NGE6IOtP8EGv+fjINo90=;
+ b=xmNTXOntRFXAb1uOtMFewx6ZuUw9KA/21U9S98aaXkdk5jGC3lQr4rTJvNh7JfuDgID65or1P2mGAvhrs5PxBZOV20sCnOdm1iBDSx+DmuhBl99fjNsjW5ig6dgeQn1dI2G3n+En5VEgxM9L9LzMMZ9/c4Y7cTR2+QWdBDSWOCtb4VMQPNMfVtBMtfCx5eIf8FnksNoP1Vgba9Q7+0BGAo2w0+s8x7fCqKw1zXnop1ix7miFyxKoPGCiVktbH0Yd44oLpULSpn2qM/BhVceUmm1aDii9WwM/93406cuyVVttH+coS1DDgoOeq6hFIzzT0D/8p+FcW7KOtr9prEcbwQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=C04cBgaZDloCOa5v02MgZH5NGE6IOtP8EGv+fjINo90=;
+ b=Bn9Welt1Sq3yb/IRSrTI2j8npQ/iXrFmhfvwcQ9lSHQYWWogCxqpiU17F/VuCIH/3OFYoQ1DEpokPl+GQ4B4kgLQ/4u1Kx4F3cS1oLhTz95hdGGVo91Sr297xQVdUDYyHFzJFXuYUM60VJUt1z/0alfoovW7BN73sAjU1ecehQDE7H80sCn64yeqvWMC/CmjHDL8Avj0OcHfxZr7/0D+qPFqAsgLoezXBoXla+6ZwCuXinDPn+XpFAdu5VfECkaNnzoPsxC1HRSl3lJgD63kD/3vHXIWHwNnfspf9KF3xv981imvd3gfMxuwzUa5Q2YbTf01tX2LjVe10EjjDxR4Iw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM9PR04MB8585.eurprd04.prod.outlook.com (2603:10a6:20b:438::13)
+ by PAXPR04MB8441.eurprd04.prod.outlook.com (2603:10a6:102:1d8::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.10; Thu, 22 Jan
+ 2026 12:47:11 +0000
+Received: from AM9PR04MB8585.eurprd04.prod.outlook.com
+ ([fe80::f010:fca8:7ef:62f4]) by AM9PR04MB8585.eurprd04.prod.outlook.com
+ ([fe80::f010:fca8:7ef:62f4%4]) with mapi id 15.20.9520.011; Thu, 22 Jan 2026
+ 12:47:11 +0000
+Date: Thu, 22 Jan 2026 14:47:08 +0200
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	linux-kernel@vger.kernel.org,
+	Herve Codina <herve.codina@bootlin.com>,
+	Mark Brown <broonie@kernel.org>,
+	Serge Semin <fancer.lancer@gmail.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Choong Yong Liang <yong.liang.choong@linux.intel.com>,
+	Jiawen Wu <jiawenwu@trustnetic.com>
+Subject: Re: [PATCH v2 net-next 02/15] net: mdio: add driver for NXP SJA1110
+ 100BASE-T1 embedded PHYs
+Message-ID: <20260122124708.pxckp6vgi2rvagmm@skbuf>
+References: <20260122105654.105600-1-vladimir.oltean@nxp.com>
+ <20260122105654.105600-3-vladimir.oltean@nxp.com>
+ <aXIUJbEwnAvIkeKK@smile.fi.intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aXIUJbEwnAvIkeKK@smile.fi.intel.com>
+X-ClientProxiedBy: VI1P191CA0008.EURP191.PROD.OUTLOOK.COM
+ (2603:10a6:800:1ba::6) To AM9PR04MB8585.eurprd04.prod.outlook.com
+ (2603:10a6:20b:438::13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 01/15] dt-bindings: Add vendor prefix for Frontgrade
- Gaisler AB
-To: Arun Muthusamy <arun.muthusamy@gaisler.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, mkl@pengutronix.de,
- mailhol@kernel.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-can@vger.kernel.org, Ludwig Rydberg <ludwig.rydberg@gaisler.com>
-References: <20260122121038.7910-1-arun.muthusamy@gaisler.com>
- <20260122121038.7910-2-arun.muthusamy@gaisler.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260122121038.7910-2-arun.muthusamy@gaisler.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM9PR04MB8585:EE_|PAXPR04MB8441:EE_
+X-MS-Office365-Filtering-Correlation-Id: dbd57ff6-69ad-4a14-5f71-08de59b45c6f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|19092799006|376014|366016|10070799003|7416014|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?OcNqytP1WQRglarKtrc49S79Q4VJZ7ooerIDQv91GbaMcCg/xNirgjt7yiWZ?=
+ =?us-ascii?Q?gc4ChrX2MIw2yxzse8MF5Zs4jRsS/V/9WGnNBqEq9cyZf6x6Heut1TqoQEFB?=
+ =?us-ascii?Q?JOSXKrtInNOWcGSidqU/DgKwpcz8SwXQQp9I7PTqaz7oMzYvWlbGyNNghwwR?=
+ =?us-ascii?Q?EWN/6h6i9NA2yApAq0c9t87V04ryMXlEdi5/4Gju8p5LABojxhS/AH+PszE1?=
+ =?us-ascii?Q?m270uiaBQ9xIBG2j7fevKGoFRP/5MQr6utMFFORMEgBX0QZBpAFAXBZ6k4iw?=
+ =?us-ascii?Q?uyDUKpkNgjHCQV2fEbs6WSV++NlP+lbx0hQOnRyBsF8ugjQuxnbgQVQWjbW/?=
+ =?us-ascii?Q?DbeDsxPEvpTwZqhaNWS0uFTocBR5VfOinUyLJSb+Qifnk3y125v4JyecqizO?=
+ =?us-ascii?Q?ti0IVYSz5/nkJKZoto2ch/T7SeCyR4g+x/UaT+V/NLguynOzenQoilSZZMoh?=
+ =?us-ascii?Q?40YEglTRDh1+Whiz0m3rwou6d54sB2zKtGBaK28N1BkB+oqFBArWmCWjrTCn?=
+ =?us-ascii?Q?GX6zrxxRlzEM2fZLZokfPys1xzfZCG2rYYk/D4k3N2bUVofeTF2tuCDrRWkr?=
+ =?us-ascii?Q?X/6w0LRPoddzCvQnV8YdWnCCdsL46cvaINWzKo+w0CBzzwlyWdiQpkJSdJrW?=
+ =?us-ascii?Q?N9xhDYeoWBnjOX6ycPftmsU5/WDpS0fDief1fSo7Y/QrCm6evQVE3OXMiPZv?=
+ =?us-ascii?Q?yOzorHma4Sh+rj/HmUdEE3hGUUZtISjEYAlKRA/YV1OZzSZBrCgPXuzszMvn?=
+ =?us-ascii?Q?DO9GEoKngFTRQQvli1lpXNuwstjuR+NZGdw3OWhY++t2QaIuvuduOjmNuMcn?=
+ =?us-ascii?Q?JF5A5yoeTkqYArKdFG5MZDXT4n7fW1T0nYd/4GgPugmcj6iBn/DN7aAC4F17?=
+ =?us-ascii?Q?00Ts7WTrwzwiCJKLwRezAEZIqWFCLcWqC0N5oVff49Y8LqOJMKaAx+nAbdcN?=
+ =?us-ascii?Q?u5juA0RXlC6zuS67T+TtIU9f5Vdx+QxRwe9SmmvxAYn3fdf1oDixiHOL1KbH?=
+ =?us-ascii?Q?Wh4yZ6LzEApyBgJcbVcN3/p1Ucu8esBdjD49d3Ci2InKaq4LE46Dq/ahCVIa?=
+ =?us-ascii?Q?EjN6/bjx9Yk52hoVuwotieyUmGMqM73RXHLfjkBjdxfbI1vQKv60kmLHhWC0?=
+ =?us-ascii?Q?+0NMHaNSYcJHYtZbLRPQcRHhFSJJdKs/tl70YZyv+KuwrYwY8s8dtn3fTI2E?=
+ =?us-ascii?Q?3qeqpHYZ2UdH3FcgGcozBfed9hZ7Lw9+FPm3jqiRGMSD5X4RnU0Y1JUTE+UO?=
+ =?us-ascii?Q?FeffVhzWyd6+TSuETEkTiNaPa6Yx7suUNOZ7gTiQibBFj11VHeM6pHhaFH1p?=
+ =?us-ascii?Q?DUIGxoamEG7ANOX0SmW0o9lP2+7JYSHLkFl2SGZBVlkXDKe0wr5rKnVjjj7e?=
+ =?us-ascii?Q?Bus7e09mCLR0XTG1KxS/t7/wHglJDC2AmY5X5OulUcw3+vHE+U6F3KIGzQ9C?=
+ =?us-ascii?Q?rjRTDPSVTtETTIURWg8wLpkyQ5vGqPuF0GMmZi4vi83sQEEolIXD2UnAMuli?=
+ =?us-ascii?Q?zlFHy7I12EMtAiwTU+b+/p8Bk1YQhM5Flvr8PnG4+P5ltgModKaAYy+T6M39?=
+ =?us-ascii?Q?ylwEpJsOf7vqpFZ9Kao=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8585.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(376014)(366016)(10070799003)(7416014)(1800799024);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?gMWHPMQn3sRPQoJkMbqEIcVJQZGcGEO131injmxYYNr5ml23SRF5iP/sWfVg?=
+ =?us-ascii?Q?Og3AQgwNuoqfRlEiGb//niQWZFpvV+AcFi8cIvCfa012PwXjaXCl9TKUSbIA?=
+ =?us-ascii?Q?QWI6ef4efxNP++kYmQXjFLGJFWpJSdlyQ5elwErpFNW7NIlon+AStvxqAK3S?=
+ =?us-ascii?Q?ueXpDKQj2FQn7fJD/Bz9TWB+IvhN7PYNV6tTMjqOT0qtgqjqX5onPXxQvTZB?=
+ =?us-ascii?Q?5ni7ry48rviZiWpRupXRZAiHxf3gHqX7U3dNxRLlib6VbMphqscazgxs9odH?=
+ =?us-ascii?Q?bjnXwhJVqZcSTas5IMXI9lFEqh5E8LBc/TdkOUCXCvArjmxBAp2f8oOjbaIC?=
+ =?us-ascii?Q?PpYE1NR9z3ZhQ5mRS8RUBhG2SpBA3zb0rzx1/hPx1SffHbO7IVKE/nNHoGO1?=
+ =?us-ascii?Q?0qIGqcD0uVT0c7DLi8V8ycotlFiVHG+7OTJUHfopAjUUCznW6UVi9f/U+p8M?=
+ =?us-ascii?Q?L4LOusim6Rt0tj38CfRNoKAouh6Q/Jee19BYGEYivpz3xBV8ESJ/NqP6E970?=
+ =?us-ascii?Q?Vkt6ABzpkD7UmdIWtVNQwLCtDmVc71QyfFgzkjaTl5jxhWYwdnKoYtHlmE76?=
+ =?us-ascii?Q?OumK/HJH6b4x7Wo2LlrwqtTpwLtWykNANpiqL+vb8S/uVKjGPnBafnvgcKMH?=
+ =?us-ascii?Q?KNMBBwUbs5Ooi1W28p6JNjuSlQWFqSqo7ijaPcvt6A7m5nuo4zTCzFItc43+?=
+ =?us-ascii?Q?2saLaXSPTK7K8hcNG/HCLx1nEt7eXQRixqyf4F/lMeTlBdUpR3Ol+sKuYwdS?=
+ =?us-ascii?Q?x67WrMZPw0jBCVe1pe6jc+gfNmt1+7JVsmHuXo/swdZFaSAO6KZHJhEayCBW?=
+ =?us-ascii?Q?/lA0FtDEo3t7qjxf6IJzVDCZo6uENMcQdNgyNDeNckF4c63rWcNkpxCQS1hR?=
+ =?us-ascii?Q?cZFbpn2P1FBpON0aDr+H0WzoXjo+JOUUMnY80iw101QbnVKMXSTxvDXLiYTu?=
+ =?us-ascii?Q?K5ciX2eVdyERUYV7eda/2GDD0qN6slk9uBudqf1v8HGQeHlxYZzddvjf0GU7?=
+ =?us-ascii?Q?M9SEZJWTrG+A8Vkc2wrs9LmVP6WQtJ4riqtiSo2OGsGNV4gMKt4O/A9J/CDR?=
+ =?us-ascii?Q?uw1gxoSvUrd+xtvAqkLV64GBg60tD62fn3VW1lN8wC7JWyxiR6z+v5ae5sUv?=
+ =?us-ascii?Q?KsjII0BZ5b1NOzKFZK4C98p07ByFs5TuSDDQvUrqOVfEd/L/LyLisdryOsWi?=
+ =?us-ascii?Q?kx9IDLGPIXxRgsKCzzTH5JWf/j2GuSGty2QdUAznCyFyIOR0lEVjozLcdw3n?=
+ =?us-ascii?Q?U+FBr0hh8vyibht1xRqTdlZb5c95qq++DJaRJLO/THiMebg9ehsfOjt5g4+B?=
+ =?us-ascii?Q?UlwJWIstuaAsHNtzybCCiKb9Bur1T3hEDUzUwBo1MsFS7Z83UeNf4qjBXyxu?=
+ =?us-ascii?Q?QTIF91R3wjkGvSgqTsvgXnCGE2F+B5Ubf1evtn8a3jfaEbWSiazi+ckXTeVT?=
+ =?us-ascii?Q?H2sVD2tV0KdjHsnOj3MPS1ZFEgvcnFgNV0V6/iK3oQKtAlPOqc7Y2/LjS4gj?=
+ =?us-ascii?Q?BYrkZQ/Ix4hk80RslceNTB753CHiKfbI/mRj6LIZduJT+Nbmv2mg9ajeseTy?=
+ =?us-ascii?Q?5TcqwU1D6e+YyAgYp+ubqXf+pUSMfdUKzqbs8uW/a3pDTLrhDTWAIJyFmhRI?=
+ =?us-ascii?Q?tpUKvGxMWFvFTh6Gl9hTPjQ0UURIYotg7H8Pkwc4U067VeOZChMXcCa8FySN?=
+ =?us-ascii?Q?1lypbEHrxWMP8wTHbVEzha+FoHXWm1pmtiPTprLTVOvD3CexOThVJvS2ZId7?=
+ =?us-ascii?Q?kY+xr6AklqNjE5UcVPNtpxqgVt2DFKX2f5azmjAHctW8sAW48KOZufwwBOtP?=
+X-MS-Exchange-AntiSpam-MessageData-1: sLzR+Ni4hGBmuvLQq1aRGWvLik57bt2Ak74=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: dbd57ff6-69ad-4a14-5f71-08de59b45c6f
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8585.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2026 12:47:11.4224
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: QmMlmr6UwcLO5h31fph2/9xWWF7fvDXapAqFLPeAMwVRW1Kkdxy6RuaRXW5IrwtYxBEN6O1q8Xmv8h9LmmDeFg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8441
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.96 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+X-Spamd-Result: default: False [2.04 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
-	TAGGED_FROM(0.00)[bounces-258400-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-258401-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lunn.ch,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,bootlin.com,linux.intel.com,trustnetic.com];
+	DKIM_TRACE(0.00)[nxp.com:+];
 	TO_DN_SOME(0.00)[];
-	R_SPF_SOFTFAIL(0.00)[~all];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	MID_RHS_MATCH_FROM(0.00)[];
+	R_SPF_SOFTFAIL(0.00)[~all:c];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[vladimir.oltean@nxp.com,devicetree@vger.kernel.org];
+	DMARC_POLICY_ALLOW(0.00)[nxp.com,none];
+	RCVD_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gaisler.com:url,gaisler.com:email,dfw.mirrors.kernel.org:helo,dfw.mirrors.kernel.org:rdns]
-X-Rspamd-Queue-Id: 1E7F267199
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:helo,dfw.mirrors.kernel.org:rdns,nxp.com:dkim]
+X-Rspamd-Queue-Id: 4B39966F6A
 X-Rspamd-Action: no action
 
-On 22/01/2026 13:10, Arun Muthusamy wrote:
-> From: Ludwig Rydberg <ludwig.rydberg@gaisler.com>
+On Thu, Jan 22, 2026 at 02:12:21PM +0200, Andy Shevchenko wrote:
+> On Thu, Jan 22, 2026 at 12:56:41PM +0200, Vladimir Oltean wrote:
+> > This driver is the standalone variant of drivers/net/dsa/sja1105/sja1105_mdio.c.
+> > In terms of differences:
+> > 
+> > - this one uses regmaps provided by the parent as a method to abstract
+> >   away the sja1105_xfer_u32() calls for register access
+> > - the driver prefix has been changed from sja1105 to sja1110 (this MDIO
+> >   controller is not present on the older SJA1105 family)
+> > - in the sja1105 driver, each memory word has 32 bits, so addresses as
+> >   seen by regmap need to be multiplied by 4. This affects what
+> >   sja1110_base_t1_encode_addr() returns, and is different compared to
+> >   sja1105_base_t1_encode_addr().
 > 
-> Frontgrade Gaisler AB provides IP cores and supporting development tools
-> for embedded processors based on the SPARC and RISC-V architectures.
-> Some essential products are the LEON and NOEL synthesizable processor
-> models together with a complete development environment and a library of
-> IP cores (GRLIB).
+> ...
 > 
-> The company specializes in digital hardware design (ASIC/FPGA) for both
-> commercial and aerospace applications.
+> > +static int sja1110_base_t1_mdio_read_c22(struct mii_bus *bus, int phy, int reg)
+> > +{
+> > +	struct sja1110_base_t1_private *priv = bus->priv;
+> > +	struct regmap *regmap = priv->regmap;
+> > +	unsigned int addr, val;
+> > +	int err;
+> > +
+> > +	addr = sja1110_base_t1_encode_addr(phy, SJA1110_C22, reg & 0x1f);
 > 
-> Web site: https://www.gaisler.com/
-> 
-> Signed-off-by: Ludwig Rydberg <ludwig.rydberg@gaisler.com>
-> Signed-off-by: Arun Muthusamy <arun.muthusamy@gaisler.com>
-> 
+> GENMASK() ? Or do you have already a defined mask for this?
 
-There is no blank line between tags.
+Hmm, I can't find a definition for this. In the MDIO world it is
+"well known" that clause 22 offers a 5-bit register address space.
+So the 0x1f number doesn't seem too magical to me.
 
-> Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
+But I think my assumptions date since before the MDIO bus API was split
+between separate clause 22 and clause 45 reads/writes. I don't know
+whether masking reg & 0x1f is the best practice. I'm surprised that
+__mdiobus_read() doesn't enforce a limit on "regnum", and I don't see
+other MDIO bus drivers explicitly C22 registers >= 32. I really don't
+know what is the best practice.
 
-Please use b4 to work with your patchset (e.g. `b4 trailers`), so you
-won't be making such mistakes.
+> > +	err = regmap_read(regmap, priv->base + addr, &val);
+> > +	if (err)
+> > +		return err;
+> > +
+> > +	return val & 0xffff;
+> 
+> lower_16_bits() from wordpart.h?
 
-Best regards,
-Krzysztof
+Ok, let's say so.
+
+> > +}
+> 
+> ...
+> 
+> > +static int sja1110_base_t1_mdio_read_c45(struct mii_bus *bus, int phy,
+> > +					 int mmd, int reg)
+> > +{
+> > +	struct sja1110_base_t1_private *priv = bus->priv;
+> > +	struct regmap *regmap = priv->regmap;
+> > +	unsigned int addr, val;
+> > +	int err;
+> > +
+> > +	addr = sja1110_base_t1_encode_addr(phy, SJA1110_C45_ADDR, mmd);
+> > +	err = regmap_write(regmap, priv->base + addr, reg);
+> > +	if (err)
+> > +		return err;
+> > +
+> > +	addr = sja1110_base_t1_encode_addr(phy, SJA1110_C45_DATA, mmd);
+> > +	err = regmap_read(regmap, priv->base + addr, &val);
+> > +	if (err)
+> > +		return err;
+> > +
+> > +	return val & 0xffff;
+> 
+> Ditto.
+> 
+> > +}
+> 
+> ...
+> 
+> > +static int sja1110_base_t1_mdio_write_c22(struct mii_bus *bus, int phy, int reg,
+> > +					  u16 val)
+> > +{
+> > +	struct sja1110_base_t1_private *priv = bus->priv;
+> > +	struct regmap *regmap = priv->regmap;
+> > +	unsigned int addr;
+> > +
+> > +	addr = sja1110_base_t1_encode_addr(phy, SJA1110_C22, reg & 0x1f);
+> > +	return regmap_write(regmap, priv->base + addr, val & 0xffff);
+> 
+> val is already u16.
+
+Ok.
+
+> > +}
+> 
+> ...
+> 
+> > +static int sja1110_base_t1_mdio_write_c45(struct mii_bus *bus, int phy,
+> > +					  int mmd, int reg, u16 val)
+> > +{
+> > +	struct sja1110_base_t1_private *priv = bus->priv;
+> > +	struct regmap *regmap = priv->regmap;
+> > +	unsigned int addr;
+> > +	int err;
+> > +
+> > +	addr = sja1110_base_t1_encode_addr(phy, SJA1110_C45_ADDR, mmd);
+> > +	err = regmap_write(regmap, priv->base + addr, reg);
+> > +	if (err)
+> > +		return err;
+> > +
+> > +	addr = sja1110_base_t1_encode_addr(phy, SJA1110_C45_DATA, mmd);
+> > +	return regmap_write(regmap, priv->base + addr, val & 0xffff);
+> 
+> Ditto.
+> 
+> > +}
+> 
+> ...
+> 
+> > +static int sja1110_base_t1_mdio_probe(struct platform_device *pdev)
+> > +{
+> > +	struct sja1110_base_t1_private *priv;
+> > +	struct device *dev = &pdev->dev;
+> > +	struct regmap *regmap;
+> > +	struct resource *res;
+> > +	struct mii_bus *bus;
+> > +	int err;
+> 
+> > +	if (!dev->of_node || !dev->parent)
+> 
+> Can we avoid dereferencing? And perhaps dev_fwnode(dev)?
+
+Avoid dereferencing what?
+
+> > +		return -ENODEV;
+> > +
+> > +	regmap = dev_get_regmap(dev->parent, NULL);
+> > +	if (!regmap)
+> > +		return -ENODEV;
+> > +
+> > +	bus = mdiobus_alloc_size(sizeof(*priv));
+> > +	if (!bus)
+> > +		return -ENOMEM;
+> > +
+> > +	bus->name = "SJA1110 100base-T1 MDIO bus";
+> > +	snprintf(bus->id, MII_BUS_ID_SIZE, "%s", dev_name(dev));
+> > +	bus->read = sja1110_base_t1_mdio_read_c22;
+> > +	bus->write = sja1110_base_t1_mdio_write_c22;
+> > +	bus->read_c45 = sja1110_base_t1_mdio_read_c45;
+> > +	bus->write_c45 = sja1110_base_t1_mdio_write_c45;
+> > +	bus->parent = dev;
+> > +	priv = bus->priv;
+> > +	priv->regmap = regmap;
+> > +
+> > +	res = platform_get_resource(pdev, IORESOURCE_REG, 0);
+> > +	if (res)
+> > +		priv->base = res->start;
+> > +
+> > +	err = of_mdiobus_register(bus, dev->of_node);
+
+Why would I use dev_fwnode() if I need to pass it as OF to
+of_mdiobus_register() here?
+
+> > +	if (err)
+> > +		goto err_free_bus;
+> > +
+> > +	priv->bus = bus;
+> > +	platform_set_drvdata(pdev, priv);
+> > +
+> > +	return 0;
+> > +
+> > +err_free_bus:
+> > +	mdiobus_free(bus);
+> > +
+> > +	return err;
+> > +}
+> 
+> ...
+> 
+> > +static const struct of_device_id sja1110_base_t1_mdio_match[] = {
+> > +	{ .compatible = "nxp,sja1110-base-t1-mdio", },
+> 
+> Inner comma is redundant.
+
+Ok.
+
+> > +	{},
+> 
+> Terminator is terminator, trailing comma is confusing here.
+
+Ok.
+
+> > +};
+> 
+> ...
+> 
+> > +static struct platform_driver sja1110_base_t1_mdio_driver = {
+> > +	.probe = sja1110_base_t1_mdio_probe,
+> > +	.remove = sja1110_base_t1_mdio_remove,
+> > +	.driver = {
+> > +		.name = "sja1110-base-t1-mdio",
+> > +		.of_match_table = sja1110_base_t1_mdio_match,
+> > +	},
+> > +};
+> 
+> > +
+> 
+> Redundant blank line.
+
+Ok.
+
+> > +module_platform_driver(sja1110_base_t1_mdio_driver);
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
+> 
+>
 
