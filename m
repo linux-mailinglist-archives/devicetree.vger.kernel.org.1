@@ -1,197 +1,157 @@
-Return-Path: <devicetree+bounces-258563-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258564-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WNUyMapccmn5iwAAu9opvQ
-	(envelope-from <devicetree+bounces-258563-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:21:46 +0100
+	id kKcXJAJccmlUjAAAu9opvQ
+	(envelope-from <devicetree+bounces-258564-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:18:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B08566B20D
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:21:45 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D52776B0D3
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:18:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 213753031AE9
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 17:07:37 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D34B1307F01F
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 17:07:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5083339573D;
-	Thu, 22 Jan 2026 16:43:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2696B3DD1FA;
+	Thu, 22 Jan 2026 16:44:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=minlexx.ru header.i=@minlexx.ru header.b="AR0fbsTP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from leonov.paulk.fr (leonov.paulk.fr [185.233.101.22])
+Received: from sm24.hosting.reg.ru (sm24.hosting.reg.ru [31.31.198.150])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F145E2877F7;
-	Thu, 22 Jan 2026 16:43:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.233.101.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40B2B23A564;
+	Thu, 22 Jan 2026 16:44:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=31.31.198.150
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769100230; cv=none; b=ocjq/lK5snEodl2rDqio5NNZVrSae0UjiTrNqTj/m6d5JGDEMJhc6DvRvlc7vpsfnaQBxkeAn9BTykWB+xeZzjqB+bLx766GfHyJ2nHtG3MIAPvbyjED+pIpTcqxKBcMgY/5s3rmcjsWBDyqhnSZC+RR77YoAEXbweAK9OyNOgE=
+	t=1769100254; cv=none; b=KlyIDa5SPndo6e1pyCr2k1ghn3QebRmGans4GYXfxHhmz9jqAuMcmirx5pp5bxjOoe6VABhPhcu8rAaihDuJ70bIDM+989pWo7NVrm8bvioakymu21oFQsnBrX1imSXGH5Wa3zIrybbVmLsjsECN+oMOFq8EqbWxKohRH5pUEkw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769100230; c=relaxed/simple;
-	bh=lOOGgXNAcV5Kj7qstozfHh4KfxndROOrlFnru7vLM7s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AKwfh+DG9rU2Tny22vhzhq9NenikNm5BZPqw59qOY1O++60YapqSHKg/0hxclsCLbcXJD0PDmFZZgYxcZR+3GWJB4hk1gccW3Ljn1RjB2oxjcuWpg3l1JA3GagPmvCcIWIgPQJVxmbQ3r8y+ZpaMFqOhoQRe5EeGn1R1kGHF1eQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sys-base.io; spf=pass smtp.mailfrom=sys-base.io; arc=none smtp.client-ip=185.233.101.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sys-base.io
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sys-base.io
-Received: from laika.paulk.fr (12.234.24.109.rev.sfr.net [109.24.234.12])
-	by leonov.paulk.fr (Postfix) with ESMTPS id BB4CB1F8004F;
-	Thu, 22 Jan 2026 16:43:31 +0000 (UTC)
-Received: by laika.paulk.fr (Postfix, from userid 65534)
-	id B82FCB1BB88; Thu, 22 Jan 2026 16:43:28 +0000 (UTC)
-X-Spam-Level: 
-Received: from shepard (unknown [192.168.1.1])
-	by laika.paulk.fr (Postfix) with ESMTPSA id 4E8C9B1BB7B;
-	Thu, 22 Jan 2026 16:43:26 +0000 (UTC)
-Date: Thu, 22 Jan 2026 17:43:23 +0100
-From: Paul Kocialkowski <paulk@sys-base.io>
-To: Aleksandr Shubin <privatesub2@gmail.com>
-Cc: linux-kernel@vger.kernel.org,
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Cheo Fusi <fusibrandon13@gmail.com>, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v12 0/3] Add support for Allwinner PWM on D1/T113s/R329
- SoCs
-Message-ID: <aXJTqzZaBrCMnTvv@shepard>
-References: <20250427142500.151925-1-privatesub2@gmail.com>
+	s=arc-20240116; t=1769100254; c=relaxed/simple;
+	bh=JG3LovOo8OfCeba/0jDRYVdiBKX1vrAercPsQQOpn1Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SGjQhB2pUlBtycjpqWOE7MSUJT8lq2IbNVgOWbWFP+lxAIdK3hSRS5dXsn0BSg1cfSlGm4dQ8CvMAk9eVaZqkwOj68cpy8WgSQbh8zXOjvlcp4ljQocfMYvJe8EGYbV4CB3X9t3f1QZ7dbM80jnzBpCLdA5ZUi4U54LzwNRPW0I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=minlexx.ru; spf=none smtp.mailfrom=minlexx.ru; dkim=pass (1024-bit key) header.d=minlexx.ru header.i=@minlexx.ru header.b=AR0fbsTP; arc=none smtp.client-ip=31.31.198.150
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=minlexx.ru
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=minlexx.ru
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=minlexx.ru;
+	s=dkim; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:
+	Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=X9lPr1dy2g4CLgGWk8MZMnU50xnfxCrtzUVtOSbSm0I=; b=AR0fbsTPXZkzdbGXnccGYrwTWn
+	cpBIF9bEaeWJinAH2u3C+MN2HY6jjQuFrycTKsSwKI6kQu2EA4aNLRYJtBrxI9tFGaW6p/mYmRRpH
+	aacCNYznPDzbkhj7NtAXbvhEdfztY+JuzoUHXmhyort5q/iBZgDxbkkz1lQpkp88KoQE=;
+Received: 
+	by sm24.hosting.reg.ru with esmtpsa (TLS1.3) tls TLS_AES_128_GCM_SHA256
+	(envelope-from <alexeymin@minlexx.ru>)
+	id 1vixms-000000060gQ-2E8B;
+	Thu, 22 Jan 2026 19:44:02 +0300
+Message-ID: <ac83f41e-08ad-4ffe-9f0e-02f8256af65c@minlexx.ru>
+Date: Thu, 22 Jan 2026 19:44:02 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="8kvUD8u6sGarMbR3"
-Content-Disposition: inline
-In-Reply-To: <20250427142500.151925-1-privatesub2@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/7] arm64: dts: qcom: sdm660-xiaomi-lavender: fix
+ regulator and SD settings
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Gianluca Boiano <morf3089@gmail.com>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: andersson@kernel.org, konradybcio@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, robh@kernel.org, david@ixit.cz
+References: <20260120180052.1031231-1-morf3089@gmail.com>
+ <20260120180052.1031231-4-morf3089@gmail.com>
+ <afa20489-adaf-46bd-b3e7-c763aba5d7c9@oss.qualcomm.com>
+Content-Language: en-US
+From: Alexey Minnekhanov <alexeymin@minlexx.ru>
+In-Reply-To: <afa20489-adaf-46bd-b3e7-c763aba5d7c9@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.56 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [1.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_REJECT(1.00)[minlexx.ru:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[minlexx.ru : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258563-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-258564-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[oss.qualcomm.com,gmail.com,vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[sys-base.io];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,csie.org,gmail.com,sholland.org,sifive.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,pengutronix.de,lists.infradead.org,lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[paulk@sys-base.io,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.987];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
+	DKIM_TRACE(0.00)[minlexx.ru:-];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.994];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexeymin@minlexx.ru,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ozlabs.org:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,paulk.fr:url]
-X-Rspamd-Queue-Id: B08566B20D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D52776B0D3
 X-Rspamd-Action: no action
 
+On 21.01.2026 14:27, Konrad Dybcio wrote:
+> On 1/20/26 7:00 PM, Gianluca Boiano wrote:
+>> Fix regulator configurations to ensure stable operation:
+>> - vreg_l10a_1p8: Add regulator-system-load of 14000uA for proper USB PHY
+>>    PLL operation
+> 
+> The driver needs to be fixed instead, as it should perform a
+> regulator_set_load()
 
---8kvUD8u6sGarMbR3
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hi Aleksandr,
+Also change done by me in [1] with more detailed explanation:
 
-On Sun 27 Apr 25, 17:24, Aleksandr Shubin wrote:
-> Aleksandr Shubin (3):
->   dt-bindings: pwm: Add binding for Allwinner D1/T113-S3/R329 PWM
->     controller
->   pwm: Add Allwinner's D1/T113-S3/R329 SoCs PWM support
->   riscv: dts: allwinner: d1: Add pwm node
->=20
->  .../bindings/pwm/allwinner,sun20i-pwm.yaml    |  84 ++++
->  .../boot/dts/allwinner/sunxi-d1s-t113.dtsi    |  12 +
->  drivers/pwm/Kconfig                           |  10 +
->  drivers/pwm/Makefile                          |   1 +
->  drivers/pwm/pwm-sun20i.c                      | 379 ++++++++++++++++++
->  5 files changed, 486 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/allwinner,sun20=
-i-pwm.yaml
->  create mode 100644 drivers/pwm/pwm-sun20i.c
+Since the commit f05ab10 ("arm64: dts: qcom: sdm660-lavender:
+Add missing USB phy supply") previously untouched by Linux regulator
+l10a is now used, but it exposed a bug from initial porting: when
+booting with USB cable inserted, or booting without cable and
+inserting it later, board reboots.
 
-Thanks for your work on this driver!
+Downstream vendor device tree has this:
 
-For context, this PWM controller seems to be a second-generation design from
-Allwinner, which is found in the following chips: V5, A50, H616, V536, T7, =
-A133,
-V833, R329, D1/T113, R128, V851, A523 and A733.
+	rpm-regulator-ldoa10 {
+		status = "okay";
+		pm660_l10: regulator-l10 {
+			proxy-supply = <&pm660_l10>;
+			qcom,proxy-consumer-enable;
+			qcom,proxy-consumer-current = <14000>;
+			regulator-min-microvolt = <1780000>;
+			regulator-max-microvolt = <1950000>;
+			status = "okay";
+		};
+	};
 
-I've tested your driver on A133, which works fine too. It seems that H616 u=
-ses
-a similar (but slightly different) register layout.
+IIRC this qcom,proxy-consumer stuff is adding fake device that uses this
+regulator, but does nothing else except requesting specified voltage or
+current (in this case), until "real consumer" probes or something like
+that. The same can be achieved by simply adding regulator-system-load,
+and device stops rebooting when USB cable is inserted.
 
-In case you've missed it, there's a follow-up series adding H616 support at:
-https://patchwork.ozlabs.org/project/linux-pwm/list/?series=3D409036&archiv=
-e=3Dboth&state=3D*
+This is also needed for all xiaomi-sdm660 boards, but not e.g on
+sdm630-sony ones.
 
-And there's also a standalone effort (which I've redirected to your series)=
- at:
-https://patchwork.ozlabs.org/project/linux-pwm/list/?series=3D485644&archiv=
-e=3Dboth&state=3D*
+I'm thinking maybe it is better to have regulators in sdm660-xiaomi-
+common.dtsi after all. The setup is mostly the same for them.
 
-Now given that the new controller was introduced with the V5 (sun8iw12) from
-2018, I think it would be a bit confusing to keep the sun20i-pwm name.
+[1] 
+https://github.com/sdm660-mainline/linux/commit/7121e17ee284bb6026c25d3f643fd020fa959877
 
-How about renaming the driver to sun8i-pwm instead? That would be more
-consistent with how other second generation designs from Allwinner are usua=
-lly
-called in Linux and makes it more clear that it also targets sun8i and sun5=
-0i
-chips, in addition to sun20i.
-
-All the best,
-
-Paul
-
---=20
-Paul Kocialkowski,
-
-Independent contractor - sys-base - https://www.sys-base.io/
-Free software developer - https://www.paulk.fr/
-
-Expert in multimedia, graphics and embedded hardware support with Linux.
-
---8kvUD8u6sGarMbR3
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEEAbcMXZQMtj1fphLChP3B6o/ulQwFAmlyU6sACgkQhP3B6o/u
-lQzLzw/7BSyJlA0VQWydAMnYMSXVRR1nWvDgL2BacWvoFGeQZLvkPIS+bS0Y1oje
-CuoZsMChx9onTi+/OKOGwqLUfKtA7nmvp2LLJhelqIKfX1fMRmbXU7BnhoH4jqUc
-Tnr0UHIUSXP6rzcY+/4bevCUC+iHKf4jJceuGZTFsHF0LZi8c62oOrXNBMTNia+/
-joy6c/9RN5N4RxfbcEfBqmUc0cu88EErW17t8FhALQ6oEftzsNCju3gsOQ4S7lUB
-SRH6ffY/o8LqXPZ/kqGDC5ipyFPJyuORXK3xS9zh1xDz+OSvmRh8v2hBsU0V4jxS
-99oGXAOXJGljK1415Ush1uRcMKa+YXuF2deG9qJAfEaDq+kRhp2gXdzvN1/0HCgN
-rQnyICWywvjX/oznc6j7gt1i+nzKofeXvVyT+Ym/Uk+2K4V2kZmUIGkO9vAgCb7d
-KAZNs7Yf79OcoCNZBXAqec7tO2jS0ihWjQ3vSwhzlFa8EcF/nTQJJDgiu3JLPZtQ
-Lu2PLgsmNarnKGk9AX8m7EirKdMJduYk5G7oyBxeGXeqNkf9nWf99WqH2cmzDz4o
-GhVyfKf2rBfQv9MKU0Qz2CBRXA/rZl21s+kZ9NZEG6RHqGaGTfjOJgRjQo9SS07f
-67gd5SFjE8HJPruOtaZrwhBq+ZLF1vGsCwlmvLRJLABl2NY7a8o=
-=mx2z
------END PGP SIGNATURE-----
-
---8kvUD8u6sGarMbR3--
+--
+Regards,
+Alexey Minnekhanov
 
