@@ -1,131 +1,159 @@
-Return-Path: <devicetree+bounces-258590-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258591-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qCP3HixrcmnckQAAu9opvQ
-	(envelope-from <devicetree+bounces-258590-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 19:23:40 +0100
+	id YL8cAMNqcmnckQAAu9opvQ
+	(envelope-from <devicetree+bounces-258591-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 19:21:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71B4D6C538
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 19:23:39 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF1E86C499
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 19:21:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 39EFB304D125
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 17:42:42 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E4B4D302D8E9
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 17:43:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0868360730;
-	Thu, 22 Jan 2026 17:35:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A73A324B24;
+	Thu, 22 Jan 2026 17:36:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s3OkG3p6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J2UlAbs/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 676A63191DF;
-	Thu, 22 Jan 2026 17:35:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C4161F583D;
+	Thu, 22 Jan 2026 17:36:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769103322; cv=none; b=reDRqPcGllUmOKb+32HtgMIRLCl5HPXMNaRpzjg4BwRbGoZtpYDMGK9sEOj95bnLdXdMbd84f8xPXLdONj6mxWK48sW+l5yaNL/HxzEzRoleHuTcFuA2bOFmuf6aVvrfh4Xq0P5lcXmUs9GSSeZDZReaEoaIPY2IQKDLqEY5xHM=
+	t=1769103384; cv=none; b=Fv0h2tQK9YyZt6PCTaixDeKqlroJsdXkZKyEP55dCgtMrpBSKmds0a1wPL5H6h6GbBTAg2db87ksdAf2lPcxUzxgCDqXPbDyE8PZa53HXsp8BaxinR0F8E5jYXrXTz6Xlhk2mtjq7dnhmJ2T78lQoOqn2VUe7gMdF+mxMOyGN+U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769103322; c=relaxed/simple;
-	bh=x6oKsK4tsX/k/NIRjfg4qq6ZO9RvracVhuSMqKYde28=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=I0Nefqsh6MxFV4lWBZZf1eSRuIYJXNsX15Dp8kDL3vPVFciM7xOe47dMjitbM3t1XJbPjXSaJQvkB0h3DO4/Oz52tkKO9bHTC2uRCDJmaGkV1DQ9zaZbbLwltooDVzj/LxuP28CcJ731ofYxaqkgdErgEexQ6q9JPyQW5qT1fK4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s3OkG3p6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0567C116C6;
-	Thu, 22 Jan 2026 17:35:20 +0000 (UTC)
+	s=arc-20240116; t=1769103384; c=relaxed/simple;
+	bh=LWuS3t9H4s3n6SwgiZKmTr2O9DxNfnIGAD3zPijQ33Y=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=MklYPjVzmeQuKwrL7uv2q8hl0cO/Ybj0T2l8NMrh3cJ5q/4gTV0zg7/Z3MNiuqbTt4eYx3G/B18VmgKCD8A57aQvCJM95nzKDpSm2UZFIYgdixQ0SCcMXn/uvaucDWGjEGuy0AHriTDAusNOUNo2hVz+kVTLe78poLToQ/TUTl0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J2UlAbs/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18E08C16AAE;
+	Thu, 22 Jan 2026 17:36:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769103321;
-	bh=x6oKsK4tsX/k/NIRjfg4qq6ZO9RvracVhuSMqKYde28=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=s3OkG3p6323vXxuW6xvJKOwIrhDIiIBPZvL0xeeA8lCOSRG/MZTUcXBPs1vU4rY8R
-	 i6aze9u6G+sP6l8FCIlUSk+CtSLn51D4Owe8rVvxQAUj23VJ2S+QYeJMUE8s0glO99
-	 sC0EZ46oTtYI6sFAL5yS7SZkppWMyS100iuTtoSStV0D1OcvZwdBCaP9WtW/5nHUbi
-	 eVMZW7yhpXQ05l1Xw3guwvKRoO3tl+3dsBOk9iY7M6eI2+sCtBux3N7kav6/CQqnat
-	 ijjGNalKxRSUJD13nlTPgxpsN7g+2AclyiZXwCCzGfNJ0UmhptC9WUrleR5qFGawhU
-	 amnF3EVxVxkkg==
-Received: from wens.tw (localhost [127.0.0.1])
-	by wens.tw (Postfix) with ESMTP id 05AAB5FBF7;
-	Fri, 23 Jan 2026 01:35:17 +0800 (CST)
-From: Chen-Yu Tsai <wens@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, Paul Walmsley <pjw@kernel.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>, Lukas Schmid <lukas.schmid@netcube.li>
-Cc: linux-sunxi@lists.linux.dev, Alex Studer <alex@studer.dev>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-In-Reply-To: <20260113182951.1059690-1-lukas.schmid@netcube.li>
-References: <20260113182951.1059690-1-lukas.schmid@netcube.li>
-Subject: Re: [PATCH v2] riscv: dts: allwinner: d1: Add CPU thermal sensor
- and zone
-Message-Id: <176910331795.3372333.1441179153534465132.b4-ty@kernel.org>
-Date: Fri, 23 Jan 2026 01:35:17 +0800
+	s=k20201202; t=1769103383;
+	bh=LWuS3t9H4s3n6SwgiZKmTr2O9DxNfnIGAD3zPijQ33Y=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=J2UlAbs/vbrkBlyTHAfoan1jPcOAJxwT4BQ6oTfUzQfCjFYnYuBOLhk45uDRuo3H/
+	 AJ8YLsNqMPeQk6bxrBUW4PebRQqKIJGaBH3o3sVJ/wCleTmh3Xs3rYCTFcCTV0DjdL
+	 lFfljb7U/kwXSMP8Jr+si3Cl0QrOaYVUt06WEriczzOsLxWottOB5M33ZaHWcmER1j
+	 Mk4ThL/ejNwhMrlPiTqkuu5YaIQ2gd2Dv060RYhMQ27NGNiy7CnmBVzhiURLuxKoM4
+	 Us6ZSRm/FeOLO4R3kRcxyGhfIE6bksw1Y7YGglSW0V6erdeJECMaqujSUGr8LSxRd/
+	 1+7wE2rIsVeXQ==
+Date: Thu, 22 Jan 2026 11:36:22 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.3
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: David Hildenbrand <david@redhat.com>, Mike Rapoport <rppt@kernel.org>, 
+ David Airlie <airlied@gmail.com>, Sumit Garg <sumit.garg@kernel.org>, 
+ Sumit Semwal <sumit.semwal@linaro.org>, devicetree@vger.kernel.org, 
+ Andrew Morton <akpm@linux-foundation.org>, linux-mm@kvack.org, 
+ Brian Starkey <Brian.Starkey@arm.com>, Conor Dooley <conor+dt@kernel.org>, 
+ dri-devel@lists.freedesktop.org, Simona Vetter <simona@ffwll.ch>, 
+ linux-tegra@vger.kernel.org, John Stultz <jstultz@google.com>, 
+ linaro-mm-sig@lists.linaro.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ "T . J . Mercier" <tjmercier@google.com>, 
+ Benjamin Gaignard <benjamin.gaignard@collabora.com>
+To: Thierry Reding <thierry.reding@kernel.org>
+In-Reply-To: <20260122161009.3865888-3-thierry.reding@kernel.org>
+References: <20260122161009.3865888-1-thierry.reding@kernel.org>
+ <20260122161009.3865888-3-thierry.reding@kernel.org>
+Message-Id: <176910338211.2903017.10944159060341564914.robh@kernel.org>
+Subject: Re: [PATCH v2 02/10] dt-bindings: display: tegra: Document memory
+ regions
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258590-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,sholland.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,netcube.li];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[redhat.com,kernel.org,gmail.com,linaro.org,vger.kernel.org,linux-foundation.org,kvack.org,arm.com,lists.freedesktop.org,ffwll.ch,google.com,lists.linaro.org,collabora.com];
+	TAGGED_FROM(0.00)[bounces-258591-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wens@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.958];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[studer.dev:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,0.30.169.56:email]
-X-Rspamd-Queue-Id: 71B4D6C538
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,nvidia.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: CF1E86C499
 X-Rspamd-Action: no action
 
-On Tue, 13 Jan 2026 19:29:48 +0100, Lukas Schmid wrote:
-> The sun20i THS (built in CPU thermal sensor) is supported in code, but
-> was never added to the device tree. So, add it to the device tree,
-> along with a thermal zone for the CPU.
-> 
-> Signed-off-by: Alex Studer <alex@studer.dev>
-> 
-> Changes since v1:
->  - Move include before defines in sun20i-d1s.dtsi
->  - Fix register size for thermal-sensor@2009400
->  - Move thermal-sensor@2009400 in SoC to match register address sorting
->  - Add thermal-zone for sun8i-t113s.dtsi and fix missing cooling-cells
-> 
-> [...]
 
-Applied to sunxi/dt-for-6.20 in local tree, thanks!
+On Thu, 22 Jan 2026 17:10:01 +0100, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
+> 
+> Add the memory-region and memory-region-names properties to the bindings
+> for the display controllers and the host1x engine found on various Tegra
+> generations. These memory regions are used to access firmware-provided
+> framebuffer memory as well as the video protection region.
+> 
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> ---
+>  .../bindings/display/tegra/nvidia,tegra186-dc.yaml     | 10 ++++++++++
+>  .../bindings/display/tegra/nvidia,tegra20-dc.yaml      | 10 +++++++++-
+>  .../bindings/display/tegra/nvidia,tegra20-host1x.yaml  |  7 +++++++
+>  3 files changed, 26 insertions(+), 1 deletion(-)
+> 
 
-[1/1] riscv: dts: allwinner: d1: Add CPU thermal sensor and zone
-      commit: f36e738549d483878ebf4cc9826c46d9dc4aa496
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Best regards,
--- 
-Chen-Yu Tsai <wens@kernel.org>
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-dc.yaml: properties:memory-region-names: 'anyOf' conditional failed, one must be fixed:
+	'maxitems' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
+	'type' was expected
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-dc.yaml: properties:memory-region-names:items: {'enum': ['framebuffer', 'protected']} is not of type 'array'
+	from schema $id: http://devicetree.org/meta-schemas/string-array.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-dc.yaml: properties:memory-region-names: Additional properties are not allowed ('maxitems' was unexpected)
+	from schema $id: http://devicetree.org/meta-schemas/string-array.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-dc.yaml: properties:memory-region-names:items: {'enum': ['framebuffer', 'protected']} is not of type 'array'
+	from schema $id: http://devicetree.org/meta-schemas/string-array.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-dc.yaml: properties:memory-region-names: Additional properties are not allowed ('maxitems' was unexpected)
+	from schema $id: http://devicetree.org/meta-schemas/string-array.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.kernel.org/project/devicetree/patch/20260122161009.3865888-3-thierry.reding@kernel.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
