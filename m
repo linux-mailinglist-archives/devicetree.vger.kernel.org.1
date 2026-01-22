@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-258335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258340-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sGiqBXoHcmmvZwAAu9opvQ
-	(envelope-from <devicetree+bounces-258335-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 12:18:18 +0100
+	id qHsBDZQJcmmOagAAu9opvQ
+	(envelope-from <devicetree+bounces-258340-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 12:27:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id A456265DE4
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 12:18:17 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id E441365FAD
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 12:27:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 72EEA6C5682
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 11:12:21 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D30CE5EB2EE
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 11:13:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0768F42E00A;
-	Thu, 22 Jan 2026 11:09:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7226944BC9B;
+	Thu, 22 Jan 2026 11:09:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="NLqGfp+p"
+	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="Imkse55o"
 X-Original-To: devicetree@vger.kernel.org
 Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4342634FF7D;
-	Thu, 22 Jan 2026 11:09:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B95463B8D4E;
+	Thu, 22 Jan 2026 11:09:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769080158; cv=none; b=WE2AAlxL6Ma2yCjPvpVvloo+RGukejxAXo7Mluz8UXlVC+4BVCxxzforvtKX5ynjEn+n6+SC33A+LD6sc+O91Sjo2beNugfR744IAQKzkthCYoLhBXgITMAbY4360LfVaLQlBVEnLtAWelaCTyCSVpyrp4umyUpRcpd/NBNxnGg=
+	t=1769080161; cv=none; b=VgrcKcg4rOznqI0y7m9kY+q1l/J7lBUhF4xne2LXyhyswW/H06aA5w/h3CLl8qK0TNDo64sFRJTBne22Rf4l5zkMpQXCKe770/O/8KwQ0+Dj3BHSZQEwjWp1/DsuBKOiY98tEV7PCYvFjns4jxjkM12wPGHfhZyAEv81Kyrhuds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769080158; c=relaxed/simple;
-	bh=/JYwT+m4z0xzlhaHr6MbOU8ks66lEYSBa6ahDncfZUQ=;
+	s=arc-20240116; t=1769080161; c=relaxed/simple;
+	bh=IEsLQpoh6ZRrron3Ez/vLvm/TMw8y+eEtUr4GS+fgJY=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DzW9r37sWslUfaMnZjU4cQ+DnJZc/84RXp2rrszmxTr7F+BBHjNTepSAFLp2U/IokFYAKtsR976RemtBJAWwvrym5cyYjESd2NvudxC43cXi8bIBNyGUdEW8ucLs9aPYsaAnR41zRnKd6FG/d23/A2d173NWj7awOA0RrUfUQKk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=NLqGfp+p; arc=none smtp.client-ip=211.75.126.72
+	 MIME-Version:Content-Type; b=droLzc1xg90Jh6tgtWs7pOUWiOSxOgKjYllpaDhUubOpou4t4ZbG7jzlTi8Idr58xtj7+Bz+AODKV4ffNNWt6M3UYRIuy3xly1VTfAXCQoJdRy8nTCbBuXWELU1AqIqIlQJiBAemEXXQa3qsIEgyL26+FR62HrVl35MqJMbqi38=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=Imkse55o; arc=none smtp.client-ip=211.75.126.72
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
-X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 60MB8xvmE913378, This message is accepted by code: ctloc85258
+X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 60MB8xvS6913381, This message is accepted by code: ctloc85258
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
-	t=1769080139; bh=qebyPywROpho6QC+bM/2rjzPYcqbnnu7SqXdd+Jqmq0=;
+	t=1769080140; bh=QJeqLrY+Rt5ThncP4gODehPVu6yh1M97vozwQkT/D/o=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
 	 MIME-Version:Content-Transfer-Encoding:Content-Type;
-	b=NLqGfp+pbIyGPhG3B9yR5UXB5g/74WQn7HZ3qSwAQDZhQfHjqakF5gOjDFXzraQnb
-	 KGdgu/iL3KO39f8LZfQ50xF1iuIzq4rek15qFmMp+duvydrrpWG5gY+/CuXC03hvTJ
-	 oA5kLxOX84Z3DvJyj8kkHwbWuG829pNHr0b+g5/VAwSbfvKOra8/6+/WHvOBZb8ARM
-	 KTH0qgCJk4qsH4RwCd+5owQ4n6Sb3wKerOdgQzcPNOIAUiRW+xws2/dNwlHcpWV198
-	 8xsYJRgRGX0rsv/s7dk/QClDVcI5R3dKqa4f+EqIF2Zu67QdSwMKm6ofrNDBYQqfps
-	 U+qXvO26/hotA==
-Received: from mail.realtek.com (rtkexhmbs02.realtek.com.tw[172.21.6.41])
-	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 60MB8xvmE913378
+	b=Imkse55ozpVMw/vwunTewUuLGVtmvLVUfxYXgibsL7SS2jLlR/YlmWLxXNyLNcsw6
+	 cLjG+j+6MkxOZcyFVR6lee234xUcz+hRYkHc56hjPe687fjVhvfWls7LGcq5rB/o2K
+	 J3pdI4+hn/rUaR1Md9THwdQ2IJDoxM4Moym8cZfMEJxRG51NBlrWlZGp/x4hbqUPn5
+	 ExyTR15h8GOXNK9qB4/mZE5Z1y0a2IAP6w+5erbZlEVML2OuX3vhbY1t1GzzmVY9KX
+	 9hHD6i6FjQOt4aD0/DieTLOM+OSmPVAW7N/1FpqwrfhtF95VQuceSlEcgF81VEb70I
+	 hzD+gJ34h6stA==
+Received: from mail.realtek.com (rtkexhmbs04.realtek.com.tw[10.21.1.54])
+	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 60MB8xvS6913381
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
 	Thu, 22 Jan 2026 19:08:59 +0800
 Received: from RTKEXHMBS05.realtek.com.tw (10.21.1.55) by
- RTKEXHMBS02.realtek.com.tw (172.21.6.41) with Microsoft SMTP Server
+ RTKEXHMBS04.realtek.com.tw (10.21.1.54) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Thu, 22 Jan 2026 19:08:59 +0800
+ 15.2.1748.10; Thu, 22 Jan 2026 19:09:00 +0800
 Received: from RTKEXHMBS03.realtek.com.tw (10.21.1.53) by
  RTKEXHMBS05.realtek.com.tw (10.21.1.55) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
@@ -70,9 +70,9 @@ CC: <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>, <james.tai@realtek.com>,
         <cy.huang@realtek.com>, <stanley_chang@realtek.com>,
         <eleanor.lin@realtek.com>
-Subject: [PATCH v3 6/9] clk: realtek: Add support for mux clock
-Date: Thu, 22 Jan 2026 19:08:54 +0800
-Message-ID: <20260122110857.12995-7-eleanor.lin@realtek.com>
+Subject: [PATCH v3 7/9] clk: realtek: Add support for MMC-tuned PLL clocks
+Date: Thu, 22 Jan 2026 19:08:55 +0800
+Message-ID: <20260122110857.12995-8-eleanor.lin@realtek.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260122110857.12995-1-eleanor.lin@realtek.com>
 References: <20260122110857.12995-1-eleanor.lin@realtek.com>
@@ -97,157 +97,524 @@ X-Spamd-Result: default: False [1.04 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	DMARC_POLICY_ALLOW(0.00)[realtek.com,none];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-258335-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-258340-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[realtek.com:+];
-	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
+	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
 	RCPT_COUNT_TWELVE(0.00)[15];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[eleanor.lin@realtek.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[realtek.com:email,realtek.com:dkim,realtek.com:mid,ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns,alliedtelesis.co.nz:email];
 	TO_DN_NONE(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: A456265DE4
+X-Rspamd-Queue-Id: E441365FAD
 X-Rspamd-Action: no action
 
 From: Cheng-Yu Lee <cylee12@realtek.com>
 
-Add a simple regmap-based clk_ops implementation for Realtek mux clocks.
+Add clk_pll_mmc_ops for enable/disable, prepare, rate control, and status
+operations on MMC PLL clocks.
 
-The implementation supports parent selection and rate determination through
-regmap-backed register access.
+Also add clk_pll_mmc_phase_ops to support phase get/set operations.
 
 Signed-off-by: Cheng-Yu Lee <cylee12@realtek.com>
+Co-developed-by: Jyan Chou <jyanchou@realtek.com>
+Signed-off-by: Jyan Chou <jyanchou@realtek.com>
 Co-developed-by: Yu-Chun Lin <eleanor.lin@realtek.com>
 Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
 ---
 Changes in v3:
 - Added prefix "rtk_" in operation names to avoid duplicate symbol problem.
 ---
- drivers/clk/realtek/Makefile         |  1 +
- drivers/clk/realtek/clk-regmap-mux.c | 46 ++++++++++++++++++++++++++++
- drivers/clk/realtek/clk-regmap-mux.h | 43 ++++++++++++++++++++++++++
- 3 files changed, 90 insertions(+)
- create mode 100644 drivers/clk/realtek/clk-regmap-mux.c
- create mode 100644 drivers/clk/realtek/clk-regmap-mux.h
+ MAINTAINERS                       |   8 +
+ drivers/clk/realtek/Kconfig       |   3 +
+ drivers/clk/realtek/Makefile      |   2 +
+ drivers/clk/realtek/clk-pll-mmc.c | 399 ++++++++++++++++++++++++++++++
+ drivers/clk/realtek/clk-pll.h     |  21 ++
+ 5 files changed, 433 insertions(+)
+ create mode 100644 drivers/clk/realtek/clk-pll-mmc.c
 
+diff --git a/MAINTAINERS b/MAINTAINERS
+index de772e0026de..5b8c0d9eebaa 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -21978,6 +21978,14 @@ F:	Documentation/devicetree/bindings/clock/realtek*
+ F:	drivers/clk/realtek/*
+ F:	include/dt-bindings/clock/realtek*
+ 
++REALTEK SOC PLL CLOCK FOR MMC SUPPORT
++M:	Cheng-Yu Lee <cylee12@realtek.com>
++M:	Jyan Chou <jyanchou@realtek.com>
++M:	Yu-Chun Lin <eleanor.lin@realtek.com>
++L:	linux-clk@vger.kernel.org
++S:	Supported
++F:	drivers/clk/realtek/clk-pll-mmc.c
++
+ REALTEK SPI-NAND
+ M:	Chris Packham <chris.packham@alliedtelesis.co.nz>
+ S:	Maintained
+diff --git a/drivers/clk/realtek/Kconfig b/drivers/clk/realtek/Kconfig
+index 121158f11dd1..de462c2bb892 100644
+--- a/drivers/clk/realtek/Kconfig
++++ b/drivers/clk/realtek/Kconfig
+@@ -25,4 +25,7 @@ config RTK_CLK_COMMON
+ 	  multiple Realtek clock implementations, and include integration
+ 	  with reset controllers where required.
+ 
++config RTK_CLK_PLL_MMC
++	bool
++
+ endif
 diff --git a/drivers/clk/realtek/Makefile b/drivers/clk/realtek/Makefile
-index 97058d48a176..b40dd5a26653 100644
+index b40dd5a26653..3d5c93e79dbd 100644
 --- a/drivers/clk/realtek/Makefile
 +++ b/drivers/clk/realtek/Makefile
-@@ -5,5 +5,6 @@ clk-rtk-y += common.o
- 
- clk-rtk-y += clk-pll.o
- clk-rtk-y += clk-regmap-gate.o
-+clk-rtk-y += clk-regmap-mux.o
+@@ -8,3 +8,5 @@ clk-rtk-y += clk-regmap-gate.o
+ clk-rtk-y += clk-regmap-mux.o
  clk-rtk-y += freq_table.o
  clk-rtk-y += reset.o
-diff --git a/drivers/clk/realtek/clk-regmap-mux.c b/drivers/clk/realtek/clk-regmap-mux.c
++
++clk-rtk-$(CONFIG_RTK_CLK_PLL_MMC) += clk-pll-mmc.o
+diff --git a/drivers/clk/realtek/clk-pll-mmc.c b/drivers/clk/realtek/clk-pll-mmc.c
 new file mode 100644
-index 000000000000..d1612de2e2bc
+index 000000000000..017663738c1f
 --- /dev/null
-+++ b/drivers/clk/realtek/clk-regmap-mux.c
-@@ -0,0 +1,46 @@
++++ b/drivers/clk/realtek/clk-pll-mmc.c
+@@ -0,0 +1,399 @@
 +// SPDX-License-Identifier: GPL-2.0-only
 +/*
-+ * Copyright (C) 2017 Realtek Semiconductor Corporation
++ * Copyright (C) 2021 Realtek Semiconductor Corporation
 + * Author: Cheng-Yu Lee <cylee12@realtek.com>
 + */
 +
-+#include "clk-regmap-mux.h"
++#include "clk-pll.h"
 +
-+static u8 clk_regmap_mux_get_parent(struct clk_hw *hw)
++#define PLL_EMMC1_OFFSET           0x0
++#define PLL_EMMC2_OFFSET           0x4
++#define PLL_EMMC3_OFFSET           0x8
++#define PLL_EMMC4_OFFSET           0xc
++#define PLL_SSC_DIG_EMMC1_OFFSET   0x0
++#define PLL_SSC_DIG_EMMC3_OFFSET   0xc
++#define PLL_SSC_DIG_EMMC4_OFFSET   0x10
++
++#define PLL_MMC_SSC_DIV_N_VAL      0x1b
++
++#define PLL_PHRT0_MASK             BIT(1)
++#define PLL_PHSEL_MASK             GENMASK(4, 0)
++#define PLL_SSCPLL_RS_MASK         GENMASK(12, 10)
++#define PLL_SSCPLL_ICP_MASK        GENMASK(9, 5)
++#define PLL_SSC_DIV_EXT_F_MASK     GENMASK(25, 13)
++#define PLL_PI_IBSELH_MASK         GENMASK(28, 27)
++#define PLL_SSC_DIV_N_MASK         GENMASK(23, 16)
++#define PLL_NCODE_SSC_EMMC_MASK    GENMASK(20, 13)
++#define PLL_FCODE_SSC_EMMC_MASK    GENMASK(12, 0)
++#define PLL_GRAN_EST_EM_MC_MASK    GENMASK(20, 0)
++#define PLL_EN_SSC_EMMC_MASK       BIT(0)
++#define PLL_FLAG_INITAL_EMMC_MASK  BIT(1)
++
++#define PLL_PHRT0_SHIFT            1
++#define PLL_SSCPLL_RS_SHIFT        10
++#define PLL_SSCPLL_ICP_SHIFT       5
++#define PLL_SSC_DIV_EXT_F_SHIFT    13
++#define PLL_PI_IBSELH_SHIFT        27
++#define PLL_SSC_DIV_N_SHIFT        16
++#define PLL_NCODE_SSC_EMMC_SHIFT   13
++#define PLL_FLAG_INITAL_EMMC_SHIFT 8
++
++#define CYCLE_DEGREES              360
++#define PHASE_STEPS                32
++#define PHASE_SCALE_FACTOR         1125
++
++static inline int get_phrt0(struct clk_pll_mmc *clkm, u32 *val)
 +{
-+	struct clk_regmap_mux *clkm = to_clk_regmap_mux(hw);
-+	int num_parents = clk_hw_get_num_parents(hw);
++	u32 reg;
++	int ret;
++
++	ret = regmap_read(clkm->clkr.regmap, clkm->pll_ofs + PLL_EMMC1_OFFSET, &reg);
++	if (ret)
++		return ret;
++
++	*val = (reg >> PLL_PHRT0_SHIFT) & PLL_PHRT0_MASK;
++	return 0;
++}
++
++static inline int set_phrt0(struct clk_pll_mmc *clkm, u32 val)
++{
++	return regmap_update_bits(clkm->clkr.regmap, clkm->pll_ofs + PLL_EMMC1_OFFSET,
++				  PLL_PHRT0_MASK, val << PLL_PHRT0_SHIFT);
++}
++
++static inline int get_phsel(struct clk_pll_mmc *clkm, int id, u32 *val)
++{
++	int ret;
++	u32 raw_val;
++	u32 sft = id ? 8 : 3;
++
++	ret = regmap_read(clkm->clkr.regmap, clkm->pll_ofs + PLL_EMMC1_OFFSET, &raw_val);
++	if (ret)
++		return ret;
++
++	*val = (raw_val >> sft) & PLL_PHSEL_MASK;
++	return 0;
++}
++
++static inline int set_phsel(struct clk_pll_mmc *clkm, int id, u32 val)
++{
++	u32 sft = id ? 8 : 3;
++
++	return regmap_update_bits(clkm->clkr.regmap, clkm->pll_ofs + PLL_EMMC1_OFFSET,
++				  PLL_PHSEL_MASK << sft, val << sft);
++}
++
++static inline int set_sscpll_rs(struct clk_pll_mmc *clkm, u32 val)
++{
++	return regmap_update_bits(clkm->clkr.regmap, clkm->pll_ofs + PLL_EMMC2_OFFSET,
++				  PLL_SSCPLL_RS_MASK, val << PLL_SSCPLL_RS_SHIFT);
++}
++
++static inline int set_sscpll_icp(struct clk_pll_mmc *clkm, u32 val)
++{
++	return regmap_update_bits(clkm->clkr.regmap, clkm->pll_ofs + PLL_EMMC2_OFFSET,
++				  PLL_SSCPLL_ICP_MASK, val << PLL_SSCPLL_ICP_SHIFT);
++}
++
++static inline int get_ssc_div_ext_f(struct clk_pll_mmc *clkm, u32 *val)
++{
++	u32 raw_val;
++	int ret;
++
++	ret = regmap_read(clkm->clkr.regmap, clkm->pll_ofs + PLL_EMMC2_OFFSET, &raw_val);
++	if (ret)
++		return ret;
++
++	*val = (raw_val & PLL_SSC_DIV_EXT_F_MASK) >> PLL_SSC_DIV_EXT_F_SHIFT;
++	return 0;
++}
++
++static inline int set_ssc_div_ext_f(struct clk_pll_mmc *clkm, u32 val)
++{
++	return regmap_update_bits(clkm->clkr.regmap, clkm->pll_ofs + PLL_EMMC2_OFFSET,
++				  PLL_SSC_DIV_EXT_F_MASK,
++				  val << PLL_SSC_DIV_EXT_F_SHIFT);
++}
++
++static inline int set_pi_ibselh(struct clk_pll_mmc *clkm, u32 val)
++{
++	return regmap_update_bits(clkm->clkr.regmap, clkm->pll_ofs + PLL_EMMC2_OFFSET,
++				  PLL_PI_IBSELH_MASK, val << PLL_PI_IBSELH_SHIFT);
++}
++
++static inline int set_ssc_div_n(struct clk_pll_mmc *clkm, u32 val)
++{
++	return regmap_update_bits(clkm->clkr.regmap, clkm->pll_ofs + PLL_EMMC3_OFFSET,
++				  PLL_SSC_DIV_N_MASK, val << PLL_SSC_DIV_N_SHIFT);
++}
++
++static inline int get_ssc_div_n(struct clk_pll_mmc *clkm, u32 *val)
++{
++	int ret;
++	u32 raw_val;
++
++	ret = regmap_read(clkm->clkr.regmap, clkm->pll_ofs + PLL_EMMC3_OFFSET, &raw_val);
++	if (ret)
++		return ret;
++
++	*val = (raw_val & PLL_SSC_DIV_N_MASK) >> PLL_SSC_DIV_N_SHIFT;
++	return 0;
++}
++
++static inline int set_pow_ctl(struct clk_pll_mmc *clkm, u32 val)
++{
++	return regmap_write(clkm->clkr.regmap, clkm->pll_ofs + PLL_EMMC4_OFFSET, val);
++}
++
++static inline int get_pow_ctl(struct clk_pll_mmc *clkm, u32 *val)
++{
++	int ret;
++	u32 raw_val;
++
++	ret = regmap_read(clkm->clkr.regmap, clkm->pll_ofs + PLL_EMMC4_OFFSET, &raw_val);
++
++	*val = raw_val;
++
++	return ret;
++}
++
++static int clk_pll_mmc_phase_set_phase(struct clk_hw *hw, int degrees)
++{
++	struct clk_hw *hwp = clk_hw_get_parent(hw);
++	struct clk_pll_mmc *clkm;
++	int phase_id;
 +	u32 val;
 +	int ret;
 +
-+	ret = regmap_read(clkm->clkr.regmap, clkm->mux_ofs, &val);
++	if (!hwp)
++		return -ENOENT;
++
++	clkm = to_clk_pll_mmc(hwp);
++	phase_id = (hw - &clkm->phase0_hw) ? 1 : 0;
++	val = DIV_ROUND_CLOSEST(degrees * 100, PHASE_SCALE_FACTOR);
++	ret = set_phsel(clkm, phase_id, val);
 +	if (ret)
-+		return 0;
++		return ret;
 +
-+	val = val >> clkm->shift & clkm->mask;
++	usleep_range(10, 20);
++	return 0;
++}
 +
-+	if (val >= num_parents)
-+		return 0;
++static int clk_pll_mmc_phase_get_phase(struct clk_hw *hw)
++{
++	struct clk_hw *hwp;
++	struct clk_pll_mmc *clkm;
++	int phase_id;
++	int ret;
++	u32 val;
++
++	hwp = clk_hw_get_parent(hw);
++	if (!hwp)
++		return -ENOENT;
++
++	clkm = to_clk_pll_mmc(hwp);
++	phase_id = (hw - &clkm->phase0_hw) ? 1 : 0;
++	ret = get_phsel(clkm, phase_id, &val);
++	if (ret)
++		return ret;
++
++	val = DIV_ROUND_CLOSEST(val * CYCLE_DEGREES, PHASE_STEPS);
 +
 +	return val;
 +}
 +
-+static int clk_regmap_mux_set_parent(struct clk_hw *hw, u8 index)
-+{
-+	struct clk_regmap_mux *clkm = to_clk_regmap_mux(hw);
++const struct clk_ops rtk_clk_pll_mmc_phase_ops = {
++	.set_phase = clk_pll_mmc_phase_set_phase,
++	.get_phase = clk_pll_mmc_phase_get_phase,
++};
++EXPORT_SYMBOL_GPL(rtk_clk_pll_mmc_phase_ops);
 +
-+	return regmap_update_bits(clkm->clkr.regmap, clkm->mux_ofs,
-+				  clkm->mask << clkm->shift, index << clkm->shift);
++static int clk_pll_mmc_prepare(struct clk_hw *hw)
++{
++	struct clk_pll_mmc *clkm = to_clk_pll_mmc(hw);
++
++	return set_pow_ctl(clkm, 7);
 +}
 +
-+const struct clk_ops rtk_clk_regmap_mux_ops = {
-+	.set_parent = clk_regmap_mux_set_parent,
-+	.get_parent = clk_regmap_mux_get_parent,
-+	.determine_rate = __clk_mux_determine_rate,
-+};
-+EXPORT_SYMBOL_GPL(rtk_clk_regmap_mux_ops);
++static void clk_pll_mmc_unprepare(struct clk_hw *hw)
++{
++	struct clk_pll_mmc *clkm = to_clk_pll_mmc(hw);
 +
-+const struct clk_ops rtk_clk_regmap_mux_ro_ops = {
-+	.get_parent = clk_regmap_mux_get_parent,
-+};
-+EXPORT_SYMBOL_GPL(rtk_clk_regmap_mux_ro_ops);
-diff --git a/drivers/clk/realtek/clk-regmap-mux.h b/drivers/clk/realtek/clk-regmap-mux.h
-new file mode 100644
-index 000000000000..cf7ab6a0604c
---- /dev/null
-+++ b/drivers/clk/realtek/clk-regmap-mux.h
-@@ -0,0 +1,43 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/*
-+ * Copyright (C) 2017 Realtek Semiconductor Corporation
-+ * Author: Cheng-Yu Lee <cylee12@realtek.com>
-+ */
++	set_pow_ctl(clkm, 0);
++}
 +
-+#ifndef __CLK_REALTEK_CLK_REGMAP_MUX_H
-+#define __CLK_REALTEK_CLK_REGMAP_MUX_H
++static int clk_pll_mmc_is_prepared(struct clk_hw *hw)
++{
++	struct clk_pll_mmc *clkm = to_clk_pll_mmc(hw);
++	u32 val;
++	int ret;
 +
-+#include "common.h"
++	ret = get_pow_ctl(clkm, &val);
++	if (ret)
++		return 1;
 +
-+struct clk_regmap_mux {
-+	struct clk_regmap clkr;
-+	int mux_ofs;
-+	unsigned int mask;
-+	unsigned int shift;
-+};
++	return val != 0x0;
++}
 +
-+#define __clk_regmap_mux_hw(_p) __clk_regmap_hw(&(_p)->clkr)
++static int clk_pll_mmc_enable(struct clk_hw *hw)
++{
++	struct clk_pll_mmc *clkm = to_clk_pll_mmc(hw);
++	int ret;
 +
-+#define __CLK_REGMAP_MUX(_name, _parents, _ops, _flags, _ofs, _sft, _mask)   \
-+	struct clk_regmap_mux _name = {                                      \
-+		.clkr.hw.init =                                              \
-+			CLK_HW_INIT_PARENTS(#_name, _parents, _ops, _flags), \
-+		.mux_ofs = _ofs,                                             \
-+		.shift = _sft,                                               \
-+		.mask = _mask,                                               \
++	ret = set_phrt0(clkm, 1);
++	if (ret)
++		return ret;
++
++	udelay(10);
++	return 0;
++}
++
++static void clk_pll_mmc_disable(struct clk_hw *hw)
++{
++	struct clk_pll_mmc *clkm = to_clk_pll_mmc(hw);
++
++	set_phrt0(clkm, 0);
++	udelay(10);
++}
++
++static int clk_pll_mmc_is_enabled(struct clk_hw *hw)
++{
++	struct clk_pll_mmc *clkm = to_clk_pll_mmc(hw);
++	u32 val;
++	int ret;
++
++	ret = get_phrt0(clkm, &val);
++	if (ret)
++		return 1;
++
++	return val == 0x1;
++}
++
++static unsigned long clk_pll_mmc_recalc_rate(struct clk_hw *hw, unsigned long parent_rate)
++{
++	struct clk_pll_mmc *clkm = to_clk_pll_mmc(hw);
++	u32 val, ext_f;
++	int ret;
++
++	ret = get_ssc_div_n(clkm, &val);
++	if (ret)
++		return ret;
++
++	ret = get_ssc_div_ext_f(clkm, &ext_f);
++	if (ret)
++		return ret;
++
++	return parent_rate / 4 * (val + 2) + (parent_rate / 4 * ext_f) / 8192;
++}
++
++static int clk_pll_mmc_determine_rate(struct clk_hw *hw, struct clk_rate_request *req)
++{
++	u32 val = DIV_ROUND_CLOSEST(req->rate * 4, req->best_parent_rate);
++
++	req->rate = req->best_parent_rate * val / 4;
++	return 0;
++}
++
++static int clk_pll_mmc_set_rate(struct clk_hw *hw, unsigned long rate, unsigned long parent_rate)
++{
++	struct clk_pll_mmc *clkm = to_clk_pll_mmc(hw);
++	u32 val = PLL_MMC_SSC_DIV_N_VAL;
++	int ret;
++
++	ret = regmap_update_bits(clkm->clkr.regmap,
++				 clkm->ssc_dig_ofs + PLL_SSC_DIG_EMMC1_OFFSET,
++				 PLL_FLAG_INITAL_EMMC_MASK, 0x0 << PLL_FLAG_INITAL_EMMC_SHIFT);
++	if (ret)
++		return ret;
++
++	ret = set_ssc_div_n(clkm, val);
++	if (ret)
++		return ret;
++
++	ret = set_ssc_div_ext_f(clkm, 1517);
++	if (ret)
++		return ret;
++
++	switch (val) {
++	case 31 ... 46:
++		ret |= set_pi_ibselh(clkm, 3);
++		ret |= set_sscpll_rs(clkm, 3);
++		ret |= set_sscpll_icp(clkm, 2);
++		break;
++
++	case 20 ... 30:
++		ret |= set_pi_ibselh(clkm, 2);
++		ret |= set_sscpll_rs(clkm, 3);
++		ret |= set_sscpll_icp(clkm, 1);
++		break;
++
++	case 10 ... 19:
++		ret |= set_pi_ibselh(clkm, 1);
++		ret |= set_sscpll_rs(clkm, 2);
++		ret |= set_sscpll_icp(clkm, 1);
++		break;
++
++	case 5 ... 9:
++		ret |= set_pi_ibselh(clkm, 0);
++		ret |= set_sscpll_rs(clkm, 2);
++		ret |= set_sscpll_icp(clkm, 0);
++		break;
 +	}
++	if (ret)
++		return ret;
 +
-+#define CLK_REGMAP_MUX(_name, _parents, _flags, _ofs, _sft, _mask)           \
-+	__CLK_REGMAP_MUX(_name, _parents, &rtk_clk_regmap_mux_ops, _flags, _ofs, \
-+			 _sft, _mask)
++	ret = regmap_update_bits(clkm->clkr.regmap,
++				 clkm->ssc_dig_ofs + PLL_SSC_DIG_EMMC3_OFFSET,
++				 PLL_NCODE_SSC_EMMC_MASK,
++				 27 << PLL_NCODE_SSC_EMMC_SHIFT);
++	if (ret)
++		return ret;
 +
-+static inline struct clk_regmap_mux *to_clk_regmap_mux(struct clk_hw *hw)
++	ret = regmap_update_bits(clkm->clkr.regmap,
++				 clkm->ssc_dig_ofs + PLL_SSC_DIG_EMMC3_OFFSET,
++				 PLL_FCODE_SSC_EMMC_MASK, 321);
++	if (ret)
++		return ret;
++
++	ret = regmap_update_bits(clkm->clkr.regmap,
++				 clkm->ssc_dig_ofs + PLL_SSC_DIG_EMMC4_OFFSET,
++				 PLL_GRAN_EST_EM_MC_MASK, 5985);
++	if (ret)
++		return ret;
++
++	ret = regmap_update_bits(clkm->clkr.regmap,
++				 clkm->ssc_dig_ofs + PLL_SSC_DIG_EMMC1_OFFSET,
++				 PLL_EN_SSC_EMMC_MASK, 0x1);
++	if (ret)
++		return ret;
++
++	ret = regmap_update_bits(clkm->clkr.regmap,
++				 clkm->ssc_dig_ofs + PLL_SSC_DIG_EMMC1_OFFSET,
++				 PLL_EN_SSC_EMMC_MASK, 0x0);
++	if (ret)
++		return ret;
++
++	ret = regmap_update_bits(clkm->clkr.regmap,
++				 clkm->ssc_dig_ofs + PLL_SSC_DIG_EMMC1_OFFSET,
++				 PLL_FLAG_INITAL_EMMC_MASK,
++				 0x1 << PLL_FLAG_INITAL_EMMC_SHIFT);
++	if (ret)
++		return ret;
++
++	usleep_range(10, 20);
++	return 0;
++}
++
++const struct clk_ops rtk_clk_pll_mmc_ops = {
++	.prepare          = clk_pll_mmc_prepare,
++	.unprepare        = clk_pll_mmc_unprepare,
++	.is_prepared      = clk_pll_mmc_is_prepared,
++	.enable           = clk_pll_mmc_enable,
++	.disable          = clk_pll_mmc_disable,
++	.is_enabled       = clk_pll_mmc_is_enabled,
++	.recalc_rate      = clk_pll_mmc_recalc_rate,
++	.determine_rate   = clk_pll_mmc_determine_rate,
++	.set_rate         = clk_pll_mmc_set_rate,
++};
++EXPORT_SYMBOL_GPL(rtk_clk_pll_mmc_ops);
++MODULE_LICENSE("GPL");
+diff --git a/drivers/clk/realtek/clk-pll.h b/drivers/clk/realtek/clk-pll.h
+index 2d27a44a270c..9cf219871218 100644
+--- a/drivers/clk/realtek/clk-pll.h
++++ b/drivers/clk/realtek/clk-pll.h
+@@ -44,4 +44,25 @@ static inline struct clk_pll *to_clk_pll(struct clk_hw *hw)
+ extern const struct clk_ops rtk_clk_pll_ops;
+ extern const struct clk_ops rtk_clk_pll_ro_ops;
+ 
++struct clk_pll_mmc {
++	struct clk_regmap clkr;
++	int pll_ofs;
++	int ssc_dig_ofs;
++	struct clk_hw phase0_hw;
++	struct clk_hw phase1_hw;
++	u32 set_rate_val_53_97_set_ipc: 1;
++};
++
++#define __clk_pll_mmc_hw(_ptr)  __clk_regmap_hw(&(_ptr)->clkr)
++
++static inline struct clk_pll_mmc *to_clk_pll_mmc(struct clk_hw *hw)
 +{
 +	struct clk_regmap *clkr = to_clk_regmap(hw);
 +
-+	return container_of(clkr, struct clk_regmap_mux, clkr);
++	return container_of(clkr, struct clk_pll_mmc, clkr);
 +}
 +
-+extern const struct clk_ops rtk_clk_regmap_mux_ops;
++extern const struct clk_ops rtk_clk_pll_mmc_ops;
++extern const struct clk_ops rtk_clk_pll_mmc_phase_ops;
 +
-+#endif /* __CLK_REALTEK_CLK_REGMAP_MUX_H */
+ #endif /* __CLK_REALTEK_CLK_PLL_H */
 -- 
 2.34.1
 
