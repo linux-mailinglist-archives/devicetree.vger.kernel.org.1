@@ -1,292 +1,226 @@
-Return-Path: <devicetree+bounces-258576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258578-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +J6NCBJjcmnfjQAAu9opvQ
-	(envelope-from <devicetree+bounces-258576-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:49:06 +0100
+	id ADCuNbRocmnckQAAu9opvQ
+	(envelope-from <devicetree+bounces-258578-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 19:13:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AEB16BA60
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:49:05 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id F33CC6C1D9
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 19:13:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 62F48300E5C7
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 17:30:42 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A4F5930255E4
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 17:31:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0CD036EA92;
-	Thu, 22 Jan 2026 17:15:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E16E378821;
+	Thu, 22 Jan 2026 17:17:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e1j5uwa2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lyaQb2L6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3570B34F466;
-	Thu, 22 Jan 2026 17:15:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C17436CDF6;
+	Thu, 22 Jan 2026 17:16:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769102142; cv=none; b=KyWsmdXW78Va3kF6Dm5HtkKsUwR3vhWfrEbH1qZWK0eihc5k2w+N2TRgWi3f2rhwhO3DhAm9ttnJiF+qqlUS4CUNMYbfTTd8BcJXR6yiqD69tZtG5nAiRufVnmt+NUuUoRBMMQmnHhIyQLnzWVTTX0UJdcVeNmmIYOnGlzqrJ/I=
+	t=1769102219; cv=none; b=pgl6GrCtjGw6yM+DkesfNfzHLWealvhGUUwxqR1RmGoQyQhIZitdBQsWMsxoXgI4Wo3JgGdCaDC+stRtUlNO6DThkiw5ZVBZ97F9iuyS/ILJ1u6qHZ32a8SSZ00vIkgUv3AFOgywBPWj+6qgKIqkVG5TMODQaw0rVm0JOeiFIKM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769102142; c=relaxed/simple;
-	bh=N9oFGV1anFSCqAhvjOLt+RZdXVcBw3i84bo9rshL1SQ=;
-	h=From:Date:Content-Type:MIME-Version:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=MCWJFwyyiSmpi6nyRmqkpAbKrjkNSdGvXAue/OX+VLN9VHsPiPoFzpZ5AndDkQRpY3B59QAHN5VCKopwzGuz8dmciYijN/aLU58yzGpoh5UKzmLQSmZ+JsliulwdGGtbjttDBCssy8jbL6Af7BZE95ZPy47h6d2H9zEGmLGaXqM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e1j5uwa2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5D8EC116D0;
-	Thu, 22 Jan 2026 17:15:40 +0000 (UTC)
+	s=arc-20240116; t=1769102219; c=relaxed/simple;
+	bh=ogm5Oj9lUDa4ikOcwS4o+wR+qaXVbFoVraP2UR9Q/hg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=LQgmbWWlJgZcZun2L5Fb+Q7krmUpVo+BNCTEUD+ncocu8TuPBOKGx7tpkECR0UDB28wfh/3Jnmarall4sfxBKiyZl8xv65wNPtuyq2BC/pupYS2dnXJcr3UtEA0Z4nIUC/Zx6/75ihhYxvV8w7LwlH+HYyoRK8+ZNXbvC6Jj+F8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lyaQb2L6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 56AE9C116C6;
+	Thu, 22 Jan 2026 17:16:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769102141;
-	bh=N9oFGV1anFSCqAhvjOLt+RZdXVcBw3i84bo9rshL1SQ=;
-	h=From:Date:Cc:To:In-Reply-To:References:Subject:From;
-	b=e1j5uwa2Jh9xvShduArkxH2jrqY6+wIqNScwE+maPU9o59yceVhFbRw4jX9+wjK7B
-	 o4+19Sp1fdtWOBbFRSEGz24FD3nO7xWYEQe46nK8Zx05wkMSjsUrTmf/5Tz6KpZmPg
-	 cXuT/UaUKp2KZel1MiUvgv3DQLtf/Ou0IGoWDhfKzWIXN7aAldcfT5t01rCAZ8vpPl
-	 2S3WSfGsJwQEtYzFlQcAhXYYL0q7fOpk1empJ7AMYAY5Owu5q7BtZLschxquM36vLi
-	 igq1QdZ96Y4in3jUpzHUqDPo39nDnATSA4rqkLJSH1SiiXO+W8i+ew9FN01rFy+Zve
-	 XGTjQDah2U6Zg==
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 22 Jan 2026 11:15:40 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1769102217;
+	bh=ogm5Oj9lUDa4ikOcwS4o+wR+qaXVbFoVraP2UR9Q/hg=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=lyaQb2L6XtGH2ny27h4TSfH/VmkELdQra72oF6esrtQzLzhWxITPetv0Jb+lwy976
+	 y9ZogqXQ/s6XGDIB1nOupvcnuwtR7aG1BQBBnjoYZvDnegLndAhZ7g4IkZ1umGOqab
+	 wL318MrEErAcgg7yglaBa1lGUSvt853fj4b3WIH2F+WaA28RMuqFF9dMJieAycIOJj
+	 GW+Fl9q4uPwk0m4/ZpcfR/+phF1blW2khZFjOLH6yhTR9HRDE1l0QogcE3ftDuYZxX
+	 46brcaeqOm7nUAN2HjaBlEGlatJab8fsjQFFJLaHuw+41Y/osG+murAWLRgpvuyeK/
+	 585T4p3kQWExQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3E8AFD3EE97;
+	Thu, 22 Jan 2026 17:16:57 +0000 (UTC)
+From: Manivannan Sadhasivam via B4 Relay <devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org>
+Subject: [PATCH v6 0/4] PCI: Add initial support for handling PCIe M.2
+ connectors in devicetree
+Date: Thu, 22 Jan 2026 22:46:50 +0530
+Message-Id: <20260122-pci-m2-v6-0-575da9f97239@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Cc: Michael Turquette <mturquette@baylibre.com>, imx@lists.linux.dev, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Peng Fan <peng.fan@nxp.com>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, dri-devel@lists.freedesktop.org, 
- Robert Foss <rfoss@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Fabio Estevam <festevam@gmail.com>, Marek Vasut <marex@denx.de>, 
- devicetree@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>, 
- linux-kernel@vger.kernel.org, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Frank Li <Frank.Li@nxp.com>, 
- Abel Vesa <abelvesa@kernel.org>, David Airlie <airlied@gmail.com>, 
- linux-clk@vger.kernel.org, Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Simona Vetter <simona@ffwll.ch>, 
- Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- linux-arm-kernel@lists.infradead.org, 
- Luca Ceresoli <luca.ceresoli@bootlin.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, Maxime Ripard <mripard@kernel.org>, 
- Francesco Valla <francesco@valla.it>
-To: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-In-Reply-To: <20260122-dcif-upstreaming-v7-0-19ea17eb046f@oss.nxp.com>
-References: <20260122-dcif-upstreaming-v7-0-19ea17eb046f@oss.nxp.com>
-Message-Id: <176910209242.2703312.10656685930266629109.robh@kernel.org>
-Subject: Re: [PATCH v7 0/9] Add support for i.MX94 DCIF
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIJbcmkC/3XPy2rDMBAF0F8JWkdBM3oNWfU/Shd6JoI4Tq3Wt
+ AT/e+WA4yzqzcAddO6gO6tpKKmy4+7OhjSWWvprC2a/Y+HsrqfES2yZoUANICS/hcI75NZIaSR
+ 4k51j7fFtSLn8PIreP1o+l/rVD7+P3hHm7VKhl4oRuOCkvM6QIelEb32th89vdwl91x3aYHPTi
+ K+anhqbTuSDitZnhXFDyxeN623ZdNBIQqFLTtkNrVaNuN5WTWtDigx5EXXe0HrRRoCwT63nf4O
+ VkZxFo+AfPU3TH9Yw9YubAQAA
+X-Change-ID: 20251103-pci-m2-7633631b6faa
+To: Bjorn Helgaas <bhelgaas@google.com>, 
+ Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+ Damien Le Moal <dlemoal@kernel.org>, Niklas Cassel <cassel@kernel.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, 
+ Bartosz Golaszewski <brgl@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ Stephan Gerhold <stephan.gerhold@linaro.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ linux-pm@vger.kernel.org, linux-ide@vger.kernel.org, 
+ Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
+ Frank Li <Frank.Li@nxp.com>, 
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4535;
+ i=manivannan.sadhasivam@oss.qualcomm.com; h=from:subject:message-id;
+ bh=ogm5Oj9lUDa4ikOcwS4o+wR+qaXVbFoVraP2UR9Q/hg=;
+ b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBpcluDzIip8VQqQDMLX+hmGJn1U99vEBi73FrT1
+ s+jKEyp2kOJATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCaXJbgwAKCRBVnxHm/pHO
+ 9SduCACgTvLlnPBLDoqTA4XToyaqzD1GcXUHnoCoRX9hKhaL4+xdSMHubpHUXpyvLTAeLHdbVJ1
+ 1NsUzBVaXax0BWNpyxIAvXCoVynTAaNKm6LdX6uf+btVSDcvfeTGS2kPKpwu5GR+kmPFbgqcg/c
+ jzHnHaxO1t0f4k5TMtjkTKNLYU2P5Di4uod76amT4YWZSZ9FOvxsMQoXmZFEjAi7DvNa64PDyUT
+ cjJajhOdEBDgJ9aiFvH58zPeqa7ppA4NLf4OYJWNCOmZFIqsBxscU8mZIopJTMciKYu6I/k38Vr
+ 5Eh/aSuL8EuNy1fk9bUzyQRi+1vXgyCJxzxM1M96ElB5rVc6
+X-Developer-Key: i=manivannan.sadhasivam@oss.qualcomm.com; a=openpgp;
+ fpr=C668AEC3C3188E4C611465E7488550E901166008
+X-Endpoint-Received: by B4 Relay for
+ manivannan.sadhasivam@oss.qualcomm.com/default with auth_id=461
+X-Original-From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+Reply-To: manivannan.sadhasivam@oss.qualcomm.com
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[34];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[baylibre.com,lists.linux.dev,linux.intel.com,kwiboo.se,nxp.com,gmail.com,lists.freedesktop.org,kernel.org,suse.de,denx.de,vger.kernel.org,ideasonboard.com,linaro.org,pengutronix.de,ffwll.ch,intel.com,lists.infradead.org,bootlin.com,valla.it];
-	TAGGED_FROM(0.00)[bounces-258576-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-258578-lists,devicetree=lfdr.de,manivannan.sadhasivam.oss.qualcomm.com];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.980];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[manivannan.sadhasivam@oss.qualcomm.com];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,lkml.org:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,devicetree.org:url]
-X-Rspamd-Queue-Id: 5AEB16BA60
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:replyto]
+X-Rspamd-Queue-Id: F33CC6C1D9
 X-Rspamd-Action: no action
 
+Hi,
 
-On Thu, 22 Jan 2026 09:01:38 +0000, Laurentiu Palcu wrote:
-> Hi,
-> 
-> This patch-set adds support for the i.MX94 Display Control Interface.
-> It depends on Peng Fan's DTS patch [1] that was not yet merged.
-> 
-> Also, included in the patch-set are a few extra patches that the DCIF
-> driver depends on for functioning properly:
->  * 1/9 - 3/9 : add support for i.MX94 to fsl-ldb driver. It also
->                contains a patch (2/9) from Liu Ying that was already reviewed
->                and was part of another patch-set ([2]), but was never merged;
-> 
-> Thanks,
-> Laurentiu
-> 
-> [1] https://lkml.org/lkml/2025/7/7/84
-> [2] https://lkml.org/lkml/2024/11/14/262
-> 
-> ---
-> Changes in v7:
-> - Rebased to latest linux-next;
-> - Addressed some new checkpatch warnings: kzalloc -> kzalloc_obj;
-> - Fixed a couple of static check warnings in probe();
-> - Added Luca's r-b tag for bridge refcounting;
-> - Link to v6: https://lore.kernel.org/r/20251103-dcif-upstreaming-v6-0-76fcecfda919@oss.nxp.com
-> 
-> Changes in v6:
-> - 2/9: Collected r-b tag from Francesco;
-> - 3/9: Removed ch_max_clk_khz variable as suggested by Luca and added
->   his r-b tag;
-> - 4/9: Collected r-b tag;
-> - 5/9: Call drm_bridge_put() automatically in
->   dcif_crtc_query_output_bus_format() by using a cleanup action (Luca);
-> - 6/9: Moved allOf: block after required: block (Krzysztof). Collected
->   r-b tag;
-> - Link to v5: https://lore.kernel.org/r/20250911-dcif-upstreaming-v5-0-a1e8dab8ae40@oss.nxp.com
-> 
-> Changes in v5:
-> - 4/9: Removed "bindings for" from the title, changed the port
->   definition and simplified the example;
-> - 6/9: Fixed the way 'ldb' child node is declared: declare the
->   'ldb' child node out of if:then: block and set the property
->   to false for compatibles other than nxp,imx94-lvds-csr;
-> - Link to v4: https://lore.kernel.org/r/20250903123332.2569241-1-laurentiu.palcu@oss.nxp.com
-> 
-> Changes in v4:
-> - Addressed remaining DCIF driver comments from Frank;
-> - Limit the 'ldb' child node only to CSRs compatible with 'nxp,imx94-lvds-csr'
->   in the binding file. Since LVDS CSRs are a minority, I chose to
->   use the if:then: construct instead of if:not:then:;
-> - Remove the '#address-cells' and '#size-cells' from the ldb node, in
->   imx94.dtsi, as they're not needed;
-> - Link to v3: https://lore.kernel.org/r/20250806150521.2174797-1-laurentiu.palcu@oss.nxp.com
-> 
-> Changes in v3:
-> - Removed the BLK CTL patches and created a separate patch set [2] for them;
-> - Collected r-b tags for 1/9, 2/9, 3/9 and 9/9;
-> - Removed the DCIF QoS functionality until I find a better way to
->   implement it through syscon. QoS functionality will be added in
->   subsequent patches. Also, used devm_clk_bulk_get_all() and used
->   dev_err_probe() as suggested;
-> - Addressed Frank's and Krzysztof's comments on the DCIF bindings;
-> - Addressed Frank's comments on dtsi and dts files;
-> - Added a new binding patch, 6/9, for adding 'ldb' optional property to
->   nxp,imx95-blk-ctl.yaml;
-> - Link to v2: https://lore.kernel.org/r/20250716081519.3400158-1-laurentiu.palcu@oss.nxp.com
-> 
-> Changes in v2:
-> - reworked the BLK_CTL patch and split in 2 to make it easier for
->   review;
-> - split the dts and dtsi patch in 2 separate ones;
-> - addressed Frank's comments in DCIF driver;
-> - addressed Rob's comments for the bindings files;
-> - addressed a couple of checkpatch issues;
-> - Link to v1: https://lore.kernel.org/r/20250709122332.2874632-1-laurentiu.palcu@oss.nxp.com
-> 
-> ---
-> Laurentiu Palcu (7):
->       dt-bindings: display: fsl,ldb: Add i.MX94 LDB
->       drm/bridge: fsl-ldb: Add support for i.MX94
->       dt-bindings: display: imx: Add i.MX94 DCIF
->       dt-bindings: clock: nxp,imx95-blk-ctl: Add ldb child node
->       arm64: dts: imx943: Add display pipeline nodes
->       arm64: dts: imx943-evk: Add display support using IT6263
->       MAINTAINERS: Add entry for i.MX94 DCIF driver
-> 
-> Liu Ying (1):
->       drm/bridge: fsl-ldb: Get the next non-panel bridge
-> 
-> Sandor Yu (1):
->       drm/imx: Add support for i.MX94 DCIF
-> 
->  .../bindings/clock/nxp,imx95-blk-ctl.yaml          |  26 +
->  .../bindings/display/bridge/fsl,ldb.yaml           |   2 +
->  .../bindings/display/imx/nxp,imx94-dcif.yaml       |  82 +++
->  MAINTAINERS                                        |   9 +
->  arch/arm64/boot/dts/freescale/imx943-evk.dts       |  59 ++
->  arch/arm64/boot/dts/freescale/imx943.dtsi          |  53 +-
->  drivers/gpu/drm/bridge/fsl-ldb.c                   |  46 +-
->  drivers/gpu/drm/imx/Kconfig                        |   1 +
->  drivers/gpu/drm/imx/Makefile                       |   1 +
->  drivers/gpu/drm/imx/dcif/Kconfig                   |  15 +
->  drivers/gpu/drm/imx/dcif/Makefile                  |   5 +
->  drivers/gpu/drm/imx/dcif/dcif-crc.c                | 211 +++++++
->  drivers/gpu/drm/imx/dcif/dcif-crc.h                |  52 ++
->  drivers/gpu/drm/imx/dcif/dcif-crtc.c               | 695 +++++++++++++++++++++
->  drivers/gpu/drm/imx/dcif/dcif-drv.c                | 228 +++++++
->  drivers/gpu/drm/imx/dcif/dcif-drv.h                |  86 +++
->  drivers/gpu/drm/imx/dcif/dcif-kms.c                | 100 +++
->  drivers/gpu/drm/imx/dcif/dcif-plane.c              | 269 ++++++++
->  drivers/gpu/drm/imx/dcif/dcif-reg.h                | 267 ++++++++
->  19 files changed, 2185 insertions(+), 22 deletions(-)
-> ---
-> base-commit: cd8eb1cf3dad15dad65060f5d18a59ab99485d01
-> change-id: 20250911-dcif-upstreaming-3e16d89c3385
-> prerequisite-patch-id: b2acaaf7e92a5c8e377e6b56f3a9ee7409f64b00
-> 
-> Best regards,
-> --
-> Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-> 
-> 
+This series is an initial attempt to support the PCIe M.2 connectors in the
+kernel and devicetree binding. The PCIe M.2 connectors as defined in the PCI
+Express M.2 Specification are widely used in Notebooks/Tablet form factors (even
+in PCs). On the ACPI platforms, power to these connectors are mostly handled by
+the firmware/BIOS and the kernel never bothered to directly power manage them as
+like other PCIe connectors. But on the devicetree platforms, the kernel needs to
+power manage these connectors with the help of the devicetree description. But
+so far, there is no proper representation of the M.2 connectors in devicetree
+binding. This forced the developers to fake the M.2 connectors as PMU nodes [1]
+and fixed regulators in devicetree.
 
+So to properly support the M.2 connectors in devicetree platforms, this series
+introduces the devicetree binding for Mechanical Key M connector as an example
+and also the corresponding pwrseq driver and PCI changes in kernel to driver the
+connector.
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+The Mechanical Key M connector is used to connect SSDs to the host machine over
+PCIe/SATA interfaces. Due to the hardware constraints, this series only adds
+support for driving the PCIe interface of the connector in the kernel.
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+Also, the optional interfaces supported by the Key M connectors are not
+supported in the driver and left for the future enhancements.
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+Testing
+=======
 
-  pip3 install dtschema --upgrade
+This series, together with the devicetree changes [2] [3] were tested on the
+Qualcomm X1e based Lenovo Thinkpad T14s Laptop which has the NVMe SSD connected
+over PCIe.
 
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts?h=v6.18-rc4&id=d09ab685a8f51ba412d37305ea62628a01cbea57
+[2] https://github.com/Mani-Sadhasivam/linux/commit/40120d02219f34d2040ffa6328f0d406b1e4c04d
+[3] https://github.com/Mani-Sadhasivam/linux/commit/ff6c3075836cc794a3700b0ec6a4a9eb21d14c6f
 
-This patch series was applied (using b4) to base:
- Deps: looking for dependencies matching 1 patch-ids
- Deps: Applying prerequisite patch: [PATCH v3 6/6] arm64: dts: imx943: Add LVDS/DISPLAY CSR nodes
- Base: base-commit cd8eb1cf3dad15dad65060f5d18a59ab99485d01 not known, ignoring
- Base: attempting to guess base-commit...
- Base: tags/next-20260121 (best guess, 6/8 blobs matched)
- Base: tags/next-20260121 (use --merge-base to override)
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+---
+Changes in v6:
+- Used 'ports' to describe interfaces instead of endpoints in the binding
+- Added GPIOs and USB to the example in binding
+- Incorporated minor comments in the pwrseq driver
+- Dropped the ata binding patch as it got applied
+- Link to v5: https://lore.kernel.org/r/20260107-pci-m2-v5-0-8173d8a72641@oss.qualcomm.com
 
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
+Changes in v5:
+- used of_node_get() and devm_action to free regulators
+- Link to v4: https://lore.kernel.org/r/20251228-pci-m2-v4-0-5684868b0d5f@oss.qualcomm.com
 
+Changes in v4:
+- Added graph property to SATA in this series and PCI to dtschema:
+  https://github.com/devicetree-org/dt-schema/pull/180
+- Used 'i2c-parent' instead of SMBus port
+- Reworded the -gpios property description
+- Rebased on top of v6.19-rc1
+- Link to v3: https://lore.kernel.org/r/20251125-pci-m2-v3-0-c528042aea47@oss.qualcomm.com
 
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/freescale/' for 20260122-dcif-upstreaming-v7-0-19ea17eb046f@oss.nxp.com:
+Changes in v3:
+- Changed the VIO supply name as per dtschema
+- Added explicit endpoint properties to port 0 node for host I/F
+- Used scope based cleanup for OF node in pwrseq driver
+- Collected review tags
+- Link to v2: https://lore.kernel.org/r/20251108-pci-m2-v2-0-e8bc4d7bf42d@oss.qualcomm.com
 
-arch/arm64/boot/dts/freescale/imx943-evk.dtb: lvds-to-hdmi-bridge@4c (ite,it6263): 'ivdd-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/display/bridge/ite,it6263.yaml
-arch/arm64/boot/dts/freescale/imx943-evk.dtb: lvds-to-hdmi-bridge@4c (ite,it6263): 'ovdd-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/display/bridge/ite,it6263.yaml
-arch/arm64/boot/dts/freescale/imx943-evk.dtb: lvds-to-hdmi-bridge@4c (ite,it6263): 'txavcc18-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/display/bridge/ite,it6263.yaml
-arch/arm64/boot/dts/freescale/imx943-evk.dtb: lvds-to-hdmi-bridge@4c (ite,it6263): 'txavcc33-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/display/bridge/ite,it6263.yaml
-arch/arm64/boot/dts/freescale/imx943-evk.dtb: lvds-to-hdmi-bridge@4c (ite,it6263): 'pvcc1-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/display/bridge/ite,it6263.yaml
-arch/arm64/boot/dts/freescale/imx943-evk.dtb: lvds-to-hdmi-bridge@4c (ite,it6263): 'pvcc2-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/display/bridge/ite,it6263.yaml
-arch/arm64/boot/dts/freescale/imx943-evk.dtb: lvds-to-hdmi-bridge@4c (ite,it6263): 'avcc-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/display/bridge/ite,it6263.yaml
-arch/arm64/boot/dts/freescale/imx943-evk.dtb: lvds-to-hdmi-bridge@4c (ite,it6263): 'anvdd-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/display/bridge/ite,it6263.yaml
-arch/arm64/boot/dts/freescale/imx943-evk.dtb: lvds-to-hdmi-bridge@4c (ite,it6263): 'apvdd-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/display/bridge/ite,it6263.yaml
+Changes in v2:
+- Incorporated comments from Bartosz and Frank for pwrseq and dt-binding
+  patches, especially adding the pwrseq match() code.
+- Link to v1: https://lore.kernel.org/r/20251105-pci-m2-v1-0-84b5f1f1e5e8@oss.qualcomm.com
 
+---
+Manivannan Sadhasivam (4):
+      dt-bindings: connector: Add PCIe M.2 Mechanical Key M connector
+      PCI/pwrctrl: Add support for handling PCIe M.2 connectors
+      PCI/pwrctrl: Create pwrctrl device if the graph port is found
+      power: sequencing: Add the Power Sequencing driver for the PCIe M.2 connectors
 
+ .../bindings/connector/pcie-m2-m-connector.yaml    | 145 ++++++++++++++++++
+ MAINTAINERS                                        |   7 +
+ drivers/pci/probe.c                                |   3 +-
+ drivers/pci/pwrctrl/Kconfig                        |   1 +
+ drivers/pci/pwrctrl/slot.c                         |  35 ++++-
+ drivers/power/sequencing/Kconfig                   |   8 +
+ drivers/power/sequencing/Makefile                  |   1 +
+ drivers/power/sequencing/pwrseq-pcie-m2.c          | 168 +++++++++++++++++++++
+ 8 files changed, 362 insertions(+), 6 deletions(-)
+---
+base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+change-id: 20251103-pci-m2-7633631b6faa
 
+Best regards,
+-- 
+Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 
 
 
