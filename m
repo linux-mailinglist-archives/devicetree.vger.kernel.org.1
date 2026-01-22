@@ -1,255 +1,233 @@
-Return-Path: <devicetree+bounces-258217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258218-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 9t3FHqHJcWlBMQAAu9opvQ
-	(envelope-from <devicetree+bounces-258217-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 07:54:25 +0100
+	id g9V5O+PKcWleMQAAu9opvQ
+	(envelope-from <devicetree+bounces-258218-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 07:59:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 131206259A
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 07:54:25 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50705625C5
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 07:59:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4B9E3385AE8
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 06:54:13 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 921474E028C
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 06:59:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A86C43D668E;
-	Thu, 22 Jan 2026 06:54:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 308EC43900B;
+	Thu, 22 Jan 2026 06:59:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="HPljRIDc"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="iZyv43Id";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Qcw/5kvb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 224A53469E4;
-	Thu, 22 Jan 2026 06:53:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CE79330648
+	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 06:59:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769064846; cv=none; b=G43cNL/QK05cqNp1Lomet7if43n+UIeTQIhnUPYE0phjpsGpA5wzC4Yag8EDyBZVqDXWzq4pxjl1PC1YFtVX/f8yO+gLGLCC0LK2cohP5egTxzHZg9gTY627AZG7KABxG/OjlP+FCTVOTj16/tFjKoi2bvsptPcU8NtjDGDIeSE=
+	t=1769065182; cv=none; b=j1auIXgFkeL+TYgmad8HBgX1DdGzWCaiitNFXxXnN2BiIl891qakfJ9ZAEXUmxUHWNn9XjZvkmvt4xfC0qSlv9kcUgy4vMo19VhcjDZYt5gpNXN1lZd8sLahQ3mOj4FvcmUJS8T9MW/+lEHJz3BftVrA/YSb/61s3nOm6o8u09Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769064846; c=relaxed/simple;
-	bh=db7aoSPMOdaAxKR2GkeLzT3tSNPa5SqmM9lF8NleXV0=;
-	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
-	 To:Date:Message-ID; b=GyAPgOWuxwmO1DsRZKcmuC+R9BUQ2eN8fDWZrLkiewzfjiTTLUfSHRTNw3OtrynAG1G7Kzn3NCx9KYJi4dF7rb0OEveJn01ya9JD89vQatl5pVajc9NldD0qErV0DtLhAhFkof29T/ecZTwfZnH7v7MlylOlfI3fiSNOlIgxM8w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=HPljRIDc; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from mail.ideasonboard.com (unknown [IPv6:2401:4900:1c30:59ca:af14:f475:ddf6:11d2])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id B6818324;
-	Thu, 22 Jan 2026 07:53:22 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1769064803;
-	bh=db7aoSPMOdaAxKR2GkeLzT3tSNPa5SqmM9lF8NleXV0=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=HPljRIDc10KQK3rq4rmZ7HSzXylDHxmqDXqWjygTikcwYWIDLnN2KUz+rU2xrqwap
-	 Pcsyiw3IqPeMtkgNa65Bo9G49iueKTeGHlWKsCQdCOrCIPgufmeu8uIM66y8YF1Mxk
-	 VH0NtDdca51kkbGLolZn54rHew0CWkSk/bsCnsPU=
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1769065182; c=relaxed/simple;
+	bh=bh0u1bpVbwToworSpszb8hcjz+Pr25WbvlfBAL3qr5o=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=iQZfwfZPliFrIaCS5nP6eKmsSHIxfT5+Aprsjm7Pv8FoH2nE1U9FIhj1QASi1q9He36TnwZs1y9101tPQc1PTIFJSbBxFlREbDwFFHeUcKg8KcqMZkNUJZkpo2O6hmlRepUmxdIQordSbnxGl60njHPn7JgWpWFt0LEYjkk9wHI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=iZyv43Id; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Qcw/5kvb; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60M5rSBC3902104
+	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 06:59:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=7pz7tYxOgVsNKayD/oohR3
+	0r0S1TD/X1DQ+lgYpNCcg=; b=iZyv43IdyQGe+JAT+5tpDvurEzt9jqWCuxHdfW
+	vqkKFY1hxpSkQ0HHoK7D5wgW1Mc9jzWEPq0luIWdSX/9JBTn0UXYjsS1gjN0OnNa
+	6WY16hx085OVPxwXdetqy15wwju58VFA0B800665ZZRzWTw46oCrnDkv/e1ADX3F
+	x+sPotQkTwANKu4wBhNNlFILOX+dIFnfbKc3uRcxkHwuWMblcVJjWsnilYVQKoIl
+	sSHtgElMKjW47RAGcvK7tJh5FUy9B5WQtZ6QOBWgojJY8gp/pOhhXhxKRW7wTTXQ
+	5vstM6V9ewN5cpMWZCcNaZ9wY2RZF6IDYPEAvfBUrhdoIldA==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bu4khhsh1-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 06:59:39 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-29f1f69eec6so5987025ad.1
+        for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 22:59:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1769065179; x=1769669979; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7pz7tYxOgVsNKayD/oohR30r0S1TD/X1DQ+lgYpNCcg=;
+        b=Qcw/5kvb2ycXYG2b3gMMxz8gK86g79ctggkxTB5AwNviL3gzRP3T+/LmPX/i8I58ke
+         IPdlwvgRhYRq8GLf8XpLkt5Yg0tbbkBeWxaSiOOcw9mhx8BXOXdmFPOMimllC2D854oM
+         DQKwT9jelM4XyIWwEhUauent6s/pfmWxzoDjONs8LbdCJwNrhjqvpOtTa0rzTMGvJwtZ
+         HORWbp0rDszcblbwCF6zWBBnuRWkUcjVpNf/J7okb2I/hcyO3MHSw4gTzI8LbmlicqPD
+         DNsS5O8h/9Ot2torxufDhPt10pn7aCoie1M3kJH/Vn9cHENXodq/0BlPlN8IvNPjjBXh
+         ggBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769065179; x=1769669979;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7pz7tYxOgVsNKayD/oohR30r0S1TD/X1DQ+lgYpNCcg=;
+        b=CgAYtLLFxJ5EAUrY7B2vQ73uDYBd3awItxB6IW//qxtjbZuoF+j85BgpjWlnTjyV8Y
+         uMyZQbAvLKJJ9YXw2v1f8yg3XGXX25TSixdRrLfFhXVM2gv6kn7aiJkMdMucaAgdA7x/
+         ylIHG/o8Twn66um3d9WZvq8YKU/2BH0vr7U86hRGVbBbTgUW+lUDwa6hPzOe6xpls9h9
+         0Y9fy2rL7cZLdiYe1yF7hTjCXvUl7OYAU+bf+ySk9EH2w0qUeSqMxhrDF1Y30N5jYIui
+         l1l7uexaqBJu01yJV22RhGgqJeqwIe8WAZ2spEMo9e9CeU+uU41z2ScLjUQz5GqO7jy6
+         VjtA==
+X-Forwarded-Encrypted: i=1; AJvYcCVMXPvMHSmVzZp2NH49wbbreRz2GDwZaJx6rIcLPhkKGmOvnQxhhTqGyopFDbOSpPdCMn7Xf9YIUBSk@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw3kY2a6gxY1d88F5M1tY0bGJHhE4PT1llPB1hThjsRuC8ajc8W
+	xlfSgS1/rR80/Xqdg+qYKTgfbYzBv74Ub0nG05778iW/5Z01lNUbfosWNOHmv6WbnBqQlCLY1x3
+	qpCOSBV8ubi8jwp0ST+qJnQDuXPOqqo71fqV1CQ3svIi+EJtvg4yGCFLdOV+84bA=
+X-Gm-Gg: AZuq6aIs6KzB4btEVkH5Nn1q4o4kurRvxIVeXXVNUt5YunyHvtRcgZK44UZ2gvMC88s
+	Eigdk6BuE4aTr5mUGSTNG7F4+gFFif5p1lhUg6vn5pAJeGNaXJwL1fQkDRn+JJj4ni/pJbyMHFd
+	lT6RTKrPbE2EiWQsRm3eQUwFlP8pHIKqJ+M9ikWeobN/ZivB57bYpNrWFKgaQE046TAcdtDWTFc
+	IaJQHU++Ql1EC6yI9o3uSROIlqCin3FSxuPaMvbeix2iHKeGa13yZF0A5o5lSt+diZqUxfYlr8F
+	35immDJ29bii/hwiuzU8TKm87Zh+PqvXYheh7l01l9PRm94fwC3/aBQFPD0Pr5s7B4zjngnAWWM
+	0IY6htor7gDF2QWaP35N3JNyzzhyYrh+Wk7C+HSo=
+X-Received: by 2002:a17:903:238e:b0:2a0:9402:2175 with SMTP id d9443c01a7336-2a76a389ca3mr67487395ad.27.1769065179005;
+        Wed, 21 Jan 2026 22:59:39 -0800 (PST)
+X-Received: by 2002:a17:903:238e:b0:2a0:9402:2175 with SMTP id d9443c01a7336-2a76a389ca3mr67487145ad.27.1769065178520;
+        Wed, 21 Jan 2026 22:59:38 -0800 (PST)
+Received: from hu-kotarake-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a7190abcf0sm174960975ad.12.2026.01.21.22.59.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Jan 2026 22:59:38 -0800 (PST)
+From: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
+Date: Thu, 22 Jan 2026 12:29:21 +0530
+Subject: [PATCH] arm64: dts: qcom: monaco-pmics: Add PON power key and
+ reset inputs
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20260121105232.GD382676@killaraus>
-References: <20251230083220.2405247-1-r-donadkar@ti.com> <20251230083220.2405247-7-r-donadkar@ti.com> <ee8152c0-daf5-48dd-a2d1-2fafcfeca797@ideasonboard.com> <176845899846.9154.18009615769864845946@freya> <d9f3335a-d8f4-40cc-b4c4-a93b797a89fd@ideasonboard.com> <20260120232521.GE173080@killaraus> <8b8e603f-5d04-44ce-91ab-85df8fe0ae94@ideasonboard.com> <20260121105232.GD382676@killaraus>
-Subject: Re: [PATCH v9 06/19] media: ti: j721e-csi2rx: add a subdev for the core device
-From: Jai Luthra <jai.luthra@ideasonboard.com>
-Cc: Sakari Ailus <sakari.ailus@linux.intel.com>, y-abhilashchandra@ti.com, devarsht@ti.com, s-jain1@ti.com, vigneshr@ti.com, mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, p.zabel@pengutronix.de, conor+dt@kernel.org, hverkuil-cisco@xs4all.nl, changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com, sjoerd@collabora.com, dan.carpenter@linaro.org, hverkuil+cisco@kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org, jai.luthra@linux.dev, mripard@kernel.org, Rishikesh Donadkar <r-donadkar@ti.com>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Date: Thu, 22 Jan 2026 12:23:50 +0530
-Message-ID: <176906483058.9154.2619844247504630480@freya>
-User-Agent: alot/0.12.dev62+gb9d6144a6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260122-add_pwrkey_and_resin-v1-1-a9fe87537816@oss.qualcomm.com>
+X-B4-Tracking: v=1; b=H4sIAMjKcWkC/x3MQQqDMBBG4avIrBswWUjjVaSE6PxpByHKBFpL8
+ O4Gl9/ivUoFKig0dpUUXymy5Qb76Gj5xPyGEW4m17uht86ayBz2n674h5g5KIpk4+E4WT8n8JN
+ auiuSHPd2ep3nBR/L/aJmAAAA
+X-Change-ID: 20260121-add_pwrkey_and_resin-9e2df19bfed8
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kamal.wadhwa@oss.qualcomm.com,
+        rakesh.kota@oss.qualcomm.com
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1769065175; l=1558;
+ i=rakesh.kota@oss.qualcomm.com; s=20250919; h=from:subject:message-id;
+ bh=bh0u1bpVbwToworSpszb8hcjz+Pr25WbvlfBAL3qr5o=;
+ b=iMNfaTUtOPU4KZCmDyN84roxvdiwXU3ngCqDgGFLF+ez/1QayWaeHdtqP0G2QXAdvONSBKI9U
+ Ad5BqSh0qNZCZGhSRibcF/ObVvjJcLE7rJuC8PIYke5YSeINsTBu+J2
+X-Developer-Key: i=rakesh.kota@oss.qualcomm.com; a=ed25519;
+ pk=dFhv9yPC8egZglsSLDMls08cOvZKZkG6QQn1a/ofwNU=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIyMDA0MyBTYWx0ZWRfX0KJZir32RAW6
+ P+TUShRZDZI7LLGFAZnEtcu3e9fDM3wnxJy0UV3vkyjPbKJ40lnvNIexjFlLOAAWfxUvNR1Ci8G
+ SIOyYCKwDKkt9qtetdVKkSP1KRetlIkOQCWTtDqhN0rpdgRm/2HDvV6ceyX5rACO2lh+B4Fo6fl
+ 5aNZSNNRJJqQ/1KBG24eurYEcZhwBByRMXr2Syqwed9mxayn0FQjlCCQfERGgsDKTVB96wFlkc+
+ KSCKYDtIsXOpLrmM+E3Ns3onc1Bk0QElOa7L0Sluhq7s1Qsz46PQn3vnAO7ZPgepItTPO6Tsvym
+ RBJO1RaddoYvbY//DxQYusERo7Ymfva1vN8xrDx/Owf6WWqtAzqrKE1CwPHFym6TRIpYVTF6cdZ
+ khA+8HsSAWtElTbFUr5aSTKlmQ7I7yY8HtH39Eiob0rYOfJYDsix7wtcnVX2bzSF/k5rD9y5QfD
+ M8zyhObM7RTI5qnrdcA==
+X-Proofpoint-ORIG-GUID: Kw7xVvhrfAsq-lazd4FgUuSuhFcmNHLW
+X-Authority-Analysis: v=2.4 cv=UOjQ3Sfy c=1 sm=1 tr=0 ts=6971cadb cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=waYKtz62x7MdsOGo3IQA:9
+ a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22
+X-Proofpoint-GUID: Kw7xVvhrfAsq-lazd4FgUuSuhFcmNHLW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
+ definitions=2026-01-21_04,2026-01-20_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 phishscore=0 suspectscore=0 bulkscore=0 adultscore=0
+ clxscore=1015 lowpriorityscore=0 impostorscore=0 priorityscore=1501
+ spamscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
+ definitions=main-2601220043
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.96 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[qualcomm.com,reject];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,0.0.0.0:email,qualcomm.com:email,qualcomm.com:dkim,dfw.mirrors.kernel.org:helo,dfw.mirrors.kernel.org:rdns,0.0.4.176:email];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258217-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-258218-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[24];
-	FREEMAIL_CC(0.00)[linux.intel.com,ti.com,kernel.org,pengutronix.de,xs4all.nl,starfivetech.com,collabora.com,linaro.org,vger.kernel.org,linux.dev];
-	DKIM_TRACE(0.00)[ideasonboard.com:+];
+	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[rakesh.kota@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jai.luthra@ideasonboard.com,devicetree@vger.kernel.org];
-	DMARC_POLICY_ALLOW(0.00)[ideasonboard.com,none];
-	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
-	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns,ideasonboard.com:dkim,ti.com:email]
-X-Rspamd-Queue-Id: 131206259A
+	MID_RHS_MATCH_FROM(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.23.212:email];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 50705625C5
 X-Rspamd-Action: no action
 
-Hi Laurent,
+Add the Power On (PON) peripheral with power key and reset input
+support for the PMM8654AU PMIC on Monaco platforms.
 
-Quoting Laurent Pinchart (2026-01-21 16:22:32)
-> On Wed, Jan 21, 2026 at 09:38:29AM +0200, Tomi Valkeinen wrote:
-> > On 21/01/2026 01:25, Laurent Pinchart wrote:
-> > > On Thu, Jan 15, 2026 at 02:56:21PM +0200, Tomi Valkeinen wrote:
-> > >> On 15/01/2026 08:36, Jai Luthra wrote:
-> > >>> Quoting Tomi Valkeinen (2026-01-14 20:51:49)
-> > >>>> On 30/12/2025 10:32, Rishikesh Donadkar wrote:
-> > >>>>> From: Jai Luthra <j-luthra@ti.com>
-> > >>>>>
-> > >>>>> With single stream capture, it was simpler to use the video devic=
-e as
-> > >>>>> the media entity representing the main TI CSI2RX device. Now with=
- multi
-> > >>>>> stream capture coming into the picture, the model has shifted to =
-each
-> > >>>>> video device having a link to the main device's subdev. The routi=
-ng
-> > >>>>> would then be set on this subdev.
-> > >>>>>
-> > >>>>> Add this subdev, link each context to this subdev's entity and li=
-nk the
-> > >>>>> subdev's entity to the source. Also add an array of media pads. I=
-t will
-> > >>>>> have one sink pad and source pads equal to the number of contexts.
-> > >>>>>
-> > >>>>> Support the new enable_stream()/disable_stream() APIs in the subd=
-ev
-> > >>>>> instead of s_stream() hook.
-> > >>>>>
-> > >>>>> Reviewed-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
-> > >>>>> Co-developed-by: Pratyush Yadav <p.yadav@ti.com>
-> > >>>>> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
-> > >>>>> Signed-off-by: Jai Luthra <j-luthra@ti.com>
-> > >>>>> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
-> > >>>>> ---
-> > >>>
-> > >>> [...]
-> > >>>
-> > >>>>> @@ -981,48 +1138,52 @@ static int ti_csi2rx_link_validate(struct =
-media_link *link)
-> > >>>>>       struct ti_csi2rx_ctx *ctx =3D container_of(vdev, struct ti_=
-csi2rx_ctx, vdev);
-> > >>>>>       struct ti_csi2rx_dev *csi =3D ctx->csi;
-> > >>>>>       struct v4l2_pix_format *csi_fmt =3D &ctx->v_fmt.fmt.pix;
-> > >>>>> -     struct v4l2_subdev_format source_fmt =3D {
-> > >>>>> -             .which  =3D V4L2_SUBDEV_FORMAT_ACTIVE,
-> > >>>>> -             .pad    =3D link->source->index,
-> > >>>>> -     };
-> > >>>>> +     struct v4l2_mbus_framefmt *format;
-> > >>>>> +     struct v4l2_subdev_state *state;
-> > >>>>>       const struct ti_csi2rx_fmt *ti_fmt;
-> > >>>>> -     int ret;
-> > >>>>> =20
-> > >>>>> -     ret =3D v4l2_subdev_call_state_active(csi->source, pad,
-> > >>>>> -                                         get_fmt, &source_fmt);
-> > >>>>> -     if (ret)
-> > >>>>> -             return ret;
-> > >>>>> +     state =3D v4l2_subdev_lock_and_get_active_state(&csi->subde=
-v);
-> > >>>>> +     format =3D v4l2_subdev_state_get_format(state, link->source=
-->index, 0);
-> > >>>>> +     v4l2_subdev_unlock_state(state);
-> > >>>>> =20
-> > >>>>> -     if (source_fmt.format.width !=3D csi_fmt->width) {
-> > >>>>> +     if (!format) {
-> > >>>>> +             dev_dbg(csi->dev,
-> > >>>>> +                     "Skipping validation as no format present o=
-n \"%s\":%u:0\n",
-> > >>>>> +                     link->source->entity->name, link->source->i=
-ndex);
-> > >>>>> +             return 0;
-> > >>>>
-> > >>>> Isn't this an error?
-> > >>>
-> > >>> Well, the j7 shim subdev introduced here has immutable and active l=
-inks to
-> > >>> all the video nodes, for each DMA channel (taken from DT), many of =
-which
-> > >>> may be unused for certain setups, and thus there might not be any v=
-alid
-> > >>> format on the subdev source pad corresponding to an unused video no=
-de.
-> > >>>
-> > >>> Jacopo had a similar comment on v2, see this discussion (grep for M=
-ali):
-> > >>> https://lore.kernel.org/linux-media/4mnlnsj4co3agvln4qsasmgvgwiyoo7=
-yu2h5wyh4rmzzafhm5u@avhnbw7iknms/
-> > >>>
-> > >>> I know other drivers use a different approach with mutable links, s=
-o it
-> > >>> would be good if you/Laurent/Sakari can give your opinions on if on=
-ly one
-> > >>> of these two approaches should be taken for multi-stream pipelines.
-> > >>
-> > >> I see.
-> > >>
-> > >> Well, I don't have a definite answer. With some thinking both options
-> > >> make certain sense. It makes sense to keep the links immutable and
-> > >> always enabled, as there's no configuration that can be done. On the
-> > >> other hand, it makes sense to require the unused links to be disable=
-d,
-> > >> as, well, they are not used.
-> > >=20
-> > > I'm not familiar with the implications this would have on this driver,
-> > > but generally speaking, if a stream is added to the media pipeline by
-> > > the pipeline build algorithm, then it is expected that applications
-> > > would have configured it correctly. Streams that are not used are
-> > > expected to be disabled if they would otherwise be added to the
-> > > pipeline.
-> >=20
-> > I think the thing here is that the driver creates immutable
-> > always-enabled media links between the videodevs and the first subdev.
-> > Then, say, if only one stream is being used, only one of those links is
-> > actually used, and for every other link the above check fails as there's
-> > no stream, so no format.
-> >=20
-> > In TI CAL driver the links were mutable, and unused links had to be
-> > disabled. There it made sense as the links had to be configurable (there
-> > were two PHYs). Here, there's no configuration needed, so immutable
-> > links make sense, but then they're enabled even when actually not used.
->=20
-> If the routing table in the subdev does not contain any route that goes
-> towards a video node, then that video node should not be added to the
-> pipeline by the validation code, and no validation will be attempted. At
-> least that's the theory.
+Signed-off-by: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
+---
+ arch/arm64/boot/dts/qcom/monaco-pmics.dtsi | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
-Okay that sounds reasonable. I can take a look into the media pipeline
-validation code next week. @Rishikesh, given you already have a working
-setup, feel free to test if the link_validate callback is triggered on
-video nodes that don't have any streams/routes pointing to them.
+diff --git a/arch/arm64/boot/dts/qcom/monaco-pmics.dtsi b/arch/arm64/boot/dts/qcom/monaco-pmics.dtsi
+index e990d7367719beaa9e0cea87d9c183ae18c3ebc8..051407cd83eef8eace8521084b1ad012a5192ace 100644
+--- a/arch/arm64/boot/dts/qcom/monaco-pmics.dtsi
++++ b/arch/arm64/boot/dts/qcom/monaco-pmics.dtsi
+@@ -13,6 +13,26 @@ pmm8620au_0: pmic@0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 
++		pmm8654au_0_pon: pon@1200 {
++			compatible = "qcom,pmk8350-pon";
++			reg = <0x1200>, <0x800>;
++			reg-names = "hlos", "pbs";
++
++			pmm8654au_0_pon_pwrkey: pwrkey {
++				compatible = "qcom,pmk8350-pwrkey";
++				interrupts-extended = <&spmi_bus 0x0 0x12 0x7 IRQ_TYPE_EDGE_BOTH>;
++				linux,code = <KEY_POWER>;
++				debounce = <15625>;
++			};
++
++			pmm8654au_0_pon_resin: resin {
++				compatible = "qcom,pmk8350-resin";
++				interrupts-extended = <&spmi_bus 0x0 0x12 0x6 IRQ_TYPE_EDGE_BOTH>;
++				linux,code = <KEY_VOLUMEDOWN>;
++				debounce = <15625>;
++			};
++		};
++
+ 		pmm8620au_0_rtc: rtc@6100 {
+ 			compatible = "qcom,pmk8350-rtc";
+ 			reg = <0x6100>, <0x6200>;
 
->=20
-> I see that this driver implements .link_validate() as a
-> media_entity_operations, not a subdev operation. I wonder if that could
-> explain the issue.
->=20
+---
+base-commit: 053966c344dbd346e71305f530e91ea77916189f
+change-id: 20260121-add_pwrkey_and_resin-9e2df19bfed8
 
-Well earlier I was partially confused, now I'm fully confused :-)
+Best regards,
+-- 
+Rakesh Kota <rakesh.kota@oss.qualcomm.com>
 
-How is v4l2_subdev_pad_ops.link_validate different from
-media_entity_operations.link_validate?
-
-I see mc-core.rst and v4l2-subdev.rst both talk about their own variant,
-without making it clear which should be used for a subdev.
-
-Anyway, I'll try to dig through the framework code to understand what's
-going wrong.
-
-> --=20
-> Regards,
->=20
-> Laurent Pinchart
-
-Thanks,
-Jai
 
