@@ -1,242 +1,262 @@
-Return-Path: <devicetree+bounces-258446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258447-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0MxZBGNLcmnuiQAAu9opvQ
-	(envelope-from <devicetree+bounces-258446-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 17:08:03 +0100
+	id wCxKN7JDcmnpfAAAu9opvQ
+	(envelope-from <devicetree+bounces-258447-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:35:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id C260E69961
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 17:08:02 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADA9568F95
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:35:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8E3017C6A50
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:45:05 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5E2E27ACA36
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:49:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C826334A793;
-	Thu, 22 Jan 2026 14:44:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 769C53502B9;
+	Thu, 22 Jan 2026 14:48:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KN94QSbT"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="n6CtIly1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B3292E7F07;
-	Thu, 22 Jan 2026 14:44:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC10D336ECE
+	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 14:48:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769093097; cv=none; b=Eh6yKtdWOyi3fCeSMJvUCzFB0Lnb9TCUf09gS61ZdUFWLhQV2nc/RxQWU6qN41uB1Nifb4Q3IW+fa0lrbu/Hj60GyYL+8JgHHH7NjZ+L3LfEvLnaS79nsVd0Zo/qtf0OeLuwC8aYEK4dBoNMvM9UJfi00VOkfbYwlBEHdICgybM=
+	t=1769093336; cv=none; b=lyg5wr1C2qWfTymoPfMh0Gv9WraJyfhJ9Dy1gaOoo/VJOkNMB821lwVmqOLdVqSTWueubyRYXyISzuxnBs1VS3M6z+MzYCkHAQmvp4QGRP26ZeXALmuIIodOnDgPdCbQtJg1YtLCQ8ItXdJFY+GOmMK8ivR0PA7szdOvHWmPcso=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769093097; c=relaxed/simple;
-	bh=Lp+G6RNRNa1qqAWbsVbuiD5hhNvMHAeZ7fl9TFEhFn4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hG77N2qQg7TNkoPtmoHAxkutFy7RTsd+a5siK4DMl9GgSNhspL77bJzVu37MJQXERIU4p+z1ucc+EYC+w0HAmy1eWF17IjJVYwDcJIQ9F8nCQbEioiU5LnVzTrESH3aNQOcE/QF+jUgNCxNbrX53kGTo1CILVqMBwmUf5MglGZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KN94QSbT; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1769093096; x=1800629096;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Lp+G6RNRNa1qqAWbsVbuiD5hhNvMHAeZ7fl9TFEhFn4=;
-  b=KN94QSbTRWXVBryiyfXhKEfWN6FQl0v361LSmZh0nCt3e3M8fLIi3O7d
-   3l1PPJlOjWUx32uVS4lKxUIRF3ONsg542zFIHDnprkyH2YnRYwcILXbpC
-   c9+lTj/UXtPzVIBQkvSWMU+86N2RH7zUBYbXWbS52IFAuH82tUFnGBfGR
-   S8VJ8bGwLB3EtM0Wi9wzZOa23RXIsppANKg0VKwVp93PjSmM4IuFMMMHg
-   aGHkWajEqdu1K97nNGJuwrYd+RrWUwYfc7ew/GC+9SJqTUnitdMdDvjIe
-   2yBDiib5ROKC9dIzN+JLMOyB5DnkIk8iyOb+GaPpxhWEnPWbCCGMAjegn
-   w==;
-X-CSE-ConnectionGUID: 1OOLouz3QOyeJyQUeodu/g==
-X-CSE-MsgGUID: 1xA66/e7R6uYO5sgmlgixQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11679"; a="57901265"
-X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; 
-   d="scan'208";a="57901265"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2026 06:44:55 -0800
-X-CSE-ConnectionGUID: q/F6B0UHRvaQexLJIydWqA==
-X-CSE-MsgGUID: LBnmNTG9R0W4LcVLy678jg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; 
-   d="scan'208";a="206801848"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.225])
-  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2026 06:44:50 -0800
-Date: Thu, 22 Jan 2026 16:44:47 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc: netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	linux-kernel@vger.kernel.org,
-	Herve Codina <herve.codina@bootlin.com>,
-	Mark Brown <broonie@kernel.org>,
-	Serge Semin <fancer.lancer@gmail.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Choong Yong Liang <yong.liang.choong@linux.intel.com>,
-	Jiawen Wu <jiawenwu@trustnetic.com>
-Subject: Re: [PATCH v2 net-next 02/15] net: mdio: add driver for NXP SJA1110
- 100BASE-T1 embedded PHYs
-Message-ID: <aXI339TiHFaEAWXE@smile.fi.intel.com>
-References: <20260122105654.105600-1-vladimir.oltean@nxp.com>
- <20260122105654.105600-3-vladimir.oltean@nxp.com>
- <aXIUJbEwnAvIkeKK@smile.fi.intel.com>
- <20260122124708.pxckp6vgi2rvagmm@skbuf>
+	s=arc-20240116; t=1769093336; c=relaxed/simple;
+	bh=YSdtxrIMSR0i5WHapdq/b+WnTiO9CQYVWg/ss95pIzw=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=cMTywMAuFAS8bNIgzwpWVAzHyPESNHa+jy9NXgjftJmUKrd0f0hcyNJa60/hBH0Maf7K8KF/ZM0GuMUAFkshHdh9xOsnV0fiafcVkA3Gh7QWhSnH64YmGpbkzM79oNgwF/jcFECYKOPCZB7J83RP6kdMfj4FgUMab+S4zs+Ch50=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=n6CtIly1; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id E22CB1A2AAD;
+	Thu, 22 Jan 2026 14:48:49 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id AFB01606B6;
+	Thu, 22 Jan 2026 14:48:49 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4717D119B80D3;
+	Thu, 22 Jan 2026 15:48:41 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1769093328; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=j08CZYreWkoiN+l1Th5hMC9vcpfI9DQRPaNd9bd6GEg=;
+	b=n6CtIly1fP5j1hMNuel0x4IJ8soH2Y27mG0LvBri9txYrMg8cZER1vYfcL9yJtxNrKMBg+
+	rhXDMCJe+gffQTTjPsRnAH7GqnCpy+BTRhK4TmLM0H+MioItDgnC/qM8EWsQkjvIqHBxI0
+	lz950Po5n0+lcL1n2z1iy3FS3INpMLlJ0IJbO0YhH4dXKoWEZMSQZNhWNaDdSDtSy8Ll4c
+	foHOGs+RryPdVSdBNpvFEfNqQPMPM8AUk25pQs+GJVPhH8b/mLgSdHbneG40g9D018R6gX
+	MR0icGk6lg1P12qn75OSgYLvo+G9C5LZCF1f/YdytVkqUFWXkVUi94cv/tXShQ==
+Date: Thu, 22 Jan 2026 15:48:40 +0100
+From: Kory Maincent <kory.maincent@bootlin.com>
+To: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
+Cc: "Jyri Sarha" <jyri.sarha@iki.fi>, "Tomi Valkeinen"
+ <tomi.valkeinen@ideasonboard.com>, "Maarten Lankhorst"
+ <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
+ <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Russell King" <linux@armlinux.org.uk>,
+ "Bartosz Golaszewski" <brgl@bgdev.pl>, "Tony Lindgren" <tony@atomide.com>,
+ "Andrzej Hajda" <andrzej.hajda@intel.com>, "Neil Armstrong"
+ <neil.armstrong@linaro.org>, "Robert Foss" <rfoss@kernel.org>, "Laurent
+ Pinchart" <Laurent.pinchart@ideasonboard.com>, "Jonas Karlman"
+ <jonas@kwiboo.se>, "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Markus
+ Schneider-Pargmann" <msp@baylibre.com>, "Bajjuri Praneeth"
+ <praneeth@ti.com>, "Louis Chauvet" <louis.chauvet@bootlin.com>, "Thomas
+ Petazzoni" <thomas.petazzoni@bootlin.com>, "Miguel Gazquez"
+ <miguel.gazquez@bootlin.com>, "Herve Codina" <herve.codina@bootlin.com>,
+ <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-omap@vger.kernel.org>
+Subject: Re: [PATCH v4 18/25] drm/tilcdc: Convert to DRM managed resources
+Message-ID: <20260122154840.5185671a@kmaincent-XPS-13-7390>
+In-Reply-To: <DFSVOBV5UY37.3HTQHOJT3A40N@bootlin.com>
+References: <20260116-feature_tilcdc-v4-0-2c1c22143087@bootlin.com>
+	<20260116-feature_tilcdc-v4-18-2c1c22143087@bootlin.com>
+	<DFSVOBV5UY37.3HTQHOJT3A40N@bootlin.com>
+Organization: bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260122124708.pxckp6vgi2rvagmm@skbuf>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.46 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lunn.ch,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,bootlin.com,linux.intel.com,trustnetic.com];
-	DMARC_POLICY_ALLOW(0.00)[intel.com,none];
-	TAGGED_FROM(0.00)[bounces-258446-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
+	TAGGED_FROM(0.00)[bounces-258447-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[31];
+	FREEMAIL_CC(0.00)[iki.fi,ideasonboard.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,armlinux.org.uk,bgdev.pl,atomide.com,intel.com,linaro.org,kwiboo.se,baylibre.com,ti.com,bootlin.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
+	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[213.196.21.55:from];
+	HAS_ORG_HEADER(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[bootlin.com,reject];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
+	FROM_NEQ_ENVFROM(0.00)[kory.maincent@bootlin.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	RCVD_COUNT_FIVE(0.00)[6];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns,intel.com:dkim,smile.fi.intel.com:mid]
-X-Rspamd-Queue-Id: C260E69961
+	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[52.25.139.140:received,212.83.136.155:received,185.246.84.56:received,212.83.139.233:received];
+	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns,bootlin.com:email,bootlin.com:url,bootlin.com:dkim,ti.com:url]
+X-Rspamd-Queue-Id: ADA9568F95
 X-Rspamd-Action: no action
 
-On Thu, Jan 22, 2026 at 02:47:08PM +0200, Vladimir Oltean wrote:
-> On Thu, Jan 22, 2026 at 02:12:21PM +0200, Andy Shevchenko wrote:
-> > On Thu, Jan 22, 2026 at 12:56:41PM +0200, Vladimir Oltean wrote:
+On Mon, 19 Jan 2026 22:19:26 +0100
+"Luca Ceresoli" <luca.ceresoli@bootlin.com> wrote:
 
-...
+> On Fri Jan 16, 2026 at 6:02 PM CET, Kory Maincent (TI.com) wrote:
+> > Convert the tilcdc driver to use DRM managed resources (drmm_* APIs)
+> > to eliminate resource lifetime issues, particularly in probe deferral
+> > scenarios.
+> >
+> > This conversion addresses potential use-after-free bugs by ensuring
+> > proper cleanup ordering through the DRM managed resource framework.
+> > The changes include:
+> > - Replace drm_crtc_init_with_planes() with drmm_crtc_alloc_with_planes()
+> > - Replace drm_universal_plane_init() with drmm_universal_plane_alloc()
+> > - Replace drm_simple_encoder_init() with drmm_simple_encoder_alloc()
+> > - Remove manual cleanup in tilcdc_crtc_destroy() and error paths
+> > - Remove drm_encoder_cleanup() from encoder error handling paths
+> > - Use drmm_add_action_or_reset() for remaining cleanup operations
+> >
+> > This approach is recommended by the DRM subsystem for improved resource
+> > lifetime management and is particularly important for drivers that may
+> > experience probe deferral.
+> >
+> > Signed-off-by: Kory Maincent (TI.com) <kory.maincent@bootlin.com>
+> > ---
+> >
+> > Change in v4:
+> > - Newt patch. =20
+>=20
+> Why? Adding patches along the way does not help getting your series merged
+> timely. If there's a good reason for adding a new patch, please mention it
+> here.
 
-> > > +static int sja1110_base_t1_mdio_read_c22(struct mii_bus *bus, int phy, int reg)
-> > > +{
-> > > +	struct sja1110_base_t1_private *priv = bus->priv;
-> > > +	struct regmap *regmap = priv->regmap;
-> > > +	unsigned int addr, val;
-> > > +	int err;
-> > > +
-> > > +	addr = sja1110_base_t1_encode_addr(phy, SJA1110_C22, reg & 0x1f);
-> > 
-> > GENMASK() ? Or do you have already a defined mask for this?
-> 
-> Hmm, I can't find a definition for this. In the MDIO world it is
-> "well known" that clause 22 offers a 5-bit register address space.
-> So the 0x1f number doesn't seem too magical to me.
-> 
-> But I think my assumptions date since before the MDIO bus API was split
-> between separate clause 22 and clause 45 reads/writes. I don't know
-> whether masking reg & 0x1f is the best practice. I'm surprised that
-> __mdiobus_read() doesn't enforce a limit on "regnum", and I don't see
-> other MDIO bus drivers explicitly C22 registers >= 32. I really don't
-> know what is the best practice.
+Thanks for your review.
 
-Me neither. At bare minimum to check / perform two things:
-- make sure this approach is consistent across the kernel
-- define the magic with meaningful name
+Sorry for that. The reason is that I faced a null pointer dereference koops=
+ if
+for example the panel module is not installed. Then the
+drm_of_find_panel_or_bridge() function return eprobe defer and something go=
+es
+wrong with the DRM resources. Using DRM managed resources solves it.
+I will mention it for the v5.
 
-Maybe (assuming second one is done) fix the rest in the future
-via some helper function?
+> > +	tilcdc_crtc =3D drmm_crtc_alloc_with_planes(dev, struct tilcdc_crtc,
+> > base,
+> > +						  &primary->base,
+> > +						  NULL,
+> > +						  &tilcdc_crtc_funcs,
+> > +						  "tilcdc crtc");
+> > +	if (IS_ERR(tilcdc_crtc)) {
+> > +		dev_err(dev->dev, "Failed to init CRTC: %pe\n",
+> > tilcdc_crtc);
+> > +		return PTR_ERR(tilcdc_crtc);
+> > +	}
+> > +
+> > +	tilcdc_crtc->primary =3D primary; =20
+>=20
+> (*) see below
+>=20
+> >
+> >  	init_completion(&tilcdc_crtc->palette_loaded);
+> >  	tilcdc_crtc->palette_base =3D dmam_alloc_coherent(dev->dev,
+> > @@ -978,10 +992,6 @@ int tilcdc_crtc_create(struct drm_device *dev)
+> >
+> >  	crtc =3D &tilcdc_crtc->base;
+> >
+> > -	ret =3D tilcdc_plane_init(dev, &tilcdc_crtc->primary);
+> > -	if (ret < 0)
+> > -		goto fail;
+> > -
+> >  	mutex_init(&tilcdc_crtc->enable_lock);
+> >
+> >  	init_waitqueue_head(&tilcdc_crtc->frame_done_wq);
+> > @@ -989,20 +999,12 @@ int tilcdc_crtc_create(struct drm_device *dev)
+> >  	spin_lock_init(&tilcdc_crtc->irq_lock);
+> >  	INIT_WORK(&tilcdc_crtc->recover_work, tilcdc_crtc_recover_work);
+> >
+> > -	ret =3D drm_crtc_init_with_planes(dev, crtc,
+> > -					&tilcdc_crtc->primary,
+> > -					NULL,
+> > -					&tilcdc_crtc_funcs,
+> > -					"tilcdc crtc");
+> > -	if (ret < 0)
+> > -		goto fail;
+> > -
+> >  	drm_crtc_helper_add(crtc, &tilcdc_crtc_helper_funcs);
+> >
+> > +	ret =3D drmm_add_action_or_reset(dev, tilcdc_crtc_destroy, priv);
+> > +	if (ret)
+> > +		return ret; =20
+>=20
+> Not related to your patch, but if the dmam_alloc_coherent() (not visible =
+in
+> the diff) fails, tilcdc_crtc_destroy() won't be called. Is this intended?
+> At first sight this drmm_add_action_or_reset() should be moved at (*), ju=
+st
+> after the allocation.
 
-...
+You are totally right.
 
-> > > +static int sja1110_base_t1_mdio_probe(struct platform_device *pdev)
-> > > +{
-> > > +	struct sja1110_base_t1_private *priv;
-> > > +	struct device *dev = &pdev->dev;
-> > > +	struct regmap *regmap;
-> > > +	struct resource *res;
-> > > +	struct mii_bus *bus;
-> > > +	int err;
-> > 
-> > > +	if (!dev->of_node || !dev->parent)
-> > 
-> > Can we avoid dereferencing? And perhaps dev_fwnode(dev)?
-> 
-> Avoid dereferencing what?
+> However being not related to your patch I'd leave this for another series
+> anyway, to avoid making this series a moving target.
 
-of_node
+I think it is related to this patch.
+Before this patch there was no need for cleanup as the only action before t=
+he
+dmam_alloc_coherent() was a devm_kzalloc().
+Now the plane and the crtc are initialize before the dmam_alloc_coherent() =
+so
+the cleanup need to happen if it fails an error.
 
-> > > +		return -ENODEV;
-> > > +
-> > > +	regmap = dev_get_regmap(dev->parent, NULL);
-> > > +	if (!regmap)
-> > > +		return -ENODEV;
-> > > +
-> > > +	bus = mdiobus_alloc_size(sizeof(*priv));
-> > > +	if (!bus)
-> > > +		return -ENOMEM;
-> > > +
-> > > +	bus->name = "SJA1110 100base-T1 MDIO bus";
-> > > +	snprintf(bus->id, MII_BUS_ID_SIZE, "%s", dev_name(dev));
-> > > +	bus->read = sja1110_base_t1_mdio_read_c22;
-> > > +	bus->write = sja1110_base_t1_mdio_write_c22;
-> > > +	bus->read_c45 = sja1110_base_t1_mdio_read_c45;
-> > > +	bus->write_c45 = sja1110_base_t1_mdio_write_c45;
-> > > +	bus->parent = dev;
-> > > +	priv = bus->priv;
-> > > +	priv->regmap = regmap;
-> > > +
-> > > +	res = platform_get_resource(pdev, IORESOURCE_REG, 0);
-> > > +	if (res)
-> > > +		priv->base = res->start;
-> > > +
-> > > +	err = of_mdiobus_register(bus, dev->of_node);
-> 
-> Why would I use dev_fwnode() if I need to pass it as OF to
-> of_mdiobus_register() here?
+> I find this patch hard to read and I think because it is converting
+> multiple things at once. Splitting it in small steps would have been nice,
+> even thought I'm not 100% sure it would have been doable.
 
-dev_of_node() then. Wondering if we can use fwnode_mdiobus_register_phy() here
-(I remember that OF/fwnode code in MDIO/PHY is not trivial, but I don't know
- all the details).
+Yes, it brought more error when not converting the whole to DRM Managed
+resources in one go.
 
-> > > +	if (err)
-> > > +		goto err_free_bus;
-> > > +
-> > > +	priv->bus = bus;
-> > > +	platform_set_drvdata(pdev, priv);
-> > > +
-> > > +	return 0;
-> > > +
-> > > +err_free_bus:
-> > > +	mdiobus_free(bus);
-> > > +
-> > > +	return err;
-> > > +}
+>=20
+> Nevertheless it looks correct, so:
+>=20
+> Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 
--- 
-With Best Regards,
-Andy Shevchenko
+Thanks, but I will remove it due to the small change.=20
+Or maybe it is ok for you if I keep it with only the move of
+drmm_add_action_or_reset().
 
-
+Regards.
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
