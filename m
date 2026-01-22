@@ -1,208 +1,151 @@
-Return-Path: <devicetree+bounces-258485-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258486-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8IFiJlxYcmkpiwAAu9opvQ
-	(envelope-from <devicetree+bounces-258485-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:03:24 +0100
+	id sH/pJ8dXcmkpiwAAu9opvQ
+	(envelope-from <devicetree+bounces-258486-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:00:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 082866AABC
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:03:23 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E2E76A942
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:00:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CC17E30AB4ED
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:54:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D73BB30B93C6
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:23:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 137A33815FA;
-	Thu, 22 Jan 2026 15:32:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D30453904EA;
+	Thu, 22 Jan 2026 15:37:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ITL7sEGK"
+	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="OAShtVl8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-106121.protonmail.ch (mail-106121.protonmail.ch [79.135.106.121])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D108C3815FC
-	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 15:32:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 149023904CA
+	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 15:37:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.135.106.121
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769095959; cv=none; b=CzkKM1B4aCyGfeZQ1LW1OqUV9cw6EaC3CVbuSxcm766JDxeeVAfXESEqQMLqgJfIJkRmGkzem16ooPTVGEWWJaQhUZ1pur+hv4YfF7Y3IZss7FcG2PgXCVY2osI3q0AtzyQA1GiyWP2phYJCeXehpS1ajV65g2fRUxkZBvZi+iA=
+	t=1769096257; cv=none; b=lNzhVm0eQdoKPqL6Cz7i5yYuiC5diiWq4pgISlhpUcSD80Hx6WGzKCNMkDQAeIJHuiQg+EeKN+d08dw/Db8Tb7hItTylKljI1mRtfrztNwf01jKt6dhh6BBQC5pKKMu2yYNl090utDoVRNTEFBll9HneUAxvmIDxov5zNANYUpY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769095959; c=relaxed/simple;
-	bh=7lXXnHEPuM0BuYoFwX3ssIJy7hefUBgpSQE/mma1aoI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uiBxrxsrxRVkWh9UTBztHV3UsCnu+zfiyRyPqTSPi8fpb//NKIKQj1SGoQ+cBF1GbysB4fqE1P0TMWNZ1xP9S5ogOzpoZOX6ZfrephPHS6/wszT/G4NeDuZkS01S8lxCz/pIz1X0KakzLQ2I8FbCzqMVH8riK3jprAxZKee+Xa0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ITL7sEGK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9237AC2BCB1
-	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 15:32:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769095959;
-	bh=7lXXnHEPuM0BuYoFwX3ssIJy7hefUBgpSQE/mma1aoI=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=ITL7sEGKNLQUWPFxXv8PORXy68D6bLAay9H2kAyWFO1KU6Q68c2O2YhJHcDDt4f1n
-	 z4CcpjUvU3yjXlCK8aL+1kTiZ4b+Xb5YIRqYBN5koRGstIEv3Ob78jWOD/dXanpeJm
-	 83b53o1Djq0Os87URziP43dF5JStzGegiNubjeh5Ogq4NuSzxheCKCoUV1ELqwZLEg
-	 JyAmrQd6aLJ/rJiyO0cmRMIS9iHDVv/FkhMzokf7xteLb0IXZ9VNt6FNsSNeQS3UuY
-	 2XUBi14DNaP/SyW9HPzzvmzuGKvguJsR99cW6Jntovf+ltiGaOtm/ilKWJSamNcWJ+
-	 34u7SLbhO8uWg==
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-65807298140so1755595a12.2
-        for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 07:32:39 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCW95sJFIYnEkojj+YX7tZ+tgzwBfzqL7QqWtUqluFBE9MViYa8vO/t7OHagDR86SgEzzRLMDrEP9hgw@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzak709TDpHjDcROmDh0AZRqKjEv3B6+qKPf53HGbl3WndTd3U2
-	PA7eKK5kE5xZP4Xr4YV40TdJRyi76gR97Njye/U+O4c8/yIR7DvgiTMxDfxg76aGyPLtc3B1xWU
-	wFMexIPAUKzzLwECSUIim59b//RAJsA==
-X-Received: by 2002:a17:907:3cc8:b0:b87:79a6:4cc1 with SMTP id
- a640c23a62f3a-b8800260533mr727286466b.14.1769095957863; Thu, 22 Jan 2026
- 07:32:37 -0800 (PST)
+	s=arc-20240116; t=1769096257; c=relaxed/simple;
+	bh=S1BGqcMlASMvyYCKXlGf55t9i2UcSbu9BGB4Vbxmsjw=;
+	h=Date:To:From:Cc:Subject:Message-ID:MIME-Version:Content-Type; b=o8/afDQIb27Ci2pPwxBcpOYXXrdVWcLxJLTdQsqmLSSlAtKNT72j5JTzGVJvaSJnDPIV26AidvCfyYxu48NQiswymVgk9nfEzjsGgftG/U0yc6fa6ReRD4GQJETOnh2L9VXCkAK3BR/hpDhTPUhAblzEIh5T3IrrYkRQHmolWxw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=OAShtVl8; arc=none smtp.client-ip=79.135.106.121
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1769096249; x=1769355449;
+	bh=S1BGqcMlASMvyYCKXlGf55t9i2UcSbu9BGB4Vbxmsjw=;
+	h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=OAShtVl8spr+0GUWWivMvpCjCyV4nt7net/RqiDocSoRyc2xGILA5VY3XkzJCj5rN
+	 JBlHlnEg7Vc+q+W2pH00Kt/XkXvx/kl4CFvgkIuexUOB6S+hdAhnsISrVfJP6hEtXc
+	 cgoRwCNiDa59Pd7yCtj6KSqs5XR3JzrS7A46BRv7KCBCveSUeD4L3A2c8WwOTkWaq1
+	 X/9mfBKXG/p5ecgX44tQSC0rOp26QPaFpXV84SRN1WShlnz70Tz4swAIkbTukIVFhT
+	 OrDavFueoypp77UwkvbkXzUtgk4i8ug1Z6o3wQwrbCWhC8SJ5yFWNUintGE7vIWboE
+	 791SQUjO/0mZg==
+Date: Thu, 22 Jan 2026 15:37:23 +0000
+To: Krzysztof Kozlowski <krzk@kernel.org>
+From: Arturs Artamonovs <arturs.artamonovs@protonmail.com>
+Cc: arturs.artamonovs@analog.com, Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Greg Malysa <greg.malysa@timesys.com>, Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Utsav Agarwal <Utsav.Agarwal@analog.com>, Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Thomas Gleixner <tglx@linutronix.de>, Andi Shyti <andi.shyti@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>, soc@kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, linux-i2c@vger.kernel.org, linux-serial@vger.kernel.org, adsp-linux@analog.com, Nathan Barrett-Morrison
+	<nathan.morrison@timesys.com>
+Subject: Re: [PATCH 00/21] Adding support of ADI ARMv8 ADSP-SC598 SoC.
+Message-ID: <D29814F7-69C2-4C64-AF05-87AE6019DE21@protonmail.com>
+Feedback-ID: 15175799:user:proton
+X-Pm-Message-ID: 645533fd368795d784bccb039ef9deb7ee99176c
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260121-schneider-6-19-rc1-qspi-v3-0-43e70fab4444@bootlin.com>
- <20260121-schneider-6-19-rc1-qspi-v3-3-43e70fab4444@bootlin.com>
- <20260121230759.GA223990-robh@kernel.org> <874iodpven.fsf@bootlin.com>
-In-Reply-To: <874iodpven.fsf@bootlin.com>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 22 Jan 2026 09:32:26 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLWZWa=yAx0sHQckbGdqAwos3xdubnnuKMoZLWTXpv6KQ@mail.gmail.com>
-X-Gm-Features: AZwV_QjqghEOf5Kx-CDBZNhnqQswnDxt-gZfUMoJqiAGUgnCeTOEtx6EblhCCIs
-Message-ID: <CAL_JsqLWZWa=yAx0sHQckbGdqAwos3xdubnnuKMoZLWTXpv6KQ@mail.gmail.com>
-Subject: Re: [PATCH v3 03/17] spi: dt-bindings: cdns,qspi-nor: Add examples
- for testing the specific cases
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, Vaishnav Achath <vaishnav.a@ti.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, =?UTF-8?Q?Herv=C3=A9_Codina?= <herve.codina@bootlin.com>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
-	Santhosh Kumar K <s-k6@ti.com>, Pratyush Yadav <pratyush@kernel.org>, 
-	Pascal Eberhard <pascal.eberhard@se.com>, linux-spi@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	FAKE_REPLY(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[protonmail.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[protonmail.com:s=protonmail3];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,glider.be,gmail.com,ti.com,bootlin.com,sang-engineering.com,se.com,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-258485-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_FROM(0.00)[protonmail.com];
+	RCPT_COUNT_TWELVE(0.00)[30];
+	TAGGED_FROM(0.00)[bounces-258486-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[protonmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.198.132.80:email,0.0.9.96:email,bootlin.com:email]
-X-Rspamd-Queue-Id: 082866AABC
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[arturs.artamonovs@protonmail.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:url,protonmail.com:mid,protonmail.com:dkim]
+X-Rspamd-Queue-Id: 0E2E76A942
 X-Rspamd-Action: no action
 
-On Thu, Jan 22, 2026 at 8:35=E2=80=AFAM Miquel Raynal <miquel.raynal@bootli=
-n.com> wrote:
->
-> Hi Rob,
->
-> On 21/01/2026 at 17:07:59 -06, Rob Herring <robh@kernel.org> wrote:
->
-> > On Wed, Jan 21, 2026 at 06:04:59PM +0100, Miquel Raynal (Schneider Elec=
-tric) wrote:
-> >> It is very painful to modify this file because the core IP described i=
-s
-> >> so common, it has been implemented in many SoCs from different
-> >> architectures. Both `dtbs_check` and `dt_binding_check` are rather lon=
-g
-> >> commands, even when restricted to a single schema files, and letting
-> >> this file evolve without risking to break other DTSs is painful, becau=
-se
-> >> there are arm, arm64 and riscv platforms impacted and no way to check
-> >> all of them at the same time.
-> >
-> > OTOH, examples aren't meant to be exhaustive test cases of all
-> > possibilities. If it was me, I'd actually just get rid of all the
-> > examples. They are generally just a copy from some .dts we already
-> > have.
->
-> I will align with this idea the day `make dtbs_check` (or something
-> similarly simple) is exhaustive and cross platform :-)
+Hi, big thanks to Krysztof, Arnd, Rob and Linus Walleij for the reviewing f=
+irst set of patches that were sent some time ago. I have reviewed comments =
+few times since then and Im currently at last stage of internal review for =
+v2 series those are planned to be sent sometime in near future.=20
 
-Note that you should be able to build DTBs without $ARCH
-cross-compiler. So it's less trouble than building kernels for each
-arch.
+> On 16 Sep 2024, at 10:05, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>=20
+> On 12/09/2024 20:24, Arturs Artamonovs via B4 Relay wrote:
+>> This set of patches based on ADI fork of Linux Kerenl that support famil=
+y of ADSP-SC5xx
+>> SoC's and used by customers for some time . Patch series contains minima=
+l set
+>> of changes to add ADSP-SC598 support to upstream kernel. This series inc=
+lude
+>> UART,I2C,IRQCHIP,RCU drivers and device-tree to be able boot on EV-SC598=
+-SOM
+>> board into serial shell and able to reset the board. Current SOM board
+>> requires I2C expander to enable UART output.
+>>=20
+>> UART,I2C and PINCTRL drivers are based on old Blackfin drivers with
+>> ADSP-SC5xx related bug fixes and improvments.
+>>=20
+>> Signed-off-by: Arturs Artamonovs <arturs.artamonovs@analog.com>
+>> ---
+>=20
+> For new platform, be sure you have 0 warnings:
+> 1. Please run standard kernel tools for static analysis, like
+> coccinelle, smatch and sparse, and fix reported warnings.
+>=20
+> 2. Also check for warnings when building with W=3D1. Most of these
+> commands (checks or W=3D1 build) can build specific targets, like some
+> directory, to narrow the scope to only your code. The code here looks
+> like it needs a fix. Feel free to get in touch if the warning is not clea=
+r.
+>=20
+> 3. Fix all compile test warning reported by LKP and check for common
+> configs, regardless of reports.
+>=20
+> 4. Please run `make dtbs_check W=3D1` (see
+> Documentation/devicetree/bindings/writing-schema.rst or
+> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sou=
+rces-with-the-devicetree-schema/
+> for instructions).
+>=20
+> 5. Please run scripts/checkpatch.pl and fix reported warnings. Then
+> please run `scripts/checkpatch.pl --strict` and (probably) fix more
+> warnings. Some warnings can be ignored, especially from --strict run.
+>=20
+>=20
+> Best regards,
+> Krzysztof
+>=20
+>=20
 
-> Maybe cdns,qspi-nor is an exception, but it impacts different
-> architectures, which means the output of `make dtbs_check` is
-> meaningless because it only covers a subset of the possible cases. Hence
-> my attempt to gather all specific cases in the bindings, so I could run
-> all the meaningful checks I wanted more easily.
 
-I used to run this on all patches, but with existing warnings it was
-too noisy. Once we get arm64 warning free, I can look at doing that
-again. We're at about 300 unique warnings left and over half of those
-are 3 platform families.
-
-> I think this patch has its usefulness, but I don't mind dropping it.
-
-I'm okay with adding the first example.
-
-> >> +  - |
-> >> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> >> +    #include <dt-bindings/reset/starfive,jh7110-crg.h>
-> >> +    #include <dt-bindings/clock/starfive,jh7110-crg.h>
-> >> +    spi@13010000 {
-> >> +        compatible =3D "starfive,jh7110-qspi", "cdns,qspi-nor";
-> >> +        reg =3D <0x13010000 0x10000>, <0x21000000 0x400000>;
-> >> +        interrupts =3D <25>;
-> >> +        clocks =3D <&syscrg JH7110_SYSCLK_QSPI_REF>, <&syscrg JH7110_=
-SYSCLK_QSPI_AHB>,
-> >> +                 <&syscrg JH7110_SYSCLK_QSPI_APB>;
-> >> +        clock-names =3D "ref", "ahb", "apb";
-> >> +        resets =3D <&syscrg JH7110_SYSRST_QSPI_APB>, <&syscrg JH7110_=
-SYSRST_QSPI_AHB>,
-> >> +                 <&syscrg JH7110_SYSRST_QSPI_REF>;
-> >> +        reset-names =3D "qspi", "qspi-ocp", "rstc_ref";
-> >> +        #address-cells =3D <1>;
-> >> +        #size-cells =3D <0>;
-> >> +        cdns,fifo-depth =3D <256>;
-> >> +        cdns,fifo-width =3D <4>;
-> >> +        cdns,trigger-address =3D <0x0>;
-> >> +    };
-> >> +
-> >> +  - |
-> >> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> >> +    spi@2400 {
-> >> +        compatible =3D "amd,pensando-elba-qspi", "cdns,qspi-nor";
-> >> +        reg =3D <0x2400 0x400>, <0x7fff0000 0x1000>;
-> >> +        interrupts =3D <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>;
-> >> +        clocks =3D <&flash_clk>;
-> >> +        #address-cells =3D <1>;
-> >> +        #size-cells =3D <0>;
-> >> +        cdns,fifo-depth =3D <1024>;
-> >> +        cdns,fifo-width =3D <4>;
-> >> +        cdns,trigger-address =3D <0x7fff0000>;
-> >
-> > This one really just looks like a subset of the others.
->
-> The fifo-depth possibilities are extended just for this
-> compatible. Basically I captured in the examples every specific case
-> covered with an 'if' schema.
-
-I get that, but with that argument we should have an example for every
-if schema.
-
-Rob
 
