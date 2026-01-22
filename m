@@ -1,125 +1,130 @@
-Return-Path: <devicetree+bounces-258412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258413-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0OueCYU7cmlMfAAAu9opvQ
-	(envelope-from <devicetree+bounces-258412-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:00:21 +0100
+	id 6Ns0G98pcmmadwAAu9opvQ
+	(envelope-from <devicetree+bounces-258413-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:45:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1B30683CA
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:00:20 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FD1167776
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:45:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id EBC4772A1F9
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 13:16:50 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id CCCE270ADD0
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 13:28:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D6772FD1B3;
-	Thu, 22 Jan 2026 13:16:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E3113101D3;
+	Thu, 22 Jan 2026 13:27:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Az2rfVpB"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="DTgN+E4L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2276B2F9C32;
-	Thu, 22 Jan 2026 13:16:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB90F28152A;
+	Thu, 22 Jan 2026 13:27:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769087794; cv=none; b=VxrrC3luTztSLmHG1CXig6z5OSqerwK3XUIOLsFEBJBlLsNsBYYaZk6oQdQ103ltp8pR9y3DEV3zJLYAEhzMHAdjuAMDiQU6Cmgd7/f2/B8BraD6aJR1EHgvFbPVgCa6RI0bjZKpmT6LvobNheCU3bkxlwDGPRrayhw8a4wI740=
+	t=1769088467; cv=none; b=uJb5cpvXLHbfkbxLjFB/v/vG5S09rFmj4BBo1GOr8onf6DC0BGv/HQ1SrclMVC8UKz3Mo8DoZMDxQAGnLAufao+zL2ANUkxS+QZXFOEciA6s68iOFSyOPix/JhWx9NGggnAXYxnBnw79VOe0WE2uzvs3jVZchpquoAyS0WaW4xA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769087794; c=relaxed/simple;
-	bh=xuBJGovRTjVshbSibhalxYLDBXqf9Ynp6pxi7FKmm7c=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=q6pB0Sp+ihI6Z2UJdhkWJT3caIEA2l5K93HKyeNjObLKgzA4tU4HrKQUWogyDaUTDt+mqLS42bD7+Ir/+lTBYtayU40DrUE94LtkaDVQjnJdYZnFVLec6b2NCg500ooBMJi1hGOupLhnWFQYwKgjuC0QUpbteGFFQBBI+S4BbdM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Az2rfVpB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 067D1C116C6;
-	Thu, 22 Jan 2026 13:16:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769087793;
-	bh=xuBJGovRTjVshbSibhalxYLDBXqf9Ynp6pxi7FKmm7c=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=Az2rfVpBc7tAwcyH0+rZeVrrBVOjuPCiDUWEVoPM1G+6ETjJHKlCdnARMg0IXUVpa
-	 JmjkZr5jYeEQE/0suItei7tqULmfWLQaHszGT4KXneis5mXJ+QBSH+L2hvH0ksXczL
-	 ubRqbGAfnPClZvce6wsSxPVwR5ySJJIS6CZfAsa2KoyaTcOWArUJVGLYazCHervIro
-	 ex62MApbo45M18nMX+9eXhCv7Lpkez0lSEzDXruxgdUHkEOf5F89C+IXS/WG7FRD0C
-	 Hk9M09YYHqIMFdiWZybIPpxa5y1owqLuiYOSAU9dIb+rQA5yf3n17Hmqqyakelko34
-	 Tt/tHnfyn0uHg==
-From: Lee Jones <lee@kernel.org>
-To: lee@kernel.org, pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, Lukas Timmermann <linux@timmermann.space>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20260118165010.902086-1-linux@timmermann.space>
-References: <20260118165010.902086-1-linux@timmermann.space>
-Subject: Re: [PATCH v14 0/2] Support for Osram as3668 LED driver
-Message-Id: <176908779171.3924443.2834922090007850430.b4-ty@kernel.org>
-Date: Thu, 22 Jan 2026 13:16:31 +0000
+	s=arc-20240116; t=1769088467; c=relaxed/simple;
+	bh=qHWIKvktZ7GubooQCjzwR3k+LdNHiwNtsHB9mTP1QEM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nnJRF61BijUohoTsKUk7kinL1dcl5+QjAYz5diIUJXbpsUI8I/RdVcMSvhdDgpT5TOF/597KmE+U0hTk/wugXoLeIPCTN32JURDAH/A5hrrFBhbE6tUL737sfs7SGDVD+6o3UcZQ4WDrqeuv+JWh7srvTp/P5Cb0oaFf2uOG890=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=DTgN+E4L; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=9xQMmLN25d6ur0MTNMIKH54ukh9v7HDdPbHa10LtFlg=; b=DTgN+E4LZE+5v7wLy4BmQ6YXn5
+	i8sydyP9uyRp/c6HvlX3Nho7/GKYJ4oR2R6GeF1y4Ru3btI417hOhvvf3UKPl9yZ5Fc3bm32CWUKL
+	Q+miUq5DI2M0joGjRO4V4Sstu7HxTFogBP6X/AcnfSCIS1CQelSupxLvRwgQANzmNM1Y=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1viuik-003yWn-KU; Thu, 22 Jan 2026 14:27:34 +0100
+Date: Thu, 22 Jan 2026 14:27:34 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: =?utf-8?B?5p2O5b+X?= <lizhi2@eswincomputing.com>
+Cc: Bo Gan <ganboing@gmail.com>,
+	"Russell King (Oracle)" <linux@armlinux.org.uk>,
+	devicetree@vger.kernel.org, andrew+netdev@lunn.ch,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	netdev@vger.kernel.org, pabeni@redhat.com,
+	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	ningyu@eswincomputing.com, linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com, weishangjuan@eswincomputing.com
+Subject: Re: Re: [PATCH v1 1/2] dt-bindings: ethernet: eswin: add clock
+ sampling control
+Message-ID: <d010a6b8-5bf0-40ff-8e76-18362a238d50@lunn.ch>
+References: <20260109080601.1262-1-lizhi2@eswincomputing.com>
+ <20260109080859.1285-1-lizhi2@eswincomputing.com>
+ <00b7b42f-2f9d-402a-82f0-21641ea894a1@lunn.ch>
+ <aWKZvEW7rKFFwZLG@shell.armlinux.org.uk>
+ <0d54ddca-9270-40a5-aa82-d8a7b65027ff@gmail.com>
+ <1a622916.2d28.19bb105feab.Coremail.lizhi2@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.15-dev-52d38
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1a622916.2d28.19bb105feab.Coremail.lizhi2@eswincomputing.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.96 / 15.00];
+X-Spamd-Result: default: False [-0.46 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
-	TAGGED_FROM(0.00)[bounces-258412-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,armlinux.org.uk,vger.kernel.org,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,foss.st.com,st-md-mailman.stormreply.com,lists.infradead.org,eswincomputing.com,einfochips.com];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-258413-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_POLICY_ALLOW(0.00)[lunn.ch,none];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mouser.com:url,ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns]
-X-Rspamd-Queue-Id: C1B30683CA
+	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 1FD1167776
 X-Rspamd-Action: no action
 
-On Sun, 18 Jan 2026 17:50:08 +0100, Lukas Timmermann wrote:
-> This patch adds basic support for the as3668 driver IC via I2C interface.
-> The IC is capable of driving four individual LEDs up to 25.5mA per
-> channel. Hardware blinking would be theoretically possible, but this chip
-> only supports a few set on/off-delays which makes using that feature
-> unfeasable, therefore my driver doesn't offer that capability.
-> It's intended applications is in mobile devices such as phones,
-> tablets and cameras. This driver was tested and is working on
-> a google-manta which is running postmarketOS with a near mainline kernel.
-> Also there is a patch in the linux mailing list for that device:
-> https://lore.kernel.org/all/20251120201958.1970828-1-linux@timmermann.space/
-> The register names and values are taken from the official datasheet which
-> can be found here:
-> https://www.mouser.com/datasheet/2/588/AS3668_DS000196_1-00-1512816.pdf
-> 
-> [...]
+> We also intend
+> to upstream complete DTS files for EIC7700 so the bindings can be validated
+> against real hardware.
 
-Applied, thanks!
+I suggest you prioritise this. ARM-SOC is pretty flexible for
+accepting work in progress support for new SoCs. All you really need
+is for the board to boot to a login prompt on a serial port using an
+initramsfs. So the .dtsi and .dts file can be very slim, CPUs, memory
+and UARTs.
 
-[1/2] dt-bindings: leds: Add new as3668 support
-      commit: 1e31ecb73163385b7ca764a97fb350b395bcff3c
-[2/2] leds: as3668: Driver for the ams Osram 4-channel i2c LED driver
-      commit: 68d2a846952f81cd01331fffdec9a67299b22319
+Once you have that merged you can work on the other drivers, their
+bindings, etc.
 
---
-Lee Jones [李琼斯]
+As Russell pointed out, at the moment, most of the code you have in
+the kernel is unusable, so it is a candidate for being thrown out.
 
+       Andrew
 
