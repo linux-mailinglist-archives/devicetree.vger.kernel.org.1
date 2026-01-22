@@ -1,185 +1,190 @@
-Return-Path: <devicetree+bounces-258293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258295-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MNcSHU79cWmvZwAAu9opvQ
-	(envelope-from <devicetree+bounces-258293-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 11:34:54 +0100
+	id SGajNUAAcmmvZwAAu9opvQ
+	(envelope-from <devicetree+bounces-258295-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 11:47:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA80B654F7
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 11:34:53 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88B746576F
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 11:47:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 71D6578AA2B
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 10:28:08 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 955636A2F9E
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 10:32:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 690FA30BF75;
-	Thu, 22 Jan 2026 10:25:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 506F03C1FDE;
+	Thu, 22 Jan 2026 10:32:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="qt1l22qt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f66.google.com (mail-vs1-f66.google.com [209.85.217.66])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67A69329C60
-	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 10:25:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF27B33E35B
+	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 10:32:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769077516; cv=none; b=qZDOifSVdtwJay0ozebgPfBgVCQOv3YcNiX/9OeBuv7a7Peq9nP0ysPBd6IE7zCcWzewvgJ3tAP/orf8hfvlrFL47HK5Cda2zmRai7iHYjPvRds0iEPgYqaKhrksYOOC23AIm0lKs0wf55U+C04XjkeBj98+Hah8rRJCIC/iWZg=
+	t=1769077925; cv=none; b=aQOD8IoZ1u8PWJSF0kSPHW+C7iCVxdU7BwZ9Z06RdL8XApkIKJnx03KqrnIOoYmes3OlGEi7UmsSBe3lNH5vzz4OiJwUY5a4k+SloHpw95Wttx1RiJaKeNut7xiwTVGbfOI6Djzb6FWg470rVT+sa9cdtZmc3yoh3HRv4Zf4cZo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769077516; c=relaxed/simple;
-	bh=tzCu6s+P00F9BxBbrZV8bsVUzyJIUMZRriM+ZWggqa0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tvUKDsrIs1aC6nNmgWGv40XiGQa68fME5LCS+dZa9J9K173WmkQJrD1L1h9z1wKaNxXdaubnrz1HuOfHGgAmumI7IcXEmWVmPGMoPfdl+x+/38de5mRhTw3ZwR2uVgqEqQoObqpc971QVIMcrWYGdPq8J09RhUwV9TU8VxA2n2o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f66.google.com with SMTP id ada2fe7eead31-5eae7bb8018so247628137.2
-        for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 02:25:12 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769077511; x=1769682311;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DU8rGFe6B3mE/xdQKQTWoBiiNLtj1+ih/vdN/GH7wsM=;
-        b=j9+56OJtvgZ4VmNCnVw9b7RypqGHSVzn4QtWuBNkWiQJTEoJSOFMxxj6FXPJzKMwUq
-         VQ3p/OkZUl/f7o5ZCwE81xHkAHljQfga/tE4CiMpP3h0jP6TWOJ11dX+laetQKWqv/u0
-         /9AFRMX6nuyRgUVR6XvUu09DXiy5MDiUOkcDvQBH73pY+jzh7b7f75u00NADfrPOkeqq
-         56AeHGfVVWuGVXamxpVaJ8ZwoRT26+Gpon7z/9vWkG7VgR6OQAxwt9tODDYdiocZ+BXm
-         EBDvzuqZV8+JlAxkLsanvQwmx2zgZ5zyWunRvxNublWJ7uinR3Ri1ULUwJuQVYkIoPyb
-         Bcag==
-X-Forwarded-Encrypted: i=1; AJvYcCWDXPV6BQA0kvGxoYHj+WHJtKgEkpcDFzs4R8rpw7QWdPu+ti24W38k3eOlwe55pMAjqiZkEmdN79CV@vger.kernel.org
-X-Gm-Message-State: AOJu0YzVdxgQAKZmJRgJ2tDDTGWASfJbGbDfbi3QdDUOv0YLBTE9qgkH
-	4kBLgQKGFaNlyifUy94s/2S7fM/QxoJFhdpjF1ioFC8Rmv3R7vlcvGdy3lY2dFxO
-X-Gm-Gg: AZuq6aK3diRLGfrOivExg3M6bRtp7FRfch464hMDWKuvyX4QGyZfkoafeQoAKdLZv98
-	nTt0w7TuepM/02NAJFIJ9j89kQnV4nnT4QFux0qgfLYZiXE67WkXIU20ErjlYLlCIDDZGityYgr
-	8NlxrdqaHDNlmSIrfU3Zzs7y4eFEtUXmpeeI7ekGIEB5vYR7JbNmst/1MsJy7ZJ1fXPZRtc4f5S
-	gZWRJFFXVLl1ciT+vsMA3OpYnAoruv6lnMr8le5AlQXYdSfYxwAOMDhBHa35GzJvXZZtMAvokVc
-	d0FjKrfo13+dOXcPlz3wniMfZ2ubxorNOKSwt+BCocRCX+7Z2U8tZbGBYUFmF0qQ8i8UUe/m/f9
-	4gJqniyPzoTwlbr+cVG8ZNWcGrhKIciWl1LHRqgBkX5lB2yoKuiPNKWbPA+1fOt8tgRqArhDrkR
-	LUPVQ7bzpgUUKjDIni1GjmgxjTs7YCqOs8TkuC7zrvhlM9evDa
-X-Received: by 2002:a05:6102:dcc:b0:5db:f031:84c7 with SMTP id ada2fe7eead31-5f1a717ed4emr6815122137.30.1769077510972;
-        Thu, 22 Jan 2026 02:25:10 -0800 (PST)
-Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com. [209.85.217.48])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-947d0458fc0sm5384712241.15.2026.01.22.02.25.10
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Jan 2026 02:25:10 -0800 (PST)
-Received: by mail-vs1-f48.google.com with SMTP id ada2fe7eead31-5f53ba9c548so147732137.1
-        for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 02:25:10 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVuJO4D1eP0Oe636yNe4chq04blR/zHc0UfO/ynXKPT348g1Cux+SHeId501nqOnMcrzOb57Fgv4oM8@vger.kernel.org
-X-Received: by 2002:a05:6102:c8e:b0:5f5:3826:3cfb with SMTP id
- ada2fe7eead31-5f5382646b2mr467462137.27.1769077510009; Thu, 22 Jan 2026
- 02:25:10 -0800 (PST)
+	s=arc-20240116; t=1769077925; c=relaxed/simple;
+	bh=4HGEOJdYofceavveyNvK694CLL+JytPY9nkr/yVGMk0=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=FYQGSqCRjKHgKwYwkqFEPjMJ2XmCnvCrWVWCVXezpK5fMqMUZznsCD8gj2kNd2B0EJOzddaM8ct2aLUnlB9y08RlLDgXf93QK7PJrnCYHfPcKa9ah0uOqurCSXzs4eYpPhkIPDbTft2fkdnP+BtpP0fFrOEUybkC0+1p+qJdY+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=qt1l22qt; arc=none smtp.client-ip=203.254.224.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20260122103200epoutp043e24e69596c317009ca71c4d08be036e~NBv7yaAsI0323103231epoutp04r
+	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 10:32:00 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20260122103200epoutp043e24e69596c317009ca71c4d08be036e~NBv7yaAsI0323103231epoutp04r
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1769077920;
+	bh=tnRCYwReWiwurhPWhltxwYGFpC/0m//wbHgfZbzv9Kk=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=qt1l22qtdWEmi6By166P8BM1Bt4oRzDLCZNeTMSjLVGjwnM+vcKoYqhxgoMNVr9y3
+	 IRHYW5/yQez6zyEWQDj/luX+fwWuxnbbPEd+3uRQ8VLt1iFtHyXMUT4IA73Cd3aW+a
+	 ukcOhlfg+b5gF+3GSKqy2pfTUX81GU93R6gw6XCY=
+Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
+	20260122103159epcas5p30f2fcd4a52671b2b064775d618b9dc94~NBv7EUo_I3092930929epcas5p32;
+	Thu, 22 Jan 2026 10:31:59 +0000 (GMT)
+Received: from epcas5p1.samsung.com (unknown [182.195.38.88]) by
+	epsnrtp01.localdomain (Postfix) with ESMTP id 4dxcnC0Vd2z6B9m9; Thu, 22 Jan
+	2026 10:31:59 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
+	20260122103158epcas5p4e3fdf02aa0032bde16aefcf8f7896ef9~NBv5zye7J2850828508epcas5p4P;
+	Thu, 22 Jan 2026 10:31:58 +0000 (GMT)
+Received: from INBRO001840 (unknown [107.122.3.105]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20260122103156epsmtip14657583bd1d596454c150368232302b9~NBv4DErW82162221622epsmtip1U;
+	Thu, 22 Jan 2026 10:31:56 +0000 (GMT)
+From: "Pritam Manohar Sutar" <pritam.sutar@samsung.com>
+To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<alim.akhtar@samsung.com>
+Cc: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-samsung-soc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<rosa.pila@samsung.com>, <dev.tailor@samsung.com>, <faraz.ata@samsung.com>,
+	<muhammed.ali@samsung.com>, <selvarasu.g@samsung.com>
+In-Reply-To: <20251024114845.2395166-1-pritam.sutar@samsung.com>
+Subject: RE: [PATCH 0/3] Add and enable USB nodes for ExynosAutov920 SoC
+Date: Thu, 22 Jan 2026 16:01:51 +0530
+Message-ID: <000001dc8b8a$543269d0$fc973d70$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260118135038.8033-1-marek.vasut+renesas@mailbox.org>
- <20260118135038.8033-10-marek.vasut+renesas@mailbox.org> <CAMuHMdWfkHMQFvUzaHpso-fMFAS5u8ABHpEA9ZXq1fxcR-oN6Q@mail.gmail.com>
- <6f817993-1b4a-4600-a771-d6c25efc668b@mailbox.org>
-In-Reply-To: <6f817993-1b4a-4600-a771-d6c25efc668b@mailbox.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 22 Jan 2026 11:24:58 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdX0iuyUhGRPFf4x==e_ZEMjaB_dP6mrM81F+yxqwam0FA@mail.gmail.com>
-X-Gm-Features: AZwV_QjuP8FSEPCU0Lg3L4U6GH5gFTYqAWXZrFYKPuIZu4sDlAHvOrdK6rQ4B2g
-Message-ID: <CAMuHMdX0iuyUhGRPFf4x==e_ZEMjaB_dP6mrM81F+yxqwam0FA@mail.gmail.com>
-Subject: Re: [PATCH v2 9/9] arm64: dts: renesas: ebisu: Describe PCIe/USB3.0
- clock generator
-To: Marek Vasut <marek.vasut@mailbox.org>
-Cc: Mark Brown <broonie@kernel.org>, linux-arm-kernel@lists.infradead.org, 
-	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, devicetree@vger.kernel.org, 
-	linux-phy@lists.infradead.org, linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQJC10xQ5cnsV5/dezQFmmCfFyZ4QgFqW1wVtIYQSwA=
+Content-Language: en-in
+X-CMS-MailID: 20260122103158epcas5p4e3fdf02aa0032bde16aefcf8f7896ef9
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20251024114018epcas5p4e09ca8ea47ff2295a08a162864a47284
+References: <CGME20251024114018epcas5p4e09ca8ea47ff2295a08a162864a47284@epcas5p4.samsung.com>
+	<20251024114845.2395166-1-pritam.sutar@samsung.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.24 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.96 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
+	R_DKIM_ALLOW(-0.20)[samsung.com:s=mail20170921];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258293-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FREEMAIL_CC(0.00)[kernel.org,lists.infradead.org,gmail.com,linaro.org,renesas.com,vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[samsung.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
-	TO_DN_SOME(0.00)[];
-	R_SPF_SOFTFAIL(0.00)[~all:c];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-258295-lists,devicetree=lfdr.de];
+	DMARC_POLICY_ALLOW(0.00)[samsung.com,none];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[samsung.com:email,samsung.com:dkim,samsung.com:mid,infradead.org:email,ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:helo,dfw.mirrors.kernel.org:rdns,linux-m68k.org:email,mail.gmail.com:mid,mailbox.org:email]
-X-Rspamd-Queue-Id: BA80B654F7
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[pritam.sutar@samsung.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	R_SPF_SOFTFAIL(0.00)[~all:c];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_NONE(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: 88B746576F
 X-Rspamd-Action: no action
 
-Hi Marek,
+Hi All,=20
 
-On Wed, 21 Jan 2026 at 23:44, Marek Vasut <marek.vasut@mailbox.org> wrote:
-> On 1/21/26 2:48 PM, Geert Uytterhoeven wrote:
-> >> @@ -871,7 +902,19 @@ &usb2_phy0 {
-> >>          status = "okay";
-> >>   };
-> >>
-> >> +&usb3_phy0 {
-> >> +       clocks = <&pcie_usb_clk 6>;
-> >> +       status = "okay";
-> >> +};
-> >
-> > This does not work, probing fails with:
-> >
-> >      usb_phy_generic usb-phy: dummy supplies not allowed for exclusive
-> > requests (id=vbus)
-> >
-> > Adding a fixed regulator that serves as vbus-supply like in commit
-> > fec2d8fcdedaeeb0 ("arm64: dts: freescale: imx93-phyboard-nash: Add USB
-> > vbus regulators") fixes that issue (and my USB3.0 FLASH driver is
-> > detected, yeah!), but a more accurate description would be better.
->
-> This piece of code in drivers/usb/phy/phy-generic.c [1] shouldn't fail
-> the probe if "vbus-supply" property is not present in DT. If
-> "vbus-supply" property is not present in DT, then
-> PTR_ERR(nop->vbus_draw) == -ENODEV is true, nop->vbus_draw will be set
-> to NULL, but won't encode error, so the dev_err_probe() won't trigger.
->
-> "
-> 259         nop->vbus_draw = devm_regulator_get_exclusive(dev, "vbus");
-> 260         if (PTR_ERR(nop->vbus_draw) == -ENODEV)
-> 261                 nop->vbus_draw = NULL;
-> 262         if (IS_ERR(nop->vbus_draw))
-> 263                 return dev_err_probe(dev, PTR_ERR(nop->vbus_draw),
-> 264                                      "could not get vbus regulator\n");
-> "
->
-> [1]
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/usb/phy/phy-generic.c#n259
+> -----Original Message-----
+> From: Pritam Manohar Sutar <pritam.sutar=40samsung.com>
+> Sent: 24 October 2025 05:19 PM
+> To: robh=40kernel.org; krzk+dt=40kernel.org; conor+dt=40kernel.org;
+> alim.akhtar=40samsung.com
+> Cc: devicetree=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org;=
+ linux-
+> samsung-soc=40vger.kernel.org; linux-kernel=40vger.kernel.org;
+> rosa.pila=40samsung.com; dev.tailor=40samsung.com; faraz.ata=40samsung.co=
+m;
+> muhammed.ali=40samsung.com; selvarasu.g=40samsung.com;
+> pritam.sutar=40samsung.com
+> Subject: =5BPATCH 0/3=5D Add and enable USB nodes for ExynosAutov920 SoC
+>=20
+> This SoC has 2 USB typeC and 2 typeA ports those are DWC3 DRD controllers=
+ and
+> amoung them, one is USB3.1 DRD combo phy and three
+> USB2.0 phy controllers. This patchset adds and enables USB and USB-PHY no=
+des
+> in dts.
+>=20
+> PMIC driver is not implmented yet, we rely on USB LDOs being enabled by t=
+he
+> bootloader and used dummy regulators for now.
+>=20
+> To drive vbus for host mode, it needs GPIO pin to enable vbus regulator.
+> GPIO expander is present in the dts, we used it to enable the vbus regula=
+tor
+> using GPIO.
+>=20
+> USB ports are configured as OTG, and default mode is configured as periph=
+eral.
+> These configurations might be changed based on requirements.
+>=20
+> This patchset has dependancy on schema and driver implementation=5B1=5D a=
+nd role
+> switch control from userspace=5B2=5D patches.
+> =5B1=5D: https://lore.kernel.org/linux-phy/20251010070912.3758334-1-
+> pritam.sutar=40samsung.com/
+> =5B2=5D: https://lore.kernel.org/linux-usb/20251024085455.789555-1-
+> pritam.sutar=40samsung.com/
 
-Sorry, you are right. I missed the PHY driver ignores the error and
-probes successfully, and thus didn't bother doing "echo ee000000.usb >
-/sys/bus/platform/drivers/xhci-renesas-hcd/bind" after /lib/firmware
-became available.
+Above dependent patches are merged, can you please review the patchset?=20
 
-Gr{oetje,eeting}s,
+>=20
+> Pritam Manohar Sutar (3):
+>   arm64: dts: exynos: ExynosAutov920: Add USB and USB-phy nodes
+>   arm64: dts: exynos: ExynosAutov920: Add regulators for the USB
+>   arm64: dts: exynos: ExynosAutov920: Enable USB nodes
+>=20
+>  .../boot/dts/exynos/exynosautov920-sadk.dts   =7C 160 +++++++++++++++++
+>  .../arm64/boot/dts/exynos/exynosautov920.dtsi =7C 162 ++++++++++++++++++
+>  2 files changed, 322 insertions(+)
+>=20
+> --
+> 2.34.1
 
-                        Geert
+Thank you,=20
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Regards,
+Pritam=20
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+
 
