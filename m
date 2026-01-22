@@ -1,182 +1,179 @@
-Return-Path: <devicetree+bounces-258440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258441-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wPEKFlU6cmlMfAAAu9opvQ
-	(envelope-from <devicetree+bounces-258440-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 15:55:17 +0100
+	id wGDRJvhCcmnpfAAAu9opvQ
+	(envelope-from <devicetree+bounces-258441-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:32:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DCFB6830B
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 15:55:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 598CE68E53
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:32:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 760AB7240EE
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:24:13 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 0023A4AC496
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:28:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E26DA34A3BC;
-	Thu, 22 Jan 2026 14:24:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 615C234D3A4;
+	Thu, 22 Jan 2026 14:28:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gqWqPsQD"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WibVxrQi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B18D430C626;
-	Thu, 22 Jan 2026 14:24:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F41629CB3A;
+	Thu, 22 Jan 2026 14:28:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769091847; cv=none; b=k+VvFcVYYSZfEvKmLCSZBokYWb1jXlsIK9zKQoUUNUMkzr8eXFl/ddRMXnsFdBzq9+kc5Pa5LZf8tcU7JQ04Z8O6/94xMZhZ/icQfTH+v5DDUyCI5sC+hn9EhH+mo81xzQnxlpgYAoe7BfODRwcEFvyyFY3yOVeweZu7p1anDNQ=
+	t=1769092127; cv=none; b=fsxj6u3OvwMImnxd1isZd3YG3CQegQwVmpbq3XFXHBmEgMXMax1EsI8ZzMihhTj2L5f/4EUj7Kqy1prFCIbf85dqXhoXGe/kS4fw3tBbCoMpJTGUY6lk98a8So3MN+Dggvvr1TCA2t2dJu8Qot3FnTd6Gc2msxe+pbbD1NYowzg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769091847; c=relaxed/simple;
-	bh=9ldknsSqFx/iQzwBf1LlwoaFp95z9BYgWXvBcs7uj6k=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=gg1mBggnYfaIMw+YVxs8INbBJ3JderZtoXPWCx+tm7qjbpjn4XQGifxIB+uvVjdoQMtmRsSPcDHvseTYrn/acLlbVUN3O7KZ+EzCObdDUREQhv3w7K+tB9c6Xdlm/UYtfi4EpalQE3jyy74Rn/PJyxQS9aifHIJIk6SI+WT52yg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gqWqPsQD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA46DC116C6;
-	Thu, 22 Jan 2026 14:24:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769091846;
-	bh=9ldknsSqFx/iQzwBf1LlwoaFp95z9BYgWXvBcs7uj6k=;
-	h=From:To:Cc:Subject:Date:From;
-	b=gqWqPsQDVP2cdPbl5caNzMQRq9JVr/7CNirfOa++CtZgh6NphXMU6qrpI58rF02s/
-	 1YHcA5mepIAwS0300uSmojrjEGm81rBmttC7Nl0uTbYb5swf/EsnUlxvMwOuQIBT8P
-	 3XppQt4NxA5sk4OYuCn26LiGz2Ed6IZYbd7f0fLC2ADXLBMXo3lhC1DCEKLSUM7QUA
-	 uAXJcH7/fF++4+iP2Ty+hR8bQPHSpUYeUmASOCgA5JIBnZfA8gZ2woWl9El3AfPPNJ
-	 7fOJfMyRKy0cqtJLyDywMCBJjZ7JYTAX8Tp2QoKJA3aBcBSQLlCBuTyrAfM+MlUu2p
-	 nf1bVqF512K/Q==
-From: Yixun Lan <dlan@kernel.org>
-To: soc@lists.linux.dev
-Cc: Yixun Lan <dlan@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	spacemit@lists.linux.dev,
-	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [GIT PULL] RISC-V SpacemiT Devicetrees for v6.20
-Date: Thu, 22 Jan 2026 22:23:37 +0800
-Message-ID: <20260122220523-GYD3596979@kernel.org>
-X-Mailer: git-send-email 2.52.0
+	s=arc-20240116; t=1769092127; c=relaxed/simple;
+	bh=q+1sYBA9PQtb89RfW6pjRHDbl1q/Q0h/ZePbba5ii7U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BtEJbch6LV7t5Gjc42Itfi2LxbCemxetUnQrypAovoiZ6RHddbW+52cLwhKi3NlY/mtIbMj64bCIYupZ4vFas9ZMNm+VXAXB8tWUge4vUtAOI0rLLyOdqRCf2YHkL9Am75eZjtk+XOVlE4l5l5tMeDeDtIsbtVtGjcnGn807tss=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=WibVxrQi; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1769092125; x=1800628125;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=q+1sYBA9PQtb89RfW6pjRHDbl1q/Q0h/ZePbba5ii7U=;
+  b=WibVxrQiDMSgws6vqRl9nqs2CZLTPvWbUkDht/cW7xFuS3zNFivJfW23
+   omaQyojJrONog65fmJ2PIUFqAuPPw4rD5IDFYO5M5tggcx9ltulQgDXfk
+   jDH4BuLnRv/3IPuN0to/190Ucu5Z+1gKZIWoWfk30i/UXJF/3xR4hR0Cp
+   e8I90OWW6jg9J5v5BS/J6de1OyTnSftP6vprx3nv8VK6Hhb7rBh6gQaXY
+   IZhUhqLMWfitWdq0KHzmAF836p/OsvENlUZL95JGvIPh4d4PobTVdn363
+   nwDCuxwR7YG4GPaelt0CfJY4d2llvxCRyPXSME9ih7RKYkdbho3kqxOxE
+   w==;
+X-CSE-ConnectionGUID: zgrHAWwpRnaeWVi6SFpaxQ==
+X-CSE-MsgGUID: vbXOMJK7QzK0O2DVQ+1rEA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11679"; a="70389188"
+X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; 
+   d="scan'208";a="70389188"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2026 06:28:44 -0800
+X-CSE-ConnectionGUID: MtVen+tNTfmkXZF5GblPbA==
+X-CSE-MsgGUID: WloQCkRlSz69zIISyvigYg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; 
+   d="scan'208";a="206648487"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.225])
+  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2026 06:28:39 -0800
+Date: Thu, 22 Jan 2026 16:28:37 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc: netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	linux-kernel@vger.kernel.org,
+	Herve Codina <herve.codina@bootlin.com>,
+	Mark Brown <broonie@kernel.org>,
+	Serge Semin <fancer.lancer@gmail.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Choong Yong Liang <yong.liang.choong@linux.intel.com>,
+	Jiawen Wu <jiawenwu@trustnetic.com>
+Subject: Re: [PATCH v2 net-next 01/15] net: mdio-regmap: permit working with
+ non-MMIO regmaps
+Message-ID: <aXI0FdE66sejdvng@smile.fi.intel.com>
+References: <20260122105654.105600-1-vladimir.oltean@nxp.com>
+ <20260122105654.105600-2-vladimir.oltean@nxp.com>
+ <aXISv3Acm1v6yS4V@smile.fi.intel.com>
+ <20260122121301.cyxyevi7xvqw2axk@skbuf>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260122121301.cyxyevi7xvqw2axk@skbuf>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.96 / 15.00];
+X-Spamd-Result: default: False [-0.46 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
-	TAGGED_FROM(0.00)[bounces-258440-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lunn.ch,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,bootlin.com,linux.intel.com,trustnetic.com];
+	DMARC_POLICY_ALLOW(0.00)[intel.com,none];
+	TAGGED_FROM(0.00)[bounces-258441-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	R_SPF_SOFTFAIL(0.00)[~all:c];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns]
-X-Rspamd-Queue-Id: 2DCFB6830B
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	R_SPF_SOFTFAIL(0.00)[~all];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smile.fi.intel.com:mid,ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns,bootlin.com:url,bootlin.com:email,intel.com:dkim,nxp.com:email]
+X-Rspamd-Queue-Id: 598CE68E53
 X-Rspamd-Action: no action
 
-Hi Arnd,
+On Thu, Jan 22, 2026 at 02:13:01PM +0200, Vladimir Oltean wrote:
+> On Thu, Jan 22, 2026 at 02:06:23PM +0200, Andy Shevchenko wrote:
+> > > Cc: Mark Brown <broonie@kernel.org>
+> > > Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>
+> > 
+> > FWIW, Cc list may be located after --- line. It will have the same effect on
+> > emails (as regular tooling will parse and put them into email headers), but
+> > will reduce unneeded noise in the commit message. List will be still available
+> > on lore.kernel.org in the mail archives.
+> 
+> Thanks for the comment. I know it may be located after ---, but for me,
+> doing that implies an extra step which I find unnecessary (moving them
+> there after the git format-patch stage). I keep the Cc: in the commit
+> message in git so that it's preserved across revisions.
 
-   Please pull SpacemiT's DeviceTree changes for v6.20
+You can keep them in your commit message. Many --- lines are also allowed!
 
-Yixun Lan
+> > > Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+> > > Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+> > > ---
+> > 
+> >   Cc: ...
+> >   ...
 
-The following changes since commit 8f0b4cce4481fb22653697cced8d0d04027cb1e8:
+...
 
-  Linux 6.19-rc1 (2025-12-14 16:05:07 +1200)
+> > > +	unsigned int base;
+> > 
+> > Hmm... resource_size_t ?
+> 
+> Well, regmap_read() takes "unsigned int reg".
+> https://elixir.bootlin.com/linux/v6.18.6/source/include/linux/regmap.h#L1297
+> So in practice, a truncation will be done somewhere if the register base
+> exceeds unsigned int storage capacity. But I didn't feel that it's worth
+> handling that.
 
-are available in the Git repository at:
+Maybe a comment near to the assignment?
 
-  https://github.com/spacemit-com/linux tags/spacemit-dt-for-6.20-1
+-- 
+With Best Regards,
+Andy Shevchenko
 
-for you to fetch changes up to 5164e95565d3fd508ca8a95351323f5716dfb695:
 
-  riscv: dts: spacemit: Disable ETH PHY sleep mode for OrangePi (2026-01-21 08:52:03 +0800)
-
-----------------------------------------------------------------
-RISC-V SpacemiT DT changes for 6.20
-
-- Disable Ethernet PHY auto sleep mode
-- Add pinctrl IO power support
-- Add K3 Pico-ITX board
-- Add support for K3 SoC
-- Add DWC USB support
-- Add reset for eMMC(sdhci)/I2C
-- Add PCIe support
-- Support PMIC for Jupiter board
-
-----------------------------------------------------------------
-Alex Elder (2):
-      riscv: dts: spacemit: Add a PCIe regulator
-      riscv: dts: spacemit: PCIe and PHY-related updates
-
-Chukun Pan (1):
-      riscv: dts: spacemit: Disable ETH PHY sleep mode for OrangePi
-
-Encrow Thorne (1):
-      riscv: dts: spacemit: add reset property
-
-Guodong Xu (8):
-      riscv: dts: spacemit: k1: Add "b" ISA extension
-      dt-bindings: riscv: add SpacemiT X100 CPU compatible
-      dt-bindings: timer: add SpacemiT K3 CLINT
-      dt-bindings: interrupt-controller: add SpacemiT K3 APLIC
-      dt-bindings: interrupt-controller: add SpacemiT K3 IMSIC
-      dt-bindings: riscv: spacemit: add K3 and Pico-ITX board bindings
-      riscv: dts: spacemit: add initial support for K3 SoC
-      riscv: dts: spacemit: add K3 Pico-ITX board support
-
-Javier Martinez Canillas (3):
-      riscv: dts: spacemit: Enable i2c8 adapter for Milk-V Jupiter
-      riscv: dts: spacemit: Define fixed regulators for Milk-V Jupiter
-      riscv: dts: spacemit: Define the P1 PMIC regulators for Milk-V Jupiter
-
-Troy Mitchell (1):
-      riscv: dts: spacemit: pinctrl: update register and IO power
-
-Yixun Lan (1):
-      riscv: dts: spacemit: sdhci: add reset support
-
-Ze Huang (3):
-      riscv: dts: spacemit: Add USB2 PHY node for K1
-      riscv: dts: spacemit: Add DWC3 USB 3.0 controller node for K1
-      riscv: dts: spacemit: Enable USB3.0 on BananaPi-F3
-
- .../bindings/interrupt-controller/riscv,aplic.yaml |   1 +
- .../interrupt-controller/riscv,imsics.yaml         |   1 +
- Documentation/devicetree/bindings/riscv/cpus.yaml  |   1 +
- .../devicetree/bindings/riscv/spacemit.yaml        |   5 +
- .../devicetree/bindings/timer/sifive,clint.yaml    |   1 +
- arch/riscv/boot/dts/spacemit/Makefile              |   1 +
- arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts    |  90 ++++
- arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts  | 135 +++++
- arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts   |   2 +
- arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts   |   2 +
- arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi       |  33 ++
- arch/riscv/boot/dts/spacemit/k1.dtsi               | 254 ++++++++-
- arch/riscv/boot/dts/spacemit/k3-pico-itx.dts       |  29 ++
- arch/riscv/boot/dts/spacemit/k3.dtsi               | 578 +++++++++++++++++++++
- 14 files changed, 1116 insertions(+), 17 deletions(-)
- create mode 100644 arch/riscv/boot/dts/spacemit/k3-pico-itx.dts
- create mode 100644 arch/riscv/boot/dts/spacemit/k3.dtsi
 
