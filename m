@@ -1,371 +1,225 @@
-Return-Path: <devicetree+bounces-258249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258250-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IAfXLkjkcWk+MgAAu9opvQ
-	(envelope-from <devicetree+bounces-258249-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 09:48:08 +0100
+	id gDcmJxLncWkONAAAu9opvQ
+	(envelope-from <devicetree+bounces-258250-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 10:00:02 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6279663671
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 09:48:08 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4CC763AB5
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 10:00:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 092CA44A0DC
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 08:39:09 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7308E5E1F25
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 08:53:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B71B53EFD28;
-	Thu, 22 Jan 2026 08:39:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C6083E8C5E;
+	Thu, 22 Jan 2026 08:51:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WJx43O4U"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="E7E5MQUA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2D221DFD8B
-	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 08:39:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2BF03C1986;
+	Thu, 22 Jan 2026 08:51:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769071144; cv=none; b=CqJVd8mgX5NY2H3hE67g3/fXejwzs74LcmXKC1rWgQ3VsRuCBdu5PEFPOHzi6p0xAmSYVym0k1mgUI/ves/i7OSO3GSYnGbO9sLwlb02+gTC5/Rt2FIpRGNf/pUZp/V2Sh7J7ev4V0Co5Exx5Bqxy44e+UCMippOdwMytISHL2Q=
+	t=1769071915; cv=none; b=nvPWj3CYm0BUVih5HTpscpSJXUhngGfByctubHrVfZ8Y4AHkcbj1+sXoLCT0FKK4fy6FkC/lTcZOeyZJsZLQwL/8sLkb9GZl/QpzgiYY823vYdLHazOPKKFNPX0fFAfKCpe3Xax9o/Y947ds0Ix9p2UZBPR5eZFEpoPhCRc8Uvk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769071144; c=relaxed/simple;
-	bh=Bsok9y0iUeV7AveEoSqBf60zCkbG3Xq4f+71bZRjVKc=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=klQHTGmcrcYwA+bF8oi/sa57z05hQ9E1NS/LDMcvyYwa31GMx2izY2j9j3Nl+IAvVDmzm8Tz/6w52MVcKBkuULNzSOJmgUYTaVlQkL70VwtqsyFLtiuCrUQ0y1MdtuCLgJUCBvVtlnnCsxBlHN1hdFE9Zj2X34LbO5kM7NZxSTI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WJx43O4U; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-47d59da3d81so11823255e9.0
-        for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 00:39:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1769071140; x=1769675940; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WRgWt3QOSpx0eS1nwXFOWd2CSZ21RZ8VIcbpaI5Urno=;
-        b=WJx43O4UdQcqks0hvtf5gC0hbuGCkvUXTBd5ovn6D8Ub8Qzgpgd2qpehnZ4qGgrNjO
-         NFYTnyiymeW1Rzg+aowhTWzhnZoVfmegiN9uRnaJkyphQ9KIz0cY3PQMgwujpGk4/GpG
-         Rd2iQVPBRQf/cyerZ/5AjBPwUUDkC0u3w+HDOMiZ8T7MLL4IXPnb/2Ybv5KCmN+sgrOf
-         u7UjKsBtWGC9bszBBPoUlNEUK0zLeVVUOJ1q03nlj5Hbq9H9rOpNl2dtKaHakS2EG0qw
-         QQjYpEb79zT8h/SNHB1JF5Pweuvqf8NnhPFjt9QrDye5y81c6s7+RwYhQRKFl8WvR/jI
-         qduQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769071140; x=1769675940;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WRgWt3QOSpx0eS1nwXFOWd2CSZ21RZ8VIcbpaI5Urno=;
-        b=c67pW4rx3uMZ0QQr9w7WS8XY3gbNY7iGCnBRoFPQ37tQKctZaH/9PHt34+eKCQP3nt
-         vtbwrK1XQX4Vr/vfkdwSGax2C2ePlQ2ZGjap95pkdCuI2lFvsrTUadY6tcDIY/NvFPRf
-         48QYxO/8ki5r7zbeTWkwuzd1szKQ9ngwVGbdrmj6P/ObwamArJ1sXHH4404h71B5zaMY
-         D1sV/mGE0XFtSoIrEq4LtcoRyEOULyZaU8UOem+2vCAtG52nH+pMaXwl9+28z8UjFGwd
-         GcQm99Xq15qjyuuMGxjdt/ZKd+eq/kyepvspJP5Wd9jCq/2GgygwbGiwZDu7MDmWwdDl
-         Xmpg==
-X-Forwarded-Encrypted: i=1; AJvYcCV2OEqHjQeqBDiLovIcckuymxWaNF4Pnw1F0njRj4JJJ67pMFQc37sA/I0g7ocFS5P2mUAR6tDVOPD5@vger.kernel.org
-X-Gm-Message-State: AOJu0YwI+FYDdo9e1GYYL1qO+wlrCfqZub8aTZhKel0xvy0KIgKqC3r2
-	SgU8WnU65nR51AeuUs048m7zHBDOhyz4hGcOv3Yn4f5AIdQ9VFdZ5ZfCwvK1cpjd2Ow=
-X-Gm-Gg: AZuq6aLX7CUi1b3rL+RfMf/zRQEe/ch5ivOX7gAWrN9xUku/Uh8l3RmkYCLmyyilrYF
-	DrJe1r/NQcPiNWNUpMfG3FzAp0zLWUJGLfU9yzmvC5zTpfu98d6bkHtLvVUYzPzgLGzz8QNG7DO
-	3iygMtUuwrz9GSqEt3BBRla6c0wajhrDAumx35YGqodSmdcOgNAwVcnzQMTr6ZiIdjxm9Vmjh5a
-	5i4txlxz/nvaacgkDmF+f5WWwVZjrcpoWjDd/SlbSEdVfnS+mvHJ/7lKVwDAU/0Jf+4eqxZYJxw
-	lRtf3G7NnrIfBHGutCJEUAuhudMwdtQRMrTz3a3r3sn3RvzkGR5Dw6X50esCdQ61sR1w7tjZCyv
-	8T7WwOXDhRVa3ssT+DpgTGXLilDCavrKqVSq5ALINd/CmcgMJ9ryXqy1N2cUMEfe6luaFLfPpNP
-	BE5tXKTlT7/Ua60cCVupcYP1CvY2gLyvWDjtyVXJayArD9jnsfJQ9pAtpJUmi50BI=
-X-Received: by 2002:a05:600c:4653:b0:47e:e0b3:2437 with SMTP id 5b1f17b1804b1-480470689femr23241895e9.5.1769071140057;
-        Thu, 22 Jan 2026 00:39:00 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:3d9:2080:9dc7:6955:8850:f258? ([2a01:e0a:3d9:2080:9dc7:6955:8850:f258])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-480470cf385sm48724455e9.13.2026.01.22.00.38.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Jan 2026 00:38:59 -0800 (PST)
-Message-ID: <5c54dffe-f8eb-4b45-97b0-512a9658c212@linaro.org>
-Date: Thu, 22 Jan 2026 09:38:58 +0100
+	s=arc-20240116; t=1769071915; c=relaxed/simple;
+	bh=Z1BPPqPX3pPbBMPk0JKd8AgqIRbd45v5OCLMXlCvDmI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TWspjDnk60CBP5jG1y4mHpmxTECn3mpXTlBeh901k3LIJWe3fuLYdwKQQ1mB2elTKBy0ri0BHRhkt3bw/CE0bKgLnxSIavDjOPbaPSJVkY+vww/w1uOg9DqXw53t7ksBHzfRovMyDkeKy6eLlTnYLfLGSEp9hGiHFIO0RzHBRQ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=E7E5MQUA; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1769071913; x=1800607913;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Z1BPPqPX3pPbBMPk0JKd8AgqIRbd45v5OCLMXlCvDmI=;
+  b=E7E5MQUA86S2kVqhNNBjhls97COoh4iDg41WpWIUvxZ3zlfilzZMNmtG
+   uqPMBjiAXQqNA8ajbFVXlq1HxI6gZ3KX4BXMgX2yoiyEMV9hahOEoOvOg
+   qB72TC0BFoshZpC+L/Y8TQyKmW+W5HQIgQAZ19HHRj0GB9DJ6KFRnft3s
+   J6W6vL8zo2KHxA+UiZagjRF0LlFuAqpmwri5/kjBD70sI1jJ+IsXJKhR7
+   LYOQrbKMwoB6PUpYIJ8x+PKBKusljKxX7VbLt6tHfUU7gF1dm7VFSItP4
+   0A2YlzlhcpUe6Hvp2PZXLzNRfVvzpxZ+Fp0tKZ7rcJc8XozuLMEidBc4s
+   w==;
+X-CSE-ConnectionGUID: Kzuh9nCeQWO3ObbJjCDniQ==
+X-CSE-MsgGUID: TEjq8q/JTVaSGN/gGfWPFQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="87886583"
+X-IronPort-AV: E=Sophos;i="6.21,245,1763452800"; 
+   d="scan'208";a="87886583"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2026 00:51:52 -0800
+X-CSE-ConnectionGUID: Ut8v1+UKSXefrKbRvupFww==
+X-CSE-MsgGUID: Fmn0XlYCQ9Ow5Wf/9VG+3g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,245,1763452800"; 
+   d="scan'208";a="211130999"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.225])
+  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2026 00:51:45 -0800
+Date: Thu, 22 Jan 2026 10:51:43 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Sui Jingfeng <sui.jingfeng@linux.dev>
+Cc: manivannan.sadhasivam@oss.qualcomm.com, Rob Herring <robh@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Nicolas Schier <nicolas.schier@linux.dev>,
+	Hans de Goede <hansg@kernel.org>,
+	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	Mark Pearson <mpearson-lenovo@squebb.ca>,
+	"Derek J. Clark" <derekjohn.clark@gmail.com>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marcel Holtmann <marcel@holtmann.org>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Daniel Scally <djrscally@gmail.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>, linux-serial@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+	platform-driver-x86@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	linux-bluetooth@vger.kernel.org, linux-pm@vger.kernel.org,
+	Stephan Gerhold <stephan.gerhold@linaro.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	linux-acpi@vger.kernel.org
+Subject: Re: [PATCH v3 03/14] software node: Implement device_get_match_data
+ fwnode callback
+Message-ID: <aXHlHyba_kkqnQPP@smile.fi.intel.com>
+References: <20260110-pci-m2-e-v3-0-4faee7d0d5ae@oss.qualcomm.com>
+ <20260110-pci-m2-e-v3-3-4faee7d0d5ae@oss.qualcomm.com>
+ <aWSpFk9z0zpyKjr6@smile.fi.intel.com>
+ <26a001c3-2140-4241-87dd-604eab3f827b@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: add basic devicetree for Ayaneo
- Pocket S2 gaming console
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov
- <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, KancyJoe <kancy2333@outlook.com>
-References: <20260121-topic-sm8650-ayaneo-pocket-s2-base-v1-0-bb3f95f1c085@linaro.org>
- <20260121-topic-sm8650-ayaneo-pocket-s2-base-v1-3-bb3f95f1c085@linaro.org>
- <hmnyvxz7ashufiiil6hf4lg5g435e53zd3xla7qeqcb2styrqg@jkbjl6arm33g>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <hmnyvxz7ashufiiil6hf4lg5g435e53zd3xla7qeqcb2styrqg@jkbjl6arm33g>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <26a001c3-2140-4241-87dd-604eab3f827b@linux.dev>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,oss.qualcomm.com,linux.dev,gmail.com,poorly.run,somainline.org,ffwll.ch,vger.kernel.org,lists.freedesktop.org,outlook.com];
-	DMARC_POLICY_ALLOW(0.00)[linaro.org,none];
-	TAGGED_FROM(0.00)[bounces-258249-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[outlook.com:email,0.0.0.1:email,ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns,1c:email,linaro.org:dkim,linaro.org:email,linaro.org:replyto,linaro.org:mid,e:email,0.0.0.0:email];
+	FREEMAIL_CC(0.00)[oss.qualcomm.com,kernel.org,linuxfoundation.org,linux.dev,linux.intel.com,squebb.ca,gmail.com,holtmann.org,bgdev.pl,vger.kernel.org,linaro.org];
+	DMARC_POLICY_ALLOW(0.00)[intel.com,none];
+	TAGGED_FROM(0.00)[bounces-258250-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	HAS_ORG_HEADER(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	RCPT_COUNT_TWELVE(0.00)[35];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
-	HAS_REPLYTO(0.00)[neil.armstrong@linaro.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	R_SPF_SOFTFAIL(0.00)[~all:c];
-	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	R_SPF_SOFTFAIL(0.00)[~all:c];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_EQ_FROM(0.00)[]
-X-Rspamd-Queue-Id: 6279663671
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns,intel.com:dkim,smile.fi.intel.com:mid]
+X-Rspamd-Queue-Id: D4CC763AB5
 X-Rspamd-Action: no action
 
-On 1/22/26 02:30, Dmitry Baryshkov wrote:
-> On Wed, Jan 21, 2026 at 05:40:28PM +0100, Neil Armstrong wrote:
->> From: KancyJoe <kancy2333@outlook.com>
->>
->> Add initial Device Tree for the Ayaneo Pocket S2 gaming console based
->> on the Qualcomm Snapdragon 8 Gen 3 platform.
->>
->> The design is similar to a phone wihout the modem, the game control
->> is handled via a standalone controller connected to a PCIe USB
->> controller.
->>
->> Display support will be added in a second time.
->>
->> Signed-off-by: KancyJoe <kancy2333@outlook.com>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   arch/arm64/boot/dts/qcom/Makefile                  |    1 +
->>   .../boot/dts/qcom/sm8650-ayaneo-pocket-s2.dts      | 1445 ++++++++++++++++++++
->>   arch/arm64/boot/dts/qcom/sm8650.dtsi               |    2 +-
->>   drivers/gpu/drm/msm/dsi/dsi.c                      |    4 +-
->>   4 files changed, 1449 insertions(+), 3 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
->> index 6f34d5ed331c..1ba29755e5ba 100644
->> --- a/arch/arm64/boot/dts/qcom/Makefile
->> +++ b/arch/arm64/boot/dts/qcom/Makefile
->> @@ -313,6 +313,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm8550-mtp.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= sm8550-qrd.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= sm8550-samsung-q5q.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= sm8550-sony-xperia-yodo-pdx234.dtb
->> +dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-ayaneo-pocket-s2.dtb
->>   
->>   sm8650-hdk-display-card-dtbs	:= sm8650-hdk.dtb sm8650-hdk-display-card.dtbo
->>   
->> diff --git a/arch/arm64/boot/dts/qcom/sm8650-ayaneo-pocket-s2.dts b/arch/arm64/boot/dts/qcom/sm8650-ayaneo-pocket-s2.dts
->> new file mode 100644
->> index 000000000000..141d92933957
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/sm8650-ayaneo-pocket-s2.dts
->> +
->> +&i2c3 {
+On Wed, Jan 14, 2026 at 11:21:59AM +0800, Sui Jingfeng wrote:
+> On 2026/1/12 15:56, Andy Shevchenko wrote:
+> > On Sat, Jan 10, 2026 at 12:26:21PM +0530, Manivannan Sadhasivam via B4 Relay wrote:
+> > > Because the software node backend of the fwnode API framework lacks an
+> > > implementation for the .device_get_match_data function callback.
+> > Maybe this is done on purpose.
 > 
-> clock-frequency?
+> It is a *fact* that the broken swnode lacks an implementation for the .device_get_match_data stub.
 
-We never did so far we we didn't need more than 100KHz
+No need to re-create board files when it's not needed or doesn't fit.
 
-> 
->> +	status = "okay";
->> +
->> +	wcd_usbss: typec-mux@e {
->> +		compatible = "qcom,wcd9395-usbss", "qcom,wcd9390-usbss";
->> +		reg = <0xe>;
->> +
->> +		vdd-supply = <&vreg_l15b_1p8>;
->> +		reset-gpios = <&tlmm 152 GPIO_ACTIVE_HIGH>;
->> +
->> +		mode-switch;
->> +		orientation-switch;
->> +
->> +		ports {
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
->> +
->> +			port@0 {
->> +				reg = <0>;
->> +
->> +				wcd_usbss_sbu_mux: endpoint {
->> +					remote-endpoint = <&pmic_glink_sbu>;
->> +				};
->> +			};
->> +
->> +			port@1 {
->> +				reg = <1>;
->> +
->> +				wcd_usbss_headset_out: endpoint {
->> +					remote-endpoint = <&wcd_codec_headset_in>;
->> +				};
->> +			};
->> +		};
->> +	};
->> +};
->> +
->> +&i2c6 {
-> 
-> clock-frequency?
-> 
->> +	status = "okay";
->> +
->> +	typec-mux@1c {
->> +		compatible = "onnn,nb7vpq904m";
->> +		reg = <0x1c>;
->> +
->> +		vcc-supply = <&vreg_l15b_1p8>;
->> +
->> +		retimer-switch;
->> +		orientation-switch;
->> +
->> +		ports {
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
->> +
->> +			port@0 {
->> +				reg = <0>;
->> +
->> +				redriver_ss_out: endpoint {
->> +					remote-endpoint = <&pmic_glink_ss_in>;
->> +				};
->> +			};
->> +
->> +			port@1 {
->> +				reg = <1>;
->> +
->> +				redriver_ss_in: endpoint {
->> +					remote-endpoint = <&usb_dp_qmpphy_out>;
->> +				};
->> +			};
->> +		};
->> +	};
->> +};
->> +
->> +&iris {
->> +	status = "okay";
-> 
-> With the default firmware?
+> Otherwise, If it is really done *on purpose*, the maintainers of swnode
+> backend could/shall document it in the source file *explicitly*.
 
-Yes
+Probably it should be spoken in a better way.
 
+> > Have you thought about this aspect?
 > 
->> +&remoteproc_adsp {
->> +	firmware-name = "qcom/sm8650/ayaneo/ps2/adsp.mbn",
->> +			"qcom/sm8650/ayaneo/ps2/adsp_dtb.mbn";
->> +
->> +	status = "okay";
->> +};
->> +
->> +&remoteproc_cdsp {
->> +	firmware-name = "qcom/sm8650/ayaneo/ps2/cdsp.mbn",
->> +			"qcom/sm8650/ayaneo/ps2/cdsp_dtb.mbn";
-> 
-> Is it fused?
+> If you are sure, then stop telling us something start with "Maybe ..."
 
-No but as Kancy reported, it's usual vendord provides their own
-version with battery & features tuning.
+I wasn't the author of the swnode idea I can't read their minds. Please,
+ask the respective people about this directly.
 
+> > > This makes it difficult to use(and/or test) a few drivers that originates
+> > > from DT world on the non-DT platform.
+> > How difficult?
 > 
->> +
->> +	status = "okay";
->> +};
->> +
+> The emphasis isn't on the 'difficult', it means that not convenient
 > 
->> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
->> index 07ae74851621..fcd5a1a45803 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
->> @@ -3917,7 +3917,7 @@ opp-32000000-4 {
->>   				};
->>   			};
->>   
->> -			pcie@0 {
->> +			pcieport1: pcie@0 {
->>   				device_type = "pci";
->>   				reg = <0x0 0x0 0x0 0x0 0x0>;
->>   				bus-range = <0x01 0xff>;
->> diff --git a/drivers/gpu/drm/msm/dsi/dsi.c b/drivers/gpu/drm/msm/dsi/dsi.c
->> index d8bb40ef820e..0781dce7cda2 100644
->> --- a/drivers/gpu/drm/msm/dsi/dsi.c
->> +++ b/drivers/gpu/drm/msm/dsi/dsi.c
+> > DSA implementation went to the way of taking DT overlay
+> > approach.
 > 
-> Something stray
+> Software node can do the same implementation just as what ACPI fwnode backend does.
 > 
->> @@ -43,12 +43,12 @@ static int dsi_get_phy(struct msm_dsi *msm_dsi)
->>   	of_node_put(phy_node);
->>   
->>   	if (!phy_pdev) {
->> -		DRM_DEV_ERROR(&pdev->dev, "%s: phy driver is not ready\n", __func__);
->> +		DRM_DEV_ERROR(&pdev->dev, "%s: 0 phy driver is not ready\n", __func__);
->>   		return -EPROBE_DEFER;
->>   	}
->>   	if (!msm_dsi->phy) {
->>   		put_device(&phy_pdev->dev);
->> -		DRM_DEV_ERROR(&pdev->dev, "%s: phy driver is not ready\n", __func__);
->> +		DRM_DEV_ERROR(&pdev->dev, "%s: 1 phy driver is not ready\n", __func__);
->>   		return -EPROBE_DEFER;
->>   	}
+> > Why that one can't be applied here?
+> 
+> DT overlay requires the OS distribution(such as ubuntu) has theDT overlay
+> config option selected.  this is introduce extra overhead/side effects on the
+> non-DT systems.
 
-Aw, will drop in v2
+If we have hotpluggable or runtime reconfigurable devices this is the expected
+option to support them. I don't see a problem here.
 
-Neil
-
->>   
->>
->> -- 
->> 2.34.1
->>
+> > > Implement the .device_get_match_data fwnode callback, which helps to keep
+> > > the three backends of the fwnode API aligned as much as possible. This is
+> > > also a fundamental step to make a few drivers OF-independent truely
+> > > possible.
+> > > 
+> > > Device drivers or platform setup codes are expected to provide a software
+> > > node string property, named as "compatible". At this moment, the value of
+> > > this string property is being used to match against the compatible entries
+> > > in the of_device_id table. It can be extended in the future though.
+> > I really do not want to see this patch
 > 
+> Whatever!
+> 
+> Then just stop the endless, bruth-force ranting on such a straight-forward thing.
+> 
+> > without very good justification
+> 
+> Justifications has been provided over and over again.
+> 
+> > (note, there were at least two attempts in the past
+> 
+> This exactly saying that the implementation is missing.
+
+Now you count a third one for your pleasure :-)
+
+P.S.
+We already had this discussion in the past and this attitude won't help
+moving forward.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
