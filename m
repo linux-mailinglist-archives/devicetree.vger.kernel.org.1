@@ -1,276 +1,204 @@
-Return-Path: <devicetree+bounces-258432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258434-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KJ+oJshFcmlCgQAAu9opvQ
-	(envelope-from <devicetree+bounces-258432-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:44:08 +0100
+	id aAxUMs85cmlMfAAAu9opvQ
+	(envelope-from <devicetree+bounces-258434-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 15:53:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F5B0691CA
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:44:08 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 455F2682A9
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 15:53:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5A4065426B9
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:01:12 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 3196670D2E9
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 14:03:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E8863446A3;
-	Thu, 22 Jan 2026 14:00:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24D7B32D422;
+	Thu, 22 Jan 2026 14:03:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ldJnZral";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Jk+Sc138"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OkiQK3Bs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ABC5345750
-	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 14:00:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA91831AF3B;
+	Thu, 22 Jan 2026 14:03:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769090431; cv=none; b=Wu2Ib+R0bZNYkryV3L5CKaRCSQTNN1YZgFhminMXMnerhP9WzvqOv+bH12NeJ7UhZhw8EsAp9IgyMa7eHj5O61yhc9IhznalRFre52kSGc7Mz99iMeSjGYcKVE6MwUi/ouOPfeCeSvlYQfVCi1JS+kVx2kiBsztT+SC6y+EDzf4=
+	t=1769090605; cv=none; b=gwcYSQYt/Ue1MUUhDw/3C4Evt9NZCIYRkhYjPKx8utY7GBw9YQYnAYo78eQ68hczG14m9oGBNWyhLg+JYBXAK8IP/sYydpTl7yJHaQF6fPpq9r2LYD0dTwO4rWXbXkU/jxP+Ds4Zer9LfSi0DCGkPiESCsQk4sNlLfM+aFJUrPY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769090431; c=relaxed/simple;
-	bh=8TJKSHUj3kenAiwXWPmPxtoqycWg9NUKkJGDdUa9hV0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pZSFMr5c/aEM9H9iPwU1IlDSB7uctzlXrlqYrBEnTAkcvNcfQQCVYxVcrihB6itdXneNJ8zF5dEAgFt0pNMN7GompKyliCjotCsHN83kiBluMxM4cfGPYoOZ3B3HxXcJpVnuuM6dbV1m+8ZtNqPupJpwFSwMERrkKL8ix5ZyJMg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ldJnZral; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Jk+Sc138; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60M8wkXe646154
-	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 14:00:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	YEc9GU3L05svxilgKGtwX6lohsUU6+tXBYCQfjLvprc=; b=ldJnZralXNyd+ICz
-	OipaArRwpZHqpcbME7/v4EcjjWC84hZRM5Hfks9ReszeSiGAlgIqI60plzcICExU
-	zA6hF4NN4hh5+O1Zf52DRegfZxcvn+hx0GFm6pW0/CBFCWu8hN1OEjzI5rfFiVJl
-	jx7KVXkQzdSYOd4xVElP4+Of9+2S6QNfUu78kUdgd/WPnl+UTMOyQ1Grmd/SoZD1
-	3aWDplgJ82oqz3gX/THv4lIr4m1IQNtDZiBxMyLgIXmlSZbiEkYC/W821ZuRfduo
-	FYjQ1h1xi4xp0YaiMiZnSoZwRAkzfOCBO95gdlTSdW4oQjBtDzVAEn/D0R4SDXZL
-	rDYhhQ==
-Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bu8j9tba3-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 14:00:29 +0000 (GMT)
-Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-c56848e6f45so540268a12.2
-        for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 06:00:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769090428; x=1769695228; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=YEc9GU3L05svxilgKGtwX6lohsUU6+tXBYCQfjLvprc=;
-        b=Jk+Sc138lKiG9Ngrep557wMDQvALVMWhC9UHIv23WzGn25Y9yNYBodnm1LkWI49uWF
-         Vp44nBEgptWISLTHjzA04jtl+uyAX5Hn/hym42uT5bkT00KWIb5VE3GuYd38MfuaPYRU
-         DUUCo6VL6LtKJgUvczxwxX4EKTjRSsjLceeI2YfQkyNFzg76vRe0RRGBaFPAqqikKwpY
-         LZpOsshxe1dnkHrA4fYzqg1ElWjlySkmsV+yd3ZNFrIFNzNXFdV+XdL9iBZUGS8ktWvD
-         eq1R3eMuMZ7I/er70VdH3BVFkd15QGkepjuf3U7/FXmuDN9N6dkqnPqe4ZI9Ki+9RWcn
-         XRqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769090428; x=1769695228;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YEc9GU3L05svxilgKGtwX6lohsUU6+tXBYCQfjLvprc=;
-        b=PUMcPbcSX6ebWby9o3wueJ/Yo2mkB8V4di2bBSi2IV70l8KvoLn5kJShMEgFmu0IgV
-         ojRh7502KFrsOCA1cWdrwPc2aQvqC8qhi64oAiVYtwuJSxNkePMYZCua8JifgVqAP3dc
-         WLymTvrvSvbrZNtSRjn9KrplNPJGVs65qHoTb4JtjBgN+BdV6NZEqcY7MCbsr45mn5Ol
-         6xKXE6kK7PKjjhue0NGx6FQLSg5RZx+WsPk1BYM4FWF9didhUzw95wgJakaA5kHjWGr5
-         HrgrmHORmwWKAh8gkGzWfFXztmpLfjdYW0U+Um01SAql5DTd+28AMyllkwToMisnE8xj
-         VcsA==
-X-Forwarded-Encrypted: i=1; AJvYcCUXJRBPwseZnbtAmhkpDig9AiTx4FjdWg84fKCIMTrizga9yMcRIStYoKq0NFRGnxl3Mdo4r0RurKHe@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz5pg5A4u8CMp6uGl5mTx2uXNGR5WepjdXl3LKOXKW2x4ps8aF9
-	n55hVZBugvdeqn1zFiNorS6sKAqDo1UEH6omNImuKEVQ6E5Qf3Vjm1BEZ6nLb4+SUJW1fvTKbkU
-	icRUxqoza+eqYfdTPGd2oI8zir3bi42y5I/WpTL2JSkupOECf8X36/ZO+rxwLWz5h5Rp1RjbY
-X-Gm-Gg: AZuq6aL+5SmE6AA/EzDhwmzADvEArUI7Ruibx94APXw4AXvYz3MKPOZduWuHwxI+NtK
-	1MlKNcgop11fIITIXx4ehZ3Ki07ZzAdcX7jYN8nKNVj1czMKc+FvfJjwWLIsFDFk+2FnCcum2yd
-	E8eoqGhIolhM1nJUyF7t0fnyDnwzEYfU8cQ/gBmo+nqDhdW0LIln49IyXNnuA9eRxVJPM7X53ca
-	Nm5k6TGEEWyhnTDFCirq23dBDEEk80pihjifwYGF6jFl7jizdNzWWyjbOjvWvx+VhC1U50vVt+2
-	kJVnr5PDjV61E7b6iN02lQALLPJUhb7TBKcdjdi4kiQGHpMOKFkV0NqVOHhLSWkaz3fhS9TYRI8
-	ZEpGBSWZUw6cXes0icqNOxFsogSt5VGhYjYNMAEEh+VKBbD9qVKcDI9jcjvmqh+Wy7cAhMyBnC8
-	i1flHbG6JplHd4hUyu/vSXNJs2zZGq
-X-Received: by 2002:a05:6a21:338e:b0:38d:f084:e33d with SMTP id adf61e73a8af0-38e45e2182fmr8292152637.41.1769090427667;
-        Thu, 22 Jan 2026 06:00:27 -0800 (PST)
-X-Received: by 2002:a05:6a21:338e:b0:38d:f084:e33d with SMTP id adf61e73a8af0-38e45e2182fmr8292076637.41.1769090426846;
-        Thu, 22 Jan 2026 06:00:26 -0800 (PST)
-Received: from [10.190.200.191] (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c5edf251a6csm17465094a12.13.2026.01.22.06.00.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Jan 2026 06:00:26 -0800 (PST)
-Message-ID: <cbb0f941-57f9-4ff6-a2bd-4ef8cbdb1ade@oss.qualcomm.com>
-Date: Thu, 22 Jan 2026 19:30:19 +0530
+	s=arc-20240116; t=1769090605; c=relaxed/simple;
+	bh=3SHkyRGYKQ9i0FYPx3pRbT9QJT80ZePTrHdczjnXiWo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TM7hYf37m//hlXenva3inQKcVHzXqQrhW1OejyjYHOsh2BxGYqAXob4/9m1iLBXFDxGJJi741hClAFa2+WTFrOKz0gsIs5kJ4FulvzFqVM9vwnVB5tQEy5CsicjgAbJV6OZxDgZQdYUeC/+bc5/zwYHbLrG+EwTmzhQYXtVgais=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OkiQK3Bs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8EDDC116D0;
+	Thu, 22 Jan 2026 14:03:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769090604;
+	bh=3SHkyRGYKQ9i0FYPx3pRbT9QJT80ZePTrHdczjnXiWo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OkiQK3BsP1UxoTEIDr+vIclBy0qGP6nUp9EjpTxDWH9+CXX0/Yg8JbgmmhpdMGcmE
+	 m94q7Pd0mQ7BV6F03TkQSVNiAafPQovTzjZc94OJCSjdokwbyUwLcYO+AEewleCh48
+	 AcsaREyJ5cy9B2bPVQHiGkMVPQpUkuL9V66imBc/Bwb0ta+3tfFvB1849FiTOvBRVz
+	 QyW3l/vevpPBhqN/QiaV1oSh+AQNTJGMdZDqHiI8caRNophFKmbgV8E636M1tVj4BS
+	 yjU5uAkTD0p85/R/NXcxrqZ8/TIaiSvPHehb33T9zC58dBVZgS4SDAYmyFgCBi9inm
+	 E0yYHmJO68rlQ==
+Date: Thu, 22 Jan 2026 15:03:21 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc: "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>, 
+	Jyri Sarha <jyri.sarha@iki.fi>, Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Russell King <linux@armlinux.org.uk>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Tony Lindgren <tony@atomide.com>, Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Markus Schneider-Pargmann <msp@baylibre.com>, 
+	Bajjuri Praneeth <praneeth@ti.com>, Louis Chauvet <louis.chauvet@bootlin.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Miguel Gazquez <miguel.gazquez@bootlin.com>, 
+	Herve Codina <herve.codina@bootlin.com>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org
+Subject: Re: [PATCH v4 20/25] drm/tilcdc: Use devm_drm_of_get_bridge() helper
+Message-ID: <20260122-camouflaged-cat-of-sorcery-7af8cf@houat>
+References: <20260116-feature_tilcdc-v4-0-2c1c22143087@bootlin.com>
+ <20260116-feature_tilcdc-v4-20-2c1c22143087@bootlin.com>
+ <DFSVNE16870S.ABQUMH9BWMDY@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/4] arm64: dts: qcom: Introduce Glymur base dtsi
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>,
-        Maulik Shah <maulik.shah@oss.qualcomm.com>,
-        Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
-        Taniya Das <taniya.das@oss.qualcomm.com>,
-        Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
-        Qiang Yu <qiang.yu@oss.qualcomm.com>,
-        Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>,
-        Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
-        Abel Vesa <abelvesa@kernel.org>
-References: <20260122-upstream_v3_glymur_introduction-v5-0-8ba76c354e9a@oss.qualcomm.com>
- <20260122-upstream_v3_glymur_introduction-v5-3-8ba76c354e9a@oss.qualcomm.com>
- <pmkxaslxodh2cnxbxy6wnyalb4zl64xek5l4cfhtw3k3ywatfk@hyzhbh7wzzji>
- <d3ec2d98-eb43-4de8-a356-006f0df43c54@oss.qualcomm.com>
- <nzqipun5kaibld2aolihfc475ceip4s5cpnzhhs2fcvmydsaih@6snt7gtjtetl>
-Content-Language: en-US
-From: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-In-Reply-To: <nzqipun5kaibld2aolihfc475ceip4s5cpnzhhs2fcvmydsaih@6snt7gtjtetl>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: CKe3oo6TgniktRPsu0kreXivgzKB3Cp8
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIyMDEwNiBTYWx0ZWRfX4GdzCoxO8PbR
- xRlAfkmalYv1fA9VvGliYx2faRDiESGUcme58F96CeMPVpP8dGVfMjCUI1lcdu0C7Eo/czS+V2U
- 8SbjUoYb6NYmbHgH4rWQSInWq0SNtP2sLL95lkhUVgHEyjZdWD7xDDhKrX+5BK1/UTYd+BQ7PhN
- ytvmVB+OIFtQYspDOl6upli7KJdWW7kgCdgkShbylvD4vna9kJUD4Ib+rDm0hLe1888yrTApfHC
- br6CxvXRX4lgmk74OKgkWYW2R96iMPmJaf/voVXZHhQxipwG0C4xy+XviPsWgltH980eGH+eFpI
- BBD/3vW/wRQU2GsvTmIK/V3KDSxXugaj1T+4JlcV5b4bE3BPZli9eiXvqPTFkMX393W35MZv94S
- hMS2gpYVVzIRzTAGZfJklP393l/Wk3Im0w25sVwUGEaz2G2bmhjmHMEehcT3zb5xENeAFDvEXOo
- /mbX9Zz9qodG9cbBOyQ==
-X-Authority-Analysis: v=2.4 cv=U4CfzOru c=1 sm=1 tr=0 ts=69722d7d cx=c_pps
- a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8
- a=XrNrwu1fJH_fsFYXVS4A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=x9snwWr2DeNwDh03kgHS:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-GUID: CKe3oo6TgniktRPsu0kreXivgzKB3Cp8
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
- definitions=2026-01-22_01,2026-01-22_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 lowpriorityscore=0 malwarescore=0 spamscore=0 adultscore=0
- suspectscore=0 bulkscore=0 clxscore=1015 impostorscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601220106
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="koxasmrivanfnujl"
+Content-Disposition: inline
+In-Reply-To: <DFSVNE16870S.ABQUMH9BWMDY@bootlin.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.96 / 15.00];
+X-Spamd-Result: default: False [-2.06 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_POLICY_ALLOW(0.00)[qualcomm.com,reject];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	TAGGED_FROM(0.00)[bounces-258432-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[pankaj.patil@oss.qualcomm.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-258434-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[31];
+	FREEMAIL_CC(0.00)[bootlin.com,iki.fi,ideasonboard.com,linux.intel.com,suse.de,gmail.com,ffwll.ch,kernel.org,armlinux.org.uk,bgdev.pl,atomide.com,intel.com,linaro.org,kwiboo.se,baylibre.com,ti.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mripard@kernel.org,devicetree@vger.kernel.org];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 4F5B0691CA
+	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns,bootlin.com:email]
+X-Rspamd-Queue-Id: 455F2682A9
 X-Rspamd-Action: no action
 
-On 1/22/2026 4:11 PM, Dmitry Baryshkov wrote:
-> On Thu, Jan 22, 2026 at 12:15:17PM +0530, Pankaj Patil wrote:
->> On 1/22/2026 6:52 AM, Dmitry Baryshkov wrote:
->>> On Thu, Jan 22, 2026 at 12:05:13AM +0530, Pankaj Patil wrote:
->>>> Introduce the base device tree support for Glymur – Qualcomm's
->>>> next-generation compute SoC. The new glymur.dtsi describes the core SoC
->>>> components, including:
->>>>
->>>> - CPUs and CPU topology
->>>> - Interrupt controller and TLMM
->>>> - GCC,DISPCC and RPMHCC clock controllers
->>>> - Reserved memory and interconnects
->>>> - APPS and PCIe SMMU and firmware SCM
->>>> - Watchdog, RPMHPD, APPS RSC and SRAM
->>>> - PSCI and PMU nodes
->>>> - QUPv3 serial engines
->>>> - CPU power domains and idle states, plus SCMI/ SRAM pieces for CPU DVFS
->>>> - PDP0 mailbox, IPCC and AOSS
->>>> - Display clock controller
->>>> - SPMI PMIC arbiter with SPMI0/1/2 buses
->>>> - SMP2P nodes
->>>> - TSENS and thermal zones (8 instances, 92 sensors)
->>>>
->>>> Add dtsi files for PMH0101, PMK8850, PMCX0102, SMB2370, PMH0104,
->>>> PMH0110 along with temp-alarm and GPIO nodes needed on Glymur
->>>>
->>>> Enabled PCIe controllers and associated PHY to support boot to
->>>> shell with nvme storage,
->>>> List of PCIe instances enabled:
->>>>
->>>> - PCIe3b
->>>> - PCIe4
->>>> - PCIe5
->>>> - PCIe6
->>>>
->>>> Co-developed-by: Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
->>>> Signed-off-by: Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
->>>> Co-developed-by: Maulik Shah <maulik.shah@oss.qualcomm.com>
->>>> Signed-off-by: Maulik Shah <maulik.shah@oss.qualcomm.com>
->>>> Co-developed-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
->>>> Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
->>>> Co-developed-by: Taniya Das <taniya.das@oss.qualcomm.com>
->>>> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
->>>> Co-developed-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
->>>> Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
->>>> Co-developed-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
->>>> Signed-off-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
->>>> Co-developed-by: Abel Vesa <abel.vesa@linaro.org>
->>>> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
->>>> Co-developed-by: Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
->>>> Signed-off-by: Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
->>>> Co-developed-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
->>>> Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
->>>> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
->>>> ---
->>>>  arch/arm64/boot/dts/qcom/glymur.dtsi         | 6122 ++++++++++++++++++++++++++
->>>>  arch/arm64/boot/dts/qcom/pmcx0102.dtsi       |  107 +
->>>>  arch/arm64/boot/dts/qcom/pmh0101.dtsi        |   45 +
->>>>  arch/arm64/boot/dts/qcom/pmh0104-glymur.dtsi |   83 +
->>>>  arch/arm64/boot/dts/qcom/pmh0110-glymur.dtsi |   83 +
->>>>  arch/arm64/boot/dts/qcom/pmk8850.dtsi        |   70 +
->>>>  arch/arm64/boot/dts/qcom/smb2370.dtsi        |   45 +
->>>>  7 files changed, 6555 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/glymur.dtsi b/arch/arm64/boot/dts/qcom/glymur.dtsi
->>>> new file mode 100644
->>>> index 000000000000..c0ecc64202c7
->>>> --- /dev/null
->>>> +++ b/arch/arm64/boot/dts/qcom/glymur.dtsi
->>>> +
->>>> +		pmh0101-thermal {
->>>
->>> Why do we have PMIC thermal zones as a part of SoC DTSI?
->>
->> There were comments on v3 about moving them to out of board dts,
->> https://lore.kernel.org/all/aUko20ORsgrlZrIn@linaro.org/
->> glymur-pmics.dtsi was dropped in v4, the changes were moved to glymur.dtsi
-> 
-> Anyway, the PMICS (nor their thermal zones) are not a part of the SoC.
-> As such, they don't belong to glymur.dtsi.
-> 
 
-Moving pmic thermal zones to their respective pmic dtsi files in next revision
+--koxasmrivanfnujl
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v4 20/25] drm/tilcdc: Use devm_drm_of_get_bridge() helper
+MIME-Version: 1.0
+
+Hi,
+
+On Mon, Jan 19, 2026 at 10:18:12PM +0100, Luca Ceresoli wrote:
+> Maxime, I'd appreciate your opinion about the topic below.
+>=20
+> On Fri Jan 16, 2026 at 6:02 PM CET, Kory Maincent (TI.com) wrote:
+> > Replace drm_of_find_panel_or_bridge() with the newer
+> > devm_drm_of_get_bridge() helper which simplifies the code by:
+> > - Automatically handling both panel and bridge cases internally
+> > - Managing the panel-to-bridge conversion when needed
+> > - Using devres for resource management, eliminating manual cleanup
+> >
+> > This removes the need for explicit panel-to-bridge conversion via
+> > devm_drm_panel_bridge_add_typed() and the associated error handling pat=
+h.
+> >
+> > Signed-off-by: Kory Maincent (TI.com) <kory.maincent@bootlin.com>
+> > ---
+> >
+> > Change in v4:
+> > - New patch
+> > ---
+> >  drivers/gpu/drm/tilcdc/tilcdc_encoder.c | 18 ++++--------------
+> >  1 file changed, 4 insertions(+), 14 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/tilcdc/tilcdc_encoder.c b/drivers/gpu/drm/=
+tilcdc/tilcdc_encoder.c
+> > index a34a10337f6a8..546fe7e6ee815 100644
+> > --- a/drivers/gpu/drm/tilcdc/tilcdc_encoder.c
+> > +++ b/drivers/gpu/drm/tilcdc/tilcdc_encoder.c
+> > @@ -55,15 +55,12 @@ int tilcdc_encoder_create(struct drm_device *ddev)
+> >  	struct tilcdc_drm_private *priv =3D ddev_to_tilcdc_priv(ddev);
+> >  	struct tilcdc_encoder *encoder;
+> >  	struct drm_bridge *bridge;
+> > -	struct drm_panel *panel;
+> > -	int ret;
+> >
+> > -	ret =3D drm_of_find_panel_or_bridge(ddev->dev->of_node, 0, 0,
+> > -					  &panel, &bridge);
+> > -	if (ret =3D=3D -ENODEV)
+> > +	bridge =3D devm_drm_of_get_bridge(ddev->dev, ddev->dev->of_node, 0, 0=
+);
+> > +	if (PTR_ERR(bridge) =3D=3D -ENODEV)
+>=20
+> This patch is technically OK in the sense that the code before and after
+> would be equivalent. However if it were me I would not do this change. The
+> reason is that both drm_of_find_panel_or_bridge() and *_of_get_bridge() a=
+re
+> problematic when introducing drm_bridge hotplug, which is the long-term
+> goal I am working for, but *_of_get_bridge() is more problematic than
+> drm_of_find_panel_or_bridge().
+>=20
+> These functions are still there and not deprecated because there is
+> currently no better replacement (and drm_bridge hotplug is not yet
+> supported because of this and other things still to be done). To have a
+> replacement, the panel_bridge lifetime needs to be reworked first and
+> that's not going to happen overnight. So, all in all, if this patch is not
+> crucial to your series I'd consider dropping it. But if it is important I=
+'m
+> fine with applying it, it won't make a huge difference.
+
+Eh. I'm fine either way. I understand what you're saying, but this patch
+doesn't introduce any *new* problem while it cleans up the driver, so I
+guess we could merge it still. And further clean it up with what you
+were suggesting later on.
+
+Maxime
+
+--koxasmrivanfnujl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaXIuKQAKCRAnX84Zoj2+
+dmgwAYDLY4OXhO7mg+WUhmw0Yc4L5lUQhZ+IdcuEGFz8PoHCodhBLdEMRMEQeyrZ
+Lg3ek6YBgKnjvmAsvQieYruFGJdc16JOzCVf95Xa7TlPn2/TL9Du2bGHrv7SWGiW
+2GbEtp3WOw==
+=T8Px
+-----END PGP SIGNATURE-----
+
+--koxasmrivanfnujl--
 
