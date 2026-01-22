@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-258607-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258608-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wNymB4xqcmnckQAAu9opvQ
-	(envelope-from <devicetree+bounces-258607-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 19:21:00 +0100
+	id qK1XIIJqcmnckQAAu9opvQ
+	(envelope-from <devicetree+bounces-258608-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 19:20:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D08AE6C429
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 19:20:59 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D75E26C40A
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 19:20:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 53D1E302B518
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:07:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 00D1D303EFA1
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:07:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7D3C322B61;
-	Thu, 22 Jan 2026 18:07:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AE243659E0;
+	Thu, 22 Jan 2026 18:07:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XBhXOPPU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oSG3eEDh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D578D355039;
-	Thu, 22 Jan 2026 18:07:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE9CB302773;
+	Thu, 22 Jan 2026 18:07:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769105237; cv=none; b=hFtV/718R/x/8Bqyo4tW+TI5i4SMA6mI+60hvSKh91iiL8kBw5ljRdF4oKYzHgCGMic9AxJ+6eAVz6wyBNqY+VvP46oi7/BdJzRCPksjNAgBdFyQVWxXqr9t2AbGMKOQfcQ2viB31CgtgfAYiZEuUBdBmbr8fpeplEpRCkUaJ68=
+	t=1769105238; cv=none; b=mO/qphgSQNneP8m8VplDB890NS8tbcmm14UbmxZt4MGF+23l/r6vj9e54N/ZPW1xmor7CPYinsoTG9QUP4DtpsLps7hR+3WOJe8+uw8HOJl4FEIt6Btc1lEQAW1U2rNjw3+baujp4l2egtw18yUqS1G9/+ds2cIf+Qc/EmFN1QE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769105237; c=relaxed/simple;
-	bh=+fwHNj/sBzsP9jbPu66xDy8PTX/Ooptl1XCgHZ3wOUg=;
+	s=arc-20240116; t=1769105238; c=relaxed/simple;
+	bh=huOUDGNR22rYNTgKq1UUfvgid25q6rQUmnSOjutN8wY=;
 	h=From:Date:Content-Type:MIME-Version:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=JIPjhPs5a8eROkc/8gvKEJmm9FVjThXYMtinYg4XC3+9jCWKrFk7J6j6IUiJNYHYJfcC/sygA9ywHjbqzv2qTfCPRd8MZYHXVDmpyvsjwC4t/GvblV/Twe/s6lwGx9jsz5kvxhSIBhF8YBWeVUg3cAYi/4q2r29YGlz/Z59tRHY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XBhXOPPU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36666C116C6;
-	Thu, 22 Jan 2026 18:07:16 +0000 (UTC)
+	 Message-Id:Subject; b=J/NvczWOtdgVHO03KfxBQhC6OFrN+fnRRzE8reGexnFWq5mRtZ7HVf3LNplujnggayOMTIf+34hKBc17dV6WwYNBmXjfba3zqYC/lX2Eb9Qg2bolk/W+/AB6wo2Mo1c4efMnL9d7Cm9RAVqJ7hJymhxogCeqQYpvBCFtk3leUWg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oSG3eEDh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35E6DC19423;
+	Thu, 22 Jan 2026 18:07:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769105236;
-	bh=+fwHNj/sBzsP9jbPu66xDy8PTX/Ooptl1XCgHZ3wOUg=;
+	s=k20201202; t=1769105237;
+	bh=huOUDGNR22rYNTgKq1UUfvgid25q6rQUmnSOjutN8wY=;
 	h=From:Date:Cc:To:In-Reply-To:References:Subject:From;
-	b=XBhXOPPULYedgmdXDj3jz6oVUV/4pMWOF0FKzZ7/nNjz1+MYS97tytTk+6omHWuHa
-	 1OXEnnQaihfBJe6CAB9RZdPk1daEAkW3SEK76vMm6/nW2t2WWGQ5MEKIpv135Tv8Rl
-	 hUbs5rTsLKlwVJ0v9zsBMfT/R4Nt/HhaTQia0c5rjiDfPLUpR9JqJ4hpoRUaBz9LKK
-	 BKMOBNeiVXwKNKzCmyWgCARoWv/F/1WCvlMlo9ASt3KRr4bvnSjFdM7I1tfRq4ooGx
-	 5Hx4ksCWD1AgxqwAlnw8rl9VFWLw65W/7qZMMWE53/EgJKglbAoFnsBK/iGd72H5Pz
-	 QlqIXlb3+QkBg==
+	b=oSG3eEDhsgonLIidtZiOzqd6bDEeLuDq9THJ06VHFI9IqnwEFc7irQi+Y2NTzxM6c
+	 xqWKftnfvwzOJZ6C2sViHYals1yJwQl6RXSuKL5clUCbfJpkNLjn7+vKz0Zw+K4LFI
+	 E3WXD/YTIw1Ffc/4jQKDHHMlHqNxkVtbgGxNB74masI/pM/NAq4a1nK1IAmoZN5cNs
+	 sagKKc5icmzUooY4TXIYFAUauAQlxz+zvuhcasHaaccU+c+OnMtGPtFH3Ezr4yV/2S
+	 dgVodtZGU1zGNSzrbF8TzWgIfmNDG7ykgKDMQL40NPiBIMRe5jFFhU0DtZ4a4oNfC2
+	 /RPRnbQNWRf+A==
 From: Rob Herring <robh@kernel.org>
-Date: Thu, 22 Jan 2026 12:07:15 -0600
+Date: Thu, 22 Jan 2026 12:07:16 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -54,182 +54,105 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Maulik Shah <maulik.shah@oss.qualcomm.com>, 
- Taniya Das <taniya.das@oss.qualcomm.com>, 
- Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>, 
- Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Sibi Sankar <sibi.sankar@oss.qualcomm.com>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Qiang Yu <qiang.yu@oss.qualcomm.com>, 
- Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
- linux-arm-msm@vger.kernel.org, Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- Abel Vesa <abelvesa@kernel.org>
-To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-In-Reply-To: <20260122-upstream_v3_glymur_introduction-v6-0-245f408ed82a@oss.qualcomm.com>
-References: <20260122-upstream_v3_glymur_introduction-v6-0-245f408ed82a@oss.qualcomm.com>
-Message-Id: <176910484203.3007057.6301998080301909826.robh@kernel.org>
-Subject: Re: [PATCH v6 0/4] arm64: dts: qcom: Introduce Glymur SoC dtsi and
- Glymur CRD dts
+Cc: conor+dt@kernel.org, linux-kernel@vger.kernel.org, robh+dt@kernel.org, 
+ chris.packham@alliedtelesis.co.nz, pali@kernel.org, andrew@lunn.ch, 
+ devicetree@vger.kernel.org, mrkiko.rs@gmail.com, 
+ sebastian.hesselbarth@gmail.com, linux-arm-kernel@lists.infradead.org, 
+ gregory.clement@bootlin.com, krzysztof.kozlowski+dt@linaro.org
+To: Elad Nachman <enachman@marvell.com>
+In-Reply-To: <20260122165923.2316510-1-enachman@marvell.com>
+References: <20260122165923.2316510-1-enachman@marvell.com>
+Message-Id: <176910484185.3007016.14688980539020105749.robh@kernel.org>
+Subject: Re: [PATCH 0/2] arm64: dts: a7k: add COM Express boards
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258607-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,alliedtelesis.co.nz,lunn.ch,gmail.com,lists.infradead.org,bootlin.com,linaro.org];
+	TAGGED_FROM(0.00)[bounces-258608-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_PROHIBIT(0.00)[1.12.142.0:email];
+	NEURAL_HAM(-0.00)[-0.986];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[1c00000:email,0.0.0.0:email,1bf0000:email,devicetree.org:url,1b40000:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:url,qualcomm.com:email]
-X-Rspamd-Queue-Id: D08AE6C429
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.0:email,devicetree.org:url]
+X-Rspamd-Queue-Id: D75E26C40A
 X-Rspamd-Action: no action
 
 
-On Thu, 22 Jan 2026 20:53:57 +0530, Pankaj Patil wrote:
-> Introduce dt-bindings and initial device tree support for Glymur,
-> Qualcomm's next-generation compute SoC and it's associated
-> Compute Reference Device (CRD) platform.
+On Thu, 22 Jan 2026 18:59:20 +0200, Elad Nachman wrote:
+> From: Elad Nachman <enachman@marvell.com>
 > 
-> https://www.qualcomm.com/products/mobile/snapdragon/laptops-and-tablets/snapdragon-x2-elite
-> https://www.qualcomm.com/news/releases/2025/09/new-snapdragon-x2-elite-extreme-and-snapdragon-x2-elite-are-the-
+> Add support for Armada 7020 Express Type 7 CPU module board by Marvell.
+> Add device tree bindings for this board.
+> Define this COM Express CPU module as dtsi and provide a dtsi file for
+> the carrier board (Marvell DB-98CX85x0 COM Express type 7 carrier board).
+> Add the Falcon DB to the MAINTAINERS list
 > 
-> The base support enables booting to shell with rootfs on NVMe,
-> demonstrating functionality for PCIe and NVMe subsystems.
-> DCVS is also enabled, allowing dynamic frequency scaling for the CPUs.
-> TSENS (Thermal Sensors) enabled for monitoring SoC temperature and
-> thermal management. The platform is capable of booting kernel at EL2
-> with kvm-unit tests performed on it for sanity.
+> Since memory is soldered on CPU module, memory node is on CPU module
+> dtsi file.
 > 
-> Added dtsi files for the PMIC's enabled PMH0101, PMK8850, PMCX0102,
-> SMB2370, PMH0104, PMH0110 along with temp-alarm and GPIO nodeS.
+> This Carrier board only utilizes the PCIe link, hence no special device
+> or driver support is provided by this dtsi file.
+> Devise a dts file for the combined com express carrier and CPU module.
 > 
-> For CPU compatible naming, there is one discussion which is not specific
-> to Glymur, Kaanapali and Glymur use the same Oryon cores.
-> https://lore.kernel.org/all/20251119-oryon-binding-v1-1-f79a101b0391@oss.qualcomm.com/
-> We've kept the "qcom,oryon" compatible
+> The Aramda 7020 CPU COM Express board offers the following features:
 > 
-> Features enabled in this patchset:
-> 1. NVMe storage support
-> 2. PCIe controller and PCIe PHY
-> 3. RPMH Regulators
-> 4. Clocks and reset controllers - GCC, TCSRCC, DISPCC, RPMHCC
-> 5. Interrupt controller
-> 6. TLMM (Top-Level Mode Multiplexer)
-> 7. QUP Block
-> 8. Reserved memory regions
-> 9. PMIC support with regulators
-> 10. CPU Power Domains
-> 11. TSENS (Thermal Sensors)
-> 12. DCVS: CPU DCVS with scmi perf protocol
+> 1.  Armada 7020 CPU, with dual ARM A72 cores
+> 2.  DDR4 memory, 8GB, on board soldered
+> 3.  1Gbit Out of Band Ethernet via RGMII to PHY and RJ45 connector,
+>     all are present on A7K CPU module (none on the carrier)
+> 4.  Optional 10G KR Ethernet going via the COM Express type 7 connector
+> 5.  On-board 8 Gbit, 8-bit bus width NAND flash
+> 6.  On-board 512 Mbit SPI flash
+> 7.  PCIe Root Complex, 4 lanes PCIe gen3 connectivity, going via the
+>     COM Express type 7 connector
+> 8.  m.2 SATA connector
+> 9.  Micro-SD card connector
+> 10. USB 2.0 via COM Express type 7 connector
+> 11. Two i2c interfaces - one to the CPU module, and one to the
+>     carrier board via the COM Express type 7 connector
+> 12. UART (mini USB connector by virtue of FT2232D UART to USB
+>     converter, connected to the Armada 7020 UART0)
 > 
-> Dependencies:
+> Elad Nachman (3):
+>   dt-bindings: arm64: add Marvell 7k COMe boards
+>   arm64: dts: a7k: add COM Express boards
+>   MAINTAINERS: Add Falcon DB
 > 
-> dt-bindings:
-> 1. https://lore.kernel.org/all/20260121-glymur-pmic-mfd-v1-1-2aab4f21e79c@oss.qualcomm.com/
-> 2. https://lore.kernel.org/all/20251215-knp-pmic-leds-v3-2-5e583f68b0e5@oss.qualcomm.com/
-> 3. https://lore.kernel.org/all/20260121110828.2267061-1-pankaj.patil@oss.qualcomm.com/
-> 4. https://lore.kernel.org/all/20260111155234.5829-1-pankaj.patil@oss.qualcomm.com/
+>  .../bindings/arm/marvell/armada-7k-8k.yaml    |  11 ++
+>  MAINTAINERS                                   |   1 +
+>  arch/arm64/boot/dts/marvell/Makefile          |   1 +
+>  .../dts/marvell/armada-7020-comexpress.dtsi   | 161 ++++++++++++++++++
+>  arch/arm64/boot/dts/marvell/armada-70x0.dtsi  |   7 +
+>  .../boot/dts/marvell/armada-ap806-dual.dtsi   |   4 +-
+>  .../dts/marvell/db-falcon-carrier-a7k.dts     |  27 +++
+>  .../boot/dts/marvell/db-falcon-carrier.dtsi   |  22 +++
+>  8 files changed, 232 insertions(+), 2 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/marvell/armada-7020-comexpress.dtsi
+>  create mode 100644 arch/arm64/boot/dts/marvell/db-falcon-carrier-a7k.dts
+>  create mode 100644 arch/arm64/boot/dts/marvell/db-falcon-carrier.dtsi
 > 
-> Linux-next based tree with Glymur patches is available at:
-> https://git.codelinaro.org/clo/linux-kernel/kernel-qcom/-/tree/b4/v6_glymur_introduction
-> 
-> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-> ---
-> Changes in v6:
-> - Moved pmic thermal zones to their respective pmic dtsi files
-> - Link to v5: https://lore.kernel.org/r/20260122-upstream_v3_glymur_introduction-v5-0-8ba76c354e9a@oss.qualcomm.com
-> 
-> Changes in v5:
-> - Added opp entries for pcie nodes
-> - Dropped qup-memory interconnect from uart nodes
-> - Update trip1 type to critical for pmic thermal zones
-> - Alignment and newline fixes according to comments
-> - Link to v4: https://lore.kernel.org/r/20260112-upstream_v3_glymur_introduction-v4-0-8a0366210e02@oss.qualcomm.com
-> 
-> Changes in v4:
-> - Enabled PCIe SMMU for all 4 PCIe instances
-> - Updated dispcc required opps level to "rpmhpd_opp_low_svs"
-> - Updated watchdog compatible
-> - Renamed gic-its to msi-controller
-> - Updated GCC clocks property to 43 from 44
-> - Moved cpu-idle-states to domain-idle-states
-> - Fixed alignment and zero padding issues according to review comments
-> - Dropped glymur-pmics.dtsi
-> - Moved pmic thermal zones from board dts to soc dtsi
-> - Link to v3: https://lore.kernel.org/r/20251219-upstream_v3_glymur_introduction-v3-0-32271f1f685d@oss.qualcomm.com
-> 
-> Changes in v3:
-> - Enabled system-cache-controller
-> - Squashed all initial features to boot to shell with nvme as storage
-> - Updated tsens nodes according to comments
-> - Merged tcsr and tcsrcc node
-> - Addressed review comments
-> - Link to v1: https://lore.kernel.org/all/20250925-v3_glymur_introduction-v1-0-24b601bbecc0@oss.qualcomm.com
-> 
-> Changes in v2:
-> - Series was sent erroneously
-> - Link to v1: https://lore.kernel.org/r/20250925-v3_glymur_introduction-v1-0-5413a85117c6@oss.qualcomm.com
-> 
-> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-> 
-> ---
-> Pankaj Patil (4):
->       dt-bindings: arm: qcom: Document Glymur SoC and board
->       arm64: defconfig: Enable Glymur configs for boot to shell
->       arm64: dts: qcom: Introduce Glymur base dtsi
->       arm64: dts: qcom: glymur: Enable Glymur CRD board support
-> 
->  Documentation/devicetree/bindings/arm/qcom.yaml |    5 +
->  arch/arm64/boot/dts/qcom/Makefile               |    1 +
->  arch/arm64/boot/dts/qcom/glymur-crd.dts         |  601 +++
->  arch/arm64/boot/dts/qcom/glymur.dtsi            | 5913 +++++++++++++++++++++++
->  arch/arm64/boot/dts/qcom/pmcx0102.dtsi          |  187 +
->  arch/arm64/boot/dts/qcom/pmh0101.dtsi           |   68 +
->  arch/arm64/boot/dts/qcom/pmh0104-glymur.dtsi    |  144 +
->  arch/arm64/boot/dts/qcom/pmh0110-glymur.dtsi    |  144 +
->  arch/arm64/boot/dts/qcom/pmk8850.dtsi           |   70 +
->  arch/arm64/boot/dts/qcom/smb2370.dtsi           |   45 +
->  arch/arm64/configs/defconfig                    |    5 +
->  11 files changed, 7183 insertions(+)
-> ---
-> base-commit: 46fe65a2c28ecf5df1a7475aba1f08ccf4c0ac1b
-> change-id: 20251007-upstream_v3_glymur_introduction-5a105b54493d
-> prerequisite-message-id: <20260121-glymur-pmic-mfd-v1-1-2aab4f21e79c@oss.qualcomm.com>
-> prerequisite-patch-id: bd5a4703a5a7fc530418337680cf1e2ea1518f35
-> prerequisite-message-id: <20251215-knp-pmic-leds-v3-0-5e583f68b0e5@oss.qualcomm.com>
-> prerequisite-patch-id: 6bbaff642cfd1f1386ff0ccd746739b68cdbeb45
-> prerequisite-patch-id: e30603778b23b7f7586b1c01a362e45af7bd0aa3
-> prerequisite-message-id: <20260121110828.2267061-1-pankaj.patil@oss.qualcomm.com>
-> prerequisite-patch-id: 14469fd166b31b251b98bf25e783ab6f57ddd13a
-> 
-> Best regards,
 > --
-> Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+> 2.25.1
 > 
 > 
 > 
@@ -250,56 +173,17 @@ make sure dt-schema is up to date:
 
 
 This patch series was applied (using b4) to base:
- Deps: looking for dependencies matching 4 patch-ids
- Deps: Applying prerequisite patch: [PATCH] dt-bindings: mfd: qcom,spmi-pmic: Document PMICs present on Glymur
- Deps: Applying prerequisite patch: [PATCH v3 1/2] dt-bindings: leds: leds-qcom-lpg: Add support for PMH0101 PWM
- Deps: Applying prerequisite patch: [PATCH v3 2/2] dt-bindings: leds: qcom,spmi-flash-led: Add PMH0101 compatible
- Deps: Applying prerequisite patch: [PATCH v2] dt-bindings: dma: qcom,gpi: Update max interrupt lines to 16
- Base: 46fe65a2c28ecf5df1a7475aba1f08ccf4c0ac1b (use --merge-base to override)
+ Base: attempting to guess base-commit...
+ Base: tags/next-20260121 (exact match)
+ Base: tags/next-20260121 (use --merge-base to override)
 
 If this is not the correct base, please add 'base-commit' tag
 (or use b4 which does this automatically)
 
 
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20260122-upstream_v3_glymur_introduction-v6-0-245f408ed82a@oss.qualcomm.com:
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/marvell/' for 20260122165923.2316510-1-enachman@marvell.com:
 
-arch/arm64/boot/dts/qcom/glymur-crd.dtb: pci@1bf0000 (qcom,glymur-pcie): compatible:0: 'qcom,pcie-x1e80100' was expected
-	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-x1e80100.yaml
-arch/arm64/boot/dts/qcom/glymur-crd.dtb: pci@1bf0000 (qcom,glymur-pcie): compatible: ['qcom,glymur-pcie', 'qcom,pcie-x1e80100'] is too long
-	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-x1e80100.yaml
-arch/arm64/boot/dts/qcom/glymur-crd.dtb: /soc@0/pci@1bf0000: failed to match any schema with compatible: ['qcom,glymur-pcie', 'qcom,pcie-x1e80100']
-arch/arm64/boot/dts/qcom/glymur-crd.dtb: pci@1b40000 (qcom,glymur-pcie): compatible:0: 'qcom,pcie-x1e80100' was expected
-	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-x1e80100.yaml
-arch/arm64/boot/dts/qcom/glymur-crd.dtb: pci@1b40000 (qcom,glymur-pcie): compatible: ['qcom,glymur-pcie', 'qcom,pcie-x1e80100'] is too long
-	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-x1e80100.yaml
-arch/arm64/boot/dts/qcom/glymur-crd.dtb: /soc@0/pci@1b40000: failed to match any schema with compatible: ['qcom,glymur-pcie', 'qcom,pcie-x1e80100']
-arch/arm64/boot/dts/qcom/glymur-crd.dtb: pci@1c00000 (qcom,glymur-pcie): compatible:0: 'qcom,pcie-x1e80100' was expected
-	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-x1e80100.yaml
-arch/arm64/boot/dts/qcom/glymur-crd.dtb: pci@1c00000 (qcom,glymur-pcie): compatible: ['qcom,glymur-pcie', 'qcom,pcie-x1e80100'] is too long
-	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-x1e80100.yaml
-arch/arm64/boot/dts/qcom/glymur-crd.dtb: /soc@0/pci@1c00000: failed to match any schema with compatible: ['qcom,glymur-pcie', 'qcom,pcie-x1e80100']
-arch/arm64/boot/dts/qcom/glymur-crd.dtb: pci@1b80000 (qcom,glymur-pcie): compatible:0: 'qcom,pcie-x1e80100' was expected
-	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-x1e80100.yaml
-arch/arm64/boot/dts/qcom/glymur-crd.dtb: pci@1b80000 (qcom,glymur-pcie): compatible: ['qcom,glymur-pcie', 'qcom,pcie-x1e80100'] is too long
-	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-x1e80100.yaml
-arch/arm64/boot/dts/qcom/glymur-crd.dtb: /soc@0/pci@1b80000: failed to match any schema with compatible: ['qcom,glymur-pcie', 'qcom,pcie-x1e80100']
-arch/arm64/boot/dts/qcom/glymur-crd.dtb: mailbox@3e04000 (qcom,glymur-ipcc): compatible:0: 'qcom,glymur-ipcc' is not one of ['qcom,milos-ipcc', 'qcom,qcs8300-ipcc', 'qcom,qdu1000-ipcc', 'qcom,sa8255p-ipcc', 'qcom,sa8775p-ipcc', 'qcom,sar2130p-ipcc', 'qcom,sc7280-ipcc', 'qcom,sc8280xp-ipcc', 'qcom,sdx75-ipcc', 'qcom,sm6350-ipcc', 'qcom,sm6375-ipcc', 'qcom,sm8250-ipcc', 'qcom,sm8350-ipcc', 'qcom,sm8450-ipcc', 'qcom,sm8550-ipcc', 'qcom,sm8650-ipcc', 'qcom,sm8750-ipcc', 'qcom,x1e80100-ipcc']
-	from schema $id: http://devicetree.org/schemas/mailbox/qcom-ipcc.yaml
-arch/arm64/boot/dts/qcom/glymur-crd.dtb: /soc@0/mailbox@3e04000: failed to match any schema with compatible: ['qcom,glymur-ipcc', 'qcom,ipcc']
-arch/arm64/boot/dts/qcom/glymur-crd.dtb: watchdog@17600000 (qcom,apss-wdt-glymur): compatible: 'oneOf' conditional failed, one must be fixed:
-	['qcom,apss-wdt-glymur', 'qcom,kpss-wdt'] is too long
-	['qcom,apss-wdt-glymur', 'qcom,kpss-wdt'] is too short
-	'qcom,apss-wdt-glymur' is not one of ['qcom,kpss-wdt-ipq4019', 'qcom,apss-wdt-ipq5018', 'qcom,apss-wdt-ipq5332', 'qcom,apss-wdt-ipq5424', 'qcom,apss-wdt-ipq9574', 'qcom,apss-wdt-kaanapali', 'qcom,apss-wdt-msm8226', 'qcom,apss-wdt-msm8974', 'qcom,apss-wdt-msm8994', 'qcom,apss-wdt-qcm2290', 'qcom,apss-wdt-qcs404', 'qcom,apss-wdt-qcs615', 'qcom,apss-wdt-qcs8300', 'qcom,apss-wdt-sa8255p', 'qcom,apss-wdt-sa8775p', 'qcom,apss-wdt-sc7180', 'qcom,apss-wdt-sc7280', 'qcom,apss-wdt-sc8180x', 'qcom,apss-wdt-sc8280xp', 'qcom,apss-wdt-sdm845', 'qcom,apss-wdt-sdx55', 'qcom,apss-wdt-sdx65', 'qcom,apss-wdt-sm6115', 'qcom,apss-wdt-sm6350', 'qcom,apss-wdt-sm8150', 'qcom,apss-wdt-sm8250']
-	'qcom,kpss-wdt' was expected
-	'qcom,scss-timer' was expected
-	'qcom,apss-wdt-glymur' is not one of ['qcom,kpss-wdt-apq8064', 'qcom,kpss-wdt-ipq8064', 'qcom,kpss-wdt-mdm9615', 'qcom,kpss-wdt-msm8960']
-	'qcom,msm-timer' was expected
-	'qcom,kpss-timer' was expected
-	from schema $id: http://devicetree.org/schemas/watchdog/qcom-wdt.yaml
-arch/arm64/boot/dts/qcom/glymur-crd.dtb: /soc@0/watchdog@17600000: failed to match any schema with compatible: ['qcom,apss-wdt-glymur', 'qcom,kpss-wdt']
-
-
-
-
+arch/arm64/boot/dts/marvell/db-falcon-carrier-a7k.dtb: ethernet@0 (marvell,armada-7k-pp22): ethernet-port@0:phy-mode:0: '10gbase-kr' is not one of ['gmii', 'sgmii', 'rgmii-id', '1000base-x', '2500base-x', '5gbase-r', 'rxaui', '10gbase-r']
+	from schema $id: http://devicetree.org/schemas/net/marvell,pp2.yaml
 
 
