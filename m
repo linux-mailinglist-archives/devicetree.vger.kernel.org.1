@@ -1,107 +1,107 @@
-Return-Path: <devicetree+bounces-258178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258179-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oCQhLuiHcWk1IAAAu9opvQ
-	(envelope-from <devicetree+bounces-258178-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 03:14:00 +0100
+	id 6DY0Kp6HcWlaIwAAu9opvQ
+	(envelope-from <devicetree+bounces-258179-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 03:12:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 635F960C79
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 03:14:00 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E2AC60C0B
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 03:12:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 50DAB448D9A
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 02:09:45 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6DBAC4E4948
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 02:09:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFF2F36E498;
-	Thu, 22 Jan 2026 02:09:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32C8136CDFD;
+	Thu, 22 Jan 2026 02:09:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GNSVCC1G";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ifFT5dac"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LmvrmMfS";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="YUH+VOe3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 842E9364056
-	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 02:09:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33C6C36E46C
+	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 02:09:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769047744; cv=none; b=OZcx8nDzw6is3wdL43ud7t/AzvX5yMZvIJ5qqAz16GpRBOjTTFCW/rWiCFqafvBAwPIMPRNhiu1iL7WbowmyaPtU4A7MT+k7rK63ElrhcYXDQvUeeZYD8Ytctmq2zM+EshHh5o9V4Rhyo2ysr9I5S+/NitwEgvnCvTJNgIsNHbM=
+	t=1769047748; cv=none; b=KxEfk3bBTELav87hlmKqC19CCpFN3WtKCUzMXiI/ftztCLEeLXrwJBWXUyJN+SGR3UBueCf/2BJtq9lEgPmm+e8IWu82Ien6Kn7T0/n12tQ7icARFGgBArZYU895mhfC+hWnxu7FptLO2WdPMj1l52bXgK3QmSCSpYKL4c4alFo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769047744; c=relaxed/simple;
-	bh=adb+NstK0OrGdQHboby6lmZs7rWs2zBc775hVSg6Ay8=;
+	s=arc-20240116; t=1769047748; c=relaxed/simple;
+	bh=1Yd4/OeyiYY49Es4IJlY73zV9yzGJi6c/ilE5vOhlX0=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=bulND4Iyw1utNvhxlRzUx/c1CZjxyC8j3D+C+fFEDJ5g4LFLNsOi8ImtEbjzMDIzjiWlyHFuOxmMgPiwUYek3CcgPJ4rN6x6RX9ay21bgfVGsn+NLJg4QgqxkfuWxC9UGtf/T2EaNRHFUVYduZFbojBi68X25UMinGThShiuP4o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GNSVCC1G; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ifFT5dac; arc=none smtp.client-ip=205.220.180.131
+	 In-Reply-To:To:Cc; b=oNy60rImJGU3MLNnozxM/Ov/ag7OtYyuGgcS10vIhClVw75R9jXcb9eMuxNCoUA9/SqkVZxNzgXFJfVdzH5bt5g4J7Rlvh+7h3/FiQPomXj3/kY5GMwQZArQbe1FgL4CnkcJfSGkPLB3P1bJdCuRZCxz1e90sFR874BGW07Yibg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LmvrmMfS; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=YUH+VOe3; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60LMt5P12727099
-	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 02:08:58 GMT
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60LLNU4v788889
+	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 02:09:03 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	lrMZyOpw/ZRelpfuA7qROurtddaj0sg5lOXpksKz24E=; b=GNSVCC1Ga7J8TSot
-	zNDR0RW+ICcJAGgI9B9Ri99awN6nVDURWz1RpPbNTcLaTUnn3JYPU1e4ZjW5DPuJ
-	Qe2E6c8Rqb0ECwElqOW53gLg0NHSn2Y48NIAsVO4R0D4ZFSSZvAFjjNPbGQMs3UH
-	I9xQVI3CLR7648IqVHZt2+RJHxYCB/fz/rIxQsiKnAusRbApB7l/ltjD0AQsySG+
-	CEJQFTFyKhXrC33C0m0iv2VxlAdAT+cOuwK8xts6t3530jl0oPRzeWD+gM5Dr1em
-	+bx3E0cYlhzgEvdTNg7CmGbqhIWX1DGxg8DfQRrvWdhJG+yi+3oltUN9r6kd9sL2
-	49s1aw==
-Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4btysft6tx-1
+	rDoLTMZ0B/5YJB6UPqg6ddrMGqlIPrOwvKMKnhBl/fg=; b=LmvrmMfS2MrkO5Yr
+	D9+fraziqK8OC/qlIsjMNuADn9dWfkkC/pM2MR++/zttxhAaynddedc0enbKgUUe
+	JceSPg4vGN66jYll6F7yD5c30ldhuuaothl0H2z0HzsQvu0F91tLmqBm4cu1fYCi
+	cpWWSTC0PV0oHFUDwPDVRX9FfHCqWvGjkZ6VcYMytwnquZKpwB1Bqwx0FXkFW2xZ
+	gf2Z867zNFZD86ovIPzrodVdBhrAKC5+SgoyFohX6MnJVttQzwWGrdEK8GSLswaV
+	bHmaChElXYpRJ3NZLpGHzvySZDAY4lT+aq7HzuTFNeqC4l8OrCya12+sEgau67vp
+	+JinXg==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bu6p1gn2w-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 02:08:58 +0000 (GMT)
-Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-34ab459c051so1070540a91.0
-        for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 18:08:58 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 02:09:03 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2a0a0bad5dfso7973715ad.0
+        for <devicetree@vger.kernel.org>; Wed, 21 Jan 2026 18:09:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769047737; x=1769652537; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1769047742; x=1769652542; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=lrMZyOpw/ZRelpfuA7qROurtddaj0sg5lOXpksKz24E=;
-        b=ifFT5dac3lD3t/D7cywhR8Zeiv69diTRLIN5aMvcEJUT8DVR/UvWBqaIuYoR9Fa07M
-         RIMHNXyXlSpEAKC858QDYdOEa4UdfJgmmer5Qaz9/S2KR3lAnD6BB8XTW5tYNySUovkG
-         KdkUEu/ug6zGDFFQ4p1puZxmNIZqm/h4rIDi4W1UERAIIWNHPg27KCuRYMAvd2Q/feBe
-         46mjbS6HwQeqM5MgFvjaP4B5pIsUnpgZRQMBqHH/mJT/Wr80n15QsqVnxYQRZYjxTzoK
-         h5XTXSplx4Sumk3vogVoL6j+W33GgZhOspBFVKzWZE31kNuUghT+KdhPQQqxUqL662uY
-         cLbw==
+        bh=rDoLTMZ0B/5YJB6UPqg6ddrMGqlIPrOwvKMKnhBl/fg=;
+        b=YUH+VOe3JIulcmvvwISTIERe+wIjF/kyHRDk+6rxoaTfeTY3h4exep65BPoioXlT86
+         BM3vE7HnI6hJf/nEiEMxjgW33JU1NYuf6/cV15iTrO4jnmrkEBZh4DBKpzxV6BxQv7hS
+         pz4ijmaTfAKzjOhf3Sf1zt+sefy+ZPLKFe5fU3QzHo1XlPp2mfR60vjV/gMwpTo3Qff1
+         jKZp5WHq4TXSuH3dI+Y+mBPY6l8kWWj3uMmmWVQeYKCxhTwrC5oEKJczwOLc9QeLGWRw
+         hNcNQfJDe/KUWQ1jgk2vNsgp6lLTsAvSwWoa5rVQvKVRY1M8f357YBxMsH8z69DdkT5J
+         4wkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769047737; x=1769652537;
+        d=1e100.net; s=20230601; t=1769047742; x=1769652542;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=lrMZyOpw/ZRelpfuA7qROurtddaj0sg5lOXpksKz24E=;
-        b=aQ1bS/1qcsUx473tyV+37MZLWnyEBej5xpJbWUQ57jHgtn1FGNxv5rm0BwCOmksplF
-         EJplOySkFEuabJkS8bTFaW8R3ndUvlU9lvnyoeIZnjdECiGXKfzDJ2fkvDjXGzYr/SWX
-         rq0n3qmwQQMDeJ8Ld6BniU39rAP7RFXQgzdaTVU+WCNlfQql6ycAuNGE9ahQl9l/n54t
-         PqnmUJ9Qm0bHCBlZcwjTVKHLPu5f0VJ75xppZ9OUZshNChAwEQzT80g8gr5D4z+MOYcU
-         wP4iYPU2YhWr9LOJvucHCV3zL9agYtAGkV+Z4vNDnnC8EycpJZayj+V2dzMt05Cw9GYR
-         /y4Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUfWEdMX7FdYdj7B8N8xCdC1Krr8K2wuoe/8CL3tMPA999OslbvzA7wQk66ZbrO5KM3XzgGbJtWO1+3@vger.kernel.org
-X-Gm-Message-State: AOJu0YwNWqTq1lBXrxpDB260cjXAOAdDM6u2ajP5xFJ2T2AwDomGq0aN
-	nn19Zrew0CChlPMCoDJXWiN9481oQS1g0g2kfPVQbDMS4ut5IDo4JY4FA55c0CZqxcotyjUSXXk
-	/+4hUWJrHAlOkh3m0n+1NBh1AlwAYyFSHzmft7As0uXOOnz39MFaAFqW+zYuPOXrZ
-X-Gm-Gg: AZuq6aJBm1AAJXz3w1TP8aTV05ugHpR+PxNaghk0Pd6nEQlmB0U7M79zuVd89ePyYFx
-	xwOs+ucgci91FLxRFuKxhLJ0CUx8diRjCybW/vh3QIWGQ0SvnWeSeV7gIWk9sqz4AhkG6p1aZt/
-	PN0t8xK+ogJgIkjzYS74XuCmWLIIn0+v/P2PjNjGbp7oywWxCR9s7ck2JgwD/J2lMsfgv86CDAc
-	U/wEhUqzM6XuqFnwLO8vfF3KvxJ0z8ZA0yu9/OnaXWlDOW+D3mYe4JjABdO9kly1123zdwhjj13
-	PfVCCanzJIBkRrcAgJZEFb/yXu9r1Nn0Uz9pztWCBZQcNGF00PbMBieCJcz4ECNayAb8x4a53rc
-	xFR43sR5dePZteNavxohE9kofgOL8SU6tRI/kxtryAiGYFF3aquvnuEx6Pg03nU7skZYlVbmE
-X-Received: by 2002:a17:902:e74c:b0:2a0:97d2:a25d with SMTP id d9443c01a7336-2a717516415mr181775505ad.15.1769047737423;
-        Wed, 21 Jan 2026 18:08:57 -0800 (PST)
-X-Received: by 2002:a17:902:e74c:b0:2a0:97d2:a25d with SMTP id d9443c01a7336-2a717516415mr181775235ad.15.1769047736896;
-        Wed, 21 Jan 2026 18:08:56 -0800 (PST)
+        bh=rDoLTMZ0B/5YJB6UPqg6ddrMGqlIPrOwvKMKnhBl/fg=;
+        b=L7dtL2utNCT2tmxHA03zqFDS/wjyewak39OmPvTxwd2edyfn5/6WKI63tjuRnFdEQ/
+         tIbTXYez8EHvZmAxmCYfAdVkmt/52ZqTV5xqScwcpY2EpBnu8v7Xi6rGI/5x45mYzj7a
+         zcJv7/hFqVkAwXRGKxHlsIpF2MM6rRQ595xNofpgawoIB7WppVTjWBInn8UEJAikPIIV
+         ho8jNgEOgREkSMdz7tKqQLh+uR4hfL73lap/2JrH0eYWFLcaRTLkwfreVaSsq50xjBvs
+         Dp2R48kY7c3MPuQhIs5rXakG3tcoIIPE52XhlvBHMksIaF90Lh50JeEWkj+fJwcQx8s9
+         nKUA==
+X-Forwarded-Encrypted: i=1; AJvYcCW1F7BQTf4cDy91LiSGldjIC+EgyI59mAiG9jtcyvRLxPMxxrnMczYik6fezynDqTDSsBc8UU9sAZpp@vger.kernel.org
+X-Gm-Message-State: AOJu0YxYElqxBLpPUifon4gH8NOtHuMKHyx2WeH0o74+0unjNWO2CFuK
+	kBzDPkx6sSUA2yympasJSNni9J1agEDg5Fi+heaEHO5FWSvCKIStqbGdh/xHbL5iIy5Q113uiT1
+	bYpwDYZ+JK94Zgxnm1hdQ+Co8rOtnWlfy3IIyYixq0rZHK9BtcvkjuLT1UtXSzPuL
+X-Gm-Gg: AZuq6aKT9mwUkOZMeRWMCl4YPFEI0o3LsUzAqbqR+kqcjQ8XZdw2CcXiC9mGk7QOhiI
+	AOOCCjtSMwsSShxZJkDXsifbWajuXrEbY2127wm7YvoikHzRgHZsOWojdK2XNcH9fmbKjazjxVX
+	pElp3aErkwTNnJ6hkuPvQ0q1zQaQnoyFv1KnIuzgGDv69/1Oa2Fl1rnPJs9/bZ9uExjtGALI2c8
+	/esPtpJUFgA0eb0Y3c+U9gNyAf+Q5tkMizl1hqXONLfpudb+WAw9O5UP0HYcME6NVvg/7r9boSe
+	ZRe8xaTQATI7eWbm3ahPZYvBrdxhjkcSHqgatwFgIL1YSWP1q73Qw8O5U+qxd6jHYWJul4tkgvG
+	gIwp4lUGRsLie9hJNnb9zwgzUFc+ZXNPI1l42DR1Ep8yCU4ATWDc5BDsgKKTsb3QRN6B6QEcv
+X-Received: by 2002:a17:902:ec8e:b0:2a7:5171:921a with SMTP id d9443c01a7336-2a751719312mr78653625ad.54.1769047742018;
+        Wed, 21 Jan 2026 18:09:02 -0800 (PST)
+X-Received: by 2002:a17:902:ec8e:b0:2a7:5171:921a with SMTP id d9443c01a7336-2a751719312mr78653315ad.54.1769047741481;
+        Wed, 21 Jan 2026 18:09:01 -0800 (PST)
 Received: from jiegan-gv.ap.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a780a4631csm49710305ad.18.2026.01.21.18.08.52
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a780a4631csm49710305ad.18.2026.01.21.18.08.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Jan 2026 18:08:56 -0800 (PST)
+        Wed, 21 Jan 2026 18:09:01 -0800 (PST)
 From: Jie Gan <jie.gan@oss.qualcomm.com>
-Date: Thu, 22 Jan 2026 10:08:16 +0800
-Subject: [PATCH v10 3/8] coresight: tmc: Introduce sysfs_read_ops to wrap
- sysfs read operations
+Date: Thu, 22 Jan 2026 10:08:17 +0800
+Subject: [PATCH v10 4/8] coresight: etr: refactor the
+ tmc_etr_get_catu_device function
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -110,7 +110,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260122-enable-byte-cntr-for-ctcu-v10-3-22978e3c169f@oss.qualcomm.com>
+Message-Id: <20260122-enable-byte-cntr-for-ctcu-v10-4-22978e3c169f@oss.qualcomm.com>
 References: <20260122-enable-byte-cntr-for-ctcu-v10-0-22978e3c169f@oss.qualcomm.com>
 In-Reply-To: <20260122-enable-byte-cntr-for-ctcu-v10-0-22978e3c169f@oss.qualcomm.com>
 To: Suzuki K Poulose <suzuki.poulose@arm.com>,
@@ -128,38 +128,36 @@ Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, Jie Gan <jie.gan@oss.qualcomm.com>
 X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1769047715; l=5450;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1769047715; l=4412;
  i=jie.gan@oss.qualcomm.com; s=20250909; h=from:subject:message-id;
- bh=adb+NstK0OrGdQHboby6lmZs7rWs2zBc775hVSg6Ay8=;
- b=rf8eEkX6xeEuQxudEYmOmXgRoN92u1XmNwp5u00r7XMrpm6LzyuxgLLZ8Lo+mYOuaJZKZBuJH
- /WrVbjKjsbFClTLEWHl+Ay3vgW9n4BYJjwh4rGYY6dPKEpVTDE58045
+ bh=1Yd4/OeyiYY49Es4IJlY73zV9yzGJi6c/ilE5vOhlX0=;
+ b=DTMOiYD2h4vVx6W7jK2n596Ajp+2RBJ2ATsqrncV6tq1QOz6iBHg/9UDdHvW6nYw1ldjPJNES
+ MDZgoyGPZoICgwR8/fUlFokUpybl7HsS3KUdGcqsENSUfvZyFr37SVJ
 X-Developer-Key: i=jie.gan@oss.qualcomm.com; a=ed25519;
  pk=3LxxUZRPCNkvPDlWOvXfJNqNO4SfGdy3eghMb8puHuk=
-X-Authority-Analysis: v=2.4 cv=N8Ik1m9B c=1 sm=1 tr=0 ts=697186ba cx=c_pps
- a=0uOsjrqzRL749jD1oC5vDA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+X-Proofpoint-ORIG-GUID: vJ-NPlij5hICLcm2trMa_vR4eoo-dtDV
+X-Authority-Analysis: v=2.4 cv=N7ck1m9B c=1 sm=1 tr=0 ts=697186bf cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
  a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8
- a=JzqEjpkVlBH90HjAhVoA:9 a=QEXdDO2ut3YA:10 a=mQ_c8vxmzFEMiUWkPHU9:22
- a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-GUID: S4k2TnlGZsk9umIALyQJEq9g_rT5bxl8
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIyMDAxNSBTYWx0ZWRfX3O7R2Rn4RxcB
- sYe+tkLz+G2UOsfGhanE1Lmaas08+BXEuHEzL0XBQSsS8u60OZBDCz/PpFrW8mUPBr2QRdZQ6+i
- +Zm8NPpEg/7D3jFB0nx5v1abKhpZWjzlIPdJkhbXrSF50DPV3/OY24TQYOWKipdylN8fu4VmpJe
- IHzH/ibRU945hble8j+f3gPVeNEsG4l90c5mpXnz0+NCcXgk+GubLcfL2opx1dNvjpskMlNHigL
- ZDg75/kqDIwB5By4QSPZ2BbIfA246d3JbOC6T9qe24L/xhJ4WR49D4Jq3P3k/jUc5fE6m61BOaO
- HvNkBaiiTo4tUNII/D8AoLIS29whl2VbPjlqAUQomk6T1Bf/p5RGONcBab6BKnt5ebWZZCZN2AB
- WSJx/Qcmz6cR4bmZODg3i8x/COveVJdDkz+umWmNi9g1yBEThNR6DATFe8k1oluZhcyGWcSQ9Bo
- pu08VsBzjerFSapZ2AA==
-X-Proofpoint-ORIG-GUID: S4k2TnlGZsk9umIALyQJEq9g_rT5bxl8
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=-ozbsww5GKt6_lkPIaMA:9
+ a=QEXdDO2ut3YA:10 a=uG9DUKGECoFWVXl0Dc02:22
+X-Proofpoint-GUID: vJ-NPlij5hICLcm2trMa_vR4eoo-dtDV
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIyMDAxNSBTYWx0ZWRfX0eygYSPf75Qa
+ HHVBhyh3xgbwTE1Yj1wVWMskqAHO0HDSii4nLaA7POFGP6qGqrsQf0S7kAprCUMAcQpOQ6DDyUw
+ +Kt08uQ7g4JEKHq9bWiZ11GA6ORaInDK7HBX7yvRygXmtXeMThSq9zD3SKjwbx5JcXmh0FxeSfG
+ qKJZJv5WsL9o5jzQWkKJFR6UVMEXSENoDu4Io0KMXMal+hvQ0tB47DtQtgfHaXokkptNstVm19A
+ edPuHkY1OQPynYYSrLJBbgs98X8aeRhZSPsdNjI6+v8mgbcqfwwyCjW23cpWfpUVgNDP6Ui8zkk
+ SlgfmLkcFLMmy6oox62Xh5dCZXaQM8KC4Y0UhlUAIbXbNI76EWTmQUhU7C4mByvuNmnL3fN+jXu
+ vbdVQ9yF7ynQ2Z5hQttZFT/7GTErQYJVqmGkthOnlgqctDo1/hXLsfSvfu4nN1azmEOQ4yQwvS8
+ YbRRRpEt9dwd7bHg0yw==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
  definitions=2026-01-21_04,2026-01-20_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 phishscore=0 lowpriorityscore=0 impostorscore=0
- priorityscore=1501 bulkscore=0 malwarescore=0 adultscore=0 spamscore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2601220015
+ spamscore=0 lowpriorityscore=0 phishscore=0 clxscore=1015 priorityscore=1501
+ malwarescore=0 adultscore=0 impostorscore=0 suspectscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601220015
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -170,14 +168,14 @@ X-Spamd-Result: default: False [-0.46 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	DMARC_POLICY_ALLOW(0.00)[qualcomm.com,reject];
-	TAGGED_FROM(0.00)[bounces-258178-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,desc.name:url,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,ams.mirrors.kernel.org:helo,ams.mirrors.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim];
+	TAGGED_FROM(0.00)[bounces-258179-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:helo,dfw.mirrors.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:7979, ipnet:2a01:60a::/32, country:US];
+	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[jie.gan@oss.qualcomm.com,devicetree@vger.kernel.org];
@@ -188,166 +186,109 @@ X-Spamd-Result: default: False [-0.46 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 635F960C79
+X-Rspamd-Queue-Id: 1E2AC60C0B
 X-Rspamd-Action: no action
 
-Introduce sysfs_read_ops as a wrapper, wrap sysfs read operations, for reading
-trace data from the TMC buffer.
+Refactor tmc_etr_get_catu_device to retrieve the helper device connected
+to the TMC ETR based on helper_subtype.
 
-Reviewed-by: Mike Leach <mike.leach@linaro.org>
 Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
 ---
- drivers/hwtracing/coresight/coresight-tmc-core.c | 50 +++++++++++-------------
- drivers/hwtracing/coresight/coresight-tmc.h      | 17 ++++++++
- 2 files changed, 40 insertions(+), 27 deletions(-)
+ drivers/hwtracing/coresight/coresight-catu.c    |  3 ++-
+ drivers/hwtracing/coresight/coresight-tmc-etr.c | 32 ++++++++++++++++---------
+ drivers/hwtracing/coresight/coresight-tmc.h     |  3 ++-
+ 3 files changed, 25 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/hwtracing/coresight/coresight-tmc-core.c b/drivers/hwtracing/coresight/coresight-tmc-core.c
-index 1ea255ffa67c..8b0397a77e57 100644
---- a/drivers/hwtracing/coresight/coresight-tmc-core.c
-+++ b/drivers/hwtracing/coresight/coresight-tmc-core.c
-@@ -232,17 +232,10 @@ static int tmc_read_prepare(struct tmc_drvdata *drvdata)
+diff --git a/drivers/hwtracing/coresight/coresight-catu.c b/drivers/hwtracing/coresight/coresight-catu.c
+index 69b36bae97ab..d3972619cc96 100644
+--- a/drivers/hwtracing/coresight/coresight-catu.c
++++ b/drivers/hwtracing/coresight/coresight-catu.c
+@@ -334,7 +334,8 @@ static int catu_alloc_etr_buf(struct tmc_drvdata *tmc_drvdata,
+ 	struct tmc_sg_table *catu_table;
+ 	struct catu_etr_buf *catu_buf;
+ 
+-	csdev = tmc_etr_get_catu_device(tmc_drvdata);
++	csdev = tmc_etr_get_helper_device(tmc_drvdata,
++			CORESIGHT_DEV_SUBTYPE_HELPER_CATU);
+ 	if (!csdev)
+ 		return -ENODEV;
+ 	catu_buf = kzalloc(sizeof(*catu_buf), GFP_KERNEL);
+diff --git a/drivers/hwtracing/coresight/coresight-tmc-etr.c b/drivers/hwtracing/coresight/coresight-tmc-etr.c
+index cbbb15648fb7..16a4562533d5 100644
+--- a/drivers/hwtracing/coresight/coresight-tmc-etr.c
++++ b/drivers/hwtracing/coresight/coresight-tmc-etr.c
+@@ -844,28 +844,37 @@ static const struct etr_buf_operations etr_sg_buf_ops = {
+ };
+ 
+ /*
+- * TMC ETR could be connected to a CATU device, which can provide address
+- * translation service. This is represented by the Output port of the TMC
+- * (ETR) connected to the input port of the CATU.
++ * TMC ETR could be connected to the helper device, which can provide address
++ * translation service(CATU) or data filter function(CTCU). This is represented
++ * by the Output port of the TMC (ETR) connected to the input port of the helper.
+  *
+- * Returns	: coresight_device ptr for the CATU device if a CATU is found.
++ * @drvdata	: drvdata of the TMC device
++ * @subtype	: helper_subtype of the helper device
++ *
++ * Returns	: coresight_device ptr for the helper device if a helper is found.
+  *		: NULL otherwise.
+  */
+ struct coresight_device *
+-tmc_etr_get_catu_device(struct tmc_drvdata *drvdata)
++tmc_etr_get_helper_device(struct tmc_drvdata *drvdata,
++			  enum coresight_dev_subtype_helper subtype)
  {
- 	int ret = 0;
+ 	struct coresight_device *etr = drvdata->csdev;
+-	union coresight_dev_subtype catu_subtype = {
+-		.helper_subtype = CORESIGHT_DEV_SUBTYPE_HELPER_CATU
++	union coresight_dev_subtype helper_subtype = {
++		.helper_subtype = subtype
+ 	};
  
--	switch (drvdata->config_type) {
--	case TMC_CONFIG_TYPE_ETB:
--	case TMC_CONFIG_TYPE_ETF:
--		ret = tmc_read_prepare_etb(drvdata);
--		break;
--	case TMC_CONFIG_TYPE_ETR:
--		ret = tmc_read_prepare_etr(drvdata);
--		break;
--	default:
-+	if (drvdata->sysfs_ops)
-+		ret = drvdata->sysfs_ops->read_prepare(drvdata);
-+	else
- 		ret = -EINVAL;
--	}
- 
- 	if (!ret)
- 		dev_dbg(&drvdata->csdev->dev, "TMC read start\n");
-@@ -254,17 +247,10 @@ static int tmc_read_unprepare(struct tmc_drvdata *drvdata)
- {
- 	int ret = 0;
- 
--	switch (drvdata->config_type) {
--	case TMC_CONFIG_TYPE_ETB:
--	case TMC_CONFIG_TYPE_ETF:
--		ret = tmc_read_unprepare_etb(drvdata);
--		break;
--	case TMC_CONFIG_TYPE_ETR:
--		ret = tmc_read_unprepare_etr(drvdata);
--		break;
--	default:
-+	if (drvdata->sysfs_ops)
-+		ret = drvdata->sysfs_ops->read_unprepare(drvdata);
-+	else
- 		ret = -EINVAL;
--	}
- 
- 	if (!ret)
- 		dev_dbg(&drvdata->csdev->dev, "TMC read end\n");
-@@ -291,13 +277,8 @@ static int tmc_open(struct inode *inode, struct file *file)
- static ssize_t tmc_get_sysfs_trace(struct tmc_drvdata *drvdata, loff_t pos, size_t len,
- 				   char **bufpp)
- {
--	switch (drvdata->config_type) {
--	case TMC_CONFIG_TYPE_ETB:
--	case TMC_CONFIG_TYPE_ETF:
--		return tmc_etb_get_sysfs_trace(drvdata, pos, len, bufpp);
--	case TMC_CONFIG_TYPE_ETR:
--		return tmc_etr_get_sysfs_trace(drvdata, pos, len, bufpp);
--	}
-+	if (drvdata->sysfs_ops)
-+		return drvdata->sysfs_ops->get_trace_data(drvdata, pos, len, bufpp);
- 
- 	return -EINVAL;
- }
-@@ -769,6 +750,18 @@ static void register_crash_dev_interface(struct tmc_drvdata *drvdata,
- 			"Valid crash tracedata found\n");
- }
- 
-+static const struct sysfs_read_ops tmc_etb_sysfs_read_ops = {
-+	.read_prepare	= tmc_read_prepare_etb,
-+	.read_unprepare	= tmc_read_unprepare_etb,
-+	.get_trace_data	= tmc_etb_get_sysfs_trace,
-+};
+-	if (!IS_ENABLED(CONFIG_CORESIGHT_CATU))
 +
-+static const struct sysfs_read_ops tmc_etr_sysfs_read_ops = {
-+	.read_prepare	= tmc_read_prepare_etr,
-+	.read_unprepare	= tmc_read_unprepare_etr,
-+	.get_trace_data	= tmc_etr_get_sysfs_trace,
-+};
-+
- static int __tmc_probe(struct device *dev, struct resource *res)
- {
- 	int ret = 0;
-@@ -828,6 +821,7 @@ static int __tmc_probe(struct device *dev, struct resource *res)
- 		desc.subtype.sink_subtype = CORESIGHT_DEV_SUBTYPE_SINK_BUFFER;
- 		desc.ops = &tmc_etb_cs_ops;
- 		dev_list = &etb_devs;
-+		drvdata->sysfs_ops = &tmc_etb_sysfs_read_ops;
- 		break;
- 	case TMC_CONFIG_TYPE_ETR:
- 		desc.groups = coresight_etr_groups;
-@@ -841,6 +835,7 @@ static int __tmc_probe(struct device *dev, struct resource *res)
- 		mutex_init(&drvdata->idr_mutex);
- 		dev_list = &etr_devs;
- 		INIT_LIST_HEAD(&drvdata->etr_buf_list);
-+		drvdata->sysfs_ops = &tmc_etr_sysfs_read_ops;
- 		break;
- 	case TMC_CONFIG_TYPE_ETF:
- 		desc.groups = coresight_etf_groups;
-@@ -849,6 +844,7 @@ static int __tmc_probe(struct device *dev, struct resource *res)
- 		desc.subtype.link_subtype = CORESIGHT_DEV_SUBTYPE_LINK_FIFO;
- 		desc.ops = &tmc_etf_cs_ops;
- 		dev_list = &etf_devs;
-+		drvdata->sysfs_ops = &tmc_etb_sysfs_read_ops;
- 		break;
- 	default:
- 		pr_err("%s: Unsupported TMC config\n", desc.name);
++	if (subtype == CORESIGHT_DEV_SUBTYPE_HELPER_CATU &&
++	    !IS_ENABLED(CONFIG_CORESIGHT_CATU))
++		return NULL;
++	else if (subtype == CORESIGHT_DEV_SUBTYPE_HELPER_CTCU &&
++		 !IS_ENABLED(CONFIG_CORESIGHT_CTCU))
+ 		return NULL;
+ 
+ 	return coresight_find_output_type(etr->pdata, CORESIGHT_DEV_TYPE_HELPER,
+-					  catu_subtype);
++					  helper_subtype);
+ }
+-EXPORT_SYMBOL_GPL(tmc_etr_get_catu_device);
++EXPORT_SYMBOL_GPL(tmc_etr_get_helper_device);
+ 
+ static const struct etr_buf_operations *etr_buf_ops[] = {
+ 	[ETR_MODE_FLAT] = &etr_flat_buf_ops,
+@@ -913,7 +922,8 @@ static void get_etr_buf_hw(struct device *dev, struct etr_buf_hw *buf_hw)
+ 
+ 	buf_hw->has_iommu = iommu_get_domain_for_dev(dev->parent);
+ 	buf_hw->has_etr_sg = tmc_etr_has_cap(drvdata, TMC_ETR_SG);
+-	buf_hw->has_catu = !!tmc_etr_get_catu_device(drvdata);
++	buf_hw->has_catu = !!tmc_etr_get_helper_device(drvdata,
++			CORESIGHT_DEV_SUBTYPE_HELPER_CATU);
+ 	buf_hw->has_resrv = tmc_has_reserved_buffer(drvdata);
+ }
+ 
 diff --git a/drivers/hwtracing/coresight/coresight-tmc.h b/drivers/hwtracing/coresight/coresight-tmc.h
-index 9b3c4e6f0a5e..c9a82ff6cd00 100644
+index c9a82ff6cd00..7690a70069da 100644
 --- a/drivers/hwtracing/coresight/coresight-tmc.h
 +++ b/drivers/hwtracing/coresight/coresight-tmc.h
-@@ -221,6 +221,8 @@ struct etr_buf_node {
- 	struct list_head	node;
- };
+@@ -471,7 +471,8 @@ static inline uint32_t find_crash_tracedata_crc(struct tmc_drvdata *drvdata,
+ 	return crc32_le(0, (void *)drvdata->resrv_buf.vaddr, crc_size);
+ }
  
-+struct sysfs_read_ops;
-+
- /**
-  * struct tmc_drvdata - specifics associated to an TMC component
-  * @atclk:	optional clock for the core parts of the TMC.
-@@ -258,6 +260,7 @@ struct etr_buf_node {
-  *		 Used by ETR/ETF.
-  * @etr_buf_list: List that is used to manage allocated etr_buf.
-  * @reading_node: Available buffer_node for byte-cntr reading.
-+ * @sysfs_ops:	Read operations for sysfs mode.
-  */
- struct tmc_drvdata {
- 	struct clk		*atclk;
-@@ -290,6 +293,20 @@ struct tmc_drvdata {
- 	struct tmc_resrv_buf	crash_mdata;
- 	struct list_head        etr_buf_list;
- 	struct etr_buf_node     *reading_node;
-+	const struct sysfs_read_ops	*sysfs_ops;
-+};
-+
-+/**
-+ * struct sysfs_read_ops - read operations for TMC and its helper devices
-+ * @read_prepare:	prepare operation.
-+ * @read_unprepare:	unprepare operation.
-+ * @get_trace_data:	read operation.
-+ */
-+struct sysfs_read_ops {
-+	int (*read_prepare)(struct tmc_drvdata *drvdata);
-+	int (*read_unprepare)(struct tmc_drvdata *drvdata);
-+	ssize_t (*get_trace_data)(struct tmc_drvdata *drvdata, loff_t pos,
-+				  size_t len, char **bufpp);
- };
+-struct coresight_device *tmc_etr_get_catu_device(struct tmc_drvdata *drvdata);
++struct coresight_device *tmc_etr_get_helper_device(struct tmc_drvdata *drvdata,
++						   enum coresight_dev_subtype_helper subtype);
  
- struct etr_buf_operations {
+ void tmc_etr_set_catu_ops(const struct etr_buf_operations *catu);
+ void tmc_etr_remove_catu_ops(void);
 
 -- 
 2.34.1
