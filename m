@@ -1,215 +1,151 @@
-Return-Path: <devicetree+bounces-258511-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258512-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QFE+FzpWcmkpiwAAu9opvQ
-	(envelope-from <devicetree+bounces-258511-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 17:54:18 +0100
+	id sJGmCNBXcmkpiwAAu9opvQ
+	(envelope-from <devicetree+bounces-258512-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:01:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 836C06A695
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 17:54:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 76E026A95A
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 18:01:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 0C1483002B53
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:53:14 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id CE4D03009E39
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 16:58:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 089B34D9916;
-	Thu, 22 Jan 2026 15:49:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SLc348yH"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4B7A4A5B06;
+	Thu, 22 Jan 2026 16:01:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com [209.85.128.65])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from cstnet.cn (unknown [159.226.251.21])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CA194D90D2
-	for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 15:49:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 018EA48C3FD;
+	Thu, 22 Jan 2026 16:01:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769096991; cv=none; b=BM+wxqjYhSB8wOI7RRQnrwoClCRNGOqszDJCQZokqyQdV8P5PEuNC92wKzyz8h3dFytzYRjXqso7lTug/TMaGG6mgOLdp2haFB+an0aA2M45oOgeopxQ+H4kK5ihtfoI5Tf3EA04GY6rq7aSTIKm6H55wWOrL56IbO6CmPLLWh0=
+	t=1769097716; cv=none; b=nX2VSNHiPhwvL7iNq0GKTUYXW3UhtCOz4gSXgAEaTl6P4RnAfOTvC7px1+3xxbLlNoGvC6QYFA+gfya/9/T1uySaY5m8HUKHuCNhqbVERX+QqVxS9dXMNZVdwJ2VYDQE/kADK2bSOzV3nucTKjMimRa4XdzXFITSic2323s4CuI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769096991; c=relaxed/simple;
-	bh=+e6wsl5d67gepE+dFjWdKbJ6vjQoBdZjQhDABfPMTsI=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=u0SNIzUywy3ar07C5CUSTss9miJpUSZV0Tydedx7t40LQMZ5rhEozFugp8JboyNJSJHm11SkobH00wGioyT99+WV3+ouP593k0ur9tLn2kNNhZe//JRm215f7DIYhIFINCZDVrBJjPW1STa4f6fL9+X/duRNiM99ef33XcoedGs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SLc348yH; arc=none smtp.client-ip=209.85.128.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f65.google.com with SMTP id 5b1f17b1804b1-47ee0291921so10459395e9.3
-        for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 07:49:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1769096985; x=1769701785; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=+e6wsl5d67gepE+dFjWdKbJ6vjQoBdZjQhDABfPMTsI=;
-        b=SLc348yHoHg26UnNunRhyrescOI5qvVkN5xUjhfwkyu4I3hisalmDptiYWkPbuxWtJ
-         C6sFMS23VUuNv8VvLfd5eeMaCOk9lGo8crjO5IJx5T/+yoMItEl/hDWJMMn3w9vVJBXy
-         0vY/RrMvEzOZF5hq60fpAekJtXNJBP4zN7/RD/vaPBgPqGud3Ei06hRh4tLVABYgibaq
-         HaT14NjVQqYN5/DPr+o3jP/Z/bcAoJWDTYpajNx2/v6IBd+s138l4erRwnHkdXr3zVrR
-         gcSUTJvGKpn7e9W7PbIEw5b6Vb04jx5rpMZjTvglYNWkTg7Y7M8RdN3/B0Verz/IdpFO
-         ckew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769096985; x=1769701785;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+e6wsl5d67gepE+dFjWdKbJ6vjQoBdZjQhDABfPMTsI=;
-        b=dk4stMOWtT4qu1uVnxOWfMlrcdzf9dNOEDDUIFwu8xODi7GKTf9+IbXXFgYpnzWpTo
-         mM+cW1SlUQ7HhBI7IpHfScm5A2qrO8WptVs/eHze+99LECaAqbRZU1tGEWDMZYsVxiCt
-         Ht2TkwaJ3EYaUST/yHFryWiN87MlkaqV7BohpeOey/85hCmqx4uPZqN+jNa5ZWD+AUqd
-         SsMijbYzm6eLBEEgmvEpAVowT+amGOdupHsi3okshJoZ9Ty+mJtIxo+hQJVcvcxjG/Ke
-         hXkB9OucMeTQ33N821sFIB8LLD3HViXirTXqASfxQn10LfOJQgJymRAEnzRX9tw33Y3a
-         wbWA==
-X-Forwarded-Encrypted: i=1; AJvYcCWe/Bf0RZOcWpnAui1sqrxZuveHxb2N7q7c2cAi+lIuVnLQyEBZVAO9pUCLGQqrn3o5BZ/AaJyXNXug@vger.kernel.org
-X-Gm-Message-State: AOJu0YwPElJzHvypWMoSNX0/SthEdX/JLqdS4FfRY+vn2FZSkr09R3eE
-	UwJxV3Q0nAZgZ9dRn0VPy56vsq3mBdAM/LrhNMDkBd/knybWRnSySxe7aPcyoBySolTcbh8ENZW
-	pDffCb0pu2g==
-X-Gm-Gg: AZuq6aLwZXd6ZIsZRrbkk4zMuOYjjFBETGEdVxyup8ghv6vGPTtCOeCR6rG44K/NlwH
-	Pctrsy2NOBJUzpqzQAtYDksAphl0inni1dsrqTch122E6++myWpx8GjfxglSYHTtpdQxJockKai
-	xu3rdxERb+PGmeGC6juVHdRHYwCg3w3jgaf7EiCWFTBKGYkviYfFF5ULtyxTLJ86VMyNvKouxPa
-	jyTE2ex0YmBFyRDyfY1fWe62rKyS/085AVOQTGirqcFR2D3wLXKL+nSqq4/xDfPxbg4CXpsvPAe
-	c0BRHBV69pPJK+N6GIApslAFbxH71enZonOvRA3HN02KtnBDNEhk7A5I6HiLP/63CGo28lZ3ChF
-	zL/ZNlQo83oSKWwcAKTB210DN3RRl5sHxG8f9GaeR/PnrGHEp5aoJNhPhM7I/qn/8C+UZBagdZJ
-	1IPM1+Viph3FWpZHDvpguNcUoUQq07
-X-Received: by 2002:a05:600c:8209:b0:480:1a9a:e571 with SMTP id 5b1f17b1804b1-4804c9aff3emr1043695e9.22.1769096985161;
-        Thu, 22 Jan 2026 07:49:45 -0800 (PST)
-Received: from draszik.lan ([212.129.87.109])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-480424d4912sm56957665e9.7.2026.01.22.07.49.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Jan 2026 07:49:44 -0800 (PST)
-Message-ID: <d6f25eb87630f2ce6a155c8ba758a131187b5aa1.camel@linaro.org>
-Subject: Re: [PATCH v6 00/20] Samsung S2MPG10 regulator and S2MPG11 PMIC
- drivers
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Lee Jones <lee@kernel.org>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>,  Mark Brown <broonie@kernel.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Krzysztof Kozlowski	
- <krzk+dt@kernel.org>, Linus Walleij <linusw@kernel.org>, Bartosz
- Golaszewski	 <brgl@kernel.org>, Peter Griffin <peter.griffin@linaro.org>,
- Will McVicker	 <willmcvicker@google.com>, Juan Yescas <jyescas@google.com>,
- 	kernel-team@android.com, linux-kernel@vger.kernel.org, 
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, Bartosz Golaszewski	
- <bartosz.golaszewski@oss.qualcomm.com>
-Date: Thu, 22 Jan 2026 15:49:44 +0000
-In-Reply-To: <20260122150634.GK3831112@google.com>
-References: <20260105-s2mpg1x-regulators-v6-0-80f4b6d1bf9d@linaro.org>
-	 <20260122150634.GK3831112@google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-2+build3 
+	s=arc-20240116; t=1769097716; c=relaxed/simple;
+	bh=MS7wBS31az3nY8BubQfwrrIXlXvQJt6kkKLP4ntO8jU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BNoasqgdOs8zyD8OvgNM3/wc4QiSYBD4OnCt5PdCV2A+MCJltnZ4Eoxk00wvloiqQ11BFceBK3DdAlW0xn47mEmPS4oNCNmc4Nsrxh23Ul8djidxIfYeK29/Yw21ZUGcj47XS6jntZ2tsaZ7moMntOZiNONYsSq+AsiOCKWTP7s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
+Received: from duge-virtual-machine (unknown [183.192.221.134])
+	by APP-01 (Coremail) with SMTP id qwCowACXP2vcSXJpCLXLBQ--.27565S2;
+	Fri, 23 Jan 2026 00:01:34 +0800 (CST)
+Date: Fri, 23 Jan 2026 00:01:32 +0800
+From: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+To: Xukai Wang <kingxukai@zohomail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Troy Mitchell <TroyMitchell988@gmail.com>
+Subject: Re: [PATCH v10 2/3] clk: canaan: Add clock driver for Canaan K230
+Message-ID: <aXJJ3MjQSq8Rq084@duge-virtual-machine>
+References: <20260116-b4-k230-clk-v10-0-de59033c5d30@zohomail.com>
+ <20260116-b4-k230-clk-v10-2-de59033c5d30@zohomail.com>
+ <aW3o8xVziqb9iRBN@duge-virtual-machine>
+ <bf39fdb8-6698-418b-bd4a-6d8d40ccc9a0@zohomail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <bf39fdb8-6698-418b-bd4a-6d8d40ccc9a0@zohomail.com>
+X-CM-TRANSID:qwCowACXP2vcSXJpCLXLBQ--.27565S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7KF4DKFWDKr43Gr13Xr43KFg_yoW8Wr1kp3
+	93uF18CFWDK34I9F1jvw4xCw1DtFs5ta18JFnav348Aw43Z34kZF1I9w42vayjvrnrCayU
+	Ar48Jwn8tFW2v3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUvvb7Iv0xC_tr1lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
+	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xII
+	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWUJVW8JwA2z4x0Y4vEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
+	64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8Jw
+	Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkIwI1l
+	c7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr
+	1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE
+	14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7
+	IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E
+	87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73Uj
+	IFyTuYvjxU2wIDUUUUU
+X-CM-SenderInfo: 5mld534oul2uny6l223fol2u1dvotugofq/
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	TAGGED_FROM(0.00)[bounces-258511-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[linaro.org,kernel.org,gmail.com,bgdev.pl,google.com,android.com,vger.kernel.org,oss.qualcomm.com];
+	DMARC_NA(0.00)[iscas.ac.cn];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-258512-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andre.draszik@linaro.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,linaro.org:dkim,linaro.org:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 836C06A695
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jiayu.riscv@isrc.iscas.ac.cn,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,sifive.com,gmail.com];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 76E026A95A
 X-Rspamd-Action: no action
 
-Hi Lee,
+On Thu, Jan 22, 2026 at 07:40:29PM +0800, Xukai Wang wrote:
+> 
+> On 2026/1/19 16:18, Jiayu Du wrote:
+> >> +
+> >> +K230_CLK_GATE_FORMAT(hs_hclk_src_gate,
+> >> +		     K230_HS_HCLK_SRC_GATE,
+> >> +		     0x18, 0, 0, 0,
+> >> +		     &hs_hclk_high_src_rate.clk.hw);
+> > Here, you replaced hs_hclk_high_gate(in v9) with hs_hclk_high_src_rate,
+> 
+> I'm a bit confused, as I don't recall making these specific changes.
+> Looking at the code below, the only difference between v9 and v10 is
+> within the K230_CLK_GATE_FORMAT(hs_hclk_src_gate, ...) definition, where
+> the second parameter changed from 1 to 0. Everything else appears
+> consistent. Could you clarify which change you were referring to?
 
-On Thu, 2026-01-22 at 15:06 +0000, Lee Jones wrote:
-> On Mon, 05 Jan 2026, Andr=C3=A9 Draszik wrote:
->=20
-> > This series extends the existing S2MPG10 PMIC driver to add support for
-> > the regulators, and adds new S2MPG11 core and regulator drivers.
-> >=20
-> > --- dependency note ---
-> > This series must be applied in-order, due to the regulator drivers
-> > depending on headers & definitions added by the bindings and core
-> > drivers. I would expect them all to go via the MFD tree.
-> >=20
-> > The MFD patches in this series also depend on my Samsung MFD patches
-> > due to patch context:
-> > https://lore.kernel.org/all/20251217-s5m-alarm-v2-0-b7bff003e94c@linaro=
-.org/
-> >=20
-> > While these patches compile, regulator probe will only be successful
-> > with my deferrable regulators patches from
-> > https://lore.kernel.org/r/20251227-regulators-defer-v1-0-3104b22d84cb@l=
-inaro.org
-> > --- end ---
-> >=20
-> > The patches are kept together in one series, due to S2MPG11 and its
-> > regulators being very similar to S2MPG10.
-> >=20
-> > The Samsung S2MPG11 PMIC is a Power Management IC for mobile
-> > applications with buck converters, various LDOs, power meters, and
-> > additional GPIO interfaces. It typically complements an S2MPG10 PMIC in
-> > a main/sub configuration as the sub-PMIC and both are used on the
-> > Google Pixel 6 and 6 Pro (oriole / raven).
-> >=20
-> > A DT update for Oriole / Raven to enable these is required which I will
-> > send out separately.
-> >=20
-> > Cheers,
-> > Andre'
-> >=20
-> > Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
->=20
-> Applying patch(es)
-> Applying: dt-bindings: mfd: samsung,s2mps11: Split s2mpg10-pmic into sepa=
-rate file
-> Applying: dt-bindings: mfd: samsung,s2mpg10-pmic: Link to its regulators
-> Applying: dt-bindings: mfd: Add samsung,s2mpg11-pmic
-> Applying: mfd: sec: s2mpg10: reorder regulators for better probe performa=
-nce
-> Applying: mfd: sec: Add support for S2MPG11 PMIC via ACPM
-> error: invalid object 100644 11a56154d36d251d40b40e91da514db0faa15ae3 for=
- 'drivers/mfd/sec-irq.c'
-> error: Repository lacks necessary blobs to fall back on 3-way merge.
-> Patch failed at 0005 mfd: sec: Add support for S2MPG11 PMIC via ACPM
-> hint: Use 'git am --show-current-patch=3Ddiff' to see the failed patch
-> hint: When you have resolved this problem, run "git am --continue".
-> hint: If you prefer to skip this patch, run "git am --skip" instead.
-> hint: To restore the original branch and stop patching, run "git am --abo=
-rt".
-> hint: Disable this message with "git config set advice.mergeConflict fals=
-e"
->=20
-> Doesn't apply to `for-mfd-next` or `ib-mfd-rtc-v6.20`.
->=20
-> Please rebase.
+> > but after my board test, I find that when hs_hclk_high_gate is turned
+> > off, the mmc/sd and other high-speed subsystems can not work. So maybe
+> > you should not change the hs_hclk_high_gate to hs_hclk_high_src_rate.
+> 
+> Regarding the clock management, I recommend explicitly enabling
+> hs_hclk_high_gateas it will be closed by `close unused clocks`.
 
-Strange, git rebase onto for-mfd-next had no trouble. I presume you used b4=
- am / shazam
-above? Just trying to understand why the difference.
+Sorry, you are right. It was me who made the changes locally. And I
+saw your reply to this email[1], which you said According to the vendor's
+code, the parent clock of hs_hclk_src is hs_hclk_high_src.
 
-Anyway, rebased v7 is
- https://lore.kernel.org/r/20260122-s2mpg1x-regulators-v7-0-3b1f9831fffd@li=
-naro.org
+Indeed, the parent clock of hs_hclk_src is hs_hclk_high_src. but
+hs_hclk_high_gate is the gate of hs_hclk_high_src. So, what you mean is
+that you will add the CLK_IS_CRITICAL flag to the hs_hclk_high_gate?
 
-Cheers,
-Andre'
+Link: https://lore.kernel.org/all/159615d3-cc52-43be-bf6d-5fe717ef1cc4@zohomail.com/ [1]
+
+Regards,
+Jiayu Du
+
 
