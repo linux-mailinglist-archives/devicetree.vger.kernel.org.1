@@ -1,279 +1,595 @@
-Return-Path: <devicetree+bounces-258818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258813-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KFJ2LXU/c2mWtwAAu9opvQ
-	(envelope-from <devicetree+bounces-258818-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:29:25 +0100
+	id kH/QKfQ+c2mWtwAAu9opvQ
+	(envelope-from <devicetree+bounces-258813-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:27:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D1DB73554
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:29:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 661ED7348A
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:27:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8163F304A9E4
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 09:27:41 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D75D3302BA11
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 09:26:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40DD9366802;
-	Fri, 23 Jan 2026 09:27:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76BE335EDBE;
+	Fri, 23 Jan 2026 09:26:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="NUCP4G8H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDB7E366075;
-	Fri, 23 Jan 2026 09:27:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0057239E6C;
+	Fri, 23 Jan 2026 09:26:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769160438; cv=none; b=kDWp8chQf5uVpNmTRuSW2458EFoFd8Ub4S8iVZ3THIAQvRbO92xPwnmTDyC5DneR5KjleOKtBf/nrzvWX2RmCE4qEg+FqDcEXZKt72Tm1Bo6/OaPURceCEcmK14mg9o4CIFqq44M4pus816CCg+j6r6UIZnGzH8kvf66//Ho05M=
+	t=1769160410; cv=none; b=gvngLjBqcJUx4tXFJ+fKdVbvYI8vDwpkbu3WArQAAuiDu7fUsgdLAvK5+PIgc+jh0d0UHMoCGgLD4947VsToak+P+FMV9I7FvThd3I/7fOKrYpqffYhKJ0c67bkMeyAcXfCXQpNvtzhk0s6QBN7k1OI4mvXYfaaTmn9uVajA424=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769160438; c=relaxed/simple;
-	bh=Yc0Am0JOK83f2qlQR8wy0adnCkIm88yQxe8eRCbOxTw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=C9rZCZQ4etOE8C6RRxQMvDyMTbJLSS4u5cXVLABhLQkXauhGSXqzUr67mY8lCrlWZTHnLf+KoDRB01hmoc6h15hV0egMiC0fEz2TGihjMQqxalhpgrZo+BTdu9k9hdMWPW9omaucNrIwudaGX2oku4wOM0zQK6RDN0dAPqm5iAw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Fri, 23 Jan
- 2026 17:26:27 +0800
-Received: from [127.0.1.1] (192.168.10.13) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Fri, 23 Jan 2026 17:26:27 +0800
-From: Billy Tsai <billy_tsai@aspeedtech.com>
-Date: Fri, 23 Jan 2026 17:26:31 +0800
-Subject: [PATCH v2 6/6] gpio: aspeed-sgpio: Support G7 Aspeed sgpiom
- controller
+	s=arc-20240116; t=1769160410; c=relaxed/simple;
+	bh=HKf06HAW9sBdEAjObSe9qXeN3w8mmoyzmmJOOHWvYI8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OKqgzGhYKixGurGQOyO0EGKFDEPcxrdEQ5TKY1V8oxGeVsyWL3gIOX0EJYmlxYMVGtKFkxEQUgrg7+/8FqJHZu38SPf97gnuYMJh4zcR5NXfI/W+3V2j1jbFihvZDOJGD3qyJ9rV/rUkd2f2uIXxeyQPe+Ofz5JvaeDj5uGB9Is=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=NUCP4G8H; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 47F768FA;
+	Fri, 23 Jan 2026 10:26:06 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1769160367;
+	bh=HKf06HAW9sBdEAjObSe9qXeN3w8mmoyzmmJOOHWvYI8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=NUCP4G8HW3zXkOyDGx4JbsMI06DqQBUz5yIb3VIvukNmnAHUbFt96NzLaUX9lTkcA
+	 mwD01Whcn6siwKDitbBD5L9QyRLtMsbDr5srI6aY53MsAp0RtCnmAg9GNRwjSN8EC8
+	 Lok3WJEQE4UmrX8aK99lvqMeDjLwQFpyHkvI7mYc=
+Message-ID: <ec8be3fb-b2c0-46bc-a2d7-aaeadb0bba37@ideasonboard.com>
+Date: Fri, 23 Jan 2026 11:26:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 13/18] media: ti: j721e-csi2rx: add multistream
+ support
+To: Rishikesh Donadkar <r-donadkar@ti.com>, jai.luthra@linux.dev,
+ laurent.pinchart@ideasonboard.com, mripard@kernel.org
+Cc: y-abhilashchandra@ti.com, devarsht@ti.com, s-jain1@ti.com,
+ vigneshr@ti.com, mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ p.zabel@pengutronix.de, conor+dt@kernel.org, sakari.ailus@linux.intel.com,
+ hverkuil-cisco@xs4all.nl, jai.luthra@ideasonboard.com,
+ changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com,
+ sjoerd@collabora.com, dan.carpenter@linaro.org, hverkuil+cisco@kernel.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20260121135424.1185710-1-r-donadkar@ti.com>
+ <20260121135424.1185710-14-r-donadkar@ti.com>
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Content-Language: en-US
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <20260121135424.1185710-14-r-donadkar@ti.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-ID: <20260123-upstream_sgpio-v2-6-69cfd1631400@aspeedtech.com>
-References: <20260123-upstream_sgpio-v2-0-69cfd1631400@aspeedtech.com>
-In-Reply-To: <20260123-upstream_sgpio-v2-0-69cfd1631400@aspeedtech.com>
-To: Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>,
-	Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-CC: <linux-gpio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>, "Andrew
- Jeffery" <andrew@aj.id.au>, <devicetree@vger.kernel.org>,
-	<bmc-sw@aspeedtech.com>, Billy Tsai <billy_tsai@aspeedtech.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1769160386; l=5872;
- i=billy_tsai@aspeedtech.com; s=20251118; h=from:subject:message-id;
- bh=Yc0Am0JOK83f2qlQR8wy0adnCkIm88yQxe8eRCbOxTw=;
- b=qDEskd91oEVv3mtQ7vh96cpdr2vm6lBb1mwHJDfrJmAukdsk6JrYvA9PUjH5GxI1Rikq2++1z
- jOWA1tTl43NCaSCKupaIC6opihZ2EYMQNMir4ljwlIbTtckHZ+MwOMJ
-X-Developer-Key: i=billy_tsai@aspeedtech.com; a=ed25519;
- pk=/A8qvgZ6CPfnwKgT6/+k+nvXOkN477MshEGJvVdzeeQ=
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.54 / 15.00];
-	DMARC_POLICY_QUARANTINE(1.50)[aspeedtech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
+	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-258813-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258818-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FREEMAIL_CC(0.00)[ti.com,kernel.org,pengutronix.de,linux.intel.com,xs4all.nl,ideasonboard.com,starfivetech.com,collabora.com,linaro.org,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[billy_tsai@aspeedtech.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-0.992];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tomi.valkeinen@ideasonboard.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ideasonboard.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[aspeedtech.com:mid,aspeedtech.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 6D1DB73554
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ideasonboard.com:email,ideasonboard.com:dkim,ideasonboard.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 661ED7348A
 X-Rspamd-Action: no action
 
-In the 7th generation of the SoC from Aspeed, the control logic of the
-SGPIO controller has been updated to support per-pin control. Each pin now
-has its own 32-bit register, allowing for individual control of the pin's
-value, interrupt type, and other settings.
+Hi,
 
-Reviewed-by: Linus Walleij <linusw@kernel.org>
-Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
----
- drivers/gpio/gpio-aspeed-sgpio.c | 110 ++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 108 insertions(+), 2 deletions(-)
+On 21/01/2026 15:54, Rishikesh Donadkar wrote:
+> From: Jai Luthra <j-luthra@ti.com>
+> 
+> Each CSI2 stream can be multiplexed into 32 independent streams, each
+> identified by its virtual channel number and data type. The incoming
+> data from these streams can be filtered on the basis of either the
+> virtual channel or the data type.
+> 
+> To capture this multiplexed stream, the application needs to tell
+> the driver how it wants to route the data. It needs to specify
+> which context should process which stream. This is done via the
+> new routing APIs.
+> 
+> Add ioctls to accept routing information from the application and save
+> that in the driver. This can be used when starting streaming on a
+> context to determine which route and consequently which virtual channel
+> it should process.
+> 
+> De-assert the pixel interface reset on first start_streaming() and assert
+> it on the last stop_streaming().
+> 
+> Reviewed-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+> Co-developed-by: Pratyush Yadav <p.yadav@ti.com>
+> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> Co-developed-by: Rishikesh Donadkar <r-donadkar@ti.com>
+> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
+> ---
+>  .../platform/ti/j721e-csi2rx/j721e-csi2rx.c   | 271 ++++++++++++------
+>  1 file changed, 191 insertions(+), 80 deletions(-)
+> 
+> diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> index 81c86e2cc4a50..4dabb99792d44 100644
+> --- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> +++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> @@ -143,17 +143,6 @@ static inline struct ti_csi2rx_dev *to_csi2rx_dev(struct v4l2_subdev *sd)
+>  	return container_of(sd, struct ti_csi2rx_dev, subdev);
+>  }
+>  
+> -static const struct v4l2_mbus_framefmt ti_csi2rx_default_fmt = {
+> -	.width = 640,
+> -	.height = 480,
+> -	.code = MEDIA_BUS_FMT_UYVY8_1X16,
+> -	.field = V4L2_FIELD_NONE,
+> -	.colorspace = V4L2_COLORSPACE_SRGB,
+> -	.ycbcr_enc = V4L2_YCBCR_ENC_601,
+> -	.quantization = V4L2_QUANTIZATION_LIM_RANGE,
+> -	.xfer_func = V4L2_XFER_FUNC_SRGB,
+> -};
+> -
+>  static const struct ti_csi2rx_fmt ti_csi2rx_formats[] = {
+>  	{
+>  		.fourcc			= V4L2_PIX_FMT_YUYV,
+> @@ -565,10 +554,6 @@ static void ti_csi2rx_setup_shim(struct ti_csi2rx_ctx *ctx)
+>  
+>  	fmt = find_format_by_fourcc(ctx->v_fmt.fmt.pix.pixelformat);
+>  
+> -	/* De-assert the pixel interface reset. */
+> -	reg = SHIM_CNTL_PIX_RST;
+> -	writel(reg, csi->shim + SHIM_CNTL);
+> -
+>  	/* Negotiate pixel count from the source */
+>  	ti_csi2rx_request_max_ppc(csi);
+>  
+> @@ -888,34 +873,75 @@ static void ti_csi2rx_buffer_queue(struct vb2_buffer *vb)
+>  	}
+>  }
+>  
+> +static int ti_csi2rx_get_stream(struct ti_csi2rx_ctx *ctx)
+> +{
+> +	struct ti_csi2rx_dev *csi = ctx->csi;
+> +	struct media_pad *pad;
+> +	struct v4l2_subdev_state *state;
+> +	struct v4l2_subdev_route *r;
+> +
+> +	/* Get the source pad connected to this ctx */
+> +	pad = media_entity_remote_source_pad_unique(ctx->pad.entity);
+> +	if (!pad) {
+> +		dev_err(csi->dev, "No pad connected to ctx %d\n", ctx->idx);
+> +		return -ENODEV;
+> +	}
+> +
+> +	state = v4l2_subdev_get_locked_active_state(&csi->subdev);
+> +
+> +	for_each_active_route(&state->routing, r) {
+> +		if (r->source_pad == pad->index) {
+> +			ctx->stream = r->sink_stream;
+> +			return 0;
+> +		}
+> +	}
+> +
+> +	/* No route found for this ctx */
+> +	return -ENODEV;
+> +}
+> +
+>  static int ti_csi2rx_get_vc_and_dt(struct ti_csi2rx_ctx *ctx)
+>  {
+>  	struct ti_csi2rx_dev *csi = ctx->csi;
+> +	struct ti_csi2rx_ctx *curr_ctx;
+>  	struct v4l2_mbus_frame_desc fd;
+> -	struct media_pad *pad;
+> -	int ret, i;
+> +	struct media_pad *source_pad;
+> +	int ret;
+> +	unsigned int i, j;
+>  
+> -	pad = media_entity_remote_pad_unique(&csi->subdev.entity, MEDIA_PAD_FL_SOURCE);
+> -	if (!pad)
+> +	/* Get the frame desc form source */
 
-diff --git a/drivers/gpio/gpio-aspeed-sgpio.c b/drivers/gpio/gpio-aspeed-sgpio.c
-index b5270e11b153..4225261f61c8 100644
---- a/drivers/gpio/gpio-aspeed-sgpio.c
-+++ b/drivers/gpio/gpio-aspeed-sgpio.c
-@@ -19,7 +19,31 @@
- #include <linux/spinlock.h>
- #include <linux/string.h>
- 
--#define ASPEED_SGPIO_CTRL		0x54
-+#define SGPIO_G7_IRQ_STS_BASE 0x40
-+#define SGPIO_G7_IRQ_STS_OFFSET(x) (SGPIO_G7_IRQ_STS_BASE + (x) * 0x4)
-+#define SGPIO_G7_CTRL_REG_BASE 0x80
-+#define SGPIO_G7_CTRL_REG_OFFSET(x) (SGPIO_G7_CTRL_REG_BASE + (x) * 0x4)
-+#define SGPIO_G7_OUT_DATA BIT(0)
-+#define SGPIO_G7_PARALLEL_OUT_DATA BIT(1)
-+#define SGPIO_G7_IRQ_EN BIT(2)
-+#define SGPIO_G7_IRQ_TYPE0 BIT(3)
-+#define SGPIO_G7_IRQ_TYPE1 BIT(4)
-+#define SGPIO_G7_IRQ_TYPE2 BIT(5)
-+#define SGPIO_G7_RST_TOLERANCE BIT(6)
-+#define SGPIO_G7_INPUT_MASK BIT(9)
-+#define SGPIO_G7_HW_BYPASS_EN BIT(10)
-+#define SGPIO_G7_HW_IN_SEL BIT(11)
-+#define SGPIO_G7_IRQ_STS BIT(12)
-+#define SGPIO_G7_IN_DATA BIT(13)
-+#define SGPIO_G7_PARALLEL_IN_DATA BIT(14)
-+#define SGPIO_G7_SERIAL_OUT_SEL GENMASK(17, 16)
-+#define SGPIO_G7_PARALLEL_OUT_SEL GENMASK(19, 18)
-+#define SELECT_FROM_CSR 0
-+#define SELECT_FROM_PARALLEL_IN 1
-+#define SELECT_FROM_SERIAL_IN 2
-+
-+#define ASPEED_SGPIO_G4_CFG_OFFSET 0x54
-+#define ASPEED_SGPIO_G7_CFG_OFFSET 0x0
- 
- #define ASPEED_SGPIO_CLK_DIV_MASK	GENMASK(31, 16)
- #define ASPEED_SGPIO_ENABLE		BIT(0)
-@@ -28,6 +52,7 @@
- struct aspeed_sgpio_pdata {
- 	const u32 pin_mask;
- 	const struct aspeed_sgpio_llops *llops;
-+	const u32 cfg_offset;
- };
- 
- struct aspeed_sgpio {
-@@ -135,6 +160,30 @@ static void __iomem *aspeed_sgpio_g4_bank_reg(struct aspeed_sgpio *gpio,
- 	}
- }
- 
-+static u32 aspeed_sgpio_g7_reg_mask(const enum aspeed_sgpio_reg reg)
-+{
-+	switch (reg) {
-+	case reg_val:
-+	case reg_rdata:
-+		return SGPIO_G7_OUT_DATA;
-+	case reg_irq_enable:
-+		return SGPIO_G7_IRQ_EN;
-+	case reg_irq_type0:
-+		return SGPIO_G7_IRQ_TYPE0;
-+	case reg_irq_type1:
-+		return SGPIO_G7_IRQ_TYPE1;
-+	case reg_irq_type2:
-+		return SGPIO_G7_IRQ_TYPE2;
-+	case reg_irq_status:
-+		return SGPIO_G7_IRQ_STS;
-+	case reg_tolerance:
-+		return SGPIO_G7_RST_TOLERANCE;
-+	default:
-+		WARN_ON_ONCE(1);
-+		return 0;
-+	}
-+}
-+
- #define GPIO_BANK(x)    ((x) >> 6)
- #define GPIO_OFFSET(x)  ((x) & GENMASK(5, 0))
- #define GPIO_BIT(x)     BIT(GPIO_OFFSET(x) >> 1)
-@@ -457,6 +506,7 @@ static const struct aspeed_sgpio_llops aspeed_sgpio_g4_llops = {
- static const struct aspeed_sgpio_pdata ast2400_sgpio_pdata = {
- 	.pin_mask = GENMASK(9, 6),
- 	.llops = &aspeed_sgpio_g4_llops,
-+	.cfg_offset = ASPEED_SGPIO_G4_CFG_OFFSET,
- };
- 
- static int aspeed_sgpio_reset_tolerance(struct gpio_chip *chip,
-@@ -486,12 +536,68 @@ static int aspeed_sgpio_set_config(struct gpio_chip *chip, unsigned int offset,
- static const struct aspeed_sgpio_pdata ast2600_sgpiom_pdata = {
- 	.pin_mask = GENMASK(10, 6),
- 	.llops = &aspeed_sgpio_g4_llops,
-+	.cfg_offset = ASPEED_SGPIO_G4_CFG_OFFSET,
-+};
-+
-+static void aspeed_sgpio_g7_reg_bit_set(struct aspeed_sgpio *gpio, unsigned int offset,
-+					const enum aspeed_sgpio_reg reg, bool val)
-+{
-+	u32 mask = aspeed_sgpio_g7_reg_mask(reg);
-+	void __iomem *addr = gpio->base + SGPIO_G7_CTRL_REG_OFFSET(offset >> 1);
-+	u32 write_val;
-+
-+	if (mask) {
-+		write_val = (ioread32(addr) & ~(mask)) | field_prep(mask, val);
-+		iowrite32(write_val, addr);
-+	}
-+}
-+
-+static bool aspeed_sgpio_g7_reg_bit_get(struct aspeed_sgpio *gpio, unsigned int offset,
-+					const enum aspeed_sgpio_reg reg)
-+{
-+	u32 mask = aspeed_sgpio_g7_reg_mask(reg);
-+	void __iomem *addr;
-+
-+	addr = gpio->base + SGPIO_G7_CTRL_REG_OFFSET(offset >> 1);
-+	if (reg == reg_val)
-+		mask = SGPIO_G7_IN_DATA;
-+
-+	if (mask)
-+		return field_get(mask, ioread32(addr));
-+	else
-+		return 0;
-+}
-+
-+static int aspeed_sgpio_g7_reg_bank_get(struct aspeed_sgpio *gpio, unsigned int offset,
-+					const enum aspeed_sgpio_reg reg)
-+{
-+	void __iomem *addr;
-+
-+	if (reg == reg_irq_status) {
-+		addr = gpio->base + SGPIO_G7_IRQ_STS_OFFSET(offset >> 6);
-+		return ioread32(addr);
-+	} else {
-+		return -EOPNOTSUPP;
-+	}
-+}
-+
-+static const struct aspeed_sgpio_llops aspeed_sgpio_g7_llops = {
-+	.reg_bit_set = aspeed_sgpio_g7_reg_bit_set,
-+	.reg_bit_get = aspeed_sgpio_g7_reg_bit_get,
-+	.reg_bank_get = aspeed_sgpio_g7_reg_bank_get,
-+};
-+
-+static const struct aspeed_sgpio_pdata ast2700_sgpiom_pdata = {
-+	.pin_mask = GENMASK(11, 6),
-+	.llops = &aspeed_sgpio_g7_llops,
-+	.cfg_offset = ASPEED_SGPIO_G7_CFG_OFFSET,
- };
- 
- static const struct of_device_id aspeed_sgpio_of_table[] = {
- 	{ .compatible = "aspeed,ast2400-sgpio", .data = &ast2400_sgpio_pdata, },
- 	{ .compatible = "aspeed,ast2500-sgpio", .data = &ast2400_sgpio_pdata, },
- 	{ .compatible = "aspeed,ast2600-sgpiom", .data = &ast2600_sgpiom_pdata, },
-+	{ .compatible = "aspeed,ast2700-sgpiom", .data = &ast2700_sgpiom_pdata, },
- 	{}
- };
- 
-@@ -562,7 +668,7 @@ static int aspeed_sgpio_probe(struct platform_device *pdev)
- 
- 	gpio_cnt_regval = ((nr_gpios / 8) << ASPEED_SGPIO_PINS_SHIFT) & pin_mask;
- 	iowrite32(FIELD_PREP(ASPEED_SGPIO_CLK_DIV_MASK, sgpio_clk_div) | gpio_cnt_regval |
--		  ASPEED_SGPIO_ENABLE, gpio->base + ASPEED_SGPIO_CTRL);
-+		  ASPEED_SGPIO_ENABLE, gpio->base + gpio->pdata->cfg_offset);
- 
- 	raw_spin_lock_init(&gpio->lock);
- 
+"from".
 
--- 
-2.34.1
+> +	source_pad = media_entity_remote_pad_unique(&csi->subdev.entity, MEDIA_PAD_FL_SOURCE);
+> +	if (!source_pad)
+>  		return -ENODEV;
+>  
+> -	ret = v4l2_subdev_call(csi->source, pad, get_frame_desc, pad->index, &fd);
+> +	ret = v4l2_subdev_call(csi->source, pad, get_frame_desc, source_pad->index, &fd);
+>  	if (ret)
+>  		return ret;
+>  
+>  	if (fd.type != V4L2_MBUS_FRAME_DESC_TYPE_CSI2)
+>  		return -EINVAL;
+>  
+> -	for (i = 0; i < fd.num_entries; i++) {
+> -		if (ctx->stream == fd.entry[i].stream) {
+> -			ctx->vc = fd.entry[i].bus.csi2.vc;
+> -			ctx->dt = fd.entry[i].bus.csi2.dt;
+> -			break;
+> -		}
+> +	for (i = 0; i < csi->num_ctx; i++) {
+> +		curr_ctx = &csi->ctx[i];
+>  
+> -		/* Return error if no matching stream found */
+> -		if (i == fd.num_entries)
+> -			return -EINVAL;
+> +		/* Capture VC 0 by default */
+> +		curr_ctx->vc = 0;
+> +
+> +		ret = ti_csi2rx_get_stream(curr_ctx);
+> +		if (ret)
+> +			continue;
+> +
+> +		for (j = 0; j < fd.num_entries; j++) {
+> +			if (curr_ctx->stream == fd.entry[j].stream) {
+> +				curr_ctx->vc = fd.entry[j].bus.csi2.vc;
+> +				curr_ctx->dt = fd.entry[j].bus.csi2.dt;
+> +				break;
+> +			}
+> +
+> +			/* Return error if no matching stream found */
+> +			if (j == fd.num_entries)
+> +				return -EINVAL;
+> +		}
+>  	}
+>  
+>  	return 0;
+> @@ -926,8 +952,6 @@ static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
+>  	struct ti_csi2rx_ctx *ctx = vb2_get_drv_priv(vq);
+>  	struct ti_csi2rx_dev *csi = ctx->csi;
+>  	struct ti_csi2rx_dma *dma = &ctx->dma;
+> -	struct ti_csi2rx_buffer *buf;
+> -	const struct ti_csi2rx_fmt *fmt;
+>  	unsigned long flags;
+>  	int ret = 0;
+>  
+> @@ -942,35 +966,9 @@ static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
+>  	if (ret)
+>  		goto err;
+>  
+> -	ret = ti_csi2rx_get_vc_and_dt(ctx);
+> -	if (ret == -ENOIOCTLCMD) {
+> -		ctx->vc = 0;
+> -		fmt = find_format_by_fourcc(ctx->v_fmt.fmt.pix.pixelformat);
+> -		ctx->dt = fmt->csi_dt;
+> -	} else if (ret < 0) {
+> -		goto err;
+> -	}
+> -
+> -	ti_csi2rx_setup_shim(ctx);
+> -
+> -	ctx->sequence = 0;
+> -
+> -	spin_lock_irqsave(&dma->lock, flags);
+> -	buf = list_entry(dma->queue.next, struct ti_csi2rx_buffer, list);
+> -
+> -	ret = ti_csi2rx_start_dma(ctx, buf);
+> -	if (ret) {
+> -		dev_err(csi->dev, "Failed to start DMA: %d\n", ret);
+> -		spin_unlock_irqrestore(&dma->lock, flags);
+> -		goto err_pipeline;
+> -	}
+> -
+> -	list_move_tail(&buf->list, &dma->submitted);
+> -	dma->state = TI_CSI2RX_DMA_ACTIVE;
+> -	spin_unlock_irqrestore(&dma->lock, flags);
+> -
+> +	/* Start stream 0, we don't allow multiple streams on the source pad */
+>  	ret = v4l2_subdev_enable_streams(&csi->subdev,
+> -					 TI_CSI2RX_PAD_FIRST_SOURCE,
+> +					 TI_CSI2RX_PAD_FIRST_SOURCE + ctx->idx,
+>  					 BIT_U64(0));
+>  	if (ret)
+>  		goto err_dma;
+> @@ -979,7 +977,6 @@ static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
+>  
+>  err_dma:
+>  	ti_csi2rx_stop_dma(ctx);
+> -err_pipeline:
+>  	video_device_pipeline_stop(&ctx->vdev);
+>  	writel(0, csi->shim + SHIM_CNTL);
+>  	writel(0, csi->shim + SHIM_DMACNTX(ctx->idx));
+> @@ -996,11 +993,8 @@ static void ti_csi2rx_stop_streaming(struct vb2_queue *vq)
+>  
+>  	video_device_pipeline_stop(&ctx->vdev);
+>  
+> -	writel(0, csi->shim + SHIM_CNTL);
+> -	writel(0, csi->shim + SHIM_DMACNTX(ctx->idx));
+> -
+>  	ret = v4l2_subdev_disable_streams(&csi->subdev,
+> -					  TI_CSI2RX_PAD_FIRST_SOURCE,
+> +					  TI_CSI2RX_PAD_FIRST_SOURCE + ctx->idx,
+>  					  BIT_U64(0));
+>  	if (ret)
+>  		dev_err(csi->dev, "Failed to stop subdev stream\n");
+> @@ -1047,25 +1041,84 @@ static int ti_csi2rx_sd_set_fmt(struct v4l2_subdev *sd,
+>  	fmt = v4l2_subdev_state_get_format(state, format->pad, format->stream);
+>  	*fmt = format->format;
+>  
+> -	fmt = v4l2_subdev_state_get_format(state, TI_CSI2RX_PAD_FIRST_SOURCE,
+> -					   format->stream);
+> +	fmt = v4l2_subdev_state_get_opposite_stream_format(state, format->pad,
+> +							   format->stream);
+> +	if (!fmt)
+> +		return -EINVAL;
+> +
+>  	*fmt = format->format;
+>  
+>  	return 0;
+>  }
+>  
+> -static int ti_csi2rx_sd_init_state(struct v4l2_subdev *sd,
+> -				   struct v4l2_subdev_state *state)
+> +static int _ti_csi2rx_sd_set_routing(struct v4l2_subdev *sd,
+> +				     struct v4l2_subdev_state *state,
+> +				     struct v4l2_subdev_krouting *routing)
+>  {
+> -	struct v4l2_mbus_framefmt *fmt;
+> +	int ret;
+>  
+> -	fmt = v4l2_subdev_state_get_format(state, TI_CSI2RX_PAD_SINK);
+> -	*fmt = ti_csi2rx_default_fmt;
+> +	static const struct v4l2_mbus_framefmt format = {
+> +		.width = 640,
+> +		.height = 480,
+> +		.code = MEDIA_BUS_FMT_UYVY8_1X16,
+> +		.field = V4L2_FIELD_NONE,
+> +		.colorspace = V4L2_COLORSPACE_SRGB,
+> +		.ycbcr_enc = V4L2_YCBCR_ENC_601,
+> +		.quantization = V4L2_QUANTIZATION_LIM_RANGE,
+> +		.xfer_func = V4L2_XFER_FUNC_SRGB,
+> +	};
+>  
+> -	fmt = v4l2_subdev_state_get_format(state, TI_CSI2RX_PAD_FIRST_SOURCE);
+> -	*fmt = ti_csi2rx_default_fmt;
+> +	ret = v4l2_subdev_routing_validate(sd, routing,
+> +					   V4L2_SUBDEV_ROUTING_ONLY_1_TO_1 |
+> +					   V4L2_SUBDEV_ROUTING_NO_SOURCE_MULTIPLEXING);
+>  
+> -	return 0;
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Only stream ID 0 allowed on source pads */
+> +	for (unsigned int i = 0; i < routing->num_routes; ++i) {
+> +		const struct v4l2_subdev_route *route = &routing->routes[i];
+> +
+> +		if (route->source_stream != 0)
+> +			return -EINVAL;
+> +	}
+> +
+> +	ret = v4l2_subdev_set_routing_with_fmt(sd, state, routing, &format);
+> +
+> +	return ret;
+> +}
+> +
+> +static int ti_csi2rx_sd_set_routing(struct v4l2_subdev *sd,
+> +				    struct v4l2_subdev_state *state,
+> +				    enum v4l2_subdev_format_whence which,
+> +				    struct v4l2_subdev_krouting *routing)
+> +{
+> +	struct ti_csi2rx_dev *csi = to_csi2rx_dev(sd);
+> +
+> +	if (csi->enable_count > 0)
+> +		return -EBUSY;
+> +
+> +	return _ti_csi2rx_sd_set_routing(sd, state, routing);
+> +}
+> +
+> +static int ti_csi2rx_sd_init_state(struct v4l2_subdev *sd,
+> +				   struct v4l2_subdev_state *state)
+> +{
+> +	struct v4l2_subdev_route routes[] = { {
+> +		.sink_pad = 0,
+> +		.sink_stream = 0,
+> +		.source_pad = TI_CSI2RX_PAD_FIRST_SOURCE,
+> +		.source_stream = 0,
+> +		.flags = V4L2_SUBDEV_ROUTE_FL_ACTIVE,
+> +	} };
+> +
+> +	struct v4l2_subdev_krouting routing = {
+> +		.num_routes = 1,
+> +		.routes = routes,
+> +	};
+> +
+> +	/* Initialize routing to single route to the fist source pad */
+> +	return _ti_csi2rx_sd_set_routing(sd, state, &routing);
+>  }
+>  
+>  static int ti_csi2rx_sd_enable_streams(struct v4l2_subdev *sd,
+> @@ -1073,15 +1126,62 @@ static int ti_csi2rx_sd_enable_streams(struct v4l2_subdev *sd,
+>  				       u32 pad, u64 streams_mask)
+>  {
+>  	struct ti_csi2rx_dev *csi = to_csi2rx_dev(sd);
+> +	struct ti_csi2rx_ctx *ctx = &csi->ctx[pad - TI_CSI2RX_PAD_FIRST_SOURCE];
+> +	struct ti_csi2rx_dma *dma = &ctx->dma;
+>  	struct media_pad *remote_pad;
+> +	struct ti_csi2rx_buffer *buf;
+> +	const struct ti_csi2rx_fmt *fmt;
+> +	unsigned long flags;
+> +	u64 sink_streams;
+>  	int ret = 0;
+> +	unsigned int reg;
+> +
+> +	ret = ti_csi2rx_get_stream(ctx);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Get the VC and DT for all enabled ctx on first stream start */
+> +	if (!csi->enable_count) {
+> +		ret = ti_csi2rx_get_vc_and_dt(ctx);
+> +		if (ret == -ENOIOCTLCMD) {
+> +			ctx->vc = 0;
+> +			fmt = find_format_by_fourcc(ctx->v_fmt.fmt.pix.pixelformat);
+> +			ctx->dt = fmt->csi_dt;
+
+I think the above lines would well fit into the
+ti_csi2rx_get_vc_and_dt() function.
+
+Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+
+ Tomi
+
+> +		} else if (ret < 0) {
+> +			return ret;
+> +		}
+> +
+> +		/* De-assert the pixel interface reset. */
+> +		reg = SHIM_CNTL_PIX_RST;
+> +		writel(reg, csi->shim + SHIM_CNTL);
+> +	}
+> +
+> +	ti_csi2rx_setup_shim(ctx);
+> +	ctx->sequence = 0;
+> +
+> +	spin_lock_irqsave(&dma->lock, flags);
+> +	buf = list_entry(dma->queue.next, struct ti_csi2rx_buffer, list);
+> +
+> +	ret = ti_csi2rx_start_dma(ctx, buf);
+> +	if (ret) {
+> +		dev_err(csi->dev, "Failed to start DMA: %d\n", ret);
+> +		spin_unlock_irqrestore(&dma->lock, flags);
+> +		return ret;
+> +	}
+> +
+> +	list_move_tail(&buf->list, &dma->submitted);
+> +	dma->state = TI_CSI2RX_DMA_ACTIVE;
+> +	spin_unlock_irqrestore(&dma->lock, flags);
+>  
+>  	remote_pad = media_entity_remote_source_pad_unique(&csi->subdev.entity);
+>  	if (!remote_pad)
+>  		return -ENODEV;
+> +	sink_streams = v4l2_subdev_state_xlate_streams(state, pad,
+> +						       TI_CSI2RX_PAD_SINK,
+> +						       &streams_mask);
+>  
+>  	ret = v4l2_subdev_enable_streams(csi->source, remote_pad->index,
+> -					 BIT_U64(0));
+> +					 sink_streams);
+>  	if (ret)
+>  		return ret;
+>  
+> @@ -1095,18 +1195,28 @@ static int ti_csi2rx_sd_disable_streams(struct v4l2_subdev *sd,
+>  					u32 pad, u64 streams_mask)
+>  {
+>  	struct ti_csi2rx_dev *csi = to_csi2rx_dev(sd);
+> +	struct ti_csi2rx_ctx *ctx = &csi->ctx[pad - TI_CSI2RX_PAD_FIRST_SOURCE];
+>  	struct media_pad *remote_pad;
+> +	u64 sink_streams;
+>  	int ret = 0;
+>  
+> +	WARN_ON(csi->enable_count == 0);
+> +
+> +	writel(0, csi->shim + SHIM_DMACNTX(ctx->idx));
+> +
+> +	/* assert pixel reset to prevent stale data */
+> +	if (csi->enable_count == 1)
+> +		writel(0, csi->shim + SHIM_CNTL);
+> +
+>  	remote_pad = media_entity_remote_source_pad_unique(&csi->subdev.entity);
+>  	if (!remote_pad)
+>  		return -ENODEV;
+> -
+> -	if (csi->enable_count == 0)
+> -		return -EINVAL;
+> +	sink_streams = v4l2_subdev_state_xlate_streams(state, pad,
+> +						       TI_CSI2RX_PAD_SINK,
+> +						       &streams_mask);
+>  
+>  	ret = v4l2_subdev_disable_streams(csi->source, remote_pad->index,
+> -					  BIT_U64(0));
+> +					  sink_streams);
+>  	if (!ret)
+>  		--csi->enable_count;
+>  
+> @@ -1115,6 +1225,7 @@ static int ti_csi2rx_sd_disable_streams(struct v4l2_subdev *sd,
+>  
+>  static const struct v4l2_subdev_pad_ops ti_csi2rx_subdev_pad_ops = {
+>  	.enum_mbus_code	= ti_csi2rx_enum_mbus_code,
+> +	.set_routing = ti_csi2rx_sd_set_routing,
+>  	.get_fmt = v4l2_subdev_get_fmt,
+>  	.set_fmt = ti_csi2rx_sd_set_fmt,
+>  	.enable_streams = ti_csi2rx_sd_enable_streams,
+> @@ -1293,7 +1404,7 @@ static int ti_csi2rx_v4l2_init(struct ti_csi2rx_dev *csi)
+>  	v4l2_subdev_init(sd, &ti_csi2rx_subdev_ops);
+>  	sd->internal_ops = &ti_csi2rx_internal_ops;
+>  	sd->entity.function = MEDIA_ENT_F_VID_IF_BRIDGE;
+> -	sd->flags = V4L2_SUBDEV_FL_HAS_DEVNODE;
+> +	sd->flags = V4L2_SUBDEV_FL_HAS_DEVNODE | V4L2_SUBDEV_FL_STREAMS;
+>  	strscpy(sd->name, dev_name(csi->dev), sizeof(sd->name));
+>  	sd->dev = csi->dev;
+>  	sd->entity.ops = &ti_csi2rx_subdev_entity_ops;
 
 
