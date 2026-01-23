@@ -1,73 +1,70 @@
-Return-Path: <devicetree+bounces-258776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258777-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8CocAE8vc2mTswAAu9opvQ
-	(envelope-from <devicetree+bounces-258776-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 09:20:31 +0100
+	id 6K9OCo8vc2mTswAAu9opvQ
+	(envelope-from <devicetree+bounces-258777-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 09:21:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CE4F725F0
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 09:20:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 826DB72615
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 09:21:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B7AAD300277D
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 08:16:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CC7E730137A8
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 08:18:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D334336EC1;
-	Fri, 23 Jan 2026 08:16:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EA6E33B6E8;
+	Fri, 23 Jan 2026 08:18:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V3FU4HV0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PnW4rwCy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39685306B08;
-	Fri, 23 Jan 2026 08:16:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B27F3382EB;
+	Fri, 23 Jan 2026 08:18:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769156211; cv=none; b=QIhh4xxzjWpIgjAroIdHrNV93r2mqKV5f4WQmU1YliQgoV44BFtXRO6OqOr5zotz34HmqTPDn9n6cAqWWM7jMzMr1YIyYJ507OpdwsN1rxIaK2pNGm325se6R4e3vvpmqYAAkwYNMuhrUES/EtbboyQxllZXTuZ5zQ+Psakt50M=
+	t=1769156310; cv=none; b=g+HKi/IPpegdBZLjRItWtnSu/hIqPKtLYcyjrGy+Bvlt04oDS59klaSWIhiO8lpRc8g3q4FtLyCXceRxAwFm2w/n33Ys/8jx5dKE0d7Bfn5SJXhyx2wk5quV8fGAIN5TktqRlfQolTHuOvXfe3pgDMn0Vl88rFhh9qvNuqtjODM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769156211; c=relaxed/simple;
-	bh=2iDxdSx14/uXimquYB8SyE4nT0Qu2Afoq1CG0qGtKyo=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ZWyGzu931gnu9Vi7DmD9yTDarxmAihgzRi/oqYPPPYSpBydyLtrsi0UciEwVZbBein3SkjgqQfB2+/q6XrEelDluezWI2cK2X4aRZ4zqRpn64nZ/gjnkMGYiBi3YOZ80+KAU9Da4ieNOBONtHh1C3aT8TgQT/9qVgqMqW9xBFbU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V3FU4HV0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1840EC4CEF1;
-	Fri, 23 Jan 2026 08:16:44 +0000 (UTC)
+	s=arc-20240116; t=1769156310; c=relaxed/simple;
+	bh=+y8AGNIIHzHrt7WpGcWS9I/hAHRjyxzk3d7N2WLe8hw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Dpr90CXRAcOw6/m2P2UT5ogL6HX4i2k6R2Guh2gGEpoeyrZTef6jfWqnHLitQj/eTZRxihgS13DWG7pOjuBNVzOKvvhtA3cbp3YrYcYcWqmicxWDBkgydD3OXNcwl2QkoCl2FV5T93Ngyg1Yk4q1vDtFgFINQ6PuhAz384eg/lI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PnW4rwCy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64F26C116D0;
+	Fri, 23 Jan 2026 08:18:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769156210;
-	bh=2iDxdSx14/uXimquYB8SyE4nT0Qu2Afoq1CG0qGtKyo=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=V3FU4HV0NnvJ43VWy0++fp1VJHTTRqoKLorS8g8C5yyeWknFk4O7c55fw9R5XDSyb
-	 P0HRGHx2LdDwibdafM0RgQsSKm37onm7w2H1nR9vWYy/UUjJGypKX6CiFcI/1iahUf
-	 UxjSgraxa3nFSMwpax12WfjvZoD+y6a+RkuvAVEx2YCmtlbV+K5q6XH6GOVQmcwpqd
-	 KYogJVGF5mGqa36tMRQ7H0YTFpTdgZsy+8dd85lJZtiD5svMJsInfDOpZBr4u803Oh
-	 TzGhk6ZMKfh4kjYAl7L6PxNsDKBG3nDd6aNVQ7rjP2DOnD3L2awH9NdGXj4Tl+hSQZ
-	 uoE99M4Vvk9QQ==
-Date: Fri, 23 Jan 2026 08:16:40 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Janani Sunil <janani.sunil@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, <linux-iio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-doc@vger.kernel.org>, <jan.sun97@gmail.com>, <gastmaier@gmail.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, Marcelo Schmitt
- <marcelo.schmitt1@gmail.com>
-Subject: Re: [PATCH v4 0/2] iio: dac: Add support for MAX22007 DAC
-Message-ID: <20260123081640.590335bd@jic23-huawei>
-In-Reply-To: <20260119-max22007-patch-v4-0-e22404a885a6@analog.com>
-References: <20260119-max22007-patch-v4-0-e22404a885a6@analog.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=k20201202; t=1769156310;
+	bh=+y8AGNIIHzHrt7WpGcWS9I/hAHRjyxzk3d7N2WLe8hw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PnW4rwCyM5RBADoRptzsPYfRTybn/TRTez25NwBwtOsQr6E7scZ9i9YnFwG3y8Iet
+	 PCiFF6tdBUuI6Hzqt5I/+Jt7Em9aJLswe+pZ26gA5pUC7Pi4w8xSQcY6B9z744tfbY
+	 muBKGJTo7uL7qTq4zz2ThBklFl98hfv6ajwqGsDfww7iQvTp4mgELzGzzsSj++spvH
+	 ShW5dKUDGk6JRN7We+WUTbjoBZkgg/aqdGyRSORA99bCaJfKgCDn/oYN3iwbWhfcFB
+	 3YWU4hRJllq3iD0LZ6HIA1cV06hwo+4LwXtdgswnCWBgptj+6Rv6lNc5SDpNlm7wni
+	 cK6vcW9Gs7+mw==
+Date: Fri, 23 Jan 2026 09:18:27 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Yulin Lu <luyulin@eswincomputing.com>
+Cc: vkoul@kernel.org, neil.armstrong@linaro.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de, 
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	ningyu@eswincomputing.com, linmin@eswincomputing.com, fenglin@eswincomputing.com
+Subject: Re: [PATCH v8 1/2] dt-bindings: phy: eswin: Document the EIC7700 SoC
+ SATA PHY
+Message-ID: <20260123-quantum-beneficial-rat-acb17a@quoll>
+References: <20260123024823.1612-1-luyulin@eswincomputing.com>
+ <20260123024936.386-1-luyulin@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260123024936.386-1-luyulin@eswincomputing.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -79,148 +76,73 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258776-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-258777-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.996];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[metafoo.de,analog.com,kernel.org,lwn.net,vger.kernel.org,gmail.com,oss.qualcomm.com];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,metafoo.de:email]
-X-Rspamd-Queue-Id: 5CE4F725F0
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:url]
+X-Rspamd-Queue-Id: 826DB72615
 X-Rspamd-Action: no action
 
-On Mon, 19 Jan 2026 12:24:22 +0100
-Janani Sunil <janani.sunil@analog.com> wrote:
+On Fri, Jan 23, 2026 at 10:49:36AM +0800, Yulin Lu wrote:
+> +  eswin,tx-amplitude-tuning:
+> +    description: This adjusts the transmitter amplitude signal, and its value
+> +      is derived from eye diagram tuning. The three values correspond to Gen1,
+> +      Gen2, and Gen3 parameters respectively.
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    items:
+> +      - description: Gen1 parameter.
+> +        minimum: 0
+> +        maximum: 0x7f
+> +        default: 0
+> +      - description: Gen2 parameter.
+> +        minimum: 0
+> +        maximum: 0x7f
+> +        default: 0
+> +      - description: Gen3 parameter.
+> +        minimum: 0
+> +        maximum: 0x7f
+> +        default: 0
 
-> This patch series introduces support for the Analog Devices MAX22007, a
-> quad-channel, 12-bit digital-to-analog converter (DAC) with integrated
-> precision output amplifiers and configurable voltage/current output capability.
-> 
-> **Device Overview:**
-> The MAX22007 features four independent DAC channels that can each be configured
-> for either voltage output (0-12.5V) or current output (0-25mA) mode. The device
-> communicates via SPI interface with built-in CRC8 error checking for data integrity.
-> 
-> **Features Implemented:**
-> - Support for all 4 DAC channels with 12-bit resolution
-> - Per-channel voltage/current mode configuration via device tree
->   property `adi,ch-func = [voltage, current]`
-> - Independent power control for each channel (attribute)
-> - Hardware reset support via GPIO (during probe)
-> - CRC8 error checking for SPI communication
-> 
-> **Patch Summary:**
-> 1. dt-bindings: Binding documentation with channel configuration
-> 2. driver: Implement IIO DAC driver
-> 
-> **Testing:**
-> The driver was hardware tested on a Raspberry Pi4 on top of v6.12.y
-> kernel using the MAX22007EVKIT evaluation board.
-> 
-> Janani Sunil (3):
-> 
-> dt-bindings: iio: dac: Add max22007
-> iio: dac: Add MAX22007 DAC driver support
-> ---
-> To: Lars-Peter Clausen <lars@metafoo.de>
-> To: Michael Hennerich <Michael.Hennerich@analog.com>
-> To: Jonathan Cameron <jic23@kernel.org>
-> To: Rob Herring <robh@kernel.org>
-> To: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> To: Conor Dooley <conor+dt@kernel.org>
-> To: Jonathan Corbet <corbet@lwn.net>
-> Cc: linux-iio@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: linux-doc@vger.kernel.org
-> Cc: jan.sun97@gmail.com
-> Cc: gastmaier@gmail.com
-> Signed-off-by: Janani Sunil <janani.sunil@analog.com>
-As noted in patch 2 comments I am rushing this a bit given point in cycle
-so if anyone else wants to take a final look (e.g. Marcelo who looked at
-v2) then that is fine.
+I think defaults should be specified like this:
+https://elixir.bootlin.com/linux/v6.19-rc5/source/Documentation/devicetree/bindings/sound/adi,adau7118.yaml#L54
 
-In meantime I've applied this to the testing branch of iio.git which will
-become togreg if all looks good in test builds.
+> +
+> +  eswin,tx-preemph-tuning:
+> +    description: This adjusts the transmitter de-emphasis signal, and its value
+> +      is derived from eye diagram tuning. The three values correspond to Gen1,
+> +      Gen2, and Gen3 parameters respectively.
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    items:
+> +      - description: Gen1 parameter.
+> +        minimum: 0
+> +        maximum: 0x3f
+> +        default: 0
+> +      - description: Gen2 parameter.
+> +        minimum: 0
+> +        maximum: 0x3f
+> +        default: 0
+> +      - description: Gen3 parameter.
+> +        minimum: 0
+> +        maximum: 0x3f
+> +        default: 0
 
-Jonathan
+Same here
 
-> 
-> ---
-> Changes in v4:
-> - Re-sent of improper v3 (at v3 I *accidentaly* reverted the dt-binding
->   commit to v1 after a rebase).
-> - Corrected description for reset GPIO in the dt-binding
-> - Wrap commit description at 75 columns
-> - Link to v3: https://lore.kernel.org/r/20260114-max22007-patch-v3-0-769298f50b8a@analog.com
-> 
-> Changes in v3:
-> - Remove node defined for power supplies in the devicetree documentaiton
-> - Made use of CRC8_TABLE_SIZE macro in the crc table definition
-> - Corrected casting of reg address in the SPI read function
-> - Applied reverse christmas tree variable ordering
-> - Added a macro fro the reference voltage and reused the same in the
->   scale factor
-> - Removed usage of 'supplies' in enabling bulk regulator and removed
->   unused variable 'i'
-> - Added step n the probe function to toggle the reset GPIO
-> - Updated spacing in macro definitions
-> - Link to v2: https://lore.kernel.org/r/20260108-max22007-dev-v2-0-2506c738784f@analog.com/
-> 
-> Changes in v2:
-> - Wrap commit messages as per coding guidelines
-> - Removed all driver references from the hardware
-> - Update property description for reset-gpio
-> - Removed allOf
-> - Added minimum/maximum limits for channel number in the devicetree
->   binding
-> - Replaced adi,type with adi,ch-func.
-> - Added reference to required supplies in the binding, configured them
->   in the driver
-> - Channels are not a required property anymore.
-> - Replaced instances of 'channel' in macros to just 'ch'
-> - Added trailing commas wherever necessary, removed them as per comments
-> - Add explicit values for enum- max22007_channel_power
-> - Replace channel spec structure member 'iio_chan' with 'iio_chans'
-> - Use spi_write_then_read() API in the max22007_spi_read() API
-> - Check for reg_size ==1 and hardcode the size otherwise
-> - Wrap lines in the driver to 80 characters
-> - Update in-line comment on the resolution
-> - Separate declarations with assignment, from the ones that don't
-> - Update the usage of channel template
-> - Add a local device descriptor to point to the SPI device
-> - Add a transition of the Reset GPIO from low to high in the probe
-> - Make use of regmap_set_bits() instead of regmap_update_bits during CRC
->   Enable function call.
-> - Remove the documentation commit, as it is not needed anymore.
-> - Link to v1: https://lore.kernel.org/r/20251219-max22007-dev-v1-0-242da2c2b868@analog.com
-> 
-> ---
-> Janani Sunil (2):
->       dt-bindings: iio: dac: Add max22007
->       iio: dac: Add MAX22007 DAC driver support
-> 
->  .../devicetree/bindings/iio/dac/adi,max22007.yaml  | 120 +++++
->  MAINTAINERS                                        |   8 +
->  drivers/iio/dac/Kconfig                            |  13 +
->  drivers/iio/dac/Makefile                           |   1 +
->  drivers/iio/dac/max22007.c                         | 488 +++++++++++++++++++++
->  5 files changed, 630 insertions(+)
-> ---
-> base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
-> change-id: 20260114-max22007-patch-6b5c48e37457
-> 
-> Best regards,
+Best regards,
+Krzysztof
 
 
