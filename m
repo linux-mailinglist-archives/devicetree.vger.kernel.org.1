@@ -1,93 +1,105 @@
-Return-Path: <devicetree+bounces-259111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259112-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IPevLhfQc2kCywAAu9opvQ
-	(envelope-from <devicetree+bounces-259111-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 20:46:31 +0100
+	id cM9ENTjRc2kCywAAu9opvQ
+	(envelope-from <devicetree+bounces-259112-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 20:51:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E6E17A46C
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 20:46:31 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A79A7A51B
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 20:51:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id DADA93006110
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 19:46:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8EBD6300CE42
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 19:51:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AE7D2C1586;
-	Fri, 23 Jan 2026 19:46:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 750392C2365;
+	Fri, 23 Jan 2026 19:51:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NhYByutZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vO3kAepe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8756E27470;
-	Fri, 23 Jan 2026 19:46:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B34929D277
+	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 19:51:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769197589; cv=none; b=saaP1VTPAfrhe/xhYobZEn/xhYISmkkNyLLXJCg5ey3reJp/MEzCWDI/zTvUPmMpdT80ymqG4/T729vW1ONQ3gsi3+UUnyz9h3ySITpj9xuhl6ivjhzXYMl45veujX2IcNIExbcYHVmIfEc7f81YX9WOzWdt5HwCIfXXRgduAws=
+	t=1769197872; cv=none; b=CXJbRlgaZ4d/+Cesl3N16+feYH+r9mcqEP2B8Z11ea60j/ho5wA6ygpjjBTf9t/Rmve6EC3YyU3yNISdpsNjnKRGpWctDG+a87sXXG0RKvqBYpMDz4Ezj8E43Dn/q5HgNzg63F+55LWLvhR6SaLt7wWfgEIT9Rc/+6yiVor9Om0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769197589; c=relaxed/simple;
-	bh=d3m3qkp7Crw1fXc7BZpUNEFl9fOZsoenMG9dlCWiOV4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rM7xz54xTEANW+42E6Zgt15gnFP6R9wuB+euuzIVtTb1kkrqy9dIVQQQNmtBOfrm3vWPXy8YKT86AyasBJU8CTn+5T7GgvzDz5v8De/gGmyxThC0DbLi+n+G0PeGRKnYw3FSYC5Y9dpOseZdxDHSTnKOp60to/TyANiphzqTkKw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NhYByutZ; arc=none smtp.client-ip=198.175.65.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1769197587; x=1800733587;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=d3m3qkp7Crw1fXc7BZpUNEFl9fOZsoenMG9dlCWiOV4=;
-  b=NhYByutZtubu67HYjCnvhVXKWd3DKg8atm6XdldxXjWmzkcSlzB3BLeV
-   CqGjXBo5pWi7Kj9cPQkmxfr4YpVm/+BBzjcUol6+69DtD4Klh5mlyUqLH
-   48ed1VB9o18PLNvmJ19bf2sX8yiOGUF+3+suHEwzqIMdXnQ3Yb10rL4/P
-   pcFhFHv2V/vyRy9RjQbozFezO+8iWuH/VBUeItHxZGMA1ZnNtwG9daLOi
-   C8qO/ms/JzfDPbhqeE7uroEESruj92x/DHOcdzCV9XruuLLyLLFNaLPAX
-   v/NgEj6QF30A4f87PFdcXMsW4IGleyE6cKFkNXEM8HmtH7R0eyPZ2uMhu
-   g==;
-X-CSE-ConnectionGUID: Tf8lXVnxTJCwugZabjKaIA==
-X-CSE-MsgGUID: VQm6WF/tS++OLc1OVtcYcg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11680"; a="74087693"
-X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; 
-   d="scan'208";a="74087693"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jan 2026 11:46:26 -0800
-X-CSE-ConnectionGUID: aWY7Lm4UTaWGiZHolVkAmw==
-X-CSE-MsgGUID: KNKQHEf3TmG4l9dMqAdT7A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; 
-   d="scan'208";a="207161750"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by orviesa007.jf.intel.com with ESMTP; 23 Jan 2026 11:46:20 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vjN6o-00000000UOM-0BQg;
-	Fri, 23 Jan 2026 19:46:18 +0000
-Date: Sat, 24 Jan 2026 03:45:56 +0800
-From: kernel test robot <lkp@intel.com>
-To: Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
+	s=arc-20240116; t=1769197872; c=relaxed/simple;
+	bh=kx6N8Fat+v4rKXAq3jr9szVFIZj8vDQESPGqHR9vba4=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=hq0wEcIpBgL3miGUrLU2/u5/rHB0ki1HuZg5a0Oa7uWDXl/eYYx+/4J38Pj3X0iw5VVWCqLn3UF+XF3CbURgKwbi8jkjWuoJAdvrcs2RoqgCkXVKHS8F6MB1IWVH5TqhHx2DJNEW+KF1NGvkjvwbwylKsbpIHET9wmoVvb3m674=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vO3kAepe; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-47ee807a4c5so27058945e9.2
+        for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 11:51:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1769197868; x=1769802668; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8jNsJjXS8M5t/mEUZRdZlxrFzfCZpFMkBqFJLBshMIk=;
+        b=vO3kAepe+aFIJKsU8yTO/kodsox4ao6cA3nXcJksSe9lni0T/QJXRBAUK/a6Fyqyqg
+         ek9chWU2/CKKNc4/pZtSWQzl0wwxqwD6KXqCGpeyYdJs6Dfolq5U4SnmOORRWmRYKKI4
+         aysqphxgC8fHk5m39nwZ9SnWPuKj5dAEBUCUh4Q0VUr7GMajixL8Nt+y9lVlV1d4JAHI
+         YfTzd/0llFEhNtji7cMS5JuolFnseBvPaXHMrc3Qhi68IzZrTWtMRT1L0ZrToh+XokPJ
+         dxwKq32isEIPAQrg+CN1WXqURVQSIXToLaIC9JB8SBi6kjERsnv5ci9ALNBKH2En3PW1
+         UKkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769197868; x=1769802668;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8jNsJjXS8M5t/mEUZRdZlxrFzfCZpFMkBqFJLBshMIk=;
+        b=WRHqYhVS2wIduLSaMp2LSA7AVrgGm1AdbKLzb/IKEZxGkecCe6ISi/IAOInWDepwTB
+         FF2uA6fu0HCr8/ctG+ILrY8hzINGtcO8rSBIeKzxCBM/RpxlDJZOweOIYDn6dVfLjhYn
+         zLL90kpCATiMSYnOD8roo+gXQerq+QKDTnQYpAjplSbqHfXNDa2LtdJ1APHsCAgzjcZI
+         lZgZ1+8FFxH60AA2xopBj8AbeoKVPUvCG2pFwTXzSAyWAcT4jqlheQi1HP3ehkJw2ReO
+         FMF1ygVSGKggowK94yz9qweir2ge0f+JjyUjZkYIOYh0BBsO0+VxxdVHWSgxBrU1CLD9
+         e7uA==
+X-Forwarded-Encrypted: i=1; AJvYcCVwXGgeLzTzdpQNuL+LSlnMjRvqeIZeHxYd9ePkmlFeyMDBD+bYgaOwM2j8sLXbGhg8JNklDdInHDX5@vger.kernel.org
+X-Gm-Message-State: AOJu0YxH508r5U9efqYNmThK058LcfOK7NpVxWl+ekezbfUeblj++2Nm
+	0u+DupWgr/fqrJWYRIHdgUYoPQY/lrKmKkwDUfK7ZRdkA6JQLjOKjThqsHnrX0BtT6Q=
+X-Gm-Gg: AZuq6aIxe71uNLutIeWxCZ+iXWC2vlDSqMWtkbqd1XEJVxiNpxtLv6ZBr7mbZEF8oYO
+	gvD9qpZB8A5J1FixEEUW3mWMxUbRZ43qPp7sleQexD+04UwtNSa8IHpE+TtlYflgosKeoM5oSvQ
+	6BZIph+F2xc8SWerFUUF2Sv//HqENG4KmJByQRi/nECI5KRKxEGquzY6PbiShpSmL5gka1kYvF6
+	5T2sP68Ucoj7gjXAWB4Sc5LT1ne3ZN9gnVAg/21OORgPcvcBEBO6ZaGxpJigffAQhz20bR9kTMB
+	qQhtzNwjAtwZLrwMlb9uduz4DNXzmU6rp6amyib0A9/ODZP4Q4k7ETGDfi46KrFoWA6wImKjEab
+	aZXjV5rb2iJh7oM4pvjeGIxWhqIt9r28E3E7lUuXBXET146yqkbX6ZjUsxV2+Vcgna/F6lwRfeB
+	NPNbFXDH5VGyoMEDxi
+X-Received: by 2002:a05:600c:5494:b0:480:1e9e:f9d with SMTP id 5b1f17b1804b1-4804c94810fmr65373435e9.8.1769197868314;
+        Fri, 23 Jan 2026 11:51:08 -0800 (PST)
+Received: from localhost ([196.207.164.177])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4804d8a5c32sm94300895e9.11.2026.01.23.11.51.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Jan 2026 11:51:07 -0800 (PST)
+Date: Fri, 23 Jan 2026 22:51:04 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Chester Lin <chester62515@gmail.com>
+Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>, devicetree@vger.kernel.org,
 	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	linux-kernel@vger.kernel.org,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Mark Brown <broonie@kernel.org>,
-	Serge Semin <fancer.lancer@gmail.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Choong Yong Liang <yong.liang.choong@linux.intel.com>,
-	Jiawen Wu <jiawenwu@trustnetic.com>
-Subject: Re: [PATCH v2 net-next 11/15] net: dsa: sja1105: fill device tree
- with ethernet-pcs sub-devices under "regs" node
-Message-ID: <202601240325.L4Ejl6qH-lkp@intel.com>
-References: <20260122105654.105600-12-vladimir.oltean@nxp.com>
+	Fabio Estevam <festevam@gmail.com>,
+	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
+	imx@lists.linux.dev, Jakub Kicinski <kuba@kernel.org>,
+	Jan Petrous <jan.petrous@oss.nxp.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	Matthias Brugger <mbrugger@suse.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, netdev@vger.kernel.org,
+	NXP S32 Linux Team <s32@nxp.com>, Paolo Abeni <pabeni@redhat.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>, Frank Li <Frank.li@nxp.com>,
+	linaro-s32@linaro.org
+Subject: [PATCH v4 0/3] s32g: Use a syscon for GPR
+Message-ID: <cover.1769195864.git.dan.carpenter@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,164 +108,157 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260122105654.105600-12-vladimir.oltean@nxp.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FREEMAIL_CC(0.00)[lists.linux.dev,lunn.ch,gmail.com,armlinux.org.uk,google.com,kernel.org,redhat.com,vger.kernel.org,linux.intel.com,bootlin.com,trustnetic.com];
-	TAGGED_FROM(0.00)[bounces-259111-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[foss.st.com,lunn.ch,kernel.org,davemloft.net,vger.kernel.org,google.com,gmail.com,oss.nxp.com,lists.linux.dev,lists.infradead.org,st-md-mailman.stormreply.com,suse.com,nxp.com,redhat.com,pengutronix.de,linaro.org];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259112-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCPT_COUNT_TWELVE(0.00)[27];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-0.992];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[dan.carpenter@linaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	NEURAL_HAM(-0.00)[-0.998];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid,01.org:url]
-X-Rspamd-Queue-Id: 6E6E17A46C
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 3A79A7A51B
 X-Rspamd-Action: no action
 
-Hi Vladimir,
+The s32g devices have a GPR register region which holds a number of
+miscellaneous registers.  Currently only the stmmac/dwmac-s32.c uses
+anything from there and we just add a line to the device tree to
+access that GMAC_0_CTRL_STS register:
 
-kernel test robot noticed the following build errors:
+                        reg = <0x4033c000 0x2000>, /* gmac IP */
+                              <0x4007c004 0x4>;    /* GMAC_0_CTRL_STS */
 
-[auto build test ERROR on net-next/main]
+I have included the whole list of registers below.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Vladimir-Oltean/net-mdio-regmap-permit-working-with-non-MMIO-regmaps/20260122-192934
-base:   net-next/main
-patch link:    https://lore.kernel.org/r/20260122105654.105600-12-vladimir.oltean%40nxp.com
-patch subject: [PATCH v2 net-next 11/15] net: dsa: sja1105: fill device tree with ethernet-pcs sub-devices under "regs" node
-config: mips-randconfig-r112-20260123 (https://download.01.org/0day-ci/archive/20260124/202601240325.L4Ejl6qH-lkp@intel.com/config)
-compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260124/202601240325.L4Ejl6qH-lkp@intel.com/reproduce)
+We still have to maintain backwards compatibility to this format,
+of course, but it would be better to access these registers through a
+syscon.  Putting all the registers together is more organized and shows
+how the hardware actually is implemented.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202601240325.L4Ejl6qH-lkp@intel.com/
+Secondly, in some versions of this chipset those registers can only be
+accessed via SCMI.  It's relatively straight forward to handle this
+by writing a syscon driver and registering it with of_syscon_register_regmap()
+but it's complicated to deal with if the registers aren't grouped
+together.
 
-All errors (new ones prefixed by >>):
+Changes since v3:
+* Fix the yaml file format
+* Add netdev to the CC list on all emails so the CI triggers
 
-   In file included from arch/mips/kernel/asm-offsets.c:26:
-   In file included from include/linux/kvm_host.h:5:
-   In file included from include/linux/entry-virt.h:10:
-   In file included from include/linux/tick.h:8:
-   In file included from include/linux/clockchips.h:14:
-   In file included from include/linux/clocksource.h:19:
->> include/linux/of.h:1645:34: error: use of undeclared identifier 'OF_RECONFIG_ATTACH_NODE'; did you mean 'OF_RECONFIG_NO_CHANGE'?
-    1645 |         return of_changeset_action(ocs, OF_RECONFIG_ATTACH_NODE, np, NULL);
-         |                                         ^~~~~~~~~~~~~~~~~~~~~~~
-         |                                         OF_RECONFIG_NO_CHANGE
-   include/linux/of.h:1620:2: note: 'OF_RECONFIG_NO_CHANGE' declared here
-    1620 |         OF_RECONFIG_NO_CHANGE = 0,
-         |         ^
->> include/linux/of.h:1651:34: error: use of undeclared identifier 'OF_RECONFIG_DETACH_NODE'; did you mean 'OF_RECONFIG_NO_CHANGE'?
-    1651 |         return of_changeset_action(ocs, OF_RECONFIG_DETACH_NODE, np, NULL);
-         |                                         ^~~~~~~~~~~~~~~~~~~~~~~
-         |                                         OF_RECONFIG_NO_CHANGE
-   include/linux/of.h:1620:2: note: 'OF_RECONFIG_NO_CHANGE' declared here
-    1620 |         OF_RECONFIG_NO_CHANGE = 0,
-         |         ^
->> include/linux/of.h:1657:34: error: use of undeclared identifier 'OF_RECONFIG_ADD_PROPERTY'
-    1657 |         return of_changeset_action(ocs, OF_RECONFIG_ADD_PROPERTY, np, prop);
-         |                                         ^
->> include/linux/of.h:1663:34: error: use of undeclared identifier 'OF_RECONFIG_REMOVE_PROPERTY'
-    1663 |         return of_changeset_action(ocs, OF_RECONFIG_REMOVE_PROPERTY, np, prop);
-         |                                         ^
->> include/linux/of.h:1669:34: error: use of undeclared identifier 'OF_RECONFIG_UPDATE_PROPERTY'
-    1669 |         return of_changeset_action(ocs, OF_RECONFIG_UPDATE_PROPERTY, np, prop);
-         |                                         ^
-   5 errors generated.
-   make[3]: *** [scripts/Makefile.build:182: arch/mips/kernel/asm-offsets.s] Error 1
-   make[3]: Target 'prepare' not remade because of errors.
-   make[2]: *** [Makefile:1314: prepare0] Error 2
-   make[2]: Target 'prepare' not remade because of errors.
-   make[1]: *** [Makefile:248: __sub-make] Error 2
-   make[1]: Target 'prepare' not remade because of errors.
-   make: *** [Makefile:248: __sub-make] Error 2
-   make: Target 'prepare' not remade because of errors.
+Changes since v2:
+* Improve the documentation in .../bindings/net/nxp,s32-dwmac.yaml
+* "[PATCH v2 2/4] dt-bindings: mfd: syscon: Document the GPR syscon
+  for the NXP S32 SoCs" was applied so drop it.
 
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for OF_DYNAMIC
-   Depends on [n]: OF [=n]
-   Selected by [m]:
-   - NET_DSA_SJA1105 [=m] && NETDEVICES [=y] && NET_DSA [=m] && SPI [=y] && PTP_1588_CLOCK_OPTIONAL [=y]
+Changes since v1:
+* Add imx@lists.linux.dev to the CC list.
+* Fix forward porting bug.  s/PHY_INTF_SEL_RGMII/S32_PHY_INTF_SEL_RGMII/
+* Use the correct SoC names nxp,s32g2-gpr and nxp,s32g3-gpr instead of
+  nxp,s32g-gpr which is the SoC family.
+* Fix the phandle name by adding the vendor prefix
+* Fix the documentation for the phandle
+* Remove #address-cells and #size-cells from the syscon block
 
+Here is the whole list of registers in the GPR region
 
-vim +1645 include/linux/of.h
+Starting from 0x4007C000
 
-201c910bd6898d Pantelis Antoniou 2014-07-04  1618  
-b53a2340d0d304 Pantelis Antoniou 2014-10-28  1619  enum of_reconfig_change {
-b53a2340d0d304 Pantelis Antoniou 2014-10-28 @1620  	OF_RECONFIG_NO_CHANGE = 0,
-b53a2340d0d304 Pantelis Antoniou 2014-10-28  1621  	OF_RECONFIG_CHANGE_ADD,
-b53a2340d0d304 Pantelis Antoniou 2014-10-28  1622  	OF_RECONFIG_CHANGE_REMOVE,
-b53a2340d0d304 Pantelis Antoniou 2014-10-28  1623  };
-b53a2340d0d304 Pantelis Antoniou 2014-10-28  1624  
-2e8fff668dc14e Rob Herring       2023-03-29  1625  struct notifier_block;
-2e8fff668dc14e Rob Herring       2023-03-29  1626  
-201c910bd6898d Pantelis Antoniou 2014-07-04  1627  #ifdef CONFIG_OF_DYNAMIC
-f6892d193fb9d6 Grant Likely      2014-11-21  1628  extern int of_reconfig_notifier_register(struct notifier_block *);
-f6892d193fb9d6 Grant Likely      2014-11-21  1629  extern int of_reconfig_notifier_unregister(struct notifier_block *);
-f5242e5a883bf1 Grant Likely      2014-11-24  1630  extern int of_reconfig_notify(unsigned long, struct of_reconfig_data *rd);
-f5242e5a883bf1 Grant Likely      2014-11-24  1631  extern int of_reconfig_get_state_change(unsigned long action,
-f5242e5a883bf1 Grant Likely      2014-11-24  1632  					struct of_reconfig_data *arg);
-f6892d193fb9d6 Grant Likely      2014-11-21  1633  
-201c910bd6898d Pantelis Antoniou 2014-07-04  1634  extern void of_changeset_init(struct of_changeset *ocs);
-201c910bd6898d Pantelis Antoniou 2014-07-04  1635  extern void of_changeset_destroy(struct of_changeset *ocs);
-201c910bd6898d Pantelis Antoniou 2014-07-04  1636  extern int of_changeset_apply(struct of_changeset *ocs);
-201c910bd6898d Pantelis Antoniou 2014-07-04  1637  extern int of_changeset_revert(struct of_changeset *ocs);
-201c910bd6898d Pantelis Antoniou 2014-07-04  1638  extern int of_changeset_action(struct of_changeset *ocs,
-201c910bd6898d Pantelis Antoniou 2014-07-04  1639  		unsigned long action, struct device_node *np,
-201c910bd6898d Pantelis Antoniou 2014-07-04  1640  		struct property *prop);
-201c910bd6898d Pantelis Antoniou 2014-07-04  1641  
-201c910bd6898d Pantelis Antoniou 2014-07-04  1642  static inline int of_changeset_attach_node(struct of_changeset *ocs,
-201c910bd6898d Pantelis Antoniou 2014-07-04  1643  		struct device_node *np)
-201c910bd6898d Pantelis Antoniou 2014-07-04  1644  {
-201c910bd6898d Pantelis Antoniou 2014-07-04 @1645  	return of_changeset_action(ocs, OF_RECONFIG_ATTACH_NODE, np, NULL);
-201c910bd6898d Pantelis Antoniou 2014-07-04  1646  }
-201c910bd6898d Pantelis Antoniou 2014-07-04  1647  
-201c910bd6898d Pantelis Antoniou 2014-07-04  1648  static inline int of_changeset_detach_node(struct of_changeset *ocs,
-201c910bd6898d Pantelis Antoniou 2014-07-04  1649  		struct device_node *np)
-201c910bd6898d Pantelis Antoniou 2014-07-04  1650  {
-201c910bd6898d Pantelis Antoniou 2014-07-04 @1651  	return of_changeset_action(ocs, OF_RECONFIG_DETACH_NODE, np, NULL);
-201c910bd6898d Pantelis Antoniou 2014-07-04  1652  }
-201c910bd6898d Pantelis Antoniou 2014-07-04  1653  
-201c910bd6898d Pantelis Antoniou 2014-07-04  1654  static inline int of_changeset_add_property(struct of_changeset *ocs,
-201c910bd6898d Pantelis Antoniou 2014-07-04  1655  		struct device_node *np, struct property *prop)
-201c910bd6898d Pantelis Antoniou 2014-07-04  1656  {
-201c910bd6898d Pantelis Antoniou 2014-07-04 @1657  	return of_changeset_action(ocs, OF_RECONFIG_ADD_PROPERTY, np, prop);
-201c910bd6898d Pantelis Antoniou 2014-07-04  1658  }
-201c910bd6898d Pantelis Antoniou 2014-07-04  1659  
-201c910bd6898d Pantelis Antoniou 2014-07-04  1660  static inline int of_changeset_remove_property(struct of_changeset *ocs,
-201c910bd6898d Pantelis Antoniou 2014-07-04  1661  		struct device_node *np, struct property *prop)
-201c910bd6898d Pantelis Antoniou 2014-07-04  1662  {
-201c910bd6898d Pantelis Antoniou 2014-07-04 @1663  	return of_changeset_action(ocs, OF_RECONFIG_REMOVE_PROPERTY, np, prop);
-201c910bd6898d Pantelis Antoniou 2014-07-04  1664  }
-201c910bd6898d Pantelis Antoniou 2014-07-04  1665  
-201c910bd6898d Pantelis Antoniou 2014-07-04  1666  static inline int of_changeset_update_property(struct of_changeset *ocs,
-201c910bd6898d Pantelis Antoniou 2014-07-04  1667  		struct device_node *np, struct property *prop)
-201c910bd6898d Pantelis Antoniou 2014-07-04  1668  {
-201c910bd6898d Pantelis Antoniou 2014-07-04 @1669  	return of_changeset_action(ocs, OF_RECONFIG_UPDATE_PROPERTY, np, prop);
-201c910bd6898d Pantelis Antoniou 2014-07-04  1670  }
-b544fc2b8606d7 Lizhi Hou         2023-08-15  1671  
+0  Software-Triggered Faults (SW_NCF)
+4  GMAC Control (GMAC_0_CTRL_STS)
+28 CMU Status 1 (CMU_STATUS_REG1)
+2C CMUs Status 2 (CMU_STATUS_REG2)
+30 FCCU EOUT Override Clear (FCCU_EOUT_OVERRIDE_CLEAR_REG)
+38 SRC POR Control (SRC_POR_CTRL_REG)
+54 GPR21 (GPR21)
+5C GPR23 (GPR23)
+60 GPR24 Register (GPR24)
+CC Debug Control (DEBUG_CONTROL)
+F0 Timestamp Control (TIMESTAMP_CONTROL_REGISTER)
+F4 FlexRay OS Tick Input Select (FLEXRAY_OS_TICK_INPUT_SELECT_REG)
+FC GPR63 Register (GPR63)
+
+Starting from 0x4007CA00
+
+0  Coherency Enable for PFE Ports (PFE_COH_EN)
+4  PFE EMAC Interface Mode (PFE_EMACX_INTF_SEL)
+20 PFE EMACX Power Control (PFE_PWR_CTRL)
+28 Error Injection on Cortex-M7 AHB and AXI Pipe (CM7_TCM_AHB_SLICE)
+2C Error Injection AHBP Gasket Cortex-M7 (ERROR_INJECTION_AHBP_GASKET_CM7)
+40 LLCE Subsystem Status (LLCE_STAT)
+44 LLCE Power Control (LLCE_CTRL)
+48 DDR Urgent Control (DDR_URGENT_CTRL)
+4C FTM Global Load Control (FLXTIM_CTRL)
+50 FTM LDOK Status (FLXTIM_STAT)
+54 Top CMU Status (CMU_STAT)
+58 Accelerator NoC No Pending Trans Status (NOC_NOPEND_TRANS)
+90 SerDes RD/WD Toggle Control (PCIE_TOGGLE)
+94 SerDes Toggle Done Status (PCIE_TOGGLEDONE_STAT)
+E0 Generic Control 0 (GENCTRL0)
+E4 Generic Control 1 (GENCTRL1)
+F0 Generic Status 0 (GENSTAT0)
+FC Cortex-M7 AXI Parity Error and AHBP Gasket Error Alarm (CM7_AXI_AHBP_GASKET_ERROR_ALARM)
+
+Starting from 4007C800
+
+4  GPR01 Register (GPR01)
+30 GPR12 Register (GPR12)
+58 GPR22 Register (GPR22)
+70 GPR28 Register (GPR28)
+74 GPR29 Register (GPR29)
+
+Starting from 4007CB00
+
+4 WKUP Pad Pullup/Pulldown Select (WKUP_PUS)
+
+Dan Carpenter (3):
+  net: stmmac: s32: use a syscon for S32_PHY_INTF_SEL_RGMII
+  dt-bindings: net: nxp,s32-dwmac: Use the GPR syscon
+  dts: s32g: Add GPR syscon region
+
+ .../bindings/net/nxp,s32-dwmac.yaml           | 12 ++++++++++
+ arch/arm64/boot/dts/freescale/s32g2.dtsi      |  6 +++++
+ arch/arm64/boot/dts/freescale/s32g3.dtsi      |  6 +++++
+ .../net/ethernet/stmicro/stmmac/dwmac-s32.c   | 23 +++++++++++++++----
+ 4 files changed, 42 insertions(+), 5 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.51.0
+*** BLURB HERE ***
+
+Dan Carpenter (3):
+  net: stmmac: s32: use a syscon for S32_PHY_INTF_SEL_RGMII
+  dt-bindings: net: nxp,s32-dwmac: Use the GPR syscon
+  dts: s32g: Add GPR syscon region
+
+ .../bindings/net/nxp,s32-dwmac.yaml           | 13 +++++++++++
+ arch/arm64/boot/dts/freescale/s32g2.dtsi      |  6 +++++
+ arch/arm64/boot/dts/freescale/s32g3.dtsi      |  6 +++++
+ .../net/ethernet/stmicro/stmmac/dwmac-s32.c   | 23 +++++++++++++++----
+ 4 files changed, 43 insertions(+), 5 deletions(-)
+
+-- 
+2.51.0
+
 
