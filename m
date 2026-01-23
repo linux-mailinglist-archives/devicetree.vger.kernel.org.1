@@ -1,55 +1,86 @@
-Return-Path: <devicetree+bounces-258871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258874-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IIM6IsNKc2mHuQAAu9opvQ
-	(envelope-from <devicetree+bounces-258871-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 11:17:39 +0100
+	id uENEAXpLc2lDugAAu9opvQ
+	(envelope-from <devicetree+bounces-258874-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 11:20:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC676742FE
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 11:17:38 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96A14743BB
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 11:20:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 30C4132FD849
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:10:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 66C28304808B
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:14:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EB8237F8B0;
-	Fri, 23 Jan 2026 10:10:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BE213793BB;
+	Fri, 23 Jan 2026 10:14:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PlddiiL6"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="bJObHldg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013012.outbound.protection.outlook.com [40.107.159.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5A2937D105;
-	Fri, 23 Jan 2026 10:10:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769163008; cv=none; b=tHTkM/x0sYeRGh2pq2v/9bI8eRoYbdRJ84Fms7FEdSNFaPMETyRRmIcYKcfCIwmoerwO8yedFLuqtULzbjMew4fMapWeWIJi4jcgZ8SmvJjCCFm2NL/01cAv2R5D1e9HWBwRd4xZDYcvkuzGIIeFO1b0E/zUz3r5pyDu91maKCo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769163008; c=relaxed/simple;
-	bh=RpuvS/OU3cDGNJU63M+FGhd0mL4ebzcaU0GV1X+GVxY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=f68DboYejb3ntyFtR8YUi7cQD9mMQMvVBNhxytqcfxk8rtCpkn+v+TwDSeNXkMyJeRS6uDhNXmjHG3Eu7eJeWBKX6vvMJYcvgjvNtQrcm0cTKXUftDJZku9bcddzvYXeN6oNmIqDxBr0KPed0uxewvo4WOeWZDA3RdWS8SXOuoA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PlddiiL6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 5D282C2BC86;
-	Fri, 23 Jan 2026 10:10:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769163008;
-	bh=RpuvS/OU3cDGNJU63M+FGhd0mL4ebzcaU0GV1X+GVxY=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=PlddiiL6mJyUFa5UHe9+bLWHLSHeBW1Pe2qdYPANWdPUdaozxUjCxLFazU0KmobhG
-	 5BHQn2aN9QZBn5GGj0uznMnFYwAQ7Fjhe1b8AVCZDoajpd2gpuzKnQG4hfpkKjSq2E
-	 fS6xphmPLtl9dPAELYC9jUylXJ4DpZXs4ISYuqQfpc5IrnGBFtQYdF5tUtwb1O4OgQ
-	 wVpreka5+m5stGSuBrivZslyG66i9dFpySc23gqR8T3/nTgyTGly7fPE1upI3nYDWa
-	 adzXKll4MyLPx5H81Jb60hsqFBZhkDIJSsI51pwKkBoTHBYiBRc3f0sjlGMXpUT3jo
-	 YBxkQ3XykCx6g==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 570AFD7236D;
-	Fri, 23 Jan 2026 10:10:08 +0000 (UTC)
-From: Jan Petrous via B4 Relay <devnull+jan.petrous.oss.nxp.com@kernel.org>
-Date: Fri, 23 Jan 2026 11:09:57 +0100
-Subject: [PATCH v3 4/4] stmmac: s32: enable support for Multi-IRQ mode
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35E69344D80;
+	Fri, 23 Jan 2026 10:14:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769163272; cv=fail; b=gIyknYnT+sh1/tAt4xTDtF5KgDRgut7/REu6KJj2tJfmYMl0/NrgDSJHSI6DrVFeerGCDQr/bIfW+x00PxnJ/CrKP/bnOItv/jQVQ2qr7Y4I0UFPfaIee7zfL/htbeE0bodRJY5148Cy8HX/aASko5oIOF1CqBbieiisSAMDcRY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769163272; c=relaxed/simple;
+	bh=YzwAltW2tENOmH1NxUM/ni1HdRz0LBeJr9dLiA0BsB8=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=n72nashLR3cf8ZJFb7CF+SZJlM6xzmwXuYEDsjIgPwjIpBAzQYECmtt1kJjno7IBAXuvjp97mG3dZlze2L0NlR0rUzx2vAP1Y2NKoJszXyA1x8f+TL4rBHqz26MJoWOUVQspMUzg4QV3uofBw0k5ek2jkcCkdDmo5OlhTxSaUOs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=bJObHldg; arc=fail smtp.client-ip=40.107.159.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QYKMcDsXqjfvYbbppaMaGimNLfIYDYOXllJLr9TvaNzUmQbQXQpUjDnQ4b8NjbQi4GTLVTUQfjCjUquTHi7Vr6An3ygD0PMwqOfFiBHpag54DQZP+/aKTzlyWYosVw3FeC2aEhfxiNPlON3SItXdYkqQkUXZ7btWKC3tz4Ce9513PlLvlQwnf/WFLnUlG+iWusv6iPmEuXu7oXNR7tSV0DBGaZAsWpBtX5PpTGG+xiLBF+zTEUX83HeqHSc1sZwn4+4MAiEuLzTC77JIpVLVOUlrimiWVhDCRTMA5GH6teAOvWg4ZAUYoFSfbRRHE7tfFYX26MTHqDujqLkwCbcVRg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dpK1G1zyhqRLebM2ec8klIRzJtOw3YAUikKSAgaYVbE=;
+ b=C07jUEbTSPRDoDyggRrv6hhKsR23qaDDOnG+FQDBWi2VHKQTJ9PwuSNm/hFE0ju6cxMy0bCO3d18sNpxHBrqytc0krHLNUmZI+wFQ2Uw4esp3Ei+sQRNTFLFicuetl3+fVKL01cPuVIRYeApOQNk9nsa1mU7jB0mjZzqQqrVq7G1VOkQWLqgg8QeG8+bf8QGpYNTfZ9hmBMlUk5uv/0ZOF4x6mhnu8hj0VBIkadBq4wgx4pYu1dZshaX0QizjYF7Qu2RlpV09M9pSmZcJSTu5tg0uj/8da9FhiOPqRXX4sm6Cw2r57B0l8hM9MBpOoa6yt3mYo2IBP6LZBRu+Q7fKA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.59) smtp.rcpttodomain=dh-electronics.com smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dpK1G1zyhqRLebM2ec8klIRzJtOw3YAUikKSAgaYVbE=;
+ b=bJObHldgGhvMXsvwePHmR3rC8cT5n8S/MFA0RmwM4PR+HNjP8R8zRV3rxx4QKtRnERAlwRvUgAcD9zoby6CRpkesIM5cHz5Fjwd35avZj3GJhQR6x+8y98YgObcnThYm6FBWnSjCROnX6f3MdAN5lDVC8kGmx/+O/M1CmQOTUi+NErmoxx3VBHN0ZSIjpRG43gLB4JNOXVA1/eAPpgulvisHUPwkCYynrT0C2va04+UcblkV1rWSnm0/JkazTkb8I1m2VXGVSBoVuuxRt797yeF6R9exfvD5If5LVDangWq/nYQU6z6Km3F50LWtcbVQ7VAd6Tiv6+HEBybWUAT41Q==
+Received: from DU2PR04CA0073.eurprd04.prod.outlook.com (2603:10a6:10:232::18)
+ by PAXPR10MB5352.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:281::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.11; Fri, 23 Jan
+ 2026 10:14:19 +0000
+Received: from DB3PEPF0000885E.eurprd02.prod.outlook.com
+ (2603:10a6:10:232:cafe::76) by DU2PR04CA0073.outlook.office365.com
+ (2603:10a6:10:232::18) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9542.11 via Frontend Transport; Fri,
+ 23 Jan 2026 10:14:19 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.59)
+ smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.59; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.59) by
+ DB3PEPF0000885E.mail.protection.outlook.com (10.167.242.9) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9564.3 via Frontend Transport; Fri, 23 Jan 2026 10:14:19 +0000
+Received: from STKDAG1NODE1.st.com (10.75.128.132) by smtpo365.st.com
+ (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Fri, 23 Jan
+ 2026 11:15:35 +0100
+Received: from localhost (10.252.18.201) by STKDAG1NODE1.st.com
+ (10.75.128.132) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Fri, 23 Jan
+ 2026 11:14:03 +0100
+From: Patrice Chotard <patrice.chotard@foss.st.com>
+Subject: [PATCH v5 0/6] Add boot phase tags for STMicroelectronics boards
+Date: Fri, 23 Jan 2026 11:14:02 +0100
+Message-ID: <20260123-upstream_uboot_properties-v5-0-5167929d5af5@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,176 +89,213 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260123-dwmac_multi_irq-v3-4-cc53f2be8961@oss.nxp.com>
-References: <20260123-dwmac_multi_irq-v3-0-cc53f2be8961@oss.nxp.com>
-In-Reply-To: <20260123-dwmac_multi_irq-v3-0-cc53f2be8961@oss.nxp.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Chester Lin <chester62515@gmail.com>, Matthias Brugger <mbrugger@suse.com>, 
- Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>, 
- NXP S32 Linux Team <s32@nxp.com>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- imx@lists.linux.dev, devicetree@vger.kernel.org, 
- "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1769163006; l=3825;
- i=jan.petrous@oss.nxp.com; s=20240922; h=from:subject:message-id;
- bh=N8KG6zSNZaJ0litROq6rIn2vyXQTszprIi2ECHATg2I=;
- b=K0mcEfqhyMu5f3uTCyaUbLXj0uh8y5ZYcUWiyycFQVQZIOShQ6q9eWSQu/+crDBF8QHP+ikdv
- V7cmIGc473sDiWBF7ZrF4GzFsIC3opc2igEXAerVNX0/FFBHco23s1t
-X-Developer-Key: i=jan.petrous@oss.nxp.com; a=ed25519;
- pk=Ke3wwK7rb2Me9UQRf6vR8AsfJZfhTyoDaxkUCqmSWYY=
-X-Endpoint-Received: by B4 Relay for jan.petrous@oss.nxp.com/20240922 with
- auth_id=217
-X-Original-From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
-Reply-To: jan.petrous@oss.nxp.com
+X-B4-Tracking: v=1; b=H4sIAOpJc2kC/43OwYrCMBCA4VeRnDcyk6Rpuqd9DxFp0smag6Yks
+ SjSdzcKgigUj//AfDNXlikFyux3dWWJppBDPNZoflbM7fvjP/Ew1GYCRIOIgp/GXBL1h93Jxlh
+ 2Y4ojpVIJLoQyYMEqi47V/TGRD+eHvdnW3odcYro8Tk14n36jTsiBg8UOpWwRSP75mPM6l7WLB
+ 3Z3J/FqqSVLVEu2RnmvtekJPi35tDQgmCVLVsuh7QblhSMzfFrq1eqWLFWttiHQummdhre/5nm
+ +Afy17j6oAQAA
+X-Change-ID: 20251112-upstream_uboot_properties-22480b0b4b1c
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Patrick Delaunay <patrick.delaunay@foss.st.com>, Christoph Niedermaier
+	<cniedermaier@dh-electronics.com>, Marek Vasut <marex@denx.de>
+CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<kernel@dh-electronics.com>, Patrice Chotard <patrice.chotard@foss.st.com>
+X-Mailer: b4 0.14.3
+X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE1.st.com
+ (10.75.128.132)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB3PEPF0000885E:EE_|PAXPR10MB5352:EE_
+X-MS-Office365-Filtering-Correlation-Id: 40fe78f1-54a6-40ff-5ed8-08de5a682bf7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|7416014|376014|1800799024|36860700013|13003099007;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?ME9reDVYSVA3dkFKelBHaGZjQ3d0Nlh1d0ZRZ29uMHJLQ1JaWndpNWdVZE00?=
+ =?utf-8?B?dW5ZYnYrclZDQzgyVzNLM2laa3Z2am1zQkNBNElQbEIwcmszM08rR1Y2bUVl?=
+ =?utf-8?B?VnpTclFPdFpCd05xNlg0enhRYkZmZ0Jkb0lTL2dQS3dCT3hqTnRqWDA2ajdD?=
+ =?utf-8?B?SHg4TWdLSXp4enNLYUJlcGorZWUrZTR5SWdpaHRlWlJTS3pPRzgxSUZqeGhQ?=
+ =?utf-8?B?R0FhbStyZjNDVFN6V1dKUDU2YjFTWWFEQVZRdDhvbHRpQk9vTWFQdm5HRllJ?=
+ =?utf-8?B?bUdjQXJQQmNrN205ZzBzVytrRnltUWc0VE9RMGlVM0RZWUp0MjFZNUpMUklU?=
+ =?utf-8?B?YzVXMVFvUzJMYWlDNS9NZjdCWUdBcFZKcXNoVldwZGpCcFpzNWNoMnhQODdM?=
+ =?utf-8?B?TTZsTWR4YkEyd296eUZ1SkNkWFdnK2Y4M0RoZUszRWhCRnZUOFlOaEJXQ1BZ?=
+ =?utf-8?B?TnExUTlIQXI1NEtiUXl4MmNFUmFEeWRGa2ZXNEdNVThKaGFFY3lCbWFOM21p?=
+ =?utf-8?B?Qmx5d3BLaEJDSzhaU3p0T1B1aGlzOWpEZEtseUFuOEYrRkFnR1lSc012MDV4?=
+ =?utf-8?B?OVVha290bHEyU2s3WFdGcEtlWUFDamZWajNTeTU1YVo2bFVuOUpJUDlMeHFH?=
+ =?utf-8?B?MllnNzNVSHBETUFwa0x5MFkwcTM1eFI2VzJUd3ZJYmRsV3BCellzSDR4Slp5?=
+ =?utf-8?B?MUJOcVFXZURvUU5BOFZUVUZGWHVaNW1ZQlNJcW1YQXkvV2RzTzYyRGRRMXZZ?=
+ =?utf-8?B?Z2pLVkFDN3BEYXNqYUtZSk92TkFVL1NEVHZPMlpXK1NqV0lPd0dyeTJJV1NO?=
+ =?utf-8?B?cmZhMWJZVUVseVd3MDJscXc5Vk5mdkVLd25FMlN4blMvLy94b1MrMURYTDBE?=
+ =?utf-8?B?VTZsR3pNcmNDakJWTTcraWE2RFZlcXF0UDNWdXVvdkU2Q2VRWWlGamI4Y0Zk?=
+ =?utf-8?B?c0FRWVo1SVBYNlVjdENLaDNiVkdTNHNVQ0lFVzUzZEd4V3NPWTIzeVlxd05V?=
+ =?utf-8?B?NmMrbjZkRTlnTndBdFpTeG5lYmxjYWpqdHdiNGJSSytIM2Ntdk9hSUV2SzBl?=
+ =?utf-8?B?azNrQlhZZ3ViYnZYYXZ2TDVYTlN0SnJFMUtpaC9YWjJpR1MyNDBLcEoxT0s5?=
+ =?utf-8?B?RXkrYzVqZXVFK0NkZzZ4UGcxUm5lQWNaOEJtNkFLZSttWDVGbDR2TEgxK0Q3?=
+ =?utf-8?B?bGZyTWhrcTlIc1o1RHhQR0FiTzN3OWx0WXUrN0orVDVsb0tFT1dlellHa0hY?=
+ =?utf-8?B?dG9KMHhvZ3BEM2Q1MkxLaG1ocEkzZnhFbGhFSlFrTXhpQUVtMG4wVFZGd2JH?=
+ =?utf-8?B?L3BnbVlJUXllNDIyU0JGZlhiZVNMR1Rtb3FFRkxzL0tzSkU1d1hITHdnZWU1?=
+ =?utf-8?B?NzM0a0s4UGRMTWxPSW1nS1d3NFRGMDh6V2pFRzkyWGp4Q2dzTlhjZ21JUVd1?=
+ =?utf-8?B?bm9nUGIxZTRBeGFxMFF5Y2VETDYvcUQrSFpqRlNLTlVaMVdCQ2RPWHBOK2Jp?=
+ =?utf-8?B?aFdMWmxHRzh5Nk9zbUFjRlVvTkJjNGt0YjFvUzlKd05rTGxIS25tQzhTREFK?=
+ =?utf-8?B?cWQxL0pyVWFTNkVweTVlQVdEVjZpeTFHYzNqUE52NkhpTEhDSXhiK0U0RW1z?=
+ =?utf-8?B?Q3NmZUM4WjY5S1ptbzdTejNWSTZLZFVCbWR1b0RFakx1NVhZWnEwbjdhV0I5?=
+ =?utf-8?B?MW5vZzZqSHdMcWhGQ0h3YlQzekx6enJabFFzYmFuU0tDbXpWeW8yeTNOTko1?=
+ =?utf-8?B?enFRVkNncWV4cVgrV3N4RytNMy8vSXdBRWV1RWtwMDcyN0FOTFhGdERQRmFV?=
+ =?utf-8?B?Zi9MY1ZQWjYvcVRFazhXVjVCV3FwV2hVR3J6T3AwZ2xSVUdtNGNPY1RrUE5G?=
+ =?utf-8?B?VzNLUzJHcHJpekVoWTd0eXR4eUF4MkdoeURBZmZGa01rOElCeFNjeUdKQi9w?=
+ =?utf-8?B?WUs1SVk5c0JGSDUyRXoyTWNJMXN4alpWWmxwQlBUbjFsT1QwemFLMWdIUHE4?=
+ =?utf-8?B?YkU5cWtYRmhZMkpUKzIzb3BNaGg0UWZCYThkOGEzWWxYM1ZkNU9MQ0VMWkYv?=
+ =?utf-8?B?ZCt3THN2SEMrbmlFeVdlZkhwREptRi84WFRleVU2U08vWnZpcGVXWHFzMHor?=
+ =?utf-8?B?T3lRSE4xSEFic0pZNEVzd0NuU0VPWHpZYWQva0NGaHJKanZvTHlFUWJySEQy?=
+ =?utf-8?B?OTJnZDFDUFNIeFFaalpuTGN6Nmk0aEpiU09Rei8zbnVsdVlVS1M4eGlVbmgr?=
+ =?utf-8?Q?mPEgnZyqAcUg8284P8XYXONHy5QB2cO272Z4hiOdME=3D?=
+X-Forefront-Antispam-Report:
+	CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(7416014)(376014)(1800799024)(36860700013)(13003099007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0:
+	pM+z8EAiOvD/n9jKNDL4CJW14Ya3cUBzJnd4KVo5IiqzM4roAYUqB92jQlh/QcJjjGt71ofyxFyiSi7wIUXw/ewIBUVj3UbDDhlCZi9r9KmcFCasrgxi0w4vBKT2efHNU8XvZBAE5bJnFGcBNa8fJZWbxIa6wzTdd214Jew8nqwUeAN8VKqgG9SAQKf6CZDYsPdC47Y7JL4YpALoVAiGFyfJOJ3EGat3YUCUJBN5J3/GcBW5sK5xfgQu+QphUuf8/p6nzn23a1HvY3DiiOwJOKomg+S6rFtUprIcNBz6Mi24SEqNMN48jd8ua0DYhkX8CK3pL+j1uBZiYbAmb3nRObqgTliO4odog0CV7SK0V0+Tib/tj0iKGeoEtOGLM3L02DaTWaGdL20rZ5y/DpDpY1BAh6DxC5UauM/XBOUInb+UQPNP5JD22i0wCDZ6UPLCXT4sl6nakuRxIOpl0UHdlpxAKzjCBm21mtyA4kup/4F6RN1t+fNT2AIH+/FzedXdPsMOFcSg9MjoOfUhtgmFdqYjXkP0KA807MJegSjml/Ed67qQiIT/ABTLy/1GqvB0W1RKwGVGYIDuC6n9gJ93TavgSbX6+x3WcBjcODuhr3LxGin7As3z+fz+yAxqbqCElQv9tRegl9sEB2DvabEYaW0Gyp5HPaGIfCFsS3OaBXQzqgrIdmHSRTwQU4eX09FzfMHPbjv8MzOJzuBnQusV6A==
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2026 10:14:19.2843
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 40fe78f1-54a6-40ff-5ed8-08de5a682bf7
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DB3PEPF0000885E.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR10MB5352
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[foss.st.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[foss.st.com:s=selector2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258871-lists,devicetree=lfdr.de,jan.petrous.oss.nxp.com];
+	TAGGED_FROM(0.00)[bounces-258874-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,foss.st.com,dh-electronics.com,denx.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,suse.com,oss.nxp.com,nxp.com,pengutronix.de];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[25];
-	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	HAS_REPLYTO(0.00)[jan.petrous@oss.nxp.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[foss.st.com:mid,foss.st.com:dkim,st.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	DKIM_TRACE(0.00)[foss.st.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.nxp.com:mid,oss.nxp.com:replyto,nxp.com:email,suse.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,s32g399aevb3:email]
-X-Rspamd-Queue-Id: DC676742FE
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[patrice.chotard@foss.st.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: 96A14743BB
 X-Rspamd-Action: no action
 
-From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
+The bootph-all flag was introduced in dt-schema
+(dtschema/schemas/bootph.yaml) to define node usage across
+different boot phases.
+    
+To ensure SD boot, timer, gpio, syscfg, clock and uart nodes need to be
+present in all boot stages, so add missing bootph-all phase flag
+to these nodes to support SD boot.
 
-To get enabled Multi-IRQ mode, the driver checks:
-
-  1) property of 'snps,mtl-xx-config' subnode
-     defines 'snps,xx-queues-to-use' bigger then one, ie:
-
-     ethernet@4033c000 {
-         compatible = "nxp,s32g2-dwmac";
-         ...
-         snps,mtl-rx-config = <&mtl_rx_setup>;
-         ...
-
-         mtl_rx_setup: rx-queues-config {
-             snps,rx-queues-to-use = <2>;
-         };
-
-  2) queue based IRQs are set, ie:
-
-     ethernet@4033c000 {
-         compatible = "nxp,s32g2-dwmac";
-         ...
-         interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>,
-                      /* CHN 0: tx, rx */
-                      <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>,
-                      <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>,
-                      /* CHN 1: tx, rx */
-                      <GIC_SPI 60 IRQ_TYPE_LEVEL_HIGH>,
-                      <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>;
-         interrupt-names = "macirq",
-                           "tx-queue-0", "rx-queue-0",
-                           "tx-queue-1", "rx-queue-1";
-
-If those prerequisites are met, the driver switch to Multi-IRQ mode,
-using per-queue IRQs for rx/tx data pathr:
-
-[    1.387045] s32-dwmac 4033c000.ethernet: Multi-IRQ mode (per queue IRQ) selected
-
-Now the driver owns all queues IRQs:
-
-root@s32g399aevb3:~# grep eth /proc/interrupts
- 29:    0    0    0    0    0    0    0    0    GICv3  89 Level   eth0:mac
- 30:    0    0    0    0    0    0    0    0    GICv3  91 Level   eth0:rx-0
- 31:    0    0    0    0    0    0    0    0    GICv3  93 Level   eth0:rx-1
- 32:    0    0    0    0    0    0    0    0    GICv3  95 Level   eth0:rx-2
- 33:    0    0    0    0    0    0    0    0    GICv3  97 Level   eth0:rx-3
- 34:    0    0    0    0    0    0    0    0    GICv3  99 Level   eth0:rx-4
- 35:    0    0    0    0    0    0    0    0    GICv3  90 Level   eth0:tx-0
- 36:    0    0    0    0    0    0    0    0    GICv3  92 Level   eth0:tx-1
- 37:    0    0    0    0    0    0    0    0    GICv3  94 Level   eth0:tx-2
- 38:    0    0    0    0    0    0    0    0    GICv3  96 Level   eth0:tx-3
- 39:    0    0    0    0    0    0    0    0    GICv3  98 Level   eth0:tx-4
-
-Otherwise, if one of the prerequisite don't met, the driver
-continue with MAC IRQ mode:
-
-[    1.387045] s32-dwmac 4033c000.ethernet: MAC IRQ mode selected
-
-And only MAC IRQ will be attached:
-
-root@s32g399aevb3:~# grep eth /proc/interrupts
- 29:    0    0    0    0    0    0    0    0    GICv3  89 Level   eth0:mac
-
-What represents the original MAC IRQ mode and is fully backward
-compatible.
-
-Reviewed-by: Matthias Brugger <mbrugger@suse.com>
-Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
+Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
 ---
- drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
+Changes in v5:
+- Initial implementation allows to factorize and add bootph-* properties in a limited number of DT files.
+  After internal discussion with Alexandre, choice has been done to add bootph-* properties only
+  in board DT files instead of SoCs/pinctrl/boards DT files.This impacts a greater number of DT boards files.
+- Link to v4: https://lore.kernel.org/r/20260109-upstream_uboot_properties-v4-0-75e06657c600@foss.st.com
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
-index 5a485ee98fa7..342091045714 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
-@@ -2,7 +2,7 @@
- /*
-  * NXP S32G/R GMAC glue layer
-  *
-- * Copyright 2019-2024 NXP
-+ * Copyright 2019-2026 NXP
-  *
-  */
- 
-@@ -149,6 +149,16 @@ static int s32_dwmac_probe(struct platform_device *pdev)
- 	plat->core_type = DWMAC_CORE_GMAC4;
- 	plat->pmt = 1;
- 	plat->flags |= STMMAC_FLAG_SPH_DISABLE;
-+
-+	/* Check for multi-IRQ config. Assumption: symetrical rx/tx queues */
-+	if (plat->rx_queues_to_use > 1 &&
-+	    (res.rx_irq[0] >= 0 || res.tx_irq[0] >= 0)) {
-+		plat->flags |= STMMAC_FLAG_MULTI_MSI_EN;
-+		dev_info(dev, "Multi-IRQ mode (per queue IRQ) selected\n");
-+	} else {
-+		dev_info(dev, "MAC IRQ mode selected\n");
-+	}
-+
- 	plat->rx_fifo_size = 20480;
- 	plat->tx_fifo_size = 20480;
- 
+Changes in v4:
+- Remove useless nodes in stm32mp15-scmi.dtsi
+- Link to v3: https://lore.kernel.org/r/20260108-upstream_uboot_properties-v3-0-c1b9d4f2ce8d@foss.st.com
 
+Changes in v3:
+- Remove duplicate bootph-all property in ltdc node
+- Link to v2: https://lore.kernel.org/r/20251114-upstream_uboot_properties-v2-0-3784ff668ae0@foss.st.com
+
+Changes in v2:
+- Fix 'pinmux' is a required property for arch/arm/boot/dts/st/stm32mp157c-ev1-scmi.dtb
+- Add bootph-all property for lvds and ltdc nodes for stm32mp2
+
+---
+Patrice Chotard (6):
+      ARM: dts: stm32: Add boot phase tags for STMicroelectronics f4 boards
+      ARM: dts: stm32: Add boot phase tags for STMicroelectronics f7 boards
+      ARM: dts: stm32: Add boot phase tags for STMicroelectronics h7 boards
+      ARM: dts: stm32: Add boot phase tags for STMicroelectronics mp13 boards
+      ARM: dts: stm32: Add boot phase tags for STMicroelectronics mp15 boards
+      arm64: dts: st: Add boot phase tags for STMicroelectronics mp2 boards
+
+ arch/arm/boot/dts/st/stm32429i-eval.dts            |  80 ++++++++++
+ arch/arm/boot/dts/st/stm32746g-eval.dts            |  10 ++
+ arch/arm/boot/dts/st/stm32f429-disco.dts           |  80 ++++++++++
+ arch/arm/boot/dts/st/stm32f469-disco.dts           |  72 +++++++++
+ arch/arm/boot/dts/st/stm32f746-disco.dts           |  75 +++++++++
+ arch/arm/boot/dts/st/stm32f746.dtsi                |   2 +-
+ arch/arm/boot/dts/st/stm32f769-disco.dts           |  76 ++++++++-
+ arch/arm/boot/dts/st/stm32h743i-disco.dts          |  69 +++++++++
+ arch/arm/boot/dts/st/stm32h743i-eval.dts           |  69 +++++++++
+ arch/arm/boot/dts/st/stm32h747i-disco.dts          |  69 +++++++++
+ arch/arm/boot/dts/st/stm32h750i-art-pi.dts         |  69 +++++++++
+ arch/arm/boot/dts/st/stm32mp131.dtsi               |   4 +-
+ arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dts   |  21 +++
+ arch/arm/boot/dts/st/stm32mp135f-dk.dts            | 101 ++++++++++++
+ arch/arm/boot/dts/st/stm32mp13xx-dhcor-som.dtsi    | 145 ++++++++++++++---
+ arch/arm/boot/dts/st/stm32mp151.dtsi               |   2 +-
+ arch/arm/boot/dts/st/stm32mp157a-dk1-scmi.dts      |  19 +++
+ .../st/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts |   1 +
+ .../dts/st/stm32mp157a-icore-stm32mp1-ctouch2.dts  |  25 +++
+ .../dts/st/stm32mp157a-icore-stm32mp1-edimm2.2.dts |  26 ++++
+ .../boot/dts/st/stm32mp157a-icore-stm32mp1.dtsi    | 100 ++++++++++++
+ ...m32mp157a-microgea-stm32mp1-microdev2.0-of7.dts |  27 ++++
+ .../stm32mp157a-microgea-stm32mp1-microdev2.0.dts  |  27 ++++
+ .../boot/dts/st/stm32mp157a-microgea-stm32mp1.dtsi |  97 ++++++++++++
+ arch/arm/boot/dts/st/stm32mp157c-dk2-scmi.dts      |   5 +
+ arch/arm/boot/dts/st/stm32mp157c-dk2.dts           |   1 +
+ arch/arm/boot/dts/st/stm32mp157c-ed1-scmi.dts      |  19 +++
+ arch/arm/boot/dts/st/stm32mp157c-ed1.dts           | 151 ++++++++++++++++++
+ arch/arm/boot/dts/st/stm32mp157c-ev1-scmi.dts      |   5 +
+ arch/arm/boot/dts/st/stm32mp157c-ev1.dts           |  38 +++++
+ arch/arm/boot/dts/st/stm32mp157c-lxa-mc1.dts       |   1 +
+ arch/arm/boot/dts/st/stm32mp157c-odyssey-som.dtsi  | 119 ++++++++++++++
+ arch/arm/boot/dts/st/stm32mp157c-odyssey.dts       |  21 +++
+ arch/arm/boot/dts/st/stm32mp157c-osd32mp1-red.dts  |   1 +
+ arch/arm/boot/dts/st/stm32mp157f-dk2-scmi.dtsi     |   5 +
+ arch/arm/boot/dts/st/stm32mp157f-dk2.dts           |   1 +
+ arch/arm/boot/dts/st/stm32mp15xx-dhcom-pdk2.dtsi   |   1 +
+ arch/arm/boot/dts/st/stm32mp15xx-dhcom-som.dtsi    | 172 +++++++++++++++++++++
+ .../boot/dts/st/stm32mp15xx-dhcor-avenger96.dtsi   |  55 +++++++
+ .../boot/dts/st/stm32mp15xx-dhcor-drc-compact.dtsi |  50 ++++++
+ arch/arm/boot/dts/st/stm32mp15xx-dhcor-som.dtsi    | 157 +++++++++++++++++++
+ .../boot/dts/st/stm32mp15xx-dhcor-testbench.dtsi   |  50 ++++++
+ arch/arm/boot/dts/st/stm32mp15xx-dkx.dtsi          | 122 +++++++++++++++
+ arch/arm64/boot/dts/st/stm32mp211.dtsi             |   4 +-
+ arch/arm64/boot/dts/st/stm32mp215f-dk.dts          |  25 +++
+ arch/arm64/boot/dts/st/stm32mp231.dtsi             |   4 +-
+ arch/arm64/boot/dts/st/stm32mp235f-dk.dts          |  95 ++++++++++++
+ arch/arm64/boot/dts/st/stm32mp251.dtsi             |   4 +-
+ arch/arm64/boot/dts/st/stm32mp255.dtsi             |   2 +-
+ arch/arm64/boot/dts/st/stm32mp257f-dk.dts          | 103 ++++++++++++
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts         | 105 +++++++++++++
+ 51 files changed, 2545 insertions(+), 37 deletions(-)
+---
+base-commit: 53c18dc078bb6d9e9dfe2cc0671ab78588c44723
+change-id: 20251112-upstream_uboot_properties-22480b0b4b1c
+
+Best regards,
 -- 
-2.47.0
-
+Patrice Chotard <patrice.chotard@foss.st.com>
 
 
