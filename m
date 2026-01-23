@@ -1,79 +1,81 @@
-Return-Path: <devicetree+bounces-259132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259133-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QKogHZL9c2mf0gAAu9opvQ
-	(envelope-from <devicetree+bounces-259132-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 00:00:34 +0100
+	id wP3RM5j9c2mf0gAAu9opvQ
+	(envelope-from <devicetree+bounces-259133-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 00:00:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AB4C7B543
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 00:00:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7077F7B54B
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 00:00:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E4813301993C
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 23:00:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6D7BC301ECF2
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 23:00:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AAF82EC541;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 838902EDD45;
 	Fri, 23 Jan 2026 23:00:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XV/+6cLt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eu9fJu54"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 929C226F2A8
-	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 23:00:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2E992BEFFB
+	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 23:00:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769209226; cv=none; b=TQ8N3zlplpM/cwp04XBcZ1ZZeKStAd/Rp8EYD4c2+5WIsIrURQwhwiU73d7vGTBKqOSIZaBoiX53kKtBUopQ7VlPBD0wgN3YIugO7eKF8xiDHBxIIkb2+Y39rW785zx5COVIPmXaf2GNvvH0m/XTtrmMIAestVBn3Zxq8UMG7W4=
+	t=1769209227; cv=none; b=Is5c+SVfSd6YQSXo4WkEiJjtyXDqpcVQ4Uk7KH1OkBykWG6sVIHnLhsMFfbG81NxRehk0HAQHwht6cckx+1YNjczFxRCIXsqOORaq74Zk8rm6K0RL5bxXrE9vVVNLkPZKdik+ZJakuC0GyBwH5w6aeDEdB4TYaTdczasQQyh8JA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769209226; c=relaxed/simple;
-	bh=d4had5SJ6UU947wWnPxCbKq5o/uVBE9OQgdVKZb1HiM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=bcBDxZPlf/OMu0WYGnw7hWvOF6vP4ZYNQjneUtcCxjy2KmHbmXHyZpwDo41SuWs9Ouwsq0d3F6QgdXvRjcNuX7gqSbUbR0Q/2sGLrM43ns0tNja73qjUhbeCogrQkLwJMRHfRABtU5s2TgLtZlzY8P+RXj/HtfmAXvupS9FtHss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XV/+6cLt; arc=none smtp.client-ip=209.85.128.53
+	s=arc-20240116; t=1769209227; c=relaxed/simple;
+	bh=gMCUgoaCQ5f+J+ddeO8YUO+LQ3B1ap2I8FkG+qnup34=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=T5V7f+fcRnqUEWKc+YahqJffCmyy/sJT/DSNPFhWZ9p0Ww68+zyzAumJv2Sc3m10mNRUfdXMnbS+pXFOFV9Qerj/O8lEmhidudc7x9rD2izqUEMzVV5YFi0uKRVPWJa+YjLUvpx5GkcQocQ9HvCFdHuXlP3xJnzEqtz/80f6AbA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eu9fJu54; arc=none smtp.client-ip=209.85.128.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-47ee4338e01so15480285e9.2
-        for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 15:00:24 -0800 (PST)
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-47edd6111b4so31505205e9.1
+        for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 15:00:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769209223; x=1769814023; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=As37iQpL3zu91gYcoRq3jQn9d3CPwOGsKIH2tX0HSIU=;
-        b=XV/+6cLtgdVGFodHHYxVbqttKZKnI5G04f8eBtI602jEF1msQRdnxfNZVQ4zua9Ct5
-         nsbszjMHsrl02nWlC2D2ZUBtGL0em/NOhf4bcywfkxl0F6b6xdvuE1lzKoprCUGAoXDC
-         b5IWaQip6+JUNlCU787oH/x2j2YBQfe/jKF3YW7NQaAjZlNGOlAIn0L0691TkYKs8O+X
-         WNRDTMe2hlbs8IjJ0xxjG+dS0xDamC+VDa4RlZD2r7X8f9hHPhanSmFaDX/44Psa5529
-         3/ZRdXdmmXHBDasGevEtBaJ+7uJLvsQ1fI/XukOmp+IhGAGnipCo19VmxPWT64n5HcxI
-         3kog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769209223; x=1769814023;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1769209224; x=1769814024; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=As37iQpL3zu91gYcoRq3jQn9d3CPwOGsKIH2tX0HSIU=;
-        b=fgKVbCiCc9w8PcMGio99pzDiwYOF4KshUtzDkaYXzBTUDW8akzaPychtpk+EauxzMl
-         RcDZxGDvaehumIsWLXQpNfGszYYaxWK+67+Shi1FvczKEFhJZboRU7BLpuHHK1bDFEpn
-         YKTDRDOwbv4ROrud9+PzMYToAWTis2XJwN1CJgNbxP4pMSAtsIZp+5B0XomxFGmAdix5
-         i/oqvIlZhHMKiWUXBuEwXWlmNT0I/bEU5VhhiVj6W/H3cw0zGi4lLKr5CVyensDB6KrO
-         0KebzkkFDZa+9BFccHAhOyTKzSxSqvZVJLy8QQr/inhNUUyyVmVh87m9+QXQLOpwqCQ+
-         sNTA==
-X-Gm-Message-State: AOJu0Yz0F3D7VsjbJRzWaxhjb6BdPvhlJOK4XkygCGTOsSW/HQCBNcnO
-	EpGrw4gSD6sk9lHqSNOxolC59TLMpm1GMf4/h4fzbGtcjTCWz3DAKx1b
-X-Gm-Gg: AZuq6aIXv8ALSAQ8InxeI0JGPPA67nhtBDsX45ihmT1Z+TTJGNvrbdjdkWktpoPTTJj
-	dPvzZxKpkyMY0LpKW/OhmcNTokJ897UgrWHxvN7D0U4V672maL90cFpX/hwOnWpiMWjRozFYUm4
-	4As3JRAyG5g9AGNANZqucUeL9xntD7PEu+hJfM8DqshouLKJa52SGTCGaNEyBQvcV30J8lzqr0S
-	00ejNAwo4LxwJXOjIjbzOMMoPOKsNthsloxGouLNr75tX2ZYA+NcNl13/zuVNKO5qKhHjUtdTH4
-	H8WdX1Gn33Ak7T7Om+wAkk9+Vzz+mzrnDQ/CrxP+ZAo5PCa3q9JhxXkEI1qZSSL1EgxOdxRc3wJ
-	swEhQSseZzV4kVwJPcQngfxcMa96nGgD+BE/pZdBgNX68dbstkRKxiYZR613nOWsGG0JLGTiRGq
-	SBo97iZbpm9svlPNxEDzKLpemgx8foDo0HQITMo+mHSfO/eGKpdtxTyAkp6XvVislQVQDoyuGjK
-	cSG/R0/xYscqA+AF2PQpDbs
-X-Received: by 2002:a05:600c:608a:b0:47a:814c:ee95 with SMTP id 5b1f17b1804b1-4804c959aa2mr72966345e9.12.1769209222655;
-        Fri, 23 Jan 2026 15:00:22 -0800 (PST)
+        bh=xuo+NZc4vF7YzlS1SzqeQ3Ig5W8Pu0fXgJ9ggSnPoxM=;
+        b=eu9fJu54OJpTDO+GhDiq1GgMxCiTyqohGQ5xBH0py8yFjzjYu482EiNzaBL39Wy3pV
+         zJ+I7tlub2c0Z/IQz8wAzt655hmLjPf4KDEKI/xVyAL0T59MRVaCNZx/2JHtjbCsXFgQ
+         JImGzyq6U4kjpnTwo8/zJYmqG0MUBlSgD9Vrl2VgH+RhiSchMUm7bDxOmNm1t2yjvys4
+         5SfzzkE4ytuTdkuObqNCzRsBCF/f0NXcYJ5yysINo3/m2KJ2K3SwHza8bv/JRzNOvFgb
+         F+ULshxlQ4fzv4BtUCpjY82Q3tJuHk0nhRUJzwX3zqISI3FASjjj9VMmy9SyshtMd+KC
+         SMeA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769209224; x=1769814024;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=xuo+NZc4vF7YzlS1SzqeQ3Ig5W8Pu0fXgJ9ggSnPoxM=;
+        b=suLMiW06/cMSK8G5AaDACOQfdVZ0kZAiQYKu5wA3YcVMLMepAVYWLTO+HEsxzCiO10
+         1p2bmMGn3xzIqv4Z/KYKRajtxzjq7ACU52uKwdrqb7790e+NAVV4mlbxNFsiQ/xEpk6A
+         O0X/ZIJTc7qJMNrZsl9pN45d3AvI2/JE2hoj6227YZFbiVrL4WY1LfJpe1CI1i/6wgP8
+         jZvm66YAUwZyxK5xIvLkcJj9E0P0gdPOuHhljVoPTI5zJE5Ac9Zc+dud/vVjTA44cTUy
+         rWEmX3fq717WypvoDp05btJasdr+PRAIduRFhaACYmpXagpmk0zyZ9EjoS+JPpANCDXF
+         mT8A==
+X-Gm-Message-State: AOJu0YxfwC3azcukJnDs58XzMRyVD7AaaDSoslq09AHAyfZnUk82pNIm
+	8Hv7yQ88WjEZCDAy+7rqEgcId+AeGfq6pLPRRYMDNivGKvhK62O2KMuL
+X-Gm-Gg: AZuq6aIgNRrmGuS+YXCFdgpjKAXnFRcnbGMwIQs4bSsaDr94mDBAz+eqhzad8vdUh2I
+	7j89za5xB7Zc0T48mBFPsQZPSojUj+wV62hvOA1rSGoIFVe6st0iwKs6GqsYqKO9DRYmKkvETN7
+	wPwbWTaFFV+0qD+NSYjCOYJems9hu8A1j+H6HeENJEXy2Hz3VAKvGFzmOnH51HzrHr00cjcqIB3
+	YHRnjR1CLSbJt4wHyZuMy1/ZbQMOhM3AKOBtJtZEgOfrPC4SUCIKBmwWpS877ePp/1Y7y1WXVzu
+	HG3yP8KA35zSUhZYjbTHlgw1kejX5SC6mz+nlOh9MvgQaclNI9rzFMp7DX1nyCZPGVUaWt8Cowz
+	Yk5CnUQB+Tre1IekguJmJDb2HNaav8zeacg475A81u4jChnL5Gq8VoCW/Zr900hV6BX9IU9LpJP
+	9r/3rh2X5RpFz/oi1B+Cdj7rq9Y65rMmxiZ58teY/fbIkhsAL78Om4YxZEV8jhqE/R55WsWbp8O
+	1TThMoWogJBj9+1kTPGylq/
+X-Received: by 2002:a05:600c:34d3:b0:477:93f7:bbc5 with SMTP id 5b1f17b1804b1-48051905a38mr46895975e9.10.1769209223837;
+        Fri, 23 Jan 2026 15:00:23 -0800 (PST)
 Received: from iku.Home ([2a06:5906:61b:2d00:bccf:b3b1:e288:4e83])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-480470cc278sm157142665e9.12.2026.01.23.15.00.21
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-480470cc278sm157142665e9.12.2026.01.23.15.00.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jan 2026 15:00:21 -0800 (PST)
+        Fri, 23 Jan 2026 15:00:22 -0800 (PST)
 From: Prabhakar <prabhakar.csengg@gmail.com>
 X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 To: Geert Uytterhoeven <geert+renesas@glider.be>,
@@ -88,10 +90,12 @@ Cc: devicetree@vger.kernel.org,
 	Biju Das <biju.das.jz@bp.renesas.com>,
 	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
 	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 0/4] arm64: dts: renesas: Fix SD0 failures on RZ/{T2H, N2H} and RZ/V2H
-Date: Fri, 23 Jan 2026 22:59:53 +0000
-Message-ID: <20260123225957.1007089-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 1/4] arm64: dts: renesas: rzt2h-n2h-evk: Add ramp delay for SD0 card regulator
+Date: Fri, 23 Jan 2026 22:59:54 +0000
+Message-ID: <20260123225957.1007089-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20260123225957.1007089-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20260123225957.1007089-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -110,7 +114,7 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259132-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-259133-lists,devicetree=lfdr.de];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_TO(0.00)[glider.be,gmail.com,kernel.org,vger.kernel.org];
@@ -129,45 +133,47 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 1AB4C7B543
+X-Rspamd-Queue-Id: 7077F7B54B
 X-Rspamd-Action: no action
 
 From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Hi all,
+Add a ramp delay of 60 uV/us to the vqmmc_sdhi0 voltage regulator to
+fix UHS-I SD card detection failures.
 
-During testing of SD card functionality on RZ/{T2H, N2H} and RZ/V2H evk
-boards, it was observed that the SD card initialization was failing for
-UHS-I cards. While investigating the issue on RZ/G3L smarc board it was
-found that 12ms ramp delay is required for SD0 power regulator to ensure
-proper initialization of UHS-I cards. Similarly, while investigating the
-SD0 initialization issue on RZ/{T2H, N2H} and RZ/V2H evk boards, it was
-found that a ramp delay of 21ms is required for SD0 power regulator to
-ensure proper initialization of UHS-I cards.
+Measurements on CN78 pin 4 showed the actual voltage ramp time to be
+21.86ms when switching between 3.3V and 1.8V. A 25ms ramp delay has
+been configured to provide adequate margin. The calculation is based
+on the voltage delta of 1.5V (3.3V - 1.8V):
+  1500000 uV / 60 uV/us = 25000 us (25ms)
 
-This patch series adds the required ramp delay for SD0 power regulator on
-RZ/{T2H, N2H} and RZ/V2H evk boards. Additionally, it clarifies the SD0
-power jumper settings in the respective dts files for RZ/{T2H, N2H} evk
-boards.
+Prior to this patch, UHS-I cards failed to initialize with:
 
-Cheers,
-Prabhakar
+  [   32.723914] mmc0: error -110 whilst initialising SD card
 
-Lad Prabhakar (4):
-  arm64: dts: renesas: rzt2h-n2h-evk: Add ramp delay for SD0 card
-    regulator
-  arm64: dts: renesas: r9a09g077m44-rzt2h-evk: Clarify SD0 power jumpers
-  arm64: dts: renesas: r9a09g087m44-rzn2h-evk: Clarify SD0 power jumper
-    setup
-  arm64: dts: renesas: rzv2-evk-cn15-sd: Add ramp delay for SD0
-    regulator
+After this patch, UHS-I cards are properly detected on SD0:
 
- arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts | 9 ++++++---
- arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts | 6 ++++--
- arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi  | 1 +
- arch/arm64/boot/dts/renesas/rzv2-evk-cn15-sd.dtso      | 1 +
- 4 files changed, 12 insertions(+), 5 deletions(-)
+  [   28.379122] mmc0: new UHS-I speed SDR104 SDXC card at address aaaa
+  [   28.387239] mmcblk0: mmc0:aaaa SR64G 59.5 GiB
 
+Fixes: d065453e5ee09("arm64: dts: renesas: rzt2h-rzn2h-evk: Enable SD card slot")
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+---
+ arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi b/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi
+index 510399febf29..f87c2492f414 100644
+--- a/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi
++++ b/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi
+@@ -53,6 +53,7 @@ vqmmc_sdhi0: regulator-vqmmc-sdhi0 {
+ 		regulator-max-microvolt = <3300000>;
+ 		gpios-states = <0>;
+ 		states = <3300000 0>, <1800000 1>;
++		regulator-ramp-delay = <60>;
+ 	};
+ #endif
+ 
 -- 
 2.52.0
 
