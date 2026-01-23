@@ -1,209 +1,186 @@
-Return-Path: <devicetree+bounces-258752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258753-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aBdhM7oic2mUsgAAu9opvQ
-	(envelope-from <devicetree+bounces-258752-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 08:26:50 +0100
+	id kPuwHX8jc2mUsgAAu9opvQ
+	(envelope-from <devicetree+bounces-258753-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 08:30:07 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 384C771B37
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 08:26:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FAEF71BAD
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 08:30:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9A70E302001F
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 07:25:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 546633018BD8
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 07:29:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61BD3346AE5;
-	Fri, 23 Jan 2026 07:25:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E23A936072B;
+	Fri, 23 Jan 2026 07:29:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ktal4cYF"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="dWYxVf+U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB884316917;
-	Fri, 23 Jan 2026 07:25:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41EC232939D
+	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 07:29:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769153132; cv=none; b=oSyLaC2t4V3WmFNYHMVdmHcZSim8zG5DKVS03IAfjh00+wjIQfeLQSkBmjmW5lIPeRRk3BWZGqjtrrLsx0B4xw1KN6Ho0K6w9CK2ii9kYopXdF/Mpc97eSsE4edgTLpxM1/Mduf6a/x9FchEtSOAOtUxxEu3SQ/St+3EnNb/jcM=
+	t=1769153385; cv=none; b=t8VcZmWtxDBVVXRO5Qshyu6Vnu80HHNgVIQXSD+YPsh0OOUB8MsxVzXpIPSp7dsHbEZMSoUJ3zgSDSvomUY+MGHw81JI1IHZ1/DrL1fgZ2od0lHaC21Vuy9m2/22XeotVs4CJsNCxIvhfZpaBAUE/VYyA6moTJoMaxO+kohdwIo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769153132; c=relaxed/simple;
-	bh=7W56WHhueIg/HmPMtMILU6q4oOPjHjeeudduYSbM710=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oHSfMUCaOVEUUIT7bVQmYHOjeYRH8kS8RrtwgircoaI+PhV/wWl0P4eYqT+pBHs/ZEjbpeVhCuiH5prL85RWS5YoKs/339yCnzMnffhesrjOy1HK3GZ2sJ24Hwd3qIp3RTYEnu2Ve37rvvabNss0iKRY2CFciLqcG/K1i2vAk6k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ktal4cYF; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1769153131; x=1800689131;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=7W56WHhueIg/HmPMtMILU6q4oOPjHjeeudduYSbM710=;
-  b=ktal4cYFC7nSN/+jvhY/U6eA83930MFHTUgW0lmaQo2uG/9sa1krSspl
-   vrIfV2MCQw037LdTPUJXLsuuYYnDqfwnuxZxLMbbXbs4lNaGqU7A1xrG1
-   48//X0RBSJ7D1LDcTrms+AqRBs6eBwY/1gXFVzqVw/tGR4xNsdYqo1yDG
-   MjC51/cooTWrRI8i2IXyoKwIu68YtBRh2MbDOuNzodKrp4psewUyVntR2
-   9VdTqGLDBz5YivCJdGlkKaQzmgFsxY21HvyB/aHuUTYZv2nDvvo/oKDmK
-   Zy2v9VHbSyBRR6bXn8leGmhdHypNI4DIOE+nT8mUpbGRFIz7LUIeyPzJt
-   w==;
-X-CSE-ConnectionGUID: kpc7BqJVQLWS8qoLs3mnXg==
-X-CSE-MsgGUID: FTH0CuhTQYe2CQnb1tlGXw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11679"; a="57974884"
-X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; 
-   d="scan'208";a="57974884"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2026 23:25:30 -0800
-X-CSE-ConnectionGUID: DrObkHQGSvGNgj77c4biBA==
-X-CSE-MsgGUID: G/51SBsNTo+yO4OJwnmriA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; 
-   d="scan'208";a="206861769"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.244.112])
-  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2026 23:25:25 -0800
-Date: Fri, 23 Jan 2026 09:25:23 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc: netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	linux-kernel@vger.kernel.org,
-	Herve Codina <herve.codina@bootlin.com>,
-	Mark Brown <broonie@kernel.org>,
-	Serge Semin <fancer.lancer@gmail.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Choong Yong Liang <yong.liang.choong@linux.intel.com>,
-	Jiawen Wu <jiawenwu@trustnetic.com>
-Subject: Re: [PATCH v2 net-next 02/15] net: mdio: add driver for NXP SJA1110
- 100BASE-T1 embedded PHYs
-Message-ID: <aXMiY_1bDbhtCFK7@smile.fi.intel.com>
-References: <20260122105654.105600-1-vladimir.oltean@nxp.com>
- <20260122105654.105600-3-vladimir.oltean@nxp.com>
- <aXIUJbEwnAvIkeKK@smile.fi.intel.com>
- <20260122124708.pxckp6vgi2rvagmm@skbuf>
- <aXI339TiHFaEAWXE@smile.fi.intel.com>
- <20260122221003.p2cbemzvi2mayety@skbuf>
+	s=arc-20240116; t=1769153385; c=relaxed/simple;
+	bh=G8iuiM8fIr7CeB7MRtGz2Z5+/qYbZCfKLGEVlaFQlg0=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=KFKPzPy7IEIZ6ZOA5djRfj4oV+JgXajtGKfzIC6dRopKMuTrRHxlwv/YOyt+vqXq15UN08OtBTSVTlHcqYGRpffbO3wYbXkFoZnRiQAkFnMH1yR67HhHgKVvw3rZnZ7KXwzuyfuZR6Tt5ep+5yvkI4TPeKkYSk6uStThf3f9zsA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=dWYxVf+U; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20260123072940epoutp027153919ed4e98580342662945768d8b6~NS6A8Fa5C3177131771epoutp02j
+	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 07:29:40 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20260123072940epoutp027153919ed4e98580342662945768d8b6~NS6A8Fa5C3177131771epoutp02j
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1769153380;
+	bh=se6g0TattdJSbEIqCpX5SFJxKJzDqglis31YWPyUuk4=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=dWYxVf+UFg5IYzT2GMxr5ENl71oKGOS4SGJ1kkT18bkT1UQa/CzM4XG93DYmfHy1L
+	 dI7qwRYVIqajlfOaKHC/gEVCQ54n74gxim+oUEouKqb31/nvl3o1q0HOcgivLftFCh
+	 krBZMx38CIml2Ypzxt5SJplKSj7S5rw0A9P0uMgg=
+Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
+	20260123072939epcas5p3d6ad87764073d97d7f64fb401b9b49fc~NS6AZm8OZ1589615896epcas5p3X;
+	Fri, 23 Jan 2026 07:29:39 +0000 (GMT)
+Received: from epcas5p2.samsung.com (unknown [182.195.38.91]) by
+	epsnrtp02.localdomain (Postfix) with ESMTP id 4dy8hL4s8Dz2SSKZ; Fri, 23 Jan
+	2026 07:29:38 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
+	20260123072938epcas5p35721c4fc75931b1ecf9a130ae0ee5b80~NS5_5T3N22035720357epcas5p3r;
+	Fri, 23 Jan 2026 07:29:38 +0000 (GMT)
+Received: from INBRO001840 (unknown [107.122.3.105]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20260123072931epsmtip16ff5206b63b87f79870a973b080bbaa5~NS55RAmij2893528935epsmtip1A;
+	Fri, 23 Jan 2026 07:29:31 +0000 (GMT)
+From: "Pritam Manohar Sutar" <pritam.sutar@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <alim.akhtar@samsung.com>
+Cc: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-samsung-soc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<rosa.pila@samsung.com>, <dev.tailor@samsung.com>, <faraz.ata@samsung.com>,
+	<muhammed.ali@samsung.com>, <selvarasu.g@samsung.com>
+In-Reply-To: <6f381f88-3a51-4fc8-844c-41b167b07628@kernel.org>
+Subject: RE: [PATCH v2 3/3] arm64: dts: exynos: ExynosAutov920: Enable USB
+ nodes
+Date: Fri, 23 Jan 2026 12:59:26 +0530
+Message-ID: <000e01dc8c3a$05fa3df0$11eeb9d0$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260122221003.p2cbemzvi2mayety@skbuf>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQEa27yOGkcSyej7W4JCG0x5iKXFKwH8TUbRAqvnhIQBf1ky2raxgAdQ
+Content-Language: en-in
+X-CMS-MailID: 20260123072938epcas5p35721c4fc75931b1ecf9a130ae0ee5b80
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20260122125136epcas5p2db0fa3d04671ddc915e60ae8c5bcfb98
+References: <20260122130721.205664-1-pritam.sutar@samsung.com>
+	<CGME20260122125136epcas5p2db0fa3d04671ddc915e60ae8c5bcfb98@epcas5p2.samsung.com>
+	<20260122130721.205664-4-pritam.sutar@samsung.com>
+	<6f381f88-3a51-4fc8-844c-41b167b07628@kernel.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[samsung.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[samsung.com:s=mail20170921];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lunn.ch,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,bootlin.com,linux.intel.com,trustnetic.com];
-	TAGGED_FROM(0.00)[bounces-258752-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-258753-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[samsung.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	NEURAL_HAM(-0.00)[-0.995];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,samsung.com:email,samsung.com:dkim,samsung.com:mid,infradead.org:email];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[pritam.sutar@samsung.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smile.fi.intel.com:mid,intel.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 384C771B37
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: 1FAEF71BAD
 X-Rspamd-Action: no action
 
-On Fri, Jan 23, 2026 at 12:10:03AM +0200, Vladimir Oltean wrote:
-> On Thu, Jan 22, 2026 at 04:44:47PM +0200, Andy Shevchenko wrote:
-> > On Thu, Jan 22, 2026 at 02:47:08PM +0200, Vladimir Oltean wrote:
-> > > On Thu, Jan 22, 2026 at 02:12:21PM +0200, Andy Shevchenko wrote:
-> > > > On Thu, Jan 22, 2026 at 12:56:41PM +0200, Vladimir Oltean wrote:
+Hi=20
 
-...
-
-> > > > > +	if (!dev->of_node || !dev->parent)
-> > > > 
-> > > > Can we avoid dereferencing? And perhaps dev_fwnode(dev)?
-> > > 
-> > > Avoid dereferencing what?
-> > 
-> > of_node
-> 
-> Why? The driver is useless when bound to a device without an of_node.
-> of_mdiobus_register() will fall back gracefully to __mdiobus_register(),
-> and still technically get registered, but its child PHYs will be
-> inaccessible through phandles.
-
-dereferencing != use
-
-> > > > > +		return -ENODEV;
-
-What I meant is to avoid accessing of_node directly, use APIs: dev_of_node().
-
-...
-
-> > > > > +	err = of_mdiobus_register(bus, dev->of_node);
-> > > 
-> > > Why would I use dev_fwnode() if I need to pass it as OF to
-> > > of_mdiobus_register() here?
-> > 
-> > dev_of_node() then. Wondering if we can use fwnode_mdiobus_register_phy() here
-> > (I remember that OF/fwnode code in MDIO/PHY is not trivial, but I don't know
-> >  all the details).
-> 
-> fwnode_mdiobus_register_phy() shall be read as: "hey MDIO bus, please
-> register a PHY for this fwnode!"
-> 
-> of_mdiobus_register() shall be read as: "I have this mii_bus structure
-> and I want it registered as an active MDIO bus, associated with this OF
-> node".
-> 
-> So the two do not serve the same purpose; one is not the more generic
-> variant of the other.
-> 
-> There is no fwnode variant of of_mdiobus_register(). Perhaps this
-> snippet from drivers/net/ethernet/marvell/mvmdio.c can clarify:
-> 
-> 	/* For the platforms not supporting DT/ACPI fall-back
-> 	 * to mdiobus_register via of_mdiobus_register.
-> 	 */
-> 	if (is_acpi_node(pdev->dev.fwnode))
-> 		ret = acpi_mdiobus_register(bus, pdev->dev.fwnode);
-> 	else
-> 		ret = of_mdiobus_register(bus, pdev->dev.of_node);
-> 
-> Out of the two API functions, I used OF because that's what I need
-> to support.
-
-I see, so perhaps in the future we will see this snipped to be converted to
-fwnode_mdiobus_register() then. Thank you for clarification.
-
-> > > > > +	if (err)
-> > > > > +		goto err_free_bus;
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzk=40kernel.org>
+> Sent: 22 January 2026 07:05 PM
+> To: Pritam Manohar Sutar <pritam.sutar=40samsung.com>; robh=40kernel.org;
+> krzk+dt=40kernel.org; conor+dt=40kernel.org; alim.akhtar=40samsung.com
+> Cc: devicetree=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org;=
+ linux-
+> samsung-soc=40vger.kernel.org; linux-kernel=40vger.kernel.org;
+> rosa.pila=40samsung.com; dev.tailor=40samsung.com;
+> faraz.ata=40samsung.com; muhammed.ali=40samsung.com;
+> selvarasu.g=40samsung.com
+> Subject: Re: =5BPATCH v2 3/3=5D arm64: dts: exynos: ExynosAutov920: Enabl=
+e USB
+> nodes
+>=20
+> On 22/01/2026 14:07, Pritam Manohar Sutar wrote:
+> > Enable USB PHY and DWC3 USB controllers' nodes.
+> >
+> > Signed-off-by: Pritam Manohar Sutar <pritam.sutar=40samsung.com>
+> > ---
+> >  .../boot/dts/exynos/exynosautov920-sadk.dts   =7C 21
+> +++++++++++++++++++
+> >  1 file changed, 21 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
+> > b/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
+> > index f90f7704597c..5896dd69334a 100644
+> > --- a/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
+> > +++ b/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
+> > =40=40 -160,15 +160,20 =40=40 &xtcxo =7B
+> >  &usbdrd31_ssphy =7B
+> >  	dvdd-supply =3D <&dummy_regulator>;
+> >  	vdd18-supply =3D <&dummy_regulator>;
+> > +	status =3D =22okay=22;
+>=20
+> You just added the node in the previous patch, so why it cant be enavled
+> there?
+>=20
+> >  =7D;
+> >
+> >  &usbdrd31_hsphy =7B
+> >  	dvdd-supply =3D <&dummy_regulator>;
+> >  	vdd18-supply =3D <&dummy_regulator>;
+> >  	vdd33-supply =3D <&dummy_regulator>;
+> > +	status =3D =22okay=22;
+> >  =7D;
+> >
+> >  &usbdrd31_dwc3 =7B
+> > +	dr_mode =3D =22otg=22;
+> > +	usb-role-switch;
+> > +	role-switch-default-mode =3D =22peripheral=22;
+>=20
+> Why did you add incomplete node in previous commit?
+>=20
+>=20
+> Best regards,
+> Krzysztof
 
 
