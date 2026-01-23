@@ -1,127 +1,141 @@
-Return-Path: <devicetree+bounces-258999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259003-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CIQTM5WMc2mGxAAAu9opvQ
-	(envelope-from <devicetree+bounces-258999-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:58:29 +0100
+	id KFabBMmQc2ntxAAAu9opvQ
+	(envelope-from <devicetree+bounces-259003-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 16:16:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F81A77512
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:58:29 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8071777A53
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 16:16:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0FC703014655
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 14:58:26 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 813193074BA5
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:06:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9132330675;
-	Fri, 23 Jan 2026 14:58:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1F4B3385AE;
+	Fri, 23 Jan 2026 15:02:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SZ+CT3AP"
+	dkim=pass (1024-bit key) header.d=redadmin.org header.i=@redadmin.org header.b="buGI6TIV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from www.redadmin.org (bc043154.ppp.asahi-net.or.jp [222.228.43.154])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A04262E06EA;
-	Fri, 23 Jan 2026 14:58:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769180304; cv=none; b=FiS6ckL/9llhaimrw+TQuJc7fCpPmkESXfoHtbRT5VVbTLcMPcAXhwsIPfbLd6ej04uj/W34QOSjuiOleoiLrbIB8GK/rjrzh2j+rSWtjcnX3rjrMlVpXRE4I++z7en1m2LIMxL/RWVEmL+zmQgV54hWr9TqQJCwL/0IZ24gB7M=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769180304; c=relaxed/simple;
-	bh=WE1/H+pA0M/3cp7I12EZf75aU5FUoIcUNrJz5plzf+I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UDVWJZzCOiMsPE1BX7SMgdxGg4Le6WI9m5LprkEPvrR5/2mvY6FgZgciruzQ6+6EUb/NfImPtPEgru/hhE/2nEgXyi7QksexvUGNYs3CaPG6PGkMtnBjGz/S99DHOjW/YiiC/E6WwdQ8RHQ3DgMMv3vEdiSYoi4wahf/bdtatH0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SZ+CT3AP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1860C4CEF1;
-	Fri, 23 Jan 2026 14:58:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769180304;
-	bh=WE1/H+pA0M/3cp7I12EZf75aU5FUoIcUNrJz5plzf+I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SZ+CT3APk84zJsU3fPjS/cljFGrh/epaOwqraMXSnLhGxxPPyuUvd8R2nRHnobE0t
-	 Axzf8KEbqpXEi06s4Tl1EjVi+gcvQTZI85r4qO33j7R+tMRkhgtXN2+TxQToF8hnnU
-	 zvuN90uhpTh5qQjnRUcl0lExnZUhj6iuuKMQJ1L7oL4UXOcxLvu0iC3mPKtdMkVXWZ
-	 HGoS/TwBDJtvzBAbwSrMZKHZI+ccvaar2vfPNFCIwTNqsp87EGAaEb7U06uIPieGbf
-	 qhMFRq0ktMd4DotsSv3Hyl0OT2SJ0ztfEwAk1w3s/NWkhj2W7yhovKjtnDZLEOK3Vm
-	 8ScnkolaB+4nw==
-Date: Fri, 23 Jan 2026 14:58:16 +0000
-From: Simon Horman <horms@kernel.org>
-To: Ivan Vecera <ivecera@redhat.com>
-Cc: Jakub Kicinski <kuba@kernel.org>, conor+dt@kernel.org, poros@redhat.com,
-	anthony.l.nguyen@intel.com, linux-rdma@vger.kernel.org,
-	tariqt@nvidia.com, robh@kernel.org, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org, aleksander.lobakin@intel.com,
-	mbloch@nvidia.com, jiri@resnulli.us, Prathosh.Satish@microchip.com,
-	krzk+dt@kernel.org, saeedm@nvidia.com, devicetree@vger.kernel.org,
-	davem@davemloft.net, pabeni@redhat.com,
-	przemyslaw.kitszel@intel.com, arkadiusz.kubalewski@intel.com,
-	jonathan.lemon@gmail.com, saravanak@kernel.org,
-	aleksandr.loktionov@intel.com, mschmidt@redhat.com,
-	edumazet@google.com, leon@kernel.org, vadim.fedorenko@linux.dev,
-	grzegorz.nitka@intel.com, intel-wired-lan@lists.osuosl.org,
-	richardcochran@gmail.com, andrew+netdev@lunn.ch
-Subject: Re: [net-next,v2,08/12] dpll: Enhance and consolidate reference
- counting logic
-Message-ID: <aXOMiAhf-NdQTonz@horms.kernel.org>
-References: <20260116184610.147591-9-ivecera@redhat.com>
- <20260121001650.1904392-2-kuba@kernel.org>
- <f676c151-e871-4b2e-83f6-6d62bc146337@redhat.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C55D1BC08F;
+	Fri, 23 Jan 2026 15:02:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=222.228.43.154
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769180549; cv=pass; b=lc5iNYSXzSSb3Q9AEh6Rfv4ueIfCMVW7sq+2PdS3msyoxdw9M/LUTKVhD7yjCRuo0iyIUaP22S4sRYUL8c95DnPeSbl1Ji9tGmFLdqSXnIEgQhPkKqBgEwgKelHRzzjxbTsfE3CNAyrcXs/7m57JdiCPYso1Sl+MkyCJzR9lQOY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769180549; c=relaxed/simple;
+	bh=RNUBGQvZrqffsQKxrumheBLMkf3dfSua/uStg/54t8w=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Db9JTSFMriaJUJv60p7BCZ78YGix0aSgP3VLYVxMK8PSdznFTgcGXesqPSpQZvdjylthWrdWh38UoAYAoNcWgRdHFU6GaSjWOCd+2i6gd+lN6oWDRrh70WSbFWn14QdIUfm/b9evhynvWV9MeN86fcwuTP4CPDCGvFGKxBcuQkY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redadmin.org; spf=pass smtp.mailfrom=redadmin.org; dkim=pass (1024-bit key) header.d=redadmin.org header.i=@redadmin.org header.b=buGI6TIV; arc=pass smtp.client-ip=222.228.43.154
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redadmin.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redadmin.org
+Received: from localhost (localhost [127.0.0.1])
+	by www.redadmin.org (Postfix) with ESMTP id 1A4D2109EFDEB;
+	Sat, 24 Jan 2026 00:02:18 +0900 (JST)
+X-Virus-Scanned: amavis at redadmin.org
+Received: from www.redadmin.org ([127.0.0.1])
+ by localhost (redadmin.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id d1ccRGAvcbSe; Sat, 24 Jan 2026 00:02:13 +0900 (JST)
+Received: by www.redadmin.org (Postfix, from userid 1000)
+	id 0E7EA109F15C4; Sat, 24 Jan 2026 00:02:13 +0900 (JST)
+Authentication-Results: www.redadmin.org; arc=none smtp.remote-ip=127.0.0.1
+ARC-Seal: i=1; a=rsa-sha256; d=redadmin.org; s=20231208space; t=1769180533;
+	cv=none; b=NJxYGIcrosx3QrcfSa7vNBu0ASTfQTf23JdEhErIi/0TNh8Vz6dsHUwiKQ/pL8pAI/lsQPoRUw5x8hw8Mk/di7YSaBetp0PhU0xNE29Rm1j7mhZdAqEB2nmdbl4m1z9dFhZe8kmRW+EPqiAik4xgGoi/flOR0uZMSBP2dMpC7qg=
+ARC-Message-Signature: i=1; a=rsa-sha256; d=redadmin.org; s=20231208space;
+	t=1769180533; c=relaxed/relaxed;
+	bh=WRJln+kNPffSas7zqWERM0kQ6veD9Z6qs9cR/olmjt0=;
+	h=DKIM-Filter:DKIM-Signature:From:To:Cc:Subject:Date:Message-ID:
+	 X-Mailer:MIME-Version:Content-Transfer-Encoding; b=DlcloI7eQ7fSO/Qwej4jALDRHAabSwnEJ9jNH6KIm4uvSJSBK8OaHyyXrcRk8Mc6EAwq+CPEaTDaO7z7bVfYqtd7EPQFYtm9yv3sL+Mk7TRBlQn5SuACYqfLnAsdaZ8idE3T34MLgCPbOQ/fTkppr2a8W7CI2wODXO5MkaiubMo=
+ARC-Authentication-Results: i=1; www.redadmin.org
+DKIM-Filter: OpenDKIM Filter v2.11.0 www.redadmin.org 0E7EA109F15C4
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redadmin.org;
+	s=20231208space; t=1769180533;
+	bh=WRJln+kNPffSas7zqWERM0kQ6veD9Z6qs9cR/olmjt0=;
+	h=From:To:Cc:Subject:Date:From;
+	b=buGI6TIVYkRUCEZiaZV/5ntsWeWVa2tPWOaSQkIUop5DgM8ar8V7XQFopDiD6rief
+	 QSai1gy/KPfZpc6fOcfPqawbta3tFO+dEG9LzAkxDaYUahd6Rka4da8N+Z0E9r6ty6
+	 2XZo0d6gWLEKIiRCRTaLh+jpBWZ+DmJssuauYVY8=
+From: Akiyoshi Kurita <weibu@redadmin.org>
+To: robh@kernel.org
+Cc: devicetree@vger.kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	netdev@vger.kernel.org,
+	Akiyoshi Kurita <weibu@redadmin.org>,
+	Andrew Lunn <andrew@lunn.ch>
+Subject: [PATCH v2] dt-bindings: net: dsa: fix typos in bindings docs
+Date: Sat, 24 Jan 2026 00:02:11 +0900
+Message-ID: <20260123150211.2646235-1-weibu@redadmin.org>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f676c151-e871-4b2e-83f6-6d62bc146337@redhat.com>
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[redadmin.org,none];
+	R_DKIM_ALLOW(-0.20)[redadmin.org:s=20231208space];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258999-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,redhat.com,intel.com,vger.kernel.org,nvidia.com,resnulli.us,microchip.com,davemloft.net,gmail.com,google.com,linux.dev,lists.osuosl.org,lunn.ch];
-	RCPT_COUNT_TWELVE(0.00)[32];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.986];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[horms@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259003-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[redadmin.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,horms.kernel.org:mid]
-X-Rspamd-Queue-Id: 2F81A77512
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[weibu@redadmin.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lunn.ch:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8071777A53
 X-Rspamd-Action: no action
 
-On Wed, Jan 21, 2026 at 09:18:02AM +0100, Ivan Vecera wrote:
-> On 1/21/26 1:16 AM, Jakub Kicinski wrote:
-> > This is an AI-generated review of your patch.
-> > 
-> > Dunno if there's a reason for having this fixed by a later patch,
-> > if not let's fix. I'm sending the review mostly because of the
-> > comments on patch 12.
-> Will reorder these patches... Maybe it would be better to send patch 9
-> separately to net as this is the fix for the bug we found during
-> development of this series.
+Fix "alway" -> "always" in lan9303.txt and marvell,mv88e6xxx.yaml.
 
-Hi Ivan,
+Signed-off-by: Akiyoshi Kurita <weibu@redadmin.org>
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ .../devicetree/bindings/net/dsa/marvell,mv88e6xxx.yaml          | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-If it is a but in net, then yes, that sounds like a good idea to me.
+diff --git a/Documentation/devicetree/bindings/net/dsa/marvell,mv88e6xxx.ya=
+ml b/Documentation/devicetree/bindings/net/dsa/marvell,mv88e6xxx.yaml
+index 19f15bdd1c97..19ae600e9339 100644
+--- a/Documentation/devicetree/bindings/net/dsa/marvell,mv88e6xxx.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/marvell,mv88e6xxx.yaml
+@@ -72,7 +72,7 @@ properties:
+=20
+   '#interrupt-cells':
+     description: The internal interrupt controller only supports triggering
+-      on active high level interrupts so the second cell must alway be set=
+ to
++      on active high level interrupts so the second cell must always be se=
+t to
+       IRQ_TYPE_LEVEL_HIGH.
+     const: 2
+=20
+--=20
+2.47.3
 
-Please include a Fixes tag if you take that route.
 
