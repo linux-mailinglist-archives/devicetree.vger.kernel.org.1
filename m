@@ -1,185 +1,174 @@
-Return-Path: <devicetree+bounces-259131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259132-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eOVEDRzoc2nhzQAAu9opvQ
-	(envelope-from <devicetree+bounces-259131-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 22:29:00 +0100
+	id QKogHZL9c2mf0gAAu9opvQ
+	(envelope-from <devicetree+bounces-259132-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 00:00:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 878EB7AE7C
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 22:28:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AB4C7B543
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 00:00:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 16AC73012EB7
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 21:28:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E4813301993C
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 23:00:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 781462F39DD;
-	Fri, 23 Jan 2026 21:28:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AAF82EC541;
+	Fri, 23 Jan 2026 23:00:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Pv+aTx8B"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XV/+6cLt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90EF92F0C6A;
-	Fri, 23 Jan 2026 21:28:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 929C226F2A8
+	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 23:00:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769203737; cv=none; b=nWG3j+PsGL4GekW8w83IMqKf3906Sn+JfAsbtXGPRpFKy3Mw9arMsy4M8cWJ6MJOqv/sEGJisJihh8623Uw6xqtknF+A6QmLJE5HxY0PXaNM9wEjnONVvhwcxeYeFpz6IxYbSCfeho/y5MHndaNPW9e2bG0zLircLjPAMvriCjE=
+	t=1769209226; cv=none; b=TQ8N3zlplpM/cwp04XBcZ1ZZeKStAd/Rp8EYD4c2+5WIsIrURQwhwiU73d7vGTBKqOSIZaBoiX53kKtBUopQ7VlPBD0wgN3YIugO7eKF8xiDHBxIIkb2+Y39rW785zx5COVIPmXaf2GNvvH0m/XTtrmMIAestVBn3Zxq8UMG7W4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769203737; c=relaxed/simple;
-	bh=F+3lxxdOCzI1G+P2RWvjJqV8G0EnM8ESruTvIjlp03Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rBNYPahUcZESBQvUM5XycANdtFjtymy5iY40sMGyoC+jbYTItw2gx9iXu/tIlao7docWFNB6NWgQkp0cE1XZDRPlnaTAsaMAVET2q1ufAFBRQi+I6Wtqu3KykIBJrZgYq4V9JwWMs4zb+9Y6b13fv0Z9yS0CgSFFBFdN7GF1PR8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Pv+aTx8B; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1769203735; x=1800739735;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=F+3lxxdOCzI1G+P2RWvjJqV8G0EnM8ESruTvIjlp03Y=;
-  b=Pv+aTx8BBXE9LKZno3xWtDKIggAdkRk8qDl4allgxYx0uuO0hM3zEA7T
-   UF9/PFf+5DMR16VoqYz4G+IeUlD2o4cmoUFOSj6q3vJqXqNQRvuPq3hG7
-   2fUD6c1Ze1uCvlMgv0YoeSzGykOl0XNyPrv2XbuNRXLHL4qTZikvPveuB
-   LJe/HZKnEK2Zh9hnJ5njIsjTyLuNn3GPX6w2m174a9B65G6eE8zsg2m89
-   WqRfG6IwfRE9VKviAJC1wMVQDfNQ0cnqk9OuPK63nxvxuyU+0hqvPB92A
-   jEr5WTEaLP4xfYn8zy6jwW2aihqCf+vrl5p6fmjg/Zp3AKj5BltBkSnji
-   g==;
-X-CSE-ConnectionGUID: lHEeup0kRv2nUK9ZDdreWQ==
-X-CSE-MsgGUID: GfgiGE75QlCM6kLXbTGOaQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11680"; a="88037066"
-X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; 
-   d="scan'208";a="88037066"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jan 2026 13:28:54 -0800
-X-CSE-ConnectionGUID: ZNRfMAYGQeCGb28jB3gqig==
-X-CSE-MsgGUID: 5pu4H/wGTbGQHbaRND9vtg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; 
-   d="scan'208";a="211581938"
-Received: from igk-lkp-server01.igk.intel.com (HELO afc5bfd7f602) ([10.211.93.152])
-  by fmviesa005.fm.intel.com with ESMTP; 23 Jan 2026 13:28:49 -0800
-Received: from kbuild by afc5bfd7f602 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vjOhy-000000000p7-2cGG;
-	Fri, 23 Jan 2026 21:28:46 +0000
-Date: Fri, 23 Jan 2026 22:28:19 +0100
-From: kernel test robot <lkp@intel.com>
-To: Icenowy Zheng <zhengxingda@iscas.ac.cn>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	s=arc-20240116; t=1769209226; c=relaxed/simple;
+	bh=d4had5SJ6UU947wWnPxCbKq5o/uVBE9OQgdVKZb1HiM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=bcBDxZPlf/OMu0WYGnw7hWvOF6vP4ZYNQjneUtcCxjy2KmHbmXHyZpwDo41SuWs9Ouwsq0d3F6QgdXvRjcNuX7gqSbUbR0Q/2sGLrM43ns0tNja73qjUhbeCogrQkLwJMRHfRABtU5s2TgLtZlzY8P+RXj/HtfmAXvupS9FtHss=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XV/+6cLt; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-47ee4338e01so15480285e9.2
+        for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 15:00:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1769209223; x=1769814023; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=As37iQpL3zu91gYcoRq3jQn9d3CPwOGsKIH2tX0HSIU=;
+        b=XV/+6cLtgdVGFodHHYxVbqttKZKnI5G04f8eBtI602jEF1msQRdnxfNZVQ4zua9Ct5
+         nsbszjMHsrl02nWlC2D2ZUBtGL0em/NOhf4bcywfkxl0F6b6xdvuE1lzKoprCUGAoXDC
+         b5IWaQip6+JUNlCU787oH/x2j2YBQfe/jKF3YW7NQaAjZlNGOlAIn0L0691TkYKs8O+X
+         WNRDTMe2hlbs8IjJ0xxjG+dS0xDamC+VDa4RlZD2r7X8f9hHPhanSmFaDX/44Psa5529
+         3/ZRdXdmmXHBDasGevEtBaJ+7uJLvsQ1fI/XukOmp+IhGAGnipCo19VmxPWT64n5HcxI
+         3kog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769209223; x=1769814023;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=As37iQpL3zu91gYcoRq3jQn9d3CPwOGsKIH2tX0HSIU=;
+        b=fgKVbCiCc9w8PcMGio99pzDiwYOF4KshUtzDkaYXzBTUDW8akzaPychtpk+EauxzMl
+         RcDZxGDvaehumIsWLXQpNfGszYYaxWK+67+Shi1FvczKEFhJZboRU7BLpuHHK1bDFEpn
+         YKTDRDOwbv4ROrud9+PzMYToAWTis2XJwN1CJgNbxP4pMSAtsIZp+5B0XomxFGmAdix5
+         i/oqvIlZhHMKiWUXBuEwXWlmNT0I/bEU5VhhiVj6W/H3cw0zGi4lLKr5CVyensDB6KrO
+         0KebzkkFDZa+9BFccHAhOyTKzSxSqvZVJLy8QQr/inhNUUyyVmVh87m9+QXQLOpwqCQ+
+         sNTA==
+X-Gm-Message-State: AOJu0Yz0F3D7VsjbJRzWaxhjb6BdPvhlJOK4XkygCGTOsSW/HQCBNcnO
+	EpGrw4gSD6sk9lHqSNOxolC59TLMpm1GMf4/h4fzbGtcjTCWz3DAKx1b
+X-Gm-Gg: AZuq6aIXv8ALSAQ8InxeI0JGPPA67nhtBDsX45ihmT1Z+TTJGNvrbdjdkWktpoPTTJj
+	dPvzZxKpkyMY0LpKW/OhmcNTokJ897UgrWHxvN7D0U4V672maL90cFpX/hwOnWpiMWjRozFYUm4
+	4As3JRAyG5g9AGNANZqucUeL9xntD7PEu+hJfM8DqshouLKJa52SGTCGaNEyBQvcV30J8lzqr0S
+	00ejNAwo4LxwJXOjIjbzOMMoPOKsNthsloxGouLNr75tX2ZYA+NcNl13/zuVNKO5qKhHjUtdTH4
+	H8WdX1Gn33Ak7T7Om+wAkk9+Vzz+mzrnDQ/CrxP+ZAo5PCa3q9JhxXkEI1qZSSL1EgxOdxRc3wJ
+	swEhQSseZzV4kVwJPcQngfxcMa96nGgD+BE/pZdBgNX68dbstkRKxiYZR613nOWsGG0JLGTiRGq
+	SBo97iZbpm9svlPNxEDzKLpemgx8foDo0HQITMo+mHSfO/eGKpdtxTyAkp6XvVislQVQDoyuGjK
+	cSG/R0/xYscqA+AF2PQpDbs
+X-Received: by 2002:a05:600c:608a:b0:47a:814c:ee95 with SMTP id 5b1f17b1804b1-4804c959aa2mr72966345e9.12.1769209222655;
+        Fri, 23 Jan 2026 15:00:22 -0800 (PST)
+Received: from iku.Home ([2a06:5906:61b:2d00:bccf:b3b1:e288:4e83])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-480470cc278sm157142665e9.12.2026.01.23.15.00.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Jan 2026 15:00:21 -0800 (PST)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>
-Cc: Paul Gazzillo <paul@pgazz.com>,
-	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-	oe-kbuild-all@lists.linux.dev,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Dmitry Baryshkov <lumag@kernel.org>,
-	Michal Wilczynski <m.wilczynski@samsung.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Han Gao <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>,
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	Icenowy Zheng <uwu@icenowy.me>
-Subject: Re: [PATCH v6 3/9] drm: verisilicon: add a driver for Verisilicon
- display controllers
-Message-ID: <202601232234.kb8a1hFz-lkp@intel.com>
-References: <20260123092830.4046009-4-zhengxingda@iscas.ac.cn>
+	linux-renesas-soc@vger.kernel.org
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 0/4] arm64: dts: renesas: Fix SD0 failures on RZ/{T2H, N2H} and RZ/V2H
+Date: Fri, 23 Jan 2026 22:59:53 +0000
+Message-ID: <20260123225957.1007089-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260123092830.4046009-4-zhengxingda@iscas.ac.cn>
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[pgazz.com,gmail.com,lists.linux.dev,pengutronix.de,kernel.org,samsung.com,bootlin.com,disroot.org,vger.kernel.org,lists.freedesktop.org,lists.infradead.org,icenowy.me];
-	TAGGED_FROM(0.00)[bounces-259131-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[iscas.ac.cn,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,redhat.com];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[32];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-0.983];
+	TAGGED_FROM(0.00)[bounces-259132-lists,devicetree=lfdr.de];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[glider.be,gmail.com,kernel.org,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,bp.renesas.com,renesas.com];
+	MIME_TRACE(0.00)[0:+];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 878EB7AE7C
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[prabhakarcsengg@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 1AB4C7B543
 X-Rspamd-Action: no action
 
-Hi Icenowy,
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-kernel test robot noticed the following build warnings:
+Hi all,
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on next-20260122]
-[cannot apply to drm-misc/drm-misc-next drm/drm-next linus/master v6.16-rc1]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+During testing of SD card functionality on RZ/{T2H, N2H} and RZ/V2H evk
+boards, it was observed that the SD card initialization was failing for
+UHS-I cards. While investigating the issue on RZ/G3L smarc board it was
+found that 12ms ramp delay is required for SD0 power regulator to ensure
+proper initialization of UHS-I cards. Similarly, while investigating the
+SD0 initialization issue on RZ/{T2H, N2H} and RZ/V2H evk boards, it was
+found that a ramp delay of 21ms is required for SD0 power regulator to
+ensure proper initialization of UHS-I cards.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Icenowy-Zheng/dt-bindings-vendor-prefixes-add-verisilicon/20260123-173225
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20260123092830.4046009-4-zhengxingda%40iscas.ac.cn
-patch subject: [PATCH v6 3/9] drm: verisilicon: add a driver for Verisilicon display controllers
-config: riscv-kismet-CONFIG_DRM_BRIDGE_CONNECTOR-CONFIG_DRM_VERISILICON_DC-0-0 (https://download.01.org/0day-ci/archive/20260123/202601232234.kb8a1hFz-lkp@intel.com/config)
-reproduce: (https://download.01.org/0day-ci/archive/20260123/202601232234.kb8a1hFz-lkp@intel.com/reproduce)
+This patch series adds the required ramp delay for SD0 power regulator on
+RZ/{T2H, N2H} and RZ/V2H evk boards. Additionally, it clarifies the SD0
+power jumper settings in the respective dts files for RZ/{T2H, N2H} evk
+boards.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202601232234.kb8a1hFz-lkp@intel.com/
+Cheers,
+Prabhakar
 
-kismet warnings: (new ones prefixed by >>)
->> kismet: WARNING: unmet direct dependencies detected for DRM_BRIDGE_CONNECTOR when selected by DRM_VERISILICON_DC
-   WARNING: unmet direct dependencies detected for DRM_BRIDGE_CONNECTOR
-     Depends on [n]: HAS_IOMEM [=y] && DRM [=y] && DRM_DISPLAY_HELPER [=n]
-     Selected by [y]:
-     - DRM_VERISILICON_DC [=y] && HAS_IOMEM [=y] && DRM [=y] && COMMON_CLK [=y] && (RISCV [=y] || COMPILER_TEST)
-   
-   WARNING: unmet direct dependencies detected for SIFIVE_CCACHE
-     Depends on [n]: CACHEMAINT_FOR_DMA [=n] && (ARCH_SIFIVE [=y] || ARCH_STARFIVE [=y])
-     Selected by [y]:
-     - ERRATA_STARFIVE_JH7100 [=y] && ARCH_STARFIVE [=y] && !DMA_DIRECT_REMAP [=n] && NONPORTABLE [=y]
-   
-   WARNING: unmet direct dependencies detected for AX45MP_L2_CACHE
-     Depends on [n]: CACHEMAINT_FOR_DMA [=n]
-     Selected by [y]:
-     - ARCH_R9A07G043 [=y] && SOC_RENESAS [=y] && RISCV [=y] && NONPORTABLE [=y] && !DMA_DIRECT_REMAP [=n] && RISCV_ALTERNATIVE [=y] && !RISCV_ISA_ZICBOM [=n] && RISCV_SBI [=y]
+Lad Prabhakar (4):
+  arm64: dts: renesas: rzt2h-n2h-evk: Add ramp delay for SD0 card
+    regulator
+  arm64: dts: renesas: r9a09g077m44-rzt2h-evk: Clarify SD0 power jumpers
+  arm64: dts: renesas: r9a09g087m44-rzn2h-evk: Clarify SD0 power jumper
+    setup
+  arm64: dts: renesas: rzv2-evk-cn15-sd: Add ramp delay for SD0
+    regulator
+
+ arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts | 9 ++++++---
+ arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts | 6 ++++--
+ arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi  | 1 +
+ arch/arm64/boot/dts/renesas/rzv2-evk-cn15-sd.dtso      | 1 +
+ 4 files changed, 12 insertions(+), 5 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.52.0
+
 
