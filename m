@@ -1,420 +1,211 @@
-Return-Path: <devicetree+bounces-258831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258834-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QHtJFHdAc2mWtwAAu9opvQ
-	(envelope-from <devicetree+bounces-258831-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:33:43 +0100
+	id kGIgGgtAc2m0twAAu9opvQ
+	(envelope-from <devicetree+bounces-258834-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:31:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E648736DF
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:33:42 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5E0173624
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:31:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D43873096FBE
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 09:30:06 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 6F2BF30065C7
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 09:31:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4353D36F40D;
-	Fri, 23 Jan 2026 09:29:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0467364E93;
+	Fri, 23 Jan 2026 09:31:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="sJbWYLjE"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GUyuQBKB";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="DAE4SQP0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7096C2E54DE;
-	Fri, 23 Jan 2026 09:29:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FBA2364041
+	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 09:31:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769160591; cv=none; b=l0Gstrde9ApqEPcVpxk3i2+rBBCbHaFq0tD0x/lDxqAdrMTgHYwl3hvImq8NyrmKxodselSATi7sEgWxWVssGLyPmZfq3tiANwrk8qxwklY2UopMGGe0bjotzyOsmN5TlBAWRjrt5pgHyHzWxm9jQHLcmVZfzo+g3tMYV8zDQuY=
+	t=1769160711; cv=none; b=B7WxTOjuK8fdwl09q8JvOaPr3E2Odk5cun+OyCm8YBc0huwVli9kfadiRAdP0xALtu3V3jCXAQwXcZRNebAKgCZ6hotod8MiQe1y829VS4VllTXK637m5RRDXI0+nztzBPtL0gZRr8IjcTZOvRtQNxcD7G+JZYuRCIFFJL3/cQ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769160591; c=relaxed/simple;
-	bh=+fizITse9wckHDqQB9yBp+EcEOSVwqQ1geFX0U5lj3o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rXF70N3pNNTtWUKic4VjF9BSTY0QlIK4z+aWNTseag1VRTpSZ2S3TjcyTpREQMcTtDmcsuxhm1LLDjTD9JFrag2waKUed66A3oyQDmKGgxyQJSA9mi3E/5BjE2DKEykxrTVfZHvHYP+/h17DJVv84Ut11MmilAuWYBblCgHm5aI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=sJbWYLjE; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id CD7B71FE4;
-	Fri, 23 Jan 2026 10:29:01 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1769160543;
-	bh=+fizITse9wckHDqQB9yBp+EcEOSVwqQ1geFX0U5lj3o=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=sJbWYLjEiNQiOJAReRR9GHGkzDzexOYP97UQ6tbskd7+va0H160pwxPY5q46oznX0
-	 p8W2xgHOIalTtKJtK4zQuVU89TthYO4tpMmVUYkLRIjasncvQFAcmkSNcaCavywSpM
-	 mG+qlK0hE3rLjIl/NNhOLvjmLEZ4fCUyq3OTn7PE=
-Message-ID: <18ead528-5e24-419b-b7b3-9b1018124c93@ideasonboard.com>
-Date: Fri, 23 Jan 2026 11:29:32 +0200
+	s=arc-20240116; t=1769160711; c=relaxed/simple;
+	bh=LAdtpN1rCikqAOAR5EK+0Wp5HeQ/8qzoaZ/iaXhGfFc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=UKVAaJ9SENZwjtQKcgpNFfQBrj+cGt7lLHi/GEdn0PVxcZAEiq0pZtd0yik6x4iPLjbgdoonCpRqK/GisLwedpT3CR44FwMWIlb/HsRJmVknB0YNILY9p7uyeOXDoL521kYGOLksKo1jk5L1tOeaH1khjvXFtsRv0sjydlxIzBI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GUyuQBKB; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=DAE4SQP0; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60N6s0Go1330394
+	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 09:31:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	26CDK72HEOnmUsZ1CXy1/05/oLpi5raMr9WBDPBMZ7k=; b=GUyuQBKBtsywwiSU
+	R1OwPXA81vidDquGqqc28No1zzt67cVhsgBYp2pCqS9pfqgkULNner+r+hB817tG
+	EYcSBfrlnwB49/42tOhjioOI+F64teuAOEUVcNI10lgBcw3D2oAxFfdxtxgz7SfN
+	uYKcMGab6GlKl9wD5NgmD58lb179KAkvVMcLRX1gTjkK9+3PNUVzcs7z/J3jaIZg
+	sjxjwF3FLLRhGB/vjiCA0YFJzM3cXV4xxATTVthnybzHIySwKD0LPRdYuzNwnLVM
+	V2nR/ELYU3+1GXzsarPhdbq++Q0Cy1lWqFZYsgEJEIBRTD5ihz5rPOaSoAVge8ge
+	6qs6Qg==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bv44c8k6w-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 09:31:42 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8c6a0ec2496so429706485a.1
+        for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 01:31:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1769160701; x=1769765501; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=26CDK72HEOnmUsZ1CXy1/05/oLpi5raMr9WBDPBMZ7k=;
+        b=DAE4SQP0c7Zd5wIXa5TH5tWtIjBC7y2CfYqG+MtK4hiFcx5Yegr8lUFkX7uPrjBd0V
+         s797iI2z8GPc9Zk9YRGIrdJmcd2mXbgTE4NGELsmHoSrz6HlZX3aEKtUyHrQtPISRlpN
+         vXR3y315Li2rqm8tbEFgRyeRUbY2+UpDgcsp91GGs9KWukEsz/FS55Efs3xU+SGWJVbl
+         xufzFh9sUQidwoiC5k4ZgPouy/tQE8FQa4t7doDDVb/zE79icbtWVx3zM9f6gI9H0kMB
+         tya6E4D/3IiACWX4jegRk4fN94vpyHW7N7LgEeGsHTU9Arsvgn7T1f8PG9jBdzvvvvxl
+         +1vA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769160701; x=1769765501;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=26CDK72HEOnmUsZ1CXy1/05/oLpi5raMr9WBDPBMZ7k=;
+        b=k+31lrfL+ag1NWw3yPqx1YFNgGrLKemsnp7KCRrxBp/E1AXuxi96vND6gufJU9/4vH
+         3XmfwXbrb1vZyV79TYxLu6OtZq5fwLGzkxDRGS9bm3A7dLuXWwNAi5L5EJ0YqBIGpO52
+         Wkkct+IO6K7CR4XI2K17N1NFpWFzDppT1xL6ICXio/WT8DJcwHZqOY6R5n44iYlw5J4w
+         7A4W4XysfPou30vRdpFKPgpO4+YUYW4dqlpcd3qkjrZqqg1HRx+5VYd6ueL5z//4dQA3
+         WriGWvCg+e5absz8crhhiYoZdtomTY6WsEBmxRiP57E/wK+jZatnubZO9/tRxexkGgiX
+         JWGA==
+X-Forwarded-Encrypted: i=1; AJvYcCWqALTPq8RkdVyCS4itaW4vASTsrztggRxQFGISW6HEPWAYcnkJdW4WalzUrGBqZ6PbSv3KmKARqvoO@vger.kernel.org
+X-Gm-Message-State: AOJu0YzU/UToyolbch4hdmaq/q8uvFA+DecGkHJ6WjmElLmFSV6B8G7D
+	ryWFDv8va4cGFon2kbmu5CNL/wRVZSaPn5v0RohgWuDwd1btRmNFXWlB3UDCKYDH9Kjv4lr4KKb
+	rXTzp19QaK5BxGYJSlhmxocLMVLMvP1+EOnKMkn11g+6gBWNcTuLCpavdiSqtQ02T
+X-Gm-Gg: AZuq6aKXl4mk7EzaNX/NxLEnhvlAiZQHtVrtYQZx2Xr8Sb+lzINb3cTKciu83Ei/AxQ
+	9zR2BQOD1MQJy6a9r+FpDUUTQq2DptfgwWBf5KX6JqHwAQjLKCzROtG3AWEXHqtKMPaz0TwH0gv
+	HsL7s/qdBWvngE8CqzQBubnNyeMnwpRjxS2F/zU3nwsXDf+W0KLexz9SJ2N6Ef0sZAxwB10llm6
+	KPCTRMk8b68bKeIuRhwxqOZIW/pDd2XHorqmXl/JgUd5Lrst8IxLV57d1XnHBeHRHWlK+oCmxyN
+	3ziECB8NYyK8ZyJf20nY6WE/olUz1hEYaw2RkR92PxN1SeUGgIKZHztcMbavQ0jc7KOM4WqR6NM
+	rqyhHdnbAJaI7k4EaKKmDdBXfaYKHKqTcFS0xY7s=
+X-Received: by 2002:a05:620a:2a01:b0:8c6:b001:c1d5 with SMTP id af79cd13be357-8c6e910a7dcmr53104785a.5.1769160701636;
+        Fri, 23 Jan 2026 01:31:41 -0800 (PST)
+X-Received: by 2002:a05:620a:2a01:b0:8c6:b001:c1d5 with SMTP id af79cd13be357-8c6e910a7dcmr53103085a.5.1769160701228;
+        Fri, 23 Jan 2026 01:31:41 -0800 (PST)
+Received: from brgl-qcom.home ([2a01:cb1d:dc:7e00:1c86:c19d:d843:dd83])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435b1c30293sm5717115f8f.19.2026.01.23.01.31.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Jan 2026 01:31:40 -0800 (PST)
+From: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+To: Bjorn Helgaas <bhelgaas@google.com>,
+        Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Damien Le Moal <dlemoal@kernel.org>, Niklas Cassel <cassel@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Stephan Gerhold <stephan.gerhold@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        linux-pm@vger.kernel.org, linux-ide@vger.kernel.org,
+        Frank Li <Frank.Li@nxp.com>,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: (subset) [PATCH v6 0/4] PCI: Add initial support for handling PCIe M.2 connectors in devicetree
+Date: Fri, 23 Jan 2026 10:31:38 +0100
+Message-ID: <176916069326.12678.16550242235025273411.b4-ty@oss.qualcomm.com>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20260122-pci-m2-v6-0-575da9f97239@oss.qualcomm.com>
+References: <20260122-pci-m2-v6-0-575da9f97239@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 15/18] media: ti: j721e-csi2rx: Change the drain
- architecture for multistream
-To: Rishikesh Donadkar <r-donadkar@ti.com>, jai.luthra@linux.dev,
- laurent.pinchart@ideasonboard.com, mripard@kernel.org
-Cc: y-abhilashchandra@ti.com, devarsht@ti.com, s-jain1@ti.com,
- vigneshr@ti.com, mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- p.zabel@pengutronix.de, conor+dt@kernel.org, sakari.ailus@linux.intel.com,
- hverkuil-cisco@xs4all.nl, jai.luthra@ideasonboard.com,
- changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com,
- sjoerd@collabora.com, dan.carpenter@linaro.org, hverkuil+cisco@kernel.org,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20260121135424.1185710-1-r-donadkar@ti.com>
- <20260121135424.1185710-16-r-donadkar@ti.com>
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Content-Language: en-US
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <20260121135424.1185710-16-r-donadkar@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=TLdIilla c=1 sm=1 tr=0 ts=69733ffe cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=JrKmLYXSX60uSqAbQrQA:9 a=QEXdDO2ut3YA:10
+ a=PEH46H7Ffwr30OY-TuGO:22
+X-Proofpoint-GUID: DTK2J8yR6jk7KVNn5lMAMqvu9seW0gRy
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIzMDA3NSBTYWx0ZWRfXwvBg5hc7Y36x
+ 6niTBpECQBkIO3vUYvteThE8RBgdKyP+uIpqGNjjBoyE1yglJqYNThzQ6V5xZOSGGuwK7KfJI+b
+ OKc38ajUkVc+HYW0WDD7Bb1sAgQCOM9ZceRGe0KRr+rJcuLBsXpMFgDoT3Y8jh2Nzv0s35LnWJl
+ CsvT9RdLjj5xAFgHepdTpEgl+5MTzzMYYc8h/SkCJj6N28LTr+of8zkAT+Gx+BUusndBDd4/1qR
+ ERgUiUbJnXTSTt/UJCSQEmxuFTEvW6IEHfyNgV5HmFcbxH8bU0PCJvKYKRNvVPwRV6mMJTpsWyQ
+ hb2Mf80fcEd24jSIc0bA/Ee+nRS8eydnL7E35CThRhH6YGyuQP+3e8IQDqPfFfkBbWwgss1qJkL
+ uxQ1FYDyf2NOqhRnuCHpkBDfR81hPxIHKlG4iA5Cl1SDeHM26FpYclp8AyaurzTiODiL3jUUB3A
+ S2rKEjRXOqIMb28RNTw==
+X-Proofpoint-ORIG-GUID: DTK2J8yR6jk7KVNn5lMAMqvu9seW0gRy
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
+ definitions=2026-01-23_01,2026-01-22_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 suspectscore=0 phishscore=0 impostorscore=0 spamscore=0
+ bulkscore=0 priorityscore=1501 clxscore=1015 malwarescore=0
+ lowpriorityscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
+ definitions=main-2601230075
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
-	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258831-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[ti.com,kernel.org,pengutronix.de,linux.intel.com,xs4all.nl,ideasonboard.com,starfivetech.com,collabora.com,linaro.org,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[24];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-258834-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.991];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tomi.valkeinen@ideasonboard.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ideasonboard.com:+];
+	FROM_NEQ_ENVFROM(0.00)[bartosz.golaszewski@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ideasonboard.com:email,ideasonboard.com:dkim,ideasonboard.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ti.com:email]
-X-Rspamd-Queue-Id: 6E648736DF
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: D5E0173624
 X-Rspamd-Action: no action
 
-Hi,
 
-On 21/01/2026 15:54, Rishikesh Donadkar wrote:
-> On buffer starvation the DMA is marked IDLE, and the stale data in the
-> internal FIFOs gets drained only on the next VIDIOC_QBUF call from the
-> userspace. This approach works fine for a single stream case.
+On Thu, 22 Jan 2026 22:46:50 +0530, Manivannan Sadhasivam wrote:
+> This series is an initial attempt to support the PCIe M.2 connectors in the
+> kernel and devicetree binding. The PCIe M.2 connectors as defined in the PCI
+> Express M.2 Specification are widely used in Notebooks/Tablet form factors (even
+> in PCs). On the ACPI platforms, power to these connectors are mostly handled by
+> the firmware/BIOS and the kernel never bothered to directly power manage them as
+> like other PCIe connectors. But on the devicetree platforms, the kernel needs to
+> power manage these connectors with the help of the devicetree description. But
+> so far, there is no proper representation of the M.2 connectors in devicetree
+> binding. This forced the developers to fake the M.2 connectors as PMU nodes [1]
+> and fixed regulators in devicetree.
 > 
-> But in multistream scenarios, buffer starvation for one stream can
-> block the shared HW FIFO of the CSI2RX IP. This can stall the pipeline
-> for all other streams, even if buffers are available for  them.
-> 
-> This patch introduces a new architecture, that continuously drains data
-> from the shared HW FIFO into a small (32KiB) buffer if no buffers are made
-> available to the driver from the userspace. This ensures independence
-> between different streams, where a slower downstream element for one
-> camera does not block streaming for other cameras.
-> 
-> Additionally, after we drain for a stream, the next frame will be a
-> partial frame, as a portion of its data will have already been drained
-> before a valid buffer is queued by user space to the driver.
-> Return the partial frame to user space with VB2_BUF_STATE_ERROR.
-> 
-> Use wait for completion barrier to make sure the shared hardware FIFO
-> is cleared of the data at the end of stream after the source has stopped
-> sending data.
-> 
-> Reviewed-by: Jai Luthra <jai.luthra@ideasonboard.com>
-> Reviewed-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
-> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
-> ---
+> [...]
 
-Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Applied, thanks!
 
- Tomi
+[1/4] dt-bindings: connector: Add PCIe M.2 Mechanical Key M connector
+      commit: 926194a6675a9cd5943f85820508648b74669fc6
+[4/4] power: sequencing: Add the Power Sequencing driver for the PCIe M.2 connectors
+      commit: 52e7b5bd62bab3851f25d8b70ad7eae9e94aba60
 
->  .../platform/ti/j721e-csi2rx/j721e-csi2rx.c   | 123 +++++++++---------
->  1 file changed, 60 insertions(+), 63 deletions(-)
-> 
-> diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-> index 5bb726f7d4f44..42ef8c553883f 100644
-> --- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-> +++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-> @@ -82,8 +82,8 @@ struct ti_csi2rx_buffer {
->  
->  enum ti_csi2rx_dma_state {
->  	TI_CSI2RX_DMA_STOPPED,	/* Streaming not started yet. */
-> -	TI_CSI2RX_DMA_IDLE,	/* Streaming but no pending DMA operation. */
->  	TI_CSI2RX_DMA_ACTIVE,	/* Streaming and pending DMA operation. */
-> +	TI_CSI2RX_DMA_DRAINING, /* Dumping all the data in drain buffer */
->  };
->  
->  struct ti_csi2rx_dma {
-> @@ -109,6 +109,7 @@ struct ti_csi2rx_ctx {
->  	struct v4l2_format		v_fmt;
->  	struct ti_csi2rx_dma		dma;
->  	struct media_pad		pad;
-> +	struct completion		drain_complete;
->  	u32				sequence;
->  	u32				idx;
->  	u32				vc;
-> @@ -249,6 +250,10 @@ static const struct ti_csi2rx_fmt ti_csi2rx_formats[] = {
->  static int ti_csi2rx_start_dma(struct ti_csi2rx_ctx *ctx,
->  			       struct ti_csi2rx_buffer *buf);
->  
-> +/* Forward declarations needed by ti_csi2rx_drain_callback. */
-> +static int ti_csi2rx_drain_dma(struct ti_csi2rx_ctx *ctx);
-> +static int ti_csi2rx_dma_submit_pending(struct ti_csi2rx_ctx *ctx);
-> +
->  static const struct ti_csi2rx_fmt *find_format_by_fourcc(u32 pixelformat)
->  {
->  	unsigned int i;
-> @@ -609,9 +614,32 @@ static void ti_csi2rx_setup_shim(struct ti_csi2rx_ctx *ctx)
->  
->  static void ti_csi2rx_drain_callback(void *param)
->  {
-> -	struct completion *drain_complete = param;
-> +	struct ti_csi2rx_ctx *ctx = param;
-> +	struct ti_csi2rx_dma *dma = &ctx->dma;
-> +	unsigned long flags;
-> +
-> +	spin_lock_irqsave(&dma->lock, flags);
-> +
-> +	if (dma->state == TI_CSI2RX_DMA_STOPPED) {
-> +		complete(&ctx->drain_complete);
-> +		spin_unlock_irqrestore(&dma->lock, flags);
-> +		return;
-> +	}
->  
-> -	complete(drain_complete);
-> +	/*
-> +	 * If dma->queue is empty, it indicates that no buffer has been
-> +	 * provided by user space. In this case, initiate a transactions
-> +	 * to drain the DMA. Since one drain of size DRAIN_BUFFER_SIZE
-> +	 * will be done here, the subsequent frame will be a
-> +	 * partial frame, with a size of frame_size - DRAIN_BUFFER_SIZE
-> +	 */
-> +	if (list_empty(&dma->queue)) {
-> +		if (ti_csi2rx_drain_dma(ctx))
-> +			dev_warn(ctx->csi->dev, "DMA drain failed\n");
-> +	} else {
-> +		ti_csi2rx_dma_submit_pending(ctx);
-> +	}
-> +	spin_unlock_irqrestore(&dma->lock, flags);
->  }
->  
->  /*
-> @@ -629,12 +657,9 @@ static int ti_csi2rx_drain_dma(struct ti_csi2rx_ctx *ctx)
->  {
->  	struct ti_csi2rx_dev *csi = ctx->csi;
->  	struct dma_async_tx_descriptor *desc;
-> -	struct completion drain_complete;
->  	dma_cookie_t cookie;
->  	int ret;
->  
-> -	init_completion(&drain_complete);
-> -
->  	desc = dmaengine_prep_slave_single(ctx->dma.chan, csi->drain.paddr,
->  					   csi->drain.len, DMA_DEV_TO_MEM,
->  					   DMA_PREP_INTERRUPT | DMA_CTRL_ACK);
-> @@ -644,7 +669,7 @@ static int ti_csi2rx_drain_dma(struct ti_csi2rx_ctx *ctx)
->  	}
->  
->  	desc->callback = ti_csi2rx_drain_callback;
-> -	desc->callback_param = &drain_complete;
-> +	desc->callback_param = ctx;
->  
->  	cookie = dmaengine_submit(desc);
->  	ret = dma_submit_error(cookie);
-> @@ -653,13 +678,6 @@ static int ti_csi2rx_drain_dma(struct ti_csi2rx_ctx *ctx)
->  
->  	dma_async_issue_pending(ctx->dma.chan);
->  
-> -	if (!wait_for_completion_timeout(&drain_complete,
-> -					 msecs_to_jiffies(DRAIN_TIMEOUT_MS))) {
-> -		dmaengine_terminate_sync(ctx->dma.chan);
-> -		dev_dbg(csi->dev, "DMA transfer timed out for drain buffer\n");
-> -		ret = -ETIMEDOUT;
-> -		goto out;
-> -	}
->  out:
->  	return ret;
->  }
-> @@ -703,14 +721,24 @@ static void ti_csi2rx_dma_callback(void *param)
->  	spin_lock_irqsave(&dma->lock, flags);
->  
->  	WARN_ON(!list_is_first(&buf->list, &dma->submitted));
-> -	vb2_buffer_done(&buf->vb.vb2_buf, VB2_BUF_STATE_DONE);
-> +
-> +	if (dma->state == TI_CSI2RX_DMA_DRAINING) {
-> +		vb2_buffer_done(&buf->vb.vb2_buf, VB2_BUF_STATE_ERROR);
-> +		dma->state = TI_CSI2RX_DMA_ACTIVE;
-> +	} else {
-> +		vb2_buffer_done(&buf->vb.vb2_buf, VB2_BUF_STATE_DONE);
-> +	}
-> +
->  	list_del(&buf->list);
->  
->  	ti_csi2rx_dma_submit_pending(ctx);
->  
-> -	if (list_empty(&dma->submitted))
-> -		dma->state = TI_CSI2RX_DMA_IDLE;
-> -
-> +	if (list_empty(&dma->submitted)) {
-> +		dma->state = TI_CSI2RX_DMA_DRAINING;
-> +		if (ti_csi2rx_drain_dma(ctx))
-> +			dev_warn(ctx->csi->dev,
-> +				 "DMA drain failed on one of the transactions\n");
-> +	}
->  	spin_unlock_irqrestore(&dma->lock, flags);
->  }
->  
-> @@ -746,6 +774,7 @@ static int ti_csi2rx_start_dma(struct ti_csi2rx_ctx *ctx,
->  static void ti_csi2rx_stop_dma(struct ti_csi2rx_ctx *ctx)
->  {
->  	struct ti_csi2rx_dma *dma = &ctx->dma;
-> +	struct ti_csi2rx_dev *csi = ctx->csi;
->  	enum ti_csi2rx_dma_state state;
->  	unsigned long flags;
->  	int ret;
-> @@ -755,6 +784,8 @@ static void ti_csi2rx_stop_dma(struct ti_csi2rx_ctx *ctx)
->  	dma->state = TI_CSI2RX_DMA_STOPPED;
->  	spin_unlock_irqrestore(&dma->lock, flags);
->  
-> +	init_completion(&ctx->drain_complete);
-> +
->  	if (state != TI_CSI2RX_DMA_STOPPED) {
->  		/*
->  		 * Normal DMA termination does not clean up pending data on
-> @@ -763,11 +794,20 @@ static void ti_csi2rx_stop_dma(struct ti_csi2rx_ctx *ctx)
->  		 * enforced before terminating DMA.
->  		 */
->  		ret = ti_csi2rx_drain_dma(ctx);
-> -		if (ret && ret != -ETIMEDOUT)
-> +		if (ret)
->  			dev_warn(ctx->csi->dev,
->  				 "Failed to drain DMA. Next frame might be bogus\n");
->  	}
->  
-> +	/* We wait for the drain to complete so that the stream stops
-> +	 * cleanly, making sure the shared hardware FIFO is cleared of
-> +	 * data from the current stream. No more data will be coming from
-> +	 * the source after this.
-> +	 */
-> +	if (!wait_for_completion_timeout(&ctx->drain_complete,
-> +					 msecs_to_jiffies(DRAIN_TIMEOUT_MS)))
-> +		dev_dbg(csi->dev, "DMA transfer timed out for drain buffer\n");
-> +
->  	ret = dmaengine_terminate_sync(ctx->dma.chan);
->  	if (ret)
->  		dev_err(ctx->csi->dev, "Failed to stop DMA: %d\n", ret);
-> @@ -830,57 +870,14 @@ static void ti_csi2rx_buffer_queue(struct vb2_buffer *vb)
->  	struct ti_csi2rx_ctx *ctx = vb2_get_drv_priv(vb->vb2_queue);
->  	struct ti_csi2rx_buffer *buf;
->  	struct ti_csi2rx_dma *dma = &ctx->dma;
-> -	bool restart_dma = false;
->  	unsigned long flags = 0;
-> -	int ret;
->  
->  	buf = container_of(vb, struct ti_csi2rx_buffer, vb.vb2_buf);
->  	buf->ctx = ctx;
->  
->  	spin_lock_irqsave(&dma->lock, flags);
-> -	/*
-> -	 * Usually the DMA callback takes care of queueing the pending buffers.
-> -	 * But if DMA has stalled due to lack of buffers, restart it now.
-> -	 */
-> -	if (dma->state == TI_CSI2RX_DMA_IDLE) {
-> -		/*
-> -		 * Do not restart DMA with the lock held because
-> -		 * ti_csi2rx_drain_dma() might block for completion.
-> -		 * There won't be a race on queueing DMA anyway since the
-> -		 * callback is not being fired.
-> -		 */
-> -		restart_dma = true;
-> -		dma->state = TI_CSI2RX_DMA_ACTIVE;
-> -	} else {
-> -		list_add_tail(&buf->list, &dma->queue);
-> -	}
-> +	list_add_tail(&buf->list, &dma->queue);
->  	spin_unlock_irqrestore(&dma->lock, flags);
-> -
-> -	if (restart_dma) {
-> -		/*
-> -		 * Once frames start dropping, some data gets stuck in the DMA
-> -		 * pipeline somewhere. So the first DMA transfer after frame
-> -		 * drops gives a partial frame. This is obviously not useful to
-> -		 * the application and will only confuse it. Issue a DMA
-> -		 * transaction to drain that up.
-> -		 */
-> -		ret = ti_csi2rx_drain_dma(ctx);
-> -		if (ret && ret != -ETIMEDOUT)
-> -			dev_warn(ctx->csi->dev,
-> -				 "Failed to drain DMA. Next frame might be bogus\n");
-> -
-> -		spin_lock_irqsave(&dma->lock, flags);
-> -		ret = ti_csi2rx_start_dma(ctx, buf);
-> -		if (ret) {
-> -			vb2_buffer_done(&buf->vb.vb2_buf, VB2_BUF_STATE_ERROR);
-> -			dma->state = TI_CSI2RX_DMA_IDLE;
-> -			spin_unlock_irqrestore(&dma->lock, flags);
-> -			dev_err(ctx->csi->dev, "Failed to start DMA: %d\n", ret);
-> -		} else {
-> -			list_add_tail(&buf->list, &dma->submitted);
-> -			spin_unlock_irqrestore(&dma->lock, flags);
-> -		}
-> -	}
->  }
->  
->  static int ti_csi2rx_get_stream(struct ti_csi2rx_ctx *ctx)
-
+Best regards,
+-- 
+Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
 
