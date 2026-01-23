@@ -1,105 +1,183 @@
-Return-Path: <devicetree+bounces-258688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258690-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oDMoIrjdcmmNqgAAu9opvQ
-	(envelope-from <devicetree+bounces-258688-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 03:32:24 +0100
+	id mGy1GLvgcmkTrAAAu9opvQ
+	(envelope-from <devicetree+bounces-258690-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 03:45:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A3086FA7B
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 03:32:24 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA2816FC83
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 03:45:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7F64B301690C
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 02:32:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 79DF03013244
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 02:45:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 703E53624B0;
-	Fri, 23 Jan 2026 02:32:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A8482EF66E;
+	Fri, 23 Jan 2026 02:45:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NtKVzz7T"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="naoh1Ltm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30758284674;
-	Fri, 23 Jan 2026 02:32:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B58CA37AA86;
+	Fri, 23 Jan 2026 02:44:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769135536; cv=none; b=BpsmjquPNCNrMW+IoQNdmC8TdCzE6gSirdt9SediBMjH7WotUAX9BzSTBwfwlBhgPOFKZD817OPVtMsEE402sIuMoVsX1Z283sMscTbwU+naxo/KMCbiYVFz9G7JLUCQUMUIJ77KYxiTCeNCxeHl3QZS2kGz8ciJD/Upj8VIRTk=
+	t=1769136307; cv=none; b=M4Bl1MNsZrNjJGzGR3BlSDUMrBfRi07HS6cWFrpvbTAqopiPD7/wy7kn0W74GUUwXs6VeX+xDILQgUNJYwenYqR2Cis8cbfJ7nlCZmy1dPD//gaSd5yvAN/cL0xIzUYaIlqgSf8o3CcuNpQxUqBm3EhpkPOVuLvSGkvuI7ViHCI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769135536; c=relaxed/simple;
-	bh=E+u15N7KY4brSTe/c9YvYWvJ/YnAj+8Ur2OCUc7qw5E=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=J/SMTXxeI0zfOzWe5p+xLx+zPaRIXCrSGLkYc0cSb9EI5v9SYDsDl8PqyEi7ZXRXh/bgNSEMdGrjZQ6wHmFqWLTGCC7lNIcvIooYUwHINXVsc3TfKhe7f8a7QZpLuf49WIHhSruuPrpqFAj4qWUGGYaufoswADxNkfniOyl91yQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NtKVzz7T; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 801CDC116C6;
-	Fri, 23 Jan 2026 02:32:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769135535;
-	bh=E+u15N7KY4brSTe/c9YvYWvJ/YnAj+8Ur2OCUc7qw5E=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=NtKVzz7TtwFCeEtMnKxWladwZVAwRYKdMmmjF+aNlJhJD+qY3kzF/ATqcs/3j4jSl
-	 JMAJKRR9i7wwJtzdFGedSd+xxqMTgRgwxQ2Et1Kc6qVHIwysWBWpd0dwcm36/dANsO
-	 ooih0zQqqc/7WnMRyvgSlQmjTxnEynS5mRs9rx0r5nswZBtXzR90EstLuKHpTVD2+g
-	 RZCh55C6pSdC/EIGjyZ1F6oU4iLlF4cB0fNYqMtTaHZgDS68yO/4E2ziS1jGbhC3Se
-	 qJPzZxNo3Xo+gdagZzsN32w3kltx8yCQFAhaBUFDdEzZGB7O2YlVUjRc37GyP4PJVI
-	 dB0OKCGxWhvcw==
-Date: Thu, 22 Jan 2026 18:32:13 -0800
-From: Jakub Kicinski <kuba@kernel.org>
-To: Akiyoshi Kurita <weibu@redadmin.org>
-Cc: krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org,
- andrew@lunn.ch, olteanv@gmail.com, devicetree@vger.kernel.org,
- netdev@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: net: dsa: fix typos in bindings docs
-Message-ID: <20260122183213.51998809@kernel.org>
-In-Reply-To: <20260121130704.2236452-1-weibu@redadmin.org>
-References: <20260121130704.2236452-1-weibu@redadmin.org>
+	s=arc-20240116; t=1769136307; c=relaxed/simple;
+	bh=8ndyNJikJsEpVSc9dj51nBXSlOB/gf6TZifRUHaN9w0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Nxujjmq9tGrQIzAOI90mStzCG20BpYAi5lb0ZJSzAkWU7kldgfxL5FAuVPYFZY7SEGbz2346WKOAHq91J8+AinFQXL1N7/t2IJguTgYXjlIz92MqAWH3BBOFD5W47rCJg/GZrKH+SI+G/lwWvU5ap8UENQS6HL807cKjt6zXHxk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=naoh1Ltm; arc=none smtp.client-ip=198.175.65.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1769136282; x=1800672282;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=8ndyNJikJsEpVSc9dj51nBXSlOB/gf6TZifRUHaN9w0=;
+  b=naoh1LtmKGEbefJO+kLrow5rpUNOrDKpSIVMr0IZGoqjYtVGVBI9uhPT
+   hHGOkd605PkLj398AoJT+YuKlMoS3XTpiNTR11bahrOo7CFbp8riJSx6c
+   WqA86vx3losqWhuP1UoL3POmSjVxDohwM+IQUFiyQVjYiCwrNr4StAvyN
+   tFIUuSXpXMNKlAI+WTdfiolHgxIY/85yg1/FXC/zeD4T8mSWbvDFo8MiQ
+   0rGxp/UnJ0XzjwhQYi5W4slXDZE1JOEhtPJ7DN4jVcvxKgL9UkdUpuf6L
+   v0R8BgaHNDhC6Fftb9bmPRkQQVlw8/goFoDfxMfcpfDUfSlf73CKJXpdO
+   g==;
+X-CSE-ConnectionGUID: JpKShiTIS5SiouMLZoZTjw==
+X-CSE-MsgGUID: U1aU/fNlTtm7JQc5hwgsWw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11679"; a="70440035"
+X-IronPort-AV: E=Sophos;i="6.21,247,1763452800"; 
+   d="scan'208";a="70440035"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2026 18:44:34 -0800
+X-CSE-ConnectionGUID: /cURpc/CT/q72pVQuMgWrw==
+X-CSE-MsgGUID: VLZI25VOQ0uqjgYyO5JaEQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,247,1763452800"; 
+   d="scan'208";a="211361570"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+  by fmviesa005.fm.intel.com with ESMTP; 22 Jan 2026 18:44:30 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vj79v-00000000TS2-33aC;
+	Fri, 23 Jan 2026 02:44:27 +0000
+Date: Fri, 23 Jan 2026 10:43:31 +0800
+From: kernel test robot <lkp@intel.com>
+To: Thierry Reding <thierry.reding@kernel.org>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Sumit Semwal <sumit.semwal@linaro.org>
+Cc: oe-kbuild-all@lists.linux.dev, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+	Brian Starkey <Brian.Starkey@arm.com>,
+	John Stultz <jstultz@google.com>,
+	"T . J . Mercier" <tjmercier@google.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Linux Memory Management List <linux-mm@kvack.org>,
+	David Hildenbrand <david@redhat.com>,
+	Mike Rapoport <rppt@kernel.org>, Sumit Garg <sumit.garg@kernel.org>,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org, linaro-mm-sig@lists.linaro.org
+Subject: Re: [PATCH v2 04/10] mm/cma: Allow dynamically creating CMA areas
+Message-ID: <202601231051.5GWCp3mt-lkp@intel.com>
+References: <20260122161009.3865888-5-thierry.reding@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260122161009.3865888-5-thierry.reding@kernel.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,lunn.ch,gmail.com,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-258688-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-258690-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,ffwll.ch,linaro.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.984];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kuba@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 5A3086FA7B
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-0.998];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[01.org:url,intel.com:email,intel.com:dkim,intel.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: DA2816FC83
 X-Rspamd-Action: no action
 
-On Wed, 21 Jan 2026 22:07:04 +0900 Akiyoshi Kurita wrote:
-> Fix "alway" -> "always" in lan9303.txt and marvell,mv88e6xxx.yaml.
+Hi Thierry,
 
-Does not apply to net-next, AFAICT. Could you rebase on net-next/main
-and repost?
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on akpm-mm/mm-everything]
+[also build test ERROR on next-20260122]
+[cannot apply to drm-misc/drm-misc-next robh/for-next linus/master v6.19-rc6]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Thierry-Reding/dt-bindings-reserved-memory-Document-Tegra-VPR/20260123-001244
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/akpm/mm.git mm-everything
+patch link:    https://lore.kernel.org/r/20260122161009.3865888-5-thierry.reding%40kernel.org
+patch subject: [PATCH v2 04/10] mm/cma: Allow dynamically creating CMA areas
+config: i386-buildonly-randconfig-003-20260123 (https://download.01.org/0day-ci/archive/20260123/202601231051.5GWCp3mt-lkp@intel.com/config)
+compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260123/202601231051.5GWCp3mt-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202601231051.5GWCp3mt-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   mm/cma_debug.c: In function 'cma_debugfs_init':
+>> mm/cma_debug.c:207:25: error: 'cma_area_count' undeclared (first use in this function)
+     207 |         for (i = 0; i < cma_area_count; i++)
+         |                         ^~~~~~~~~~~~~~
+   mm/cma_debug.c:207:25: note: each undeclared identifier is reported only once for each function it appears in
+>> mm/cma_debug.c:208:38: error: 'cma_areas' undeclared (first use in this function); did you mean 'cma_free'?
+     208 |                 cma_debugfs_add_one(&cma_areas[i], cma_debugfs_root);
+         |                                      ^~~~~~~~~
+         |                                      cma_free
+
+
+vim +/cma_area_count +207 mm/cma_debug.c
+
+28b24c1fc8c22c Sasha Levin 2015-04-14  199  
+28b24c1fc8c22c Sasha Levin 2015-04-14  200  static int __init cma_debugfs_init(void)
+28b24c1fc8c22c Sasha Levin 2015-04-14  201  {
+5a7f1b2f2fbeb4 Yue Hu      2019-03-05  202  	struct dentry *cma_debugfs_root;
+28b24c1fc8c22c Sasha Levin 2015-04-14  203  	int i;
+28b24c1fc8c22c Sasha Levin 2015-04-14  204  
+28b24c1fc8c22c Sasha Levin 2015-04-14  205  	cma_debugfs_root = debugfs_create_dir("cma", NULL);
+28b24c1fc8c22c Sasha Levin 2015-04-14  206  
+28b24c1fc8c22c Sasha Levin 2015-04-14 @207  	for (i = 0; i < cma_area_count; i++)
+5a7f1b2f2fbeb4 Yue Hu      2019-03-05 @208  		cma_debugfs_add_one(&cma_areas[i], cma_debugfs_root);
+
 -- 
-pw-bot: cr
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
