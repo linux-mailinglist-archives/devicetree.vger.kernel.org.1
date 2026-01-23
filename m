@@ -1,167 +1,135 @@
-Return-Path: <devicetree+bounces-258984-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258985-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yPqvAAmDc2kDxAAAu9opvQ
-	(envelope-from <devicetree+bounces-258984-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:17:45 +0100
+	id QHdnHS6Dc2kDxAAAu9opvQ
+	(envelope-from <devicetree+bounces-258985-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:18:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94E0776DCF
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:17:44 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E805576E2B
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:18:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 04A413008D6E
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 14:17:44 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E3712301C119
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 14:18:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83BDA2F3C13;
-	Fri, 23 Jan 2026 14:17:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 223BB27B352;
+	Fri, 23 Jan 2026 14:18:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=foxmail.com header.i=@foxmail.com header.b="bjmcB7Na"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from out162-62-58-211.mail.qq.com (out162-62-58-211.mail.qq.com [162.62.58.211])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16E8C1E9B35
-	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 14:17:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 684FA22B8CB;
+	Fri, 23 Jan 2026 14:18:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.62.58.211
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769177862; cv=none; b=UINJXKhkods1pp40H9gA451VZDo50lB2GpAaiXWuRoncDovAJrk/EUFR++q+i7AqjA+pDBkcKJDw2QU7ReH5sdHZwZvgmw++N8dn23qOR/ZZoC2+QOedsH+dUEKf1Il0RDLl9xM8DJTyICIPssY37GI2deeL3EsO5s733zgMYM8=
+	t=1769177899; cv=none; b=Q+PjaeRdaUez+G0W0i1rmKD1OfrEsa9WGvsKbb40eWsK2HTo/J/Pb5gFzz0znHNT0WmSnqieahBGpGXIIWUmmmlgj1lUxWlO9jv51hWh76nikp1vI6otSal1GZCtHsN09/S84GKBrT25Xz8vtEa4e3oxJfLIZEyopcZAEjPOWMA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769177862; c=relaxed/simple;
-	bh=tZQdaapFyjK/60l8c6qEELow9aA4TJhUEJgJSERxvHU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GoMSAl71Yd3mOmNCnz9UCr8T0P99iLMKtu+MswqArUbf6ffwFtmSt5ARA4BjUaY20fD5ieCF03bOEkf7HAqQXgRDtDVSXSfKJsjfcMhLYPK1fJi0/PzLjC1Z/HYWT2w1bv/R9RK4QtgokVKn0/gw4IPXksXfOS03RiI8tnWYPAQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1vjHyf-0002jI-Ax; Fri, 23 Jan 2026 15:17:33 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1vjHyf-0026gG-2R;
-	Fri, 23 Jan 2026 15:17:33 +0100
-Received: from pengutronix.de (p54b152ce.dip0.t-ipconnect.de [84.177.82.206])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id C7C524D6F7D;
-	Fri, 23 Jan 2026 14:17:32 +0000 (UTC)
-Date: Fri, 23 Jan 2026 15:17:32 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Arun Muthusamy <arun.muthusamy@gaisler.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	mailhol@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-can@vger.kernel.org
-Subject: Re: [PATCH v3 15/15] can: grcan: Update echo skb handling to match
- variable length CANFD frame
-Message-ID: <20260123-jolly-orangutan-of-finesse-5a9bb3-mkl@pengutronix.de>
-References: <20260122121038.7910-1-arun.muthusamy@gaisler.com>
- <20260122121038.7910-16-arun.muthusamy@gaisler.com>
+	s=arc-20240116; t=1769177899; c=relaxed/simple;
+	bh=o4Vhy284nR60LjNdhm0XrTm9LZqyrbTcvMsIxeVZ0Tc=;
+	h=From:To:Cc:Subject:Mime-Version:Content-Type:Date:Message-ID; b=QIUMUXQcTPAP9quZnyCkFZi2FZuHs+3pZUxQ1dBKog5hzZ8C5Bsxl7gj06WyoVUhUaYMUTfGgGNAAyfd2DnESMq8bIhMykkFIq95KHnRKAsLb2zMzBfQU2CRq8DeOlwCo6aQzxzIWoww7hngyJJR3IbFhsHDmKF22yXmOw3Ghu4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foxmail.com; spf=pass smtp.mailfrom=foxmail.com; dkim=pass (1024-bit key) header.d=foxmail.com header.i=@foxmail.com header.b=bjmcB7Na; arc=none smtp.client-ip=162.62.58.211
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foxmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foxmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foxmail.com;
+	s=s201512; t=1769177885;
+	bh=o4Vhy284nR60LjNdhm0XrTm9LZqyrbTcvMsIxeVZ0Tc=;
+	h=From:To:Cc:Subject:Date;
+	b=bjmcB7NaxCEj7map9XDObZErPNvoVpHVlzkq0vTI00g1ePt4J/e+N/uuDmnaGkZCE
+	 qHu1w8VvjmnuYOHcH9qDpz+b1PBr/RQ1gG0416kJEMhXBUr5+S0vmo/kc5jUSPCs32
+	 fFNczAeO4RTpgF1fH+3c+jluaMli5xDOQD9YIeug=
+X-QQ-XMRINFO: Mp0Kj//9VHAxzExpfF+O8yhSrljjwrznVg==
+X-QQ-XMAILINFO: MLrSp7HLXZWv9kZCUs3dZ7m4lru0tYYhJhsrsx5bzO+S+zgQCEWN4ZE0kl6DVX
+	 1s9rSbhw0pBNwieBx3Qy+tjTzGPj5smsS61s2+HmNcKKnv+6t5YSzGQ/fxrrnyZgfTqTXG/7PqFSh
+	 tWy59XizaROiQhsOC9t1o7JMbKf/jZDX5SFQMecyyEjct1huisqi4uGtiNQDEuKCy4ixJ7y4U+lLp
+	 3bWH2nZql30XZzrVn27TB2nH+eVpZUEfqcnFtgGTAMMyO3ZRF9OFyTc5nwHZ42oQp1cnDa7bHj+vv
+	 /6M8kKgQWAYt34lanKGO+Z3ZcaEb+dwi4G59izdcCtdh6o0Mq07GJkU5FFZ39WSVljtPK7w8el4/q
+	 ULGputnWYEW19roiHxCDd396G72ty6v7gJznY8MNd4P6tOT8vfG7KKuJ2CbDLaCN9vJqfhxq+pGy3
+	 ofdrWu1rTOw0oYgXPF0HVB9JJJ9KZ4/+zz5poPx2e+lFl0xQuVyePF7wTtQ/YDmBXdFi0pA3Hkd0Y
+	 nPx+Q/QtawIoQMfe6Pt0gk92JSZW0LSdb6+bp+zSw8uDAvRC7mW3EzCmHyRcQXIMPL0rCvwcyexoy
+	 ZoepbE/NlJ0kw8qNkUH0AD5chhBT00iYAbw6Du0P2JEpE0dKPwYaY0HPBM/3cQKYBAwgN9dGlP3Bc
+	 KQDlA7+iYp568tqXG8J5fhAWmYrNbvu3jTcE/YvxkWvMsN7RB4vj+bukiZ6jD+Dfg9BO3r3MKuqx/
+	 J7kCcrsWNmwMWQYjnHcwJmt0l3Sr1i4pdmZoB8rNvGw5jHNiQ1e7LvbUUmKiObrPLsoICmZ1uMFlg
+	 lXM08WGIvWyhm75uazh2TsCqzt7NUo35RD22d4xSgTI87IrSvCHZLuroHlMI4/4L4y9bPnJTpesEs
+	 SfrRy7ohlqSqyujmdxPM82GL6q/JAZrjH72EKqQyrU+iW/6lxaEzHkbjWlprlhfGDQtM4R7dHIidf
+	 qk7foBCjdgaYVGPyd4UEFBKEy0JEndvOG4rRzyPnf4sFHx+Lj1cHrO3GL0E6lNAKFTKKqGddAOy/q
+	 qErtG2+ShNOgCC/qLzMp4441vzbyh8D3GqDoaPsxpj5RPqIc=
+From: "=?utf-8?B?R2FyeSBMYXU=?=" <zgliu@foxmail.com>
+To: "=?utf-8?B?U3RhZmZvcmQgSG9ybmU=?=" <shorne@gmail.com>
+Cc: "=?utf-8?B?bGludXN3?=" <linusw@kernel.org>, "=?utf-8?B?bGludXgta2VybmVs?=" <linux-kernel@vger.kernel.org>, "=?utf-8?B?bGludXgtb3BlbnJpc2M=?=" <linux-openrisc@vger.kernel.org>, "=?utf-8?B?ZGV2aWNldHJlZQ==?=" <devicetree@vger.kernel.org>, "=?utf-8?B?cm9iaA==?=" <robh@kernel.org>, "=?utf-8?B?a3J6aytkdA==?=" <krzk+dt@kernel.org>, "=?utf-8?B?Y29ub3IrZHQ=?=" <conor+dt@kernel.org>, "=?utf-8?B?Z2VlcnQrcmVuZXNhcw==?=" <geert+renesas@glider.be>, "=?utf-8?B?a3J6eXN6dG9mLmtvemxvd3NraQ==?=" <krzysztof.kozlowski@oss.qualcomm.com>, "=?utf-8?B?YnJnbA==?=" <brgl@kernel.org>, "=?utf-8?B?bGludXgtZ3Bpbw==?=" <linux-gpio@vger.kernel.org>
+Subject: Re: [PATCH v6 1/6] dt-bindings: gpio-mmio: Correct opencores GPIO
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="di6szzwy2btquo6k"
-Content-Disposition: inline
-In-Reply-To: <20260122121038.7910-16-arun.muthusamy@gaisler.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Mime-Version: 1.0
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: base64
+Date: Fri, 23 Jan 2026 22:18:04 +0800
+X-Priority: 3
+Message-ID: <tencent_F07E7380CFFB3A6A7480FDA42A636B7D290A@qq.com>
+X-QQ-MIME: TCMime 1.0 by Tencent
+X-Mailer: QQMail 2.x
+X-QQ-Mailer: QQMail 2.x
+X-QQ-mid: xmseza62-0t1769177884tz3kmryk8
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.56 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [3.94 / 15.00];
+	CC_EXCESS_BASE64(1.50)[];
+	SUSPICIOUS_RECIPS(1.50)[];
+	TO_EXCESS_BASE64(1.50)[];
+	FAKE_REPLY(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MV_CASE(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[foxmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[foxmail.com:s=s201512];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258984-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	TO_DN_ALL(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	HAS_X_PRIO_THREE(0.00)[3];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mkl@pengutronix.de,devicetree@vger.kernel.org];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	R_DKIM_NA(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:url,pengutronix.de:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 94E0776DCF
+	FROM_NEQ_ENVFROM(0.00)[zgliu@foxmail.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-258985-lists,devicetree=lfdr.de];
+	FROM_EXCESS_BASE64(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FREEMAIL_FROM(0.00)[foxmail.com];
+	DKIM_TRACE(0.00)[foxmail.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qq.com:mid,foxmail.com:dkim]
+X-Rspamd-Queue-Id: E805576E2B
 X-Rspamd-Action: no action
 
+SGkgU3RhZmZvcmQsDQoNCkkgc2hvdWxkIGNsYXJpZnkgbXkgc2V0dXA6IEknbSB1c2luZyBo
+YXJkd2FyZSBhZGRyZXNzIHRyYW5zbGF0aW9uIHRvIG1ha2UgdGhlDQpPcGVuQ29yZXMgOC1i
+aXQgR1BJTyBhcHBlYXIgYXMgMzItYml0IHRvIHRoZSBDUFUuIFNwZWNpZmljYWxseToNCg0K
+MS4gQWRkcmVzcyB0cmFuc2xhdGlvbjogVGhlIENQVSdzIDMyLWJpdCBhZGRyZXNzZXMgYXJl
+IHJpZ2h0LXNoaWZ0ZWQgYnkgMiBiaXRzDQrCoCDCoChhZHJfaVsyXSBpbiBWZXJpbG9nKSwg
+c28gZWFjaCAzMi1iaXQgQ1BVIGFjY2VzcyBtYXBzIHRvIHRoZSBjb3JyZWN0IDgtYml0DQrC
+oCDCoE9wZW5Db3JlcyByZWdpc3Rlci4NCg0KMi4gRGF0YSB3aWR0aCBhZGFwdGF0aW9uOiBP
+bmx5IGRhdF9pWzc6MF0gYW5kIGRhdF9vWzc6MF0gYXJlIGNvbm5lY3RlZCwgc28NCsKgIMKg
+MzItYml0IHdyaXRlcyBhcmUgdHJ1bmNhdGVkIHRvIDgtYml0LCBhbmQgcmVhZHMgYXJlIHpl
+cm8tZXh0ZW5kZWQuDQoNClRoaXMgaGFyZHdhcmUgd3JhcHBlciBtYWtlcyBicmNtLGJjbTYz
+NDUtZ3BpbyBkcml2ZXIgIndvcmsiIHdpdGggbXkgT3BlbkNvcmVzDQpHUElPLCBidXQgaXQn
+cyByZWFsbHkgYSBoYXJkd2FyZS1sZXZlbCBjb21wYXRpYmlsaXR5IGxheWVyLCBub3QgdHJ1
+ZSBzb2Z0d2FyZQ0KY29tcGF0aWJpbGl0eS4NCg0KU28geW91J3JlIGFic29sdXRlbHkgcmln
+aHQgdGhhdCB0aGUgbmF0aXZlIG9wZW5jb3JlcyxncGlvIGlzbid0IGNvbXBhdGlibGUNCndp
+dGggYnJjbSxiY202MzQ1LWdwaW8uIE15IHNldHVwIHdvcmtzIGJlY2F1c2Ugb2YgY3VzdG9t
+IGhhcmR3YXJlIHRyYW5zbGF0aW9uLA0Kbm90IGJlY2F1c2UgdGhlIElQIGNvcmVzIGFyZSBj
+b21wYXRpYmxlLg0KDQpCZXN0IHJlZ2FyZHMsDQpHYXJ5DQoNCg0KDQoNCg0KDQoNCg==
 
---di6szzwy2btquo6k
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 15/15] can: grcan: Update echo skb handling to match
- variable length CANFD frame
-MIME-Version: 1.0
-
-On 22.01.2026 13:10:38, Arun Muthusamy wrote:
-[...]
-
-> @@ -1575,7 +1591,16 @@ static netdev_tx_t grcan_start_xmit(struct sk_buff=
- *skb,
->  	 * can_put_echo_skb would be an error unless other measures are
->  	 * taken.
->  	 */
-> -	can_put_echo_skb(skb, dev, slotindex, 0);
-> +
-> +	priv->echo_skb_idx =3D priv->next_echo_idx;
-> +
-> +	can_put_echo_skb(skb, dev, priv->next_echo_idx, 0);
-> +
-> +	/* Move to the next index in the echo skb buffer */
-> +	priv->next_echo_idx =3D (priv->next_echo_idx + 1) % priv->can.echo_skb_=
-max;
-> +
-> +	if (priv->can.echo_skb[priv->echo_skb_idx])
-> +		netif_stop_queue(dev);
-
-You also use "if (unlikely(space =3D=3D 1)) netif_stop_queue(dev);", that
-looks suspicious. Why have 2 independent ways to check if the TX queue
-is full?
-
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---di6szzwy2btquo6k
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmlzgvkACgkQDHRl3/mQ
-kZznWwgAq/9I/ClKJvOD5Q4TVO2sMzbDGU6vs9G82gYb3e/12vfgeNohhG7eyEU8
-4F3CP4Ptf9lHHYcCpCQp7tF9az7eO7MN17lFegXNGJ6L3Qz9fA8JZ5NJWV7rJrZa
-3TsdaJxv5eH/u2/B+9sySlEwOHmt3YAlXGjgoTXPsfm9RCVtgdcoUTIYXAK4DTCr
-cbRjvII8KKRb+KvPqAK2qMnnA6ZCnOUN7+KKRnQ7U69+uLhR+12gEmLpMS7CCzog
-XtSwVhQcKIHLQEh8GFCNX5o061YDtnLyGFr/GNzut+xDMSU4bVh0gMRnkhUtE5e/
-PZlVwgO4q1p6mDOIDQNmMMpPeWHYzw==
-=4o+f
------END PGP SIGNATURE-----
-
---di6szzwy2btquo6k--
 
