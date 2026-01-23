@@ -1,215 +1,231 @@
-Return-Path: <devicetree+bounces-258760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258761-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kJlIOKkqc2kAswAAu9opvQ
-	(envelope-from <devicetree+bounces-258760-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 09:00:41 +0100
+	id cJs7Ma0sc2mTswAAu9opvQ
+	(envelope-from <devicetree+bounces-258761-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 09:09:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6865E721DB
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 09:00:41 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2A457238B
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 09:09:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0A9A830205D2
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 07:59:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 55308303FFE3
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 08:05:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C24C4348452;
-	Fri, 23 Jan 2026 07:59:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D67D133E36F;
+	Fri, 23 Jan 2026 08:05:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="R5+LAnDh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XRswF+Ha"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABF4133EB09;
-	Fri, 23 Jan 2026 07:59:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B29BD3385BF;
+	Fri, 23 Jan 2026 08:05:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769155184; cv=none; b=DJeX4f4FkkpNDEZioYuK4F1kIUypexyDUk4ZUIVB9kQbzmsXPKpOW50LqEDbLPByUyXqdMRWBCEMTsZ2umq0XigLQih18+3CmOaldTqbyXh52vAMia3jGbHCBHPUipMiOOvJluR2LARtKcL/A9cFyLcaIfTBqRbY4XWKvsDYpjA=
+	t=1769155552; cv=none; b=ZBokRA+3o7i2uF5C431Db2AOjoHK/XNQKAARhmJ62xeMHcwiopydrejnfCMrJjUfx0DJPsWPn4cvpSk+r0qGHvOafAcTGQc6ulMi/WvomKTkjt3OoLHSpdJnqeZ64EB4ENgYXFmWtsX/AFCATkYcCqnWj6VtlKmjbI9mMgit8AI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769155184; c=relaxed/simple;
-	bh=c0K9UaO3St0IE2YkmiOL1BniYmWEc2RHIdZofm+Lw0I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=D34W506+dnva3Q/rvSR5xBh7Yg2VAeIVdPZ86Q8KPofCcb3JQSavsq5mcYwBzbYmDYhu9tRmnARro1RJi6Z+BRB/x9Bo/QGF4dMNRSaPk5UzEYhKJ7t8XMnErvgmL44DfviRbuTU+HB0FqJM8iEfFGMMyIoyMUnwSRAslQAo91w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=R5+LAnDh; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1769155183; x=1800691183;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=c0K9UaO3St0IE2YkmiOL1BniYmWEc2RHIdZofm+Lw0I=;
-  b=R5+LAnDh4z5as89p+QH2YaNYdPxdYZJ76etxdWtqKJAZC7RNqG7p2V5v
-   lYURFCEjQz0q8f+QH3lJlBuS54jPk1sDZ7dcTbnuEFOzGt69zKAecA2ic
-   QKZ55AYqIuppzFORwND8AJTBmps1Z9DaicLO+G+KcIiK1izN17/Q7RxaJ
-   6MkmDVtzumvqdKu3o1pzefvJj2TpqVIu5aWe9nECRycm6XvuexWLVXFk9
-   DtkTNZ4rmixc6HCAu4VbpvelPJ9Yp19okTmOuVPt2jVRckokPp+8aMPXV
-   7RST4nEtFkCppaXFA/6zDsFysRdnh1cyCmbZEMmo94bzuo4jyt+OKd5YV
-   g==;
-X-CSE-ConnectionGUID: Tc1Q/8aaT12Pm79ZSq9lgg==
-X-CSE-MsgGUID: lguAHgF3TESqlkt1wOFz+w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11679"; a="57977628"
-X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; 
-   d="scan'208";a="57977628"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2026 23:59:42 -0800
-X-CSE-ConnectionGUID: seuhiDOlRdWkicNj+8cXKQ==
-X-CSE-MsgGUID: 7/rxyr7iTmS51C3Yh0T0mg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; 
-   d="scan'208";a="238219086"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by fmviesa001.fm.intel.com with ESMTP; 22 Jan 2026 23:59:40 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vjC4v-00000000TfC-1Lpd;
-	Fri, 23 Jan 2026 07:59:37 +0000
-Date: Fri, 23 Jan 2026 15:59:31 +0800
-From: kernel test robot <lkp@intel.com>
-To: Shawn Lin <shawn.lin@rock-chips.com>,
-	Ulf Hansson <ulf.hansson@linaro.org>, Wei Xu <xuwei5@hisilicon.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Jaehoon Chung <jh80.chung@samsung.com>,
-	Shawn Lin <shawn.lin@rock-chips.com>
-Subject: Re: [PATCH 1/3] mmc: dw_mmc-k3: Remove mshc alias support
-Message-ID: <202601231543.IzsYNOzJ-lkp@intel.com>
-References: <1769132482-177365-2-git-send-email-shawn.lin@rock-chips.com>
+	s=arc-20240116; t=1769155552; c=relaxed/simple;
+	bh=V1FdaZ25aGYeOty1rl0AuBOmbBydQ/xQQKiBVhm8jIk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=POhYz1+YP96YuuZinzHdtDIFJ0yIhwRtlhapFDmyiidfLLu7WgrWw/61EUJxtvRvVzsRo8+WaEkpG6IPg2zv9u4QlGcE0FZ3nMtK3qf57UkXYQCvBrEDUOGtKbI7SjZCBWSvJTwlFpjGeB2Y7Vj5L9T5Pr3+mxxdfW0phiHnLrw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XRswF+Ha; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C90D9C2BC86;
+	Fri, 23 Jan 2026 08:05:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769155552;
+	bh=V1FdaZ25aGYeOty1rl0AuBOmbBydQ/xQQKiBVhm8jIk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=XRswF+HacCGFheH5cfJumV2FCUBc1FpKzhxR+J3SYOxUW5BGT9GHbeoJfp5lLYLZp
+	 B/ma6+utU2AaWszUwNJMCV+a+dP9ZI5GlciUAcNP2h/pEYxuvKZILLr5hjGfC4Uwzx
+	 hFXCCnmCLmnI21rJ3u2Td5beZ9quK43cOrkdCAP8GEmCgfTeza6O/ZeCinixU2oj3L
+	 EX/r7v1NdSgYbzDNP3P/5L/K9S+DR8zxfu9fqTITMy7UfNJDCJlYAYr0AoDt3NjIf2
+	 hSTJhYUW1a59X/Aaqvvi7vQ28Cnr5nvr5SPIs79T6hnO7ZBKNY/hi9Skw4d1+4kT8P
+	 lnk7945jTZRrw==
+Message-ID: <15e8aac4-6633-49b0-87fb-4b29f62afb2f@kernel.org>
+Date: Fri, 23 Jan 2026 09:05:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1769132482-177365-2-git-send-email-shawn.lin@rock-chips.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] arm64: dts: exynos: ExynosAutov920: Enable USB
+ nodes
+To: Pritam Manohar Sutar <pritam.sutar@samsung.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, alim.akhtar@samsung.com
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ rosa.pila@samsung.com, dev.tailor@samsung.com, faraz.ata@samsung.com,
+ muhammed.ali@samsung.com, selvarasu.g@samsung.com
+References: <20260122130721.205664-1-pritam.sutar@samsung.com>
+ <CGME20260122125136epcas5p2db0fa3d04671ddc915e60ae8c5bcfb98@epcas5p2.samsung.com>
+ <20260122130721.205664-4-pritam.sutar@samsung.com>
+ <6f381f88-3a51-4fc8-844c-41b167b07628@kernel.org>
+ <000f01dc8c3e$2b6dcf30$82496d90$@samsung.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <000f01dc8c3e$2b6dcf30$82496d90$@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.16 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	TAGGED_FROM(0.00)[bounces-258760-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-258761-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[git-scm.com:url,01.org:url,intel.com:email,intel.com:dkim,intel.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 6865E721DB
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[samsung.com:email,infradead.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: F2A457238B
 X-Rspamd-Action: no action
 
-Hi Shawn,
+On 23/01/2026 08:59, Pritam Manohar Sutar wrote:
+> Hi Krzysztof,
+> 
+> Thank you for your feedback. 
+> 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzk@kernel.org>
+>> Sent: 22 January 2026 07:05 PM
+>> To: Pritam Manohar Sutar <pritam.sutar@samsung.com>; robh@kernel.org;
+>> krzk+dt@kernel.org; conor+dt@kernel.org; alim.akhtar@samsung.com
+>> Cc: devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+>> samsung-soc@vger.kernel.org; linux-kernel@vger.kernel.org;
+>> rosa.pila@samsung.com; dev.tailor@samsung.com;
+>> faraz.ata@samsung.com; muhammed.ali@samsung.com;
+>> selvarasu.g@samsung.com
+>> Subject: Re: [PATCH v2 3/3] arm64: dts: exynos: ExynosAutov920: Enable USB
+>> nodes
+>>
+>> On 22/01/2026 14:07, Pritam Manohar Sutar wrote:
+>>> Enable USB PHY and DWC3 USB controllers' nodes.
+>>>
+>>> Signed-off-by: Pritam Manohar Sutar <pritam.sutar@samsung.com>
+>>> ---
+>>>  .../boot/dts/exynos/exynosautov920-sadk.dts   | 21
+>> +++++++++++++++++++
+>>>  1 file changed, 21 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
+>>> b/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
+>>> index f90f7704597c..5896dd69334a 100644
+>>> --- a/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
+>>> +++ b/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
+>>> @@ -160,15 +160,20 @@ &xtcxo {
+>>>  &usbdrd31_ssphy {
+>>>  	dvdd-supply = <&dummy_regulator>;
+>>>  	vdd18-supply = <&dummy_regulator>;
+>>> +	status = "okay";
+>>
+>> You just added the node in the previous patch, so why it cant be enavled
+>> there?
+>>
+>>>  };
+>>>
+>>>  &usbdrd31_hsphy {
+>>>  	dvdd-supply = <&dummy_regulator>;
+>>>  	vdd18-supply = <&dummy_regulator>;
+>>>  	vdd33-supply = <&dummy_regulator>;
+>>> +	status = "okay";
+>>>  };
+>>>
+>>>  &usbdrd31_dwc3 {
+>>> +	dr_mode = "otg";
+>>> +	usb-role-switch;
+>>> +	role-switch-default-mode = "peripheral";
+>>
+>> Why did you add incomplete node in previous commit?
+> 
+> The commit was added to align with the existing convention of separating 
+> node addition and enabling logic in USB configurations. This approach is 
 
-kernel test robot noticed the following build warnings:
+There was never such convention for Qualcomm or Samsung. Do not make up
+fake conventions.
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master ulf-hansson-mmc-mirror/next v6.19-rc6 next-20260122]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> referenced from commits such as:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Shawn-Lin/mmc-dw_mmc-k3-Remove-mshc-alias-support/20260123-095950
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/1769132482-177365-2-git-send-email-shawn.lin%40rock-chips.com
-patch subject: [PATCH 1/3] mmc: dw_mmc-k3: Remove mshc alias support
-config: arc-randconfig-002-20260123 (https://download.01.org/0day-ci/archive/20260123/202601231543.IzsYNOzJ-lkp@intel.com/config)
-compiler: arc-linux-gcc (GCC) 8.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260123/202601231543.IzsYNOzJ-lkp@intel.com/reproduce)
+No, it is not.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202601231543.IzsYNOzJ-lkp@intel.com/
+> 
+> https://lore.kernel.org/all/20250710-resends-july-exynos990-dt-v2-5-55033f73d1b0@mentallysanemainliners.org/
+> https://lore.kernel.org/all/20240429-usb-dts-gs101-v2-2-7c1797c9db80@linaro.org/
 
-All warnings (new ones prefixed by >>):
+Just look at these commits - they add complete node override to DTS. Not
+half node now and half node later to the DTS file!
 
-   drivers/mmc/host/dw_mmc-k3.c: In function 'dw_mci_hs_set_timing':
-   drivers/mmc/host/dw_mmc-k3.c:220:16: error: 'struct dw_mci' has no member named 'mmc'
-     ctrl_id = host->mmc->index;
-                   ^~
->> drivers/mmc/host/dw_mmc-k3.c:217:18: warning: variable 'priv' set but not used [-Wunused-but-set-variable]
-     struct k3_priv *priv;
-                     ^~~~
+> 
+> Please let me know if this commit to be merged in previous commit.
+
+Just look at the commits there.
+
+> 
 
 
-vim +/priv +217 drivers/mmc/host/dw_mmc-k3.c
-
-0293efddaddfcb Zhangfei Gao        2015-05-14  207  
-d53e39b1131c08 Shawn Lin           2026-01-23  208  static int dw_mci_hs_set_timing(struct dw_mci *host, int timing,
-361c7fe9b02eee liwei               2017-08-11  209  				     int smpl_phase)
-361c7fe9b02eee liwei               2017-08-11  210  {
-361c7fe9b02eee liwei               2017-08-11  211  	u32 drv_phase;
-361c7fe9b02eee liwei               2017-08-11  212  	u32 smpl_dly;
-361c7fe9b02eee liwei               2017-08-11  213  	u32 use_smpl_dly = 0;
-361c7fe9b02eee liwei               2017-08-11  214  	u32 enable_shift = 0;
-361c7fe9b02eee liwei               2017-08-11  215  	u32 reg_value;
-361c7fe9b02eee liwei               2017-08-11  216  	int ctrl_id;
-361c7fe9b02eee liwei               2017-08-11 @217  	struct k3_priv *priv;
-361c7fe9b02eee liwei               2017-08-11  218  
-361c7fe9b02eee liwei               2017-08-11  219  	priv = host->priv;
-d53e39b1131c08 Shawn Lin           2026-01-23 @220  	ctrl_id = host->mmc->index;
-d53e39b1131c08 Shawn Lin           2026-01-23  221  
-d53e39b1131c08 Shawn Lin           2026-01-23  222  	if (ctrl_id >= TIMING_MODE)
-d53e39b1131c08 Shawn Lin           2026-01-23  223  		return -EINVAL;
-361c7fe9b02eee liwei               2017-08-11  224  
-361c7fe9b02eee liwei               2017-08-11  225  	drv_phase = hs_timing_cfg[ctrl_id][timing].drv_phase;
-361c7fe9b02eee liwei               2017-08-11  226  	smpl_dly   = hs_timing_cfg[ctrl_id][timing].smpl_dly;
-361c7fe9b02eee liwei               2017-08-11  227  	if (smpl_phase == -1)
-361c7fe9b02eee liwei               2017-08-11  228  		smpl_phase = (hs_timing_cfg[ctrl_id][timing].smpl_phase_max +
-361c7fe9b02eee liwei               2017-08-11  229  			     hs_timing_cfg[ctrl_id][timing].smpl_phase_min) / 2;
-361c7fe9b02eee liwei               2017-08-11  230  
-361c7fe9b02eee liwei               2017-08-11  231  	switch (timing) {
-361c7fe9b02eee liwei               2017-08-11  232  	case MMC_TIMING_UHS_SDR104:
-361c7fe9b02eee liwei               2017-08-11  233  		if (smpl_phase >= USE_DLY_MIN_SMPL &&
-361c7fe9b02eee liwei               2017-08-11  234  				smpl_phase <= USE_DLY_MAX_SMPL)
-361c7fe9b02eee liwei               2017-08-11  235  			use_smpl_dly = 1;
-df561f6688fef7 Gustavo A. R. Silva 2020-08-23  236  		fallthrough;
-361c7fe9b02eee liwei               2017-08-11  237  	case MMC_TIMING_UHS_SDR50:
-361c7fe9b02eee liwei               2017-08-11  238  		if (smpl_phase >= ENABLE_SHIFT_MIN_SMPL &&
-361c7fe9b02eee liwei               2017-08-11  239  				smpl_phase <= ENABLE_SHIFT_MAX_SMPL)
-361c7fe9b02eee liwei               2017-08-11  240  			enable_shift = 1;
-361c7fe9b02eee liwei               2017-08-11  241  		break;
-361c7fe9b02eee liwei               2017-08-11  242  	}
-361c7fe9b02eee liwei               2017-08-11  243  
-361c7fe9b02eee liwei               2017-08-11  244  	mci_writel(host, GPIO, 0x0);
-361c7fe9b02eee liwei               2017-08-11  245  	usleep_range(5, 10);
-361c7fe9b02eee liwei               2017-08-11  246  
-361c7fe9b02eee liwei               2017-08-11  247  	reg_value = FIELD_PREP(UHS_REG_EXT_SAMPLE_PHASE_MASK, smpl_phase) |
-361c7fe9b02eee liwei               2017-08-11  248  		    FIELD_PREP(UHS_REG_EXT_SAMPLE_DLY_MASK, smpl_dly) |
-361c7fe9b02eee liwei               2017-08-11  249  		    FIELD_PREP(UHS_REG_EXT_SAMPLE_DRVPHASE_MASK, drv_phase);
-361c7fe9b02eee liwei               2017-08-11  250  	mci_writel(host, UHS_REG_EXT, reg_value);
-361c7fe9b02eee liwei               2017-08-11  251  
-361c7fe9b02eee liwei               2017-08-11  252  	mci_writel(host, ENABLE_SHIFT, enable_shift);
-361c7fe9b02eee liwei               2017-08-11  253  
-361c7fe9b02eee liwei               2017-08-11  254  	reg_value = FIELD_PREP(GPIO_CLK_DIV_MASK, GENCLK_DIV) |
-361c7fe9b02eee liwei               2017-08-11  255  			     FIELD_PREP(GPIO_USE_SAMPLE_DLY_MASK, use_smpl_dly);
-361c7fe9b02eee liwei               2017-08-11  256  	mci_writel(host, GPIO, (unsigned int)reg_value | GPIO_CLK_ENABLE);
-361c7fe9b02eee liwei               2017-08-11  257  
-361c7fe9b02eee liwei               2017-08-11  258  	/* We should delay 1ms wait for timing setting finished. */
-361c7fe9b02eee liwei               2017-08-11  259  	usleep_range(1000, 2000);
-d53e39b1131c08 Shawn Lin           2026-01-23  260  
-d53e39b1131c08 Shawn Lin           2026-01-23  261  	return 0;
-361c7fe9b02eee liwei               2017-08-11  262  }
-361c7fe9b02eee liwei               2017-08-11  263  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Best regards,
+Krzysztof
 
