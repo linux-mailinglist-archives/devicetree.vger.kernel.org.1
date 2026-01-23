@@ -1,143 +1,228 @@
-Return-Path: <devicetree+bounces-258808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258809-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KEolGLs+c2kztgAAu9opvQ
-	(envelope-from <devicetree+bounces-258808-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:26:19 +0100
+	id SEJFHN0+c2kztgAAu9opvQ
+	(envelope-from <devicetree+bounces-258809-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:26:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA97B733E3
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:26:18 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id F354573416
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:26:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6C0C630120EE
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 09:25:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E252C3039EFA
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 09:26:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8415731A049;
-	Fri, 23 Jan 2026 09:25:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95513350A17;
+	Fri, 23 Jan 2026 09:26:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="HTZxcn7E"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ObzZd/OH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 070BA30BB80
-	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 09:25:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35A76342CB0;
+	Fri, 23 Jan 2026 09:25:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769160323; cv=none; b=ekMfdIHUw8/RISy+A+L5J4u44j+qCYeGmOyta6En2JhIx10YVQW6iLDxdAct1R8pUKC/MihgR26ko00y3LaSgyqNqR21o6++UaufYdwKNFTc/KtZSZgWP8+gIgi88GRHoW6QAQyfcdXZSWPS1GdLSlmaOR7OLLax+W8FcpazbZU=
+	t=1769160358; cv=none; b=S351X36cwtpPv1LRKKu+pVSlFg3EL+2xvfGL3HhMdMlNBaOLdvy3v6he4mkXkybCSgyIz3SksnCDNcwjR47Mqr7s8dZuYPVVcxFJHn3h+1p0gMwcL9zFh3Bn1WI8LsZDw4FdB+VtU3xxX71Hc6cnQ/62w2bYLx1ESF6LipMppdY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769160323; c=relaxed/simple;
-	bh=m2nCruU7nNkkyDjRNPZcpfz1+LM7X3rD7M9XU5lDwNY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bw6quAzKytJyF7pUiWDcD7M/nTNLQt74ewJrtdXhH5V70WqbA2dev80B4niCj0ERH8NDzc3wjMiTJsbjc7zLPmF2B9jV3oVMZVKGsi6R5r8wHVd/qJ8h/Nf4qJ9HrED8wZtvA/4t2Z8Jy3MtmFJleRnj/kGbs+aPfU0GsvOUyuo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=HTZxcn7E; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-430f2ee2f00so1224929f8f.3
-        for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 01:25:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1769160318; x=1769765118; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=42GEtX+KF8PV1SXMltWgUuBtFY4WZcL8hCIPkAOOUUo=;
-        b=HTZxcn7E/S+vWb7ghMJpMlAKOZlBkIUfgC1vSsceewyJAjOFpdJ3+If/FnSJCjGdZA
-         4In3kMTIQzWX3KlnwUST9v9MU2VcxdHotrpAdwoZG1BfpewC2cZ2Ith+utZnaHp01jCm
-         SWVGguqFVC6UQFhqrIWhYtlqpJuZzQZDPZVKdIcC8lszk+QR0BM7rgIAKlbyaAmGQwnO
-         F8H5ZgSUP4kqtc/zuLU39N+iOnAJhMV0NUcQGM/WjHWMyBz9xtxFX+y1y3O0Dk13isem
-         5SBvvanpvBduSmkAJ9YErJEa0iAa/T9ndXQnEgL/XGmRB3unhJ8ssD0//Dr9ig8tZjj0
-         HY3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769160318; x=1769765118;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=42GEtX+KF8PV1SXMltWgUuBtFY4WZcL8hCIPkAOOUUo=;
-        b=bMamJPdhZhGOOmb2v/mdsC4uxm/B7MBM1ilpxzLT5mkgsgso/TzQzVXeyye9heA1KX
-         aTRNu0JmyEP8HAC0XvxevzIOZ6U6TJSju0Gyo/K6dpvI3OWhr9Ts3Lq45x6i//7syY1D
-         IiRbqLre4tJmSf+CUJ22XHVywdQkA2NtiHpD9b4iMmexiLSy5cXVolEBKaSFYpHZMlPt
-         rsN79JHRuI1KB0uhZ3YvIXsaDhvNjUy5+7rxnzxgn11wxwBLPuMnIMOOoVBWepNvI79t
-         B5mRLR1ei2yGSRD8yGPfgoWe9iz5fvpZGnFPpLRT7nKEbmsxwioaO73Gi+DU0GGoZWDs
-         lvKA==
-X-Forwarded-Encrypted: i=1; AJvYcCUqlWUTh8qO3icyGjHfAWEUiFyLpMLmpn+O4h9csI8Hs0Q7KMDXHJSKGQz+wK/9yyi6CECUS0qdDtdj@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzb+VpNrNibdoF8XdGAYzp1/PBsYLYWjfTvCZokxEDlyGNaJ7iU
-	TOpZkz4DP5Or1N+XpzFpEhnaKUUpNrbc+PBIarWTEyZsuqqx75jaSrcGpOisCLSUX8k=
-X-Gm-Gg: AZuq6aJ/tgL9b4kNIG+8gFWb8QuJgaus1+Eegq5aK9sXET/SqSdBi0w8ZXb6HlX65Sd
-	189mzP6WDAMCttvIRvYwMsMbovSwk6Hi7/9Esrs6BFZ+mAmtAGQvvTuHVfvBfCiD4n4idj8qPyS
-	pJvwirJUB8WVzZ/v3v/qeATIA88T/E5T10qlryv12pujD+MxinVbqHyiUPP2WYYRHA3a18/bfN0
-	93ULa0qBCMahpgnvPCRKqe/Tdu/ImQdMQjoIiqdC3faNK6i2nn739WMoH17pC8VjnNAtuJiNVln
-	UiQOC3LQ+wvA8E/XttRKXS+bzU31aZqPmrraiTdAWcm9X2OiFy1bNVAlFjsRSpWh/mNEzpPmMTa
-	cD/pRGtIpuJ0XVAXDItryboQujdiWOZ9DQ4LQx+oQW2mE8wfx7uZkWMAlN7l+slgo+QtyGsd651
-	KWjpJ79pnhZsgKrxpGeQ==
-X-Received: by 2002:a05:6000:2c12:b0:435:a3b9:9b8 with SMTP id ffacd0b85a97d-435b15de04cmr4007181f8f.24.1769160318186;
-        Fri, 23 Jan 2026 01:25:18 -0800 (PST)
-Received: from [192.168.50.4] ([82.78.167.31])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435b1f73855sm5141283f8f.29.2026.01.23.01.25.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Jan 2026 01:25:17 -0800 (PST)
-Message-ID: <38eb1632-4541-40e2-adc5-9c25fad9df7e@tuxon.dev>
-Date: Fri, 23 Jan 2026 11:25:16 +0200
+	s=arc-20240116; t=1769160358; c=relaxed/simple;
+	bh=3tEshxzJOU/wgE+yqwpdHdeX7nQ2dd5+FGhq9qJ+ZqI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=d7VC6uy+tL810+lbBst+dZB84uqBaqYCE82bgOISoWggqI/Wl38J//Aq+9joYfz5pCkoX0HohlI12ZodioB6axmgyC8KiVltOldykld5oL4rZ6Ovz1sqduF7KwT1QOftJ+ZUpvPgSsVzB7/xjFiHwGn9QAPV1YdCwl5eXfv1LKo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ObzZd/OH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAAADC4CEF1;
+	Fri, 23 Jan 2026 09:25:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769160357;
+	bh=3tEshxzJOU/wgE+yqwpdHdeX7nQ2dd5+FGhq9qJ+ZqI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=ObzZd/OHSF4/5W8kZzYKVAYOzJcXa+Clrfr5FwM+5Ff5XgAMimbFZ6oa7pKxhTELg
+	 spqxOBDVcVhm2ThTys2UfJpviTceqOsiLfbl4144xZyc+kPtQTarlMQPSn+pyxCk4J
+	 poogLME2tdeFUN7qrqZFVP3cQtwcdRy6F0N98gLsB9x51TfYYdzMQ85DoAvDrkHQit
+	 pqQFg55xwhgb3Z64wrIEdj3xNplluNTAHHdMmvjy3e6+zfJ7m3h0oCqTQbBXw8eiQy
+	 aORqCDtVnu4kKMQaqTKNg2Lqq2BfhRwV0BSB1emJrwQBU655YRKzanVmLGlPCWh2Dy
+	 3/OUqR3BP9lfw==
+Date: Fri, 23 Jan 2026 09:25:46 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Petr Hodina via B4 Relay <devnull+petr.hodina.protonmail.com@kernel.org>
+Cc: petr.hodina@protonmail.com, Song Qiang <songqiang1304521@gmail.com>,
+ David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
+ <broonie@kernel.org>, David Heidelberg <david@ixit.cz>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/4] iio: proximity: vl53l0x-i2c: Use raw I2C access and
+ read full device ID
+Message-ID: <20260123092546.3ebbedcd@jic23-huawei>
+In-Reply-To: <20260119-vl53l0x-v1-4-cf71715a1353@protonmail.com>
+References: <20260119-vl53l0x-v1-0-cf71715a1353@protonmail.com>
+	<20260119-vl53l0x-v1-4-cf71715a1353@protonmail.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RESEND PATCH] ARM: dts: microchip: Drop usb_a9g20-dab-mmx.dtsi
-To: "Rob Herring (Arm)" <robh@kernel.org>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260122202345.3387936-2-robh@kernel.org>
-Content-Language: en-US
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20260122202345.3387936-2-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[tuxon.dev:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[tuxon.dev:+];
-	TAGGED_FROM(0.00)[bounces-258808-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[tuxon.dev];
+	TAGGED_FROM(0.00)[bounces-258809-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.993];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[claudiu.beznea@tuxon.dev,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tuxon.dev:mid,tuxon.dev:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,bootlin.com:email]
-X-Rspamd-Queue-Id: BA97B733E3
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[protonmail.com,gmail.com,baylibre.com,analog.com,kernel.org,ixit.cz,vger.kernel.org];
+	TAGGED_RCPT(0.00)[devicetree,petr.hodina.protonmail.com,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[protonmail.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: F354573416
 X-Rspamd-Action: no action
 
+On Mon, 19 Jan 2026 18:19:58 +0100
+Petr Hodina via B4 Relay <devnull+petr.hodina.protonmail.com@kernel.org> wrote:
 
-
-On 1/22/26 22:23, Rob Herring (Arm) wrote:
-> This .dtsi file is not included anywhere in the tree and can't be
-> tested.
+> From: Petr Hodina <petr.hodina@protonmail.com>
 > 
-> Acked-by: Alexandre Belloni<alexandre.belloni@bootlin.com>
-> Signed-off-by: Rob Herring (Arm)<robh@kernel.org>
+> Replace SMBus byte reads with raw I2C transfers when reading the device
+> identification registers.
+> 
+> The VL53L0X exposes its model and revision as 16-bit registers, which are
+> more accurately accessed using standard I2C send/receive operations.
+> This also avoids depending on SMBus byte data support, which is not
+> guaranteed on all I2C adapters.
 
-Applied to at91-dt, thanks!
+Hmm. I thought it was emulated wherever possible.  See below for
+request for a specific comment on what the subtle difference is.
+I'm also wondering from this description if it actually works with
+smbus but  isn't documented as doing so?
+> 
+> Read and log both model and revision IDs, and validate the model ID
+> during probe to ensure the expected device is present.
+> 
+> Signed-off-by: Petr Hodina <petr.hodina@protonmail.com>
+> ---
+>  drivers/iio/proximity/vl53l0x-i2c.c | 45 +++++++++++++++++++++++++++++++------
+>  1 file changed, 38 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/iio/proximity/vl53l0x-i2c.c b/drivers/iio/proximity/vl53l0x-i2c.c
+> index 6901ce7dd835..a2de4cc16a43 100644
+> --- a/drivers/iio/proximity/vl53l0x-i2c.c
+> +++ b/drivers/iio/proximity/vl53l0x-i2c.c
+> @@ -320,11 +320,35 @@ static const struct iio_trigger_ops vl53l0x_trigger_ops = {
+>  	.validate_device = iio_trigger_validate_own_device,
+>  };
+>  
+> +
+> +static int vl53l0x_read_word(struct i2c_client *client, u8 reg, u16 *val)
+> +{
+> +	int ret;
+> +	u8 buf[2];
+> +
+> +	ret = i2c_master_send(client, &reg, 1);
+
+Add a comment that a stop is needed. Otherwise this would
+be i2c_smbus_read_word_swapped()
+
+Sigh, seems ST liked to make everyone's life a little harder ;)
+
+
+> +	if (ret < 0)
+> +		return ret;
+> +	if (ret != 1)
+> +		return -EIO;
+> +
+> +	ret = i2c_master_recv(client, buf, 2);
+> +	if (ret < 0)
+> +		return ret;
+> +	if (ret != 2)
+> +		return -EIO;
+> +
+> +	*val = (buf[0] << 8) | buf[1];
+> +
+> +	return 0;
+> +}
+> +
+>  static int vl53l0x_probe(struct i2c_client *client)
+>  {
+>  	struct vl53l0x_data *data;
+>  	struct iio_dev *indio_dev;
+>  	int ret;
+> +	u16 model, rev;
+>  
+>  	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
+>  	if (!indio_dev)
+> @@ -339,13 +363,6 @@ static int vl53l0x_probe(struct i2c_client *client)
+>  				     I2C_FUNC_SMBUS_BYTE_DATA))
+>  		return -EOPNOTSUPP;
+>  
+> -	ret = i2c_smbus_read_byte_data(data->client, VL_REG_IDENTIFICATION_MODEL_ID);
+> -	if (ret < 0)
+> -		return -EINVAL;
+> -
+> -	if (ret != VL53L0X_MODEL_ID_VAL)
+> -		dev_info(&client->dev, "Unknown model id: 0x%x", ret);
+> -
+>  	data->vdd_supply = devm_regulator_get(&client->dev, "vdd");
+>  	if (IS_ERR(data->vdd_supply))
+>  		return dev_err_probe(&client->dev, PTR_ERR(data->vdd_supply),
+> @@ -372,6 +389,20 @@ static int vl53l0x_probe(struct i2c_client *client)
+>  	if (ret)
+>  		return ret;
+>  
+> +	ret = vl53l0x_read_word(client, 0xC0, &model);
+defines for the register addresses.
+I'm curious why they got bigger in a patch that doesn't mention it in the
+patch description.
+
+> +	if (ret)
+> +		return dev_err_probe(&client->dev, ret, "Failed to read model ID\n");
+Given these long lines, it would be good to have a precursor patch
+struct device *dev = &client->dev;
+and use that throughout probe()
+
+> +
+> +	ret = vl53l0x_read_word(client, 0xC2, &rev);
+> +	if (ret)
+> +		return dev_err_probe(&client->dev, ret, "Failed to read revision ID\n");
+> +
+> +	dev_info(&client->dev, "VL53L0X model=0x%04x rev=0x%04x\n", model, rev);
+> +
+> +	if ((model >> 8) != VL53L0X_MODEL_ID_VAL)
+> +		return dev_err_probe(&client->dev, -ENODEV,
+> +			"Unexpected model ID: 0x%04x\n", model);
+See comment on other patch. This breaks DT fallback compatibles and
+the benefit they bring for new compatible parts being able to be run with 
+old kernels.  Just warn and carry on with whatever the firmware told you this
+was.
+
+> +
+>  	indio_dev->name = "vl53l0x";
+>  	indio_dev->info = &vl53l0x_info;
+>  	indio_dev->channels = vl53l0x_channels;
+> 
+
 
