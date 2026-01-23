@@ -1,104 +1,84 @@
-Return-Path: <devicetree+bounces-258903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258904-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8Mv4BOdWc2kDuwAAu9opvQ
-	(envelope-from <devicetree+bounces-258903-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 12:09:27 +0100
+	id gLzRLVRXc2kDuwAAu9opvQ
+	(envelope-from <devicetree+bounces-258904-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 12:11:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 865B874CFD
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 12:09:26 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38E9774D50
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 12:11:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EF5B431BE805
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 11:04:25 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 40934302962E
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 11:11:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE362328259;
-	Fri, 23 Jan 2026 11:04:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B901337B8E;
+	Fri, 23 Jan 2026 11:11:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="aWd1f5xz";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="XCLkmT6J"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hAztp8++"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6333E2D8DB5
-	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 11:04:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2975833CEB7
+	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 11:11:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769166264; cv=none; b=i7ZtF5IPlxojdC72tLY6hxhBN7NqWPIXUEi1VFnSvDiQmN32wLQgevLmbyxfS6vWb5MQFReTOZp61/8nN2sTfbAuVMb0N9S2Nsqm4rSxuoBH+eVeKdQdnairk10qQPuod2k8URfgG6rwgGyxGv+FlzgOYxSi5j0Y7oakT0RmBGQ=
+	t=1769166666; cv=none; b=IwVSQ9bJh/sVLHCDyOn4QhllgdVCbTQoitww77RZj+FTABbLUwG/6iZMRAfUD2g10cYrFkx5dOUmRSOqmuVSqYoGTk/Y7O+bo22BzUMxzBq5MzY6XVlmu7vvbn5fuECIxShnljYFKkB1fVMI0aj/0qroMBSnUhAkJxdxY9bCYt4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769166264; c=relaxed/simple;
-	bh=V9JffqzBSVLCxeiE4aSeC95rFTCcg2DPDgn0D8LIo78=;
+	s=arc-20240116; t=1769166666; c=relaxed/simple;
+	bh=JzYSUCqqeWKfNi9rdKkxtfHev0ia4H+r1I/ZRyvcQiI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JJnnh++ZeoenIa15AxAOZSr2AgoMuFT9cr5tXBwMoqK/yxFyeN0RCV4reqP+GVdVUiQnOmg1UE+TdRDVWP9uYew98vsQ+/J1ByD2kGLlIllUUy1SiBsIwEJkXSCAYPbEVwwOeRJJmZG6Sb/0+f4nfqV4fyxHeI0EbMj58fioYxo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=aWd1f5xz; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=XCLkmT6J; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60NAZbEg1117173
-	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 11:04:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	nlLa28ZTX8VgKWsybVROjahqDOm/zN8s2Uxi6lUBMRY=; b=aWd1f5xz60va4y2+
-	o0PdM4K5eDDxp2PUwkkjPydMwhlhd41s/Zus9In0aWbBHSeQIaSm+lZM0MfReKiv
-	ZNxPrd5BMYiNlSkJP28H0TGm+fEnzDeD5PJNa5XiPMlMdvglApKhGTIPm2E4sngO
-	hcGZQ5m/FpqIVSf7fZ0T+gffKrSfDBL/LcE+Ug0z5deh3vFqSMR/TiljmyVkxqcc
-	GWH8THhQzQCLm/uQkmXl8c17FSLv1gnTa9eG8ji7p4jU3CFuZRjmWPi0HUOo0ikV
-	Beb/ikf+nAxK5U0eOIL7KCTc4FLBwzkKrHqh97j0Nv/GHGfDZkLKE2/tbmg4msV3
-	ODwckQ==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bur1cbgj8-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 11:04:21 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-29f2b45ecffso30512425ad.2
-        for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 03:04:21 -0800 (PST)
+	 In-Reply-To:Content-Type; b=hkhbp2Hbzu5DNb+dJh3SBz3PkCP6+Ii+Na6oRYoJbh2owZEv4LkdsIBC/asY2b0s8G0nXrOHSmPi8uQ0vKFGeVEkEUxJ1Pm7recEj8rCJV4Rg5nL/YE82Bfct8mV7hmwApBenQ13DqpReaYIjiQwL1UW30SbV23CsYr06jemSU4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hAztp8++; arc=none smtp.client-ip=209.85.210.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-81f4ba336b4so2276129b3a.1
+        for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 03:11:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769166261; x=1769771061; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1769166663; x=1769771463; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=nlLa28ZTX8VgKWsybVROjahqDOm/zN8s2Uxi6lUBMRY=;
-        b=XCLkmT6J7RVJVmP6NVXiOc/U6z46rQ/p8pKmgI+Q/QXNuT67Z4cePp5Cm8vSaqh/X8
-         YbXxcwApd381sTqV+r+FsPNEDD891uTMBimgKpUbLH33ntui1z4ZVgp6eTRF1HXnxJ/D
-         zHwUVOu5GJUVjXoo4yzq43HM96/KS9VTH+6x9SvISFKY2LIYMEA8eh1jUEkKvkSSJwxq
-         Ibl1i8cDmr1rhCmBvID99rzXKumrAT1yoOdF1XgmnwowbyF0qVTfhTmQnszGrfec10ja
-         eDFzosCd8/5C2cldzPlHXU3PyXOW+tOMvLDEWPnT9uxSGxvbsdHUSgNmo8cKViwVfUAi
-         Kr2A==
+        bh=54G7XuhdW75vYSZtlnacHikNaLX+O6Mlc4zbY7Y1Luc=;
+        b=hAztp8++AFV3mA0CV5I1xTB6mzXvh0DiZUWpiGqlZOGQvdZZU6qJEc7HprCfpRlM/O
+         P1JP9mpEjogKrEvETqxYGVSrNlQuZ/Y4JoyIzB01x2lKKAM6EBsZ6XlDO0HVxdRB3nr8
+         ZX85jqkVDgRrfpgLzVYTRIIzs9SmAPoMlY9xf63JUuwC9Krnf02EpO5afVvN6OnVxalw
+         8rswvL+F9X5RlzfAdLS3vwI68mxSyzKa3XPBWEvDAPrPgkNHWl0qHY0CylpeFP5m1pNa
+         WTSmLmYeFrzOVKYtYgxr5LOC/Pmm399ueF6NFPOLb7ESMCotPxiSuaUh2S4gxmtKCZui
+         HHsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769166261; x=1769771061;
+        d=1e100.net; s=20230601; t=1769166663; x=1769771463;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=nlLa28ZTX8VgKWsybVROjahqDOm/zN8s2Uxi6lUBMRY=;
-        b=T/n4aEkfUijo+85M43A6fcRLxrnS6RAwu+KxEPgzdMvxPeQKPRjvU/zNOf64yQ3QAy
-         OpGkVsQZHKtAAXAe/FvFTZJiZptDfppu4olpSY6RXqzbIClarnny5fMlNFjIXP7Ln9rq
-         KXko3Cw331IJ0qefy4cLWHMJWehOso5+CjZNAryRMqMLGc+XWHIyWtA0omJ6e6Q9cJ4v
-         KiMFUuHY1oQeCMWFkWAxKDm5kL0eLjD2buunRo06nmhDeeMJKRPbavLVhawZBJf9FY/V
-         d+piMJMCU4GVYNbm5aNm9DWFF42UfyvnEcaLnc2w5nFmD7PFMYHGArwvQrkZq65e3lnj
-         fE4g==
-X-Forwarded-Encrypted: i=1; AJvYcCXW1wWsgqQgQ+hr1aA6pdv3ZjN3X/1d3p0rBC61PC3xJGyP8ounrVbAFYfACBNIhUpef9cHxXvf7vdB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/yyNJ0ertFSzXjlH77osOl5r6ACIpZ5pKFOzeP2dc41bE04wB
-	IbsuHxEW9tllZvsPnH8/B1WnFZmj5saY1Abg2eNeXHWAfzwOT+HgxE7k4m3U5norrZgswwiYFl+
-	++E0AzHRLq9t+PQbR6mK5sU+XneQdnnRzCCAWMYXt81v45qHZLGJF1ZoWM9Cmt3Ph
-X-Gm-Gg: AZuq6aJDGGkQvmX7wfd3wCSJYWfQp6GbycEFydXYF7mbdUqjXcPbaof3cCTAzNoKMj+
-	y64a3lr2/jo+Lxeo/RseeBo3x5dNnn3H/slR1crRNcGJtGgxwFnqiZTQun9mOr9IlL9passS+Jt
-	XE2ZXOsesKqjbkJ5HB03T9Vk+CC7CObUqTtkocvVOqpRCHDz+esV6K2FB/mucYt/LMOA2nIRDfU
-	c27WWid4TAFGFlUiTBR5yh23RpFdPqTAD4aRU6glZ+CdNNWmnFNxfPk76oVBEU8Hr7DppebhPtj
-	LaVO7NBOvpws2MyFkXBLeSXB68Kuzheg55gfsqhRNBnoj7zXpnVzbaWaMmlSH1+fVGXEICiRAFG
-	hL0rU9c/QnMgFNH8RUcAL0fgO/EPnxkusECEA3x4=
-X-Received: by 2002:a17:903:3c50:b0:2a7:c6c8:2cf with SMTP id d9443c01a7336-2a7fe56cadbmr22449555ad.22.1769166260817;
-        Fri, 23 Jan 2026 03:04:20 -0800 (PST)
-X-Received: by 2002:a17:903:3c50:b0:2a7:c6c8:2cf with SMTP id d9443c01a7336-2a7fe56cadbmr22449325ad.22.1769166260221;
-        Fri, 23 Jan 2026 03:04:20 -0800 (PST)
-Received: from [10.217.223.121] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a802dcd776sm17259215ad.26.2026.01.23.03.04.15
+        bh=54G7XuhdW75vYSZtlnacHikNaLX+O6Mlc4zbY7Y1Luc=;
+        b=J5Nit86Xu6zxrwNCPUDWjkVO1qEIX/J9tS3C0EkdbcvLSiAJaimFFRBAXJE649ZxJ8
+         IokCwpymC/VXFi/F4HddYWdk+ycTjwJv2e7Y45vJqYCZRVVTKMK3O6vxu1Dh/Ky8knbe
+         5o9PUdld46sUTfFQkRrmU87sTjlsUxndpuGFGWN6ivANWVnasih0Tpek6trSJ7RDbpTh
+         w4SCfnye0beJ3u3t4bCX6QU4/9LcpVi37s+fXcet2bSvR/sKCLY1mcJTIlEW1RMpb/Ac
+         N8izB8/5Gy/Fwi4i8aY46iY4MDT4vyWh5VOpv97fZRtOgvNtkFDh+af8gzSd//0kqKaA
+         A6ew==
+X-Forwarded-Encrypted: i=1; AJvYcCVA2H3PS6p0kIxhQ+04KrfmDLhdJutPMAMwZXn/W2csargiEKuIoBJUbnhk2EQGMPKKaVPHOXe/ZN0I@vger.kernel.org
+X-Gm-Message-State: AOJu0YxO5ywiW2g7IVASydyQlK2oJ6HCtXn8jqfudzqPFzBGiQJOmQ0K
+	dEzjerrgGv62ddF/J05v0YoawOMcMxZQAPPZK1NnqIWdPRZhRUArTIDP
+X-Gm-Gg: AZuq6aLsWW9/f9aRaOj4e4Dh+8vso769GlCfIVoKny/JB8k3fGos8xFCZDhuF8QmgVy
+	egY112+jLUvYBOeAQzayjoqcEvo2xGNsM4a9S4wYnJBl/AItSVJJSqZWZO4D0q+YIU8UDQlYgQT
+	66aaAZ3w7AEQHaaJoUIxZ1hpfeZ2g4+x4Q5mROWx2V5yi05qvdkB1Qsx3Mvwzb7Earh/72s+YBQ
+	IdAsDS8zXo4+8q6sSfiDNvIpmB/34jtvCZA2MtqRN2WfnKDcm4rtOtRP3nTA2jPMEjn+oMaD5hd
+	qkUhWEQOVStgbKavBBTXbRujvgET3iyuMw76FK6K1Q/HWadEIWsotPytfUmYSuYt/74b4g7c539
+	0c2VBhcFPZ3zQ4Yc5LSDRuMe+2ZwdrWSHxIuXqBTP8Vub2lFZajIgyRP9OQAukh4OQhHW2NUcmH
+	c2F0ytraE5MFgtqSFs8gT+okLWUAeUto62+A==
+X-Received: by 2002:a05:6a00:bc8c:b0:823:aa5:23f1 with SMTP id d2e1a72fcca58-82317eea693mr2402046b3a.57.1769166663318;
+        Fri, 23 Jan 2026 03:11:03 -0800 (PST)
+Received: from [172.16.20.12] ([136.226.253.21])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8231864489csm1949221b3a.9.2026.01.23.03.10.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Jan 2026 03:04:19 -0800 (PST)
-Message-ID: <06160c6c-a945-467a-be82-7b33c5285d0f@oss.qualcomm.com>
-Date: Fri, 23 Jan 2026 16:34:13 +0530
+        Fri, 23 Jan 2026 03:11:02 -0800 (PST)
+Message-ID: <54d156ba-e177-4059-a808-2505983b4e2e@gmail.com>
+Date: Fri, 23 Jan 2026 16:41:24 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -106,162 +86,130 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/11] dt-bindings: crypto: qcom,ice: Require power-domain
- and iface clk
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Abel Vesa <abel.vesa@oss.qualcomm.com>,
-        cros-qcom-dts-watchers@chromium.org
-Cc: Brian Masney <bmasney@redhat.com>,
-        Neeraj Soni <neeraj.soni@oss.qualcomm.com>,
-        Gaurav Kashyap <gaurav.kashyap@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260123-qcom_ice_power_and_clk_vote-v1-0-e9059776f85c@qti.qualcomm.com>
- <20260123-qcom_ice_power_and_clk_vote-v1-1-e9059776f85c@qti.qualcomm.com>
- <14a71b33-4c10-41b0-a6cb-585a38e05f56@kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: backlight: gpio-backlight: allow
+ multiple GPIOs
+To: Krzysztof Kozlowski <krzk@kernel.org>, lee@kernel.org,
+ danielt@kernel.org, jingoohan1@gmail.com
+Cc: deller@gmx.de, pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, dri-devel@lists.freedesktop.org,
+ linux-fbdev@vger.kernel.org, linux-leds@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260120125036.2203995-1-tessolveupstream@gmail.com>
+ <20260120125036.2203995-2-tessolveupstream@gmail.com>
+ <3f3c47ea-1660-4bd4-ab89-3bdf58217995@kernel.org>
 Content-Language: en-US
-From: Harshal Dev <harshal.dev@oss.qualcomm.com>
-In-Reply-To: <14a71b33-4c10-41b0-a6cb-585a38e05f56@kernel.org>
+From: tessolveupstream@gmail.com
+In-Reply-To: <3f3c47ea-1660-4bd4-ab89-3bdf58217995@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=FswIPmrq c=1 sm=1 tr=0 ts=697355b5 cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=MVwZJz_WKtXOECYJnuwA:9
- a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-ORIG-GUID: aKj83BAvyDRvO32FVwo3SenCvrTI0OPX
-X-Proofpoint-GUID: aKj83BAvyDRvO32FVwo3SenCvrTI0OPX
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIzMDA4OCBTYWx0ZWRfX1IoSnj1QYdXQ
- Os+ZKhJ1R2GFAscPtDWqeH+SKZmsut0Z8SWg/MwmIOsMKudrzrTknp9IGJCx4eSVRxufQxjcU1P
- U5g/oyzeKCB3l8/c/iw29IksFI0RrRaY05fZnUhCX4d8hRV4Ar/fAnh+TdtOushVT/meHJKvaQE
- QTCPR0JiOd9WU3eatLpf62R4OZOrSS+qBuwoLgthwKMAzpOKETqLy9kNr7KrPgjcX/QAVDdwN5K
- B0nZGFzO0QMy0N47mkmzWy2KkK9Bxz422FJmkl8WHvbQ3IMuMT+MWkem6a8jssGvQBeeRY8uZ1E
- NJcRhc/UVu0zqCuKs57z3N8KcQ1e2lQdk8jvaJkT+FTDPA/jP/QkYwtavNgWSA8NCh0s4/dTo7R
- 6unqVxKdx7xVLY3UhAipFyU/gRX7ft/m1HmmonIff9bIcmrVn61Ark45J4Oz1juzHoDARPz+vfp
- +ViWBsZlsSZGyFP3PGA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
- definitions=2026-01-23_02,2026-01-22_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 malwarescore=0 spamscore=0 priorityscore=1501 phishscore=0
- lowpriorityscore=0 bulkscore=0 adultscore=0 clxscore=1015 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601230088
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258903-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-258904-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[gmx.de,kernel.org,lists.freedesktop.org,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[tessolveupstream@gmail.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[harshal.dev@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 865B874CFD
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 38E9774D50
 X-Rspamd-Action: no action
 
-Hi Krzysztof,
 
-On 1/23/2026 2:27 PM, Krzysztof Kozlowski wrote:
-> On 23/01/2026 08:11, Harshal Dev wrote:
->> Update the inline-crypto engine DT binding to reflect that power-domain and
->> clock-names are now mandatory. Also update the maximum number of clocks
->> that can be specified to two. These new fields are mandatory because ICE
->> needs to vote on the power domain before it attempts to vote on the core
->> and iface clocks to avoid clock 'stuck' issues.
+
+On 20-01-2026 20:01, Krzysztof Kozlowski wrote:
+> On 20/01/2026 13:50, Sudarshan Shetty wrote:
+>> Update the gpio-backlight binding to support configurations that require
+>> more than one GPIO for enabling/disabling the backlight.
+> 
+> 
+> Why? Which devices need it? How a backlight would have three enable
+> GPIOs? I really do not believe, so you need to write proper hardware
+> justification.
+>
+
+To clarify our hardware setup: 
+the panel requires one GPIO for the backlight enable signal, and it 
+also has a PWM input. Since the QCS615 does not provide a PWM controller 
+for this use case, the PWM input is connected to a GPIO that is driven 
+high to provide a constant 100% duty cycle, as explained in the link 
+below.
+https://lore.kernel.org/all/20251028061636.724667-1-tessolveupstream@gmail.com/T/#m93ca4e5c7bf055715ed13316d91f0cd544244cf5
+ 
 >>
->> Signed-off-by: Harshal Dev <harshal.dev@oss.qualcomm.com>
+>> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
 >> ---
->>  .../bindings/crypto/qcom,inline-crypto-engine.yaml         | 14 +++++++++++++-
->>  1 file changed, 13 insertions(+), 1 deletion(-)
+>>  .../leds/backlight/gpio-backlight.yaml        | 24 +++++++++++++++++--
+>>  1 file changed, 22 insertions(+), 2 deletions(-)
 >>
->> diff --git a/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml b/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
->> index c3408dcf5d20..1c2416117d4c 100644
->> --- a/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
->> +++ b/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
->> @@ -28,12 +28,20 @@ properties:
->>      maxItems: 1
+>> diff --git a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
+>> index 584030b6b0b9..4e4a856cbcd7 100644
+>> --- a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
+>> +++ b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
+>> @@ -16,8 +16,18 @@ properties:
+>>      const: gpio-backlight
 >>  
->>    clocks:
->> +    maxItems: 2
+>>    gpios:
+>> -    description: The gpio that is used for enabling/disabling the backlight.
+>> -    maxItems: 1
+>> +    description: |
+>> +      The gpio that is used for enabling/disabling the backlight.
+>> +      Multiple GPIOs can be specified for panels that require several
+>> +      enable signals. All GPIOs are controlled together.
+>> +    type: array
 > 
-> This is ABI break and your commit msg suggests things were not perfect,
-> but it is not explicit - was this working or not? How is it that ICE was
-> never tested?
+> There is no such syntax in the bindings, from where did you get it? Type
+> is already defined.
 > 
-
-I took some time to educate myself on the point of DT bindings stability being a
-strict requirement now, so I understand how these changes are breaking ABI, I'll
-send a better version of this again.
-
-As for your question of how it was working till now, it seems that
-things were tested with the 'clk_ignore_unused' flag, or with CONFIG_SCSI_UFS_QCOM
-flag being override set to 'y'. When this is done, QCOM-ICE (on which QCOM-UFS
-depends) initiates probe _before_ the unused clocks and power-domains are
-disabled by the kernel. And so, the un-clocked register access or clock 'stuck'
-isn't observed (since the clocks and power domains are already enabled).
-Perhaps I should write this scenario explicitly in the commit message?
-
-To maintain backward compatibility, let me introduce minItems and maxItems for clocks.
-When the Linux distro uses CONFIG_SCSI_UFS_QCOM=y, we can do with just 1 clock as
-before.
-
->> +
->> +  clock-names:
->> +    maxItems: 2
+> items:
+>   minItems: 1
+>   maxItems: 3
 > 
-> Why "yellowpony" is a correct name? Please look at existing code to see
-> how this is done.
 > 
-
-Ack, I will try to list down the acceptable clock names here.
-
+>> +    minItems: 1
+>> +    items:
+>> +      type: array
+>> +      minItems: 3
+>> +      maxItems: 3
+>> +      items:
+>> +        type: integer
 > 
->> +
->> +  power-domains:
->>      maxItems: 1
->>  
->>  required:
->>    - compatible
->>    - reg
->>    - clocks
->> +  - clock-names
->> +  - power-domains
+> All this is some odd stuff - just to be clear, don't send us LLM output.
+> I don't want to waste my time to review microslop.
 > 
-> Another ABI break...
+> Was it done with help of Microslop?
+>
 
-Let me avoid adding clock-names and power-domains as required. Since for scenarios
-where a Linux distro uses CONFIG_SCSI_UFS_QCOM=y, this isn't mandatory as I explained above.
-
-> 
+I understand now that the schema changes I proposed were not correct, 
+and I will address this in the next patch series. My intention was to 
+check whether the gpio-backlight binding could support more than one 
+enable-type GPIO. 
+Could you please advise what would be an appropriate maximum number of 
+GPIOs for gpio-backlight in such a scenario? For example, would allowing 
+2 GPIOs be acceptable, or should this case be handled in a different way?
+ 
 > Best regards,
 > Krzysztof
 
-Regards,
-Harshal
 
