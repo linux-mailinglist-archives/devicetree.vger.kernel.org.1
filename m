@@ -1,201 +1,333 @@
-Return-Path: <devicetree+bounces-258938-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258939-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AKTcOANxc2lNvwAAu9opvQ
-	(envelope-from <devicetree+bounces-258938-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 14:00:51 +0100
+	id uDpTHshzc2mwvwAAu9opvQ
+	(envelope-from <devicetree+bounces-258939-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 14:12:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CB3B7617D
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 14:00:51 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6865C7625F
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 14:12:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id ABDE2302C36B
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 13:00:38 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 11C5630028EF
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 13:12:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C32DA1BD9C9;
-	Fri, 23 Jan 2026 13:00:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DB188834;
+	Fri, 23 Jan 2026 13:12:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LxFthOpw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6396817BB35
-	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 13:00:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 668CE2DCF57
+	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 13:12:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769173237; cv=none; b=hQujFGhMOQUghM8HwOME4fzgYIb7X00nxEsRxesQSWSLayFTtz7hmR3ymBLXquxalFYSj9nvsQjSxN8RozdR5NciDYwKDvMOkoYpyzi8f5m0pKP2zh+px+5s+uijIKyrrhBwe8rElaImQ6z/8ryXbHzUbDWub1300lX2HbKqqm0=
+	t=1769173953; cv=none; b=TOfc+0kkQfNMuS7oCBSHijbJgDKfp4UqmuqurNGxKd91H7EXUDq60GJwsbVdKnstvRVwCl40WxSgKT0ITb/on0/R0Xex26BlLdXYOTDHuSp6EI2ptIlYDnvR/Eq7W9xCm27Cmqqs43Hf4c8jcpp/k3Xvkq8bD94Hv6C8pHHYxd0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769173237; c=relaxed/simple;
-	bh=qnQwqbTUxVnMDQDZEIWRUxRmayLu0yin8Pp+G+H9hqM=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=MQjvDqln+i1FGjfWcJvNQAfze6fMG2ITjKCA7RWI7ObiiFaRCkvdCX621bP4Z243X7YcLGQ5vFm9YDQINDj1T0uMjwbQNFkHNva204fllsx0brUABps6jTGJC+Z7U0rPuuOsGu00HkMH9LJKBu149Eb8ON7mDPCSKLea4+M96j8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vjGmA-0001AG-1F; Fri, 23 Jan 2026 14:00:34 +0100
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vjGm8-0025tQ-1d;
-	Fri, 23 Jan 2026 14:00:31 +0100
-Received: from pza by lupine with local (Exim 4.98.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vjGm7-000000006dr-38JD;
-	Fri, 23 Jan 2026 14:00:31 +0100
-Message-ID: <1adc068bbf1a15b1b10651f6ad9385415f6d4227.camel@pengutronix.de>
-Subject: Re: [PATCH v2 2/3] reset: tenstorrent: Add reset controller for
- Atlantis
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>, Drew Fustini	
- <dfustini@oss.tenstorrent.com>, Joel Stanley <jms@oss.tenstorrent.com>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley	 <conor+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>
-Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, joel@jms.id.au, 
-	fustini@kernel.org, mpe@kernel.org, mpe@oss.tenstorrent.com, 
-	npiggin@oss.tenstorrent.com, agross@kernel.org, agross@oss.tenstorrent.com,
- 	bmasney@redhat.com
-Date: Fri, 23 Jan 2026 14:00:31 +0100
-In-Reply-To: <20260122-atlantis-clocks-v2-2-c66371639e66@oss.tenstorrent.com>
-References: <20260122-atlantis-clocks-v2-0-c66371639e66@oss.tenstorrent.com>
-	 <20260122-atlantis-clocks-v2-2-c66371639e66@oss.tenstorrent.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	s=arc-20240116; t=1769173953; c=relaxed/simple;
+	bh=K7zJHUtjvCk9zW085TQhbAKQFbA9gj4GZtqhhwIr24Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iwHsY3i86e0H20gsF5AJ1y0KHufTHHeTmOByezFUOydAyE5HDuW0CtbUU6yhtPKxmGRTUi4xEcZGZ9k+gRpJWs+7c+GyYKXG+oI/SNhN6oQAkAxguf5zggKIq8Cghf8lTrQLdSP6eVAqDHpJGjgULc+BbYoDrX3+rBS+GbGCHhY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LxFthOpw; arc=none smtp.client-ip=209.85.210.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-823210d1d8eso223246b3a.1
+        for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 05:12:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1769173952; x=1769778752; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3F6Q0KrzJx/PydalRZY11/eFAiNA4NIIjUoKpRMvjGE=;
+        b=LxFthOpwTxsx5FcuiBZx5ZNLdkoxzWp9RVMhE0yfEU+QAa5R4WXssdqvKsdLFwOvtW
+         /8HLPAYA0vbx+r0p9J9rccki/i69DfHOiv2AD9PAjvhWbyto70kOIaigfd/1NyVvudy3
+         p9G935UHM1NDgqs4Hq/k5O16bOLfaQrPAyMu1QEcWyGBDF3NTP6tcmFu6/6koGr2pxgw
+         rPNqbrJAUmriIc8pzy85+bQMBJCU+jo7AQD5ri6QryRodcGFVCfpZoWN4lFJn6EhExf7
+         OUqTPxfO6fLSnzv4wcLSASEDExHpPvXrDeAQWiQFiw5hPus7qhoeyqhVsEPqTzF9HilO
+         YslQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769173952; x=1769778752;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3F6Q0KrzJx/PydalRZY11/eFAiNA4NIIjUoKpRMvjGE=;
+        b=i24ZL1ncwpeAXQasVVcz/vviHFa144wSFKh+iq4TRLQEqYyjNQjbf8eSHNUNGjX606
+         8VFJpPvjBcyuQB/ke7QVcg73z7KUpy6CixDdSQfUQxo3eQ1Bz56734b8ozdzPb/o6gu5
+         H3WvCDqULP13GsJlbtwkc6xMph4PtePxKb0pevM+ziIWzFW+ZAtypgZlawVUkZfexEQF
+         jij5UY2FPOrqrtNWKD0z4tQwIfYi5Dx+MLcEOsIJfBXgEVJ+Xh1qTC5aCrRgBTKCaPau
+         8qxr2rWK9A7CPe2qhoWQXub9QMg3aTWxKmPdYPKIHNiBDv+bS+OIpl2Z7owOIco8joPE
+         ovmw==
+X-Forwarded-Encrypted: i=1; AJvYcCWR0GYO2mq6H7UuPPePwykGvhY06LAj1u6J0IYUkTZzdPILbhqXBGNcow5l3eR3nXKw/+GnF29N8sfW@vger.kernel.org
+X-Gm-Message-State: AOJu0YwvAPPl5gABclWT0GYaFTim7ho0TZY+8Liw0V/u9FCbZJGMgQSk
+	ZAo5Q3J6ayd+LQuIhu1ZN3UaK4MkgQRQeezNFP+2EMB8BqPt7zUyXd/a
+X-Gm-Gg: AZuq6aLHwhjbHMjhPBB4gRcYF77UcM7Tt+yz1LhUqPmF2PvFK5addAY6HvJqz50vxyw
+	/3VQeLB8p0pslWLpoJyo/xgxdzOlKt0OTaMFbJyz1ubhTSdZdQXqhE8uIEKalvG6iESWeD1NfR1
+	Wi42E4zXB4s68FedYnNuW6CLbGe2Omut7dRcAnV6RTZoVcFnAWWGxyAKwHuuvCu9TpGHGTm2m3q
+	PS/EfZzmtOBrIffOnMsR1rWg9mtDYznIaAto3SW6CN4WpxfIAQIeOEHHS2VeRosYZzEtRKy8tFv
+	9jyy96BAqNpEOiFzIB+B+hefhb1kRNqJN0omqXO9S/BS0DqhPeQIscFqqmCnDOzjeUUos/ie2q9
+	yl6Jvy0IK/86UjMQIRnBqRYY9k2Z4E2y6+O+n+x0vxQUVZ8y5Ch7RonmeEc5EQwZN92bxBgSdzF
+	4LQgyiQOx9ml2duQ6NMheXxrtmz4j3lMvsif8=
+X-Received: by 2002:a17:90b:2cc3:b0:340:54a1:d6fe with SMTP id 98e67ed59e1d1-353676fbaf3mr2327414a91.15.1769173951647;
+        Fri, 23 Jan 2026 05:12:31 -0800 (PST)
+Received: from [192.168.1.7] ([115.99.251.203])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35335205bb5sm5183483a91.1.2026.01.23.05.12.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 23 Jan 2026 05:12:31 -0800 (PST)
+Message-ID: <7b922a72-f17b-492f-ae04-a97a75738d4d@gmail.com>
+Date: Fri, 23 Jan 2026 18:42:24 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/3] dt-bindings: phy: ti,phy-usb3: convert to DT
+ schema
+To: Rob Herring <robh@kernel.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas Kemnade
+ <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>,
+ Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
+ Roger Quadros <rogerq@ti.com>, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-omap@vger.kernel.org
+References: <20260122-ti-phy-v3-0-751619729433@gmail.com>
+ <20260122-ti-phy-v3-2-751619729433@gmail.com>
+ <20260122233309.GA3730160-robh@kernel.org>
+Content-Language: en-US
+From: Charan Pedumuru <charan.pedumuru@gmail.com>
+In-Reply-To: <20260122233309.GA3730160-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258938-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
+	TAGGED_FROM(0.00)[bounces-258939-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[p.zabel@pengutronix.de,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	R_DKIM_NA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[charanpedumuru@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tenstorrent.com:email,pengutronix.de:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 7CB3B7617D
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 6865C7625F
 X-Rspamd-Action: no action
 
-On Do, 2026-01-22 at 16:36 -0600, Anirudh Srinivasan wrote:
-> Adds Atlantis Reset Controller and auxiliary device definitions for
-> reset to share same regmap interface as clock controller.
->=20
-> This version of the reset controller driver covers resets from the RCPU
-> syscon.
->=20
-> Signed-off-by: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
-> ---
->  MAINTAINERS                                |   2 +
->  drivers/reset/Kconfig                      |  11 ++
->  drivers/reset/Makefile                     |   1 +
->  drivers/reset/reset-tenstorrent-atlantis.c | 158 +++++++++++++++++++++++=
-++++++
->  include/soc/tenstorrent/atlantis-syscon.h  |  26 +++++
->  5 files changed, 198 insertions(+)
->=20
-[...]
-> diff --git a/drivers/reset/reset-tenstorrent-atlantis.c b/drivers/reset/r=
-eset-tenstorrent-atlantis.c
-> new file mode 100644
-> index 000000000000..2e7f09409f79
-> --- /dev/null
-> +++ b/drivers/reset/reset-tenstorrent-atlantis.c
-> @@ -0,0 +1,158 @@
-[...]
-> +static int atlantis_reset_update(struct reset_controller_dev *rcdev,
-> +				 unsigned long id, bool assert)
-> +{
-> +	unsigned int val;
-> +	struct atlantis_reset_controller *rst =3D
-> +		to_atlantis_reset_controller(rcdev);
-> +	const struct atlantis_reset_data *data =3D &rst->data->reset_data[id];
-> +	unsigned int mask =3D BIT(data->bit);
-> +	struct regmap *regmap =3D rst->regmap;
-> +
-> +	if (data->active_low ^ assert)
-> +		val =3D mask;
-> +	else
-> +		val =3D ~mask;
 
-		val =3D 0;
 
-The ~mask bits will be ignored anyway.
+On 23-01-2026 05:03, Rob Herring wrote:
+> On Thu, Jan 22, 2026 at 05:52:58PM +0000, Charan Pedumuru wrote:
+>> Convert TI PIPE3 PHY binding to DT schema.
+>> Changes during conversion:
+>> - Define a new pattern 'pcie-phy' to match nodes defined in DT.
+>> - Drop obsolete "id" property from the schema.
+>>
+>> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+>> ---
+>>  .../devicetree/bindings/phy/ti,phy-usb3.yaml       | 135 +++++++++++++++++++++
+>>  1 file changed, 135 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/phy/ti,phy-usb3.yaml b/Documentation/devicetree/bindings/phy/ti,phy-usb3.yaml
+>> new file mode 100644
+>> index 000000000000..605f12f0f79a
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/phy/ti,phy-usb3.yaml
+>> @@ -0,0 +1,135 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/phy/ti,phy-usb3.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: TI PIPE3 PHY Module
+>> +
+>> +maintainers:
+>> +  - Roger Quadros <rogerq@ti.com>
+>> +
+>> +description:
+>> +  The TI PIPE3 PHY is a high-speed SerDes (Serializer/Deserializer)
+>> +  transceiver integrated in OMAP5, DRA7xx/AM57xx, and similar SoCs.
+>> +  It supports multiple protocols (USB3, SATA, PCIe) using the PIPE3
+>> +  interface standard, which defines a common physical layer for
+>> +  high-speed serial interfaces.
+>> +
+>> +properties:
+>> +  $nodename:
+>> +    pattern: "^(pcie-phy|usb3-phy|phy)@[0-9a-f]+$"
+>> +
+>> +  compatible:
+>> +    enum:
+>> +      - ti,omap-usb3
+>> +      - ti,phy-pipe3-pcie
+>> +      - ti,phy-pipe3-sata
+>> +      - ti,phy-usb3
+>> +
+>> +  reg:
+>> +    minItems: 2
+>> +    maxItems: 3
+>> +
+>> +  reg-names:
+>> +    minItems: 2
+>> +    items:
+>> +      - const: phy_rx
+>> +      - const: phy_tx
+>> +      - const: pll_ctrl
+>> +
+>> +  "#phy-cells":
+>> +    const: 0
+>> +
+>> +  clocks:
+>> +    minItems: 2
+>> +    maxItems: 7
+>> +
+>> +  clock-names:
+>> +    minItems: 2
+>> +    maxItems: 7
+>> +    items:
+>> +      enum: [wkupclk, sysclk, refclk, dpll_ref,
+>> +             dpll_ref_m2, phy-div, div-clk]
+>> +
+>> +  syscon-phy-power:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>> +    items:
+>> +      items:
+>> +        - description: Phandle to the system control module
+>> +        - description: Register offset controlling PHY power
+> 
+> This allows N entries of 2 cells each. You need either:
+> 
+> items:
+>   - items:
+>       - description: ...
+>       - description: ...
+> 
+> (the hyphen is important!)
+> 
+> Or:
+> 
+> maxItems: 1
+> items:
+>   items:
+>     - description: ...
+>     - description: ...
 
-[...]
-> diff --git a/include/soc/tenstorrent/atlantis-syscon.h b/include/soc/tens=
-torrent/atlantis-syscon.h
-> new file mode 100644
-> index 000000000000..2c6387e5c21a
-> --- /dev/null
-> +++ b/include/soc/tenstorrent/atlantis-syscon.h
-> @@ -0,0 +1,26 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * Copyright (c) 2026 Tenstorrent
-> + */
-> +#ifndef __SOC_ATLANTIS_SYSCON_H__
-> +#define __SOC_ATLANTIS_SYSCON_H__
-> +
-> +#include <linux/bits.h>
-> +#include <linux/types.h>
+Okay, I will use the above format in the next revision.
 
-#include <linux/auxiliary_bus.h>
+> 
+>> +
+>> +  syscon-pllreset:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>> +    items:
+>> +      items:
+>> +        - description: Phandle to the system control module
+>> +        - description: Register offset of CTRL_CORE_SMA_SW_0
+>> +
+>> +  syscon-pcs:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>> +    items:
+>> +      items:
+>> +        - description: Phandle to the system control module
+>> +        - description: Register offset for PCS delay programming
+>> +
+>> +  ctrl-module:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description:
+>> +      Phandle of control module for PHY power on.
+>> +    deprecated: true
+>> +
+>> +allOf:
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            const: ti,phy-pipe3-sata
+>> +    then:
+>> +      properties:
+>> +        syscon-pllreset: true
+>> +    else:
+>> +      properties:
+>> +        syscon-pllreset: false
+>> +
+>> +required:
+>> +  - reg
+>> +  - compatible
+>> +  - reg-names
+>> +  - "#phy-cells"
+>> +  - clocks
+>> +  - clock-names
+>> +
+>> +unevaluatedProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    /* TI PIPE3 USB3 PHY */
+>> +    usb3-phy@4a084400 {
+>> +        compatible = "ti,phy-usb3";
+>> +        reg = <0x4a084400 0x80>,
+>> +              <0x4a084800 0x64>,
+>> +              <0x4a084c00 0x40>;
+>> +        reg-names = "phy_rx", "phy_tx", "pll_ctrl";
+>> +        #phy-cells = <0>;
+>> +        clocks = <&usb_phy_cm_clk32k>,
+>> +                 <&sys_clkin>,
+>> +                 <&usb_otg_ss_refclk960m>;
+>> +        clock-names = "wkupclk", "sysclk", "refclk";
+>> +        ctrl-module = <&omap_control_usb>;
+>> +    };
+>> +
+>> +  - |
+>> +    /* TI PIPE3 SATA PHY */
+>> +    phy@4a096000 {
+>> +        compatible = "ti,phy-pipe3-sata";
+>> +        reg = <0x4A096000 0x80>,  /* phy_rx */
+>> +              <0x4A096400 0x64>,  /* phy_tx */
+>> +              <0x4A096800 0x40>;  /* pll_ctrl */
+> 
+> Use lowercase hex.
 
-struct regmap;
+Sure.
 
-> +
-> +struct atlantis_ccu_adev {
-> +	struct auxiliary_device adev;
-> +	struct regmap *regmap;
-> +};
-> +
-> +#define to_atlantis_ccu_adev(_adev) \
-> +	container_of((_adev), struct atlantis_ccu_adev, adev)
+> 
+>> +        reg-names = "phy_rx", "phy_tx", "pll_ctrl";
+>> +        clocks = <&sys_clkin1>, <&sata_ref_clk>;
+>> +        clock-names = "sysclk", "refclk";
+>> +        syscon-pllreset = <&scm_conf 0x3fc>;
+>> +        #phy-cells = <0>;
+>> +    };
+>> +...
+>>
+>> -- 
+>> 2.52.0
+>>
 
-Please use an inline function instead of a macro.
+-- 
+Best Regards,
+Charan.
 
-> +
-> +/* RCPU Reset Register Offsets */
-> +#define RCPU_BLK_RST_REG	0x001c
-> +#define LSIO_BLK_RST_REG	0x0020
-> +#define HSIO_BLK_RST_REG	0x000c
-> +#define PCIE_SUBS_RST_REG	0x0000
-> +#define MM_RSTN_REG		0x0014
-
-Why not move these into reset-tenstorrent-atlantis.c, they are not part
-of the interface between clock and reset drivers.
-
-regards
-Philipp
 
