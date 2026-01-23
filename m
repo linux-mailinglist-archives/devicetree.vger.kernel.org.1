@@ -1,163 +1,153 @@
-Return-Path: <devicetree+bounces-259040-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259041-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kDLyIqaZc2nNxQAAu9opvQ
-	(envelope-from <devicetree+bounces-259040-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 16:54:14 +0100
+	id L+F0GfOZc2nnxQAAu9opvQ
+	(envelope-from <devicetree+bounces-259041-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 16:55:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C5267805B
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 16:54:14 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEF8978122
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 16:55:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 19A393022907
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:54:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0B6753042747
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:54:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ECDA320CD1;
-	Fri, 23 Jan 2026 15:53:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 393603115BD;
+	Fri, 23 Jan 2026 15:54:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t7vr+Fos"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gYgkOqnZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D6293101A2;
-	Fri, 23 Jan 2026 15:53:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 994FC3016F2;
+	Fri, 23 Jan 2026 15:54:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769183639; cv=none; b=b9iiKBjcp/uSqS9mt5PLW1S9ajTdxc6p+EtlPciWl1/gTCFxzoL0Rph4GRxzPzWJ8yKLjdxbfsNlcZtxBaQqF3A64Xg+Bjw0Ly0VroG9R4X7Iu6D4P6uCgp1Dq+WyrKuPULc9iNnRSrose6Wqwkj8o3i6B1jc/yiqmDwGBIdzY4=
+	t=1769183654; cv=none; b=RrWSfqHAGHsKELmDCDfN/GahNM7VK2yAE7j74XLvu9T7ZylpJpelNwIudn1smQfQ1pFQofMpHENQ2fU2G+FMrOq6Wsfme4YiuI9NcoDdx8wsA0eZzqF18J7Ru7stscCGElRSTZchWNkRpYUBzvxt0RbohlOnV77hYODxd7Kq1us=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769183639; c=relaxed/simple;
-	bh=kYnBn0hPZJrXUXTU31Ix0gevpfaNxn8AINHbROFMUOE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=FR+9DIkgW8iY7ic8D6lmbDH/a75c/VPNcSKo3wOJRn9fInfhOlzOPO/SWilT7vNfDTuVojm69WhynWITXTnLPYxbBP6d9zeb7vS0bjgA/eGj+EYl0TFKJMYvlqpe/dq8MtqdNguu8iqvNXX4o7MOqN2ONZfeu1AFEmSDCfN1lu4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t7vr+Fos; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id D54C3C19423;
-	Fri, 23 Jan 2026 15:53:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769183638;
-	bh=kYnBn0hPZJrXUXTU31Ix0gevpfaNxn8AINHbROFMUOE=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=t7vr+FosHSGaXpKKxi/Mi2wHHwSGguT/fFQzm376tC8YoAPs/pVJoT2nMfLF+++sZ
-	 nkFiwOtW1wO2mHmvNyCyn6PFCB6gctMFHQ1JvCtjgYK6q198G+HjVJl1eKXKPNHjBx
-	 HdQqFWoPKZzlLHPKPWPW42HQEoSfh6Sq9BvGEBagWt4BTWmCBRnWFZxDTIrBvcHWBl
-	 NJyFn4uOVNyI93C3/RSxijva8P8PR3srXOrQTOaGExp3KG5Abz+v/v6Ug5v2zbHKuf
-	 QklzMqa81bE0tQovHgF6qy/U2iAs18Uyycu4YWXXR6OcLzwmxRDIGJMYNRbrf5uhy8
-	 inC5xF0M1rI2A==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CA09FD74EED;
-	Fri, 23 Jan 2026 15:53:58 +0000 (UTC)
-From: Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>
-Date: Fri, 23 Jan 2026 15:53:13 +0000
-Subject: [PATCH v5 8/8] Documentation: ABI: testing: add common ABI file
- for iio/frequency
+	s=arc-20240116; t=1769183654; c=relaxed/simple;
+	bh=cghKvZlvGo+Rdg7lCtRKFUqD8erdVh0YIBaDW8WUSwI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=vDYFat72PBvaHhrugKfFR/RyEBK6GqqDDL/haiiPFpXeo2Ut1+DdrPCqERRwSqQKhduCJ9XEfoucf5DEYSDgJtoRyFS7L+1tbLdXve2qxVHuCVr0dVPjh8vd9MB+o2hWlzdVfzlu9LC+P/7vnjbbU/1w7HuQMsMlGbg0VdZkaTs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gYgkOqnZ; arc=none smtp.client-ip=192.198.163.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1769183649; x=1800719649;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=cghKvZlvGo+Rdg7lCtRKFUqD8erdVh0YIBaDW8WUSwI=;
+  b=gYgkOqnZ3O29LdNtNTFSDrEZTIlsSIT/0PCn37gv4N+sF26f0GwiQycw
+   tvLjFizeNQRmU1mpKQYRz/gq3py7y9QHrJv+sErExn3f2VmDj93XI/HQS
+   mo7ULjwYvFd5HmnlurdHzxV96TvMCBYmmDv5AltVYph9f8ZydVmoCkjlv
+   /Ckku4OsyogD6RXYyKmCjOX6m1jOmzE11TDFFeXYGehhYgPtJwQSRnHdE
+   cGQK1gnKyi4Lu/txmRLMHYSdeMNLv0kv34tp5Ju1pHKIWQA2obuIGKclx
+   h7U0XpesLNlhqoGAWQmAbbIBxAYmiy5SEmrY3NJS0EfRevWyJ1OpikTY6
+   A==;
+X-CSE-ConnectionGUID: vr0gCqwfTgqsTEh/UcEI7g==
+X-CSE-MsgGUID: vUPgXjWBTuS8IP07dm11VQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11680"; a="69635620"
+X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; 
+   d="scan'208";a="69635620"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jan 2026 07:54:09 -0800
+X-CSE-ConnectionGUID: fT/mte+ZSbaR4uxx54cegA==
+X-CSE-MsgGUID: HUS4CAtVTAaq2M/1qPM2Mw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; 
+   d="scan'208";a="211557209"
+Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.244.112])
+  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jan 2026 07:54:04 -0800
+Date: Fri, 23 Jan 2026 17:54:02 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc: netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	linux-kernel@vger.kernel.org,
+	Herve Codina <herve.codina@bootlin.com>,
+	Mark Brown <broonie@kernel.org>,
+	Serge Semin <fancer.lancer@gmail.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Jiawen Wu <jiawenwu@trustnetic.com>
+Subject: Re: [PATCH v2 net-next 01/15] net: mdio-regmap: permit working with
+ non-MMIO regmaps
+Message-ID: <aXOZmrmff4Krx5dy@smile.fi.intel.com>
+References: <20260122121301.cyxyevi7xvqw2axk@skbuf>
+ <20260122134704.pxeikyk4q7nhay55@skbuf>
+ <aXI2bWhDtNNfr8M8@smile.fi.intel.com>
+ <20260122221848.py4p7mwxzybicnsq@skbuf>
+ <aXMhWo0NpPK-BELG@smile.fi.intel.com>
+ <20260123121529.inik6xrfdianljq6@skbuf>
+ <20260123135501.7m5wqkcfluxqeowb@skbuf>
+ <aXOGPUP5pfGeAQKN@smile.fi.intel.com>
+ <20260123151049.zv7uyn4rgr75bmog@skbuf>
+ <aXOWGuNhm27bit2A@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260123-adf41513-iio-driver-v5-8-2dce812a2dda@analog.com>
-References: <20260123-adf41513-iio-driver-v5-0-2dce812a2dda@analog.com>
-In-Reply-To: <20260123-adf41513-iio-driver-v5-0-2dce812a2dda@analog.com>
-To: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org
-Cc: Jonathan Cameron <jic23@kernel.org>, 
- David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
- Rodrigo Alencar <rodrigo.alencar@analog.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1769183636; l=1731;
- i=rodrigo.alencar@analog.com; s=default; h=from:subject:message-id;
- bh=67mGOWaw3wet6Ddy/uiN+nSBqKV1DJFYXkAQQXBO/tY=;
- b=sY9hFkMvphekFdXeCxn6OC+rdNYYSYMjqKaoJPGl1x4jhVrFUJsz0W+oMP63vw6d6PqprB0o4
- VRiABngTpexAYGbjNOkFOC4fD1ydbzYxtZdrOAv7b/QQwqrvHKDkWSC
-X-Developer-Key: i=rodrigo.alencar@analog.com; a=ed25519;
- pk=ULeHbgU/OYh/PG/4anHDfLgldFItQHAhOktYRVLMFRo=
-X-Endpoint-Received: by B4 Relay for rodrigo.alencar@analog.com/default
- with auth_id=561
-X-Original-From: Rodrigo Alencar <rodrigo.alencar@analog.com>
-Reply-To: rodrigo.alencar@analog.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aXOWGuNhm27bit2A@smile.fi.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259040-lists,devicetree=lfdr.de,rodrigo.alencar.analog.com];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lunn.ch,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,bootlin.com,trustnetic.com];
+	TAGGED_FROM(0.00)[bounces-259041-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[rodrigo.alencar@analog.com];
-	RCVD_COUNT_FIVE(0.00)[5];
+	DKIM_TRACE(0.00)[intel.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	MISSING_XM_UA(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,analog.com:replyto,analog.com:url,analog.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 4C5267805B
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	NEURAL_HAM(-0.00)[-0.994];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,smile.fi.intel.com:mid]
+X-Rspamd-Queue-Id: DEF8978122
 X-Rspamd-Action: no action
 
-From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+On Fri, Jan 23, 2026 at 05:39:13PM +0200, Andy Shevchenko wrote:
+> On Fri, Jan 23, 2026 at 05:10:49PM +0200, Vladimir Oltean wrote:
 
-Add ABI documentation file for PLL/DDS devices with frequency_resolution
-sysfs entry attribute used by ADF4350 and ADF41513.
+...
 
-Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
----
- Documentation/ABI/testing/sysfs-bus-iio-frequency | 11 +++++++++++
- MAINTAINERS                                       |  1 +
- 2 files changed, 12 insertions(+)
+> I'm fine with regmap_range, but I'm not a regmap maintainer.
 
-diff --git a/Documentation/ABI/testing/sysfs-bus-iio-frequency b/Documentation/ABI/testing/sysfs-bus-iio-frequency
-new file mode 100644
-index 000000000000..1ce8ae578fd6
---- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-bus-iio-frequency
-@@ -0,0 +1,11 @@
-+What:		/sys/bus/iio/devices/iio:deviceX/out_altvoltageY_frequency_resolution
-+KernelVersion:	6.20
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Stores channel Y frequency resolution/channel spacing in Hz for PLL
-+		devices. The given value directly influences the operating mode when
-+		fractional-N synthesis is required, as it derives values for
-+		configurable modulus parameters used in the calculation of the output
-+		frequency. It is assumed that the algorithm that is used to compute
-+		the various dividers, is able to generate proper values for multiples
-+		of channel spacing.
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b9cc8ddcd624..ed39a275b7f6 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1623,6 +1623,7 @@ M:	Rodrigo Alencar <rodrigo.alencar@analog.com>
- L:	linux-iio@vger.kernel.org
- S:	Supported
- W:	https://ez.analog.com/linux-software-drivers
-+F:	Documentation/ABI/testing/sysfs-bus-iio-frequency
- F:	Documentation/devicetree/bindings/iio/frequency/adi,adf41513.yaml
- F:	Documentation/iio/adf41513.rst
- F:	drivers/iio/frequency/adf41513.c
+Also TIL the range_*() APIs in overflow.h.
 
 -- 
-2.43.0
+With Best Regards,
+Andy Shevchenko
 
 
 
