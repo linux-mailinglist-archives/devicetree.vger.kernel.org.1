@@ -1,231 +1,300 @@
-Return-Path: <devicetree+bounces-258927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258930-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iOQUJBppc2mivQAAu9opvQ
-	(envelope-from <devicetree+bounces-258927-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 13:27:06 +0100
+	id wKL9CJpqc2l/vgAAu9opvQ
+	(envelope-from <devicetree+bounces-258930-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 13:33:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4EAD75C16
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 13:27:05 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5DA375DB8
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 13:33:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9F512301DC24
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 12:27:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id ECE48302AE33
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 12:32:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B69D337B9A;
-	Fri, 23 Jan 2026 12:27:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2483E212FAD;
+	Fri, 23 Jan 2026 12:32:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="H7thJpAD"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="Ti7/ZBzB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010022.outbound.protection.outlook.com [52.101.228.22])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83A672E7F11;
-	Fri, 23 Jan 2026 12:26:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769171222; cv=none; b=TEdyBdiBsGQRVHCBmEut89ho42TayR9ODR+3/z9QPzD9OcgIEvIafifkStDGHJyPFnyfUoMdPuik99MSoADHnkDaGbaJEMXvACDxvrTRYm0gj4PTzUt5ahaHm9bZOdD57zkeX17wG4M2SqKslUlGCTKtFa1mtP+obZpymQIJ+lg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769171222; c=relaxed/simple;
-	bh=3iT+Gee8r381xtGkYnpzN+q/2dGkK5QY8w1KqVQC8Gs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=onYdwwq+WicublBj7HtXSi5LbkGZtTUfU430Dic/gXohqazfW18Tu1b8JThDMqKFTqqbrJsTVVheYHYfFJLFov4NZnEhidec/f06CVTaNFD+Aome0TkV8USEBVb6tt2xDVujMlCraoqkth3EQMX37Cw5jz8auj+4JQ4X7MR4E1Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=H7thJpAD; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1769171220; x=1800707220;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=3iT+Gee8r381xtGkYnpzN+q/2dGkK5QY8w1KqVQC8Gs=;
-  b=H7thJpADQEccZ8mGg6Ca3Se796EoMArX8CoMJhNXhtYWhKGlqr+8LDbt
-   ubQYF7RouneCSKIrvp99sgRYvwz+iTHug4fUzP9UduqHMJbNlzr4wdlwx
-   koO1LzBk439zS1rvanmy4OI2hDB+MJjp6nk7U4e3VFSxidjmbLydhR0li
-   lGwjdm2aom1BJFKdVEsraB1pEK7ay3vPP2J/u9H8yrDm/mOzXAsPi6mSQ
-   yqR7d1wlxkIsHC8oZXfWSngZEJG1jES+YQBkhkcPjJw8h7Aqd0TG1ndI5
-   gJRI6z5jMdLj/ub3hnyfN75EMcaq0qfi6tqJ2WWgmCkJYOj+Vb9F7tzev
-   A==;
-X-CSE-ConnectionGUID: sQhatZjhRfOlQE0cu2yr4Q==
-X-CSE-MsgGUID: SUNQ4hUbTWmc0k058hVeRQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11679"; a="87841446"
-X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; 
-   d="scan'208";a="87841446"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jan 2026 04:26:59 -0800
-X-CSE-ConnectionGUID: 5n8F5fXOSP+30nLg7BP14g==
-X-CSE-MsgGUID: zshX63vFSbi7DxIoTLduJQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; 
-   d="scan'208";a="206274997"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by orviesa010.jf.intel.com with ESMTP; 23 Jan 2026 04:26:56 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vjGFY-00000000Twa-42p4;
-	Fri, 23 Jan 2026 12:26:52 +0000
-Date: Fri, 23 Jan 2026 20:26:08 +0800
-From: kernel test robot <lkp@intel.com>
-To: Kyrie Wu <kyrie.wu@mediatek.com>, Hans Verkuil <hverkuil@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Cc: oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org
-Subject: Re: [PATCH v12 05/12] media: mediatek: jpeg: Fix multi-core clk
- suspend and resume setting
-Message-ID: <202601232059.fCMMbALw-lkp@intel.com>
-References: <20260123031713.14621-6-kyrie.wu@mediatek.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EEB08834;
+	Fri, 23 Jan 2026 12:32:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.22
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769171553; cv=fail; b=HeFPIUyVYmLMQAV9+ny8lCGJ1TiSxbzOC91wqscVRH+RRxV5GZHxZTjw716pQVp3SrJ2WOXbUJ8JOZORPCOISP+hVqRIrOys3mx2pPVldHLV/XcnfAUEBmndfQHEv4a2LlxJA2t4ydrtdy0Ep7Es+c6ZUuRXJVKQP8tphCkUcVU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769171553; c=relaxed/simple;
+	bh=CRqQdiNp2luXByx0DRJl5mXmng61EsgFDQ/FbCvKB3M=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=GYKjz2Rmh52fB6SW8aBqdvqS8fv8tUdArIEPj1ZKfi4w0m29iZ0a600kx0pJS4tXkR3DJl+DfVOnPx4Zh0bbsk4X5BGwJL8IWRRGq1PGCX9g6WqIt746wseNcoGt2yHvCT2CPi6MtwDQFGS5X2HIhFTGPZeZ43p6mnVChl+VGFM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=Ti7/ZBzB; arc=fail smtp.client-ip=52.101.228.22
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=RCAkpLJQfj2PzTQVFgS1dv8apwH5N5RaJ56uYoUQ5Y3dmFiIH9NkVXdr40HPBprTc409/9MiNrLsgVzcAeJPs1e9ZuWneZfElAhthykNfLnD16+/7xboC0tTfknEfYhtjPXpL20aEgCtuI+fXJ+VLUNJh7vjUB1Uz+FHaRhgPInsMPBxr1sT6c4JqoeO3tsZx2NLWNckv5n+1QLzmHvAdTQQ7Rpi3z1OqAGVyrCLFzC87MyHwKf6n253Jrf7T/PLVaGjuABDBeQE/mf72Q+wazbRwfXXcr528OAZTJXGUNvBPH0HTyLtL1UT9FaNk18/1zMen3rTEsbPSn4jE2iXUQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=CRqQdiNp2luXByx0DRJl5mXmng61EsgFDQ/FbCvKB3M=;
+ b=cKIqyCYXDNxrpgcwwJu300dshEQnhxNObCo+8mnh+0qwYzGNIzgtuy44HA8hDC91ucX4BVuiuqPlP75d8C8SHcjEWCETRZB8fgn3dMP5Ploewv3aHZ/SwC3Y6UnKDx58mSbnvYIn6cFP9AjqcfYAc7q4HhTJqPymI9lm8I3xydPJWWS/GxFI/0+mSeiXLd1oqzWP+YvXqYKGw4A3MAaHb/aP0aJmfmKQoqHMzaDmd4f4o2C7eeLDr0zhK+4hX63jsS0IuoL92U8F5SmInPmul+F9/2u5MVSmSFyJoygdjRoB79IP2XL64UcdgcMa13BlQfz1zZpt2Usg7YcCXg9pNw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CRqQdiNp2luXByx0DRJl5mXmng61EsgFDQ/FbCvKB3M=;
+ b=Ti7/ZBzBqL3RVxWwEuIaOwpFoJZvZkMoOM64s+9ibJOzpxCPHAbmOftyt7DvHhOve8LpaGe1JOaorjC888mBviT7PsEhR+LlTL8a0d+dsfFnotXvCSa7oYEdcX2twLC9OXzzMhSCkZ6x3Iqpf/bl/jLbFOLh4/RCSqTQFCpgEKc=
+Received: from TY6PR01MB17377.jpnprd01.prod.outlook.com (2603:1096:405:35b::6)
+ by OSCPR01MB14368.jpnprd01.prod.outlook.com (2603:1096:604:3a4::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.11; Fri, 23 Jan
+ 2026 12:32:25 +0000
+Received: from TY6PR01MB17377.jpnprd01.prod.outlook.com
+ ([fe80::aa7e:1460:f303:3fd8]) by TY6PR01MB17377.jpnprd01.prod.outlook.com
+ ([fe80::aa7e:1460:f303:3fd8%6]) with mapi id 15.20.9542.010; Fri, 23 Jan 2026
+ 12:32:25 +0000
+From: John Madieu <john.madieu.xa@bp.renesas.com>
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+CC: geert <geert@linux-m68k.org>, Claudiu Beznea
+	<claudiu.beznea.uj@bp.renesas.com>, "lpieralisi@kernel.org"
+	<lpieralisi@kernel.org>, "kwilczynski@kernel.org" <kwilczynski@kernel.org>,
+	"mani@kernel.org" <mani@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
+	"bhelgaas@google.com" <bhelgaas@google.com>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, magnus.damm <magnus.damm@gmail.com>, Biju Das
+	<biju.das.jz@bp.renesas.com>, "linux-pci@vger.kernel.org"
+	<linux-pci@vger.kernel.org>, "linux-renesas-soc@vger.kernel.org"
+	<linux-renesas-soc@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-clk@vger.kernel.org"
+	<linux-clk@vger.kernel.org>, "john.madieu@gmail.com" <john.madieu@gmail.com>
+Subject: RE: [PATCH 03/16] clk: renesas: rzv2h-cpg: Add support for init_off
+ clocks
+Thread-Topic: [PATCH 03/16] clk: renesas: rzv2h-cpg: Add support for init_off
+ clocks
+Thread-Index:
+ AQHchWt8/8Xcc6HpdkiYg0CMgbNe6bVa6hMAgACLVYCAAvSbMIAAA6yAgAE7e9CAAAXFgIAAAHNw
+Date: Fri, 23 Jan 2026 12:32:24 +0000
+Message-ID:
+ <TY6PR01MB17377A22D83B7846EA7A6889FFF94A@TY6PR01MB17377.jpnprd01.prod.outlook.com>
+References: <20260114153337.46765-1-john.madieu.xa@bp.renesas.com>
+ <20260114153337.46765-4-john.madieu.xa@bp.renesas.com>
+ <CAMuHMdXAAUe_0kboQ9C0AMPn5re-1kCagecp1fMCGramDpXGRA@mail.gmail.com>
+ <TY6PR01MB17377AE5807504FFB6594471AFF89A@TY6PR01MB17377.jpnprd01.prod.outlook.com>
+ <TY6PR01MB1737738E302D0BA716AAA2650FF97A@TY6PR01MB17377.jpnprd01.prod.outlook.com>
+ <CAMuHMdXk6A2-isnLQCgrjjWRX=pYKbUvVz-nfDwy72i1qo1-rA@mail.gmail.com>
+ <TY6PR01MB173770856BD4044A79150F6E8FF94A@TY6PR01MB17377.jpnprd01.prod.outlook.com>
+ <CA+V-a8uNpNPCyePQrRDQxaGfN2gZE3-2VvCMs3FOqFaU3mKjLw@mail.gmail.com>
+In-Reply-To:
+ <CA+V-a8uNpNPCyePQrRDQxaGfN2gZE3-2VvCMs3FOqFaU3mKjLw@mail.gmail.com>
+Accept-Language: en-US, en-GB
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TY6PR01MB17377:EE_|OSCPR01MB14368:EE_
+x-ms-office365-filtering-correlation-id: 6623debe-7a90-436a-c3d8-08de5a7b7697
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|366016|376014|7416014|38070700021;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?d1J4djRQaXoyTE1NcXIvam9RcnhHeFRwYWRqZG1uVi9NWjRmVU5vcVgwbWtk?=
+ =?utf-8?B?b3NaRkdMd2t3dnhpUlIvT2ZvOU14c25UTUJHVHk2Q3MyblM4L3A5MWJEM1Rq?=
+ =?utf-8?B?SjNNVzJZR3c5ZHhXNnVqWWN6dXFEVTJqc3NoTUpoWjFNeWswbVlSRldFNktX?=
+ =?utf-8?B?alJhQjJvMmFHR1VwdUhCQlVPcCtDR1UwQ3VTamlYMGtCM2ZIby85OEhaV2Vw?=
+ =?utf-8?B?VkNwS3NVekZVUEdJZmwvM1dCbU5LQmZCeFlIUDhZdS9TVERSdWFtK1BQdW40?=
+ =?utf-8?B?cjVMNmdRSDRXT0ZEbVRCL1RoOU5SQmdwWUFkQmg2TTFkN3I1d3ZwOHNpYnVJ?=
+ =?utf-8?B?cnlFdEZjaDd0NzNxZjVEZWFVUGZKNFlwK1A4Vm4wb0UySFBLcFRtWExia1gr?=
+ =?utf-8?B?NnFWRmNHZnQxRGRxQzEramY4aDdzT3FPL0dKQjdhVERYZlg4bkFzOGU1aFU4?=
+ =?utf-8?B?Y21IUTRyeW00V1FFU0JwR0VSVktCZjllS0FjK1JkS2ltL21keW5VcW9jb3Jt?=
+ =?utf-8?B?Q2ltVGhrdWVlMDJsSHc4Z0JVWFJzeTVrVlJxUUcrMXY1czVJQy9jMVBsbVVq?=
+ =?utf-8?B?QkpPRHNLbE1GNGhPUnkvbzlyRmxFQUNybFBNTWpQRTR1Y1pwV296U0RqK1lR?=
+ =?utf-8?B?UDdHblJESlBnVE94bnBiSjdTVDVZb3RZSUhoejBtelV5cGZrenVlaWNpcUY1?=
+ =?utf-8?B?TUMzYVIvQXJCRjY2WDVlRVJXUHRkMVduN0ZGRHdsZXRKREF0WFk2WkROblZW?=
+ =?utf-8?B?R2ZDU1RNbC9mbThUMGI0RTE2aEl5S3FVbUNiRWEyV2tERktaSTFZQS85N1h1?=
+ =?utf-8?B?enR5Z1RNbGNsSkltc1lYb3JwOW9QVmxDU0krNE5Hb2xVRDJJRXFxaG5qZS9Z?=
+ =?utf-8?B?WmZpckNnU0lSaEpHYjU3bldpa013WWdDYlZxNGRFQnVjOEZVODY4UHVmVE9U?=
+ =?utf-8?B?NEJiUlAxdW5zVGdSTGVieXRpeThzUCtWUHp6QnlzR05vaHZsbW5GZHBmTUIw?=
+ =?utf-8?B?TVBqbE04c1RWZGRvOUwyUzcwdm1OZWRydTE1eTMyRUpxWjJ6NXVpSlY5dlhE?=
+ =?utf-8?B?eHd5SERpN1h4QTVPYTZEMy9BMjhPV3pqbThWbXFLUHd0c082UDNrYXNCVHVu?=
+ =?utf-8?B?MWFsR2M2WUc5WEJIMHN5bndISjAvNkxoY3pBL2VXNWRYVnJrY2NycUZSOVFN?=
+ =?utf-8?B?WnREcU5tdEYvSTRSL2xlQkEzS1hQdHVub1piUk80bUE3NWMrTWdpdHdWVVBu?=
+ =?utf-8?B?RlhRUHpOKzV2TTZOYTZRdGdvKy9jQTFtV2NJM1ZMSlF4cmlaQldRM3FjQVN2?=
+ =?utf-8?B?RmE1RnlKaTNxMTVvKyt0enprYVo4czlKa2EzWGpXU1pUcENmcEZEbWQ1Wktr?=
+ =?utf-8?B?WmtUL1BMSENBVGZtb0JlOTBSZ1QydGlrODRYVHExajFNR3BBL2Y3dDVYWWlD?=
+ =?utf-8?B?R3R1aHM3aTFWa3BGUzhVMmxtZEFqcWQzL283enhwczJkTGFGR3p3ZUtxQXAv?=
+ =?utf-8?B?c3B6a2UrbmpVN0lLSlcvTmVaY2JFd0M4d001VEgwdGc0Ym9hTDJZdVQ3V09S?=
+ =?utf-8?B?UHQ0NElQUHJudGpVTC9NUzUyOStIeEFENE9aZHh2Z2oyTGh0YktxR3h6ZDdU?=
+ =?utf-8?B?MUtKUVBKY3pwalN0NUlFazNFMnFOTGZGcVhucHlNSlBoaWlhcEdpYkFlRStl?=
+ =?utf-8?B?WGoyblorQ2RmN1I5d21NeEQ4eDVDL2krVENLVGoxNTJoa241ZlliejE3aE1z?=
+ =?utf-8?B?dXYxdnl4ck5oVzdYbHQrdEw4elJiUUdCcm5kU1ZKUkU3ZVlQcGg4RHVjcGZX?=
+ =?utf-8?B?Y0RjNGxpdG8zSituSHpDNHc4MVpnMnR0L1VoWE1ka25mc3hOdVMrbW51T2Q2?=
+ =?utf-8?B?bTQ2SGdsSytGOGd5TXNLM055bzNhOFFHSXhsRjdXZEhUL1ZxOGcvNkZVb3hK?=
+ =?utf-8?B?UitCMjNiam1uR2lUZ0dVYlY2c3E4Y3hZVlllaVlkdER1d1B3THZlWGF4anBZ?=
+ =?utf-8?B?eUdQUUphS1Ira0xmTW9QUVV1dmdpYk1NNnlJL056YklnTERpUWhQUDdGQ3BK?=
+ =?utf-8?B?TGtwWFdkTmxOWUdQdXg3cXp5K3JFNlROTmFCTnNweENoZ0t3UUllczVWTmdP?=
+ =?utf-8?B?QndoS29WV0FZUjd2Q3lhRndZb3F1clJnUWRLbG43b1YrMVVJeWZ2aTJXYzJw?=
+ =?utf-8?Q?tWdGMuG0DkBT1u3lkghdEeQ=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY6PR01MB17377.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?Tml1UUdCK3l0SUs5R0VwV0lKNnJwWW8yS2hiVDJ4RC9hSkw5L1NLQXVCMCta?=
+ =?utf-8?B?bXFOak9FdDBMU3FsWkU0ZTFJei9CSGp4WTU2SEJsNDVKdjJ6djBmc2pDU3NC?=
+ =?utf-8?B?NmEzd2paYS9BY09KL0NnQUJ1YnNHeHg4b01wRlAyS2lTSzd6YVVkeE85ME5u?=
+ =?utf-8?B?dGFvbjV2U3BCRHRPN2tXWThpQ3FkaHh6bG9udkMzKzMrOUZwYXBRMU80Z1hV?=
+ =?utf-8?B?OHdQRWpyd0JDcVVMb0V0blNVUG5uVWIzbWdodG5wdkpaZ0MzK3dtT3hMRW5a?=
+ =?utf-8?B?ZmJJOHJZMVBveVNFQTZneEF2dmdXblJaemtrZGJPc1ExZE85YWdrN1h1RDJm?=
+ =?utf-8?B?ZXllSnpsYkI3M2c1amRBcTJ3dXl3TkZnY2hDT2ZSY2RhUG9xWk9lL0tFdzRt?=
+ =?utf-8?B?dGRxdHFBM3JzT3prOG16bjhHUlcwYWVtNlBaV0tlWExNNHJtNlBSOU1IeHo0?=
+ =?utf-8?B?TWFPZ3owSjdHR0MzSlhYYjZkdmFudFZTbWpWZHpzT1dIZ3FZc01DOGpBWjdL?=
+ =?utf-8?B?ZWJvUUJ4UWQ3UGZMV1QzTWM4VjBscjM2bEt5NkN4R1hOdTVJWFU4S200Qkl3?=
+ =?utf-8?B?RWlpU01aVyt3eDhianU3ZVJDZmRSYnNnNTdqdXIvcmovRm81VThXRHhTbGVq?=
+ =?utf-8?B?WXpXNmUyVGVkOWNPengydmlVSjcyZEQ4NzJsaUtzYU4reEdrLzR0VjBxelB0?=
+ =?utf-8?B?ZUhFaVg4T0JUZU9xTC9xelR4M0gycGhTM0U0VUJyZWlJTjV5dVZSZFlmK3pH?=
+ =?utf-8?B?RXpsL2Q0S3pmdkRMYzZ5RDFDVzBkSnBQbHNxVE5WSzJSdHZ2b1hnOVg2UHB2?=
+ =?utf-8?B?UEtkSzNVYTZTekxXT0ZFOWdneU1CVFpGR0g0d3hxODNjU21vam9ZaURBRnVo?=
+ =?utf-8?B?ajUwUFR5dXJRd014SmxZUDBnbEdWbG42R2Q0cGZldHcvSTdVL0NqRm9xLytS?=
+ =?utf-8?B?eVZEd2gxZm5aQ2dBZXB3Q04rRDNpTmJpZjJUQWN2VGM0WEc1NVFVMk5CdEVl?=
+ =?utf-8?B?ODR4TmxhbFBSQ1p2d29LNDREV1hVTXpmdlJkUTRMZ2l3OUczeE1mQUlwNVBq?=
+ =?utf-8?B?UU9kWGkrVFdOU3FITFVtbnhIZ0V1WDkrd0pzbzFtMEhna3JCUkFyQXFFZTc2?=
+ =?utf-8?B?VDNiSXNFbjY0enRES2VqQjFNRnJRTHhuTkxKN2FxQVZKZDhqcVlEaVZiN2RV?=
+ =?utf-8?B?UXRYOFRDREZzalg3eUVjcUhDOGJNWDh4aWRNVEFUK0FVV1NMSDRmYXFVSElO?=
+ =?utf-8?B?LzhUZFFzdnlGMy9CYitUUGV1UGJWeVl4azZ5elVYU0EwYjl4VW1YVkJoQmVo?=
+ =?utf-8?B?dWxIUmZjVTNJeWFkd2Y0RDUxM1pSWUFiTklPQ3lUVTdYUURvZjV4UUNPd3lY?=
+ =?utf-8?B?S2djR1lwR3hSbkxoZGxqdG1yVXVVazRqRFMyVDdCbVJwazZuVUVJVjhvbkVN?=
+ =?utf-8?B?UDVjc290bWF0YSsyQkJCRGVrY1VDNmUvOFpBS2d0RkZFRUJ1cDZFcFhSdjcx?=
+ =?utf-8?B?VkdRRUF2QktlQXlqaEV4WmJ4RFVpdkYyeFRNRGM4SngxUUZ0ZE5mQkFjWVdQ?=
+ =?utf-8?B?NHZ5bFlkVSt2L2FYZzB3eWNnRi9CbllPZ2YrQ2dGdTVaNTQwV2RNbmdpSmQ5?=
+ =?utf-8?B?VndTUHl2VGh3THZWalhob2xvR1hwNjg0YUhFN3R2Yk1sdXhYOHZqOGVMSDdE?=
+ =?utf-8?B?WjdJTkVNaG0xbUpLUmd0S3M5ZjRlVm5oRVViOUNOUlc3Vk16RmovdE12U1py?=
+ =?utf-8?B?VFptUmVaRmxOZXc2S24rUDNUdG5ucVF6UkVSVU1RRm5RajZSWktwYzRDNTRF?=
+ =?utf-8?B?TkJVS0ZtanpkZ1l1OGVaam1pM0ZqNVpsSktuRmRqM25ybVBLVDF2Qm54ZUxF?=
+ =?utf-8?B?N1RkL01KeWFqWjZRVzBjNHFVZVJ2UitXUk5GcWRiZXZXb2syeWpsNW5xYUQ0?=
+ =?utf-8?B?N2ZqU2VnSlcvQ2NlVFdXZFozSGR2aENQWVc0UzQvcDZNRkZscHI3aWtpanp5?=
+ =?utf-8?B?dzFLS2JVa2hDTjZ0UXBzeWgzNnRMTGdCTmdOVUdKNXZoU2cvaUZlZkdMVUJU?=
+ =?utf-8?B?TGFRTHNWM0Y4eWdkQzhKUXg4ZFF5RHdTenZmdEFpaktJU1I4Q1dMOXMxMGMx?=
+ =?utf-8?B?SG9jOEt0djhDK0RyVFMvajVKSzdBbGZCVjhPd3RGWC91VHA4QXUwMzFlajlF?=
+ =?utf-8?B?akpjUkxRcnpLMnBLdGVTbjlVYTU4T0FYY01DK0ZBdXMyZjFMdlVZbGNZVjRn?=
+ =?utf-8?B?eWp5VGMzb0x6T09uKzc2YjNCbzQ5ZE80UmE5N0tORzUvV1RaVlNoNEV2TkFo?=
+ =?utf-8?B?Z0hIeGhVc3FrSEthd1VhcUdJSnQ0bVphcGQwZ2xsa0VOMjNMYXI3bmtlcDA4?=
+ =?utf-8?Q?7Od5gGnwSe5Ze6Hk=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260123031713.14621-6-kyrie.wu@mediatek.com>
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY6PR01MB17377.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6623debe-7a90-436a-c3d8-08de5a7b7697
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jan 2026 12:32:24.9851
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: q+Qjfg8/6GEWZjAc3k+qo1si4tp+mV63xiWDm8Y8SzOTKmBZqrubzE1VE2rrMCsRzl73c02GilMED6S2eBVoAb7z67A2q+ijQIQoKC7Zivc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSCPR01MB14368
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [1.44 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[renesas.com,none];
+	R_DKIM_ALLOW(-0.20)[bp.renesas.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258927-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[mediatek.com,kernel.org,collabora.com,gmail.com,vger.kernel.org,lists.infradead.org];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-258930-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[linux-m68k.org,bp.renesas.com,kernel.org,google.com,gmail.com,vger.kernel.org];
+	DKIM_TRACE(0.00)[bp.renesas.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-0.998];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[john.madieu.xa@bp.renesas.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: A4EAD75C16
+	NEURAL_HAM(-0.00)[-1.000];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,linux-m68k.org:email,glider.be:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bp.renesas.com:dkim,TY6PR01MB17377.jpnprd01.prod.outlook.com:mid]
+X-Rspamd-Queue-Id: B5DA375DB8
 X-Rspamd-Action: no action
 
-Hi Kyrie,
-
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linuxtv-media-pending/master media-tree/master linus/master v6.19-rc6 next-20260122]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Kyrie-Wu/media-mediatek-jpeg-fix-jpeg-cores-amounts-setting/20260123-112425
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20260123031713.14621-6-kyrie.wu%40mediatek.com
-patch subject: [PATCH v12 05/12] media: mediatek: jpeg: Fix multi-core clk suspend and resume setting
-config: parisc-allyesconfig (https://download.01.org/0day-ci/archive/20260123/202601232059.fCMMbALw-lkp@intel.com/config)
-compiler: hppa-linux-gcc (GCC) 15.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260123/202601232059.fCMMbALw-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202601232059.fCMMbALw-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c:429:12: warning: 'mtk_jpegenc_resume' defined but not used [-Wunused-function]
-     429 | static int mtk_jpegenc_resume(struct device *dev)
-         |            ^~~~~~~~~~~~~~~~~~
->> drivers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c:420:12: warning: 'mtk_jpegenc_suspend' defined but not used [-Wunused-function]
-     420 | static int mtk_jpegenc_suspend(struct device *dev)
-         |            ^~~~~~~~~~~~~~~~~~~
->> drivers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c:412:12: warning: 'mtk_jpegenc_pm_resume' defined but not used [-Wunused-function]
-     412 | static int mtk_jpegenc_pm_resume(struct device *dev)
-         |            ^~~~~~~~~~~~~~~~~~~~~
->> drivers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c:402:12: warning: 'mtk_jpegenc_pm_suspend' defined but not used [-Wunused-function]
-     402 | static int mtk_jpegenc_pm_suspend(struct device *dev)
-         |            ^~~~~~~~~~~~~~~~~~~~~~
---
-   drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c: In function 'mtk_jpegdec_hw_irq_handler':
->> drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c:549:30: warning: variable 'ctx' set but not used [-Wunused-but-set-variable]
-     549 |         struct mtk_jpeg_ctx *ctx;
-         |                              ^~~
-   drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c: At top level:
->> drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c:707:12: warning: 'mtk_jpegdec_resume' defined but not used [-Wunused-function]
-     707 | static int mtk_jpegdec_resume(struct device *dev)
-         |            ^~~~~~~~~~~~~~~~~~
->> drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c:698:12: warning: 'mtk_jpegdec_suspend' defined but not used [-Wunused-function]
-     698 | static int mtk_jpegdec_suspend(struct device *dev)
-         |            ^~~~~~~~~~~~~~~~~~~
->> drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c:690:12: warning: 'mtk_jpegdec_pm_resume' defined but not used [-Wunused-function]
-     690 | static int mtk_jpegdec_pm_resume(struct device *dev)
-         |            ^~~~~~~~~~~~~~~~~~~~~
->> drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c:680:12: warning: 'mtk_jpegdec_pm_suspend' defined but not used [-Wunused-function]
-     680 | static int mtk_jpegdec_pm_suspend(struct device *dev)
-         |            ^~~~~~~~~~~~~~~~~~~~~~
-
-
-vim +/mtk_jpegenc_resume +429 drivers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c
-
-   401	
- > 402	static int mtk_jpegenc_pm_suspend(struct device *dev)
-   403	{
-   404		struct mtk_jpegenc_comp_dev *jpeg = dev_get_drvdata(dev);
-   405	
-   406		clk_bulk_disable_unprepare(jpeg->venc_clk.clk_num,
-   407					   jpeg->venc_clk.clks);
-   408	
-   409		return 0;
-   410	}
-   411	
- > 412	static int mtk_jpegenc_pm_resume(struct device *dev)
-   413	{
-   414		struct mtk_jpegenc_comp_dev *jpeg = dev_get_drvdata(dev);
-   415	
-   416		return clk_bulk_prepare_enable(jpeg->venc_clk.clk_num,
-   417					       jpeg->venc_clk.clks);
-   418	}
-   419	
- > 420	static int mtk_jpegenc_suspend(struct device *dev)
-   421	{
-   422		struct mtk_jpegenc_comp_dev *jpeg = dev_get_drvdata(dev);
-   423	
-   424		v4l2_m2m_suspend(jpeg->master_dev->m2m_dev);
-   425	
-   426		return pm_runtime_force_suspend(dev);
-   427	}
-   428	
- > 429	static int mtk_jpegenc_resume(struct device *dev)
-   430	{
-   431		struct mtk_jpegenc_comp_dev *jpeg = dev_get_drvdata(dev);
-   432		int ret;
-   433	
-   434		ret = pm_runtime_force_resume(dev);
-   435		if (ret < 0)
-   436			return ret;
-   437	
-   438		v4l2_m2m_resume(jpeg->master_dev->m2m_dev);
-   439	
-   440		return 0;
-   441	}
-   442	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+SGkgUHJhYmhha2FyLA0KDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IExh
+ZCwgUHJhYmhha2FyIDxwcmFiaGFrYXIuY3NlbmdnQGdtYWlsLmNvbT4NCj4gU2VudDogRnJpZGF5
+LCBKYW51YXJ5IDIzLCAyMDI2IDEyOjM5IFBNDQo+IFRvOiBKb2huIE1hZGlldSA8am9obi5tYWRp
+ZXUueGFAYnAucmVuZXNhcy5jb20+DQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggMDMvMTZdIGNsazog
+cmVuZXNhczogcnp2MmgtY3BnOiBBZGQgc3VwcG9ydCBmb3INCj4gaW5pdF9vZmYgY2xvY2tzDQo+
+IA0KPiBIaSBKb2huLA0KPiANCj4gT24gRnJpLCBKYW4gMjMsIDIwMjYgYXQgMTE6MjnigK9BTSBK
+b2huIE1hZGlldQ0KPiA8am9obi5tYWRpZXUueGFAYnAucmVuZXNhcy5jb20+IHdyb3RlOg0KPiA+
+DQo+ID4gSGkgR2VlcnQsDQo+ID4NCj4gPiA+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+
+ID4gPiBGcm9tOiBHZWVydCBVeXR0ZXJob2V2ZW4gPGdlZXJ0QGxpbnV4LW02OGsub3JnPg0KPiA+
+ID4gU2VudDogVGh1cnNkYXksIEphbnVhcnkgMjIsIDIwMjYgNToyOSBQTQ0KPiA+ID4gVG86IEpv
+aG4gTWFkaWV1IDxqb2huLm1hZGlldS54YUBicC5yZW5lc2FzLmNvbT4NCj4gPiA+IFN1YmplY3Q6
+IFJlOiBbUEFUQ0ggMDMvMTZdIGNsazogcmVuZXNhczogcnp2MmgtY3BnOiBBZGQgc3VwcG9ydCBm
+b3INCj4gPiA+IGluaXRfb2ZmIGNsb2Nrcw0KPiA+ID4NCj4gPiA+IEhpIEpvaG4sDQo+ID4gPg0K
+PiA+ID4gT24gVGh1LCAyMiBKYW4gMjAyNiBhdCAxNzoyMSwgSm9obiBNYWRpZXUNCj4gPiA+IDxq
+b2huLm1hZGlldS54YUBicC5yZW5lc2FzLmNvbT4NCj4gPiA+IHdyb3RlOg0KPiA+ID4gPiA+IEZy
+b206IEpvaG4gTWFkaWV1DQo+ID4gPiA+ID4gPiBGcm9tOiBHZWVydCBVeXR0ZXJob2V2ZW4gPGdl
+ZXJ0QGxpbnV4LW02OGsub3JnPiBPbiBXZWQsIDE0IEphbg0KPiA+ID4gPiA+ID4gMjAyNiBhdCAx
+NjozNiwgSm9obiBNYWRpZXUgPGpvaG4ubWFkaWV1LnhhQGJwLnJlbmVzYXMuY29tPg0KPiA+ID4g
+PiA+ID4gd3JvdGU6DQo+ID4gPiA+ID4gPiA+IFNvbWUgcGVyaXBoZXJhbHMgbWF5IGJlIGxlZnQg
+ZW5hYmxlZCBieSB0aGUgYm9vdGxvYWRlciBidXQNCj4gPiA+ID4gPiA+ID4gc2hvdWxkIGJlIGV4
+cGxpY2l0bHkgZGlzYWJsZWQgYnkgdGhlIGtlcm5lbCB0byBlbnN1cmUgYQ0KPiA+ID4gPiA+ID4g
+PiBrbm93bg0KPiA+ID4gaW5pdGlhbCBzdGF0ZS4NCj4gPiA+ID4gPiA+ID4gVGhpcyBpcyBwYXJ0
+aWN1bGFybHkgaW1wb3J0YW50IGZvciBQQ0llIHdoaWNoIHJlcXVpcmVzDQo+ID4gPiA+ID4gPiA+
+IHByb3BlciBpbml0aWFsaXphdGlvbiBzZXF1ZW5jaW5nLg0KPiA+ID4gPiA+ID4gPg0KPiA+ID4g
+PiA+ID4gPiBBZGQgbmV3IG1hY3JvcyBERUZfTU9EX0lOSVRfT0ZGKCkgdG8gZGVjbGFyZSBtb2R1
+bGUgY2xvY2tzDQo+ID4gPiA+ID4gPiA+IHRoYXQgc2hvdWxkIGJlIHR1cm5lZCBvZmYgZHVyaW5n
+IENQRyBwcm9iZSBpZiBmb3VuZCBpbiB0aGUNCj4gPiA+ID4gPiA+ID4gb3Bwb3NpdGUNCj4gPiA+
+IHN0YXRlLg0KPiA+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4gPiBTaWduZWQtb2ZmLWJ5OiBKb2hu
+IE1hZGlldSA8am9obi5tYWRpZXUueGFAYnAucmVuZXNhcy5jb20+DQo+ID4gPiA+ID4gPg0KPiA+
+ID4gPiA+ID4gVGhhbmtzIGZvciB5b3VyIHBhdGNoIQ0KPiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+
+IExHVE0sIHNvDQo+ID4gPiA+ID4gPiBSZXZpZXdlZC1ieTogR2VlcnQgVXl0dGVyaG9ldmVuIDxn
+ZWVydCtyZW5lc2FzQGdsaWRlci5iZT4NCj4gPiA+ID4gPiA+DQo+ID4gPiA+ID4gPiBIb3dldmVy
+LCBJIGFtIHN0aWxsIHdvbmRlcmluZyBpZiB0aGVyZSBhcmUgYW55IHBvc3NpYmxlIGJhZA0KPiA+
+ID4gPiA+ID4gc2lkZSBlZmZlY3RzIG9mIGRpc2FibGluZyB0aGUgUENJZSBjbG9ja3MsIGUuZy4g
+d2hlbiBQQ0llIGlzDQo+ID4gPiA+ID4gPiBpbiB1c2UgKG5ldHdvcmsgY2FyZCwgU0FUQSBjYXJk
+LCAuLi4pPw0KPiA+ID4gPiA+DQo+ID4gPiA+ID4gSSdsbCB0ZXN0IGFuZCBsZXQgeW91IGtub3cu
+DQo+ID4gPiA+DQo+ID4gPiA+IEkgZmluYWxseSBkaWQgdGhlIHRlc3QsIGRpc2FibGluZyB0aGUg
+UENJZSBjbG9ja3Mgd2hpbGUgYSBXaUZpDQo+ID4gPiA+IG1vZHVsZSBjb25uZWN0ZWQgd2FzIHBl
+cmZvcm1pbmcgcGluZ3MuIFN5c3RlbSBnb3Qgc3R1Y2ssIHVudXNhYmxlDQo+ID4gPiA+IHVudGls
+IG5leHQgcmVib290Lg0KPiA+ID4gPg0KPiA+ID4gPiBXYXMgdGhhdCB0aGUga2luZCBvZiB0ZXN0
+IHlvdSB3ZXJlIGV4cGVjdGluZyBvciBkaWQgeW91IGhhdmUgYQ0KPiA+ID4gPiBzcGVjaWZpYyBz
+Y2VuYXJpbyB5b3UgY2FuIHNoYXJlLg0KPiA+ID4NCj4gPiA+IE5vdCByZWFsbHkuIEkgd2FzIHRo
+aW5raW5nIGFib3V0IGEgc2NlbmFyaW8gd2hlcmUgdGhlIGJvb3Rsb2FkZXINCj4gPiA+IHdvdWxk
+IGNvbmZpZ3VyZSBhbmQgdXNlIHRoZSBQQ0llIGRldmljZSwgdGhlbiB0cmFuc2ZlciBjb250cm9s
+IHRvDQo+IExpbnV4Lg0KPiA+ID4NCj4gPg0KPiA+IEkgY2FuJ3QgYW5zd2VyIHRvIHRoaXMgZXhh
+Y3Qgc2NlbmFyaW8gcmlnaHQgbm93Lg0KPiA+DQo+ID4gVGhlIGlkZWEgb2YgdGhlc2UgaW5pdF9v
+ZmYgd2FzIGZyb20gdGhlIFBDSWUgaG9zdCBIVyBtYW51YWwsDQo+ID4gRXhwbGljaXRseSByZXF1
+aXJpbmcgdHVuaW5nIHRoZSBjbG9jayBvZmYgYW5kIGFzc2VydGluZyB0aGUgcmVzZXQgYXMNCj4g
+PiBwYXJ0IG9mIGl0cyBzdGVwcywgd2hpbGUgdGhpcyBpcyBub3QgdGhlIGNhc2UgZm9yIG90aGVy
+IElQcy4NCj4gPg0KPiBDYW4gdGhlIFBDSWUgZHJpdmVyIG5vdCBoYW5kbGUgaXQ/IGllIGluIHRo
+ZSBwcm9iZSBleHBsaWNpdGx5IHR1cm4gb2ZmIHRoZQ0KPiBjbG9ja3MgKyBhc3NlcnQgcmVzZXQg
+KyBjb250aW51ZSBmdXJ0aGVyIChkbyB5b3Ugc2VlIGFueSBpc3N1ZSB3aGlsZSBkb2luZw0KPiB0
+aGlzIGZyb20gdGhlIFBDSWUgZHJpdmVyKT8NCg0KRnJvbSBQQ0llIGRyaXZlciwgaXQncyBhIGJp
+dCB1Z2x5LiBGb3IgZXhhbXBsZSwgY2xvY2sgaGFuZGxpbmcgcmVxdWlyZXMNCmNoZWNraW5nIGN1
+cnJlbnQgZW5hYmxlbWVudCBzdGF0ZSBhbmQgYWN0IGFjY29yZGluZ2x5LCB3aGljaCB3b3VsZCBy
+ZXF1aXJlDQp1c2luZyBjbG9jayBwcm92aWRlciBBUEkuDQoNClJlZ2FyZHMsDQpKb2huDQoNCj4g
+DQo+IENoZWVycywNCj4gUHJhYmhha2FyDQo=
 
