@@ -1,167 +1,184 @@
-Return-Path: <devicetree+bounces-258845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258846-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uM7JIoxBc2mWtwAAu9opvQ
-	(envelope-from <devicetree+bounces-258845-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:38:20 +0100
+	id EJjvFw5Dc2mWtwAAu9opvQ
+	(envelope-from <devicetree+bounces-258846-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:44:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ED6A737BF
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:38:20 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF57F7395A
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:44:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C52E13006118
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 09:38:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D022C302F71B
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 09:39:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2BA435BDC9;
-	Fri, 23 Jan 2026 09:38:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09A7B366819;
+	Fri, 23 Jan 2026 09:39:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AV/hK1Gt"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YWGfAurk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C298364025;
-	Fri, 23 Jan 2026 09:38:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03BED372B41
+	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 09:39:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769161094; cv=none; b=qCS+VTrDSx+ETwT2m/rIpbThWixMol/zknb2kDV5BMf6lj1N7ilq1uPA4l0FgXvpH+6NujyoC/0g9wTxu8cljeXrO+WxEuuJQGCnc22MBc5HEO6IsNkaxNlOX3nZorLFCNf8Rs+/7KoHvuYZjdab3cDJqE4IpCFpuw/s23FZuks=
+	t=1769161154; cv=none; b=C6Vq5p4CMKL061qNVViQVZkgFJO2eu1zF//GDo9vI1tkOmybb+bQyAtN509H2+Yjqrt7eAS0FE8a38aeEPaHEL3G+BUnWOQCT+Kn3VCPktN2Sso9pybEJUXGY21c/MmvTuHOg7U3tS+DUqeDcomhieXjfWvwbmDdRbeoKKOXWHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769161094; c=relaxed/simple;
-	bh=LfipcSOqdAFv0IVQ+sn6QVivzYsh6QNdOssfK/qpBTQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QvBxrxc5Ty3/mUWxWuBme6wT+b5qkZcAwXMFfxDE36MGPG+5qJFzJuw8OUXLulZBK7dZFyl8Ou//t313lbSbpTvC69Q171IfI3132UjiMuqjqHh+pf6aLsYeOq+t5V3SIc8lO+hEOfb+JWyF8Zf6sy4rI+KRGP0buzIeTHEOgmQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AV/hK1Gt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6D16C4CEF1;
-	Fri, 23 Jan 2026 09:38:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769161093;
-	bh=LfipcSOqdAFv0IVQ+sn6QVivzYsh6QNdOssfK/qpBTQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=AV/hK1GtHkKYoj+6Ja82nUdIyRwDp3wDifzvuTytCFL7yP/u0M+0nGLJzfGYB6/XY
-	 fZ9+oaZ4bEYS5RMv95Mu+c//ZAoNw42KFutOZ82yrjvYhl6Tstw4X+QYaH7LYxT4dz
-	 S5pFDzyaYSsFWeWUCHOOoKVhI2bD+KtuLJgZoYWmpAI2htvexR421Isbu4+3r3Ewcx
-	 hG94LF/nUnOkL1ALQkBJqKyp1taeboBt+l2mdYExad3MDiO+EnyYqZ91TZ3bCwV3A8
-	 wxDQRkELzOSw3EurSl9dFVdf+g5fF0DG8Fwnag/dL/k0c8el3tbdqEdbC+cb6J4fm8
-	 4OZUUmelKnW+Q==
-Date: Fri, 23 Jan 2026 09:38:04 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, kernel@pengutronix.de,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, Andy Shevchenko <andy@kernel.org>, David
- Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
- <nuno.sa@analog.com>, David Jander <david@protonic.nl>
-Subject: Re: [PATCH v1 6/8] iio: dac: ds4424: clear outputs on probe
-Message-ID: <20260123093804.139f0409@jic23-huawei>
-In-Reply-To: <20260119182424.1660601-7-o.rempel@pengutronix.de>
-References: <20260119182424.1660601-1-o.rempel@pengutronix.de>
-	<20260119182424.1660601-7-o.rempel@pengutronix.de>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1769161154; c=relaxed/simple;
+	bh=1InEW1W4c/YN1YNZ7twlVHXHgi9spzvj4pl49gkLuYs=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=o3vYMJYutoZR+JP2Vh7uQbV87DT7586Qmg7mJIXS/ilizlLPBPqsZOfR+KHJDlI3vzd91M4s9ZLI3rf+Psm/S1sqzh1FHfqe3wqWvdGWgGyrLv7rI03NIAgwR7osnpHyNXWz36fy9D3gLBr8LLABVYlI4pasOPHsYdT1xHvE+/Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YWGfAurk; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-47ee0291921so16626865e9.3
+        for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 01:39:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1769161140; x=1769765940; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=1InEW1W4c/YN1YNZ7twlVHXHgi9spzvj4pl49gkLuYs=;
+        b=YWGfAurkiMJUJwm/BOEr3KwVBQIgxTI/teVtUulMd8ForjGUn9O5hconJZ539QTcrc
+         EfktOTkpkabQstqIOheIQtGcCsIARZat+rV7toFjDnQxeA3/XRo5+ohObo8g9G5b0daR
+         XKKCRsH7oNewPHacHo5w1ksdNQw+X8jO3FBZYTNuoilml0wzWWHSjwQMbkPCdhwWqvqs
+         yge0dZ6bwKwioWgzXGTD8uvELYFDc6WZGVcSl1QpPkPDaJwNBLRrn5g5aYsM8dLByI4V
+         oqrlIT7BRAeo1wFc/+4uk1tjlaaEyBXoiTT3zJ/k5/MpIxHHYflnl6fE6WEf6fB/ngHp
+         Qeag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769161140; x=1769765940;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1InEW1W4c/YN1YNZ7twlVHXHgi9spzvj4pl49gkLuYs=;
+        b=eF8GOLW5xdIaeAFgrC67x2zy1aJvIIAggfBNI5G4DobAHStm+4fPQuxdAeorAOc0hb
+         dPHRlptM9hdg0bz+KiTdKz8PEq96yBJQDk4s48JlzFD4C9PhJ30FY/lpVUWLIDUmzaw/
+         Vv36z/nK11g69DXDYq9utS9kv6Y4wSKIGzBoQ/lkpfd1ClMFH5WpRzXiQKgwTQSyVHHS
+         SBfsokSWHkwbm6tPojc1eWrnwxwlEzcKYv7UzwVxr4YXBeAbqDscG7lOSp/Sy8rc3CUN
+         7FZzop0GvhC0g7adSRt8qo+yO0j6jHchI0oupwso9DIqokXTdnjPlSKQ19JHWFZPcdKH
+         L9fg==
+X-Forwarded-Encrypted: i=1; AJvYcCUGD9CH8JtKgALLfUqmWQXFKBiJatyZtLJ3jn8DwFs4VmeUJuTZqP6D2xJ7UM9EqPOUEXcon79ia+7L@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzih3XQ+LzNZXc9le9sGvC8l+4cXGzKX29+2uF9kKHn6lvAe/C0
+	REgDYP0v7bq23qCsMYCifDnYAeCmbMS4lVjReCyRZRS8ImVeV/vLlhoKRGFdozFKPms=
+X-Gm-Gg: AZuq6aKoiG8IKFAtZKtJ3O04IRD0T6ksrZEl8sY4M84zaCV2PZLutbsnOpcUduAVGO8
+	lu2vAYW37BqX0AAFdYI6mccV/Ojy8nr5ijiI/rZA/FDo/FsXOMUqB8UKMQQsU8sGeUY6W3VgSy7
+	+aXmAUsdr3cduaVDbfES0ofWxsyYaDAJkVqkecxhCdPd3kZYe4oBQSNUVLtPURokI2uqmmmhBPJ
+	p0AweJBJ6iUAszyEf9PFy71px6ssKaSLg7q9oi0fcxFdy79qO+MUcXO3lMPznM+gGdHG8dY66S6
+	1pYruiZBQXyzWjSSC9kdDiXiT/BT1yuGN2UDGROp/06AskEjN9qjRHiwDW1wPxtRfRIT5PuHaFA
+	TlD79Ss5mCgPZXEnL7COKL6g11cu8q7qKiVByLAQRoqh3HPppEtr/sH7ArHwRqtM9+tkvmsFVcK
+	X8Bp9H4iVIsg6oC8hmvQ==
+X-Received: by 2002:a05:600c:6215:b0:477:5897:a0c4 with SMTP id 5b1f17b1804b1-4804c94156emr41349285e9.4.1769161139974;
+        Fri, 23 Jan 2026 01:38:59 -0800 (PST)
+Received: from draszik.lan ([212.129.79.190])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-480470cf385sm122548615e9.13.2026.01.23.01.38.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Jan 2026 01:38:59 -0800 (PST)
+Message-ID: <0b4c5e699ce1d8211314a2bb28d7b6566e577037.camel@linaro.org>
+Subject: Re: (subset) [PATCH v7 00/20] Samsung S2MPG10 regulator and S2MPG11
+ PMIC drivers
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Lee Jones <lee@kernel.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>,  Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Linus Walleij
+ <linus.walleij@linaro.org>,  Bartosz Golaszewski	 <brgl@bgdev.pl>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Linus Walleij	
+ <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>
+Cc: Peter Griffin <peter.griffin@linaro.org>, Will McVicker
+	 <willmcvicker@google.com>, Juan Yescas <jyescas@google.com>, 
+	kernel-team@android.com, linux-kernel@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, Bartosz Golaszewski
+	 <bartosz.golaszewski@oss.qualcomm.com>
+Date: Fri, 23 Jan 2026 09:39:00 +0000
+In-Reply-To: <176909970862.4046298.23888884171864307.b4-ty@kernel.org>
+References: <20260122-s2mpg1x-regulators-v7-0-3b1f9831fffd@linaro.org>
+	 <176909970862.4046298.23888884171864307.b4-ty@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2+build3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258845-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-258846-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,linaro.org,gmail.com,bgdev.pl];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[andre.draszik@linaro.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 5ED6A737BF
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:mid,linaro.org:dkim]
+X-Rspamd-Queue-Id: EF57F7395A
 X-Rspamd-Action: no action
 
-On Mon, 19 Jan 2026 19:24:22 +0100
-Oleksij Rempel <o.rempel@pengutronix.de> wrote:
+Hi Lee,
 
-> The DS44xx devices have no reset pin or reset bit, so output registers
-> may retain preconfigured values across reboot or warm reset.
-> 
-> Also, the driver suspend/resume path restores from data->raw. When the
-> device is first probed, data->raw is zero-initialized and may not match
-> the actual hardware state. A later suspend/resume can therefore change an
-> output from a preconfigured non-zero value to 0 mA.
+On Thu, 2026-01-22 at 16:35 +0000, Lee Jones wrote:
+> On Thu, 22 Jan 2026 15:43:27 +0000, Andr=C3=A9 Draszik wrote:
+> > This series extends the existing S2MPG10 PMIC driver to add support for
+> > the regulators, and adds new S2MPG11 core and regulator drivers.
+> >=20
+> > --- dependency note ---
+> > This series must be applied in-order, due to the regulator drivers
+> > depending on headers & definitions added by the bindings and core
+> > drivers.
+> >=20
+> > [...]
+>=20
+> Applied, thanks!
+>=20
+> [04/20] dt-bindings: mfd: samsung,s2mps11: Split s2mpg10-pmic into separa=
+te file
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 commit: c19ccbf37758f90064f7b1=
+e32ec291954d97b426
+> [05/20] dt-bindings: mfd: samsung,s2mpg10-pmic: Link to its regulators
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 commit: ac1068790221a421e7bc4d=
+acadfe8d39d6bec3a9
+> [06/20] dt-bindings: mfd: Add samsung,s2mpg11-pmic
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 commit: d0cd9ded4bdef73303e65a=
+bbeae47b00b7288059
 
-For DACs we often want to retain settings from before kernel load (or
-on exit of the driver).  Can we just read them back from the device to
-fill in the cached versions?  If we can I think that would be preferred
-option.
+Thanks for queuing these, but FYI, I think leaving out patches 1 to 3 will
+give validation errors.
 
-Jonathan
+As mentioned in cover letter, the patches must be applied in order, for
+bindings particularly the mfd-binding patches depend on the regulator-
+binding updates, specifically patches 4 and 5 reference files added in
+patches 2 and 3 respectively.
 
+Also, without patch 1, I'd say there will be validation errors from the
+example DTS that patch 1 updates in preparation for patch 4.
 
-> 
-> Initialize all channels to 0 output current during probe to ensure a
-> deterministic baseline and consistent suspend/resume behavior.
-> 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> ---
->  drivers/iio/dac/ds4424.c | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
-> 
-> diff --git a/drivers/iio/dac/ds4424.c b/drivers/iio/dac/ds4424.c
-> index a0c60eb89717..2d299a52cede 100644
-> --- a/drivers/iio/dac/ds4424.c
-> +++ b/drivers/iio/dac/ds4424.c
-> @@ -220,6 +220,20 @@ static int ds4424_verify_chip(struct iio_dev *indio_dev)
->  	return ret;
->  }
->  
-> +static int ds4424_init(struct iio_dev *indio_dev)
-> +{
-> +	int i, ret;
-> +
-> +	/* Set all channels to 0 current. */
-> +	for (i = 0; i < indio_dev->num_channels; i++) {
-> +		ret = ds4424_set_value(indio_dev, 0, &indio_dev->channels[i]);
-> +		if (ret < 0)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  static int ds4424_setup_channels(struct i2c_client *client,
->  				 struct ds4424_data *data,
->  				 struct iio_dev *indio_dev)
-> @@ -397,6 +411,11 @@ static int ds4424_probe(struct i2c_client *client)
->  	if (ret)
->  		goto fail;
->  
-> +	/* No reset pin/bit: clear any preconfigured output on probe. */
-> +	ret = ds4424_init(indio_dev);
-> +	if (ret)
-> +		goto fail;
-> +
->  	indio_dev->modes = INDIO_DIRECT_MODE;
->  	indio_dev->info = &ds4424_iio_info;
->  
+Maybe that's all OK while things are being merged via different trees, but
+I just wanted to point it out.
 
+Cheers,
+Andre'
 
