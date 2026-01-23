@@ -1,321 +1,378 @@
-Return-Path: <devicetree+bounces-259006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259007-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CGL9BkSRc2ntxAAAu9opvQ
-	(envelope-from <devicetree+bounces-259006-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 16:18:28 +0100
+	id bKfXGX2Tc2ktxQAAu9opvQ
+	(envelope-from <devicetree+bounces-259007-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 16:27:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8130577AF9
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 16:18:27 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85F0D77C8C
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 16:27:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9F982308C83F
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:07:48 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5EBB1308E324
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:08:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51E372D7801;
-	Fri, 23 Jan 2026 15:07:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 907DF330675;
+	Fri, 23 Jan 2026 15:07:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="R8DirIWF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DQmaPFVq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013067.outbound.protection.outlook.com [40.107.159.67])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B97F4207DE2;
-	Fri, 23 Jan 2026 15:07:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.67
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769180825; cv=fail; b=kQp3lC7UdP06Mfdl0WYYSjQWlzK+KH9NIbDoDwSFAvjRC5KbwjPzNdo41HLxqcYPi7+eV6JvCokPDYhDoaMJbGoxsLFwTzPLaGggOJiY1hrcXd3LFco/hxi54Cnk6AEfrihvVaol4lgE1unLgy5tSlf7LpnGdy0CEwt+qWPMa6o=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769180825; c=relaxed/simple;
-	bh=Y+BDfVmaHM5vNA0qvbUnz0EwnN8ufAdCYtD39KE9mic=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=D3+dXMxrthO7xrdbDx8CpEOouk6PmHO6JPR3q7e5iUQrGevsplUvFNN6x8ZqdphogvsC446Hw/FOEHRlm7yJN9g9v2p9dtza2ZBBT+5bujVL3SMkrVS3T8+JqV1GLMhNTBpR10USjFhA2g/oXS/pH7eByxELqDxWEqw3wsV7dxw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=R8DirIWF; arc=fail smtp.client-ip=40.107.159.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Kpq9KA5hmxOCE+BaHP3fPkKuZuhw67g2ZpcWtuAdxN15aUcQcKjlXCra02TjL5ACHMe/oVUUEboHjXv8xwxUGBmdjtwc/ukUbkJQZiXr49l1AXYSo+FrlPiP2AIv21/fyMrazTSKQklFJDlr000Fl7tgAZ4QeFmOzmjrVLdaiK/hrO4DwIkyuIpO7MsAR0WwiZPtLCmDebmkMm8M6UyYT/z7oRBDxp11I3vcKIfJphN663fZw6cGQGmj0ELVJD1BxuYGFpTw5y2WWIgdH6r1UHEmXYX7ihGFoa+KEO3FgzFdVKQUKPt/OS/CAJwyp4veLxfZcdBNAIkFXwJq3Zfx0A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2ExxAy9VSNKH89b1wW7B/Zi4AWyHyo3dyXlwXFtokiw=;
- b=rJ//fVHa45QAb7BQVDhyqQ5oplI9LDwgiGKxlqeMHhZ/jW5j1I7Ms7fuLSo2T07g9oCWBTxkD7K1L2FdPGhODDlaqfpAJ8k0M63AeDmAg/ZO/3ZK8+JGBw8m2xr/D3tl8jbtwiVMaK0qVAie8pCMHvMunaZT2I+6wGNyCXAl6Zm8AhRCvRsg4mSuKHiriGYPlnD8pd5Gt7c1rixtkz/O25XSyCXGrVejlX4ZCW6KiS3smZ8VujS3vWQpoiifD5ycsnwxzdrjg66IeeQL+3BJYnHbSAuuxZC1AhrkiTU3T5MNBbzQI84I9kwWBdxeTYMRB5xZ1vVsreLaQi6B3/vRwQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2ExxAy9VSNKH89b1wW7B/Zi4AWyHyo3dyXlwXFtokiw=;
- b=R8DirIWFzZibXiq291ndwLnbzjUlrhkj1kLnUQKVs2VYjaxnb2HDI6FzBToD4g0hbLYKzEUBeLcp41uetbHqD/v5NY7aJaK8Ssg1IH9GMdDJx25TPBqwKfR7IcsiZ/4+7jE/gw5eY60aB+5BINut00p5CvP0ZA9srNt3U0OyciNBlKiFjeae5qCM29XIUk1Oo9XkGmbtuX8WivUtrDA6n7ld5i8khnZQsrayX9PFfD7nUS27O+KCw0YCf2LSwwVlxUKTREhdiJo+GWEx3csYbGiUN+uBszYfBYZo2T24zpXjwG959t5CiG+CcTfQeFzmuFRyjoeh6jIvL8QdgsoQ/Q==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB8957.eurprd04.prod.outlook.com (2603:10a6:102:20c::5)
- by GVXPR04MB10046.eurprd04.prod.outlook.com (2603:10a6:150:112::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.11; Fri, 23 Jan
- 2026 15:06:59 +0000
-Received: from PAXPR04MB8957.eurprd04.prod.outlook.com
- ([fe80::9c5d:8cdf:5a78:3c5]) by PAXPR04MB8957.eurprd04.prod.outlook.com
- ([fe80::9c5d:8cdf:5a78:3c5%3]) with mapi id 15.20.9499.005; Fri, 23 Jan 2026
- 15:06:58 +0000
-Date: Fri, 23 Jan 2026 10:06:48 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Sherry Sun <sherry.sun@nxp.com>, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-	festevam@gmail.com, daniel.baluta@nxp.com,
-	dario.binacchi@amarulasolutions.com,
-	alexander.stein@ew.tq-group.com, Markus.Niebel@tq-group.com,
-	matthias.schiffer@tq-group.com, y.moog@phytec.de,
-	josua@solid-run.com, francesco.dolcini@toradex.com,
-	primoz.fiser@norik.com, kernel@pengutronix.de,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V2 2/2] arch: arm64: imx93-wevk: Add i.MX93 Wireless EVK
- board support
-Message-ID: <aXOOiIlUihSMTQiL@lizhi-Precision-Tower-5810>
-References: <20260123024448.3909345-1-sherry.sun@nxp.com>
- <20260123024448.3909345-3-sherry.sun@nxp.com>
- <20260123-gifted-wolverine-from-mars-47b9d4@quoll>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260123-gifted-wolverine-from-mars-47b9d4@quoll>
-X-ClientProxiedBy: BYAPR21CA0009.namprd21.prod.outlook.com
- (2603:10b6:a03:114::19) To PAXPR04MB8957.eurprd04.prod.outlook.com
- (2603:10a6:102:20c::5)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A5871ADC83;
+	Fri, 23 Jan 2026 15:07:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769180867; cv=none; b=fWYxLQ9mymO3tHK7s6cM1pce3V9qllu+wiEoJyyNMwmmdpE+OxrLhYx83ogNWBwkqwuVn05G5ILSxEgt/Q3q7xqmHf8p4wjAZRzvtYWoWdA/NC7nmE82h/X4wonaR1qyNHo9dIh15gAN5+3QEjyggzPu4UvdPzf+a7N9vYbLd+8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769180867; c=relaxed/simple;
+	bh=4rzsYpg5vacjDmYgd2IYFBj9DJPtV4uU0AUHG1ivZZc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZM3fh5qnopXTDptkvQrG9JqBXyeJVMEkELnGyMz5MAS8ayPKHnn68vx1XvxFe0GKBydTpTLM+vCjiOqrjJyL44+ji+3BPxN8M0OAW7OsqKFvneXy8GytbNh7giF34IssuHNlW5dnn2LCwkG8GXrU6j1KHdxug69RSIWx1wpQ2y0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DQmaPFVq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E95F2C4CEF1;
+	Fri, 23 Jan 2026 15:07:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769180867;
+	bh=4rzsYpg5vacjDmYgd2IYFBj9DJPtV4uU0AUHG1ivZZc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DQmaPFVq+NGbg2kClo8j5I/8LsQDOwsn+cmwqfvEYv7ZeT4YDB/pHa8nRAT+h430l
+	 a2DPfKh0/ILPqrGbk+zw+4ObD9z6+U/Of8tuacoXEsdv3tamLsOr1RD8Rvb8LKtopU
+	 0EyEZsbT9b/ZzOfvKK2GCgVH3ZyscCgZvSDnTXxwMb4eUQS9N5ulEuFgP43QMx5tN5
+	 ZS6mB7FfSN/eITWRdAxYjMCoRV5rbp80cZ5h4OjS0dDg9J39joXcFMbriAVUr6h1iR
+	 jRPNFrnwx07l1HJG+3OvJiNRAtmcsMv0gDg/vCS307u3Dg79RkxuKF9l3qtdP+SlyB
+	 hEN9UFJdzIHAQ==
+Date: Fri, 23 Jan 2026 09:07:44 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Abel Vesa <abel.vesa@oss.qualcomm.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Luca Weiss <luca.weiss@fairphone.com>, Taniya Das <taniya.das@oss.qualcomm.com>, 
+	Taniya Das <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: clock: qcom: document the Eliza Global
+ Clock Controller
+Message-ID: <wjdc4mc4exqqsdijfgroce5psi673z7iwewvpt7egvu6kcsusd@eqgrk6j6raxv>
+References: <20260123-eliza-clocks-v1-0-664f1931f8c7@oss.qualcomm.com>
+ <20260123-eliza-clocks-v1-1-664f1931f8c7@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB8957:EE_|GVXPR04MB10046:EE_
-X-MS-Office365-Filtering-Correlation-Id: b9ca247b-605f-46c2-ad1a-08de5a910e10
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|7416014|52116014|376014|19092799006|1800799024|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
- =?us-ascii?Q?OLkuXPcqrU2u/CGkTm6qomxniSgKTMMvZocfqBW2k5OBztdkdmWvmhO7cu8s?=
- =?us-ascii?Q?koVKuTxawpvx7bxyhQ7YqDotw7avPPaJJweimTiUA9ge2VYpk94BFXbf30fV?=
- =?us-ascii?Q?nCeWrfsC1dRNwgT/QC6AU/I+nL02MQv5jkNQcsV5LNiaH8FWIeWNy/XCtUPJ?=
- =?us-ascii?Q?iLJu4hKUTV//Y+fwZkY/PabzGUg+GwiNkh/gJ6aohLZwa/XOjWSTSU4QXo2v?=
- =?us-ascii?Q?Cn4zzHYlju3VDR51kA1Rkyf95yw5kUM9ayn9bAvd6wKH3JmyM9zKjCAJe2hg?=
- =?us-ascii?Q?NqQyyaoa+XsMuLI3boWk3HI1Bucb8lGySULKtHgGYGdHwNuW1GZwzIT5aKbr?=
- =?us-ascii?Q?tEW+2buALWQuGMhTM1hZgEjWeTal4SWcekJKvtvXf3oEUn6lRRXoCxAHCv04?=
- =?us-ascii?Q?vFrsyzY7bkPVhwvCZ9/Su59LK/lSMM+eoPezv688qm0qFRKzkCPCHHBZo4DY?=
- =?us-ascii?Q?zME1/gU2e5cJ0WzSnjI16gv9pejOsUzQxfpYF98yhvRvlGlYAk3diy6TE27L?=
- =?us-ascii?Q?jUHAQ4Ne2diiUrGblq2WV8uro1gzMMsItNoJSrV+dduiRqJiGyDOK0Q9CQw6?=
- =?us-ascii?Q?XvZxcimhcg+OpFCpyfnjNSv/G18Gmw6M+iMfHrm9KAAxiIsgDROSGdN2gtpB?=
- =?us-ascii?Q?HMTGgCFdCD+PNh6XkTayoImKls3YSgW4C8h4hMZSw9/vPQ3TO5bQ26dppRrn?=
- =?us-ascii?Q?KOXO0UU3OwIjqC4mqQeB3EhcHm1+LrpZ/CPKpvZnvof7Ap4cf8wJ26lrWPM1?=
- =?us-ascii?Q?7lyO+ZL+D8wlXekM1plxFMQjHIANMzfONs0rxBSlSxXGuV44kH9gPD6b2rkK?=
- =?us-ascii?Q?xtIQ5DRhsdGYgdluuLaHo5WI+ndeQBPJSPesFRdLg3BM6BlOMdGWU7qk2LVG?=
- =?us-ascii?Q?9UzR5kQExFksxRXdAUHR5cCE/YEaGzrWdXZOvJjyGXdqIrKDyRiTi4DTxyba?=
- =?us-ascii?Q?IuDUUqGgiV/5isBsmcEA1aulxj7U6SXUCLm4seT0TWhV0hHuDefk0PlXsRgM?=
- =?us-ascii?Q?KM2gg8L6r3tZGLsW3H99gYGMydHDerKaFvz0nq/ZZRnsOpqXKn16Qf4Xu7Vf?=
- =?us-ascii?Q?aTv0Z2W8cjSbG44Cvq8l4gFvhNDq4yypiP7PK2ybtcrCSSYaFtDdqe7YW3R8?=
- =?us-ascii?Q?PO7AwsUiHQuT5BNv9UVXRMioMN2hu1rwwnXQksIQOYtDu1yt6YrS+xjdZ6FI?=
- =?us-ascii?Q?WKmg0LK+OjP+P5RL98+eeODTD3+6NmHpteLtmiyAQeAI68ve6uUwhAmPhfs9?=
- =?us-ascii?Q?1C8gvnrzBya6j3QZzsrqHh9eoBNEG4rorPs7GEmIDKlBjfT/WiUXMfCjBGm3?=
- =?us-ascii?Q?tNKYp8LiA4Rpa/Ra4GzG8573Zptmkw+HD3wBQFHul7zjjhpDMGSg21qWIzGi?=
- =?us-ascii?Q?QOgw1x2gFJ/FRIq5vxZk9nLd3u9I+q/jepj4lXbCWkZydqRppc/6nx0x51rq?=
- =?us-ascii?Q?wLmZzFvxO0q/JBcSBnKwhGobtQXjCuhrtsdiZp/PbUWtbNMMZ2H6BC4bYl8s?=
- =?us-ascii?Q?92e1ItWncqzyu+HYxSopBD3fZL1vuYRIFSmqOM+uWJrw60/gN+HVwBC/SbAz?=
- =?us-ascii?Q?fJsyc22kS9uIbqFXUJhKJUrYrbw7psWxobcZaePicJNuZD0ocgi0+0/Rg4u5?=
- =?us-ascii?Q?sQWwXIuAAMQm4RXJPhaMaqQ=3D?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8957.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(52116014)(376014)(19092799006)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?K53KHnl4UVSQUAQYITsXXJTQh+4oteMU/bRGCsq2Q2Hdkhi+0Lzwb/1HtLIm?=
- =?us-ascii?Q?USwvWm7f9T4rLbUDG2Zapegx9Ae2WW273qWFF8tXbVA46B8jArGoKGo5rp/4?=
- =?us-ascii?Q?uQTnuYXYHFHvc0tZPsU6r3o+TMJOAbSFndrEPvDan+G2dLW0f/12LMm39T45?=
- =?us-ascii?Q?5f3MnAoyGLHKUWwbzyjQPOTHYdNUAdRlLFwXziSTv3/IdbIqRa+HPn2fePdv?=
- =?us-ascii?Q?THvVlNKAoC+d7yT3jWBSTQ8mKBjcweI+IixyrCY0CoebiLs7jZH4v1Sw36Jz?=
- =?us-ascii?Q?TBScLksTjWU3NCHM5nn8F3sO3dFe0DGBfX/8Ir1242ageYG6AP6hcra45qo3?=
- =?us-ascii?Q?E2g9zRqIPPKmDenR3OVZOPXO9UWSVW/lrlL4wJIEH2uZw9DeEc+yLfCgX48E?=
- =?us-ascii?Q?dAT9t+dDHxXsMrNv0wp7BLsm5id07johnK2SlTxZsr4ERgIOIXuuONq62Kk/?=
- =?us-ascii?Q?Mo1DRP91NwES2oOeHh4COdJVc7T+Xd/wi9IzNbY/LVPko3t0QPXQnU6u8+gt?=
- =?us-ascii?Q?/rqCGs9Vaxoi0AIcAi5l5URDa9euzydzq7Fx4ugSPZiC6Kck4K/ibPcTofvK?=
- =?us-ascii?Q?eWEIHAODX/QMBZmPcHW3bDqMDy20/Juj/S1f/EWBkuF4AlPs8N5rGOjLplJf?=
- =?us-ascii?Q?1gzJZH0HeG5KydPk724OwtWfWqV+9xPPEyN5Z46jZxIgOtFqj+oKyXJGSvwB?=
- =?us-ascii?Q?esVkcJW0DVJHINXf/dKxCc2NjcXYqYVC/T7s8WPXXRKhm+lYeZJV4XyMTI+O?=
- =?us-ascii?Q?51t4q3AtS1ksNrLlSsTRuNwfB918l9GGGK6JzW0/7HpQ5xgXiPUrsCO+ztyT?=
- =?us-ascii?Q?N6XvsNRjhIiMCDGf06tmh6BP3pk6wPZ3oNWI5xy/rWIQmdJR/j0xPIE7YbF8?=
- =?us-ascii?Q?axR3Pg8chVmNn7nqgYBf9JFycf510ZkzSu4lEEXHTKXv5T6D0PR5M9rRhOVM?=
- =?us-ascii?Q?1cu5ZF5wZ5L6CFpb55z4TKXV+Zuaa4Y407XFpgefCi/ZHI+msUeH0D2ihpWo?=
- =?us-ascii?Q?NXNDs4tCrInVG6SO3/yrXN3oqWcgpqv3BzlqM57T2CgsaJf0FAR1q3/5fs2u?=
- =?us-ascii?Q?PefTdEaXV5ihVvX8EuLwfWVDHZb0x3ppM7KVFWaOQnrerBENvuP9jStoMMjC?=
- =?us-ascii?Q?Zl1SloNSgOVHe633unTFSfdcGyEpiSLjP3KY/L61gDVWFYEuLn8tgItkwoow?=
- =?us-ascii?Q?Ijf0v7bM+rhLt0YgH3gQMhuC9XSbL/PqdQCu85lHqcY7pa6PxJl7gGxvUYMV?=
- =?us-ascii?Q?VC8jMLa+9hLbnkulNRGY3+o14osEbgoziZpLTzIIbbPAagNlZX7p4FWwnqZd?=
- =?us-ascii?Q?uAvPqFWv5K8eJhr5TBj1ujS/Vk0ROl11VK+57jmY2UWMw2/F8ZazMnGh1XjF?=
- =?us-ascii?Q?PKjO/albnKwz2CL4S8HiH1S6cE5wI5PJHB2l8hfORBA9KFsxssEi2YwWUQRJ?=
- =?us-ascii?Q?1iCuAxwzd7W5Fv1Sdj3MZGrR/JcZ1oQWZMxwzO9hzJReZQjnNJfITTI7bJVL?=
- =?us-ascii?Q?68pXdQ9aOZ60Ne6Luz4ltNWqn/Q+LOe2BUU3myCVfP9VT2UhfTvn6j+QX5ke?=
- =?us-ascii?Q?z6+X+hBc2D/iSmjqFCoaQHe2/bSzzTIdNC286MjyKBLzoUze1ZQPgcYEO7Mp?=
- =?us-ascii?Q?C1f391ukMfvZoCGfLUdEEcSL0Tn5xe7f5derlOAkuTwnqiQucTJ9/Iabunfc?=
- =?us-ascii?Q?1bQquaa4T5blOjXQoV3A/NfEzqyF55HxQ7FlzPT1YY6NQ3JMlRjvANgCSTVB?=
- =?us-ascii?Q?SrSli8cBPA=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b9ca247b-605f-46c2-ad1a-08de5a910e10
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8957.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2026 15:06:58.8940
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: WdpIDgo9O/vjTbLplZ1TaYYlXLD/7JOrbeVLdF8AyWCY0EynpY102CzntDllNlemmXKtAZ5PdOjnSsF9FeJO2g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10046
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260123-eliza-clocks-v1-1-664f1931f8c7@oss.qualcomm.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.84 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-259006-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259007-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FREEMAIL_CC(0.00)[nxp.com,kernel.org,pengutronix.de,gmail.com,amarulasolutions.com,ew.tq-group.com,tq-group.com,phytec.de,solid-run.com,toradex.com,norik.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	DKIM_TRACE(0.00)[nxp.com:+];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.980];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.997];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,nxp.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 8130577AF9
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,fairphone.com:email]
+X-Rspamd-Queue-Id: 85F0D77C8C
 X-Rspamd-Action: no action
 
-On Fri, Jan 23, 2026 at 10:02:34AM +0100, Krzysztof Kozlowski wrote:
-> On Fri, Jan 23, 2026 at 10:44:48AM +0800, Sherry Sun wrote:
-> > i.MX93 Wireless SiP is created by integrating i.MX93 and IW610 WLCSP
-> > (Wi-Fi + BLE + 802.15.4). And i.MX93 Wireless EVK board with the i.MX93
-> > Wireless SiP basically reuse the i.MX93 11x11 EVK board, with some minor
-> > functional and pin connection differences.
-> >
-> > Here are the detailed differences between i.MX93 Wireless EVK and i.MX93
-> > 11x11 EVK board.
-> >
-> > Function differences:
-> > Function	i.MX93W EVK			i.MX93 EVK
-> > WIFI/BT		IW610 in i.MX93W		IW612 M.2 module
-> > MQS		N				Y
-> > PDM MIC		N				Y
-> > M.2		N				Y
-> > RPi 40-pin HDR	Limited support(pin conflict) 	Y
-> >
-> > Pin connection differences:
-> > Function  Signal name	i.MX93W EVK		i.MX93 EVK
-> > WIFI/BT	  SPI_FRM	SAI1_TXFS (spi1.PCS0)	GPIO_IO08 (spi3.PCS0)
-> > 	  SPI_TXD	SAI1_TXC (spi1.SIN)	GPIO_IO09 (spi3.SIN)
-> > 	  SPI_RXD	SAI1_RXD0 (spi1.SOUT)	GPIO_IO10 (spi3.SOUT)
-> > 	  SPI_CLK	SAI1_TXD0 (spi1.SCK)	GPIO_IO11 (spi3.SCK)
-> > 	  SPI_INT	CCM_CLKO1		on-board IO expander
-> > 	  NB_WAKE_IN	PDM_CLK			on-module IO expander
-> > 	  WL_WAKE_IN	PDM_BIT_STREAM0		on-module IO expander
-> > 	  IND_RST_WL	PDM_BIT_STREAM1		on-module IO expander
-> > 	  IND_RST_NB	GPIO_IO28		on-module IO expander
-> > 	  PDn		GPIO_IO29		on-module IO expander
-> > 	  NB_WAKE_OUT	GPIO_IO14		on-board IO expander
-> > 	  WL_WAKE_OUT	GPIO_IO15		CCM_CLKO1
-> > I2C3	  I2C3_SDA	GPIO_IO00		GPIO_IO28
-> > 	  I2C3_SCL	GPIO_IO01		GPIO_IO29
-> >
-> > Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
-> > ---
-> >  arch/arm64/boot/dts/freescale/Makefile       |  1 +
-> >  arch/arm64/boot/dts/freescale/imx93w-evk.dts | 73 ++++++++++++++++++++
-> >  2 files changed, 74 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/freescale/imx93w-evk.dts
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> > index 700bab4d3e60..d0ea746c59b8 100644
-> > --- a/arch/arm64/boot/dts/freescale/Makefile
-> > +++ b/arch/arm64/boot/dts/freescale/Makefile
-> > @@ -418,6 +418,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx93-9x9-qsb-i3c.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx93-11x11-evk.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx93-11x11-frdm.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx93-14x14-evk.dtb
-> > +dtb-$(CONFIG_ARCH_MXC) += imx93w-evk.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx93-kontron-bl-osm-s.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-nash.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-segin.dtb
-> > diff --git a/arch/arm64/boot/dts/freescale/imx93w-evk.dts b/arch/arm64/boot/dts/freescale/imx93w-evk.dts
-> > new file mode 100644
-> > index 000000000000..f09587dc74f6
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/freescale/imx93w-evk.dts
-> > @@ -0,0 +1,73 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +/*
-> > + * Copyright 2026 NXP
-> > + */
-> > +
-> > +#include "imx93-11x11-evk.dts"
-> > +
-> > +/ {
-> > +	model = "NXP i.MX93W EVK board";
-> > +	compatible = "fsl,imx93-wireless-evk", "fsl,imx93";
-> > +
-> > +	/delete-node/ regulator-m2-pwr;
->
-> If you remove nodes then clearly you do not share a common design, thus
-> you should not include other DTSI... and definitely even more confusing
-> to include other DTS.
->
-> > +
-> > +	sound-bt-sco {
-> > +		status = "disabled";
-> > +	};
-> > +
-> > +	sound-micfil {
-> > +		status = "disabled";
->
-> Kind of same here.
->
-> It's poor practice to include DTS inside DTS, some platforms disallow
-> this. Is it acceptable pattern in NXP/iMX?
+On Fri, Jan 23, 2026 at 03:37:13PM +0200, Abel Vesa wrote:
+> From: Taniya Das <taniya.das@oss.qualcomm.com>
+> 
+> Add bindings documentation for the Global Clock Controller on Qualcomm
+> Eliza SoC.
 
-Some old platform used it. It is discouraged for new platform.
+I'd expect this to give some form of hint about why Eliza is added to
+the Milos binding.
 
-Frank
+Regards,
+Bjorn
 
->
-> > +	};
-> > +};
-> > +
-> > +&pcal6524 {
-> > +	/delete-node/ m2-pcm-level-shifter-hog;
->
-> Why do you remove so much?
->
-> > +};
-> > +
-> > +&reg_usdhc3_vmmc {
-> > +	/delete-property/ vin-supply;
->
-> Do you understand how inclusion works? You claim here you have common
-> parts. Removing them means they are not common.
->
-> Best regards,
-> Krzysztof
->
+> 
+> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
+> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+> ---
+>  .../devicetree/bindings/clock/qcom,milos-gcc.yaml  |   9 +-
+>  include/dt-bindings/clock/qcom,eliza-gcc.h         | 218 +++++++++++++++++++++
+>  2 files changed, 225 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,milos-gcc.yaml b/Documentation/devicetree/bindings/clock/qcom,milos-gcc.yaml
+> index cf244c155f9a..539a0a804152 100644
+> --- a/Documentation/devicetree/bindings/clock/qcom,milos-gcc.yaml
+> +++ b/Documentation/devicetree/bindings/clock/qcom,milos-gcc.yaml
+> @@ -8,16 +8,21 @@ title: Qualcomm Global Clock & Reset Controller on Milos
+>  
+>  maintainers:
+>    - Luca Weiss <luca.weiss@fairphone.com>
+> +  - Taniya Das <taniya.das@oss.qualcomm.com>
+>  
+>  description: |
+>    Qualcomm global clock control module provides the clocks, resets and power
+>    domains on Milos.
+>  
+> -  See also: include/dt-bindings/clock/qcom,milos-gcc.h
+> +  See also:
+> +   - include/dt-bindings/clock/qcom,eliza-gcc.h
+> +   - include/dt-bindings/clock/qcom,milos-gcc.h
+>  
+>  properties:
+>    compatible:
+> -    const: qcom,milos-gcc
+> +    enum:
+> +      - qcom,milos-gcc
+> +      - qcom,eliza-gcc
+>  
+>    clocks:
+>      items:
+> diff --git a/include/dt-bindings/clock/qcom,eliza-gcc.h b/include/dt-bindings/clock/qcom,eliza-gcc.h
+> new file mode 100644
+> index 000000000000..3e0ff3fb69f6
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/qcom,eliza-gcc.h
+> @@ -0,0 +1,218 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> +/*
+> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+> + */
+> +
+> +#ifndef _DT_BINDINGS_CLK_QCOM_GCC_ELIZA_H
+> +#define _DT_BINDINGS_CLK_QCOM_GCC_ELIZA_H
+> +
+> +/* GCC clocks */
+> +#define GCC_AGGRE_NOC_PCIE_AXI_CLK				0
+> +#define GCC_AGGRE_UFS_PHY_AXI_CLK				1
+> +#define GCC_AGGRE_USB3_PRIM_AXI_CLK				2
+> +#define GCC_BOOT_ROM_AHB_CLK					3
+> +#define GCC_CAM_BIST_MCLK_AHB_CLK				4
+> +#define GCC_CAMERA_AHB_CLK					5
+> +#define GCC_CAMERA_HF_AXI_CLK					6
+> +#define GCC_CAMERA_SF_AXI_CLK					7
+> +#define GCC_CAMERA_XO_CLK					8
+> +#define GCC_CFG_NOC_PCIE_ANOC_AHB_CLK				9
+> +#define GCC_CFG_NOC_USB3_PRIM_AXI_CLK				10
+> +#define GCC_CNOC_PCIE_SF_AXI_CLK				11
+> +#define GCC_DDRSS_GPU_AXI_CLK					12
+> +#define GCC_DDRSS_PCIE_SF_QTB_CLK				13
+> +#define GCC_DISP_AHB_CLK					14
+> +#define GCC_DISP_HF_AXI_CLK					15
+> +#define GCC_GP1_CLK						16
+> +#define GCC_GP1_CLK_SRC						17
+> +#define GCC_GP2_CLK						18
+> +#define GCC_GP2_CLK_SRC						19
+> +#define GCC_GP3_CLK						20
+> +#define GCC_GP3_CLK_SRC						21
+> +#define GCC_GPLL0						22
+> +#define GCC_GPLL0_OUT_EVEN					23
+> +#define GCC_GPLL4						24
+> +#define GCC_GPLL7						25
+> +#define GCC_GPLL8						26
+> +#define GCC_GPLL9						27
+> +#define GCC_GPU_CFG_AHB_CLK					28
+> +#define GCC_GPU_GEMNOC_GFX_CLK					29
+> +#define GCC_GPU_GPLL0_CPH_CLK_SRC				30
+> +#define GCC_GPU_GPLL0_DIV_CPH_CLK_SRC				31
+> +#define GCC_GPU_SMMU_VOTE_CLK					32
+> +#define GCC_MMU_TCU_VOTE_CLK					33
+> +#define GCC_PCIE_0_AUX_CLK					34
+> +#define GCC_PCIE_0_AUX_CLK_SRC					35
+> +#define GCC_PCIE_0_CFG_AHB_CLK					36
+> +#define GCC_PCIE_0_MSTR_AXI_CLK					37
+> +#define GCC_PCIE_0_PHY_RCHNG_CLK				38
+> +#define GCC_PCIE_0_PHY_RCHNG_CLK_SRC				39
+> +#define GCC_PCIE_0_PIPE_CLK					40
+> +#define GCC_PCIE_0_PIPE_CLK_SRC					41
+> +#define GCC_PCIE_0_PIPE_DIV2_CLK				42
+> +#define GCC_PCIE_0_PIPE_DIV2_CLK_SRC				43
+> +#define GCC_PCIE_0_SLV_AXI_CLK					44
+> +#define GCC_PCIE_0_SLV_Q2A_AXI_CLK				45
+> +#define GCC_PCIE_1_AUX_CLK					46
+> +#define GCC_PCIE_1_AUX_CLK_SRC					47
+> +#define GCC_PCIE_1_CFG_AHB_CLK					48
+> +#define GCC_PCIE_1_MSTR_AXI_CLK					49
+> +#define GCC_PCIE_1_PHY_RCHNG_CLK				50
+> +#define GCC_PCIE_1_PHY_RCHNG_CLK_SRC				51
+> +#define GCC_PCIE_1_PIPE_CLK					52
+> +#define GCC_PCIE_1_PIPE_CLK_SRC					53
+> +#define GCC_PCIE_1_PIPE_DIV2_CLK				54
+> +#define GCC_PCIE_1_PIPE_DIV2_CLK_SRC				55
+> +#define GCC_PCIE_1_SLV_AXI_CLK					56
+> +#define GCC_PCIE_1_SLV_Q2A_AXI_CLK				57
+> +#define GCC_PCIE_RSCC_CFG_AHB_CLK				58
+> +#define GCC_PCIE_RSCC_XO_CLK					59
+> +#define GCC_PDM2_CLK						60
+> +#define GCC_PDM2_CLK_SRC					61
+> +#define GCC_PDM_AHB_CLK						62
+> +#define GCC_PDM_XO4_CLK						63
+> +#define GCC_QMIP_CAMERA_CMD_AHB_CLK				64
+> +#define GCC_QMIP_CAMERA_NRT_AHB_CLK				65
+> +#define GCC_QMIP_CAMERA_RT_AHB_CLK				66
+> +#define GCC_QMIP_GPU_AHB_CLK					67
+> +#define GCC_QMIP_PCIE_AHB_CLK					68
+> +#define GCC_QMIP_VIDEO_V_CPU_AHB_CLK				69
+> +#define GCC_QMIP_VIDEO_VCODEC_AHB_CLK				70
+> +#define GCC_QUPV3_WRAP1_CORE_2X_CLK				71
+> +#define GCC_QUPV3_WRAP1_CORE_CLK				72
+> +#define GCC_QUPV3_WRAP1_QSPI_REF_CLK				73
+> +#define GCC_QUPV3_WRAP1_QSPI_REF_CLK_SRC			74
+> +#define GCC_QUPV3_WRAP1_S0_CLK					75
+> +#define GCC_QUPV3_WRAP1_S0_CLK_SRC				76
+> +#define GCC_QUPV3_WRAP1_S1_CLK					77
+> +#define GCC_QUPV3_WRAP1_S1_CLK_SRC				78
+> +#define GCC_QUPV3_WRAP1_S2_CLK					79
+> +#define GCC_QUPV3_WRAP1_S2_CLK_SRC				80
+> +#define GCC_QUPV3_WRAP1_S3_CLK					81
+> +#define GCC_QUPV3_WRAP1_S3_CLK_SRC				82
+> +#define GCC_QUPV3_WRAP1_S4_CLK					83
+> +#define GCC_QUPV3_WRAP1_S4_CLK_SRC				84
+> +#define GCC_QUPV3_WRAP1_S5_CLK					85
+> +#define GCC_QUPV3_WRAP1_S5_CLK_SRC				86
+> +#define GCC_QUPV3_WRAP1_S6_CLK					87
+> +#define GCC_QUPV3_WRAP1_S6_CLK_SRC				88
+> +#define GCC_QUPV3_WRAP1_S7_CLK					89
+> +#define GCC_QUPV3_WRAP1_S7_CLK_SRC				90
+> +#define GCC_QUPV3_WRAP2_CORE_2X_CLK				91
+> +#define GCC_QUPV3_WRAP2_CORE_CLK				92
+> +#define GCC_QUPV3_WRAP2_S0_CLK					93
+> +#define GCC_QUPV3_WRAP2_S0_CLK_SRC				94
+> +#define GCC_QUPV3_WRAP2_S1_CLK					95
+> +#define GCC_QUPV3_WRAP2_S1_CLK_SRC				96
+> +#define GCC_QUPV3_WRAP2_S2_CLK					97
+> +#define GCC_QUPV3_WRAP2_S2_CLK_SRC				98
+> +#define GCC_QUPV3_WRAP2_S3_CLK					99
+> +#define GCC_QUPV3_WRAP2_S3_CLK_SRC				100
+> +#define GCC_QUPV3_WRAP2_S4_CLK					101
+> +#define GCC_QUPV3_WRAP2_S4_CLK_SRC				102
+> +#define GCC_QUPV3_WRAP2_S5_CLK					103
+> +#define GCC_QUPV3_WRAP2_S5_CLK_SRC				104
+> +#define GCC_QUPV3_WRAP2_S6_CLK					105
+> +#define GCC_QUPV3_WRAP2_S6_CLK_SRC				106
+> +#define GCC_QUPV3_WRAP2_S7_CLK					107
+> +#define GCC_QUPV3_WRAP2_S7_CLK_SRC				108
+> +#define GCC_QUPV3_WRAP_1_M_AHB_CLK				109
+> +#define GCC_QUPV3_WRAP_1_S_AHB_CLK				110
+> +#define GCC_QUPV3_WRAP_2_M_AHB_CLK				111
+> +#define GCC_QUPV3_WRAP_2_S_AHB_CLK				112
+> +#define GCC_SDCC1_AHB_CLK					113
+> +#define GCC_SDCC1_APPS_CLK					114
+> +#define GCC_SDCC1_APPS_CLK_SRC					115
+> +#define GCC_SDCC1_ICE_CORE_CLK					116
+> +#define GCC_SDCC1_ICE_CORE_CLK_SRC				117
+> +#define GCC_SDCC2_AHB_CLK					118
+> +#define GCC_SDCC2_APPS_CLK					119
+> +#define GCC_SDCC2_APPS_CLK_SRC					120
+> +#define GCC_UFS_PHY_AHB_CLK					121
+> +#define GCC_UFS_PHY_AXI_CLK					122
+> +#define GCC_UFS_PHY_AXI_CLK_SRC					123
+> +#define GCC_UFS_PHY_ICE_CORE_CLK				124
+> +#define GCC_UFS_PHY_ICE_CORE_CLK_SRC				125
+> +#define GCC_UFS_PHY_PHY_AUX_CLK					126
+> +#define GCC_UFS_PHY_PHY_AUX_CLK_SRC				127
+> +#define GCC_UFS_PHY_RX_SYMBOL_0_CLK				128
+> +#define GCC_UFS_PHY_RX_SYMBOL_0_CLK_SRC				129
+> +#define GCC_UFS_PHY_RX_SYMBOL_1_CLK				130
+> +#define GCC_UFS_PHY_RX_SYMBOL_1_CLK_SRC				131
+> +#define GCC_UFS_PHY_TX_SYMBOL_0_CLK				132
+> +#define GCC_UFS_PHY_TX_SYMBOL_0_CLK_SRC				133
+> +#define GCC_UFS_PHY_UNIPRO_CORE_CLK				134
+> +#define GCC_UFS_PHY_UNIPRO_CORE_CLK_SRC				135
+> +#define GCC_USB30_PRIM_ATB_CLK					136
+> +#define GCC_USB30_PRIM_MASTER_CLK				137
+> +#define GCC_USB30_PRIM_MASTER_CLK_SRC				138
+> +#define GCC_USB30_PRIM_MOCK_UTMI_CLK				139
+> +#define GCC_USB30_PRIM_MOCK_UTMI_CLK_SRC			140
+> +#define GCC_USB30_PRIM_MOCK_UTMI_POSTDIV_CLK_SRC		141
+> +#define GCC_USB30_PRIM_SLEEP_CLK				142
+> +#define GCC_USB3_PRIM_PHY_AUX_CLK				143
+> +#define GCC_USB3_PRIM_PHY_AUX_CLK_SRC				144
+> +#define GCC_USB3_PRIM_PHY_COM_AUX_CLK				145
+> +#define GCC_USB3_PRIM_PHY_PIPE_CLK				146
+> +#define GCC_USB3_PRIM_PHY_PIPE_CLK_SRC				147
+> +#define GCC_VIDEO_AHB_CLK					148
+> +#define GCC_VIDEO_AXI0_CLK					149
+> +#define GCC_VIDEO_AXI1_CLK					150
+> +#define GCC_VIDEO_XO_CLK					151
+> +
+> +/* GCC power domains */
+> +#define GCC_PCIE_0_GDSC						0
+> +#define GCC_PCIE_0_PHY_GDSC					1
+> +#define GCC_PCIE_1_GDSC						2
+> +#define GCC_PCIE_1_PHY_GDSC					3
+> +#define GCC_UFS_MEM_PHY_GDSC					4
+> +#define GCC_UFS_PHY_GDSC					5
+> +#define GCC_USB30_PRIM_GDSC					6
+> +#define GCC_USB3_PHY_GDSC					7
+> +
+> +/* GCC resets */
+> +#define GCC_CAMERA_BCR						0
+> +#define GCC_DISPLAY_BCR						1
+> +#define GCC_GPU_BCR						2
+> +#define GCC_PCIE_0_BCR						3
+> +#define GCC_PCIE_0_LINK_DOWN_BCR				4
+> +#define GCC_PCIE_0_NOCSR_COM_PHY_BCR				5
+> +#define GCC_PCIE_0_PHY_BCR					6
+> +#define GCC_PCIE_0_PHY_NOCSR_COM_PHY_BCR			7
+> +#define GCC_PCIE_1_BCR						8
+> +#define GCC_PCIE_1_LINK_DOWN_BCR				9
+> +#define GCC_PCIE_1_NOCSR_COM_PHY_BCR				10
+> +#define GCC_PCIE_1_PHY_BCR					11
+> +#define GCC_PCIE_1_PHY_NOCSR_COM_PHY_BCR			12
+> +#define GCC_PCIE_PHY_BCR					13
+> +#define GCC_PCIE_PHY_CFG_AHB_BCR				14
+> +#define GCC_PCIE_PHY_COM_BCR					15
+> +#define GCC_PCIE_RSCC_BCR					16
+> +#define GCC_PDM_BCR						17
+> +#define GCC_QUPV3_WRAPPER_1_BCR					18
+> +#define GCC_QUPV3_WRAPPER_2_BCR					19
+> +#define GCC_QUSB2PHY_PRIM_BCR					20
+> +#define GCC_QUSB2PHY_SEC_BCR					21
+> +#define GCC_SDCC1_BCR						22
+> +#define GCC_SDCC2_BCR						23
+> +#define GCC_UFS_PHY_BCR						24
+> +#define GCC_USB30_PRIM_BCR					25
+> +#define GCC_USB3_DP_PHY_PRIM_BCR				26
+> +#define GCC_USB3_DP_PHY_SEC_BCR					27
+> +#define GCC_USB3_PHY_PRIM_BCR					28
+> +#define GCC_USB3_PHY_SEC_BCR					29
+> +#define GCC_USB3PHY_PHY_PRIM_BCR				30
+> +#define GCC_USB3PHY_PHY_SEC_BCR					31
+> +#define GCC_VIDEO_AXI0_CLK_ARES					32
+> +#define GCC_VIDEO_AXI1_CLK_ARES					33
+> +#define GCC_VIDEO_BCR						34
+> +#define GCC_CAMERA_HF_AXI_SLP_STG_ARES				37
+> +#define GCC_CAMERA_SF_AXI_SLP_STG_ARES				38
+> +#define GCC_CAMERA_HF_AXI_SEL_SLP_STG_ARES			39
+> +#define GCC_CAMERA_SF_AXI_SEL_SLP_STG_ARES			40
+> +#define GCC_CAMERA_HF_CLK_EN_SLP_STG				41
+> +#define GCC_CAMERA_SF_CLK_EN_SLP_STG				42
+> +#define GCC_CAMERA_HF_CLK_EN_SEL_SLP_STG			43
+> +#define GCC_CAMERA_SF_CLK_EN_SEL_SLP_STG			44
+> +
+> +#endif
+> 
+> -- 
+> 2.48.1
+> 
 
