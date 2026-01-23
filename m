@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-259045-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259046-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4CRCGP2dc2lgxgAAu9opvQ
-	(envelope-from <devicetree+bounces-259045-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 17:12:45 +0100
+	id iBE7ElCec2lqxgAAu9opvQ
+	(envelope-from <devicetree+bounces-259046-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 17:14:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFD237830B
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 17:12:44 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D0B07842F
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 17:14:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 8EB033008D6F
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 16:12:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6F975305B441
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 16:12:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 383622FE048;
-	Fri, 23 Jan 2026 16:12:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4BC73016FB;
+	Fri, 23 Jan 2026 16:12:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="sLwVHkid"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="AN7MdFMl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 123C3225788;
-	Fri, 23 Jan 2026 16:12:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 452273090F5
+	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 16:12:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769184763; cv=none; b=hR30cy1CvIjGNQBNeLQyKmcMhTCKHL7f1dvPNzPF1TOo/4MICTad8jKvSNsua5kupNlxZk7p8jmYVcD2LBN2YDCtDB7n+a04OwY5bpQbDTWgt4MSjmH0WK4za4IePsIUaNh0ycpzbVztaFgJGCp5StVfIqoGxZW+Ebz5GhmWLpk=
+	t=1769184765; cv=none; b=e9YIau/EsYA1BgipFJrbfcB23eQKbMqKY20vo//te9N3n5C/3vxePqLTYk3j4rz4KDn+aimoM2pPukD24rHGd50b5tpnbExhxkGxrFDJqa7ACDyNbwSXNWE+KGchdbpstpkgmbSSH0Y0PcEb/vwNlJfQMeNYbq0FEgFx/FYjikw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769184763; c=relaxed/simple;
-	bh=0zIFnLQkrNv1RDeV/OGwROGYLBJyPuLw2Z2up66C6SY=;
+	s=arc-20240116; t=1769184765; c=relaxed/simple;
+	bh=yGejKaZh5ByrBfXLcr2NmrBBEetDse4CwlTbHeXyB7s=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=O63OTjhg5opl/OaveFqSKTGBHh3G6/Bmp1rkFgPAIBbk2lrkTEoynpzrGWdg1KfHdb+XITatB9ih6BkxIyXzpgLe/Z7vrLQpH2RM7GKj5KG6AH2xEb618LG0Kk4G5cdgmkL+8jU90ZGY51hN7imvQFOBCvAYrLUxv5Kd/WCjPfQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=sLwVHkid; arc=none smtp.client-ip=185.246.85.4
+	 In-Reply-To:To:Cc; b=NEaHsO6n5ONsl9HLxF8Of/WGpojT1z7vawNc3n5EnJF8yfcvcWToIWHwIagN20kvayI1TgwA9DJztqWadAWfpvErVVudNb5znJmvcWy/NFJ1Fp6ftiF8NBYplI+zRMm9aAE4bcJCMsH2jEXXAUheT5y8q/gFDIwKSgdtjkqz6Mw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=AN7MdFMl; arc=none smtp.client-ip=185.246.85.4
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id B3EC44E42223;
-	Fri, 23 Jan 2026 16:12:39 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id F05024E42224;
+	Fri, 23 Jan 2026 16:12:42 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 87F756070A;
-	Fri, 23 Jan 2026 16:12:39 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 80B5E119A87A9;
-	Fri, 23 Jan 2026 17:12:34 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id C3A1D6070A;
+	Fri, 23 Jan 2026 16:12:42 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 63782119A87A7;
+	Fri, 23 Jan 2026 17:12:38 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1769184757; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1769184761; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=O0e7oK0+DtrdeS2mjGJxW+Ios+Q8mp3j2SQs5EO70xg=;
-	b=sLwVHkidiHIDfZuSGh2sRDPCpneLh4ZvKNK8EJrcwXsFqE6lVHYTRzYTI4fE/+CwJmhTfr
-	bzXTjSu2Ru4YgqLmubEcynDKIsaXX1eTPnaJFpvPFh12oMSniTn5OkWz6Fc2wH5V63ROao
-	tHD55DhHjB1cAdamR1ytMTVrowVFnHaMflrWFNBjzjYGjjOnLbxsFlRZ0a9BbyErMKxeWg
-	cl2SkR914fIDMVofHcO0TQBHRChiA8gAwhQzckJ1iYaSiz2AqEiIe8+n5bAGnXZP7mGd4M
-	lRQnD3Aep1tJnhma5Rx+J9eV9SV3i2fk9pxkKP/biUUnHjvo5QsOSFJ6/nySbA==
+	bh=9pRdDo0hFTS055NfI0T4ilJaSpXgnD1Q6tcrd1hCPuE=;
+	b=AN7MdFMlbp5FJEZoN2mi0kvDp8vZlv9JdtgkIeBUDR/DWaiOg0D81F1XIu3lU4j/zFPSaP
+	9KtvghPVLbiUDAnaToy4poSDDba/4DouOVkl3w6X7vANZubSyEvmyrrrx7TN59pUdVIeWr
+	a4cxy2ef4Ne1d7yaYYZwM6TqFq/o9o8bQsIm9uycNrfc3h9AgVyh4OAmVKmF/0jrngw9WH
+	NlPm3DHQIjtoOD/TuBVMcRZZ+m5aph1Ef0eU091IPyj1z5crzszAGTjz7zV/+N/P/DpfL6
+	VS0qoqj93y5l5A1uRf1TUCPwDUsa4EQAVI1r176mAZyWxYWeGB+OQ/FLYw0p5w==
 From: "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>
-Date: Fri, 23 Jan 2026 17:12:19 +0100
-Subject: [PATCH v5 01/25] dt-bindings: display: tilcdc: Convert to DT
- schema
+Date: Fri, 23 Jan 2026 17:12:20 +0100
+Subject: [PATCH v5 02/25] dt-bindings: display: tilcdc: Mark panel binding
+ as deprecated
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,7 +63,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260123-feature_tilcdc-v5-1-5a44d2aa3f6f@bootlin.com>
+Message-Id: <20260123-feature_tilcdc-v5-2-5a44d2aa3f6f@bootlin.com>
 References: <20260123-feature_tilcdc-v5-0-5a44d2aa3f6f@bootlin.com>
 In-Reply-To: <20260123-feature_tilcdc-v5-0-5a44d2aa3f6f@bootlin.com>
 To: Jyri Sarha <jyri.sarha@iki.fi>, 
@@ -96,20 +96,20 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259045-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-259046-lists,devicetree=lfdr.de];
 	FREEMAIL_TO(0.00)[iki.fi,ideasonboard.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,armlinux.org.uk,bgdev.pl,atomide.com,intel.com,linaro.org,kwiboo.se];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[33];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
@@ -120,218 +120,34 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:url,qualcomm.com:email,bootlin.com:email,bootlin.com:dkim,bootlin.com:mid,4830e000:email,devicetree.org:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: AFD237830B
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,bootlin.com:email,bootlin.com:dkim,bootlin.com:mid,ti.com:url]
+X-Rspamd-Queue-Id: 9D0B07842F
 X-Rspamd-Action: no action
 
-Convert the device tree binding documentation for tilcdc
-from plain text to DT binding schema.
+Mark the ti,tilcdc,panel binding as deprecated in the documentation.
+This legacy binding should no longer be used for new designs. Users
+should migrate to the standard DRM panel bindings instead.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 Signed-off-by: Kory Maincent (TI.com) <kory.maincent@bootlin.com>
 ---
-Change in v3:
-- Rename binding file to ti,am33xx-tilcdc.yaml.
-- Use generic node name and drop unused label.
----
- .../bindings/display/tilcdc/ti,am33xx-tilcdc.yaml  | 100 +++++++++++++++++++++
- .../devicetree/bindings/display/tilcdc/tilcdc.txt  |  82 -----------------
- 2 files changed, 100 insertions(+), 82 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/display/tilcdc/ti,am33xx-tilcdc.yaml b/Documentation/devicetree/bindings/display/tilcdc/ti,am33xx-tilcdc.yaml
-new file mode 100644
-index 0000000000000..eb0ebb678fa87
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/tilcdc/ti,am33xx-tilcdc.yaml
-@@ -0,0 +1,100 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright 2025 Bootlin
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/tilcdc/ti,am33xx-tilcdc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: TI LCD Controller, found on AM335x, DA850, AM18x and OMAP-L138
-+
-+maintainers:
-+  - Kory Maincent <kory.maincent@bootlin.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,am33xx-tilcdc
-+      - ti,da850-tilcdc
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  port:
-+    $ref: /schemas/graph.yaml#/properties/port
-+
-+  ti,hwmods:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description:
-+      Name of the hwmod associated to the LCDC
-+
-+  max-bandwidth:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      The maximum pixels per second that the memory interface / lcd
-+      controller combination can sustain
-+    # maximum: 2048*2048*60
-+    maximum: 251658240
-+
-+  max-width:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      The maximum horizontal pixel width supported by the lcd controller.
-+    maximum: 2048
-+
-+  max-pixelclock:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      The maximum pixel clock that can be supported by the lcd controller
-+      in KHz.
-+
-+  blue-and-red-wiring:
-+    enum: [straight, crossed]
-+    description:
-+      This property deals with the LCDC revision 2 (found on AM335x)
-+      color errata [1].
-+       - "straight" indicates normal wiring that supports RGB565,
-+         BGR888, and XBGR8888 color formats.
-+       - "crossed" indicates wiring that has blue and red wires
-+         crossed. This setup supports BGR565, RGB888 and XRGB8888
-+         formats.
-+       - If the property is not present or its value is not recognized
-+         the legacy mode is assumed. This configuration supports RGB565,
-+         RGB888 and XRGB8888 formats. However, depending on wiring, the red
-+         and blue colors are swapped in either 16 or 24-bit color modes.
-+
-+       [1] There is an errata about AM335x color wiring. For 16-bit color
-+       mode the wires work as they should (LCD_DATA[0:4] is for Blue[3:7]),
-+       but for 24 bit color modes the wiring of blue and red components is
-+       crossed and LCD_DATA[0:4] is for Red[3:7] and LCD_DATA[11:15] is
-+       for Blue[3-7]. For more details see section 3.1.1 in AM335x
-+       Silicon Errata
-+       https://www.ti.com/general/docs/lit/getliterature.tsp?baseLiteratureNumber=sprz360
-+
-+required:
-+  - compatible
-+  - interrupts
-+  - reg
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    display-controller@4830e000 {
-+        compatible = "ti,am33xx-tilcdc";
-+        reg = <0x4830e000 0x1000>;
-+        interrupt-parent = <&intc>;
-+        interrupts = <36>;
-+        ti,hwmods = "lcdc";
-+
-+        blue-and-red-wiring = "crossed";
-+
-+        port {
-+            endpoint {
-+                remote-endpoint = <&hdmi_0>;
-+            };
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/display/tilcdc/tilcdc.txt b/Documentation/devicetree/bindings/display/tilcdc/tilcdc.txt
-deleted file mode 100644
-index 3b3d0bbfcfff4..0000000000000
---- a/Documentation/devicetree/bindings/display/tilcdc/tilcdc.txt
-+++ /dev/null
-@@ -1,82 +0,0 @@
--Device-Tree bindings for tilcdc DRM driver
--
--Required properties:
-- - compatible: value should be one of the following:
--    - "ti,am33xx-tilcdc" for AM335x based boards
--    - "ti,da850-tilcdc" for DA850/AM18x/OMAP-L138 based boards
-- - interrupts: the interrupt number
-- - reg: base address and size of the LCDC device
--
--Recommended properties:
-- - ti,hwmods: Name of the hwmod associated to the LCDC
--
--Optional properties:
-- - max-bandwidth: The maximum pixels per second that the memory
--   interface / lcd controller combination can sustain
-- - max-width: The maximum horizontal pixel width supported by
--   the lcd controller.
-- - max-pixelclock: The maximum pixel clock that can be supported
--   by the lcd controller in KHz.
-- - blue-and-red-wiring: Recognized values "straight" or "crossed".
--   This property deals with the LCDC revision 2 (found on AM335x)
--   color errata [1].
--    - "straight" indicates normal wiring that supports RGB565,
--      BGR888, and XBGR8888 color formats.
--    - "crossed" indicates wiring that has blue and red wires
--      crossed. This setup supports BGR565, RGB888 and XRGB8888
--      formats.
--    - If the property is not present or its value is not recognized
--      the legacy mode is assumed. This configuration supports RGB565,
--      RGB888 and XRGB8888 formats. However, depending on wiring, the red
--      and blue colors are swapped in either 16 or 24-bit color modes.
--
--Optional nodes:
--
-- - port/ports: to describe a connection to an external encoder. The
--   binding follows Documentation/devicetree/bindings/graph.txt and
--   supports a single port with a single endpoint.
--
-- - See also Documentation/devicetree/bindings/display/tilcdc/panel.txt and
--   Documentation/devicetree/bindings/display/bridge/ti,tfp410.yaml for connecting
--   tfp410 DVI encoder or lcd panel to lcdc
--
--[1] There is an errata about AM335x color wiring. For 16-bit color mode
--    the wires work as they should (LCD_DATA[0:4] is for Blue[3:7]),
--    but for 24 bit color modes the wiring of blue and red components is
--    crossed and LCD_DATA[0:4] is for Red[3:7] and LCD_DATA[11:15] is
--    for Blue[3-7]. For more details see section 3.1.1 in AM335x
--    Silicon Errata:
--    https://www.ti.com/general/docs/lit/getliterature.tsp?baseLiteratureNumber=sprz360
--
--Example:
--
--	fb: fb@4830e000 {
--		compatible = "ti,am33xx-tilcdc", "ti,da850-tilcdc";
--		reg = <0x4830e000 0x1000>;
--		interrupt-parent = <&intc>;
--		interrupts = <36>;
--		ti,hwmods = "lcdc";
--
--		blue-and-red-wiring = "crossed";
--
--		port {
--			lcdc_0: endpoint {
--				remote-endpoint = <&hdmi_0>;
--			};
--		};
--	};
--
--	tda19988: tda19988 {
--		compatible = "nxp,tda998x";
--		reg = <0x70>;
--
--		pinctrl-names = "default", "off";
--		pinctrl-0 = <&nxp_hdmi_bonelt_pins>;
--		pinctrl-1 = <&nxp_hdmi_bonelt_off_pins>;
--
--		port {
--			hdmi_0: endpoint {
--				remote-endpoint = <&lcdc_0>;
--			};
--		};
--	};
+Change in v2:
+- New patch
+---
+ Documentation/devicetree/bindings/display/tilcdc/panel.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/display/tilcdc/panel.txt b/Documentation/devicetree/bindings/display/tilcdc/panel.txt
+index 808216310ea27..b973174d704ed 100644
+--- a/Documentation/devicetree/bindings/display/tilcdc/panel.txt
++++ b/Documentation/devicetree/bindings/display/tilcdc/panel.txt
+@@ -1,4 +1,5 @@
+ Device-Tree bindings for tilcdc DRM generic panel output driver
++This binding is deprecated and should not be used.
+ 
+ Required properties:
+  - compatible: value should be "ti,tilcdc,panel".
 
 -- 
 2.43.0
