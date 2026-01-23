@@ -1,149 +1,207 @@
-Return-Path: <devicetree+bounces-258715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258717-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SPH0NRUNc2ncrwAAu9opvQ
-	(envelope-from <devicetree+bounces-258715-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 06:54:29 +0100
+	id UKHCLUANc2ncrwAAu9opvQ
+	(envelope-from <devicetree+bounces-258717-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 06:55:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 448CF70953
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 06:54:29 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74B4770982
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 06:55:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E94E13008741
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 05:54:27 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id DD476300748A
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 05:55:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A4033915AE;
-	Fri, 23 Jan 2026 05:54:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84F2A39F333;
+	Fri, 23 Jan 2026 05:55:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gondor.apana.org.au header.i=@gondor.apana.org.au header.b="LZqoBSxj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YjKoG/WC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from abb.hmeau.com (abb.hmeau.com [180.181.231.80])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CDD9363C7A;
-	Fri, 23 Jan 2026 05:54:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=180.181.231.80
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4A5639DB05;
+	Fri, 23 Jan 2026 05:55:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769147664; cv=none; b=cnHq/f3DgUfOu2onSDx1Cew1tqfJnRMTOFO0/PLRMNyHddJs/JXQrb1AfwlfCuPnBfthdSbvbW0lBU0pGCvyWcozFxLX3f9gGNgNKVgY3i798+zF5eH9MLqegU8j+/SrY9AgXh1fYcNE7OWGrcLQntvZVgbAh3IR1SuNpSh+HH0=
+	t=1769147707; cv=none; b=uWP8Bj0aIi+38JNCcdL4D8OFqYHxdw7zrgYBvW8Jx725l6zI4n5zrcjRgV84EvB/CUXdlXva1RMfRwF9Q6R3syDwGOxb0iSqVnNdIGlaugpWF2SMrY9mpaTV8+mIHN4KS9miKgWulv9uqjlB3WeD4Fu8JhXrsJCzMKkhAzTBMTY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769147664; c=relaxed/simple;
-	bh=x9losJsaZs14xXgmJTxnciBeHzxV8JyXO+rUMMs+97M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jlqc937UCM4gZeqRssmyZxfkHV7NP/hqOHoYRFmurR0BzbHCt8xCKAYNTPPxUNgxk2rb3c1k7UIDBdddjpvZCW6brrhpkHf3fv0qG8n6FmqHX9rRuRwCQ7PbKcNsl0Vavh/FaQhUcwBwlzlfxy8nBbD+q9bJp3OMpzMhFvw7VgU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; dkim=pass (2048-bit key) header.d=gondor.apana.org.au header.i=@gondor.apana.org.au header.b=LZqoBSxj; arc=none smtp.client-ip=180.181.231.80
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=gondor.apana.org.au; s=h01; h=In-Reply-To:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:cc:to:subject:message-id:date:
-	from:content-type:reply-to; bh=s9Yo3/ql7MbFKqpUVZCOelnBMGGWc4CKq7+A5r+Gd3Q=; 
-	b=LZqoBSxjmLw6HD6QWrPdaqNVmk1MJXohNAYRDQEjzYEYO3iqK2rPZzxdPGqrS+7ZeyhablJWXR2
-	nOPCScPAXIihazyabNAbilexhMWCRulqrFmfRNKKfftG+KwvSOjxEjDxVX6nJDj9gK86NtOmm99K5
-	aHzgbJu2RIgwVZUAW34CwZEofmvrGatQESIguvfdR+bepcGtUVmiFeUQ/wLtjxa/q7PICp1gdqcjZ
-	5glNeCuEPJ8vapDXbKshGMY1aAKfgda5yOmPU7MK4mSFrAcZon6TxWBsaLjs77+GWQYXHqSq2Gp4R
-	P+fg4si2+aAOr1EEdQ2D57/7U1CoKu/7ayZA==;
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-	by formenos.hmeau.com with smtp (Exim 4.96 #2 (Debian))
-	id 1vjA7T-001VLc-2x;
-	Fri, 23 Jan 2026 13:54:08 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Fri, 23 Jan 2026 13:54:07 +0800
-Date: Fri, 23 Jan 2026 13:54:07 +0800
-From: Herbert Xu <herbert@gondor.apana.org.au>
-To: Harsh Jain <h.jain@amd.com>
-Cc: davem@davemloft.net, linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, mounika.botcha@amd.com,
-	sarat.chand.savitala@amd.com, michal.simek@amd.com,
-	linux-arm-kernel@lists.infradead.org, jay.buddhabhatti@amd.com
-Subject: Re: [PATCH v2 00/14] crypto: zynqmp-aes-gcm: Bug fixes and aes-gcm
- support for Versal
-Message-ID: <aXMM_zaGqzlNMtL7@gondor.apana.org.au>
-References: <20251220155905.346790-1-h.jain@amd.com>
+	s=arc-20240116; t=1769147707; c=relaxed/simple;
+	bh=zHQ4wCU8bGYwasn2b503Clo2bqnsQewMVrK57mvYXGM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=HptiO8NIBsAF0stxsDLq7Ns8gArP2+tEL7iOiGharL27+sXe2LHSskAv472fEfgG3fw1J+zccwX6jyy2M2KxtrUkCr2J3lWqjKefLbm8noWoAFmUaJ1EsuRjTpP7GY+GBr38lEhRglkCIYzBZl6l1146iujtJnSE2WFwe4cveEI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YjKoG/WC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id CC7DBC19422;
+	Fri, 23 Jan 2026 05:55:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769147705;
+	bh=zHQ4wCU8bGYwasn2b503Clo2bqnsQewMVrK57mvYXGM=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=YjKoG/WCa9QqRsjcCOyjCOBIKYLaYaRZPAR1b+Z8suyQZktMU17LeTj9ed7QK6nGI
+	 diNr/1960EhDV37KaeefTtG0YJq706242mgLQQzQwDsHJ9rGRcIdxuValSkGLLJ2Fc
+	 BlrvtpP8n/V+uCzokJdqXbD9O26/xrwdgjqMznvhSPnFFCypEz0mH5I9APuJKxKPwZ
+	 A6UDQJGIxTwqedEy68PtRvQ9DoYxv8bCpFNRkcVRM3yhSgkiHDZemjhY+iCU52PrNA
+	 HHnCo8DXbf7GiTJRJDcNN0xAIAaaiZJ+4PwBNfxFVSuQBl4ugkf0/zPs9BrcFGaNrU
+	 MQnfKQrSRQ5Bw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C08CCD6CFBD;
+	Fri, 23 Jan 2026 05:55:05 +0000 (UTC)
+From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
+Subject: [PATCH v6 0/5] clk: amlogic: Add A5 SoC PLLs and Peripheral clock
+Date: Fri, 23 Jan 2026 13:54:54 +0800
+Message-Id: <20260123-a5-clk-v6-0-6d3bbf0ec1ea@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251220155905.346790-1-h.jain@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAC4Nc2kC/2XM3QrCMAyG4VuRHltJsrasHnkf4kHMsln8mWwyF
+ Nm9W4VNxMMv5HmfptcuaW/Wi6fpdEh9ai95hOXCyIEvjdpU5W0IyEFEtOytnI628OIiy75wiiY
+ /Xzut0/0T2u7yPqT+1naPT3fA93VKuCkxoAXrVUlcjXsoZcPnU9skWUl7Nu/IQDNEJJghZZh3G
+ Qg1Bqz+oZugR6Byhi5DDSQMzEqu+Id+ggEQvtBnGDnEWlBrAP6F4zi+AMeM3k1JAQAA
+To: Chuan Liu <chuan.liu@amlogic.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1769147703; l=3892;
+ i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
+ bh=zHQ4wCU8bGYwasn2b503Clo2bqnsQewMVrK57mvYXGM=;
+ b=rLw2OixInyvP6GpRqMjLEO0pWPScYdXXlias5U6jFnZ0M8x6/3iQvZ6SGzvJJKfZeloPaBhtB
+ UYtpJtH9qK7D4DyOypRNPByMZoAmm6ithjyi14DvXVS9RqRLfCY5Zse
+X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
+ pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
+X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
+ auth_id=203
+X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
+Reply-To: chuan.liu@amlogic.com
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.16 / 15.00];
+	MID_RHS_MATCH_TO(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[apana.org.au,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gondor.apana.org.au:s=h01];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[gondor.apana.org.au:+];
-	TAGGED_FROM(0.00)[bounces-258715-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-258717-lists,devicetree=lfdr.de,chuan.liu.amlogic.com];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[amlogic.com,baylibre.com,kernel.org,linaro.org,googlemail.com];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[herbert@gondor.apana.org.au,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 448CF70953
+	TO_DN_SOME(0.00)[];
+	HAS_REPLYTO(0.00)[chuan.liu@amlogic.com]
+X-Rspamd-Queue-Id: 74B4770982
 X-Rspamd-Action: no action
 
-On Sat, Dec 20, 2025 at 09:28:51PM +0530, Harsh Jain wrote:
-> This series includes bug fixes and adds aes-gcm support for Versal device.
-> It is based on cryptodev-2.6 tree.
-> 
-> Changes in V2:
-> - Rebase series to cryptodev-2.6
-> - Register H/W keys with gcm(paes) 
-> 
-> Harsh Jain (14):
->   firmware: zynqmp: Move crypto API's to separate file
->   crypto: zynqmp-aes-gcm: cleanup: Remove union from zynqmp_aead_drv_ctx
->   firmware: zynqmp: Add helper API to self discovery the device
->   dt-bindings: crypto: Mark zynqmp-aes as Deprecated
->   crypto: zynqmp-aes-gcm: Update probe to self discover the device
->   crypto: zynqmp-aes-gcm: Return linux error code instead of firmware
->     error code
->   crypto: zynqmp-aes-gcm: Avoid Encrypt request to fallback for authsize
->     < 16
->   crypto: zynqmp-aes-gcm: Avoid submitting fallback requests to engine
->   crypto: zynqmp-aes-gcm: Register H/W key support with paes
->   crypto: xilinx: Replace zynqmp prefix with xilinx
->   crypto: zynqmp-aes-gcm: Change coherent DMA to streaming DMA API
->   firmware: xilinx: Add firmware API's to support aes-gcm in Versal
->     device
->   crypto: xilinx: cleanup: Remove un-necessary typecast operation
->   crypto: xilinx: Add gcm(aes) support for AMD/Xilinx Versal device
-> 
->  .../bindings/crypto/xlnx,zynqmp-aes.yaml      |    2 +
->  .../firmware/xilinx/xlnx,zynqmp-firmware.yaml |    1 +
->  drivers/crypto/xilinx/zynqmp-aes-gcm.c        | 1007 +++++++++++++----
->  drivers/firmware/xilinx/Makefile              |    2 +-
->  drivers/firmware/xilinx/zynqmp-crypto.c       |  239 ++++
->  drivers/firmware/xilinx/zynqmp.c              |   49 -
->  include/linux/firmware/xlnx-zynqmp-crypto.h   |  119 ++
->  include/linux/firmware/xlnx-zynqmp.h          |   14 +-
->  8 files changed, 1155 insertions(+), 278 deletions(-)
->  create mode 100644 drivers/firmware/xilinx/zynqmp-crypto.c
->  create mode 100644 include/linux/firmware/xlnx-zynqmp-crypto.h
-> 
-> -- 
-> 2.49.1
+The patchset adds support for the peripheral and PLL clock controller
+on the Amlogic A5 SoC family, such as A113X2.
 
-All applied.  Thanks.
+To make it easier for the maintainer to manage the patches, the
+DTS-related commits have been removed from this version of the
+patchset.
+
+For the convenience of the maintainer and reviewers, the DTS patches
+have been pushed to github separately for reference [1], [2], [3], and
+they will be submitted upstream separately after this patchset is
+merged. I hope this does not cause any additional inconvenience.
+
+[1] https://github.com/chuan-aml/linux/commit/edb8fa5e13ca35b37363fe08d8067511613968cd
+[2] https://github.com/chuan-aml/linux/commit/c600dadb45f581e200991dd0beacf3575ff971f1
+[3] https://github.com/chuan-aml/linux/commit/7d373cf78e22ee767a5232010d0a0568e7228086
+
+Co-developed-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
+
+---
+Changes in v6:
+- Use unified macros for sys_clk/axi_clk.
+- Remove DTS changes to ease maintainer patch management.
+- Link to v5: https://lore.kernel.org/r/20260108-a5-clk-v5-0-9a69fc1ef00a@amlogic.com
+
+Changes in v5:
+- Add “Co-developed-by” tag for Xianwei.
+- Change rtc_clk flags to CLK_SET_RATE_NO_REPARENT.
+- Optimize the macro definitions for clock configuration.
+- Unified naming of clock parent related variables.
+- Link to v4: https://lore.kernel.org/r/20251028-a5-clk-v4-0-e62ca0aae243@amlogic.com
+
+Changes in v4:
+- dt-binding for peripheral clocks (kept Rob’s 'Reviewed-by' here):
+  - Added optional clock source rtc pll.
+  - Renamed rtc_clk’s clkid to better reflect its function.
+- PLL/Clock driver:
+  - Adapted to Jerome’s refactored driver interface, naming
+conventions, and macros.
+  - Updated related CONFIG entries in Kconfig.
+- Added dts patch of PLL/Clock.
+- Link to v3: https://lore.kernel.org/r/20250103-a5-clk-v3-0-a207ce83b9e9@amlogic.com
+
+Changes in v3:
+- Rename xtal_24m to xtal, and modify some description of Kconfig.
+- Drop some comment of PLL source code.
+- Move definition of A5_CLK_GATE_FW frome common code into A5 peripheral source code.
+- Use hw instead of name to describe parent_data.
+- Making SCMI binding the first to submit.
+- Link to v2: https://lore.kernel.org/r/20241120-a5-clk-v2-0-1208621e961d@amlogic.com
+
+Changes in v2:
+- Move some sys clock and axi clock from peripheral to scmi impletement.
+- Remove  ARM_SCMI_PROTOCOL in Kconfig and correct name A5 but not A4.
+- Add two optional clock inputs for the peripheral(ddr pll and clk-measure)
+- Make some changes and adjustments according to suggestions.
+- Link to v1: https://lore.kernel.org/r/20240914-a5-clk-v1-0-5ee2c4f1b08c@amlogic.com
+
+---
+Chuan Liu (5):
+      dt-bindings: clock: Add Amlogic A5 SCMI clock controller support
+      dt-bindings: clock: Add Amlogic A5 PLL clock controller
+      dt-bindings: clock: Add Amlogic A5 peripherals clock controller
+      clk: amlogic: Add A5 PLL clock controller driver
+      clk: amlogic: Add A5 clock peripherals controller driver
+
+ .../clock/amlogic,a5-peripherals-clkc.yaml         | 134 ++++
+ .../bindings/clock/amlogic,a5-pll-clkc.yaml        |  63 ++
+ drivers/clk/meson/Kconfig                          |  27 +
+ drivers/clk/meson/Makefile                         |   2 +
+ drivers/clk/meson/a5-peripherals.c                 | 781 +++++++++++++++++++++
+ drivers/clk/meson/a5-pll.c                         | 478 +++++++++++++
+ .../clock/amlogic,a5-peripherals-clkc.h            | 132 ++++
+ include/dt-bindings/clock/amlogic,a5-pll-clkc.h    |  24 +
+ include/dt-bindings/clock/amlogic,a5-scmi-clkc.h   |  44 ++
+ 9 files changed, 1685 insertions(+)
+---
+base-commit: f0b9d8eb98dfee8d00419aa07543bdc2c1a44fb1
+change-id: 20240911-a5-clk-35c49acb34e1
+
+Best regards,
 -- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+Chuan Liu <chuan.liu@amlogic.com>
+
+
 
