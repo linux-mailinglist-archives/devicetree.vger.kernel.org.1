@@ -1,163 +1,185 @@
-Return-Path: <devicetree+bounces-258850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258884-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cPWrB4pFc2mHuQAAu9opvQ
-	(envelope-from <devicetree+bounces-258850-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:55:22 +0100
+	id gLyRDqtNc2lDugAAu9opvQ
+	(envelope-from <devicetree+bounces-258884-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 11:30:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C4D973B8B
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:55:21 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id E03E074578
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 11:30:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AF1A43036D79
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 09:53:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 954763017070
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:29:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0316737648D;
-	Fri, 23 Jan 2026 09:53:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B669366067;
+	Fri, 23 Jan 2026 10:29:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b="FEab32P+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [4.193.249.245])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F87B33F8A2;
-	Fri, 23 Jan 2026 09:52:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=4.193.249.245
+Received: from mail-m4921.qiye.163.com (mail-m4921.qiye.163.com [45.254.49.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DFA221ABBB;
+	Fri, 23 Jan 2026 10:29:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769161982; cv=none; b=bP+IytFAwopJ4Cu9QURAmIeo/VAWPNJuuq1MNHrPmMRJwnJnnrj1yrWK5THvKoU1GvgTnK3n/Y7ySK1HyK2dmQKTOoof//XKWW5pRI1Y9amNeerQ+nY5w0+yt2Lw6O6n/P9abJ4/CYUAiRMeo3v82QcB9zdA/xDWWLrF6PNqDn4=
+	t=1769164167; cv=none; b=K6mDnlqKSJcc8KMt8VbLh5xHfuFaaVFoz0kK3geD04/Fkt2kNuQH8GpD9Sd28oauIDD5ts0v0FPcrpOT7gWIcYCooXrMkuxaA20ZlLHnoNAy48RRXG7ZuSezKEpnec7W74TCHD9/l+8D4zZ4dkQuihsOd+Vpg2+hlYRNxLykhbU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769161982; c=relaxed/simple;
-	bh=cCxEDZ1fr3n/f4NkfiMVSfrHEnYkdcSQlaoo5wWCwKI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=DSX4awDbCgT2PY9inYxRIhMRHW5LnF+Wf5CyGCUPuu9sKY0jxDPeTnTiUbQQ6Tab2SIJFCM14k0vGISaAzXkJSxo8GyRu4JApCMc4T66R6QPxNKizbMntJP6krKOfyaTEMtxUZ559Jy89dTfXr0FqtTVXfaiaXPsL6IcFttvNeM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=4.193.249.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from lizhi2$eswincomputing.com ( [10.11.96.26] ) by
- ajax-webmail-app1 (Coremail) ; Fri, 23 Jan 2026 17:52:28 +0800 (GMT+08:00)
-Date: Fri, 23 Jan 2026 17:52:28 +0800 (GMT+08:00)
-X-CM-HeaderCharset: UTF-8
-From: =?UTF-8?B?5p2O5b+X?= <lizhi2@eswincomputing.com>
-To: "Bo Gan" <ganboing@gmail.com>
-Cc: "Andrew Lunn" <andrew@lunn.ch>, devicetree@vger.kernel.org,
-	andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, netdev@vger.kernel.org, pabeni@redhat.com,
-	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
-	rmk+kernel@armlinux.org.uk, linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	ningyu@eswincomputing.com, linmin@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com, weishangjuan@eswincomputing.com
-Subject: Re: Re: [PATCH v1 1/2] dt-bindings: ethernet: eswin: add clock
- sampling control
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
- 20241203(6b039d88) Copyright (c) 2002-2026 www.mailtech.cn
- mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
-In-Reply-To: <abf12a3f-9cdd-472d-a02e-af4da594b84f@gmail.com>
-References: <20260109080601.1262-1-lizhi2@eswincomputing.com>
- <20260109080859.1285-1-lizhi2@eswincomputing.com>
- <00b7b42f-2f9d-402a-82f0-21641ea894a1@lunn.ch>
- <308b676.2d03.19bb0caebed.Coremail.lizhi2@eswincomputing.com>
- <59cec617-0189-4dc3-bc3f-6346155a62ae@lunn.ch>
- <4e2a55e7.3662.19be8cb9c3c.Coremail.lizhi2@eswincomputing.com>
- <c5c0bfdb-316d-4796-afa0-f6f018ceb414@lunn.ch>
- <abf12a3f-9cdd-472d-a02e-af4da594b84f@gmail.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1769164167; c=relaxed/simple;
+	bh=tpeh31nmEUxZ3JAN+LltrnTkA8QXHD2f31rI6Qz/9Mo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=PnUg3pBXw4zd27aixQo4mvFKM1QXxYbGIdAP2j4qpC5Jge/MJ8/JbgAIJ2N25sc0sm3tsl0vtFXeYfU4m4HZYHDNOX9IC30XHxu5EVaIDRjGkUZPnqdaWCaknQCvz1Kg/uKX9O/jgII4+WkQNilKIvxmtNY8lZD6k6DE4kndw/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com; spf=pass smtp.mailfrom=thundersoft.com; dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b=FEab32P+; arc=none smtp.client-ip=45.254.49.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thundersoft.com
+Received: from albert-OptiPlex-7080.. (unknown [112.65.126.162])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 31bc9a75e;
+	Fri, 23 Jan 2026 17:53:50 +0800 (GMT+08:00)
+From: Albert Yang <yangzh0906@thundersoft.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ge Gordon <gordon.ge@bst.ai>,
+	Arnd Bergmann <arnd@arndb.de>
+Cc: BST Linux Kernel Upstream Group <bst-upstream@bstai.top>,
+	linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Albert Yang <yangzh0906@thundersoft.com>
+Subject: [PATCH v5 0/6] mmc: add support for BST C1200 SDHCI controller
+Date: Fri, 23 Jan 2026 17:53:36 +0800
+Message-ID: <20260123095342.272505-1-yangzh0906@thundersoft.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <29b8c4d2.3704.19bea44fe53.Coremail.lizhi2@eswincomputing.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:TAJkCgCn+2zcRHNpGxgFAA--.1620W
-X-CM-SenderInfo: xol2xx2s6h245lqf0zpsxwx03jof0z/1tbiAQEQDGlyUQwdaAABsu
-X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
-	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
-	daVFxhVjvjDU=
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9bea463c2709cckunm2b675df11c3d86
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaSEpCVhhMGhpNShhPQh1OT1YVFAkWGhdVEwETFh
+	oSFyQUDg9ZV1kYEgtZQVlKSklVTU5VSklNVUpNSVlXWRYaDxIVHRRZQVlPS0hVSktJT09PSFVKS0
+	tVSkJLS1kG
+DKIM-Signature: a=rsa-sha256;
+	b=FEab32P+zcZXZFCMSdiOH2kEhavXVqtATqWfMdbsLa6WtU+tCRK7IPsRE4ZRAPHVYjRt6HVq0//JaBoziCAsfatIhgmD+UOPKYxxOhpXa4fjRDpD5d7VeTlh2EeAn4etETjKyxTjktIqdl373jo1nWddkLB/v+culGDEinl2SCw=; c=relaxed/relaxed; s=default; d=thundersoft.com; v=1;
+	bh=R2dnjTDdAxtFe1SNVIGyD//Zr6oIkw6elS/2GxgPMzM=;
+	h=date:mime-version:subject:message-id:from;
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.14 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[thundersoft.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[thundersoft.com:s=default];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[eswincomputing.com];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258850-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-258884-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[lunn.ch,vger.kernel.org,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,armlinux.org.uk,st-md-mailman.stormreply.com,lists.infradead.org,eswincomputing.com,einfochips.com];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lizhi2@eswincomputing.com,devicetree@vger.kernel.org];
-	HAS_X_PRIO_THREE(0.00)[3];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
-	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[infradead.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,stormreply.com:email,armlinux.org.uk:email,davemloft.net:email,st.com:email]
-X-Rspamd-Queue-Id: 9C4D973B8B
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[yangzh0906@thundersoft.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[thundersoft.com:+];
+	PRECEDENCE_BULK(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: E03E074578
 X-Rspamd-Action: no action
 
-CgoKPiAtLS0tLeWOn+Wni+mCruS7ti0tLS0tCj4g5Y+R5Lu25Lq6OiAiQm8gR2FuIiA8Z2FuYm9p
-bmdAZ21haWwuY29tPgo+IOWPkemAgeaXtumXtDoyMDI2LTAxLTIzIDE1OjM5OjI5ICjmmJ/mnJ/k
-upQpCj4g5pS25Lu25Lq6OiAiQW5kcmV3IEx1bm4iIDxhbmRyZXdAbHVubi5jaD4sIOadjuW/lyA8
-bGl6aGkyQGVzd2luY29tcHV0aW5nLmNvbT4KPiDmioTpgIE6IGRldmljZXRyZWVAdmdlci5rZXJu
-ZWwub3JnLCBhbmRyZXcrbmV0ZGV2QGx1bm4uY2gsIGRhdmVtQGRhdmVtbG9mdC5uZXQsIGVkdW1h
-emV0QGdvb2dsZS5jb20sIGt1YmFAa2VybmVsLm9yZywgcm9iaEBrZXJuZWwub3JnLCBrcnprK2R0
-QGtlcm5lbC5vcmcsIGNvbm9yK2R0QGtlcm5lbC5vcmcsIG5ldGRldkB2Z2VyLmtlcm5lbC5vcmcs
-IHBhYmVuaUByZWRoYXQuY29tLCBtY29xdWVsaW4uc3RtMzJAZ21haWwuY29tLCBhbGV4YW5kcmUu
-dG9yZ3VlQGZvc3Muc3QuY29tLCBybWsra2VybmVsQGFybWxpbnV4Lm9yZy51aywgbGludXgtc3Rt
-MzJAc3QtbWQtbWFpbG1hbi5zdG9ybXJlcGx5LmNvbSwgbGludXgtYXJtLWtlcm5lbEBsaXN0cy5p
-bmZyYWRlYWQub3JnLCBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnLCBuaW5neXVAZXN3aW5j
-b21wdXRpbmcuY29tLCBsaW5taW5AZXN3aW5jb21wdXRpbmcuY29tLCBwaW5rZXNoLnZhZ2hlbGFA
-ZWluZm9jaGlwcy5jb20sIHdlaXNoYW5nanVhbkBlc3dpbmNvbXB1dGluZy5jb20KPiDkuLvpopg6
-IFJlOiBbUEFUQ0ggdjEgMS8yXSBkdC1iaW5kaW5nczogZXRoZXJuZXQ6IGVzd2luOiBhZGQgY2xv
-Y2sgc2FtcGxpbmcgY29udHJvbAo+IAo+IEhpIEFuZHJldywKPiAKPiBPbiAxLzIyLzI2IDE5OjE5
-LCBBbmRyZXcgTHVubiB3cm90ZToKPiA+Pj4gWW91IHNheSBpbnRlcm5hbC4gU28gdGhlIHNrZXcg
-aXMgZml4ZWQsIGl0IGlzIGEgcHJvcGVydHkgb2YgdGhlCj4gPj4+IHNpbGljb24/IElmIHNvLCB3
-aHkgYSBEVCBwcm9wZXJ0eT8gV2h5IG5vdCBqdXN0IGhhcmQgY29kZSBpdCBpbiB0aGUKPiA+Pj4g
-ZHJpdmVyPyBTaW5jZSBpdCBpcyBpbnRlcm5hbCwgZGlmZmVyZW50IGJvYXJkcyBzaG91bGQgbm90
-IG5lZWQgaXQgc2V0Cj4gPj4+IGRpZmZlcmVudGx5Pwo+ID4+Pgo+ID4+IFRoYW5rcyBmb3IgdGhl
-IHF1ZXN0aW9uLgo+ID4+Cj4gPj4gRUlDNzcwMCBoYXMgdHdvIEV0aGVybmV0IE1BQ3MuIE9ubHkg
-ZXRoMSBoYXMgdGhpcyBpbnRlcm5hbCBSWEMvUlhEIHNrZXcsCj4gPj4gZXRoMCBkb2VzIG5vdC4K
-PiA+Pgo+ID4+IFNvIHRoaXMgaXMgbm90IGEgY2hpcC13aWRlIGNvbnN0YW50IHRoYXQgY2FuIGJl
-IGhhcmRjb2RlZCBpbiB0aGUgZHJpdmVyLgo+ID4+IFdlIG5lZWQgYSB3YXkgdG8gZGlzdGluZ3Vp
-c2ggdGhlIHR3byBNQUMgaW5zdGFuY2VzLCB3aGljaCBpcyB3aHkgdGhpcyBpcwo+ID4+IGRlc2Ny
-aWJlZCBwZXItcG9ydCBpbiBEVFMuCj4gPiAKPiA+IEkgYXNzdW1lIHRoZSBhZGRyZXNzIG9mIHRo
-ZSBpbnRlcmZhY2UgaXMgZml4ZWQuIFNvIHlvdSBjYW4ganVzdCBrZXkKPiA+IG9mZiB0aGF0IHRv
-IGRpc3Rpbmd1aXNoIHRoZSB0d28gaW5zdGFuY2VzLgo+ID4gCj4gPiBTaW5jZSB0aGlzIGlzIGFu
-IGludGVybmFsIHByb3BlcnR5LCBub3QgYSBib2FyZCBwcm9wZXJ0eSwgaXQgaXMgbm90Cj4gPiBj
-bGVhciBpdCBhY3R1YWxseSBiZWxvbmdzIG9uIERULgo+ID4gCj4gPiAgICAgIEFuZHJldwo+IAo+
-IElNTywgdGhleSBzaG91bGQgYmUgaW4gRFQgdG8gcHJvdmlkZSBtYXhpbXVtIGZsZXhpYmlsaXR5
-LiBUaGUgU29DIC5kdHNpCj4gY2FuIHByb3ZpZGUgc29tZSBzYW5lIGRlZmF1bHRzLCBhbmQgdGhl
-IGJvYXJkIHZlbmRvciBjYW4gbGF0ZXIgb3ZlcnJpZGUKPiB0aGVtIGlmIHRoZSBtYWMvcGh5IHJl
-cXVpcmVzIGZ1cnRoZXIgdHVuaW5nLiBBcHBseWluZyBzdWNoIHR1bmluZyBieQo+IHRoZSBhZGRy
-ZXNzIG9mIE1BQyBzZWVtcyBtZXNzeSBhbmQgaXQgaGlkZXMgdGhlIHBhcmFtZXRlcnMgdXNlZCBi
-ZWhpbmQKPiBkcml2ZXIuIFRocm91Z2ggRFQsIGV2ZXJ5dGhpbmcgYmVjb21lcyByZWFsbHkgY2xl
-YXIuCj4gCj4gSSBhc3N1bWUgdGhpcyBpcyBub3QgdW5jb21tb246IEUuZy4sIHN0YXJmaXZlL2po
-NzExMDoKPiBodHRwczovL2xvcmUua2VybmVsLm9yZy9hbGwvMjAyMzA3MTQxMDQ1MjEuMTg3NTEt
-My1zYW1pbi5ndW9Ac3RhcmZpdmV0ZWNoLmNvbS8KPiAKPiBCVFcsIG5vIG5lZWQgdG8gd29ycnkg
-YWJvdXQgYmFja3dhcmQgY29tcGF0LiBFU1dJTiBoYXNuJ3QgY2hlY2tlZC1pbiBhbnkKPiBEVCBm
-b3IgZXRoIHlldC4gQXMgeW91IGFuZCBSdXNzZWxsIHNhaWQsIHRoZXkgbmVlZCB0byBkbyBpdCwg
-cHJvbnRvLgo+IApZZXMsIHRoaXMgY2FuIGJlIGhhcmRjb2RlZCBmb3IgZXRoMSwgc2ltaWxhciB0
-byB3aGF0IGlzIGRvbmUgaW4KZHdtYWMtbG9vbmdzb24xLmMuCgpIb3dldmVyLCBjb25zaWRlcmlu
-ZyBFSUM3NzAyLCB3aGljaCBpbnRlZ3JhdGVzIHR3byBFSUM3NzAwIGRpZXMgYW5kIHRodXMKaGFz
-IGZvdXIgTUFDcyBpbiB0b3RhbCwgd2UgYmVsaWV2ZSBkZXNjcmliaW5nIHRoaXMgdmlhIERUUyBp
-cyBtb3JlCmFwcHJvcHJpYXRlLiBXZSBhcmUgY3VycmVudGx5IHdvcmtpbmcgb24gdXBzdHJlYW1p
-bmcgdGhlIERUUyBzdXBwb3J0IGZvcgpFSUM3NzAyLgoKV2l0aCB0aGUgRFQgYXBwcm9hY2gsIHRo
-ZSBpbnRlcm5hbCBSWEMvUlhEIHNrZXcgY2FuIGJlIGRlc2NyaWJlZCBleHBsaWNpdGx5CmZvciBn
-bWFjMSBhbmQgZ21hYzMsIHdpdGhvdXQgcmVxdWlyaW5nIGNoYW5nZXMgdG8gZHdtYWMtZWljNzcw
-MC5jIHdoZW4KYnJpbmdpbmcgdXAgRUlDNzcwMi4KCkFzIEJvIEdhbiBhbHNvIG1lbnRpb25lZCwg
-dGhlcmUgYXJlIHZlbmRvcnMgaGFuZGxpbmcgc2ltaWxhciBpbnRlcm5hbApxdWlya3MgdGhyb3Vn
-aCBEVCBjb25maWd1cmF0aW9uLgoKLS0KTGkgWmhpCg==
+This series adds MMC/eMMC controller support for Black Sesame Technologies
+C1200 SoC. BST is a leading automotive-grade computing SoC provider focusing
+on intelligent driving, computer vision, and AI capabilities for ADAS and
+autonomous driving applications. More information: https://bst.ai
+
+== Background ==
+
+This is the MMC portion split from the original v4 series [1] following
+feedback from Arnd Bergmann [2]. The platform support (vendor-prefix,
+SoC bindings, Kconfig ARCH_BST, base DTS, defconfig ARCH_BST) has already
+been merged into Linux 6.19 through the SoC tree [3].
+
+== Series Overview ==
+
+Patch 1: dt-bindings: mmc: add binding for BST DWCMSHC SDHCI controller
+Patch 2: mmc: sdhci: allow drivers to pre-allocate bounce buffer
+Patch 3: mmc: sdhci: add Black Sesame Technologies BST C1200 controller driver
+Patch 4: arm64: dts: bst: enable eMMC controller in C1200 CDCU1.0 board
+Patch 5: arm64: defconfig: enable BST SDHCI controller
+Patch 6: MAINTAINERS: add MMC files to BST entry
+
+== Testing ==
+
+  - checkpatch.pl: PASS (all patches)
+  - dt_binding_check: PASS
+  - dtbs_check (CHECK_DTBS=y): PASS
+  - Build tested with ARCH=arm64 defconfig
+
+== Changes since v4 ==
+
+  - Split: Platform patches merged separately via SoC tree; this series is
+    MMC-only, submitted to MMC maintainers
+
+  DT binding (patch 1):
+  - Rename file from bst,dwcmshc-sdhci.yaml to bst,c1200-sdhci.yaml
+  - Fix example compatible string to match property definition
+
+  Driver (patch 3):
+  - Fix compatible string to match dt-bindings (bst,c1200-sdhci)
+  - Simplify clock divider calculation with clearer frequency range logic
+  - Add linux/bits.h and linux/bitfield.h headers
+  - Remove unused linux/ioport.h header
+  - Rename SDHCI_TUNING_COUNT to BST_TUNING_COUNT
+  - Rename BST_EMMC_CTRL_BIT2 to BST_EMMC_CTRL_RST_N
+  - Fix BST_DEFAULT_MAX_FREQ from 2MHz to 200MHz
+  - Convert kernel-doc to regular comments (per Adrian Hunter)
+  - Add sdhci_bst_free_bounce_buffer() helper (per Adrian Hunter)
+
+
+== References ==
+
+[1] v4: https://lore.kernel.org/lkml/20250923-v4-patch-final-v1-0-2283ad7cbf88@thundersoft.com/
+[2] Split: https://lore.kernel.org/lkml/09b1318e-21dc-4354-8733-866b70696295@app.fastmail.com/
+[3] Merged via soc-newsoc-6.19
+
+Albert Yang (6):
+  dt-bindings: mmc: add binding for BST DWCMSHC SDHCI controller
+  mmc: sdhci: allow drivers to pre-allocate bounce buffer
+  mmc: sdhci: add Black Sesame Technologies BST C1200 controller driver
+  arm64: dts: bst: enable eMMC controller in C1200 CDCU1.0 board
+  arm64: defconfig: enable BST SDHCI controller
+  MAINTAINERS: add MMC files to BST entry
+
+ .../bindings/mmc/bst,c1200-sdhci.yaml         |  70 +++
+ MAINTAINERS                                   |   2 +
+ .../dts/bst/bstc1200-cdcu1.0-adas_4c2g.dts    |  19 +
+ arch/arm64/boot/dts/bst/bstc1200.dtsi         |  18 +
+ arch/arm64/configs/defconfig                  |   1 +
+ drivers/mmc/host/Kconfig                      |  14 +
+ drivers/mmc/host/Makefile                     |   1 +
+ drivers/mmc/host/sdhci-of-bst.c               | 521 ++++++++++++++++++
+ drivers/mmc/host/sdhci.c                      |   7 +
+ 9 files changed, 653 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mmc/bst,c1200-sdhci.yaml
+ create mode 100644 drivers/mmc/host/sdhci-of-bst.c
+
+base-commit: 0f61b1860cc3f52aef9036d7235ed1f017632193
+-- 
+2.43.0
+
 
