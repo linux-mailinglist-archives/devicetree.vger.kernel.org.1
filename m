@@ -1,268 +1,178 @@
-Return-Path: <devicetree+bounces-258998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259000-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gEKHGr6Lc2l0xAAAu9opvQ
-	(envelope-from <devicetree+bounces-258998-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:54:54 +0100
+	id UBB4LKmMc2l0xAAAu9opvQ
+	(envelope-from <devicetree+bounces-259000-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:58:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A59B7748B
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:54:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E15B7753D
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:58:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 6419D3006FF3
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 14:54:53 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id AE6D23007BAC
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 14:58:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47A6732B9BC;
-	Fri, 23 Jan 2026 14:54:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DD3127057D;
+	Fri, 23 Jan 2026 14:58:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="BeXGK5xa"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="xagGajDE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013062.outbound.protection.outlook.com [40.107.162.62])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1CFD12D1F1;
-	Fri, 23 Jan 2026 14:54:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.62
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769180091; cv=fail; b=ZVv9pPiyj0l/oqTCQvSZCvz5asvkbIOc/mIAM01M1bc41C2o4dhFhEDP9UlHovEPFLv3lX4qdIEIWpsaXk3s0COl7t0ibpug2uR+gek3SyfLzGDJkq9+SCmVXJIRMBUtBB21Pk+sn7lOX2nKt7uFHNgYH66SSxc6DjfcSpBl69w=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769180091; c=relaxed/simple;
-	bh=UQU/IIYqNdAvnX9LYhu/t+Ph2CdGyyN4OsOR1HdCNzI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=ZyVBd1T8ndMlI8NRFrRzYaSBQDe8F3lgb8UphF7EYadHZWEvEHkJME5yA4uhIxvd/r3zRhFFaXiSv5yP4FY5vmiYL1rIqZbYijfzvl7sBNHUCch2w3ifU7pO5ueWrdsmVZbMIsSHf3HkhepzN+GgWlxRnHJkO6dIhuyWQfm3JnM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=BeXGK5xa; arc=fail smtp.client-ip=40.107.162.62
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Zk9V7fmAC0ryF2wKniPAToZ4UbjUXT9v4Qvb0Uk0uLhLRU+rCY48RMl1MYH2I7PkxIag9ticMyZjAD0YfgZbpNQ6bcOFK9l5GdwYO9kSJRFejAaC7Wl6s+s2rzLfYajiiv0R+iRyXhVEE7efjOfBnOw+2T21pSchlMPxtcBgy7jV89kI5ZptXZe10PPWs5blmUVekBbcjrlCugBfFNC9Iwe4r8Duc8+wZHyAi6l2MbVQcA2K+O0788ilJWDIJuSwGVjUqgWLhU06NDmargj73xeFZbkFXBlBJnZjLk50fTm1AGbtddVWxkDTFHvLfiym/+HBjbLzr82VgUDyt/GHxA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kRuXnAsYd2Ke+IlJBCqsdspsBk6PlHdPuKDqiqBt62M=;
- b=KgIa0tPAcUlpjG3bdPYngJXi57kImkbeTfbgJVgBZbrRHhDqwCJ9+wK1cFw3KCNY2XIpKc3C2hstSOc9i0EOUi1exYyjZ5TcjqOK/irfZPSlDxhdMjkoSNk8eYzolgobJp4H03egxQPzpqwlYElbaD94D5HsxrjToMegOCNh8XECoY0RMjMJVWBuOAMQjfophqTLV3mOx6upE/WA7tKpcG7JhUwtrhVgXpHjtrbi0/+Kz1mQyb0fiFZBMRdKfXQ15BC1zSK2bRqNU+NioPqj6oADd1lrgTnV5JnrpTpv9sHLf5idrHVBYO+95WbVJo9TIAUFSP8MlIChW7bXhUNEHQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kRuXnAsYd2Ke+IlJBCqsdspsBk6PlHdPuKDqiqBt62M=;
- b=BeXGK5xaQK9nBHts6JC5Ibrt9UcUxZIRIqpztnCbXcMrWaswyyx00Sn76LnSxfRo6NNnCmrL9EAu5O7OKhRJpz4BBrIVFjKRuLO4iSX3g8oP063lJ8H0V4ibKbj5KiHotjQEyb45CVzpkwVcQ78cOqGI1dAPCupa/WZ1fjg6fiyLWsiKYe2GgX4zHxKar49uNayzfLg7VKexj1KKFhPMFYsB3D699I+YJhMhUHUB/QjPikTMAC/fPv6cuMn4XYVRgJ1gP3AQbfqNTG8OEG2InkaTurC4paXFilhMgYb08CaYaHQX80NO6Ck1GpGT+7zhyTnbi6hIcZ4DufHEHtg3kg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB8957.eurprd04.prod.outlook.com (2603:10a6:102:20c::5)
- by PA2PR04MB10159.eurprd04.prod.outlook.com (2603:10a6:102:406::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.11; Fri, 23 Jan
- 2026 14:54:46 +0000
-Received: from PAXPR04MB8957.eurprd04.prod.outlook.com
- ([fe80::9c5d:8cdf:5a78:3c5]) by PAXPR04MB8957.eurprd04.prod.outlook.com
- ([fe80::9c5d:8cdf:5a78:3c5%3]) with mapi id 15.20.9499.005; Fri, 23 Jan 2026
- 14:54:46 +0000
-Date: Fri, 23 Jan 2026 09:54:38 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Joy Zou <joy.zou@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
-	Ye Li <ye.li@nxp.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
-Subject: Re: [PATCH v2] arm64: dts: imx95: Reserve eDMA channels 0-1 for V2X
-Message-ID: <aXOLrst3ZEJB6FZk@lizhi-Precision-Tower-5810>
-References: <20260123-b4-imx95-v2x-v2-1-0497a9814668@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260123-b4-imx95-v2x-v2-1-0497a9814668@nxp.com>
-X-ClientProxiedBy: PH0PR07CA0005.namprd07.prod.outlook.com
- (2603:10b6:510:5::10) To PAXPR04MB8957.eurprd04.prod.outlook.com
- (2603:10a6:102:20c::5)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB0A526ED56;
+	Fri, 23 Jan 2026 14:58:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769180326; cv=none; b=T1CE0QmYKna8+PtFZdc9JOu+oI/S5/BUxcvK8EILYfh3SoOeAK+Hy2VAMJPAjHCDxAIRCWnOdOmJd4IbAi9zx/0VYhf5dri02E2fyjNhZ+LgvhLNXQAWmH7DCNQ8nzyNtFCHLmwDFMPaTzql4B9OOKuAzUAbnv5WaIC6s7VUftU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769180326; c=relaxed/simple;
+	bh=gSWVJqHTktPGJyQSnUhZZtv9vbpjiq5x/pbPBiDb65k=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=LiWH1/tOoOr9r4+S5OrBKyGJbtM1zTJrf77NatFNWQQqA6rihi4o5Nce2Nx4QVj2ujqAp68YpJMUumBPizpGDz4Am4rLy7fX4VFWrZHM3j5lDrL+FaDcQ1dPtOdC/3I1GYWnFYqYozOjc+aVN0/pR47F+9YNcAFrd0botQdx2fc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=xagGajDE; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60NDBVpB2402842;
+	Fri, 23 Jan 2026 09:58:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=
+	content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=fPqu4bFjzo35IVO5C1V0/4ppL6r
+	CCkDSg5GQS/LXTHM=; b=xagGajDEahVykq4WqzzukgPXa6BKPlHDNl5pJe8ic9s
+	E2ix9M72TSShqGnOLGDZ5gEEt5BkavOrxCVx5Vf3s3/7KlKttixYgehgTPqe8F7G
+	kp6Bff+XWk2NZeq0vUVNhJvM/WZDgp0Yl3BVoz/8ChhRdU+GNBTRFpD6Zpz0E5lw
+	NyK9iYvV9zlzdjJfaoN+o1VMTLXXTdD+rg5w7YPbivdo9Taa3oe3qZURfabaPqaQ
+	jb1KXcjH21AJmy/zHvBMVjvIbR7EX8If8mKJZ+IrytjycR2q42INGq1c59WIu8FY
+	ksLlPQFYZBP0nKM1rft8ZqPTaEC4KgheUORO3AFyAAw==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4bv5suss17-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 23 Jan 2026 09:58:37 -0500 (EST)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 60NEwaG4028261
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 23 Jan 2026 09:58:36 -0500
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.37; Fri, 23 Jan 2026 09:58:36 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.37; Fri, 23 Jan 2026 09:58:35 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
+ Transport; Fri, 23 Jan 2026 09:58:35 -0500
+Received: from HYB-b1tGeUj4GP1.ad.analog.com (HYB-b1tGeUj4GP1.ad.analog.com [10.48.65.212])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 60NEwLVa012602;
+	Fri, 23 Jan 2026 09:58:24 -0500
+From: Antoniu Miclaus <antoniu.miclaus@analog.com>
+To: Peter Rosin <peda@axentia.se>, Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Srinivas Kandagatla" <srini@kernel.org>,
+        Antoniu Miclaus
+	<antoniu.miclaus@analog.com>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Bartosz
+ Golaszewski <brgl@kernel.org>,
+        David Lechner <dlechner@baylibre.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v5 0/2] mux: gpio-mux: add enable GPIO support
+Date: Fri, 23 Jan 2026 16:57:30 +0200
+Message-ID: <20260123145743.75705-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB8957:EE_|PA2PR04MB10159:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8e11c794-a2ee-46d2-4bad-08de5a8f59c9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|52116014|19092799006|1800799024|366016|38350700014|7142099003;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?vdaK7UJ8P/87PxTP8wnnWy7qulbQPBeVbx/vRIJ5LTLPEjQ4b/SUO01XPmap?=
- =?us-ascii?Q?K4ldn6NMRSYrEb8i97pI4EtGma19uQMfw3mk1xoylhhp8x/5CCTWPI/t4wSl?=
- =?us-ascii?Q?4vpTiJa4tXpWH2IAn1dF8KhRWwFoLtBkyHWhJ+WLqpnCV20T8O2zj7LEns48?=
- =?us-ascii?Q?igGR0D1PL1iZlhHMgJ+YU7AhkaHcD81d8pf8qwkmqddnu+Ne+gWztJ4p4WZZ?=
- =?us-ascii?Q?9NTxb+eeEERg0Jnk/V9EIXUcA/3wxxfXov25Y8zoESs07bNqYaSxnRdLDM8v?=
- =?us-ascii?Q?+otVUwIHiNpVfZMkCc4596m/VNpzbVw99PhjjSk6V9TzVEIXdVPFC7c0bxe+?=
- =?us-ascii?Q?tz26KyiY6xdrQgMibw8wxmEe/t7obXbWAV9rKR48A1fqb2YUzs9msicOPfBG?=
- =?us-ascii?Q?MEQG2kWgtw8nfKAWVBgdkbZq+YlIPkoBwSj4kkCmqAHenMDyEqgJ46OsS4oj?=
- =?us-ascii?Q?OCBSfoABfRa8jkkOWuz0jaINaqj5s7vAsbCEMgWVukzKALCVdH5VKtR559oo?=
- =?us-ascii?Q?A2AiYEZMIiAzL4p1GlcoZlnz1tL0IZ5rK9tj6JeNKFEYCtOIyHnv2flo7KL8?=
- =?us-ascii?Q?bWvx2IsMrwFEnqh61jH/oQJxYl9fWqREwhhrT+MwS2NOFRweIWIRjEEFpU2p?=
- =?us-ascii?Q?wpCkwnbYq0NWCzJDcBp1xQGqcxpQMeZvLDQCJ3LHFblKLY2nKuqhRTKKYL2S?=
- =?us-ascii?Q?7Af71mz8wyLuS2XhUBgYyTNpbMze0puZtRsK6s2vS7aO+7bxtM50UrVdB/KA?=
- =?us-ascii?Q?Lv2KrikLA7deGHpRoKeSjZwni+GcW2T0ybKifacfBEf0e9wZSQdDDh7QXqCD?=
- =?us-ascii?Q?ObqJNuZAEFf0rJ+uS2H0kUuRKHj0h2E8nRMV4jd+egy9+O9nyvXFwa0pTVEi?=
- =?us-ascii?Q?sbDwZiIdYnqR/i9aU1Nk3kW8Dz2QinhV7v/d3j2YabITnRHCSCaO8gtQRCdK?=
- =?us-ascii?Q?UJhTe7JY3rdvUYNXVE3HogD4zg2XEoGgZHElUrQfjy+Hx+4cabISCqRZJZKF?=
- =?us-ascii?Q?rjei86fwJfiuddVg8928+GBYT3ZbHsO40CUYfLDfoG3HlWEvELyDH2sCjSd1?=
- =?us-ascii?Q?Zq6XGiI+o09gJdAvTGf1lv/8AIZ/KtQ/xFKG0ijz6Qi3kKTV+Sd8cmcD7SEO?=
- =?us-ascii?Q?Iz4G6iE6MAZvPd0j99J+n1pAfBSvWVcz99VP8FPSs9FPVYNiCwENRL1MrQTg?=
- =?us-ascii?Q?iZ/s5DciUyqGe27VZEolaXj6uPKl85m5/bQLdv2llGnT5W1P8rmpZZGAJ9YD?=
- =?us-ascii?Q?F9lviPTIPgmhkUEia3YZjwOI6Ro0v+vw6BI64MY3kfbF7ZPzvOY99y3Byala?=
- =?us-ascii?Q?v/vtTuUZ5Rz1QUCSlbvvbhEaUHSdPTuDVnJTXfu8EH4g1YiHFRWRmOloDT4r?=
- =?us-ascii?Q?I3Us9fRVtp2UWw+ZMnO3KwLfUPzQ3+1uRT26hS6Mqqefx+qRoAd4/AmFyq51?=
- =?us-ascii?Q?Qf+/2xLPY9nYp/3hnfmNW0QYvOrSHlRP4gjJTkia56genk9y+WOeM3BK955T?=
- =?us-ascii?Q?6TxPPJ0+/iETiNVTBLCTXpfY3zzmpUZ4Er3WP2cAfF21b7rRJLzJQN6woXnC?=
- =?us-ascii?Q?6R4Mx/qBF0ncuR3o1bpCAGg8P+u6zwahNf7OLBkpBZLpG6WAQwhZJcqovUm6?=
- =?us-ascii?Q?UAmCQez8cSJtM3YvEook3es=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8957.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(52116014)(19092799006)(1800799024)(366016)(38350700014)(7142099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?hP65Q4pVqTt37Sol4LFzVZh2IikYukVnt2CpJ8Bho4TaaTh6VzmchJtkDoP4?=
- =?us-ascii?Q?YDGzTX19IVEh1IlglVaGeXsTpcoX52SFN4ftn1G6JDpDE+MS4cS8SP4QXQah?=
- =?us-ascii?Q?m/t5xTBRCwwUwuvsgfO4YyuX+X3XsQ4GxBxT0KIZm1ryqnPMN6pyHm3rMdG3?=
- =?us-ascii?Q?/2mewyVTcYJ2VwAyy+9hmTmoxBH0KCnICk2SrKmdrMOISK6qnuJpZKTGiNij?=
- =?us-ascii?Q?I0by8xHWXzKW8NOX6Dua+pWsbXF/RZXg22nUq8+pGUUAFIFbIoTHK13L8gZc?=
- =?us-ascii?Q?Z/JbIAor0hACA+7jkof0DYHYVIRqxNMdBuRXMmaf22FfFzIlJetJrn4G8qiI?=
- =?us-ascii?Q?hLa2mPLGNFr6m4cN7TnaHjJqkqPSeUCQvYd7ZYxUw9JyQOy9uyNHyBu1xW8F?=
- =?us-ascii?Q?Kp+aeC9rXkmtwpzYD86hZ7Rc/noBKerohxZ7o+HGfyG4rpI1H5ny1EQMOJxM?=
- =?us-ascii?Q?s1afIZ2iaDaAYS7gE3Ojnrm6/s74vwCwcrO5NyEqdjHzDDRmlA9IAh8R+oHH?=
- =?us-ascii?Q?vQyVomm2Vc6yWNpzh+CK+R0uH7gasCDy3kecPuIkMMSNw1KdSBribNlqAcwT?=
- =?us-ascii?Q?EMSckV9/8IOb06Uibx6hWFC+lTrIe//XF4IcpEyWEG+PMhR5rXLSZFN6/bMV?=
- =?us-ascii?Q?e61YKAVQYrS+mJ+5KQYVcsitEFewv6QrhcTYSB5VltrqcQY3/ksmfovd4Yc3?=
- =?us-ascii?Q?sgCyAOwwAsOUBdBVjn2Rc984dbidrTCrV9K2hjV+TgW8WzbZNGCnJL1sIcnb?=
- =?us-ascii?Q?wM+dTAmUIxW8kABkMFqO6c/zhMKU4WhF9XTr6zbuNJxqfMd2AbwjBgUgVaSq?=
- =?us-ascii?Q?BXl/jmMItc2v9nW8pg8INv1vOgkO10woXPt1ShmJJxcvhDp39kQdvtMR89E+?=
- =?us-ascii?Q?0FfYUSENeLv8/QvMZ70LxKwUjEjagSZYwPmdNIBgxAYlNJ6qZSVEd46bzt2U?=
- =?us-ascii?Q?DwvSilM+m24mtt7J6JP52f3pwpmurtwLw07DAmDT2YoO6sVGfIyWtDI+/qZE?=
- =?us-ascii?Q?YLniypvXjgQsVbe1OzE0Ru1XiIp6E2ok8SVgyd7YLs8J4AJQ8nnpozCt8Or5?=
- =?us-ascii?Q?9nwwsvkJJ4qoxZHjMb3AxDw407U2Rl2PtThG+l+DgZD51OLppGgjhcWwe6hU?=
- =?us-ascii?Q?eouMNqr21q289vz0Xjwv5noiupWxh8bNfZTNwopi+JYu7A0gxU/S1KcGzi7Z?=
- =?us-ascii?Q?DBCagcocMvmMKFw2R1lFDsm7NNpIdTNFDFaguniYu49jMDXC8saQM9XdpZTK?=
- =?us-ascii?Q?0RBNekZTyDuVszpFrx5SIxdM8hQExPbk/nUO5Km9jbZjyj18BjlwRpM5ubSG?=
- =?us-ascii?Q?r3zDqlWyDahGJYOuUoW3UySyb3pQ8D470kpCbsBeQQanK2C4Ft6VjimCGUAV?=
- =?us-ascii?Q?3pgXCDE1JRt0XV8UtVwORdj6gdD/asWwtkLajVFYCFVgo6Uga1/x2bFSUBhN?=
- =?us-ascii?Q?us6srIclddwLbl0IAscm/gXup8I1maEq6RMHerhCCNKY/nBPfAUOX3k4cGfi?=
- =?us-ascii?Q?OpnFM8eeW9rgRUZvdVC7jZEg6aYj/sOkjsHgmPXttzBs+nKs7lo0jhSLyftL?=
- =?us-ascii?Q?VNoD0Fg2LTdGbFN8ejJldwlkO8Xx2IwHZWxa/tyJjZvxoyn9Bq9yB0kt5nDG?=
- =?us-ascii?Q?lgSksH5ppL5UuRDMW0bUeYEdkaWanRu9jl6UZAkx4hKWjDxkL7JdDF4cjzUs?=
- =?us-ascii?Q?9VFy9fgEVjrmu0YidZeWP6DlhrloyXQJskUbYxtbVPTmxNEOORDofUVLkavp?=
- =?us-ascii?Q?trdkUiP2vQ=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8e11c794-a2ee-46d2-4bad-08de5a8f59c9
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8957.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2026 14:54:46.7642
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: wEbwx9gsMASE6jcptQiPNq/B3qJbO4jiGSs7gNn+3JdVQibzZvoltOpSLOxH3tBjF0dAhgmyEatDdhYmdzzrMA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA2PR04MB10159
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: FmJWUdrr8b49dM7OYUAXWxjDhZxipvyD
+X-Proofpoint-ORIG-GUID: FmJWUdrr8b49dM7OYUAXWxjDhZxipvyD
+X-Authority-Analysis: v=2.4 cv=JuL8bc4C c=1 sm=1 tr=0 ts=69738c9d cx=c_pps
+ a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
+ a=vUbySO9Y5rIA:10 a=VkNPw1HP01LnGYTKEx00:22 a=HapAHONEMoC6MvEP3oEA:9
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIzMDExOCBTYWx0ZWRfX4th2zSKIAK/d
+ MfAk/dv8GeKu4YR1Xj5sgBuPOs7KoAoWOSO1ti7APJo79OUfuC6V8iJrbGW/UmOQa12N9EECcRN
+ cIXEqGYAAhCE5PKQCAyuIrRwUumAVMtr9kN9G91PGH0kMzxw6nwvBNZNwBhRCMcGvIKaEdFyovX
+ mN+ZcliyxgJFCbt06i6ev+e4c5njUkYx8VPstZJIE24IICpLYE+csve8w3LhROToGU3EJRoPvJ/
+ TwdxFj1Hu+PhAsU0NgYUPYaT+3mVvhr2KBs0azhX4fRDy5GGwAYp7OqUxlobSfaSTHTuElCG9YO
+ MGPi/BlyLDlQa0l8/2UkF6wEfdHFPPntmqdOy7ul/i/N2LqFJjR3GTIJrP+E+NNDPC1nJGqYT2I
+ x9orRQVhiWhQXviDI1O+vgU0616PWUFgcHjCvGI8X6aUQExOZYyjS1u1ZTxkrncRSl9PHEPfWET
+ VW+bfHfS5huiCK8a/nw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
+ definitions=2026-01-23_02,2026-01-22_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 suspectscore=0 priorityscore=1501 malwarescore=0
+ clxscore=1015 lowpriorityscore=0 adultscore=0 spamscore=0 bulkscore=0
+ phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
+ definitions=main-2601230118
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.84 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
 	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,nxp.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	TAGGED_FROM(0.00)[bounces-258998-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[antoniu.miclaus@analog.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259000-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	DBL_PROHIBIT(0.00)[2.128.222.128:email];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.990];
-	MISSING_XM_UA(0.00)[];
+	DKIM_TRACE(0.00)[analog.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCVD_COUNT_SEVEN(0.00)[10];
+	TAGGED_RCPT(0.00)[devicetree,dt,linaro];
 	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,nxp.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 0A59B7748B
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,analog.com:mid,analog.com:dkim]
+X-Rspamd-Queue-Id: 4E15B7753D
 X-Rspamd-Action: no action
 
-On Fri, Jan 23, 2026 at 06:26:27PM +0800, Joy Zou wrote:
-> Reserve eDMA channels 0 and 1 on the AXI eDMA controller for exclusive
-> use by V2X (Vehicle-to-Everything) fast hash operations.
->
-> Reviewed-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
-> Tested-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
-> Signed-off-by: Joy Zou <joy.zou@nxp.com>
-> ---
-> Changes in v2:
-> - modify imx95-19x19-evk-sof.dts dma-channel-mask property.
-> - add comments for mask channel.
-> - add Reviewed-by and Tested-by tag, tested on MX95-15x15-FRDM, MX95-19x19-EVK.
-> - Link to v1: https://lore.kernel.org/r/20260120-b4-imx95-v2x-v1-1-52b2025b27a0@nxp.com
-> ---
->  arch/arm64/boot/dts/freescale/imx95-19x19-evk-sof.dts | 7 +++++--
->  arch/arm64/boot/dts/freescale/imx95.dtsi              | 2 ++
+This series adds optional enable GPIO support to the gpio-mux driver.
+The enable GPIO allows the multiplexer to be disabled before changing
+address lines and re-enabled after, preventing glitches that could
+briefly activate unintended channels during transitions.
 
-common dtsi and board dts use two patch.
+This feature is useful for devices like the Analog Devices ADG2404
+(4:1 mux) that require enable control for glitch-free operation. The
+binding documentation now includes ADG2404 as a supported device with
+a dedicated example.
 
->  2 files changed, 7 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx95-19x19-evk-sof.dts b/arch/arm64/boot/dts/freescale/imx95-19x19-evk-sof.dts
-> index 808a9fe3ebb2b9557be9e428583e76c32517de08..264703f6eef64813d64fe07713cf92fd02fa0778 100644
-> --- a/arch/arm64/boot/dts/freescale/imx95-19x19-evk-sof.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx95-19x19-evk-sof.dts
-> @@ -55,8 +55,11 @@ sound-wm8962 {
->  };
->
->  &edma2 {
-> -	/* channels 30 and 31 reserved for FW usage */
-> -	dma-channel-mask = <0xc0000000>, <0x0>;
-> +	/*
-> +	 * channels 0 and 1 reserved for V2X fast hash,
-> +	 * channels 30 and 31 reserved for FW usage
-> +	 */
-> +	dma-channel-mask = <0xc0000003>, <0x0>;
+Changes in v5:
+ - dt-bindings: Expand enable-gpios description to explain high-impedance
+   (high-Z) behavior and analog signal considerations
+ - dt-bindings: Remove separate ADG2404 example, add enable-gpios to
+   existing example instead
+ - driver: Enhance code comment to explain high-Z state and downstream
+   capacitance for analog multiplexers
 
-Need add to commit message.
+Antoniu Miclaus (2):
+  dt-bindings: mux: gpio-mux: add enable-gpios support
+  mux: gpio-mux: add support for enable GPIO
 
-Frank
->  };
->
->  &sai3 {
-> diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
-> index 55e2da094c889fc7c1096d0e36f31ae118d2a982..9ac82da2ff440e08ae8378d7ff830a568d50a354 100644
-> --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
-> @@ -631,6 +631,8 @@ edma2: dma-controller@42000000 {
->  				reg = <0x42000000 0x210000>;
->  				#dma-cells = <3>;
->  				dma-channels = <64>;
-> +				/* channels 0 and 1 reserved for V2X fast hash */
-> +				dma-channel-mask = <0x3>;
->  				interrupts = <GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH>,
->  					     <GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH>,
->  					     <GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH>,
->
-> ---
-> base-commit: d08c85ac8894995d4b0d8fb48d2f6a3e53cd79ab
-> change-id: 20260120-b4-imx95-v2x-3e01c7bc6881
->
-> Best regards,
-> --
-> Joy Zou <joy.zou@nxp.com>
->
+ .../devicetree/bindings/mux/gpio-mux.yaml     | 16 +++++++++
+ drivers/mux/gpio.c                            | 35 ++++++++++++++++++-
+ 2 files changed, 50 insertions(+), 1 deletion(-)
+
+-- 
+2.43.0
+
 
