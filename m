@@ -1,166 +1,201 @@
-Return-Path: <devicetree+bounces-258993-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258994-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GGQ6KwyGc2krxAAAu9opvQ
-	(envelope-from <devicetree+bounces-258993-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:30:36 +0100
+	id cI5GM+aGc2krxAAAu9opvQ
+	(envelope-from <devicetree+bounces-258994-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:34:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5667077155
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:30:36 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D73D771FC
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:34:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C1A6730090AF
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 14:30:35 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1DAF53001A5A
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 14:31:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81CC02C08AB;
-	Fri, 23 Jan 2026 14:30:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D91352FF151;
+	Fri, 23 Jan 2026 14:31:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="E9vQ0AC3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24F282C234C
-	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 14:30:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A4EC31281B;
+	Fri, 23 Jan 2026 14:31:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769178632; cv=none; b=RqLGf3243M8ITZ4iK6io4G3WRmF2NkFIXjcvs2QVJ/0ICPcS4zll6a7Io+x2DVCF5OvJoXiWtqGzhLI61wtS41T67FOoP2ThmcfkbWKoPY2ly00Glb7cy3gGySXQH6LqVuK/SBdqcQpczaVSDWoHGbBsaV5QotZql+HWRPFjrB4=
+	t=1769178707; cv=none; b=YZB9+UI0kcG0fkdYLdWGVYAxT3LdzyQQPdxG1yZCxbZBsOvj/GrVe+9H07HIPgKatVZ+t0pJcrLVqT3fsTqP59qiCYJih+2D36X8VtTgPHKrr3EpLqUKwlAayU+URikQfwULKHOVxi36qxIaPWCQFm+PwRMK6tbsFJGkqWKAFnI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769178632; c=relaxed/simple;
-	bh=dbzocdrkEcAzLkfaFHQy6lFESFnae3oGeKED4QiJ09I=;
+	s=arc-20240116; t=1769178707; c=relaxed/simple;
+	bh=isCnd4QlNaYJeFXZJPH6Zy8is0mOx160GX4nVSmSfBY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q3FoocYIoa/ke3HRZaFBQmR+LG2Lv98wYkUwnaWuAy7s8azLAy6MLnnA7FCR43DzdNUCdp0Rheea91UwDgLwhx8rdxp39TqdtZ1zoLEWBezHLP1+cwoMygNqojGsPr3IauAwFG1s0rKLgUAeS6UyMkhhRFCHKXpaGy+NAXtW0Mo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1vjIB5-0004lD-SU; Fri, 23 Jan 2026 15:30:23 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1vjIB6-0026kg-15;
-	Fri, 23 Jan 2026 15:30:23 +0100
-Received: from pengutronix.de (p54b152ce.dip0.t-ipconnect.de [84.177.82.206])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 54FD24D6FA6;
-	Fri, 23 Jan 2026 14:30:23 +0000 (UTC)
-Date: Fri, 23 Jan 2026 15:30:22 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Arun Muthusamy <arun.muthusamy@gaisler.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	mailhol@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-can@vger.kernel.org
-Subject: Re: [PATCH v3 00/15] can: grcan: Enhance driver with CANFD Support
- and Improvemens
-Message-ID: <20260123-evasive-chirpy-bug-6ac9d8-mkl@pengutronix.de>
-References: <20260122121038.7910-1-arun.muthusamy@gaisler.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=C7dX8gnvGw8SaHFaBMSSTM7pepA0rcGyv6b6Bw2ortAn3Ep8Tj/BSO7ZgtEe9gf9wCAyOIP79o0hLj5QQv3DDGw+I+NZXT0UmmWgj3uQ+d1LVJA24g3iSth173Zle27c+BTsbmmwFOSDEQIx8J01zTTgwv1tpSLj5pPxlCXv0lE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=E9vQ0AC3; arc=none smtp.client-ip=198.175.65.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1769178703; x=1800714703;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=isCnd4QlNaYJeFXZJPH6Zy8is0mOx160GX4nVSmSfBY=;
+  b=E9vQ0AC3mlpXtGQhrGIifa9do5wXymeTfflQXKPC3u3h+YKSMrg5kDkQ
+   9Lrr1XdJBCRA6um1+OEY+JpSe7fE/7vUS+BozZ9cLNPBbibkvU3ipyKOG
+   oC0jdh8YT61ubE5RGxlOVhALB0yrjOTzm8LCCnd+KpVLBuvmNHzUDqSVE
+   Ru4Px3uxQP3rXNlQ+m6xLWHl5Kjk+n0x/szn+S0XZqfKZLecFaxQftdOe
+   Ydai4NcmyyYUOTVxbCKvERSz4H4UQ1Rcvm1QlP+fwXch3KKk7gxi/snhU
+   x196q5iXZm8+4m2r0RRd7ood2Z0LDed4l9CqQvmSDJwLtNQEtvon1YTEM
+   w==;
+X-CSE-ConnectionGUID: 2tgIXc2jSj6VVGQWvtHXbg==
+X-CSE-MsgGUID: 7akBVfOfTM+ZhaBo8bHv3w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11680"; a="87849902"
+X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; 
+   d="scan'208";a="87849902"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jan 2026 06:31:33 -0800
+X-CSE-ConnectionGUID: d3Ml0qkzRNKhmGuNEieM8w==
+X-CSE-MsgGUID: 8jlkQLQdR6mqAUWLLOJo7g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; 
+   d="scan'208";a="237690920"
+Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.244.112])
+  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jan 2026 06:31:28 -0800
+Date: Fri, 23 Jan 2026 16:31:25 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc: netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	linux-kernel@vger.kernel.org,
+	Herve Codina <herve.codina@bootlin.com>,
+	Mark Brown <broonie@kernel.org>,
+	Serge Semin <fancer.lancer@gmail.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Jiawen Wu <jiawenwu@trustnetic.com>
+Subject: Re: [PATCH v2 net-next 01/15] net: mdio-regmap: permit working with
+ non-MMIO regmaps
+Message-ID: <aXOGPUP5pfGeAQKN@smile.fi.intel.com>
+References: <20260122105654.105600-1-vladimir.oltean@nxp.com>
+ <20260122105654.105600-2-vladimir.oltean@nxp.com>
+ <aXISv3Acm1v6yS4V@smile.fi.intel.com>
+ <20260122121301.cyxyevi7xvqw2axk@skbuf>
+ <20260122134704.pxeikyk4q7nhay55@skbuf>
+ <aXI2bWhDtNNfr8M8@smile.fi.intel.com>
+ <20260122221848.py4p7mwxzybicnsq@skbuf>
+ <aXMhWo0NpPK-BELG@smile.fi.intel.com>
+ <20260123121529.inik6xrfdianljq6@skbuf>
+ <20260123135501.7m5wqkcfluxqeowb@skbuf>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="5tojfe3cjkncy5m2"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260122121038.7910-1-arun.muthusamy@gaisler.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20260123135501.7m5wqkcfluxqeowb@skbuf>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.56 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258993-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lunn.ch,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,bootlin.com,trustnetic.com];
+	TAGGED_FROM(0.00)[bounces-258994-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mkl@pengutronix.de,devicetree@vger.kernel.org];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	NEURAL_HAM(-0.00)[-0.992];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,pengutronix.de:url,pengutronix.de:mid]
-X-Rspamd-Queue-Id: 5667077155
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smile.fi.intel.com:mid,intel.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 7D73D771FC
 X-Rspamd-Action: no action
 
+On Fri, Jan 23, 2026 at 03:55:01PM +0200, Vladimir Oltean wrote:
+> On Fri, Jan 23, 2026 at 02:15:29PM +0200, Vladimir Oltean wrote:
 
---5tojfe3cjkncy5m2
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 00/15] can: grcan: Enhance driver with CANFD Support
- and Improvemens
-MIME-Version: 1.0
+...
 
-On 22.01.2026 13:10:23, Arun Muthusamy wrote:
-> This patch series updates the GRCAN driver to support the GRCANFD core
-> from the GRLIB IP core library.
->
-> In addition to GRCANFD support, the updates include enhancements for
-> compatibility with NOEL-V (RISC-V) systems, such as matching drivers
-> using the 'compatible' identifier and adding support for reading clock
-> frequency via the common clock framework where available. The series
-> also includes improvements like functions for configuring
-> nominal bit-timing and optimizations for DMA operations.
->
-> This series also updates the driver documentation and bindings.
-> The old text binding is converted to YAML, a new vendor prefix
-> is added to reflect the updated ownership and an entry for the
-> driver is added to the MAINTAINERS file.
+> A data structure which I find a bit under-utilized in the kernel is
+> 
+> /**
+>  * struct regmap_range - A register range, used for access related checks
+>  *                       (readable/writeable/volatile/precious checks)
+>  *
+>  * @range_min: address of first register
+>  * @range_max: address of last register
+>  */
+> struct regmap_range {
+> 	unsigned int range_min;
+> 	unsigned int range_max;
+> };
 
-The order of patches is strange.
+Not sure. See below.
 
-In #12 you claim to support CAN-FD, but actual support is added in
-#13...15.
+> I could imagine a helper like:
+> 
+> /* Type adaptation between phy_addr_t and unsigned int */
+> static inline int __must_check regmap_range_from_resource(const struct resource *res,
+> 							  struct regmap_range *range)
+> {
+> 	struct resource r4g = DEFINE_RES(0, SZ_4G, res->flags);
+> 
+> 	if (res->flags != IORESOURCE_REG) {
+> 		pr_err("%s should be used only with IORESOURCE_REG resources\n");
+> 		return -EINVAL;
+> 	}
+> 
+> 	if (!resource_contains(&r4g, res)) {
+> 		pr_err("Resource exceeds regmap API addressing possibilities\n");
 
-The kernel should be functional on every commit. Please change the order
-of patches, that CAN-FD support can only be enabled if the driver really
-supports it.
+%pR
 
-Marc
+> 		return -EINVAL;
+> 	}
+> 
+> 	range->range_min = res->start;
+> 	range->range_max = res->end;
+> 
+> 	return 0;
+> }
+> 
+> and then proceed to use the simpler and validated regmap_range structure in the driver.
+> Too bad such use is not an established coding pattern...
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+Dunno about semantics, as I only saw the use of that in regard to the special
+slices of regmap.
 
---5tojfe3cjkncy5m2
-Content-Type: application/pgp-signature; name="signature.asc"
+Also we have struct range in range.h. Maybe that one suits better? It has also
+some interesting APIs.
 
------BEGIN PGP SIGNATURE-----
+-- 
+With Best Regards,
+Andy Shevchenko
 
-iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmlzhfsACgkQDHRl3/mQ
-kZwHTwf/YdeYMJLjdsmXYZd6wFWvx3Fd2gD6DV8c8F+3DPqnznOW3iheWWjaUdjZ
-WHxxEUV0gRWM1OpZndj/Hm4SYV2mLNO7uplU7ZnWx4Jwfm5R/IUV+s71rpCD2GPx
-OifGT2YEvgsVnNXpIQZItLExscnk6mgWbaf3GKGJgI0pB/lFE4vP9rJxoQ+eHymH
-xTfjzMiU90oMArzSVhp7eEZyUPz3OEPP5WY2oJQGUNAsHYIhjEg6ARmqwl92cqwj
-4fokeZydZQq8wHOkYs4LGCWxuPl5VyeYr4y02oGdCK7Yesg6bRp/QL7VZWe90yzT
-DKwYA0JFpR6vUfDk1pQ06DKqWffvJg==
-=riWi
------END PGP SIGNATURE-----
 
---5tojfe3cjkncy5m2--
 
