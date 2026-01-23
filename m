@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-259133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259134-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wP3RM5j9c2mf0gAAu9opvQ
-	(envelope-from <devicetree+bounces-259133-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 00:00:40 +0100
+	id +LVyOaT9c2mf0gAAu9opvQ
+	(envelope-from <devicetree+bounces-259134-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 00:00:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7077F7B54B
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 00:00:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BCFF7B559
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 00:00:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6D7BC301ECF2
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 23:00:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6327C300B442
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 23:00:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 838902EDD45;
-	Fri, 23 Jan 2026 23:00:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A52F22F0C45;
+	Fri, 23 Jan 2026 23:00:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eu9fJu54"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gSXbMbgG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2E992BEFFB
-	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 23:00:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D27FB2EBB86
+	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 23:00:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769209227; cv=none; b=Is5c+SVfSd6YQSXo4WkEiJjtyXDqpcVQ4Uk7KH1OkBykWG6sVIHnLhsMFfbG81NxRehk0HAQHwht6cckx+1YNjczFxRCIXsqOORaq74Zk8rm6K0RL5bxXrE9vVVNLkPZKdik+ZJakuC0GyBwH5w6aeDEdB4TYaTdczasQQyh8JA=
+	t=1769209228; cv=none; b=B4QDNqsE4z/yFBNC/vWZaRUc1GrRwszMcY2oubJlDlKPupAjnx+GV91iGX4H7lA4C7kopkCYguSx+AbQAi1vJ46bowfj8Uy1Jr186st/JEgPrC48EjpHSx8egWTsVVMQod1MoH2gwQ6jHr2NMDPnTsukTMd/WA/yzB7pcqUP46k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769209227; c=relaxed/simple;
-	bh=gMCUgoaCQ5f+J+ddeO8YUO+LQ3B1ap2I8FkG+qnup34=;
+	s=arc-20240116; t=1769209228; c=relaxed/simple;
+	bh=H1HtXLkOMfwZTiFA82ib7pTLWwYdqKOWBX6p2M2zDn4=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=T5V7f+fcRnqUEWKc+YahqJffCmyy/sJT/DSNPFhWZ9p0Ww68+zyzAumJv2Sc3m10mNRUfdXMnbS+pXFOFV9Qerj/O8lEmhidudc7x9rD2izqUEMzVV5YFi0uKRVPWJa+YjLUvpx5GkcQocQ9HvCFdHuXlP3xJnzEqtz/80f6AbA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eu9fJu54; arc=none smtp.client-ip=209.85.128.44
+	 MIME-Version; b=rJjdqidtiTmq/ILM/b4KmA+D5vRGzxsd51EHugRc+CDxrMv6xtpc+E4S74pBkaURXOyz5HgvseiJ6YMLOjYpYbP1CushP9Zqb2lfcEbwYI/edNII5PBSmxYvgNbV/YAw4wWmRW/3Cp5B1HjcE4uJTJR/xbwU2xWy2BGqObaMsz0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gSXbMbgG; arc=none smtp.client-ip=209.85.128.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-47edd6111b4so31505205e9.1
-        for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 15:00:25 -0800 (PST)
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-47f3b7ef761so19636595e9.0
+        for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 15:00:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769209224; x=1769814024; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1769209225; x=1769814025; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=xuo+NZc4vF7YzlS1SzqeQ3Ig5W8Pu0fXgJ9ggSnPoxM=;
-        b=eu9fJu54OJpTDO+GhDiq1GgMxCiTyqohGQ5xBH0py8yFjzjYu482EiNzaBL39Wy3pV
-         zJ+I7tlub2c0Z/IQz8wAzt655hmLjPf4KDEKI/xVyAL0T59MRVaCNZx/2JHtjbCsXFgQ
-         JImGzyq6U4kjpnTwo8/zJYmqG0MUBlSgD9Vrl2VgH+RhiSchMUm7bDxOmNm1t2yjvys4
-         5SfzzkE4ytuTdkuObqNCzRsBCF/f0NXcYJ5yysINo3/m2KJ2K3SwHza8bv/JRzNOvFgb
-         F+ULshxlQ4fzv4BtUCpjY82Q3tJuHk0nhRUJzwX3zqISI3FASjjj9VMmy9SyshtMd+KC
-         SMeA==
+        bh=/Ok1prVZnYzbpoz3IY6/vUwCdfPHeHtCght17kbLDLg=;
+        b=gSXbMbgGnmAem2InFBIwYabUeM42aDDwTCLxs6fAsrkxbvEHkfKrJblqRP3RsJAlhO
+         MYy0+PczFQe39jPGD+lqarV0QJEgFhFaBMz5MwT+lNhRRibnG7kIYWm/8dMaNXA36yV/
+         SqAor6VqCe8WYUpKsIV+tnh50u2GEatcJE6WQJ+5y+gux3g+d5SVw5PCsYRLXkhmYmKi
+         3LtHpFmHCpHhwPmrntqkpRsxZEjtFhKEFRXM7oyKJGgsfAlEyjR1Sc/hJn9dVSQ4vohj
+         s6CpdaywTMMEnjHR1yjKBNbtTsehBkBnYb68sr3M22do83rQEB101sz8uyZ3UjaHwvfL
+         ZQDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769209224; x=1769814024;
+        d=1e100.net; s=20230601; t=1769209225; x=1769814025;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=xuo+NZc4vF7YzlS1SzqeQ3Ig5W8Pu0fXgJ9ggSnPoxM=;
-        b=suLMiW06/cMSK8G5AaDACOQfdVZ0kZAiQYKu5wA3YcVMLMepAVYWLTO+HEsxzCiO10
-         1p2bmMGn3xzIqv4Z/KYKRajtxzjq7ACU52uKwdrqb7790e+NAVV4mlbxNFsiQ/xEpk6A
-         O0X/ZIJTc7qJMNrZsl9pN45d3AvI2/JE2hoj6227YZFbiVrL4WY1LfJpe1CI1i/6wgP8
-         jZvm66YAUwZyxK5xIvLkcJj9E0P0gdPOuHhljVoPTI5zJE5Ac9Zc+dud/vVjTA44cTUy
-         rWEmX3fq717WypvoDp05btJasdr+PRAIduRFhaACYmpXagpmk0zyZ9EjoS+JPpANCDXF
-         mT8A==
-X-Gm-Message-State: AOJu0YxfwC3azcukJnDs58XzMRyVD7AaaDSoslq09AHAyfZnUk82pNIm
-	8Hv7yQ88WjEZCDAy+7rqEgcId+AeGfq6pLPRRYMDNivGKvhK62O2KMuL
-X-Gm-Gg: AZuq6aIgNRrmGuS+YXCFdgpjKAXnFRcnbGMwIQs4bSsaDr94mDBAz+eqhzad8vdUh2I
-	7j89za5xB7Zc0T48mBFPsQZPSojUj+wV62hvOA1rSGoIFVe6st0iwKs6GqsYqKO9DRYmKkvETN7
-	wPwbWTaFFV+0qD+NSYjCOYJems9hu8A1j+H6HeENJEXy2Hz3VAKvGFzmOnH51HzrHr00cjcqIB3
-	YHRnjR1CLSbJt4wHyZuMy1/ZbQMOhM3AKOBtJtZEgOfrPC4SUCIKBmwWpS877ePp/1Y7y1WXVzu
-	HG3yP8KA35zSUhZYjbTHlgw1kejX5SC6mz+nlOh9MvgQaclNI9rzFMp7DX1nyCZPGVUaWt8Cowz
-	Yk5CnUQB+Tre1IekguJmJDb2HNaav8zeacg475A81u4jChnL5Gq8VoCW/Zr900hV6BX9IU9LpJP
-	9r/3rh2X5RpFz/oi1B+Cdj7rq9Y65rMmxiZ58teY/fbIkhsAL78Om4YxZEV8jhqE/R55WsWbp8O
-	1TThMoWogJBj9+1kTPGylq/
-X-Received: by 2002:a05:600c:34d3:b0:477:93f7:bbc5 with SMTP id 5b1f17b1804b1-48051905a38mr46895975e9.10.1769209223837;
-        Fri, 23 Jan 2026 15:00:23 -0800 (PST)
+        bh=/Ok1prVZnYzbpoz3IY6/vUwCdfPHeHtCght17kbLDLg=;
+        b=cuqbTpTxUAfBxt9aqnvR4uZ30i7BI6UWdkemuzTwpvMjxMFvcWkF9yckLQ2UyCDYnX
+         Ic90XV0HRdGltaLYsO5fqAGeXHht93b7dUMUJ1xdRMbIj2N3tm4WZQ73V0Rc6Rdy81eT
+         hsW96tOM4RI4L1PsJGrdqGhcgXUx79p/gs59P3NLw7VAbPFeNQ1kGczPWG8LZCAYe9u5
+         q4mZ3ys+mF8qzp+NGLPGStbcoe3Q3JX7Rq3sAejIdD72e+l1WEKExUN70qcDEB9DNyXh
+         Q2kb8XErb+pSeNm6GFcLQr8MF/OolHBI8HLNtaYlvvzNxnycBOdal0YSlAEcJxR1CoKv
+         9gzA==
+X-Gm-Message-State: AOJu0Yx5rHApiYkKCujj9f8xh5HcYJ5OemIoMZTAOTgerLdT4NTt/F2N
+	Qa/7VIRqHjAUyw+D2FPTonn5tT2jy4LiEPgh6XfnFmjHu6SApQ7jg7so
+X-Gm-Gg: AZuq6aKNRGFS3VI4JatESSdCx0IyqDSMn3k8jAQT/ZPl7vTLmKE9LtM/MVwjzgY1Oc1
+	rCgUANIK6B4ouW/4TKjD8lBtLm7Gal0KrNNfj0t0Du6ZKr/CvHTgBrq04z28dknhsqoOEi6mncy
+	9tCVwFbxxBWT8BARTrHLC5JzZktishvYBQk2XIpvIenGCKQNjglvjA6xb2luV82Sc8/9uFSxZI3
+	W/HamBDoUPbGIGN/Sn6E3ZcfQLidzxxywEFpdRe1ZW5n7cR7KPD8MHHNF/JdpdXcauXPZ/jQSBm
+	xp1FtxMpYBPfuf8ocBAx+yJO41TjJuwUiHvAp7N/bGnHG8vBYfIqsf2czHIQ8ErAE4i0Y25p/2L
+	3ywPP1zp245ni1fd1CJOnyHwSGN1hUdpQTT35MFXHreNqw5GASW+h8coxYY8rbZbj5Ixiv56rMn
+	efTUSxBsMt+cabXze/QUSPhfT5SkKbf+fNoJ0dNC5LEyfluPzeQGTx+G3GqwS+wYcbvB04M4t6f
+	ET4DObULWkEpFdHoA+sHz7z
+X-Received: by 2002:a05:600c:6814:b0:47a:7fd0:9eea with SMTP id 5b1f17b1804b1-4804c943d37mr75807255e9.3.1769209225030;
+        Fri, 23 Jan 2026 15:00:25 -0800 (PST)
 Received: from iku.Home ([2a06:5906:61b:2d00:bccf:b3b1:e288:4e83])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-480470cc278sm157142665e9.12.2026.01.23.15.00.22
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-480470cc278sm157142665e9.12.2026.01.23.15.00.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jan 2026 15:00:22 -0800 (PST)
+        Fri, 23 Jan 2026 15:00:24 -0800 (PST)
 From: Prabhakar <prabhakar.csengg@gmail.com>
 X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 To: Geert Uytterhoeven <geert+renesas@glider.be>,
@@ -90,9 +90,9 @@ Cc: devicetree@vger.kernel.org,
 	Biju Das <biju.das.jz@bp.renesas.com>,
 	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
 	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 1/4] arm64: dts: renesas: rzt2h-n2h-evk: Add ramp delay for SD0 card regulator
-Date: Fri, 23 Jan 2026 22:59:54 +0000
-Message-ID: <20260123225957.1007089-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 2/4] arm64: dts: renesas: r9a09g077m44-rzt2h-evk: Clarify SD0 power jumpers
+Date: Fri, 23 Jan 2026 22:59:55 +0000
+Message-ID: <20260123225957.1007089-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260123225957.1007089-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 References: <20260123225957.1007089-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
@@ -114,7 +114,7 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259133-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-259134-lists,devicetree=lfdr.de];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_TO(0.00)[glider.be,gmail.com,kernel.org,vger.kernel.org];
@@ -132,48 +132,44 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 7077F7B54B
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bp.renesas.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,renesas.com:email]
+X-Rspamd-Queue-Id: 5BCFF7B559
 X-Rspamd-Action: no action
 
 From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Add a ramp delay of 60 uV/us to the vqmmc_sdhi0 voltage regulator to
-fix UHS-I SD card detection failures.
+Clarify the board setup requirements for using SDHI0 on the RZ/T2H EVK by
+documenting the CN78 jumper positions needed to supply SD0 power for
+either the default eMMC configuration or the SD card slot configuration.
 
-Measurements on CN78 pin 4 showed the actual voltage ramp time to be
-21.86ms when switching between 3.3V and 1.8V. A 25ms ramp delay has
-been configured to provide adequate margin. The calculation is based
-on the voltage delta of 1.5V (3.3V - 1.8V):
-  1500000 uV / 60 uV/us = 25000 us (25ms)
-
-Prior to this patch, UHS-I cards failed to initialize with:
-
-  [   32.723914] mmc0: error -110 whilst initialising SD card
-
-After this patch, UHS-I cards are properly detected on SD0:
-
-  [   28.379122] mmc0: new UHS-I speed SDR104 SDXC card at address aaaa
-  [   28.387239] mmcblk0: mmc0:aaaa SR64G 59.5 GiB
-
-Fixes: d065453e5ee09("arm64: dts: renesas: rzt2h-rzn2h-evk: Enable SD card slot")
 Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 ---
- arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi b/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi
-index 510399febf29..f87c2492f414 100644
---- a/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi
-@@ -53,6 +53,7 @@ vqmmc_sdhi0: regulator-vqmmc-sdhi0 {
- 		regulator-max-microvolt = <3300000>;
- 		gpios-states = <0>;
- 		states = <3300000 0>, <1800000 1>;
-+		regulator-ramp-delay = <60>;
- 	};
- #endif
- 
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts b/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
+index e9639bbb2d70..49464e6d212b 100644
+--- a/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
++++ b/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
+@@ -14,12 +14,15 @@
+ /*
+  * SD0 can be connected to either eMMC (IC49) or SD card slot CN31
+  * Lets by default enable the eMMC, note we need the below SW settings
+- * for eMMC.
++ * for eMMC. Also ensure that CN78 pins 5 and 6 are connected with a jumper
++ * to provide the SD0 power supply when using eMMC.
+  * SW2[1] = ON; SW2[2] = ON
+  *
+  * To enable SD card and disable eMMC on SDHI0 disable the below macro
+- * and set the below switch setting:
+- * SW2[1] = OFF; SW2[2] = ON
++ * and set the switch as follows. Also ensure that CN78 pins 3 and 4 are connected
++ * with a jumper to provide the SD0 power supply when using an SD card.
++ *
++ * SW2[1] = OFF; SW2[2] = ON.
+  */
+ #define SD0_EMMC	1
+ #define SD0_SD		(!SD0_EMMC)
 -- 
 2.52.0
 
