@@ -1,270 +1,150 @@
-Return-Path: <devicetree+bounces-258916-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258917-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GIUfOfhfc2l3vAAAu9opvQ
-	(envelope-from <devicetree+bounces-258916-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 12:48:08 +0100
+	id 0Lp5FO1ic2luvQAAu9opvQ
+	(envelope-from <devicetree+bounces-258917-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 13:00:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60444755C6
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 12:48:08 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1F39757AA
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 13:00:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2349E3031001
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 11:42:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5E06C301D689
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 11:59:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0AFE30F7F2;
-	Fri, 23 Jan 2026 11:42:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F75532549E;
+	Fri, 23 Jan 2026 11:59:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hD/o+oIW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vAULQdSB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B48832741AB;
-	Fri, 23 Jan 2026 11:41:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5993D303A15;
+	Fri, 23 Jan 2026 11:59:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769168520; cv=none; b=sLS7l9tAS5ejiJvSvlqzEKr1b12yITBPtZGxgjgpoWSuTOAc0kp9wYVR/s1BRbKGwNLz+r4k4tOMQQKXnLPfjAoB85AIzxiGrg85QzaPPU5yOyApnHOgMlP2FV7474YWcWVOGvTDUiAPLu1gLLJYBKUlh9LzjKndbVHrP66/fcw=
+	t=1769169589; cv=none; b=oCVMbeKCHrT+uVl63RHG/mYr/+UNgV9Nx5TSdLiv8GxsB5LZVgfIC2vD6tt0SmHajqtJ0zM+sMKZGEqxQqFt6MkQ99tGgn8YDNI64m/yv3kdEUqmrWqxegVDqSlIw5hp++hGB3v4Gw/rvJMy++VuZ4AsElBMS8KiFajxkHtlO7A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769168520; c=relaxed/simple;
-	bh=V4Mf94EcyIDXzX94gvCBbKbFzNKoA9nJp5TA6mm7760=;
+	s=arc-20240116; t=1769169589; c=relaxed/simple;
+	bh=A4yU5TrYF1g+rSaiFx3ogpqfd+jZEPaGonYiVrIwkl4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HJpEs4YuFaS0BJGIxDEvRB8PSPp6mrb3EvgdpLr2aazbV9guzk2m7fpY8g4gHRyg7E+LGPIvaGcfMAosU5p6ENyebmMYjVyIA41hljH12R7Cw77/esvarylRHSi0MmDhgXbt8RupGVPVtaGG1JTTto4x8l3VQ2Toen3nJyC7g8I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hD/o+oIW; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1769168519; x=1800704519;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=V4Mf94EcyIDXzX94gvCBbKbFzNKoA9nJp5TA6mm7760=;
-  b=hD/o+oIWEnXcTH+JgQzNqvNShvGI30jRUrmGDPxDINFaOSHFwsGVeAKS
-   m+8WS9Yb68i1uSABYfLSNrNt+wyB1o5/TXSZcPrYUkMP2gmabW2SZLXlL
-   SKLeJr3V8eIGQ6b0r+tiJ8EydYEto/XjFUWTj7gedAuStgcBtIP6l+dF9
-   5XKP9dydGXkMdkteQDLWytikBTU0zA8MQ4aQLoA0JL5kGcZHDG72i+gmI
-   101R5g7BZ24QiN2bhZuN1+8GrxkR4k3xdwQpzFpS5qAodl1YlKDO5dkwy
-   h87CrF6O0RvIp7MzP+u59zjRXGk6tOLIpwq6wtz8guZWBaYz+oPLG5jPc
-   Q==;
-X-CSE-ConnectionGUID: e7PbWnynTs2S0kYkKfMZAA==
-X-CSE-MsgGUID: f7lp4HQ4RMucuP/ES1X91A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11679"; a="70481953"
-X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; 
-   d="scan'208";a="70481953"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jan 2026 03:41:58 -0800
-X-CSE-ConnectionGUID: HfX8Xg9RSGi7be1Lr3RVNg==
-X-CSE-MsgGUID: /0HznFOTRbCyDXyBJf4gng==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; 
-   d="scan'208";a="211130239"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by orviesa003.jf.intel.com with ESMTP; 23 Jan 2026 03:41:52 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vjFXy-00000000Tty-0dUd;
-	Fri, 23 Jan 2026 11:41:50 +0000
-Date: Fri, 23 Jan 2026 19:41:30 +0800
-From: kernel test robot <lkp@intel.com>
-To: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>,
-	Drew Fustini <dfustini@oss.tenstorrent.com>,
-	Joel Stanley <jms@oss.tenstorrent.com>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=JLb//5MeK0r674qDddRCB3LeyU5igT9zRmgAD7RjFMGisNMINrHg28y21nhVkBYM4eW2XOdhGEiwEqAIwPBmM4XKZITp9bWBxWXdFFsKYn8vaCqCMrXznpQj385rFNq+JBGxU3OFghQHaEI00lqxtu38vKygGfr0buV3ABfXMsI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vAULQdSB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 233A3C4CEF1;
+	Fri, 23 Jan 2026 11:59:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769169589;
+	bh=A4yU5TrYF1g+rSaiFx3ogpqfd+jZEPaGonYiVrIwkl4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=vAULQdSB3MVZgfIZB09N8pbEsFsRoCGZ2aHiWwNNGbnYSPZU6Ikmw0/2lGejcXg8C
+	 wWRaInX5UDLBihxis8ATOLE+w19Tu2aYtfsBE7hLKSSvV8PNxENKdiMZgbYsxLfjfv
+	 JcnwipvPjENIg5eATg6efz/XrKuLDPsM85R7dDuC4PbYNtrVmnJym0DyL4CppoeHGY
+	 slPdxmQ7aLQowy49MmKRZTHqIpQHI5/4gnFf7mgqxgUcRHYUhqkwU/AJX3+Zs/qFMb
+	 urltq5QYZT/OxQ+6OqB7UQa/QhNO+wxLNidy8Kozu5ugdYbOUH9WO/3XeUciIyqWPK
+	 iMwNITfPCfV7A==
+Date: Fri, 23 Jan 2026 11:59:42 +0000
+From: Mark Brown <broonie@kernel.org>
+To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+Cc: Lee Jones <lee@kernel.org>, Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-	joel@jms.id.au, fustini@kernel.org, mpe@kernel.org,
-	mpe@oss.tenstorrent.com, npiggin@oss.tenstorrent.com,
-	agross@kernel.org, agross@oss.tenstorrent.com, bmasney@redhat.com
-Subject: Re: [PATCH v2 3/3] clk: tenstorrent: Add Atlantis clock controller
- driver
-Message-ID: <202601231918.PQTTcbRG-lkp@intel.com>
-References: <20260122-atlantis-clocks-v2-3-c66371639e66@oss.tenstorrent.com>
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Will McVicker <willmcvicker@google.com>,
+	Juan Yescas <jyescas@google.com>, kernel-team@android.com,
+	linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Subject: Re: (subset) [PATCH v7 00/20] Samsung S2MPG10 regulator and S2MPG11
+ PMIC drivers
+Message-ID: <1333e1d0-c4f2-4823-834c-df8f6a196d10@sirena.org.uk>
+References: <20260122-s2mpg1x-regulators-v7-0-3b1f9831fffd@linaro.org>
+ <176909970862.4046298.23888884171864307.b4-ty@kernel.org>
+ <0b4c5e699ce1d8211314a2bb28d7b6566e577037.camel@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="QNH62va6fVfk8GAi"
 Content-Disposition: inline
-In-Reply-To: <20260122-atlantis-clocks-v2-3-c66371639e66@oss.tenstorrent.com>
+In-Reply-To: <0b4c5e699ce1d8211314a2bb28d7b6566e577037.camel@linaro.org>
+X-Cookie: HAIR TONICS, please!!
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258916-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-258917-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,linaro.org,gmail.com,bgdev.pl,google.com,android.com,vger.kernel.org,oss.qualcomm.com];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-0.988];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[01.org:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
-X-Rspamd-Queue-Id: 60444755C6
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: C1F39757AA
 X-Rspamd-Action: no action
 
-Hi Anirudh,
 
-kernel test robot noticed the following build errors:
+--QNH62va6fVfk8GAi
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[auto build test ERROR on 9448598b22c50c8a5bb77a9103e2d49f134c9578]
+On Fri, Jan 23, 2026 at 09:39:00AM +0000, Andr=E9 Draszik wrote:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Anirudh-Srinivasan/dt-bindings-soc-tenstorrent-Add-tenstorrent-atlantis-syscon/20260123-064135
-base:   9448598b22c50c8a5bb77a9103e2d49f134c9578
-patch link:    https://lore.kernel.org/r/20260122-atlantis-clocks-v2-3-c66371639e66%40oss.tenstorrent.com
-patch subject: [PATCH v2 3/3] clk: tenstorrent: Add Atlantis clock controller driver
-config: um-allmodconfig (https://download.01.org/0day-ci/archive/20260123/202601231918.PQTTcbRG-lkp@intel.com/config)
-compiler: clang version 19.1.7 (https://github.com/llvm/llvm-project cd708029e0b2869e80abe31ddb175f7c35361f90)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260123/202601231918.PQTTcbRG-lkp@intel.com/reproduce)
+> Thanks for queuing these, but FYI, I think leaving out patches 1 to 3 will
+> give validation errors.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202601231918.PQTTcbRG-lkp@intel.com/
+> As mentioned in cover letter, the patches must be applied in order, for
+> bindings particularly the mfd-binding patches depend on the regulator-
+> binding updates, specifically patches 4 and 5 reference files added in
+> patches 2 and 3 respectively.
 
-All errors (new ones prefixed by >>):
+So long as everything lands in the final release it'll be fine, people
+aren't bisecting DT binding validation in the way that they do runtime
+issues.
 
-   In file included from drivers/clk/tenstorrent/atlantis-ccu.c:12:
-   In file included from include/linux/regmap.h:20:
-   In file included from include/linux/iopoll.h:14:
-   In file included from include/linux/io.h:12:
-   In file included from arch/um/include/asm/io.h:24:
-   include/asm-generic/io.h:1209:55: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-    1209 |         return (port > MMIO_UPPER_LIMIT) ? NULL : PCI_IOBASE + port;
-         |                                                   ~~~~~~~~~~ ^
->> drivers/clk/tenstorrent/atlantis-ccu.c:832:2: error: call to undeclared function 'kfree'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     832 |         kfree(to_atlantis_ccu_adev(adev));
-         |         ^
->> drivers/clk/tenstorrent/atlantis-ccu.c:852:10: error: call to undeclared function 'kzalloc'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     852 |         cadev = kzalloc(sizeof(*cadev), GFP_KERNEL);
-         |                 ^
->> drivers/clk/tenstorrent/atlantis-ccu.c:852:8: error: incompatible integer to pointer conversion assigning to 'struct atlantis_ccu_adev *' from 'int' [-Wint-conversion]
-     852 |         cadev = kzalloc(sizeof(*cadev), GFP_KERNEL);
-         |               ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/clk/tenstorrent/atlantis-ccu.c:877:2: error: call to undeclared function 'kfree'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     877 |         kfree(cadev);
-         |         ^
-   1 warning and 4 errors generated.
+--QNH62va6fVfk8GAi
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
-vim +/kfree +832 drivers/clk/tenstorrent/atlantis-ccu.c
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmlzYq0ACgkQJNaLcl1U
+h9Dd5wf/RGBpjqkOJnSPpMRcN2JsWpXJEF3vm9OH5VpaItpuB+jfBYI9N0uMyU9c
+SRjw+fbX0CE1ywjKIfultFvBtlk9A8QWcIbZGPDAE9gi1zcWcWI7f0oVAetZxyFw
+J0KhtWUbDZ6D4l7jqhI8qKBBE9q2icCOCIUZ0j0Hmqw3GGqK08W86miipVNzybdy
+yE1kMm14FNIJIjAhq6w4CTh32c0FDRuuBeDpBd/QA8KEo2De/c/q48gW72EL/m4/
+bQLaeOe0BMklbIkEOKRqAS7OVJjYUZT8AP+OGn2xdytxqsSCZx8F5zrVcruhSa2+
+pWSFzNqnVXFuVrfmgaG35kSRtuzQIw==
+=ip3b
+-----END PGP SIGNATURE-----
 
-   827	
-   828	static void atlantis_cadev_release(struct device *dev)
-   829	{
-   830		struct auxiliary_device *adev = to_auxiliary_dev(dev);
-   831	
- > 832		kfree(to_atlantis_ccu_adev(adev));
-   833	}
-   834	
-   835	static void atlantis_adev_unregister(void *data)
-   836	{
-   837		struct auxiliary_device *adev = data;
-   838	
-   839		auxiliary_device_delete(adev);
-   840		auxiliary_device_uninit(adev);
-   841	}
-   842	
-   843	static int atlantis_ccu_adev_register(struct device *dev,
-   844					      struct atlantis_ccu *ccu,
-   845					      const struct atlantis_ccu_data *data,
-   846					      const char *adev_name)
-   847	{
-   848		struct atlantis_ccu_adev *cadev;
-   849		struct auxiliary_device *adev;
-   850		int ret;
-   851	
- > 852		cadev = kzalloc(sizeof(*cadev), GFP_KERNEL);
-   853		if (!cadev)
-   854			return -ENOMEM;
-   855	
-   856		cadev->regmap = ccu->regmap;
-   857	
-   858		adev = &cadev->adev;
-   859		adev->name = adev_name;
-   860		adev->dev.parent = dev;
-   861		adev->dev.release = atlantis_cadev_release;
-   862		adev->dev.of_node = dev->of_node;
-   863	
-   864		ret = auxiliary_device_init(adev);
-   865		if (ret)
-   866			goto err_free_cadev;
-   867	
-   868		ret = auxiliary_device_add(adev);
-   869		if (ret) {
-   870			auxiliary_device_uninit(adev);
-   871			return ret;
-   872		}
-   873	
-   874		return devm_add_action_or_reset(dev, atlantis_adev_unregister, adev);
-   875	
-   876	err_free_cadev:
-   877		kfree(cadev);
-   878	
-   879		return ret;
-   880	}
-   881	static int atlantis_ccu_probe(struct platform_device *pdev)
-   882	{
-   883		const struct atlantis_ccu_data *data;
-   884		struct device *dev = &pdev->dev;
-   885		int ret;
-   886	
-   887		struct atlantis_ccu *ccu = devm_kzalloc(dev, sizeof(*ccu), GFP_KERNEL);
-   888	
-   889		if (!ccu)
-   890			return -ENOMEM;
-   891	
-   892		ccu->dev = dev;
-   893	
-   894		ccu->base = devm_platform_ioremap_resource(pdev, 0);
-   895		if (IS_ERR(ccu->base))
-   896			return dev_err_probe(dev, PTR_ERR(ccu->base),
-   897					     "Failed to map registers\n");
-   898	
-   899		ccu->regmap = devm_regmap_init_mmio(dev, ccu->base,
-   900						    &atlantis_ccu_regmap_config);
-   901		if (IS_ERR(ccu->regmap))
-   902			return dev_err_probe(dev, PTR_ERR(ccu->regmap),
-   903					     "Failed to init regmap\n");
-   904	
-   905		data = of_device_get_match_data(dev);
-   906	
-   907		ret = atlantis_ccu_clocks_register(dev, ccu, data);
-   908		if (ret)
-   909			return dev_err_probe(dev, ret, "failed to register clocks\n");
-   910	
-   911		ret = atlantis_ccu_adev_register(dev, ccu, data, data->reset_name);
-   912		if (ret)
-   913			return dev_err_probe(dev, ret, "failed to register resets\n");
-   914	
-   915		return 0;
-   916	}
-   917	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+--QNH62va6fVfk8GAi--
 
