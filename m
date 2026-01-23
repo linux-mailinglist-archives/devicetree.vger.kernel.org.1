@@ -1,55 +1,56 @@
-Return-Path: <devicetree+bounces-258717-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258720-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UKHCLUANc2ncrwAAu9opvQ
-	(envelope-from <devicetree+bounces-258717-lists+devicetree=lfdr.de@vger.kernel.org>)
+	id ANySJ0ANc2ncrwAAu9opvQ
+	(envelope-from <devicetree+bounces-258720-lists+devicetree=lfdr.de@vger.kernel.org>)
 	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 06:55:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74B4770982
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6100470981
 	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 06:55:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id DD476300748A
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3D47330166C0
 	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 05:55:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84F2A39F333;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 822AA2E7F07;
 	Fri, 23 Jan 2026 05:55:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YjKoG/WC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="syeYLa6r"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4A5639DB05;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1F9025A33F;
 	Fri, 23 Jan 2026 05:55:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769147707; cv=none; b=uWP8Bj0aIi+38JNCcdL4D8OFqYHxdw7zrgYBvW8Jx725l6zI4n5zrcjRgV84EvB/CUXdlXva1RMfRwF9Q6R3syDwGOxb0iSqVnNdIGlaugpWF2SMrY9mpaTV8+mIHN4KS9miKgWulv9uqjlB3WeD4Fu8JhXrsJCzMKkhAzTBMTY=
+	t=1769147707; cv=none; b=kH+JnS+5lIBI6dqIe0A8dUcCRJ7n9y1EYIqqB9H8RruSfwOxyIT1WCCp4QVguwloWIbrSuahqZ76asFNISsdfei14p729kqcXSPFEuaUhDh6ycpNwHEaHsyA5ZgM+wmc0V9clk6av4NtOjLD34iq3aZf3nXf9aX603biRXoaEH8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1769147707; c=relaxed/simple;
-	bh=zHQ4wCU8bGYwasn2b503Clo2bqnsQewMVrK57mvYXGM=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=HptiO8NIBsAF0stxsDLq7Ns8gArP2+tEL7iOiGharL27+sXe2LHSskAv472fEfgG3fw1J+zccwX6jyy2M2KxtrUkCr2J3lWqjKefLbm8noWoAFmUaJ1EsuRjTpP7GY+GBr38lEhRglkCIYzBZl6l1146iujtJnSE2WFwe4cveEI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YjKoG/WC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id CC7DBC19422;
+	bh=VSIZZ+c6ZCEkcYCJ5xJcHe3I7DscypgkCjD/RMtrCKk=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=lykvl0kCJAeLA9jpr/rPwjC8/xWki7v+kjWsT6D7v4C6KKL6BiV571QCjCw7x9tk7Xb29i5Yb+txmVcsZr6nM0scb0PitEUNCPG+PELm8/M+Awp2dXP3Ftph1h5Fe+CNtvzbbX6E4OKh9Sqjjwz8dhcmhnhSwES1T2WnJaDcqZ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=syeYLa6r; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id E9A44C4CEF1;
 	Fri, 23 Jan 2026 05:55:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769147705;
-	bh=zHQ4wCU8bGYwasn2b503Clo2bqnsQewMVrK57mvYXGM=;
-	h=From:Subject:Date:To:Cc:Reply-To:From;
-	b=YjKoG/WCa9QqRsjcCOyjCOBIKYLaYaRZPAR1b+Z8suyQZktMU17LeTj9ed7QK6nGI
-	 diNr/1960EhDV37KaeefTtG0YJq706242mgLQQzQwDsHJ9rGRcIdxuValSkGLLJ2Fc
-	 BlrvtpP8n/V+uCzokJdqXbD9O26/xrwdgjqMznvhSPnFFCypEz0mH5I9APuJKxKPwZ
-	 A6UDQJGIxTwqedEy68PtRvQ9DoYxv8bCpFNRkcVRM3yhSgkiHDZemjhY+iCU52PrNA
-	 HHnCo8DXbf7GiTJRJDcNN0xAIAaaiZJ+4PwBNfxFVSuQBl4ugkf0/zPs9BrcFGaNrU
-	 MQnfKQrSRQ5Bw==
+	s=k20201202; t=1769147706;
+	bh=VSIZZ+c6ZCEkcYCJ5xJcHe3I7DscypgkCjD/RMtrCKk=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=syeYLa6r9DZkbPSdXSH24uK/Oa5R6LR1yTrwU5+IXO3VG/J/P2by44F1eTtu/y3eC
+	 xvBl7FrKCVZcHAzMume+zs3UMGmJ3YoHHGQDw/nbFbtDMbZP1yw19HmaC9HKpTEQ+v
+	 ZTdVdUVrB5dKi/VxEBHnE6xMo9Ip7Wxc4BCCJO6thVb1yJgpHZtTAO/KCyMg9a/cjN
+	 0EQpwfWm16/kWCbXFTVEFbrmkcHTSSOajBUs6YY1HhHcrtQVYoX6AN3DK2PfgFQ8bi
+	 pehNBezS+pzRGUpaL3s5uVhIP6Kh3YDRctMl8R44FPLAJDuunaFB74L55/i1NtW1uv
+	 A8mlCoMrpwqsQ==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C08CCD6CFBD;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D2011D6CFD7;
 	Fri, 23 Jan 2026 05:55:05 +0000 (UTC)
 From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
-Subject: [PATCH v6 0/5] clk: amlogic: Add A5 SoC PLLs and Peripheral clock
-Date: Fri, 23 Jan 2026 13:54:54 +0800
-Message-Id: <20260123-a5-clk-v6-0-6d3bbf0ec1ea@amlogic.com>
+Date: Fri, 23 Jan 2026 13:54:55 +0800
+Subject: [PATCH v6 1/5] dt-bindings: clock: Add Amlogic A5 SCMI clock
+ controller support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,11 +58,10 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-B4-Tracking: v=1; b=H4sIAC4Nc2kC/2XM3QrCMAyG4VuRHltJsrasHnkf4kHMsln8mWwyF
- Nm9W4VNxMMv5HmfptcuaW/Wi6fpdEh9ai95hOXCyIEvjdpU5W0IyEFEtOytnI628OIiy75wiiY
- /Xzut0/0T2u7yPqT+1naPT3fA93VKuCkxoAXrVUlcjXsoZcPnU9skWUl7Nu/IQDNEJJghZZh3G
- Qg1Bqz+oZugR6Byhi5DDSQMzEqu+Id+ggEQvtBnGDnEWlBrAP6F4zi+AMeM3k1JAQAA
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260123-a5-clk-v6-1-6d3bbf0ec1ea@amlogic.com>
+References: <20260123-a5-clk-v6-0-6d3bbf0ec1ea@amlogic.com>
+In-Reply-To: <20260123-a5-clk-v6-0-6d3bbf0ec1ea@amlogic.com>
 To: Chuan Liu <chuan.liu@amlogic.com>, 
  Michael Turquette <mturquette@baylibre.com>, 
  Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -76,11 +76,11 @@ Cc: linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
  devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, 
  linux-arm-kernel@lists.infradead.org
 X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1769147703; l=3892;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1769147703; l=2048;
  i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
- bh=zHQ4wCU8bGYwasn2b503Clo2bqnsQewMVrK57mvYXGM=;
- b=rLw2OixInyvP6GpRqMjLEO0pWPScYdXXlias5U6jFnZ0M8x6/3iQvZ6SGzvJJKfZeloPaBhtB
- UYtpJtH9qK7D4DyOypRNPByMZoAmm6ithjyi14DvXVS9RqRLfCY5Zse
+ bh=4kspprQnq+nsGEHN4lrxioeMwroBsv/rJjwAgDy0myA=;
+ b=PLqruzjeto1unAK+G8UfMAbBeKVb6kYt3WyFxVS/NQLuECtYnkwNyN5n+eXBV8Va6ND2mL9dR
+ lm/2TqlH16DDYljERzZabByDrtq/c+UIxiwmEDpjFZz5C+k0oUXmrFT
 X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
  pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
 X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
@@ -93,12 +93,12 @@ X-Spamd-Result: default: False [-1.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258717-lists,devicetree=lfdr.de,chuan.liu.amlogic.com];
+	TAGGED_FROM(0.00)[bounces-258720-lists,devicetree=lfdr.de,chuan.liu.amlogic.com];
 	RCPT_COUNT_TWELVE(0.00)[16];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
@@ -111,97 +111,79 @@ X-Spamd-Result: default: False [-1.16 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
 	HAS_REPLYTO(0.00)[chuan.liu@amlogic.com]
-X-Rspamd-Queue-Id: 74B4770982
+X-Rspamd-Queue-Id: 6100470981
 X-Rspamd-Action: no action
 
-The patchset adds support for the peripheral and PLL clock controller
-on the Amlogic A5 SoC family, such as A113X2.
+From: Chuan Liu <chuan.liu@amlogic.com>
 
-To make it easier for the maintainer to manage the patches, the
-DTS-related commits have been removed from this version of the
-patchset.
-
-For the convenience of the maintainer and reviewers, the DTS patches
-have been pushed to github separately for reference [1], [2], [3], and
-they will be submitted upstream separately after this patchset is
-merged. I hope this does not cause any additional inconvenience.
-
-[1] https://github.com/chuan-aml/linux/commit/edb8fa5e13ca35b37363fe08d8067511613968cd
-[2] https://github.com/chuan-aml/linux/commit/c600dadb45f581e200991dd0beacf3575ff971f1
-[3] https://github.com/chuan-aml/linux/commit/7d373cf78e22ee767a5232010d0a0568e7228086
+Add the SCMI clock controller dt-bindings for the Amlogic A5 SoC
+family.
 
 Co-developed-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
-
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 ---
-Changes in v6:
-- Use unified macros for sys_clk/axi_clk.
-- Remove DTS changes to ease maintainer patch management.
-- Link to v5: https://lore.kernel.org/r/20260108-a5-clk-v5-0-9a69fc1ef00a@amlogic.com
+ include/dt-bindings/clock/amlogic,a5-scmi-clkc.h | 44 ++++++++++++++++++++++++
+ 1 file changed, 44 insertions(+)
 
-Changes in v5:
-- Add “Co-developed-by” tag for Xianwei.
-- Change rtc_clk flags to CLK_SET_RATE_NO_REPARENT.
-- Optimize the macro definitions for clock configuration.
-- Unified naming of clock parent related variables.
-- Link to v4: https://lore.kernel.org/r/20251028-a5-clk-v4-0-e62ca0aae243@amlogic.com
+diff --git a/include/dt-bindings/clock/amlogic,a5-scmi-clkc.h b/include/dt-bindings/clock/amlogic,a5-scmi-clkc.h
+new file mode 100644
+index 000000000000..1bf027d0110a
+--- /dev/null
++++ b/include/dt-bindings/clock/amlogic,a5-scmi-clkc.h
+@@ -0,0 +1,44 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
++/*
++ * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
++ * Author: Chuan Liu <chuan.liu@amlogic.com>
++ */
++
++#ifndef __AMLOGIC_A5_SCMI_CLKC_H
++#define __AMLOGIC_A5_SCMI_CLKC_H
++
++#define CLKID_OSC				0
++#define CLKID_SYS_CLK				1
++#define CLKID_AXI_CLK				2
++#define CLKID_CPU_CLK				3
++#define CLKID_DSU_CLK				4
++#define CLKID_GP1_PLL				5
++#define CLKID_FIXED_PLL_DCO			6
++#define CLKID_FIXED_PLL				7
++#define CLKID_ACLKM				8
++#define CLKID_SYS_PLL_DIV16			9
++#define CLKID_CPU_CLK_DIV16			10
++#define CLKID_FCLK_50M_PREDIV			11
++#define CLKID_FCLK_50M_DIV			12
++#define CLKID_FCLK_50M				13
++#define CLKID_FCLK_DIV2_DIV			14
++#define CLKID_FCLK_DIV2				15
++#define CLKID_FCLK_DIV2P5_DIV			16
++#define CLKID_FCLK_DIV2P5			17
++#define CLKID_FCLK_DIV3_DIV			18
++#define CLKID_FCLK_DIV3				19
++#define CLKID_FCLK_DIV4_DIV			20
++#define CLKID_FCLK_DIV4				21
++#define CLKID_FCLK_DIV5_DIV			22
++#define CLKID_FCLK_DIV5				23
++#define CLKID_FCLK_DIV7_DIV			24
++#define CLKID_FCLK_DIV7				25
++#define CLKID_SYS_MMC_PCLK			26
++#define CLKID_SYS_CPU_CTRL			27
++#define CLKID_SYS_IRQ_CTRL			28
++#define CLKID_SYS_GIC				29
++#define CLKID_SYS_BIG_NIC			30
++#define CLKID_AXI_SYS_NIC			31
++#define CLKID_AXI_CPU_DMC			32
++
++#endif /* __AMLOGIC_A5_SCMI_CLKC_H */
 
-Changes in v4:
-- dt-binding for peripheral clocks (kept Rob’s 'Reviewed-by' here):
-  - Added optional clock source rtc pll.
-  - Renamed rtc_clk’s clkid to better reflect its function.
-- PLL/Clock driver:
-  - Adapted to Jerome’s refactored driver interface, naming
-conventions, and macros.
-  - Updated related CONFIG entries in Kconfig.
-- Added dts patch of PLL/Clock.
-- Link to v3: https://lore.kernel.org/r/20250103-a5-clk-v3-0-a207ce83b9e9@amlogic.com
-
-Changes in v3:
-- Rename xtal_24m to xtal, and modify some description of Kconfig.
-- Drop some comment of PLL source code.
-- Move definition of A5_CLK_GATE_FW frome common code into A5 peripheral source code.
-- Use hw instead of name to describe parent_data.
-- Making SCMI binding the first to submit.
-- Link to v2: https://lore.kernel.org/r/20241120-a5-clk-v2-0-1208621e961d@amlogic.com
-
-Changes in v2:
-- Move some sys clock and axi clock from peripheral to scmi impletement.
-- Remove  ARM_SCMI_PROTOCOL in Kconfig and correct name A5 but not A4.
-- Add two optional clock inputs for the peripheral(ddr pll and clk-measure)
-- Make some changes and adjustments according to suggestions.
-- Link to v1: https://lore.kernel.org/r/20240914-a5-clk-v1-0-5ee2c4f1b08c@amlogic.com
-
----
-Chuan Liu (5):
-      dt-bindings: clock: Add Amlogic A5 SCMI clock controller support
-      dt-bindings: clock: Add Amlogic A5 PLL clock controller
-      dt-bindings: clock: Add Amlogic A5 peripherals clock controller
-      clk: amlogic: Add A5 PLL clock controller driver
-      clk: amlogic: Add A5 clock peripherals controller driver
-
- .../clock/amlogic,a5-peripherals-clkc.yaml         | 134 ++++
- .../bindings/clock/amlogic,a5-pll-clkc.yaml        |  63 ++
- drivers/clk/meson/Kconfig                          |  27 +
- drivers/clk/meson/Makefile                         |   2 +
- drivers/clk/meson/a5-peripherals.c                 | 781 +++++++++++++++++++++
- drivers/clk/meson/a5-pll.c                         | 478 +++++++++++++
- .../clock/amlogic,a5-peripherals-clkc.h            | 132 ++++
- include/dt-bindings/clock/amlogic,a5-pll-clkc.h    |  24 +
- include/dt-bindings/clock/amlogic,a5-scmi-clkc.h   |  44 ++
- 9 files changed, 1685 insertions(+)
----
-base-commit: f0b9d8eb98dfee8d00419aa07543bdc2c1a44fb1
-change-id: 20240911-a5-clk-35c49acb34e1
-
-Best regards,
 -- 
-Chuan Liu <chuan.liu@amlogic.com>
+2.42.0
 
 
 
