@@ -1,391 +1,318 @@
-Return-Path: <devicetree+bounces-258959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258960-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iKcLASR9c2mGwwAAu9opvQ
-	(envelope-from <devicetree+bounces-258959-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 14:52:36 +0100
+	id GCfELnN9c2mGwwAAu9opvQ
+	(envelope-from <devicetree+bounces-258960-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 14:53:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF639767BA
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 14:52:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 149F8767FE
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 14:53:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A64473006032
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 13:52:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BB6573019F08
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 13:53:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C33727A107;
-	Fri, 23 Jan 2026 13:52:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E2692EB876;
+	Fri, 23 Jan 2026 13:53:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="AuRKHtxF";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="eNqTXmGf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3A831CAA68
-	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 13:52:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 640A428CF42
+	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 13:53:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769176350; cv=none; b=W0iVoktatIoqiKlAHinaTXs9QIIXCZpuX5GDjR5XGldrrU6l6h1hQ5kpiatUjgxZ8ccZHi6NlZDNST+2k9TeCQ43ZZlznx5br2FEl7CEIbiljb2cQ0B+2JUA0Y+RgDCqXtVFEYgI1Snn9V4Ifg1dEx/lgiCDW3a2+HguLa+8nFI=
+	t=1769176432; cv=none; b=KUBfpdNFlY21TUnJyyd8FUUusCHZi+uAPs0u2qX4o7bFpfZSwktIjncn1aLH171HKV9LZAGDpkQma4JUEdh+G2hs3ZRb+iiK2ineRohMjNz/jU8n1twfuuocbyX2sT4896FbJ/rKCqfonsbrP2eyfopI1ZfoqBiGWdabjmGlvrQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769176350; c=relaxed/simple;
-	bh=rjzhPXRMCfLLYJnFst69yx1mkRr/XdxD866So/nWmQ8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J3vIpKvrw0mGUilpQE9tcF5I50LdP3jVANCAoUB7siitTXLoZAIx45W3raxg1iG3nfui/3gKbUWDJlSfv+FFgcPtdAYH5x6MxCibOGh3OMXtxljb7pwJX2pb17WERm5rdfC088vp6JoKa7DbrKbs0xnIKFSqjNqnisNTO1x3m4w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1vjHaG-0007rZ-KO; Fri, 23 Jan 2026 14:52:20 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1vjHaH-0026K9-07;
-	Fri, 23 Jan 2026 14:52:20 +0100
-Received: from pengutronix.de (p54b152ce.dip0.t-ipconnect.de [84.177.82.206])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 0FD794D6F2F;
-	Fri, 23 Jan 2026 13:52:20 +0000 (UTC)
-Date: Fri, 23 Jan 2026 14:52:19 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Arun Muthusamy <arun.muthusamy@gaisler.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	mailhol@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-can@vger.kernel.org, Daniel Hellstrom <daniel@gaisler.com>
-Subject: Re: [PATCH v3 07/15] can: grcan: add FD capability detection and
- nominal bit-timing
-Message-ID: <20260123-lush-cryptic-parrot-ea322c-mkl@pengutronix.de>
-References: <20260122121038.7910-1-arun.muthusamy@gaisler.com>
- <20260122121038.7910-8-arun.muthusamy@gaisler.com>
+	s=arc-20240116; t=1769176432; c=relaxed/simple;
+	bh=ARsh7yVkaTjhfNXlQQNdqW8KzcgE7DBrjE6Oh4aiDDc=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=YZjL9pLUsgjsEP2HtiEE3gEoyvp80k4Yv8phtH+Ki/yEcO+CT7hnAf6eZkMrmQzUy1xLc7QB3ZZh6Dd9Gp6N6lrDAiQ/bkh5M2IWz5dEDM59ZnKkB90HigQ2NpZsjKcj3YTC8DU0iaDtAf+y6gjSgvy4JkQAIADm91gfxru3YFw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=AuRKHtxF; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=eNqTXmGf; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60N974L2722623
+	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 13:53:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	xyk4VyTJvjXyVeGrau23wiL81EvwFDD9XQegtrqTgvc=; b=AuRKHtxFyw1rA19I
+	a9dqHS41Gy6UonEBf5+cW03Z5w7f4/MstRkmP2YPrg3/cNFqCMY5W1QGsCg2HHGJ
+	HwiYqeN/IExF2aO0y6eM8Hbo26EzXpAYavhv+xIUE5PHMEIMEt1Uc/sAV7aX9F8e
+	qra1j/+qP0RYd1WBreCaiRrlH1vZRI+7YFqrFpxedrNE06PgmVbvVupjaboiSoTF
+	zn4gjBQPnjNW15MY2B9+mvNCPUDmisCPFksd2TS0cHSxkMfEY4XZ6J0MV5KzZGyc
+	wQ+SR2k8f4CdcFTZ8zQYtRMN2q5wtVTzqw8GgVUGSoGcgpF/Duy658rZ+DrNDQuH
+	HLVtqg==
+Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bv069jamj-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 13:53:49 +0000 (GMT)
+Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-34c5d6193daso4279277a91.1
+        for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 05:53:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1769176428; x=1769781228; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=xyk4VyTJvjXyVeGrau23wiL81EvwFDD9XQegtrqTgvc=;
+        b=eNqTXmGfSKMK4ITO4A8Hk5r52Me4+aQn/Sj2C23LhhgVTV+Kd87oCI8sct6rP9EDuF
+         88yeQ2DwP6JxjaeeOhvKWr3uBAC0x/Se1td8gb2C7hLNaVyP+7GvaAcebpAxcF5J8uDx
+         gUTIvpYYST09zhlOYOJeLGTNXrFH/CsTGuUJQ/3dqVzxaLCJ5SXL6j2oEvK8McabC1N5
+         W0COL1WdjqHChVkXeJMo3X7Bb3YZ3ZIpRh70i9wi8OBF8XerMhu/l+W9dCPI9LkPr0x4
+         CmzVPMgK+VHLuE+003XcJ79icWiK8jL/40N/DYls+ATrUKIN4X8ynXaYh7jGqqSE6Dak
+         gNZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769176428; x=1769781228;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xyk4VyTJvjXyVeGrau23wiL81EvwFDD9XQegtrqTgvc=;
+        b=N81iBjgG9VAJAKx2JYbMJMoNDa4lVwZfje+BfeKBukVr5VPDlmsB4T6GtsuyC7ciFZ
+         AtgP7mmTaGf/fQJ/qH1591ZjMr0xi6d4pQwd6ODCvRqHur1zUsS+ibf+UONq82idLfEI
+         AfB4M/5QTQDI0oYY9J+7nO/Pcv+yfb0/NX8RPuhSj18b8gUYFuiTV5Cx5yqUqLlTxE5G
+         VPcOuODHn2SgewG/IcXy0SVkuEEPpt+E1MN5EAT6VY4AP/GFq9A+KAIFROT6/PyYw8Ho
+         OczguMr5i1h+aMfhmR+/mtG3KITS3hBIXxJKYBzMyMgxpa1i46Bq2w9ogi01TVqaWPXs
+         3K4g==
+X-Forwarded-Encrypted: i=1; AJvYcCXWa/qdVDC8FPZfysDNJYWw7BgGurW8cSjw0XzfeEyYfRUjReOW8u+EUdzCjtfYX68DLX9VmzSGoNU6@vger.kernel.org
+X-Gm-Message-State: AOJu0YxFG2/uwkDGO5NNtckRZsrpEmLTOnh7bhebKIyf/PyKQ5DZn2OQ
+	HZdoiC1u9UVdp7Z50Bq3pwUWqznfTy+FOKClQwWfQwOT4jcgdvAfe2WkGjScxyrw0fO+md4Isiy
+	QeH/PRnvRddXCcVCR/GEuVMg3MAMo7S3Qt98cHAuyopmd04UkG8f+T5u2QqtYty1a
+X-Gm-Gg: AZuq6aLyqU/dW7gC5X5UH2qRexQi5DDynzzc/ikcV6Lc/sc8/D8i3uvhwTnKC0SVaws
+	8LWMLL1Eq+2OlFEXM99VovIT8fCnd6SuRpnlNk5eLchb1iIDk8BtkHlrn/PGxcvUOS4vsrfDsnX
+	KJU+6p/ayOaFOUL33eMZDi01tcgETQ8xLkiQJqEKmnvjAV5HKXREqpshOEQA3/txDKH6ds33QQh
+	634XLcVJsevyDcDQqtH7ghSHSnX7wMKrNxKjvkxdMZyHDDOQoT6jMRKo9NkXkU92QTGOt8IKFNp
+	hTIo+FJyyHm1vgoDUEpIakEqmGbZWRAT7JMRnhpt0hSRi+foR/Wnm+rmymEIGpNMoXfJTMYCsoe
+	qYajAGIpzBSghk/TWGGu50dQnTrE55Q/INRf62Lrq
+X-Received: by 2002:a17:90b:4d8b:b0:340:ca7d:936a with SMTP id 98e67ed59e1d1-353688574d3mr2598996a91.18.1769176428028;
+        Fri, 23 Jan 2026 05:53:48 -0800 (PST)
+X-Received: by 2002:a17:90b:4d8b:b0:340:ca7d:936a with SMTP id 98e67ed59e1d1-353688574d3mr2598963a91.18.1769176427551;
+        Fri, 23 Jan 2026 05:53:47 -0800 (PST)
+Received: from [192.168.1.22] ([106.222.229.24])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-353352160a2sm5222874a91.7.2026.01.23.05.53.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 23 Jan 2026 05:53:46 -0800 (PST)
+Message-ID: <57493aef-fb35-4377-8cf3-1df7f53470c9@oss.qualcomm.com>
+Date: Fri, 23 Jan 2026 19:23:39 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="nbgyz4hxgvrjdl5m"
-Content-Disposition: inline
-In-Reply-To: <20260122121038.7910-8-arun.muthusamy@gaisler.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 2/8] remoteproc: qcom: probe all child devices
+From: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: mathieu.poirier@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, rafael@kernel.org, daniel.lezcano@linaro.org,
+        rui.zhang@intel.com, lukasz.luba@arm.com, konradybcio@kernel.org,
+        amitk@kernel.org, mani@kernel.org, casey.connolly@linaro.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+References: <20251223123227.1317244-1-gaurav.kohli@oss.qualcomm.com>
+ <20251223123227.1317244-3-gaurav.kohli@oss.qualcomm.com>
+ <evb5tn2cht7wk76fuc2wpsyxepknigfw37633n6ypuapstbceh@tn5glmi65bdv>
+ <cb5430c8-12d6-4439-b1ae-c2f36f29a9f8@oss.qualcomm.com>
+Content-Language: en-US
+In-Reply-To: <cb5430c8-12d6-4439-b1ae-c2f36f29a9f8@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=eLUeTXp1 c=1 sm=1 tr=0 ts=69737d6d cx=c_pps
+ a=RP+M6JBNLl+fLTcSJhASfg==:117 a=EBd7WcfsMYPMwvoCMWz0vA==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=KKAkSRfTAAAA:8 a=32UuRXtoL6AckyYbW_AA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=iS9zxrgQBfv6-_F4QbHw:22
+ a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: vD19_emFuBkDTHP0a3Y8zR66zFb-EaSO
+X-Proofpoint-ORIG-GUID: vD19_emFuBkDTHP0a3Y8zR66zFb-EaSO
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIzMDExMyBTYWx0ZWRfX4ahdQH1xK9pY
+ 5Ek/6Vdkp6uoYJZ8rbAINQR9iPw4/wFSn99yh2doHt+ZaAsYiPauMkykGnl4xVDDR43JjMdu4BX
+ IpByjP1QPovTdubAcJwyJq/UkZZC4KXHNHUnIrWSziX6Hf3m/4d0Zj+ql7EoFkRZc4Qqs2h5qL8
+ mw6QPGrsT7JnSVvrn5vIPut2xx29lDA9pmYL3PywLhERww8OvNfWWyOnPiViJW/M6N/B/K/ZNq3
+ PmLL5RhGtH2UXH1/ZiJxSkD/3cZPJckdoV3h38mhaTUcY8DtznMP03zhCbmdO5hmEmqM0lbrXOT
+ lJQJl9KNNr2RibbQQHPEwZBddby54GtZz1mqrtfFap3S1ujnYlHq4EduZTw2KwmJqMXqDiN0zBe
+ LKe7L50Tk+CxkkcyohBZ1L7A8Gq266/iw+HVGcTnqGDvbI7bKBPjGTf60KVONHnauvq+7ebwm5K
+ 3zWnjmMN9svYEszqw0Q==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
+ definitions=2026-01-23_02,2026-01-22_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 priorityscore=1501 adultscore=0 impostorscore=0 clxscore=1015
+ phishscore=0 lowpriorityscore=0 suspectscore=0 bulkscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601230113
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.56 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258959-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-258960-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:dkim];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mkl@pengutronix.de,devicetree@vger.kernel.org];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gaurav.kohli@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:url,pengutronix.de:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: DF639767BA
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 149F8767FE
 X-Rspamd-Action: no action
 
 
---nbgyz4hxgvrjdl5m
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 07/15] can: grcan: add FD capability detection and
- nominal bit-timing
-MIME-Version: 1.0
-
-On 22.01.2026 13:10:30, Arun Muthusamy wrote:
-> Add capability for the driver to detect CAN FD support
-> and adjust accordingly. Introduce structures and functions
-> for setting nominal bit-timing for standard CAN FD.
-> The `grcan_hwcap` structure defines hardware capabilities like
-> CAN FD support and baud-rate options. Additionally, improved
-> device tree compatibility by updating the `of_device_id` table
-> for better matching of GRCAN and GRCANFD devices. Also update
-> Kconfig to mention GRCANFD support.
+On 1/8/2026 12:37 PM, Gaurav Kohli wrote:
 >
-> Signed-off-by: Arun Muthusamy <arun.muthusamy@gaisler.com>
-> Signed-off-by: Daniel Hellstrom <daniel@gaisler.com>
-> ---
->  drivers/net/can/Kconfig |   6 +-
->  drivers/net/can/grcan.c | 142 +++++++++++++++++++++++++++++++++++-----
->  2 files changed, 130 insertions(+), 18 deletions(-)
+> On 1/3/2026 8:26 PM, Bjorn Andersson wrote:
+>> On Tue, Dec 23, 2025 at 06:02:21PM +0530, Gaurav Kohli wrote:
+>>> From: Casey Connolly <casey.connolly@linaro.org>
+>>>
+>>> Generalise the qcom,bam-dmux child node support by probing all
+>>> remoteproc children with of_platform_populate(). This will be used to
+>>> enable support for devices which are best represented as subnodes of 
+>>> the
+>>> remoteproc, such as those representing QMI clients.
+>> Please flip this around, start with the description of the problem
+>> you're trying to solve.
+>>
+>>> Signed-off-by: Casey Connolly <casey.connolly@linaro.org>
+>> This must have your signed-off-by, where you certifies the origin of
+>> this patch.
+>>
+>>> ---
+>>>   drivers/remoteproc/qcom_q6v5.c     | 4 ++++
+>>>   drivers/remoteproc/qcom_q6v5_mss.c | 8 --------
+>>>   2 files changed, 4 insertions(+), 8 deletions(-)
+>>>
+>>> diff --git a/drivers/remoteproc/qcom_q6v5.c 
+>>> b/drivers/remoteproc/qcom_q6v5.c
+>>> index 58d5b85e58cd..a02839c7ed8c 100644
+>>> --- a/drivers/remoteproc/qcom_q6v5.c
+>>> +++ b/drivers/remoteproc/qcom_q6v5.c
+>>> @@ -6,6 +6,7 @@
+>>>    * Copyright (C) 2014 Sony Mobile Communications AB
+>>>    * Copyright (c) 2012-2013, The Linux Foundation. All rights 
+>>> reserved.
+>>>    */
+>>> +#include <linux/of_platform.h>
+>>>   #include <linux/kernel.h>
+>>>   #include <linux/platform_device.h>
+>>>   #include <linux/interconnect.h>
+>>> @@ -351,6 +352,8 @@ int qcom_q6v5_init(struct qcom_q6v5 *q6v5, 
+>>> struct platform_device *pdev,
+>>>           return dev_err_probe(&pdev->dev, PTR_ERR(q6v5->path),
+>>>                        "failed to acquire interconnect path\n");
+>>>   +    of_platform_populate(q6v5->dev->of_node, NULL, NULL, q6v5->dev);
+>> There are other child nodes here, in particular the GLINK and SMD edges.
+>> Do we really want platform_devices registered for them?
+>>
+>> Regards,
+>> Bjorn
 >
-> diff --git a/drivers/net/can/Kconfig b/drivers/net/can/Kconfig
-> index d43d56694667..96f61b40a898 100644
-> --- a/drivers/net/can/Kconfig
-> +++ b/drivers/net/can/Kconfig
-> @@ -133,10 +133,12 @@ config CAN_FLEXCAN
->  	  Say Y here if you want to support for Freescale FlexCAN.
 >
->  config CAN_GRCAN
-> -	tristate "Aeroflex Gaisler GRCAN and GRHCAN CAN devices"
-> +	tristate "Aeroflex Gaisler GRCAN(FD) and GRHCAN CAN devices"
->  	depends on OF && HAS_DMA && HAS_IOMEM
->  	help
-> -	  Say Y here if you want to use Aeroflex Gaisler GRCAN or GRHCAN.
-> +	  Say Y here if you want to use Aeroflex Gaisler GRCAN or GRCANFD
-> +	  or GRHCAN.
-> +
->  	  Note that the driver supports little endian, even though little
->  	  endian syntheses of the cores would need some modifications on
->  	  the hardware level to work.
-> diff --git a/drivers/net/can/grcan.c b/drivers/net/can/grcan.c
-> index 5a63d0a0365f..5d09f61a153c 100644
-> --- a/drivers/net/can/grcan.c
-> +++ b/drivers/net/can/grcan.c
-> @@ -33,6 +33,7 @@
->  #include <linux/platform_device.h>
->  #include <linux/spinlock.h>
->  #include <linux/of.h>
-> +#include <linux/of_device.h>
->  #include <linux/of_irq.h>
->  #include <linux/clk.h>
->  #include <linux/dma-mapping.h>
-> @@ -51,7 +52,11 @@ struct grcan_registers {
->  	u32 __reserved1[GRCAN_RESERVE_SIZE(0x08, 0x18)];
->  	u32 smask;	/* 0x18 - CanMASK */
->  	u32 scode;	/* 0x1c - CanCODE */
-> -	u32 __reserved2[GRCAN_RESERVE_SIZE(0x1c, 0x100)];
-> +	u32 __reserved2[GRCAN_RESERVE_SIZE(0x1c, 0x40)];
-> +	u32 nbtr;	/* 0x40 */
-> +	u32 fdbtr;	/* 0x44 */
-> +	u32 tdelay;	/* 0x48 */
-> +	u32 __reserved2_[GRCAN_RESERVE_SIZE(0x48, 0x100)];
->  	u32 pimsr;	/* 0x100 */
->  	u32 pimr;	/* 0x104 */
->  	u32 pisr;	/* 0x108 */
-> @@ -203,6 +208,39 @@ struct grcan_registers {
->  #error "Invalid default buffer size"
->  #endif
+> thanks for pointing this, can you please suggest the right approach.
 >
-> +#define GRCANFD_NBTR_SCALER     GENMASK(23, 16)
-> +#define GRCANFD_NBTR_PS1        GENMASK(17, 10)
-> +#define GRCANFD_NBTR_PS2        GENMASK(9, 5)
-> +#define GRCANFD_NBTR_SJW        GENMASK(4, 0)
-> +#define GRCANFD_NBTR_TIMING						\
-> +	(GRCANFD_NBTR_SCALER | GRCANFD_NBTR_PS1 | GRCANFD_NBTR_PS2 |	\
-> +	 GRCANFD_NBTR_SJW)
-> +
-> +#define GRCANFD_FDBTR_SCALER 0x00ff0000
-> +#define GRCANFD_FDBTR_PS1 0x00003c00
-> +#define GRCANFD_FDBTR_PS2 0x000001e0
-> +#define GRCANFD_FDBTR_SJW 0x0000000f
-> +#define GRCANFD_FDBTR_TIMING						\
-> +	(GRCANFD_FDBTR_SCALER | GRCANFD_FDBTR_PS1 | GRCANFD_FDBTR_PS2 |	\
-> +	 GRCANFD_FDBTR_SJW)
-> +
-> +#define GRCANFD_FDBTR_SCALER_BIT 16
-> +#define GRCANFD_FDBTR_PS1_BIT 10
-> +#define GRCANFD_FDBTR_PS2_BIT 5
-> +#define GRCANFD_FDBTR_SJW_BIT 0
-> +
-> +/* Hardware capabilities */
-> +struct grcan_hwcap {
-> +	/* CAN-FD capable, indicates GRCANFD IP.
-> +	 * The GRCANFD has different baud-rate registers and extended DMA
-> +	 * format to also describe FD-frames.
-> +	 */
-> +	const struct can_bittiming_const *bt_const;
-> +	int (*set_bittiming)(struct net_device *dev);
-> +	bool txbug_possible;
-> +	bool fd;
-> +};
-> +
->  struct grcan_dma_buffer {
->  	size_t size;
->  	void *buf;
-> @@ -245,6 +283,7 @@ struct grcan_priv {
->  	struct napi_struct napi;
+> This should not impact glink, as that is registering as rproc sub 
+> node, And we need rproc cooling as child node
 >
->  	struct grcan_registers __iomem *regs;	/* ioremap'ed registers */
-> +	const struct grcan_hwcap *hwcap;
->  	struct grcan_device_config config;
->  	struct grcan_dma dma;
+> of remote proc subsytem to create probe dependency only.
 >
-> @@ -295,6 +334,7 @@ struct grcan_priv {
->  	 */
->  	bool resetting;
->  	bool closing;
-> +
-
-Please remove this change
-
->  };
 >
->  /* Wait time for a short wait for ongoing to clear */
-> @@ -393,6 +433,19 @@ static const struct can_bittiming_const grcan_bittim=
-ing_const =3D {
->  	.brp_inc	=3D 1,
->  };
->
-> +/* GRCANFD nominal boundaries for baud-rate parameters */
-> +static const struct can_bittiming_const grcanfd_bittiming_const =3D {
-> +	.name		=3D DRV_NAME,
-> +	.tseg1_min	=3D 2,
-> +	.tseg1_max	=3D 63,
-> +	.tseg2_min	=3D 2,
-> +	.tseg2_max	=3D 16,
-> +	.sjw_max	=3D 16,
-> +	.brp_min	=3D 1,
-> +	.brp_max	=3D 256,
-> +	.brp_inc	=3D 1,
-> +};
-> +
->  static int grcan_set_bittiming(struct net_device *dev)
->  {
->  	struct grcan_priv *priv =3D netdev_priv(dev);
-> @@ -421,6 +474,32 @@ static int grcan_set_bittiming(struct net_device *de=
-v)
->  	return 0;
->  }
->
-> +static int grcanfd_set_bittiming(struct net_device *dev)
-> +{
-> +	struct grcan_priv *priv =3D netdev_priv(dev);
-> +	struct grcan_registers __iomem *regs;
-> +	int sjw, ps1, ps2, scaler;
-> +	struct can_bittiming *bt;
-> +	u32 timing =3D 0;
-> +
-> +	regs =3D priv->regs;
-> +	bt =3D &priv->can.bittiming;
-> +
-> +	sjw =3D bt->sjw;
-> +	ps1 =3D (bt->prop_seg + bt->phase_seg1);
-> +	ps2 =3D bt->phase_seg2;
-> +	scaler =3D bt->brp - 1;
-> +
-> +	timing |=3D FIELD_PREP(GRCANFD_NBTR_SJW, sjw);
-> +	timing |=3D FIELD_PREP(GRCANFD_NBTR_PS1, ps1);
-> +	timing |=3D FIELD_PREP(GRCANFD_NBTR_PS2, ps2);
-> +	timing |=3D FIELD_PREP(GRCANFD_NBTR_SCALER, scaler);
-> +	netdev_info(dev, "setting timing=3D0x%x\n", timing);
-
-make it debug or remove
-
-> +	grcan_write_bits(&regs->nbtr, timing, GRCANFD_NBTR_TIMING);
-> +
-> +	return 0;
-> +}
-> +
->  static int grcan_get_berr_counter(const struct net_device *dev,
->  				  struct can_berr_counter *bec)
->  {
-> @@ -1545,7 +1624,8 @@ static const struct ethtool_ops grcan_ethtool_ops =
-=3D {
->
->  static int grcan_setup_netdev(struct platform_device *ofdev,
->  			      void __iomem *base,
-> -			      int irq, u32 ambafreq, bool txbug)
-> +			      int irq, u32 ambafreq, bool txbug,
-> +			      const struct grcan_hwcap *hwcap)
->  {
->  	struct net_device *dev;
->  	struct grcan_priv *priv;
-> @@ -1568,14 +1648,14 @@ static int grcan_setup_netdev(struct platform_dev=
-ice *ofdev,
->  	priv->dev =3D dev;
->  	priv->ofdev_dev =3D &ofdev->dev;
->  	priv->regs =3D base;
-> -	priv->can.bittiming_const =3D &grcan_bittiming_const;
-> -	priv->can.do_set_bittiming =3D grcan_set_bittiming;
-> +	priv->can.bittiming_const =3D hwcap->bt_const;
->  	priv->can.do_set_mode =3D grcan_set_mode;
->  	priv->can.do_get_berr_counter =3D grcan_get_berr_counter;
->  	priv->can.clock.freq =3D ambafreq;
->  	priv->can.ctrlmode_supported =3D
->  		CAN_CTRLMODE_LISTENONLY | CAN_CTRLMODE_ONE_SHOT;
->  	priv->need_txbug_workaround =3D txbug;
-> +	priv->hwcap =3D hwcap;
->
->  	/* Discover if triple sampling is supported by hardware */
->  	regs =3D priv->regs;
-> @@ -1620,22 +1700,33 @@ static int grcan_probe(struct platform_device *of=
-dev)
->  {
->  	struct device_node *np =3D ofdev->dev.of_node;
->  	struct device_node *sysid_parent;
-> +	const struct grcan_hwcap *hwcap;
->  	struct clk *clk;
->  	u32 sysid, ambafreq;
->  	int irq, err;
->  	void __iomem *base;
->  	bool txbug =3D true;
->
-> +	hwcap =3D device_get_match_data(&ofdev->dev);
-> +	if (!hwcap) {
-> +		dev_err(&ofdev->dev, "Platform data not provided!\n");
-> +		return -ENODEV;
-> +	}
-> +
-
-All entries in grcan_match have a corresponding data member, so I think
-you can remove this check.
-
-[...]
-
->  static const struct of_device_id grcan_match[] =3D {
-> -	{.name =3D "GAISLER_GRCAN"},
-> -	{.name =3D "01_03d"},
-> -	{.name =3D "GAISLER_GRHCAN"},
-> -	{.name =3D "01_034"},
-> +	{.name =3D "GAISLER_GRCAN", .data =3D &grcan_hwcap},
-> +	{.name =3D "01_03d", .data =3D &grcan_hwcap},
-> +	{.name =3D "GAISLER_GRHCAN", .data =3D &grcan_hwcap},
-> +	{.name =3D "01_034", .data =3D &grcan_hwcap},
-> +	{.compatible =3D "gaisler,grcan", .data =3D &grcan_hwcap},
-> +	/* GRCANFD */
-> +	{.compatible =3D "gaisler,grcanfd", .data =3D &grcanfd_hwcap},
-> +	{.name =3D "GAISLER_GRCANFD", .data =3D &grcanfd_hwcap},
-> +	{.name =3D "01_0b5", .data =3D &grcanfd_hwcap},
->  	{},
->  };
+> Can we do platform populate for specific child, would that be right 
+> approach. or we should create rproc cooling as independent of parent ?
 >
 
-Marc
+HI Bjorn,
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+I’d like to highlight the impact and details of placement of remoteproc 
+cooling dt node:
 
---nbgyz4hxgvrjdl5m
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
+->As a child of the remote proc subsystem node:
+     In this configuration, the cooling device will only be probed once 
+the corresponding remote proc subsystem itself is probed.
 
-iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmlzfREACgkQDHRl3/mQ
-kZy+sAf/VXwWH262dCUcu/YlV57EjcPV0hkdEmT5P6FGh2lBSnEPeNPTKULazVE6
-bW26iC3J2hLbgtMS8YDkq41i14opyijRvZvNsgxs1pnv5L7atef/BVXUL+HArr0/
-A2kCnJStF/A/knqiVUp0z9os3nazLcgMCskPH+/jZaArglH8pj/KhzqUAkLxKSlK
-9LklqZvXCidLz+5hoAgETKYmS5qck4JQ0DuyExC2c5/v6UGE+0XrmTuMlQYAXXo2
-bYIVhFRhlxsI7DurV/blCpLNVS3C43TvXImsDbL6lgGaIHSwNJSGtopki2gvoiBL
-P/0BDHLRwGrMyB7azcyY3wi+WxshZA==
-=jmyG
------END PGP SIGNATURE-----
+->Outside the remote proc subsystem, may be part of soc node:
+     In this setup, the cooling device will be probed independently. It 
+will wait until the remoteproc subsystem is brought up
+     before completing cooling registration.
+     The drawback here is that if the parent remoteproc subsystem is 
+disabled, the cooling device will still undergo an
+     unnecessary probe, even though it cannot be registered.
 
---nbgyz4hxgvrjdl5m--
+>
+>>> +
+>>>       return 0;
+>>>   }
+>>>   EXPORT_SYMBOL_GPL(qcom_q6v5_init);
+>>> @@ -361,6 +364,7 @@ EXPORT_SYMBOL_GPL(qcom_q6v5_init);
+>>>    */
+>>>   void qcom_q6v5_deinit(struct qcom_q6v5 *q6v5)
+>>>   {
+>>> +    of_platform_depopulate(q6v5->dev);
+>>>       qmp_put(q6v5->qmp);
+>>>   }
+>>>   EXPORT_SYMBOL_GPL(qcom_q6v5_deinit);
+>>> diff --git a/drivers/remoteproc/qcom_q6v5_mss.c 
+>>> b/drivers/remoteproc/qcom_q6v5_mss.c
+>>> index 91940977ca89..d40565c1cc62 100644
+>>> --- a/drivers/remoteproc/qcom_q6v5_mss.c
+>>> +++ b/drivers/remoteproc/qcom_q6v5_mss.c
+>>> @@ -238,7 +238,6 @@ struct q6v5 {
+>>>       struct qcom_rproc_pdm pdm_subdev;
+>>>       struct qcom_rproc_ssr ssr_subdev;
+>>>       struct qcom_sysmon *sysmon;
+>>> -    struct platform_device *bam_dmux;
+>>>       bool need_mem_protection;
+>>>       bool has_alt_reset;
+>>>       bool has_mba_logs;
+>>> @@ -2029,7 +2028,6 @@ static int q6v5_alloc_memory_region(struct 
+>>> q6v5 *qproc)
+>>>   static int q6v5_probe(struct platform_device *pdev)
+>>>   {
+>>>       const struct rproc_hexagon_res *desc;
+>>> -    struct device_node *node;
+>>>       struct q6v5 *qproc;
+>>>       struct rproc *rproc;
+>>>       const char *mba_image;
+>>> @@ -2163,10 +2161,6 @@ static int q6v5_probe(struct platform_device 
+>>> *pdev)
+>>>       if (ret)
+>>>           goto remove_sysmon_subdev;
+>>>   -    node = of_get_compatible_child(pdev->dev.of_node, 
+>>> "qcom,bam-dmux");
+>>> -    qproc->bam_dmux = of_platform_device_create(node, NULL, 
+>>> &pdev->dev);
+>>> -    of_node_put(node);
+>>> -
+>>>       return 0;
+>>>     remove_sysmon_subdev:
+>>> @@ -2186,8 +2180,6 @@ static void q6v5_remove(struct platform_device 
+>>> *pdev)
+>>>       struct q6v5 *qproc = platform_get_drvdata(pdev);
+>>>       struct rproc *rproc = qproc->rproc;
+>>>   -    if (qproc->bam_dmux)
+>>> - of_platform_device_destroy(&qproc->bam_dmux->dev, NULL);
+>>>       rproc_del(rproc);
+>>>         qcom_q6v5_deinit(&qproc->q6v5);
+>>> -- 
+>>> 2.34.1
+>>>
 
