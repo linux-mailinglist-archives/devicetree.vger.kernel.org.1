@@ -1,153 +1,270 @@
-Return-Path: <devicetree+bounces-259041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259042-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id L+F0GfOZc2nnxQAAu9opvQ
-	(envelope-from <devicetree+bounces-259041-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 16:55:31 +0100
+	id yOAGD6qcc2nNxQAAu9opvQ
+	(envelope-from <devicetree+bounces-259042-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 17:07:06 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEF8978122
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 16:55:30 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4ED478279
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 17:07:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0B6753042747
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:54:24 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 3DA23300750E
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 16:07:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 393603115BD;
-	Fri, 23 Jan 2026 15:54:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DA382DCBEC;
+	Fri, 23 Jan 2026 16:07:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gYgkOqnZ"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="V31Kh61S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 994FC3016F2;
-	Fri, 23 Jan 2026 15:54:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 963B4291864
+	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 16:07:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769183654; cv=none; b=RrWSfqHAGHsKELmDCDfN/GahNM7VK2yAE7j74XLvu9T7ZylpJpelNwIudn1smQfQ1pFQofMpHENQ2fU2G+FMrOq6Wsfme4YiuI9NcoDdx8wsA0eZzqF18J7Ru7stscCGElRSTZchWNkRpYUBzvxt0RbohlOnV77hYODxd7Kq1us=
+	t=1769184424; cv=none; b=SZ6YZOwyzrd9eVRd/AfeMEwNFflXbQ8hPi82ZPd/Q3kZbT9pJrR3ZicWL+4T2mbUxjd228uFCKVEEFQMgyxanXE8gt2kNwrj/xIQoA9Er4xh2EyZL4poBu/5tzveUXrVHJT3ggCWyMvn9PBLBnmJw8gxFntVDNrEDfo+kJAppLA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769183654; c=relaxed/simple;
-	bh=cghKvZlvGo+Rdg7lCtRKFUqD8erdVh0YIBaDW8WUSwI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=vDYFat72PBvaHhrugKfFR/RyEBK6GqqDDL/haiiPFpXeo2Ut1+DdrPCqERRwSqQKhduCJ9XEfoucf5DEYSDgJtoRyFS7L+1tbLdXve2qxVHuCVr0dVPjh8vd9MB+o2hWlzdVfzlu9LC+P/7vnjbbU/1w7HuQMsMlGbg0VdZkaTs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gYgkOqnZ; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1769183649; x=1800719649;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=cghKvZlvGo+Rdg7lCtRKFUqD8erdVh0YIBaDW8WUSwI=;
-  b=gYgkOqnZ3O29LdNtNTFSDrEZTIlsSIT/0PCn37gv4N+sF26f0GwiQycw
-   tvLjFizeNQRmU1mpKQYRz/gq3py7y9QHrJv+sErExn3f2VmDj93XI/HQS
-   mo7ULjwYvFd5HmnlurdHzxV96TvMCBYmmDv5AltVYph9f8ZydVmoCkjlv
-   /Ckku4OsyogD6RXYyKmCjOX6m1jOmzE11TDFFeXYGehhYgPtJwQSRnHdE
-   cGQK1gnKyi4Lu/txmRLMHYSdeMNLv0kv34tp5Ju1pHKIWQA2obuIGKclx
-   h7U0XpesLNlhqoGAWQmAbbIBxAYmiy5SEmrY3NJS0EfRevWyJ1OpikTY6
-   A==;
-X-CSE-ConnectionGUID: vr0gCqwfTgqsTEh/UcEI7g==
-X-CSE-MsgGUID: vUPgXjWBTuS8IP07dm11VQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11680"; a="69635620"
-X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; 
-   d="scan'208";a="69635620"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jan 2026 07:54:09 -0800
-X-CSE-ConnectionGUID: fT/mte+ZSbaR4uxx54cegA==
-X-CSE-MsgGUID: HUS4CAtVTAaq2M/1qPM2Mw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; 
-   d="scan'208";a="211557209"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.244.112])
-  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jan 2026 07:54:04 -0800
-Date: Fri, 23 Jan 2026 17:54:02 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc: netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	linux-kernel@vger.kernel.org,
-	Herve Codina <herve.codina@bootlin.com>,
-	Mark Brown <broonie@kernel.org>,
-	Serge Semin <fancer.lancer@gmail.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Jiawen Wu <jiawenwu@trustnetic.com>
-Subject: Re: [PATCH v2 net-next 01/15] net: mdio-regmap: permit working with
- non-MMIO regmaps
-Message-ID: <aXOZmrmff4Krx5dy@smile.fi.intel.com>
-References: <20260122121301.cyxyevi7xvqw2axk@skbuf>
- <20260122134704.pxeikyk4q7nhay55@skbuf>
- <aXI2bWhDtNNfr8M8@smile.fi.intel.com>
- <20260122221848.py4p7mwxzybicnsq@skbuf>
- <aXMhWo0NpPK-BELG@smile.fi.intel.com>
- <20260123121529.inik6xrfdianljq6@skbuf>
- <20260123135501.7m5wqkcfluxqeowb@skbuf>
- <aXOGPUP5pfGeAQKN@smile.fi.intel.com>
- <20260123151049.zv7uyn4rgr75bmog@skbuf>
- <aXOWGuNhm27bit2A@smile.fi.intel.com>
+	s=arc-20240116; t=1769184424; c=relaxed/simple;
+	bh=6YoCn7zSx60Z9ouH5G1Cgbqc9Q70APZisYU7CQSyeHo=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
+	 References:In-Reply-To; b=LzxJ7yi++QFNoFsCk9djczqxXjCvvuvqRy6IPy+47IwshKcIbGFpULJp0FxY6AkA6xDKlHwg/8WymPUtR+yNd/Exvf2/GYh+pyPz3qaclB6iBNXn0E1FDbDn6tSnt00zFSHc8SGJnp4UX3S44YZn5q4ubWdT5YtOJnmJyUWT5NI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=V31Kh61S; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 2B7EC4E42222;
+	Fri, 23 Jan 2026 16:06:54 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id EF04B6070A;
+	Fri, 23 Jan 2026 16:06:53 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E8585119A87D8;
+	Fri, 23 Jan 2026 17:06:42 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1769184412; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=vI3kzpZHjcjHFtL3p8Qx+S2TsVWIlODIqyNcUXdrzhU=;
+	b=V31Kh61SiJ4UoGViGvd1QA6OuNo9J5Xldz9y000yE1WlWlYr3MvhI6MMiynQPIvr3K8uCo
+	zFWne7arjeQjfTIwX7nzcL/m3a0te273RWNXGh4HGND5PgTCtX3XXzPx4vctvkt0elUwxG
+	qID7HpSkALXkMmH8PZX6hU5OHSsmlsAdoIxKnUtFkxVEnW9JVjSk7VYNbgzbHU5Jy8XkSy
+	txpjBNoDiZ0A2YHfd2PvqOpbf4m9kGiUPApCKhjHuBmCiIscq94G9mPT0ko2QIGX9RqJAb
+	djDT///e9tFXC6373e6T9i+Qt+ViNTC/9qTFLOo3MCW23wHjDfI4IXPhHS3f6g==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aXOWGuNhm27bit2A@smile.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 23 Jan 2026 17:06:41 +0100
+Message-Id: <DFW3J1ZV9CXE.2JJTGIA40MU5K@bootlin.com>
+Subject: Re: [PATCH v4 18/25] drm/tilcdc: Convert to DRM managed resources
+Cc: "Jyri Sarha" <jyri.sarha@iki.fi>, "Tomi Valkeinen"
+ <tomi.valkeinen@ideasonboard.com>, "Maarten Lankhorst"
+ <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
+ <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Russell King" <linux@armlinux.org.uk>,
+ "Bartosz Golaszewski" <brgl@bgdev.pl>, "Tony Lindgren" <tony@atomide.com>,
+ "Andrzej Hajda" <andrzej.hajda@intel.com>, "Neil Armstrong"
+ <neil.armstrong@linaro.org>, "Robert Foss" <rfoss@kernel.org>, "Laurent
+ Pinchart" <Laurent.pinchart@ideasonboard.com>, "Jonas Karlman"
+ <jonas@kwiboo.se>, "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Markus
+ Schneider-Pargmann" <msp@baylibre.com>, "Bajjuri Praneeth"
+ <praneeth@ti.com>, "Louis Chauvet" <louis.chauvet@bootlin.com>, "Thomas
+ Petazzoni" <thomas.petazzoni@bootlin.com>, "Miguel Gazquez"
+ <miguel.gazquez@bootlin.com>, "Herve Codina" <herve.codina@bootlin.com>,
+ <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-omap@vger.kernel.org>
+To: "Kory Maincent" <kory.maincent@bootlin.com>
+From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
+X-Mailer: aerc 0.20.1
+References: <20260116-feature_tilcdc-v4-0-2c1c22143087@bootlin.com>
+ <20260116-feature_tilcdc-v4-18-2c1c22143087@bootlin.com>
+ <DFSVOBV5UY37.3HTQHOJT3A40N@bootlin.com>
+ <20260122154840.5185671a@kmaincent-XPS-13-7390>
+In-Reply-To: <20260122154840.5185671a@kmaincent-XPS-13-7390>
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	MV_CASE(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lunn.ch,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,bootlin.com,trustnetic.com];
-	TAGGED_FROM(0.00)[bounces-259041-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259042-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[iki.fi,ideasonboard.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,armlinux.org.uk,bgdev.pl,atomide.com,intel.com,linaro.org,kwiboo.se,baylibre.com,ti.com,bootlin.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[31];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	NEURAL_HAM(-0.00)[-0.994];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[luca.ceresoli@bootlin.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,smile.fi.intel.com:mid]
-X-Rspamd-Queue-Id: DEF8978122
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,bootlin.com:dkim,bootlin.com:email,bootlin.com:url,bootlin.com:mid]
+X-Rspamd-Queue-Id: D4ED478279
 X-Rspamd-Action: no action
 
-On Fri, Jan 23, 2026 at 05:39:13PM +0200, Andy Shevchenko wrote:
-> On Fri, Jan 23, 2026 at 05:10:49PM +0200, Vladimir Oltean wrote:
+On Thu Jan 22, 2026 at 3:48 PM CET, Kory Maincent wrote:
+> On Mon, 19 Jan 2026 22:19:26 +0100
+> "Luca Ceresoli" <luca.ceresoli@bootlin.com> wrote:
+>
+>> On Fri Jan 16, 2026 at 6:02 PM CET, Kory Maincent (TI.com) wrote:
+>> > Convert the tilcdc driver to use DRM managed resources (drmm_* APIs)
+>> > to eliminate resource lifetime issues, particularly in probe deferral
+>> > scenarios.
+>> >
+>> > This conversion addresses potential use-after-free bugs by ensuring
+>> > proper cleanup ordering through the DRM managed resource framework.
+>> > The changes include:
+>> > - Replace drm_crtc_init_with_planes() with drmm_crtc_alloc_with_planes=
+()
+>> > - Replace drm_universal_plane_init() with drmm_universal_plane_alloc()
+>> > - Replace drm_simple_encoder_init() with drmm_simple_encoder_alloc()
+>> > - Remove manual cleanup in tilcdc_crtc_destroy() and error paths
+>> > - Remove drm_encoder_cleanup() from encoder error handling paths
+>> > - Use drmm_add_action_or_reset() for remaining cleanup operations
+>> >
+>> > This approach is recommended by the DRM subsystem for improved resourc=
+e
+>> > lifetime management and is particularly important for drivers that may
+>> > experience probe deferral.
+>> >
+>> > Signed-off-by: Kory Maincent (TI.com) <kory.maincent@bootlin.com>
+>> > ---
+>> >
+>> > Change in v4:
+>> > - Newt patch.
+>>
+>> Why? Adding patches along the way does not help getting your series merg=
+ed
+>> timely. If there's a good reason for adding a new patch, please mention =
+it
+>> here.
+>
+> Thanks for your review.
+>
+> Sorry for that. The reason is that I faced a null pointer dereference koo=
+ps if
+> for example the panel module is not installed. Then the
+> drm_of_find_panel_or_bridge() function return eprobe defer and something =
+goes
+> wrong with the DRM resources. Using DRM managed resources solves it.
+> I will mention it for the v5.
+>
+>> > +	tilcdc_crtc =3D drmm_crtc_alloc_with_planes(dev, struct tilcdc_crtc,
+>> > base,
+>> > +						  &primary->base,
+>> > +						  NULL,
+>> > +						  &tilcdc_crtc_funcs,
+>> > +						  "tilcdc crtc");
+>> > +	if (IS_ERR(tilcdc_crtc)) {
+>> > +		dev_err(dev->dev, "Failed to init CRTC: %pe\n",
+>> > tilcdc_crtc);
+>> > +		return PTR_ERR(tilcdc_crtc);
+>> > +	}
+>> > +
+>> > +	tilcdc_crtc->primary =3D primary;
+>>
+>> (*) see below
+>>
+>> >
+>> >  	init_completion(&tilcdc_crtc->palette_loaded);
+>> >  	tilcdc_crtc->palette_base =3D dmam_alloc_coherent(dev->dev,
+>> > @@ -978,10 +992,6 @@ int tilcdc_crtc_create(struct drm_device *dev)
+>> >
+>> >  	crtc =3D &tilcdc_crtc->base;
+>> >
+>> > -	ret =3D tilcdc_plane_init(dev, &tilcdc_crtc->primary);
+>> > -	if (ret < 0)
+>> > -		goto fail;
+>> > -
+>> >  	mutex_init(&tilcdc_crtc->enable_lock);
+>> >
+>> >  	init_waitqueue_head(&tilcdc_crtc->frame_done_wq);
+>> > @@ -989,20 +999,12 @@ int tilcdc_crtc_create(struct drm_device *dev)
+>> >  	spin_lock_init(&tilcdc_crtc->irq_lock);
+>> >  	INIT_WORK(&tilcdc_crtc->recover_work, tilcdc_crtc_recover_work);
+>> >
+>> > -	ret =3D drm_crtc_init_with_planes(dev, crtc,
+>> > -					&tilcdc_crtc->primary,
+>> > -					NULL,
+>> > -					&tilcdc_crtc_funcs,
+>> > -					"tilcdc crtc");
+>> > -	if (ret < 0)
+>> > -		goto fail;
+>> > -
+>> >  	drm_crtc_helper_add(crtc, &tilcdc_crtc_helper_funcs);
+>> >
+>> > +	ret =3D drmm_add_action_or_reset(dev, tilcdc_crtc_destroy, priv);
+>> > +	if (ret)
+>> > +		return ret;
+>>
+>> Not related to your patch, but if the dmam_alloc_coherent() (not visible=
+ in
+>> the diff) fails, tilcdc_crtc_destroy() won't be called. Is this intended=
+?
+>> At first sight this drmm_add_action_or_reset() should be moved at (*), j=
+ust
+>> after the allocation.
+>
+> You are totally right.
+>
+>> However being not related to your patch I'd leave this for another serie=
+s
+>> anyway, to avoid making this series a moving target.
+>
+> I think it is related to this patch.
+> Before this patch there was no need for cleanup as the only action before=
+ the
+> dmam_alloc_coherent() was a devm_kzalloc().
+> Now the plane and the crtc are initialize before the dmam_alloc_coherent(=
+) so
+> the cleanup need to happen if it fails an error.
+>
+>> I find this patch hard to read and I think because it is converting
+>> multiple things at once. Splitting it in small steps would have been nic=
+e,
+>> even thought I'm not 100% sure it would have been doable.
+>
+> Yes, it brought more error when not converting the whole to DRM Managed
+> resources in one go.
+>
+>>
+>> Nevertheless it looks correct, so:
+>>
+>> Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+>
+> Thanks, but I will remove it due to the small change.
+> Or maybe it is ok for you if I keep it with only the move of
+> drmm_add_action_or_reset().
 
-...
+If you only move the drmm_add_action_or_reset() where I suggested you can
+keep it.
 
-> I'm fine with regmap_range, but I'm not a regmap maintainer.
+Luca
 
-Also TIL the range_*() APIs in overflow.h.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+--
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
