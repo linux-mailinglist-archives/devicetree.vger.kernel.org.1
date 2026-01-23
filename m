@@ -1,348 +1,2268 @@
-Return-Path: <devicetree+bounces-258693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258689-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gAjvLTThcmkbrAAAu9opvQ
-	(envelope-from <devicetree+bounces-258693-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 03:47:16 +0100
+	id OFpzHbngcmkbrAAAu9opvQ
+	(envelope-from <devicetree+bounces-258689-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 03:45:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8F7D6FCBD
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 03:47:15 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 779456FC7B
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 03:45:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id CDD4B3007B09
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 02:47:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2F85C3010DA2
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 02:45:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FB15350A0A;
-	Fri, 23 Jan 2026 02:47:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 899923816EB;
+	Fri, 23 Jan 2026 02:45:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="jr5Lk+ez"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UM6T/9tk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013071.outbound.protection.outlook.com [52.101.72.71])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9606036CDF2;
-	Fri, 23 Jan 2026 02:46:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.71
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769136426; cv=fail; b=QiGnvJcFb/depC3atR8WgQD3vz/wRpQcz5ipe3XSuy5spI+mcJkcJnnBqb18/VxMPxyNolcZZj1oB3WA1+WLiXhxP2lyhplH9WO2UlrNje1rX6UZ1kYy1SA4R/f+BJiCSBNRMQmy1P9TsYNaBW9pCMIvhNn1NojS4sNcvDWHG2s=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769136426; c=relaxed/simple;
-	bh=KyD85XG6bKLQUlYtdQusJcSPnUKmgIoXBLT7Ifr79s4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=n750xUXwI8LSKIYMmNp0UFULLKr37F6BtZ3UpVHW4caAfJM3lWEINi/P6kM8EV14TYddH22vo31MnWRUjhlAA9h2jV2cbvDL7IEGrSWpcuZ0XmeE+mIxFqplXCOETjR78m5zNQRDlDC9v8lF5DsjIz/y8GTVW1opcL/xj3hojgA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=jr5Lk+ez; arc=fail smtp.client-ip=52.101.72.71
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qf8v/mHiTpx1AuM8PWw5zfRiSA5vywoagautUZLOObQhzgd0FcuKrjD4l9dDDkkWuc7y6L5qce38Yc7dhBPp7LZrJQZ2bVlWFbMpy+aE7z97jsxmtwllBxzpSTgMs0+HnXUb7nKeBsYozaKwkZINj6kGuacDfZ+n6aTyvZwHXF8S45IWdYHDuUkRyoXFvwAhQSzA05tfDkm3kHEAJT+eQEwIcY5pzJiWHPZe7Oa/rWGQBOsyb3K0JcBXwvFTwvvMRzUB++e+efM1PG/7SxU7f6kYY/kFm7kyqBZpfqvwMwqvGUNJSUwSgoC3nL2B1oU4/yDO//hCbX11fx3DO8PYuw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uW1lG6reGeNg0bYoSREbumOwcVGx+CqFiunedZaoSMs=;
- b=t9sZ6+FgfIn8e/C5GzFFn6X7x1mQmde8/HR7Db0zoS8f22SyQJSfZwLUfdib5aj9mP0lPBShMJWGmc8wJIRrm0/ixCGfov6j1ytPMdIqvnlw8yO3DmAceV4CdK3Z00Mj681jk5n6sFT+k3rcwNsEe6esovy0KSgPaHuhCVT4HbrlRAp+IbnhkqEncEAvkUKEQWHicFCU08PvArYjyb2liMRhMKa0v9j2YxjrExT8LP0vziBYGffXORJ22E8eOvU+NN0FJfh4nEr3ZjtAfd0lquTv2MWmaJAJdZmlJPbng1b/hC0Eys9pUqJzaZI+CBdq6lo1SLFq7lqxzJHdVQsPxg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uW1lG6reGeNg0bYoSREbumOwcVGx+CqFiunedZaoSMs=;
- b=jr5Lk+ezmKPRuVyJiTMk9v1pQ+/GU/Ha+wJQ5WVFt4uECyGvr1XdZtly+h7vf2LScCfzLOV/DqsgJs+0uFfIh0cOt9QT7TlcVCX6cIVUs0YyUi8nQ5qMkhmsbgVNJOPALsn0HttcgP5jIuk+Mxlfx6vWbQhElALKsMLZWJ6AZjoHOF74llyT3+9JKs6Oqto62KipdlFJO22Ql5L0Hat/pyiBAE1H3olCkXByh4uo5ey6MVhZI/mAR2V4Zn7uXG+lupYwGhJpxq0BtN2X6p8G1zRVtcIdda3Jc9DL9f2EXyT91zVci32oF6mw5ExknIIx2XTTh16KuwklWmdpKEa8Ow==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
- (2603:10a6:800:315::13) by AS5PR04MB9797.eurprd04.prod.outlook.com
- (2603:10a6:20b:679::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.10; Fri, 23 Jan
- 2026 02:46:13 +0000
-Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
- ([fe80::2943:c36f:6a8c:81f7]) by VI0PR04MB12114.eurprd04.prod.outlook.com
- ([fe80::2943:c36f:6a8c:81f7%5]) with mapi id 15.20.9542.010; Fri, 23 Jan 2026
- 02:46:13 +0000
-From: Sherry Sun <sherry.sun@nxp.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	frank.li@nxp.com,
-	s.hauer@pengutronix.de,
-	festevam@gmail.com,
-	daniel.baluta@nxp.com,
-	dario.binacchi@amarulasolutions.com,
-	alexander.stein@ew.tq-group.com,
-	Markus.Niebel@tq-group.com,
-	matthias.schiffer@tq-group.com,
-	y.moog@phytec.de,
-	josua@solid-run.com,
-	francesco.dolcini@toradex.com,
-	primoz.fiser@norik.com
-Cc: kernel@pengutronix.de,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH V2 2/2] arch: arm64: imx93-wevk: Add i.MX93 Wireless EVK board support
-Date: Fri, 23 Jan 2026 10:44:48 +0800
-Message-Id: <20260123024448.3909345-3-sherry.sun@nxp.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20260123024448.3909345-1-sherry.sun@nxp.com>
-References: <20260123024448.3909345-1-sherry.sun@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SGXP274CA0010.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b8::22)
- To VI0PR04MB12114.eurprd04.prod.outlook.com (2603:10a6:800:315::13)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5A7A274FEF;
+	Fri, 23 Jan 2026 02:45:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769136305; cv=none; b=XWyjQgRmveIH1JQ4GPMoOEOHlFUO+UT+3vfCr48obqJmgPKFGJjeZX+QIH1ytBG9Pr/kAu9xHXB2Jy2rzMGRmbKkC/nLX6nDOxQGym1osSghjp/f/y2M/aP8qXZzD1bfCUvxOmESa2g+J9pUDsvAugkPYZLR+q46fgBwHx9xNfg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769136305; c=relaxed/simple;
+	bh=R6x5EGOC8g5SiXT3uZfd99PXVoIcu/tHCmdyjXqmx7s=;
+	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
+	 To:Date:Message-ID; b=G2SNIbM791m5YkbtwDzICTOrm1Ub7S3zoJ0E+HdLn/CZOgOCA2QFi/M12v244wnBzDIggWlCI8REpv0T7iOkB4Ohj+1MrfWJmQbUg119MdXnlsC85fIJBrMSvym86yKOWfHe2V4gkfHW+Ft1n1dC9X488uIcML00y6RkDqQPX88=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UM6T/9tk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CD61C116C6;
+	Fri, 23 Jan 2026 02:45:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769136303;
+	bh=R6x5EGOC8g5SiXT3uZfd99PXVoIcu/tHCmdyjXqmx7s=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=UM6T/9tkCjXGsp9J/yJtUo5m6jiKvjcCZ2g4k62/H9WhQchAGM0AaC1xmO8TYzNwC
+	 xqZO9O4d83be9xJq/HrO6vmD4X3i9VuJOyUPXhxie4xmrh1mQxF6b/nsjoEg5W8yCo
+	 /589mzq6TAbzO9BeJCHZE5lT7QbeCQLGLYzSBlF7I4QH5Fyt4Kd23zAv8ANIIa/h1B
+	 EtYcQSFm7auQvMrypp8Jp9ZaWBmLoGtqUMiY2Dj6003H0/dBGFJfEzAumFzN5MZUIu
+	 yeLyDzvkhplIgG2mi5FTqMpkOyiWb7m4mmJS6SJx8++vpe1OiUeNr4taCIH/yHfYrH
+	 EobF6DI/F43Rw==
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VI0PR04MB12114:EE_|AS5PR04MB9797:EE_
-X-MS-Office365-Filtering-Correlation-Id: f9fc6bfe-07bd-40fb-c960-08de5a299247
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|19092799006|7416014|1800799024|376014|52116014|366016|38350700014|921020;
-X-Microsoft-Antispam-Message-Info:
- =?us-ascii?Q?W4YIp8xpLHnK+6/aTeujooXM3KcZJlYLTqxCCNVQSGuVTzTaCCBWyg8gx1pH?=
- =?us-ascii?Q?8k9PrWnZLMR0xJc8PqmYbp85L/2gmqikzApb2Z+Fdx5fO+YqOm4Up/PsR8V2?=
- =?us-ascii?Q?Fe/mMc1RwJmCDFY5l+FHmMY9D8HDQ3licD04VXptQmmVhPM7aEXDmkVj8NOg?=
- =?us-ascii?Q?MujXDrcfw80338ynKvIkrOQDr9VfqdQy7J6jEBIpRCwIuMHH8CWKM3x5NNp4?=
- =?us-ascii?Q?x9BTuq4GKJKYg/iZ3BAvhxgJaO9sYyEKtImg8RJyu46qv1Y2e4pWzPh97YG3?=
- =?us-ascii?Q?PJx4XKsswRJV6hwkpD7U8epElGS8JXioPOl25fjmebFQfSl8fuA/WL0846+z?=
- =?us-ascii?Q?THBrb1XxbY3BnjqN5mPHxdri6A7DTFwJKNrg5SIuKsoubRpyInl3RWDaFc4V?=
- =?us-ascii?Q?Hc1fnrBScitKo2KiRwRY9XEvPCFnlXvjcb5n4kkOlIYpMCug12l7Xb2cZc8A?=
- =?us-ascii?Q?Ca1m4mLGcA89BU0bE2Je9dnGiKm4laFSZ4rNbGSw1H2Oj5mmn3BGMc2d0aK4?=
- =?us-ascii?Q?eopb7W9ipPTjfOlmN7O21s5J+cEwrVcCTp6Ry67WN0wsLHKOnEwK4JMYHN1E?=
- =?us-ascii?Q?jDjFeITU97gTCRIlpyK70/DS6juKYyOuDUhp2UGu0bNhFSHtDAv3aLySY4Bm?=
- =?us-ascii?Q?JYSL9/EOHyV9qDXbuznSdNqEzzOmtOYWyV3L1vNBZRZdmtIYkeanbK1LTuzM?=
- =?us-ascii?Q?4El9knUJV855wdLx6X6GqxDhGr0JZiKEesvzftqWqeUNMj4pdz7fVLdjLGiA?=
- =?us-ascii?Q?nkZywd7FKuDM13nWRQnwlwzagGj/F3usD0HjYgV+a2EutX2Z5T1I7HE3Vlx+?=
- =?us-ascii?Q?D67H0NIpY/tGpHiwb0BiGCGbBm3LyAy/1y1u4IxJRuc6qyABWrde+0gsRHwk?=
- =?us-ascii?Q?chCM2YyWYTw9nUN1pUhz1CNuTJes+ngGhwhy1FtIoTDXnv3wbaSyG6xH2Yba?=
- =?us-ascii?Q?jk+o0P8Nc3Gvapghycgc7wRECtfWRIg9Abh4Q2sD61XhSwSe7kTGpIHBRyWq?=
- =?us-ascii?Q?cSu0d84YOoRO854YX2Zj7QgK2fqDzLaSwkmWtGlhHzFF+VvEKJ61EFP2Svm0?=
- =?us-ascii?Q?Ye0e7imeOhuZFU8Zu5CRfBb8dGqkqQUqa7Q851wgDiRSgk5R8V0OIcu7fY5U?=
- =?us-ascii?Q?abC8r4sNHrhsSTuZUaBB7wc6ywRNWENnfHMoHmADd9n+0jdHai6boTTgaEnW?=
- =?us-ascii?Q?QBhL/SXloJY98jWO9zKqXmIcruvYGlx4sj0B5ni9mQSBXYYsUdiMnwG3683j?=
- =?us-ascii?Q?iZlVpFsljVNJtwZsTe+cvgGZ/DL/8sVBIBgJUHobTgD2h9OQfOsKkJv5Vd33?=
- =?us-ascii?Q?3a589at0Ka9bdMRMNZR/630qljDg6cuPLgrsY9M5B95rq8mzEqtL6YP1xjZ6?=
- =?us-ascii?Q?KQTJzwORA2RQO+BKTYvEniR3dIFYu5+MK/yohMqKZJpjsdlg2t8LSAi6lvKj?=
- =?us-ascii?Q?+5GMdRxhTxhIhMhR5hRvR3n6YwveXVS0XIGdu98wpTQKIFI7ghtc2YWJPmEi?=
- =?us-ascii?Q?G5dpNeH/iLo7/5Jxu3k1ZXlqc8+XqEmPrKpkfYiCNhy57nI0+E+mZ+xt9+Vr?=
- =?us-ascii?Q?SSIiEfkhI8PcMCUmSeq9dcBWXJxqWB5hG4TxMnQ3yg/ieWBPz7Lbvy2e5pyT?=
- =?us-ascii?Q?AtyKwWk1THT+8c6vt/lj+1gIeOvKjRUnGvF6PwKfVJe4?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI0PR04MB12114.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(7416014)(1800799024)(376014)(52116014)(366016)(38350700014)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?0K+PY2B8QVUGquzevPg01AFjzzjpdnb4NgK225dzeWma8GPd4hzWjeDR2OOy?=
- =?us-ascii?Q?JVroGdHNbsPSEbRRXqPJNMN145eEGQ3eT+hy0RVQHzEKjCK66E/fwsBn9uvI?=
- =?us-ascii?Q?CVNaRS/tokopZIV2Jl/DcUeqUa98sP1JO5r1wcBgWPXMGxrIl6BPKFZPAHVM?=
- =?us-ascii?Q?nd6IDpG7dQ3M4q7IdiFZCrfAHj/PAxex5dJojOavrZoJmHay+8oxVjDs/CQb?=
- =?us-ascii?Q?2Q3WVHdpZ4aLLPLVHkELXSHGOzbdrqkLV3ynHTdiXOtB5MkW6XydGxiHFrKh?=
- =?us-ascii?Q?bpO+lYoWu5szPNsvCrO/TzCUx+gyHLlJKczXUuByTXRmD2a23Dhmu16yDvS1?=
- =?us-ascii?Q?QHyR0Km6A/IMxG8h/9CJ0rTEg5mQmF92cqH8YKtXV/aCS3eC2SGXJKhNK/se?=
- =?us-ascii?Q?gFF4KVxzIGTHLCJWui4YM3LPEwXJ3UC67Kh+vEFBVeJoQjme3PLOrJmh53Xt?=
- =?us-ascii?Q?FljBJMVo3Qun2EnJncaTOyVesYWYI+WLvtzOZS5YtVx7Mw9f/Of/KkxQ/Y3y?=
- =?us-ascii?Q?OYkhy32+ujr2oL5150zHt61IqGgD037pToo8SUEUrpcOKzUqwQsJkiMruQy8?=
- =?us-ascii?Q?T+qoGqcKGU2om/9CrudF7MaoM1kTBIDWVxSm0FDktSNoTHhTvxbz5nEs1Tee?=
- =?us-ascii?Q?xR2REbrdAl55KAcp1vMHKDZ1ljCpeS+aZ/H6m4KISlx4aatYVgdtPzIkYkqO?=
- =?us-ascii?Q?gl4UQg66UxWrByWvcSfm4cXxGc2Jl9OuFmuJdRiIEvPh/0LDmtWK3gtnPoj7?=
- =?us-ascii?Q?z9rvOOtoS+sjWCyprwAYmG0Vu2mw2CRkeW+LQwcDCEiTsLcoM/N0z4jBCLXK?=
- =?us-ascii?Q?6WTKZ7lPTlDcISEatrnUfcd2HNeP8N3M0z4sNh0o8guKyo8FbC+YeQy6yIml?=
- =?us-ascii?Q?sCl7ZSKkTeLEGtqi674UIJ5OmH8IX8xyPvGvYZpIhDHUw7nyZt2pCDeMiLAu?=
- =?us-ascii?Q?S3zcJxemnSQDopHdLO0Plwwx/czUqrsmpvGl0VNNHPdpWcqaSZNsXRhYSVQ/?=
- =?us-ascii?Q?d6ESc6FhD2GUgRXcsaSnwOvxg5CdTD90BGbIIceLd5PnW6Zne2fdr5GRNRbB?=
- =?us-ascii?Q?wkHIsPFpigGuSUXLYldk2RWqZ7C7Ixh93P6O43Aj0yrm1gFs64xXC+rLQK8Z?=
- =?us-ascii?Q?nYJl2GYiSaRWk8/RNq6q2oIwYujsIzScAiWnTNkqqidR2tyfgd3cRNPrfHB2?=
- =?us-ascii?Q?6zwJCYm62PN39aXRoNKizHYHWeIREHma7wN8qmFpi9p+LPSPpfcWbdja2tl1?=
- =?us-ascii?Q?LwscE2ow7ZIM+nAaKZosi8ln1XRQbOqUi4oHnrWEUUzzHvYdk81kX4hBYatG?=
- =?us-ascii?Q?6hsleNTo9qVatK7CY9ptVp3JU/6SiheXAi/OknYMfY03FWy35Tw+n+AK8+CU?=
- =?us-ascii?Q?U5ZFW2HkabO+D0XK9qHokMYNOvNrv8Fscs5i56O3KpyZC43avbCFMQCpY4nn?=
- =?us-ascii?Q?kAfV+Hc0hD5kD4dpsXKMP14rcaz3zF7MNoHOsMmVFiv03Fwuzp6KaYUyRknl?=
- =?us-ascii?Q?eZV045qcdWZHMBxij/Pi7jcODZr8j4uQOAcWjJp9qVd4dgREwp9xgMeTskLP?=
- =?us-ascii?Q?YZOXMIcpOhjdwP8i1WmOCBVGcosY0vL1tweddLgmzzoiOtrPjhA5nA4n+Sgt?=
- =?us-ascii?Q?qUU2hAEti76CZJtGi68JHc8/cf3jsNA385GjyDyHw3tNehkaZ/r1qojxjthq?=
- =?us-ascii?Q?YOOJTJzbiK+BAhmYUcKCh3GXURpt6DbICDrYz7maT6No4LQgJv+kHtmjiSv2?=
- =?us-ascii?Q?No9g7fxgHg=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f9fc6bfe-07bd-40fb-c960-08de5a299247
-X-MS-Exchange-CrossTenant-AuthSource: VI0PR04MB12114.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2026 02:46:12.9784
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /MhkNu59yXAS/vRUoI49LDx9qfzvlQiZR+wb2CsHzk2Vbi+S2/+AGA0jWPg1iARLm8MLwBGGd2acJSUvPMrO5Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS5PR04MB9797
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20251229105949.1202-1-dongxuyang@eswincomputing.com>
+References: <20251229105844.1089-1-dongxuyang@eswincomputing.com> <20251229105949.1202-1-dongxuyang@eswincomputing.com>
+Subject: Re: [PATCH v9 2/3] clock: eswin: Add eic7700 clock driver
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com, huangyifeng@eswincomputing.com, pinkesh.vaghela@einfochips.com, ganboing@gmail.com, Xuyang Dong <dongxuyang@eswincomputing.com>
+To: bmasney@redhat.com, conor+dt@kernel.org, devicetree@vger.kernel.org, dongxuyang@eswincomputing.com, krzk+dt@kernel.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, mturquette@baylibre.com, robh@kernel.org, troy.mitchell@linux.dev
+Date: Thu, 22 Jan 2026 19:45:01 -0700
+Message-ID: <176913630124.4027.4365997774673378601@lazor>
+User-Agent: alot/0.11
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.84 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,amarulasolutions.com,ew.tq-group.com,tq-group.com,phytec.de,solid-run.com,toradex.com,norik.com];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-258689-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258693-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sherry.sun@nxp.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
-	TO_DN_NONE(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sboyd@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[eswincomputing.com,einfochips.com,gmail.com];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,nxp.com:dkim,nxp.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: B8F7D6FCBD
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,init.name:url]
+X-Rspamd-Queue-Id: 779456FC7B
 X-Rspamd-Action: no action
 
-i.MX93 Wireless SiP is created by integrating i.MX93 and IW610 WLCSP
-(Wi-Fi + BLE + 802.15.4). And i.MX93 Wireless EVK board with the i.MX93
-Wireless SiP basically reuse the i.MX93 11x11 EVK board, with some minor
-functional and pin connection differences.
+Quoting dongxuyang@eswincomputing.com (2025-12-29 03:59:49)
+> diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
+> index 61ec08404442..37f6070a342e 100644
+> --- a/drivers/clk/Makefile
+> +++ b/drivers/clk/Makefile
+> @@ -121,6 +121,7 @@ obj-$(CONFIG_CLK_BAIKAL_T1)         +=3D baikal-t1/
+>  obj-y                                  +=3D bcm/
+>  obj-$(CONFIG_ARCH_BERLIN)              +=3D berlin/
+>  obj-$(CONFIG_ARCH_DAVINCI)             +=3D davinci/
+> +obj-$(CONFIG_ARCH_ESWIN)               +=3D eswin/
 
-Here are the detailed differences between i.MX93 Wireless EVK and i.MX93
-11x11 EVK board.
+This should be CONFIG_COMMON_CLK_ESWIN instead.
 
-Function differences:
-Function	i.MX93W EVK			i.MX93 EVK
-WIFI/BT		IW610 in i.MX93W		IW612 M.2 module
-MQS		N				Y
-PDM MIC		N				Y
-M.2		N				Y
-RPi 40-pin HDR	Limited support(pin conflict) 	Y
+>  obj-$(CONFIG_ARCH_HISI)                        +=3D hisilicon/
+>  obj-y                                  +=3D imgtec/
+>  obj-y                                  +=3D imx/
+> diff --git a/drivers/clk/eswin/Kconfig b/drivers/clk/eswin/Kconfig
+> new file mode 100644
+> index 000000000000..86af60f852c2
+> --- /dev/null
+> +++ b/drivers/clk/eswin/Kconfig
+> @@ -0,0 +1,15 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +
+> +config COMMON_CLK_ESWIN
+> +       bool
+> +
+> +config COMMON_CLK_EIC7700
+> +       tristate "EIC7700 Clock Driver"
+> +       depends on ARCH_ESWIN || COMPILE_TEST
+> +       select COMMON_CLK_ESWIN
+> +       default ARCH_ESWIN
+> +       help
+> +         This driver provides support for clock controller on ESWIN EIC7=
+700
+> +         SoC. The clock controller can generates and supplies clock to v=
+arious
 
-Pin connection differences:
-Function  Signal name	i.MX93W EVK		i.MX93 EVK
-WIFI/BT	  SPI_FRM	SAI1_TXFS (spi1.PCS0)	GPIO_IO08 (spi3.PCS0)
-	  SPI_TXD	SAI1_TXC (spi1.SIN)	GPIO_IO09 (spi3.SIN)
-	  SPI_RXD	SAI1_RXD0 (spi1.SOUT)	GPIO_IO10 (spi3.SOUT)
-	  SPI_CLK	SAI1_TXD0 (spi1.SCK)	GPIO_IO11 (spi3.SCK)
-	  SPI_INT	CCM_CLKO1		on-board IO expander
-	  NB_WAKE_IN	PDM_CLK			on-module IO expander
-	  WL_WAKE_IN	PDM_BIT_STREAM0		on-module IO expander
-	  IND_RST_WL	PDM_BIT_STREAM1		on-module IO expander
-	  IND_RST_NB	GPIO_IO28		on-module IO expander
-	  PDn		GPIO_IO29		on-module IO expander
-	  NB_WAKE_OUT	GPIO_IO14		on-board IO expander
-	  WL_WAKE_OUT	GPIO_IO15		CCM_CLKO1
-I2C3	  I2C3_SDA	GPIO_IO00		GPIO_IO28
-	  I2C3_SCL	GPIO_IO01		GPIO_IO29
+The clock controller generates and supplies clocks ...
 
-Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
----
- arch/arm64/boot/dts/freescale/Makefile       |  1 +
- arch/arm64/boot/dts/freescale/imx93w-evk.dts | 73 ++++++++++++++++++++
- 2 files changed, 74 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx93w-evk.dts
+> +         peripherals within the SoC.
+> +         Say yes here to support the clock controller on the EIC7700 SoC.
+> diff --git a/drivers/clk/eswin/clk-eic7700.c b/drivers/clk/eswin/clk-eic7=
+700.c
+> new file mode 100644
+> index 000000000000..0693a4ae8510
+> --- /dev/null
+> +++ b/drivers/clk/eswin/clk-eic7700.c
+> @@ -0,0 +1,1110 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright 2025, Beijing ESWIN Computing Technology Co., Ltd..
+> + * All rights reserved.
+> + *
+> + * ESWIN EIC7700 Clk Provider Driver
+> + *
+> + * Authors:
+> + *     Yifeng Huang <huangyifeng@eswincomputing.com>
+> + *     Xuyang Dong <dongxuyang@eswincomputing.com>
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/kernel.h>
+> +
+> +#include <dt-bindings/clock/eswin,eic7700-clock.h>
+> +
+> +#include "clk.h"
+> +#include "clk-eic7700.h"
+> +
+> +#define EIC7700_NR_CLKS (EIC7700_CLK_GATE_NOC_WDREF + 1)
+> +
+> +/* clock parent list */
+> +PNAME(mux_cpu_root_3mux1_gfree_p) =3D { "clk_pll_cpu",
+> +                                     "fixed_factor_u84_core_lp_div2",
+> +                                     "xtal24m" };
+> +PNAME(mux_cpu_aclk_2mux1_gfree_p) =3D { "fixed_factor_cpu_div2",
+> +                                     "mux_cpu_root_3mux1_gfree" };
+> +PNAME(dsp_aclk_root_2mux1_gfree_mux_p) =3D { "fixed_rate_clk_spll2_fout1=
+",
+> +                                          "fixed_rate_clk_spll0_fout1" };
+> +PNAME(d2d_aclk_root_2mux1_gfree_mux_p) =3D { "fixed_rate_clk_spll2_fout1=
+",
+> +                                          "fixed_rate_clk_spll0_fout1" };
+> +PNAME(ddr_aclk_root_2mux1_gfree_mux_p) =3D { "fixed_rate_clk_spll2_fout1=
+",
+> +                                          "fixed_rate_clk_spll0_fout1" };
+> +PNAME(mshcore_root_3mux1_0_mux_p) =3D { "fixed_rate_clk_spll0_fout3",
+> +                                     "fixed_rate_clk_spll2_fout3" };
+> +PNAME(mshcore_root_3mux1_1_mux_p) =3D { "fixed_rate_clk_spll0_fout3",
+> +                                     "fixed_rate_clk_spll2_fout3" };
+> +PNAME(mshcore_root_3mux1_2_mux_p) =3D { "fixed_rate_clk_spll0_fout3",
+> +                                     "fixed_rate_clk_spll2_fout3" };
+> +PNAME(npu_llclk_3mux1_gfree_mux_p) =3D { "divider_npu_llc_src0_div_dynm",
+> +                                      "divider_npu_llc_src1_div_dynm",
+> +                                      "fixed_rate_clk_vpll_fout1" };
+> +PNAME(npu_core_3mux1_gfree_mux_p) =3D { "fixed_rate_clk_spll1_fout1",
+> +                                     "fixed_rate_clk_vpll_fout1",
+> +                                     "fixed_rate_clk_spll2_fout2" };
+> +PNAME(npu_e31_3mux1_gfree_mux_p) =3D { "fixed_rate_clk_spll1_fout1",
+> +                                    "fixed_rate_clk_vpll_fout1",
+> +                                    "fixed_rate_clk_spll2_fout2" };
+> +PNAME(vi_aclk_root_2mux1_gfree_mux_p) =3D { "fixed_rate_clk_spll0_fout1",
+> +                                         "fixed_rate_clk_spll2_fout1" };
+> +PNAME(mux_vi_dw_root_2mux1_p) =3D { "fixed_rate_clk_vpll_fout1",
+> +                                 "fixed_rate_clk_spll0_fout1" };
+> +PNAME(mux_vi_dvp_root_2mux1_gfree_p) =3D { "fixed_rate_clk_vpll_fout1",
+> +                                        "fixed_rate_clk_spll0_fout1" };
+> +PNAME(mux_vi_dig_isp_root_2mux1_gfree_p) =3D { "fixed_rate_clk_vpll_fout=
+1",
+> +                                            "fixed_rate_clk_spll0_fout1"=
+ };
+> +PNAME(mux_vo_aclk_root_2mux1_gfree_p) =3D { "fixed_rate_clk_spll0_fout1",
+> +                                         "fixed_rate_clk_spll2_fout1" };
+> +PNAME(mux_vo_pixel_root_2mux1_p) =3D { "fixed_rate_clk_vpll_fout1",
+> +                                    "fixed_rate_clk_spll2_fout2" };
+> +PNAME(mux_vcdec_root_2mux1_gfree_p) =3D { "fixed_rate_clk_spll0_fout1",
+> +                                       "fixed_rate_clk_spll2_fout1" };
+> +PNAME(mux_vcaclk_root_2mux1_gfree_p) =3D { "fixed_rate_clk_spll0_fout1",
+> +                                        "fixed_rate_clk_spll2_fout1" };
+> +PNAME(mux_syscfg_clk_root_2mux1_gfree_p) =3D { "divider_sys_cfg_div_dynm=
+",
+> +                                            "xtal24m" };
+> +PNAME(mux_bootspi_clk_2mux1_gfree_p) =3D { "divider_bootspi_div_dynm",
+> +                                        "xtal24m" };
+> +PNAME(mux_scpu_core_clk_2mux1_gfree_p) =3D { "divider_scpu_core_div_dynm=
+",
+> +                                          "xtal24m" };
+> +PNAME(mux_lpcpu_core_clk_2mux1_gfree_p) =3D { "divider_lpcpu_core_div_dy=
+nm",
+> +                                           "xtal24m" };
+> +PNAME(mux_vo_mclk_2mux_ext_mclk_p) =3D { "divider_vo_mclk_div_dynm",
+> +                                      "fixed_rate_ext_mclk" };
+> +PNAME(mux_aondma_axi2mux1_gfree_p) =3D { "divider_aondma_axi_div_dynm",
+> +                                      "xtal24m" };
+> +PNAME(mux_rmii_ref_2mux1_p) =3D { "fixed_factor_hsp_rmii_ref_div6",
+> +                               "fixed_rate_lpddr_ref_bak" };
+> +PNAME(mux_eth_core_2mux1_p) =3D { "fixed_rate_clk_spll1_fout3",
+> +                               "fixed_rate_lpddr_ref_bak" };
+> +PNAME(mux_sata_phy_2mux1_p) =3D { "divider_sata_phy_ref_div_dynm",
+> +                               "fixed_rate_lpddr_ref_bak" };
+> +
+> +/* fixed rate clocks */
+> +static struct eswin_fixed_rate_clock eic7700_fixed_rate_clks[] =3D {
+> +       EIC7700_FIXED(EIC7700_CLK_XTAL_32K, "fixed_rate_clk_xtal_32k", NU=
+LL, 0,
+> +                     32768),
+> +       EIC7700_FIXED(EIC7700_CLK_SPLL0_FOUT1, "fixed_rate_clk_spll0_fout=
+1",
+> +                     NULL, 0, 1600000000),
+> +       EIC7700_FIXED(EIC7700_CLK_SPLL0_FOUT2, "fixed_rate_clk_spll0_fout=
+2",
+> +                     NULL, 0, 800000000),
+> +       EIC7700_FIXED(EIC7700_CLK_SPLL0_FOUT3, "fixed_rate_clk_spll0_fout=
+3",
+> +                     NULL, 0, 400000000),
+> +       EIC7700_FIXED(EIC7700_CLK_SPLL1_FOUT1, "fixed_rate_clk_spll1_fout=
+1",
+> +                     NULL, 0, 1500000000),
+> +       EIC7700_FIXED(EIC7700_CLK_SPLL1_FOUT2, "fixed_rate_clk_spll1_fout=
+2",
+> +                     NULL, 0, 300000000),
+> +       EIC7700_FIXED(EIC7700_CLK_SPLL1_FOUT3, "fixed_rate_clk_spll1_fout=
+3",
+> +                     NULL, 0, 250000000),
+> +       EIC7700_FIXED(EIC7700_CLK_SPLL2_FOUT1, "fixed_rate_clk_spll2_fout=
+1",
+> +                     NULL, 0, 2080000000),
+> +       EIC7700_FIXED(EIC7700_CLK_SPLL2_FOUT2, "fixed_rate_clk_spll2_fout=
+2",
+> +                     NULL, 0, 1040000000),
+> +       EIC7700_FIXED(EIC7700_CLK_SPLL2_FOUT3, "fixed_rate_clk_spll2_fout=
+3",
+> +                     NULL, 0, 416000000),
+> +       EIC7700_FIXED(EIC7700_CLK_VPLL_FOUT1, "fixed_rate_clk_vpll_fout1",
+> +                     NULL, 0, 1188000000),
+> +       EIC7700_FIXED(EIC7700_CLK_VPLL_FOUT2, "fixed_rate_clk_vpll_fout2",
+> +                     NULL, 0, 594000000),
+> +       EIC7700_FIXED(EIC7700_CLK_VPLL_FOUT3, "fixed_rate_clk_vpll_fout3",
+> +                     NULL, 0, 49500000),
+> +       EIC7700_FIXED(EIC7700_CLK_APLL_FOUT2, "fixed_rate_clk_apll_fout2",
+> +                     NULL, 0, 0),
+> +       EIC7700_FIXED(EIC7700_CLK_APLL_FOUT3, "fixed_rate_clk_apll_fout3",
+> +                     NULL, 0, 0),
+> +       EIC7700_FIXED(EIC7700_CLK_EXT_MCLK, "fixed_rate_ext_mclk", NULL, =
+0, 0),
+> +       EIC7700_FIXED(EIC7700_CLK_LPDDR_REF_BAK, "fixed_rate_lpddr_ref_ba=
+k",
+> +                     NULL, 0, 50000000),
+> +};
+> +
+> +/* pll clocks */
+> +static struct eswin_pll_clock eic7700_pll_clks[] =3D {
+> +       EIC7700_PLL(EIC7700_CLK_APLL_FOUT1, "clk_apll_fout1", NULL,
+> +                   EIC7700_REG_OFFSET_APLL_CFG_0, 0, 1, 12, 6, 20, 12,
+> +                   EIC7700_REG_OFFSET_APLL_CFG_1, 4, 24,
+> +                   EIC7700_REG_OFFSET_APLL_CFG_2, 1, 3, 16, 3,
+> +                   EIC7700_REG_OFFSET_PLL_STATUS, 4, 1, APLL_HIGH_FREQ,
+> +                   APLL_LOW_FREQ),
+> +       EIC7700_PLL(EIC7700_CLK_PLL_CPU, "clk_pll_cpu", NULL,
+> +                   EIC7700_REG_OFFSET_MCPUT_PLL_CFG_0, 0, 1, 12, 6, 20, =
+12,
+> +                   EIC7700_REG_OFFSET_MCPUT_PLL_CFG_1, 4, 24,
+> +                   EIC7700_REG_OFFSET_MCPUT_PLL_CFG_2, 1, 3, 16, 3,
+> +                   EIC7700_REG_OFFSET_PLL_STATUS, 5, 1, PLL_HIGH_FREQ,
+> +                   PLL_LOW_FREQ),
+> +};
+> +
+> +/* fixed factor clocks */
+> +static struct eswin_fixed_factor_clock eic7700_fixed_factor_clks[] =3D {
+> +       EIC7700_FACTOR(EIC7700_CLK_FIXED_FACTOR_CPU_DIV2,
+> +                      "fixed_factor_cpu_div2", "mux_cpu_root_3mux1_gfree=
+", 1,
+> +                      2, 0),
+> +       EIC7700_FACTOR(EIC7700_CLK_FIXED_FACTOR_CLK_1M_DIV24,
+> +                      "fixed_factor_clk_1m_div24", "xtal24m", 1, 24, 0),
+> +       EIC7700_FACTOR(EIC7700_CLK_FIXED_FACTOR_MIPI_TXESC_DIV10,
+> +                      "fixed_factor_mipi_txesc_div10",
+> +                      "mux_syscfg_clk_root_2mux1_gfree", 1, 10, 0),
+> +       EIC7700_FACTOR(EIC7700_CLK_FIXED_FACTOR_U84_CORE_LP_DIV2,
+> +                      "fixed_factor_u84_core_lp_div2", "gate_clk_spll0_f=
+out2",
+> +                      1, 2, 0),
+> +       EIC7700_FACTOR(EIC7700_CLK_FIXED_FACTOR_SCPU_BUS_DIV2,
+> +                      "fixed_factor_scpu_bus_div2",
+> +                      "mux_scpu_core_clk_2mux1_gfree", 1, 2, 0),
+> +       EIC7700_FACTOR(EIC7700_CLK_FIXED_FACTOR_LPCPU_BUS_DIV2,
+> +                      "fixed_factor_lpcpu_bus_div2",
+> +                      "mux_lpcpu_core_clk_2mux1_gfree", 1, 2, 0),
+> +       EIC7700_FACTOR(EIC7700_CLK_FIXED_FACTOR_PCIE_CR_DIV2,
+> +                      "fixed_factor_pcie_cr_div2",
+> +                      "mux_syscfg_clk_root_2mux1_gfree", 1, 2, 0),
+> +       EIC7700_FACTOR(EIC7700_CLK_FIXED_FACTOR_PCIE_AUX_DIV4,
+> +                      "fixed_factor_pcie_aux_div4",
+> +                      "mux_syscfg_clk_root_2mux1_gfree", 1, 4, 0),
+> +       EIC7700_FACTOR(EIC7700_CLK_FIXED_FACTOR_PVT_DIV20,
+> +                      "fixed_factor_pvt_div20", "xtal24m", 1, 20, 0),
+> +       EIC7700_FACTOR(EIC7700_CLK_FIXED_FACTOR_HSP_RMII_REF_DIV6,
+> +                      "fixed_factor_hsp_rmii_ref_div6",
+> +                      "fixed_rate_clk_spll1_fout2", 1, 6, 0),
+> +};
+> +
+> +/* mux clocks */
+> +static struct eswin_mux_clock eic7700_mux_clks[] =3D {
+> +       EIC7700_MUX(EIC7700_CLK_MUX_CPU_ROOT_3MUX1_GFREE,
+> +                   "mux_cpu_root_3mux1_gfree", mux_cpu_root_3mux1_gfree_=
+p,
+> +                   ARRAY_SIZE(mux_cpu_root_3mux1_gfree_p),
+> +                   CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_U84_CTRL, 0, =
+2, 0),
+> +       EIC7700_MUX(EIC7700_CLK_MUX_CPU_ACLK_2MUX1_GFREE,
+> +                   "mux_cpu_aclk_2mux1_gfree", mux_cpu_aclk_2mux1_gfree_=
+p,
+> +                   ARRAY_SIZE(mux_cpu_aclk_2mux1_gfree_p),
+> +                   CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_U84_CTRL, 20,=
+ 1, 0),
+> +       EIC7700_MUX(EIC7700_CLK_MUX_DSP_ACLK_ROOT_2MUX1_GFREE,
+> +                   "mux_dsp_aclk_root_2mux1_gfree",
+> +                   dsp_aclk_root_2mux1_gfree_mux_p,
+> +                   ARRAY_SIZE(dsp_aclk_root_2mux1_gfree_mux_p),
+> +                   CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_DSP_ACLK_CTRL=
+, 0, 1,
+> +                   0),
+> +       EIC7700_MUX(EIC7700_CLK_MUX_D2D_ACLK_ROOT_2MUX1_GFREE,
+> +                   "mux_d2d_aclk_root_2mux1_gfree",
+> +                   d2d_aclk_root_2mux1_gfree_mux_p,
+> +                   ARRAY_SIZE(d2d_aclk_root_2mux1_gfree_mux_p),
+> +                   CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_D2D_ACLK_CTRL=
+, 0,
+> +                   1, 0),
+> +       EIC7700_MUX(EIC7700_CLK_MUX_DDR_ACLK_ROOT_2MUX1_GFREE,
+> +                   "mux_ddr_aclk_root_2mux1_gfree",
+> +                   ddr_aclk_root_2mux1_gfree_mux_p,
+> +                   ARRAY_SIZE(ddr_aclk_root_2mux1_gfree_mux_p),
+> +                   CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_DDR_CTRL, 16,=
+ 1, 0),
+> +       EIC7700_MUX(EIC7700_CLK_MUX_MSHCORE_ROOT_3MUX1_0,
+> +                   "mux_mshcore_root_3mux1_0", mshcore_root_3mux1_0_mux_=
+p,
+> +                   ARRAY_SIZE(mshcore_root_3mux1_0_mux_p), CLK_SET_RATE_=
+PARENT,
+> +                   EIC7700_REG_OFFSET_MSHC0_CORE_CTRL, 0, 1, 0),
+> +       EIC7700_MUX(EIC7700_CLK_MUX_MSHCORE_ROOT_3MUX1_1,
+> +                   "mux_mshcore_root_3mux1_1", mshcore_root_3mux1_1_mux_=
+p,
+> +                   ARRAY_SIZE(mshcore_root_3mux1_1_mux_p), CLK_SET_RATE_=
+PARENT,
+> +                   EIC7700_REG_OFFSET_MSHC1_CORE_CTRL, 0, 1, 0),
+> +       EIC7700_MUX(EIC7700_CLK_MUX_MSHCORE_ROOT_3MUX1_2,
+> +                   "mux_mshcore_root_3mux1_2", mshcore_root_3mux1_2_mux_=
+p,
+> +                   ARRAY_SIZE(mshcore_root_3mux1_2_mux_p), CLK_SET_RATE_=
+PARENT,
+> +                   EIC7700_REG_OFFSET_MSHC2_CORE_CTRL, 0, 1, 0),
+> +       EIC7700_MUX(EIC7700_CLK_MUX_NPU_LLCLK_3MUX1_GFREE,
+> +                   "mux_npu_llclk_3mux1_gfree", npu_llclk_3mux1_gfree_mu=
+x_p,
+> +                   ARRAY_SIZE(npu_llclk_3mux1_gfree_mux_p),
+> +                   CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_NPU_LLC_CTRL,=
+ 0, 2,
+> +                   0),
+> +       EIC7700_MUX(EIC7700_CLK_MUX_NPU_CORE_3MUX1_GFREE,
+> +                   "mux_npu_core_3mux1_gfree", npu_core_3mux1_gfree_mux_=
+p,
+> +                   ARRAY_SIZE(npu_core_3mux1_gfree_mux_p), CLK_SET_RATE_=
+PARENT,
+> +                   EIC7700_REG_OFFSET_NPU_CORE_CTRL, 0, 2, 0),
+> +       EIC7700_MUX(EIC7700_CLK_MUX_NPU_E31_3MUX1_GFREE,
+> +                   "mux_npu_e31_3mux1_gfree", npu_e31_3mux1_gfree_mux_p,
+> +                   ARRAY_SIZE(npu_e31_3mux1_gfree_mux_p), CLK_SET_RATE_P=
+ARENT,
+> +                   EIC7700_REG_OFFSET_NPU_CORE_CTRL, 8, 2, 0),
+> +       EIC7700_MUX(EIC7700_CLK_MUX_VI_ACLK_ROOT_2MUX1_GFREE,
+> +                   "mux_vi_aclk_root_2mux1_gfree",
+> +                   vi_aclk_root_2mux1_gfree_mux_p,
+> +                   ARRAY_SIZE(vi_aclk_root_2mux1_gfree_mux_p),
+> +                   CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_VI_ACLK_CTRL,=
+ 0, 1,
+> +                   0),
+> +       EIC7700_MUX(EIC7700_CLK_MUX_VI_DW_ROOT_2MUX1, "mux_vi_dw_root_2mu=
+x1",
+> +                   mux_vi_dw_root_2mux1_p, ARRAY_SIZE(mux_vi_dw_root_2mu=
+x1_p),
+> +                   CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_VI_DWCLK_CTRL=
+, 0,
+> +                   1, 0),
+> +       EIC7700_MUX(EIC7700_CLK_MUX_VI_DVP_ROOT_2MUX1_GFREE,
+> +                   "mux_vi_dvp_root_2mux1_gfree",
+> +                   mux_vi_dvp_root_2mux1_gfree_p,
+> +                   ARRAY_SIZE(mux_vi_dvp_root_2mux1_gfree_p),
+> +                   CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_VI_DVP_CTRL, =
+0, 1,
+> +                   0),
+> +       EIC7700_MUX(EIC7700_CLK_MUX_VI_DIG_ISP_ROOT_2MUX1_GFREE,
+> +                   "mux_vi_dig_isp_root_2mux1_gfree",
+> +                   mux_vi_dig_isp_root_2mux1_gfree_p,
+> +                   ARRAY_SIZE(mux_vi_dig_isp_root_2mux1_gfree_p),
+> +                   CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_VI_DIG_ISP_CT=
+RL, 0,
+> +                   1, 0),
+> +       EIC7700_MUX(EIC7700_CLK_MUX_VO_ACLK_ROOT_2MUX1_GFREE,
+> +                   "mux_vo_aclk_root_2mux1_gfree",
+> +                   mux_vo_aclk_root_2mux1_gfree_p,
+> +                   ARRAY_SIZE(mux_vo_aclk_root_2mux1_gfree_p),
+> +                   CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_VO_ACLK_CTRL,=
+ 0, 1,
+> +                   0),
+> +       EIC7700_MUX(EIC7700_CLK_MUX_VO_PIXEL_ROOT_2MUX1,
+> +                   "mux_vo_pixel_root_2mux1", mux_vo_pixel_root_2mux1_p,
+> +                   ARRAY_SIZE(mux_vo_pixel_root_2mux1_p), CLK_SET_RATE_P=
+ARENT,
+> +                   EIC7700_REG_OFFSET_VO_PIXEL_CTRL, 0, 1, 0),
+> +       EIC7700_MUX(EIC7700_CLK_MUX_VCDEC_ROOT_2MUX1_GFREE,
+> +                   "mux_vcdec_root_2mux1_gfree", mux_vcdec_root_2mux1_gf=
+ree_p,
+> +                   ARRAY_SIZE(mux_vcdec_root_2mux1_gfree_p),
+> +                   CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_VCDEC_ROOT_CT=
+RL, 0,
+> +                   1, 0),
+> +       EIC7700_MUX(EIC7700_CLK_MUX_VCACLK_ROOT_2MUX1_GFREE,
+> +                   "mux_vcaclk_root_2mux1_gfree",
+> +                   mux_vcaclk_root_2mux1_gfree_p,
+> +                   ARRAY_SIZE(mux_vcaclk_root_2mux1_gfree_p),
+> +                   CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_VC_ACLK_CTRL,=
+ 0, 1,
+> +                   0),
+> +       EIC7700_MUX(EIC7700_CLK_MUX_SYSCFG_CLK_ROOT_2MUX1_GFREE,
+> +                   "mux_syscfg_clk_root_2mux1_gfree",
+> +                   mux_syscfg_clk_root_2mux1_gfree_p,
+> +                   ARRAY_SIZE(mux_syscfg_clk_root_2mux1_gfree_p),
+> +                   CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_SYSCFG_CTRL, =
+0, 1,
+> +                   0),
+> +       EIC7700_MUX(EIC7700_CLK_MUX_BOOTSPI_CLK_2MUX1_GFREE,
+> +                   "mux_bootspi_clk_2mux1_gfree",
+> +                   mux_bootspi_clk_2mux1_gfree_p,
+> +                   ARRAY_SIZE(mux_bootspi_clk_2mux1_gfree_p),
+> +                   CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_BOOTSPI_CTRL,=
+ 0, 1,
+> +                   0),
+> +       EIC7700_MUX(EIC7700_CLK_MUX_SCPU_CORE_CLK_2MUX1_GFREE,
+> +                   "mux_scpu_core_clk_2mux1_gfree",
+> +                   mux_scpu_core_clk_2mux1_gfree_p,
+> +                   ARRAY_SIZE(mux_scpu_core_clk_2mux1_gfree_p),
+> +                   CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_SCPU_CORE_CTR=
+L, 0,
+> +                   1, 0),
+> +       EIC7700_MUX(EIC7700_CLK_MUX_LPCPU_CORE_CLK_2MUX1_GFREE,
+> +                   "mux_lpcpu_core_clk_2mux1_gfree",
+> +                   mux_lpcpu_core_clk_2mux1_gfree_p,
+> +                   ARRAY_SIZE(mux_lpcpu_core_clk_2mux1_gfree_p),
+> +                   CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_LPCPU_CORE_CT=
+RL, 0,
+> +                   1, 0),
+> +       EIC7700_MUX(EIC7700_CLK_MUX_VO_MCLK_2MUX_EXT_MCLK,
+> +                   "mux_vo_mclk_2mux_ext_mclk", mux_vo_mclk_2mux_ext_mcl=
+k_p,
+> +                   ARRAY_SIZE(mux_vo_mclk_2mux_ext_mclk_p),
+> +                   CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_VO_MCLK_CTRL,=
+ 0, 1,
+> +                   0),
+> +       EIC7700_MUX(EIC7700_CLK_MUX_AONDMA_AXI2MUX1_GFREE,
+> +                   "mux_aondma_axi2mux1_gfree", mux_aondma_axi2mux1_gfre=
+e_p,
+> +                   ARRAY_SIZE(mux_aondma_axi2mux1_gfree_p),
+> +                   CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_AON_DMA_CTRL,=
+ 20,
+> +                   1, 0),
+> +       EIC7700_MUX(EIC7700_CLK_MUX_RMII_REF_2MUX, "mux_rmii_ref_2mux1",
+> +                   mux_rmii_ref_2mux1_p, ARRAY_SIZE(mux_rmii_ref_2mux1_p=
+),
+> +                   CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_ETH0_CTRL, 2,=
+ 1, 0),
+> +       EIC7700_MUX(EIC7700_CLK_MUX_ETH_CORE_2MUX1, "mux_eth_core_2mux1",
+> +                   mux_eth_core_2mux1_p, ARRAY_SIZE(mux_eth_core_2mux1_p=
+),
+> +                   CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_ETH0_CTRL, 1,=
+ 1, 0),
+> +       EIC7700_MUX(EIC7700_CLK_MUX_SATA_PHY_2MUX1, "mux_sata_phy_2mux1",
+> +                   mux_sata_phy_2mux1_p, ARRAY_SIZE(mux_sata_phy_2mux1_p=
+),
+> +                   CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_SATA_OOB_CTRL=
+, 9,
+> +                   1, 0),
+> +};
+> +
+> +/* divider clocks */
+> +static struct eswin_divider_clock eic7700_div_clks[] =3D {
+> +       EIC7700_DIV(EIC7700_CLK_DIV_SYS_CFG_DYNM, "divider_sys_cfg_div_dy=
+nm",
+> +                   "fixed_rate_clk_spll0_fout3", 0,
+> +                   EIC7700_REG_OFFSET_SYSCFG_CTRL, 4, 3,
+> +                   CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_NOC_NSP_DYNM, "divider_noc_nsp_div_dy=
+nm",
+> +                   "fixed_rate_clk_spll2_fout1", 0,
+> +                   EIC7700_REG_OFFSET_NOC_CTRL, 0, 3, CLK_DIVIDER_ONE_BA=
+SED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_BOOTSPI_DYNM, "divider_bootspi_div_dy=
+nm",
+> +                   "gate_clk_spll0_fout2", 0, EIC7700_REG_OFFSET_BOOTSPI=
+_CTRL,
+> +                   4, 6, CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_SCPU_CORE_DYNM,
+> +                   "divider_scpu_core_div_dynm", "fixed_rate_clk_spll0_f=
+out1",
+> +                   0, EIC7700_REG_OFFSET_SCPU_CORE_CTRL, 4, 4,
+> +                   CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_LPCPU_CORE_DYNM,
+> +                   "divider_lpcpu_core_div_dynm", "fixed_rate_clk_spll0_=
+fout1",
+> +                   0, EIC7700_REG_OFFSET_LPCPU_CORE_CTRL, 4, 4,
+> +                   CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_GPU_ACLK_DYNM, "divider_gpu_aclk_div_=
+dynm",
+> +                   "fixed_rate_clk_spll0_fout1", 0,
+> +                   EIC7700_REG_OFFSET_GPU_ACLK_CTRL, 4, 4,
+> +                   CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_D2D_ACLK_DYNM, "divider_d2d_aclk_div_=
+dynm",
+> +                   "mux_d2d_aclk_root_2mux1_gfree", 0,
+> +                   EIC7700_REG_OFFSET_D2D_ACLK_CTRL, 4, 4,
+> +                   CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_DSP_ACLK_DYNM, "divider_dsp_aclk_div_=
+dynm",
+> +                   "mux_d2d_aclk_root_2mux1_gfree", 0,
+> +                   EIC7700_REG_OFFSET_D2D_ACLK_CTRL, 4, 4,
+> +                   CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_DDR_ACLK_DYNM, "divider_ddr_aclk_div_=
+dynm",
+> +                   "mux_ddr_aclk_root_2mux1_gfree", 0,
+> +                   EIC7700_REG_OFFSET_DDR_CTRL, 20, 4, CLK_DIVIDER_ONE_B=
+ASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_HSP_ACLK_DYNM, "divider_hsp_aclk_div_=
+dynm",
+> +                   "fixed_rate_clk_spll0_fout1", 0,
+> +                   EIC7700_REG_OFFSET_HSP_ACLK_CTRL, 4, 4,
+> +                   CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_ETH_TXCLK_DYNM_0,
+> +                   "divider_eth_txclk_div_dynm_0", "mux_eth_core_2mux1",=
+ 0,
+> +                   EIC7700_REG_OFFSET_ETH0_CTRL, 4, 7, CLK_DIVIDER_ONE_B=
+ASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_ETH_TXCLK_DYNM_1,
+> +                   "divider_eth_txclk_div_dynm_1", "mux_eth_core_2mux1",=
+ 0,
+> +                   EIC7700_REG_OFFSET_ETH1_CTRL, 4, 7, CLK_DIVIDER_ONE_B=
+ASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_MSHC_CORE_DYNM_0,
+> +                   "divider_mshc_core_div_dynm_0", "mux_mshcore_root_3mu=
+x1_0",
+> +                   0, EIC7700_REG_OFFSET_MSHC0_CORE_CTRL, 4, 12,
+> +                   CLK_DIVIDER_ONE_BASED | CLK_DIVIDER_ROUND_CLOSEST),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_MSHC_CORE_DYNM_1,
+> +                   "divider_mshc_core_div_dynm_1", "mux_mshcore_root_3mu=
+x1_1",
+> +                   0, EIC7700_REG_OFFSET_MSHC1_CORE_CTRL, 4, 12,
+> +                   CLK_DIVIDER_ONE_BASED | CLK_DIVIDER_ROUND_CLOSEST),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_MSHC_CORE_DYNM_2,
+> +                   "divider_mshc_core_div_dynm_2", "mux_mshcore_root_3mu=
+x1_2",
+> +                   0, EIC7700_REG_OFFSET_MSHC2_CORE_CTRL, 4, 12,
+> +                   CLK_DIVIDER_ONE_BASED | CLK_DIVIDER_ROUND_CLOSEST),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_PCIE_ACLK_DYNM,
+> +                   "divider_pcie_aclk_div_dynm", "fixed_rate_clk_spll2_f=
+out2",
+> +                   0, EIC7700_REG_OFFSET_PCIE_ACLK_CTRL, 4, 4,
+> +                   CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_NPU_ACLK_DYNM, "divider_npu_aclk_div_=
+dynm",
+> +                   "fixed_rate_clk_spll0_fout1", 0,
+> +                   EIC7700_REG_OFFSET_NPU_ACLK_CTRL, 4,  4,
+> +                   CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_NPU_LLC_SRC0_DYNM,
+> +                   "divider_npu_llc_src0_div_dynm",
+> +                   "fixed_rate_clk_spll0_fout1", 0,
+> +                   EIC7700_REG_OFFSET_NPU_LLC_CTRL, 4, 4,
+> +                   CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_NPU_LLC_SRC1_DYNM,
+> +                   "divider_npu_llc_src1_div_dynm",
+> +                   "fixed_rate_clk_spll2_fout1", 0,
+> +                   EIC7700_REG_OFFSET_NPU_LLC_CTRL, 8, 4,
+> +                   CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_NPU_CORECLK_DYNM,
+> +                   "divider_npu_coreclk_div_dynm", "mux_npu_core_3mux1_g=
+free",
+> +                   0, EIC7700_REG_OFFSET_NPU_CORE_CTRL, 4, 4,
+> +                   CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_NPU_E31_DYNM, "divider_npu_e31_div_dy=
+nm",
+> +                   "mux_npu_e31_3mux1_gfree", 0,
+> +                   EIC7700_REG_OFFSET_NPU_CORE_CTRL, 12, 4,
+> +                   CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_VI_ACLK_DYNM, "divider_vi_aclk_div_dy=
+nm",
+> +                   "mux_vi_aclk_root_2mux1_gfree", 0,
+> +                   EIC7700_REG_OFFSET_VI_ACLK_CTRL, 4, 4,
+> +                   CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_VI_DW_DYNM, "divider_vi_dw_div_dynm",
+> +                   "mux_vi_dw_root_2mux1", 0,
+> +                   EIC7700_REG_OFFSET_VI_DWCLK_CTRL, 4, 4,
+> +                   CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_VI_DVP_DYNM, "divider_vi_dvp_div_dynm=
+",
+> +                   "mux_vi_dvp_root_2mux1_gfree", 0,
+> +                   EIC7700_REG_OFFSET_VI_DVP_CTRL, 4, 4,
+> +                   CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_VI_DIG_ISP_DYNM,
+> +                   "divider_vi_dig_isp_div_dynm",
+> +                   "mux_vi_dig_isp_root_2mux1_gfree", 0,
+> +                   EIC7700_REG_OFFSET_VI_DIG_ISP_CTRL, 4, 4,
+> +                   CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_VI_SHUTTER_DYNM_0,
+> +                   "divider_vi_shutter_div_dynm_0",
+> +                   "fixed_rate_clk_vpll_fout2", 0,
+> +                   EIC7700_REG_OFFSET_VI_SHUTTER0, 4, 7,
+> +                   CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_VI_SHUTTER_DYNM_1,
+> +                   "divider_vi_shutter_div_dynm_1",
+> +                   "fixed_rate_clk_vpll_fout2", 0,
+> +                   EIC7700_REG_OFFSET_VI_SHUTTER1, 4, 7,
+> +                   CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_VI_SHUTTER_DYNM_2,
+> +                   "divider_vi_shutter_div_dynm_2",
+> +                   "fixed_rate_clk_vpll_fout2", 0,
+> +                   EIC7700_REG_OFFSET_VI_SHUTTER2, 4, 7,
+> +                   CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_VI_SHUTTER_DYNM_3,
+> +                   "divider_vi_shutter_div_dynm_3",
+> +                   "fixed_rate_clk_vpll_fout2", 0,
+> +                   EIC7700_REG_OFFSET_VI_SHUTTER3, 4, 7,
+> +                   CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_VI_SHUTTER_DYNM_4,
+> +                   "divider_vi_shutter_div_dynm_4",
+> +                   "fixed_rate_clk_vpll_fout2", 0,
+> +                   EIC7700_REG_OFFSET_VI_SHUTTER4, 4, 7,
+> +                   CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_VI_SHUTTER_DYNM_5,
+> +                   "divider_vi_shutter_div_dynm_5",
+> +                   "fixed_rate_clk_vpll_fout2", 0,
+> +                   EIC7700_REG_OFFSET_VI_SHUTTER5, 4, 7,
+> +                   CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_VO_ACLK_DYNM, "divider_vo_aclk_div_dy=
+nm",
+> +                   "mux_vo_aclk_root_2mux1_gfree", 0,
+> +                   EIC7700_REG_OFFSET_VO_ACLK_CTRL, 4, 4,
+> +                   CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_IESMCLK_DYNM, "divider_iesmclk_div_dy=
+nm",
+> +                   "fixed_rate_clk_spll0_fout3", 0,
+> +                   EIC7700_REG_OFFSET_VO_IESMCLK_CTRL, 4, 4,
+> +                   CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_VO_PIXEL_DYNM, "divider_vo_pixel_div_=
+dynm",
+> +                   "mux_vo_pixel_root_2mux1", 0,
+> +                   EIC7700_REG_OFFSET_VO_PIXEL_CTRL, 4, 6,
+> +                   CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_VO_MCLK_DYNM, "divider_vo_mclk_div_dy=
+nm",
+> +                   "clk_apll_fout1", 0, EIC7700_REG_OFFSET_VO_MCLK_CTRL,=
+ 4, 8,
+> +                   CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_VO_CEC_DYNM, "divider_vo_cec_div_dynm=
+",
+> +                   "fixed_rate_clk_vpll_fout2", 0,
+> +                   EIC7700_REG_OFFSET_VO_PHY_CLKCTRL, 16, 16,
+> +                   CLK_DIVIDER_ROUND_CLOSEST),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_VC_ACLK_DYNM, "divider_vc_aclk_div_dy=
+nm",
+> +                   "mux_vcaclk_root_2mux1_gfree", 0,
+> +                   EIC7700_REG_OFFSET_VC_ACLK_CTRL, 4, 4,
+> +                   CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_JD_DYNM, "divider_jd_div_dynm",
+> +                   "mux_vcdec_root_2mux1_gfree", 0, EIC7700_REG_OFFSET_J=
+D_CTRL,
+> +                   4, 4, CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_JE_DYNM, "divider_je_div_dynm",
+> +                   "mux_vcdec_root_2mux1_gfree", 0, EIC7700_REG_OFFSET_J=
+E_CTRL,
+> +                   4, 4, CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_VE_DYNM, "divider_ve_div_dynm",
+> +                   "mux_vcdec_root_2mux1_gfree", 0, EIC7700_REG_OFFSET_V=
+E_CTRL,
+> +                   4, 4, CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_VD_DYNM, "divider_vd_div_dynm",
+> +                   "mux_vcdec_root_2mux1_gfree", 0, EIC7700_REG_OFFSET_V=
+D_CTRL,
+> +                   4, 4, CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_G2D_DYNM, "divider_g2d_div_dynm",
+> +                   "mux_dsp_aclk_root_2mux1_gfree", 0,
+> +                   EIC7700_REG_OFFSET_G2D_CTRL, 4, 4, CLK_DIVIDER_ONE_BA=
+SED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_AONDMA_AXI_DYNM,
+> +                   "divider_aondma_axi_div_dynm", "fixed_rate_clk_spll0_=
+fout1",
+> +                   0, EIC7700_REG_OFFSET_AON_DMA_CTRL, 4, 4,
+> +                   CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_CRYPTO_DYNM, "divider_crypto_div_dynm=
+",
+> +                   "fixed_rate_clk_spll0_fout1", 0,
+> +                   EIC7700_REG_OFFSET_SPACC_CTRL, 4, 4, CLK_DIVIDER_ONE_=
+BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_SATA_PHY_REF_DYNM,
+> +                   "divider_sata_phy_ref_div_dynm",
+> +                   "fixed_rate_clk_spll1_fout2", 0,
+> +                   EIC7700_REG_OFFSET_SATA_OOB_CTRL, 0, 4,
+> +                   CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_DSP_0_ACLK_DYNM,
+> +                   "divider_dsp_0_aclk_div_dynm", "gate_dspt_aclk", 0,
+> +                   EIC7700_REG_OFFSET_DSP_CFG_CTRL, 19, 1, 0),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_DSP_1_ACLK_DYNM,
+> +                   "divider_dsp_1_aclk_div_dynm", "gate_dspt_aclk", 0,
+> +                   EIC7700_REG_OFFSET_DSP_CFG_CTRL, 20, 1, 0),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_DSP_2_ACLK_DYNM,
+> +                   "divider_dsp_2_aclk_div_dynm", "gate_dspt_aclk", 0,
+> +                   EIC7700_REG_OFFSET_DSP_CFG_CTRL, 21, 1, 0),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_DSP_3_ACLK_DYNM,
+> +                   "divider_dsp_3_aclk_div_dynm", "gate_dspt_aclk", 0,
+> +                   EIC7700_REG_OFFSET_DSP_CFG_CTRL, 22, 1, 0),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_AON_RTC_DYNM, "divider_aon_rtc_div_dy=
+nm",
+> +                   "fixed_factor_clk_1m_div24", 0, EIC7700_REG_OFFSET_RT=
+C_CTRL,
+> +                   21, 11, CLK_DIVIDER_ONE_BASED),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_U84_RTC_TOGGLE_DYNM,
+> +                   "divider_u84_rtc_toggle_dynm", "xtal24m", 0,
+> +                   EIC7700_REG_OFFSET_RTC_CTRL, 16, 5,
+> +                   CLK_DIVIDER_ONE_BASED | CLK_DIVIDER_ROUND_CLOSEST),
+> +       EIC7700_DIV(EIC7700_CLK_DIV_NOC_WDREF_DYNM, "divider_noc_wdref_dy=
+nm",
+> +                   "xtal24m", 0, EIC7700_REG_OFFSET_NOC_CTRL, 4, 16,
+> +                   CLK_DIVIDER_ONE_BASED | CLK_DIVIDER_ROUND_CLOSEST),
+> +};
+> +
+> +/* gate clocks */
+> +static struct eswin_gate_clock eic7700_gate_clks[] =3D {
+> +       EIC7700_GATE(EIC7700_CLK_GATE_CPU_EXT_SRC_CORE_CLK_0,
+> +                    "gate_clk_cpu_ext_src_core_clk_0",
+> +                    "mux_cpu_root_3mux1_gfree", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_U84_CTRL, 28, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_CPU_EXT_SRC_CORE_CLK_1,
+> +                    "gate_clk_cpu_ext_src_core_clk_1",
+> +                    "mux_cpu_root_3mux1_gfree", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_U84_CTRL, 29, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_CPU_EXT_SRC_CORE_CLK_2,
+> +                    "gate_clk_cpu_ext_src_core_clk_2",
+> +                    "mux_cpu_root_3mux1_gfree", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_U84_CTRL, 30, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_CPU_EXT_SRC_CORE_CLK_3,
+> +                    "gate_clk_cpu_ext_src_core_clk_3",
+> +                    "mux_cpu_root_3mux1_gfree", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_U84_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_CPU_TRACE_CLK_0,
+> +                    "gate_clk_cpu_trace_clk_0", "mux_cpu_root_3mux1_gfre=
+e",
+> +                    CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_U84_CTRL, 24=
+, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_CPU_TRACE_CLK_1,
+> +                    "gate_clk_cpu_trace_clk_1", "mux_cpu_root_3mux1_gfre=
+e",
+> +                    CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_U84_CTRL, 25=
+, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_CPU_TRACE_CLK_2,
+> +                    "gate_clk_cpu_trace_clk_2", "mux_cpu_root_3mux1_gfre=
+e",
+> +                    CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_U84_CTRL, 26=
+, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_CPU_TRACE_CLK_3,
+> +                    "gate_clk_cpu_trace_clk_3", "mux_cpu_root_3mux1_gfre=
+e",
+> +                    CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_U84_CTRL, 27=
+, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_CPU_TRACE_COM_CLK,
+> +                    "gate_clk_cpu_trace_com_clk", "mux_cpu_aclk_2mux1_gf=
+ree",
+> +                    CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_U84_CTRL, 23=
+, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_SPLL0_FOUT2, "gate_clk_spll0_fout2",
+> +                    "fixed_rate_clk_spll0_fout2", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_SPLL0_CFG_2, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_NOC_NSP_CLK, "gate_noc_nsp_clk",
+> +                    "divider_noc_nsp_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_NOC_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_BOOTSPI, "gate_clk_bootspi",
+> +                    "mux_bootspi_clk_2mux1_gfree", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_BOOTSPI_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_BOOTSPI_CFG, "gate_clk_bootspi_cfg",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_BOOTSPI_CFGCLK_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_SCPU_CORE, "gate_clk_scpu_core",
+> +                    "mux_scpu_core_clk_2mux1_gfree", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_SCPU_CORE_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_SCPU_BUS, "gate_clk_scpu_bus",
+> +                    "fixed_factor_scpu_bus_div2", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_SCPU_BUSCLK_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_LPCPU_CORE, "gate_clk_lpcpu_core",
+> +                    "mux_lpcpu_core_clk_2mux1_gfree", CLK_SET_RATE_PAREN=
+T,
+> +                    EIC7700_REG_OFFSET_LPCPU_CORE_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_LPCPU_BUS, "gate_clk_lpcpu_bus",
+> +                    "fixed_factor_lpcpu_bus_div2", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_LPCPU_BUSCLK_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_GPU_ACLK, "gate_gpu_aclk",
+> +                    "divider_gpu_aclk_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_GPU_ACLK_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_GPU_GRAY_CLK, "gate_gpu_gray_clk",
+> +                    "xtal24m", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_GPU_GRAY_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_GPU_CFG_CLK, "gate_gpu_cfg_clk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_GPU_CFG_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_DSPT_ACLK, "gate_dspt_aclk",
+> +                    "divider_dsp_aclk_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_DSP_ACLK_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_DSPT_CFG_CLK, "gate_dspt_cfg_clk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_DSP_CFG_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_D2D_ACLK, "gate_d2d_aclk",
+> +                    "divider_d2d_aclk_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_D2D_ACLK_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_D2D_CFG_CLK, "gate_d2d_cfg_clk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_D2D_CFG_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_TCU_ACLK, "gate_tcu_aclk",
+> +                    "divider_ddr_aclk_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_TCU_ACLK_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_TCU_CFG_CLK, "gate_tcu_cfg_clk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_TCU_CFG_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_DDRT_CFG_CLK, "gate_ddrt_cfg_clk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_DDR_CTRL, 9, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_DDRT0_P0_ACLK, "gate_ddrt0_p0_aclk",
+> +                    "divider_ddr_aclk_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_DDR_CTRL, 4, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_DDRT0_P1_ACLK, "gate_ddrt0_p1_aclk",
+> +                    "divider_ddr_aclk_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_DDR_CTRL, 5, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_DDRT0_P2_ACLK, "gate_ddrt0_p2_aclk",
+> +                    "divider_ddr_aclk_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_DDR_CTRL, 6, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_DDRT0_P3_ACLK, "gate_ddrt0_p3_aclk",
+> +                    "divider_ddr_aclk_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_DDR_CTRL, 7, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_DDRT0_P4_ACLK, "gate_ddrt0_p4_aclk",
+> +                    "divider_ddr_aclk_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_DDR_CTRL, 8, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_DDRT1_P0_ACLK, "gate_ddrt1_p0_aclk",
+> +                    "divider_ddr_aclk_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_DDR1_CTRL, 4, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_DDRT1_P1_ACLK, "gate_ddrt1_p1_aclk",
+> +                    "divider_ddr_aclk_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_DDR1_CTRL, 5, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_DDRT1_P2_ACLK, "gate_ddrt1_p2_aclk",
+> +                    "divider_ddr_aclk_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_DDR1_CTRL, 6, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_DDRT1_P3_ACLK, "gate_ddrt1_p3_aclk",
+> +                    "divider_ddr_aclk_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_DDR1_CTRL, 7, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_DDRT1_P4_ACLK, "gate_ddrt1_p4_aclk",
+> +                    "divider_ddr_aclk_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_DDR1_CTRL, 8, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_HSP_ACLK, "gate_clk_hsp_aclk",
+> +                    "divider_hsp_aclk_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_HSP_ACLK_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_HSP_CFG_CLK, "gate_clk_hsp_cfg_clk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_HSP_CFG_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_PCIET_ACLK, "gate_pciet_aclk",
+> +                    "divider_pcie_aclk_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_PCIE_ACLK_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_PCIET_CFG_CLK, "gate_pciet_cfg_clk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_PCIE_CFG_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_PCIET_CR_CLK, "gate_pciet_cr_clk",
+> +                    "fixed_factor_pcie_cr_div2", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_PCIE_CFG_CTRL, 0, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_PCIET_AUX_CLK, "gate_pciet_aux_clk",
+> +                    "fixed_factor_pcie_aux_div4", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_PCIE_CFG_CTRL, 1, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_NPU_ACLK, "gate_npu_aclk",
+> +                    "divider_npu_aclk_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_NPU_ACLK_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_NPU_CFG_CLK, "gate_npu_cfg_clk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_NPU_ACLK_CTRL, 30, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_NPU_LLC_ACLK, "gate_npu_llc_aclk",
+> +                    "mux_npu_llclk_3mux1_gfree", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_NPU_LLC_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_NPU_CLK, "gate_npu_clk",
+> +                    "divider_npu_coreclk_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_NPU_CORE_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_NPU_E31_CLK, "gate_npu_e31_clk",
+> +                    "divider_npu_e31_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_NPU_CORE_CTRL, 30, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_VI_ACLK, "gate_vi_aclk",
+> +                    "divider_vi_aclk_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_VI_ACLK_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_VI_CFG_CLK, "gate_vi_cfg_clk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_VI_ACLK_CTRL, 30, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_VI_DIG_DW_CLK, "gate_vi_dig_dw_clk",
+> +                    "divider_vi_dw_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_VI_DWCLK_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_VI_DVP_CLK, "gate_vi_dvp_clk",
+> +                    "divider_vi_dvp_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_VI_DVP_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_VI_DIG_ISP_CLK, "gate_vi_dig_isp_cl=
+k",
+> +                    "divider_vi_dig_isp_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_VI_DIG_ISP_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_VI_SHUTTER_0, "gate_vi_shutter_0",
+> +                    "divider_vi_shutter_div_dynm_0", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_VI_SHUTTER0, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_VI_SHUTTER_1, "gate_vi_shutter_1",
+> +                    "divider_vi_shutter_div_dynm_1", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_VI_SHUTTER1, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_VI_SHUTTER_2, "gate_vi_shutter_2",
+> +                    "divider_vi_shutter_div_dynm_2", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_VI_SHUTTER2, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_VI_SHUTTER_3, "gate_vi_shutter_3",
+> +                    "divider_vi_shutter_div_dynm_3", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_VI_SHUTTER3, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_VI_SHUTTER_4, "gate_vi_shutter_4",
+> +                    "divider_vi_shutter_div_dynm_4", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_VI_SHUTTER4, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_VI_SHUTTER_5, "gate_vi_shutter_5",
+> +                    "divider_vi_shutter_div_dynm_5", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_VI_SHUTTER5, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_VI_PHY_TXCLKESC, "gate_vi_phy_txclk=
+esc",
+> +                    "fixed_factor_mipi_txesc_div10", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_VI_PHY_CTRL, 0, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_VI_PHY_CFG, "gate_vi_phy_cfg", "xta=
+l24m",
+> +                    CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_VI_PHY_CTRL,=
+ 1, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_VO_ACLK, "gate_vo_aclk",
+> +                    "divider_vo_aclk_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_VO_ACLK_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_VO_CFG_CLK, "gate_vo_cfg_clk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_VO_ACLK_CTRL, 30, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_VO_HDMI_IESMCLK, "gate_vo_hdmi_iesm=
+clk",
+> +                    "divider_iesmclk_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_VO_IESMCLK_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_VO_PIXEL_CLK, "gate_vo_pixel_clk",
+> +                    "divider_vo_pixel_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_VO_PIXEL_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_VO_I2S_MCLK, "gate_vo_i2s_mclk",
+> +                    "mux_vo_mclk_2mux_ext_mclk", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_VO_MCLK_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_VO_CR_CLK, "gate_vo_cr_clk",
+> +                    "fixed_factor_mipi_txesc_div10", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_VO_PHY_CLKCTRL, 1, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_VC_ACLK, "gate_vc_aclk",
+> +                    "divider_vc_aclk_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_VC_ACLK_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_VC_CFG_CLK, "gate_vc_cfg_clk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_VC_CLKEN_CTRL, 0, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_VC_JE_CLK, "gate_vc_je_clk",
+> +                    "divider_je_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_JE_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_VC_JD_CLK, "gate_vc_jd_clk",
+> +                    "divider_jd_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_JD_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_VC_VE_CLK, "gate_vc_ve_clk",
+> +                    "divider_ve_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_VE_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_VC_VD_CLK, "gate_vc_vd_clk",
+> +                    "divider_vd_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_VD_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_G2D_CFG_CLK, "gate_g2d_cfg_clk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_G2D_CTRL, 28, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_G2D_CLK, "gate_g2d_clk",
+> +                    "divider_g2d_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_G2D_CTRL, 30, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_G2D_ACLK, "gate_g2d_aclk",
+> +                    "divider_g2d_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_G2D_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_AONDMA_CFG, "gate_clk_aondma_cfg",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_AON_DMA_CTRL, 30, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_AONDMA_ACLK, "gate_aondma_aclk",
+> +                    "mux_aondma_axi2mux1_gfree", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_AON_DMA_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_AON_ACLK, "gate_aon_aclk",
+> +                    "mux_aondma_axi2mux1_gfree", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_AON_DMA_CTRL, 29, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_TIMER_CLK_0, "gate_time_clk_0", "xt=
+al24m",
+> +                    CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_TIMER_CTRL, =
+0, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_TIMER_CLK_1, "gate_time_clk_1", "xt=
+al24m",
+> +                    CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_TIMER_CTRL, =
+1, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_TIMER_CLK_2, "gate_time_clk_2", "xt=
+al24m",
+> +                    CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_TIMER_CTRL, =
+2, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_TIMER_CLK_3, "gate_time_clk_3", "xt=
+al24m",
+> +                    CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_TIMER_CTRL, =
+3, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_TIMER_PCLK_0, "gate_timer_pclk_0",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_TIMER_CTRL, 4, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_TIMER_PCLK_1, "gate_timer_pclk_1",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_TIMER_CTRL, 5, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_TIMER_PCLK_2, "gate_timer_pclk_2",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_TIMER_CTRL, 6, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_TIMER_PCLK_3, "gate_timer_pclk_3",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_TIMER_CTRL, 7, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_TIMER3_CLK8, "gate_timer3_clk8",
+> +                    "fixed_rate_clk_vpll_fout3", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_TIMER_CTRL, 8, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_RTC_CFG, "gate_clk_rtc_cfg",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_RTC_CTRL, 2, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_RTC, "gate_clk_rtc",
+> +                    "divider_aon_rtc_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_RTC_CTRL, 1, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_PKA_CFG, "gate_clk_pka_cfg",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_PKA_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_SPACC_CFG, "gate_clk_spacc_cfg",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_SPACC_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_CRYPTO, "gate_clk_crypto",
+> +                    "divider_crypto_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_SPACC_CTRL, 30, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_TRNG_CFG, "gate_clk_trng_cfg",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_TRNG_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_OTP_CFG, "gate_clk_otp_cfg",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_OTP_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_MAILBOX_0, "gate_clk_mailbox_0",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN1, 0, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_MAILBOX_1, "gate_clk_mailbox_1",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN1, 1, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_MAILBOX_2, "gate_clk_mailbox_2",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN1, 2, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_MAILBOX_3, "gate_clk_mailbox_3",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN1, 3, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_MAILBOX_4, "gate_clk_mailbox_4",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN1, 4, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_MAILBOX_5, "gate_clk_mailbox_5",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN1, 5, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_MAILBOX_6, "gate_clk_mailbox_6",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN1, 6, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_MAILBOX_7, "gate_clk_mailbox_7",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN1, 7, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_MAILBOX_8, "gate_clk_mailbox_8",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN1, 8, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_MAILBOX_9, "gate_clk_mailbox_9",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN1, 9, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_MAILBOX_10, "gate_clk_mailbox_10",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN1, 10, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_MAILBOX_11, "gate_clk_mailbox_11",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN1, 11, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_MAILBOX_12, "gate_clk_mailbox_12",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN1, 12, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_MAILBOX_13, "gate_clk_mailbox_13",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN1, 13, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_MAILBOX_14, "gate_clk_mailbox_14",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN1, 14, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_MAILBOX_15, "gate_clk_mailbox_15",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN1, 15, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_LSP_I2C0_PCLK, "gate_i2c0_pclk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN0, 7, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_LSP_I2C1_PCLK, "gate_i2c1_pclk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN0, 8, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_LSP_I2C2_PCLK, "gate_i2c2_pclk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN0, 9, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_LSP_I2C3_PCLK, "gate_i2c3_pclk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN0, 10, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_LSP_I2C4_PCLK, "gate_i2c4_pclk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN0, 11, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_LSP_I2C5_PCLK, "gate_i2c5_pclk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN0, 12, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_LSP_I2C6_PCLK, "gate_i2c6_pclk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN0, 13, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_LSP_I2C7_PCLK, "gate_i2c7_pclk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN0, 14, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_LSP_I2C8_PCLK, "gate_i2c8_pclk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN0, 15, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_LSP_I2C9_PCLK, "gate_i2c9_pclk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN0, 16, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_LSP_WDT0_PCLK, "gate_lsp_wdt0_pclk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN0, 28, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_LSP_WDT1_PCLK, "gate_lsp_wdt1_pclk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN0, 29, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_LSP_WDT2_PCLK, "gate_lsp_wdt2_pclk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN0, 30, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_LSP_WDT3_PCLK, "gate_lsp_wdt3_pclk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN0, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_LSP_SSI0_PCLK, "gate_lsp_ssi0_pclk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN0, 26, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_LSP_SSI1_PCLK, "gate_lsp_ssi1_pclk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN0, 27, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_LSP_UART0_PCLK, "gate_lsp_uart0_pcl=
+k",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN0, 17, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_LSP_UART1_PCLK, "gate_lsp_uart1_pcl=
+k",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN0, 18, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_LSP_UART2_PCLK, "gate_lsp_uart2_pcl=
+k",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN0, 19, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_LSP_UART3_PCLK, "gate_lsp_uart3_pcl=
+k",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN0, 20, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_LSP_UART4_PCLK, "gate_lsp_uart4_pcl=
+k",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN0, 21, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_LSP_TIMER_PCLK, "gate_lsp_timer_pcl=
+k",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN0, 25, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_LSP_FAN_PCLK, "gate_lsp_fan_pclk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN0, 0, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_LSP_PVT_PCLK, "gate_lsp_pvt_pclk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_LSP_EN0, 1, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_LSP_PVT0_CLK, "gate_pvt0_clk",
+> +                    "fixed_factor_pvt_div20", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_LSP_EN1, 16, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_LSP_PVT1_CLK, "gate_pvt1_clk",
+> +                    "fixed_factor_pvt_div20", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_LSP_EN1, 17, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_VC_JE_PCLK, "gate_vc_je_pclk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_VC_CLKEN_CTRL, 2, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_VC_JD_PCLK, "gate_vc_jd_pclk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_VC_CLKEN_CTRL, 1, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_VC_VE_PCLK, "gate_vc_ve_pclk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_VC_CLKEN_CTRL, 5, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_VC_VD_PCLK, "gate_vc_vd_pclk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_VC_CLKEN_CTRL, 4, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_VC_MON_PCLK, "gate_vc_mon_pclk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_VC_CLKEN_CTRL, 3, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_HSP_MSHC0_CORE_CLK,
+> +                    "gate_hsp_mshc0_core_clk", "divider_mshc_core_div_dy=
+nm_0",
+> +                    CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_MSHC0_CORE_C=
+TRL,
+> +                    16, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_HSP_MSHC1_CORE_CLK,
+> +                    "gate_hsp_mshc1_core_clk", "divider_mshc_core_div_dy=
+nm_1",
+> +                    CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_MSHC1_CORE_C=
+TRL,
+> +                    16, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_HSP_MSHC2_CORE_CLK,
+> +                    "gate_hsp_mshc2_core_clk", "divider_mshc_core_div_dy=
+nm_2",
+> +                    CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_MSHC2_CORE_C=
+TRL,
+> +                    16, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_HSP_SATA_RBC_CLK, "gate_hsp_sata_rb=
+c_clk",
+> +                    "fixed_rate_clk_spll1_fout2", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_SATA_RBC_CTRL, 0, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_HSP_SATA_OOB_CLK, "gate_hsp_sata_oo=
+b_clk",
+> +                    "mux_sata_phy_2mux1", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_SATA_OOB_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_HSP_DMA0_CLK_TEST,
+> +                    "gate_hsp_dma0_clk_test", "gate_clk_hsp_aclk",
+> +                    CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_HSP_ACLK_CTR=
+L, 1,
+> +                    0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_HSP_DMA0_CLK, "gate_hsp_dma0_clk",
+> +                    "gate_clk_hsp_aclk", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_HSP_ACLK_CTRL, 0, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_HSP_ETH0_CORE_CLK,
+> +                    "gate_hsp_eth0_core_clk", "divider_eth_txclk_div_dyn=
+m_0",
+> +                    CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_ETH0_CTRL, 0=
+, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_HSP_ETH1_CORE_CLK,
+> +                    "gate_hsp_eth1_core_clk", "divider_eth_txclk_div_dyn=
+m_1",
+> +                    CLK_SET_RATE_PARENT, EIC7700_REG_OFFSET_ETH1_CTRL, 0=
+, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_HSP_RMII_REF_0, "gate_hsp_rmii_ref_=
+0",
+> +                    "mux_rmii_ref_2mux1", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_ETH0_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_HSP_RMII_REF_1, "gate_hsp_rmii_ref_=
+1",
+> +                    "mux_rmii_ref_2mux1", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_ETH1_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_AON_I2C0_PCLK, "gate_aon_i2c0_pclk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_I2C0_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_AON_I2C1_PCLK, "gate_aon_i2c1_pclk",
+> +                    "mux_syscfg_clk_root_2mux1_gfree", CLK_SET_RATE_PARE=
+NT,
+> +                    EIC7700_REG_OFFSET_I2C1_CTRL, 31, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_DDR0_TRACE, "gate_ddr0_trace",
+> +                    "divider_ddr_aclk_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_DDR_CTRL, 0, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_DDR1_TRACE, "gate_ddr1_trace",
+> +                    "divider_ddr_aclk_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_DDR1_CTRL, 0, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_RNOC_NSP, "gate_rnoc_nsp",
+> +                    "divider_noc_nsp_div_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_NOC_CTRL, 29, 0),
+> +       EIC7700_GATE(EIC7700_CLK_GATE_NOC_WDREF, "gate_noc_wdref",
+> +                    "divider_noc_wdref_dynm", CLK_SET_RATE_PARENT,
+> +                    EIC7700_REG_OFFSET_NOC_CTRL, 30, 0),
+> +};
+> +
+> +/*
+> + * This clock notifier is called when the rate of clk_pll_cpu clock is t=
+o be
+> + * changed. The mux_cpu_root_3mux1_gfree clock should save the current p=
+arent
+> + * clock and switch its parent clock to fixed_factor_u84_core_lp_div2 be=
+fore
+> + * clk_pll_cpu rate will be changed. Then switch its parent clock back a=
+fter
+> + * the clk_pll_cpu rate is completed.
+> + */
+> +static int eic7700_clk_pll_cpu_notifier_cb(struct notifier_block *nb,
+> +                                          unsigned long action, void *da=
+ta)
+> +{
+> +       struct eswin_clock_data *pdata;
+> +       struct clk_hw *mux_clk;
+> +       struct clk_hw *lp_clk;
+> +       int ret =3D 0;
+> +
+> +       pdata =3D container_of(nb, struct eswin_clock_data, pll_nb);
+> +       mux_clk =3D pdata->clk_data.hws[EIC7700_CLK_MUX_CPU_ROOT_3MUX1_GF=
+REE];
+> +       lp_clk =3D pdata->clk_data.hws[EIC7700_CLK_FIXED_FACTOR_U84_CORE_=
+LP_DIV2];
+> +
+> +       if (action =3D=3D PRE_RATE_CHANGE) {
+> +               pdata->original_clk =3D clk_hw_get_parent(mux_clk);
+> +               ret =3D clk_hw_set_parent(mux_clk, lp_clk);
+> +       } else if (action =3D=3D POST_RATE_CHANGE) {
+> +               ret =3D clk_hw_set_parent(mux_clk, pdata->original_clk);
+> +       }
+> +
+> +       return notifier_from_errno(ret);
+> +}
+> +
+> +static int eic7700_clk_probe(struct platform_device *pdev)
+> +{
+> +       struct eswin_clock_data *clk_data;
+> +       struct device *dev =3D &pdev->dev;
+> +       struct clk *pll_clk;
+> +       int ret;
+> +
+> +       clk_data =3D eswin_clk_init(dev, EIC7700_NR_CLKS);
+> +       if (!clk_data)
+> +               return dev_err_probe(dev, -EAGAIN, "failed to get clk dat=
+a!\n");
+> +
+> +       ret =3D eswin_clk_register_fixed_rate(eic7700_fixed_rate_clks,
+> +                                           ARRAY_SIZE(eic7700_fixed_rate=
+_clks),
+> +                                           clk_data, dev);
+> +       if (ret)
+> +               return ret;
+> +
+> +       ret =3D eswin_clk_register_pll(eic7700_pll_clks,
+> +                                    ARRAY_SIZE(eic7700_pll_clks),
+> +                                    clk_data, dev);
+> +       if (ret)
+> +               return ret;
+> +
+> +       pll_clk =3D devm_clk_hw_get_clk
+> +               (dev, clk_data->clk_data.hws[EIC7700_CLK_PLL_CPU],
+> +               "clk_pll_cpu");
+> +       if (IS_ERR(pll_clk))
+> +               return dev_err_probe(dev, PTR_ERR(pll_clk),
+> +                                    "failed to get pll clock\n");
+> +
+> +       clk_data->pll_nb.notifier_call =3D eic7700_clk_pll_cpu_notifier_c=
+b;
+> +       ret =3D devm_clk_notifier_register(dev, pll_clk, &clk_data->pll_n=
+b);
+> +       if (ret)
+> +               return ret;
+> +
+> +       ret =3D eswin_clk_register_fixed_factor
+> +               (eic7700_fixed_factor_clks,
+> +               ARRAY_SIZE(eic7700_fixed_factor_clks), clk_data, dev);
+> +       if (ret)
+> +               return ret;
+> +
+> +       ret =3D eswin_clk_register_mux(eic7700_mux_clks,
+> +                                    ARRAY_SIZE(eic7700_mux_clks), clk_da=
+ta,
+> +                                    dev);
+> +       if (ret)
+> +               return ret;
+> +
+> +       ret =3D eswin_clk_register_divider(eic7700_div_clks,
+> +                                        ARRAY_SIZE(eic7700_div_clks),
+> +                                        clk_data, dev);
+> +       if (ret)
+> +               return ret;
+> +
+> +       ret =3D eswin_clk_register_gate(eic7700_gate_clks,
+> +                                     ARRAY_SIZE(eic7700_gate_clks), clk_=
+data,
+> +                                     dev);
+> +       if (ret)
+> +               return ret;
+> +
+> +       return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+> +                                          &clk_data->clk_data);
+> +}
+> +
+> +static const struct of_device_id eic7700_clock_dt_ids[] =3D {
+> +       { .compatible =3D "eswin,eic7700-clock", },
+> +       { /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, eic7700_clock_dt_ids);
+> +
+> +static struct platform_driver eic7700_clock_driver =3D {
+> +       .probe  =3D eic7700_clk_probe,
+> +       .driver =3D {
+> +               .name   =3D "eic7700-clock",
+> +               .of_match_table =3D eic7700_clock_dt_ids,
+> +       },
+> +};
+> +module_platform_driver(eic7700_clock_driver);
+> +
+> +MODULE_LICENSE("GPL");
+> +MODULE_AUTHOR("Yifeng Huang<huangyifeng@eswincomputing.com>");
+> +MODULE_AUTHOR("Xuyang Dong<dongxuyang@eswincomputing.com>");
+> +MODULE_DESCRIPTION("ESWIN EIC7700 clock controller driver");
+> diff --git a/drivers/clk/eswin/clk-eic7700.h b/drivers/clk/eswin/clk-eic7=
+700.h
+> new file mode 100644
+> index 000000000000..625b12306aa3
+> --- /dev/null
+> +++ b/drivers/clk/eswin/clk-eic7700.h
+> @@ -0,0 +1,122 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 700bab4d3e60..d0ea746c59b8 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -418,6 +418,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx93-9x9-qsb-i3c.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-11x11-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-11x11-frdm.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-14x14-evk.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx93w-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-kontron-bl-osm-s.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-nash.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-segin.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx93w-evk.dts b/arch/arm64/boot/dts/freescale/imx93w-evk.dts
-new file mode 100644
-index 000000000000..f09587dc74f6
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx93w-evk.dts
-@@ -0,0 +1,73 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2026 NXP
-+ */
-+
-+#include "imx93-11x11-evk.dts"
-+
-+/ {
-+	model = "NXP i.MX93W EVK board";
-+	compatible = "fsl,imx93-wireless-evk", "fsl,imx93";
-+
-+	/delete-node/ regulator-m2-pwr;
-+
-+	sound-bt-sco {
-+		status = "disabled";
-+	};
-+
-+	sound-micfil {
-+		status = "disabled";
-+	};
-+};
-+
-+&pcal6524 {
-+	/delete-node/ m2-pcm-level-shifter-hog;
-+};
-+
-+&reg_usdhc3_vmmc {
-+	/delete-property/ vin-supply;
-+	pinctrl-0 = <&pinctrl_reg_usdhc3_vmmc>;
-+	pinctrl-names = "default";
-+	gpio = <&gpio2 29 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&usdhc3_pwrseq {
-+	pinctrl-0 = <&pinctrl_usdhc3_pwrseq>;
-+	pinctrl-names = "default";
-+	reset-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
-+};
-+
-+&micfil {
-+	status = "disabled";
-+};
-+
-+&sai1 {
-+	status = "disabled";
-+};
-+
-+&iomuxc {
-+	pinctrl_lpi2c3: lpi2c3grp {
-+		fsl,pins = <
-+			MX93_PAD_GPIO_IO00__LPI2C3_SDA			0x40000b9e
-+			MX93_PAD_GPIO_IO01__LPI2C3_SCL			0x40000b9e
-+		>;
-+	};
-+
-+	pinctrl_reg_usdhc3_vmmc: regusdhc3vmmcgrp {
-+		fsl,pins = <
-+			MX93_PAD_GPIO_IO29__GPIO2_IO29			0x31e
-+		>;
-+	};
-+
-+	pinctrl_usdhc3_pwrseq: usdhc3pwrseqgrp {
-+		fsl,pins = <
-+			MX93_PAD_PDM_BIT_STREAM1__GPIO1_IO10		0x31e
-+		>;
-+	};
-+
-+	pinctrl_usdhc3_wlan: usdhc3wlangrp {
-+		fsl,pins = <
-+			MX93_PAD_GPIO_IO15__GPIO2_IO15			0x31e
-+		>;
-+	};
-+};
--- 
-2.37.1
+Please put this in the driver file so we don't have to jump between
+files to find the register offsets.
 
+> +/*
+> + * Copyright 2025, Beijing ESWIN Computing Technology Co., Ltd..
+> + * All rights reserved.
+> + *
+> + * Authors:
+> + *     Yifeng Huang <huangyifeng@eswincomputing.com>
+> + *     xuyang Dong <dongxuyang@eswincomputing.com>
+> + */
+> +
+> +#ifndef __CLK_EIC7700_H__
+> +#define __CLK_EIC7700_H__
+> +
+> +/* REG OFFSET OF SYS-CRG */
+> +#define EIC7700_REG_OFFSET_SPLL0_CFG_0         0x0
+> +#define EIC7700_REG_OFFSET_SPLL0_CFG_1         0x4
+> +#define EIC7700_REG_OFFSET_SPLL0_CFG_2         0x8
+> +#define EIC7700_REG_OFFSET_SPLL0_DSKEWCAL      0xC
+> +#define EIC7700_REG_OFFSET_SPLL0_SSC           0x10
+> +#define EIC7700_REG_OFFSET_SPLL1_CFG_0         0x14
+> +#define EIC7700_REG_OFFSET_SPLL1_CFG_1         0x18
+> +#define EIC7700_REG_OFFSET_SPLL1_CFG_2         0x1C
+> +#define EIC7700_REG_OFFSET_SPLL1_DSKEWCAL      0x20
+> +#define EIC7700_REG_OFFSET_SPLL1_SSC           0x24
+> +#define EIC7700_REG_OFFSET_SPLL2_CFG_0         0x28
+> +#define EIC7700_REG_OFFSET_SPLL2_CFG_1         0x2C
+> +#define EIC7700_REG_OFFSET_SPLL2_CFG_2         0x30
+> +#define EIC7700_REG_OFFSET_SPLL2_DSKEWCAL      0x34
+> +#define EIC7700_REG_OFFSET_SPLL2_SSC           0x38
+> +#define EIC7700_REG_OFFSET_VPLL_CFG_0          0x3C
+> +#define EIC7700_REG_OFFSET_VPLL_CFG_1          0x40
+> +#define EIC7700_REG_OFFSET_VPLL_CFG_2          0x44
+> +#define EIC7700_REG_OFFSET_VPLL_DSKEWCAL       0x48
+> +#define EIC7700_REG_OFFSET_VPLL_SSC            0x4C
+> +#define EIC7700_REG_OFFSET_APLL_CFG_0          0x50
+> +#define EIC7700_REG_OFFSET_APLL_CFG_1          0x54
+> +#define EIC7700_REG_OFFSET_APLL_CFG_2          0x58
+> +#define EIC7700_REG_OFFSET_APLL_DSKEWCAL       0x5C
+> +#define EIC7700_REG_OFFSET_APLL_SSC            0x60
+> +#define EIC7700_REG_OFFSET_MCPUT_PLL_CFG_0     0x64
+> +#define EIC7700_REG_OFFSET_MCPUT_PLL_CFG_1     0x68
+> +#define EIC7700_REG_OFFSET_MCPUT_PLL_CFG_2     0x6C
+> +#define EIC7700_REG_OFFSET_MCPUT_PLL_DSKEWCAL  0x70
+> +#define EIC7700_REG_OFFSET_MCPUT_PLL_SSC       0x74
+> +#define EIC7700_REG_OFFSET_DDRT_PLL_CFG_0      0x78
+> +#define EIC7700_REG_OFFSET_DDRT_PLL_CFG_1      0x7C
+> +#define EIC7700_REG_OFFSET_DDRT_PLL_CFG_2      0x80
+> +#define EIC7700_REG_OFFSET_DDRT_PLL_DSKEWCAL   0x84
+> +#define EIC7700_REG_OFFSET_DDRT_PLL_SSC                0x88
+> +#define EIC7700_REG_OFFSET_PLL_STATUS          0xA4
+> +#define EIC7700_REG_OFFSET_NOC_CTRL            0x100
+> +#define EIC7700_REG_OFFSET_BOOTSPI_CTRL                0x104
+> +#define EIC7700_REG_OFFSET_BOOTSPI_CFGCLK_CTRL 0x108
+> +#define EIC7700_REG_OFFSET_SCPU_CORE_CTRL      0x10C
+> +#define EIC7700_REG_OFFSET_SCPU_BUSCLK_CTRL    0x110
+> +#define EIC7700_REG_OFFSET_LPCPU_CORE_CTRL     0x114
+> +#define EIC7700_REG_OFFSET_LPCPU_BUSCLK_CTRL   0x118
+> +#define EIC7700_REG_OFFSET_TCU_ACLK_CTRL       0x11C
+> +#define EIC7700_REG_OFFSET_TCU_CFG_CTRL                0x120
+> +#define EIC7700_REG_OFFSET_DDR_CTRL            0x124
+> +#define EIC7700_REG_OFFSET_DDR1_CTRL           0x128
+> +#define EIC7700_REG_OFFSET_GPU_ACLK_CTRL       0x12C
+> +#define EIC7700_REG_OFFSET_GPU_CFG_CTRL                0x130
+> +#define EIC7700_REG_OFFSET_GPU_GRAY_CTRL       0x134
+> +#define EIC7700_REG_OFFSET_DSP_ACLK_CTRL       0x138
+> +#define EIC7700_REG_OFFSET_DSP_CFG_CTRL                0x13C
+> +#define EIC7700_REG_OFFSET_D2D_ACLK_CTRL       0x140
+> +#define EIC7700_REG_OFFSET_D2D_CFG_CTRL                0x144
+> +#define EIC7700_REG_OFFSET_HSP_ACLK_CTRL       0x148
+> +#define EIC7700_REG_OFFSET_HSP_CFG_CTRL                0x14C
+> +#define EIC7700_REG_OFFSET_SATA_RBC_CTRL       0x150
+> +#define EIC7700_REG_OFFSET_SATA_OOB_CTRL       0x154
+> +#define EIC7700_REG_OFFSET_ETH0_CTRL           0x158
+> +#define EIC7700_REG_OFFSET_ETH1_CTRL           0x15C
+> +#define EIC7700_REG_OFFSET_MSHC0_CORE_CTRL     0x160
+> +#define EIC7700_REG_OFFSET_MSHC1_CORE_CTRL     0x164
+> +#define EIC7700_REG_OFFSET_MSHC2_CORE_CTRL     0x168
+> +#define EIC7700_REG_OFFSET_MSHC_USB_SLWCLK     0x16C
+> +#define EIC7700_REG_OFFSET_PCIE_ACLK_CTRL      0x170
+> +#define EIC7700_REG_OFFSET_PCIE_CFG_CTRL       0x174
+> +#define EIC7700_REG_OFFSET_NPU_ACLK_CTRL       0x178
+> +#define EIC7700_REG_OFFSET_NPU_LLC_CTRL                0x17C
+> +#define EIC7700_REG_OFFSET_NPU_CORE_CTRL       0x180
+> +#define EIC7700_REG_OFFSET_VI_DWCLK_CTRL       0x184
+> +#define EIC7700_REG_OFFSET_VI_ACLK_CTRL                0x188
+> +#define EIC7700_REG_OFFSET_VI_DIG_ISP_CTRL     0x18C
+> +#define EIC7700_REG_OFFSET_VI_DVP_CTRL         0x190
+> +#define EIC7700_REG_OFFSET_VI_SHUTTER0         0x194
+> +#define EIC7700_REG_OFFSET_VI_SHUTTER1         0x198
+> +#define EIC7700_REG_OFFSET_VI_SHUTTER2         0x19C
+> +#define EIC7700_REG_OFFSET_VI_SHUTTER3         0x1A0
+> +#define EIC7700_REG_OFFSET_VI_SHUTTER4         0x1A4
+> +#define EIC7700_REG_OFFSET_VI_SHUTTER5         0x1A8
+> +#define EIC7700_REG_OFFSET_VI_PHY_CTRL         0x1AC
+> +#define EIC7700_REG_OFFSET_VO_ACLK_CTRL                0x1B0
+> +#define EIC7700_REG_OFFSET_VO_IESMCLK_CTRL     0x1B4
+> +#define EIC7700_REG_OFFSET_VO_PIXEL_CTRL       0x1B8
+> +#define EIC7700_REG_OFFSET_VO_MCLK_CTRL                0x1BC
+> +#define EIC7700_REG_OFFSET_VO_PHY_CLKCTRL      0x1C0
+> +#define EIC7700_REG_OFFSET_VC_ACLK_CTRL                0x1C4
+> +#define EIC7700_REG_OFFSET_VCDEC_ROOT_CTRL     0x1C8
+> +#define EIC7700_REG_OFFSET_G2D_CTRL            0x1CC
+> +#define EIC7700_REG_OFFSET_VC_CLKEN_CTRL       0x1D0
+> +#define EIC7700_REG_OFFSET_JE_CTRL             0x1D4
+> +#define EIC7700_REG_OFFSET_JD_CTRL             0x1D8
+> +#define EIC7700_REG_OFFSET_VD_CTRL             0x1DC
+> +#define EIC7700_REG_OFFSET_VE_CTRL             0x1E0
+> +#define EIC7700_REG_OFFSET_AON_DMA_CTRL                0x1E4
+> +#define EIC7700_REG_OFFSET_TIMER_CTRL          0x1E8
+> +#define EIC7700_REG_OFFSET_RTC_CTRL            0x1EC
+> +#define EIC7700_REG_OFFSET_PKA_CTRL            0x1F0
+> +#define EIC7700_REG_OFFSET_SPACC_CTRL          0x1F4
+> +#define EIC7700_REG_OFFSET_TRNG_CTRL           0x1F8
+> +#define EIC7700_REG_OFFSET_OTP_CTRL            0x1FC
+> +#define EIC7700_REG_OFFSET_LSP_EN0             0x200
+> +#define EIC7700_REG_OFFSET_LSP_EN1             0x204
+> +#define EIC7700_REG_OFFSET_U84_CTRL            0x208
+> +#define EIC7700_REG_OFFSET_SYSCFG_CTRL         0x20C
+> +#define EIC7700_REG_OFFSET_I2C0_CTRL           0x210
+> +#define EIC7700_REG_OFFSET_I2C1_CTRL           0x214
+> +
+> +#endif /* __CLK_EIC7700_H__ */
+> diff --git a/drivers/clk/eswin/clk.c b/drivers/clk/eswin/clk.c
+> new file mode 100644
+> index 000000000000..d05cdc82c0a1
+> --- /dev/null
+> +++ b/drivers/clk/eswin/clk.c
+> @@ -0,0 +1,396 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright 2025, Beijing ESWIN Computing Technology Co., Ltd..
+> + * All rights reserved.
+> + *
+> + * Authors:
+> + *     Yifeng Huang <huangyifeng@eswincomputing.com>
+> + *     Xuyang Dong <dongxuyang@eswincomputing.com>
+> + */
+> +
+> +#include <linux/clk.h>
+
+Is this include used? Hopefully not and you can drop it. A clk provider
+driver shouldn't typically be a clk consumer as well.
+
+> +#include <linux/clk-provider.h>
+> +#include <linux/delay.h>
+> +#include <linux/io.h>
+> +#include <linux/math.h>
+> +#include <linux/slab.h>
+> +
+> +#include "clk.h"
+> +
+> +struct eswin_clock_data *eswin_clk_init(struct device *dev, int nr_clks)
+
+size_t nr_clks?
+
+> +{
+> +       struct eswin_clock_data *eclk_data;
+> +
+> +       eclk_data =3D devm_kzalloc(dev, struct_size(eclk_data, clk_data.h=
+ws,
+> +                                                 nr_clks), GFP_KERNEL);
+> +       if (!eclk_data)
+> +               return NULL;
+> +
+> +       eclk_data->base =3D devm_of_iomap(dev, dev->of_node, 0, NULL);
+
+Use a platform device API (devm_platform_ioremap_resource() or
+something) instead of an OF specific one. It's more portable that way.
+
+> +       if (IS_ERR(eclk_data->base)) {
+> +               dev_err(dev, "failed to map clock registers\n");
+> +               return NULL;
+> +       }
+> +
+> +       eclk_data->clk_data.num =3D nr_clks;
+> +       /* Avoid returning NULL for unused id */
+> +       memset_p((void **)eclk_data->clk_data.hws, ERR_PTR(-ENOENT), nr_c=
+lks);
+> +       spin_lock_init(&eclk_data->lock);
+> +
+> +       return eclk_data;
+> +}
+
+These will need to be exported as symbols so that the SoC specific
+module can access them.
+
+> +
+> +/**
+> + * eswin_calc_pll - calculate PLL values
+> + * @frac_val: fractional divider
+> + * @fbdiv_val: feedback divider
+> + * @rate: reference rate
+> + *
+> + *   Calculate PLL values for frac and fbdiv
+> + */
+> +static void eswin_calc_pll(u32 *frac_val, u32 *fbdiv_val, u64 rate)
+> +{
+> +       u64 rem =3D 0;
+> +       u32 tmp1 =3D 0, tmp2 =3D 0;
+> +
+> +       rate =3D rate * 4;
+> +       rem =3D do_div(rate, 1000);
+> +       if (rem)
+> +               tmp1 =3D rem;
+> +
+> +       rem =3D do_div(rate, 1000);
+> +       if (rem)
+> +               tmp2 =3D rem;
+> +
+> +       rem =3D do_div(rate, 24);
+> +       /* fbdiv =3D rate * 4 / 24000000 */
+> +       *fbdiv_val =3D rate;
+> +       /* frac =3D rate * 4 % 24000000 * (2 ^ 24) */
+> +       *frac_val =3D (u64)((1000 * (1000 * rem + tmp2) + tmp1) << 24) / =
+24
+> +                         / 1000000;
+> +}
+> +
+> +static inline struct eswin_clk_pll *to_pll_clk(struct clk_hw *hw)
+> +{
+> +       return container_of(hw, struct eswin_clk_pll, hw);
+> +}
+> +
+> +static int clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
+> +                           unsigned long parent_rate)
+> +{
+> +       struct eswin_clk_pll *clk =3D to_pll_clk(hw);
+> +       u32 postdiv1_val =3D 0, refdiv_val =3D 1;
+> +       u32 frac_val, fbdiv_val, val;
+> +       bool lock_flag =3D false;
+> +       int try_count =3D 0;
+> +
+> +       eswin_calc_pll(&frac_val,  &fbdiv_val, (u64)rate);
+> +
+> +       /* First, disable pll */
+> +       val =3D readl_relaxed(clk->ctrl_reg0);
+> +       val &=3D ~(((1 << clk->pllen_width) - 1) << clk->pllen_shift);
+> +       val |=3D 0 << clk->pllen_shift;
+> +       writel_relaxed(val, clk->ctrl_reg0);
+> +
+> +       val =3D readl_relaxed(clk->ctrl_reg0);
+> +       val &=3D ~(((1 << clk->fbdiv_width) - 1) << clk->fbdiv_shift);
+> +       val &=3D ~(((1 << clk->refdiv_width) - 1) << clk->refdiv_shift);
+> +       val |=3D refdiv_val << clk->refdiv_shift;
+> +       val |=3D fbdiv_val << clk->fbdiv_shift;
+> +       writel_relaxed(val, clk->ctrl_reg0);
+> +
+> +       val =3D readl_relaxed(clk->ctrl_reg1);
+> +       val &=3D ~(((1 << clk->frac_width) - 1) << clk->frac_shift);
+> +       val |=3D frac_val << clk->frac_shift;
+> +       writel_relaxed(val, clk->ctrl_reg1);
+> +
+> +       val =3D readl_relaxed(clk->ctrl_reg2);
+> +       val &=3D ~(((1 << clk->postdiv1_width) - 1) << clk->postdiv1_shif=
+t);
+> +       val |=3D postdiv1_val << clk->postdiv1_shift;
+> +       writel_relaxed(val, clk->ctrl_reg2);
+> +
+> +       /* Last, enable pll */
+> +       val =3D readl_relaxed(clk->ctrl_reg0);
+> +       val &=3D ~(((1 << clk->pllen_width) - 1) << clk->pllen_shift);
+> +       val |=3D 1 << clk->pllen_shift;
+> +       writel_relaxed(val, clk->ctrl_reg0);
+> +
+> +       /* Usually the pll will lock in 50us */
+> +       do {
+> +               usleep_range(refdiv_val * 80, refdiv_val * 80 * 2);
+> +               val =3D readl_relaxed(clk->status_reg);
+> +               if (val & 1 << clk->lock_shift) {
+> +                       lock_flag =3D true;
+> +                       break;
+> +               }
+> +       } while (try_count++ < 10);
+
+We have readl_poll_timeout() for this. Please use it.
+
+> +
+> +       if (!lock_flag) {
+> +               pr_err("failed to lock the cpu pll!\n");
+> +               return -EBUSY;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +static unsigned long clk_pll_recalc_rate(struct clk_hw *hw,
+> +                                        unsigned long parent_rate)
+> +{
+> +       struct eswin_clk_pll *clk =3D to_pll_clk(hw);
+> +       u64 fbdiv_val, frac_val, rate, rem, tmp;
+> +       u32 val;
+> +
+> +       val =3D readl_relaxed(clk->ctrl_reg0);
+> +       val =3D val >> clk->fbdiv_shift;
+> +       val &=3D ((1 << clk->fbdiv_width) - 1);
+> +       fbdiv_val =3D val;
+> +
+> +       val =3D readl_relaxed(clk->ctrl_reg1);
+> +       val =3D val >> clk->frac_shift;
+> +       val &=3D ((1 << clk->frac_width) - 1);
+> +       frac_val =3D val;
+> +
+> +       /* rate =3D 24000000 * (fbdiv + frac / (2 ^ 24)) / 4 */
+> +       tmp =3D 1000 * frac_val;
+> +       rem =3D do_div(tmp, BIT(24));
+> +       if (rem)
+> +               rate =3D (u64)(6000 * (1000 * fbdiv_val + tmp) +
+> +                           ((6000 * rem) >> 24) + 1);
+> +       else
+> +               rate =3D (u64)(6000 * 1000 * fbdiv_val);
+> +
+> +       return rate;
+> +}
+> +
+> +static int clk_pll_determine_rate(struct clk_hw *hw,
+> +                                 struct clk_rate_request *req)
+> +{
+> +       struct eswin_clk_pll *clk =3D to_pll_clk(hw);
+> +
+> +       req->rate =3D clamp(req->rate, clk->min_rate, clk->max_rate);
+> +       req->min_rate =3D clk->min_rate;
+> +       req->max_rate =3D clk->max_rate;
+> +
+> +       return 0;
+> +}
+> +
+> +int eswin_clk_register_fixed_rate(const struct eswin_fixed_rate_clock *c=
+lks,
+> +                                 int nums, struct eswin_clock_data *data,
+> +                                 struct device *dev)
+> +{
+> +       struct clk_hw *clk_hw;
+> +       int i;
+> +
+> +       for (i =3D 0; i < nums; i++) {
+> +               clk_hw =3D devm_clk_hw_register_fixed_rate(dev, clks[i].n=
+ame,
+> +                                                        clks[i].parent_n=
+ame,
+> +                                                        clks[i].flags,
+> +                                                        clks[i].rate);
+> +               if (IS_ERR(clk_hw))
+> +                       return dev_err_probe(dev, PTR_ERR(clk_hw),
+> +                                            "failed to register clock\n"=
+);
+> +
+> +               data->clk_data.hws[clks[i].id] =3D clk_hw;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +static const struct clk_ops eswin_clk_pll_ops =3D {
+> +       .set_rate =3D clk_pll_set_rate,
+> +       .recalc_rate =3D clk_pll_recalc_rate,
+> +       .determine_rate =3D clk_pll_determine_rate,
+> +};
+> +
+> +int eswin_clk_register_pll(const struct eswin_pll_clock *clks, int nums,
+> +                          struct eswin_clock_data *data, struct device *=
+dev)
+> +{
+> +       struct eswin_clk_pll *p_clk =3D NULL;
+> +       struct clk_init_data init;
+> +       struct clk_hw *clk_hw;
+> +       int i, ret;
+> +
+> +       p_clk =3D devm_kzalloc(dev, sizeof(*p_clk) * nums, GFP_KERNEL);
+> +       if (!p_clk)
+> +               return -ENOMEM;
+> +
+> +       for (i =3D 0; i < nums; i++) {
+> +               p_clk->id =3D clks[i].id;
+> +               p_clk->ctrl_reg0 =3D data->base + clks[i].ctrl_reg0;
+> +               p_clk->pllen_shift =3D clks[i].pllen_shift;
+> +               p_clk->pllen_width =3D clks[i].pllen_width;
+> +               p_clk->refdiv_shift =3D clks[i].refdiv_shift;
+> +               p_clk->refdiv_width =3D clks[i].refdiv_width;
+> +               p_clk->fbdiv_shift =3D clks[i].fbdiv_shift;
+> +               p_clk->fbdiv_width =3D clks[i].fbdiv_width;
+> +
+> +               p_clk->ctrl_reg1 =3D data->base + clks[i].ctrl_reg1;
+> +               p_clk->frac_shift =3D clks[i].frac_shift;
+> +               p_clk->frac_width =3D clks[i].frac_width;
+> +
+> +               p_clk->ctrl_reg2 =3D data->base + clks[i].ctrl_reg2;
+> +               p_clk->postdiv1_shift =3D clks[i].postdiv1_shift;
+> +               p_clk->postdiv1_width =3D clks[i].postdiv1_width;
+> +               p_clk->postdiv2_shift =3D clks[i].postdiv2_shift;
+> +               p_clk->postdiv2_width =3D clks[i].postdiv2_width;
+> +
+> +               p_clk->status_reg =3D data->base + clks[i].status_reg;
+> +               p_clk->lock_shift =3D clks[i].lock_shift;
+> +               p_clk->lock_width =3D clks[i].lock_width;
+> +
+> +               p_clk->max_rate =3D clks[i].max_rate;
+> +               p_clk->min_rate =3D clks[i].min_rate;
+> +
+> +               init.name =3D clks[i].name;
+> +               init.flags =3D 0;
+> +               init.parent_names =3D clks[i].parent_name ?
+> +                                       &clks[i].parent_name : NULL;
+> +               init.num_parents =3D clks[i].parent_name ? 1 : 0;
+
+Please use clk_parent_data instead of strings. If all possible parents
+of a clk are internal to the clk controller then you should use clk_hws
+pointer in struct clk_init_data. If there is a mix of external and
+internal then use struct clk_parent_data with the .index set to the
+match the index of the 'clocks' property or the .hw to match the
+internal clk.
+
+Note this comment applies throughout this driver for any clk that is
+registered with the framework.
+
+> +               init.ops =3D &eswin_clk_pll_ops;
+> +               p_clk->hw.init =3D &init;
+> +
+> +               clk_hw =3D &p_clk->hw;
+> +               ret =3D devm_clk_hw_register(dev, clk_hw);
+> +               if (ret)
+> +                       return dev_err_probe(dev, ret,
+> +                                            "failed to register clock\n"=
+);
+> +
+> +               data->clk_data.hws[clks[i].id] =3D clk_hw;
+> +               p_clk++;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +int eswin_clk_register_fixed_factor(const struct eswin_fixed_factor_cloc=
+k *clks,
+> +                                   int nums, struct eswin_clock_data *da=
+ta,
+> +                                   struct device *dev)
+> +{
+> +       struct clk_hw *clk_hw;
+> +       int i;
+> +
+> +       for (i =3D 0; i < nums; i++) {
+> +               clk_hw =3D devm_clk_hw_register_fixed_factor(dev, clks[i]=
+.name,
+> +                                                          clks[i].parent=
+_name,
+> +                                                          clks[i].flags,
+> +                                                          clks[i].mult,
+> +                                                          clks[i].div);
+> +               if (IS_ERR(clk_hw))
+> +                       return dev_err_probe(dev, PTR_ERR(clk_hw),
+> +                                            "failed to register clock\n"=
+);
+> +
+> +               data->clk_data.hws[clks[i].id] =3D clk_hw;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +int eswin_clk_register_mux(const struct eswin_mux_clock *clks, int nums,
+> +                          struct eswin_clock_data *data, struct device *=
+dev)
+> +{
+> +       struct clk_hw *clk_hw;
+> +       int i;
+> +
+> +       for (i =3D 0; i < nums; i++) {
+> +               clk_hw =3D devm_clk_hw_register_mux(dev, clks[i].name,
+> +                                                 clks[i].parent_names,
+> +                                                 clks[i].num_parents,
+> +                                                 clks[i].flags,
+> +                                                 data->base + clks[i].of=
+fset,
+> +                                                 clks[i].shift,
+> +                                                 clks[i].width,
+> +                                                 clks[i].mux_flags,
+> +                                                 &data->lock);
+> +               if (IS_ERR(clk_hw))
+> +                       return dev_err_probe(dev, PTR_ERR(clk_hw),
+> +                                            "failed to register clock\n"=
+);
+> +
+> +               data->clk_data.hws[clks[i].id] =3D clk_hw;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +int eswin_clk_register_mux_tbl(const struct eswin_mux_clock *clks,
+> +                              int nums, struct eswin_clock_data *data,
+> +                              struct device *dev)
+> +{
+> +       struct clk_hw *clk_hw;
+> +       int i;
+> +
+> +       for (i =3D 0; i < nums; i++) {
+> +               clk_hw =3D clk_hw_register_mux_table(dev, clks[i].name,
+> +                                                  clks[i].parent_names,
+> +                                                  clks[i].num_parents,
+> +                                                  clks[i].flags,
+> +                                                  data->base + clks[i].o=
+ffset,
+> +                                                  clks[i].shift,
+> +                                                  BIT(clks[i].width) - 1,
+> +                                                  clks[i].mux_flags,
+> +                                                  clks[i].table, &data->=
+lock);
+> +
+> +               if (IS_ERR(clk_hw)) {
+> +                       while (i--)
+> +                               clk_hw_unregister_mux
+> +                                       (data->clk_data.hws[clks[i].id]);
+> +                       return dev_err_probe(dev, PTR_ERR(clk_hw),
+> +                                            "failed to register clock\n"=
+);
+> +               }
+> +
+> +               data->clk_data.hws[clks[i].id] =3D clk_hw;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +int eswin_clk_register_divider(const struct eswin_divider_clock *clks,
+> +                              int nums, struct eswin_clock_data *data,
+> +                              struct device *dev)
+> +{
+> +       struct clk_hw *clk_hw;
+> +       int i;
+> +
+> +       for (i =3D 0; i < nums; i++) {
+> +               clk_hw =3D devm_clk_hw_register_divider(dev, clks[i].name,
+> +                                                     clks[i].parent_name,
+> +                                                     clks[i].flags,
+> +                                                     data->base +
+> +                                                       clks[i].offset,
+> +                                                     clks[i].shift,
+> +                                                     clks[i].width,
+> +                                                     clks[i].div_flags,
+> +                                                     &data->lock);
+> +               if (IS_ERR(clk_hw))
+> +                       return dev_err_probe(dev, PTR_ERR(clk_hw),
+> +                                            "failed to register clock\n"=
+);
+> +
+> +               data->clk_data.hws[clks[i].id] =3D clk_hw;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +int eswin_clk_register_gate(const struct eswin_gate_clock *clks, int num=
+s,
+> +                           struct eswin_clock_data *data, struct device =
+*dev)
+> +{
+> +       struct clk_hw *clk_hw;
+> +       int i;
+> +
+> +       for (i =3D 0; i < nums; i++) {
+> +               clk_hw =3D devm_clk_hw_register_gate(dev, clks[i].name,
+> +                                                  clks[i].parent_name,
+> +                                                  clks[i].flags,
+> +                                                  data->base + clks[i].o=
+ffset,
+> +                                                  clks[i].bit_idx,
+> +                                                  clks[i].gate_flags,
+> +                                                  &data->lock);
+> +
+> +               if (IS_ERR(clk_hw))
+> +                       return dev_err_probe(dev, PTR_ERR(clk_hw),
+> +                                            "failed to register clock\n"=
+);
+> +
+> +               data->clk_data.hws[clks[i].id] =3D clk_hw;
+> +       }
+> +
+> +       return 0;
+> +}
+> diff --git a/drivers/clk/eswin/clk.h b/drivers/clk/eswin/clk.h
+> new file mode 100644
+> index 000000000000..e6e0682ff39c
+> --- /dev/null
+> +++ b/drivers/clk/eswin/clk.h
+> @@ -0,0 +1,266 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright 2025, Beijing ESWIN Computing Technology Co., Ltd..
+> + * All rights reserved.
+> + *
+> + * Authors:
+> + *     Yifeng Huang <huangyifeng@eswincomputing.com>
+> + *     Xuyang Dong <dongxuyang@eswincomputing.com>
+> + */
+> +
+> +#ifndef __ESWIN_CLK_H__
+> +#define __ESWIN_CLK_H__
+> +
+> +#include <linux/clk-provider.h>
+> +#include <linux/platform_device.h>
+
+I don't see this header used. Drop?
+
+> +#include <linux/spinlock.h>
+> +
+> +#define APLL_HIGH_FREQ 983040000
+> +#define APLL_LOW_FREQ  225792000
+> +#define PLL_HIGH_FREQ  1800000000
+> +#define PLL_LOW_FREQ   24000000
+> +
+> +struct eswin_clock_data {
+> +       void __iomem *base;
+> +       struct clk_hw *original_clk;
+> +       struct notifier_block pll_nb;
+> +       spinlock_t lock; /* protect register read-modify-write cycle */
+> +       struct clk_hw_onecell_data clk_data;
+> +};
+> +
+> +struct eswin_divider_clock {
+> +       unsigned int id;
+> +       const char *name;
+> +       const char *parent_name;
+> +       unsigned long flags;
+> +       unsigned long offset;
+> +       u8 shift;
+> +       u8 width;
+> +       u8 div_flags;
+> +};
+> +
+> +struct eswin_fixed_rate_clock {
+> +       unsigned int id;
+> +       char *name;
+> +       const char *parent_name;
+> +       unsigned long flags;
+> +       unsigned long rate;
+> +};
+> +
+> +struct eswin_fixed_factor_clock {
+> +       unsigned int id;
+> +       char *name;
+> +       const char *parent_name;
+> +       unsigned long mult;
+> +       unsigned long div;
+> +       unsigned long flags;
+> +};
+> +
+> +struct eswin_gate_clock {
+> +       unsigned int id;
+> +       const char *name;
+> +       const char *parent_name;
+> +       unsigned long flags;
+> +       unsigned long offset;
+> +       u8 bit_idx;
+> +       u8 gate_flags;
+> +};
+> +
+> +struct eswin_mux_clock {
+> +       unsigned int id;
+> +       const char *name;
+> +       const char *const *parent_names;
+> +       u8 num_parents;
+> +       unsigned long flags;
+> +       unsigned long offset;
+> +       u8 shift;
+> +       u8 width;
+> +       u8 mux_flags;
+> +       u32 *table;
+> +};
+> +
+> +struct eswin_pll_clock {
+> +       u32 id;
+> +       const char *name;
+> +       const char *parent_name;
+> +       const u32 ctrl_reg0;
+> +       const u8 pllen_shift;
+> +       const u8 pllen_width;
+> +       const u8 refdiv_shift;
+> +       const u8 refdiv_width;
+> +       const u8 fbdiv_shift;
+> +       const u8 fbdiv_width;
+> +
+> +       const u32 ctrl_reg1;
+> +       const u8 frac_shift;
+> +       const u8 frac_width;
+> +
+> +       const u32 ctrl_reg2;
+> +       const u8 postdiv1_shift;
+> +       const u8 postdiv1_width;
+> +       const u8 postdiv2_shift;
+> +       const u8 postdiv2_width;
+> +
+> +       const u32 status_reg;
+> +       const u8 lock_shift;
+> +       const u8 lock_width;
+> +
+> +       const u64 max_rate;
+> +       const u64 min_rate;
+> +};
+> +
+> +struct eswin_clk_pll {
+> +       struct clk_hw hw;
+> +       u32 id;
+> +       void __iomem *ctrl_reg0;
+> +       u8 pllen_shift;
+> +       u8 pllen_width;
+> +       u8 refdiv_shift;
+> +       u8 refdiv_width;
+> +       u8 fbdiv_shift;
+> +       u8 fbdiv_width;
+> +
+> +       void __iomem *ctrl_reg1;
+> +       u8 frac_shift;
+> +       u8 frac_width;
+> +
+> +       void __iomem *ctrl_reg2;
+> +       u8 postdiv1_shift;
+> +       u8 postdiv1_width;
+> +       u8 postdiv2_shift;
+> +       u8 postdiv2_width;
+> +
+> +       void __iomem *status_reg;
+> +       u8 lock_shift;
+> +       u8 lock_width;
+> +
+> +       u64 max_rate;
+> +       u64 min_rate;
+> +};
+> +
+> +struct eswin_clock_data *eswin_clk_init(struct device *dev, int nr_clks);
+> +int eswin_clk_register_fixed_rate(const struct eswin_fixed_rate_clock *c=
+lks,
+> +                                 int nums, struct eswin_clock_data *data,
+> +                                 struct device *dev);
+> +int eswin_clk_register_pll(const struct eswin_pll_clock *clks, int nums,
+> +                          struct eswin_clock_data *data, struct device *=
+dev);
+> +int eswin_clk_register_fixed_factor(const struct eswin_fixed_factor_cloc=
+k *clks,
+> +                                   int nums, struct eswin_clock_data *da=
+ta,
+> +                                   struct device *dev);
+> +int eswin_clk_register_mux(const struct eswin_mux_clock *clks, int nums,
+> +                          struct eswin_clock_data *data, struct device *=
+dev);
+> +int eswin_clk_register_mux_tbl(const struct eswin_mux_clock *clks,
+> +                              int nums, struct eswin_clock_data *data,
+> +                              struct device *dev);
+> +int eswin_clk_register_divider(const struct eswin_divider_clock *clks,
+> +                              int nums, struct eswin_clock_data *data,
+> +                              struct device *dev);
+> +int eswin_clk_register_gate(const struct eswin_gate_clock *clks, int num=
+s,
+> +                           struct eswin_clock_data *data, struct device =
+*dev);
+> +
+> +#define PNAME(x) static const char *const x[] __initconst
+> +
+> +#define EIC7700_DIV(_id, _name, _pname, _flags, _offset, _shift, _width,=
+ \
+
+These are specific to one driver so they should be in there. I'd expect
+only common SoC family wide things to be in this file. And then I would
+name this file common.h instead of clk.h to reflect that it is common
+structures.
 
