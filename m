@@ -1,83 +1,51 @@
-Return-Path: <devicetree+bounces-258757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258758-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iD6uCDcnc2kAswAAu9opvQ
-	(envelope-from <devicetree+bounces-258757-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 08:45:59 +0100
+	id +EbjCv8oc2kAswAAu9opvQ
+	(envelope-from <devicetree+bounces-258758-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 08:53:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2FCB71F09
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 08:45:58 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CFB37209F
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 08:53:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2EB1E3058ABC
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 07:41:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 42E5E300EF98
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 07:53:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4BFC350A21;
-	Fri, 23 Jan 2026 07:41:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A984633A9EF;
+	Fri, 23 Jan 2026 07:53:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UHaQs6gb"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="ZxmbYKUi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D40934405F
-	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 07:41:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92849288C86;
+	Fri, 23 Jan 2026 07:53:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769154070; cv=none; b=K2oxxZW6AjLJPE8zj7Qjd+e1sxgAyCTVLCD9UeLXFLPLqs0/x9OuiRCn5Zxp5FLuiz1N6zC0u+45h57ai2R/rZYBWQAptdRN4hRuF35vYLwXTA7cMT31umyjru8/zffFkQ+iMuQsrmdJEAtQeyBJt7U6rdplUessuQmDmb5AuFc=
+	t=1769154812; cv=none; b=iRY1bcsJj0k8FkHHK4xIHpq97mRUpxabbIBJaEx1EkhRhqcOVVDPiyM9sM3UYTQP79KBeOz03OZdZppWQo4bzwoDjtL+zyNF15SL5TjhV8RFRgoz4NC31eihfUI2x6/d6CXgWAHcHzLw8wUqlHJL5FbLjc32S80j1cpVAJ9R2SA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769154070; c=relaxed/simple;
-	bh=SSNlL//EmVJwdSLWb5H1AdPiODSjZ0wQbWKwPLq4WTE=;
+	s=arc-20240116; t=1769154812; c=relaxed/simple;
+	bh=CydP1SI/itOoSge0Z+MIOsw27/FtcA5npRVrCB4FyMc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=m+FzN9DQ+WfEkeEAKH4nhet0RszYqxaVkKJ28L2FsOFRDMwwxXdg5dBayvRFTKXa38K5Xx0Hkk3CIJiGdPLwbgMlEkymS4YjwzpzxVUcNhVhY7vNqq8icCCCeFy/1f8eo1J07LXOH4rTNVEVs38Vn+IDgy4kBJJMRs1ZQ20/sac=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UHaQs6gb; arc=none smtp.client-ip=209.85.216.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-34f634dbfd6so1756362a91.2
-        for <devicetree@vger.kernel.org>; Thu, 22 Jan 2026 23:41:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769154069; x=1769758869; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BybO1XLVfdhod5yqmV9OoExkCCsTqBLc4oAzOMgKi/0=;
-        b=UHaQs6gbZKjX1Lcb6jA3vxC54wtI5UgluRNZ2t8Rd4xhjtTqJRxuyixloQMLgcBI+1
-         RniU9V7kgy0/Pqpt1JQ8xx1AS4sCfoN/xeICB4bU52oHlIcir0MAM8xt7Xt4UjqbYnBw
-         D8HFM7emUZPemAQbDnYdkuAbHY4/+n6eA8CIfrdTTKuKceWXtkFUrWPNhnZnf6ue7n7G
-         qQ/1AGyRIsXrAIwVCr9HKIwXdFRn2xuLfXwYu1htCQg5Z/FBnFcAvonXOXEQVzI0cbM+
-         zg/RJnvMNJiD2+ApkEKb5QZ6K3PzbE4LGZ+yVlyhNNaEfN3p9jhOHDN1FJUKnmWYHhCQ
-         i0rQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769154069; x=1769758869;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=BybO1XLVfdhod5yqmV9OoExkCCsTqBLc4oAzOMgKi/0=;
-        b=OCRKAPCmimttsSKMvzNnW2EGmWWBaKF35I8M8Hn2TY2XiuQvKD3rXK8V2o/SZ3m2KL
-         8WpNhzm3RAFuKkv0hr9znOq4RiSUS6GeCI6kwqPFR2/dPnfyELih58Oe9LLa5cDBBdZh
-         984CHok9sJ0LWDp+U3O5IeBVlkusEihyDvnuyWAI1/MqfpvMMCDWi9ILgW3PugsNDT6o
-         /XrgdXCwhy95F+JdF+qwxy921rH86HCyVtKodBrCMpGes0QaXsMEcmKpYSUIK0dH4jpQ
-         8VZ+Zxb1FurY7YXJuE7AFCr23x2oHUxzvXZ0qMa/k0A4m9cPMYS6z37ekLdoVV+96BRW
-         mZ+A==
-X-Gm-Message-State: AOJu0YzckX15uKOFko3Shom/8A74eYiwtEOBOghAsf5CyM3dM6piO4Ft
-	wFEcoIreJUOl3AWaYej1H1Fyq1Qpdn5NGm2grmVzAA3jDh1qQ++UE88c
-X-Gm-Gg: AZuq6aJphAcXLiKdiINc5Tl8t6G0ssDQEZX/zMyM5oIE9Gn8LlUB0RDBF7eNy8D8gE+
-	2Mm3OppxwyW8YfSIoZbV0Oj7dQJ/kmQUcJna5TypH3MKf5icSKrF+Af9Ki/N94NQbByANcqpih6
-	Rfibk0ubFd67A7bJnTAihEaTbxxtOF+pW/44Fn70nIjcgQ+VX90JRqr71YdlT7zN6VfsMUuF29V
-	l8nOqsNxu+OSfE4WHM7Tosrx11DdqSuUlP2gY2jWAU05L/kIKwoLtGEPtamJPYI4ZarIwv9cC2W
-	nrwZ0Q96VYwUdeNL34Vx0NWTTsjNjw8MHt8dcaNsOoIuQarGUVmmS+n5RGXI12sYRuQxiA+oC5/
-	8AWMocp6GmHZb657BoWJiuC+su/RS84IWCoyV5Igx6Vn08FRrYJIUM+hkxo2UsyhcCdPmPH49MA
-	AmR72ZMDCLtD2X
-X-Received: by 2002:a17:90b:2d8c:b0:33b:be31:8194 with SMTP id 98e67ed59e1d1-3536911f08amr1801422a91.34.1769154068601;
-        Thu, 22 Jan 2026 23:41:08 -0800 (PST)
-Received: from [192.168.0.13] ([172.92.174.155])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3536dc506dbsm1276411a91.14.2026.01.22.23.41.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Jan 2026 23:41:07 -0800 (PST)
-Message-ID: <abf12a3f-9cdd-472d-a02e-af4da594b84f@gmail.com>
-Date: Thu, 22 Jan 2026 23:39:29 -0800
+	 In-Reply-To:Content-Type; b=lpRe5I6owRySBTRS96tJqyqBsBKemk1TYvSHPmOhlzxPPoESOcb0Ls+6jJOjXiML4SIQb38rFBqrGKTpZELgpM+Pof8VqA8CiJbW62Wjvcf5fw0Q7RoD0cOor0FDqsjsut2aT22Yx3y78oditlS/XoYZLUZWrXsYMkpBxLg1zzo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=ZxmbYKUi; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id BF15D103D;
+	Fri, 23 Jan 2026 08:52:47 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1769154768;
+	bh=CydP1SI/itOoSge0Z+MIOsw27/FtcA5npRVrCB4FyMc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ZxmbYKUiKw9C4M1tvfYuuqeyI+/ASJy97cM0Mt5L8nwLLc19j7i1AfvLYPHT9ZK90
+	 zf3GdHQNKTSlHr6WkrKq/g7LQXsEsXOEvCZaHRwAR4P+0R9JLBzpdsv9RPHEjGbQMs
+	 mTz83N1m6HHk8BRZJPknuId767AjTK2EjlNgT/IM=
+Message-ID: <55b08e0e-1921-4d37-a716-ff60852ec51b@ideasonboard.com>
+Date: Fri, 23 Jan 2026 09:53:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,99 +53,204 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: ethernet: eswin: add clock sampling
- control
-To: Andrew Lunn <andrew@lunn.ch>, =?UTF-8?B?5p2O5b+X?=
- <lizhi2@eswincomputing.com>
-Cc: devicetree@vger.kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@google.com, kuba@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, netdev@vger.kernel.org, pabeni@redhat.com,
- mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
- rmk+kernel@armlinux.org.uk, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- ningyu@eswincomputing.com, linmin@eswincomputing.com,
- pinkesh.vaghela@einfochips.com, weishangjuan@eswincomputing.com
-References: <20260109080601.1262-1-lizhi2@eswincomputing.com>
- <20260109080859.1285-1-lizhi2@eswincomputing.com>
- <00b7b42f-2f9d-402a-82f0-21641ea894a1@lunn.ch>
- <308b676.2d03.19bb0caebed.Coremail.lizhi2@eswincomputing.com>
- <59cec617-0189-4dc3-bc3f-6346155a62ae@lunn.ch>
- <4e2a55e7.3662.19be8cb9c3c.Coremail.lizhi2@eswincomputing.com>
- <c5c0bfdb-316d-4796-afa0-f6f018ceb414@lunn.ch>
+Subject: Re: [PATCH v10 12/18] media: cadence: csi2rx: Use the stream from
+ route to get format
+To: Rishikesh Donadkar <r-donadkar@ti.com>, jai.luthra@linux.dev,
+ laurent.pinchart@ideasonboard.com, mripard@kernel.org
+Cc: y-abhilashchandra@ti.com, devarsht@ti.com, s-jain1@ti.com,
+ vigneshr@ti.com, mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ p.zabel@pengutronix.de, conor+dt@kernel.org, sakari.ailus@linux.intel.com,
+ hverkuil-cisco@xs4all.nl, jai.luthra@ideasonboard.com,
+ changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com,
+ sjoerd@collabora.com, dan.carpenter@linaro.org, hverkuil+cisco@kernel.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20260121135424.1185710-1-r-donadkar@ti.com>
+ <20260121135424.1185710-13-r-donadkar@ti.com>
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 Content-Language: en-US
-From: Bo Gan <ganboing@gmail.com>
-In-Reply-To: <c5c0bfdb-316d-4796-afa0-f6f018ceb414@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <20260121135424.1185710-13-r-donadkar@ti.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
+	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258757-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-258758-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[ti.com,kernel.org,pengutronix.de,linux.intel.com,xs4all.nl,ideasonboard.com,starfivetech.com,collabora.com,linaro.org,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[24];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,armlinux.org.uk,st-md-mailman.stormreply.com,lists.infradead.org,eswincomputing.com,einfochips.com];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[22];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ganboing@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.991];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tomi.valkeinen@ideasonboard.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ideasonboard.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C2FCB71F09
+	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ti.com:email,ideasonboard.com:email,ideasonboard.com:dkim,ideasonboard.com:mid]
+X-Rspamd-Queue-Id: 7CFB37209F
 X-Rspamd-Action: no action
 
-Hi Andrew,
+Hi,
 
-On 1/22/26 19:19, Andrew Lunn wrote:
->>> You say internal. So the skew is fixed, it is a property of the
->>> silicon? If so, why a DT property? Why not just hard code it in the
->>> driver? Since it is internal, different boards should not need it set
->>> differently?
->>>
->> Thanks for the question.
->>
->> EIC7700 has two Ethernet MACs. Only eth1 has this internal RXC/RXD skew,
->> eth0 does not.
->>
->> So this is not a chip-wide constant that can be hardcoded in the driver.
->> We need a way to distinguish the two MAC instances, which is why this is
->> described per-port in DTS.
+On 21/01/2026 15:54, Rishikesh Donadkar wrote:
+> In multistream configurations, different streams can have different
+> formats. Update the driver to use the stream number from the routing
+> configuration when retrieving formats instead of hardcoding stream 0
+> or ignoring streams.
 > 
-> I assume the address of the interface is fixed. So you can just key
-> off that to distinguish the two instances.
+> In csi2rx_configure_ext_dphy(), use the sink_stream from the first
+> route instead of always using stream 0.
 > 
-> Since this is an internal property, not a board property, it is not
-> clear it actually belongs on DT.
+> In cdns_csi2rx_negotiate_ppc(), iterate through all active routes
+> for the requested pad and retrieve the format using both pad and
+> stream information.
 > 
->      Andrew
+> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
+> ---
+>  drivers/media/platform/cadence/cdns-csi2rx.c | 34 ++++++++++++++++----
+>  1 file changed, 28 insertions(+), 6 deletions(-)
 
-IMO, they should be in DT to provide maximum flexibility. The SoC .dtsi
-can provide some sane defaults, and the board vendor can later override
-them if the mac/phy requires further tuning. Applying such tuning by
-the address of MAC seems messy and it hides the parameters used behind
-driver. Through DT, everything becomes really clear.
+So if I understand this right, v9 was working by luck, as it was always
+using stream 0 format (and expected stream 0 to be there)?
 
-I assume this is not uncommon: E.g., starfive/jh7110:
-https://lore.kernel.org/all/20230714104521.18751-3-samin.guo@starfivetech.com/
+Two thoughts here:
+- This should be merged to the previous patch, shouldn't it?
+- Are you now testing with different resolutions, fps, etc on the
+fpd-link ports?
 
-BTW, no need to worry about backward compat. ESWIN hasn't checked-in any
-DT for eth yet. As you and Russell said, they need to do it, pronto.
+Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 
-Bo
+ Tomi
+
+> diff --git a/drivers/media/platform/cadence/cdns-csi2rx.c b/drivers/media/platform/cadence/cdns-csi2rx.c
+> index 175366f889115..db9871fdbe3a4 100644
+> --- a/drivers/media/platform/cadence/cdns-csi2rx.c
+> +++ b/drivers/media/platform/cadence/cdns-csi2rx.c
+> @@ -279,6 +279,7 @@ static int csi2rx_configure_ext_dphy(struct csi2rx_priv *csi2rx)
+>  	struct v4l2_mbus_framefmt *framefmt;
+>  	struct v4l2_subdev_state *state;
+>  	const struct csi2rx_fmt *fmt;
+> +	struct v4l2_subdev_route *route;
+>  	int source_pad = csi2rx->source_pad;
+>  	struct media_pad *pad = &csi2rx->source_subdev->entity.pads[source_pad];
+>  	s64 link_freq;
+> @@ -296,7 +297,9 @@ static int csi2rx_configure_ext_dphy(struct csi2rx_priv *csi2rx)
+>  	if (state->routing.num_routes > 1) {
+>  		bpp = 0;
+>  	} else {
+> -		framefmt = v4l2_subdev_state_get_format(state, CSI2RX_PAD_SINK, 0);
+> +		route = &state->routing.routes[0];
+> +		framefmt = v4l2_subdev_state_get_format(state, CSI2RX_PAD_SINK,
+> +							route->sink_stream);
+>  		if (!framefmt) {
+>  			dev_err(csi2rx->dev, "Did not find active sink format\n");
+>  			return -EINVAL;
+> @@ -706,25 +709,44 @@ int cdns_csi2rx_negotiate_ppc(struct v4l2_subdev *subdev, unsigned int pad,
+>  {
+>  	struct csi2rx_priv *csi2rx = v4l2_subdev_to_csi2rx(subdev);
+>  	const struct csi2rx_fmt *csi_fmt;
+> +	struct v4l2_subdev_route *route;
+>  	struct v4l2_subdev_state *state;
+>  	struct v4l2_mbus_framefmt *fmt;
+> +	int ret = 0;
+>  
+>  	if (!ppc || pad < CSI2RX_PAD_SOURCE_STREAM0 || pad >= CSI2RX_PAD_MAX)
+>  		return -EINVAL;
+>  
+>  	state = v4l2_subdev_lock_and_get_active_state(subdev);
+> -	fmt = v4l2_subdev_state_get_format(state, pad);
+> -	csi_fmt = csi2rx_get_fmt_by_code(fmt->code);
+> +	/* Check all streams on requested pad */
+> +	for_each_active_route(&state->routing, route) {
+> +		if (route->source_pad != pad)
+> +			continue;
+> +
+> +		fmt = v4l2_subdev_state_get_format(state, route->source_pad,
+> +						   route->source_stream);
+> +		if (!fmt) {
+> +			ret = -EPIPE;
+> +			*ppc = 1;
+> +			break;
+> +		}
+>  
+> -	/* Reduce requested PPC if it is too high */
+> -	*ppc = min(*ppc, csi_fmt->max_pixels);
+> +		csi_fmt = csi2rx_get_fmt_by_code(fmt->code);
+> +		if (!csi_fmt) {
+> +			ret = -EINVAL;
+> +			*ppc = 1;
+> +			break;
+> +		}
+>  
+> +		/* Reduce requested PPC if it is too high for this stream */
+> +		*ppc = min(*ppc, csi_fmt->max_pixels);
+> +	}
+>  	v4l2_subdev_unlock_state(state);
+>  
+>  	csi2rx->num_pixels[pad - CSI2RX_PAD_SOURCE_STREAM0] =
+>  		CSI2RX_STREAM_CFG_NUM_PIXELS(*ppc);
+>  
+> -	return 0;
+> +	return ret;
+>  }
+>  EXPORT_SYMBOL_FOR_MODULES(cdns_csi2rx_negotiate_ppc, "j721e-csi2rx");
+>  
+
 
