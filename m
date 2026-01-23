@@ -1,65 +1,59 @@
-Return-Path: <devicetree+bounces-258802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258803-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uBIXNyM6c2l/tQAAu9opvQ
-	(envelope-from <devicetree+bounces-258802-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:06:43 +0100
+	id YLfCKrU6c2l/tQAAu9opvQ
+	(envelope-from <devicetree+bounces-258803-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:09:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AAEF72F86
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:06:43 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06B3773024
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:09:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9B016304A2E9
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 09:02:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2BD963010DB6
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 09:04:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CD90324B10;
-	Fri, 23 Jan 2026 09:02:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F98032C95B;
+	Fri, 23 Jan 2026 09:04:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n735dr/6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WlKO0GuA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66E512D8DCF;
-	Fri, 23 Jan 2026 09:02:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BA362E401;
+	Fri, 23 Jan 2026 09:04:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769158957; cv=none; b=Tr/na45MqfabIDKUbSd5iSH3BJ8b23Xf5o3+jZllflDbZASy7vw+IGZkKm24NrVpyIehtDy/zhKgkouVMeX3pWkCOPMxE05dpBNtUQgRes34q8j7J38E9SqQTRL73Ig0YTBRDYuvlwRKbSj9b5jld2tKR7WodvxlUxJ+oC5hTeU=
+	t=1769159066; cv=none; b=YrT3ardde/e18OLkoXw+azQ0Z5rVYAqy3mpIYBAJ0rYXcInVikM3NSzN/aDhVUIbIFTmwGyvK3VbRzxE8i5sHGJxUg7CR6b7oHHMLo/p03HnOxtZnbL57yJpnYAcUaYOqxtMi5suyLE8+HB8LsAQb7wfNF1rp9PCxqEHMNoJat0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769158957; c=relaxed/simple;
-	bh=PIa/I7R0BydZfomtSmkapB5g2iSIYkR0v+oP3tOPoZc=;
+	s=arc-20240116; t=1769159066; c=relaxed/simple;
+	bh=XCFl2REXVO6EuffUy52nWk8JGTDRVPijstsX6bLq2i0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bzgEYwfeGRh2/mnxypmHwvxmKsO9kuJMEqi1deax+a07CIJQCniO1zTQLuJds7t/EZS9ucXfQuTjVHd/76YTZH7HFoJXw8HFPNAKQ7k/0Sb9bf6dksWQGWTJ1iyZ4usRCZVlTpWS5ar7O0iF3OWtKXBvXdzx+QgV5vwt7kdvWKA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n735dr/6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0667C4CEF1;
-	Fri, 23 Jan 2026 09:02:36 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=I+9CpWjVpLjRrOrdn++/eEeL73bOX5cNTRmeGetJY+I3BrFdsq0Q370g1hrBzuEc2JJXtaFNU6ecFu4z93NooN6sl1xLpyXikDU0u+mVTnMvJZI6SI6xbn2l9aHGANUY9Danud30baSWtiU75s8aRBXg0Lj/SMOc9m+vpHICqOU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WlKO0GuA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9029C4CEF1;
+	Fri, 23 Jan 2026 09:04:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769158957;
-	bh=PIa/I7R0BydZfomtSmkapB5g2iSIYkR0v+oP3tOPoZc=;
+	s=k20201202; t=1769159066;
+	bh=XCFl2REXVO6EuffUy52nWk8JGTDRVPijstsX6bLq2i0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=n735dr/6ogETtT6sqt4DE/Ng81anX6mk40ARL40MDPFpZQnr7lRf41GaGu+4KqdmI
-	 Etay7mXNqlH3I99fjMPqHlP64X4sxVRfD+2W98IHZTBkTttfsep85w95vqqk+k1Ghp
-	 bMarHx8y1sHTY0ap+UTco0SenlfReRl5Y97jI+GoxuZLFhwu2fANuBZgtC3NM4PTmE
-	 VIV0wp/pniVEsx7qbaWh220t+HGkXt5oQ9ArDTZcMQcY4YjNdZuU86SMt4/wnqdgBd
-	 gVZYVpSXhf8zUAGSSV4izXhrCnh3G9l70BI1EhRCORqmAgHkTIZRDjg47fV2lQaPLd
-	 Lu0Y4u2xQRNwQ==
-Date: Fri, 23 Jan 2026 10:02:34 +0100
+	b=WlKO0GuAhbcAOFDeuH+OguoUC5C87tY/AcYuWt2ZGfHsZCCyoiS9J08eAvthk7zGS
+	 nvQ/OAJl3rwR0oSSq01lVqGJE5Mg0qW+XRwSucsFb7xuwgXRzuhDxTxqvtMFRKlaQ7
+	 gUuFgAqUJGEWd1vDupBFmiOXVllTIYsGv3YQSIcygkffgPve3BvEPHjgkE4plLjdAR
+	 iARhkqTPKhVdNYWW/V6h+X+hPWT41JgZfkecIinUxCMhJn+MTQYjhXc8G9SPygo3KB
+	 5evH+Lu1dMKNQhl6aphQRQEZnHM5MO/P1tHgwr8OLX4hsiKi60my0vmQ/Kj7+hbdIg
+	 hCn3xyO5zStLg==
+Date: Fri, 23 Jan 2026 10:04:23 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Sherry Sun <sherry.sun@nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	shawnguo@kernel.org, frank.li@nxp.com, s.hauer@pengutronix.de, festevam@gmail.com, 
-	daniel.baluta@nxp.com, dario.binacchi@amarulasolutions.com, 
-	alexander.stein@ew.tq-group.com, Markus.Niebel@tq-group.com, matthias.schiffer@tq-group.com, 
-	y.moog@phytec.de, josua@solid-run.com, francesco.dolcini@toradex.com, 
-	primoz.fiser@norik.com, kernel@pengutronix.de, devicetree@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+To: Prathamesh Shete <pshete@nvidia.com>
+Cc: linusw@kernel.org, brgl@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, thierry.reding@gmail.com, jonathanh@nvidia.com, robh@kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V2 2/2] arch: arm64: imx93-wevk: Add i.MX93 Wireless EVK
- board support
-Message-ID: <20260123-gifted-wolverine-from-mars-47b9d4@quoll>
-References: <20260123024448.3909345-1-sherry.sun@nxp.com>
- <20260123024448.3909345-3-sherry.sun@nxp.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: gpio: Add Tegra264 support
+Message-ID: <20260123-bizarre-impartial-mamba-f36ac4@quoll>
+References: <20260123064140.1095946-1-pshete@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,144 +62,54 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260123024448.3909345-3-sherry.sun@nxp.com>
+In-Reply-To: <20260123064140.1095946-1-pshete@nvidia.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258802-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-258803-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[22];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,nvidia.com,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,amarulasolutions.com,ew.tq-group.com,tq-group.com,phytec.de,solid-run.com,toradex.com,norik.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.989];
+	NEURAL_HAM(-0.00)[-0.988];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nxp.com:email]
-X-Rspamd-Queue-Id: 7AAEF72F86
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 06B3773024
 X-Rspamd-Action: no action
 
-On Fri, Jan 23, 2026 at 10:44:48AM +0800, Sherry Sun wrote:
-> i.MX93 Wireless SiP is created by integrating i.MX93 and IW610 WLCSP
-> (Wi-Fi + BLE + 802.15.4). And i.MX93 Wireless EVK board with the i.MX93
-> Wireless SiP basically reuse the i.MX93 11x11 EVK board, with some minor
-> functional and pin connection differences.
-> 
-> Here are the detailed differences between i.MX93 Wireless EVK and i.MX93
-> 11x11 EVK board.
-> 
-> Function differences:
-> Function	i.MX93W EVK			i.MX93 EVK
-> WIFI/BT		IW610 in i.MX93W		IW612 M.2 module
-> MQS		N				Y
-> PDM MIC		N				Y
-> M.2		N				Y
-> RPi 40-pin HDR	Limited support(pin conflict) 	Y
-> 
-> Pin connection differences:
-> Function  Signal name	i.MX93W EVK		i.MX93 EVK
-> WIFI/BT	  SPI_FRM	SAI1_TXFS (spi1.PCS0)	GPIO_IO08 (spi3.PCS0)
-> 	  SPI_TXD	SAI1_TXC (spi1.SIN)	GPIO_IO09 (spi3.SIN)
-> 	  SPI_RXD	SAI1_RXD0 (spi1.SOUT)	GPIO_IO10 (spi3.SOUT)
-> 	  SPI_CLK	SAI1_TXD0 (spi1.SCK)	GPIO_IO11 (spi3.SCK)
-> 	  SPI_INT	CCM_CLKO1		on-board IO expander
-> 	  NB_WAKE_IN	PDM_CLK			on-module IO expander
-> 	  WL_WAKE_IN	PDM_BIT_STREAM0		on-module IO expander
-> 	  IND_RST_WL	PDM_BIT_STREAM1		on-module IO expander
-> 	  IND_RST_NB	GPIO_IO28		on-module IO expander
-> 	  PDn		GPIO_IO29		on-module IO expander
-> 	  NB_WAKE_OUT	GPIO_IO14		on-board IO expander
-> 	  WL_WAKE_OUT	GPIO_IO15		CCM_CLKO1
-> I2C3	  I2C3_SDA	GPIO_IO00		GPIO_IO28
-> 	  I2C3_SCL	GPIO_IO01		GPIO_IO29
-> 
-> Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/Makefile       |  1 +
->  arch/arm64/boot/dts/freescale/imx93w-evk.dts | 73 ++++++++++++++++++++
->  2 files changed, 74 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx93w-evk.dts
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index 700bab4d3e60..d0ea746c59b8 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -418,6 +418,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx93-9x9-qsb-i3c.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx93-11x11-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx93-11x11-frdm.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx93-14x14-evk.dtb
-> +dtb-$(CONFIG_ARCH_MXC) += imx93w-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx93-kontron-bl-osm-s.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-nash.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-segin.dtb
-> diff --git a/arch/arm64/boot/dts/freescale/imx93w-evk.dts b/arch/arm64/boot/dts/freescale/imx93w-evk.dts
+On Fri, Jan 23, 2026 at 06:41:38AM +0000, Prathamesh Shete wrote:
+>  required:
+>    - compatible
+>    - reg
+> diff --git a/include/dt-bindings/gpio/nvidia,tegra264-gpio.h b/include/dt-bindings/gpio/nvidia,tegra264-gpio.h
 > new file mode 100644
-> index 000000000000..f09587dc74f6
+> index 000000000000..689cf5c67c0c
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx93w-evk.dts
-> @@ -0,0 +1,73 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright 2026 NXP
-> + */
-> +
-> +#include "imx93-11x11-evk.dts"
-> +
-> +/ {
-> +	model = "NXP i.MX93W EVK board";
-> +	compatible = "fsl,imx93-wireless-evk", "fsl,imx93";
-> +
-> +	/delete-node/ regulator-m2-pwr;
+> +++ b/include/dt-bindings/gpio/nvidia,tegra264-gpio.h
+> @@ -0,0 +1,62 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
 
-If you remove nodes then clearly you do not share a common design, thus
-you should not include other DTSI... and definitely even more confusing
-to include other DTS.
-
-> +
-> +	sound-bt-sco {
-> +		status = "disabled";
-> +	};
-> +
-> +	sound-micfil {
-> +		status = "disabled";
-
-Kind of same here.
-
-It's poor practice to include DTS inside DTS, some platforms disallow
-this. Is it acceptable pattern in NXP/iMX?
-
-> +	};
-> +};
-> +
-> +&pcal6524 {
-> +	/delete-node/ m2-pcm-level-shifter-hog;
-
-Why do you remove so much?
-
-> +};
-> +
-> +&reg_usdhc3_vmmc {
-> +	/delete-property/ vin-supply;
-
-Do you understand how inclusion works? You claim here you have common
-parts. Removing them means they are not common.
+Wrong license. Checkpatch tells you this. I did not run checkpatch that
+time, but run it now... but anyway, it is your task to run checkpatch,
+not mine.
 
 Best regards,
 Krzysztof
