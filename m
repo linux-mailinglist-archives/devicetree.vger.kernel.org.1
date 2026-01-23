@@ -1,344 +1,290 @@
-Return-Path: <devicetree+bounces-259119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259120-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ODT1OUfXc2kOzAAAu9opvQ
-	(envelope-from <devicetree+bounces-259119-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 21:17:11 +0100
+	id oLExHVTcc2mbzAAAu9opvQ
+	(envelope-from <devicetree+bounces-259120-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 21:38:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 894737A8D3
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 21:17:11 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE01E7A9E0
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 21:38:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id EE2C53004DDC
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 20:17:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7D26C301B727
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 20:38:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B94E423ABBD;
-	Fri, 23 Jan 2026 20:17:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E48972EDD41;
+	Fri, 23 Jan 2026 20:38:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="hXlPRMs4"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="eSNmbFaz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 459562C11C9;
-	Fri, 23 Jan 2026 20:17:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=90.155.92.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B8F42EC54A
+	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 20:38:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769199428; cv=none; b=OWsdyaQ4vhMrMQjjPyCHuA/U4XX4n78MuvZoXhZaRHGw3r0sa/vo8xiCK3xo9Og+Gfh7hZJx+SytMrfCcnl5535GXVsmwZgRHSNOtGyl1O98n3MVpEcEaUpLF39kCUjZzeCEEQMyaaB2rLrvZPTUDv9pMIc32FsdOx7hefaOyW0=
+	t=1769200721; cv=none; b=cZq+MlMaGcCK2/V/tgiD5JkuZFLVdLrYWEHbjXmamz4r4lh3fK3K/QskuF/70smlzPJf/Ll6vqPD2LiSHwXfccNIqm9P0v3GV7HDAUtGeUcKfI6J8pOec0PtI3048ZYfug/RDqBWFw4FavdJCYYc2KmE48xyw+OeRVEcj20k7ow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769199428; c=relaxed/simple;
-	bh=W7fElqeXvLjGvdvBJvO01XNxYEd6W/KLt382xCvPQ8Q=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=kVTHeFjqSKgByP+rC1nzaZJOuhoJ/RiF2y0C64Z6rlrFbJjWNcQb8MbTxB5bzJtapT3zAjaHcEJd7dRmNllgIBBoZdL9FeVl3wzZcT5ZtbcDkC4ToNejojrOQoGcQhnpO/ZEdEjWnzhnPUJD9fnxgTdKL6acDme/PiIenz9wZkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=desiato.srs.infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=hXlPRMs4; arc=none smtp.client-ip=90.155.92.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=desiato.srs.infradead.org
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=MIME-Version:Content-Type:References:
-	In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=vt1C7y6WfqXnSCjXstGpvtK6IOkDXE5Bg5gDzC2JlvE=; b=hXlPRMs4+JZtF9Dkhw1zfsvIZw
-	egaGFK7HZyIt2OYbK5u0h09vvG9TG8dbUXeQ5ZB8zyK+KDNqGhYa9Fff3fqLWdAGWWg2sUKmZV3Uu
-	pJkyVasOQinQAxvJk7waqyjxlDnJoWM8SWmXLqv5LuROOaRikICpY2mjCKZ29Ez0HZf+QBMiSz8qY
-	x7QwGqF85a4n9Y8B0AD5hwpdW8Iu/AyC0YO7wt6CamyOZT5b+GqZnypNzwtnkx67h7vWwea2/hp0e
-	rAnxAGCU0qck+KBdL+NxcP1S0fyRU51suYdjLuM72UtB9atYji+OLKLlu6NejuOXV8BxUNciQDKYS
-	4KQYMHDA==;
-Received: from [2001:8b0:10b::4] (helo=u09cd745991455d.ant.amazon.com)
-	by desiato.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vjNaQ-0000000300J-0KoM;
-	Fri, 23 Jan 2026 20:16:58 +0000
-Message-ID: <f663dbfff1568d8924a2a3b8fbd6532b97f54b68.camel@infradead.org>
-Subject: Re: [v6,2/7] ptp: vmclock: support device notifications
-From: David Woodhouse <dwmw2@infradead.org>
-To: Jakub Kicinski <kuba@kernel.org>, itazur@amazon.com
-Cc: graf@amazon.de, itazur@amazon.co.uk, conor+dt@kernel.org, 
- devicetree@vger.kernel.org, xmarcalx@amazon.co.uk,
- linux-kernel@vger.kernel.org,  edumazet@google.com, robh@kernel.org,
- richardcochran@gmail.com,  andrew+netdev@lunn.ch, mzxreary@0pointer.de,
- pabeni@redhat.com,  netdev@vger.kernel.org, krzk+dt@kernel.org,
- davem@davemloft.net, mail@bchalios.io
-Date: Fri, 23 Jan 2026 12:16:46 -0800
-In-Reply-To: <20260123031133.3059291-2-kuba@kernel.org>
-References: <20260121143402.3092-3-itazur@amazon.com>
-	 <20260123031133.3059291-2-kuba@kernel.org>
-Content-Type: multipart/signed; micalg="sha-256"; protocol="application/pkcs7-signature";
-	boundary="=-N6jXm8iVxQHBPWb7ym/n"
-User-Agent: Evolution 3.52.3-0ubuntu1.1 
+	s=arc-20240116; t=1769200721; c=relaxed/simple;
+	bh=2ITiRI1w/MWVnLrF7ChgAdh4IV7A2BJGVXCIwtt1T3M=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=krK6s8VyJYzfKVsK7xi5fQ0PBdDIH9zwsC7OyJ+Tm+AYBzqU9OUc0EQdf8c4ya2smYo2kL17/X3LuJD9L8wrcCrHvQMIRKDz0oUD5etbEIRn/YYp5fkvN/cJ4GYDHGZpDLVbUiKv6zk8TzxlSeBiiToYZ4eb641RQmlRA1pGq7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=eSNmbFaz; arc=none smtp.client-ip=209.85.160.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-4045ccdd239so783451fac.2
+        for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 12:38:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1769200717; x=1769805517; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=v6useoQdQxMlj4eG6EhLxMtnBIsZqLDPhN8NL6rAPI0=;
+        b=eSNmbFaz59iI4H/OsqkCsGyysFb2eGmBLOq894xP+LAG67aiVusheh2eGod7UgwZNY
+         mHgnELiliCC+qCEifX4LFSqfSVcXtRmHT/ryy+EHnDWHHIEdBtgBs0X2DlVKmErj8pmr
+         kkp4RfP4Qz4LswYGr1vCYaU1bDdd/0e+CNqgbPWgIsQJHAg2zrr3pWoI35uyBDwpVBfh
+         RNBQiNuobud80k1Ljhwv2zayC/6FCTfNSdDDOlq+gBdOcgF25dBsUQL4ar9FeEh25vVg
+         y344jxhhaSDAKgfQobMxFEUfGYp7x1o5gRGdHOwzREBRB/kg+ntFNNYBH2rUDiAiaJp2
+         v/3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769200717; x=1769805517;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=v6useoQdQxMlj4eG6EhLxMtnBIsZqLDPhN8NL6rAPI0=;
+        b=rQU6cvgdrkMs9NTlGJpeWsEeIvKbuh2I9CGl8yuNVMsQio777aKF66q4XbO8mWY4xr
+         PbQhmytBzidKL5fyYUv4TfxqLQHEpCcd/sJAG50LgZnh7jFnz9I+OUgbZUjbhu8bWsS8
+         OrVj/mjTw6RjlZwivSt9rsBueYJyKIPxHJsiHZIDb2ayYC/kgamgad8mstwnQpZgEhb9
+         jyf2R46J3gs86s+tL9LcHTYdvXrM7eZyq3BBFuJoyW28f3fZBpVRt1vc7Fayxv9NVDwJ
+         o6ydNItNxb41z9v3t96Y/zlhYhG+pC5qImLZzDbb6wHEyZm6xRSXEpW26Ae+zXiB4kaX
+         UkFw==
+X-Forwarded-Encrypted: i=1; AJvYcCWWiBmVFUG5412/zY7IRw1rTvuHc0Nu0t6Lk2ZrE963SM8NoygdyTTzDrGmiHihHHJWV3Tl0o45CV5V@vger.kernel.org
+X-Gm-Message-State: AOJu0YzyIm9oaDSMrEvUbxuBnruUUzDhB8pvlzggZ8Fv/KTI55Z6VrIu
+	qJ5FQOox4+62j2FLrPtzs8c9lFZl3dTSbQEDb85Yb289SxEBMUCUKXvUBRqhSPlQhlkcKDdIO5h
+	Aiu+z
+X-Gm-Gg: AZuq6aJnDDtn+tTUsRHuSdTDPeQhg6aGtw7BmaLigJv6Ib1lirrBR+E5sF7wPWXlxO2
+	MUBVKiCs5k/J73Nsr+o/GuHz8KX9T8Unq7ABEBHq2XJqaCTZis221R4tSQaYnY31c6Z3MfVwiL1
+	cJQiT5N2xxBO5E6lU3y/Jcj+Zc/2ptkw6PQLoq9/dvCGKSTYnoNZO03noVlKSEJT44JUUopGREq
+	qnbyhu4SsEPy7BGCHGun3rVZaMwfI6qq392YUfr7KiqGgX0eLURMuWHLOcEoAKD32C7WZhz2T3A
+	At2x51MYBxiWIvjr1v1pjaBc6TQlTp5+coN1Y5uReoYtJlm/LoMD1WmDacO7fd3M96Yx/XdUMl9
+	6kpkGfJ6jRhk99bWUr6f6gj9L4iYayS+4YPSlSJ4mY3GEsHq5zsQUN+ui4D/bxnZAg/+qVHyH1B
+	Y1T0E1vFCr9HzrqA==
+X-Received: by 2002:a05:6870:8197:b0:3e8:8e57:a7a9 with SMTP id 586e51a60fabf-408ab88339bmr1936769fac.52.1769200717074;
+        Fri, 23 Jan 2026 12:38:37 -0800 (PST)
+Received: from [127.0.1.1] ([2600:8803:e7e4:500:198f:2b50:c48:1875])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-408af888da1sm2167805fac.6.2026.01.23.12.38.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Jan 2026 12:38:35 -0800 (PST)
+From: David Lechner <dlechner@baylibre.com>
+Subject: [PATCH v6 0/9] spi: add multi-lane support
+Date: Fri, 23 Jan 2026 14:37:23 -0600
+Message-Id: <20260123-spi-add-multi-bus-support-v6-0-12af183c06eb@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SRS-Rewrite: SMTP reverse-path rewritten from <dwmw2@infradead.org> by desiato.infradead.org. See http://www.infradead.org/rpr.html
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/33QyWrDMBQF0F8xWletnqZYWfU/SheyhkYQD5Vk4
+ xD875UdSkoxXl7BPe+iO0ouBpfQubqj6KaQQt+VIF8qZC66+3I42JIRJVSQGgROQ8DaWtyO1xx
+ wMyacxmHoY8bQMGGJMIJ7iUp/iM6HebM/Ph85uu+xnMiPR9To5LDp2zbkc3UN3Tjjzs35rdUpu
+ 4jW0iWk3Mfbtm+CrbVOAQL8YMoEmGBKVG2AWumFf2/07Rqa6F7LuQ2e6BMDcjrCaMFqrahUjAG
+ 3agdjT4wSOMJYwRh3RJwUWFezHYz/wUAdYbxgwIU1ghJubL2DiV9MEgB6hIn1z5Tw3BPlZaP/Y
+ cuy/ACPuZDtLgIAAA==
+X-Change-ID: 20250815-spi-add-multi-bus-support-1b35d05c54f6
+To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Marcelo Schmitt <marcelo.schmitt@analog.com>, 
+ Michael Hennerich <michael.hennerich@analog.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>
+Cc: Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-iio@vger.kernel.org, David Lechner <dlechner@baylibre.com>, 
+ Jonathan Cameron <jonathan.cameron@huawei.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6619; i=dlechner@baylibre.com;
+ h=from:subject:message-id; bh=2ITiRI1w/MWVnLrF7ChgAdh4IV7A2BJGVXCIwtt1T3M=;
+ b=owGbwMvMwMV46IwC43/G/gOMp9WSGDKL73CIOsn58LqcbK3deetT/7mqe52pTixdh9X4+lb8b
+ 43JzN3QyWjMwsDIxSArpsjyRuLmvCS+5mtzbmTMgBnEygQyhYGLUwAmIibG/k9xV8jTao/ml4nX
+ HG8ILrYoOWLxwb2Zf/EudaM0/h8/1h2xUjz84LDaFA+OmCUffFKa5UNqTB92zj7Sd0FtWZZzNtf
+ 6og4/pnCWI6VHVfI8f9qHWs3uTvV+PVm2ITp4tssdmT1OuV4fnD0aunr3Pt+4wcftvXPpf/l29v
+ UF7/4FL9jKL/Xu7eHWwuoTTzdkCvu567MXb/Xet0Vq/9rljad4Y3O2JGkaLIjWLJOOTPwXWv5nW
+ VLRsZyLPxYHpGuHVsgd7rxzNL2uxFZu301VZ/N8pQcNknKl+W5bO3Rj/7RuVTv3Vp133tclstPP
+ frdTkct+4xe/hv8ym1xm4g4Pe7fD31d0GLyyEal79ckHAA==
+X-Developer-Key: i=dlechner@baylibre.com; a=openpgp;
+ fpr=8A73D82A6A1F509907F373881F8AF88C82F77C03
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_SMIME(-2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[infradead.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[infradead.org:s=desiato.20200630];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	URIBL_MULTI_FAIL(0.00)[infradead.org:server fail,sto.lore.kernel.org:server fail];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	TAGGED_FROM(0.00)[bounces-259119-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-259120-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[baylibre.com];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[amazon.de,amazon.co.uk,kernel.org,vger.kernel.org,google.com,gmail.com,lunn.ch,0pointer.de,redhat.com,davemloft.net,bchalios.io];
-	HAS_ATTACHMENT(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dwmw2@infradead.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[infradead.org:+];
+	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 894737A8D3
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: CE01E7A9E0
 X-Rspamd-Action: no action
 
+This series is adding support for SPI controllers and peripherals that
+have multiple SPI data lanes (data lanes being independent sets of
+SDI/SDO lines, each with their own serializer/deserializer).
 
---=-N6jXm8iVxQHBPWb7ym/n
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+This series covers this specific use case:
 
-On Thu, 2026-01-22 at 19:11 -0800, Jakub Kicinski wrote:
->=20
-> > +	status =3D acpi_install_notify_handler(adev->handle, ACPI_DEVICE_NOTI=
-FY,
-> > +					=C2=A0=C2=A0=C2=A0=C2=A0 vmclock_acpi_notification_handler,
-> > +					=C2=A0=C2=A0=C2=A0=C2=A0 dev);
->=20
-> Since acpi_install_notify_handler() is called here, should there be a
-> corresponding acpi_remove_notify_handler() in vmclock_remove()? Currently
-> the handler remains registered after device removal, which could lead to
-> a use-after-free if the hypervisor sends a notification after the driver
-> state has been freed.
->=20
-> [ ... ]
->=20
-> > @@ -549,6 +653,11 @@ static int vmclock_probe(struct platform_device *p=
-dev)
-> > =C2=A0=C2=A0	if (ret)
-> > =C2=A0=C2=A0		return ret;
-> >=20
-> > +	init_waitqueue_head(&st->disrupt_wait);
-> > +	ret =3D vmclock_setup_notification(dev, st);
-> > +	if (ret)
-> > +		return ret;
->=20
-> [ ... ]
->=20
-> > @@ -581,6 +690,8 @@ static int vmclock_probe(struct platform_device *pd=
-ev)
-> > =C2=A0=C2=A0		return -ENODEV;
-> > =C2=A0=C2=A0	}
-> >=20
-> > +	dev->driver_data =3D st;
->=20
-> Is there a race window here? The ACPI notification handler is installed
-> in vmclock_setup_notification() which runs earlier in vmclock_probe(),
-> but the handler accesses device->driver_data. If the hypervisor sends a
-> notification between vmclock_setup_notification() and this assignment,
-> vmclock_acpi_notification_handler() would dereference NULL or garbage.
->=20
-> I see this is fixed later in the series by commit 47fdd294385e which
-> moves dev->driver_data =3D st before vmclock_setup_notification().
++--------------+    +---------+
+| SPI          |    | SPI     |
+| Controller   |    | ADC     |
+|              |    |         |
+|          CS0 |--->| CS      |
+|         SCLK |--->| SCLK    |
+|          SDO |--->| SDI     |
+|         SDI0 |<---| SDOA    |
+|         SDI1 |<---| SDOB    |
+|         SDI2 |<---| SDOC    |
+|         SDI3 |<---| SDOD    |
++--------------+     +--------+
 
-With the incremental diff below, I've fixed both of these in
-https://git.infradead.org/?p=3Dusers/dwmw2/linux.git;a=3Dshortlog;h=3Drefs/=
-heads/vmclock
+The ADC is a simultaneous sampling ADC that can convert 4 samples at the
+same time. It has 4 data output lines (SDOA-D) that each contain the
+data of one of the 4 channels. So it requires a SPI controller with 4
+separate deserializers in order to receive all of the information at the
+same time.
 
-Takahiro and Babis have the test environment set up to actually
-exercise the notifications, so I'll let one of them actually do the
-testing and repost v7.
+This should also work for the use case in [1] as well. (Some of the
+patches in this series were already submitted there). In that case the
+SPI controller is used kind of like it is two separate SPI controllers,
+each with its own chip select, clock, and data lines.
 
-Takahiro, please remember to add your own 'Signed-off-by:' as you do.
+[1]: https://lore.kernel.org/linux-spi/20250616220054.3968946-1-sean.anderson@linux.dev/
 
-Thanks!
+The DT bindings are a fairly straight-forward mapping of which pins on
+the peripheral are connected to which pins on the controller. The SPI
+core code parses this and makes the information available to drivers.
+When a peripheral driver sees that multiple data lanes are wired up, it
+can chose to use them when sending messages.
 
+The SPI message API is a bit higher-level than just specifying the
+number of data lines for a SPI transfer though. I did some research on
+other SPI controllers that have this feature. They tend to be the kind
+meant for connecting to two flash memory chips at the same time but can
+be used more generically as well. They generally have the option to
+either use one lane at a time (Sean's use case), or can mirror the same
+data on multiple lanes (no users of this yet) or can perform striping
+of a single data FIFO/DMA stream to/from the two lanes (our use case).
 
---- a/drivers/ptp/ptp_vmclock.c
-+++ b/drivers/ptp/ptp_vmclock.c
-@@ -490,17 +490,6 @@ static const struct file_operations vmclock_miscdev_fo=
-ps =3D {
-=20
- /* module operations */
-=20
--static void vmclock_remove(void *data)
--{
--	struct vmclock_state *st =3D data;
--
--	if (st->ptp_clock)
--		ptp_clock_unregister(st->ptp_clock);
--
--	if (st->miscdev.minor !=3D MISC_DYNAMIC_MINOR)
--		misc_deregister(&st->miscdev);
--}
--
- #if IS_ENABLED(CONFIG_ACPI)
- static acpi_status vmclock_acpi_resources(struct acpi_resource *ares, void=
- *data)
- {
-@@ -636,6 +625,32 @@ static int vmclock_setup_notification(struct device *d=
-ev,
- 	return vmclock_setup_of_notification(dev);
- }
-=20
-+static void vmclock_remove(void *data)
-+{
-+	struct device *dev =3D data;
-+	struct vmclock_state *st =3D dev->driver_data;
-+
-+	if (!st) {
-+		dev_err(dev, "vmclock_remove() called with NULL driver_data");
-+		return;
-+	}
-+
-+#if IS_ENABLED(CONFIG_ACPI)
-+	if (has_acpi_companion(dev))
-+		acpi_remove_notify_handler(ACPI_COMPANION(dev)->handle,
-+					   ACPI_DEVICE_NOTIFY,
-+					   vmclock_acpi_notification_handler);
-+#endif
-+
-+	if (st->ptp_clock)
-+		ptp_clock_unregister(st->ptp_clock);
-+
-+	if (st->miscdev.minor !=3D MISC_DYNAMIC_MINOR)
-+		misc_deregister(&st->miscdev);
-+
-+	dev->driver_data =3D NULL;
-+}
-+
- static void vmclock_put_idx(void *data)
- {
- 	struct vmclock_state *st =3D data;
-@@ -701,12 +716,13 @@ static int vmclock_probe(struct platform_device *pdev=
-)
-=20
- 	st->miscdev.minor =3D MISC_DYNAMIC_MINOR;
-=20
--	ret =3D devm_add_action_or_reset(&pdev->dev, vmclock_remove, st);
-+	init_waitqueue_head(&st->disrupt_wait);
-+	dev->driver_data =3D st;
-+
-+	ret =3D devm_add_action_or_reset(&pdev->dev, vmclock_remove, dev);
- 	if (ret)
- 		return ret;
-=20
--	init_waitqueue_head(&st->disrupt_wait);
--	dev->driver_data =3D st;
- 	ret =3D vmclock_setup_notification(dev, st);
- 	if (ret)
- 		return ret;
+For now, the API assumes that if you want to do mirror/striping, then
+you want to use all available data lanes. Otherwise, it just uses the
+first data lane for "normal" SPI transfers.
 
+Signed-off-by: David Lechner <dlechner@baylibre.com>
+---
+Maintainer coordination:
 
+Jonathan has requested an immutable branch from the SPI tree containing
+the SPI patches from this series (all but the last two patches) so that
+he can pick up the IIO patches.
 
---=-N6jXm8iVxQHBPWb7ym/n
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Transfer-Encoding: base64
+Given the timing in the release cycle, if the SPI bits make it into the
+next merge window, then an immutable branch won't be necessary and we
+will pick up the IIO patches after -rc1.
 
-MIAGCSqGSIb3DQEHAqCAMIACAQExDzANBglghkgBZQMEAgEFADCABgkqhkiG9w0BBwEAAKCCD9Aw
-ggSOMIIDdqADAgECAhAOmiw0ECVD4cWj5DqVrT9PMA0GCSqGSIb3DQEBCwUAMGUxCzAJBgNVBAYT
-AlVTMRUwEwYDVQQKEwxEaWdpQ2VydCBJbmMxGTAXBgNVBAsTEHd3dy5kaWdpY2VydC5jb20xJDAi
-BgNVBAMTG0RpZ2lDZXJ0IEFzc3VyZWQgSUQgUm9vdCBDQTAeFw0yNDAxMzAwMDAwMDBaFw0zMTEx
-MDkyMzU5NTlaMEExCzAJBgNVBAYTAkFVMRAwDgYDVQQKEwdWZXJva2V5MSAwHgYDVQQDExdWZXJv
-a2V5IFNlY3VyZSBFbWFpbCBHMjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMjvgLKj
-jfhCFqxYyRiW8g3cNFAvltDbK5AzcOaR7yVzVGadr4YcCVxjKrEJOgi7WEOH8rUgCNB5cTD8N/Et
-GfZI+LGqSv0YtNa54T9D1AWJy08ZKkWvfGGIXN9UFAPMJ6OLLH/UUEgFa+7KlrEvMUupDFGnnR06
-aDJAwtycb8yXtILj+TvfhLFhafxroXrflspavejQkEiHjNjtHnwbZ+o43g0/yxjwnarGI3kgcak7
-nnI9/8Lqpq79tLHYwLajotwLiGTB71AGN5xK+tzB+D4eN9lXayrjcszgbOv2ZCgzExQUAIt98mre
-8EggKs9mwtEuKAhYBIP/0K6WsoMnQCcCAwEAAaOCAVwwggFYMBIGA1UdEwEB/wQIMAYBAf8CAQAw
-HQYDVR0OBBYEFIlICOogTndrhuWByNfhjWSEf/xwMB8GA1UdIwQYMBaAFEXroq/0ksuCMS1Ri6en
-IZ3zbcgPMA4GA1UdDwEB/wQEAwIBhjAdBgNVHSUEFjAUBggrBgEFBQcDBAYIKwYBBQUHAwIweQYI
-KwYBBQUHAQEEbTBrMCQGCCsGAQUFBzABhhhodHRwOi8vb2NzcC5kaWdpY2VydC5jb20wQwYIKwYB
-BQUHMAKGN2h0dHA6Ly9jYWNlcnRzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydEFzc3VyZWRJRFJvb3RD
-QS5jcnQwRQYDVR0fBD4wPDA6oDigNoY0aHR0cDovL2NybDMuZGlnaWNlcnQuY29tL0RpZ2lDZXJ0
-QXNzdXJlZElEUm9vdENBLmNybDARBgNVHSAECjAIMAYGBFUdIAAwDQYJKoZIhvcNAQELBQADggEB
-ACiagCqvNVxOfSd0uYfJMiZsOEBXAKIR/kpqRp2YCfrP4Tz7fJogYN4fxNAw7iy/bPZcvpVCfe/H
-/CCcp3alXL0I8M/rnEnRlv8ItY4MEF+2T/MkdXI3u1vHy3ua8SxBM8eT9LBQokHZxGUX51cE0kwa
-uEOZ+PonVIOnMjuLp29kcNOVnzf8DGKiek+cT51FvGRjV6LbaxXOm2P47/aiaXrDD5O0RF5SiPo6
-xD1/ClkCETyyEAE5LRJlXtx288R598koyFcwCSXijeVcRvBB1cNOLEbg7RMSw1AGq14fNe2cH1HG
-W7xyduY/ydQt6gv5r21mDOQ5SaZSWC/ZRfLDuEYwggWbMIIEg6ADAgECAhAH5JEPagNRXYDiRPdl
-c1vgMA0GCSqGSIb3DQEBCwUAMEExCzAJBgNVBAYTAkFVMRAwDgYDVQQKEwdWZXJva2V5MSAwHgYD
-VQQDExdWZXJva2V5IFNlY3VyZSBFbWFpbCBHMjAeFw0yNDEyMzAwMDAwMDBaFw0yODAxMDQyMzU5
-NTlaMB4xHDAaBgNVBAMME2R3bXcyQGluZnJhZGVhZC5vcmcwggIiMA0GCSqGSIb3DQEBAQUAA4IC
-DwAwggIKAoICAQDali7HveR1thexYXx/W7oMk/3Wpyppl62zJ8+RmTQH4yZeYAS/SRV6zmfXlXaZ
-sNOE6emg8WXLRS6BA70liot+u0O0oPnIvnx+CsMH0PD4tCKSCsdp+XphIJ2zkC9S7/yHDYnqegqt
-w4smkqUqf0WX/ggH1Dckh0vHlpoS1OoxqUg+ocU6WCsnuz5q5rzFsHxhD1qGpgFdZEk2/c//ZvUN
-i12vPWipk8TcJwHw9zoZ/ZrVNybpMCC0THsJ/UEVyuyszPtNYeYZAhOJ41vav1RhZJzYan4a1gU0
-kKBPQklcpQEhq48woEu15isvwWh9/+5jjh0L+YNaN0I//nHSp6U9COUG9Z0cvnO8FM6PTqsnSbcc
-0j+GchwOHRC7aP2t5v2stVx3KbptaYEzi4MQHxm/0+HQpMEVLLUiizJqS4PWPU6zfQTOMZ9uLQRR
-ci+c5xhtMEBszlQDOvEQcyEG+hc++fH47K+MmZz21bFNfoBxLP6bjR6xtPXtREF5lLXxp+CJ6KKS
-blPKeVRg/UtyJHeFKAZXO8Zeco7TZUMVHmK0ZZ1EpnZbnAhKE19Z+FJrQPQrlR0gO3lBzuyPPArV
-hvWxjlO7S4DmaEhLzarWi/ze7EGwWSuI2eEa/8zU0INUsGI4ywe7vepQz7IqaAovAX0d+f1YjbmC
-VsAwjhLmveFjNwIDAQABo4IBsDCCAawwHwYDVR0jBBgwFoAUiUgI6iBOd2uG5YHI1+GNZIR//HAw
-HQYDVR0OBBYEFFxiGptwbOfWOtMk5loHw7uqWUOnMDAGA1UdEQQpMCeBE2R3bXcyQGluZnJhZGVh
-ZC5vcmeBEGRhdmlkQHdvb2Rob3Uuc2UwFAYDVR0gBA0wCzAJBgdngQwBBQEBMA4GA1UdDwEB/wQE
-AwIF4DAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwQwewYDVR0fBHQwcjA3oDWgM4YxaHR0
-cDovL2NybDMuZGlnaWNlcnQuY29tL1Zlcm9rZXlTZWN1cmVFbWFpbEcyLmNybDA3oDWgM4YxaHR0
-cDovL2NybDQuZGlnaWNlcnQuY29tL1Zlcm9rZXlTZWN1cmVFbWFpbEcyLmNybDB2BggrBgEFBQcB
-AQRqMGgwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3NwLmRpZ2ljZXJ0LmNvbTBABggrBgEFBQcwAoY0
-aHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL1Zlcm9rZXlTZWN1cmVFbWFpbEcyLmNydDANBgkq
-hkiG9w0BAQsFAAOCAQEAQXc4FPiPLRnTDvmOABEzkIumojfZAe5SlnuQoeFUfi+LsWCKiB8Uextv
-iBAvboKhLuN6eG/NC6WOzOCppn4mkQxRkOdLNThwMHW0d19jrZFEKtEG/epZ/hw/DdScTuZ2m7im
-8ppItAT6GXD3aPhXkXnJpC/zTs85uNSQR64cEcBFjjoQDuSsTeJ5DAWf8EMyhMuD8pcbqx5kRvyt
-JPsWBQzv1Dsdv2LDPLNd/JUKhHSgr7nbUr4+aAP2PHTXGcEBh8lTeYea9p4d5k969pe0OHYMV5aL
-xERqTagmSetuIwolkAuBCzA9vulg8Y49Nz2zrpUGfKGOD0FMqenYxdJHgDCCBZswggSDoAMCAQIC
-EAfkkQ9qA1FdgOJE92VzW+AwDQYJKoZIhvcNAQELBQAwQTELMAkGA1UEBhMCQVUxEDAOBgNVBAoT
-B1Zlcm9rZXkxIDAeBgNVBAMTF1Zlcm9rZXkgU2VjdXJlIEVtYWlsIEcyMB4XDTI0MTIzMDAwMDAw
-MFoXDTI4MDEwNDIzNTk1OVowHjEcMBoGA1UEAwwTZHdtdzJAaW5mcmFkZWFkLm9yZzCCAiIwDQYJ
-KoZIhvcNAQEBBQADggIPADCCAgoCggIBANqWLse95HW2F7FhfH9bugyT/danKmmXrbMnz5GZNAfj
-Jl5gBL9JFXrOZ9eVdpmw04Tp6aDxZctFLoEDvSWKi367Q7Sg+ci+fH4KwwfQ8Pi0IpIKx2n5emEg
-nbOQL1Lv/IcNiep6Cq3DiyaSpSp/RZf+CAfUNySHS8eWmhLU6jGpSD6hxTpYKye7PmrmvMWwfGEP
-WoamAV1kSTb9z/9m9Q2LXa89aKmTxNwnAfD3Ohn9mtU3JukwILRMewn9QRXK7KzM+01h5hkCE4nj
-W9q/VGFknNhqfhrWBTSQoE9CSVylASGrjzCgS7XmKy/BaH3/7mOOHQv5g1o3Qj/+cdKnpT0I5Qb1
-nRy+c7wUzo9OqydJtxzSP4ZyHA4dELto/a3m/ay1XHcpum1pgTOLgxAfGb/T4dCkwRUstSKLMmpL
-g9Y9TrN9BM4xn24tBFFyL5znGG0wQGzOVAM68RBzIQb6Fz758fjsr4yZnPbVsU1+gHEs/puNHrG0
-9e1EQXmUtfGn4InoopJuU8p5VGD9S3Ikd4UoBlc7xl5yjtNlQxUeYrRlnUSmdlucCEoTX1n4UmtA
-9CuVHSA7eUHO7I88CtWG9bGOU7tLgOZoSEvNqtaL/N7sQbBZK4jZ4Rr/zNTQg1SwYjjLB7u96lDP
-sipoCi8BfR35/ViNuYJWwDCOEua94WM3AgMBAAGjggGwMIIBrDAfBgNVHSMEGDAWgBSJSAjqIE53
-a4blgcjX4Y1khH/8cDAdBgNVHQ4EFgQUXGIam3Bs59Y60yTmWgfDu6pZQ6cwMAYDVR0RBCkwJ4ET
-ZHdtdzJAaW5mcmFkZWFkLm9yZ4EQZGF2aWRAd29vZGhvdS5zZTAUBgNVHSAEDTALMAkGB2eBDAEF
-AQEwDgYDVR0PAQH/BAQDAgXgMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDBDB7BgNVHR8E
-dDByMDegNaAzhjFodHRwOi8vY3JsMy5kaWdpY2VydC5jb20vVmVyb2tleVNlY3VyZUVtYWlsRzIu
-Y3JsMDegNaAzhjFodHRwOi8vY3JsNC5kaWdpY2VydC5jb20vVmVyb2tleVNlY3VyZUVtYWlsRzIu
-Y3JsMHYGCCsGAQUFBwEBBGowaDAkBggrBgEFBQcwAYYYaHR0cDovL29jc3AuZGlnaWNlcnQuY29t
-MEAGCCsGAQUFBzAChjRodHRwOi8vY2FjZXJ0cy5kaWdpY2VydC5jb20vVmVyb2tleVNlY3VyZUVt
-YWlsRzIuY3J0MA0GCSqGSIb3DQEBCwUAA4IBAQBBdzgU+I8tGdMO+Y4AETOQi6aiN9kB7lKWe5Ch
-4VR+L4uxYIqIHxR7G2+IEC9ugqEu43p4b80LpY7M4KmmfiaRDFGQ50s1OHAwdbR3X2OtkUQq0Qb9
-6ln+HD8N1JxO5nabuKbymki0BPoZcPdo+FeRecmkL/NOzzm41JBHrhwRwEWOOhAO5KxN4nkMBZ/w
-QzKEy4PylxurHmRG/K0k+xYFDO/UOx2/YsM8s138lQqEdKCvudtSvj5oA/Y8dNcZwQGHyVN5h5r2
-nh3mT3r2l7Q4dgxXlovERGpNqCZJ624jCiWQC4ELMD2+6WDxjj03PbOulQZ8oY4PQUyp6djF0keA
-MYIDuzCCA7cCAQEwVTBBMQswCQYDVQQGEwJBVTEQMA4GA1UEChMHVmVyb2tleTEgMB4GA1UEAxMX
-VmVyb2tleSBTZWN1cmUgRW1haWwgRzICEAfkkQ9qA1FdgOJE92VzW+AwDQYJYIZIAWUDBAIBBQCg
-ggE3MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI2MDEyMzIwMTY0
-NlowLwYJKoZIhvcNAQkEMSIEICxlH2W8Lhjbe5GOIH+4srWZNkuboyW8eDWlwsNV72AwMGQGCSsG
-AQQBgjcQBDFXMFUwQTELMAkGA1UEBhMCQVUxEDAOBgNVBAoTB1Zlcm9rZXkxIDAeBgNVBAMTF1Zl
-cm9rZXkgU2VjdXJlIEVtYWlsIEcyAhAH5JEPagNRXYDiRPdlc1vgMGYGCyqGSIb3DQEJEAILMVeg
-VTBBMQswCQYDVQQGEwJBVTEQMA4GA1UEChMHVmVyb2tleTEgMB4GA1UEAxMXVmVyb2tleSBTZWN1
-cmUgRW1haWwgRzICEAfkkQ9qA1FdgOJE92VzW+AwDQYJKoZIhvcNAQEBBQAEggIAa/mQYKxAnONv
-9Q2stfexZweLajR0094kKXL1mRa+rGM0MKAy/QyOo0/0bOcK+HH/+3jf1Xl9fgwsSv4swHIMLQFj
-UVvwLULAqGWNZOddhTRWP+uWCQmT6g5IMlzhdykZR3LEZM0j9btMZ4d05o4+O90u5+u6s3BTKP0w
-wF8o52aSguP3+A1NNBNajzp5GyfvxxVV709s1CIl1kCYyhhHkmL0LgBlK3M6VTAR7C+XbwTWO0Sz
-XHiZvYlFSDkYYEfcyzXb+yqDHfyQ32/NoTqgkStbjLpUviI9/+IZ+xdye/WA+mULIEM2P9+it3jc
-MXOz9JwJ21k0Bo2yvhiMaK1LTnrxEbmZiupArM36erEuRDhj8EFo2QChj9u8Ws33rzmS5QkrOwMr
-CymwyN1R0Nf6w9Yjx/qy7XbRro/mOusk/S3IcFbwFoH+RnSOdTI5slop5u3+nuq2txZLUPUOApTK
-g+3cr6CAQTY+hCkHXBzDCWLEetIjZIJtNfN7+rRB1zdHFda++YqMgIxfLuw0sFfZHO1ecqZLnml2
-E0OddUi25Y/6k1mjNNAdLwS+FqwVvQzNMuNvFZ4Bw5L4xQJKkHX59RQqx0zd+iG+Psoc35NtJXXS
-1HMICRTmZmre2fnWd8HgjPwdmJaNnkw+0jMutCT06glx2C25jfZxpqxA8zxfXIgAAAAAAAA=
+Changes in v6:
+- Addressed several review comments in the "spi: support controllers
+  with multiple data lanes" patch.
+- Fixed some typos in the documentation patch.
+- Link to v5: https://lore.kernel.org/r/20260112-spi-add-multi-bus-support-v5-0-295f4f09f6ba@baylibre.com
 
+Changes in v5:
+- Fixed up affected dt-bindings for a new SPI controller that was added
+  recently.
+- Made some clarification and fixes in the documentation in several
+  places.
+- Fixed parsing of mapping properties.
+- Link to v4: https://lore.kernel.org/r/20251219-spi-add-multi-bus-support-v4-0-145dc5204cd8@baylibre.com
 
---=-N6jXm8iVxQHBPWb7ym/n--
+Changes in v4:
+- New patch to change spi-{rx,tx}-bus-width to array. This will cover
+  most use cases.
+- Split data-lanes property into spi-{rx,tx}-lane-map. These properties
+  are now only needed for special cases instead of being the primary
+  property for multi-lane support.
+- Didn't pick up Rob's acks since all DT bindings are significantly changed.
+- Rework other code to accommodate the above changes.
+- New documentation patch.
+- Link to v3: https://lore.kernel.org/r/20251201-spi-add-multi-bus-support-v3-0-34e05791de83@baylibre.com
+
+Changes in v3:
+- Use existing data-lanes devicetree property name instead of creating a
+  new one.
+- Renamed "buses" to "lanes" everywhere to match the devicetree property
+  name.
+- Clarified bindings description about how to specify data lanes.
+- Link to v2: https://lore.kernel.org/r/20251107-spi-add-multi-bus-support-v2-0-8a92693314d9@baylibre.com
+
+Changes in v2:
+- Renamed devicetree property spi-buses to spi-data-buses. (Driver code
+  was already using spi->data_buses, so it matches).
+- Fixed a small bug in the AXI ADC driver changes.
+- Moved one line of code in the ADC driver changes.
+- Link to v1: https://lore.kernel.org/r/20251014-spi-add-multi-bus-support-v1-0-2098c12d6f5f@baylibre.com
+
+---
+David Lechner (9):
+      spi: dt-bindings: change spi-{rx,tx}-bus-width to arrays
+      spi: dt-bindings: add spi-{tx,rx}-lane-map properties
+      spi: support controllers with multiple data lanes
+      spi: add multi_lane_mode field to struct spi_transfer
+      spi: Documentation: add page on multi-lane support
+      spi: dt-bindings: adi,axi-spi-engine: add multi-lane support
+      spi: axi-spi-engine: support SPI_MULTI_LANE_MODE_STRIPE
+      dt-bindings: iio: adc: adi,ad7380: add spi-rx-bus-width property
+      iio: adc: ad7380: add support for multiple SPI lanes
+
+ .../bindings/display/panel/sitronix,st7789v.yaml   |   5 +-
+ .../devicetree/bindings/iio/adc/adi,ad4030.yaml    |  42 +++-
+ .../devicetree/bindings/iio/adc/adi,ad4695.yaml    |   5 +-
+ .../devicetree/bindings/iio/adc/adi,ad7380.yaml    |  23 +++
+ .../bindings/spi/adi,axi-spi-engine.yaml           |  15 ++
+ .../bindings/spi/allwinner,sun4i-a10-spi.yaml      |   6 +-
+ .../bindings/spi/allwinner,sun6i-a31-spi.yaml      |   6 +-
+ .../bindings/spi/andestech,ae350-spi.yaml          |   6 +-
+ .../bindings/spi/nvidia,tegra210-quad.yaml         |   6 +-
+ .../bindings/spi/spi-peripheral-props.yaml         |  40 +++-
+ Documentation/spi/index.rst                        |   1 +
+ Documentation/spi/multiple-data-lanes.rst          | 217 +++++++++++++++++++++
+ drivers/iio/adc/ad7380.c                           |  51 +++--
+ drivers/spi/spi-axi-spi-engine.c                   | 145 +++++++++++++-
+ drivers/spi/spi.c                                  | 144 +++++++++++++-
+ include/linux/spi/spi.h                            |  30 +++
+ 16 files changed, 702 insertions(+), 40 deletions(-)
+---
+base-commit: a0c666c25aeefd16f4b088c6549a6fb6b65a8a1d
+change-id: 20250815-spi-add-multi-bus-support-1b35d05c54f6
+
+Best regards,
+-- 
+David Lechner <dlechner@baylibre.com>
+
 
