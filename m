@@ -1,251 +1,432 @@
-Return-Path: <devicetree+bounces-259107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259108-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gMFiLt3Hc2lZygAAu9opvQ
-	(envelope-from <devicetree+bounces-259107-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 20:11:25 +0100
+	id 0Bm6H6PJc2mQygAAu9opvQ
+	(envelope-from <devicetree+bounces-259108-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 20:18:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B19F7A0B2
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 20:11:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CF977A171
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 20:18:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B49D83050D6D
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 19:09:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 48FA1301D6B7
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 19:18:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FEAE2620DE;
-	Fri, 23 Jan 2026 19:09:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B60E7208961;
+	Fri, 23 Jan 2026 19:18:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="G41R9t1p";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="HuV0z4O/"
+	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="Px01h+eA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FE231F03D9
-	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 19:09:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D4BE2741A0
+	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 19:18:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769195395; cv=none; b=mQcLQHEQLztCR2lBAwG1m4um/a2YC4ynJKeArot5HpwPrnzb/H0A/5PvLvdvMeTkao8sCH0cwu9cPVnGWNFNCuO6xD15W5VJCkcz8hnu+74d33A7/TSKTpOkS4ncVSHLL29/aq+BOqb0y1HPTP1R4Km286BVg7m5zknyKVeMUS4=
+	t=1769195887; cv=none; b=uN+IOpc5mdOTqs78BxW0Nwk674qQ/a+VW6ggWodY7kOeZljG/dWdAZkf7OS7JTlR551dqznzFbY/VoIN8ttOKZddWJ/7VZWv4kxM3++ULwKhbnadBLdtFP/RH/bEt8BlOM1JICvmK8lhWe3Rl4n7XXhxu29GKqKhxM8vUhNI9Gg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769195395; c=relaxed/simple;
-	bh=BeoZj4Fl6JdDZ3Hlx3tkx4xppCnx5cXNsW1rw57SB1U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DEnLtVJQJV7FHFpfWjUgD2uG/TVCIIU10CV6CpIuTU0TVrDeEZ0lzRnnLorw/dE1TfMVI+zgx9dptnUszFrjmVEf05N7q+2S/x3ZQCK9itrpP3N436V8SzdEJO+geyn6bmLo8o+x/p2QIUtWrU6AI3tZwYHjRuMDi3pR1OLlleg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=G41R9t1p; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=HuV0z4O/; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60NHcMvR3648929
-	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 19:09:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=0T0XPnkEToV8Aufux3/ltEAf
-	YbvRoDx8ubYhNQlQeks=; b=G41R9t1plK7A8osjs8Yin07n4LZzvI9bC24Nt3IN
-	E3t9AxIlhN6/7Dn4d41PuykYqUl5rJTmC2C1fZGUNS7K0rFibDUBjg91rCgz9psW
-	R94sotYzb1VxDjIvymBN1/gJXDVxg4NIw2YMDZhks//7hpAi9tTmsClOAnnL4tel
-	0IKV80L/eyPfNDFgdbucNBIzv24Gl750ZVhk/0IAHrnv9Yd8DgiZ/B2dqf5vIU/f
-	GAXSzw/kI9vOStsoQmugQJll3k/1ptQJvzJJLmEQWSOVfH9sYhuhWFymFRoE5jyg
-	CBNm4QqtyvBt/zALv8IOZy5F2bCKjL30PXMgD+cowMy1bQ==
-Received: from mail-ua1-f69.google.com (mail-ua1-f69.google.com [209.85.222.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4buy4nug1m-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 19:09:53 +0000 (GMT)
-Received: by mail-ua1-f69.google.com with SMTP id a1e0cc1a2514c-9411b2335f4so7145871241.3
-        for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 11:09:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769195393; x=1769800193; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=0T0XPnkEToV8Aufux3/ltEAfYbvRoDx8ubYhNQlQeks=;
-        b=HuV0z4O/hO0NC/konui1uYABi5G64qqNKjsp4C18JllxUc/zWJGoVSFjEoLjEtr4HH
-         XHjDg3XBWV1GItfXWd2DXMI+A5kIRhZNWoNQWojvTzXc/lMRs1DHSI5CimciF1lU5o3I
-         6g5h/1wP6fElWTfXFv4l8816f8tjqxbzzh7eCsvfLpE1U2C6Y8vG0NO2G7YNxSOABaSj
-         FN2oDAFrxdP6W+hPM/Mdxg1tlT9VIB/bH1FbLca5u+5K9EpkKaKMq6wOB2g1dl4IYGh6
-         b2JvcN42cTVwwD2ugW4cASqJjWdy8ll3ybkhMc3RIH+YSAttXrVqGHKG7AJV28jWlAH/
-         xbAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769195393; x=1769800193;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0T0XPnkEToV8Aufux3/ltEAfYbvRoDx8ubYhNQlQeks=;
-        b=ifwXyA7yA0Q0OieyCNxiLh27T6ecvFiaf7SUrBlJmJPcjTU7O86XVricdjyI3J82xu
-         0ah2/ZcO6mteutMDsH+55aFRKbl5wkqBEsEzmApfaju22xatv3QbRZOvOCgnrDpU5usV
-         9bGKE+s3gHArqZMkTf+mxDNIhjkj+jvoy1E6y/4iUsLdS6iZFmh3XGVhTvXiQrVOjO7U
-         6NZvXjSObQpxzLFhzI8B30+kCCyHnkS/WiaDZRNE4bw01rmoHDZPKeDwU9lMvOGRJ2Kq
-         u2SkKmw8E13YZXvTJW5B4VxlAyXDyjt0ibpydflUUJQuwXglK0zy+IsX171dUCXuNZl1
-         DpxQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUa8RuZTjCxqjXCuhYoAOYSOrEqaxkxdF8UDV4seFPyInlyUbu5ETNF777EqFZI2ggmS/WTeRHlDQTF@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw2+wJVr03O8QO7LHMSTOF2sl/8ej/pY5r/fHhb26QDqC16zBF0
-	UwE2hjs1ZB3KtQX8CtwJdOTCILfQmbJF6ZWxPADJ7AoCNID7XOTla+0gRWOhJHocpu+olplRIRN
-	Mur81ZZF/Lgbb6FGcue22RIJSx/glNsGyHDz8VhIkC5RpMLOEFQsK0c/Leseu9cem
-X-Gm-Gg: AZuq6aKEUou1ntn/NdkanarN7qT8UKOp1uZHS0Bce7twp4JTc4V1oBt8XfKQi/RB4XD
-	ajkDuZfudrQVdigQLChL1HSeQemJ5RtZIGelgJyYTLmNVG0d/6qNqzpyDVhFd3Cco2YBIySaiHL
-	Dm7ZPP4xHazKAALUaHDtLpp54nB/v3AzzRfWtNpJvyhzW8LgzdbIQJvCOECMkBR5sFq0nhN7rSF
-	aAva9rFlYvo8G7U41t7T368rC/td8J6g/PQKqm+Rf2VVkq3UyGNaZFUW09B38DWF1nYSg3cRCXQ
-	NyHCx/+az/H9Wot0iaKE+NkWfHNUunMpk4bFRzQ1gFYNxut7g5onN5Ni4Qqx3MeoGrExGSjsOD9
-	RSkHfxSFoQE1WAKiawCYhjeMVf8yf7vjLN+1PPCceO+yNk0C/vc1YXhRdv+QBuvJz+14t2xa3rA
-	A49IzZCOfWpN3+gFPq5JNOgl4=
-X-Received: by 2002:a05:6102:2ac4:b0:5ef:a164:ebed with SMTP id ada2fe7eead31-5f54bd36d33mr1458105137.43.1769195393042;
-        Fri, 23 Jan 2026 11:09:53 -0800 (PST)
-X-Received: by 2002:a05:6102:2ac4:b0:5ef:a164:ebed with SMTP id ada2fe7eead31-5f54bd36d33mr1458089137.43.1769195392587;
-        Fri, 23 Jan 2026 11:09:52 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59de49189casm829979e87.47.2026.01.23.11.09.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jan 2026 11:09:51 -0800 (PST)
-Date: Fri, 23 Jan 2026 21:09:50 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Varadarajan Narayanan <varadarajan.narayanan@oss.qualcomm.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: ipq9574: Enable eMMC variant
-Message-ID: <yrjdxfyfrslr4iflok7iqaq7lzm7lvq7quxquh3ge47bhsl3br@gm4y3usj7wfj>
-References: <20260123120016.3671812-1-varadarajan.narayanan@oss.qualcomm.com>
- <20260123120016.3671812-5-varadarajan.narayanan@oss.qualcomm.com>
+	s=arc-20240116; t=1769195887; c=relaxed/simple;
+	bh=KkKlOaZI84FRMwvPHRCgWD174QDeULhQsKbE9MmepDc=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=WXNEPy1vt0G5jsOAo6r16JM98Xak7pGs+I6eoD6uyZPMYKaO13qEoyW00/AC0YH4SsmgdOLjrYteb6Dpp7jS4OHC5fe+6TNc9RDq2Nx6vRORy7OBfrceC6DZl/t2CHR777y8rHHF8cQ/QW/UnZ56/CHijXmH9XTHqdEoYm+Re/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=Px01h+eA; arc=none smtp.client-ip=185.67.36.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.de
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout02.posteo.de (Postfix) with ESMTPS id DDCFE240101
+	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 20:18:03 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=posteo.de; s=2017;
+	t=1769195883; bh=EkhUtgoic/y3ldPfdUhjFsRmPv7Pnl1iCuE+wtj3oxc=;
+	h=Message-ID:Subject:From:To:Cc:Date:Autocrypt:Content-Type:
+	 MIME-Version:OpenPGP:From;
+	b=Px01h+eAbFjPcBVAM1p6VLhQGL2LTuhQh4luPYokNqCh/QGkF+C8d420H7wx4ZgfW
+	 Ch75skbxTDaes8Rn1rDb63Ff3ZCKm+5J9x8C+qdNHvG/xoXdk14EocKIxCgSHGrloM
+	 kPHFrf8guOxLlHlLi0UiVNKivhTFSsceRULRLfKIdNF+M8PCmcZZYDbKUeS5a92/A0
+	 c+kK1nyqLBTYIkJcP9JX60exd0NDFfzFBlxcSzHbsCjeZ12UQV2XSM+OM0LkQWzoeN
+	 o1YuKSBz0Hl2pQfZan69spzkm/KZv4KZvYGLpEw1RfJlj5gbYkJWz3S+vod5Zkr1vI
+	 WyFOZ6u7/UASg==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4dySPh6DKwz6tvd;
+	Fri, 23 Jan 2026 20:18:00 +0100 (CET)
+Message-ID: <9d75b9bcfd18f2e2073f201375458af7bf5f1dc7.camel@posteo.de>
+Subject: Re: [PATCH RFC 3/4] leds: add delay_on, delay_off and invert
+ attributes to disk trigger
+From: Markus Probst <markus.probst@posteo.de>
+To: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, Rob Herring
+	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
+ <conor+dt@kernel.org>, Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+ Damien Le Moal <dlemoal@kernel.org>, Niklas Cassel <cassel@kernel.org>,
+ John Garry	 <john.g.garry@oracle.com>, Jason Yan <yanaijie@huawei.com>,
+ "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>, "Martin K.
+ Petersen" <martin.petersen@oracle.com>
+Cc: Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-ide@vger.kernel.org, linux-scsi@vger.kernel.org
+Date: Fri, 23 Jan 2026 19:18:03 +0000
+In-Reply-To: <20260123-ledtrig_disk_-v1-3-07004756467b@posteo.de>
+References: <20260123-ledtrig_disk_-v1-0-07004756467b@posteo.de>
+	 <20260123-ledtrig_disk_-v1-3-07004756467b@posteo.de>
+Autocrypt: addr=markus.probst@posteo.de; prefer-encrypt=mutual;
+ keydata=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
+ jfGillcaQOqFZ3WwVqyzG1BUfTow==
+Content-Type: multipart/signed; micalg="pgp-sha256";
+	protocol="application/pgp-signature"; boundary="=-znz3lQKgoCTyMhe+g0XG"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260123120016.3671812-5-varadarajan.narayanan@oss.qualcomm.com>
-X-Proofpoint-GUID: SKI2cK3lMc2fabSJwX5iDfcZgGtz1imt
-X-Authority-Analysis: v=2.4 cv=I5lohdgg c=1 sm=1 tr=0 ts=6973c781 cx=c_pps
- a=UbhLPJ621ZpgOD2l3yZY1w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=psUOJB6t_zCGlG3Wsw8A:9 a=CjuIK1q_8ugA:10
- a=TOPH6uDL9cOC6tEoww4z:22
-X-Proofpoint-ORIG-GUID: SKI2cK3lMc2fabSJwX5iDfcZgGtz1imt
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIzMDE0NiBTYWx0ZWRfX2AkVnb44dK0G
- 2RQG00/zALLGPjfBBNpGFosBw6hK2FV8E0N06E1m+Kq+18sWaFVB2iN5qpP+bYjlqqzfyH9Yj9I
- zZyo/Jf7lZ3YPMnuEj4DkhYJU/MHOZSAB6BvMUGVD02PuDeh8WZb9f5MNnE+kgDpHl7pF5WKAxq
- KjMivNFiVz1u82W8Ps0CrTj+6OTXg1YaoXYoCXkfkvqtlIga/cOxP2RBS7SVZ3XG0ieiJ6Y2icM
- dIpr4cgd6WK7iYZ5OsQmeBUCtiy2340NgsaS5M4+rlsORxJr8meulHMa9yHaLuIDtOlt7IUN5VU
- nL2yscSZwTd3AEXaoEIV5X9cmXQu2W/UsZSLEbetgWBLilqXDHe/L1aEvM6XO9VkkfxriY8D6Aj
- hdpprGiwPXEC02RuWPeanhUA3xZKtdWjwkd6eEATq1UxXoaXQS/luIQubqWbrJyBnjxVtKAEpv3
- XaxeAPxjZjk845dJl6g==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
- definitions=2026-01-23_03,2026-01-22_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 clxscore=1015 malwarescore=0 lowpriorityscore=0 phishscore=0
- spamscore=0 bulkscore=0 suspectscore=0 adultscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601230146
+OpenPGP: url=https://posteo.de/keys/markus.probst@posteo.de.asc; preference=encrypt
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[posteo.de,none];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[posteo.de:s=2017];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259107-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:dkim];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-259108-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,oracle.com,huawei.com,HansenPartnership.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	DKIM_TRACE(0.00)[posteo.de:+];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[markus.probst@posteo.de,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-0.998];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 2B19F7A0B2
+	DBL_BLOCKED_OPENRESOLVER(0.00)[posteo.de:email,posteo.de:dkim,posteo.de:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 1CF977A171
 X-Rspamd-Action: no action
 
-On Fri, Jan 23, 2026 at 05:30:16PM +0530, Varadarajan Narayanan wrote:
-> RDP433 can have NAND or eMMC based on a board level rework. Since the
-> same GPIOS are used for both the interfaces, only one of them can be
-> used. Add a new DTS file to disable NAND and enable eMMC.
-> 
-> Signed-off-by: Varadarajan Narayanan <varadarajan.narayanan@oss.qualcomm.com>
+
+--=-znz3lQKgoCTyMhe+g0XG
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, 2026-01-23 at 19:05 +0000, Markus Probst wrote:
+> Add delay_on, delay_off and invert device attributes to leds using the
+> disk trigger.
+>=20
+> Signed-off-by: Markus Probst <markus.probst@posteo.de>
 > ---
-> v2: Instead of including ipq9574-rdp433.dts and disabling NAND, include
->     ipq9574-rdp433-common.dtsi and enable eMMC.
-> ---
->  arch/arm64/boot/dts/qcom/Makefile             |  2 +-
->  .../boot/dts/qcom/ipq9574-rdp433-emmc.dts     | 32 +++++++++++++++++++
->  2 files changed, 33 insertions(+), 1 deletion(-)
->  create mode 100644 arch/arm64/boot/dts/qcom/ipq9574-rdp433-emmc.dts
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 6f34d5ed331c..d5fe12ef4300 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -26,7 +26,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk01.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk10-c1.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk10-c2.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp418.dtb
-> -dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp433.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp433.dtb ipq9574-rdp433-emmc.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp449.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp453.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp454.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp433-emmc.dts b/arch/arm64/boot/dts/qcom/ipq9574-rdp433-emmc.dts
-> new file mode 100644
-> index 000000000000..c4989d00b18a
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp433-emmc.dts
-> @@ -0,0 +1,32 @@
-> +// SPDX-License-Identifier: BSD-3-Clause-Clear
-> +/*
-> + * IPQ9574 RDP433 (eMMC variant) board device tree source
-> + *
-> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "ipq9574-rdp-common.dtsi"
-> +#include "ipq9574-rdp433-common.dtsi"
-> +
-> +/ {
-> +	model = "Qualcomm Technologies, Inc. IPQ9574/AP-AL02-C7 (eMMC)";
-> +	compatible = "qcom,ipq9574-ap-al02-c7-emmc", "qcom,ipq9574";
+>  drivers/leds/trigger/ledtrig-disk.c | 194 ++++++++++++++++++++++++++++++=
++++---
+>  1 file changed, 182 insertions(+), 12 deletions(-)
+>=20
+> diff --git a/drivers/leds/trigger/ledtrig-disk.c b/drivers/leds/trigger/l=
+edtrig-disk.c
+> index e9b87ee944f2..ed5ef83a5b35 100644
+> --- a/drivers/leds/trigger/ledtrig-disk.c
+> +++ b/drivers/leds/trigger/ledtrig-disk.c
+> @@ -9,31 +9,201 @@
+> =20
+>  #include <linux/kernel.h>
+>  #include <linux/init.h>
+> +#include <linux/list.h>
+>  #include <linux/leds.h>
+> +#include "../leds.h"
+> =20
+> -#define BLINK_DELAY 30
+> +#define DEFAULT_BLINK_DELAY 30
+> =20
+> -DEFINE_LED_TRIGGER(ledtrig_disk);
+> -DEFINE_LED_TRIGGER(ledtrig_disk_read);
+> -DEFINE_LED_TRIGGER(ledtrig_disk_write);
+> +struct ledtrig_disk_data {
+> +	unsigned long delay_on;
+> +	unsigned long delay_off;
+> +	unsigned int invert;
 > +};
 > +
-> +&qpic_nand {
-> +	status = "disabled";
-
-Please disable nand in ipq9574-rdp-common.dtsi and enable it where
-required.
-
+> +static ssize_t led_delay_on_show(struct device *dev,
+> +		struct device_attribute *attr, char *buf)
+> +{
+> +	struct led_classdev *led_cdev =3D led_trigger_get_led(dev);
+> +	struct ledtrig_disk_data *disk_data =3D led_get_trigger_data(led_cdev);
+> +
+> +	return sprintf(buf, "%lu\n", disk_data->delay_on);
+> +}
+> +
+> +static ssize_t led_delay_on_store(struct device *dev,
+> +		struct device_attribute *attr, const char *buf, size_t size)
+> +{
+> +	struct led_classdev *led_cdev =3D led_trigger_get_led(dev);
+> +	struct ledtrig_disk_data *disk_data =3D led_get_trigger_data(led_cdev);
+> +	unsigned long state;
+> +	ssize_t ret;
+> +
+> +	ret =3D kstrtoul(buf, 10, &state);
+> +	if (ret)
+> +		return ret;
+> +
+> +	disk_data->delay_on =3D state;
+> +
+> +	return size;
+> +}
+> +
+> +static ssize_t led_delay_off_show(struct device *dev,
+> +		struct device_attribute *attr, char *buf)
+> +{
+> +	struct led_classdev *led_cdev =3D led_trigger_get_led(dev);
+> +	struct ledtrig_disk_data *disk_data =3D led_get_trigger_data(led_cdev);
+> +
+> +	return sprintf(buf, "%lu\n", disk_data->delay_off);
+> +}
+> +
+> +static ssize_t led_delay_off_store(struct device *dev,
+> +		struct device_attribute *attr, const char *buf, size_t size)
+> +{
+> +	struct led_classdev *led_cdev =3D led_trigger_get_led(dev);
+> +	struct ledtrig_disk_data *disk_data =3D led_get_trigger_data(led_cdev);
+> +	unsigned long state;
+> +	ssize_t ret;
+> +
+> +	ret =3D kstrtoul(buf, 10, &state);
+> +	if (ret)
+> +		return ret;
+> +
+> +	disk_data->delay_off =3D state;
+> +
+> +	return size;
+> +}
+> +
+> +static ssize_t led_invert_show(struct device *dev,
+> +		struct device_attribute *attr, char *buf)
+> +{
+> +	struct ledtrig_disk_data *disk_data =3D
+> +		led_trigger_get_drvdata(dev);
+> +
+> +	return sprintf(buf, "%u\n", disk_data->invert);
+> +}
+> +
+> +static ssize_t led_invert_store(struct device *dev,
+> +		struct device_attribute *attr, const char *buf, size_t size)
+> +{
+> +	struct led_classdev *led_cdev =3D led_trigger_get_led(dev);
+> +	struct ledtrig_disk_data *disk_data =3D led_get_trigger_data(led_cdev);
+> +	unsigned long state;
+> +	int ret;
+> +
+> +	ret =3D kstrtoul(buf, 0, &state);
+> +	if (ret)
+> +		return ret;
+> +
+> +	led_set_brightness_nosleep(led_cdev, state ? LED_FULL : LED_OFF);
+> +	disk_data->invert =3D !!state;
+> +
+> +	return size;
+> +}
+> +
+> +static DEVICE_ATTR(delay_on, 0644, led_delay_on_show, led_delay_on_store=
+);
+> +static DEVICE_ATTR(delay_off, 0644, led_delay_off_show, led_delay_off_st=
+ore);
+> +static DEVICE_ATTR(invert, 0644, led_invert_show, led_invert_store);
+> +
+> +static struct attribute *ledtrig_disk_attrs[] =3D {
+> +	&dev_attr_delay_on.attr,
+> +	&dev_attr_delay_off.attr,
+> +	&dev_attr_invert.attr,
+> +	NULL
+> +};
+> +ATTRIBUTE_GROUPS(ledtrig_disk);
+> +
+> +static void pattern_init(struct led_classdev *led_cdev, struct ledtrig_d=
+isk_data *disk_data)
+> +{
+> +	unsigned int size =3D 0;
+> +
+> +	u32 *pattern __free(kfree) =3D led_get_default_pattern(led_cdev, &size)=
+;
+> +	if (!pattern)
+> +		return;
+> +
+> +	if (size !=3D 3) {
+> +		dev_warn(led_cdev->dev,
+> +			 "Expected 3 but got %u values for delays + invert pattern\n",
+> +			 size);
+> +		return;
+> +	}
+> +
+> +	disk_data->delay_on =3D pattern[0];
+> +	disk_data->delay_off =3D pattern[1];
+> +	disk_data->invert =3D !!pattern[2];
+> +}
+> +
+> +static int ledtrig_disk_activate(struct led_classdev *led_cdev)
+> +{
+> +	struct ledtrig_disk_data *disk_data;
+> +
+> +	disk_data =3D kzalloc(sizeof(*disk_data), GFP_KERNEL);
+> +	if (!disk_data)
+> +		return -ENOMEM;
+> +
+> +	disk_data->delay_on =3D DEFAULT_BLINK_DELAY;
+> +	disk_data->delay_off =3D DEFAULT_BLINK_DELAY;
+> +
+> +	led_set_trigger_data(led_cdev, disk_data);
+> +
+> +	if (led_cdev->flags & LED_INIT_DEFAULT_TRIGGER) {
+> +		pattern_init(led_cdev, disk_data);
+> +		/*
+> +		 * Mark as initialized even on pattern_init() error because
+> +		 * any consecutive call to it would produce the same error.
+> +		 */
+> +		led_cdev->flags &=3D ~LED_INIT_DEFAULT_TRIGGER;
+> +	}
+> +
+> +	led_set_brightness_nosleep(led_cdev, disk_data->invert ? LED_FULL : LED=
+_OFF);
+> +
+> +	return 0;
+> +}
+> +
+> +static struct led_trigger ledtrig_disk =3D {
+> +	.name =3D "disk-activity",
+> +	.activate =3D ledtrig_disk_activate,
+> +	.groups =3D ledtrig_disk_groups,
+> +};
+> +static struct led_trigger ledtrig_disk_read =3D {
+> +	.name =3D "disk-read",
+> +	.activate =3D ledtrig_disk_activate,
+> +	.groups =3D ledtrig_disk_groups,
+> +};
+> +static struct led_trigger ledtrig_disk_write =3D {
+> +	.name =3D "disk-write",
+> +	.activate =3D ledtrig_disk_activate,
+> +	.groups =3D ledtrig_disk_groups,
 > +};
 > +
-> +&sdhc_1 {
-> +	pinctrl-0 = <&sdc_default_state>;
-> +	pinctrl-names = "default";
-> +	mmc-ddr-1_8v;
-> +	mmc-hs200-1_8v;
-> +	mmc-hs400-1_8v;
-> +	mmc-hs400-enhanced-strobe;
-> +	max-frequency = <384000000>;
-> +	bus-width = <8>;
-> +	status = "okay";
+> +static void ledtrig_disk_blink_oneshot(struct led_trigger *trig)
+> +{
+> +	struct led_classdev *led_cdev;
+> +	struct ledtrig_disk_data *disk_data;
+> +
+> +	rcu_read_lock();
+> +	list_for_each_entry_rcu(led_cdev, &trig->led_cdevs, trig_list) {
+> +		disk_data =3D led_get_trigger_data(led_cdev);
+Also there is likely a race condition here, as there is a time gap
+between the led being added to trig->led_cdevs and
+ledtrig_disk_activate being run.
 
-empty line before status, please.
+Is there a better way to avoid the race condition, than defining an own
+list for each trigger?
 
-> +};
-> -- 
-> 2.34.1
-> 
+Thanks
+- Markus Probst
 
--- 
-With best wishes
-Dmitry
+> +		led_blink_set_oneshot(led_cdev, &disk_data->delay_on, &disk_data->dela=
+y_off,
+> +				      disk_data->invert);
+> +	}
+> +	rcu_read_unlock();
+> +}
+> =20
+>  void ledtrig_disk_activity(bool write)
+>  {
+> -	led_trigger_blink_oneshot(ledtrig_disk, BLINK_DELAY, BLINK_DELAY, 0);
+> +	ledtrig_disk_blink_oneshot(&ledtrig_disk);
+>  	if (write)
+> -		led_trigger_blink_oneshot(ledtrig_disk_write,
+> -					  BLINK_DELAY, BLINK_DELAY, 0);
+> +		ledtrig_disk_blink_oneshot(&ledtrig_disk_write);
+>  	else
+> -		led_trigger_blink_oneshot(ledtrig_disk_read,
+> -					  BLINK_DELAY, BLINK_DELAY, 0);
+> +		ledtrig_disk_blink_oneshot(&ledtrig_disk_read);
+>  }
+>  EXPORT_SYMBOL(ledtrig_disk_activity);
+> =20
+>  static int __init ledtrig_disk_init(void)
+>  {
+> -	led_trigger_register_simple("disk-activity", &ledtrig_disk);
+> -	led_trigger_register_simple("disk-read", &ledtrig_disk_read);
+> -	led_trigger_register_simple("disk-write", &ledtrig_disk_write);
+> +	led_trigger_register(&ledtrig_disk);
+> +	led_trigger_register(&ledtrig_disk_read);
+> +	led_trigger_register(&ledtrig_disk_write);
+> =20
+>  	return 0;
+>  }
+
+--=-znz3lQKgoCTyMhe+g0XG
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJPBAABCAA5FiEEgnQYxPSsWOdyMMRzNHYf+OetQ9IFAmlzyVwbFIAAAAAABAAO
+bWFudTIsMi41KzEuMTEsMiwyAAoJEDR2H/jnrUPSRzAP/0Xl3Dy9j6tityy4ImxH
+cMCxapiyXSrx3huV58S8jsOkxzwZP4WVh1it6TjAlCDHHhP1qpoF9yGhVUYU8rpR
+s8OTSUH8EovshfJytBinfay8/QJgK7+X8cymQWmUVSRvTb6NckPp7it3H0d/Ld2n
+nIKDRejxZD2eWbqBOKffp9bKRC3LbLykIPjhgFuMaHDSeJKPH9aCyoohri5iGI37
+Vhud8T2DZn3iX/8WcI/XGFC53DT1F0w7NtFTFVlifDnQC4Mm3c2xkr4pQcb/p1Wz
+QDPuWDViCjfEBezb70RPl0s2o2frLZdTn5oEzrpXUr5Ls3O4rocoFYMtWm6usfVn
+1jV7H4EYMw9+iCwgPh1g7uGJv4eL7/oz87ITVovheXaDBOPwFE6qxP45W0SeG5ZH
+/tbpOYVpI+NvAtBmkB3zsM/sqcfcKWGmi7KgG5wMKi0RLJSKpX9ockJkefyI4+OZ
+scNwLaeTUh0CofKacTzXnfG+iU3Xji12iQ3AiciRigeXJkuTLcf9hyYVe3NxhH/i
+e3yfs0foyrdSDaF3uk2YS7rhNv88e72H9kzqgkkUIasIVSv9M5eSWX83tM+WmSgS
+i8LLlR+ewMRdD4io42PusQUh4oqhEgR7WoUtYouIIgsWisGnC8qnjJrtobVNgDTP
+Fz2dLy0XmHfS/+RqfV3J32gn
+=D6ke
+-----END PGP SIGNATURE-----
+
+--=-znz3lQKgoCTyMhe+g0XG--
 
