@@ -1,160 +1,207 @@
-Return-Path: <devicetree+bounces-259070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259071-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +HN5EC2gc2lqxgAAu9opvQ
-	(envelope-from <devicetree+bounces-259070-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 17:22:05 +0100
+	id kAWRKYmgc2lqxgAAu9opvQ
+	(envelope-from <devicetree+bounces-259071-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 17:23:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id C797E786A0
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 17:22:03 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0050C78711
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 17:23:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id E62093037745
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 16:15:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 325B73096994
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 16:15:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55AA1314A61;
-	Fri, 23 Jan 2026 16:14:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F46B2EBB83;
+	Fri, 23 Jan 2026 16:15:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m8sS4H2I"
+	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="d+knp8cN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B2DE310652
-	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 16:14:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769184885; cv=none; b=Y0EvrBSjaxkGvnc7YicrQXYLkfEqvNkOICl3BjbWIRazfk9MrZbhIsrmhET1YMNAPD24i0FJEf0yDxewR4ZhgHFPRvkrKWzpeWgltulLI3vBoyBaqEt/srxM1Td7xHGA1C2K+VtP4cBveWvcxsR0W1lWPjCWKY8v7geGZHKTowM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769184885; c=relaxed/simple;
-	bh=04fVH+Ybh/xOhNmHGiUOXfPQ1KtKmvbSXs3LJi9XWQU=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=c7qEnYM/xWpX7kyb533dMDJfEAZ4pb2Ij7DKq552mmmb7bgi/gHcm16jdTor2xDWLt3XfMzUJqeYeIcD0Acy0qXvNdjXeT9Hmu1LR29v6RBrsYL+ihwkzP+lnahvZlGQyHCKlv/y3OxmgaPbqO2DF11EFUz1PHSwg9xwyLgkaD8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m8sS4H2I; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-47ee301a06aso27475165e9.0
-        for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 08:14:43 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E69C32874FB
+	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 16:15:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.128.180
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769184929; cv=pass; b=d4jyTOKbuM8W/t7ArLWTk0Bcw+69TknJNExruvsf3ckpWMQv5fJlobe53BSyM5/D/OVXM8Fc4Btq5nsApnsR6e6fG+mf+/78UzT089gxyIOI0t3+q4MGCssCalkhzH7I75bTRAmE+gUiGXtoBE3iK06zUD9JugBZzBDFksQv0vw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769184929; c=relaxed/simple;
+	bh=ULo9/7nEk6hL4PrJCYwZVROHGT49nj8c1aEMZ+/vAQs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ErhaFBYYrS/7+7AvrH6BlvR3YbsuFGTy1xA1xWgqn7o+2/NNt7dP4lkPl8vOxd24DWAu4gNaTzl+1HICOccGMKTU0egQKPxNHLJXecrlMn8568YVaiNcEnBC0AnYT8ObWbvmNjbCX/ZFThN9s009QzMFAbnsve4jG9tg5szMmMo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=oss.tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=d+knp8cN; arc=pass smtp.client-ip=209.85.128.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=oss.tenstorrent.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tenstorrent.com
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-78fc4425b6bso20368187b3.1
+        for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 08:15:27 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1769184927; cv=none;
+        d=google.com; s=arc-20240605;
+        b=F5dOV/VpX+muhs+7CY9/VbI8o8bTz0XTvmbzloC2BhGC7uatw0rSfsyR9yNTQWByuA
+         CK9ll+2atDy/UmFAaqb5HoiKZE1/9AyjfMdxfnh4iIR6TUxIClAMIa5waHH/3lb4UpHD
+         wW6+EiKgdY1+IlKpl9AX7m2HBWrRyBw2DTNgcYOY2ZjFzH9GKMkBE9PM0EV9JeyqhWhY
+         CohXBVYRULxEAvWUPSk2oXdG29eLQt6TvZqRAbNxr2XUwhtZMr3/zevE2SzVZYjWX9fw
+         rFh/diDOG3X6BW7kBGiClcvuluIwNj7Mddm1X3RSooCvHHOpYQ7qLMGiXLRRf4i8DepB
+         Zgiw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=+bZRUnNeGrRNpaGcouolNUcM8xSpXsG3h0Z9VUZ9+Rk=;
+        fh=I+D455V/PzJRjdNk7GzOFOkJRBF2M7KnXgtr5gm13cM=;
+        b=KMxl4SFRM7B5lISEEmpBGu6YztYNYpMlWOuROQsJzkliLtsRwkwr8+lKRhMSbWWuJ9
+         S5Cs3s9jayyhAIOFWAVmuGMaObK1l0jRuLhsDe7XI/AfbOhT48O+rvxEFDE94NLdoGQA
+         UP+H9di8TButoXRsND0nlWu7yOd8NxJruKEiazQgGt9bhdrP6neVBDuniGz9//34Jdl8
+         THczrrdewbe0gS+NO9E/I2G28tl+Eexq2AeJPwWimNFJrqOuUV7xSftrkwsXOACQ2m0e
+         z0zNymkg/XL2O+EhpbMJ6vhTqE/rZ4gepxAnFSEu65V096WN1YXyJggiDIp2PxYUpsmt
+         MoyQ==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769184882; x=1769789682; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=8ZZlt0wXGEeAJMNmrtm9rEmgb+VoKNl+2Pu9hilzxa8=;
-        b=m8sS4H2IhkURVj7K4opc9WYKWxtHLGt7gxdtFfE2zOdBz9tEel7HgvKV18ekgN9cae
-         zNLM767VvznXCdDiQfDOZiJ9ckLShSHeFM6psdkyyBT6Ezp2ziiLCjp8vwD1d+fzH6ux
-         yMh2qd8et6Eyyk6L5b67JFD4ULBh5nu9bV2C8sI7FqO4Z3U2E2GikkGa1QAvQKxswpFN
-         KKuG2TnwAZZKxOtrqLVuUMXKAMAOtdc0CYcSe5n0zP0RH54telVzIZds/5p/Pw0o9Zp0
-         feRrctfNp3aR93/FLOUqAxLgcKshUgB7zsOhjn0vq+MPtvUPlWsGRtOkMbkB3fUMV9N1
-         +pLg==
+        d=tenstorrent.com; s=google; t=1769184927; x=1769789727; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+bZRUnNeGrRNpaGcouolNUcM8xSpXsG3h0Z9VUZ9+Rk=;
+        b=d+knp8cNgo+Bgqmt1xea3LtlSLSQxgY8pjIfn4Iq3rhX4dyqqUe5VLwjt22NOvZ9VW
+         J4zoPFDES+rtO41V/gIX+icd3geIWrNZbBM1k9xDrzQxsXhqZrut4+VGNowBecOyl8gz
+         vHJFEKsswCKSZYRUTM4hycKl61uTJyankKqncQpoPGefQ/X/BqCLsZDvWVZc0qmtbDzw
+         7ZIhhLrpJiilf1Ok1huGDu1tPfqqmmhHVfmnfHsENcWLC/syHD9kPnRDPBdqLE3EwqiO
+         Jyb4P0dYNnCCdtwr2F7Gi7MyaR1dhXLuiQjQOJSuspGxixPfxaJfzTnpeb04TTqBrBY0
+         ICVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769184882; x=1769789682;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8ZZlt0wXGEeAJMNmrtm9rEmgb+VoKNl+2Pu9hilzxa8=;
-        b=Bo3C5nIDbLv5N6cNbAwWq1B7i5cwILT1JRUN6dONbOSPTYTxBLAf6tAnrVBHNkcru4
-         TcY966BYiJYTzje1vt9paz7EUPjbqrAPjLKgy9yqN2/xuyUaioSIhJISscd/hiiSNw/v
-         uleLuLKyq6Cwdi2Vr9T3oqeguS314jC87KXm1PzfeVJ6QUBAaYRrmisqrCDGdz+9opHm
-         BY11GznM0NQ61VZMjblFltpbA0soqTsZ9xahgqxAEY/l3qYTjKlaRhr46ZNIb+my6Tyf
-         lBs4yVszzewqyzcO2RrRJoBz5IEwCaZcnOHJBPiammwbGcJst5kcM/1XYEHNXnuJmPAL
-         NzSg==
-X-Forwarded-Encrypted: i=1; AJvYcCUyOqQ9/BJnN9ZU5cU1Pa5xpTvkn4VUWltu7BnBeGTNmUwyhMxsuNCBOD6QXEQa4W8pr2CynbMghUF4@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx0S9MCoGBso7fqpuUkWPwicg1yFg4w9ePApU+glxPzvsAHV7Zm
-	ZH3CaeTSD/lsfgK9c6ZLbrGjr7q8TNnWqHCQb3EiHtBnysSVoQY9BFHr
-X-Gm-Gg: AZuq6aJUFGozh/ory94bIifVj7f9LF4pfWqHXg0xwucV3VP0jUQvkM6EStykLeYO+nZ
-	m/L2AjMkL+u9OvJPcVmWC5+wp44MVvjS9vZ0CPDr+u1qrO2Nsms8LpuPAIAiPCje0XCXQu61VSL
-	Pnx7dlP0v+Vs9aE4t/G7r+clik+Rw1lDlJ7tRIz8V/F9MQY6MWfozjGonhSTieY3ekG5Y6eUH0x
-	itXRyhtIIHW9H1t2nGbxXI13ogDtWJpidFLvza56u/Pf6AFQCOjvGG74jLsZbuUC4pdifWB0Nqo
-	7RRfqpTKpkfB87vNwM6pV3U4HubWGjm/2RZomSXb//lHn4n7UJF0AFb5baUvDgFAGCx3EOdcfAU
-	XvkT+CXoGpNpO1wfcfpWmm4MwD/yTPsmgQtd/pQVj8tPkT1227DH0omapGNw0dpuHmiHNTdSTLB
-	9iVS/L9tp3pLq/e5A/BLQLQiaLGwQFaaYx3TWDNuTLSteN5wNNaBujq75pEPlT0XWw2iM4zitiQ
-	dib
-X-Received: by 2002:a05:600c:8b6e:b0:480:462e:d640 with SMTP id 5b1f17b1804b1-4804c9cfef1mr59266115e9.36.1769184881426;
-        Fri, 23 Jan 2026 08:14:41 -0800 (PST)
-Received: from RDEALENC-L01.ad.analog.com ([24.206.116.131])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4804dbe1fb8sm24330765e9.20.2026.01.23.08.14.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jan 2026 08:14:40 -0800 (PST)
-From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
-Date: Fri, 23 Jan 2026 16:14:33 +0000
-To: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-doc@vger.kernel.org
-Cc: Jonathan Cameron <jic23@kernel.org>, 
-	David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
-Subject: Re: [PATCH v5 2/8] iio: core: add fixed point parsing with 64-bit
- parts
-Message-ID: <3rtccxcqpxkwq54jjbl7l6rq3xm3ibsnlh5s7hiymo4okir7dg@ky43houswpjg>
-References: <20260123-adf41513-iio-driver-v5-0-2dce812a2dda@analog.com>
- <20260123-adf41513-iio-driver-v5-2-2dce812a2dda@analog.com>
+        d=1e100.net; s=20230601; t=1769184927; x=1769789727;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=+bZRUnNeGrRNpaGcouolNUcM8xSpXsG3h0Z9VUZ9+Rk=;
+        b=MOVL3mZ1hP9NA5OM2CGJgoXgDw9GRyasO6rfPLSk8+cYsz5QAk42QDeAAic46qB4yP
+         wJ5dgTJe12rfMF6+tfTQu1r2CrZ0VdQzlAjYEpwY1bPMgNWwFi2T+XyfUDGiFyjvCoM2
+         H/0QdCtUanVOdMWXk+qNXPgD4yzyEueSBCufEVVA428xqFmDIBK9Cjhxo6EZDeHGweMw
+         25Ng9dMs/S1LCDzQBlRxeV+nXlyCFDkxhpvQAA+uyNM4VX7PIS2bZfgrIRujo4lB1NwQ
+         SjmPXgVgWV8R9bRuL/t7AwxL2/qUSWA4oW2m+NRHJjeFwI4BhDnoXbgq54u2QG3H5mSp
+         NyfQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV1eGEE7OcYVdSoBReTnLnSnp0oJHun5uilUGkUFwsVV8QRadFYTaZC5zJ2Mv0mqJ6U7tF+XCu0nVU4@vger.kernel.org
+X-Gm-Message-State: AOJu0YxgrA3JKsCHSidPs3ePTalkb5md6gftVPBDexhIjzR02m9crjol
+	8RS5Tl2bvMBSysEVdfuw+NYJMBXmSQVdKNftJ0ghzYPLKOqvls9Jd1RG51tMui1A32+v0DwrbDa
+	r9rmQUtWIi1SkVk0wbONe913Mc6blOWCNPzNN1Kzv2A==
+X-Gm-Gg: AZuq6aLAVgoHGp3UeUlsZE/qi0khk6cIbvv9aGSAL+S27zOgV8Rsnh+FyxVPI1UQeue
+	ThjCvdNwozyygjOcmu4H02bSPXzvEvqOqQ5vydQ0oNfg2L7YDjjqxpjxgv7cOv8zWoSh6MSj/Pd
+	SX6ZHCezFfWzxnFg73L3d8UjG/8zih9jbDgotEqrY/hglTzi6em7TAp+tQqDUpAjlK3XKOUPFAH
+	EYok4N7tdAx97bmrwfjwxCOlp2jNe2ac9SbS+leiUOYfxvBNESxGY9XeVH4ZLAmG/qsEE7NgZk5
+	0wVhVJ5bzkAZpjLojhEJdHrljythAZ4JVGEuS6e7YZk2OkoeS/3dKDdwjT9uRqAYLUbBglk=
+X-Received: by 2002:a05:690c:39c:b0:793:bae9:9295 with SMTP id
+ 00721157ae682-79439925edfmr27856807b3.31.1769184926791; Fri, 23 Jan 2026
+ 08:15:26 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260123-adf41513-iio-driver-v5-2-2dce812a2dda@analog.com>
+References: <20260122-atlantis-clocks-v2-0-c66371639e66@oss.tenstorrent.com>
+ <20260122-atlantis-clocks-v2-2-c66371639e66@oss.tenstorrent.com> <1adc068bbf1a15b1b10651f6ad9385415f6d4227.camel@pengutronix.de>
+In-Reply-To: <1adc068bbf1a15b1b10651f6ad9385415f6d4227.camel@pengutronix.de>
+From: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
+Date: Fri, 23 Jan 2026 10:15:15 -0600
+X-Gm-Features: AZwV_Qi6CqkCPOD14PwEW74h_hED-jEGhbBNZe3VbRvLaoqSVWwFH86aFXA3uP0
+Message-ID: <CAEev2e_6PePu3omq-Zf1R-8TYikgz9V1cp6cwn0nZ8LaPHaJ2A@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] reset: tenstorrent: Add reset controller for Atlantis
+To: Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Drew Fustini <dfustini@oss.tenstorrent.com>, Joel Stanley <jms@oss.tenstorrent.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, joel@jms.id.au, 
+	fustini@kernel.org, mpe@kernel.org, mpe@oss.tenstorrent.com, 
+	npiggin@oss.tenstorrent.com, agross@kernel.org, agross@oss.tenstorrent.com, 
+	bmasney@redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[tenstorrent.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[tenstorrent.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259070-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-259071-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C797E786A0
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[asrinivasan@oss.tenstorrent.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[tenstorrent.com:+];
+	NEURAL_HAM(-0.00)[-0.998];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,pengutronix.de:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,tenstorrent.com:dkim]
+X-Rspamd-Queue-Id: 0050C78711
 X-Rspamd-Action: no action
 
-On 26/01/23 03:53PM, Rodrigo Alencar via B4 Relay wrote:
-> From: Rodrigo Alencar <rodrigo.alencar@analog.com>
-> 
-> Add iio_str_to_fixpoint64() function that leverages simple_strtoull()
-> to parse numbers from a string.
-> A helper function __iio_str_to_fixpoint64() replaces
-> __iio_str_to_fixpoint() implementation, extending its usage for
-> 64-bit fixed-point parsing.
-> 
-> Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
+Hi Philipp,
 
-...
-> +static int __iio_str_to_fixpoint64(const char *str, u64 fract_mult,
-> +				   s64 *integer, s64 *fract, bool scale_db)
-> +{
-> +	u64 i = 0, f = 0;
-> +	char *end;
-> +	int digit_count, precision = ffs(fract_mult);
+On Fri, Jan 23, 2026 at 7:00=E2=80=AFAM Philipp Zabel <p.zabel@pengutronix.=
+de> wrote:
+>
+> On Do, 2026-01-22 at 16:36 -0600, Anirudh Srinivasan wrote:
+> > Adds Atlantis Reset Controller and auxiliary device definitions for
+> > reset to share same regmap interface as clock controller.
+> >
 
-I've just noted that I should have used ffs64() here. 
+> > +     if (data->active_low ^ assert)
+> > +             val =3D mask;
+> > +     else
+> > +             val =3D ~mask;
+>
+>                 val =3D 0;
+>
+> The ~mask bits will be ignored anyway.
 
-kind regards,
+Ack. Will change.
 
-Rodrigo Alencar
+>
+> struct regmap;
+>
+> > +
+> > +struct atlantis_ccu_adev {
+> > +     struct auxiliary_device adev;
+> > +     struct regmap *regmap;
+> > +};
+> > +
+> > +#define to_atlantis_ccu_adev(_adev) \
+> > +     container_of((_adev), struct atlantis_ccu_adev, adev)
+>
+> Please use an inline function instead of a macro.
+
+Ack.
+
+>
+> > +
+> > +/* RCPU Reset Register Offsets */
+> > +#define RCPU_BLK_RST_REG     0x001c
+> > +#define LSIO_BLK_RST_REG     0x0020
+> > +#define HSIO_BLK_RST_REG     0x000c
+> > +#define PCIE_SUBS_RST_REG    0x0000
+> > +#define MM_RSTN_REG          0x0014
+>
+> Why not move these into reset-tenstorrent-atlantis.c, they are not part
+> of the interface between clock and reset drivers.
+
+We were considering putting register offsets like this in separate
+header files that are dual licensed. In that case, is it okay to put
+it here?
+
+>
+> regards
+> Philipp
 
