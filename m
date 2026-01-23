@@ -1,203 +1,215 @@
-Return-Path: <devicetree+bounces-258759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258760-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QGggCsoqc2kAswAAu9opvQ
-	(envelope-from <devicetree+bounces-258759-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 09:01:14 +0100
+	id kJlIOKkqc2kAswAAu9opvQ
+	(envelope-from <devicetree+bounces-258760-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 09:00:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D528721F3
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 09:01:13 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6865E721DB
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 09:00:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A9B12303FFD2
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 07:59:32 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0A9A830205D2
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 07:59:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E5CC35EDD7;
-	Fri, 23 Jan 2026 07:59:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C24C4348452;
+	Fri, 23 Jan 2026 07:59:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="QfJDIxQF"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="R5+LAnDh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F21A6320A09
-	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 07:59:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABF4133EB09;
+	Fri, 23 Jan 2026 07:59:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769155166; cv=none; b=kXr4gRu5KCsRocoGWHwlvDfVM+dcgQyvE3l3RKLZm+lZAt1yRaz7ajSsEBPjLeUOJgJGVJxWlKoTZtMK5EWiz94RUjJW6D3TBUuUNMEom+4REOkBzmxO6/VaLh64cToPgmWN95/2/HbjH45dyDABWEGz8WiHb5EwA15lcrW2aVc=
+	t=1769155184; cv=none; b=DJeX4f4FkkpNDEZioYuK4F1kIUypexyDUk4ZUIVB9kQbzmsXPKpOW50LqEDbLPByUyXqdMRWBCEMTsZ2umq0XigLQih18+3CmOaldTqbyXh52vAMia3jGbHCBHPUipMiOOvJluR2LARtKcL/A9cFyLcaIfTBqRbY4XWKvsDYpjA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769155166; c=relaxed/simple;
-	bh=B5WD10/zuQioqM6V+9ViNP8F7h11+pfute5x6Yd5BQI=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=A0bjUs0/NBAz62qhSf8ZVyx28vNx6SbCrYAPslUDkGAwpGhjviR57MxAtay7r6xOXOln+v8Zevrg5Mw7tz7PoGUWL1gKL4De3mzdAv6eZQPfLnXqatoZDlRWLpJxBlLdPzMlMJonIT6hb2bEJNGe0TNP397dw8w6fSwQCmvosgQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=QfJDIxQF; arc=none smtp.client-ip=203.254.224.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20260123075920epoutp02e4e95357f896d2d980a23052f867c519~NTT7P3DPS2977429774epoutp02r
-	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 07:59:20 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20260123075920epoutp02e4e95357f896d2d980a23052f867c519~NTT7P3DPS2977429774epoutp02r
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1769155160;
-	bh=F+3k78bx1aX7CBbym1BrLkgKSsh2Cn7diJb826znBUg=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=QfJDIxQFm9JlURO19h5MsBM1YjXfD2k+Tb4byGG7QcOLb/Fk1QupI1JK2VaaA2yiV
-	 h5O/6i1+BaI8bm+zakquLqF4LUDuwKf50s7BpTEkjKzvxY2/PMqy/ZfqwkBV+Ue2dD
-	 1rlqYBoC6euYYXkdx7zlG0+JH4N+YaUZaNwMdxXg=
-Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
-	20260123075920epcas5p1a8e1797ca9ca254f0784b76c549cc8d1~NTT6rkSWT0288002880epcas5p1b;
-	Fri, 23 Jan 2026 07:59:20 +0000 (GMT)
-Received: from epcas5p1.samsung.com (unknown [182.195.38.87]) by
-	epsnrtp02.localdomain (Postfix) with ESMTP id 4dy9Lb0skfz2SSKj; Fri, 23 Jan
-	2026 07:59:19 +0000 (GMT)
-Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
-	20260123075918epcas5p44ea70a01dc6d73b60ce3276e189f8aa0~NTT5LwGGK3122531225epcas5p42;
-	Fri, 23 Jan 2026 07:59:18 +0000 (GMT)
-Received: from INBRO001840 (unknown [107.122.3.105]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20260123075914epsmtip2caf2751058022b16f1134256e4821cb3~NTT1XNrGb2636326363epsmtip2k;
-	Fri, 23 Jan 2026 07:59:13 +0000 (GMT)
-From: "Pritam Manohar Sutar" <pritam.sutar@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <alim.akhtar@samsung.com>
-Cc: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-samsung-soc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<rosa.pila@samsung.com>, <dev.tailor@samsung.com>, <faraz.ata@samsung.com>,
-	<muhammed.ali@samsung.com>, <selvarasu.g@samsung.com>
-In-Reply-To: <6f381f88-3a51-4fc8-844c-41b167b07628@kernel.org>
-Subject: RE: [PATCH v2 3/3] arm64: dts: exynos: ExynosAutov920: Enable USB
- nodes
-Date: Fri, 23 Jan 2026 13:29:09 +0530
-Message-ID: <000f01dc8c3e$2b6dcf30$82496d90$@samsung.com>
+	s=arc-20240116; t=1769155184; c=relaxed/simple;
+	bh=c0K9UaO3St0IE2YkmiOL1BniYmWEc2RHIdZofm+Lw0I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=D34W506+dnva3Q/rvSR5xBh7Yg2VAeIVdPZ86Q8KPofCcb3JQSavsq5mcYwBzbYmDYhu9tRmnARro1RJi6Z+BRB/x9Bo/QGF4dMNRSaPk5UzEYhKJ7t8XMnErvgmL44DfviRbuTU+HB0FqJM8iEfFGMMyIoyMUnwSRAslQAo91w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=R5+LAnDh; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1769155183; x=1800691183;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=c0K9UaO3St0IE2YkmiOL1BniYmWEc2RHIdZofm+Lw0I=;
+  b=R5+LAnDh4z5as89p+QH2YaNYdPxdYZJ76etxdWtqKJAZC7RNqG7p2V5v
+   lYURFCEjQz0q8f+QH3lJlBuS54jPk1sDZ7dcTbnuEFOzGt69zKAecA2ic
+   QKZ55AYqIuppzFORwND8AJTBmps1Z9DaicLO+G+KcIiK1izN17/Q7RxaJ
+   6MkmDVtzumvqdKu3o1pzefvJj2TpqVIu5aWe9nECRycm6XvuexWLVXFk9
+   DtkTNZ4rmixc6HCAu4VbpvelPJ9Yp19okTmOuVPt2jVRckokPp+8aMPXV
+   7RST4nEtFkCppaXFA/6zDsFysRdnh1cyCmbZEMmo94bzuo4jyt+OKd5YV
+   g==;
+X-CSE-ConnectionGUID: Tc1Q/8aaT12Pm79ZSq9lgg==
+X-CSE-MsgGUID: lguAHgF3TESqlkt1wOFz+w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11679"; a="57977628"
+X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; 
+   d="scan'208";a="57977628"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2026 23:59:42 -0800
+X-CSE-ConnectionGUID: seuhiDOlRdWkicNj+8cXKQ==
+X-CSE-MsgGUID: 7/rxyr7iTmS51C3Yh0T0mg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; 
+   d="scan'208";a="238219086"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+  by fmviesa001.fm.intel.com with ESMTP; 22 Jan 2026 23:59:40 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vjC4v-00000000TfC-1Lpd;
+	Fri, 23 Jan 2026 07:59:37 +0000
+Date: Fri, 23 Jan 2026 15:59:31 +0800
+From: kernel test robot <lkp@intel.com>
+To: Shawn Lin <shawn.lin@rock-chips.com>,
+	Ulf Hansson <ulf.hansson@linaro.org>, Wei Xu <xuwei5@hisilicon.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Jaehoon Chung <jh80.chung@samsung.com>,
+	Shawn Lin <shawn.lin@rock-chips.com>
+Subject: Re: [PATCH 1/3] mmc: dw_mmc-k3: Remove mshc alias support
+Message-ID: <202601231543.IzsYNOzJ-lkp@intel.com>
+References: <1769132482-177365-2-git-send-email-shawn.lin@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQEa27yOGkcSyej7W4JCG0x5iKXFKwH8TUbRAqvnhIQBf1ky2raxgCUA
-Content-Language: en-in
-X-CMS-MailID: 20260123075918epcas5p44ea70a01dc6d73b60ce3276e189f8aa0
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-542,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20260122125136epcas5p2db0fa3d04671ddc915e60ae8c5bcfb98
-References: <20260122130721.205664-1-pritam.sutar@samsung.com>
-	<CGME20260122125136epcas5p2db0fa3d04671ddc915e60ae8c5bcfb98@epcas5p2.samsung.com>
-	<20260122130721.205664-4-pritam.sutar@samsung.com>
-	<6f381f88-3a51-4fc8-844c-41b167b07628@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1769132482-177365-2-git-send-email-shawn.lin@rock-chips.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-1.16 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[samsung.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[samsung.com:s=mail20170921];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-258759-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[samsung.com:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	TAGGED_FROM(0.00)[bounces-258760-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[samsung.com:email,samsung.com:dkim,samsung.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,infradead.org:email];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[pritam.sutar@samsung.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: 9D528721F3
+	TAGGED_RCPT(0.00)[devicetree];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[git-scm.com:url,01.org:url,intel.com:email,intel.com:dkim,intel.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 6865E721DB
 X-Rspamd-Action: no action
 
-Hi Krzysztof,
+Hi Shawn,
 
-Thank you for your feedback.=20
+kernel test robot noticed the following build warnings:
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzk=40kernel.org>
-> Sent: 22 January 2026 07:05 PM
-> To: Pritam Manohar Sutar <pritam.sutar=40samsung.com>; robh=40kernel.org;
-> krzk+dt=40kernel.org; conor+dt=40kernel.org; alim.akhtar=40samsung.com
-> Cc: devicetree=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org;=
- linux-
-> samsung-soc=40vger.kernel.org; linux-kernel=40vger.kernel.org;
-> rosa.pila=40samsung.com; dev.tailor=40samsung.com;
-> faraz.ata=40samsung.com; muhammed.ali=40samsung.com;
-> selvarasu.g=40samsung.com
-> Subject: Re: =5BPATCH v2 3/3=5D arm64: dts: exynos: ExynosAutov920: Enabl=
-e USB
-> nodes
->=20
-> On 22/01/2026 14:07, Pritam Manohar Sutar wrote:
-> > Enable USB PHY and DWC3 USB controllers' nodes.
-> >
-> > Signed-off-by: Pritam Manohar Sutar <pritam.sutar=40samsung.com>
-> > ---
-> >  .../boot/dts/exynos/exynosautov920-sadk.dts   =7C 21
-> +++++++++++++++++++
-> >  1 file changed, 21 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
-> > b/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
-> > index f90f7704597c..5896dd69334a 100644
-> > --- a/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
-> > +++ b/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
-> > =40=40 -160,15 +160,20 =40=40 &xtcxo =7B
-> >  &usbdrd31_ssphy =7B
-> >  	dvdd-supply =3D <&dummy_regulator>;
-> >  	vdd18-supply =3D <&dummy_regulator>;
-> > +	status =3D =22okay=22;
->=20
-> You just added the node in the previous patch, so why it cant be enavled
-> there?
->=20
-> >  =7D;
-> >
-> >  &usbdrd31_hsphy =7B
-> >  	dvdd-supply =3D <&dummy_regulator>;
-> >  	vdd18-supply =3D <&dummy_regulator>;
-> >  	vdd33-supply =3D <&dummy_regulator>;
-> > +	status =3D =22okay=22;
-> >  =7D;
-> >
-> >  &usbdrd31_dwc3 =7B
-> > +	dr_mode =3D =22otg=22;
-> > +	usb-role-switch;
-> > +	role-switch-default-mode =3D =22peripheral=22;
->=20
-> Why did you add incomplete node in previous commit?
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on linus/master ulf-hansson-mmc-mirror/next v6.19-rc6 next-20260122]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-The commit was added to align with the existing convention of separating=20
-node addition and enabling logic in USB configurations. This approach is=20
-referenced from commits such as:
+url:    https://github.com/intel-lab-lkp/linux/commits/Shawn-Lin/mmc-dw_mmc-k3-Remove-mshc-alias-support/20260123-095950
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/1769132482-177365-2-git-send-email-shawn.lin%40rock-chips.com
+patch subject: [PATCH 1/3] mmc: dw_mmc-k3: Remove mshc alias support
+config: arc-randconfig-002-20260123 (https://download.01.org/0day-ci/archive/20260123/202601231543.IzsYNOzJ-lkp@intel.com/config)
+compiler: arc-linux-gcc (GCC) 8.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260123/202601231543.IzsYNOzJ-lkp@intel.com/reproduce)
 
-https://lore.kernel.org/all/20250710-resends-july-exynos990-dt-v2-5-55033f7=
-3d1b0=40mentallysanemainliners.org/
-https://lore.kernel.org/all/20240429-usb-dts-gs101-v2-2-7c1797c9db80=40lina=
-ro.org/
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202601231543.IzsYNOzJ-lkp@intel.com/
 
-Please let me know if this commit to be merged in previous commit.
+All warnings (new ones prefixed by >>):
 
->=20
->=20
-> Best regards,
-> Krzysztof
+   drivers/mmc/host/dw_mmc-k3.c: In function 'dw_mci_hs_set_timing':
+   drivers/mmc/host/dw_mmc-k3.c:220:16: error: 'struct dw_mci' has no member named 'mmc'
+     ctrl_id = host->mmc->index;
+                   ^~
+>> drivers/mmc/host/dw_mmc-k3.c:217:18: warning: variable 'priv' set but not used [-Wunused-but-set-variable]
+     struct k3_priv *priv;
+                     ^~~~
 
-Regards,
-Pritam
 
+vim +/priv +217 drivers/mmc/host/dw_mmc-k3.c
+
+0293efddaddfcb Zhangfei Gao        2015-05-14  207  
+d53e39b1131c08 Shawn Lin           2026-01-23  208  static int dw_mci_hs_set_timing(struct dw_mci *host, int timing,
+361c7fe9b02eee liwei               2017-08-11  209  				     int smpl_phase)
+361c7fe9b02eee liwei               2017-08-11  210  {
+361c7fe9b02eee liwei               2017-08-11  211  	u32 drv_phase;
+361c7fe9b02eee liwei               2017-08-11  212  	u32 smpl_dly;
+361c7fe9b02eee liwei               2017-08-11  213  	u32 use_smpl_dly = 0;
+361c7fe9b02eee liwei               2017-08-11  214  	u32 enable_shift = 0;
+361c7fe9b02eee liwei               2017-08-11  215  	u32 reg_value;
+361c7fe9b02eee liwei               2017-08-11  216  	int ctrl_id;
+361c7fe9b02eee liwei               2017-08-11 @217  	struct k3_priv *priv;
+361c7fe9b02eee liwei               2017-08-11  218  
+361c7fe9b02eee liwei               2017-08-11  219  	priv = host->priv;
+d53e39b1131c08 Shawn Lin           2026-01-23 @220  	ctrl_id = host->mmc->index;
+d53e39b1131c08 Shawn Lin           2026-01-23  221  
+d53e39b1131c08 Shawn Lin           2026-01-23  222  	if (ctrl_id >= TIMING_MODE)
+d53e39b1131c08 Shawn Lin           2026-01-23  223  		return -EINVAL;
+361c7fe9b02eee liwei               2017-08-11  224  
+361c7fe9b02eee liwei               2017-08-11  225  	drv_phase = hs_timing_cfg[ctrl_id][timing].drv_phase;
+361c7fe9b02eee liwei               2017-08-11  226  	smpl_dly   = hs_timing_cfg[ctrl_id][timing].smpl_dly;
+361c7fe9b02eee liwei               2017-08-11  227  	if (smpl_phase == -1)
+361c7fe9b02eee liwei               2017-08-11  228  		smpl_phase = (hs_timing_cfg[ctrl_id][timing].smpl_phase_max +
+361c7fe9b02eee liwei               2017-08-11  229  			     hs_timing_cfg[ctrl_id][timing].smpl_phase_min) / 2;
+361c7fe9b02eee liwei               2017-08-11  230  
+361c7fe9b02eee liwei               2017-08-11  231  	switch (timing) {
+361c7fe9b02eee liwei               2017-08-11  232  	case MMC_TIMING_UHS_SDR104:
+361c7fe9b02eee liwei               2017-08-11  233  		if (smpl_phase >= USE_DLY_MIN_SMPL &&
+361c7fe9b02eee liwei               2017-08-11  234  				smpl_phase <= USE_DLY_MAX_SMPL)
+361c7fe9b02eee liwei               2017-08-11  235  			use_smpl_dly = 1;
+df561f6688fef7 Gustavo A. R. Silva 2020-08-23  236  		fallthrough;
+361c7fe9b02eee liwei               2017-08-11  237  	case MMC_TIMING_UHS_SDR50:
+361c7fe9b02eee liwei               2017-08-11  238  		if (smpl_phase >= ENABLE_SHIFT_MIN_SMPL &&
+361c7fe9b02eee liwei               2017-08-11  239  				smpl_phase <= ENABLE_SHIFT_MAX_SMPL)
+361c7fe9b02eee liwei               2017-08-11  240  			enable_shift = 1;
+361c7fe9b02eee liwei               2017-08-11  241  		break;
+361c7fe9b02eee liwei               2017-08-11  242  	}
+361c7fe9b02eee liwei               2017-08-11  243  
+361c7fe9b02eee liwei               2017-08-11  244  	mci_writel(host, GPIO, 0x0);
+361c7fe9b02eee liwei               2017-08-11  245  	usleep_range(5, 10);
+361c7fe9b02eee liwei               2017-08-11  246  
+361c7fe9b02eee liwei               2017-08-11  247  	reg_value = FIELD_PREP(UHS_REG_EXT_SAMPLE_PHASE_MASK, smpl_phase) |
+361c7fe9b02eee liwei               2017-08-11  248  		    FIELD_PREP(UHS_REG_EXT_SAMPLE_DLY_MASK, smpl_dly) |
+361c7fe9b02eee liwei               2017-08-11  249  		    FIELD_PREP(UHS_REG_EXT_SAMPLE_DRVPHASE_MASK, drv_phase);
+361c7fe9b02eee liwei               2017-08-11  250  	mci_writel(host, UHS_REG_EXT, reg_value);
+361c7fe9b02eee liwei               2017-08-11  251  
+361c7fe9b02eee liwei               2017-08-11  252  	mci_writel(host, ENABLE_SHIFT, enable_shift);
+361c7fe9b02eee liwei               2017-08-11  253  
+361c7fe9b02eee liwei               2017-08-11  254  	reg_value = FIELD_PREP(GPIO_CLK_DIV_MASK, GENCLK_DIV) |
+361c7fe9b02eee liwei               2017-08-11  255  			     FIELD_PREP(GPIO_USE_SAMPLE_DLY_MASK, use_smpl_dly);
+361c7fe9b02eee liwei               2017-08-11  256  	mci_writel(host, GPIO, (unsigned int)reg_value | GPIO_CLK_ENABLE);
+361c7fe9b02eee liwei               2017-08-11  257  
+361c7fe9b02eee liwei               2017-08-11  258  	/* We should delay 1ms wait for timing setting finished. */
+361c7fe9b02eee liwei               2017-08-11  259  	usleep_range(1000, 2000);
+d53e39b1131c08 Shawn Lin           2026-01-23  260  
+d53e39b1131c08 Shawn Lin           2026-01-23  261  	return 0;
+361c7fe9b02eee liwei               2017-08-11  262  }
+361c7fe9b02eee liwei               2017-08-11  263  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
