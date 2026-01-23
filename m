@@ -1,178 +1,182 @@
-Return-Path: <devicetree+bounces-259136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259137-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cAmoFdr9c2nu0wAAu9opvQ
-	(envelope-from <devicetree+bounces-259136-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 00:01:46 +0100
+	id OItLClkFdGm81QAAu9opvQ
+	(envelope-from <devicetree+bounces-259137-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 00:33:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id F114B7B593
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 00:01:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 041A47B7D8
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 00:33:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A696D3053768
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 23:00:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9B23E3012276
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 23:33:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D86202F363E;
-	Fri, 23 Jan 2026 23:00:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF80C2D0C9D;
+	Fri, 23 Jan 2026 23:33:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LdBwVXym"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NT30J9ZW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 269212F1FD0
-	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 23:00:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAD8C2A1BA;
+	Fri, 23 Jan 2026 23:33:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769209230; cv=none; b=jy5tkOsU64YsLNEPXSSh80q85vCu69yZQu7tuocQTaPhgSMbSJ0vTTfNmrfRdOlslUiA4wz54fFJXOAF0DfjOWjeTWbcxCnRda23sd9nPd7EaMXOAx6o4SCmtg9PBSP08zrwEU9nufTEaSGz/hmRKMOrw+K1fz31rIs2rakurNU=
+	t=1769211219; cv=none; b=OR0NyjH62HkiGNvchi74WFIvuJ5sxsvZPQd1laEiSji/umF6G8r9wP4cv/TwIMZznmElSLUuyXBNEsEeJ42F1eOwgKl5pbFt7xuLBz84VNqyM9rFQwKCWbzFq57lNtwUgOOgkPjU47BfpFxTuf3jAYGw5DI4DkWrDtJQ+HlinZc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769209230; c=relaxed/simple;
-	bh=O9KLqwSOljwtGXuidma55I4owWpuuMFmuCL5x92Ep74=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=VZAzgtemkGmQj52SUpHfSEjAOF7m7SM5a4/BizEPT9KoMJ3OFKCjm+lfNh2gUrSxuRXc7/EWDxz2sax6F1ZgxTeLwoN83KaBl8EIRiP4aPDyug182IP+NzJ6c7Tye7psuhKoWt2JsLOb2SaVeGf980lPQNgLJgIM6a5xOVhevY0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LdBwVXym; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-47edd6111b4so31506255e9.1
-        for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 15:00:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769209227; x=1769814027; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/hjGAV1iNwufFZLawIF586/Xk4e/z7L8MkoVmcc2ys8=;
-        b=LdBwVXymrbKqvrdsHx1s2AbtbV+1BoA/HTHAE/NAopd/Yn4HaweGu+h1NOt1a4ncS1
-         iCXE7yj55+ULlolj1IlRwp2FHhA4MdbYfBk1Ru9CQElDeNZbqkSbYOASyZZAz5wk9YY1
-         byj3EC0Abtt0ASBnoPwILx/CfXcbk12TuOcdx1wPmcrVTvsNmQRWxDvBbbl/ytxpklEn
-         o6+mY16SW3GNpHWZn4m7M54gtfde/KJpvB8ltXugBkeQRLT9mvGiF/iFwWB6nRFxdtUp
-         LgTaezOVAXJOSV19KUBIuODnwVyaiKF3EY6fQytzrTbjdlJRsuDaPIMFNBnEes+MHTJS
-         JG5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769209227; x=1769814027;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=/hjGAV1iNwufFZLawIF586/Xk4e/z7L8MkoVmcc2ys8=;
-        b=vyjjfWcd/3ZlXovl0LWzf7pSWMVCM99GPiHg/aN2BFRTfTAlW2QLXmnwsnG70Iaijg
-         QzV1CCoOfQcb8w/DNbrYknqzE5430VHOATcIeA+yuUJf7yPYziqs/TakfWlGhEne8qsb
-         Bl2z23hcBBkPSpstNxv1DGmitaUApGMuvoarBbAkaxZCOmcxXsZ1F4nFTxZZBO/6nfet
-         zaDeTU5zUmti9Uw05TvQVpmM7KNgjszHeNRVOOisEcREbOegyMGt5/G3npYx49bb8z0V
-         +n18Q7jJtNrraMxg0MvujDcfoi6dxkLW5t0Y3AGuiQ/0f36mg+tFpUiWitYsc/Mm31cV
-         B/Kw==
-X-Gm-Message-State: AOJu0YywQ2g0AsiOhq2raOp9ogv5U+mTi4+FiCJNS7sm8BRoi5rHkly/
-	ZEMPYMTgYoBaUM7vjn9Mxrr1c8gcQBLTPCV9uOHQnVWnn+xyZ1e0oE4u
-X-Gm-Gg: AZuq6aKkSVi73jhJziaePVW1TA92IThdpdpxgGOq6R2nqkskRkQA0PYBJBC+yHhquta
-	KuDW2GiEsWEO3rAu59BGtdYa5YCoRGN9sm3dxu/EtwWOyxLF96cw7ddKfdaHPGcNCR1KrohtyQF
-	5PGuT/G6DQEbMQOIahU3TWDuFFENAqXZn5CeF1BIZGYXxnlXvHblNpgMAp96XkmLBzNgfuij+u0
-	VOw4StqYabksgFCIsy6cVdw33PggW3/4OaAh8+WNVVuqEL+OjXTXuxwfavz7I82rS6KjG+mktza
-	dq9UkIy1lZdIfymKmT6vCftVQEuW5IwFXWO94UtQVUFXJUrF+V9cnkpsPeHRsx+39Nwb66KHUj6
-	sUQf3TCaMkwulFBOaBt8C0dChzB+UVEcDDwB9MsHPCr07eW6sTKgox04CgOSUyPdwWajf+zDqRa
-	q7omzBalCm10NRT6ppriSVKlw+s1oJJYfga55NMPPAtnSLGDTUN9lTusqDgVciNgLAVa631riqF
-	e19Sxc5uJItDk9mfG05EyMU
-X-Received: by 2002:a05:600c:198b:b0:480:3b76:6b92 with SMTP id 5b1f17b1804b1-4804c9cf019mr63915175e9.29.1769209227350;
-        Fri, 23 Jan 2026 15:00:27 -0800 (PST)
-Received: from iku.Home ([2a06:5906:61b:2d00:bccf:b3b1:e288:4e83])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-480470cc278sm157142665e9.12.2026.01.23.15.00.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jan 2026 15:00:26 -0800 (PST)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-renesas-soc@vger.kernel.org
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 4/4] arm64: dts: renesas: rzv2-evk-cn15-sd: Add ramp delay for SD0 regulator
-Date: Fri, 23 Jan 2026 22:59:57 +0000
-Message-ID: <20260123225957.1007089-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260123225957.1007089-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20260123225957.1007089-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	s=arc-20240116; t=1769211219; c=relaxed/simple;
+	bh=reUZ85mIM0YeUkTXhTEEzwHSMG5GYiNxw3QVNickOW4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Cf9krlEW5/gRBXr2tKfFT4BGmQ5FJQHKS4ZkKzWGO2/9YilEhZTtA4b2qZsdavzrFTCi4oJpCqL3zV5aw+ZmT0Q4MgUAHNIrm+AhlKdUfoDhvIOToO0BXtpjDEepq7HsT0ozByQmZAUddHGXTIkN9D/XkpkT2mTHJEABkl7tDEo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NT30J9ZW; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1769211216; x=1800747216;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=reUZ85mIM0YeUkTXhTEEzwHSMG5GYiNxw3QVNickOW4=;
+  b=NT30J9ZW6/p1QkGPnyjqdoAZw5L5ouBiyglBGvPzdm20wMrxk7njelZC
+   d8vmtRTeDNmsvck/VGkray8B6LJJ/4XI58vUIqJNpAje0QSz/gCdut1Ub
+   T4JRhZ4Xzifm4pyf44HTDaMN4Ud2stCkhOHK9fbO+2NpzCQKoSi9rjdfI
+   qo0KgRO9eBoC9FcY2VMheqD+GMFfH/Qn/kj/rs4Dkwu/Ffor0U1YNj3KI
+   uGNhAR+f+2Xhyc5bsVTgbXv2nSzLwIpvXNsAU8rUQ3hyYtCeXd0irc5i9
+   CgxbZV1uarJ4Nc7OIzlgxC01OADD0tsskYnbbNS9D7mvhUWGmlsKi+zxm
+   Q==;
+X-CSE-ConnectionGUID: UqS/rDJ6QfaE3F/73HzFxA==
+X-CSE-MsgGUID: 9mge1XAvQvSH4IYbijx2CQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11680"; a="58038437"
+X-IronPort-AV: E=Sophos;i="6.21,249,1763452800"; 
+   d="scan'208";a="58038437"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jan 2026 15:33:35 -0800
+X-CSE-ConnectionGUID: +MtizwCRQ0+2zO2rv6dqGg==
+X-CSE-MsgGUID: +UCBjV75Q6aI6uv4TNSCgA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,249,1763452800"; 
+   d="scan'208";a="207057724"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+  by fmviesa006.fm.intel.com with ESMTP; 23 Jan 2026 15:33:32 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vjQef-00000000Uae-2hil;
+	Fri, 23 Jan 2026 23:33:29 +0000
+Date: Sat, 24 Jan 2026 07:32:44 +0800
+From: kernel test robot <lkp@intel.com>
+To: Maciej Strozek <mstrozek@opensource.cirrus.com>,
+	Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
+	Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, Jaroslav Kysela <perex@perex.cz>,
+	Bard Liao <yung-chuan.liao@linux.intel.com>,
+	Peter Ujfalusi <peter.ujfalusi@linux.intel.com>,
+	linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
+	patches@opensource.cirrus.com, devicetree@vger.kernel.org,
+	Maciej Strozek <mstrozek@opensource.cirrus.com>
+Subject: Re: [PATCH v3 3/4] mfd: cs42l43: Add support for the B variant
+Message-ID: <202601240733.dRK7iaPT-lkp@intel.com>
+References: <20260123150945.100038-4-mstrozek@opensource.cirrus.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260123150945.100038-4-mstrozek@opensource.cirrus.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-1.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259136-lists,devicetree=lfdr.de];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[glider.be,gmail.com,kernel.org,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,bp.renesas.com,renesas.com];
-	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[prabhakarcsengg@gmail.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-259137-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bp.renesas.com:mid,renesas.com:email]
-X-Rspamd-Queue-Id: F114B7B593
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	TAGGED_RCPT(0.00)[devicetree];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,git-scm.com:url]
+X-Rspamd-Queue-Id: 041A47B7D8
 X-Rspamd-Action: no action
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Hi Maciej,
 
-Set an appropriate ramp delay for the SD0 I/O voltage regulator in the
-CN15 SD overlay to make UHS-I voltage switching reliable during card
-initialization.
+kernel test robot noticed the following build warnings:
 
-This issue was observed on the RZ/V2H EVK, while the same UHS-I cards
-worked on the RZ/V2N EVK without problems. Adding the ramp delay makes
-the behavior consistent and avoids SD init timeouts.
+[auto build test WARNING on lee-mfd/for-mfd-next]
+[also build test WARNING on lee-mfd/for-mfd-fixes broonie-sound/for-next lee-leds/for-leds-next linus/master v6.19-rc6 next-20260122]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Before this change SD0 could fail with:
-[    2.646242] mmc0: error -110 whilst initialising SD card
+url:    https://github.com/intel-lab-lkp/linux/commits/Maciej-Strozek/ASoC-sdw_utils-Add-CS42L43B-codec-info/20260123-233105
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git for-mfd-next
+patch link:    https://lore.kernel.org/r/20260123150945.100038-4-mstrozek%40opensource.cirrus.com
+patch subject: [PATCH v3 3/4] mfd: cs42l43: Add support for the B variant
+config: s390-randconfig-r072-20260124 (https://download.01.org/0day-ci/archive/20260124/202601240733.dRK7iaPT-lkp@intel.com/config)
+compiler: s390-linux-gcc (GCC) 9.5.0
+smatch version: v0.5.0-8994-gd50c5a4c
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260124/202601240733.dRK7iaPT-lkp@intel.com/reproduce)
 
-With the delay in place UHS-I cards enumerate correctly:
-[    2.633493] mmc0: new UHS-I speed SDR104 SDXC card at address aaaa
-[    2.641687] mmcblk0: mmc0:aaaa SR64G 59.5 GiB
-[    2.651489]  mmcblk0: p1
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202601240733.dRK7iaPT-lkp@intel.com/
 
-Fixes: 3d6c2bc7629c8("arm64: dts: renesas: Add CN15 eMMC and SD overlays for RZ/V2H and RZ/V2N EVKs")
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/rzv2-evk-cn15-sd.dtso | 1 +
- 1 file changed, 1 insertion(+)
+All warnings (new ones prefixed by >>):
 
-diff --git a/arch/arm64/boot/dts/renesas/rzv2-evk-cn15-sd.dtso b/arch/arm64/boot/dts/renesas/rzv2-evk-cn15-sd.dtso
-index 0af1e0a6c7f4..fc53c1aae3b5 100644
---- a/arch/arm64/boot/dts/renesas/rzv2-evk-cn15-sd.dtso
-+++ b/arch/arm64/boot/dts/renesas/rzv2-evk-cn15-sd.dtso
-@@ -25,6 +25,7 @@ vqmmc_sdhi0: regulator-vqmmc-sdhi0 {
- 		regulator-max-microvolt = <3300000>;
- 		gpios-states = <0>;
- 		states = <3300000 0>, <1800000 1>;
-+		regulator-ramp-delay = <60>;
- 	};
- };
- 
+   drivers/mfd/cs42l43-i2c.c: In function 'cs42l43_i2c_probe':
+>> drivers/mfd/cs42l43-i2c.c:50:24: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+      50 |  cs42l43->variant_id = (int)device_get_match_data(cs42l43->dev);
+         |                        ^
+
+
+vim +50 drivers/mfd/cs42l43-i2c.c
+
+    37	
+    38	static int cs42l43_i2c_probe(struct i2c_client *i2c)
+    39	{
+    40		struct cs42l43 *cs42l43;
+    41	
+    42		cs42l43 = devm_kzalloc(&i2c->dev, sizeof(*cs42l43), GFP_KERNEL);
+    43		if (!cs42l43)
+    44			return -ENOMEM;
+    45	
+    46		cs42l43->dev = &i2c->dev;
+    47		cs42l43->irq = i2c->irq;
+    48		/* A device on an I2C is always attached by definition. */
+    49		cs42l43->attached = true;
+  > 50		cs42l43->variant_id = (int)device_get_match_data(cs42l43->dev);
+    51	
+    52		cs42l43->regmap = devm_regmap_init_i2c(i2c, &cs42l43_i2c_regmap);
+    53		if (IS_ERR(cs42l43->regmap))
+    54			return dev_err_probe(cs42l43->dev, PTR_ERR(cs42l43->regmap),
+    55					     "Failed to allocate regmap\n");
+    56	
+    57		return cs42l43_dev_probe(cs42l43);
+    58	}
+    59	
+
 -- 
-2.52.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
