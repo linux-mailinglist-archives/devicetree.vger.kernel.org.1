@@ -1,509 +1,198 @@
-Return-Path: <devicetree+bounces-259104-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259105-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UHe/Bc/Gc2lZygAAu9opvQ
-	(envelope-from <devicetree+bounces-259104-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 20:06:55 +0100
+	id aBi3NsvGc2lZygAAu9opvQ
+	(envelope-from <devicetree+bounces-259105-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 20:06:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B40F07A00A
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 20:06:54 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A8F479FF4
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 20:06:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7E82F30A186C
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 19:05:25 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2383C30062CD
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 19:06:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D92992BEC44;
-	Fri, 23 Jan 2026 19:05:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA66C254B03;
+	Fri, 23 Jan 2026 19:06:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="Uo7L9vAw"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="NfOUlXjS";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="QyQAbD3D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2912E2741AB
-	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 19:05:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75E09224AE8
+	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 19:06:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769195120; cv=none; b=MpvKvB+lilRRK8EXOLG5/rv7sOKwwMdFwCtISqyh24Y0HVCHWuV0Trdb/iciGnerBwa20wtLXT9e+JIcpAsAkwQLRk8RDrabip/4y8OTkmtF4Dq2QfiOFq4Y5NOdmbJeI46QgDSeuMzcWBnDzW4tOEkESmezLMocvCt+T+MlRLU=
+	t=1769195208; cv=none; b=cb5tg/NGVH0UAiUaTarbDATLL+pZEBfr1uEKCc0ZpT6zQq3mYCE8y832X6+v+ex9NeTZ96rI8RPaZ9i2bBWrFm5rXiFc0Oa1l7zPyH+rSk/SJ8AQ2zcHtm+FnFKA+Cmswc4bQuMzkpLHmU4XtfMQPvklGvJMEpM+r7alRDd7wQs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769195120; c=relaxed/simple;
-	bh=yHrnIhZKWe4aGD+KAtqFNtnxQQuW2y+OccQYipFK/7I=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=MWsCLVzTFnBmCitTiC+48YBN86qgQRO+373tMtNwGZqMFrTG8MtSjaDD/U3M1ERSfoMV/xWkfZzaqljAsm8f678zPaEkOJGZjyTc1nfeG1TunpQ5+dqreEJIqF/OmjqQQzymJf+GrjG8XyG6QcJCZGnnZ9jK4HBtkrPssuusWRc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=Uo7L9vAw; arc=none smtp.client-ip=185.67.36.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.de
-Received: from submission (posteo.de [185.67.36.169]) 
-	by mout02.posteo.de (Postfix) with ESMTPS id 231C4240101
-	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 20:05:11 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=posteo.de; s=2017;
-	t=1769195111; bh=rGNtFbWYd64mUfi+ig+LOirZBXBy+lx6XwWx6CydM4I=;
-	h=From:Date:Subject:MIME-Version:Content-Type:
-	 Content-Transfer-Encoding:Message-Id:To:Cc:Autocrypt:OpenPGP:From;
-	b=Uo7L9vAwSMoxyAKYyh9SHIoaO3zJA5Q8J0XI3Yv390lKrlM6xQA3D9lWsz4hDpkzR
-	 JWc8crxB2qnmtSg7GGTPotWOxy8mMjWCJqqYazW3xgdJ6WFKvgQq0G71h3GPj3cZa3
-	 prFBqevNirydIwpR7TwStZye3hYRf906004my9q3x1vC4KFvvDZr8iDmQ8wMuJUzg/
-	 8Yvwy+EuvgySgKYVQmJZyVJIGnGDZeImcG+dumfkzjgjJ6jnF1M2Sh7eBNNS0slTTv
-	 lrdnYsX6p0Pvh8zIOcSawerTkijEzA0Yreu8pCI4QWaERh7Do5G0wQBdHq7ezlakZH
-	 vytgA1fafJwfQ==
-Received: from customer (localhost [127.0.0.1])
-	by submission (posteo.de) with ESMTPSA id 4dyS6r5DVYz9rxG;
-	Fri, 23 Jan 2026 20:05:08 +0100 (CET)
-From: Markus Probst <markus.probst@posteo.de>
-Date: Fri, 23 Jan 2026 19:05:10 +0000
-Subject: [PATCH RFC 4/4] leds: add disk trigger for each ata port
+	s=arc-20240116; t=1769195208; c=relaxed/simple;
+	bh=cXeKyQn1zrB0s/g/Zlf2fCZzGKuPI1EYK4pmTBNpp38=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ekwRnR2ZefXl88sq+LDkCZD6eKcXwQfpJfIsLzmCN/oGSTtdHB2sRyj59G2xFDQCfh/Loef/zlZ9icyWBDrFOtOaWewNbNTojdBkxwgc7/Gb4oqupuniU/oAvLReHFLC7AgoIcxHaUBeUJNQDAVArqfdoQ6bh2d+Y9bd0BFTuI0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=NfOUlXjS; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=QyQAbD3D; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60NGZQoe3649248
+	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 19:06:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=qKhvdckabX5eF5ZjxFIcU92u
+	hukFwsWBMCWJkQDEYrU=; b=NfOUlXjS1b02dU7qA4Vd6KoPlmWdROeLrKf/AoBX
+	anCE3dDq/U275V9JxV1ZPImmYe1Afub1vklQv3gjsEvuMR6XQ/2wrm25fholb/YA
+	1cWRb815a9Ejj79yXkppaqYvALouRuHplp1MMw2INZqGecdvLYCvNTxIvuMZhgex
+	MV27y6NOatoS8CfvYcmhA21DYkqcr+ainL6sHzNLEN8P9qeXa7HMT2bdz1WDOnqm
+	t8tJCb9YM1cqoQwwdcWV2VrU6YmvlNIBXf6/9LqexUtxoLUYDH1txQ1jBR4y+Yf4
+	zEid6jc/B4NLpcU9DH1hn1cAqqKPvZK78xWdXs/QUDa6Pw==
+Received: from mail-vs1-f72.google.com (mail-vs1-f72.google.com [209.85.217.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4buy4nufqm-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 19:06:46 +0000 (GMT)
+Received: by mail-vs1-f72.google.com with SMTP id ada2fe7eead31-5ece01183ffso2232407137.2
+        for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 11:06:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1769195206; x=1769800006; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=qKhvdckabX5eF5ZjxFIcU92uhukFwsWBMCWJkQDEYrU=;
+        b=QyQAbD3D0EXb05wutDINEKwDkCyuBlIlKqe7k83zN6q1WaQVbpCCnsiIHsx6e88Wpa
+         +eja8yXrTaAnCm7Sg3Jajuc3VQ0fzEPA6oRgkxDoo5SICZA92g0ALKOQ3JycwrLTBpN5
+         PlSf2HQ8jxl420fOaAaNSk+72K1f1in+tsFbHVlq6VgQTU4tMQseLSoZmRf1th2eeY6E
+         zw9aA/t1tt2pPRczoDBTARlhNAEJP1kolPS9uyvJawFxLyb2aT6UdvCqZGazZ+j10uNf
+         9Pu32yAOvTz9ZWHVdKvmpWonaDDVo5css1KqpZOiMamhvhPCKT7VM4GF13t36wdyTvtZ
+         wuEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769195206; x=1769800006;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=qKhvdckabX5eF5ZjxFIcU92uhukFwsWBMCWJkQDEYrU=;
+        b=cgS30b0eFOKnCUHQSxSO5tAkWtANESyLwSxHBx5pA62k8gjXrxiYM8QbndIyNsW+xq
+         kzHU9lU5IAnv++UojeSzZgHNnh8gDuxG8h9wcxtqGRsU2SIR1QxKldLEmxbPShidjGDg
+         Yv6c5dEF/0AsQphZnecy/2fIUO45fUE56eUv/9ytbrQPmLoBo97p/1DHJEove5VEwof3
+         wh9tznD50IMdcy/nwmcBe14RfWJJ1OOyl4oaYpxvx82+0XlD8caAr6HhhGMUi278QI0J
+         bi9XOQjE2R3RQfyCr4y//+Km2nbHqS/sAuTWqIiF4YZkwEx/exQlRGw0Ll2Aid69dGzs
+         0zWQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWYRQiN/DpkLHcqF6ZRo4+zwWTu5VD1pyQJVHjleeiOIWWj/uwvnZkBLq581VbQonfv2TP+gDj3JpE1@vger.kernel.org
+X-Gm-Message-State: AOJu0YwKTBkWEIzPEAINVV9iYpCKy5VClC01MY2b+UCya5trWB2QMfaw
+	s1AE1rmtoXOuPkYUuhgOM3rhitC4UtB+wwSftshgRymdUZJA9NP+sXEy7dCjU1S3B6pElEj09jR
+	25WSRfQH229btbOSKeY9JcVhj00EwCqMC5HzQbfI1/0rYmhqci5Tn9p/As1UxuTz4
+X-Gm-Gg: AZuq6aKU/ChTzlGrWF3/5REYyWO8ZyrxI+nKUwLhAGMjvNTQx5zyRpEgxQ/4FF6qzeU
+	7OZMjn+tbxeaBz4J8h/f9PqtsuMBKqLO47bSewqKQjwl6+39BCvdlrJmEt7ooSQpfwjoPoWZ4xn
+	qUV1ThzFea/2ta7Tklfx/pj8w3wvCIlW0DaoWsQXxGybKWa+IvoNyFDI4Oqw5/mhY2tBIyz3oSw
+	uM77HDX45SFOzawkN/avBYrPfmat//JG+9/+kg1XvicxHZBdMjtDtHJnm6ESlGI5vMQdd7K8BRV
+	z3b38uBLGyA3simCHjGY8jN4t2hu9W2DPNvkZoulN5gOo3ewPSSTv6sEwrqindxYJ1HdWlMLlcd
+	V1diKA0bYqMruaXXDGSbSnpsdxEjsTrjUWcPpeUKHUZ5h0rteo2mnbODyrNL+dh09UPevGDK+1W
+	MId9FFsQjwREEQHDRrznelCjE=
+X-Received: by 2002:a05:6102:950:b0:5f5:3d46:e5fb with SMTP id ada2fe7eead31-5f5584d5694mr572030137.5.1769195205738;
+        Fri, 23 Jan 2026 11:06:45 -0800 (PST)
+X-Received: by 2002:a05:6102:950:b0:5f5:3d46:e5fb with SMTP id ada2fe7eead31-5f5584d5694mr572025137.5.1769195205315;
+        Fri, 23 Jan 2026 11:06:45 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59de48f0259sm836004e87.45.2026.01.23.11.06.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Jan 2026 11:06:44 -0800 (PST)
+Date: Fri, 23 Jan 2026 21:06:43 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Abel Vesa <abel.vesa@oss.qualcomm.com>
+Cc: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] interconnect: qcom: Add Eliza interconnect provider
+ driver
+Message-ID: <mj2yai65bpxgky7svixb4hgtbekrmbym7fzc4rw6t77bot52iu@h3lxsrfy5zaw>
+References: <20260123-eliza-interconnect-v1-0-010ff0d100c9@oss.qualcomm.com>
+ <20260123-eliza-interconnect-v1-2-010ff0d100c9@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260123-ledtrig_disk_-v1-4-07004756467b@posteo.de>
-References: <20260123-ledtrig_disk_-v1-0-07004756467b@posteo.de>
-In-Reply-To: <20260123-ledtrig_disk_-v1-0-07004756467b@posteo.de>
-To: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Jacek Anaszewski <jacek.anaszewski@gmail.com>, 
- Damien Le Moal <dlemoal@kernel.org>, Niklas Cassel <cassel@kernel.org>, 
- John Garry <john.g.garry@oracle.com>, Jason Yan <yanaijie@huawei.com>, 
- "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>, 
- "Martin K. Petersen" <martin.petersen@oracle.com>
-Cc: Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-ide@vger.kernel.org, linux-scsi@vger.kernel.org, 
- Markus Probst <markus.probst@posteo.de>
-X-Developer-Signature: v=1; a=openpgp-sha256; l=10395;
- i=markus.probst@posteo.de; h=from:subject:message-id;
- bh=yHrnIhZKWe4aGD+KAtqFNtnxQQuW2y+OccQYipFK/7I=;
- b=owEBiQJ2/ZANAwAIATR2H/jnrUPSAcsmYgBpc8ZaPwsoDdqRRAKFR+lVPd/tLwEGbvuG7GXz0
- bvv9OS6Sc+JAk8EAAEIADkWIQSCdBjE9KxY53IwxHM0dh/4561D0gUCaXPGWhsUgAAAAAAEAA5t
- YW51MiwyLjUrMS4xMSwyLDIACgkQNHYf+OetQ9Ij0hAAqypk3zrACIIaIXHLmkRxaSAH163Chhu
- siD1Rli4m3YMcxnNm1gX2VT3jGiAGYitcNHYtU8FwxePRpAlnBhnhf5aF0ANZ81U/iOVc91FG53
- rm9SDymDK0lH+CeHa0NBIN9Ww1K/71T3XMvjInDCSUaLFWdSivQtkKUbixlXa/gFSe7+e117IxU
- wObiOCPprT39M87K+YgQWnlfwUqSk4sm/6hZnn1+qaEE+zyjIDW4QYu7vZNA6YcCEo4yIODpw0P
- t7cm0WzXU4rSuaNXkZ+nuMwfmombRCkxUVp7nnVv/zYudct/huhkxYBDs2gu34qP6hQToIM4wMm
- yO+A0vemQJ3rx78dJTy+sfXkNsRki+a63oSsJYtnV/Jph2c8t2EnEUwRvTQ5XKMUTyFxT8EHy/k
- qntNIbl20GAy7tAvsNWAhgK/6tqFK82QODZLT3k0LvUUOP7tO+9vdIZi8C73ntriDw3R5VtbP7Y
- pl8JiIHp7oK/oFme/7NO93NkAmAHDyGaWRGAYSdCGZcWsH+iU7LLWJWHZiklSjyF8wVW1NeRabr
- PS5D9cYHO3UxQSev+5PngXhGEKogYiUlnwGnuOPkX8YldlmWmLXxJuZKeyKGeNYBDa+Ivykc9lh
- Q0wnaoJZgc7auaK/sDpTGiLiWjR1PntdKxMmKSMO+t7NR/C0ntBo=
-X-Developer-Key: i=markus.probst@posteo.de; a=openpgp;
- fpr=827418C4F4AC58E77230C47334761FF8E7AD43D2
-Autocrypt: addr=markus.probst@posteo.de; prefer-encrypt=mutual;
-  keydata=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
-  aBeNN4ijKZchBXHPgVx+YtWRHfcm4l8=
-OpenPGP: url=https://posteo.de/keys/markus.probst@posteo.de.asc; preference=encrypt
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260123-eliza-interconnect-v1-2-010ff0d100c9@oss.qualcomm.com>
+X-Proofpoint-GUID: AIKmmXLR7rq0FdxRn1rd3Khw22a-Ythj
+X-Authority-Analysis: v=2.4 cv=I5lohdgg c=1 sm=1 tr=0 ts=6973c6c6 cx=c_pps
+ a=DUEm7b3gzWu7BqY5nP7+9g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=IdhJIH7UHSwZyGBE1u8A:9 a=CjuIK1q_8ugA:10
+ a=-aSRE8QhW-JAV6biHavz:22
+X-Proofpoint-ORIG-GUID: AIKmmXLR7rq0FdxRn1rd3Khw22a-Ythj
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIzMDE0NiBTYWx0ZWRfX0DDd0bzStmC2
+ 6tw/PWHXOR5CMCkfre1lxEbF1kV/VHigGcYnAEXNkJthybRLxdPQjIoFjBWjDNoOVvlbPCYtCvK
+ G3c3dNppNaIPcHMHjvFx64QtpUkyLstKpHJ8jccOuK9ZV2aKcBhWRml0eEcAjLz91vUKUOqsVw5
+ c8y3MNEG+OUU4KRDNHThfNmuR6BZFcjUTrgZx3WImgCX0g+tCt2ajawcSdppuXLJgVvdohJSDBe
+ iVzw/F/jszG4/2CWZthBb0xkoATPJyqB+hI2skJYjoyZnRDdMdDOp0jy1aUCZLpU3y/ibBVAQ9A
+ yFGmE8Tjdl900/cpe68JNrPkrJN9ExfbQsO0H0eV8CTyV3aeCHMptAZjEf3TA5tio6FfbGanOk3
+ MMlHi6dSAInNIgdASFFhuAWLujghwptJdw3kwPh0w/iXNSd+Ct3e9SVb2qYsnliuJ7W8fbKRVQl
+ MR/06D54bl8qt9rLBzg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
+ definitions=2026-01-23_03,2026-01-22_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 clxscore=1015 malwarescore=0 lowpriorityscore=0 phishscore=0
+ spamscore=0 bulkscore=0 suspectscore=0 adultscore=0 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601230146
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[posteo.de,none];
-	R_DKIM_ALLOW(-0.20)[posteo.de:s=2017];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-259104-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,oracle.com,huawei.com,HansenPartnership.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[posteo.de:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[markus.probst@posteo.de,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259105-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.996];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.998];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[posteo.de:email,posteo.de:dkim,posteo.de:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: B40F07A00A
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 2A8F479FF4
 X-Rspamd-Action: no action
 
-Register a disk trigger for each ata port. This trigger will only show
-the activity for the ata port it has been registered for.
+On Fri, Jan 23, 2026 at 02:43:21PM +0200, Abel Vesa wrote:
+> From: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
+> 
+> Add driver for the Qualcomm interconnect buses found in Eliza
+> based platforms. The topology consists of several NoCs that are
+> controlled by a remote processor that collects the aggregated
+> bandwidth for each master-slave pairs.
+> 
+> Signed-off-by: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
+> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+> ---
+>  drivers/interconnect/qcom/Kconfig  |    9 +
+>  drivers/interconnect/qcom/Makefile |    2 +
+>  drivers/interconnect/qcom/eliza.c  | 1586 ++++++++++++++++++++++++++++++++++++
+>  3 files changed, 1597 insertions(+)
+> 
 
-This allows individual leds to be mapped to one ata port.
-This is especially useful for NAS devices, which have an own led for each
-disk slot.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
-Signed-off-by: Markus Probst <markus.probst@posteo.de>
----
- drivers/ata/libata-core.c           |  22 +++++-
- drivers/leds/trigger/ledtrig-disk.c | 144 ++++++++++++++++++++++++++++++------
- drivers/scsi/libsas/sas_ata.c       |   3 +-
- include/linux/leds.h                |  16 +++-
- include/linux/libata.h              |   6 +-
- 5 files changed, 161 insertions(+), 30 deletions(-)
-
-diff --git a/drivers/ata/libata-core.c b/drivers/ata/libata-core.c
-index 09d8c035fcdf..796c46449298 100644
---- a/drivers/ata/libata-core.c
-+++ b/drivers/ata/libata-core.c
-@@ -4921,8 +4921,10 @@ void ata_qc_complete(struct ata_queued_cmd *qc)
- 	struct ata_device *dev = qc->dev;
- 	struct ata_eh_info *ehi = &dev->link->eh_info;
- 
-+#ifdef CONFIG_LEDS_TRIGGER_DISK
- 	/* Trigger the LED (if available) */
--	ledtrig_disk_activity(!!(qc->tf.flags & ATA_TFLAG_WRITE));
-+	ledtrig_disk_activity(ap->led_trigger, !!(qc->tf.flags & ATA_TFLAG_WRITE));
-+#endif
- 
- 	/*
- 	 * In order to synchronize EH with the regular execution path, a qc that
-@@ -5538,10 +5540,13 @@ int sata_link_init_spd(struct ata_link *link)
-  *	LOCKING:
-  *	Inherited from calling layer (may sleep).
-  */
--struct ata_port *ata_port_alloc(struct ata_host *host)
-+struct ata_port *ata_port_alloc(struct ata_host *host, int port_no)
- {
- 	struct ata_port *ap;
- 	int id;
-+#ifdef CONFIG_LEDS_TRIGGER_DISK
-+	char name[32];
-+#endif
- 
- 	ap = kzalloc(sizeof(*ap), GFP_KERNEL);
- 	if (!ap)
-@@ -5557,6 +5562,7 @@ struct ata_port *ata_port_alloc(struct ata_host *host)
- 	ap->print_id = id;
- 	ap->host = host;
- 	ap->dev = host->dev;
-+	ap->port_no = port_no;
- 
- 	mutex_init(&ap->scsi_scan_mutex);
- 	INIT_DELAYED_WORK(&ap->hotplug_task, ata_scsi_hotplug);
-@@ -5579,6 +5585,11 @@ struct ata_port *ata_port_alloc(struct ata_host *host)
- 
- 	ata_force_pflags(ap);
- 
-+#ifdef CONFIG_LEDS_TRIGGER_DISK
-+	if (snprintf(name, sizeof(name), "%s-ata%d", dev_name(host->dev), port_no) < sizeof(name))
-+		ap->led_trigger = ledtrig_disk_trigger_register(name);
-+#endif
-+
- 	return ap;
- }
- EXPORT_SYMBOL_GPL(ata_port_alloc);
-@@ -5588,6 +5599,10 @@ void ata_port_free(struct ata_port *ap)
- 	if (!ap)
- 		return;
- 
-+#ifdef CONFIG_LEDS_TRIGGER_DISK
-+	ledtrig_disk_trigger_unregister(ap->led_trigger);
-+#endif
-+
- 	kfree(ap->pmp_link);
- 	kfree(ap->slave_link);
- 	ida_free(&ata_ida, ap->print_id);
-@@ -5690,11 +5705,10 @@ struct ata_host *ata_host_alloc(struct device *dev, int n_ports)
- 	for (i = 0; i < n_ports; i++) {
- 		struct ata_port *ap;
- 
--		ap = ata_port_alloc(host);
-+		ap = ata_port_alloc(host, i);
- 		if (!ap)
- 			goto err_out;
- 
--		ap->port_no = i;
- 		host->ports[i] = ap;
- 	}
- 
-diff --git a/drivers/leds/trigger/ledtrig-disk.c b/drivers/leds/trigger/ledtrig-disk.c
-index ed5ef83a5b35..fd25b4e45fb4 100644
---- a/drivers/leds/trigger/ledtrig-disk.c
-+++ b/drivers/leds/trigger/ledtrig-disk.c
-@@ -159,20 +159,22 @@ static int ledtrig_disk_activate(struct led_classdev *led_cdev)
- 	return 0;
- }
- 
--static struct led_trigger ledtrig_disk = {
--	.name = "disk-activity",
--	.activate = ledtrig_disk_activate,
--	.groups = ledtrig_disk_groups,
--};
--static struct led_trigger ledtrig_disk_read = {
--	.name = "disk-read",
--	.activate = ledtrig_disk_activate,
--	.groups = ledtrig_disk_groups,
--};
--static struct led_trigger ledtrig_disk_write = {
--	.name = "disk-write",
--	.activate = ledtrig_disk_activate,
--	.groups = ledtrig_disk_groups,
-+static struct ledtrig_disk_trigger ledtrig_disk = {
-+	.all = {
-+		.name = "disk-activity",
-+		.activate = ledtrig_disk_activate,
-+		.groups = ledtrig_disk_groups,
-+	},
-+	.read = {
-+		.name = "disk-read",
-+		.activate = ledtrig_disk_activate,
-+		.groups = ledtrig_disk_groups,
-+	},
-+	.write = {
-+		.name = "disk-write",
-+		.activate = ledtrig_disk_activate,
-+		.groups = ledtrig_disk_groups,
-+	},
- };
- 
- static void ledtrig_disk_blink_oneshot(struct led_trigger *trig)
-@@ -189,21 +191,121 @@ static void ledtrig_disk_blink_oneshot(struct led_trigger *trig)
- 	rcu_read_unlock();
- }
- 
--void ledtrig_disk_activity(bool write)
-+static void ledtrig_disk_trigger_activity(struct ledtrig_disk_trigger *trig, bool write)
- {
--	ledtrig_disk_blink_oneshot(&ledtrig_disk);
-+	if (IS_ERR_OR_NULL(trig))
-+		return;
-+	ledtrig_disk_blink_oneshot(&trig->all);
- 	if (write)
--		ledtrig_disk_blink_oneshot(&ledtrig_disk_write);
-+		ledtrig_disk_blink_oneshot(&trig->write);
- 	else
--		ledtrig_disk_blink_oneshot(&ledtrig_disk_read);
-+		ledtrig_disk_blink_oneshot(&trig->read);
-+}
-+
-+void ledtrig_disk_activity(struct ledtrig_disk_trigger *port, bool write)
-+{
-+	ledtrig_disk_trigger_activity(&ledtrig_disk, write);
-+	ledtrig_disk_trigger_activity(port, write);
- }
- EXPORT_SYMBOL(ledtrig_disk_activity);
- 
-+struct ledtrig_disk_trigger *ledtrig_disk_trigger_register(const char *name)
-+{
-+	struct ledtrig_disk_trigger *trigger = kzalloc(sizeof(*trigger), GFP_KERNEL);
-+	int ret, n;
-+
-+	if (!trigger)
-+		return ERR_PTR(-ENOMEM);
-+
-+	trigger->all.name = kzalloc(TRIG_NAME_MAX, GFP_KERNEL);
-+	if (!trigger->all.name) {
-+		ret = -ENOMEM;
-+		goto err1;
-+	}
-+
-+	n = snprintf((char *)trigger->all.name, TRIG_NAME_MAX, "%s-disk-activity", name);
-+	if (n >= TRIG_NAME_MAX) {
-+		ret = -E2BIG;
-+		goto err1;
-+	}
-+
-+	trigger->all.activate = ledtrig_disk_activate;
-+	trigger->all.groups = ledtrig_disk_groups;
-+
-+	ret = led_trigger_register(&trigger->all);
-+	if (ret)
-+		goto err1;
-+
-+	trigger->read.name = kzalloc(TRIG_NAME_MAX, GFP_KERNEL);
-+	if (!trigger->read.name) {
-+		ret = -ENOMEM;
-+		goto err2;
-+	}
-+
-+	n = snprintf((char *)trigger->read.name, TRIG_NAME_MAX, "%s-disk-read", name);
-+	if (n >= TRIG_NAME_MAX) {
-+		ret = -E2BIG;
-+		goto err2;
-+	}
-+
-+	trigger->read.activate = ledtrig_disk_activate;
-+	trigger->read.groups = ledtrig_disk_groups;
-+
-+	ret = led_trigger_register(&trigger->read);
-+	if (ret)
-+		goto err2;
-+
-+	trigger->write.name = kzalloc(TRIG_NAME_MAX, GFP_KERNEL);
-+	if (!trigger->write.name) {
-+		ret = -ENOMEM;
-+		goto err3;
-+	}
-+
-+	n = snprintf((char *)trigger->write.name, TRIG_NAME_MAX, "%s-disk-write", name);
-+	if (n >= TRIG_NAME_MAX) {
-+		ret = -E2BIG;
-+		goto err3;
-+	}
-+
-+	trigger->write.activate = ledtrig_disk_activate;
-+	trigger->write.groups = ledtrig_disk_groups;
-+
-+	ret = led_trigger_register(&trigger->write);
-+	if (ret)
-+		goto err3;
-+
-+	return trigger;
-+
-+err3:
-+	led_trigger_unregister(&trigger->read);
-+err2:
-+	led_trigger_unregister(&trigger->all);
-+err1:
-+	kfree(trigger->all.name);
-+	kfree(trigger->read.name);
-+	kfree(trigger->write.name);
-+	kfree(trigger);
-+
-+	return ERR_PTR(ret);
-+}
-+EXPORT_SYMBOL(ledtrig_disk_trigger_register);
-+
-+void ledtrig_disk_trigger_unregister(struct ledtrig_disk_trigger *trig)
-+{
-+	if (IS_ERR_OR_NULL(trig))
-+		return;
-+
-+	led_trigger_unregister(&trig->all);
-+	led_trigger_unregister(&trig->read);
-+	led_trigger_unregister(&trig->write);
-+}
-+EXPORT_SYMBOL(ledtrig_disk_trigger_unregister);
-+
- static int __init ledtrig_disk_init(void)
- {
--	led_trigger_register(&ledtrig_disk);
--	led_trigger_register(&ledtrig_disk_read);
--	led_trigger_register(&ledtrig_disk_write);
-+	led_trigger_register(&ledtrig_disk.all);
-+	led_trigger_register(&ledtrig_disk.read);
-+	led_trigger_register(&ledtrig_disk.write);
- 
- 	return 0;
- }
-diff --git a/drivers/scsi/libsas/sas_ata.c b/drivers/scsi/libsas/sas_ata.c
-index bcecb4911da9..8841850684f7 100644
---- a/drivers/scsi/libsas/sas_ata.c
-+++ b/drivers/scsi/libsas/sas_ata.c
-@@ -587,14 +587,13 @@ int sas_ata_init(struct domain_device *found_dev)
- 
- 	ata_host_init(ata_host, ha->dev, &sas_sata_ops);
- 
--	ap = ata_port_alloc(ata_host);
-+	ap = ata_port_alloc(ata_host, 0);
- 	if (!ap) {
- 		pr_err("ata_port_alloc failed.\n");
- 		rc = -ENODEV;
- 		goto free_host;
- 	}
- 
--	ap->port_no = 0;
- 	ap->pio_mask = ATA_PIO4;
- 	ap->mwdma_mask = ATA_MWDMA2;
- 	ap->udma_mask = ATA_UDMA6;
-diff --git a/include/linux/leds.h b/include/linux/leds.h
-index b16b803cc1ac..3221be97e9c0 100644
---- a/include/linux/leds.h
-+++ b/include/linux/leds.h
-@@ -619,10 +619,22 @@ enum led_trigger_netdev_modes {
- };
- 
- /* Trigger specific functions */
-+struct ledtrig_disk_trigger {
-+	struct led_trigger all;
-+	struct led_trigger read;
-+	struct led_trigger write;
-+};
- #ifdef CONFIG_LEDS_TRIGGER_DISK
--void ledtrig_disk_activity(bool write);
-+struct ledtrig_disk_trigger *ledtrig_disk_trigger_register(const char *name);
-+void ledtrig_disk_trigger_unregister(struct ledtrig_disk_trigger *trig);
-+void ledtrig_disk_activity(struct ledtrig_disk_trigger *port, bool write);
- #else
--static inline void ledtrig_disk_activity(bool write) {}
-+static inline struct ledtrig_disk_trigger *ledtrig_disk_trigger_register(const char *name)
-+{
-+	return ERR_PTR(-EOPNOTSUPP);
-+}
-+static inline void ledtrig_disk_trigger_unregister(struct ledtrig_disk_trigger *trig) {}
-+static inline void ledtrig_disk_activity(struct ledtrig_disk_trigger *port, bool write) {}
- #endif
- 
- #ifdef CONFIG_LEDS_TRIGGER_MTD
-diff --git a/include/linux/libata.h b/include/linux/libata.h
-index 39534fafa36a..50124d170d13 100644
---- a/include/linux/libata.h
-+++ b/include/linux/libata.h
-@@ -940,6 +940,10 @@ struct ata_port {
- #ifdef CONFIG_ATA_ACPI
- 	struct ata_acpi_gtm	__acpi_init_gtm; /* use ata_acpi_init_gtm() */
- #endif
-+
-+#ifdef CONFIG_LEDS_TRIGGER_DISK
-+	struct ledtrig_disk_trigger *led_trigger;
-+#endif
- };
- 
- /* The following initializer overrides a method to NULL whether one of
-@@ -1307,7 +1311,7 @@ extern int sata_link_scr_lpm(struct ata_link *link, enum ata_lpm_policy policy,
- 			     bool spm_wakeup);
- extern int ata_slave_link_init(struct ata_port *ap);
- extern void ata_port_probe(struct ata_port *ap);
--extern struct ata_port *ata_port_alloc(struct ata_host *host);
-+extern struct ata_port *ata_port_alloc(struct ata_host *host, int port_no);
- extern void ata_port_free(struct ata_port *ap);
- extern int ata_tport_add(struct device *parent, struct ata_port *ap);
- extern void ata_tport_delete(struct ata_port *ap);
 
 -- 
-2.52.0
-
+With best wishes
+Dmitry
 
