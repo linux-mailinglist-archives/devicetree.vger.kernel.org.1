@@ -1,194 +1,184 @@
-Return-Path: <devicetree+bounces-258964-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258965-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kLE0Efp+c2mQwwAAu9opvQ
-	(envelope-from <devicetree+bounces-258964-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:00:26 +0100
+	id KJTiLiuAc2ncwwAAu9opvQ
+	(envelope-from <devicetree+bounces-258965-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:05:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DA2B768F4
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:00:24 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F98E76A26
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:05:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 83317300514C
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 14:00:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 68B15308175C
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 14:01:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AF90299AAC;
-	Fri, 23 Jan 2026 14:00:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D3522E2DF2;
+	Fri, 23 Jan 2026 14:01:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1614CA930
-	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 14:00:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 630A842A96;
+	Fri, 23 Jan 2026 14:01:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769176819; cv=none; b=Z0FTInl2cPBCBn5l5ihwjrtJGpPapV7oX2CX0Vm39caB2Z+mLsN/jii6DNwf/rVZ5j4BwFR+O8KkvLuKwJrU6IdWZ0bet6ggQacg9vtOFAvBouEzNjsrAUaTECMPuSJPVyJdOb4MpwAGM5dJvKTLv8rfBJ0I9BCl5aUqkdOE5u4=
+	t=1769176890; cv=none; b=k08jAV4+t+2Mc5cIG/M9UHTX3hVbfQWhFKaa0X7OlqX3z5GOowa6FYiWyliF2qxS4iuM8X2T/SLefnnYmXYnsHCMG7D8bzioJAUsQqx7BrRIf2vhD2UyatZ6NozMC4PGjmk6mCAUWyflMJ8thpIzIp5WPyEjqkXXPyKGoMnDHUA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769176819; c=relaxed/simple;
-	bh=JQzDr2wa459ee38VP0WagG9PEfEOEICCIZutSaELcdo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=p1AHngEubZGiquHkDsSJcSKJMX0Y0frJgXeOhwTMNoUpqu7Ig/1DsL1ocQTyQStTMwCVFu5cifZdrNua3/tVagKsi5g7DmjTs+a9N1wVhEZ3VW8HJ7dJcpVxBxtTh09m8Vf6Po+sdDmlpzRgx3g+QQzmCLd08jwihiZbC/WOVPE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1vjHhq-0000Er-GD; Fri, 23 Jan 2026 15:00:10 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1vjHhq-0026Ks-32;
-	Fri, 23 Jan 2026 15:00:10 +0100
-Received: from pengutronix.de (p54b152ce.dip0.t-ipconnect.de [84.177.82.206])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id F388E4D6F46;
-	Fri, 23 Jan 2026 14:00:09 +0000 (UTC)
-Date: Fri, 23 Jan 2026 15:00:09 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Arun Muthusamy <arun.muthusamy@gaisler.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	mailhol@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-can@vger.kernel.org, Daniel Hellstrom <daniel@gaisler.com>
-Subject: Re: [PATCH v3 10/15] can: grcan: Add saving and restoring of CAN FD
- baud-rate registers
-Message-ID: <20260123-original-manipulative-bulldog-07cf38-mkl@pengutronix.de>
-References: <20260122121038.7910-1-arun.muthusamy@gaisler.com>
- <20260122121038.7910-11-arun.muthusamy@gaisler.com>
+	s=arc-20240116; t=1769176890; c=relaxed/simple;
+	bh=RKfjzbjiV94nnLtWQm77NbNdGr9Vz7/jc4kt6Nb22OI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=PS0qMhqFTPaA/yCwBsisv2ifsMjCx1tuE5Vs//N8m/FKVqS70ZGI/CrH7y3cR+7pH00mL/b5cKzZLeWhwiJOzpkB+6RR+qTuOjRmhDwnaiVBTazrhPkcaRs8HtfdrT904KIHz2orT5FxCQsKvI/AiPmN5iCSaqnFFMUMfIljYk8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-CSE-ConnectionGUID: AUUGP9uVTRGdGgMUUG516w==
+X-CSE-MsgGUID: 8q9pyuHvSdWWoWGEmIZfAg==
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 23 Jan 2026 23:01:20 +0900
+Received: from ubuntu.adwin.renesas.com (unknown [10.226.92.92])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 4F0D4406E3FB;
+	Fri, 23 Jan 2026 23:01:15 +0900 (JST)
+From: John Madieu <john.madieu.xa@bp.renesas.com>
+To: claudiu.beznea.uj@bp.renesas.com,
+	lpieralisi@kernel.org,
+	kwilczynski@kernel.org,
+	mani@kernel.org,
+	geert+renesas@glider.be,
+	krzk+dt@kernel.org
+Cc: robh@kernel.org,
+	bhelgaas@google.com,
+	conor+dt@kernel.org,
+	magnus.damm@gmail.com,
+	biju.das.jz@bp.renesas.com,
+	linux-pci@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	john.madieu@gmail.com,
+	John Madieu <john.madieu.xa@bp.renesas.com>
+Subject: [PATCH v2 00/15]  PCI: renesas: Add RZ/G3E PCIe controller support
+Date: Fri, 23 Jan 2026 15:00:16 +0100
+Message-ID: <20260123140031.94752-1-john.madieu.xa@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="hpwst4y3s5nxqy43"
-Content-Disposition: inline
-In-Reply-To: <20260122121038.7910-11-arun.muthusamy@gaisler.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.56 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [1.64 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[renesas.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258964-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-258965-lists,devicetree=lfdr.de];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FREEMAIL_CC(0.00)[kernel.org,google.com,gmail.com,bp.renesas.com,vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mkl@pengutronix.de,devicetree@vger.kernel.org];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	RCPT_COUNT_SEVEN(0.00)[9];
 	R_DKIM_NA(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:url,pengutronix.de:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 5DA2B768F4
+	NEURAL_HAM(-0.00)[-0.993];
+	FROM_NEQ_ENVFROM(0.00)[john.madieu.xa@bp.renesas.com,devicetree@vger.kernel.org];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bp.renesas.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 4F98E76A26
 X-Rspamd-Action: no action
 
+The Renesas RZ/G3E SoC features a PCIe controller that shares similarities with
+the existing RZ/G3S PCIe controller, but with several key differences.
+This series adds support for the RZ/G3E PCIe controller by extending the existing
+RZ/G3S driver and device tree bindings.
 
---hpwst4y3s5nxqy43
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 10/15] can: grcan: Add saving and restoring of CAN FD
- baud-rate registers
-MIME-Version: 1.0
+Key differences between RZ/G3E and RZ/G3S PCIe controllers:
 
-On 22.01.2026 13:10:33, Arun Muthusamy wrote:
-> From: Daniel Hellstrom <daniel@gaisler.com>
->
-> While reset the GRCAN baud-rates are preserved, since GRCANFD has the
-> baud-rate in different registers we need to add saving of those
-> registers too.
->
-> Signed-off-by: Daniel Hellstrom <daniel@gaisler.com>
-> Signed-off-by: Arun Muthusamy <arun.muthusamy@gaisler.com>
-> ---
->  drivers/net/can/grcan.c | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
->
-> diff --git a/drivers/net/can/grcan.c b/drivers/net/can/grcan.c
-> index a2a5a5c868ff..0ee6e9bfbe7f 100644
-> --- a/drivers/net/can/grcan.c
-> +++ b/drivers/net/can/grcan.c
-> @@ -517,15 +517,27 @@ static void grcan_reset(struct net_device *dev)
->  	struct grcan_priv *priv =3D netdev_priv(dev);
->  	struct grcan_registers __iomem *regs =3D priv->regs;
->  	u32 config =3D grcan_read_reg(&regs->conf);
-> +	u32 nbtr, fdbtr;
-> +
-> +	if (priv->hwcap->fd) {
-> +		nbtr =3D grcan_read_reg(&regs->nbtr);
+Link Speed Support:
+ - RZ/G3E: Supports PCIe Gen3 (8.0 GT/s) alongside Gen2 (5.0 GT/s)
+ - RZ/G3S: Supports PCIe Gen2 (5.0 GT/s) only
 
-Why do you save nbtr....
+Reset Control:
+ - RZ/G3E: Uses register-based reset control mechanism
+ - RZ/G3S: Uses exclusively external reset control signals
 
-> +		fdbtr =3D grcan_read_reg(&regs->fdbtr);
+Inbound Window Configuration:
+ - RZ/G3E: Requires precise power-of-2 window coverage with strict address
+   alignment constraints. Non-power-of-2 memory regions must be split into
+   multiple windows to avoid over-mapping, ensuring proper hardware address
+   decoding for DMA operations.
+ - RZ/G3S: Uses a simpler approach that rounds up to the next power-of-2,
+   creating single larger windows. The hardware tolerates over-mapped regions.
 
-   Who writes fdbtr in the first place?
+Class/Revision IDs:
+ - RZ/G3E: Requires explicit setting of class/revision values
+ - RZ/G3S: Has default values in hardware
 
-> +	}
->
->  	grcan_set_bits(&regs->ctrl, GRCAN_CTRL_RESET);
->  	grcan_write_reg(&regs->conf, config);
-> +	if (priv->hwcap->fd) {
-> +		grcan_write_reg(&regs->nbtr, nbtr);
-> +		grcan_write_reg(&regs->fdbtr, fdbtr);
-> +	}
->
->  	priv->eskbp =3D grcan_read_reg(&regs->txrd);
->  	priv->can.state =3D CAN_STATE_STOPPED;
->
->  	/* Turn off hardware filtering - regs->rxcode set to 0 by reset */
->  	grcan_write_reg(&regs->rxmask, 0);
-> +
-> +	priv->hwcap->set_bittiming(dev);
+Clock Naming:
+ - RZ/G3E: Uses "clkpmu" clock for power management
+ - RZ/G3S: Uses "clkl1pm" PM control clock while CLKREQ_B is deasserting
 
-=2E..if you configure the bit timing again, wich writes nbtr?
+Phy Settings:
+ - RZ/G3E: Does not need PHY settings as it works with default hw values
+ - RZ/G3S: Requires explicit PHY settings
 
-regards,
-Marc
+This series extends the existing driver to detect the SoC type from the device
+tree compatible string and configure the controller appropriately. The updates
+are minimal and focused on the hardware-specific differences while keeping the
+common code paths unified.
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+Changes:
 
---hpwst4y3s5nxqy43
-Content-Type: application/pgp-signature; name="signature.asc"
+v2:
+ - Address Bjorn typo comments
+ - Address Claidiu's comment on stylish
+ - Use single inbound-window-configuration function for both G3E/G3S
+ - Refactor goto laballing as per Claudiu's comments
+ - Update bindings and reused G3S's interrupt ordering
+   * This involves reordering interrupts in dt
+ - Remove Board-specific PCIe dma-range.
 
------BEGIN PGP SIGNATURE-----
+John Madieu (15):
+  PCI: rzg3s-host: Fix reset handling in probe error path
+  PCI: renesas: rzg3s: Rework inbound window algorithm for multi-SoC
+    support
+  clk: renesas: rzv2h-cpg: Add support for init_{off|asserted}
+    clocks/resets
+  clk: renesas: r9a09g047: Add PCIe clocks and reset
+  dt-bindings: PCI: renesas,r9a08g045s33-pcie: Fix typo in
+    interrupt-names
+  dt-bindings: PCI: renesas,r9a08g045s33-pcie: Document RZ/G3E SoC
+  PCI: rzg3s-host: Make SYSC register offsets SoC-specific
+  PCI: rzg3s-host: Make configuration reset lines optional
+  PCI: rzg3s-host: Add SoC-specific configuration and initialization
+    callbacks
+  PCI: rzg3s-host: Explicitly set class code for RZ/G3E compatibility
+  PCI: rzg3s-host: Add PCIe Gen3 (8.0 GT/s) link speed support
+  PCI: rzg3s-host: Add support for RZ/G3E PCIe controller
+  arm64: dts: renesas: r9a09g047: Add PCIe node
+  arm64: dts: renesas: r9a09g047e57-smarc-som: Add PCIe reference clock
+  arm64: dts: renesas: r9a09g047e57-smarc: Enable PCIe
 
-iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmlzfuYACgkQDHRl3/mQ
-kZyzNQf/X4KCwQqI/VabGEOY4xaS9oa6+oSnJ5T9lOIuS6LIQIHihzbbYzKibJo9
-D0OUsin3vup4LbnxY6INn5Dc+dGMtv6L717TsL0ZHOiV/rcSSBAJxQjBGMbyckvO
-DuVuWZ7GSa23RcL/sVSWzFTQAFkkcitkN7wrlEud/w1OJGjA/MHHwwGzWPZpLJ31
-tQiUdyxF2dEn0HnttMohS7i3o8HhQ1fTxM02EyDlFWpbPU9qbu039O2/8JtLibMF
-RMp4xoauSxNYktNo7T+wPPakbNW+c6ooIDdvc241tcfWy6XirlWawy1/E3VQtFFf
-uFp+0O5ChzzzbnNkYA5KU7QL3W+X/w==
-=HVpZ
------END PGP SIGNATURE-----
+ .../bindings/pci/renesas,r9a08g045-pcie.yaml  | 127 ++++--
+ arch/arm64/boot/dts/renesas/r9a09g047.dtsi    |  69 ++++
+ .../boot/dts/renesas/r9a09g047e57-smarc.dts   |  17 +
+ .../boot/dts/renesas/rzg3e-smarc-som.dtsi     |  11 +
+ drivers/clk/renesas/r9a09g047-cpg.c           |   5 +
+ drivers/clk/renesas/rzv2h-cpg.c               |  27 +-
+ drivers/clk/renesas/rzv2h-cpg.h               |  34 +-
+ drivers/pci/controller/pcie-rzg3s-host.c      | 387 ++++++++++++++----
+ 8 files changed, 554 insertions(+), 123 deletions(-)
 
---hpwst4y3s5nxqy43--
+-- 
+2.25.1
+
 
