@@ -1,180 +1,196 @@
-Return-Path: <devicetree+bounces-258806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258807-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WLPBKP08c2kztgAAu9opvQ
-	(envelope-from <devicetree+bounces-258806-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:18:53 +0100
+	id wIPJFXA9c2kztgAAu9opvQ
+	(envelope-from <devicetree+bounces-258807-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:20:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C10F731D7
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:18:53 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id E899673281
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:20:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 56344306377A
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 09:14:05 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id BB6EB300DCF6
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 09:20:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD72F31A06F;
-	Fri, 23 Jan 2026 09:14:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F110A33D506;
+	Fri, 23 Jan 2026 09:20:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UOHyzX/u"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ouCeHIuY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A50318DB37;
-	Fri, 23 Jan 2026 09:14:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DFE534D91C;
+	Fri, 23 Jan 2026 09:20:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769159644; cv=none; b=uvTQ5iQfHf1b2zFgk8nCn5kO9qV5qYKt5IiD8wASXlIRSqOU70IuzrxEpWsQtBCKBrQugp5WxPtw2GpphMK7ABvjtDO9SCqX1+lGUONBJpult2Cb1HHVD7xZwcZ+rjPzo1o3BwALPo3ykme60lReAL5AUaWWQUSY4pETcHvws54=
+	t=1769160016; cv=none; b=NB2FUo85smk+hfcMbGeM0ZsQi6uxHTv07/3eg1ICuzBRlg3zPj09o0XWn8AcBpDdxX73K0OP9Gz22Z3OFqXmSA6EuDBGd3D/OhKcpWAeBfal/S9kmqzhIY58GhzdPF7Jf8Vjj8yp5i3tKZ4r2M/0g2Aa0Sis4GFFM3GPsT/AIeg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769159644; c=relaxed/simple;
-	bh=hc1d8PprO/rifKZP0byHcVdxf/ktn0MVN+Yt9SP+4x4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=P/Ns6Hzxnap286h8RFJPHSwt49XiGP51vm9AeHrOHfulgT+VOHtJ1YtV8GMypAfo0TJEZXH9GkWSUcIakaTkp7y1gHHYcAyIx7b7ZqQfrLBq1mcNp/zLU/zuLVNYUg4qjX4HlegRqlvaQnZDH+iBLNbwGCTbxAq7qlcO1G+XIoM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UOHyzX/u; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB16EC116D0;
-	Fri, 23 Jan 2026 09:13:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769159644;
-	bh=hc1d8PprO/rifKZP0byHcVdxf/ktn0MVN+Yt9SP+4x4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=UOHyzX/uAQxunuEDWA4IjDUOigApHS8eJBIqSQRpVY9chEOfKR1746LpYDX0GVOBm
-	 XRNNP8HaVKLbtqq/svc4/AXBzqi0fbKHY0Ml3UA6NnVfJZk697gxcMi/xE8799bhzF
-	 6Pcq7WmNr2xJcq6/NjIH2489ekMnMoMRxcqn6ExEA0CzydGHasCKhYI9v1t+Kntdvs
-	 buGaT0/gJj7Wh5fO3vgFs6XHmsVr8xk7FbiS/ald7IfANgULofI8HRLm5RLDRH/Zf5
-	 oLZVDL6jf9c3MXRlx9z8e/wyAoJtUFdfyL3R5nlUOCwv2HfU7FWjNfJ+Ngk/CdE9M2
-	 CvAA3RvQYREVg==
-Date: Fri, 23 Jan 2026 09:13:53 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Petr Hodina via B4 Relay <devnull+petr.hodina.protonmail.com@kernel.org>
-Cc: petr.hodina@protonmail.com, Song Qiang <songqiang1304521@gmail.com>,
- David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
- <broonie@kernel.org>, David Heidelberg <david@ixit.cz>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/4] iio: proximity: vl53l0x-i2c: Add optional vddio
- supply
-Message-ID: <20260123091353.420218cc@jic23-huawei>
-In-Reply-To: <20260119-vl53l0x-v1-2-cf71715a1353@protonmail.com>
-References: <20260119-vl53l0x-v1-0-cf71715a1353@protonmail.com>
-	<20260119-vl53l0x-v1-2-cf71715a1353@protonmail.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1769160016; c=relaxed/simple;
+	bh=wScmABaUKe1t2JjurcDqwTIA/wh8A/mq733h91F71Qc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=l8gWM9wZnJDWswJ8dnpks+zsU2t+duPXdIWnkJ2YcIb3Y59pX1EDzNIU6ubzYsAS8XZgwGBDwrubhLleXDdSkG4s5/k55b8yjB6VAxOwnygcwAMqfM47o0RIYyYOPdWuinPZnhDQjqWcvp9bwKy17eiCJYWZXUgORbgVsgMZ8JM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ouCeHIuY; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id A4AE04E42212;
+	Fri, 23 Jan 2026 09:20:11 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 69FA46070A;
+	Fri, 23 Jan 2026 09:20:11 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2D07C119A8792;
+	Fri, 23 Jan 2026 10:20:04 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1769160009; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=QoUg3Uk7+e8l5mq7yG+QFMWRIs9FeJl/CwglzOQSrcA=;
+	b=ouCeHIuYjsbzgDHldVpAkuh/B5AtCWHh58OIV/MdbRM+XeewIili9URv6x4IBIDo6adSjk
+	5F5HKuSEJZDSvQ7rjF9z2bgNUYp/a+TJxDR7euP2NxpA9zLHH7Fiave4pisKcrDRgx8wyd
+	6GTMTDnkUVqVyq2XpofKxjsGfE75V0YDJ9tFadQwT4Euf0e+w7amNzUOuIvkrgDcHXzEDM
+	4I/7CZz2QztBW2vXrPVnks3KiDKtPIr0snQ5oh/k2Ocqn8UVaGeXgXGPOpPl3cUmjIKA4o
+	zcgC4p2JlEcTpIYeWOKP3i4fSQa/Nz/qOmU7+S8ehBJNueZhnHGWB2WOdHOuQQ==
+Message-ID: <dc6e60ec-f460-4713-b1cc-97ceb2d344f5@bootlin.com>
+Date: Fri, 23 Jan 2026 10:20:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/2] arm64: dts: a7k: add COM Express boards
+To: Gregory CLEMENT <gregory.clement@bootlin.com>,
+ Rob Herring <robh@kernel.org>, Elad Nachman <enachman@marvell.com>,
+ andrew@lunn.ch
+Cc: conor+dt@kernel.org, linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+ chris.packham@alliedtelesis.co.nz, pali@kernel.org,
+ devicetree@vger.kernel.org, mrkiko.rs@gmail.com,
+ sebastian.hesselbarth@gmail.com, linux-arm-kernel@lists.infradead.org,
+ krzysztof.kozlowski+dt@linaro.org
+References: <20260122165923.2316510-1-enachman@marvell.com>
+ <176910484185.3007016.14688980539020105749.robh@kernel.org>
+ <87a4y4lmn4.fsf@BLaptop.bootlin.com>
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Content-Language: en-US
+In-Reply-To: <87a4y4lmn4.fsf@BLaptop.bootlin.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258806-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-258807-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,alliedtelesis.co.nz,gmail.com,lists.infradead.org,linaro.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.994];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[protonmail.com,gmail.com,baylibre.com,analog.com,kernel.org,ixit.cz,vger.kernel.org];
-	TAGGED_RCPT(0.00)[devicetree,petr.hodina.protonmail.com,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[protonmail.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 0C10F731D7
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[maxime.chevallier@bootlin.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,0.0.0.0:email,bootlin.com:mid,bootlin.com:dkim,marvell.com:email]
+X-Rspamd-Queue-Id: E899673281
 X-Rspamd-Action: no action
 
-On Mon, 19 Jan 2026 18:19:56 +0100
-Petr Hodina via B4 Relay <devnull+petr.hodina.protonmail.com@kernel.org> wrote:
+Hi,
 
-> From: Petr Hodina <petr.hodina@protonmail.com>
+On 23/01/2026 10:10, Gregory CLEMENT wrote:
+> Hello,
 > 
-> The VL53L0X can be powered using separate core (VDD) and I/O (VDDIO)
-> supplies.
+>> On Thu, 22 Jan 2026 18:59:20 +0200, Elad Nachman wrote:
+>>> From: Elad Nachman <enachman@marvell.com>
+>>>
+>>> Add support for Armada 7020 Express Type 7 CPU module board by Marvell.
+>>> Add device tree bindings for this board.
+>>> Define this COM Express CPU module as dtsi and provide a dtsi file for
+>>> the carrier board (Marvell DB-98CX85x0 COM Express type 7 carrier board).
+>>> Add the Falcon DB to the MAINTAINERS list
+>>>
+>>> Since memory is soldered on CPU module, memory node is on CPU module
+>>> dtsi file.
+>>>
+>>> This Carrier board only utilizes the PCIe link, hence no special device
+>>> or driver support is provided by this dtsi file.
+>>> Devise a dts file for the combined com express carrier and CPU module.
+>>>
+>>> The Aramda 7020 CPU COM Express board offers the following features:
+>>>
+>>> 1.  Armada 7020 CPU, with dual ARM A72 cores
+>>> 2.  DDR4 memory, 8GB, on board soldered
+>>> 3.  1Gbit Out of Band Ethernet via RGMII to PHY and RJ45 connector,
+>>>     all are present on A7K CPU module (none on the carrier)
+>>> 4.  Optional 10G KR Ethernet going via the COM Express type 7 connector
+>>> 5.  On-board 8 Gbit, 8-bit bus width NAND flash
+>>> 6.  On-board 512 Mbit SPI flash
+>>> 7.  PCIe Root Complex, 4 lanes PCIe gen3 connectivity, going via the
+>>>     COM Express type 7 connector
+>>> 8.  m.2 SATA connector
+>>> 9.  Micro-SD card connector
+>>> 10. USB 2.0 via COM Express type 7 connector
+>>> 11. Two i2c interfaces - one to the CPU module, and one to the
+>>>     carrier board via the COM Express type 7 connector
+>>> 12. UART (mini USB connector by virtue of FT2232D UART to USB
+>>>     converter, connected to the Armada 7020 UART0)
+>>>
+
+ [...]
+
+>> My bot found new DTB warnings on the .dts files added or changed in this
+>> series.
+>>
+>> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+>> are fixed by another series. Ultimately, it is up to the platform
+>> maintainer whether these warnings are acceptable or not. No need to reply
+>> unless the platform maintainer has comments.
+>>
+>> If you already ran DT checks and didn't see these error(s), then
+>> make sure dt-schema is up to date:
+>>
+>>   pip3 install dtschema --upgrade
+>>
+>>
+>> This patch series was applied (using b4) to base:
+>>  Base: attempting to guess base-commit...
+>>  Base: tags/next-20260121 (exact match)
+>>  Base: tags/next-20260121 (use --merge-base to override)
+>>
+>> If this is not the correct base, please add 'base-commit' tag
+>> (or use b4 which does this automatically)
+>>
+>>
+>> New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/marvell/' for 20260122165923.2316510-1-enachman@marvell.com:
+>>
+>> arch/arm64/boot/dts/marvell/db-falcon-carrier-a7k.dtb: ethernet@0 (marvell,armada-7k-pp22): ethernet-port@0:phy-mode:0: '10gbase-kr' is not one of ['gmii', 'sgmii', 'rgmii-id', '1000base-x', '2500base-x', '5gbase-r', 'rxaui', '10gbase-r']
+>> 	from schema $id:
+>> http://devicetree.org/schemas/net/marvell,pp2.yaml
 > 
-> Add support for an optional vio regulator and enable/disable it during
-> power on/off when present. Update the device tree binding to document the
-> new optional supply.
+> Does this mean we should add 10gbase-kr to the phy-mode enum list in
+> Documentation/devicetree/bindings/net/marvell?
 
-In what sense is it optional?  Some change to device config to say don't
-use it, or simply might not be in DT binding but in that case is always on?
+No, 10gbase-kr is legacy, one should use "10gbase-r" instead, cf commit
 
-If the second just let the regulator framework provide a stub regulator.
-That is in the driver don't treat it as optional and all should work fine.
+e0f909bc3a24 ("net: switch to using PHY_INTERFACE_MODE_10GBASER rather than 10GKR")
 
+That should probably be documented in the bindings at some point :)
 
-> 
-> Signed-off-by: Petr Hodina <petr.hodina@protonmail.com>
-> ---
->  drivers/iio/proximity/vl53l0x-i2c.c | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
-> 
-> diff --git a/drivers/iio/proximity/vl53l0x-i2c.c b/drivers/iio/proximity/vl53l0x-i2c.c
-> index ad3e46d47fa8..7bfab396377a 100644
-> --- a/drivers/iio/proximity/vl53l0x-i2c.c
-> +++ b/drivers/iio/proximity/vl53l0x-i2c.c
-> @@ -55,6 +55,7 @@ struct vl53l0x_data {
->  	struct i2c_client *client;
->  	struct completion completion;
->  	struct regulator *vdd_supply;
-> +	struct regulator *vio_supply;
->  	struct gpio_desc *reset_gpio;
->  	struct iio_trigger *trig;
->  };
-> @@ -256,6 +257,8 @@ static void vl53l0x_power_off(void *_data)
->  	gpiod_set_value_cansleep(data->reset_gpio, 1);
->  
->  	regulator_disable(data->vdd_supply);
-> +	if (data->vio_supply)
-> +		regulator_disable(data->vio_supply);
->  }
->  
->  static int vl53l0x_power_on(struct vl53l0x_data *data)
-> @@ -266,6 +269,12 @@ static int vl53l0x_power_on(struct vl53l0x_data *data)
->  	if (ret)
->  		return ret;
->  
-> +	if (data->vio_supply) {
-> +		ret = regulator_enable(data->vio_supply);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
->  	gpiod_set_value_cansleep(data->reset_gpio, 0);
->  
->  	usleep_range(3200, 5000);
-> @@ -338,6 +347,13 @@ static int vl53l0x_probe(struct i2c_client *client)
->  		return dev_err_probe(&client->dev, PTR_ERR(data->vdd_supply),
->  				     "Unable to get VDD regulator\n");
->  
-> +	data->vio_supply = devm_regulator_get_optional(&client->dev, "vio");
-> +	if (PTR_ERR(data->vio_supply) == -ENODEV)
-> +		data->vio_supply = NULL;
-> +	else if (IS_ERR(data->vio_supply))
-> +		return dev_err_probe(&client->dev, PTR_ERR(data->vio_supply),
-> +				     "Unable to get VDDIO regulator\n");
-> +
->  	data->reset_gpio = devm_gpiod_get_optional(&client->dev, "reset", GPIOD_OUT_HIGH);
->  	if (IS_ERR(data->reset_gpio))
->  		return dev_err_probe(&client->dev, PTR_ERR(data->reset_gpio),
-> 
-
+Maxime
 
