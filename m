@@ -1,230 +1,270 @@
-Return-Path: <devicetree+bounces-258915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258916-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uPyeGmdfc2l3vAAAu9opvQ
-	(envelope-from <devicetree+bounces-258915-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 12:45:43 +0100
+	id GIUfOfhfc2l3vAAAu9opvQ
+	(envelope-from <devicetree+bounces-258916-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 12:48:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0D7075501
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 12:45:42 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60444755C6
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 12:48:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 25E3630B0314
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 11:40:28 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2349E3031001
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 11:42:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E253036AB55;
-	Fri, 23 Jan 2026 11:39:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0AFE30F7F2;
+	Fri, 23 Jan 2026 11:42:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="awxm0fyh"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hD/o+oIW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1894534CFD4
-	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 11:39:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.128.50
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769168384; cv=pass; b=CIbwNFwU8jDgBfrbN7Uque8Z/D2Suw+fjY1lpFHavE8K/bRpgKT5eH3C7A1aAYYGzVk30oyD4iRvIWWHHb8lZHLwrCiLXJ+wYpSv/rRhy4ESdu61BJC1k/Ttn3AXObg6T+p02NXQV/SI2iv4KzaW4GURLg1jiUgI6ZH3Ya63a+A=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769168384; c=relaxed/simple;
-	bh=aisLc2ieM5f1wTihT8PCwhs96cakpU8DJktm3rN7jzE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=U/NNha4Vuz7m8GwWAWxuT1UZAcnykl4zaM5uUXXN/VOVBP48RNZBvLu5vDPbY6lvr2wsz/oNxLJc8A0wfWMM3jzto2zDXbp5Y90BEJTAjcmMlFpKssUEDYMkPF42HrZh3qmNMgs3tdSJis6dT5FShBErs0alB2jCkT8St9oSlNo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=awxm0fyh; arc=pass smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-47d59da3d81so20327115e9.0
-        for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 03:39:38 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1769168376; cv=none;
-        d=google.com; s=arc-20240605;
-        b=lCB6sx+BXss+h7rtwN118p4S0tqVl6eimVdNi/AOIcRAu+EL4aLw3M/B41p+23XdAD
-         KkXt/vL9xHN+V9mrX4YkUjznwpvsb8ort7yD7ARP1Z8cJOnr6EvLLgLr+Wtas/+Nsq/D
-         L87YPg9SF8JpNOMmCB2+Va8rVra+G7/YppJXfL53++uhqRMZK4bTUXCWmvyMoPyg0Fkf
-         JZrSgoWd+s8XE3wWj2/iTr528S+9oTLw/TfgiH91F4c67K4KBllnkSkHMlPYdKgfpN5o
-         JjNkcUsBpFgPn5v66puY521WUAehLcUGlIAT5lf4JNbZDf/kiuuTzxUplJnIssiXeKbU
-         h6iQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=aisLc2ieM5f1wTihT8PCwhs96cakpU8DJktm3rN7jzE=;
-        fh=FmDHwAuyHBjnKS/Dn91ehnYVfJ45QIuoFZKNl5p8Nlo=;
-        b=PFQNctHUFtVhoTLTdh5lflVzv2U5+Ht9EWIKJL7SW7XjBWVoGs8NqcznUXMIXuQbRu
-         ayJFmYDG5Nh95nvtR41AO+0dj+MYGPkCPTHhpE0VMG8BLtyAUkv+3+221uogMJ4R/v/O
-         B7S3iY2gD8LPAfPU4u3w5s0Pz19NlURrI7V5fzU7EKP/trlInzzcRhTSQZlbQ9WmRFdk
-         1uyS0GtpDWMzU6W9W4Gs9LhhtAnIAc3tidH3Fd/MKmUp6saGrnE2mq9pckMuWjioVQa2
-         RiT6MjWltWqJ9nacROrWETaDRpP1z0m/DfjD8SkKTjaIVNv7bTKqa5WMVgIJ5Y0e69jR
-         I09w==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769168376; x=1769773176; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aisLc2ieM5f1wTihT8PCwhs96cakpU8DJktm3rN7jzE=;
-        b=awxm0fyh/ZuqSBJYDoyOrvalD2PTMdShhFS5lFlTUkzxdPCgj4vDnskcz+OY8H2NKx
-         RF6a/PkK5l8UOMmu4I6gNf8LVzTk58x1Z6ztbSpBWclkK3hu5G48x06ZF7KaKHLjw80q
-         0cLEtRETx1w35OlP6pf+Fa8hZn+sbzBlGxp3wa1Z0pSNpXmcsg6Xbulh/dwXfOJ2DR5h
-         sRB54auc0BeL+U91KMGU0Y/4leHeewREx9Tz0zhEIrvjfuISZEX/sXqWezZfaxGWjEQc
-         YJkLfgxWjzP489vpPygx3Cjvye5KnSD8edaxL4DJpTBqfZoIZ8mxLlAgPI0mRixsB9Hd
-         v6vA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769168376; x=1769773176;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=aisLc2ieM5f1wTihT8PCwhs96cakpU8DJktm3rN7jzE=;
-        b=hrteql9orEv6W9F8PAWnghN7vzqyfpuoF35xQH10NCw23UxbOMo4F4BqLYfItqC73S
-         clm+NmITko7HO1xvGGHSuwv16phtcvUdPVw/nizAYey+MI+jtFm3QOYZgPucYOSe9VDb
-         AwPRnXx4wsit655PiPJH03R6gXAHo7CNKytxmKtvnQoulUL1AAHXwz8+bmHvPVURMoli
-         OhR6G0TZiwhJ3mKIHUFYcFnZ+9+kXN7wC9yntkn1HZeaGdSAuRfvvfj7+cnygVuphVzR
-         EkqjsKr7vVR3qEIFfLKYFFyePKqBGK0HF85E1FbT57g9VRKwnidEEWQVOUAboguMftPX
-         iV8w==
-X-Forwarded-Encrypted: i=1; AJvYcCVHK6L+TTas3z5U0Lxq9FSr13U/FF6ZFgi0na1qb1t3YojeMQkQwOtbL6EpaueX5bPhQYjlEvjbDV8+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz3mMn5lPMnB6OI/kugSIlzyIZ/ShXYr1fLXovnFFl6vk9ZALFO
-	KBGZMTZWC1xzZHgNTjaATT2OD+B5fU0PZ8xaup8coJGn9b/k7L3fANo5WYwBZOL0coPZrD9xi3r
-	p08xxwIqwtsA/50YtwnbN6YFy4PaiOAo=
-X-Gm-Gg: AZuq6aLy9p9BEiQt/YcpcCVu+ADkdKsNodFBdgiUB9dO+3QB3HLGixw98knxx34ZeAy
-	BwTCUz1obqBr9T+xqgqTiIS42m4eQHP4XyWOuK8p5bvv/8Z7m00MBAeCRuSIkvxnmE23y5uwyIq
-	yYtJY+tTM8+BmWkCNo78I+IMo+5xjcg6vrEiWVQ/4YxJB3mdnn4E0Gww7525aHnel4z9A0Zrjiu
-	Q0UYTB3AtpRxarWe5VwsQ1jgTIsig0U21RqcF/cLWPXpKD2/730oRELFIPBqimC2+EV3iYguHlg
-	FazPmsH/QsvUgENmEArlzbzpBo88gRAVgYNY+mtVRwwSgFLukB/83xczwaai9lzXdumi5CnTQxd
-	YJk9q2Ycg2/gzPg==
-X-Received: by 2002:a05:6000:400a:b0:431:2ff:128f with SMTP id
- ffacd0b85a97d-435b1ab836dmr4926768f8f.6.1769168375446; Fri, 23 Jan 2026
- 03:39:35 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B48832741AB;
+	Fri, 23 Jan 2026 11:41:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769168520; cv=none; b=sLS7l9tAS5ejiJvSvlqzEKr1b12yITBPtZGxgjgpoWSuTOAc0kp9wYVR/s1BRbKGwNLz+r4k4tOMQQKXnLPfjAoB85AIzxiGrg85QzaPPU5yOyApnHOgMlP2FV7474YWcWVOGvTDUiAPLu1gLLJYBKUlh9LzjKndbVHrP66/fcw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769168520; c=relaxed/simple;
+	bh=V4Mf94EcyIDXzX94gvCBbKbFzNKoA9nJp5TA6mm7760=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HJpEs4YuFaS0BJGIxDEvRB8PSPp6mrb3EvgdpLr2aazbV9guzk2m7fpY8g4gHRyg7E+LGPIvaGcfMAosU5p6ENyebmMYjVyIA41hljH12R7Cw77/esvarylRHSi0MmDhgXbt8RupGVPVtaGG1JTTto4x8l3VQ2Toen3nJyC7g8I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hD/o+oIW; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1769168519; x=1800704519;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=V4Mf94EcyIDXzX94gvCBbKbFzNKoA9nJp5TA6mm7760=;
+  b=hD/o+oIWEnXcTH+JgQzNqvNShvGI30jRUrmGDPxDINFaOSHFwsGVeAKS
+   m+8WS9Yb68i1uSABYfLSNrNt+wyB1o5/TXSZcPrYUkMP2gmabW2SZLXlL
+   SKLeJr3V8eIGQ6b0r+tiJ8EydYEto/XjFUWTj7gedAuStgcBtIP6l+dF9
+   5XKP9dydGXkMdkteQDLWytikBTU0zA8MQ4aQLoA0JL5kGcZHDG72i+gmI
+   101R5g7BZ24QiN2bhZuN1+8GrxkR4k3xdwQpzFpS5qAodl1YlKDO5dkwy
+   h87CrF6O0RvIp7MzP+u59zjRXGk6tOLIpwq6wtz8guZWBaYz+oPLG5jPc
+   Q==;
+X-CSE-ConnectionGUID: e7PbWnynTs2S0kYkKfMZAA==
+X-CSE-MsgGUID: f7lp4HQ4RMucuP/ES1X91A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11679"; a="70481953"
+X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; 
+   d="scan'208";a="70481953"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jan 2026 03:41:58 -0800
+X-CSE-ConnectionGUID: HfX8Xg9RSGi7be1Lr3RVNg==
+X-CSE-MsgGUID: /0HznFOTRbCyDXyBJf4gng==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; 
+   d="scan'208";a="211130239"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+  by orviesa003.jf.intel.com with ESMTP; 23 Jan 2026 03:41:52 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vjFXy-00000000Tty-0dUd;
+	Fri, 23 Jan 2026 11:41:50 +0000
+Date: Fri, 23 Jan 2026 19:41:30 +0800
+From: kernel test robot <lkp@intel.com>
+To: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>,
+	Drew Fustini <dfustini@oss.tenstorrent.com>,
+	Joel Stanley <jms@oss.tenstorrent.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+	joel@jms.id.au, fustini@kernel.org, mpe@kernel.org,
+	mpe@oss.tenstorrent.com, npiggin@oss.tenstorrent.com,
+	agross@kernel.org, agross@oss.tenstorrent.com, bmasney@redhat.com
+Subject: Re: [PATCH v2 3/3] clk: tenstorrent: Add Atlantis clock controller
+ driver
+Message-ID: <202601231918.PQTTcbRG-lkp@intel.com>
+References: <20260122-atlantis-clocks-v2-3-c66371639e66@oss.tenstorrent.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260114153337.46765-1-john.madieu.xa@bp.renesas.com>
- <20260114153337.46765-4-john.madieu.xa@bp.renesas.com> <CAMuHMdXAAUe_0kboQ9C0AMPn5re-1kCagecp1fMCGramDpXGRA@mail.gmail.com>
- <TY6PR01MB17377AE5807504FFB6594471AFF89A@TY6PR01MB17377.jpnprd01.prod.outlook.com>
- <TY6PR01MB1737738E302D0BA716AAA2650FF97A@TY6PR01MB17377.jpnprd01.prod.outlook.com>
- <CAMuHMdXk6A2-isnLQCgrjjWRX=pYKbUvVz-nfDwy72i1qo1-rA@mail.gmail.com> <TY6PR01MB173770856BD4044A79150F6E8FF94A@TY6PR01MB17377.jpnprd01.prod.outlook.com>
-In-Reply-To: <TY6PR01MB173770856BD4044A79150F6E8FF94A@TY6PR01MB17377.jpnprd01.prod.outlook.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Fri, 23 Jan 2026 11:39:09 +0000
-X-Gm-Features: AZwV_Qi1ncDRUlLnXwWZ1l-P3_ht124RPLuPAwvq1Re_E8LiTcuyHXUL4gel0CA
-Message-ID: <CA+V-a8uNpNPCyePQrRDQxaGfN2gZE3-2VvCMs3FOqFaU3mKjLw@mail.gmail.com>
-Subject: Re: [PATCH 03/16] clk: renesas: rzv2h-cpg: Add support for init_off clocks
-To: John Madieu <john.madieu.xa@bp.renesas.com>
-Cc: geert <geert@linux-m68k.org>, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
-	"lpieralisi@kernel.org" <lpieralisi@kernel.org>, "kwilczynski@kernel.org" <kwilczynski@kernel.org>, 
-	"mani@kernel.org" <mani@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>, 
-	"robh@kernel.org" <robh@kernel.org>, "bhelgaas@google.com" <bhelgaas@google.com>, 
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "magnus.damm" <magnus.damm@gmail.com>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, "john.madieu@gmail.com" <john.madieu@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260122-atlantis-clocks-v2-3-c66371639e66@oss.tenstorrent.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258915-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[linux-m68k.org,bp.renesas.com,kernel.org,google.com,gmail.com,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	TAGGED_FROM(0.00)[bounces-258916-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[prabhakarcsengg@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux-m68k.org:email,glider.be:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: F0D7075501
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[01.org:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
+X-Rspamd-Queue-Id: 60444755C6
 X-Rspamd-Action: no action
 
-Hi John,
+Hi Anirudh,
 
-On Fri, Jan 23, 2026 at 11:29=E2=80=AFAM John Madieu
-<john.madieu.xa@bp.renesas.com> wrote:
->
-> Hi Geert,
->
-> > -----Original Message-----
-> > From: Geert Uytterhoeven <geert@linux-m68k.org>
-> > Sent: Thursday, January 22, 2026 5:29 PM
-> > To: John Madieu <john.madieu.xa@bp.renesas.com>
-> > Subject: Re: [PATCH 03/16] clk: renesas: rzv2h-cpg: Add support for
-> > init_off clocks
-> >
-> > Hi John,
-> >
-> > On Thu, 22 Jan 2026 at 17:21, John Madieu <john.madieu.xa@bp.renesas.co=
-m>
-> > wrote:
-> > > > From: John Madieu
-> > > > > From: Geert Uytterhoeven <geert@linux-m68k.org> On Wed, 14 Jan
-> > > > > 2026 at 16:36, John Madieu <john.madieu.xa@bp.renesas.com>
-> > > > > wrote:
-> > > > > > Some peripherals may be left enabled by the bootloader but
-> > > > > > should be explicitly disabled by the kernel to ensure a known
-> > initial state.
-> > > > > > This is particularly important for PCIe which requires proper
-> > > > > > initialization sequencing.
-> > > > > >
-> > > > > > Add new macros DEF_MOD_INIT_OFF() to declare module clocks that
-> > > > > > should be turned off during CPG probe if found in the opposite
-> > state.
-> > > > > >
-> > > > > > Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
-> > > > >
-> > > > > Thanks for your patch!
-> > > > >
-> > > > > LGTM, so
-> > > > > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > > > >
-> > > > > However, I am still wondering if there are any possible bad side
-> > > > > effects of disabling the PCIe clocks, e.g. when PCIe is in use
-> > > > > (network card, SATA card, ...)?
-> > > >
-> > > > I'll test and let you know.
-> > >
-> > > I finally did the test, disabling the PCIe clocks while a WiFi module
-> > > connected was performing pings. System got stuck, unusable until next
-> > > reboot.
-> > >
-> > > Was that the kind of test you were expecting or did you have a
-> > > specific scenario you can share.
-> >
-> > Not really. I was thinking about a scenario where the bootloader would
-> > configure and use the PCIe device, then transfer control to Linux.
-> >
->
-> I can't answer to this exact scenario right now.
->
-> The idea of these init_off was from the PCIe host HW manual,
-> Explicitly requiring tuning the clock off and asserting the reset
-> as part of its steps, while this is not the case for other IPs.
->
-Can the PCIe driver not handle it? ie in the probe explicitly turn off
-the clocks + assert reset + continue further (do you see any issue
-while doing this from the PCIe driver)?
+kernel test robot noticed the following build errors:
 
-Cheers,
-Prabhakar
+[auto build test ERROR on 9448598b22c50c8a5bb77a9103e2d49f134c9578]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Anirudh-Srinivasan/dt-bindings-soc-tenstorrent-Add-tenstorrent-atlantis-syscon/20260123-064135
+base:   9448598b22c50c8a5bb77a9103e2d49f134c9578
+patch link:    https://lore.kernel.org/r/20260122-atlantis-clocks-v2-3-c66371639e66%40oss.tenstorrent.com
+patch subject: [PATCH v2 3/3] clk: tenstorrent: Add Atlantis clock controller driver
+config: um-allmodconfig (https://download.01.org/0day-ci/archive/20260123/202601231918.PQTTcbRG-lkp@intel.com/config)
+compiler: clang version 19.1.7 (https://github.com/llvm/llvm-project cd708029e0b2869e80abe31ddb175f7c35361f90)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260123/202601231918.PQTTcbRG-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202601231918.PQTTcbRG-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from drivers/clk/tenstorrent/atlantis-ccu.c:12:
+   In file included from include/linux/regmap.h:20:
+   In file included from include/linux/iopoll.h:14:
+   In file included from include/linux/io.h:12:
+   In file included from arch/um/include/asm/io.h:24:
+   include/asm-generic/io.h:1209:55: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+    1209 |         return (port > MMIO_UPPER_LIMIT) ? NULL : PCI_IOBASE + port;
+         |                                                   ~~~~~~~~~~ ^
+>> drivers/clk/tenstorrent/atlantis-ccu.c:832:2: error: call to undeclared function 'kfree'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     832 |         kfree(to_atlantis_ccu_adev(adev));
+         |         ^
+>> drivers/clk/tenstorrent/atlantis-ccu.c:852:10: error: call to undeclared function 'kzalloc'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     852 |         cadev = kzalloc(sizeof(*cadev), GFP_KERNEL);
+         |                 ^
+>> drivers/clk/tenstorrent/atlantis-ccu.c:852:8: error: incompatible integer to pointer conversion assigning to 'struct atlantis_ccu_adev *' from 'int' [-Wint-conversion]
+     852 |         cadev = kzalloc(sizeof(*cadev), GFP_KERNEL);
+         |               ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/clk/tenstorrent/atlantis-ccu.c:877:2: error: call to undeclared function 'kfree'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     877 |         kfree(cadev);
+         |         ^
+   1 warning and 4 errors generated.
+
+
+vim +/kfree +832 drivers/clk/tenstorrent/atlantis-ccu.c
+
+   827	
+   828	static void atlantis_cadev_release(struct device *dev)
+   829	{
+   830		struct auxiliary_device *adev = to_auxiliary_dev(dev);
+   831	
+ > 832		kfree(to_atlantis_ccu_adev(adev));
+   833	}
+   834	
+   835	static void atlantis_adev_unregister(void *data)
+   836	{
+   837		struct auxiliary_device *adev = data;
+   838	
+   839		auxiliary_device_delete(adev);
+   840		auxiliary_device_uninit(adev);
+   841	}
+   842	
+   843	static int atlantis_ccu_adev_register(struct device *dev,
+   844					      struct atlantis_ccu *ccu,
+   845					      const struct atlantis_ccu_data *data,
+   846					      const char *adev_name)
+   847	{
+   848		struct atlantis_ccu_adev *cadev;
+   849		struct auxiliary_device *adev;
+   850		int ret;
+   851	
+ > 852		cadev = kzalloc(sizeof(*cadev), GFP_KERNEL);
+   853		if (!cadev)
+   854			return -ENOMEM;
+   855	
+   856		cadev->regmap = ccu->regmap;
+   857	
+   858		adev = &cadev->adev;
+   859		adev->name = adev_name;
+   860		adev->dev.parent = dev;
+   861		adev->dev.release = atlantis_cadev_release;
+   862		adev->dev.of_node = dev->of_node;
+   863	
+   864		ret = auxiliary_device_init(adev);
+   865		if (ret)
+   866			goto err_free_cadev;
+   867	
+   868		ret = auxiliary_device_add(adev);
+   869		if (ret) {
+   870			auxiliary_device_uninit(adev);
+   871			return ret;
+   872		}
+   873	
+   874		return devm_add_action_or_reset(dev, atlantis_adev_unregister, adev);
+   875	
+   876	err_free_cadev:
+   877		kfree(cadev);
+   878	
+   879		return ret;
+   880	}
+   881	static int atlantis_ccu_probe(struct platform_device *pdev)
+   882	{
+   883		const struct atlantis_ccu_data *data;
+   884		struct device *dev = &pdev->dev;
+   885		int ret;
+   886	
+   887		struct atlantis_ccu *ccu = devm_kzalloc(dev, sizeof(*ccu), GFP_KERNEL);
+   888	
+   889		if (!ccu)
+   890			return -ENOMEM;
+   891	
+   892		ccu->dev = dev;
+   893	
+   894		ccu->base = devm_platform_ioremap_resource(pdev, 0);
+   895		if (IS_ERR(ccu->base))
+   896			return dev_err_probe(dev, PTR_ERR(ccu->base),
+   897					     "Failed to map registers\n");
+   898	
+   899		ccu->regmap = devm_regmap_init_mmio(dev, ccu->base,
+   900						    &atlantis_ccu_regmap_config);
+   901		if (IS_ERR(ccu->regmap))
+   902			return dev_err_probe(dev, PTR_ERR(ccu->regmap),
+   903					     "Failed to init regmap\n");
+   904	
+   905		data = of_device_get_match_data(dev);
+   906	
+   907		ret = atlantis_ccu_clocks_register(dev, ccu, data);
+   908		if (ret)
+   909			return dev_err_probe(dev, ret, "failed to register clocks\n");
+   910	
+   911		ret = atlantis_ccu_adev_register(dev, ccu, data, data->reset_name);
+   912		if (ret)
+   913			return dev_err_probe(dev, ret, "failed to register resets\n");
+   914	
+   915		return 0;
+   916	}
+   917	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
