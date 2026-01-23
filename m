@@ -1,238 +1,160 @@
-Return-Path: <devicetree+bounces-259069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259070-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YEauLXOgc2lqxgAAu9opvQ
-	(envelope-from <devicetree+bounces-259069-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 17:23:15 +0100
+	id +HN5EC2gc2lqxgAAu9opvQ
+	(envelope-from <devicetree+bounces-259070-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 17:22:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6119F786F4
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 17:23:15 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id C797E786A0
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 17:22:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9FBD43088EE5
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 16:15:30 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E62093037745
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 16:15:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67078346AD9;
-	Fri, 23 Jan 2026 16:14:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55AA1314A61;
+	Fri, 23 Jan 2026 16:14:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="SRlbRDF+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m8sS4H2I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACEBE33F36E;
-	Fri, 23 Jan 2026 16:13:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B2DE310652
+	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 16:14:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769184844; cv=none; b=TZXRkK0jmQYMOLfczxP2e9clRXEfqSEbi5d/UHdLXozvEfb1gQ6qen7A5Eq8ycCct76yc+jMoUvF4T78gYO25fKVzrUnpZsKM9YI9+QDJZ0tBepGpmkiuxgbpfc1tOMxZEZXkQhT/wGzya4YUcp+XOCYxOoh0QfbA/GdzKQ7ISE=
+	t=1769184885; cv=none; b=Y0EvrBSjaxkGvnc7YicrQXYLkfEqvNkOICl3BjbWIRazfk9MrZbhIsrmhET1YMNAPD24i0FJEf0yDxewR4ZhgHFPRvkrKWzpeWgltulLI3vBoyBaqEt/srxM1Td7xHGA1C2K+VtP4cBveWvcxsR0W1lWPjCWKY8v7geGZHKTowM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769184844; c=relaxed/simple;
-	bh=xnXlV/p3P0Y150LBOsIsNNvowfSk3FUwYAewlSuSkHs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=PQLl2z+vyLED0OXYQnU0+YtJTwbTjJlVOGBqbIT6s79u9QfYGgCkxRkcKmCFUHQwG3/2CaGWHx9DGlIYsfx3sXyccsPuUwhBFzgxnf+MiYAEc+GfPMlHrvq4inyUsPyI1cyDTjkazlmpk26BURvhnP6RKFnZCn/evTwgcS08X/4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=SRlbRDF+; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 8C3211A2A70;
-	Fri, 23 Jan 2026 16:13:57 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 5FFEF6070A;
-	Fri, 23 Jan 2026 16:13:57 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C2C60119A87A9;
-	Fri, 23 Jan 2026 17:13:53 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1769184836; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=GblQt8zBoa2ANU1FwVR4LDs1StFgzUT9KSZK3+2sTv4=;
-	b=SRlbRDF+2BRs9G/mcKoVUINiaKPtC8VB6mKHqCg5Ur9R4iX1soKevsZhSSQoKhX7KQB7Mq
-	GJgZzuBygAfXXN9nJvfGL9rXIuJ/61ylpzekRsXkEbqcF7A/ERT3COFhSXXxhSlt5HbAdn
-	LemE+yYiIKB/aJXTeusAH6qM2RA7gtrHbp/kuyfNMmS4x0U775DPV90QXlURdgwv4bVgjB
-	YeT+iG0ycXM6625+4fmFDvMk+LgtGuu+d52VC9jnA03Q3OPNfK0J90GKymZOUQ+G/UtAN9
-	eJAmdyUGnVrt721gGV9I8Nnw16fybdQxvyvgijDkpgeSPNl8TwKll8qxW4GFWA==
-From: "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>
-Date: Fri, 23 Jan 2026 17:12:43 +0100
-Subject: [PATCH v5 25/25] drm/tilcdc: Add support for
- DRM_BRIDGE_ATTACH_NO_CONNECTOR
+	s=arc-20240116; t=1769184885; c=relaxed/simple;
+	bh=04fVH+Ybh/xOhNmHGiUOXfPQ1KtKmvbSXs3LJi9XWQU=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=c7qEnYM/xWpX7kyb533dMDJfEAZ4pb2Ij7DKq552mmmb7bgi/gHcm16jdTor2xDWLt3XfMzUJqeYeIcD0Acy0qXvNdjXeT9Hmu1LR29v6RBrsYL+ihwkzP+lnahvZlGQyHCKlv/y3OxmgaPbqO2DF11EFUz1PHSwg9xwyLgkaD8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m8sS4H2I; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-47ee301a06aso27475165e9.0
+        for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 08:14:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1769184882; x=1769789682; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=8ZZlt0wXGEeAJMNmrtm9rEmgb+VoKNl+2Pu9hilzxa8=;
+        b=m8sS4H2IhkURVj7K4opc9WYKWxtHLGt7gxdtFfE2zOdBz9tEel7HgvKV18ekgN9cae
+         zNLM767VvznXCdDiQfDOZiJ9ckLShSHeFM6psdkyyBT6Ezp2ziiLCjp8vwD1d+fzH6ux
+         yMh2qd8et6Eyyk6L5b67JFD4ULBh5nu9bV2C8sI7FqO4Z3U2E2GikkGa1QAvQKxswpFN
+         KKuG2TnwAZZKxOtrqLVuUMXKAMAOtdc0CYcSe5n0zP0RH54telVzIZds/5p/Pw0o9Zp0
+         feRrctfNp3aR93/FLOUqAxLgcKshUgB7zsOhjn0vq+MPtvUPlWsGRtOkMbkB3fUMV9N1
+         +pLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769184882; x=1769789682;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8ZZlt0wXGEeAJMNmrtm9rEmgb+VoKNl+2Pu9hilzxa8=;
+        b=Bo3C5nIDbLv5N6cNbAwWq1B7i5cwILT1JRUN6dONbOSPTYTxBLAf6tAnrVBHNkcru4
+         TcY966BYiJYTzje1vt9paz7EUPjbqrAPjLKgy9yqN2/xuyUaioSIhJISscd/hiiSNw/v
+         uleLuLKyq6Cwdi2Vr9T3oqeguS314jC87KXm1PzfeVJ6QUBAaYRrmisqrCDGdz+9opHm
+         BY11GznM0NQ61VZMjblFltpbA0soqTsZ9xahgqxAEY/l3qYTjKlaRhr46ZNIb+my6Tyf
+         lBs4yVszzewqyzcO2RrRJoBz5IEwCaZcnOHJBPiammwbGcJst5kcM/1XYEHNXnuJmPAL
+         NzSg==
+X-Forwarded-Encrypted: i=1; AJvYcCUyOqQ9/BJnN9ZU5cU1Pa5xpTvkn4VUWltu7BnBeGTNmUwyhMxsuNCBOD6QXEQa4W8pr2CynbMghUF4@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx0S9MCoGBso7fqpuUkWPwicg1yFg4w9ePApU+glxPzvsAHV7Zm
+	ZH3CaeTSD/lsfgK9c6ZLbrGjr7q8TNnWqHCQb3EiHtBnysSVoQY9BFHr
+X-Gm-Gg: AZuq6aJUFGozh/ory94bIifVj7f9LF4pfWqHXg0xwucV3VP0jUQvkM6EStykLeYO+nZ
+	m/L2AjMkL+u9OvJPcVmWC5+wp44MVvjS9vZ0CPDr+u1qrO2Nsms8LpuPAIAiPCje0XCXQu61VSL
+	Pnx7dlP0v+Vs9aE4t/G7r+clik+Rw1lDlJ7tRIz8V/F9MQY6MWfozjGonhSTieY3ekG5Y6eUH0x
+	itXRyhtIIHW9H1t2nGbxXI13ogDtWJpidFLvza56u/Pf6AFQCOjvGG74jLsZbuUC4pdifWB0Nqo
+	7RRfqpTKpkfB87vNwM6pV3U4HubWGjm/2RZomSXb//lHn4n7UJF0AFb5baUvDgFAGCx3EOdcfAU
+	XvkT+CXoGpNpO1wfcfpWmm4MwD/yTPsmgQtd/pQVj8tPkT1227DH0omapGNw0dpuHmiHNTdSTLB
+	9iVS/L9tp3pLq/e5A/BLQLQiaLGwQFaaYx3TWDNuTLSteN5wNNaBujq75pEPlT0XWw2iM4zitiQ
+	dib
+X-Received: by 2002:a05:600c:8b6e:b0:480:462e:d640 with SMTP id 5b1f17b1804b1-4804c9cfef1mr59266115e9.36.1769184881426;
+        Fri, 23 Jan 2026 08:14:41 -0800 (PST)
+Received: from RDEALENC-L01.ad.analog.com ([24.206.116.131])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4804dbe1fb8sm24330765e9.20.2026.01.23.08.14.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Jan 2026 08:14:40 -0800 (PST)
+From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
+Date: Fri, 23 Jan 2026 16:14:33 +0000
+To: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-doc@vger.kernel.org
+Cc: Jonathan Cameron <jic23@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
+Subject: Re: [PATCH v5 2/8] iio: core: add fixed point parsing with 64-bit
+ parts
+Message-ID: <3rtccxcqpxkwq54jjbl7l6rq3xm3ibsnlh5s7hiymo4okir7dg@ky43houswpjg>
+References: <20260123-adf41513-iio-driver-v5-0-2dce812a2dda@analog.com>
+ <20260123-adf41513-iio-driver-v5-2-2dce812a2dda@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260123-feature_tilcdc-v5-25-5a44d2aa3f6f@bootlin.com>
-References: <20260123-feature_tilcdc-v5-0-5a44d2aa3f6f@bootlin.com>
-In-Reply-To: <20260123-feature_tilcdc-v5-0-5a44d2aa3f6f@bootlin.com>
-To: Jyri Sarha <jyri.sarha@iki.fi>, 
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, Tony Lindgren <tony@atomide.com>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc: Markus Schneider-Pargmann <msp@baylibre.com>, 
- Bajjuri Praneeth <praneeth@ti.com>, 
- Luca Ceresoli <luca.ceresoli@bootlin.com>, 
- Louis Chauvet <louis.chauvet@bootlin.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Miguel Gazquez <miguel.gazquez@bootlin.com>, 
- Herve Codina <herve.codina@bootlin.com>, dri-devel@lists.freedesktop.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org, 
- "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>
-X-Mailer: b4 0.15-dev-47773
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260123-adf41513-iio-driver-v5-2-2dce812a2dda@analog.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259069-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[iki.fi,ideasonboard.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,armlinux.org.uk,bgdev.pl,atomide.com,intel.com,linaro.org,kwiboo.se];
+	TAGGED_FROM(0.00)[bounces-259070-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[32];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kory.maincent@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
+	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:email,bootlin.com:dkim,bootlin.com:mid,ti.com:url]
-X-Rspamd-Queue-Id: 6119F786F4
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C797E786A0
 X-Rspamd-Action: no action
 
-Convert the driver to use the DRM_BRIDGE_ATTACH_NO_CONNECTOR flag when
-attaching bridges. This modernizes the driver by delegating connector
-creation to the bridge subsystem through drm_bridge_connector_init()
-instead of manually searching for connectors created by the bridge.
+On 26/01/23 03:53PM, Rodrigo Alencar via B4 Relay wrote:
+> From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+> 
+> Add iio_str_to_fixpoint64() function that leverages simple_strtoull()
+> to parse numbers from a string.
+> A helper function __iio_str_to_fixpoint64() replaces
+> __iio_str_to_fixpoint() implementation, extending its usage for
+> 64-bit fixed-point parsing.
+> 
+> Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
 
-The custom tilcdc_encoder_find_connector() function is removed and
-replaced with the standard drm_bridge_connector infrastructure, which
-simplifies the code and aligns with current DRM bridge best practices.
+...
+> +static int __iio_str_to_fixpoint64(const char *str, u64 fract_mult,
+> +				   s64 *integer, s64 *fract, bool scale_db)
+> +{
+> +	u64 i = 0, f = 0;
+> +	char *end;
+> +	int digit_count, precision = ffs(fract_mult);
 
-This change is safe as there are now no in-tree devicetrees that
-connect tilcdc to bridges which do not support the
-DRM_BRIDGE_ATTACH_NO_CONNECTOR flag.
+I've just noted that I should have used ffs64() here. 
 
-Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Signed-off-by: Kory Maincent (TI.com) <kory.maincent@bootlin.com>
----
+kind regards,
 
-Changes in v5:
-- Move DRM_DISPLAY_HELPER before DRM_BRIDGE_CONNECTOR for a more logical
-  description.
-
-Changes in v4:
-- Select missing DRM_BRIDGE_CONNECTOR and DRM_DISPLAY_HELPER config
-  dependency in Kconfig
----
- drivers/gpu/drm/tilcdc/Kconfig          |  2 ++
- drivers/gpu/drm/tilcdc/tilcdc_encoder.c | 37 ++++++++++++++-------------------
- 2 files changed, 18 insertions(+), 21 deletions(-)
-
-diff --git a/drivers/gpu/drm/tilcdc/Kconfig b/drivers/gpu/drm/tilcdc/Kconfig
-index a36e809f984cd..89df7528756c8 100644
---- a/drivers/gpu/drm/tilcdc/Kconfig
-+++ b/drivers/gpu/drm/tilcdc/Kconfig
-@@ -6,6 +6,8 @@ config DRM_TILCDC
- 	select DRM_KMS_HELPER
- 	select DRM_GEM_DMA_HELPER
- 	select DRM_BRIDGE
-+	select DRM_DISPLAY_HELPER
-+	select DRM_BRIDGE_CONNECTOR
- 	select DRM_PANEL_BRIDGE
- 	select VIDEOMODE_HELPERS
- 	select BACKLIGHT_CLASS_DEVICE
-diff --git a/drivers/gpu/drm/tilcdc/tilcdc_encoder.c b/drivers/gpu/drm/tilcdc/tilcdc_encoder.c
-index 546fe7e6ee815..680a2ac6ab594 100644
---- a/drivers/gpu/drm/tilcdc/tilcdc_encoder.c
-+++ b/drivers/gpu/drm/tilcdc/tilcdc_encoder.c
-@@ -8,45 +8,40 @@
- 
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_bridge.h>
-+#include <drm/drm_bridge_connector.h>
- #include <drm/drm_of.h>
- #include <drm/drm_simple_kms_helper.h>
- 
- #include "tilcdc_drv.h"
- #include "tilcdc_encoder.h"
- 
--static
--struct drm_connector *tilcdc_encoder_find_connector(struct drm_device *ddev,
--						    struct drm_encoder *encoder)
--{
--	struct drm_connector *connector;
--
--	list_for_each_entry(connector, &ddev->mode_config.connector_list, head) {
--		if (drm_connector_has_possible_encoder(connector, encoder))
--			return connector;
--	}
--
--	drm_err(ddev, "No connector found for %s encoder (id %d)\n",
--		encoder->name, encoder->base.id);
--
--	return NULL;
--}
--
- static
- int tilcdc_attach_bridge(struct drm_device *ddev, struct drm_bridge *bridge)
- {
- 	struct tilcdc_drm_private *priv = ddev_to_tilcdc_priv(ddev);
-+	struct drm_connector *connector;
- 	int ret;
- 
- 	priv->encoder->base.possible_crtcs = BIT(0);
- 
--	ret = drm_bridge_attach(&priv->encoder->base, bridge, NULL, 0);
-+	ret = drm_bridge_attach(&priv->encoder->base, bridge, NULL,
-+				DRM_BRIDGE_ATTACH_NO_CONNECTOR);
- 	if (ret)
- 		return ret;
- 
--	priv->connector = tilcdc_encoder_find_connector(ddev, &priv->encoder->base);
--	if (!priv->connector)
--		return -ENODEV;
-+	connector = drm_bridge_connector_init(ddev, &priv->encoder->base);
-+	if (IS_ERR(connector)) {
-+		drm_err(ddev, "bridge_connector create failed\n");
-+		return PTR_ERR(connector);
-+	}
-+
-+	ret = drm_connector_attach_encoder(connector, &priv->encoder->base);
-+	if (ret) {
-+		drm_err(ddev, "attaching encoder to connector failed\n");
-+		return ret;
-+	}
- 
-+	priv->connector = connector;
- 	return 0;
- }
- 
-
--- 
-2.43.0
-
+Rodrigo Alencar
 
