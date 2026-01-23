@@ -1,256 +1,203 @@
-Return-Path: <devicetree+bounces-258758-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258759-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +EbjCv8oc2kAswAAu9opvQ
-	(envelope-from <devicetree+bounces-258758-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 08:53:35 +0100
+	id QGggCsoqc2kAswAAu9opvQ
+	(envelope-from <devicetree+bounces-258759-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 09:01:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CFB37209F
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 08:53:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D528721F3
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 09:01:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 42E5E300EF98
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 07:53:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A9B12303FFD2
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 07:59:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A984633A9EF;
-	Fri, 23 Jan 2026 07:53:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E5CC35EDD7;
+	Fri, 23 Jan 2026 07:59:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="ZxmbYKUi"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="QfJDIxQF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92849288C86;
-	Fri, 23 Jan 2026 07:53:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F21A6320A09
+	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 07:59:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769154812; cv=none; b=iRY1bcsJj0k8FkHHK4xIHpq97mRUpxabbIBJaEx1EkhRhqcOVVDPiyM9sM3UYTQP79KBeOz03OZdZppWQo4bzwoDjtL+zyNF15SL5TjhV8RFRgoz4NC31eihfUI2x6/d6CXgWAHcHzLw8wUqlHJL5FbLjc32S80j1cpVAJ9R2SA=
+	t=1769155166; cv=none; b=kXr4gRu5KCsRocoGWHwlvDfVM+dcgQyvE3l3RKLZm+lZAt1yRaz7ajSsEBPjLeUOJgJGVJxWlKoTZtMK5EWiz94RUjJW6D3TBUuUNMEom+4REOkBzmxO6/VaLh64cToPgmWN95/2/HbjH45dyDABWEGz8WiHb5EwA15lcrW2aVc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769154812; c=relaxed/simple;
-	bh=CydP1SI/itOoSge0Z+MIOsw27/FtcA5npRVrCB4FyMc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lpRe5I6owRySBTRS96tJqyqBsBKemk1TYvSHPmOhlzxPPoESOcb0Ls+6jJOjXiML4SIQb38rFBqrGKTpZELgpM+Pof8VqA8CiJbW62Wjvcf5fw0Q7RoD0cOor0FDqsjsut2aT22Yx3y78oditlS/XoYZLUZWrXsYMkpBxLg1zzo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=ZxmbYKUi; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id BF15D103D;
-	Fri, 23 Jan 2026 08:52:47 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1769154768;
-	bh=CydP1SI/itOoSge0Z+MIOsw27/FtcA5npRVrCB4FyMc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZxmbYKUiKw9C4M1tvfYuuqeyI+/ASJy97cM0Mt5L8nwLLc19j7i1AfvLYPHT9ZK90
-	 zf3GdHQNKTSlHr6WkrKq/g7LQXsEsXOEvCZaHRwAR4P+0R9JLBzpdsv9RPHEjGbQMs
-	 mTz83N1m6HHk8BRZJPknuId767AjTK2EjlNgT/IM=
-Message-ID: <55b08e0e-1921-4d37-a716-ff60852ec51b@ideasonboard.com>
-Date: Fri, 23 Jan 2026 09:53:18 +0200
+	s=arc-20240116; t=1769155166; c=relaxed/simple;
+	bh=B5WD10/zuQioqM6V+9ViNP8F7h11+pfute5x6Yd5BQI=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=A0bjUs0/NBAz62qhSf8ZVyx28vNx6SbCrYAPslUDkGAwpGhjviR57MxAtay7r6xOXOln+v8Zevrg5Mw7tz7PoGUWL1gKL4De3mzdAv6eZQPfLnXqatoZDlRWLpJxBlLdPzMlMJonIT6hb2bEJNGe0TNP397dw8w6fSwQCmvosgQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=QfJDIxQF; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20260123075920epoutp02e4e95357f896d2d980a23052f867c519~NTT7P3DPS2977429774epoutp02r
+	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 07:59:20 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20260123075920epoutp02e4e95357f896d2d980a23052f867c519~NTT7P3DPS2977429774epoutp02r
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1769155160;
+	bh=F+3k78bx1aX7CBbym1BrLkgKSsh2Cn7diJb826znBUg=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=QfJDIxQFm9JlURO19h5MsBM1YjXfD2k+Tb4byGG7QcOLb/Fk1QupI1JK2VaaA2yiV
+	 h5O/6i1+BaI8bm+zakquLqF4LUDuwKf50s7BpTEkjKzvxY2/PMqy/ZfqwkBV+Ue2dD
+	 1rlqYBoC6euYYXkdx7zlG0+JH4N+YaUZaNwMdxXg=
+Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
+	20260123075920epcas5p1a8e1797ca9ca254f0784b76c549cc8d1~NTT6rkSWT0288002880epcas5p1b;
+	Fri, 23 Jan 2026 07:59:20 +0000 (GMT)
+Received: from epcas5p1.samsung.com (unknown [182.195.38.87]) by
+	epsnrtp02.localdomain (Postfix) with ESMTP id 4dy9Lb0skfz2SSKj; Fri, 23 Jan
+	2026 07:59:19 +0000 (GMT)
+Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
+	20260123075918epcas5p44ea70a01dc6d73b60ce3276e189f8aa0~NTT5LwGGK3122531225epcas5p42;
+	Fri, 23 Jan 2026 07:59:18 +0000 (GMT)
+Received: from INBRO001840 (unknown [107.122.3.105]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20260123075914epsmtip2caf2751058022b16f1134256e4821cb3~NTT1XNrGb2636326363epsmtip2k;
+	Fri, 23 Jan 2026 07:59:13 +0000 (GMT)
+From: "Pritam Manohar Sutar" <pritam.sutar@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <alim.akhtar@samsung.com>
+Cc: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-samsung-soc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<rosa.pila@samsung.com>, <dev.tailor@samsung.com>, <faraz.ata@samsung.com>,
+	<muhammed.ali@samsung.com>, <selvarasu.g@samsung.com>
+In-Reply-To: <6f381f88-3a51-4fc8-844c-41b167b07628@kernel.org>
+Subject: RE: [PATCH v2 3/3] arm64: dts: exynos: ExynosAutov920: Enable USB
+ nodes
+Date: Fri, 23 Jan 2026 13:29:09 +0530
+Message-ID: <000f01dc8c3e$2b6dcf30$82496d90$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 12/18] media: cadence: csi2rx: Use the stream from
- route to get format
-To: Rishikesh Donadkar <r-donadkar@ti.com>, jai.luthra@linux.dev,
- laurent.pinchart@ideasonboard.com, mripard@kernel.org
-Cc: y-abhilashchandra@ti.com, devarsht@ti.com, s-jain1@ti.com,
- vigneshr@ti.com, mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- p.zabel@pengutronix.de, conor+dt@kernel.org, sakari.ailus@linux.intel.com,
- hverkuil-cisco@xs4all.nl, jai.luthra@ideasonboard.com,
- changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com,
- sjoerd@collabora.com, dan.carpenter@linaro.org, hverkuil+cisco@kernel.org,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20260121135424.1185710-1-r-donadkar@ti.com>
- <20260121135424.1185710-13-r-donadkar@ti.com>
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Content-Language: en-US
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <20260121135424.1185710-13-r-donadkar@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQEa27yOGkcSyej7W4JCG0x5iKXFKwH8TUbRAqvnhIQBf1ky2raxgCUA
+Content-Language: en-in
+X-CMS-MailID: 20260123075918epcas5p44ea70a01dc6d73b60ce3276e189f8aa0
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20260122125136epcas5p2db0fa3d04671ddc915e60ae8c5bcfb98
+References: <20260122130721.205664-1-pritam.sutar@samsung.com>
+	<CGME20260122125136epcas5p2db0fa3d04671ddc915e60ae8c5bcfb98@epcas5p2.samsung.com>
+	<20260122130721.205664-4-pritam.sutar@samsung.com>
+	<6f381f88-3a51-4fc8-844c-41b167b07628@kernel.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
-	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[samsung.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[samsung.com:s=mail20170921];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258758-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[ti.com,kernel.org,pengutronix.de,linux.intel.com,xs4all.nl,ideasonboard.com,starfivetech.com,collabora.com,linaro.org,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[24];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-258759-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[samsung.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[samsung.com:email,samsung.com:dkim,samsung.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,infradead.org:email];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.991];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tomi.valkeinen@ideasonboard.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ideasonboard.com:+];
+	FROM_NEQ_ENVFROM(0.00)[pritam.sutar@samsung.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ti.com:email,ideasonboard.com:email,ideasonboard.com:dkim,ideasonboard.com:mid]
-X-Rspamd-Queue-Id: 7CFB37209F
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: 9D528721F3
 X-Rspamd-Action: no action
 
-Hi,
+Hi Krzysztof,
 
-On 21/01/2026 15:54, Rishikesh Donadkar wrote:
-> In multistream configurations, different streams can have different
-> formats. Update the driver to use the stream number from the routing
-> configuration when retrieving formats instead of hardcoding stream 0
-> or ignoring streams.
-> 
-> In csi2rx_configure_ext_dphy(), use the sink_stream from the first
-> route instead of always using stream 0.
-> 
-> In cdns_csi2rx_negotiate_ppc(), iterate through all active routes
-> for the requested pad and retrieve the format using both pad and
-> stream information.
-> 
-> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
-> ---
->  drivers/media/platform/cadence/cdns-csi2rx.c | 34 ++++++++++++++++----
->  1 file changed, 28 insertions(+), 6 deletions(-)
+Thank you for your feedback.=20
 
-So if I understand this right, v9 was working by luck, as it was always
-using stream 0 format (and expected stream 0 to be there)?
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzk=40kernel.org>
+> Sent: 22 January 2026 07:05 PM
+> To: Pritam Manohar Sutar <pritam.sutar=40samsung.com>; robh=40kernel.org;
+> krzk+dt=40kernel.org; conor+dt=40kernel.org; alim.akhtar=40samsung.com
+> Cc: devicetree=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org;=
+ linux-
+> samsung-soc=40vger.kernel.org; linux-kernel=40vger.kernel.org;
+> rosa.pila=40samsung.com; dev.tailor=40samsung.com;
+> faraz.ata=40samsung.com; muhammed.ali=40samsung.com;
+> selvarasu.g=40samsung.com
+> Subject: Re: =5BPATCH v2 3/3=5D arm64: dts: exynos: ExynosAutov920: Enabl=
+e USB
+> nodes
+>=20
+> On 22/01/2026 14:07, Pritam Manohar Sutar wrote:
+> > Enable USB PHY and DWC3 USB controllers' nodes.
+> >
+> > Signed-off-by: Pritam Manohar Sutar <pritam.sutar=40samsung.com>
+> > ---
+> >  .../boot/dts/exynos/exynosautov920-sadk.dts   =7C 21
+> +++++++++++++++++++
+> >  1 file changed, 21 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
+> > b/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
+> > index f90f7704597c..5896dd69334a 100644
+> > --- a/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
+> > +++ b/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
+> > =40=40 -160,15 +160,20 =40=40 &xtcxo =7B
+> >  &usbdrd31_ssphy =7B
+> >  	dvdd-supply =3D <&dummy_regulator>;
+> >  	vdd18-supply =3D <&dummy_regulator>;
+> > +	status =3D =22okay=22;
+>=20
+> You just added the node in the previous patch, so why it cant be enavled
+> there?
+>=20
+> >  =7D;
+> >
+> >  &usbdrd31_hsphy =7B
+> >  	dvdd-supply =3D <&dummy_regulator>;
+> >  	vdd18-supply =3D <&dummy_regulator>;
+> >  	vdd33-supply =3D <&dummy_regulator>;
+> > +	status =3D =22okay=22;
+> >  =7D;
+> >
+> >  &usbdrd31_dwc3 =7B
+> > +	dr_mode =3D =22otg=22;
+> > +	usb-role-switch;
+> > +	role-switch-default-mode =3D =22peripheral=22;
+>=20
+> Why did you add incomplete node in previous commit?
 
-Two thoughts here:
-- This should be merged to the previous patch, shouldn't it?
-- Are you now testing with different resolutions, fps, etc on the
-fpd-link ports?
+The commit was added to align with the existing convention of separating=20
+node addition and enabling logic in USB configurations. This approach is=20
+referenced from commits such as:
 
-Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+https://lore.kernel.org/all/20250710-resends-july-exynos990-dt-v2-5-55033f7=
+3d1b0=40mentallysanemainliners.org/
+https://lore.kernel.org/all/20240429-usb-dts-gs101-v2-2-7c1797c9db80=40lina=
+ro.org/
 
- Tomi
+Please let me know if this commit to be merged in previous commit.
 
-> diff --git a/drivers/media/platform/cadence/cdns-csi2rx.c b/drivers/media/platform/cadence/cdns-csi2rx.c
-> index 175366f889115..db9871fdbe3a4 100644
-> --- a/drivers/media/platform/cadence/cdns-csi2rx.c
-> +++ b/drivers/media/platform/cadence/cdns-csi2rx.c
-> @@ -279,6 +279,7 @@ static int csi2rx_configure_ext_dphy(struct csi2rx_priv *csi2rx)
->  	struct v4l2_mbus_framefmt *framefmt;
->  	struct v4l2_subdev_state *state;
->  	const struct csi2rx_fmt *fmt;
-> +	struct v4l2_subdev_route *route;
->  	int source_pad = csi2rx->source_pad;
->  	struct media_pad *pad = &csi2rx->source_subdev->entity.pads[source_pad];
->  	s64 link_freq;
-> @@ -296,7 +297,9 @@ static int csi2rx_configure_ext_dphy(struct csi2rx_priv *csi2rx)
->  	if (state->routing.num_routes > 1) {
->  		bpp = 0;
->  	} else {
-> -		framefmt = v4l2_subdev_state_get_format(state, CSI2RX_PAD_SINK, 0);
-> +		route = &state->routing.routes[0];
-> +		framefmt = v4l2_subdev_state_get_format(state, CSI2RX_PAD_SINK,
-> +							route->sink_stream);
->  		if (!framefmt) {
->  			dev_err(csi2rx->dev, "Did not find active sink format\n");
->  			return -EINVAL;
-> @@ -706,25 +709,44 @@ int cdns_csi2rx_negotiate_ppc(struct v4l2_subdev *subdev, unsigned int pad,
->  {
->  	struct csi2rx_priv *csi2rx = v4l2_subdev_to_csi2rx(subdev);
->  	const struct csi2rx_fmt *csi_fmt;
-> +	struct v4l2_subdev_route *route;
->  	struct v4l2_subdev_state *state;
->  	struct v4l2_mbus_framefmt *fmt;
-> +	int ret = 0;
->  
->  	if (!ppc || pad < CSI2RX_PAD_SOURCE_STREAM0 || pad >= CSI2RX_PAD_MAX)
->  		return -EINVAL;
->  
->  	state = v4l2_subdev_lock_and_get_active_state(subdev);
-> -	fmt = v4l2_subdev_state_get_format(state, pad);
-> -	csi_fmt = csi2rx_get_fmt_by_code(fmt->code);
-> +	/* Check all streams on requested pad */
-> +	for_each_active_route(&state->routing, route) {
-> +		if (route->source_pad != pad)
-> +			continue;
-> +
-> +		fmt = v4l2_subdev_state_get_format(state, route->source_pad,
-> +						   route->source_stream);
-> +		if (!fmt) {
-> +			ret = -EPIPE;
-> +			*ppc = 1;
-> +			break;
-> +		}
->  
-> -	/* Reduce requested PPC if it is too high */
-> -	*ppc = min(*ppc, csi_fmt->max_pixels);
-> +		csi_fmt = csi2rx_get_fmt_by_code(fmt->code);
-> +		if (!csi_fmt) {
-> +			ret = -EINVAL;
-> +			*ppc = 1;
-> +			break;
-> +		}
->  
-> +		/* Reduce requested PPC if it is too high for this stream */
-> +		*ppc = min(*ppc, csi_fmt->max_pixels);
-> +	}
->  	v4l2_subdev_unlock_state(state);
->  
->  	csi2rx->num_pixels[pad - CSI2RX_PAD_SOURCE_STREAM0] =
->  		CSI2RX_STREAM_CFG_NUM_PIXELS(*ppc);
->  
-> -	return 0;
-> +	return ret;
->  }
->  EXPORT_SYMBOL_FOR_MODULES(cdns_csi2rx_negotiate_ppc, "j721e-csi2rx");
->  
+>=20
+>=20
+> Best regards,
+> Krzysztof
+
+Regards,
+Pritam
 
 
