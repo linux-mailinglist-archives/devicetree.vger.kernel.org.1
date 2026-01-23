@@ -1,333 +1,206 @@
-Return-Path: <devicetree+bounces-258939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258940-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uDpTHshzc2mwvwAAu9opvQ
-	(envelope-from <devicetree+bounces-258939-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 14:12:40 +0100
+	id 6KedBMx2c2kEwAAAu9opvQ
+	(envelope-from <devicetree+bounces-258940-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 14:25:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6865C7625F
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 14:12:39 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CFF176372
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 14:25:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 11C5630028EF
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 13:12:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4F483301CCC0
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 13:25:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DB188834;
-	Fri, 23 Jan 2026 13:12:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDFE12E8B9B;
+	Fri, 23 Jan 2026 13:25:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LxFthOpw"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="B5OSP2t8";
+	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="XDNzuahY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 668CE2DCF57
-	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 13:12:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62F6027A476
+	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 13:25:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769173953; cv=none; b=TOfc+0kkQfNMuS7oCBSHijbJgDKfp4UqmuqurNGxKd91H7EXUDq60GJwsbVdKnstvRVwCl40WxSgKT0ITb/on0/R0Xex26BlLdXYOTDHuSp6EI2ptIlYDnvR/Eq7W9xCm27Cmqqs43Hf4c8jcpp/k3Xvkq8bD94Hv6C8pHHYxd0=
+	t=1769174723; cv=none; b=kQEMzgFjw/QFjBWA1JbC+j3ljDoAcRHIpZPkmrwYRdmIVhIaCGtLXNN7vWp+QuDj4tTdaQHrJfXK+ocCxIdfbu9n2E3mxyfMQ+6btmOh6eCobTMPzwRxWiJx/d9uF34eFPPo10uejYXpvxI9qc6lWSN8YmKwUrzv8QFShdW+sPE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769173953; c=relaxed/simple;
-	bh=K7zJHUtjvCk9zW085TQhbAKQFbA9gj4GZtqhhwIr24Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iwHsY3i86e0H20gsF5AJ1y0KHufTHHeTmOByezFUOydAyE5HDuW0CtbUU6yhtPKxmGRTUi4xEcZGZ9k+gRpJWs+7c+GyYKXG+oI/SNhN6oQAkAxguf5zggKIq8Cghf8lTrQLdSP6eVAqDHpJGjgULc+BbYoDrX3+rBS+GbGCHhY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LxFthOpw; arc=none smtp.client-ip=209.85.210.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-823210d1d8eso223246b3a.1
-        for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 05:12:32 -0800 (PST)
+	s=arc-20240116; t=1769174723; c=relaxed/simple;
+	bh=dl7NlkiIvE4aCaKk0Pre5K+Ti7kNdoTw5jT1Cl5ZZAE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=R+rNmt5GlhtSxsHrIvFeF1QWhbND0pajQx4fYiLt4EF2oxZd9f2lIS02ngy1swWs3TMiw8jhuEtLf1WaWjE8GsYhk7+M36oulZ01N5Th3z66xsZ6II4J2ZlQRT0bOAvB2XmB4zsJZJBpBkhZ7u9P9LwqjNROgdcE3C8v0GpQ4DU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=B5OSP2t8; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=XDNzuahY; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1769174721;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=dl7NlkiIvE4aCaKk0Pre5K+Ti7kNdoTw5jT1Cl5ZZAE=;
+	b=B5OSP2t86RRnFNzdmsmEzd12Xkc0c9MiH0FxIAgf7bSwNYjpN4QcCfyeBTyikbW+xIeZy2
+	E/Un8+EW8vmwzRiFolCskDKVJuhO0IBSIDn0eAJybfCAfl6pgtzx8PQgFZqJF9n7mLGXjp
+	tRSy4vsjnWCApm+MjuPu0kwTEzjDBAA=
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
+ [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-573-ipAJGwaNMlScx4YMm01lSw-1; Fri, 23 Jan 2026 08:25:19 -0500
+X-MC-Unique: ipAJGwaNMlScx4YMm01lSw-1
+X-Mimecast-MFC-AGG-ID: ipAJGwaNMlScx4YMm01lSw_1769174718
+Received: by mail-wm1-f70.google.com with SMTP id 5b1f17b1804b1-47ee7346f8bso14675795e9.2
+        for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 05:25:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769173952; x=1769778752; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3F6Q0KrzJx/PydalRZY11/eFAiNA4NIIjUoKpRMvjGE=;
-        b=LxFthOpwTxsx5FcuiBZx5ZNLdkoxzWp9RVMhE0yfEU+QAa5R4WXssdqvKsdLFwOvtW
-         /8HLPAYA0vbx+r0p9J9rccki/i69DfHOiv2AD9PAjvhWbyto70kOIaigfd/1NyVvudy3
-         p9G935UHM1NDgqs4Hq/k5O16bOLfaQrPAyMu1QEcWyGBDF3NTP6tcmFu6/6koGr2pxgw
-         rPNqbrJAUmriIc8pzy85+bQMBJCU+jo7AQD5ri6QryRodcGFVCfpZoWN4lFJn6EhExf7
-         OUqTPxfO6fLSnzv4wcLSASEDExHpPvXrDeAQWiQFiw5hPus7qhoeyqhVsEPqTzF9HilO
-         YslQ==
+        d=redhat.com; s=google; t=1769174718; x=1769779518; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=dl7NlkiIvE4aCaKk0Pre5K+Ti7kNdoTw5jT1Cl5ZZAE=;
+        b=XDNzuahYpZY1+ffEsI1oHQAuNWyG+fSG5E2eetzeTcFaM/ziV/h6mh+hO+4S4YCSg5
+         v1xP8sZebdOa7ofQ0zKF1VPDK3RlQTItNlCDL+E5dzbcaingiGpUabwcEwb7I+sHP06O
+         yShN7AfLlL+Sy6JJAHKZ4et71hOXtX7ot7Guee+9yCGztrLIoQsvTY9Fyiw47Dmv/IOX
+         fxWrG+UHo+L2UALjv8ftNPVwYjsJEJ5TFK6ThbLtSiKtD2uYOP2WdP8KuUilue+PX+hu
+         G9Lgd0rrUg1SUVBgeRHWrEa4YFsJJm1DJxRZVdjBqYoGdxkmU/AZyOfaEhO/rSMtkvMK
+         gh8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769173952; x=1769778752;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3F6Q0KrzJx/PydalRZY11/eFAiNA4NIIjUoKpRMvjGE=;
-        b=i24ZL1ncwpeAXQasVVcz/vviHFa144wSFKh+iq4TRLQEqYyjNQjbf8eSHNUNGjX606
-         8VFJpPvjBcyuQB/ke7QVcg73z7KUpy6CixDdSQfUQxo3eQ1Bz56734b8ozdzPb/o6gu5
-         H3WvCDqULP13GsJlbtwkc6xMph4PtePxKb0pevM+ziIWzFW+ZAtypgZlawVUkZfexEQF
-         jij5UY2FPOrqrtNWKD0z4tQwIfYi5Dx+MLcEOsIJfBXgEVJ+Xh1qTC5aCrRgBTKCaPau
-         8qxr2rWK9A7CPe2qhoWQXub9QMg3aTWxKmPdYPKIHNiBDv+bS+OIpl2Z7owOIco8joPE
-         ovmw==
-X-Forwarded-Encrypted: i=1; AJvYcCWR0GYO2mq6H7UuPPePwykGvhY06LAj1u6J0IYUkTZzdPILbhqXBGNcow5l3eR3nXKw/+GnF29N8sfW@vger.kernel.org
-X-Gm-Message-State: AOJu0YwvAPPl5gABclWT0GYaFTim7ho0TZY+8Liw0V/u9FCbZJGMgQSk
-	ZAo5Q3J6ayd+LQuIhu1ZN3UaK4MkgQRQeezNFP+2EMB8BqPt7zUyXd/a
-X-Gm-Gg: AZuq6aLHwhjbHMjhPBB4gRcYF77UcM7Tt+yz1LhUqPmF2PvFK5addAY6HvJqz50vxyw
-	/3VQeLB8p0pslWLpoJyo/xgxdzOlKt0OTaMFbJyz1ubhTSdZdQXqhE8uIEKalvG6iESWeD1NfR1
-	Wi42E4zXB4s68FedYnNuW6CLbGe2Omut7dRcAnV6RTZoVcFnAWWGxyAKwHuuvCu9TpGHGTm2m3q
-	PS/EfZzmtOBrIffOnMsR1rWg9mtDYznIaAto3SW6CN4WpxfIAQIeOEHHS2VeRosYZzEtRKy8tFv
-	9jyy96BAqNpEOiFzIB+B+hefhb1kRNqJN0omqXO9S/BS0DqhPeQIscFqqmCnDOzjeUUos/ie2q9
-	yl6Jvy0IK/86UjMQIRnBqRYY9k2Z4E2y6+O+n+x0vxQUVZ8y5Ch7RonmeEc5EQwZN92bxBgSdzF
-	4LQgyiQOx9ml2duQ6NMheXxrtmz4j3lMvsif8=
-X-Received: by 2002:a17:90b:2cc3:b0:340:54a1:d6fe with SMTP id 98e67ed59e1d1-353676fbaf3mr2327414a91.15.1769173951647;
-        Fri, 23 Jan 2026 05:12:31 -0800 (PST)
-Received: from [192.168.1.7] ([115.99.251.203])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35335205bb5sm5183483a91.1.2026.01.23.05.12.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Jan 2026 05:12:31 -0800 (PST)
-Message-ID: <7b922a72-f17b-492f-ae04-a97a75738d4d@gmail.com>
-Date: Fri, 23 Jan 2026 18:42:24 +0530
+        d=1e100.net; s=20230601; t=1769174718; x=1769779518;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=dl7NlkiIvE4aCaKk0Pre5K+Ti7kNdoTw5jT1Cl5ZZAE=;
+        b=BuPP/N6MMmbsdMRAbQ1zXRRkCmXldCC1VcMMdnITW8ZK4mXftNyOGqd2G5Z08s5l5O
+         VICTCEOPm9EpVaQDkLALvkrQe4XXlQHp3jC4CTXCcMl1Uo1ui+KFgUu3tj0so/6KyU+k
+         z2hTvqWxmDf5qFZZrRu80Q1fwGeryGwPPtNmKFK/rz78vQQ1iF9IDwfjtuzIrHSslNP7
+         hSeLmE1vGdzfr0I0Ck0b2Xe1FwrpNmNEA9tx0oVo/5Sp2R9Zwo9LKG0ZsC40H7HKyIsn
+         vQOQHVcwuSkH5uCFk+kkTVIwxI90NMLbdJvcdHQz4sRw6+b5QJfQowyloyw/KY28AdVZ
+         15WA==
+X-Forwarded-Encrypted: i=1; AJvYcCXkk1Ra9zhuWGPgij243HEoAPKmWA91pPxQVHVu592fVG41yGLFDcCAg4CMAgOpmbmYNZgh5PEmH3Im@vger.kernel.org
+X-Gm-Message-State: AOJu0YyZ5Gprde0D1abPOSx1MGUnGmwK5LTogTe54OmNW+gXJFgDKgTm
+	DsmrCk6Ki6OGAF4rUxqagAqYIr6VQ+IXgC+a8A3fI9PeU4LIbU3DLcQ3lcnLq3cR7hat0SmtXFM
+	b7cw9hMpJgTvCm6PUJZezY7EqtnNcS38IxXxWYQJJIDM2oPHzaMB3+EYJSVGHu6E=
+X-Gm-Gg: AZuq6aJl6EOsPYJB/FEG+tMRVTJUgL/N9qyv6k+y9NAgFxSrHDicofwnTk6SbcDdLrI
+	k2ty7QKjgsxfWc3D+JYZgWTxFwVTGXUXd0qYLBve3rXgi0EMqoKbGc0165V+Eon23UU/MK8LJxc
+	4aAS5qcZUFijq0MwOTmjefzE61aoOKK5eJYFHMsX0+T4KtErn31Ic5SgHH5e5jakU73txLN+P0B
+	wa9lozTT6h1HrnLNkvSP+0EJ1Sprl62Byzvh+xetqNViaYH8xNaZr/54Pm5frwbOVgliyV3M4RS
+	5+0Xw+auzOJgSB60PsGNPkxlqyGt35VpF+Oj1sXG1wMPnmaP5eB+I/ybo+amow==
+X-Received: by 2002:a05:600c:c16b:b0:477:a978:3a7b with SMTP id 5b1f17b1804b1-4804c9b2113mr49821895e9.22.1769174718321;
+        Fri, 23 Jan 2026 05:25:18 -0800 (PST)
+X-Received: by 2002:a05:600c:c16b:b0:477:a978:3a7b with SMTP id 5b1f17b1804b1-4804c9b2113mr49821235e9.22.1769174717712;
+        Fri, 23 Jan 2026 05:25:17 -0800 (PST)
+Received: from localhost ([2a01:e0a:b25:f902::ff])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4804dbaad79sm21251445e9.9.2026.01.23.05.25.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Jan 2026 05:25:17 -0800 (PST)
+Date: Fri, 23 Jan 2026 14:25:16 +0100
+From: Maxime Ripard <mripard@redhat.com>
+To: Thierry Reding <thierry.reding@kernel.org>
+Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Sumit Semwal <sumit.semwal@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>, 
+	John Stultz <jstultz@google.com>, "T . J . Mercier" <tjmercier@google.com>, 
+	Andrew Morton <akpm@linux-foundation.org>, David Hildenbrand <david@redhat.com>, 
+	Mike Rapoport <rppt@kernel.org>, Sumit Garg <sumit.garg@kernel.org>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+	linaro-mm-sig@lists.linaro.org, linux-mm@kvack.org
+Subject: Re: [PATCH v2 04/10] mm/cma: Allow dynamically creating CMA areas
+Message-ID: <20260123-active-witty-rabbit-0fc5b9@houat>
+References: <20260122161009.3865888-1-thierry.reding@kernel.org>
+ <20260122161009.3865888-5-thierry.reding@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] dt-bindings: phy: ti,phy-usb3: convert to DT
- schema
-To: Rob Herring <robh@kernel.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Neil Armstrong
- <neil.armstrong@linaro.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas Kemnade
- <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>,
- Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
- Roger Quadros <rogerq@ti.com>, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-omap@vger.kernel.org
-References: <20260122-ti-phy-v3-0-751619729433@gmail.com>
- <20260122-ti-phy-v3-2-751619729433@gmail.com>
- <20260122233309.GA3730160-robh@kernel.org>
-Content-Language: en-US
-From: Charan Pedumuru <charan.pedumuru@gmail.com>
-In-Reply-To: <20260122233309.GA3730160-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="equ2x5ui66msv4bz"
+Content-Disposition: inline
+In-Reply-To: <20260122161009.3865888-5-thierry.reding@kernel.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258939-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-258940-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[charanpedumuru@gmail.com,devicetree@vger.kernel.org];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,ffwll.ch,linaro.org,kernel.org,collabora.com,arm.com,google.com,linux-foundation.org,redhat.com,lists.freedesktop.org,vger.kernel.org,lists.linaro.org,kvack.org];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mripard@redhat.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[redhat.com:+];
+	NEURAL_HAM(-0.00)[-0.998];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 6865C7625F
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email]
+X-Rspamd-Queue-Id: 6CFF176372
 X-Rspamd-Action: no action
 
 
+--equ2x5ui66msv4bz
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 04/10] mm/cma: Allow dynamically creating CMA areas
+MIME-Version: 1.0
 
-On 23-01-2026 05:03, Rob Herring wrote:
-> On Thu, Jan 22, 2026 at 05:52:58PM +0000, Charan Pedumuru wrote:
->> Convert TI PIPE3 PHY binding to DT schema.
->> Changes during conversion:
->> - Define a new pattern 'pcie-phy' to match nodes defined in DT.
->> - Drop obsolete "id" property from the schema.
->>
->> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
->> ---
->>  .../devicetree/bindings/phy/ti,phy-usb3.yaml       | 135 +++++++++++++++++++++
->>  1 file changed, 135 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/phy/ti,phy-usb3.yaml b/Documentation/devicetree/bindings/phy/ti,phy-usb3.yaml
->> new file mode 100644
->> index 000000000000..605f12f0f79a
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/phy/ti,phy-usb3.yaml
->> @@ -0,0 +1,135 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/phy/ti,phy-usb3.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: TI PIPE3 PHY Module
->> +
->> +maintainers:
->> +  - Roger Quadros <rogerq@ti.com>
->> +
->> +description:
->> +  The TI PIPE3 PHY is a high-speed SerDes (Serializer/Deserializer)
->> +  transceiver integrated in OMAP5, DRA7xx/AM57xx, and similar SoCs.
->> +  It supports multiple protocols (USB3, SATA, PCIe) using the PIPE3
->> +  interface standard, which defines a common physical layer for
->> +  high-speed serial interfaces.
->> +
->> +properties:
->> +  $nodename:
->> +    pattern: "^(pcie-phy|usb3-phy|phy)@[0-9a-f]+$"
->> +
->> +  compatible:
->> +    enum:
->> +      - ti,omap-usb3
->> +      - ti,phy-pipe3-pcie
->> +      - ti,phy-pipe3-sata
->> +      - ti,phy-usb3
->> +
->> +  reg:
->> +    minItems: 2
->> +    maxItems: 3
->> +
->> +  reg-names:
->> +    minItems: 2
->> +    items:
->> +      - const: phy_rx
->> +      - const: phy_tx
->> +      - const: pll_ctrl
->> +
->> +  "#phy-cells":
->> +    const: 0
->> +
->> +  clocks:
->> +    minItems: 2
->> +    maxItems: 7
->> +
->> +  clock-names:
->> +    minItems: 2
->> +    maxItems: 7
->> +    items:
->> +      enum: [wkupclk, sysclk, refclk, dpll_ref,
->> +             dpll_ref_m2, phy-div, div-clk]
->> +
->> +  syscon-phy-power:
->> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->> +    items:
->> +      items:
->> +        - description: Phandle to the system control module
->> +        - description: Register offset controlling PHY power
-> 
-> This allows N entries of 2 cells each. You need either:
-> 
-> items:
->   - items:
->       - description: ...
->       - description: ...
-> 
-> (the hyphen is important!)
-> 
-> Or:
-> 
-> maxItems: 1
-> items:
->   items:
->     - description: ...
->     - description: ...
+On Thu, Jan 22, 2026 at 05:10:03PM +0100, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
+>=20
+> There is no technical reason why there should be a limited number of CMA
+> regions, so extract some code into helpers and use them to create extra
+> functions (cma_create() and cma_free()) that allow creating and freeing,
+> respectively, CMA regions dynamically at runtime.
+>=20
+> The static array of CMA areas cannot be replaced by dynamically created
+> areas because for many of them, allocation must not fail and some cases
+> may need to initialize them before the slab allocator is even available.
+> To account for this, keep these "early" areas in a separate list and
+> track the dynamic areas in a separate list.
+>=20
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
 
-Okay, I will use the above format in the next revision.
+AFAIU, this won't create a new cma heap when registering. This goes
+against the recent work we did to create one for every cma region.
 
-> 
->> +
->> +  syscon-pllreset:
->> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->> +    items:
->> +      items:
->> +        - description: Phandle to the system control module
->> +        - description: Register offset of CTRL_CORE_SMA_SW_0
->> +
->> +  syscon-pcs:
->> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->> +    items:
->> +      items:
->> +        - description: Phandle to the system control module
->> +        - description: Register offset for PCS delay programming
->> +
->> +  ctrl-module:
->> +    $ref: /schemas/types.yaml#/definitions/phandle
->> +    description:
->> +      Phandle of control module for PHY power on.
->> +    deprecated: true
->> +
->> +allOf:
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            const: ti,phy-pipe3-sata
->> +    then:
->> +      properties:
->> +        syscon-pllreset: true
->> +    else:
->> +      properties:
->> +        syscon-pllreset: false
->> +
->> +required:
->> +  - reg
->> +  - compatible
->> +  - reg-names
->> +  - "#phy-cells"
->> +  - clocks
->> +  - clock-names
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    /* TI PIPE3 USB3 PHY */
->> +    usb3-phy@4a084400 {
->> +        compatible = "ti,phy-usb3";
->> +        reg = <0x4a084400 0x80>,
->> +              <0x4a084800 0x64>,
->> +              <0x4a084c00 0x40>;
->> +        reg-names = "phy_rx", "phy_tx", "pll_ctrl";
->> +        #phy-cells = <0>;
->> +        clocks = <&usb_phy_cm_clk32k>,
->> +                 <&sys_clkin>,
->> +                 <&usb_otg_ss_refclk960m>;
->> +        clock-names = "wkupclk", "sysclk", "refclk";
->> +        ctrl-module = <&omap_control_usb>;
->> +    };
->> +
->> +  - |
->> +    /* TI PIPE3 SATA PHY */
->> +    phy@4a096000 {
->> +        compatible = "ti,phy-pipe3-sata";
->> +        reg = <0x4A096000 0x80>,  /* phy_rx */
->> +              <0x4A096400 0x64>,  /* phy_tx */
->> +              <0x4A096800 0x40>;  /* pll_ctrl */
-> 
-> Use lowercase hex.
+I guess, since you have a driver that would explicitly handle that
+region, we should create some kind of opt-out mechanism, but by default,
+we should still create such a heap.
 
-Sure.
+That being said, it's not clear to me why the heap driver uses CMA in
+the first place.
 
-> 
->> +        reg-names = "phy_rx", "phy_tx", "pll_ctrl";
->> +        clocks = <&sys_clkin1>, <&sata_ref_clk>;
->> +        clock-names = "sysclk", "refclk";
->> +        syscon-pllreset = <&scm_conf 0x3fc>;
->> +        #phy-cells = <0>;
->> +    };
->> +...
->>
->> -- 
->> 2.52.0
->>
+Maxime
 
--- 
-Best Regards,
-Charan.
+--equ2x5ui66msv4bz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaXN2tQAKCRAnX84Zoj2+
+dtsNAYD+XKsLdRQjkWGztlo6ccvGIarpCsAjHJYFv0zPbdpfdWvfyLFS1lY/kTQQ
+0g9g6Z8Bf0j4St2GiD6RINFxEH7YvowARYnLD4kKLHV0CjY6XFcfRV2lK+cZmof9
+IIFG/01OiA==
+=as/Q
+-----END PGP SIGNATURE-----
+
+--equ2x5ui66msv4bz--
 
 
