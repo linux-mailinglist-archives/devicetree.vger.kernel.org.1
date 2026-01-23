@@ -1,154 +1,197 @@
-Return-Path: <devicetree+bounces-259021-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259023-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WCJgFv+Vc2lgxQAAu9opvQ
-	(envelope-from <devicetree+bounces-259021-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 16:38:39 +0100
+	id 2JZcKnqWc2lgxQAAu9opvQ
+	(envelope-from <devicetree+bounces-259023-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 16:40:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C41077D97
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 16:38:38 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 066D277E04
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 16:40:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id B66DC3005178
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:38:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 442AB303F7E6
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:39:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6ECE5296BC5;
-	Fri, 23 Jan 2026 15:38:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C764F2F1FE3;
+	Fri, 23 Jan 2026 15:39:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GdI2exVD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ieT9eYqk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B01E27CCF0;
-	Fri, 23 Jan 2026 15:38:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F64A28B7DB
+	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 15:39:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769182713; cv=none; b=HqCDG+zSadlJCuRn1IAeN5vsghmsf5d5bIM+nDYkcsgF9eWAKTyuzr4ELcEIZxrUBKoFPaKBeEmBzq1ycHh0TOE8hjZXSDWqNf1QYs3wdQHK+ZZvkB4uVf8MAXLBNnJjaGF/UK0qZUxfXnxAeyb5dYuzAou34vpb+B1xqa/JNHs=
+	t=1769182765; cv=none; b=Rp43XoSvPtnXg1yva1g90D0aT3nsuEh+tteX+2HdadUh4NPNyrnqEiMI+m42QpJ76KByivhB2Yv0IjznoGCU9bvK3OfEfA7fpQ8SOrmI106tVMrj4eSSj10nsqfUzXYeMZB719GhcJtKyRgm6p2/UJZs8q8+bmEWTZVmNfsfnQc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769182713; c=relaxed/simple;
-	bh=USnlgfT/ZGNTEXTWlzmQfKhta1kQIV4DdpxEHcZH41I=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=rm0vDSqsV+KCqchXEcwoHKS2qLbFXPnHx6bXshLwAS7U0HxcwnrEuNeig+fddyPylPKDyVljX3ZFnBqXoUmJYC4uXvSQdDtiGUIRXbJgnV8b0yAROAHxvYYFtvDdMXugGm5JA3Zy2/k+FbNbv0wkUBgcoqfGnuH+5kq2g51+6fI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GdI2exVD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFFE1C4CEF1;
-	Fri, 23 Jan 2026 15:38:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769182712;
-	bh=USnlgfT/ZGNTEXTWlzmQfKhta1kQIV4DdpxEHcZH41I=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=GdI2exVDLt45OOmu3tLo20vyLFAUM1i0ZuPvouchQGcNnKp/iRfsrQBGOfmyUkayk
-	 03+3a8LkMCdLns4Lbw09XWbX5iFHuC4ShYkQQhYjEQjIOQywK6PXiII7QRYQrBhxL5
-	 ddBAOTzK3KPGvl77I2oYiWv7aMQv/ioIBtCsDT/UOnMkEPrs+3ztjjOegCdTnvKd87
-	 U0o/Cbj6Xm0VdTdQ9IVpHlDoTlZGKrvrjomxP2ziTGR9mqxCl4CfYubNCue7ABl4O6
-	 9CEwxNXCLyHASfE0jekDLsMCCdAidbSPcsMtctlulrwfTww5kOm5DaSjmH9Uv7pgSs
-	 +VF/oVAnSayKQ==
-Date: Fri, 23 Jan 2026 09:38:31 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1769182765; c=relaxed/simple;
+	bh=TaWr/LrmzAvRMdQNjiFtDzTvQFMrR1wI9b5D5QJZUhI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=BGh8j9fari9Yyn6Akrfby+jgfgbu2TLCkTKCv+/g92K0zJaqkhAzYUmQvQRl990SZ4UFyAbB0F+NkkQ87T6sSOVud4vwcgtM3Wa1cYgPHYAygzC9FeJ+ulneNhC+sLxoK45sIFdTFarmIc88dFgeBg5zYZd9QOpSXKocnuijWcc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ieT9eYqk; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-2a79ded11a2so14617575ad.3
+        for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 07:39:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1769182763; x=1769787563; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=AN7Bijlws3Yf4aNS4iNAiLjf2TZ2e4vGXijmqIVGBpI=;
+        b=ieT9eYqkDZYxsZ9N/D8v+/DZ6AXVBS9lLms4gt7c6atOzDIKuoW1c+/Jdx5SV4JLUa
+         A75htOz6XQISBCiED7oipZ0QTFNZV7rgPJitYq0jmDH7wXMZea1pno3iFXLL4OtakGW9
+         nAlZhDYdrb2S0TLBaWdzA1RNtY/l0AdC9N6CiqLEW5QprpJgQ7dYkunc9RdUwPVtovgp
+         MGD+1XogCnFFkSGkw8bn79XMmAmNs+bcVdYD6OmwtvB8WatnLd93fVKxjNbPzMqetzLg
+         SlTldqQSw3WACfCRZE2awRl3zCsqyTbo0sD7en3z0ltUfiA37gLSFwYvylmTEg1ziBct
+         qYNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769182763; x=1769787563;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AN7Bijlws3Yf4aNS4iNAiLjf2TZ2e4vGXijmqIVGBpI=;
+        b=s1w4tYKrrnevzFn1xRYCAtB27nXBjQoZYSAnJm/TfFePezjkkag8C946Gp01WeXh/E
+         +XRmokn99QNweBWtAHpr2w6s0g1npixn6OPxMrlbJJki3oc4gToISZBQUdODXgUq2Kwj
+         O263PEYoPWVQiKk8rDz7TCLtttvxMrB3Bkd8Zc3cp8wA/B1dEN+gTRVZtaEEe41n+Pk+
+         ArGl0YZnsUyRnF35M8zVMZoXXIHvIcEWO5XJwFutSpSiDOv39rxAihcUlqlz1Jk7UbWa
+         lRgbttK8UVRTFg+GcTtKtqumUQ/wEcyWkRnvyTf+hEtwqLef9kSi2K9mEfu3OuRNLQ7e
+         VX+w==
+X-Forwarded-Encrypted: i=1; AJvYcCU/rxeSOJBRHjja4AUr+cb2GGJGgfGHWO4OvfforBiNgt5achDGHmfp+nEzfoTYxmqSg/gP7eSvih0V@vger.kernel.org
+X-Gm-Message-State: AOJu0YwP1tocUI1lHGZqLdcVPp8KMoYNw1PtsMbIQ7DE2ZeRL+RdmlfM
+	7381xanMtD84w7uGXCWeOdLT7RKJL/oGUCrjQcob+XEwB/8mCbdzfcG2o12oTA==
+X-Gm-Gg: AZuq6aJGg2oAQiC4WEtVrvodtYHesi7QHFqfHEEKwP46H0G8ue70FbTVfwoefV2/acm
+	s9u6bxjCtskEQ9S3UOvrmcG9ns2HU5r76L5wL3XK5EmddH4cwIMYHq77fREAM9QgsEoR4GzYmbR
+	0dKfXlrHFn8lqdHfD123UpntUZBSDR4TAUK/ivDzjGfNTDOvet2EBu5G48Mf3NmtC6n8I7VB9ck
+	PpFwFkdcGNEUivuWtWxaZUpuP/gGixPS9fa8XNLPifUJmDwjSU9SrGjeTR89RRtOHS9LMQZZLDw
+	893BuMoQ7JFnraa1yW7XpEg+Ntx7rGzov84puvAMe+4nEkFAx0vid3+7pl8TQBBIRKI/tzqoH0G
+	ul/xw6A782Z5S4AUO/QBCvn4BFLso8/2tN+NaB7CkiG+1FbT8kbpwvV4hF0Bnye0tO6j8C8ckAh
+	799DFr+gEKLMgFcr1/2C+HRbtqekYN50ml0w==
+X-Received: by 2002:a17:902:e5c5:b0:2a0:b461:c883 with SMTP id d9443c01a7336-2a7fe747425mr32040215ad.45.1769182762932;
+        Fri, 23 Jan 2026 07:39:22 -0800 (PST)
+Received: from Black-Pearl.localdomain ([115.99.251.203])
+        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-2a802f9769esm23732205ad.60.2026.01.23.07.39.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Jan 2026 07:39:22 -0800 (PST)
+From: Charan Pedumuru <charan.pedumuru@gmail.com>
+Subject: [PATCH v4 0/3] dt-bindings: phy: Convert TI OMAP control and PIPE3
+ PHY to DT schema
+Date: Fri, 23 Jan 2026 15:39:01 +0000
+Message-Id: <20260123-ti-phy-v4-0-b557e2c46e6f@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-clk@vger.kernel.org, biju.das.jz@bp.renesas.com, 
- john.madieu@gmail.com, linux-renesas-soc@vger.kernel.org, 
- kwilczynski@kernel.org, lpieralisi@kernel.org, mani@kernel.org, 
- bhelgaas@google.com, magnus.damm@gmail.com, devicetree@vger.kernel.org, 
- linux-pci@vger.kernel.org, geert+renesas@glider.be, 
- claudiu.beznea.uj@bp.renesas.com, krzk+dt@kernel.org, conor+dt@kernel.org
-To: John Madieu <john.madieu.xa@bp.renesas.com>
-In-Reply-To: <20260123140031.94752-7-john.madieu.xa@bp.renesas.com>
-References: <20260123140031.94752-1-john.madieu.xa@bp.renesas.com>
- <20260123140031.94752-7-john.madieu.xa@bp.renesas.com>
-Message-Id: <176918271191.2157131.3302295737226885391.robh@kernel.org>
-Subject: Re: [PATCH v2 06/15] dt-bindings: PCI: renesas,r9a08g045s33-pcie:
- Document RZ/G3E SoC
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABWWc2kC/12NzQqDMBAGX0Vybkp2Y4z21PcoPWhMNFB/SCRUx
+ HdvFCq2x/nYmV2I185qT27JQpwO1tuhj5BeEqLasm80tXVkggwFIAc6WTq2MxV5VRWa58qogsT
+ j0Wlj33vo8YzcWj8Nbt67AbZ1S2QMGP8mAlCgueJGaFRVnfF705X2dVVDR7ZEwLMmDw0poyVoh
+ TJlYIz51/hJQzw0HjUpIINCYpHyn2/run4AG9J8JgoBAAA=
+X-Change-ID: 20251231-ti-phy-58bb9e38cfc9
+To: Vinod Koul <vkoul@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Aaro Koskinen <aaro.koskinen@iki.fi>, 
+ Andreas Kemnade <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>, 
+ Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, 
+ Roger Quadros <rogerq@ti.com>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org, 
+ Charan Pedumuru <charan.pedumuru@gmail.com>
+X-Mailer: b4 0.14.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,bp.renesas.com,gmail.com,kernel.org,google.com,glider.be];
-	TAGGED_FROM(0.00)[bounces-259021-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-259023-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,gmail.com];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.991];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[charanpedumuru@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,devicetree.org:url]
-X-Rspamd-Queue-Id: 6C41077D97
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 066D277E04
 X-Rspamd-Action: no action
 
+This series converts the old text-based DeviceTree bindings for TI OMAP
+Control PHY and TI PIPE3 PHY to modern JSON-schema (YAML) format.
 
-On Fri, 23 Jan 2026 15:00:22 +0100, John Madieu wrote:
-> Extend the existing device tree bindings for Renesas RZ/G3S PCIe
-> controller to include support for the RZ/G3E (renesas,r9a09g047e57-pcie) PCIe
-> controller. The RZ/G3E PCIe controller is similar to RZ/G3S but has some key
-> differences:
-> 
->  - Uses a different device ID
->  - Supports PCIe Gen3 (8.0 GT/s) link speeds
->  - Uses a different clock naming (clkpmu vs clkl1pm)
->  - Has a different set of interrupts, interrupt ordering, and reset signals
-> 
-> Add device tree bindings for renesas,r9a09g047e57-pcie compatible IPs.
-> 
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
-> ---
-> 
-> Changes:
-> 
-> v2: Reuse G3S names
-> 
->  .../bindings/pci/renesas,r9a08g045-pcie.yaml  | 127 +++++++++++++-----
->  1 file changed, 96 insertions(+), 31 deletions(-)
-> 
+Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+---
+Changes in v4:
+- ti,phy-usb3: Limit phandle arrays for optional properties to one entry.
+- ti,phy-usb3: Use lowercase hex for reg values in examples.
+- Link to v3: https://lore.kernel.org/r/20260122-ti-phy-v3-0-751619729433@gmail.com
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Changes in v3:
+- Change maintainer to "Roger Quadros" for both YAML files.
+- dts: Split node pattern updates into a separate patch and align node
+  naming with standard conventions.
+- ti,phy-usb3: Update node pattern to follow standard conventions.
+- ti,phy-usb3: Refine the reg-names property and add constraints for
+  optional phandle-array properties.
+- ti,phy-usb3: Redefine "syscon-pllreset" dependency on the compatible
+  "ti,phy-pipe3-sata" in a correct format.
+- ti,control-phy-otghs: Update node pattern and adjust maxItems for reg
+  and reg-names.
+- ti,control-phy-otghs: Fix the conditional handling for the
+  ti,control-phy-pcie compatible.
+- Link to v2: https://lore.kernel.org/r/20260107-ti-phy-v2-0-a1ec27401fff@gmail.com
 
-yamllint warnings/errors:
+Changes in v2:
+- ti,control-phy-otghs: Update commit message to reflect the latest
+  binding changes.
+- ti,phy-usb3: Drop the obsolete "id" property from the schema.
+- Both bindings: Update maintainers list, modify node pattern and improve
+  node descriptions for clarity.
+- ti,phy-usb3: Introduce new YAML schema with properly defined optional
+  properties for the PIPE3 PHY.
+- Link to v1: https://lore.kernel.org/r/20260103-ti-phy-v1-1-8c3f5e2cbd63@gmail.com
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/renesas,r9a08g045-pcie.yaml: properties:reset-names: {'minItems': 1, 'maxItems': 7, 'items': [{'const': 'aresetn'}, {'const': 'rst_b'}, {'const': 'rst_gp_b'}, {'const': 'rst_ps_b'}, {'const': 'rst_rsm_b'}, {'const': 'rst_cfg_b'}, {'const': 'rst_load_b'}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
+---
+Charan Pedumuru (3):
+      arm: dts: ti: omap: align node patterns with established convention
+      dt-bindings: phy: ti,phy-usb3: convert to DT schema
+      dt-bindings: phy: ti,control-phy-otghs: convert to DT schema
 
-doc reference errors (make refcheckdocs):
+ .../bindings/phy/ti,control-phy-otghs.yaml         |  99 +++++++++++++++
+ .../devicetree/bindings/phy/ti,phy-usb3.yaml       | 138 +++++++++++++++++++++
+ Documentation/devicetree/bindings/phy/ti-phy.txt   |  98 ---------------
+ arch/arm/boot/dts/ti/omap/dra7-l4.dtsi             |   4 +-
+ arch/arm/boot/dts/ti/omap/omap4-l4.dtsi            |   4 +-
+ arch/arm/boot/dts/ti/omap/omap5-l4.dtsi            |   2 +-
+ 6 files changed, 242 insertions(+), 103 deletions(-)
+---
+base-commit: cc3aa43b44bdb43dfbac0fcb51c56594a11338a8
+change-id: 20251231-ti-phy-58bb9e38cfc9
 
-See https://patchwork.kernel.org/project/devicetree/patch/20260123140031.94752-7-john.madieu.xa@bp.renesas.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+-- 
+Charan Pedumuru <charan.pedumuru@gmail.com>
 
 
