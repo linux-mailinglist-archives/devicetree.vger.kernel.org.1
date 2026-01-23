@@ -1,459 +1,186 @@
-Return-Path: <devicetree+bounces-258698-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258699-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YDvuNKDmcmmErAAAu9opvQ
-	(envelope-from <devicetree+bounces-258698-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 04:10:24 +0100
+	id oJLCHvvmcmmErAAAu9opvQ
+	(envelope-from <devicetree+bounces-258699-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 04:11:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2DB06FEBD
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 04:10:23 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FF6A6FEE9
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 04:11:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 6C98C3001A7D
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 03:10:21 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 6FA253003618
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 03:11:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25DA5356A16;
-	Fri, 23 Jan 2026 03:10:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 920F1352949;
+	Fri, 23 Jan 2026 03:11:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fj1R0gOL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from zg8tmja2lje4os4yms4ymjma.icoremail.net (zg8tmja2lje4os4yms4ymjma.icoremail.net [206.189.21.223])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6486637F8C2;
-	Fri, 23 Jan 2026 03:10:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.21.223
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7AF1324B22;
+	Fri, 23 Jan 2026 03:11:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769137814; cv=none; b=n3kW/VZw5kKzMDz8LJhn9E15E2SX4AkfxhxebxcIP6cEWQHPqu22YH21J0S9lS7dBqLCBRlne/UGg3l+YtwnPTng2Var6Bp+KsWEVoDPRfnrigTOViPuvKhuJmTf7MkjxAkS/pL9x5eOen8YXD04iL51JnUMNiOA4DMLYZBNMQM=
+	t=1769137909; cv=none; b=CbINqk/cT8hjsikJ5LjGEe077ymtdCYvWAk45jUzuNNh9TzkAmc7wppm8sQKoBYXJr3u7RKBUn8KL6cuXsUkz9YSoVFrBTAcOnwgeOQ5QoI77v17Su1rCIeqAYjdd80LsZySlox2BFt3yRYWmAPhecLARdNpfvvfDaTmuEEgA1s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769137814; c=relaxed/simple;
-	bh=4MzAmN0WkUpZBaOC4/CEZW1pMzzi3XLGG5lVa0EAPsw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QoOMCZsBNO4geuE0XRefqsCYWQBqV3borsCuKXwXZTk8bTILRpWci7ut3w+esfyKrPRCOfP3XD+3HGfaCBpPV/eZphQO0srusjkdi5v88Ez4hCPU7X50uyoUdqrFBOexPBTkPTB6EN5HbMhAxSp1pfcCiLxwSLCkTw14fXVbLkA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=206.189.21.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from E0006800LT.eswin.cn (unknown [10.12.96.77])
-	by app1 (Coremail) with SMTP id TAJkCgCH22x05nJpOfQEAA--.23535S2;
-	Fri, 23 Jan 2026 11:09:42 +0800 (CST)
-From: Yulin Lu <luyulin@eswincomputing.com>
-To: vkoul@kernel.org,
-	neil.armstrong@linaro.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
+	s=arc-20240116; t=1769137909; c=relaxed/simple;
+	bh=2sduAVtZ4sB8Xd4nr5su39mrxAhJpvtA6zzQa7Mf+Do=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=BiZL0RFLMcQCT9CiCAmumCRsMgU9tWVNMbSEaoTYTR8C+Gs1kfqLBE3egXumCumj8Rz/9JkXx7feS22caoS6AAqFyMfbsrSl6urqGdkxD7S/y1wFsP9ipDds8mdPEqhuccIgTijRjN8Ff9UYtaf1+wbG9AngjBhQwHXQwFp4nAI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fj1R0gOL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76D01C116C6;
+	Fri, 23 Jan 2026 03:11:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769137908;
+	bh=2sduAVtZ4sB8Xd4nr5su39mrxAhJpvtA6zzQa7Mf+Do=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=fj1R0gOLXQUlFV3n7CSQAixhVa2ZWA18o7kpvaFwNZqp679B28Fi7ZvcfkzlHy8ZL
+	 71LQ2/8l+4ggAMsuaY4KT4up2NbE1UJRc5XJ9OUIo2MSm1Tcr1lqwJ+McFmgRKI7e0
+	 uzD6p7KWyF7iD4CrEzmL9jaLLYyyvB9vKYFywt0wqXSpkkrddkb+PpwLWZ8c8RXeg/
+	 sD3cqqGdPWqz94sNG7VJUI7/e603y0jBa7l57RosrsZtVmiVy+PzH0idRmwA+P+w4h
+	 QVjPwnPOVzJhcfQoxxEtBx9BQsM7Cn46HpwTnydgsrfvOy6nir4xY0WaALfgqVYQ0f
+	 ir7IyRs7p84LA==
+From: Jakub Kicinski <kuba@kernel.org>
+To: itazur@amazon.com
+Cc: Jakub Kicinski <kuba@kernel.org>,
+	graf@amazon.de,
+	itazur@amazon.co.uk,
 	conor+dt@kernel.org,
-	p.zabel@pengutronix.de,
-	linux-phy@lists.infradead.org,
+	dwmw2@infradead.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: ningyu@eswincomputing.com,
-	linmin@eswincomputing.com,
-	fenglin@eswincomputing.com,
-	Yulin Lu <luyulin@eswincomputing.com>
-Subject: [PATCH v8 2/2] phy: eswin: Create eswin directory and add EIC7700 SATA PHY driver
-Date: Fri, 23 Jan 2026 11:09:33 +0800
-Message-Id: <20260123030933.987-1-luyulin@eswincomputing.com>
-X-Mailer: git-send-email 2.31.1.windows.1
-In-Reply-To: <20260123024823.1612-1-luyulin@eswincomputing.com>
-References: <20260123024823.1612-1-luyulin@eswincomputing.com>
+	xmarcalx@amazon.co.uk,
+	linux-kernel@vger.kernel.org,
+	edumazet@google.com,
+	robh@kernel.org,
+	richardcochran@gmail.com,
+	andrew+netdev@lunn.ch,
+	mzxreary@0pointer.de,
+	pabeni@redhat.com,
+	dwmw@amazon.co.uk,
+	netdev@vger.kernel.org,
+	krzk+dt@kernel.org,
+	davem@davemloft.net,
+	mail@bchalios.io
+Subject: Re: [v6,2/7] ptp: vmclock: support device notifications
+Date: Thu, 22 Jan 2026 19:11:34 -0800
+Message-ID: <20260123031133.3059291-2-kuba@kernel.org>
+X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20260121143402.3092-3-itazur@amazon.com>
+References: <20260121143402.3092-3-itazur@amazon.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=y
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:TAJkCgCH22x05nJpOfQEAA--.23535S2
-X-Coremail-Antispam: 1UD129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUOj7AC8VAFwI0_Gr0_Xr1l1xkIjI8I6I8E
-	6xAIw20EY4v20xvaj40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM28Cjx
-	kF64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVWDJVCq3wA2z4x0Y4vE2Ix0cI8I
-	cVCY1x0267AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87
-	Iv6xkF7I0E14v26rxl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21le4C262xC7I0v67AE
-	wI8IwI1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I
-	8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lF7I2
-	1c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxan2IY04v7M4kE6I8I3I0E14AKx2
-	xKxVC2ax8xMxkIecxEwVCm-wCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8
-	JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r1j6r18MI8E67AF67kF1V
-	AFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xII
-	jxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4
-	A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU
-	0xZFpf9x0JUdHUDUUUUU=
-X-CM-SenderInfo: pox13z1lq6v25zlqu0xpsx3x1qjou0bp/
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.04 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258698-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,amazon.de,amazon.co.uk,infradead.org,vger.kernel.org,google.com,gmail.com,lunn.ch,0pointer.de,redhat.com,davemloft.net,bchalios.io];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[eswincomputing.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	TAGGED_FROM(0.00)[bounces-258699-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[luyulin@eswincomputing.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[eswincomputing.com:mid,eswincomputing.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: F2DB06FEBD
+	FROM_NEQ_ENVFROM(0.00)[kuba@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-0.993];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 1FF6A6FEE9
 X-Rspamd-Action: no action
 
-Create the eswin phy driver directory and add support for the
-SATA PHY driver on the EIC7700 SoC platform.
+This is an AI-generated review of your patch. The human sending this
+email has considered the AI review valid, or at least plausible.
 
-Signed-off-by: Yulin Lu <luyulin@eswincomputing.com>
+For local reproduction steps see https://netdev-ai.bots.linux.dev/ai-local.html
 ---
- drivers/phy/Kconfig                  |   1 +
- drivers/phy/Makefile                 |   1 +
- drivers/phy/eswin/Kconfig            |  14 ++
- drivers/phy/eswin/Makefile           |   2 +
- drivers/phy/eswin/phy-eic7700-sata.c | 273 +++++++++++++++++++++++++++
- 5 files changed, 291 insertions(+)
- create mode 100644 drivers/phy/eswin/Kconfig
- create mode 100644 drivers/phy/eswin/Makefile
- create mode 100644 drivers/phy/eswin/phy-eic7700-sata.c
+ptp: vmclock: support device notifications
 
-diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
-index 678dd0452f0a..6d50704917f0 100644
---- a/drivers/phy/Kconfig
-+++ b/drivers/phy/Kconfig
-@@ -105,6 +105,7 @@ source "drivers/phy/allwinner/Kconfig"
- source "drivers/phy/amlogic/Kconfig"
- source "drivers/phy/broadcom/Kconfig"
- source "drivers/phy/cadence/Kconfig"
-+source "drivers/phy/eswin/Kconfig"
- source "drivers/phy/freescale/Kconfig"
- source "drivers/phy/hisilicon/Kconfig"
- source "drivers/phy/ingenic/Kconfig"
-diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
-index bfb27fb5a494..482a143d3417 100644
---- a/drivers/phy/Makefile
-+++ b/drivers/phy/Makefile
-@@ -17,6 +17,7 @@ obj-y					+= allwinner/	\
- 					   amlogic/	\
- 					   broadcom/	\
- 					   cadence/	\
-+					   eswin/	\
- 					   freescale/	\
- 					   hisilicon/	\
- 					   ingenic/	\
-diff --git a/drivers/phy/eswin/Kconfig b/drivers/phy/eswin/Kconfig
-new file mode 100644
-index 000000000000..37447cc3af63
---- /dev/null
-+++ b/drivers/phy/eswin/Kconfig
-@@ -0,0 +1,14 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+#
-+# Phy drivers for ESWIN platforms
-+#
-+config PHY_EIC7700_SATA
-+	tristate "eic7700 Sata SerDes/PHY driver"
-+	depends on ARCH_ESWIN || COMPILE_TEST
-+	depends on HAS_IOMEM
-+	select GENERIC_PHY
-+	help
-+	  Enable this to support SerDes/Phy found on ESWIN's
-+	  EIC7700 SoC.This Phy supports SATA 1.5 Gb/s,
-+	  SATA 3.0 Gb/s, SATA 6.0 Gb/s speeds.
-+	  It supports one SATA host port to accept one SATA device.
-diff --git a/drivers/phy/eswin/Makefile b/drivers/phy/eswin/Makefile
-new file mode 100644
-index 000000000000..db08c66be812
---- /dev/null
-+++ b/drivers/phy/eswin/Makefile
-@@ -0,0 +1,2 @@
-+# SPDX-License-Identifier: GPL-2.0
-+obj-$(CONFIG_PHY_EIC7700_SATA)	+= phy-eic7700-sata.o
-diff --git a/drivers/phy/eswin/phy-eic7700-sata.c b/drivers/phy/eswin/phy-eic7700-sata.c
-new file mode 100644
-index 000000000000..4de8dfe18182
---- /dev/null
-+++ b/drivers/phy/eswin/phy-eic7700-sata.c
-@@ -0,0 +1,273 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * ESWIN SATA PHY driver
-+ *
-+ * Copyright 2026, Beijing ESWIN Computing Technology Co., Ltd..
-+ * All rights reserved.
-+ *
-+ * Authors: Yulin Lu <luyulin@eswincomputing.com>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <linux/delay.h>
-+#include <linux/io.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/phy/phy.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/reset.h>
-+
-+#define SATA_AXI_LP_CTRL			0x08
-+#define SATA_MPLL_CTRL				0x20
-+#define SATA_P0_PHY_STAT			0x24
-+#define SATA_PHY_CTRL0				0x28
-+#define SATA_PHY_CTRL1				0x2c
-+#define SATA_REF_CTRL				0x34
-+#define SATA_REF_CTRL1				0x38
-+#define SATA_LOS_IDEN				0x3c
-+
-+#define SATA_CLK_RST_SOURCE_PHY			BIT(0)
-+#define SATA_P0_PHY_TX_AMPLITUDE_GEN1_MASK	GENMASK(6, 0)
-+#define SATA_P0_PHY_TX_AMPLITUDE_GEN1_DEFAULT	0x42
-+#define SATA_P0_PHY_TX_AMPLITUDE_GEN2_MASK	GENMASK(14, 8)
-+#define SATA_P0_PHY_TX_AMPLITUDE_GEN2_DEFAULT	0x46
-+#define SATA_P0_PHY_TX_AMPLITUDE_GEN3_MASK	GENMASK(22, 16)
-+#define SATA_P0_PHY_TX_AMPLITUDE_GEN3_DEFAULT	0x73
-+#define SATA_P0_PHY_TX_PREEMPH_GEN1_MASK	GENMASK(5, 0)
-+#define SATA_P0_PHY_TX_PREEMPH_GEN1_DEFAULT	0x5
-+#define SATA_P0_PHY_TX_PREEMPH_GEN2_MASK	GENMASK(13, 8)
-+#define SATA_P0_PHY_TX_PREEMPH_GEN2_DEFAULT	0x5
-+#define SATA_P0_PHY_TX_PREEMPH_GEN3_MASK	GENMASK(21, 16)
-+#define SATA_P0_PHY_TX_PREEMPH_GEN3_DEFAULT	0x23
-+#define SATA_LOS_LEVEL_MASK			GENMASK(4, 0)
-+#define SATA_LOS_BIAS_MASK			GENMASK(18, 16)
-+#define SATA_M_CSYSREQ				BIT(0)
-+#define SATA_S_CSYSREQ				BIT(16)
-+#define SATA_REF_REPEATCLK_EN			BIT(0)
-+#define SATA_REF_USE_PAD			BIT(20)
-+#define SATA_MPLL_MULTIPLIER_MASK		GENMASK(22, 16)
-+#define SATA_P0_PHY_READY			BIT(0)
-+
-+#define PLL_LOCK_SLEEP_US			10
-+#define PLL_LOCK_TIMEOUT_US			1000
-+
-+struct eic7700_sata_phy {
-+	u32 tx_amplitude_tuning_val[3];
-+	u32 tx_preemph_tuning_val[3];
-+	struct reset_control *rst;
-+	struct regmap *regmap;
-+	struct clk *clk;
-+	struct phy *phy;
-+};
-+
-+static const struct regmap_config eic7700_sata_phy_regmap_config = {
-+	.reg_bits = 32,
-+	.val_bits = 32,
-+	.reg_stride = 4,
-+	.max_register = SATA_LOS_IDEN,
-+};
-+
-+static int wait_for_phy_ready(struct regmap *regmap, u32 reg, u32 checkbit,
-+			      u32 status)
-+{
-+	u32 val;
-+	int ret;
-+
-+	ret = regmap_read_poll_timeout(regmap, reg, val,
-+				       (val & checkbit) == status,
-+				       PLL_LOCK_SLEEP_US, PLL_LOCK_TIMEOUT_US);
-+
-+	return ret;
-+}
-+
-+static int eic7700_sata_phy_init(struct phy *phy)
-+{
-+	struct eic7700_sata_phy *sata_phy = phy_get_drvdata(phy);
-+	u32 val;
-+	int ret;
-+
-+	ret = clk_prepare_enable(sata_phy->clk);
-+	if (ret)
-+		return ret;
-+
-+	regmap_write(sata_phy->regmap, SATA_REF_CTRL1, SATA_CLK_RST_SOURCE_PHY);
-+
-+	val = FIELD_PREP(SATA_P0_PHY_TX_AMPLITUDE_GEN1_MASK,
-+			 sata_phy->tx_amplitude_tuning_val[0]) |
-+	      FIELD_PREP(SATA_P0_PHY_TX_AMPLITUDE_GEN2_MASK,
-+			 sata_phy->tx_amplitude_tuning_val[1]) |
-+	      FIELD_PREP(SATA_P0_PHY_TX_AMPLITUDE_GEN3_MASK,
-+			 sata_phy->tx_amplitude_tuning_val[2]);
-+	regmap_write(sata_phy->regmap, SATA_PHY_CTRL0, val);
-+
-+	val = FIELD_PREP(SATA_P0_PHY_TX_PREEMPH_GEN1_MASK,
-+			 sata_phy->tx_preemph_tuning_val[0]) |
-+	      FIELD_PREP(SATA_P0_PHY_TX_PREEMPH_GEN2_MASK,
-+			 sata_phy->tx_preemph_tuning_val[1]) |
-+	      FIELD_PREP(SATA_P0_PHY_TX_PREEMPH_GEN3_MASK,
-+			 sata_phy->tx_preemph_tuning_val[2]);
-+	regmap_write(sata_phy->regmap, SATA_PHY_CTRL1, val);
-+
-+	val = FIELD_PREP(SATA_LOS_LEVEL_MASK, 0x9) |
-+	      FIELD_PREP(SATA_LOS_BIAS_MASK, 0x2);
-+	regmap_write(sata_phy->regmap, SATA_LOS_IDEN, val);
-+
-+	val = SATA_M_CSYSREQ | SATA_S_CSYSREQ;
-+	regmap_write(sata_phy->regmap, SATA_AXI_LP_CTRL, val);
-+
-+	val = SATA_REF_REPEATCLK_EN | SATA_REF_USE_PAD;
-+	regmap_write(sata_phy->regmap, SATA_REF_CTRL, val);
-+
-+	val = FIELD_PREP(SATA_MPLL_MULTIPLIER_MASK, 0x3c);
-+	regmap_write(sata_phy->regmap, SATA_MPLL_CTRL, val);
-+
-+	usleep_range(15, 20);
-+
-+	ret = reset_control_deassert(sata_phy->rst);
-+	if (ret)
-+		goto disable_clk;
-+
-+	ret = wait_for_phy_ready(sata_phy->regmap, SATA_P0_PHY_STAT,
-+				 SATA_P0_PHY_READY, 1);
-+	if (ret < 0) {
-+		dev_err(&sata_phy->phy->dev, "PHY READY check failed\n");
-+		goto disable_clk;
-+	}
-+
-+	return 0;
-+
-+disable_clk:
-+	clk_disable_unprepare(sata_phy->clk);
-+	return ret;
-+}
-+
-+static int eic7700_sata_phy_exit(struct phy *phy)
-+{
-+	struct eic7700_sata_phy *sata_phy = phy_get_drvdata(phy);
-+	int ret;
-+
-+	ret = reset_control_assert(sata_phy->rst);
-+	if (ret)
-+		return ret;
-+
-+	clk_disable_unprepare(sata_phy->clk);
-+
-+	return 0;
-+}
-+
-+static const struct phy_ops eic7700_sata_phy_ops = {
-+	.init		= eic7700_sata_phy_init,
-+	.exit		= eic7700_sata_phy_exit,
-+	.owner		= THIS_MODULE,
-+};
-+
-+static void eic7700_get_tuning_param(struct device_node *np,
-+				     struct eic7700_sata_phy *sata_phy)
-+{
-+	if (of_property_read_u32_array
-+		(np, "eswin,tx-amplitude-tuning",
-+		sata_phy->tx_amplitude_tuning_val,
-+		ARRAY_SIZE(sata_phy->tx_amplitude_tuning_val))) {
-+		sata_phy->tx_amplitude_tuning_val[0] =
-+			SATA_P0_PHY_TX_AMPLITUDE_GEN1_DEFAULT;
-+		sata_phy->tx_amplitude_tuning_val[1] =
-+			SATA_P0_PHY_TX_AMPLITUDE_GEN2_DEFAULT;
-+		sata_phy->tx_amplitude_tuning_val[2] =
-+			SATA_P0_PHY_TX_AMPLITUDE_GEN3_DEFAULT;
-+	}
-+
-+	if (of_property_read_u32_array
-+		(np, "eswin,tx-preemph-tuning",
-+		sata_phy->tx_preemph_tuning_val,
-+		ARRAY_SIZE(sata_phy->tx_preemph_tuning_val))) {
-+		sata_phy->tx_preemph_tuning_val[0] =
-+			SATA_P0_PHY_TX_PREEMPH_GEN1_DEFAULT;
-+		sata_phy->tx_preemph_tuning_val[1] =
-+			SATA_P0_PHY_TX_PREEMPH_GEN2_DEFAULT;
-+		sata_phy->tx_preemph_tuning_val[2] =
-+			SATA_P0_PHY_TX_PREEMPH_GEN3_DEFAULT;
-+	}
-+}
-+
-+static int eic7700_sata_phy_probe(struct platform_device *pdev)
-+{
-+	struct eic7700_sata_phy *sata_phy;
-+	struct phy_provider *phy_provider;
-+	struct device *dev = &pdev->dev;
-+	struct device_node *np = dev->of_node;
-+	struct resource *res;
-+	void __iomem *regs;
-+
-+	sata_phy = devm_kzalloc(dev, sizeof(*sata_phy), GFP_KERNEL);
-+	if (!sata_phy)
-+		return -ENOMEM;
-+
-+	/*
-+	 * Map the I/O resource with platform_get_resource and devm_ioremap
-+	 * instead of the devm_platform_ioremap_resource API, because the
-+	 * address region of the SATA‑PHY falls into the region of the HSP
-+	 * clock & reset that has already been obtained by the HSP
-+	 * clock‑and‑reset driver.
-+	 */
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	if (!res)
-+		return -ENOENT;
-+
-+	regs = devm_ioremap(dev, res->start, resource_size(res));
-+	if (IS_ERR(regs))
-+		return PTR_ERR(regs);
-+
-+	sata_phy->regmap = devm_regmap_init_mmio
-+			   (dev, regs, &eic7700_sata_phy_regmap_config);
-+	if (IS_ERR(sata_phy->regmap))
-+		return dev_err_probe(dev, PTR_ERR(sata_phy->regmap),
-+				     "failed to init regmap\n");
-+
-+	dev_set_drvdata(dev, sata_phy);
-+
-+	eic7700_get_tuning_param(np, sata_phy);
-+
-+	sata_phy->clk = devm_clk_get(dev, "phy");
-+	if (IS_ERR(sata_phy->clk))
-+		return PTR_ERR(sata_phy->clk);
-+
-+	sata_phy->rst = devm_reset_control_array_get_exclusive(dev);
-+	if (IS_ERR(sata_phy->rst))
-+		return dev_err_probe(dev, PTR_ERR(sata_phy->rst),
-+				     "failed to get reset control\n");
-+
-+	sata_phy->phy = devm_phy_create(dev, NULL, &eic7700_sata_phy_ops);
-+	if (IS_ERR(sata_phy->phy))
-+		return dev_err_probe(dev, PTR_ERR(sata_phy->phy),
-+				     "failed to create PHY\n");
-+
-+	phy_set_drvdata(sata_phy->phy, sata_phy);
-+
-+	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-+	if (IS_ERR(phy_provider))
-+		return dev_err_probe(dev, PTR_ERR(phy_provider),
-+				     "failed to register PHY provider\n");
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id eic7700_sata_phy_of_match[] = {
-+	{ .compatible = "eswin,eic7700-sata-phy" },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, eic7700_sata_phy_of_match);
-+
-+static struct platform_driver eic7700_sata_phy_driver = {
-+	.probe	= eic7700_sata_phy_probe,
-+	.driver = {
-+		.of_match_table	= eic7700_sata_phy_of_match,
-+		.name  = "eic7700-sata-phy",
-+	}
-+};
-+module_platform_driver(eic7700_sata_phy_driver);
-+
-+MODULE_DESCRIPTION("SATA PHY driver for the ESWIN EIC7700 SoC");
-+MODULE_AUTHOR("Yulin Lu <luyulin@eswincomputing.com>");
-+MODULE_LICENSE("GPL");
+This patch adds optional device notification support to VMClock, allowing
+the hypervisor to notify the driver when seq_count changes. It also adds
+poll() support to propagate these notifications to userspace.
+
+> diff --git a/drivers/ptp/ptp_vmclock.c b/drivers/ptp/ptp_vmclock.c
+> index b3a83b03d9c1..38b2bacb755e 100644
+> --- a/drivers/ptp/ptp_vmclock.c
+> +++ b/drivers/ptp/ptp_vmclock.c
+
+[ ... ]
+
+> +static void
+> +vmclock_acpi_notification_handler(acpi_handle __always_unused handle,
+> +				  u32 __always_unused event, void *dev)
+> +{
+> +	struct device *device = dev;
+> +	struct vmclock_state *st = device->driver_data;
+> +
+> +	wake_up_interruptible(&st->disrupt_wait);
+> +}
+> +
+> +static int vmclock_setup_notification(struct device *dev, struct vmclock_state *st)
+> +{
+
+[ ... ]
+
+> +	status = acpi_install_notify_handler(adev->handle, ACPI_DEVICE_NOTIFY,
+> +					     vmclock_acpi_notification_handler,
+> +					     dev);
+
+Since acpi_install_notify_handler() is called here, should there be a
+corresponding acpi_remove_notify_handler() in vmclock_remove()? Currently
+the handler remains registered after device removal, which could lead to
+a use-after-free if the hypervisor sends a notification after the driver
+state has been freed.
+
+[ ... ]
+
+> @@ -549,6 +653,11 @@ static int vmclock_probe(struct platform_device *pdev)
+>  	if (ret)
+>  		return ret;
+>
+> +	init_waitqueue_head(&st->disrupt_wait);
+> +	ret = vmclock_setup_notification(dev, st);
+> +	if (ret)
+> +		return ret;
+
+[ ... ]
+
+> @@ -581,6 +690,8 @@ static int vmclock_probe(struct platform_device *pdev)
+>  		return -ENODEV;
+>  	}
+>
+> +	dev->driver_data = st;
+
+Is there a race window here? The ACPI notification handler is installed
+in vmclock_setup_notification() which runs earlier in vmclock_probe(),
+but the handler accesses device->driver_data. If the hypervisor sends a
+notification between vmclock_setup_notification() and this assignment,
+vmclock_acpi_notification_handler() would dereference NULL or garbage.
+
+I see this is fixed later in the series by commit 47fdd294385e which
+moves dev->driver_data = st before vmclock_setup_notification().
 -- 
-2.25.1
-
+pw-bot: cr
 
