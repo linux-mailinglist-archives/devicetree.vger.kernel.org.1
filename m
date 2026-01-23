@@ -1,40 +1,40 @@
-Return-Path: <devicetree+bounces-258832-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258833-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0LXVK45Ac2mWtwAAu9opvQ
-	(envelope-from <devicetree+bounces-258832-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:34:06 +0100
+	id YEAEC3dBc2mWtwAAu9opvQ
+	(envelope-from <devicetree+bounces-258833-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:37:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAEFF73703
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:34:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E02073788
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:37:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 449D730A40A5
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 09:30:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A1A0D31B48BD
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 09:30:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5F0B371040;
-	Fri, 23 Jan 2026 09:29:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8067D3612E4;
+	Fri, 23 Jan 2026 09:30:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from cstnet.cn (unknown [159.226.251.81])
 	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2530136680B;
-	Fri, 23 Jan 2026 09:29:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36AF9361DD3;
+	Fri, 23 Jan 2026 09:29:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769160592; cv=none; b=JC2cqYD8ADdmK9bg2iRvQY07E2RPX+H85wOQhGBphnJSfILbVDYtQMidkKfIey9PpAHWF+2GkCdYN5TLOy6PVM0YAxqvDTRtUtlQmeo2eMSTfVArWo6npPyppFzs+JT+RV8CaD/dLvL0Uu+Qubq23dEy/93k4SejHixMwsP32Zk=
+	t=1769160609; cv=none; b=GkR7Ja6gwYJcB85oH3CIY5WEWpX0HlzfZpOwKS6x4C/oMY1nFS+HgdWJvGUZBq0+jlG/9bXjxmy3b0uLVJ7RQdK3ZQ44iqjgBqCpDKVWMdzn1AJUPFjwqKQNBX+sZZ1bj+sk/HtMuPzXqfmukPwZavcS3k2yhqhuHL7o07Dz8RA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769160592; c=relaxed/simple;
-	bh=xM+7F+PPTrFvUZW4cY6GcbYuh2xxP/VgV4QLwFjXIMc=;
+	s=arc-20240116; t=1769160609; c=relaxed/simple;
+	bh=CWfi3vXkKqDAmuafU8cbvUkVbYRT83YPu0winyY4A0Q=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=HZN70YUiGV1SMwtKwW6YbQhG2H2dWFSy6thkfy0VuWXky7KSVaIrpcxKqRZ6HfpXvGGy5WbpWv9YPE2FQysIXE5Vv1cB7zk/Smfx/4S10aguNc3Mqir415imMnvcn1DTc6k3UfIgfs1m19u7nyt91NTDl/DNKsSpvMNpk4Hu0o0=
+	 MIME-Version; b=Yk2/NoRAg8oaWn0ckuR/VDdjejg4WlAkcP8MNQtbz5vjD2MneFwONuuDI6/1HwiRM670zmMOXRXsOWhKueRlZIE0bnGhtYf48pVKqTsIf0kxvRR55hQlBb7AWyNX/y15X5xw0uSJ34HaMOp4dVqE+soZAyGLVN2j26pxA4jHCrU=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
 Received: from edelgard.fodlan.icenowy.me (unknown [112.94.103.171])
-	by APP-03 (Coremail) with SMTP id rQCowABXZ85EP3NppX1gBg--.20954S10;
-	Fri, 23 Jan 2026 17:29:21 +0800 (CST)
+	by APP-03 (Coremail) with SMTP id rQCowABXZ85EP3NppX1gBg--.20954S11;
+	Fri, 23 Jan 2026 17:29:23 +0800 (CST)
 From: Icenowy Zheng <zhengxingda@iscas.ac.cn>
 To: Andrzej Hajda <andrzej.hajda@intel.com>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
@@ -65,9 +65,9 @@ Cc: Philipp Zabel <p.zabel@pengutronix.de>,
 	linux-riscv@lists.infradead.org,
 	Icenowy Zheng <uwu@icenowy.me>,
 	Icenowy Zheng <zhengxingda@iscas.ac.cn>
-Subject: [PATCH v6 8/9] MAINTAINERS: assign myself as maintainer for verisilicon DC driver
-Date: Fri, 23 Jan 2026 17:28:29 +0800
-Message-ID: <20260123092830.4046009-9-zhengxingda@iscas.ac.cn>
+Subject: [PATCH v6 9/9] mailmap: map all Icenowy Zheng's mail addresses
+Date: Fri, 23 Jan 2026 17:28:30 +0800
+Message-ID: <20260123092830.4046009-10-zhengxingda@iscas.ac.cn>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260123092830.4046009-1-zhengxingda@iscas.ac.cn>
 References: <20260123092830.4046009-1-zhengxingda@iscas.ac.cn>
@@ -78,24 +78,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:rQCowABXZ85EP3NppX1gBg--.20954S10
-X-Coremail-Antispam: 1UD129KBjvdXoWrKrW5tFyfCw1kXr18KF4DArb_yoWkXrc_WF
-	4kA34DZw47GFnYk39YyFs0k3yF93y5Jr4ru3Zxtwsay34jyryqg3Wvgw15Cw4UCFWfGF1D
-	Za9rJryfGF4a9jkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUIcSsGvfJTRUUUbvAFF20E14v26rWj6s0DM7CY07I20VC2zVCF04k26cxKx2IYs7xG
-	6rWj6s0DM7CIcVAFz4kK6r1j6r18M28IrcIa0xkI8VA2jI8067AKxVWUAVCq3wA2048vs2
-	IY020Ec7CjxVAFwI0_Xr0E3s1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28E
-	F7xvwVC0I7IYx2IY67AKxVW5JVW7JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8Jr0_Cr
-	1UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s0D
-	M2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjx
-	v20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1l
-	F7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxan2
-	IY04v7MxkF7I0En4kS14v26r4a6rW5MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY
-	6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17
-	CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1I6r4UMIIF
-	0xvE2Ix0cI8IcVCY1x0267AKxVW8Jr0_Cr1UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCw
-	CI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4UJVWxJrUvcSsG
-	vfC2KfnxnUUI43ZEXa7sRiHUDtUUUUU==
+X-CM-TRANSID:rQCowABXZ85EP3NppX1gBg--.20954S11
+X-Coremail-Antispam: 1UD129KBjvJXoWrKryDWr4ktryDKw4fCFWDXFb_yoW8JrWkpr
+	4xGr4UKFykAwn29r1qgry5WF1kXa95WF4DGw4Yvw18uFZ3JF1kWrsxJayDXr1UJrWS9rW7
+	JFnFvr93Was7A3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUmS14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2048vs2IY020E87I2jVAFwI0_JF0E3s1l82xGYI
+	kIc2x26xkF7I0E14v26ryj6s0DM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2
+	z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr1j6F
+	4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x0267AKxVW0oVCq
+	3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7
+	IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4U
+	M4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628vn2
+	kIc2xKxwCY1x0262kKe7AKxVW8ZVWrXwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkE
+	bVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67
+	AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUCVW8JwCI
+	42IY6xIIjxv20xvEc7CjxVAFwI0_Gr1j6F4UJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF
+	4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8Jr0_Cr1UYxBI
+	daVFxhVjvjDU0xZFpf9x0pRQJ5wUUUUU=
 X-CM-SenderInfo: x2kh0wp0lqwv3d6l2u1dvotugofq/
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.54 / 15.00];
@@ -109,7 +109,7 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[29];
-	TAGGED_FROM(0.00)[bounces-258832-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-258833-lists,devicetree=lfdr.de];
 	DMARC_NA(0.00)[iscas.ac.cn];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -121,52 +121,47 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[zhengxingda@iscas.ac.cn,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FREEMAIL_CC(0.00)[pengutronix.de,kernel.org,samsung.com,bootlin.com,gmail.com,disroot.org,vger.kernel.org,lists.freedesktop.org,lists.infradead.org,icenowy.me,iscas.ac.cn];
-	NEURAL_HAM(-0.00)[-0.987];
+	NEURAL_HAM(-0.00)[-0.984];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[icenowy.me:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,iscas.ac.cn:mid,iscas.ac.cn:email,pengutronix.de:email]
-X-Rspamd-Queue-Id: DAEFF73703
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bitmath.org:email,aosc.io:email,lemote.com:email,iscas.ac.cn:mid,iscas.ac.cn:email,canonical.com:email,sipeed.com:email,icenowy.me:email,umich.edu:email,loongson.cn:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,aosc.xyz:email]
+X-Rspamd-Queue-Id: 7E02073788
 X-Rspamd-Action: no action
 
 From: Icenowy Zheng <uwu@icenowy.me>
 
-As I am the author of this rewritten driver, it makes sense for me to be
-the maintainer.
+Map all mail addresses Icenowy Zheng had used to the personal mailbox
+prefixed "uwu".
 
-Confirm this in MAINTAINERS file.
+All these mailboxes, except the one of Sipeed (which was only used
+during a summer vacation internship), can accept mails now.
 
 Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
 Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
 ---
 No changes since v4.
 
-Changes in v3:
-- Switch to my ISCAS mailbox.
+New patch in v3.
 
-No changes in v2.
+ .mailmap | 4 ++++
+ 1 file changed, 4 insertions(+)
 
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index fc04fc007a054..507ffef26dac1 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8658,6 +8658,13 @@ F:	Documentation/devicetree/bindings/display/brcm,bcm2835-*.yaml
- F:	drivers/gpu/drm/vc4/
- F:	include/uapi/drm/vc4_drm.h
- 
-+DRM DRIVERS FOR VERISILICON DISPLAY CONTROLLER IP
-+M:	Icenowy Zheng <zhengxingda@iscas.ac.cn>
-+L:	dri-devel@lists.freedesktop.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/display/verisilicon,dc.yaml
-+F:	drivers/gpu/drm/verisilicon/
-+
- DRM DRIVERS FOR VIVANTE GPU IP
- M:	Lucas Stach <l.stach@pengutronix.de>
- R:	Russell King <linux+etnaviv@armlinux.org.uk>
+diff --git a/.mailmap b/.mailmap
+index 84309a39d329c..0fc9602ddd9b0 100644
+--- a/.mailmap
++++ b/.mailmap
+@@ -316,6 +316,10 @@ Henrik Rydberg <rydberg@bitmath.org>
+ Herbert Xu <herbert@gondor.apana.org.au>
+ Huacai Chen <chenhuacai@kernel.org> <chenhc@lemote.com>
+ Huacai Chen <chenhuacai@kernel.org> <chenhuacai@loongson.cn>
++Icenowy Zheng <uwu@icenowy.me> <zhengxingda@iscas.ac.cn>
++Icenowy Zheng <uwu@icenowy.me> <icenowy@aosc.io>
++Icenowy Zheng <uwu@icenowy.me> <icenowy@aosc.xyz>
++Icenowy Zheng <uwu@icenowy.me> <icenowy@sipeed.com>
+ Ike Panhc <ikepanhc@gmail.com> <ike.pan@canonical.com>
+ J. Bruce Fields <bfields@fieldses.org> <bfields@redhat.com>
+ J. Bruce Fields <bfields@fieldses.org> <bfields@citi.umich.edu>
 -- 
 2.52.0
 
