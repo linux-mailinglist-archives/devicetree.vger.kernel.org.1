@@ -1,135 +1,259 @@
-Return-Path: <devicetree+bounces-258981-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258982-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kFh7GQSBc2n2wwAAu9opvQ
-	(envelope-from <devicetree+bounces-258981-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:09:08 +0100
+	id IFRGCdOBc2n2wwAAu9opvQ
+	(envelope-from <devicetree+bounces-258982-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:12:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2319C76C03
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:09:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B86576C9C
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:12:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E7C81301CD85
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 14:08:53 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 87309301BA55
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 14:12:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C2D8320CD9;
-	Fri, 23 Jan 2026 14:08:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=foxmail.com header.i=@foxmail.com header.b="Jg/wOM5F"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B084E312835;
+	Fri, 23 Jan 2026 14:12:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out162-62-57-49.mail.qq.com (out162-62-57-49.mail.qq.com [162.62.57.49])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 529862BEFFE;
-	Fri, 23 Jan 2026 14:08:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.62.57.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43108285CBA
+	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 14:12:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769177330; cv=none; b=FNLO0B1f5JITG7AM6MlK757/duzQNI5r10tmCrwlpFecqWRluBzyWcmX22zGibEd2qf2opsY7dCRTwOfI4Y9awtYhwJOK6RySdeMPzS8qynEIC6maA9rWTZnIItVr0UNaoGgGyAiy81fXPVhTjr2F9ntHd2m94L0R+4SMuMjVK0=
+	t=1769177552; cv=none; b=EDhQFEK8QrbyY3qcJbTjYqixy2YFDCMYW3FH4MVR521cdL4JZytCKa7iPGik5BihebcFksCjMk7VlrvKUa4nmwIKTXhtd41Ewe7bGxi1teGiyzc4/vdpGrweIcuAhNOeypZuU2zcYRaKi+bJfIFChJyWVUQ2PSoCCGJqFnvrGB8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769177330; c=relaxed/simple;
-	bh=75vUOquLAejb30OfCXZ3Ajhc8+O3WVfbSpMYETwi8oc=;
-	h=From:To:Cc:Subject:Mime-Version:Content-Type:Date:Message-ID; b=CLwRlT9x50tpsRl2wzoZvdu9Z7XKZcoaLaaLDeMdqMa72/4yTEdilV1C3MtFoZDVtyeCWbWufTghFoNHpuvNTY/Po04aV5CSH6pVC6qG4JWJUqXsmFcFKdKWkhIYYLpeukPxkpzxTyW6UIWxpX/lknFvhP/J7PiQRkn2OHZVhPY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foxmail.com; spf=pass smtp.mailfrom=foxmail.com; dkim=pass (1024-bit key) header.d=foxmail.com header.i=@foxmail.com header.b=Jg/wOM5F; arc=none smtp.client-ip=162.62.57.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foxmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foxmail.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foxmail.com;
-	s=s201512; t=1769177321;
-	bh=75vUOquLAejb30OfCXZ3Ajhc8+O3WVfbSpMYETwi8oc=;
-	h=From:To:Cc:Subject:Date;
-	b=Jg/wOM5FpAYYhPN0Nye0GzbNPWunY0DLgZ8FCm5SA8owWCuULzcLvJwFv1vhxvnii
-	 j3gac8gGpHwidFdsnz3tObLpFAcSm27fP0xu0CyPIAYqxw77+KjQgQBGtRBnbnvUkR
-	 KAw8BKfI2BCPSD/l6OwFS46zNSMXRqMNrfv9urzo=
-X-QQ-XMRINFO: NS+P29fieYNwqS3WCnRCOn9D1NpZuCnCRA==
-X-QQ-XMAILINFO: N1+fdyie8PcvGsq/0nHrjgY7xXlKFuR2SURIftSWFn8JR+jw5UEvayqz1g/Czm
-	 /gTfl1+I4Bi3+JdqP0AERmlcAINuuDF0UUk64CEp5vQ9eGwCrjq+bInQ35VZZYpeZsgfZIDVdNMig
-	 wtAxP+rAu5KZN04kU+82riFyux/6yJZKbyFTpLiXsevMnS2tOP8+r6UTNfPJxqajOjjSeAA8u/ULf
-	 Xgxw2zDtLLkZ78pWW22BExJeKWJ1FwhMw9ia3QIP8KetJ6bKTCPl7tIr4uc+BN8bbbkuUgoYnEMBW
-	 RGqOh4iNbIx+f7ygiV7PHkUa6s5ItUbhYWoA07kUnmft7rrSn3e2uJxmMAEiDrLbK5d9QjC2J7H0J
-	 GDPRFOvD6csM/Ba1Zi8uhDA1ifB4KUHmVvh4W58gRbUZ6KsVBsIkfLL8MLTwDspVEo6GgFDdmTOCZ
-	 rO7NVNcjQpgxmlGDuKbkoTZ6fLOyXPkyTZOI2heBAUXOx9FIydnM5PLDF5rPCJgOt+Dx0g1d6w3Va
-	 HUuc+mfBh9zWQhC5pPajtPhbmJ1ufbpvaokRrugZWOHINifYGpS300DxWbbktvlY7CaTtTQF8TQmS
-	 1YfP2KQuyZsDPAWcGogqtUoYPjTXET9YljW3KKTUvlK/9lwbenKC7hXeScbcbS/6qReEQu2FK9m8t
-	 3x75BQXQY9Bn/jL3j+u6cYXdGhvSYBVbhewmOyo2VSYte7o1XnhgpQACa2e4/MTREXoYsemcwL8Lk
-	 F2Eq4cOZEPfju2uMokh53dD8gvlWhgo86MHHkaw6BnSlFtYHzmge9h3zbjM5/G9coZglVMOgCpnGt
-	 UuYTm9dKywap2sphhzeMveYNIYb34HiVnJ6VH+bKRAQ/y5v4DFMj8f+tRpn08RNNkRmDtc1yePYE7
-	 L7WCM/X5FumkdOVrU4E6EiphJioCQ2S6Fcy4GUIaFv1aZIjtRvBKYyHfnitbSou3O96fvubP7g8jh
-	 T6gYpYtbWUH5BTm6RC7UAHuM+ci0EsVLkhJPyU6u6xh2fnIqa0KTHEOHKyDQC5Th+ilXUsFMWzSWB
-	 bfs67RiENkzYud/9y1N9yeHVoYFI5VwRPYGf/6FVmjTdewZw=
-From: "=?utf-8?B?R2FyeSBMYXU=?=" <zgliu@foxmail.com>
-To: "=?utf-8?B?U3RhZmZvcmQgSG9ybmU=?=" <shorne@gmail.com>
-Cc: "=?utf-8?B?bGludXN3?=" <linusw@kernel.org>, "=?utf-8?B?bGludXgta2VybmVs?=" <linux-kernel@vger.kernel.org>, "=?utf-8?B?bGludXgtb3BlbnJpc2M=?=" <linux-openrisc@vger.kernel.org>, "=?utf-8?B?ZGV2aWNldHJlZQ==?=" <devicetree@vger.kernel.org>, "=?utf-8?B?cm9iaA==?=" <robh@kernel.org>, "=?utf-8?B?a3J6aytkdA==?=" <krzk+dt@kernel.org>, "=?utf-8?B?Y29ub3IrZHQ=?=" <conor+dt@kernel.org>, "=?utf-8?B?Z2VlcnQrcmVuZXNhcw==?=" <geert+renesas@glider.be>, "=?utf-8?B?a3J6eXN6dG9mLmtvemxvd3NraQ==?=" <krzysztof.kozlowski@oss.qualcomm.com>, "=?utf-8?B?YnJnbA==?=" <brgl@kernel.org>, "=?utf-8?B?bGludXgtZ3Bpbw==?=" <linux-gpio@vger.kernel.org>
-Subject: Re: [PATCH v6 1/6] dt-bindings: gpio-mmio: Correct opencores GPIO
+	s=arc-20240116; t=1769177552; c=relaxed/simple;
+	bh=XZ3Allm8Mx7N0sdDAOQIxOwcD6KanI0C3QnMTFu58h8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PNkQl83rqh6e2X5Hvb2FpM8HKZUq/4nhddwfTYXCcD2SH0s2QnZMIpQajFfBO4NlXZmVTf7o+EJEhrMgztuYHcKL2h5ECeM0AWigPErnrfIfgDOsSAvJLsRhJYkGIINWQWcIH1u5m9IbCzXUhYyTPwfYQPmXM1bVSDNn6OX7i1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1vjHtf-000213-IZ; Fri, 23 Jan 2026 15:12:23 +0100
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1vjHtf-0026dp-3D;
+	Fri, 23 Jan 2026 15:12:23 +0100
+Received: from pengutronix.de (p54b152ce.dip0.t-ipconnect.de [84.177.82.206])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 0B3AF4D6F6F;
+	Fri, 23 Jan 2026 14:12:23 +0000 (UTC)
+Date: Fri, 23 Jan 2026 15:12:22 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Arun Muthusamy <arun.muthusamy@gaisler.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	mailhol@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-can@vger.kernel.org
+Subject: Re: [PATCH v3 15/15] can: grcan: Update echo skb handling to match
+ variable length CANFD frame
+Message-ID: <20260123-sepia-marmoset-of-luxury-ad6d1f-mkl@pengutronix.de>
+References: <20260122121038.7910-1-arun.muthusamy@gaisler.com>
+ <20260122121038.7910-16-arun.muthusamy@gaisler.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain;
-	charset="utf-8"
-Content-Transfer-Encoding: base64
-Date: Fri, 23 Jan 2026 22:08:40 +0800
-X-Priority: 3
-Message-ID: <tencent_5B5F194F6B5511962378DEC1B1B043F3A705@qq.com>
-X-QQ-MIME: TCMime 1.0 by Tencent
-X-Mailer: QQMail 2.x
-X-QQ-Mailer: QQMail 2.x
-X-QQ-mid: xmseza62-0t1769177320tu35o6dz4
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="3llbyhtzvutwjp42"
+Content-Disposition: inline
+In-Reply-To: <20260122121038.7910-16-arun.muthusamy@gaisler.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [3.94 / 15.00];
-	CC_EXCESS_BASE64(1.50)[];
-	SUSPICIOUS_RECIPS(1.50)[];
-	TO_EXCESS_BASE64(1.50)[];
-	FAKE_REPLY(1.00)[];
+X-Spamd-Result: default: False [-2.56 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MV_CASE(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[foxmail.com,none];
-	R_DKIM_ALLOW(-0.20)[foxmail.com:s=s201512];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
-	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_ALL(0.00)[];
-	DKIM_TRACE(0.00)[foxmail.com:+];
-	HAS_X_PRIO_THREE(0.00)[3];
-	DBL_PROHIBIT(0.00)[5.108.140.192:email];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zgliu@foxmail.com,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-258981-lists,devicetree=lfdr.de];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	FROM_EXCESS_BASE64(0.00)[];
-	FREEMAIL_FROM(0.00)[foxmail.com];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 2319C76C03
+	TAGGED_FROM(0.00)[bounces-258982-lists,devicetree=lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[pengutronix.de];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mkl@pengutronix.de,devicetree@vger.kernel.org];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:url,pengutronix.de:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8B86576C9C
 X-Rspamd-Action: no action
 
-SGkgU3RhZmZvcmQsDQpJJ3ZlIHRlc3RlZCB0aGUgImJyY20sYmNtNjM0NS1ncGlvIsKgZHJp
-dmVyIHdpdGggdGhlIE9wZW5Db3JlcyA4LWJpdCBHUElPIGNvcmUswqBhbmQgaXQgaXMgd29y
-a2luZyBhcyBleHBlY3RlZC4NCkZvciByZWZlcmVuY2UswqBoZXJlIGlzIHRoZSBoYXJkd2Fy
-ZSBjb25uZWN0aW9uIGxvZ2ljIEkgdXNlZCBmb3IgdGhlIE9wZW5SSVNDIHRvIE9wZW5Db3Jl
-cyBHUElPIGludGVyZmFjZToNClZlcmlsb2c6DQpzaW1wbGVfZ3BpbyBncGlvMCAoDQogwqAg
-wqAuY2xrX2kgwqAoY2xrX2kpLA0KIMKgIMKgLnJzdF9pIMKgKHJzdF9pKSwNCiDCoCDCoC5j
-eWNfaSDCoChjeWNfaSAmICh8c2VsX2kpKSwNCiDCoCDCoC5zdGJfaSDCoChzdGJfaSAmICh8
-c2VsX2kpKSwNCiDCoCDCoC5hZHJfaSDCoChhZHJfaVsyXSksDQogwqAgwqAud2VfaSDCoCAo
-d2VfaSksDQogwqAgwqAuZGF0X2kgwqAoZGF0X2lbNzowXSksDQogwqAgwqAuYWNrX28gwqAo
-YWNrX28pLA0KIMKgIMKgLmRhdF9vIMKgKGRhdF9vWzc6MF0pLA0KIMKgIMKgLmdwaW8gwqAg
-KGdwaW9bNzowXSksDQogwqAgwqAuZ3Bpb19pIChncGlvX2kpDQopOw0KQW5kIGhlcmUgaXMg
-dGhlIGNvcnJlc3BvbmRpbmcgcGFydCBvZiBteSBkdHM6DQpncGlvMDogZ3Bpb0A5MTAwMDAw
-MCB7DQogwqAgwqBjb21wYXRpYmxlID0gImJyY20sYmNtNjM0NS1ncGlvIjsNCiDCoCDCoHJl
-ZyA9IDwweDkxMDAwMDAwIDB4ND4sIDwweDkxMDAwMDA0IDB4ND47DQogwqAgwqByZWctbmFt
-ZXMgPSAiZGF0IiwgImRpcm91dCI7DQogwqAgwqBncGlvLWNvbnRyb2xsZXI7DQogwqAgwqBi
-aWctZW5kaWFuOyANCiDCoCDCoHN0YXR1cyA9ICJva2F5IjsNCg0KDQoNCg0KDQoNCg==
 
+--3llbyhtzvutwjp42
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 15/15] can: grcan: Update echo skb handling to match
+ variable length CANFD frame
+MIME-Version: 1.0
+
+On 22.01.2026 13:10:38, Arun Muthusamy wrote:
+> Refactor echo socket buffer management by introducing dedicated indices
+> for current and next echo slots.
+>
+> - Introduce "echo_skb_idx" to keep track of the current packet index in
+>   the echo buffer, and "next_echo_idx" for the next available slot.
+> - Adjust memory allocation for echo skb to calculate the number of slots
+>   based on slot size.
+> - Enhance logic in catch_up_echo_skb() to correctly process and free echo
+>   skbs.
+> - Initialize "next_echo_idx" in grcan_set_mode() to ensure proper starting
+>   conditions when the device enters proper modes.
+> - Improve memory and index handling in grcan_start_xmit() and
+>   added a check to stop the network queue when necessary.
+
+consider using
+netif_subqueue_maybe_stop()/netif_subqueue_completed_wake() from
+netdev_queues.h
+
+> Signed-off-by: Arun Muthusamy <arun.muthusamy@gaisler.com>
+> ---
+>  drivers/net/can/grcan.c | 51 ++++++++++++++++++++++++++++++-----------
+>  1 file changed, 38 insertions(+), 13 deletions(-)
+>
+> diff --git a/drivers/net/can/grcan.c b/drivers/net/can/grcan.c
+> index 39afb12c50d0..22c86e5d7002 100644
+> --- a/drivers/net/can/grcan.c
+> +++ b/drivers/net/can/grcan.c
+> @@ -298,6 +298,15 @@ struct grcan_priv {
+>
+>  	struct sk_buff **echo_skb;	/* We allocate this on our own */
+>
+> +	/*
+> +	 * Since the CAN FD frame has a variable length, this variable is used
+> +	 * to keep track of the index of the CAN echo skb (socket buffer) frame.
+> +	 */
+> +	u32 echo_skb_idx;
+> +
+> +	/* Next echo skb free slot index */
+> +	u32 next_echo_idx;
+> +
+>  	/* The echo skb pointer, pointing into echo_skb and indicating which
+>  	 * frames can be echoed back. See the "Notes on the tx cyclic buffer
+>  	 * handling"-comment for grcan_start_xmit for more details.
+> @@ -578,7 +587,7 @@ static int catch_up_echo_skb(struct net_device *dev, =
+int budget, bool echo)
+>  	struct grcan_registers __iomem *regs =3D priv->regs;
+>  	struct grcan_dma *dma =3D &priv->dma;
+>  	struct net_device_stats *stats =3D &dev->stats;
+> -	int i, work_done;
+> +	int work_done;
+>
+>  	/* Updates to priv->eskbp and wake-ups of the queue needs to
+>  	 * be atomic towards the reads of priv->eskbp and shut-downs
+> @@ -589,19 +598,22 @@ static int catch_up_echo_skb(struct net_device *dev=
+, int budget, bool echo)
+>  	for (work_done =3D 0; work_done < budget || budget < 0; work_done++) {
+>  		if (priv->eskbp =3D=3D txrd)
+>  			break;
+> -		i =3D priv->eskbp / GRCAN_MSG_SIZE;
+> -		if (echo) {
+> -			/* Normal echo of messages */
+> -			stats->tx_packets++;
+> -			stats->tx_bytes +=3D can_get_echo_skb(dev, i, NULL);
+> -		} else {
+> -			/* For cleanup of untransmitted messages */
+> -			can_free_echo_skb(dev, i, NULL);
+> -		}
+>
+>  		priv->eskbp =3D grcan_ring_add(priv->eskbp, GRCAN_MSG_SIZE,
+>  					     dma->tx.size);
+>  		txrd =3D grcan_read_reg(&regs->txrd);
+> +
+> +		/* Grab the packet once the  packet is send or free untransmitted pack=
+et*/
+                                           ^^
+one space is enough
+
+> +		if (priv->eskbp =3D=3D txrd) {
+> +			if (echo) {
+> +				/* Normal echo of messages */
+> +				stats->tx_packets++;
+> +				stats->tx_bytes +=3D can_get_echo_skb(dev, priv->echo_skb_idx, NULL);
+> +			} else {
+> +				/* For cleanup of untransmitted messages */
+> +				can_free_echo_skb(dev, priv->echo_skb_idx, NULL);
+> +			}
+> +		}
+>  	}
+>  	return work_done;
+>  }
+> @@ -1109,6 +1121,7 @@ static int grcan_set_mode(struct net_device *dev, e=
+num can_mode mode)
+>  			if (!(priv->can.ctrlmode & CAN_CTRLMODE_LISTENONLY))
+>  				netif_wake_queue(dev);
+>  		}
+> +		priv->next_echo_idx =3D 0;
+>  		spin_unlock_irqrestore(&priv->lock, flags);
+>  		return err;
+>  	}
+> @@ -1120,6 +1133,7 @@ static int grcan_open(struct net_device *dev)
+>  	struct grcan_priv *priv =3D netdev_priv(dev);
+>  	struct grcan_dma *dma =3D &priv->dma;
+>  	unsigned long flags;
+> +	u32 nr_echo_slots;
+>  	int err;
+>
+>  	/* Allocate memory */
+> @@ -1130,13 +1144,15 @@ static int grcan_open(struct net_device *dev)
+>  		return err;
+>  	}
+>
+> -	priv->echo_skb =3D kcalloc(dma->tx.size, sizeof(*priv->echo_skb),
+> +	nr_echo_slots =3D  dma->tx.size / GRCAN_MSG_SIZE;
+                       ^^
+one space is enough
+
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--3llbyhtzvutwjp42
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmlzgcMACgkQDHRl3/mQ
+kZxregf/YwTP7+xCRtPmqqytzwEVpJdSsXgSYreHLI/lTvLJqOgun7+lBKxhcbw4
+M9spdwQtDq6UvogCejoSFy00Q2d18PA43y/yslFCQclLnJhryz5g08E45fMB2Byq
+p+E7CVq+DixAchypgkT9ElgJRR9UB8gm/u55pluR1NMc7PHBXZTwR8McE52TYXxg
+SXS5/thgNUd18oUBr99M0rwGWY7yvxU/3zP0HOcdCe9KHkmFxejAqvF6fIxc4mhn
+EQLtSDKRGstlwJvRpakPyo0DlTw985tpvgA8QSV5aMszrVuS7KhpnZ3Gpw5KI8HA
+ndkdVAWBldrxdgmJpyL6GIezVfClGQ==
+=/uzm
+-----END PGP SIGNATURE-----
+
+--3llbyhtzvutwjp42--
 
