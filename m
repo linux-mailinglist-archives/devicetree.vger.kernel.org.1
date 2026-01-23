@@ -1,264 +1,247 @@
-Return-Path: <devicetree+bounces-258989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258990-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aOQsCcuEc2kDxAAAu9opvQ
-	(envelope-from <devicetree+bounces-258989-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:25:15 +0100
+	id aHaiKd+Ec2kDxAAAu9opvQ
+	(envelope-from <devicetree+bounces-258990-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:25:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 918EF77001
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:25:14 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B85477009
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:25:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 118B0301C8BC
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 14:23:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 05A31301D94B
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 14:25:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 787A8328246;
-	Fri, 23 Jan 2026 14:23:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="O1DmuAxl"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FF092D3739;
+	Fri, 23 Jan 2026 14:25:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F0DA30EF9D;
-	Fri, 23 Jan 2026 14:23:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF5EDA930
+	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 14:25:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769178236; cv=none; b=FO1cZp6LdctVxf4CFJA0WIX/DkzqoJg67S1Oeio2dPVF5WIkq9qhk7e1wtk9ep0AFc56dCcAb5DKJXdoslCZ+PZpluV/3ykqnJHnQi/ClM9Rgr0xqrBdfisErqewauTV67BP+2m3EazbveeOzxmMHEDD66yEzJDLxcKn3Mi+vXg=
+	t=1769178332; cv=none; b=mwS/3AeSaVuXVx75M77MPj6Jm1SqNuucyk+SjML5RZWC8RPswF2O704fy56V+tOIAumITZ5jiC90qBTozf2d835IvqDACVr4BFBkGMBbKHuDIZ2X/3964AjjfriUjpbCpa1JpJu1taXO6lZOoJugwyUiW+qBdkgpX8crcH8shvA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769178236; c=relaxed/simple;
-	bh=a0YMZkAD2a5E2s7ETMm/WkewmQs83sM2I3yNPhhCcA0=;
+	s=arc-20240116; t=1769178332; c=relaxed/simple;
+	bh=fbJTvAegLNy8obdD3xIT8wnMQVwN8ckpnOiiBgFcdxY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VZxhz6Yjjs32BRXY71PfgdGjH6vjl3PpUJXxR9L3gYEXDH2gto1AeMdf8rgnjingybSG7oACIB7KalVyXRw/qK1xRUt+QO5xkByeISF1smm48qfpqUCwkwK/7hQPHBZOHjEOmBHBwWWcEcFWPgSy4KGmfA+HmZfRiGVeZGqjqok=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=O1DmuAxl; arc=none smtp.client-ip=198.175.65.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1769178235; x=1800714235;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=a0YMZkAD2a5E2s7ETMm/WkewmQs83sM2I3yNPhhCcA0=;
-  b=O1DmuAxlMHTex5aGNAXRXxJysLXOJeMoSJga1I6VsPXPzbXe9yXIQnXk
-   MnLJgYXJe48J6gvcJuy2OMe++12ui12Wn/iIOUDHSJyE7rw/mSMzOVWY6
-   UIXwsPSclXuVBJT2P9sQzgereY/TpzsbrqmI/llTE0S4sa2KSpvvGC2/l
-   F+vU1wduAJhtnQGgUc7SBbZsjAA46/qlNg8+CYcrPPq8aN4+6h0Mbhhur
-   cdOCCr7Ykc5ohK/qAXcUyvfR5OIv9OepC0b8WP23mKWlZhaNMZSbSEQaU
-   MEIlbqzXoGvXW1IcOjwlEhFR1RqydjA0pMoXWancbbtWMW3r6RZL2xHms
-   g==;
-X-CSE-ConnectionGUID: jtJ/ehZOSIyb4WpVRD88zA==
-X-CSE-MsgGUID: UvUPNlodT2etRTTy4xAdpA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11680"; a="70482582"
-X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; 
-   d="scan'208";a="70482582"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jan 2026 06:23:53 -0800
-X-CSE-ConnectionGUID: ppHN3y9XRCibrXLjTT11vg==
-X-CSE-MsgGUID: uJ61GAP6Ry2+GQo6Afnd4g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; 
-   d="scan'208";a="206145827"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.244.112])
-  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jan 2026 06:23:48 -0800
-Date: Fri, 23 Jan 2026 16:23:45 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc: netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	linux-kernel@vger.kernel.org,
-	Herve Codina <herve.codina@bootlin.com>,
-	Mark Brown <broonie@kernel.org>,
-	Serge Semin <fancer.lancer@gmail.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Jiawen Wu <jiawenwu@trustnetic.com>
-Subject: Re: [PATCH v2 net-next 01/15] net: mdio-regmap: permit working with
- non-MMIO regmaps
-Message-ID: <aXOEcT-iyRrAMxFf@smile.fi.intel.com>
-References: <20260122105654.105600-1-vladimir.oltean@nxp.com>
- <20260122105654.105600-2-vladimir.oltean@nxp.com>
- <aXISv3Acm1v6yS4V@smile.fi.intel.com>
- <20260122121301.cyxyevi7xvqw2axk@skbuf>
- <20260122134704.pxeikyk4q7nhay55@skbuf>
- <aXI2bWhDtNNfr8M8@smile.fi.intel.com>
- <20260122221848.py4p7mwxzybicnsq@skbuf>
- <aXMhWo0NpPK-BELG@smile.fi.intel.com>
- <20260123121529.inik6xrfdianljq6@skbuf>
+	 Content-Type:Content-Disposition:In-Reply-To; b=fXGKzJG2Z2GIk9d+cZqOnIV+byPYA9cgXDsNhGxTar5YXclKOkzHYFtX80kANBo11cY5VXfHvByYibxp2Bfm1mPoDEIZjeZWF7RBVkNTvUcxkVIcaawSQoC7puRsZKzvaoHj+iYZlHFFRCk/vMTU8g1MiLPuLQOX6pSe+gv6dMY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1vjI6F-0003sz-HL; Fri, 23 Jan 2026 15:25:23 +0100
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1vjI6F-0026hu-3C;
+	Fri, 23 Jan 2026 15:25:23 +0100
+Received: from pengutronix.de (p54b152ce.dip0.t-ipconnect.de [84.177.82.206])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 088F54D6F96;
+	Fri, 23 Jan 2026 14:25:23 +0000 (UTC)
+Date: Fri, 23 Jan 2026 15:25:22 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Arun Muthusamy <arun.muthusamy@gaisler.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	mailhol@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-can@vger.kernel.org
+Subject: Re: [PATCH v3 13/15] can: grcan: Add CANFD TX support alongside
+ legacy CAN
+Message-ID: <20260123-berserk-crocodile-of-champagne-49d2b0-mkl@pengutronix.de>
+References: <20260122121038.7910-1-arun.muthusamy@gaisler.com>
+ <20260122121038.7910-14-arun.muthusamy@gaisler.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="gfzuvzgifz5pg42n"
 Content-Disposition: inline
-In-Reply-To: <20260123121529.inik6xrfdianljq6@skbuf>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+In-Reply-To: <20260122121038.7910-14-arun.muthusamy@gaisler.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.56 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lunn.ch,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,bootlin.com,trustnetic.com];
-	TAGGED_FROM(0.00)[bounces-258989-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	NEURAL_HAM(-0.00)[-0.995];
+	TAGGED_FROM(0.00)[bounces-258990-lists,devicetree=lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[pengutronix.de];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mkl@pengutronix.de,devicetree@vger.kernel.org];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,smile.fi.intel.com:mid]
-X-Rspamd-Queue-Id: 918EF77001
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:url,pengutronix.de:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 0B85477009
 X-Rspamd-Action: no action
 
-On Fri, Jan 23, 2026 at 02:15:29PM +0200, Vladimir Oltean wrote:
-> On Fri, Jan 23, 2026 at 09:20:58AM +0200, Andy Shevchenko wrote:
-> > On Fri, Jan 23, 2026 at 12:18:48AM +0200, Vladimir Oltean wrote:
-> > > On Thu, Jan 22, 2026 at 04:38:37PM +0200, Andy Shevchenko wrote:
-> > > > On Thu, Jan 22, 2026 at 03:47:04PM +0200, Vladimir Oltean wrote:
-> > > > > On Thu, Jan 22, 2026 at 02:13:01PM +0200, Vladimir Oltean wrote:
 
-...
+--gfzuvzgifz5pg42n
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 13/15] can: grcan: Add CANFD TX support alongside
+ legacy CAN
+MIME-Version: 1.0
 
-> > > > > -	if (config->resource)
-> > > > > +	if (config->resource) {
-> > > > 
-> > > > Btw, this might be not enough, one should check size and flags as well
-> > > > before use. There was a discussion about this recently. Maybe we should
-> > > > just move to a simple unsigned int in the config for now? Because handling
-> > > > resources maybe considered as over engineering in this case.
-> > > 
-> > > The resource flags are never taken into consideration, but I can for
-> > > sure replace the resource in struct mdio_regmap_config with just an
-> > > unsigned int start and an end, but that doesn't get rid of the resource
-> > > usage. The dev_get_resource(dev->parent, NULL) call is how we learn of
-> > > where our register window is located in the "one big regmap" provided by
-> > > the parent (SJA1105). So we still need this check somewhere else if we
-> > > wanted to not fail silently in case of address bits truncation.
-> > 
-> > Hmm... Bu why we can't embed the full struct resource in such a case?
-> 
-> We can also embed the full struct resource, I never said we can't...
-> 
-> > Because resource should have a flag check, otherwise it's a wrong check.
-> > 
-> > Discussion I mentioned is this:
-> > https://lore.kernel.org/lkml/20251207215359.28895-1-ansuelsmth@gmail.com/
-> > 
-> > Fixes due to that finding:
-> > https://lore.kernel.org/lkml/20251208200437.14199-1-ansuelsmth@gmail.com/
-> > https://lore.kernel.org/lkml/20251208145654.5294-1-ilpo.jarvinen@linux.intel.com/
-> 
-> The linked issues seem unrelated; they are caused by the assumption that
-> resource_size() can be zero. But I'm not using the resource_size()
-> helper, and even if I were, I'm not testing it against zero.
+On 22.01.2026 13:10:36, Arun Muthusamy wrote:
+> Include CANFD TX support with the legacy CAN support, enabling
+> support for extended data payloads to provide higher bit rates.
+>
+> Signed-off-by: Arun Muthusamy <arun.muthusamy@gaisler.com>
+> ---
+>  drivers/net/can/grcan.c | 102 +++++++++++++++++++++++++++++-----------
+>  1 file changed, 74 insertions(+), 28 deletions(-)
+>
+> diff --git a/drivers/net/can/grcan.c b/drivers/net/can/grcan.c
+> index 9fc18064fab1..508ad5320cff 100644
+> --- a/drivers/net/can/grcan.c
+> +++ b/drivers/net/can/grcan.c
+> @@ -174,6 +174,7 @@ struct grcan_registers {
+>  #define GRCAN_IRQ_DEFAULT (GRCAN_IRQ_RX | GRCAN_IRQ_TX | GRCAN_IRQ_ERROR=
+S)
+>
+>  #define GRCAN_MSG_SIZE		16
+> +#define GRCAN_CLASSIC_DATA_SIZE 8
+>
+>  #define GRCAN_MSG_IDE		0x80000000
+>  #define GRCAN_MSG_RTR		0x40000000
+> @@ -195,6 +196,10 @@ struct grcan_registers {
+>  #define GRCAN_MSG_OFF		0x00000002
+>  #define GRCAN_MSG_PASS		0x00000001
+>
+> +#define GRCAN_MSG_EID_MASK      GENMASK(28, 0)
+> +#define GRCAN_MSG_BID_MASK      GENMASK(28, 18)
+> +#define GRCAN_MSG_DLC_MASK      GENMASK(31, 28)
+> +
+>  #define GRCAN_BUFFER_ALIGNMENT		1024
+>  #define GRCAN_DEFAULT_BUFFER_SIZE	1024
+>  #define GRCAN_VALID_TR_SIZE_MASK	0x001fffc0
+> @@ -227,6 +232,9 @@ struct grcan_registers {
+>  #define GRCANFD_FDBTR_PS2_BIT 5
+>  #define GRCANFD_FDBTR_SJW_BIT 0
+>
+> +#define GRCAN_TX_BRS  BIT(25)
+> +#define GRCAN_TX_FDF  BIT(26)
+> +
+>  /* Hardware capabilities */
+>  struct grcan_hwcap {
+>  	/* CAN-FD capable, indicates GRCANFD IP.
+> @@ -1218,6 +1226,13 @@ static void grcan_transmit_catch_up(struct net_dev=
+ice *dev)
+>  	spin_unlock_irqrestore(&priv->lock, flags);
+>  }
+>
+> +static int grcan_numbds(int len)
+> +{
+> +	if (len <=3D GRCAN_CLASSIC_DATA_SIZE)
+> +		return 1;
+> +	return 1 + ((len - GRCAN_CLASSIC_DATA_SIZE + GRCAN_MSG_SIZE) / GRCAN_MS=
+G_SIZE);
 
-I referred to the full discussion, and not just to the OP message.
-During discussion it was explicitly said that:
-1) doing
+This looks strange, what is calculated here? Why is "<=3D
+GRCAN_CLASSIC_DATA_SIZE" a special case?
 
-	struct resource foo = {};
+> +}
+> +
+>  static int grcan_receive(struct net_device *dev, int budget)
+>  {
+>  	struct grcan_priv *priv =3D netdev_priv(dev);
+> @@ -1400,15 +1415,22 @@ static netdev_tx_t grcan_start_xmit(struct sk_buf=
+f *skb,
+>  				    struct net_device *dev)
+>  {
+>  	struct grcan_priv *priv =3D netdev_priv(dev);
+> -	struct grcan_registers __iomem *regs =3D priv->regs;
+> +	struct grcan_registers __iomem *regs;
+> +	u32 eff, rtr, dlc, tmp, err, can_id;
+>  	struct grcan_dma *dma =3D &priv->dma;
+> -	struct can_frame *cf =3D (struct can_frame *)skb->data;
+> +	u32 bds, copy_len, payload_offset;
+>  	u32 id, txwr, txrd, space, txctrl;
+> -	int slotindex;
+> -	u32 *slot;
+> -	u32 rtr, eff, dlc, tmp, err;
+> +	struct canfd_frame *cfd;
+> +	struct can_frame *cf;
+>  	unsigned long flags;
+> -	u32 oneshotmode =3D priv->can.ctrlmode & CAN_CTRLMODE_ONE_SHOT;
+> +	u32 oneshotmode;
+> +	u8 *payload;
+> +	u32 *slot;
+> +	u8 len;
+> +	int i;
+> +
+> +	regs =3D priv->regs;
+> +	oneshotmode =3D priv->can.ctrlmode & CAN_CTRLMODE_ONE_SHOT;
+>
+>  	if (can_dev_dropped_skb(dev, skb))
+>  		return NETDEV_TX_OK;
+> @@ -1419,6 +1441,18 @@ static netdev_tx_t grcan_start_xmit(struct sk_buff=
+ *skb,
+>  	if (priv->can.ctrlmode & CAN_CTRLMODE_LISTENONLY)
+>  		return NETDEV_TX_BUSY;
+>
+> +	cfd =3D (struct canfd_frame *)skb->data;
+> +	len     =3D cfd->len;
+> +	can_id  =3D cfd->can_id;
+> +	payload =3D cfd->data;
 
-is wrong, and
+one space in front of the "=3D" please
 
-2) checking the resource parameters (start, end), a.k.a. size is wrong
-without checking flags.
+Marc
 
-So it is related.
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
 
-> As opposed to the PCI BAR case, we don't keep around in an altered form
-> the resources exceeding 4G.
-> Just need to reject them once and be done with them.
+--gfzuvzgifz5pg42n
+Content-Type: application/pgp-signature; name="signature.asc"
 
-I'm not sure I follow here. The PCI case is much more complicated (it has
-resources even in 64-bit space that can be resplit, remerged, etc. It's
-a dynamic living thing due to hotplug and bridges and USB4/Thunderbolt.
-I am definitely not talking about all of this.
+-----BEGIN PGP SIGNATURE-----
 
-> Also, what else to even check about the resource flags? We get the
-> resource using "platform_get_resource(pdev, IORESOURCE_REG, 0)", so we
-> know they're of that type. I don't think IORESOURCE_REG resources have
-> any other valid bits in flags except for IORESOURCE_TYPE_BITS.
+iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmlzhM8ACgkQDHRl3/mQ
+kZx90gf9ECnQ9XSNqazfmdERkIKsvpBeY3qmOUiX7l0lE7EY5hIaLzjRSmkWEGqj
+urc0A/f2yPDs1eQucIQ7WfPhuZZRPjLpS/9fAEqpIP7vmk6RjYSrkOBRY4S7ama/
+fERTSxSJqYVnMqjQyiiSTPv1G7u74qp4JEooi/gwzAiPnJMHOwAaFBcsF5bd13gp
+sLNi6hVSJAHTigawoHRTqgnkyCXE+RFFefirgaW0LE4WFbr7JU+5JTYSISGCvjx6
+z5vhgmxR49BN3skl5zuTpLnuoK5RXGrFu5+mV9AAikaZUte5qu/NBZp0DmfBrB91
+YHDfY8ct5Ofl1tj7cHOQcclxWFZBhw==
+=+joU
+-----END PGP SIGNATURE-----
 
-They can (not sure that is possible with current code, but in general)
-be disabled, or size can be 0. Maybe even more, I haven't checked that.
-
-> > > > > +		if (config->resource->start > U32_MAX ||
-> > > > > +		    config->resource->end > U32_MAX) {
-> > > > 
-> > > > Ideally it should be resource_overlaps() check. But see above.
-> > > 
-> > > resource_overlaps_with_what? The only problem is that the resource can
-> > > exceed the 32 bit representation that regmap works with.
-> > 
-> > Obviously with the 4G address space :-)
-> > 
-> > 	struct resource r4g = DEFINE_RESOURCE...(..., 0, SZ_4G...);
-> > 
-> > 	if (resource_overlaps(&r4g, config->resource))
-> > 		aiaiai! // using %pR to print the content
-> 
-> This is a buggy replacement of my intention.
-
-Sorry for that, I haven't given enough time to think about it.
-
-> I need to sanity check that
-> my IORESOURCE_REG resource is entirely within the 0-4G region.
-> 
-> The correct way to express this using helpers:
-> 
-> 	if (!resource_contains(&r4g, config->resource))
-> 		nazad!
-> 
-> but... you see my point? In trying to make use of "standard" helpers, we
-> overcomplicate simple things and introduce bugs.
-
-I see, but do you see my points? I may have made a mistake, no doubts,
-the point of using helpers is to avoid other, more subtle bugs.
-
-> My initially proposed test can be written even simpler:
-> 
-> 	if (config->resource->end > U32_MAX) {
-> 		...
-> 
-> because end >= start, so also testing resource->start is redundant.
-
-Not at all, both needs to be checked and flags.
-
-> > > > > +			dev_err(config->parent,
-> > > > > +				"Resource exceeds regmap API addressing possibilities\n");
-> > > > > +			return ERR_PTR(-EINVAL);
-> > > > > +		}
-> > > > >  		mr->base = config->resource->start;
-> > > > > +	}
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+--gfzuvzgifz5pg42n--
 
