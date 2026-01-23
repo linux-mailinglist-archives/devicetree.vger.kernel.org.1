@@ -1,316 +1,409 @@
-Return-Path: <devicetree+bounces-258861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258856-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MFwFLbdGc2mHuQAAu9opvQ
-	(envelope-from <devicetree+bounces-258861-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 11:00:23 +0100
+	id eC4qDIJGc2mHuQAAu9opvQ
+	(envelope-from <devicetree+bounces-258856-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:59:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 556E373D24
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 11:00:23 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9804273CEE
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:59:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 2676C303DB24
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 09:56:52 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E508F30678CA
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 09:55:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3679388846;
-	Fri, 23 Jan 2026 09:55:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBC3B349AF2;
+	Fri, 23 Jan 2026 09:55:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="WkdePuTQ"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="diT94X/q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 808D337AA95;
-	Fri, 23 Jan 2026 09:55:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1920137FF64;
+	Fri, 23 Jan 2026 09:54:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769162119; cv=none; b=qKIDEQHPDFYxgoHwtHOW5XAdGKcWUXixNXZ+Bo8mpnkKsGcRv3xez5k8HYaIoE+6KgZB3oin9FZiI/yNgEp/sKrCCKyjVHZ2cdBWWDNxMRnPJ+4dCFPk8TTpcMQzlI42wGD+ubv1bUbao4RzqB1bE1AZUsRfNfJ6W8saB5xdauc=
+	t=1769162102; cv=none; b=YL8gGc3w5ZZDUNioUNb1HXyr2SliiVU8xBQkiRLWYn3W55Wgwl7DzfXp4ycuXXzMArw5zmmuwbVTZF6LeE3Flm5sWI1nN9GXLPfiEu/NR/UUBGX4nLPDcOMxiYmPVjwNNbGk5YEeYgBxV1Q47zlTqxdjjv366bYMnd65rAUrExM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769162119; c=relaxed/simple;
-	bh=9gen2o3Mf1ofcL8PeP3W13nzaTJLPOD8lNgOmfF5pKk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=FVduVVYMwiNd3REiqPGykmmMk9s/KVgq12EKdL9UibmeVqv6SPGfuzJdr1tVhWnJNaz4ra+A5ZBowIZuLYWgHv+2/tFU4Nwu3+nkDc49E+BarGrUNy5IzAoar4gKGnRnrOLdTQbXBwgXCkt4bm2C6ENFHmpuqCacvE1FRE+9Csc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=WkdePuTQ; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id A18CC4E42219;
-	Fri, 23 Jan 2026 09:55:00 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 776C66070A;
-	Fri, 23 Jan 2026 09:55:00 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id A7F2D119A87AA;
-	Fri, 23 Jan 2026 10:54:57 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1769162099; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=3P9Z/MlQ9eHNxkkoBbhw62O7wkyC3TSbpmPEbIT1/6Y=;
-	b=WkdePuTQaMXgGA6w4/o9P+lzXyYD7Ooxu5csXmMm0RrS/JU8qsA/lW0VDNgAZEfECljXpC
-	0wDHKlkkyXsYsXOlT7wpMDncHFUuSvB1Dbm8JmBeK+MzueNG9p41fv61p1oX/CTJ2aGOA5
-	xkclIxeI4vz7sH9lsQBWHAJm1cpAED1HLw4qjBY+We84u5G0U+dpBVSdx4m6CXBDWjYrMy
-	MFmpwKBfCHT2OSp++2TfnGxvW29tT8zH7riK3e/zrgCGh+G162RhuEtEzUXgfF9tSSsFvs
-	bMXY4vTuUnG01/ihlFKxfCLM55wdZw9OKw9vEQqQvF2q9Enp2lTN5oXlv26VKQ==
-From: "Thomas Perrot (Schneider Electric)" <thomas.perrot@bootlin.com>
-Date: Fri, 23 Jan 2026 10:54:34 +0100
-Subject: [PATCH v2 5/5] watchdog: aaeon: Add watchdog driver for SRG-IMX8PL
- MCU
+	s=arc-20240116; t=1769162102; c=relaxed/simple;
+	bh=AcOU0N8VVIHmmK2CtlSmrb9OytwjwVuYorL9HSQPtAw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=g0B22XD6QzTjsdEwPVT8UVfi0xV7TkjyW/dD9k6UlixgrXI9Plm1SueQb1PJpNUUFmBPgTfup+IMx/+lhLSW75zZhkcXmb7IWHrCbF4InK1XkYdPXfjbEPrjmofPmjIy8Znq43P47HlzEYuECV7N4toXMnLmWFlSx3UEHBZNscI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=diT94X/q; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id E40698FA;
+	Fri, 23 Jan 2026 10:54:14 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1769162055;
+	bh=AcOU0N8VVIHmmK2CtlSmrb9OytwjwVuYorL9HSQPtAw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=diT94X/qK1IojHFsUk5B7ZSo74iuNqAMpZOTgawgIxhAs3+tuegKEyJqrcaauT/yF
+	 V2bNYGgqwGa902/iqdIcjCgp19/Ja+0IjnmeI8AQHs9Xh6D8lONsXlxxP4gOqJ7sAe
+	 hkwOs4qa0BDjJTvIIUTJvyGBfG95B6QKjuEAUpEQ=
+Message-ID: <64e04392-fc93-4a26-89f2-fc87aa694e91@ideasonboard.com>
+Date: Fri, 23 Jan 2026 11:54:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V3 3/4] media: dt-bindings: ti,ds90ub960: Add support for
+ DS90UB954-Q1
+To: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+Cc: hansg@kernel.org, mehdi.djait@linux.intel.com, ribalda@chromium.org,
+ git@apitzsch.eu, vladimir.zapolskiy@linaro.org,
+ benjamin.mugnier@foss.st.com, dongcheng.yan@intel.com, u-kumar1@ti.com,
+ jai.luthra@linux.dev, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, hverkuil@xs4all.nl, sakari.ailus@linux.intel.com,
+ laurent.pinchart@ideasonboard.com
+References: <20251219122955.2078270-1-y-abhilashchandra@ti.com>
+ <20251219122955.2078270-4-y-abhilashchandra@ti.com>
+ <07cef607-365f-4c09-a57e-5ddbdfde7027@ideasonboard.com>
+ <5b6b7c00-1553-45e3-90b9-ddd0da86263b@ti.com>
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Content-Language: en-US
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <5b6b7c00-1553-45e3-90b9-ddd0da86263b@ti.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Message-Id: <20260123-dev-b4-aaeon-mcu-driver-v2-5-9f4c00bfb5cb@bootlin.com>
-References: <20260123-dev-b4-aaeon-mcu-driver-v2-0-9f4c00bfb5cb@bootlin.com>
-In-Reply-To: <20260123-dev-b4-aaeon-mcu-driver-v2-0-9f4c00bfb5cb@bootlin.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linusw@kernel.org>, 
- Bartosz Golaszewski <brgl@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, 
- =?utf-8?q?J=C3=A9r=C3=A9mie_Dautheribes?= <jeremie.dautheribes@bootlin.com>, 
- Wim Van Sebroeck <wim@linux-watchdog.org>, 
- Guenter Roeck <linux@roeck-us.net>, Lee Jones <lee@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-gpio@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-watchdog@vger.kernel.org, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- "Thomas Perrot (Schneider Electric)" <thomas.perrot@bootlin.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6057;
- i=thomas.perrot@bootlin.com; h=from:subject:message-id;
- bh=9gen2o3Mf1ofcL8PeP3W13nzaTJLPOD8lNgOmfF5pKk=;
- b=owEB7QES/pANAwAKAZ/ACwVx/grtAcsmYgBpc0VjCnolrcgZBx+MyoNbC5ykndiwIhREZSrhv
- O34cW1DXOKJAbMEAAEKAB0WIQSHQHfGpqMKIwOoEiGfwAsFcf4K7QUCaXNFYwAKCRCfwAsFcf4K
- 7Xt/DACpvfqouTjGTqE2wtWT8OcMjIwNq+L4tI9BGl05Bx4O3zZwTlIpq3J8clXpN3OKeTwz5E+
- H8hPEj1kAun1kZj5iwzZeRM8kRgvPCVNolTzlTsQ543ywyiWorxRyZ1LFXrb8fZrU6pQUqbNDJ/
- +vKjgyYVVDiEGnrYJ6bkCvYPBAjkHnMSHZy91e9qe19IUJTGORBHxjpMleUL3JNnIqWNK+5Sx0/
- s9RyVLoFO0XDjqy6CZCWz1bOaC7kLtMhKuXEUGdDybemDSREYgD63WNLQ8iBk/6MOuSKWF2eDCV
- TiTzxOHhQHpfX0Pyh1+QThdV0IK9RqhAmxbYeKlmiBmK0WH5DKBRG9HQMWl3AQNOPPR/GlQ/DuM
- 5pSSBuRbt5sEBu2yNADw1MvF2G29dVUZiIJuW8tK1jaUdf8noxX70i9tXFY5RF/gY3m30Qt9ecb
- ltqBmVhb4FZAse8NKrZ8TfTIPjTek9qbBd/CEm/jBc5tOg1RrSqiTGES+Q/N6ObuizbZ4=
-X-Developer-Key: i=thomas.perrot@bootlin.com; a=openpgp;
- fpr=874077C6A6A30A2303A812219FC00B0571FE0AED
-X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
+	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-258856-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258861-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,pengutronix.de,gmail.com,bootlin.com,linux-watchdog.org,roeck-us.net];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	FREEMAIL_CC(0.00)[kernel.org,linux.intel.com,chromium.org,apitzsch.eu,linaro.org,foss.st.com,intel.com,ti.com,linux.dev,vger.kernel.org,xs4all.nl,ideasonboard.com];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	DBL_PROHIBIT(0.00)[0.0.0.5:email,0.0.0.3:email];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[thomas.perrot@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[tomi.valkeinen@ideasonboard.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ideasonboard.com:+];
+	NEURAL_HAM(-0.00)[-0.971];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,bootlin.com:email,bootlin.com:dkim,bootlin.com:mid]
-X-Rspamd-Queue-Id: 556E373D24
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.4:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.0:email,0.0.0.2:email,ideasonboard.com:email,ideasonboard.com:dkim,ideasonboard.com:mid,ti.com:url,ti.com:email,0.0.0.1:email]
+X-Rspamd-Queue-Id: 9804273CEE
 X-Rspamd-Action: no action
 
-Add watchdog driver for the Aaeon SRG-IMX8PL embedded controller.
-This driver provides system monitoring and recovery capabilities
-through the MCU's watchdog timer.
+Hi,
 
-The watchdog supports start, stop, and ping operations with a maximum
-hardware heartbeat of 25 seconds and a default timeout of 240 seconds.
-The driver assumes the watchdog is already running at probe time, as
-the MCU typically enables it by default.
+On 06/01/2026 12:06, Yemike Abhilash Chandra wrote:
+> Hi Tomi,
+> 
+> Thank you for the review.
+> 
+> On 22/12/25 16:59, Tomi Valkeinen wrote:
+>> Hi,
+>>
+>> On 19/12/2025 14:29, Yemike Abhilash Chandra wrote:
+>>> DS90UB954-Q1 is an FPDLink-III deserializer that is mostly register
+>>> compatible with DS90UB960-Q1. The main difference is that it supports
+>>> half of the RX and TX ports, i.e. 2x FPDLink RX ports and 1x CSI TX
+>>> port. Therefore, add support for DS90UB954 within the existing bindings.
+>>>
+>>> Link: https://www.ti.com/lit/gpn/ds90ub954-q1
+>>> Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+>>> ---
+>>> Changelog:
+>>> Changes in v3:
+>>> - Remove the example added for DS90UB954, as it is just a subset of
+>>> the DS90UB960 example. (Rob)
+>>>
+>>>   .../bindings/media/i2c/ti,ds90ub960.yaml      | 113 ++++++++++++------
+>>>   1 file changed, 77 insertions(+), 36 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/media/i2c/
+>>> ti,ds90ub960.yaml b/Documentation/devicetree/bindings/media/i2c/
+>>> ti,ds90ub960.yaml
+>>> index cc61604eca37..8e2b82d6dc81 100644
+>>> --- a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
+>>> +++ b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
+>>> @@ -13,12 +13,10 @@ description:
+>>>     The TI DS90UB9XX devices are FPD-Link video deserializers with
+>>> I2C and GPIO
+>>>     forwarding.
+>>>   -allOf:
+>>> -  - $ref: /schemas/i2c/i2c-atr.yaml#
+>>> -
+>>>   properties:
+>>>     compatible:
+>>>       enum:
+>>> +      - ti,ds90ub954-q1
+>>>         - ti,ds90ub960-q1
+>>>         - ti,ds90ub9702-q1
+>>>   @@ -129,39 +127,6 @@ properties:
+>>>         Ports represent FPD-Link inputs to the deserializer and CSI
+>>> TX outputs
+>>>         from the deserializer. The number of ports is model-dependent.
+>>>   -    properties:
+>>> -      port@0:
+>>> -        $ref: '#/$defs/FPDLink-input-port'
+>>> -        description: FPD-Link input 0
+>>> -
+>>> -      port@1:
+>>> -        $ref: '#/$defs/FPDLink-input-port'
+>>> -        description: FPD-Link input 1
+>>> -
+>>> -      port@2:
+>>> -        $ref: '#/$defs/FPDLink-input-port'
+>>> -        description: FPD-Link input 2
+>>> -
+>>> -      port@3:
+>>> -        $ref: '#/$defs/FPDLink-input-port'
+>>> -        description: FPD-Link input 3
+>>> -
+>>> -      port@4:
+>>> -        $ref: '#/$defs/CSI2-output-port'
+>>> -        description: CSI-2 Output 0
+>>> -
+>>> -      port@5:
+>>> -        $ref: '#/$defs/CSI2-output-port'
+>>> -        description: CSI-2 Output 1
+>>> -
+>>> -    required:
+>>> -      - port@0
+>>> -      - port@1
+>>> -      - port@2
+>>> -      - port@3
+>>> -      - port@4
+>>> -      - port@5
+>>> -
+>>>   required:
+>>>     - compatible
+>>>     - reg
+>>> @@ -204,6 +169,82 @@ $defs:
+>>>             - data-lanes
+>>>             - link-frequencies
+>>>   +allOf:
+>>> +  - $ref: /schemas/i2c/i2c-atr.yaml#
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            enum:
+>>> +              - ti,ds90ub960-q1
+>>> +              - ti,ds90ub9702-q1
+>>> +    then:
+>>> +      properties:
+>>> +        ports:
+>>> +          properties:
+>>> +            port@0:
+>>> +              $ref: '#/$defs/FPDLink-input-port'
+>>> +              description: FPD-Link input 0
+>>> +
+>>> +            port@1:
+>>> +              $ref: '#/$defs/FPDLink-input-port'
+>>> +              description: FPD-Link input 1
+>>> +
+>>> +            port@2:
+>>> +              $ref: '#/$defs/FPDLink-input-port'
+>>> +              description: FPD-Link input 2
+>>> +
+>>> +            port@3:
+>>> +              $ref: '#/$defs/FPDLink-input-port'
+>>> +              description: FPD-Link input 3
+>>> +
+>>> +            port@4:
+>>> +              $ref: '#/$defs/CSI2-output-port'
+>>> +              description: CSI-2 Output 0
+>>> +
+>>> +            port@5:
+>>> +              $ref: '#/$defs/CSI2-output-port'
+>>> +              description: CSI-2 Output 1
+>>> +
+>>> +          required:
+>>> +            - port@0
+>>> +            - port@1
+>>> +            - port@2
+>>> +            - port@3
+>>> +            - port@4
+>>> +            - port@5
+>>> +
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            const: ti,ds90ub954-q1
+>>> +    then:
+>>> +      properties:
+>>> +        ports:
+>>> +          properties:
+>>> +            port@0:
+>>> +              $ref: '#/$defs/FPDLink-input-port'
+>>> +              description: FPD-Link input 0
+>>> +
+>>> +            port@1:
+>>> +              $ref: '#/$defs/FPDLink-input-port'
+>>> +              description: FPD-Link input 1
+>>> +
+>>> +            port@2:
+>>> +              $ref: '#/$defs/CSI2-output-port'
+>>> +              description: CSI-2 Output 0
+>>> +
+>>> +          required:
+>>> +            - port@0
+>>> +            - port@1
+>>> +            - port@2
+>>> +
+>>> +        links:
+>>> +          properties:
+>>> +            link@2: false
+>>> +            link@3: false
+>> I can't help but think if this is good or not. In other words, if we
+>> specifically add ports per compatible, why wouldn't we also add
+>> specifically links per compatible? Or, if we just disable links as
+>> above, why don't we do it the same way for ports?
+>>
+> 
+> Quoting writing schemas:
+> 
+> "When bindings cover multiple similar devices that differ in some
+> properties,
+> those properties should be constrained for each device. This usually means:
+> 
+>  * In top level 'properties' define the property with the broadest
+> constraints.
+>  * In 'if:then:' blocks, further narrow the constraints for those
+> properties.
+>  * Do not define the properties within an 'if:then:' block (note that
+>    'additionalItems' also won't allow that)."
+> 
+> 
+> Since new properties cannot be introduced inside allOf / if:then, it is
+> not possible to define
+> device-specific patternProperties for links directly under each
+> condition like below
+> 
+> - if:
+>     properties:
+>       compatible:
+>         contains:
+>           enum:
+>             - ti,ds90ub960-q1
+>             - ti,ds90ub9702-q1
+>   then:
+>     properties:
+>       links:
+>         patternProperties:
+>           '^link@[0-3]$':
+> 
+> - if:
+>     properties:
+>       compatible:
+>         contains:
+>           const: ti,ds90ub954-q1
+> 
+>   then:
+>     properties:
+>       links:
+>     patternProperties:
+>       '^link@[0-1]$':
+> 
+> Therefore, a broad top-level definition such as:
+> 
+> patternProperties:
+>   '^link@[0-3]$':
+> 
+> is required, with device-specific constraints applied later via
+> conditional logic
+> 
+> This works for ports since we have a
+> 
+> patternProperties:
+>   '^port@[0-9a-f]+$':
+> 
+> already defined at /schemas/graph.yaml#/properties/ports which we refer
+> in the top level schema
+> 
+> Note that an alternative could also be modeled by explicitly disallowing
+> unused ports for ds90ub954,
+> namely port 2, port3 and port 5 but that approach would require changes
+> in the driver, as it currently
+> assumes that TX ports start immediately after RX ports. Hence I
+> preferred having ports 0, 1 and 2 for ds90ub954
 
-Co-developed-by: Jérémie Dautheribes (Schneider Electric) <jeremie.dautheribes@bootlin.com>
-Signed-off-by: Jérémie Dautheribes (Schneider Electric) <jeremie.dautheribes@bootlin.com>
-Signed-off-by: Thomas Perrot (Schneider Electric) <thomas.perrot@bootlin.com>
----
- MAINTAINERS                      |   1 +
- drivers/watchdog/Kconfig         |  10 ++++
- drivers/watchdog/Makefile        |   1 +
- drivers/watchdog/aaeon_mcu_wdt.c | 110 +++++++++++++++++++++++++++++++++++++++
- 4 files changed, 122 insertions(+)
+I see. Yes, if we would just disable ports for ub954, we'd have ports 0,
+1 and 4.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 28dd964cdf69bdcaec3eb82d6df851a2bad47415..66cc4a5dcbe0977e6baee6d3b5e6023dcc06847b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -193,6 +193,7 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/mfd/aaeon,srg-imx8pl-mcu.yaml
- F:	drivers/gpio/gpio-aaeon-mcu.c
- F:	drivers/mfd/aaeon-mcu.c
-+F:	drivers/watchdog/aaeon_mcu_wdt.c
- F:	include/linux/mfd/aaeon-mcu.h
- 
- AAEON UPBOARD FPGA MFD DRIVER
-diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-index d3b9df7d466b0b7215ee87b3040811d44ee53d2a..1bd4a7bee303e5e2508f540dc2c16e9e19ed18b0 100644
---- a/drivers/watchdog/Kconfig
-+++ b/drivers/watchdog/Kconfig
-@@ -168,6 +168,16 @@ config SOFT_WATCHDOG_PRETIMEOUT
- 	  watchdog. Be aware that governors might affect the watchdog because it
- 	  is purely software, e.g. the panic governor will stall it!
- 
-+config AAEON_MCU_WATCHDOG
-+	tristate "Aaeon MCU Watchdog"
-+	depends on MFD_AAEON_MCU
-+	select WATCHDOG_CORE
-+	help
-+	  Select this option to enable watchdog timer support for the Aaeon
-+	  SRG-IMX8PL onboard microcontroller (MCU). This driver provides
-+	  watchdog functionality through the MCU, allowing system monitoring
-+	  and automatic recovery from system hangs.
-+
- config BD957XMUF_WATCHDOG
- 	tristate "ROHM BD9576MUF and BD9573MUF PMIC Watchdog"
- 	depends on MFD_ROHM_BD957XMUF
-diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
-index ba52099b125398a32f80dad23317e223cc4af028..2deec425d3eafb6b208e061fda9f216f4baa8ecc 100644
---- a/drivers/watchdog/Makefile
-+++ b/drivers/watchdog/Makefile
-@@ -37,6 +37,7 @@ obj-$(CONFIG_USBPCWATCHDOG) += pcwd_usb.o
- # ALPHA Architecture
- 
- # ARM Architecture
-+obj-$(CONFIG_AAEON_MCU_WATCHDOG) += aaeon_mcu_wdt.o
- obj-$(CONFIG_ARM_SP805_WATCHDOG) += sp805_wdt.o
- obj-$(CONFIG_ARM_SBSA_WATCHDOG) += sbsa_gwdt.o
- obj-$(CONFIG_ARMADA_37XX_WATCHDOG) += armada_37xx_wdt.o
-diff --git a/drivers/watchdog/aaeon_mcu_wdt.c b/drivers/watchdog/aaeon_mcu_wdt.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..99be3ce327f44063fce6ba77a7d4efcba34361df
---- /dev/null
-+++ b/drivers/watchdog/aaeon_mcu_wdt.c
-@@ -0,0 +1,110 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Aaeon MCU Watchdog driver
-+ *
-+ * Copyright (C) 2025 Bootlin
-+ * Author: Jérémie Dautheribes <jeremie.dautheribes@bootlin.com>
-+ * Author: Thomas Perrot <thomas.perrot@bootlin.com>
-+ */
-+
-+#include <linux/mfd/aaeon-mcu.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/watchdog.h>
-+
-+#define AAEON_MCU_CONTROL_WDT	0x63
-+#define AAEON_MCU_PING_WDT	0x73
-+
-+#define AAEON_MCU_WDT_TIMEOUT         240
-+#define AAEON_MCU_WDT_HEARTBEAT_MS    25000
-+
-+struct aaeon_mcu_wdt {
-+	struct watchdog_device wdt;
-+	struct device *dev;
-+};
-+
-+static int aaeon_mcu_wdt_cmd(struct device *dev, u8 opcode, u8 arg)
-+{
-+	u8 cmd[3] = { opcode, arg, 0x00 };
-+	u8 rsp;
-+
-+	return aaeon_mcu_i2c_xfer(dev, cmd, sizeof(cmd), &rsp, sizeof(rsp));
-+}
-+
-+static int aaeon_mcu_wdt_start(struct watchdog_device *wdt)
-+{
-+	struct aaeon_mcu_wdt *data = watchdog_get_drvdata(wdt);
-+
-+	return aaeon_mcu_wdt_cmd(data->dev, AAEON_MCU_CONTROL_WDT, 0x01);
-+}
-+
-+static int aaeon_mcu_wdt_stop(struct watchdog_device *wdt)
-+{
-+	struct aaeon_mcu_wdt *data = watchdog_get_drvdata(wdt);
-+
-+	return aaeon_mcu_wdt_cmd(data->dev, AAEON_MCU_CONTROL_WDT, 0x00);
-+}
-+
-+static int aaeon_mcu_wdt_ping(struct watchdog_device *wdt)
-+{
-+	struct aaeon_mcu_wdt *data = watchdog_get_drvdata(wdt);
-+
-+	return aaeon_mcu_wdt_cmd(data->dev, AAEON_MCU_PING_WDT, 0x00);
-+}
-+
-+static const struct watchdog_info aaeon_mcu_wdt_info = {
-+	.identity	= "Aaeon MCU Watchdog",
-+	.options	= WDIOF_KEEPALIVEPING
-+};
-+
-+static const struct watchdog_ops aaeon_mcu_wdt_ops = {
-+	.owner		= THIS_MODULE,
-+	.start		= aaeon_mcu_wdt_start,
-+	.stop		= aaeon_mcu_wdt_stop,
-+	.ping		= aaeon_mcu_wdt_ping,
-+};
-+
-+static int aaeon_mcu_wdt_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct watchdog_device *wdt;
-+	struct aaeon_mcu_wdt *data;
-+	int ret;
-+
-+	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	data->dev = dev->parent;
-+
-+	wdt = &data->wdt;
-+	wdt->parent = dev;
-+	wdt->info = &aaeon_mcu_wdt_info;
-+	wdt->ops = &aaeon_mcu_wdt_ops;
-+	wdt->timeout = AAEON_MCU_WDT_TIMEOUT;
-+	wdt->max_hw_heartbeat_ms = AAEON_MCU_WDT_HEARTBEAT_MS;
-+
-+	watchdog_set_drvdata(wdt, data);
-+	platform_set_drvdata(pdev, data);
-+
-+	ret = aaeon_mcu_wdt_start(wdt);
-+	if (ret)
-+		return ret;
-+
-+	set_bit(WDOG_HW_RUNNING, &wdt->status);
-+
-+	return devm_watchdog_register_device(dev, wdt);
-+}
-+
-+static struct platform_driver aaeon_mcu_wdt_driver = {
-+	.driver		= {
-+		.name	= "aaeon-mcu-wdt",
-+	},
-+	.probe		= aaeon_mcu_wdt_probe,
-+};
-+
-+module_platform_driver(aaeon_mcu_wdt_driver);
-+
-+MODULE_DESCRIPTION("Aaeon MCU Watchdog Driver");
-+MODULE_AUTHOR("Jérémie Dautheribes <jeremie.dautheribes@bootlin.com>");
-+MODULE_LICENSE("GPL");
+Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 
--- 
-2.52.0
+ Tomi
+
+> The approach that was used in this patch was also hinted at in our
+> earlier discussion at
+> https://lore.kernel.org/all/58b309d9-de03-4818-8d38-
+> a27cc68466db@ideasonboard.com/
+> 
+> Thanks and Regards,
+> Yemike Abhilash Chandra
+> 
+> 
+>>   Tomi
+>>
+> 
 
 
