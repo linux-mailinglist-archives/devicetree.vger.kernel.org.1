@@ -1,155 +1,135 @@
-Return-Path: <devicetree+bounces-258980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258981-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UAxEGeCAc2nxwwAAu9opvQ
-	(envelope-from <devicetree+bounces-258980-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:08:32 +0100
+	id kFh7GQSBc2n2wwAAu9opvQ
+	(envelope-from <devicetree+bounces-258981-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:09:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7B2276B97
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:08:31 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2319C76C03
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:09:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4BDD43020D72
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 14:02:48 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E7C81301CD85
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 14:08:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0830B2BEFFE;
-	Fri, 23 Jan 2026 14:02:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C2D8320CD9;
+	Fri, 23 Jan 2026 14:08:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=foxmail.com header.i=@foxmail.com header.b="Jg/wOM5F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48E92286A7;
-	Fri, 23 Jan 2026 14:02:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+Received: from out162-62-57-49.mail.qq.com (out162-62-57-49.mail.qq.com [162.62.57.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 529862BEFFE;
+	Fri, 23 Jan 2026 14:08:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.62.57.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769176966; cv=none; b=oxPjVb6xS6o7//2dL6j/h9k48HTaQIdB64lGpBjUuDdQeG5bw+68Ecze+hmUf5K2S6OJjT9Pkso2eq4n3HIhWwsQJpw1i4cJZoVCgmEapIBaV0VbbuWCpSP8Nw6UK3B6FPvX5un4SJ3Adnc+Kd2z+YYbnba/0gWhs/WlMbmscqw=
+	t=1769177330; cv=none; b=FNLO0B1f5JITG7AM6MlK757/duzQNI5r10tmCrwlpFecqWRluBzyWcmX22zGibEd2qf2opsY7dCRTwOfI4Y9awtYhwJOK6RySdeMPzS8qynEIC6maA9rWTZnIItVr0UNaoGgGyAiy81fXPVhTjr2F9ntHd2m94L0R+4SMuMjVK0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769176966; c=relaxed/simple;
-	bh=TYCjwlLKf6yO+3h0JuAc6hjX/aqQqcw65j2iA1b3z0k=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=a43aq6YQgALTVmOJP8BEOU5eNv8H49IPJDx1BXYz2Ucgk5zHnYgc79IENqmjBuVS+IyKA6soZIXbmpTmIa0QfKAo0M3yPrJzCZr0sI6o7dV7bB/PlxFTrZwjIq6gq4n1Kwp7oMSDj+rfKYzaRaTXdtFtWj8hf4xjKDfWg/1wT44=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: GeqU7Q+UTU6o0D+8Lox+cA==
-X-CSE-MsgGUID: a6uDTcZDQF6wZILYysjQmA==
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 23 Jan 2026 23:02:44 +0900
-Received: from ubuntu.adwin.renesas.com (unknown [10.226.92.92])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 5E966406E3FB;
-	Fri, 23 Jan 2026 23:02:39 +0900 (JST)
-From: John Madieu <john.madieu.xa@bp.renesas.com>
-To: claudiu.beznea.uj@bp.renesas.com,
-	lpieralisi@kernel.org,
-	kwilczynski@kernel.org,
-	mani@kernel.org,
-	geert+renesas@glider.be,
-	krzk+dt@kernel.org
-Cc: robh@kernel.org,
-	bhelgaas@google.com,
-	conor+dt@kernel.org,
-	magnus.damm@gmail.com,
-	biju.das.jz@bp.renesas.com,
-	linux-pci@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	john.madieu@gmail.com,
-	John Madieu <john.madieu.xa@bp.renesas.com>
-Subject: [PATCH v2 15/15] arm64: dts: renesas: r9a09g047e57-smarc: Enable PCIe
-Date: Fri, 23 Jan 2026 15:00:31 +0100
-Message-ID: <20260123140031.94752-16-john.madieu.xa@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260123140031.94752-1-john.madieu.xa@bp.renesas.com>
-References: <20260123140031.94752-1-john.madieu.xa@bp.renesas.com>
+	s=arc-20240116; t=1769177330; c=relaxed/simple;
+	bh=75vUOquLAejb30OfCXZ3Ajhc8+O3WVfbSpMYETwi8oc=;
+	h=From:To:Cc:Subject:Mime-Version:Content-Type:Date:Message-ID; b=CLwRlT9x50tpsRl2wzoZvdu9Z7XKZcoaLaaLDeMdqMa72/4yTEdilV1C3MtFoZDVtyeCWbWufTghFoNHpuvNTY/Po04aV5CSH6pVC6qG4JWJUqXsmFcFKdKWkhIYYLpeukPxkpzxTyW6UIWxpX/lknFvhP/J7PiQRkn2OHZVhPY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foxmail.com; spf=pass smtp.mailfrom=foxmail.com; dkim=pass (1024-bit key) header.d=foxmail.com header.i=@foxmail.com header.b=Jg/wOM5F; arc=none smtp.client-ip=162.62.57.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foxmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foxmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foxmail.com;
+	s=s201512; t=1769177321;
+	bh=75vUOquLAejb30OfCXZ3Ajhc8+O3WVfbSpMYETwi8oc=;
+	h=From:To:Cc:Subject:Date;
+	b=Jg/wOM5FpAYYhPN0Nye0GzbNPWunY0DLgZ8FCm5SA8owWCuULzcLvJwFv1vhxvnii
+	 j3gac8gGpHwidFdsnz3tObLpFAcSm27fP0xu0CyPIAYqxw77+KjQgQBGtRBnbnvUkR
+	 KAw8BKfI2BCPSD/l6OwFS46zNSMXRqMNrfv9urzo=
+X-QQ-XMRINFO: NS+P29fieYNwqS3WCnRCOn9D1NpZuCnCRA==
+X-QQ-XMAILINFO: N1+fdyie8PcvGsq/0nHrjgY7xXlKFuR2SURIftSWFn8JR+jw5UEvayqz1g/Czm
+	 /gTfl1+I4Bi3+JdqP0AERmlcAINuuDF0UUk64CEp5vQ9eGwCrjq+bInQ35VZZYpeZsgfZIDVdNMig
+	 wtAxP+rAu5KZN04kU+82riFyux/6yJZKbyFTpLiXsevMnS2tOP8+r6UTNfPJxqajOjjSeAA8u/ULf
+	 Xgxw2zDtLLkZ78pWW22BExJeKWJ1FwhMw9ia3QIP8KetJ6bKTCPl7tIr4uc+BN8bbbkuUgoYnEMBW
+	 RGqOh4iNbIx+f7ygiV7PHkUa6s5ItUbhYWoA07kUnmft7rrSn3e2uJxmMAEiDrLbK5d9QjC2J7H0J
+	 GDPRFOvD6csM/Ba1Zi8uhDA1ifB4KUHmVvh4W58gRbUZ6KsVBsIkfLL8MLTwDspVEo6GgFDdmTOCZ
+	 rO7NVNcjQpgxmlGDuKbkoTZ6fLOyXPkyTZOI2heBAUXOx9FIydnM5PLDF5rPCJgOt+Dx0g1d6w3Va
+	 HUuc+mfBh9zWQhC5pPajtPhbmJ1ufbpvaokRrugZWOHINifYGpS300DxWbbktvlY7CaTtTQF8TQmS
+	 1YfP2KQuyZsDPAWcGogqtUoYPjTXET9YljW3KKTUvlK/9lwbenKC7hXeScbcbS/6qReEQu2FK9m8t
+	 3x75BQXQY9Bn/jL3j+u6cYXdGhvSYBVbhewmOyo2VSYte7o1XnhgpQACa2e4/MTREXoYsemcwL8Lk
+	 F2Eq4cOZEPfju2uMokh53dD8gvlWhgo86MHHkaw6BnSlFtYHzmge9h3zbjM5/G9coZglVMOgCpnGt
+	 UuYTm9dKywap2sphhzeMveYNIYb34HiVnJ6VH+bKRAQ/y5v4DFMj8f+tRpn08RNNkRmDtc1yePYE7
+	 L7WCM/X5FumkdOVrU4E6EiphJioCQ2S6Fcy4GUIaFv1aZIjtRvBKYyHfnitbSou3O96fvubP7g8jh
+	 T6gYpYtbWUH5BTm6RC7UAHuM+ci0EsVLkhJPyU6u6xh2fnIqa0KTHEOHKyDQC5Th+ilXUsFMWzSWB
+	 bfs67RiENkzYud/9y1N9yeHVoYFI5VwRPYGf/6FVmjTdewZw=
+From: "=?utf-8?B?R2FyeSBMYXU=?=" <zgliu@foxmail.com>
+To: "=?utf-8?B?U3RhZmZvcmQgSG9ybmU=?=" <shorne@gmail.com>
+Cc: "=?utf-8?B?bGludXN3?=" <linusw@kernel.org>, "=?utf-8?B?bGludXgta2VybmVs?=" <linux-kernel@vger.kernel.org>, "=?utf-8?B?bGludXgtb3BlbnJpc2M=?=" <linux-openrisc@vger.kernel.org>, "=?utf-8?B?ZGV2aWNldHJlZQ==?=" <devicetree@vger.kernel.org>, "=?utf-8?B?cm9iaA==?=" <robh@kernel.org>, "=?utf-8?B?a3J6aytkdA==?=" <krzk+dt@kernel.org>, "=?utf-8?B?Y29ub3IrZHQ=?=" <conor+dt@kernel.org>, "=?utf-8?B?Z2VlcnQrcmVuZXNhcw==?=" <geert+renesas@glider.be>, "=?utf-8?B?a3J6eXN6dG9mLmtvemxvd3NraQ==?=" <krzysztof.kozlowski@oss.qualcomm.com>, "=?utf-8?B?YnJnbA==?=" <brgl@kernel.org>, "=?utf-8?B?bGludXgtZ3Bpbw==?=" <linux-gpio@vger.kernel.org>
+Subject: Re: [PATCH v6 1/6] dt-bindings: gpio-mmio: Correct opencores GPIO
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: base64
+Date: Fri, 23 Jan 2026 22:08:40 +0800
+X-Priority: 3
+Message-ID: <tencent_5B5F194F6B5511962378DEC1B1B043F3A705@qq.com>
+X-QQ-MIME: TCMime 1.0 by Tencent
+X-Mailer: QQMail 2.x
+X-QQ-Mailer: QQMail 2.x
+X-QQ-mid: xmseza62-0t1769177320tu35o6dz4
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.64 / 15.00];
+X-Spamd-Result: default: False [3.94 / 15.00];
+	CC_EXCESS_BASE64(1.50)[];
 	SUSPICIOUS_RECIPS(1.50)[];
+	TO_EXCESS_BASE64(1.50)[];
+	FAKE_REPLY(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MV_CASE(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[foxmail.com,none];
+	R_DKIM_ALLOW(-0.20)[foxmail.com:s=s201512];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[renesas.com : SPF not aligned (relaxed), No valid DKIM,none];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258980-lists,devicetree=lfdr.de];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FREEMAIL_CC(0.00)[kernel.org,google.com,gmail.com,bp.renesas.com,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_ALL(0.00)[];
+	DKIM_TRACE(0.00)[foxmail.com:+];
+	HAS_X_PRIO_THREE(0.00)[3];
+	DBL_PROHIBIT(0.00)[5.108.140.192:email];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.993];
-	FROM_NEQ_ENVFROM(0.00)[john.madieu.xa@bp.renesas.com,devicetree@vger.kernel.org];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bp.renesas.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,renesas.com:email]
-X-Rspamd-Queue-Id: C7B2276B97
+	FROM_NEQ_ENVFROM(0.00)[zgliu@foxmail.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-258981-lists,devicetree=lfdr.de];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FROM_EXCESS_BASE64(0.00)[];
+	FREEMAIL_FROM(0.00)[foxmail.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 2319C76C03
 X-Rspamd-Action: no action
 
-The RZ Smarc Crarrier-II board has PCIe slots mounted on it.
-Enable PCIe support.
-
-Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
----
-
-Changes:
-
-v2:
- - Removed board-specific dma-ranges.
- - Merged enablement and pinmux assignment in same file
-
- .../boot/dts/renesas/r9a09g047e57-smarc.dts     | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-index 696903dc7a63..6ec34e7565bc 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-@@ -122,6 +122,12 @@ key-sleep {
- #endif
- };
- 
-+&pcie {
-+	pinctrl-0 = <&pcie_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
- &pinctrl {
- 	canfd_pins: canfd {
- 		can1_pins: can1 {
-@@ -167,6 +173,17 @@ rsci9_pins: rsci9 {
- 		bias-pull-up;
- 	};
- 
-+	pcie-clkreq-n {
-+		gpio-hog;
-+		gpios = <RZG3E_GPIO(4, 5) GPIO_ACTIVE_HIGH>;
-+		output-low;
-+		line-name = "pcie_clkreq_n";
-+	};
-+
-+	pcie_pins: pcie {
-+		pinmux = <RZG3E_PORT_PINMUX(G, 7, 1)>; /* PCIE_RST_OUT# */
-+	};
-+
- 	scif_pins: scif {
- 		pins = "SCIF_TXD", "SCIF_RXD";
- 		renesas,output-impedance = <1>;
--- 
-2.25.1
+SGkgU3RhZmZvcmQsDQpJJ3ZlIHRlc3RlZCB0aGUgImJyY20sYmNtNjM0NS1ncGlvIsKgZHJp
+dmVyIHdpdGggdGhlIE9wZW5Db3JlcyA4LWJpdCBHUElPIGNvcmUswqBhbmQgaXQgaXMgd29y
+a2luZyBhcyBleHBlY3RlZC4NCkZvciByZWZlcmVuY2UswqBoZXJlIGlzIHRoZSBoYXJkd2Fy
+ZSBjb25uZWN0aW9uIGxvZ2ljIEkgdXNlZCBmb3IgdGhlIE9wZW5SSVNDIHRvIE9wZW5Db3Jl
+cyBHUElPIGludGVyZmFjZToNClZlcmlsb2c6DQpzaW1wbGVfZ3BpbyBncGlvMCAoDQogwqAg
+wqAuY2xrX2kgwqAoY2xrX2kpLA0KIMKgIMKgLnJzdF9pIMKgKHJzdF9pKSwNCiDCoCDCoC5j
+eWNfaSDCoChjeWNfaSAmICh8c2VsX2kpKSwNCiDCoCDCoC5zdGJfaSDCoChzdGJfaSAmICh8
+c2VsX2kpKSwNCiDCoCDCoC5hZHJfaSDCoChhZHJfaVsyXSksDQogwqAgwqAud2VfaSDCoCAo
+d2VfaSksDQogwqAgwqAuZGF0X2kgwqAoZGF0X2lbNzowXSksDQogwqAgwqAuYWNrX28gwqAo
+YWNrX28pLA0KIMKgIMKgLmRhdF9vIMKgKGRhdF9vWzc6MF0pLA0KIMKgIMKgLmdwaW8gwqAg
+KGdwaW9bNzowXSksDQogwqAgwqAuZ3Bpb19pIChncGlvX2kpDQopOw0KQW5kIGhlcmUgaXMg
+dGhlIGNvcnJlc3BvbmRpbmcgcGFydCBvZiBteSBkdHM6DQpncGlvMDogZ3Bpb0A5MTAwMDAw
+MCB7DQogwqAgwqBjb21wYXRpYmxlID0gImJyY20sYmNtNjM0NS1ncGlvIjsNCiDCoCDCoHJl
+ZyA9IDwweDkxMDAwMDAwIDB4ND4sIDwweDkxMDAwMDA0IDB4ND47DQogwqAgwqByZWctbmFt
+ZXMgPSAiZGF0IiwgImRpcm91dCI7DQogwqAgwqBncGlvLWNvbnRyb2xsZXI7DQogwqAgwqBi
+aWctZW5kaWFuOyANCiDCoCDCoHN0YXR1cyA9ICJva2F5IjsNCg0KDQoNCg0KDQoNCg==
 
 
