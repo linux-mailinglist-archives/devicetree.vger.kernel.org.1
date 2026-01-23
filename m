@@ -1,245 +1,234 @@
-Return-Path: <devicetree+bounces-258908-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258910-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sEaXF/hbc2l3vAAAu9opvQ
-	(envelope-from <devicetree+bounces-258908-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 12:31:04 +0100
+	id aGVPHztcc2l3vAAAu9opvQ
+	(envelope-from <devicetree+bounces-258910-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 12:32:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF5247505A
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 12:31:03 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DCF8750ED
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 12:32:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C4B06301ABAE
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 11:30:47 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 77D2A300B470
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 11:31:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E4BA284662;
-	Fri, 23 Jan 2026 11:30:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC66C34A3A7;
+	Fri, 23 Jan 2026 11:31:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BFKaEJnk";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="jN2XyBy0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gqyGyXMG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C02222F388
-	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 11:30:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3A16342177;
+	Fri, 23 Jan 2026 11:31:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769167846; cv=none; b=ZvqQ1YzLfXVMr5Yme6lHdC9F0WA5hCQQJyOFJ2McHkEbSzHD1aqlsZ9XstjAro2MFHL9JvaKuVG3FEnTAt9PjLS9LwbqBPs7qVAmSP+r+pokb3FwE4KQoIX0I1N3mFQSzseBCYOknVwavDHKAsQx753OkVq4oWFQ16z/JDQeDhA=
+	t=1769167892; cv=none; b=RsFFPZ2GONldh7Au6Jkln17y+TfiLBu4rhCW+gH0IZTPd65Tix3eSxTPpwHRSLb9r32BeFUAQA9g1EH6mLRitEq/iZ/qYdn+y/jU9gPZIsko+ElVENK8nSPWP9GrsspmkaL39qfEQ9+4Qlh7hQYQNO6CMxyj2o0Cu5hXqMw+A+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769167846; c=relaxed/simple;
-	bh=HgHZLeRI45lYIBDGvCiahkx6GqLM3bsQcdVA2PcR0eU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=W3PG8jUmpNworIQ18B/dQzTeqao0aVGqY4wyzjem3EwIu60/+yub2nOMTQI4EG840AjIU4cAhgKuDwYoBbCSBEM7+CiKLTNOBbTemK3QrOh38haEyw59m8glHf6booh5SA9m6A3Kt6isJyPoKl02s+TQ4Dqkpp78tkcP4t6r9T8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BFKaEJnk; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=jN2XyBy0; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60N6Lx9x324419
-	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 11:30:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	iwAyyedpE8I4ZDvxsvut22iK6mBVirS7MV4judrVUvM=; b=BFKaEJnkh05et+aO
-	ajVTYtNdPPbxphhi2QwiHoMtbQU7hlvaxCzLt78BV539CYP2L4P/xqpTqiizQ3Bu
-	wOt1I4fw9zEc1KmDmEQLBSPcIay8yg0+WzQsaV+1vsU5M9mRRGLsrvInO80frzm2
-	0raB099qX+fRswVAVRrcFezJylWuoMw7ghrqgx3t2hWh4ZsnZs7GsZomhVl6for8
-	HaQjiKHC+n0vyGROvIA1KDTzHr3RGOP+iEsRlAoALyXqDWCNvOFobPKblArgZIG8
-	S2BLgTJVAj/N/LzVhkmOn/xnJATvIUFGCOPEE24PKYGu7qc3j//LqXiMum6LBVuK
-	6MEsLg==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bv3mq94gq-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 11:30:43 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8c5265d479dso56347885a.2
-        for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 03:30:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769167843; x=1769772643; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=iwAyyedpE8I4ZDvxsvut22iK6mBVirS7MV4judrVUvM=;
-        b=jN2XyBy0tJnC8xnVlgDUs9gmpY5cilPa0E+gn2qJPTALEvfuhBnPjujNyUpMisFM5b
-         7Pg2Z+U06pwa6ZiLqRnjOtDMPC+USUcjcv8wxN+mXt9Z5X70gE+4xp7Lr44azA3YrjQz
-         chsBCevtFWIvsMiae6UOBBcZpSM5NMo2FxYKOd1tYmxPY2mU/k5aJxplWweiNjQaLNgy
-         eAXc1ykq5oAAgpE1H+UEQMycZcK3gSZu9VDlMVP2SiNVNX4D1DHhQsXZqRIHZ2sSn5RG
-         Jva+NVAYPtB4VjhnxeGpwI2qmSTfO5lfTWss9dyxhpxPpSvJRI6g9RjM4GH7oaPEG9fM
-         FVBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769167843; x=1769772643;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=iwAyyedpE8I4ZDvxsvut22iK6mBVirS7MV4judrVUvM=;
-        b=LGpiHVBXaLtvGpT3nTODu5zUaVHOhvKa2INaDk/EoOFJ9TWGBxk7RHldTbmrHa7ALO
-         1p2OfPO3kItLJ2LiacZKYgevlkrH2PHd0Tn2viiTcZY/ozA4ugM6hFR5/nA+umbC5Y+I
-         wiIzBSxv34LId2AWxkrnI1kMyOQ1mfudnaUOdA1w2Zjq7SNF5eHDFPSu4P0LWYex6cjw
-         dHB02gVrJ6UNMSWtwUWr5c94TdWGGZ0SzIMOhTZKXOhNf4vbrHwBtt3oSM6Z20l4S3FA
-         Byq2fhHJVD4yflNreLM/sG2BQGTnIMnWwDvAaoDBOWOAko6sd+yWClUnfrOwN0d/rbz1
-         C29w==
-X-Forwarded-Encrypted: i=1; AJvYcCX9oM0nlHJVs+NCJ7RXbS0AIZz8NXLF1xKZWEa6YSlmHjrpju6gPLJAtO+xhKHNZibPFu26765jBy8F@vger.kernel.org
-X-Gm-Message-State: AOJu0YyQr3A+7IfvjlefPuL6Fpcpv3vOx36NOPpOQ3oV6KmU4bJrUh/Q
-	rkG4RGTepTNLurN2JbA1WsKgK3FjE1gnn3thDdJwcpkQJ9mB9oAn08/1ibt3/7kxehyPqLZiRnY
-	7C5t/NF2EXEJ1CJSW9iSQyMt91WkVhGGnSUrtzGpsjNWLNSdFw7YyAt9gXWRUmsfT
-X-Gm-Gg: AZuq6aLU4RGn3LDeUJhpOwKedqfGRmu5QakZLTSkFicGCt4aR3/M+5z8KBtAPy6b5a+
-	duYOMEd+0doWXkB9oudeIvf6+EBzkkd+kpWd99rlmCyA5RFgCiQMEGswutgJewv0bPnsDWNx11g
-	cPZX9ALqrJlsck4yMwo1FlUQwArYClVqF09Mxl5nCwNRwt+EvNFmQxvtCzKUfYF3AsevfhtYQon
-	h9FPekUT0bpx6YKyuvdf2G5JteKU9e18vXOr7G2SUEADmVK4z6CAj3RYCHt+oD1yg3Sb8qOaui/
-	xt7/g8T95AGY5ceBdJgpAfd2rBsoejA8lwr/UIJ2YLXn2TwRGTEGI5cixMtxEcRIsJeYubHYo0U
-	l4vJX6yXvwz2nZA4/tzNLG6ShLdp7GCkmNBQ900MVKPSdMxpG00QkH6Dg2Gt49q+q67U=
-X-Received: by 2002:a05:620a:319f:b0:8be:7dd7:f041 with SMTP id af79cd13be357-8c6e2e10500mr212987285a.7.1769167843361;
-        Fri, 23 Jan 2026 03:30:43 -0800 (PST)
-X-Received: by 2002:a05:620a:319f:b0:8be:7dd7:f041 with SMTP id af79cd13be357-8c6e2e10500mr212984185a.7.1769167842814;
-        Fri, 23 Jan 2026 03:30:42 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b885b6ff080sm88260666b.38.2026.01.23.03.30.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Jan 2026 03:30:42 -0800 (PST)
-Message-ID: <eafd209d-933f-4c86-9b9d-d13e334bd5ee@oss.qualcomm.com>
-Date: Fri, 23 Jan 2026 12:30:40 +0100
+	s=arc-20240116; t=1769167892; c=relaxed/simple;
+	bh=vEkFV07PEpR5KX9dNGTST448CA5dKUUwl6Jer72c3uY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=OjAeLhIdvaxAP2c3INPPpPWbXyu5FS1V0yav8NZZ6sGKKUY6H+PHRzdJRtZJ4bF2cQG+Rqh2xJkr0LtT1HSJPPILRU0SwqvT5qY77G9tG4c3voDzQlylEsQ5W/Qv8n/ZtJ5Vltr3g3tYDPgYnEU8ChNsQkuYEd2dCYh1EcYZZMM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gqyGyXMG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 448FEC116D0;
+	Fri, 23 Jan 2026 11:31:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769167892;
+	bh=vEkFV07PEpR5KX9dNGTST448CA5dKUUwl6Jer72c3uY=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=gqyGyXMGtjyFok1bHfL6F2eThk/Son5WCT0vXEJxdWzjAhxbArhade74N0WX2nuTp
+	 uRjFMIlyPj988VlmAZ++WP+/1L+HAqKsisuVW0UvniHTupKaO8igcw+8C59Jeb2O1f
+	 FIVBdMFYb6b1t6Oodo4FOZM/+9HTOfgic4PznyLcc9vecFu1BeckpWrfo5Lhfxtdlh
+	 QqqrWw6wyvhu/RcXVmQjOnTWlNpgzaxowq8fRTD5bCRw6Kop42E1oTOOlVmqykt3sC
+	 46bl18Os40hjHSItfYDR0ByujTpUVbewOXUijER3eDteavLZ4+mcyX0fA2fsbGhdpk
+	 YfC/8a65rK4cg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 37A81D7236C;
+	Fri, 23 Jan 2026 11:31:32 +0000 (UTC)
+From: Maud Spierings via B4 Relay <devnull+maudspierings.gocontroll.com@kernel.org>
+Subject: [PATCH v7 0/4] backlight: add new max25014 backlight driver
+Date: Fri, 23 Jan 2026 12:31:29 +0100
+Message-Id: <20260123-max25014-v7-0-15e504b9acc7@gocontroll.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: talos: Add EL2 overlay
-To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20260123103503.1259645-1-mukesh.ojha@oss.qualcomm.com>
- <20260123103503.1259645-2-mukesh.ojha@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260123103503.1259645-2-mukesh.ojha@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: UwhQTCnggmFv0qUQJ2dCJ7EfpNj_fAQl
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTIzMDA5MiBTYWx0ZWRfX/240Vq8uJiuY
- SDR7ROQ1a+56qro+HXf83Q3TAwsT883u0wh1MhFxJFKLnF0t6h9dXFs9HJUzyE1IJnOLPBbLx4y
- eQ7FgaXwMrB2IAZ1jx009dOApDHe1NthIcjvWYewXGnE3VqTKxh6C1U7lva+ZjM+dLr5Q7mD6ro
- pZdE42XL6ii7jZ9txHB1DdCxcPLvoz5ok/TgeqJnKIZnmfTpTJDXkLvIyITYV5oCvrUIZvlEsR4
- oY/X+ostEbIMFbJM+cVi+uwdix764day1i+eDASnMh5YcBzaPvmPb4tsA2ncxk+iRbLMzcj5NSW
- Is0qsFzbERYcRNxWcMG2sT999xxhVg+fSnTdtmVRnQJrd5gv6qnIb31Ed6mzIInqPA0XF1kP27k
- W17oeidC6/KnVY4Bhaka0WBn+OpHyfjzXy77v5aLEvtjtw3dhXutCklyM/fkuKAXIAP67o2Amrs
- jViB7v4buAeDZSAJOkw==
-X-Authority-Analysis: v=2.4 cv=SMpPlevH c=1 sm=1 tr=0 ts=69735be4 cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8
- a=9xatLwlGkz5OWhtWUXsA:9 a=QEXdDO2ut3YA:10 a=eSe6kog-UzkA:10
- a=PEH46H7Ffwr30OY-TuGO:22
-X-Proofpoint-GUID: UwhQTCnggmFv0qUQJ2dCJ7EfpNj_fAQl
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
- definitions=2026-01-23_02,2026-01-22_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 adultscore=0 priorityscore=1501 impostorscore=0
- phishscore=0 clxscore=1015 spamscore=0 bulkscore=0 suspectscore=0
- malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2601230092
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/23OzWrDMAzA8VcpPi9D8nd22nuMHRRHbg1tPJISO
+ krefWoHS2C5Wca/v3xXE4+FJ/V2uKuR5zKVOsgQXg4qnWg4clN6mZUG7cBr31zoJie0jdUQXIu
+ MlJ2S518j53J7pj4+ZT6V6VrH72d5xsftbyRot0ZmbKABjilxK73I78ea6nAd6/n8mupFPUqzX
+ nXEdqO1aJf7QNyhRaZdbVbdIm60Ed2DyZY7MsHt77Z/GgG2u61oT32nCYiMy7varRohbLQT3ZI
+ ncsGA7/a1X7WG7c+96BjZUIqIOv/Xy7L8ALXG0rjbAQAA
+X-Change-ID: 20250626-max25014-4207591e1af5
+To: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>, 
+ Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>, 
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-fbdev@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, 
+ Maud Spierings <maudspierings@gocontroll.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1769167891; l=5004;
+ i=maudspierings@gocontroll.com; s=20250214; h=from:subject:message-id;
+ bh=vEkFV07PEpR5KX9dNGTST448CA5dKUUwl6Jer72c3uY=;
+ b=s+cmlb1pCiN/IakKQKsOgUXRHfTMAtp7ny2CeiPz3mwdj6Dg/YieSrnYRGPVgMk2wS6zYOTRZ
+ QxSvxYuCQ1HDtSpzxfJ5+37bCHYLcMUhIn+22/PZekKIrv1Xb8bHEEy
+X-Developer-Key: i=maudspierings@gocontroll.com; a=ed25519;
+ pk=7chUb8XpaTQDvWhzTdHC0YPMkTDloELEC7q94tOUyPg=
+X-Endpoint-Received: by B4 Relay for maudspierings@gocontroll.com/20250214
+ with auth_id=341
+X-Original-From: Maud Spierings <maudspierings@gocontroll.com>
+Reply-To: maudspierings@gocontroll.com
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:url,qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-258910-lists,devicetree=lfdr.de,maudspierings.gocontroll.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-258908-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,gmx.de,pengutronix.de];
 	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: AF5247505A
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	HAS_REPLYTO(0.00)[maudspierings@gocontroll.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:url,0.0.0.0:email,gocontroll.com:replyto,gocontroll.com:email,gocontroll.com:mid]
+X-Rspamd-Queue-Id: 5DCF8750ED
 X-Rspamd-Action: no action
 
-On 1/23/26 11:35 AM, Mukesh Ojha wrote:
-> All the existing variants Talos boards are using Gunyah hypervisor
-> which means that, so far, Linux-based OS could only boot in EL1 on
-> those devices.  However, it is possible for us to boot Linux at EL2
-> on these devices [1].
-> 
-> When running under Gunyah, the remote processor firmware IOMMU streams
-> are controlled by Gunyah. However, without Gunyah, the IOMMU is managed
-> by the consumer of this DeviceTree. Therefore, describe the firmware
-> streams for each remote processor.
-> 
-> Add a EL2-specific DT overlay and apply it to Talos IOT variant
-> devices to create -el2.dtb for each of them alongside "normal" dtb.
-> 
-> [1]
-> https://docs.qualcomm.com/bundle/publicresource/topics/80-70020-4/boot-developer-touchpoints.html#uefi
-> 
-> Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-> ---
-> This patch has dependency on https://lore.kernel.org/lkml/20260121-qcs615-spin-2-v7-0-52419b263e92@oss.qualcomm.com/#t
-> which adds gpu_zap_shader.
-> 
-> 
->  arch/arm64/boot/dts/qcom/Makefile       |  4 ++++
->  arch/arm64/boot/dts/qcom/talos-el2.dtso | 28 +++++++++++++++++++++++++
->  2 files changed, 32 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/talos-el2.dtso
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index cbf7d89e432c..48ecbea17a4e 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -141,6 +141,10 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-shift-otter.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs615-ride.dtb
-> +
-> +qcs615-ride-el2-dtbs := qcs615-ride.dtb talos-el2.dtbo
-> +
-> +dtb-$(CONFIG_ARCH_QCOM)	+= qcs615-ride-el2.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-radxa-dragon-q6a.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2.dtb
->  
-> diff --git a/arch/arm64/boot/dts/qcom/talos-el2.dtso b/arch/arm64/boot/dts/qcom/talos-el2.dtso
-> new file mode 100644
-> index 000000000000..03ca04c44976
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/talos-el2.dtso
-> @@ -0,0 +1,28 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-> + */
-> +
-> +/*
-> + * Talos specific modifications required to boot in EL2.
+The Maxim MAX25014 is an automotive grade backlight driver IC. Its
+datasheet can be found at [1].
 
-Preferably merge it with the previous comment, separated by a newline
-after the copyright
+With its integrated boost controller, it can power 4 channels (led
+strings) and has a number of different modes using pwm and or i2c.
+Currently implemented is only i2c control.
 
-otherwise
+link: https://www.analog.com/media/en/technical-documentation/data-sheets/MAX25014.pdf [1]
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
+---
+Changes in v7:
+- remove the led subnodes
+- always enable the regulator by using devm_regulator_get_enable()
+- remove the no longer required gotos and simplify early returns
+- fix the name of the SHORTED_LED error field
+- fix the name of the SHORTGND error field
+- use the proper backlight helper functions for setting/getting
+  brightness
+- Link to v6: https://lore.kernel.org/r/20251201-max25014-v6-0-88e3ac8112ff@gocontroll.com
 
-Konrad
+Changes in v6:
+- fixup changes in v4 where default brightness handling was changed but
+  not noted
+- remove leftover comment about initializing brightness
+- use BIT definitions for fields in the DIAG register
+- apply reverse christmas tree initialization of local variables
+- remove !=0 from checks, just check if (ret)
+- remove > 0 from checks, just check if (val)
+- use dev_err_probe() more
+- set enable gpio high in the get() instead of seperately calling set()
+- change usleep_range() to fsleep()
+- remove null checks when setting gpio value
+- get regular regulator, not optional to avoid further NULL checks in
+  case none is provided
+- introduce max25014_initial_power_state() to check if the bootloader
+  has already initialized the backlight and to correctly set props.power
+- squash max25014_register_control() into max25014_update_status()
+- in max25014_configure() perform extra checking on the DISABLE register
+  now that the state from the bootloader is taken into account
+- Link to v5: https://lore.kernel.org/r/20251107-max25014-v5-0-9a6aa57306bf@gocontroll.com
+
+Changes in v5:
+- moved comment about current functions of the driver to the actual
+  comment section of the commit
+- fixed the led@0 property, regex patternProperty is not needed as of
+  now
+- added extra clarification about the ISET field/register
+- moved #address-cells and #size-cells to the correct location
+- remove leftover default-brightness in backlight nodes
+- Link to v4: https://lore.kernel.org/r/20251009-max25014-v4-0-6adb2a0aa35f@gocontroll.com
+
+Changes in v4:
+- remove setting default brightness, let backlight core take care of it
+- use a led node to describe the backlight
+- use led-sources to enable specific channels
+- also wait 2ms when there is a supply but no enable
+- change dev_warn() to dev_err() in error path in max25014_check_errors()
+- set backlight_properties.scale to BACKLIGHT_SCALE_LINEAR
+- rebase latest next
+- add address-cells and size-cells to i2c4 in av101hdt-a10.dtso
+- Link to v3: https://lore.kernel.org/r/20250911-max25014-v3-0-d03f4eba375e@gocontroll.com
+
+Changes in v3:
+- fixed commit message type intgrated -> integrated
+- added maximum and description to maxim,iset-property
+- dropped unused labels and pinctrl in bindings example
+- put the compatible first in the bindings example and dts
+- removed brackets around defines
+- removed the leftover pdata struct field
+- removed the initial_brightness struct field
+- Link to v2: https://lore.kernel.org/r/20250819-max25014-v2-0-5fd7aeb141ea@gocontroll.com
+
+Changes in v2:
+- Remove leftover unused property from the bindings example
+- Complete the bindings example with all properties
+- Remove some double info from the maxim,iset property
+- Remove platform_data header, fold its data into the max25014 struct
+- Don't force defines to be unsigned
+- Remove stray struct max25014 declaration
+- Remove chipname and device from the max25014 struct
+- Inline the max25014_backlight_register() and strings_mask() functions
+- Remove CONFIG_OF ifdef
+- Link to v1: https://lore.kernel.org/r/20250725-max25014-v1-0-0e8cce92078e@gocontroll.com
+
+---
+Maud Spierings (4):
+      dt-bindings: backlight: Add max25014 support
+      backlight: add max25014atg backlight
+      arm64: dts: freescale: moduline-display-av101hdt-a10: add backlight
+      arm64: dts: freescale: moduline-display-av123z7m-n17: add backlight
+
+ .../bindings/leds/backlight/maxim,max25014.yaml    |  91 +++++
+ MAINTAINERS                                        |   6 +
+ ...x8p-ml81-moduline-display-106-av101hdt-a10.dtso |  26 ++
+ ...x8p-ml81-moduline-display-106-av123z7m-n17.dtso |  21 +-
+ drivers/video/backlight/Kconfig                    |   7 +
+ drivers/video/backlight/Makefile                   |   1 +
+ drivers/video/backlight/max25014.c                 | 377 +++++++++++++++++++++
+ 7 files changed, 528 insertions(+), 1 deletion(-)
+---
+base-commit: a0c666c25aeefd16f4b088c6549a6fb6b65a8a1d
+change-id: 20250626-max25014-4207591e1af5
+
+Best regards,
+-- 
+Maud Spierings <maudspierings@gocontroll.com>
+
 
 
