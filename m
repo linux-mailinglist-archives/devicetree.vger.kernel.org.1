@@ -1,63 +1,62 @@
-Return-Path: <devicetree+bounces-259075-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259076-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +DVUCrOqc2nOxwAAu9opvQ
-	(envelope-from <devicetree+bounces-259075-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 18:06:59 +0100
+	id eFqxF5yrc2nOxwAAu9opvQ
+	(envelope-from <devicetree+bounces-259076-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 18:10:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B55978C92
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 18:06:58 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2B7378D37
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 18:10:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id DDBF6300A311
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 17:06:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DAE72303C4F3
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 17:09:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58E9829993D;
-	Fri, 23 Jan 2026 17:06:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C79A2E3B15;
+	Fri, 23 Jan 2026 17:09:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IfyqTvkB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uIa6ZquC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34C6C26B971;
-	Fri, 23 Jan 2026 17:06:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3920B1EE033;
+	Fri, 23 Jan 2026 17:09:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769188014; cv=none; b=Sw+GqxtZ9kpoXLydQ4lanAzKIpzpAhR0OF49zzEwMw7tJE32WExpvwNsb+vjLJqD0HxIqJbN1Az1h0N4rfB5R70TFEJfEztg05cVUJd9v5mo5r+tf/UkVBKD+rhh96DvvrbTez1u/9nytmAQGAi6tiMwFftZzyC0nF4Akgspgmk=
+	t=1769188149; cv=none; b=URP8rFJAyp2aKG2TtcKJuK96ygRa9xlcmd1dUXeorqKYMs0NvBdsxpWjSSDOnudPCRbuebGDbQmOLP+Gq8SEYLK6A1LCjjOY/0uNXs9vnVkK4SvIDOIsOieVHtcluJ4M/T2oHzKXQJYgtQW3JB+Iv7EehLeNKewKb2vj/6hMGqg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769188014; c=relaxed/simple;
-	bh=S6IkRdXSFQzypn/cgmHg3KTxXN8Jcv25C2u6RZy8SFo=;
+	s=arc-20240116; t=1769188149; c=relaxed/simple;
+	bh=iVW+7CkiN8t59MDvx+2XzQluQI1KKt6encMbiwb5Phs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hMka+Y1rKA1sNF4LH8uh5+Lv45Qo8KUg0XNxgbhWk9MYwGKP4oUwxLd+RTwXr+NSBiLTdKfkFmwfd6oxrDohaJL74uJMoqe3MrkYP/m5lSzj41mLdYk/kqA4b/AIJ1Ik7W4hxdGYhV9utnlIkP0f4VuZk3EmZPZaRJfV5HTJnZA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IfyqTvkB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 098A1C4CEF1;
-	Fri, 23 Jan 2026 17:06:51 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=nlOfVtir32NNhRKAEjxEx5H4FK22TCh9VQ34NXwvXLDKWcuV4CTVcwWf1WqCWDNjVyMczcTXR7tZAnByZfLhM9nxa6CnhQz7P9V3L9GxC0HxQ/PmAWbSoZ9lgM/lYv1zQSHiPFt9C3lcVymAo2AUN+7NfJM2u/yqQzudoqRB9OM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uIa6ZquC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC43BC4CEF1;
+	Fri, 23 Jan 2026 17:09:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769188013;
-	bh=S6IkRdXSFQzypn/cgmHg3KTxXN8Jcv25C2u6RZy8SFo=;
+	s=k20201202; t=1769188149;
+	bh=iVW+7CkiN8t59MDvx+2XzQluQI1KKt6encMbiwb5Phs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IfyqTvkBjP5BbY85zyDvY6BVT2fnH9NtG6HV0d9ZyMX/Xoz0WHRooY3R42Z87Il10
-	 5m+8QpSuF1ISZAx0e3uqgt7Yunirw2+RHU4qeoVIZKFxQgWtzXlNCJkKK35DJ1E+hV
-	 HWtUxHoR/HP0UovWHJlXYNqI5st9R6ZkoDBwGY2Ou34WfyxNv+Uh4oYBUIUXRVDKhe
-	 FYOxHatif5JqhMzQlZfcsGksWW2zi20PYjhTiDU0fWg1dh5PAeW9hvZD0KngR9qFTb
-	 pAYd4U8mOreEcOMkM0RGMX2lYVPvPqK16HizwSGNEoKlNNynE63pFCKp8eIHCGw2nW
-	 oP31CVvXKp6jw==
-Date: Fri, 23 Jan 2026 17:06:49 +0000
+	b=uIa6ZquCipr3w1g1nta83dGHc4Sy4bblnz5hdmiew8FyczgmNI4quAh4cNRrdrvTY
+	 xU98UvTiPSTSMjroyJKQPb8vsTgJAmww49Heyn3zk2gChb0B6KDQCwaJQNqJBf7FkP
+	 ja/8eNMr0mF5zeHVmubHZA8zLADMpfpEOgKzu2x131pYx5XUthKfuphwSPzsL2Xiyb
+	 uajAkaHZoFJRez1pSla2u257AoqELbwoP5V+ojWEfEL3EtmsPpgqndWZVZcp4ELf4x
+	 iiYbbo9OrVQgS81UsdZKwLToxxQxUqdduUDlsE5ZH5Nf7B+havM6uCnxcSR34NCKQy
+	 R/0ifrMv1mcRA==
+Date: Fri, 23 Jan 2026 17:09:04 +0000
 From: Conor Dooley <conor@kernel.org>
-To: =?utf-8?Q?=C5=81ukasz?= Majewski <lukma@nabladev.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: clock: vf610: Add definitions for MTIP L2
- switch
-Message-ID: <20260123-rework-stank-5a364bf88af6@spud>
-References: <20260122125838.4144700-1-lukma@nabladev.com>
- <20260122-unlaced-porthole-1983bc69c03c@spud>
- <20260122202603.36ed7944@wsk>
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	wangweidong.a@awinic.com, tiwai@suse.com, perex@perex.cz,
+	conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+	broonie@kernel.org, lgirdwood@gmail.com,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH 1/2] ASoC: dt-bindings: aw87390: Add Anbernic RG-DS
+ Amplifier
+Message-ID: <20260123-empathy-unissued-ce879a2fbfe5@spud>
+References: <20260123154731.130649-1-macroalpha82@gmail.com>
+ <20260123154731.130649-2-macroalpha82@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,107 +64,62 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Bo4H8p00HSNTdmeG"
+	protocol="application/pgp-signature"; boundary="Yw5HADqUeVykISp/"
 Content-Disposition: inline
-In-Reply-To: <20260122202603.36ed7944@wsk>
+In-Reply-To: <20260123154731.130649-2-macroalpha82@gmail.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-259075-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-259076-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-0.985];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,awinic.com,suse.com,perex.cz,kernel.org,gmail.com,hotmail.com];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 9B55978C92
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C2B7378D37
 X-Rspamd-Action: no action
 
 
---Bo4H8p00HSNTdmeG
-Content-Type: text/plain; charset=utf-8
+--Yw5HADqUeVykISp/
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 22, 2026 at 08:26:03PM +0100, =C5=81ukasz Majewski wrote:
-> Hi Conor,
->=20
-> > On Thu, Jan 22, 2026 at 01:58:38PM +0100, Lukasz Majewski wrote:
-> > > This patch adds VF610_CLK_ESW and VF610_CLK_ESW_MAC_TAB{0123}
-> > > macros definitions for L2 switch.
-> > >=20
-> > > Those definitions describe clocks for MoreThanIP switch IP block;
-> > > the switch itself and the MAC address lookup table clocks.
-> > >=20
-> > > Signed-off-by: Lukasz Majewski <lukma@nabladev.com>
-> > > ---
-> > >  include/dt-bindings/clock/vf610-clock.h | 7 ++++++-
-> > >  1 file changed, 6 insertions(+), 1 deletion(-)
-> > >=20
-> > > diff --git a/include/dt-bindings/clock/vf610-clock.h
-> > > b/include/dt-bindings/clock/vf610-clock.h index
-> > > 373644e46747..b6f7b1745cc2 100644 ---
-> > > a/include/dt-bindings/clock/vf610-clock.h +++
-> > > b/include/dt-bindings/clock/vf610-clock.h @@ -197,6 +197,11 @@
-> > >  #define VF610_CLK_TCON1			188
-> > >  #define VF610_CLK_CAAM			189
-> > >  #define VF610_CLK_CRC			190
-> > > -#define VF610_CLK_END			191 =20
-> >=20
-> > If end is modifiable, it is removable. If you need the define for the
-> > driver, please move it there.
->=20
-> Could you be more specific regarding your comment?
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
 
-Values in bindings are immutable, so changing a definition is an ABI
-break. If you can break the ABI for this definition, then you should
-just remove it instead, because it doesn't represent a clock and it is
-liable to change when you information comes to light (e.g. this patch).
-
-> The VF610_CLK_END has now value 191.
->=20
-> However, there are other clocks in this SoC - like CLK_ESW and
-> CLK_MAC_TAB{x} - which were not taken into account earlier.
->=20
-> What shall be done?
->=20
-> Shall I remove the VF610_CLK_END entirely?
->=20
-> Or move to the new "end" (as done with this patch)?
-
-If you need VF610_CLK_END for your driver, rather than just using
-(VF610_CLK_ESW_MAC_TAB + 1), please move the definition there.
-
---Bo4H8p00HSNTdmeG
+--Yw5HADqUeVykISp/
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaXOqpgAKCRB4tDGHoIJi
-0pPzAP0XViMQ/ABii3Q6VmMbs5OtfE4iZF8MVXW7nsPbcGgezQEAnxZGahwfSWqR
-1SVWOQ4cmTwqZZh0ZNu3d0Ooagudugk=
-=hCx5
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaXOrMAAKCRB4tDGHoIJi
+0o5iAP0Z4efMn16t5/r1M35ktzOWRtmlNCNUYYybATjK69F4PQD/eE8MhKajPzII
+oIPzRTmk3HXPYwKyGMDh4C72NKhCXQQ=
+=7Gqe
 -----END PGP SIGNATURE-----
 
---Bo4H8p00HSNTdmeG--
+--Yw5HADqUeVykISp/--
 
