@@ -1,170 +1,167 @@
-Return-Path: <devicetree+bounces-258983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258984-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qBc6KZWDc2kDxAAAu9opvQ
-	(envelope-from <devicetree+bounces-258983-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:20:05 +0100
+	id yPqvAAmDc2kDxAAAu9opvQ
+	(envelope-from <devicetree+bounces-258984-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:17:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECFE776EAB
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:20:04 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94E0776DCF
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 15:17:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 28318301CFAB
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 14:17:43 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 04A413008D6E
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 14:17:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35E3F2D8771;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83BDA2F3C13;
 	Fri, 23 Jan 2026 14:17:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f172.google.com (mail-vk1-f172.google.com [209.85.221.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C560A3B1B3
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16E8C1E9B35
 	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 14:17:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.172
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769177862; cv=none; b=F8j+C9v6Tzr0Fu/MAYZ0OiLmtzb+3hyY9z0abTFm8O6Ff+fsAae5+bLJ0vzK/xwD627jW2sNeQjEDqwKuaHhiO0v6Kh9Sx6TSvqdHXEUspD4wtqaKSP9sX7YfacvNpwXh4VD9kHJIYv3LPGDrwepsdrT+Mg8sJJsE969co00k+I=
+	t=1769177862; cv=none; b=UINJXKhkods1pp40H9gA451VZDo50lB2GpAaiXWuRoncDovAJrk/EUFR++q+i7AqjA+pDBkcKJDw2QU7ReH5sdHZwZvgmw++N8dn23qOR/ZZoC2+QOedsH+dUEKf1Il0RDLl9xM8DJTyICIPssY37GI2deeL3EsO5s733zgMYM8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1769177862; c=relaxed/simple;
-	bh=r9HsTXgn1GaeqU1gNHwX8oVvaVI1l0Q1W0dpN3P42O8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QQZsMs51ipWo/NFa5q8eZZ9IWx98ihR6f9n3EiIRlRjpSKggFAGYwTO/58ASUf7Kh+PThbtU3wsy6TETezYKqH6MKDHsJBhyjnvCdbnkEzmQVIwUedjI78qnHKZXRlOOFiedxG7kQR0fanGJszxHrPEzrdTpieeJsBxuTtxcZ3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f172.google.com with SMTP id 71dfb90a1353d-5663601fe8bso1778393e0c.1
-        for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 06:17:40 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769177860; x=1769782660;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qLnfjU65RvqkFmzX5x5XUooORBFON/JkVFQYLPFc2VI=;
-        b=DG9fyLwDkuyJ7N1xXhpwcQRdZJO/Yzf6AZhodfopu3/o7vD3K1DShKEGLYr4CFqIin
-         A23NCt2CIXcy8vChwA6DzXF3swvYvQANV7oPrg6oL9BNB6qCGfOf7aSsALxO+ejV/YNn
-         YLQHLYuyMFRoc8tqRQAr0nDeoCc1/0sZja/2VK6zZjA42ui3MB+ZIgyo7unXrfz5BaOi
-         Txappo58k5igdT25IGXb1UnTKvFV+430E2IyiMf5rQ291trxDvlaKT8iwbQlfvYIQ9e2
-         2aaH7VQbZrwn8QK6QKD4Jsh7Lz65G0GwQZbzuoVWxHFol+ZelWGEWrnmc2Dn/GW4uRB3
-         0x/A==
-X-Forwarded-Encrypted: i=1; AJvYcCVtnqtyMJ9p6NoE4V7RCPY91A3d+TMu152jukwCUNRLyiRfT6WCiv+vfk41PTd4wlPcihDdD7/up0Fo@vger.kernel.org
-X-Gm-Message-State: AOJu0YxUcnJQBD8rSTzNaseAtL+9reQLVxnCqcSkmDDnV7HkW9htk0aW
-	F/f0wI5LN1eDrJBYhYCHLaWXvhmVupNWCgEWI+Ta5BiaMnR3P+G5St9Gtnk+Td3c
-X-Gm-Gg: AZuq6aIuMq51YUnfnSMWXSlsH9UFkrE2E1EYp8Q/CIa+XWgnvikVJtxp71ahVJtIJ3K
-	XiO8GhwzCcZNAmktcHi2O85kB0f6aemleFW4lQJHjgK1apSuQfU8B2kfGFN3v1sh9+KOwsvIPbp
-	ZoqKBNftYiGlNBo5cwcS48AQoMooDT9055TLlM+wM3lB9Fyc1UeXG9/zadfPWd1ioetTcX28hGm
-	wHygu4N/CCuX9roUOpWjqYkinsNAmTqDa97cRMTPJOCtepPvHBThguzTJpvISMEyrIZbaQr+XwO
-	hZf9KebR7nvMq0X6hyvXrAhzWvC+NEqNlWkgyyGchlBr/s3+recwX/MQ6PXG3XngTRtqOJ9S1DD
-	fBYqjLj/MnKljyUoGw0+zdc7A/2f3SJcdQRPRAwcdpHh2XiqDomSpeT2MKht+zH8/HxVp0nMXdr
-	i3OWrW8KM5Az3EJvP4V1aHq2KwC0Au9tf+wqzD8E9/WlsEyjXYRYvM
-X-Received: by 2002:a05:6122:1307:b0:55a:be72:7588 with SMTP id 71dfb90a1353d-5663eb445cemr960719e0c.11.1769177859564;
-        Fri, 23 Jan 2026 06:17:39 -0800 (PST)
-Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com. [209.85.221.181])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5663fb9bd11sm540919e0c.21.2026.01.23.06.17.39
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Jan 2026 06:17:39 -0800 (PST)
-Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-56373f07265so1916690e0c.0
-        for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 06:17:39 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVJSiTD3jkLRkhWesILO0PZ0fGqtOqSv5e/81muPGFGYQRx9xTQ/mNHAAtdR4926Ymz9SSZDVmXVujR@vger.kernel.org
-X-Received: by 2002:a05:6102:3f0f:b0:5db:1fbc:4462 with SMTP id
- ada2fe7eead31-5f54bcc01d2mr1080831137.31.1769177859213; Fri, 23 Jan 2026
- 06:17:39 -0800 (PST)
+	bh=tZQdaapFyjK/60l8c6qEELow9aA4TJhUEJgJSERxvHU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GoMSAl71Yd3mOmNCnz9UCr8T0P99iLMKtu+MswqArUbf6ffwFtmSt5ARA4BjUaY20fD5ieCF03bOEkf7HAqQXgRDtDVSXSfKJsjfcMhLYPK1fJi0/PzLjC1Z/HYWT2w1bv/R9RK4QtgokVKn0/gw4IPXksXfOS03RiI8tnWYPAQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1vjHyf-0002jI-Ax; Fri, 23 Jan 2026 15:17:33 +0100
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1vjHyf-0026gG-2R;
+	Fri, 23 Jan 2026 15:17:33 +0100
+Received: from pengutronix.de (p54b152ce.dip0.t-ipconnect.de [84.177.82.206])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id C7C524D6F7D;
+	Fri, 23 Jan 2026 14:17:32 +0000 (UTC)
+Date: Fri, 23 Jan 2026 15:17:32 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Arun Muthusamy <arun.muthusamy@gaisler.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	mailhol@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-can@vger.kernel.org
+Subject: Re: [PATCH v3 15/15] can: grcan: Update echo skb handling to match
+ variable length CANFD frame
+Message-ID: <20260123-jolly-orangutan-of-finesse-5a9bb3-mkl@pengutronix.de>
+References: <20260122121038.7910-1-arun.muthusamy@gaisler.com>
+ <20260122121038.7910-16-arun.muthusamy@gaisler.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260123140031.94752-1-john.madieu.xa@bp.renesas.com> <20260123140031.94752-6-john.madieu.xa@bp.renesas.com>
-In-Reply-To: <20260123140031.94752-6-john.madieu.xa@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 23 Jan 2026 15:17:27 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWxNbJaDhpOsJRCkDWvqqu4e63Z+cMRndFA6F+McdbuRg@mail.gmail.com>
-X-Gm-Features: AZwV_QiB25G7U1c5HmJJDzyb95Uh8yyZZslQ3E5dHn2oE_aXz9DOubj9nIVp0gs
-Message-ID: <CAMuHMdWxNbJaDhpOsJRCkDWvqqu4e63Z+cMRndFA6F+McdbuRg@mail.gmail.com>
-Subject: Re: [PATCH v2 05/15] dt-bindings: PCI: renesas,r9a08g045s33-pcie: Fix
- typo in interrupt-names
-To: John Madieu <john.madieu.xa@bp.renesas.com>
-Cc: claudiu.beznea.uj@bp.renesas.com, lpieralisi@kernel.org, 
-	kwilczynski@kernel.org, mani@kernel.org, krzk+dt@kernel.org, robh@kernel.org, 
-	bhelgaas@google.com, conor+dt@kernel.org, magnus.damm@gmail.com, 
-	biju.das.jz@bp.renesas.com, linux-pci@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-clk@vger.kernel.org, john.madieu@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="di6szzwy2btquo6k"
+Content-Disposition: inline
+In-Reply-To: <20260122121038.7910-16-arun.muthusamy@gaisler.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.56 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[bp.renesas.com,kernel.org,google.com,gmail.com,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-258983-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-258984-lists,devicetree=lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[pengutronix.de];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.993];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mkl@pengutronix.de,devicetree@vger.kernel.org];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,renesas.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: ECFE776EAB
+	NEURAL_HAM(-0.00)[-0.999];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:url,pengutronix.de:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 94E0776DCF
 X-Rspamd-Action: no action
 
-Hi John,
 
-On Fri, 23 Jan 2026 at 15:01, John Madieu <john.madieu.xa@bp.renesas.com> wrote:
-> Fix a typo in the interrupt-names property description: "ser_cor"
-> should be "serr_cor" (System Error Correctable).
->
-> Fixes: e7534e790557 ("dt-bindings: PCI: renesas,r9a08g045s33-pcie: Document RZ/G3E SoC")
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
+--di6szzwy2btquo6k
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 15/15] can: grcan: Update echo skb handling to match
+ variable length CANFD frame
+MIME-Version: 1.0
 
-Thanks for your patch!
+On 22.01.2026 13:10:38, Arun Muthusamy wrote:
+[...]
 
-> --- a/Documentation/devicetree/bindings/pci/renesas,r9a08g045-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/renesas,r9a08g045-pcie.yaml
-> @@ -42,7 +42,7 @@ properties:
->    interrupt-names:
->      items:
->        - description: serr
-> -      - description: ser_cor
-> +      - description: serr_cor
->        - description: serr_nonfatal
->        - description: serr_fatal
->        - description: axi_err
+> @@ -1575,7 +1591,16 @@ static netdev_tx_t grcan_start_xmit(struct sk_buff=
+ *skb,
+>  	 * can_put_echo_skb would be an error unless other measures are
+>  	 * taken.
+>  	 */
+> -	can_put_echo_skb(skb, dev, slotindex, 0);
+> +
+> +	priv->echo_skb_idx =3D priv->next_echo_idx;
+> +
+> +	can_put_echo_skb(skb, dev, priv->next_echo_idx, 0);
+> +
+> +	/* Move to the next index in the echo skb buffer */
+> +	priv->next_echo_idx =3D (priv->next_echo_idx + 1) % priv->can.echo_skb_=
+max;
+> +
+> +	if (priv->can.echo_skb[priv->echo_skb_idx])
+> +		netif_stop_queue(dev);
 
-Nice catch!
+You also use "if (unlikely(space =3D=3D 1)) netif_stop_queue(dev);", that
+looks suspicious. Why have 2 independent ways to check if the TX queue
+is full?
 
-Looks like the DTS is actually correct. So why wasn't this caught
-before by "make dtbs_check"?
+Marc
 
-<dramatical silence>
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
 
-Because "description" should have been "const".
-The same is true for clock-names and reset-names.
-So please fix all of these, together with the typo.
+--di6szzwy2btquo6k
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Gr{oetje,eeting}s,
+-----BEGIN PGP SIGNATURE-----
 
-                        Geert
+iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmlzgvkACgkQDHRl3/mQ
+kZznWwgAq/9I/ClKJvOD5Q4TVO2sMzbDGU6vs9G82gYb3e/12vfgeNohhG7eyEU8
+4F3CP4Ptf9lHHYcCpCQp7tF9az7eO7MN17lFegXNGJ6L3Qz9fA8JZ5NJWV7rJrZa
+3TsdaJxv5eH/u2/B+9sySlEwOHmt3YAlXGjgoTXPsfm9RCVtgdcoUTIYXAK4DTCr
+cbRjvII8KKRb+KvPqAK2qMnnA6ZCnOUN7+KKRnQ7U69+uLhR+12gEmLpMS7CCzog
+XtSwVhQcKIHLQEh8GFCNX5o061YDtnLyGFr/GNzut+xDMSU4bVh0gMRnkhUtE5e/
+PZlVwgO4q1p6mDOIDQNmMMpPeWHYzw==
+=4o+f
+-----END PGP SIGNATURE-----
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+--di6szzwy2btquo6k--
 
