@@ -1,795 +1,186 @@
-Return-Path: <devicetree+bounces-258878-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258880-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YOSDFCtKc2mHuQAAu9opvQ
-	(envelope-from <devicetree+bounces-258878-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 11:15:07 +0100
+	id uBpZEK1Lc2lDugAAu9opvQ
+	(envelope-from <devicetree+bounces-258880-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 11:21:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C867974203
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 11:15:06 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9614F74423
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 11:21:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 884C53015888
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:14:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 322353150B14
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:15:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FE4337F0E2;
-	Fri, 23 Jan 2026 10:14:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDC9337E2E9;
+	Fri, 23 Jan 2026 10:15:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="NNsww5Y3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="w78DC35E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013013.outbound.protection.outlook.com [40.107.162.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B4F5346FD2;
-	Fri, 23 Jan 2026 10:14:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D663374726
+	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 10:15:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.49
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769163283; cv=fail; b=kQ9/3yrciBCrJxuN5LTjB/36Pp8nKBMH/8DG+2np0bU3MMM4HRH8Pp7B40gu1UNt19GVxQzzMcRt5Sze6P2dXr3CKimzm2xoYCXqjvTrP4R5nMX6zOpwyQy9/6w7njArCTFix8Q8tq75yJT0dU0Oc8F3Poz86+J0mHtAOnYkAH4=
+	t=1769163316; cv=pass; b=iC16bIEpPmdG0oIMpKYJkuF3zbfoUZxLd/ljAy6t4tlBC5vP0tP8Q5qX+B0i/oI3uJSCmOCLDfsyFDtR9Ini+1yQ6pUajtC4t9sXmLsE7E8ZM5bPilOtKIJ+JbwgPwX11/GLQsOujQFxWVlKFOm0KVUS3JXxMtbz8zNHj4wi46E=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769163283; c=relaxed/simple;
-	bh=dAktAUZnLIB72g6sjKSzfulK9C07lhLHl8dicrLhRQk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=J+/MC/8eAqCN7ujJ6lTJOeJo098im8mSyjD4ouOKFgBfApYhGObcQDyEj/K17gKlqsyOmIm2Go/5mGVMBECM3+Q+gEaHQFZrxK4mnsHDaJbQPRZiORxiqyb19m7vq/q3nDyhcGY99D4LFWUjq0x9uKgRXPBnNceNS1JUumZasN8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=NNsww5Y3; arc=fail smtp.client-ip=40.107.162.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YC1NvcwS51nYtEtFDkQa2DUr01cfoFvt73dBklgPVrIaNZzl/D8kcUrUVRy46yNDQ6Pp9I9bQNXewBXR6jPO8dHz48AdYu+ptY1eKylcrb/QfSCkUnis+2CG7uw2+xGQW54OLbG4l7z4lcc7+lwCddTWBHVCYnU+E/T9s6nVSBWJJQ+DJ8nt6pJ0FI/FaeLcIIm4qOzW2C/OpN5zy5Y7yFnVXP/oNVak/yGY1C+GQ5ILqMFvyePUebawNvP0s5KO8f5PMQY+bw/xtlaRuJttKVo3SBbt88UrX3YXTN01GhXrmRMDojhs3+GaIBWUDcjtjrYQHoSY9m95zqdPgoezSA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=X11aDf6KhJy4X17wue7HKtKGIYM8acS9medwdl080c8=;
- b=Ke/g4EgoH5W57Ab2wX+v603UIBR6faVezxIkRRcnvFfYzVioC6E8wZ79D4XfemlZ715h4aBRZPM9KFGUEPd2vC34bF0DWToydJeff4LraVA6OQtvfooyFgMeUTkAsW69Bw7SnQ6tCk/5tWVYjQiFVBqxa9gjNFgzY6gRKW24+q9VZBe3ykPvYF3h6BlOLkoYrvNAlfEJrRBGIX6umv164su3UQ8yDULRF8h7GqwG490uShpxpCIpIBjrNoRNevq79ZpET+gKMcjmq6515zQ3cYEq1BOLdW5rl0ALYMD3aLEMsVAiql6dGkgPCHtQywR9WZN5Ge8Oc+sT80917gRQYw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 164.130.1.59) smtp.rcpttodomain=dh-electronics.com smtp.mailfrom=foss.st.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=X11aDf6KhJy4X17wue7HKtKGIYM8acS9medwdl080c8=;
- b=NNsww5Y34lP5UfRZ2r3z6GjS4q2WFDu9BV++ZStnD7Y5Nd/t349NldhIAlGmiqHfjDrWwFKgzzAcE4ZM0lBbHC1k69ZzIUxXtdW1MlUmeqY+IEDAGB1ReSCA6Kcv1LhKPFreQsFJhtbCK03STmXZk38qqTCb82flkr6PTJJgDpXjRO4bsVQVDwXr+sukRus7vQJkvvDhFgTq1KQ4skOuAbBjN8gX5dWVkmsF9ArG0M7zp9FZe1PH8fMz7IRN0tA/j/X9RyRhSQ5CXRyv0aJ0vd1SSBVaIY5dAOFWrFRhH5c0jQ8EsI3RSahdq4hYoZ3LKtFOH3RIGoWLh3LNxZi9uw==
-Received: from DUZP191CA0058.EURP191.PROD.OUTLOOK.COM (2603:10a6:10:4fa::18)
- by VI0PR10MB8354.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:800:21b::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.11; Fri, 23 Jan
- 2026 10:14:25 +0000
-Received: from DB3PEPF0000885D.eurprd02.prod.outlook.com
- (2603:10a6:10:4fa:cafe::1a) by DUZP191CA0058.outlook.office365.com
- (2603:10a6:10:4fa::18) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9542.11 via Frontend Transport; Fri,
- 23 Jan 2026 10:14:23 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.59)
- smtp.mailfrom=foss.st.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=foss.st.com;
-Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
- designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
- client-ip=164.130.1.59; helo=smtpO365.st.com;
-Received: from smtpO365.st.com (164.130.1.59) by
- DB3PEPF0000885D.mail.protection.outlook.com (10.167.242.8) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9564.3 via Frontend Transport; Fri, 23 Jan 2026 10:14:25 +0000
-Received: from STKDAG1NODE1.st.com (10.75.128.132) by smtpo365.st.com
- (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Fri, 23 Jan
- 2026 11:15:40 +0100
-Received: from localhost (10.252.18.201) by STKDAG1NODE1.st.com
- (10.75.128.132) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Fri, 23 Jan
- 2026 11:14:08 +0100
-From: Patrice Chotard <patrice.chotard@foss.st.com>
-Date: Fri, 23 Jan 2026 11:14:08 +0100
-Subject: [PATCH v5 6/6] arm64: dts: st: Add boot phase tags for
- STMicroelectronics mp2 boards
+	s=arc-20240116; t=1769163316; c=relaxed/simple;
+	bh=l1LWw/lLO2Mxd163sD1iwfH3mnjzIBvX0B0bzcnxAn0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=cOnPjI264Qj+2CrdQD96+mPvZkyh6iJiLy2kfXUawzPL5ZN9tLqyzbDHI2z0jFzXjdEAN9KtwfKm5sTqK0SZc4tN3z2nK/1B6XDBwf4IQ3UKxMbyIAZbVxtslDBHvsRtB21h+ULMqIQ4ou85Dnay9t5LHPhZxlTjhOTbWOUZ5s4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=w78DC35E; arc=pass smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-59de2d1fc2cso2046554e87.2
+        for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 02:15:12 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1769163310; cv=none;
+        d=google.com; s=arc-20240605;
+        b=kTQPsSRPiNwLkBXsoeoOVN2kD4wgNhqLmTvBh9nq5mvz/OXlI22fYluYH5pd3I2eCy
+         vN2ux2D4tvWdO+Km4LMbni+b3iPpZxyWPvutuvLDox3AGuD/Dr8BOqBSHXLlHz4Z42rA
+         XzIr3k/Z4Xc4hJRgR78xy4Kvs36IfxNQh0r62OXNFw7ahUnPE46OiaqBPBvaShDakDGt
+         pCvMFwBPnQ6RqcVa3Sb7xzkftZsBfZgDH+JulSPdLOUUydO5Mh1JBG/C2PvjjAh9WZRm
+         jrORHJcKIPc0tAjufRVbpTsYkeGJMFj8p4f6kH3J3uYcM5RdV9AE3yXRdZLxZ4CzeItR
+         ZNoQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=f1NePwJCHgkmaOrOX/MEPkH/zPtNPeBUxGf5rTLnWwg=;
+        fh=DQnnt7w4u4U9pRItmA78aRstI2eIkaDGx0IbZFBN7FE=;
+        b=WhpQAh2Ba6Q40esXuBHwZJnlGek4j3n/mCFcuHdoWK3INg3quAjQS7wLDAO/0alDfF
+         Z0Pg1DapvHth89CzBUE2uMIlzX3kalwAmL6/k309kmnXUSexi5aw4g0w2QPaqf+/xS8g
+         TuUPIuMLF2q3VdkLYU91HoJDj/ROw/Eq5/2UWDD2TWpGqCJxSL6k/UXtPBz5fFweMrgB
+         WY+Qvp7v7U7KBw9qF28xKlpfgco8y6Ds0dS9asRMwr5KELaQHD+Lb5WiELuJHXtylz5I
+         3PJCWVe5MsnPPAfxqhf9BG2m5fu3tbXhtSY/BOvWKmYsYT+/ZDdWvXIdsNcE5DDWri8Z
+         xfEg==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1769163310; x=1769768110; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=f1NePwJCHgkmaOrOX/MEPkH/zPtNPeBUxGf5rTLnWwg=;
+        b=w78DC35ELycFtKwMaFjS7E+iMLkwyA3ZmyegPYFrRLlsh1YfSCC5U3MP1QrPJQ3zRG
+         jva/7SQc0SrihAzSaVkEej8TnaGd+Ksu9HsJFPiafIkSZJRlGVx8JE5gzXVwvzuEqfQk
+         m5dLVxIHeWfKhMgvtnDfwVO2om4C6vHUYpaN3XH6FhSL+LdozEutWqt3tjovXDK9zHzg
+         mCTi/ApFLoaHPbNLlSDxvGekHfQNr2n4eLHB2Ahmmh40Mf9zogDtu/+Jhrq18QxgoAd1
+         BFLFD6W20HThpboUasj/jdRAdMq2n8Z2kZoKERiFtVsrUXmWwXVYcG8Cf6Xdz3Q5gkZC
+         pjhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769163310; x=1769768110;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=f1NePwJCHgkmaOrOX/MEPkH/zPtNPeBUxGf5rTLnWwg=;
+        b=V2kaMQV3z/n/LbFWV5tWf8GGEsrvXYHgmDzKBdtkzjXxUFvGZDVi2rLcfehEl2+iTk
+         /thnMH0inV7aDZmmliMSKQBpCtcNVSJBbUq5I5UMkqsFQDDCgCDGQ5kjSfqApNxJjHpX
+         y1JcZzk/PJlpGyKiW2EKkfPItO0PsdVTdDi5trIOXrnaOsIUpwdl+8aHEISrbDmjd2Z/
+         ZnqBXvHpwgh6MRt5qfdVbfVxgpmmj9XrAmmtzB5vXINCqvnIhKM+Bjab9TS4WFoEXK0r
+         byldguMP1AMzMhxl55vWbqEqN5T/xqgUMIwXQwttU/3JOLVKqyjaauWkpHkJ4S1cv267
+         7s+w==
+X-Forwarded-Encrypted: i=1; AJvYcCX0ScbfdKHAIPG4SlV73yj9olHHILzbyKNWtbOx82WrJc+LhF5AiI/n4qjWDZfEgqGv3mHLqx4ygzm8@vger.kernel.org
+X-Gm-Message-State: AOJu0YxWGhfJiLbLuOCjxY+UTSsW/MtfXlyomujO6YrLWRr5SMWjQkLB
+	Zb9Jx5Hii8wntGI6HmGbKrSDkJxXsg5KgyhB2wCjqOYGsrOmtKcVbVkeuhMQIzldAbevbPXEncU
+	tRElWwjJ9A86qg3NCI2wEj+4eEqNKK3ZvR+o3AM2fQA==
+X-Gm-Gg: AZuq6aK3jcHCEyyZ5W5c/5sRYx6F8A9uaDbY7qNHcvlT7U2joR0adK/UBEn2bSZcPAw
+	m3D7J7oLSvVMRBFPkQFz431IfIrH4JH7rMK9EAwz/JqhS7Ewy2RfMSyhcRQFZfVGf88T8rwoQJ5
+	WDBOMsF0H4EsrOnG/KwlJy13B5ojIElxrjGwiIejpo5r04kkUaf1wem/3UOB8xlOs2vQMbsNJNY
+	6w+lNKBMtC1pFciiN/4ryIX2DA4wXPP3kgQ5BDL7rplVmeexiH/9ZY1SgaUpP4cCmQwlVOz
+X-Received: by 2002:a05:6512:10cb:b0:59d:ccb3:2f0d with SMTP id
+ 2adb3069b0e04-59de4922159mr793933e87.36.1769163309685; Fri, 23 Jan 2026
+ 02:15:09 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20260123-upstream_uboot_properties-v5-6-5167929d5af5@foss.st.com>
-References: <20260123-upstream_uboot_properties-v5-0-5167929d5af5@foss.st.com>
-In-Reply-To: <20260123-upstream_uboot_properties-v5-0-5167929d5af5@foss.st.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Patrick Delaunay <patrick.delaunay@foss.st.com>, Christoph Niedermaier
-	<cniedermaier@dh-electronics.com>, Marek Vasut <marex@denx.de>
-CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<kernel@dh-electronics.com>, Patrice Chotard <patrice.chotard@foss.st.com>
-X-Mailer: b4 0.14.3
-X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE1.st.com
- (10.75.128.132)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB3PEPF0000885D:EE_|VI0PR10MB8354:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4e35597a-a91f-44d9-9755-08de5a682f76
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|376014|7416014|1800799024|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?b01MM1U2RU1xWlRTMkxhc05tWmJ6VUVEZWg5Qkx6VUxBMWFVMWs5cTE1a0hJ?=
- =?utf-8?B?TklRZ3dqR0NINGJOQng5Vkx5cElySlRzWk0rRU1sdjlQYVdxRlpXeXBueHRU?=
- =?utf-8?B?bXprVzdLQ3FoWXJQRVNLTHo5eVpQRUpUaHpmMTZ3SG81TjdNaEpod3NUeUky?=
- =?utf-8?B?a2N3VVJ4NGVKaVBJODlMSlFoU3Z1Ky9VLzBHWjhTblptNEhmYlJ0NnlXcW1a?=
- =?utf-8?B?M2VOMWwwTTJZOVJzZE1uNzRMeDZIK1I2czM3R3VrMWxhbExKNGtUMWlDNjlM?=
- =?utf-8?B?QUp5Um9hVVpvcDFmNERoOXV3S3hBTkxKZ3FERmJyVEt1ckwyVzBtOGdPYWVu?=
- =?utf-8?B?U25XNWd1V3dQbHBQMmJIaVJDRVlKY0xuV0RTWUZDVDlFeGFYMU1lbkJFbWVL?=
- =?utf-8?B?R09COW5aNDlZWXpqeEk5U3Y2UVdTYWY0WDYyV1ViWHhrNWNDM2RXZkhkQmhB?=
- =?utf-8?B?QTJnejg0V1VLL2tIWXV4OEVXL0RLNDVGTVIwdGNrdWtpWHRlVEREekhzc0pS?=
- =?utf-8?B?YXZtaG9iSzhNUmZVb2ltQkRBeEZJdHZOOVh0N29GMjhZKzB3ZmI5NnFkbEs4?=
- =?utf-8?B?V2o1SkdDb1pCMElaVFVyeEIrVFVHTzZTZUxMR2lLeVV0di9sNWdCOS9pWTVx?=
- =?utf-8?B?UXNjTVZXaURSWXE4VVZwR1lnN1NsLzkzd3pqWmFyRUpzQ1hkRzNKc1p1dm4x?=
- =?utf-8?B?NkxMNk9Rd1BvVGVibGpJSlVJYXV3SGZiaEpGd0tRY29Xa3ZTNmUxK2tleGZZ?=
- =?utf-8?B?V0FBR2doUFQyMUVCb1BiVklHa1RSdm83NWhFZy9va1B3czhnMWFuNG95eU5j?=
- =?utf-8?B?OWU3Mm9qTjhZV212N0pEWFRwWmdVY3AyK2JkeUFpbzVSMmxLOFROTmNuYW8v?=
- =?utf-8?B?U005dGNlWllrUndhRjREbDdFRGtaQTdiMHg3cHZVT2M0ZkpUZldxQWtpUktw?=
- =?utf-8?B?dFFpaElGQjlQdk5DbkNjK2czSWlNZW9QZlVFWkcrRDhkWlFPOXc1THhXVjY5?=
- =?utf-8?B?UnpuSnRrM0VYc0RrbnZ6MndqUncrR2hraGRLZWNaWVREc0FjeVVNMXN6UlNz?=
- =?utf-8?B?MFFYOUphZEZwSEFCdTA1N1NpWW4xWVVyZDVKS051Z2x5WGY3NFVpeml4dmd4?=
- =?utf-8?B?NTlRRUVqS1V2UnovYU5VaGNLVDhWdnFOZk5sOWFJVjgzOFVOL0JpL2thUkNj?=
- =?utf-8?B?U0J0eVVnYm1wSmNTUmpkZ3UwVUxkMFM3Y3pLaXZ6Z3JWaGpTKzhXdENucXBn?=
- =?utf-8?B?aW9RV3V6dSs4azlYcEZnSytuamNPczRPVlJKbkRyNW9mS1BOSGQwQkJsZS9q?=
- =?utf-8?B?Y2hYdGhwRE1IRGM0czNCcWhUNTFOeGVoWVY4SnlDMkUvdEdDQTRZMnRDZWV4?=
- =?utf-8?B?M3RLemF2akgvaWg4N0pQQjhnOVJsb2N6amNuZGNaOEh4blNNT3hZL0FFZE5z?=
- =?utf-8?B?V0xKQ2NFZmFkYnRWT3FCaXVLNlFDSW9zVDZuY2I1S2Iwd3RMYjV1UTJvZFov?=
- =?utf-8?B?citUNHZiYVZZY3FmZTM1U2ZyNnZZTkUzTlAxWlQrc0FXN0FQdnVEUVREeGhC?=
- =?utf-8?B?QWtvVzJOa2drTDNnc2tpcFBFY0RYbVphVFlOdm9VTVpjU0EzUTFLclBLWXo5?=
- =?utf-8?B?QjJid3JQVFVyNVlnQlhkaEpYZ2VUMUdJWW9NazhjUnZ1L1NHTWRtdTZMTTUr?=
- =?utf-8?B?dkxrWHFSd0V6MEdTWWk1OVBrN3V2b2htSVBqRHN2bGFIRkhiMWdhejdqS2lB?=
- =?utf-8?B?QzEyK1VMYW85NEluY2VkWXUwK2lIeTRxNHdyRFY5KzlpSHlJNzhJY2k4bitp?=
- =?utf-8?B?b2ppaWE0RUtpaFhUWVFCQWJVYlZQOVRLMlYzbktTOHZrU2t2Wlk1ZFRMQkJC?=
- =?utf-8?B?M21zY2prUzloRnFwMWNCY0trSGpPMW8rbWd5SXNwczVveGlhNzJ3RDR0SnBF?=
- =?utf-8?B?ZHdzSnU3ek5sZ1BIcytxNGtRejFjZlBoYnV0cUE2cTZ1WVh4OE9ORXlzdEg3?=
- =?utf-8?B?L3g0V1orTXdZNW9WaVFjTG5senFjS3JtSXFRWDRCZjY5VG5NTE5rTFQxSWRN?=
- =?utf-8?B?NUgyRGtnNmoySkg5T0hodW5ldVd5eXpQMlBrQWRFS2tXUkRaK2xKcFZpdnBZ?=
- =?utf-8?B?QTNIYTlhWkR1YnNKKzV4WEpsd0lLTW5sZFMvbFZ6T1hXaStCVGpjaVZpVlhK?=
- =?utf-8?B?MjArc1BpcmppVWNGT3FUYmh6Ymd3ZGhUZm94ZTRzOUxYTktNNmgrdGpFbEt2?=
- =?utf-8?B?YTFFck8xbmxPRU5VUGtHekYxTXBnPT0=?=
-X-Forefront-Antispam-Report:
-	CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(376014)(7416014)(1800799024)(82310400026);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0:
-	6lpkoSBO5oYFK4tE0vIkZTwbAZql8Y/2+4YvAEq/tHXUHsJZX7+45/b6nPf6IgvK91O1Z6QrTC2bfzBCpyWeOQDsksj60+Kh9oawBXaLLjVReT1+q14ie0XfAQGdJhz2QP+dU2PjEx81h6iKRHp1oOqZFzA4V82nfT8LJlPsN5jl0zZ4+KPMhJNacvw5m1vLYUNgcVtRbX2ciQTlPROhQZnxKN7os+NroQG1qC3vnOPpKSaqK5yFNGkTwKVw/83IaKYig6XrI5GWrw8N06wC7N3o49QHkmiMYYkoMdEnwiLL1/jpS089clknYKKha5KzxJNa5hhUzwUKbnDp6+7CBhL40mQ8S2/f/h94mO+UIFpAtp+caN1UfSVnuXhrmlaaDzOfuRFb/k3CJLxu8dGLrZWfeFMOUgSNkxs1Q0FE1g073s37SefUhKB6U8p+f5Vw/j3axvVf3C+b8nFPkHUcQMdklPCV8mrUZ8IuBjkqXjgaEGuxMFpjgxWVcl1EqroG2QquNYbCCdU8ZCPdFtInR7mIA9U4eltSITywSW0zUDqCbslWvYDKXSzIGGqlE/zPN4tXTYE66nrzbzHmmX95OfmNSmcYBFst9pVLFoXnPjbwLQirpblPnsOWfPcKVu621/VYC0hzrZSNl1lKI+qW0hM1E4Wr+wRp75ep4gcZbOOWzvKweeOt7384jcVFPCX6jjSvFhwX56icu8zGKZ5CEg==
-X-OriginatorOrg: foss.st.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2026 10:14:25.1467
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4e35597a-a91f-44d9-9755-08de5a682f76
-X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DB3PEPF0000885D.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR10MB8354
+References: <1769132482-177365-1-git-send-email-shawn.lin@rock-chips.com>
+In-Reply-To: <1769132482-177365-1-git-send-email-shawn.lin@rock-chips.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Fri, 23 Jan 2026 11:14:33 +0100
+X-Gm-Features: AZwV_QgGSg-BBq9S7_AV3LtbRn4AJfL-B908kIEEoaE0Y2St9LA5MAJw9GzsJKM
+Message-ID: <CAPDyKFp_Hw68uf=Bw0ndc9EzDOTQpp-dLejuy71wrygRSyBV2Q@mail.gmail.com>
+Subject: Re: [PATCH 0/3] Remove deprecated mshc alias support from dw_mmc
+To: Shawn Lin <shawn.lin@rock-chips.com>
+Cc: Wei Xu <xuwei5@hisilicon.com>, linux-mmc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Jaehoon Chung <jh80.chung@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[foss.st.com,none];
-	R_DKIM_ALLOW(-0.20)[foss.st.com:s=selector2];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258878-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,foss.st.com,dh-electronics.com,denx.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[foss.st.com:mid,foss.st.com:dkim,0.0.0.0:email,0.0.0.16:email,st.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-258880-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[patrice.chotard@foss.st.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[foss.st.com:+];
-	DBL_PROHIBIT(0.00)[0.0.0.1:email,2.221.203.144:email,0.0.0.23:email,0.0.0.7:email];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: C867974203
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ulf.hansson@linaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	NEURAL_HAM(-0.00)[-0.995];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree];
+	RCPT_COUNT_FIVE(0.00)[6];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 9614F74423
 X-Rspamd-Action: no action
 
-The bootph-all flag was introduced in dt-schema
-(dtschema/schemas/bootph.yaml) to define node usage across
-different boot phases.
+On Fri, 23 Jan 2026 at 02:41, Shawn Lin <shawn.lin@rock-chips.com> wrote:
+>
+>
+> The support for the mshc alias has long been deprecated[1], as the mmc core
+> already provides standard alias support for obtaining the controller ID[2].
+> With mshc aliases removed from the last Rk3036 plaform[3], the only remaining
+> users are the HiSilicon hi3660-hikey960 and hi3670-hikey970 boards. This patch
+> series removes support for mshc from the dwmmc driver and updates the DTS files
+> for the hi3660-hikey960 and hi3670-hikey970 to use the standard mmc alias instead.
+> Considering that the hikey960 and hikey970 are open development boards, users are
+> expected to use newer kernels, and the need to adapt old DTBs to new kernels is
+> relatively low. Therefore, backward compatibility of DTBs is likely not a major
+> concern here.
+>
+> [1] https://lore.kernel.org/linux-rockchip/20211124184603.3897245-1-john@metanate.com/
+> [2] Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+> [3] https://lore.kernel.org/linux-rockchip/c6feab79-5b73-413b-a94f-9d1b2fa6df43@gmail.com/
+>
+>
+>
+> Shawn Lin (3):
+>   mmc: dw_mmc-k3: Remove mshc alias support
+>   mmc: dw_mmc: Remove mshc alias support
+>   arm64: dts: hisilicon: hikey960/970: Convert to use standard mmc alias
+>
+>  arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts |  4 ++--
+>  arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts |  4 ++--
+>  drivers/mmc/host/dw_mmc-k3.c                      | 22 +++++++++-------------
+>  drivers/mmc/host/dw_mmc.c                         |  9 +++------
+>  4 files changed, 16 insertions(+), 23 deletions(-)
+>
+> --
+> 2.7.4
+>
 
-To ensure SD boot, timer, gpio, syscfg, clock and uart nodes need to be
-present in all boot stages, so add missing bootph-all phase flag
-to these nodes to support SD boot.
+In general I think this makes sense, but we need to make sure that
+patch3 is merged before we drop the mshc alias support in the dw_mmc
+driver, so please re-order the patches in the series to make this
+clear.
 
-Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
----
- arch/arm64/boot/dts/st/stm32mp211.dtsi     |   4 +-
- arch/arm64/boot/dts/st/stm32mp215f-dk.dts  |  25 +++++++
- arch/arm64/boot/dts/st/stm32mp231.dtsi     |   4 +-
- arch/arm64/boot/dts/st/stm32mp235f-dk.dts  |  95 ++++++++++++++++++++++++++
- arch/arm64/boot/dts/st/stm32mp251.dtsi     |   4 +-
- arch/arm64/boot/dts/st/stm32mp255.dtsi     |   2 +-
- arch/arm64/boot/dts/st/stm32mp257f-dk.dts  | 103 ++++++++++++++++++++++++++++
- arch/arm64/boot/dts/st/stm32mp257f-ev1.dts | 105 +++++++++++++++++++++++++++++
- 8 files changed, 335 insertions(+), 7 deletions(-)
+If we agree that the $subjeect series makes sense, I could potentially
+help by taking the DTS patch too via my mmc tree.
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp211.dtsi b/arch/arm64/boot/dts/st/stm32mp211.dtsi
-index bf888d60cd4f..9e9f7f6a580f 100644
---- a/arch/arm64/boot/dts/st/stm32mp211.dtsi
-+++ b/arch/arm64/boot/dts/st/stm32mp211.dtsi
-@@ -47,7 +47,7 @@ ck_flexgen_51: clock-200000000 {
- 	};
- 
- 	firmware {
--		optee {
-+		optee: optee {
- 			compatible = "linaro,optee-tz";
- 			method = "smc";
- 		};
-@@ -70,7 +70,7 @@ scmi_reset: protocol@16 {
- 		};
- 	};
- 
--	psci {
-+	psci: psci {
- 		compatible = "arm,psci-1.0";
- 		method = "smc";
- 	};
-diff --git a/arch/arm64/boot/dts/st/stm32mp215f-dk.dts b/arch/arm64/boot/dts/st/stm32mp215f-dk.dts
-index 7bdaeaa5ab0f..2a003a7c3796 100644
---- a/arch/arm64/boot/dts/st/stm32mp215f-dk.dts
-+++ b/arch/arm64/boot/dts/st/stm32mp215f-dk.dts
-@@ -44,6 +44,31 @@ &arm_wdt {
- 	status = "okay";
- };
- 
-+&optee {
-+	bootph-all;
-+};
-+
-+&psci {
-+	bootph-all;
-+};
-+
-+&rifsc {
-+	bootph-all;
-+};
-+
-+&scmi {
-+	bootph-all;
-+};
-+
-+&scmi_clk {
-+	bootph-all;
-+};
-+
-+&scmi_reset {
-+	bootph-all;
-+};
-+
- &usart2 {
-+	bootph-all;
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/st/stm32mp231.dtsi b/arch/arm64/boot/dts/st/stm32mp231.dtsi
-index 88e214d395ab..a2f93f6ccb84 100644
---- a/arch/arm64/boot/dts/st/stm32mp231.dtsi
-+++ b/arch/arm64/boot/dts/st/stm32mp231.dtsi
-@@ -59,7 +59,7 @@ optee: optee {
- 			interrupts = <GIC_PPI 15 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>;
- 		};
- 
--		scmi {
-+		scmi: scmi {
- 			compatible = "linaro,scmi-optee";
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-@@ -111,7 +111,7 @@ scmi_vdda18adc: regulator@7 {
- 		};
- 	};
- 
--	psci {
-+	psci: psci {
- 		compatible = "arm,psci-1.0";
- 		method = "smc";
- 
-diff --git a/arch/arm64/boot/dts/st/stm32mp235f-dk.dts b/arch/arm64/boot/dts/st/stm32mp235f-dk.dts
-index c3e688068223..a055d8a2ee99 100644
---- a/arch/arm64/boot/dts/st/stm32mp235f-dk.dts
-+++ b/arch/arm64/boot/dts/st/stm32mp235f-dk.dts
-@@ -78,6 +78,10 @@ &arm_wdt {
- 	status = "okay";
- };
- 
-+&bsec {
-+	bootph-all;
-+};
-+
- &ethernet1 {
- 	pinctrl-0 = <&eth1_rgmii_pins_b>;
- 	pinctrl-1 = <&eth1_rgmii_sleep_pins_b>;
-@@ -100,6 +104,78 @@ phy1_eth1: ethernet-phy@1 {
- 	};
- };
- 
-+&gpioa {
-+	bootph-all;
-+};
-+
-+&gpiob {
-+	bootph-all;
-+};
-+
-+&gpioc {
-+	bootph-all;
-+};
-+
-+&gpiod {
-+	bootph-all;
-+};
-+
-+&gpioe {
-+	bootph-all;
-+};
-+
-+&gpiof {
-+	bootph-all;
-+};
-+
-+&gpiog {
-+	bootph-all;
-+};
-+
-+&gpioh {
-+	bootph-all;
-+};
-+
-+&gpioi {
-+	bootph-all;
-+};
-+
-+&gpioz {
-+	bootph-all;
-+};
-+
-+&optee {
-+	bootph-all;
-+};
-+
-+&pinctrl {
-+	bootph-all;
-+};
-+
-+&pinctrl_z {
-+	bootph-all;
-+};
-+
-+&psci {
-+	bootph-all;
-+};
-+
-+&rcc {
-+	bootph-all;
-+};
-+
-+&rifsc {
-+	bootph-all;
-+};
-+
-+&scmi {
-+	bootph-all;
-+};
-+
-+&scmi_clk {
-+	bootph-all;
-+};
-+
- &scmi_regu {
- 	scmi_vddio1: regulator@0 {
- 		regulator-min-microvolt = <1800000>;
-@@ -111,6 +187,10 @@ scmi_vdd_sdcard: regulator@23 {
- 	};
- };
- 
-+&scmi_reset {
-+	bootph-all;
-+};
-+
- &sdmmc1 {
- 	pinctrl-names = "default", "opendrain", "sleep";
- 	pinctrl-0 = <&sdmmc1_b4_pins_a>;
-@@ -125,12 +205,27 @@ &sdmmc1 {
- 	status = "okay";
- };
- 
-+&syscfg {
-+	bootph-all;
-+};
-+
- &usart2 {
- 	pinctrl-names = "default", "idle", "sleep";
- 	pinctrl-0 = <&usart2_pins_a>;
- 	pinctrl-1 = <&usart2_idle_pins_a>;
- 	pinctrl-2 = <&usart2_sleep_pins_a>;
-+	bootph-all;
- 	/delete-property/dmas;
- 	/delete-property/dma-names;
- 	status = "okay";
- };
-+
-+&usart2_pins_a {
-+	bootph-all;
-+	pins1 {
-+		bootph-all;
-+	};
-+	pins2 {
-+		bootph-all;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-index a8e6e0f77b83..4eaf1de3d87f 100644
---- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
-+++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-@@ -68,7 +68,7 @@ optee: optee {
- 			interrupts = <GIC_PPI 15 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>;
- 		};
- 
--		scmi {
-+		scmi: scmi {
- 			compatible = "linaro,scmi-optee";
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-@@ -139,7 +139,7 @@ v2m0: v2m@48090000 {
- 		};
- 	};
- 
--	psci {
-+	psci: psci {
- 		compatible = "arm,psci-1.0";
- 		method = "smc";
- 
-diff --git a/arch/arm64/boot/dts/st/stm32mp255.dtsi b/arch/arm64/boot/dts/st/stm32mp255.dtsi
-index 7a598f53a2a0..3ba4e6166586 100644
---- a/arch/arm64/boot/dts/st/stm32mp255.dtsi
-+++ b/arch/arm64/boot/dts/st/stm32mp255.dtsi
-@@ -40,4 +40,4 @@ venc: venc@480e0000 {
- 		clocks = <&rcc CK_BUS_VENC>;
- 		access-controllers = <&rifsc 90>;
- 	};
--};
-\ No newline at end of file
-+};
-diff --git a/arch/arm64/boot/dts/st/stm32mp257f-dk.dts b/arch/arm64/boot/dts/st/stm32mp257f-dk.dts
-index e718d888ce21..080358b134ce 100644
---- a/arch/arm64/boot/dts/st/stm32mp257f-dk.dts
-+++ b/arch/arm64/boot/dts/st/stm32mp257f-dk.dts
-@@ -78,6 +78,10 @@ &arm_wdt {
- 	status = "okay";
- };
- 
-+&bsec {
-+	bootph-all;
-+};
-+
- &ethernet1 {
- 	pinctrl-0 = <&eth1_rgmii_pins_b>;
- 	pinctrl-1 = <&eth1_rgmii_sleep_pins_b>;
-@@ -100,6 +104,86 @@ phy1_eth1: ethernet-phy@1 {
- 	};
- };
- 
-+&gpioa {
-+	bootph-all;
-+};
-+
-+&gpiob {
-+	bootph-all;
-+};
-+
-+&gpioc {
-+	bootph-all;
-+};
-+
-+&gpiod {
-+	bootph-all;
-+};
-+
-+&gpioe {
-+	bootph-all;
-+};
-+
-+&gpiof {
-+	bootph-all;
-+};
-+
-+&gpiog {
-+	bootph-all;
-+};
-+
-+&gpioh {
-+	bootph-all;
-+};
-+
-+&gpioi {
-+	bootph-all;
-+};
-+
-+&gpioj {
-+	bootph-all;
-+};
-+
-+&gpiok {
-+	bootph-all;
-+};
-+
-+&gpioz {
-+	bootph-all;
-+};
-+
-+&optee {
-+	bootph-all;
-+};
-+
-+&pinctrl {
-+	bootph-all;
-+};
-+
-+&pinctrl_z {
-+	bootph-all;
-+};
-+
-+&psci {
-+	bootph-all;
-+};
-+
-+&rcc {
-+	bootph-all;
-+};
-+
-+&rifsc {
-+	bootph-all;
-+};
-+
-+&scmi {
-+	bootph-all;
-+};
-+
-+&scmi_clk {
-+	bootph-all;
-+};
-+
- &scmi_regu {
- 	scmi_vddio1: regulator@0 {
- 		regulator-min-microvolt = <1800000>;
-@@ -111,6 +195,10 @@ scmi_vdd_sdcard: regulator@23 {
- 	};
- };
- 
-+&scmi_reset {
-+	bootph-all;
-+};
-+
- &sdmmc1 {
- 	pinctrl-names = "default", "opendrain", "sleep";
- 	pinctrl-0 = <&sdmmc1_b4_pins_a>;
-@@ -125,12 +213,27 @@ &sdmmc1 {
- 	status = "okay";
- };
- 
-+&syscfg {
-+	bootph-all;
-+};
-+
- &usart2 {
- 	pinctrl-names = "default", "idle", "sleep";
- 	pinctrl-0 = <&usart2_pins_a>;
- 	pinctrl-1 = <&usart2_idle_pins_a>;
- 	pinctrl-2 = <&usart2_sleep_pins_a>;
-+	bootph-all;
- 	/delete-property/dmas;
- 	/delete-property/dma-names;
- 	status = "okay";
- };
-+
-+&usart2_pins_a {
-+	bootph-all;
-+	pins1 {
-+		bootph-all;
-+	};
-+	pins2 {
-+		bootph-all;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-index 6e165073f732..61464076b8d5 100644
---- a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-+++ b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-@@ -130,6 +130,10 @@ &arm_wdt {
- 	status = "okay";
- };
- 
-+&bsec {
-+	bootph-all;
-+};
-+
- &combophy {
- 	clocks = <&rcc CK_BUS_USB3PCIEPHY>, <&rcc CK_KER_USB3PCIEPHY>, <&pad_clk>;
- 	clock-names = "apb", "ker", "pad";
-@@ -216,6 +220,54 @@ phy0_eth2: ethernet-phy@1 {
- 	};
- };
- 
-+&gpioa {
-+	bootph-all;
-+};
-+
-+&gpiob {
-+	bootph-all;
-+};
-+
-+&gpioc {
-+	bootph-all;
-+};
-+
-+&gpiod {
-+	bootph-all;
-+};
-+
-+&gpioe {
-+	bootph-all;
-+};
-+
-+&gpiof {
-+	bootph-all;
-+};
-+
-+&gpiog {
-+	bootph-all;
-+};
-+
-+&gpioh {
-+	bootph-all;
-+};
-+
-+&gpioi {
-+	bootph-all;
-+};
-+
-+&gpioj {
-+	bootph-all;
-+};
-+
-+&gpiok {
-+	bootph-all;
-+};
-+
-+&gpioz {
-+	bootph-all;
-+};
-+
- &i2c2 {
- 	pinctrl-names = "default", "sleep";
- 	pinctrl-0 = <&i2c2_pins_a>;
-@@ -300,6 +352,7 @@ timer {
- };
- 
- &ltdc {
-+	bootph-all;
- 	status = "okay";
- 	port {
- 		ltdc_ep0_out: endpoint {
-@@ -309,6 +362,7 @@ ltdc_ep0_out: endpoint {
- };
- 
- &lvds {
-+	bootph-all;
- 	status = "okay";
- 	ports {
- 		#address-cells = <1>;
-@@ -330,6 +384,10 @@ lvds_out0: endpoint {
- 	};
- };
- 
-+&optee {
-+	bootph-all;
-+};
-+
- &pcie_ep {
- 	pinctrl-names = "default", "init";
- 	pinctrl-0 = <&pcie_pins_a>;
-@@ -351,10 +409,38 @@ pcie@0,0 {
- 	};
- };
- 
-+&pinctrl {
-+	bootph-all;
-+};
-+
-+&pinctrl_z {
-+	bootph-all;
-+};
-+
-+&psci {
-+	bootph-all;
-+};
-+
-+&rcc {
-+	bootph-all;
-+};
-+
- &rtc {
- 	status = "okay";
- };
- 
-+&rifsc {
-+	bootph-all;
-+};
-+
-+&scmi {
-+	bootph-all;
-+};
-+
-+&scmi_clk {
-+	bootph-all;
-+};
-+
- &scmi_regu {
- 	scmi_vddio1: regulator@0 {
- 		regulator-min-microvolt = <1800000>;
-@@ -386,6 +472,10 @@ scmi_vdd_sdcard: regulator@23 {
- 	};
- };
- 
-+&scmi_reset {
-+	bootph-all;
-+};
-+
- &sdmmc1 {
- 	pinctrl-names = "default", "opendrain", "sleep";
- 	pinctrl-0 = <&sdmmc1_b4_pins_a>;
-@@ -400,6 +490,10 @@ &sdmmc1 {
- 	status = "okay";
- };
- 
-+&syscfg {
-+	bootph-all;
-+};
-+
- &spi3 {
- 	pinctrl-names = "default", "sleep";
- 	pinctrl-0 = <&spi3_pins_a>;
-@@ -477,11 +571,22 @@ &usart2 {
- 	pinctrl-0 = <&usart2_pins_a>;
- 	pinctrl-1 = <&usart2_idle_pins_a>;
- 	pinctrl-2 = <&usart2_sleep_pins_a>;
-+	bootph-all;
- 	/delete-property/dmas;
- 	/delete-property/dma-names;
- 	status = "okay";
- };
- 
-+&usart2_pins_a {
-+	bootph-all;
-+	pins1 {
-+		bootph-all;
-+	};
-+	pins2 {
-+		bootph-all;
-+	};
-+};
-+
- &usart6 {
- 	pinctrl-names = "default", "idle", "sleep";
- 	pinctrl-0 = <&usart6_pins_a>;
-
--- 
-2.43.0
-
+Kind regards
+Uffe
 
