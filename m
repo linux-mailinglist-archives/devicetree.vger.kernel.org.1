@@ -1,58 +1,84 @@
-Return-Path: <devicetree+bounces-258807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-258808-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wIPJFXA9c2kztgAAu9opvQ
-	(envelope-from <devicetree+bounces-258807-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:20:48 +0100
+	id KEolGLs+c2kztgAAu9opvQ
+	(envelope-from <devicetree+bounces-258808-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:26:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id E899673281
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:20:47 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA97B733E3
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 10:26:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id BB6EB300DCF6
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 09:20:26 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6C0C630120EE
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jan 2026 09:25:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F110A33D506;
-	Fri, 23 Jan 2026 09:20:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8415731A049;
+	Fri, 23 Jan 2026 09:25:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ouCeHIuY"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="HTZxcn7E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DFE534D91C;
-	Fri, 23 Jan 2026 09:20:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 070BA30BB80
+	for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 09:25:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769160016; cv=none; b=NB2FUo85smk+hfcMbGeM0ZsQi6uxHTv07/3eg1ICuzBRlg3zPj09o0XWn8AcBpDdxX73K0OP9Gz22Z3OFqXmSA6EuDBGd3D/OhKcpWAeBfal/S9kmqzhIY58GhzdPF7Jf8Vjj8yp5i3tKZ4r2M/0g2Aa0Sis4GFFM3GPsT/AIeg=
+	t=1769160323; cv=none; b=ekMfdIHUw8/RISy+A+L5J4u44j+qCYeGmOyta6En2JhIx10YVQW6iLDxdAct1R8pUKC/MihgR26ko00y3LaSgyqNqR21o6++UaufYdwKNFTc/KtZSZgWP8+gIgi88GRHoW6QAQyfcdXZSWPS1GdLSlmaOR7OLLax+W8FcpazbZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769160016; c=relaxed/simple;
-	bh=wScmABaUKe1t2JjurcDqwTIA/wh8A/mq733h91F71Qc=;
+	s=arc-20240116; t=1769160323; c=relaxed/simple;
+	bh=m2nCruU7nNkkyDjRNPZcpfz1+LM7X3rD7M9XU5lDwNY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=l8gWM9wZnJDWswJ8dnpks+zsU2t+duPXdIWnkJ2YcIb3Y59pX1EDzNIU6ubzYsAS8XZgwGBDwrubhLleXDdSkG4s5/k55b8yjB6VAxOwnygcwAMqfM47o0RIYyYOPdWuinPZnhDQjqWcvp9bwKy17eiCJYWZXUgORbgVsgMZ8JM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ouCeHIuY; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id A4AE04E42212;
-	Fri, 23 Jan 2026 09:20:11 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 69FA46070A;
-	Fri, 23 Jan 2026 09:20:11 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2D07C119A8792;
-	Fri, 23 Jan 2026 10:20:04 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1769160009; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=QoUg3Uk7+e8l5mq7yG+QFMWRIs9FeJl/CwglzOQSrcA=;
-	b=ouCeHIuYjsbzgDHldVpAkuh/B5AtCWHh58OIV/MdbRM+XeewIili9URv6x4IBIDo6adSjk
-	5F5HKuSEJZDSvQ7rjF9z2bgNUYp/a+TJxDR7euP2NxpA9zLHH7Fiave4pisKcrDRgx8wyd
-	6GTMTDnkUVqVyq2XpofKxjsGfE75V0YDJ9tFadQwT4Euf0e+w7amNzUOuIvkrgDcHXzEDM
-	4I/7CZz2QztBW2vXrPVnks3KiDKtPIr0snQ5oh/k2Ocqn8UVaGeXgXGPOpPl3cUmjIKA4o
-	zcgC4p2JlEcTpIYeWOKP3i4fSQa/Nz/qOmU7+S8ehBJNueZhnHGWB2WOdHOuQQ==
-Message-ID: <dc6e60ec-f460-4713-b1cc-97ceb2d344f5@bootlin.com>
-Date: Fri, 23 Jan 2026 10:20:03 +0100
+	 In-Reply-To:Content-Type; b=bw6quAzKytJyF7pUiWDcD7M/nTNLQt74ewJrtdXhH5V70WqbA2dev80B4niCj0ERH8NDzc3wjMiTJsbjc7zLPmF2B9jV3oVMZVKGsi6R5r8wHVd/qJ8h/Nf4qJ9HrED8wZtvA/4t2Z8Jy3MtmFJleRnj/kGbs+aPfU0GsvOUyuo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=HTZxcn7E; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-430f2ee2f00so1224929f8f.3
+        for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 01:25:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1769160318; x=1769765118; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=42GEtX+KF8PV1SXMltWgUuBtFY4WZcL8hCIPkAOOUUo=;
+        b=HTZxcn7E/S+vWb7ghMJpMlAKOZlBkIUfgC1vSsceewyJAjOFpdJ3+If/FnSJCjGdZA
+         4In3kMTIQzWX3KlnwUST9v9MU2VcxdHotrpAdwoZG1BfpewC2cZ2Ith+utZnaHp01jCm
+         SWVGguqFVC6UQFhqrIWhYtlqpJuZzQZDPZVKdIcC8lszk+QR0BM7rgIAKlbyaAmGQwnO
+         F8H5ZgSUP4kqtc/zuLU39N+iOnAJhMV0NUcQGM/WjHWMyBz9xtxFX+y1y3O0Dk13isem
+         5SBvvanpvBduSmkAJ9YErJEa0iAa/T9ndXQnEgL/XGmRB3unhJ8ssD0//Dr9ig8tZjj0
+         HY3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769160318; x=1769765118;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=42GEtX+KF8PV1SXMltWgUuBtFY4WZcL8hCIPkAOOUUo=;
+        b=bMamJPdhZhGOOmb2v/mdsC4uxm/B7MBM1ilpxzLT5mkgsgso/TzQzVXeyye9heA1KX
+         aTRNu0JmyEP8HAC0XvxevzIOZ6U6TJSju0Gyo/K6dpvI3OWhr9Ts3Lq45x6i//7syY1D
+         IiRbqLre4tJmSf+CUJ22XHVywdQkA2NtiHpD9b4iMmexiLSy5cXVolEBKaSFYpHZMlPt
+         rsN79JHRuI1KB0uhZ3YvIXsaDhvNjUy5+7rxnzxgn11wxwBLPuMnIMOOoVBWepNvI79t
+         B5mRLR1ei2yGSRD8yGPfgoWe9iz5fvpZGnFPpLRT7nKEbmsxwioaO73Gi+DU0GGoZWDs
+         lvKA==
+X-Forwarded-Encrypted: i=1; AJvYcCUqlWUTh8qO3icyGjHfAWEUiFyLpMLmpn+O4h9csI8Hs0Q7KMDXHJSKGQz+wK/9yyi6CECUS0qdDtdj@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzb+VpNrNibdoF8XdGAYzp1/PBsYLYWjfTvCZokxEDlyGNaJ7iU
+	TOpZkz4DP5Or1N+XpzFpEhnaKUUpNrbc+PBIarWTEyZsuqqx75jaSrcGpOisCLSUX8k=
+X-Gm-Gg: AZuq6aJ/tgL9b4kNIG+8gFWb8QuJgaus1+Eegq5aK9sXET/SqSdBi0w8ZXb6HlX65Sd
+	189mzP6WDAMCttvIRvYwMsMbovSwk6Hi7/9Esrs6BFZ+mAmtAGQvvTuHVfvBfCiD4n4idj8qPyS
+	pJvwirJUB8WVzZ/v3v/qeATIA88T/E5T10qlryv12pujD+MxinVbqHyiUPP2WYYRHA3a18/bfN0
+	93ULa0qBCMahpgnvPCRKqe/Tdu/ImQdMQjoIiqdC3faNK6i2nn739WMoH17pC8VjnNAtuJiNVln
+	UiQOC3LQ+wvA8E/XttRKXS+bzU31aZqPmrraiTdAWcm9X2OiFy1bNVAlFjsRSpWh/mNEzpPmMTa
+	cD/pRGtIpuJ0XVAXDItryboQujdiWOZ9DQ4LQx+oQW2mE8wfx7uZkWMAlN7l+slgo+QtyGsd651
+	KWjpJ79pnhZsgKrxpGeQ==
+X-Received: by 2002:a05:6000:2c12:b0:435:a3b9:9b8 with SMTP id ffacd0b85a97d-435b15de04cmr4007181f8f.24.1769160318186;
+        Fri, 23 Jan 2026 01:25:18 -0800 (PST)
+Received: from [192.168.50.4] ([82.78.167.31])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435b1f73855sm5141283f8f.29.2026.01.23.01.25.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 23 Jan 2026 01:25:17 -0800 (PST)
+Message-ID: <38eb1632-4541-40e2-adc5-9c25fad9df7e@tuxon.dev>
+Date: Fri, 23 Jan 2026 11:25:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,137 +86,58 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] arm64: dts: a7k: add COM Express boards
-To: Gregory CLEMENT <gregory.clement@bootlin.com>,
- Rob Herring <robh@kernel.org>, Elad Nachman <enachman@marvell.com>,
- andrew@lunn.ch
-Cc: conor+dt@kernel.org, linux-kernel@vger.kernel.org, robh+dt@kernel.org,
- chris.packham@alliedtelesis.co.nz, pali@kernel.org,
- devicetree@vger.kernel.org, mrkiko.rs@gmail.com,
- sebastian.hesselbarth@gmail.com, linux-arm-kernel@lists.infradead.org,
- krzysztof.kozlowski+dt@linaro.org
-References: <20260122165923.2316510-1-enachman@marvell.com>
- <176910484185.3007016.14688980539020105749.robh@kernel.org>
- <87a4y4lmn4.fsf@BLaptop.bootlin.com>
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Subject: Re: [RESEND PATCH] ARM: dts: microchip: Drop usb_a9g20-dab-mmx.dtsi
+To: "Rob Herring (Arm)" <robh@kernel.org>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260122202345.3387936-2-robh@kernel.org>
 Content-Language: en-US
-In-Reply-To: <87a4y4lmn4.fsf@BLaptop.bootlin.com>
-Content-Type: text/plain; charset=UTF-8
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <20260122202345.3387936-2-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[tuxon.dev:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-258807-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,alliedtelesis.co.nz,gmail.com,lists.infradead.org,linaro.org];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[tuxon.dev:+];
+	TAGGED_FROM(0.00)[bounces-258808-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DMARC_NA(0.00)[tuxon.dev];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[maxime.chevallier@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,0.0.0.0:email,bootlin.com:mid,bootlin.com:dkim,marvell.com:email]
-X-Rspamd-Queue-Id: E899673281
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[claudiu.beznea@tuxon.dev,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tuxon.dev:mid,tuxon.dev:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,bootlin.com:email]
+X-Rspamd-Queue-Id: BA97B733E3
 X-Rspamd-Action: no action
 
-Hi,
 
-On 23/01/2026 10:10, Gregory CLEMENT wrote:
-> Hello,
+
+On 1/22/26 22:23, Rob Herring (Arm) wrote:
+> This .dtsi file is not included anywhere in the tree and can't be
+> tested.
 > 
->> On Thu, 22 Jan 2026 18:59:20 +0200, Elad Nachman wrote:
->>> From: Elad Nachman <enachman@marvell.com>
->>>
->>> Add support for Armada 7020 Express Type 7 CPU module board by Marvell.
->>> Add device tree bindings for this board.
->>> Define this COM Express CPU module as dtsi and provide a dtsi file for
->>> the carrier board (Marvell DB-98CX85x0 COM Express type 7 carrier board).
->>> Add the Falcon DB to the MAINTAINERS list
->>>
->>> Since memory is soldered on CPU module, memory node is on CPU module
->>> dtsi file.
->>>
->>> This Carrier board only utilizes the PCIe link, hence no special device
->>> or driver support is provided by this dtsi file.
->>> Devise a dts file for the combined com express carrier and CPU module.
->>>
->>> The Aramda 7020 CPU COM Express board offers the following features:
->>>
->>> 1.  Armada 7020 CPU, with dual ARM A72 cores
->>> 2.  DDR4 memory, 8GB, on board soldered
->>> 3.  1Gbit Out of Band Ethernet via RGMII to PHY and RJ45 connector,
->>>     all are present on A7K CPU module (none on the carrier)
->>> 4.  Optional 10G KR Ethernet going via the COM Express type 7 connector
->>> 5.  On-board 8 Gbit, 8-bit bus width NAND flash
->>> 6.  On-board 512 Mbit SPI flash
->>> 7.  PCIe Root Complex, 4 lanes PCIe gen3 connectivity, going via the
->>>     COM Express type 7 connector
->>> 8.  m.2 SATA connector
->>> 9.  Micro-SD card connector
->>> 10. USB 2.0 via COM Express type 7 connector
->>> 11. Two i2c interfaces - one to the CPU module, and one to the
->>>     carrier board via the COM Express type 7 connector
->>> 12. UART (mini USB connector by virtue of FT2232D UART to USB
->>>     converter, connected to the Armada 7020 UART0)
->>>
+> Acked-by: Alexandre Belloni<alexandre.belloni@bootlin.com>
+> Signed-off-by: Rob Herring (Arm)<robh@kernel.org>
 
- [...]
-
->> My bot found new DTB warnings on the .dts files added or changed in this
->> series.
->>
->> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
->> are fixed by another series. Ultimately, it is up to the platform
->> maintainer whether these warnings are acceptable or not. No need to reply
->> unless the platform maintainer has comments.
->>
->> If you already ran DT checks and didn't see these error(s), then
->> make sure dt-schema is up to date:
->>
->>   pip3 install dtschema --upgrade
->>
->>
->> This patch series was applied (using b4) to base:
->>  Base: attempting to guess base-commit...
->>  Base: tags/next-20260121 (exact match)
->>  Base: tags/next-20260121 (use --merge-base to override)
->>
->> If this is not the correct base, please add 'base-commit' tag
->> (or use b4 which does this automatically)
->>
->>
->> New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/marvell/' for 20260122165923.2316510-1-enachman@marvell.com:
->>
->> arch/arm64/boot/dts/marvell/db-falcon-carrier-a7k.dtb: ethernet@0 (marvell,armada-7k-pp22): ethernet-port@0:phy-mode:0: '10gbase-kr' is not one of ['gmii', 'sgmii', 'rgmii-id', '1000base-x', '2500base-x', '5gbase-r', 'rxaui', '10gbase-r']
->> 	from schema $id:
->> http://devicetree.org/schemas/net/marvell,pp2.yaml
-> 
-> Does this mean we should add 10gbase-kr to the phy-mode enum list in
-> Documentation/devicetree/bindings/net/marvell?
-
-No, 10gbase-kr is legacy, one should use "10gbase-r" instead, cf commit
-
-e0f909bc3a24 ("net: switch to using PHY_INTERFACE_MODE_10GBASER rather than 10GKR")
-
-That should probably be documented in the bindings at some point :)
-
-Maxime
+Applied to at91-dt, thanks!
 
