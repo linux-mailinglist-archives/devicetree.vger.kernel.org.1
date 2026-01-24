@@ -1,646 +1,230 @@
-Return-Path: <devicetree+bounces-259195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259196-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KMZ8DZ8mdWlXBQEAu9opvQ
-	(envelope-from <devicetree+bounces-259195-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 21:07:59 +0100
+	id 2wAHC3opdWm8BQEAu9opvQ
+	(envelope-from <devicetree+bounces-259196-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 21:20:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47BD17ED16
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 21:07:58 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A01DB7EDBA
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 21:20:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E1536300B758
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 20:07:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 84848300A631
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 20:20:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A90DB27A927;
-	Sat, 24 Jan 2026 20:07:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB0752798ED;
+	Sat, 24 Jan 2026 20:20:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="iw4BkIgO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LQm4t5XP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0C54279327;
-	Sat, 24 Jan 2026 20:07:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769285274; cv=none; b=Al/LMSi5xlPj/wnZCTAgpkkKI+UgdZXfqmNs0UMKN5Io2BEIAtx+yF4qYJ3/2pNNAIQ/Zu+ccnlr8q19KaRy/Fe92yvkLf2Al1RCWtvbf2RrKBSJSFmL5Z3wJghONJ/NLx4PXTp9DDrr3CrghYB+TQ+KHojWdRpYNMLOovHjraA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769285274; c=relaxed/simple;
-	bh=ed5+rj5UeU/XeVbqg6N+ZgCHuu+8Z//U0MCxZUF842o=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=r11UDYgDmIdJ0pyXnhTtNp+taJ+hxryhN5pdTHyIZtQ00VmW2u2o0O0iQHVU8HO74AeqeF6E7kTbie4SPdsWCP3a54cwMciHeVtQv96L3iaQUvSyUXjF1qQkmDZ1QrgGpk/pNWQpZpdGZPuJH4arPOcr9ShnAhesL+6s7qJW5xk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=iw4BkIgO; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 5BA1D278C7;
-	Sat, 24 Jan 2026 21:07:51 +0100 (CET)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id PPLBAjbqG9hx; Sat, 24 Jan 2026 21:07:50 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1769285270; bh=ed5+rj5UeU/XeVbqg6N+ZgCHuu+8Z//U0MCxZUF842o=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=iw4BkIgOpu6tQigqUKiuweS6X5xJgoh9ilKJElZxeFTVQbYkFnrWu2g/LWvGARvgl
-	 nKkux/KG3G9nc/ryzkSFLHoRg/wGJ34GYG/oEpaltvN8QSo24/W9zqDnH5oYs1IlHo
-	 t+bui56NiokRUF6VWNna0EGi8lhgugdZ/cnzvOZPPdPgpAGWGFLzMY2kCICX1YwsiE
-	 VI4Hrj2fs3wqQKaeLicKPdi67aqy1uAVo5D5Dsd5Ykuis83cWpamUE9VjWtF1TJFYE
-	 mp75DR3trVcHHbpqYHMKig/xTSvn0UCncVXQHOkbroiqmvjGnoEQVnOyqr8ZfuAHgi
-	 PVa2P/zUZyR3Q==
-From: Kaustabh Chakraborty <kauschluss@disroot.org>
-Date: Sun, 25 Jan 2026 01:35:27 +0530
-Subject: [PATCH 2/2] arm64: dts: exynos: add initial support for Samsung
- Galaxy J7 (2016)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 436DA2737E3
+	for <devicetree@vger.kernel.org>; Sat, 24 Jan 2026 20:20:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.221.45
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769286005; cv=pass; b=ecXo3r8m+s3FZOT9ulEmXehT/cFYWCLLXfHqEMni2QJoc7Y0efgZMp9ZoYMKddXTaQ39Mqdpd2dkhBcKNQcwfuKNHrfr+obyxmZlzPlDSZDiJmWtNxzkYmN4ajSR8HUOcGG3HAi5qtvSSWfe5XdhmF1CI7LzwNT01PTSPWH45Tk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769286005; c=relaxed/simple;
+	bh=zbChyElac1UwgTP0SJZj1q6AbqL+QWSoCe8JC/abZcQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TRJ6amtYexhuKp3NAnJCJS7RJ0suX61fXyGU/PRHgV+7zp+l5rPpcB6h55h2e+QL5LAaQqvdzc3GKEcMWr8VnA3PFAmuVN/1EAGXWbW8d0fX/PysPashFgHinVFK3lEvKtR2tBDNYa4p/MqGBtd/HHiGyiDB4/bs6XTgMQJEphQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LQm4t5XP; arc=pass smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-4327790c4e9so2123961f8f.2
+        for <devicetree@vger.kernel.org>; Sat, 24 Jan 2026 12:20:04 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1769286003; cv=none;
+        d=google.com; s=arc-20240605;
+        b=B//xVjeY5xxostSFk2MP7Fet2IsRawjP/d+EjqahNDSoItwtPbhGBC+t/j2NM8vBhO
+         oE7LyuZRNMc4U2OxDYToM0jowbzYsiQ/g8AjLYnsWbi3Xcz/IOndfIs4Q2znwGaHJZ0H
+         ch88fUzPjKxg1dU9Scz/gUa5F8fB/opRKjIFjxgEEwxIHKVNtiszWfrqyB9mEpxpsh03
+         5twLcNC304LZg566ZTsKyIjTd0JvLmtLkdfqyvjBGFENVgy7+EEb2RjrJdG8A5P62i5q
+         jfvudbyJXGucGuIbcEVEQjt2GxxYvuj20uYDuJdOmW/ryNImJg7GElvjdQU8wDO8TKWb
+         94Kg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=5IvQvVO47AehbyLG9Cg7wRdRPasY+7er+DvV1ut13R4=;
+        fh=Nei7I25HuJgv0UmkNwmW/k22jZkVCoyBdBmsA+hzoIQ=;
+        b=Ixsm1h6d0m94EmX0wC+K1+dloVLfAFWgZTewbwiV32UgDeZNs7m0szT+q/O6MWBlQp
+         TvvOHrCQGIiWGAeeUfviIJc7FDpK6KRgVM/+kKFNnanBNvpEp2KuTzLcfEJlOJ58TiKO
+         kekFiTpuOR1nTTr2VlKjNUHRLAZG6J7C/NXBX2Vlh8mxn2DyKIlC4eR8d17W6RbK1PrR
+         4brcLxoumIsSzwdzdWa6IBMuvaMhJiSvIoGOWoUv0L8Brm4R6aJ9B0e9lebNv7ALN9m1
+         wjWDqvwa8HFgs639+A91bU2WDbwxcV0k0c4+9BtyzyM8LyRWFXNhctmcp/bSwzBxlkHU
+         HR4g==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1769286002; x=1769890802; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5IvQvVO47AehbyLG9Cg7wRdRPasY+7er+DvV1ut13R4=;
+        b=LQm4t5XP1Th05IcbVbTcwufLJTHkdd7VcXrQn4yGeA8kvQ/LDJg1urhNBwipYnUSK3
+         2kFWt/78sCIWVdGJmsA7Uqd3LFrmej0kkOCMyZntIUs6Vo3b4m97VKka3MOLa87BAH4p
+         HKMSfqXvSaiR4Q8JrRjCQk9N7dgJ/gMtQTzmxWXzNZP7saT8guI6RvSAWShkU3yvAkFX
+         N8LAFLkhPZAANTwTAlz/vyojG/ifBgJGxzBdE+mTZv4ooLVtBxBhn8QGJwHBuk6UMEkW
+         3CjBpnppTLnbh7ZBzHsiPnntu20W0ZF1akz0FGQyVX409cZhCx64hlUBB2dkSjN0/Q7T
+         MvYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769286003; x=1769890803;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=5IvQvVO47AehbyLG9Cg7wRdRPasY+7er+DvV1ut13R4=;
+        b=mSN7I56yF4qc2wS1m1J7sGWiHx8cMRAcqa+XmEtIzMBpi1HAMObOO6NMCvrAoBIOcG
+         7RFZfUXiHtD4W+4WL+sfzEBAbZQqHRiFrl9Ms9HRxqrB/4E3rM7gHKHHJTtTalMeJX4+
+         edYotFWhZaqa9ADGoDescOoHKMyPJI5RzK0JMAQV6mAs6mnkiYjDWzIGVuk4/FqzuNwY
+         iiL2hFhhwOu9SwErG7Z1/OT2nfanebQXwsjzPfdDrkMGJyV/XDGksBFONu6TlHpKylPO
+         h9CJD9+ihOTH9CGHIWueUkCn4AxbQZEYOVfaxPgqnCgF2FZTM8eRyBcIuj6K5ZHh1qUT
+         5+cA==
+X-Forwarded-Encrypted: i=1; AJvYcCV128fsc24MK2Xso6k+bBzUk+zQuXxJcLvxAQoEN1bCIYrfXVLPP5GZ3IA4yOMnNKla2nHr4/OlTFYE@vger.kernel.org
+X-Gm-Message-State: AOJu0YyCzndF0WraRiumGDgKgN7T6lskqGXSzb9Tc3xzzieXdTWa5Q2+
+	j90frFxpU7R2IPPtMB87eit/aa44o6SsRlDfjoVK5Q6KAUCrrhYkJmtFBJFZZV0FqNxkdL+1QCd
+	Xyu1U39De8LUqFPoIhRShMbKtDBC5T0Y=
+X-Gm-Gg: AZuq6aIuoCKQ4pMQwc+sOM/LlrpXRDAojFFaI4fESDV+bczWmXSz8MztkZPSxg80KqN
+	TlUJEemOnlKuWnKoerhkOanXsbnViw6a0T1e3msk/X/vYd2vvl+j2YcNPOugGyUyx4Z9bULWcUO
+	+K+W5MDEqB5kM+NQ8zuEPvBNWf6E5iMvJNHSFe+okgETyEbV+K9U/Pept0muUJa09tcxGDgXNbs
+	xZ/zbsSigo6HQW57prIoTaTUS8qqkUeIGRtWFUghWhjC2oI0MibizxPWaaULvcllGNIKKCX
+X-Received: by 2002:a05:6000:288e:b0:431:752:672b with SMTP id
+ ffacd0b85a97d-435b159556dmr11734663f8f.14.1769286002389; Sat, 24 Jan 2026
+ 12:20:02 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260125-exynos7870-j7xelte-v1-2-5cacc3042c42@disroot.org>
-References: <20260125-exynos7870-j7xelte-v1-0-5cacc3042c42@disroot.org>
-In-Reply-To: <20260125-exynos7870-j7xelte-v1-0-5cacc3042c42@disroot.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Kees Cook <kees@kernel.org>, 
- Tony Luck <tony.luck@intel.com>, 
- "Guilherme G. Piccoli" <gpiccoli@igalia.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Kaustabh Chakraborty <kauschluss@disroot.org>, 
- Rayan Marzouk <rayanmarzouk743@gmail.com>, 
- bluebunny <kalorin.bok084@passinbox.com>
+References: <20251204061703.5579-1-clamor95@gmail.com> <20251204061703.5579-3-clamor95@gmail.com>
+ <7012249.lOV4Wx5bFT@senjougahara> <CAPVz0n3JEHtUOq4qaZbqPu97NXdYxx_=5im4rxoEWi8EbKmKEw@mail.gmail.com>
+In-Reply-To: <CAPVz0n3JEHtUOq4qaZbqPu97NXdYxx_=5im4rxoEWi8EbKmKEw@mail.gmail.com>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Sat, 24 Jan 2026 22:19:51 +0200
+X-Gm-Features: AZwV_QiGF7B_Re4bWRTdgXNS-XzkdDJdBkm2AnW07YovL950WfU-W10tVO3KO9M
+Message-ID: <CAPVz0n2PZRSLyKNBAA+nfH66ujbvmQVQbG=6Ai_5sBe3U_dyPg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4 RESEND] gpu/drm: tegra: dsi: move prepare function
+ to the top of encoder enable
+To: Mikko Perttunen <mperttunen@nvidia.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
+	Thierry Reding <treding@nvidia.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Prashant Gaikwad <pgaikwad@nvidia.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Dmitry Osipenko <digetx@gmail.com>, Charan Pedumuru <charan.pedumuru@gmail.com>, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,disroot.org,gmail.com,passinbox.com];
-	TAGGED_FROM(0.00)[bounces-259195-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259196-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[disroot.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kauschluss@disroot.org,devicetree@vger.kernel.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,nvidia.com,baylibre.com,ffwll.ch,vger.kernel.org,lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.1:email,2.98.90.0:email,0.0.0.48:email,3.254.86.192:email];
-	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,passinbox.com:email,disroot.org:email,disroot.org:dkim,disroot.org:mid,0.0.0.66:email]
-X-Rspamd-Queue-Id: 47BD17ED16
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nvidia.com:email,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: A01DB7EDBA
 X-Rspamd-Action: no action
 
-From: Rayan Marzouk <rayanmarzouk743@gmail.com>
+=D1=87=D1=82, 15 =D1=81=D1=96=D1=87. 2026=E2=80=AF=D1=80. =D0=BE 09:49 Svya=
+toslav Ryhel <clamor95@gmail.com> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+> =D1=87=D1=82, 15 =D1=81=D1=96=D1=87. 2026=E2=80=AF=D1=80. =D0=BE 07:54 Mi=
+kko Perttunen <mperttunen@nvidia.com> =D0=BF=D0=B8=D1=88=D0=B5:
+> >
+> > On Thursday, December 4, 2025 3:17=E2=80=AFPM Svyatoslav Ryhel wrote:
+> > > The tegra_dsi_prepare function performs hardware setup and should be
+> > > called before any register readings or there will be a risk of device
+> > > hangup on register access. To avoid this situation, tegra_dsi_prepare=
+ must
+> > > be called at the beginning of tegra_dsi_encoder_enable.
+> > >
+> > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> > > ---
+> > >  drivers/gpu/drm/tegra/dsi.c | 12 ++++++------
+> > >  1 file changed, 6 insertions(+), 6 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/tegra/dsi.c b/drivers/gpu/drm/tegra/dsi.=
+c
+> > > index 278bf2c85524..8e80c7efe8b4 100644
+> > > --- a/drivers/gpu/drm/tegra/dsi.c
+> > > +++ b/drivers/gpu/drm/tegra/dsi.c
+> > > @@ -914,6 +914,12 @@ static void tegra_dsi_encoder_enable(struct drm_=
+encoder *encoder)
+> > >       u32 value;
+> > >       int err;
+> > >
+> > > +     err =3D tegra_dsi_prepare(dsi);
+> > > +     if (err < 0) {
+> > > +             dev_err(dsi->dev, "failed to prepare: %d\n", err);
+> > > +             return;
+> > > +     }
+> > > +
+> > >       /* If the bootloader enabled DSI it needs to be disabled
+> > >        * in order for the panel initialization commands to be
+> > >        * properly sent.
+> > > @@ -923,12 +929,6 @@ static void tegra_dsi_encoder_enable(struct drm_=
+encoder *encoder)
+> > >       if (value & DSI_POWER_CONTROL_ENABLE)
+> > >               tegra_dsi_disable(dsi);
+> > >
+> > > -     err =3D tegra_dsi_prepare(dsi);
+> > > -     if (err < 0) {
+> > > -             dev_err(dsi->dev, "failed to prepare: %d\n", err);
+> > > -             return;
+> > > -     }
+> > > -
+> > >       state =3D tegra_dsi_get_state(dsi);
+> > >
+> > >       tegra_dsi_set_timeout(dsi, state->bclk, state->vrefresh);
+> > >
+> >
+> > The section of code before the tegra_dsi_prepare call was removed in 'R=
+evert "drm/tegra: dsi: Clear enable register if powered by bootloader"', so=
+ this patch should no longer be necessary.
+> >
+> > Mikko
+> >
+>
+> You are correct. I have found this when rebasing onto v6.18 which was
+> much later then this series was resent. Obviously, this patch would be
+> dropped on the next resend/v3. Sorry for inconvenience.
+>
 
-Add initial devicetree support for Samsung Galaxy J7 (2016) (codename:
-j7xelte), an Exynos7870 device.
+Actually, "Revert "drm/tegra: dsi: Clear enable register if powered by
+bootloader"" causes a  regression for me (DSI on Tegra20 device,
+Motorola Atrix 4G). DSI initiated by bootloader will be stuck if not
+disabled pre reconfiguration, Dmitry was right by bringing that
+change, but he did not take into account that if DSI is accessed from
+cold state (not configured by bootloader), device will hang. This
+patch addresses this behavior of Dmitry's patch and prevents
+regression introduced by reverting it.
 
-Signed-off-by: Rayan Marzouk <rayanmarzouk743@gmail.com>
-Co-developed-by: bluebunny <kalorin.bok084@passinbox.com>
-Signed-off-by: bluebunny <kalorin.bok084@passinbox.com>
-Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
----
- arch/arm64/boot/dts/exynos/Makefile               |   1 +
- arch/arm64/boot/dts/exynos/exynos7870-j7xelte.dts | 497 ++++++++++++++++++++++
- 2 files changed, 498 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/exynos/Makefile b/arch/arm64/boot/dts/exynos/Makefile
-index bcca631365578..fa6e6308e30a9 100644
---- a/arch/arm64/boot/dts/exynos/Makefile
-+++ b/arch/arm64/boot/dts/exynos/Makefile
-@@ -9,6 +9,7 @@ dtb-$(CONFIG_ARCH_EXYNOS) += \
- 	exynos7-espresso.dtb		\
- 	exynos7870-a2corelte.dtb	\
- 	exynos7870-j6lte.dtb		\
-+	exynos7870-j7xelte.dtb		\
- 	exynos7870-on7xelte.dtb		\
- 	exynos7885-jackpotlte.dtb	\
- 	exynos850-e850-96.dtb		\
-diff --git a/arch/arm64/boot/dts/exynos/exynos7870-j7xelte.dts b/arch/arm64/boot/dts/exynos/exynos7870-j7xelte.dts
-new file mode 100644
-index 0000000000000..1da826ca1087d
---- /dev/null
-+++ b/arch/arm64/boot/dts/exynos/exynos7870-j7xelte.dts
-@@ -0,0 +1,497 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Samsung Galaxy J7 (2016) (j7xelte) device tree source
-+ *
-+ * Copyright (c) 2025 Rayan Marzouk <rayanmarzouk743@gmail.com>
-+ */
-+
-+/dts-v1/;
-+#include "exynos7870.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+
-+/ {
-+	model = "Samsung Galaxy J7 (2016)";
-+	compatible = "samsung,j7xelte", "samsung,exynos7870";
-+	chassis-type = "handset";
-+
-+	aliases {
-+		mmc0 = &mmc0;
-+		mmc1 = &mmc1;
-+		mmc2 = &mmc2;
-+		serial0 = &serial0;
-+		serial1 = &serial1;
-+		serial2 = &serial2;
-+	};
-+
-+	chosen {
-+		#address-cells = <2>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		stdout-path = &serial2;
-+
-+		framebuffer@67000000 {
-+			compatible = "simple-framebuffer";
-+			reg = <0x0 0x67000000 (720 * 1280 * 4)>;
-+			width = <720>;
-+			height = <1280>;
-+			stride = <(720 * 4)>;
-+			format = "a8r8g8b8";
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		label = "GPIO Keys";
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&key_home &key_power &key_voldown &key_volup>;
-+
-+		key-home {
-+			label = "Home Key";
-+			gpios = <&gpa1 7 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_HOMEPAGE>;
-+		};
-+
-+		key-power {
-+			label = "Power Key";
-+			gpios = <&gpa0 0 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_POWER>;
-+		};
-+
-+		key-voldown {
-+			label = "Volume Down Key";
-+			gpios = <&gpa2 1 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_VOLUMEDOWN>;
-+		};
-+
-+		key-volup {
-+			label = "Volume Up Key";
-+			gpios = <&gpa2 0 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_VOLUMEUP>;
-+		};
-+	};
-+
-+	memory@40000000 {
-+		device_type = "memory";
-+		reg = <0x0 0x40000000 0x3e400000>,
-+		      <0x0 0x80000000 0x40000000>;
-+	};
-+
-+	pwrseq_mmc1: pwrseq-mmc1 {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&gpd3 6 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		ramoops@46e00000 {
-+			compatible = "ramoops";
-+			reg = <0x0 0x46e00000 0x8000>;
-+			console-size = <0x4000>;
-+			pmsg-size = <0x4000>;
-+		};
-+
-+		cont_splash_mem: framebuffer@67000000 {
-+			reg = <0x0 0x67000000 0x00384000>;
-+			no-map;
-+		};
-+	};
-+
-+	vdd_fixed_mmc2: regulator-fixed-mmc2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_fixed_mmc2";
-+		regulator-max-microvolt = <2800000>;
-+		regulator-min-microvolt = <2800000>;
-+		gpio = <&gpc0 0 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	vibrator {
-+		compatible = "regulator-haptic";
-+		haptic-supply = <&vdd_ldo32>;
-+		min-microvolt = <3300000>;
-+		max-microvolt = <3300000>;
-+	};
-+};
-+
-+&gpu {
-+	status = "okay";
-+};
-+
-+&hsi2c0 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	status = "okay";
-+
-+	pmic@66 {
-+		compatible = "samsung,s2mpu05-pmic";
-+		reg = <0x66>;
-+		interrupt-parent = <&gpa0>;
-+		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pmic_irq>;
-+
-+		regulators {
-+			vdd_buck1: buck1 {
-+				regulator-name = "vdd_buck1";
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			vdd_buck2: buck2 {
-+				regulator-name = "vdd_buck2";
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			vdd_buck3: buck3 {
-+				regulator-name = "vdd_buck3";
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			vdd_buck4: buck4 {
-+				regulator-name = "vdd_buck4";
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <1500000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			vdd_buck5: buck5 {
-+				regulator-name = "vdd_buck5";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <2100000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			vdd_ldo1: ldo1 {
-+				regulator-name = "vdd_ldo1";
-+				regulator-min-microvolt = <650000>;
-+				regulator-max-microvolt = <1350000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			vdd_ldo2: ldo2 {
-+				regulator-name = "vdd_ldo2";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <2800000>;
-+			};
-+
-+			vdd_ldo3: ldo3 {
-+				regulator-name = "vdd_ldo3";
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <2375000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			vdd_ldo4: ldo4 {
-+				regulator-name = "vdd_ldo4";
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <1350000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			vdd_ldo5: ldo5 {
-+				regulator-name = "vdd_ldo5";
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <1350000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			vdd_ldo6: ldo6 {
-+				regulator-name = "vdd_ldo6";
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <1350000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			vdd_ldo7: ldo7 {
-+				regulator-name = "vdd_ldo7";
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <2375000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			vdd_ldo8: ldo8 {
-+				regulator-name = "vdd_ldo8";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+			};
-+
-+			vdd_ldo9: ldo9 {
-+				regulator-name = "vdd_ldo9";
-+				regulator-min-microvolt = <650000>;
-+				regulator-max-microvolt = <1350000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			vdd_ldo10: ldo10 {
-+				regulator-name = "vdd_ldo10";
-+				regulator-min-microvolt = <650000>;
-+				regulator-max-microvolt = <1350000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			vdd_ldo25: ldo25 {
-+				regulator-name = "vdd_ldo25";
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <2375000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			vdd_ldo26: ldo26 {
-+				regulator-name = "vdd_ldo26";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3375000>;
-+			};
-+
-+			vdd_ldo27: ldo27 {
-+				regulator-name = "vdd_ldo27";
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <2375000>;
-+			};
-+
-+			vdd_ldo29: ldo29 {
-+				regulator-name = "vdd_ldo29";
-+				regulator-min-microvolt = <3000000>;
-+				regulator-max-microvolt = <3000000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			vdd_ldo30: ldo30 {
-+				regulator-name = "vdd_ldo30";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			vdd_ldo31: ldo31 {
-+				regulator-name = "vdd_ldo31";
-+				regulator-min-microvolt = <2800000>;
-+				regulator-max-microvolt = <2800000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			vdd_ldo32: ldo32 {
-+				regulator-name = "vdd_ldo32";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+			};
-+
-+			vdd_ldo33: ldo33 {
-+				regulator-name = "vdd_ldo33";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			vdd_ldo34: ldo34 {
-+				regulator-name = "vdd_ldo34";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			vdd_ldo35: ldo35 {
-+				regulator-name = "vdd_ldo35";
-+				regulator-min-microvolt = <2800000>;
-+				regulator-max-microvolt = <2800000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+		};
-+	};
-+};
-+
-+&i2c1 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	samsung,i2c-sda-delay = <100>;
-+	samsung,i2c-max-bus-freq = <400000>;
-+
-+	status = "okay";
-+
-+	touchscreen@48 {
-+		compatible = "melfas,mip4_ts";
-+		reg = <0x48>;
-+
-+		interrupt-parent = <&gpc3>;
-+		interrupts = <2 IRQ_TYPE_EDGE_FALLING>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&touch_irq>;
-+	};
-+};
-+
-+&mmc0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sd0_clk &sd0_cmd &sd0_rdqs &sd0_bus1 &sd0_bus4 &sd0_bus8>;
-+
-+	vmmc-supply = <&vdd_ldo26>;
-+	vqmmc-supply = <&vdd_ldo27>;
-+
-+	fifo-depth = <64>;
-+	samsung,dw-mshc-ciu-div = <3>;
-+	samsung,dw-mshc-sdr-timing = <0 4>;
-+	samsung,dw-mshc-ddr-timing = <2 4>;
-+	non-removable;
-+
-+	status = "okay";
-+};
-+
-+&mmc1 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sd1_clk &sd1_cmd &sd1_bus1 &sd1_bus4>;
-+
-+	mmc-pwrseq = <&pwrseq_mmc1>;
-+
-+	bus-width = <4>;
-+	fifo-depth = <64>;
-+	samsung,dw-mshc-ciu-div = <3>;
-+	samsung,dw-mshc-sdr-timing = <0 3>;
-+	samsung,dw-mshc-ddr-timing = <1 2>;
-+	non-removable;
-+	cap-sd-highspeed;
-+	cap-sdio-irq;
-+
-+	status = "okay";
-+
-+	wifi@1 {
-+		compatible = "brcm,bcm43430a1-fmac", "brcm,bcm4329-fmac";
-+		reg = <0x1>;
-+
-+		interrupt-names = "host-wake";
-+		interrupt-parent = <&gpa2>;
-+		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
-+
-+		reset-gpios = <&gpd3 6 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&mmc2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sd2_clk &sd2_cmd &sd2_bus1 &sd2_bus4 &dwmmc2_irq>;
-+
-+	vmmc-supply = <&vdd_fixed_mmc2>;
-+	vqmmc-supply = <&vdd_ldo2>;
-+
-+	bus-width = <4>;
-+	card-detect-delay = <200>;
-+	fifo-depth = <64>;
-+	samsung,dw-mshc-ciu-div = <3>;
-+	samsung,dw-mshc-sdr-timing = <0 3>;
-+	samsung,dw-mshc-ddr-timing = <1 2>;
-+	sd-uhs-sdr50;
-+	sd-uhs-sdr104;
-+	broken-cd;
-+	disable-wp;
-+
-+	status = "okay";
-+};
-+
-+&oscclk {
-+	clock-frequency = <26000000>;
-+};
-+
-+&pinctrl_alive {
-+	dwmmc2_irq: dwmmc2-irq-pins {
-+		samsung,pins = "gpa0-1";
-+		samsung,pin-function = <EXYNOS_PIN_FUNC_EINT>;
-+		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-+		samsung,pin-drv = <EXYNOS5433_PIN_DRV_FAST_SR1>;
-+	};
-+
-+	fuel_irq: fuel-irq-pins {
-+		samsung,pins = "gpa0-3";
-+		samsung,pin-function = <EXYNOS_PIN_FUNC_INPUT>;
-+		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-+		samsung,pin-drv = <EXYNOS5433_PIN_DRV_FAST_SR1>;
-+	};
-+
-+	key_home: key-home-pins {
-+		samsung,pins = "gpa1-7";
-+		samsung,pin-function = <EXYNOS_PIN_FUNC_EINT>;
-+		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-+		samsung,pin-drv = <EXYNOS5433_PIN_DRV_FAST_SR1>;
-+	};
-+
-+	key_power: key-power-pins {
-+		samsung,pins = "gpa0-0";
-+		samsung,pin-function = <EXYNOS_PIN_FUNC_EINT>;
-+		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-+		samsung,pin-drv = <EXYNOS5433_PIN_DRV_FAST_SR1>;
-+	};
-+
-+	key_voldown: key-voldown-pins {
-+		samsung,pins = "gpa2-1";
-+		samsung,pin-function = <EXYNOS_PIN_FUNC_EINT>;
-+		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-+		samsung,pin-drv = <EXYNOS5433_PIN_DRV_FAST_SR1>;
-+	};
-+
-+	key_volup: key-volup-pins {
-+		samsung,pins = "gpa2-0";
-+		samsung,pin-function = <EXYNOS_PIN_FUNC_EINT>;
-+		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-+		samsung,pin-drv = <EXYNOS5433_PIN_DRV_FAST_SR1>;
-+	};
-+
-+	pmic_irq: pmic-irq-pins {
-+		samsung,pins = "gpa0-2";
-+		samsung,pin-pud = <EXYNOS_PIN_PULL_UP>;
-+		samsung,pin-drv = <EXYNOS5433_PIN_DRV_FAST_SR3>;
-+	};
-+};
-+
-+&pinctrl_touch {
-+	touch_irq: touch-irq-pins {
-+		samsung,pins = "gpc3-2";
-+		samsung,pin-function = <EXYNOS_PIN_FUNC_EINT>;
-+		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-+		samsung,pin-drv = <EXYNOS5433_PIN_DRV_FAST_SR1>;
-+	};
-+};
-+
-+&serial2 {
-+	status = "okay";
-+};
-+
-+&usbdrd {
-+	vdd33-supply = <&vdd_ldo8>;
-+
-+	status = "okay";
-+};
-
--- 
-2.52.0
-
+> >
+> >
 
