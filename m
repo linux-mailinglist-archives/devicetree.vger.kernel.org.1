@@ -1,71 +1,103 @@
-Return-Path: <devicetree+bounces-259205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259206-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6R+sHHc4dWlnCQEAu9opvQ
-	(envelope-from <devicetree+bounces-259205-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 22:24:07 +0100
+	id sPp+K7xKdWkJDgEAu9opvQ
+	(envelope-from <devicetree+bounces-259206-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 23:42:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B79CE7F08E
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 22:24:06 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FD497F25D
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 23:42:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5FA3C300AEF5
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 21:24:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0EE9630125CD
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 22:41:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 350B02737E3;
-	Sat, 24 Jan 2026 21:24:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB395274B28;
+	Sat, 24 Jan 2026 22:41:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uCr7YfHd"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="laaX7ZAz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11F4A10F1;
-	Sat, 24 Jan 2026 21:24:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B678627B327;
+	Sat, 24 Jan 2026 22:41:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769289844; cv=none; b=gGeXgRom2TG9anBs7yuRvPLP+v5qY7LIO+mH8ehgTSddoeeH8TkNvTfUy/V/0IYjW0GOYfcjuTNvDii7TTC4Y6wENVfLUugUS3lzgg3jM9VxD9lg3WK6rBc8Q0U3YtpCIWSH5O4IkG0UYe1JIrQuKS18ab1get7HdyI8Usopob4=
+	t=1769294506; cv=none; b=DLvocPyO+cOKhlupH4sFDgy2+imtpcazyiM5ZlySi6XgkaNbnW06GtI+0UAaCd9+G3wAcUlzNy2b9Hb5kmIESJzq8wKfbEhPF4wltaLvmJFt7xkQdffnkiR5RBF0QIDXkAdbFdK6EWD/ATwSluM1bZmLhTXC/8ssSzMWYS6ZCnQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769289844; c=relaxed/simple;
-	bh=AJFo4eAxCnItWVeRCP+XLYGtuLNEENvSrhswbI1WgZw=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=HsvXhTcPLzYc1JnNKtUk9FDN4IJtdhnBedeFDRsvn1fws2AriVcNIk5ibaFpKP3GRF/AvYrZlM4vJ9e5r+NRbpsV7xFkk7lVu4YuNLwmalPikwfu6+oF8J2xAFf0es+Cl1qXYgsaQELlRVFREvmdhiThrHM6O71REQrz0wp3Tvg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uCr7YfHd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7151DC116D0;
-	Sat, 24 Jan 2026 21:24:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769289843;
-	bh=AJFo4eAxCnItWVeRCP+XLYGtuLNEENvSrhswbI1WgZw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=uCr7YfHdiPtr0RJAwoaf+mfGXnleR92qoy5sh34I7SD8ghUmrTH5rs3fcpdAXM/Pg
-	 RlrVT5qnq//dBIxoDUIy8PNq1G2Pr0XGBPljTsZnBWgUe/tV1R2kcc/s2ie49u+/vR
-	 faAkRoRI/uhWjdn+S2pKCnndTU+TP49iO8PamH2VRy4pAuQbAoZEnh8BgYtCUwTzLD
-	 FEvVvHK2CobUcpQgsHIpFzFhHQlChoRfEtg5KndfQjJCsWAbnh9FZQTUSwcVL9Us7V
-	 RX2Jrya3q3xXLQJB6t9XJ3KKi+bX6VpL8wWM8VVNjCq9aP2mrBjvp8FtKBN4B6gqv8
-	 JH/oCMQeU6V/g==
-Date: Sat, 24 Jan 2026 15:24:01 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: manivannan.sadhasivam@oss.qualcomm.com
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1769294506; c=relaxed/simple;
+	bh=WXKAC/fyF/NXplXJWNiQwBzi6DaoJqGNLNtWfgdhnOw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Xh1jLiLhaW0CGV1elwzovg4MKsugz4IlhhkXyQqQcYNpX73vhiMTfCa0jDZGtkN3ooqSLB10M9uZTHxnqfag4aXXhQSsiHR8ftt9KqTkhdPrfOCv5OlKQeZoIDH9O3Y82g7h2jqXpqC+kwm/rHAUM7DuFeC+XCZpxZ9LnvEif+o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=laaX7ZAz; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1769294505; x=1800830505;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=WXKAC/fyF/NXplXJWNiQwBzi6DaoJqGNLNtWfgdhnOw=;
+  b=laaX7ZAz9wBnBhzQRD16+BgWBaXmPp3PfOySzQ/UMaS8QjYE55br2f4J
+   V8zcdf6ACFRob9OycyWO0PCkYCrhmp40qLnlVJMXXID9U5ZvwlCeNDG3+
+   H7eLTCUxMJRkXT5OWOJMMciDIEA+FFtgbuiqKZCXemCM6iYkg4tlfnSUW
+   IueVENnKYfjv8a8ubwc+CcddGOaJBQz/sTgEJh25vrezWtMwzsNDuCXe4
+   cyViw2JZ6wNDh9w3jytILGnfIpzQCuKRWoADRu7W47Q/NHqoQpdP5mdYa
+   SIGPxb+kK6ZaxoO58xKRBPq5zDxnrDsQjg2weZrjvQPfCWTEjaEtPLjHV
+   Q==;
+X-CSE-ConnectionGUID: VhBGJk2OQEKqGr7EXDsaRA==
+X-CSE-MsgGUID: dw+sPdDUToyFcdUaIeqUEg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11681"; a="93174515"
+X-IronPort-AV: E=Sophos;i="6.21,251,1763452800"; 
+   d="scan'208";a="93174515"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jan 2026 14:41:45 -0800
+X-CSE-ConnectionGUID: rlROHsk0RwapfHGlgyqhJw==
+X-CSE-MsgGUID: nrGQiIp0QWqPtPE6cH7Zmw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,251,1763452800"; 
+   d="scan'208";a="230293682"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+  by fmviesa002.fm.intel.com with ESMTP; 24 Jan 2026 14:41:38 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vjmJz-00000000Vau-3yq4;
+	Sat, 24 Jan 2026 22:41:35 +0000
+Date: Sun, 25 Jan 2026 06:41:04 +0800
+From: kernel test robot <lkp@intel.com>
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Avri Altman <avri.altman@wdc.com>,
+	Bart Van Assche <bvanassche@acm.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Damien Le Moal <dlemoal@kernel.org>,
-	Niklas Cassel <cassel@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	Stephan Gerhold <stephan.gerhold@linaro.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	linux-pm@vger.kernel.org, linux-ide@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH v6 2/4] PCI/pwrctrl: Add support for handling PCIe M.2
- connectors
-Message-ID: <20260124212401.GA181386@bhelgaas>
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Chunfeng Yun <chunfeng.yun@mediatek.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Peter Wang <peter.wang@mediatek.com>,
+	Stanley Jhu <chu.stanley@gmail.com>,
+	"James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
+	"Martin K. Petersen" <martin.petersen@oracle.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Chaotian Jing <Chaotian.Jing@mediatek.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
+	kernel@collabora.com, linux-scsi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
+	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Subject: Re: [PATCH v6 14/24] scsi: ufs: mediatek: Switch to newer PM ops
+ helpers
+Message-ID: <202601250638.kCl6evPM-lkp@intel.com>
+References: <20260124-mt8196-ufs-v6-14-e7c005b60028@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,59 +106,159 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260122-pci-m2-v6-2-575da9f97239@oss.qualcomm.com>
+In-Reply-To: <20260124-mt8196-ufs-v6-14-e7c005b60028@collabora.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-259205-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-259206-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[collabora.com,samsung.com,wdc.com,acm.org,kernel.org,gmail.com,mediatek.com,hansenpartnership.com,oracle.com,pengutronix.de,linaro.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	RCPT_COUNT_TWELVE(0.00)[32];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[helgaas@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: B79CE7F08E
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,01.org:url]
+X-Rspamd-Queue-Id: 0FD497F25D
 X-Rspamd-Action: no action
 
-On Thu, Jan 22, 2026 at 10:46:52PM +0530, Manivannan Sadhasivam via B4 Relay wrote:
-> From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> 
-> Add support for handling the PCIe M.2 connectors as Power Sequencing
-> devices. These connectors are exposed as the Power Sequencing devices
-> as they often support multiple interfaces like PCIe/SATA, USB/UART to the
-> host machine and each interfaces could be driven by different client
-> drivers at the same time.
+Hi Nicolas,
 
-s/each interfaces/each interface/
+kernel test robot noticed the following build errors:
 
-> This driver handles the PCIe interface of these connectors. It first checks
-> for the presence of the graph port in the Root Port node with the help of
-> of_graph_is_present() API, if present, it acquires/poweres ON the
-> corresponding pwrseq device.
+[auto build test ERROR on 4af4e95edc37ae54f64cbd75b46f16ce15f3a6b8]
 
-s/API, if/API. If/
-s/poweres/powers/
+url:    https://github.com/intel-lab-lkp/linux/commits/Nicolas-Frattaroli/dt-bindings-phy-Add-mediatek-mt8196-ufsphy-variant/20260124-201226
+base:   4af4e95edc37ae54f64cbd75b46f16ce15f3a6b8
+patch link:    https://lore.kernel.org/r/20260124-mt8196-ufs-v6-14-e7c005b60028%40collabora.com
+patch subject: [PATCH v6 14/24] scsi: ufs: mediatek: Switch to newer PM ops helpers
+config: arm64-randconfig-004-20260125 (https://download.01.org/0day-ci/archive/20260125/202601250638.kCl6evPM-lkp@intel.com/config)
+compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 9b8addffa70cee5b2acc5454712d9cf78ce45710)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260125/202601250638.kCl6evPM-lkp@intel.com/reproduce)
 
-> Once the pwrseq device is powered ON, the driver will skip parsing the Root
-> Port/Slot resources and registers with the pwrctrl framework.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202601250638.kCl6evPM-lkp@intel.com/
 
-s/and registers/and register/
+All errors (new ones prefixed by >>):
+
+>> drivers/ufs/host/ufs-mediatek.c:2339:8: error: call to undeclared function 'ufshcd_system_suspend'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+    2339 |         ret = ufshcd_system_suspend(dev);
+         |               ^
+   drivers/ufs/host/ufs-mediatek.c:2339:8: note: did you mean 'ufs_mtk_system_suspend'?
+   drivers/ufs/host/ufs-mediatek.c:2328:12: note: 'ufs_mtk_system_suspend' declared here
+    2328 | static int ufs_mtk_system_suspend(struct device *dev)
+         |            ^
+    2329 | {
+    2330 |         struct ufs_hba *hba = dev_get_drvdata(dev);
+    2331 |         struct arm_smccc_res res;
+    2332 |         int ret;
+    2333 | 
+    2334 |         if (hba->shutting_down) {
+    2335 |                 ret = -EBUSY;
+    2336 |                 goto out;
+    2337 |         }
+    2338 | 
+    2339 |         ret = ufshcd_system_suspend(dev);
+         |               ~~~~~~~~~~~~~~~~~~~~~
+         |               ufs_mtk_system_suspend
+>> drivers/ufs/host/ufs-mediatek.c:2370:8: error: call to undeclared function 'ufshcd_system_resume'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+    2370 |         ret = ufshcd_system_resume(dev);
+         |               ^
+   drivers/ufs/host/ufs-mediatek.c:2370:8: note: did you mean 'ufs_mtk_system_resume'?
+   drivers/ufs/host/ufs-mediatek.c:2355:12: note: 'ufs_mtk_system_resume' declared here
+    2355 | static int ufs_mtk_system_resume(struct device *dev)
+         |            ^
+    2356 | {
+    2357 |         int ret = 0;
+    2358 |         struct ufs_hba *hba = dev_get_drvdata(dev);
+    2359 |         struct arm_smccc_res res;
+    2360 | 
+    2361 |         if (pm_runtime_suspended(hba->dev))
+    2362 |                 goto out;
+    2363 | 
+    2364 |         if (ufs_mtk_is_rtff_mtcmos(hba))
+    2365 |                 ufs_mtk_mtcmos_ctrl(true, res);
+    2366 | 
+    2367 |         ufs_mtk_dev_vreg_set_lpm(hba, false);
+    2368 | 
+    2369 | out:
+    2370 |         ret = ufshcd_system_resume(dev);
+         |               ~~~~~~~~~~~~~~~~~~~~
+         |               ufs_mtk_system_resume
+   2 errors generated.
+
+
+vim +/ufshcd_system_suspend +2339 drivers/ufs/host/ufs-mediatek.c
+
+ddd90623ce26ea drivers/scsi/ufs/ufs-mediatek.c Stanley Chu 2019-03-16  2327  
+e7bf1d50063ce0 drivers/ufs/host/ufs-mediatek.c Stanley Chu 2022-06-23  2328  static int ufs_mtk_system_suspend(struct device *dev)
+3fd23b8dfb54d9 drivers/ufs/host/ufs-mediatek.c Po-Wen Kao  2022-06-16  2329  {
+3fd23b8dfb54d9 drivers/ufs/host/ufs-mediatek.c Po-Wen Kao  2022-06-16  2330  	struct ufs_hba *hba = dev_get_drvdata(dev);
+a6888d623eae6d drivers/ufs/host/ufs-mediatek.c Alice Chao  2024-03-15  2331  	struct arm_smccc_res res;
+3fd23b8dfb54d9 drivers/ufs/host/ufs-mediatek.c Po-Wen Kao  2022-06-16  2332  	int ret;
+3fd23b8dfb54d9 drivers/ufs/host/ufs-mediatek.c Po-Wen Kao  2022-06-16  2333  
+014de20bb36ba0 drivers/ufs/host/ufs-mediatek.c Peter Wang  2025-09-24  2334  	if (hba->shutting_down) {
+014de20bb36ba0 drivers/ufs/host/ufs-mediatek.c Peter Wang  2025-09-24  2335  		ret = -EBUSY;
+014de20bb36ba0 drivers/ufs/host/ufs-mediatek.c Peter Wang  2025-09-24  2336  		goto out;
+014de20bb36ba0 drivers/ufs/host/ufs-mediatek.c Peter Wang  2025-09-24  2337  	}
+014de20bb36ba0 drivers/ufs/host/ufs-mediatek.c Peter Wang  2025-09-24  2338  
+3fd23b8dfb54d9 drivers/ufs/host/ufs-mediatek.c Po-Wen Kao  2022-06-16 @2339  	ret = ufshcd_system_suspend(dev);
+3fd23b8dfb54d9 drivers/ufs/host/ufs-mediatek.c Po-Wen Kao  2022-06-16  2340  	if (ret)
+77b96ef70b6ba4 drivers/ufs/host/ufs-mediatek.c Peter Wang  2025-09-03  2341  		goto out;
+77b96ef70b6ba4 drivers/ufs/host/ufs-mediatek.c Peter Wang  2025-09-03  2342  
+77b96ef70b6ba4 drivers/ufs/host/ufs-mediatek.c Peter Wang  2025-09-03  2343  	if (pm_runtime_suspended(hba->dev))
+77b96ef70b6ba4 drivers/ufs/host/ufs-mediatek.c Peter Wang  2025-09-03  2344  		goto out;
+3fd23b8dfb54d9 drivers/ufs/host/ufs-mediatek.c Po-Wen Kao  2022-06-16  2345  
+42b1928360a32e drivers/ufs/host/ufs-mediatek.c Stanley Chu 2022-06-16  2346  	ufs_mtk_dev_vreg_set_lpm(hba, true);
+3fd23b8dfb54d9 drivers/ufs/host/ufs-mediatek.c Po-Wen Kao  2022-06-16  2347  
+a6888d623eae6d drivers/ufs/host/ufs-mediatek.c Alice Chao  2024-03-15  2348  	if (ufs_mtk_is_rtff_mtcmos(hba))
+a6888d623eae6d drivers/ufs/host/ufs-mediatek.c Alice Chao  2024-03-15  2349  		ufs_mtk_mtcmos_ctrl(false, res);
+a6888d623eae6d drivers/ufs/host/ufs-mediatek.c Alice Chao  2024-03-15  2350  
+77b96ef70b6ba4 drivers/ufs/host/ufs-mediatek.c Peter Wang  2025-09-03  2351  out:
+77b96ef70b6ba4 drivers/ufs/host/ufs-mediatek.c Peter Wang  2025-09-03  2352  	return ret;
+3fd23b8dfb54d9 drivers/ufs/host/ufs-mediatek.c Po-Wen Kao  2022-06-16  2353  }
+3fd23b8dfb54d9 drivers/ufs/host/ufs-mediatek.c Po-Wen Kao  2022-06-16  2354  
+e7bf1d50063ce0 drivers/ufs/host/ufs-mediatek.c Stanley Chu 2022-06-23  2355  static int ufs_mtk_system_resume(struct device *dev)
+3fd23b8dfb54d9 drivers/ufs/host/ufs-mediatek.c Po-Wen Kao  2022-06-16  2356  {
+77b96ef70b6ba4 drivers/ufs/host/ufs-mediatek.c Peter Wang  2025-09-03  2357  	int ret = 0;
+3fd23b8dfb54d9 drivers/ufs/host/ufs-mediatek.c Po-Wen Kao  2022-06-16  2358  	struct ufs_hba *hba = dev_get_drvdata(dev);
+a6888d623eae6d drivers/ufs/host/ufs-mediatek.c Alice Chao  2024-03-15  2359  	struct arm_smccc_res res;
+3fd23b8dfb54d9 drivers/ufs/host/ufs-mediatek.c Po-Wen Kao  2022-06-16  2360  
+77b96ef70b6ba4 drivers/ufs/host/ufs-mediatek.c Peter Wang  2025-09-03  2361  	if (pm_runtime_suspended(hba->dev))
+77b96ef70b6ba4 drivers/ufs/host/ufs-mediatek.c Peter Wang  2025-09-03  2362  		goto out;
+3fd23b8dfb54d9 drivers/ufs/host/ufs-mediatek.c Po-Wen Kao  2022-06-16  2363  
+a6888d623eae6d drivers/ufs/host/ufs-mediatek.c Alice Chao  2024-03-15  2364  	if (ufs_mtk_is_rtff_mtcmos(hba))
+a6888d623eae6d drivers/ufs/host/ufs-mediatek.c Alice Chao  2024-03-15  2365  		ufs_mtk_mtcmos_ctrl(true, res);
+a6888d623eae6d drivers/ufs/host/ufs-mediatek.c Alice Chao  2024-03-15  2366  
+b2f8abadabea32 drivers/ufs/host/ufs-mediatek.c Alice Chao  2025-09-03  2367  	ufs_mtk_dev_vreg_set_lpm(hba, false);
+b2f8abadabea32 drivers/ufs/host/ufs-mediatek.c Alice Chao  2025-09-03  2368  
+77b96ef70b6ba4 drivers/ufs/host/ufs-mediatek.c Peter Wang  2025-09-03  2369  out:
+77b96ef70b6ba4 drivers/ufs/host/ufs-mediatek.c Peter Wang  2025-09-03 @2370  	ret = ufshcd_system_resume(dev);
+77b96ef70b6ba4 drivers/ufs/host/ufs-mediatek.c Peter Wang  2025-09-03  2371  
+77b96ef70b6ba4 drivers/ufs/host/ufs-mediatek.c Peter Wang  2025-09-03  2372  	return ret;
+3fd23b8dfb54d9 drivers/ufs/host/ufs-mediatek.c Po-Wen Kao  2022-06-16  2373  }
+3fd23b8dfb54d9 drivers/ufs/host/ufs-mediatek.c Po-Wen Kao  2022-06-16  2374  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
