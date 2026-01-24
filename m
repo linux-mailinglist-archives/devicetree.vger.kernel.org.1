@@ -1,84 +1,42 @@
-Return-Path: <devicetree+bounces-259148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259149-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cG1/IHxVdGnE4gAAu9opvQ
-	(envelope-from <devicetree+bounces-259148-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 06:15:40 +0100
+	id QMqAGqNmdGnb5AAAu9opvQ
+	(envelope-from <devicetree+bounces-259149-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 07:28:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE6BE7C893
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 06:15:39 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 873E17CB89
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 07:28:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4A0A73006788
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 05:15:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A50C4300DF59
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 06:25:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCC9C13D8B1;
-	Sat, 24 Jan 2026 05:15:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KAlIBHtM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51ECE27BF6C;
+	Sat, 24 Jan 2026 06:25:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6164F3EBF2C
-	for <devicetree@vger.kernel.org>; Sat, 24 Jan 2026 05:15:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67B8F27B359;
+	Sat, 24 Jan 2026 06:25:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769231737; cv=none; b=pBj+hvTd5Tn1AATvmYyXQ04F16SpKGV8B2+5ALB1+fyBX9eXxB8quzXSqD8JQg2CihXMglJtFwQ9Fv0qLnCeRlMpl4z4z22N8P4HO3m9ycKdinXbG9lpHVeXDCkBIJ/9a41NGixW3H8GucVEN5CGgaxCn2v7qKmS67MuVpFbAg0=
+	t=1769235914; cv=none; b=BXocV7bfAQJfpMiA/vUaqYaxQ8kkU8tZjMU1SYyfCmIUtPBlgnXVykpeRckJUO/HvuvaMhQ0TOpAjM4OfmPbtKsWJbbGucqxowjvnGnPQfXVLemetZfZLgAa9qnRsX/YIeuux/qT5pJIsmFTql3A02hGgCkNgAB4UefkLYUkgU4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769231737; c=relaxed/simple;
-	bh=rPtHryY0q9AVLq9N0aEIaze3I2zH4NeZeRcE+2JStw4=;
+	s=arc-20240116; t=1769235914; c=relaxed/simple;
+	bh=tuFmIXR4ptFr0iyeEET7uJNT++l+8Ych6dqgmhccRUo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=boLGImnbY0Rrv3tCmFu3JT7GXkBybviOTSFjzu+WhiUyv0K4zWFW3fR6DJLVJEcaPs3GC/E0YuFI+L5XzjDitfEsM/ut0vJuf+4beDYfTCn7Zx2jI2Cv5QUVOOKFryTYyZh6SnqVodvgycWsftQzNixLb0YHjb7N3zroLKTtv5g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KAlIBHtM; arc=none smtp.client-ip=209.85.160.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f179.google.com with SMTP id d75a77b69052e-5029fb0b977so28029071cf.0
-        for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 21:15:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769231735; x=1769836535; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uAVsETK21+kGnCxqlDEtp4ioX9WXTvhY2/OchwRYyU8=;
-        b=KAlIBHtMCJxx8Zbn1nMP0FSEA+1bvxkqMGHy598wAbY2oyaRr5/ekC/dMyOLCU2MRB
-         HKQ4g9hArLXlC16d1RUMocDyXO1p80gHzkL3F/Ma22KmSwvI4jb5n7VdKGXnzEqdsktw
-         aDpqFjgL3UREuHYpTGakrJoyGsfBlN/ADapDz4NVupOmZzkAtfEXwgnSRsqxy+uB8YOz
-         55H9wFcImTGcgoIn5s0uQei4QKHTC2Sm9TCpsJVLQAlk/YJoVX0zvabw15K29CN/1nfO
-         GbmoO1+4qFVPDcD5Dd1Dp1PL+J17VvHbMl+BROmXSorZ35TUiMd4a1SzQCtkJFlGYKRQ
-         J0sQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769231735; x=1769836535;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uAVsETK21+kGnCxqlDEtp4ioX9WXTvhY2/OchwRYyU8=;
-        b=PEco1zZLNYOTSGP1MB8DKOqKtvmGqXSiO1SVCXsbqE+ZLp5y/uKxoI+aq/Rbp66+16
-         kBuXJlmjpkxOnwMRUKR0K54is1wIzrPIzfozymFFD4CWAAsEjEqgkpnQyDAMcDHMdVJb
-         Ut3UOgULB3QSGjC6zQRH0KKi6ez5P9brYIu6jQgAjEHRPDfVZautIlA+p9HAadtN3jW9
-         TCTDvAVNG2TAeDU2WS+FL/WS5WBWa+fqtqb+zIrPX8iNCIKQS0/ICbCm8bSLc9WXwBkL
-         NP/jSBeuMlIz7HnGz76mkm+gYRuvKpsNMUV50Hawq64PEaCcb0gGRw+Z++lUSQSKQwI7
-         6K2A==
-X-Forwarded-Encrypted: i=1; AJvYcCWZorsWdpoJgdKEr1YfYEx01UqCg0CPHT8H03wwtwemjVXai7dT7rVkGlYAW9nPMpdfogzMFCaNFRY5@vger.kernel.org
-X-Gm-Message-State: AOJu0YyVChKa4xg1qbB+2Evv1jSTj9NkG5ZX5G7ZzcysZ3LFdwYy0dN1
-	yc0Om8q7+9gUR8Tc6xD1GprPQ7b0vlkd1a07IXMCdKMtebgRyu5TzIK3
-X-Gm-Gg: AZuq6aKEg3nVDBULxn9H2GYpNg5AAXDsVmSTlGYfgTUAE0xEAgDdZnItsrQtUoIkgUW
-	ASNkjElVyrQ82MZXKO2YQBJiHkalhRGfduVOW/bDWZVpRMweeIhFU8EIrmO2y8LLt4VcIAu30Ks
-	3n2XRIchaaJ62ZP2hxL/EBANKtCrdxx3/aVYEhSP9FuUvQqEGtVNhXrQh+mSxSV35WTo2H1KeMA
-	oGJuUx+D9XrbNtGVy6vtaBpwEtpUowddieMgqvIIIRW6Ln0yk+j0/+LTB/OQgmkUYcH+2NBEpIs
-	sbfRHnubOGPQMWvljsl9q9gv2M/kd7TZ3Y+cgbi7XC3Ip8fAQOn18TwmLCvF5ZalN5npawezY9s
-	83AbtcsdwPABdWJhIyB8jbBaLEr2nAP1oWAH5+8QICaq+QQ2W4WVKHT9hVihT3ZEWXLCCdGo5iN
-	nzG6reJhkfeN1wKRynKD0o6H67imQbe7HkI+Y=
-X-Received: by 2002:a05:7301:1015:b0:2ae:5db9:f32c with SMTP id 5a478bee46e88-2b739b6d1bdmr2095282eec.26.1769230365229;
-        Fri, 23 Jan 2026 20:52:45 -0800 (PST)
-Received: from [172.16.0.242] ([192.19.161.250])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b73aa22707sm5548789eec.29.2026.01.23.20.52.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Jan 2026 20:52:44 -0800 (PST)
-Message-ID: <009aefc4-fbc9-4f91-9230-23d18c281bf3@gmail.com>
-Date: Fri, 23 Jan 2026 20:57:23 -0800
+	 In-Reply-To:Content-Type; b=SZRJ1jTtQxm+C+BrZnMosAqWdOfMmHhtQ88B3yNk9fUvfSEHWBYK6FY8Ra7rJbiHz3y3WtcwR7Mt21YgkfC7XIqLnxf++ExglExijQJhGR910Kov8t4oaiS2/KXkR9TAq0EryOAqZx1fHrH14ofwAmX3qkKPFh7Y0//HayadoyM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from [192.168.0.108] (unknown [123.118.222.47])
+	by APP-03 (Coremail) with SMTP id rQCowACHa+KhZXRphz94Bg--.7034S2;
+	Sat, 24 Jan 2026 14:24:34 +0800 (CST)
+Message-ID: <76bd53dd-0ca9-4358-a0b6-a49283e43c5f@iscas.ac.cn>
+Date: Sat, 24 Jan 2026 14:24:33 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,130 +44,89 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: ethernet: eswin: add clock sampling
- control
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, =?UTF-8?B?5p2O5b+X?=
- <lizhi2@eswincomputing.com>, devicetree@vger.kernel.org,
- andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- netdev@vger.kernel.org, pabeni@redhat.com, mcoquelin.stm32@gmail.com,
- alexandre.torgue@foss.st.com, rmk+kernel@armlinux.org.uk,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- ningyu@eswincomputing.com, linmin@eswincomputing.com,
- pinkesh.vaghela@einfochips.com, weishangjuan@eswincomputing.com
-References: <20260109080601.1262-1-lizhi2@eswincomputing.com>
- <20260109080859.1285-1-lizhi2@eswincomputing.com>
- <00b7b42f-2f9d-402a-82f0-21641ea894a1@lunn.ch>
- <308b676.2d03.19bb0caebed.Coremail.lizhi2@eswincomputing.com>
- <59cec617-0189-4dc3-bc3f-6346155a62ae@lunn.ch>
- <4e2a55e7.3662.19be8cb9c3c.Coremail.lizhi2@eswincomputing.com>
- <c5c0bfdb-316d-4796-afa0-f6f018ceb414@lunn.ch>
- <abf12a3f-9cdd-472d-a02e-af4da594b84f@gmail.com>
- <e6f7da45-3dec-4af6-a5b1-a72210bf24f4@kernel.org>
- <43923bf9-6202-4147-8eac-5bd7bb653fd4@gmail.com>
- <bd202cfa-d6eb-4d0e-982d-b49795dd25f7@lunn.ch>
+Subject: Re: [PATCH v2 0/4] regulator: spacemit-p1: Fix voltage ranges and
+ support board power tree
+To: Guodong Xu <guodong@riscstar.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+ Alex Elder <elder@riscstar.com>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Troy Mitchell <troy.mitchell@linux.spacemit.com>,
+ Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ spacemit@lists.linux.dev, devicetree@vger.kernel.org
+References: <20260124-spacemit-p1-v2-0-2c86b06694ba@riscstar.com>
 Content-Language: en-US
-From: Bo Gan <ganboing@gmail.com>
-In-Reply-To: <bd202cfa-d6eb-4d0e-982d-b49795dd25f7@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Vivian Wang <wangruikang@iscas.ac.cn>
+In-Reply-To: <20260124-spacemit-p1-v2-0-2c86b06694ba@riscstar.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:rQCowACHa+KhZXRphz94Bg--.7034S2
+X-Coremail-Antispam: 1UD129KBjvdXoWrtr13Jr47ZFW7Zr4rtFWUJwb_yoW3Gwb_A3
+	4Igas7Z3WkuFWa93Z7JFs0yF98Xa1jkFyavr1rJ348X34YkFykC3s2g3sIvr18Gr4UKr1D
+	Wr4kKr4UAFnxKjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUIcSsGvfJTRUUUbskYjsxI4VWDJwAYFVCjjxCrM7AC8VAFwI0_Xr0_Wr1l1xkIjI8I
+	6I8E6xAIw20EY4v20xvaj40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM2
+	8CjxkF64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVWUCVW8JwA2z4x0Y4vE2Ix0
+	cI8IcVCY1x0267AKxVW8JVWxJwA2z4x0Y4vEx4A2jsIE14v26F4UJVW0owA2z4x0Y4vEx4
+	A2jsIEc7CjxVAFwI0_Cr1j6rxdM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
+	64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8Jw
+	Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkIwI1l
+	c7CjxVAaw2AFwI0_GFv_Wryl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr
+	1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE
+	14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7
+	IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E
+	87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73Uj
+	IFyTuYvjxU30PfDUUUU
+X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-259148-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[iscas.ac.cn];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[riscstar.com,gmail.com,kernel.org,gentoo.org,linux.spacemit.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259149-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,eswincomputing.com,vger.kernel.org,lunn.ch,davemloft.net,google.com,redhat.com,gmail.com,foss.st.com,armlinux.org.uk,st-md-mailman.stormreply.com,lists.infradead.org,einfochips.com];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[23];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ganboing@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
-	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wangruikang@iscas.ac.cn,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	MID_RHS_MATCH_FROM(0.00)[];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: CE6BE7C893
+X-Rspamd-Queue-Id: 873E17CB89
 X-Rspamd-Action: no action
 
-Hi Andrew,
 
-On 1/23/26 11:43, Andrew Lunn wrote:
-> On Fri, Jan 23, 2026 at 02:47:18AM -0800, Bo Gan wrote:
->> Hi Krzysztof,
->>
->> On 1/23/26 02:07, Krzysztof Kozlowski wrote:
->>> On 23/01/2026 08:39, Bo Gan wrote:
->>>>> I assume the address of the interface is fixed. So you can just key
->>>>> off that to distinguish the two instances.
->>>>>
->>>>> Since this is an internal property, not a board property, it is not
->>>>> clear it actually belongs on DT.
->>>>>
->>>>>        Andrew
->>>>
->>>> IMO, they should be in DT to provide maximum flexibility. The SoC .dtsi
->>>
->>> This is not the purpose of DT. Please rather use arguments in terms of
->>> DT rules (see docs, presentations).
->>>
->> Any examples? links? Thank you for your patience.
->>
->> I'd say if the board .dts never overrides the eswin,rx-clk-invert, (E.g.,
->> the SoC .dtsi has rx-clk-invert, later the board /delete-property/'s it)
->> then yes, it can be treated as something inherent to the mac, and then
->> "use arguments in terms of DT rules". I was thinking about use cases like:
->> https://lore.kernel.org/all/20230714104521.18751-3-samin.guo@starfivetech.com/
-> 
-> Your device should be compliant with the RGMII standard by
-> default. There should not be a DT property to ask it nicely to follow
-> the standard.
-> 
-> Properties like
-> 
-> motorcomm,tx-clk-adj-enabled;
-> motorcomm,tx-clk-100-inverted;
-> motorcomm,tx-clk-1000-inverted;
-> 
-> are for broken boards which break the standard and require the MAC do
-> also break the standard so that everything works. We should not start
-> out with the assumption you need to support broken boards which ignore
-> the standard.
+On 1/24/26 08:20, Guodong Xu wrote:
+> [...]
+>
+> Note: Patch 3 introduces a bisect breakage by transitioning to
+> pin-specific supply names. Probe failures will occur on existing boards
+> until Patch 4 updates the corresponding DTS file.
 
-My reading of
-https://lore.kernel.org/all/308b676.2d03.19bb0caebed.Coremail.lizhi2@eswincomputing.com/
-is that the eth1 MAC is already breaking the standard at SoC level, and
-the boards can un-break it or break it even more. Hence, even for proper
-designed board, SoC .dtsi still needs eswin,rx-clk-invert (for *eth1*).
-For broken boards, they may require eswin,rx-clk-invert for *eth0*, even
-though SoC doesn't mandate. For *eth1* broken boards might have to
-/delete-property/ it and use eswin,tx-clk-invert or something else.
-It's clearer to have all these parameters visible and explicit in DT.
+Ouch, that's not a bisect breakage, that's an *ABI breakage*. And AFAICT
+this is still not okay in 2026,
+see Documentation/devicetree/bindings/ABI.rst
 
-ESWIN, please correct me if I'm wrong.
+So the bindings would need to be changed to accept both the new and old way.
 
-P.S. I'm not affiliated to ESWIN, but I do own eic7700/hifive-premier
-board, and I can talk to someone who owns eic7700/megrez. I can help
-validating ESWIN's patches independently.
+Driver-wise, at a cursory look from someone not familiar with the
+regulator stuff, maybe we can make it compatible with old DTS by adding
+the new names as aliases ({devm_,}regulator_register_supply_alias?) as
+"vin" or "buck5", if we see the old vin-supply definitions?
 
-> 
->         Andrew
-> 
-Bo
 
