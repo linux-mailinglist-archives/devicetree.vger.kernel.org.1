@@ -1,182 +1,228 @@
-Return-Path: <devicetree+bounces-259139-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259140-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KIXLE9UMdGlV1wAAu9opvQ
-	(envelope-from <devicetree+bounces-259139-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 01:05:41 +0100
+	id gI2DI7UOdGmS1wAAu9opvQ
+	(envelope-from <devicetree+bounces-259140-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 01:13:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7A507B966
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 01:05:40 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3E6B7B9D4
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 01:13:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B659C300599A
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 00:05:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 01E26301809E
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jan 2026 00:13:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB5B6EEAB;
-	Sat, 24 Jan 2026 00:05:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A41E2AE8D;
+	Sat, 24 Jan 2026 00:13:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aaFRKybH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iYmKdSXR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E53FC8E6;
-	Sat, 24 Jan 2026 00:05:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 160771F5EA
+	for <devicetree@vger.kernel.org>; Sat, 24 Jan 2026 00:13:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769213138; cv=none; b=dyzGz3PIVljOoDVGROBJg5G86UDZ/vPAo6hD1xDktYj1kmzUgLcRJKXsCqntNMPSV77M7xPFnMK7f0k4xAvT0NHMNOoeKe/ZHw6nVvm91fI+Pi9rTWf6l4yKJUmdzaGo5w2aqpHVxgI/9rVr1F6QxcrHmVlKrZxZELr68PwCZF0=
+	t=1769213605; cv=none; b=jfr1arv5YbbxRmiu50PBCKaJZFWG1iM97ZbwvI4cjpxob4Hcelf17oV15Omm0FqHU8Dbp9oGq6+OQ/fGqLXjUz6ww4drh17tJUuun8HLCeFr/dkaAGN+IyuAUg/002f2tZJlkDhtQCDMDP7hhA+32X8U8g077DilbJcFXPB+G48=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769213138; c=relaxed/simple;
-	bh=MGKmhxm4L5H7Hig0poCVDvgVGLgBC56GmtML4LTST9M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EpJA9ljZHx9SUBLdihaSUcNKbFj+5iosmIaqDus+pgkFs2XjGT49VsbQ7XHmP0Cy+EPsIPljuGJnvH6Xym12UGzXswHlJ3DtYFm1EK5TgBVWwbeai5FIXGDJKz2bdxIa4Ts9Pxj+9mVsuqsLPU7Ed8LcAth68nHKbqDzItK+Jmk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aaFRKybH; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1769213137; x=1800749137;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=MGKmhxm4L5H7Hig0poCVDvgVGLgBC56GmtML4LTST9M=;
-  b=aaFRKybHsoZNN2GMuwBliYaea1r+tEvTdaoYwMmvUP69L7QM6CsMi49O
-   s8oDzcMnCD90jpPCmWdXvp8eojQ5wKIYNoN/ebY5Nk5APCnCs2LDFghqu
-   N7YYHHd/NgFWN5r4Cj+x7jqdcyzj+fknq5j7EcHnqsXCRnnnxSyaYRA0c
-   a0Km9kfenTp1+uW6STs1he8gHPLyKnaHsq7qQoHF0pHJMtxUcaC596RGF
-   b78cpBgrhnStAAJHW1J5Y34qTqV4ATL3In7TGS9bu+mXT0P3o1ngkfEDE
-   wXOUT/j01ZlbprTW7O3v7nCmwMW1ASlSXdJ5q+WFkXpKapwuTkThu3P0h
-   A==;
-X-CSE-ConnectionGUID: zjYpY0OhQL+vK/lbzLBzrA==
-X-CSE-MsgGUID: tpS12jFHRn23aJsYcB2pmA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11680"; a="74330691"
-X-IronPort-AV: E=Sophos;i="6.21,249,1763452800"; 
-   d="scan'208";a="74330691"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jan 2026 16:05:37 -0800
-X-CSE-ConnectionGUID: 5IfPgRPUTyKDB8ZRx07LCA==
-X-CSE-MsgGUID: knC+wmAgQfqn3xIRuMd9cw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,249,1763452800"; 
-   d="scan'208";a="207193418"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by orviesa008.jf.intel.com with ESMTP; 23 Jan 2026 16:05:33 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vjR9e-00000000Ubu-1j6o;
-	Sat, 24 Jan 2026 00:05:30 +0000
-Date: Sat, 24 Jan 2026 08:05:24 +0800
-From: kernel test robot <lkp@intel.com>
-To: Maciej Strozek <mstrozek@opensource.cirrus.com>,
-	Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
-	Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Jaroslav Kysela <perex@perex.cz>,
-	Bard Liao <yung-chuan.liao@linux.intel.com>,
-	Peter Ujfalusi <peter.ujfalusi@linux.intel.com>,
-	linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
-	patches@opensource.cirrus.com, devicetree@vger.kernel.org,
-	Maciej Strozek <mstrozek@opensource.cirrus.com>
-Subject: Re: [PATCH v3 3/4] mfd: cs42l43: Add support for the B variant
-Message-ID: <202601240759.oXmYGyUC-lkp@intel.com>
-References: <20260123150945.100038-4-mstrozek@opensource.cirrus.com>
+	s=arc-20240116; t=1769213605; c=relaxed/simple;
+	bh=e67QfSnPJxuyvNAoMWfCXwuEw3Jft44F8kZCtdnCJbs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=j+LqAJTc8Vfw8G0LNPhmhsBytWg0FrnExPLVgZbSCi5SsoGbXNzXYPAwjdECgzS6v0aME2Ltae6OxXlaAJ0VmwvfsnTCXgB7dDtAMz5M6JPQ4JKSoqYgrDxERUjh36HsjjktRoyq44abXqyraxxu0Qure5fdegKHQS2ZpoVrJwE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iYmKdSXR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE554C19424
+	for <devicetree@vger.kernel.org>; Sat, 24 Jan 2026 00:13:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769213604;
+	bh=e67QfSnPJxuyvNAoMWfCXwuEw3Jft44F8kZCtdnCJbs=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=iYmKdSXRic7jBvv55zlC3DkYX7z9q2WyBvMwHLFnphh6CVkK6thHLAkBCiyIx6RFP
+	 HQMHC0AYBRXRF7Nw8LL7879dTZLF7NxTfz4gZBfhf59l5DwyfFfr/RkpgoIknMjiwe
+	 8Yeq6LXHUHNpPS66AqYEgGPfA0qnrMN6OcJxtsqNrRZLU1tsMEs+uv3Hu2iVD9aZM8
+	 Q6Cud+FKlIyxZedxdKwmUfOCcpcNlBwCgUM9Khg868jS3TjHRlZdWEc0DWE++QCvu4
+	 VIgFbovScFn0E7rmWJjyFqVBKS8pLgnP/Ea1i8Se9lgTPLwDyMCeEnpbXqYhMxJ3jo
+	 dPcyc/l6ne8Qg==
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-65807a2012fso4643629a12.0
+        for <devicetree@vger.kernel.org>; Fri, 23 Jan 2026 16:13:24 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCV280rCKMUdmjfbxUMsE55vjMKVXTJ50s+bIrPlCMwtUf3EYH3qn7saa7L/tBjj+WxBYRu//mQ+KU74@vger.kernel.org
+X-Gm-Message-State: AOJu0YxqivAHEqDNA6LBXdKrAlxxadQ+f2Y57WhWNmVrisyc7+eKvrTU
+	3AJbxpz5JbibpLK810yatlBtDYofPVkIDNfkvQ1Ksb3yq6EpZt94WkX4a2IGpOMxvkRknfnsksZ
+	9E1sMmOYyqABna20k8O/QPCyVyqX5Fw==
+X-Received: by 2002:a05:6402:2745:b0:658:3c7b:5c3f with SMTP id
+ 4fb4d7f45d1cf-6584876232bmr3082719a12.11.1769213603370; Fri, 23 Jan 2026
+ 16:13:23 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260123150945.100038-4-mstrozek@opensource.cirrus.com>
+References: <20260121-topic-lpm-of-map-iterator-v6-18-v2-1-a40bf8e91045@baylibre.com>
+In-Reply-To: <20260121-topic-lpm-of-map-iterator-v6-18-v2-1-a40bf8e91045@baylibre.com>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 23 Jan 2026 18:13:12 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLq1V_is4wHedFoiGHcYt293vDJ4SsHaZKxYARupbUXEw@mail.gmail.com>
+X-Gm-Features: AZwV_QjdDdxzMlnOEgkqZLmGXg8HvvZj9xdNCT8MixABbzKkUrbjr2dO678aMFo
+Message-ID: <CAL_JsqLq1V_is4wHedFoiGHcYt293vDJ4SsHaZKxYARupbUXEw@mail.gmail.com>
+Subject: Re: [PATCH RFC v2] of: Add of_parse_map_iter() helper for nexus node
+ map iteration
+To: "Kevin Hilman (TI)" <khilman@baylibre.com>, Herve Codina <herve.codina@bootlin.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
+	Ulf Hansson <ulf.hansson@linaro.org>, linux-pm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-259139-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree];
+	TAGGED_FROM(0.00)[bounces-259140-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,01.org:url]
-X-Rspamd-Queue-Id: A7A507B966
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,baylibre.com:email,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: E3E6B7B9D4
 X-Rspamd-Action: no action
 
-Hi Maciej,
+On Wed, Jan 21, 2026 at 5:55=E2=80=AFPM Kevin Hilman (TI) <khilman@baylibre=
+.com> wrote:
+>
+> Add a new helper function of_parse_map_iter() to simplify parsing of
+> nexus node maps as defined in the DT spec, section 2.5.1.
+>
+> This function provides an iterator interface for traversing map entries,
+> handling the complexity of variable-sized entries based on #<stem>-cells
+> properties. Each map entry follows the format:
+>   <child_specifier phandle parent_specifier>
+>
+> The iterator extracts both the child specifier and parent phandle+args
+> for each entry, managing all the details of:
+> - Reading #<stem>-cells from both child and parent nodes
+> - Calculating variable entry sizes
+> - Resolving phandles
+> - Proper node reference management
+>
+> This eliminates the need for subsystems to manually parse map properties,
+> reducing code duplication and potential bugs.
+>
+> This code was developed in collaboration with Claude Code (model:
+> Sonnet 4.5), which needed some guidance to use existing OF helpers,
+> iterators etc.
+>
+> Signed-off-by: Kevin Hilman (TI) <khilman@baylibre.com>
+> ---
+> Changes in v2:
+> - Use helpers of_phandle_iterator_init() and of_phandle_iterator_next()
+> - add missing of_node_put() pointed out in v1
+> - Link to v1: https://patch.msgid.link/20251119-topic-lpm-of-map-iterator=
+-v6-18-v1-1-1f0075d771a3@baylibre.com
+> ---
+>  drivers/of/base.c  | 163 +++++++++++++++++++++++++++++++++++++++++++++++=
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++=
++++++++++++++++++++++++++++++++++++++++++
+>  include/linux/of.h |  13 +++++++++++++
+>  2 files changed, 176 insertions(+)
+>
+> diff --git a/drivers/of/base.c b/drivers/of/base.c
+> index 0b65039ece53..8392fe54cf60 100644
+> --- a/drivers/of/base.c
+> +++ b/drivers/of/base.c
+> @@ -1641,6 +1641,169 @@ int of_parse_phandle_with_args_map(const struct d=
+evice_node *np,
+>  }
+>  EXPORT_SYMBOL(of_parse_phandle_with_args_map);
+>
+> +/**
+> + * of_parse_map_iter() - Iterate through entries in a nexus node map
+> + * @np:                        pointer to a device tree node containing =
+the map
+> + * @stem_name:         stem of property names (e.g., "power-domain" for =
+"power-domain-map")
+> + * @index:             pointer to iteration index (set to 0 for first ca=
+ll)
+> + * @child_args:                pointer to structure to fill with child s=
+pecifier (can be NULL)
+> + * @parent_args:       pointer to structure to fill with parent phandle =
+and specifier
+> + *
+> + * This function iterates through a nexus node map property as defined i=
+n DT spec 2.5.1.
+> + * Each map entry has the format: <child_specifier phandle parent_specif=
+ier>
+> + *
+> + * On each call, it extracts one map entry and fills child_args (if prov=
+ided) with the
+> + * child specifier and parent_args with the parent phandle and specifier=
+.
+> + * The index pointer is updated to point to the next entry for the follo=
+wing call.
+> + *
+> + * Example usage::
+> + *
+> + *  int index =3D 0;
+> + *  struct of_phandle_args child_args, parent_args;
+> + *
+> + *  while (!of_parse_map_iter(np, "power-domain", &index, &child_args, &=
+parent_args)) {
+> + *      // Process child_args and parent_args
+> + *      of_node_put(parent_args.np);
+> + *  }
+> + *
+> + * Caller is responsible for calling of_node_put() on parent_args.np.
+> + *
+> + * Return: 0 on success, -ENOENT when iteration is complete, or negative=
+ error code on failure.
+> + */
+> +int of_parse_map_iter(const struct device_node *np,
+> +                      const char *stem_name,
+> +                      int *index,
+> +                      struct of_phandle_args *child_args,
+> +                      struct of_phandle_args *parent_args)
+> +{
+> +       char *cells_name __free(kfree) =3D kasprintf(GFP_KERNEL, "#%s-cel=
+ls", stem_name);
+> +       char *map_name __free(kfree) =3D kasprintf(GFP_KERNEL, "%s-map", =
+stem_name);
+> +       char *mask_name __free(kfree) =3D kasprintf(GFP_KERNEL, "%s-map-m=
+ask", stem_name);
+> +       char *pass_name __free(kfree) =3D kasprintf(GFP_KERNEL, "%s-map-p=
+ass-thru", stem_name);
 
-kernel test robot noticed the following build warnings:
+It's not great that we're doing allocs and frees on each iteration.
 
-[auto build test WARNING on lee-mfd/for-mfd-next]
-[also build test WARNING on lee-mfd/for-mfd-fixes broonie-sound/for-next lee-leds/for-leds-next linus/master v6.19-rc6 next-20260122]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Can't we follow the same design Herve did for interrupt-map? You have
+an init function you call once up front and then an iterator define
+(e.g. for_each_of_imap_item()). The complication in this case would be
+if we do the allocs in the init function, then we need a way to free
+them. If they are part of the for loop init, then we could use the
+scoped cleanup.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Maciej-Strozek/ASoC-sdw_utils-Add-CS42L43B-codec-info/20260123-233105
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git for-mfd-next
-patch link:    https://lore.kernel.org/r/20260123150945.100038-4-mstrozek%40opensource.cirrus.com
-patch subject: [PATCH v3 3/4] mfd: cs42l43: Add support for the B variant
-config: x86_64-randconfig-003-20260124 (https://download.01.org/0day-ci/archive/20260124/202601240759.oXmYGyUC-lkp@intel.com/config)
-compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260124/202601240759.oXmYGyUC-lkp@intel.com/reproduce)
+On thing I noticed is I think of_phandle_iterator and of_imap_parser
+should probably be merged to one struct. They basically hold the same
+information (pointers to property data).
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202601240759.oXmYGyUC-lkp@intel.com/
+Let me see if I can come up with something next week.
 
-All warnings (new ones prefixed by >>):
-
->> drivers/mfd/cs42l43-i2c.c:50:24: warning: cast to smaller integer type 'int' from 'const void *' [-Wvoid-pointer-to-int-cast]
-      50 |         cs42l43->variant_id = (int)device_get_match_data(cs42l43->dev);
-         |                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   1 warning generated.
-
-
-vim +50 drivers/mfd/cs42l43-i2c.c
-
-    37	
-    38	static int cs42l43_i2c_probe(struct i2c_client *i2c)
-    39	{
-    40		struct cs42l43 *cs42l43;
-    41	
-    42		cs42l43 = devm_kzalloc(&i2c->dev, sizeof(*cs42l43), GFP_KERNEL);
-    43		if (!cs42l43)
-    44			return -ENOMEM;
-    45	
-    46		cs42l43->dev = &i2c->dev;
-    47		cs42l43->irq = i2c->irq;
-    48		/* A device on an I2C is always attached by definition. */
-    49		cs42l43->attached = true;
-  > 50		cs42l43->variant_id = (int)device_get_match_data(cs42l43->dev);
-    51	
-    52		cs42l43->regmap = devm_regmap_init_i2c(i2c, &cs42l43_i2c_regmap);
-    53		if (IS_ERR(cs42l43->regmap))
-    54			return dev_err_probe(cs42l43->dev, PTR_ERR(cs42l43->regmap),
-    55					     "Failed to allocate regmap\n");
-    56	
-    57		return cs42l43_dev_probe(cs42l43);
-    58	}
-    59	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Rob
 
