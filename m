@@ -1,79 +1,81 @@
-Return-Path: <devicetree+bounces-259233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259234-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8CTDDncYdmnXLgEAu9opvQ
-	(envelope-from <devicetree+bounces-259233-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 14:19:51 +0100
+	id 6FDXHHwYdmnXLgEAu9opvQ
+	(envelope-from <devicetree+bounces-259234-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 14:19:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3DB880A49
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 14:19:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 025B880A50
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 14:19:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 74E033005D0C
+	by sea.lore.kernel.org (Postfix) with ESMTP id C20473007AC5
 	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 13:19:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF8F731A7E2;
-	Sun, 25 Jan 2026 13:19:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47B4131BC84;
+	Sun, 25 Jan 2026 13:19:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Eetsm0zY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QQUPR88X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-wm1-f68.google.com (mail-wm1-f68.google.com [209.85.128.68])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFCDA2165EA
-	for <devicetree@vger.kernel.org>; Sun, 25 Jan 2026 13:19:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B846B191F84
+	for <devicetree@vger.kernel.org>; Sun, 25 Jan 2026 13:19:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.68
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769347169; cv=none; b=KfVuklifaZlxJ2xfyHu+IUy+xfThWAUTw9FI1qomG3aaf9yHRuaYy1zhWv0yryE6zOxYtKg1HlgI+/Ni3YaWgadWwCYiS8mONtkSu5r49SXxk6iSOZZEizlTOEeyDS5dTo8WSrv9KHQCbaBXJAaj968HpoNjU0HHdq5DL9yAQmI=
+	t=1769347170; cv=none; b=PGdvPPsI8K/7vhpFojj0PAczf4RfjtjtCitV/HEyPYRhhKGmOEKtyvhU8w47DBvnoKK4h5FXXhv2SE+G2iNnGF84GxrcyzxW8rgu8OL2QIcG9Tm8BP4kOYPIVmz8PlclP5B1/2enstBNIKpIw2nvZnI/3Ed9Q8/4v4RFVju1UaA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769347169; c=relaxed/simple;
-	bh=TkRt8QIeNHtfjyUeM4effZ1gZwbrzaC8pluPh7WL5y8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=N+W1X1gz5SmLUOf/shINmIq/JHbSdlYfCaDyR81MUB+fT1llryI0Li7ek6gCRCPNSHFXOXuEFIsIc8dJo6/QKwZKfAsc4J41i9vQasZNlga55F07focnT8jANGkLO5uTikxcR/W2zw0M3MCWjt8e1s1xq73+uDAXzmcOAyYOC3U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Eetsm0zY; arc=none smtp.client-ip=209.85.128.53
+	s=arc-20240116; t=1769347170; c=relaxed/simple;
+	bh=QlyqcO1+IdKatW4r9kkCO0xkGqiulU8TNo9N+h8E64o=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=XXN7WUhH5Wad2+TN80bZH0jOB4KZsNopk2oB62t7lnNtooqPZ7LyuYHvFo6IuyKudajGcYsq6CCef41Z45rQOPZWMrYMGi6nht1fg97DZkyPAQ2THOgA84C6DEkHWkV/b9pVGkWLcYph3BgIoGhW+HUIia9m0TNAz95ZcHevieg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QQUPR88X; arc=none smtp.client-ip=209.85.128.68
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-47ee937ecf2so30991065e9.0
-        for <devicetree@vger.kernel.org>; Sun, 25 Jan 2026 05:19:27 -0800 (PST)
+Received: by mail-wm1-f68.google.com with SMTP id 5b1f17b1804b1-47ee76e8656so53522155e9.0
+        for <devicetree@vger.kernel.org>; Sun, 25 Jan 2026 05:19:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769347166; x=1769951966; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=AEzeKAAF3T2ngmqtGe3pjZXly3mcFht3AgWOWb36VhE=;
-        b=Eetsm0zY2glOFp9oEat6IUmNx3bf2ExIXLEMDc2r5ZjPChWz2+yR3CO4LRNxs7S4db
-         jqqPyirRkSGmvIk5e+sUbupjrAfQj80F3rdKFwm7o+IdXWhOxBz33PIrspZZZjnD0FA5
-         X6swbyrsrs2mscekZxEBO2hf04JjtolanbdqbcdaGzrvWinUJdv4NDGpGotUOcDthlMY
-         MoGu5E+yrfeIWwvO5bOxFLCCjeWguF2xod6zTTu3KeOUCW/EhkehV+ga9goEsMt+m8v/
-         BP6eDkFncYSYW/SU06VzwCGa9g949xF3COX5O97h9jIdriUrUfBvyn+IOtr2Ggq1T+fV
-         +wBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769347166; x=1769951966;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1769347167; x=1769951967; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=AEzeKAAF3T2ngmqtGe3pjZXly3mcFht3AgWOWb36VhE=;
-        b=iBgMlTKGcqMRNPw4GtYYt+7jKxIRdkAX68IBvJu56iRJ88VmFrr+/AIUlSvJ2xLDTw
-         BRJ4f4DNwzzhrzA91tqJO962X+K0kNvLDl/156yiwff3Zwft6pRek3dSAMrVd5WcOD9T
-         S0yphFKu1ZyDOWMqcQmfG8DUTMWz52WP5IHNzx7GZrE88gunRLCH8AYcDV8BwNvm55Ah
-         LgPRy5DFZ0kLIcn0q3xciersRHB86RIfY9fp7RH8r40xjNIUt2obLeHfqjYd/RcggHBP
-         6MWD0HTmEgGRlrtHQjF1U+neZtFP9lT2c9+Di+IUUhHRqC5JNMe7oZXyCcUGh3aIhXt4
-         QoQg==
-X-Forwarded-Encrypted: i=1; AJvYcCWDB4GOSreIuRNLj4Q9Qx6U2zsiD6vw+YGYfFkSPdnNwkktrISKmHxDTJwNFqRbQsTJ337+atPf/nPA@vger.kernel.org
-X-Gm-Message-State: AOJu0YxYqsUsY5KRALAAWvsw0++BE8eRRuFZn+d6MFHfQUt/iRkYrhbD
-	EqrExXN9NYE2QvY2vNqra2uVCzqbJeMRK31SAHDukrpGMd7npIA9Z+EO
-X-Gm-Gg: AZuq6aJHkZ/W94LDp0q+/pfy/A7gfEpLx7k3UX6vFEGVQid9o4XQF50/SXqr17HlVtv
-	/RDc+Hbdt2+z17CTlaaizNZQ/iFt44Jbw6R3GbO1Jpqyb1e2xXIrx8fIaQelmOTMAylzV0sZq6p
-	7unr51BABUuN0dCqPX5qBeAs6VcQaqLxzHpy8F3vJS4BeI8hex5Xhq0AaQmwFvF/jW/LcYmxaZq
-	QhyNNrGEOIMqFDWftgUIDxnMpnh+cZTli4yXJX+xZEd9plJMwsiy2ubazPqpgcyLMoBvrq3baMA
-	NgbN1sfcIicLECUDOpEl+sWKUD+HfdNIhg/5dMXpTI5ssrmQ19Y5neTgbLKd7O9pGdiDrGJytXa
-	SSk8kEEoWAAq2iOVvkCZ/x+172FBCKnSXNMeSSWq/5w6q1ng4uq+LIDk2tFGfUiQM+7BC4jOwIn
-	18cuvF3JZ7KeA=
-X-Received: by 2002:a05:600c:c6:b0:47e:e38b:a83 with SMTP id 5b1f17b1804b1-4805cd1c150mr18318095e9.7.1769347166112;
-        Sun, 25 Jan 2026 05:19:26 -0800 (PST)
+        bh=R5Zfr1fBtqgJrfSd/g+IV1kLhhHTpd7Gc0DhUBdILk8=;
+        b=QQUPR88Xh8X3OWqF+jVZdPM/XIvsG8lw6A4vn34dghDnjpBUgfslM3fpgw/I+8P+Qn
+         Wh+hCLAIlrYBCTNjAsnk2YDA9RL//bSKoagSa4VVPF5sdYII/2z9tQx9ReoaMbX8sK9w
+         ajj6prJuFMxYvAQrHicoi8hwBPBgByzZH8to1+YMMivaNindNTHsCmaPqOjFEhW2G47J
+         libSjcBZv8SqhR4XtVS3aLFDgy3HzsWfSG/uprhc/VjxNRfBP4+/atq9lEkN+nz/vpFF
+         bXKIkCC61ahKGNR+0q3pI6gB5GoOnP3RsMDhemDw0bp6ammMD0ovxPbOr1ngshbzp5lE
+         BdHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769347167; x=1769951967;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=R5Zfr1fBtqgJrfSd/g+IV1kLhhHTpd7Gc0DhUBdILk8=;
+        b=xMZOBpOuRNXazfLtIr/qMZQSVLimMjZ8mGj4AzvKgs6d5Xckjh7cOMIJNY5xMyh2pJ
+         j45Tu6xqN1kOQIL5iqCStDBLmiHKhDZ4zwEJsUlzVACPY/cHAQiv9ZCvxfhTZAqodVug
+         ZBRCEfYYkabmnBKJbvqNgFy2tdDZXsfuJs9OtnJNCskeIWhP9XcTD2PHXEvDgClRHzZi
+         3ZCca3d0B4wzZUaUstujlGryOE73X9MUGZACtKzI5OYNJrRH9cC8RWGSg5riWPRMmcZh
+         o57ohg7pCagYidkpkwXcetBR6O4SeqzPp/4ED/45WXQRq6r8lcN7Wsj3PCki/wwEvAUj
+         TtZw==
+X-Forwarded-Encrypted: i=1; AJvYcCXQSpI6/K3qTq80Ty5427ermyJRQjcOfHFaDmmjQL4puwUVVP9Ta2tEwyOtorUVeqHawumEyrkWtBUz@vger.kernel.org
+X-Gm-Message-State: AOJu0YxhEjDFQYz5LSwfeLloytldOBCr5grdHzaBax5qB7aC9uxbmoeL
+	za4gIk1bCHPcgbdVd/7OIjfe4wsvYh2ZoIXVh8WQ6CBuNGh7UyUwmTyR
+X-Gm-Gg: AZuq6aI9jlvwe4MD30MXurerF19L2T+Idn58uK7xVg01W4mIzACsd7zHg8tJdM5f9iH
+	mHTDRqL5MYn5L3aZx6dhiVyTWOt86v8f+9S4lWNJCzsGmUEf/tpIerLiu8LJtYhfxu9lqU5edS/
+	GI+FcqFBJ8UCvgafOHq8WTaU9IEeE7y9DVclCYc33eoIoJWjV4JGMgAnzRT1nC9trAQG4EQcGOi
+	rX/2hErI7GnjtBof3LpwXGja7I3ymc0PZRUEjgwUeY/XotoDNEgTklpkGOf7JyMgmM3qPzszzoq
+	+RsIaWAUntW0fFA38vuMycG8Db+gR6Hkk0gu5g0nVeXVlsy9lGGCaLPB+zDxfWesqpeplJwc0SD
+	lZMK6IQZUgX048n0BVYoIRPyjAtdYdcYipDGHhN+sbiAOfkdjkm8sBMA1LE1+ABosrpOelmWFHO
+	wc
+X-Received: by 2002:a05:600c:3f18:b0:477:7c7d:d9b2 with SMTP id 5b1f17b1804b1-4805d06ae8dmr25854955e9.32.1769347167119;
+        Sun, 25 Jan 2026 05:19:27 -0800 (PST)
 Received: from xeon ([188.163.112.49])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48047028928sm382382215e9.2.2026.01.25.05.19.25
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48047028928sm382382215e9.2.2026.01.25.05.19.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 Jan 2026 05:19:25 -0800 (PST)
+        Sun, 25 Jan 2026 05:19:26 -0800 (PST)
 From: Svyatoslav Ryhel <clamor95@gmail.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>,
 	Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
@@ -89,10 +91,12 @@ To: Neil Armstrong <neil.armstrong@linaro.org>,
 Cc: dri-devel@lists.freedesktop.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 0/2] gpu/drm: panel: add support for DSI panel used in Motorola Atrix 4G and Droid X2
-Date: Sun, 25 Jan 2026 15:19:02 +0200
-Message-ID: <20260125131904.45372-1-clamor95@gmail.com>
+Subject: [PATCH v1 1/2] dt-bindings: display: panel: document Atrix 4G and Droid X2 DSI panel
+Date: Sun, 25 Jan 2026 15:19:03 +0200
+Message-ID: <20260125131904.45372-2-clamor95@gmail.com>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20260125131904.45372-1-clamor95@gmail.com>
+References: <20260125131904.45372-1-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -115,7 +119,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-259233-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-259234-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[14];
 	FREEMAIL_TO(0.00)[linaro.org,oss.qualcomm.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch];
@@ -129,28 +133,94 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C3DB880A49
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,devicetree.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 025B880A50
 X-Rspamd-Action: no action
 
-Add support for the DSI LCD panel module found in Motorola Atrix 4G or
-Droid X2 smartphones. Exact panel vendor and model are unknown hence panel
-uses generic compatible based on board where it is used. The panel has a
-540x960 resolution with 24 bit RGB per pixel.
+Atrix 4G and Droid X2 use the same 540x960 DSI video mode panel. Exact
+panel vendor and model are unknown hence generic compatible is used based
+on board name it is used with.
 
-Svyatoslav Ryhel (2):
-  dt-bindings: display: panel: document Atrix 4G and Droid X2 DSI panel
-  gpu/drm: panel: add support for DSI panel used in Motorola Atrix 4G
-    and Droid X2
-
- .../display/panel/motorola,mot-panel.yaml     |  68 +++++
- drivers/gpu/drm/panel/Kconfig                 |  12 +
- drivers/gpu/drm/panel/Makefile                |   1 +
- drivers/gpu/drm/panel/panel-motorola-mot.c    | 244 ++++++++++++++++++
- 4 files changed, 325 insertions(+)
+Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+---
+ .../display/panel/motorola,mot-panel.yaml     | 68 +++++++++++++++++++
+ 1 file changed, 68 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/display/panel/motorola,mot-panel.yaml
- create mode 100644 drivers/gpu/drm/panel/panel-motorola-mot.c
 
+diff --git a/Documentation/devicetree/bindings/display/panel/motorola,mot-panel.yaml b/Documentation/devicetree/bindings/display/panel/motorola,mot-panel.yaml
+new file mode 100644
+index 000000000000..2326a83bc405
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/motorola,mot-panel.yaml
+@@ -0,0 +1,68 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/motorola,mot-panel.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Atrix 4G and Droid X2 DSI Display Panel
++
++maintainers:
++  - Svyatoslav Ryhel <clamor95@gmail.com>
++
++description:
++  Atrix 4G and Droid X2 use the same 540x960 DSI video mode panel. Exact
++  panel vendor and model are unknown hence generic compatible is used.
++
++allOf:
++  - $ref: panel-common.yaml#
++
++properties:
++  compatible:
++    items:
++      - const: motorola,mot-panel
++
++  reg:
++    maxItems: 1
++
++  vdd-supply:
++    description: Regulator for main power supply.
++
++  vddio-supply:
++    description: Regulator for 1.8V IO power supply.
++
++  backlight: true
++  reset-gpios: true
++  port: true
++
++required:
++  - compatible
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    dsi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        panel@0 {
++            compatible = "motorola,mot-panel";
++            reg = <0>;
++
++            reset-gpios = <&gpio 35 GPIO_ACTIVE_LOW>;
++
++            vdd-supply = <&vdd_5v0_panel>;
++            vddio-supply = <&vdd_1v8_vio>;
++
++            backlight = <&backlight>;
++
++            port {
++                panel_in: endpoint {
++                    remote-endpoint = <&dsi_out>;
++                };
++            };
++        };
++    };
++...
 -- 
 2.51.0
 
