@@ -1,41 +1,42 @@
-Return-Path: <devicetree+bounces-259295-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259296-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YKcwJ7tvdmnyQgEAu9opvQ
-	(envelope-from <devicetree+bounces-259295-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 20:32:11 +0100
+	id mIIuIM1vdmnyQgEAu9opvQ
+	(envelope-from <devicetree+bounces-259296-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 20:32:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E2E782346
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 20:32:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E286A82357
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 20:32:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E445C3007CB6
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 19:27:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 438CC301DE06
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 19:27:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27D6B2F362A;
-	Sun, 25 Jan 2026 19:27:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDE3B2F3C30;
+	Sun, 25 Jan 2026 19:27:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DB992F0C45;
-	Sun, 25 Jan 2026 19:27:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C57F2F3C02;
+	Sun, 25 Jan 2026 19:27:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769369242; cv=none; b=PLQIU0ecX/fJ1LCF8uwgS27EY7KgYuUUKr4dyTOq14XNNWs+FLptpe716sT+/NmmEm99HaI2402jJiJKbb8ETEU9F+YqpPLhCPpMSinXvhd8Iv8vcoaebXyvK1rFmqU9bYAJUdE6sW1GIdFhEKlN5vV0Uh3lfFWBS+ylcpDuv8Q=
+	t=1769369244; cv=none; b=MTze/OJGoJHDHZLQnjipiV8Sn+FQ+1rZ7/E9PnMtLkZPJXmem50pP8ewkKNPxaPV3ExrI30gDzN5cVeZr4gJSbrCqlzbb4CDdjEeLXaLmdlCV+S9cyGtQ79YSzZZSQrpN+/RLxupJihDQOL2pwDXIFjEnI3M/FU8b6lY/OI3PyY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769369242; c=relaxed/simple;
-	bh=CozdFXiSA7xUiBI/MIqTTQtKj658HtnSPS1kFi0S6Ls=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=SKXAim8AUbezBVsK/zXHQg+0tckX/U1343HShRtPKv2hla/dF/1Kb7c0a+/ibnz+he3wPFvfkkm+X+tsuSDzecLP69V2sv7k1eQXXjiEvy8WPrzX8/FGdYbJwlAyhYUEl2QTTjsnGG29DHbiQGoO1X+xvtNq5XO0QhJ997652DE=
+	s=arc-20240116; t=1769369244; c=relaxed/simple;
+	bh=JdZ5f6GvvQebSYokoq3xvghRh1ZD46np2N8hNiXYjqM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=sSwz4hzh4H7Xil9eTWCCXpr/mwz6RDjck1ml1SLSHMDg9gCrSoubyf4MWfAsARHMPQMHWsdCxWAy0oefhFabfxvZvVwZMRdPS7dOfjhtyCY+J5n2huwqW3osJxhGtptZYGlzlKotSQceUOJfpsKsEZG/rYa1BjtINt7kD2367Fg=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-X-CSE-ConnectionGUID: F0m6/hOGRyKe7eKgM3efzA==
-X-CSE-MsgGUID: k3yXWxStTOmDi3cmVgLZHg==
+X-CSE-ConnectionGUID: qAlnhWXjRn6r2sK+ZTm+fw==
+X-CSE-MsgGUID: 35m7Nu+iRa21sNhUIrpqew==
 Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 26 Jan 2026 04:27:12 +0900
+  by relmlie5.idc.renesas.com with ESMTP; 26 Jan 2026 04:27:17 +0900
 Received: from vm01.adwin.renesas.com (unknown [10.226.92.19])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 5B65C4035223;
-	Mon, 26 Jan 2026 04:27:07 +0900 (JST)
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 980A6403523A;
+	Mon, 26 Jan 2026 04:27:12 +0900 (JST)
 From: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
 To: claudiu.beznea.uj@bp.renesas.com,
 	alexandre.belloni@bootlin.com,
@@ -52,10 +53,12 @@ Cc: linux-rtc@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-clk@vger.kernel.org
-Subject: [PATCH 0/5] Add RTC support for the Renesas RZ/V2N SoC
-Date: Sun, 25 Jan 2026 19:27:00 +0000
-Message-ID: <20260125192706.27099-1-ovidiu.panait.rb@renesas.com>
+Subject: [PATCH 1/5] clk: renesas: r9a09g056: Fix ordering of module clocks array
+Date: Sun, 25 Jan 2026 19:27:01 +0000
+Message-ID: <20260125192706.27099-2-ovidiu.panait.rb@renesas.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260125192706.27099-1-ovidiu.panait.rb@renesas.com>
+References: <20260125192706.27099-1-ovidiu.panait.rb@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,7 +78,7 @@ X-Spamd-Result: default: False [1.64 / 15.00];
 	DMARC_POLICY_SOFTFAIL(0.10)[renesas.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259295-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-259296-lists,devicetree=lfdr.de];
 	TO_DN_NONE(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
@@ -90,33 +93,74 @@ X-Spamd-Result: default: False [1.64 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	PRECEDENCE_BULK(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[15];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,renesas.com:mid]
-X-Rspamd-Queue-Id: 6E2E782346
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,renesas.com:mid,renesas.com:email]
+X-Rspamd-Queue-Id: E286A82357
 X-Rspamd-Action: no action
 
-Hi,
+The r9a09g056_mod_clks array is sorted by CPG_CLKON register number and
+bit position. Move the RSPI 0/1/2 module clock entries to their correct
+position to restore the array sort order.
 
-This series adds RTC support for the Renesas RZ/V2N SoC.
+Fixes: 1f76689d1715 ("clk: renesas: r9a09g056: Add entries for RSCIs")
+Signed-off-by: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
+---
+ drivers/clk/renesas/r9a09g056-cpg.c | 36 ++++++++++++++---------------
+ 1 file changed, 18 insertions(+), 18 deletions(-)
 
-The Renesas RZ/V2N RTC IP is identical to the IP found on the RZ/V2H
-SoC. This series updates the bindings and the SoC/board dts files.
-
-Best regards,
-Ovidiu
-
-Ovidiu Panait (5):
-  clk: renesas: r9a09g056: Fix ordering of module clocks array
-  clk: renesas: r9a09g056: Add clock and reset entries for RTC
-  dt-bindings: rtc: renesas,rz-rtca3: Add RZ/V2N support
-  arm64: dts: renesas: r9a09g056: Add RTC node
-  arm64: dts: renesas: r9a09g056n48-rzv2n-evk: Enable RTC
-
- .../bindings/rtc/renesas,rz-rtca3.yaml        |  5 ++-
- arch/arm64/boot/dts/renesas/r9a09g056.dtsi    | 15 +++++++
- .../dts/renesas/r9a09g056n48-rzv2n-evk.dts    |  4 ++
- drivers/clk/renesas/r9a09g056-cpg.c           | 40 ++++++++++---------
- 4 files changed, 45 insertions(+), 19 deletions(-)
-
+diff --git a/drivers/clk/renesas/r9a09g056-cpg.c b/drivers/clk/renesas/r9a09g056-cpg.c
+index fead173cae8b..70de6bb929b9 100644
+--- a/drivers/clk/renesas/r9a09g056-cpg.c
++++ b/drivers/clk/renesas/r9a09g056-cpg.c
+@@ -289,6 +289,24 @@ static const struct rzv2h_mod_clk r9a09g056_mod_clks[] __initconst = {
+ 						BUS_MSTOP(5, BIT(13))),
+ 	DEF_MOD("wdt_3_clk_loco",		CLK_QEXTAL, 5, 2, 2, 18,
+ 						BUS_MSTOP(5, BIT(13))),
++	DEF_MOD("rspi_0_pclk",			CLK_PLLCLN_DIV8, 5, 4, 2, 20,
++						BUS_MSTOP(11, BIT(0))),
++	DEF_MOD("rspi_0_pclk_sfr",		CLK_PLLCLN_DIV8, 5, 5, 2, 21,
++						BUS_MSTOP(11, BIT(0))),
++	DEF_MOD("rspi_0_tclk",			CLK_PLLCLN_DIV8, 5, 6, 2, 22,
++						BUS_MSTOP(11, BIT(0))),
++	DEF_MOD("rspi_1_pclk",			CLK_PLLCLN_DIV8, 5, 7, 2, 23,
++						BUS_MSTOP(11, BIT(1))),
++	DEF_MOD("rspi_1_pclk_sfr",		CLK_PLLCLN_DIV8, 5, 8, 2, 24,
++						BUS_MSTOP(11, BIT(1))),
++	DEF_MOD("rspi_1_tclk",			CLK_PLLCLN_DIV8, 5, 9, 2, 25,
++						BUS_MSTOP(11, BIT(1))),
++	DEF_MOD("rspi_2_pclk",			CLK_PLLCLN_DIV8, 5, 10, 2, 26,
++						BUS_MSTOP(11, BIT(2))),
++	DEF_MOD("rspi_2_pclk_sfr",		CLK_PLLCLN_DIV8, 5, 11, 2, 27,
++						BUS_MSTOP(11, BIT(2))),
++	DEF_MOD("rspi_2_tclk",			CLK_PLLCLN_DIV8, 5, 12, 2, 28,
++						BUS_MSTOP(11, BIT(2))),
+ 	DEF_MOD("rsci0_pclk",			CLK_PLLCLN_DIV16, 5, 13, 2, 29,
+ 						BUS_MSTOP(11, BIT(3))),
+ 	DEF_MOD("rsci0_tclk",			CLK_PLLCLN_DIV16, 5, 14, 2, 30,
+@@ -389,24 +407,6 @@ static const struct rzv2h_mod_clk r9a09g056_mod_clks[] __initconst = {
+ 						BUS_MSTOP(11, BIT(12))),
+ 	DEF_MOD("rsci9_ps_ps1_n",		CLK_PLLCLN_DIV64, 8, 14, 4, 14,
+ 						BUS_MSTOP(11, BIT(12))),
+-	DEF_MOD("rspi_0_pclk",			CLK_PLLCLN_DIV8, 5, 4, 2, 20,
+-						BUS_MSTOP(11, BIT(0))),
+-	DEF_MOD("rspi_0_pclk_sfr",		CLK_PLLCLN_DIV8, 5, 5, 2, 21,
+-						BUS_MSTOP(11, BIT(0))),
+-	DEF_MOD("rspi_0_tclk",			CLK_PLLCLN_DIV8, 5, 6, 2, 22,
+-						BUS_MSTOP(11, BIT(0))),
+-	DEF_MOD("rspi_1_pclk",			CLK_PLLCLN_DIV8, 5, 7, 2, 23,
+-						BUS_MSTOP(11, BIT(1))),
+-	DEF_MOD("rspi_1_pclk_sfr",		CLK_PLLCLN_DIV8, 5, 8, 2, 24,
+-						BUS_MSTOP(11, BIT(1))),
+-	DEF_MOD("rspi_1_tclk",			CLK_PLLCLN_DIV8, 5, 9, 2, 25,
+-						BUS_MSTOP(11, BIT(1))),
+-	DEF_MOD("rspi_2_pclk",			CLK_PLLCLN_DIV8, 5, 10, 2, 26,
+-						BUS_MSTOP(11, BIT(2))),
+-	DEF_MOD("rspi_2_pclk_sfr",		CLK_PLLCLN_DIV8, 5, 11, 2, 27,
+-						BUS_MSTOP(11, BIT(2))),
+-	DEF_MOD("rspi_2_tclk",			CLK_PLLCLN_DIV8, 5, 12, 2, 28,
+-						BUS_MSTOP(11, BIT(2))),
+ 	DEF_MOD("scif_0_clk_pck",		CLK_PLLCM33_DIV16, 8, 15, 4, 15,
+ 						BUS_MSTOP(3, BIT(14))),
+ 	DEF_MOD("i3c_0_pclkrw",			CLK_PLLCLN_DIV16, 9, 0, 4, 16,
 -- 
 2.51.0
 
