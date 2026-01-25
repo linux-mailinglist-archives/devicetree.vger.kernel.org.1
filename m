@@ -1,295 +1,165 @@
-Return-Path: <devicetree+bounces-259309-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259311-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sNzuLqiEdmkORgEAu9opvQ
-	(envelope-from <devicetree+bounces-259309-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 22:01:28 +0100
+	id kOSIDLyVdmlCSgEAu9opvQ
+	(envelope-from <devicetree+bounces-259311-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 23:14:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AFC78273F
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 22:01:28 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8464D82A44
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 23:14:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DEAFB30053C3
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 21:00:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4B09330056DF
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 22:14:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AA9330C620;
-	Sun, 25 Jan 2026 21:00:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7536730DD3A;
+	Sun, 25 Jan 2026 22:14:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TRwC+sH6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J6akJgre"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B2D330CD82
-	for <devicetree@vger.kernel.org>; Sun, 25 Jan 2026 21:00:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 513B13090C9;
+	Sun, 25 Jan 2026 22:14:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769374852; cv=none; b=ReWIZcLQGr+hV3Hxo/9gyBevud3xUFhyb728w6aci7elJSf5O+z/Jfud0jkSPaOPrPIuX7pIgLcm8BRfFM/jpc+abQgwQWN3HSBzuCQK7IAc+ohciD6x31r2zvKoGWf+9KQzAF9mQE29CRkrLXnmCupLtc50t9bJOAAQ/g3Om1U=
+	t=1769379248; cv=none; b=OIuc27wEfTDTginLE7l+5G4p0bDZvQj5CuOt1rsfQHihRhUyMjeetD6Ptvl2qolL0lyacM5jkCdQ98jMwPT3EQy21GsKfovex30iCzhQ8FOd4BQkNzvQpZzmJTKLM2u03zbrwJyKrcQFe10kekMLC+HsG9pLp/moDGHeQsYf2sk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769374852; c=relaxed/simple;
-	bh=Pdfoxvmf0koaQsrGa9oNdSYX+UtC+CNvdywI8EBll40=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ULF3/SmTNvtlcVvKetxtvyTyAxUcTNXaIUC/wEK4Y/X/WCtn6VC//fRz1YYMWJxUmIEsceBHYj/68vtDqF1bOYUoTAC9kw/yIyJCbtmOaTHPqmwcSi5YT7psb8toVo5m/ZnF3jk/rbnDGAnuZOjC00XIAWSNKqvm5/WlFyeXWQ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TRwC+sH6; arc=none smtp.client-ip=209.85.128.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-790ac42fd00so38614977b3.3
-        for <devicetree@vger.kernel.org>; Sun, 25 Jan 2026 13:00:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769374850; x=1769979650; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zNMUkIoLTalpAd3ZRQES5uiVuV25MXRQWddLJpJTYAY=;
-        b=TRwC+sH6+NbtVaJMIkDCkZnQXFmhRmZU39ZAsrrA96nm1gP47+fAwmUJDl4kn1UGIx
-         BiCLnJqVua+zgvBBRO6yAT4rlCkLXnohy0uDvlqG7Rp59m7SCQqN7jUxuJkCz/o+X5QQ
-         uaIxx7wUh2vEV/OlW8ga7jMY2KViIQ0az3/Q0hCtQEK26Ky8XncaOtZTWdNtwSOw0O94
-         X/ZxnDIi/rkRRnPaCPJe3A8VS83u2BnkKyYFr2vMoVanriGszpJB2lT9zkys+gm4zTPa
-         Xuyzwfpj39Bg19i1RLwJNKJOC3GezZYVKGAblr4ZBoSCkE1yaBT93nU4+OqI2v434OSB
-         efFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769374850; x=1769979650;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=zNMUkIoLTalpAd3ZRQES5uiVuV25MXRQWddLJpJTYAY=;
-        b=VefQJAetu/zpsIcA1Zg31DyK2jWbVTNLFEisTU4JTvRRtoWt4Py1ul4mJ9KiMDJPx9
-         kcW/58BqegHvysMB4l4lxfL5MsGi1Xh53kj3nRTpTdlSiTe5K1rh2I8LWCNnm1GCI7ut
-         k54DyvEg6n5TwRA7TbS7J6zJErCDI8p/qDCirwxWsTpRE8AvK0M9napIeZ08K1oKQwZN
-         DMUIAXrWiUdhyhD6T5QC5LBoOmxJ3SmmlpsslzlpbRdfGdVYoZAZTgJFrIRJs1/1pfPR
-         dSZP1oIiZpPvyK3eVJ4oIfVe0JV9y4hjKyAAxUD2ibdJPefC4iWNLFslXQHparLeKXsm
-         olMg==
-X-Gm-Message-State: AOJu0YzOFmw14rLJ7DpmHuOaq2En+hiFD9XujARucDnXeHd5TErN++q2
-	f7EIo7/zubzLseJfDVn1GtojKHUxJuxltDHFxU4xwbGLvg+MZR+owUPv
-X-Gm-Gg: AZuq6aIos47KiHvhVp91Ie0apfIlhEljZIBZR6JFQNPkpGqz4WGu6TtLwQc+GVXVMpi
-	S71vYKGwVe0UdOkEF/Hd+rcVQSbjdCXd8BVVYmA/rpkK4T+w1UL8RBBD+b/SOW7HvSWvQncNYrT
-	gYJj29UMPwhxm9C3+Lqc9Gd0XSg7kQNd586sZ+Uv60UfZa/BM+8qS9LnUnLRMphUgXZhYJi1K19
-	IVFXZ4cL3cS4+msXmnLX1XlEWo1SM11ofwJXS/+W1YCrCRd/SERXxmA49wNol+nq33bo4qIpNuf
-	ZcunL2XBXGsupm/cYj0zBUhB6wPnr/qrYND1zreBHkuqtLsz6n2bZ+lUdCLrLbt26flc2HFkjiR
-	dG++JG6BeDx0Kuy0WZYzMS9D/VaqcsHM0di84g5icglgqCn/ZswkZl1VvMbEMsvR2F4T+ZV7dbX
-	NOY/qy
-X-Received: by 2002:a05:690c:e3ce:b0:794:35b:af5e with SMTP id 00721157ae682-7945a86ee06mr44305837b3.5.1769374849589;
-        Sun, 25 Jan 2026 13:00:49 -0800 (PST)
-Received: from [192.168.2.165] ([2600:1700:220:59e0::914])
-        by smtp.googlemail.com with ESMTPSA id 956f58d0204a3-6496855d65esm2518183d50.12.2026.01.25.13.00.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 Jan 2026 13:00:49 -0800 (PST)
-From: Anirudh Srinivasan <anirudhsriniv@gmail.com>
-Date: Sun, 25 Jan 2026 15:00:39 -0600
-Subject: [PATCH 2/2] ARM: dts: aspeed: Add Asrock Paul IPMI card
+	s=arc-20240116; t=1769379248; c=relaxed/simple;
+	bh=iZlQMjT87MAKVDpNXN3PnkGFzV2iu5aW29TTIBiz4LU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=WTgWM+KE4VPoRSNaYVoGjiJs3fRK5KfhLqXS1jaixddlIbWNJ5OrCHB/zfB0LCLOLvMHrUpLX2XIkZ6Ogbo6Dczadkc5V5uJuAC4jWRLGtVeDCeQULSnIPlhFqzeCnGA4DZBTAhcMD2D455aHLVwx8Tw5Rj/lJV7eTyDyzLMEoI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J6akJgre; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED55EC4CEF1;
+	Sun, 25 Jan 2026 22:14:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769379247;
+	bh=iZlQMjT87MAKVDpNXN3PnkGFzV2iu5aW29TTIBiz4LU=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=J6akJgre43BvTHV/oVpuun6heVrwS1teSyBWH6FuCNcPiuDiEFO1PgpjDWyLdqP8N
+	 QOsluSCZROsPBl5eVixeH74A1gNrAVod6jue+z9olPAMdcM6v7L2iSrq5h1cH8v+52
+	 6XUIosoZiM4ohYRhYXi2143dPv+iUUh2syQRhIbAJx5NOkLnNCVfklF1UNtAqQ50kS
+	 D6bIljup//yXFN3doJv8I4aRgDuvNMdEjZJKQ8s4WFqcLSzfu59UkUrrqWYXtIuQtr
+	 SMQP64HzuOLGlgr2mhNknQFPUmOw+okgeif9F50vg+UrLJCvKw8pS3r53domFjqAI4
+	 x9N3q6FO5pbdA==
+From: Jakub Kicinski <kuba@kernel.org>
+To: jan.petrous@oss.nxp.com
+Cc: Jakub Kicinski <kuba@kernel.org>,
+	robh@kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	mcoquelin.stm32@gmail.com,
+	kernel@pengutronix.de,
+	pabeni@redhat.com,
+	edumazet@google.com,
+	andrew+netdev@lunn.ch,
+	chester62515@gmail.com,
+	s32@nxp.com,
+	linux-kernel@vger.kernel.org,
+	ghennadi.procopciuc@oss.nxp.com,
+	festevam@gmail.com,
+	alexandre.torgue@foss.st.com,
+	davem@davemloft.net,
+	krzk+dt@kernel.org,
+	mbrugger@suse.com,
+	netdev@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	imx@lists.linux.dev
+Subject: Re: [v3,4/4] stmmac: s32: enable support for Multi-IRQ mode
+Date: Sun, 25 Jan 2026 14:14:05 -0800
+Message-ID: <20260125221405.3395497-1-kuba@kernel.org>
+X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20260123-dwmac_multi_irq-v3-4-cc53f2be8961@oss.nxp.com>
+References: <20260123-dwmac_multi_irq-v3-4-cc53f2be8961@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260125-asrock-paul-v1-2-956085a4bd06@gmail.com>
-References: <20260125-asrock-paul-v1-0-956085a4bd06@gmail.com>
-In-Reply-To: <20260125-asrock-paul-v1-0-956085a4bd06@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
- Zev Weiss <zev@bewilderbeest.net>, Renze Nicolai <renze@rnplus.nl>, 
- Anirudh Srinivasan <anirudhsriniv@gmail.com>
-X-Mailer: b4 0.14.2
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.ozlabs.org,bewilderbeest.net,rnplus.nl,gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	TAGGED_FROM(0.00)[bounces-259309-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,st-md-mailman.stormreply.com,vger.kernel.org,pengutronix.de,gmail.com,redhat.com,google.com,lunn.ch,nxp.com,oss.nxp.com,foss.st.com,davemloft.net,suse.com,lists.infradead.org,lists.linux.dev];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	TAGGED_FROM(0.00)[bounces-259311-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[anirudhsriniv@gmail.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.0:email];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kuba@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-0.999];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[4.196.180.0:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 1AFC78273F
+	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8464D82A44
 X-Rspamd-Action: no action
 
-Add device tree for Asrock Paul IPMI card, an AST2500 based PCIe BMC
-card.
+This is an AI-generated review of your patch. The human sending this
+email has considered the AI review valid, or at least plausible.
 
-Signed-off-by: Anirudh Srinivasan <anirudhsriniv@gmail.com>
+For local reproduction steps see https://netdev-ai.bots.linux.dev/ai-local.html
 ---
- arch/arm/boot/dts/aspeed/Makefile                  |   1 +
- .../aspeed/aspeed-bmc-asrock-paul-ipmi-card.dts    | 131 +++++++++++++++++++++
- 2 files changed, 132 insertions(+)
+stmmac: s32: enable support for Multi-IRQ mode
 
-diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
-index 9adf9278dc94f84653775296c93150e61cc99328..be3c84a8462353996e0503cd95326ed88f6b8723 100644
---- a/arch/arm/boot/dts/aspeed/Makefile
-+++ b/arch/arm/boot/dts/aspeed/Makefile
-@@ -11,6 +11,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-bmc-arm-stardragon4800-rep2.dtb \
- 	aspeed-bmc-asrock-e3c246d4i.dtb \
- 	aspeed-bmc-asrock-e3c256d4i.dtb \
-+	aspeed-bmc-asrock-paul-ipmi-card.dtb \
- 	aspeed-bmc-asrock-romed8hm3.dtb \
- 	aspeed-bmc-asrock-spc621d8hm3.dtb \
- 	aspeed-bmc-asrock-x570d4u.dtb \
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-paul-ipmi-card.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-paul-ipmi-card.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..f74f8fee9e1edb6cc1c0a0aef1268bdf91fc03f7
---- /dev/null
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-paul-ipmi-card.dts
-@@ -0,0 +1,131 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+// Copyright 2025 Anirudh Srinivasan
-+
-+/dts-v1/;
-+
-+#include "aspeed-g5.dtsi"
-+#include <dt-bindings/gpio/aspeed-gpio.h>
-+
-+/{
-+	model = "ASRock Paul IPMI Card";
-+	compatible = "asrock,ast2500-paul-ipmi-card", "aspeed,ast2500";
-+
-+	aliases {
-+		serial4 = &uart5;
-+	};
-+
-+	chosen {
-+		stdout-path = &uart5;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-fan-1 {
-+			gpios = <&gpio ASPEED_GPIO(AA, 0) GPIO_ACTIVE_LOW>;
-+			label = "fan1_red";
-+			default-state = "off";
-+		};
-+
-+		led-fan-2 {
-+			gpios = <&gpio ASPEED_GPIO(AA, 1) GPIO_ACTIVE_LOW>;
-+			label = "fan2_red";
-+			default-state = "off";
-+		};
-+
-+		led-fault {
-+			gpios = <&gpio ASPEED_GPIO(Y, 3) GPIO_ACTIVE_LOW>;
-+			label = "panic_red";
-+			panic-indicator;
-+			default-state = "off";
-+		};
-+
-+		led-heartbeat {
-+			gpios = <&gpio ASPEED_GPIO(H, 6) GPIO_ACTIVE_LOW>;
-+			label = "heartbeat_green";
-+			linux,default-trigger = "timer";
-+		};
-+	};
-+
-+	memory@80000000 {
-+		reg = <0x80000000 0x20000000>;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		video_engine_memory: video {
-+			size = <0x02000000>;
-+			alignment = <0x01000000>;
-+			compatible = "shared-dma-pool";
-+			reusable;
-+		};
-+	};
-+};
-+
-+&fmc {
-+	status = "okay";
-+	flash@0 {
-+		status = "okay";
-+		m25p,fast-read;
-+		label = "bmc";
-+		spi-max-frequency = <50000000>; /* 50 MHz */
-+#include "openbmc-flash-layout.dtsi"
-+	};
-+};
-+
-+&gpio {
-+	status = "okay";
-+	gpio-line-names =
-+		/*  A */ "", "", "", "", "", "", "", "",
-+		/*  B */ "", "", "", "", "", "", "", "",
-+		/*  C */ "", "", "", "", "", "", "", "",
-+		/*  D */ "", "BMC_PWRBTN", "", "BMC_RESETCON", "", "", "", "",
-+		/*  E */ "", "", "", "", "", "", "", "",
-+		/*  F */ "", "", "", "", "", "", "", "",
-+		/*  G */ "", "", "", "", "", "", "", "",
-+		/*  H */ "", "", "", "", "", "", "BMC_LED1", "",
-+		/*  I */ "", "", "", "", "", "", "", "",
-+		/*  J */ "", "", "", "", "", "", "", "",
-+		/*  K */ "", "", "", "", "", "", "", "",
-+		/*  L */ "", "", "", "", "", "", "", "",
-+		/*  M */ "", "", "", "", "", "", "", "",
-+		/*  N */ "", "", "", "", "", "", "", "",
-+		/*  O */ "", "", "", "", "", "", "", "",
-+		/*  P */ "", "", "", "", "", "", "", "",
-+		/*  Q */ "", "", "", "", "", "", "", "",
-+		/*  R */ "", "", "", "", "", "", "", "",
-+		/*  S */ "", "", "", "", "", "", "", "",
-+		/*  T */ "", "", "", "", "", "", "", "",
-+		/*  U */ "", "", "", "", "", "", "", "",
-+		/*  V */ "", "", "", "", "", "", "", "",
-+		/*  W */ "", "", "", "", "", "", "", "",
-+		/*  X */ "", "", "", "", "", "PCIE_STNDBY", "", "",
-+		/*  Y */ "", "", "", "SYSTEM_ERR_LED", "", "", "", "",
-+		/*  Z */ "", "", "", "", "", "", "", "",
-+		/* AA */ "FAN_1_LED", "FAN_2_LED", "", "", "", "", "", "",
-+		/* AB */ "", "", "", "", "", "", "", "",
-+		/* AC */ "", "", "", "", "", "", "", "";
-+};
-+
-+&mac0 {
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_rgmii1_default &pinctrl_mdio1_default>;
-+};
-+
-+&uart5 {
-+	status = "okay";
-+};
-+
-+&vhub {
-+	status = "okay";
-+};
-+
-+&video {
-+	status = "okay";
-+	memory-region = <&video_engine_memory>;
-+};
+This patch enables Multi-IRQ mode for the S32 DWMAC driver when both
+multi-queue and per-queue IRQs are configured. The driver now selects
+between Multi-IRQ and MAC IRQ modes based on device tree configuration.
 
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
+> index 5a485ee98fa7..342091045714 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
+
+[ ... ]
+
+> @@ -149,6 +149,16 @@ static int s32_dwmac_probe(struct platform_device *pdev)
+>  	plat->core_type = DWMAC_CORE_GMAC4;
+>  	plat->pmt = 1;
+>  	plat->flags |= STMMAC_FLAG_SPH_DISABLE;
+> +
+> +	/* Check for multi-IRQ config. Assumption: symetrical rx/tx queues */
+> +	if (plat->rx_queues_to_use > 1 &&
+> +	    (res.rx_irq[0] >= 0 || res.tx_irq[0] >= 0)) {
+                        ^^^^            ^^^^
+
+Should these checks be "> 0" instead of ">= 0"?
+
+stmmac_get_platform_resources() initializes the res structure with
+memset(0), then only writes positive IRQ values when per-queue IRQs are
+found in the device tree. If no "rx-queue-0" or "tx-queue-0" interrupt
+names are defined, rx_irq[0] and tx_irq[0] remain 0 from the memset.
+
+Since 0 >= 0 evaluates to true, this condition will enable Multi-IRQ
+mode even when no per-queue IRQs are available. The commit message states
+that "queue based IRQs are set" is a prerequisite, but the current check
+does not properly verify this.
+
+> +		plat->flags |= STMMAC_FLAG_MULTI_MSI_EN;
+> +		dev_info(dev, "Multi-IRQ mode (per queue IRQ) selected\n");
+
+[ ... ]
 -- 
-2.52.0
-
+pw-bot: cr
 
