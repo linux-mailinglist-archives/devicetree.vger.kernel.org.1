@@ -1,204 +1,143 @@
-Return-Path: <devicetree+bounces-259221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259222-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sDb+KWOvdWm2HgEAu9opvQ
-	(envelope-from <devicetree+bounces-259221-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 06:51:31 +0100
+	id MEavJtzudWlyJwEAu9opvQ
+	(envelope-from <devicetree+bounces-259222-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 11:22:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 527BD7FD67
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 06:51:31 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEDCC801AA
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 11:22:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8D4B33009514
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 05:51:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1EA813007F5E
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 10:22:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A99213115AF;
-	Sun, 25 Jan 2026 05:51:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3569A226D00;
+	Sun, 25 Jan 2026 10:22:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="rTR69koY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q7mVYeeq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1304D31062C;
-	Sun, 25 Jan 2026 05:51:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769320287; cv=pass; b=szugmd+y6aGnvuC6dQjhh662EZZAug3N12wkpRaSBRLV7TKK4ybN0DhOctOsLujA5g/cLPsfIQ7KNxHo6v1QWmtD4fmVQ+jtI+eP4CLroTtdO1hOJy62Vl5J9qdyC4UjK6yXWOqKF3voeSuU5K6VrgG5Cr/JN/i4FSbxY3LRbhk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769320287; c=relaxed/simple;
-	bh=vNRFz3rpr1i9Y/8CHvWTW67haKPfB44QKas58pkzPWI=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=DhDCa+xgDIQ5h4Zb8+E0uj9jSFeWLW1V7LXG4amDJgijUTfI9VT3xcsTTDPWrXifXezbUNqe9r3h8SuoJ38w8DW+p6IMNWdxFMmIPu3iHYt1BTqMyp6YWY+N86KiSppAiA/RBZs2yFiOIe49/VDpdiwfDmMOAi7v8k6htSi10e4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=rTR69koY; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
-ARC-Seal: i=1; a=rsa-sha256; t=1769320254; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=dSTluIUg1ZvuNQajf3SJQZtFC47qgOiCluuPmretAnaYy3qEXXAfw12l1SuinrIkuTIRZfJR31MmYz5r6spPsJxZMoLbjXd+1xdkmxQeHJWZoCwxSDGaUYuXq3kOF7qo9PWdPFRCQ4/6JBiHaTov22Gkxan2PROLvfDtNTd0P3I=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1769320254; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=7kmusx+MqkhmDeC3UAb227ZvWFfKqkuZrPt4RmzV95Y=; 
-	b=WBLo2GPooj7hxieZJGDM1Qex0g3hZOSEzMm4I2tFp1ukYCmfFnuM3DqSt27sKBwWn2TV32I6s/OLlyXB2DY6U2/hhhUGqi82QbSx6QFm0LctY+SpVlAX5ZxYla4X7m+X1IT29Njx9sdNitezJuoLhqo/4o9PN3DJ7+ZocAo4ctQ=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=pigmoral.tech;
-	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
-	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1769320254;
-	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
-	h=Mime-Version:Content-Transfer-Encoding:Content-Type:Date:Date:Message-Id:Message-Id:Cc:Cc:Subject:Subject:From:From:To:To:References:In-Reply-To:Reply-To;
-	bh=7kmusx+MqkhmDeC3UAb227ZvWFfKqkuZrPt4RmzV95Y=;
-	b=rTR69koYL0NpAmYBkVdfpkSYUbKGJBrLW085gQX2D96GmcI/dgw7ortSTm9m6V3k
-	PT91fEUpMbG+8Dqv0q3hbWPewgHn/Vtexj28VcJV8gL/4bu+ozd4NNXgzLh7FwyAlmd
-	sgb05Ra7AgqhnAaPKb8koZaqEd2KKBmDE0tK9YPw=
-Received: by mx.zohomail.com with SMTPS id 1769320251684256.61624132047143;
-	Sat, 24 Jan 2026 21:50:51 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F0BB3EBF0C;
+	Sun, 25 Jan 2026 10:22:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769336536; cv=none; b=m27PMsXM8otb47UEE0qcBBC8IywjpXA4Ol1h8nNy6yQOGjdsN/bvFPAWH3DS5dmtGEXfWDIihLEY5d/D+cseanF4uWR+4AxAPppoS6HCLNom2790HvAe/edEjlojdYHBOoI2i4JC0suqGVw3ybhOre2PiFg4yyCBCrnIQsb4U0U=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769336536; c=relaxed/simple;
+	bh=kPcLWa/o3rjsJMhWGoaV5KilA7EaTEWHRAIvHjLome4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=pxrMiB0BKsppbFLGYkjavLUwyaDAgRa+2cKw9oIWVnZWbTf2eJG4B27SsvWeYoOz5cDAVPZ0tvtAT0ZXCAHXXatpIdzi+yaIhofGKNauUcmEvDUWwwCSZQgsq6c2q/a+gFe/G3pzPsWB9nP1rxL9sb1o5VlcYPzZpeozOpcbHho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q7mVYeeq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7C3FC4CEF1;
+	Sun, 25 Jan 2026 10:22:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769336535;
+	bh=kPcLWa/o3rjsJMhWGoaV5KilA7EaTEWHRAIvHjLome4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=q7mVYeeqOJ8GuQi3cJbvxZy3DkaOJA+wUm3UfAdnn2WCOOsq9sDMODT3gHaZKV8Vn
+	 jXOy+X4bket6JZG4yDp7hM7haqKXrFh9QSPnxq96IqZtcGjCj1K7aUYkUgE+cdiuzM
+	 PlWiEU0D79UB/Rp+kEN4S4aNsuAq0sqBynnfgKlfQWR+0rC17uVRhtMeYobV3J/6fC
+	 AgI12ZoXqQnvzILuv0MOgnSAVVJTnb03fnfQUMw7vxQ60VpNktfOFuB8Them2KUpaV
+	 hurCNCz4YMl2DAhWOkJBkjHGm/45roAaGHcokhE13pSJr7YMjYT/Jf/JoxT55omw5V
+	 CLofBM5M0IWqQ==
+Date: Sun, 25 Jan 2026 10:22:07 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Andy Shevchenko
+ <andy@kernel.org>, David Lechner <dlechner@baylibre.com>, Nuno
+ =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, David Jander <david@protonic.nl>
+Subject: Re: [PATCH v1 2/8] dt-bindings: iio: dac: maxim,ds4424: add
+ maxim,rfs-ohms property
+Message-ID: <20260125102207.37ce3501@jic23-huawei>
+In-Reply-To: <aXNHeq9Fi1Ldf-oE@pengutronix.de>
+References: <20260119182424.1660601-1-o.rempel@pengutronix.de>
+	<20260119182424.1660601-3-o.rempel@pengutronix.de>
+	<20260119-turbine-feminize-9dcd5c86feec@spud>
+	<20260123092819.6ae81211@jic23-huawei>
+	<aXNHeq9Fi1Ldf-oE@pengutronix.de>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Sun, 25 Jan 2026 13:50:41 +0800
-Message-Id: <DFXFOHVB1GAV.3L3EL4FVWFWDC@pigmoral.tech>
-Cc: "Michael Turquette" <mturquette@baylibre.com>, "Stephen Boyd"
- <sboyd@kernel.org>, "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Samuel
- Holland" <samuel@sholland.org>, "Alexandre Belloni"
- <alexandre.belloni@bootlin.com>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Maxime Ripard" <mripard@kernel.org>,
- <linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-sunxi@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
- <linux-rtc@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 4/7] clk: sunxi-ng: Extract common RTC CCU clock logic
-From: "Junhui Liu" <junhui.liu@pigmoral.tech>
-To: <wens@kernel.org>, "Junhui Liu" <junhui.liu@pigmoral.tech>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20260121-a733-rtc-v1-0-d359437f23a7@pigmoral.tech>
- <20260121-a733-rtc-v1-4-d359437f23a7@pigmoral.tech>
- <CAGb2v65aMMVu8W1PW+6NZM+YM72YFV9_FWVWtj6QHJ1CgetEsA@mail.gmail.com>
-In-Reply-To: <CAGb2v65aMMVu8W1PW+6NZM+YM72YFV9_FWVWtj6QHJ1CgetEsA@mail.gmail.com>
-X-ZohoMailClient: External
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	MV_CASE(0.50)[];
-	R_DKIM_ALLOW(-0.20)[pigmoral.tech:s=zmail];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-259222-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259221-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[pigmoral.tech];
-	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[pigmoral.tech:+];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[junhui.liu@pigmoral.tech,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,gmail.com,sholland.org,bootlin.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,pigmoral.tech:email,pigmoral.tech:dkim,pigmoral.tech:mid]
-X-Rspamd-Queue-Id: 527BD7FD67
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: BEDCC801AA
 X-Rspamd-Action: no action
 
-On Sun Jan 25, 2026 at 12:32 PM CST, Chen-Yu Tsai wrote:
-> On Wed, Jan 21, 2026 at 7:04=E2=80=AFPM Junhui Liu <junhui.liu@pigmoral.t=
-ech> wrote:
->>
->> Extract the IOSC and 32k clock logic from ccu-sun6i-rtc into a shared
->> module to simplify adding RTC CCU support for new SoCs. This is needed
->> because newer Allwinner SoCs introduce additional DCXO/HOSC logic that
->> prevents direct reuse of the existing driver.
->>
->> Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
->> ---
->>  drivers/clk/sunxi-ng/Makefile        |   3 +
->>  drivers/clk/sunxi-ng/ccu-sun6i-rtc.c | 152 +---------------------------=
--------
->>  drivers/clk/sunxi-ng/ccu_rtc.c       | 136 ++++++++++++++++++++++++++++=
-+++
->>  drivers/clk/sunxi-ng/ccu_rtc.h       |  37 +++++++++
->>  4 files changed, 177 insertions(+), 151 deletions(-)
->>
+On Fri, 23 Jan 2026 11:03:38 +0100
+Oleksij Rempel <o.rempel@pengutronix.de> wrote:
 
-[...]
+> On Fri, Jan 23, 2026 at 09:28:19AM +0000, Jonathan Cameron wrote:
+> > On Mon, 19 Jan 2026 18:27:52 +0000
+> > Conor Dooley <conor@kernel.org> wrote:
+> >   
+> > > On Mon, Jan 19, 2026 at 07:24:18PM +0100, Oleksij Rempel wrote:  
+> > > > Introduce the 'maxim,rfs-ohms' property. The full-scale output current
+> > > > of these DACs is determined by external resistors (Rfs) connected to
+> > > > the FS pins. The driver requires the physical resistance values to
+> > > > calculate the correct current scale (Amps per step) for the IIO
+> > > > subsystem.
+> > > > 
+> > > > Keep it optional to avoid forcing updates of existing DTs; without it
+> > > > the driver cannot derive a correct IIO scale.    
+> > > 
+> > > I don't really follow the logic here, if the driver doesn't work
+> > > properly without it, shouldn't it be a required property even if that
+> > > means existing devicetrees get new warnings? Warnings are preferable to
+> > > the drivers malfunctioning on those devices, after all!  
+> > 
+> > Agreed. The driver can paper over holes or I guess we could provide a default
+> > if the datasheet has some reference value or similar?    
+> 
+> No, this DAC controls the current. The current range is application specific and
+> defined by the load resistors. Is it better to not provide scale if this
+> information not available, guessing it will make things worse and
+> potentially damage some HW.
+> 
+Then does this need to be a fix on the driver side?
+Or are you just suggesting not proving the scale if we don't have enough info?
+That's fine if so.
 
->> +
->> +const struct clk_ops ccu_iosc_ops =3D {
->> +       .enable                 =3D ccu_iosc_enable,
->> +       .disable                =3D ccu_iosc_disable,
->> +       .is_enabled             =3D ccu_iosc_is_enabled,
->> +       .recalc_rate            =3D ccu_iosc_recalc_rate,
->> +       .recalc_accuracy        =3D ccu_iosc_recalc_accuracy,
->> +};
->
-> You need to export the symbol.
-
-Thanks, I will export them.
-
-[...]
-
->> diff --git a/drivers/clk/sunxi-ng/ccu_rtc.h b/drivers/clk/sunxi-ng/ccu_r=
-tc.h
->> new file mode 100644
->> index 000000000000..1c44c2206a25
->> --- /dev/null
->> +++ b/drivers/clk/sunxi-ng/ccu_rtc.h
->> @@ -0,0 +1,37 @@
->> +/* SPDX-License-Identifier: GPL-2.0-only */
->> +/*
->> + * Copyright (c) 2021 Samuel Holland <samuel@sholland.org>
->> + */
->> +
->> +#ifndef _CCU_RTC_H_
->> +#define _CCU_RTC_H_
->> +
->> +#define IOSC_ACCURACY                  300000000 /* 30% */
->> +#define IOSC_RATE                      16000000
->> +
->> +#define LOSC_RATE                      32768
->> +#define LOSC_RATE_SHIFT                        15
->> +
->> +#define LOSC_CTRL_REG                  0x0
->> +#define LOSC_CTRL_KEY                  0x16aa0000
->> +
->> +#define IOSC_32K_CLK_DIV_REG           0x8
->> +#define IOSC_32K_CLK_DIV               GENMASK(4, 0)
->> +#define IOSC_32K_PRE_DIV               32
->> +
->> +#define IOSC_CLK_CALI_REG              0xc
->> +#define IOSC_CLK_CALI_DIV_ONES         22
->> +#define IOSC_CLK_CALI_EN               BIT(1)
->> +#define IOSC_CLK_CALI_SRC_SEL          BIT(0)
->> +
->> +#define LOSC_OUT_GATING_REG            0x60
->> +
->> +#define DCXO_CTRL_REG                  0x160
->> +#define DCXO_CTRL_CLK16M_RC_EN         BIT(0)
->
-> Please keep all internals in the .c file.
-
-My original thought was to reuse these for the A733. But since doing
-so is not appropriate, I will put them in the .c files separately.
-
->
-> ChenYu
->
-
---=20
-Best regards,
-Junhui Liu
+> > DT binding should require it.  
+> 
+> ACK
 
 
