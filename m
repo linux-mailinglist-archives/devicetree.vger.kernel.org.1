@@ -1,222 +1,173 @@
-Return-Path: <devicetree+bounces-259306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259307-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8Gb+LBmEdmn/RQEAu9opvQ
-	(envelope-from <devicetree+bounces-259306-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 21:59:05 +0100
+	id EH/XNISEdmkORgEAu9opvQ
+	(envelope-from <devicetree+bounces-259307-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 22:00:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3DC8826DF
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 21:59:04 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3183282718
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 22:00:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4EB493004206
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 20:59:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D41C9300461F
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 21:00:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E95230C618;
-	Sun, 25 Jan 2026 20:59:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22F442EFD8C;
+	Sun, 25 Jan 2026 21:00:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hvGOcKb2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZgbJgkCD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59C702FFFB7;
-	Sun, 25 Jan 2026 20:59:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD66D2066F7
+	for <devicetree@vger.kernel.org>; Sun, 25 Jan 2026 21:00:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769374742; cv=none; b=T2bO7CFh+mVweRTqayeMNMv83JAxwDqmoHVT2p5hIz3fsmCNLJ94SkoDMiKdCNayJcgZY2IZ+9w2a996/t8zkLCopAgEbVAQeGafQGnJKxibW3A/vTvswfaHMCL2uunoWcTYl1UQ0I9kx6z5Npk9MnIkTE2PNGRc8BjKsXQtdos=
+	t=1769374850; cv=none; b=s5tCE2xVNhhT44z5vShv4ra9zjZPLFco4IbafKUAFGSO0ZlQCjBKxEmvahFDObxoYCs0gntQh5Do1rvDhVtSnKp9OuttEEobj5BR5PJeL3W/bcP52iO2KYCFfDc+rKtdouxaNGS3UT15rDHB9mqJGrDLh4ReNd6mogPeeRjsgLM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769374742; c=relaxed/simple;
-	bh=uW3NnWbbioHf1Wwc1adwz85D6FdFfB4Hx+hudi0d1Bw=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=O3D77EMzchdrdSNRI/E/vaSjyHx4qkr2u7XgjLsfsvgYj/1RDdepOIk82YSqVPSqKzmf8DV4gh6KEueTiA9xaMWuKwFmolxS7ra6Yl7opPEhwPIXl4PjVAESSHY5EVjGGhHxUEyvA16RF6OtHxCHmuxEiF4nvTlVcV+cIXH2PvM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hvGOcKb2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3534C4CEF1;
-	Sun, 25 Jan 2026 20:59:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769374741;
-	bh=uW3NnWbbioHf1Wwc1adwz85D6FdFfB4Hx+hudi0d1Bw=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=hvGOcKb2H9PIR981wUGt5u9bKNY1OfunMfiVBBc14Q5sxhVKuLYvRLQzdpVt0G1yq
-	 Sv08tgRklpt6fA5T2VGAlNp1Fd6f91B1b8qn7yjvF4utOnPxaPx3J8Y6jAj8oP1KFw
-	 qSrlTaClzTJhzRH2So4rPUF/IQv4SxYvobMAw4YGPLniYFqFrUukFoUiBWdxbWK2wn
-	 sV23na01oe7iBxC+NnftM1lZHlxNmpnljAFrnx02UfbmD1P1pmSbkUo4bqblzhN/UL
-	 pap2ZrK0r+4bRfTzTcDITRkCyBa7JWBgLXDaOrMTTBPL2eDaeOb2GkAwM7KvZZZUMs
-	 NCzkjKF+ziT7g==
-Date: Sun, 25 Jan 2026 14:59:00 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1769374850; c=relaxed/simple;
+	bh=v39K6urYE3Aoesvyhn4A5NWZgDuN3AlrDnoYuDV3e2I=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=WY2lEpIy0jv89XS2YjkhbWs5bYEUv4ZRaDQg1Jw0iylInh1G6HFd12u+MqWJ1+O5PUaL1WHf9887f6XHKXl82/eO5QmM2cBRGCEOXWsNSTTi4RYwK+1ife61zgDpMdNfxeRzydW2DOwKcQ03s1EhMU4uRXWP1LMoYjEnIAaAGUw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZgbJgkCD; arc=none smtp.client-ip=209.85.128.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-79088484065so33884277b3.1
+        for <devicetree@vger.kernel.org>; Sun, 25 Jan 2026 13:00:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1769374848; x=1769979648; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7CeTj49j/suD4Rq67+orfSKtDdidAJEZzga/o+6BRCQ=;
+        b=ZgbJgkCDB0RPjKe00vjYiYanUq4pu+R+hg9UNlF305n1lbyItgDmmoDZ3F4bvJVF57
+         6EnKmGY5Vdzl6SPo+nx//Bmqs5qllR/gyuQ+U5cQc/4fn9j7sPWGzyHOQ8WB66KcirzC
+         8Ajsrk/XOfrwg0iKNXUwRRNY+drswnnqJB/zWDQD1kqStMJzISe4Ag8gmluImP+u5bIr
+         KXzrX68w4E35YUcila3okFCQICUvs8JTqxh264Pm3mAMlYP430ChWgTlmUbT8oz7avpm
+         Q0gTpuY61CUzmNmYBorckwyjIJfrRD4ydZvqLwiRk5UcyfJqOIs+Ec9ofVlDvdWQrgnK
+         aWzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769374848; x=1769979648;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7CeTj49j/suD4Rq67+orfSKtDdidAJEZzga/o+6BRCQ=;
+        b=skDUOjsPvGN8RnMIGrxq2HL6g6q6wCju3WHuRb1WXsYSwkHeC3Bli8poe9yrIeZymX
+         SiGkW2VH/0XBnosHpBM65YwIfKu/LJ1Xxnq+P1UTBpW6N/yhTUKyUEf3pqdxmqz/iu0d
+         cvBuKUiMpmPPMyIWH51JiYh6ceLO+wBXyqUnSL2SCVw8XCnhuU6UIpyXbypX4HgfXlMs
+         Qoa4mvWXuxH3QEO9b6u7PBrsppu1YoyIn2PKh2eG1ZdGdgUaMtagbaNiXehUpqbmI6rR
+         QytdyUvYoLLm+PPq+N7v7hvn+WU4scOUvzb5ZRXz7xoiyiW2HnYsNsc6R9ybH97bDCsj
+         h/0A==
+X-Gm-Message-State: AOJu0YwfIDulQgfObI4ZoUDT2V+W4yMZjJ+9aTv8tw4HbVHbegAEyDMW
+	pZ/c/W0uLdDz/dctAln+6fsXzjRjIrFIcYvY+Q4lXDH2eFqNaS/sApmN
+X-Gm-Gg: AZuq6aKYjn30dMYBghS3SuOx+0vwGshKJcF51iPqMee4tx7tsrhA+EaT3bpBh5UG011
+	RdpOgjtFmHzriobwwxoJaQ5dF4KS4lu1wyhtkkNkQd8usJOndlAgyabCvhv7ltMgueOrak8FMeB
+	QBnKl6dG6kwN2HnAJ9niFpdyJ45TVcIgFjOOi3q1Z8/8D6bTBnsozGWtbU/Ki8O6J+bxsdohvjJ
+	TyQuKbo8zp21uM/TKEjaAHAYM6UyXYiNrkYpZ1ykTfu84EMsqt/aQ7nTuH0yiFFKxo+tdCuYmNA
+	3+aO4pA/yku7hJ3BXSjRjnocpphDQTUySuFpRQ7+vxaLNmTcNKqncAmMVsY8CXV1RZn3H4muXZi
+	krrJOBXcV/nOmXQ29lQ/Q1kqUmqHi9VzedKZI7xZEj1g4/RdUd5SiPWqWU+Yi9LNvJRRjfaTBxA
+	VmUDuH
+X-Received: by 2002:a05:690c:64ca:b0:787:e3c0:f61f with SMTP id 00721157ae682-7945aa0d1e0mr41109317b3.57.1769374847540;
+        Sun, 25 Jan 2026 13:00:47 -0800 (PST)
+Received: from [192.168.2.165] ([2600:1700:220:59e0::914])
+        by smtp.googlemail.com with ESMTPSA id 956f58d0204a3-6496855d65esm2518183d50.12.2026.01.25.13.00.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 25 Jan 2026 13:00:47 -0800 (PST)
+From: Anirudh Srinivasan <anirudhsriniv@gmail.com>
+Subject: [PATCH 0/2] Add device tree for Asrock Paul IPMI Card
+Date: Sun, 25 Jan 2026 15:00:37 -0600
+Message-Id: <20260125-asrock-paul-v1-0-956085a4bd06@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Sebastian Reichel <sre@kernel.org>, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shuah Khan <skhan@linuxfoundation.org>, 
- Jonathan Corbet <corbet@lwn.net>, linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzk@kernel.org>, linux-pm@vger.kernel.org, 
- linux-rtc@vger.kernel.org, linux-doc@vger.kernel.org, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- linux-samsung-soc@vger.kernel.org, MyungJoo Ham <myungjoo.ham@samsung.com>, 
- Chanwoo Choi <cw00.choi@samsung.com>, devicetree@vger.kernel.org, 
- linux-leds@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>
-To: Kaustabh Chakraborty <kauschluss@disroot.org>
-In-Reply-To: <20260126-s2mu005-pmic-v2-5-78f1a75f547a@disroot.org>
-References: <20260126-s2mu005-pmic-v2-0-78f1a75f547a@disroot.org>
- <20260126-s2mu005-pmic-v2-5-78f1a75f547a@disroot.org>
-Message-Id: <176937474094.3832173.10855555775312969664.robh@kernel.org>
-Subject: Re: [PATCH v2 05/12] dt-bindings: mfd: s2mps11: add documentation
- for S2MU005 PMIC
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHWEdmkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDQyNT3cTiovzkbN2CxNIcXdMUgxSTJEPTZIukZCWgjoKi1LTMCrBp0bG
+ 1tQBmdGMnXQAAAA==
+X-Change-ID: 20260125-asrock-paul-5d0d4b15c8bc
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+ Zev Weiss <zev@bewilderbeest.net>, Renze Nicolai <renze@rnplus.nl>, 
+ Anirudh Srinivasan <anirudhsriniv@gmail.com>
+X-Mailer: b4 0.14.2
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-259306-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.ozlabs.org,bewilderbeest.net,rnplus.nl,gmail.com];
+	TAGGED_FROM(0.00)[bounces-259307-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[anirudhsriniv@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: F3DC8826DF
+X-Rspamd-Queue-Id: 3183282718
 X-Rspamd-Action: no action
 
+Adds support for Asrock Paul IPMI Card [1], which is an AST2500 based
+PCIe card that provides BMC functionality. The supported functionality
+is similar to the Asus Kommando IPMI Card, support for which was sent
+previously [2].
 
-On Mon, 26 Jan 2026 00:37:12 +0530, Kaustabh Chakraborty wrote:
-> Samsung's S2MU005 PMIC includes subdevices for a charger, an MUIC (Micro
-> USB Interface Controller), and flash and RGB LED controllers.
-> 
-> Since regulators are not supported by this device, unmark this property
-> as required and instead set this in a per-device basis for ones which
-> need it.
-> 
-> Add the compatible and documentation for the S2MU005 PMIC. Also, add an
-> example for nodes for supported sub-devices, i.e. charger, extcon,
-> flash, and rgb.
-> 
-> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-> ---
->  .../devicetree/bindings/mfd/samsung,s2mps11.yaml   | 103 ++++++++++++++++++++-
->  1 file changed, 102 insertions(+), 1 deletion(-)
-> 
+Supported functionality includes UART, Booting from Primary SPI,
+Networking, KVM functionality (USB Gadget and Video Engine), LEDs and
+GPIO Power control. Complete BMC functionality has been tested on an
+OpenBMC build available here [3], relying on this kernel branch [4].
 
-My bot found errors running 'make dt_binding_check' on your patch:
+For some reason, the Video Engine isn't always
+stable when the host PC's video output goes black/changes
+resolution, resulting in a hang and a subsequent reset of the Aspeed.
+Applying this patch [5] from the Aspeed vendor kernel seems to fix this
+issue. This doesn't require any changes to the device tree for this
+device though, so I think it shouldn't affect this patch series.
 
-yamllint warnings/errors:
+[1] https://www.asrockrack.com/general/productdetail.asp?Model=PAUL
+[2] https://lore.kernel.org/linux-aspeed/20260114-asus-ipmi-expansion-card-v2-0-12b72d20a9b9@gmail.com/
+[3] https://github.com/Genius1237/openbmc/commits/asrock-paul-ipmi-card/
+[4] https://github.com/openbmc/linux/compare/dev-6.18...Genius1237:linux:asrock-paul-ipmi-card-6.18 
+[5] https://lore.kernel.org/linux-aspeed/20251124-video_dram_reset-v1-1-9d37229e4ec5@aspeedtech.com/
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/samsung,s2mps11.yaml: Unresolvable reference: /schemas/power/supply/samsung,s2m-charger.yaml
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 428, in get_or_retrieve
-    resource = registry._retrieve(uri)
-  File "/usr/local/lib/python3.13/dist-packages/dtschema/validator.py", line 426, in retrieve
-    return DRAFT201909.create_resource(self.schemas[uri])
-                                       ~~~~~~~~~~~~^^^^^
-KeyError: 'http://devicetree.org/schemas/power/supply/samsung,s2m-charger.yaml'
+Signed-off-by: Anirudh Srinivasan <anirudhsriniv@gmail.com>
+---
+Anirudh Srinivasan (2):
+      dt-bindings: arm: aspeed: Add Asrock Paul IPMI card
+      ARM: dts: aspeed: Add Asrock Paul IPMI card
 
-The above exception was the direct cause of the following exception:
+ .../devicetree/bindings/arm/aspeed/aspeed.yaml     |   1 +
+ arch/arm/boot/dts/aspeed/Makefile                  |   1 +
+ .../aspeed/aspeed-bmc-asrock-paul-ipmi-card.dts    | 131 +++++++++++++++++++++
+ 3 files changed, 133 insertions(+)
+---
+base-commit: 9448598b22c50c8a5bb77a9103e2d49f134c9578
+change-id: 20260125-asrock-paul-5d0d4b15c8bc
 
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 682, in lookup
-    retrieved = self._registry.get_or_retrieve(uri)
-  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 435, in get_or_retrieve
-    raise exceptions.Unretrievable(ref=uri) from error
-referencing.exceptions.Unretrievable: 'http://devicetree.org/schemas/power/supply/samsung,s2m-charger.yaml'
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 462, in _validate_reference
-    resolved = self._resolver.lookup(ref)
-  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 686, in lookup
-    raise exceptions.Unresolvable(ref=ref) from error
-referencing.exceptions.Unresolvable: /schemas/power/supply/samsung,s2m-charger.yaml
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-validate", line 8, in <module>
-    sys.exit(main())
-             ~~~~^^
-  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 158, in main
-    sg.check_dtb(filename)
-    ~~~~~~~~~~~~^^^^^^^^^^
-  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 95, in check_dtb
-    self.check_subtree(dt, subtree, False, "/", "/", filename)
-    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 88, in check_subtree
-    self.check_subtree(tree, value, disabled, name, fullname + name, filename)
-    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 88, in check_subtree
-    self.check_subtree(tree, value, disabled, name, fullname + name, filename)
-    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 88, in check_subtree
-    self.check_subtree(tree, value, disabled, name, fullname + name, filename)
-    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 83, in check_subtree
-    self.check_node(tree, subtree, disabled, nodename, fullname, filename)
-    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 34, in check_node
-    for error in self.validator.iter_errors(node, filter=match_schema_file,
-                 ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-                                            compatible_match=compatible_match):
-                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/dist-packages/dtschema/validator.py", line 448, in iter_errors
-    for error in self.DtValidator(schema, registry=self.registry).iter_errors(instance):
-                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
-  File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 383, in iter_errors
-    for error in errors:
-                 ^^^^^^
-  File "/usr/local/lib/python3.13/dist-packages/jsonschema/_keywords.py", line 296, in properties
-    yield from validator.descend(
-    ...<4 lines>...
-    )
-  File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 431, in descend
-    for error in errors:
-                 ^^^^^^
-  File "/usr/local/lib/python3.13/dist-packages/jsonschema/_keywords.py", line 275, in ref
-    yield from validator._validate_reference(ref=ref, instance=instance)
-               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 464, in _validate_reference
-    raise exceptions._WrappedReferencingError(err) from err
-jsonschema.exceptions._WrappedReferencingError: Unresolvable: /schemas/power/supply/samsung,s2m-charger.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.kernel.org/project/devicetree/patch/20260126-s2mu005-pmic-v2-5-78f1a75f547a@disroot.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+-- 
+Anirudh Srinivasan <anirudhsriniv@gmail.com>
 
 
