@@ -1,144 +1,204 @@
-Return-Path: <devicetree+bounces-259216-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259221-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id fiJDNh+qdWlYHQEAu9opvQ
-	(envelope-from <devicetree+bounces-259216-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 06:29:03 +0100
+	id sDb+KWOvdWm2HgEAu9opvQ
+	(envelope-from <devicetree+bounces-259221-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 06:51:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBD3B7FC9F
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 06:29:02 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 527BD7FD67
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 06:51:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 3F01F3002508
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 05:29:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8D4B33009514
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 05:51:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9003C220F3E;
-	Sun, 25 Jan 2026 05:28:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A99213115AF;
+	Sun, 25 Jan 2026 05:51:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CTewf1v9"
+	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="rTR69koY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f194.google.com (mail-dy1-f194.google.com [74.125.82.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 400771C6FF5
-	for <devicetree@vger.kernel.org>; Sun, 25 Jan 2026 05:28:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.194
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769318937; cv=none; b=OLJ5h+CIMC9nZULNY2WzrEVCxe1ggnFwsqj1Tdg0tUQl0BXbrqsdNOUxkPl/RD5qU1avUEC6IUlp1RjYNCecdaIeWKSlHTcrmHl85lmNgFdJmLKJT5x0A71GLp2V1VNACA4xEENz5C1jRGWAjcyrL9zDGEPDvDpB7EifgzRp0Os=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769318937; c=relaxed/simple;
-	bh=mUoDWOZFX2QFCGblT3FmWE9mkkOr/I9fos4XR43aXb8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=K/k7+iBpH2iAgO/f4UNB+WSvaav94S7JKpriKyi4WuNAEy+y8ma9rMLaIffoMve/hlgILVwtl40gKBB+dcDB7Iu5/pztiAd0OoHkCHA5Dr2KEo6ikIzpzhfSQ+0ysGiaP6ft4O/eE+nqRAR+HdsMRZ3Avz9kArMcrWRUxNkj7NU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CTewf1v9; arc=none smtp.client-ip=74.125.82.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f194.google.com with SMTP id 5a478bee46e88-2b7381d2d95so1231199eec.0
-        for <devicetree@vger.kernel.org>; Sat, 24 Jan 2026 21:28:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769318935; x=1769923735; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=LsS12VfkA2nBzlw4DSH3X8PhObfJEVs7+ihgzzJpKqM=;
-        b=CTewf1v93dOZvbBqFo4MJvlMcrL4VBZcNWtLWBBOQiaui+u795aLpet3jtXD2lG90l
-         H4eZwcXWfQOetlnTCkyIjocDeB5Erf69OqGPwaQyBQKDnZlDDo6uJlS7Z+uQiKNhpTa/
-         cXkLy3GhZlg0+xGklcOA9WKrYKJH+bGLuwpCfY4q1udjTGOgyYxXM7qJ8TrWAwMhH8cq
-         JuciqyWjkfVZGHpQwYb7zmOwA64pzQLC726WU9edDmy73BB0lGiNFvAmUhzppuQoFtqk
-         MMhpDh8iT7JaMVf0Yb5e92MMAI9yAR2zfZO0bg+wyEX0pbNlyGDXQ7V6/uTZa34+so5k
-         5Oog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769318935; x=1769923735;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LsS12VfkA2nBzlw4DSH3X8PhObfJEVs7+ihgzzJpKqM=;
-        b=u3mZfCXyH5iDeeQU12zpBmionh1aCtORbkZ8/QaB5UaAovYpNeg5aE7YkSyD5F1zne
-         5BH/3TpQgKn2LGFODtClS4+IrR64OtSUq3IUB9DN/uNox+wwvkbQFAAIn+OVsz7quHLJ
-         RFHto+naMgu4cx0mCuIif5RIiAnpS94oGjSZoKAASeOERgtawFQ8kmcXh8Eqv5pjWkOu
-         taHsGgO313PQjobA1pI4SJveycQve8Pf5VKJ/AGt/Pf/9re6rOSz/kfx14mONw2B6nuD
-         CeJypH+i3fxS4gklqGpgRtvpoQWF8COxz1naf+0QxwQzANf024T+rWptJKzLXf6FqTAF
-         fzyg==
-X-Forwarded-Encrypted: i=1; AJvYcCV/YVUOQlfiXMlK2DuRby67YCf3TQzRyYiaj7uPgfMO7SS0Znkb+Th3rdrMSE83M3m7TstH7SiW3Ra4@vger.kernel.org
-X-Gm-Message-State: AOJu0YwjxzXVfb+3BWGwUtJHaEdeBi/CGucxgFo9YnV3s50NZFw/M4x8
-	SmQir1DEZtce9ErLyj1+3EMWwWoHeG67IHcVOxhelhDdymJ2DlPjakLZ
-X-Gm-Gg: AZuq6aLLY32HRqD2LW9yqNyrjw27RR7RGgs1WK7V/eX78WyN2r0slrZYa/3X3UAxlTb
-	FuOcUS7I6BXjbM3yS/JMmulhDfpitRrfuZHOz/gofwDKNOWd5M0uy9Mk3L1r9aB1ljMvtJg6hjT
-	fDkF9MiZD00vpItTfTnnAXlyzF98SF/AQt6jzP4NPW4YykKIlCYn4d/GHrnxF+HAGzdjPCoAZsj
-	bDWINXCPHHm1hkdcFWoIi5YkZignzwGRIa930wXwP1n6AUuYvW1pOH/idPZ4uqy+fDscdUhvT5i
-	22apZJyX6sqJVsURjYycnHgd/5TfAdDdUnZCv/I1bTi+SOr9rWbNW5hhbFy70U2m7rzEU54qY7I
-	jVBJ6WfB8n0O4Fcth2k3WcjRgxoS3DYBiPMZpNMAUO0HWocfk8QAoFF1JJ4nHwhUSHrAy+bdbod
-	u6GQUwxdNOIj8mhXSc/3/MvLYSZKrWj3LSxj0zZNYp/p/FD7MxkB2j
-X-Received: by 2002:a05:7300:a887:b0:2ae:5431:948 with SMTP id 5a478bee46e88-2b7638ab9a8mr333016eec.7.1769318935185;
-        Sat, 24 Jan 2026 21:28:55 -0800 (PST)
-Received: from google.com ([2a00:79e0:2ebe:8:106d:a8a0:84b7:2d62])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b73a6919dfsm8940978eec.4.2026.01.24.21.28.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 24 Jan 2026 21:28:54 -0800 (PST)
-Date: Sat, 24 Jan 2026 21:28:51 -0800
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
-	Fabio Estevam <festevam@gmail.com>, Andreas Kemnade <andreas@kemnade.info>, 
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/1] dt-bindings: input: touchscreen: tsc2007:
- document '#io-channel-cells'
-Message-ID: <prk7r3ckjun77pawdkxpxukg5bv4bj3mv4stjkbyx3dbltnni2@cwy5nqp7e25s>
-References: <20260122193549.29858-1-clamor95@gmail.com>
- <20260122193549.29858-2-clamor95@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1304D31062C;
+	Sun, 25 Jan 2026 05:51:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769320287; cv=pass; b=szugmd+y6aGnvuC6dQjhh662EZZAug3N12wkpRaSBRLV7TKK4ybN0DhOctOsLujA5g/cLPsfIQ7KNxHo6v1QWmtD4fmVQ+jtI+eP4CLroTtdO1hOJy62Vl5J9qdyC4UjK6yXWOqKF3voeSuU5K6VrgG5Cr/JN/i4FSbxY3LRbhk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769320287; c=relaxed/simple;
+	bh=vNRFz3rpr1i9Y/8CHvWTW67haKPfB44QKas58pkzPWI=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=DhDCa+xgDIQ5h4Zb8+E0uj9jSFeWLW1V7LXG4amDJgijUTfI9VT3xcsTTDPWrXifXezbUNqe9r3h8SuoJ38w8DW+p6IMNWdxFMmIPu3iHYt1BTqMyp6YWY+N86KiSppAiA/RBZs2yFiOIe49/VDpdiwfDmMOAi7v8k6htSi10e4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=rTR69koY; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
+ARC-Seal: i=1; a=rsa-sha256; t=1769320254; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=dSTluIUg1ZvuNQajf3SJQZtFC47qgOiCluuPmretAnaYy3qEXXAfw12l1SuinrIkuTIRZfJR31MmYz5r6spPsJxZMoLbjXd+1xdkmxQeHJWZoCwxSDGaUYuXq3kOF7qo9PWdPFRCQ4/6JBiHaTov22Gkxan2PROLvfDtNTd0P3I=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1769320254; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=7kmusx+MqkhmDeC3UAb227ZvWFfKqkuZrPt4RmzV95Y=; 
+	b=WBLo2GPooj7hxieZJGDM1Qex0g3hZOSEzMm4I2tFp1ukYCmfFnuM3DqSt27sKBwWn2TV32I6s/OLlyXB2DY6U2/hhhUGqi82QbSx6QFm0LctY+SpVlAX5ZxYla4X7m+X1IT29Njx9sdNitezJuoLhqo/4o9PN3DJ7+ZocAo4ctQ=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=pigmoral.tech;
+	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
+	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1769320254;
+	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
+	h=Mime-Version:Content-Transfer-Encoding:Content-Type:Date:Date:Message-Id:Message-Id:Cc:Cc:Subject:Subject:From:From:To:To:References:In-Reply-To:Reply-To;
+	bh=7kmusx+MqkhmDeC3UAb227ZvWFfKqkuZrPt4RmzV95Y=;
+	b=rTR69koYL0NpAmYBkVdfpkSYUbKGJBrLW085gQX2D96GmcI/dgw7ortSTm9m6V3k
+	PT91fEUpMbG+8Dqv0q3hbWPewgHn/Vtexj28VcJV8gL/4bu+ozd4NNXgzLh7FwyAlmd
+	sgb05Ra7AgqhnAaPKb8koZaqEd2KKBmDE0tK9YPw=
+Received: by mx.zohomail.com with SMTPS id 1769320251684256.61624132047143;
+	Sat, 24 Jan 2026 21:50:51 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260122193549.29858-2-clamor95@gmail.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Sun, 25 Jan 2026 13:50:41 +0800
+Message-Id: <DFXFOHVB1GAV.3L3EL4FVWFWDC@pigmoral.tech>
+Cc: "Michael Turquette" <mturquette@baylibre.com>, "Stephen Boyd"
+ <sboyd@kernel.org>, "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Samuel
+ Holland" <samuel@sholland.org>, "Alexandre Belloni"
+ <alexandre.belloni@bootlin.com>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Maxime Ripard" <mripard@kernel.org>,
+ <linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-sunxi@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
+ <linux-rtc@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 4/7] clk: sunxi-ng: Extract common RTC CCU clock logic
+From: "Junhui Liu" <junhui.liu@pigmoral.tech>
+To: <wens@kernel.org>, "Junhui Liu" <junhui.liu@pigmoral.tech>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20260121-a733-rtc-v1-0-d359437f23a7@pigmoral.tech>
+ <20260121-a733-rtc-v1-4-d359437f23a7@pigmoral.tech>
+ <CAGb2v65aMMVu8W1PW+6NZM+YM72YFV9_FWVWtj6QHJ1CgetEsA@mail.gmail.com>
+In-Reply-To: <CAGb2v65aMMVu8W1PW+6NZM+YM72YFV9_FWVWtj6QHJ1CgetEsA@mail.gmail.com>
+X-ZohoMailClient: External
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	MV_CASE(0.50)[];
+	R_DKIM_ALLOW(-0.20)[pigmoral.tech:s=zmail];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-259216-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,nxp.com,gmail.com,kemnade.info,vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-259221-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[pigmoral.tech];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
+	DKIM_TRACE(0.00)[pigmoral.tech:+];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitrytorokhov@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[junhui.liu@pigmoral.tech,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,gmail.com,sholland.org,bootlin.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	MISSING_XM_UA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: DBD3B7FC9F
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,pigmoral.tech:email,pigmoral.tech:dkim,pigmoral.tech:mid]
+X-Rspamd-Queue-Id: 527BD7FD67
 X-Rspamd-Action: no action
 
-On Thu, Jan 22, 2026 at 09:35:49PM +0200, Svyatoslav Ryhel wrote:
-> The tsc2007 can be used not only as resistive touchscreen controller but
-> also as a ADC IIO sensor. The second use case requires '#io-channel-cells'
-> property, hence add it.
-> 
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+On Sun Jan 25, 2026 at 12:32 PM CST, Chen-Yu Tsai wrote:
+> On Wed, Jan 21, 2026 at 7:04=E2=80=AFPM Junhui Liu <junhui.liu@pigmoral.t=
+ech> wrote:
+>>
+>> Extract the IOSC and 32k clock logic from ccu-sun6i-rtc into a shared
+>> module to simplify adding RTC CCU support for new SoCs. This is needed
+>> because newer Allwinner SoCs introduce additional DCXO/HOSC logic that
+>> prevents direct reuse of the existing driver.
+>>
+>> Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
+>> ---
+>>  drivers/clk/sunxi-ng/Makefile        |   3 +
+>>  drivers/clk/sunxi-ng/ccu-sun6i-rtc.c | 152 +---------------------------=
+-------
+>>  drivers/clk/sunxi-ng/ccu_rtc.c       | 136 ++++++++++++++++++++++++++++=
++++
+>>  drivers/clk/sunxi-ng/ccu_rtc.h       |  37 +++++++++
+>>  4 files changed, 177 insertions(+), 151 deletions(-)
+>>
 
-Applied, thank you.
+[...]
 
--- 
-Dmitry
+>> +
+>> +const struct clk_ops ccu_iosc_ops =3D {
+>> +       .enable                 =3D ccu_iosc_enable,
+>> +       .disable                =3D ccu_iosc_disable,
+>> +       .is_enabled             =3D ccu_iosc_is_enabled,
+>> +       .recalc_rate            =3D ccu_iosc_recalc_rate,
+>> +       .recalc_accuracy        =3D ccu_iosc_recalc_accuracy,
+>> +};
+>
+> You need to export the symbol.
+
+Thanks, I will export them.
+
+[...]
+
+>> diff --git a/drivers/clk/sunxi-ng/ccu_rtc.h b/drivers/clk/sunxi-ng/ccu_r=
+tc.h
+>> new file mode 100644
+>> index 000000000000..1c44c2206a25
+>> --- /dev/null
+>> +++ b/drivers/clk/sunxi-ng/ccu_rtc.h
+>> @@ -0,0 +1,37 @@
+>> +/* SPDX-License-Identifier: GPL-2.0-only */
+>> +/*
+>> + * Copyright (c) 2021 Samuel Holland <samuel@sholland.org>
+>> + */
+>> +
+>> +#ifndef _CCU_RTC_H_
+>> +#define _CCU_RTC_H_
+>> +
+>> +#define IOSC_ACCURACY                  300000000 /* 30% */
+>> +#define IOSC_RATE                      16000000
+>> +
+>> +#define LOSC_RATE                      32768
+>> +#define LOSC_RATE_SHIFT                        15
+>> +
+>> +#define LOSC_CTRL_REG                  0x0
+>> +#define LOSC_CTRL_KEY                  0x16aa0000
+>> +
+>> +#define IOSC_32K_CLK_DIV_REG           0x8
+>> +#define IOSC_32K_CLK_DIV               GENMASK(4, 0)
+>> +#define IOSC_32K_PRE_DIV               32
+>> +
+>> +#define IOSC_CLK_CALI_REG              0xc
+>> +#define IOSC_CLK_CALI_DIV_ONES         22
+>> +#define IOSC_CLK_CALI_EN               BIT(1)
+>> +#define IOSC_CLK_CALI_SRC_SEL          BIT(0)
+>> +
+>> +#define LOSC_OUT_GATING_REG            0x60
+>> +
+>> +#define DCXO_CTRL_REG                  0x160
+>> +#define DCXO_CTRL_CLK16M_RC_EN         BIT(0)
+>
+> Please keep all internals in the .c file.
+
+My original thought was to reuse these for the A733. But since doing
+so is not appropriate, I will put them in the .c files separately.
+
+>
+> ChenYu
+>
+
+--=20
+Best regards,
+Junhui Liu
+
 
