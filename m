@@ -1,206 +1,198 @@
-Return-Path: <devicetree+bounces-259281-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259282-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cOOaNPxkdmmVQAEAu9opvQ
-	(envelope-from <devicetree+bounces-259281-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 19:46:20 +0100
+	id 0rV+AApqdmkVQgEAu9opvQ
+	(envelope-from <devicetree+bounces-259282-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 20:07:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21EA181CB7
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 19:46:20 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C98A81DE9
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 20:07:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D5E6230038FD
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 18:45:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id F2BFC3002E16
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 19:07:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6095C22B594;
-	Sun, 25 Jan 2026 18:45:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 285122EE5FD;
+	Sun, 25 Jan 2026 19:07:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="GRhGLAso"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="eXHWiuKw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC80D288AD;
-	Sun, 25 Jan 2026 18:45:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26968223323;
+	Sun, 25 Jan 2026 19:07:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769366756; cv=none; b=cdPZV0p7OkDvtJOIqyVwQIH8wDwLgcko8VxhgaGwG5yxqpd6bhcEyn+eGfdfoBQ8lkNQnc9+Ray8EcMSYT0jgn7aO++Q6mazeWg49SLO5/dwakr+ZjVjAgXWAQGKDvrWp5Yq2/EPcBpiFCOekOkhr1NX5htf8EUsJxobdb3pKOY=
+	t=1769368070; cv=none; b=FfQa+zwlwcNskJaUkiT/28uayKFgWeTy47yxqCrsM05tVexa7VBilj9TxNdZEC6AiP4vB++cs8YaTGPZToFGFoYKAWLrDObj9f69QQCphDDBpujxIhdDunBStGmGxtBSrr4oMc+xLbksvhRV5NTLFr4Td4Y1TnmcbHmCiI3B5LA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769366756; c=relaxed/simple;
-	bh=G5ewcjPBPV/BC3fMWMRVlSKL+K0EQnmgHRBe0FYeCrc=;
-	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
-	 Message-ID:Subject; b=IZZZ9beqd77H/Nz2/Bf7V3qem0NSL/cm6H0hvO2gjHo6QpDnzxxDNrZo7zXXsdwkGboT/39TCfsI9MYajrJDUSJQOIHSNc0unRLomDS9hCvu/RA2KZ6kD1Iv/VgZRry9DBdWMcS+JjT4hPtzAQB0Iw9o1v2CbdddXcRGbhEJVYg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=GRhGLAso; arc=none smtp.client-ip=142.132.176.110
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id 5E0F641B4A;
-	Sun, 25 Jan 2026 19:45:51 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
-	t=1769366752; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=ZrG6WDsV+mJXUtMhDV9DQtV1cfGpkAXeDDeqY6eDHFk=;
-	b=GRhGLAsoB0NY3YG2IuRCx3e9PAqd0NKFa3vesTIaHF5rkGyeIgJPillci5hzU87ywXXxQj
-	97jJj/cAp1OhCCW7VLzDqVoEwju0X7UcHyl2MBOYfVWXtsjw6gSQxlQoM+UWSlKbaoJ45Q
-	QnH5UAReI7bPmTj7j6znid6Kba5zSi2vmQbPYx52qHntuhaR3S2YcDfiTf4Q5+sEW8RV1s
-	knaPhlp+T+k64OiMV+mD/VfLFY0DqL4Pw9Il8D3pviNP7PK5JoYkjFBqOrtegvkcKccSHj
-	IWfRw3DVsiF0BZgpefixgTaJ0EAOABg7ijpX5SaNqQGp4teqJu3nmHmBjxBQlQ==
-From: "Dragan Simic" <dsimic@manjaro.org>
-In-Reply-To: <20260125181228.25145-1-sigmaris@gmail.com>
-Content-Type: text/plain; charset="utf-8"
-References: <20260125181228.25145-1-sigmaris@gmail.com>
-Date: Sun, 25 Jan 2026 19:45:51 +0100
-Cc: "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>, "Alexey Charkov" <alchark@gmail.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-To: "Hugh Cole-Baker" <sigmaris@gmail.com>
+	s=arc-20240116; t=1769368070; c=relaxed/simple;
+	bh=gOabGOqylQEzWUFI9E2WI9zuCeUghVs8Jtc6PGUK2ts=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=jaUK86GDM7+invnjbxm2lQV6QraEZxYQymwRplhsxNwMnIbaB4het3Y1tMU1BWeBmZttqo5SOzxSMN7pczUmWAHZCyJ/9Bi/Fj2bJan/vjJiX5j6UipaVkHtSWzlDIUT1SVikW0sgsuz9ibOo4UueG1KhqqVG06TIyWu0pkS52A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=eXHWiuKw; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 855FB28087;
+	Sun, 25 Jan 2026 20:07:39 +0100 (CET)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id 4JwIcF_fh3ec; Sun, 25 Jan 2026 20:07:38 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1769368058; bh=gOabGOqylQEzWUFI9E2WI9zuCeUghVs8Jtc6PGUK2ts=;
+	h=From:Subject:Date:To:Cc;
+	b=eXHWiuKwZ523d2uk2ZJog7UW/jgoitjkna0p/pIvFqSs0yqx7eZ8ceXQ2tzD6E/73
+	 B717Vuv2CCJRgYD4j+iV06RzY8gXF5hISgE1nKF6AFKjYF1CyWDSsBjSDNK3urP0JO
+	 Deoalx+O1bEGYPLyFMzRZUsqIva3j4PXdB3NO4fGZgD0JwWGy7WRmXAklKeHNZvN98
+	 AAZr7WOknEFCR378HFSAV1GWBLlHvjAQyoTzI8vY8jKASLE68/k29kEb3Rf+X9z0yI
+	 E3KH2KG0BhNb8zzdkcNgbILaXm/+XkLTPxtz5A4B8tRy4Q7ggPnbuGtIC+PqAm4FgZ
+	 eVle/GMjxgyow==
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+Subject: [PATCH v2 00/12] Support for Samsung S2MU005 PMIC and its
+ sub-devices
+Date: Mon, 26 Jan 2026 00:37:07 +0530
+Message-Id: <20260126-s2mu005-pmic-v2-0-78f1a75f547a@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <8b1a5b5e-c917-f101-6472-9071afb145d0@manjaro.org>
-Subject: =?utf-8?q?Re=3A?= [PATCH v3] =?utf-8?q?arm64=3A?==?utf-8?q?_dts=3A?=
- =?utf-8?q?_rockchip=3A?= add pwm-fan for NanoPC-T6
-User-Agent: SOGoMail 5.12.3
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: None
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIANtpdmkC/1XMQQ6CMBCF4auQWVvTaQGFlfcwLGo7wCygpEWiI
+ b27lcSFy/8l79shUmCK0BY7BNo4sp9zqFMBdjTzQIJdblBSVYioRFTTU8pKLBNbIW196U39MFZ
+ byJclUM+vg7t3uUeOqw/vQ9/wu/6g8h/aUEjRkMZr6bSRtrk5jsH79ezDAF1K6QOTYUiRqgAAA
+ A==
+X-Change-ID: 20251112-s2mu005-pmic-0c67fa6bac3c
+To: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, MyungJoo Ham <myungjoo.ham@samsung.com>, 
+ Chanwoo Choi <cw00.choi@samsung.com>, Sebastian Reichel <sre@kernel.org>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+ linux-samsung-soc@vger.kernel.org, linux-rtc@vger.kernel.org, 
+ linux-doc@vger.kernel.org, Kaustabh Chakraborty <kauschluss@disroot.org>, 
+ Conor Dooley <conor.dooley@microchip.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.96 / 15.00];
-	SUBJ_EXCESS_QP(1.20)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[manjaro.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[manjaro.org:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
+	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,sntech.de,gmail.com,vger.kernel.org,lists.infradead.org];
-	TAGGED_FROM(0.00)[bounces-259281-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	DKIM_TRACE(0.00)[manjaro.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	TAGGED_FROM(0.00)[bounces-259282-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dsimic@manjaro.org,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kauschluss@disroot.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[disroot.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 21EA181CB7
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 3C98A81DE9
 X-Rspamd-Action: no action
 
-Hello Hugh,
+S2MU005 is an MFD chip manufactured by Samsung Electronics. This is
+found in various devices manufactured by Samsung and others, including
+all Exynos 7870 devices. It is known to have the following features:
 
-On Sunday, January 25, 2026 19:10 CET, Hugh Cole-Baker <sigmaris@gmail.=
-com> wrote:
-> FriendlyELEC offers an optional heatsink and fan addon [1] for the
-> NanoPC-T6 and T6 LTS, which plugs in to the fan connector on the boar=
-d
-> driven by pwm1. Add the fan as an active cooling device for the SoC p=
-ackage.
-> The PWM duty cycle values are taken from the vendor's source [2].
->=20
-> Signed-off-by: Hugh Cole-Baker <sigmaris@gmail.com>
->=20
-> [1]: https://www.friendlyelec.com/index.php?route=3Dproduct/product&p=
-roduct=5Fid=3D305
-> [2]: https://github.com/friendlyarm/kernel-rockchip/blob/4944602540b6=
-2f5aad139fe602a76cf7c3176128/arch/arm64/boot/dts/rockchip/rk3588-nanopi=
-6-rev01.dts#L75-L90
-> ---
-> Changes from v2: https://lore.kernel.org/linux-rockchip/2025110919212=
-8.72527-1-sigmaris@gmail.com/
-> * Set trip points to 55 and 65=C2=B0C (Dragan)
->=20
-> Changes from v1: https://lore.kernel.org/linux-rockchip/2025102619485=
-8.92461-1-sigmaris@gmail.com/
-> * add the fan to the base board dtsi instead of overlay (Heiko)
-> * just use 2 trip points for warm and hot temperatures (Dragan, Alexe=
-y)
->=20
->  .../boot/dts/rockchip/rk3588-nanopc-t6.dtsi   | 39 +++++++++++++++++=
-++
->  1 file changed, 39 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi b/arc=
-h/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
-> index 90e7fe254491b..84b6b53f016ab 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
-> @@ -11,6 +11,7 @@
->  #include <dt-bindings/input/input.h>
->  #include <dt-bindings/pinctrl/rockchip.h>
->  #include <dt-bindings/soc/rockchip,vop2.h>
-> +#include <dt-bindings/thermal/thermal.h>
->  #include <dt-bindings/usb/pd.h>
->  #include "rk3588.dtsi"
-> =20
-> @@ -89,6 +90,14 @@ usr=5Fled: led-1 {
->  		};
->  	};
-> =20
-> +	fan: pwm-fan {
-> +		compatible =3D "pwm-fan";
-> +		cooling-levels =3D <0 35 64 100 150 255>;
-> +		fan-supply =3D <&vcc5v0=5Fsys>;
-> +		pwms =3D <&pwm1 0 50000 0>;
-> +		#cooling-cells =3D <2>;
-> +	};
-> +
->  	sound {
->  		compatible =3D "simple-audio-card";
->  		pinctrl-names =3D "default";
-> @@ -590,6 +599,36 @@ &i2s6=5F8ch {
->  	status =3D "okay";
->  };
-> =20
-> +&package=5Fthermal {
-> +	polling-delay =3D <1000>;
-> +
-> +	trips {
-> +		package=5Fwarm: package-warm {
-> +			temperature =3D <55000>;
-> +			hysteresis =3D <2000>;
-> +			type =3D "active";
-> +		};
-> +
-> +		package=5Fhot: package-hot {
-> +			temperature =3D <65000>;
-> +			hysteresis =3D <2000>;
-> +			type =3D "active";
-> +		};
-> +	};
-> +
-> +	cooling-maps {
-> +		map0 {
-> +			trip =3D <&package=5Fwarm>;
-> +			cooling-device =3D <&fan THERMAL=5FNO=5FLIMIT 1>;
-> +		};
-> +
-> +		map1 {
-> +			trip =3D <&package=5Fhot>;
-> +			cooling-device =3D <&fan 2 THERMAL=5FNO=5FLIMIT>;
-> +		};
-> +	};
-> +};
-> +
->  &pcie2x1l0 {
->  	reset-gpios =3D <&gpio4 RK=5FPB3 GPIO=5FACTIVE=5FHIGH>;
->  	vpcie3v3-supply =3D <&vcc=5F3v3=5Fpcie20>;
+1. Two LED channels with adjustable brightness for use as a torch, or a
+   flash strobe.
+2. An RGB LED with 8-bit channels. Usually programmed as a notification
+   indicator.
+3. An MUIC, which works with USB micro-B (and USB-C?). For the micro-B
+   variant though, it measures the ID-GND resistance using an internal
+   ADC.
+4. A charger device, which reports if charger is online, voltage,
+   resistance, etc.
 
-Thanks for the v3 of this patch, it's looking good to me, as explained
-further in my comments on the v1 and v2.
+This patch series implements a lot of these features. Naturally, this
+series touches upon a lot of subsystems. The 'parent' is the MFD driver,
+so the subsystems have some form of dependency to the MFD driver, so
+they are not separable.
 
-Please feel free to include
+Here are the subsystems corresponding to the patch numbers:
+dt-bindings - 01, 02, 03, 04, 05
+mfd         - 05, 06, 07
+led         - 01, 02, 08, 09, 10
+extcon      - 03, 11
+power       - 04, 12
 
-Reviewed-by: Dragan Simic <dsimic@manjaro.org>
+Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+---
+Changes in v2:
+- Drop [v1 06/13], instead use regmap_irq_chip::get_irq_regs() 
+- Remove references to driver in devicetree commits (Conor Dooley)
+- Propagate errors of sec_pmic_store_rev() (André Draszik)
+- Fix documentation language errors (Randy Dunlap)
+- Link to v1: https://lore.kernel.org/r/20251114-s2mu005-pmic-v1-0-9e3184d3a0c9@disroot.org
+
+---
+Kaustabh Chakraborty (12):
+      dt-bindings: leds: document Samsung S2M series PMIC flash LED device
+      dt-bindings: leds: document Samsung S2M series PMIC RGB LED device
+      dt-bindings: extcon: document Samsung S2M series PMIC extcon device
+      dt-bindings: power: supply: document Samsung S2M series PMIC charger device
+      dt-bindings: mfd: s2mps11: add documentation for S2MU005 PMIC
+      mfd: sec: add support for S2MU005 PMIC
+      mfd: sec: store hardware revision in sec_pmic_dev and add S2MU005 support
+      leds: flash: add support for Samsung S2M series PMIC flash LED device
+      leds: rgb: add support for Samsung S2M series PMIC RGB LED device
+      Documentation: leds: document pattern behavior of Samsung S2M series PMIC RGB LEDs
+      extcon: add support for Samsung S2M series PMIC extcon devices
+      power: supply: add support for Samsung S2M series PMIC charger device
+
+ .../bindings/extcon/samsung,s2mu005-muic.yaml      |  35 ++
+ .../bindings/leds/samsung,s2mu005-flash.yaml       |  52 +++
+ .../bindings/leds/samsung,s2mu005-rgb.yaml         |  34 ++
+ .../devicetree/bindings/mfd/samsung,s2mps11.yaml   | 103 ++++-
+ .../power/supply/samsung,s2mu005-charger.yaml      |  35 ++
+ Documentation/leds/index.rst                       |   1 +
+ Documentation/leds/leds-s2m-rgb.rst                |  60 +++
+ drivers/extcon/Kconfig                             |  10 +
+ drivers/extcon/Makefile                            |   1 +
+ drivers/extcon/extcon-s2m.c                        | 351 ++++++++++++++++
+ drivers/leds/flash/Kconfig                         |  12 +
+ drivers/leds/flash/Makefile                        |   1 +
+ drivers/leds/flash/leds-s2m-flash.c                | 410 ++++++++++++++++++
+ drivers/leds/rgb/Kconfig                           |  11 +
+ drivers/leds/rgb/Makefile                          |   1 +
+ drivers/leds/rgb/leds-s2m-rgb.c                    | 460 +++++++++++++++++++++
+ drivers/mfd/sec-common.c                           |  57 ++-
+ drivers/mfd/sec-i2c.c                              |  12 +
+ drivers/mfd/sec-irq.c                              |  74 ++++
+ drivers/power/supply/Kconfig                       |  11 +
+ drivers/power/supply/Makefile                      |   1 +
+ drivers/power/supply/s2m-charger.c                 | 213 ++++++++++
+ include/linux/mfd/samsung/core.h                   |   2 +
+ include/linux/mfd/samsung/irq.h                    |  66 +++
+ include/linux/mfd/samsung/s2mu005.h                | 328 +++++++++++++++
+ 25 files changed, 2330 insertions(+), 11 deletions(-)
+---
+base-commit: ca3a02fda4da8e2c1cb6baee5d72352e9e2cfaea
+change-id: 20251112-s2mu005-pmic-0c67fa6bac3c
+
+Best regards,
+-- 
+Kaustabh Chakraborty <kauschluss@disroot.org>
 
 
