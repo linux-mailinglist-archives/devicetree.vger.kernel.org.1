@@ -1,81 +1,53 @@
-Return-Path: <devicetree+bounces-259311-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259312-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kOSIDLyVdmlCSgEAu9opvQ
-	(envelope-from <devicetree+bounces-259311-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 23:14:20 +0100
+	id yFqNGKandmnLTwEAu9opvQ
+	(envelope-from <devicetree+bounces-259312-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 00:30:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8464D82A44
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 23:14:19 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9512883248
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 00:30:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4B09330056DF
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 22:14:09 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 469F9300FB6A
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 23:30:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7536730DD3A;
-	Sun, 25 Jan 2026 22:14:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8210730FC39;
+	Sun, 25 Jan 2026 23:30:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J6akJgre"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HnqyA/VV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 513B13090C9;
-	Sun, 25 Jan 2026 22:14:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F1AF30E0CC;
+	Sun, 25 Jan 2026 23:30:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769379248; cv=none; b=OIuc27wEfTDTginLE7l+5G4p0bDZvQj5CuOt1rsfQHihRhUyMjeetD6Ptvl2qolL0lyacM5jkCdQ98jMwPT3EQy21GsKfovex30iCzhQ8FOd4BQkNzvQpZzmJTKLM2u03zbrwJyKrcQFe10kekMLC+HsG9pLp/moDGHeQsYf2sk=
+	t=1769383817; cv=none; b=czZCMwKt1Zx/MKsMMwfXG1blTGkv31w02pDM8OfDnpLE/egzixw+ym15LCRdhbLkyt0YGqpU1yCc/AZ/BJnkp+ibDpB5SQ7eXcaT43qU7X7IGIb/JK29bUjKYv/bRiCc27qcl0w8MKUb95YCm7GoQMYGmP3QIwuU3gsnBCZR9AI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769379248; c=relaxed/simple;
-	bh=iZlQMjT87MAKVDpNXN3PnkGFzV2iu5aW29TTIBiz4LU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=WTgWM+KE4VPoRSNaYVoGjiJs3fRK5KfhLqXS1jaixddlIbWNJ5OrCHB/zfB0LCLOLvMHrUpLX2XIkZ6Ogbo6Dczadkc5V5uJuAC4jWRLGtVeDCeQULSnIPlhFqzeCnGA4DZBTAhcMD2D455aHLVwx8Tw5Rj/lJV7eTyDyzLMEoI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J6akJgre; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED55EC4CEF1;
-	Sun, 25 Jan 2026 22:14:06 +0000 (UTC)
+	s=arc-20240116; t=1769383817; c=relaxed/simple;
+	bh=UxjsFzyJDKHZCAmZxzzx2OMG5I4PoYHG+DJ5BLLBlQY=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=ZRHYfxndDSZTm3ntoXkwYXQvy4nArWVSjrOUb+nRXy4h+NWgrIsmsJH75WcispDxSCb1BpsVsZVy9uOsqECy4ELOyMMkoxB+NVC0r30kILqA9rQdg4i/c0hKmkVfvlPrC/bWxKpFHA3n1657WsiQOf6JXsIZuXXcnIPuvv1RCp8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HnqyA/VV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F5D8C4CEF1;
+	Sun, 25 Jan 2026 23:30:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769379247;
-	bh=iZlQMjT87MAKVDpNXN3PnkGFzV2iu5aW29TTIBiz4LU=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=J6akJgre43BvTHV/oVpuun6heVrwS1teSyBWH6FuCNcPiuDiEFO1PgpjDWyLdqP8N
-	 QOsluSCZROsPBl5eVixeH74A1gNrAVod6jue+z9olPAMdcM6v7L2iSrq5h1cH8v+52
-	 6XUIosoZiM4ohYRhYXi2143dPv+iUUh2syQRhIbAJx5NOkLnNCVfklF1UNtAqQ50kS
-	 D6bIljup//yXFN3doJv8I4aRgDuvNMdEjZJKQ8s4WFqcLSzfu59UkUrrqWYXtIuQtr
-	 SMQP64HzuOLGlgr2mhNknQFPUmOw+okgeif9F50vg+UrLJCvKw8pS3r53domFjqAI4
-	 x9N3q6FO5pbdA==
-From: Jakub Kicinski <kuba@kernel.org>
-To: jan.petrous@oss.nxp.com
-Cc: Jakub Kicinski <kuba@kernel.org>,
-	robh@kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	mcoquelin.stm32@gmail.com,
-	kernel@pengutronix.de,
-	pabeni@redhat.com,
-	edumazet@google.com,
-	andrew+netdev@lunn.ch,
-	chester62515@gmail.com,
-	s32@nxp.com,
-	linux-kernel@vger.kernel.org,
-	ghennadi.procopciuc@oss.nxp.com,
-	festevam@gmail.com,
-	alexandre.torgue@foss.st.com,
-	davem@davemloft.net,
-	krzk+dt@kernel.org,
-	mbrugger@suse.com,
-	netdev@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	imx@lists.linux.dev
-Subject: Re: [v3,4/4] stmmac: s32: enable support for Multi-IRQ mode
-Date: Sun, 25 Jan 2026 14:14:05 -0800
-Message-ID: <20260125221405.3395497-1-kuba@kernel.org>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260123-dwmac_multi_irq-v3-4-cc53f2be8961@oss.nxp.com>
-References: <20260123-dwmac_multi_irq-v3-4-cc53f2be8961@oss.nxp.com>
+	s=k20201202; t=1769383817;
+	bh=UxjsFzyJDKHZCAmZxzzx2OMG5I4PoYHG+DJ5BLLBlQY=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=HnqyA/VVKBW6/8dsnaj0Xsip6CDcqvp+nHEvkImf4DAM3Whl8ZKFVZl2AEpsePSDA
+	 qyMi46ir/SptHD23d53Na6/+WkoFY7LgXL570UHDJZJJ6b8UjAyE3o3hGuBP8SnwHb
+	 gy+p3lWey3UrG8KRrx3CuIvn++AyAP5XDZ/DWnLwLVrcdvi8tXs8J6WJMjGXBWl+YU
+	 nFecNNsO2Oad1h4pQ6QIsjdH2haLIQ386Pf8uBOJ/SKOPSfEr4HoOILmTMOfuIwuA3
+	 K182p54FTOW7BLdgCzE9TJfE6i33yuu2rTJ+d0RQKBjjSrZLQhiFGNjLEDeh76C8YX
+	 T3ta1Fn66fkNw==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 4EAB43809A15;
+	Sun, 25 Jan 2026 23:30:13 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,83 +55,70 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v2] dt-bindings: net: dsa: fix typos in bindings docs
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <176938381209.4011909.12223254210240396797.git-patchwork-notify@kernel.org>
+Date: Sun, 25 Jan 2026 23:30:12 +0000
+References: <20260123150211.2646235-1-weibu@redadmin.org>
+In-Reply-To: <20260123150211.2646235-1-weibu@redadmin.org>
+To: Akiyoshi Kurita <weibu@redadmin.org>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, netdev@vger.kernel.org, andrew@lunn.ch
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,st-md-mailman.stormreply.com,vger.kernel.org,pengutronix.de,gmail.com,redhat.com,google.com,lunn.ch,nxp.com,oss.nxp.com,foss.st.com,davemloft.net,suse.com,lists.infradead.org,lists.linux.dev];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[25];
-	TAGGED_FROM(0.00)[bounces-259311-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259312-lists,devicetree=lfdr.de,netdevbpf];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[patchwork-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kuba@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NO_DN(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 8464D82A44
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lunn.ch:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 9512883248
 X-Rspamd-Action: no action
 
-This is an AI-generated review of your patch. The human sending this
-email has considered the AI review valid, or at least plausible.
+Hello:
 
-For local reproduction steps see https://netdev-ai.bots.linux.dev/ai-local.html
----
-stmmac: s32: enable support for Multi-IRQ mode
+This patch was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
 
-This patch enables Multi-IRQ mode for the S32 DWMAC driver when both
-multi-queue and per-queue IRQs are configured. The driver now selects
-between Multi-IRQ and MAC IRQ modes based on device tree configuration.
+On Sat, 24 Jan 2026 00:02:11 +0900 you wrote:
+> Fix "alway" -> "always" in lan9303.txt and marvell,mv88e6xxx.yaml.
+> 
+> Signed-off-by: Akiyoshi Kurita <weibu@redadmin.org>
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+>  .../devicetree/bindings/net/dsa/marvell,mv88e6xxx.yaml          | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
-> index 5a485ee98fa7..342091045714 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
+Here is the summary with links:
+  - [v2] dt-bindings: net: dsa: fix typos in bindings docs
+    https://git.kernel.org/netdev/net-next/c/bf2e36c9dab9
 
-[ ... ]
-
-> @@ -149,6 +149,16 @@ static int s32_dwmac_probe(struct platform_device *pdev)
->  	plat->core_type = DWMAC_CORE_GMAC4;
->  	plat->pmt = 1;
->  	plat->flags |= STMMAC_FLAG_SPH_DISABLE;
-> +
-> +	/* Check for multi-IRQ config. Assumption: symetrical rx/tx queues */
-> +	if (plat->rx_queues_to_use > 1 &&
-> +	    (res.rx_irq[0] >= 0 || res.tx_irq[0] >= 0)) {
-                        ^^^^            ^^^^
-
-Should these checks be "> 0" instead of ">= 0"?
-
-stmmac_get_platform_resources() initializes the res structure with
-memset(0), then only writes positive IRQ values when per-queue IRQs are
-found in the device tree. If no "rx-queue-0" or "tx-queue-0" interrupt
-names are defined, rx_irq[0] and tx_irq[0] remain 0 from the memset.
-
-Since 0 >= 0 evaluates to true, this condition will enable Multi-IRQ
-mode even when no per-queue IRQs are available. The commit message states
-that "queue based IRQs are set" is a prerequisite, but the current check
-does not properly verify this.
-
-> +		plat->flags |= STMMAC_FLAG_MULTI_MSI_EN;
-> +		dev_info(dev, "Multi-IRQ mode (per queue IRQ) selected\n");
-
-[ ... ]
+You are awesome, thank you!
 -- 
-pw-bot: cr
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
 
