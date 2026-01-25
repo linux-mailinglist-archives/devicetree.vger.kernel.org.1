@@ -1,180 +1,375 @@
-Return-Path: <devicetree+bounces-259301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259310-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oMkiChJwdmnyQgEAu9opvQ
-	(envelope-from <devicetree+bounces-259301-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 20:33:38 +0100
+	id yFooFNCIdmncRgEAu9opvQ
+	(envelope-from <devicetree+bounces-259310-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 22:19:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 945F18239A
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 20:33:37 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B4E7827A1
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 22:19:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3DF8B300952A
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 19:28:57 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 6862B3001073
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 21:19:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA9802F49E3;
-	Sun, 25 Jan 2026 19:28:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05AA82264CC;
+	Sun, 25 Jan 2026 21:19:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gWBr6hEn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HSMlyl6m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f178.google.com (mail-dy1-f178.google.com [74.125.82.178])
+Received: from mail-ej1-f68.google.com (mail-ej1-f68.google.com [209.85.218.68])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DDDF2F3C31
-	for <devicetree@vger.kernel.org>; Sun, 25 Jan 2026 19:28:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.82.178
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769369336; cv=pass; b=Wrm+Gwvc9aBBSOnMn6riBwkA1IlwZMhYQwf94kUBpIlKru81Y4X3UMiRcXANZ8AzHMv4WD3CXQg1tour9MtK4/dDiL/M8ks5yf1Sj0pVVPwsfmJhjkGT4Iu/+GB9XeKJ14DKnuLQw59sNcnMKJdgNq5etR13ETG4fERWpMAGviU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769369336; c=relaxed/simple;
-	bh=8pOcKL14tGgNq95iPvrL/GzHkB3X1hsHRYUtaIz9Lq4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GqZi0EOmRX/zfughA2xNdO5pZkTq8gc31XIS0TSWLjxF5JSD1EdbrYeOEWTEeSnRXXAd2jO9GxoomNtSIpz850hyoMQ0+ONvmcbgaScMDaojgb8cnxDK75RTIS8XWwx2nkRd0fTWpFdYBgANxFRTql95S6WOLMJ5mCCINPibIC4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gWBr6hEn; arc=pass smtp.client-ip=74.125.82.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C1609460
+	for <devicetree@vger.kernel.org>; Sun, 25 Jan 2026 21:19:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.68
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769375945; cv=none; b=ue/CTA2GtxgCtJvNogqlmu4/nd5xyoHVQ/ykBirYs8pw6oV50LD6yH3q7Mqahi+uqGqftMuw4Cz+mLZflc5GqFfTQX4zVqMRYBmc8cNeMzhHrAX+iB9Yho+4k9LrB7C9Z777bhC+yIvQYwsetjm7uvGZjVnNdVni2HO1Vuq4rO4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769375945; c=relaxed/simple;
+	bh=lyybGfWyRVoPRH0NA2/XMqVuAs7TCyHxpYg7TO/ATik=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Xk6rrNRe5m0dRxHVm+BddIXZvchhwtPE8Q43fpIlSz50xQDNm16tjs+rVR14HSxZRCJGI25xKumc8JNxfi3Mjl/cZAOjVeBshBbvDzmieR3Fdl2PzTaSV5nJgfqEZo/ENmA3e8w7SY7INgGl3VFuBLAm2eYWpTrxWzNZrh/xuEg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HSMlyl6m; arc=none smtp.client-ip=209.85.218.68
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f178.google.com with SMTP id 5a478bee46e88-2b701d29ddcso133430eec.3
-        for <devicetree@vger.kernel.org>; Sun, 25 Jan 2026 11:28:55 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1769369334; cv=none;
-        d=google.com; s=arc-20240605;
-        b=YmBkfrWxtjmh5M6pO1qGa4bLYQIwiKqS2uOiFP41uxF48x1MCwL7rsj4pjTGT0ZV5o
-         Xyqiy8U1kXoKnrQaMotjpzthykBcQtuD90a5RjvyTwOHrGk3SDYzo5ikF1/E7BVzG9om
-         sEtsdaXbyrNGhcLBnIAP9m1PtOVHQAle44+ptlBS5KX8K32lW5uB0oDurpUfnM/jnZsL
-         MN5AtGFAvDqegdCnHQRWtwvvdRTVh8ZZvY+ezxG+3iiozn+jr/CrtVPdW6fGQ4vVcCmg
-         2lwMc0aYVcj/nLViQZ7+mHQnv+e3A83RsVNVhbEOUVKOPHmZi/GwVy0NeJr5db6QEotF
-         Yr4Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=0KQJAb+qDBRIACR9YuX4oaJxaPLkdV2uwaezIinAs6E=;
-        fh=y5LdEAwipRFI7/nMbJjC7WIBTIay0XG8ocWPu/Usq34=;
-        b=SsNYxJXbKMEReZLz1juka9rfUdEBv6dl0lpjt5Aox1i8e6Qbk8IG5dSq+JNjETVyzU
-         MZsgGfeUgLjvkSIjLC/Oz+73hBCNuCn12eQd8hTE6YqQ4lGp+8K2a8paDExOXkZ1zMFB
-         1JK84OlDhVMb1434U6Q6f1agSYE7McXCwr/NYfxa/3Ai6J6pJTU18UQU0ZApWTOg1tFW
-         XGGK3lyegdlWkmyEHc64RZ+wE5U5TLBKAmKCRY2B5qJvKM1Ns4kJlMIbRM/rLXNgsTM4
-         kuyqDtcz3N41wq6hG9xxqZMZRMhUZRLYh1ATosfi2G17rRgCIWA2oHqyLB2OA09j8LA5
-         DXzA==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: by mail-ej1-f68.google.com with SMTP id a640c23a62f3a-b884ad1026cso592219766b.2
+        for <devicetree@vger.kernel.org>; Sun, 25 Jan 2026 13:19:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769369334; x=1769974134; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0KQJAb+qDBRIACR9YuX4oaJxaPLkdV2uwaezIinAs6E=;
-        b=gWBr6hEn0tI6IrSvGPwg+QAg4tH8G2RKGxzIywB+69eqwMu/k91SsQ6kCJSFQ/obCE
-         9cUxZAvQdDYhNYqH/s6zDC2L0D8ueAizx+FYyEuRxhyz9VlLxBzth2+UgFMo6iMBD+3U
-         3B9ckWWNJ/VN7G65lrLkOpjv5oobgqHdXp5hNLWeFupUj4+7JjYPNduq9UO/TeUSKcGU
-         J44+ylxpJCfwMJqg01AZfu/Xi02c+Pye6PrpqD5YdfcKvaxGWxnYnla9zyherEn95pNR
-         ca81pCTIj2NX88QJ+g8oibxfvYCdmUEhSlIInKNEteyTj3qDtH3EOaw4Yddq9APbDm4Q
-         nm/A==
+        d=gmail.com; s=20230601; t=1769375942; x=1769980742; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YW+707/LYVsvMoW4gkqX/ApdK27pGLRe7MQshHwusJw=;
+        b=HSMlyl6mCbd5yKZzD8M5ayaQ4neieKMajZh42HScoA2QU8Eo5TBCFKFU8ue1KfBPG3
+         8rMVliN3MPJgisVPI4mxODoEE3tOVjAg27C6+xb92QJY+jCmBsbpHAyloKFtJVAOhZt6
+         gVs0HrlhQSvje1H5qXBWlCwLdS4Jap0QAswx3JE8MyZ76qwuqT8KQf59eGIaTaIBgllj
+         nHWJ4KOi6DTxB8qHzYg/lCG5YMVBGDWVRhulccmbAAbiI3FOVIudUspY0ycG794kbzFb
+         mWbQsMdgpZIBr6BWXi7DOpOZDWUtxvh+is4+XFlHFS8VQAnCn49l2hkFVoVWggAv4ngO
+         ZU4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769369334; x=1769974134;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=0KQJAb+qDBRIACR9YuX4oaJxaPLkdV2uwaezIinAs6E=;
-        b=fwY2GLYUCAzW4Nca6A4ZygdTcwIgPdFJfUk6bQPA/ca6L7fOz9ftEIiQ+DwHP+4vP/
-         keFT0OLseq/63bE0h0XxaY1tTucAflgNyIBngoWLLKH4EozdtHdHJ1TUKGhfVCQYXXCO
-         cCZFC7MrIMQhvZJp/Y9rZC4Vpg48cl8kx7+KlQC8NRPwwHE7oXoUW+c5sE1mnhWNY5ho
-         xwieWLqMGyasd8jHwkMMVFWslMGMxu3XsixJgUA/2g0z9i5XdYphYHRjEVf+CgVW5suy
-         +G5CdKOvaKHFeyXnya1qQjEQKBxYQQGWpNLrpwy7FFXO+33/2lAIuOpt8MLecQ3Of2RZ
-         bvig==
-X-Forwarded-Encrypted: i=1; AJvYcCWIDnFs7QBvilYZUKX0BMhF8jsNZn6quOXTBUjE4JACjauwQPzNvQJkQsQpOW4xkpCLcFxEtelxxAee@vger.kernel.org
-X-Gm-Message-State: AOJu0YyK4gvTbNYaML+wM2DgcAEzR/h4oWbAs1X648wC6giU7G2YmYy5
-	9l89BxDW4rlGh8Nu5EIRxsfMzjmgPCBn7EtAu5Y+5kFseNtwDdkxBXx1RfDikb1D3QYnmFfvwZk
-	hfWXIBJF2P+3bbixW8t6IJ/EXdQAr0mw=
-X-Gm-Gg: AZuq6aJHL5cRiP5Rwfhd+nqWyJQkzCRMKz5Oyf08ExFAZzrdzTfT6JHyr9r+1WpeNMq
-	KM+EZsj9Q1MmA55QhdeCa+pjbeRKr21z9Gi2QoMyiwlSDEg+N3gvgaRfx1oyFQss05jdHx01rgu
-	PaVSO0InguM6ZOWOxI7noaG5INb/nihz3m9qK7+8KofsEqf9lnqTyvG/aEsRq9qWU7Va7GduV5H
-	L/74CaYqm7nJig/i9ZdJpyWUCwLdxJuUhGMOtGXKNbu5lfFv1xpjdSF02AqPonX/iQlvuuec9Og
-	SnY+UVTR7yhgRK8XjInQ0eF7jEv+a5tYU9Fj8e6kvnrhV34OYUuzoZsQ+BYVASNJUxDStoAEU8o
-	FthrAGRtX3+yf
-X-Received: by 2002:a05:7300:6422:b0:2b7:1744:7261 with SMTP id
- 5a478bee46e88-2b76412ccacmr568449eec.0.1769369334237; Sun, 25 Jan 2026
- 11:28:54 -0800 (PST)
+        d=1e100.net; s=20230601; t=1769375942; x=1769980742;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YW+707/LYVsvMoW4gkqX/ApdK27pGLRe7MQshHwusJw=;
+        b=SoPyntKCWAT72w0pVvskOZqg9EbH1IZVObgFma6dqjpTdgXcP8h54gMjSVfdrDpk5Z
+         buQTv//hAKHhy0okpdoPLU/q4jhc6d7itjovh960kJAYvb3fpybx9CnAk6nT3+YeEW1X
+         +9tf+sQ332FbfvUxJFR9e4phmIVoXNd9lEEH0mNCRHDfbVD8qPt3atmQlvRj/8i6Xucn
+         l8cxucj/a9I4DuLcu4lkYFU2QM+QAvwzKz+RS/G+5SSb3Qa7URXu0lalmDd9VP4eIwoi
+         CquH/aSAi/Hl7yWg5nbSkWI8mQnNOHwk3eDoLt8i0cw/sH7fXUgMsKJSbgm1J+F/nw3z
+         K2ew==
+X-Forwarded-Encrypted: i=1; AJvYcCV9lffXMFEif0jQIdLMDQ5cutN3xHAVOtAiZBmHDOOZaCxBAXlFN0S+6eBCj4fgOFdC5j7sfnhd45qv@vger.kernel.org
+X-Gm-Message-State: AOJu0YzT2jSIUtuIsLD9ZvXqsRo3WR0P2eOoOcnFYzaSjgtOvq2gZek7
+	v2ntDvjn2LG4sWRqrI8oPoW7pFtaWnuewT+Pf9KyB4ut78JPfxlC+YgoozP4q+WukDU=
+X-Gm-Gg: AZuq6aKli8G51r7O8se+jIj0ufImVbasHT/cf7BmvP1FLPCez5OBTkJ4z0VBGPktNMr
+	55r0dZZVYM0/Bp76R6s/h6GunqxC8NkGClpn9T4k9J5/O3aEqpB3C5yiZlSvoFQpeybs5TX3j2/
+	4wjCyn0YVi21VsPFjcK7UzobKfwaNAxXi6d4ulcaXFhZL9qrsCps5l8fP/3KyoGu7Cxw8a7+LVI
+	+33uVqD0aLnTYx/T/8YApHGpG2pN4DNrWHFtGLpfiMAu5GolJLeDetG6Nu2PKzxcjsvU1odukky
+	Vv0HUAnm9QxaIuC5CDKspZOmE7pQQeoSFrsFlwIrY0eY/AN7Iooc2HKHk4fO1ecosjr8ZebWSKU
+	7nguJ/fU4blxJge28tGqUXvD4XnXp5G8tG3zYEStwu8np9gghA585uoBbNDBeWVn8B7ZPACM7Dx
+	yZpVAedrKZ2XiJL7cL1d99rZCHbSub55SrqmFx8+YDFSFJoM2VdzoT7cEzZ+NDT1UgSd4YFUIJ6
+	r0t5SdRabh/
+X-Received: by 2002:a17:907:86a6:b0:b87:695f:d2a8 with SMTP id a640c23a62f3a-b8d2e5f6840mr156740366b.55.1769370139323;
+        Sun, 25 Jan 2026 11:42:19 -0800 (PST)
+Received: from ?IPV6:2a02:8010:6606:0:fd30:74ec:a5b0:107a? ([2a02:8010:6606:0:fd30:74ec:a5b0:107a])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b885b3dad3asm506560566b.12.2026.01.25.11.42.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 25 Jan 2026 11:42:18 -0800 (PST)
+Message-ID: <c9dd365b-ad8f-410e-96f8-f914f03634b2@gmail.com>
+Date: Sun, 25 Jan 2026 19:42:16 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251031-zeroed-of-rs-v2-1-f89ff71e943e@gmail.com>
-In-Reply-To: <20251031-zeroed-of-rs-v2-1-f89ff71e943e@gmail.com>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Sun, 25 Jan 2026 20:28:42 +0100
-X-Gm-Features: AZwV_QgFOh6gcbuhR-5RQPCD5CWNvv46oSMWmL5YFImHbprlXgpFhBFTkEPczKU
-Message-ID: <CANiq72kgqJPwpW5QRg1Xg0d9Dbhe1RKxgpqmp_9vH0xopWO6eg@mail.gmail.com>
-Subject: Re: [PATCH v2] rust: of: replace `core::mem::zeroed` with `pin_init::zeroed`
-To: moritz.zielke@gmail.com, Benno Lossin <lossin@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
-	Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
-	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
-	Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
-	Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org, 
-	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v14 0/9] Add Type-C DP support for RK3399 EVB IND board
+To: Chaoyi Chen <kernel@airkyi.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Peter Chen <hzpeterchen@gmail.com>, Luca Ceresoli
+ <luca.ceresoli@bootlin.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
+ <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Yubing Zhang <yubing.zhang@rock-chips.com>,
+ Frank Wang <frank.wang@rock-chips.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Amit Sunil Dhamne <amitsd@google.com>,
+ Chaoyi Chen <chaoyi.chen@rock-chips.com>, Dragan Simic <dsimic@manjaro.org>,
+ Johan Jonker <jbx6244@gmail.com>, Diederik de Haas <didi.debian@cknow.org>,
+ Peter Robinson <pbrobinson@gmail.com>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ dri-devel@lists.freedesktop.org
+References: <20260119073100.143-1-kernel@airkyi.com>
+Content-Language: en-GB
+From: Hugh Cole-Baker <sigmaris@gmail.com>
+In-Reply-To: <20260119073100.143-1-kernel@airkyi.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-259301-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-259310-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[airkyi.com,linux.intel.com,linuxfoundation.org,oss.qualcomm.com,gmail.com,bootlin.com,kernel.org,sntech.de,rock-chips.com,intel.com,linaro.org,ideasonboard.com,kwiboo.se,suse.de,ffwll.ch,google.com,manjaro.org,cknow.org];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RCPT_COUNT_TWELVE(0.00)[40];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[miguelojedasandonis@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,google.com,gmail.com,garyguo.net,protonmail.com,umich.edu,vger.kernel.org];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 945F18239A
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sigmaris@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 0B4E7827A1
 X-Rspamd-Action: no action
 
-On Fri, Oct 31, 2025 at 10:52=E2=80=AFAM Moritz Zielke via B4 Relay
-<devnull+moritz.zielke.gmail.com@kernel.org> wrote:
->
-> From: Moritz Zielke <moritz.zielke@gmail.com>
->
-> All types in `bindings` implement `Zeroable` if they can, so use
-> `pin_init::zeroed` instead of relying on `unsafe` code.
->
-> If this ends up not compiling in the future, something in bindgen or on
-> the C side changed and is most likely incorrect.
->
-> Link: https://github.com/Rust-for-Linux/linux/issues/1189
-> Suggested-by: Benno Lossin <lossin@kernel.org>
-> Signed-off-by: Moritz Zielke <moritz.zielke@gmail.com>
+On 19/01/2026 07:30, Chaoyi Chen wrote:
+> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+> 
+> This series focuses on adding Type-C DP support for USBDP PHY and DP
+> driver. The USBDP PHY and DP will perceive the changes in cable status
+> based on the USB PD and Type-C state machines provided by TCPM. Before
+> this, the USBDP PHY and DP controller of RK3399 sensed cable state
+> changes through extcon, and devices such as the RK3399 Gru-Chromebook
+> rely on them. This series should not break them.
+> 
+> ====
+> 1. DisplayPort HPD status notify
+> 
+> Before v7, I implemented a variety of DP HPD status notify. However,
+> they all had various problems and it was difficult to become a generic
+> solution.
+> 
+> Under the guidance of Heikki and Dmitry, a decoupled notification
+> method between the TypeC and DRM subsystems was introduced in v7.
+> First, a notification is sent when TypeC registers a new altmode.
+> Then, a generic DP AUX HPD bridge is implemented on the DRM side.
+> 
+> During v7-v10, we added a new notifier in typec to notify the altmode
+> device register event. With the help of Greg and Heikki, we implemented
+> the reuse of notifiers for the type bus itself in patch1 of v11.
+> 
+> The USB subsystem related parts have already been merged into the
+> usb-next branch in v13 [0][1]. Therefore, this series no longer includes
+> these patches starting from v14. Thanks to Greg and Heikki!
+> 
+> [0]: https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git/commit/?h=usb-next&id=67ab45426215c7fdccb65aecd4cac15bbe4dfcbb
+> [1]: https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git/commit/?h=usb-next&id=4dee13db29de6dd869af9b3827e1ff569644e838
+> 
+> That makes it redundant for each Type-C controller driver to implement
+> a similar DP AUX HPD bridge in embedded scenarios.
+> 
+> ====
+> 2. Altmode switching and orientation switching for USBDP PHY
+> 
+> For USB Type-C interfaces, an external Type-C controller chip assists
+> by detecting cable attachment, determining plug orientation, and
+> reporting USB PD message. The USB/DP combo PHY supports software
+> configurable pin mapping and DisplayPort lane assignment. Based on
+> these message, the combo PHY can perform both altmode switching and
+> orientation switching via software.
+> 
+> The RK3399 EVB IND board has a Type-C interface DisplayPort. It use
+> fusb302 chip as Type-C controller. The connection diagram is shown below:
+> 
+> fusb302 chip +---> USB2.0 PHY ----> DWC3 USB controller
+>              |
+>              +---> USB/DP PHY0 +--> CDN-DP controller
+>                                |
+>                                +--> DWC3 USB controller
+> 
+> ====
+> 3. Multiple bridge model for RK3399 CDN-DP
+> 
+> The RK3399 has two USB/DP combo PHY and one CDN-DP controller. And
+> the CDN-DP can be switched to output to one of the PHYs.
+> 
+> USB/DP PHY0 ---+
+>                | <----> CDN-DP controller
+> USB/DP PHY1 ---+
+> 
+> In previous versions, if both PHY ports were connected to DP,
+> the CDN-DP driver would select the first PHY port for output.
+> 
+> On Dmitry's suggestion, we introduced a multi-bridge model to support
+> flexible selection of the output PHY port. For each PHY port, a
+> separate encoder and bridge are registered.
+> 
+> The change is based on the DRM AUX HPD bridge, rather than the
+> extcon approach. This requires the DT to correctly describe the
+> connections between the first bridge in bridge chain and DP
+> controller. And Once the first bridge is obtained, we can get the
+> last bridge corresponding to the USB-C connector, and then set the
+> DRM connector's fwnode to the corresponding one to enable HPD
+> notification.
 
-These were also sent by Benno, and in the issue he mentions
-"re-sending", which usually means just adding your Signed-off-by below
-his:
+With a similar dts patch [1] on top of this series I tested a type-C to
+DP adapter/cable for display output on the ROCKPro64 board, which also
+pairs a FUSB302 with RK3399. Booting it up with the cable plugged in
+works, as does hotplugging the cable after booting in both orientations.
+The correct mode for the display is detected. I wasn't able to test
+audio, only video output, as this display doesn't have speakers.
 
-    https://lore.kernel.org/all/20250814093046.2071971-1-lossin@kernel.org/
+I did once, after unplugging and reconnecting the cable a few times,
+see it get into a state where it didn't detect the attached display.
+Logs from that unplug/reconnect attempt are here [2] if of interest.
+Nevertheless, hotplug seems to work the majority of the time, so
 
-But he also mentioned the Suggested-by tag etc., so this is probably OK too=
-.
+Tested-by: Hugh Cole-Baker <sigmaris@gmail.com>
 
-Cheers,
-Miguel
+[1]: https://github.com/sigmaris/linux/commit/91724088b19bee7d248946442a801423e8cd0634
+[2]: https://gist.github.com/sigmaris/fa107384a7492583ceee1c2962f5030a
+
+> ====
+> Patch1 add generic USB Type-C DP HPD bridge (Dmitry, Heikki).
+> Patch2 add new API drm_aux_bridge_register_from_node() (Neil).
+> Patch3 add new Type-C mode switch for RK3399 USBDP phy binding (Krzysztof).
+> Patch4 add typec_mux and typec_switch for RK3399 USBDP PHY.
+> Patch5 add DRM AUX bridge support for RK3399 USBDP PHY (Neil).
+> Patch6 drops CDN-DP's extcon dependency when Type-C is present (Dmitry).
+> Patch7 add multiple bridges to support PHY port selection (Dmitry, Luca).
+> Patch8 add missing dp_out port for RK3399 CDN-DP.
+> Patch9 add Type-C DP support for RK3399 EVB IND board (Diederik, Peter).
+> 
+> Changes in v14:
+> - Link to V13: https://lore.kernel.org/all/20251208015500.94-1-kernel@airkyi.com/
+> - Drop the patches for the USB Type-C subsusytem part, as they have
+>   already been merged into usb-next.
+> 
+> Changes in v13:
+> - Link to V12: https://lore.kernel.org/all/20251204063109.104-1-kernel@airkyi.com/
+> - Only register drm dp hpd bridge for typec port altmode device.
+> 
+> Changes in v12:
+> - Link to V11: https://lore.kernel.org/all/20251128020405.90-1-kernel@airkyi.com/
+> - Add missing Signed-off-by line.
+> 
+> Changes in v11:
+> - Link to V10: https://lore.kernel.org/all/20251120022343.250-1-kernel@airkyi.com/
+> - Switch to using typec bus notifiers.
+> 
+> Changes in v10:
+> - Link to V9: https://lore.kernel.org/all/20251111105040.94-1-kernel@airkyi.com/
+> - Notify TYPEC_ALTMODE_UNREGISTERED when altmode removed. 
+> - Add drm_aux_bridge_register_from_node().
+> - Fix refcount usage of drm_bridge.
+> 
+> Changes in v9:
+> - Link to V8: https://lore.kernel.org/all/20251029071435.88-1-kernel@airkyi.com/
+> - Remove the exposed DRM_AUX_HPD_BRIDGE option, and select
+> DRM_AUX_HPD_TYPEC_BRIDGE when it is available.
+> - Add usb role switch for Type-C.
+> - Remove USB2 PHY in Type-C connection.
+> - ...
+> 
+> Changes in v8:
+> - Link to V7: https://lore.kernel.org/all/20251023033009.90-1-kernel@airkyi.com/
+> - Export all typec device types for identification.
+> - Merge generic DP HPD bridge into one module.
+> - Fix coding style.
+> 
+> Changes in v7:
+> - Link to V6: https://lore.kernel.org/all/20251016022741.91-1-kernel@airkyi.com/
+> - Add notifier functions for Type-C core.
+> - Add generic USB Type-C DP HPD bridge.
+> 
+> Changes in v6:
+> - Link to V5: https://lore.kernel.org/all/20251011033233.97-1-kernel@airkyi.com/
+> - Fix depend in Kconfig.
+> - Check DP svid in tcphy_typec_mux_set().
+> - Remove mode setting in tcphy_orien_sw_set().
+> - Rename some variable names.
+> - Attach the DP bridge to the next bridge.
+> 
+> Changes in v5:
+> - Link to V4: https://lore.kernel.org/all/20250922012039.323-1-kernel@airkyi.com/
+> - Remove the calls related to `drm_aux_hpd_bridge_notify()`.
+> - Place the helper functions in the same compilation unit.
+> - Add more comments about parent device.
+> - Add DRM AUX bridge support for RK3399 USBDP PHY
+> - By parsing the HPD bridge chain, set the connector's of_node to the
+> of_node corresponding to the USB-C connector.
+> - Return EDID cache when other port is already enabled.
+> 
+> Changes in v4:
+> - Link to V3: https://lore.kernel.org/all/20250729090032.97-1-kernel@airkyi.com/
+> - Add default HPD device for DisplayPort altmode.
+> - Introduce multiple bridges for CDN-DP.
+> - ...
+> 
+> Changes in v3:
+> - Link to V2: https://lore.kernel.org/all/20250718062619.99-1-kernel@airkyi.com/
+> - Add more descriptions to clarify the role of the PHY in switching.
+> - Fix wrong vdo value.
+> - Fix port node in usb-c-connector.
+> 
+> Changes in v2:
+> - Link to V1: https://lore.kernel.org/all/20250715112456.101-1-kernel@airkyi.com/
+> - Reuse dp-port/usb3-port in rk3399-typec-phy binding.
+> - Fix compile error when CONFIG_TYPEC is not enabled.
+> - Notify DP HPD state by USB/DP PHY.
+> - Ignore duplicate HPD events.
+> - Add endpoint to link DP PHY and DP controller.
+> - Fix devicetree coding style.
+> 
+> Chaoyi Chen (9):
+>   drm/bridge: Implement generic USB Type-C DP HPD bridge
+>   drm/bridge: aux: Add drm_aux_bridge_register_from_node()
+>   dt-bindings: phy: rockchip: rk3399-typec-phy: Support mode-switch
+>   phy: rockchip: phy-rockchip-typec: Add typec_mux/typec_switch support
+>   phy: rockchip: phy-rockchip-typec: Add DRM AUX bridge
+>   drm/rockchip: cdn-dp: Support handle lane info without extcon
+>   drm/rockchip: cdn-dp: Add multiple bridges to support PHY port
+>     selection
+>   arm64: dts: rockchip: Add missing dp_out port for RK3399 CDN-DP
+>   arm64: dts: rockchip: rk3399-evb-ind: Add support for DisplayPort
+> 
+>  .../phy/rockchip,rk3399-typec-phy.yaml        |   6 +
+>  arch/arm64/boot/dts/rockchip/rk3399-base.dtsi |  10 +-
+>  .../boot/dts/rockchip/rk3399-evb-ind.dts      | 147 +++++++
+>  drivers/gpu/drm/bridge/Kconfig                |  10 +
+>  drivers/gpu/drm/bridge/Makefile               |   1 +
+>  drivers/gpu/drm/bridge/aux-bridge.c           |  24 +-
+>  .../gpu/drm/bridge/aux-hpd-typec-dp-bridge.c  |  49 +++
+>  drivers/gpu/drm/rockchip/Kconfig              |   1 +
+>  drivers/gpu/drm/rockchip/cdn-dp-core.c        | 350 +++++++++++++---
+>  drivers/gpu/drm/rockchip/cdn-dp-core.h        |  18 +-
+>  drivers/phy/rockchip/Kconfig                  |   3 +
+>  drivers/phy/rockchip/phy-rockchip-typec.c     | 373 +++++++++++++++++-
+>  include/drm/bridge/aux-bridge.h               |   6 +
+>  13 files changed, 914 insertions(+), 84 deletions(-)
+>  create mode 100644 drivers/gpu/drm/bridge/aux-hpd-typec-dp-bridge.c
+> 
 
