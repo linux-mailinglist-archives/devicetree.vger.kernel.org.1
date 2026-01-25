@@ -1,159 +1,120 @@
-Return-Path: <devicetree+bounces-259275-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259276-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id a49IE59EdmnQOQEAu9opvQ
-	(envelope-from <devicetree+bounces-259275-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 17:28:15 +0100
+	id uOmSIMlEdmnYOQEAu9opvQ
+	(envelope-from <devicetree+bounces-259276-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 17:28:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3C72816CC
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 17:28:14 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 019FF816FF
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 17:28:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 3D9173000FD9
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 16:28:14 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 419A03000FEE
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 16:28:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8051325498;
-	Sun, 25 Jan 2026 16:28:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 370C6324705;
+	Sun, 25 Jan 2026 16:28:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ekgsh12L"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="tTQDhVzg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C818320A37;
-	Sun, 25 Jan 2026 16:28:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C485918DB35;
+	Sun, 25 Jan 2026 16:28:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769358491; cv=none; b=Xz9x4klgwc8+E1B/eJ/ovoAoO0vgrF22UU8wYhwjQLUGntbKKx3WXN7vcHMgo97sfB1CditYuoswfMUsgpViXCMWp51BwVFNSmEHBc715sjg2zegJSG43eC7yT1kmAFVTgkyI1Lb40tp9pNMcrn5IDTRYxvp8GVXFckujBrxCy4=
+	t=1769358533; cv=none; b=YC/K9QyRKjmhxAWsTXcRdkjMsxKllFwQVgkf7leiyEUJUz18Ofcz52SD3kYDyowIZy2mudJ0Sv/SOz1s454QoHrT6U4IN5ok46hlN2/4ZR4Ct0dEEQfLQtWesFt+YnUoZ5Iw+q6M6erQVZe9ON5pN7XDArhxgV8iPXK/YNBo4dg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769358491; c=relaxed/simple;
-	bh=/kBVfEeJ/g4AP/VjKN8A4Uzwnf7UltFNduXdvjV67xs=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=YoAV/iKHsGgQaCq3b9ulzyLkwen8YDJmRNQARTQ72f/ZEANY0+PbuSBZ5wIII+8BRegJLTEMjo3qXIM87jg+0urVSg/I7JoTEH/TKoM6ORJDJUKt73dtotqi911esX1cMrU5/jRISUirtjP5cepTVFRQvj1TjV6FXdz3hxszCyc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ekgsh12L; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 153BCC4CEF1;
-	Sun, 25 Jan 2026 16:28:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769358491;
-	bh=/kBVfEeJ/g4AP/VjKN8A4Uzwnf7UltFNduXdvjV67xs=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=ekgsh12LUQ3AXmJllmcATFerorX1tckcRHS6TTtIyzOEPAd+aLEf6ngWb3Lg77xLL
-	 QIS8dBXGNCjLK7ggRb+JMW7BmRR10b4mKIPkeI6IoimTs22W9D73TjTHptWvqw93L9
-	 yct82EmEBrkkD4R4U9LXyTzM1xWcaGyYk0npwXpiT4At5Z6le/mAztE70P6tUzNTr7
-	 J4TRdmMOKQH+2QEqfq4OfU9TdznqBeKjLEMg8KOZ2XOnfRHom/6IxO7AE86h9PSIYJ
-	 gDlN+m80IFHrQcDe0BXnhd4FXF40KvQkh/oVTjB/pOyDbL7kDsgX4T7pa/wh4vhRJH
-	 HrcTt0RCDvViQ==
-Date: Sun, 25 Jan 2026 10:28:10 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1769358533; c=relaxed/simple;
+	bh=PAuMMpagtxP4dOjA60WqiYjCRDac0VKHV3Da4zz31pQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=C9AEoHFSf8jLGO+kOcBmzJrVE05RGU/kH+BRg4seIebW21dvXD3QoTJrJv+8jkdmY5ZGX46FXh+4gj1ElFq5RbBCGtr27t9iJ1lBDbLNSxgJGdL3tLSa4uBrecM0TrTQOx1+uPZYvHhczLJU5syMol6lDmN+JxMS+hZNhK39U48=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=tTQDhVzg; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=ACFr+emG6c+HSjLRFGH9IDZ5SyzcIYaTDvRfsT2A1dc=; b=tTQDhVzgB0hC6erW+zr3mcBAGc
+	POfQbcUIg5mXpjYJXoMQGcybC0xaOfWWKeVN3jFmL2VEXiwBFlJ1TWWjDqtOCAt35ftalR021hKjD
+	fkSTvrfW2zPzOaQrkfvJ2iZDoC3aG1oGffs2GWFJJ7/RiAU8OojRZ1PKc/+9b+yC8feE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vk2ya-004coJ-8G; Sun, 25 Jan 2026 17:28:36 +0100
+Date: Sun, 25 Jan 2026 17:28:36 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Elad Nachman <enachman@marvell.com>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, gregory.clement@bootlin.com,
+	sebastian.hesselbarth@gmail.com, pali@kernel.org,
+	mrkiko.rs@gmail.com, chris.packham@alliedtelesis.co.nz,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/3] arm64: dts: a7k: add COM Express boards
+Message-ID: <38fdefa0-a13e-44e4-918e-d2e54c3fb668@lunn.ch>
+References: <20260125152347.2518538-1-enachman@marvell.com>
+ <20260125152347.2518538-3-enachman@marvell.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-input@vger.kernel.org, Mark Brown <broonie@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-iio@vger.kernel.org, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, linux-kernel@vger.kernel.org, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, linux-leds@vger.kernel.org, 
- Dixit Parmar <dixitparmar19@gmail.com>, linux-rtc@vger.kernel.org, 
- Tony Lindgren <tony@atomide.com>, Lee Jones <lee@kernel.org>, 
- Andy Shevchenko <andy@kernel.org>, Pavel Machek <pavel@kernel.org>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-In-Reply-To: <20260125134302.45958-7-clamor95@gmail.com>
-References: <20260125134302.45958-1-clamor95@gmail.com>
- <20260125134302.45958-7-clamor95@gmail.com>
-Message-Id: <176935849015.3303521.6335397364292112478.robh@kernel.org>
-Subject: Re: [PATCH v1 06/10] dt-bindings: rtc: cpcap-rtc: convert to
- schema
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260125152347.2518538-3-enachman@marvell.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,analog.com,gmail.com,bootlin.com,baylibre.com,atomide.com];
-	TAGGED_FROM(0.00)[bounces-259275-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,linaro.org,bootlin.com,gmail.com,alliedtelesis.co.nz,vger.kernel.org,lists.infradead.org];
+	TAGGED_FROM(0.00)[bounces-259276-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: D3C72816CC
+X-Rspamd-Queue-Id: 019FF816FF
 X-Rspamd-Action: no action
 
+> +&cp0_eth1 {
+> +	status = "okay";
+> +	phy = <&phy0>;
 
-On Sun, 25 Jan 2026 15:42:58 +0200, Svyatoslav Ryhel wrote:
-> Convert RTC devicetree bindings for the Motorola CPCAP MFD from TXT to
-> YAML format. This patch does not change any functionality; the bindings
-> remain the same.
-> 
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> ---
->  .../devicetree/bindings/rtc/cpcap-rtc.txt     | 18 -----------
->  .../bindings/rtc/motorola,cpcap-rtc.yaml      | 32 +++++++++++++++++++
->  2 files changed, 32 insertions(+), 18 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/rtc/cpcap-rtc.txt
->  create mode 100644 Documentation/devicetree/bindings/rtc/motorola,cpcap-rtc.yaml
-> 
+Documentation/devicetree/bindings/net/ethernet-controller.yaml
 
-My bot found errors running 'make dt_binding_check' on your patch:
+  phy:
+    $ref: "#/properties/phy-handle"
+    deprecated: true
 
-yamllint warnings/errors:
+New dts files should not be using deprecated properties.
 
-dtschema/dtc warnings/errors:
+What should be used is:
 
+  phy-handle:
+    $ref: /schemas/types.yaml#/definitions/phandle
+    description:
+      Specifies a reference to a node representing a PHY device.
 
-doc reference errors (make refcheckdocs):
-Warning: Documentation/devicetree/bindings/leds/motorola,cpcap-leds.yaml references a file that doesn't exist: Documentation/devicetree/bindings/mfd/motorola,cpcap.yaml
-Warning: Documentation/devicetree/bindings/mfd/motorola-cpcap.txt references a file that doesn't exist: Documentation/devicetree/bindings/regulator/cpcap-regulator.txt
-Warning: Documentation/devicetree/bindings/mfd/motorola-cpcap.txt references a file that doesn't exist: Documentation/devicetree/bindings/rtc/cpcap-rtc.txt
-Warning: Documentation/devicetree/bindings/mfd/motorola-cpcap.txt references a file that doesn't exist: Documentation/devicetree/bindings/leds/leds-cpcap.txt
-Warning: Documentation/devicetree/bindings/regulator/motorola,cpcap-regulator.yaml references a file that doesn't exist: Documentation/devicetree/bindings/mfd/motorola,cpcap.yaml
-Warning: Documentation/devicetree/bindings/rtc/motorola,cpcap-rtc.yaml references a file that doesn't exist: Documentation/devicetree/bindings/mfd/motorola,cpcap.yaml
-Documentation/devicetree/bindings/leds/motorola,cpcap-leds.yaml: Documentation/devicetree/bindings/mfd/motorola,cpcap.yaml
-Documentation/devicetree/bindings/mfd/motorola-cpcap.txt: Documentation/devicetree/bindings/regulator/cpcap-regulator.txt
-Documentation/devicetree/bindings/mfd/motorola-cpcap.txt: Documentation/devicetree/bindings/rtc/cpcap-rtc.txt
-Documentation/devicetree/bindings/mfd/motorola-cpcap.txt: Documentation/devicetree/bindings/leds/leds-cpcap.txt
-Documentation/devicetree/bindings/regulator/motorola,cpcap-regulator.yaml: Documentation/devicetree/bindings/mfd/motorola,cpcap.yaml
-Documentation/devicetree/bindings/rtc/motorola,cpcap-rtc.yaml: Documentation/devicetree/bindings/mfd/motorola,cpcap.yaml
-
-See https://patchwork.kernel.org/project/devicetree/patch/20260125134302.45958-7-clamor95@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+	Andrew
 
