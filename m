@@ -1,260 +1,247 @@
-Return-Path: <devicetree+bounces-259226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259227-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ULvnNPb5dWmwKAEAu9opvQ
-	(envelope-from <devicetree+bounces-259226-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 12:09:42 +0100
+	id KEkoGyD6dWmwKAEAu9opvQ
+	(envelope-from <devicetree+bounces-259227-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 12:10:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0C06802AA
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 12:09:41 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE75B802B9
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 12:10:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 0FC9130080A7
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 11:09:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5A14E30078D8
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 11:10:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAC4331AA83;
-	Sun, 25 Jan 2026 11:08:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8E8531961B;
+	Sun, 25 Jan 2026 11:10:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b="iM8Ubei1";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="JM/zB7qE"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="cwQbL8M8";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="USw4L/m1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-b4-smtp.messagingengine.com (fhigh-b4-smtp.messagingengine.com [202.12.124.155])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8A2931A55B;
-	Sun, 25 Jan 2026 11:08:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.155
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A94731961A
+	for <devicetree@vger.kernel.org>; Sun, 25 Jan 2026 11:10:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769339337; cv=none; b=A7qfO3J7zz23U3B1tYgwANO+MxZogskuhQGAZHpif9JUQlOa4lGXSmEfO5t3OIF309mlNcp0DAFU1Bq2a0npOEhuIdVzJqHxpVNS1mj8DNzcxwVZT5bqHP2d+A3XvBRRUX9GJy7vlOQOO075CST2SNYkpR3VQeMcB4HQawMkskk=
+	t=1769339421; cv=none; b=I+PjKr8xzNPmbPCaIbdia6CMKwccMrVrhVpSt7GvUmMPCXTec6Y9ZrI3+yMffghjZz4NN160z9vug8qX3qqkH1ymziuj0eljAO/uUylI+Ax8veL94iPCzsBAvi2qvd2fp830WQo0FYEqxgn+V/kgmse+XVjuNiDeCiGsSi2HINA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769339337; c=relaxed/simple;
-	bh=JvpkSqkCKQ8P/Z3/vU6T2eD2nWK9FDSzmVzke/AumI8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=C/SoMxBJ/oJcTQMPBUVvl8x1v06W30KkLRBzHrVcNWZFd7PGOZFROC3ntphdb7POZ2PdGlOsPymrgEsaCYSzRkkBDvi7RXmU37Unlx1plV9rIgcXk4O+Hk6VsN03/sI8+b1RHm2pihJLJn5KgXllHCMHLNNIkrMb4mAgNREcNyc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net; spf=pass smtp.mailfrom=jannau.net; dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b=iM8Ubei1; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=JM/zB7qE; arc=none smtp.client-ip=202.12.124.155
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jannau.net
-Received: from phl-compute-02.internal (phl-compute-02.internal [10.202.2.42])
-	by mailfhigh.stl.internal (Postfix) with ESMTP id AA23D7A019A;
-	Sun, 25 Jan 2026 06:08:54 -0500 (EST)
-Received: from phl-frontend-04 ([10.202.2.163])
-  by phl-compute-02.internal (MEProxy); Sun, 25 Jan 2026 06:08:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1769339334;
-	 x=1769425734; bh=Ki8yutJ6J7/iU6VRFPZXytmgyP3XS2kOORqhMGSoRJ8=; b=
-	iM8Ubei179dR31Y0pum/ku4tM7GqOCN4+00XtM0aVI/ag6XaFj7vFnYrneXltid9
-	dMhnkkuvskuxGmQS5p00zN1u3h3RDBmcBaT3DYBjZhKyWkyRSlHTNC3khJxu541c
-	q5TevajkIDlTFicqLCwPE4n/G0NrL6MweM7gw02y7T6CJdExLq6vexiGeGfs/SIO
-	pAwU4uon4VIvI1p1Bzf7rtCXWwlY++6Y6Nq2yb9GIAEYxwmz2zkEJOT37lhI97Ny
-	uhkWjX1pX8eiO6AQ+af7UbaHYg8HwjbcenUFDc8MJIm3o7kyFJaE+S0r9tk3C9zU
-	Zt+jOC83tQVhrhkbYKHo6g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1769339334; x=
-	1769425734; bh=Ki8yutJ6J7/iU6VRFPZXytmgyP3XS2kOORqhMGSoRJ8=; b=J
-	M/zB7qEbScMtKB5VTgVq+QI3QBNBlQXovryHqfagffLftZTmW+Z9g/X9axYa+h8L
-	/a3dDS9EvqikbPcQRGP5bYHi1yn8cTrxgr4Uk4/x4F96cJKC4q1knQUBKVpovFsy
-	VdIXZqTqQuu9WmQEJ+Xi21mYbZKM7w985g9rfpnlYB/VoAJmaKue8qAqsg8dZzAp
-	py+eVb7uTFqYpM53froi05jV2u4YiEhuK2lwhVG3M6diQjHqDzj2BqPo/zMgD6kJ
-	lCu6bWlR9B/XQkSdwjy2eNE81hFAc/P0hGUQhfTy1CMFABCjIqP6wJdMdkCB2Maf
-	q6T9Gj/Y8jcxiHrj7d31w==
-X-ME-Sender: <xms:xvl1aX3qp5dhs4b_k-4Ux5VxNLOoq140pBqH8OfBrsYP8QGXj2KaiQ>
-    <xme:xvl1aR6QmL1UWVUrYj6Y92eQTNjeHODscgnnMDesVlHihnx8H8bQiHFVc0jm8JW1t
-    zZBJAKXQmjwy1uYGOj21LQ4QgncBbJufVo4BIecSy2_MIpHSetOZR0>
-X-ME-Received: <xmr:xvl1aTSKaXPdu4CU8M-86SHe5PC1-5wJaqdNOYFpFb8XcDXlyX3McdPIinxxdOoZHZ_W2LIVKLBHu4NbxHOxXlnKh3EvXL-OBfCzWw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgdduheegieefucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
-    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
-    gurhephfffufggtgfgkfhfjgfvvefosehtjeertdertdejnecuhfhrohhmpeflrghnnhgv
-    ucfirhhunhgruhcuoehjsehjrghnnhgruhdrnhgvtheqnecuggftrfgrthhtvghrnhepfe
-    ehheeileduffehteeihfdvtdelffdutdeludduiedutedvfeffheekhefgtedtnecuvehl
-    uhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepjhesjhgrnhhnrg
-    hurdhnvghtpdhnsggprhgtphhtthhopeduuddpmhhouggvpehsmhhtphhouhhtpdhrtghp
-    thhtohepthhglhigsehlihhnuhhtrhhonhhigidruggvpdhrtghpthhtohepnhgvrghlse
-    hgohhmphgrrdguvghvpdhrtghpthhtohepshhvvghnsehkvghrnhgvlhdrohhrghdprhgt
-    phhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggvvh
-    hitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghh
-    sehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrshgrhhhisehlihhsthhsrdhlihhnuh
-    igrdguvghvpdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhn
-    vghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhg
-X-ME-Proxy: <xmx:xvl1aWXNuKjzZ1o6pG_8lIKDW_N3Kd3cguX2DVRVrjUVQYORjYt_gw>
-    <xmx:xvl1aYHI3hSNwvWPISAfMf_MAJAye2Sjwx6W_Da0-8GBK5pbgue9aQ>
-    <xmx:xvl1aZcW6upMh863jcChV976rT82vrfTWCB7pwQIpLDbLEUlUMbmuA>
-    <xmx:xvl1aRpWxOQPpmtXXX4XbbV60H4Ik7SAyaIAvMpjQQeVxtI2Lx1_Mg>
-    <xmx:xvl1aVmbtYZUA2tPM834gOaonMFPrAVmrn5IGI7wjryDUPKu9SZsbgjx>
-Feedback-ID: i47b949f6:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
- 25 Jan 2026 06:08:53 -0500 (EST)
-From: Janne Grunau <j@jannau.net>
-Date: Sun, 25 Jan 2026 12:08:46 +0100
-Subject: [PATCH 2/2] irqchip/apple-aic: Add support for "apple,t8122-aic3"
+	s=arc-20240116; t=1769339421; c=relaxed/simple;
+	bh=V+fk8sG8TlKVcwmlY+1GbHxHZA6EmLHYs32YWOPdyYA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iZ48aMqozxFM8/s9nmX6DugB6VPJDyGGngzW40hdVKNySRVn+UfwQ8hEve3IvmfdI4oqV/xznx9LHnKrzpRRyATWCj0/l8/rFyCxJmLUl2WwJZlMZl1AVZQPtjDn41RotxBS1VL20CHVGfo45yHAhrAJdlpSr3YxgmBDPzUcZ54=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=cwQbL8M8; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=USw4L/m1; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60P4pPJp285593
+	for <devicetree@vger.kernel.org>; Sun, 25 Jan 2026 11:10:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	hOQoJmnInnbcbRyG6h9dn/IX2oGQdNYDgb7ahNK43xk=; b=cwQbL8M8Rzf1XeYh
+	301vf4xy3lKJh59lry4NfZalG24uqNCGnQgo7lUiad74ktj8JrIzZfxKOgd5jTZx
+	UqWwAbeF0WKssozIuAGE6ZQCuZRxclbK8N45aS0AjEMzeAowgFydwuQ+u5W7hKeL
+	O/RvcKd+LkCtO1qP5c8l/QUoBoxnaALgumCzgeZE3iwG27DVeah345qlEApumi4F
+	HNBZsyf69L5a3T961yitahk9nRcx0xXK5NgYlCVggPGvbZdb/EZrhbJ7DTluRJGN
+	vkm2cLbhxRCz2V+o2XJOSkOtjRp1kDltcv0wfi0HV9HL+wAuOawAcbYa46W9CNRk
+	xmQRIg==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bvq8dj0un-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sun, 25 Jan 2026 11:10:19 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8c52d3be24cso425247285a.0
+        for <devicetree@vger.kernel.org>; Sun, 25 Jan 2026 03:10:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1769339418; x=1769944218; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=hOQoJmnInnbcbRyG6h9dn/IX2oGQdNYDgb7ahNK43xk=;
+        b=USw4L/m1PtVwQ7TiAFhreK8zp+WiBSUdFT+oWvJAIUNqkD7XBtJ7WJLmIOKVtUdp4A
+         llkYWkmMacTEd53nb+LPykWeGR4igGa+fyKi9gz2Jv/fNHAsKU4Z4EeizDBuF4A69xKy
+         O0f3MDi96Ejad1C8R7xuJv/FmfxXH8rpesJEhus9yh9oPvUp5bP8dF+1JXFw2VVR78Wt
+         xvthRPndPYZrFxtW7NqUQ7cNISMfiW7WwSJ7o+6DUcbnN+nivbUzOIhuC0ik+4BEO3Wn
+         OuxXIr9y5C6HRfi5j3PvcdYWktwzBEvLrip0wVEVX1bICkP20kTrCqlCUADMXwPhZuyH
+         AluA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769339418; x=1769944218;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hOQoJmnInnbcbRyG6h9dn/IX2oGQdNYDgb7ahNK43xk=;
+        b=sjKyQAKQQixK+J05jGLpsHCrYFhj/omWI1drQS/YXuLb2QNV9GrObMm4vl/d25shjT
+         C771/twMn/7vW1JTS61y4/S1EwvLGxH/QcwPAIlOBxz1rHS0QzmbLL9JjOCI0kAS6+ma
+         CXZCclIMs1NSa9syX1tANQe5D/Q1Ve1xWFXan5gfaBVSxEg/c9ppVBe6JBhtjHgds1FR
+         CMzgLHTsJWwod+jkLCrkbB40D2yQ0vTAwyVuME6xPRV2FtpgqGz4LtoxZAsEh3pC3Axk
+         oYSD+JaT0S+sGIAmTd+b/16ffX//4cUk0jK52S4IYGfMMm2XiqmVKr9Mi6/tl6zR/5fR
+         ZkBA==
+X-Forwarded-Encrypted: i=1; AJvYcCWR24wuJLABsKRHRMVa5HYWSwyTYuhWdVRdPjoo4c7prBkayX4pWJ21YNKzwXN+dvb2urQflTuL2cBg@vger.kernel.org
+X-Gm-Message-State: AOJu0YxORcu96/NR4A5uRw2hx4h+6imVp7FhevWFC13fhErhuWvi9wzp
+	7ulQU18T9hrNfcojUd5TLf+/xrq6aZbp1Rz9D+8+BOmH/Uue7XygvXoNduGVt3C5l/bk527wFJW
+	Qe0bvuNN3WLLRxJtNARpQxNhVdE6gwCUwMYJKOVdU7OUe6A4uM1VkugBKN7/tCKCu
+X-Gm-Gg: AZuq6aKnDN2A2q5MDpvQaXzwxWGGOnKqttHH1QqNMPvT/++4wDdFz81doBRorDzgE/h
+	DM71GFMci6nhQ7Z2+qVUIIwBWxmRHTOrgwWeu2kHr0HtykJvEb4NsUi/8UmHQApVcYMUM48btDL
+	pqVy1xlKKI5kGoKtXhvv67xhyqcqBcIDHI5sAmpsVVSddNBm/HVfXPElaM24hvmZMgBx7j5Qstr
+	lv0zzFzNvmBlaof/2ur5zQTo0ocQJf2wyUB00CsU5UGJZkRDgqWclWzaORg+hQl2mHi6TfhjU/H
+	H9Zi0WOypSSdHYqnVgNd3OqISnd+aZRTYlhQ/NAL/FDuGztHDM0VqSQ7jjAoo6WO9n7ngo83af3
+	zqm9VK6TcwxuV/Sd7XqV1h/NTyTlsXqtDYKuHZqrelpu0xUFruWU1H+VzocvqFx40xzNWJuLoX3
+	21UcDojG65nDDn6Jlcna8N/vI=
+X-Received: by 2002:a05:620a:7102:b0:8c5:2ea7:b3a with SMTP id af79cd13be357-8c6f95850cdmr154645385a.27.1769339418547;
+        Sun, 25 Jan 2026 03:10:18 -0800 (PST)
+X-Received: by 2002:a05:620a:7102:b0:8c5:2ea7:b3a with SMTP id af79cd13be357-8c6f95850cdmr154643085a.27.1769339418070;
+        Sun, 25 Jan 2026 03:10:18 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59de492cd32sm1940574e87.100.2026.01.25.03.10.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 25 Jan 2026 03:10:17 -0800 (PST)
+Date: Sun, 25 Jan 2026 13:10:15 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Alexey Minnekhanov <alexeymin@minlexx.ru>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Gianluca Boiano <morf3089@gmail.com>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, andersson@kernel.org,
+        konradybcio@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        robh@kernel.org, david@ixit.cz
+Subject: Re: [PATCH 3/7] arm64: dts: qcom: sdm660-xiaomi-lavender: fix
+ regulator and SD settings
+Message-ID: <kfjw3opjwwndocxqqjn4ya7sy575kpgo7otulsxqotznl5ctro@ewdaumkmstdk>
+References: <20260120180052.1031231-1-morf3089@gmail.com>
+ <20260120180052.1031231-4-morf3089@gmail.com>
+ <afa20489-adaf-46bd-b3e7-c763aba5d7c9@oss.qualcomm.com>
+ <ac83f41e-08ad-4ffe-9f0e-02f8256af65c@minlexx.ru>
+ <f8097212-6388-4c4c-8f5d-a91df99a18c5@oss.qualcomm.com>
+ <e6bcf45e-9eef-4660-8630-a7be1cbca61d@minlexx.ru>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260125-irq-apple-aic3-v1-2-a2afe66a6ab9@jannau.net>
-References: <20260125-irq-apple-aic3-v1-0-a2afe66a6ab9@jannau.net>
-In-Reply-To: <20260125-irq-apple-aic3-v1-0-a2afe66a6ab9@jannau.net>
-To: Sven Peter <sven@kernel.org>, Neal Gompa <neal@gompa.dev>, 
- Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Janne Grunau <j@jannau.net>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3286; i=j@jannau.net;
- s=yk2025; h=from:subject:message-id;
- bh=JvpkSqkCKQ8P/Z3/vU6T2eD2nWK9FDSzmVzke/AumI8=;
- b=owGbwMvMwCW2UNrmdq9+ahrjabUkhszSn/tZby9xDl6768LilIW2yVLqV1/7ypnJvvh2Xs1Lv
- lftZ7pnRykLgxgXg6yYIkuS9ssOhtU1ijG1D8Jg5rAygQxh4OIUgIl03Gb4xZTpcODWwmDDS7FG
- 29wfJQjs2+DXPG9SsE9cOrtN8iOFfkaGVWbbXiiJpjxYIb10Ql3mW6/IVcevtgvpGBjt/LfQbWo
- BHwA=
-X-Developer-Key: i=j@jannau.net; a=openpgp;
- fpr=8B336A6BE4E5695E89B8532B81E806F586338419
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <e6bcf45e-9eef-4660-8630-a7be1cbca61d@minlexx.ru>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI1MDA5MiBTYWx0ZWRfX1ohYQEgU/uXL
+ r2cWdNKsosFbjQu5mn6xgWftIlxg3mnbGoEEE1MYsh2cfEDCYorZKRZasDjDgEb25CL9cl8oh8o
+ GzcpvwGy7QymXgBNeyfY02qaFzUJ1IHWXVwMwp8LAYmQYuMAzhML+jc0AxlPbnmOHF3gTMoJeEk
+ 3Mw4QiC0ZGmMSNOYSaDgYme8THJEne3KBK6rdAp3oJ5qltJMTjCUh+N2YQKAa7DfpeQYYPqlg9b
+ pFC3P9ofcdEag6dfFseYjzFU2BDKDcLB8RXLup9UnIlHUAzkxXH89nAYQhVImKetnNh8YrYVgjY
+ ZTjfges8O2eQGwjJRSdtwC8mE8QV9yipUm8+VwdYedYXNa6iEoK9nWPeYVGBdtAekmixzUdtq30
+ z2jcTNF/7HvlYXO+q0z2oT513G5TyI3Qow6sVArmHx5uXUsfPMEnPz23pufH2xvlHfFiQpsBGdH
+ PKpbCVzs/tGO967ccxw==
+X-Authority-Analysis: v=2.4 cv=RIq+3oi+ c=1 sm=1 tr=0 ts=6975fa1b cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=8nJEP1OIZ-IA:10
+ a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=3BCATF3MINd1TRnPacsA:9 a=3ZKOabzyN94A:10 a=wPNLvfGTeEIA:10
+ a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-ORIG-GUID: pPf6o0oUXX-fFlFOxXyhfj6ez-9ByB8w
+X-Proofpoint-GUID: pPf6o0oUXX-fFlFOxXyhfj6ez-9ByB8w
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
+ definitions=2026-01-25_02,2026-01-22_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 malwarescore=0 adultscore=0 clxscore=1015 phishscore=0
+ impostorscore=0 lowpriorityscore=0 spamscore=0 suspectscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601250092
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[jannau.net:s=fm1,messagingengine.com:s=fm2];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[jannau.net:+,messagingengine.com:+];
-	TAGGED_FROM(0.00)[bounces-259226-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[jannau.net];
+	FREEMAIL_CC(0.00)[oss.qualcomm.com,gmail.com,vger.kernel.org,kernel.org,ixit.cz];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,c012000:email,oss.qualcomm.com:dkim];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259227-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[j@jannau.net,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[11];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,messagingengine.com:dkim,jannau.net:email,jannau.net:dkim,jannau.net:mid]
-X-Rspamd-Queue-Id: C0C06802AA
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: AE75B802B9
 X-Rspamd-Action: no action
 
-Introduce support for the new AICv3 hardware block in t8122 and t603x
-SoCs. AICv3 is similar to AICv2 but has an increased IRQ config offset.
-These MMIO offsets are coded as properties of the "aic,3" node in
-Apple's device tree. The actual offsets are the same for all SoCs
-starting from M3 through at least M5. So do not bother to follow suit
-but use AICv3 specific defines in the driver.
-The compatible string is SoC specific so future SoCs with AICv3 and
-different offsets would just use their own compatible string as base and
-add their new offsets.
+On Fri, Jan 23, 2026 at 11:11:50PM +0300, Alexey Minnekhanov wrote:
+> On 23.01.2026 12:26, Konrad Dybcio wrote:
+> > On 1/22/26 5:44 PM, Alexey Minnekhanov wrote:
+> > > On 21.01.2026 14:27, Konrad Dybcio wrote:
+> > > > On 1/20/26 7:00 PM, Gianluca Boiano wrote:
+> > > > > Fix regulator configurations to ensure stable operation:
+> > > > > - vreg_l10a_1p8: Add regulator-system-load of 14000uA for proper USB PHY
+> > > > >     PLL operation
+> > > > 
+> > > > The driver needs to be fixed instead, as it should perform a
+> > > > regulator_set_load()
+> > > 
+> > > 
+> > > Also change done by me in [1] with more detailed explanation:
+> > > 
+> > > Since the commit f05ab10 ("arm64: dts: qcom: sdm660-lavender:
+> > > Add missing USB phy supply") previously untouched by Linux regulator
+> > > l10a is now used, but it exposed a bug from initial porting: when
+> > > booting with USB cable inserted, or booting without cable and
+> > > inserting it later, board reboots.
+> > 
+> > FYI this shouldn't be required with the upstream driver, I don't think
+> > the core calls .set_load(0) and RPM isn't notified of a current
+> > requirement change unless that happens (qcom_smd-regulator.c)
+> > 
+> > In the power grid, I see (current values representing the peak):
+> > 
+> > -- USB2
+> > VDDA (3.1 V - vdda-phy-dpdm-supply) - 60mA
+> > VDDA (1.8 V - vdda-pll-supply) - 30mA
+> > 
+> > VDD (?) - 11.4 mA
+> > VDDA_DVDD (?) - 35 mA
+> > 
+> > -- USB3
+> > VDDA (1.8 V) - 14 mA
+> > VDDA_CORE - 68.6 mA
+> > 
+> > +Dmitry poked at 660 in the past
+> > 
+> > Konrad
+> > 
+> 
+> This is not needed e.g on sdm630-sony-nile-pioneer, it's booting fine
+> without system-load with USB cable inserted. Maybe IFC board doesn't
+> require this too. Seems to be xiaomi specific thing again?
+> 
+> Alternative is to not touch L10A regulator (comment out vdda-pll-supply
+> from qusb2phy0 node and face the "phy@c012000: 'vdda-pll-supply' is a
+> required property" dtbs-check error again. Which we don't want to do of
+> course. And schematics say that vreg_l10a_1p8 is connected to at least:
+> VDD_USB1_HS_1P8, VDD_USB2_HS_1P8, QFPROM_PRG, VDDA_APC1_CS_1P8, VDD_PLL2_1,
+> VDD_PLL2_2.
 
-Signed-off-by: Janne Grunau <j@jannau.net>
----
- drivers/irqchip/irq-apple-aic.c | 27 +++++++++++++++++++++++++--
- 1 file changed, 25 insertions(+), 2 deletions(-)
+It might be that there is an issue because of it being used for APC1
+too. I don't observe any issues on my IFC6560 board (where it is also
+connected to APC1).
 
-diff --git a/drivers/irqchip/irq-apple-aic.c b/drivers/irqchip/irq-apple-aic.c
-index 3c70364e7cddd6ed6285595f136146ab04b897b2..f4efc325bebad1ae6119aa4eab47819a267da207 100644
---- a/drivers/irqchip/irq-apple-aic.c
-+++ b/drivers/irqchip/irq-apple-aic.c
-@@ -54,6 +54,7 @@
- #include <linux/irqdomain.h>
- #include <linux/jump_label.h>
- #include <linux/limits.h>
-+#include <linux/of.h>
- #include <linux/of_address.h>
- #include <linux/slab.h>
- #include <asm/apple_m1_pmu.h>
-@@ -134,8 +135,15 @@
- 
- #define AIC2_IRQ_CFG		0x2000
- 
-+/*
-+ * AIC v3 registers (MMIO)
-+ */
-+
-+#define AIC3_IRQ_CFG		0x10000
-+
- /*
-  * AIC2 registers are laid out like this, starting at AIC2_IRQ_CFG:
-+ * AIC3 registers use the same layout but start at AIC3_IRQ_CFG:
-  *
-  * Repeat for each die:
-  *   IRQ_CFG: u32 * MAX_IRQS
-@@ -293,6 +301,15 @@ static const struct aic_info aic2_info __initconst = {
- 	.local_fast_ipi = true,
- };
- 
-+static const struct aic_info aic3_info __initconst = {
-+	.version	= 3,
-+
-+	.irq_cfg	= AIC3_IRQ_CFG,
-+
-+	.fast_ipi	= true,
-+	.local_fast_ipi = true,
-+};
-+
- static const struct of_device_id aic_info_match[] = {
- 	{
- 		.compatible = "apple,t8103-aic",
-@@ -310,6 +327,10 @@ static const struct of_device_id aic_info_match[] = {
- 		.compatible = "apple,aic2",
- 		.data = &aic2_info,
- 	},
-+	{
-+		.compatible = "apple,t8122-aic3",
-+		.data = &aic3_info,
-+	},
- 	{}
- };
- 
-@@ -620,7 +641,7 @@ static int aic_irq_domain_map(struct irq_domain *id, unsigned int irq,
- 	u32 type = FIELD_GET(AIC_EVENT_TYPE, hw);
- 	struct irq_chip *chip = &aic_chip;
- 
--	if (ic->info.version == 2)
-+	if (ic->info.version == 2 || ic->info.version == 3)
- 		chip = &aic2_chip;
- 
- 	if (type == AIC_EVENT_TYPE_IRQ) {
-@@ -991,6 +1012,7 @@ static int __init aic_of_ic_init(struct device_node *node, struct device_node *p
- 
- 		break;
- 	}
-+	case 3:
- 	case 2: {
- 		u32 info1, info3;
- 
-@@ -1065,7 +1087,7 @@ static int __init aic_of_ic_init(struct device_node *node, struct device_node *p
- 		off += irqc->info.die_stride;
- 	}
- 
--	if (irqc->info.version == 2) {
-+	if (irqc->info.version == 2 || irqc->info.version == 3) {
- 		u32 config = aic_ic_read(irqc, AIC2_CONFIG);
- 
- 		config |= AIC2_CONFIG_ENABLE;
-@@ -1116,3 +1138,4 @@ static int __init aic_of_ic_init(struct device_node *node, struct device_node *p
- 
- IRQCHIP_DECLARE(apple_aic, "apple,aic", aic_of_ic_init);
- IRQCHIP_DECLARE(apple_aic2, "apple,aic2", aic_of_ic_init);
-+IRQCHIP_DECLARE(apple_aic3, "apple,t8122-aic3", aic_of_ic_init);
+I'd suggest adding a dummy fixed regulator node as L10A and documenting
+that it is not to be touched by Linux on this device). We do this for
+some other "system" regulators on other devices.
 
 -- 
-2.52.0
-
+With best wishes
+Dmitry
 
