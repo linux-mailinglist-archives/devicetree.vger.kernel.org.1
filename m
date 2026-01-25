@@ -1,221 +1,266 @@
-Return-Path: <devicetree+bounces-259279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259280-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GPrsHjFddmlZPwEAu9opvQ
-	(envelope-from <devicetree+bounces-259279-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 19:13:05 +0100
+	id IOqRIt1kdmmVQAEAu9opvQ
+	(envelope-from <devicetree+bounces-259280-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 19:45:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6F1681ACA
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 19:13:04 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C6B181CA9
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 19:45:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DEB2B300424C
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 18:13:03 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 05CEF3000FE5
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 18:45:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 787EB2EFD8C;
-	Sun, 25 Jan 2026 18:13:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10B901F9F7A;
+	Sun, 25 Jan 2026 18:45:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KPx5jyYj"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="bi7v9Sa6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9D28248880
-	for <devicetree@vger.kernel.org>; Sun, 25 Jan 2026 18:12:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D3CB3BB4A;
+	Sun, 25 Jan 2026 18:45:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769364781; cv=none; b=ixgzA9HzRvSLp5Tz8QWU/MwHooEvkQnWtqXbYv1Opnnhqsik3hS4+dqjv/2M+mr6d0H9TMlcTPBy+aspd+Nwz8Uh/3IhQnmqbjb6qdSxAClA98oGuL7Tu39xBJ4/zVaaJjKgNisBQi4fBzVQiQVygt2LCaTssVcTTCVy5a8TEhE=
+	t=1769366747; cv=none; b=AHsBr9isDKk8nU4DsqC1lmrTtiqcXIqaT5E3JEcZaX5/OQTVlQIBkC8ET1zzZTjUBmw4N5q1WckKw7DgTSP7M3ws/8wZLQfZCWH6T7N6/AjvfehHQrhHzyV0rzzjZiXLcVIZybMF8jGZ2sNl0AlFRBWWXFTPKuxgh+1TA0vb+lc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769364781; c=relaxed/simple;
-	bh=K/tlQ4PyynKHOkqZ6O8CCgQMCglnXCVZ3PU/lDcyZR0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=fz8hnE7HAVDjjc+9ayWpXCV1QXLyoFO8pVXf0OkDvUxFcPjxiX37yXms+cOF0j6tuehl87PeX8VMXIBd4MY1MOMItrcrSXM25utXXp0Kgzev9GOb18+TlqsgZxg4pIJy3HL1YWbM66fNSLqvQwOM4LenNpguBdJfA0M9yKjaq0g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KPx5jyYj; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-47fedb7c68dso38096795e9.2
-        for <devicetree@vger.kernel.org>; Sun, 25 Jan 2026 10:12:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769364778; x=1769969578; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=+KgUVWqzHwJ5YQYyVy8QnSy/op2C+C4KeJA5ZeUsIuI=;
-        b=KPx5jyYjL/4cvNSH9U1H1qPEJZijQLSvAPMoIMxpxG5E1hJywIMRL0XlyJALNt+QAZ
-         HvBvXe3QSZP3Pc/AubSXeSOIumY7zEdNEfjFpuPFOmw6/FyjhqPf7YKkV6d4p/zKq0ei
-         Z9Cwt03hCIaiEdgcLHwmA2YSMoAQ5gcgj8oIBC/48Nd4DE501LBNJvez1kC4p8bpuKpC
-         5jVh2a1bS74TKpF2mEeckg/7JQZNN8d1rgenMA3t3pCO0Vegws2FjgMFb9r9RKcsrMH1
-         6KlYKNBg+2lLSJT44dTVJcA4+WyiAWLxOHIYnE8DR8NMwafsrghQOx7IvqxZ1wpdOqrG
-         J1Qw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769364778; x=1769969578;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+KgUVWqzHwJ5YQYyVy8QnSy/op2C+C4KeJA5ZeUsIuI=;
-        b=j0hy+fZ87DTfP/KhMb9S3h+cpWfdustn5dWPtVErTX2N5T0FDb7kyMZGkAmAgj78Z1
-         rWNovgBtruDdE77C5T74xWEVe/cpUnK45G9Mg0dR3bulKaDycVnUWD0+RMK6dANeQyDm
-         aWNXs56y7InedG6Etp1QN/nXu39KEsRR6i8YKlBebexcoeszNpfx+HFEQyqCtScvaTFv
-         XC7cx4rwFFsFJ/eMEpStiq1SYV6vMCc4/XYYLO73dFmeNl2+YS0My9zue05ahMJuzMkz
-         IpZyBSZWtwNJ3XQqtU8/VGZSHwm8l6SEOoQXSnlYCjE8O3tco69/OVo456us65O97pKW
-         I6zQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWpCqCp0UDs6zYbbfzaXDem8MHHwHzQ9h0tkrBC8vvB1ju1FVHAkgKbt2fFBhvcbrkOi18KEhpB7HK6@vger.kernel.org
-X-Gm-Message-State: AOJu0YxcjFjDdDhaLPeN96VoNr9Vo+xy35AHhRv+2J9ZLndvC0vSfKL2
-	OmsabmNaGSh3TLk3RDirwc9qABIN+yhtKlKvV8YWOpFiZFSIoFp8gEDP
-X-Gm-Gg: AZuq6aJRa6ucalMHaeCbRj/kAU3oxiEXBmJCao9zthiIqz+59Th4znDFJXYhJMeTeQV
-	n2vNFeDGm4INc2z/DyHOyMLhXjk3liGyqDQvGDD88RDDaGXwxM9sbdQfToc8nIea/uHfYSvCKdJ
-	vzyh/p7Nxy50VJ+DdSVgOdqp/iaxjGv2gUxF6FYiq8VMcezVCnKywIfvLy5j/4132O9zLnQhEXV
-	jYXpQFN7d7jiJkOQlRmrtAYhHMp+g5FkfS99fA/M/ZMe2MtA+WU74ZSKEhovFVpBPtm3qgVbpVS
-	VDM75avxJpECNQoBIYMMBxhmkPf3l+IvesBrmdxIg4VioXs+9P6bUNNQvkfLizMKL0FPXkG61EH
-	+Z2kOm3UQeIHcVrFgqgLVZdJBVhQMv3XJWHDj8NzZ7NdRCBdSlN0KEy0QFMu7l6xtsiOkpoqu8/
-	+N47zB5gK5omGp6V8RgxCWwfVn8f4BdyCHdW+4Ww5adQ==
-X-Received: by 2002:a05:600c:b96:b0:480:4d39:84b3 with SMTP id 5b1f17b1804b1-4805cd4090fmr36093185e9.6.1769364778155;
-        Sun, 25 Jan 2026 10:12:58 -0800 (PST)
-Received: from apple.sigmaris.info ([2a02:8010:6606:0:fd30:74ec:a5b0:107a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4804d8a5b67sm215302305e9.10.2026.01.25.10.12.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 Jan 2026 10:12:57 -0800 (PST)
-From: Hugh Cole-Baker <sigmaris@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: Dragan Simic <dsimic@manjaro.org>,
-	Alexey Charkov <alchark@gmail.com>,
-	Hugh Cole-Baker <sigmaris@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3] arm64: dts: rockchip: add pwm-fan for NanoPC-T6
-Date: Sun, 25 Jan 2026 18:10:14 +0000
-Message-ID: <20260125181228.25145-1-sigmaris@gmail.com>
-X-Mailer: git-send-email 2.50.1
+	s=arc-20240116; t=1769366747; c=relaxed/simple;
+	bh=YnVhlENE6DzFRMCPYRF1FXmt11W9Y0vAdCxHVZseQyw=;
+	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
+	 Message-ID:Subject; b=hU+vJufwnT3nODNlKRPAF/A9VySvD6PenLZuZsZ4UxubYYv71ad4VIGyYRkzFlO31KL6mKWQLXuahovNOwtI1+x4f6bVIBSSam0MiGgSvr1NTALaT5xYxft1j4YmZpGDpd16Zt5iS5WlXDSzN9WRHb4CKPu4TVthx7/pSVLoXN8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=bi7v9Sa6; arc=none smtp.client-ip=142.132.176.110
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id EBE8141B4A;
+	Sun, 25 Jan 2026 19:37:27 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
+	t=1769366252; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=PN7cFYtYsOCpeUwMlZ0LtZz5pvDAZSFd5KI1Prsv4Cw=;
+	b=bi7v9Sa6qR+Op8b1axILuxj7zi82VTGJqqKDreAXzJg6QaWDEv/JBDinEgV8R06FWYEuNN
+	Ak26KLA7QHy4UNMlluOO53YDHn1UaD1rUCuwYfXTM8zRg+uQ4PxbLtfhke93ChLHHMaybM
+	4Xz9+VelTcg1NQTJG+k5rrNHffKyyV+DqFXIwKwTL7qRemqvT7/yWtB/AlCF4tkX3YYloA
+	E8g3s4Txn9ndQ1S4akLDBYAjeE9+f5G4Fj+67dsEi7YfsnpeqTmJj5rUqp0b34V92fXGmc
+	JOnO5Txco3H2CJyZJspF+SIK2pCPZrD+ybsN9FDkmmLhDH1i809mV6/F6dQrrg==
+From: "Dragan Simic" <dsimic@manjaro.org>
+In-Reply-To: <6235f7ee-d0fa-4c46-b98b-54af4d9d5ce8@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+References: <20251109192128.72527-1-sigmaris@gmail.com>
+ <da6721a3-8f59-9c0c-762c-bc02b39ac472@manjaro.org> <6235f7ee-d0fa-4c46-b98b-54af4d9d5ce8@gmail.com>
+Date: Sun, 25 Jan 2026 19:37:27 +0100
+Cc: "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>, "Alexey Charkov" <alchark@gmail.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+To: "Hugh Cole-Baker" <sigmaris@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Message-ID: <fe32b221-5bc3-0505-49d1-5bc374cf2267@manjaro.org>
+Subject: =?utf-8?q?Re=3A?= [PATCH v2] =?utf-8?q?arm64=3A?==?utf-8?q?_dts=3A?=
+ =?utf-8?q?_rockchip=3A?= add pwm-fan for NanoPC-T6
+User-Agent: SOGoMail 5.12.3
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: None
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.96 / 15.00];
+	SUBJ_EXCESS_QP(1.20)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[manjaro.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[manjaro.org:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[manjaro.org,gmail.com,vger.kernel.org,lists.infradead.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259279-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-259280-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,sntech.de,gmail.com,vger.kernel.org,lists.infradead.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sigmaris@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	DKIM_TRACE(0.00)[manjaro.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	MIME_TRACE(0.00)[0:+];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dsimic@manjaro.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,friendlyelec.com:url]
-X-Rspamd-Queue-Id: E6F1681ACA
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 2C6B181CA9
 X-Rspamd-Action: no action
 
-FriendlyELEC offers an optional heatsink and fan addon [1] for the
-NanoPC-T6 and T6 LTS, which plugs in to the fan connector on the board
-driven by pwm1. Add the fan as an active cooling device for the SoC package.
-The PWM duty cycle values are taken from the vendor's source [2].
+Hello Hugh,
 
-Signed-off-by: Hugh Cole-Baker <sigmaris@gmail.com>
+On Sunday, January 25, 2026 19:04 CET, Hugh Cole-Baker <sigmaris@gmail.=
+com> wrote:
+> On 10/11/2025 00:23, Dragan Simic wrote:
+> > On Sunday, November 09, 2025 20:20 CET, Hugh Cole-Baker <sigmaris@g=
+mail.com> wrote:
+> >> FriendlyELEC offers an optional heatsink and fan addon for the Nan=
+oPC-T6
+> >> and T6 LTS, which plugs in to the fan connector on the board drive=
+n by
+> >> pwm1. Add the fan as an active cooling device for the SoC package.
+> >>
+> >> Signed-off-by: Hugh Cole-Baker <sigmaris@gmail.com>
+> >> ---
+> >> Changes from v1: https://lore.kernel.org/linux-rockchip/2025102619=
+4858.92461-1-sigmaris@gmail.com/
+> >> * add the fan to the base board dtsi instead of overlay (Heiko)
+> >> * just use 2 trip points for warm and hot temperatures (Dragan, Al=
+exey)
+> >>
+> >> References:
+> >> FriendlyELEC heatsink with fan addon:
+> >> https://www.friendlyelec.com/index.php?route=3Dproduct/product&pro=
+duct=5Fid=3D305
+> >> Vendor DT with trip points and PWM duty cycle values:
+> >> https://github.com/friendlyarm/kernel-rockchip/blob/4944602540b62f=
+5aad139fe602a76cf7c3176128/arch/arm64/boot/dts/rockchip/rk3588-nanopi6-=
+rev01.dts#L75-L90
+> >=20
+> > I think it would be better to move these references to the patch
+> > description, so they become directly available in the repository.
+> > It might be the best to use the "... [n]" form for the references,
+> > which puts them as close to the backed contents as possible.
+> >=20
+> > Oh, and I think that "arm64: dts: rockchip: Enable active cooling
+> > on NanoPC-T6" as the patch subject would read nicer. :)
+> >=20
+> >>  .../boot/dts/rockchip/rk3588-nanopc-t6.dtsi   | 39 ++++++++++++++=
++++++
+> >>  1 file changed, 39 insertions(+)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi b/=
+arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+> >> index fafeabe9adf9e..9164a0ee6228e 100644
+> >> --- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+> >> +++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+> >> @@ -11,6 +11,7 @@
+> >>  #include <dt-bindings/input/input.h>
+> >>  #include <dt-bindings/pinctrl/rockchip.h>
+> >>  #include <dt-bindings/soc/rockchip,vop2.h>
+> >> +#include <dt-bindings/thermal/thermal.h>
+> >>  #include <dt-bindings/usb/pd.h>
+> >>  #include "rk3588.dtsi"
+> >> =20
+> >> @@ -89,6 +90,14 @@ usr=5Fled: led-1 {
+> >>  		};
+> >>  	};
+> >> =20
+> >> +	fan: pwm-fan {
+> >> +		compatible =3D "pwm-fan";
+> >> +		cooling-levels =3D <0 35 64 100 150 255>;
+> >> +		fan-supply =3D <&vcc5v0=5Fsys>;
+> >> +		pwms =3D <&pwm1 0 50000 0>;
+> >> +		#cooling-cells =3D <2>;
+> >> +	};
+> >> +
+> >>  	sound {
+> >>  		compatible =3D "simple-audio-card";
+> >>  		pinctrl-names =3D "default";
+> >> @@ -591,6 +600,36 @@ &i2s6=5F8ch {
+> >>  	status =3D "okay";
+> >>  };
+> >> =20
+> >> +&package=5Fthermal {
+> >> +	polling-delay =3D <1000>;
+> >> +
+> >> +	trips {
+> >> +		package=5Fwarm: package-warm {
+> >> +			temperature =3D <50000>;
+> >> +			hysteresis =3D <2000>;
+> >> +			type =3D "active";
+> >> +		};
+> >> +
+> >> +		package=5Fhot: package-hot {
+> >> +			temperature =3D <60000>;
+> >> +			hysteresis =3D <2000>;
+> >> +			type =3D "active";
+> >> +		};
+> >> +	};
+> >=20
+> > It should be better to use 55 and 65 oC as the trip thresholds,
+> > because people often report around 50 oC as the observed idle-state
+> > temperature of their RK3588 SoCs, so increasing the first threshold
+>=20
+> Were these people using the heatsink accessory on the NanoPC-T6, or w=
+ere
+> they using some other board with worse heat dissipation? I recorded t=
+he
+> package temperature on my NanoPC-T6 with the FriendlyELEC heatsink an=
+d fan
+> and even though it's not idle but actually running Home Assistant,
+> OpenLDAP, PostgreSQL, Prometheus, Grafana and Nginx, the temperature =
+ranges
+> between 46 and 48=C2=B0C, and the fan never even spins up.
+>=20
+> Then I ran stress-ng and recorded the temperature under CPU load, wit=
+h this
+> version of the patch and another version with 55 & 65=C2=B0C trip poi=
+nts. [1]
+>=20
+> I suspect if people are seeing 50=C2=B0C at idle, they're either usin=
+g a less
+> effective heatsink, or in a very warm ambient temperature. When talki=
+ng
+> about the NanoPC-T6 fan specifically, we kinda have to assume the
+> FriendlyELEC heatsink is used, as there's no mounting for the fan wit=
+hout
+> the heatsink.
 
-[1]: https://www.friendlyelec.com/index.php?route=product/product&product_id=305
-[2]: https://github.com/friendlyarm/kernel-rockchip/blob/4944602540b62f5aad139fe602a76cf7c3176128/arch/arm64/boot/dts/rockchip/rk3588-nanopi6-rev01.dts#L75-L90
----
-Changes from v2: https://lore.kernel.org/linux-rockchip/20251109192128.72527-1-sigmaris@gmail.com/
-* Set trip points to 55 and 65°C (Dragan)
+Those are all valid points, the overall thermal performance depends
+on the room temperature and the actually used cooling solution, while
+the latter depends on the specific board.
 
-Changes from v1: https://lore.kernel.org/linux-rockchip/20251026194858.92461-1-sigmaris@gmail.com/
-* add the fan to the base board dtsi instead of overlay (Heiko)
-* just use 2 trip points for warm and hot temperatures (Dragan, Alexey)
+You're right that, based on thermals you observed, raising the trip
+points to 55 and 65 oC may not always lead to the expected improvements=
+,
+but let's keep in mind that it actually may keep the fan spinning less
+in some environments, which is good for both the end-user perception
+and for the fan's longevity.
 
- .../boot/dts/rockchip/rk3588-nanopc-t6.dtsi   | 39 +++++++++++++++++++
- 1 file changed, 39 insertions(+)
+> > to 55 oC should be beneficial by preventing the fan from spinning
+> > when the SoC is actually idle.  The second threshold is usually set
+> > to be 10 oC higher, so it should end up at 65 oC.
+>=20
+> I'll send a v3 with 55 and 65=C2=B0C trip points, but I doubt it make=
+s any
+> difference to the fan activating while idle; from my testing it seems=
+ to
+> just let the SoC get a bit hotter under heavy load.
+>=20
+> [1]: https://gist.github.com/sigmaris/2d5590271cf26da8ec6cfc7ef8e3e8b=
+c
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
-index 90e7fe254491b..84b6b53f016ab 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
-@@ -11,6 +11,7 @@
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/pinctrl/rockchip.h>
- #include <dt-bindings/soc/rockchip,vop2.h>
-+#include <dt-bindings/thermal/thermal.h>
- #include <dt-bindings/usb/pd.h>
- #include "rk3588.dtsi"
- 
-@@ -89,6 +90,14 @@ usr_led: led-1 {
- 		};
- 	};
- 
-+	fan: pwm-fan {
-+		compatible = "pwm-fan";
-+		cooling-levels = <0 35 64 100 150 255>;
-+		fan-supply = <&vcc5v0_sys>;
-+		pwms = <&pwm1 0 50000 0>;
-+		#cooling-cells = <2>;
-+	};
-+
- 	sound {
- 		compatible = "simple-audio-card";
- 		pinctrl-names = "default";
-@@ -590,6 +599,36 @@ &i2s6_8ch {
- 	status = "okay";
- };
- 
-+&package_thermal {
-+	polling-delay = <1000>;
-+
-+	trips {
-+		package_warm: package-warm {
-+			temperature = <55000>;
-+			hysteresis = <2000>;
-+			type = "active";
-+		};
-+
-+		package_hot: package-hot {
-+			temperature = <65000>;
-+			hysteresis = <2000>;
-+			type = "active";
-+		};
-+	};
-+
-+	cooling-maps {
-+		map0 {
-+			trip = <&package_warm>;
-+			cooling-device = <&fan THERMAL_NO_LIMIT 1>;
-+		};
-+
-+		map1 {
-+			trip = <&package_hot>;
-+			cooling-device = <&fan 2 THERMAL_NO_LIMIT>;
-+		};
-+	};
-+};
-+
- &pcie2x1l0 {
- 	reset-gpios = <&gpio4 RK_PB3 GPIO_ACTIVE_HIGH>;
- 	vpcie3v3-supply = <&vcc_3v3_pcie20>;
--- 
-2.50.1 (Apple Git-155)
+Having the SoC running about 5 oC hotter under load is still fine while
+it possibly makes the fan spin a bit less, so it may all together be
+a reasonable compromise.
+
+> >> +	cooling-maps {
+> >> +		map0 {
+> >> +			trip =3D <&package=5Fwarm>;
+> >> +			cooling-device =3D <&fan THERMAL=5FNO=5FLIMIT 1>;
+> >> +		};
+> >> +
+> >> +		map1 {
+> >> +			trip =3D <&package=5Fhot>;
+> >> +			cooling-device =3D <&fan 2 THERMAL=5FNO=5FLIMIT>;
+> >> +		};
+> >> +	};
+> >> +};
+> >> +
+> >>  &pcie2x1l0 {
+> >>  	reset-gpios =3D <&gpio4 RK=5FPB3 GPIO=5FACTIVE=5FHIGH>;
+> >>  	vpcie3v3-supply =3D <&vcc=5F3v3=5Fpcie20>;
 
 
