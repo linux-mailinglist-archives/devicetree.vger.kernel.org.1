@@ -1,211 +1,545 @@
-Return-Path: <devicetree+bounces-259214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259215-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KL6ABM+bdWnEGgEAu9opvQ
-	(envelope-from <devicetree+bounces-259214-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 05:27:59 +0100
+	id KAG+BNacdWn1GgEAu9opvQ
+	(envelope-from <devicetree+bounces-259215-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 05:32:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82F3C7FC1A
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 05:27:58 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF58C7FC38
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 05:32:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 45E113001441
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 04:27:57 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E24833001FB9
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 04:32:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 864752D73BD;
-	Sun, 25 Jan 2026 04:27:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CEBC30DD34;
+	Sun, 25 Jan 2026 04:32:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="vThU3d+B"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="niUGfw1X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f51.google.com (mail-yx1-f51.google.com [74.125.224.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2064C2D7398
-	for <devicetree@vger.kernel.org>; Sun, 25 Jan 2026 04:27:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.224.51
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769315273; cv=pass; b=gnispCTdAFdLi5wx3Qm4oC/tfIZEa49W0BrDBAQftKLdmChtf3mAmkVqxR1+lJfyAJxNTWEkjYBDWc7r8sN9b9xu0+h5R8a/sf9odznHGWTMfYpxX4H4witu7uVtKT2vpSsVyUVTUOG0DLsid3XZ7KYdRTtcDWYfaKfhWhmVsx0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769315273; c=relaxed/simple;
-	bh=743u7qbXka857vHX8yI0E82zy/lRytA6VvRqVxxVda8=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57D663093CB
+	for <devicetree@vger.kernel.org>; Sun, 25 Jan 2026 04:32:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769315536; cv=none; b=RDyK3J1tq5pSKlFqKY4T38rB/tO5I0sv0l9ZAC2uza53gNg8g7+cVimoOMKyZxg7CghZW9yZ/nrSlkcw005OeMnrZSUNJ3nW7c2yDjTiB9hJSAjSpN/r5IiIYL5rhKdzFJZtXvPCmXB/R+c88GBkxQMYOHv+krqsIXkcMW7meLA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769315536; c=relaxed/simple;
+	bh=gUhRHt/swtaI5yVy/woT6OpgSZZQxe0I/o3/nF4YzEA=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MnwCTxYrZUY8TGj5Rr46gWUd6/cuKNffF2vWCvALxEIq4Yfz0z12tXatz/GkvxXSAyJcvgCPsGZpE38+is9vkFGqpz4sDWokMvCnbzvOBE2EuI6oiNk7M/D7U8rraPZavX/JQTZU+/Xh1B1Db5A6i1bqeDOI1S/PRl9rOmh25Js=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=vThU3d+B; arc=pass smtp.client-ip=74.125.224.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-yx1-f51.google.com with SMTP id 956f58d0204a3-649655f14daso1171606d50.0
-        for <devicetree@vger.kernel.org>; Sat, 24 Jan 2026 20:27:51 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1769315271; cv=none;
-        d=google.com; s=arc-20240605;
-        b=bbD3FwcHNSCB/XJoyM9NcAkD7EtEo7XbejdgNvH3aM2+eaWYKKJKHafZb5k5MT62XT
-         IGrGzc6MdOm7rsBH75nKWEQFhayJYicD4izxGIAwhKCSIjwAT8TIsZxp7fyOFEIB/+AG
-         gzJKo/yAdnWNM1Lb0AwZ5jp5pXtavtkJh9IJk1Ic1FsjIDk3/ma+Ic07w5o+Pid5LEMf
-         vNJVkNU3RLwGpiDSA8f/ta5+2oLIppgrGHHLf34VLyDzaxu1CZSinu/nolrSrHAbrPBk
-         sNbplVhZj3rdxmNKTffAjxTtHEkpsEaFgPI5XIYuqI4I7HhBxNqffp2KZjkaXVjy17rH
-         Lv2A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=743u7qbXka857vHX8yI0E82zy/lRytA6VvRqVxxVda8=;
-        fh=uiBixYqNzz16cyfgQvNJUmeKbzE/SgZ7PzZw76VCrcY=;
-        b=X0PuOrzUVuKaqcD/tAdGRR+G8IWtmMbbaG0X2qGSYXNtMT1IRoyKUPFn84gg26xltX
-         Xa9jM4P8b5Y7KJmOHCKFzGYhbdIPPyjV+BEP82IPS0dMUYfBA88bl9bo6frqyiyoDwi/
-         Qq+X1D5WUV4D+5BQcOzhfwBQTyFy0fqdb58tNtaZRmoKAa4ibv0sXL1G1Tvp4cz+qwBX
-         vcPqxezU/EOFTgVDaP1G1wA4a/Oq7wQf65/ZR7tOjuT0ExGwS+hfPLVUz0srTIRozf4p
-         kO9jGztnw/+2FCY+9oElWlrz7uXjUJA6RolT05E4ZSbuYTOBwtXTzWe5TMMyKBbSfNWD
-         syRQ==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1769315271; x=1769920071; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=743u7qbXka857vHX8yI0E82zy/lRytA6VvRqVxxVda8=;
-        b=vThU3d+BEeP+i8MmpiM2RKCBBb6ksG/tuLA0nMhld28XVISAw11/eP9RST7IRjmDB5
-         S6fRFM6A/WxZONKSShXebi621h3/Fz2Z2/T3XkplHAWCKD8y2Jg/mLHrpCPXvQW/pDNR
-         WhDSSZH5cejwJN2gzxbp+yX/lr8vhbH35ddig5fVEE2J+QAg72GKwD7vOjgKGSlH3/DJ
-         YIiFV1SsG5kLKA5P9YsXnukynKDh+MMypUbhHMLwIdXAv2s2k4Uz2vjAA0m+QDlbdfXh
-         mIM2O/z7ZsHmJamNVFFIFZ8Noy16AyqMziCMHoM7xlVA5keqKl9b0nekvgFXxnZhmmOm
-         4b0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769315271; x=1769920071;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=743u7qbXka857vHX8yI0E82zy/lRytA6VvRqVxxVda8=;
-        b=iXtTqi2uSLKVoNITWNxps65Wz+m2+sT5IBgbJ+CHlmQpBdH+NxPzNKl6rbrXHz99Tb
-         CZ+U2D+ZMZxfPqT63VOjE96uZEEOnHo31hBklT+fD1LROluL6slppOhzlpU9mnkRiL34
-         aizDmc8Fw7izeRIEqylo22EtYwqTuEiZYQjwaAiE+yZU2QeWavV8LyvLrMy+vG9oCeMX
-         yQ+yTStg2oq18UBEf5AFY3svdqzHeek0GGZyE6G6idf39KbIxQ38nAvQKNaVjPFLwTDe
-         HPtP7ZuAPv7vsK34ryzrJ1Qio4UwPO5HHc5NpHs7lemhP4RroRdTQcTJEDUQjSezQ+jp
-         SxDQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVljiZaQW1XYWX/hB56gAsO1agmK7SbVoDgi+Brrl07KyXD2AwUopE0x+z/I8jW/XF0HmqTCFZPEvQB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw4seuR+YH9vJIvGcGSPbgLXqDuNg6aHoIMTPcL5++94DXc9BI3
-	NoApzkQWhHrDi6y9N72NJMaSOHpwBqS3kA2JvK8lBdJehbMUJy/8XdojXBsmxxa570BisrIblct
-	++G8C7Tyu85ZxISvgJBfgPMir/7h8MA5J4ot2k2gBMw==
-X-Gm-Gg: AZuq6aKYbMh/Ds7kpbz5nkgJWlrQDwHPEQATITqbdnwGtz0TKhnARZluSexHFg6cbn6
-	cIMxuS6UVwj3nFiQ81qSSfsSNBIpBaNNlBmGxDhulFXbelC+xYV4O0r5Q4jGpxMXdpnaWEy8GHH
-	FLt5KbjFgjxB1eZ1FhJB5ppxfaijz8ucNChBK4ht+0qCJ7Jlx0wwjmpPI0qPujCErTwPUlAVDCo
-	Y2CX/3c8lRvrc0fOIyDie6das8Z6WZpdPBiMTqEYgzCX428zqV/4NQDA1RHOBN4JIXCJJaLEEhN
-	YUpB1YmDV1qlJ6MhguhGPONVebOGL7An/4S5TA+6+sG5IeBiBRh8mjY=
-X-Received: by 2002:a53:accd:0:10b0:649:4963:7bac with SMTP id
- 956f58d0204a3-64970d1bb15mr394172d50.74.1769315271142; Sat, 24 Jan 2026
- 20:27:51 -0800 (PST)
+	 To:Cc:Content-Type; b=FhglS6cTF+2x58LbvFRd6RCOlUMomJ/tZB+NoCtTC+no+fA5pwc+pyET1UpeKj1RUflGd2luvrHqFdryfQxwKXxReViykgPyt7C5M9WxIDSJJ2zRZa8Db4vkj4VFuYMVQK63bJybuX8WLrjSI5/2BhH6I6H4gxDPSSdKenliPvo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=niUGfw1X; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2FEFC4CEF1
+	for <devicetree@vger.kernel.org>; Sun, 25 Jan 2026 04:32:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769315536;
+	bh=gUhRHt/swtaI5yVy/woT6OpgSZZQxe0I/o3/nF4YzEA=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
+	b=niUGfw1Xqq9QKeqCnhVVyRGREqp3jTV9jkuyjHrwsH4KPGg6XsQsCGRcAyYrC9p2L
+	 OqQK5pY57soBPFekk+CiL7+eQJapoMgSX5c/+yTJulWDLTrX1Pxv0AfYRxjHI+lLt0
+	 g8yMdopI8+sY0uRB3jhal7T+9hffcI7pGbM+6/dxw/cUD8JlLrzJ7CmGr0Q1C497pi
+	 bYJkOqpjJn2+OpR63B0coK2PIps7qp5uKhKeOi4uoArCQiQBzSrVNviQ8qDY11Nf8Q
+	 cFirZWXO3gYSk8UXdZmObG+MWtt+wqC/OPA8RvYILrREWbPS5rQ0ZOV1EPpbx+vv7O
+	 MdHeIKQ4lmgkA==
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-385bdc72422so31421521fa.1
+        for <devicetree@vger.kernel.org>; Sat, 24 Jan 2026 20:32:15 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXUv/MvR+8N3gwSRim4WT0r/WDLSLjbz+wmNTWkqOblAhUoK4xEp2segW/PTYSSnLdogAHYTGsSFnR1@vger.kernel.org
+X-Gm-Message-State: AOJu0YwwuexRrsf6ByCseXGIzpypoVXy7ihlkALqNbjVfMIcPziCAfue
+	ttAcD5yTyHkkJhK0PBopJPciIM4xUvHSxgr7F2wDJG3hq5JXwYmz2j7tq+eC1u23XOpYfk97L7y
+	2TzxeIhkNGTiaHd0n5D6w8TZ23PyLJW0=
+X-Received: by 2002:a2e:8a88:0:b0:383:20ac:fb57 with SMTP id
+ 38308e7fff4ca-385fa15a7a0mr2177881fa.28.1769315534289; Sat, 24 Jan 2026
+ 20:32:14 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260124-spacemit-p1-v2-0-2c86b06694ba@riscstar.com>
- <76bd53dd-0ca9-4358-a0b6-a49283e43c5f@iscas.ac.cn> <CAH1PCMZq++FYr_2WB=HvouXvnxcYGFk6tngqNUk3zTOM6xXLZQ@mail.gmail.com>
-In-Reply-To: <CAH1PCMZq++FYr_2WB=HvouXvnxcYGFk6tngqNUk3zTOM6xXLZQ@mail.gmail.com>
-From: Guodong Xu <guodong@riscstar.com>
-Date: Sun, 25 Jan 2026 12:27:40 +0800
-X-Gm-Features: AZwV_QiR-YxKTspwzVtAqnNU1yb2sCmX1Ygq3gSdAIf2_u_Qcvk5gX4z8V4nW9w
-Message-ID: <CAH1PCMbEcVa6mAvw9UAG2T2Jy0W-+nEcw79nTHDJr9xgEdm0VA@mail.gmail.com>
-Subject: Re: [PATCH v2 0/4] regulator: spacemit-p1: Fix voltage ranges and
- support board power tree
-To: Vivian Wang <wangruikang@iscas.ac.cn>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
-	Alex Elder <elder@riscstar.com>, Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+References: <20260121-a733-rtc-v1-0-d359437f23a7@pigmoral.tech> <20260121-a733-rtc-v1-4-d359437f23a7@pigmoral.tech>
+In-Reply-To: <20260121-a733-rtc-v1-4-d359437f23a7@pigmoral.tech>
+Reply-To: wens@kernel.org
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Sun, 25 Jan 2026 12:32:00 +0800
+X-Gmail-Original-Message-ID: <CAGb2v65aMMVu8W1PW+6NZM+YM72YFV9_FWVWtj6QHJ1CgetEsA@mail.gmail.com>
+X-Gm-Features: AZwV_Qg8xsPvV8sAc15AaOTOljnpBF_VgchagL9AVusH77dKMuI0N9PyP8M8ADw
+Message-ID: <CAGb2v65aMMVu8W1PW+6NZM+YM72YFV9_FWVWtj6QHJ1CgetEsA@mail.gmail.com>
+Subject: Re: [PATCH 4/7] clk: sunxi-ng: Extract common RTC CCU clock logic
+To: Junhui Liu <junhui.liu@pigmoral.tech>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Troy Mitchell <troy.mitchell@linux.spacemit.com>, Paul Walmsley <pjw@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+	Maxime Ripard <mripard@kernel.org>, linux-clk@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org, 
 	devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.06 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
-	R_DKIM_ALLOW(-0.20)[riscstar-com.20230601.gappssmtp.com:s=20230601];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[riscstar.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	TAGGED_FROM(0.00)[bounces-259215-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-259214-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[riscstar-com.20230601.gappssmtp.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,gmail.com,sholland.org,bootlin.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_REPLYTO(0.00)[wens@kernel.org];
+	RCVD_COUNT_FIVE(0.00)[5];
+	REPLYTO_ADDR_EQ_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wens@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[guodong@riscstar.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,gentoo.org,riscstar.com,linux.spacemit.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
 	MISSING_XM_UA(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[iscas.ac.cn:email,mail.gmail.com:mid,riscstar-com.20230601.gappssmtp.com:dkim]
-X-Rspamd-Queue-Id: 82F3C7FC1A
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sholland.org:email,mail.gmail.com:mid,pigmoral.tech:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: EF58C7FC38
 X-Rspamd-Action: no action
 
-On Sun, Jan 25, 2026 at 12:18=E2=80=AFPM Guodong Xu <guodong@riscstar.com> =
-wrote:
+On Wed, Jan 21, 2026 at 7:04=E2=80=AFPM Junhui Liu <junhui.liu@pigmoral.tec=
+h> wrote:
 >
-> On Sat, Jan 24, 2026 at 2:25=E2=80=AFPM Vivian Wang <wangruikang@iscas.ac=
-.cn> wrote:
-> >
-> >
-> > On 1/24/26 08:20, Guodong Xu wrote:
-> > > [...]
-> > >
-> > > Note: Patch 3 introduces a bisect breakage by transitioning to
-> > > pin-specific supply names. Probe failures will occur on existing boar=
-ds
-> > > until Patch 4 updates the corresponding DTS file.
-> >
-> > Ouch, that's not a bisect breakage, that's an *ABI breakage*. And AFAIC=
-T
-> > this is still not okay in 2026,
-> > see Documentation/devicetree/bindings/ABI.rst
-> >
-> > So the bindings would need to be changed to accept both the new and old=
- way.
+> Extract the IOSC and 32k clock logic from ccu-sun6i-rtc into a shared
+> module to simplify adding RTC CCU support for new SoCs. This is needed
+> because newer Allwinner SoCs introduce additional DCXO/HOSC logic that
+> prevents direct reuse of the existing driver.
 >
-> Ideally yes. However, considering this ABI change's actual effect, the tw=
-o
-> K1 boards (BPI-F3 and Jupiter) in the kernel get their power settings
-> from boot firmware as well, and the types of peripherals enabled in the .=
-dts
-> files are very limited, the probe failure of the pmic regulator doesn't
-> affect much. So, I think this breakage is acceptable.
+> Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
+> ---
+>  drivers/clk/sunxi-ng/Makefile        |   3 +
+>  drivers/clk/sunxi-ng/ccu-sun6i-rtc.c | 152 +----------------------------=
+------
+>  drivers/clk/sunxi-ng/ccu_rtc.c       | 136 +++++++++++++++++++++++++++++=
+++
+>  drivers/clk/sunxi-ng/ccu_rtc.h       |  37 +++++++++
+>  4 files changed, 177 insertions(+), 151 deletions(-)
 >
-> >
-> > Driver-wise, at a cursory look from someone not familiar with the
-> > regulator stuff, maybe we can make it compatible with old DTS by adding
-> > the new names as aliases ({devm_,}regulator_register_supply_alias?) as
-> > "vin" or "buck5", if we see the old vin-supply definitions?
-> >
->
-> We can do that of course. My hesitation is, however, it makes the driver =
-take
-> extra code which may not be needed once all .dts files have been updated.=
- The
-> driver code will be left there forever.
->
-
-Mark gave his opinion in v1 review [1], please allow me to partially quote
-here: "(it's an ABI change so shouldn't really happen, but perhaps there ar=
+> diff --git a/drivers/clk/sunxi-ng/Makefile b/drivers/clk/sunxi-ng/Makefil=
 e
-few enough users for everyone to coordinate and it's what you all prefer)."
+> index a1c4087d7241..c3f810a025a8 100644
+> --- a/drivers/clk/sunxi-ng/Makefile
+> +++ b/drivers/clk/sunxi-ng/Makefile
+> @@ -23,6 +23,9 @@ sunxi-ccu-y                   +=3D ccu_nkmp.o
+>  sunxi-ccu-y                    +=3D ccu_nm.o
+>  sunxi-ccu-y                    +=3D ccu_mp.o
+>
+> +# RTC clocks
+> +sunxi-ccu-y                    +=3D ccu_rtc.o
+> +
+>  # SoC support
+>  obj-$(CONFIG_SUNIV_F1C100S_CCU)        +=3D suniv-f1c100s-ccu.o
+>  obj-$(CONFIG_SUN20I_D1_CCU)    +=3D sun20i-d1-ccu.o
+> diff --git a/drivers/clk/sunxi-ng/ccu-sun6i-rtc.c b/drivers/clk/sunxi-ng/=
+ccu-sun6i-rtc.c
+> index 6f888169412c..562ba752bcec 100644
+> --- a/drivers/clk/sunxi-ng/ccu-sun6i-rtc.c
+> +++ b/drivers/clk/sunxi-ng/ccu-sun6i-rtc.c
+> @@ -14,37 +14,12 @@
+>
+>  #include "ccu_common.h"
+>
+> -#include "ccu_div.h"
+>  #include "ccu_gate.h"
+>  #include "ccu_mux.h"
+> +#include "ccu_rtc.h"
+>
+>  #include "ccu-sun6i-rtc.h"
+>
+> -#define IOSC_ACCURACY                  300000000 /* 30% */
+> -#define IOSC_RATE                      16000000
+> -
+> -#define LOSC_RATE                      32768
+> -#define LOSC_RATE_SHIFT                        15
+> -
+> -#define LOSC_CTRL_REG                  0x0
+> -#define LOSC_CTRL_KEY                  0x16aa0000
+> -
+> -#define IOSC_32K_CLK_DIV_REG           0x8
+> -#define IOSC_32K_CLK_DIV               GENMASK(4, 0)
+> -#define IOSC_32K_PRE_DIV               32
+> -
+> -#define IOSC_CLK_CALI_REG              0xc
+> -#define IOSC_CLK_CALI_DIV_ONES         22
+> -#define IOSC_CLK_CALI_EN               BIT(1)
+> -#define IOSC_CLK_CALI_SRC_SEL          BIT(0)
+> -
+> -#define LOSC_OUT_GATING_REG            0x60
+> -
+> -#define DCXO_CTRL_REG                  0x160
+> -#define DCXO_CTRL_CLK16M_RC_EN         BIT(0)
+> -
+> -#define SUN6I_RTC_AUX_ID(_name)                "rtc_sun6i." #_name
+> -
+>  struct sun6i_rtc_match_data {
+>         bool                            have_ext_osc32k         : 1;
+>         bool                            have_iosc_calibration   : 1;
+> @@ -53,137 +28,12 @@ struct sun6i_rtc_match_data {
+>         u8                              osc32k_fanout_nparents;
+>  };
+>
+> -static int ccu_iosc_enable(struct clk_hw *hw)
+> -{
+> -       struct ccu_common *cm =3D hw_to_ccu_common(hw);
+> -
+> -       return ccu_gate_helper_enable(cm, DCXO_CTRL_CLK16M_RC_EN);
+> -}
+> -
+> -static void ccu_iosc_disable(struct clk_hw *hw)
+> -{
+> -       struct ccu_common *cm =3D hw_to_ccu_common(hw);
+> -
+> -       return ccu_gate_helper_disable(cm, DCXO_CTRL_CLK16M_RC_EN);
+> -}
+> -
+> -static int ccu_iosc_is_enabled(struct clk_hw *hw)
+> -{
+> -       struct ccu_common *cm =3D hw_to_ccu_common(hw);
+> -
+> -       return ccu_gate_helper_is_enabled(cm, DCXO_CTRL_CLK16M_RC_EN);
+> -}
+> -
+> -static unsigned long ccu_iosc_recalc_rate(struct clk_hw *hw,
+> -                                         unsigned long parent_rate)
+> -{
+> -       struct ccu_common *cm =3D hw_to_ccu_common(hw);
+> -
+> -       if (cm->features & CCU_FEATURE_IOSC_CALIBRATION) {
+> -               u32 reg =3D readl(cm->base + IOSC_CLK_CALI_REG);
+> -
+> -               /*
+> -                * Recover the IOSC frequency by shifting the ones place =
+of
+> -                * (fixed-point divider * 32768) into bit zero.
+> -                */
+> -               if (reg & IOSC_CLK_CALI_EN)
+> -                       return reg >> (IOSC_CLK_CALI_DIV_ONES - LOSC_RATE=
+_SHIFT);
+> -       }
+> -
+> -       return IOSC_RATE;
+> -}
+> -
+> -static unsigned long ccu_iosc_recalc_accuracy(struct clk_hw *hw,
+> -                                             unsigned long parent_accura=
+cy)
+> -{
+> -       return IOSC_ACCURACY;
+> -}
+> -
+> -static const struct clk_ops ccu_iosc_ops =3D {
+> -       .enable                 =3D ccu_iosc_enable,
+> -       .disable                =3D ccu_iosc_disable,
+> -       .is_enabled             =3D ccu_iosc_is_enabled,
+> -       .recalc_rate            =3D ccu_iosc_recalc_rate,
+> -       .recalc_accuracy        =3D ccu_iosc_recalc_accuracy,
+> -};
+> -
+>  static struct ccu_common iosc_clk =3D {
+>         .reg            =3D DCXO_CTRL_REG,
+>         .hw.init        =3D CLK_HW_INIT_NO_PARENT("iosc", &ccu_iosc_ops,
+>                                                 CLK_GET_RATE_NOCACHE),
+>  };
+>
+> -static int ccu_iosc_32k_prepare(struct clk_hw *hw)
+> -{
+> -       struct ccu_common *cm =3D hw_to_ccu_common(hw);
+> -       u32 val;
+> -
+> -       if (!(cm->features & CCU_FEATURE_IOSC_CALIBRATION))
+> -               return 0;
+> -
+> -       val =3D readl(cm->base + IOSC_CLK_CALI_REG);
+> -       writel(val | IOSC_CLK_CALI_EN | IOSC_CLK_CALI_SRC_SEL,
+> -              cm->base + IOSC_CLK_CALI_REG);
+> -
+> -       return 0;
+> -}
+> -
+> -static void ccu_iosc_32k_unprepare(struct clk_hw *hw)
+> -{
+> -       struct ccu_common *cm =3D hw_to_ccu_common(hw);
+> -       u32 val;
+> -
+> -       if (!(cm->features & CCU_FEATURE_IOSC_CALIBRATION))
+> -               return;
+> -
+> -       val =3D readl(cm->base + IOSC_CLK_CALI_REG);
+> -       writel(val & ~(IOSC_CLK_CALI_EN | IOSC_CLK_CALI_SRC_SEL),
+> -              cm->base + IOSC_CLK_CALI_REG);
+> -}
+> -
+> -static unsigned long ccu_iosc_32k_recalc_rate(struct clk_hw *hw,
+> -                                             unsigned long parent_rate)
+> -{
+> -       struct ccu_common *cm =3D hw_to_ccu_common(hw);
+> -       u32 val;
+> -
+> -       if (cm->features & CCU_FEATURE_IOSC_CALIBRATION) {
+> -               val =3D readl(cm->base + IOSC_CLK_CALI_REG);
+> -
+> -               /* Assume the calibrated 32k clock is accurate. */
+> -               if (val & IOSC_CLK_CALI_SRC_SEL)
+> -                       return LOSC_RATE;
+> -       }
+> -
+> -       val =3D readl(cm->base + IOSC_32K_CLK_DIV_REG) & IOSC_32K_CLK_DIV=
+;
+> -
+> -       return parent_rate / IOSC_32K_PRE_DIV / (val + 1);
+> -}
+> -
+> -static unsigned long ccu_iosc_32k_recalc_accuracy(struct clk_hw *hw,
+> -                                                 unsigned long parent_ac=
+curacy)
+> -{
+> -       struct ccu_common *cm =3D hw_to_ccu_common(hw);
+> -       u32 val;
+> -
+> -       if (cm->features & CCU_FEATURE_IOSC_CALIBRATION) {
+> -               val =3D readl(cm->base + IOSC_CLK_CALI_REG);
+> -
+> -               /* Assume the calibrated 32k clock is accurate. */
+> -               if (val & IOSC_CLK_CALI_SRC_SEL)
+> -                       return 0;
+> -       }
+> -
+> -       return parent_accuracy;
+> -}
+> -
+> -static const struct clk_ops ccu_iosc_32k_ops =3D {
+> -       .prepare                =3D ccu_iosc_32k_prepare,
+> -       .unprepare              =3D ccu_iosc_32k_unprepare,
+> -       .recalc_rate            =3D ccu_iosc_32k_recalc_rate,
+> -       .recalc_accuracy        =3D ccu_iosc_32k_recalc_accuracy,
+> -};
+> -
+>  static struct ccu_common iosc_32k_clk =3D {
+>         .hw.init        =3D CLK_HW_INIT_HW("iosc-32k", &iosc_clk.hw,
+>                                          &ccu_iosc_32k_ops,
+> diff --git a/drivers/clk/sunxi-ng/ccu_rtc.c b/drivers/clk/sunxi-ng/ccu_rt=
+c.c
+> new file mode 100644
+> index 000000000000..cfc10218517c
+> --- /dev/null
+> +++ b/drivers/clk/sunxi-ng/ccu_rtc.c
+> @@ -0,0 +1,136 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2021 Samuel Holland <samuel@sholland.org>
+> + */
+> +
+> +#include <linux/clk-provider.h>
+> +#include <linux/io.h>
+> +
+> +#include "ccu_common.h"
+> +
+> +#include "ccu_gate.h"
+> +#include "ccu_rtc.h"
+> +
+> +static int ccu_iosc_enable(struct clk_hw *hw)
+> +{
+> +       struct ccu_common *cm =3D hw_to_ccu_common(hw);
+> +
+> +       return ccu_gate_helper_enable(cm, DCXO_CTRL_CLK16M_RC_EN);
+> +}
+> +
+> +static void ccu_iosc_disable(struct clk_hw *hw)
+> +{
+> +       struct ccu_common *cm =3D hw_to_ccu_common(hw);
+> +
+> +       return ccu_gate_helper_disable(cm, DCXO_CTRL_CLK16M_RC_EN);
+> +}
+> +
+> +static int ccu_iosc_is_enabled(struct clk_hw *hw)
+> +{
+> +       struct ccu_common *cm =3D hw_to_ccu_common(hw);
+> +
+> +       return ccu_gate_helper_is_enabled(cm, DCXO_CTRL_CLK16M_RC_EN);
+> +}
+> +
+> +static unsigned long ccu_iosc_recalc_rate(struct clk_hw *hw,
+> +                                         unsigned long parent_rate)
+> +{
+> +       struct ccu_common *cm =3D hw_to_ccu_common(hw);
+> +
+> +       if (cm->features & CCU_FEATURE_IOSC_CALIBRATION) {
+> +               u32 reg =3D readl(cm->base + IOSC_CLK_CALI_REG);
+> +               /*
+> +                * Recover the IOSC frequency by shifting the ones place =
+of
+> +                * (fixed-point divider * 32768) into bit zero.
+> +                */
+> +               if (reg & IOSC_CLK_CALI_EN)
+> +                       return reg >> (IOSC_CLK_CALI_DIV_ONES - LOSC_RATE=
+_SHIFT);
+> +       }
+> +
+> +       return IOSC_RATE;
+> +}
+> +
+> +static unsigned long ccu_iosc_recalc_accuracy(struct clk_hw *hw,
+> +                                             unsigned long parent_accura=
+cy)
+> +{
+> +       return IOSC_ACCURACY;
+> +}
+> +
+> +const struct clk_ops ccu_iosc_ops =3D {
+> +       .enable                 =3D ccu_iosc_enable,
+> +       .disable                =3D ccu_iosc_disable,
+> +       .is_enabled             =3D ccu_iosc_is_enabled,
+> +       .recalc_rate            =3D ccu_iosc_recalc_rate,
+> +       .recalc_accuracy        =3D ccu_iosc_recalc_accuracy,
+> +};
 
-I do expect to collect more ideas before I decide whether and what to do in
-v3, or maybe v3 is not required.
+You need to export the symbol.
 
-Link: https://lore.kernel.org/all/2e2c2754-fd3e-4fd3-aae4-d7af63e3b528@sire=
-na.org.uk/
-[1]
+> +
+> +static int ccu_iosc_32k_prepare(struct clk_hw *hw)
+> +{
+> +       struct ccu_common *cm =3D hw_to_ccu_common(hw);
+> +       u32 val;
+> +
+> +       if (!(cm->features & CCU_FEATURE_IOSC_CALIBRATION))
+> +               return 0;
+> +
+> +       val =3D readl(cm->base + IOSC_CLK_CALI_REG);
+> +       writel(val | IOSC_CLK_CALI_EN | IOSC_CLK_CALI_SRC_SEL,
+> +              cm->base + IOSC_CLK_CALI_REG);
+> +
+> +       return 0;
+> +}
+> +
+> +static void ccu_iosc_32k_unprepare(struct clk_hw *hw)
+> +{
+> +       struct ccu_common *cm =3D hw_to_ccu_common(hw);
+> +       u32 val;
+> +
+> +       if (!(cm->features & CCU_FEATURE_IOSC_CALIBRATION))
+> +               return;
+> +
+> +       val =3D readl(cm->base + IOSC_CLK_CALI_REG);
+> +       writel(val & ~(IOSC_CLK_CALI_EN | IOSC_CLK_CALI_SRC_SEL),
+> +              cm->base + IOSC_CLK_CALI_REG);
+> +}
+> +
+> +static unsigned long ccu_iosc_32k_recalc_rate(struct clk_hw *hw,
+> +                                             unsigned long parent_rate)
+> +{
+> +       struct ccu_common *cm =3D hw_to_ccu_common(hw);
+> +       u32 val;
+> +
+> +       if (cm->features & CCU_FEATURE_IOSC_CALIBRATION) {
+> +               val =3D readl(cm->base + IOSC_CLK_CALI_REG);
+> +
+> +               /* Assume the calibrated 32k clock is accurate. */
+> +               if (val & IOSC_CLK_CALI_SRC_SEL)
+> +                       return LOSC_RATE;
+> +       }
+> +
+> +       val =3D readl(cm->base + IOSC_32K_CLK_DIV_REG) & IOSC_32K_CLK_DIV=
+;
+> +
+> +       return parent_rate / IOSC_32K_PRE_DIV / (val + 1);
+> +}
+> +
+> +static unsigned long ccu_iosc_32k_recalc_accuracy(struct clk_hw *hw,
+> +                                                 unsigned long parent_ac=
+curacy)
+> +{
+> +       struct ccu_common *cm =3D hw_to_ccu_common(hw);
+> +       u32 val;
+> +
+> +       if (cm->features & CCU_FEATURE_IOSC_CALIBRATION) {
+> +               val =3D readl(cm->base + IOSC_CLK_CALI_REG);
+> +
+> +               /* Assume the calibrated 32k clock is accurate. */
+> +               if (val & IOSC_CLK_CALI_SRC_SEL)
+> +                       return 0;
+> +       }
+> +
+> +       return parent_accuracy;
+> +}
+> +
+> +const struct clk_ops ccu_iosc_32k_ops =3D {
+> +       .prepare                =3D ccu_iosc_32k_prepare,
+> +       .unprepare              =3D ccu_iosc_32k_unprepare,
+> +       .recalc_rate            =3D ccu_iosc_32k_recalc_rate,
+> +       .recalc_accuracy        =3D ccu_iosc_32k_recalc_accuracy,
+> +};
 
-> BR,
-> Guodong Xu
+Same here.
+
+> diff --git a/drivers/clk/sunxi-ng/ccu_rtc.h b/drivers/clk/sunxi-ng/ccu_rt=
+c.h
+> new file mode 100644
+> index 000000000000..1c44c2206a25
+> --- /dev/null
+> +++ b/drivers/clk/sunxi-ng/ccu_rtc.h
+> @@ -0,0 +1,37 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright (c) 2021 Samuel Holland <samuel@sholland.org>
+> + */
+> +
+> +#ifndef _CCU_RTC_H_
+> +#define _CCU_RTC_H_
+> +
+> +#define IOSC_ACCURACY                  300000000 /* 30% */
+> +#define IOSC_RATE                      16000000
+> +
+> +#define LOSC_RATE                      32768
+> +#define LOSC_RATE_SHIFT                        15
+> +
+> +#define LOSC_CTRL_REG                  0x0
+> +#define LOSC_CTRL_KEY                  0x16aa0000
+> +
+> +#define IOSC_32K_CLK_DIV_REG           0x8
+> +#define IOSC_32K_CLK_DIV               GENMASK(4, 0)
+> +#define IOSC_32K_PRE_DIV               32
+> +
+> +#define IOSC_CLK_CALI_REG              0xc
+> +#define IOSC_CLK_CALI_DIV_ONES         22
+> +#define IOSC_CLK_CALI_EN               BIT(1)
+> +#define IOSC_CLK_CALI_SRC_SEL          BIT(0)
+> +
+> +#define LOSC_OUT_GATING_REG            0x60
+> +
+> +#define DCXO_CTRL_REG                  0x160
+> +#define DCXO_CTRL_CLK16M_RC_EN         BIT(0)
+
+Please keep all internals in the .c file.
+
+ChenYu
+
+
+> +
+> +#define SUN6I_RTC_AUX_ID(_name)                "rtc_sun6i." #_name
+> +
+> +extern const struct clk_ops ccu_iosc_ops;
+> +extern const struct clk_ops ccu_iosc_32k_ops;
+> +
+> +#endif /* _CCU_RTC_H_ */
+>
+> --
+> 2.52.0
+>
+>
 
