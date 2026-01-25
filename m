@@ -1,143 +1,166 @@
-Return-Path: <devicetree+bounces-259222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259223-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MEavJtzudWlyJwEAu9opvQ
-	(envelope-from <devicetree+bounces-259222-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 11:22:20 +0100
+	id cZgMK5j4dWmRKAEAu9opvQ
+	(envelope-from <devicetree+bounces-259223-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 12:03:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEDCC801AA
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 11:22:19 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 185848022F
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 12:03:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1EA813007F5E
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 10:22:17 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9C7B33006520
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jan 2026 11:03:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3569A226D00;
-	Sun, 25 Jan 2026 10:22:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q7mVYeeq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26D2830CDBD;
+	Sun, 25 Jan 2026 11:03:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F0BB3EBF0C;
-	Sun, 25 Jan 2026 10:22:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76F3CE55C;
+	Sun, 25 Jan 2026 11:03:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769336536; cv=none; b=m27PMsXM8otb47UEE0qcBBC8IywjpXA4Ol1h8nNy6yQOGjdsN/bvFPAWH3DS5dmtGEXfWDIihLEY5d/D+cseanF4uWR+4AxAPppoS6HCLNom2790HvAe/edEjlojdYHBOoI2i4JC0suqGVw3ybhOre2PiFg4yyCBCrnIQsb4U0U=
+	t=1769339027; cv=none; b=UatAMU1iJEUweoAgG5fPe+QDv3zJOfuje6p3A379TjO5mBZ+gab3Nq+lwiMZ+SJHngg3m+34XAXDioPS65R1uwbCZCQwkz9Gn5Z981ubWy+ohsySn4xKqCdXFHwyvI/bjgO3094WyV2oLOv1Ac3KyI6PkaXkYKEpdVhmooPNgV8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769336536; c=relaxed/simple;
-	bh=kPcLWa/o3rjsJMhWGoaV5KilA7EaTEWHRAIvHjLome4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pxrMiB0BKsppbFLGYkjavLUwyaDAgRa+2cKw9oIWVnZWbTf2eJG4B27SsvWeYoOz5cDAVPZ0tvtAT0ZXCAHXXatpIdzi+yaIhofGKNauUcmEvDUWwwCSZQgsq6c2q/a+gFe/G3pzPsWB9nP1rxL9sb1o5VlcYPzZpeozOpcbHho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q7mVYeeq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7C3FC4CEF1;
-	Sun, 25 Jan 2026 10:22:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769336535;
-	bh=kPcLWa/o3rjsJMhWGoaV5KilA7EaTEWHRAIvHjLome4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=q7mVYeeqOJ8GuQi3cJbvxZy3DkaOJA+wUm3UfAdnn2WCOOsq9sDMODT3gHaZKV8Vn
-	 jXOy+X4bket6JZG4yDp7hM7haqKXrFh9QSPnxq96IqZtcGjCj1K7aUYkUgE+cdiuzM
-	 PlWiEU0D79UB/Rp+kEN4S4aNsuAq0sqBynnfgKlfQWR+0rC17uVRhtMeYobV3J/6fC
-	 AgI12ZoXqQnvzILuv0MOgnSAVVJTnb03fnfQUMw7vxQ60VpNktfOFuB8Them2KUpaV
-	 hurCNCz4YMl2DAhWOkJBkjHGm/45roAaGHcokhE13pSJr7YMjYT/Jf/JoxT55omw5V
-	 CLofBM5M0IWqQ==
-Date: Sun, 25 Jan 2026 10:22:07 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, kernel@pengutronix.de, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Andy Shevchenko
- <andy@kernel.org>, David Lechner <dlechner@baylibre.com>, Nuno
- =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, David Jander <david@protonic.nl>
-Subject: Re: [PATCH v1 2/8] dt-bindings: iio: dac: maxim,ds4424: add
- maxim,rfs-ohms property
-Message-ID: <20260125102207.37ce3501@jic23-huawei>
-In-Reply-To: <aXNHeq9Fi1Ldf-oE@pengutronix.de>
-References: <20260119182424.1660601-1-o.rempel@pengutronix.de>
-	<20260119182424.1660601-3-o.rempel@pengutronix.de>
-	<20260119-turbine-feminize-9dcd5c86feec@spud>
-	<20260123092819.6ae81211@jic23-huawei>
-	<aXNHeq9Fi1Ldf-oE@pengutronix.de>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1769339027; c=relaxed/simple;
+	bh=oguidiIP4bpXhK6dJifeJicvaPonb1HrsjAzpgRDyqY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uBYLenIvRf3iba2VlGE5hIbkIyK+pblX2OsYcdYaqeiDzYLq7LTyb6yMh3uKDDYeIn6qnXe1megqcP/EkaGTypgo8oS4rB7qWT5/uvxB53nuo6m46+wJFO+diUKcgVmPwVwXRgcE8s6spPmzUSr+npkiS+3vDVX2DL0bjFYgv0w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.27.242])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id A7618340F77;
+	Sun, 25 Jan 2026 11:03:43 +0000 (UTC)
+Date: Sun, 25 Jan 2026 19:03:33 +0800
+From: Yixun Lan <dlan@gentoo.org>
+To: Guodong Xu <guodong@riscstar.com>
+Cc: Vivian Wang <wangruikang@iscas.ac.cn>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Alex Elder <elder@riscstar.com>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Troy Mitchell <troy.mitchell@linux.spacemit.com>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 0/4] regulator: spacemit-p1: Fix voltage ranges and
+ support board power tree
+Message-ID: <20260125110333-GYD71302@gentoo.org>
+References: <20260124-spacemit-p1-v2-0-2c86b06694ba@riscstar.com>
+ <76bd53dd-0ca9-4358-a0b6-a49283e43c5f@iscas.ac.cn>
+ <CAH1PCMZq++FYr_2WB=HvouXvnxcYGFk6tngqNUk3zTOM6xXLZQ@mail.gmail.com>
+ <CAH1PCMbEcVa6mAvw9UAG2T2Jy0W-+nEcw79nTHDJr9xgEdm0VA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAH1PCMbEcVa6mAvw9UAG2T2Jy0W-+nEcw79nTHDJr9xgEdm0VA@mail.gmail.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[gentoo.org : SPF not aligned (relaxed), No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-259222-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-259223-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[iscas.ac.cn,gmail.com,kernel.org,riscstar.com,linux.spacemit.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlan@gentoo.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: BEDCC801AA
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 185848022F
 X-Rspamd-Action: no action
 
-On Fri, 23 Jan 2026 11:03:38 +0100
-Oleksij Rempel <o.rempel@pengutronix.de> wrote:
+Hi Guodong,
 
-> On Fri, Jan 23, 2026 at 09:28:19AM +0000, Jonathan Cameron wrote:
-> > On Mon, 19 Jan 2026 18:27:52 +0000
-> > Conor Dooley <conor@kernel.org> wrote:
-> >   
-> > > On Mon, Jan 19, 2026 at 07:24:18PM +0100, Oleksij Rempel wrote:  
-> > > > Introduce the 'maxim,rfs-ohms' property. The full-scale output current
-> > > > of these DACs is determined by external resistors (Rfs) connected to
-> > > > the FS pins. The driver requires the physical resistance values to
-> > > > calculate the correct current scale (Amps per step) for the IIO
-> > > > subsystem.
-> > > > 
-> > > > Keep it optional to avoid forcing updates of existing DTs; without it
-> > > > the driver cannot derive a correct IIO scale.    
-> > > 
-> > > I don't really follow the logic here, if the driver doesn't work
-> > > properly without it, shouldn't it be a required property even if that
-> > > means existing devicetrees get new warnings? Warnings are preferable to
-> > > the drivers malfunctioning on those devices, after all!  
-> > 
-> > Agreed. The driver can paper over holes or I guess we could provide a default
-> > if the datasheet has some reference value or similar?    
+On 12:27 Sun 25 Jan     , Guodong Xu wrote:
+> On Sun, Jan 25, 2026 at 12:18 PM Guodong Xu <guodong@riscstar.com> wrote:
+> >
+> > On Sat, Jan 24, 2026 at 2:25 PM Vivian Wang <wangruikang@iscas.ac.cn> wrote:
+> > >
+> > >
+> > > On 1/24/26 08:20, Guodong Xu wrote:
+> > > > [...]
+> > > >
+> > > > Note: Patch 3 introduces a bisect breakage by transitioning to
+> > > > pin-specific supply names. Probe failures will occur on existing boards
+> > > > until Patch 4 updates the corresponding DTS file.
+> > >
+> > > Ouch, that's not a bisect breakage, that's an *ABI breakage*. And AFAICT
+> > > this is still not okay in 2026,
+> > > see Documentation/devicetree/bindings/ABI.rst
+> > >
+> > > So the bindings would need to be changed to accept both the new and old way.
+> >
+> > Ideally yes. However, considering this ABI change's actual effect, the two
+> > K1 boards (BPI-F3 and Jupiter) in the kernel get their power settings
+> > from boot firmware as well, and the types of peripherals enabled in the .dts
+> > files are very limited, the probe failure of the pmic regulator doesn't
+> > affect much. So, I think this breakage is acceptable.
+> >
+> > >
+> > > Driver-wise, at a cursory look from someone not familiar with the
+> > > regulator stuff, maybe we can make it compatible with old DTS by adding
+> > > the new names as aliases ({devm_,}regulator_register_supply_alias?) as
+> > > "vin" or "buck5", if we see the old vin-supply definitions?
+> > >
+> >
+> > We can do that of course. My hesitation is, however, it makes the driver take
+> > extra code which may not be needed once all .dts files have been updated. The
+> > driver code will be left there forever.
+> >
 > 
-> No, this DAC controls the current. The current range is application specific and
-> defined by the load resistors. Is it better to not provide scale if this
-> information not available, guessing it will make things worse and
-> potentially damage some HW.
+> Mark gave his opinion in v1 review [1], please allow me to partially quote
+> here: "(it's an ABI change so shouldn't really happen, but perhaps there are
+> few enough users for everyone to coordinate and it's what you all prefer)."
 > 
-Then does this need to be a fix on the driver side?
-Or are you just suggesting not proving the scale if we don't have enough info?
-That's fine if so.
+> I do expect to collect more ideas before I decide whether and what to do in
+> v3, or maybe v3 is not required.
+> 
+As I checked the dts tree (DT queued for v6.20), although we introduced the
+regulator of P1/PMIC, but there is no consumers so far, so in real life, we
+shouldn't break anything. In this case, I'd suggest we just give up for doing
+the ABI backward compatible work which should simplify our life..
 
-> > DT binding should require it.  
+> Link: https://lore.kernel.org/all/2e2c2754-fd3e-4fd3-aae4-d7af63e3b528@sirena.org.uk/
+> [1]
 > 
-> ACK
+> > BR,
+> > Guodong Xu
+> 
 
+-- 
+Yixun Lan (dlan)
 
