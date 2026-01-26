@@ -1,146 +1,121 @@
-Return-Path: <devicetree+bounces-259639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259640-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sJIHH4LLd2lylAEAu9opvQ
-	(envelope-from <devicetree+bounces-259639-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 21:16:02 +0100
+	id sLqEEB3Od2mxlQEAu9opvQ
+	(envelope-from <devicetree+bounces-259640-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 21:27:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1A598CF2C
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 21:16:01 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id D13338D0E2
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 21:27:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5A9FF3014963
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 20:16:00 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D92813019463
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 20:27:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F0132D24B7;
-	Mon, 26 Jan 2026 20:15:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D71F2D5940;
+	Mon, 26 Jan 2026 20:27:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="Jyd1j1eD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VBT8H/Lv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6706F3EBF1C;
-	Mon, 26 Jan 2026 20:15:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07A7D2877CD;
+	Mon, 26 Jan 2026 20:27:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769458559; cv=none; b=dUMhAPhskc2bIzGy5Gl9SWwPSF9tPMHrhrQQSBAuGgrAhmAUGaTxPvelOGefXNpfzb/3KCAuUfUqSuIteZN/wmEJUodEMbAhWwGMMTv24iVadykK5d/j9AHU0NyTxXUvn5GwXHFYZE0n855CzkCI+JdtiaaSOEscS9Dezyu3UYE=
+	t=1769459225; cv=none; b=Ty50gSKC34ntT7JgS6sqoqn9Y9BXl8dEdo/qdUkK/n8FRqb+dYS4yfAsO/SkUTeJ3cV0Ui0Vims4X0yVeTbhreJIBK3wgQOSVnBFHwWgxLh0S5sZhSmmYhzHgNKx7nGlbvEGiSyEr79wPLy87SlUp91NVvW+JOSdvIpVJfdIKcQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769458559; c=relaxed/simple;
-	bh=UM95fvK6A1BkKGqlC4HPDGXlJP2IsnWed/FuApSBzo4=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
-	 References:In-Reply-To; b=luCmwnZtyPFFItv7cxFI1L3dhfiVTZsU0OLjZjUPbGFM4BXXxl2nk3A8rQnDKigZknzWE61rFB6qnZDWGmghMdZeNIIdLDiJvAY2WfBFwI4Wm1Ox+mPIFbA5pqpSxmDreBW+V1//aKBRs5WzGjkw2gZSVKA2QnyFKyvFriMTURw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=Jyd1j1eD; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id C97F926107;
-	Mon, 26 Jan 2026 21:15:47 +0100 (CET)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id uESUxJKg_CGL; Mon, 26 Jan 2026 21:15:46 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1769458546; bh=UM95fvK6A1BkKGqlC4HPDGXlJP2IsnWed/FuApSBzo4=;
-	h=Date:To:Cc:Subject:From:References:In-Reply-To;
-	b=Jyd1j1eDrgL2v7g2g7f2J/8/d3+j8TVNMPIXIxNd16flG6pCLCN2Tgw3+r5GdNmeJ
-	 zd5izRmr+yX51iJbwlLRnhS/Yfh9NVxAz1ST+NC0/J+DyyLUYuu27g7Lvw0lXCNcOF
-	 /4BjYnUT+kJqjz2jwJtQNqG3UAWvH3bKhtNYAGRyTlaJ9zYcypvy8MjnpqrZXNWayV
-	 /DwYUIPhQkbAfMfb48DuCBbxuTjDj4IpnEj3AOCabfc9xb1zn8ofX3U5OWH0+kALQl
-	 xP+F0iONy21q3HidOCYEKp7603Td+KaP5tTpgCzbKANHEE5F6djKCVRIEZM7v+hrfU
-	 1NHTDMfQ1CRoQ==
+	s=arc-20240116; t=1769459225; c=relaxed/simple;
+	bh=4Th3x6YqstcCMdDyhnVHDRDU6P+UfQAyCiz8/20Gwrw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YbmhqEBL4WaaXH/54WSLS2x+w+h8dkjSrFcJDUI64lh9M9ELAdx2ejHaAVz2SY2BxogWo13oD97svid8qUlbWqvY50gvsRWxs/kFZWtP4KTR09KJFhwK2KYmvRhykMsAVNNx/hRb6Ko/U5kx3fmdq7YaomQ6TJ1zn0NKP8HEnMg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VBT8H/Lv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC93EC116C6;
+	Mon, 26 Jan 2026 20:27:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769459224;
+	bh=4Th3x6YqstcCMdDyhnVHDRDU6P+UfQAyCiz8/20Gwrw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VBT8H/Lv9j/BBkHjuW71tE1Xxidtkqq8pzJyz5uN8aCI7dEc0z1kF2c9LLYPLSoOJ
+	 RcXugfBEFb9Tmk3lmfk2u69224oPGhwXAXbqC2BvIZLqAC/jkX7atbgxq5v29xp9/Y
+	 jQTp0dt8qi6ujc99gSQSoiM5GaKcsKuBQTojl7ANftiFi58D8JN26alBGYv3/m4P0n
+	 QD/qpjGcls45TgmeeRrqoEJ30yj9ECSxO+yNvT89Ty0OmlqDFG7PameOk973uxiulM
+	 zoRc3HdTysWR5tPI5hFq/E8qmHFALJ+jlDqJ6+7uXgtjmTWcEL/WpyRmBrhhZwkbqq
+	 7M0eNrCGSApXw==
+Date: Mon, 26 Jan 2026 20:27:00 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Charles Hsu <hsu.yungteng@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux@roeck-us.net, devicetree@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 1/2] dt-bindings: hwmon: add STEF48H28
+Message-ID: <20260126-unmixed-reptilian-c990a0072988@spud>
+References: <20260126063712.1049025-1-hsu.yungteng@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 27 Jan 2026 01:45:35 +0530
-Message-Id: <DFYSP9E4NKZY.2Q5YX7RUOXUD5@disroot.org>
-To: "Conor Dooley" <conor@kernel.org>, "Kaustabh Chakraborty"
- <kauschluss@disroot.org>
-Cc: "Yassine Oudjana" <y.oudjana@protonmail.com>, "Sebastian Reichel"
- <sre@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: power: supply: document Samsung
- S2MU005 battery fuel gauge
-From: "Kaustabh Chakraborty" <kauschluss@disroot.org>
-References: <20260126-s2mu005-fuelgauge-v1-0-68a146ed0819@disroot.org>
- <20260126-s2mu005-fuelgauge-v1-1-68a146ed0819@disroot.org>
- <20260126-goal-wasp-fa3f20d2a06a@spud>
-In-Reply-To: <20260126-goal-wasp-fa3f20d2a06a@spud>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="QoRAMD7I2OVjV5V7"
+Content-Disposition: inline
+In-Reply-To: <20260126063712.1049025-1-hsu.yungteng@gmail.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
-	MV_CASE(0.50)[];
-	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[protonmail.com,kernel.org,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-259639-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259640-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[172.105.105.114:from];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[disroot.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kauschluss@disroot.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,3b:email,disroot.org:mid,disroot.org:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C1A598CF2C
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[100.90.174.1:received,10.30.226.201:received];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D13338D0E2
 X-Rspamd-Action: no action
 
-On 2026-01-26 20:06 +00:00, Conor Dooley wrote:
-> On Mon, Jan 26, 2026 at 09:09:48PM +0530, Kaustabh Chakraborty wrote:
->> +examples:
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/irq.h>
->> +
->> +    i2c {
->> +      #address-cells =3D <1>;
->> +      #size-cells =3D <0>;
->> +
->> +      fuelgauge@3b {
->
-> Should be "fuel-gauge" iirc (at least, that's what all the bindings do).
 
-There are a few which use "fuelgauge", but majority use "fuel-gauge".
-Will change in the next revision.
+--QoRAMD7I2OVjV5V7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> Seems fine to me though otherwise,
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> pw-bot: not-applicable
->
->> +        compatible =3D "samsung,s2mu005-fuel-gauge";
->> +        reg =3D <0x3b>;
->> +
->> +        interrupt-parent =3D <&gpa0>;
->> +        interrupts =3D <3 IRQ_TYPE_EDGE_BOTH>;
->> +
->> +        monitored-battery =3D <&battery>;
->> +      };
->> +    };
->>=20
->> --=20
->> 2.52.0
->>=20
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
 
+--QoRAMD7I2OVjV5V7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaXfOFAAKCRB4tDGHoIJi
+0hc/AP9+jTJrMIHaSRw9QxJSCuzyBuzdh0V7y6YMSeFbuG+zzgD/aBIpFdIBfYZ4
+pz/ejgUfzpZDW3sur3jlH7BcrwXjugs=
+=w2AQ
+-----END PGP SIGNATURE-----
+
+--QoRAMD7I2OVjV5V7--
 
