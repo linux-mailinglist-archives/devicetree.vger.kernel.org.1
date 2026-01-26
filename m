@@ -1,104 +1,80 @@
-Return-Path: <devicetree+bounces-259552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259553-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iOeBMd2Jd2m9hgEAu9opvQ
-	(envelope-from <devicetree+bounces-259552-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:35:57 +0100
+	id WPA+D2SKd2m9hgEAu9opvQ
+	(envelope-from <devicetree+bounces-259553-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:38:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 612528A357
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:35:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB9F28A38C
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:38:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4881930909E7
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 15:30:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5A9EC3049272
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 15:34:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5FCB33F394;
-	Mon, 26 Jan 2026 15:30:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8905833F368;
+	Mon, 26 Jan 2026 15:34:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cHhhfVIA"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="PVSXX3pa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEDE7238C1B
-	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 15:30:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46A7533E35D;
+	Mon, 26 Jan 2026 15:34:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769441452; cv=none; b=RWbwKdnycaz2Cu4wrxnyZcjh5gEvemmk7+KIV5X7Ijd4+xCmO1hMiDwqHTrupPCTPpuYsuF+7bfKsmG7xHtISoBgD3EUpDLQrBDP7fycxr2bui+AYqy/eINQcUq/FWTx49TkhRGc9wFe1PA/+QegYhN6l/e5/Pvr6qkPfotCy7A=
+	t=1769441651; cv=none; b=MMkpeJ1wfFtMs+fr2k82VSeT8w0/Z5xtRWCWOn2RkLhQewJGx4AryAFAOwW+JK4qoQsU5ej167So6r6US9VtHVr2H7kIg1R53fdmi6oVkC3bf2nDpye6AtMzhzcyY39GSHoT9+E5xbsONW9MPvtA+u72Knp3kn4ITnTPUa8ags4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769441452; c=relaxed/simple;
-	bh=MvvziUr4xaQ+5ePGg8faDANvROblVFNwXkByQwc0oPo=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g3/TaufglVlS/CC7KxGop8lMuJttaKowYKQs5HDXMh94kaJOS6s39tlMjbGhjyPttc0JxX4JSFnZroZMdbcM4SDautO2AttqxZ3VVsg38ohDlHLwf7axlqloYxxariXk3G8QS7U5Jt1IpSgxQPlrODD1ljMobw2g6OWTBqOd3zA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cHhhfVIA; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-b885e8c679bso484392566b.1
-        for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 07:30:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769441449; x=1770046249; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=p/RN6DWG0RynJN5xF49LNlsi86bwuZ6LK/+l0lViTxg=;
-        b=cHhhfVIAs2L85kEWhAi45tuk/0f7amS6jwIn2Ui5HTjzT7l7NajhQq7KB413FD5wdC
-         HsCtf8eqiidsc+EdKDGyLnJEFR3iw9oSCg+4AkPNCdGgSTp1Lxv5Ikc6UoUMzZc+p8VY
-         wOMQaJvM4YSAesQdOPvG0tJRBuhwIDdUa2j59Z5NWUE3lFFEQlOjAXAOCmLGJf6YW34O
-         2PGCrFgkyl4K+JVVKg0SqFt0Xr7z9VccuSGToLotLBGSLKDviQnJnP24CAQY+q2kq8xg
-         L3sr1NW6PASbkHUq8takkStOCHJi4f/33xn9GSNPK5APpAYA5xeVJWCyMOa/WcpC27vM
-         WSdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769441449; x=1770046249;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=p/RN6DWG0RynJN5xF49LNlsi86bwuZ6LK/+l0lViTxg=;
-        b=FIORNlFNBSvDtyWsMQL+E6SOYsbQkJ5mKlEGzk0A92Orfoz+fC/0n6O1hBdPz6+YVs
-         zPXtGjfI8nPrHww+x8J3H3FuLCjc78GxmasH9jLomXoKR5mL9sI49w9AmolRrRDfILUV
-         uTr50/CPpFJ1TAiomzITLZJ7TzUfy++/JhI/1WCpf9RggOvQX8KH2Z5fn7Ps01XQamUr
-         BDRf5TI6Upy4cHQi0SW/dxyo0qDRgw7MnbycV2H7PFuSS5DsRGWuItOYbYzYtt4Y3bBz
-         SFM++cKEz+kMHmviinbvbVliI+GrxDVZfoWMQPMdUy87dMmt74Wr++gQy4w5bExEKeZw
-         jC/A==
-X-Forwarded-Encrypted: i=1; AJvYcCU/UchuEA/YBiwQktydkKzBIzItP8gwVYA5aoKL5ye3azX8N3G9fwz9BkLR6NR/Zo4ygF3FhqvDyk3Q@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyu0fZ1Rk6baiH+JtBzTuSEGGjRmPmyn900sOMGzysXIzTasSgi
-	rAV7+LDb1rL45mf+xsAoiQNxQbxVVz9Pbve9I7AWUH15aSCP4bsr+tzp
-X-Gm-Gg: AZuq6aLhp8hblIqdR17C0gbgTh+veecQpyaKQKu+jfAPSnrSZbiT9R/8HHbE/2fe431
-	OUTKzo3Z9PZcWDbw9Gbl35coi/+mi348hvDANPxdwUVl4CSYKe89Zf2NycFZyUbZJq0x+Q1Rx0G
-	v+sHgqcfuBx+1hYjPfncPO5Z7Djix46zxCeW8Nx+wCyO3grMRwdenPEEMjefwFgDPHagFcOrL7y
-	nrK1Jf1Bqp5JTpaM1b2bXQx6gYNJXYHKFO3LTlaCl7SdugdMjlEuIlFeHyZPIGApcYiOZzr3Nj8
-	hVzCHUCL8SMJX7ACvqU7kIGFlCCNfZUbp6hCAMqy6ntTXXgYRIwm2G3ejamdCeQg720Vqj+NHqo
-	JlAPzZAKQnoXNEWmsUHL2R+yugaoLFMiOtVdIlayc+2SAVw6WiB9zFU50Bkb4fydPRbL4jIvQAL
-	ku6vlC4IJSk+LgvpOtFbFspD+pzQU1FxYg5qTjl4W3bjL73FlG0ZSqm7SLfWU2mev7OCgVP46p6
-	QH6
-X-Received: by 2002:a17:907:9618:b0:b87:1fe6:f223 with SMTP id a640c23a62f3a-b8d0a739f51mr338158666b.6.1769441448930;
-        Mon, 26 Jan 2026 07:30:48 -0800 (PST)
-Received: from RDEALENC-L01.ad.analog.com ([24.206.116.103])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b885b75dbe6sm642381766b.50.2026.01.26.07.30.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Jan 2026 07:30:48 -0800 (PST)
-From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
-Date: Mon, 26 Jan 2026 15:30:44 +0000
-To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>, 
-	Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
-	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	Andy Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>
-Subject: Re: [PATCH v5 2/8] iio: core: add fixed point parsing with 64-bit
- parts
-Message-ID: <shsikp7hinoxzj7pzxopvmvgpaak4dioekh4tyvns4kv6xp46f@z5vgnisqskco>
-References: <20260123-adf41513-iio-driver-v5-0-2dce812a2dda@analog.com>
- <20260123-adf41513-iio-driver-v5-2-2dce812a2dda@analog.com>
- <aXdUvRZ9NmP5Nh95@smile.fi.intel.com>
- <byitgzjli5gsq5v66topve7ip3inkk2udwhuihjdp6bknnkmos@tv226l7tek7s>
- <aXdtpkL5QUhhB_hh@smile.fi.intel.com>
- <ty6hptfh65k2rkqo6c6mg5z6vismuvyqsu3emvqarr2rbhpvcz@kn6tzjk5xi2o>
- <aXd_0uNVm8c_Fhwd@smile.fi.intel.com>
- <n2ms3esyxlegqibu4nluut3x4c4bkjxt5xrcd4gw35xxb2tipb@a2v73y25kroc>
+	s=arc-20240116; t=1769441651; c=relaxed/simple;
+	bh=c4zIUaVR/lkn9ej0uJMksg0BObX0gJEu8Pk9DSo/GgQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XuGCmoQi/4GOEUoRQC2SPiDSd9egBF1kBp5g8pHFa7WhoB6kwsyxhSbOFamguC1Hy0VEjBp+4poY00a0UK19dqFwaLTzzqtMoKNp6AWCCqxhopqNeRQHpd+53V1hqmyQVbTJknmFCJIXmF1loS6lDbp1qDpzi7ybTvfpXWlgAxw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=PVSXX3pa; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=eae6B3pYhJ65yiJ/woVw/sITqVU+XQC0UckLLwclRkM=; b=PVSXX3paoP2wq8qCHoHUZWhYIi
+	dqkW3/AGt5t0PjIhJjxoPF0ZRs/xbuaZu/ZFrL1mXcQhocrCS0ZakfIFYnjtaq2nylaFQeC6qGPZX
+	jzLRSTfuqZSpz4sXdVekpqz2JckScisybCNTXK79Vt4gJgOSOF8x/96DmjN3NXynVHudSQhJD+dEn
+	cL7XXmLLXnqxnoRcY15Lqrn+B1qRv/e9GfCkl0nusIb0doBZRmBOxEes7qBffEXjPleMKNYn2dKj/
+	rhXiCC4uttqL/6NFsuQeNlXBUfAUfbOeeGmOp8aPbe2610SqOXXhYp55nRKb1YjbEtuENctuIIhFE
+	6bvIprsA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:54392)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1vkObG-0000000051g-3n3m;
+	Mon, 26 Jan 2026 15:33:58 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1vkObC-00000000530-35q3;
+	Mon, 26 Jan 2026 15:33:54 +0000
+Date: Mon, 26 Jan 2026 15:33:54 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Simon Horman <horms@kernel.org>
+Cc: dan.carpenter@linaro.org, robh@kernel.org, kuba@kernel.org,
+	festevam@gmail.com, ghennadi.procopciuc@oss.nxp.com,
+	alexandre.torgue@foss.st.com, linux-kernel@vger.kernel.org,
+	andrew+netdev@lunn.ch, shawnguo@kernel.org, mbrugger@suse.com,
+	mcoquelin.stm32@gmail.com, linaro-s32@linaro.org,
+	davem@davemloft.net, s.hauer@pengutronix.de, edumazet@google.com,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+	conor+dt@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org,
+	Frank.li@nxp.com, chester62515@gmail.com, netdev@vger.kernel.org,
+	kernel@pengutronix.de, pabeni@redhat.com, jan.petrous@oss.nxp.com,
+	linux-stm32@st-md-mailman.stormreply.com, s32@nxp.com
+Subject: Re: [v4,1/3] net: stmmac: s32: use a syscon for
+ S32_PHY_INTF_SEL_RGMII
+Message-ID: <aXeJYo-0iiNuXVGH@shell.armlinux.org.uk>
+References: <8f2139e8adf02b485a4c84d558fc23f78cf04add.1769195864.git.dan.carpenter@linaro.org>
+ <20260126152430.1390514-1-horms@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -107,130 +83,93 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <n2ms3esyxlegqibu4nluut3x4c4bkjxt5xrcd4gw35xxb2tipb@a2v73y25kroc>
+In-Reply-To: <20260126152430.1390514-1-horms@kernel.org>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_REJECT(1.00)[armlinux.org.uk:s=pandora-2019];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[armlinux.org.uk : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-259553-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[linaro.org,kernel.org,gmail.com,oss.nxp.com,foss.st.com,vger.kernel.org,lunn.ch,suse.com,davemloft.net,pengutronix.de,google.com,lists.infradead.org,lists.linux.dev,nxp.com,redhat.com,st-md-mailman.stormreply.com];
+	RCPT_COUNT_TWELVE(0.00)[29];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259552-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,intel.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
+	DKIM_TRACE(0.00)[armlinux.org.uk:-];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 612528A357
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[linux@armlinux.org.uk,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.991];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[armlinux.org.uk:url,linux.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: DB9F28A38C
 X-Rspamd-Action: no action
 
-On 26/01/26 03:20PM, Rodrigo Alencar wrote:
-> On 26/01/26 04:53PM, Andy Shevchenko wrote:
-> > On Mon, Jan 26, 2026 at 02:26:20PM +0000, Rodrigo Alencar wrote:
-> > > On 26/01/26 03:35PM, Andy Shevchenko wrote:
-> > > > On Mon, Jan 26, 2026 at 12:42:53PM +0000, Rodrigo Alencar wrote:
-> > > > > On 26/01/26 01:49PM, Andy Shevchenko wrote:
-> > > > > > On Fri, Jan 23, 2026 at 03:53:07PM +0000, Rodrigo Alencar via B4 Relay wrote:
-> > 
-> > ...
-> > 
-> > > > > > > +static int __iio_str_to_fixpoint64(const char *str, u64 fract_mult,
-> > > > > > > +				   s64 *integer, s64 *fract, bool scale_db)
-> > > > > > > +{
-> > > > > > > +	u64 i = 0, f = 0;
-> > > > > > > +	char *end;
-> > > > > > > +	int digit_count, precision = ffs(fract_mult);
-> > > > > > > +	bool negative = false;
-> > > > > > > +
-> > > > > > > +	if (str[0] == '-') {
-> > > > > > > +		negative = true;
-> > > > > > > +		str++;
-> > > > > > > +	} else if (str[0] == '+') {
-> > > > > > > +		str++;
-> > > > > > > +	}
-> > > > > > > +
-> > > > > > > +	i = simple_strtoull(str, &end, 10);
-> > > > > > > +	digit_count = end - str;
-> > > > > > > +	if (digit_count > 20)
-> > > > > > > +		return -EINVAL;
-> > > > > > 
-> > > > > > Not really. If we are talking about decimal (only) cases we need to also count
-> > > > > > leading 0:s.
-> > > > > > 
-> > > > > > 0000000000000000000000000000000025 is still 25, no overflow.
-> > > > > > 
-> > > > > > That's why I recommend to have a helper, maybe for now locally here, like
-> > > > > > 
-> > > > > > int safe_strtoull(..., unsigned long long *res)
-> > > > > > {
-> > > > > > 	...
-> > > > > > }
-> > > > > 
-> > > > > Are you suggesting to not use simple_strtoull then?
-> > > > 
-> > > > Nope, I suggest to do an additional step before checking for the range.
-> > > 
-> > > You mean, conditionally skip leading 0's when parsing the integer part?
-> > > e.g.
-> > > 
-> > > /*function entry and arg check */
-> > > while(*str == '\0')
-> > > 	str++;
-> > > /* then call simple_strtoull() */
-> > 
-> > Not skipping, but counting them.
-> > 
-> > > simple_strtoull() is not overflow-safe,
-> > 
-> > Yes, I know. That's why all these additional checks are required,
-> > 
-> > > as it does not use
-> > > check_mul_overflow() or check_add_overflow(), only checking the
-> > > amount of digits is not enough.
-> > 
-> > Why? Can you elaborate how checking amount of digits is different to
-> > check_mul_overflow()?
+On Mon, Jan 26, 2026 at 03:24:30PM +0000, Simon Horman wrote:
+> This is an AI-generated review of your patch. The human sending this
+> email has considered the AI review valid, or at least plausible.
 > 
-> consider U64_MAX = 18_446_744_073_709_551_615 as the limit:
-> - 19_000_000_000_000_000_000 contains the same amount of digits but overflows.
-> - 18_446_744_073_710_000_000 contains the same amount of digits but overflows.
+> For local reproduction steps see https://netdev-ai.bots.linux.dev/ai-local.html
+> ---
+>     net: stmmac: s32: use a syscon for S32_PHY_INTF_SEL_RGMII
 > 
-> to catch those cases, we need to check for the overflow, everytime we read a
-> character and accumulate:
+> This commit adds syscon/regmap support for accessing the GMAC_0_CTRL_STS
+> register on s32 chipsets, while maintaining backwards compatibility with
+> the existing direct MMIO approach for older device trees.
 > 
-> u64 acc;
+> > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
+> > index 5a485ee98fa7..2e6bb41f49e1 100644
+> > --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
+> > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
 > 
-> while(isdigit(*str))
-> 	if (check_mul_overflow(acc, 10, &acc) ||
-> 	    check_add_overflow(acc, *str - '0', &acc))
-> 		return -EOVERFLOW;
+> [ ... ]
 > 
-> *res = acc;
+> > @@ -40,7 +44,10 @@ struct s32_priv_data {
+> >
+> >  static int s32_gmac_write_phy_intf_select(struct s32_priv_data *gmac)
+> >  {
+> > -	writel(S32_PHY_INTF_SEL_RGMII, gmac->ctrl_sts);
+> > +	if (gmac->ctrl_sts)
+> > +		writel(S32_PHY_INTF_SEL_RGMII, gmac->ctrl_sts);
+> > +	else
+> > +		regmap_write(gmac->sts_regmap, gmac->sts_offset, S32_PHY_INTF_SEL_RGMII);
 > 
-> acc can get weird results if not checked. 
+> Should the regmap_write() return value be checked here? The function
+> returns int and the caller s32_gmac_init() checks the return value
+> expecting errors to be propagated. For comparison, dwmac-sun55i.c in
+> sun55i_gmac200_set_syscon() does check regmap_write() return value:
+> 
+>     ret = regmap_write(regmap, SYSCON_REG, reg);
+>     if (ret < 0)
+>         return dev_err_probe(dev, ret, "Failed to write to syscon\n");
 
-Thinking about it again, that check could be done only in the last step
-(20th for u64)
+AI is wrong on this last line - s32_gmac_write_phy_intf_select() is
+called from s32_gmac_init(), which is called from plat_dat->init.
 
-Kind regards,
+plat_dat->init is called from two paths:
 
-Rodrigo Alencar
+1. stmmac_pltfr_probe() -> stmmac_dvr_probe() -> plat_dat->init()
+
+2. stmmac_resume() -> plat_dat->resume() -> stmmac_plat_resume() ->
+   stmmac_pltfr_init() -> plat_dat->init()
+
+In the resume path, it is not appropriate to use dev_err_probe()
+because we're not in the probe path.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
