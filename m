@@ -1,140 +1,194 @@
-Return-Path: <devicetree+bounces-259398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259399-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qD+yBkktd2nacwEAu9opvQ
-	(envelope-from <devicetree+bounces-259398-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 10:00:57 +0100
+	id 8MbeBZIud2kvdAEAu9opvQ
+	(envelope-from <devicetree+bounces-259399-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 10:06:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EAFC85B2B
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 10:00:56 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FC5185C43
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 10:06:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 79A32300CFEF
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 09:00:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CCD18301175C
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 09:03:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3FEF22A80D;
-	Mon, 26 Jan 2026 09:00:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D94573019C5;
+	Mon, 26 Jan 2026 09:03:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VzzT5JX2"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b="k+ETJadj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C6AF219A8A;
-	Mon, 26 Jan 2026 09:00:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769418052; cv=none; b=LOhlmbn5AsNGNoh9GvUum3wGsIG3OJsw14LD+k/WndX8xuMw16C/iM3901t2TJ4d+XT8TD2bX1TrRNHhmWhTI9yCuD2FMQVHBCiJJ4yx1q+PlQpnQ75tY/eoxDcMTzj+TwQKo4xVfDBKoGxtdwlhJIDmI6IkrBOB1jUE0IcYFfs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769418052; c=relaxed/simple;
-	bh=cJgrLjLQiB+SsK/eaFop4n4UxXAXE8CPdMBi7R+aO0Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Sc5Wws/ETsgCm5/U1glU16eM8laOflrGwYKsEg6mo8wNn44EOoYn6ZXdJfM2h80PLQ8F3TT2UCUiJ8FsLJyGX6OEOYUyWUCsEydpZs1We+xXEGYw1v0Py65ahTGIT+GYUDvMvcRnS+aFfrMTofakCljJjhTx+nFGlv+83PZDj5I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VzzT5JX2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8EC70C116C6;
-	Mon, 26 Jan 2026 09:00:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769418052;
-	bh=cJgrLjLQiB+SsK/eaFop4n4UxXAXE8CPdMBi7R+aO0Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VzzT5JX2h/qS+jBtGXKzR+Ejuv9n/eOfGRdb80/IK3Rz1elHqKuXh/8iSeQo9/OPO
-	 GxhHznKk6Tz9w5Ujwjb4dGeWxKRYzqeWjNXrQ/iUmL1fj1H6W82CDX3WGNGlMTyJeZ
-	 l/CA/Nwa7KdhbkxmYt9DL93QBCCzAl1HT9YH0pmIZpZ5/+ZmYcb7c98r5a9Cttg61g
-	 0m8d4wistqltzkeqWls3LW0TkKCidcEeynkaApXIHNk3iQM7/CTN2j0a+PEcjNCeJb
-	 1J77zclR4IihWoY1BSuB+EKJycEVbLDbCWNJz4fw9TdcBPa03fEovDHGSEBx79hx5E
-	 tf7qnLI8Y9exg==
-Date: Mon, 26 Jan 2026 10:00:45 +0100
-From: Niklas Cassel <cassel@kernel.org>
-To: Markus Probst <markus.probst@posteo.de>
-Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-	Damien Le Moal <dlemoal@kernel.org>,
-	John Garry <john.g.garry@oracle.com>,
-	Jason Yan <yanaijie@huawei.com>,
-	"James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
-	"Martin K. Petersen" <martin.petersen@oracle.com>,
-	Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-ide@vger.kernel.org, linux-scsi@vger.kernel.org
-Subject: Re: [PATCH RFC 0/4] leds: extend disk trigger
-Message-ID: <aXctPaaXFYemV20T@ryzen>
-References: <20260123-ledtrig_disk_-v1-0-07004756467b@posteo.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B6D2823DD;
+	Mon, 26 Jan 2026 09:03:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769418233; cv=pass; b=IBbPcQJOBnPrEtpBLDlOTZh0cKON5cHZl/pjqcHV+ESSPbP8faXqlacyiZEIEWNa56tFSzYubKCUMLcAD3vQz65bjYPTqcCbfb8jHG4cd4pRIz0RAYf9KtEF8bThb1DghJxaWa8lZH5aTswxF1szwlrncmNfsZzleGEv2Oy7ADU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769418233; c=relaxed/simple;
+	bh=TGimY2g/rPo873RPmUyXIir1ih5AhpTHPgfuuvqhDKE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eNt2u2ot8/kv6vpaV6d6+P2BM97uC6Zpm+U72ImBD98sUCqxmCj8zVUox/EPP4hDFzN5X7xHdlgLLDGs1r/6LQqX+1nyNiuXBZ8wPRLp80JrKsyZhN1STj3VeF5E8pSKeBfawxbpHTCfYZwZL8H3V0U2TcoKsh0rZ2SKbVCLKYU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b=k+ETJadj; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1769418206; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=Lfh/eRNm7h3SKUFm2ewA6a/EsO2tqg1/xGQ+4lMYt1NSSKBmFa5Yo7Y0T98Fohkna4IETqDWDFUGU6JlBuzIGWRBeTuXqaUcejl+G06NT+cw+t6j2WcgdhtNfuMC+98o5/k6OJ7PGTbF6LPRaZurovzQTNKEilwh54OxdWzw4rY=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1769418206; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=Szw4w1kPWz+z204rfjqE2SzFPSa+7l4i9w+mPzkshVs=; 
+	b=HS+DgwvModzf5uvt0IgC5Gzq2xsRBnKY56Vb9GkgQOvXigBYCvEjIyhhohOsVUeRg54tcKh2LemWXFt7OTcO7nM9qefvhFi2zh4+ucq4VEIfz4jS3e8SN/S8SaAKA763hppE4FRhgnPH47hdlrV1+Mr3ddwj6n/1mnbOzn7IPB4=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=benjamin.gaignard@collabora.com;
+	dmarc=pass header.from=<benjamin.gaignard@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1769418206;
+	s=zohomail; d=collabora.com; i=benjamin.gaignard@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=Szw4w1kPWz+z204rfjqE2SzFPSa+7l4i9w+mPzkshVs=;
+	b=k+ETJadj+tQfi4J6Ht/P5SsTGGRtFvu9K2hXalxlFZNnQJSLk9grhNLWdip5NIwC
+	S1UYSrbLFgKI/53E7laWLIsCv2TSNC8htoWjQHbF8dFzxz0r5xvbbY55GSGQlEzHUw8
+	OyROJfVgetbJCMyPXxdlEpb+3AO+h+1jPwiALJGc=
+Received: by mx.zohomail.com with SMTPS id 1769418204273347.0095929584735;
+	Mon, 26 Jan 2026 01:03:24 -0800 (PST)
+Message-ID: <8fd2c508-cbe9-4050-ba02-85b22fcff10d@collabora.com>
+Date: Mon, 26 Jan 2026 10:03:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260123-ledtrig_disk_-v1-0-07004756467b@posteo.de>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v11 3/7] iommu: Add verisilicon IOMMU driver
+To: Will Deacon <will@kernel.org>
+Cc: joro@8bytes.org, robin.murphy@arm.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
+ nicolas.dufresne@collabora.com, p.zabel@pengutronix.de, mchehab@kernel.org,
+ iommu@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org,
+ kernel@collabora.com
+References: <20260107101005.84039-1-benjamin.gaignard@collabora.com>
+ <20260107101005.84039-4-benjamin.gaignard@collabora.com>
+ <aWZui-rn5RDPwpEO@willie-the-truck>
+ <68a49f8b-178c-4fa2-b4a9-315ad602271d@collabora.com>
+ <aWeTQ50DOtntcniN@willie-the-truck>
+ <db0950f1-b357-47c2-9829-e33262ab456d@collabora.com>
+ <aW4kb5EbxbrhTOxK@willie-the-truck>
+ <b8f43fe8-3e07-4d98-a50d-817c31370710@collabora.com>
+ <aXDL2JH_4RCDmAJv@willie-the-truck>
+ <4b33b50f-f0c3-4db8-b394-dd2d4d6e3a55@collabora.com>
+ <aXOsdlGMVzhHOrUr@willie-the-truck>
+Content-Language: en-US
+From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+In-Reply-To: <aXOsdlGMVzhHOrUr@willie-the-truck>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-259399-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-259398-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,oracle.com,huawei.com,hansenpartnership.com,ucw.cz,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cassel@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[benjamin.gaignard@collabora.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 7EAFC85B2B
+X-Rspamd-Queue-Id: 4FC5185C43
 X-Rspamd-Action: no action
 
-Hello Markus,
 
-On Fri, Jan 23, 2026 at 07:05:03PM +0000, Markus Probst wrote:
-> Extend the disk trigger
-> - to allow configuration of the blinking delays
->   and whether the led should be kept on, on idle.
-> - to allow an individual led to be mapped to an ata port
-> 
-> I would also like to add another patch to this series, only leaving the led
-> on with invert 1 if also at least one disk is present on the ata port.
-> The led would then not only indicate activity, but also if a disk is
-> present.
-> That is why it is an RFC.
-> 
-> @Damien,Niclas: What would be the most straightforward way of telling
-> the led trigger if at least one disk is present on the ata port and
-> notifing it when this changes?
+Le 23/01/2026 à 18:14, Will Deacon a écrit :
+> On Wed, Jan 21, 2026 at 02:50:18PM +0100, Benjamin Gaignard wrote:
+>> Le 21/01/2026 à 13:51, Will Deacon a écrit :
+>>> On Mon, Jan 19, 2026 at 03:03:44PM +0100, Benjamin Gaignard wrote:
+>>>>>>>>>> +static const struct iommu_ops vsi_iommu_ops = {
+>>>>>>>>>> +	.identity_domain = &vsi_identity_domain,
+>>>>>>>>>> +	.release_domain = &vsi_identity_domain,
+>>>>>>>>>> +	.domain_alloc_paging = vsi_iommu_domain_alloc_paging,
+>>>>>>>>>> +	.of_xlate = vsi_iommu_of_xlate,
+>>>>>>>>>> +	.probe_device = vsi_iommu_probe_device,
+>>>>>>>>>> +	.release_device = vsi_iommu_release_device,
+>>>>>>>>>> +	.device_group = generic_single_device_group,
+>>>>>>>>>> +	.owner = THIS_MODULE,
+>>>>>>>>>> +	.default_domain_ops = &(const struct iommu_domain_ops) {
+>>>>>>>>>> +		.attach_dev		= vsi_iommu_attach_device,
+>>>>>>>>>> +		.map_pages		= vsi_iommu_map,
+>>>>>>>>>> +		.unmap_pages		= vsi_iommu_unmap,
+>>>>>>>>>> +		.flush_iotlb_all	= vsi_iommu_flush_tlb_all,
+>>>>>>>>> This has no callers and so your unmap routine appears to be broken.
+>>>>>>>> It is a leftover of previous attempt to allow video decoder to clean/flush
+>>>>>>>> the iommu by using a function from the API.
+>>>>>>>> Now it is using vsi_iommu_restore_ctx().
+>>>>>>>> I while remove it in version 12.
+>>>>>>> Don't you still need some invalidation on the unmap path?
+>>>>>> In vsi_iommu_unmap_iova() page is invalided by calling vsi_mk_pte_invalid().
+>>>>> But that just writes an invalid descriptor and doesn't appear to invalidate
+>>>>> the TLB at all.
+>>>>>
+>>>>>> That clear BIT(0) so the hardware knows the page is invalid.
+>>>>>> Do I have miss something here ?
+>>>>> Yes, the TLB structure needs to be invalidated so that the page-table
+>>>>> walker sees the new value that you have written in memory.
+>>>>>
+>>>>> The rockchip driver gets this correct...
+>>>> Rockchip hardware have a ZAP_ONE_LINE register which didn't exist on Verisilicon
+>>>> hardware.
+>>> Presumably you have some sort of Verisilicon datasheet or downstream driver
+>>> from which you can infer the TLB invalidation runes?
+>> I have only this downstream driver:
+>> https://github.com/rockchip-linux/kernel/blob/develop-6.1/drivers/iommu/rockchip-iommu-av1d.c
+>> No datasheet...
+>>
+>>>> I have tried to use VSI_MMU_BIT_FLUSH on VSI driver after unmapping iova
+>>>> but it doesn't work.
+>>> What do you mean by "doesn't work"? If it works without doing any
+>>> invalidation at all, then it's very peculiar that adding the invalidation
+>>> would introduce issues.
+>> I mean VSI_MMU_BIT_FLUSH register can't be used to invalid the TLB.
+>> I think the hardware iterates over the pages tables in memory and
+>> check the valid/invalid bit.
+> I bet it doesn't: that would be horrible for performance.
+>
+> The hardware clearly has TLB invalidation support, as the downstream driver
+> that you linked above implements av1_iommu_flush_tlb_all() to poke it.
+> If the hardware has a TLB, then unmapping a page-table means you need to:
+>
+> 1. Clear the valid bit from the descriptor in memory
+> 2. Have some sort of memory barrier
+> 3. Invalidate the TLB
+> 4. Wait for the invalidation to complete
 
-Why do we want to have this in kernel space?
+That exactly what I had tried to do by calling vsi_iommu_flush_tlb_all() (minux the lock)
+after calling vsi_iommu_unmap_iova() in vsi_iommu_unmap() but that doesn't work
+and even make the system crash sometimes.
 
-Sure, there is already the very simple ledtrig-disk driver.
+Benjamin
 
-But I'm not a fan of making the driver more complex.
-If we want something more complex than what is already there, then it
-is probably much better handled in user space, considering the amount
-of possible configuration options.
-
-Basically the same argument as used in:
-https://lore.kernel.org/linux-nvme/20220227234258.24619-1-ematsumiya@suse.de/T/#u
-
-
-Kind regards,
-Niklas
+>
+> All IOMMUs tend to work like that and I don't think this one is any
+> different.
+>
+> Will
+>
 
