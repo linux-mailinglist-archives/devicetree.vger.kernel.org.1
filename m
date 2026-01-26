@@ -1,115 +1,85 @@
-Return-Path: <devicetree+bounces-259501-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259502-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +I3yCZ9ud2nCfQEAu9opvQ
-	(envelope-from <devicetree+bounces-259501-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 14:39:43 +0100
+	id iF0RCehud2m8gAEAu9opvQ
+	(envelope-from <devicetree+bounces-259502-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 14:40:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A95088F82
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 14:39:42 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ACF188FEF
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 14:40:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 37F6730705AF
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 13:34:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 31F6030421E5
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 13:35:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1648733A6E9;
-	Mon, 26 Jan 2026 13:34:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5BAA33A6E2;
+	Mon, 26 Jan 2026 13:35:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Z3IXpmep";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Qdd9lFuH"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="A3QJqKXR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 942B133A028
-	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 13:34:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D24C33A00C;
+	Mon, 26 Jan 2026 13:35:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769434472; cv=none; b=mLr3wBFNWiQ00zDYGB8xn5H5UCFgLEkzltI/sfn1Z6pJSUfbOiT7jTYCbUamo+tCJ3vaZPp015cVZjffNeiW+NJvNhUMilpDpacYAlWLfCK/2nWx/g3KTRzca/kLUOqHYy+ijQDYfkhjkIACHo7Q7XcvrlihXDhO2SwsC2VLifE=
+	t=1769434542; cv=none; b=J4rLS/NMcO/7/pVqvunN81xQo1dvvhOZWITNAVS+Ai/2GbK+wsaHYn9pX/dhCykwQPuepHP/8CbsWmLA3LTeWCz38MduuUrxPGGr/OfTEPJgq/odf4fYI7Ot/yWNLi+ckSnUO0N0VTqPOoq4Jxpdx5oT5YubyIWaVez9y4FS4Yw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769434472; c=relaxed/simple;
-	bh=yXLAq9KlI8wvcQ/x/qHbyHeswnLofO7p2mbItxHUGag=;
+	s=arc-20240116; t=1769434542; c=relaxed/simple;
+	bh=+F6fYbHMKoc4x2WxstoV/N1PVSE9Jur6Eo6X4yGUds0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dw7+YlePRyOHNQ7+P8p8yDaNISUbd23GqeQ2ybMrR7vgHwKj9cYMauhIZtnlTcFN0GTXszAZyX4Zk0HLlNFK5uSDNn0vbME2cPbkpt0EQHHUnYIu8ERaxHh1xpU/eAVuLWD0tubNocN8Mtz+rfZaATo1TqUI5uXNQbLCVvlYHP0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Z3IXpmep; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Qdd9lFuH; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60Q93Far412799
-	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 13:34:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=ogUx9c3kIlHsbm7jPIpllnLu
-	xzdPQLpiDV66FuQYNXM=; b=Z3IXpmepD25Rwer3iV4ZiZnV6wFeCdnof3NojsHQ
-	AGxkHG/ezDhKh9WKel7QyeuDSOyQx4USsxODgSpA+DnaY3JdZf0Hmp6Vv+xvpll+
-	yZ5QgAZxITm7eHWlw+SXd+5w0usnzVmtJAI79QDuoY+0cD9WsPaCYp0jjWSXEsUY
-	8mz+4lsFsX2tV2GMqJQU40fXOV0uFAEH53UabprRlL89/DWgtZuVgVq1LNhhpQtv
-	35OktO/ituRRjP3VUqniON5dPwwSUWa+tGHM5Yt5W3XMq1Rfv7CwuLiG5FX9pFpL
-	eAyHpvcf+i2OXlNdzNcdUJaDMrXT2arLqAj4q31R4E16vg==
-Received: from mail-ua1-f70.google.com (mail-ua1-f70.google.com [209.85.222.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bvq9qmn1x-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 13:34:29 +0000 (GMT)
-Received: by mail-ua1-f70.google.com with SMTP id a1e0cc1a2514c-948476b92e8so3001258241.3
-        for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 05:34:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769434469; x=1770039269; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ogUx9c3kIlHsbm7jPIpllnLuxzdPQLpiDV66FuQYNXM=;
-        b=Qdd9lFuHSk2R86No3lE3iZi+u2ipD1pmpHAv2yS6bBuSfqUdIzAFPzIP2vsDoWQ5SS
-         +d3/5ihwXbIXRk3ZNRLR8XWpdJIZzMWMlGJCWkAWIlbK561nLv/1aNU+jyFLvNqsDItd
-         BM/gMigxY78Kcn2j77sP33ias9WLv9iFXm6WtrLfJM+WU32tJ8kEIxOgwZX8qpk9sD/6
-         49SZ9go1h3++DBRi09Z5md03/bVhRLWF2H5uMMHFZeX51RDDXRBNXOM3Nk8yJoIksZW0
-         ohCp1qZyMElQjcR4FInJGAmQ87Xl0YlcIrQw0eu+hkzxdvUP8MNPHbshbFwVyC/X5rDU
-         HkAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769434469; x=1770039269;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ogUx9c3kIlHsbm7jPIpllnLuxzdPQLpiDV66FuQYNXM=;
-        b=CbAc5nLWpK4XzXR5AI6fiJHV6eahn2b0wNdFoLN1evi1/toGC+als0Tt4JJKx2BlUQ
-         bf9wQg7DJY+npwFqXd5rqXFxr+5XT0ojqz5uxEoEIbNLL68S88nNhaR2Jyn8ISYQtmyA
-         JZunjL9XwhVT/mBPZDKHwY3HTkdw7VnJiSMiCgBdsQmbFRZl3s3o4oe12U47pjXQ8Vhv
-         Km8e7D0LuJd3dYmPGcCb6Snq/C0GXKXVHJEy5rAqnm/zuadA+U2jGUL8JIuwveNqG5F2
-         HkggBgDTJRAb9K+7IkJmL7ikt3nzSbxjAfHF0LHQAEo/kJxUnnZyPpbzI/nvqqwLvJdB
-         wxgQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVgp4IIRp+mOr8qhh4TNTKzSgd/XGXQhSYmIrfp/1PDkXpQJ3mjEB3cne2NaVREmbii2Q0Rz094VkdI@vger.kernel.org
-X-Gm-Message-State: AOJu0YzNB7aSj+D33FULqAYjnFt1oWqqHdKmwPDesQAQ7hZjR6+gnEzi
-	IvWMGkwGdK76It/R063kYYMMj9+dMJJQiS1Ptfjdm3wJQG0KadJEU3GtYMkc/qfIKaZMAdLwDJB
-	R2BQpgvYFgyHEaUdnPdJlWFcN3sgHMsuyhoBcKkr8t1CJD6GBCtXrKGaYCaWrN6ij
-X-Gm-Gg: AZuq6aIBiaBcwoVkr8WldX2s53vjORoICmndoYOsUgxGHrjivGdnYg+OqYoIiQEXNt7
-	tkP0DQS+vIFYLe9AuijkbqJ6bcHXnVXgeISNT0wMUqTST+8XxdwHJeF/XGp+a2D2Uk/B6A7hHNu
-	c9zdnLgYgI6BdmyRLE69vtjPRX2K/460jiFu2pEUtTxzR3B1Fld5M9ErSULX4G0QwiSZcBTAeed
-	QY/jl5syvVhI08IkDZ6PDRdL8FX6ZhnR19FhoI0oH2swwN5lysaLqdquzUJRC55eiAT3B3crp/e
-	jjnto0wEE14E1f/KZ3meQ3Ldgnb2iFp9rJX9xv5NYGX4Pp5YQQ4ptFVJGLMXa4AZpnMTRGe6BWH
-	s+AwiSYT68WnfteTnbbMhUlmzKjuir+BJk3hVvP6yF7hVJi6iLq4Li5uBlP25amZUzlg7Z1cLRa
-	l04V/tcDue7r4vEbQqiA3CNEU=
-X-Received: by 2002:a67:ea46:0:b0:5f5:7737:cdf9 with SMTP id ada2fe7eead31-5f57737dd04mr761432137.1.1769434468812;
-        Mon, 26 Jan 2026 05:34:28 -0800 (PST)
-X-Received: by 2002:a67:ea46:0:b0:5f5:7737:cdf9 with SMTP id ada2fe7eead31-5f57737dd04mr761424137.1.1769434468407;
-        Mon, 26 Jan 2026 05:34:28 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59de4918f94sm2731664e87.66.2026.01.26.05.34.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Jan 2026 05:34:27 -0800 (PST)
-Date: Mon, 26 Jan 2026 15:34:26 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>
-Cc: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
-Subject: Re: [PATCH 2/2] interconnect: qcom: glymur: Add Mahua SoC support
-Message-ID: <k54tulgkio5at744qcuhqijgb6hb6kjcahloyiiu3ujeoqoir4@vu3cuu7p4wvw>
-References: <20260123-mahua_icc-v1-0-bc82cb087f1e@oss.qualcomm.com>
- <20260123-mahua_icc-v1-2-bc82cb087f1e@oss.qualcomm.com>
- <vpaz7jhnuagfl24dow3ktyhjtzktmhiiwh2rnflub3jbc3pgu2@2ydlmugmqgbt>
- <d160aa9b-d22d-4c12-ab4f-42b5dff375b5@oss.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=H7PfDjGHa8ezWdfwfzVMg1Y09FjPp3tGPfOiNf0fCUJ+npjivh8Xo6eqyRmL+bdzMqP2YWif+9Zsp+ZjM9fEsrHzCbp1zwyuxb8dcx33uXbjiiak2ghyZkFf44f2cnwQRPdk5/ueDmpy5wIeFfhMIA3xogZT2lVzGxLE8VuW3xk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=A3QJqKXR; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1769434540; x=1800970540;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=+F6fYbHMKoc4x2WxstoV/N1PVSE9Jur6Eo6X4yGUds0=;
+  b=A3QJqKXR4pnhwCaZztC4TCtaDQPe+gZZlDAc8U6O21eis0gly7XvsoXC
+   lSpFM7nsdeEqG509fjC1GCsc0/Q+zQe8xIey5/dDb6Trvjfh0tBc89X09
+   v4PER+NU2INypT/aysjdsjSQfpQlbNbV7RwmfPYWyxSytUNcCtNBBd6xY
+   Aul3cvOQAW4CWk8Xv4JVRsTlOt0Kd2DpUJkISKyrTdqz8bMO/lNHjFDno
+   e0K4V/acaIru5qKFmEGQ3b5juJdW1P+ycgXB8dq4BgwITtAt8ldXWwUpT
+   514ScfDDzlQsYPIYAvH0RNLM+wuMrium9HzEsiASsafIgLw4qq90YCEhY
+   A==;
+X-CSE-ConnectionGUID: 0ddJiwRkQyOA76j2mxO4JQ==
+X-CSE-MsgGUID: CCzUsmkvTYW7vIzic8YkMw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11683"; a="82042151"
+X-IronPort-AV: E=Sophos;i="6.21,255,1763452800"; 
+   d="scan'208";a="82042151"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jan 2026 05:35:40 -0800
+X-CSE-ConnectionGUID: CLCut5vYRsiTnTKyf1GvIQ==
+X-CSE-MsgGUID: IHKxvmhkR8upyYnpRiId9Q==
+X-ExtLoop1: 1
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.122])
+  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jan 2026 05:35:36 -0800
+Date: Mon, 26 Jan 2026 15:35:34 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>
+Subject: Re: [PATCH v5 2/8] iio: core: add fixed point parsing with 64-bit
+ parts
+Message-ID: <aXdtpkL5QUhhB_hh@smile.fi.intel.com>
+References: <20260123-adf41513-iio-driver-v5-0-2dce812a2dda@analog.com>
+ <20260123-adf41513-iio-driver-v5-2-2dce812a2dda@analog.com>
+ <aXdUvRZ9NmP5Nh95@smile.fi.intel.com>
+ <byitgzjli5gsq5v66topve7ip3inkk2udwhuihjdp6bknnkmos@tv226l7tek7s>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -118,91 +88,142 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <d160aa9b-d22d-4c12-ab4f-42b5dff375b5@oss.qualcomm.com>
-X-Proofpoint-ORIG-GUID: XFRvKXNVjdXGwTI7sJM-Pil5CnB2KlHt
-X-Proofpoint-GUID: XFRvKXNVjdXGwTI7sJM-Pil5CnB2KlHt
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI2MDExNCBTYWx0ZWRfX8SRQnoy3ELV6
- lSS/BPCzgEjroeUDDXPQFCYv+LU1TClXzY6XxFu2YBD8z3gCzKRBnxq65Q3f+4dO/RGea6tD38w
- jnVYY+5L07Hd4WeDTQAhRAcVMYbldW5Y3jwRBCiJPN9n/Y2UfOfyGZ705rAkmmfILTXythpdVVZ
- O88O0WJmVTz+nxDWgK7zKs9XxoLWgIaka3cmPEi/eLojucAxv3nL5XXKfnafDiITJNsmKgWsCh5
- H9GWiVXbtadO5Gqhjg8P3OpokGu1VOmGqhf4NzOw5ZU+td2eo/cOrzDlvOdzK553O8FDlrM54RR
- xCvZzqt1mVDJka1kfjkUXfJkZ1NKuPCJYays/H5V87mv94lSvHiLYpEx/2A+Q6z/Iw3zILA9NNY
- +xsmJywnfAycktFO8aVr3P7RVYS8ioxLhRWtBPWgmiv7TmXMTnwnFFzeevv6pWbetkk8KY3Ue+q
- yMpjk7JhbiAGbMGPSJQ==
-X-Authority-Analysis: v=2.4 cv=TsTrRTXh c=1 sm=1 tr=0 ts=69776d65 cx=c_pps
- a=R6oCqFB+Yf/t2GF8e0/dFg==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=_hxizIyGxqbTRImzlzYA:9 a=CjuIK1q_8ugA:10 a=TD8TdBvy0hsOASGTdmB-:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
- definitions=2026-01-26_03,2026-01-26_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 clxscore=1015 phishscore=0 adultscore=0 lowpriorityscore=0
- bulkscore=0 spamscore=0 priorityscore=1501 malwarescore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601260114
+In-Reply-To: <byitgzjli5gsq5v66topve7ip3inkk2udwhuihjdp6bknnkmos@tv226l7tek7s>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	TAGGED_FROM(0.00)[bounces-259502-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259501-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:dkim,qualcomm.com:dkim];
-	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 8A95088F82
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 7ACF188FEF
 X-Rspamd-Action: no action
 
-On Mon, Jan 26, 2026 at 06:40:13PM +0530, Raviteja Laggyshetty wrote:
-> On 1/23/2026 11:28 PM, Dmitry Baryshkov wrote:
-> > On Fri, Jan 23, 2026 at 05:12:36PM +0000, Raviteja Laggyshetty wrote:
-> >> +static int glymur_qnoc_probe(struct platform_device *pdev)
-> >> +{
-> >> +	if (device_is_compatible(&pdev->dev, "qcom,mahua-mc-virt")) {
-> >> +		llcc_mc.channels = 8;
-> >> +		ebi.channels = 8;
-> >> +	} else if (device_is_compatible(&pdev->dev, "qcom,mahua-hscnoc")) {
-> >> +		qns_llcc.channels = 8;
-> >> +		chm_apps.channels = 4;
-> >> +		qnm_pcie_west.buswidth = 32;
-> >> +	} else if (device_is_compatible(&pdev->dev, "qcom,mahua-pcie-west-anoc")) {
-> >> +		qns_pcie_west_mem_noc.buswidth = 32;
-> >> +	}
+On Mon, Jan 26, 2026 at 12:42:53PM +0000, Rodrigo Alencar wrote:
+> On 26/01/26 01:49PM, Andy Shevchenko wrote:
+> > On Fri, Jan 23, 2026 at 03:53:07PM +0000, Rodrigo Alencar via B4 Relay wrote:
+
+...
+
+> > > +static int __iio_str_to_fixpoint64(const char *str, u64 fract_mult,
+> > > +				   s64 *integer, s64 *fract, bool scale_db)
+> > > +{
+> > > +	u64 i = 0, f = 0;
+> > > +	char *end;
+> > > +	int digit_count, precision = ffs(fract_mult);
+> > > +	bool negative = false;
+> > > +
+> > > +	if (str[0] == '-') {
+> > > +		negative = true;
+> > > +		str++;
+> > > +	} else if (str[0] == '+') {
+> > > +		str++;
+> > > +	}
+> > > +
+> > > +	i = simple_strtoull(str, &end, 10);
+> > > +	digit_count = end - str;
+> > > +	if (digit_count > 20)
+> > > +		return -EINVAL;
 > > 
-> > Right here, set the node entries to NULL.
+> > Not really. If we are talking about decimal (only) cases we need to also count
+> > leading 0:s.
+> > 
+> > 0000000000000000000000000000000025 is still 25, no overflow.
+> > 
+> > That's why I recommend to have a helper, maybe for now locally here, like
+> > 
+> > int safe_strtoull(..., unsigned long long *res)
+> > {
+> > 	...
+> > }
 > 
-> cnoc_cfg_nodes is declared as an array of const pointers, so the pointer
-> values cannot be reassigned after initialization. To change the addresses,
-> the const qualifier would need to be dropped. To preserve const, the 
-> entire array has been duplicated instead by dropping the PCIE_3A related
-> nodes.
+> Are you suggesting to not use simple_strtoull then?
 
-Why? Just drop the const instead of creating unnecessary (almost)
-duplication.
+Nope, I suggest to do an additional step before checking for the range.
 
+> Understood, leading zeros can be ignored only when parsing the integer 
+> part. Also, would be nice to have truncation of the fractional part
+> while doing the parsing. How about:
+> 
+> static int iio_safe_strtoull(const char *str, const char **end,
+> 			     size_t max_chars, u64 *res)
+
+> - max_chars = 0: ignores leading 0's and process all digits
+> - max_chars > 0: process only initial max_chars digits and ignores the rest
+
+I'm not sure why we would need that. It should parse the whole line until the
+first invalid character or overflow.
+
+> on overflow of u64, the function would return -EOVERFLOW
+> 
+> > that will do all necessary checks and returns -EINVAL, -ERANGE, et cetera.
+> > In the below we would need check for the error codes respectively.
 > > 
-> >> +
+> > > +	if (precision && *end == '.') {
+> > > +		str = end + 1;
+> > > +		f = simple_strtoull(str, &end, 10);
+> > > +		digit_count = end - str;
+> > > +		if (!digit_count || digit_count > 20)
+> > > +			return -EINVAL;
+> > > +
+> > > +		if (digit_count > precision) {
+> > > +			digit_count -= precision;
+> > > +			f = div64_u64(f, int_pow(10, digit_count));
+> > > +		} else {
+> > > +			digit_count = precision - digit_count;
+> > > +			f *= int_pow(10, digit_count);
+> > > +		}
+> > > +	} else if (!digit_count) {
+> > > +		return -EINVAL;
+> > > +	}
+> > > +
+> > > +	if (scale_db) {
+> > 
+> > > +		/* Ignore the dB suffix */
+> > > +		if (!strncmp(end, " dB", sizeof(" dB") - 1))
+> > > +			end += sizeof(" dB") - 1;
+> > > +		else if (!strncmp(end, "dB", sizeof("dB") - 1))
+> > > +			end += sizeof("dB") - 1;
+> > 
+> > Now we have strends()
+> 
+> strends() would not account for the acceptable '\n' before the end.
+
+Good point.
+
+> I don't think we would need to test for " dB", " dB\n", "dB" and "dB\n"
+
+Then you can try sysfs_eq() which does that check. But I think it requires
+the (end of the) string to be exact, and not something like 'dB   \n'.
 
 -- 
-With best wishes
-Dmitry
+With Best Regards,
+Andy Shevchenko
+
+
 
