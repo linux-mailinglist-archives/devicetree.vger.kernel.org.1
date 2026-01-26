@@ -1,175 +1,137 @@
-Return-Path: <devicetree+bounces-259553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259554-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WPA+D2SKd2m9hgEAu9opvQ
-	(envelope-from <devicetree+bounces-259553-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:38:12 +0100
+	id kKCZEuSKd2m9hgEAu9opvQ
+	(envelope-from <devicetree+bounces-259554-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:40:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB9F28A38C
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:38:11 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7A2E8A3BB
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:40:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5A9EC3049272
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 15:34:12 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9221E301A16C
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 15:40:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8905833F368;
-	Mon, 26 Jan 2026 15:34:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE42133FE11;
+	Mon, 26 Jan 2026 15:40:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="PVSXX3pa"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="cPi0QWY+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46A7533E35D;
-	Mon, 26 Jan 2026 15:34:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCAB03382F2;
+	Mon, 26 Jan 2026 15:40:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769441651; cv=none; b=MMkpeJ1wfFtMs+fr2k82VSeT8w0/Z5xtRWCWOn2RkLhQewJGx4AryAFAOwW+JK4qoQsU5ej167So6r6US9VtHVr2H7kIg1R53fdmi6oVkC3bf2nDpye6AtMzhzcyY39GSHoT9+E5xbsONW9MPvtA+u72Knp3kn4ITnTPUa8ags4=
+	t=1769442005; cv=none; b=PR1nkEbzKekpLUHU+ePKilmVFoJa9FEpiKki/F9pvF1wZHsIXHBkwC5v9aKzQfgPUuubDtFI4oovcODnwNVbodKsL2Nhmf+uWeUKSbKY+WiXVJX5tt+11dvpuvgONPRS7lTqF0QbWAZt1n3SJOzuxbygKu3QFiDVuBCNykG/xCQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769441651; c=relaxed/simple;
-	bh=c4zIUaVR/lkn9ej0uJMksg0BObX0gJEu8Pk9DSo/GgQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XuGCmoQi/4GOEUoRQC2SPiDSd9egBF1kBp5g8pHFa7WhoB6kwsyxhSbOFamguC1Hy0VEjBp+4poY00a0UK19dqFwaLTzzqtMoKNp6AWCCqxhopqNeRQHpd+53V1hqmyQVbTJknmFCJIXmF1loS6lDbp1qDpzi7ybTvfpXWlgAxw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=PVSXX3pa; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=eae6B3pYhJ65yiJ/woVw/sITqVU+XQC0UckLLwclRkM=; b=PVSXX3paoP2wq8qCHoHUZWhYIi
-	dqkW3/AGt5t0PjIhJjxoPF0ZRs/xbuaZu/ZFrL1mXcQhocrCS0ZakfIFYnjtaq2nylaFQeC6qGPZX
-	jzLRSTfuqZSpz4sXdVekpqz2JckScisybCNTXK79Vt4gJgOSOF8x/96DmjN3NXynVHudSQhJD+dEn
-	cL7XXmLLXnqxnoRcY15Lqrn+B1qRv/e9GfCkl0nusIb0doBZRmBOxEes7qBffEXjPleMKNYn2dKj/
-	rhXiCC4uttqL/6NFsuQeNlXBUfAUfbOeeGmOp8aPbe2610SqOXXhYp55nRKb1YjbEtuENctuIIhFE
-	6bvIprsA==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:54392)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1vkObG-0000000051g-3n3m;
-	Mon, 26 Jan 2026 15:33:58 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1vkObC-00000000530-35q3;
-	Mon, 26 Jan 2026 15:33:54 +0000
-Date: Mon, 26 Jan 2026 15:33:54 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Simon Horman <horms@kernel.org>
-Cc: dan.carpenter@linaro.org, robh@kernel.org, kuba@kernel.org,
-	festevam@gmail.com, ghennadi.procopciuc@oss.nxp.com,
-	alexandre.torgue@foss.st.com, linux-kernel@vger.kernel.org,
-	andrew+netdev@lunn.ch, shawnguo@kernel.org, mbrugger@suse.com,
-	mcoquelin.stm32@gmail.com, linaro-s32@linaro.org,
-	davem@davemloft.net, s.hauer@pengutronix.de, edumazet@google.com,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
-	conor+dt@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org,
-	Frank.li@nxp.com, chester62515@gmail.com, netdev@vger.kernel.org,
-	kernel@pengutronix.de, pabeni@redhat.com, jan.petrous@oss.nxp.com,
-	linux-stm32@st-md-mailman.stormreply.com, s32@nxp.com
-Subject: Re: [v4,1/3] net: stmmac: s32: use a syscon for
- S32_PHY_INTF_SEL_RGMII
-Message-ID: <aXeJYo-0iiNuXVGH@shell.armlinux.org.uk>
-References: <8f2139e8adf02b485a4c84d558fc23f78cf04add.1769195864.git.dan.carpenter@linaro.org>
- <20260126152430.1390514-1-horms@kernel.org>
+	s=arc-20240116; t=1769442005; c=relaxed/simple;
+	bh=d8VuOEfG0f/9HpsNiEmEqegXE6O8LKlNn7wru/cUYdM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=d5ayyHqMZmsdLXM532CDd7p/sQwpvW/KrzUvFCaXGhfEeYrEhryrtuIrJOkYIQxd8XA4BMBZzlm9kL87r7e1+MK0iwOxWbeZ9O25uMPNksdI4txWWCDXywUQrgbjUi53rp39GKRZtRGOVLN1+Lh77xZZNnEHcJvXt032r/iE2cs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=cPi0QWY+; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 2F0E6277E4;
+	Mon, 26 Jan 2026 16:40:01 +0100 (CET)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id q1cFH0pjmZE2; Mon, 26 Jan 2026 16:40:00 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1769442000; bh=d8VuOEfG0f/9HpsNiEmEqegXE6O8LKlNn7wru/cUYdM=;
+	h=From:Subject:Date:To:Cc;
+	b=cPi0QWY+oOdLeOJ1ShOMwdbsizwgmJl+oPuLpgJt8XDfw4bCGhnPny3PPplMzZ1kL
+	 9i+y6YFWExbuAMfXxzMnTO/irM+nwJlIpmuiFr1rJFTOsq0UjFCyrpgT015kdlft5j
+	 4uS9yvlVaTsEHSbwQ9iNf6BgWdfb/OJtyDQ0REMvO/nk9HqhMVRs1pYZtGZl30UZTm
+	 M8yZE1YV8uONkd7BTgFsNRX9P5+SmsXPRDo0AWx+gEiD/m39TtExPohkH5wazxOaHz
+	 KFbgeTCJVYWFs10LjwV65XydVzZhxNg3n9n/kGMjeMjCmCiGtx87OWW2YIZ2OAlIrN
+	 2f5VwM82a6iPQ==
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+Subject: [PATCH 0/2] Add support for Samsung S2MU005 battery fuel gauge
+ device
+Date: Mon, 26 Jan 2026 21:09:47 +0530
+Message-Id: <20260126-s2mu005-fuelgauge-v1-0-68a146ed0819@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260126152430.1390514-1-horms@kernel.org>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMOKd2kC/x2MQQqAIBAAvxJ7Ttg2FOwr0aFyq4WyUIxA+nvSc
+ WBmMkQOwhG6KkPgW6KcvkBTVzBvo19ZiSsMhGSwIaMiHQlRqyXxvo6pCKTZOqu5xclA6a7Aizz
+ /sx/e9wMXynTiYwAAAA==
+X-Change-ID: 20260126-s2mu005-fuelgauge-25e9d95e30b6
+To: Yassine Oudjana <y.oudjana@protonmail.com>, 
+ Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Kaustabh Chakraborty <kauschluss@disroot.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.14 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_REJECT(1.00)[armlinux.org.uk:s=pandora-2019];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
+	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[armlinux.org.uk : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-259553-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[linaro.org,kernel.org,gmail.com,oss.nxp.com,foss.st.com,vger.kernel.org,lunn.ch,suse.com,davemloft.net,pengutronix.de,google.com,lists.infradead.org,lists.linux.dev,nxp.com,redhat.com,st-md-mailman.stormreply.com];
-	RCPT_COUNT_TWELVE(0.00)[29];
+	TAGGED_FROM(0.00)[bounces-259554-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FREEMAIL_TO(0.00)[protonmail.com,kernel.org];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[armlinux.org.uk:-];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DKIM_TRACE(0.00)[disroot.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[linux@armlinux.org.uk,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kauschluss@disroot.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.991];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[armlinux.org.uk:url,linux.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: DB9F28A38C
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: B7A2E8A3BB
 X-Rspamd-Action: no action
 
-On Mon, Jan 26, 2026 at 03:24:30PM +0000, Simon Horman wrote:
-> This is an AI-generated review of your patch. The human sending this
-> email has considered the AI review valid, or at least plausible.
-> 
-> For local reproduction steps see https://netdev-ai.bots.linux.dev/ai-local.html
-> ---
->     net: stmmac: s32: use a syscon for S32_PHY_INTF_SEL_RGMII
-> 
-> This commit adds syscon/regmap support for accessing the GMAC_0_CTRL_STS
-> register on s32 chipsets, while maintaining backwards compatibility with
-> the existing direct MMIO approach for older device trees.
-> 
-> > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
-> > index 5a485ee98fa7..2e6bb41f49e1 100644
-> > --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
-> > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
-> 
-> [ ... ]
-> 
-> > @@ -40,7 +44,10 @@ struct s32_priv_data {
-> >
-> >  static int s32_gmac_write_phy_intf_select(struct s32_priv_data *gmac)
-> >  {
-> > -	writel(S32_PHY_INTF_SEL_RGMII, gmac->ctrl_sts);
-> > +	if (gmac->ctrl_sts)
-> > +		writel(S32_PHY_INTF_SEL_RGMII, gmac->ctrl_sts);
-> > +	else
-> > +		regmap_write(gmac->sts_regmap, gmac->sts_offset, S32_PHY_INTF_SEL_RGMII);
-> 
-> Should the regmap_write() return value be checked here? The function
-> returns int and the caller s32_gmac_init() checks the return value
-> expecting errors to be propagated. For comparison, dwmac-sun55i.c in
-> sun55i_gmac200_set_syscon() does check regmap_write() return value:
-> 
->     ret = regmap_write(regmap, SYSCON_REG, reg);
->     if (ret < 0)
->         return dev_err_probe(dev, ret, "Failed to write to syscon\n");
+This patch series adds supports for the battery fuel gauge device for
+Samsung S2MU005 PMIC battery chargers. It reports various metrics,
+including incoming voltage, current, battery capacity, etc.
 
-AI is wrong on this last line - s32_gmac_write_phy_intf_select() is
-called from s32_gmac_init(), which is called from plat_dat->init.
+Although this device is independent of the actual PMIC which it
+accompanies in functionality, it is used in conjunction with the PMIC's
+charger sub-device to provide complete battery status.
 
-plat_dat->init is called from two paths:
+Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+---
+Kaustabh Chakraborty (1):
+      dt-bindings: power: supply: document Samsung S2MU005 battery fuel gauge
 
-1. stmmac_pltfr_probe() -> stmmac_dvr_probe() -> plat_dat->init()
+Yassine Oudjana (1):
+      power: supply: add support for S2MU005 battery fuel gauge device
 
-2. stmmac_resume() -> plat_dat->resume() -> stmmac_plat_resume() ->
-   stmmac_pltfr_init() -> plat_dat->init()
+ .../power/supply/samsung,s2mu005-fuel-gauge.yaml   |  49 +++++
+ drivers/power/supply/Kconfig                       |   9 +
+ drivers/power/supply/Makefile                      |   1 +
+ drivers/power/supply/s2mu005-battery.c             | 234 +++++++++++++++++++++
+ 4 files changed, 293 insertions(+)
+---
+base-commit: ca3a02fda4da8e2c1cb6baee5d72352e9e2cfaea
+change-id: 20260126-s2mu005-fuelgauge-25e9d95e30b6
 
-In the resume path, it is not appropriate to use dev_err_probe()
-because we're not in the probe path.
-
+Best regards,
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+Kaustabh Chakraborty <kauschluss@disroot.org>
+
 
