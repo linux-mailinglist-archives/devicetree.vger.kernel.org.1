@@ -1,79 +1,81 @@
-Return-Path: <devicetree+bounces-259401-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259402-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cNKgMEIyd2mrdAEAu9opvQ
-	(envelope-from <devicetree+bounces-259401-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 10:22:10 +0100
+	id YG2SO1syd2mrdAEAu9opvQ
+	(envelope-from <devicetree+bounces-259402-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 10:22:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0AB485F20
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 10:22:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42AEE85F30
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 10:22:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D408430015BA
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 09:22:06 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D3739300600E
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 09:22:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14C3122FDEA;
-	Mon, 26 Jan 2026 09:22:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 362F5308F13;
+	Mon, 26 Jan 2026 09:22:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nA8P/tAq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="A6LA8ssg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 963792F745B
-	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 09:22:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85880306B21
+	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 09:22:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769419324; cv=none; b=hYAz60+9A1Y1PwhpM9+y8iZ5AtaC3pRsS2Fx5mNt/UMgCjG+or6V7Lg0s9uWawRGmpbsJwdCcxhwXUGYIACI0x/wVZzX1Oq9/RjIM8bsh9n4N6AanLHoFp/p9kPwHMsI8yDf6mOkNE8WhGW6Ax5fgNpbvb2e8mqdZRMWu++3Mwc=
+	t=1769419326; cv=none; b=jk9JAX4vfXyQnMogXH19Vh8gdzC3M/LxxYEwccO+sGEhQ0AiBYwlRNh6hbtBvmsXKZK3cI7SqehXuwuKMrap+iSJJfTe1ax/DjrKqTexqhM9OIVtxo855SQxx9JlAOIJQkQj66ebtLc+JTeoaQS4zR2sQzwAzdB+ciOZWrdlSso=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769419324; c=relaxed/simple;
-	bh=XqY+3z3lFInRtiA1QaY9W5BxS5LDXpmS9hDw92iiPFQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=cMmkXOS6pEy6HatJHBaF5CqdViXJFsEnF+qNJZgMST4MU4RHxfpqMS5HlYeRt3yDQUKbJIlwIeE4iZLL2Rt2Crke8P0ReQOwa3UA9R3DcnIIQOokESueVFucwU9BXETo5gxWxyR8ktxt5Xfv/bieU13/Q+Q3x4IN8nYSqj+68ps=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nA8P/tAq; arc=none smtp.client-ip=209.85.128.45
+	s=arc-20240116; t=1769419326; c=relaxed/simple;
+	bh=HzBu2NbGKcOQwsBSue+2sXgdaUYPXA/eSDYmPrHSRrc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=AZomd1epYSzo/3U8lGnXqjG2yMUafkgFhWRXNibe0NvBzPeKQEFTuop7UEp5AQ8hCslV9UFjdAbgn6OHUCAk1fqkmdNewZFpA+odKAE87g29Ualp7Ahwt9TmmkYcCfaEMLCVJzZmMqmGuHgbb8MOgTErBOQixKPW0ahHwKXbjOY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=A6LA8ssg; arc=none smtp.client-ip=209.85.128.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-47ee3a63300so48609785e9.2
-        for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 01:22:02 -0800 (PST)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-47fedb7c68dso42435765e9.2
+        for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 01:22:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1769419321; x=1770024121; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=OI5Ny9D74Cc/ioYhww8l8XjzBGWxzHq8lI7GocImLIY=;
-        b=nA8P/tAqBS8QIwVUh9KL7pudBL+LnlYlUIC3mQ1n0a/rQ5o7BExap0X1pH8GZWLNFd
-         4pgJygDrfnGYHRyOXP8mBoWkvXi2L8aH/wPELsy9eBwWKUEvK4K8MTey8W19soyZC7Jy
-         2U38Is2vnvebLcbj+7JgPNSgq01TXuNg7mH6s5yZ6TxD5ft7hv7cVD2gGdIA+fev/+Wl
-         IFTvdXuhnPr+wTfblAe/tCqPptck07SmGLBJVgwY5gHXT4+jP7QtMa7fItz1/wau1t/F
-         iNNeu9Nzplj0yhe0k8fURGydwGiVKJaVKfYU4t/HUV7lA/m8IpOpqI5p1PrK0HQNiDed
-         kZEg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769419321; x=1770024121;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1769419323; x=1770024123; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=OI5Ny9D74Cc/ioYhww8l8XjzBGWxzHq8lI7GocImLIY=;
-        b=SZCFg0wcR4LgZL0LOPY6A6v2UdIGW4Wpeq0kFeXM7q8H+z9bISBn+Myp9+eNmeS6fU
-         5YZaYW3zq/RQOgDcOznZaGtxGBxyUX7AbAtx1knkf870P5C8hs4x8JKTqsbGP8kFRqTl
-         IQBnIF2/WZjkLPAojKirjZSzJa1s1M+P4G/x0C2Y/kF/k0x6TsV2ydZrLs9/cCCLti1R
-         hf6kDW66RRA6+qvibU9xJFX/EUbGCZy8s+uchFBwv1tmMRl6sbGpOyC+5vaVuG3SoeMk
-         Nj+ORRjCJe5yHM7pvDPh5VJiENj+kBbz7OaFLTG+a0b/c4o1XHSvddRsl+rPy+G/dC35
-         PsrQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWsoHJ4xCXionTJ6yHhCAGtCEuaJJAA57kHFHNkx6zO7j8XYOg6Xnv1r7fUK9X6FFDsDdwqpjh9b79W@vger.kernel.org
-X-Gm-Message-State: AOJu0YwmtpajFpfSIUvpYnai4alSKyTQlqAJJ38LF4TGmzIHlS7d8dlv
-	+h7uXXQqhL0NDDF3s/5F7y0SRKfyilS6uGE6kLGUSWjRDE0lGN/YjADy0n5QZbZjKoc=
-X-Gm-Gg: AZuq6aI1RE1BvsncEecnih6FrjFDF0ajjAo451JTOaEF3E0Q4I96VEgtBZUkKyfEbxT
-	MBKcwUjjmzpFwlym7eSnT01R8AAVFpX4LgzliGoU2rs2WXZbKs1leM+dtZV2lC1VNmsp9s4yIy6
-	sMXWzEBxfBtMoOmYjVwovrBrheqdJ46lA2eaZvXiH4of16U28goezWh3aQVNNvOElm1vq+pWkGj
-	5diF0Xkzd8Iqmhm6T7f23BvZGDmvbtiIduHyc0QHjyB11/lzwkgyhYAKVxIC9MNPlX5jEK4Efrt
-	Qe3mJ/oJt7BJfeaq+wexi9Sd+yMxP/S439uefqsJxs9ImABnRd2UnmvbpDEl0Au1ky4MZiA1K9v
-	uMSj8wJppvLo2Ja9yBJBXtPCx8TUe1c2ofl2BkgbQaXK0vSnlzln7m5Rs6VrHP3V74ttbYZ7OSF
-	tDrxLz+I8drd1u+nKDc1Q=
-X-Received: by 2002:a05:600c:3b17:b0:477:7975:30ea with SMTP id 5b1f17b1804b1-4805d06616fmr56869205e9.29.1769419320889;
-        Mon, 26 Jan 2026 01:22:00 -0800 (PST)
+        bh=j3Z4Yd2fRXfRsRi8a3YRl2niiXC4DwI7ABHuLbV15ig=;
+        b=A6LA8ssgTyZ23s7ItqrjdXKyy0kKFQmZE47uDIl8IhELHnUBU7QA78F1iq1E0KF+G8
+         /gLQZIBP/Q8wHBisCXHqqAmVwdXpD/DNT4j4F3OWwx+G/Y8rKH4kkFjB4qKWfrtpib5C
+         WIbb9UFr2FvAUAYU/RuJudpPAFN+oSiz+EyWJt7bz2aXkylvsMikxt4z0E8KCkS5kzDE
+         NUg8o6cm02pmDv04MKWkAKNwnEAcSa9BeXVgqCSMkRIPJ3feZOBMz7pL5yWdJyO+aY9f
+         YIcWL6NVCpofqGni5QywUl8akcWgcrcmxyl0SxWZp70aEIppCqV4cPN7UKPTL3KWXqnz
+         U+rA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769419323; x=1770024123;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=j3Z4Yd2fRXfRsRi8a3YRl2niiXC4DwI7ABHuLbV15ig=;
+        b=LZTjMNigpUpp5dd85vt/7VJfh/VPjF6WoACpMHTH9lJ/HTUYO/iCbns7CL72JSIVl7
+         HnjP36br3geM65EbgehHqnH+JLT1JO0+PTw9OtcEtAIJGTKLR/E0rSDo7B5INdgCkYSI
+         uGZ0RwSHucQxygrJmAuXhdy3vNk5QySacuJQG5opbidmHyQQw73bSYt/2eeA1QoiDNOi
+         fzkp0Rswg86ZhGHyzSMR9AO6wSekK7hcCg6wl65wF9PU3h/phl8V91iY/TNux6v6rw4R
+         WJ8i6KKG1wsRpwMxNySMij+ySJJxNAL39W44xfEyKa9e0pwpqDT+agtQhczpKZfsCinB
+         XKdg==
+X-Forwarded-Encrypted: i=1; AJvYcCWmolmZ7dn0v8rOj8lOchy3Qvf9bvP2ivkWovZj18X/bMJMfPSsUdCnyZYh7FyqbBiS3AflHFbwIXIo@vger.kernel.org
+X-Gm-Message-State: AOJu0YyEl+gFimitHWCet86l6Twph9A6tAKa/u2yQYURWBJdqxxylwFM
+	uMjVE/4brBkv0FVckHF1xIHbx92viKGliCFhyECSc6Tx+OxYV6D1X4A8GRCMYYR1QF4=
+X-Gm-Gg: AZuq6aL8/3Yla7lb1rptF7B9aajQboqtcJpn/VNF0ksGuOb/mcCbAGJAxaodKCO94AI
+	tLqTWWpcDw7brnIUK+Kr8SWiatLNcHPs9D+1/bAqQj4sZ3YeMwhcWKLPxasGyq9mcQB8GVeLyXQ
+	VyqbhzN0Im3jen5MGdaPbumeCyL3ZCSTCZMFfsTfXds/QcjwTBwVvow5LKb/zaw+THfuLX8Vtfn
+	FT/0e4Bq5Yj9lSt2rJBVchm2fbV/rGfE1e/Xa1+Mxz+sqC4ZM8aWoOk/vDn89Gc93cVlmUBjQX6
+	T4RXJmh65rUbsG1+C2R2xSVbjGiHN/sfQpLMYl4EZNR78ttTYLGZJMw4IQiLeT/HwbpcLRDn7R9
+	HgqucWJdHMxAT6h9+9mU4z2aIEDy4JuRJAx8yoZtGzkgBBZh4a2X8BDKuFM3AiU3gVHzmkTJaKa
+	cv1Dup5Kr+SHYQlqKw5b4=
+X-Received: by 2002:a05:600c:3ba8:b0:47d:264e:b435 with SMTP id 5b1f17b1804b1-4805cf5ecb7mr68589285e9.22.1769419322750;
+        Mon, 26 Jan 2026 01:22:02 -0800 (PST)
 Received: from vingu-cube.. ([2a01:e0a:f:6020:e270:a43a:f2fa:900a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-480470cf1acsm346669855e9.14.2026.01.26.01.22.00
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-480470cf1acsm346669855e9.14.2026.01.26.01.22.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Jan 2026 01:22:00 -0800 (PST)
+        Mon, 26 Jan 2026 01:22:01 -0800 (PST)
 From: Vincent Guittot <vincent.guittot@linaro.org>
 To: vkoul@kernel.org,
 	neil.armstrong@linaro.org,
@@ -93,10 +95,12 @@ To: vkoul@kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	netdev@vger.kernel.org
 Cc: Frank.li@nxp.com
-Subject: [PATCH 0/4] Serdes: s32g: Add support for serdes subsystem
-Date: Mon, 26 Jan 2026 10:21:55 +0100
-Message-ID: <20260126092159.815968-1-vincent.guittot@linaro.org>
+Subject: [PATCH 1/4] dt-bindings: serdes: s32g: Add NXP serdes subsystem
+Date: Mon, 26 Jan 2026 10:21:56 +0100
+Message-ID: <20260126092159.815968-2-vincent.guittot@linaro.org>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260126092159.815968-1-vincent.guittot@linaro.org>
+References: <20260126092159.815968-1-vincent.guittot@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -119,7 +123,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[vincent.guittot@linaro.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259401-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-259402-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
@@ -132,36 +136,177 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCPT_COUNT_TWELVE(0.00)[18];
 	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: E0AB485F20
+X-Rspamd-Queue-Id: 42AEE85F30
 X-Rspamd-Action: no action
 
-s32g SoC family includes 2 serdes subsystems which are made of one PCIe
-controller, 2 XPCS and a shared Phy. The Phy got 2 lanes that can be
-configured to output PCIe lanes and/or SGMII.
-    
-Implement PCIe phy and XPCS support.
-    
-Vincent Guittot (4):
-  dt-bindings: serdes: s32g: Add NXP serdes subsystem
-  phy: s32g: Add serdes subsystem phy
-  phy: s32g: Add serdes xpcs subsystem
-  MAINTAINERS: Add MAINTAINER for NXP S32G Serdes driver
+Describe the serdes subsystem available on the S32G platforms.
 
- .../bindings/phy/nxp,s32g-serdes.yaml         |  154 +++
- MAINTAINERS                                   |    9 +
- drivers/phy/freescale/Kconfig                 |   10 +
- drivers/phy/freescale/Makefile                |    1 +
- drivers/phy/freescale/phy-nxp-s32g-serdes.c   |  926 ++++++++++++++
- drivers/phy/freescale/phy-nxp-s32g-xpcs.c     | 1082 +++++++++++++++++
- drivers/phy/freescale/phy-nxp-s32g-xpcs.h     |   47 +
- include/linux/pcs/pcs-nxp-xpcs.h              |   13 +
- 8 files changed, 2242 insertions(+)
+Signed-off-by: Vincent Guittot <vincent.guittot@linaro.org>
+---
+ .../bindings/phy/nxp,s32g-serdes.yaml         | 154 ++++++++++++++++++
+ 1 file changed, 154 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/phy/nxp,s32g-serdes.yaml
- create mode 100644 drivers/phy/freescale/phy-nxp-s32g-serdes.c
- create mode 100644 drivers/phy/freescale/phy-nxp-s32g-xpcs.c
- create mode 100644 drivers/phy/freescale/phy-nxp-s32g-xpcs.h
- create mode 100644 include/linux/pcs/pcs-nxp-xpcs.h
 
+diff --git a/Documentation/devicetree/bindings/phy/nxp,s32g-serdes.yaml b/Documentation/devicetree/bindings/phy/nxp,s32g-serdes.yaml
+new file mode 100644
+index 000000000000..fad34bee2a4f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/nxp,s32g-serdes.yaml
+@@ -0,0 +1,154 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/phy/nxp,s32g-serdes.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP S32G2xxx/S32G3xxx SerDes PHY subsystem
++
++maintainers:
++  - Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
++
++description: |
++  The SerDes subsystem on S32G SoC Family includes two types of PHYs:
++    - One PCIe PHY: Supports various PCIe operation modes
++    - Two Ethernet Physical Coding Sublayer (XPCS) controllers
++
++  SerDes operation mode selects the enabled PHYs and speeds. Clock frequency
++  must be adapted accordingly. Below table describes all possible operation
++  modes.
++
++  Mode  PCIe	XPCS0		XPCS1		PHY clock	Description
++                SGMII		SGMII		  (MHz)
++  -------------------------------------------------------------------------
++  0	Gen3	N/A		N/A		100		Single PCIe
++  1	Gen2	1.25Gbps	N/A		100		PCIe/SGMII
++  2	Gen2	N/A		1.25Gbps	100		PCIe/SGMII
++  3	N/A	1.25Gbps	1.25Gbps	100,125		SGMII
++  4	N/A	3.125/1.25Gbps	3.125/1.25Gbps 	125		SGMII
++  5	Gen2	N/A	        3.125Gbps     	100		PCIe/SGMII
++
++properties:
++  compatible:
++    oneOf:
++      - enum:
++          - nxp,s32g2-serdes
++      - items:
++          - const: nxp,s32g3-serdes
++          - const: nxp,s32g2-serdes
++
++  reg:
++    maxItems: 4
++
++  reg-names:
++    items:
++      - const: ss_pcie
++      - const: pcie_phy
++      - const: xpcs0
++      - const: xpcs1
++
++  clocks:
++    minItems: 4
++    maxItems: 5
++
++  clock-names:
++    items:
++      - const: axi
++      - const: aux
++      - const: apb
++      - const: ref
++      - const: ext
++    minItems: 4
++
++  resets:
++    maxItems: 2
++
++  reset-names:
++    items:
++      - const: serdes
++      - const: pcie
++
++  nxp,sys-mode:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: |
++      SerDes operational mode. See above table for possible values.
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 0
++
++patternProperties:
++  '^serdes[0,1]_lane@[0,1]$':
++    description:
++      Describe a serdes lane.
++    type: object
++
++    properties:
++      compatible:
++        enum:
++          - nxp,s32g2-serdes-pcie-phy
++          - nxp,s32g2-serdes-xpcs
++
++      reg:
++        maxItems: 1
++
++      '#phy-cells':
++        const: 0
++
++    required:
++      - reg
++      - compatible
++
++    unevaluatedProperties: false
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - clocks
++  - clock-names
++  - resets
++  - reset-names
++  - nxp,sys-mode
++  - '#address-cells'
++  - '#size-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    bus {
++        #address-cells = <2>;
++        #size-cells = <2>;
++        serdes0: serdes@40480000 {
++          compatible = "nxp,s32g3-serdes", "nxp,s32g2-serdes";
++            reg = <0x0 0x40480000 0x0 0x108>,
++                  <0x0 0x40483008 0x0 0x10>,
++                  <0x0 0x40482000 0x0 0x800>,
++                  <0x0 0x40482800 0x0 0x800>;
++            reg-names = "ss_pcie", "pcie_phy", "xpcs0", "xpcs1";
++            clocks = <&clks 1>,
++                     <&clks 2>,
++                     <&clks 3>,
++                     <&clks 4>,
++                     <&serdes_100_ext>;
++            clock-names = "axi", "aux", "apb", "ref", "ext";
++            resets = <&reset 9>,
++                     <&reset 8>;
++            reset-names = "serdes", "pcie";
++            nxp,sys-mode = <1>;
++            #address-cells = <1>;
++            #size-cells = <0>;
++            phy_pcie0: serdes0_lane@0 {
++              compatible = "nxp,s32g2-serdes-pcie-phy";
++              #phy-cells = <0>;
++              reg = <0>;
++            };
++            phy_xpcs0_0: serdes0_lane@1 {
++              compatible = "nxp,s32g2-serdes-xpcs";
++              reg = <0>;
++            };
++        };
++    };
 -- 
 2.43.0
 
