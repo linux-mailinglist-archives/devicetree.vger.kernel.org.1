@@ -1,783 +1,247 @@
-Return-Path: <devicetree+bounces-259579-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259588-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6MohMMOXd2n0iwEAu9opvQ
-	(envelope-from <devicetree+bounces-259579-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:35:15 +0100
+	id aPevBCOZd2n0iwEAu9opvQ
+	(envelope-from <devicetree+bounces-259588-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:41:07 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id A42968AB80
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:35:14 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B21EB8ACFB
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:41:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 40A0E300602C
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:35:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6B1A73050D0A
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:39:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3437B340DA4;
-	Mon, 26 Jan 2026 16:35:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="czvrQfXV";
-	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="CPyEQQrH"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 707F5344055;
+	Mon, 26 Jan 2026 16:39:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+Received: from eu-smtp-delivery-101.mimecast.com (eu-smtp-delivery-101.mimecast.com [185.58.86.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CD85342CA1;
-	Mon, 26 Jan 2026 16:35:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AF05343D6D
+	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 16:39:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.58.86.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769445311; cv=none; b=QSE05TNdNnCOE3im+clnXIYVdYeSMrnxp74s7olUsnlLzxP8YoxBCjPOgqurEkk1l401rjaHyJEuk2ms8cQdpQ9HtM+YYq6g6Rx6IaexuGS7oWWX8pVsScBISDOoynSrGwNE3kAp2TJPuLnynZ78HUYXYYVRz0O/CRHX/vXu5EU=
+	t=1769445548; cv=none; b=K0nj23joQEXUlZaEhav+lJghDmejWEui7foS2BVOtfF+MFKjEtpiaz0JfscZK9EV86Mot96Kc7c5EzrpLyN7r9i72odJPy8qemEQKrOnxca2j4RED89XJ8zD3A5MPJ+dJNKDycebuxNPjyXGgC5O/3PUSyp03UyLTl/B/MzOUOU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769445311; c=relaxed/simple;
-	bh=5D2ZvG/XAcueF08kiycNFuK6ZfCE6sNffiMEi4jHNys=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Le+gYXCvhGEOITmxv8GcrF71UFzhyKlWgg4PJivvrfgJ+79zihIvDfAFrnGiooejTFOAF985DktPoriogJZZzbpyB/DzMTtZXMB1vxw/1gpsQSNAapOTTA0wcwfCIWotzIHbrwY2dN14kzjiCanlWrh1mYRTGU7LVb4ZJtzg/9Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=czvrQfXV; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=CPyEQQrH; arc=none smtp.client-ip=5.75.144.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
-DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
-	h=To:Message-Id:Subject:Date:From; t=1769445299; bh=8QqdSUiCwyhmN+Yz7YdFQ28
-	nss7zms5RvjaCFogF108=; b=czvrQfXVZgol0V5mUMdmc+2BAYBs89ordhkEWdtQDkZxJaE6G0
-	ft/eEB9lJdra3id5op5YVqAEYYc7PVlCsvdeyCyKc/e/C7ZWaqPGD4RsDP8h/6blaZlZxIG2Jrh
-	jN1MsV8c6yc3QpdmA6a0VtrbQsTciDSarzxbp9f8wmkTP8+l5+ViIt8f5Zw5nnKJKeJjOUFEXBS
-	9kGklgAQCfx1DrqODmKFfmKTtoWKuEwk2TLO8Qtg8R8ZCNaBPZ4x5UchSAGP/OAh61jTOpap5n0
-	G8hi4tA/Dt6TfGy6WhdrNs3UUYjOKXhyBuu/7N4VRCUPsPf58BtSzhaGQbZ/xsHbVSA==;
-DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
-	h=To:Message-Id:Subject:Date:From; t=1769445299; bh=8QqdSUiCwyhmN+Yz7YdFQ28
-	nss7zms5RvjaCFogF108=; b=CPyEQQrHmCdzON6Iu6UAqbzvvL+X77kY2J/5dQRuiamV9DkwOj
-	lCkvuxeJe2jcqz5vF57G0S7xdr3Hs8/9jLBg==;
-From: =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
-Date: Mon, 26 Jan 2026 17:34:57 +0100
-Subject: [PATCH v3 7/7] arm64: dts: qcom: Add Redmi Note 8T
+	s=arc-20240116; t=1769445548; c=relaxed/simple;
+	bh=ug4pFk5p+Kjd6hH1a+Ayky3homSY5hDSNh6mNpIe+J4=;
+	h=From:Subject:Date:Message-Id:To:Cc:MIME-Version:Content-Type; b=OpEodksW0B2KCPwTl6qOT66V7jP3NfprvFlxIfxDC0uIkN/gUsaj3ejVOxFkSawJxDHLxdxtki/f3sSOx4C0/WeCR6JqG1cy2PVB9P9q7faFe6epNB6sJZzlXCRriYRCgKyn/w1TiRHG7lh3dS0Bly9K8tyfpaeQ96M4uqH/f4E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=touchnetix.com; spf=pass smtp.mailfrom=touchnetix.com; arc=none smtp.client-ip=185.58.86.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=touchnetix.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=touchnetix.com
+Received: from CWXP265CU010.outbound.protection.outlook.com
+ (mail-ukwestazon11022082.outbound.protection.outlook.com [52.101.101.82])
+ by relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id uk-mta-187-bFMtIZY8OFK5wQnUXdFiDA-1; Mon,
+ 26 Jan 2026 16:38:57 +0000
+X-MC-Unique: bFMtIZY8OFK5wQnUXdFiDA-1
+X-Mimecast-MFC-AGG-ID: bFMtIZY8OFK5wQnUXdFiDA_1769445536
+Received: from LOYP123MB2701.GBRP123.PROD.OUTLOOK.COM (2603:10a6:600:e9::9) by
+ LO2P123MB3824.GBRP123.PROD.OUTLOOK.COM (2603:10a6:600:12d::5) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9542.12; Mon, 26 Jan 2026 16:38:53 +0000
+Received: from LOYP123MB2701.GBRP123.PROD.OUTLOOK.COM
+ ([fe80::4a94:a629:f86f:40d1]) by LOYP123MB2701.GBRP123.PROD.OUTLOOK.COM
+ ([fe80::4a94:a629:f86f:40d1%4]) with mapi id 15.20.9542.010; Mon, 26 Jan 2026
+ 16:38:53 +0000
+From: Andrew Thomas <andrew.thomas@touchnetix.com>
+Subject: [PATCH 0/2] Input: add support for aXiom touchscreen controller
+ using SPI or I2C
+Date: Mon, 26 Jan 2026 16:38:22 +0000
+Message-Id: <20260126-axiom-driver-submission3-v1-0-d462c4a608e3@touchnetix.com>
+X-B4-Tracking: v=1; b=H4sIAH6Yd2kC/x3MSwqEMBBF0a1IjS1I0iDqVsRB1GdbAz9UoQjBv
+ Zvu4R2cm8igAqO2SKS4xGTfcviyoHGJ2xcsU24KLlTOh4rjLfvKk8oFZTuHVexnPjzXTYCPaDA
+ 6yvxQzHL/113/PC96TFJwagAAAA==
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Henrik Rydberg <rydberg@bitmath.org>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Andrew Thomas <andrew.thomas@touchnetix.com>, 
+ Marco Felsch <m.felsch@pengutronix.de>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1769445534; l=1429;
+ i=andrew.thomas@touchnetix.com; s=20260126; h=from:subject:message-id;
+ bh=V+iDLqSvoAbt2MZGlXUo42J1Ht86LIU6jETGikj8RuU=;
+ b=NRGpXk/hL7m9fNnS6U70nVpT5wNgZ/WXwXmP3MEeVTItsiCQocXama34WhQU2IYq29FHhDTGU
+ X73xeNu5cILAJ87lELtPkh2rbuiL4DUoiryGM6yty+kPk8ZPMopgXxF
+X-Developer-Key: i=andrew.thomas@touchnetix.com; a=ed25519;
+ pk=GtS7O+T7kMl4PPu344KeKG2xlsaHEzDUFLtOqb5JPPg=
+X-ClientProxiedBy: LO6P123CA0059.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:310::17) To LOYP123MB2701.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:e9::9)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260126-xiaomi-willow-v3-7-aad7b106c311@mainlining.org>
-References: <20260126-xiaomi-willow-v3-0-aad7b106c311@mainlining.org>
-In-Reply-To: <20260126-xiaomi-willow-v3-0-aad7b106c311@mainlining.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Gabriel Gonzales <semfault@disroot.org>, 
- Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>, 
- "Guilherme G. Piccoli" <gpiccoli@igalia.com>, 
- Biswapriyo Nath <nathbappai@gmail.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org, 
- phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
- linux@mainlining.org, 
- =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1769445293; l=15462;
- i=barnabas.czeman@mainlining.org; s=20240730; h=from:subject:message-id;
- bh=5D2ZvG/XAcueF08kiycNFuK6ZfCE6sNffiMEi4jHNys=;
- b=LJq7IWSJWC/xWtBSUJGqIHj87/Rz0UWs+HXSSnxWMLkC/skwS2BkXEiiPxWGCatMMhCIJJFxs
- vYTusYRGEBVCmZVNPngz0H4XINryct8ntT3s76N7uraiwlb//7Dlaa7
-X-Developer-Key: i=barnabas.czeman@mainlining.org; a=ed25519;
- pk=TWUSIGgwW/Sn4xnX25nw+lszj1AT/A3bzkahn7EhOFc=
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LOYP123MB2701:EE_|LO2P123MB3824:EE_
+X-MS-Office365-Filtering-Correlation-Id: f7e46878-7d25-4334-a32a-08de5cf96491
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|52116014|366016|38350700014
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?MmtLcDZDRm0vcWN4bXcwR3ovTmdMdVVHVXY1ek5ZN0xUMjF1QWR3Ui9XNUpq?=
+ =?utf-8?B?SkUrUE5zR1ZYSWxIZHI4bEYwS3k1OGVFSGNoMmYwdENJaVA3Ky9UcFBaRzZx?=
+ =?utf-8?B?QzRBWWZsU2dsR3RXOFg4UHArUnkxUFVvQ04wY0VneHJSdVVSaFlwaXgvTjE3?=
+ =?utf-8?B?NWdNcG1uTHV6RmdYWitmNHRVNm1YOUxPSHZmNFVBVjl2T29mT0k0NGU4eE9z?=
+ =?utf-8?B?NExJQTN1VWdNQUxZN1hPeVB5bDVvK1hPSmc4dElkdGt4dGduN09pZUNWZXRu?=
+ =?utf-8?B?UzlkY1h2YmZQNzlsdGJJTGI2VkdWWGJjYVBXT1JNTjFYVmRGQXdDK0QxcDAr?=
+ =?utf-8?B?RUs0TFlScm5admZHeG9aN2hFR1Y5RHJneExiOEtLczk3SlpmTSs1eDFIeFhM?=
+ =?utf-8?B?UjZKdnZIWnI1cFo5ZnV0SUUxWWtSWDZVeGRLTEZVYisxYjg0Mlg2cjZuM25Q?=
+ =?utf-8?B?UU1SdGdrcGxhSnhRaUU5MjZKNzdnZlhiODNmTkJsdm8zeGE0WU51SWtIOUVF?=
+ =?utf-8?B?TlEwNWVBeWg2Q1JLTlA4dlJKYWU3VzQrWmFHd0RGSlNFWCt1OUZxM0JhY2d3?=
+ =?utf-8?B?Q3lNd29iVUcraitBRTJ0cnYvWFEyUlYzZDhMbHpZalFXYkVCSTRuUjlTZWZO?=
+ =?utf-8?B?VGlSMUxXMDZtTFJYb1FoSVJTZnVFWU0wT3lXUlJOS1hkQlAzTy9OeDV3VjQ1?=
+ =?utf-8?B?K0hmSTZDak9tQWNzSlZpYW1Yc3F6THozclZ1VGUvWDIxMUxXc0ZCNk40NFQ0?=
+ =?utf-8?B?bERxWmJhbkZCdkJaTkkwVGs2YllsOXhLY2hWcVFucHliN0JqSDhBMFBQRGlS?=
+ =?utf-8?B?WUxrL2VNQzZ6TE1GOFV5Qm9BaCtiSk12VXNySzRWaEVJUFRmSmQ4UXYyYzJq?=
+ =?utf-8?B?VlY2MEZZdTMwTFJtMVJoaE1VNHd4YUxiODJKWllTRlZXRnlaWEowM29qRlZs?=
+ =?utf-8?B?V0c5REJXNnl2WFVtUkNVMmp1SzN1MFB3clV3QVJOTzVrVTNvK25zL2MyWHlp?=
+ =?utf-8?B?TnVaOWx1Q0ZKL3luenlIZ1NFd0RjZ0t5bndmRkFRWllFWGhCSUZLWmxVVU1P?=
+ =?utf-8?B?Qm9lRFVQRlVxU1FrcWh4YW1vRmdWYVV0TjIvMHZ5RmNIc3VFNGk3SG5RQ2ty?=
+ =?utf-8?B?Y3ZvbnV0NFYwWHRTSVdjZ3dxa0NuSE9iOTNZUnpuSDlKaTdmR2xobzVPUTQ1?=
+ =?utf-8?B?OHR0OFh2L29JZzQzbzhkdHdJZ1JTR2lFeWlZdXJOTFJ0U3h6VXNJQ0FBZ2c2?=
+ =?utf-8?B?dHIybjhuaTNJM2hpV3BqYnlJNDY2Rm9JUU1QTU5BQzVIZ0ZiVHRpYXlXem1m?=
+ =?utf-8?B?N0FuUW5ycVRSb2tFZ005Z1NIRkQyK1lBR1NUTXZHRXFhME43R3VZcks4K3Vv?=
+ =?utf-8?B?ZDA1WSs2d2kySi9FcFFYa1BnV0dEakoyN0d2REVLanFyOWhMeU4vWkE4dTVS?=
+ =?utf-8?B?bHZ4czcxSkxRbitzeUNUWmZoYm1QNEd3NnhNQ2tQQU9TSlpuYUJxaFhLbytr?=
+ =?utf-8?B?TnlQZGtabXJjdjNVNXFZTGUyZmFWQTVlUk5zd2tFVzFxQXV4aGRNcW5iNGhK?=
+ =?utf-8?B?S080Tm1RaG50Nm1OY2cvQUF6K2YyYXVIbS9pcDYvU2JWdkVUd2piWGxycXNX?=
+ =?utf-8?B?NDlZcnh0bTJpbHRsTURCNy9Tb3dWODFWNW10WWZPWXhCTEV3bGtNK1ZnNlNo?=
+ =?utf-8?B?bzlKM2dRbTVJTDEzL0Faa21EcTl5M1lMWUJ5T2VLd1hiVFZGMkZGaEJGWVlC?=
+ =?utf-8?B?OWpoNWk0UFZIOGdwRVBtMEhhbEo0OTdxU0F5cGxMajkxMFBvQzdPYmdwMjdK?=
+ =?utf-8?B?SnVmOE9JVE5rU3I2M2Y4TXpmaVVRUHBlY2FoTitsZDJ6bzNoNTFNb3pjR2dP?=
+ =?utf-8?B?WUR1YkNMelpIY3drL3E2T2swbU9hazUrV0dvdUR3dEhqVWh0N0lMK3dMT0dB?=
+ =?utf-8?B?cC9OdDJkcUIwR0pHY3M1QlVxL0k3d0FGYXJTZ3JsR1ZxUElab2VjeWxGbVAv?=
+ =?utf-8?B?MXhlRTIxTVh6RWwyMjFqUU9EWWN0RHdLeGlpSmFEUmZJVWJoRE5hR2xQOVpH?=
+ =?utf-8?B?eG9KT2kzcllUdGNXTG9TZjRnb1pkYVMzeDYvbDVPWXZDeTBYbm9NWUJMQUFi?=
+ =?utf-8?B?QTV1NDBqKzJ4OXl2QmRGQkIrb2xUeUQxQ1dKNzhobXQycVk4REJWOXJyajJB?=
+ =?utf-8?Q?T4WeeB/vX+FjSC5xKxjm6U8=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LOYP123MB2701.GBRP123.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(52116014)(366016)(38350700014);DIR:OUT;SFP:1102
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YXY5dTJ3VVhrc3g5RlZBTDJlOWpxV1huVW1jSU1OeGNvYktqcURsamNZbzlK?=
+ =?utf-8?B?K1hJY3Zib1VjclJDUHBnWXc5TjhjZjhaaEpMM1l4OHNsa0hTekxjbGhHRStW?=
+ =?utf-8?B?SWlGVzFDYmJ4YXZuenZSTnlOL0xWb2UzcHpkWlU3cGZxQkwvUldNaDhvS3I5?=
+ =?utf-8?B?VTFxZU41MmZ0Y05ycUVwb3k2OW1rTTlkTWxGWU13YWE1bk9QMG5TdDkzaGl1?=
+ =?utf-8?B?NzJQa0lrL3pPTGgzMHAwYWZIZXQwdmxNVXdLaGJTSVplYmZUQ1k4NnViV3hS?=
+ =?utf-8?B?QnVNMkdPaDN0aEIrS1h5MVJpUnlTR2VoZml1ZWZNd3Vtb2s2S04wQW9nbEtk?=
+ =?utf-8?B?MUoyS0ZiU3M3RnJnNCt5dUJnWjR3c29pc0Z3OGtmM01pa1g4ZU9wc0xwbGlY?=
+ =?utf-8?B?OEl1RlpjYk1TV0I5MGxPK2F4N3VJbXRJaXVTcGNsWVZnb2s5RzFXamMyYmQ3?=
+ =?utf-8?B?a0dDUzlqY3FaemN1NlJDVDluemN1SnpsZ2RXTTYxWHQ4Q0M0UUxpbjBsTUlO?=
+ =?utf-8?B?M1pZT1J0bk5Cbm93MlNvbVR0NVEySEVRY25ldVNEalpHTkY0VnBCaFVMN3Ex?=
+ =?utf-8?B?bVRxT0RobkdoTVJIb3FNemZiQzdSMGJQZEtqNkh5VDlyWDZoRkhnYk1lMHN5?=
+ =?utf-8?B?ME1DdkU2V0swcFJ4bVNsUnhUemdVOTlYVDhiV3lTQjhaQ0l2aEhlYXVUS3Y3?=
+ =?utf-8?B?ZXEzNW1iMWh4N2NrQUZvVE15Wms0MGI1MmZ0L3Y0YndtSWttME1tY1lqaVlK?=
+ =?utf-8?B?d3haNVkxWmNjOGd0ZXk4eXY3M3pEM3l0dkdEeDVPTUhFeDNBdEFTSWR5SkFX?=
+ =?utf-8?B?d0J1SCtZOUVTZ0wveVJ3ZjZ6N3dsK0srMFV0QkdLMUpFaC9NMHRJVk5Xc2RR?=
+ =?utf-8?B?Si9WdmtzVnkyMEdhdG14aVNyU0R5emRwNlRpN09mVjdxVVFTcE9QSVkvWG9p?=
+ =?utf-8?B?Z2JIZjY0WGxJL3JYdU96ekNRZk9CdWU2b3NJK0NRQ2p1VDdrNEhENmdCMDJj?=
+ =?utf-8?B?VGhvaUdDMXdET0VEekloSStsY29RaGhNSWVNTk1JZDBvY3Y3eHZkbmZNR1VP?=
+ =?utf-8?B?SENsdnF0SFk5MU1BUWpoZEtlV0ZnUllvYkpRUHhydHp1ZUhiRTlGR1Q5OGFE?=
+ =?utf-8?B?VlN0dmFPTEUxN3FKYjhBN2k1ZE5zcHJEaHl1Y0tmU1o2a0FzMjgzVVFBYk1k?=
+ =?utf-8?B?V3FlNmJPeFBOUkwzQ3Byd1RhNWpnaXMzTTloSHIwMU1ORzZrYkQ0c0oveVNT?=
+ =?utf-8?B?bEEyMEdqVlNCQ1E2RlNOZzJyeGNEaG5zMU8yWmhNT2UrWU5GT0t1UFhSTGdT?=
+ =?utf-8?B?cVIyZlJxN0o3MVhGZ1U0SkpLakhUUmJvODh2ZVhoOVh3bzJWZGpDc1dBei9z?=
+ =?utf-8?B?V0VJRS9sM2pIbkVUbGZEZ3NHQjludEw5b1pOSjg4UjlyTFFmM2x6MTc5YmF2?=
+ =?utf-8?B?bGUreGFMSW55cFl1bHRlbmRoT2lKTmd0cHZQQXRUS3k3Y091cFl1eEFYK1p2?=
+ =?utf-8?B?Sy9ST2tPWEVsVzI1cGdmaW1SUnlNbC9BdjJXNmptcERYYUdZNXpvcVdRNjdT?=
+ =?utf-8?B?RTVGZVNKUzhNREQ2S0pJUXBJTXRYdXorbW12RldoRVNuRUplcmRJbEFHZ0dm?=
+ =?utf-8?B?dklwbWhma04yLzJURkxjSTREcmVkQUN1bVk0UUJmRjdCeUlSZStxYWxkQWQz?=
+ =?utf-8?B?REV2ekxjVm9oTkd3WEQrZ0NwajRQRTVaNHQvbWtLeFpJRzg2OXczUkdEd2lE?=
+ =?utf-8?B?Tjc1eEVXbUdSd3V5ZU1zSU5tSElPb0RqaHZmRGFZUmdjU0cxdlpDS2hsU2Zl?=
+ =?utf-8?B?RXdTWkYreDBMRDNSWWpNd25NVjN5a2dNcUl4WnRjbGMxY0FKY1FWRWtiMm1i?=
+ =?utf-8?B?cVA1Wis3RC82RFRNdHRZV2ZGYlFQNmkxTE1sTUdESW1xL0dRM3E5T3lQY2hD?=
+ =?utf-8?B?NkJlMmtiYm4zc2U5am1helV5SGZtOVF6cURNY0x6Q3JXc1I2UHZxeENwV3NM?=
+ =?utf-8?B?YXIrU1BKM0hCUTVkd0dCWEViVnFQRkVPSk5uM0NabHViais5Z1pxZE1hOURM?=
+ =?utf-8?B?K20vRmZNUmgvYnUyN1BINVpVN1hORFczcHVjWUxLb1JncFpuV2pHeVozZ2pZ?=
+ =?utf-8?B?VUNXVDBOTHBENGJsUDIrWWtxenFoU043Um1MQTJsd0Y1KzF5U0lyY1RWVmt2?=
+ =?utf-8?B?ZU1OVVNiK3JDR0RqZmxTZjRSY2w0OE9QVDJrVkJ1dUZlbDNlWTk3QmhSRHJE?=
+ =?utf-8?B?SjZ5YVBGZkQvWVlaZTlqcXYwMXZkZGVvSEJKeVZ3STBKU0EwMW5ETXc2am96?=
+ =?utf-8?B?RFk2TlpOZFh3SEs5NXpqRnpnazJ1YmcwNXZDeE81WGwvZ21oODZMT0NyY1Mx?=
+ =?utf-8?Q?nuU1ZmI1g01l98t4=3D?=
+X-OriginatorOrg: touchnetix.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f7e46878-7d25-4334-a32a-08de5cf96491
+X-MS-Exchange-CrossTenant-AuthSource: LOYP123MB2701.GBRP123.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2026 16:38:53.7891
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 120474da-7cc3-44b9-aff9-438a33341070
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: IJpZb2TvHqfJi4l26JKobbYjo55yL6n0Lz/AL0+tYYfZfCp79WhR/Jw/GmM37gipjyrgOOmBaKpVTdbYtHgSdjHq9MUJAdhauAU2egLXBOo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO2P123MB3824
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: cQ2bLnaJE4lIAUakwvAmEpG8M3X7PYLA06Z6NYKYei4_1769445536
+X-Mimecast-Originator: touchnetix.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.41 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	R_MIXED_CHARSET(1.07)[subject];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[mainlining.org,reject];
-	R_DKIM_ALLOW(-0.20)[mainlining.org:s=202507r,mainlining.org:s=202507e];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-259579-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,disroot.org,intel.com,igalia.com,gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[3.171.241.0:email,3.109.97.96:email,3.75.207.160:email,3.109.136.112:email];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[barnabas.czeman@mainlining.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[mainlining.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_FROM(0.00)[bounces-259588-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[touchnetix.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,bitmath.org];
+	FROM_HAS_DN(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrew.thomas@touchnetix.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[5c000000:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:email,disroot.org:email,mainlining.org:email,mainlining.org:dkim,mainlining.org:mid,3.109.155.248:email]
-X-Rspamd-Queue-Id: A42968AB80
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	R_DKIM_NA(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[touchnetix.com:mid,touchnetix.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: B21EB8ACFB
 X-Rspamd-Action: no action
 
-Redmi Note 8T (willow) is very similar to Redmi Note 8 (ginkgo)
-the only difference is willow have NFC.
-Make a common base from ginkgo devicetree for both device.
+Summary of the added features:
+ - Add input driver support for TouchNetix aXiom touchscreen controller
+using either I2C or SPI.
+ - Support ABS_MT touch reports in axiom_process_u41_report().
+ - Support both polling and interrupt mode.
+ - Add basic documentation and provide example device tree bindings.
+ - Provide the basic structure to add firmware and config download in
+the future via both I2C and SPI.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+Many thanks,
+Andrew
+
+Signed-off-by: Andrew Thomas <andrew.thomas@touchnetix.com>
 ---
- arch/arm64/boot/dts/qcom/Makefile                  |   3 +-
- .../boot/dts/qcom/sm6125-xiaomi-ginkgo-common.dtsi | 301 +++++++++++++++++++++
- arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts  | 291 +-------------------
- arch/arm64/boot/dts/qcom/sm6125-xiaomi-willow.dts  |  15 +
- 4 files changed, 319 insertions(+), 291 deletions(-)
+Andrew Thomas (2):
+      dt-bindings: input: touchscreen: add TouchNetix aXiom device tree
+      Input: add support for aXiom touchscreen controller using SPI or I2C
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 0ccd6ec16dfb..9290e74651a8 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -279,8 +279,9 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm4450-qrd.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm6115-fxtec-pro1x.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm6115p-lenovo-j606f.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-sony-xperia-seine-pdx201.dtb
--dtb-$(CONFIG_ARCH_QCOM) += sm6125-xiaomi-ginkgo.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-xiaomi-ginkgo.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-xiaomi-laurel-sprout.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-xiaomi-willow.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm6350-sony-xperia-lena-pdx213.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm6375-sony-xperia-murray-pdx225.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm7125-xiaomi-curtana.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo-common.dtsi b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo-common.dtsi
-new file mode 100644
-index 000000000000..c5616a083f71
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo-common.dtsi
-@@ -0,0 +1,301 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2025, Gabriel Gonzales <semfault@disroot.org>
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/arm/qcom,ids.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/input/gpio-keys.h>
-+#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-+#include "sm6125.dtsi"
-+#include "pm6125.dtsi"
-+
-+/delete-node/ &adsp_pil_mem;
-+/delete-node/ &cont_splash_mem;
-+/delete-node/ &gpu_mem;
-+/delete-node/ &ipa_fw_mem;
-+/delete-node/ &ipa_gsi_mem;
-+
-+/ {
-+	model = "Xiaomi Redmi Note 8";
-+	compatible = "xiaomi,ginkgo", "qcom,sm6125";
-+	chassis-type = "handset";
-+
-+	qcom,msm-id = <QCOM_ID_SM6125 0x10000>;
-+
-+	chosen {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		framebuffer {
-+			compatible = "simple-framebuffer";
-+			memory-region = <&framebuffer_mem>;
-+			width = <1080>;
-+			height = <2340>;
-+			stride = <(1080 * 4)>;
-+			format = "a8r8g8b8";
-+		};
-+	};
-+
-+	reserved-memory {
-+		adsp_pil_mem: adsp_pil_mem@55300000 {
-+			reg = <0x0 0x55300000 0x0 0x2200000>;
-+			no-map;
-+		};
-+
-+		ipa_fw_mem: ipa_fw_mem@57500000 {
-+			reg = <0x0 0x57500000 0x0 0x10000>;
-+			no-map;
-+		};
-+
-+		ipa_gsi_mem: ipa_gsi_mem@57510000 {
-+			reg = <0x0 0x57510000 0x0 0x5000>;
-+			no-map;
-+		};
-+
-+		gpu_mem: gpu_mem@57515000 {
-+			reg = <0x0 0x57515000 0x0 0x2000>;
-+			no-map;
-+		};
-+
-+		framebuffer_mem: framebuffer@5c000000 {
-+			reg = <0x0 0x5c000000 0x0 (2340 * 1080 * 4)>;
-+			no-map;
-+		};
-+
-+		/* Matching with recovery values to be able to get the results. */
-+		ramoops@61600000 {
-+			compatible = "ramoops";
-+			reg = <0x0 0x61600000 0x0 0x400000>;
-+			record-size = <0x80000>;
-+			pmsg-size = <0x200000>;
-+			console-size = <0x100000>;
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-0 = <&vol_up_n>;
-+		pinctrl-names = "default";
-+
-+		key-volume-up {
-+			label = "Volume Up";
-+			gpios = <&pm6125_gpios 6 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_VOLUMEUP>;
-+			debounce-interval = <15>;
-+			linux,can-disable;
-+			wakeup-source;
-+		};
-+	};
-+};
-+
-+&pm6125_gpios {
-+	vol_up_n: vol-up-n-state {
-+		pins = "gpio6";
-+		function = "normal";
-+		power-source = <1>;
-+		bias-pull-up;
-+		input-enable;
-+	};
-+};
-+
-+&hsusb_phy1 {
-+	vdd-supply = <&vreg_l7a>;
-+	vdda-pll-supply = <&vreg_l10a>;
-+	vdda-phy-dpdm-supply = <&vreg_l15a>;
-+	status = "okay";
-+};
-+
-+&pon_pwrkey {
-+	status = "okay";
-+};
-+
-+&pon_resin {
-+	linux,code = <KEY_VOLUMEDOWN>;
-+	status = "okay";
-+};
-+
-+&rpm_requests {
-+	regulators-0 {
-+		compatible = "qcom,rpm-pm6125-regulators";
-+
-+		vreg_s6a: s6 {
-+			regulator-min-microvolt = <936000>;
-+			regulator-max-microvolt = <1422000>;
-+		};
-+
-+		vreg_l1a: l1 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1256000>;
-+		};
-+
-+		vreg_l2a: l2 {
-+			regulator-min-microvolt = <1000000>;
-+			regulator-max-microvolt = <1056000>;
-+		};
-+
-+		vreg_l3a: l3 {
-+			regulator-min-microvolt = <1000000>;
-+			regulator-max-microvolt = <1064000>;
-+		};
-+
-+		vreg_l4a: l4 {
-+			regulator-min-microvolt = <872000>;
-+			regulator-max-microvolt = <976000>;
-+			regulator-allow-set-load;
-+		};
-+
-+		vreg_l5a: l5 {
-+			regulator-min-microvolt = <1648000>;
-+			regulator-max-microvolt = <2950000>;
-+			regulator-allow-set-load;
-+		};
-+
-+		vreg_l6a: l6 {
-+			regulator-min-microvolt = <576000>;
-+			regulator-max-microvolt = <656000>;
-+		};
-+
-+		vreg_l7a: l7 {
-+			regulator-min-microvolt = <872000>;
-+			regulator-max-microvolt = <976000>;
-+		};
-+
-+		vreg_l8a: l8 {
-+			regulator-min-microvolt = <400000>;
-+			regulator-max-microvolt = <728000>;
-+		};
-+
-+		vreg_l9a: l9 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1896000>;
-+		};
-+
-+		vreg_l10a: l10 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1896000>;
-+			regulator-allow-set-load;
-+		};
-+
-+		vreg_l11a: l11 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1952000>;
-+			regulator-allow-set-load;
-+		};
-+
-+		vreg_l12a: l12 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1996000>;
-+		};
-+
-+		vreg_l13a: l13 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1832000>;
-+		};
-+
-+		vreg_l14a: l14 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1904000>;
-+		};
-+
-+		vreg_l15a: l15 {
-+			regulator-min-microvolt = <3104000>;
-+			regulator-max-microvolt = <3232000>;
-+		};
-+
-+		vreg_l16a: l16 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1904000>;
-+		};
-+
-+		vreg_l17a: l17 {
-+			regulator-min-microvolt = <1248000>;
-+			regulator-max-microvolt = <1304000>;
-+		};
-+
-+		vreg_l18a: l18 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1264000>;
-+			regulator-allow-set-load;
-+		};
-+
-+		vreg_l19a: l19 {
-+			regulator-min-microvolt = <1648000>;
-+			regulator-max-microvolt = <2952000>;
-+		};
-+
-+		vreg_l20a: l20 {
-+			regulator-min-microvolt = <1648000>;
-+			regulator-max-microvolt = <2952000>;
-+		};
-+
-+		vreg_l21a: l21 {
-+			regulator-min-microvolt = <2600000>;
-+			regulator-max-microvolt = <2856000>;
-+		};
-+
-+		vreg_l22a: l22 {
-+			regulator-min-microvolt = <2944000>;
-+			regulator-max-microvolt = <2950000>;
-+			regulator-allow-set-load;
-+		};
-+
-+		vreg_l23a: l23 {
-+			regulator-min-microvolt = <3000000>;
-+			regulator-max-microvolt = <3400000>;
-+		};
-+
-+		vreg_l24a: l24 {
-+			regulator-min-microvolt = <2944000>;
-+			regulator-max-microvolt = <2950000>;
-+			regulator-allow-set-load;
-+		};
-+
-+	};
-+};
-+
-+&sdc2_off_state {
-+	sd-cd-pins {
-+		pins = "gpio98";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+};
-+
-+&sdc2_on_state {
-+	sd-cd-pins {
-+		pins = "gpio98";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+};
-+
-+&sdhc_1 {
-+	vmmc-supply = <&vreg_l24a>;
-+	vqmmc-supply = <&vreg_l11a>;
-+	status = "okay";
-+};
-+
-+&sdhc_2 {
-+	cd-gpios = <&tlmm 98 GPIO_ACTIVE_HIGH>;
-+	vmmc-supply = <&vreg_l22a>;
-+	vqmmc-supply = <&vreg_l5a>;
-+	no-sdio;
-+	no-mmc;
-+	status = "okay";
-+};
-+
-+&tlmm {
-+	gpio-reserved-ranges = <0 4>, <30 4>;
-+};
-+
-+&usb3 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts
-index c5616a083f71..496f33e9d73c 100644
---- a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts
-+++ b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts
-@@ -2,300 +2,11 @@
- /*
-  * Copyright (c) 2025, Gabriel Gonzales <semfault@disroot.org>
-  */
--
- /dts-v1/;
- 
--#include <dt-bindings/arm/qcom,ids.h>
--#include <dt-bindings/gpio/gpio.h>
--#include <dt-bindings/input/input.h>
--#include <dt-bindings/input/gpio-keys.h>
--#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
--#include "sm6125.dtsi"
--#include "pm6125.dtsi"
--
--/delete-node/ &adsp_pil_mem;
--/delete-node/ &cont_splash_mem;
--/delete-node/ &gpu_mem;
--/delete-node/ &ipa_fw_mem;
--/delete-node/ &ipa_gsi_mem;
-+#include "sm6125-xiaomi-ginkgo-common.dtsi"
- 
- / {
- 	model = "Xiaomi Redmi Note 8";
- 	compatible = "xiaomi,ginkgo", "qcom,sm6125";
--	chassis-type = "handset";
--
--	qcom,msm-id = <QCOM_ID_SM6125 0x10000>;
--
--	chosen {
--		#address-cells = <2>;
--		#size-cells = <2>;
--		ranges;
--
--		framebuffer {
--			compatible = "simple-framebuffer";
--			memory-region = <&framebuffer_mem>;
--			width = <1080>;
--			height = <2340>;
--			stride = <(1080 * 4)>;
--			format = "a8r8g8b8";
--		};
--	};
--
--	reserved-memory {
--		adsp_pil_mem: adsp_pil_mem@55300000 {
--			reg = <0x0 0x55300000 0x0 0x2200000>;
--			no-map;
--		};
--
--		ipa_fw_mem: ipa_fw_mem@57500000 {
--			reg = <0x0 0x57500000 0x0 0x10000>;
--			no-map;
--		};
--
--		ipa_gsi_mem: ipa_gsi_mem@57510000 {
--			reg = <0x0 0x57510000 0x0 0x5000>;
--			no-map;
--		};
--
--		gpu_mem: gpu_mem@57515000 {
--			reg = <0x0 0x57515000 0x0 0x2000>;
--			no-map;
--		};
--
--		framebuffer_mem: framebuffer@5c000000 {
--			reg = <0x0 0x5c000000 0x0 (2340 * 1080 * 4)>;
--			no-map;
--		};
--
--		/* Matching with recovery values to be able to get the results. */
--		ramoops@61600000 {
--			compatible = "ramoops";
--			reg = <0x0 0x61600000 0x0 0x400000>;
--			record-size = <0x80000>;
--			pmsg-size = <0x200000>;
--			console-size = <0x100000>;
--		};
--	};
--
--	gpio-keys {
--		compatible = "gpio-keys";
--
--		pinctrl-0 = <&vol_up_n>;
--		pinctrl-names = "default";
--
--		key-volume-up {
--			label = "Volume Up";
--			gpios = <&pm6125_gpios 6 GPIO_ACTIVE_LOW>;
--			linux,code = <KEY_VOLUMEUP>;
--			debounce-interval = <15>;
--			linux,can-disable;
--			wakeup-source;
--		};
--	};
--};
--
--&pm6125_gpios {
--	vol_up_n: vol-up-n-state {
--		pins = "gpio6";
--		function = "normal";
--		power-source = <1>;
--		bias-pull-up;
--		input-enable;
--	};
--};
--
--&hsusb_phy1 {
--	vdd-supply = <&vreg_l7a>;
--	vdda-pll-supply = <&vreg_l10a>;
--	vdda-phy-dpdm-supply = <&vreg_l15a>;
--	status = "okay";
--};
--
--&pon_pwrkey {
--	status = "okay";
--};
--
--&pon_resin {
--	linux,code = <KEY_VOLUMEDOWN>;
--	status = "okay";
--};
--
--&rpm_requests {
--	regulators-0 {
--		compatible = "qcom,rpm-pm6125-regulators";
--
--		vreg_s6a: s6 {
--			regulator-min-microvolt = <936000>;
--			regulator-max-microvolt = <1422000>;
--		};
--
--		vreg_l1a: l1 {
--			regulator-min-microvolt = <1200000>;
--			regulator-max-microvolt = <1256000>;
--		};
--
--		vreg_l2a: l2 {
--			regulator-min-microvolt = <1000000>;
--			regulator-max-microvolt = <1056000>;
--		};
--
--		vreg_l3a: l3 {
--			regulator-min-microvolt = <1000000>;
--			regulator-max-microvolt = <1064000>;
--		};
--
--		vreg_l4a: l4 {
--			regulator-min-microvolt = <872000>;
--			regulator-max-microvolt = <976000>;
--			regulator-allow-set-load;
--		};
--
--		vreg_l5a: l5 {
--			regulator-min-microvolt = <1648000>;
--			regulator-max-microvolt = <2950000>;
--			regulator-allow-set-load;
--		};
--
--		vreg_l6a: l6 {
--			regulator-min-microvolt = <576000>;
--			regulator-max-microvolt = <656000>;
--		};
--
--		vreg_l7a: l7 {
--			regulator-min-microvolt = <872000>;
--			regulator-max-microvolt = <976000>;
--		};
--
--		vreg_l8a: l8 {
--			regulator-min-microvolt = <400000>;
--			regulator-max-microvolt = <728000>;
--		};
--
--		vreg_l9a: l9 {
--			regulator-min-microvolt = <1800000>;
--			regulator-max-microvolt = <1896000>;
--		};
--
--		vreg_l10a: l10 {
--			regulator-min-microvolt = <1800000>;
--			regulator-max-microvolt = <1896000>;
--			regulator-allow-set-load;
--		};
--
--		vreg_l11a: l11 {
--			regulator-min-microvolt = <1800000>;
--			regulator-max-microvolt = <1952000>;
--			regulator-allow-set-load;
--		};
--
--		vreg_l12a: l12 {
--			regulator-min-microvolt = <1800000>;
--			regulator-max-microvolt = <1996000>;
--		};
--
--		vreg_l13a: l13 {
--			regulator-min-microvolt = <1800000>;
--			regulator-max-microvolt = <1832000>;
--		};
--
--		vreg_l14a: l14 {
--			regulator-min-microvolt = <1800000>;
--			regulator-max-microvolt = <1904000>;
--		};
--
--		vreg_l15a: l15 {
--			regulator-min-microvolt = <3104000>;
--			regulator-max-microvolt = <3232000>;
--		};
--
--		vreg_l16a: l16 {
--			regulator-min-microvolt = <1800000>;
--			regulator-max-microvolt = <1904000>;
--		};
--
--		vreg_l17a: l17 {
--			regulator-min-microvolt = <1248000>;
--			regulator-max-microvolt = <1304000>;
--		};
--
--		vreg_l18a: l18 {
--			regulator-min-microvolt = <1200000>;
--			regulator-max-microvolt = <1264000>;
--			regulator-allow-set-load;
--		};
--
--		vreg_l19a: l19 {
--			regulator-min-microvolt = <1648000>;
--			regulator-max-microvolt = <2952000>;
--		};
--
--		vreg_l20a: l20 {
--			regulator-min-microvolt = <1648000>;
--			regulator-max-microvolt = <2952000>;
--		};
--
--		vreg_l21a: l21 {
--			regulator-min-microvolt = <2600000>;
--			regulator-max-microvolt = <2856000>;
--		};
--
--		vreg_l22a: l22 {
--			regulator-min-microvolt = <2944000>;
--			regulator-max-microvolt = <2950000>;
--			regulator-allow-set-load;
--		};
--
--		vreg_l23a: l23 {
--			regulator-min-microvolt = <3000000>;
--			regulator-max-microvolt = <3400000>;
--		};
--
--		vreg_l24a: l24 {
--			regulator-min-microvolt = <2944000>;
--			regulator-max-microvolt = <2950000>;
--			regulator-allow-set-load;
--		};
--
--	};
--};
--
--&sdc2_off_state {
--	sd-cd-pins {
--		pins = "gpio98";
--		function = "gpio";
--		drive-strength = <2>;
--		bias-disable;
--	};
--};
--
--&sdc2_on_state {
--	sd-cd-pins {
--		pins = "gpio98";
--		function = "gpio";
--		drive-strength = <2>;
--		bias-pull-up;
--	};
--};
--
--&sdhc_1 {
--	vmmc-supply = <&vreg_l24a>;
--	vqmmc-supply = <&vreg_l11a>;
--	status = "okay";
--};
--
--&sdhc_2 {
--	cd-gpios = <&tlmm 98 GPIO_ACTIVE_HIGH>;
--	vmmc-supply = <&vreg_l22a>;
--	vqmmc-supply = <&vreg_l5a>;
--	no-sdio;
--	no-mmc;
--	status = "okay";
--};
--
--&tlmm {
--	gpio-reserved-ranges = <0 4>, <30 4>;
--};
--
--&usb3 {
--	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-willow.dts b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-willow.dts
-new file mode 100644
-index 000000000000..1231e440ba2c
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-willow.dts
-@@ -0,0 +1,15 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2026, Barnabas Czeman
-+ */
-+/dts-v1/;
-+
-+#include "sm6125-xiaomi-ginkgo-common.dtsi"
-+
-+/ {
-+	model = "Xiaomi Redmi Note 8T";
-+	compatible = "xiaomi,willow", "qcom,sm6125";
-+
-+};
-+
-+/* Difference from Redmi Note 8 it have NFC */
+ .../bindings/input/touchscreen/tnx,axiom.yaml      |  70 +++
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ drivers/input/touchscreen/Kconfig                  |  25 ++
+ drivers/input/touchscreen/Makefile                 |   3 +
+ drivers/input/touchscreen/axiom_core.c             | 473 +++++++++++++++++=
+++++
+ drivers/input/touchscreen/axiom_core.h             | 118 +++++
+ drivers/input/touchscreen/axiom_i2c.c              | 150 +++++++
+ drivers/input/touchscreen/axiom_spi.c              | 155 +++++++
+ 8 files changed, 996 insertions(+)
+---
+base-commit: 7ff574599464bd0e30da88aabc7be9de1021204a
+change-id: 20260126-axiom-driver-submission3-f892e1ae9ec0
 
--- 
-2.52.0
+Best regards,
+--=20
+Andrew Thomas <andrew.thomas@touchnetix.com>
 
 
