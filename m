@@ -1,242 +1,268 @@
-Return-Path: <devicetree+bounces-259659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259660-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GMMjBh7jd2k9mQEAu9opvQ
-	(envelope-from <devicetree+bounces-259659-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 22:56:46 +0100
+	id uFccFWTld2k9mQEAu9opvQ
+	(envelope-from <devicetree+bounces-259660-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 23:06:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FE1D8DBE3
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 22:56:45 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B82178DD32
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 23:06:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3A66830312DE
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 21:56:31 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5F156301F14B
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 22:06:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A0552FA0DD;
-	Mon, 26 Jan 2026 21:56:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BB922FFFBE;
+	Mon, 26 Jan 2026 22:06:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc.com header.i=@rivosinc.com header.b="fSWf0xZe"
+	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="AknZKhjt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f66.google.com (mail-dl1-f66.google.com [74.125.82.66])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AE912FBE1C
-	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 21:56:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55E4A2FFF82
+	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 22:06:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769464587; cv=none; b=igrRjKKv64zpRREo6oyBs1BZO12XUM3eJzbKVs5whFi6Hq/f5+zM12Q4AvVH4a4mBbqnl1Qw4PTWDE92+J00GaPa+ZkHkGMLcebUTRl59XlmHDWNrqnWSEmiE3joE8sU/UNtUi/ljo05wI69ilsNHSSd0YjEGjUa9ljg09Lgz0Y=
+	t=1769465169; cv=none; b=VzApzOoT21iis0r5Co7uS7XIggtewtvhE6z29SwIafB4MX0IIVxMRr2UawP0wP+uez8p6WgQdB1DYIfp4e5ymmv1EEAW07tiQpJ/OCSVLbE2KAhyTXusFxwsvomH86ry7Kxm29B/zSZOLZBtnrUvY2LOstFLnJG0l2lNJjM1rSA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769464587; c=relaxed/simple;
-	bh=oy/NoBC3Q8FHKt5xViq8h05UdNDzlJgEYLMGFJwNbSk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EwCARfKrycQ25kP2wMmhgHTVO+ywJAiG118PYxet8Eo+6Kt8geHI+k6v0MUFgrLyafmXuOllValt4UVArAijbwxxMgnVI6+kHnRQCmCFBil1A9rFPe5RbSpRKPvTKyqn6G3TmHCRZLhdrI/gu2RiJMK5GmR2Kpeb26wgCmeyWu8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc.com header.i=@rivosinc.com header.b=fSWf0xZe; arc=none smtp.client-ip=74.125.82.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-dl1-f66.google.com with SMTP id a92af1059eb24-12336c0a8b6so812843c88.1
-        for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 13:56:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc.com; s=google; t=1769464584; x=1770069384; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=8lrUOAhghPwzKg1J5j2JXzrncTINsAcnCOvL8lgOY0s=;
-        b=fSWf0xZeY1W3iliLX2r/1KiF6Wq9/H/UPaTNEIZAP3NqRnCR+VrUr8tC3QOxOkxVdG
-         L4arTBM+nON6EALwEWHZcHLt8XcMGP6YrR/TMvm+vxPbSGYfNWWG0ivJrQw0nzQMlU8v
-         tKzOhLprN0PKTCNBJQ8SJTPqfmc4lbi6TKODPnfbRCMyZ0RyPhNi3UJ2EYHGkUVvQ1P7
-         943yz8aJY6c610bw3F+SieriHPk91yxu+5MVRSaB6elaFagrK68QGEzHxfsDJH6QIx4Y
-         oZG842n3dCyAky2u2j6/A6kJNo3nNK4psbjoiun8Wv6KoIz/mSNqy7IBwRZKteR4yuDM
-         6gXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769464584; x=1770069384;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8lrUOAhghPwzKg1J5j2JXzrncTINsAcnCOvL8lgOY0s=;
-        b=ocDVOdkstLLj0ufuUugc6oTDCbO0Wn88dxSofWHc5V+YnHz53Z3f0JJ/EfvbK8tbmN
-         yDVB4IyM+uEVQ6VzRHIx289WY1lEcG0iKH1NE4zHC7k74QeQ1lrUjXK0MZ1G903vcr0f
-         quYZVMYrfGWRKktnLYyOmwAUd08GLd6JXQPnxpknFApV+y1JDNV5ZX+cc6l3HNEEWhkz
-         ey5gKxztKv19jZsSofard4gFqhnTAtp0AWhuQWIrEVXhcOyQVuuCAL88hkLz08azOPJJ
-         gAvSqhYRP/EbCHcRsteBTq9yg7zPBhPu+MhQL5tdh63bs8JtRpCnhbWWPMEaxrOuSiiw
-         8v1g==
-X-Forwarded-Encrypted: i=1; AJvYcCXkHEDtPOCdtp2BK+9Zx1HVPrM/pU1lfjNOPAjxD3HhEZyxztXb+CAQKASJJjo8FCcjutB7oso0wbdF@vger.kernel.org
-X-Gm-Message-State: AOJu0YwlK6cB7wY9KU5w3lJOdhnRlsAeUfkKtMKn1EiGDIGvKnu3T5tt
-	EZX1uvfRcExiPvpqBxJ1E3kh5CwWtCEphH7RDzLcJEmKpzUZ8Lzm32hQl8xwIXNHf+g=
-X-Gm-Gg: AZuq6aIt6flrX7XIat41+omkwAhKGMtW9kcF/8Yqi8BVoNOkYhHOxdUqHi2WdEfFpXe
-	WmD8WDHGSZxR0+/NK9pU7BWBvoLyLgFSbbIDU6dU8Rf5m1P7X8RHrBtPce8zAGu6enfW1MNi0WQ
-	ezaKqz2lLzfNTKS1kiH9HHg1smqZMX3nDxgOiyxhVaUx2aAeIzGzdiI8K9Ryu9BCm6PSya/utA+
-	gCHtGzd1sFHGXFZqeFBDwGJ8pvTP4z7T1o0PMLa9NK6Sv2HbI0NmL7OQSojYspGXahdwDqN5Yl0
-	bYqDjgAtd5w4qa5ngqvcc7rTIWoVyA+uKEcogMueWtAs5kewgYzzMXJWo1ZH1uqVDeFMP4qSmiL
-	UILXwK1UKFSsdW5YiFi6HmI17KybcuMsVxtkMGrNrkvrZtiBE43xZMY/CwAv5F4AhSugEgrsNtP
-	Bw8GFhgGFmHRW4efTICUd2
-X-Received: by 2002:a05:7022:2510:b0:11d:fd26:234e with SMTP id a92af1059eb24-1248ec01e46mr2897894c88.16.1769464584287;
-        Mon, 26 Jan 2026 13:56:24 -0800 (PST)
-Received: from debug.ba.rivosinc.com ([64.71.180.162])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1247d90cd61sm22036468c88.3.2026.01.26.13.56.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Jan 2026 13:56:23 -0800 (PST)
-Date: Mon, 26 Jan 2026 13:56:21 -0800
-From: Deepak Gupta <debug@rivosinc.com>
-To: Paul Walmsley <pjw@kernel.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
-	Borislav Petkov <bp@alien8.de>,
-	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
-	"H. Peter Anvin" <hpa@zytor.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Vlastimil Babka <vbabka@suse.cz>,
-	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Christian Brauner <brauner@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Oleg Nesterov <oleg@redhat.com>,
-	Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Benno Lossin <lossin@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-arch@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-kselftest@vger.kernel.org, alistair.francis@wdc.com,
-	richard.henderson@linaro.org, jim.shu@sifive.com,
-	andybnac@gmail.com, kito.cheng@sifive.com, charlie@rivosinc.com,
-	atishp@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com,
-	alexghiti@rivosinc.com, samitolvanen@google.com, broonie@kernel.org,
-	rick.p.edgecombe@intel.com, rust-for-linux@vger.kernel.org,
-	Zong Li <zong.li@sifive.com>, David Hildenbrand <david@redhat.com>,
-	Andreas Korb <andreas.korb@aisec.fraunhofer.de>,
-	Valentin Haudiquet <valentin.haudiquet@canonical.com>
-Subject: Re: [PATCH v26 01/28] mm: VM_SHADOW_STACK definition for riscv
-Message-ID: <aXfjBd7eCE3ypUnf@debug.ba.rivosinc.com>
-References: <20251211-v5_user_cfi_series-v26-0-f0f419e81ac0@rivosinc.com>
- <20251211-v5_user_cfi_series-v26-1-f0f419e81ac0@rivosinc.com>
- <68e1702e-f803-2db2-0e16-53ecef4d9eb6@kernel.org>
+	s=arc-20240116; t=1769465169; c=relaxed/simple;
+	bh=WDtjRprqQlCfRp7q3H/feMqqdUeaQrstyPe0Cmhy42c=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ZqWsS+NQHywEsZgNJs3Kfzxrb247rsABmJpRvxNj1HOkhhOn5dyziBGaV9dYSuvP2EVdnuMN+oc3+iQaXP4jFfSEmaG9WUCoXyOrbkRaZ7yE0q3ZKFabY+6OWwnUzLaoY45qiNxH2rj7QGPY3WqQxT4yxvXgBr1LHLT2tY7xp4o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=AknZKhjt; arc=none smtp.client-ip=185.67.36.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.de
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout02.posteo.de (Postfix) with ESMTPS id 47B40240101
+	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 23:06:03 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=posteo.de; s=2017;
+	t=1769465163; bh=sQgDSiHrabsqKjFsQ2ssHDWuOEHo++MGPU/6zXMP/YQ=;
+	h=Message-ID:Subject:From:To:Cc:Date:Autocrypt:Content-Type:
+	 MIME-Version:OpenPGP:From;
+	b=AknZKhjtPgkjGQIIkaPWlqzNliGmvYqwbgyehIooqi3BGllNxAWZlsATL2+uiKnpg
+	 NqEnhgT2IyULq0AFHFhtCqpOJfMlzt+epPBQJezWnZXID4UThvj/9KSRvBP8rz1Mvu
+	 1hIjQWbyW065E5xjYeNtJzEPCKE7+5I036F0fuYnvXtFxRu90h4OpWyV2TaCVzndSu
+	 QnokWGn46u6XmeeXTof758/AdIx+09QTO1FFZdzbIy+SLaROWWiP4ZoXm16+izT5U9
+	 tlXL2vAbXMFoHvFFQHTvx7P1jx/sCfQ47mdDiG9WYcN4GGXtxEg1NU2CcWYyUuMkvM
+	 i5x+xD0lPChUw==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4f0N08112fz9rxL;
+	Mon, 26 Jan 2026 23:06:00 +0100 (CET)
+Message-ID: <ce454969b83dbb0e3bb4ea78f682603cc328ceb9.camel@posteo.de>
+Subject: Re: [PATCH RFC 0/4] leds: extend disk trigger
+From: Markus Probst <markus.probst@posteo.de>
+To: Niklas Cassel <cassel@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, Rob Herring
+	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
+ <conor+dt@kernel.org>, Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+ Damien Le Moal <dlemoal@kernel.org>, John Garry <john.g.garry@oracle.com>,
+ Jason Yan <yanaijie@huawei.com>,  "James E.J. Bottomley"
+ <James.Bottomley@hansenpartnership.com>, "Martin K. Petersen"
+ <martin.petersen@oracle.com>, Pavel Machek	 <pavel@ucw.cz>,
+ linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-ide@vger.kernel.org, 
+	linux-scsi@vger.kernel.org, Ian Pilcher <arequipeno@gmail.com>
+Date: Mon, 26 Jan 2026 22:06:02 +0000
+In-Reply-To: <aXctPaaXFYemV20T@ryzen>
+References: <20260123-ledtrig_disk_-v1-0-07004756467b@posteo.de>
+	 <aXctPaaXFYemV20T@ryzen>
+Autocrypt: addr=markus.probst@posteo.de; prefer-encrypt=mutual;
+ keydata=mQINBGiDvXgBEADAXUceKafpl46S35UmDh2wRvvx+UfZbcTjeQOlSwKP7YVJ4JOZrVs93
+ qReNLkOWguIqPBxR9blQ4nyYrqSCV+MMw/3ifyXIm6Pw2YRUDg+WTEOjTixRCoWDgUj1nOsvJ9tVA
+ m76Ww+/pAnepVRafMID0rqEfD9oGv1YrfpeFJhyE2zUw3SyyNLIKWD6QeLRhKQRbSnsXhGLFBXCqt
+ 9k5JARhgQof9zvztcCVlT5KVvuyfC4H+HzeGmu9201BVyihJwKdcKPq+n/aY5FUVxNTgtI9f8wIbm
+ fAjaoT1pjXSp+dszakA98fhONM98pOq723o/1ZGMZukyXFfsDGtA3BB79HoopHKujLGWAGskzClwT
+ jRQxBqxh/U/lL1pc+0xPWikTNCmtziCOvv0KA0arDOMQlyFvImzX6oGVgE4ksKQYbMZ3Ikw6L1Rv1
+ J+FvN0aNwOKgL2ztBRYscUGcQvA0Zo1fGCAn/BLEJvQYShWKeKqjyncVGoXFsz2AcuFKe1pwETSsN
+ 6OZncjy32e4ktgs07cWBfx0v62b8md36jau+B6RVnnodaA8++oXl3FRwiEW8XfXWIjy4umIv93tb8
+ 8ekYsfOfWkTSewZYXGoqe4RtK80ulMHb/dh2FZQIFyRdN4HOmB4FYO5sEYFr9YjHLmDkrUgNodJCX
+ CeMe4BO4iaxUQARAQABtCdNYXJrdXMgUHJvYnN0IDxtYXJrdXMucHJvYnN0QHBvc3Rlby5kZT6JAl
+ QEEwEIAD4CGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AWIQSCdBjE9KxY53IwxHM0dh/4561
+ D0gUCaIZ9HQIZAQAKCRA0dh/4561D0pKmD/92zsCfbD+SrvBpNWtbit7J9wFBNr9qSFFm2n/65qen
+ NNWKDrCzDsjRbALMHSO8nigMWzjofbVjj8Nf7SDcdapRjrMCnidS0DuW3pZBo6W0sZqV/fLx+AzgQ
+ 7PAr6jtBbUoKW/GCGHLLtb6Hv+zjL17KGVO0DdQeoHEXMa48mJh8rS7VlUzVtpbxsWbb1wRZJTD88
+ ALDOLTWGqMbCTFDKFfGcqBLdUT13vx706Q29wrDiogmQhLGYKc6fQzpHhCLNhHTl8ZVLuKVY3wTT+
+ f9TzW1BDzFTAe3ZXsKhrzF+ud7vr6ff9p1Zl+Nujz94EDYHi/5Yrtp//+N/ZjDGDmqZOEA86/Gybu
+ 6XE/v4S85ls0cAe37WTqsMCJjVRMP52r7Y1AuOONJDe3sIsDge++XFhwfGPbZwBnwd4gEVcdrKhnO
+ ntuP9TvBMFWeTvtLqlWJUt7n8f/ELCcGoO5acai1iZ59GC81GLl2izObOLNjyv3G6hia/w50Mw9MU
+ dAdZQ2MxM6k+x4L5XeysdcR/2AydVLtu2LGFOrKyEe0M9XmlE6OvziWXvVVwomvTN3LaNUmaINhr7
+ pHTFwDiZCSWKnwnvD2+jA1trKq1xKUQY1uGW9XgSj98pKyixHWoeEpydr+alSTB43c3m0351/9rYT
+ TTi4KSk73wtapPKtaoIR3rOFHLQXbWFya3VzLnByb2JzdEBwb3N0ZW8uZGWJAlEEEwEIADsWIQSCd
+ BjE9KxY53IwxHM0dh/4561D0gUCaIO9eAIbAwULCQgHAgIiAgYVCgkICwIEFgIDAQIeBwIXgAAKCR
+ A0dh/4561D0oHZEACEmk5Ng9+OXoVxJJ+c9slBI2lYxyBO84qkWjoJ/0GpwoHk1IpyL+i+kF1Bb7y
+ Hx9Tiz8ENYX7xIPTZzS8hXs1ksuo76FQUyD6onA/69xZIrYZ0NSA5HUo62qzzMSZL7od5e12R6OPR
+ lR0PIuc4ecOGCEq3BLRPfZSYrL54tiase8HubXsvb6EBQ8jPI8ZUlr96ZqFEwrQZF/3ihyV6LILLk
+ geExgwlTzo5Wv3piOXPTITBuzuFhBJqEnT25q2j8OumGQ+ri8oVeAzx24g1kc11pwpR0sowfa5MvZ
+ WrrBcaIL7uJfR/ig7FyGnTQ1nS3btf3p0v8A3fc4eUu/K2No3l2huJp3+LHhCmpmeykOhSB63Mj3s
+ 3Q87LD0HE0HBkTEMwp+sD97ZRpO67H5shzJRanUaDTb/mREfzpJmRT1uuec0X2zItL7a6itgMJvYI
+ KG29aJLX3fTzzVzFGPgzVZYEdhu4y53p0qEGrrC1JtKR6DRPE1hb/OdWOkjmJ75+PPLD9U5IuRd6y
+ sHJWsEBR1F0wkMPkEofWsvMYJzWXx/rvTWO8N4D6HigTgBXAXNgbc3IHpHlkvKoBJptv6DRVRtIrz
+ 0G0cfBY0Sm7he4N2IYDWWdGnPBZ3rlLSdj5EiBU2YWgIgtLrb8ZNJ3ZlhYluGnBJDGRqy2jC9s1jY
+ 66sLA9rQZMHhJTzMyIDwweGlvMzJAcG9zdGVvLmV1PokCbQQTAQgAVxYhBIJ0GMT0rFjncjDEczR2
+ H/jnrUPSBQJpa71VGxSAAAAAAAQADm1hbnUyLDIuNSsxLjExLDIsMgIbAwULCQgHAgIiAgYVCgkIC
+ wIEFgIDAQIeBwIXgAAKCRA0dh/4561D0gKJD/9uOQKYlsDoQX65Gd0LiMT0C+5vXgr3VI0PHDOwcv
+ 51fJ3A1vNyPZRFPGrz8+mDEXUQOF/INfnz5Tu1QHwf+iYcWcTGAN/FHgVR6ET6VBNU2hJaKhu+Ggo
+ kjYyJTOvyX+3yNRUfSny0GjTjIPuPTErjqmHF+BtjXslpgwqnNMznf3lRIuUjRORupos6p3k1DndE
+ 5vzUTmXSvMyXyOD2KhBl/kL76k0bHYyAQytZPag12pltrtFbA/r2phDGN2si8PooDT99bSTJjaM45
+ MTAAHbHKJfvgfK41bNFD5mMtpWpL195XRtS0Nrxdg3PaYBxN5gtTG0RyZfpYRlkdEhm+jj/8RxuSG
+ i/qdhRdbiI7K2IELWeQVHSNDi9JabR/UzlR4NSnhfAjRIVlRM+eFbUl8XwxwVrAkojF5IraH2qRvg
+ VCmuFsHUW07FUlrDrzpjXsD73cKppoFGDCdDR0BHJepXbFLS9+AqkT+guRJlnCTg2p+TQtnbwPgKp
+ Vj98JixovCl99zRYTsL2bRNU5+q8iET65VMJ1ydyNanvLd5vI/NqDkXhlXLsGmdaDTtu4R21PkToX
+ dQNGrZ91M9nlIBKw8Y7c7xZ4098qX2b8JX/CxD+gC1r4C8vuA3GkhFLx+KlkON7LyiJPkrePp6Qky
+ jfGillcaQOqFZ3WwVqyzG1BUfTow==
+Content-Type: multipart/signed; micalg="pgp-sha256";
+	protocol="application/pgp-signature"; boundary="=-vIBodq2rbp0KWEXSdDUh"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <68e1702e-f803-2db2-0e16-53ecef4d9eb6@kernel.org>
+OpenPGP: url=https://posteo.de/keys/markus.probst@posteo.de.asc; preference=encrypt
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[rivosinc.com,none];
-	R_DKIM_ALLOW(-0.20)[rivosinc.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[posteo.de,none];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
+	R_DKIM_ALLOW(-0.20)[posteo.de:s=2017];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[linutronix.de,redhat.com,alien8.de,linux.intel.com,kernel.org,zytor.com,linux-foundation.org,oracle.com,suse.cz,sifive.com,dabbelt.com,eecs.berkeley.edu,arndb.de,infradead.org,xmission.com,lwn.net,google.com,gmail.com,garyguo.net,protonmail.com,umich.edu,vger.kernel.org,kvack.org,lists.infradead.org,wdc.com,linaro.org,rivosinc.com,intel.com,aisec.fraunhofer.de,canonical.com];
-	DKIM_TRACE(0.00)[rivosinc.com:+];
-	TAGGED_FROM(0.00)[bounces-259659-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,oracle.com,huawei.com,hansenpartnership.com,ucw.cz,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-259660-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	DKIM_TRACE(0.00)[posteo.de:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[debug@rivosinc.com,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[62];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[markus.probst@posteo.de,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sifive.com:email,rivosinc.com:email,rivosinc.com:dkim,canonical.com:email,fraunhofer.de:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,msgid.link:url]
-X-Rspamd-Queue-Id: 8FE1D8DBE3
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: B82178DD32
 X-Rspamd-Action: no action
 
-Hi Paul,
 
-Comment inlne.
+--=-vIBodq2rbp0KWEXSdDUh
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jan 14, 2026 at 07:57:19PM -0700, Paul Walmsley wrote:
->On Thu, 11 Dec 2025, Deepak Gupta via B4 Relay wrote:
->
->> From: Deepak Gupta <debug@rivosinc.com>
->>
->> VM_HIGH_ARCH_5 is used for riscv
->>
->> Reviewed-by: Zong Li <zong.li@sifive.com>
->> Reviewed-by: Alexandre Ghiti <alexghiti@rivosinc.com>
->> Acked-by: David Hildenbrand <david@redhat.com>
->> Tested-by: Andreas Korb <andreas.korb@aisec.fraunhofer.de>
->> Tested-by: Valentin Haudiquet <valentin.haudiquet@canonical.com>
->> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
->
->Here's what I'm planning to queue, after updating it after Lorenzo's mm
->changes.  Please let me know if you want to change anything.
+On Mon, 2026-01-26 at 10:00 +0100, Niklas Cassel wrote:
+> Hello Markus,
+>=20
+> On Fri, Jan 23, 2026 at 07:05:03PM +0000, Markus Probst wrote:
+> > Extend the disk trigger
+> > - to allow configuration of the blinking delays
+> >   and whether the led should be kept on, on idle.
+> > - to allow an individual led to be mapped to an ata port
+> >=20
+> > I would also like to add another patch to this series, only leaving the=
+ led
+> > on with invert 1 if also at least one disk is present on the ata port.
+> > The led would then not only indicate activity, but also if a disk is
+> > present.
+> > That is why it is an RFC.
+> >=20
+> > @Damien,Niclas: What would be the most straightforward way of telling
+> > the led trigger if at least one disk is present on the ata port and
+> > notifing it when this changes?
+>=20
+> Why do we want to have this in kernel space?
+Because there are more than enough devices that could make use of it.
 
-Yes looks good to me. Thanks a lot.
+Just search the term "NAS device" and you see rarely any devices for
+which this wouldn't be useful.
 
->
->
->- Paul
->
->From: Deepak Gupta <debug@rivosinc.com>
->Date: Wed, 19 Nov 2025 09:55:05 -0700
->
->mm: add VM_SHADOW_STACK definition for riscv
->
->VM_HIGH_ARCH_5 is used for riscv.
->
->Reviewed-by: Zong Li <zong.li@sifive.com>
->Reviewed-by: Alexandre Ghiti <alexghiti@rivosinc.com>
->Acked-by: David Hildenbrand <david@redhat.com>
->Signed-off-by: Deepak Gupta <debug@rivosinc.com>
->Tested-by: Andreas Korb <andreas.korb@aisec.fraunhofer.de> # QEMU, custom CVA6
->Tested-by: Valentin Haudiquet <valentin.haudiquet@canonical.com>
->Link: https://patch.msgid.link/20251112-v5_user_cfi_series-v23-1-b55691eacf4f@rivosinc.com
->[pjw@kernel.org: clarify subject; update to apply]
->Signed-off-by: Paul Walmsley <pjw@kernel.org>
->---
-> include/linux/mm.h | 5 +++--
-> 1 file changed, 3 insertions(+), 2 deletions(-)
->
->diff --git a/include/linux/mm.h b/include/linux/mm.h
->index 15076261d0c2..de912272c5f9 100644
->--- a/include/linux/mm.h
->+++ b/include/linux/mm.h
->@@ -359,7 +359,7 @@ enum {
-> 	DECLARE_VMA_BIT_ALIAS(PKEY_BIT2, HIGH_ARCH_2),
-> 	DECLARE_VMA_BIT_ALIAS(PKEY_BIT3, HIGH_ARCH_3),
-> 	DECLARE_VMA_BIT_ALIAS(PKEY_BIT4, HIGH_ARCH_4),
->-#if defined(CONFIG_X86_USER_SHADOW_STACK)
->+#if defined(CONFIG_X86_USER_SHADOW_STACK) || defined(CONFIG_RISCV_USER_CFI)
-> 	/*
-> 	 * VM_SHADOW_STACK should not be set with VM_SHARED because of lack of
-> 	 * support core mm.
->@@ -460,7 +460,8 @@ enum {
-> #define VM_PKEY_BIT4  VM_NONE
-> #endif /* CONFIG_ARCH_PKEY_BITS > 4 */
-> #endif /* CONFIG_ARCH_HAS_PKEYS */
->-#if defined(CONFIG_X86_USER_SHADOW_STACK) || defined(CONFIG_ARM64_GCS)
->+#if defined(CONFIG_X86_USER_SHADOW_STACK) || defined(CONFIG_ARM64_GCS) || \
->+	defined(CONFIG_RISCV_USER_CFI)
-> #define VM_SHADOW_STACK	INIT_VM_FLAG(SHADOW_STACK)
-> #else
-> #define VM_SHADOW_STACK	VM_NONE
->-- 
->2.51.0
->
->
->
->
+The only reason the leds work on those devices currently, is because
+they get shipped with a custom modified kernel by the manufacturer.
+This shouldn't be a requirement for running Linux properly on a NAS
+device with disk leds.
+
+
+> Sure, there is already the very simple ledtrig-disk driver.
+>=20
+> But I'm not a fan of making the driver more complex.
+Do you mean the complexity it would introduce in libata or for the led
+trigger itself?
+
+At least with the current patches it looks fairly maintainable.
+For instance the pattern led trigger is more complex in my opinion.
+
+In the case of libata and the indication for a presence of a disk, I
+would suggest that I implement it first and we can see after I have a
+working version if it is acceptable or not.
+
+I am still asking for guidance on checking if at least one disk is
+present on a ata port.
+
+> If we want something more complex than what is already there, then it
+> is probably much better handled in user space, considering the amount
+> of possible configuration options.
+A userspace daemon by itself is possible, but I don't think it is the
+best solution. Having an indicator for disk activity on a per-disk
+basis seems like basic led functionality that should be present in the
+kernel.
+
+It is a very minor detail, but I would prefer to have "linux,default-
+trigger" set on the led in the fwnode and having the functionality
+automatically for every linux system on the hardware, instead of having
+to deal with a userspace daemon.
+If this is the easiest solution for nas manufacturer to do disk leds,
+there is a good chance it getting adopted some day in the future by
+those manufacturer and thus making it work out of the box when
+switching away from their proprietary os.
+
+>=20
+> Basically the same argument as used in:
+> https://lore.kernel.org/linux-nvme/20220227234258.24619-1-ematsumiya@suse=
+.de/T/#u
+If I understood it corretly, the argument there is that led code
+shouldn't be present in a fast path.
+
+This does not apply to this scenario.
+
+Thanks
+- Markus Probst
+
+>=20
+>=20
+> Kind regards,
+> Niklas
+
+--=-vIBodq2rbp0KWEXSdDUh
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJPBAABCAA5FiEEgnQYxPSsWOdyMMRzNHYf+OetQ9IFAml35TcbFIAAAAAABAAO
+bWFudTIsMi41KzEuMTEsMiwyAAoJEDR2H/jnrUPSe80P/1T6HKGKTekIYWkKd8wU
+zOzFPLy2XSJ5xSSlj7w4BhR1gObj2M2Z5gEHFWP2VLmdPXVo1bQFRm3aqzSAVU7G
+VnSBH0LEpmByCw0ON3ZtAhAyCtcjtGkc0zd4aLO9sU1iMu82HV0aI01/zR47Y3tv
+Ww+uu/IIU3gcMiDO0ozngstSNyBYR1awgiruo0GcVDbjRe1kypI9IPB5ZdB/ND5H
+/7Cvxfl2bcjmMYpbaNMNQBt0m3900L0WJx6NbaCuCzdtL63ncvkswGqzonE6u/Gd
+M9UikZCbEtMQ14Wy1fQ6n3Pf75GRUeF94s4kYCT/l58DBNG4FTPEdwrrL9jz8NKL
+najrcw5eXuQqwcdfSQbl2VTN3cUobnql1E3jW6Ry1RndWJf0gdsHU6k+urliTpP1
+GmWEEq/SgKxBdclB4/DlPOS4gLTEdgcu29+In06mDo//N7/27fpt5CInmWMfodvP
+YrhTZjsd0hrJ/aEqoK4F/M0g5I2f51BnZoS8xjlGGQK1yrdIVUJZhLJa1r/vgq5j
+j4uFv3hBUFZRaNYfi5AF+sDJeX+YsTz2+BwgK46txgGcnkHKV65R0r5pbowrZHui
+VKUlEaSuPn+a6UlWBDAnw4Slb04z3BBlrYqkhZJTtwAKAafI/Ai5SAZU51dszBKj
+Uk3SvQeMthVUUuYhumVXmtDf
+=Dw1T
+-----END PGP SIGNATURE-----
+
+--=-vIBodq2rbp0KWEXSdDUh--
 
