@@ -1,252 +1,392 @@
-Return-Path: <devicetree+bounces-259593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259594-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uN3oEsadd2kCjQEAu9opvQ
-	(envelope-from <devicetree+bounces-259593-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 18:00:54 +0100
+	id +MfJKnGdd2n0iwEAu9opvQ
+	(envelope-from <devicetree+bounces-259594-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:59:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 363AC8B35A
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 18:00:54 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DED78B2B1
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:59:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 83B5F300D98B
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:55:30 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 838E2303EEA9
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:55:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D060C348862;
-	Mon, 26 Jan 2026 16:55:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2671D348860;
+	Mon, 26 Jan 2026 16:55:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z0Erv/eU"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="XfjgkX41"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TY3P286CU002.outbound.protection.outlook.com (mail-japaneastazon11010054.outbound.protection.outlook.com [52.101.229.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FE4B348452
-	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 16:55:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769446526; cv=none; b=Wmm/T9oPqzF579dBlB+H92tsplqmY5zDQjno4515gfCzkLxLQkbfoRN9+c4s0kkeT7ttL8MAr8d9pNOKzkRchwrY04nCP50T3Irqdd6/wO6wyxXj041M2udVJ3Sl7C4fYjLMkzrp/fq0xcjgIAnkweHjon7uyuxGEDgNs5A6tmc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769446526; c=relaxed/simple;
-	bh=rtDgVvG79SUCWzCaoQOfUDO1NplihBERrUqYdXin8Yw=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MJ9/K3IyX5hEEkKeHVC45TTFuRuCbFci08SmCDJKrGNt0ifGw0m5b4vai3YFkYyI+NALu4L4jUvdylBzkJYQPy23IjDKn8FQW5CFynmnpRAek6jC1ydV02N9kR/Pl/wH5DSnisALtGJh+8RZUG2hk+bFbjmrRwK7qrXmMxKx4ok=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z0Erv/eU; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-47f3b7ef761so34042315e9.0
-        for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 08:55:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769446523; x=1770051323; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=rc+FUrxKc4cUAoTTGJRU58P89nBONYHsM5Js7trUOgI=;
-        b=Z0Erv/eUvMHVs1d/MEDVa+e2EfxT3uYF+eaxPuJWRWMSXluuPyiijRXAf1LtQmpNt3
-         oEXPKFXjQ/j5fp2OofmiKGyEOcdtTQTV7KwKUZ0oKLFU4zBljQfOWIrBdHwoLZLupqJS
-         DonRUMdTbFevCA2/1t5Z+xeyHwPywPUnj+z9uvad93eXzNqKpMWzbswT86Cz61gFzymK
-         kQiNl5VM3iyfK0X7JNluJjai2Gr1uMSWpxvUMpO3xZp1fz0gY0ubXJxCERSk6c4g7hUX
-         j/yjlwupvB6/S2K/HyntkIKlwEXzw8dFuDFe189aLAyaDboPEV6N9TcFmp7SAJQB5R8b
-         9bvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769446523; x=1770051323;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rc+FUrxKc4cUAoTTGJRU58P89nBONYHsM5Js7trUOgI=;
-        b=IEBzi6mMss+0bZiD5bEaT5Eoz+Ugh0MqHd/7ZvHMIlRDuEoYV86nsYZXitvdc2Z6E1
-         UAm64e3vSoUA8zJqVvrJ6nbUbhpSB6aZFX/hisT0c0pqaDfZbwlo7ZLbs0978FtPVatO
-         4qIWUcod4JXulhxG7pqQNWDBMJl2jLjlYoqFquVD1WBvVoshDp6gvrGAPJYB0/Hu4XNU
-         5kX94ou2LPkaoUZEBiZZf1wbKNcppLfZqcUb/SouvtZxq+UPC80fAppDNga73/VS8GN2
-         vHaCvpKdFY7QR+h3SvUxUgRNTQbpWXnkR47lNVfokfWI9M2iUSlUrRPi3W66aQRXWsGo
-         h+Og==
-X-Forwarded-Encrypted: i=1; AJvYcCVYT7x9OvfEHq8ASScjEqTA695si99SRMA11nGYmWm7mDPs2E3+WWrOzvQcFziUR8O0oy26M1Brq3UC@vger.kernel.org
-X-Gm-Message-State: AOJu0YwRC3Bmt8YS3GjThs/M1Ss7a19yA8OuZBb84PXExkemWaqpudVr
-	aSumquWSW9LwzoC7xctyUI8AzyQur799KQ8SYnecUsqoltDs/oSxA+Ze
-X-Gm-Gg: AZuq6aIO/bh1+injsotl89yMumf/4j21VgzLBRXH6hMpwR2qqw36NsnASEF5jpgdx4C
-	Y9ch+K9FmCZcjgsVYMOx/Fa4QcTz5KodujJnHMpp3qUpQ7E5yB7HpX/HKQckJ97TxR7yb+G2Fnp
-	0fLVaMIUdS1OUtpO5EYKh898yijpRjcVxeJ240xhW1mi0pe9LmIK1DezUChcuM6sizIYTRmF8wh
-	FYtCUFiAHq7gbnZe1TNIEyTQwJUKsy6/41NuAqglsekM6Kn6y2R29+yBL9F8QyG93zEHevNh8rl
-	z0ATXSaeQrmsnC7Xaw0Psi7L+itxMKgaDOZOQIr0hrHTncnLeMYQOXY8Bz//u/jswKbd6YpRym4
-	SMwUYGC6hpUzfA6AOlpoSwwAgUZ5ffo5eM5z3PxXNrQQH/rx6qp2A402MQhZkYb3yMTITF48n+/
-	j/O93Yg2mRWFZTvZz6lCOE9WvOZ0Zs0EPxHe//EDbRhQzXPVdnKVH0d8DuEcXQpeArMeuKjO+Z0
-	87M
-X-Received: by 2002:a05:600c:4e56:b0:47b:deb9:15fb with SMTP id 5b1f17b1804b1-480628348c6mr42537495e9.33.1769446523357;
-        Mon, 26 Jan 2026 08:55:23 -0800 (PST)
-Received: from RDEALENC-L01.ad.analog.com ([24.206.116.103])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48066bfb59asm1306595e9.7.2026.01.26.08.55.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Jan 2026 08:55:22 -0800 (PST)
-From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
-Date: Mon, 26 Jan 2026 16:55:13 +0000
-To: Andy Shevchenko <andriy.shevchenko@intel.com>, 
-	Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
-	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	Andy Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>
-Subject: Re: [PATCH v5 2/8] iio: core: add fixed point parsing with 64-bit
- parts
-Message-ID: <anhtxco52jz2ktmxlittsjuvfqybwrwgy76bjhni3j5dzx2rh2@hpzf3sfwe7hf>
-References: <20260123-adf41513-iio-driver-v5-0-2dce812a2dda@analog.com>
- <20260123-adf41513-iio-driver-v5-2-2dce812a2dda@analog.com>
- <aXdUvRZ9NmP5Nh95@smile.fi.intel.com>
- <byitgzjli5gsq5v66topve7ip3inkk2udwhuihjdp6bknnkmos@tv226l7tek7s>
- <aXdtpkL5QUhhB_hh@smile.fi.intel.com>
- <ty6hptfh65k2rkqo6c6mg5z6vismuvyqsu3emvqarr2rbhpvcz@kn6tzjk5xi2o>
- <aXd_0uNVm8c_Fhwd@smile.fi.intel.com>
- <n2ms3esyxlegqibu4nluut3x4c4bkjxt5xrcd4gw35xxb2tipb@a2v73y25kroc>
- <shsikp7hinoxzj7pzxopvmvgpaak4dioekh4tyvns4kv6xp46f@z5vgnisqskco>
- <aXeRQ4AXmn1SxoNa@smile.fi.intel.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FBB3346FC3;
+	Mon, 26 Jan 2026 16:55:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.229.54
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769446544; cv=fail; b=B3fEsn4tR8h9J34kXQQCMoT9sYzrqnuILbmGn+0Ej4TXW9LbC3QSIzb6GOlDrd9tyVBOoGnopuzYGopKPWwwUao+LRV1CJ7lokJQ4owP7feCdHastsSGFVSJaUPnw0VyH1F4+t49KimmHKf+4IeSOdSVcQ6ZUEkEXk8XOBgN5Fw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769446544; c=relaxed/simple;
+	bh=APryLf7x6vejPKDPTXuuUip1h0bTO7FcM9g8CR9Otg8=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=XKUUIZ9qie9di+b65FWBewHFrB6ma9kindvM9VA0ClxIUKmSBiajjYw1zTLpJ6s1xVRfq6pqnRNEU3YtOl5kTyyrYMRJQO60NtbYbyJx4ffHAbK0f5+kywBGTpj9BLzxO3xiHGj3fAxYrszf5JvQStEYhIdrePQNgKrrihjVQKI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=XfjgkX41; arc=fail smtp.client-ip=52.101.229.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=phQxHr/Cc+dkN2htMB+gB+/Jj0PDmDgzFrMnxsU306X4qPCUh66EIzVKIq+27lKknEk9zjf6uhUw0pmYHfiSHeHZcbKcy7AcJWsp+xmht+4p0QeMJjfZFTwJloS61GoQokW1Og18/nEJPmZYWK4nOywQ6SxYX8LGQuIS8F6SrBr+HVdsD2q4/NgZ0kTy1HQBPW5C1cygy3/Lc8KRG0603cCdqhPz8O8uNqv12WhvfZ8h+BeD8rqudL8A5hCxdvgq1K93mcAeYXtaqNEXkUBKffMO4W7HHmkvNpeLaryJJwyeg7BFCjBczXZbzYMt6yGhhoN4CELO/OlswzA9fKI5rw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=YlSTjAbo1b2q2iJ2QHtp73EHE54IxtOQVSzyxTTVmBk=;
+ b=mUFdO6b1PitPrS9/7p1q7Cl8PHALRaCRo/pITmbclCrblzEQtwj99L2wxd/rudEfT/lAH8qZP2ImAOQX0MmjW2LwDRvnLadTXUdKEKDUvJ4ytvuo84KWq6L+m7FdivSaIwKmgpb+F3J5Lz5yanQdbdhZVp+/DE8n3SOJhvPd9wL7LzjYOCW/BE+UHDdJm2+Vl7vdMYfERI5t0qxE3ewaFnUVNRXkqU9pkcI2f8Yje9WWlpzRwf0UBIgkCz5jUFQvVKdWAJgZkwOfHbJqA96Te5q1WzAA9I2CHGfAr571lO0bX3zav4iCqnkm5w+3HVuTgihIs30lj2HwjhPpAcuWyA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YlSTjAbo1b2q2iJ2QHtp73EHE54IxtOQVSzyxTTVmBk=;
+ b=XfjgkX41tHvdhGj540U/L6F1skDn0nMDenhR5cEgycbxno5/wOz8r49WZWGCuH4A3PyXCzzqN6LGBaGh78WFv4ONqj4QrHNuXMOfsfmOBZGJb4YMQTumo4AWRTEdqm6ocwILbQrC7JjZSN1thjq1Bz6uufVtHkv9ZdnmwMJpG5Q=
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
+ by TYCPR01MB11303.jpnprd01.prod.outlook.com (2603:1096:400:3bf::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.15; Mon, 26 Jan
+ 2026 16:55:37 +0000
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1%6]) with mapi id 15.20.9542.015; Mon, 26 Jan 2026
+ 16:55:37 +0000
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: John Madieu <john.madieu.xa@bp.renesas.com>, Rob Herring <robh@kernel.org>
+CC: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, "lpieralisi@kernel.org"
+	<lpieralisi@kernel.org>, "kwilczynski@kernel.org" <kwilczynski@kernel.org>,
+	"mani@kernel.org" <mani@kernel.org>, "geert+renesas@glider.be"
+	<geert+renesas@glider.be>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"bhelgaas@google.com" <bhelgaas@google.com>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, magnus.damm <magnus.damm@gmail.com>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+	"john.madieu@gmail.com" <john.madieu@gmail.com>
+Subject: RE: [PATCH v2 06/15] dt-bindings: PCI: renesas,r9a08g045s33-pcie:
+ Document RZ/G3E SoC
+Thread-Topic: [PATCH v2 06/15] dt-bindings: PCI: renesas,r9a08g045s33-pcie:
+ Document RZ/G3E SoC
+Thread-Index: AQHcjHDWJvIbQMI8j0WdDTFLzZ8lCbVkh/cAgAAl6YCAAAFEsA==
+Date: Mon, 26 Jan 2026 16:55:37 +0000
+Message-ID:
+ <TY3PR01MB113462A7C72AFBE24F2B117268693A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+References: <20260123140031.94752-1-john.madieu.xa@bp.renesas.com>
+ <20260123140031.94752-7-john.madieu.xa@bp.renesas.com>
+ <20260126143114.GA2223879-robh@kernel.org>
+ <TY6PR01MB1737770235BF9F3D29E4E71DAFF93A@TY6PR01MB17377.jpnprd01.prod.outlook.com>
+In-Reply-To:
+ <TY6PR01MB1737770235BF9F3D29E4E71DAFF93A@TY6PR01MB17377.jpnprd01.prod.outlook.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|TYCPR01MB11303:EE_
+x-ms-office365-filtering-correlation-id: c365b57e-5f98-489c-36b2-08de5cfbbad2
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|1800799024|7416014|366016|38070700021;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?DQV6wWwYNGvW8U4g6J+5wQkj/wG0Fpxjevz1CNSFfVNPK9zRuuU9Sy9ddr78?=
+ =?us-ascii?Q?qpnYL6SzTSplfYxUJfTh34h83IRX4vkNVTOlnz9Q7MHCJ/mw9RjIEdc8Sgp5?=
+ =?us-ascii?Q?2/oSs5LOSwI0hpECSJxSMItgYlC7yRXnXOF0AebJLdcmGpjHUBWAFOM4cnLI?=
+ =?us-ascii?Q?mX5cRcgFjlSxM7mFvq08i1TVERcOqBqSFpq2jy53N+nTkYzFH+w7g1h6n4En?=
+ =?us-ascii?Q?KwpZu9Mstw8rBlOwNLdxMlg69tRY3iuVP7kv0YI1CWiV3x9Ub2LQKjTRNlZY?=
+ =?us-ascii?Q?gPQxWiMIo5S0lAPfyLhxqFsSy+h/+AoiLPRR2RCsuJ3zOQk+Eibhk6Uw8lrl?=
+ =?us-ascii?Q?ww1hiWpChhMTAE6iK6U3SM+vKnEVrvkRnBunlMHMKFPDwJafRWU9NpX3awTz?=
+ =?us-ascii?Q?OQkMtJjwv/V3I/MHVMFQtzAYN3fuf46aErfg+kHH4YNBLrSHpxcpn2lxJBaw?=
+ =?us-ascii?Q?bc7iSf93zdwam7bBgGru/h/XdJ5WkOOKMI/HiBV9s/WEyS3uX3AVMWtvj8ck?=
+ =?us-ascii?Q?E9UkzNBO+9oBUIhymQ1QOdJ/n6I4VoEA2fTt5npTm4IvuHSZ3uuU/+ObENrU?=
+ =?us-ascii?Q?8S1tuA54O9UhMi6jDdJb+gRcUWcYNuYUnUUc6CCXsZh7Z4dw4mXDfupb3TLl?=
+ =?us-ascii?Q?YwhjYMaqq0lILW8BszP5kL9TwhD0CHCH4xDfucSE0ucxRpmitXR4FeXwWUvX?=
+ =?us-ascii?Q?lXi300GSZcDmxfFiPDEY4Xq9Ym9GIpV6DLJ07sdUViSSKXFOvj2PwDvl2uCv?=
+ =?us-ascii?Q?HSooFPefLlUOJZR5sw/pYzf6mFa3V5T9/7kJp3nLvjmTUv2uJZ0JMOZGpqpG?=
+ =?us-ascii?Q?Sz1VpKf27A+QcYn6JkZDlD6YGYBX+uIxJN2GPny6EbgdtjtSfaL7h+B/+tV9?=
+ =?us-ascii?Q?06pzI0Ii8NynXIKKvaXdPJ0lWVlRpe4w8xTLP9Udnv8nd2vbnHhywfeD185H?=
+ =?us-ascii?Q?SWiTUMwCp7JvGLZbRrfoFxKVQaytIjzdKL9iG3f81zjDe22TtTR1CFIGvEV0?=
+ =?us-ascii?Q?pCHzv78PSO4haMqf0EMQ1PpOXvBMoMnoKhewYJEf20MmY3Ll8x901u75q32V?=
+ =?us-ascii?Q?I5LuE44S4Lo6Qfp+up9AdW2yUGV7oV/2nUJJLvSOxeUtMrwwIFiVd0Tyaxev?=
+ =?us-ascii?Q?jLIpAzJcnj0D2Z6MKZC92Vet65Pwq75XdgzbhXJgKpy8IrGwkv2Gwi+Wtwkz?=
+ =?us-ascii?Q?s3Mpj8vC0NZv4SwO+hGA880+ZOe+XIpMpIqqf4HE2+bSB5gI8MhRsxQ6tI7g?=
+ =?us-ascii?Q?4CCdnjQVO5DPl0OMXERIiexM4rME421X4uc/aS5Mu8tcHb58uciJwfE9tSlX?=
+ =?us-ascii?Q?4XzhEa5BhUA2XORG3BJZAnZkojwg8YFo1X8ZKlsNUWHlNcPFPBBOVr1V1yc2?=
+ =?us-ascii?Q?E6S73jKwNoqdlF7aXVzxHz2N31aFaw6svWbirhCifVA5b3MTjnutwhmwccWY?=
+ =?us-ascii?Q?t4ds6nL8u9dXkyBiSDKPS50UNb4W96sT8fOTYwIfrmz0Tpa0oj3T12ZTjrG/?=
+ =?us-ascii?Q?NR7HULekBzju4/VNlB8MTKk6gm7cwVt6LN7T21nbxQcmzkH1FgYGDjUv96Xu?=
+ =?us-ascii?Q?of9VmRqVmoxIFYqPUUouXPxRRMBaK6ShEyssqK1NociN2QQ9Wviv0CxASJkD?=
+ =?us-ascii?Q?7gX4B9412vMTDC/tgDvT9O8=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(7416014)(366016)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?8bd7fHcM3H3eQEq/3FVCFIfpN6y9zb14TkSrvDLaPJkFRH0kiFBpvtzPSOF0?=
+ =?us-ascii?Q?+J8Fd4BrB1fV7ZveyDtfzpLBN2ySyTMv4Oiyvr4ydDt2LxXaMI/8EanE6W2F?=
+ =?us-ascii?Q?FgCfZl62ITyeqCNilo3G21bE0RBcpMrYzuCvQ9ecUjKjAg/Ebhc45ECN4KUJ?=
+ =?us-ascii?Q?+rbs+xr72wMBACgF7/6fF3nBpwDmm3NWqCNxUjGf0IKWMQ/VqgMFFbYr7kuX?=
+ =?us-ascii?Q?0zfww4NRTW7/HngbjuFCWkQd28j+xH6CAugoIKbPtFs8cvMx35DiaP5gisci?=
+ =?us-ascii?Q?/a7ki20310OhrSQZ/VBt+HZsVz7hbwWvHnE09ULEiPJKvimghZT24uCgt8s/?=
+ =?us-ascii?Q?ezRjL93WZG/EcUUcD2mPesweZkwGhUx3w2peHmv7YALbv+bdsmhooQ/bkTAr?=
+ =?us-ascii?Q?Vyfbw0ocSB1xIA462A2FtmO1FzqlD6uBTypj/eGs0XpgUSxaKn9hTrSY7Pbu?=
+ =?us-ascii?Q?hRXPmuchb4mNT1SoekqyY9MVmeZcg5youAAu641MaK73Q7LRc9ewvgU2/qhB?=
+ =?us-ascii?Q?Ve8vkOKRnQrwpDqX6hTBLdbVL/iYj+dYr4YZ4prpMq8LT6Sh7UMge1kHsU/z?=
+ =?us-ascii?Q?5Wz6u693H5Focf0ildW0a3+uJlXDsThhQYKLbxuYXhLpSjzaqu/a+QgXiE8f?=
+ =?us-ascii?Q?i0asjomuUePN6FPexzJNb0xx11zDMnblwOt+cEoRJ4URtHfO8XUEpu86tViI?=
+ =?us-ascii?Q?710W2zZZFgyZKnYaEhPbLy7T/nwIik2UiYCZmI97jdCfHyp+1iVzc1vKy6eK?=
+ =?us-ascii?Q?hv55cQP9/+eVA+QRPg68YVxyW1sIrhI8uV2sgJpSmG5Plv0wDxVurtMDVLwL?=
+ =?us-ascii?Q?Ix8MmFxgiIfXRz7pnciohKQQYYHfoodLDQBM9IdzeuVYhzahqtzXGJcysYUH?=
+ =?us-ascii?Q?wKQcVhCjQJ6w6qdLmKxBNCKPC9IpCg18lbjqFYTAzSVXbKfI2y7JoxtlqdgX?=
+ =?us-ascii?Q?BIkVjT3EX0NesNonmcrf24sbQXGS5BqqWV+ir3UxNa/fpePX5wBqd4BDrI3T?=
+ =?us-ascii?Q?7AXZgKFEYoWewTNn0KhIFikTgl8gWFpokImVedZc+52WXjdYiVcYHjHfrHNE?=
+ =?us-ascii?Q?uTfrrFqXphQjxsMGAPw9/tbw95pXPlCzlqt2ycqwqEk0Rw16S4v1RIhaY2rk?=
+ =?us-ascii?Q?Dfj2OE5xa10EM61fh3+Ns30eRTqLCmprSSU9L07dUmOp0O9d3uglabd/g+KE?=
+ =?us-ascii?Q?0UqHCdVGOQv/XI7GgxbDBexDED9JgZW73N61g1rc8xkY5LKElpd0mZEkZWWB?=
+ =?us-ascii?Q?1FDBKkOC3V2y2LGKUS82qr2fxrULO0y1F0/uK3Wu/whFs6e5vwDEn2fYwago?=
+ =?us-ascii?Q?Vw3ZVCYGCgrPXg9d0S1w0w7S+WJPoBmftSx5EZltkLR4G7L8KoncNZYtemHC?=
+ =?us-ascii?Q?fQcklSmbzmcnAxmk4BL+IOEkgJTrhcUhNyPRd2EpkoANQPKZFbWir2G7hBp0?=
+ =?us-ascii?Q?iLLHby6U9I1eKJnk1hbh/I6JQ+6RYe3TrqACT/FyGYli0s3SkmJAJg3AsIDI?=
+ =?us-ascii?Q?xpd8AHqw97WJ+nBfYxVRT4xhrWoSO/xKnhjUz395DcLrY1Gl1meCtZZse+k7?=
+ =?us-ascii?Q?6pQCg6uCZI0P4nkL079Lx+6T6zjyrsO4ZpU1KYmJZKt/tl8w+m10F75SpL8X?=
+ =?us-ascii?Q?ED+l8OI6VG6u52bvx1Fe+venNXCIRgqMcIiLD/zOq8SISMT/QVPa9ZKroB4R?=
+ =?us-ascii?Q?wnVeFfDA7BeDD6DlJ81SAT5WRsjSjKD5KlZtp1EGPGFDN4eoNGHejKHMKWzH?=
+ =?us-ascii?Q?yjOvilqzFA=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aXeRQ4AXmn1SxoNa@smile.fi.intel.com>
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c365b57e-5f98-489c-36b2-08de5cfbbad2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jan 2026 16:55:37.3637
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: dCDAU7KgXV+A5Jpl9AeTA+lZTMOUkLFE9Hk7dZXX5Nxx4fKzuyuxgBBi/WnV2O3URLOYuEih3UqL1+Z38OlTCLD9VzkHZNX7iAAIg0VjjDk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB11303
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[renesas.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[bp.renesas.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259593-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[intel.com,gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[16];
-	FROM_HAS_DN(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259594-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[bp.renesas.com,kernel.org,glider.be,google.com,gmail.com,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[biju.das.jz@bp.renesas.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[bp.renesas.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 363AC8B35A
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,bp.renesas.com:dkim]
+X-Rspamd-Queue-Id: 6DED78B2B1
 X-Rspamd-Action: no action
 
-On 26/01/26 06:07PM, Andy Shevchenko wrote:
-> On Mon, Jan 26, 2026 at 03:30:44PM +0000, Rodrigo Alencar wrote:
-> > On 26/01/26 03:20PM, Rodrigo Alencar wrote:
-> > > On 26/01/26 04:53PM, Andy Shevchenko wrote:
-> > > > On Mon, Jan 26, 2026 at 02:26:20PM +0000, Rodrigo Alencar wrote:
-> 
-> ...
-> 
-> > > > Why? Can you elaborate how checking amount of digits is different to
-> > > > check_mul_overflow()?
-> > > 
-> > > consider U64_MAX = 18_446_744_073_709_551_615 as the limit:
-> > > - 19_000_000_000_000_000_000 contains the same amount of digits but overflows.
-> > > - 18_446_744_073_710_000_000 contains the same amount of digits but overflows.
-> > > 
-> > > to catch those cases, we need to check for the overflow, everytime we read a
-> > > character and accumulate:
-> > > 
-> > > u64 acc;
-> > > 
-> > > while(isdigit(*str))
-> > > 	if (check_mul_overflow(acc, 10, &acc) ||
-> > > 	    check_add_overflow(acc, *str - '0', &acc))
-> > > 		return -EOVERFLOW;
-> > > 
-> > > *res = acc;
-> > > 
-> > > acc can get weird results if not checked. 
-> > 
-> > Thinking about it again, that check could be done only in the last step
-> > (20th for u64)
-> 
-> Does kstrto*() also perform only last check? I think they do for each
-> iteration.
 
-It does the following:
+Hi John/Rob,
 
-...
-		if (unlikely(res & (~0ull << 60))) {
-			if (res > div_u64(ULLONG_MAX - val, base))
-				rv |= KSTRTOX_OVERFLOW;
-		}
-...
+> -----Original Message-----
+> From: John Madieu <john.madieu.xa@bp.renesas.com>
+> Sent: 26 January 2026 16:47
+> Subject: RE: [PATCH v2 06/15] dt-bindings: PCI: renesas,r9a08g045s33-pcie=
+: Document RZ/G3E SoC
+>=20
+> Hi Rob,
+>=20
+> Thanks for your review.
+>=20
+> > -----Original Message-----
+> > From: Rob Herring <robh@kernel.org>
+> > Sent: Monday, January 26, 2026 3:31 PM
+> > To: John Madieu <john.madieu.xa@bp.renesas.com>
+> > Subject: Re: [PATCH v2 06/15] dt-bindings: PCI: renesas,r9a08g045s33-pc=
+ie:
+> > Document RZ/G3E SoC
+> >
+> > On Fri, Jan 23, 2026 at 03:00:22PM +0100, John Madieu wrote:
+> > > Extend the existing device tree bindings for Renesas RZ/G3S PCIe
+> > > controller to include support for the RZ/G3E
+> > > (renesas,r9a09g047e57-pcie) PCIe controller. The RZ/G3E PCIe
+> > > controller is similar to RZ/G3S but has some key
+> > > differences:
+> > >
+> > >  - Uses a different device ID
+> > >  - Supports PCIe Gen3 (8.0 GT/s) link speeds
+> > >  - Uses a different clock naming (clkpmu vs clkl1pm)
+> > >  - Has a different set of interrupts, interrupt ordering, and reset
+> > > signals
+> > >
+> > > Add device tree bindings for renesas,r9a09g047e57-pcie compatible IPs=
+.
+> > >
+> > > Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
+> > > ---
+> > >
+> > > Changes:
+> > >
+> > > v2: Reuse G3S names
+> > >
+> > >  .../bindings/pci/renesas,r9a08g045-pcie.yaml  | 127
+> > > +++++++++++++-----
+> > >  1 file changed, 96 insertions(+), 31 deletions(-)
+> > >
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/pci/renesas,r9a08g045-pcie.yaml
+> > > b/Documentation/devicetree/bindings/pci/renesas,r9a08g045-pcie.yaml
+> > > index df30f729d4b3..9565f1774720 100644
+> > > ---
+> > > a/Documentation/devicetree/bindings/pci/renesas,r9a08g045-pcie.yaml
+> > > +++ b/Documentation/devicetree/bindings/pci/renesas,r9a08g045-pcie.y
+> > > +++ am
+> > > +++ l
+> > > @@ -10,17 +10,21 @@ maintainers:
+> > >    - Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> > >
+> > >  description:
+> > > -  Renesas RZ/G3S PCIe host controller complies with PCIe Base
+> > > Specification
+> > > -  4.0 and supports up to 5 GT/s (Gen2).
+> > > +  Renesas RZ/G3{E,S} PCIe host controllers comply with PCIe  Base
+> > > + Specification 4.0 and support up to 5 GT/s (Gen2) for RZ/G3S and
+> > > + up to 8 GT/s (Gen3) for RZ/G3E.
+> > >
+> > >  properties:
+> > >    compatible:
+> > > -    const: renesas,r9a08g045-pcie # RZ/G3S
+> > > +    enum:
+> > > +      - renesas,r9a08g045-pcie # RZ/G3S
+> > > +      - renesas,r9a09g047-pcie # RZ/G3E
+> > >
+> > >    reg:
+> > >      maxItems: 1
+> > >
+> > >    interrupts:
+> > > +    minItems: 16
+> > >      items:
+> > >        - description: System error interrupt
+> > >        - description: System error on correctable error interrupt @@
+> > > -38,39 +42,54 @@ properties:
+> > >        - description: PCIe event interrupt
+> > >        - description: Message interrupt
+> > >        - description: All interrupts
+> > > +      - description: Link equalization request interrupt
+> > > +      - description: Turn off event interrupt
+> > > +      - description: PMU power off interrupt
+> > > +      - description: D3 event function 0 interrupt
+> > > +      - description: D3 event function 1 interrupt
+> > > +      - description: Configuration PMCSR write clear function 0
+> > interrupt
+> > > +      - description: Configuration PMCSR write clear function 1
+> > > + interrupt
+> > >
+> > >    interrupt-names:
+> > > +    minItems: 16
+> > >      items:
+> > > -      - description: serr
+> > > -      - description: serr_cor
+> > > -      - description: serr_nonfatal
+> > > -      - description: serr_fatal
+> > > -      - description: axi_err
+> > > -      - description: inta
+> > > -      - description: intb
+> > > -      - description: intc
+> > > -      - description: intd
+> > > -      - description: msi
+> > > -      - description: link_bandwidth
+> > > -      - description: pm_pme
+> > > -      - description: dma
+> > > -      - description: pcie_evt
+> > > -      - description: msg
+> > > -      - description: all
+> >
+> > Well, that was really wrong... Fixing it should be a separate patch
+> > before adding the new chip.
+> >
+> Will address this as separate patch in v3. Thanks.
+>=20
+> > > +      - const: serr
+> > > +      - const: serr_cor
+> > > +      - const: serr_nonfatal
+> > > +      - const: serr_fatal
+> > > +      - const: axi_err
+> > > +      - const: inta
+> > > +      - const: intb
+> > > +      - const: intc
+> > > +      - const: intd
+> > > +      - const: msi
+> > > +      - const: link_bandwidth
+> > > +      - const: pm_pme
+> > > +      - const: dma
+> > > +      - const: pcie_evt
+> > > +      - const: msg
+> > > +      - const: all
+> > > +      - const: link_equalization_request
+> > > +      - const: turn_off_event
+> > > +      - const: pmu_poweroff
+> > > +      - const: d3_event_f0
+> > > +      - const: d3_event_f1
+> > > +      - const: cfg_pmcsr_writeclear_f0
+> > > +      - const: cfg_pmcsr_writeclear_f1
+> > >
+> > >    interrupt-controller: true
+> > >
+> > >    clocks:
+> > > +    minItems: 2
+> > >      items:
+> > >        - description: System clock
+> > >        - description: PM control clock
+> > > +      - description: PMU clock
+> >
+> > I don't see 3 clocks being valid.
+> >
+>=20
+> If I get it well, I should use a generic description here for the second =
+clock (keeping only 2 items)
+> and specify exact description (PM vs PMU) per compatible.
 
-so overflow is checked when either one of the 4 MSbits are set.
+The upcoming SoC, RZ/G3L SoC has all these 3 clocks.
 
-for now, I am thinking of something like:
+- description: System clock
+- description: PM control clock=20
+- description: PMU clock
 
-static ssize_t iio_safe_strtou64(const char *str, const char **endp,
-				 size_t max_chars, u64 *result)
-{
-	u64 digit, acc = 0;
-	size_t idx = 0;
+All SoC has System clock
 
-	while (isdigit(*str) && idx < max_chars) {
-		digit = *str - '0';
-		if (unlikely(idx > 19)) {
-			if (check_mul_overflow(acc, 10, &acc) ||
-			    check_add_overflow(acc, digit, &acc))
-				return -EOVERFLOW;
-		} else {
-			acc = acc * 10 + digit;
-		}
-		str++;
-		idx++;
-	}
+G3E and G3L has PMU clock
 
-	*endp = str;
-	*result = acc;
-	return idx;
-}
+G3S and G3L has PM control clock
 
-which would help the truncation when parsing the fractional part
-with max_chars, avoiding a div64_u64() to adjust precision:
-
-...
-	digit_count = iio_safe_strtou64(str, &end, SIZE_MAX, &i);
-	if (digit_count < 0)
-		return digit_count;
-
-	if (precision && *end == '.') {
-		str = end + 1;
-		digit_count = iio_safe_strtou64(str, &end, precision, &f);
-		if (digit_count < 0)
-			return digit_count;
-
-		if (digit_count < precision) /* scale up */
-			f *= int_pow(10, precision - digit_count);
-
-		while (isdigit(*end)) /* truncate */
-			end++;
-	}
-...
-
-but I understand you would not like this approach, because it does not use
-simple_strtoull() or kstrtoull(). Problem is simple_strtoull() is not
-overflow-safe and kstrtoull() does not allow to track a pointer to end
-of the string.
-
-Given that the current implementation of iio_str_to_fixpoint() is not using
-simple_strtoull() I am not seeing an issue with this approach.
-
-Kind regards,
-
-Rodrigo Alencar
+Cheers,
+Biju
 
