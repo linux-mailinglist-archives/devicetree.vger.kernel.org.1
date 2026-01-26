@@ -1,62 +1,64 @@
-Return-Path: <devicetree+bounces-259526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259528-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GDdwBOl8d2m9hgEAu9opvQ
-	(envelope-from <devicetree+bounces-259526-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 15:40:41 +0100
+	id 8DpUEvN8d2m9hgEAu9opvQ
+	(envelope-from <devicetree+bounces-259528-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 15:40:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7850889A2F
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 15:40:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC02789A38
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 15:40:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 704D43011C45
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 14:40:39 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 367CC3011A60
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 14:40:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3194924BBF0;
-	Mon, 26 Jan 2026 14:40:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BB2C283C9D;
+	Mon, 26 Jan 2026 14:40:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="ItJwVHDW";
-	dkim=pass (1024-bit key) header.d=cirrus4.onmicrosoft.com header.i=@cirrus4.onmicrosoft.com header.b="y4fiWYp6"
+	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="U+D4BNz+";
+	dkim=pass (1024-bit key) header.d=cirrus4.onmicrosoft.com header.i=@cirrus4.onmicrosoft.com header.b="j0UbwAPd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E23923B61B;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E1C2231832;
 	Mon, 26 Jan 2026 14:40:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=67.231.152.168
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769438438; cv=fail; b=Y3lEoAdrblLxiOvLOGkGwgn9rudQRcuaPpnETWrde8i82dLSk5olJzDVBfTUt03opVa3FyRFGOumKzl+juMRX9nJSxy+/vSmwnhFsT5Wbm+fqqXjE8Dr1xdruQQrUFn0vDfOitWKQ/lTkeMxbjBjXK1fDeCcnsRoaKW3Xh7chz0=
+	t=1769438439; cv=fail; b=dyXTvzpuJUQgD2j81Ztt+2IvvgoV5dVuswH6pzTr6bXPZtBO5hOgjb/EtqU6UCbAUgJhVw9A8fNNMLsrIa/4FSi4MqXddy8eRld3sugpgWi8CpU/icJWEk33EABSuwnn7BL7xfz3cNpncuJs7cS72DHD0v64YtBNzQUaylmU4UI=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769438438; c=relaxed/simple;
-	bh=G+ZinInZWciO8IpljGEqTzowplJm7uUpiD7JWD8tHSY=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=VdruBlJnNSV9xnydktBtZOEXoXo5iBb6kl8AcpIuFJSnagC9pQ9gPKVEwMdIIOvJAP6YNK1cFDG+caZewl0ueHhe7iMcvgy1QynLtSz1eZ7L1ftYpaDHB4ONqqsUFjxltCbOiy9PpCI0Q6622gbQ/xm6v8GS2opL1ccYG94cVUA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=ItJwVHDW; dkim=pass (1024-bit key) header.d=cirrus4.onmicrosoft.com header.i=@cirrus4.onmicrosoft.com header.b=y4fiWYp6; arc=fail smtp.client-ip=67.231.152.168
+	s=arc-20240116; t=1769438439; c=relaxed/simple;
+	bh=rbJE9UDocsVZn811Jn02YzOPBVzMbT9LUWtRjILJdc4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qfrg1nW2R0S+CgFXJiS/a4muiMIHV65LFqTo2NOXaKiAx0gINuQiNyQIOpcZnOMSP3qBvyB3hBtSjk2Lc82IBLL+g1XEjj6neH/VCP/49MshsAipXv5gHMNWkWX68Pl6i5fdIcFAwEqa3KhoN8NRTFR8f8pcicUNU0wRZ0NodRA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=U+D4BNz+; dkim=pass (1024-bit key) header.d=cirrus4.onmicrosoft.com header.i=@cirrus4.onmicrosoft.com header.b=j0UbwAPd; arc=fail smtp.client-ip=67.231.152.168
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
 Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-	by mx0b-001ae601.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60Q7XHSm3572519;
-	Mon, 26 Jan 2026 08:40:24 -0600
+	by mx0b-001ae601.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60Q5IWgA3348945;
+	Mon, 26 Jan 2026 08:40:25 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
-	:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=PODMain02222019; bh=Qx/x9ma6Sqm78cAQ
-	LoNAblwDLPDkSHEtc7CS1cep2us=; b=ItJwVHDWzmCVylFta8xxBC62hRxV+DgL
-	XnollVYm8zd6W4ADMX1mBqF1F0ykyn3PADz61H6N/xRFsrnFYZYWizIQ7a61nzGV
-	xJUOL/y2z1vVU2w7fzEQ/4OeKxwMCSH7ofDMHN9b5Zus3yYm1jmv1moHvglQWvew
-	MDxfFEjkAItVf+nsbWrlOVCenChk6jdO36GsOj1ESNPd7O5Y5POn0yoRz+Dh4LRx
-	HszJPRQUbNyTXs3bkWdewUUUDF3Xl63l2anhX8Y1c37TsgMkjff53TfcqyPBeBFk
-	R2cIxcWIe6og1EKjegSKDciuzMRpwvsAanI6qaCje/s27SFTp9owfA==
-Received: from bn1pr04cu002.outbound.protection.outlook.com (mail-eastus2azon11020072.outbound.protection.outlook.com [52.101.56.72])
-	by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 4bvuck9kta-1
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=
+	PODMain02222019; bh=A665TJnRsieg4Oqfc9+3p75RFJ25waK3G/aHghVVxNI=; b=
+	U+D4BNz+tmw+CWhZwmPhXT8cGzv89dQIYBMi50RWqNIanWZLNYs7BJz3NH1IpZmV
+	/dlmdU3J/3imEOCawop93vVnNyEn94iAKe7tNYzUvjEim6Mu4uTrwSTdqfeegimQ
+	4sVX5YzNWqNcNGfC5hoSsLlrAVfUHGFiODhgx4JmBqe1rdCuSaHX4d7uY9uKMZQG
+	/puXHSoTXWhvO6IpFHel7BVaE0EHbGmek6CDC7cLV7c/pUUu0EF0pbFTz+mdlifC
+	HQXhcvxojC3c5zaDyeyoHcS7bpsfj3ZMqaU+TwRMZsO+nveq7ofBUNXKOd3QrT3h
+	DpgU+FBOvqsaODOG46eEgA==
+Received: from dm5pr21cu001.outbound.protection.outlook.com (mail-centralusazon11021103.outbound.protection.outlook.com [52.101.62.103])
+	by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 4bvuck9ktb-1
 	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Mon, 26 Jan 2026 08:40:24 -0600 (CST)
+	Mon, 26 Jan 2026 08:40:25 -0600 (CST)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=s7SdhOJBM4LRtH7kT27fwFVBeGLrxEwvsHIKOW5Hsuhe/0VrIZnKWmkIjL1JWbbAp/A4N/I/MMIZDouJep27DWS1qT2HPamauHitH8JYK2y0ev/RiCRaHnJqq5lG3SOZ3QO3u9WHrIcKeT/72Xqtc78/VMnuAHG417WI9fSGjtDHhzejo2br//KCEdQksq2Y2iAsrywhw8Fo270yz81YS4BPEowgY1s482/bFixaauIVBZ5JeXyzVif8FeC4OIUpZsrdLsGq/Sxly3NIaU0FE2JDtCepFZvg0g4/oic+PMYxHAEeirpmbInT+P72rzXcJ7yDFFBb2j9hDkGm6PO+sQ==
+ b=T7NEbLuKtMc1y3rA1aWH/F/B4i4VSarBjt3a+ej6tx9trzNia+Vez/wtr0q+8gdCEIONzSB5woG6FFvrcp+wbJlNI2WNleSC3fqMXg13fidJiqzJq6ptVk+kdPSPzfoTvv1758cBv2wOFXqAsaTaMFMN0UzsgPAfK99NI+ErvC0QhjVrfMhQd0382uK9iCejiZ98N7xZjvAou8jv2lzgGZTjhyCMmNdGB451X7IbZ4Iv3EqIltzI8BlODgJm4BlNtrQpcmV9bhNcaM+4hKvnDVdhGZTsQWVmksZiMhCGo+lxkRWQfYZU+UGwumN9/3WL0AfvHiKjtxrdUUivUa2w3w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Qx/x9ma6Sqm78cAQLoNAblwDLPDkSHEtc7CS1cep2us=;
- b=TiTp57PW22anwPWJw4JUCv+ropQD+FUjB16LNJMeJJV6OenGaRoA2Gillre7eQ8i1vuFkKRV/GU9F5+4P354KYPSGOGza10ZtLqI7G/E9Bnd7E7aO6+cEuKcKc4egLqQzObfo3NDBBNJiVT8hlWbnjuyIow4rO7loerDivm53gOZhxrQM7jGUeeFx6uUSsLgXb2QMlPDGAp4/ebTH6nFg9wQwSLJuZdx7HI5NYKAgmw1XPphl9qppBs23nDK+NvhDBlM9s6YdKs6KTWmn3oN236C0GUxrf1YKDVIAjFmf9JXmfmCkhDi4o8RqkkvojY+EjUQfKDOSi6boipI73vTMw==
+ bh=A665TJnRsieg4Oqfc9+3p75RFJ25waK3G/aHghVVxNI=;
+ b=e08TA5OhM6jq10/fW5o/n8Mn0ZGDBB75S+4tX4hLOiFyrdYmddMMD2fHjPDFxrGsnqpoYJLXLHXlQzAtpJferTVzp9eFXHj8r7o86ED4gEkTsiUwoigx5gfWvFn/g13NMSTa2SQrBD7yWtpeNxmKwnTDQLndeq2x0MFor/LvvEb6gf/z49HMAtcravPWLKaEPda4LVi+WNACiohXImQ/yxGz+nuKXcTJiWDCBRRqd+pPS4xoyL43Ku5hsw8J10FGYzLYReIRJ6hQ0q7WKY7aSpn5MSJxW7LuwaM+44n05hCXbaWbBXGEC3TOvNzCjyIunjCQ0Co9/I8B8z+9b6c3Og==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
  84.19.233.75) smtp.rcpttodomain=cirrus.com
  smtp.mailfrom=opensource.cirrus.com; dmarc=fail (p=reject sp=reject pct=100)
@@ -65,18 +67,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=cirrus4.onmicrosoft.com; s=selector2-cirrus4-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Qx/x9ma6Sqm78cAQLoNAblwDLPDkSHEtc7CS1cep2us=;
- b=y4fiWYp6Xnr519jKZDeqDIgnwY/w/rahx1cw8lGgXoYzSmeurkaKT5P/Mul2yF/3VS7twz/mwcIDarMX1HdQaE3/ulrNs+y/CwbMI6mfkxjjfZIjg/eI3qJGB/zxK27pPHhnnMj4w9aVLx7fJHzvGy5plyub0wQcz+N/DitPchI=
-Received: from BYAPR06CA0071.namprd06.prod.outlook.com (2603:10b6:a03:14b::48)
- by MW4PR19MB6934.namprd19.prod.outlook.com (2603:10b6:303:213::22) with
+ bh=A665TJnRsieg4Oqfc9+3p75RFJ25waK3G/aHghVVxNI=;
+ b=j0UbwAPdtVr47eunTGwz4iY9JeRoK/X0HN7E/Mz7p3kYtoCgVtJTzmm+PQhhRM2M32n4KdPiPaujLCipLKWZQqDlCMfqeEk8H6UKGz0M3zVwqmnTjhxdb0hPlBicoE9xUDSRM0FGz6/Olhp/Kk8m/W2yYLfAeMiSCWIlHXTAWDQ=
+Received: from PH5P220CA0012.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:34a::9)
+ by CO1PR19MB4965.namprd19.prod.outlook.com (2603:10b6:303:fb::10) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.12; Mon, 26 Jan
- 2026 14:40:20 +0000
-Received: from CO1PEPF000044EE.namprd05.prod.outlook.com
- (2603:10b6:a03:14b:cafe::6f) by BYAPR06CA0071.outlook.office365.com
- (2603:10b6:a03:14b::48) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.15; Mon, 26 Jan
+ 2026 14:40:19 +0000
+Received: from SJ1PEPF000023D3.namprd21.prod.outlook.com
+ (2603:10b6:510:34a:cafe::d0) by PH5P220CA0012.outlook.office365.com
+ (2603:10b6:510:34a::9) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9542.16 via Frontend Transport; Mon,
- 26 Jan 2026 14:40:22 +0000
+ 26 Jan 2026 14:40:20 +0000
 X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 84.19.233.75)
  smtp.mailfrom=opensource.cirrus.com; dkim=none (message not signed)
  header.d=none;dmarc=fail action=oreject header.from=opensource.cirrus.com;
@@ -85,14 +87,14 @@ Received-SPF: Fail (protection.outlook.com: domain of opensource.cirrus.com
  receiver=protection.outlook.com; client-ip=84.19.233.75;
  helo=edirelay1.ad.cirrus.com;
 Received: from edirelay1.ad.cirrus.com (84.19.233.75) by
- CO1PEPF000044EE.mail.protection.outlook.com (10.167.241.68) with Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.9564.3
+ SJ1PEPF000023D3.mail.protection.outlook.com (10.167.244.68) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.9587.0
  via Frontend Transport; Mon, 26 Jan 2026 14:40:18 +0000
 Received: from ediswmail9.ad.cirrus.com (ediswmail9.ad.cirrus.com [198.61.86.93])
-	by edirelay1.ad.cirrus.com (Postfix) with ESMTPS id 24CE3406540;
+	by edirelay1.ad.cirrus.com (Postfix) with ESMTPS id 2CBB8406541;
 	Mon, 26 Jan 2026 14:40:17 +0000 (UTC)
 Received: from upx-mtl-008.ad.cirrus.com (upx-mtl-008.ad.cirrus.com [198.90.251.5])
-	by ediswmail9.ad.cirrus.com (Postfix) with ESMTPSA id 03811820249;
+	by ediswmail9.ad.cirrus.com (Postfix) with ESMTPSA id 14C8F82024A;
 	Mon, 26 Jan 2026 14:40:17 +0000 (UTC)
 From: Maciej Strozek <mstrozek@opensource.cirrus.com>
 To: Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
@@ -103,10 +105,12 @@ Cc: Jaroslav Kysela <perex@perex.cz>,
         linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
         patches@opensource.cirrus.com, devicetree@vger.kernel.org,
         Maciej Strozek <mstrozek@opensource.cirrus.com>
-Subject: [PATCH v4 0/4] Add support for CS42L43B codec to CS42L43 driver
-Date: Mon, 26 Jan 2026 14:39:14 +0000
-Message-ID: <20260126144011.140029-1-mstrozek@opensource.cirrus.com>
+Subject: [PATCH v4 1/4] ASoC: sdw_utils: Add CS42L43B codec info
+Date: Mon, 26 Jan 2026 14:39:15 +0000
+Message-ID: <20260126144011.140029-2-mstrozek@opensource.cirrus.com>
 X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20260126144011.140029-1-mstrozek@opensource.cirrus.com>
+References: <20260126144011.140029-1-mstrozek@opensource.cirrus.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -116,70 +120,70 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000044EE:EE_|MW4PR19MB6934:EE_
+X-MS-TrafficTypeDiagnostic: SJ1PEPF000023D3:EE_|CO1PR19MB4965:EE_
 Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: e7f70131-ae69-4e79-7477-08de5ce8d403
+X-MS-Office365-Filtering-Correlation-Id: 74c30e03-2849-4f75-6061-08de5ce8d3cf
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|61400799027|7416014|376014|82310400026|54012099003;
+	BCL:0;ARA:13230040|61400799027|7416014|82310400026|376014|36860700013|54012099003;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?/bZmxXtBhKRP5oIPsQAsu0Kpyt4O38fOMyj7U8KlUDfhJH3ODDJi9shZskWn?=
- =?us-ascii?Q?pi2mN/953UU7Xk12zsKAJQWMe+GE/A0j7y+z1LH5SkSsAR/FKwRGHpfQe783?=
- =?us-ascii?Q?4BTDRU74Hoc7GX51x84/ajpOJn6/rM9tWa3Ua7VS9/z0osLicF6PUE/hq8Jz?=
- =?us-ascii?Q?aU80zkGQec+/st+GnAUq7EJKG5IjVqODRa0d2e4kZFo1rLt8I+f5ySL7gioI?=
- =?us-ascii?Q?K0tFmPXD56Gz1eRKJB8PY+opS8AjmGJ6NGy7VrRJJoLqQ0IwcqhE6YLEb0nQ?=
- =?us-ascii?Q?jTVadFq70HFCqc8mSZfiRe8hVn1I7mFtFKTSweZso64mVnj3+L8ExQkCR1Kv?=
- =?us-ascii?Q?Rcoqq+hEhOf4NTwYD36LeM8qjA10lpAJqscv38EbQc3YpfTHKfkxbbXpOMJ3?=
- =?us-ascii?Q?VfdhDnnSHTNXSnzxV+yWcKrQtO/d1MaCzCrjcn/SV1mjVjMRtS5scgl28KqX?=
- =?us-ascii?Q?8i4QQVjsb8OyQl2uBMdH6QB+gPkeZ7od5p6U4PJCpSo8nL6fEtSaLc7qiAA8?=
- =?us-ascii?Q?vLe/i32CJTV+3DGxYqlTIzzxZXNcgUspkFNhDvKXZz0O1vx5O+OqijmJMJ/7?=
- =?us-ascii?Q?P5eDgaqvuYkMrLdj0qtqgKhgxYQFVSwUQ5H6dDjHW8pqxFdxX+CX2eLSPPHJ?=
- =?us-ascii?Q?lllY+L834/Rh88AlneCe0vD/dFEUK17chLtLjsOrHZe3GgFNRoi9lgBf0WYc?=
- =?us-ascii?Q?8K6ybANijKX5dASKBQ0fdc3/qwpmchWp0vX5mbawZ+AlMGpUH1cgq0Ih+JDp?=
- =?us-ascii?Q?yitmmQsFE9r4pn3LCkFGdXIScULBbCH01cS4Rpls2mSB2ZNzrWUmONTuIQBC?=
- =?us-ascii?Q?u+HlwI61/y8UUrU84mNRpLXmgZM2JNpqaoQNYVjF1Jqhq5G6BaaR/hn0anlw?=
- =?us-ascii?Q?jqSRGmXFRLOf52ZiLk0bURJUQ4wV/8cza/CbCdrZFROs+JIE2tiy5Wd6QveI?=
- =?us-ascii?Q?XmkLd9uaZ4rljQbzL0rz9wNvVQQBWMxIIAVhayoJuqzHHMGDNaKJprHdY+Qb?=
- =?us-ascii?Q?i7vMP/IuCxmQnsIczmyN/51g0GTH2/nKlQSLgFoIt/+6alSsnymBEyXmSKPV?=
- =?us-ascii?Q?NturlfUeLOuIgtlM29XxXOgO8CUckI53GJIAII+rY5PMqghfFUo6bDSWw68l?=
- =?us-ascii?Q?E8rTBIXzscixoUuPX+SEIpgvT+uCma41dX9r5OfJ0WO3zZagKDnx5ET8HJli?=
- =?us-ascii?Q?QbDbb6q0N4dE92zALlAba9xdxGao336Jq/MUkTFiPbqUVTHsdR7jVtsb1wio?=
- =?us-ascii?Q?s7yWY+kdd9pWGJuwkY8ryU8+RnpvSbrwihu1iyVGoRsRthUv37C2nLsBLCoW?=
- =?us-ascii?Q?D/7JZIpIelG6OkdAtHVKj+VioxXzT00537wEknIj63F/gCzj+RxGiAhqCrlK?=
- =?us-ascii?Q?ikkjZyzNnFSobiYOJnt3WMLZPlDF6pDqp0NdCPr9lVyQiGe7J6UTj1wZS6SG?=
- =?us-ascii?Q?bLgp3ZiTdynx6/bCGjKN6nenH9YAyS8HzOfd8jFFLSqrhRbsuhSNyM/q1pFx?=
- =?us-ascii?Q?E6R0Hmw38tvBfUFYQJ7oiL/aaeq/OqSqmSxxyxI/UMShPcRPpr0AGdtiAgsm?=
- =?us-ascii?Q?1CMeZq3qUjDUUhtRIy90pRZyQKn3lYn+0NzgX/GyWGdAO9YctL0+qG0vEHeH?=
- =?us-ascii?Q?NjRyj0SZT/yjlipg5+2DmEL43F3KR5t69Ec6YnHSNSVQAx8cWVIfefJ6Rc8c?=
- =?us-ascii?Q?sY9x8w=3D=3D?=
+	=?us-ascii?Q?LWQQ+Qk/ymzOPel/CfYCAs2INMcDOmIETTeAiipZqHRujR7eoM9FGqqXyPt/?=
+ =?us-ascii?Q?7sUGXqACm77DP67wbMCrK2tV6RHRcp5+kWIUmlywBe5wOMZtLK5GXcYFld+Q?=
+ =?us-ascii?Q?DW9KcoRih0aUy+Wa/wNaU50ZaKhSHPERiilFVCn5J786rltGV0K6M56ak9wH?=
+ =?us-ascii?Q?8YCPpG8s5xwz3/kCufdljSXW4pT6RORNo5m7wH8PfEMMYykE9W+ST0uENYiO?=
+ =?us-ascii?Q?V8RRHzs24XxeyYxWQGPrEYM4emgRw6na+Kt8ukN43HY/87VZnkMGg29JtC9b?=
+ =?us-ascii?Q?1LneEk8mPqmdGG5okwctk5kk50ykyXVaD8jKrbK4qWWTN4z+E0vXSnREf8HR?=
+ =?us-ascii?Q?Z9zJWEcHJ4gVFNiVUU6eW+BEsgRD3ZElLS4543xXlhjAAMMR22g5/dI0m4td?=
+ =?us-ascii?Q?Uqc4Q2kFRJIVVOCsskhrOSzHe2mHxfWbFyCpCU32Y2e/s4LA6G84LGYBz6UE?=
+ =?us-ascii?Q?wiWA8yGnYcdqhs+04GZaubBU5T3SiztBaFQHpVGVwpTKuWSoc0zyTETStXAk?=
+ =?us-ascii?Q?Rf3xfpfkZX5uQyYAIOmkSq13Q0cv6p60IIIOr6FCvbXMNOYsNCpbHC/RwlMh?=
+ =?us-ascii?Q?rDcVhqKmeBg++aNUYUaGUkeQowF36vF5DaTdzOadH3aGIwAIrUX0vcg1DdXY?=
+ =?us-ascii?Q?lsqvH5ZVR/Ip+NCs+1+1pvjwePR9tPdhI5JRmzeO3E4kwxiAl59tl+ZiBCCq?=
+ =?us-ascii?Q?1nj3mFrzzlxRbkfwRVNSVYHAdkrUg4MF2D3mXufvjE2CW8E/53RtCZfGpC8I?=
+ =?us-ascii?Q?O13O1G4K6QP3xv1TCjSvNdmEIz62FzPP/NeXfgeNumDFqVFO8DXOqgVmaJ7H?=
+ =?us-ascii?Q?0xUmzQax+B2NcdA4/R3uoi44xjAuenbctkpDWEAkUE3FACZoiKSnpmH2EWjL?=
+ =?us-ascii?Q?19JLvgfkJttm4/+89ZvHOAOda9HPKlcKGxasjiYI0w9icuLobG30ZPC75UxL?=
+ =?us-ascii?Q?iIlXZym8ZMkYDvPsmiDN+Q98iP0pD45/rh6RVPpNvhaPeec2tgCr6ZX7DWpU?=
+ =?us-ascii?Q?sErgCYCtfnMKhQXBJR7n/mFbuu399cnmuxTu9MUPOXAcaFcbUd1loWndxO6F?=
+ =?us-ascii?Q?RhTlCRwc7/9GFqbKEfOERhrBifp3NasJYnpQUYmu4utb/ybr92Vaopf2H3gL?=
+ =?us-ascii?Q?RPu9vcVPGSJuIhhZH7nEtaKWnRGGMD9rA6CK58QN6GYVBTu1uCGA0si7FGhY?=
+ =?us-ascii?Q?fPCKBY13dwwQs9k4qjUecots+j1nVdLNsS5by+E2aaSRLJUtfBO/y8N2CzbC?=
+ =?us-ascii?Q?G8KZWxMkifSOoCdRgKYawoWVMDotx81ltzFKgGgfhe1yflO3CQRqsq19R4rR?=
+ =?us-ascii?Q?Ycs6lo7fA9YlU0mzoFu9XXonCZCgErT8OS6e1OXUQWlj1uVWFfDGKLT/eO4W?=
+ =?us-ascii?Q?DUpqMLXZUqec2WsZ8M1ximFylbttds2LqlaN2h5PfFCoJrIL8TNveiITlL60?=
+ =?us-ascii?Q?bf/aY6jTaoAgLGuuixcAk5fKgpaY5Mj7rszu4wEbLo5olm48FBDF0dNvSrLL?=
+ =?us-ascii?Q?MbJXY0unuL5yh6GG7zr0u86xOnZd1HGTWcRArvL3d6tismuLZsip4aOYJFuO?=
+ =?us-ascii?Q?bXUI/oQcBYhsTOAjzn0vK9JvHFjLLG7LJojzX2PwN/W0krSCUntak8VGiXJo?=
+ =?us-ascii?Q?35RgH/eKUDhLutOKXNIu0D/4tTHSTmJlpFfvqURElJxGFLT9dpPZ1TOP5yx0?=
+ =?us-ascii?Q?6zEBjA=3D=3D?=
 X-Forefront-Antispam-Report:
-	CIP:84.19.233.75;CTRY:GB;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:edirelay1.ad.cirrus.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(61400799027)(7416014)(376014)(82310400026)(54012099003);DIR:OUT;SFP:1102;
+	CIP:84.19.233.75;CTRY:GB;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:edirelay1.ad.cirrus.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(61400799027)(7416014)(82310400026)(376014)(36860700013)(54012099003);DIR:OUT;SFP:1102;
 X-OriginatorOrg: opensource.cirrus.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2026 14:40:18.9065
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2026 14:40:18.5600
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e7f70131-ae69-4e79-7477-08de5ce8d403
+X-MS-Exchange-CrossTenant-Network-Message-Id: 74c30e03-2849-4f75-6061-08de5ce8d3cf
 X-MS-Exchange-CrossTenant-Id: bec09025-e5bc-40d1-a355-8e955c307de8
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=bec09025-e5bc-40d1-a355-8e955c307de8;Ip=[84.19.233.75];Helo=[edirelay1.ad.cirrus.com]
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TreatMessagesAsInternal-CO1PEPF000044EE.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: TreatMessagesAsInternal-SJ1PEPF000023D3.namprd21.prod.outlook.com
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR19MB6934
-X-Proofpoint-ORIG-GUID: 8hQNygNzewmiq79xR9n5iPVkZOAp_q41
-X-Proofpoint-GUID: 8hQNygNzewmiq79xR9n5iPVkZOAp_q41
-X-Authority-Analysis: v=2.4 cv=Vb/6/Vp9 c=1 sm=1 tr=0 ts=69777cd8 cx=c_pps
- a=EuzLu2ZwJ/NCzAOim5xawA==:117 a=h1hSm8JtM9GN1ddwPAif2w==:17
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR19MB4965
+X-Proofpoint-ORIG-GUID: fA_KHU8gwk9uVmWEvzN8vvNEQz0zkGj2
+X-Proofpoint-GUID: fA_KHU8gwk9uVmWEvzN8vvNEQz0zkGj2
+X-Authority-Analysis: v=2.4 cv=Vb/6/Vp9 c=1 sm=1 tr=0 ts=69777cd9 cx=c_pps
+ a=QJ8jp5v3SeQRmo9gzrsiOg==:117 a=h1hSm8JtM9GN1ddwPAif2w==:17
  a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19
  a=vUbySO9Y5rIA:10 a=s63m1ICgrNkA:10 a=RWc_ulEos4gA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=3fcK6sipGkM-lnU_H0wA:9
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI2MDEyNSBTYWx0ZWRfXzAaXCYrBK3zj
- Rt3RD/cU/uPvtX0SafAoPagclJR8EZfPVUU58LadIRSJkIzUs5+p3Q3YZVFAHdU1gLqQdJnhtJZ
- AzE/AK3XL6xkteTfUbv+0Svk4uUClBbXs6pTjdEPgZiLJytj6n2xAP9ZCuPL57/eRtfNzopWyaj
- 8twkGeYibGgu4AP6SzW1vfiY326AzAA/IPk5Amwe7j0ZKISWMaVmkcZScA1ADQZkb+5U8cgAmkq
- nKceBEsyKItt3S7FjHsWUT0zvrHtr5TgCPRAQdSBauDImktIzUt+ppTGwUZH+jZP2O8Sc0KeVRH
- RRDEaEQABEZtZXPjl7dWUzK2OtI5oYjRoqF0kEAevVLlkrcSt2mqMWYCkF41wDHAHIGPXSeY1vs
- Frh4zjaHghEn717qrCDQxbe0EgeOxqdXTQY1ElNhe9wEuXsfZuLeksBVTqxvtj/LEqSL9qDQy3f
- 2wEo1pXKc9VWXYCCE+A==
+ a=VkNPw1HP01LnGYTKEx00:22 a=w1d2syhTAAAA:8 a=tJGs-QWwAZckUbUC11UA:9
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI2MDEyNSBTYWx0ZWRfXx8gSEHMF4HBT
+ 5/Bm0jweLTMRcmiHSqRc1xUzmr1WHEtGq2LLXshri7lkW43iR1xe1ARauNoRxfUEgyzGXMoJ9Y/
+ TIAOhCTRaUdyaIaXbrCaGsUzlyv5/AVDTS+ud5inP5q4f5WJpndJA5LDVCrGfEgspI3m63E6T+j
+ ZSWB++JobERrOWzf7w0erSheRoF+jiCAxdgqtI0u4Ws6cSK8DNCUq4wH5rSRghMCWNNvpLCanTe
+ TnROr/wC+rw+aWq+sQkgPG4CpIABMQgzvfvEWgcaYUBrSj1NaHi45240Pv7pG+30JM3ZhZK756A
+ 2bjX+oHeZrsrzEEepEDqGqNlUQDTD1+NOxbiJN9ZUYBoVzeQLkpkHofH8LdQ8jZSKREUZHViy01
+ zD0fvx2uNjqam9jGbyG6l3bScsHVxCBNPW5y6giXIQQQyJSCWn6n7gdGeSUFu7KhlTlgDycismO
+ Z6P6WtCUk2vuaI7m7hg==
 X-Proofpoint-Spam-Reason: safe
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [2.84 / 15.00];
@@ -197,68 +201,97 @@ X-Spamd-Result: default: False [2.84 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-259526-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-259528-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[mstrozek@opensource.cirrus.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[cirrus.com:+,cirrus4.onmicrosoft.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,cirrus4.onmicrosoft.com:dkim];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[cirrus4.onmicrosoft.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,cirrus.com:email,cirrus.com:dkim];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: 7850889A2F
+X-Rspamd-Queue-Id: CC02789A38
 X-Rspamd-Action: no action
 
-Hello,
+Add codec_info for a new variant of CS42L43. It can resue existing info
+but needs a new part_id.
 
-Introducing CS42L43B, a variant of the CS42L43 codec with changes to
-PDM (DMIC) inputs, RAM/ROM memory and extra channels to two SoundWire
-ports and ISRCs, and can be supported by the existing CS42L43 driver
-with some modifications.
-Support is split into four commits:
- 1. Add CS42L43B codec info to SoundWire utils
- 2. Add dt binding for the new variant
- 3. MFD driver part 1/2
- 4. ASoC codec driver part 2/2
-
-Regards,
-Maciej
-
+Signed-off-by: Maciej Strozek <mstrozek@opensource.cirrus.com>
 ---
-Changes in v4:
- - change variant_id to long int
-Changes in v3:
- - fix incorrect type cast in mfd patch
-Changes in v2:
- - Rework the mechanism to identify the new variant along with some
-   error handling improvements.
- - Added some comments in cs42l43_readable_register() for clarity.
- - Add handling of the I2C path for the B variant
- - Add a dt binding for the new variant
- ---
+No changes in v2, v3, v4
+---
+ sound/soc/sdw_utils/soc_sdw_utils.c | 54 +++++++++++++++++++++++++++++
+ 1 file changed, 54 insertions(+)
 
-Maciej Strozek (4):
-  ASoC: sdw_utils: Add CS42L43B codec info
-  ASoC: dt-bindings: cirrus,cs42l43: Add CS42L43B variant
-  mfd: cs42l43: Add support for the B variant
-  ASoC: cs42l43: Add support for the B variant
-
- .../bindings/sound/cirrus,cs42l43.yaml        |   3 +
- drivers/mfd/cs42l43-i2c.c                     |   7 +-
- drivers/mfd/cs42l43-sdw.c                     |   4 +-
- drivers/mfd/cs42l43.c                         |  93 ++-
- drivers/mfd/cs42l43.h                         |   2 +-
- include/linux/mfd/cs42l43-regs.h              |  76 ++
- include/linux/mfd/cs42l43.h                   |   1 +
- sound/soc/codecs/cs42l43.c                    | 756 +++++++++++++++---
- sound/soc/codecs/cs42l43.h                    |   4 +-
- sound/soc/sdw_utils/soc_sdw_utils.c           |  54 ++
- 10 files changed, 848 insertions(+), 152 deletions(-)
-
+diff --git a/sound/soc/sdw_utils/soc_sdw_utils.c b/sound/soc/sdw_utils/soc_sdw_utils.c
+index 2f3c9698a0e8..196f17c908f8 100644
+--- a/sound/soc/sdw_utils/soc_sdw_utils.c
++++ b/sound/soc/sdw_utils/soc_sdw_utils.c
+@@ -721,6 +721,60 @@ struct asoc_sdw_codec_info codec_info_list[] = {
+ 		},
+ 		.dai_num = 4,
+ 	},
++	{
++		.part_id = 0x2A3B,
++		.name_prefix = "cs42l43",
++		.count_sidecar = asoc_sdw_bridge_cs35l56_count_sidecar,
++		.add_sidecar = asoc_sdw_bridge_cs35l56_add_sidecar,
++		.dais = {
++			{
++				.direction = {true, false},
++				.codec_name = "cs42l43-codec",
++				.dai_name = "cs42l43-dp5",
++				.dai_type = SOC_SDW_DAI_TYPE_JACK,
++				.dailink = {SOC_SDW_JACK_OUT_DAI_ID, SOC_SDW_UNUSED_DAI_ID},
++				.rtd_init = asoc_sdw_cs42l43_hs_rtd_init,
++				.controls = generic_jack_controls,
++				.num_controls = ARRAY_SIZE(generic_jack_controls),
++				.widgets = generic_jack_widgets,
++				.num_widgets = ARRAY_SIZE(generic_jack_widgets),
++			},
++			{
++				.direction = {false, true},
++				.codec_name = "cs42l43-codec",
++				.dai_name = "cs42l43-dp1",
++				.dai_type = SOC_SDW_DAI_TYPE_MIC,
++				.dailink = {SOC_SDW_UNUSED_DAI_ID, SOC_SDW_DMIC_DAI_ID},
++				.rtd_init = asoc_sdw_cs42l43_dmic_rtd_init,
++				.widgets = generic_dmic_widgets,
++				.num_widgets = ARRAY_SIZE(generic_dmic_widgets),
++				.quirk = SOC_SDW_CODEC_MIC,
++				.quirk_exclude = true,
++			},
++			{
++				.direction = {false, true},
++				.codec_name = "cs42l43-codec",
++				.dai_name = "cs42l43-dp2",
++				.dai_type = SOC_SDW_DAI_TYPE_JACK,
++				.dailink = {SOC_SDW_UNUSED_DAI_ID, SOC_SDW_JACK_IN_DAI_ID},
++			},
++			{
++				.direction = {true, false},
++				.codec_name = "cs42l43-codec",
++				.dai_name = "cs42l43-dp6",
++				.dai_type = SOC_SDW_DAI_TYPE_AMP,
++				.dailink = {SOC_SDW_AMP_OUT_DAI_ID, SOC_SDW_UNUSED_DAI_ID},
++				.init = asoc_sdw_cs42l43_spk_init,
++				.rtd_init = asoc_sdw_cs42l43_spk_rtd_init,
++				.controls = generic_spk_controls,
++				.num_controls = ARRAY_SIZE(generic_spk_controls),
++				.widgets = generic_spk_widgets,
++				.num_widgets = ARRAY_SIZE(generic_spk_widgets),
++				.quirk = SOC_SDW_CODEC_SPKR | SOC_SDW_SIDECAR_AMPS,
++			},
++		},
++		.dai_num = 4,
++	},
+ 	{
+ 		.part_id = 0x4245,
+ 		.name_prefix = "cs42l45",
 --
 2.48.1
 
