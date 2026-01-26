@@ -1,164 +1,177 @@
-Return-Path: <devicetree+bounces-259578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259580-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UNm6EaKXd2n0iwEAu9opvQ
-	(envelope-from <devicetree+bounces-259578-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:34:42 +0100
+	id uJOUKeiXd2n0iwEAu9opvQ
+	(envelope-from <devicetree+bounces-259580-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:35:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8FF68AB69
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:34:41 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F3A18ABAE
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:35:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A44F83035246
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:34:29 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7B0CD301A7D6
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:35:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72F2D34253A;
-	Mon, 26 Jan 2026 16:34:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C8C234217C;
+	Mon, 26 Jan 2026 16:35:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="X2n1ouzp";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="wXk4B3vH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EABB0340DA4;
-	Mon, 26 Jan 2026 16:34:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87BBF340298;
+	Mon, 26 Jan 2026 16:35:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769445269; cv=none; b=Hm693k8nCSZuSQE2GV3bw4rCSVN4/xLU9rkLrPoTm+tZ05wzjj8B5L2PF1APRevAJPcTxSaiMIebw6Fm8UsP59fFnDt6GhFc1g/dEaarBBFKxXKOZmVjuZ0szUagjEWbx95MKPi5lCVYdkNEL3x3sn9iPS914yOVwnJrrffwGeA=
+	t=1769445329; cv=none; b=F2Fzfs2P3sT5JVPmqcGsbCMy77p+avcJKfVIyKZFaBiauB+SBevya1BIcbSncDWShKTH4LFn40G304rQbpsGy6q/nFO0rLH02pxiM5Ks19IHUQHjLb2Jh0w+51UULwzgPZkEbOpT1OttfOPNoDMUYtW0F7I1z3fRpBgulrzGcQg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769445269; c=relaxed/simple;
-	bh=BPZ2o64ACc8rHB5MyAqAflouWLP2/Jgd/OtqX5i7PPw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=f/O4Q+WFmn1EkWvB0/kaeENpeQY7Niz1FIWvwbV34mrms3uJxhxYxcReg0Fe6sYrhTAPdQe/CJCUEo89NCq6vcEinosjguTVCYqFGWZOeRK2vhMUt3XDMj5jrQsn9fKVr8pWu2LJyhlE1rSi3kukIjzvydPgldIWm8CGxzLXRX8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C1965339;
-	Mon, 26 Jan 2026 08:34:20 -0800 (PST)
-Received: from [10.57.51.176] (unknown [10.57.51.176])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 02A783F5CA;
-	Mon, 26 Jan 2026 08:34:24 -0800 (PST)
-Message-ID: <b5f268cb-f9b9-4880-9fb5-b5f3a8eb9251@arm.com>
-Date: Mon, 26 Jan 2026 16:34:22 +0000
+	s=arc-20240116; t=1769445329; c=relaxed/simple;
+	bh=bm8kFrAljREFT7X0OXbNyMmjsEJiPsk99UNFXaev5SE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=hFu3TbGaWQ9DkJx2fkcMYkbyhmmC6EaNaZUpYvRDFWkVP52jLs7ejQUKxm7YIjGBOvxreVH8Jsx5g1Dx2oCGqp1IdvuPgaznqcXKx24tFOjTt5WbWEaWWeS04uZ2fs4FXHSq2ZEd4+HtAVOr3WxiTywSln7Jxaky28usiXwyVyQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=X2n1ouzp; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=wXk4B3vH; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=To:Message-Id:Date:Subject:From; t=1769445294; bh=81qBTX0uQZYtXRZJscu2FoC
+	nk8QfLTOi8lBcM6tJ260=; b=X2n1ouzpSiLpJnv8IX88FPCg6bp3bxAotenQ87q6vU02pEWNNa
+	5uAiPWNIQksnj75IbhuIM5kAKRCjyRQZELX89ymV23CnxxX2TRzceGTwQxPDXzxmDi9RfFAvzll
+	aV0sDmadNZ/ij7sgt9BIgBUBIClcDSfyI9cLabpK2pcUReHd/Y+ZYB++8hgkPvxKnkFmnWQIlwr
+	Y56/84dU6IIXh3AlvUpoXVFs9u0tef5TuDZzbBik58Xv9BfJ+P9s5M2jrypOL/fvL5FiTxqcfRB
+	q7N2gGGM3ZAPEFY18OE1Kf2IFX3zRZbHVBYdaLPzRCSVJKXhClb2sTWaT8qyK+Fegtw==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=To:Message-Id:Date:Subject:From; t=1769445294; bh=81qBTX0uQZYtXRZJscu2FoC
+	nk8QfLTOi8lBcM6tJ260=; b=wXk4B3vHUzVmvVN6jqJx3cYS2jL04d7oooi0+f7As5piF/K2Hx
+	KO+qpu4rk36ca4wsWnhw1eAwq3HTePHxx6AQ==;
+From: =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
+Subject: [PATCH v3 0/7] Initial Redmi Note 8T support and more
+Date: Mon, 26 Jan 2026 17:34:50 +0100
+Message-Id: <20260126-xiaomi-willow-v3-0-aad7b106c311@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] perf/arm-ni: Don't crash in probing clock domains
- without a PMU instance
-To: Baisheng Gao <baisheng.gao@unisoc.com>, Will Deacon <will@kernel.org>,
- Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: cixi.geng@linux.dev, hao_hao.wang@unisoc.com,
- linux-arm-kernel@lists.infradead.org, linux-perf-users@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20260126033029.7923-1-baisheng.gao@unisoc.com>
- <20260126033029.7923-2-baisheng.gao@unisoc.com>
-From: Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <20260126033029.7923-2-baisheng.gao@unisoc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/2XQ32rDIBQG8FcJXs+gp0ZtGKPvMXZhkmN7aBJXT
+ dN/9N1nWgajuxG+A/78jjeWMBImVhc3FnGmRGHMYfVWsHbnxi1y6nJmIEALKSU/kwsD8RP1fTh
+ xpWxVgRdgNLB85zuip/PD+/zKeUdpCvHy4Ge5TH8leJFmyQW3qJTRdm30ym4GR2NPI43bMsQtW
+ 7gZ/hL6lYBMKL1WHhsj2q75R9yfFSMejnnT6dmTDZiSe2xaF+/ZriTAWiqwQpegpLCWA9/H6yV
+ dp+DLfbjm19KeNiGl8nB0fRuGoczHx/IFjUvIlwlNdeGVNI3xvm3Qm87oRnTWalFJ6yvRORRos
+ MLO5Wr3Hwt408yMAQAA
+X-Change-ID: 20260111-xiaomi-willow-448552f02762
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Gabriel Gonzales <semfault@disroot.org>, 
+ Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>, 
+ "Guilherme G. Piccoli" <gpiccoli@igalia.com>, 
+ Biswapriyo Nath <nathbappai@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org, 
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ linux@mainlining.org, 
+ =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1769445293; l=2505;
+ i=barnabas.czeman@mainlining.org; s=20240730; h=from:subject:message-id;
+ bh=bm8kFrAljREFT7X0OXbNyMmjsEJiPsk99UNFXaev5SE=;
+ b=YQ2CkTN+AjGCRdwRjvHn4DmdFZNG0OOOLEk22YPIrFAWsMg07i6cisXT4nI25pTOhmidvqM0E
+ gMU/DV8gsqnD95qxMipFImZoHqxZzu/Qhz3SC2Wd08t2yIacg85Y2oN
+X-Developer-Key: i=barnabas.czeman@mainlining.org; a=ed25519;
+ pk=TWUSIGgwW/Sn4xnX25nw+lszj1AT/A3bzkahn7EhOFc=
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.14 / 15.00];
+X-Spamd-Result: default: False [0.41 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	R_MIXED_CHARSET(1.07)[subject];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[mainlining.org,reject];
+	R_DKIM_ALLOW(-0.20)[mainlining.org:s=202507r,mainlining.org:s=202507e];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[arm.com : SPF not aligned (relaxed), No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259578-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-259580-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,disroot.org,intel.com,igalia.com,gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robin.murphy@arm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	R_DKIM_NA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[barnabas.czeman@mainlining.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[mainlining.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[arm.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C8FF68AB69
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mainlining.org:email,mainlining.org:dkim,mainlining.org:mid,qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 1F3A18ABAE
 X-Rspamd-Action: no action
 
-On 2026-01-26 3:30 am, Baisheng Gao wrote:
-> The NULL pmusela pointer implies that current clock domain doesn't have
-> a PMU instance. Return 0 for probing the next clock domain. Otherwise a
-> kernel crash will happen.
+Redmi Note 8 and 8T are sibling devices the only difference
+is Redmi Note 8T have NFC.
+This patch series is commonizing Redmi Note 8 devicetree
+for a base for both devices.
 
-Sorry, this doesn't add up with the diff below. All of the documentation 
-says that the PMU is in integral part of the clock domain, and I can 
-find no mention of any configuration parameter allowing it to be 
-omitted. It is possible for the PMU registers to be inaccessible because 
-Non-Secure access has not been enabled, but we account for that already.
+The patch series also contains some fixes for Redmi Note 8:
+- Fix reserved memory ranges, they were wrongly defined.
+- Remove board-id, board-id is not neccessary for the bootloader.
+- Fix reserved-gpio-ranges the reserved ranges was wrongly
+defined what caused the device crash on the boot.
+- Remove unnecessary usb-extcon, gpio102 is related to DisplayPort
+what is not supported by these devices.
+- Use memory-region property for framebuffer.
 
-> Signed-off-by: Baisheng Gao <baisheng.gao@unisoc.com>
-> ---
->   drivers/perf/arm-ni.c | 8 +++++++-
->   1 file changed, 7 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/perf/arm-ni.c b/drivers/perf/arm-ni.c
-> index 66858c65215d..53b656983da1 100644
-> --- a/drivers/perf/arm-ni.c
-> +++ b/drivers/perf/arm-ni.c
-> @@ -526,6 +526,7 @@ static int arm_ni_init_cd(struct arm_ni *ni, struct arm_ni_node *node, u64 res_s
->   {
->   	struct arm_ni_cd *cd = ni->cds + node->id;
->   	const char *name;
-> +	static atomic_t id;
->   
->   	cd->id = node->id;
->   	cd->num_units = node->num_components;
-> @@ -562,6 +563,11 @@ static int arm_ni_init_cd(struct arm_ni *ni, struct arm_ni_node *node, u64 res_s
->   		case NI_TMNI:
->   		case NI_CMNI:
->   			unit->pmusela = arm_ni_get_pmusel(ni, unit_base);
-> +			if (!unit->pmusela) {
+Depends on:
+[1] https://lore.kernel.org/all/20251229142806.241088-2-krzysztof.kozlowski@oss.qualcomm.com/
 
-...However this is not about the PMU node anyway; this would represent 
-the FCU at an interface node being missing. Again, it's possible for 
-access to the FCU itself to be restricted, per the test below, but the 
-subfeature ID registers should always be readable, and per the "Should 
-be impossible" comment in arm_ni_get_pmusel(), the nodes that can 
-generate PMU events should always include an FCU.
+Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+---
+Changes in v3:
+- Remove unit address and label from frambuffer node.
+- Link to v2: https://lore.kernel.org/r/20260116-xiaomi-willow-v2-0-4694feb70cdb@mainlining.org
 
-Could you please clarify some more details of what the exact situation 
-is that you're trying to deal with here?
+Changes in v2:
+- Fix copyright in sm6125-xiaomi-ginkgo.dts as requested.
+- Use memory-region property for the framebuffer.
+- Add comment about the NFC.
+- Remove msm-id change in favor of [1].
+- Link to v1: https://lore.kernel.org/r/20260112-xiaomi-willow-v1-0-8e4476897638@mainlining.org
 
-> +				dev_info(ni->dev, "No have PMU %d\n", cd->id);
-> +				devm_kfree(ni->dev, cd->units);
-> +				return 0;
-> +			}
->   			writel_relaxed(1, unit->pmusela);
->   			if (readl_relaxed(unit->pmusela) != 1)
->   				dev_info(ni->dev, "No access to node 0x%04x%04x\n", unit->id, unit->type);
-> @@ -591,7 +597,7 @@ static int arm_ni_init_cd(struct arm_ni *ni, struct arm_ni_node *node, u64 res_s
->   	writel_relaxed(U32_MAX, cd->pmu_base + NI_PMCNTENCLR);
->   	writel_relaxed(U32_MAX, cd->pmu_base + NI_PMOVSCLR);
->   
-> -	cd->irq = platform_get_irq(to_platform_device(ni->dev), cd->id);
-> +	cd->irq = platform_get_irq(to_platform_device(ni->dev), atomic_fetch_inc(&id));
+---
+Barnabás Czémán (7):
+      arm64: dts: qcom: sm6125-xiaomi-ginkgo: Remove board-id
+      arm64: dts: qcom: sm6125-xiaomi-ginkgo: Correct reserved memory ranges
+      arm64: dts: qcom: sm6125-xiaomi-ginkgo: Set memory-region for framebuffer
+      arm64: dts: qcom: sm6125-xiaomi-ginkgo: Remove extcon
+      arm64: dts: qcom: sm6125-xiaomi-ginkgo: Fix reserved gpio ranges
+      dt-bindings: arm: qcom: Add Xiaomi Redmi Note 8T
+      arm64: dts: qcom: Add Redmi Note 8T
 
-This is clearly wrong. Disregarding how badly it would go with multiple 
-NI instances, even within a single instance I don';t think there's any 
-obvious guarantee of a stable order. The firmware bindings are already 
-defined, and that definition is not "the order in which a particular 
-version of the Linux driver happens to parse things".
+ Documentation/devicetree/bindings/arm/qcom.yaml    |   1 +
+ arch/arm64/boot/dts/qcom/Makefile                  |   3 +-
+ .../boot/dts/qcom/sm6125-xiaomi-ginkgo-common.dtsi | 301 +++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts  | 285 +------------------
+ arch/arm64/boot/dts/qcom/sm6125-xiaomi-willow.dts  |  15 +
+ 5 files changed, 320 insertions(+), 285 deletions(-)
+---
+base-commit: f417b7ffcbef7d76b0d8860518f50dae0e7e5eda
+change-id: 20260111-xiaomi-willow-448552f02762
+prerequisite-message-id: <20251229142806.241088-2-krzysztof.kozlowski@oss.qualcomm.com>
+prerequisite-patch-id: 1bc49c0e2bec1a47667df776e1ab265b0699ea35
 
-Thanks,
-Robin.
-
->   	if (cd->irq < 0)
->   		return cd->irq;
->   
+Best regards,
+-- 
+Barnabás Czémán <barnabas.czeman@mainlining.org>
 
 
