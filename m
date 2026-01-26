@@ -1,208 +1,242 @@
-Return-Path: <devicetree+bounces-259658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259659-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4K+IBcDgd2kdmQEAu9opvQ
-	(envelope-from <devicetree+bounces-259658-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 22:46:40 +0100
+	id GMMjBh7jd2k9mQEAu9opvQ
+	(envelope-from <devicetree+bounces-259659-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 22:56:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87DC38DB5E
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 22:46:38 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FE1D8DBE3
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 22:56:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 37FAB30015AB
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 21:46:36 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3A66830312DE
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 21:56:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A0352F530A;
-	Mon, 26 Jan 2026 21:46:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A0552FA0DD;
+	Mon, 26 Jan 2026 21:56:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Jd0y7HNH"
+	dkim=pass (2048-bit key) header.d=rivosinc.com header.i=@rivosinc.com header.b="fSWf0xZe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dl1-f66.google.com (mail-dl1-f66.google.com [74.125.82.66])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC0162F3C37;
-	Mon, 26 Jan 2026 21:46:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AE912FBE1C
+	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 21:56:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769463993; cv=none; b=KcTmtBxUwKIisZGMCmtjevVFApQVfFHXhTvHRa16o2hDUBDj/JtzGi0+tWrOy5/ud5cNJYDQ7V4CD7g8WtbUzvkK/YleagiTEsuKzXMiSZdj8yxKJ39vhjNvb1gv8U8ZYwB4TSZmoGrBHJ9RSJAuUqZ1goESAV2nAM6Mn8SDCuI=
+	t=1769464587; cv=none; b=igrRjKKv64zpRREo6oyBs1BZO12XUM3eJzbKVs5whFi6Hq/f5+zM12Q4AvVH4a4mBbqnl1Qw4PTWDE92+J00GaPa+ZkHkGMLcebUTRl59XlmHDWNrqnWSEmiE3joE8sU/UNtUi/ljo05wI69ilsNHSSd0YjEGjUa9ljg09Lgz0Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769463993; c=relaxed/simple;
-	bh=OV8z+qAYHSTccbY3IeLbbbgQ0ZTAqemONCIq8pnZmRA=;
+	s=arc-20240116; t=1769464587; c=relaxed/simple;
+	bh=oy/NoBC3Q8FHKt5xViq8h05UdNDzlJgEYLMGFJwNbSk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FQXUNPvUrUpzCzUgMX07XiS1dGUFT0Y7ZeV1hskFNPJI7ffBXbBdWWcIs5a4BeqmGSeABdDvYfRDHA9YUB3LWuCifq1k2KRFhEpxXR2p/PopMpxYxbQnR2j0crop3A+lTQmblqe8RVUJE2KBNvPan327RQDOybnebEwzMbE6VTI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Jd0y7HNH; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1769463992; x=1800999992;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=OV8z+qAYHSTccbY3IeLbbbgQ0ZTAqemONCIq8pnZmRA=;
-  b=Jd0y7HNHEE6AUdVQmLX3Xb/xWZvxAMfgsUj5lY5plWMP6JdCY7J9w7YA
-   LAck2QgRJmlt8IvD9GG4n0KOP8K9qSmNV+i47CtDyntmrXLH2g2KQDJUs
-   jIam3aMnOM2CSS0eaL5CpWahphIxhjxSZB8xsZnDZpJsd77ZkCBTQtfoK
-   QinCr3mghLc59aNrPWl83oocg2/2F4WnxK5g+nDMToPyCuTRMO+nxEcxm
-   woFzzfN/jvJM21Aeu88tlfScEOpBCHuvdw+X0+CX3oM6405tltUng49B7
-   35om0/OzGRUz2F6etH5ZFLF5/7g1AmcPL/OEx47mEXIn0gbCQQxYdWjq1
-   w==;
-X-CSE-ConnectionGUID: FYZTn/TdTUmVkqBKCjwPWw==
-X-CSE-MsgGUID: ko+XWe48Rd+qAC5vat+C+Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11683"; a="81283392"
-X-IronPort-AV: E=Sophos;i="6.21,256,1763452800"; 
-   d="scan'208";a="81283392"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jan 2026 13:46:31 -0800
-X-CSE-ConnectionGUID: 15LPK76wSZ2jmRZCwrzXYw==
-X-CSE-MsgGUID: SN0SLK/8S0iqR85YBc7WYw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,256,1763452800"; 
-   d="scan'208";a="207024316"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.232])
-  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jan 2026 13:46:27 -0800
-Received: from kekkonen.localdomain (localhost [IPv6:::1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id 67D9211FCC8;
-	Mon, 26 Jan 2026 23:46:30 +0200 (EET)
-Date: Mon, 26 Jan 2026 23:46:30 +0200
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Ceclan Dumitru <mitrutzceclan@gmail.com>
-Cc: dumitru.ceclan@analog.com,
-	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Julien Massot <julien.massot@collabora.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=EwCARfKrycQ25kP2wMmhgHTVO+ywJAiG118PYxet8Eo+6Kt8geHI+k6v0MUFgrLyafmXuOllValt4UVArAijbwxxMgnVI6+kHnRQCmCFBil1A9rFPe5RbSpRKPvTKyqn6G3TmHCRZLhdrI/gu2RiJMK5GmR2Kpeb26wgCmeyWu8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc.com header.i=@rivosinc.com header.b=fSWf0xZe; arc=none smtp.client-ip=74.125.82.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-dl1-f66.google.com with SMTP id a92af1059eb24-12336c0a8b6so812843c88.1
+        for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 13:56:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc.com; s=google; t=1769464584; x=1770069384; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=8lrUOAhghPwzKg1J5j2JXzrncTINsAcnCOvL8lgOY0s=;
+        b=fSWf0xZeY1W3iliLX2r/1KiF6Wq9/H/UPaTNEIZAP3NqRnCR+VrUr8tC3QOxOkxVdG
+         L4arTBM+nON6EALwEWHZcHLt8XcMGP6YrR/TMvm+vxPbSGYfNWWG0ivJrQw0nzQMlU8v
+         tKzOhLprN0PKTCNBJQ8SJTPqfmc4lbi6TKODPnfbRCMyZ0RyPhNi3UJ2EYHGkUVvQ1P7
+         943yz8aJY6c610bw3F+SieriHPk91yxu+5MVRSaB6elaFagrK68QGEzHxfsDJH6QIx4Y
+         oZG842n3dCyAky2u2j6/A6kJNo3nNK4psbjoiun8Wv6KoIz/mSNqy7IBwRZKteR4yuDM
+         6gXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769464584; x=1770069384;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8lrUOAhghPwzKg1J5j2JXzrncTINsAcnCOvL8lgOY0s=;
+        b=ocDVOdkstLLj0ufuUugc6oTDCbO0Wn88dxSofWHc5V+YnHz53Z3f0JJ/EfvbK8tbmN
+         yDVB4IyM+uEVQ6VzRHIx289WY1lEcG0iKH1NE4zHC7k74QeQ1lrUjXK0MZ1G903vcr0f
+         quYZVMYrfGWRKktnLYyOmwAUd08GLd6JXQPnxpknFApV+y1JDNV5ZX+cc6l3HNEEWhkz
+         ey5gKxztKv19jZsSofard4gFqhnTAtp0AWhuQWIrEVXhcOyQVuuCAL88hkLz08azOPJJ
+         gAvSqhYRP/EbCHcRsteBTq9yg7zPBhPu+MhQL5tdh63bs8JtRpCnhbWWPMEaxrOuSiiw
+         8v1g==
+X-Forwarded-Encrypted: i=1; AJvYcCXkHEDtPOCdtp2BK+9Zx1HVPrM/pU1lfjNOPAjxD3HhEZyxztXb+CAQKASJJjo8FCcjutB7oso0wbdF@vger.kernel.org
+X-Gm-Message-State: AOJu0YwlK6cB7wY9KU5w3lJOdhnRlsAeUfkKtMKn1EiGDIGvKnu3T5tt
+	EZX1uvfRcExiPvpqBxJ1E3kh5CwWtCEphH7RDzLcJEmKpzUZ8Lzm32hQl8xwIXNHf+g=
+X-Gm-Gg: AZuq6aIt6flrX7XIat41+omkwAhKGMtW9kcF/8Yqi8BVoNOkYhHOxdUqHi2WdEfFpXe
+	WmD8WDHGSZxR0+/NK9pU7BWBvoLyLgFSbbIDU6dU8Rf5m1P7X8RHrBtPce8zAGu6enfW1MNi0WQ
+	ezaKqz2lLzfNTKS1kiH9HHg1smqZMX3nDxgOiyxhVaUx2aAeIzGzdiI8K9Ryu9BCm6PSya/utA+
+	gCHtGzd1sFHGXFZqeFBDwGJ8pvTP4z7T1o0PMLa9NK6Sv2HbI0NmL7OQSojYspGXahdwDqN5Yl0
+	bYqDjgAtd5w4qa5ngqvcc7rTIWoVyA+uKEcogMueWtAs5kewgYzzMXJWo1ZH1uqVDeFMP4qSmiL
+	UILXwK1UKFSsdW5YiFi6HmI17KybcuMsVxtkMGrNrkvrZtiBE43xZMY/CwAv5F4AhSugEgrsNtP
+	Bw8GFhgGFmHRW4efTICUd2
+X-Received: by 2002:a05:7022:2510:b0:11d:fd26:234e with SMTP id a92af1059eb24-1248ec01e46mr2897894c88.16.1769464584287;
+        Mon, 26 Jan 2026 13:56:24 -0800 (PST)
+Received: from debug.ba.rivosinc.com ([64.71.180.162])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1247d90cd61sm22036468c88.3.2026.01.26.13.56.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Jan 2026 13:56:23 -0800 (PST)
+Date: Mon, 26 Jan 2026 13:56:21 -0800
+From: Deepak Gupta <debug@rivosinc.com>
+To: Paul Walmsley <pjw@kernel.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+	Borislav Petkov <bp@alien8.de>,
+	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Vlastimil Babka <vbabka@suse.cz>,
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund@ragnatech.se>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-staging@lists.linux.dev,
-	Cosmin Tanislav <demonsingur@gmail.com>
-Subject: Re: [PATCH RESEND v8 17/21] media: i2c: maxim-serdes: add MAX9296A
- driver
-Message-ID: <aXfgts9DHfWZt3To@kekkonen.localdomain>
-References: <20251208-gmsl2-3_serdes-v8-0-7b8d457e2e04@analog.com>
- <20251208-gmsl2-3_serdes-v8-17-7b8d457e2e04@analog.com>
- <aW-EXiiKFLrXQeJG@kekkonen.localdomain>
- <47ce1e14-5443-4d3e-a2c9-7d5be47012c9@gmail.com>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Christian Brauner <brauner@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Oleg Nesterov <oleg@redhat.com>,
+	Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Benno Lossin <lossin@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-arch@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-kselftest@vger.kernel.org, alistair.francis@wdc.com,
+	richard.henderson@linaro.org, jim.shu@sifive.com,
+	andybnac@gmail.com, kito.cheng@sifive.com, charlie@rivosinc.com,
+	atishp@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com,
+	alexghiti@rivosinc.com, samitolvanen@google.com, broonie@kernel.org,
+	rick.p.edgecombe@intel.com, rust-for-linux@vger.kernel.org,
+	Zong Li <zong.li@sifive.com>, David Hildenbrand <david@redhat.com>,
+	Andreas Korb <andreas.korb@aisec.fraunhofer.de>,
+	Valentin Haudiquet <valentin.haudiquet@canonical.com>
+Subject: Re: [PATCH v26 01/28] mm: VM_SHADOW_STACK definition for riscv
+Message-ID: <aXfjBd7eCE3ypUnf@debug.ba.rivosinc.com>
+References: <20251211-v5_user_cfi_series-v26-0-f0f419e81ac0@rivosinc.com>
+ <20251211-v5_user_cfi_series-v26-1-f0f419e81ac0@rivosinc.com>
+ <68e1702e-f803-2db2-0e16-53ecef4d9eb6@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-In-Reply-To: <47ce1e14-5443-4d3e-a2c9-7d5be47012c9@gmail.com>
+In-Reply-To: <68e1702e-f803-2db2-0e16-53ecef4d9eb6@kernel.org>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[rivosinc.com,none];
+	R_DKIM_ALLOW(-0.20)[rivosinc.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	TAGGED_FROM(0.00)[bounces-259658-lists,devicetree=lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[analog.com,ideasonboard.com,kernel.org,collabora.com,ragnatech.se,linuxfoundation.org,vger.kernel.org,lists.linux.dev,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[linutronix.de,redhat.com,alien8.de,linux.intel.com,kernel.org,zytor.com,linux-foundation.org,oracle.com,suse.cz,sifive.com,dabbelt.com,eecs.berkeley.edu,arndb.de,infradead.org,xmission.com,lwn.net,google.com,gmail.com,garyguo.net,protonmail.com,umich.edu,vger.kernel.org,kvack.org,lists.infradead.org,wdc.com,linaro.org,rivosinc.com,intel.com,aisec.fraunhofer.de,canonical.com];
+	DKIM_TRACE(0.00)[rivosinc.com:+];
+	TAGGED_FROM(0.00)[bounces-259659-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sakari.ailus@linux.intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree,renesas];
-	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[kekkonen.localdomain:mid]
-X-Rspamd-Queue-Id: 87DC38DB5E
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[debug@rivosinc.com,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[62];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sifive.com:email,rivosinc.com:email,rivosinc.com:dkim,canonical.com:email,fraunhofer.de:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,msgid.link:url]
+X-Rspamd-Queue-Id: 8FE1D8DBE3
 X-Rspamd-Action: no action
 
-Hi Dumitru,
+Hi Paul,
 
-On Mon, Jan 26, 2026 at 11:55:47AM +0200, Ceclan Dumitru wrote:
-> 
-> 
-> On 1/20/26 3:34 PM, Sakari Ailus wrote:
-> > Hi Dumitru,
-> > 
-> > On Mon, Dec 08, 2025 at 04:13:09PM +0200, Dumitru Ceclan via B4 Relay wrote:
-> >> +	*ops = max9296a_common_ops;
-> >> +
-> >> +	ops->versions = priv->info->ops->versions;
-> >> +	ops->modes = priv->info->ops->modes;
-> >> +	ops->needs_single_link_version = priv->info->ops->needs_single_link_version;
-> >> +	ops->needs_unique_stream_id = priv->info->ops->needs_unique_stream_id;
-> >> +	ops->fix_tx_ids = priv->info->ops->fix_tx_ids;
-> >> +	ops->num_phys = priv->info->ops->num_phys;
-> >> +	ops->num_pipes = priv->info->ops->num_pipes;
-> >> +	ops->num_links = priv->info->ops->num_links;
-> >> +	ops->phys_configs = priv->info->ops->phys_configs;
-> >> +	ops->set_pipe_enable = priv->info->ops->set_pipe_enable;
-> >> +	ops->set_pipe_stream_id = priv->info->ops->set_pipe_stream_id;
-> >> +	ops->set_pipe_tunnel_phy = priv->info->ops->set_pipe_tunnel_phy;
-> >> +	ops->set_pipe_tunnel_enable = priv->info->ops->set_pipe_tunnel_enable;
-> >> +	ops->use_atr = priv->info->ops->use_atr;
-> >> +	ops->tpg_mode = priv->info->ops->tpg_mode;
-> > 
-> > What's the reason for doing these assignments and a copy of the memory? Why
-> > not to just keep a pointer to the struct memory instead? I think there's
-> > another case of the same.
-> > 
-> Would this be alright:
-> #define MAX9296A_COMMON_OPS					\
-> 
-> 	.num_remaps_per_pipe = 16,				\
-> 
-> 	.tpg_entries = { ... },					\
-> 
-> 	.init = max9296a_init,					\
-> 
-> 	.set_enable = max9296a_set_enable,			\
-> 
-> 
-> static const struct max_des_ops max9296a_ops = {
-> 
-> 	MAX9296A_COMMON_OPS,
-> 
-> 	.versions = BIT(MAX_SERDES_GMSL_2_3GBPS) |
-> 
-> 		    BIT(MAX_SERDES_GMSL_2_6GBPS),
-> 	.modes = BIT(MAX_SERDES_GMSL_PIXEL_MODE),
-> 	/* ... */
-> 
-> 	};
-> 
+Comment inlne.
 
-Could you use different structs for ops and hardware features?
+On Wed, Jan 14, 2026 at 07:57:19PM -0700, Paul Walmsley wrote:
+>On Thu, 11 Dec 2025, Deepak Gupta via B4 Relay wrote:
+>
+>> From: Deepak Gupta <debug@rivosinc.com>
+>>
+>> VM_HIGH_ARCH_5 is used for riscv
+>>
+>> Reviewed-by: Zong Li <zong.li@sifive.com>
+>> Reviewed-by: Alexandre Ghiti <alexghiti@rivosinc.com>
+>> Acked-by: David Hildenbrand <david@redhat.com>
+>> Tested-by: Andreas Korb <andreas.korb@aisec.fraunhofer.de>
+>> Tested-by: Valentin Haudiquet <valentin.haudiquet@canonical.com>
+>> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
+>
+>Here's what I'm planning to queue, after updating it after Lorenzo's mm
+>changes.  Please let me know if you want to change anything.
 
-> 
-> 
-> static int max9296a_probe(struct i2c_client *client)
-> 
-> {
-> 
-> 	/* ... */
-> 
-> 	priv->des.ops = priv->info->ops;
-> 
-> 	/* ... */
-> 
-> }
+Yes looks good to me. Thanks a lot.
 
--- 
-Regards,
-
-Sakari Ailus
+>
+>
+>- Paul
+>
+>From: Deepak Gupta <debug@rivosinc.com>
+>Date: Wed, 19 Nov 2025 09:55:05 -0700
+>
+>mm: add VM_SHADOW_STACK definition for riscv
+>
+>VM_HIGH_ARCH_5 is used for riscv.
+>
+>Reviewed-by: Zong Li <zong.li@sifive.com>
+>Reviewed-by: Alexandre Ghiti <alexghiti@rivosinc.com>
+>Acked-by: David Hildenbrand <david@redhat.com>
+>Signed-off-by: Deepak Gupta <debug@rivosinc.com>
+>Tested-by: Andreas Korb <andreas.korb@aisec.fraunhofer.de> # QEMU, custom CVA6
+>Tested-by: Valentin Haudiquet <valentin.haudiquet@canonical.com>
+>Link: https://patch.msgid.link/20251112-v5_user_cfi_series-v23-1-b55691eacf4f@rivosinc.com
+>[pjw@kernel.org: clarify subject; update to apply]
+>Signed-off-by: Paul Walmsley <pjw@kernel.org>
+>---
+> include/linux/mm.h | 5 +++--
+> 1 file changed, 3 insertions(+), 2 deletions(-)
+>
+>diff --git a/include/linux/mm.h b/include/linux/mm.h
+>index 15076261d0c2..de912272c5f9 100644
+>--- a/include/linux/mm.h
+>+++ b/include/linux/mm.h
+>@@ -359,7 +359,7 @@ enum {
+> 	DECLARE_VMA_BIT_ALIAS(PKEY_BIT2, HIGH_ARCH_2),
+> 	DECLARE_VMA_BIT_ALIAS(PKEY_BIT3, HIGH_ARCH_3),
+> 	DECLARE_VMA_BIT_ALIAS(PKEY_BIT4, HIGH_ARCH_4),
+>-#if defined(CONFIG_X86_USER_SHADOW_STACK)
+>+#if defined(CONFIG_X86_USER_SHADOW_STACK) || defined(CONFIG_RISCV_USER_CFI)
+> 	/*
+> 	 * VM_SHADOW_STACK should not be set with VM_SHARED because of lack of
+> 	 * support core mm.
+>@@ -460,7 +460,8 @@ enum {
+> #define VM_PKEY_BIT4  VM_NONE
+> #endif /* CONFIG_ARCH_PKEY_BITS > 4 */
+> #endif /* CONFIG_ARCH_HAS_PKEYS */
+>-#if defined(CONFIG_X86_USER_SHADOW_STACK) || defined(CONFIG_ARM64_GCS)
+>+#if defined(CONFIG_X86_USER_SHADOW_STACK) || defined(CONFIG_ARM64_GCS) || \
+>+	defined(CONFIG_RISCV_USER_CFI)
+> #define VM_SHADOW_STACK	INIT_VM_FLAG(SHADOW_STACK)
+> #else
+> #define VM_SHADOW_STACK	VM_NONE
+>-- 
+>2.51.0
+>
+>
+>
+>
 
