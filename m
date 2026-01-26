@@ -1,429 +1,162 @@
-Return-Path: <devicetree+bounces-259465-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259466-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eL4KN99Ld2msdwEAu9opvQ
-	(envelope-from <devicetree+bounces-259465-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 12:11:27 +0100
+	id iCr3LXFMd2msdwEAu9opvQ
+	(envelope-from <devicetree+bounces-259466-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 12:13:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D36B87848
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 12:11:27 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EF208788C
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 12:13:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DCB4A301BC2C
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 11:11:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D894730166EB
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 11:13:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62580331209;
-	Mon, 26 Jan 2026 11:11:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 306B4331238;
+	Mon, 26 Jan 2026 11:13:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PNAtPeSD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QGzz1LkK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54627329E4B
-	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 11:11:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E01F0329E4B
+	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 11:13:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769425878; cv=none; b=PEUKLOn09InQNAvmFTJlrCuzBbkMqe8PEvdgCr3/yToqiX3p3liPbkCQ5dq7TiSTMK4U19HSPCMzXHDmQi3FvMgiOnPHkUq2BOEIZtSrtoOCuCkl8zemosE+qUz48EAW0Ld0SWJvXSbPhgAqNYfQim5EDI5Gx+eVfw8g4dLVgLA=
+	t=1769426024; cv=none; b=RnYiqRihKQMuzYQvXBqC4cOELp1c/C2kGND+8mBLmaZvTRQvKilW9NzIggbTB6LX+ctmwOT1wqLbmgu32IrdD0m65f3mGLwF6tLu1iVbuCyVf2oyqwIJ7tH2c7JyPBvt1FZjEmdgEJRApxOJb+3VcHfgBEb8dgZPGcGhL4P8xOc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769425878; c=relaxed/simple;
-	bh=6FB0arrczo1kAehTkyA/0p8mh0g59QVZvIExUPdL92c=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=u9FolSiAF/X9Qkjmkr7rUhUhhAuzSXBBX0OCyuDoK7KwFO2dcs+Pu46PJWsWI900ljn8oMGTgQXZs4kVPIJY7vMDtjQHWAckZmbfXTpC0VvQM14mC7Snfs7rUrMOa7q6AfrItMoUV/IlGSqvI7lGAVC0yxfULECPa1RnQdGkJXw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PNAtPeSD; arc=none smtp.client-ip=209.85.128.54
+	s=arc-20240116; t=1769426024; c=relaxed/simple;
+	bh=FX+u7dLDurNlxOccyfrLQ21pHfY2VWLGsQf174i4Ot4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ibNPnncDrvuYz9NcN6yyMq1tIY3aVk4S2nvbFqbJ1qglBgjrAb/OnX9RxWDq9p1NruatEMwk1fBa2J0izwUNVmHPkuqporL0OtRqVUQto9OT1/dgDNFDj3JxCmGOneJXrdyJIAicWu3wPCwBhhCt/g7pidQGph3LmYBXC4Tp+x0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QGzz1LkK; arc=none smtp.client-ip=209.85.210.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4801c1ad878so48506105e9.1
-        for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 03:11:15 -0800 (PST)
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-8217f2ad01eso3782733b3a.2
+        for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 03:13:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769425874; x=1770030674; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=IMfQPmWBkGs6B3W9EZ66X9JXLz5zHb4VAsfmHmE9rV8=;
-        b=PNAtPeSD3LxqN+KPR4XS+dxBGmUNUhwyygSZNKB/UayMBt244cjLICKP2ES3F383Zq
-         wzzgLZwwqVhlh6ihQSomOdK+QhK8quVYLCduLdG9qZ7mgta5IuS9Np3R5MTmnRBcPRhu
-         laKTSrjWqax/pxLpLycvCm9ztwlYIbIWfUgbN8IsWjUBgWLN//dv2HVFNBdSI4iu9IdY
-         /4mK4LGRHG3O7XcP4N8NUhIRHmLaCjRyARXihabDHSu8p3Y+jsynKXMPWAIUwmqWJCMw
-         +o41JKcF8Uq5hgiUxRXPAW4QVOV//cbQTf9DYrYjuK2vLY3F9TQWYun4MgSV/YX8YFJ3
-         lwRQ==
+        d=gmail.com; s=20230601; t=1769426022; x=1770030822; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yjrX7lfZ60gmKC1KhjPLhFh8kl1ZoOz3IaYZdZMcIfo=;
+        b=QGzz1LkK7DMWDiSlpFy2DQpSIQz+3ywcFCFvNwHk6GGvqp1jeoW2rEPO2gBrclB5bM
+         wsQ3VMi6c75cwm54p1EFkPvMaCcQeARVhXPDOy61//9R2WDpzc+9z5ty6OKALZfVZo4x
+         NszeW3LHEsfRv3p4cN39FnI5qrNoU3uVTjhBLEja1rPullZbuC0WTR8Tgm5p8CNrS1hT
+         4HVXrK1JC1u8vYbtLHPbHv5boWDQa0DDY/lC7q6brnPMhi+hhgzL0vvmIxd5AiHWy+U1
+         0iABWjI5KibJM3rBjQhXPX0GDjQV8v3JoevhwjIJW//+Yyq+KeeAPV4BPsluIulUefI9
+         1Fgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769425874; x=1770030674;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IMfQPmWBkGs6B3W9EZ66X9JXLz5zHb4VAsfmHmE9rV8=;
-        b=FMntkABRj4f7hgI6PNo+IQWAN5ldaOykXPeNLP+E2CbLeMxC619+n6KH14JcqPr/6W
-         RiIdcZdrSpqKqYEkAQYbHnO4LjXGQPPYuJZPyFtJJt2jYCMlJH6z+hFUunXyhWT+op7a
-         J7WxRpV7Kh+utwoWdWxoSbdYCplOYE1atnMfhCSRcHTrbes02vGCC4db+zFBr8eD239A
-         02QidIrWuMZgd+2kUxYxJxnzaXKP0i2XQPoGUFB+YE4rwF3WHf/zMKRoJvQRp1xLFYhd
-         59m67nI48Njx+/mSbrcFwQB8C6T8JRc46vua52cJG+vHQNCUWXnSo0Ac5ZFPB2gtKs9/
-         Hipw==
-X-Forwarded-Encrypted: i=1; AJvYcCVpzR6VBJsnL9Q81jPCMoaEckPrHyffiYHGkT0A/z2+uv5JxB4iEUG9Y/481I44h8YTGq2jzpwSc7ku@vger.kernel.org
-X-Gm-Message-State: AOJu0Yws/oPIewNcTispAxf4V+M3un7m8nndOLpdtLy228s+IWAgZr0g
-	1KPuErrjA3cz8jFgmGANCwW/CsnK9ihAy3LWf8NRNqAfAGxTnW4FNSmAs9B/JQ==
-X-Gm-Gg: AZuq6aLOdnDObfJ6piL5v+RBziI9b8xnxAVjO70ijnJfn2GLdRbSGzcwePjUmXTk9EU
-	Hvi+OroDUrB/xCBC/3j/zJAEwiO2y/Ho5cNm9c+xMTtapGvDk65scWENrLK3bmsDXLl2KInWKZN
-	3dHVH4U14dyAo0xbvplPDgoANz6clb3lqBW4DMSt4R/W+L/jHkRVmZsksKX471CrVLvmnUskEG/
-	QXBrfiA1vKC1+m3bCHz+S4nbn99kPXzaua89VfYV02UinUTS4t97O+dROCWK6x0aWkiMZoaVEDc
-	uymO54oU2Kaat/uQLC5TJE9/GVp9llBgC9yevnD6XyROhUCR40Z2HJRg6GAXa2f7A7MBwd6WaU7
-	2E3VJq0bQ735X6IqauBEaP6Tk3+BKyF0joXyIxBLtoZ28PA+Ouc8ftx3r3AvMqZtS7g9ueWdSgY
-	qQPObAjY1najaHIwazG7wBouGqtShU
-X-Received: by 2002:a05:600c:8706:b0:465:a51d:d4 with SMTP id 5b1f17b1804b1-4805ce3ffdemr71874835e9.6.1769425873482;
-        Mon, 26 Jan 2026 03:11:13 -0800 (PST)
-Received: from [192.168.0.100] ([188.27.128.12])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435b1f742d6sm29305746f8f.30.2026.01.26.03.11.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Jan 2026 03:11:13 -0800 (PST)
-Message-ID: <edd6a420-9958-43a2-a761-bed5ec547591@gmail.com>
-Date: Mon, 26 Jan 2026 13:10:23 +0200
+        d=1e100.net; s=20230601; t=1769426022; x=1770030822;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yjrX7lfZ60gmKC1KhjPLhFh8kl1ZoOz3IaYZdZMcIfo=;
+        b=EZhzmSe0MwPx7VfrVyEqGF4wTAT0eKjIRFSpSk90jVjObPBJ2PLkE4ORBJiBnptGl9
+         50VorL38gLBhwE07o2/pIhnab0iYnY2oZ5SpjVz1qluxU3VWM8mCyXYdQDEQVvNNmEQK
+         gaRpDe5V0HVB+Vd8HRCrCW8QZEXV+iCdv3wm9iU6E22MOhcTwWYt7oX0XKZcgR94JzDG
+         27bYsf0cC/bV/LiO0Ek+9s+Eiy3FSrhsm2/ctCgC+WvSWWlAQZ6liDX78ImJztMIhnVG
+         CYDglTU2wpsH8h2/j4c4/NxnaKNvCfLSq4y0eCxphNzuVdlcv+oLRkXAAn1EBVEheBzA
+         rlJw==
+X-Forwarded-Encrypted: i=1; AJvYcCU+ybO0D//qJBGPiXpG2ZknMw15RmlmmZLzfISfdAo/a97YRltMTa8QHpkNUlQWZHIXtC5LNSbg98ui@vger.kernel.org
+X-Gm-Message-State: AOJu0Yylw3J0x8qZ5CMOl7rprZ3v34E+4JOwWWAkJe88t1tOhYnhxcWG
+	yC08qRbNkIBTcYDG8gwaGB4Aa2nMvrDocHxOHyLYwy0S/FM25/HubLJ2
+X-Gm-Gg: AZuq6aJ4mkhtUgpVucXW7sxJQE11fC7f6dO+sehV8YsBBeY5DtkgeQJj6+IKYjBqTUN
+	ef3GL5oYTYX2Zfv82at+hkm7c/sQc+puUHDwyFZYhRJXMUjq+M9A4UV+aDpWRrHgfIaBMSf4g6g
+	71RCQee4lDavZHyoA5Fbxn+IAzX6D1t9vtmO/guYnvRyibXC2wjO841trYKjxmkYU2jjrrzfbi5
+	H2LfrJs2crCiTqochPN1N08lHGAE4ZCVDtj4aEU0cv4INFIOVgyuGTMia4lIctVsVuwJ/PgUefQ
+	MNV6ysj+98L6ekVqoyJtDWKpMl3b4U6VnqW/Qo8u8fbuyN7czj98M6NX/7lX/Ww0ql9Kg2UzknN
+	2/MLBvxjeTMdS4L07QoHzRy98eITQ+9MLCxIosKGNN8uSpl6pnHQCW0y246YuGQy8OIMNAjlRTB
+	JrYjb5pkbmWeZdPMN35w8=
+X-Received: by 2002:a05:6a00:218c:b0:821:afd6:c6e5 with SMTP id d2e1a72fcca58-823411d83c8mr3791919b3a.5.1769426022198;
+        Mon, 26 Jan 2026 03:13:42 -0800 (PST)
+Received: from soham-laptop.. ([103.182.158.110])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8231873e903sm9068178b3a.51.2026.01.26.03.13.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Jan 2026 03:13:41 -0800 (PST)
+From: Soham Metha <sohammetha01@gmail.com>
+To: linux-kernel-mentees@lists.linuxfoundation.org
+Cc: shuah@kernel.org,
+	skhan@linuxfoundation.org,
+	linux-kernel@vger.kernel.org,
+	Soham Metha <sohammetha01@gmail.com>,
+	Support Opensource <support.opensource@diasemi.com>,
+	Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: [PATCH] docs: bindings: da9055: fix dead link to codec binding
+Date: Mon, 26 Jan 2026 16:43:09 +0530
+Message-Id: <20260126111309.22097-1-sohammetha01@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Cosmin Tanislav <demonsingur@gmail.com>
-Subject: Re: [PATCH RESEND v8 17/21] media: i2c: maxim-serdes: add MAX9296A
- driver
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Ceclan Dumitru <mitrutzceclan@gmail.com>
-Cc: Sakari Ailus <sakari.ailus@linux.intel.com>, dumitru.ceclan@analog.com,
- Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Julien Massot <julien.massot@collabora.com>, Rob Herring <robh@kernel.org>,
- =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-staging@lists.linux.dev
-References: <20251208-gmsl2-3_serdes-v8-0-7b8d457e2e04@analog.com>
- <20251208-gmsl2-3_serdes-v8-17-7b8d457e2e04@analog.com>
- <aW-EXiiKFLrXQeJG@kekkonen.localdomain>
- <47ce1e14-5443-4d3e-a2c9-7d5be47012c9@gmail.com>
- <20260126100153.GB593812@killaraus>
-Content-Language: en-US
-In-Reply-To: <20260126100153.GB593812@killaraus>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[kernel.org,linuxfoundation.org,vger.kernel.org,gmail.com,diasemi.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259465-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259466-lists,devicetree=lfdr.de];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[ideasonboard.com,gmail.com];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sohammetha01@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[demonsingur@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,renesas];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 4D36B87848
+X-Rspamd-Queue-Id: 1EF208788C
 X-Rspamd-Action: no action
 
-Hi Laurent, Sakari. As this is code written by me I can provide some
-clarifications.
+The simple audio codec bindings were consolidated into
+trivial-codec.yaml by commit 4acbfcf11cbe ("ASoC: dt-bindings:
+consolidate simple audio codec to trivial-codec.yaml").
 
-On 1/26/26 12:01 PM, Laurent Pinchart wrote:
-> On Mon, Jan 26, 2026 at 11:55:47AM +0200, Ceclan Dumitru wrote:
->>
->>
->> On 1/20/26 3:34 PM, Sakari Ailus wrote:
->>> Hi Dumitru,
->>>
->>> On Mon, Dec 08, 2025 at 04:13:09PM +0200, Dumitru Ceclan via B4 Relay wrote:
->>>> +	*ops = max9296a_common_ops;
->>>> +
->>>> +	ops->versions = priv->info->ops->versions;
->>>> +	ops->modes = priv->info->ops->modes;
->>>> +	ops->needs_single_link_version = priv->info->ops->needs_single_link_version;
->>>> +	ops->needs_unique_stream_id = priv->info->ops->needs_unique_stream_id;
->>>> +	ops->fix_tx_ids = priv->info->ops->fix_tx_ids;
->>>> +	ops->num_phys = priv->info->ops->num_phys;
->>>> +	ops->num_pipes = priv->info->ops->num_pipes;
->>>> +	ops->num_links = priv->info->ops->num_links;
->>>> +	ops->phys_configs = priv->info->ops->phys_configs;
->>>> +	ops->set_pipe_enable = priv->info->ops->set_pipe_enable;
->>>> +	ops->set_pipe_stream_id = priv->info->ops->set_pipe_stream_id;
->>>> +	ops->set_pipe_tunnel_phy = priv->info->ops->set_pipe_tunnel_phy;
->>>> +	ops->set_pipe_tunnel_enable = priv->info->ops->set_pipe_tunnel_enable;
->>>> +	ops->use_atr = priv->info->ops->use_atr;
->>>> +	ops->tpg_mode = priv->info->ops->tpg_mode;
->>>
->>> What's the reason for doing these assignments and a copy of the memory? Why
->>> not to just keep a pointer to the struct memory instead? I think there's
->>> another case of the same.
+Update the DA9055 binding documentation to reference the new
+trivial-codec.yaml location.
 
-Copy of the memory is to assign the common parts of the ops, while the
-assignments add the ops that need to be chip-specific on top.
+Signed-off-by: Soham Metha <sohammetha01@gmail.com>
+---
+ Documentation/devicetree/bindings/mfd/da9055.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
->>>
->> Would this be alright:
->> #define MAX9296A_COMMON_OPS					\
->>
->> 	.num_remaps_per_pipe = 16,				\
->>
->> 	.tpg_entries = { ... },					\
->>
->> 	.init = max9296a_init,					\
->>
->> 	.set_enable = max9296a_set_enable,			\
->>
->>
->> static const struct max_des_ops max9296a_ops = {
->>
->> 	MAX9296A_COMMON_OPS,
->>
->> 	.versions = BIT(MAX_SERDES_GMSL_2_3GBPS) |
->>
->> 		    BIT(MAX_SERDES_GMSL_2_6GBPS),
->> 	.modes = BIT(MAX_SERDES_GMSL_PIXEL_MODE),
->> 	/* ... */
->>
->> 	};
->>
->>
->>
->> static int max9296a_probe(struct i2c_client *client)
->>
->> {
->>
->> 	/* ... */
->>
->> 	priv->des.ops = priv->info->ops;
->>
->> 	/* ... */
->>
->> }
-> 
-> That's still a copy. Why is a copy needed, why can't you write
-> 
->   	priv->des.ops = &priv->info->ops;
->
-
-priv->des.ops is a pointer, so is priv->info->ops, in the current code,
-so this would not be a copy of the ops, just a pointer assignment.
-
-See the struct definitions below.
-
-struct max_des {
-	struct max_des_priv *priv;
-
-	const struct max_des_ops *ops;
-	...
-};
-
-
-struct max9296a_chip_info {
-	const struct max_des_ops *ops;
-	...
-};
-
-
-struct max9296a_priv {
-	struct max_des des;
-	const struct max9296a_chip_info *info;
-	...
-};
-
-> or event replace priv->des.ops with priv->info->ops through the code ?
-
-max9296a_chip_info is the chip-specific struct for this driver, it's
-retrieved using device_get_match_data().
-
-max9296a_priv is the private driver data.
-
-max_des is the data available for both the core framework and the
-drivers implementing it.
-
-max_des_priv is the private data of the core framework, containing
-implementation details that are not really related to the chip itself
-but more about how to expose the chip capabilities to the user,
-eg. V4L2.
-
-Because of this, priv->info->ops cannot be used through out the code
-as priv is private to the driver, and so is info, while ops are used
-in the core framework.
-
-> Is there anything in the ops structure that needs to be modified at
-> runtime ?
-
-No, there is not. I think it would be fine for a MAX9296A_COMMON_OPS
-macro be added which contains all the common ops, and then place it
-as the first member of each instance of struct max_des_ops.
-
-I'm sending some code inline as a proof-of-concept, maybe it would be
-clearer how the current code will have to be changed. A similar thing
-would have to be done for the other chip drivers.
-
-Thank you for your feedback.
-
-diff --git a/drivers/media/i2c/maxim-serdes/max9296a.c b/drivers/media/i2c/maxim-serdes/max9296a.c
-index a67692b2f5ee0..e9d6322c302f0 100644
---- a/drivers/media/i2c/maxim-serdes/max9296a.c
-+++ b/drivers/media/i2c/maxim-serdes/max9296a.c
-@@ -1038,49 +1038,48 @@ static const struct max_serdes_tpg_entry max9296a_tpg_entries[] = {
- 	MAX_TPG_ENTRY_1920X1080P60_RGB888,
- };
+diff --git a/Documentation/devicetree/bindings/mfd/da9055.txt b/Documentation/devicetree/bindings/mfd/da9055.txt
+index 131a53283e17..d3099bf56002 100644
+--- a/Documentation/devicetree/bindings/mfd/da9055.txt
++++ b/Documentation/devicetree/bindings/mfd/da9055.txt
+@@ -15,7 +15,7 @@ The CODEC device in DA9055 has a separate, configurable I2C address and so
+ is instantiated separately from the PMIC.
  
--static const struct max_des_ops max9296a_common_ops = {
--	.num_remaps_per_pipe = 16,
--	.tpg_entries = {
--		.num_entries = ARRAY_SIZE(max9296a_tpg_entries),
--		.entries = max9296a_tpg_entries,
--	},
--	.tpg_patterns = BIT(MAX_SERDES_TPG_PATTERN_CHECKERBOARD) |
--			BIT(MAX_SERDES_TPG_PATTERN_GRADIENT),
- #ifdef CONFIG_VIDEO_ADV_DEBUG
--	.reg_read = max9296a_reg_read,
-+#define MAX9296A_COMMON_OPS_DEBUG					\
-+	.reg_read = max9296a_reg_read,					\
- 	.reg_write = max9296a_reg_write,
-+#else
-+#define MAX9296A_COMMON_OPS_DEBUG
- #endif
--	.log_pipe_status = max9626a_log_pipe_status,
--	.log_phy_status = max9296a_log_phy_status,
--	.set_enable = max9296a_set_enable,
--	.init = max9296a_init,
--	.init_phy = max9296a_init_phy,
--	.set_phy_mode = max9296a_set_phy_mode,
--	.set_phy_enable = max9296a_set_phy_enable,
--	.set_pipe_remap = max9296a_set_pipe_remap,
--	.set_pipe_remaps_enable = max9296a_set_pipe_remaps_enable,
--	.set_pipe_mode = max9296a_set_pipe_mode,
--	.set_tpg = max9296a_set_tpg,
--	.select_links = max9296a_select_links,
--	.set_link_version = max9296a_set_link_version,
--};
-+
-+#define MAX9296A_COMMON_OPS					\
-+	MAX9296A_COMMON_OPS_DEBUG				\
-+	.num_remaps_per_pipe = 16,				\
-+	.tpg_entries = { 					\
-+		.num_entries = ARRAY_SIZE(max9296a_tpg_entries),\
-+		.entries = max9296a_tpg_entries,		\
-+	},							\
-+	.tpg_patterns = BIT(MAX_SERDES_TPG_PATTERN_CHECKERBOARD) |\
-+			BIT(MAX_SERDES_TPG_PATTERN_GRADIENT),	\
-+	.log_pipe_status = max9626a_log_pipe_status,		\
-+	.log_phy_status = max9296a_log_phy_status,		\
-+	.set_enable = max9296a_set_enable,			\
-+	.init = max9296a_init,					\
-+	.init_phy = max9296a_init_phy,				\
-+	.set_phy_mode = max9296a_set_phy_mode,			\
-+	.set_phy_enable = max9296a_set_phy_enable,		\
-+	.set_pipe_remap = max9296a_set_pipe_remap,		\
-+	.set_pipe_remaps_enable = max9296a_set_pipe_remaps_enable,\
-+	.set_pipe_mode = max9296a_set_pipe_mode,		\
-+	.set_tpg = max9296a_set_tpg,				\
-+	.select_links = max9296a_select_links,			\
-+	.set_link_version = max9296a_set_link_version
+ For details on accompanying CODEC I2C device, see the following:
+-Documentation/devicetree/bindings/sound/da9055.txt
++Documentation/devicetree/bindings/sound/trivial-codec.yaml
  
- static int max9296a_probe(struct i2c_client *client)
- {
- 	struct regmap_config i2c_regmap = max9296a_i2c_regmap;
- 	struct device *dev = &client->dev;
- 	struct max9296a_priv *priv;
--	struct max_des_ops *ops;
- 	int ret;
+ ======
  
- 	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
- 	if (!priv)
- 		return -ENOMEM;
- 
--	ops = devm_kzalloc(dev, sizeof(*ops), GFP_KERNEL);
--	if (!ops)
--		return -ENOMEM;
--
- 	priv->info = device_get_match_data(dev);
- 	if (!priv->info) {
- 		dev_err(dev, "Failed to get match data\n");
-@@ -1110,24 +1109,7 @@ static int max9296a_probe(struct i2c_client *client)
- 		usleep_range(4000, 5000);
- 	}
- 
--	*ops = max9296a_common_ops;
--
--	ops->versions = priv->info->ops->versions;
--	ops->modes = priv->info->ops->modes;
--	ops->needs_single_link_version = priv->info->ops->needs_single_link_version;
--	ops->needs_unique_stream_id = priv->info->ops->needs_unique_stream_id;
--	ops->fix_tx_ids = priv->info->ops->fix_tx_ids;
--	ops->num_phys = priv->info->ops->num_phys;
--	ops->num_pipes = priv->info->ops->num_pipes;
--	ops->num_links = priv->info->ops->num_links;
--	ops->phys_configs = priv->info->ops->phys_configs;
--	ops->set_pipe_enable = priv->info->ops->set_pipe_enable;
--	ops->set_pipe_stream_id = priv->info->ops->set_pipe_stream_id;
--	ops->set_pipe_tunnel_phy = priv->info->ops->set_pipe_tunnel_phy;
--	ops->set_pipe_tunnel_enable = priv->info->ops->set_pipe_tunnel_enable;
--	ops->use_atr = priv->info->ops->use_atr;
--	ops->tpg_mode = priv->info->ops->tpg_mode;
--	priv->des.ops = ops;
-+	priv->des.ops = priv->info->ops;
- 
- 	ret = max9296a_reset(priv);
- 	if (ret)
-@@ -1154,6 +1136,7 @@ static const struct max_serdes_phys_config max96714_phys_configs[] = {
- };
- 
- static const struct max_des_ops max9296a_ops = {
-+	MAX9296A_COMMON_OPS,
- 	.versions = BIT(MAX_SERDES_GMSL_2_3GBPS) |
- 		    BIT(MAX_SERDES_GMSL_2_6GBPS),
- 	.modes = BIT(MAX_SERDES_GMSL_PIXEL_MODE),
-@@ -1181,6 +1164,7 @@ static const struct max9296a_chip_info max9296a_info = {
- };
- 
- static const struct max_des_ops max96714_ops = {
-+	MAX9296A_COMMON_OPS,
- 	.versions = BIT(MAX_SERDES_GMSL_2_3GBPS) |
- 		    BIT(MAX_SERDES_GMSL_2_6GBPS),
- 	.modes = BIT(MAX_SERDES_GMSL_PIXEL_MODE) |
-@@ -1226,6 +1210,7 @@ static const struct max9296a_chip_info max96714_info = {
- };
- 
- static const struct max_des_ops max96714f_ops = {
-+	MAX9296A_COMMON_OPS,
- 	.versions = BIT(MAX_SERDES_GMSL_2_3GBPS),
- 	.modes = BIT(MAX_SERDES_GMSL_PIXEL_MODE) |
- 		 BIT(MAX_SERDES_GMSL_TUNNEL_MODE),
-@@ -1254,6 +1239,7 @@ static const struct max9296a_chip_info max96714f_info = {
- };
- 
- static const struct max_des_ops max96716a_ops = {
-+	MAX9296A_COMMON_OPS,
- 	.versions = BIT(MAX_SERDES_GMSL_2_3GBPS) |
- 		    BIT(MAX_SERDES_GMSL_2_6GBPS),
- 	.modes = BIT(MAX_SERDES_GMSL_PIXEL_MODE) |
-@@ -1286,6 +1272,7 @@ static const struct max9296a_chip_info max96716a_info = {
- };
- 
- static const struct max_des_ops max96792a_ops = {
-+	MAX9296A_COMMON_OPS,
- 	.versions = BIT(MAX_SERDES_GMSL_2_3GBPS) |
- 		    BIT(MAX_SERDES_GMSL_2_6GBPS) |
- 		    BIT(MAX_SERDES_GMSL_3_12GBPS),
+-- 
+2.34.1
 
 
