@@ -1,262 +1,173 @@
-Return-Path: <devicetree+bounces-259611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259612-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0E5CNXWvd2kbkQEAu9opvQ
-	(envelope-from <devicetree+bounces-259611-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 19:16:21 +0100
+	id qIBPLYuyd2l2kQEAu9opvQ
+	(envelope-from <devicetree+bounces-259612-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 19:29:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 513258C062
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 19:16:21 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id D435B8C179
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 19:29:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9F613301F784
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 18:15:08 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B07BF3006002
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 18:29:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE42634D938;
-	Mon, 26 Jan 2026 18:15:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 030022F362A;
+	Mon, 26 Jan 2026 18:29:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="bYPmFq1N"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="1oXHcVOE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011057.outbound.protection.outlook.com [40.107.130.57])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 638D734D932;
-	Mon, 26 Jan 2026 18:15:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.57
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769451306; cv=fail; b=B89P90ZzlfMIvtuWMA2JnlriMzqHCe8pGh89/IxxryIjlqMvbpF0M7HoCwpbDcsI8mp70eg9icOg8R/fXGYRR0cp0NjTg1XhjNaxPPP6Sf3v3bCPyFguMvsP5WuVapSnR/c4+KDLTNBK3dwQaU8j9/kftLoMcK8nTnwPP26afik=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769451306; c=relaxed/simple;
-	bh=eIgDAnKqqSWEx6TluwPC0Ph7qFMUJjBAPx31W8XtEg8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=KZVYqswR43scuFdihHL1jlCau3I19WinrmsfnnCNQqHxFqscOWG0pmCqOtJk8P25bbL/7+qvkqpIk3uxyRlGde30Gi/R13ZuOJURDlCbtR/vxDmaXXsVAM2/WvYdGjqTQ0hR5TaoDnhp26FsSWWKCBDIkYfoSGDBCPBRilWH4xY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=bYPmFq1N; arc=fail smtp.client-ip=40.107.130.57
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rpO6/x2voboRhBBbf274AQVZwF0hYIZyJlJy/eHOpbhwl5OHi2acCBag1msa2hTGKuYgRvJoqxBL196IN+LkbMEbAgZ/1XtjGQOj26kL0tj9pt1Rui7vILZ29vBQKw6SMeJLW8rujFkaOjBJOpp71Z/uAeveslOBEA5rMg5nNNySdAjOdRXwVIX/3bwm8hHh25HbBaJZlZ6xFhX3SdZ3adkXLX1dAWSfNwDhneo2tGK/MlPCHeNQoNQDs0lL9GPz8doeLpXguTNjWzQa2yyugL0AnGTRnOsNP5m7LhHuxp66Wq2nfpw+UoXNeNsBiOZt2c18L96k81cTlCbpQIggpg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DAFAcZJgTfC2fiG+5RDbNIiC4Wu001zlBAC9ToN1JEI=;
- b=DNLmFm+195TWPw7xNvJVGH4+VCqbaX1RSWBt2QOG+2N55N38euntG7RCCctgdH9/8tAtA5GLuW/VqL0S0zXnBHz5TgPILxhGOn3TdcsvUryevrykt5SN6FkUAZwZQz2EC1gMjZSR+53FgFd2e677gTC9XyxHYHABtltog4whTreRs/ZGDgKrLVSeqZGfD6QYSDuUvuZxNy4DN7h+YJlIgHYWkT5VsFYlTVfQQrHWXW1j3VVDV3GESj2yV6D7cmNHCyLzOfuPXeg8ZFF/9kZAu8DDc558OZPE5/IgdjBBdcemrolCMrsMfFBenN0tZgJVRh5cQ/ESbSFNh72Un2JlKQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DAFAcZJgTfC2fiG+5RDbNIiC4Wu001zlBAC9ToN1JEI=;
- b=bYPmFq1N4gHLHfKlzcaE1nRRol8CdGgnkxScmNwN89aYVKDM0fSqMqbnAiHHC01SD+z3R1sML+/FljYKdyalLhUIYfgeLW8wU080CMaQUGhn4Q1PvBKkK5/ARhTZIrcP2IsQagLVmGQrEMWmHaEs7ul5Ti9n20LH/wHX4FPw0x+cVhClAzYl2Mv5KihRYPxkbOlRmp6golGAy+ZHuTop7nsiGWQG0t8l15BNYNhAqrPUNbUZof1+oViZSIURyWy238mpYO1AIEBo681F0Zjwo0ABrgXMR6wfrwMMSus0TIlZZW1xtPzlC2yidarUrD5cGA2bWbhuETaC36VNMIAp+A==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by PA6PR04MB11716.eurprd04.prod.outlook.com (2603:10a6:102:520::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.15; Mon, 26 Jan
- 2026 18:15:03 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9520.005; Mon, 26 Jan 2026
- 18:15:03 +0000
-Date: Mon, 26 Jan 2026 13:14:55 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, kernel@puri.sm
-Subject: Re: [PATCH] arm64: dts: imx8mq: Set the correct gpu_ahb clock
- frequency
-Message-ID: <aXevH8e+9qLhWO7D@lizhi-Precision-Tower-5810>
-References: <20260124-imx8mq-gpu-ahb-clock-v1-1-11c2e7c857b7@puri.sm>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260124-imx8mq-gpu-ahb-clock-v1-1-11c2e7c857b7@puri.sm>
-X-ClientProxiedBy: PH0PR07CA0047.namprd07.prod.outlook.com
- (2603:10b6:510:e::22) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C232A4F881;
+	Mon, 26 Jan 2026 18:29:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769452164; cv=none; b=buLef1AkdMhEwTcTfp+PDDakQVuZ+78becE7jn/Hm/p5R4anNtub/SIkT5KS4u1jXHJ3hzSy1AyHPDJ/Umed83A1yeRlSB6t7Wf59YbeguoWit4AP3MDf66faHBiF8T4JcXIm2fcWdiSL3D3B98iQ8+AHK+vFoHkI7lZU0ghnMo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769452164; c=relaxed/simple;
+	bh=RpY/a3YOkPpZowN8J50+3W3QyIgU7NGF+rNzgR3E4L4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=A70Cb/yafgVVeYOd/jzicZChr/y55Fj8SLyYAsKq+/szdzpLwA9mevuitLWb/u/g3Epsn39a36IEK4Q7yTI0TOuIWWxBvcAT6QdeSLWGb3CfX3qvYLN9Ze9768cIprpNyQ6w5aKkeVmpYnzkcr6BkgQTRgdwbxuEOHPQAR/iDWc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=1oXHcVOE; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=Qh2+4EAwmLQeQZACP33br3DlT9jNVGAtBcqIW3K6GBY=; b=1oXHcVOEbBsPeKtD7teuUoyUKA
+	rEBoh0VAB/JUFwdTHamwVXxwBqSyg+KkaZ322sjhe0tRa2s7gqMStIkRCsySN7cZA88CYuQcsSHcC
+	j+TqI2EKxYDKw1sNcGyXmSgoTZXLfKB32XKFjCtebURP5xz4/EEQyoTsQwric7NIr0IyMg97NRH5Y
+	v+FcwuOtnXLHiujV4gsTpe3Hmt/e8M9mUR5dZFRTH42BRUeA/DlcylNQGh2GVhWuy+m+QMtUSl6ik
+	w4uHLniv9u0Vqhat1i6uZLKRlsN0UazPmmom41ZzD8iCUNRvSJFj15FQw+6nX2T4rG7lZK0J1cKuP
+	n20j5Y7A==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:58892)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1vkRKr-000000005Ew-2moS;
+	Mon, 26 Jan 2026 18:29:13 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1vkRKn-0000000059Q-1LXH;
+	Mon, 26 Jan 2026 18:29:09 +0000
+Date: Mon, 26 Jan 2026 18:29:09 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Min Lin <linmin@eswincomputing.com>
+Cc: Bo Gan <ganboing@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	=?utf-8?B?5p2O5b+X?= <lizhi2@eswincomputing.com>,
+	devicetree@vger.kernel.org, andrew+netdev@lunn.ch,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	netdev@vger.kernel.org, pabeni@redhat.com,
+	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	ningyu@eswincomputing.com, pinkesh.vaghela@einfochips.com,
+	weishangjuan@eswincomputing.com
+Subject: Re: Re: [PATCH v1 1/2] dt-bindings: ethernet: eswin: add clock
+ sampling control
+Message-ID: <aXeydXuWEMDz-yVM@shell.armlinux.org.uk>
+References: <308b676.2d03.19bb0caebed.Coremail.lizhi2@eswincomputing.com>
+ <59cec617-0189-4dc3-bc3f-6346155a62ae@lunn.ch>
+ <4e2a55e7.3662.19be8cb9c3c.Coremail.lizhi2@eswincomputing.com>
+ <c5c0bfdb-316d-4796-afa0-f6f018ceb414@lunn.ch>
+ <abf12a3f-9cdd-472d-a02e-af4da594b84f@gmail.com>
+ <e6f7da45-3dec-4af6-a5b1-a72210bf24f4@kernel.org>
+ <43923bf9-6202-4147-8eac-5bd7bb653fd4@gmail.com>
+ <bd202cfa-d6eb-4d0e-982d-b49795dd25f7@lunn.ch>
+ <009aefc4-fbc9-4f91-9230-23d18c281bf3@gmail.com>
+ <73ea5619.2b71.19bf847c80d.Coremail.linmin@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|PA6PR04MB11716:EE_
-X-MS-Office365-Filtering-Correlation-Id: fa62bceb-308f-46ff-3ae8-08de5d06d383
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|366016|19092799006|376014|52116014|7416014|7053199007|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?bk9waXVQOGZ2QVFzajBJTnVadnhpM3lEUzd0SDY2bkZidFJXeWFkMDd2alZM?=
- =?utf-8?B?MEVMOTNQUm0wT1dMSkhTMm5WNHp3SkxCM3lCdEUrSkh2TmgrZTA4UE5zR3dL?=
- =?utf-8?B?WWczZkF4QzkvSlFhQU9qTXdibWtNQlluS0VDajQ0UmVFSkpGVW9ia2p5NUNH?=
- =?utf-8?B?QnlNd1NYbG9TYXVXWlN5ZmF4TWh5Y2k3SXE4OFhyOU82aHN5aFE5bFhPM2k5?=
- =?utf-8?B?YnhjK2lEL0l1SUtLM25JZCs5b3JuVDUxOUpnSFhKNTR4ZkNCOFRhMEkzUDNa?=
- =?utf-8?B?RHJLWkxZSnkvUXBuemY1YVdQVWdBQ2FrTzFqTTk0b21VZzVCZ25LMXFvSjVD?=
- =?utf-8?B?QmlmVWY0THJoUVBFeklIalY3Rld3RTd5ZytBdEc0SjlCNXhzdytHTFM0ZTdw?=
- =?utf-8?B?RDJSVWpIc1NLeDRIUEk3WnJ0anpwRWtIR1VOKzk0N3JyNnJVNHM1R0pKOWR0?=
- =?utf-8?B?ZlcvUDI1Z09Za2dSTzhld0xzZzc1MzR4aHdRZE56aCtCcGo2bXpqQWo1R0hi?=
- =?utf-8?B?Mk8rUmsvQjRSR1ppeFg5MmY0NnpvRzRUWVNBOEpxSUFOU2hrandWbkdUZkdI?=
- =?utf-8?B?NkNObUVuNitDUDBzbU1haiszbGRpbDZNSzU2UTB3cmJvNE9aaHQ3SkZ1eXB3?=
- =?utf-8?B?TmpWMEYxeDBDSEM4R0Y1NU5jRHo2LzMrenU3TVU0QU8yOW1tZWJtc0xJTHp2?=
- =?utf-8?B?cDlKcTNmTEdYQ0pYRWk4TzRsZjI5VlZGc0dQUG5LR0xLcjBoYWZWQmNxeW45?=
- =?utf-8?B?NDdhV3VlTk5PdlBmWDdCUG1yZVNVUnlMUTZUQXhJVDVMRlpxNDJ6ZUJMd3BN?=
- =?utf-8?B?cUFEWTZxWGptZ3BFR0xQOWk0NFBvbG84UllKYko4TTdLRkJFZ0l4alErUnJI?=
- =?utf-8?B?cUU0SHA3OTNodDhETHdGVmduVEQ2cDJjVWt5V0tVMEFQcktzSll3SnVUcmk3?=
- =?utf-8?B?K2xxMk10QWtEMjVVRUxXaG9NS3BUQjlZQkFoMGVIMmVwTHZ1N1Vkc2Iyay9T?=
- =?utf-8?B?bVFORk44KzI5YitIWldGdkdjU3NBbDgyVFdVbU9QVFlIRXFUczlrOGhWR25D?=
- =?utf-8?B?eFl6eEJxMW5ycFA3UWNHQW4rYmRCLy9Td1ZxMSsrNGtEczhPTWVTb2ovNG1v?=
- =?utf-8?B?L2J5cHpLOWpsWmo0S1piZm1mOXgvTzVSTm9zUkd3VXN4b0JTQ1BhajVKWldz?=
- =?utf-8?B?Qko3NmtQQUhRbk4rK3p4RFVQckRFMkNVWDJuV2ZKbWdjWGt5cFNJYkQxYWZP?=
- =?utf-8?B?TWI3VnZDemNwaUhWQ3pDVjZEYlhJMkdKa3lvMHhOVFhDV0JRb3FWZ051S25N?=
- =?utf-8?B?d2ZJdVZUU043c1JsN2JWZHJWb2tOMmR1M3ZhVk5UUm1wVmdHYkNXTDNtUVdR?=
- =?utf-8?B?L09jMzIvcFZqOUxCWUxFM3I3eXpIVnEySG95bVVmVGRNcUxFYm9PVlVsYWRj?=
- =?utf-8?B?Y1lpMU9ILy8zQWFFNXBuYlNndFh4d2ZNNytzazV2Z3RydzdCS0JOejVrRW1N?=
- =?utf-8?B?NGQ1aG4rYVhmRjY3ZUpLMFpwdXp2ZUMzcXhLdjE4TnF3Z1V6cUxHdkdUc01E?=
- =?utf-8?B?VW96SDhqRG42d1pCLytia0xTeEk2M3NjR0pXbWYyU1I1dWRyeUpzMDJTQ21v?=
- =?utf-8?B?a0J4MXo2K2RId0doOGdWRndOR2Z2SFNGQjJsQ2kzaUc0SForS3VUdVhOU05t?=
- =?utf-8?B?TEF4c3lycVRTUkt5V09KTDQyWndWSHpTaW12b3Y3SmdmZGJVR2tFTGZnR2kx?=
- =?utf-8?B?bGFLYnZwNnJzRnNKd251aWUxSUt2Vk9lZmpzbmVub3pMN2xjUE81Ym1tMHpa?=
- =?utf-8?B?RGhBK0xWNE1sK3Q3S3BqQS9UTkdSUGl6bS9uMzBhK0oxclpVQ2R6S1VGUjNa?=
- =?utf-8?B?Q1B1V2V1eUplMnJCQlovL29HQ3BTcmtNNThNWHRvWG5DREtJenNHYnpmUkpo?=
- =?utf-8?B?VnVFclNWSjU5YWdtNHp0elpPMnZxVmhYeVo3emx4cFJyVndpdjVNZ1dTa09o?=
- =?utf-8?B?THE4RUY1Q2gyVWFuMzhQcjFGcjRKL1NXM1RWZTJYb09jNnJ5ekZXdjB3UTRE?=
- =?utf-8?B?MzlHRWkybEsrWmRPMEMzclhzczl6YXVNQjdMdnJCYnFCVXY4Q24rQldnUXdz?=
- =?utf-8?B?UnFtUy9zNE05MS9jTjFRNnRMMkRYbGs3ek9EYTZVazEvYURwZ2F0NDRiaWhm?=
- =?utf-8?Q?y6WpOH52pIsH4LBmy+64ADk=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(19092799006)(376014)(52116014)(7416014)(7053199007)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?VndXNXdNcDYvOUJqRllKM0R4TXhRRFRmRFZpbWhSYTl2dWcraDhEbittSTJR?=
- =?utf-8?B?SjZpYVFyQTZ5czZZbnc2OERoV09OUW4wbENBMGowOHJYTGdla2xyM3NRVVZ2?=
- =?utf-8?B?T1ZQdDRiS29SRzR4Y09QRTN3RjZGZmt5Z1o2WE1QWDZ3dUJtUVJESHpNTGYw?=
- =?utf-8?B?UUcvVUZVVE5idjZKRzAxTDNJbE4xZmFHMFY4MDRpNWkwYUNlbGNXa2c2amdY?=
- =?utf-8?B?Nm9UWUVzTC9ERyt6M09VdDBWeS9LVkpVOEdRdlVMYklBem1aTVAyVzlMdnJE?=
- =?utf-8?B?MHhYNkpUTXFUMW93dm93dmdNLzYyNHZJd09qbC9pSmtnOUxSMCtyQ1dJMXVZ?=
- =?utf-8?B?eUViWnpWQmxHd3F1TVRTL0tQTCtXSDNlYlZxVlpmRzFEQVV6ZGNQd2JmbnNZ?=
- =?utf-8?B?SlNTOU1lVDhqTVBQdUpDMlAycDlRS0YvWTMzQUMwRGZsUVdsMXZGRVhCdFlC?=
- =?utf-8?B?d0hEbW1FNVFJVkxUN0ZLTTcxak5lSTB5Mk5xZmhNaDBDQzFlb0hoclp3UFky?=
- =?utf-8?B?R0czanY2bldXR3UzMXlFTUVYTzJZMUNhVm4zT1FFR0tNL1FXb2V2ekVvWWFa?=
- =?utf-8?B?dVZXM1VJR3FFdzNGR2JwYjVldUtyRUhVYStHem1EUVJOVUJWbVVIbE9CRVYv?=
- =?utf-8?B?ZWdKSy9PeWo0dWFGdlJxdURqakIvYWN3WTZhUWJTYUJYWGVUTEVtcUpFd1Z5?=
- =?utf-8?B?OXRHRXVLc2dPeFBSMC9HaTFycFdtZG1jTlJ0TmhsdmpLQlNSbHgyb2V3SmhT?=
- =?utf-8?B?SUZDenl4QjUyTTN1dklPM0RJMHdjWWJ0TjdJekZvRW5TUmlrY2JOd3E5SFdv?=
- =?utf-8?B?VnJiUnhwMXBwL0xZb1MwMHY2azlCZ3pxTW1NVnBLU2ZqVXlaWkg0bWVZSk4y?=
- =?utf-8?B?OUZXZ050Z1orQ1Z1VEx1RktMa2puK3VHKzQwVnBUbE1VS0NoOVhmbll4L215?=
- =?utf-8?B?V2w4b1Y3MHFJLzMydEduQm5XaUhKRlVKM0UzOTVHV2VhOERzMTUveFhnMG1U?=
- =?utf-8?B?QnZOb3NvUXlkbGpqdmVadjNqSFM1WlpQMk1pNURlekZXZTIyNVRaMzQza0g1?=
- =?utf-8?B?WnhLSi9xWUJ1VGx2QkloSnhtQXQyVW5YRTUxU0NwVWJiSlpTK0NxeldZWEVX?=
- =?utf-8?B?SDhBa1pOUWl6M3VndTBBL2V1QnJtQlJQTVk1QmQ3Y05yNU5aUkJ2RFdvNHBS?=
- =?utf-8?B?dGlwOGorWnJZTkwwbmNtazVmUUt6UlRlbUgzbzI0WVFIcVBkWGNwQkxDMXZ2?=
- =?utf-8?B?RUVOZTJ4b0tZSzRQcUJMOXppWGc2bWZWdlFDZ2JoZndJcmpDSWJYcldTd0Nq?=
- =?utf-8?B?QnBXSzVkZkxOYzJGMUU2b3g5WVEzb0YrbThQS1l4djRmVkxWSS9IV0VYeWlQ?=
- =?utf-8?B?TTJLVkVQMGRRaUhleXplOXZiRjdBSEFJazNxYzYzNVFjTCt2YUtCUit2SzMx?=
- =?utf-8?B?RUlrTGs5Sm1NQ0FtUlR2YnVZTkp2SlEzdFhtYnd4WEZXK2tDTC9HRkg2eVNm?=
- =?utf-8?B?U3QwRlNXdnJIcy9xd2djWFdOdEVJUkFzbU1PeWhnbVYxMEg0NUgyUkthR1VT?=
- =?utf-8?B?dnFOMkdLdjNDRDJjUklKbHJ3TnZkdG9OZzUwdHZoRnJKZzhoYkR0bGdyZlhy?=
- =?utf-8?B?bFMvMnd3Z2VMTlkzaS9SR1hpOGNVRU9tcG9zRk52SWZIYmVUSDJ2QnZXZ2VB?=
- =?utf-8?B?dEdHSWRnUTVOZENWWFpqNDlwMFdzR0s3VVdLSmx2V1NLRVExN0RqQUJnZ1pW?=
- =?utf-8?B?d2dYUUIwQXE1OU9pWEtFcDliVEtaRHlhaXZzWFVEVEpVbHdUcGNCQ0E4Ukl2?=
- =?utf-8?B?ajdleitFSVdXTlhNdGtCK0NLQ2ZmNzhzTllFQytMYUdqODlXWmN5Y0VYMGNS?=
- =?utf-8?B?NlZ5QWh5amh4dzhYcVc0cFFQOC9YUWh3MTJWV05hRFdSMWRiQUJkYVF0bjh6?=
- =?utf-8?B?enJ2NHlHT2ZRbGR5YzZrdm0xS1F2WTNYVE80aFJVcVNCZ3lHMFdvaGFsczJr?=
- =?utf-8?B?Z2hmSGtkRGhzaWxlRGd4eTI1aG9OdEo5NS9MK0kyUjVHeE1CMHdrZVd2b1FJ?=
- =?utf-8?B?QWFCcDdBME5qdzErUnl5ZGcxM2dvWkhYQmxHQnhkdTBUN1dPOUpOYWpqVk12?=
- =?utf-8?B?THdxSUd2ekdTV3NVazlPVHlHcy9DWE9iMHFESzVpZ1ExbGRqZ2YwYyttV2R5?=
- =?utf-8?B?c0gvWGV4SVlGd0dUWTBhMlpJQ1Y5SUZteWEyTWhWZUVLVHpUNEJxZWZuQmNV?=
- =?utf-8?B?blUvU3dlWXF1QWl6a3MyTys4c2RGeGIzclZ1cUY5cW5uS2JBY3RjR1VoOTVD?=
- =?utf-8?Q?1RgFKgANeQD/tswkpd?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fa62bceb-308f-46ff-3ae8-08de5d06d383
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2026 18:15:03.4578
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dxb/hTQt3VMQVnjOCIuWJcOOmzlTJr9Elmuo742gk8XChmXUrBNRaVgp2mnaJsdipCXvuMVDRxhKXyo5Y506AQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA6PR04MB11716
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <73ea5619.2b71.19bf847c80d.Coremail.linmin@eswincomputing.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.84 / 15.00];
+X-Spamd-Result: default: False [1.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_DKIM_REJECT(1.00)[armlinux.org.uk:s=pandora-2019];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[armlinux.org.uk : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,puri.sm];
-	TAGGED_FROM(0.00)[bounces-259611-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259612-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	DBL_PROHIBIT(0.00)[2.67.213.128:email];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	FREEMAIL_CC(0.00)[gmail.com,lunn.ch,kernel.org,eswincomputing.com,vger.kernel.org,davemloft.net,google.com,redhat.com,foss.st.com,st-md-mailman.stormreply.com,lists.infradead.org,einfochips.com];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[armlinux.org.uk:-];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,puri.sm:email,nxp.com:dkim]
-X-Rspamd-Queue-Id: 513258C062
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[linux@armlinux.org.uk,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.995];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[shell.armlinux.org.uk:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D435B8C179
 X-Rspamd-Action: no action
 
-On Sat, Jan 24, 2026 at 02:55:48PM +0100, Sebastian Krzyszkowiak wrote:
-> According to i.MX 8M Quad Reference Manual, GPU_AHB_CLK_ROOT's maximum
-> frequency is 400MHz.
+On Mon, Jan 26, 2026 at 11:10:12AM +0800, Min Lin wrote:
+> Due to chip backend reasons, there is already a ~4-5ns skew between the RX
+> clock and data of the eth1 MAC controller inside the silicon.
 
-I checked datasheet
+Let's analyse this.
 
-Nominal mode—the maximum
-GPU frequency supported in
-this mode is 800 MHz.
+	TXC / RXC	TXC / RXC
+Speed	Clock rate	Clock period
+1G	125MHz		8ns
+100M	25MHz		40ns
+10M	2.5MHz		400ns
 
-Does difference grade (industry vs consumer) impact max frequency?
+The required skew for TXC and RXC at the receiver is specified to be
+between 1 and 2.6ns irrespective of the speed. The edge of the clock
+is also important: the rising edge indicates the lower 4 bits, and
+the falling edge indicates the upper 4 bits.
 
-Frank
->
-> Signed-off-by: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> index 607962f807be..6a25e219832c 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> @@ -1632,7 +1632,7 @@ gpu: gpu@38000000 {
->  			                         <&clk IMX8MQ_GPU_PLL_OUT>,
->  			                         <&clk IMX8MQ_GPU_PLL>;
->  			assigned-clock-rates = <800000000>, <800000000>,
-> -			                       <800000000>, <800000000>, <0>;
-> +			                       <800000000>, <400000000>, <0>;
->  			power-domains = <&pgc_gpu>;
->  		};
->
->
-> ---
-> base-commit: 24d479d26b25bce5faea3ddd9fa8f3a6c3129ea7
-> change-id: 20260105-imx8mq-gpu-ahb-clock-139ba9ca9a6c
->
-> Best regards,
-> --
-> Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
->
+At 1G speed, with a "4 to 5ns" skew in the chip. If this is accurate,
+then inverting the clock and adding 1ns of additional skew by some
+means (PCB trace, or at the MAC or PHY) will give the required clock
+at the receiver.
+
+The timing table in the RGMII standard (3.3) allows for Tcyc (the
+clock rate) to be scaled, but there is no allowance for scaling
+TskewR (the required 1 to 2.6ns skew.) This skew parameter is
+fixed.
+
+So, at the other speeds, you are completely unable to meet the timing
+specification, whether irrespective of the clock inversion. In effect,
+the only speed that you can meet the specification is 1G.
+
+Thus, I think this is something that needs a lot more than just "do
+we need to invert the clock". You also need to prevent 10M and 100M
+being supported IMHO.
+
+I can't get my head around why someone would come up with this crazy,
+crippled design, but maybe they didn't bother reading the RGMII
+specification and ensuring that their design met the requirements
+before implementing the hardware.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
