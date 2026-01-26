@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-259330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259328-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eUGfAUvhdmk3YQEAu9opvQ
-	(envelope-from <devicetree+bounces-259330-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 04:36:43 +0100
+	id UCKyDWzgdmmhYAEAu9opvQ
+	(envelope-from <devicetree+bounces-259328-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 04:33:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36C4583B4F
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 04:36:42 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AE0E83B2E
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 04:32:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C25313003EE3
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 03:36:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2990730036CB
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 03:31:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FD4F299937;
-	Mon, 26 Jan 2026 03:36:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A08A61E00B4;
+	Mon, 26 Jan 2026 03:31:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=unisoc.com header.i=@unisoc.com header.b="rq1Rf5ZT"
+	dkim=pass (2048-bit key) header.d=unisoc.com header.i=@unisoc.com header.b="fdAYSVhv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from SHSQR01.spreadtrum.com (mx1.unisoc.com [222.66.158.135])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 538951A3166;
-	Mon, 26 Jan 2026 03:36:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F9DE156661;
+	Mon, 26 Jan 2026 03:31:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=222.66.158.135
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769398600; cv=none; b=mpRd3Dgbp7MCeX4ZkIlnSL+fUcE+eEDHX8OgkmRqL3R0wN9ssZSQAKm8NCa5OrtmL0WrmHJrKHxG1RU6i9k2avdT53zhAmcVK75x+3OLCfJkcp+9+nAZjSpnSs/BjtnbBuN0Sr8WaRDmi++0b0C5rFQWmBy9buaH/z3ta/5HVZ0=
+	t=1769398312; cv=none; b=Q4KwkR47bTZjuYL0i7ra55ACpp5ZmQJ8EymWTqkJC3VuTbpyEFWG+Ig8kQered9bPMMTvAwDr/sQQipY3tE3PIcIVXudc0zI6kmKQwE1rom5Zq2urRuySSAdNP3sPOXpUsbhDD4mtBPPavcEtfAjt2vuQtpE9BnhbshuuHK2xhU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769398600; c=relaxed/simple;
-	bh=IoL0BUFyWJmCBdkGKItuiDBMIbQjg6mvYgMEI6krK/Y=;
+	s=arc-20240116; t=1769398312; c=relaxed/simple;
+	bh=Q/J9J/pw9UXt2Q6x57AIZnWPbZDuxQ0X4GChAbdKBrA=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TGt5z7/wh23tn7gFD11DJi570xtvZkhgRWz/A1zANYFOH0nt+yZNoMGYx8OR2i0in9/9QLWRl68wupCAAtBO4BOx0GESEHmPyDX/1fA1dOpvevXbuHquC7H/YQUmF7iQJ07Ts5GfBN3PKxCcaStWekt9gy7sl8nSX9pzKG1iFj8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=unisoc.com; spf=pass smtp.mailfrom=unisoc.com; dkim=pass (2048-bit key) header.d=unisoc.com header.i=@unisoc.com header.b=rq1Rf5ZT; arc=none smtp.client-ip=222.66.158.135
+	 MIME-Version:Content-Type; b=AAvTq5dnHQFVt7iqxzoNq8GP2NfWIC+YaDqq+yjox3KVYdr/IhCNArN4DccbfcLrJeRwQWCkEQXpqNM2bqMBD58JqSVlZmxo6yGgEFxrici4+HblDLnszt+Jnf7GAhsFD7QFDLD72j9sTBXEcjDc/GgkFGxttZLyTh4ffxMSLCE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=unisoc.com; spf=pass smtp.mailfrom=unisoc.com; dkim=pass (2048-bit key) header.d=unisoc.com header.i=@unisoc.com header.b=fdAYSVhv; arc=none smtp.client-ip=222.66.158.135
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=unisoc.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=unisoc.com
 Received: from dlp.unisoc.com ([10.29.3.86])
-	by SHSQR01.spreadtrum.com with ESMTP id 60Q3UW8q017213;
-	Mon, 26 Jan 2026 11:30:32 +0800 (+08)
+	by SHSQR01.spreadtrum.com with ESMTP id 60Q3UXk7017409;
+	Mon, 26 Jan 2026 11:30:33 +0800 (+08)
 	(envelope-from baisheng.gao@unisoc.com)
 Received: from SHDLP.spreadtrum.com (zeshmbx08.spreadtrum.com [10.29.3.106])
-	by dlp.unisoc.com (SkyGuard) with ESMTPS id 4dzv6J0x1jz2P3QY8;
-	Mon, 26 Jan 2026 11:24:40 +0800 (CST)
+	by dlp.unisoc.com (SkyGuard) with ESMTPS id 4dzv6K0TC9z2MC1Xh;
+	Mon, 26 Jan 2026 11:24:41 +0800 (CST)
 Received: from BJ15137PCW.spreadtrum.com (10.0.73.52) by
  zeshmbx08.spreadtrum.com (10.29.3.106) with Microsoft SMTP Server (TLS) id
- 15.0.1497.48; Mon, 26 Jan 2026 11:30:30 +0800
+ 15.0.1497.48; Mon, 26 Jan 2026 11:30:31 +0800
 From: Baisheng Gao <baisheng.gao@unisoc.com>
 To: Robin Murphy <robin.murphy@arm.com>, Will Deacon <will@kernel.org>,
         Mark
@@ -55,9 +55,9 @@ CC: <cixi.geng@linux.dev>, <hao_hao.wang@unisoc.com>,
         <linux-arm-kernel@lists.infradead.org>,
         <linux-perf-users@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         <devicetree@vger.kernel.org>
-Subject: [PATCH 1/2] perf/arm-ni: Don't crash in probing clock domains without a PMU instance
-Date: Mon, 26 Jan 2026 11:30:28 +0800
-Message-ID: <20260126033029.7923-2-baisheng.gao@unisoc.com>
+Subject: [PATCH 2/2] dt-bindings/perf: Drop irqs for clock domains without a PMU instance
+Date: Mon, 26 Jan 2026 11:30:29 +0800
+Message-ID: <20260126033029.7923-3-baisheng.gao@unisoc.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260126033029.7923-1-baisheng.gao@unisoc.com>
 References: <20260126033029.7923-1-baisheng.gao@unisoc.com>
@@ -71,17 +71,17 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-ClientProxiedBy: SHCAS03.spreadtrum.com (10.0.1.207) To
  zeshmbx08.spreadtrum.com (10.29.3.106)
-X-MAIL:SHSQR01.spreadtrum.com 60Q3UW8q017213
+X-MAIL:SHSQR01.spreadtrum.com 60Q3UXk7017409
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unisoc.com;
-	s=default; t=1769398245;
-	bh=JJznXfRb1ExPhgEM/qLqi6O5sc5Mc/cQpjqasq10Kfc=;
+	s=default; t=1769398253;
+	bh=czsV1XmnEkzLgfR3k2U1B+o7cQbHMg5oL+Q48pBs/VM=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=rq1Rf5ZTNsTGKtBFW9tmJo2IU65pSOJ9P5RWdq5PhbZQugVhnOtuHcwkhL8lC9BMf
-	 ezheTT0OGk8iXcymBvNZHtWqGHT2thuRfSP1Cq1Q1L3db+zT7Ndy3RqHlj1PdWkGVc
-	 nyqoso80N4mnPOtQeVas6imtdY/S+Um0+sXQ+cifXxPK+Y3v41nFwVvF4opsPu346M
-	 MFHc/g1eMdywB/YxuolBD2jywyRhau0HKvBJwcIvlo5QU7nziSMHf5agQfQtsOALMc
-	 lrX+0s7EJCWvs1BjhuD0Xk66Wq4l9SC9UqlxV14WvOLvrrQTOMcMagUswUoeUz+Sh1
-	 xqz3VFumlODxg==
+	b=fdAYSVhv4IfLebcYVSHtcTLZyK4eKSt350dQhL/nJTRow6txiW1XgP15hQ3uwYuDV
+	 QvQg5pCVhaZFc8qGoziaPUbq5dBtGtVjxjQmedvgGRlgmaPSEeHqxzLG3Igr825XWE
+	 6kZg89ctfDFZx2Bbn5q7INyyHsW3pwb7M5BbE9MJ76aEi/qwz+yxXfva47t9Lgx9pI
+	 vz115Q5afkO0XXhoxzJcRsGiw8YqgMHCjt4kkY770cmRWuBMEIelklaHVyIJID7tWM
+	 fvBb7wzsY8g2ZnjHCrEmrN/yMI19R8XHte05l3Jmo49WSWFgnolp0uTt9seD/d+vCh
+	 eeqSWeSB2on4g==
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -90,7 +90,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[unisoc.com,quarantine];
 	R_DKIM_ALLOW(-0.20)[unisoc.com:s=default];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -98,8 +98,8 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-259330-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_FROM(0.00)[bounces-259328-lists,devicetree=lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[baisheng.gao@unisoc.com,devicetree@vger.kernel.org];
@@ -110,51 +110,31 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[unisoc.com:email,unisoc.com:dkim,unisoc.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 36C4583B4F
+X-Rspamd-Queue-Id: 8AE0E83B2E
 X-Rspamd-Action: no action
 
-The NULL pmusela pointer implies that current clock domain doesn't have
-a PMU instance. Return 0 for probing the next clock domain. Otherwise a
-kernel crash will happen.
+No need to specify the interrupts for the clock domains without a
+PMU instance.
 
 Signed-off-by: Baisheng Gao <baisheng.gao@unisoc.com>
 ---
- drivers/perf/arm-ni.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+ Documentation/devicetree/bindings/perf/arm,ni.yaml | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/perf/arm-ni.c b/drivers/perf/arm-ni.c
-index 66858c65215d..53b656983da1 100644
---- a/drivers/perf/arm-ni.c
-+++ b/drivers/perf/arm-ni.c
-@@ -526,6 +526,7 @@ static int arm_ni_init_cd(struct arm_ni *ni, struct arm_ni_node *node, u64 res_s
- {
- 	struct arm_ni_cd *cd = ni->cds + node->id;
- 	const char *name;
-+	static atomic_t id;
+diff --git a/Documentation/devicetree/bindings/perf/arm,ni.yaml b/Documentation/devicetree/bindings/perf/arm,ni.yaml
+index d66fffa256d5..40a5b8929ef2 100644
+--- a/Documentation/devicetree/bindings/perf/arm,ni.yaml
++++ b/Documentation/devicetree/bindings/perf/arm,ni.yaml
+@@ -20,7 +20,8 @@ properties:
+   interrupts:
+     minItems: 1
+     maxItems: 32
+-    description: Overflow interrupts, one per clock domain, in order of domain ID
++    description: Overflow interrupts, one per clock domain which has a PMU
++      instance, in order of domain ID.
  
- 	cd->id = node->id;
- 	cd->num_units = node->num_components;
-@@ -562,6 +563,11 @@ static int arm_ni_init_cd(struct arm_ni *ni, struct arm_ni_node *node, u64 res_s
- 		case NI_TMNI:
- 		case NI_CMNI:
- 			unit->pmusela = arm_ni_get_pmusel(ni, unit_base);
-+			if (!unit->pmusela) {
-+				dev_info(ni->dev, "No have PMU %d\n", cd->id);
-+				devm_kfree(ni->dev, cd->units);
-+				return 0;
-+			}
- 			writel_relaxed(1, unit->pmusela);
- 			if (readl_relaxed(unit->pmusela) != 1)
- 				dev_info(ni->dev, "No access to node 0x%04x%04x\n", unit->id, unit->type);
-@@ -591,7 +597,7 @@ static int arm_ni_init_cd(struct arm_ni *ni, struct arm_ni_node *node, u64 res_s
- 	writel_relaxed(U32_MAX, cd->pmu_base + NI_PMCNTENCLR);
- 	writel_relaxed(U32_MAX, cd->pmu_base + NI_PMOVSCLR);
- 
--	cd->irq = platform_get_irq(to_platform_device(ni->dev), cd->id);
-+	cd->irq = platform_get_irq(to_platform_device(ni->dev), atomic_fetch_inc(&id));
- 	if (cd->irq < 0)
- 		return cd->irq;
- 
+ required:
+   - compatible
 -- 
 2.34.1
 
