@@ -1,159 +1,176 @@
-Return-Path: <devicetree+bounces-259544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259545-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ABlFGlKDd2m9hgEAu9opvQ
-	(envelope-from <devicetree+bounces-259544-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:08:02 +0100
+	id oAyoLaqEd2m9hgEAu9opvQ
+	(envelope-from <devicetree+bounces-259545-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:13:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4E0689ED8
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:08:01 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CED789F65
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:13:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C1B0B304AD9A
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 15:06:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CCA883028009
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 15:13:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C40FD337BA1;
-	Mon, 26 Jan 2026 15:06:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02EF933C539;
+	Mon, 26 Jan 2026 15:13:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Y8L8n9ll"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BFsb2Fwx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5388178372;
-	Mon, 26 Jan 2026 15:06:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5196733B6CC
+	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 15:13:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769439995; cv=none; b=Tye9NoYq//G4PW+yBjXz69Gc/+80q+Eo12u7X7zALXfqtrUfC9M7vq+8/C85i0tEYA0l8S9EHCvqMghF+gC9f/Pl2+zsJvC+M7c/7Qx9pLwl9I+8Gi/dLHEfO0e67wvuRCtdcQYulGRuf2wvvWu1pMO9NztXFEvaxUoz/B5Nk9g=
+	t=1769440400; cv=none; b=RFFZlpHb/oqkDn2GJijpUU5smkeBOroZnPkvrPIWqYLpsbzTXK2K/qCnmdDsLM8vGJSH74dBxWcwDWkM0qHyZX7pPMa9Bkg1zLAa8shw5lkEOzYA1RUgOpKd1LWCcY8IlVZx8g61LoeNoG5m5diEyb/qYOKyxyLVxbj4xoVAwe0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769439995; c=relaxed/simple;
-	bh=Tq+xqXHdYJEuF379M6efosfM3KbtbZxHtop2F74uvzE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HK19bIb8cpjV/wyk7hOqMG27A+50MdHHojFlz2LHE5mTuAMkrhJ1CDhMgnsprAKhEdCaGV/Ba7Uc2bc8LLxm2iLFJPvWAKDYqDtxNJDR1PjWj+/tbDs1aOKcvUvkahuHDnXCABmiMkt6PClI2Y+4mIXd9f7VhzHFIMST5hMx3N0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Y8L8n9ll; arc=none smtp.client-ip=192.198.163.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1769439994; x=1800975994;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Tq+xqXHdYJEuF379M6efosfM3KbtbZxHtop2F74uvzE=;
-  b=Y8L8n9llxPOp3qd296BBNyZHMLPEU6CHtkGEQZ1+yjIT2Vt6LtRaNas9
-   +NXWP/R3VLEWQ9JVaWE5FXOTGwKA7lBjuYkT1q8MUcwjUujWODTKPJsqj
-   34YXBLxz6U21cZGDJk0rh8cMWadllx/UpmrZ+vQ9UQafm7oJ0ZU+9kW+Z
-   GllcB3M7GJ8wqgZS3p3vNEG2kO6Udq2W28yDMXb/AUjZi2ivfA8hdpVXu
-   1F7Qi+jO8eqVIfKAPTen9SAkWr0KeCuUX6vHzIDBwZ2fpY6Gq36l2/oKx
-   oF7uB67vhTshv1yZcu1ZFYm0EOEV/3bdSu+Cnbh+4bD1EywwOFVMpJpmC
-   Q==;
-X-CSE-ConnectionGUID: RPopneyVR8GFg4ZlG+1hXg==
-X-CSE-MsgGUID: lqqkA/dHRlqTloko4HQngw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11683"; a="81336521"
-X-IronPort-AV: E=Sophos;i="6.21,255,1763452800"; 
-   d="scan'208";a="81336521"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jan 2026 07:06:33 -0800
-X-CSE-ConnectionGUID: xI3zoVmPQYi0NEITP+0+NQ==
-X-CSE-MsgGUID: xb4M3optQoWw6kpUEnDTWw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,255,1763452800"; 
-   d="scan'208";a="207724098"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.122])
-  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jan 2026 07:06:29 -0800
-Date: Mon, 26 Jan 2026 17:06:26 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>
-Subject: Re: [PATCH v5 2/8] iio: core: add fixed point parsing with 64-bit
- parts
-Message-ID: <aXeC8r71LqdpozDG@smile.fi.intel.com>
-References: <20260123-adf41513-iio-driver-v5-0-2dce812a2dda@analog.com>
- <20260123-adf41513-iio-driver-v5-2-2dce812a2dda@analog.com>
- <aXdUvRZ9NmP5Nh95@smile.fi.intel.com>
- <udbqdpfcarcngai23u2oo5zekjzvu6dptem732rdvlsxiry2vs@aeqvxjusdx5s>
+	s=arc-20240116; t=1769440400; c=relaxed/simple;
+	bh=05W/sWQUtpWKrpkpM8fY/rEUF0tNOkJWLT1lHgudSxk=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=nbQ1ABVIz1U+9FXd00d4r6wLUngrAw9Ug1aNxUVPpVzEtUr2zqaj0szkWzsCGLQ0Jnegc2gYI617rJBV+R3GsCF6GF3qw2GHSICJlfuC8QD6TQV4z25zhSThWRHUDDaupTEeRDcpXH1viaGB+Slpba2n1nVvfFxcR27/Op6QSfE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BFsb2Fwx; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4801d98cf39so33880875e9.1
+        for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 07:13:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1769440398; x=1770045198; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=WeZN1sVrspWDpr6d4J8M9QiTomURZBnUfJ04e7oj0+8=;
+        b=BFsb2FwxTke/sUGPRSC7K9ntGwa2fMytiWRRz2B6pa6mn+SsVCskqyGloPsB9AlGj5
+         bavafrr8Jn4leGbJe1W75HbUUUcW9/CZ+PUgDnIpqY1+ScNRWzuKHega9u6vHggyJKhT
+         41Vxvyp3juUpEPnDUNj8UWk+LA0Mj21dVAdKARWBdiOvvL27yhuScL982OmaLhu0zQ9l
+         27HH1JDHvPO4SnJXileatkDjgOa1XzIWzRYhuB/33Qjq0VNXMNTT2PM+SyeA/Nj6MGPd
+         pq6e1NxpR3D25mWfSQUFm/GUq2qJDUYnuyxDi618imI9g/rRBrPHt/H1xzVFmIDc1vgt
+         I3XQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769440398; x=1770045198;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WeZN1sVrspWDpr6d4J8M9QiTomURZBnUfJ04e7oj0+8=;
+        b=ipQ+38hxMzPlUxHbO2Gd9BlSvzOTB6sqnkaZtCvsnxUu2JXAbQT6y7MlEBjGAR53oX
+         WouXrnEvbz26aHNkaCoipMpmpQ5DlgqZNzboqQPCCoOj4bqxN7/IyxH1B8yrmYftaxEz
+         XRJhcAqf6FjcAYB+4wU4B5nTavNmGot5QFIItNm6GYEMq0OqL+5byLA+g6flo7tKDUrD
+         zD1uxlvns4tV2C9tmD/GLAdsIUc+FDjtj2t9W91q4PU7GvnQ4+Yw9LPyv+BHbbTE1XMW
+         4HWls/7I43xS2NV0dYW4OifOrEJmfF6MqKySRvSUnHea5H9MMYnC2Iqc/D4uP9g2sKx3
+         S7Zg==
+X-Forwarded-Encrypted: i=1; AJvYcCXYVJQfvydDuaht/pHKiXcTtF8sK/OLBDpRsCfBIf54q24PKT8Qf2OR4sw+0CrZOVY3H7fn7EZp1hoJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwCaB4aumMCWjo298TWP24aa2rYTew0/wVTB2Q6oLjX94xhC+33
+	78XcmwvbHLabhmjN+5qlTw8+NTcctuxc0Dzi4c+QX7JDsR+fd7H0be/c
+X-Gm-Gg: AZuq6aIBdCB3aSRdr6tdn+EBXxZSP6fvzVIANRdP+5ksqJEl5va9ED/R9b+Z+q5m6F8
+	5L8Ttf70hgtOFz0+9mO7INSe6tjoY8KvVC7OCazYVJAy0vYVp1J2ygrGWNKzO8c+G9tfOOhXGh+
+	GFtzX35R+H+UBKPvnzaArS/CokK7LtYfdLUnI6CtZyfnGhXLBgS1bqm60wzdwxeM8GYfYdXoIh5
+	oSeuD//0V9x5De/eWqxkAop0BhwTiq0R/hiwCly+mAPzrVL5/b8OfOryvTK5b7LKelUwyvqG4+6
+	GJ0ZNEKaNmms/Mvz82AaPB4eDDXsGsABLJG4mhj/gUFnZ5xNrumPLZyAODb7XX7tUBJoTIUtQ0s
+	SUx4UsT+GsApRdhjmd/dnOR9kMcerm/B2NddJE/wpyDAA3t5b9FLvrxukkt2CldaCPyXgjxFa9/
+	kUYei8cD5U6rMQa7iyzLg0mIn4EjWlGgac6t9QhglBnP+scdZ9OkY=
+X-Received: by 2002:a05:600c:3b12:b0:480:1dc6:2686 with SMTP id 5b1f17b1804b1-4805ce434d3mr88758935e9.13.1769440397487;
+        Mon, 26 Jan 2026 07:13:17 -0800 (PST)
+Received: from [192.168.0.253] (5D59A51C.catv.pool.telekom.hu. [93.89.165.28])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-4804702876asm399680125e9.1.2026.01.26.07.13.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Jan 2026 07:13:16 -0800 (PST)
+From: Gabor Juhos <j4g8y7@gmail.com>
+Date: Mon, 26 Jan 2026 16:13:11 +0100
+Subject: [PATCH] dt-bindings: pinctrl: marvell,armada3710-xb-pinctrl: fix
+ 'usb32_drvvbus0' group name
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <udbqdpfcarcngai23u2oo5zekjzvu6dptem732rdvlsxiry2vs@aeqvxjusdx5s>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260126-armada3700-usb32_drvvbus0-fix-v1-1-9dcdf68f5fbd@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAIaEd2kC/x3MwQrCMAyA4VcZORvIWrbJXkVE2ibTHNwkYUUYe
+ 3eLx+8//Ae4mIrD3B1gUtV1Wxv6SwflldanoHIzBAoj9WHEZO/EKU5EuHuO4cFWa96dcNEvcmE
+ qfJ0yxQHa42PS8v9/u5/nD/7vgHdvAAAA
+X-Change-ID: 20260126-armada3700-usb32_drvvbus0-fix-dcd0cd87b035
+To: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Gregory CLEMENT <gregory.clement@bootlin.com>, 
+ =?utf-8?q?Marek_Beh=C3=BAn?= <kabel@kernel.org>, 
+ Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Gabor Juhos <j4g8y7@gmail.com>
+X-Mailer: b4 0.14.2
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-259544-lists,devicetree=lfdr.de];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-259545-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[j4g8y7@gmail.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,smile.fi.intel.com:mid]
-X-Rspamd-Queue-Id: C4E0689ED8
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 2CED789F65
 X-Rspamd-Action: no action
 
-On Mon, Jan 26, 2026 at 02:56:34PM +0000, Rodrigo Alencar wrote:
-> On 26/01/26 01:49PM, Andy Shevchenko wrote:
-> > On Fri, Jan 23, 2026 at 03:53:07PM +0000, Rodrigo Alencar via B4 Relay wrote:
+The trailing '0' character of the  'usb32_drvvbus0' pin group got removed
+during converting the bindings to DT schema.
 
-...
+  $ git grep -n usb32_drvvbus v6.18
+  v6.18:Documentation/devicetree/bindings/pinctrl/marvell,armada-37xx-pinctrl.txt:106:group usb32_drvvbus0
+  v6.18:drivers/pinctrl/mvebu/pinctrl-armada-37xx.c:195:  PIN_GRP_GPIO("usb32_drvvbus0", 0, 1, BIT(0), "drvbus"),
 
-> > > + * @integer: The integer part of the number
-> > > + * @fract: The fractional part of the number
-> > 
-> > Can we use struct s64_fract? (Yes, you would need to add a couple of lines into
-> > math.h for that, but don't worry, I will Ack such a change immediately.)
-> 
-> Sorry, I missed this. s64_fract would be declared as:
-> 
-> struct s64_fract {
-> 	__s64 numerator;
-> 	__s64 denominator;
-> };
-> 
-> and numerator and denominator is not really applicable here. This type seems to be
-> used to declare fractions.
+  $ git grep -n usb32_drvvbus v6.19-rc1
+  v6.19-rc1:Documentation/devicetree/bindings/pinctrl/marvell,armada3710-xb-pinctrl.yaml:91:                usb2_drvvbus1, usb32_drvvbus ]
+  v6.19-rc1:drivers/pinctrl/mvebu/pinctrl-armada-37xx.c:195:      PIN_GRP_GPIO("usb32_drvvbus0", 0, 1, BIT(0), "drvbus"),
 
-Ah, good point. My memory (on fraction part) made a joke, I truly believed this
-is the same what we need.
+Add it back to match the group name with the one the driver expects.
 
+Fixes: c1c9641a04e8 ("dt-bindings: pinctrl: Convert marvell,armada-3710-(sb|nb)-pinctrl to DT schema")
+Signed-off-by: Gabor Juhos <j4g8y7@gmail.com>
+---
+ .../devicetree/bindings/pinctrl/marvell,armada3710-xb-pinctrl.yaml      | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/pinctrl/marvell,armada3710-xb-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/marvell,armada3710-xb-pinctrl.yaml
+index 51bad2e8d6f1f7601a50cd45bc4fbda9d1043bd5..4f9013d36874997d208e1d07e35ab4e1e4bdef91 100644
+--- a/Documentation/devicetree/bindings/pinctrl/marvell,armada3710-xb-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/marvell,armada3710-xb-pinctrl.yaml
+@@ -88,7 +88,7 @@ patternProperties:
+                 pcie1_clkreq, pcie1_wakeup, pmic0, pmic1, ptp, ptp_clk,
+                 ptp_trig, pwm0, pwm1, pwm2, pwm3, rgmii, sdio0, sdio_sb, smi,
+                 spi_cs1, spi_cs2, spi_cs3, spi_quad, uart1, uart2,
+-                usb2_drvvbus1, usb32_drvvbus ]
++                usb2_drvvbus1, usb32_drvvbus0 ]
+ 
+       function:
+         enum: [ drvbus, emmc, gpio, i2c, jtag, led, mii, mii_err, onewire,
+
+---
+base-commit: 304c3ebcaff36560d76e3030ba0839e629635f47
+change-id: 20260126-armada3700-usb32_drvvbus0-fix-dcd0cd87b035
+
+Best regards,
 -- 
-With Best Regards,
-Andy Shevchenko
-
+Gabor Juhos <j4g8y7@gmail.com>
 
 
