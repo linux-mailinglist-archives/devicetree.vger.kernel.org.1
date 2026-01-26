@@ -1,202 +1,179 @@
-Return-Path: <devicetree+bounces-259628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259629-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EBJ9CwfEd2nckgEAu9opvQ
-	(envelope-from <devicetree+bounces-259628-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 20:44:07 +0100
+	id mI4TOfXEd2nckgEAu9opvQ
+	(envelope-from <devicetree+bounces-259629-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 20:48:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA9188CB5D
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 20:44:06 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 522008CBC2
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 20:48:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B04AF3027943
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 19:41:37 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id AC25E3014C46
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 19:48:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 043602868A9;
-	Mon, 26 Jan 2026 19:41:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B623C287269;
+	Mon, 26 Jan 2026 19:48:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="derieL3L"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XkKUh7MJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05AA01F4CBC;
-	Mon, 26 Jan 2026 19:41:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769456496; cv=none; b=tszCGxiEoTzYg61xJlPEzeb6XugsR7Vegh9nw9wQWDnq3YCTQ9DN3Ohl9j9RbNoDTgwyBX/p73KYojGsvA/g9WDUC2MxapSdiXfGho6O4uew3d+OTZvjzVPPyc1m4tk2Q86bom3z62IXsMG0j44HLALPKGc57Cm/syfDPFdm7Hw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769456496; c=relaxed/simple;
-	bh=uQFMWGnGGz/UkepHe6qNZM7ssltN76ODEap8qFaeK2s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MaxGYJjD8+uW8iVU+S8U47p4FCiAG158GQF6LzqqlT0RdjfdzTU4ffibIZ/LJNc8n/AtfYuw8821aoPy/uBcBlLnhWILXJlaYOr+xgvnGWb5IzGLKJ5CNq65qZ9X0zs++m32J7MPAbYLypJ5eJ9ArWZkN5k/sKVDVb2wL9i7gcE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=derieL3L; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1769456494; x=1800992494;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=uQFMWGnGGz/UkepHe6qNZM7ssltN76ODEap8qFaeK2s=;
-  b=derieL3LLtDdLkKo62F/2aghx7RorjhNNvIFNM3y62aJ5uFizAoBe8iu
-   1At6KcH7MVaWC7f/J+n5FVM/nDFpxINAXVofD5cCafOk34W7ylQgBcjRW
-   YQVSKVx/lor3hPrirIzN3FEn8vcMQ70p81nBdw9hpC4gLSzKew0HVXj/o
-   bcjRpAOnEghYpq3zBCpNZzkICk/a9HgkVNRoeCrocxC/Zd/+Bf4u6aApH
-   3PxnOh6h1iQXCcj3EVp8F7SU9ZyXuzS6x3t3jmXz4+t3gUsNXPhJhhRns
-   ElT6aYmdgP1MDzLOoppsA72Bx99NFD6xO8ARm30znAx8xzKbk6Ht1QXTj
-   Q==;
-X-CSE-ConnectionGUID: iROUj1cSSs2gn1LuTof2hQ==
-X-CSE-MsgGUID: cdogRa0CQ4Gqx2hPytNR1g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11683"; a="70545872"
-X-IronPort-AV: E=Sophos;i="6.21,255,1763452800"; 
-   d="scan'208";a="70545872"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jan 2026 11:41:33 -0800
-X-CSE-ConnectionGUID: n0esMp9ySU+Mz1YRzxo6RQ==
-X-CSE-MsgGUID: jseCndPdQO2p/ZZbLSbXCg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,255,1763452800"; 
-   d="scan'208";a="206992580"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by orviesa010.jf.intel.com with ESMTP; 26 Jan 2026 11:41:28 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vkSSj-00000000XdK-0FbY;
-	Mon, 26 Jan 2026 19:41:25 +0000
-Date: Tue, 27 Jan 2026 03:41:05 +0800
-From: kernel test robot <lkp@intel.com>
-To: Kaustabh Chakraborty <kauschluss@disroot.org>,
-	Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	MyungJoo Ham <myungjoo.ham@samsung.com>,
-	Chanwoo Choi <cw00.choi@samsung.com>,
-	Sebastian Reichel <sre@kernel.org>,
-	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <skhan@linuxfoundation.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	linux-samsung-soc@vger.kernel.org, linux-rtc@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	Kaustabh Chakraborty <kauschluss@disroot.org>
-Subject: Re: [PATCH v2 06/12] mfd: sec: add support for S2MU005 PMIC
-Message-ID: <202601270307.Ds4yus7I-lkp@intel.com>
-References: <20260126-s2mu005-pmic-v2-6-78f1a75f547a@disroot.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D14E280A3B
+	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 19:47:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.43
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769456880; cv=pass; b=hDiQAKp65EYZT7lFH5YpnISOezhbyBejlmUtoWqnBMq07adF4m9XBbHoZXbynoQCieat+uYNSHfkPLtiowO4ltvvhT/I5BFcFC+YUYY8fBQsuixhEprtOKhvXZMba8xTEApHBn6aYRvENKbovrL7PtwA6ibBk/cMwxljEKsIuAs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769456880; c=relaxed/simple;
+	bh=E86U2Pp1+kEMZ5xTDOjPoM6DE7sOtiZh75Z6gIblXu0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SOinfnYd7+zETRxRZDup2bmZWniv0UDK8ZWuljczVkpe4Emuh24j//vTRtpSr4LzvHELWBkrbBivv6qx65NsRM994VuxfVitW/uTLqXsUYFIjct83gI0oQtjDu2rs4ZCJm9j9/xXozW8WBrGnnqYadY/y89oNz8Pqystv12wDV0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XkKUh7MJ; arc=pass smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-59b6c89d302so4787023e87.1
+        for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 11:47:58 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1769456877; cv=none;
+        d=google.com; s=arc-20240605;
+        b=knCU4RhnCHCA38BuKp0BAl/wJDCzpi9Oewl7x9+Du6ssThlP/2zj9gDaSfj5AC8Ko5
+         H4LOED0Hm7ArZ+J4RYr4TdVTxNrDOF1xxN3V08gxe8qJGxq33prqMZ99IVT2yuoDaCNf
+         Oa3WRGvvKBA/08C9CTeaE2xS20GqNWat3hTixuAqyOOjg7I/IqkDoyS4C7uF1kSvGgws
+         PWU48LmV33L61wR9m+qpb1Qh6jILmacPXLaVRNEJSWlyb1POOzVepVxsWIQS1HU1cGrf
+         B+PzuqGeuHRAFsmu4Cl/oZ3N0HnYzB2/BFX0QMraytc4d4dboBhflg8SSnjLn6dAmVs/
+         RaBA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=tvHi5BlR/jfPN2hk45XeIUKXD0zHTAJed9qhiZYAB1U=;
+        fh=YNsuL9a92OD0Wm/mkrmshUefmL67usJFN/IjPpzYOCM=;
+        b=Wqu2CeEnZxVNn7XHvrZsiom3HG1CIi85V/0km71ZZ5wA/qkHx7ZbJVWZB9HW7JWZ7T
+         OX3sWrmgyh1JHob58A/P1R5bu8Vyh4sw+q/av8n4dwGukbzxmW9eAcU/bxU6GO1dhieV
+         lWjkD7FNGbtoxYwM6m3FW1Q0IxCIQwRrq+7Lmtyk3356spvQFth6m6x1vedFQxUv9PmQ
+         XhNha2vfgoJi78myxpQCUi+ghqFsmHh0iWo0sDh7byJ81iBxOF2Y6FU5gG/UbkQtGnie
+         KDf1fXH+bxrPYlWa4CsxfREvetLJyV1xMzFWt4lHyDjLt1rtPxS5CIR2YKC0vjJ9aE/r
+         ZhhA==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1769456877; x=1770061677; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tvHi5BlR/jfPN2hk45XeIUKXD0zHTAJed9qhiZYAB1U=;
+        b=XkKUh7MJ/zGes0PcTeUsbvgslelXmKBmQI4dXrHzTH8/SydUKBsHUHd+dSj6ja7f2U
+         2xuzpUA5KrwEZynOIObv6Fdl23tqhsm2ZDoTBHDzQs4LTNHBfTIISmkNYXtmtDHhOZY5
+         EGQDq8euupglnN6bqxLPsdYw3yM3vjDzovy3NThI5iZWQuMzmd/32KMPPSXHwZg5udDU
+         aRu3qVFwtS6KjB/662HWKZpXh22h2U5MYWYbu2Fp4ww5fI3TxUpWHrLgFBtMVQ907PKT
+         3irV2aUDzAsjvSM1jXGXc1Nb24OJzx17bs0yh9Cg5ZmaWG06ZJw+v2r+SR3ZvoSmBqgS
+         D5/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769456877; x=1770061677;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=tvHi5BlR/jfPN2hk45XeIUKXD0zHTAJed9qhiZYAB1U=;
+        b=PcQHI2eptVZpBO/+tZbbCWhCF1BOq9CuskvyopqqIXVhU03KmQEQEHLlkuY4fqOwRH
+         bJKBfuyBCmXBciugkZGEHDYlt7bnj53Pt1AD7V/F8D6bkZGcfW9b6Un+NpwnjnpDtULH
+         g/6DEsGFkPnxZLe6UCnTBwCvvHqACfY8bKdQ/ZP8iLftf6AczhLs/uJi12yISthJWCCc
+         DNp78mGzdIdKMOd79hf02qaUGjKgCRUSEuy6H02QLr+9nSQHhD9RtjSU6+8cN/lmUcah
+         yHZ0fURFVg1QKCAU2SjCU0islZ5AqYarIxiDFv/cdK9Shbt1ZJW82IE6NYt2lRonIM91
+         g4lQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWAPdHwiljmiHexLZAc/F6gpxXCXOSRJvaW8qyRt6/axGJcoqNPIi5LzrVROZiStJ3DzX6jdgtOIhio@vger.kernel.org
+X-Gm-Message-State: AOJu0YyzTRlwAdIhhXCytCAFOqx3y8njocKlMFhFdASSGz3H/mTnUb3e
+	fsIvXWtd6XG3cQQ7JpPuQVBxEavi2kBnkIq3g1UMjmlRkHfzEfmxFSk2lRrTdvk7PzTfeHmzton
+	5qOw8Z6pVfe6hTl6E8D2loOYFyP9qotQ=
+X-Gm-Gg: AZuq6aLp++5MzxoiOAF5ZMpUh32/acmY8ws9+onx5/WoAfGr89rlC0JpX0iMun/7NkM
+	GZlOd++nlbdveTp5ViTVvrwuVh08VfulnJVSZjaXO3m8fP889T7lYyJ8OdnRhSQ5uHwK+mHsz9A
+	mmzICY9gycHsFiEfcaFDc3mP8xKMX05AGLODhDjDIY4wqTm0wSZzEbLQUII6zKpzo+9z/65zmxh
+	VyRMccg2Ed4xP90+9B+qhNYJ08x5cJWEciVfbgeY62tzrXnr/ao9ekjBUPcRjoa0g9W1y/ypE6o
+	XetwWUb3bQQb5Qny53fBouJT1WU=
+X-Received: by 2002:a05:6512:1087:b0:59d:e9f6:1391 with SMTP id
+ 2adb3069b0e04-59df3a1408amr2177134e87.34.1769456877066; Mon, 26 Jan 2026
+ 11:47:57 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260126-s2mu005-pmic-v2-6-78f1a75f547a@disroot.org>
+References: <20260126115349.1750578-1-lukma@nabladev.com> <7671b833-f823-44cd-b5af-0b473a8ae23e@lunn.ch>
+ <20260126203307.6076ba9c@wsk>
+In-Reply-To: <20260126203307.6076ba9c@wsk>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Mon, 26 Jan 2026 16:47:45 -0300
+X-Gm-Features: AZwV_QizXfEBcPuoLKyFUr1dg6OQ-LmaBQRERKbYiAht9E5yQHfaWrYosy_qY4E
+Message-ID: <CAOMZO5C2Hg06wb08cRDLCXGDS_rmUAq3fC7Jm++kSumjukyuXA@mail.gmail.com>
+Subject: Re: [PATCH v2] clk: vf610: Add support for the Ethernet switch clocks
+To: =?UTF-8?Q?=C5=81ukasz_Majewski?= <lukma@nabladev.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>, Abel Vesa <abelvesa@kernel.org>, 
+	Peng Fan <peng.fan@nxp.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-259628-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259629-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
-X-Rspamd-Queue-Id: CA9188CB5D
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[festevam@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mail.gmail.com:mid,nabladev.com:email]
+X-Rspamd-Queue-Id: 522008CBC2
 X-Rspamd-Action: no action
 
-Hi Kaustabh,
+Hi =C5=81ukasz,
 
-kernel test robot noticed the following build errors:
+On Mon, Jan 26, 2026 at 4:33=E2=80=AFPM =C5=81ukasz Majewski <lukma@nablade=
+v.com> wrote:
 
-[auto build test ERROR on ca3a02fda4da8e2c1cb6baee5d72352e9e2cfaea]
+> Conor (on CC) explicitly asked to remove VF610_CLK_END:
+> "[PATCH] dt-bindings: clock: vf610: Add definitions for MTIP L2 switch"
+>
+> ------>8------------
+> > -#define VF610_CLK_END                        191
+>
+> If end is modifiable, it is removable. If you need the define for the
+> driver, please move it there.
+> ------8<------------
+>
+> I just follow what he asked.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Kaustabh-Chakraborty/dt-bindings-leds-document-Samsung-S2M-series-PMIC-flash-LED-device/20260126-031457
-base:   ca3a02fda4da8e2c1cb6baee5d72352e9e2cfaea
-patch link:    https://lore.kernel.org/r/20260126-s2mu005-pmic-v2-6-78f1a75f547a%40disroot.org
-patch subject: [PATCH v2 06/12] mfd: sec: add support for S2MU005 PMIC
-config: riscv-allyesconfig (https://download.01.org/0day-ci/archive/20260127/202601270307.Ds4yus7I-lkp@intel.com/config)
-compiler: clang version 16.0.6 (https://github.com/llvm/llvm-project 7cbf1a2591520c2491aa35339f227775f4d3adf6)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260127/202601270307.Ds4yus7I-lkp@intel.com/reproduce)
+You should still use VF610_CLK_END. Just define it inside the clk
+driver instead of in the dt-bindings.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202601270307.Ds4yus7I-lkp@intel.com/
+Please check these two i.MX93 patches that explain the rationale:
 
-All errors (new ones prefixed by >>):
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?=
+h=3Dv6.19-rc7&id=3Dc0813ce2e5b0d1174782aff30d366509377abc7b
 
->> drivers/mfd/sec-irq.c:218:7: error: expression is not an integer constant expression
-           case irqf_regs[0]:
-                ^~~~~~~~~~~~
-   drivers/mfd/sec-irq.c:218:7: note: initializer of 'irqf_regs' is not a constant expression
-   drivers/mfd/sec-irq.c:204:21: note: declared here
-           const unsigned int irqf_regs[] = {
-                              ^
-   drivers/mfd/sec-irq.c:220:7: error: expression is not an integer constant expression
-           case mask_regs[0]:
-                ^~~~~~~~~~~~
-   drivers/mfd/sec-irq.c:220:7: note: initializer of 'mask_regs' is not a constant expression
-   drivers/mfd/sec-irq.c:210:21: note: declared here
-           const unsigned int mask_regs[] = {
-                              ^
-   2 errors generated.
-
-
-vim +218 drivers/mfd/sec-irq.c
-
-   200	
-   201	static unsigned int s2mu005_irq_get_reg(struct regmap_irq_chip_data *data,
-   202						unsigned int base, int index)
-   203	{
-   204		const unsigned int irqf_regs[] = {
-   205			S2MU005_REG_CHGR_INT1,
-   206			S2MU005_REG_FLED_INT1,
-   207			S2MU005_REG_MUIC_INT1,
-   208			S2MU005_REG_MUIC_INT2,
-   209		};
-   210		const unsigned int mask_regs[] = {
-   211			S2MU005_REG_CHGR_INT1M,
-   212			S2MU005_REG_FLED_INT1M,
-   213			S2MU005_REG_MUIC_INT1M,
-   214			S2MU005_REG_MUIC_INT2M,
-   215		};
-   216	
-   217		switch (base) {
- > 218		case irqf_regs[0]:
-   219			return irqf_regs[index];
-   220		case mask_regs[0]:
-   221			return mask_regs[index];
-   222		}
-   223	
-   224		return base;
-   225	}
-   226	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?=
+h=3Dv6.19-rc7&id=3D0af18ba60752e8a4ba34404c1d9a4a799da690f5
 
