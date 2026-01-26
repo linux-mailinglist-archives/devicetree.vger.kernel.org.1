@@ -1,204 +1,242 @@
-Return-Path: <devicetree+bounces-259423-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259424-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UJPvGCQ9d2mMdQEAu9opvQ
-	(envelope-from <devicetree+bounces-259423-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 11:08:36 +0100
+	id EAIHLZU9d2mMdQEAu9opvQ
+	(envelope-from <devicetree+bounces-259424-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 11:10:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA3EF866FE
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 11:08:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B6BF8676A
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 11:10:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CCB9A303352F
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 10:04:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7D28C300B446
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 10:06:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 523D232E6B8;
-	Mon, 26 Jan 2026 10:04:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0FB532E6BB;
+	Mon, 26 Jan 2026 10:05:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="PrgGHA8K";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="am4XSoFN"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="S/vhAU6i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5A89313547
-	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 10:04:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B49E32D7F3;
+	Mon, 26 Jan 2026 10:05:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769421870; cv=none; b=ZEuhrlBilgVeoRUh9KOe78GyUP/iNDxfJZdUaJxKy/WQHuTIwfMzhCImOGVLBcK6mPlth8ZffVibuqzjsg2hd5WLeTBKTxHpvThqAgrwsA0fFPsO8CqdN9MzSU4iQWcpnJnZFWG9dS+KygIYCXgCujVv1ibn7Hu0lOb6BWq7TaY=
+	t=1769421959; cv=none; b=GKJWzZYcKzKbDUsqmpP1gFbzHAU0eP4CXYmWb6H7gjXKRTtCZresVqcDZUxxDLjVDFmP1h1bCmyYAGqlQS8OFw1dOLU4hXGJsgd/uad91lqdQXgQURM8SrLKJpeva0RB88k4H9oGG/f/ICV6YOfDqmMh6ta1PfrqVX+MfzEUMB0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769421870; c=relaxed/simple;
-	bh=Z+F/u19UL5rTbSf/EztVBQq9QaHj8tFJ6v+FgzvomSQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=f7rpyg/534NjzW1iasqzKwF6tLAyG906wolSQbhGAQcw6fbIcAAVtpsjuhNSjkufCxsEAOs641FlLhuifYXu+zyzUAqiaci2w+YAVj70KNJ1uHQC5bsPXsg1nrXYVXqwm/CdXLi8pN5Ffk08LueFWhEF0laOlAw+nV6UQrS6z6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=PrgGHA8K; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=am4XSoFN; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60Q9NIH7231348
-	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 10:04:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Gs5+EbtKiqDfewspPzrWTCLBUAj0hB8KK+jzGXQRxP8=; b=PrgGHA8KOMHbsgPM
-	MR5dDuXJwQVCLbMrif+fVaaKYHanG40EHdW3e9aety7iVtHiCDI4tCJORvsnn5R6
-	bSX+Zn9Q2oSjyw7a+DpHhR86mgdZ+UJtYUTKp3AQws1oM1eNkFpQWfGMP3VT+vfM
-	balfsCdig2ktd67njMs1LpZ3rykBlJ97Cgg/DFYocORYCacDgNVbK0Z3br27vrlC
-	5gNYPbdR97YHh1aw5MtwzsJhyzKQH5PR/3vmlOb+kV5DrAdDt6ztxXIbcJpAh2CI
-	cAsHSQy4o0j867ySgVxM1YXbA0pWM7s61DkakWLHsKOsx4P1hdRM43zAcrB5Rq6S
-	9JF6gw==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bvq6xv4rc-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 10:04:27 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8c53892a195so92238585a.3
-        for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 02:04:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769421867; x=1770026667; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Gs5+EbtKiqDfewspPzrWTCLBUAj0hB8KK+jzGXQRxP8=;
-        b=am4XSoFNeDGRbY//iQLNM9K+8tBlSxw+rVyp1oUgKKyRcCjLWLjRdCHf03vH3tnVjQ
-         5uoHrjO8qtWggNgUPeWceHwb/G5MUqNcBBkykva/585OL199FSdSfIBSXqKH2rmtqYnj
-         dxUk7KiWybHzlNBoA1xJvyzOggQzkDUpFMXKlagmL6QZHUDOJA4vYBjJUb3M6OozWFhX
-         rfw/dD85PLLIX4o3c9Wo0oof7E8eEfPgl1gJlKfd/wBbqlB07w1zrDxSKcPkC2bTL6CV
-         17sERvsLUPilbGUgBreytrDS2s3Du/Hivlr3ksm3i5ELzUJTmYurUvlt8AbSDz10N5wX
-         lRCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769421867; x=1770026667;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Gs5+EbtKiqDfewspPzrWTCLBUAj0hB8KK+jzGXQRxP8=;
-        b=RJDbhHKqgZgGGUTX6fe0pvtg8jrftTPtHoEb3981c8/Q+m7pIaG9GZQWW/1UXBh1ys
-         dV1apxjUeaPuMWZa8KOSGADkH6NrgRawK/OLf7vuQbXDtqtewI/yzSKwf5ON4hneOFHs
-         dSLJAaMKrWF15BbXzsMcDOjs1bVFRrn/SeYHGJSf+em4rZxujPsudQ9QqCrLF4EH0afv
-         SbXtHXWbPRkG1oc/mUzMWzgvIwkacVjGqRxNTDSELsKyvKo92/hrlsQ8K/BzujERwEfZ
-         cUFXjTJsFttXUlPsLU5HKIFIbrpBYO8pQno1OcssYD5gyGJuHcjh28oK6CrnVQcDoaC1
-         88HQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXQcpQ4uApi54FU+v6Imr4zp5k0/orEpXgVpVyEel1w766uM9I54MsRStE8YiHaQmmG7FfaIqLjL/tf@vger.kernel.org
-X-Gm-Message-State: AOJu0YyLX5B5T0XfBom5Z7ToikdVyRNl0VWpd7epiTqQ/IXNPFO+dibL
-	BOFfjk1wlIYEcFdAy9IYoQL8IpHCqnspE7uNL06iNHm7kf1CzRz1h6nGtLyC1zF+pyixPNJVMe5
-	eg0mee8B4/PsubiUXS7yHTDsHwXXCL0+yPQRj5sjzNnR3FdMBr55J2e0fTZAzia94
-X-Gm-Gg: AZuq6aJ6J3nr+XmUjyMxbwJ6llvVFt27fUDAOxNM+FVapkw38mI27LjsPpgNhNe53DU
-	NOk+PhYrUwyWtTpH3kMxDZlkgVjJWPIVY6Ccl5IwLnSh3thZO1Mgi8Jno9WwaegeYR7288FWUiJ
-	oCZhDbMgtMquAV6/2h8FBv++kcha63g1fet0iXiKU0IAC9bL6dMQ6EXtmgStz3Sb1bABWnJgRxZ
-	Mn0EluGJDZ3IeU0fe3guitrzrr+/HjSX3VWdPqNHvgnoKRgoOvh0POLDgervtt1WTXLDq2rc9/j
-	MQ39+akZaAz8n/yrCQM8j/YsxkHhlA0v+Ll2W6TA8qafguulNC/Ie3J42/zK/3eMsgS3YbrTYWA
-	XAJty7G7S/IgXnAqWR6HhKJBR6bYakAbTV1yvk4wUS8lKUNxJjkrujn1vGM7J1X5nVxc=
-X-Received: by 2002:a05:620a:2546:b0:8c0:c999:df5a with SMTP id af79cd13be357-8c6f962d60dmr358759585a.6.1769421867232;
-        Mon, 26 Jan 2026 02:04:27 -0800 (PST)
-X-Received: by 2002:a05:620a:2546:b0:8c0:c999:df5a with SMTP id af79cd13be357-8c6f962d60dmr358756885a.6.1769421866776;
-        Mon, 26 Jan 2026 02:04:26 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6584b965df4sm4871727a12.31.2026.01.26.02.04.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Jan 2026 02:04:26 -0800 (PST)
-Message-ID: <7338fb15-e452-468f-9d32-5805441dee73@oss.qualcomm.com>
-Date: Mon, 26 Jan 2026 11:04:23 +0100
+	s=arc-20240116; t=1769421959; c=relaxed/simple;
+	bh=az2SXhiidJVbYsg6HTnSFdFHH7FfxGTHHd7eGH2uRrY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=h7OS+tawuhMkpv9zXXLvZl7K7bPfERoT3nkDqYaZWXOPs3ll78NfWndxc4zNi4+cAS2NxdIXuqDmXCOkztS4jXTuyPAZsyCTXl0xpVHbIVAEkM6jVhVUUi6UImITep0nozfIqF+L89QOf91+chulemTpgnv01oI9Bbc0ji28XDI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=S/vhAU6i; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (2001-14ba-703d-e500--2a1.rev.dnainternet.fi [IPv6:2001:14ba:703d:e500::2a1])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 7E03F557;
+	Mon, 26 Jan 2026 11:05:20 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1769421920;
+	bh=az2SXhiidJVbYsg6HTnSFdFHH7FfxGTHHd7eGH2uRrY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=S/vhAU6iB/PAbVgmSJULehi8CN69RGuVknOzR4zv6b145hpWChfhI31LFccOatJTr
+	 o2QyaUl0hXtp5rYEGOg2BNZzkj4onRXrlgWwb/JoImGvtrU2Zb+Ba28vLx4+anBug8
+	 z8qrFnmEPQI+cmKX2wVF1XLkFqn5jYp1F/P3MdVI=
+Date: Mon, 26 Jan 2026 12:05:54 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/2] media: i2c: mt9m114: add support for Aptina MI1040
+Message-ID: <20260126100554.GC593812@killaraus>
+References: <20260126083430.8247-1-clamor95@gmail.com>
+ <20260126083430.8247-3-clamor95@gmail.com>
+ <aXc1XwD8Wo2yu4dv@kekkonen.localdomain>
+ <CAPVz0n3=JPyjm3RypcSec=FZ66W2cq4Mwu2yodR03Ng2jDbxEw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: hamoa: Add EL2 overlay for hamoa-evk
-To: Xin Liu <xin.liu@oss.qualcomm.com>, andersson@kernel.org,
-        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, tingwei.zhang@oss.qualcomm.com,
-        jie.gan@oss.qualcomm.com
-References: <20260125023521.3862114-1-xin.liu@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260125023521.3862114-1-xin.liu@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: LFAN-kgIXtQPc6JEKmO8vK3uxxPqr7nX
-X-Proofpoint-ORIG-GUID: LFAN-kgIXtQPc6JEKmO8vK3uxxPqr7nX
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI2MDA4NiBTYWx0ZWRfX6ECa5BHE+qD5
- OS57ziiM07JVU4qabAfU0bilGCD5CnNCpeA0YE46ZUaCoCt4do+Ht6gpYd+EAVr9oRm9fERO6+3
- 1Q2XHiC6f7zltjGtbE4O5RI2/sH45hGVEZJ9lbb0gJfLC3lnkN2DDmDcIgYnKP5oFNtCtYqiEE+
- phkul3J21SPvQygDk9UUf45O1nlFv0FlVtjzjwLon7/0u1s2MBpnJe/+9ZOfUIYR73QU5zlj2oM
- mzaX8EHVjmYJxjPjeRtI4tAgOCMEeXZ+2OSIX9QbkLtsjCOfGfYa/KTaAA+pXHxKAFaJH0TB4jL
- 69P90xbcQm76mNRcXXajPfEkORaW9caxA9n3BCj13WkJ9hadBkHGye0Rd3VdnOSCs/LximpvM5F
- mmXt01v1JwrGqcEVvFOwUr798RYFl7yFxfoBnDbWuxYJ2J9W58TJ7Bc9/xfmV7+bhM2LFWgRxlA
- NyDxg5MwJLufUd78UQA==
-X-Authority-Analysis: v=2.4 cv=Htd72kTS c=1 sm=1 tr=0 ts=69773c2b cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=GMn3xwL4stY9rUjJCzIA:9
- a=QEXdDO2ut3YA:10 a=NFOGd7dJGGMPyQGDc5-O:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
- definitions=2026-01-26_02,2026-01-22_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 malwarescore=0 suspectscore=0 priorityscore=1501 spamscore=0
- phishscore=0 clxscore=1015 adultscore=0 bulkscore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601260086
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAPVz0n3=JPyjm3RypcSec=FZ66W2cq4Mwu2yodR03Ng2jDbxEw@mail.gmail.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
+	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259424-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259423-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: BA3EF866FE
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ideasonboard.com:+];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ideasonboard.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:email]
+X-Rspamd-Queue-Id: 0B6BF8676A
 X-Rspamd-Action: no action
 
-On 1/25/26 3:35 AM, Xin Liu wrote:
-> Add support for building an EL2 combined DTB for the hamoa-evk
-> in the Qualcomm DTS Makefile.
+On Mon, Jan 26, 2026 at 11:50:05AM +0200, Svyatoslav Ryhel wrote:
+> пн, 26 січ. 2026 р. о 11:35 Sakari Ailus <sakari.ailus@linux.intel.com> пише:
+> > On Mon, Jan 26, 2026 at 10:34:30AM +0200, Svyatoslav Ryhel wrote:
+> > > Slightly different version of MT9M114 camera module is used in a several
+> > > devices like ASUS Nexus 7 (2012) or ASUS Transformer Prime TF201 and is
+> > > called Aptina MI1040. Only difference found so far is lacking ability to
+> >
+> > s/Only/The only/
+> >
+> > > poll STATUS and COMMAND registers during power on sequence, which causes
+> > > driver to fail with time out error. Add polling flag to diverge models and
+> > > address quirk found in MI1040.
+> > >
+> > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> > > ---
+> > >  drivers/media/i2c/mt9m114.c | 35 ++++++++++++++++++++++++++++-------
+> > >  1 file changed, 28 insertions(+), 7 deletions(-)
+> > >
+> > > diff --git a/drivers/media/i2c/mt9m114.c b/drivers/media/i2c/mt9m114.c
+> > > index 4ec033c0ee84..d96a57ebcad4 100644
+> > > --- a/drivers/media/i2c/mt9m114.c
+> > > +++ b/drivers/media/i2c/mt9m114.c
+> > > @@ -368,6 +368,10 @@ enum {
+> > >   * Data Structures
+> > >   */
+> > >
+> > > +struct mt9m114_model_info {
+> > > +     bool polling;
+> > > +};
+> > > +
+> > >  enum mt9m114_format_flag {
+> > >       MT9M114_FMT_FLAG_PARALLEL = BIT(0),
+> > >       MT9M114_FMT_FLAG_CSI2 = BIT(1),
+> > > @@ -421,6 +425,8 @@ struct mt9m114 {
+> > >
+> > >               struct v4l2_ctrl *tpg[4];
+> > >       } ifp;
+> > > +
+> > > +     const struct mt9m114_model_info *info;
+> > >  };
+> > >
+> > >  /* -----------------------------------------------------------------------------
+> > > @@ -2186,9 +2192,11 @@ static int mt9m114_power_on(struct mt9m114 *sensor)
+> > >        */
+> > >       usleep_range(44500, 50000);
+> > >
+> > > -     ret = mt9m114_poll_command(sensor, MT9M114_COMMAND_REGISTER_SET_STATE);
+> > > -     if (ret < 0)
+> > > -             goto error_clock;
+> > > +     if (sensor->info->polling) {
+> > > +             ret = mt9m114_poll_command(sensor, MT9M114_COMMAND_REGISTER_SET_STATE);
+> > > +             if (ret < 0)
+> > > +                     goto error_clock;
+> > > +     }
+> >
+> > What does the datasheet say, is there a need to do something else instead?
+> > As the polling is there to ensure firmware has done its job, the need
+> > appears to still be there.
 > 
-> The new hamoa-iot-evk-el2.dtb is generated by combining the base
-> hamoa-iot-evk.dtb with the x1-el2.dtbo overlay, enabling EL2-specific
-> configurations required by the platform.
+> MI1040 has no datasheet available and downstream code does not do this
+> polling. I have tested on Nexus 7 which has this camera and it seems
+> to be fully operational without this poling, but as soon it is enabled
+> camera fails will timeout. I suspect that this camera version has some
+> quirk regarding early access, but I cannot back it up by any
+> documentation or additional data.
 > 
-> Signed-off-by: Xin Liu <xin.liu@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index f80b5d9cf1e8..0bbfb385cfa2 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -14,6 +14,10 @@ dtb-$(CONFIG_ARCH_QCOM)	+= apq8094-sony-xperia-kitakami-karin_windy.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-db820c.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-ifc6640.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= hamoa-iot-evk.dtb
-> +
-> +hamoa-iot-evk-el2-dtbs := hamoa-iot-evk.dtb x1-el2.dtbo
-> +
-> +dtb-$(CONFIG_ARCH_QCOM) += hamoa-iot-evk-el2.dtb
+> I have a device with proper version of mt9m114 too and it works with
+> his driver without any major issues.
 
-On a second look, the indentation here is wrong..
+Does the device reply to reads of the MT9M114_COMMAND_REGISTER register
+but never shows the MT9M114_COMMAND_REGISTER_SET_STATE bit being set, or
+does it not reply to reads at all (timeouts on the I2C bus) ?
 
-Konrad
+> > >
+> > >       if (sensor->bus_cfg.bus_type == V4L2_MBUS_PARALLEL) {
+> > >               /*
+> > > @@ -2207,9 +2215,11 @@ static int mt9m114_power_on(struct mt9m114 *sensor)
+> > >        * reaches the standby mode (either initiated manually above in
+> > >        * parallel mode, or automatically after reset in MIPI mode).
+> > >        */
+> > > -     ret = mt9m114_poll_state(sensor, MT9M114_SYS_STATE_STANDBY);
+> > > -     if (ret < 0)
+> > > -             goto error_clock;
+> > > +     if (sensor->info->polling) {
+> > > +             ret = mt9m114_poll_state(sensor, MT9M114_SYS_STATE_STANDBY);
+> >
+> > Ditto.
+> >
+> > > +             if (ret < 0)
+> > > +                     goto error_clock;
+> > > +     }
+> > >
+> > >       return 0;
+> > >
+> > > @@ -2421,6 +2431,8 @@ static int mt9m114_probe(struct i2c_client *client)
+> > >       if (ret < 0)
+> > >               return ret;
+> > >
+> > > +     sensor->info = of_device_get_match_data(dev);
+> >
+> > You can use device_get_match_data() here.
+> 
+> noted
+> 
+> > > +
+> > >       /* Acquire clocks, GPIOs and regulators. */
+> > >       sensor->clk = devm_v4l2_sensor_clk_get(dev, NULL);
+> > >       if (IS_ERR(sensor->clk)) {
+> > > @@ -2539,8 +2551,17 @@ static void mt9m114_remove(struct i2c_client *client)
+> > >       pm_runtime_set_suspended(dev);
+> > >  }
+> > >
+> > > +static const struct mt9m114_model_info mt9m114_models_default = {
+> > > +     .polling = true,
+> > > +};
+> > > +
+> > > +static const struct mt9m114_model_info mt9m114_models_aptina = {
+> > > +     .polling = false,
+> > > +};
+> > > +
+> > >  static const struct of_device_id mt9m114_of_ids[] = {
+> > > -     { .compatible = "onnn,mt9m114" },
+> > > +     { .compatible = "onnn,mt9m114", .data = &mt9m114_models_default },
+> > > +     { .compatible = "aptina,mi1040", .data = &mt9m114_models_aptina },
+> > >       { /* sentinel */ },
+> >
+> > The sentinel entry shouldn't have a comma. Feel free to fix that while at
+> > it.
+> 
+> noted
+> 
+> > >  };
+> > >  MODULE_DEVICE_TABLE(of, mt9m114_of_ids);
+
+-- 
+Regards,
+
+Laurent Pinchart
 
