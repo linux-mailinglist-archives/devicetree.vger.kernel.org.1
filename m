@@ -1,169 +1,202 @@
-Return-Path: <devicetree+bounces-259627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259628-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OCIeCs7Bd2nKkgEAu9opvQ
-	(envelope-from <devicetree+bounces-259627-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 20:34:38 +0100
+	id EBJ9CwfEd2nckgEAu9opvQ
+	(envelope-from <devicetree+bounces-259628-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 20:44:07 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EB588C9A7
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 20:34:37 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA9188CB5D
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 20:44:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 48B923009F30
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 19:33:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B04AF3027943
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 19:41:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D11A928640C;
-	Mon, 26 Jan 2026 19:33:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 043602868A9;
+	Mon, 26 Jan 2026 19:41:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b="Y3KtdntC"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="derieL3L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.nabladev.com (mx.nabladev.com [178.251.229.89])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE1AC27281E;
-	Mon, 26 Jan 2026 19:33:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.251.229.89
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05AA01F4CBC;
+	Mon, 26 Jan 2026 19:41:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769455999; cv=none; b=l4g8v+j2VhbgOCakke3/CjLXow/iqS/maUm+LIXqtSYLm/6SyDxqaOwwR1C10q8Kw1lS/dWUEgaKd4TGZOzsI+omMFf2d5fC7ZhLkj5EqzubXLI0zyLJhNRzfGGiS4PVy87aBx/7td3Uet0RxR18YWELLNENcWkUOHI4Jw1PIBw=
+	t=1769456496; cv=none; b=tszCGxiEoTzYg61xJlPEzeb6XugsR7Vegh9nw9wQWDnq3YCTQ9DN3Ohl9j9RbNoDTgwyBX/p73KYojGsvA/g9WDUC2MxapSdiXfGho6O4uew3d+OTZvjzVPPyc1m4tk2Q86bom3z62IXsMG0j44HLALPKGc57Cm/syfDPFdm7Hw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769455999; c=relaxed/simple;
-	bh=264+Xfb5c4awn+mzb3XEn33nMkHF+cNYJxf99O8WpCE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=RMJfrXGFjd4oeMDG7PsG0WbkWsrtE/Lnoq1kTZs8fbQDw+Qrw+pyz5hHJf8RCrMvV2/Cyn/5P8b8wQiGeh+ALqFeEdJRqbHqXYNKYVA6HZFDuOj9QNI1egoplFJrVB1pM//L8jppyhpIWa4xUhBMnEYZGJglWxFfr8o2IVPMlGA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=Y3KtdntC; arc=none smtp.client-ip=178.251.229.89
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nabladev.com
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8C7A310CB40;
-	Mon, 26 Jan 2026 20:33:11 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
-	s=dkim; t=1769455995;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=wt4OrgVEIcV51CcZvKwLJ3NpZgfF1uIkSphQcpsf+Cg=;
-	b=Y3KtdntCmeXAWNwkilx8KtuOSSR6ibCodG6TqhiDsMDNqKcTcgeKkaMlcQoZxFAgx9NLsk
-	dFYIcxCns5jSTjaaFYtky8wd46Hy1TKGicr0PD5peIHmjVI8JOayhJ37s5x0t6vTcnCLVy
-	tJAHnv0a8xyJKPCiAlRxcjCv4H8I/ZoSFMbbDcD8OvlLlwn2Sk6kGyXJbU1F8VVeY5qvif
-	tcjnkppQEGgHmZWXaEnVsfSq/CorQPwKsz7ryjnX2MS+sBNvplNgtpl/k9c+0JU0IneCdo
-	QHG59G0vIoslHAtYiq2gtBpJMH/qUmiAQImbXkOslbhToepYAy0tSOn/WVr/YQ==
-Date: Mon, 26 Jan 2026 20:33:07 +0100
-From: =?UTF-8?B?xYF1a2Fzeg==?= Majewski <lukma@nabladev.com>
-To: Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>
-Cc: Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, Michael
- Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Shawn
- Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
- <festevam@gmail.com>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2] clk: vf610: Add support for the Ethernet switch
- clocks
-Message-ID: <20260126203307.6076ba9c@wsk>
-In-Reply-To: <7671b833-f823-44cd-b5af-0b473a8ae23e@lunn.ch>
-References: <20260126115349.1750578-1-lukma@nabladev.com>
-	<7671b833-f823-44cd-b5af-0b473a8ae23e@lunn.ch>
-Organization: Nabla
-X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1769456496; c=relaxed/simple;
+	bh=uQFMWGnGGz/UkepHe6qNZM7ssltN76ODEap8qFaeK2s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MaxGYJjD8+uW8iVU+S8U47p4FCiAG158GQF6LzqqlT0RdjfdzTU4ffibIZ/LJNc8n/AtfYuw8821aoPy/uBcBlLnhWILXJlaYOr+xgvnGWb5IzGLKJ5CNq65qZ9X0zs++m32J7MPAbYLypJ5eJ9ArWZkN5k/sKVDVb2wL9i7gcE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=derieL3L; arc=none smtp.client-ip=192.198.163.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1769456494; x=1800992494;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=uQFMWGnGGz/UkepHe6qNZM7ssltN76ODEap8qFaeK2s=;
+  b=derieL3LLtDdLkKo62F/2aghx7RorjhNNvIFNM3y62aJ5uFizAoBe8iu
+   1At6KcH7MVaWC7f/J+n5FVM/nDFpxINAXVofD5cCafOk34W7ylQgBcjRW
+   YQVSKVx/lor3hPrirIzN3FEn8vcMQ70p81nBdw9hpC4gLSzKew0HVXj/o
+   bcjRpAOnEghYpq3zBCpNZzkICk/a9HgkVNRoeCrocxC/Zd/+Bf4u6aApH
+   3PxnOh6h1iQXCcj3EVp8F7SU9ZyXuzS6x3t3jmXz4+t3gUsNXPhJhhRns
+   ElT6aYmdgP1MDzLOoppsA72Bx99NFD6xO8ARm30znAx8xzKbk6Ht1QXTj
+   Q==;
+X-CSE-ConnectionGUID: iROUj1cSSs2gn1LuTof2hQ==
+X-CSE-MsgGUID: cdogRa0CQ4Gqx2hPytNR1g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11683"; a="70545872"
+X-IronPort-AV: E=Sophos;i="6.21,255,1763452800"; 
+   d="scan'208";a="70545872"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jan 2026 11:41:33 -0800
+X-CSE-ConnectionGUID: n0esMp9ySU+Mz1YRzxo6RQ==
+X-CSE-MsgGUID: jseCndPdQO2p/ZZbLSbXCg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,255,1763452800"; 
+   d="scan'208";a="206992580"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+  by orviesa010.jf.intel.com with ESMTP; 26 Jan 2026 11:41:28 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vkSSj-00000000XdK-0FbY;
+	Mon, 26 Jan 2026 19:41:25 +0000
+Date: Tue, 27 Jan 2026 03:41:05 +0800
+From: kernel test robot <lkp@intel.com>
+To: Kaustabh Chakraborty <kauschluss@disroot.org>,
+	Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	MyungJoo Ham <myungjoo.ham@samsung.com>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	Sebastian Reichel <sre@kernel.org>,
+	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Shuah Khan <skhan@linuxfoundation.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org, linux-rtc@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	Kaustabh Chakraborty <kauschluss@disroot.org>
+Subject: Re: [PATCH v2 06/12] mfd: sec: add support for S2MU005 PMIC
+Message-ID: <202601270307.Ds4yus7I-lkp@intel.com>
+References: <20260126-s2mu005-pmic-v2-6-78f1a75f547a@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260126-s2mu005-pmic-v2-6-78f1a75f547a@disroot.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nabladev.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[nabladev.com:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259627-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	HAS_ORG_HEADER(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	TAGGED_FROM(0.00)[bounces-259628-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[nabladev.com:+];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lukma@nabladev.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,nxp.com,baylibre.com,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,nabladev.com:email,nabladev.com:dkim,denx.de:email]
-X-Rspamd-Queue-Id: 6EB588C9A7
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
+X-Rspamd-Queue-Id: CA9188CB5D
 X-Rspamd-Action: no action
 
-Hi Andrew,
+Hi Kaustabh,
 
-> On Mon, Jan 26, 2026 at 12:53:49PM +0100, Lukasz Majewski wrote:
-> > From: Lukasz Majewski <lukma@denx.de>
-> > 
-> > The vf610 device has built in the MoreThanIP L2 switch. For proper
-> > operation it is required to enable ESW and MAC table lookup clocks.
-> > 
-> > The MAC table spans from 0x400E_C000 for 0x4000 and it is necessary
-> > to provide clocks for each AIPS1-"slot", which size is 0x1000
-> > (hence four separate entries).
-> > 
-> > Those can be enabled via clock gating CCM_CCGR10 register
-> > (0x4006_B068).
-> > 
-> > This patch also adds VF610_CLK_ESW and VF610_CLK_ESW_MAC_TAB{0123}
-> > macros definitions for L2 switch.
-> > 
-> > The VF610_CLK_END has been removed as its number had to be increased
-> > when MTIP L2 switch clocks were added.
-> > 
-> > Signed-off-by: Lukasz Majewski <lukma@nabladev.com>
-> > ---
-> > Changes for v2:
-> > - Squash clock DT bindings to this single patch
-> > - Replace VF610_CLK_END with VF610_CLK_ESW_MAC_TAB3 + 1  
-> 
-> I'm not sure this is the correct thing to do. Normally these _END
-> values are there so you don't need to change any code when new things
-> are added to the list. 
-> 
-> Why not just keep VF610_CLK_END at the end, with the value of 196?
-> 
->     Andrew
+kernel test robot noticed the following build errors:
 
-Conor (on CC) explicitly asked to remove VF610_CLK_END:
-"[PATCH] dt-bindings: clock: vf610: Add definitions for MTIP L2 switch"
+[auto build test ERROR on ca3a02fda4da8e2c1cb6baee5d72352e9e2cfaea]
 
------->8------------
-> -#define VF610_CLK_END			191  
+url:    https://github.com/intel-lab-lkp/linux/commits/Kaustabh-Chakraborty/dt-bindings-leds-document-Samsung-S2M-series-PMIC-flash-LED-device/20260126-031457
+base:   ca3a02fda4da8e2c1cb6baee5d72352e9e2cfaea
+patch link:    https://lore.kernel.org/r/20260126-s2mu005-pmic-v2-6-78f1a75f547a%40disroot.org
+patch subject: [PATCH v2 06/12] mfd: sec: add support for S2MU005 PMIC
+config: riscv-allyesconfig (https://download.01.org/0day-ci/archive/20260127/202601270307.Ds4yus7I-lkp@intel.com/config)
+compiler: clang version 16.0.6 (https://github.com/llvm/llvm-project 7cbf1a2591520c2491aa35339f227775f4d3adf6)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260127/202601270307.Ds4yus7I-lkp@intel.com/reproduce)
 
-If end is modifiable, it is removable. If you need the define for the
-driver, please move it there.
-------8<------------
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202601270307.Ds4yus7I-lkp@intel.com/
 
-I just follow what he asked.
+All errors (new ones prefixed by >>):
+
+>> drivers/mfd/sec-irq.c:218:7: error: expression is not an integer constant expression
+           case irqf_regs[0]:
+                ^~~~~~~~~~~~
+   drivers/mfd/sec-irq.c:218:7: note: initializer of 'irqf_regs' is not a constant expression
+   drivers/mfd/sec-irq.c:204:21: note: declared here
+           const unsigned int irqf_regs[] = {
+                              ^
+   drivers/mfd/sec-irq.c:220:7: error: expression is not an integer constant expression
+           case mask_regs[0]:
+                ^~~~~~~~~~~~
+   drivers/mfd/sec-irq.c:220:7: note: initializer of 'mask_regs' is not a constant expression
+   drivers/mfd/sec-irq.c:210:21: note: declared here
+           const unsigned int mask_regs[] = {
+                              ^
+   2 errors generated.
+
+
+vim +218 drivers/mfd/sec-irq.c
+
+   200	
+   201	static unsigned int s2mu005_irq_get_reg(struct regmap_irq_chip_data *data,
+   202						unsigned int base, int index)
+   203	{
+   204		const unsigned int irqf_regs[] = {
+   205			S2MU005_REG_CHGR_INT1,
+   206			S2MU005_REG_FLED_INT1,
+   207			S2MU005_REG_MUIC_INT1,
+   208			S2MU005_REG_MUIC_INT2,
+   209		};
+   210		const unsigned int mask_regs[] = {
+   211			S2MU005_REG_CHGR_INT1M,
+   212			S2MU005_REG_FLED_INT1M,
+   213			S2MU005_REG_MUIC_INT1M,
+   214			S2MU005_REG_MUIC_INT2M,
+   215		};
+   216	
+   217		switch (base) {
+ > 218		case irqf_regs[0]:
+   219			return irqf_regs[index];
+   220		case mask_regs[0]:
+   221			return mask_regs[index];
+   222		}
+   223	
+   224		return base;
+   225	}
+   226	
 
 -- 
-Best regards,
-
-Lukasz Majewski
-
---
-Nabla Software Engineering GmbH
-HRB 40522 Augsburg
-Phone: +49 821 45592596
-E-Mail: office@nabladev.com
-Managing Director : Stefano Babic
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
