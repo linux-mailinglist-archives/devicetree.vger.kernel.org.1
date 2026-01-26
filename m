@@ -1,69 +1,91 @@
-Return-Path: <devicetree+bounces-259566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259568-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KJASNemPd2m9hgEAu9opvQ
-	(envelope-from <devicetree+bounces-259566-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:01:45 +0100
+	id WJ37GOyQd2m9hgEAu9opvQ
+	(envelope-from <devicetree+bounces-259568-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:06:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3744C8A72F
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:01:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43BE08A781
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:06:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 942213011BEC
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:01:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 013EE3011121
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:06:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3FC8283FC8;
-	Mon, 26 Jan 2026 16:01:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E7882C235E;
+	Mon, 26 Jan 2026 16:06:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lv48+hpv"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gcTs2ZpL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F4DA23EAB0;
-	Mon, 26 Jan 2026 16:01:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7542525771;
+	Mon, 26 Jan 2026 16:05:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769443295; cv=none; b=rCkP6pb6Oc2e2haqiKCLO/RlWSskMj46xXPNB7L0P2mozX8S2X9pfRLGQar4Z9KH0VE6Mk8n6VsscSkF0ewkwRJbD/W14Js0+i/BZVLXh219AG31WxevL4ljW97kOSD1lTBk6HF6f3lyDfiKQGx3bGXMeF61EYke/xZpgLdjqYw=
+	t=1769443561; cv=none; b=h3tw6Xx3RL+PZSC8Abs/It64CzRzYq+T/1iszMQuPmV0YzrogVa5RsjysbIvafkWaWl9idh8saCt/ir7UVK/PqlNXm9SJGCccjZ99wJrLDec0SR5ucZ4CnhUUi1Csv/tab4nxeoNwAgiM+GKtdkYm0m3MHbnFC4nLDbz5pBnL/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769443295; c=relaxed/simple;
-	bh=vbKOKo1zqwByHLjQtZsnbrccfQFl5y8geWYwihFRq24=;
+	s=arc-20240116; t=1769443561; c=relaxed/simple;
+	bh=j9Ow1cCCPEzCclIAsCuLpt7K+tD2MrNfDfh+tucsqm4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aTpqe4hXV3jO7dT4v8CEgZ7D9HA3erCFb+uf0hEbICoBL3Xet0J7C5ym4lAP3xTTaIbuS0GEKIuOCj+LuFbPyaYTuZxlPD4q69Nvc/TnMzXEkjmZPfBbr6ShMBOVKFeoGmUMQVUblEBCh+tHPyf8rOabs9+mxQX+nIqxjBgPtL4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lv48+hpv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA1FAC116C6;
-	Mon, 26 Jan 2026 16:01:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769443295;
-	bh=vbKOKo1zqwByHLjQtZsnbrccfQFl5y8geWYwihFRq24=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Lv48+hpvfTsHWMpL2abDkYYBE7hAds8hj8Zp5X6/XmVEmhic146EMnkENPQuRymhj
-	 ZRDrCiDmBFyXzlfWKA/+BpJSBX1IFnuz3yFbv0Aga9FAzsY9lPhGKKgacbQAXlAUl1
-	 4LKJyr8N9Ri/NmncXH7qkWRo/fVK+c2qByK0m/PkRMeUcEv33AsYsgnPZOpigfLVPw
-	 2DxDngwxhwfVPspu2PvUQnrf51kjIyeAf8ZSb6R/CxmqMyHCBbniSAMnZv2BIXU+R5
-	 mgnwO6u4E6jEBck2yVdqf4f4BghaHdP8aDdDGhDvqyW7M69MBHIDKnnpAzV5dMyXPI
-	 NnIIw93NUqj2Q==
-Date: Mon, 26 Jan 2026 16:01:27 +0000
-From: Simon Horman <horms@kernel.org>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: dan.carpenter@linaro.org, robh@kernel.org, kuba@kernel.org,
-	festevam@gmail.com, ghennadi.procopciuc@oss.nxp.com,
-	alexandre.torgue@foss.st.com, linux-kernel@vger.kernel.org,
-	andrew+netdev@lunn.ch, shawnguo@kernel.org, mbrugger@suse.com,
-	mcoquelin.stm32@gmail.com, linaro-s32@linaro.org,
-	davem@davemloft.net, s.hauer@pengutronix.de, edumazet@google.com,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
-	conor+dt@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org,
-	Frank.li@nxp.com, chester62515@gmail.com, netdev@vger.kernel.org,
-	kernel@pengutronix.de, pabeni@redhat.com, jan.petrous@oss.nxp.com,
-	linux-stm32@st-md-mailman.stormreply.com, s32@nxp.com
-Subject: Re: [v4,1/3] net: stmmac: s32: use a syscon for
- S32_PHY_INTF_SEL_RGMII
-Message-ID: <aXeP1y7cK0XRx3Wo@horms.kernel.org>
-References: <8f2139e8adf02b485a4c84d558fc23f78cf04add.1769195864.git.dan.carpenter@linaro.org>
- <20260126152430.1390514-1-horms@kernel.org>
- <aXeJYo-0iiNuXVGH@shell.armlinux.org.uk>
+	 Content-Type:Content-Disposition:In-Reply-To; b=CSE+//031da0EBRpQFSkmy0tAaFbn3NsgbyeErtyoLMIh2npp82e4eciBfUPtUjH3Xle3/If8cW6fX2c7xDBQAWptuOddjSVGb7ilirkljhpvdBBv0qWL3Z5F8z/FgYSVqQlIEvWXhoZG8tYTYXQAjbPFhK5+2aiIE2pDA6vD78=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gcTs2ZpL; arc=none smtp.client-ip=192.198.163.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1769443560; x=1800979560;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=j9Ow1cCCPEzCclIAsCuLpt7K+tD2MrNfDfh+tucsqm4=;
+  b=gcTs2ZpLgL0spRQTKNgVwPTlvWLgNnCJ6XohDG1ryqJ6iV0Up82Hw3v3
+   qk1YEM/5WWm3j8bq9RK4Wtgucj5RdNN589uu3Qc58EKC4Izqaqf3lfERC
+   SKy+IJGtN8T+495eCOsAlKEKWXS8Ot2kDXXCGxdQNM2199AKV1u8s0YfM
+   o689qBGNzMl9QGHpDvzC7Faf4HFgC3/9YPdDgYI88Q5KTOklfBjMt9NwS
+   kWCnUdMF+ChUMzYcBQlu820vJNeT+5iMs7KA9jZ1s9ocmz4FQ/ZYPlH5o
+   Jh1Si2lBv6ThP8hEjS8xhjKBdTUQhzzJeG7Kg94tZgoiMH4qlEhiQNz2A
+   Q==;
+X-CSE-ConnectionGUID: 8HkvLIM0QxySIObrJh2yAw==
+X-CSE-MsgGUID: 5TUuPOrkRRO3GbO7WVQtEw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11683"; a="81341499"
+X-IronPort-AV: E=Sophos;i="6.21,255,1763452800"; 
+   d="scan'208";a="81341499"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jan 2026 08:05:59 -0800
+X-CSE-ConnectionGUID: 1NSz6S9gR9C158O6rmMjLQ==
+X-CSE-MsgGUID: xQoc8Xx2S2iueyXkwU93Xw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,255,1763452800"; 
+   d="scan'208";a="212253781"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.122])
+  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jan 2026 08:05:55 -0800
+Date: Mon, 26 Jan 2026 18:05:52 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>
+Subject: Re: [PATCH v5 2/8] iio: core: add fixed point parsing with 64-bit
+ parts
+Message-ID: <aXeQ4LHQOdy3K1tA@smile.fi.intel.com>
+References: <20260123-adf41513-iio-driver-v5-0-2dce812a2dda@analog.com>
+ <20260123-adf41513-iio-driver-v5-2-2dce812a2dda@analog.com>
+ <aXdUvRZ9NmP5Nh95@smile.fi.intel.com>
+ <byitgzjli5gsq5v66topve7ip3inkk2udwhuihjdp6bknnkmos@tv226l7tek7s>
+ <aXdtpkL5QUhhB_hh@smile.fi.intel.com>
+ <ty6hptfh65k2rkqo6c6mg5z6vismuvyqsu3emvqarr2rbhpvcz@kn6tzjk5xi2o>
+ <aXd_0uNVm8c_Fhwd@smile.fi.intel.com>
+ <n2ms3esyxlegqibu4nluut3x4c4bkjxt5xrcd4gw35xxb2tipb@a2v73y25kroc>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,100 +94,187 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aXeJYo-0iiNuXVGH@shell.armlinux.org.uk>
+In-Reply-To: <n2ms3esyxlegqibu4nluut3x4c4bkjxt5xrcd4gw35xxb2tipb@a2v73y25kroc>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-259566-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	URIBL_MULTI_FAIL(0.00)[sea.lore.kernel.org:server fail,intel.com:server fail,smile.fi.intel.com:server fail];
+	TAGGED_FROM(0.00)[bounces-259568-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[linaro.org,kernel.org,gmail.com,oss.nxp.com,foss.st.com,vger.kernel.org,lunn.ch,suse.com,davemloft.net,pengutronix.de,google.com,lists.infradead.org,lists.linux.dev,nxp.com,redhat.com,st-md-mailman.stormreply.com];
-	RCPT_COUNT_TWELVE(0.00)[29];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[horms@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[horms.kernel.org:mid,linux.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 3744C8A72F
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim,smile.fi.intel.com:mid]
+X-Rspamd-Queue-Id: 43BE08A781
 X-Rspamd-Action: no action
 
-On Mon, Jan 26, 2026 at 03:33:54PM +0000, Russell King (Oracle) wrote:
-> On Mon, Jan 26, 2026 at 03:24:30PM +0000, Simon Horman wrote:
-> > This is an AI-generated review of your patch. The human sending this
-> > email has considered the AI review valid, or at least plausible.
-> > 
-> > For local reproduction steps see https://netdev-ai.bots.linux.dev/ai-local.html
-> > ---
-> >     net: stmmac: s32: use a syscon for S32_PHY_INTF_SEL_RGMII
-> > 
-> > This commit adds syscon/regmap support for accessing the GMAC_0_CTRL_STS
-> > register on s32 chipsets, while maintaining backwards compatibility with
-> > the existing direct MMIO approach for older device trees.
-> > 
-> > > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
-> > > index 5a485ee98fa7..2e6bb41f49e1 100644
-> > > --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
-> > > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
-> > 
-> > [ ... ]
-> > 
-> > > @@ -40,7 +44,10 @@ struct s32_priv_data {
-> > >
-> > >  static int s32_gmac_write_phy_intf_select(struct s32_priv_data *gmac)
-> > >  {
-> > > -	writel(S32_PHY_INTF_SEL_RGMII, gmac->ctrl_sts);
-> > > +	if (gmac->ctrl_sts)
-> > > +		writel(S32_PHY_INTF_SEL_RGMII, gmac->ctrl_sts);
-> > > +	else
-> > > +		regmap_write(gmac->sts_regmap, gmac->sts_offset, S32_PHY_INTF_SEL_RGMII);
-> > 
-> > Should the regmap_write() return value be checked here? The function
-> > returns int and the caller s32_gmac_init() checks the return value
-> > expecting errors to be propagated. For comparison, dwmac-sun55i.c in
-> > sun55i_gmac200_set_syscon() does check regmap_write() return value:
-> > 
-> >     ret = regmap_write(regmap, SYSCON_REG, reg);
-> >     if (ret < 0)
-> >         return dev_err_probe(dev, ret, "Failed to write to syscon\n");
-> 
-> AI is wrong on this last line - s32_gmac_write_phy_intf_select() is
-> called from s32_gmac_init(), which is called from plat_dat->init.
-> 
-> plat_dat->init is called from two paths:
-> 
-> 1. stmmac_pltfr_probe() -> stmmac_dvr_probe() -> plat_dat->init()
-> 
-> 2. stmmac_resume() -> plat_dat->resume() -> stmmac_plat_resume() ->
->    stmmac_pltfr_init() -> plat_dat->init()
-> 
-> In the resume path, it is not appropriate to use dev_err_probe()
-> because we're not in the probe path.
+On Mon, Jan 26, 2026 at 03:20:03PM +0000, Rodrigo Alencar wrote:
+> On 26/01/26 04:53PM, Andy Shevchenko wrote:
+> > On Mon, Jan 26, 2026 at 02:26:20PM +0000, Rodrigo Alencar wrote:
+> > > On 26/01/26 03:35PM, Andy Shevchenko wrote:
+> > > > On Mon, Jan 26, 2026 at 12:42:53PM +0000, Rodrigo Alencar wrote:
+> > > > > On 26/01/26 01:49PM, Andy Shevchenko wrote:
+> > > > > > On Fri, Jan 23, 2026 at 03:53:07PM +0000, Rodrigo Alencar via B4 Relay wrote:
 
-Hi Russell,
+...
 
-I agree that using dev_err_probe() is not appropriate here.
-And, FWIIW, I took that part to be an illustration that
-sun55i_gmac200_set_syscon() handles a similar case,
-rather than a suggestion of how to handle it here.
+> > > > > > > +static int __iio_str_to_fixpoint64(const char *str, u64 fract_mult,
+> > > > > > > +				   s64 *integer, s64 *fract, bool scale_db)
+> > > > > > > +{
+> > > > > > > +	u64 i = 0, f = 0;
+> > > > > > > +	char *end;
+> > > > > > > +	int digit_count, precision = ffs(fract_mult);
+> > > > > > > +	bool negative = false;
+> > > > > > > +
+> > > > > > > +	if (str[0] == '-') {
+> > > > > > > +		negative = true;
+> > > > > > > +		str++;
+> > > > > > > +	} else if (str[0] == '+') {
+> > > > > > > +		str++;
+> > > > > > > +	}
+> > > > > > > +
+> > > > > > > +	i = simple_strtoull(str, &end, 10);
+> > > > > > > +	digit_count = end - str;
+> > > > > > > +	if (digit_count > 20)
+> > > > > > > +		return -EINVAL;
+> > > > > > 
+> > > > > > Not really. If we are talking about decimal (only) cases we need to also count
+> > > > > > leading 0:s.
+> > > > > > 
+> > > > > > 0000000000000000000000000000000025 is still 25, no overflow.
+> > > > > > 
+> > > > > > That's why I recommend to have a helper, maybe for now locally here, like
+> > > > > > 
+> > > > > > int safe_strtoull(..., unsigned long long *res)
+> > > > > > {
+> > > > > > 	...
+> > > > > > }
+> > > > > 
+> > > > > Are you suggesting to not use simple_strtoull then?
+> > > > 
+> > > > Nope, I suggest to do an additional step before checking for the range.
+> > > 
+> > > You mean, conditionally skip leading 0's when parsing the integer part?
+> > > e.g.
+> > > 
+> > > /*function entry and arg check */
+> > > while(*str == '\0')
+> > > 	str++;
+> > > /* then call simple_strtoull() */
+> > 
+> > Not skipping, but counting them.
+> > 
+> > > simple_strtoull() is not overflow-safe,
+> > 
+> > Yes, I know. That's why all these additional checks are required,
+> > 
+> > > as it does not use
+> > > check_mul_overflow() or check_add_overflow(), only checking the
+> > > amount of digits is not enough.
+> > 
+> > Why? Can you elaborate how checking amount of digits is different to
+> > check_mul_overflow()?
+> 
+> consider U64_MAX = 18_446_744_073_709_551_615 as the limit:
+> - 19_000_000_000_000_000_000 contains the same amount of digits but overflows.
+> - 18_446_744_073_710_000_000 contains the same amount of digits but overflows.
 
-But at any rate, I think the key question is should the case
-where regmap_write() returns an error be handled in
-s32_gmac_write_phy_intf_select() (by some means)?
+Yes, the first digits give up to 3 additional bits on top of 64-bit.
+
+> to catch those cases, we need to check for the overflow, everytime we read a
+> character and accumulate:
+> 
+> u64 acc;
+> 
+> while(isdigit(*str))
+> 	if (check_mul_overflow(acc, 10, &acc) ||
+> 	    check_add_overflow(acc, *str - '0', &acc))
+> 		return -EOVERFLOW;
+> 
+> *res = acc;
+> 
+> acc can get weird results if not checked. 
+> 
+> > 
+> > > Previous implementation of fixpoint parsing didn't care about that.
+> > 
+> > Do we have test cases for the current implementation?
+> 
+> No, I am adding a kunit test in this patch.
+> 
+> > > > > Understood, leading zeros can be ignored only when parsing the integer 
+> > > > > part. Also, would be nice to have truncation of the fractional part
+> > > > > while doing the parsing. How about:
+> > > > > 
+> > > > > static int iio_safe_strtoull(const char *str, const char **end,
+> > > > > 			     size_t max_chars, u64 *res)
+> > > > 
+> > > > > - max_chars = 0: ignores leading 0's and process all digits
+> > > > > - max_chars > 0: process only initial max_chars digits and ignores the rest
+> > > > 
+> > > > I'm not sure why we would need that. It should parse the whole line until the
+> > > > first invalid character or overflow.
+> > > 
+> > > "process all digits" and "ignores the rest" would be for digits only, so it
+> > > would stop until the first invalid character is found. I suppose proper
+> > > overflow check is implemented with check_mul_overflow() and check_add_overflow(),
+> > 
+> > I don't see the need. Amount of digits defines the order of the number (in
+> > power-of-ten).
+> > 
+> > > while iterating over the characters and accumulating the value.
+> > 
+> > The problem that you can refer to is the corner case when the first
+> > (most significant digit(s)) are already give an overflow while being
+> > inside the allowed length. But it also can be checked.
+> > 
+> 
+> Yes. Not sure how to do that without checking every digit again.
+> 
+> > 
+> > The benefit of simple_strto*() over kstrto*() that they do not require
+> > a temporary buffer and work over constant data (always).
+> 
+> Agreed.
+>  
+> > If you see a way how to refactor lib/kstrtox.c and lib/vsprintf.c to have
+> > an implementation there directly that may operate over constant buffers,
+> > I will be glad to help with it. That would be good for existing cases,
+> > such as Intel QAT driver, and any newcomers. I actually don't know why
+> > the heck kstrto*() were made against non-constant buffers. Perhaps to
+> > avoid this 'end' parameter...
+> 
+> That would be out of the scope of this patch.
+
+Hmm... But if not doing that we will end up with a code duplication in one or
+another form. The whole purpose of the patch is to avoid duplication.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
