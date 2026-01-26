@@ -1,54 +1,54 @@
-Return-Path: <devicetree+bounces-259346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259347-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CEvIDI4Hd2lGawEAu9opvQ
-	(envelope-from <devicetree+bounces-259346-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 07:19:58 +0100
+	id cISjCPcHd2lGawEAu9opvQ
+	(envelope-from <devicetree+bounces-259347-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 07:21:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 410CD846FC
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 07:19:57 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C0808473E
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 07:21:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2C62230013AF
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 06:19:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6D2193032CFC
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 06:19:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C285826FA5A;
-	Mon, 26 Jan 2026 06:19:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80F0E2737F9;
+	Mon, 26 Jan 2026 06:19:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b="GARzBEcd"
+	dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b="MCgL2Gxo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from PH0PR06CU001.outbound.protection.outlook.com (mail-westus3azon11011020.outbound.protection.outlook.com [40.107.208.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 508C727055D;
-	Mon, 26 Jan 2026 06:19:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD3A42701B8;
+	Mon, 26 Jan 2026 06:19:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.208.20
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769408390; cv=fail; b=eYTL+Wz+VpWvEGOKVKZtIaPSVYqFVNq4ea1rftNkrzyl85SwONrX2ySJcZqgimcFf8qi/cIXv/0rYh8fspSyK2/K13ThH9ABvmZXnOPsO/fcSMbNTiVhFfTLkp7LIsdZVg2rXzAZLD9myPgp2EPPRomb+nNJubV+r982EAuD/kk=
+	t=1769408392; cv=fail; b=NkOxtO+W5EdCQpmeRGCOKl1uiDs22LitQxI7v+O6z/4cEDU18YMrUTEwVKMsgJtaOui7PCYzsLmkDAun8wQeXdNHhhiMqQdKXlumkkG06FGVNJqExqsLDx3u0+iUIqR1RmY2oPL9xUfK0Uk94CVAHi2yPypDtdwI87uMfOwQEWA=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769408390; c=relaxed/simple;
-	bh=2GspZRMk6nnv4EG6nCDWgIeaw7K4teIwUhkQPJtQTJk=;
+	s=arc-20240116; t=1769408392; c=relaxed/simple;
+	bh=l7BJbM4x+HqaFw8ikNBk9V5yXubPMDY2N3vV5xIzhjQ=;
 	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=LyW58k7dyJT7kQ/GOPamC+DmIaST7AThFAoPdjjc2SBPVXHIb6+YR7xQMLmeYfHSJeZVSrVvYTLOHbmq0GfdKiF7oNljFJYnw8wmwh9fv1E4VmyZpTJRbW9UOeNUApcvOtFkn6F6QZ94z3XV1LA7ezwbplRtO9sxmqOCcpHmXc4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com; spf=pass smtp.mailfrom=altera.com; dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b=GARzBEcd; arc=fail smtp.client-ip=40.107.208.20
+	 Content-Type:MIME-Version; b=qTLfwExxS9kg9weKQG+Rwd8xlZ15gnBE3iwjKq+ASNqV4+82Yt80NCvce/2wP+wlgNStfjOcJwzx0nxmkhqTmn/000pb6+Q1J5RkVzqhaPvZQyKGiAehcGtOzbXsLw20Xz/bK/Nuj9SfRtms52xbWRPxTxXa4xjCcXXbTy+DLRA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com; spf=pass smtp.mailfrom=altera.com; dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b=MCgL2Gxo; arc=fail smtp.client-ip=40.107.208.20
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=altera.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=S1Kqhv012ZLE/S5yT5EB3TDPyl0FeZu0lzclOy1BH62gDKqkK1JfvvDXt4Pxc7Dwdi+dpRv5plwqsLnTFOB6BlwalW6BSg6QMaFU/cJzXIJ4xMvjFqIIB6INEyrni18PiGxsjyYrhChTIqnDLC4YaVKFwRrRXtzek8sWUdYZ3r4NsMTZ6a8cxsQnkxtaXGExR1U1w+1Ru6qI+O2LvGl/uozmvSHXsOaOYrg5aA4TuqJthdrrxPsUGyZR1WG4qQg35vrVH5ZGypbf/wFX4ZLLbRBVpBfNIePwCVXgyF4K9tu+HU7EXgqty99eu0VXqzF8MVD34ETP40f+B/vPqubrAw==
+ b=bcKLrb3LZXg7e/aVvFtrMrd8bUEEVEVnaO08rGCfL1IU5UAXtpEEbkeSrOyO5kZiXAqCfQYOl0qOWjuttzSUF5zUG7PlDZ6/tkA5NytZku1/xfORoQPljkHbGsArPrzR579Ia6JHSyp1Svx4d0ihI7DEi+xQTXmLkUZZDSrwskWnflOSmBrM0Pi8vZPark2pkR+bCf46oeO2xUYDtF2S1DebuMfVoGcomNFksuSWrCa9C+PFFFKkGGL4/0vRG2G/4d1d+hAKxGrqYQN/fE4+lfWCpY63/orahjYx+bMX0lripyQdBjFWeh0WdVhuu5z16VHauc/ZGdbYv3UEe+I9PQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JC/s3dq7XCPqX5kMawJm4S2bSDJrHfHwcn/wHTKzycg=;
- b=wA2nF4IvOXCPvwThEpt6P2+2ck+6/kuqDFQ7e1C0r+a7T8g4qa0TQZVZQlJliyToFjjyQacm7x+rEMjvuTZ9pbSQb6WI9U+Pimn1SQNW1nq9CMjFhwOhZxJIdMJvuAxQz750ZtOTrZIm9bV6MXP0cQTKsglTjj+5zBjstX7QX4xVCtnhbP34px58TdEIxnHIJmlvDIcgXWXniZCzrn5fZ/t09j2vcTTMsxnF7Q4S4TxyKQ2ECl+PmOA/Pcncl/1j/aP4EMR63EEDkZ9A+4qM3wm/XM3cDOKjUkd/cqGFJvtuF8rsUhGw3zZuNmnm0xVWGP3+gbMxWm0XMgPjXk7bCg==
+ bh=RtivHPwdGnhQrrsH1QVf9uO+aKUXW1wFpzKcmicqEHQ=;
+ b=HH70K39ZfQ8buwsLh8xe+aNAb3LTDq2iGryUOhzX+toLBSbN8ZZ45CrB6/WUd9HxB0EbMxr4Vs4zeCtbcr/bq5HciIMb9mGqgq4zvVFG8GsuTvP0LKTai2rB2iQEwevO2wfDJThOWHO1AagRtKp0rzp/wNuiD4/oOAd+vUpAOdhbi1v16leOYYNXy5cNJzUeKJmct9eVtvsjrOH6sMHJV9qOQP50XhYwaqHawvGVfD8s6pk+SsAmIoWDdlL4OKI15VIXXD2wrfXtKQ1MI2CMMhJo0KLN9bfvHfXdeFhtW8BlggwmytyXHFyV4JeayYjTQZeeJsvrb1CZDeNWBrLbaQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=altera.com; dmarc=pass action=none header.from=altera.com;
  dkim=pass header.d=altera.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=altera.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JC/s3dq7XCPqX5kMawJm4S2bSDJrHfHwcn/wHTKzycg=;
- b=GARzBEcdamW3ljGdsGbikCH2IBQiIOmhu0WKGgEEVN+Uk9sOjZpl76213zOwDwFhtFNBA0FQBwU+ar7KIdSEaXTdZSQRtc2O4KyN9ol/4c0A6AruFXyiKaB2pXL4+yKek1la/YJSB7Dv+rxDzPUJ9FyZnTsvv8aIEigjHCYjLuZWLczGcS8HqJz8KJm+G+mKuWMOQIiFoBBDupZb1JHmt4/20bg948Z9db3BXB6MYFONOunoFGvT7HIERw7Zn/Ila/2CTY5HVVNXY7DfO+LPqaOhNHbyGiQg7oxDMyWBLc1dzo1TFf1twKhEfMoAfRS4rAZ9RLk7Ksz8BwxTPOGgBQ==
+ bh=RtivHPwdGnhQrrsH1QVf9uO+aKUXW1wFpzKcmicqEHQ=;
+ b=MCgL2GxoUORYJWFYEpmz4FiRe503nVmtFAbrslJ0hlfin3D7WTMfSOnz+S5UUYFLTEfvW9NCkZ1L0bjlmXYxsw7s9yKlr7Tve3IpGVrTnYcq1/dvKYZFefsojIsYtBtNRv+55aHxHQP5XBTHOBbvxwqDeqRyikfM3XzBr01laXw3knin5o9poHv1RISa0BNtnvEfTDAr2He0agI717lo80hgrFhFjcPcrMxgeldIPbgqrTWedOBxC155Mdy1FsVEtEFErT6JWYCdaX28MtIOhtxEYuOO5QudCXlP3QlKIj+7GMsWH2tgfAUqStWbsu0NkKuGtngpGMqaTssaSYZOpA==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=altera.com;
 Received: from SA2PR03MB5947.namprd03.prod.outlook.com (2603:10b6:806:11f::17)
@@ -59,7 +59,7 @@ Received: from SA2PR03MB5947.namprd03.prod.outlook.com (2603:10b6:806:11f::17)
 Received: from SA2PR03MB5947.namprd03.prod.outlook.com
  ([fe80::374b:5d3a:d0b0:31f2]) by SA2PR03MB5947.namprd03.prod.outlook.com
  ([fe80::374b:5d3a:d0b0:31f2%3]) with mapi id 15.20.9542.010; Mon, 26 Jan 2026
- 06:19:43 +0000
+ 06:19:44 +0000
 From: tzeyee.ng@altera.com
 To: Dinh Nguyen <dinguyen@kernel.org>,
 	Rob Herring <robh@kernel.org>,
@@ -67,9 +67,9 @@ To: Dinh Nguyen <dinguyen@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v5 1/2] dt-bindings: altera: Add fallback compatible for Stratix 10 SoCDK eMMC variant
-Date: Sun, 25 Jan 2026 22:19:39 -0800
-Message-ID: <96b91576e48e0195ec7b11da08b9ef273354c24b.1769407657.git.tzeyee.ng@altera.com>
+Subject: [PATCH v5 2/2] arm64: dts: socfpga: stratix10: Add emmc support
+Date: Sun, 25 Jan 2026 22:19:40 -0800
+Message-ID: <b8945b5bd0c62d36b353bdf0587b53e95dfc571b.1769407657.git.tzeyee.ng@altera.com>
 X-Mailer: git-send-email 2.43.7
 In-Reply-To: <cover.1769407657.git.tzeyee.ng@altera.com>
 References: <cover.1769407657.git.tzeyee.ng@altera.com>
@@ -86,159 +86,422 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: SA2PR03MB5947:EE_|SA6PR03MB7685:EE_
-X-MS-Office365-Filtering-Correlation-Id: b1693a70-e9cf-48a8-84ee-08de5ca2e360
+X-MS-Office365-Filtering-Correlation-Id: f4678e82-b548-4a60-eeae-08de5ca2e5db
 X-MS-Exchange-AtpMessageProperties: SA
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?xFVl39hhOuMUoPoGBRg+RJkd+69Z0WRO8/nY+HZDnsN0C0ECazx7EUHlCDsk?=
- =?us-ascii?Q?K7sQkV7mdlrPrByb8d/piXG33kltUmYpgjGUz4RWdfzPwdnCxFaOO10z2rGj?=
- =?us-ascii?Q?fGgih1nnKlLbuxKsa46eQoXEksrVMG4PtIApgGS99bffXcfbagy87R+7Rwz6?=
- =?us-ascii?Q?fxkehHmYKAFrdBPx6NNqmiQlLMxSw3X9t61M0OW7FvVYjoo2ZYf6Y5TIb3FC?=
- =?us-ascii?Q?f87XhD2zJEeRUlbzvLf7t+RT6sE5QVfHNzkSGpg0sslls7+1T0Ww/yT47Ge1?=
- =?us-ascii?Q?9POcVBS7v3+0doX+hel0dH4ughahSfyyRT9XM2MImu2IDnO0e84vcONuejPC?=
- =?us-ascii?Q?XvlY3n/DjWBnYI0s4wb4bqz6arJ0L9163MpwUXnlU00Siby4RW6GLBopojnX?=
- =?us-ascii?Q?lrYIBTUEJ7xcJV2DDkMgV2S5YzOlVgY1VCG9GoDgnGBuOYPhCr5+vW/ZS1tZ?=
- =?us-ascii?Q?f2zMJcI9CgAHzkPPhkBts0bzdxJ/zkwzVNKboaT4ZJMvE8bEG+v4HLGUKSDz?=
- =?us-ascii?Q?pNICv7XvI/YvvlDN6fH3b9TT1a2l7i4n4Z0BMEQYRPtcXLoVnlR6PCHj2PqQ?=
- =?us-ascii?Q?tHWJkyvK/3ol60tufHy7RGy0AN95QgN7IUJ3mDwdWrJNmRGv0XL/CbQyIAKV?=
- =?us-ascii?Q?DmSHfvWZy3L96fVsSScNrJiQA19EWmFngb/zVPjleCeUaO8L7CyWGppKBDiH?=
- =?us-ascii?Q?9H9bDeT3Aemz1Th46LMEGordE3Bf8bcTboErsCXZgbj23cLA2edONiRig+Gk?=
- =?us-ascii?Q?4uamsPhEJqvR8T42y+F2eydi1Nc7vQm5vIATvD6cuQ57nzkwW/WiiAKn1vze?=
- =?us-ascii?Q?Cn2BNyZzNFWae2KdeURam57ndYYa3v0EIti/YmKhAQfn7AI5bkD/F6P6iAbJ?=
- =?us-ascii?Q?X3uCJGUbNgYeUenfdGVfmKgL+7aTQlBrn3zTJxNKHoAI0reKy9uE7vaLkQ9F?=
- =?us-ascii?Q?KOJ6N/V28WTiRXn/yKvi+pCRXZpOVzaGSZPxF9Xht2emJlqipXbK8Sh2Xf0h?=
- =?us-ascii?Q?6I+OGVMG2ybzbGIoBzDo/s8Q+aBhl4+hq3WzSaehcO5RkOhNpReESqFdlfiq?=
- =?us-ascii?Q?8RR+mjjqmrYhCceKIgO8SXayCEzxGLLScCEffcfTzqYpjaD680HSM/MMbenN?=
- =?us-ascii?Q?441TSixFpLgDq+Q3hcY84IMVlCvleg+zpdbpNZZaHyqtxjX/uZvNoxKYeal0?=
- =?us-ascii?Q?mhQyrzO/IeaBA0ZDq0JZGpc925MOrBUu1PkOZ/CpP4x/dMebDhobMRLSuj2m?=
- =?us-ascii?Q?JVg2AAc2AP1x4IH/WIrQQwb+j1QvxYRvT6DEarctJ0tIcjZardR9kkFc5zAN?=
- =?us-ascii?Q?OTbAniX6b+Fl5iiLmxZ5HbTjSDXz3x8Y5AEZpWrQdEUkS7PSvkiIh/rvMiYh?=
- =?us-ascii?Q?GCwizJe9Dmoje5JSiLD8PT5e+zEDl4fnmYb9TgOR3QOUJgL/9kxQ703F6IqG?=
- =?us-ascii?Q?90q7WKgjy3YdqhEuoJLdzXxycQ6TEKer0/+VD9vVjC6RqDFFMxU2d+A3NFr0?=
- =?us-ascii?Q?Ih9OFSb6TgHPldTOTyDD+oV7tTwcvjZu/JNIcMxfNqkcdK9ogjRBEg0mEN7T?=
- =?us-ascii?Q?vKKpAcq966vS76k0onE=3D?=
+	=?us-ascii?Q?gmykOy8VYhRc3s/pAT5Btb/XVJ8y0Oyznit/jYvNmg7OWG/guKHouCHC3TZA?=
+ =?us-ascii?Q?lhhBq/BkSgCJR1Jlr6u5DNF8nl6i6vM1SKVm2TdgWXuQ4unUaixTKkZCbwwz?=
+ =?us-ascii?Q?4srpZOWGsNpES9h73uaGc/0BmyHwDHJWv1DUjEx2YQyRGz/p7Xn6sRZvIAKQ?=
+ =?us-ascii?Q?dYBXH+6TorbCJ3ZIMwS+H1APFjuC+R0lG6zwQvIXQBcH1vuGz3Ugp8S0OblC?=
+ =?us-ascii?Q?FYLDWcV6WYiYCblkzBoQ0cAZwVhE5KwgwjmYtG8eU6Dkcfm6x7FDseoEnZIv?=
+ =?us-ascii?Q?8H3/Vuni9zlBvoOeat9qjLRY2TEiSCRL+GiF2wUnPbJnFUOagLOc63uEel9l?=
+ =?us-ascii?Q?3KUnjoSLecFwsMTIOAJbustXvl6s5jqtSUe4vcRq5XpsroE5KqVdQskkamFV?=
+ =?us-ascii?Q?fthiiIXOmDczq8TTXWagAfI4T0uxz4Xpjvgd1o9JH5gLenrTFfFOye1LYInC?=
+ =?us-ascii?Q?M4hNK2Uw97nkYiqC7rVwu9lseDsth8YKDpL5mxhqRvLLQnDh2GBlzmNZH8CR?=
+ =?us-ascii?Q?mMGCihUtUguA/X8FL9GNnpzBQPSSdE25eEVWPdUGgI/LBKdC4u+w0Jgn2Enw?=
+ =?us-ascii?Q?7cHP77+0SrskRSCFZE6mAmrltYSg6/vYyxRZXhTtsD8qjc3wmD6rjuO3H9Sg?=
+ =?us-ascii?Q?pTgwX1fhNtqa/ojfwcd5DWOoCUVaLllkzNGe4hlMu+hG8Eg9bKkmXRrzGMBM?=
+ =?us-ascii?Q?EBl3m9huJST6cW9tOBKWWvFOb0gYe2aOfR4IZfBQ0xCgbZvWx/oxARwAzbQz?=
+ =?us-ascii?Q?8adYyHm001fIKPDNX4oIKIK/9R1A2Ut+ll9ZRwCj2mZq6L+kyjkHISA4t3m0?=
+ =?us-ascii?Q?RJ6sQPn2pWdiia3RtZ9WCEEBfVOy4ZcabDaVfbVE7750OaYvfag0dX43s4tE?=
+ =?us-ascii?Q?Hmg6nGZRMZSjYOzZpMSwazTilsS3UULf4GzaohP6YDaWKAkdLTKWconkR4X9?=
+ =?us-ascii?Q?KOGsjCn9Ghn/DUvPip2rZaXCN7JcwCrc/C1HeJGWSlt0k32cF0dtj2BMEKX7?=
+ =?us-ascii?Q?YTehtsclJT4Ws8xO7xB7WLHLfwKVOksxHrfZWYDS8IE66qIzuiTZEEljNKOv?=
+ =?us-ascii?Q?gibpPLpSW8PJwhC5UHzLhv/MZdZm10ZbeZ3xQhGYY0k2GrwgU2kvI/xX8NtF?=
+ =?us-ascii?Q?jHf56bqkvcBDom8J5ojgSoZUTh7aOqWYIweTgrHDo3tJjhC4Ccf71UXBdjKo?=
+ =?us-ascii?Q?sAEfhKH6mIsYkBk4gMVivhiljrHBjfPo+M2b1sDfxKToyiAkroSUbyHuDZ8n?=
+ =?us-ascii?Q?68ceIM4o7PaP+x4h/UGkpPwVDAhwCDp91v2cMbZw3dDzPO3bPuTKzYDw16+Q?=
+ =?us-ascii?Q?1irEIHsdo2/eCpKVmgTRneUWmEfMah+LZiRBOKeuewpflDv/gh7k/ZyYu3YM?=
+ =?us-ascii?Q?OaCpwaPkoQfdLCBzmpvL2Lv6NKAyuplIIz8k7c8KeuvliLpHMvHmelNDyHRw?=
+ =?us-ascii?Q?wrn73gkV/2UZG+fOe9cdENzXK+AjbKV2jlmCMhCv/odId/P9PRhoLG9XBlES?=
+ =?us-ascii?Q?3JF3PcZdQ+znLnaWFFzfTH/DQEBclLwTTG3C+VxNJf3tVndY0NvPLEIY9c6a?=
+ =?us-ascii?Q?pQ537SSh8uKecepPWp8=3D?=
 X-Forefront-Antispam-Report:
 	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA2PR03MB5947.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?xDDAXRQm4wbDEtxYhIcXYD5L7mZhCOc+GRR1CHBEqdNAwVBcOwQqf3poYNO7?=
- =?us-ascii?Q?zvX21mMFEu9T9bCayUjX+lnkHDfROiTxQbLqlptp6YpIiJs2SkuusDa9Catq?=
- =?us-ascii?Q?U9sEexCAGOCI2ereDUxVOF4YnntOCeKdgFZbr8z3Q4w+9Ox3nBffOm1UOIyN?=
- =?us-ascii?Q?s0bH+LqdEpHwYB0e+YRmlKe6KqxgzcxDrKZooigymTXWBY8YHUc4HI3P22NS?=
- =?us-ascii?Q?SqEgu9A04y2cORAnHftoRg/ihW6Dx/KM9hFjotEMoEfJd9EN4U0ieoONFlrv?=
- =?us-ascii?Q?b9o92HUEc0LAsUXfzQTueBm4G3/P2rEzjS3/E/P4DUrsdURB79wucR+T5efo?=
- =?us-ascii?Q?12BNxutBhR6uJvS9SqdMt2mZ2t0AhbrNv9Ut2oiUnqPQIYl7ufPHg8mK+crP?=
- =?us-ascii?Q?YHk55No5Vhm91Vu0jzakmvIuIDk9USQjKR1dAcbeLT0lyN6rCsAhcLAbpTSm?=
- =?us-ascii?Q?oR9YD2XUZKdJDmDVA90ws2UdqfpvoCpVZMdBgYiO3X0Xl+7XVqbWghtvzOQk?=
- =?us-ascii?Q?a61eAXSD2LFELzT8uNWEOpnCNzmfksJQaF+8Pk4flPbiAuJAUgi018YeA8kt?=
- =?us-ascii?Q?oBf3HdsC9p35rHBuzoLN7vihdQCoCFPQMrjimhGxjBGQ/1PllKakUA/VKHaC?=
- =?us-ascii?Q?x7aVGlhhb5L10F962ur9E6wNrakwhEIjzj/I0FgR1Hmd6TVnGoQ2XHnm9KEv?=
- =?us-ascii?Q?sP8dLuJPneLP8ymslD/3m/vSKMWTn7wOIE4Yq9xUx/x28PQGo1Tu1za28zu3?=
- =?us-ascii?Q?10IyFL6J3qPuBkCILAVN5Nco9oi9UdDQXc+80nVCQXv6POOGwUQ9/VZcREWv?=
- =?us-ascii?Q?Nd2vRy9oiZ3Prh9Pn3H2/PRXd67RTfZgd2zASGCyFRuHGwBBlBUkkrRs2vkg?=
- =?us-ascii?Q?NiqT639/pTiSo8jL84ZF22uyn2izkz94cwh78mydlQHxDLjpwhQz2Swm2xRV?=
- =?us-ascii?Q?X+54ZzmPs0FjYK+m89a9Soz3kHo4Y33TE7fzP1z09Pe/gB4f/q+lh7ZIaL26?=
- =?us-ascii?Q?1YvvaMb11qS4j4BQmlmo2eByyDDs3hFa/x8x2jWx0AICCORrlsMgTk9AXKFH?=
- =?us-ascii?Q?ZjiuLawiN79Mh1/MvIfM/DBTxpyA4CDhYT4+j95kXkE54pfMUyOE6qEsab8+?=
- =?us-ascii?Q?Te9L3QEm9ES+ONNqmt6fbzv7TCHh3fP0/dP62WT+/waW/ymyYc6i2iP+8iEy?=
- =?us-ascii?Q?g3ifM0xSeDtSSVBAGFwqb90X8ixDqskYvRJ6UdvC/7/jITRJ/bNgQ6VNRyBR?=
- =?us-ascii?Q?VMNv8ftIhogXIeLSaYhgH7qHDJqMs3dClNbcJ3X/ggsx+ykNGs5/uZzW735W?=
- =?us-ascii?Q?eOotzDqj/w4v9DWMowowQNNMxM7s90JYW4qbwVaSoEgQQeQA1ZDPYcqnp6QD?=
- =?us-ascii?Q?azCxFhQsIJhfxifuvnTBZDIwMsQ6M0Ie54ktI2KJaAVdNXdHrHfLaMTCmy6t?=
- =?us-ascii?Q?9ypCzzd9bieZ4Gc2AMxzkmSxz7EdijxiJXFvM9H4Pb2gqAjjbY6IYBaPlkYC?=
- =?us-ascii?Q?L/xYTZ8pZLU9ANfZ5znh4zIAnsorIJo1mwyLrSeskalffrr/6AqeVG7gDu+b?=
- =?us-ascii?Q?UM3H1/2vbgQcG7MTs0E7cP9csYeuOAb7TidFdb9j6KXGT3tHqz8KooR7MP88?=
- =?us-ascii?Q?i133JhzfC4h2D1KB2YJ5r+/uQUigPdqWtng64kiIvDnOovlSm65B/AfEn/3y?=
- =?us-ascii?Q?ZioXiLseaOMq3fGKBnR8sQe5DqXNj4nXzVd5ANH3pP8y0h+xK9cgL7hMvB39?=
- =?us-ascii?Q?TWKJ/pw6Nw=3D=3D?=
+	=?us-ascii?Q?HEnxPyk0xrwnq7zRo+B9wgnYNAEHqx3nkd8ZNj0dbqKzyhSvicbRZ49AQRCj?=
+ =?us-ascii?Q?TEax4Q15SWJNUkJhCiZthjkHgklwFEEdJAjmsunPypbOaPQQJfqLaqt4OYJE?=
+ =?us-ascii?Q?jgIVuVaHqGxil7gRN3s39A7hVG3n1/AUEMytsr3MjCPDIPAgxhl80rY3dGeT?=
+ =?us-ascii?Q?2cmfgqYhaCVDkG1yI0eIaF/exHmSu8D2zf+W+/A+WjEZiM5Ravy7nwPY27DZ?=
+ =?us-ascii?Q?aSuW09YfMF15YuDh592fPi+kVNJpwcrMRrk9TkX4grkbcLNqpK3dObkDylKi?=
+ =?us-ascii?Q?tA97gx/CjYxImWFCJmimh623CeSLDS2FiS+E1kgHebGm52y8GFyais49Norj?=
+ =?us-ascii?Q?3up/TpbEIEXCFeBvMkgGw31N28E1DYGjMuuPOrETsJAD9fuYWy1Sr0NLE/7R?=
+ =?us-ascii?Q?NP6RuQ5WcXNgbrhHwFaUkGROPnqzbExsAiyuOGC0MsJaeNiN/3CkwNh01MP3?=
+ =?us-ascii?Q?z3i+pCb79yZVDM2Mdmd0v40XRitQvKcFCOCPNXlG+hENa0aemdzlCBXhpSAv?=
+ =?us-ascii?Q?y/hr6xVCIz1ip/mc/gz8VGHOw4zjRNBaz1UeBBTW3RH3T5hsBexA6QAB0uew?=
+ =?us-ascii?Q?f+bcnbaGPH8P7LZ0N6z/l2IzO07n0hXH3Cq7b0La4HAGuTsD7CJxq3qtDoG/?=
+ =?us-ascii?Q?tbKU8/FLAhbFrGosIdhYA1UAcTabhlkkuiWlqnGZqUpiRvPTuwWG2PwnNOWy?=
+ =?us-ascii?Q?+P/wxrZUYySKRd56IV/LC2p3vjpPKQIaazBZ6J5UkKh3EhYndB8w7P5MUlsK?=
+ =?us-ascii?Q?oKArq835Wxh5IBLbSN3PCXDcWh28HK+boT8YbVTeSaTK80ctTmkU0mDs29q+?=
+ =?us-ascii?Q?0TpGdwZhiPdNGrXSgTbtMgfgeE2k56ZkErDn1JYsmUsR8UCH7AqI5ZIFq8p3?=
+ =?us-ascii?Q?OpATmrtBPuwtpSEEbIoOoHO0ZQ/0SYIe9a2EDmUhjVRaBe9rzSiuDKPo5Hwp?=
+ =?us-ascii?Q?S1ADxc79pz3CLcg90lxknqUwDSzduFBrQHtf9xxUr/+MkjEZOQ9aHeAGt8gI?=
+ =?us-ascii?Q?PqYIQrgYxksHe9sP3XVXwI0olskpxYnvY0vk+nOP3qAsOdd8UUwo0yWCf+Bo?=
+ =?us-ascii?Q?WF+XwBgweeUKSnbNgHRzkNXde+yB6MH+o6dKfKPCSKhcpnuiwiaEmqTi1UXG?=
+ =?us-ascii?Q?Q3Ymk5AxH6vqVUc79wEwtDHbZfDeNP1eoM5u2Tg4CI30hoKlA9Mg+1AHpAvB?=
+ =?us-ascii?Q?bgjmqsZJFli7e69jrsnIBQPc952/VtnsPHdfS0fj6mSX/jS1/FbSXQP6shPG?=
+ =?us-ascii?Q?ACC6uY8qZumkISUNwIEfDG7AG7RYY2y5A1aVy16g+gDn6d/IxfLB4g0oTy0i?=
+ =?us-ascii?Q?YSC6PCJJfNDWrPGJKkPcIXGAXD0rUXgULhllyRCa/MPPJM4/ux2av2/X6O3/?=
+ =?us-ascii?Q?tyBvgkCymCy0FOCziqCAsXtbWP+9caHE0rYBiUcZ6YeO2lXOiYrRmfW8rRdc?=
+ =?us-ascii?Q?LVp0B1+RrNGTxQ1ePUQADICv7hYZB6Q8MENQDQJYH4u6tJdoafsPlARdGqXM?=
+ =?us-ascii?Q?/lPIR0/6rX6ouZyUTeP/SPEa0yGzAaEBqlpQpao6Zu+FvPqTIgnNj4vZ+CHe?=
+ =?us-ascii?Q?JDUgFQNFNBumfNTnDBm0BfmeL0m5xsvY/Hxy5CSoLyivsn6ADswcfcW+VLA7?=
+ =?us-ascii?Q?9cib1fnEK7Nlp6RXDvqM9dGOipROIEBDHY4xn1Nsr2fCA9d44R3IYACXbD4n?=
+ =?us-ascii?Q?XIPEU55uJnocPrmNfGxe6xy8Ch6e92LCKC+vOrX0vTaqJpHny4MRDioZzQ/+?=
+ =?us-ascii?Q?NQpMXC3ZVQ=3D=3D?=
 X-OriginatorOrg: altera.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b1693a70-e9cf-48a8-84ee-08de5ca2e360
+X-MS-Exchange-CrossTenant-Network-Message-Id: f4678e82-b548-4a60-eeae-08de5ca2e5db
 X-MS-Exchange-CrossTenant-AuthSource: SA2PR03MB5947.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2026 06:19:43.0875
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2026 06:19:44.6754
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: fbd72e03-d4a5-4110-adce-614d51f2077a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Rqrwh9S450VmXyjOypsDM+4IwUYKEXSEVEVnY3TLCU1zDutXvVbEIbkH+0cMKb4EQ4kKH+8q0OLNCZFygtIx1Q==
+X-MS-Exchange-CrossTenant-UserPrincipalName: Up2lhPfZaPJmthwKHCnl5R9FdzCvmk4f6GIQQfBcyYojbyrp8DfkHJd6yZOICLAwgAbEiwIWogzV09MWxzzCHA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA6PR03MB7685
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.34 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_MISSING_CHARSET(0.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[altera.com,reject];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[altera.com:s=selector2];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259346-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259347-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[altera.com:+];
+	FROM_NO_DN(0.00)[];
 	RCPT_COUNT_FIVE(0.00)[6];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[tzeyee.ng@altera.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[altera.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.0.4:email,0.0.0.68:email];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NO_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:email,altera.com:email,altera.com:dkim,altera.com:mid]
-X-Rspamd-Queue-Id: 410CD846FC
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,altera.com:email,altera.com:dkim,altera.com:mid,0.0.0.0:email,0.0.0.51:email,4.196.180.0:email,0.0.0.14:email]
+X-Rspamd-Queue-Id: 6C0808473E
 X-Rspamd-Action: no action
 
 From: Ng Tze Yee <tzeyee.ng@altera.com>
 
-Stratix 10 devkit support a separate eMMC daughter card. Add compatible
-string for the Stratix 10 SoCDK eMMC daughter board with
-"altr,socfpga-stratix10-socdk" as a fallback, since this variant is based
-on the standard SoCDK board.
+The Stratix10 devkit supports a separate eMMC daughter card. The eMMC
+daughter card replaces the SDMMC slot that is on the default daughter card
+and thus requires a separate board dts file.
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 Signed-off-by: Ng Tze Yee <tzeyee.ng@altera.com>
 ---
-Changes in v5:
-- Move Acked-by's above the Signed-off-by: and remove the empty
-line between them.
-- No code change
-
-Changes in v4:
-- Included Acked-by from Rob Herring and Krzysztof Kozlowski in the commit
-  message
-- No code change
+Changes in v3:
+- Refactored socfpga_stratix10_socdk.dts to use socfpga_stratix10_socdk.dtsi
+  for common board configurations, eliminating code duplication
+- Moved gmac2 and i2c2 nodes from socfpga_stratix10_socdk.dtsi back to
+  socfpga_stratix10_socdk_emmc.dts as they are specific to the eMMC
+  daughter board variant and not common to all Stratix 10 SoCDK boards
+- Fixed PHY address in socfpga_stratix10_socdk.dts from @0 to @4
 
 Changes in v2:
-- Added fallback compatible string "altr,socfpga-stratix10-socdk" in the
-  binding documentation for broader compatibility
+- Introduced socfpga_stratix10_socdk.dtsi for common board settings
+- Updated socfpga_stratix10_socdk_emmc.dts to include the new dtsi
+- Added fallback compatible string "altr,socfpga-stratix10-socdk" in
+  the socfpga_stratix10_socdk_emmc.dts
 ---
- Documentation/devicetree/bindings/arm/altera.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/arm64/boot/dts/altera/Makefile           |  1 +
+ .../dts/altera/socfpga_stratix10_socdk.dts    | 67 +--------------
+ .../dts/altera/socfpga_stratix10_socdk.dtsi   | 71 ++++++++++++++++
+ .../altera/socfpga_stratix10_socdk_emmc.dts   | 81 +++++++++++++++++++
+ 4 files changed, 155 insertions(+), 65 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dtsi
+ create mode 100644 arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_emmc.dts
 
-diff --git a/Documentation/devicetree/bindings/arm/altera.yaml b/Documentation/devicetree/bindings/arm/altera.yaml
-index db61537b7115..2097f6a524c8 100644
---- a/Documentation/devicetree/bindings/arm/altera.yaml
-+++ b/Documentation/devicetree/bindings/arm/altera.yaml
-@@ -81,6 +81,12 @@ properties:
-               - altr,socfpga-stratix10-swvp
-           - const: altr,socfpga-stratix10
+diff --git a/arch/arm64/boot/dts/altera/Makefile b/arch/arm64/boot/dts/altera/Makefile
+index 1bf0c472f6b4..540bb5ae746b 100644
+--- a/arch/arm64/boot/dts/altera/Makefile
++++ b/arch/arm64/boot/dts/altera/Makefile
+@@ -1,4 +1,5 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += socfpga_stratix10_socdk.dtb \
++				socfpga_stratix10_socdk_emmc.dtb \
+ 				socfpga_stratix10_socdk_nand.dtb \
+ 				socfpga_stratix10_swvp.dtb
+diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
+index 58f776e411fc..fab46d007dbe 100644
+--- a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
++++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
+@@ -3,53 +3,11 @@
+  * Copyright Altera Corporation (C) 2015. All rights reserved.
+  */
  
-+      - description: Stratix 10 SoCDK eMMC variant
-+        items:
-+          - const: altr,socfpga-stratix10-socdk-emmc
-+          - const: altr,socfpga-stratix10-socdk
-+          - const: altr,socfpga-stratix10
+-#include "socfpga_stratix10.dtsi"
++#include "socfpga_stratix10_socdk.dtsi"
+ 
+ / {
+ 	model = "SoCFPGA Stratix 10 SoCDK";
+ 	compatible = "altr,socfpga-stratix10-socdk", "altr,socfpga-stratix10";
+-
+-	aliases {
+-		serial0 = &uart0;
+-		ethernet0 = &gmac0;
+-		ethernet1 = &gmac1;
+-		ethernet2 = &gmac2;
+-	};
+-
+-	chosen {
+-		stdout-path = "serial0:115200n8";
+-	};
+-
+-	leds {
+-		compatible = "gpio-leds";
+-		led-hps0 {
+-			label = "hps_led0";
+-			gpios = <&portb 20 GPIO_ACTIVE_HIGH>;
+-		};
+-
+-		led-hps1 {
+-			label = "hps_led1";
+-			gpios = <&portb 19 GPIO_ACTIVE_HIGH>;
+-		};
+-
+-		led-hps2 {
+-			label = "hps_led2";
+-			gpios = <&portb 21 GPIO_ACTIVE_HIGH>;
+-		};
+-	};
+-
+-	memory@80000000 {
+-		device_type = "memory";
+-		/* We expect the bootloader to fill in the reg */
+-		reg = <0 0x80000000 0 0>;
+-	};
+-
+-	ref_033v: regulator-v-ref {
+-		compatible = "regulator-fixed";
+-		regulator-name = "0.33V";
+-		regulator-min-microvolt = <330000>;
+-		regulator-max-microvolt = <330000>;
+-	};
+ };
+ 
+ &pinctrl0 {
+@@ -68,10 +26,6 @@ i2c1_pmx_func_gpio: i2c1-pmx-func-gpio-pins {
+ 	};
+ };
+ 
+-&gpio1 {
+-	status = "okay";
+-};
+-
+ &gmac0 {
+ 	status = "okay";
+ 	phy-mode = "rgmii";
+@@ -83,7 +37,7 @@ mdio0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 		compatible = "snps,dwmac-mdio";
+-		phy0: ethernet-phy@0 {
++		phy0: ethernet-phy@4 {
+ 			reg = <4>;
+ 
+ 			txd0-skew-ps = <0>; /* -420ps */
+@@ -111,23 +65,6 @@ &mmc {
+ 	clk-phase-sd-hs = <0>, <135>;
+ };
+ 
+-&osc1 {
+-	clock-frequency = <25000000>;
+-};
+-
+-&uart0 {
+-	status = "okay";
+-};
+-
+-&usb0 {
+-	status = "okay";
+-	disable-over-current;
+-};
+-
+-&watchdog0 {
+-	status = "okay";
+-};
+-
+ &i2c1 {
+ 	status = "okay";
+ 	clock-frequency = <100000>;
+diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dtsi b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dtsi
+new file mode 100644
+index 000000000000..1d50f7b21160
+--- /dev/null
++++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dtsi
+@@ -0,0 +1,71 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Copyright Altera Corporation (C) 2026. All rights reserved.
++ */
 +
-       - description: SoCFPGA VT
-         items:
-           - const: altr,socfpga-vt
++#include "socfpga_stratix10.dtsi"
++
++/ {
++	aliases {
++		serial0 = &uart0;
++		ethernet0 = &gmac0;
++		ethernet1 = &gmac1;
++		ethernet2 = &gmac2;
++	};
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
++
++	leds {
++		compatible = "gpio-leds";
++		led-hps0 {
++			label = "hps_led0";
++			gpios = <&portb 20 GPIO_ACTIVE_HIGH>;
++		};
++
++		led-hps1 {
++			label = "hps_led1";
++			gpios = <&portb 19 GPIO_ACTIVE_HIGH>;
++		};
++
++		led-hps2 {
++			label = "hps_led2";
++			gpios = <&portb 21 GPIO_ACTIVE_HIGH>;
++		};
++	};
++
++	memory@80000000 {
++		device_type = "memory";
++		/* We expect the bootloader to fill in the reg */
++		reg = <0 0x80000000 0 0>;
++	};
++
++	ref_033v: regulator-0v33-ref {
++		compatible = "regulator-fixed";
++		regulator-name = "0.33V";
++		regulator-min-microvolt = <330000>;
++		regulator-max-microvolt = <330000>;
++	};
++};
++
++&gpio1 {
++	status = "okay";
++};
++
++&osc1 {
++	clock-frequency = <25000000>;
++};
++
++&uart0 {
++	status = "okay";
++};
++
++&usb0 {
++	status = "okay";
++	disable-over-current;
++};
++
++&watchdog0 {
++	status = "okay";
++};
+diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_emmc.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_emmc.dts
+new file mode 100644
+index 000000000000..b2a3449638dd
+--- /dev/null
++++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_emmc.dts
+@@ -0,0 +1,81 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Copyright Altera Corporation (C) 2026. All rights reserved.
++ */
++
++#include "socfpga_stratix10_socdk.dtsi"
++
++/ {
++	model = "SoCFPGA Stratix 10 SoCDK eMMC daughter board";
++	compatible = "altr,socfpga-stratix10-socdk-emmc",
++			"altr,socfpga-stratix10-socdk",
++			"altr,socfpga-stratix10";
++};
++
++&gmac2 {
++	status = "okay";
++	/* PHY delays is configured via skew properties */
++	phy-mode = "rgmii";
++	phy-handle = <&phy0>;
++
++	max-frame-size = <9000>;
++
++	mdio0 {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		compatible = "snps,dwmac-mdio";
++		phy0: ethernet-phy@4 {
++			reg = <4>;
++
++			txd0-skew-ps = <0>; /* -420ps */
++			txd1-skew-ps = <0>; /* -420ps */
++			txd2-skew-ps = <0>; /* -420ps */
++			txd3-skew-ps = <0>; /* -420ps */
++			rxd0-skew-ps = <420>; /* 0ps */
++			rxd1-skew-ps = <420>; /* 0ps */
++			rxd2-skew-ps = <420>; /* 0ps */
++			rxd3-skew-ps = <420>; /* 0ps */
++			txen-skew-ps = <0>; /* -420ps */
++			txc-skew-ps = <900>; /* 0ps */
++			rxdv-skew-ps = <420>; /* 0ps */
++			rxc-skew-ps = <1680>; /* 780ps */
++		};
++	};
++};
++
++&mmc {
++	status = "okay";
++	cap-mmc-highspeed;
++	broken-cd;
++	bus-width = <4>;
++	clk-phase-sd-hs = <0>, <135>;
++};
++
++&i2c2 {
++	status = "okay";
++	clock-frequency = <100000>;
++	i2c-sda-falling-time-ns = <890>;  /* hcnt */
++	i2c-scl-falling-time-ns = <890>;  /* lcnt */
++
++	adc@14 {
++		compatible = "lltc,ltc2497";
++		reg = <0x14>;
++		vref-supply = <&ref_033v>;
++	};
++
++	temp@4c {
++		compatible = "maxim,max1619";
++		reg = <0x4c>;
++	};
++
++	eeprom@51 {
++		compatible = "atmel,24c32";
++		reg = <0x51>;
++		pagesize = <32>;
++	};
++
++	rtc@68 {
++		compatible = "dallas,ds1339";
++		reg = <0x68>;
++	};
++};
 -- 
 2.25.1
 
