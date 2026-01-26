@@ -1,243 +1,279 @@
-Return-Path: <devicetree+bounces-259463-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259464-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WDFlNEVKd2mLdwEAu9opvQ
-	(envelope-from <devicetree+bounces-259463-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 12:04:37 +0100
+	id OPRkN2tLd2msdwEAu9opvQ
+	(envelope-from <devicetree+bounces-259464-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 12:09:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47AA087792
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 12:04:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43FD287806
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 12:09:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3680B30180BF
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 11:04:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F296C30067AA
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 11:09:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00140331238;
-	Mon, 26 Jan 2026 11:04:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8384532E69F;
+	Mon, 26 Jan 2026 11:09:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="QMmzAjO9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d+lsPpKx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDB4C306489
-	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 11:04:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A7C8255F5E
+	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 11:09:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769425472; cv=none; b=rpPyyGNY0uHVkMb6Fk5jMwhz5RNHyMXQzHJEyUiDqx/XCHEQ0yPiJcErzJnWk1saPK+eAwYaOPz7uS6CiMmk4dOBWYBchfJ8oAUJHp7XJwOQl1+0CtpMYuYIRVJsLw5BO0VzqD/SI2alXaHpBbkcBVkRc5YVXwuizePo6klPux8=
+	t=1769425769; cv=none; b=eHaRnGHEHcERM0gJUnnzjp3HlUm6FMOMqmkelixyAtNf1OGZco/nGKw2nU6p4060Q81AGkYR91OGd6mvG25K5gyDFJqVXiU8A0mRey6vwl7UlQSc63ToJe4N7vUvqCtqj+YZj5adxVjF+yn9G77+nAizfYjyGO7edVvQjW/cmzM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769425472; c=relaxed/simple;
-	bh=8D1VW2AOoRSMssvrVWN1WQiajWGXn55DSzdjY21vhEA=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=MOd8S2+I+GUMW6k4/0fPCe5rqPxSjIxhuk0/MtSrj2O8Saj14FElvwcFrUrRfswpBNY4ruZI3696mKXKq5WZRO2o6lJFl6J+y6FnHSW5RmlEmdYLwdFMhjqmgBqM13saOzQk4VFg3c3afnFpfKxWa4vZRcq4ATsGzPz9x/B2u6g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=QMmzAjO9; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-432d2c7dd52so4506620f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 03:04:29 -0800 (PST)
+	s=arc-20240116; t=1769425769; c=relaxed/simple;
+	bh=0YrxzykC/akEBLXggs+orQBnxNUASm51sxymFU+CUnU=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=TGBhF2xUhU6D5nNbQKkHW2/47vmjPMl1VDx/dWSErLLj9FQvLfQ7m5BNAzYkZJLQOMoWKXG7Cm/i1bcOsJx6cVMdEzOJ2IAq0UuLkoRqfJFTPp7fXuzBgTEKjLghyEjNsb+1he6Nk6vIaQfFxhcYr197QGqIkyJakbkgVDmTQeY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=d+lsPpKx; arc=none smtp.client-ip=209.85.210.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-81df6a302b1so3882789b3a.2
+        for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 03:09:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1769425468; x=1770030268; darn=vger.kernel.org;
-        h=mime-version:message-id:date:user-agent:references:in-reply-to
-         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=oxxggqu7lY1Sckmv7ByHvQyZJWGtg/A0ImvB7PnxYRE=;
-        b=QMmzAjO9my3U8M8PkCWi0xiFVFtnw+8dCJDOFTMAPT6rYC9n9F28NcwqDkUjjmTdvv
-         7VTU3sbvK9aBXKFcFoiaGwnp8iyzFeC3nB3V+7rx7at2WLqx2YeLYUdBp3b1ROlG4m7u
-         fIa5e3bHCmRluO1Pw/RfzsPIk39S+tKfajgyJsMr0Kz5vj2tUEVrXFRrcu5M59QgsDLD
-         AA+D/4gl/SYyQC0aHBrKWhjzd8cIDdUDzCwyVZ3jIoeuewgK/ud7z4fXiJlIJxlnI3SY
-         dj+qHN0EujwuT2yMbUPUjVOA2+2wWk2rNlyftPe/f5pDcQg8siPgmWm9zwFLOG0eYef9
-         lQkA==
+        d=gmail.com; s=20230601; t=1769425767; x=1770030567; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=67m4LZM7BNmUt9VQQdT7oliQJgO7RfphJV9m4Mf+Fmc=;
+        b=d+lsPpKxdY/fUBqnQtSkvYClnsYCtrAOjs6b0X2AqhtkAtT685sblPpyJKcigkvlvW
+         v0lc1VNVoqFkP5SYCceNdF9gl6DuqTRVctFftLGZkcJMxnaQrUoiFzRl1vVYZ/zjLVu/
+         CSpBCguh710xv488b61xw1bPT5+J6qJMLNqIIHNAT1FHk5LM59s+1TRoBsMVJAjpuOmD
+         ylQkW7amuQXECl2DTX6wx+WCoFIuAJfxzLjQIXrP9pZFgbU2xWnqjzvLsI/qfY+fnrRF
+         1MateXJIpTQ235xz82WobBiR3W7GXEtERQcHWZaatN4QN0FPnRRUra1LX0nMyrvPNNZA
+         BATA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769425468; x=1770030268;
-        h=mime-version:message-id:date:user-agent:references:in-reply-to
-         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=oxxggqu7lY1Sckmv7ByHvQyZJWGtg/A0ImvB7PnxYRE=;
-        b=jtX+ixh17qNIlIWows8giUB+iN9YqDY2ER8AWLj77vc+2ozs7nY6OCY1aiA81+VT3P
-         P4eKf4dUek7MTPZ7nJJhImO/aq8rcW9yg8W3SaP0hJtpUujmfXVu5kUNoR+2wy7H9Hvg
-         nYV9xUb0nHiDI+368GjHsUyuCumOJ5rpOAxSfH7ei2dbPfGy1aTtb3OLoPRyxaXHLkYt
-         QQshU8aIDGlOpZH71d28FnIdtRQaIX/yJoql2DLp06ABRAE8gYSQZ9FcFchr4dH+JvgY
-         ZV6gaC8eJSO8P0uJ/EbcuaxK6pracA+kuWVgeZxjfQyzaZKFzQBvXC5TiLYQh2Ll773J
-         4DoA==
-X-Forwarded-Encrypted: i=1; AJvYcCXMhnQoMhPiJDMrlZZ/R7a8wbKzG82A9lpxnHlDXCRa/9GjelGSSAUWgouy5/+VcpsGhportkrvDqJp@vger.kernel.org
-X-Gm-Message-State: AOJu0YwHDm6VB2yi/X8EHTyE6GkHjqUo+qeJN4F5pmYCOlrSHLkbI825
-	yCFDbAcixHlhOOB6Qmp+IrLgkGyHDi1MEk+z5ctqZY09EOXnik3MYHZT521tHWSsbD8=
-X-Gm-Gg: AZuq6aIkRwvVeWfj38zo694qHtv65Vin5ZpMy6aUnaB5G5c5jc1Q3UjzHFAFn0Sm+ne
-	oFc+7NXkhO60kezSZzShqAvKYqPAuTOZU9yB/Ys2Z1ZB7CrkQXyxfZUqo9o6k/QmekOl9s7C1MZ
-	Smxmpg4JVhmLELMBTDlgliJcJWuVCBj3YIyoer41tKOgIZ0tvUmy6uHkajGy3zel0LcKj8HC0O0
-	ywo4q8NZsvJnlfY9IKaft15k1aMxvE5v9+kavZTtPK0KwT4ho0PSNi6EHUqxj8/KpBUrMHIGYjC
-	Ga/10AgPFcm7/BJdf94L0X23jBEnyXrU42qRzz0e7+rlQhWR2SCaCkiFivD5QzE/pcruS0TM1We
-	LqlTPZT9cAtBIK3G2O7BBXwpAfM0Vk2G5miuV8feIfj1LVDoe3r2IIViVXYNx0FyjnYnPpRkVue
-	OhKh/XjMCAcA==
-X-Received: by 2002:adf:e60c:0:b0:435:9bf5:b32c with SMTP id ffacd0b85a97d-435ca1ac8f5mr5355432f8f.29.1769425468113;
-        Mon, 26 Jan 2026 03:04:28 -0800 (PST)
-Received: from localhost ([2a01:e0a:3c5:5fb1:9d1d:ac62:8521:30a0])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-435b1c24a8asm29321914f8f.12.2026.01.26.03.04.27
+        d=1e100.net; s=20230601; t=1769425767; x=1770030567;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=67m4LZM7BNmUt9VQQdT7oliQJgO7RfphJV9m4Mf+Fmc=;
+        b=mo2scUErkc6D0W9el6qJdxSKSejtqNBJ/lXdSa4juekQuDC6gJvSsk9AFxfQCXxDdg
+         2BEN9N4C5mR/WqSiMHsIe64f9RVzMXccgCISzqbkckDJj/HIFDbmiftkEs4WBRED8pEa
+         4XIb/InnSU5N4Xmic7WFnyzv+t/8RBDzaYGJ4nGgcDZSUCzP3ZKJMUFl5ZUdK+Ce1Gt3
+         38AJ5wYKa/W2vM/yY7AsyuhssANJew8DEXvP8rS6sFC8/9ze0X7PDe+o6LHsiHRQ4BE5
+         j7XHMynepdQQs+LlltcOrhtadTfbExBaHwXdHBwdzc5m6IeKdcI/XNF7v1upZ1s7qUYK
+         THeg==
+X-Forwarded-Encrypted: i=1; AJvYcCURQYSFDBZF5rO8BjcpVZfuAihaXv4jkWgEF7ecRkKzGl4MWdcOCwH2SyEKTCtvVZIqr+BERzzTSTFC@vger.kernel.org
+X-Gm-Message-State: AOJu0YwaHfq8QbNBqcgrPq23w4X7027SuJuZ4hj7PLC2sJ1OQJf0mHNI
+	A5hpXKZL2hYE/9xdaz5PTtp1YJvNRCLYP1jhKDO0nJMbwT5Du0ij9xZu
+X-Gm-Gg: AZuq6aISKr9K31ZGIn0+7Zjpx4I7/WzUKvXVifJrYrZCU1TxBiWHxitNLphUFMY5e6B
+	6HaL/yK4f23125KPvm8Yk7tOKFTpcjYfZo1x0Pc7hSV+kdjBdi7DvuQPgr+wQqeUH7C/Nzl0v93
+	/fwRplMxPaO+reTV9zDNiNH4NSK/HeGzHPW7EJkOkjlNBiaHK/MbGIcPflYjzrIvRkxOCuzO6EQ
+	5IBHSgIMJx1Lw8c2sS/iW+w9UEG6z+uC5dJuqK07SFUA6JH+jQ+5GJmyemUhI+eWKotkg4KP8um
+	F6FS8E3d/QZQdoeJH3rTF5lG7pAx1pKOp9uBO4OdoQOB6tqECGH6ojODWRGC6YxFyapUyIIGD5K
+	Pp/lgt/21xAcVfXTyV6N3Qm+PcgnBEZuPfmjGkh6bo70nfzYw6oApTGTw1A2KDuxC0ahpJ1zyK3
+	m2zB31PijsNkzpKkzByORUMeQtjl0IL3+7jHIUOMiQmWNOcr8=
+X-Received: by 2002:a05:6a00:1988:b0:81f:61d2:84a7 with SMTP id d2e1a72fcca58-823412d51d0mr3824832b3a.59.1769425767323;
+        Mon, 26 Jan 2026 03:09:27 -0800 (PST)
+Received: from LAPTOP-872M7T80.localdomain ([122.168.70.239])
+        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-8234fd9a5a7sm1682394b3a.63.2026.01.26.03.09.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Jan 2026 03:04:27 -0800 (PST)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Jiebing Chen via B4 Relay <devnull+jiebing.chen.amlogic.com@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>,  Mark Brown <broonie@kernel.org>,
-  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>,  Jaroslav Kysela <perex@perex.cz>,
-  Takashi Iwai <tiwai@suse.com>,  Neil Armstrong
- <neil.armstrong@linaro.org>,  Kevin Hilman <khilman@baylibre.com>,  Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>,  Michael Turquette
- <mturquette@baylibre.com>,  Stephen Boyd <sboyd@kernel.org>,
-  jiebing.chen@amlogic.com,  linux-sound@vger.kernel.org,
-  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
-  linux-arm-kernel@lists.infradead.org,  linux-amlogic@lists.infradead.org,
-  linux-clk@vger.kernel.org,  jian.xu@amlogic.com,  shuai.li@amlogic.com,
-  zhe.wang@amlogic.com
-Subject: Re: [PATCH v6 3/5] ASoC: meson: g12a-toacodec: Add S4 tocodec driver
-In-Reply-To: <20260126-audio_drvier-v6-3-99e350855bc2@amlogic.com> (Jiebing
-	Chen via's message of "Mon, 26 Jan 2026 06:01:44 +0000")
-References: <20260126-audio_drvier-v6-0-99e350855bc2@amlogic.com>
-	<20260126-audio_drvier-v6-3-99e350855bc2@amlogic.com>
-User-Agent: mu4e 1.12.9; emacs 30.1
-Date: Mon, 26 Jan 2026 12:04:26 +0100
-Message-ID: <1jikcohbyd.fsf@starbuckisacylon.baylibre.com>
+        Mon, 26 Jan 2026 03:09:26 -0800 (PST)
+From: Akhila YS <akhilayalmati@gmail.com>
+Date: Mon, 26 Jan 2026 11:09:20 +0000
+Subject: [PATCH] dt-bindings: mtd: mxic,multi-itfc-v009-nand-controller:
+ convert to DT schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260126-mxic-nand-v1-1-557df4a0dfa7@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAF9Ld2kC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDQyMj3dyKzGTdvMS8FF1zEyNDC2NDI9NUA2MloPqCotS0zAqwWdGxtbU
+ AG98tDlsAAAA=
+X-Change-ID: 20260122-mxic-nand-742183125e03
+To: Miquel Raynal <miquel.raynal@bootlin.com>, 
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Akhila YS <akhilayalmati@gmail.com>
+X-Mailer: b4 0.14.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-259463-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[baylibre.com];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,perex.cz,suse.com,linaro.org,baylibre.com,googlemail.com,amlogic.com,vger.kernel.org,lists.infradead.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jbrunet@baylibre.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,gmail.com];
 	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,jiebing.chen.amlogic.com,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre-com.20230601.gappssmtp.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,amlogic.com:email]
-X-Rspamd-Queue-Id: 47AA087792
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259464-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
+	DBL_PROHIBIT(0.00)[0.0.0.0:email];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[akhilayalmati@gmail.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nod.at:email,devicetree.org:url]
+X-Rspamd-Queue-Id: 43FD287806
 X-Rspamd-Action: no action
 
-On lun. 26 janv. 2026 at 06:01, Jiebing Chen via B4 Relay <devnull+jiebing.chen.amlogic.com@kernel.org> wrote:
+Convert Macronix Raw NAND Controller Device Tree binding to DT Schema.
 
-> From: Jiebing Chen <jiebing.chen@amlogic.com>
->
-> The S4 requires additional clock control bits to be turn on while enabled.
-> The S4 has 8 TDM lanes, instead of 4 on previous SoC.
-> Update the widget accordingly.
->
-> Signed-off-by: Jiebing Chen <jiebing.chen@amlogic.com>
-> ---
->  sound/soc/meson/g12a-toacodec.c | 36 ++++++++++++++++++++++++++++++++++++
->  1 file changed, 36 insertions(+)
->
-> diff --git a/sound/soc/meson/g12a-toacodec.c b/sound/soc/meson/g12a-toacodec.c
-> index a95375b53f0a..a7f9ac2d08f7 100644
-> --- a/sound/soc/meson/g12a-toacodec.c
-> +++ b/sound/soc/meson/g12a-toacodec.c
-> @@ -41,6 +41,9 @@
->  #define  CTRL0_BCLK_SEL_LSB		4
->  #define  CTRL0_MCLK_SEL			GENMASK(2, 0)
->  
-> +#define CTRL0_BCLK_ENABLE_SHIFT		30
-> +#define CTRL0_MCLK_ENABLE_SHIFT		29
-> +
->  #define TOACODEC_OUT_CHMAX		2
->  
->  struct g12a_toacodec {
-> @@ -141,6 +144,13 @@ static const struct snd_soc_dapm_widget sm1_toacodec_widgets[] = {
->  			    &g12a_toacodec_out_enable),
->  };
->  
-> +static const struct snd_soc_dapm_widget s4_toacodec_widgets[] = {
-> +	SND_SOC_DAPM_MUX("SRC", TOACODEC_CTRL0, CTRL0_BCLK_ENABLE_SHIFT, 0,
-> +			 &sm1_toacodec_mux),
-> +	SND_SOC_DAPM_SWITCH("OUT EN", TOACODEC_CTRL0, CTRL0_MCLK_ENABLE_SHIFT, 0,
-> +			    &g12a_toacodec_out_enable),
+Signed-off-by: Akhila YS <akhilayalmati@gmail.com>
+---
+ .../mtd/mxic,multi-itfc-v009-nand-controller.yaml  | 79 ++++++++++++++++++++++
+ .../devicetree/bindings/mtd/mxic-nand.txt          | 36 ----------
+ 2 files changed, 79 insertions(+), 36 deletions(-)
 
-I guess that works but it is a bit hackish to hijack the output control
-to enable a something really clock related. A supply widget connect to
-this widget would be more approriate I think
+diff --git a/Documentation/devicetree/bindings/mtd/mxic,multi-itfc-v009-nand-controller.yaml b/Documentation/devicetree/bindings/mtd/mxic,multi-itfc-v009-nand-controller.yaml
+new file mode 100644
+index 000000000000..97baac8b405a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mtd/mxic,multi-itfc-v009-nand-controller.yaml
+@@ -0,0 +1,79 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mtd/mxic,multi-itfc-v009-nand-controller.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Macronix Raw NAND Controller
++
++maintainers:
++  - Miquel Raynal <miquel.raynal@bootlin.com>
++  - Richard Weinberger <richard@nod.at>
++
++description:
++  The Macronix Multi-Interface Raw NAND Controller is a versatile flash
++  memory controller for embedding in SoCs, capable of interfacing with
++  various NAND devices. It requires dedicated clock inputs for core, data
++  transmit, and delayed transmit paths along with register space and an
++  interrupt line for operation.
++
++allOf:
++  - $ref: nand-controller.yaml#
++
++properties:
++  compatible:
++    const: mxic,multi-itfc-v009-nand-controller
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++  clocks:
++    minItems: 3
++    maxItems: 3
++
++  clock-names:
++    items:
++      - const: ps
++      - const: send
++      - const: send_dly
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - "#address-cells"
++  - "#size-cells"
++  - clocks
++  - clock-names
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    nand-controller@43c30000 {
++        compatible = "mxic,multi-itfc-v009-nand-controller";
++        reg = <0x43c30000 0x10000>;
++        #address-cells = <1>;
++        #size-cells = <0>;
++        interrupts = <GIC_SPI 0x1d IRQ_TYPE_EDGE_RISING>;
++        clocks = <&clkwizard 0>, <&clkwizard 1>, <&clkc 15>;
++        clock-names = "ps", "send", "send_dly";
++
++        nand@0 {
++            reg = <0>;
++            nand-ecc-mode = "soft";
++            nand-ecc-algo = "bch";
++        };
++    };
++...
+diff --git a/Documentation/devicetree/bindings/mtd/mxic-nand.txt b/Documentation/devicetree/bindings/mtd/mxic-nand.txt
+deleted file mode 100644
+index 46c55295a3e6..000000000000
+--- a/Documentation/devicetree/bindings/mtd/mxic-nand.txt
++++ /dev/null
+@@ -1,36 +0,0 @@
+-Macronix Raw NAND Controller Device Tree Bindings
+--------------------------------------------------
+-
+-Required properties:
+-- compatible: should be "mxic,multi-itfc-v009-nand-controller"
+-- reg: should contain 1 entry for the registers
+-- #address-cells: should be set to 1
+-- #size-cells: should be set to 0
+-- interrupts: interrupt line connected to this raw NAND controller
+-- clock-names: should contain "ps", "send" and "send_dly"
+-- clocks: should contain 3 phandles for the "ps", "send" and
+-	 "send_dly" clocks
+-
+-Children nodes:
+-- children nodes represent the available NAND chips.
+-
+-See Documentation/devicetree/bindings/mtd/nand-controller.yaml
+-for more details on generic bindings.
+-
+-Example:
+-
+-	nand: nand-controller@43c30000 {
+-		compatible = "mxic,multi-itfc-v009-nand-controller";
+-		reg = <0x43c30000 0x10000>;
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-		interrupts = <GIC_SPI 0x1d IRQ_TYPE_EDGE_RISING>;
+-		clocks = <&clkwizard 0>, <&clkwizard 1>, <&clkc 15>;
+-		clock-names = "send", "send_dly", "ps";
+-
+-		nand@0 {
+-			reg = <0>;
+-			nand-ecc-mode = "soft";
+-			nand-ecc-algo = "bch";
+-		};
+-	};
 
-> +};
-> +
->  static int g12a_toacodec_input_hw_params(struct snd_pcm_substream *substream,
->  					 struct snd_pcm_hw_params *params,
->  					 struct snd_soc_dai *dai)
-> @@ -234,6 +244,10 @@ static const struct snd_kcontrol_new sm1_toacodec_controls[] = {
->  	SOC_SINGLE("Lane Select", TOACODEC_CTRL0, CTRL0_LANE_SEL_SM1, 3, 0),
->  };
->  
-> +static const struct snd_kcontrol_new s4_toacodec_controls[] = {
-> +	SOC_SINGLE("Lane Select", TOACODEC_CTRL0, CTRL0_LANE_SEL_SM1, 7, 0),
-> +};
-> +
->  static const struct snd_soc_component_driver g12a_toacodec_component_drv = {
->  	.probe			= g12a_toacodec_component_probe,
->  	.controls		= g12a_toacodec_controls,
-> @@ -256,6 +270,17 @@ static const struct snd_soc_component_driver sm1_toacodec_component_drv = {
->  	.endianness		= 1,
->  };
->  
-> +static const struct snd_soc_component_driver s4_toacodec_component_drv = {
-> +	.probe			= sm1_toacodec_component_probe,
-> +	.controls		= s4_toacodec_controls,
-> +	.num_controls		= ARRAY_SIZE(s4_toacodec_controls),
-> +	.dapm_widgets		= s4_toacodec_widgets,
-> +	.num_dapm_widgets	= ARRAY_SIZE(s4_toacodec_widgets),
-> +	.dapm_routes		= g12a_toacodec_routes,
-> +	.num_dapm_routes	= ARRAY_SIZE(g12a_toacodec_routes),
-> +	.endianness		= 1,
-> +};
-> +
->  static const struct regmap_config g12a_toacodec_regmap_cfg = {
->  	.reg_bits	= 32,
->  	.val_bits	= 32,
-> @@ -276,6 +301,13 @@ static const struct g12a_toacodec_match_data sm1_toacodec_match_data = {
->  	.field_bclk_sel	= REG_FIELD(TOACODEC_CTRL0, 4, 6),
->  };
->  
-> +static const struct g12a_toacodec_match_data s4_toacodec_match_data = {
-> +	.component_drv	= &s4_toacodec_component_drv,
-> +	.field_dat_sel	= REG_FIELD(TOACODEC_CTRL0, 19, 20),
-> +	.field_lrclk_sel = REG_FIELD(TOACODEC_CTRL0, 12, 14),
-> +	.field_bclk_sel	= REG_FIELD(TOACODEC_CTRL0, 4, 6),
-> +};
-> +
->  static const struct of_device_id g12a_toacodec_of_match[] = {
->  	{
->  		.compatible = "amlogic,g12a-toacodec",
-> @@ -285,6 +317,10 @@ static const struct of_device_id g12a_toacodec_of_match[] = {
->  		.compatible = "amlogic,sm1-toacodec",
->  		.data = &sm1_toacodec_match_data,
->  	},
-> +	{
-> +		.compatible = "amlogic,s4-toacodec",
-> +		.data = &s4_toacodec_match_data,
-> +	},
->  	{}
->  };
->  MODULE_DEVICE_TABLE(of, g12a_toacodec_of_match);
+---
+base-commit: cc3aa43b44bdb43dfbac0fcb51c56594a11338a8
+change-id: 20260122-mxic-nand-742183125e03
 
+Best regards,
 -- 
-Jerome
+Akhila YS <akhilayalmati@gmail.com>
+
 
