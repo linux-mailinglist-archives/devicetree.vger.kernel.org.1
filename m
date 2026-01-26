@@ -1,320 +1,203 @@
-Return-Path: <devicetree+bounces-259652-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259654-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aJBeA17Wd2mFlwEAu9opvQ
-	(envelope-from <devicetree+bounces-259652-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 22:02:22 +0100
+	id SFS+MZjXd2mFlwEAu9opvQ
+	(envelope-from <devicetree+bounces-259654-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 22:07:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBEF48D728
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 22:02:17 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C2838D847
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 22:07:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DF52C3018C3D
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 21:02:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8CC6430075C5
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 21:07:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C24282DD60E;
-	Mon, 26 Jan 2026 21:02:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E83A72DBF78;
+	Mon, 26 Jan 2026 21:07:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="beouqXbq"
+	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="VB/NVeK+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A0DB2DC76E;
-	Mon, 26 Jan 2026 21:02:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC1532DCF67
+	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 21:07:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769461334; cv=none; b=lG/BO+DAXEifiVSe9nXSRkTl/wR0UN7fJWCiEob6fwgCVCSIGkGbgwxy2lkeNFNs8QwrvumXXx+s0/b9GjulrhdgUFocW4zfjNpIhVcK7tKWeq8ef3KnjJgcFEfL14pva5+r5LFQ05YJuHVeXXx1GgUhY8jtgVudVGboVeTnbUw=
+	t=1769461643; cv=none; b=NgoPJUT0Q8W1cMYAFJc32RZnj7AFLwxvwcXCEcSmBeaoW282FnPyqXqSLsMnQ8vq65unozJx4D99k/JVCwdx5EZ8IGBBk2BWur+IKLUKxYVyg7bw2hIoySfCcA828r1jWDp8ap0CUXkN6cSQ3+X2WqyuzdwHQxOoahMJRRRO5NY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769461334; c=relaxed/simple;
-	bh=8x6wyS08s6WfKoSIfXc3hX2kI5c4SIOdRV/egsvzezI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jsyp0UwLtiw0RLpQ8SvW36cAFjW4gI3C0JZrI8H/1u/Yn/Op7iDu2jSRCYP8izLp0u2IioF4M7Bw8lRlD4zYwN4ffGkOXxI2M1fx1ltHASTCxj+8RxtiYB37O3PSgork0Cega/yRtJiLdzDCNIdzC1wd0VUkR4f/sR5A0TV399U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=beouqXbq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBE4AC116C6;
-	Mon, 26 Jan 2026 21:02:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769461334;
-	bh=8x6wyS08s6WfKoSIfXc3hX2kI5c4SIOdRV/egsvzezI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=beouqXbqqaaSYOiOO4C2eJud+5DY4aYi67w/HRJeIdAuIvSmqCrPjUJFnH+ozatp0
-	 dkJjynhcSsTKoNNldvyCDDxBTzutcdmmr/wl3ERJcimd545zgnUdubtYKsMtcnlNLD
-	 WUbcimJ9tO+nbypOUzeBs9wnEd02igdIxaQHJEZjObZONszOMAeAYb1dfh0UTQPobf
-	 KM2IVcX2JUoufoXmUmbZ7Es60YsFLE1PV/mCgRxPYtgidMQaecEV2USAQJjrTDcvvE
-	 PXu1G2fL76nDSNkDRX/TgGnD/jHw7vtS1iYWVYY5Ko0uFO+Uw9EVHPZ3lwEivb/jtA
-	 jY/kQX7n9V7jw==
-Date: Mon, 26 Jan 2026 13:02:12 -0800
-From: Drew Fustini <fustini@kernel.org>
-To: yunhui cui <cuiyunhui@bytedance.com>
-Cc: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Radim =?utf-8?B?S3LEjW3DocWZ?= <rkrcmar@ventanamicro.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Adrien Ricciardi <aricciardi@baylibre.com>,
-	Nicolas Pitre <npitre@baylibre.com>,
-	Kornel =?utf-8?Q?Dul=C4=99ba?= <mindal@semihalf.com>,
-	Atish Patra <atish.patra@linux.dev>,
-	Atish Kumar Patra <atishp@rivosinc.com>,
-	Vasudevan Srinivasan <vasu@rivosinc.com>,
-	Ved Shanbhogue <ved@rivosinc.com>,
-	Chen Pei <cp0613@linux.alibaba.com>,
-	Liu Zhiwei <zhiwei_liu@linux.alibaba.com>,
-	Weiwei Li <liwei1518@gmail.com>, guo.wenjia23@zte.com.cn,
-	liu.qingtao2@zte.com.cn, Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Reinette Chatre <reinette.chatre@intel.com>,
-	Tony Luck <tony.luck@intel.com>, Babu Moger <babu.moger@amd.com>,
-	Peter Newman <peternewman@google.com>,
-	Fenghua Yu <fenghua.yu@intel.com>,
-	James Morse <james.morse@arm.com>, Ben Horgan <ben.horgan@arm.com>,
-	Dave Martin <Dave.Martin@arm.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	x86@kernel.org
-Subject: Re: [External] [PATCH RFC 08/19] RISC-V: QoS: add resctrl interface
- for CBQRI controllers
-Message-ID: <aXfWVPg7YTToDKcQ@x1>
-References: <20260119-ssqosid-cbqri-v1-0-aa2a75153832@kernel.org>
- <20260119-ssqosid-cbqri-v1-8-aa2a75153832@kernel.org>
- <CAEEQ3w=fnq5Rsv0A49LSOqVS8hYQExSOSRQ6C8e8v5k4jBWOow@mail.gmail.com>
+	s=arc-20240116; t=1769461643; c=relaxed/simple;
+	bh=4OBH66/ndxjvzebFUaDdQ90XWGj7VJOTgeMg342/j9c=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=I2Q4Ml2KF9KTbOWQdZoSdVXkDaX5T56UqwDwkmOGcJLmyQbqjV2WJgUIlnufkh3sXEGMW05zk9McF9INpFa++Ie/FY2/O+12X44yDew7nL1Jx+eyH+FLWOfiitpci8uMpwHDn/6kM09nsBezqAFr8KhAwku7Ffbe5F7otTpER7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=oss.tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=VB/NVeK+; arc=none smtp.client-ip=209.85.128.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=oss.tenstorrent.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tenstorrent.com
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-78fdb90b670so43545457b3.2
+        for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 13:07:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tenstorrent.com; s=google; t=1769461641; x=1770066441; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=JQ+ZbTntkP2HXui9Ym0Sh9Ym8nTlNYxOBU+DQFXOvjc=;
+        b=VB/NVeK+DyUulOg5WRfiC1Z6O5Zv7NzREwRCemIeNH2tPEohdTqthOWYtVhTQ7uWou
+         RMZNPHmJtsHk/CePaEn4InCklFy9Jl2SDb40ysfDguq+6cNvqsKey954MR5PPvmexK8h
+         BFMB4P/7u9S17iw9Y+/M3N1olZWINeYLe0y24D10Gf9G6Ccy2srOP8NK/Xga8MpISqvz
+         2drsRZmkcEP1oUwdC/3SArV1BJmA68V3jKT3Ex7jC+J1sCWwxYfjReIMZpKljSKAdcA+
+         022HQ+yxq8+QSVUw1c2aaaxNCw/aS86QQQQ4VN62Tl5dn3h/J9NCxuFlnJZt/5uglQEG
+         zRYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769461641; x=1770066441;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JQ+ZbTntkP2HXui9Ym0Sh9Ym8nTlNYxOBU+DQFXOvjc=;
+        b=IzAsI0/FGzQFq+AD8CaW7H4woFn/knpV9G3l7yAmcrI4zLDqHkTD30+Q3+RADXqZ9R
+         oGXzmhoCTaTyGlx4VxvM63tqZNqnwVQwhsoIrj6Tryu+AjvgLKGjoDHO/YOYWiB9N6nd
+         aAetu4FQfQFwiNWAh3oK+TI7pyvlwDNpI8pnw+Uoto+H2SIijTgopI3Ahy9mu7vmlmat
+         EqguTTHQtyllIJjNDVfA0a0scFVIUh0qQC/Id6TVOkkDQUAAolbn38Wkb6lUgnxKmlPE
+         VxqR+LSQFXaavWGr6vKYb2Oqee/W4TnMP20QibQhe1EMj9LK4aF/OvT6uzsSLwcpKCyK
+         EQYw==
+X-Forwarded-Encrypted: i=1; AJvYcCUYSZ9ClffoEDqsoAiHM/YbfviGvTi5bctSOpx+4n8H5dOeI6bIc0cfPLPHyeIserL/tMlH7kaojHPZ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz8t/of8cwcmQNxraPsPRABCPDx4975NnJSy6btyLaCa9CR7aGl
+	ad7HIF6aMfpXsiU0co52UX34ROxj+NivJvLujDjhkTsX8HKPtiQlSWryA3Tka9et0Fk=
+X-Gm-Gg: AZuq6aLu+j09/629stq1Zdm81z8kvE//xTgQPF5klPNKjxoTqLovvrtKo9qmMvlF+pR
+	M3xytVP/dA12bjMOOYpKHWPqlq/cAapmFdpdVBuG66t4kwjuRBe6YmwXpu0a46+OIH/4xiXxF0L
+	sZqeXOw2fLMaeFZ7uxmKvfn/BbpMmRrK8nsm9W7XsFN+dnQTtJ4i5lR79RkskbUSK8rs4sfvJJn
+	pCTe63jA9SVRx8QU16VjpbOKMhSeS0tcDdW7A8jaDBuoLzXsUCjqBpgROKAtY79wcG8nVuthHv/
+	q+fsWuv8/b8UD/vW/EWDtbLVg9fuq4HzYBh7Fz6HVs4xFAar1lp/HDE6sTQ5M+8VQ1lNdDLf8bc
+	7wPP9a9R8ZNPXb4ZR7wFMtGJ52eSqrcslXmorwf/P9V+xSFeilazJmaA/9gav14d8reYTCQTfYj
+	J8205PEhV9Zyr92QWgxa+qlar0ZxJdof3ddDSaOWP/yROl9oNhAfurNWy/PQ1SSdrqXhHV65mHU
+	7xgxL/IrA==
+X-Received: by 2002:a05:690c:ec7:b0:794:198e:943b with SMTP id 00721157ae682-7945a845621mr46975107b3.8.1769461640816;
+        Mon, 26 Jan 2026 13:07:20 -0800 (PST)
+Received: from [192.168.5.15] ([68.95.197.245])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-7944bed27casm37948757b3.7.2026.01.26.13.07.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Jan 2026 13:07:20 -0800 (PST)
+From: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
+Subject: [PATCH v3 0/3] Add Tenstorrent Atlantis Clock/Reset Controller
+Date: Mon, 26 Jan 2026 15:07:13 -0600
+Message-Id: <20260126-atlantis-clocks-v3-0-b016135551b7@oss.tenstorrent.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAEEQ3w=fnq5Rsv0A49LSOqVS8hYQExSOSRQ6C8e8v5k4jBWOow@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIHXd2kC/23OzQqDMAzA8VcZPa/SD4y6095j7KA1zjLXjqaUD
+ fHdV4XBwB3/gfySmREGi8ROh5kFTJasdzn08cDM2LobctvnZkooEFIq3sapddESN5M3d+KDaIS
+ Rjehq6FneegYc7GsTL9fco6Xow3s7kOQ6/VrlzkqSC17pEhAqOai6O3uiIqJbiYAuFsY/2Kom9
+ SOp/VdJZckA6EqCbhDgv7QsywfrNyQvAgEAAA==
+X-Change-ID: 20260112-atlantis-clocks-f090c190b86d
+To: Drew Fustini <dfustini@oss.tenstorrent.com>, 
+ Joel Stanley <jms@oss.tenstorrent.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, 
+ Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, joel@jms.id.au, 
+ fustini@kernel.org, mpe@kernel.org, mpe@oss.tenstorrent.com, 
+ npiggin@oss.tenstorrent.com, agross@kernel.org, agross@oss.tenstorrent.com, 
+ bmasney@redhat.com
+X-Mailer: b4 0.14.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[tenstorrent.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[tenstorrent.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-259652-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[34];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,ventanamicro.com,sifive.com,baylibre.com,semihalf.com,linux.dev,rivosinc.com,linux.alibaba.com,gmail.com,zte.com.cn,intel.com,amd.com,google.com,arm.com,vger.kernel.org,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259654-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[tenstorrent.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[fustini@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[asrinivasan@oss.tenstorrent.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,baylibre.com:email]
-X-Rspamd-Queue-Id: EBEF48D728
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 2C2838D847
 X-Rspamd-Action: no action
 
-On Mon, Jan 26, 2026 at 09:01:30PM +0800, yunhui cui wrote:
-> Hi Drew,
-> 
-> On Tue, Jan 20, 2026 at 12:15 PM Drew Fustini <fustini@kernel.org> wrote:
-> >
-> > Add interface for CBQRI controller drivers to make use of the resctrl
-> > filesystem.
-> >
-> > Co-developed-by: Adrien Ricciardi <aricciardi@baylibre.com>
-> > Signed-off-by: Adrien Ricciardi <aricciardi@baylibre.com>
-> > Signed-off-by: Drew Fustini <fustini@kernel.org>
-> > ---
-> >  arch/riscv/kernel/qos/qos_resctrl.c | 1191 +++++++++++++++++++++++++++++++++++
-> >  1 file changed, 1191 insertions(+)
-> >
-> > diff --git a/arch/riscv/kernel/qos/qos_resctrl.c b/arch/riscv/kernel/qos/qos_resctrl.c
-> > new file mode 100644
-> > index 000000000000..5e3a65342e9b
-> > --- /dev/null
-> > +++ b/arch/riscv/kernel/qos/qos_resctrl.c
-[..]
-> > +/* Set capacity block mask (cc_block_mask) */
-> > +static void cbqri_set_cbm(struct cbqri_controller *ctrl, u64 cbm)
-> > +{
-> > +               int reg_offset;
-> > +               u64 reg;
-> > +
-> > +               reg_offset = CBQRI_CC_BLOCK_MASK_OFF;
-> > +               reg = ioread64(ctrl->base + reg_offset);
-> > +
-> > +               reg = cbm;
-> > +               iowrite64(reg, ctrl->base + reg_offset);
-> > +}
-> > +
-> 
-> too much indentation ？
+This series adds support for a multifunctional register block
+called PRCM in the Tenstorrent Atlantis SoC, whose main functionality
+is to serve clocks and resets. This block is instantiated multiple
+times in the SoC, with each block covering clock/resets from a
+different subsystem. This series also adds a driver that covers clocks
+and resets from the RCPU subsystem, which covers most low speed IO
+interfaces found in the chip. The reset controller is implemented as
+an auxiliary device of the clock controller and shares the same regmap
+as it.
 
-Thanks, will fix indentation for cbqri_set_cbm, cbqri_set_rbwb, and
-cbqri_get_rbwb.
+The first commit adds bindings documenting the PRCM block, along with
+clock and reset indices. The second commit adds the reset controller
+driver along with the auxdev definitions needed for it. The third commit
+adds the clock controller driver, and the reset controller is created as
+an auxdev of it.
 
-> > +static int cbqri_wait_busy_flag(struct cbqri_controller *ctrl, int reg_offset)
-> > +{
-> > +       unsigned long timeout = jiffies + (HZ / 10); /* Timeout after 100ms */
-> 
-> hung task ?
+Signed-off-by: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
 
-Good point, this is too long. I tried 100 us which wasn't long enough
-for Qemu on my system but 1,000 us worked okay.
+---
+Changes in v3:
+- Fixed warnings reported by kernel test bot
+- Addressed comments on reset driver bit set/unset value
+- Changed auxdev macros to use inline functions
+- Renamed bindings and clock driver to use block's name of "PRCM" rather
+  than syscon
+- Link to v2: https://lore.kernel.org/r/20260122-atlantis-clocks-v2-0-c66371639e66@oss.tenstorrent.com
 
-I will change to 1,000 us.
+Changes in v2:
+- Improve the documentation about the syscon block in bindings
+- Implemented all clks using custom ops
+- Removed custom lock/lock handling functions for regmap
+- Addressed comments on header file ordering, newlines and typos
+- Removed code for mux parent setting
+- Squashed down multiple commits that added reset/auxdev separately
+- Link to v1: https://lore.kernel.org/r/20260115-atlantis-clocks-v1-0-7356e671f28b@oss.tenstorrent.com
 
-        unsigned long timeout = jiffies + usecs_to_jiffies(1000);
+---
+Anirudh Srinivasan (3):
+      dt-bindings: clk: tenstorrent: Add tenstorrent,atlantis-prcm
+      reset: tenstorrent: Add reset controller for Atlantis
+      clk: tenstorrent: Add Atlantis clock controller driver
 
-> > +u32 resctrl_arch_get_config(struct rdt_resource *r, struct rdt_ctrl_domain *d,
-> > +                           u32 closid, enum resctrl_conf_type type)
-> > +{
-> > +       struct cbqri_resctrl_dom *hw_dom;
-> > +       struct cbqri_controller *ctrl;
-> > +       int reg_offset;
-> > +       u32 percent;
-> > +       u32 rbwb;
-> > +       u64 reg;
-> > +       int err;
-> > +
-> > +       hw_dom = container_of(d, struct cbqri_resctrl_dom, resctrl_ctrl_dom);
-> > +
-> > +       ctrl = hw_dom->hw_ctrl;
-> > +
-> > +       if (!r->alloc_capable)
-> > +               return -EINVAL;
-> 
-> u32 ?
+ .../bindings/clock/tenstorrent,atlantis-prcm.yaml  |  82 ++
+ MAINTAINERS                                        |   5 +
+ drivers/clk/Kconfig                                |   1 +
+ drivers/clk/Makefile                               |   1 +
+ drivers/clk/tenstorrent/Kconfig                    |  14 +
+ drivers/clk/tenstorrent/Makefile                   |   3 +
+ drivers/clk/tenstorrent/atlantis-prcm.c            | 941 +++++++++++++++++++++
+ drivers/reset/Kconfig                              |  11 +
+ drivers/reset/Makefile                             |   1 +
+ drivers/reset/reset-tenstorrent-atlantis.c         | 160 ++++
+ .../dt-bindings/clock/tenstorrent,atlantis-prcm.h  | 103 +++
+ include/soc/tenstorrent/atlantis-prcm.h            |  58 ++
+ 12 files changed, 1380 insertions(+)
+---
+base-commit: 9448598b22c50c8a5bb77a9103e2d49f134c9578
+change-id: 20260112-atlantis-clocks-f090c190b86d
 
-Good point.  I looked at mpam_resctrl.c and it returns the default value
-on error:
-https://lore.kernel.org/all/20260112165914.4086692-19-ben.horgan@arm.com/
+Best regards,
+-- 
+Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
 
-I will change to 'return resctrl_get_default_ctrl(r)'.
-
-> > +
-> > +       switch (r->rid) {
-> > +       case RDT_RESOURCE_L2:
-> > +       case RDT_RESOURCE_L3:
-> > +               /* Clear cc_block_mask before read limit operation */
-> > +               cbqri_set_cbm(ctrl, 0);
-> > +
-> > +               /* Capacity read limit operation for RCID (closid) */
-> > +               err = cbqri_cc_alloc_op(ctrl, CBQRI_CC_ALLOC_CTL_OP_READ_LIMIT, type, closid);
-> > +               if (err < 0) {
-> > +                       pr_err("%s(): operation failed: err = %d", __func__, err);
-> > +                       return -EIO;
-> 
-> u32 ?
-
-Same as above.
-
-> > +               }
-> > +
-> > +               /* Read capacity block mask for RCID (closid) */
-> > +               reg_offset = CBQRI_CC_BLOCK_MASK_OFF;
-> > +               reg = ioread64(ctrl->base + reg_offset);
-> > +
-> > +               /* Update the config value for the closid in this domain */
-> > +               hw_dom->ctrl_val[closid] = reg;
-> > +               return hw_dom->ctrl_val[closid];
-> > +
-> > +       case RDT_RESOURCE_MBA:
-> > +               /* Capacity read limit operation for RCID (closid) */
-> > +               err = cbqri_bc_alloc_op(ctrl, CBQRI_CC_ALLOC_CTL_OP_READ_LIMIT, closid);
-> > +               if (err < 0) {
-> > +                       pr_err("%s(): operation failed: err = %d", __func__, err);
-> > +                       return -EIO;
-> > +               }
-> > +
-> > +               hw_dom->ctrl_val[closid] = cbqri_get_rbwb(ctrl);
-> > +
-> > +               /* Convert from bandwidth blocks to percent */
-> > +               rbwb = hw_dom->ctrl_val[closid];
-> > +               rbwb *= 100;
-> > +               percent = rbwb / ctrl->bc.nbwblks;
-> > +               if (rbwb % ctrl->bc.nbwblks)
-> > +                       percent++;
-> 
-> set: 10, get 11 ?
-
-The intention was to handle rounding up but I can drop this increment.
-
-[..]
-> > +static int cbqri_probe_controller(struct cbqri_controller_info *ctrl_info,
-> > +                                 struct cbqri_controller *ctrl)
-> > +{
-> > +       int err = 0, status;
-> > +       u64 reg;
-> > +
-> > +       pr_info("controller info: type=%d addr=0x%lx size=%lu max-rcid=%u max-mcid=%u",
-> > +               ctrl_info->type, ctrl_info->addr, ctrl_info->size,
-> > +               ctrl_info->rcid_count, ctrl_info->mcid_count);
-> > +
-> > +       /* max_rmid is used by resctrl_arch_system_num_rmid_idx() */
-> > +       max_rmid = ctrl_info->mcid_count;
-> > +
-> > +       ctrl->ctrl_info = ctrl_info;
-> > +
-> > +       /* Try to access the memory-mapped CBQRI registers */
-> > +       if (!request_mem_region(ctrl_info->addr, ctrl_info->size, "cbqri_controller")) {
-> > +               pr_warn("%s(): return %d", __func__, err);
-> > +               return err;
-> 
-> err = 0?
-
-Good point, I will change it to return -EBUSY.
-
-[..]
-> > +int qos_resctrl_setup(void)
-> > +{
-> > +       struct rdt_ctrl_domain *domain, *domain_temp;
-> > +       struct cbqri_controller_info *ctrl_info;
-> > +       struct cbqri_controller *ctrl;
-> > +       struct cbqri_resctrl_res *res;
-> > +       static int found_controllers;
-> > +       int err = 0;
-> > +       int id = 0;
-> > +       int i;
-> > +
-> > +       list_for_each_entry(ctrl_info, &cbqri_controllers, list) {
-> > +               err = cbqri_probe_controller(ctrl_info, &controllers[found_controllers]);
-> > +               if (err) {
-> > +                       pr_warn("%s(): failed (%d)", __func__, err);
-> > +                       goto err_unmap_controllers;
-> > +               }
-> > +
-> > +               found_controllers++;
-> > +               if (found_controllers > MAX_CONTROLLERS) {
-> > +                       pr_warn("%s(): increase MAX_CONTROLLERS value", __func__);
-> > +                       break;
-> > +               }
-> > +       }
-> > +
-> > +       for (i = 0; i < RDT_NUM_RESOURCES; i++) {
-> > +               res = &cbqri_resctrl_resources[i];
-> > +               INIT_LIST_HEAD(&res->resctrl_res.ctrl_domains);
-> > +               INIT_LIST_HEAD(&res->resctrl_res.mon_domains);
-> > +               res->resctrl_res.rid = i;
-> > +       }
-> > +
-> > +       for (i = 0; i < found_controllers; i++) {
-> > +               ctrl = &controllers[i];
-> 
-> controllers[6] ?
-
-This is limitation from the proof-of-concept. I need to refactor this so
-that it is dynamically allocated based on the number of controllers
-present in the system
-
-Thanks,
-Drew
 
