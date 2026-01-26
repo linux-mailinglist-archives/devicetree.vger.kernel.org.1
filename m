@@ -1,185 +1,252 @@
-Return-Path: <devicetree+bounces-259592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259593-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yPqzKRKbd2n0iwEAu9opvQ
-	(envelope-from <devicetree+bounces-259592-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:49:22 +0100
+	id uN3oEsadd2kCjQEAu9opvQ
+	(envelope-from <devicetree+bounces-259593-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 18:00:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3030C8AEA2
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:49:22 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 363AC8B35A
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 18:00:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 49A7D3012430
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:48:43 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 83B5F300D98B
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:55:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53464347FEA;
-	Mon, 26 Jan 2026 16:47:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D060C348862;
+	Mon, 26 Jan 2026 16:55:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gErd8LZp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z0Erv/eU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 804B334A786;
-	Mon, 26 Jan 2026 16:47:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FE4B348452
+	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 16:55:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769446075; cv=none; b=s5tSNzTdhLf3uCUCeYIUyoMopBJpTAOcaNDJ7ZLt3cYjLwzuq1HRuxKhVoH3ldP80eXfuAdf6mJW8vZ3Zlp1LnM1tnIvy1Q9dO1fq4B1sGHswZE9twWfalLqA///puwtEWNrkr3bBN+GZJb/QJvs2eP8v/twCXJw4+n2tdsuWKM=
+	t=1769446526; cv=none; b=Wmm/T9oPqzF579dBlB+H92tsplqmY5zDQjno4515gfCzkLxLQkbfoRN9+c4s0kkeT7ttL8MAr8d9pNOKzkRchwrY04nCP50T3Irqdd6/wO6wyxXj041M2udVJ3Sl7C4fYjLMkzrp/fq0xcjgIAnkweHjon7uyuxGEDgNs5A6tmc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769446075; c=relaxed/simple;
-	bh=OTgN+AOgoWAXyZjcPvOX/MFtQjNRVU5usZ1XNPxTrto=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VbQoyHdpeWz9NIS/Mmy6gMj+MmI5IlvxIdZHo0F55WN4NYPGAtztEQmtcmEEs9YKE5Z6RzauUwUighrMdUHZrNPpIYyA+YqjQd2h+3UOaqU/MeHZqlfm/zY57mb6PLhYAfRHDm2w+SwT1ajbiAOUP08+q3peia/f14JqvkEasm4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gErd8LZp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86717C116C6;
-	Mon, 26 Jan 2026 16:47:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769446074;
-	bh=OTgN+AOgoWAXyZjcPvOX/MFtQjNRVU5usZ1XNPxTrto=;
-	h=From:To:Cc:Subject:Date:From;
-	b=gErd8LZpO5mnHe4QTq3JaXLDMcIO0Qvh7d0yzXw2Vlt5xjkum5A8fqyAj8CeZ0p0S
-	 S9pVAXmkr28yvW9DSiBNMFXULNCcW34EwKisF1i2F6rHUnyHDPjbz/J1GkVasmW8HQ
-	 GxNn19iw7dXyWE/LkOiq+Y7uEdRyQCkPWiJJ5/yPduqz2196ely+CFRorga3Lw5LHh
-	 e8e4iq/Dju5KBxWCFWEO7zuh9EdIM2vMGLnmzxowevpkhBy8PaOpyFUmaLZBukrJ2S
-	 aq+MqhzXYi4F0rYtsLbuD850v8aoM9wNxsyjVf5V7uyscdH1+ePuzL0xcX+yVxYgy4
-	 Fj2KTAmcpnB9w==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Guenter Roeck <linux@roeck-us.net>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Karthikeyan Mitran <m.karthikeyan@mobiveil.co.in>,
-	Hou Zhiqiang <Zhiqiang.Hou@nxp.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Christopher Ruehl <chris.ruehl@gtsys.com.hk>,
-	"Jason A. Donenfeld" <Jason@zx2c4.com>,
-	Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-	Vincent Huang <vincent.huang@tw.synaptics.com>,
-	Inki Dae <inki.dae@samsung.com>,
-	Seung-Woo Kim <sw0312.kim@samsung.com>,
-	Frank Li <Frank.Li@nxp.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-input@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-pci@vger.kernel.org
-Subject: [PATCH] dt-bindings: Fix emails with spaces or missing brackets
-Date: Mon, 26 Jan 2026 10:47:22 -0600
-Message-ID: <20260126164724.2832009-1-robh@kernel.org>
-X-Mailer: git-send-email 2.51.0
+	s=arc-20240116; t=1769446526; c=relaxed/simple;
+	bh=rtDgVvG79SUCWzCaoQOfUDO1NplihBERrUqYdXin8Yw=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MJ9/K3IyX5hEEkKeHVC45TTFuRuCbFci08SmCDJKrGNt0ifGw0m5b4vai3YFkYyI+NALu4L4jUvdylBzkJYQPy23IjDKn8FQW5CFynmnpRAek6jC1ydV02N9kR/Pl/wH5DSnisALtGJh+8RZUG2hk+bFbjmrRwK7qrXmMxKx4ok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z0Erv/eU; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-47f3b7ef761so34042315e9.0
+        for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 08:55:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1769446523; x=1770051323; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rc+FUrxKc4cUAoTTGJRU58P89nBONYHsM5Js7trUOgI=;
+        b=Z0Erv/eUvMHVs1d/MEDVa+e2EfxT3uYF+eaxPuJWRWMSXluuPyiijRXAf1LtQmpNt3
+         oEXPKFXjQ/j5fp2OofmiKGyEOcdtTQTV7KwKUZ0oKLFU4zBljQfOWIrBdHwoLZLupqJS
+         DonRUMdTbFevCA2/1t5Z+xeyHwPywPUnj+z9uvad93eXzNqKpMWzbswT86Cz61gFzymK
+         kQiNl5VM3iyfK0X7JNluJjai2Gr1uMSWpxvUMpO3xZp1fz0gY0ubXJxCERSk6c4g7hUX
+         j/yjlwupvB6/S2K/HyntkIKlwEXzw8dFuDFe189aLAyaDboPEV6N9TcFmp7SAJQB5R8b
+         9bvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769446523; x=1770051323;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rc+FUrxKc4cUAoTTGJRU58P89nBONYHsM5Js7trUOgI=;
+        b=IEBzi6mMss+0bZiD5bEaT5Eoz+Ugh0MqHd/7ZvHMIlRDuEoYV86nsYZXitvdc2Z6E1
+         UAm64e3vSoUA8zJqVvrJ6nbUbhpSB6aZFX/hisT0c0pqaDfZbwlo7ZLbs0978FtPVatO
+         4qIWUcod4JXulhxG7pqQNWDBMJl2jLjlYoqFquVD1WBvVoshDp6gvrGAPJYB0/Hu4XNU
+         5kX94ou2LPkaoUZEBiZZf1wbKNcppLfZqcUb/SouvtZxq+UPC80fAppDNga73/VS8GN2
+         vHaCvpKdFY7QR+h3SvUxUgRNTQbpWXnkR47lNVfokfWI9M2iUSlUrRPi3W66aQRXWsGo
+         h+Og==
+X-Forwarded-Encrypted: i=1; AJvYcCVYT7x9OvfEHq8ASScjEqTA695si99SRMA11nGYmWm7mDPs2E3+WWrOzvQcFziUR8O0oy26M1Brq3UC@vger.kernel.org
+X-Gm-Message-State: AOJu0YwRC3Bmt8YS3GjThs/M1Ss7a19yA8OuZBb84PXExkemWaqpudVr
+	aSumquWSW9LwzoC7xctyUI8AzyQur799KQ8SYnecUsqoltDs/oSxA+Ze
+X-Gm-Gg: AZuq6aIO/bh1+injsotl89yMumf/4j21VgzLBRXH6hMpwR2qqw36NsnASEF5jpgdx4C
+	Y9ch+K9FmCZcjgsVYMOx/Fa4QcTz5KodujJnHMpp3qUpQ7E5yB7HpX/HKQckJ97TxR7yb+G2Fnp
+	0fLVaMIUdS1OUtpO5EYKh898yijpRjcVxeJ240xhW1mi0pe9LmIK1DezUChcuM6sizIYTRmF8wh
+	FYtCUFiAHq7gbnZe1TNIEyTQwJUKsy6/41NuAqglsekM6Kn6y2R29+yBL9F8QyG93zEHevNh8rl
+	z0ATXSaeQrmsnC7Xaw0Psi7L+itxMKgaDOZOQIr0hrHTncnLeMYQOXY8Bz//u/jswKbd6YpRym4
+	SMwUYGC6hpUzfA6AOlpoSwwAgUZ5ffo5eM5z3PxXNrQQH/rx6qp2A402MQhZkYb3yMTITF48n+/
+	j/O93Yg2mRWFZTvZz6lCOE9WvOZ0Zs0EPxHe//EDbRhQzXPVdnKVH0d8DuEcXQpeArMeuKjO+Z0
+	87M
+X-Received: by 2002:a05:600c:4e56:b0:47b:deb9:15fb with SMTP id 5b1f17b1804b1-480628348c6mr42537495e9.33.1769446523357;
+        Mon, 26 Jan 2026 08:55:23 -0800 (PST)
+Received: from RDEALENC-L01.ad.analog.com ([24.206.116.103])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48066bfb59asm1306595e9.7.2026.01.26.08.55.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Jan 2026 08:55:22 -0800 (PST)
+From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
+Date: Mon, 26 Jan 2026 16:55:13 +0000
+To: Andy Shevchenko <andriy.shevchenko@intel.com>, 
+	Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
+	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	Andy Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>
+Subject: Re: [PATCH v5 2/8] iio: core: add fixed point parsing with 64-bit
+ parts
+Message-ID: <anhtxco52jz2ktmxlittsjuvfqybwrwgy76bjhni3j5dzx2rh2@hpzf3sfwe7hf>
+References: <20260123-adf41513-iio-driver-v5-0-2dce812a2dda@analog.com>
+ <20260123-adf41513-iio-driver-v5-2-2dce812a2dda@analog.com>
+ <aXdUvRZ9NmP5Nh95@smile.fi.intel.com>
+ <byitgzjli5gsq5v66topve7ip3inkk2udwhuihjdp6bknnkmos@tv226l7tek7s>
+ <aXdtpkL5QUhhB_hh@smile.fi.intel.com>
+ <ty6hptfh65k2rkqo6c6mg5z6vismuvyqsu3emvqarr2rbhpvcz@kn6tzjk5xi2o>
+ <aXd_0uNVm8c_Fhwd@smile.fi.intel.com>
+ <n2ms3esyxlegqibu4nluut3x4c4bkjxt5xrcd4gw35xxb2tipb@a2v73y25kroc>
+ <shsikp7hinoxzj7pzxopvmvgpaak4dioekh4tyvns4kv6xp46f@z5vgnisqskco>
+ <aXeRQ4AXmn1SxoNa@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aXeRQ4AXmn1SxoNa@smile.fi.intel.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	FREEMAIL_TO(0.00)[roeck-us.net,kernel.org,gmail.com,samsung.com,mobiveil.co.in,nxp.com,google.com,gtsys.com.hk,zx2c4.com,ew.tq-group.com,tw.synaptics.com];
-	TAGGED_FROM(0.00)[bounces-259592-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259593-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[intel.com,gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[samsung.com:email,synaptics.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,devicetree.org:url,nxp.com:email,tq-group.com:email,zx2c4.com:email,gtsys.com.hk:email]
-X-Rspamd-Queue-Id: 3030C8AEA2
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 363AC8B35A
 X-Rspamd-Action: no action
 
-Fix email addresses with spaces or missing brackets. A pending
-dtschema meta-schema change will check for these.
+On 26/01/26 06:07PM, Andy Shevchenko wrote:
+> On Mon, Jan 26, 2026 at 03:30:44PM +0000, Rodrigo Alencar wrote:
+> > On 26/01/26 03:20PM, Rodrigo Alencar wrote:
+> > > On 26/01/26 04:53PM, Andy Shevchenko wrote:
+> > > > On Mon, Jan 26, 2026 at 02:26:20PM +0000, Rodrigo Alencar wrote:
+> 
+> ...
+> 
+> > > > Why? Can you elaborate how checking amount of digits is different to
+> > > > check_mul_overflow()?
+> > > 
+> > > consider U64_MAX = 18_446_744_073_709_551_615 as the limit:
+> > > - 19_000_000_000_000_000_000 contains the same amount of digits but overflows.
+> > > - 18_446_744_073_710_000_000 contains the same amount of digits but overflows.
+> > > 
+> > > to catch those cases, we need to check for the overflow, everytime we read a
+> > > character and accumulate:
+> > > 
+> > > u64 acc;
+> > > 
+> > > while(isdigit(*str))
+> > > 	if (check_mul_overflow(acc, 10, &acc) ||
+> > > 	    check_add_overflow(acc, *str - '0', &acc))
+> > > 		return -EOVERFLOW;
+> > > 
+> > > *res = acc;
+> > > 
+> > > acc can get weird results if not checked. 
+> > 
+> > Thinking about it again, that check could be done only in the last step
+> > (20th for u64)
+> 
+> Does kstrto*() also perform only last check? I think they do for each
+> iteration.
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
- Documentation/devicetree/bindings/hwmon/sensirion,shtc1.yaml    | 2 +-
- Documentation/devicetree/bindings/input/syna,rmi4.yaml          | 2 +-
- .../devicetree/bindings/media/samsung,exynos5250-gsc.yaml       | 2 +-
- Documentation/devicetree/bindings/pci/mbvl,gpex40-pcie.yaml     | 2 +-
- 4 files changed, 4 insertions(+), 4 deletions(-)
+It does the following:
 
-diff --git a/Documentation/devicetree/bindings/hwmon/sensirion,shtc1.yaml b/Documentation/devicetree/bindings/hwmon/sensirion,shtc1.yaml
-index 3d14d5fc96c5..7b38f2182ffa 100644
---- a/Documentation/devicetree/bindings/hwmon/sensirion,shtc1.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/sensirion,shtc1.yaml
-@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Sensirion SHTC1 Humidity and Temperature Sensor IC
- 
- maintainers:
--  - Christopher Ruehl chris.ruehl@gtsys.com.hk
-+  - Christopher Ruehl <chris.ruehl@gtsys.com.hk>
- 
- description: |
-   The SHTC1, SHTW1 and SHTC3 are digital humidity and temperature sensors
-diff --git a/Documentation/devicetree/bindings/input/syna,rmi4.yaml b/Documentation/devicetree/bindings/input/syna,rmi4.yaml
-index f369385ffaf0..8685ef4481f4 100644
---- a/Documentation/devicetree/bindings/input/syna,rmi4.yaml
-+++ b/Documentation/devicetree/bindings/input/syna,rmi4.yaml
-@@ -8,7 +8,7 @@ title: Synaptics RMI4 compliant devices
- 
- maintainers:
-   - Jason A. Donenfeld <Jason@zx2c4.com>
--  - Matthias Schiffer <matthias.schiffer@ew.tq-group.com
-+  - Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-   - Vincent Huang <vincent.huang@tw.synaptics.com>
- 
- description: |
-diff --git a/Documentation/devicetree/bindings/media/samsung,exynos5250-gsc.yaml b/Documentation/devicetree/bindings/media/samsung,exynos5250-gsc.yaml
-index 878397830a4d..9196cf5dac0f 100644
---- a/Documentation/devicetree/bindings/media/samsung,exynos5250-gsc.yaml
-+++ b/Documentation/devicetree/bindings/media/samsung,exynos5250-gsc.yaml
-@@ -9,7 +9,7 @@ title: Samsung Exynos SoC G-Scaler
- maintainers:
-   - Inki Dae <inki.dae@samsung.com>
-   - Krzysztof Kozlowski <krzk@kernel.org>
--  - Seung-Woo Kim <sw0312.kim@samsung.com
-+  - Seung-Woo Kim <sw0312.kim@samsung.com>
- 
- description:
-   G-Scaler is used for scaling and color space conversion on Samsung Exynos
-diff --git a/Documentation/devicetree/bindings/pci/mbvl,gpex40-pcie.yaml b/Documentation/devicetree/bindings/pci/mbvl,gpex40-pcie.yaml
-index d286b77921e0..8f5d33050348 100644
---- a/Documentation/devicetree/bindings/pci/mbvl,gpex40-pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/mbvl,gpex40-pcie.yaml
-@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Mobiveil AXI PCIe Host Bridge
- 
- maintainers:
--  - Frank Li <Frank Li@nxp.com>
-+  - Frank Li <Frank.Li@nxp.com>
- 
- description:
-   Mobiveil's GPEX 4.0 is a PCIe Gen4 host bridge IP. This configurable IP
--- 
-2.51.0
+...
+		if (unlikely(res & (~0ull << 60))) {
+			if (res > div_u64(ULLONG_MAX - val, base))
+				rv |= KSTRTOX_OVERFLOW;
+		}
+...
 
+so overflow is checked when either one of the 4 MSbits are set.
+
+for now, I am thinking of something like:
+
+static ssize_t iio_safe_strtou64(const char *str, const char **endp,
+				 size_t max_chars, u64 *result)
+{
+	u64 digit, acc = 0;
+	size_t idx = 0;
+
+	while (isdigit(*str) && idx < max_chars) {
+		digit = *str - '0';
+		if (unlikely(idx > 19)) {
+			if (check_mul_overflow(acc, 10, &acc) ||
+			    check_add_overflow(acc, digit, &acc))
+				return -EOVERFLOW;
+		} else {
+			acc = acc * 10 + digit;
+		}
+		str++;
+		idx++;
+	}
+
+	*endp = str;
+	*result = acc;
+	return idx;
+}
+
+which would help the truncation when parsing the fractional part
+with max_chars, avoiding a div64_u64() to adjust precision:
+
+...
+	digit_count = iio_safe_strtou64(str, &end, SIZE_MAX, &i);
+	if (digit_count < 0)
+		return digit_count;
+
+	if (precision && *end == '.') {
+		str = end + 1;
+		digit_count = iio_safe_strtou64(str, &end, precision, &f);
+		if (digit_count < 0)
+			return digit_count;
+
+		if (digit_count < precision) /* scale up */
+			f *= int_pow(10, precision - digit_count);
+
+		while (isdigit(*end)) /* truncate */
+			end++;
+	}
+...
+
+but I understand you would not like this approach, because it does not use
+simple_strtoull() or kstrtoull(). Problem is simple_strtoull() is not
+overflow-safe and kstrtoull() does not allow to track a pointer to end
+of the string.
+
+Given that the current implementation of iio_str_to_fixpoint() is not using
+simple_strtoull() I am not seeing an issue with this approach.
+
+Kind regards,
+
+Rodrigo Alencar
 
