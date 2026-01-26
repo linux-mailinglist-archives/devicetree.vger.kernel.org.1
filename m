@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-259596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259600-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gJFyA++fd2kCjQEAu9opvQ
-	(envelope-from <devicetree+bounces-259596-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 18:10:07 +0100
+	id INtPI/Wfd2kCjQEAu9opvQ
+	(envelope-from <devicetree+bounces-259600-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 18:10:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DB588B4DE
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 18:10:06 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DC168B4FB
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 18:10:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6A2B23011F00
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:08:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 41C9F3056490
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:08:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D48F349B16;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B509D34A77F;
 	Mon, 26 Jan 2026 17:08:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TXOhV9FO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BgXJh0jN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7973934846A;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E2C3349B0D;
 	Mon, 26 Jan 2026 17:08:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769447301; cv=none; b=DXS7bCNXWrvby28YDlrIJZ9brO4cQMpv7jn1Rw4xq7tByqDbZXnuYosbsW61pZuVtY26oq6RYTDu0ywiKwvbOb7fpaGYlReD3CFrq5kc99/WpBpzHDiDAcw9VwUvvO2g8plv9NoXIPl7MKBWTUtexaT8KUFPsXDgeJYOBhk4P28=
+	t=1769447301; cv=none; b=iG0WHeZxBWThv6hFZcYca2Vn45YYNerRd4nT8ZCmp7IHbqJAjJJl6O6V4q1CGl9HhmvamVe8ZyB+tQA+sKXSkruCXVn+jmgW4KcgPLWZBED5uh8rNoqaUJ0iEF4tY8vzLzNeVs1LI+2QS6EHgq9DCWHA6ELyOSDC4x3BaUxbGOs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1769447301; c=relaxed/simple;
-	bh=jvF5qeYw9OFf0xTRtcK9799ZYgCLXgUjt2dmGVjzq24=;
+	bh=OybWCogfBgN8xZ/i/vgh3wMiiMXnvU+ML2P4SNzVv2E=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=dfBVkT1R/Na5rLnd2HV3apnaeSvjJBP/CT9Vem0vXkLz/hpp/IWP3UA8K/pc+aqZYRoKINqUi/kILFAOz0gn7wTH09g514Jl6f56foNls8OmxmcjWC2FKW0GgmNhCRZM83mnqhwNPjpGw2Fzy2uutYMw6S0gNm5ezAm/3wV74yE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TXOhV9FO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 4F6C1C2BC86;
+	 In-Reply-To:To:Cc; b=JZMx4oTdwVs49rZFqoDvo477cJckyDQwA4Q9JkzM6Q6+rYVzfKz9PHyIrN0HRhEv0OfDjw18XKNKXW8M7JdShefZt9nrLo3/5pRdMJnqPDDHFgQvUKEYwoog8SszExxi+qpyGzvF0OD2vZdmfZjNOXohD+BCzjZVv8Az9iABwIg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BgXJh0jN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 5D74EC2BCB1;
 	Mon, 26 Jan 2026 17:08:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1769447301;
-	bh=jvF5qeYw9OFf0xTRtcK9799ZYgCLXgUjt2dmGVjzq24=;
+	bh=OybWCogfBgN8xZ/i/vgh3wMiiMXnvU+ML2P4SNzVv2E=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=TXOhV9FO6hSpWSicbKfiaIwIizJXBKDoijOgSn9BAnwhea+Umo8UwAXi/8uXFRCue
-	 myufuXm8px7SZzN5Vjh2kHtq0QUXFgytRkzisruecf0sDvxGU6OovuQe9O3bXNvnfl
-	 ktmjdXdF76vubwmBhQSdfNQmvb7CZY8YHR8G6tQd8R5nY0Qpa+vh9gppKNEy5bIktN
-	 AZS1SfKf7//f2oyIQMLPr6Abc3+r9kJcsUyh3YLUqfJTRrOhezaHsAPuxsHsu9MMJQ
-	 7Q5rnmG2GtYrPOzOkbBUGx2Dad5H3EuQlmUUUfz6UalHhbssNp1lLvohcdyJZ/Gt8o
-	 Lr3kVxS8lMtZw==
+	b=BgXJh0jNFHyZBMnwZSQNNXMcbKEsjmN8odwDmWldh9wwA7NfX8xjmFSB3mnqysurv
+	 t8RpdNGaF8JTq94mXsbgaFgZr3e7ZpWQMDGyQPqWywpDw5B7tsQ7vN5w9zSiS+0SqS
+	 tjJcEmnWb5NUSdxbY6SCuFEE7cYnafPydtwbyeQXI5MKfuQPvGYSkkQt0aIHbxIQIE
+	 UENi2/lf2igbuT+cMcgLhFNb13ppttl2P6nEo5vu5eMfpHg/S7SPxG6/YJDoT+GElB
+	 xZJcOYAQWco8nTHltAKI5+qeyPdShqJL78z+ORckzgvR7wWwhevy1MTS7aK7v7/S4K
+	 kO+XRTXELhBhQ==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 44907D19507;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 52F89D19502;
 	Mon, 26 Jan 2026 17:08:21 +0000 (UTC)
 From: Abdurrahman Hussain via B4 Relay <devnull+abdurrahman.nexthop.ai@kernel.org>
-Date: Mon, 26 Jan 2026 17:08:18 +0000
-Subject: [PATCH v5 3/6] i2c: xiic: switch to devres managed APIs
+Date: Mon, 26 Jan 2026 17:08:19 +0000
+Subject: [PATCH v5 4/6] i2c: xiic: remove duplicate error message
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,7 +58,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260126-i2c-xiic-v5-3-88a16a28721c@nexthop.ai>
+Message-Id: <20260126-i2c-xiic-v5-4-88a16a28721c@nexthop.ai>
 References: <20260126-i2c-xiic-v5-0-88a16a28721c@nexthop.ai>
 In-Reply-To: <20260126-i2c-xiic-v5-0-88a16a28721c@nexthop.ai>
 To: Michal Simek <michal.simek@amd.com>, Andi Shyti <andi.shyti@kernel.org>, 
@@ -69,11 +69,11 @@ Cc: Andy Shevchenko <andriy.shevchenko@intel.com>,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
  Abdurrahman Hussain <abdurrahman@nexthop.ai>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1769447300; l=2539;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1769447300; l=800;
  i=abdurrahman@nexthop.ai; s=20260119; h=from:subject:message-id;
- bh=bfIH49iCAyAlFD23YdabFfBWUt0uWz1DwhgQrI4yMbc=;
- b=n1SMe1SPbm69jcfaZUcirZWtvrvPY/A6SV+/oJh7eIVDhEolY942jd4n8uJ5ldPItgzJnqqMD
- 2CK7IUGgSK1B7Og5eDoy2lZO0bQXeUWVQq3VTkE9Tkr/mLwTGUilgTp
+ bh=GVZq2HmFuG7CNJnGoqYZGmD0YpSeA59LFKPs+6ye6Uk=;
+ b=BoLKdz1mXkh+9FOaj+7RkXE2H3BzPV3zmnuidek6FzRj3sbPuBJucSaLV3gNgmDBN+gfkXHs+
+ dFfCjnwL51yCViUTSELre9K3EJxfSiBA3C8S5XYuBJkdp6kiRYlz53D
 X-Developer-Key: i=abdurrahman@nexthop.ai; a=ed25519;
  pk=S+ysnf+NwMcBdHBlyKIUEAtaFGSIhQwcJcgcXhq0osg=
 X-Endpoint-Received: by B4 Relay for abdurrahman@nexthop.ai/20260119 with
@@ -86,12 +86,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259596-lists,devicetree=lfdr.de,abdurrahman.nexthop.ai];
+	TAGGED_FROM(0.00)[bounces-259600-lists,devicetree=lfdr.de,abdurrahman.nexthop.ai];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[12];
@@ -105,99 +105,39 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[nexthop.ai:replyto,nexthop.ai:email,nexthop.ai:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 6DB588B4DE
+X-Rspamd-Queue-Id: 2DC168B4FB
 X-Rspamd-Action: no action
 
 From: Abdurrahman Hussain <abdurrahman@nexthop.ai>
 
-Simplify the error code paths by switching to devres managed helper
-functions.
+The devm_request_threaded_irq() already prints an error message. Remove
+the duplicate.
 
 Signed-off-by: Abdurrahman Hussain <abdurrahman@nexthop.ai>
 ---
- drivers/i2c/busses/i2c-xiic.c | 24 ++++++++++--------------
- 1 file changed, 10 insertions(+), 14 deletions(-)
+ drivers/i2c/busses/i2c-xiic.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
 diff --git a/drivers/i2c/busses/i2c-xiic.c b/drivers/i2c/busses/i2c-xiic.c
-index 16202fb89271..a4a8087c1407 100644
+index a4a8087c1407..a06597bbf6fc 100644
 --- a/drivers/i2c/busses/i2c-xiic.c
 +++ b/drivers/i2c/busses/i2c-xiic.c
-@@ -1462,7 +1462,10 @@ static int xiic_i2c_probe(struct platform_device *pdev)
- 	snprintf(i2c->adap.name, sizeof(i2c->adap.name),
- 		 DRIVER_NAME " %s", pdev->name);
+@@ -1492,10 +1492,8 @@ static int xiic_i2c_probe(struct platform_device *pdev)
+ 					xiic_process, IRQF_ONESHOT,
+ 					pdev->name, i2c);
  
--	mutex_init(&i2c->lock);
-+	ret = devm_mutex_init(dev, &i2c->lock);
+-	if (ret < 0) {
+-		dev_err_probe(&pdev->dev, ret, "Cannot claim IRQ\n");
 +	if (ret < 0)
-+		return ret;
-+
- 	spin_lock_init(&i2c->atomic_lock);
- 
- 	i2c->clk = devm_clk_get_optional_enabled(dev, NULL);
-@@ -1473,8 +1476,9 @@ static int xiic_i2c_probe(struct platform_device *pdev)
- 	i2c->dev = &pdev->dev;
- 	pm_runtime_set_autosuspend_delay(i2c->dev, XIIC_PM_TIMEOUT);
- 	pm_runtime_use_autosuspend(i2c->dev);
--	pm_runtime_set_active(i2c->dev);
--	pm_runtime_enable(i2c->dev);
-+	ret = devm_pm_runtime_set_active_enabled(dev);
-+	if (ret < 0)
-+		return ret;
- 
- 	/* SCL frequency configuration */
- 	i2c->input_clk = clk_get_rate(i2c->clk);
-@@ -1490,7 +1494,7 @@ static int xiic_i2c_probe(struct platform_device *pdev)
- 
- 	if (ret < 0) {
- 		dev_err_probe(&pdev->dev, ret, "Cannot claim IRQ\n");
--		goto err_pm_disable;
-+		return ret;
- 	}
+ 		return ret;
+-	}
  
  	i2c->singlemaster =
-@@ -1511,14 +1515,14 @@ static int xiic_i2c_probe(struct platform_device *pdev)
- 	ret = xiic_reinit(i2c);
- 	if (ret < 0) {
- 		dev_err_probe(&pdev->dev, ret, "Cannot xiic_reinit\n");
--		goto err_pm_disable;
-+		return ret;
- 	}
- 
- 	/* add i2c adapter to i2c tree */
- 	ret = i2c_add_adapter(&i2c->adap);
- 	if (ret) {
- 		xiic_deinit(i2c);
--		goto err_pm_disable;
-+		return ret;
- 	}
- 
- 	if (pdata) {
-@@ -1530,12 +1534,6 @@ static int xiic_i2c_probe(struct platform_device *pdev)
- 	dev_dbg(&pdev->dev, "mmio %08lx irq %d scl clock frequency %d\n",
- 		(unsigned long)res->start, irq, i2c->i2c_clk);
- 
--	return 0;
--
--err_pm_disable:
--	pm_runtime_disable(&pdev->dev);
--	pm_runtime_set_suspended(&pdev->dev);
--
- 	return ret;
- }
- 
-@@ -1556,8 +1554,6 @@ static void xiic_i2c_remove(struct platform_device *pdev)
- 		xiic_deinit(i2c);
- 
- 	pm_runtime_put_sync(i2c->dev);
--	pm_runtime_disable(&pdev->dev);
--	pm_runtime_set_suspended(&pdev->dev);
- 	pm_runtime_dont_use_autosuspend(&pdev->dev);
- }
- 
+ 		of_property_read_bool(pdev->dev.of_node, "single-master");
 
 -- 
 2.52.0
