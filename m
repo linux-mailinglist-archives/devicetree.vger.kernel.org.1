@@ -1,381 +1,242 @@
-Return-Path: <devicetree+bounces-259442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259443-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yJVPOTtBd2mMdQEAu9opvQ
-	(envelope-from <devicetree+bounces-259442-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 11:26:03 +0100
+	id oKOlEcBBd2mMdQEAu9opvQ
+	(envelope-from <devicetree+bounces-259443-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 11:28:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51A0686DED
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 11:26:03 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8730886E5D
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 11:28:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A666C30495D7
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 10:23:18 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2CA1C301D956
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 10:26:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 476BE3161B5;
-	Mon, 26 Jan 2026 10:23:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4486332AAD8;
+	Mon, 26 Jan 2026 10:26:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ECBk61NA"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GziFswQK";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="YdhZOZR3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACD3F330305
-	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 10:23:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC9E9330317
+	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 10:26:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769422998; cv=none; b=E6SV/CKiCufpComYvculCzp/hRih1TXOOEWjao3HFpZDNziV8mpakvMGVXmMb7Em+EVtTDo4WrSM7gMUwIN8qmA3bVBhRwZTO3nj78sChakimBfQgN6JxPLGUVp5cXHJnT6GWyztlv8UNsZVxxakGQyV6xQT3ZhqzqfAhoBcCMY=
+	t=1769423174; cv=none; b=LDfYXZmo3gPYfBzqTXE4T8tmVZU7bMPW9jAk61rnCzsSzxotIt77JjrjGz8hYS2lpPwh7DsAdseU/JXpn0MGmU+Zw0ofPmps1lDYmalqADEUfE98J9JKzfeV11XsCaXMaApLC8xm+qk7eNLd0YxREQCNPxGtiAb1FYWxVEyQSNM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769422998; c=relaxed/simple;
-	bh=3V7gBmangyugBtmpC3st/gsiDkFEY95gMQaQdlDtyEU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=iFNJhau2Wvqv0Qva03HdyhHQS1z+P0vDPNkfPUam4pyWTgIPNcWec0lLjT/h2qB7oWvrWVNIjenupGMqFI4CJbQYwOculdEAR6jikxdobHR5z68w2Ul5ZaP/maYHtPFP9fW4Yc3duHFqHuW4QJprdVXo1wForL0Ws6RuSnpIkCU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ECBk61NA; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-2a0d67f1877so28119605ad.2
-        for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 02:23:16 -0800 (PST)
+	s=arc-20240116; t=1769423174; c=relaxed/simple;
+	bh=iz5fNb5uoCRdvN8WosdjyXPv5O8Ib8vT+HAmtgtXzqs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Sww0BCaT9y64P+zHXopq886BQElUuhq7b0H9+ejPSO8usuJ5QcILXtqASyzqMgt2UkOhavehK9PL+vJ2YJakrYyB15QoAqHp9LDxnUelvcfGUH1EP6XhQHR4oe4lCZ26/PC4FJtTcZocc3MAoI+E014HNsqyxwNNahyzC3Rclpw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GziFswQK; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=YdhZOZR3; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60Q40xTv1361798
+	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 10:26:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	UdgHA7Ue7zFitGhLg5Jp7suCmwVIY5RWPd1y69PBBSQ=; b=GziFswQKIm54Xj0R
+	fUeNbTRI8re5CUPMjZHsvzWFVP61yXKOo8f04Kw4X6rFVk2DGXuCCNXJ0ORfNX2j
+	nI0Jc4QEvSBk36kptPs4SdN0tKI4kRQLGtFzz9n4gqzKsVfU/BHpVA5ao8Y2h7JY
+	AtPOV2Y/nigdJkVRlNRfCtqwTTVq7Nb1JWzZngkNqTLnKQy7Pv7owPrJngiXzjGz
+	zC3UcWq4NLkyMfWhO30F1ZUcZyAG7y2JeuKbmaioJibiZ3Jw9vri6uOICxxodSns
+	3NUm4qinP1FudUwvKILi0i+LXAmrk6slj/hYJgHIYeZxX5G8V7xtjoOUHm+jLrfW
+	hGujNQ==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bx0v30v6t-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 10:26:12 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8c6de73fab8so134381785a.3
+        for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 02:26:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769422996; x=1770027796; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1XOYF4LJtaY0GNeYihqg/urqke/kwdCC/ItxM5XGfQw=;
-        b=ECBk61NAZaPd06uSz5bmpeQFkAShfZGG0UjYJE7qGzW61cAgpp88a9AhQ2w4S4U9nu
-         XCl1iL6ERn+rOvrImIhQFekMviSb9LCx537wBWLmPQvAnV0gLpmTqnkc/ROsXdQC29zz
-         recPzd9fP6iVpV94akh9iYRsmCikRn2Lg7iIIle9fF81xYx9GBpBAx+BI1KmsL5makAX
-         /82Pz0tj9Rd/zL7GZYSZ57D/i4I2VpMHPTIY/F9IBXA05n0F61++kymVwI2i9yxBm5cw
-         blVJ95VIDRlPdAH2MiRiCYYPQBib/DCs3alXCgO9LS/x4gojogJp3fS2cNidpPe2bJQR
-         5z/g==
+        d=oss.qualcomm.com; s=google; t=1769423171; x=1770027971; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UdgHA7Ue7zFitGhLg5Jp7suCmwVIY5RWPd1y69PBBSQ=;
+        b=YdhZOZR3GbDWl982Z7C2cZ0pmG+ZsBcnLK+396WDL77x07Gkp22Jk4Yu+2wDPBTCx6
+         fgWLBSB6KQT4AObOHeHHrYRcJP/x4fSXa+XaErB2K93hYwNnlbSevO0LbC5wdDPCbpQh
+         SIoHMB9MyU/Pqr2fi2UUYV+rAV+A188TRH3F+/yigyqn/0hMeclyYCEspO0LZM4QgIq4
+         8RTd4YNO0IcWq4rABwHu9xcaqgy1kW6eYfMugn65X7+WyYhmQUBbdfF16SQirJvkc1Ay
+         1AdhtKlLP4p75WIz1FwxtOF2JknxgVya4u5vbmuv7HghpBhqty3hMnzGyIzbduQ/vJy5
+         cx+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769422996; x=1770027796;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=1XOYF4LJtaY0GNeYihqg/urqke/kwdCC/ItxM5XGfQw=;
-        b=pzVScGWepyVUa4kZ0BPTT1KvdapEyehp+2XtyARRHtV2vxvV7zXnLDjJwlScxeti8S
-         ZYgDt8Zfwa8FmdR3JdqxdrSvMAObvWb+i8com7EbBS5X6b80ryL312bYpip4lPLnZDw2
-         k5VY6fArTz1QG9oFDeNlZNGWWV/ZyVIinJMy01PiyAwu4dq4ZfCZWgGYVXlceMqIXRXm
-         HRUVEDjrsSzjajd58t2e+jeHxmvnEhLBgwV90UJ2Q2JM8SIWjDztNyaN8faIgm9HhuGA
-         WHwrwchdlb8Lyx4eH9bWtbjqaaDdtBcKPKQ080rC4kQsFM9N78ayh66R/He6T81JYzjH
-         cxQw==
-X-Forwarded-Encrypted: i=1; AJvYcCWuCfvcVUxFORcqkTZ26afFi854BqVp7z7ZQiUWO4H2dZHLnQFgAUYTiqt8scM5cnx/2QRiQBaWVGBN@vger.kernel.org
-X-Gm-Message-State: AOJu0YxkhJHNCPxEOvsiXpc3Y6Cl1hdWq+ZbV8VxnWaQ/LBH5ltWoMEg
-	Knk1H16kJvfbDGy7v239thZjgDJ/Hd9xC5/BlDYxvHNqZT47LOLobt38ULzR3ClT
-X-Gm-Gg: AZuq6aKB1VLyXZgYh3SPfNwnwlgR/OJ66I7o8zF5pppwDuw1lU1nF1O5/iRqKdfLQjh
-	0OXSzqrO8AEQi4pDZYEKt0By2JkfOh76UJp87NKyumv1gYrd3HfM8niNAuXQ1yEChoetuBZFUIy
-	ZnDzN+DCMOZTaoBlPP/ZeyHT0dvUguAadc7jzKFj4EvN5ReceUG//T9+VmXuE7TMpjl5bD4A4OV
-	ywdMrs8E1rlb5XgT0Wut9ZRCoD7GFJ1fmh+71MaugOSNzLb9SsGcYrVBF4UbgJrismlf94h/8aT
-	SDY0H0093Qo8XtBfuk9dNZVAhLrEcRCJMeeyh7yvvGtg2gNqVr7jffkM6fDzxmckQSnoHLaCQAg
-	WuRh9iDDHduJNeBNsCog798F7lzJJKGN1tfaME4WflNGbpv0NClMoTl+OV/dEdRRMq9Z9d81sPb
-	RLdawMJUyUO30GSwcc59AJ85IcdEt+p650SgOB8elUhuC7nJPda8mHOg4jS1RzAJe4TJHIPzUk
-X-Received: by 2002:a17:902:f685:b0:29f:b3e5:5186 with SMTP id d9443c01a7336-2a84530ee88mr38378515ad.56.1769422995998;
-        Mon, 26 Jan 2026 02:23:15 -0800 (PST)
-Received: from localhost.localdomain (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a802dcd776sm84958275ad.26.2026.01.26.02.23.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Jan 2026 02:23:15 -0800 (PST)
-From: Joey Lu <a0987203069@gmail.com>
-To: andrew+netdev@lunn.ch,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	mcoquelin.stm32@gmail.com,
-	richardcochran@gmail.com
-Cc: alexandre.torgue@foss.st.com,
-	joabreu@synopsys.com,
-	ychuang3@nuvoton.com,
-	schung@nuvoton.com,
-	yclu4@nuvoton.com,
-	peppe.cavallaro@st.com,
-	linux-arm-kernel@lists.infradead.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	openbmc@lists.ozlabs.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	Joey Lu <a0987203069@gmail.com>,
-	Andrew Lunn <andrew@lunn.ch>
-Subject: [PATCH net-next v9 3/3] net: stmmac: dwmac-nuvoton: Add dwmac glue for Nuvoton MA35 family
-Date: Mon, 26 Jan 2026 18:22:57 +0800
-Message-ID: <20260126102257.2619862-4-a0987203069@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260126102257.2619862-1-a0987203069@gmail.com>
-References: <20260126102257.2619862-1-a0987203069@gmail.com>
+        d=1e100.net; s=20230601; t=1769423171; x=1770027971;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UdgHA7Ue7zFitGhLg5Jp7suCmwVIY5RWPd1y69PBBSQ=;
+        b=LsNXlWJpkHIVjUv3AB86S3PCVmpjtEIuIWx6Ovz/hh0EER2sYhE1ExHzwzN9vTA85T
+         CdetNSDJZFBxRQB18B1XBPv7GehtCfAMzr4WsReCiGiUVWJWjmwKU1uELBAcS04ZkHpm
+         N5nJKYbZz2NJxeZ6NwoXj6MbVCPSkFX0MOGSN1UdMWJdDnzV0JCvbRGwR51V6HCl5RC7
+         gBmRDgT6H3VownOenEqqfZwkH//ErB9DTTCWsQ94YY8mRFcwZ1KywuerNOO4s3YDID25
+         yGtjwkC/bAp5oCKqwKPo5pLq/fteqthb97h09XL/65bSD+0KbViDVf7pbXgBkREBoGJl
+         /7fw==
+X-Forwarded-Encrypted: i=1; AJvYcCWzOGt+19TZuH9gXpGmVVB85LEnvoHKlttKS50hukyLH7x+G+po6o3FiVmUkHaFVn0n+js4KLuCndBB@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw6RxH8wuVL73Z0y/TW+Ptobcq+9yGpyWweWvmlO/EU6SfEBMlH
+	hIXxLo2Bbx1asoFCwWS/PZQXMQ7TsRIy9b082BWV5GOtpelSgrHU+XgKMZZwAjQy5X72CUiW2h3
+	AuoOEkjL8UWpESvQSbVsmesuIeVqFDI1ZedgbB7H0a/Z/SjDloZgzDo/EEt5Nk9UiN5ZEnAT8
+X-Gm-Gg: AZuq6aK5wVaW4Nptwu1q8BUSrldYHchgwfxOQqj+Hk5wCtV5IgVp5KfDxJQNTnnUlIj
+	h6WIdk+dRlOzVTdgjMgEFZ77z6oyjXeY19CxIr2MfbFZXiznEO9xN1+4StDkebjtssAGWf3gyrT
+	au823/by/eEf7z0pYpzrO9HPhtzVgHW/RHDJ18qN1lnh9+b+CElQuMK5w1W0o//flaHK7aSuBUJ
+	gnYaP/c+dljLsdXchaUXjyGBFFh/3sZ8jnAvsrD/mubLSP4nwuIZFleTspCLA/5lLRJc8WRXOqV
+	A+YL1jxegNjSGg0cAoGVViXbWpRFbjrowrXAesjrHakIHzx2oQUPBu3C/89TkrMGkWXFVhATm4b
+	gfZJW+iLx2wkJTF1tZ264SsYF+MeIHe0zzlrmHLnLrP1czUzxhHrzaFjl7Bh82IcnV8o=
+X-Received: by 2002:a05:620a:4482:b0:8c5:340b:415f with SMTP id af79cd13be357-8c6f9599b0dmr297632785a.4.1769423171181;
+        Mon, 26 Jan 2026 02:26:11 -0800 (PST)
+X-Received: by 2002:a05:620a:4482:b0:8c5:340b:415f with SMTP id af79cd13be357-8c6f9599b0dmr297631085a.4.1769423170753;
+        Mon, 26 Jan 2026 02:26:10 -0800 (PST)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b885b3dbbd1sm622138266b.2.2026.01.26.02.26.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 Jan 2026 02:26:10 -0800 (PST)
+Message-ID: <8015c8d1-6eee-44e0-9a50-df23126bf7f1@oss.qualcomm.com>
+Date: Mon, 26 Jan 2026 11:26:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] interconnect: qcom: Add Eliza interconnect provider
+ driver
+To: Abel Vesa <abel.vesa@oss.qualcomm.com>, Georgi Djakov
+ <djakov@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260123-eliza-interconnect-v1-0-010ff0d100c9@oss.qualcomm.com>
+ <20260123-eliza-interconnect-v1-2-010ff0d100c9@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20260123-eliza-interconnect-v1-2-010ff0d100c9@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI2MDA4OCBTYWx0ZWRfX83l+w/lRZKHz
+ 19SeU6jlypk4w3DlXKcteJcn5mnYTJhHWl3sNO9AhjQ/SonbQ+Q62jfZgh/GfmqFe7zYRm1Vx+E
+ 8FOP1NVoKbUmfw1CW6NAW+20yIujRZZa72az/8mk6wIj32+isrs/FFV1XbyM6ONbdvJBQtmuy0H
+ nflJg5d4dAKHh2NhF3q1qvef693sTcPzlbt3sdZxhvg7rZ21d7QQ3tji5TEWOQx94ey0g7yTFb4
+ sJL0ly4SPqTgp71UuBv8Yyd/sg7YuuJxejbrpUbu3yqsyAsfpxiE2S09zfx6X/Pu8R26l7nXMQB
+ VJvrYqJ1v7XafntnBXO9NHaDDAG1Ds2tMMdgu4oAIr+RRA3KJV650Cbv74ViKKLH/sIy67T+cIn
+ q4DgJsQ+0TtQVCwKDXl+zmMX0pQdXZd2QN7L80nS52e/OE3dxe08gJvp7QH9gIlQO7+JmM4bZMF
+ yMDooFutGxsb5hNg4rQ==
+X-Proofpoint-GUID: b8oOyp-qjPEARzhMlkVccuAg6qq6cvTy
+X-Proofpoint-ORIG-GUID: b8oOyp-qjPEARzhMlkVccuAg6qq6cvTy
+X-Authority-Analysis: v=2.4 cv=JYyxbEKV c=1 sm=1 tr=0 ts=69774144 cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=ggfmzync1vDxQEGkaewA:9
+ a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
+ definitions=2026-01-26_02,2026-01-22_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 lowpriorityscore=0 adultscore=0 bulkscore=0 clxscore=1015
+ impostorscore=0 phishscore=0 suspectscore=0 malwarescore=0 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601260088
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[foss.st.com,synopsys.com,nuvoton.com,st.com,lists.infradead.org,vger.kernel.org,lists.ozlabs.org,st-md-mailman.stormreply.com,gmail.com,lunn.ch];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-259442-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[24];
+	TAGGED_FROM(0.00)[bounces-259443-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[a0987203069@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 51A0686DED
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 8730886E5D
 X-Rspamd-Action: no action
 
-Add support for Gigabit Ethernet on Nuvoton MA35 series using dwmac driver.
+On 1/23/26 1:43 PM, Abel Vesa wrote:
+> From: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
+> 
+> Add driver for the Qualcomm interconnect buses found in Eliza
+> based platforms. The topology consists of several NoCs that are
+> controlled by a remote processor that collects the aggregated
+> bandwidth for each master-slave pairs.
+> 
+> Signed-off-by: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
+> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+> ---
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-Signed-off-by: Joey Lu <a0987203069@gmail.com>
----
- drivers/net/ethernet/stmicro/stmmac/Kconfig   |  12 ++
- drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
- .../ethernet/stmicro/stmmac/dwmac-nuvoton.c   | 174 ++++++++++++++++++
- 3 files changed, 187 insertions(+)
- create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c
+[...]
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-index 07088d03dbab..861f1c6c14f1 100644
---- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
-+++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-@@ -132,6 +132,18 @@ config DWMAC_MESON
- 	  the stmmac device driver. This driver is used for Meson6,
- 	  Meson8, Meson8b and GXBB SoCs.
- 
-+config DWMAC_NUVOTON
-+	tristate "Nuvoton MA35 dwmac support"
-+	default ARCH_MA35
-+	depends on OF && (ARCH_MA35 || COMPILE_TEST)
-+	select MFD_SYSCON
-+	help
-+	  Support for Ethernet controller on Nuvoton MA35 series SoC.
-+
-+	  This selects the Nuvoton MA35 series SoC glue layer support
-+	  for the stmmac device driver. The nuvoton-dwmac driver is
-+	  used for MA35 series SoCs.
-+
- config DWMAC_QCOM_ETHQOS
- 	tristate "Qualcomm ETHQOS support"
- 	default ARCH_QCOM
-diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/drivers/net/ethernet/stmicro/stmmac/Makefile
-index c9263987ef8d..4ade030b634f 100644
---- a/drivers/net/ethernet/stmicro/stmmac/Makefile
-+++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
-@@ -20,6 +20,7 @@ obj-$(CONFIG_DWMAC_IPQ806X)	+= dwmac-ipq806x.o
- obj-$(CONFIG_DWMAC_LPC18XX)	+= dwmac-lpc18xx.o
- obj-$(CONFIG_DWMAC_MEDIATEK)	+= dwmac-mediatek.o
- obj-$(CONFIG_DWMAC_MESON)	+= dwmac-meson.o dwmac-meson8b.o
-+obj-$(CONFIG_DWMAC_NUVOTON)	+= dwmac-nuvoton.o
- obj-$(CONFIG_DWMAC_QCOM_ETHQOS)	+= dwmac-qcom-ethqos.o
- obj-$(CONFIG_DWMAC_RENESAS_GBETH) += dwmac-renesas-gbeth.o
- obj-$(CONFIG_DWMAC_ROCKCHIP)	+= dwmac-rk.o
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c
-new file mode 100644
-index 000000000000..728f5f453515
---- /dev/null
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c
-@@ -0,0 +1,174 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Nuvoton DWMAC specific glue layer
-+ *
-+ * Copyright (C) 2025 Nuvoton Technology Corp.
-+ *
-+ * Author: Joey Lu <a0987203069@gmail.com>
-+ */
-+
-+#include <linux/mfd/syscon.h>
-+#include <linux/of_device.h>
-+#include <linux/of_net.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/stmmac.h>
-+
-+#include "stmmac.h"
-+#include "stmmac_platform.h"
-+
-+#define NVT_REG_SYS_GMAC0MISCR  0x108
-+#define NVT_REG_SYS_GMAC1MISCR  0x10C
-+
-+#define NVT_MISCR_RMII          BIT(0)
-+
-+/* Two thousand picoseconds are evenly mapped to a 4-bit field,
-+ * resulting in each step being 2000/15 picoseconds.
-+ */
-+#define NVT_PATH_DELAY_STEP     134
-+#define NVT_TX_DELAY_MASK       GENMASK(19, 16)
-+#define NVT_RX_DELAY_MASK       GENMASK(23, 20)
-+
-+struct nvt_priv_data {
-+	struct platform_device *pdev;
-+	struct regmap *regmap;
-+};
-+
-+static struct nvt_priv_data *
-+nvt_gmac_setup(struct platform_device *pdev, struct plat_stmmacenet_data *plat)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct nvt_priv_data *bsp_priv;
-+	phy_interface_t phy_mode;
-+	u32 macid, arg, reg;
-+	u32 tx_delay_step;
-+	u32 rx_delay_step;
-+	u32 miscr;
-+
-+	bsp_priv = devm_kzalloc(dev, sizeof(*bsp_priv), GFP_KERNEL);
-+	if (!bsp_priv)
-+		return ERR_PTR(-ENOMEM);
-+
-+	bsp_priv->regmap =
-+		syscon_regmap_lookup_by_phandle_args(dev->of_node, "nuvoton,sys", 1, &macid);
-+	if (IS_ERR(bsp_priv->regmap)) {
-+		dev_err_probe(dev, PTR_ERR(bsp_priv->regmap), "Failed to get sys register\n");
-+		return ERR_PTR(-ENODEV);
-+	}
-+	if (macid > 1) {
-+		dev_err_probe(dev, -EINVAL, "Invalid sys arguments\n");
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	if (of_property_read_u32(dev->of_node, "tx-internal-delay-ps", &arg)) {
-+		tx_delay_step = 0;
-+	} else {
-+		if (arg <= 2000) {
-+			tx_delay_step = (arg == 2000) ? 0xf : (arg / NVT_PATH_DELAY_STEP);
-+			dev_dbg(dev, "Set Tx path delay to 0x%x\n", tx_delay_step);
-+		} else {
-+			dev_err(dev, "Invalid Tx path delay argument.\n");
-+			return ERR_PTR(-EINVAL);
-+		}
-+	}
-+	if (of_property_read_u32(dev->of_node, "rx-internal-delay-ps", &arg)) {
-+		rx_delay_step = 0;
-+	} else {
-+		if (arg <= 2000) {
-+			rx_delay_step = (arg == 2000) ? 0xf : (arg / NVT_PATH_DELAY_STEP);
-+			dev_dbg(dev, "Set Rx path delay to 0x%x\n", rx_delay_step);
-+		} else {
-+			dev_err(dev, "Invalid Rx path delay argument.\n");
-+			return ERR_PTR(-EINVAL);
-+		}
-+	}
-+
-+	miscr = (macid == 0) ? NVT_REG_SYS_GMAC0MISCR : NVT_REG_SYS_GMAC1MISCR;
-+	regmap_read(bsp_priv->regmap, miscr, &reg);
-+	reg &= ~(NVT_TX_DELAY_MASK | NVT_RX_DELAY_MASK);
-+
-+	if (of_get_phy_mode(pdev->dev.of_node, &phy_mode)) {
-+		dev_err(dev, "missing phy mode property\n");
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	switch (phy_mode) {
-+	case PHY_INTERFACE_MODE_RGMII:
-+	case PHY_INTERFACE_MODE_RGMII_ID:
-+	case PHY_INTERFACE_MODE_RGMII_RXID:
-+	case PHY_INTERFACE_MODE_RGMII_TXID:
-+		reg &= ~NVT_MISCR_RMII;
-+		break;
-+	case PHY_INTERFACE_MODE_RMII:
-+		reg |= NVT_MISCR_RMII;
-+		break;
-+	default:
-+		dev_err(dev, "Unsupported phy-mode (%d)\n", phy_mode);
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	if (!(reg & NVT_MISCR_RMII)) {
-+		reg |= FIELD_PREP(NVT_TX_DELAY_MASK, tx_delay_step);
-+		reg |= FIELD_PREP(NVT_RX_DELAY_MASK, rx_delay_step);
-+	}
-+
-+	regmap_write(bsp_priv->regmap, miscr, reg);
-+
-+	bsp_priv->pdev = pdev;
-+
-+	return bsp_priv;
-+}
-+
-+static int nvt_gmac_probe(struct platform_device *pdev)
-+{
-+	struct plat_stmmacenet_data *plat_dat;
-+	struct stmmac_resources stmmac_res;
-+	struct nvt_priv_data *priv_data;
-+	int ret;
-+
-+	ret = stmmac_get_platform_resources(pdev, &stmmac_res);
-+	if (ret)
-+		return ret;
-+
-+	plat_dat = devm_stmmac_probe_config_dt(pdev, stmmac_res.mac);
-+	if (IS_ERR(plat_dat))
-+		return PTR_ERR(plat_dat);
-+
-+	/* Nuvoton DWMAC configs */
-+	plat_dat->core_type = DWMAC_CORE_GMAC;
-+	plat_dat->tx_fifo_size = 2048;
-+	plat_dat->rx_fifo_size = 4096;
-+	plat_dat->multicast_filter_bins = 0;
-+	plat_dat->unicast_filter_entries = 8;
-+
-+	priv_data = nvt_gmac_setup(pdev, plat_dat);
-+	if (IS_ERR(priv_data))
-+		return PTR_ERR(priv_data);
-+
-+	ret = stmmac_pltfr_probe(pdev, plat_dat, &stmmac_res);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id nvt_dwmac_match[] = {
-+	{ .compatible = "nuvoton,ma35d1-dwmac"},
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, nvt_dwmac_match);
-+
-+static struct platform_driver nvt_dwmac_driver = {
-+	.probe  = nvt_gmac_probe,
-+	.remove = stmmac_pltfr_remove,
-+	.driver = {
-+		.name           = "nuvoton-dwmac",
-+		.pm		= &stmmac_pltfr_pm_ops,
-+		.of_match_table = nvt_dwmac_match,
-+	},
-+};
-+module_platform_driver(nvt_dwmac_driver);
-+
-+MODULE_AUTHOR("Joey Lu <a0987203069@gmail.com>");
-+MODULE_DESCRIPTION("Nuvoton DWMAC specific glue layer");
-+MODULE_LICENSE("GPL");
--- 
-2.43.0
+>  drivers/interconnect/qcom/Kconfig  |    9 +
+>  drivers/interconnect/qcom/Makefile |    2 +
+>  drivers/interconnect/qcom/eliza.c  | 1586 ++++++++++++++++++++++++++++++++++++
+>  3 files changed, 1597 insertions(+)
+> 
+> diff --git a/drivers/interconnect/qcom/Kconfig b/drivers/interconnect/qcom/Kconfig
+> index bb1cb8a640c1..53398e972458 100644
+> --- a/drivers/interconnect/qcom/Kconfig
+> +++ b/drivers/interconnect/qcom/Kconfig
+> @@ -8,6 +8,15 @@ config INTERCONNECT_QCOM
+>  config INTERCONNECT_QCOM_BCM_VOTER
+>  	tristate
+>  
+> +config INTERCONNECT_QCOM_ELIZA
+> +       tristate "Qualcomm ELIZA interconnect driver"
+
+Please don't scream
+
+> +       depends on INTERCONNECT_QCOM_RPMH_POSSIBLE
+> +       select INTERCONNECT_QCOM_RPMH
+> +       select INTERCONNECT_QCOM_BCM_VOTER
+> +       help
+> +         This is a driver for the Qualcomm Network-on-Chip on eliza-based
+
+Whispering afterwards is odd too
+
+[...]
+
+> +++ b/drivers/interconnect/qcom/eliza.c
+> @@ -0,0 +1,1586 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+> + *
+> + */
+
+Stray empty comment line above
+
+[...]
+
+> +MODULE_DESCRIPTION(" Qualcomm ELIZA NoC driver");
+
+Please don't scream
+
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+
+Konrad
 
 
