@@ -1,200 +1,235 @@
-Return-Path: <devicetree+bounces-259348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259349-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eI6dC3kId2lGawEAu9opvQ
-	(envelope-from <devicetree+bounces-259348-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 07:23:53 +0100
+	id aJwkNosJd2lGawEAu9opvQ
+	(envelope-from <devicetree+bounces-259349-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 07:28:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 548928479C
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 07:23:52 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76F3E84881
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 07:28:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id B05D33006D63
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 06:23:18 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 94C6D300E3C5
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 06:26:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE00F27BF6C;
-	Mon, 26 Jan 2026 06:23:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7ACF194A60;
+	Mon, 26 Jan 2026 06:26:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="baZ6cTh6"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="lZeQDnGv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36A9126FA5A;
-	Mon, 26 Jan 2026 06:23:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D6881E98E3;
+	Mon, 26 Jan 2026 06:26:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769408587; cv=none; b=UZzHNVIaNL/OwJzybZD1pE+fdLR79ztbllpGNHZTGqBvJ9yXY+PoZi3nGrIBMo1KfemY9f6uFDsxDxRbBFHqFl83hx+6mnEnvsKCUW4H4K+3fycYgwGb5da2QJeIj1nKKu0VNT7ADHzIqRZQOULb5icjbb/mt8Njx/iqfECNW/w=
+	t=1769408783; cv=none; b=SMYNSlH6Q18Qf9MHdzl9hr7VqMyvDt8lTSjsnAE7Y8T/XxlzdDajlByRN4Y1ogccme/LYioT5QSnsL/S7UY2oRL74ngr+imbWc9qpAL0V6+/YMAbTd+DRAzI0dN5w0XuHczxl6nHrCPQM/2MvhZXn2rX6mZEbSjAHfnJQzPIwGg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769408587; c=relaxed/simple;
-	bh=YsXx1MoHLIz7jzQAiJhBrQUFvFX/e6YQld0DsR1WATo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fHARhLfaqIiGIscFv4oa4elYRXdHU7MvFgvtp2Oc09P1oPpZChAr42NuRKUlSEkEuKFqdHeJQfUWuy9SZ/kZG2HVEOo57uFFzyKEPGvax/ovfdy5bun3MiqhF0xsr3oAgOdPqS71/a0Q/GK87zz7EabictJZcJUsfOd19g0OXtI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=baZ6cTh6; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1769408586; x=1800944586;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=YsXx1MoHLIz7jzQAiJhBrQUFvFX/e6YQld0DsR1WATo=;
-  b=baZ6cTh6J5Mnpsvbi2NUN0BubheLhm3aN4wdaKJINw3kiHpl/IA6TZAs
-   6CXjsU9OFG0dyq2l1qAgdMOf22oprV7zU4yN8jTKRD57IC1OxODJ2qv1t
-   sK0v+k7neJ7Sg2Uu3WaynXbWTNk+S75ScqQ22OqGxhI7YHQ6q/S3DTOf7
-   07I5b8duYl2wFy3K6Cg16t6aQo6fBdrlKANF2rx80+NxfpP9lC48/JIvR
-   ZkfDyh+d7gZswFbmUNqq5D1Xh89xo3v4x7xnyaHHeGE0qdr9pmZTN8vNw
-   mfatZdYGKwOi7A7R6Yg8K6V9dK2ciyhKW805dBml/4YRUQuK6hJzbL/1F
-   g==;
-X-CSE-ConnectionGUID: 6JSAjr15RP2PUt2+qY8SOA==
-X-CSE-MsgGUID: DiSBW4DHRra0g2HN2Uxk2g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11682"; a="58158201"
-X-IronPort-AV: E=Sophos;i="6.21,254,1763452800"; 
-   d="scan'208";a="58158201"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jan 2026 22:23:05 -0800
-X-CSE-ConnectionGUID: u4qiLRv2TbGKtlwNgiNogA==
-X-CSE-MsgGUID: bfxaqDnrS3a/xUWWplBWVw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,254,1763452800"; 
-   d="scan'208";a="207406796"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by orviesa009.jf.intel.com with ESMTP; 25 Jan 2026 22:23:02 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vkG02-00000000X02-3aRH;
-	Mon, 26 Jan 2026 06:22:58 +0000
-Date: Mon, 26 Jan 2026 14:22:21 +0800
-From: kernel test robot <lkp@intel.com>
-To: Kyle Hsieh <kylehsieh1995@gmail.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Beguin <liambeguin@gmail.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Kyle Hsieh <kylehsieh1995@gmail.com>
-Subject: Re: [PATCH v3 2/2] iio: adc: ltc2309: add support for ltc2305
-Message-ID: <202601261441.M4qQzY72-lkp@intel.com>
-References: <20260126-add_ltc2305_driver-v3-2-951349a87f97@gmail.com>
+	s=arc-20240116; t=1769408783; c=relaxed/simple;
+	bh=3p/V/r4DhEAcx31W2QFR+FxnS1clOzdnIT8cCs7Eh00=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=mukhAdMqiny5hfsAq1i7BdTOHyFkoUTdPEGseLOHkqkRwQmUL2gi1xTr71yvL/UyUfTLEYVN6vmykWrS3PrgQwLZ4xG0S7ydaS7R5zLsjDFENOD28K/0yC+0hRSweShh3A3XG5tyjoCe2IOg9O6Pp0lTH6uylvbmm184vPk1JA4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=lZeQDnGv; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60Q39tkB660370;
+	Mon, 26 Jan 2026 01:26:19 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=NXPuQpz8N2/xRlrQwHN6Vyp2fop
+	ojFvOqucqrHPWe8c=; b=lZeQDnGv0nWvl7BHcqa9aXGqAPvNrzeKCN4RP/oeI4K
+	D38TiUp3glT9mEo1VACD0HcNQKCKp9v25W9exjhokrMiSmhmtha2YT4z1RGOaCeC
+	FZTwt6Lxgs4iMZnqt0dd5NR42UDG6ejRQSr7mKmJ8m6DRIm7IiSkoxw5S5xqNgt/
+	cDTCQ9rCm/NTkdHmzFiTbBvbaMiPgbIbht9kQvZKARCUGTaupAoeZwU0SO3wUuvg
+	TtWbKJ8JpsDUA5TkIrlqwJSFY+JZFdW2bTKaF8j1Y093tHmhkWjv6BaX0NP5Yz4w
+	h1JL0UeBJkD5XSGiClm8eCdGMZ4v1qr4cH/+ELQvpgQ==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4bvrt3nxa5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 26 Jan 2026 01:26:18 -0500 (EST)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 60Q6QHwk045202
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 26 Jan 2026 01:26:17 -0500
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.37; Mon, 26 Jan
+ 2026 01:26:17 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
+ Transport; Mon, 26 Jan 2026 01:26:17 -0500
+Received: from HYB-7P5GeKnsiiX.ad.analog.com (HYB-7P5GeKnsiiX.ad.analog.com [10.118.4.53])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 60Q6Q55G023811;
+	Mon, 26 Jan 2026 01:26:08 -0500
+From: Edelweise Escala <edelweise.escala@analog.com>
+Subject: [PATCH v5 0/2] Add Support for LTC3219 18 Channel LED Driver
+Date: Mon, 26 Jan 2026 14:25:57 +0800
+Message-ID: <20260126-ltc3220-driver-v5-0-152a30e98ab7@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260126-add_ltc2305_driver-v3-2-951349a87f97@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPUId2kC/3XOQQ7CIBCF4asY1mJgoGhdeQ/jAoehkmhraEM0p
+ nd37KrauHxDvj+8RE85US/2q5fIVFKfupZHtV4JvPi2IZkCbwEKnNLKyeuABkDJkFOhLGPtzw6
+ xDpqsYHTPFNNjCh5PvC+pH7r8nPpFf65/U0VLJbeG34KL2tn64Ft/7ZoNdjfxaRWYeQ0LD+yDs
+ kZVu4g2xIU3M8/u1xv2kaLTQGij9wtv5375f8seq7rSW1AOwX75cRzfoncjbW0BAAA=
+X-Change-ID: 20260106-ltc3220-driver-f9ab6cc9d1e4
+To: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Edelweise Escala
+	<edelweise.escala@analog.com>,
+        Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1769408765; l=3270;
+ i=edelweise.escala@analog.com; s=20260106; h=from:subject:message-id;
+ bh=3p/V/r4DhEAcx31W2QFR+FxnS1clOzdnIT8cCs7Eh00=;
+ b=qYo7hFeRLbRjzP1Dt65FPWIhR0RzfEct1jaGQkiAZX/k0K0oZ/tNIPzCXNjm07nDymB/mISP1
+ Ez7Nxo5t7FBAGgepl1LwQzx2eqxM9wWkGn2+J5aLzTQQAX+RoTywFB1
+X-Developer-Key: i=edelweise.escala@analog.com; a=ed25519;
+ pk=lf5HLFe8ZeQjXZgkBkFMK+u9qH5/tqZhCIushTKduNQ=
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI2MDA1NCBTYWx0ZWRfX8NM97GjPcv2G
+ seFlJKSrAt0cK3fExXiU5/2EiRaGiBuw9CQiB6Isi+79bd2+X2c2tinfOw9Mm0g2AOmYtGYcvYa
+ jYgbHWCj1nUtE+K4JnU4yYUOY0JQLi9gyQdx2akr2Py/7V+S2uk2Ou6KbWFiSL/XtDCHPrr02ZK
+ 8s5D/Bj7Z1/1R3teh3Q41D0VHsCrjwSSbe135Wa1kRG99EVhFAySnVdIJ9HalybiwZTsOkm1RWG
+ lx5eWUCXg90HqZg9eTVQCLo8iqtQCKDJ/njOu5hT4H0edIvUC/w7IJ+s04DYP4bBrb2Se0326x8
+ dN1noKcHRShOVFX9AQmV6NFg63QdflDFoUuH4PmhcLvB9vDxn67AT1njYlaXjW7xOlMM9io5j+5
+ 6LCkb2FImdfYYGWUXafPefGAIVNq65VXc5wtDINnuMomJGKczAyyCtlvCuqmXlj8Rc0KJmVCe+e
+ n42U15XCt05czFdTF4w==
+X-Proofpoint-GUID: SKWP4F2DVP8R_6tHZI_bFLerfi5sQtWu
+X-Authority-Analysis: v=2.4 cv=U/SfzOru c=1 sm=1 tr=0 ts=6977090a cx=c_pps
+ a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=gAnH3GRIAAAA:8 a=XYAwZIGsAAAA:8 a=-2tFUoYDPrFf2wPfQ4cA:9
+ a=QEXdDO2ut3YA:10 a=E8ToXWR_bxluHZ7gmE-Z:22
+X-Proofpoint-ORIG-GUID: SKWP4F2DVP8R_6tHZI_bFLerfi5sQtWu
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
+ definitions=2026-01-26_02,2026-01-22_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 spamscore=0 bulkscore=0 adultscore=0 clxscore=1015
+ suspectscore=0 phishscore=0 impostorscore=0 lowpriorityscore=0
+ priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
+ definitions=main-2601260054
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[lists.linux.dev,vger.kernel.org,gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	TAGGED_FROM(0.00)[bounces-259348-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com,metafoo.de,analog.com,kernel.org,baylibre.com];
-	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[analog.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259349-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,analog.com:email,analog.com:dkim,analog.com:mid,microchip.com:email];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
+	FROM_NEQ_ENVFROM(0.00)[edelweise.escala@analog.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid,01.org:url]
-X-Rspamd-Queue-Id: 548928479C
+	RCVD_COUNT_SEVEN(0.00)[9]
+X-Rspamd-Queue-Id: 76F3E84881
 X-Rspamd-Action: no action
 
-Hi Kyle,
+The LTC3220/LTC3220-1 is a multi-display LED driver, which contains a
+high-efficiency, low-noise charge pump to provide power to up to
+18 LED current sources. The LEDs are individually configurable to
+64-step linear brightness control, blinking and gradation control
+via 2-wire I2C interface. The blinking and gradation configuration
+is shared across all LED.
 
-kernel test robot noticed the following build warnings:
+LTC3220 has a quick write function which allows changing the brightness
+on all LEDS simultaneously when the brightness is changed on led 1.
+For this leds are aggregated in the device tree and on probe we check
+if led-sources exist to enable quick write. 
+We would like to know if this approach is alright?
+Another way we might want to know is, is it alright to just make a
+virtual led for the quick write function. Changing brightness on 
+the virtual led will change the brightness for all.
 
-[auto build test WARNING on 9448598b22c50c8a5bb77a9103e2d49f134c9578]
+Signed-off-by: Edelweise Escala <edelweise.escala@analog.com>
+---
+Changes in v5:
+- Missed rename on bindings filename in MAINTAINERS file
+- Link to v4: https://lore.kernel.org/linux-leds/20260126-ltc3220-driver-v4-0-c59517206c24@analog.com
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Kyle-Hsieh/dt-bindings-adc-ltc2497-add-support-for-ltc2305/20260126-093339
-base:   9448598b22c50c8a5bb77a9103e2d49f134c9578
-patch link:    https://lore.kernel.org/r/20260126-add_ltc2305_driver-v3-2-951349a87f97%40gmail.com
-patch subject: [PATCH v3 2/2] iio: adc: ltc2309: add support for ltc2305
-config: i386-buildonly-randconfig-006-20260126 (https://download.01.org/0day-ci/archive/20260126/202601261441.M4qQzY72-lkp@intel.com/config)
-compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260126/202601261441.M4qQzY72-lkp@intel.com/reproduce)
+Changes in v4:
+- Rename leds-ltc3220.yaml to adi,ltc3220.yaml
+- Add Reviewed-by: Conor Dooley <conor.dooley@microchip.com> on
+  adi,ltc3220.yaml
+Other V1 comments I think already addressed
+- Subject commit message was already changed to match hardware
+- Fixed wrapping after description
+- Dropped "Bindings for" in descriptions and improved description to match hardware
+- Dropped adi,ltc3220-1
+- Dropped redundant description on reset-gpios
+- Dropped adi,force-cpo-level
+- Dropped adi,quick-write in favor of aggregated LED
+- Used consistent quotes ^led@([1-9]|1[0-8])$
+- Fixed wrapping on error messages
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202601261441.M4qQzY72-lkp@intel.com/
+- Link to v3: https://lore.kernel.org/r/20260120-ltc3220-driver-v3-0-fef612ec4faa@analog.com
 
-All warnings (new ones prefixed by >>):
+Changes in v3:
+- Dropped quick-write on bindings and added aggregated led instead.
+- Add aggregated led example.
+- Modify quick write to check if there is aggregated led, if there is
+  aggregated led enable quick write.
+- Use DEFINE_SIMPLE_DEV_PM_OPS instead of SIMPLE_DEV_PM_OPS.
+- Link to v2: https://lore.kernel.org/r/20260112-ltc3220-driver-v2-0-d043058fc4df@analog.com
 
->> drivers/iio/adc/ltc2309.c:209:20: warning: variable 'chip_info' is uninitialized when used here [-Wuninitialized]
-     209 |         indio_dev->name = chip_info->name;
-         |                           ^~~~~~~~~
-   drivers/iio/adc/ltc2309.c:195:43: note: initialize the variable 'chip_info' to silence this warning
-     195 |         const struct ltc2309_chip_info *chip_info;
-         |                                                  ^
-         |                                                   = NULL
-   1 warning generated.
+Changes in v2:
+leds-ltc3220.yaml changes
+- Fix wrapping on description
+- Improve description and commit messge to describe hardware
+- Drop ltc3220-1
+- Drop charge pump
+ltc3220.c changes
+- Fix wrapping
+- Drop ltc3220-1
+- Drop devname_mandatory
+- Link to v1: https://lore.kernel.org/r/20260106-ltc3220-driver-v1-0-73601d6f1649@analog.com
 
+---
+Edelweise Escala (2):
+      dt-bindings: leds: Add LTC3220 18 channel LED Driver
+      leds: ltc3220: Add Support for LTC3220 18 channel LED Driver
 
-vim +/chip_info +209 drivers/iio/adc/ltc2309.c
+ .../devicetree/bindings/leds/adi,ltc3220.yaml      | 120 ++++++
+ MAINTAINERS                                        |   8 +
+ drivers/leds/Kconfig                               |  10 +
+ drivers/leds/Makefile                              |   1 +
+ drivers/leds/leds-ltc3220.c                        | 455 +++++++++++++++++++++
+ 5 files changed, 594 insertions(+)
+---
+base-commit: 8856d7fe1758937ac528770f552ec58c388c255b
+change-id: 20260106-ltc3220-driver-f9ab6cc9d1e4
 
-   192	
-   193	static int ltc2309_probe(struct i2c_client *client)
-   194	{
-   195		const struct ltc2309_chip_info *chip_info;
-   196		struct iio_dev *indio_dev;
-   197		struct ltc2309 *ltc2309;
-   198		int ret;
-   199	
-   200		indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*ltc2309));
-   201		if (!indio_dev)
-   202			return -ENOMEM;
-   203	
-   204		ltc2309 = iio_priv(indio_dev);
-   205	
-   206		ltc2309->dev = &indio_dev->dev;
-   207		ltc2309->client = client;
-   208	
- > 209		indio_dev->name = chip_info->name;
-   210		indio_dev->modes = INDIO_DIRECT_MODE;
-   211		indio_dev->channels = chip_info->channels;
-   212		indio_dev->num_channels = chip_info->num_channels;
-   213		indio_dev->info = &ltc2309_info;
-   214	
-   215		ret = devm_regulator_get_enable_read_voltage(&client->dev, "vref");
-   216		if (ret < 0 && ret != -ENODEV)
-   217			return dev_err_probe(ltc2309->dev, ret,
-   218					     "failed to get vref voltage\n");
-   219	
-   220		ltc2309->vref_mv = ret == -ENODEV ? LTC2309_INTERNAL_REF_MV : ret / 1000;
-   221	
-   222		mutex_init(&ltc2309->lock);
-   223	
-   224		return devm_iio_device_register(&client->dev, indio_dev);
-   225	}
-   226	
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Edelweise Escala <edelweise.escala@analog.com>
+
 
