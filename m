@@ -1,114 +1,149 @@
-Return-Path: <devicetree+bounces-259517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259518-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +JRpMZp0d2n7ggEAu9opvQ
-	(envelope-from <devicetree+bounces-259517-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 15:05:14 +0100
+	id 4Ov1Bjl3d2n7ggEAu9opvQ
+	(envelope-from <devicetree+bounces-259518-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 15:16:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C9A3894BF
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 15:05:13 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D970895E8
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 15:16:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 11E4C3020462
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 14:02:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5D9A8301DAC7
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 14:16:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 681A333EAEC;
-	Mon, 26 Jan 2026 14:01:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B14933D51C;
+	Mon, 26 Jan 2026 14:16:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="of68KVMd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dZ28naFq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0370233C182;
-	Mon, 26 Jan 2026 14:01:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0704233D516;
+	Mon, 26 Jan 2026 14:16:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769436119; cv=none; b=mHGgTYuUC/sSA+VqxF8L2+iC9xIXCgu+fBquOL+YZyfGLew46Y5Gf+ipfyfRnv4vPcjw2+Uzvzq9HYRUNvlTmOSVHIXMScCYINtdUYd4GW+RmUmJEpdPdCm0Rjci0HNUNNnQozut7gD1V3fpeXHqOP4kVIegJ4K7I8nK4GketVE=
+	t=1769436977; cv=none; b=dVSkRcf/rhRCYdTEby4LVFb9ZWX5EoUdsGxsCf4I69OcBRpN8uQX7yWTJjc/NVUQppQ/CNICYAzEoA3s75YIptQSV5lrwegKSUnhPAEWkHo8pv1cHqbC1Xaf8O2GZJaaRRfmqcdW1QBCxenZMgMjMQ1R7rmC1Pb4+W226Esl7fg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769436119; c=relaxed/simple;
-	bh=rPDxwQ8tuAyyIA9ECdM2Yt9+PiAUsA2EaplnyMP24qs=;
+	s=arc-20240116; t=1769436977; c=relaxed/simple;
+	bh=NrBeDM+ppcoHiPudl8UfdzdUe82B0RRwN1UsSSpRbHM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eY4TtXEPQPsSz6zaCiXveq7UwE5G6qncFrBARs8VuQ9nysw2L/gYCOIlsayDbORrKmt1dB9fcR1nyrrbYIS3hJW+ZZHTtWDASezBknAdEiHeHHcuhQuHo++4KNcB3oqBwtdCVlGbmqDZNsAklK8y0vIBUF6q7wuC1rtb75JDKKc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=of68KVMd; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-	In-Reply-To:References; bh=jhN3wsqjvs5Rpwd28ad1hp8NKL0RyYRISfgiz3cNFA8=; b=of
-	68KVMdve4uzx7WkCfg4zyVbsWyimBDkLI4PCM/Of9mXKTYe5jd4KdVzcmvhkwIlPh25i2hIF+0ZLZ
-	iXcuPkyRaJ2Mt0jyv+JLhEYWGYs9ASorvSrEP1CwDdlN7qJ/D+CEOVOCN5TjrZSHHtYnbQZK35/BE
-	R+klxonrFv+PIgo=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vkNA1-004n4G-55; Mon, 26 Jan 2026 15:01:45 +0100
-Date: Mon, 26 Jan 2026 15:01:45 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Gregory CLEMENT <gregory.clement@bootlin.com>
-Cc: Elad Nachman <enachman@marvell.com>, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	sebastian.hesselbarth@gmail.com, pali@kernel.org,
-	mrkiko.rs@gmail.com, chris.packham@alliedtelesis.co.nz,
+	 Content-Type:Content-Disposition:In-Reply-To; b=Lo4RTXJLxsn73e5AhALEBP6kcQnq8rBWH7Q1O3Z2S2yFs5daYmJud35N0YGmwBr4AgSQqdSD0P0HJQNAvwJIIewPY2bPU1srjvRqYIKvwRZZvSfaDAV8qDd8mIB+kMOJ/6A5HutOZUvB/Amob2d2aVmBBxvBSUs16CwaINJUDuQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dZ28naFq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 538E8C116C6;
+	Mon, 26 Jan 2026 14:16:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769436976;
+	bh=NrBeDM+ppcoHiPudl8UfdzdUe82B0RRwN1UsSSpRbHM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=dZ28naFqf6Fb0vnJXI0iOMnLYrxLxIMuzzmpyiURmwgvXagyhT8gmCwuSBvEZz1h3
+	 Xpke0mY4b8zxOrfDRyx7wyLrsbtn9R7kbAhFBapU0nQiDa+h9q4Ysa16z/tlehsIXK
+	 VcTArGSh2VPqg5fw45cOJif+nSTbJde3ZRWlibnZ6lbeSNOcA5ee1+HdeVuYjwyvRw
+	 e2ZjNtEQLmDLgFU+sJ1SEQs2aNqBn8n5yYZwHvmqjNZ7McX1rc7Hi+V85KR8NeJK+5
+	 inDzVP3ser9rIqXbXB0GpzprNzg9I+VsGFEdFTMt7GWO1HYKDJV14vt8OCTHIDYPkD
+	 x0grCAfM3kiRg==
+Date: Mon, 26 Jan 2026 14:16:10 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>,
+	Chancel Liu <chancel.liu@nxp.com>, linux-sound@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 0/3] arm64: dts: a7k: add COM Express boards
-Message-ID: <4a43710a-b9f1-45bf-ac4b-ac7de6751d42@lunn.ch>
-References: <20260125152347.2518538-1-enachman@marvell.com>
- <87sebsk6og.fsf@BLaptop.bootlin.com>
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: Re: [PATCH 1/2] ASoC: dt-bindings: fsl,mqs: make gpr optional for
+ SM-based SoCs
+Message-ID: <3d98306c-0e13-4bd9-9cfd-0a2ddcadef3e@sirena.org.uk>
+References: <20260120150329.1486-1-laurentiumihalcea111@gmail.com>
+ <20260120150329.1486-2-laurentiumihalcea111@gmail.com>
+ <aW+q4lrdYJEciNS/@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="s592SMWyYy/L1ikc"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87sebsk6og.fsf@BLaptop.bootlin.com>
+In-Reply-To: <aW+q4lrdYJEciNS/@lizhi-Precision-Tower-5810>
+X-Cookie: Haste makes waste.
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
-	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259517-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-259518-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[marvell.com,kernel.org,linaro.org,gmail.com,alliedtelesis.co.nz,vger.kernel.org,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,pengutronix.de,nxp.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[lunn.ch:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lunn.ch:mid,lunn.ch:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 0C9A3894BF
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 6D970895E8
 X-Rspamd-Action: no action
 
-> I’ve already merged your previous version with this fix and even
-> included it in the PR for the next release.
-> 
-> However, I noticed a comment from Andrew. Could you provide a fix for
-> it, and I’ll try to include it i
 
-It is not a show stopper. It can go in next cycle if needed. But i
-would like to see it fixed.
+--s592SMWyYy/L1ikc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-   Andrew
+On Tue, Jan 20, 2026 at 11:18:42AM -0500, Frank Li wrote:
+> On Tue, Jan 20, 2026 at 07:03:28AM -0800, Laurentiu Mihalcea wrote:
+> > From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+> >
+> > For SM-based SoCs (i.e. MX95, MX943), GPR configuration is performed by
+> > the SM coprocessor. Thus, the programming model needs no handle to the
+> > GPR node. Make it optional.
+>=20
+> "programming model" look like software configuration.
+>=20
+> Thus, GPR is transparent to software and does not need to be described in=
+ the
+> device tree. Make it optional.
+
+I was expecting a new version of this with Frank's comments rolled in.
+
+--s592SMWyYy/L1ikc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAml3dykACgkQJNaLcl1U
+h9DqHwf/W0vKTs+cwDArItwrD1Pg0wAd6A1I28PNegyipqSgXGweCyLNwcoaTH+k
+1BcuFESVQFofoSRYbirsMze6LvUrJc6GfcDfQTu0QvHb30xhBPSCBBfNIlZqL0dk
+SZm7EZIDmQl5HEJHs5m/sGRLy5LwlW2MDGPGUwSP4kEcoFOc3is5dNEtGKAKqYRq
+UuOkeS5jCYp7idd76Nh6au1HzTV9v0GPzkIRywTJnF5AWpVXTY001TLVf8+InwAu
+Yxez+C/UfZ3emSmA+yAiX5mZ9NLFX0iALUvUerax17akjOmgTAHOEr/1WEhRpzLD
+Q70Q3FIlKsSfVeFfzrVtY8W0C2fvpg==
+=UreY
+-----END PGP SIGNATURE-----
+
+--s592SMWyYy/L1ikc--
 
