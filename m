@@ -1,143 +1,161 @@
-Return-Path: <devicetree+bounces-259615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259616-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UORUOpa6d2lGkgEAu9opvQ
-	(envelope-from <devicetree+bounces-259615-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 20:03:50 +0100
+	id KAMoFpu7d2lGkgEAu9opvQ
+	(envelope-from <devicetree+bounces-259616-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 20:08:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E7BB8C506
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 20:03:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC00D8C575
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 20:08:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EFFC4303D2FF
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 19:03:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 130C9301F9AE
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 19:08:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACED626CE2C;
-	Mon, 26 Jan 2026 19:03:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D911271469;
+	Mon, 26 Jan 2026 19:08:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TkB5ybek"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XomsvYpK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8865E26C3B0;
-	Mon, 26 Jan 2026 19:03:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B9C4221FB1
+	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 19:08:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769454194; cv=none; b=NC9Iu4qHyUIP3IN+m9qTRVjI+oamFC6dvsdlRkR6Zwv19rylS9WeCv39HTWHeYR86lDwGmlzFh5+9Qsi2coNRkTsshOjYXyDhZK0zcdazlcV1J1SNi6IHtoYZCxUMT4gQi6n8Y2eL05z8IbbKn2NACiMSnhA/jyaaZGig+MojYI=
+	t=1769454488; cv=none; b=UlunEwKDTtkH9Ktt4Hv8iwmyok7wdGbxLXB9KKlqRVmdMAScQ1HjUoXTJYAJJiDQUV7cCCAOPZu866mj5l9ElkRCE2dj9yyWoEHNxbzSCBmq+TscV3mEhmzJCgzGGBQiBc3Nx7l0bEAO0TNhDRCXD1iFiNrGKEau5vXS7nDffPg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769454194; c=relaxed/simple;
-	bh=N/WsB+lHMeUrnKNoJy/1g1XZHLjTsW0GrEvtmfQmX+0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KOOUDexRkLCCDrZVn2TRkp14+N9weDf5NjDRgatBK1wB4wTVYV2CJR5KQd3ODy0kq/FffW6voVH0oWFXA9kq3ttfAY+DjUp6VQOkvc0uB6HgFahSCCqerTdjGrBMSohomJ8o3coIH6c7swj7hmpUYKLopx3BdBWffd0SPdRNCNs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TkB5ybek; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 642B3C116C6;
-	Mon, 26 Jan 2026 19:03:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769454194;
-	bh=N/WsB+lHMeUrnKNoJy/1g1XZHLjTsW0GrEvtmfQmX+0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TkB5ybekNqICpPvj6Qyif4arPpZZMMpUX1EpRKRgi3QtGe/sDPr79BuSAZHB7Ll8x
-	 Js3strJf11DSVobT659M1nYrI45keisGlImOB4B1fpZ5QyooIq9A++BEXyYjDNtnXO
-	 ouPIHvHoRTBYK3gnV2UjtIO2n09+Kl0AelF8J7WEgCfUW9uLQb2Rv5OESjcIHIhpPV
-	 8ZQuzrIwfilyQ2jA41GNlC+5s+EwHonanG2XUncZ3GKCm0TAZybtBpu0/s1sawYX8a
-	 zMU8K7txDpdkTRl3D9AhUrBf3DM7NDVpFrqm58nIPA6h/qK4LQvcd6zyvmiNjBFLe2
-	 uGPaecP5MvQ/A==
-Date: Mon, 26 Jan 2026 20:03:07 +0100
-From: Niklas Cassel <cassel@kernel.org>
-To: Ian Pilcher <arequipeno@gmail.com>
-Cc: Markus Probst <markus.probst@posteo.de>, Lee Jones <lee@kernel.org>,
-	Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1769454488; c=relaxed/simple;
+	bh=tnVeZAcwDz2MYPEkmWs0axpNzYTNy5GIfEuFoxCgrGw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=SfEKrbGuYMf99OEZlI3oGpJ0PL4fKSS/V/UMp8xYgR6YZgC0N+EzFN5fKCbfomZyO8CkYjEwy10mbQjUIYBUu3irRzavC6fC/Vk0NbJtUKss9elrIDKbgtMwC6LXsmaZhQvq28iOyTeqP19G1nebKvqlX3hoUBtZ6nLWzm8wvks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XomsvYpK; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-42fb2314f52so2817815f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 11:08:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1769454485; x=1770059285; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ExOshE1aCUz4IaRsUbS7Z0iSKUCbe3DbikmKcJvXEGU=;
+        b=XomsvYpKXhJ4jy2uXM3gLEHp86c6eeRosL6w5ePQjdm+jGOOA5uLD311b0nJ0BWhoC
+         yzF8mb6BNewsNENBuXVPIhvvplutVzYXnv5W1n94f5bf2Z0a2ktTWmBpX+PI+KZrRnCL
+         WQ3CMck6o09YSPvO9ILPwc3nSv3Z0G8lVQGdvdR2u6CdSerPaPYH9q5lIVeJN9CGUgEk
+         y+jVARu+m09KJyi/urffPu21mK8+oQ/rACM3FVJ2vSXESgF3bre50H/lTLqiiW9XaYjU
+         nT/NSKAv1K2ROR5dnFUfFyX9wahxAoXlKilcR0LJawMnE19ZqrEZmm1L+BaJdwRiceRt
+         yk9g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769454485; x=1770059285;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ExOshE1aCUz4IaRsUbS7Z0iSKUCbe3DbikmKcJvXEGU=;
+        b=XPUWPYHQvht1jhlg+3I6IBeb7BhmI9zy0C0JSiOPWdY6aa1QsGgRqYiRbMxBUnTSvf
+         S5uDLPd3X0L6qBzcyCgJAVCvKswwZBhCE7Np8L6l47JZ5Ykl9af0Jqo4Unh92DevInhS
+         YjtpVH1RWsZmWWfMaXZHhu0C+mOWxllxDg+DyISUpFs9qvSHyFdKW8rTGq/VE6JJBQ1r
+         GhlulQpCNe94iZ4Vm5X/J8GWBSo44QbP7KPdXfBOO63v87x1b5+DxIT6vbGCJin7MCOv
+         dpgBRU+5QeaNZKUUuQP5J3cbdFMpbCjhcqp+N30nr9+MXPYTvF1beupP7ZD4XGP2ZxR0
+         ZPdQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW99zgJjtKPJ0QXvmexnOJdBlSYuM/8QYBSePK9e/zYYXJ646HUQThorbscy9r+wM7m9lWg7VDdvGje@vger.kernel.org
+X-Gm-Message-State: AOJu0YxTlUKbBvIlx1rbAH3RdTSDTQIkR5xUioRqOeAHguCKKyjBTP77
+	UknDEwD36/lFEwk2luAIu3BjGqtStXz5Uiuw5xegRlGsG+jJ5r+OvS4J
+X-Gm-Gg: AZuq6aJFUZVh6SG1lTb7nwpBKldx8Hcwfz1gr+9oQc+iCs7lv9LXwkxqjHtqTW+Qbum
+	LDREL2NFbhQD0RkMUkp4tk7mUzUNqoGWPXhNkonIZdX3RERjfHhmIb5eShbIsOXdrzfPgNIBVpg
+	33FoKuNLVQwilFbHyitUTMa+0rBtoyNypsE3BBHZkzadBxp6FK4nbJCzJ8HCV0BqP0VkZlScGCR
+	H8qgyBvBadZNQe8WweAG7pU+SJvCKsqs831CyKx0rAWGY45dlV8aD+HxasUU9i2nXxMcwheAhHd
+	sR7xtI+60o8ODK6+ah3KqHj1U6Hc0Lt5RAeUouFqGW5OLfakEGW3uyRIrm+dnu0DuG9kBicbh11
+	3LMuJ9JTLnbvF7KLLCIuLZ4ZHutTlVGMEVCpg1WuOMlFPLMfMh7QGi8gAfx/1Nz367JZ0o6G5Mf
+	4ODJXJO6NE/OY=
+X-Received: by 2002:a05:6000:186f:b0:432:5bf9:cf2e with SMTP id ffacd0b85a97d-435ca122e01mr9230680f8f.13.1769454484836;
+        Mon, 26 Jan 2026 11:08:04 -0800 (PST)
+Received: from xeon ([188.163.112.49])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435b1c24bf8sm31802030f8f.11.2026.01.26.11.08.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Jan 2026 11:08:04 -0800 (PST)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-	Damien Le Moal <dlemoal@kernel.org>,
-	John Garry <john.g.garry@oracle.com>,
-	Jason Yan <yanaijie@huawei.com>,
-	"James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
-	"Martin K. Petersen" <martin.petersen@oracle.com>,
-	Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-ide@vger.kernel.org, linux-scsi@vger.kernel.org
-Subject: Re: [PATCH RFC 0/4] leds: extend disk trigger
-Message-ID: <aXe6a7X6QZmEZHjI@ryzen>
-References: <20260123-ledtrig_disk_-v1-0-07004756467b@posteo.de>
- <aXctPaaXFYemV20T@ryzen>
- <03a91568-d1a0-4779-a465-2788f4765a42@gmail.com>
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Mikko Perttunen <mperttunen@nvidia.com>,
+	Svyatoslav Ryhel <clamor95@gmail.com>,
+	Sumit Gupta <sumitg@nvidia.com>,
+	Dmitry Osipenko <digetx@gmail.com>
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org
+Subject: [PATCH v1 0/5] Tegra114: implement EMC support
+Date: Mon, 26 Jan 2026 21:07:50 +0200
+Message-ID: <20260126190755.78475-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <03a91568-d1a0-4779-a465-2788f4765a42@gmail.com>
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-259616-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259615-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,nvidia.com];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cassel@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[posteo.de,kernel.org,gmail.com,oracle.com,huawei.com,hansenpartnership.com,ucw.cz,vger.kernel.org];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 8E7BB8C506
+X-Rspamd-Queue-Id: AC00D8C575
 X-Rspamd-Action: no action
 
-Hello Ian,
+Add support for External Memory Controller found in Tegra 4 SoC along
+with adjustments required for it to work properly.
 
-On Mon, Jan 26, 2026 at 10:19:07AM -0600, Ian Pilcher wrote:
-> On 1/26/26 3:00 AM, Niklas Cassel wrote:
-> > But I'm not a fan of making the driver more complex.
-> > If we want something more complex than what is already there, then it
-> > is probably much better handled in user space, considering the amount
-> > of possible configuration options.
-> > 
-> > Basically the same argument as used in:
-> > https://lore.kernel.org/linux-nvme/20220227234258.24619-1-ematsumiya@suse.de/T/#u
-> 
-> Niklas -
-> 
-> Can you provide some links on how this might be done in userspace?
+Tested on ASUS TF701T (T40X) and Nvidia Tegratab (T40S). Both work fine.
 
-See the link to the thread above.
+Part of previous patchset: https://lore.kernel.org/lkml/20251125120559.158860-1-clamor95@gmail.com/
 
-Ming suggests "tracking iostat in a fixed period, and triggering one
-led activity if any read/write IO happens during 0.5sec."
+Svyatoslav Ryhel (5):
+  dt-bindings: memory: Document Tegra114 Memory Controller
+  memory: tegra: implement EMEM regs and ICC ops for Tegra114
+  dt-bindings: memory: Add Tegra114 memory client IDs
+  dt-bindings: memory: Document Tegra114 External Memory Controller
+  memory: tegra: Add Tegra114 EMC driver
 
-There is also a link to an nvme-led-daemon in the thread:
-https://github.com/scarlion1/nvme-led-daemon
+ .../nvidia,tegra124-emc.yaml                  |  174 +-
+ .../nvidia,tegra124-mc.yaml                   |   31 +-
+ drivers/memory/tegra/Kconfig                  |   12 +
+ drivers/memory/tegra/Makefile                 |    1 +
+ drivers/memory/tegra/tegra114-emc.c           | 1463 +++++++++++++++++
+ drivers/memory/tegra/tegra114.c               |  193 +++
+ include/dt-bindings/memory/tegra114-mc.h      |   67 +
+ 7 files changed, 1770 insertions(+), 171 deletions(-)
+ create mode 100644 drivers/memory/tegra/tegra114-emc.c
 
-But considering that it is using:
-https://www.kernel.org/doc/Documentation/block/stat.txt
+-- 
+2.51.0
 
-I don't see why it can't be used for any block device.
-
-
-Kind regards,
-Niklas
 
