@@ -1,194 +1,136 @@
-Return-Path: <devicetree+bounces-259399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259400-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8MbeBZIud2kvdAEAu9opvQ
-	(envelope-from <devicetree+bounces-259399-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 10:06:26 +0100
+	id CHwaOSIyd2mrdAEAu9opvQ
+	(envelope-from <devicetree+bounces-259400-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 10:21:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FC5185C43
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 10:06:25 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89EB585F0A
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 10:21:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CCD18301175C
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 09:03:54 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A1C663012BD8
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 09:21:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D94573019C5;
-	Mon, 26 Jan 2026 09:03:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b="k+ETJadj"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76D1D283FD6;
+	Mon, 26 Jan 2026 09:21:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B6D2823DD;
-	Mon, 26 Jan 2026 09:03:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769418233; cv=pass; b=IBbPcQJOBnPrEtpBLDlOTZh0cKON5cHZl/pjqcHV+ESSPbP8faXqlacyiZEIEWNa56tFSzYubKCUMLcAD3vQz65bjYPTqcCbfb8jHG4cd4pRIz0RAYf9KtEF8bThb1DghJxaWa8lZH5aTswxF1szwlrncmNfsZzleGEv2Oy7ADU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769418233; c=relaxed/simple;
-	bh=TGimY2g/rPo873RPmUyXIir1ih5AhpTHPgfuuvqhDKE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eNt2u2ot8/kv6vpaV6d6+P2BM97uC6Zpm+U72ImBD98sUCqxmCj8zVUox/EPP4hDFzN5X7xHdlgLLDGs1r/6LQqX+1nyNiuXBZ8wPRLp80JrKsyZhN1STj3VeF5E8pSKeBfawxbpHTCfYZwZL8H3V0U2TcoKsh0rZ2SKbVCLKYU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b=k+ETJadj; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1769418206; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=Lfh/eRNm7h3SKUFm2ewA6a/EsO2tqg1/xGQ+4lMYt1NSSKBmFa5Yo7Y0T98Fohkna4IETqDWDFUGU6JlBuzIGWRBeTuXqaUcejl+G06NT+cw+t6j2WcgdhtNfuMC+98o5/k6OJ7PGTbF6LPRaZurovzQTNKEilwh54OxdWzw4rY=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1769418206; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=Szw4w1kPWz+z204rfjqE2SzFPSa+7l4i9w+mPzkshVs=; 
-	b=HS+DgwvModzf5uvt0IgC5Gzq2xsRBnKY56Vb9GkgQOvXigBYCvEjIyhhohOsVUeRg54tcKh2LemWXFt7OTcO7nM9qefvhFi2zh4+ucq4VEIfz4jS3e8SN/S8SaAKA763hppE4FRhgnPH47hdlrV1+Mr3ddwj6n/1mnbOzn7IPB4=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=benjamin.gaignard@collabora.com;
-	dmarc=pass header.from=<benjamin.gaignard@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1769418206;
-	s=zohomail; d=collabora.com; i=benjamin.gaignard@collabora.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=Szw4w1kPWz+z204rfjqE2SzFPSa+7l4i9w+mPzkshVs=;
-	b=k+ETJadj+tQfi4J6Ht/P5SsTGGRtFvu9K2hXalxlFZNnQJSLk9grhNLWdip5NIwC
-	S1UYSrbLFgKI/53E7laWLIsCv2TSNC8htoWjQHbF8dFzxz0r5xvbbY55GSGQlEzHUw8
-	OyROJfVgetbJCMyPXxdlEpb+3AO+h+1jPwiALJGc=
-Received: by mx.zohomail.com with SMTPS id 1769418204273347.0095929584735;
-	Mon, 26 Jan 2026 01:03:24 -0800 (PST)
-Message-ID: <8fd2c508-cbe9-4050-ba02-85b22fcff10d@collabora.com>
-Date: Mon, 26 Jan 2026 10:03:19 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FD77306D2A
+	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 09:21:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769419293; cv=none; b=dyXap5ebznOTWLAayY4X6aRM7nHa34GvPUuSrYKAeCEoQD2rlQzo/e1czPFCbITb/l3prW10N4T89a4I/eBlRuWR/kdw5YNMl/eN3TlbCQtdWfxIDb963r19c4eRNaxsKA1Q5S2WpRmnQkP3N5qXETB22x99vM1y4RMHAEJIi88=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769419293; c=relaxed/simple;
+	bh=zuLTNu10t9Op8BVt2TUYGYUes51ASXSsTqsYh2FmfbA=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=TpX2qVKyqfp8MjaGi7cLAqvXMUP8EvF8R4D4UWqVaxDVgVT2z6m5ygJ65UT8QeGRwZi3ZehG4hKAwAOtPy3Dcsk3vYKYhMCG9uOh2O/3LWGAtaLN5wFOeamW3sFy8oNjHGnfVi2lMsCLxHJJ5d1m7DonSZXuj2edCdcTAMKlFdk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[IPv6:::1])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <l.stach@pengutronix.de>)
+	id 1vkImW-0000cv-MV; Mon, 26 Jan 2026 10:21:12 +0100
+Message-ID: <255e1946a67efadf13f468fc24c907074037a45e.camel@pengutronix.de>
+Subject: Re: [PATCH v3] pmdomain: imx: gpcv2: Fix the imx8mm gpu hang due to
+ wrong adb400 reset
+From: Lucas Stach <l.stach@pengutronix.de>
+To: Fabio Estevam <festevam@gmail.com>, Jacky Bai <ping.bai@nxp.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
+ <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-pm@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org
+Date: Mon, 26 Jan 2026 10:21:11 +0100
+In-Reply-To: <CAOMZO5Ag6jtVqeXW30QNy5+1ykmGTt4G8DxcsyOUMvNaeJf5Ug@mail.gmail.com>
+References: <20260123-imx8mm_gpu_power_domain-v3-1-3752618050c9@nxp.com>
+	 <CAOMZO5Ag6jtVqeXW30QNy5+1ykmGTt4G8DxcsyOUMvNaeJf5Ug@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.4 (3.52.4-2.fc40) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v11 3/7] iommu: Add verisilicon IOMMU driver
-To: Will Deacon <will@kernel.org>
-Cc: joro@8bytes.org, robin.murphy@arm.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
- nicolas.dufresne@collabora.com, p.zabel@pengutronix.de, mchehab@kernel.org,
- iommu@lists.linux.dev, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org,
- kernel@collabora.com
-References: <20260107101005.84039-1-benjamin.gaignard@collabora.com>
- <20260107101005.84039-4-benjamin.gaignard@collabora.com>
- <aWZui-rn5RDPwpEO@willie-the-truck>
- <68a49f8b-178c-4fa2-b4a9-315ad602271d@collabora.com>
- <aWeTQ50DOtntcniN@willie-the-truck>
- <db0950f1-b357-47c2-9829-e33262ab456d@collabora.com>
- <aW4kb5EbxbrhTOxK@willie-the-truck>
- <b8f43fe8-3e07-4d98-a50d-817c31370710@collabora.com>
- <aXDL2JH_4RCDmAJv@willie-the-truck>
- <4b33b50f-f0c3-4db8-b394-dd2d4d6e3a55@collabora.com>
- <aXOsdlGMVzhHOrUr@willie-the-truck>
-Content-Language: en-US
-From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-In-Reply-To: <aXOsdlGMVzhHOrUr@willie-the-truck>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-259399-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259400-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[pengutronix.de];
+	FREEMAIL_TO(0.00)[gmail.com,nxp.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[benjamin.gaignard@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
+	FROM_NEQ_ENVFROM(0.00)[l.stach@pengutronix.de,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 4FC5185C43
+X-Rspamd-Queue-Id: 89EB585F0A
 X-Rspamd-Action: no action
 
+Am Samstag, dem 24.01.2026 um 18:20 -0300 schrieb Fabio Estevam:
+> On Thu, Jan 22, 2026 at 11:51=E2=80=AFPM Jacky Bai <ping.bai@nxp.com> wro=
+te:
+> >=20
+> > On i.MX8MM, the GPUMIX, GPU2D, and GPU3D blocks share a common reset
+> > domain. Due to this hardware limitation, powering off/on GPU2D or GPU3D
+> > also triggers a reset of the GPUMIX domain, including its ADB400 port.
+> > However, the ADB400 interface must always be placed into power=E2=80=91=
+down mode
+> > before being reset.
+> >=20
+> > Currently the GPUMIX and GPU2D/3D power domains rely on runtime PM to
+> > handle dependency ordering. In some corner cases, the GPUMIX power off
+> > sequence is skipped, leaving the ADB400 port active when GPU2D/3D reset=
+.
+> > This causes the GPUMIX ADB400 port to be reset while still active,
+> > leading to unpredictable bus behavior and GPU hangs.
+> >=20
+> > To avoid this, refine the power=E2=80=91domain control logic so that th=
+e GPUMIX
+> > ADB400 port is explicitly powered down and powered up as part of the GP=
+U
+> > power domain on/off sequence. This ensures proper ordering and prevents
+> > incorrect ADB400 reset.
+> >=20
+> > Suggested-by: Lucas Stach <l.stach@pengutronix.de>
+> > Signed-off-by: Jacky Bai <ping.bai@nxp.com>
+>=20
+> Shouldn't this have a Fixes tag?
 
-Le 23/01/2026 à 18:14, Will Deacon a écrit :
-> On Wed, Jan 21, 2026 at 02:50:18PM +0100, Benjamin Gaignard wrote:
->> Le 21/01/2026 à 13:51, Will Deacon a écrit :
->>> On Mon, Jan 19, 2026 at 03:03:44PM +0100, Benjamin Gaignard wrote:
->>>>>>>>>> +static const struct iommu_ops vsi_iommu_ops = {
->>>>>>>>>> +	.identity_domain = &vsi_identity_domain,
->>>>>>>>>> +	.release_domain = &vsi_identity_domain,
->>>>>>>>>> +	.domain_alloc_paging = vsi_iommu_domain_alloc_paging,
->>>>>>>>>> +	.of_xlate = vsi_iommu_of_xlate,
->>>>>>>>>> +	.probe_device = vsi_iommu_probe_device,
->>>>>>>>>> +	.release_device = vsi_iommu_release_device,
->>>>>>>>>> +	.device_group = generic_single_device_group,
->>>>>>>>>> +	.owner = THIS_MODULE,
->>>>>>>>>> +	.default_domain_ops = &(const struct iommu_domain_ops) {
->>>>>>>>>> +		.attach_dev		= vsi_iommu_attach_device,
->>>>>>>>>> +		.map_pages		= vsi_iommu_map,
->>>>>>>>>> +		.unmap_pages		= vsi_iommu_unmap,
->>>>>>>>>> +		.flush_iotlb_all	= vsi_iommu_flush_tlb_all,
->>>>>>>>> This has no callers and so your unmap routine appears to be broken.
->>>>>>>> It is a leftover of previous attempt to allow video decoder to clean/flush
->>>>>>>> the iommu by using a function from the API.
->>>>>>>> Now it is using vsi_iommu_restore_ctx().
->>>>>>>> I while remove it in version 12.
->>>>>>> Don't you still need some invalidation on the unmap path?
->>>>>> In vsi_iommu_unmap_iova() page is invalided by calling vsi_mk_pte_invalid().
->>>>> But that just writes an invalid descriptor and doesn't appear to invalidate
->>>>> the TLB at all.
->>>>>
->>>>>> That clear BIT(0) so the hardware knows the page is invalid.
->>>>>> Do I have miss something here ?
->>>>> Yes, the TLB structure needs to be invalidated so that the page-table
->>>>> walker sees the new value that you have written in memory.
->>>>>
->>>>> The rockchip driver gets this correct...
->>>> Rockchip hardware have a ZAP_ONE_LINE register which didn't exist on Verisilicon
->>>> hardware.
->>> Presumably you have some sort of Verisilicon datasheet or downstream driver
->>> from which you can infer the TLB invalidation runes?
->> I have only this downstream driver:
->> https://github.com/rockchip-linux/kernel/blob/develop-6.1/drivers/iommu/rockchip-iommu-av1d.c
->> No datasheet...
->>
->>>> I have tried to use VSI_MMU_BIT_FLUSH on VSI driver after unmapping iova
->>>> but it doesn't work.
->>> What do you mean by "doesn't work"? If it works without doing any
->>> invalidation at all, then it's very peculiar that adding the invalidation
->>> would introduce issues.
->> I mean VSI_MMU_BIT_FLUSH register can't be used to invalid the TLB.
->> I think the hardware iterates over the pages tables in memory and
->> check the valid/invalid bit.
-> I bet it doesn't: that would be horrible for performance.
->
-> The hardware clearly has TLB invalidation support, as the downstream driver
-> that you linked above implements av1_iommu_flush_tlb_all() to poke it.
-> If the hardware has a TLB, then unmapping a page-table means you need to:
->
-> 1. Clear the valid bit from the descriptor in memory
-> 2. Have some sort of memory barrier
-> 3. Invalidate the TLB
-> 4. Wait for the invalidation to complete
+Yes, it needs to go into at least the active 6.12 LTS series, as the
+patch changing the domain suspend ordering is in 6.10. Other than the
+missing tags:
 
-That exactly what I had tried to do by calling vsi_iommu_flush_tlb_all() (minux the lock)
-after calling vsi_iommu_unmap_iova() in vsi_iommu_unmap() but that doesn't work
-and even make the system crash sometimes.
+Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
 
-Benjamin
-
->
-> All IOMMUs tend to work like that and I don't think this one is any
-> different.
->
-> Will
->
+Regards,
+Lucas
 
