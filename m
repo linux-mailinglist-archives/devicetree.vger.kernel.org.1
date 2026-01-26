@@ -1,61 +1,92 @@
-Return-Path: <devicetree+bounces-259569-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259570-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gJnWABiRd2m9hgEAu9opvQ
-	(envelope-from <devicetree+bounces-259569-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:06:48 +0100
+	id wAGEMlGRd2m9hgEAu9opvQ
+	(envelope-from <devicetree+bounces-259570-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:07:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45F058A7A6
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:06:47 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E83B8A7BC
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:07:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 816EC301F4B6
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:06:12 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7718E301A538
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:07:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 062B22D1F7C;
-	Mon, 26 Jan 2026 16:06:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C3272D238F;
+	Mon, 26 Jan 2026 16:07:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KMXyhFyu"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iRo7fIlc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D57E02C3260;
-	Mon, 26 Jan 2026 16:06:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB63629E0E7;
+	Mon, 26 Jan 2026 16:07:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769443571; cv=none; b=FewzTomqjWZLlBfh4mrcOCD/ayK29xNojtFrDwDzwtSDdMtgtOX6kcdPk7bEdPUFYxDbLhGaG3heukG9mxEFTpibixCrORtQ3LfzYrKi3OU5P4yROm0SpzA/j3f69VRNqoEA4Ay9cUWUfJvJY0Vw696R1qUGXQx3/H8IRiX0OGQ=
+	t=1769443660; cv=none; b=SfmQEGPDL4ACriXs976Kq6oWB6noG+tgdjhT2KvCdTmQCF/qJWeXpFV4GxTgEkadhrjrdmrCQiWFegM87YhDHbT94vR4goM6p0O2oPIXtFzyvsw2Rr4aVSvNLOyt1LLB/xP0+6thH5fFnqyyONcuO32kpOEz5MT8kAGlb+BdQSo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769443571; c=relaxed/simple;
-	bh=IKZjpeboVi1KaXGr1fV+IuQZSXvW1+LrsCscH7Aa58A=;
+	s=arc-20240116; t=1769443660; c=relaxed/simple;
+	bh=+/rUO9seL0e9+Zk1utxQiFfJLe8+T44OlW/g/uuuIQY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KnWRhthG8vkEXocmXvPvMgD1R1kyHNwaC6uy2ZZ/Z2ByqhcHih3aPv9ACOaKQ0qDoE986r5brDqjLF4YDukjTqx2zXYWP55pUPvfpUoLfJJ33hFs+ei13lk36rhxYbkmqcV9R4kqp+9bAG4lElJWHmP6xbSja8snqOwu2eF/clo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KMXyhFyu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47346C116C6;
-	Mon, 26 Jan 2026 16:06:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769443571;
-	bh=IKZjpeboVi1KaXGr1fV+IuQZSXvW1+LrsCscH7Aa58A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KMXyhFyujiTBLbkl7cD1umWTOJCNuJf9d/Mp0pxal/pbsdZJF8e67F4PGtpsXNqmk
-	 q8vy8Vgel6mX2RYXCOlgnBQQP8m4gwS5K4l6H3fdwK5i4eyM5K1tVQy79MIYx2Jv9O
-	 zs8yx1o5P5M/VJcFkEqef0HhZY0SdpAwZBc+Xt0nEC1ncbdNHpcifgBiyEKWOxj/eM
-	 oAi28n2cPUihj6K+Q5zMScQ7N36ntjFzTWl1JXmwe7NuAVqAVojCv7PoYfLa1vtMoi
-	 4WtDiS91UeF4ZtDKn6Tv2h4pS+c71ZBS7GjduX0nZQkVORqMx9rfsEDc/EedAPDN/Q
-	 KGzAJJbfdBz4Q==
-Date: Mon, 26 Jan 2026 10:06:10 -0600
-From: Rob Herring <robh@kernel.org>
-To: Charan Pedumuru <charan.pedumuru@gmail.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=iVpMp1xY32EYUKqtakDAG0X2GyqXho+tRpCFsVg5cQOwHafPss3znBIBNn/bDiZOZBQc0DO7I9hvCM9zKwiQiPp86l3TSm2AVR6rOssPD0l95wSMBVgEzNaCNDV4ohDh3CQ9SL7TieEByNHqC5PJjOYvhJkruXhIMDtjzmUE2j8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=iRo7fIlc; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1769443659; x=1800979659;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=+/rUO9seL0e9+Zk1utxQiFfJLe8+T44OlW/g/uuuIQY=;
+  b=iRo7fIlcuIaUfpDuSl4fNpSUrua7v2v1n5rOns4qe9eVhp7qucNI2Mlq
+   lMu6jrJ7e7YP00f0Q9QsGL4tBW4qd8vLxOp4nuF3w2/UOHMfUN9gjdzfl
+   r3KuyTKX7yvUEebZJkhWW83K5OBkBP/P6K6i5hG+SztWHpRGrPWwbTtLz
+   rfvTKefUY/yrmkTWOqMlFynFsvysb/+649mBYgdHVv+s9YkOGb1La1hQl
+   aRzQ+LTONf4hbK+zqNJcCo+gbCrtzOrhvLPTXx4ZToU9kMelesqHOP7Sc
+   qukxuuvnugcJe02nqCJh+0lgn74nN/IE52wxBe/B8d4zdEF3l459qS+/y
+   g==;
+X-CSE-ConnectionGUID: eSWra88xQvKocCl2tSj3gA==
+X-CSE-MsgGUID: mGKpk7PMTpaZLSc3HBiB7w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11683"; a="73207851"
+X-IronPort-AV: E=Sophos;i="6.21,255,1763452800"; 
+   d="scan'208";a="73207851"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jan 2026 08:07:38 -0800
+X-CSE-ConnectionGUID: +1r2TUbGSla1JjHWgV1y5A==
+X-CSE-MsgGUID: RThrSbgqTOGyVlGHFlc5xg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,255,1763452800"; 
+   d="scan'208";a="207773414"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.122])
+  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jan 2026 08:07:34 -0800
+Date: Mon, 26 Jan 2026 18:07:31 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@ti.com>,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: usb: ti,omap4-musb: convert to DT schema
-Message-ID: <20260126160610.GA2471873-robh@kernel.org>
-References: <20260126-ti-usb-v1-0-2855c129eb6d@gmail.com>
- <20260126-ti-usb-v1-1-2855c129eb6d@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>
+Subject: Re: [PATCH v5 2/8] iio: core: add fixed point parsing with 64-bit
+ parts
+Message-ID: <aXeRQ4AXmn1SxoNa@smile.fi.intel.com>
+References: <20260123-adf41513-iio-driver-v5-0-2dce812a2dda@analog.com>
+ <20260123-adf41513-iio-driver-v5-2-2dce812a2dda@analog.com>
+ <aXdUvRZ9NmP5Nh95@smile.fi.intel.com>
+ <byitgzjli5gsq5v66topve7ip3inkk2udwhuihjdp6bknnkmos@tv226l7tek7s>
+ <aXdtpkL5QUhhB_hh@smile.fi.intel.com>
+ <ty6hptfh65k2rkqo6c6mg5z6vismuvyqsu3emvqarr2rbhpvcz@kn6tzjk5xi2o>
+ <aXd_0uNVm8c_Fhwd@smile.fi.intel.com>
+ <n2ms3esyxlegqibu4nluut3x4c4bkjxt5xrcd4gw35xxb2tipb@a2v73y25kroc>
+ <shsikp7hinoxzj7pzxopvmvgpaak4dioekh4tyvns4kv6xp46f@z5vgnisqskco>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,224 +95,79 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260126-ti-usb-v1-1-2855c129eb6d@gmail.com>
+In-Reply-To: <shsikp7hinoxzj7pzxopvmvgpaak4dioekh4tyvns4kv6xp46f@z5vgnisqskco>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-259569-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-259570-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:email,devicetree.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,4a0ab000:email]
-X-Rspamd-Queue-Id: 45F058A7A6
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smile.fi.intel.com:mid,intel.com:dkim]
+X-Rspamd-Queue-Id: 8E83B8A7BC
 X-Rspamd-Action: no action
 
-On Mon, Jan 26, 2026 at 01:22:04PM +0000, Charan Pedumuru wrote:
-> Convert OMAP MUSB USB OTG Controller binding to DT schema.
-> Changes during conversion:
-> - Introduce new compatible string patterns "am35x_otg_hs" and "usb_otg_hs"
->   to properly match existing nodes already defined in the DT sources.
-> - Include "interrupts" and "interrupt-names" properties in the YAML, as
->   they are used by many in-tree DTS files.
-> - Extend the "power" property to allow the value 150 (in addition to
->   existing values), since this is present in several in-tree DTS examples.
+On Mon, Jan 26, 2026 at 03:30:44PM +0000, Rodrigo Alencar wrote:
+> On 26/01/26 03:20PM, Rodrigo Alencar wrote:
+> > On 26/01/26 04:53PM, Andy Shevchenko wrote:
+> > > On Mon, Jan 26, 2026 at 02:26:20PM +0000, Rodrigo Alencar wrote:
+
+...
+
+> > > Why? Can you elaborate how checking amount of digits is different to
+> > > check_mul_overflow()?
+> > 
+> > consider U64_MAX = 18_446_744_073_709_551_615 as the limit:
+> > - 19_000_000_000_000_000_000 contains the same amount of digits but overflows.
+> > - 18_446_744_073_710_000_000 contains the same amount of digits but overflows.
+> > 
+> > to catch those cases, we need to check for the overflow, everytime we read a
+> > character and accumulate:
+> > 
+> > u64 acc;
+> > 
+> > while(isdigit(*str))
+> > 	if (check_mul_overflow(acc, 10, &acc) ||
+> > 	    check_add_overflow(acc, *str - '0', &acc))
+> > 		return -EOVERFLOW;
+> > 
+> > *res = acc;
+> > 
+> > acc can get weird results if not checked. 
 > 
-> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
-> ---
->  .../devicetree/bindings/usb/ti,omap4-musb.yaml     | 133 +++++++++++++++++++++
->  1 file changed, 133 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/ti,omap4-musb.yaml b/Documentation/devicetree/bindings/usb/ti,omap4-musb.yaml
-> new file mode 100644
-> index 000000000000..16e95fe4c38d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/ti,omap4-musb.yaml
-> @@ -0,0 +1,133 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/usb/ti,omap4-musb.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Texas Instruments OMAP MUSB USB OTG Controller
-> +
-> +maintainers:
-> +  - Felipe Balbi <balbi@ti.com
+> Thinking about it again, that check could be done only in the last step
+> (20th for u64)
 
-Missing '>'
+Does kstrto*() also perform only last check? I think they do for each
+iteration.
 
-> +
-> +description:
-> +  Texas Instruments glue layer for the Mentor Graphics MUSB OTG controller.
-> +  Handles SoC-specific integration including PHY interface bridging(ULPI/
-> +  UTMI), interrupt aggregation, DMA engine coordination (internal/
-> +  external), VBUS/session control via control module mailbox, and
-> +  clock/reset management. Provides fixed hardware configuration parameters
-> +  to the generic MUSB core driver.
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^(am35x_otg_hs|usb_otg_hs|usb)@[0-9a-f]+$"
+-- 
+With Best Regards,
+Andy Shevchenko
 
-Again, do not document non-standard names. That's anything not in the DT 
-spec.
 
-> +
-> +  compatible:
-> +    enum:
-> +      - ti,omap3-musb
-> +      - ti,omap4-musb
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  ti,hwmods:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    description:
-> +      Specifies the name of the TI PRCM (Power, Reset and Clock Management)
-> +      hardware module that must be enabled (powered and clocked) for this
-> +      device node to operate. The value "usb_otg_hs" refers to the USB
-> +      On-The-Go High-Speed controller IP block.
-> +    const: usb_otg_hs
-
-deprecated: true
-
-(I think we want that everywhere?)
-
-Actually, looks like only omap2430 sets this, but that's not covered by 
-this schema. Unless you need to add "ti,omap2-musb"?
-
-> +
-> +  interrupts:
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  interrupt-names:
-> +    minItems: 1
-> +    maxItems: 2
-> +    items:
-> +      enum: [mc, dma]
-
-I would assume only 'dma' is optional? Does this work?:
-
-items:
-  - const: mc
-  - const: dma
-
-> +
-> +  multipoint:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Indicates the MUSB controller supports multipoint. This is a MUSB
-> +      configuration-specific setting.
-> +    const: 1
-> +
-> +  num-eps:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Specifies the number of endpoints. This is a MUSB configuration
-> +      specific setting.
-> +    const: 16
-> +
-> +  ram-bits:
-> +    description:
-> +      Specifies the RAM address size.
-> +    const: 12
-> +
-> +  interface-type:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Describes the type of interface between the controller and the PHY.
-> +      0 for ULPI, 1 for UTMI.
-> +    enum: [0, 1]
-> +
-> +  mode:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: 1 for HOST, 2 for PERIPHERAL, 3 for OTG.
-> +    enum: [1, 2, 3]
-> +
-> +  power:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Signifies the controller can supply up to 100mA when operating
-> +      in host mode.
-> +    enum: [50, 150]
-
-Which value corresponds to 100mA?
-
-> +
-> +  phys:
-> +    maxItems: 1
-> +
-> +  phy-names:
-> +    const: usb2-phy
-> +
-> +  usb-phy:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description: Phandle for the PHY device.
-> +    deprecated: true
-> +
-> +  ctrl-module:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Phandle of the control module this glue uses to write to mailbox.
-> +
-> +required:
-> +  - reg
-> +  - compatible
-> +  - interrupts
-> +  - interrupt-names
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    usb_otg_hs@4a0ab000 {
-
-usb@...
-
-> +        compatible = "ti,omap4-musb";
-> +        reg = <0x4a0ab000 0x1000>;
-> +        interrupts = <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH>;
-> +        interrupt-names = "mc", "dma";
-> +        ti,hwmods = "usb_otg_hs";
-> +        multipoint = <1>;
-> +        num-eps = <16>;
-> +        ram-bits = <12>;
-> +        ctrl-module = <&omap_control_usb>;
-> +        phys = <&usb2_phy>;
-> +        phy-names = "usb2-phy";
-> +        interface-type = <1>;
-> +        mode = <3>;
-> +        power = <50>;
-> +    };
-> +...
-> 
-> -- 
-> 2.52.0
-> 
 
