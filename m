@@ -1,91 +1,61 @@
-Return-Path: <devicetree+bounces-259568-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259569-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WJ37GOyQd2m9hgEAu9opvQ
-	(envelope-from <devicetree+bounces-259568-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:06:04 +0100
+	id gJnWABiRd2m9hgEAu9opvQ
+	(envelope-from <devicetree+bounces-259569-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:06:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43BE08A781
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:06:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45F058A7A6
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:06:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 013EE3011121
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:06:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 816EC301F4B6
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:06:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E7882C235E;
-	Mon, 26 Jan 2026 16:06:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 062B22D1F7C;
+	Mon, 26 Jan 2026 16:06:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gcTs2ZpL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KMXyhFyu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7542525771;
-	Mon, 26 Jan 2026 16:05:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D57E02C3260;
+	Mon, 26 Jan 2026 16:06:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769443561; cv=none; b=h3tw6Xx3RL+PZSC8Abs/It64CzRzYq+T/1iszMQuPmV0YzrogVa5RsjysbIvafkWaWl9idh8saCt/ir7UVK/PqlNXm9SJGCccjZ99wJrLDec0SR5ucZ4CnhUUi1Csv/tab4nxeoNwAgiM+GKtdkYm0m3MHbnFC4nLDbz5pBnL/g=
+	t=1769443571; cv=none; b=FewzTomqjWZLlBfh4mrcOCD/ayK29xNojtFrDwDzwtSDdMtgtOX6kcdPk7bEdPUFYxDbLhGaG3heukG9mxEFTpibixCrORtQ3LfzYrKi3OU5P4yROm0SpzA/j3f69VRNqoEA4Ay9cUWUfJvJY0Vw696R1qUGXQx3/H8IRiX0OGQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769443561; c=relaxed/simple;
-	bh=j9Ow1cCCPEzCclIAsCuLpt7K+tD2MrNfDfh+tucsqm4=;
+	s=arc-20240116; t=1769443571; c=relaxed/simple;
+	bh=IKZjpeboVi1KaXGr1fV+IuQZSXvW1+LrsCscH7Aa58A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CSE+//031da0EBRpQFSkmy0tAaFbn3NsgbyeErtyoLMIh2npp82e4eciBfUPtUjH3Xle3/If8cW6fX2c7xDBQAWptuOddjSVGb7ilirkljhpvdBBv0qWL3Z5F8z/FgYSVqQlIEvWXhoZG8tYTYXQAjbPFhK5+2aiIE2pDA6vD78=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gcTs2ZpL; arc=none smtp.client-ip=192.198.163.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1769443560; x=1800979560;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=j9Ow1cCCPEzCclIAsCuLpt7K+tD2MrNfDfh+tucsqm4=;
-  b=gcTs2ZpLgL0spRQTKNgVwPTlvWLgNnCJ6XohDG1ryqJ6iV0Up82Hw3v3
-   qk1YEM/5WWm3j8bq9RK4Wtgucj5RdNN589uu3Qc58EKC4Izqaqf3lfERC
-   SKy+IJGtN8T+495eCOsAlKEKWXS8Ot2kDXXCGxdQNM2199AKV1u8s0YfM
-   o689qBGNzMl9QGHpDvzC7Faf4HFgC3/9YPdDgYI88Q5KTOklfBjMt9NwS
-   kWCnUdMF+ChUMzYcBQlu820vJNeT+5iMs7KA9jZ1s9ocmz4FQ/ZYPlH5o
-   Jh1Si2lBv6ThP8hEjS8xhjKBdTUQhzzJeG7Kg94tZgoiMH4qlEhiQNz2A
-   Q==;
-X-CSE-ConnectionGUID: 8HkvLIM0QxySIObrJh2yAw==
-X-CSE-MsgGUID: 5TUuPOrkRRO3GbO7WVQtEw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11683"; a="81341499"
-X-IronPort-AV: E=Sophos;i="6.21,255,1763452800"; 
-   d="scan'208";a="81341499"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jan 2026 08:05:59 -0800
-X-CSE-ConnectionGUID: 1NSz6S9gR9C158O6rmMjLQ==
-X-CSE-MsgGUID: xQoc8Xx2S2iueyXkwU93Xw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,255,1763452800"; 
-   d="scan'208";a="212253781"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.122])
-  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jan 2026 08:05:55 -0800
-Date: Mon, 26 Jan 2026 18:05:52 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=KnWRhthG8vkEXocmXvPvMgD1R1kyHNwaC6uy2ZZ/Z2ByqhcHih3aPv9ACOaKQ0qDoE986r5brDqjLF4YDukjTqx2zXYWP55pUPvfpUoLfJJ33hFs+ei13lk36rhxYbkmqcV9R4kqp+9bAG4lElJWHmP6xbSja8snqOwu2eF/clo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KMXyhFyu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47346C116C6;
+	Mon, 26 Jan 2026 16:06:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769443571;
+	bh=IKZjpeboVi1KaXGr1fV+IuQZSXvW1+LrsCscH7Aa58A=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KMXyhFyujiTBLbkl7cD1umWTOJCNuJf9d/Mp0pxal/pbsdZJF8e67F4PGtpsXNqmk
+	 q8vy8Vgel6mX2RYXCOlgnBQQP8m4gwS5K4l6H3fdwK5i4eyM5K1tVQy79MIYx2Jv9O
+	 zs8yx1o5P5M/VJcFkEqef0HhZY0SdpAwZBc+Xt0nEC1ncbdNHpcifgBiyEKWOxj/eM
+	 oAi28n2cPUihj6K+Q5zMScQ7N36ntjFzTWl1JXmwe7NuAVqAVojCv7PoYfLa1vtMoi
+	 4WtDiS91UeF4ZtDKn6Tv2h4pS+c71ZBS7GjduX0nZQkVORqMx9rfsEDc/EedAPDN/Q
+	 KGzAJJbfdBz4Q==
+Date: Mon, 26 Jan 2026 10:06:10 -0600
+From: Rob Herring <robh@kernel.org>
+To: Charan Pedumuru <charan.pedumuru@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>
-Subject: Re: [PATCH v5 2/8] iio: core: add fixed point parsing with 64-bit
- parts
-Message-ID: <aXeQ4LHQOdy3K1tA@smile.fi.intel.com>
-References: <20260123-adf41513-iio-driver-v5-0-2dce812a2dda@analog.com>
- <20260123-adf41513-iio-driver-v5-2-2dce812a2dda@analog.com>
- <aXdUvRZ9NmP5Nh95@smile.fi.intel.com>
- <byitgzjli5gsq5v66topve7ip3inkk2udwhuihjdp6bknnkmos@tv226l7tek7s>
- <aXdtpkL5QUhhB_hh@smile.fi.intel.com>
- <ty6hptfh65k2rkqo6c6mg5z6vismuvyqsu3emvqarr2rbhpvcz@kn6tzjk5xi2o>
- <aXd_0uNVm8c_Fhwd@smile.fi.intel.com>
- <n2ms3esyxlegqibu4nluut3x4c4bkjxt5xrcd4gw35xxb2tipb@a2v73y25kroc>
+	Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@ti.com>,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: usb: ti,omap4-musb: convert to DT schema
+Message-ID: <20260126160610.GA2471873-robh@kernel.org>
+References: <20260126-ti-usb-v1-0-2855c129eb6d@gmail.com>
+ <20260126-ti-usb-v1-1-2855c129eb6d@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,187 +64,224 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <n2ms3esyxlegqibu4nluut3x4c4bkjxt5xrcd4gw35xxb2tipb@a2v73y25kroc>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+In-Reply-To: <20260126-ti-usb-v1-1-2855c129eb6d@gmail.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	URIBL_MULTI_FAIL(0.00)[sea.lore.kernel.org:server fail,intel.com:server fail,smile.fi.intel.com:server fail];
-	TAGGED_FROM(0.00)[bounces-259568-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-259569-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim,smile.fi.intel.com:mid]
-X-Rspamd-Queue-Id: 43BE08A781
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:email,devicetree.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,4a0ab000:email]
+X-Rspamd-Queue-Id: 45F058A7A6
 X-Rspamd-Action: no action
 
-On Mon, Jan 26, 2026 at 03:20:03PM +0000, Rodrigo Alencar wrote:
-> On 26/01/26 04:53PM, Andy Shevchenko wrote:
-> > On Mon, Jan 26, 2026 at 02:26:20PM +0000, Rodrigo Alencar wrote:
-> > > On 26/01/26 03:35PM, Andy Shevchenko wrote:
-> > > > On Mon, Jan 26, 2026 at 12:42:53PM +0000, Rodrigo Alencar wrote:
-> > > > > On 26/01/26 01:49PM, Andy Shevchenko wrote:
-> > > > > > On Fri, Jan 23, 2026 at 03:53:07PM +0000, Rodrigo Alencar via B4 Relay wrote:
+On Mon, Jan 26, 2026 at 01:22:04PM +0000, Charan Pedumuru wrote:
+> Convert OMAP MUSB USB OTG Controller binding to DT schema.
+> Changes during conversion:
+> - Introduce new compatible string patterns "am35x_otg_hs" and "usb_otg_hs"
+>   to properly match existing nodes already defined in the DT sources.
+> - Include "interrupts" and "interrupt-names" properties in the YAML, as
+>   they are used by many in-tree DTS files.
+> - Extend the "power" property to allow the value 150 (in addition to
+>   existing values), since this is present in several in-tree DTS examples.
+> 
+> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+> ---
+>  .../devicetree/bindings/usb/ti,omap4-musb.yaml     | 133 +++++++++++++++++++++
+>  1 file changed, 133 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/ti,omap4-musb.yaml b/Documentation/devicetree/bindings/usb/ti,omap4-musb.yaml
+> new file mode 100644
+> index 000000000000..16e95fe4c38d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/ti,omap4-musb.yaml
+> @@ -0,0 +1,133 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/ti,omap4-musb.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Texas Instruments OMAP MUSB USB OTG Controller
+> +
+> +maintainers:
+> +  - Felipe Balbi <balbi@ti.com
 
-...
+Missing '>'
 
-> > > > > > > +static int __iio_str_to_fixpoint64(const char *str, u64 fract_mult,
-> > > > > > > +				   s64 *integer, s64 *fract, bool scale_db)
-> > > > > > > +{
-> > > > > > > +	u64 i = 0, f = 0;
-> > > > > > > +	char *end;
-> > > > > > > +	int digit_count, precision = ffs(fract_mult);
-> > > > > > > +	bool negative = false;
-> > > > > > > +
-> > > > > > > +	if (str[0] == '-') {
-> > > > > > > +		negative = true;
-> > > > > > > +		str++;
-> > > > > > > +	} else if (str[0] == '+') {
-> > > > > > > +		str++;
-> > > > > > > +	}
-> > > > > > > +
-> > > > > > > +	i = simple_strtoull(str, &end, 10);
-> > > > > > > +	digit_count = end - str;
-> > > > > > > +	if (digit_count > 20)
-> > > > > > > +		return -EINVAL;
-> > > > > > 
-> > > > > > Not really. If we are talking about decimal (only) cases we need to also count
-> > > > > > leading 0:s.
-> > > > > > 
-> > > > > > 0000000000000000000000000000000025 is still 25, no overflow.
-> > > > > > 
-> > > > > > That's why I recommend to have a helper, maybe for now locally here, like
-> > > > > > 
-> > > > > > int safe_strtoull(..., unsigned long long *res)
-> > > > > > {
-> > > > > > 	...
-> > > > > > }
-> > > > > 
-> > > > > Are you suggesting to not use simple_strtoull then?
-> > > > 
-> > > > Nope, I suggest to do an additional step before checking for the range.
-> > > 
-> > > You mean, conditionally skip leading 0's when parsing the integer part?
-> > > e.g.
-> > > 
-> > > /*function entry and arg check */
-> > > while(*str == '\0')
-> > > 	str++;
-> > > /* then call simple_strtoull() */
-> > 
-> > Not skipping, but counting them.
-> > 
-> > > simple_strtoull() is not overflow-safe,
-> > 
-> > Yes, I know. That's why all these additional checks are required,
-> > 
-> > > as it does not use
-> > > check_mul_overflow() or check_add_overflow(), only checking the
-> > > amount of digits is not enough.
-> > 
-> > Why? Can you elaborate how checking amount of digits is different to
-> > check_mul_overflow()?
-> 
-> consider U64_MAX = 18_446_744_073_709_551_615 as the limit:
-> - 19_000_000_000_000_000_000 contains the same amount of digits but overflows.
-> - 18_446_744_073_710_000_000 contains the same amount of digits but overflows.
+> +
+> +description:
+> +  Texas Instruments glue layer for the Mentor Graphics MUSB OTG controller.
+> +  Handles SoC-specific integration including PHY interface bridging(ULPI/
+> +  UTMI), interrupt aggregation, DMA engine coordination (internal/
+> +  external), VBUS/session control via control module mailbox, and
+> +  clock/reset management. Provides fixed hardware configuration parameters
+> +  to the generic MUSB core driver.
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^(am35x_otg_hs|usb_otg_hs|usb)@[0-9a-f]+$"
 
-Yes, the first digits give up to 3 additional bits on top of 64-bit.
+Again, do not document non-standard names. That's anything not in the DT 
+spec.
 
-> to catch those cases, we need to check for the overflow, everytime we read a
-> character and accumulate:
-> 
-> u64 acc;
-> 
-> while(isdigit(*str))
-> 	if (check_mul_overflow(acc, 10, &acc) ||
-> 	    check_add_overflow(acc, *str - '0', &acc))
-> 		return -EOVERFLOW;
-> 
-> *res = acc;
-> 
-> acc can get weird results if not checked. 
-> 
-> > 
-> > > Previous implementation of fixpoint parsing didn't care about that.
-> > 
-> > Do we have test cases for the current implementation?
-> 
-> No, I am adding a kunit test in this patch.
-> 
-> > > > > Understood, leading zeros can be ignored only when parsing the integer 
-> > > > > part. Also, would be nice to have truncation of the fractional part
-> > > > > while doing the parsing. How about:
-> > > > > 
-> > > > > static int iio_safe_strtoull(const char *str, const char **end,
-> > > > > 			     size_t max_chars, u64 *res)
-> > > > 
-> > > > > - max_chars = 0: ignores leading 0's and process all digits
-> > > > > - max_chars > 0: process only initial max_chars digits and ignores the rest
-> > > > 
-> > > > I'm not sure why we would need that. It should parse the whole line until the
-> > > > first invalid character or overflow.
-> > > 
-> > > "process all digits" and "ignores the rest" would be for digits only, so it
-> > > would stop until the first invalid character is found. I suppose proper
-> > > overflow check is implemented with check_mul_overflow() and check_add_overflow(),
-> > 
-> > I don't see the need. Amount of digits defines the order of the number (in
-> > power-of-ten).
-> > 
-> > > while iterating over the characters and accumulating the value.
-> > 
-> > The problem that you can refer to is the corner case when the first
-> > (most significant digit(s)) are already give an overflow while being
-> > inside the allowed length. But it also can be checked.
-> > 
-> 
-> Yes. Not sure how to do that without checking every digit again.
-> 
-> > 
-> > The benefit of simple_strto*() over kstrto*() that they do not require
-> > a temporary buffer and work over constant data (always).
-> 
-> Agreed.
->  
-> > If you see a way how to refactor lib/kstrtox.c and lib/vsprintf.c to have
-> > an implementation there directly that may operate over constant buffers,
-> > I will be glad to help with it. That would be good for existing cases,
-> > such as Intel QAT driver, and any newcomers. I actually don't know why
-> > the heck kstrto*() were made against non-constant buffers. Perhaps to
-> > avoid this 'end' parameter...
-> 
-> That would be out of the scope of this patch.
+> +
+> +  compatible:
+> +    enum:
+> +      - ti,omap3-musb
+> +      - ti,omap4-musb
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  ti,hwmods:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description:
+> +      Specifies the name of the TI PRCM (Power, Reset and Clock Management)
+> +      hardware module that must be enabled (powered and clocked) for this
+> +      device node to operate. The value "usb_otg_hs" refers to the USB
+> +      On-The-Go High-Speed controller IP block.
+> +    const: usb_otg_hs
 
-Hmm... But if not doing that we will end up with a code duplication in one or
-another form. The whole purpose of the patch is to avoid duplication.
+deprecated: true
 
--- 
-With Best Regards,
-Andy Shevchenko
+(I think we want that everywhere?)
 
+Actually, looks like only omap2430 sets this, but that's not covered by 
+this schema. Unless you need to add "ti,omap2-musb"?
 
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  interrupt-names:
+> +    minItems: 1
+> +    maxItems: 2
+> +    items:
+> +      enum: [mc, dma]
+
+I would assume only 'dma' is optional? Does this work?:
+
+items:
+  - const: mc
+  - const: dma
+
+> +
+> +  multipoint:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Indicates the MUSB controller supports multipoint. This is a MUSB
+> +      configuration-specific setting.
+> +    const: 1
+> +
+> +  num-eps:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Specifies the number of endpoints. This is a MUSB configuration
+> +      specific setting.
+> +    const: 16
+> +
+> +  ram-bits:
+> +    description:
+> +      Specifies the RAM address size.
+> +    const: 12
+> +
+> +  interface-type:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Describes the type of interface between the controller and the PHY.
+> +      0 for ULPI, 1 for UTMI.
+> +    enum: [0, 1]
+> +
+> +  mode:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: 1 for HOST, 2 for PERIPHERAL, 3 for OTG.
+> +    enum: [1, 2, 3]
+> +
+> +  power:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Signifies the controller can supply up to 100mA when operating
+> +      in host mode.
+> +    enum: [50, 150]
+
+Which value corresponds to 100mA?
+
+> +
+> +  phys:
+> +    maxItems: 1
+> +
+> +  phy-names:
+> +    const: usb2-phy
+> +
+> +  usb-phy:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description: Phandle for the PHY device.
+> +    deprecated: true
+> +
+> +  ctrl-module:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Phandle of the control module this glue uses to write to mailbox.
+> +
+> +required:
+> +  - reg
+> +  - compatible
+> +  - interrupts
+> +  - interrupt-names
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    usb_otg_hs@4a0ab000 {
+
+usb@...
+
+> +        compatible = "ti,omap4-musb";
+> +        reg = <0x4a0ab000 0x1000>;
+> +        interrupts = <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH>;
+> +        interrupt-names = "mc", "dma";
+> +        ti,hwmods = "usb_otg_hs";
+> +        multipoint = <1>;
+> +        num-eps = <16>;
+> +        ram-bits = <12>;
+> +        ctrl-module = <&omap_control_usb>;
+> +        phys = <&usb2_phy>;
+> +        phy-names = "usb2-phy";
+> +        interface-type = <1>;
+> +        mode = <3>;
+> +        power = <50>;
+> +    };
+> +...
+> 
+> -- 
+> 2.52.0
+> 
 
