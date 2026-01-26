@@ -1,165 +1,282 @@
-Return-Path: <devicetree+bounces-259546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259547-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oMBiCtyFd2m9hgEAu9opvQ
-	(envelope-from <devicetree+bounces-259546-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:18:52 +0100
+	id UHX6F3OHd2m9hgEAu9opvQ
+	(envelope-from <devicetree+bounces-259547-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:25:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EB168A063
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:18:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA61F8A1D4
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:25:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E975B30432C8
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 15:15:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 14693304409F
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 15:20:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F42933DEE2;
-	Mon, 26 Jan 2026 15:15:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09E8D33EB09;
+	Mon, 26 Jan 2026 15:20:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="fE0KikZp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RXVXipko"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C258733C50D
-	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 15:15:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46D1A33CEB7
+	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 15:20:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769440538; cv=none; b=WZI6dsgPkJPN3xMc0WPIpQ7TCd8qOowYBHdiaBb088AfqhcUH4UJk3dcy41PxN60vz8ToH4L8LmEVFw35/wKQTwiTUNwnk+nEf+Oiq5wwcZHtre/w2e4eKCdCrY+lRJjpe+Ve5YAGPoMFPGZ4tjNDoKVR1PPk0OEbB/svcw4Nuo=
+	t=1769440814; cv=none; b=UyGJWL2HnvnTjNrDIs8J/Q8V7b6WCiJ8AYiJppT7ifjKf6wzfL6zxZv2Q3SThPy8bA5t9C9VKmWDzykqOWchD6mzdY/S2/yZFkDl5mLVHXM3fDiAPA11wEoPHwAhMNLjeSAi+JDrrlwODwaUkuhVtYn4jLWoIvZPvJzde1wRZ94=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769440538; c=relaxed/simple;
-	bh=FC7X5zPYMI/o32zsBSUmBvAhD6KTKw50hOGSh5dNAj0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jqvuPRb4JpGtLX7TT5hnZDHxV0k8bFuTmQyTIiMjzDIu61y7RkmviyLFlgdoWZnWV7ow52tvWgnRlLqbehTET1iX/gpviYlziOLi+kP1H0AOcKITETN7uC+DGOhsHPHEqbSvA5FeXwHwHD0KsLl0Modom5OE3f6tfAj+TXm05q8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=fE0KikZp; arc=none smtp.client-ip=209.85.208.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-6580dbdb41eso6401811a12.0
-        for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 07:15:36 -0800 (PST)
+	s=arc-20240116; t=1769440814; c=relaxed/simple;
+	bh=EMXDvoXJ5/2vBtxSLRj4Me8GlfV7fukQDcxRRL6oaOc=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BLJAv2kX+7n3aor9IwwvD/mxqZN2KCUxaSxeSsk6JUanuU3lsAFhfSHI1nogCf0j4FMYhgw1OufEb4vKixEhZVe1AO62fg8zkB+HU4qsNdvGoc590HMFMMDZ8YDOWzVeLv2QTFYdrCSPlLLaXX/1vnAwtY2Wscp8jc5KX1XgMWA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RXVXipko; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-435a517be33so2830405f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 07:20:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1769440533; x=1770045333; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4t5aplmA3nTqsGBEOpCKNqLj2NzSX0vQ+67pQX8dHuA=;
-        b=fE0KikZpBdrFIGm0jCwNgLxXZnvq2yGIQMbGrBjd4XVG0tTigK/8/HrODlOgs0iSSa
-         oxviLwRWjVmdSmsBZtWpsSoP2ysCPEubCtx2erBKSwWmVlhLqApKjjG/AxqDwFyy2iet
-         Buq5tc+6kqAKE/Ug0GWdGcIYXii5PPaFzD4dI=
+        d=gmail.com; s=20230601; t=1769440811; x=1770045611; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7P/+mX1PWBDAGM9xKdya4BErpz7ZLdNNb0retKVcXWk=;
+        b=RXVXipkoOiAeF85KDImKGHJKUZuW4Szk6OssvaL9AK4b7Cu8sCwXMDmlRwpKO/TWxe
+         J1kEpa4hZmjTrq1u3fzy4TPv33+yNnUv8gnv47ysNNyUcwPjkqtFU2eYnM+eldRsGiA+
+         jbUpAg9OJbeYk8BnN/pItKbFDlJg/uyZqko+jerHgZrW98ISxMwptlv48z7DHdj1O0xH
+         HyZo87OPydT8YQBlhQWlGVMO6z8qrHCgrPsY7rdtwVfcFgVnGASADDnt+7TvzutdhbJ3
+         LR44saZPnxG0WLd84WNsZAoWZHgNiKaS+YEcgWUOEnxl8XTnd+ppixeWgDIdz+R3EkA2
+         OYoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769440533; x=1770045333;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=4t5aplmA3nTqsGBEOpCKNqLj2NzSX0vQ+67pQX8dHuA=;
-        b=HrEmWzAfxUzCxNqZXCWxEHL2+vl/wvV9wxgjIgPdPTyurI+UelNlhU3Q2Yk3XCRPhT
-         V9u30AtvxB9nuZOLgezBjNRD/WRfThlQTrtNvTUukDLvAT2laaP8BSJs6kPp6NmG0GIg
-         zbHZC8NC+k1/ArzP3x/PxG8hiD4AYCz/pa/+m0mj0+O+u0LuDZZQZFXB7UwP1ot6TNeh
-         fkZTa0eb5sH6o7hGlAQKl0KAD9eum4hAmPNtOTVeslpv7lqoRpyuYMfmzbqpnZ+bNihe
-         e/4N/xhE893YVZqx85CYzH0MoSaQm229xdXPe65k0gfX9u4sz25GL4B+0a+H1IEvynEL
-         eG3w==
-X-Forwarded-Encrypted: i=1; AJvYcCXj95Uvj0CFdpyBLyVUskGqnx2tkv/hfTCi72Pf8sRWrlnvbuOqx1nKtGzsZ8qY8GdhMjqrLIUpaFow@vger.kernel.org
-X-Gm-Message-State: AOJu0YzvHC2kdHFUoWj7evz+yRSfgrnj+Xf1+BJC8zvnfU6oJQ29Bjmj
-	pELjM4zVwAk3HgabRYRNofhDcd1RbO1B/XMN3zWU8eRlOvmS0DvTsu9boUlQxY36mAOWPxdDG77
-	4Log=
-X-Gm-Gg: AZuq6aJuxqQy8DtAhYGZ8umw9C71o39PNQ519XVB8wpxYB7JxvV4ebYzbXjma3fjWyk
-	VxtGdJd+GvWl5j8JHYgWiSk0Ukson9tbzIcgh/6S49ySoExfVd8lUHR8V2/FvDbQThP3ZWbrcqD
-	wNfgugMsEP4vF93osorvscg6v9AMvBPFluDV0NcwhAnEOdmBqE+DiJOApDXXDr7HxV/9JuYUyIY
-	wZo8HOCvItX5dvv32yLhbhTuqMtHxcPfLePfxPXOyAMN7/RRccX30HjQItmYD+z1YyfqNdt38d+
-	vLmgDFRcMO3gfWVtS+oFbDpCnkcCH/axDOHsny/ClbErvM7b1dGByfNcc963x8i7/5LosApSkji
-	LUZDChOqK1FwkgXTNgTdUaqplNt/WFT/qHQKfaUEyKKP3xt5D1QMtfg4/sb43TVc6Ru41rerpWJ
-	lO19/Z7rugGBNGz10ByTb/EDLr+hKleDwngGYNcuo5UApzvCzq+g==
-X-Received: by 2002:a05:6402:34cf:b0:64b:7eba:39ed with SMTP id 4fb4d7f45d1cf-658706b44ffmr2940737a12.13.1769440532902;
-        Mon, 26 Jan 2026 07:15:32 -0800 (PST)
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com. [209.85.128.48])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6584b965d98sm5327380a12.32.2026.01.26.07.15.31
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Jan 2026 07:15:31 -0800 (PST)
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-47edffe5540so53100305e9.0
-        for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 07:15:31 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVxEeRBem6jzW3gzqkGI4DgqOnfp2sjOvF6eliiUhn5itZHcSArXdMyeTpT+NGoBzXiz2pZ+9NJ9Bof@vger.kernel.org
-X-Received: by 2002:a05:600c:3e1a:b0:479:1b0f:dfff with SMTP id
- 5b1f17b1804b1-4805ce4e55dmr85307405e9.10.1769440530557; Mon, 26 Jan 2026
- 07:15:30 -0800 (PST)
+        d=1e100.net; s=20230601; t=1769440811; x=1770045611;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7P/+mX1PWBDAGM9xKdya4BErpz7ZLdNNb0retKVcXWk=;
+        b=m2PWE0pSscBNNij1v2vQrR+CNS6GZ5QxEBFj3WQfr6LREG2giSgoVc2L3lKDtGSVIf
+         Cs/eXTOG4ek5V+K7Rv4LhERZ7E3wCK51RVzB6k2w1EzXL/NlFwg8ujV93KHKTobxoxOo
+         rAM9tfo1xnuycMty0feO+xgQ0ovk6D216iiCzwh5mHEwhhghX+F+kmPy+3/tNmOgU48l
+         RxOYOASwz5yishw5XLBpa9H22pVno+eR4i9S1UztGl7ZZSNERwJ+z0KIz6sNjJkpPGI7
+         jJBAVQs2K5JwVzVDY3IpPXb7CZYeqR0+NPG1QaTgdKGR+dWFAIvtrA8ofDEkFuwuMEbp
+         plQA==
+X-Forwarded-Encrypted: i=1; AJvYcCXh7AGXF1CpM2RyZe80kGINtPUKYL6d84a3Q61ITl3eg4wm/soJ9af0DYg9+iJO44XeQZcg3z0U59Qe@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx5Y6lFl2Fjh9kH9Qm899qkpg25jAtittIiyDFPb7rhcuGoB8vu
+	6CDN9qWu9syRe99RapFbZBnPEHA/FHTxGZAOakolIcKdaVEgZWQiULoV
+X-Gm-Gg: AZuq6aIFZVddq736hVV5k3+XeOI5omlsra3ZddhLQILIoRBcR+Cpx3LuVsUMWUCzHnG
+	4UqG6m+E4K9hhU93K25RjswpHmd08OkCvrZPPyLNfzZMZzvgsDTzL9pq27QRm6nQwhx3UhUZFH5
+	+Gu9KKF/kY1PKjqoqk9GwyWVPze4Gx08zsenw56NDWRw1YoGePq9nxLcAGu6t5zxp+vPI39DxEk
+	Vxk3l35ed6Dc9Kv7sZLtJ/7OEm1W5OEF58oYBFOr7qZJtihSW0UKKGmlUJjz2wu7FF5p5zTtfaD
+	wAlnQvLre2Q8MpkkC1BoeQdNDUJJ4Hk06YFinWfFJ+sVM9wqbpcZvHFw6bVLYMp+m/yQ0L7LKPU
+	QLRPZiAkHoNVPk4U5MGvAsgsjgCOIZuvUxuI7qvXYSOdOWFX0tjmfQsOY4pfvZgQ/7Y8tXsEAdI
+	wFkfNxWrrdM+v/A5Aml4SyekxYS999j0zxidLw0HWstzWzcJ9wjnqDmAItyVPwmC39qYkGqr962
+	d4z
+X-Received: by 2002:a05:6000:2404:b0:435:8aa1:ff4d with SMTP id ffacd0b85a97d-435ca0ef8a3mr7243502f8f.22.1769440811285;
+        Mon, 26 Jan 2026 07:20:11 -0800 (PST)
+Received: from RDEALENC-L01.ad.analog.com ([24.206.116.103])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435b1c24f15sm31673845f8f.18.2026.01.26.07.20.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Jan 2026 07:20:10 -0800 (PST)
+From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
+Date: Mon, 26 Jan 2026 15:20:03 +0000
+To: Andy Shevchenko <andriy.shevchenko@intel.com>, 
+	Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
+	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	Andy Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>
+Subject: Re: [PATCH v5 2/8] iio: core: add fixed point parsing with 64-bit
+ parts
+Message-ID: <n2ms3esyxlegqibu4nluut3x4c4bkjxt5xrcd4gw35xxb2tipb@a2v73y25kroc>
+References: <20260123-adf41513-iio-driver-v5-0-2dce812a2dda@analog.com>
+ <20260123-adf41513-iio-driver-v5-2-2dce812a2dda@analog.com>
+ <aXdUvRZ9NmP5Nh95@smile.fi.intel.com>
+ <byitgzjli5gsq5v66topve7ip3inkk2udwhuihjdp6bknnkmos@tv226l7tek7s>
+ <aXdtpkL5QUhhB_hh@smile.fi.intel.com>
+ <ty6hptfh65k2rkqo6c6mg5z6vismuvyqsu3emvqarr2rbhpvcz@kn6tzjk5xi2o>
+ <aXd_0uNVm8c_Fhwd@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260126-venus-iris-flip-switch-v2-0-b0ea05e1739a@oss.qualcomm.com>
- <20260126-venus-iris-flip-switch-v2-1-b0ea05e1739a@oss.qualcomm.com>
-In-Reply-To: <20260126-venus-iris-flip-switch-v2-1-b0ea05e1739a@oss.qualcomm.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Mon, 26 Jan 2026 07:15:19 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=XmnJb5_hJ_NvAMMQExZb6r2P8Z4hTSfUiqit+-LYpYKQ@mail.gmail.com>
-X-Gm-Features: AZwV_QgSxLFN0B5kCSZpCHaocJhmPgrGrSBW7Fb0Ju5fp6s9Xmzf9QgNaOY6xDU
-Message-ID: <CAD=FV=XmnJb5_hJ_NvAMMQExZb6r2P8Z4hTSfUiqit+-LYpYKQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] arm64: dts: qcom: sc7280-chrome-common: disable Venus
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Vikash Garodia <vikash.garodia@oss.qualcomm.com>, 
-	Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>, Abhinav Kumar <abhinav.kumar@linux.dev>, 
-	"Bryan O'Donoghue" <bod@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Stanimir Varbanov <stanimir.varbanov@linaro.org>, linux-media@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Stephan Gerhold <stephan.gerhold@linaro.org>, 
-	Brian Norris <briannorris@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aXd_0uNVm8c_Fhwd@smile.fi.intel.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-259546-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[chromium.org:+];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	TAGGED_FROM(0.00)[bounces-259547-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[intel.com,gmail.com];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dianders@chromium.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid,qualcomm.com:email]
-X-Rspamd-Queue-Id: 7EB168A063
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: EA61F8A1D4
 X-Rspamd-Action: no action
 
-Hi,
+On 26/01/26 04:53PM, Andy Shevchenko wrote:
+> On Mon, Jan 26, 2026 at 02:26:20PM +0000, Rodrigo Alencar wrote:
+> > On 26/01/26 03:35PM, Andy Shevchenko wrote:
+> > > On Mon, Jan 26, 2026 at 12:42:53PM +0000, Rodrigo Alencar wrote:
+> > > > On 26/01/26 01:49PM, Andy Shevchenko wrote:
+> > > > > On Fri, Jan 23, 2026 at 03:53:07PM +0000, Rodrigo Alencar via B4 Relay wrote:
+> 
+> ...
+> 
+> > > > > > +static int __iio_str_to_fixpoint64(const char *str, u64 fract_mult,
+> > > > > > +				   s64 *integer, s64 *fract, bool scale_db)
+> > > > > > +{
+> > > > > > +	u64 i = 0, f = 0;
+> > > > > > +	char *end;
+> > > > > > +	int digit_count, precision = ffs(fract_mult);
+> > > > > > +	bool negative = false;
+> > > > > > +
+> > > > > > +	if (str[0] == '-') {
+> > > > > > +		negative = true;
+> > > > > > +		str++;
+> > > > > > +	} else if (str[0] == '+') {
+> > > > > > +		str++;
+> > > > > > +	}
+> > > > > > +
+> > > > > > +	i = simple_strtoull(str, &end, 10);
+> > > > > > +	digit_count = end - str;
+> > > > > > +	if (digit_count > 20)
+> > > > > > +		return -EINVAL;
+> > > > > 
+> > > > > Not really. If we are talking about decimal (only) cases we need to also count
+> > > > > leading 0:s.
+> > > > > 
+> > > > > 0000000000000000000000000000000025 is still 25, no overflow.
+> > > > > 
+> > > > > That's why I recommend to have a helper, maybe for now locally here, like
+> > > > > 
+> > > > > int safe_strtoull(..., unsigned long long *res)
+> > > > > {
+> > > > > 	...
+> > > > > }
+> > > > 
+> > > > Are you suggesting to not use simple_strtoull then?
+> > > 
+> > > Nope, I suggest to do an additional step before checking for the range.
+> > 
+> > You mean, conditionally skip leading 0's when parsing the integer part?
+> > e.g.
+> > 
+> > /*function entry and arg check */
+> > while(*str == '\0')
+> > 	str++;
+> > /* then call simple_strtoull() */
+> 
+> Not skipping, but counting them.
+> 
+> > simple_strtoull() is not overflow-safe,
+> 
+> Yes, I know. That's why all these additional checks are required,
+> 
+> > as it does not use
+> > check_mul_overflow() or check_add_overflow(), only checking the
+> > amount of digits is not enough.
+> 
+> Why? Can you elaborate how checking amount of digits is different to
+> check_mul_overflow()?
 
-On Sun, Jan 25, 2026 at 6:09=E2=80=AFPM Dmitry Baryshkov
-<dmitry.baryshkov@oss.qualcomm.com> wrote:
->
-> Iris driver doesn't support non-PAS/TZ setup for setting up the Iris
-> core. It's expected that the ABI that is going to be used in a long-term
-> would be different from the defined venus-firmware subnode.
->
-> Granted that the SC7280 Chromebooks were cancelled before reaching wide
-> audience and granted the feature ABI changes, drop venus configuration
-> for SC7280 ChromeOS devices.
->
-> Suggested-by: Stephan Gerhold <stephan.gerhold@linaro.org>
-> Cc: Douglas Anderson <dianders@chromium.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi | 11 -----------
->  1 file changed, 11 deletions(-)
+consider U64_MAX = 18_446_744_073_709_551_615 as the limit:
+- 19_000_000_000_000_000_000 contains the same amount of digits but overflows.
+- 18_446_744_073_710_000_000 contains the same amount of digits but overflows.
 
-As far as I'm aware, anyone still using a sc7280 Chromebook dev
-platform doesn't care about the video encoder / decoder working.
+to catch those cases, we need to check for the overflow, everytime we read a
+character and accumulate:
 
-Acked-by: Douglas Anderson <dianders@chromium.org>
+u64 acc;
+
+while(isdigit(*str))
+	if (check_mul_overflow(acc, 10, &acc) ||
+	    check_add_overflow(acc, *str - '0', &acc))
+		return -EOVERFLOW;
+
+*res = acc;
+
+acc can get weird results if not checked. 
+
+> 
+> > Previous implementation of fixpoint parsing didn't care about that.
+> 
+> Do we have test cases for the current implementation?
+
+No, I am adding a kunit test in this patch.
+
+> > > > Understood, leading zeros can be ignored only when parsing the integer 
+> > > > part. Also, would be nice to have truncation of the fractional part
+> > > > while doing the parsing. How about:
+> > > > 
+> > > > static int iio_safe_strtoull(const char *str, const char **end,
+> > > > 			     size_t max_chars, u64 *res)
+> > > 
+> > > > - max_chars = 0: ignores leading 0's and process all digits
+> > > > - max_chars > 0: process only initial max_chars digits and ignores the rest
+> > > 
+> > > I'm not sure why we would need that. It should parse the whole line until the
+> > > first invalid character or overflow.
+> > 
+> > "process all digits" and "ignores the rest" would be for digits only, so it
+> > would stop until the first invalid character is found. I suppose proper
+> > overflow check is implemented with check_mul_overflow() and check_add_overflow(),
+> 
+> I don't see the need. Amount of digits defines the order of the number (in
+> power-of-ten).
+> 
+> > while iterating over the characters and accumulating the value.
+> 
+> The problem that you can refer to is the corner case when the first
+> (most significant digit(s)) are already give an overflow while being
+> inside the allowed length. But it also can be checked.
+> 
+
+Yes. Not sure how to do that without checking every digit again.
+
+> 
+> The benefit of simple_strto*() over kstrto*() that they do not require
+> a temporary buffer and work over constant data (always).
+
+Agreed.
+ 
+> If you see a way how to refactor lib/kstrtox.c and lib/vsprintf.c to have
+> an implementation there directly that may operate over constant buffers,
+> I will be glad to help with it. That would be good for existing cases,
+> such as Intel QAT driver, and any newcomers. I actually don't know why
+> the heck kstrto*() were made against non-constant buffers. Perhaps to
+> avoid this 'end' parameter...
+
+That would be out of the scope of this patch.
+
+Kind regards,
+
+Rodrigo Alencar
 
