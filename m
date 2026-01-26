@@ -1,104 +1,61 @@
-Return-Path: <devicetree+bounces-259531-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259532-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aIPgBud9d2m9hgEAu9opvQ
-	(envelope-from <devicetree+bounces-259531-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 15:44:55 +0100
+	id KHUyJoF+d2m9hgEAu9opvQ
+	(envelope-from <devicetree+bounces-259532-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 15:47:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8AE489ADF
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 15:44:54 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1345189B46
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 15:47:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 0E11F3006698
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 14:44:54 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0B1AE3014427
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 14:47:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1539D23B63F;
-	Mon, 26 Jan 2026 14:44:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF597280A5A;
+	Mon, 26 Jan 2026 14:47:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DOuiefEh";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="N1ow8MsF"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b="IvusYAoC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A56C0271A94
-	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 14:44:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769438693; cv=none; b=t1xltOtfKGDgPmEnBr9kniD0Czrx3Q9qAJYKlRm3WVRfqAZEwXgFBWMR61sUHP7YL1/wCeEl0O69FZhUm4SMBF87xDnQmDF8aCyK4etzD37p1Fkmkx2Q4IhV0TknAIP+VvCgGoYo5cEbCdRR+L6xP7FUIP5fEAnSSXSVDzVkiUY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769438693; c=relaxed/simple;
-	bh=GP7PmySZu/+TZ+vSZUM4nmTzVvZnKwy0kC00wxVH4BU=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6077B155757;
+	Mon, 26 Jan 2026 14:47:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769438845; cv=pass; b=tjeJgcrY/zMY610u/SN/IkGGXM/4YBUrSd/ULq2GzafedJW9Rvyyqviip+gNFYr7sAxYq4BKvwxsWsVaHnpNNi1KEMIJIpXewaprmMcHpZY34MGVSGuOhWNc0OfIeYysFPE12+6egUz7pgA5NSeg8kokxoo0mBdxweQFoo55IX4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769438845; c=relaxed/simple;
+	bh=ud1/yhum8fSasYKC+1JF/nMd2KhAyqTk3cYwbNVA2M4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=baBdHtyUxqy7/DE4Z1M3Yk4zwMvgIarxXtl3KMtqP+a8ubQWYCy2lVLr9FidN6ZtV85CGp4wjFdxCZv1duIx3pFJI4I6s5ao7Hm2mNv1w7V9avzDc2C70JSjNaxRTlcGSwMuniAxKS52e5P0fB6h8y0g7o4DfrAe0CtZUk2qgEk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DOuiefEh; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=N1ow8MsF; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60Q9TK4I708495
-	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 14:44:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ApTr57Y0vLLo1N1yQrHIjnvTHUoSt+xQRfNJVnUPykM=; b=DOuiefEhfL8uj7wz
-	8Z3bwdWYhRF3YqHWN8XG9U6OeauL0vpZlTz8Im9pjNWxBCE7R/CGHa/vgOlmH6wb
-	Qrpb4Ne8X50xPZggW52zpLvUpHfFvLUYl7KYfdAs+geRYyDgn88gfqcW7vR+MRut
-	/Z2/QEKHNqZxb0LcMmdPfK0ZjcyFPOiJK9v1gKA/PECBzFf6HcCOAyeKKHkXUNMJ
-	bUs0TAo5VN1vmkVlMkEM7V9cqR/0GAIGPWvZjMxvdJVAZBcHq1DRTnm5yBZNLRdu
-	kaRZY//+AaxrBT/5xARL5m3rlxc8ZLK3bkFNHLE92eE5uX8ye26HS4zg3tFfMFQm
-	r1nAkQ==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bvq9tvs9a-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 14:44:50 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-501423e1faaso11524101cf.0
-        for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 06:44:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769438690; x=1770043490; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ApTr57Y0vLLo1N1yQrHIjnvTHUoSt+xQRfNJVnUPykM=;
-        b=N1ow8MsFzpwGsSRDmaBuyFZ4rSw1A8Rbud5/dOPJzTHXj72ko9zKpGsGosBJRSYG0J
-         weVboGs4RqMsP+w+HfzO5/ITU817AFbF9ZECrXYpQdlc6Opt4O8qPXNgU9hEotMkfx0s
-         Tt8h3S/WeBuUS31l658BNGUathNjnGlh1b1uO0Xd34BJmsLueQEh5EubA8iO30ydGyP3
-         LsY7aNVemzlOSyq42UWmHAVxpIAHGsYCB2pSu8fiTrAemYm0PHyJ9Nm6jHRMqZc6LKTf
-         cj+rIisCMO5t7DH/8kTcDAtHIuTAMvESfOWYnZzZGvbNKhIM3wqFcatRD5W/fNBV9V7K
-         9RyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769438690; x=1770043490;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ApTr57Y0vLLo1N1yQrHIjnvTHUoSt+xQRfNJVnUPykM=;
-        b=uQwvuRwmN1RExBGUNp7uufpcbgvL4f/ME3yHIlEo+v72lobV7cuWd4wyOzfrPrHqru
-         /AJEiPxq5gcN4ycE3v3LRhYO2heTYBvAs/NVnBKOrXCOjeUyj/QrKndYPMf2PYIyhRKb
-         GTRJiPfR94T1LGg1iZFZY+Uspgc2fM3vv93ZYQHon8p6TCPC22tWDpCHN3EDXgyXgNi9
-         VvX4YLaK3+4STIqNBTkJrS6XXO/HtfCf5vXq7zzfAlms7IdwyxhRY8HifSZTzjaSvlNG
-         IPGJy44B3LGgfjStPBzcBdaynk1Vb90RFxTF3/6nO8q/urlntPZYpBwhKr4gImt3DB1p
-         l6hQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUuVqPF9yJMXxwqKUj7UgQLTU6idiJP5akqCexuqLmSBA4cOGj0EFzU7MO5iO/LmDjpg/ZE393/JniE@vger.kernel.org
-X-Gm-Message-State: AOJu0YxAdAkG82b/wiMzmi+Dw/morpDfXNbZ6ZWhMHTGo3/Ewv0uLzw/
-	WixgR9/Khp9z91WkTwBIHgwcxriuHY04YKBqq3ReRxRu9ZJ3NViOGcY+Dk6wKDhBADvFVewQlD6
-	8O9dubjIgz9qtSmo/ekt4mQiV9u+88iVD5xYjw140bgC8327QAwqLzfrpI/Qb/hAE
-X-Gm-Gg: AZuq6aIwy8Ze5uAXRrmAEyeY+xBHWW8cJWHraa+x9xx4xa+4WihdatAzI+ZFXBXDrdO
-	B0XdVa5v71vacEB1REtNn9QfG4dJGnP97tjBL5fr4pcXl88RZv4rs8QyYBIXYSXAZNqzKGAiA4z
-	r21W0jS3lHh+czERGWVZPfU3pWAi8rOaCSh1HYUOp/+EHv39dcKKJDBcKHMoHgkrq+9RuefwXmP
-	F8/sat95MQnuib5LBFbBe9Fl+pD4rmtlD7KIFJfuRLWawKgmTd5D26qNgTfq8hUCZ6tBBbUEqXb
-	R0EYAlAIpVv90gi55+lice8OjqHrnXRI/3P3R7sJJmey7TmWFdHeZGrz2mWTto3Qsa68TteW5bH
-	Q5YsKRUmNz+io5swUBLuvz8PC8ycvwdoPm19lbKc2tZBO55IWVoPEQcCg3gwuQEDpBDg=
-X-Received: by 2002:ac8:5814:0:b0:4e0:b24a:6577 with SMTP id d75a77b69052e-50314b66890mr46542581cf.2.1769438690108;
-        Mon, 26 Jan 2026 06:44:50 -0800 (PST)
-X-Received: by 2002:ac8:5814:0:b0:4e0:b24a:6577 with SMTP id d75a77b69052e-50314b66890mr46542211cf.2.1769438689603;
-        Mon, 26 Jan 2026 06:44:49 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6584b948670sm5141354a12.25.2026.01.26.06.44.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Jan 2026 06:44:48 -0800 (PST)
-Message-ID: <cb08a156-d905-419f-88f1-77bd136c823f@oss.qualcomm.com>
-Date: Mon, 26 Jan 2026 15:44:45 +0100
+	 In-Reply-To:Content-Type; b=axkqmxGbCV5jy5NXQ36GMxsVqNwLWLSYyDNMcnrKHhib66eyNgQ2Ahb6Eju0A9PriOrbBIy55ssVjKjsrgTlZYUoKIBwKqFMB171shZ8up3WQ8k/zrdekJysDm75+rpy/QCmscLJhy6ESmx+D+oxGdWbLSiogBXspyik+KNph0c=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b=IvusYAoC; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1769438821; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=g7QZPLCFJG4diwhCtqex30R/0irfBRYPcfcikzCMvM5y+qBwyhb+JayIBxqGW7JvwAYrweeMfHk/G5Ibg7SEBUOVS6obQ0fKM0f0m2unudjrI+lgbSWaUFNCxxYK8MtngNpONm+yeI4QamIGBoYF7DvlTWH+QneTCrJVEgLD1tU=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1769438821; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=3ssbdTUHNW+Tvz0qqW64nDulngnRtrkUBEpIXz/HKr8=; 
+	b=E7q2ZLT6DX7svkaJf5hOSioRIS1KZ1HEBBDZEl7E0oQciCVRnvxb6NR2xX2su5posSyc1l9ab7qmJy8rByyRMJhWL4vEUkuT+RQcTTaoH6j9TLnCYsyYrIPZ1J/MCx5bFM96uxBxlRzm6TlFedmZ157hBfdOoNYUk0yJu/kmzOo=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=benjamin.gaignard@collabora.com;
+	dmarc=pass header.from=<benjamin.gaignard@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1769438821;
+	s=zohomail; d=collabora.com; i=benjamin.gaignard@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=3ssbdTUHNW+Tvz0qqW64nDulngnRtrkUBEpIXz/HKr8=;
+	b=IvusYAoCZolGFd1MCeYIUo9SgrSLUSraYPZ1Ar5Ng5TYTHxH822JgqW6UooSAP5H
+	8AsMs1ug4g22pPboNBT9+o+63xfFDZ1PEZos7kPOMlcOKjbHx1xPVO89/lWKuXdOR4W
+	dDXmu8vNI6yIEGRDlgW8WUReRXMVEGHR1ah1kEtk=
+Received: by mx.zohomail.com with SMTPS id 1769438819623670.7730935133327;
+	Mon, 26 Jan 2026 06:46:59 -0800 (PST)
+Message-ID: <ad70a610-f5a8-4091-8f32-e5c2caee9685@collabora.com>
+Date: Mon, 26 Jan 2026 15:46:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -106,146 +63,139 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFT 2/3] arm64: dts: qcom: glymur: Add USB related nodes
-To: Abel Vesa <abel.vesa@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        Wesley Cheng <wesley.cheng@oss.qualcomm.com>
-References: <20260113-dts-qcom-glymur-add-usb-support-v1-0-98d6d387df01@oss.qualcomm.com>
- <20260113-dts-qcom-glymur-add-usb-support-v1-2-98d6d387df01@oss.qualcomm.com>
- <01de4054-eebf-4ef3-ad74-c806b208a848@oss.qualcomm.com>
- <wh4qsgwl6drye2d227mv22pxz57cikp6ogabklo6fvlzljqafp@sgps7d52yp2d>
+Subject: Re: [PATCH v11 3/7] iommu: Add verisilicon IOMMU driver
+To: Will Deacon <will@kernel.org>
+Cc: joro@8bytes.org, robin.murphy@arm.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
+ nicolas.dufresne@collabora.com, p.zabel@pengutronix.de, mchehab@kernel.org,
+ iommu@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org,
+ kernel@collabora.com
+References: <aWZui-rn5RDPwpEO@willie-the-truck>
+ <68a49f8b-178c-4fa2-b4a9-315ad602271d@collabora.com>
+ <aWeTQ50DOtntcniN@willie-the-truck>
+ <db0950f1-b357-47c2-9829-e33262ab456d@collabora.com>
+ <aW4kb5EbxbrhTOxK@willie-the-truck>
+ <b8f43fe8-3e07-4d98-a50d-817c31370710@collabora.com>
+ <aXDL2JH_4RCDmAJv@willie-the-truck>
+ <4b33b50f-f0c3-4db8-b394-dd2d4d6e3a55@collabora.com>
+ <aXOsdlGMVzhHOrUr@willie-the-truck>
+ <8fd2c508-cbe9-4050-ba02-85b22fcff10d@collabora.com>
+ <aXd4CXE0fqWiKJXl@willie-the-truck>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <wh4qsgwl6drye2d227mv22pxz57cikp6ogabklo6fvlzljqafp@sgps7d52yp2d>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI2MDEyNiBTYWx0ZWRfX7pkYtFLRRcOv
- pHwYTcmxwWPlrmUcq6juhkuRBHfJUEmxurDmR9eu7LVdiqBcgLXL/g7cAf4CYyy8ZSZFErRaDZn
- vI3jYpfnMz0FNn+TpBgvq4rI+ZnTEMIH/hkWrzPUCuYz2v5lOqKapwl8Lp3tM2wZ6ybzMdPh53m
- vkewZtqgqrIN9XV8eIA6kLtGEbZetlQoNHOilbnGwGwidnepnxIldrdhzEYlarevB3AjAaygoXA
- gZHJnFgYKL7PnfClbdSOqr2HcYAnm8ky15MV8cVnHbzf16SKi6s8KF4GzL+b/gJqyEvGoSkjVZV
- K1eBgev5ToHtvLFQijHd88gMA9WyVt4OF6PHV31wBIezerE3LrKsQ5n8ywt5Dq9D6sVaRc8V4Vh
- K8F6ph4e4kumGrMiYq1XTCyt4LClNVpOOExO4ff9eYg9RnTGJXWz0HKwuau1imj6KWs6liGP20q
- EPjwYPKt76ypiGv2DnQ==
-X-Authority-Analysis: v=2.4 cv=QN5lhwLL c=1 sm=1 tr=0 ts=69777de2 cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=qn_fkN7zqQ4dxzFuYcEA:9
- a=QEXdDO2ut3YA:10 a=a_PwQJl-kcHnX1M80qC6:22
-X-Proofpoint-GUID: zvOLXVf0qV7jDGQkckaM940RJJy2Vy1t
-X-Proofpoint-ORIG-GUID: zvOLXVf0qV7jDGQkckaM940RJJy2Vy1t
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
- definitions=2026-01-26_03,2026-01-26_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 clxscore=1015 adultscore=0 malwarescore=0 suspectscore=0
- impostorscore=0 lowpriorityscore=0 priorityscore=1501 bulkscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601260126
+From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+In-Reply-To: <aXd4CXE0fqWiKJXl@willie-the-truck>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259531-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259532-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,fa2000:email,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,fd3000:email];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[benjamin.gaignard@collabora.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: A8AE489ADF
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 1345189B46
 X-Rspamd-Action: no action
 
-On 1/26/26 3:31 PM, Abel Vesa wrote:
-> On 26-01-13 14:13:32, Konrad Dybcio wrote:
->> On 1/13/26 1:33 PM, Abel Vesa wrote:
->>> From: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
->>>
->>> The Glymur USB system contains 3 USB type C ports, 1 USB multiport
->>> controller and a USB 2.0 only controller. This encompasses 5 SS USB QMP
->>> PHYs (3 combo and 2 uni) and 6 M31 eUSB2 PHYs. All controllers are SNPS
->>> DWC3 based, so describe them as flattened DWC3 QCOM nodes.
->>>
->>> Signed-off-by: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
->>> Co-developed-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
->>> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
->>> ---
->>
->> [...]
->>
->>>  
->>> +		usb_mp_hsphy0: phy@fa1000 {
->>> +			compatible = "qcom,glymur-m31-eusb2-phy",
->>> +				     "qcom,sm8750-m31-eusb2-phy";
->>> +
->>> +			reg = <0 0x00fa1000 0 0x29c>;
->>> +			#phy-cells = <0>;
->>> +
->>> +			clocks = <&tcsr TCSR_USB2_1_CLKREF_EN>;
->>> +			clock-names = "ref";
->>> +
->>> +			resets = <&gcc GCC_QUSB2PHY_HS0_MP_BCR>;
->>> +
->>> +			status = "disabled";
->>> +		};
->>> +
->>> +		usb_mp_hsphy1: phy@fa2000  {
->>> +			compatible = "qcom,glymur-m31-eusb2-phy",
->>> +				     "qcom,sm8750-m31-eusb2-phy";
->>> +
->>> +			reg = <0 0x00fa2000 0 0x29c>;
->>> +			#phy-cells = <0>;
->>> +
->>> +			clocks = <&tcsr TCSR_USB2_2_CLKREF_EN>;
->>> +			clock-names = "ref";
->>> +
->>> +			resets = <&gcc GCC_QUSB2PHY_HS1_MP_BCR>;
->>> +
->>> +			status = "disabled";
->>> +		};
->>
->>
->> [...]
->>
->>> +		usb1_ss0_hsphy: phy@fd3000 {
->>
->> Let's not repeat the mess introduced in hamoa..
->>
->> Perhaps let's fall back to usb_0 etc.?
-> 
-> Sure. So then:
-> 
-> USB SS[0-2]              -> usb_[0-2]
-> USB MP                   -> usb_mp
-> USB 2.0 (USB20S in docs) -> ?
 
-usb_hs
+Le 26/01/2026 à 15:19, Will Deacon a écrit :
+> On Mon, Jan 26, 2026 at 10:03:19AM +0100, Benjamin Gaignard wrote:
+>> Le 23/01/2026 à 18:14, Will Deacon a écrit :
+>>> On Wed, Jan 21, 2026 at 02:50:18PM +0100, Benjamin Gaignard wrote:
+>>>> Le 21/01/2026 à 13:51, Will Deacon a écrit :
+>>>>> On Mon, Jan 19, 2026 at 03:03:44PM +0100, Benjamin Gaignard wrote:
+>>>>>>>>>>>> +static const struct iommu_ops vsi_iommu_ops = {
+>>>>>>>>>>>> +	.identity_domain = &vsi_identity_domain,
+>>>>>>>>>>>> +	.release_domain = &vsi_identity_domain,
+>>>>>>>>>>>> +	.domain_alloc_paging = vsi_iommu_domain_alloc_paging,
+>>>>>>>>>>>> +	.of_xlate = vsi_iommu_of_xlate,
+>>>>>>>>>>>> +	.probe_device = vsi_iommu_probe_device,
+>>>>>>>>>>>> +	.release_device = vsi_iommu_release_device,
+>>>>>>>>>>>> +	.device_group = generic_single_device_group,
+>>>>>>>>>>>> +	.owner = THIS_MODULE,
+>>>>>>>>>>>> +	.default_domain_ops = &(const struct iommu_domain_ops) {
+>>>>>>>>>>>> +		.attach_dev		= vsi_iommu_attach_device,
+>>>>>>>>>>>> +		.map_pages		= vsi_iommu_map,
+>>>>>>>>>>>> +		.unmap_pages		= vsi_iommu_unmap,
+>>>>>>>>>>>> +		.flush_iotlb_all	= vsi_iommu_flush_tlb_all,
+>>>>>>>>>>> This has no callers and so your unmap routine appears to be broken.
+>>>>>>>>>> It is a leftover of previous attempt to allow video decoder to clean/flush
+>>>>>>>>>> the iommu by using a function from the API.
+>>>>>>>>>> Now it is using vsi_iommu_restore_ctx().
+>>>>>>>>>> I while remove it in version 12.
+>>>>>>>>> Don't you still need some invalidation on the unmap path?
+>>>>>>>> In vsi_iommu_unmap_iova() page is invalided by calling vsi_mk_pte_invalid().
+>>>>>>> But that just writes an invalid descriptor and doesn't appear to invalidate
+>>>>>>> the TLB at all.
+>>>>>>>
+>>>>>>>> That clear BIT(0) so the hardware knows the page is invalid.
+>>>>>>>> Do I have miss something here ?
+>>>>>>> Yes, the TLB structure needs to be invalidated so that the page-table
+>>>>>>> walker sees the new value that you have written in memory.
+>>>>>>>
+>>>>>>> The rockchip driver gets this correct...
+>>>>>> Rockchip hardware have a ZAP_ONE_LINE register which didn't exist on Verisilicon
+>>>>>> hardware.
+>>>>> Presumably you have some sort of Verisilicon datasheet or downstream driver
+>>>>> from which you can infer the TLB invalidation runes?
+>>>> I have only this downstream driver:
+>>>> https://github.com/rockchip-linux/kernel/blob/develop-6.1/drivers/iommu/rockchip-iommu-av1d.c
+>>>> No datasheet...
+>>>>
+>>>>>> I have tried to use VSI_MMU_BIT_FLUSH on VSI driver after unmapping iova
+>>>>>> but it doesn't work.
+>>>>> What do you mean by "doesn't work"? If it works without doing any
+>>>>> invalidation at all, then it's very peculiar that adding the invalidation
+>>>>> would introduce issues.
+>>>> I mean VSI_MMU_BIT_FLUSH register can't be used to invalid the TLB.
+>>>> I think the hardware iterates over the pages tables in memory and
+>>>> check the valid/invalid bit.
+>>> I bet it doesn't: that would be horrible for performance.
+>>>
+>>> The hardware clearly has TLB invalidation support, as the downstream driver
+>>> that you linked above implements av1_iommu_flush_tlb_all() to poke it.
+>>> If the hardware has a TLB, then unmapping a page-table means you need to:
+>>>
+>>> 1. Clear the valid bit from the descriptor in memory
+>>> 2. Have some sort of memory barrier
+>>> 3. Invalidate the TLB
+>>> 4. Wait for the invalidation to complete
+>> That exactly what I had tried to do by calling vsi_iommu_flush_tlb_all() (minux the lock)
+>> after calling vsi_iommu_unmap_iova() in vsi_iommu_unmap() but that doesn't work
+>> and even make the system crash sometimes.
+> Then it sounds like you have some debugging to do...
+>
+> I don't think we should elide the TLB invalidation just because you
+> couldn't get it to work.
 
-Konrad
+It is working but not in the order you expect.
+TLB invalidation occurs before each decoding frames by calling vsi_iommu_restore_ctx().
+After that decoder map all the needed buffer and perform decoding.
+
+Benjamin
+
+>
+> Will
+>
 
