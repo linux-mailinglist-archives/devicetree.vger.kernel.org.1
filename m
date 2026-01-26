@@ -1,155 +1,164 @@
-Return-Path: <devicetree+bounces-259577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259578-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oHbBGGKXd2n0iwEAu9opvQ
-	(envelope-from <devicetree+bounces-259577-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:33:38 +0100
+	id UNm6EaKXd2n0iwEAu9opvQ
+	(envelope-from <devicetree+bounces-259578-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:34:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C41F18AB4C
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:33:37 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8FF68AB69
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:34:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0181F302769C
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:33:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A44F83035246
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:34:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C6A133A037;
-	Mon, 26 Jan 2026 16:33:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="glECKte0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72F2D34253A;
+	Mon, 26 Jan 2026 16:34:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCE6931B10D
-	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 16:33:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EABB0340DA4;
+	Mon, 26 Jan 2026 16:34:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769445207; cv=none; b=hF7FcrniBNBlg0Y0JCCSNpPL4XHMjQzDB88HE1sgEekaZ5flqJzvKfxsul9fkkNinYhDY5vJlrD+IDGbcpQTVOTqX9g3PD67s2nl5pMSbF0OYPHAQ+OrRpaazhCiddnGo97DEDSVVQ3ubORX0v+FhfjBQxcX1cUOaInLfc8XbQM=
+	t=1769445269; cv=none; b=Hm693k8nCSZuSQE2GV3bw4rCSVN4/xLU9rkLrPoTm+tZ05wzjj8B5L2PF1APRevAJPcTxSaiMIebw6Fm8UsP59fFnDt6GhFc1g/dEaarBBFKxXKOZmVjuZ0szUagjEWbx95MKPi5lCVYdkNEL3x3sn9iPS914yOVwnJrrffwGeA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769445207; c=relaxed/simple;
-	bh=1110P4O7LSi8WXqTz4jJ2LZI4BaN9AEgj7xeGQ57r+U=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PBAC/E8jmUKlnK1NSpJIrwxA4XW1COG1xvns9xsidkFtg8R3BHZ5fD8Kqp7l2hygTkHmnVX9ZQL4DHz2KevQdCpBgKnj3jEiL/eFIs9G/E2d9PBAeWMwlneQ+MpvPiMkd30X1EWtvkLeSCPrUQtF5EpC0UthdYcmn0UBWpmviqo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=glECKte0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 846A6C4AF09
-	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 16:33:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769445207;
-	bh=1110P4O7LSi8WXqTz4jJ2LZI4BaN9AEgj7xeGQ57r+U=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=glECKte0WuS1YaFZsotEBg9TsBrqPwW3Bmaqw+8bw+t94iKX8xFkDbiwMSPxOR039
-	 E+LVjcee3NO/cjovpE9rIvAv89/EPdT6BuUAdDGFjpV6IbF5Rqe90jUwA0bSx93kZg
-	 8Lm7QUmQlG5sdwKcN+W7s/YVREHZBDRXgcg2pcI94yqWk2ckiXayUn2fvE5V7FXxOk
-	 R1rSGT7j8AGPp9x3xIyCg6gFigG90GRLLcOR6UjTljc+Wn3gx/+uRkTa3AIZ75nTri
-	 gobdHZNZxddV5Px+L1FCv7Zia/QVpcCbft+oR/PAMTMmMANX1RDYURX68wXmPdETRF
-	 P4cdrj3qoQrLw==
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-65808d08423so7216582a12.1
-        for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 08:33:27 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWmOF3KU3M/FLQ9jW64UClCY6jdiTGfNjrZe1WjVfVCj8X13yS1abhy9bk42cz0iTpO6VuJ4ji8DLWE@vger.kernel.org
-X-Gm-Message-State: AOJu0YyRgkD5JwAdfSDaYkdimaTLYnkV5JNAnnAdjvlzVkecv88c4+as
-	1smlzHWUjjKCIsastDXsxPZaunW1Qk8elv4M3BdUAmoOnkZgJ9x4/gpcP9ZUHUtc4VMkIEHDdx/
-	3K+vX/D0MOnE3zDuP+Fn82F46N0fXOw==
-X-Received: by 2002:a05:6402:51c7:b0:658:330c:f9af with SMTP id
- 4fb4d7f45d1cf-658706de926mr2985790a12.23.1769445205840; Mon, 26 Jan 2026
- 08:33:25 -0800 (PST)
+	s=arc-20240116; t=1769445269; c=relaxed/simple;
+	bh=BPZ2o64ACc8rHB5MyAqAflouWLP2/Jgd/OtqX5i7PPw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=f/O4Q+WFmn1EkWvB0/kaeENpeQY7Niz1FIWvwbV34mrms3uJxhxYxcReg0Fe6sYrhTAPdQe/CJCUEo89NCq6vcEinosjguTVCYqFGWZOeRK2vhMUt3XDMj5jrQsn9fKVr8pWu2LJyhlE1rSi3kukIjzvydPgldIWm8CGxzLXRX8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C1965339;
+	Mon, 26 Jan 2026 08:34:20 -0800 (PST)
+Received: from [10.57.51.176] (unknown [10.57.51.176])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 02A783F5CA;
+	Mon, 26 Jan 2026 08:34:24 -0800 (PST)
+Message-ID: <b5f268cb-f9b9-4880-9fb5-b5f3a8eb9251@arm.com>
+Date: Mon, 26 Jan 2026 16:34:22 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CGME20251210002053eucas1p1d1408ad0fb49a49bf4371687f8df7395@eucas1p1.samsung.com>
- <20251210002027.1171519-1-oreoluwa.babatunde@oss.qualcomm.com>
- <X-TH#1.CAL_JsqL6VVQ7K_ZAbHJ8Gb7ei_jusLx6wRn=AdOVgV50dX0ejQ@mail.gmail.com>
- <99dc91c9-59fd-47c5-b1d9-157bda86ad59@samsung.com> <CAL_JsqK5QEZfyRTDY4z88mX_eYENibea1ZM8H_bEfCCsOOwY4A@mail.gmail.com>
- <89f8895f-436d-4a73-a2c8-d61a2f4ee41a@samsung.com>
-In-Reply-To: <89f8895f-436d-4a73-a2c8-d61a2f4ee41a@samsung.com>
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 26 Jan 2026 10:33:13 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKWd2H0bV9Z8REMBYd2hPMTjDO1T4dYehM-QvemB9zrDg@mail.gmail.com>
-X-Gm-Features: AZwV_Qi4bswXzMTlSSlXlrhMA8xIhaBGN8wj5n0NOyn4w1lHAZaZH4If-414C3k
-Message-ID: <CAL_JsqKWd2H0bV9Z8REMBYd2hPMTjDO1T4dYehM-QvemB9zrDg@mail.gmail.com>
-Subject: Re: [PATCH] of: reserved_mem: Allow reserved_mem framework detect
- "cma=" kernel param
-To: Marek Szyprowski <m.szyprowski@samsung.com>
-Cc: Oreoluwa Babatunde <oreoluwa.babatunde@oss.qualcomm.com>, ye.li@oss.nxp.com, 
-	kernel@oss.qualcomm.com, saravanak@google.com, akpm@linux-foundation.org, 
-	david@redhat.com, lorenzo.stoakes@oracle.com, Liam.Howlett@oracle.com, 
-	vbabka@suse.cz, rppt@kernel.org, surenb@google.com, mhocko@suse.com, 
-	robin.murphy@arm.com, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-mm@kvack.org, iommu@lists.linux.dev, 
-	quic_c_gdjako@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] perf/arm-ni: Don't crash in probing clock domains
+ without a PMU instance
+To: Baisheng Gao <baisheng.gao@unisoc.com>, Will Deacon <will@kernel.org>,
+ Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: cixi.geng@linux.dev, hao_hao.wang@unisoc.com,
+ linux-arm-kernel@lists.infradead.org, linux-perf-users@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20260126033029.7923-1-baisheng.gao@unisoc.com>
+ <20260126033029.7923-2-baisheng.gao@unisoc.com>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <20260126033029.7923-2-baisheng.gao@unisoc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [0.14 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[arm.com : SPF not aligned (relaxed), No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-259577-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259578-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree];
-	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,samsung.com:email]
-X-Rspamd-Queue-Id: C41F18AB4C
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robin.murphy@arm.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	MID_RHS_MATCH_FROM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[arm.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C8FF68AB69
 X-Rspamd-Action: no action
 
-On Mon, Jan 19, 2026 at 4:38=E2=80=AFAM Marek Szyprowski
-<m.szyprowski@samsung.com> wrote:
->
-> On 18.12.2025 15:42, Rob Herring wrote:
-> > On Thu, Dec 18, 2025 at 3:55=E2=80=AFAM Marek Szyprowski
-> > <m.szyprowski@samsung.com> wrote:
-> >> On 10.12.2025 15:07, Rob Herring wrote:
-> >>> On Tue, Dec 9, 2025 at 6:20=E2=80=AFPM Oreoluwa Babatunde
-> >>> <oreoluwa.babatunde@oss.qualcomm.com> wrote:
-> >>>> When initializing the default cma region, the "cma=3D" kernel parame=
-ter
-> >>>> takes priority over a DT defined linux,cma-default region. Hence, gi=
-ve
-> >>>> the reserved_mem framework the ability to detect this so that the DT
-> >>>> defined cma region can skip initialization accordingly.
-> >>> Please explain here why this is a new problem. Presumably the
-> >>> RESERVEDMEM_OF_DECLARE hook after commit xxxx gets called before the
-> >>> early_param hook. And why is it now earlier?
-> >>>
-> >>> I don't really like the state/ordering having to be worried about in =
-2 places.
-> >> I also don't like this spaghetti, but it originates from
-> >> commit 8a6e02d0c00e ("of: reserved_mem: Restructure how the reserved
-> >> memory regions are processed") and the first fixup for it: 2c223f7239f=
-3
-> >> ("of: reserved_mem: Restructure call site for
-> >> dma_contiguous_early_fixup()").
-> > Honestly, this code wasn't great before. Every time it is touched it
-> > breaks someone.
->
-> Indeed it got a bit complicated and needs some improvement, but first I
-> want to fix the the reported regression. This patch does this and it
-> looks that there are no ideas how to fix this in a different way. Rob,
-> could I apply it via dma-mapping-fixes?
+On 2026-01-26 3:30 am, Baisheng Gao wrote:
+> The NULL pmusela pointer implies that current clock domain doesn't have
+> a PMU instance. Return 0 for probing the next clock domain. Otherwise a
+> kernel crash will happen.
 
-Sigh, yes.
+Sorry, this doesn't add up with the diff below. All of the documentation 
+says that the PMU is in integral part of the clock domain, and I can 
+find no mention of any configuration parameter allowing it to be 
+omitted. It is possible for the PMU registers to be inaccessible because 
+Non-Secure access has not been enabled, but we account for that already.
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Baisheng Gao <baisheng.gao@unisoc.com>
+> ---
+>   drivers/perf/arm-ni.c | 8 +++++++-
+>   1 file changed, 7 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/perf/arm-ni.c b/drivers/perf/arm-ni.c
+> index 66858c65215d..53b656983da1 100644
+> --- a/drivers/perf/arm-ni.c
+> +++ b/drivers/perf/arm-ni.c
+> @@ -526,6 +526,7 @@ static int arm_ni_init_cd(struct arm_ni *ni, struct arm_ni_node *node, u64 res_s
+>   {
+>   	struct arm_ni_cd *cd = ni->cds + node->id;
+>   	const char *name;
+> +	static atomic_t id;
+>   
+>   	cd->id = node->id;
+>   	cd->num_units = node->num_components;
+> @@ -562,6 +563,11 @@ static int arm_ni_init_cd(struct arm_ni *ni, struct arm_ni_node *node, u64 res_s
+>   		case NI_TMNI:
+>   		case NI_CMNI:
+>   			unit->pmusela = arm_ni_get_pmusel(ni, unit_base);
+> +			if (!unit->pmusela) {
 
-Rob
+...However this is not about the PMU node anyway; this would represent 
+the FCU at an interface node being missing. Again, it's possible for 
+access to the FCU itself to be restricted, per the test below, but the 
+subfeature ID registers should always be readable, and per the "Should 
+be impossible" comment in arm_ni_get_pmusel(), the nodes that can 
+generate PMU events should always include an FCU.
+
+Could you please clarify some more details of what the exact situation 
+is that you're trying to deal with here?
+
+> +				dev_info(ni->dev, "No have PMU %d\n", cd->id);
+> +				devm_kfree(ni->dev, cd->units);
+> +				return 0;
+> +			}
+>   			writel_relaxed(1, unit->pmusela);
+>   			if (readl_relaxed(unit->pmusela) != 1)
+>   				dev_info(ni->dev, "No access to node 0x%04x%04x\n", unit->id, unit->type);
+> @@ -591,7 +597,7 @@ static int arm_ni_init_cd(struct arm_ni *ni, struct arm_ni_node *node, u64 res_s
+>   	writel_relaxed(U32_MAX, cd->pmu_base + NI_PMCNTENCLR);
+>   	writel_relaxed(U32_MAX, cd->pmu_base + NI_PMOVSCLR);
+>   
+> -	cd->irq = platform_get_irq(to_platform_device(ni->dev), cd->id);
+> +	cd->irq = platform_get_irq(to_platform_device(ni->dev), atomic_fetch_inc(&id));
+
+This is clearly wrong. Disregarding how badly it would go with multiple 
+NI instances, even within a single instance I don';t think there's any 
+obvious guarantee of a stable order. The firmware bindings are already 
+defined, and that definition is not "the order in which a particular 
+version of the Linux driver happens to parse things".
+
+Thanks,
+Robin.
+
+>   	if (cd->irq < 0)
+>   		return cd->irq;
+>   
+
 
