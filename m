@@ -1,188 +1,289 @@
-Return-Path: <devicetree+bounces-259573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259574-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8LdwN32Sd2m9hgEAu9opvQ
-	(envelope-from <devicetree+bounces-259573-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:12:45 +0100
+	id KEEwDMOTd2n0iwEAu9opvQ
+	(envelope-from <devicetree+bounces-259574-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:18:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E1868A8B4
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:12:45 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 776F28A94D
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 17:18:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C6074300623C
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:12:42 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 72C93300A534
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jan 2026 16:18:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5BC92DB7A0;
-	Mon, 26 Jan 2026 16:12:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B8C32FF16F;
+	Mon, 26 Jan 2026 16:18:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="W1YU4JX6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com [209.85.222.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72F702D838B
-	for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 16:12:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFFDC29E0E7;
+	Mon, 26 Jan 2026 16:18:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769443959; cv=none; b=K54J/OZVu36maO72TsnjiXPJTbFByW9J1/ioyxNx+QX0ZYqB8rjD/MOcwIuo+dhFcmFfWmQjDVwhhoBVMDgVfOJ15pPvP01c3ghXUBYG04QoJv8bUPffkRGio9em+tfI696pgUiQwYMqzwIKZATUe4WUchuVFsL4SwV6/k+Ot08=
+	t=1769444288; cv=none; b=oacaY8ExGLdKuvS8oag6SxnkkOfBJVq3V9y+VlF7AoGZ5TceGicv9qEU/vDIGUmF8sCtAY/YzcgNkFIeek5mdEEPxB1pGZX6mgtaWzTzas10WGWe4rmkaRQBUGWSF0mez4mKvTi+NeDGT3livaLMpv821bGKpkTNKUPkrKs4ES8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769443959; c=relaxed/simple;
-	bh=ZVEYPIdz79RWr1ln7aRsRkIDCN/em83Z6vA1u5GyPPI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QMoMtbYTia+RSeXAD5Ag69QQKL3DwRKVZgBr3vHXc5qX7RefWlUwZeG6rxQJtTcLiMhzwF9Mzvsz4CLN9fM18VR/BnXHSgeVcO1tmbat7+BK9QmYXxCyk1HelNawT1gbAIf8QnkXmBuBdOc0f3Qho4cOA59IdGW88hnSxha3TYI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-94120e0acbeso2727487241.2
-        for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 08:12:38 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769443957; x=1770048757;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qznwophNIFvx/Vkp694TKOz6iGJDGxAq1XnuuR3raPY=;
-        b=ntOMPceJquhgEmcP/N9LIo+7IGN2au5claAYRU11iiEURKd7HS7MFCY1uG88H0Umdw
-         3m2feHyuRmSNwgIoAXq3nMEIaeEGwJa9TMkupcQA+HxIh5M9YCVDpuxVZLGZnqbnCyGc
-         VnvU3HwdsP8/IeBTMQbcaDwcTuryvrKLqO0pCtpgJCbjJeXOk9Sd02JZXeVSQV5oAAVM
-         7K5s1lcoCT74zfR14w0CGzEIfwFElbfMyvjg3k2I7bblsYoxsAUhLsQyG/onHj7pEZzF
-         BphUOq4mXUsstUHdxdR69kcmoXkyw5G2Z6YTKKpad2zMknmmIiFEa+cWjuaW76vXnZNb
-         yefA==
-X-Forwarded-Encrypted: i=1; AJvYcCVpNYCgv93LjWTMsfnEEDoA9lGJkfe9BdriAl4bwYyxUcFH4xEPOJIe0ol1hS8ZpVtozT8c6DQGOJmI@vger.kernel.org
-X-Gm-Message-State: AOJu0YzhS8TeTQFLcoXQ4XSjWJ49T66LkMbLIHPtTEnAeTq5AfFd+XL2
-	QQheGzqi/60KlnuxaWPRVe/eubPE7BO8iKxKgusaIzYFRe5Bp6Czj1Z7srnF2fh3
-X-Gm-Gg: AZuq6aKmdRk7ie+nd+P72GCplIHtn5d5N73K+qRe2UvJ6t1sy0WcvUBfe46fj6cU7MQ
-	GjMHMfhJn/0/2XJncYjtwF5gIDRp7CCqOTK7CBz4bXD9LwUJZo5bkc3ZrVmXkcs3sTbvbvCQLjQ
-	HZHaDu5+qcdHwqjm3GUGNqTsTliBR8ZfQZ4L9tLwB1XmxJpDY9TcQRrJgfIYlbJM3I4h6//6t38
-	UMeVzrF11N2OJMenEZAVY6C955G7BNKvuZMTHrWXrKbrBvUSjuvs7avoQAdRgqvJR1Z6GCu0V49
-	zjUacZeaEdj41GtA2WU0O2g/oSpMFWu+paq8nodsRa6XSsCos084g7OyvMznJCUHYNgOjsMKpQk
-	NzRbPSR8PY/D1Qq5kq8CPrIwGF0FPYBxDXD9knirAEy8oelhrjb355BZih2sVAKPIAoscGHB5uI
-	vPxoP8VDEA1Acl9EdKQV2FNiTO6wGxJey593a5yTS6Ue7rGdfs
-X-Received: by 2002:a05:6102:304b:b0:5f1:7aad:7c04 with SMTP id ada2fe7eead31-5f576550367mr1544476137.41.1769443957388;
-        Mon, 26 Jan 2026 08:12:37 -0800 (PST)
-Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com. [209.85.222.51])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5f54d4632cbsm2181257137.8.2026.01.26.08.12.36
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Jan 2026 08:12:36 -0800 (PST)
-Received: by mail-ua1-f51.google.com with SMTP id a1e0cc1a2514c-9480a1f77d5so2950508241.0
-        for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 08:12:36 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXYiRihW2ufJKd5BEAi1ufMZYiT2BdWVd5YT4uUtPcMOI/hZg6A6sdkMyaC6s05tZ0g2oebOmw+YXv1@vger.kernel.org
-X-Received: by 2002:a05:6102:ccc:b0:5f5:3f97:58df with SMTP id
- ada2fe7eead31-5f5764a857fmr1465004137.27.1769443955874; Mon, 26 Jan 2026
- 08:12:35 -0800 (PST)
+	s=arc-20240116; t=1769444288; c=relaxed/simple;
+	bh=hnqy/N5+pWpjE1SM8iewLUfj/+2iBeZ2LQx4ikPe6sM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=W7MPImd34mtdHIUAEpVAk25cuogX5Xio89Jnr7F0l0xiu2xOjhvLIeJ6ffFL0LG7kQ7qHu/yQmTjuvE4I6xBWr4XZi3CL6Ebmr3f3jdp9pRBgX1lBQCr3nn8moOZdFwDL9d4AweVq04dTK09UcmnBBo1PNk9oBpnZHo/J8Dc5m0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=W1YU4JX6; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=9GmR4U/6sjLZ6b4mP0qhVrXUe9sv8qZlxLz11xmTSMI=; b=W1YU4JX6USsiOCe6sebt6DfqKV
+	35oiUK67jY8GYTFhaQHQnJr7jygPAsCtrIu5rnCvug/xXLZroQ0DSeAfCpfjfTVkrq/K7Xoeo+q0Q
+	L0dqUFWsLX1sJC4HMsEqu1rVFuXOAvC2s3nooFLuqXT8ljvjzLMl5zveu3qUBIJ2bTDA=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vkPHf-004oR8-T2; Mon, 26 Jan 2026 17:17:47 +0100
+Date: Mon, 26 Jan 2026 17:17:47 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Joey Lu <a0987203069@gmail.com>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, mcoquelin.stm32@gmail.com,
+	richardcochran@gmail.com, alexandre.torgue@foss.st.com,
+	joabreu@synopsys.com, ychuang3@nuvoton.com, schung@nuvoton.com,
+	yclu4@nuvoton.com, peppe.cavallaro@st.com,
+	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	openbmc@lists.ozlabs.org, linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH net-next v9 2/3] arm64: dts: nuvoton: Add Ethernet nodes
+Message-ID: <ea3a1f85-0f27-498c-b03b-110456a751da@lunn.ch>
+References: <20260126102257.2619862-1-a0987203069@gmail.com>
+ <20260126102257.2619862-3-a0987203069@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260120150606.7356-1-ovidiu.panait.rb@renesas.com> <20260120150606.7356-4-ovidiu.panait.rb@renesas.com>
-In-Reply-To: <20260120150606.7356-4-ovidiu.panait.rb@renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 26 Jan 2026 17:12:24 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVB490OOVY6B2Y6DORnWoc0LYvafLKAoRSOqFFP_nybOg@mail.gmail.com>
-X-Gm-Features: AZwV_QjuRevvHvM3o_QLjPDxA4Vw5PVnFEn2Vv2g6csusKMTyFdOTWDc-v6Wjt4
-Message-ID: <CAMuHMdVB490OOVY6B2Y6DORnWoc0LYvafLKAoRSOqFFP_nybOg@mail.gmail.com>
-Subject: Re: [PATCH v2 3/5] clk: versaclock3: Add freerunning 32.768kHz clock support
-To: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
-Cc: magnus.damm@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, 
-	biju.das.jz@bp.renesas.com, fabrizio.castro.jz@renesas.com, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260126102257.2619862-3-a0987203069@gmail.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,baylibre.com,bp.renesas.com,renesas.com,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-259573-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-259574-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,synopsys.com,nuvoton.com,st.com,lists.infradead.org,vger.kernel.org,lists.ozlabs.org,st-md-mailman.stormreply.com];
 	MIME_TRACE(0.00)[0:+];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	DBL_PROHIBIT(0.00)[0.0.0.1:email,2.111.199.128:email,2.100.46.192:email];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.997];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,renesas.com:email,linux-m68k.org:email,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 3E1868A8B4
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.0:email]
+X-Rspamd-Queue-Id: 776F28A94D
 X-Rspamd-Action: no action
 
-Hi Ovidiu,
+On Mon, Jan 26, 2026 at 06:22:56PM +0800, Joey Lu wrote:
+> Add GMAC nodes for our MA35D1 development boards:
+> two RGMII interfaces for SOM board, and one RGMII
+> and one RMII interface for IoT board.
+> 
+> Signed-off-by: Joey Lu <a0987203069@gmail.com>
+> ---
+>  .../boot/dts/nuvoton/ma35d1-iot-512m.dts      | 33 +++++++++++++++++++
+>  .../boot/dts/nuvoton/ma35d1-som-256m.dts      | 32 ++++++++++++++++++
+>  arch/arm64/boot/dts/nuvoton/ma35d1.dtsi       | 32 ++++++++++++++++++
 
-On Tue, 20 Jan 2026 at 16:06, Ovidiu Panait
-<ovidiu.panait.rb@renesas.com> wrote:
-> The Versa 3 clock generator has an internal 32.768kHz oscillator that can
-> be routed to the SE1, SE2 and SE3 outputs. This patch exposes it as a
-> fixed-rate clock ("vc3-clk-32k") and makes it available as a parent for
-> the SE1/SE2/SE3 muxes.
->
-> The 32.768kHz clock is only intended to be used when explicitly requested
-> (i.e. when a rate of exactly 32768Hz is set). Selecting it as a fallback
-> for other rates can cause issues, for example in audio configurations.
->
-> To enforce this, introduce a new helper function,
-> _vc3_clk_mux_determine_rate() which rejects configurations where the
-> 32.768kHz parent would otherwise be chosen implicitly.
->
-> Two new fields are added to struct vc3_clk_data:
->   - clk_32k_bitmsk: bit mask for selecting the 32.768kHz oscillator
->   - clk_32k_index: index of the 32.768kHz clock in the mux parent list
->
-> They are used by clk_mux callbacks to select the appropriate parent clock.
->
-> Signed-off-by: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
+Did you answer my question about what these represent?
 
-Thanks for your patch!
+I _think_ your .dts{i} files are all messed up and need
+re-architecturing.
 
-> --- a/drivers/clk/clk-versaclock3.c
-> +++ b/drivers/clk/clk-versaclock3.c
+arch/arm64/boot/dts/nuvoton/ma35d1.dtsi should represent the SoC.
 
-> @@ -1038,6 +1087,14 @@ static int vc3_probe(struct i2c_client *client)
->                 return ret;
->         }
->
-> +       /* Register fixed 32.768kHz clock */
-> +       clk_32k = devm_clk_hw_register_fixed_rate(dev, VC3_CLK_32K_NAME, NULL,
-> +                                                 0, VC3_CLK_32K_FREQ);
+There should be a .dtsi file which represents everything on the SOM.
+This includes the SoC .dtsi file.
 
-If you have a system with multiple versaclock3 instances, I believe
-this will fail for all but the first instance, as clock names must
-be globally unique.  Upon closer look, this is the case for all
-other clock names in this driver.  See e.g. commit f491276a51685987
-("clk: vc5: Allow Versaclock driver to support multiple instances")
-(and subsequent fixes) for how to solve this.
+There should be a .dts file for the carrier board. It should include
+the SOM .dtsi file.
 
-> +       if (IS_ERR(clk_32k))
-> +               return dev_err_probe(dev, PTR_ERR(clk_32k),
-> +                                    "Failed to register %dHz fixed clock\n",
-> +                                    VC3_CLK_32K_FREQ);
+You said one of the boards does not use the SOM, so it can directly
+import the SoC .dtsi file.
+
+>  3 files changed, 97 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/nuvoton/ma35d1-iot-512m.dts b/arch/arm64/boot/dts/nuvoton/ma35d1-iot-512m.dts
+> index 9482bec1aa57..ee32cedf3d9b 100644
+> --- a/arch/arm64/boot/dts/nuvoton/ma35d1-iot-512m.dts
+> +++ b/arch/arm64/boot/dts/nuvoton/ma35d1-iot-512m.dts
+> @@ -18,6 +18,8 @@ aliases {
+>  		serial12 = &uart12;
+>  		serial13 = &uart13;
+>  		serial14 = &uart14;
+> +		ethernet0 = &gmac0;
+> +		ethernet1 = &gmac1;
+>  	};
+>  
+>  	chosen {
+> @@ -126,3 +128,34 @@ &uart14 {
+>  	pinctrl-0 = <&pinctrl_uart14>;
+>  	status = "okay";
+>  };
 > +
->         /* Register pfd muxes */
->         for (i = 0; i < ARRAY_SIZE(clk_pfd_mux); i++) {
->                 clk_pfd_mux[i].regmap = regmap;
+> +&gmac0 {
+> +	phy-handle = <&eth_phy0>;
 
- Gr{oetje,eeting}s,
+This is a .dts file, so represents a board. You said the PHYs are on
+the board, not the SOM. So this is correct.
 
-                        Geert
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> +	status = "okay";
+> +
+> +	mdio0: mdio {
+> +		compatible = "snps,dwmac-mdio";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+The MDIO bus is a property of the SoC. It always exists, even if it is
+not used. So the mdio node should be in the SoC .dtsi file.
+
+> +		eth_phy0: ethernet-phy@0 {
+> +			reg = <0>;
+> +		};
+
+The PHY is a property of the board, so should be in the board .dts
+file. 
+
+> +	};
+> +};
+> +
+> +&gmac1 {
+> +	phy-mode = "rmii";
+> +	phy-handle = <&eth_phy1>;
+> +	status = "okay";
+
+Correct.
+
+> +
+> +	mdio1: mdio {
+> +		compatible = "snps,dwmac-mdio";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+
+Wrong.
+
+> +
+> +		eth_phy1: ethernet-phy@1 {
+> +			reg = <1>;
+> +		};
+
+Correct.
+
+> +	};
+> +};
+> diff --git a/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts b/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts
+> index f6f20a17e501..b1b3e45280d5 100644
+> --- a/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts
+> +++ b/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts
+> @@ -18,6 +18,8 @@ aliases {
+>  		serial12 = &uart12;
+>  		serial14 = &uart14;
+>  		serial16 = &uart16;
+> +		ethernet0 = &gmac0;
+> +		ethernet1 = &gmac1;
+>  	};
+>  
+>  	chosen {
+> @@ -129,3 +131,33 @@ &uart16 {
+>  	pinctrl-0 = <&pinctrl_uart16>;
+>  	status = "okay";
+>  };
+> +
+> +&gmac0 {
+> +	phy-handle = <&eth_phy0>;
+> +	status = "okay";
+> +
+> +	mdio0: mdio {
+> +		compatible = "snps,dwmac-mdio";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		eth_phy0: ethernet-phy@0 {
+> +			reg = <0>;
+> +		};
+> +	};
+> +};
+> +
+> +&gmac1 {
+> +	phy-handle = <&eth_phy1>;
+> +	status = "okay";
+> +
+> +	mdio1: mdio {
+> +		compatible = "snps,dwmac-mdio";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		eth_phy1: ethernet-phy@1 {
+> +			reg = <1>;
+> +		};
+> +	};
+> +};
+
+Same problem as above.
+
+> --- a/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
+> +++ b/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
+
+This represents the SoC.
+
+> @@ -379,5 +379,37 @@ uart16: serial@40880000 {
+>  			clocks = <&clk UART16_GATE>;
+>  			status = "disabled";
+>  		};
+> +
+> +		gmac0: ethernet@40120000 {
+> +			compatible = "nuvoton,ma35d1-dwmac";
+> +			reg = <0x0 0x40120000 0x0 0x10000>;
+> +			interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "macirq";
+> +			clocks = <&clk EMAC0_GATE>, <&clk EPLL_DIV8>;
+> +			clock-names = "stmmaceth", "ptp_ref";
+> +
+> +			nuvoton,sys = <&sys 0>;
+> +			resets = <&sys MA35D1_RESET_GMAC0>;
+> +			reset-names = "stmmaceth";
+> +
+> +			phy-mode = "rgmii-id";
+
+PHY mode is a property of the board. The board might have extra long
+clock lines, so needs 'rgmii'. The board might use MII?
+
+Please think about the hierarchy.  SoC -> SoM -> board. Put the
+properties at the correct level.
+
+    Andrew
+
+---
+pw-bot: cr
 
