@@ -1,60 +1,66 @@
-Return-Path: <devicetree+bounces-259917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259918-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cC5KNc7GeGmltAEAu9opvQ
-	(envelope-from <devicetree+bounces-259917-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:08:14 +0100
+	id QHpSFoLHeGmDtQEAu9opvQ
+	(envelope-from <devicetree+bounces-259918-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:11:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EC5995586
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:08:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92BD195647
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:11:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8A00C304E322
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 14:07:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 634D63083A68
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 14:08:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 084FD286891;
-	Tue, 27 Jan 2026 14:07:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1585428850C;
+	Tue, 27 Jan 2026 14:08:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="vujvGTdy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E2031DBB3A;
-	Tue, 27 Jan 2026 14:07:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7644831062C;
+	Tue, 27 Jan 2026 14:08:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769522833; cv=none; b=YYrZfQ6TNTZTDHU+3T5krG0SCS/cK29UJL85Xy3nIRGLLmE/F2BHbmyanKil5JbWinfevY7P/tyx0BQbI5f5UaqOVNew+DwC3esckg5KVLt3FIqni1Tbpapt5RG3RQPSEs3jVS6Qj3LI/PnfCkA69d7z/q5h1IOdb9ZMCvn9IXg=
+	t=1769522913; cv=none; b=OYg5J3t+WT9NQJGpajVKTYh8bH55frjBkXTb02XftLINPHv46kLKktnr/LRii9dcwIW/UYrf1ja8J5Y6gsZ7L/C61/TCO9lYlY8y0NJc/ePkeEe1v7SNDbr2v2ImROosLRiFterk5mzwSgkbg0qBAPLm2mM5ElZoRTmIjd5axaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769522833; c=relaxed/simple;
-	bh=jhxPYUHn4abz35bb/vdbcxeGRufyU4vOpUwViuGbJnQ=;
+	s=arc-20240116; t=1769522913; c=relaxed/simple;
+	bh=nqpzeb2202jrK9ZEgJJDYC78q8Ydl4acN6oBCg7d+7A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MT/lT+JOGI5qsWkXePm6COmeUqdO8hh9m+iByElVyuDNb8eGl3exuBLGjj6LinnixcI2JjsPtmzWzv9B9cwL4mF7Exk8uIgZk1RzmZ0wVpFxMKU587mjM/VrSCRJnURZB4N0OqhoLtxn0pls0uc1uV3Q/vQBtWkRGusLO3iHO4c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.99)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1vkjik-000000000pu-2fqr;
-	Tue, 27 Jan 2026 14:07:06 +0000
-Date: Tue, 27 Jan 2026 14:07:03 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=cYqydyP0OhA+cuzockvjyZ4KWT0HDLkla8fyl/uxfvM3Vw38GlVDxcvhqqZthVrFCrzH4JVIqE3m44b2LAs0oFNDiqzQQPwVJ157ziQkbm9Ia0CFWsLWJTFHMasOggdzS5qXUIVFn0Qi3uNML0BRGu3hHJgm5oBUqw3qu7XvYdc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=vujvGTdy; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=iLpcUMzrfi1cf21OsQRIeFglEgABcn83FXe046wtc6w=; b=vujvGTdyKGu+sOwB9NiLH6Yx+9
+	pZMjRz6QtgTMxR4KwCmFI6SiPV+n5BAM09uStkt/juZ9MEtngpAnJPV/BR0HPiQSoYbgQVlMR5iiD
+	qLq0IDkER5aKog+Fg9/QoQ0ieMfsHB8+S7/2pKsz5Y7Q+wkp7U7Md/YFkYKvVZGs/PGA=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vkjjw-004xlG-0i; Tue, 27 Jan 2026 15:08:20 +0100
+Date: Tue, 27 Jan 2026 15:08:20 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Lukasz Majewski <lukma@nabladev.com>
+Cc: Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 1/3] dt-bindings: net: dsa: lantiq,gswip:
- reference common PHY properties
-Message-ID: <aXjGh1nzeAz8TQzH@makrotopia.org>
-References: <cover.1769519758.git.daniel@makrotopia.org>
- <d9b6212ad5137feeb58b28e9b0784f1084c813df.1769519758.git.daniel@makrotopia.org>
- <20260127132919.xsvapgqc65f44iah@skbuf>
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3] clk: vf610: Add support for the Ethernet switch clocks
+Message-ID: <2ce32d04-ac62-4e66-bf76-9d99b94c1a4b@lunn.ch>
+References: <20260127085150.3040586-1-lukma@nabladev.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,84 +69,67 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260127132919.xsvapgqc65f44iah@skbuf>
+In-Reply-To: <20260127085150.3040586-1-lukma@nabladev.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259917-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[makrotopia.org];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259918-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,nxp.com,baylibre.com,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[daniel@makrotopia.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	R_DKIM_NA(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[lunn.ch:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 7EC5995586
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lunn.ch:email,lunn.ch:dkim,lunn.ch:mid]
+X-Rspamd-Queue-Id: 92BD195647
 X-Rspamd-Action: no action
 
-On Tue, Jan 27, 2026 at 03:29:19PM +0200, Vladimir Oltean wrote:
-> On Tue, Jan 27, 2026 at 01:18:37PM +0000, Daniel Golle wrote:
-> > Reference the common PHY properties so RX and TX SerDes lane polarity
-> > of the SGMII/1000Base-X/2500Base-X PCS can be configured.
-> > 
-> > Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> > ---
-> >  Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml b/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
-> > index f601e5f9fa6a..bf199b096dc5 100644
-> > --- a/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
-> > +++ b/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
-> > @@ -105,6 +105,7 @@ patternProperties:
-> >      patternProperties:
-> >        "^(ethernet-)?port@[0-6]$":
-> >          $ref: dsa-port.yaml#
-> > +        $ref: /schemas/phy/phy-common-props.yaml#
+On Tue, Jan 27, 2026 at 09:51:50AM +0100, Lukasz Majewski wrote:
+> The vf610 device has built in the MoreThanIP L2 switch. For proper
+> operation it is required to enable ESW and MAC table lookup clocks.
 > 
-> Is the PCS integrated into the port?
+> The MAC table spans from 0x400E_C000 for 0x4000 and it is necessary
+> to provide clocks for each AIPS1-"slot", which size is 0x1000
+> (hence four separate entries).
+> 
+> Those can be enabled via clock gating CCM_CCGR10 register (0x4006_B068).
+> 
+> This patch also adds VF610_CLK_ESW and VF610_CLK_ESW_MAC_TAB{0123}
+> macros definitions for L2 switch.
+> 
+> The VF610_CLK_END has been removed from dt-bindings, as its number had to
+> be increased when MTIP L2 switch clocks were added, and defined locally
+> in clk-vf610.c driver.
 
-The PCS is hard-tied to port 4 of the switch. Neither can that port be
-used for anything else than this PCS, nor can the PCS be used elsewhere.
-It's a bit like they nuked one of the TP PHY ports and glued in that
-SGMII PCS instead. The PCS is probably a ready-made IP block, visible in
-places like EEE/LPI features being documented for the PCS, but known not
-to work on the switch MAC (while it does work with PHY ports). So it's
-not a design made for that particular switch chip, but something which
-already existed and was then used there.
+The nice thing about having it in vf610-clock.h was that it was clear
+that whenever a new clock is added, the value needed to change. It is
+now hidden away. It could well be more clocks are added, the value
+does not get updated, and in use we go passed the end of the clk[]
+array, and probably corrupt the struct clk_onecell_data clk_data.
 
-> have you considered whether it will ever need to have its own OF node
-> representation?
+I would probably add a comment in vf610-clock.h about this.
 
-Yeah, I thought about that, but it would be a lot of work to
-let the driver expose and simple-bus as MFD with devices (clk controller,
-reset controller, pcs, ...) sitting on register ranges. Imho not worth
-the effort in this case, we discussed it.
+Apart from that:
 
-That being said, of course, should the PCS IP ever get reused in other
-hardware, that part of the driver could be turned into a helper library
-working on a regmap, while the hosting driver still takes care of the
-resource lifecycle, similar to other PCS helper libraries in
-drivers/net/pcs/.
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-However, even in that case imho it's fine to let it share the OF node
-with the ethernet-port. Why not?
+    Andrew
 
