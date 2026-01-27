@@ -1,150 +1,156 @@
-Return-Path: <devicetree+bounces-259985-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259987-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CNgMHTbYeGmftgEAu9opvQ
-	(envelope-from <devicetree+bounces-259985-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:22:30 +0100
+	id aDVGDSjZeGmwtgEAu9opvQ
+	(envelope-from <devicetree+bounces-259987-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:26:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB8DA9695C
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:22:29 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D879496A9E
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:26:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4027F30045A6
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:15:52 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id BAB5A307A087
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:17:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DF3D363C59;
-	Tue, 27 Jan 2026 15:12:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2026136072E;
+	Tue, 27 Jan 2026 15:14:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W3yan2P/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e6HCNZVC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f178.google.com (mail-dy1-f178.google.com [74.125.82.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E44C635EDDC
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 15:12:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDEF0360723;
+	Tue, 27 Jan 2026 15:14:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769526730; cv=none; b=lRsEE1XXtP5dEkmVmOBvi2kPoVMV/N2L8Wcd2/43xZZ5B2WNuc3nm4by+4cVEvoYLZslgDJ6txbSyslXljQH/W0Vn4SUQzglrlMsGbGBXQLTNadQ2cHMOoPBWbTdWsYBYozoowQf7TqgAKUqELReYsI2PPkfw5+AMsiRUjXIWrw=
+	t=1769526846; cv=none; b=Inrd97pK7LTN5S8bP1Sz4W7YXQKo/JoNOy4/Ugexg8LiUr/9kRWzbb8ZcK3LbeQqKXcvFxgwN87rUKF8bvzdLsHC5wZ5Y4rwiqahRh7TzSFWw5m/6oH9bM6vLbb6TEFhdsGiEzXgl6Js1sWCpFiQ1bgmhNq14B8JCBf1hIWV668=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769526730; c=relaxed/simple;
-	bh=Q0cKqs0Dz1obaEFFVDj8DAU+DC9JZA7AYb0lIuSwGY4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=um7R/NulJDrk9JpLyO3Uxq5AVB+z9dzSrpqc53N7JTslmy/xbxEMUFAIfD6lSB5QhrDUy+k7XMkXjEOfH6xw0AkXTdwyMFNIhnPDgtMqGf8/cIcdAT4lQd2OFCtl06rNjpQFuBMV6bBbxFZhNV2XeF6BWH3bNbcFzKrm2IKgEtM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W3yan2P/; arc=none smtp.client-ip=74.125.82.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f178.google.com with SMTP id 5a478bee46e88-2b704f08e73so2825522eec.1
-        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 07:12:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769526728; x=1770131528; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Z9zCVx2BWe5mnavK+mjSCOB1GzARJ9mP4Z2n+82aaf4=;
-        b=W3yan2P/gMAHlxzzJLW1KiccBJLSrALkYwyCrvnOFksDW++Pml8uHBhmsOYTDBqIlg
-         ybA6xAAGcMMBjBD/44BcvulDyLprj2R3CpjyQXq9DjWmPRDOPCGT7hu5z0UnAP44XlMe
-         imhETc9gUtnWVpURzfPpTikLvXQLIB4a1jxW/u7AQ73SGw8NKa57YCmkl+Y3ywjBoh18
-         BwOdofgXOWHvAiHvpzNBeOI3xlioZgq8FsM9ESwCDEry7Ze87N4cMilffkIb2UH9E1Kt
-         WLK4PHb5v1vrwt1VKBmpvOcMScuPyykhIc8GgZGLYXxOwBBeGnWFGmJACxnBsoGNF+6r
-         YY4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769526728; x=1770131528;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Z9zCVx2BWe5mnavK+mjSCOB1GzARJ9mP4Z2n+82aaf4=;
-        b=B3GLwceDRnGMbsjlPONpERh4/xHDj05/JiX6s4Y2TVrSt5voDI8PxAGV+1skbogU9b
-         XRHbtTygijCWhkecUk2kkME5g8hpm2FmZPI8DwtN68I0l6rxnrq3SlRFF0v97EhWCKUF
-         b8CaciowVSz/+xGOD2FbFZQnNxAyyYR2r6bxloqdql+I8fdNuK6VI38hkxATtmoKZmGi
-         /EwX3l9BBPo4e6PLTwaLMchMW3rS+l+yvXM8idN4vjT2cih45rbM5AUR7nVfZsnlQ0t6
-         UUAHKPqQS/IZNBjmPZ3+E7RmOZLFYPzJPCM84iLbOw4jAFr0jtD2KaVZooZxB1ZYdtGw
-         0Mgw==
-X-Forwarded-Encrypted: i=1; AJvYcCUahv4Xc+n5VBk1DvUq0v21vZLH/AIZKtcIk1vWbo44IRnqRtPsFHEkUWpONI3hf31t44VmaYiVicgi@vger.kernel.org
-X-Gm-Message-State: AOJu0YwgCEPSpN5TXcCs7XRdLv5Atf4tkXs7ct0SKmtsup0mZ0qn/2cw
-	AMPIXZpTWCQ2BUaApQ9u76jn++bYVqG+RUcxQWAYgcW+H8XEN1YtqoA8
-X-Gm-Gg: AZuq6aJg5lGYVhQb1OOJjZeTP+PENLMB6LpKNsNP4JRGvdS8dPRjdvBIgkDvhDgDAlw
-	T9yFRGlIFnLsSXH2oauuprVJ5FL+rXy8WTXZ9Y1gk+fRCmEZTKLHlM8S+86NAEd1Cen7MAh6k9B
-	oUunzzc1MFnJUwQcKVeliGivZw4j/Shzh8vZR/oONIVlVtiCnkYaoLJwCfrWZj5M4Cu3QikpnO/
-	UYHUmLn5Jb/DEEtKE0O1JJXBzGRT5UED9DoiqEaiZ05mwmfylK+uxTydoeye+s/Qu4750aez2ep
-	Nsdr5GXHuYqz8+/dCVHDoV547L0yMQa/QonWg1Cl2oAMxoFi9FO0Vm25yo9cHlzDrZR6BHw4PUt
-	Xur1pfHwF28aDRgmKEiy1eikN/IxutSslaMXHWbbd5x7QXw1ykb0A9RVtAmoZf6qngH0YwYtSjm
-	seTAe9RyI2ovRTeiY/URUOcREQ
-X-Received: by 2002:a05:7300:72cb:b0:2b6:f13c:8d58 with SMTP id 5a478bee46e88-2b78e977fadmr1460659eec.20.1769526727776;
-        Tue, 27 Jan 2026 07:12:07 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b7987cc01csm493102eec.35.2026.01.27.07.12.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Jan 2026 07:12:07 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Tue, 27 Jan 2026 07:12:05 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: Vasileios Amoiridis <vassilisamir@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
-	Vasileios Amoiridis <vasileios.amoiridis@cern.ch>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: trivial-devices: Add hitron,hac300s
-Message-ID: <b4c150ce-1570-4b12-82e7-62b699adb377@roeck-us.net>
-References: <20260119190806.35276-1-vassilisamir@gmail.com>
- <20260119190806.35276-2-vassilisamir@gmail.com>
+	s=arc-20240116; t=1769526846; c=relaxed/simple;
+	bh=m3TPcHEBsfQWalMm0WnZmJSQ9jtV0YcHvN+I+5GyKcg=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=n94mgLMA23OIt2TMqvHmWoPwi6mtESXkJzQgr55OAZyUo7pC166uvZfveYw+LlUjxmtT+ANszS/7peBdpRgX19Sp4XsLgk1UcuHOKsDqLFyQ0YUSgQZrexsXBnQe5Q/UsJ4S8Yjl0Ig5gsVay28qfVN3FHA5tJ8uJjxyJwu+cTo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e6HCNZVC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80D4DC116C6;
+	Tue, 27 Jan 2026 15:14:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769526845;
+	bh=m3TPcHEBsfQWalMm0WnZmJSQ9jtV0YcHvN+I+5GyKcg=;
+	h=Date:From:To:Subject:References:In-Reply-To:From;
+	b=e6HCNZVCFeM8YX1tPMWcLW1EsiHYjkkwHqseYc4bv6Bxsmoy3ujng5Mi8tUfo/z+m
+	 8HReDz5GJjv0zfInqcd1hGFeoGPapwIEudAb2x6Ld7sIppls0NCygGN8UUYgylHX0m
+	 76kY5jTACLJPTP5Eye/yWZN0q+GDf1vyTm6jwa6w7NnKYbjnlRxupa5kbw/7IyWmeP
+	 xofHAcWndO66DHnxhYIQP66RnvfqNpBgRF4muj8ziPmzjwNkkI8uZokWbRA57cJLVv
+	 DIavMPNowsEypkBkLXA4uP6Rb9k8V0VDEGQx5jwMeoW5wermo7GwiEwA3eSDcSn77h
+	 wrruRGaaFjNIw==
+Date: Tue, 27 Jan 2026 15:13:59 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v4 5/6] ASoC: sophgo: add CV1800B internal DAC codec
+ driver
+Message-ID: <153acfd6-cb4f-48ee-82e0-0a18a4a1e9c7@sirena.org.uk>
+References: <20260120-cv1800b-i2s-driver-v4-0-6ef787dc6426@gmail.com>
+ <20260120-cv1800b-i2s-driver-v4-5-6ef787dc6426@gmail.com>
+ <88ef974b-9fa8-490e-ba19-1fb31ca94342@sirena.org.uk>
+ <aXjRx12yPA7QflaF@anton.local>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="TAPu9R6EF7VUDzRm"
 Content-Disposition: inline
-In-Reply-To: <20260119190806.35276-2-vassilisamir@gmail.com>
+In-Reply-To: <aXjRx12yPA7QflaF@anton.local>
+X-Cookie: I brake for chezlogs!
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-259985-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	TAGGED_FROM(0.00)[bounces-259987-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[roeck-us.net];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,outlook.com,perex.cz,suse.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,vger.kernel.org,lists.linux.dev,lists.infradead.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,roeck-us.net:mid,cern.ch:email]
-X-Rspamd-Queue-Id: CB8DA9695C
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,sirena.org.uk:mid]
+X-Rspamd-Queue-Id: D879496A9E
 X-Rspamd-Action: no action
 
-On Mon, Jan 19, 2026 at 08:08:05PM +0100, Vasileios Amoiridis wrote:
-> From: Vasileios Amoiridis <vasileios.amoiridis@cern.ch>
-> 
-> Add HiTRON HAC300S PSU to trivial devices since it is simple PMBUS
-> capable device.
-> 
-> Since this is the first supported device from this vendor, document its
-> name to the vendor-prefixes.yaml file as well.
-> 
-> Signed-off-by: Vasileios Amoiridis <vasileios.amoiridis@cern.ch>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-Applied.
+--TAPu9R6EF7VUDzRm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks,
-Guenter
+On Tue, Jan 27, 2026 at 07:11:24PM +0400, Anton D. Stavinskii wrote:
+> On Tue, Jan 27, 2026 at 12:49:52PM +0400, Mark Brown wrote:
+
+> > Nothing ever mutes the DAC so this is a bit redundant.  The mute should
+> > probably be a mute_stream() operation.
+
+> I'm not sure here. DAC mute feature was not implemented because I don't k=
+now how
+> exactly do that. The public documentation is very weak for my taste.=20
+> This call added here to be sure that override flag is
+> not set (override feature replaces the output by setting it to constant=
+=20
+> value and ignoring the input, so it is some kind of mute from my understa=
+nding.=20
+> So ensuring this off is needed be sure that DAC will output our I2S data)=
+=2E=20
+> What do you think will be better to do here?=20
+> I'm sure that is needed, but may be better to move=20
+> it to some early stages, like probe function.=20
+
+It's probably fine to leave the functional code as is but you should add
+some comments to the mute function explaining waht's going on here.
+
+--TAPu9R6EF7VUDzRm
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAml41jYACgkQJNaLcl1U
+h9DvQAf+OiroM7nH8QOX1NaSJVvy9B/1hfdynFnaK+SbJP/lMp8bM0VZfV1zbgKk
+KEPUW6fk+OkycL5Qd9oiRuLf5BVb1CvzreYkv24xg/5f7b9tki+qc1NTwCVcCWU7
+RdOaf/YEdLbOgpk2APDtn9AwrfKSVZcuNlSUMGyXnTEVGABbGgx2c3wDiqjts2cB
+HyuOE4W82gMsLkP+QuBYIhuY8gyXg8kY7GFejrakOm89inTSOzR6hggArLzMOKY/
+VhE12PZ/837kiUrlCjPceVMbOFbpLkciDe7fCb3e0YQabDSFzQbk8qjSDG2uZ06R
+VPI5Qi3CG/KHSdnVE/nD0d/ARcsHMw==
+=jGOT
+-----END PGP SIGNATURE-----
+
+--TAPu9R6EF7VUDzRm--
 
