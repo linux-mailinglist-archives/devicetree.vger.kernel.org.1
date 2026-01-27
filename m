@@ -1,79 +1,67 @@
-Return-Path: <devicetree+bounces-260104-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260105-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wCYeANcUeWl3vAEAu9opvQ
-	(envelope-from <devicetree+bounces-260104-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 20:41:11 +0100
+	id eH6yAdsUeWl3vAEAu9opvQ
+	(envelope-from <devicetree+bounces-260105-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 20:41:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29DF39A0F7
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 20:41:10 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 608409A106
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 20:41:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 992EA300B500
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 19:32:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EDE5A30500FD
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 19:38:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EC4B36E488;
-	Tue, 27 Jan 2026 19:32:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D4CB36E49A;
+	Tue, 27 Jan 2026 19:38:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Us1RXAi/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BmMifiCd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF83836CDE9;
-	Tue, 27 Jan 2026 19:32:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD91235DD1D;
+	Tue, 27 Jan 2026 19:38:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769542375; cv=none; b=fhhf6Y4aGHj/G536GzAkBOEX8ODhztqtXTbGYC4Qtr2U+M5mEnrD3O4qTRHx7Bngs49SlcCM8QxXV0+Aap2WqqzFgTS9wNt+XDuJBryEyL/oIfd/dAtwB3ldUEzPPOp0RakPJPUAxSW24pnfqJhwNpmVCmBFKk5sFWYyIbT3CFQ=
+	t=1769542722; cv=none; b=Dl+aaTMxeQtaV/AoYbuBXTA/+CfSFalf+vu/OVbJ5lsRX4hZfypeQsfgAyUPluF1vX2fipYmWsqLmiD2RMZPOCESnj2Av8eU6+udtsoXhyQMHJ1LS0J6fM0BdfFxvoyllerMMd1ernSzdSUg5XDaNEA65q/dmog6HoBYDKhqups=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769542375; c=relaxed/simple;
-	bh=c8lDWX4D3RavtMw9/plTwOleLSxCRDavxuXHfl8Y4Is=;
+	s=arc-20240116; t=1769542722; c=relaxed/simple;
+	bh=WQ+4gjflcLv9d5LwcfBpmsfiJCT/J6DX8iLLgXKm8x0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C7qlAJLGfN7DQjcd6m0+z4cKae/MNcVWO92oxosYRwVM6UNPks4nQegT77kkECOZjtOghDBb7ddHe9KZF71yeMuTg6PE6pAU9v/Dpxkl1yOEb3JKS7IeflU/PtbrM6/jJN/6Pck43D1tUkB1PAUgl6XGzumVW778hqY+R0I9Y40=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Us1RXAi/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E238BC116C6;
-	Tue, 27 Jan 2026 19:32:50 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=SvIWI/f2MzqZC9RgF8dip0k2/WU7xoHSNrlMCoCwZugW/OTWchffxlIiaOqyU3/fQC6PCjtQBsXkxzrqsR2Nymjw+gnQmc9V6LIZqkU5rG3tSJI1hxTs3jS4fdvJ0UbbkqRDaySsljNnhKNLEGS2+z3JgrFeJ2hZYtfbHg/a7sI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BmMifiCd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10943C2BC86;
+	Tue, 27 Jan 2026 19:38:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769542375;
-	bh=c8lDWX4D3RavtMw9/plTwOleLSxCRDavxuXHfl8Y4Is=;
+	s=k20201202; t=1769542722;
+	bh=WQ+4gjflcLv9d5LwcfBpmsfiJCT/J6DX8iLLgXKm8x0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Us1RXAi/IEvWuS9/cJUHqRKGTDB/ch+lkjjBuCKN1HTYGwxxBh3UH14PJFLIbcRrS
-	 5yIV+yXpYK/FKWIm2D2hKKrJ+Wh61IO55bd+rVTgZeX+UE3M2ppjvB1zFE3OjN8RIM
-	 12qYoEfhc9J69L5n4UBuT8O7n98rkvpaNhSgwtIH11ToI6Esj7DjGBgJp7l2y75BWx
-	 mKuNhCLTWN5CJaCnvtH6/QnXZnJ8BjBnPS7hzd2jK1FGTYEAGMzacgILU8XhUKwOuj
-	 +H4kW9QMyvDcJBcC407wtZQOEd7822/MUB6jZBNsO6GFmJ9MobEMcbzsvv8bv3ENEo
-	 4VPeO1aqPngUg==
-Date: Tue, 27 Jan 2026 19:32:48 +0000
+	b=BmMifiCdZDTbz6ovAbqxUCYopTUg7+HUh/NPmR1A0xllRMclpHqwVPI2vQ7qgVz/8
+	 5f+F3urw20N8/2dRXR8Ka4HaMLVKRdj3I0r7weqXASSJBI3tzCj0GK5n+hlQ1tIOoK
+	 MrRPdPpNKL0tGTMoCms6p5bSPNzG1Vu4Zwf6opS8dgRm1Fl5AjCUDT82cJoq0lX2rb
+	 jUbT5p9sXsr7CLUio0AnWaUdmZeDVfC/B42A3sjEa451oYtpmTMOa7jZJ9wIsr8+tp
+	 xpgy0ejhicvT8HSF5LWqZha4LLJsRB++xhOQ48ztpkwFMhy3wkxLii3n8SKZo17m2p
+	 YfigFrMtkuyFg==
+Date: Tue, 27 Jan 2026 19:38:37 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Jan Petrous <jan.petrous@oss.nxp.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Chester Lin <chester62515@gmail.com>,
-	Matthias Brugger <mbrugger@suse.com>,
-	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
-	NXP S32 Linux Team <s32@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/4] dt-bindings: net: nxp,s32-dwmac: Declare
- per-queue interrupts
-Message-ID: <20260127-crock-catty-e62e4f699f5a@spud>
-References: <20260123-dwmac_multi_irq-v3-0-cc53f2be8961@oss.nxp.com>
- <20260123-dwmac_multi_irq-v3-2-cc53f2be8961@oss.nxp.com>
- <20260123-dinner-aloft-e57deb6c546a@spud>
- <aXdiNb92B4HH+ZFt@lsv051416.swis.nl-cdc01.nxp.com>
- <20260126-blinker-secluding-a745f60caccb@spud>
- <aXi07hPBrl7EYezi@lsv051416.swis.nl-cdc01.nxp.com>
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v2 2/6] dt-bindings: iio: amplifiers: Add AD8366 support
+Message-ID: <20260127-goes-grandpa-891eb0dc413a@spud>
+References: <20260126-iio-ad8366-update-v2-0-c9a4d31aeb01@analog.com>
+ <20260126-iio-ad8366-update-v2-2-c9a4d31aeb01@analog.com>
+ <20260126-porous-hurdle-bfc510f113bb@spud>
+ <rzco2g6psoblzaaqrdnmpmhs44hl7kqusa2kuafpkjx635dug2@rtwebhwztfkd>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,9 +69,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="WkvxyB8JqVtHXRO6"
+	protocol="application/pgp-signature"; boundary="Hex63lWBCk07Jfvr"
 Content-Disposition: inline
-In-Reply-To: <aXi07hPBrl7EYezi@lsv051416.swis.nl-cdc01.nxp.com>
+In-Reply-To: <rzco2g6psoblzaaqrdnmpmhs44hl7kqusa2kuafpkjx635dug2@rtwebhwztfkd>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
@@ -91,17 +79,17 @@ X-Spamd-Result: default: False [-2.26 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	TAGGED_FROM(0.00)[bounces-260104-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,suse.com,oss.nxp.com,nxp.com,pengutronix.de,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org,lists.linux.dev];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260105-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -109,91 +97,96 @@ X-Spamd-Result: default: False [-2.26 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[25];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 29DF39A0F7
+X-Rspamd-Queue-Id: 608409A106
 X-Rspamd-Action: no action
 
 
---WkvxyB8JqVtHXRO6
+--Hex63lWBCk07Jfvr
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jan 27, 2026 at 01:51:58PM +0100, Jan Petrous wrote:
-> On Mon, Jan 26, 2026 at 08:00:33PM +0000, Conor Dooley wrote:
-> > On Mon, Jan 26, 2026 at 01:46:45PM +0100, Jan Petrous wrote:
-> > > On Fri, Jan 23, 2026 at 05:13:03PM +0000, Conor Dooley wrote:
-> > > > On Fri, Jan 23, 2026 at 11:09:55AM +0100, Jan Petrous via B4 Relay =
+On Tue, Jan 27, 2026 at 11:37:52AM +0000, Rodrigo Alencar wrote:
+> On 26/01/26 08:11PM, Conor Dooley wrote:
+> > On Mon, Jan 26, 2026 at 01:51:03PM +0000, Rodrigo Alencar via B4 Relay =
 wrote:
-> > > > > From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
-> > > > >=20
-> > > > > The DWMAC IP on NXP S32G/R SoCs has connected queue-based IRQ lin=
-es,
-> > > > > set them to allow using Multi-IRQ mode when supported.
-> > > >=20
-> > > > The binding only supports s32{g,r} devices, why is the existing min=
-imum
-> > > > retained? What devices are going to not have all 11 interrupts
-> > > > connected?
-> > > >=20
+> > > From: Rodrigo Alencar <rodrigo.alencar@analog.com>
 > > >=20
-> > > The original idea was to support backward compatibility, as older DTs
-> > > didn't contain queue-based interrupt lines described.
-> > >=20
-> > > But now, when you asked, I started to think it is not needed,
-> > > the requirement for backward compatibility is managed inside the driv=
-er
-> > > and yaml shall describe the hardware not used configuration.
+> > > Add device tree binding documentation for amplifiers and digital
+> > > attenuators. This covers different device variants with similar
+> > > SPI control.
+>=20
+> ...
+>=20
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - adi,ad8366
+> > > +      - adi,ada4961
+> > > +      - adi,adl5240
+> > > +      - adi,adrf5720
+> > > +      - adi,adrf5730
+> > > +      - adi,adrf5731
+> > > +      - adi,hmc271a
+> > > +      - adi,hmc792a
+> > > +      - adi,hmc1018a
+> > > +      - adi,hmc1019a
+> > > +      - adi,hmc1119
 > >=20
-> > Just to be clear, cos the last portion of that "yaml shall..." isn't to
-> > me, you mean that the driver will support 1 or 11 interrupts but you
-> > will make the binding only allow 11? That would be fine.
-> > Just note in the commit message that all of these devices have the 11
-> > interrupts.
+> > Why do none of these devices use fallback compatibles? Please put the
+> > rationale in the commit message.
+>=20
+> Will do. Each device has their own gain range/step.=20
+>=20
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  vcc-supply:
+> > > +    description: Regulator that provides power to the device.
+> > > +
+> > > +  reset-gpios:
+> > > +    maxItems: 1
+> > > +
+> > > +  enable-gpios:
+> > > +    maxItems: 1
 > >=20
+> > How come enable-gpios is optional? Is it optional on all devices?
+> > Do all devices support enable-gpios and/or reset-gpios?
 >=20
-> Well, all those supported devices have 11 interrupts connected (1x MAC),
-> then 5x RX (queue0..queue4) and  5x TX (queue0..queue4).
->=20
-> Until now, the driver was using on MAC IRQ, so the only one shared line.
-> Now, we are enabling support for per-queue interrupts, what means for
-> supported SoCs up to 11 IRQs as the DWMAC IP on S32G/R has 5 queues.
->=20
-> The driver can still opearate on this one shared IRQ mode, but
-> if the DT node configuration describes all IRQs, then the driver switch
-> to multi-IRQ mode. What allows better distribution of processor core
-> load.
+> Board designs often hardwire powerup or serial mode enable signals
+> to high voltage level, so there will not be a reason to add the
+> enable-gpio.
 
-> So the 11 IRQs are the maximum value, in the case when all queues are
-> used. But I can imagine some other use-cases, when not all queues
-> are enabled, ie. only queue0 and quque1. In that case, the driver will
+I don't see anything about all devices supporting enable-gpios, adl5240
+doesn't appear to have one? I'm not going to check all of the datasheets
+to see about the others, but you should disallow the property on devices
+that don't have an enable pin.
 
-Since all of the devices have 11 interrupts, this would be software
-configuration and the devicetree should contain all 11 even if shared
-mode is desired, to reflect how the hardware is configured. I think
-minItems should be changed to 11, unless another device gets added later
-that does not have all 11 connected.
+> I went over the device datasheets and I could not find the
+> reason for the reset gpio. I left it there because it was being used
+> in the current driver implementation, and I would not like to
+> invalidate designs that might be currently using it. I will ask around.
 
-> use some subset of all IRQs.
-> That means that DT can contain only lesser interrupt list then maximum.
->=20
-> I feel like having "minItems: 1" shall cover such use-case.
+If none of the devices have a reset pin, then you should delete the
+property from the binding and the driver. Not like you're going to break
+something if none of the supported devices even have the pin!
 
-
---WkvxyB8JqVtHXRO6
+--Hex63lWBCk07Jfvr
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaXkS3QAKCRB4tDGHoIJi
-0jI2AP0WP0sgcNZESXVAvwbBqgu4z6UoHTvYjGRucW4qVxBD2AD+LhuETgd5tQxm
-i4Feuiwe6K3mZ5APrN+lkwC0B8lkkg4=
-=nLqP
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaXkUPQAKCRB4tDGHoIJi
+0ocDAP9pgL4QVFVYJ4DmkBPlQ6XtFzfk2Gzz0A7mVWX2lYPfaQD/ZiYpQgcJGHMF
+tEAVjXD12AEkjzOGwNZbnVO+CrVGfw4=
+=vDbG
 -----END PGP SIGNATURE-----
 
---WkvxyB8JqVtHXRO6--
+--Hex63lWBCk07Jfvr--
 
