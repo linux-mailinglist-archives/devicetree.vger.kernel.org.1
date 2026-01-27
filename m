@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-259962-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259965-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EKPfCFrUeGmNtQEAu9opvQ
-	(envelope-from <devicetree+bounces-259962-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:06:02 +0100
+	id 0CF9IhPTeGmNtQEAu9opvQ
+	(envelope-from <devicetree+bounces-259965-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:00:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C021F964B9
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:06:01 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3920396348
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:00:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5237D3118CB2
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 14:52:15 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D1673303DD65
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 14:52:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB3F935CBA5;
-	Tue, 27 Jan 2026 14:52:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3664D35DD07;
+	Tue, 27 Jan 2026 14:52:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b="Iz2iEN4D"
+	dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b="NuI4A0aw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0046e701.pphosted.com (mx0b-0046e701.pphosted.com [67.231.157.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDC4D2264A9;
-	Tue, 27 Jan 2026 14:52:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEE0E35CBB4;
+	Tue, 27 Jan 2026 14:52:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.157.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769525522; cv=none; b=Rpf5j7XXp0S9ZZsmxCTzM9PBKJ8yifbOIMawvr0OAkYbCtRgnxFqiCn5+MtzrjLZxAe1ZhzT4k4jefR5qdShZeP3jOiGZ99SSI6/SgjjiUiSdNKGCbSv62MS7bpwkz3CB+8aT8ZGlaWAxobkYPH2DdWUPHFvpZsFfGUmznF96yI=
+	t=1769525525; cv=none; b=M76D34AOnlYEqrSCxfzF3aPopfhAc4MWpoP7RyT7MjSM/hxkb4V319Vtl8hGsnooDatTKm09GFk8JqNSCeE8qM6kGHM0eU3VKpRBOWAPFOAh+y7N54ofTsB4Z7ODBWURPPGHq0oN+LVMyd8/Ih4hBN1zgI8/gZ27FsYV2fHFzgw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769525522; c=relaxed/simple;
-	bh=HJJYRUvdMmPuj3Cq1bg3W40kKCjYk5QhoGsJqhjfatA=;
+	s=arc-20240116; t=1769525525; c=relaxed/simple;
+	bh=sTuKmKs+MqyixoLYvUkl/qsU9H4HeSU66GDIdTbkekA=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=uAJGJ52sEVhZ9Y8k4b9BDx6KK6qU7d8DJ+k2rnMrEw2kUoHAjM7D4cOzYf9RrarkPPDconTitoANL7tuYKDIF8L7ftQ0ap/lerdSPUW+s9yUBfxwA39qQbIFeWxHzw6xy7mbnabj+6/F9xwPDT0Zof+h7TYMDp4m2O3jmB8sXO8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=plexus.com; spf=pass smtp.mailfrom=plexus.com; dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b=Iz2iEN4D; arc=none smtp.client-ip=67.231.157.77
+	 In-Reply-To:To:Cc; b=tutASzhPeq182CVbBWxNOoWRbgruGc8l7N77fujNnvHcM6oryf7RpAdWXA81DctUZFxQDL7B+GZCY1tScoezotuuYESEEQu1KMxR2T4zMLdYNZJrq4S0shgGnIuJNo1fWsRzmaAJeWfOyRJFIogNNhSu3gKwp6AdxeAT7Dp1cBA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=plexus.com; spf=pass smtp.mailfrom=plexus.com; dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b=NuI4A0aw; arc=none smtp.client-ip=67.231.157.77
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=plexus.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=plexus.com
-Received: from pps.filterd (m0425993.ppops.net [127.0.0.1])
-	by mx0b-0046e701.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60R3F5U82411442;
-	Tue, 27 Jan 2026 08:51:43 -0600
+Received: from pps.filterd (m0341555.ppops.net [127.0.0.1])
+	by mx0b-0046e701.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60R44AVk2151983;
+	Tue, 27 Jan 2026 14:51:43 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=plexus.com; h=cc
 	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=pps1; bh=U25PI
-	jG5bqh7F5nJn+Y7T5LroIAB8LxvKkGQPhyfsWA=; b=Iz2iEN4DvZiTvofdkhN0g
-	K4B0gP5KSFfMAcUuBL9pflkWOQByj5KaYeQksRMgaRIoOaTcDcNwXuPYm+8TnNVT
-	WsH5lA8omV6hZXfIVOR11YSjrwUnOxPvEqZ7ZCjq9OtcxdgjX2YlXlIihqjRm6S0
-	t0U8C554KomNS8+HYuzjWwR4HeJ9Z9udwJRZvCLCFVyRp+COpnPaJh318vumagwU
-	q7Z8CdTQ+J9xOiyeY4HDFHfou6JN13SRTGG65LJxXzAgDqkf9ZKZbzOuWu2Z/2i4
-	8esXhVaTN6wTwK61WBAXleVGl4p/rVUeuODrRItvmYYzOr2tqGEnPBaBMG8ifkZ2
-	Q==
+	:message-id:mime-version:references:subject:to; s=pps1; bh=AMs/I
+	eyIbZy1nwXxcGTgvzvyBjW0gzBr8/WuXtGmG0o=; b=NuI4A0awuhB+HIx4HmfF/
+	KwAMn8tfWafeUTjWx2EGw05oKT7D2Gs8gmQPjc9SL7kkW9h1nV/C5fCkPryMT7hl
+	9FDn4CCnlWWEk/W08uKQe7I/LW8QAVlS3YKgVMVSpO8tuB6h7QuI87GadpeVDu+S
+	jvcCn2b+SWmhIvgVWjO83fnqzpMB0jnyfO/ntS6cf+sr51HhgqT9XT1mRTFSjlCI
+	EmV+iMWyjMZbWqE6SZ3GZug8FBqYLcCSr6WJncdpssvyGNZXv2MCXnIxLdmYSiZP
+	7fMM+1o6Wl5scZ4xKI8NCdDXv5L+OOKBmkQncv/UnI0doD07b6kwRrLGBDqEmBL9
+	A==
 Received: from intranet-smtp.plexus.com ([64.215.193.254])
-	by mx0b-0046e701.pphosted.com (PPS) with ESMTPS id 4bwe1vc1d4-1
+	by mx0b-0046e701.pphosted.com (PPS) with ESMTPS id 4bwcb144b1-1
 	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Tue, 27 Jan 2026 08:51:42 -0600 (CST)
+	Tue, 27 Jan 2026 14:51:42 +0000 (GMT)
 Received: from LNDCL34533.neenah.na.plexus.com (unknown [10.255.48.203])
-	by intranet-smtp.plexus.com (Postfix) with ESMTP id D538D580C3;
+	by intranet-smtp.plexus.com (Postfix) with ESMTP id DCD14580C4;
 	Tue, 27 Jan 2026 08:51:41 -0600 (CST)
 From: Danny Kaehn <danny.kaehn@plexus.com>
-Date: Tue, 27 Jan 2026 08:47:49 -0600
-Subject: [PATCH v13 2/3] HID: cp2112: Fwnode Support
+Date: Tue, 27 Jan 2026 08:47:50 -0600
+Subject: [PATCH v13 3/3] HID: cp2112: Configure I2C Bus Speed from Firmware
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,7 +65,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260127-cp2112-dt-v13-2-6448ddd4bf22@plexus.com>
+Message-Id: <20260127-cp2112-dt-v13-3-6448ddd4bf22@plexus.com>
 References: <20260127-cp2112-dt-v13-0-6448ddd4bf22@plexus.com>
 In-Reply-To: <20260127-cp2112-dt-v13-0-6448ddd4bf22@plexus.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -82,36 +82,36 @@ Cc: Jiri Kosina <jikos@kernel.org>, devicetree@vger.kernel.org,
         Arun D Patil <arundp@nvidia.com>, Willie Thai <wthai@nvidia.com>,
         Ting-Kai Chen <tingkaic@nvidia.com>
 X-Mailer: b4 0.14-dev-d4707
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1769525272; l=2353;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1769525272; l=1081;
  i=danny.kaehn@plexus.com; s=20260127; h=from:subject:message-id;
- bh=HJJYRUvdMmPuj3Cq1bg3W40kKCjYk5QhoGsJqhjfatA=;
- b=xzI4ZRgrlQqV0JVhyBQ7Q4uFNrhbhHRGp7pO74y518o8JVQakCnxoU4lvhiLnjPgkfurnqihv
- 5zE0P+hXYGDDSIXNVHDlVuBL/FH5rMyHd0ZjJKwA0f/7Hj0Dv+2P7c8
+ bh=sTuKmKs+MqyixoLYvUkl/qsU9H4HeSU66GDIdTbkekA=;
+ b=4MODlWIYOuNwLzbSsNQer/HmwNaiys0dMZu9GCrVS3Ro409Uu25RlmMtdM/VYgOGM/M2eRHMe
+ OIngCA196C1BfkEH6QUdaj4dam1Dp26MZLXGZIy+6KKJ49qJJSnZvxs
 X-Developer-Key: i=danny.kaehn@plexus.com; a=ed25519;
  pk=cbcR30mXg2VNyXtpE2SxVSXEDWLYwrxgnPCjJZn6A8s=
 X-Proofpoint-Reinject: loops=2 maxloops=12
-X-Authority-Analysis: v=2.4 cv=c6CmgB9l c=1 sm=1 tr=0 ts=6978d0fe cx=c_pps
+X-Authority-Analysis: v=2.4 cv=QvVTHFyd c=1 sm=1 tr=0 ts=6978d0fe cx=c_pps
  a=356DXeqjepxy6lyVU6o3hA==:117 a=356DXeqjepxy6lyVU6o3hA==:17
  a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=Y_joWELsAAAA:8 a=pVqXFfmJREZmDo3ecgYA:9 a=QEXdDO2ut3YA:10
+ a=Y_joWELsAAAA:8 a=B4QkrQ5K2Q0oYPUHz0oA:9 a=QEXdDO2ut3YA:10
  a=g_BQsM8wYJVSTWLOHH1t:22
-X-Proofpoint-ORIG-GUID: Oh2C83xSz3kiHDDvzEIhShc8oqOXaTK0
-X-Proofpoint-GUID: 7DoEXa_cFaXPT2pe2V1CZnQLggOD5Hl9
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI3MDEyMSBTYWx0ZWRfX6hNtwZmSblaP
- obyqZ/0c7v3uqzOI/nOhWljJTbr0I65e5qfFdoAV+OtCdTKOuDz/BJffz1/yEZ0VGHB1jnn9Srf
- t73cqZNzNqdD8sFUrBksaF2AASH6Aab38G+UGHmUBw3t0U3QG6xnzIolldHebKkc9qkBQgOiIrg
- qDqgFLtnnbA/g46JGg3v5fsV5+018QLtqof/DBR+ZIX0HKVVKserTvxFXJhvkBPAUmdWPXxIWVI
- +Sz7s8KGTdp3CEYKAoAvIPaZzXmto5UGp2BpLpPUvG6IAKAv8zItDgXolOOL1UQAZOEdWmuUb+h
- X+6bWbMRNZfkGqZnyh2CglU4SJccTZ7uYRVXBOzOQhk7oaIzhZVzF5HhuYK/54bb+2p06zlkjsY
- OdrUV/JBYqKtIdblploU+tlLICZpepOGZNmSuIfE3X/l7k1IuUHq/lLkTiXbbpGYd13jS5paI64
- ubNDcsjWmqCwStc2a3g==
+X-Proofpoint-GUID: NeWbfRo8c_k6o4E1Y-ByzzzFqSMYkONn
+X-Proofpoint-ORIG-GUID: 5tlxGXixyJ4R1ECK3t9AjI4UWh8Wy9yP
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI3MDEyMSBTYWx0ZWRfX0uXa69E2uI/z
+ rLgB6vxR+4mcSjWBQbTvgQk7sEH7sPN8uwBbArZHtkmuTyynYuoubMTX9d/866qH3dCyrHJpHDM
+ a31LLswEnU4H+qB9UZOluH0lo5oHntVeiHqFzEolMsu/8+Xt1qJ+N5xpTRkMzDauYx86aLP5ZA2
+ O17//OT4Xr0VLf/9qaBQsjfpMuQZPiKWYc9EHYk3QhmN4gvC4ye8FuLxK/ooQCl+5KwoHuIMzeT
+ cvDzqzK9hNDqRh41EYXSAEKDqYFH1CbvICBwAJNO7z6obWsTWAWZ3hfYBiEWLK+1FTlbpy2rkBY
+ GwUiEbonBG2QOnqeXnnnhPlSMr/N17/jLPNogAX5/8bwQ9/xLdSd50eTGuHRTkP7m9nZNjJ93Nf
+ L2xlueX2LT/NoHlGYaNPunUVbFkIWEbUNlo5DDHmeTqb12rrFEwYQYbtsDzDJSGrT5sjqB3H24V
+ +vctiY+xj2hdchw0y6A==
 X-Proofpoint-Spam-Reason: orgsafe
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[plexus.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[plexus.com:s=pps1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -119,11 +119,11 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[19];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259962-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-259965-lists,devicetree=lfdr.de];
 	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com,linaro.org,plexus.com,nvidia.com];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
@@ -133,84 +133,40 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[plexus.com:email,plexus.com:dkim,plexus.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C021F964B9
+	DBL_BLOCKED_OPENRESOLVER(0.00)[plexus.com:email,plexus.com:dkim,plexus.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 3920396348
 X-Rspamd-Action: no action
 
-Support describing the CP2112's I2C and GPIO interfaces in firmware.
-
-Bindings between the firmware nodes and the functions of the device
-are distinct between ACPI and DeviceTree.
-
-For ACPI, the i2c_adapter will use the child with _ADR Zero and the
-gpio_chip will use the child with _ADR One. For DeviceTree, the
-i2c_adapter will use the child with name "i2c", but the gpio_chip
-will share a firmware node with the CP2112.
+Now that the I2C adapter on the CP2112 can have an associated firmware
+node, set the bus speed based on firmware configuration
 
 Signed-off-by: Danny Kaehn <danny.kaehn@plexus.com>
 ---
- drivers/hid/hid-cp2112.c | 33 +++++++++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+ drivers/hid/hid-cp2112.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
 diff --git a/drivers/hid/hid-cp2112.c b/drivers/hid/hid-cp2112.c
-index 803b883ae875..ea19b5cb58f9 100644
+index ea19b5cb58f9..4c5957e0a5cc 100644
 --- a/drivers/hid/hid-cp2112.c
 +++ b/drivers/hid/hid-cp2112.c
-@@ -29,6 +29,16 @@
- #include <linux/usb/ch9.h>
- #include "hid-ids.h"
- 
-+/**
-+ * enum cp2112_child_acpi_cell_addrs - Child ACPI addresses for CP2112 sub-functions
-+ * @CP2112_I2C_ADR: Address for I2C node
-+ * @CP2112_GPIO_ADR: Address for GPIO node
-+ */
-+enum cp2112_child_acpi_cell_addrs {
-+	CP2112_I2C_ADR = 0,
-+	CP2112_GPIO_ADR = 1,
-+};
-+
- #define CP2112_REPORT_MAX_LENGTH		64
- #define CP2112_GPIO_CONFIG_LENGTH		5
- #define CP2112_GPIO_GET_LENGTH			2
-@@ -1208,7 +1218,9 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- 	struct cp2112_device *dev;
- 	u8 buf[3];
+@@ -1220,6 +1220,7 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
  	struct cp2112_smbus_config_report config;
-+	struct fwnode_handle *child;
+ 	struct fwnode_handle *child;
  	struct gpio_irq_chip *girq;
-+	u32 addr;
++	struct i2c_timings timings;
+ 	u32 addr;
  	int ret;
  
- 	dev = devm_kzalloc(&hdev->dev, sizeof(*dev), GFP_KERNEL);
-@@ -1226,6 +1238,27 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- 		return ret;
+@@ -1304,6 +1305,9 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
+ 		goto err_power_normal;
  	}
  
-+	if (is_acpi_device_node(dev_fwnode(&hdev->dev))) {
-+		device_for_each_child_node(&hdev->dev, child) {
-+			ret = acpi_get_local_address(ACPI_HANDLE_FWNODE(child), &addr);
-+			if (ret)
-+				continue;
++	i2c_parse_fw_timings(&dev->adap.dev, &timings, true);
 +
-+			switch (addr) {
-+			case CP2112_I2C_ADR:
-+				device_set_node(&dev->adap.dev, child);
-+				break;
-+			case CP2112_GPIO_ADR:
-+				dev->gc.fwnode = child;
-+				break;
-+			}
-+		}
-+	} else {
-+		child = device_get_named_child_node(&hdev->dev, "i2c");
-+		device_set_node(&dev->adap.dev, child);
-+		fwnode_handle_put(child);
-+	}
-+
- 	ret = hid_parse(hdev);
- 	if (ret) {
- 		hid_err(hdev, "parse failed\n");
++	config.clock_speed = cpu_to_be32(timings.bus_freq_hz);
+ 	config.retry_time = cpu_to_be16(1);
+ 
+ 	ret = cp2112_hid_output(hdev, (u8 *)&config, sizeof(config),
 
 -- 
 2.25.1
