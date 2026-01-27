@@ -1,176 +1,144 @@
-Return-Path: <devicetree+bounces-259835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259836-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4KUeEN2beGlurQEAu9opvQ
-	(envelope-from <devicetree+bounces-259835-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 12:05:01 +0100
+	id IFQhJEKdeGlurQEAu9opvQ
+	(envelope-from <devicetree+bounces-259836-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 12:10:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE2B79352E
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 12:05:00 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19A9C936BD
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 12:10:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 264A33014535
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 11:04:49 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9EFE4301412F
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 11:10:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1448230B52E;
-	Tue, 27 Jan 2026 11:04:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FCDD345CC3;
+	Tue, 27 Jan 2026 11:10:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b="Yssn+2Mq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pb1lKKs3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-o92.zoho.com (sender4-pp-o92.zoho.com [136.143.188.92])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B25D30B51F;
-	Tue, 27 Jan 2026 11:04:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.92
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769511886; cv=pass; b=bIE4faOrkBbgIQaiQSBsRzio1yUMAMypbhTaXcJA0bgjqSjq3buHx29VeWt6vPBJHvxRD63/Fiar0rwlWLEQdIXwxGfTG8DdkjmCejuewXdklgw60WHKK8rIyio2ymgg0R5FujrIqYiElAj3EhHR00E+W9npcsekcQQDQTainxc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769511886; c=relaxed/simple;
-	bh=FG6HFQL/cV3+5iYVYIgLIOwsbcYD6bxgBJ/bMY+o10k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HhSiCZTjBCuhEv8ghEFTOyVd+k0BwIFntoPSJRDDRFD+yKiW9qPYz4Lzum1Pz6naCri0FR0lVEs2r+5qm92SpgIWmBZ2A9mvKF2OfZd16nQ791MeOWVuTwgIfO2CbVyg8Bd/oB+t/B0s91oQ0XuUotP8nSPeYF1vg4bR79KQr+E=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com; spf=pass smtp.mailfrom=zohomail.com; dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b=Yssn+2Mq; arc=pass smtp.client-ip=136.143.188.92
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zohomail.com
-ARC-Seal: i=1; a=rsa-sha256; t=1769511863; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=Qg9X3pcoJnoqViWAtoWu+1abukl8Fw5lGIAyAv5BWD3vf2Qt+Y2HBJoSm6lHZzgY07f9QhbdgMnisC8fVRFzFp4CUU5HhGtDUJfPfY89ioVwpqdt8hXeZ0xpvyx1oZiwhLKIIUkrWK40ABNm/4+axHkf/jSJsjLFuS134r3jGpg=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1769511863; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=zIZv98xexLqGPRXaRA7uJoEdTPOCRvLcc++itdaM4UI=; 
-	b=D+E2caX5GVBGRR0A8rjCa2P57YJRm8gJTwfYBgJFz0Ffg43w0VLJZCQlCoRDdYKahcNa2xnx/CjuKY4KGhPHfFZDFyGeBox2Arze2ad1Ac9ED0AluOZlgXXxzaFxBpMAyRREUfl2ctsmkp2W3p69mhQkCho4FIvzkjS4wB0Z6tU=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=zohomail.com;
-	spf=pass  smtp.mailfrom=kingxukai@zohomail.com;
-	dmarc=pass header.from=<kingxukai@zohomail.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1769511863;
-	s=zm2022; d=zohomail.com; i=kingxukai@zohomail.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Feedback-ID:Message-Id:Reply-To;
-	bh=zIZv98xexLqGPRXaRA7uJoEdTPOCRvLcc++itdaM4UI=;
-	b=Yssn+2MqnT1qoMPXr6YSK96CPNXVriKXqEsW0mq/UEwfSKYG4Bu+HG8e/oaAAkno
-	jMBGI1Um3eAiMZeBuuNH1jma14j1gOEaS7iIUZ9ASMOb7tW3WyXclPRjU0cgrzHPAsw
-	HnfbuposIAuRXBDIRp+LCc2H8kJFktwrdXwklJWU=
-Received: by mx.zohomail.com with SMTPS id 1769511855331786.2569087782504;
-	Tue, 27 Jan 2026 03:04:15 -0800 (PST)
-Message-ID: <0af969a7-3579-4303-b302-f171ef02a163@zohomail.com>
-Date: Tue, 27 Jan 2026 19:03:59 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3C423451C7;
+	Tue, 27 Jan 2026 11:10:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769512219; cv=none; b=SCk1zq03L3c4deG72Q+8LBmcJVSjY1zHNMhxKp/z8FuvtnWwRR7oY7qtUP5UjOiCqU9QFq21MKF3FgY+t/9iH7YA+e4BqaRiInU40RuCMLcdTmyMnoS076jJlc+q2ng5PLzyCyNaS0H63R4PQ0mDlRLIpb+Hs50lpUCecT6Hd5s=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769512219; c=relaxed/simple;
+	bh=CT7gkiw9r7kylQTCxIe4QQuX3+OPKkhnoO764jxtLtc=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=chMKzE7RGkZe3raI/ZKb+WacfyR7W463HVoXKGSPPpZ8kXg8AzpAdqW6SrAV1VLR9QbDQEeKmoVc/BlxaAiIJN4WSB5knOQnSSKTSAIYVTp3Yu9BrrJaE6UvK9x2/NxPF6/nT7vkG7LQP9ZuB2AD+h/yvQ92h47FWTt3akmeVAU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pb1lKKs3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0121EC19425;
+	Tue, 27 Jan 2026 11:10:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769512219;
+	bh=CT7gkiw9r7kylQTCxIe4QQuX3+OPKkhnoO764jxtLtc=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=pb1lKKs3NfyALYoWCAp4K1s0r7HsIHj3SfY6u7nAVkV6WK+FIFI4eEueOs+R+iW8f
+	 +oZtjbhLCg3ajGulisJ/78kaxsK8dE6hfaqwNvCO8xSwdpdC3mHxtAbUEJuOmInELe
+	 QzMr4ZBF1pdsarelRpEtLXzXrVmi5MwHihJ3l6VmXchU+KSK8r+tU4iSAv3+YgC+M1
+	 CpAjs8bTjJq94IoIdz+KOMypcDUPiHUmWT0x9Jp5PwaOifo2gPVN9kBPOtf1/0NNh1
+	 7nTd+8QdoOZSG/LH4SEHM21BbSI5q5VBQSLSLrLjf7PjPZaP+1xc82SJW4KcZh2Kpk
+	 Hegi9zxcXQF3w==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 4EAA8380A977;
+	Tue, 27 Jan 2026 11:10:14 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 2/3] clk: canaan: Add clock driver for Canaan K230
-To: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Conor Dooley <conor@kernel.org>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- Samuel Holland <samuel.holland@sifive.com>,
- Troy Mitchell <TroyMitchell988@gmail.com>
-References: <20260116-b4-k230-clk-v10-0-de59033c5d30@zohomail.com>
- <20260116-b4-k230-clk-v10-2-de59033c5d30@zohomail.com>
- <aW3o8xVziqb9iRBN@duge-virtual-machine>
- <bf39fdb8-6698-418b-bd4a-6d8d40ccc9a0@zohomail.com>
- <aXJJ3MjQSq8Rq084@duge-virtual-machine>
-From: Xukai Wang <kingxukai@zohomail.com>
-Content-Language: en-US
-In-Reply-To: <aXJJ3MjQSq8Rq084@duge-virtual-machine>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Feedback-ID: rr08011227a510c0fba220186bba5f362e000053b54e7061a9cbdd371d5284c83a55924f9557a426366cbb14:zu080112272a5276332e1090ec5d5ceed40000b2c296e870bfa7ef506b33ce0394521dd45f1929333996b33b:rf0801122cc4400f0c83132b1947518dc60000c8bd395d79c79d723ff8939ceba3fa55336a182f4efa95f61dab38722347:ZohoMail
-X-ZohoMailClient: External
+Subject: Re: [PATCH net-next v6 0/6] net: dsa: lantiq: add support for Intel
+ GSW150
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <176951221310.797896.17949211366612962251.git-patchwork-notify@kernel.org>
+Date: Tue, 27 Jan 2026 11:10:13 +0000
+References: <cover.1769099517.git.daniel@makrotopia.org>
+In-Reply-To: <cover.1769099517.git.daniel@makrotopia.org>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: hauke@hauke-m.de, andrew@lunn.ch, olteanv@gmail.com, davem@davemloft.net,
+ edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, linux@armlinux.org.uk,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ptpt52@gmail.com, xinfa.deng@gl-inet.com
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[zohomail.com,reject];
-	R_DKIM_ALLOW(-0.20)[zohomail.com:s=zm2022];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259835-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-259836-lists,devicetree=lfdr.de,netdevbpf];
+	FREEMAIL_CC(0.00)[hauke-m.de,lunn.ch,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,armlinux.org.uk,vger.kernel.org,gl-inet.com];
+	FROM_NEQ_ENVFROM(0.00)[patchwork-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,sifive.com,gmail.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kingxukai@zohomail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[zohomail.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NO_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,zohomail.com:mid,zohomail.com:dkim]
-X-Rspamd-Queue-Id: AE2B79352E
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 19A9C936BD
 X-Rspamd-Action: no action
 
+Hello:
 
-On 2026/1/23 00:01, Jiayu Du wrote:
-> On Thu, Jan 22, 2026 at 07:40:29PM +0800, Xukai Wang wrote:
->> On 2026/1/19 16:18, Jiayu Du wrote:
->>>> +
->>>> +K230_CLK_GATE_FORMAT(hs_hclk_src_gate,
->>>> +		     K230_HS_HCLK_SRC_GATE,
->>>> +		     0x18, 0, 0, 0,
->>>> +		     &hs_hclk_high_src_rate.clk.hw);
->>> Here, you replaced hs_hclk_high_gate(in v9) with hs_hclk_high_src_rate,
->> I'm a bit confused, as I don't recall making these specific changes.
->> Looking at the code below, the only difference between v9 and v10 is
->> within the K230_CLK_GATE_FORMAT(hs_hclk_src_gate, ...) definition, where
->> the second parameter changed from 1 to 0. Everything else appears
->> consistent. Could you clarify which change you were referring to?
->>> but after my board test, I find that when hs_hclk_high_gate is turned
->>> off, the mmc/sd and other high-speed subsystems can not work. So maybe
->>> you should not change the hs_hclk_high_gate to hs_hclk_high_src_rate.
->> Regarding the clock management, I recommend explicitly enabling
->> hs_hclk_high_gateas it will be closed by `close unused clocks`.
-> Sorry, you are right. It was me who made the changes locally. And I
-> saw your reply to this email[1], which you said According to the vendor's
-> code, the parent clock of hs_hclk_src is hs_hclk_high_src.
->
-> Indeed, the parent clock of hs_hclk_src is hs_hclk_high_src. 
+This series was applied to netdev/net-next.git (main)
+by Paolo Abeni <pabeni@redhat.com>:
 
-> but hs_hclk_high_gate is the gate of hs_hclk_high_src. 
+On Thu, 22 Jan 2026 16:38:36 +0000 you wrote:
+> The Intel GSW150 Ethernet Switch (aka. Lantiq PEB7084) is the predecessor of
+> MaxLinear's GSW1xx series of switches. It shares most features, but has a
+> slightly different port layout and different MII interfaces.
+> Adding support for this switch to the mxl-gsw1xx driver is quite trivial.
+> ---
+> Changes since v5:
+>  * rebase on top of current net-next
+>  * update Kconfig to mention GSW150
+>  * allow configuring RGMII slewrate introduced by commit dbf24ab58fec3
+>    ("net: dsa: mxl-gsw1xx: Support R(G)MII slew rate configuration")
+> 
+> [...]
 
-No. It seems there is some confusion. The hs_hclk_high_src does not have
-a gate.
+Here is the summary with links:
+  - [net-next,v6,1/6] dt-bindings: net: dsa: lantiq,gswip: use correct node name
+    https://git.kernel.org/netdev/net-next/c/b6d6f017022f
+  - [net-next,v6,2/6] dt-bindings: net: dsa: lantiq,gswip: add Intel GSW150
+    https://git.kernel.org/netdev/net-next/c/e7e354aa496b
+  - [net-next,v6,3/6] net: dsa: lantiq: allow arbitrary MII registers
+    https://git.kernel.org/netdev/net-next/c/338375118514
+  - [net-next,v6,4/6] net: dsa: lantiq: clean up phylink_get_caps switch statement
+    https://git.kernel.org/netdev/net-next/c/6d6228402249
+  - [net-next,v6,5/6] net: dsa: mxl-gsw1xx: only setup SerDes PCS if it exists
+    https://git.kernel.org/netdev/net-next/c/99f465889a60
+  - [net-next,v6,6/6] net: dsa: mxl-gsw1xx: add support for Intel GSW150
+    https://git.kernel.org/netdev/net-next/c/afe813fd89ec
 
-The clock tree is as follow:
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-       pll0_div4
-          hs_hclk_high_src_rate
-             hs_hclk_high_gate
-             hs_hclk_src_gate
-                hs_hclk_src_rate
-                   hs_sd0_ahb_gate
-                   hs_sd1_ahb_gate
-                   hs_ssi1_ahb_gate
-                   hs_ssi2_ahb_gate
-                   hs_usb0_ahb_gate
-                   hs_usb1_ahb_gate
 
-> So, what you mean is
-> that you will add the CLK_IS_CRITICAL flag to the hs_hclk_high_gate?
-No, I don't intend to add CLK_IS_CRITICAL flag. Instead, I recommend you
-to explicitly enable the clock by using clk_prepare_enable in your driver.
->
-> Link: https://lore.kernel.org/all/159615d3-cc52-43be-bf6d-5fe717ef1cc4@zohomail.com/ [1]
->
-> Regards,
-> Jiayu Du
->
 
