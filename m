@@ -1,243 +1,170 @@
-Return-Path: <devicetree+bounces-260031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259915-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2CDyN1TkeGlftwEAu9opvQ
-	(envelope-from <devicetree+bounces-260031-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:14:12 +0100
+	id gLTgCFDGeGmltAEAu9opvQ
+	(envelope-from <devicetree+bounces-259915-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:06:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BB0097881
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:14:12 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E6E995516
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:06:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A6E0D304DCB5
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:09:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 75626300F5C4
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 14:04:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B7FF35EDAD;
-	Tue, 27 Jan 2026 16:09:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A98EE27CB0A;
+	Tue, 27 Jan 2026 14:04:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="Gxyw3xzU";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="S8+RRDZ/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f65.google.com (mail-vs1-f65.google.com [209.85.217.65])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fout-b5-smtp.messagingengine.com (fout-b5-smtp.messagingengine.com [202.12.124.148])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D87763009C8
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 16:09:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C0F91DBB3A;
+	Tue, 27 Jan 2026 14:04:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.148
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769530184; cv=none; b=RBCVBs6Sc5tzRhaMrny/4vR4m/OMQNWLWSfQuis/dRDOxyUobS8VIJRNw8ZUb1kh4yXEiYvafsGib3nVCcgpUQXrvO2Ljad2IzR4qOPEqjfeQz58MMGqXYAQ3QpTNOcIBnV3MHYBQHEayqB3VES7Ri7EQZxzSdKD7UuNFVOM8C8=
+	t=1769522663; cv=none; b=GadIAaT4IoNMvyiPHL4M/sXn+RVkd085nilTwvuV7J9NqHsS+iYRrwJAdNMRvjqRKAkevDbob9BGcKqUuCb5KBEiGDBuTfJ3FiBVEFYeBz7g6cKpN4afmakidctrjrmUyqbgCJ1Nz3H9dW8BRiNY8p9m0Yk83OSR8mMWIl4LZd0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769530184; c=relaxed/simple;
-	bh=QPF7Zu2r+fCfqNyJkt1Bte+V+ziLRm+jV4lSeXPHZEA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=R01KPGZ3JoFVAfQtUv5Z3C4FFwGTJ+7bmhq648hl/bDM3BxpLaI044fQdxB4C/h2wvJ4IoqvgMAJqnpc1z0medl8GJGiFHFzUvlaiDdbHwuppKIUoDfuO38CkSH+hOBKHtVrx8U9sKe/wmVJCoFEv9fFA36Eq2DtLxIxJykZMdM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f65.google.com with SMTP id ada2fe7eead31-5eeff7e8bb3so5363474137.1
-        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 08:09:42 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769530182; x=1770134982;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=y3iP0W+rICWiFtIz9Lnj4u7VRlu+Bycye5GdS1BEDSM=;
-        b=cVa1WwNXYiRqRFhkwN9puKbEHote2E2IIC3ZBTiFkqDXb0rf3FyKcnPPhUChn0Tvu5
-         R7SuyS9U+2W/IcLfhiPsISHN8O1yghcbib80/yioPNmvkaPSgqUFYduSj4fMQ4gceDHE
-         zT01SChM7zy2oFxqlSrBr1+cD3mT7T+JsGuH4dsFzfFG246h48vhRMN7gxMuDwT41I/K
-         5hvwi4HOXi5yN3fMK5NkskMsqLZtQUKSvpk435loQSH11YjyJWImJricTsXFOMU6anNl
-         JLW9G62MSzd196xmNCap34T/5bUyDW+Llu2FR1JG0XrtIszcTU5PpabG9ng6rflfCUi+
-         9j4w==
-X-Forwarded-Encrypted: i=1; AJvYcCVNGN+v12cjFA9CxFBzuD3qrjJwDED68N+3zRT+PebXABurb4fF0wEapT0+5qCMe2CczMsTZX6zcdoB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yycjj7mzcXel2NdHqSC92ZAEKwxSycuKlnyLHhPyhIB+7iyeTl+
-	8c/y1FDVhidipU93bt8SpysywXfoXlzYEsbRxcCJJWcWw0xtWumIt3pYehZuu5oyymhj6Q==
-X-Gm-Gg: AZuq6aIMGNPPe2hdj6skKMfEdS6eUfY7K3WQd3+ZijOJ1K936CmwPjESjMRFK5zmLQt
-	KnSyMxjmSaVlL+q2fEJ4qOiLJ4i2zsEgLxPjNkElqY82Uzq6OjKI7tTCANblc+vIWomUJiapHqE
-	88BMzy/yETUBuIOerxupKfL0DMq5q/SCYvhg0fbWXmoc23nwv/6RxPe5XfQo7c3M2p1JHqsOu4j
-	SBk8YbrLR/S/SovndFkPziiQg5uAx9z+H4C7GOpEqbALOBEiV452ApgiEhUwrX5zc/euWVlVRtX
-	8ltBmwyJvnmvXK7Auqq/OYcFdnbrXMeEPIESrzddK+uqPFAYLGUngf3VvnJ07GbYBGwn4cRYw64
-	zP9eMHegUhgQVcDZaBxfog7xWuCQPMdw4N5ZXpKWpDa3R6h7l/YXAlWkgRb1Vk7cLrgKQYWO6hq
-	315xtpnqBWfn4TlVgLfIgqrq2SfCeCb/fuPULbPztiZTCZ9Z+nFJx6
-X-Received: by 2002:a05:6122:4599:b0:564:f4ef:d805 with SMTP id 71dfb90a1353d-566794fb488mr653292e0c.8.1769522552113;
-        Tue, 27 Jan 2026 06:02:32 -0800 (PST)
-Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com. [209.85.221.173])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-9482e321450sm2357109241.7.2026.01.27.06.02.28
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Jan 2026 06:02:31 -0800 (PST)
-Received: by mail-vk1-f173.google.com with SMTP id 71dfb90a1353d-5665171836cso2384153e0c.2
-        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 06:02:28 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWGnhxD7nfDUjD/7QW9dHQHv5rIiG1YHARFybDgieBU4nW9VRPZe9LWc5maV6UA+cvYj8O8ycckVv6D@vger.kernel.org
-X-Received: by 2002:a05:6122:340e:b0:566:2568:df1b with SMTP id
- 71dfb90a1353d-566794c0a54mr742458e0c.2.1769522547250; Tue, 27 Jan 2026
- 06:02:27 -0800 (PST)
+	s=arc-20240116; t=1769522663; c=relaxed/simple;
+	bh=gtErRORkfs7injojb6RGHjPyYTDZSEFbFhoQ24MBeUI=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=Zs0vllH8SjS8iRGVAfxocpvEwml7JDfpvIISO2kqexVAXI9Vcro8+aZd/ExoJjmISFD9qwUbCszllEQWubbsHeKYgcvBmbLqXDDk6MfUTHQoKjGyHS8xlrnGEcbUkw+rGS0bXK7HaVG6G7a9I+qY3o6u3919xWUjm/69RtBlHFY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=Gxyw3xzU; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=S8+RRDZ/; arc=none smtp.client-ip=202.12.124.148
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
+Received: from phl-compute-04.internal (phl-compute-04.internal [10.202.2.44])
+	by mailfout.stl.internal (Postfix) with ESMTP id B43E21D000E0;
+	Tue, 27 Jan 2026 09:04:20 -0500 (EST)
+Received: from phl-imap-02 ([10.202.2.81])
+  by phl-compute-04.internal (MEProxy); Tue, 27 Jan 2026 09:04:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm2; t=1769522660;
+	 x=1769609060; bh=QL01scifO7vkZIANJWWKEAOck5tKnFadiw0MQU/QFd4=; b=
+	Gxyw3xzUndKkfERd9j23YanMGakZIx+vy5aUSS7g3DSDQZ4ZUSYJkfRLvZuhyf2f
+	4Hgdv3xseFxsfEOmrvHBPpqBC+9SJOa5OZIukLDt7Ak9ygYaiSkQUxcrAjCENVYA
+	fcW5eLkk9sAVq9+Wy34Edw+p4UE64wMtoaHKSAxeKXszQtuN+CM78kOgYezIlIOT
+	EkyffzIeomunZrakT5U5Ac6GOlUTakR5U3hSnmHOV5MES04/gds8Mo84kDyLXo4w
+	982ezuUUHRKkJscM0i5dqodYrn61qN9vOZrHbU/mmAfnaYHaYEmtHtMCWIqJe9Kf
+	fl1KUDoDXK0hgyk8hyxoUg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1769522660; x=
+	1769609060; bh=QL01scifO7vkZIANJWWKEAOck5tKnFadiw0MQU/QFd4=; b=S
+	8+RRDZ/vF4mlvEcAcWkEX2Qw469tEnQHUJygzrpDw6Gwiw2Fv9n/lt0SRmskqSJ3
+	Jne68k9nTjFNIbdDgPnIX+CMebYk83zVSpALUxvISbycypJYkSefnFY+X4jByoiC
+	bvlJK+3FHwscir7lY63sTvuI0nPrrkjha/SUzTwI5xqSHU9/4ybxL7YuNVWfqfY2
+	f2jFyA7mQNJ1aMzu9Ypzz/M8Eq484kANtE/dIl6U/Vp56Yy+A2eY8/xsjyyFDNOT
+	lgJfot2BCJD/RS8lNFZqT+ZP0WjMqp/W4dB3gy1oSgYXcoKnIf62n/NuMFkyFbbU
+	NGBS5dgXk1gvhJCqqOnyw==
+X-ME-Sender: <xms:5MV4aQVgg3M2UZqBKk2NeRu1e2ZaupZokgVKIcAx2TmTO_v0wInaSA>
+    <xme:5MV4afYzX-1eGi7e69HYhBVTSeYYKfk-rQy00KAaKGmvx1H-SY-ByUC8Ufi3i8kw5
+    jtzGc1ZniN91y309pKV2s-Lg5lxnzcRnIJS7dAyW9hsANhNKq0Qx0sh>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgdduiedtjedvucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
+    gurhepofggfffhvfevkfgjfhfutgfgsehtjeertdertddtnecuhfhrohhmpedftehrnhgu
+    uceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrthhtvg
+    hrnhephfdthfdvtdefhedukeetgefggffhjeeggeetfefggfevudegudevledvkefhvdei
+    necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghrnh
+    gusegrrhhnuggsrdguvgdpnhgspghrtghpthhtohepkedpmhhouggvpehsmhhtphhouhht
+    pdhrtghpthhtoheprhhomhgrihhnrdhgrghnthhoihhssegsohhothhlihhnrdgtohhmpd
+    hrtghpthhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhm
+    pdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhope
+    hkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhn
+    vghlrdhorhhgpdhrtghpthhtohepghhrvghgkhhhsehlihhnuhigfhhouhhnuggrthhioh
+    hnrdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghl
+    rdhorhhgpdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvg
+    hlrdhorhhg
+X-ME-Proxy: <xmx:5MV4aW3bBynAqlGxSApkNtryweYO-Vf260mDGrfref8DLv37l2CfRg>
+    <xmx:5MV4aVFZsDYw8CU4uQ6XFXo0Rl6ydyAlG79a_Va3vN8XyiQeFDiMvw>
+    <xmx:5MV4aREexNAUZZOFc7ouDlT_tHV7HAWAJFNjjZ-F_QmayBdck1jEvQ>
+    <xmx:5MV4aY7z4767d9bIYCqPqfRYs9SD_Dwheq4IWc637Paij4ajVBUYfQ>
+    <xmx:5MV4aU8ebYiynelH3bpuBa2F9wj5gipW1tRFaxY-0IOAaUzcmRrf-xbU>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id 3C27B700069; Tue, 27 Jan 2026 09:04:20 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260127-topic-sm8650-ayaneo-pocket-s2-base-v2-0-c55ec1b5d8bf@linaro.org>
- <20260127-topic-sm8650-ayaneo-pocket-s2-base-v2-1-c55ec1b5d8bf@linaro.org>
- <CAMuHMdU9HcK3xX=itqe2di1HS1SJvV6=ySqKyrtj7Yr1yXyuqQ@mail.gmail.com> <6e8c3d6b-8cba-42da-bafa-28becfa15d60@linaro.org>
-In-Reply-To: <6e8c3d6b-8cba-42da-bafa-28becfa15d60@linaro.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 27 Jan 2026 15:02:16 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdV=u280N2HUgpiHtRXuMv0RhtDeEFDaSLFQ0Wg8frt+6A@mail.gmail.com>
-X-Gm-Features: AZwV_QhN9K-WsMdmqL2nfJrvZ40lsYIN6kZoo7JRPE4M6cKNWw4lsg30FvWZJqY
-Message-ID: <CAMuHMdV=u280N2HUgpiHtRXuMv0RhtDeEFDaSLFQ0Wg8frt+6A@mail.gmail.com>
-Subject: Re: [PATCH v2 1/7] dt-bindings: usb: document the Renesas
- UPD720201/UPD720202 USB 3.0 xHCI Host Controller
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Clark <robin.clark@oss.qualcomm.com>, 
-	Dmitry Baryshkov <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>, 
-	Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Bartosz Golaszewski <brgl@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	freedreno@lists.freedesktop.org, linux-usb@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-pci@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+X-ThreadId: Ajt3zis9WT3s
+Date: Tue, 27 Jan 2026 15:03:48 +0100
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Romain Gantois" <romain.gantois@bootlin.com>,
+ "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>
+Cc: "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Message-Id: <1bae4f71-9688-4e6c-8025-920dc20cdf88@app.fastmail.com>
+In-Reply-To: <20260127-fpc202-leds-v1-2-ebd0cfb9f9a1@bootlin.com>
+References: <20260127-fpc202-leds-v1-0-ebd0cfb9f9a1@bootlin.com>
+ <20260127-fpc202-leds-v1-2-ebd0cfb9f9a1@bootlin.com>
+Subject: Re: [PATCH 2/2] misc: ti_fpc202: Support special-purpose GPIO lines with LED
+ features
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.15 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[arndb.de,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[arndb.de:s=fm2,messagingengine.com:s=fm2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	XM_UA_NO_VERSION(0.01)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,oss.qualcomm.com,linux.dev,gmail.com,poorly.run,somainline.org,ffwll.ch,linuxfoundation.org,glider.be,google.com,vger.kernel.org,lists.freedesktop.org];
-	TAGGED_FROM(0.00)[bounces-260031-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[28];
 	MIME_TRACE(0.00)[0:+];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259915-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[arndb.de:+,messagingengine.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.997];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	R_DKIM_NA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux-m68k.org:email,linaro.org:email,0.0.0.0:email,mail.gmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,devicetree.org:url]
-X-Rspamd-Queue-Id: 3BB0097881
+	FROM_NEQ_ENVFROM(0.00)[arnd@arndb.de,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_COUNT_FIVE(0.00)[6];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,arndb.de:dkim,app.fastmail.com:mid]
+X-Rspamd-Queue-Id: 6E6E995516
 X-Rspamd-Action: no action
 
-Hi Neil,
+On Tue, Jan 27, 2026, at 14:51, Romain Gantois wrote:
+> --- a/drivers/misc/Kconfig
+> +++ b/drivers/misc/Kconfig
+> @@ -118,6 +118,7 @@ config TI_FPC202
+>  	depends on I2C
+>  	select GPIOLIB
+>  	select I2C_ATR
+> +	select LEDS_CLASS
+>  	help
+>  	  If you say yes here you get support for the Texas Instruments FPC202
+>  	  Dual Port Controller.
 
-On Tue, 27 Jan 2026 at 14:55, Neil Armstrong <neil.armstrong@linaro.org> wrote:
-> On 1/27/26 11:20, Geert Uytterhoeven wrote:
-> > On Tue, 27 Jan 2026 at 10:57, Neil Armstrong <neil.armstrong@linaro.org> wrote:
-> >> Document the Renesas UPD720201/UPD720202 USB 3.0 xHCI Host Controller,
-> >> which connects over PCIe and requires specific power supplies to
-> >
-> > Here: "requires"...
->
-> Sorry I don't understand
+Selecting a foreign subsystem is usually a bad idea, as it
+leads to dependency loops.
 
-Please read below the continuations ("...") below...
+For LEDS_CLASS, I think this needs to be 'depends on LEDS_CLASS',
+or possibly 'depends on LEDS_CLASS || !LEDS_CLASS' if you want
+to keep that optional.
 
->
-> >
-> >> start up.
-> >>
-> >> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+I would also change the GPIOLIB dependency the same way, but that
+should be a separate patch of course.
 
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/usb/renesas,upd720201-pci.yaml
-> >> @@ -0,0 +1,55 @@
-> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: http://devicetree.org/schemas/usb/renesas,upd720201-pci.yaml#
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: UPD720201/UPD720202 USB 3.0 xHCI Host Controller (PCIe)
-> >> +
-> >> +maintainers:
-> >> +  - Neil Armstrong <neil.armstrong@linaro.org>
-> >> +
-> >> +description:
-> >> +  UPD720201 USB 3.0 xHCI Host Controller via PCIe x1 Gen2 interface.
-> >> +  The UPD720202 up to two downstream ports, while UPD720201 supports up to
-> >> +  four downstream USB 3.0 rev1.0 ports.
-> >> +
-> >> +properties:
-> >> +  compatible:
-> >> +    const: pci1912,0014
-> >
-> > Just wondering: how does having a new driver
-> > drivers/pci/pwrctrl/pci-pwrctrl-upd720201.c matching against this
-> > compatible play well with normal PCI discovery and probing of
-> > drivers/usb/host/xhci-pci-renesas.c?
->
-> In Linux, power control is implemented as a platform device driver,
-> so it doesn't collide with the pci driver.
->
-> The pci driver won't probe until the device shows up on the bus anyway,
-> so he power control will attach as platform for this purpose.
-
-OK.
-
-> >> +  avdd33-supply:
-> >> +    description: +3.3 V power supply for analog circuit
-> >> +
-> >> +  vdd10-supply:
-> >> +    description: +1.05 V power supply
-> >> +
-> >> +  vdd33-supply:
-> >> +    description: +3.3 V power supply
-> >> +
-> >> +required:
-> >> +  - compatible
-> >> +  - reg
-> >
-> > ... but no power supplies are listed here? ...
->
-> None are stricly required, they can be supplied directly without
-> a passive regulator. Not sure they should be required
-
-So the goal of this binding is to document the required power supplies
-which are not required? I am confused (but that could just be me ;-)...
-
-> >> +examples:
-> >> +  - |
-> >> +    pcie@0 {
-> >> +        reg = <0x0 0x1000>;
-> >> +        ranges = <0x02000000 0x0 0x100000 0x10000000 0x0 0x0>;
-> >> +        #address-cells = <3>;
-> >> +        #size-cells = <2>;
-> >> +        device_type = "pci";
-> >> +
-> >> +        usb@0 {
-> >
-> > The actual DTS uses "usb-controller".
-> >
-> >> +            compatible = "pci1912,0014";
-> >> +            reg = <0x0 0x0 0x0 0x0 0x0>;
-> >
-> > ... also not in the example?
-> >
-> >> +        };
-> >> +    };
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+     Arnd
 
