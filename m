@@ -1,130 +1,170 @@
-Return-Path: <devicetree+bounces-260123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260124-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KESqAjojeWnMvgEAu9opvQ
-	(envelope-from <devicetree+bounces-260123-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 21:42:34 +0100
+	id WCj6EWAneWkMvwEAu9opvQ
+	(envelope-from <devicetree+bounces-260124-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 22:00:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53C949A6A6
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 21:42:33 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CD269A839
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 22:00:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C3B9F3063756
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 20:41:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3C0ED30125D8
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 21:00:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 378B236F412;
-	Tue, 27 Jan 2026 20:41:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83692274FE3;
+	Tue, 27 Jan 2026 21:00:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gmxztl/I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B95F132573D;
-	Tue, 27 Jan 2026 20:41:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDABA231A23;
+	Tue, 27 Jan 2026 21:00:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769546483; cv=none; b=i2KxLuVLNvfc5bx90/Qk2jHOJaG3f4rS4vJXlOE8bAyvVy160ax3CaVyLZDUYqzexKs38psknjgGRQZ7nIVOZrQpefWQ5LQPoLjnn9IFKf74tahF3yp33aOSThVtpN9n/OCGh73KZN2HxFQo5xfS7DXxv0qqBYpsxFVkqNu3Qus=
+	t=1769547611; cv=none; b=UeBfJ6IXz9J654iHF9mIIKfBYpJQBmLp7rsYKP/JLx06RX1XEXhgDwh8y3nbHJ6CLfa94DdBEV7Cf8GRXdupt7ttBL/eg0uIZ+zQ+4cTgaDFvsYp6T2KQuRGgUz5JqtMpEqDVFZO7SKMGQPcHhqwxTvKb9hx2mzC8IpTTz/sHN0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769546483; c=relaxed/simple;
-	bh=6jXgBAXR6DmnocMVq9UjJxfZQt8p8wK2xq9VRcA+x1c=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=RGPJOAVKPifXlCP+M9wkfID9gZrjUD/uGZm/vmfCP/V225Y3JFaEXB5mudxE3jSSuQiZK6Z2k+ZXVSR/xIZqOuWNRA9aR6FAcwDiHvh8U+QJGFlJPofgTeVf4sv6J//QPkePj6LRuU1HeBwV3CUJ4wHuHKuga+X2Clgn1ipBtr0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space; spf=pass smtp.mailfrom=timmermann.space; arc=none smtp.client-ip=80.241.56.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=timmermann.space
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4f0y3t0Zg4z9vL8;
-	Tue, 27 Jan 2026 21:41:14 +0100 (CET)
-Authentication-Results: outgoing_mbo_mout;
-	dkim=none;
-	spf=pass (outgoing_mbo_mout: domain of linux@timmermann.space designates 2001:67c:2050:b231:465::2 as permitted sender) smtp.mailfrom=linux@timmermann.space
-From: Lukas Timmermann <linux@timmermann.space>
-Date: Tue, 27 Jan 2026 21:40:58 +0100
-Subject: [PATCH v4 3/3] ARM: samsung: exynos5250: Allow CPU1 to boot
+	s=arc-20240116; t=1769547611; c=relaxed/simple;
+	bh=15LikzopnR8kHz+hCxZ6bhTjumJSimQzGGKBrixcPlk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PDXGVnkeBLe9o6udU6lLEAuXLYP4rh4vR4aRtxWkyd13ELs80wto4JKYLN0Pv/vzM1cJVTRkjShPNPmdvfxPV9raPXYkZ8imTvGwICrAJu1+9PfTI/We+GhWQ9Z4Ko+Q51dM/dU1zY9d25tEn89o8+CN0r07Q5wLMIIgfzGRUkA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gmxztl/I; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1769547610; x=1801083610;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=15LikzopnR8kHz+hCxZ6bhTjumJSimQzGGKBrixcPlk=;
+  b=gmxztl/I2EF3LrEf8eyGnSPTAfAw8A95+NbgMgYSPxvBH3nfMZyk1SRd
+   sV5Vzxv7dQ2FnNMJAbfJeZ68EaWAFrUy+9mTNHTthFx8svy5+ZfijeDgh
+   PJDvpKRU2KVutdW6mczNVo8ayF2RTgdgRhi4mDtdIcbTekzXAUGPvlIIb
+   bIehf/k8xkQCdmjB3EImaFazJxy6TqYiQ/cEv5vFrlBJ+lOaRxaL06Ivt
+   7IU45GExB/Rc41h/fepDfBjW/1cZtvS7EIzPLLFThCH69oZRFDUIEl9Of
+   u6q4BdpcHy+rAxfJwvWhmI4U4mbqs4s8N7txexreK4qanxeOWnLt6rNmr
+   A==;
+X-CSE-ConnectionGUID: nJnSfAlUTru+bVv469sRcQ==
+X-CSE-MsgGUID: BHFsjuIhTKem8PClr0gnfw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="82183461"
+X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; 
+   d="scan'208";a="82183461"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2026 13:00:10 -0800
+X-CSE-ConnectionGUID: gY1JV+vCT1GAgSKQNhVjWA==
+X-CSE-MsgGUID: TJfwN4TiS/Su1VcPdaiwvA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; 
+   d="scan'208";a="212185906"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.245.248])
+  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2026 13:00:04 -0800
+Date: Tue, 27 Jan 2026 23:00:03 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Danny Kaehn <danny.kaehn@plexus.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Benjamin Tissoires <bentiss@kernel.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Jiri Kosina <jikos@kernel.org>,
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Ethan Twardy <ethan.twardy@plexus.com>, linux-i2c@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Leo Huang <leohu@nvidia.com>,
+	Arun D Patil <arundp@nvidia.com>, Willie Thai <wthai@nvidia.com>,
+	Ting-Kai Chen <tingkaic@nvidia.com>
+Subject: Re: [PATCH v13 1/3] dt-bindings: i2c: Add CP2112 HID USB to SMBus
+ Bridge
+Message-ID: <aXknU-fxh286Nkek@smile.fi.intel.com>
+References: <20260127-cp2112-dt-v13-0-6448ddd4bf22@plexus.com>
+ <20260127-cp2112-dt-v13-1-6448ddd4bf22@plexus.com>
+ <20260127160217.GA3776731@LNDCL34533.neenah.na.plexus.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260127-lat3st-staging-v4-3-797469aaaf9d@timmermann.space>
-References: <20260127-lat3st-staging-v4-0-797469aaaf9d@timmermann.space>
-In-Reply-To: <20260127-lat3st-staging-v4-0-797469aaaf9d@timmermann.space>
-To: Krzysztof Kozlowski <krzk@kernel.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>
-Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- phone-devel@vger.kernel.org, Lukas Timmermann <linux@timmermann.space>, 
- Alexandre Marquet <tb@a-marquet.fr>, Henrik Grimler <henrik@grimler.se>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260127160217.GA3776731@LNDCL34533.neenah.na.plexus.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260123-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com,linaro.org,plexus.com,nvidia.com];
+	TAGGED_FROM(0.00)[bounces-260124-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[timmermann.space];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@timmermann.space,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[timmermann.space:mid,timmermann.space:email,grimler.se:email,a-marquet.fr:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 53C949A6A6
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,smile.fi.intel.com:mid]
+X-Rspamd-Queue-Id: 6CD269A839
 X-Rspamd-Action: no action
 
-From: Alexandre Marquet <tb@a-marquet.fr>
+On Tue, Jan 27, 2026 at 10:02:17AM -0600, Danny Kaehn wrote:
+> On Tue, Jan 27, 2026 at 08:47:48AM -0600, Danny Kaehn wrote:
+> > This is a USB HID device which includes an I2C controller and 8 GPIO pins.
+> > 
+> > The binding allows describing the chip's gpio and i2c controller in DT,
+> > with the i2c controller being bound to a subnode named "i2c". This is
+> > intended to be used in configurations where the CP2112 is permanently
+> > connected in hardware.
 
-The firmware trustzone needs a special call to bring up the secondary
-cpu core on the Manta board. This seems to be not needed on other
-exynos5 boards and comes down to the available firmware on
-a particular board.
+> Hi Folks (Intended for Rob or Krzysztof),
+> 
+> Wasn't sure the best way to go about this, but trying to see the best
+> way to get a message in front of you regarding an ask from Andy S.
+> 
+> In [1], Rob H initially directed that the gpio chip share a node with
+> the CP2112 itself, rather than having a subnode named 'gpio'.
+> 
+> Initially, I did the same thing for both DT and ACPI, but Andy S.
+> directed that ACPI should not have the node be shared in that way.
+> 
+> With the last revision of this patch, Andy S. asked that I try to get a
+> rationalle from Rob (or other DT expert presumably) on why the gpio node
+> should be combined with the parent, rather than being a named subnode
+> [2].
+> 
+> Any context you can provide would be extremely helpful. Apologies about
+> the age of this patch series and the amount of historical context; some
+> is due to my long delays between revisions, but other of it is due to
+> attempting to get the ACPI and DT folks to talk / agree.
 
-Signed-off-by: Alexandre Marquet <tb@a-marquet.fr>
-Signed-off-by: Lukas Timmermann <linux@timmermann.space>
-Reviewed-by: Henrik Grimler <henrik@grimler.se>
----
- arch/arm/mach-exynos/firmware.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+I think this is about markers such as "gpio-controller" or
+"interrupt-controller" in DT for the device in question.
+With that it might not be required to have a separate child
+node for the GPIO function.
 
-diff --git a/arch/arm/mach-exynos/firmware.c b/arch/arm/mach-exynos/firmware.c
-index a5e22678e27b..e9b0ed07bb90 100644
---- a/arch/arm/mach-exynos/firmware.c
-+++ b/arch/arm/mach-exynos/firmware.c
-@@ -61,10 +61,10 @@ static int exynos_cpu_boot(int cpu)
- 	 * Exynos3250 doesn't need to send smc command for secondary CPU boot
- 	 * because Exynos3250 removes WFE in secure mode.
- 	 *
--	 * On Exynos5 devices the call is ignored by trustzone firmware.
-+	 * On most Exynos5 devices the call is ignored by trustzone firmware.
- 	 */
- 	if (!soc_is_exynos4210() && !soc_is_exynos4212() &&
--	    !soc_is_exynos4412())
-+	    !soc_is_exynos4412() && !of_machine_is_compatible("google,manta"))
- 		return 0;
- 
- 	/*
+> [1]: https://lore.kernel.org/all/20240213152825.GA1223720-robh@kernel.org/
+> [2]: https://lore.kernel.org/all/aSdvv3Qss5oz_o6P@smile.fi.intel.com/
 
 -- 
-2.52.0
+With Best Regards,
+Andy Shevchenko
+
 
 
