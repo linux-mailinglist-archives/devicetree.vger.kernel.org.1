@@ -1,77 +1,75 @@
-Return-Path: <devicetree+bounces-260029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260030-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aMLdJMDjeGlJtwEAu9opvQ
-	(envelope-from <devicetree+bounces-260029-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:11:44 +0100
+	id KA+RGSXjeGlJtwEAu9opvQ
+	(envelope-from <devicetree+bounces-260030-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:09:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E888097800
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:11:43 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1232F9770D
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:09:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 109AF300F9E2
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:06:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2F4C03046F21
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:07:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DC9035D5E3;
-	Tue, 27 Jan 2026 16:06:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b="DOyO9SDq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 720CF35EDAD;
+	Tue, 27 Jan 2026 16:07:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0046e701.pphosted.com (mx0b-0046e701.pphosted.com [67.231.157.77])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBA552FE598;
-	Tue, 27 Jan 2026 16:06:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.157.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABA872DC34E;
+	Tue, 27 Jan 2026 16:07:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769529981; cv=none; b=UmlXO912kQO1J9sTyfeUTeZAfPv2lFYQ4Itqjs3v9OSb+yg5EjKlyy9ZNuJ7S34i1s4SBuJVZDdKcpmhCHbugJ/mo3qZgqD2gSxbaBIaQZ984E3U3thlfgJFveCTrWbw8AZykQ5OySUPmYl4VrVSYbU8z5q+ibwkHgt2G6sWRms=
+	t=1769530046; cv=none; b=JCQ3W3E29+k8g3IgyWC6qzV5WdhCjgs6HV/Ius3J9yd0GdWI51S2DDCtzuVAF2/rTv1lekw0AkfLKtWPPMBKOph259htJOtsQoNVbqRlhj7/G+JGiGaVsx50XNYkMIYwOYr/e/spkvKp24X6isCgmPR0wzyaV3L8SSuBp4oKZj8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769529981; c=relaxed/simple;
-	bh=tFCRa3KnZWUkSKFCupr+j+drsSozAGTz6moKQZuAGqA=;
+	s=arc-20240116; t=1769530046; c=relaxed/simple;
+	bh=NY9cb+akJlTJ+NzsdrBYWtGImGb9ceHiU09JJg2Gbts=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lx6dSQyWAQjgDMOmHDaPkcB4hxmInrLVNRfCP4zadtY25Y3zYEgljr4X+XL0IDPvhLo3WCHYgdTbDNczP9TQYwvgBJLlLD9BP7GrEYL0s0JUMjm7OtKXl/Lulvi92IoKVk2p3fBFGBc3ImIYCvOmOOtyksq+RaRdeXjawXjPn+o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=plexus.com; spf=pass smtp.mailfrom=plexus.com; dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b=DOyO9SDq; arc=none smtp.client-ip=67.231.157.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=plexus.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=plexus.com
-Received: from pps.filterd (m0425993.ppops.net [127.0.0.1])
-	by mx0b-0046e701.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60R3ZvNf2408879;
-	Tue, 27 Jan 2026 10:06:08 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=plexus.com; h=cc
-	:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=pps1; bh=D/suHw5JTVQFP6YIK5Ggk4hT6MzIx
-	dW4DQLULI0Yq24=; b=DOyO9SDqunQvM+rySbNG/ZIM9CebtHPp5TGDh2ukKfvx0
-	5i7NxwljQ+pApFFKcooB8GBlZno0UQ6NJprjfdoIb3FDwenG1Kxos635Wot1qGys
-	4zmhq3jyDZ0fKGFAAQDZztDLFii6ZjEty+1l6WKEsRg47jV8VYyT08JfPUdO8e9I
-	1BLQaF/PJoCWimTGCnO0t4CDx41iOkokeEt8eTJDg0hMJVtmXZj3I1dVGBVr4GEZ
-	1CZHosmygt6UuY85YYnZSM1kPi52Vy+YadsD+7+h8yQ3iRCUvCwTMveHIcP4Qajd
-	cegs6tr+2XYBerajn1JcWtzbmSI99wfMkobvTIhWw==
-Received: from intranet-smtp.plexus.com ([64.215.193.254])
-	by mx0b-0046e701.pphosted.com (PPS) with ESMTPS id 4bwe1vc60t-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Tue, 27 Jan 2026 10:06:07 -0600 (CST)
-Received: from localhost (unknown [10.255.48.203])
-	by intranet-smtp.plexus.com (Postfix) with ESMTP id D1111580C1;
-	Tue, 27 Jan 2026 10:06:06 -0600 (CST)
-Date: Tue, 27 Jan 2026 10:02:17 -0600
-From: Danny Kaehn <danny.kaehn@plexus.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Benjamin Tissoires <bentiss@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Andi Shyti <andi.shyti@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Jiri Kosina <jikos@kernel.org>, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Ethan Twardy <ethan.twardy@plexus.com>, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Leo Huang <leohu@nvidia.com>,
-        Arun D Patil <arundp@nvidia.com>, Willie Thai <wthai@nvidia.com>,
-        Ting-Kai Chen <tingkaic@nvidia.com>
-Subject: Re: [PATCH v13 1/3] dt-bindings: i2c: Add CP2112 HID USB to SMBus
- Bridge
-Message-ID: <20260127160217.GA3776731@LNDCL34533.neenah.na.plexus.com>
-References: <20260127-cp2112-dt-v13-0-6448ddd4bf22@plexus.com>
- <20260127-cp2112-dt-v13-1-6448ddd4bf22@plexus.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=DX+lfxYf7vKx74xvLgPH4PqMs8WGEcmDdZZEQuA38sYHL6Qr9ncUy2VwtyAkDUCtOoMrYG7lc1O6KjUqh8Ps0dJUNBIB0GlFxY9HiTX1X49dCLJlmDANYcRt9FR2ZcslO5NshZ5O3JgMXEfyQshTmEbMOPCv8mfznlNMvLRz58s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.99)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1vklb1-000000001UI-27PD;
+	Tue, 27 Jan 2026 16:07:15 +0000
+Date: Tue, 27 Jan 2026 16:07:10 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Paolo Abeni <pabeni@redhat.com>, Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Simon Horman <horms@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Frank Wunderlich <frankwu@gmx.de>, Chad Monroe <chad@monroe.io>,
+	Cezary Wilmanski <cezary.wilmanski@adtran.com>,
+	Avinash Jayaraman <ajayaraman@maxlinear.com>,
+	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
+	Juraj Povazanec <jpovazanec@maxlinear.com>,
+	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
+	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
+	"Livia M. Rosu" <lrosu@maxlinear.com>,
+	John Crispin <john@phrozen.org>
+Subject: Re: [PATCH net-next v8 4/4] net: dsa: add basic initial driver for
+ MxL862xx switches
+Message-ID: <aXjirjOsc5IJFHfH@makrotopia.org>
+References: <cover.1769053079.git.daniel@makrotopia.org>
+ <18c6a24eef8617abb5073569fee162f1aa1c06ea.1769053079.git.daniel@makrotopia.org>
+ <c2e191c4-dec4-4e42-b108-353778d9bd18@redhat.com>
+ <aXinOE7KIFIm5dUK@makrotopia.org>
+ <5e7c2f9c-bf49-4564-91b3-a639ef1c97d8@lunn.ch>
+ <aXjQKoXBIAkV06XE@makrotopia.org>
+ <8f267321-25fc-447f-8ff3-5d5b2d844d30@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,95 +78,107 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260127-cp2112-dt-v13-1-6448ddd4bf22@plexus.com>
-X-Proofpoint-Reinject: loops=2 maxloops=12
-X-Authority-Analysis: v=2.4 cv=c6CmgB9l c=1 sm=1 tr=0 ts=6978e26f cx=c_pps
- a=356DXeqjepxy6lyVU6o3hA==:117 a=356DXeqjepxy6lyVU6o3hA==:17
- a=kj9zAlcOel0A:10 a=vUbySO9Y5rIA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=VwQbUJbxAAAA:8 a=QyXUC8HyAAAA:8 a=Y_joWELsAAAA:8 a=1liyV6abj2hmQ9BcVj4A:9
- a=CjuIK1q_8ugA:10 a=g_BQsM8wYJVSTWLOHH1t:22
-X-Proofpoint-ORIG-GUID: 1b_HruHKb5KIa2jiJ9jkJjWhYgaLWRM8
-X-Proofpoint-GUID: eloi-HR8t2tpFdWQbAr5vUDmv0DB8XpF
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI3MDEzMSBTYWx0ZWRfXyKcNuXE/uCTf
- h8hFatzZfc6WRWgK5v1WHr03mt4h+v/Z5ircAUSx7mi0c50jRf1XE78PBjqOrsRh2iMQGi475XM
- +ZE7aXxR3N2bXKgvulf/JpwSaMCi+FjCLzb/s0oHipoS6uPBsnGjRoikx7koietFKBREDmOmv/F
- W61UI44w7sNsAuOxzHrEnkpa0ilkRZLK3L/0gE8RYTPzdaivP7lwxVyE1kDyYblW9Tv9oxya+N7
- UcNXvMCR/qwPFB8NI4y8tYCtueQSAzhuzMjI64xQo604la5WGWmChnuSmZCq9rLWWl5kXVkg+rw
- OMJMfL/+e3ij/Fbt6tCU9i60KfNVJ1diI66zytqNfoBq2gxh7wUX6nigLjReG7VAcRArzQb/b95
- +70Srccqy+qBqX2NuwXO+mXuZgoA7A1WLxbx25zPyCG0DVkZzWpNKv0HT93CW0/Uqi0j6UNSDVJ
- 2dgT2GwFNzLCNn+Bcng==
-X-Proofpoint-Spam-Reason: orgsafe
+In-Reply-To: <8f267321-25fc-447f-8ff3-5d5b2d844d30@lunn.ch>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[plexus.com,reject];
-	R_DKIM_ALLOW(-0.20)[plexus.com:s=pps1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260029-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com,linaro.org,plexus.com,nvidia.com];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-260030-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_CC(0.00)[redhat.com,gmail.com,davemloft.net,google.com,kernel.org,armlinux.org.uk,vger.kernel.org,gmx.de,monroe.io,adtran.com,maxlinear.com,phrozen.org];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	DMARC_NA(0.00)[makrotopia.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[danny.kaehn@plexus.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[plexus.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[plexus.com:email,plexus.com:dkim,LNDCL34533.neenah.na.plexus.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: E888097800
+	NEURAL_HAM(-0.00)[-0.990];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[daniel@makrotopia.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[makrotopia.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 1232F9770D
 X-Rspamd-Action: no action
 
-On Tue, Jan 27, 2026 at 08:47:48AM -0600, Danny Kaehn wrote:
-> This is a USB HID device which includes an I2C controller and 8 GPIO pins.
+On Tue, Jan 27, 2026 at 04:04:10PM +0100, Andrew Lunn wrote:
+> > > int mxl862xx_to_zephyr_errno(u16 reg)
+> > so that would then just be
+> > 	return (s16)reg;
+> > right?
 > 
-> The binding allows describing the chip's gpio and i2c controller in DT,
-> with the i2c controller being bound to a subnode named "i2c". This is
-> intended to be used in configurations where the CP2112 is permanently
-> connected in hardware.
+> Yes.
+
++1
+
+Maybe better to check if bit 16~31 is actually zero as well, so
+int mxl862xx_to_zephyr_errno(int reg)
+{
+	if (reg >= 0 && reg <= U16_MAX)
+		return (s16)reg;
+
+	return 0;
+}
+
+or
+
+int mxl862xx_to_zephyr_errno(int reg)
+{
+	if (!(reg & GENMASK(31, 16))
+		return (s16)reg;
+
+	return 0;
+}
+
+or something like that. Let me know what you prefer.
+
+
 > 
-> Signed-off-by: Danny Kaehn <danny.kaehn@plexus.com>
-> ---
+> > 
+> > Or did you think to include the handling of the error __mdiodev_c45_read()
+> > would return, ie.
+> > int mxl862xx_to_zephyr_errno(int reg)
+> > {
+> > 	if (reg < 0)
+> > 		return reg;
+> 
+> No, that mixes up real linux error codes and Zephyr OS error codes.
 
-Hi Folks (Intended for Rob or Krzysztof),
+I thought of that 'int reg' to be the return value of
+__mdiodev_c45_read(), so if that 32-bit signed int < 0 that means what
+you get is the error returned from __mdiodev_c45_read().
 
-Wasn't sure the best way to go about this, but trying to see the best
-way to get a message in front of you regarding an ask from Andy S.
+> 
+> If the MDIO operation fails, you have a real error code you can
+> return. If the firmware fails, you will want to netdev_err() the
+> Zephyr error code to aid debug, and then return -EIO.
 
-In [1], Rob H initially directed that the gpio chip share a node with
-the CP2112 itself, rather than having a subnode named 'gpio'.
-
-Initially, I did the same thing for both DT and ACPI, but Andy S.
-directed that ACPI should not have the node be shared in that way.
-
-With the last revision of this patch, Andy S. asked that I try to get a
-rationalle from Rob (or other DT expert presumably) on why the gpio node
-should be combined with the parent, rather than being a named subnode
-[2].
-
-Any context you can provide would be extremely helpful. Apologies about
-the age of this patch series and the amount of historical context; some
-is due to my long delays between revisions, but other of it is due to
-attempting to get the ACPI and DT folks to talk / agree.
-
-[1]: https://lore.kernel.org/all/20240213152825.GA1223720-robh@kernel.org/
-[2]: https://lore.kernel.org/all/aSdvv3Qss5oz_o6P@smile.fi.intel.com/
++1
 
 
-Thanks,
+> 
+> > Or actually translating the actual errno to a Linux error code?
+> 
+> Is it worth the effort? How many times have you seen the firmware
+> fail? During debugging, it might be useful, but in production?
 
-Danny Kaehn
+Some of the error values are useful, it *is* good to know whether eg. a
+bridge cannot be allocated because (for what ever reason) of resource
+exhaustion (-ENOMEM) or because of otherwise invalid settings (-EINVAL).
+However, it is true that in production none of that should ever happen.
+The driver will be able to predict and manage the resources of the
+switch without ever hitting -ENOMEM, and make sure parameters are valid
+before passing anything to the firmware. And even during development it
+is good enough to see the error number in the netdev_err() output.
 
 
