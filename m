@@ -1,153 +1,140 @@
-Return-Path: <devicetree+bounces-260035-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260036-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EH5BEpvleGl1twEAu9opvQ
-	(envelope-from <devicetree+bounces-260035-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:19:39 +0100
+	id 4HzyFALmeGlwtwEAu9opvQ
+	(envelope-from <devicetree+bounces-260036-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:21:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09F6697A19
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:19:39 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id B963D97AB0
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:21:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 308B83060F80
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:16:47 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8165130094DC
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:18:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 798A4361640;
-	Tue, 27 Jan 2026 16:16:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAE643321DC;
+	Tue, 27 Jan 2026 16:18:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WPrHnJoE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C+7uSikC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 555DF1A23A6;
-	Tue, 27 Jan 2026 16:16:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8052212B2F;
+	Tue, 27 Jan 2026 16:18:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769530600; cv=none; b=pz7NitpHeDkULHKGK2CV6Rpt4q8JLV5xBhnAH7krWPJ7Q7p8LqPWlGedkJZBGLvE09CqkCHrclF7gonE3TS/YiByi4W7IiK8y3HKkzNlzMdJWryBjeAht5utcsKNUBZt4Q/yFOObZuKnTj5v6Yc7wcDSYRoRepYQZWJbfY9wQzs=
+	t=1769530731; cv=none; b=sq+HyYb/IWfKx/lWaHlghNVtcuni3vnmgu9indvCOUeZPFuVdW0tatTvD6FW3INsQrjmPeobA1S3CV4decBgk8faY2SbgzYHVYcWPKiKrnUm+aT8X69EiWKFpabO2icaxNxfdR/2fHLyiwFlgHu6VmzUjn2Qc6ugP8rhCkGuYfY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769530600; c=relaxed/simple;
-	bh=NqFehIo+wBHMLRHMznX73JFaSdHutIeKjEWsJZ2JeHU=;
+	s=arc-20240116; t=1769530731; c=relaxed/simple;
+	bh=cyt06RXJUBnyvd+rDscVy+C+X/eqB2fWQSj539VtPJg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ecjE/FGPeOJTEKQp7O3Xr5+hvFLW6nti1yjKQHFUjlKTSKywSrlWTlRusJYeq6KHlHhFggzDVTclioTe12YEKlj8qhAMKSHwKolW96u9p4IVW+2SbHCfT/o4FJkh4uwLdQ4NwAvME9CNYjwN3NIZM9zd8tRIqqcFcz5OvK58bP8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WPrHnJoE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6514BC116D0;
-	Tue, 27 Jan 2026 16:16:39 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=jiYwiS8rtuS7QDM0gRAqrrw0ghFTANusnKesy7NHOHV/arXtrG3o7TUW/V+Iird9J2ye1t/IRsI8dlaCLFG3E5Xoo8BtCANKXDur/VHfb7//LF3ScKCoavw0eGEtT0hyCNR84K3BjiJ9GVLCWTBiYZ2OXSsVfBr/5+g1dlo+1sU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C+7uSikC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3754DC116C6;
+	Tue, 27 Jan 2026 16:18:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769530599;
-	bh=NqFehIo+wBHMLRHMznX73JFaSdHutIeKjEWsJZ2JeHU=;
+	s=k20201202; t=1769530731;
+	bh=cyt06RXJUBnyvd+rDscVy+C+X/eqB2fWQSj539VtPJg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WPrHnJoES5+B4SO5Id+A461DHDKLrk6+GM3/Uf/n8N3inB4rEP/d1K4dzz/YC+DAU
-	 gqzA6l1uA7yXlKKaaJ4i/gXpvdC9kZs7+FyjWImn2IfU7ezTuwwZVHaQSkZjpHDpM8
-	 Frtgge+tLCAY/+ZCHfomsBumZyzizDrEAeA1vQ3P3yp1m6fKd6J22pPnZl4VkbP6TU
-	 s3gRXa6uJNtG5H1692o+64MhnO8LLgllYtki1lrUH+qMJqBPQYHdEXO8wrO4arMQei
-	 /bKZlodd4pbQW9+JdAtcLQaOSbTri5MQxvtIrQEki7eJI7uhbpNvvh1IXv14/zmNd4
-	 y1nszUxOjxPNg==
-Date: Tue, 27 Jan 2026 17:16:37 +0100
-From: Thierry Reding <thierry.reding@kernel.org>
-To: Prathamesh Shete <pshete@nvidia.com>
-Cc: linusw@kernel.org, brgl@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, thierry.reding@gmail.com, jonathanh@nvidia.com, robh@kernel.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/3] gpio: tegra186: Add support for Tegra264
-Message-ID: <aXjk3VEb7f2tDGrW@orome>
-X-NVConfidentiality: public
-References: <20260127050358.1136279-1-pshete@nvidia.com>
- <20260127050358.1136279-2-pshete@nvidia.com>
+	b=C+7uSikCiRnhCCypeIwP3zThpixogQdAMob/hrAgGC5aN3mFG3mo3K8bL9Gj4D5iJ
+	 mlRIA/x9KX0iTeGZDEcP+u/Vri4Htd4P4oPAskQq9RLzdfA+ewSZnL5vMdWP6llvh+
+	 1GYZY6ZCp24IZI8/J7wSbTX3gg2Rf0/px3XgNPRaw+gGzcpdIGPy8e16eGK/n3WvnF
+	 Ca6e0GEolE2ajsV8HdNbXv1n3dDcg4TBtC4d4Xd5wSFLeJKKdD8c77fg9C5UsuuOJ9
+	 ZffR5ckNFO/8+h8vLqyPLc0UIxOKXIhc5Cg4sZciTJAklnb7fWjYvULpWIOB9UdOr+
+	 voPcT5RXeyB9Q==
+Date: Tue, 27 Jan 2026 10:18:50 -0600
+From: Rob Herring <robh@kernel.org>
+To: Akhila YS <akhilayalmati@gmail.com>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-mtd@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mtd: mxic,multi-itfc-v009-nand-controller:
+ convert to DT schema
+Message-ID: <20260127161850.GA1968054-robh@kernel.org>
+References: <20260126-mxic-nand-v1-1-557df4a0dfa7@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="jmu6es2dltbgztd2"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260127050358.1136279-2-pshete@nvidia.com>
+In-Reply-To: <20260126-mxic-nand-v1-1-557df4a0dfa7@gmail.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-3.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-260036-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260035-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,nvidia.com,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[thierry.reding@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 09F6697A19
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mxic.com.tw:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nod.at:email,devicetree.org:url,bootlin.com:email]
+X-Rspamd-Queue-Id: B963D97AB0
 X-Rspamd-Action: no action
 
-
---jmu6es2dltbgztd2
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v4 2/3] gpio: tegra186: Add support for Tegra264
-MIME-Version: 1.0
-
-On Tue, Jan 27, 2026 at 05:03:57AM +0000, Prathamesh Shete wrote:
-> Extend the existing Tegra186 GPIO controller driver with support for the
-> GPIO controller found on Tegra264.
->=20
-> Use the "wakeup-parent" phandle from the GPIO device tree node to
-> ensure the GPIO driver associates with the intended PMC device.
-> Relying only on compatible-based lookup can select an unexpected
-> PMC node, so fall back to compatible-based lookup when the phandle
-> is not present.
->=20
-> Signed-off-by: Prathamesh Shete <pshete@nvidia.com>
-> Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
+On Mon, Jan 26, 2026 at 11:09:20AM +0000, Akhila YS wrote:
+> Convert Macronix Raw NAND Controller Device Tree binding to DT Schema.
+> 
+> Signed-off-by: Akhila YS <akhilayalmati@gmail.com>
 > ---
-> Changes in v2:
->   * Use =E2=80=9Cwakeup-parent=E2=80=9D instead of "nvidia,pmc" and inclu=
-de the renamed header.
-> ---
->  drivers/gpio/gpio-tegra186.c | 90 +++++++++++++++++++++++++++++++++++-
->  1 file changed, 88 insertions(+), 2 deletions(-)
+>  .../mtd/mxic,multi-itfc-v009-nand-controller.yaml  | 79 ++++++++++++++++++++++
+>  .../devicetree/bindings/mtd/mxic-nand.txt          | 36 ----------
+>  2 files changed, 79 insertions(+), 36 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mtd/mxic,multi-itfc-v009-nand-controller.yaml b/Documentation/devicetree/bindings/mtd/mxic,multi-itfc-v009-nand-controller.yaml
+> new file mode 100644
+> index 000000000000..97baac8b405a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mtd/mxic,multi-itfc-v009-nand-controller.yaml
+> @@ -0,0 +1,79 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mtd/mxic,multi-itfc-v009-nand-controller.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Macronix Raw NAND Controller
+> +
+> +maintainers:
+> +  - Miquel Raynal <miquel.raynal@bootlin.com>
+> +  - Richard Weinberger <richard@nod.at>
 
-Acked-by: Thierry Reding <treding@nvidia.com>
+Should be someone with the h/w. Perhaps the driver author Mason Yang 
+<masonccyang@mxic.com.tw>.
 
---jmu6es2dltbgztd2
-Content-Type: application/pgp-signature; name="signature.asc"
+Though the driver has zero driver specific changes since added in 2019 
+and there are no .dts files using it. Maybe it is unused and should be 
+dropped instead.
 
------BEGIN PGP SIGNATURE-----
+But otherwise, the schema looks good.
 
-iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAml45OUACgkQ3SOs138+
-s6Ge5xAAsNBPs+CZNlpmu3Xy/pYpzEzOCb+fYyZrPLrZ4G+YqBWaMYdJ+p0qlQEz
-EpeCYYYG+0LhZ1RLV1oFcJck9VFGAkpi1AniCFM6F9lpk8KhaPh1D7+4i+MYG57L
-G0Q0tW2ujibz0basbooe6Pmaa91pVi4XHpxYJdATxOFCeIHgln2I7dfT9zDGpSYP
-TskNEGgywdbQG0SucKnUlgIikIr0gIugL7f+G14Gy2qXXhBBsDmiG9cPZNGA9KEO
-n0NoBPvoptOJsfxsZcv7moBb3Hh8pqv8wHVgMwsE4VPsuEpBF4121gGnMiYN2zMj
-czv+E3o95PKJ5bXt3TNE/VrAZoqTQJYQYfY6KgJKykJLhaSVpaGjudijSmQ6re7Q
-q3KTpY3Ryvn0G77fP2M0u1Sib+V1VK/+E0WSz6Kcay82PpsD8RKQ9GXFpfBlzrlO
-KFpRXZen+a8inwNnzlb8vqKX1NkKQMbvRF3M9a2LonNDh4HITYlpCCB65OppbtnD
-sge7a/Gm3l5aWAhrzoaZVrD1JNUenf8a8m+fpOIGYBQh40sxcmCblCfQQb1uiNPr
-z49qc57cM83jrcsPTsiljMh/oyiFw3a3al7E3ZWlKcNZwJz4fZCLLV+jDt2/i8xs
-ZpOmMi7CNSemcmsu7w6rHDXLdEfsfAjCPHxzHg8sIXq8ulxhQpE=
-=lDo0
------END PGP SIGNATURE-----
-
---jmu6es2dltbgztd2--
+Rob
 
