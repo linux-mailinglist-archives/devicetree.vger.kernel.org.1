@@ -1,200 +1,131 @@
-Return-Path: <devicetree+bounces-260074-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260075-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oJFZM7sDeWk3ugEAu9opvQ
-	(envelope-from <devicetree+bounces-260074-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 19:28:11 +0100
+	id QLEKHesDeWk3ugEAu9opvQ
+	(envelope-from <devicetree+bounces-260075-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 19:28:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3502599057
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 19:28:11 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 169F8990A6
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 19:28:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CA9AD303011D
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 18:28:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 737D9303D339
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 18:28:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0705326D62;
-	Tue, 27 Jan 2026 18:28:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF14C326D75;
+	Tue, 27 Jan 2026 18:28:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cd+58DKb"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="GFmUpiK8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDFAB326949
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 18:28:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21C75326D62;
+	Tue, 27 Jan 2026 18:28:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769538488; cv=none; b=aSH0cs2Ni/Fl/XhtzXaV1eOukSAO8ayQ4Imr5SWYFkGfNIWIRZQ24MK+9IMZDJ/WfrSYr9yu5ZDN5agco8kUobuOE2ah6W/tvMprz9L8NN3VYDbBCTOB+8kSDWBc0B0W4Ld1UaF9jvkwJcTEREhbsbamfwKhgfUI4vx6KBAslGY=
+	t=1769538527; cv=none; b=tWj8cFXez3annRqxf0vUYEjzTRy+Pscq92j6X1Rmtw78RQ0YJEVFaX+Lkc5O4KTwoV0a7OHhE+W+600U0K5RbiYnVazt/YydI+9GTtiSNWkj1XaO1qyzfyXZxWJoSZjRsGyPH+MHyWJ2ioV3+fzhrIpVlhO+Pbv+KKS2IjpgD+k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769538488; c=relaxed/simple;
-	bh=W7/a56tUf3Lkr+2nWP3N9biS9HWxHhESOTwUsHEZtxE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZGWGy+HmvlqWC5a70AXTglexMwKbrVM6ewm6+a1FeDl+Axz3MysnZgfCrvATB2VgwHIGrlZ+s7hCqCvcauSPD6dvRxeIMjAU8OMdT5wgTiAtQZ7A/0Dk+SrS5WnD+u7kGX5G/AYli867x1av1dWpZHmVcvfRqpalxgBNc16BAEo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cd+58DKb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 660A0C2BC9E
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 18:28:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769538488;
-	bh=W7/a56tUf3Lkr+2nWP3N9biS9HWxHhESOTwUsHEZtxE=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=cd+58DKbaWPU7AeqWOYvcEicYkScsgKVT5c8z+rQgA1RYHT/EZa0Q4sryRYQb2iMz
-	 7olyND3mML/1PJARHEeGCKe6N4eyVFWFtwXLL/VWI0N+TIQ1WBKxr0vf8+wJUfKhMT
-	 1BD5EUj0PA5Mdnva6TjguXn7AHH5HqRdQ975/jc5vxIvL9qoNo6grpgxjhtXPSnDEe
-	 HNNyBYgmA8G5NVVpvNlM9RMwjvhrCSy4N/GUkuPkkVmU4p5loekCFymhYWnvU+lpIW
-	 PD2kfYk23CdVVgBaW0QFIRhpABi6RNj/MvrfmBZpPz1qChDVi+zwpMe00ybc1QcLnS
-	 quNzIHIbQ6NAQ==
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-b884a84e655so828426766b.0
-        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 10:28:08 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCV6GxGIDgAOx63m9cLKdPAT63v0FDy+4HJWIuW6HbXaHY9J+n5L3CaoAZhYlGXmqIXuQYNlgFaI0aum@vger.kernel.org
-X-Gm-Message-State: AOJu0YzV9b213WfDgkCDHqFnAp9xBoFAlEvW6UnV4wiDzfFsxDrGFr89
-	vx/BlnPO85uYaDDTzf2fXW9UGH4NmNTJDbfxkuYVvPWKACo8SO3TKESH+OlqqE+jJZ8P41BdFAP
-	1AS5rMERZCmrVqqwX7/6NsRO1Rv7kxA==
-X-Received: by 2002:a17:907:3e14:b0:b88:5002:50c0 with SMTP id
- a640c23a62f3a-b8dab305bf9mr203203466b.20.1769538486920; Tue, 27 Jan 2026
- 10:28:06 -0800 (PST)
+	s=arc-20240116; t=1769538527; c=relaxed/simple;
+	bh=9a4V6BCbiETl2dvADV2PdcV2ulrJG2PXrdW9bD1lXtE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rnBkkKVbTpHRh2S27VcTfvjxIZ8GaxgkwBQCVzmvfgVzeEwVZu2YuIOdN4KizrfatGHI9ojCUIfSwpA5pUSHdZSmsX4pH0GctxWejpKNrqm1dZmDVrpTJQZwG9esCakHBDI3988AHT0Xk0lzGLvIWYyWx+Hafo+CQW/Moy0ZGAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=GFmUpiK8; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=BAgAaKIEUyZedKtdSU1qveQIhBDQOhZR50BlZ8+IBDQ=; b=GFmUpiK8HYdUO9Hl2OoAdnPqly
+	eCfMebd5vxbePIMPiSPy8sz0wug5a+v0hPGnp81pJHUi4plySPJj+e1jRR3eRVtENS/A8bQ9GC5HK
+	VUIUe1Ar9sRxPtzJaOKkx6MQmsvNr2b/SeE4UaYInZ0B++cSxhG39jPpHStM9QWm4er4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vknne-00505V-IZ; Tue, 27 Jan 2026 19:28:26 +0100
+Date: Tue, 27 Jan 2026 19:28:26 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Paolo Abeni <pabeni@redhat.com>, Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Simon Horman <horms@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Frank Wunderlich <frankwu@gmx.de>, Chad Monroe <chad@monroe.io>,
+	Cezary Wilmanski <cezary.wilmanski@adtran.com>,
+	Avinash Jayaraman <ajayaraman@maxlinear.com>,
+	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
+	Juraj Povazanec <jpovazanec@maxlinear.com>,
+	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
+	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
+	"Livia M. Rosu" <lrosu@maxlinear.com>,
+	John Crispin <john@phrozen.org>
+Subject: Re: [PATCH net-next v8 4/4] net: dsa: add basic initial driver for
+ MxL862xx switches
+Message-ID: <60e9939b-dae6-41d0-8008-3c38a4dd4030@lunn.ch>
+References: <cover.1769053079.git.daniel@makrotopia.org>
+ <18c6a24eef8617abb5073569fee162f1aa1c06ea.1769053079.git.daniel@makrotopia.org>
+ <c2e191c4-dec4-4e42-b108-353778d9bd18@redhat.com>
+ <aXinOE7KIFIm5dUK@makrotopia.org>
+ <5e7c2f9c-bf49-4564-91b3-a639ef1c97d8@lunn.ch>
+ <aXjQKoXBIAkV06XE@makrotopia.org>
+ <8f267321-25fc-447f-8ff3-5d5b2d844d30@lunn.ch>
+ <aXjirjOsc5IJFHfH@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260127105511.3917491-1-mohammad.rafi.shaik@oss.qualcomm.com>
- <20260127141740.GA1574044-robh@kernel.org> <9f5436df-fef7-4921-85b3-b6fe4e942779@oss.qualcomm.com>
-In-Reply-To: <9f5436df-fef7-4921-85b3-b6fe4e942779@oss.qualcomm.com>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 27 Jan 2026 12:27:55 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+YYxWKaD-Xo7L3VUAJ=wvpbfW9GkKn0gcj3AOvMb=Uhg@mail.gmail.com>
-X-Gm-Features: AZwV_QjHB-GlP9dv8BmFRD-SF_vPG5R2x4sdb1do0pgOa5KST72t95IKMHbIpTk
-Message-ID: <CAL_Jsq+YYxWKaD-Xo7L3VUAJ=wvpbfW9GkKn0gcj3AOvMb=Uhg@mail.gmail.com>
-Subject: Re: [PATCH v3] dt-bindings: pinctrl: qcom,sm8450-lpass-lpi-pinctrl:
- Add SA8775P and QCS8300 pinctrl
-To: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Linus Walleij <linusw@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Srinivas Kandagatla <srini@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aXjirjOsc5IJFHfH@makrotopia.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260074-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260075-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[redhat.com,gmail.com,davemloft.net,google.com,kernel.org,armlinux.org.uk,vger.kernel.org,gmx.de,monroe.io,adtran.com,maxlinear.com,phrozen.org];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid,qualcomm.com:email]
-X-Rspamd-Queue-Id: 3502599057
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lunn.ch:mid,lunn.ch:dkim]
+X-Rspamd-Queue-Id: 169F8990A6
 X-Rspamd-Action: no action
 
-On Tue, Jan 27, 2026 at 12:13=E2=80=AFPM Mohammad Rafi Shaik
-<mohammad.rafi.shaik@oss.qualcomm.com> wrote:
->
->
->
-> On 1/27/2026 7:47 PM, Rob Herring wrote:
-> > On Tue, Jan 27, 2026 at 04:25:11PM +0530, Mohammad Rafi Shaik wrote:
-> >> Document compatible for Qualcomm SA8775P and QCS8300 SoC LPASS TLMM
-> >> pin controller, fully compatible with previous SM8450 generation
-> >> (same amount of pins and functions).
-> >>
-> >> Signed-off-by: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.c=
-om>
-> >> ---
-> >> changes in [v3]:
-> >>   - Removed the duplicate driver code patch as suggested by Krzysztof.
-> >>   - Reused the existing SM8490 pinctrl, which is fully compatible with=
- SA8775P and QCS8300.
-> >>   - Link to V2: https://lore.kernel.org/all/20260107192007.500995-1-mo=
-hammad.rafi.shaik@oss.qualcomm.com/
-> >>
-> >> changes in [v2]:
-> >>   - Fixed dt-binding errors reported by Krzysztof and Rob.
-> >>   - Added proper slew rate value for wsa2_swr_data GPIO, as suggested =
-by Konrad.
-> >>   - Documented Monaco compatible as suggested by Konrad.
-> >>   - Link to V1: https://lore.kernel.org/all/20251116171656.3105461-1-m=
-ohammad.rafi.shaik@oss.qualcomm.com/
-> >> ---
-> >>   .../pinctrl/qcom,sm8450-lpass-lpi-pinctrl.yaml         | 10 ++++++++=
-+-
-> >>   1 file changed, 9 insertions(+), 1 deletion(-)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8450-lpa=
-ss-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8450=
--lpass-lpi-pinctrl.yaml
-> >> index e7565592d..354629c38 100644
-> >> --- a/Documentation/devicetree/bindings/pinctrl/qcom,sm8450-lpass-lpi-=
-pinctrl.yaml
-> >> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm8450-lpass-lpi-=
-pinctrl.yaml
-> >> @@ -15,7 +15,15 @@ description:
-> >>
-> >>   properties:
-> >>     compatible:
-> >> -    const: qcom,sm8450-lpass-lpi-pinctrl
-> >> +    oneOf:
-> >> +      - const: qcom,sm8450-lpass-lpi-pinctrl
-> >> +      - items:
-> >> +          - enum:
-> >> +              - qcom,qcs8300-lpass-lpi-pinctrl
-> >> +              - qcom,sa8775p-lpass-lpi-pinctrl
-> >> +          - const: qcom,sm8450-lpass-lpi-pinctrl
-> >> +        minItems: 1
-> >> +        maxItems: 2
-> >
-> > No. You are either backwards compatible with sm8450 or you aren't. The
-> > h/w is fixed.
-> >
->
-> ACK,
->
-> Agree,
->
-> Need backward compatibility with sm8450 for both sa8775p and qcs8300 as
-> they must fall back to the sm8450, so initially used enum to pick
-> between the sa8775p and qcs8300 compatibles. I see enum isn=E2=80=99t
-> appropriate here since fixed h/w.
->
-> will use the const instead of enum like below.
->
->   properties:
->     compatible:
-> -    const: qcom,sm8450-lpass-lpi-pinctrl
-> +    oneOf:
-> +      - const: qcom,sm8450-lpass-lpi-pinctrl
-> +      - items:
-> +          - const: qcom,sa8775p-lpass-lpi-pinctrl
-> +          - const: qcom,sm8450-lpass-lpi-pinctrl
-> +
-> +      - items:
-> +          - const: qcom,qcs8300-lpass-lpi-pinctrl
-> +          - const: qcom,sm8450-lpass-lpi-pinctrl
+> Some of the error values are useful, it *is* good to know whether eg. a
+> bridge cannot be allocated because (for what ever reason) of resource
+> exhaustion (-ENOMEM) or because of otherwise invalid settings (-EINVAL).
 
-Sigh, no. The 2 entries can be combined like you had. Just drop
-minItems and maxItems from what you had.
+We need to be careful with these. POSIX defines ENOMEM and EINVAL, but
+not their value. So you should add ZEPHYR_ENOMEM and ZEPHYR_EINVAL,
+just to make the name spaces clear.
 
-And test your binding before sending it.
-
-Rob
+     Andrew
 
