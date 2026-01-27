@@ -1,88 +1,62 @@
-Return-Path: <devicetree+bounces-260037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260038-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yMt8MKnseGkCuAEAu9opvQ
-	(envelope-from <devicetree+bounces-260037-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:49:45 +0100
+	id +OrlE1nmeGmHtwEAu9opvQ
+	(envelope-from <devicetree+bounces-260038-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:22:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02D2397F48
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:49:44 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9FD897B05
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:22:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 75AF330CE239
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:19:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3917B3014C18
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:22:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1432735CBD6;
-	Tue, 27 Jan 2026 16:19:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="1slvacn4"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4679435FF67;
+	Tue, 27 Jan 2026 16:22:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F29CF315D3B;
-	Tue, 27 Jan 2026 16:19:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE8853002CF;
+	Tue, 27 Jan 2026 16:22:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769530764; cv=none; b=F+9B2UdythjXg5Y7gA94FNK0BA0uydDIWN8i5VRK2F6l8iJZGuU4eRDRwyh1ITFSsmvfRaGM91n7Y8wBP5cVaBTtnvuuHH06eCHAQyfKwCy7uu5qzroFergGHJl0FiGEZKZSESHghb67+Eq0BZJ7K3PAX4LHUafTEBZNj5u4+Oo=
+	t=1769530966; cv=none; b=QFTJqIoAfj0NjsajxUPpfJbL1ffdZXjpog2TGlFaHwvgzoLBoDXd9GTvMM6vhIQ+m1k73Xs8PFWaZIFZ33opVQnLkROqthEG4ow2jECaFVnSRhhPt0z5S62iIVkbpS/cGH1NBwWW6EUvv1opkUurJDI0dZUXyh70pHMaiDNmR0o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769530764; c=relaxed/simple;
-	bh=XcbpJRUuL3Ubt5Ed2F7bTwq/ybs5kf2kzi+mBjStBb0=;
+	s=arc-20240116; t=1769530966; c=relaxed/simple;
+	bh=bzEzsJt4MXGUIhvPjvkK2AeikSGIbnB2herqMgXFsDQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b6r9eqlZzHrDTmRM35eC298M6qDWkoM1io81jhooGgS18XOANatHb1WYF9wu37W9gwpFGYrVEcRrpTPpjuO+05Fon3LGnrI0DcFDUASdmfkVQ71sxzIiv/+GLNnQFR4yX7/Yh9N8s/zTKZ9h5ObQyS3rM4aHrT4/0CDKkW8RShc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=1slvacn4; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=uQ6dpDIMwFcx1DIyqitolqe18roGblvdy6umSFchGlQ=; b=1slvacn4dO0ytY5r0FD2qvr9/t
-	e8zwmuGAdLrNpB0Z+KY0HhEUe1C5ft8z6sek4n3mDDCALCNolN3TOM7xVam+mxCYI8IV5+xNUtfhE
-	McA9oYM2eseerQ4ijCe67rfSTYF33kYs5AEvdfa7UQ0SjAvo1IXhKw3t5As8b3L4j66LGCGdf+pEU
-	nutNiWZjT8maF+UaxOli9w2NkLa1VsZeXaI6piSRQYH20dPvsCJ5uBw9z+R4H0LbPkYzC/bu4+FWZ
-	qrY/b/fSNbZNhK6SAvfp8iaowy0VyVzCxx3CheeKXMoEOaCvoU6KgfXPgJ0wZ5os2+R4B8sPfL+fI
-	JrHNl/HQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:34082)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1vklmV-000000006PY-3xAy;
-	Tue, 27 Jan 2026 16:19:08 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1vklmS-0000000062w-145r;
-	Tue, 27 Jan 2026 16:19:04 +0000
-Date: Tue, 27 Jan 2026 16:19:04 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=o6u5jZqzU3ISElVAOzDchiP3SGPHgjie2ATLw3MvrrrzAH3LiqFalIfv2SYF9TaMthPW+yU86MtVOjbK/PXtbmQ9efndssEnqyAO3zVnROvxQyajbs4MXgjaBjUrfoAtXQwVfLyDll00itadHKsBXFg/LOWoURIS7wQLh48QAWo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.99)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1vklpv-000000001ZH-0WCi;
+	Tue, 27 Jan 2026 16:22:39 +0000
+Date: Tue, 27 Jan 2026 16:22:36 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Vladimir Oltean <olteanv@gmail.com>, Hauke Mehrtens <hauke@hauke-m.de>,
 	"David S. Miller" <davem@davemloft.net>,
 	Eric Dumazet <edumazet@google.com>,
 	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Simon Horman <horms@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Frank Wunderlich <frankwu@gmx.de>, Chad Monroe <chad@monroe.io>,
-	Cezary Wilmanski <cezary.wilmanski@adtran.com>,
-	Avinash Jayaraman <ajayaraman@maxlinear.com>,
-	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
-	Juraj Povazanec <jpovazanec@maxlinear.com>,
-	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
-	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
-	"Livia M. Rosu" <lrosu@maxlinear.com>,
-	John Crispin <john@phrozen.org>
-Subject: Re: [PATCH net-next v8 4/4] net: dsa: add basic initial driver for
- MxL862xx switches
-Message-ID: <aXjleHGRAIaSji48@shell.armlinux.org.uk>
-References: <cover.1769053079.git.daniel@makrotopia.org>
- <18c6a24eef8617abb5073569fee162f1aa1c06ea.1769053079.git.daniel@makrotopia.org>
+	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 1/3] dt-bindings: net: dsa: lantiq,gswip:
+ reference common PHY properties
+Message-ID: <aXjmTMasMdE52Gfw@makrotopia.org>
+References: <cover.1769519758.git.daniel@makrotopia.org>
+ <d9b6212ad5137feeb58b28e9b0784f1084c813df.1769519758.git.daniel@makrotopia.org>
+ <20260127132919.xsvapgqc65f44iah@skbuf>
+ <aXjGh1nzeAz8TQzH@makrotopia.org>
+ <ad3bbac2-1aea-401a-881f-a8a9860f84a9@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,78 +65,67 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <18c6a24eef8617abb5073569fee162f1aa1c06ea.1769053079.git.daniel@makrotopia.org>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+In-Reply-To: <ad3bbac2-1aea-401a-881f-a8a9860f84a9@lunn.ch>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.14 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_REJECT(1.00)[armlinux.org.uk:s=pandora-2019];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[armlinux.org.uk : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260037-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-260038-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[lunn.ch,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,vger.kernel.org,gmx.de,monroe.io,adtran.com,maxlinear.com,phrozen.org];
-	RCPT_COUNT_TWELVE(0.00)[26];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_CC(0.00)[gmail.com,hauke-m.de,davemloft.net,google.com,kernel.org,redhat.com,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	DMARC_NA(0.00)[makrotopia.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[armlinux.org.uk:-];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[linux@armlinux.org.uk,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.996];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.997];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[daniel@makrotopia.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[shell.armlinux.org.uk:mid,armlinux.org.uk:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 02D2397F48
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,makrotopia.org:mid,maxlinear.com:url]
+X-Rspamd-Queue-Id: A9FD897B05
 X-Rspamd-Action: no action
 
-On Thu, Jan 22, 2026 at 03:42:07AM +0000, Daniel Golle wrote:
-> +static void mxl862xx_phylink_mac_config(struct phylink_config *config,
-> +					unsigned int mode,
-> +					const struct phylink_link_state *state)
-> +{
-> +}
-> +
-> +static void mxl862xx_phylink_mac_link_down(struct phylink_config *config,
-> +					   unsigned int mode,
-> +					   phy_interface_t interface)
-> +{
-> +}
-> +
-> +static void mxl862xx_phylink_mac_link_up(struct phylink_config *config,
-> +					 struct phy_device *phydev,
-> +					 unsigned int mode,
-> +					 phy_interface_t interface,
-> +					 int speed, int duplex,
-> +					 bool tx_pause, bool rx_pause)
-> +{
-> +}
+On Tue, Jan 27, 2026 at 04:21:26PM +0100, Andrew Lunn wrote:
+> > > Is the PCS integrated into the port?
+> > 
+> > The PCS is hard-tied to port 4 of the switch. Neither can that port be
+> > used for anything else than this PCS, nor can the PCS be used elsewhere.
+> > It's a bit like they nuked one of the TP PHY ports and glued in that
+> > SGMII PCS instead. The PCS is probably a ready-made IP block
+> 
+> Does it have IDs in register 2 and 3?
 
-The above three are required, but...
+That'd be too easy ;)
 
-> +
-> +static struct phylink_pcs *
-> +mxl862xx_phylink_mac_select_pcs(struct phylink_config *config,
-> +				phy_interface_t interface)
-> +{
-> +	return NULL;
-> +}
+register 2 is SGMII_PHY_MPLL_CFG2
+register 3 is SGMII_PHY_RX0_CFG1
 
-This one isn't, you can drop it and phylink will assume NULL.
+register 2 and 3 of the XAUI PHY which can be indirectly accessed also doesn't
+contain anything meaningful (0x000a and 0x0000)
 
-Thanks.
+> Is there any clue if it is licensed from somebody?
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+At least it's not obvious in any way.
+
+The documentation is public, see
+https://www.maxlinear.com/product/interface/ethernet/ethernet-switches/gsw145
+"Ethernet Switch GSW145 Data Sheet"
+Section 4.2 SGMII_Registers
+
+My guess that it is not genuinly designed for that switch IC stems from
+the fact that it has features (EEE, for example) which aren't supported
+in the way it is integrated in the switch.
 
