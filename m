@@ -1,453 +1,199 @@
-Return-Path: <devicetree+bounces-260047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260048-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +JJMKNPueGkCuAEAu9opvQ
-	(envelope-from <devicetree+bounces-260047-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:58:59 +0100
+	id GObqEdfueGkCuAEAu9opvQ
+	(envelope-from <devicetree+bounces-260048-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:59:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38C7E98158
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:58:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A704298160
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:59:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 9E56F30055B2
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:58:58 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 00F6E300599A
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:59:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B7F1362141;
-	Tue, 27 Jan 2026 16:58:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D1943612F9;
+	Tue, 27 Jan 2026 16:59:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="neMRw4PY"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="AlhWqse7";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="e4CpMS3E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C911361657
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 16:58:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B657362156
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 16:58:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769533136; cv=none; b=Vr6Bk2BpUWh9RtnNQyG2O/WQsLX2daFjc7DdQW4+Q9yZ2jUTt60PYO3Bwl+UVkkQuXqMv7E+0hn0ov2AmqqQpcfll8+bKz4siOe6+YoO2SxcOXSuPzKQ75E9/dsw9HnAZbg/5Nw+T3kEeAawrwKElI9xfE0oKpQo+jPKxNRNYEA=
+	t=1769533141; cv=none; b=BG+SwszcFvIcr305jc/VPaPbVR2lQmGJFmAnfR1Azd/Eij2fPDyyWkKM+O/UazYYBjzXVTNyX6Bvi/L4tURz8lejl4Y92dqQp+nU4/6TQztdQA+Jz0DGVz4fR4X5oHDy8Nrku+ozB4KZIEYaZWkdV8Dax1JUqQFvQCaVmWdCHwQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769533136; c=relaxed/simple;
-	bh=BQxMfic91fvio2sSHNZJTwHwGTwfiIKo/DNvC2i6RcQ=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Sg3c47RREY2RZgf+z1Sp6e9crdnfqsehn8mtTho8jJRKGg/oFyQsaDlAlfdmnxyfDhUJ5fvbZtVLvZZSkUMQzP1JBNXdluQKYy/Gp4DEOaTBB2rFXAoH26ciHehRXDK8XqSPOZjrWv4wM1FaVawGJAtcmSETusUaqNqm+wykFsg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca; spf=pass smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=neMRw4PY; arc=none smtp.client-ip=209.85.222.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ndufresne.ca
-Received: by mail-qk1-f181.google.com with SMTP id af79cd13be357-8c70ce93afaso81400685a.0
-        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 08:58:54 -0800 (PST)
+	s=arc-20240116; t=1769533141; c=relaxed/simple;
+	bh=IGSWwVQk6hK0IjIwxOuBNPQF3TTIg15Mr3FZVcFFot4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IV1BuZIG0sj5ziMLJfEjgFFHsJ1peDssb+n480Orvo5xZdP2ecXVrvFoWe5C6heUtMtd5marWL5jFPmlhxOYk2VWpFq/S2zZK56/MXDvaY5ptB7NxwxntIQltG+c1j3w+N3AY2Hx1kuUs4sPT60YhT0Cg1avnFjfYX0UsI6DNGQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=AlhWqse7; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=e4CpMS3E; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60REZwbo1066277
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 16:58:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=k4EOXRWuy4WzdOY2En7DGdc7
+	2r/k0PMvyPe7LbbgRbY=; b=AlhWqse7MlJnMFB3sV53eUcF3JNW3WbQODlcygng
+	Y9rlEBH8feOSUT0nk8lYu1QvdOxb3OTh85Hk1jmfpXEgcYeTitFL+u/+y86sh1Ke
+	q1fq/BuKmkIBsE2R9qvXbuQZ2aSDhPyuwT473L1fK5SRSxLRzbWAHnqxqlGSRhSK
+	6gjfNC/9bcy/1ZL1eIUB0OHl4JoMvqbYxIJo1YDwdX+DSK8oLJcPlGQ6Xjd/DHcc
+	0vB7VYlPlR2OrG3PdPVeqY0O36ayIaO4wFMfuFGG+pGhvTyOEXX+s/zQ7bh8/u7Y
+	7BvCRkvI1Ubq1lCyq4R9qjEleaWbwKITw/JFc/9+OTPPCQ==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bxy8x0j1w-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 16:58:59 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8c70de6bd18so106427785a.1
+        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 08:58:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1769533133; x=1770137933; darn=vger.kernel.org;
-        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
-         :from:subject:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=BQxMfic91fvio2sSHNZJTwHwGTwfiIKo/DNvC2i6RcQ=;
-        b=neMRw4PYCIdrm9rCMMXc1B8R+XG0l5LESLlil16mbO7mMr9yiGUN/QW4LGNDiO3SxS
-         ARtaM9/L29a5x/7SUHi4bgWeXstLcQkVJBq99lpLYEHR1T+EQrenf0cLtTMjUd5OTw0t
-         vU1FZnQaN0j67kpSzaic81kbKM38xuFkwIcceTY83xjQzRzoAntfIT5Hqg96XpWWY009
-         /NCPIdk+Lcu9rGc4EnRzLtmFYCSqhhxuZF+yPoPC85p4G+1SfEIVjiO8+jgtBUXywFr1
-         TB12BD28Fi9KUeZe7EWENdEpifV769sxv7X/x93RQmbTCWqILe4TuM2bWoUoCOtnozEb
-         OfPg==
+        d=oss.qualcomm.com; s=google; t=1769533138; x=1770137938; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=k4EOXRWuy4WzdOY2En7DGdc72r/k0PMvyPe7LbbgRbY=;
+        b=e4CpMS3E+NEbz40SAlrpTwk8v/xEgEQLWmYQH67OJRNAp62BfofZnLllJCceNdUnC8
+         HGQw9/9PcD8A2PjyBETgTw8v9vhMjSPupkn4Op8K+9ypGL5TJZFU6a5Ozi4AXDvpWjoF
+         oPNDnaDWlDhK3V5D1qat94KAM5UmijFVvwawzixywL0jPnN+Rm3+kwcBENnuTXCoQaah
+         KBPAFeecylS5bUnnCyB2m7Et44Ma7h9kMNjoukfblTvaoa5ZeuwVyQXw9u8sia83OLJl
+         lCZ9iXJRYU0SdgiRTyEYn2xF77Tko4nv9EKYSkX/8b7RwnNftibZXlaMUYdhJzuiCnP+
+         SLUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769533133; x=1770137933;
-        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
-         :from:subject:message-id:x-gm-gg:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1769533138; x=1770137938;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=BQxMfic91fvio2sSHNZJTwHwGTwfiIKo/DNvC2i6RcQ=;
-        b=WkVwoRqlXiiPdDybUVuPvVHK/ACXVMoaQvVcE7d5dscO9Sh4csi1Tthywd8/vnLWop
-         FEeJl448LDxQ90wajlLm8duKSQkhnxPNTuknUDag6Ovw/zEmf/AAA7jYIFBAwLirScf5
-         MP+0wq0BJXr3eZmO4EF3IhgmF+LojvdQA9Y9mejio7iQNRueZfMJhIH5J+oFUduQiqHi
-         wcLEaL+Fm2sEiXGHFYAQHkr/CJC1bNErCdv+w/ZKdk48FlZVmimtPsXyschS0Ov9Mjxi
-         /8LC5GyucvPNUUZPE19U83XRNDE6643OwjpzEZIJL86/qPLahaqmqMFyfkIYH7EwACFH
-         nUtQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVg5yNy4e3bc7HYo2e6QdMSJAVIewjYmPlpTSIPoxuunrKiROEdzjtWy50RzNZklLJa4OG7EYwNVQZ4@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxi46z4gNIT1Aley4H3FfHp1ZTzkTEmXcRqBQianE5Ll6a7Wne9
-	JxZFhizJK9PMN8cpS3owiYLf6nlt6I4CEsBGZVh7DeM1iaYzJq6iX9IZSyWy5q3WjrM=
-X-Gm-Gg: AZuq6aI7QfhjrEyfLXy8EEaee2/HdIChhDolCMd/jfxk6vlysqXOoDLTHV1NbFZtkBp
-	NMEdSygW0S2SBk+cKc0CtocCjP7jGW+alZBa63fMHaa2speql4BneAnB9RXUcpwOumq7k0Wm1DZ
-	0I00jTj/Dfe5OnVnbffdYU7iR2f+vLIiVIvQnhXNzZwLIc/rcV8QvjUWdHKnPguN0ZI9ZAThM18
-	+astCnKq/yY6SbrGvIHQ3jQMsy/mTyF+rZ22sMQ6ZF1xt8muYa7nVAGDs/9C6yEa3/KcbE9jO3t
-	UM5v73bF7ljtoMgGXTvFQd4BuT3QQEU8G4dOMjgVHlnEdmxBUWYShIOuHbW7YDnGrdGQAeUUnrO
-	EiK5j5EWW+EmDbhRbuq38goRCFgZ8EWW5nqYm/JhBEBxCxFGuhUkXd43WxWw89GlH4BgFDjDBjD
-	xKnovY1gtXYBFxKWzT
-X-Received: by 2002:a05:620a:25c6:b0:8c5:31d9:2a7 with SMTP id af79cd13be357-8c70b904ee8mr273595085a.70.1769533132717;
-        Tue, 27 Jan 2026 08:58:52 -0800 (PST)
-Received: from ?IPv6:2606:6d00:17:7b4b::5ac? ([2606:6d00:17:7b4b::5ac])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-8c711d3ffd8sm8810085a.41.2026.01.27.08.58.51
+        bh=k4EOXRWuy4WzdOY2En7DGdc72r/k0PMvyPe7LbbgRbY=;
+        b=oK+E+RjI4CAWGM7uQRKsTVMBp5t/drwvrSmqhioHPmFmn8MIF5YPg7pTXRPgTfAZXd
+         nVf0rRXSUumZ3ALitCU+BF5vFATO4OKVZZfJUy6b0ft4+7Lp4ElH6iy/czons4QEfH0L
+         0MJiw0tIMxa18WtA/1ZRT06dBsOIoPr0WtbGF4dxSDr8vx6bHHTzON/Nu5k8dzMCgJvI
+         6WANbG0T2lscsEEbj7xgZP+G522+AnCMbaoR4VYe6S+jjTc3W7VfGw6cDjVJtjHR89hE
+         2czz507DDYW+k0l1Fb2ayiyzQZRHFlLMdnWk9OdFv8R9elaIOvS7pGktwCmjOpmBQ3f+
+         sA1w==
+X-Forwarded-Encrypted: i=1; AJvYcCXuzXD5tu3KHZdkCtwP3zu7O18sE48lEzeHFISfaeF6wU0B1RNO1lKjtBlqeiaA7yxNvwa91QLmHezI@vger.kernel.org
+X-Gm-Message-State: AOJu0YyFTLuwDVFe/ki0dJm/Wt1dPApwiijPwNGGFEWpkCxxYT5xPGzM
+	wYUFRlJcIBDGdh+NS/FJpp9/yRUWgeDhYfUwFVpWeA0MfeU81Kcx1TG6QZVKixYLdaNOy8jeMwe
+	Vo6Qwqse2YAWPdayGiTJ2YbNxnIUfd9nur/MRv1SVYhfHE3QU40Ax37CdgdWdcxY6
+X-Gm-Gg: AZuq6aKWaO/83Z6w0frA2k5l4PE1OW6TkteB+8FT+qSmKX5iawbj/YYR+4b9ttrAqNG
+	tW8KwRYRafnffhBi3lq8sul4x6L2W62Ual1+sR7A9Sb7PhcrxV+Ee3QKtlfQXUfF/Zw3bx2GbIv
+	fARQm5Lt0xNC1IWMhtwSfjmdGCbWwRvPwEieqqHw/Y19A+vc91kbpkN6Rz6c5oWcFZ1m0SAUcgO
+	BzosVYnvYfC7SAalbwPjo8L1hntbYl6ZNdJDxWviEzvy71ExB6y276JBZd1WhN6ETDUGxqPATcn
+	ebD4okWDbgXTyYiTmY3H1JcHC9+h5abh1F3PTZQh8CpCvFblL+6UGxUej2mJoWbDXG72WcVDfPB
+	HC0MCn4lQf8slLiDgEIZezNRaZE469WIolWRzguV10Km47Ztn8YDqXGAAPB7iiYzYIEJR4YLXSA
+	UPSe7C7G0qSWCdD2v9NAE4VuI=
+X-Received: by 2002:a05:620a:4015:b0:8b2:f82f:c630 with SMTP id af79cd13be357-8c70b864814mr301764385a.31.1769533138531;
+        Tue, 27 Jan 2026 08:58:58 -0800 (PST)
+X-Received: by 2002:a05:620a:4015:b0:8b2:f82f:c630 with SMTP id af79cd13be357-8c70b864814mr301761485a.31.1769533138029;
+        Tue, 27 Jan 2026 08:58:58 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-38625c73b92sm381441fa.16.2026.01.27.08.58.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Jan 2026 08:58:52 -0800 (PST)
-Message-ID: <63ca375440c4ff2f55ea0aa4e19458f775552d88.camel@ndufresne.ca>
-Subject: Re: [PATCH 0/7] media: iris: add support for kaanapali platform
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Vikash Garodia <vikash.garodia@oss.qualcomm.com>, Dmitry Baryshkov
-	 <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>, Abhinav Kumar	
- <abhinav.kumar@linux.dev>, Bryan O'Donoghue <bod@kernel.org>, Mauro
- Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Saravana Kannan	 <saravanak@kernel.org>, Joerg
- Roedel <joro@8bytes.org>, Will Deacon	 <will@kernel.org>, Robin Murphy
- <robin.murphy@arm.com>, Stefan Schmidt	 <stefan.schmidt@linaro.org>, Hans
- Verkuil <hverkuil@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
- Vishnu Reddy <busanna.reddy@oss.qualcomm.com>, Hans Verkuil	
- <hverkuil+cisco@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, iommu@lists.linux.dev, Bryan O'Donoghue	
- <bryan.odonoghue@linaro.org>, Charan Teja Kalla
- <charan.kalla@oss.qualcomm.com>,  Vijayanand Jitta
- <vijayanand.jitta@oss.qualcomm.com>
-Date: Tue, 27 Jan 2026 11:58:49 -0500
-In-Reply-To: <01532d63-ca30-42a2-920b-bab65254c9c6@oss.qualcomm.com>
-References: <20260126-kaanapali-iris-v1-0-e2646246bfc1@oss.qualcomm.com>
-	 <lpgw6eodclsvfwgvtljfiorvjkpd5vd27yhxs7i3ijfibaqzuk@bak2lwbyh77f>
-	 <2d4632b2-916a-4eda-ad08-44af68461dc8@oss.qualcomm.com>
-	 <vv4stkmrrwdqmbnpv7pg5nd4immtqo5iplwbcia3oykycfmg2m@dsithotfy5ls>
-	 <df2d7dcc31c9a47752a1d58efdd7a416311e55ec.camel@ndufresne.ca>
-	 <01532d63-ca30-42a2-920b-bab65254c9c6@oss.qualcomm.com>
-Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-6/FKpFX9y6veMxX1yWQS"
-User-Agent: Evolution 3.58.2 (3.58.2-1.fc43) 
+        Tue, 27 Jan 2026 08:58:57 -0800 (PST)
+Date: Tue, 27 Jan 2026 18:58:55 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Abel Vesa <abel.vesa@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Taniya Das <taniya.das@oss.qualcomm.com>,
+        Taniya Das <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 6/6] clk: qcom: Add TCSR clock driver for Eliza
+Message-ID: <7cfriesyupcm6kmb32ynb6m4zsrkbowfpnpkkhhhxw7dmy56go@cetfuzk6wvlp>
+References: <20260127-eliza-clocks-v2-0-ccee9438b5c8@oss.qualcomm.com>
+ <20260127-eliza-clocks-v2-6-ccee9438b5c8@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260127-eliza-clocks-v2-6-ccee9438b5c8@oss.qualcomm.com>
+X-Proofpoint-GUID: MtcQUQSuYQEn5HYlNStdr_nkA25G4Vhp
+X-Authority-Analysis: v=2.4 cv=OcWVzxTY c=1 sm=1 tr=0 ts=6978eed3 cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=z393bjM37XPXZEtfGisA:9 a=CjuIK1q_8ugA:10
+ a=IoWCM6iH3mJn3m4BftBB:22
+X-Proofpoint-ORIG-GUID: MtcQUQSuYQEn5HYlNStdr_nkA25G4Vhp
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI3MDEzNyBTYWx0ZWRfX4ucwZprxf6NM
+ 9C/f6EIGY6Dw3NB9rxmGhTYRDOResY0nlPIGT3gHQqF40I8j06xfmCVjzVtKd7qkitO0LxQRKuS
+ PFfh2whbVMPvpxrrqqs0f40+Yzb22vgAMaw5rvdElmO3i30LhjZ5GYQTdBhlZXGG3IdMW9xcg2r
+ Xqk5ne5BLybQExlbrx0wz1KNHOSY5xK1JkdUoH9k3HzDnHUBEYj6WtAc7R/cDIGsWSNM3s64Mdy
+ MkgVYS9EtkntTU7JNh4TS7DFspZAMmp3AdSJT3onpgaLnvaFJ3+W5A3j7rOKoCPdFOyO1m+6lTX
+ kzxi7aAAFz88A+rFjejqMH8uYSJjBPvGpEPea3L7EiW+mCR+z0QZatz3NnTqQl6rV6yvWi8Z7DZ
+ dk4tvMJ8Al8MKgKShapSVmYoutJOd+/t0XTzmdKvSIFwiD432/P0QZS5bYyXNLbDxCuYkUTYoeX
+ NGlkBlR6TNg9eA+AyLg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-01-27_03,2026-01-27_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 priorityscore=1501 adultscore=0 clxscore=1015 phishscore=0
+ impostorscore=0 malwarescore=0 bulkscore=0 suspectscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601270137
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[ndufresne-ca.20230601.gappssmtp.com:s=20230601];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[ndufresne.ca : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260047-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[26];
-	DKIM_TRACE(0.00)[ndufresne-ca.20230601.gappssmtp.com:+];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260048-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,oss.qualcomm.com:dkim];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nicolas@ndufresne.ca,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,ndufresne-ca.20230601.gappssmtp.com:dkim]
-X-Rspamd-Queue-Id: 38C7E98158
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: A704298160
 X-Rspamd-Action: no action
 
+On Tue, Jan 27, 2026 at 05:03:24PM +0200, Abel Vesa wrote:
+> Add the TCSR clock controller that provides the refclks on Eliza
+> platform for PCIe, USB and UFS subsystems.
+> 
+> Co-developed-by: Taniya Das <taniya.das@oss.qualcomm.com>
+> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
+> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+> ---
+>  drivers/clk/qcom/Kconfig        |   8 +++
+>  drivers/clk/qcom/Makefile       |   1 +
+>  drivers/clk/qcom/tcsrcc-eliza.c | 144 ++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 153 insertions(+)
+> 
 
---=-6/FKpFX9y6veMxX1yWQS
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-Le mardi 27 janvier 2026 =C3=A0 21:29 +0530, Vikash Garodia a =C3=A9crit=C2=
-=A0:
->=20
-> On 1/27/2026 8:40 PM, Nicolas Dufresne wrote:
-> > Hi,
-> >=20
-> > Le mardi 27 janvier 2026 =C3=A0 13:52 +0200, Dmitry Baryshkov a =C3=A9c=
-rit=C2=A0:
-> > > On Tue, Jan 27, 2026 at 04:56:34PM +0530, Vikash Garodia wrote:
-> > >=20
-> >=20
-> > [..]
-> >=20
-> > >=20
-> > > > =C2=A0=C2=A0- 4 testcase failed due to unsupported resolution
-> > >=20
-> > > Can it be fixed?
-> >=20
-> > Its nicer if you name the failing tests vectors. I can guess this is
-> > PICSIZE_{A,B,C,D}_Bossen_1 by experience, but not everyone will guess. =
-HEVC
-> > level impose a limit on bandwidth, not on resolution. These files are e=
-ither
-> > very large and small height or the opposite. One of these is just 4K in=
- portrait
-> > mode (that is more concerning). Though, there is a V4L2 limitation for =
-this
-> > aspect, since we advertise the resolutions by range. Most hardware is d=
-esigned
-> > to support 4096x4096, in that casse that's what you should expose as li=
-mits.
-> >=20
-> > Though, some hardware do have dynamic sizing capabilities (like RKVDEC =
-HEVC), in
-> > this case there is not much you can do, you have to find the right trad=
-e of. But
-> > since you expose LEVELs, I think its fine to overshoot a little. Both
-> > constraints should ensure it works with valid streams.
->=20
-> I can list the failing test vectors for failing tests. In this case, its
-> PICSIZE_A_Bossen_1
-> PICSIZE_B_Bossen_1
-> WPP_D_ericsson_MAIN10_2
-> WPP_D_ericsson_MAIN_2
->=20
-> I have not explicitly gone through individual failures this time on=20
-> kaanapali, as last time when these were analyzed for earlier platform=20
-> (SM8550), the failed due to resolution lower than 96x96, which VPU does=
-=20
-> not support for kaanapali as well.
->=20
-> Do you think if fluster can query the supported frame sizes and=20
-> accordingly, mark the ones testing outside that range as pass, if=20
-> graceful error ?
-
-No, the conformance streams are the same for all decoder regardless of the
-subset of the spec the hardware designers decided have implemented. The err=
-or
-type could possibly be enhanced, but at the moment we have:
-
-- Success: MD5 matches
-- Fail: MD5 does not match (corrupted/truncated outcome)
-- Error: When the operation did not complete.
-
-Once you have manually investigated all the case, and you want to setup you=
-r CI
-(which I strongly recommend you to do). You can pass -sv / --skipvectors
-parameter to `run` command to remove the expected fail from your run.
-
-Another thing we get to notice, is that integrator very commonly assume tha=
-t a
-96x96 limits imply that all the resolution, display, coded and allocated mu=
-st be
-at least that big. Which most of the time is not what the HW designers inte=
-nded.
-
->=20
-> > >=20
-> > > > =C2=A0=C2=A0- 2 testcase failed due to CRC mismatch
-> >=20
-> > These are clear example of "no one can guess".
-> >=20
->=20
-> RAP_A_docomo_6
-
-When I read the description for this one it looks like something normally h=
-andle
-in the control software (which is in your firmware for this type of hardwar=
-e).
-You should report to your firmware team. When a GOP starts on a CRA followe=
-d by
-RASL, the control software need to skip over the RASL. This can either be d=
-one
-by skipping over the decoding, or letting the decoder run but marking as no=
-n-
-output. The second is what the GStreamer stateless decoders implementation =
-do,
-but we notice that on older driver, it may cause errors or hangs, so we wil=
-l
-stop doing that in the future. For reference, you can download the zip (lin=
-k in
-fluster/test_suites/h.265/JCT-VC-HEVC_V1.json), ITU conformances usually co=
-me
-with a description.
-
-https://www.itu.int/wftp3/av-arch/jctvc-site/bitstream_exchange/draft_confo=
-rmance/HEVC_v1/RAP_A_docomo_6.zip
-RAP_A_docomo_6: (RAP_A_docomo_6.bit)
-Frame rate: 30 fps
-Picture size: 832x480=20
-Spec version: HM10.1
-
-(Category: RAP; Sub-category: Bitstream starting with a CRA picture followe=
-d by
-RASL pictures that cannot be decoded)
-
-The purpose of the stream is to exercise the decoding of a conforming bitst=
-ream
-where the CRA is the first picture in the bitstream and is followed by 7 RA=
-SL
-pictures that are not decodable. There are two subsequent CRA pictures with=
- RASL
-pictures, following the first CRA picture in this bitstream. These subseque=
-nt
-RASL pictures should be decodable since the associated CRA is not the first=
- CRA
-picture in the bitstream.
-
-Note: In actual decoders, any RASL pictures associated with a CRA picture a=
-t the
-beginning of the bitstream or any RASL pictures associated with a BLA pictu=
-re
-may be ignored (removed from the bitstream and discarded), as they are not
-specified for output and have no effect on the decoding process of any othe=
-r
-pictures that are specified for output.
-
-The MD5 of the yuv file in output order decoded using the HM10.1-dev-3420 i=
-s
-included in RAP_A_docomo_6.md5.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
 
-> VPSSPSPPS_A_MainConcept_1
-
-This one depends on software cropping happening after the decoder. This is =
-not
-implemented in v4l2 stateful decoder, so a GStreamer bug. Unaligned crop re=
-gions
-that cannot be cropped by offset and stride stricks are generally not suppo=
-rted,
-but we opted for a proper cropper in the stateless plugin in order to suppo=
-rt
-conformance testing. Patched welcome, but not an issue with this driver.
-
->=20
-> For "RAP.." test vector, it was discussed earlier [1] and the frames=20
-> marked as VB2_BUF_STATE_ERROR should be dropped. GST is currently=20
-> displaying the NULL content leading to CRC mismatch. Let me know if this=
-=20
-> can be taken up as a GST bug.
-
-Well, as discussed earlier, GStreamer drops the ERROR frame if their payloa=
-d
-size it reset to 0. Otherwise its treated as partially corrupted frame, and
-pushed. This aligns with how the v4l2 buffer error state is documented.
-
->=20
-> [1]=20
-> https://lore.kernel.org/linux-media/20250408-iris-dec-hevc-vp9-v1-0-acd25=
-8778bd6@quicinc.com/
->=20
-> > >=20
-> > > Which means an error in the testsuite or somewhere on our side?
-> >=20
-> > The testsuite fully pass if you run using Franhofer reference decoder. =
-This is
-> > logical since the MD5 has been generated with it.
->=20
-> Since the reference decoder in this is not generating buffers with zero=
-=20
-> filled data, its not complaining. In VPU case, even though buffers are=
-=20
-> of zero filled data, marking them as error, should get dropped, instead=
-=20
-> of considering it as a valid frame.
-
-See comment below, you have some debugging to do here. I think other dev in=
- your
-group have kept ignoring the problem.
-
->=20
-> >=20
-> > >=20
-> > > > =C2=A0=C2=A0- 2 test fails due to session error (under debug)
-> > > > =C2=A0=C2=A0=C2=A0 - PICSIZE_C_Bossen_1
-> >=20
-> > Hmm, see, I have no idea which fourth one could fail due to resolution,=
- and that
-> > forth one is likely a bug on your side.
-> >=20
->=20
-> This could pass on sm8550 and fails on kaanapali. This should be=20
-> debugged from driver side.
->=20
-> > > > =C2=A0=C2=A0=C2=A0 - WPP_E_ericsson_MAIN_2
-> > > >=20
-> > > > VP9:
-> > > > 235/305 testcases passed while testing VP9-TEST-VECTORS with
-> > > > =C2=A0=C2=A0GStreamer-VP9-V4L2-Gst1.0.
-> > > > =C2=A0=C2=A0The failing test case:
-> > > > =C2=A0=C2=A0- 64 testcases failed due to unsupported resolution
-> > >=20
-> > > Can it be fixed?
-> >=20
-> > Check if you aren't mixing up constraints between display, coded and al=
-located
-> > resolutions. On most hardware, all 3 can differ. The OUTPUT queue shoul=
-d either
-> > not care at all, or use it to allow optimistic pre-allocation. But chec=
-k that
-> > the low resolution constraints is not coming from the OUTPUT queue soft=
-ware.
-> >=20
-> > VP9 coded resolution, it always at least 64x64.
-> >=20
-> The failed list is same as the one published during sm8550 [1]. I see=20
-> most of the test vectors are <=3D 64x64 and going as low as 08x08. Here a=
-s=20
-> well if we can have a query for supported frame size, it should handle=
-=20
-> these cases.
->=20
-> [1]=20
-> https://lore.kernel.org/linux-media/20250408-iris-dec-hevc-vp9-v1-0-acd25=
-8778bd6@quicinc.com/
-> > >=20
-> > > > =C2=A0=C2=A0- 2 testcases failed due to unsupported format
-> > >=20
-> > > Hmm?
-> >=20
-> > Clarify please, I suppose these are YUV444 (aka professional profiles).
->=20
-> vp91-2-04-yuv422.webm
-> vp91-2-04-yuv444.webm
->=20
-> >=20
-> > >=20
-> > > > =C2=A0=C2=A0- 1 testcase failed with CRC mismatch (fails with ref d=
-ecoder as well)
-> > >=20
-> > > Could you please raise an issue against fluster?
-> >=20
-> > Check your setup, it fully pass with reference here. The MD5 has been g=
-enerated
-> > using the reference.
-> >=20
-> > =C2=A0=C2=A0 ./fluster.py run -d libvpx-VP9 -ts=C2=A0 VP9-TEST-VECTORS
-> >=20
-> > It also fully pass with the GStreamer wrapper, though it had been fixed=
- in
-> > recent GStreamer versions (I'm testing with 1.26.10).
-> >=20
->=20
-> I would let Dikshita comment on this. I am unable to find that=20
-> discussion where it was failing in her setup with reference decoder as we=
-ll.
-
-Looking forward some improvement over generation of hardware, not regressio=
-n.
-
-regards,
-Nicolas
-
---=-6/FKpFX9y6veMxX1yWQS
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaXjuygAKCRDZQZRRKWBy
-9FWjAQDY5JOJrkwiQLna3jdTscn2vjalPvdv//UFEHBpGupWWQD+KbOrFfXUBHK0
-Mf7Ke63dsRsw1tp0UL5NHVkBTW4SqAw=
-=XB7s
------END PGP SIGNATURE-----
-
---=-6/FKpFX9y6veMxX1yWQS--
+-- 
+With best wishes
+Dmitry
 
