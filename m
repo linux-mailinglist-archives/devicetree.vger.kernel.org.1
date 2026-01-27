@@ -1,634 +1,441 @@
-Return-Path: <devicetree+bounces-259913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259912-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QAGHFCXDeGmltAEAu9opvQ
-	(envelope-from <devicetree+bounces-259913-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 14:52:37 +0100
+	id KMNnGxTDeGmltAEAu9opvQ
+	(envelope-from <devicetree+bounces-259912-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 14:52:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F37C895239
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 14:52:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 032C69521C
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 14:52:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id EA601301B2DC
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 13:51:39 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 689ED300AB0A
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 13:51:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5AF335C188;
-	Tue, 27 Jan 2026 13:51:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFC922E9EAC;
+	Tue, 27 Jan 2026 13:51:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="XXPBzyZp"
+	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="EpNF9iYR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9308A35B628;
-	Tue, 27 Jan 2026 13:51:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 951F035A95F
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 13:51:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769521884; cv=none; b=eaWr9cjaFBf8OY76ZUvQWP+hHjYtyAYKUD579MOGGYdDjoxevfb8yDbEPolmhqxbJffgOeQTTEgu+SDTb3yKECjmngGwrM3S5TUr6Eo5l4KYmk8JWdw9ak0qbEyuhsm+VOHdPZ5PwMRK/VfG4n637WsJdIq02Wr1PgbTdOmpkbA=
+	t=1769521883; cv=none; b=OrW21pMh/2pr01zyEKwaqdLGaZLB2wO2o7jVEWNGS6sbKDAkeZYXUBTgBpWYMGt8hxR+2zgXvyQs8a0/l9GnLTmTuyshXFlnWisVdSA4FP8sBEZlHZpbK9H4abGfrFO5e770TDJoll6yvdnFAg7NgWdSWZkb3/VeIzxfrb3hfek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769521884; c=relaxed/simple;
-	bh=t44Cf5bqPL06luIo6kX/DYsw4PKoyWbwQf+ZReZKXLg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=YpbXLjkQaqMfYdoRFpYhHrxOUW9al+0KkCZvTRpAANEePZwykQImoPjL2IvNBLMCOKTdCKZN68gDhWxfI0O3CRdF38HYXnxM2gooZage1fBriPw5oeb+0I9K40e707xlXvvd4PEfWz2cteeJ9ik19wXGoTNYkrL5gmqM9mQGbGs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=XXPBzyZp; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 575C94E422D4;
-	Tue, 27 Jan 2026 13:51:21 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 2C4C7606F5;
-	Tue, 27 Jan 2026 13:51:21 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DDE65119A867D;
-	Tue, 27 Jan 2026 14:51:19 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1769521880; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=mvwERiecWcwSNUnmJKFUBJMp/aCcykYyE8o/z0taI2g=;
-	b=XXPBzyZpgooa8++KvY/Hk21/yHvmLOSwTrfDY/XwyYhpbsRYEMnZVuUWJ8YRZcD6WgNLmS
-	GdIkcGMkawDzQI0Qj6Y6tIBS5jNPJRWGPxnEq3AlPV3hIcbN9GHa5mACzWm0z4FSIO55w3
-	E2Z/XNKPwi4b4DtqsXGfbkf2Rp2pRbueuNg20xjB7UWmmszH7QV38SFlDL0tNyjZbXeS1x
-	mQ6CbAOW3wFVrLlkrq2p0b5ulYhHc+n5cpdn6bokN1KmcF05p/Cv/lb1yHunX+q4eftwXY
-	Nv/u92p54dODCZai86UmNO5AW09LEg604Kguovr1GsV4jAM4mKspQMchkPuZiQ==
-From: Romain Gantois <romain.gantois@bootlin.com>
-Date: Tue, 27 Jan 2026 14:51:11 +0100
-Subject: [PATCH 2/2] misc: ti_fpc202: Support special-purpose GPIO lines
- with LED features
+	s=arc-20240116; t=1769521883; c=relaxed/simple;
+	bh=26a1JMciDcTJ+TZWbqnJJKHWKRs9hvl9k+BGAGE5Hns=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Pkn73IWwNgPPagRhFhBUIzSxMj1pZSCotVuCWneUc0SmcZZmx35hrZN2Hvlr94XcawYTrVjKLuR5JEI4PgKf3Cb68RZlOcvfp//MSnEh6woU527fDT1akfQbN+Zfu5wifxgTk+oXQMpD2o3kdrh8mDocoM4yVvUvhqNC6EVdi20=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca; spf=pass smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=EpNF9iYR; arc=none smtp.client-ip=209.85.160.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ndufresne.ca
+Received: by mail-qt1-f178.google.com with SMTP id d75a77b69052e-5029901389dso51833961cf.2
+        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 05:51:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1769521880; x=1770126680; darn=vger.kernel.org;
+        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
+         :from:subject:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=TWb9tHCixSdnVfIgDBaxxTLH7WM+nmMGf9vhIY0VeHY=;
+        b=EpNF9iYRJUoF2Zu1QVs0lClzULFFAKGuLbl8JGy6Z+fUMZjOcbdoQvCefzcBYFCV3F
+         tReDNV2jC1X6gYekYxd1qBTJI1uDJhOUSR8+wdA4G9IkInbLhptzdqSs4eLpoK9EhAkU
+         o9J1UQnzDiYjWu8uH8Paw8KHNRaei/coQcOJCXZud3tqhC09WbnyDQtTukeDO80uoVZh
+         Pqjo684jDxWIwtrm+N3drSH+ku1jIuyX6jbHOespN0SwzHhJnaMmTH3V8uCLbcbBi14s
+         z2MizUrtRWus0S1+u8szRU9UEpx2+40PHj6LSQIzTi7dxg9RwtsTQe2t66uivFVlZ3o1
+         tGVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769521880; x=1770126680;
+        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
+         :from:subject:message-id:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TWb9tHCixSdnVfIgDBaxxTLH7WM+nmMGf9vhIY0VeHY=;
+        b=Yz52w2S939KaFFvjj6jV5J6AXtJhhBzXSEQpd0Ry+Z91tL6OcaT6Mw8pgwBecODspr
+         TQbLBi5w9Z86FsFtwc2JwU6zeqw0mUWYmVK65qknDjsKSxcaFMvDw/erhRTs3Qn8Hbjr
+         h8LsYh+MfBwnMM6OiXDiN+C4yPThJDCGQYFBRIUqB0WAWhL/4WklfBgvwu+5ZBxZP3/Z
+         SOlRVxD1DPSshw1AbhNlIBfcpgostj3VpJ0YQylUBnAVOHgsfX4yA+h2UziFesh1vgiA
+         QDVD85I3Tc5SjTUh8QQBYkb0ObmeoMeBAeowxcnhqHdkqo9GIGa1Airhnew4xY5R7Bf1
+         OGAg==
+X-Forwarded-Encrypted: i=1; AJvYcCXgQyeW+U265ge3K1YUx5I/XU1eba+ONCCMFle8YHL6wjdOJgkPyv/FdABm5c564uv0RMql9FEfbVYP@vger.kernel.org
+X-Gm-Message-State: AOJu0YwL0OHkAOviD1ZUtV7JhmPROkBXPB0hInxOZ6x4/1MtACgglLzm
+	C39pjXzrrng6jmjaO3IcgUfogw5DeG7n5kDQwJWarJg0FKMziCxLi8mP1VS6RVpNCYk=
+X-Gm-Gg: AZuq6aI2kuFy9zBl0s26DLkzT8H4e7KWBkuPfiYW3MVPNQadPcitwaX4M54xYiBAFqr
+	DB5wBVBAJWFO4DplqY6sEAtaUr+lwgJejfFSLauw7L34yDZrQ2Oc1de4hY8/VDvdxld3ueUN7Du
+	0Tg09LL+tQrFjyhO+vPE4Uxs6lAuhHCXkSVOMzo5vD/+Lzl5Ykhnq1sMqpwGUT2R5Nmr19UObtN
+	rar6rSlEc1/7cXv1xJwm+u0MZaxw1QgqWJ0/la+qHOc2so4HS8XzPPXBjy7MmS1n2Yn7KHf1UAm
+	3UBl7vQ8x4NjnuiSpNUC8bbG2KkPJ5tDFXQJN0l2pEDeL95NVVIBn42a0L3ktP2ZpuIFl7BCEN8
+	ZQhqkJmXHPR7OF7no+FMK/JJqnoZ7xGmGr4moD9GnjFycj2+q89FX0TZrJdWBF9QMPwfh3bNi7R
+	oRcYazFPTKpygVAdRt
+X-Received: by 2002:ac8:7f0e:0:b0:4ff:a40c:c6c4 with SMTP id d75a77b69052e-5032f774757mr18752511cf.15.1769521880245;
+        Tue, 27 Jan 2026 05:51:20 -0800 (PST)
+Received: from ?IPv6:2606:6d00:17:7b4b::5ac? ([2606:6d00:17:7b4b::5ac])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-503337f04a3sm4279551cf.5.2026.01.27.05.51.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Jan 2026 05:51:19 -0800 (PST)
+Message-ID: <95ea1872a0afb10265aa675817647d830de42d70.camel@ndufresne.ca>
+Subject: Re: [PATCH 3/7] of/iommu: add multi-map support
+From: Nicolas Dufresne <nicolas@ndufresne.ca>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Vikash Garodia
+	 <vikash.garodia@oss.qualcomm.com>
+Cc: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>, Abhinav Kumar	
+ <abhinav.kumar@linux.dev>, Bryan O'Donoghue <bod@kernel.org>, Mauro
+ Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Saravana Kannan	 <saravanak@kernel.org>, Joerg
+ Roedel <joro@8bytes.org>, Will Deacon	 <will@kernel.org>, Robin Murphy
+ <robin.murphy@arm.com>, Stefan Schmidt	 <stefan.schmidt@linaro.org>, Hans
+ Verkuil <hverkuil@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Vishnu Reddy <busanna.reddy@oss.qualcomm.com>, Hans Verkuil	
+ <hverkuil+cisco@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, iommu@lists.linux.dev, Bryan O'Donoghue	
+ <bryan.odonoghue@linaro.org>, Charan Teja Kalla
+ <charan.kalla@oss.qualcomm.com>,  Vijayanand Jitta
+ <vijayanand.jitta@oss.qualcomm.com>
+Date: Tue, 27 Jan 2026 08:51:17 -0500
+In-Reply-To: <hunwsdkmeo6efpv3yt3izkgmarelnubd74dywj3scryxrreq6p@njijwtoyjh46>
+References: <20260126-kaanapali-iris-v1-0-e2646246bfc1@oss.qualcomm.com>
+	 <20260126-kaanapali-iris-v1-3-e2646246bfc1@oss.qualcomm.com>
+	 <hunwsdkmeo6efpv3yt3izkgmarelnubd74dywj3scryxrreq6p@njijwtoyjh46>
+Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-sqPE2tvWLzFfDUXBP4ZG"
+User-Agent: Evolution 3.58.2 (3.58.2-1.fc43) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260127-fpc202-leds-v1-2-ebd0cfb9f9a1@bootlin.com>
-References: <20260127-fpc202-leds-v1-0-ebd0cfb9f9a1@bootlin.com>
-In-Reply-To: <20260127-fpc202-leds-v1-0-ebd0cfb9f9a1@bootlin.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Romain Gantois <romain.gantois@bootlin.com>
-X-Mailer: b4 0.14.3
-X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_DKIM_ALLOW(-0.20)[ndufresne-ca.20230601.gappssmtp.com:s=20230601];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[ndufresne.ca : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-259912-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	DKIM_TRACE(0.00)[ndufresne-ca.20230601.gappssmtp.com:+];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259913-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[bootlin.com:+];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[romain.gantois@bootlin.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[nicolas@ndufresne.ca,devicetree@vger.kernel.org];
 	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:email,bootlin.com:dkim,bootlin.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: F37C895239
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,ndufresne.ca:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,ndufresne-ca.20230601.gappssmtp.com:dkim]
+X-Rspamd-Queue-Id: 032C69521C
 X-Rspamd-Action: no action
 
-The FPC202 dual port controller has 20 regular GPIO lines and 8 special
-GPIO lines with LED features. Each one of these "LED GPIOs" can output PWM
-and blink signals.
 
-Add support for the eight special-purpose GPIO lines to the existing FPC202
-driver's GPIO support. Add support for registering led-class devices on
-these GPIO lines.
+--=-sqPE2tvWLzFfDUXBP4ZG
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
----
- drivers/misc/Kconfig     |   1 +
- drivers/misc/ti_fpc202.c | 339 +++++++++++++++++++++++++++++++++++++++++++++--
- 2 files changed, 327 insertions(+), 13 deletions(-)
+Hi,
 
-diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
-index d7d41b054b98..18253d1caed6 100644
---- a/drivers/misc/Kconfig
-+++ b/drivers/misc/Kconfig
-@@ -118,6 +118,7 @@ config TI_FPC202
- 	depends on I2C
- 	select GPIOLIB
- 	select I2C_ATR
-+	select LEDS_CLASS
- 	help
- 	  If you say yes here you get support for the Texas Instruments FPC202
- 	  Dual Port Controller.
-diff --git a/drivers/misc/ti_fpc202.c b/drivers/misc/ti_fpc202.c
-index 8eb2b5ac9850..c1bd50c19005 100644
---- a/drivers/misc/ti_fpc202.c
-+++ b/drivers/misc/ti_fpc202.c
-@@ -7,12 +7,17 @@
-  */
- 
- #include <linux/cleanup.h>
-+#include <linux/device/devres.h>
- #include <linux/err.h>
- #include <linux/i2c.h>
- #include <linux/i2c-atr.h>
- #include <linux/gpio/consumer.h>
- #include <linux/gpio/driver.h>
-+#include <linux/gpio/machine.h>
-+#include <linux/leds.h>
- #include <linux/module.h>
-+#include <linux/math.h>
-+#include <linux/types.h>
- 
- #define FPC202_NUM_PORTS 2
- #define FPC202_ALIASES_PER_PORT 2
-@@ -34,18 +39,55 @@
-  * ...
-  * 19: P1_S1_OUT_B
-  *
-+ * Ports with optional LED control:
-+ *
-+ * 20: P0_S0_OUT_C (P0_S0_LED1)
-+ * ...
-+ * 23: P1_S1_OUT_C (P1_S1_LED1)
-+ * 24: P0_S0_OUT_D (P0_S0_LED2
-+ * ...
-+ * 27: P1_S1_OUT_D (P1_S1_LED2)
-+ *
-  */
- 
--#define FPC202_GPIO_COUNT 20
-+#define FPC202_GPIO_COUNT 28
- #define FPC202_GPIO_P0_S0_IN_B  4
- #define FPC202_GPIO_P0_S0_OUT_A 12
-+#define FPC202_GPIO_P0_S0_OUT_C 20
-+#define FPC202_GPIO_P0_S0_OUT_D 24
- 
- #define FPC202_REG_IN_A_INT    0x6
- #define FPC202_REG_IN_C_IN_B   0x7
- #define FPC202_REG_OUT_A_OUT_B 0x8
-+#define FPC202_REG_OUT_C_OUT_D 0x9
- 
- #define FPC202_REG_OUT_A_OUT_B_VAL 0xa
- 
-+#define FPC202_LED_COUNT 8
-+
-+/* There are four LED GPIO mode registers which manage two GPIOs each. */
-+#define FPC202_REG_LED_MODE(offset) (0x1a + 0x20 * ((offset) % 4))
-+
-+/* LED1 GPIOs (*_OUT_C) are configured in bits 1:0, LED2 GPIOs (*_OUT_D) in bits 3:2. */
-+#define FPC202_LED_MODE_SHIFT(offset) ((offset) < FPC202_GPIO_P0_S0_OUT_D ? 0 : 2)
-+#define FPC202_LED_MODE_MASK(offset) (GENMASK(1, 0) << FPC202_LED_MODE_SHIFT(offset))
-+
-+/* There is one PWM control register for each GPIO LED */
-+#define FPC202_REG_LED_PWM(offset) \
-+	(((offset) < FPC202_GPIO_P0_S0_OUT_D ? 0x14 : 0x15) + 0x20 * ((offset) % 4))
-+
-+/* There are two blink delay registers (on/off time) for each GPIO LED */
-+#define FPC202_REG_LED_BLINK_ON(offset) \
-+	(((offset) < FPC202_GPIO_P0_S0_OUT_D ? 0x16 : 0x18) + 0x20 * ((offset) % 4))
-+#define FPC202_REG_LED_BLINK_OFF(offset) (FPC202_REG_LED_BLINK_ON(offset) + 1)
-+
-+/* The actual hardware precision is 2.5ms but since the LED API doesn't handle sub-millisecond
-+ * timesteps this is rounded up to 5ms
-+ */
-+#define FPC202_LED_BLINK_PRECISION 5UL
-+
-+#define FPC202_LED_MAX_BRIGHTNESS 255
-+
- #define FPC202_REG_MOD_DEV(port, dev) (0xb4 + ((port) * 4) + (dev))
- #define FPC202_REG_AUX_DEV(port, dev) (0xb6 + ((port) * 4) + (dev))
- 
-@@ -59,15 +101,34 @@
- /* Even aliases are assigned to device 0 and odd aliases to device 1 */
- #define fpc202_dev_num_from_alias(alias) ((alias) % 2)
- 
-+enum fpc202_led_mode {
-+	FPC202_LED_MODE_OFF = 0,
-+	FPC202_LED_MODE_ON = 1,
-+	FPC202_LED_MODE_PWM = 2,
-+	FPC202_LED_MODE_BLINK = 3,
-+};
-+
-+struct fpc202_led {
-+	int offset;
-+	struct led_classdev led_cdev;
-+	struct fpc202_priv *priv;
-+	struct gpio_desc *gpio;
-+	enum fpc202_led_mode mode;
-+};
-+
- struct fpc202_priv {
- 	struct i2c_client *client;
- 	struct i2c_atr *atr;
- 	struct gpio_desc *en_gpio;
- 	struct gpio_chip gpio;
-+	struct fpc202_led leds[FPC202_LED_COUNT];
- 
- 	/* Lock REG_MOD/AUX_DEV and addr_caches during attach/detach */
- 	struct mutex reg_dev_lock;
- 
-+	/* Lock LED mode select register during accesses */
-+	struct mutex led_mode_lock;
-+
- 	/* Cached device addresses for both ports and their devices */
- 	u8 addr_caches[2][2];
- 
-@@ -97,6 +158,11 @@ static int fpc202_gpio_get_dir(int offset)
- 	return offset < FPC202_GPIO_P0_S0_OUT_A ? GPIO_LINE_DIRECTION_IN : GPIO_LINE_DIRECTION_OUT;
- }
- 
-+static int fpc202_gpio_has_led_caps(int offset)
-+{
-+	return offset >= FPC202_GPIO_P0_S0_OUT_C;
-+}
-+
- static int fpc202_read(struct fpc202_priv *priv, u8 reg)
- {
- 	int val;
-@@ -118,6 +184,37 @@ static void fpc202_set_enable(struct fpc202_priv *priv, int enable)
- 	gpiod_set_value(priv->en_gpio, enable);
- }
- 
-+static int fpc202_led_mode_write(struct fpc202_priv *priv,
-+				 int offset,
-+				 enum fpc202_led_mode mode)
-+{
-+	u8 val, reg = FPC202_REG_LED_MODE(offset);
-+	int ret;
-+
-+	guard(mutex)(&priv->led_mode_lock);
-+
-+	ret = fpc202_read(priv, reg);
-+	if (ret < 0) {
-+		dev_err(&priv->client->dev, "failed to read LED mode %d! err %d\n",
-+			offset, ret);
-+		return ret;
-+	}
-+
-+	val = (u8)ret & ~FPC202_LED_MODE_MASK(offset);
-+	val |= mode << FPC202_LED_MODE_SHIFT(offset);
-+
-+	return fpc202_write(priv, reg, val);
-+}
-+
-+static int fpc202_led_mode_set(struct fpc202_led *led, enum fpc202_led_mode mode)
-+{
-+	struct fpc202_priv *priv = led->priv;
-+
-+	led->mode = mode;
-+
-+	return fpc202_led_mode_write(priv, led->offset, mode);
-+}
-+
- static int fpc202_gpio_set(struct gpio_chip *chip, unsigned int offset,
- 			   int value)
- {
-@@ -125,6 +222,16 @@ static int fpc202_gpio_set(struct gpio_chip *chip, unsigned int offset,
- 	int ret;
- 	u8 val;
- 
-+	if (fpc202_gpio_has_led_caps(offset)) {
-+		ret = fpc202_led_mode_write(priv, offset,
-+					    value ? FPC202_LED_MODE_ON : FPC202_LED_MODE_OFF);
-+		if (ret < 0)
-+			dev_err(&priv->client->dev, "Failed to set GPIO %d LED mode! err %d\n",
-+				offset, ret);
-+
-+		return ret;
-+	}
-+
- 	ret = fpc202_read(priv, FPC202_REG_OUT_A_OUT_B_VAL);
- 	if (ret < 0) {
- 		dev_err(&priv->client->dev, "Failed to set GPIO %d value! err %d\n", offset, ret);
-@@ -153,9 +260,11 @@ static int fpc202_gpio_get(struct gpio_chip *chip, unsigned int offset)
- 	} else if (offset < FPC202_GPIO_P0_S0_OUT_A) {
- 		reg = FPC202_REG_IN_C_IN_B;
- 		bit = BIT(offset - FPC202_GPIO_P0_S0_IN_B);
--	} else {
-+	} else if (!fpc202_gpio_has_led_caps(offset)) {
- 		reg = FPC202_REG_OUT_A_OUT_B_VAL;
- 		bit = BIT(offset - FPC202_GPIO_P0_S0_OUT_A);
-+	} else {
-+		return -EOPNOTSUPP;
- 	}
- 
- 	ret = fpc202_read(priv, reg);
-@@ -177,21 +286,29 @@ static int fpc202_gpio_direction_output(struct gpio_chip *chip, unsigned int off
- 					int value)
- {
- 	struct fpc202_priv *priv = gpiochip_get_data(chip);
-+	u8 reg, val, bit;
- 	int ret;
--	u8 val;
- 
- 	if (fpc202_gpio_get_dir(offset) == GPIO_LINE_DIRECTION_IN)
- 		return -EINVAL;
- 
- 	fpc202_gpio_set(chip, offset, value);
- 
--	ret = fpc202_read(priv, FPC202_REG_OUT_A_OUT_B);
-+	if (fpc202_gpio_has_led_caps(offset)) {
-+		reg = FPC202_REG_OUT_C_OUT_D;
-+		bit = BIT(offset - FPC202_GPIO_P0_S0_OUT_C);
-+	} else {
-+		reg = FPC202_REG_OUT_A_OUT_B;
-+		bit = BIT(offset - FPC202_GPIO_P0_S0_OUT_A);
-+	}
-+
-+	ret = fpc202_read(priv, reg);
- 	if (ret < 0)
- 		return ret;
- 
--	val = (u8)ret | BIT(offset - FPC202_GPIO_P0_S0_OUT_A);
-+	val = (u8)ret | bit;
- 
--	return fpc202_write(priv, FPC202_REG_OUT_A_OUT_B, val);
-+	return fpc202_write(priv, reg, val);
- }
- 
- /*
-@@ -272,6 +389,183 @@ static const struct i2c_atr_ops fpc202_atr_ops = {
- 	.detach_addr = fpc202_detach_addr,
- };
- 
-+static struct fpc202_led *fpc202_cdev_to_led(struct led_classdev *cdev)
-+{
-+	return container_of(cdev, struct fpc202_led, led_cdev);
-+}
-+
-+static struct fpc202_led *fpc202_led_get(struct fpc202_priv *priv, int offset)
-+{
-+	return &priv->leds[offset - FPC202_GPIO_P0_S0_OUT_C];
-+}
-+
-+static int fpc202_led_blink_set(struct led_classdev *cdev,
-+				unsigned long *delay_on,
-+				unsigned long *delay_off)
-+{
-+	struct fpc202_led *led = fpc202_cdev_to_led(cdev);
-+	struct fpc202_priv *priv = led->priv;
-+	unsigned long val;
-+	int ret;
-+
-+	if (*delay_on == 0 && *delay_off == 0) {
-+		*delay_on = 250;
-+		*delay_off = 250;
-+	} else {
-+		if (*delay_on % FPC202_LED_BLINK_PRECISION)
-+			*delay_on = roundup(*delay_on, FPC202_LED_BLINK_PRECISION);
-+
-+		if (*delay_off % FPC202_LED_BLINK_PRECISION)
-+			*delay_off = roundup(*delay_off, FPC202_LED_BLINK_PRECISION);
-+	}
-+
-+	/* Multiply the duration by two, since the actual precision is 2.5ms not 5ms*/
-+	val = 2 * (*delay_on / FPC202_LED_BLINK_PRECISION);
-+	if (val > 255) {
-+		val = 255;
-+		*delay_on = (val / 2) * FPC202_LED_BLINK_PRECISION;
-+	}
-+
-+	ret = fpc202_write(priv, FPC202_REG_LED_BLINK_ON(led->offset), val);
-+	if (ret) {
-+		dev_err(&priv->client->dev,
-+			"Failed to set blink on duration for LED %d, err %d\n",
-+			led->offset, ret);
-+		return ret;
-+	}
-+
-+	val = 2 * (*delay_off / FPC202_LED_BLINK_PRECISION);
-+	if (val > 255) {
-+		val = 255;
-+		*delay_off = (val / 2) * FPC202_LED_BLINK_PRECISION;
-+	}
-+
-+	ret = fpc202_write(priv, FPC202_REG_LED_BLINK_OFF(led->offset), val);
-+	if (ret) {
-+		dev_err(&priv->client->dev,
-+			"Failed to set blink off duration for LED %d, err %d\n",
-+			led->offset, ret);
-+		return ret;
-+	}
-+
-+	return fpc202_led_mode_set(led, FPC202_LED_MODE_BLINK);
-+}
-+
-+static enum led_brightness fpc202_led_brightness_get(struct led_classdev *cdev)
-+{
-+	struct fpc202_led *led = fpc202_cdev_to_led(cdev);
-+
-+	if (led->mode == FPC202_LED_MODE_OFF)
-+		return LED_OFF;
-+
-+	return LED_ON;
-+}
-+
-+static int fpc202_led_brightness_set(struct led_classdev *cdev,
-+				     enum led_brightness brightness)
-+{
-+	struct fpc202_led *led = fpc202_cdev_to_led(cdev);
-+	struct fpc202_priv *priv = led->priv;
-+	int ret;
-+
-+	if (!brightness)
-+		return fpc202_led_mode_set(led, FPC202_LED_MODE_OFF);
-+
-+	if (led->mode != FPC202_LED_MODE_BLINK) {
-+		if (brightness == FPC202_LED_MAX_BRIGHTNESS)
-+			return fpc202_led_mode_set(led, FPC202_LED_MODE_ON);
-+
-+		ret = fpc202_led_mode_set(led, FPC202_LED_MODE_PWM);
-+		if (ret) {
-+			dev_err(&priv->client->dev, "Failed to set LED %d mode, err %d\n",
-+				led->offset, ret);
-+			return ret;
-+		}
-+	}
-+
-+	return fpc202_write(priv, FPC202_REG_LED_PWM(led->offset), brightness);
-+}
-+
-+static int fpc202_register_led(struct fpc202_priv *priv, int offset,
-+			       struct device_node *led_handle)
-+{
-+	struct fpc202_led *led = fpc202_led_get(priv, offset);
-+	struct device *dev = &priv->client->dev;
-+	struct led_init_data init_data = { };
-+	int ret = 0;
-+
-+	led->priv = priv;
-+	led->offset = offset;
-+	led->led_cdev.max_brightness = FPC202_LED_MAX_BRIGHTNESS;
-+	led->led_cdev.brightness_set_blocking = fpc202_led_brightness_set;
-+	led->led_cdev.brightness_get = fpc202_led_brightness_get;
-+	led->led_cdev.blink_set = fpc202_led_blink_set;
-+
-+	init_data.fwnode = of_fwnode_handle(led_handle);
-+	init_data.default_label = NULL;
-+	init_data.devicename = NULL;
-+	init_data.devname_mandatory = false;
-+
-+	ret = fpc202_led_mode_set(led, FPC202_LED_MODE_OFF);
-+	if (ret) {
-+		dev_err(dev, "Failed to set LED %d mode, err %d\n", offset, ret);
-+		return ret;
-+	}
-+
-+	ret = devm_led_classdev_register_ext(dev, &led->led_cdev, &init_data);
-+	if (ret) {
-+		dev_err(dev, "Failed to register LED %d cdev, err %d\n", offset, ret);
-+		return ret;
-+	}
-+
-+	/* Claim corresponding GPIO line so that it cannot be interfered with */
-+	led->gpio = gpiochip_request_own_desc(&priv->gpio, offset, led->led_cdev.name,
-+					      GPIO_ACTIVE_HIGH, GPIOD_ASIS);
-+	if (IS_ERR(led->gpio)) {
-+		ret = PTR_ERR(led->gpio);
-+		dev_err(dev, "Failed to register LED %d cdev, err %d\n", offset, ret);
-+	}
-+
-+	return ret;
-+}
-+
-+static int fpc202_register_leds(struct fpc202_priv *priv)
-+{
-+	struct device *dev = &priv->client->dev;
-+	int offset, ret = 0;
-+
-+	if (!devres_open_group(dev, fpc202_register_leds, GFP_KERNEL))
-+		return -ENOMEM;
-+
-+	for_each_child_of_node_scoped(dev->of_node, led_handle) {
-+		ret = of_property_read_u32(led_handle, "reg", &offset);
-+		if (ret) {
-+			dev_err(dev, "Failed to read 'reg' property of child node, err %d\n", ret);
-+			return ret;
-+		}
-+
-+		if (offset < FPC202_GPIO_P0_S0_OUT_C || offset > FPC202_GPIO_COUNT)
-+			continue;
-+
-+		ret = fpc202_register_led(priv, offset, led_handle);
-+		if (ret) {
-+			dev_err(dev, "Failed to register LED %d, err %d\n", offset,
-+				ret);
-+			goto free_own_gpios;
-+		}
-+	}
-+
-+	devres_close_group(dev, fpc202_register_leds);
-+
-+	return 0;
-+
-+free_own_gpios:
-+	for (offset = 0; offset < FPC202_LED_COUNT; offset++)
-+		if (priv->leds[offset].gpio)
-+			gpiochip_free_own_desc(priv->leds[offset].gpio);
-+	return ret;
-+}
-+
- static int fpc202_probe_port(struct fpc202_priv *priv, struct device_node *i2c_handle, int port_id)
- {
- 	u16 aliases[FPC202_ALIASES_PER_PORT] = { };
-@@ -310,13 +604,14 @@ static int fpc202_probe(struct i2c_client *client)
- {
- 	struct device *dev = &client->dev;
- 	struct fpc202_priv *priv;
--	int ret, port_id;
-+	int ret, port_id, led_id;
- 
- 	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
- 	if (!priv)
- 		return -ENOMEM;
- 
- 	mutex_init(&priv->reg_dev_lock);
-+	mutex_init(&priv->led_mode_lock);
- 
- 	priv->client = client;
- 	i2c_set_clientdata(client, priv);
-@@ -354,6 +649,12 @@ static int fpc202_probe(struct i2c_client *client)
- 
- 	i2c_atr_set_driver_data(priv->atr, priv);
- 
-+	ret = fpc202_register_leds(priv);
-+	if (ret) {
-+		dev_err(dev, "Failed to register LEDs, err %d\n", ret);
-+		goto delete_atr;
-+	}
-+
- 	bitmap_zero(priv->probed_ports, FPC202_NUM_PORTS);
- 
- 	for_each_child_of_node_scoped(dev->of_node, i2c_handle) {
-@@ -366,11 +667,8 @@ static int fpc202_probe(struct i2c_client *client)
- 			goto unregister_chans;
- 		}
- 
--		if (port_id > FPC202_NUM_PORTS) {
--			dev_err(dev, "port ID %d is out of range!\n", port_id);
--			ret = -EINVAL;
--			goto unregister_chans;
--		}
-+		if (port_id > FPC202_NUM_PORTS)
-+			continue;
- 
- 		ret = fpc202_probe_port(priv, i2c_handle, port_id);
- 		if (ret) {
-@@ -385,11 +683,18 @@ static int fpc202_probe(struct i2c_client *client)
- 	for_each_set_bit(port_id, priv->probed_ports, FPC202_NUM_PORTS)
- 		fpc202_remove_port(priv, port_id);
- 
-+	for (led_id = 0; led_id < FPC202_LED_COUNT; led_id++)
-+		if (priv->leds[led_id].gpio)
-+			gpiochip_free_own_desc(priv->leds[led_id].gpio);
-+
-+	devres_release_group(&client->dev, fpc202_register_leds);
-+delete_atr:
- 	i2c_atr_delete(priv->atr);
- disable_gpio:
- 	fpc202_set_enable(priv, 0);
- 	gpiochip_remove(&priv->gpio);
- destroy_mutex:
-+	mutex_destroy(&priv->led_mode_lock);
- 	mutex_destroy(&priv->reg_dev_lock);
- out:
- 	return ret;
-@@ -398,11 +703,19 @@ static int fpc202_probe(struct i2c_client *client)
- static void fpc202_remove(struct i2c_client *client)
- {
- 	struct fpc202_priv *priv = i2c_get_clientdata(client);
--	int port_id;
-+	int port_id, led_id;
- 
- 	for_each_set_bit(port_id, priv->probed_ports, FPC202_NUM_PORTS)
- 		fpc202_remove_port(priv, port_id);
- 
-+	for (led_id = 0; led_id < FPC202_LED_COUNT; led_id++)
-+		if (priv->leds[led_id].gpio)
-+			gpiochip_free_own_desc(priv->leds[led_id].gpio);
-+
-+	/* Release led devices early so that blink handlers don't trigger. */
-+	devres_release_group(&client->dev, fpc202_register_leds);
-+
-+	mutex_destroy(&priv->led_mode_lock);
- 	mutex_destroy(&priv->reg_dev_lock);
- 
- 	i2c_atr_delete(priv->atr);
+Le mardi 27 janvier 2026 =C3=A0 13:45 +0200, Dmitry Baryshkov a =C3=A9crit=
+=C2=A0:
+> On Mon, Jan 26, 2026 at 05:55:46PM +0530, Vikash Garodia wrote:
+> > From: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
+> >=20
+> > When multiple mappings are present for an input id, linux matches just
+> > the first one. There is a usecase[1] where all the mappings are to be
+> > maintained in parallel for an iommu-map entry of a same input id.
+>=20
+> This contradicts the IOMMU idealogy (at least as far as I understood it
+> fom the maintainers): the device (driver) doesn't control which IOMMUs
+> are getting used. Instead _all_ defined entries should get used. For
+> iommu-map it means that if the map defines several entries for a single
+> function, then all entries should always get mapped.
+>=20
+> >=20
+> > Whether multi-map is needed is reported by the callers through the
+> > callback function passed, which is called for every input id match.
+> >=20
+> > Since the requirement in the usecase[1] is for platform devices, not
+> > sure if it is really clean to maintain this decision on the bus type at
+> > the of_iommu layer or further to be from the respective
+> > iommu_driver->impl_ops().
+>=20
+> This doesn't tell us, why do you want to control, which entries of the
+> map get used.
+>=20
+> >=20
+> > [1]
+> > https://lore.kernel.org/all/20250627-video_cb-v3-0-51e18c0ffbce@quicinc=
+.com/
 
--- 
-2.52.0
+Since its for an M2M V4L2 device, and its all about having more address spa=
+ce
+according to this link, you may want to use a different iommu domain per m2=
+m
+instances, rather then per device (what is done implicitly). On top of whic=
+h, it
+will ensure memory isolation between instances, making this driver suitable=
+ for
+virtualisation. 4Gb per instance (which is also per stream) seems like a lo=
+t of
+memory to me. But like Dmitry says, there is little clarity in what you are
+trying to achieve.
 
+Nicolas
+
+> >=20
+> > Signed-off-by: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
+> > Signed-off-by: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
+> > Signed-off-by: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+> > ---
+> > =C2=A0drivers/iommu/of_iommu.c | 36 ++++++++++++++++++++++++++++-------=
+-
+> > =C2=A0drivers/of/base.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 38 =
+++++++++++++++++++++++++++++----------
+> > =C2=A0include/linux/of.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 6 =
+++++++
+> > =C2=A03 files changed, 62 insertions(+), 18 deletions(-)
+> >=20
+> > diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
+> > index
+> > 768eaddf927b0700b2497b08ea21611b1a1b5688..067bb2298973671e1eaf01bb2ea52=
+df3d2
+> > a52a44 100644
+> > --- a/drivers/iommu/of_iommu.c
+> > +++ b/drivers/iommu/of_iommu.c
+> > @@ -16,6 +16,7 @@
+> > =C2=A0#include <linux/pci.h>
+> > =C2=A0#include <linux/slab.h>
+> > =C2=A0#include <linux/fsl/mc.h>
+> > +#include <linux/platform_device.h>
+> > =C2=A0
+> > =C2=A0#include "iommu-priv.h"
+> > =C2=A0
+> > @@ -41,22 +42,41 @@ static int of_iommu_xlate(struct device *dev,
+> > =C2=A0	return ret;
+> > =C2=A0}
+> > =C2=A0
+> > +/*
+> > + * Callback to be called from of_map_id(), that tells if
+> > + * all the mappings for an input id to be maintained in
+> > + * parallel. Should this decission be from further layers,
+> > + * iommu_driver->impl_ops?
+> > + */
+> > +static int of_iommu_configure_cb(struct of_map_id_arg *arg)
+> > +{
+> > +	struct of_phandle_args *iommu_spec =3D &arg->map_args;
+> > +	struct device *dev =3D arg->dev;
+> > +	int err;
+> > +
+> > +	err =3D of_iommu_xlate(dev, iommu_spec);
+> > +	of_node_put(iommu_spec->np);
+> > +
+> > +	/* !iommu_spec->np may be from the bypassed translations */
+> > +	if (!err)
+> > +		err =3D (!arg->multi_map || !iommu_spec->np) ? 0 : -EAGAIN;
+> > +
+> > +	return err;
+> > +}
+> > +
+> > =C2=A0static int of_iommu_configure_dev_id(struct device_node *master_n=
+p,
+> > =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0 struct device *dev,
+> > =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0 const u32 *id)
+> > =C2=A0{
+> > =C2=A0	struct of_map_id_arg arg =3D {
+> > =C2=A0		.map_args =3D {},
+> > +		.cb =3D of_iommu_configure_cb,
+> > +		.dev =3D dev,
+> > +		/* Should this be pushed to iommu_driver->impl_ops? */
+> > +		.multi_map =3D dev_is_platform(dev),
+> > =C2=A0	};
+> > -	int err;
+> > -
+> > -	err =3D of_map_iommu_id(master_np, *id, &arg);
+> > -	if (err)
+> > -		return err;
+> > =C2=A0
+> > -	err =3D of_iommu_xlate(dev, &arg.map_args);
+> > -	of_node_put(arg.map_args.np);
+> > -	return err;
+> > +	return of_map_iommu_id(master_np, *id, &arg);
+> > =C2=A0}
+> > =C2=A0
+> > =C2=A0static int of_iommu_configure_dev(struct device_node *master_np,
+> > diff --git a/drivers/of/base.c b/drivers/of/base.c
+> > index
+> > 606bef4f90e7d13bae4f7b0c45acd1755ad89826..a1c3c5954ec7e8eb3753c8fd782a1=
+570f9
+> > eb9c17 100644
+> > --- a/drivers/of/base.c
+> > +++ b/drivers/of/base.c
+> > @@ -2122,14 +2122,21 @@ static bool of_check_bad_map(const __be32 *map,=
+ int
+> > len)
+> > =C2=A0	return true;
+> > =C2=A0}
+> > =C2=A0
+> > -static int of_map_id_fill_output(struct of_map_id_arg *arg,
+> > -				 struct device_node *phandle_node, u32
+> > id_or_offset,
+> > -				 const __be32 *out_base, u32 cells,
+> > -				 bool bypass)
+> > +/*
+> > + * Fill the id_out and target for the of_map_id() caller. Also
+> > + * call the callback passed to the of_map_id() as part of the arg
+> > + * that decides if to continue further search.
+> > + */
+> > +static int of_map_id_fill_arg(struct of_map_id_arg *arg,
+> > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct device_node *phandle_node, u3=
+2
+> > id_or_offset,
+> > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const __be32 *out_base, u32 cells,
+> > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bool bypass, bool *multi_id_map)
+> > =C2=A0{
+> > +	int ret;
+> > +
+> > =C2=A0	if (bypass) {
+> > =C2=A0		arg->map_args.args[0] =3D id_or_offset;
+> > -		return 0;
+> > +		goto output;
+> > =C2=A0	}
+> > =C2=A0
+> > =C2=A0	if (arg->map_args.np)
+> > @@ -2145,7 +2152,14 @@ static int of_map_id_fill_output(struct of_map_i=
+d_arg
+> > *arg,
+> > =C2=A0
+> > =C2=A0	arg->map_args.args_count =3D cells;
+> > =C2=A0
+> > -	return 0;
+> > +output:
+> > +	/* pass the output for the callback, callers may further decide */
+> > +	ret =3D=C2=A0 arg->cb ? arg->cb(arg) : 0;
+> > +
+> > +	if (multi_id_map && ret =3D=3D -EAGAIN)
+> > +		*multi_id_map =3D true;
+> > +
+> > +	return ret;
+> > =C2=A0}
+> > =C2=A0
+> > =C2=A0/**
+> > @@ -2179,6 +2193,7 @@ int of_map_id(const struct device_node *np, u32 i=
+d,
+> > const char *map_name,
+> > =C2=A0	int map_bytes, map_len, offset =3D 0;
+> > =C2=A0	bool bad_map =3D false;
+> > =C2=A0	const __be32 *map =3D NULL;
+> > +	bool multi_id_map =3D false;
+> > =C2=A0
+> > =C2=A0	if (!np || !map_name || !arg)
+> > =C2=A0		return -EINVAL;
+> > @@ -2264,23 +2279,26 @@ int of_map_id(const struct device_node *np, u32=
+ id,
+> > const char *map_name,
+> > =C2=A0		if (masked_id < id_base || id_off >=3D id_len)
+> > =C2=A0			continue;
+> > =C2=A0
+> > -		ret =3D of_map_id_fill_output(arg, phandle_node, id_off,
+> > out_base, cells, false);
+> > +		ret =3D of_map_id_fill_arg(arg, phandle_node, id_off,
+> > out_base,
+> > +					 cells, false, &multi_id_map);
+> > =C2=A0		if (ret =3D=3D -EAGAIN)
+> > =C2=A0			continue;
+> > =C2=A0
+> > =C2=A0		pr_debug("%pOF: %s, using mask %08x, id-base: %08x, out-
+> > base: %08x, length: %08x, id: %08x -> %08x\n",
+> > =C2=A0			np, map_name, map_mask, id_base,
+> > be32_to_cpup(out_base),
+> > =C2=A0			id_len, id, id_off + be32_to_cpup(out_base));
+> > -		return 0;
+> > +		return ret;
+> > =C2=A0	}
+> > =C2=A0
+> > +	if (multi_id_map)
+> > +		return 0;
+> > +
+> > =C2=A0	pr_info("%pOF: no %s translation for id 0x%x on %pOF\n", np,
+> > map_name,
+> > =C2=A0		id, arg->map_args.np=C2=A0 ? arg->map_args.np : NULL);
+> > =C2=A0
+> > =C2=A0bypass_translation:
+> > =C2=A0	/* Bypasses translation */
+> > -	return of_map_id_fill_output(arg, NULL, id, 0, 0, true);
+> > -
+> > +	return of_map_id_fill_arg(arg, NULL, id, 0, 0, true, NULL);
+> > =C2=A0err_map_len:
+> > =C2=A0	pr_err("%pOF: Error: Bad %s length: %d\n", np, map_name,
+> > map_bytes);
+> > =C2=A0	return -EINVAL;
+> > diff --git a/include/linux/of.h b/include/linux/of.h
+> > index
+> > 9efa6f93712c6024f05476f9fd39f3294f942ec1..abab73a76682351f5635c1127a6c8=
+99917
+> > 525050 100644
+> > --- a/include/linux/of.h
+> > +++ b/include/linux/of.h
+> > @@ -25,6 +25,9 @@
+> > =C2=A0typedef u32 phandle;
+> > =C2=A0typedef u32 ihandle;
+> > =C2=A0
+> > +struct of_map_id_arg;
+> > +typedef int (*of_map_id_cb)(struct of_map_id_arg *arg);
+> > +
+> > =C2=A0struct property {
+> > =C2=A0	char	*name;
+> > =C2=A0	int	length;
+> > @@ -76,6 +79,9 @@ struct of_phandle_args {
+> > =C2=A0
+> > =C2=A0struct of_map_id_arg {
+> > =C2=A0	struct of_phandle_args map_args;
+> > +	of_map_id_cb cb;
+> > +	struct device *dev;
+> > +	bool multi_map;
+> > =C2=A0};
+> > =C2=A0
+> > =C2=A0struct of_phandle_iterator {
+> >=20
+> > --=20
+> > 2.34.1
+> >=20
+
+--=-sqPE2tvWLzFfDUXBP4ZG
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaXjC1QAKCRDZQZRRKWBy
+9AdQAP4gtvm3/cBxyYM8uZ50t1efySdzZ/rt1/ZyrL5c2cGZhAD9FLIi6O56sq1S
+VY5E1+gXbEXsbTA/TbUUH5BjQojFPA0=
+=+cdM
+-----END PGP SIGNATURE-----
+
+--=-sqPE2tvWLzFfDUXBP4ZG--
 
