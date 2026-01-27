@@ -1,359 +1,174 @@
-Return-Path: <devicetree+bounces-260028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260029-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EHxlE4/oeGmHtwEAu9opvQ
-	(envelope-from <devicetree+bounces-260028-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:32:15 +0100
+	id aMLdJMDjeGlJtwEAu9opvQ
+	(envelope-from <devicetree+bounces-260029-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:11:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68EBE97CBC
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:32:14 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E888097800
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:11:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 40F5B30B5982
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:59:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 109AF300F9E2
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:06:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7DEB35B63F;
-	Tue, 27 Jan 2026 15:59:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DC9035D5E3;
+	Tue, 27 Jan 2026 16:06:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="gk9hIe7B";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="gF+qQT18"
+	dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b="DOyO9SDq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0046e701.pphosted.com (mx0b-0046e701.pphosted.com [67.231.157.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 596F61E8836
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 15:59:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBA552FE598;
+	Tue, 27 Jan 2026 16:06:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.157.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769529558; cv=none; b=q0DihDdfgMNLLwmG8tmPdnSzZGDXvrjcRLefMpnsKP9u/jFUAcvrW7pKfrh27W2xy+CktrkIdTQfdUgj5H0zGaKaX+qDvZB34mh7RbpjrxZS1IP+ENWjwoKr4A9mnC/EmDiMclGT4DwlXI1NRN8rLmL+UPl8g60gqI8eEDWR5XU=
+	t=1769529981; cv=none; b=UmlXO912kQO1J9sTyfeUTeZAfPv2lFYQ4Itqjs3v9OSb+yg5EjKlyy9ZNuJ7S34i1s4SBuJVZDdKcpmhCHbugJ/mo3qZgqD2gSxbaBIaQZ984E3U3thlfgJFveCTrWbw8AZykQ5OySUPmYl4VrVSYbU8z5q+ibwkHgt2G6sWRms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769529558; c=relaxed/simple;
-	bh=Ngu3VwjipfjyeOkg/wN58ZP9Bqz3JtvjynHTVCKcoIo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Z2w4PehjiGllpCeNB8ugNZWUMup7EL32NkPdEs7xzb7yVydELivPFB56Rp+ADdexYVHS3899UwHBKm9Eh3kGtKRW8mdB3W7d+gYOO37+0B4PnNZPDLSmvszhibR4P8U4r8rTWfZ/+UEiqgEKxbc6POgcJJMmTKcVaNHMGHEj68g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=gk9hIe7B; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=gF+qQT18; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60RAnqP0700163
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 15:59:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	2gy/s9BG2zQ/KnIW0GWqdLLIYLmspXWnSVHp7uWLnDs=; b=gk9hIe7BCdpk4RAO
-	0/3fS8FpAOz2lXD6Isi+ExiI91UuaE3gTRi+i++XZjiJuKBqf3Tpd732Q+yI7H4L
-	tpRmXMUk6rVycqbm+OB/6e6X8cyfuazsHoHLbDxHSY8tJa03RwKTbJVku9FeSOui
-	zBCGOy8oBiEoQPeKHeH3wFOxtoRtn+em44+jt/UeYxEFtTHceaB9xNfXhpBfVXj8
-	WRvG000BaATfUqk6Sxt9405gw3yI7Aai8uE3zO8LUCexolZWSx1oJpdl21XtzN5y
-	5gVv8yi/hGwywJ+gaU1iUXMSQFQo/zQAEtG9sbZgt2am7SEuOjJPuOa5JZgcb/8C
-	//W7Pw==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bxew3ueyr-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 15:59:16 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2a76f2d7744so55430585ad.3
-        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 07:59:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769529556; x=1770134356; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2gy/s9BG2zQ/KnIW0GWqdLLIYLmspXWnSVHp7uWLnDs=;
-        b=gF+qQT18VLSr3cx/DukEU049lAgITvmD5OGggfPI83cFmLgbu7sCX+OHNDczkNnlHT
-         4ssgFoNLQAa0sgCO3socvt6p2U6JAksRRNUT0beCHky9zWm5wdbXHVUeDUXzpuyVFAzE
-         rv279H8nAK+N0Olvv2A2U9gI3pMmwP8IcD9wSrJsM8w/AlKk5fTxCykIy2o3tq8GDLdZ
-         v3RzxkXFqN7/gSUpfO7ROQqtdE3gypO/L1JhGLn9CgOooZWATz1jZ6rWoDs1x3cUob9j
-         oJM6qoV5dd9jm7Tab9t3ogWsbaRqtTNYLYxhouYCe05iUXlZMtof2jr6U7/bMkrVyiaI
-         zgyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769529556; x=1770134356;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2gy/s9BG2zQ/KnIW0GWqdLLIYLmspXWnSVHp7uWLnDs=;
-        b=VNTDOLuJ7olzsGNQK5SwPs5lG7mGddJuAFqPdUVNa/7FdXg5u+VbshifACDMJAGsMW
-         cgXzqta44jP+MeldkAAt19G6juf+0jmkFSuiVxV/uPU8qbY5hRVfI63/Bj4+AURN9nun
-         6dATGvQFsXLJnOCnuZFegjxSQ4d3pJgcr7Ykj9RGu9FGSVSrMbEg56Qlp+E6/OylabeJ
-         JCyEEGw9sXVAsetD8Xc7XwU4RRGlrm0jXdE0iOMZb+5Cw2B95GalZkOxTB4lA0C2SllR
-         pUItiSMKNNQIVCnyNr6CX/N3f6kem91YXWeEyQRSnPm//FDZUW6h6x6hEm9OVj/hboWN
-         lJTg==
-X-Forwarded-Encrypted: i=1; AJvYcCXQrGTGy3uhw2BEL7uIbCkU9BllKghdDUKgUaMEB90r87ECM1h/thEfAGM34zI8htfATrSFZxB53Zz6@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw8oHUYoG3KxUFFOP2VxH1/nMVDsthm7Y4mmVHVc6kk5jO8Yvc3
-	S8XahAovljDeS9vY6CscWTHNXRqBaFTehtqSFpUwwhqUQ9eZeT0UZDAB852I2BsI48RPdJAiYyV
-	KNfDc5iRfZYvn9ufBD4cDGW1pLpgf6w97IOSwC0X9SUB9NZiqHdziQZvqSDjGkmc4
-X-Gm-Gg: AZuq6aJtjRKYj0nfCgNK2BhcPVMvFosb72UCYiaMmHlb45npMmciksmCqtMJCnjiz8I
-	F/RBgBpB5c2VWc3seQoMPcVvLqW7/8dZrq3TSNa6U1+lozACE9zFr46MwLw17yqMZ+l7GoFxFt0
-	wrTioZ4fRMBlATodwM/sdaXJeuIbueD93I4nr7c4rOOGa7KHpr7QVDr1VOAZVKZtCvOHgPD3IlF
-	yOw65gSH4KF/yBOvlWDY5I5sFLYQfKU4neE+mBLiRjO0SgCCBpnHl83FTERCbVvANX5JV19X1PQ
-	hpgzHjf5ew30Gd2oGFFjaDOsRxQ3Vk1b0FsvPHsIV3cnc8jLOBcvFK8KnhB4YBjy7w2n06a/BIn
-	Akf9gVNVnJjCq1qq8EykhudTDgveK7JSsi+TxakY1IvQ=
-X-Received: by 2002:a17:903:41cd:b0:2a0:945d:a195 with SMTP id d9443c01a7336-2a870dde6f2mr22124325ad.45.1769529555694;
-        Tue, 27 Jan 2026 07:59:15 -0800 (PST)
-X-Received: by 2002:a17:903:41cd:b0:2a0:945d:a195 with SMTP id d9443c01a7336-2a870dde6f2mr22124155ad.45.1769529555079;
-        Tue, 27 Jan 2026 07:59:15 -0800 (PST)
-Received: from [192.168.0.171] ([49.205.248.59])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a802dcda23sm123139415ad.30.2026.01.27.07.59.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Jan 2026 07:59:14 -0800 (PST)
-Message-ID: <01532d63-ca30-42a2-920b-bab65254c9c6@oss.qualcomm.com>
-Date: Tue, 27 Jan 2026 21:29:06 +0530
+	s=arc-20240116; t=1769529981; c=relaxed/simple;
+	bh=tFCRa3KnZWUkSKFCupr+j+drsSozAGTz6moKQZuAGqA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lx6dSQyWAQjgDMOmHDaPkcB4hxmInrLVNRfCP4zadtY25Y3zYEgljr4X+XL0IDPvhLo3WCHYgdTbDNczP9TQYwvgBJLlLD9BP7GrEYL0s0JUMjm7OtKXl/Lulvi92IoKVk2p3fBFGBc3ImIYCvOmOOtyksq+RaRdeXjawXjPn+o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=plexus.com; spf=pass smtp.mailfrom=plexus.com; dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b=DOyO9SDq; arc=none smtp.client-ip=67.231.157.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=plexus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=plexus.com
+Received: from pps.filterd (m0425993.ppops.net [127.0.0.1])
+	by mx0b-0046e701.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60R3ZvNf2408879;
+	Tue, 27 Jan 2026 10:06:08 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=plexus.com; h=cc
+	:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=pps1; bh=D/suHw5JTVQFP6YIK5Ggk4hT6MzIx
+	dW4DQLULI0Yq24=; b=DOyO9SDqunQvM+rySbNG/ZIM9CebtHPp5TGDh2ukKfvx0
+	5i7NxwljQ+pApFFKcooB8GBlZno0UQ6NJprjfdoIb3FDwenG1Kxos635Wot1qGys
+	4zmhq3jyDZ0fKGFAAQDZztDLFii6ZjEty+1l6WKEsRg47jV8VYyT08JfPUdO8e9I
+	1BLQaF/PJoCWimTGCnO0t4CDx41iOkokeEt8eTJDg0hMJVtmXZj3I1dVGBVr4GEZ
+	1CZHosmygt6UuY85YYnZSM1kPi52Vy+YadsD+7+h8yQ3iRCUvCwTMveHIcP4Qajd
+	cegs6tr+2XYBerajn1JcWtzbmSI99wfMkobvTIhWw==
+Received: from intranet-smtp.plexus.com ([64.215.193.254])
+	by mx0b-0046e701.pphosted.com (PPS) with ESMTPS id 4bwe1vc60t-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Tue, 27 Jan 2026 10:06:07 -0600 (CST)
+Received: from localhost (unknown [10.255.48.203])
+	by intranet-smtp.plexus.com (Postfix) with ESMTP id D1111580C1;
+	Tue, 27 Jan 2026 10:06:06 -0600 (CST)
+Date: Tue, 27 Jan 2026 10:02:17 -0600
+From: Danny Kaehn <danny.kaehn@plexus.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Benjamin Tissoires <bentiss@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Andi Shyti <andi.shyti@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Jiri Kosina <jikos@kernel.org>, devicetree@vger.kernel.org,
+        linux-input@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Ethan Twardy <ethan.twardy@plexus.com>, linux-i2c@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Leo Huang <leohu@nvidia.com>,
+        Arun D Patil <arundp@nvidia.com>, Willie Thai <wthai@nvidia.com>,
+        Ting-Kai Chen <tingkaic@nvidia.com>
+Subject: Re: [PATCH v13 1/3] dt-bindings: i2c: Add CP2112 HID USB to SMBus
+ Bridge
+Message-ID: <20260127160217.GA3776731@LNDCL34533.neenah.na.plexus.com>
+References: <20260127-cp2112-dt-v13-0-6448ddd4bf22@plexus.com>
+ <20260127-cp2112-dt-v13-1-6448ddd4bf22@plexus.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/7] media: iris: add support for kaanapali platform
-To: Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Bryan O'Donoghue <bod@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Saravana Kannan <saravanak@kernel.org>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Stefan Schmidt <stefan.schmidt@linaro.org>,
-        Hans Verkuil <hverkuil@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Vishnu Reddy <busanna.reddy@oss.qualcomm.com>,
-        Hans Verkuil <hverkuil+cisco@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        iommu@lists.linux.dev, Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Charan Teja Kalla <charan.kalla@oss.qualcomm.com>,
-        Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
-References: <20260126-kaanapali-iris-v1-0-e2646246bfc1@oss.qualcomm.com>
- <lpgw6eodclsvfwgvtljfiorvjkpd5vd27yhxs7i3ijfibaqzuk@bak2lwbyh77f>
- <2d4632b2-916a-4eda-ad08-44af68461dc8@oss.qualcomm.com>
- <vv4stkmrrwdqmbnpv7pg5nd4immtqo5iplwbcia3oykycfmg2m@dsithotfy5ls>
- <df2d7dcc31c9a47752a1d58efdd7a416311e55ec.camel@ndufresne.ca>
-Content-Language: en-US
-From: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
-In-Reply-To: <df2d7dcc31c9a47752a1d58efdd7a416311e55ec.camel@ndufresne.ca>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: dyR0vGX-v7dIoyCQItHcjbWgxzgXbjt1
-X-Proofpoint-GUID: dyR0vGX-v7dIoyCQItHcjbWgxzgXbjt1
-X-Authority-Analysis: v=2.4 cv=J8CnLQnS c=1 sm=1 tr=0 ts=6978e0d4 cx=c_pps
- a=IZJwPbhc+fLeJZngyXXI0A==:117 a=4hJEjaH6g9CgPEswoao2AA==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8
- a=zQZbQbw0M5qWU-wOwpsA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=uG9DUKGECoFWVXl0Dc02:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI3MDEzMCBTYWx0ZWRfX+W/k9Plu49/Z
- Euht5yBFy5mvP5rUjgAy1pSSgwbiSqfNohIKHb3X58Gs+JNLNXQnWtgGRyLQ+wyqUx2DdsaU5Ze
- TaiIPFOop4tuCyzImR6RiJvCGTcICrlFGkWXEm00hW3RiuSEhY+wNoaE4YKBUMvJTJqsX4Zm9Li
- pRLO//+SvUGi5AEgIZN/cQ4ebVpSqqUx10MHTzOAqV1t492vqYM/zU3FQSO7Akvf2pQPAxeto1D
- UjOZrDgG7toB8YCiEASAHweMmXK/WpxkcOubOaflNgjpQ0eKkUqU+wuAFtBLllIA059wkXOVCDs
- NhXB3VobOtcMPtNj8tSL9G7fioNush4r38BpUm5jxBFHWKuOuC97RQot1soUJs9y3Tw8KEQP66v
- fIZX917a1d9WOpeMmlIM4Vw5HP5U7k76lWHmmRygJy+QwLYNltgcfBXBmdiiUcp+bCgw1RhF5TL
- OQHBfww2DgzfmJgRpFg==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-01-27_03,2026-01-27_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 lowpriorityscore=0 spamscore=0 clxscore=1015 bulkscore=0
- priorityscore=1501 adultscore=0 impostorscore=0 suspectscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601270130
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260127-cp2112-dt-v13-1-6448ddd4bf22@plexus.com>
+X-Proofpoint-Reinject: loops=2 maxloops=12
+X-Authority-Analysis: v=2.4 cv=c6CmgB9l c=1 sm=1 tr=0 ts=6978e26f cx=c_pps
+ a=356DXeqjepxy6lyVU6o3hA==:117 a=356DXeqjepxy6lyVU6o3hA==:17
+ a=kj9zAlcOel0A:10 a=vUbySO9Y5rIA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=QyXUC8HyAAAA:8 a=Y_joWELsAAAA:8 a=1liyV6abj2hmQ9BcVj4A:9
+ a=CjuIK1q_8ugA:10 a=g_BQsM8wYJVSTWLOHH1t:22
+X-Proofpoint-ORIG-GUID: 1b_HruHKb5KIa2jiJ9jkJjWhYgaLWRM8
+X-Proofpoint-GUID: eloi-HR8t2tpFdWQbAr5vUDmv0DB8XpF
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI3MDEzMSBTYWx0ZWRfXyKcNuXE/uCTf
+ h8hFatzZfc6WRWgK5v1WHr03mt4h+v/Z5ircAUSx7mi0c50jRf1XE78PBjqOrsRh2iMQGi475XM
+ +ZE7aXxR3N2bXKgvulf/JpwSaMCi+FjCLzb/s0oHipoS6uPBsnGjRoikx7koietFKBREDmOmv/F
+ W61UI44w7sNsAuOxzHrEnkpa0ilkRZLK3L/0gE8RYTPzdaivP7lwxVyE1kDyYblW9Tv9oxya+N7
+ UcNXvMCR/qwPFB8NI4y8tYCtueQSAzhuzMjI64xQo604la5WGWmChnuSmZCq9rLWWl5kXVkg+rw
+ OMJMfL/+e3ij/Fbt6tCU9i60KfNVJ1diI66zytqNfoBq2gxh7wUX6nigLjReG7VAcRArzQb/b95
+ +70Srccqy+qBqX2NuwXO+mXuZgoA7A1WLxbx25zPyCG0DVkZzWpNKv0HT93CW0/Uqi0j6UNSDVJ
+ 2dgT2GwFNzLCNn+Bcng==
+X-Proofpoint-Spam-Reason: orgsafe
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[plexus.com,reject];
+	R_DKIM_ALLOW(-0.20)[plexus.com:s=pps1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[26];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260028-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	TAGGED_FROM(0.00)[bounces-260029-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vikash.garodia@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com,linaro.org,plexus.com,nvidia.com];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[danny.kaehn@plexus.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[plexus.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 68EBE97CBC
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[plexus.com:email,plexus.com:dkim,LNDCL34533.neenah.na.plexus.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: E888097800
 X-Rspamd-Action: no action
 
+On Tue, Jan 27, 2026 at 08:47:48AM -0600, Danny Kaehn wrote:
+> This is a USB HID device which includes an I2C controller and 8 GPIO pins.
+> 
+> The binding allows describing the chip's gpio and i2c controller in DT,
+> with the i2c controller being bound to a subnode named "i2c". This is
+> intended to be used in configurations where the CP2112 is permanently
+> connected in hardware.
+> 
+> Signed-off-by: Danny Kaehn <danny.kaehn@plexus.com>
+> ---
 
-On 1/27/2026 8:40 PM, Nicolas Dufresne wrote:
-> Hi,
-> 
-> Le mardi 27 janvier 2026 à 13:52 +0200, Dmitry Baryshkov a écrit :
->> On Tue, Jan 27, 2026 at 04:56:34PM +0530, Vikash Garodia wrote:
->>
-> 
-> [..]
-> 
->>
->>>   - 4 testcase failed due to unsupported resolution
->>
->> Can it be fixed?
-> 
-> Its nicer if you name the failing tests vectors. I can guess this is
-> PICSIZE_{A,B,C,D}_Bossen_1 by experience, but not everyone will guess. HEVC
-> level impose a limit on bandwidth, not on resolution. These files are either
-> very large and small height or the opposite. One of these is just 4K in portrait
-> mode (that is more concerning). Though, there is a V4L2 limitation for this
-> aspect, since we advertise the resolutions by range. Most hardware is designed
-> to support 4096x4096, in that casse that's what you should expose as limits.
-> 
-> Though, some hardware do have dynamic sizing capabilities (like RKVDEC HEVC), in
-> this case there is not much you can do, you have to find the right trade of. But
-> since you expose LEVELs, I think its fine to overshoot a little. Both
-> constraints should ensure it works with valid streams.
+Hi Folks (Intended for Rob or Krzysztof),
 
-I can list the failing test vectors for failing tests. In this case, its
-PICSIZE_A_Bossen_1
-PICSIZE_B_Bossen_1
-WPP_D_ericsson_MAIN10_2
-WPP_D_ericsson_MAIN_2
+Wasn't sure the best way to go about this, but trying to see the best
+way to get a message in front of you regarding an ask from Andy S.
 
-I have not explicitly gone through individual failures this time on 
-kaanapali, as last time when these were analyzed for earlier platform 
-(SM8550), the failed due to resolution lower than 96x96, which VPU does 
-not support for kaanapali as well.
+In [1], Rob H initially directed that the gpio chip share a node with
+the CP2112 itself, rather than having a subnode named 'gpio'.
 
-Do you think if fluster can query the supported frame sizes and 
-accordingly, mark the ones testing outside that range as pass, if 
-graceful error ?
+Initially, I did the same thing for both DT and ACPI, but Andy S.
+directed that ACPI should not have the node be shared in that way.
 
->>
->>>   - 2 testcase failed due to CRC mismatch
-> 
-> These are clear example of "no one can guess".
-> 
+With the last revision of this patch, Andy S. asked that I try to get a
+rationalle from Rob (or other DT expert presumably) on why the gpio node
+should be combined with the parent, rather than being a named subnode
+[2].
 
-RAP_A_docomo_6
-VPSSPSPPS_A_MainConcept_1
+Any context you can provide would be extremely helpful. Apologies about
+the age of this patch series and the amount of historical context; some
+is due to my long delays between revisions, but other of it is due to
+attempting to get the ACPI and DT folks to talk / agree.
 
-For "RAP.." test vector, it was discussed earlier [1] and the frames 
-marked as VB2_BUF_STATE_ERROR should be dropped. GST is currently 
-displaying the NULL content leading to CRC mismatch. Let me know if this 
-can be taken up as a GST bug.
+[1]: https://lore.kernel.org/all/20240213152825.GA1223720-robh@kernel.org/
+[2]: https://lore.kernel.org/all/aSdvv3Qss5oz_o6P@smile.fi.intel.com/
 
-[1] 
-https://lore.kernel.org/linux-media/20250408-iris-dec-hevc-vp9-v1-0-acd258778bd6@quicinc.com/
 
->>
->> Which means an error in the testsuite or somewhere on our side?
-> 
-> The testsuite fully pass if you run using Franhofer reference decoder. This is
-> logical since the MD5 has been generated with it.
+Thanks,
 
-Since the reference decoder in this is not generating buffers with zero 
-filled data, its not complaining. In VPU case, even though buffers are 
-of zero filled data, marking them as error, should get dropped, instead 
-of considering it as a valid frame.
+Danny Kaehn
 
-> 
->>
->>>   - 2 test fails due to session error (under debug)
->>>     - PICSIZE_C_Bossen_1
-> 
-> Hmm, see, I have no idea which fourth one could fail due to resolution, and that
-> forth one is likely a bug on your side.
-> 
-
-This could pass on sm8550 and fails on kaanapali. This should be 
-debugged from driver side.
-
->>>     - WPP_E_ericsson_MAIN_2
->>>
->>> VP9:
->>> 235/305 testcases passed while testing VP9-TEST-VECTORS with
->>>   GStreamer-VP9-V4L2-Gst1.0.
->>>   The failing test case:
->>>   - 64 testcases failed due to unsupported resolution
->>
->> Can it be fixed?
-> 
-> Check if you aren't mixing up constraints between display, coded and allocated
-> resolutions. On most hardware, all 3 can differ. The OUTPUT queue should either
-> not care at all, or use it to allow optimistic pre-allocation. But check that
-> the low resolution constraints is not coming from the OUTPUT queue software.
-> 
-> VP9 coded resolution, it always at least 64x64.
-> 
-The failed list is same as the one published during sm8550 [1]. I see 
-most of the test vectors are <= 64x64 and going as low as 08x08. Here as 
-well if we can have a query for supported frame size, it should handle 
-these cases.
-
-[1] 
-https://lore.kernel.org/linux-media/20250408-iris-dec-hevc-vp9-v1-0-acd258778bd6@quicinc.com/
->>
->>>   - 2 testcases failed due to unsupported format
->>
->> Hmm?
-> 
-> Clarify please, I suppose these are YUV444 (aka professional profiles).
-
-vp91-2-04-yuv422.webm
-vp91-2-04-yuv444.webm
-
-> 
->>
->>>   - 1 testcase failed with CRC mismatch (fails with ref decoder as well)
->>
->> Could you please raise an issue against fluster?
-> 
-> Check your setup, it fully pass with reference here. The MD5 has been generated
-> using the reference.
-> 
->    ./fluster.py run -d libvpx-VP9 -ts  VP9-TEST-VECTORS
-> 
-> It also fully pass with the GStreamer wrapper, though it had been fixed in
-> recent GStreamer versions (I'm testing with 1.26.10).
-> 
-
-I would let Dikshita comment on this. I am unable to find that 
-discussion where it was failing in her setup with reference decoder as well.
-
->>
->>>   - 2 testcase failed due to unsupported resolution after sequence change
->>
->> Can it be fixed?
-> 
-> This one can't be fixed without adding an extension to the V4L2 Stateful Decoder
-> spec, like we did for the stateless decoder spec. In order to handle inter-frame
-> resolution changes (a resolution change on a non-keyframe), you have to notify
-> userspace with the new resolution, give it a way to read back this solution,
-> have CREATE_BUFS() support to allow allocating for that new resolution without
-> going through streamoff (to avoid looking reference data), and finally, a way to
-> remove buffers that are now too small (or too big if userspace wants to reduce
-> the amount of RAM used) through the new DELETE_BUFS ioctl. You also have to
-> track in your driver the reference buffer resolution/stride.
-> 
-> This is non-trivial with the existing stateful state-machine. You have to make
-> sure userspace won't be confused between normal DRC and inter-frame DRC (dynamic
-> resolution changes).
-> 
-> 
-> [...]
-> 
-> regards,
-> Nicolas
-
-Regards,
-Vikash
 
