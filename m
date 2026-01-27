@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-259736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259732-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IKXcDahXeGkNpgEAu9opvQ
-	(envelope-from <devicetree+bounces-259736-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 07:14:00 +0100
+	id CM2sFI9XeGkNpgEAu9opvQ
+	(envelope-from <devicetree+bounces-259732-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 07:13:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C009904B8
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 07:13:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0C07904B1
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 07:13:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AD261307FCB0
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 06:10:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C320B3077782
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 06:10:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D66532AADC;
-	Tue, 27 Jan 2026 06:09:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD31F32A3EB;
+	Tue, 27 Jan 2026 06:09:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6369C32E120
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 06:09:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB74A32C943
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 06:09:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769494192; cv=none; b=W2KL6CzG8Yz/EIGuJXIkeOf3A4IayLB2L2Kf05WpgFKticJeRLXnG0G1RzS6IGo6KIoAKaXnotW50kmL+Hvv0QcVuWTg2j9l5Nhw2leZkush8/tdLSaqFCqxizrECTMtD9svLTr9UIsBnX4uOVY2M2clVzQauBSIQ8s7P+OxGno=
+	t=1769494191; cv=none; b=YB9stEF9QCR9MTG0PtLfpBP4TkznwN3FgHUE2x+thJBYQ0/ZZO3QfkYElbiYu6h00SiicqeeGBuz4esLGyp3eF4dgNmY1uIRHxycks/kE8xUHb9f4ZwlvlDYMfCv2IbrfDp0FBVDY6IZplzAhh7PXhxWL7jC4BAkStoOlxka8JA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769494192; c=relaxed/simple;
-	bh=ROeV3eFQ6wFSDgrK1HKXQAwS3oeqGxNJwHliijxFUnY=;
+	s=arc-20240116; t=1769494191; c=relaxed/simple;
+	bh=XnQBQO+ZVEObbuEfr2qwIdxGHlQ8ISURzS7cKxJRpko=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=UC2bR4rAKVin6ObCDUmdrvP+wCrl4HWifGAppZNKNq4/WCCCTUV5Nl63594hddu4Rz+9kCbUIpGyez/gg7IGZfFgBg2nB+mRCXhRU3wyqW70+icQ55KHMtQdQNcKbKRrqJJlTkqYvPp166gzOO6f5MeWJxqRl4wkkkcdhzCCuI4=
+	 MIME-Version; b=b9ILmxdUYfYuvppIwovyWhXgKHq4XOnIr+zW+moWMKM1SqskBbQuwjQRF7Jx5ToxZXsLEDz4EYKvpNWwG6dxP9og9MD8ad7oFMsT1lc000J4E9aWGaT3SKx8OjKZrLWDkw1eBxGDm20WICPeEnBz+DOPowLcWnGz45agk7gdOdM=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
@@ -36,16 +36,16 @@ Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <ore@pengutronix.de>)
-	id 1vkcGk-0003pd-0E; Tue, 27 Jan 2026 07:09:42 +0100
+	id 1vkcGk-0003pe-0E; Tue, 27 Jan 2026 07:09:42 +0100
 Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac] helo=dude04)
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.96)
 	(envelope-from <ore@pengutronix.de>)
-	id 1vkcGk-002hiS-07;
+	id 1vkcGk-002hiT-07;
 	Tue, 27 Jan 2026 07:09:41 +0100
 Received: from ore by dude04 with local (Exim 4.98.2)
 	(envelope-from <ore@pengutronix.de>)
-	id 1vkcGj-0000000GQFj-13aU;
+	id 1vkcGj-0000000GQFt-18yd;
 	Tue, 27 Jan 2026 07:09:41 +0100
 From: Oleksij Rempel <o.rempel@pengutronix.de>
 To: Jonathan Cameron <jic23@kernel.org>,
@@ -61,9 +61,9 @@ Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
 	David Lechner <dlechner@baylibre.com>,
 	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
 	David Jander <david@protonic.nl>
-Subject: [PATCH v2 7/8] iio: dac: ds4424: add Rfs-based scale and per-variant limits
-Date: Tue, 27 Jan 2026 07:09:38 +0100
-Message-ID: <20260127060939.3914006-8-o.rempel@pengutronix.de>
+Subject: [PATCH v2 8/8] iio: dac: ds4424: ratelimit read errors and use device context
+Date: Tue, 27 Jan 2026 07:09:39 +0100
+Message-ID: <20260127060939.3914006-9-o.rempel@pengutronix.de>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260127060939.3914006-1-o.rempel@pengutronix.de>
 References: <20260127060939.3914006-1-o.rempel@pengutronix.de>
@@ -92,259 +92,52 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	DMARC_NA(0.00)[pengutronix.de];
 	RCVD_COUNT_FIVE(0.00)[6];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-259736-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-259732-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[13];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.993];
+	NEURAL_HAM(-0.00)[-0.994];
 	FROM_NEQ_ENVFROM(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,pengutronix.de:mid,pengutronix.de:email]
-X-Rspamd-Queue-Id: 9C009904B8
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:mid,pengutronix.de:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: A0C07904B1
 X-Rspamd-Action: no action
 
-Parse optional maxim,rfs-ohms values to derive the per-channel output
-current scale (mA per step) for the IIO current ABI.
+Replace pr_err() with dev_err_ratelimited() in the RAW read path to avoid
+log spam on repeated I2C failures and to include the device context.
 
-Select per-variant parameters to match the shared register map while
-handling different data widths and full-scale current calculations.
-
-Behavior changes:
-- If maxim,rfs-ohms is present, IIO_CHAN_INFO_SCALE becomes available
-  and reports mA/step derived from Rfs.
-- If maxim,rfs-ohms is missing, SCALE is not exposed to keep older DTs
-  working without requiring updates.
-- RAW writes are now limited to the representable sign-magnitude range
-  of the detected variant to avoid silent truncation (e.g. +/-31 on
-  DS440x).
+Use %pe to print errno names for faster debugging.
 
 Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 ---
 changes v2:
-- Reorder struct ds4424_chip_info members to optimize padding.
-- Use GENMASK() for chip variant masks instead of hex constants.
-- Simplify ds4424_setup_channels: use direct devm_kmemdup to avoid stack
-  usage and memcpy.
-- Use local 'dev' pointer and dev_err_probe() in ds4424_parse_rfs for
-  cleaner error handling.
-- Rename the static iio_info struct to ds4424_iio_info to prevent name
-  collision with the new hardware chip_info structs.
-- Use unsigned int for loop counters.
-- Rebase on top of regmap and symmetrical raw_access refactoring.
+- Update error message
+- Rebase against regmap refactoring
 ---
- drivers/iio/dac/ds4424.c | 121 +++++++++++++++++++++++++++++++++++++--
- 1 file changed, 116 insertions(+), 5 deletions(-)
+ drivers/iio/dac/ds4424.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/iio/dac/ds4424.c b/drivers/iio/dac/ds4424.c
-index 8110ca7f062f..891069d8c80a 100644
+index 891069d8c80a..3e762d4e84ef 100644
 --- a/drivers/iio/dac/ds4424.c
 +++ b/drivers/iio/dac/ds4424.c
-@@ -14,6 +14,7 @@
- #include <linux/iio/machine.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
-+#include <linux/property.h>
- #include <linux/regmap.h>
- #include <linux/regulator/consumer.h>
- 
-@@ -21,6 +22,7 @@
- #define DS4424_MAX_DAC_CHANNELS		4
- 
- #define DS4424_DAC_MASK			GENMASK(6, 0)
-+#define DS4404_DAC_MASK			GENMASK(4, 0)
- #define DS4424_DAC_SOURCE		BIT(7)
- 
- #define DS4424_DAC_ADDR(chan)   ((chan) + 0xf8)
-@@ -40,9 +42,38 @@ enum ds4424_device_ids {
- 	ID_DS4424,
- };
- 
-+/*
-+ * Two variant groups share the same register map but differ in:
-+ * - resolution/data mask (DS4402/DS4404: 5-bit, DS4422/DS4424: 7-bit)
-+ * - full-scale current calculation (different Vref and divider)
-+ * Addressing also differs (DS440x tri-level, DS442x bi-level), but is
-+ * handled via board configuration, not driver logic.
-+ */
-+struct ds4424_chip_info {
-+	int vref_mv;
-+	int scale_denom;
-+	u8 result_mask;
-+};
-+
-+static const struct ds4424_chip_info ds4424_info = {
-+	.vref_mv = 976,
-+	.scale_denom = 16,
-+	.result_mask = DS4424_DAC_MASK,
-+};
-+
-+/* DS4402 is handled like DS4404 (same resolution and scale formula). */
-+static const struct ds4424_chip_info ds4404_info = {
-+	.vref_mv = 1230,
-+	.scale_denom = 4,
-+	.result_mask = DS4404_DAC_MASK,
-+};
-+
- struct ds4424_data {
- 	struct regmap *regmap;
- 	struct regulator *vcc_reg;
-+	const struct ds4424_chip_info *chip_info;
-+	u32 rfs_ohms[DS4424_MAX_DAC_CHANNELS];
-+	bool has_rfs;
- };
- 
- static const struct iio_chan_spec ds4424_channels[] = {
-@@ -125,11 +156,20 @@ static int ds4424_read_raw(struct iio_dev *indio_dev,
+@@ -151,8 +151,9 @@ static int ds4424_read_raw(struct iio_dev *indio_dev,
+ 		ret = regmap_read(data->regmap, DS4424_DAC_ADDR(chan->channel),
+ 				  &regval);
+ 		if (ret < 0) {
+-			pr_err("%s : regmap_read returned %d\n",
+-						__func__, ret);
++			dev_err_ratelimited(&indio_dev->dev,
++					    "Failed to read channel %d:  %pe\n",
++					    chan->channel, ERR_PTR(ret));
  			return ret;
  		}
  
--		*val = regval & DS4424_DAC_MASK;
-+		*val = regval & data->chip_info->result_mask;
- 		if (!(regval & DS4424_DAC_SOURCE))
- 			*val = -*val;
- 
- 		return IIO_VAL_INT;
-+	case IIO_CHAN_INFO_SCALE:
-+		if (!data->has_rfs)
-+			return -EINVAL;
-+
-+		/* SCALE is mA/step: mV / Ohm = mA. */
-+		*val = data->chip_info->vref_mv;
-+		*val2 = data->rfs_ohms[chan->channel] *
-+			data->chip_info->scale_denom;
-+		return IIO_VAL_FRACTIONAL;
- 
- 	default:
- 		return -EINVAL;
-@@ -150,7 +190,7 @@ static int ds4424_write_raw(struct iio_dev *indio_dev,
- 	case IIO_CHAN_INFO_RAW:
- 		abs_val = abs(val);
- 
--		if (abs_val > DS4424_DAC_MASK)
-+		if (abs_val > data->chip_info->result_mask)
- 			return -EINVAL;
- 
- 		/*
-@@ -185,6 +225,65 @@ static int ds4424_verify_chip(struct iio_dev *indio_dev)
- 	return 0;
- }
- 
-+static int ds4424_setup_channels(struct i2c_client *client,
-+				 struct ds4424_data *data,
-+				 struct iio_dev *indio_dev)
-+{
-+	struct iio_chan_spec *channels;
-+	size_t channels_size;
-+
-+	channels_size = indio_dev->num_channels * sizeof(ds4424_channels[0]);
-+	/* Use a local non-const pointer for modification */
-+	channels = devm_kmemdup(&client->dev, ds4424_channels, channels_size,
-+				GFP_KERNEL);
-+	if (!channels)
-+		return -ENOMEM;
-+
-+	if (data->has_rfs) {
-+		for (unsigned int i = 0; i < indio_dev->num_channels; i++)
-+			channels[i].info_mask_separate |=
-+				BIT(IIO_CHAN_INFO_SCALE);
-+	}
-+
-+	indio_dev->channels = channels;
-+
-+	return 0;
-+}
-+
-+static int ds4424_parse_rfs(struct i2c_client *client,
-+			    struct ds4424_data *data,
-+			    struct iio_dev *indio_dev)
-+{
-+	struct device *dev = &client->dev;
-+	int count, ret;
-+
-+	if (!device_property_present(dev, "maxim,rfs-ohms")) {
-+		dev_info_once(dev, "maxim,rfs-ohms missing, scale not supported\n");
-+		return 0;
-+	}
-+
-+	count = device_property_count_u32(dev, "maxim,rfs-ohms");
-+	if (count != indio_dev->num_channels)
-+		return dev_err_probe(dev, -EINVAL, "maxim,rfs-ohms must have %u entries\n",
-+				     indio_dev->num_channels);
-+
-+	ret = device_property_read_u32_array(dev, "maxim,rfs-ohms",
-+					     data->rfs_ohms,
-+					     indio_dev->num_channels);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to read maxim,rfs-ohms property\n");
-+
-+	for (unsigned int i = 0; i < indio_dev->num_channels; i++) {
-+		if (!data->rfs_ohms[i])
-+			return dev_err_probe(dev, -EINVAL, "maxim,rfs-ohms entry %d is zero\n",
-+					     i);
-+	}
-+
-+	data->has_rfs = true;
-+
-+	return 0;
-+}
-+
- static int ds4424_suspend(struct device *dev)
- {
- 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
-@@ -220,7 +319,7 @@ static int ds4424_resume(struct device *dev)
- 
- static DEFINE_SIMPLE_DEV_PM_OPS(ds4424_pm_ops, ds4424_suspend, ds4424_resume);
- 
--static const struct iio_info ds4424_info = {
-+static const struct iio_info ds4424_iio_info = {
- 	.read_raw = ds4424_read_raw,
- 	.write_raw = ds4424_write_raw,
- };
-@@ -257,15 +356,20 @@ static int ds4424_probe(struct i2c_client *client)
- 	switch (id->driver_data) {
- 	case ID_DS4402:
- 		indio_dev->num_channels = DS4422_MAX_DAC_CHANNELS;
-+		/* See ds4404_info comment above. */
-+		data->chip_info = &ds4404_info;
- 		break;
- 	case ID_DS4404:
- 		indio_dev->num_channels = DS4424_MAX_DAC_CHANNELS;
-+		data->chip_info = &ds4404_info;
- 		break;
- 	case ID_DS4422:
- 		indio_dev->num_channels = DS4422_MAX_DAC_CHANNELS;
-+		data->chip_info = &ds4424_info;
- 		break;
- 	case ID_DS4424:
- 		indio_dev->num_channels = DS4424_MAX_DAC_CHANNELS;
-+		data->chip_info = &ds4424_info;
- 		break;
- 	default:
- 		dev_err(&client->dev,
-@@ -282,9 +386,16 @@ static int ds4424_probe(struct i2c_client *client)
- 	if (ret < 0)
- 		goto fail;
- 
--	indio_dev->channels = ds4424_channels;
-+	ret = ds4424_parse_rfs(client, data, indio_dev);
-+	if (ret)
-+		goto fail;
-+
-+	ret = ds4424_setup_channels(client, data, indio_dev);
-+	if (ret)
-+		goto fail;
-+
- 	indio_dev->modes = INDIO_DIRECT_MODE;
--	indio_dev->info = &ds4424_info;
-+	indio_dev->info = &ds4424_iio_info;
- 
- 	ret = iio_device_register(indio_dev);
- 	if (ret < 0) {
 -- 
 2.47.3
 
