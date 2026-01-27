@@ -1,184 +1,344 @@
-Return-Path: <devicetree+bounces-260030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260032-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KA+RGSXjeGlJtwEAu9opvQ
-	(envelope-from <devicetree+bounces-260030-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:09:09 +0100
+	id 6L8cBHjkeGlftwEAu9opvQ
+	(envelope-from <devicetree+bounces-260032-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:14:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1232F9770D
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:09:09 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC37A978A6
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:14:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2F4C03046F21
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:07:27 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9BF77300DD43
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:11:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 720CF35EDAD;
-	Tue, 27 Jan 2026 16:07:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D44F435F8B7;
+	Tue, 27 Jan 2026 16:11:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="J5aeP8Va";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="JO/oedBJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABA872DC34E;
-	Tue, 27 Jan 2026 16:07:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53C68346799
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 16:11:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769530046; cv=none; b=JCQ3W3E29+k8g3IgyWC6qzV5WdhCjgs6HV/Ius3J9yd0GdWI51S2DDCtzuVAF2/rTv1lekw0AkfLKtWPPMBKOph259htJOtsQoNVbqRlhj7/G+JGiGaVsx50XNYkMIYwOYr/e/spkvKp24X6isCgmPR0wzyaV3L8SSuBp4oKZj8=
+	t=1769530274; cv=none; b=aDPFlg2Fsbv12WJZNPLNgkgUMHq57S53or/1rZUcxQdeT9fi6iX6vDAImc2t8cbNc/UK9VWM3bcQasRtu5yRV+QKRskUSNikfP05lzZVyxNNuX4rcmlJLJvS/q9VmhX6zXRtAnseBs0bFSk9l9YYN3rtbLPXrhLmP95a0A37BjA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769530046; c=relaxed/simple;
-	bh=NY9cb+akJlTJ+NzsdrBYWtGImGb9ceHiU09JJg2Gbts=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DX+lfxYf7vKx74xvLgPH4PqMs8WGEcmDdZZEQuA38sYHL6Qr9ncUy2VwtyAkDUCtOoMrYG7lc1O6KjUqh8Ps0dJUNBIB0GlFxY9HiTX1X49dCLJlmDANYcRt9FR2ZcslO5NshZ5O3JgMXEfyQshTmEbMOPCv8mfznlNMvLRz58s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.99)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1vklb1-000000001UI-27PD;
-	Tue, 27 Jan 2026 16:07:15 +0000
-Date: Tue, 27 Jan 2026 16:07:10 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Paolo Abeni <pabeni@redhat.com>, Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Simon Horman <horms@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Frank Wunderlich <frankwu@gmx.de>, Chad Monroe <chad@monroe.io>,
-	Cezary Wilmanski <cezary.wilmanski@adtran.com>,
-	Avinash Jayaraman <ajayaraman@maxlinear.com>,
-	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
-	Juraj Povazanec <jpovazanec@maxlinear.com>,
-	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
-	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
-	"Livia M. Rosu" <lrosu@maxlinear.com>,
-	John Crispin <john@phrozen.org>
-Subject: Re: [PATCH net-next v8 4/4] net: dsa: add basic initial driver for
- MxL862xx switches
-Message-ID: <aXjirjOsc5IJFHfH@makrotopia.org>
-References: <cover.1769053079.git.daniel@makrotopia.org>
- <18c6a24eef8617abb5073569fee162f1aa1c06ea.1769053079.git.daniel@makrotopia.org>
- <c2e191c4-dec4-4e42-b108-353778d9bd18@redhat.com>
- <aXinOE7KIFIm5dUK@makrotopia.org>
- <5e7c2f9c-bf49-4564-91b3-a639ef1c97d8@lunn.ch>
- <aXjQKoXBIAkV06XE@makrotopia.org>
- <8f267321-25fc-447f-8ff3-5d5b2d844d30@lunn.ch>
+	s=arc-20240116; t=1769530274; c=relaxed/simple;
+	bh=f8blZPMmP2uKNbdeWfk/2YDpCBfNTfna/PEqxzdJs3U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tSl6AGr5W+gRFjK/Zgeqqurm05UlNn2Z2Lrz/PDgaV07H1fPKcHFfRMw3Q0pOBvT0jZgKwKiDD3tYeHcOnz66lto2DESZ6SoFANiDzfsoNFMoj78undzkCARjbjYESizUdlvxyN8OE3H0ReJ92LNkQU1JD5mfFpoqMd808xDPwI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=J5aeP8Va; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=JO/oedBJ; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60RBx2o91794294
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 16:11:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	8fWdIXq6Sw/irgpXGik/ORVzIn5cU1rtiyzZ63WlMT0=; b=J5aeP8VaExXP58cC
+	ZynB9WGYaLfJxdLijlI7b5QxKNexdXCcZhDNEFYnvo2tRykpi1me801IlxrO3yFS
+	LXUMuGJpNabSZyIlUSNQw7d9fAi3vXBEyeZfklqgRdHYSiPjibla+QTo/q4Pr4KV
+	z9MH8W6J51qXQS3ZKJ6gbtvK+Tvm7LdGqNZCKdi0j/98ECN3wI7vW3nK+LAtEIWZ
+	JfSemnm3M07w5wqbXn2a6vfAk9wDKWJmRSzqfJW4izXlEur/sidBYgjbYniGjgg0
+	DqxVP0iX1Z86Ze5Kuu/nCZnPl5/u+FsSpQu/u8YH4EYcFuggTt83xEKcEPVysnjz
+	recc+g==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bxg93k9cf-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 16:11:12 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-29f25e494c2so64983645ad.0
+        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 08:11:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1769530271; x=1770135071; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8fWdIXq6Sw/irgpXGik/ORVzIn5cU1rtiyzZ63WlMT0=;
+        b=JO/oedBJN3zAFY67dW7Zg1yGVlEx21vdR6u+w0a/SHqn3YqRK35GCMOst3GjpEeKeU
+         hAudIjxLrtlMcVoSVT+AC2JwHnwshxoKO85ZIygWYSqtWIRpkUjeuqx/LC909nvgapYl
+         ZOcZb/ZKl+lcSIDGet+4wHIhNGAuz5h4zd4Yzljkl3xCoONIMQF2qvCFUO4pM4zJ217T
+         CUuZZg0EqCMfr6MV6iLWxH6NappuUxxrNNd4mWYvP/ZTvIV9oN99n0nGSUi8BEsUer7i
+         4rVKxymPURkO3G304mdZ5GmrfdXPbSFVQt8I9NavTa2/Z6CCaCHsoS65VjYgbgURhtTV
+         jc6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769530271; x=1770135071;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8fWdIXq6Sw/irgpXGik/ORVzIn5cU1rtiyzZ63WlMT0=;
+        b=IcG0vuGkk3atZ4F3bAmD704SQCjJwINrSIh6KDA9BAVIQoF1eKJ4ubYe4YVWiC91lX
+         we2P0VQPxQvmv9S7iH6WnWYHqjmo2ApKj8jaqzu7oTkaMajGGgRET/krpFIyL29YaipY
+         r0U4JAAb1qX4iGd3SGNXq7rNSDTIki8obRwJeEm1R12dIh0fqVKD2khxyTZnitOQch1x
+         lpu7IF7lxcP4VoObZR9iaq0WtWKIsHvbyTAn/x48WjcykOBbTFtW1vMVhdUQyEESvh7C
+         ESd0DDwq2rRRD78VHBrgAfO4UsF+rIqC+3rK2uvQC+HZ9zse76sATnBUqw1/ksg3nQ1b
+         BPFw==
+X-Forwarded-Encrypted: i=1; AJvYcCUqJKB2Y3DC7HpcKcbvb/1KvzzO/xsjy7ahB2mcRbM8eNs3Plo+IbGMXO7gzZJe8arYPnJZtwoioOWY@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywp2O3808SigxW8NN6AiMap3mcu8LFg1MCpIgv2MFmVf21iICai
+	D1kuLuwmP3cjCRfpwtAFKXzVEhEw8+AwTocdtNZOLNWrkfmZds0hRSOsu0IFRLtSVDx0/Wwnr15
+	L2TBXOWfSrJXZfibfWFgQw0ju9Pz9/G4PjE73wUznDR+YC2kkF5lFBo6sGUDWR6HO
+X-Gm-Gg: AZuq6aKHIz1FqWZOriZxJ6INi74KFNMoiAU11tQueisAKVtkZ9oCWYJMAyIFLsSfiAJ
+	ekoNntcuEYlXN7ihfMiGDj0cqqk7W6GIoYDxEMYjs/M1M01DnHPy6gOYyz4ZwdtFjnkr+W7saCu
+	j6FCUiNd2MMtDamQc2OOsot4y/z5N8PMEBEEyF15GgC+9dflAGdiPfS5J9s9SIMu3xvlep7GoU3
+	veApRQxY405JzegXicxb47+orSZ91HGcU5ercv5taoCCAlHdajwdlWUKvHQuEvLJfRv4aU7EKIf
+	Lwt0kNH87tKMBnCHZH3Nh2AyAsXtIVPMnf1yW814TGeTFS6NOZZUQ9p0lDXKxXvWjs5Z4fRkdw5
+	7JbnsXc2y5pep3Sc/qcmqeb+vGl49RhRMpVj6uum1fUI=
+X-Received: by 2002:a17:902:d2cc:b0:2a7:bbe0:f01f with SMTP id d9443c01a7336-2a87120f624mr20172305ad.2.1769530271011;
+        Tue, 27 Jan 2026 08:11:11 -0800 (PST)
+X-Received: by 2002:a17:902:d2cc:b0:2a7:bbe0:f01f with SMTP id d9443c01a7336-2a87120f624mr20172005ad.2.1769530270363;
+        Tue, 27 Jan 2026 08:11:10 -0800 (PST)
+Received: from [192.168.0.171] ([49.205.248.59])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a802dcd96bsm123128645ad.33.2026.01.27.08.11.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Jan 2026 08:11:09 -0800 (PST)
+Message-ID: <eef542b8-2a1c-4941-8895-453a108634dd@oss.qualcomm.com>
+Date: Tue, 27 Jan 2026 21:41:01 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8f267321-25fc-447f-8ff3-5d5b2d844d30@lunn.ch>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/7] media: iris: add support for kaanapali platform
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Bryan O'Donoghue <bod@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Saravana Kannan <saravanak@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Stefan Schmidt <stefan.schmidt@linaro.org>,
+        Hans Verkuil <hverkuil@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Vishnu Reddy <busanna.reddy@oss.qualcomm.com>,
+        Hans Verkuil <hverkuil+cisco@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        iommu@lists.linux.dev, Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Charan Teja Kalla <charan.kalla@oss.qualcomm.com>,
+        Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
+References: <20260126-kaanapali-iris-v1-0-e2646246bfc1@oss.qualcomm.com>
+ <lpgw6eodclsvfwgvtljfiorvjkpd5vd27yhxs7i3ijfibaqzuk@bak2lwbyh77f>
+ <2d4632b2-916a-4eda-ad08-44af68461dc8@oss.qualcomm.com>
+ <vv4stkmrrwdqmbnpv7pg5nd4immtqo5iplwbcia3oykycfmg2m@dsithotfy5ls>
+Content-Language: en-US
+From: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+In-Reply-To: <vv4stkmrrwdqmbnpv7pg5nd4immtqo5iplwbcia3oykycfmg2m@dsithotfy5ls>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI3MDEzMiBTYWx0ZWRfX3HmpSYkEGfXU
+ Ls3HMWOEbt5Mt1OzGc/ghqbyhbPbxeKcwBrCuxldEOphADgPN0MgAyfYLeiV5rUAKQSTEbEV5YG
+ j0KoilsC3xnMwoCtdYpuHiX1Ro92Pn8svisNatiiP3Ny0a+BIJNmMRl6XyNsohhhQRsFrwPvBKO
+ ZdjECPyCKtRyv0rC8ivKCg51rUt0o6qJsb/EKG8uSpL08anuE8IsBSagXyJK/K3YowhxwralS+/
+ ddzZ8nMgs+iBuDCEuK8P0UOQhz1oe0C9Wp51XgBHypeJsTGM1KmOnS1pOhOwFA3Cf5K/LZEXPW2
+ R1TpC9UzeZNyBG+dIIrppT4goK+VIcyuqukdCee3v7Ti9l9nqcoFnMifoqlpRYlqdxUJBqSQPNO
+ le5c9tNkSHcXw4U+ftdSN0v3H5nwYERB4UJGCEwkYSJhJ6rqBPmDCr8366cI3T8VjMhbBLszoI6
+ WzcLwBSLW1rRlLNufgg==
+X-Authority-Analysis: v=2.4 cv=Uc1ciaSN c=1 sm=1 tr=0 ts=6978e3a0 cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=4hJEjaH6g9CgPEswoao2AA==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=421KuCM3en4z17v6548A:9 a=QEXdDO2ut3YA:10 a=uG9DUKGECoFWVXl0Dc02:22
+X-Proofpoint-ORIG-GUID: TULDIBuToWH8epNx6lO2XgOr8yzoU3sh
+X-Proofpoint-GUID: TULDIBuToWH8epNx6lO2XgOr8yzoU3sh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-01-27_03,2026-01-27_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 lowpriorityscore=0 clxscore=1015 priorityscore=1501
+ impostorscore=0 malwarescore=0 phishscore=0 spamscore=0 bulkscore=0
+ adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
+ definitions=main-2601270132
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260030-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_CC(0.00)[redhat.com,gmail.com,davemloft.net,google.com,kernel.org,armlinux.org.uk,vger.kernel.org,gmx.de,monroe.io,adtran.com,maxlinear.com,phrozen.org];
-	RCPT_COUNT_TWELVE(0.00)[26];
-	DMARC_NA(0.00)[makrotopia.org];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[25];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260032-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.990];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[daniel@makrotopia.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	R_DKIM_NA(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[vikash.garodia@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[makrotopia.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 1232F9770D
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: BC37A978A6
 X-Rspamd-Action: no action
 
-On Tue, Jan 27, 2026 at 04:04:10PM +0100, Andrew Lunn wrote:
-> > > int mxl862xx_to_zephyr_errno(u16 reg)
-> > so that would then just be
-> > 	return (s16)reg;
-> > right?
+
+On 1/27/2026 5:22 PM, Dmitry Baryshkov wrote:
+> On Tue, Jan 27, 2026 at 04:56:34PM +0530, Vikash Garodia wrote:
+>>
+>> On 1/26/2026 7:08 PM, Dmitry Baryshkov wrote:
+>>> On Mon, Jan 26, 2026 at 05:55:43PM +0530, Vikash Garodia wrote:
+>>>> Qualcomm kaanapali platform have a newer generation of video IP iris4.
+>>>> The hardware have evolved mostly with respect to higher number of power
+>>>> domains as well as multiple clock sources.
+>>>>
+>>>> The series extends support for multiple iommu-map entries for the same
+>>>> input id. Considering iris as a client driver, it adds the handling for
+>>>> multiple stream ids from VPU via iommu-map.
+>>>>
+>>>> This series is depend on the below series:
+>>>> Link: https://lore.kernel.org/all/20260121055400.937856-1-vijayanand.jitta@oss.qualcomm.com/
+>>>>
+>>>> Following are the compliance and functional validation reports.
+>>>
+>>> Please validate with fluster too. Having a "knowingly good" command line
+>>> is not a validation. It can't be reproduced by anybody else.
+>>>
+>>
+>> Below is the fluster result on kaanapali (will add in cover letter in next
+>> revision)
 > 
-> Yes.
-
-+1
-
-Maybe better to check if bit 16~31 is actually zero as well, so
-int mxl862xx_to_zephyr_errno(int reg)
-{
-	if (reg >= 0 && reg <= U16_MAX)
-		return (s16)reg;
-
-	return 0;
-}
-
-or
-
-int mxl862xx_to_zephyr_errno(int reg)
-{
-	if (!(reg & GENMASK(31, 16))
-		return (s16)reg;
-
-	return 0;
-}
-
-or something like that. Let me know what you prefer.
-
-
+> Nice, thanks!
 > 
-> > 
-> > Or did you think to include the handling of the error __mdiodev_c45_read()
-> > would return, ie.
-> > int mxl862xx_to_zephyr_errno(int reg)
-> > {
-> > 	if (reg < 0)
-> > 		return reg;
+>>
+>> H264:
+>> 77/135 while testing JVT-AVC_V1 with GStreamer-H.264-V4L2-Gst1.0.JVT-AVC_V1.
 > 
-> No, that mixes up real linux error codes and Zephyr OS error codes.
+> What about the extension testsuites? Even if they are not supported,
+> they should not crash or cause the timeouts.
+> 
+>> - 52 test vectors failed due to interlaced clips - not supported
+> 
+> Yet or completely? Does "failed" mean "returned an error" or something
+> else?
 
-I thought of that 'int reg' to be the return value of
-__mdiodev_c45_read(), so if that 32-bit signed int < 0 that means what
-you get is the error returned from __mdiodev_c45_read().
+completely. Driver returns error on firmware detecting the content as 
+interlace.
 
 > 
-> If the MDIO operation fails, you have a real error code you can
-> return. If the firmware fails, you will want to netdev_err() the
-> Zephyr error code to aid debug, and then return -EIO.
+>> - 3 test vectors failed due to unsupported bitstream.
+>> - 2 test vectors failed because SP_SLICE type - not supported by the
+>>    hardware.
+>> - 1 test vector failed due to unsupported profile
+>>
+>> H265:
+>>   129/147 testcases passed while testing JCT-VC-HEVC_V1 with
+>>   GStreamer-H.265-V4L2-Gst1.0.
+>>   The failing test case:
+>>   - 10 testcases failed due to unsupported 10 bit format.
+> 
+> MAIN10? I was actually surprised, Venus driver supported them for the
+> Iris2 hardware. Is it somethething to be fixed in future?
 
-+1
-
+10bit would be added in iris. We are catching up with all the codecs, 
+10bit should be next from decoder side.
 
 > 
-> > Or actually translating the actual errno to a Linux error code?
+>>   - 4 testcase failed due to unsupported resolution
 > 
-> Is it worth the effort? How many times have you seen the firmware
-> fail? During debugging, it might be useful, but in production?
+> Can it be fixed?
+> 
+>>   - 2 testcase failed due to CRC mismatch
+> 
+> Which means an error in the testsuite or somewhere on our side?
+> 
+>>   - 2 test fails due to session error (under debug)
+>>     - PICSIZE_C_Bossen_1
+>>     - WPP_E_ericsson_MAIN_2
+>>
+>> VP9:
+>> 235/305 testcases passed while testing VP9-TEST-VECTORS with
+>>   GStreamer-VP9-V4L2-Gst1.0.
+>>   The failing test case:
+>>   - 64 testcases failed due to unsupported resolution
+> 
+> Can it be fixed?
+> 
+>>   - 2 testcases failed due to unsupported format
+> 
+> Hmm?
+> 
+>>   - 1 testcase failed with CRC mismatch (fails with ref decoder as well)
+> 
+> Could you please raise an issue against fluster?
+> 
+>>   - 2 testcase failed due to unsupported resolution after sequence change
+> 
+> Can it be fixed?
+> 
+>>   - 1 testcase failed due to unsupported stream
+> 
+> ?
+> 
+>>
+>>>> gstreamer test:
+>>>> Decoders validated with below commands, codec specific:
+>>>> gst-launch-1.0 multifilesrc location=<input_file.h264> stop-index=0 !
+>>>> parsebin ! v4l2h264dec ! video/x-raw ! videoconvert dither=none !
+>>>> video/x-raw,format=I420 ! filesink location=<output_file.yuv>
+>>>
+>>> Neither of these commands specify, what exactly was validated. They
+>>> specify that you've validated _some_ videos. It's impossible to even
+>>> reproduce your results, because you don't specify which files you've
+>>> used.
+>>>
+>>
+>> commands are shared indicating the pipeline used for validation for
+>> different codec plugins. These are some basic encode and decode commands,
+>> and shared for reference for anyone to pick input test files of their own.
+> 
+> Thanks, but it would also be helpful if you stated, which filesets were
+> used for validation. There are enough public filesets for testing video
+> decoders.
 
-Some of the error values are useful, it *is* good to know whether eg. a
-bridge cannot be allocated because (for what ever reason) of resource
-exhaustion (-ENOMEM) or because of otherwise invalid settings (-EINVAL).
-However, it is true that in production none of that should ever happen.
-The driver will be able to predict and manage the resources of the
-switch without ever hitting -ENOMEM, and make sure parameters are valid
-before passing anything to the firmware. And even during development it
-is good enough to see the error number in the netdev_err() output.
+Ack, will add that info in the cover letter in next revision.
+
+>>
+>>>>
+>>>> gst-launch-1.0 multifilesrc location=<input_file.hevc> stop-index=0 !
+>>>> parsebin ! v4l2h265dec ! video/x-raw ! videoconvert dither=none !
+>>>> video/x-raw,format=I420 ! filesink location=<output_file.yuv>
+>>>>
+>>>> gst-launch-1.0 filesrc location=<input_file.webm> stop-index=0 !
+>>>> parsebin ! vp9dec ! video/x-raw ! videoconvert dither=none !
+>>>> video/x-raw,format=I420 ! filesink location=<output_file.yuv>
+>>>>
+>>>> Encoders validated with below commands:
+>>>> gst-launch-1.0 -v filesrc location=<input_file.yuv> ! rawvideoparse
+>>>> format=nv12 width=<width> height=<height> framerate=30/1 ! v4l2h264enc
+>>>> capture-io-mode=4 output-io-mode=4 ! filesink sync=true
+>>>> location=<output_file.h264>
+>>>
+>>> At least these should use test sinks in order to be reproducible.
+>>
+>> it is using filesink in the pipeline to generate the encoded bitstream
+> 
+> I should have been more explicit: test sinks to generate the image.
+> 
+
+If you could suggest a gst pipeline for it, i can give it a try.
+
+Regards,
+Vikash
 
 
