@@ -1,62 +1,81 @@
-Return-Path: <devicetree+bounces-260145-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260146-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aBUoBQY4eWkJwAEAu9opvQ
-	(envelope-from <devicetree+bounces-260145-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 23:11:18 +0100
+	id EHI2KQc7eWkmwAEAu9opvQ
+	(envelope-from <devicetree+bounces-260146-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 23:24:07 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 771669AEE3
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 23:11:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 513DC9AFCE
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 23:24:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 303193011C60
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 22:11:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 90E71301950F
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 22:24:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD1EE327C10;
-	Tue, 27 Jan 2026 22:11:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AED9835E552;
+	Tue, 27 Jan 2026 22:24:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MhkYPc7g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FE9A21B185;
-	Tue, 27 Jan 2026 22:11:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B0B6357A5E;
+	Tue, 27 Jan 2026 22:23:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769551867; cv=none; b=RIeatL0CwH9dr6UjlnRSTlhXZBMMUzC5qwyJPhZWYt2YKpTUi0gFooI9RKmYexhTxjPdyouZwqJhDYZnqkRRdLAIjBwyz2LFzyUBdxTuDXZeOwWhMvUuSi58sc6XfvJn74mbmfVznkCaZMlv01vdin+Ev9dUK7BuSC8mzX/RIaA=
+	t=1769552640; cv=none; b=JGCqr6uXTpWZj5bac46ef2WUp5C5QLKgkFGjc4w3jpIndTuaCmRIjTlKp5qU4PfEVyn/MCFtpfMwhUTgcFhbNNSARf69oWGNNm++SdWs7pyNpN2DXIaEHwNtZZTiw8OR5uGC2MExE790LFUd/fBHbsdhIEh2vt6B3f2boiBLUak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769551867; c=relaxed/simple;
-	bh=HXOFUCcMmdKAZGPUTObNKRDSytW18UZt23vKcDslPh4=;
+	s=arc-20240116; t=1769552640; c=relaxed/simple;
+	bh=EB3mSuDS1Sk8QBges5GOMeOTze8afRt8DT8JE1kTUl0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Xw3SAVfQ2SdIcFHTAeL9yMCDjxiu4jtSKOIO3BlIuGChyQjvZHENjV1u11oHymXwtCmTPTPgZWZixIx5P3E0VFFjt14JaeIzoo88AcqMdSkMZqz16G+5z8xU65V3gwWoriM6G0H+ZNN/IhqZNGu+9KGctFBNGGShfukCwptef0w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.99)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1vkrH3-0000000032J-2LNZ;
-	Tue, 27 Jan 2026 22:11:01 +0000
-Date: Tue, 27 Jan 2026 22:10:58 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 1/3] dt-bindings: net: dsa: lantiq,gswip:
- reference common PHY properties
-Message-ID: <aXk38o39i62SIq_K@makrotopia.org>
-References: <cover.1769519758.git.daniel@makrotopia.org>
- <d9b6212ad5137feeb58b28e9b0784f1084c813df.1769519758.git.daniel@makrotopia.org>
- <20260127132919.xsvapgqc65f44iah@skbuf>
- <aXjGh1nzeAz8TQzH@makrotopia.org>
- <20260127150747.lzlfzhusywluuxhs@skbuf>
+	 Content-Type:Content-Disposition:In-Reply-To; b=mxRAtEn+Hqza590X+47lsvgQYbmSRWwtgPvHsmD5VpdyS2sA0/JwLWEeXCiRYIy5NYRERBkdrnnFkjbDCn3Tz3leDS1+OhsiQeIgTy2B4nokjQUvFJGo4p1ihFPUSS5uMNITE3tqK83/E3t39brnfb1mtsod1An8dtzOnUMKzQw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MhkYPc7g; arc=none smtp.client-ip=198.175.65.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1769552640; x=1801088640;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=EB3mSuDS1Sk8QBges5GOMeOTze8afRt8DT8JE1kTUl0=;
+  b=MhkYPc7gSnObPXT60mDdUWDQz2O/KNI8aVDN0qP7BexDqqiDoU1sOt+G
+   QHz5hWnfwQRC+qg0uDxBh24N76r1TbMCgWwgGNHm0Gxo3hugHPmE3+tbf
+   ow83+ACAVXx6Ks2omdddWoKz8GE3AQNFFaqfE4rebASuZHWrXeLpg/G1M
+   j9OEynlOc8F7w01tl7GPF5LLQOQxr2pT6a29QIktSVAgmvKHF7Bkp55Yy
+   9xwpmhEX6LUQUQ56wa+ln9svqtp/lWEBhhBXo3n2oyVMojhsK4ARVwEoQ
+   rXMAxFC62enoDoid3e1uR9KfdTg2tULQhUQLLEsQuBluZ3Y0xfi/7t0yW
+   A==;
+X-CSE-ConnectionGUID: H4JtsqAWR+W7DJwVF2J3yw==
+X-CSE-MsgGUID: A4L+MNmETPqgPpYRI1rfYw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="70803381"
+X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; 
+   d="scan'208";a="70803381"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2026 14:23:59 -0800
+X-CSE-ConnectionGUID: W5hcZtolRKSR4Iz5vvSJWA==
+X-CSE-MsgGUID: zNYtvbx1SJ+xObqXnClBRw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; 
+   d="scan'208";a="212952144"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+  by fmviesa004.fm.intel.com with ESMTP; 27 Jan 2026 14:23:55 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vkrTV-00000000YyK-11q0;
+	Tue, 27 Jan 2026 22:23:53 +0000
+Date: Wed, 28 Jan 2026 06:23:21 +0800
+From: kernel test robot <lkp@intel.com>
+To: victor.duicu@microchip.com, linux@roeck-us.net, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net
+Cc: oe-kbuild-all@lists.linux.dev, marius.cristea@microchip.com,
+	victor.duicu@microchip.com, linux-hwmon@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] hwmon: add support for MCP998X
+Message-ID: <202601280635.9DHNZdk6-lkp@intel.com>
+References: <20260127151823.9728-3-victor.duicu@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,110 +84,63 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260127150747.lzlfzhusywluuxhs@skbuf>
+In-Reply-To: <20260127151823.9728-3-victor.duicu@microchip.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260145-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[makrotopia.org];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260146-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[daniel@makrotopia.org,devicetree@vger.kernel.org];
 	MISSING_XM_UA(0.00)[];
-	R_DKIM_NA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,makrotopia.org:mid]
-X-Rspamd-Queue-Id: 771669AEE3
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
+X-Rspamd-Queue-Id: 513DC9AFCE
 X-Rspamd-Action: no action
 
-On Tue, Jan 27, 2026 at 05:07:47PM +0200, Vladimir Oltean wrote:
-> On Tue, Jan 27, 2026 at 02:07:03PM +0000, Daniel Golle wrote:
-> > Yeah, I thought about that, but it would be a lot of work to
-> > let the driver expose and simple-bus as MFD with devices (clk controller,
-> > reset controller, pcs, ...) sitting on register ranges. Imho not worth
-> > the effort in this case, we discussed it.
-> 
-> Possibly so; I don't have access from this computer to my previous notes
-> on this topic.
-> 
-> > However, even in that case imho it's fine to let it share the OF node
-> > with the ethernet-port. Why not?
-> 
-> I don't have a good feeling of how reusable this PCS IP truly is.
-> For example the XPCS gained DT bindings before I needed to customize the
-> lane polarity for its SJA1105 instantiation, so now I have to work with
-> and somehow adapt those.
-> 
-> If the PCS has a fixed mapping to that port then I suppose it can use
-> its OF node space without any extra overengineering. There should exist
-> ways to keep compatibility with this scheme even if there will be
-> efforts to have a reusable driver later.
+Hi,
 
-Taking a step back I noticed that we need to decide this also for
-mt7530.
+kernel test robot noticed the following build warnings:
 
-commit bde1ae2d52ab ("net: pcs: pcs-mtk-lynxi: pass SGMIISYS OF node to PCS")
-currently doesn't pass any fwnode when creating the LynxI PCS.
-> +               pcs = mtk_pcs_lynxi_create(priv->dev, NULL, regmap,
-> +                                          MT7531_PHYA_CTRL_SIGNAL3);
+[auto build test WARNING on 0f61b1860cc3f52aef9036d7235ed1f017632193]
 
-However, each PCS does belong to a specific switch port, and it would be
-advantegous and imho consistent to also assign the ports OF node to the
-PCS, this would allow to configure the polarities also on the MT7530
-SerDes ports.
+url:    https://github.com/intel-lab-lkp/linux/commits/victor-duicu-microchip-com/dt-bindings-hwmon-add-support-for-MCP998X/20260127-234206
+base:   0f61b1860cc3f52aef9036d7235ed1f017632193
+patch link:    https://lore.kernel.org/r/20260127151823.9728-3-victor.duicu%40microchip.com
+patch subject: [PATCH v3 2/2] hwmon: add support for MCP998X
+config: hexagon-randconfig-r071-20260128 (https://download.01.org/0day-ci/archive/20260128/202601280635.9DHNZdk6-lkp@intel.com/config)
+compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 9b8addffa70cee5b2acc5454712d9cf78ce45710)
+smatch version: v0.5.0-8994-gd50c5a4c
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260128/202601280635.9DHNZdk6-lkp@intel.com/reproduce)
 
-Ie.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202601280635.9DHNZdk6-lkp@intel.com/
 
-diff --git a/drivers/net/dsa/mt7530-mdio.c b/drivers/net/dsa/mt7530-mdio.c
-index 11ea924a9f35..3da9f42cefcb 100644
---- a/drivers/net/dsa/mt7530-mdio.c
-+++ b/drivers/net/dsa/mt7530-mdio.c
-@@ -86,9 +86,16 @@ mt7531_create_sgmii(struct mt7530_priv *priv)
- 	struct regmap_config *mt7531_pcs_config[2] = {};
- 	struct phylink_pcs *pcs;
- 	struct regmap *regmap;
-+	struct dsa_port *dp;
- 	int i, ret = 0;
- 
- 	for (i = priv->p5_sgmii ? 0 : 1; i < 2; i++) {
-+		dp = dsa_to_port(priv->ds, i + 5);
-+		if (!dp) {
-+			ret = -EINVAL;
-+			break;
-+		}
-+
- 		mt7531_pcs_config[i] = devm_kzalloc(priv->dev,
- 						    sizeof(struct regmap_config),
- 						    GFP_KERNEL);
-@@ -113,8 +120,8 @@ mt7531_create_sgmii(struct mt7530_priv *priv)
- 			ret = PTR_ERR(regmap);
- 			break;
- 		}
--		pcs = mtk_pcs_lynxi_create(priv->dev, NULL, regmap,
--					   MT7531_PHYA_CTRL_SIGNAL3);
-+		pcs = mtk_pcs_lynxi_create(priv->dev, of_fwnode_handle(dp->dn),
-+					   regmap, MT7531_PHYA_CTRL_SIGNAL3);
- 		if (!pcs) {
- 			ret = -ENXIO;
- 			break;
+All warnings (new ones prefixed by >>):
 
+>> Warning: drivers/hwmon/mcp9982.c:304 expecting prototype for struct mcp9992_priv. Prototype was for struct mcp9982_priv instead
 
-What do you think?
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
