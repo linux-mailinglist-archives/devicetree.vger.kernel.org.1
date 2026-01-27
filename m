@@ -1,67 +1,69 @@
-Return-Path: <devicetree+bounces-260105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260106-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eH6yAdsUeWl3vAEAu9opvQ
-	(envelope-from <devicetree+bounces-260105-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 20:41:15 +0100
+	id KAboKjMVeWl3vAEAu9opvQ
+	(envelope-from <devicetree+bounces-260106-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 20:42:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 608409A106
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 20:41:14 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15AC49A162
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 20:42:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EDE5A30500FD
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 19:38:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C319B302803C
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 19:41:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D4CB36E49A;
-	Tue, 27 Jan 2026 19:38:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F369335EDB2;
+	Tue, 27 Jan 2026 19:41:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BmMifiCd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qqBUOdNy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD91235DD1D;
-	Tue, 27 Jan 2026 19:38:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFE663093DE;
+	Tue, 27 Jan 2026 19:41:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769542722; cv=none; b=Dl+aaTMxeQtaV/AoYbuBXTA/+CfSFalf+vu/OVbJ5lsRX4hZfypeQsfgAyUPluF1vX2fipYmWsqLmiD2RMZPOCESnj2Av8eU6+udtsoXhyQMHJ1LS0J6fM0BdfFxvoyllerMMd1ernSzdSUg5XDaNEA65q/dmog6HoBYDKhqups=
+	t=1769542918; cv=none; b=NMjhOH8/iF2ci7rCCH1lddBcagqZ7DPRTgGjs/NozMsvbV3lqUwV8KYdCSRA7xYF9phlHX5bvA+vF0ooaD08zlbId0lDjRdzhTcE+MGryVZ3IKdpro/3OSQgqpmagmOI8O8Hsbj2gWIcG5smg3qbNr/phtlM6Y9pgQo3hXHrXMw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769542722; c=relaxed/simple;
-	bh=WQ+4gjflcLv9d5LwcfBpmsfiJCT/J6DX8iLLgXKm8x0=;
+	s=arc-20240116; t=1769542918; c=relaxed/simple;
+	bh=ufkzvt4P3WovGi6PM2lTuF06cLGLKmm1kza1Bn3opPw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SvIWI/f2MzqZC9RgF8dip0k2/WU7xoHSNrlMCoCwZugW/OTWchffxlIiaOqyU3/fQC6PCjtQBsXkxzrqsR2Nymjw+gnQmc9V6LIZqkU5rG3tSJI1hxTs3jS4fdvJ0UbbkqRDaySsljNnhKNLEGS2+z3JgrFeJ2hZYtfbHg/a7sI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BmMifiCd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10943C2BC86;
-	Tue, 27 Jan 2026 19:38:39 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=XGLyLzJNWVY5z9l9unZhczir5dDV6qRcKWUV3XLoF8mhZiTuPan3VXcxe4eR4/14PTqxpL+NJNHq5ISmQzKd4J9iB/GNcB2o+0bOQ3D1BRbustG9oGSnKkIjWxLZogRQJzZHR9a8gMH4jNatRfJzeAj2kePXKTx5xPkS8X1Iw1g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qqBUOdNy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAC21C19422;
+	Tue, 27 Jan 2026 19:41:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769542722;
-	bh=WQ+4gjflcLv9d5LwcfBpmsfiJCT/J6DX8iLLgXKm8x0=;
+	s=k20201202; t=1769542918;
+	bh=ufkzvt4P3WovGi6PM2lTuF06cLGLKmm1kza1Bn3opPw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BmMifiCdZDTbz6ovAbqxUCYopTUg7+HUh/NPmR1A0xllRMclpHqwVPI2vQ7qgVz/8
-	 5f+F3urw20N8/2dRXR8Ka4HaMLVKRdj3I0r7weqXASSJBI3tzCj0GK5n+hlQ1tIOoK
-	 MrRPdPpNKL0tGTMoCms6p5bSPNzG1Vu4Zwf6opS8dgRm1Fl5AjCUDT82cJoq0lX2rb
-	 jUbT5p9sXsr7CLUio0AnWaUdmZeDVfC/B42A3sjEa451oYtpmTMOa7jZJ9wIsr8+tp
-	 xpgy0ejhicvT8HSF5LWqZha4LLJsRB++xhOQ48ztpkwFMhy3wkxLii3n8SKZo17m2p
-	 YfigFrMtkuyFg==
-Date: Tue, 27 Jan 2026 19:38:37 +0000
+	b=qqBUOdNyHp/jidhqzRhdOnhB2HMlqzNUPpN1OtQaYSg9guJmQcw98jXVnOwzb+sKw
+	 M8Rk39gEfv7vq5MFcSyq4Q5b9Oqh0ckeQfKt/aXJh11TwHBFlT+6ZznYfqZ0jSFomp
+	 8U007gjuHOHriZKjzyyMnj/ozcUwBnjdTToHt6rA3RqvTHRf/jI7h56ABgcyNoVxmG
+	 SgG6fTAAcd1wdRFQmygdh3sLNO96i7CZU8yljLGz/7UM23pZ+y41DmbAyAtJm1pgsD
+	 N3CAgiaGEU8W2zSbo33/YAfm5vqPeWqxoWjZ2xoLGgAEEpXT+UXbnBXr0xyw576fLN
+	 PE3o64Q1139GA==
+Date: Tue, 27 Jan 2026 19:41:53 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v2 2/6] dt-bindings: iio: amplifiers: Add AD8366 support
-Message-ID: <20260127-goes-grandpa-891eb0dc413a@spud>
-References: <20260126-iio-ad8366-update-v2-0-c9a4d31aeb01@analog.com>
- <20260126-iio-ad8366-update-v2-2-c9a4d31aeb01@analog.com>
- <20260126-porous-hurdle-bfc510f113bb@spud>
- <rzco2g6psoblzaaqrdnmpmhs44hl7kqusa2kuafpkjx635dug2@rtwebhwztfkd>
+	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: display: panel: document Atrix 4G
+ and Droid X2 DSI panel
+Message-ID: <20260127-myself-sinless-95525b4c78ec@spud>
+References: <20260125131904.45372-1-clamor95@gmail.com>
+ <20260125131904.45372-2-clamor95@gmail.com>
+ <20260126-patchwork-cofounder-8b7bb715556a@spud>
+ <CAPVz0n1hBof7_eB6D39zZd5EfC2dL5-Ngf0ja7+kkcwQnnr7Mg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,9 +71,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Hex63lWBCk07Jfvr"
+	protocol="application/pgp-signature"; boundary="FwVs2IaKZpUuxLb2"
 Content-Disposition: inline
-In-Reply-To: <rzco2g6psoblzaaqrdnmpmhs44hl7kqusa2kuafpkjx635dug2@rtwebhwztfkd>
+In-Reply-To: <CAPVz0n1hBof7_eB6D39zZd5EfC2dL5-Ngf0ja7+kkcwQnnr7Mg@mail.gmail.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
@@ -79,114 +81,118 @@ X-Spamd-Result: default: False [-2.26 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260105-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-260106-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FREEMAIL_CC(0.00)[linaro.org,oss.qualcomm.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 608409A106
+X-Rspamd-Queue-Id: 15AC49A162
 X-Rspamd-Action: no action
 
 
---Hex63lWBCk07Jfvr
-Content-Type: text/plain; charset=us-ascii
+--FwVs2IaKZpUuxLb2
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jan 27, 2026 at 11:37:52AM +0000, Rodrigo Alencar wrote:
-> On 26/01/26 08:11PM, Conor Dooley wrote:
-> > On Mon, Jan 26, 2026 at 01:51:03PM +0000, Rodrigo Alencar via B4 Relay =
-wrote:
-> > > From: Rodrigo Alencar <rodrigo.alencar@analog.com>
-> > >=20
-> > > Add device tree binding documentation for amplifiers and digital
-> > > attenuators. This covers different device variants with similar
-> > > SPI control.
->=20
-> ...
->=20
+On Tue, Jan 27, 2026 at 08:26:32AM +0200, Svyatoslav Ryhel wrote:
+> =D0=BF=D0=BD, 26 =D1=81=D1=96=D1=87. 2026=E2=80=AF=D1=80. =D0=BE 22:45 Co=
+nor Dooley <conor@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
+> >
+> > On Sun, Jan 25, 2026 at 03:19:03PM +0200, Svyatoslav Ryhel wrote:
+> > > Atrix 4G and Droid X2 use the same 540x960 DSI video mode panel. Exact
+> > > panel vendor and model are unknown hence generic compatible is used b=
+ased
+> > > on board name it is used with.
+> > >
+> > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> > > ---
+> > >  .../display/panel/motorola,mot-panel.yaml     | 68 +++++++++++++++++=
+++
+> > >  1 file changed, 68 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/display/panel/m=
+otorola,mot-panel.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/display/panel/motorola=
+,mot-panel.yaml b/Documentation/devicetree/bindings/display/panel/motorola,=
+mot-panel.yaml
+> > > new file mode 100644
+> > > index 000000000000..2326a83bc405
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/display/panel/motorola,mot-pa=
+nel.yaml
+> > > @@ -0,0 +1,68 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/display/panel/motorola,mot-panel.=
+yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Atrix 4G and Droid X2 DSI Display Panel
+> > > +
+> > > +maintainers:
+> > > +  - Svyatoslav Ryhel <clamor95@gmail.com>
+> > > +
+> > > +description:
+> > > +  Atrix 4G and Droid X2 use the same 540x960 DSI video mode panel. E=
+xact
+> > > +  panel vendor and model are unknown hence generic compatible is use=
+d.
+> > > +
+> > > +allOf:
+> > > +  - $ref: panel-common.yaml#
+> > > +
 > > > +properties:
 > > > +  compatible:
-> > > +    enum:
-> > > +      - adi,ad8366
-> > > +      - adi,ada4961
-> > > +      - adi,adl5240
-> > > +      - adi,adrf5720
-> > > +      - adi,adrf5730
-> > > +      - adi,adrf5731
-> > > +      - adi,hmc271a
-> > > +      - adi,hmc792a
-> > > +      - adi,hmc1018a
-> > > +      - adi,hmc1019a
-> > > +      - adi,hmc1119
-> >=20
-> > Why do none of these devices use fallback compatibles? Please put the
-> > rationale in the commit message.
+> > > +    items:
+> > > +      - const: motorola,mot-panel
+> >
+> > What's a "mot" panel? If that's short for motorola, wouldn't it be
+> > better to conjure up something at least more specific to these
+> > particular users? The commit message has some info, but I still dunno
+> > where "mot" comes from.
+> > Seems okay otherwise..
+> >
 >=20
-> Will do. Each device has their own gain range/step.=20
->=20
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  vcc-supply:
-> > > +    description: Regulator that provides power to the device.
-> > > +
-> > > +  reset-gpios:
-> > > +    maxItems: 1
-> > > +
-> > > +  enable-gpios:
-> > > +    maxItems: 1
-> >=20
-> > How come enable-gpios is optional? Is it optional on all devices?
-> > Do all devices support enable-gpios and/or reset-gpios?
->=20
-> Board designs often hardwire powerup or serial mode enable signals
-> to high voltage level, so there will not be a reason to add the
-> enable-gpio.
+> "Mot" is how motorola called tegra20 board files which were base for
+> Atrix 4G and Droid X2 in their downstream sources, specifically
+> board-mot-panel.c. Since both devices use the same panel I used board
+> name. Hopefully, at come point I will be able to name it properly.
 
-I don't see anything about all devices supporting enable-gpios, adl5240
-doesn't appear to have one? I'm not going to check all of the datasheets
-to see about the others, but you should disallow the property on devices
-that don't have an enable pin.
+Can you put this explanation in the commit message please? Without being
+familiar with the platform, it's nigh impossible to know how "mot"
+relates to Atrix 4G or Droid X2.
 
-> I went over the device datasheets and I could not find the
-> reason for the reset gpio. I left it there because it was being used
-> in the current driver implementation, and I would not like to
-> invalidate designs that might be currently using it. I will ask around.
-
-If none of the devices have a reset pin, then you should delete the
-property from the binding and the driver. Not like you're going to break
-something if none of the supported devices even have the pin!
-
---Hex63lWBCk07Jfvr
+--FwVs2IaKZpUuxLb2
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaXkUPQAKCRB4tDGHoIJi
-0ocDAP9pgL4QVFVYJ4DmkBPlQ6XtFzfk2Gzz0A7mVWX2lYPfaQD/ZiYpQgcJGHMF
-tEAVjXD12AEkjzOGwNZbnVO+CrVGfw4=
-=vDbG
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaXkVAQAKCRB4tDGHoIJi
+0vM3AP99HVYtnmRr5OxMZo3zx3ORl5NrXZclP46g2ydF9HqIoQEA9UwB5NeAZQLb
+9I84G5w8qyI1NdpMrReNRudwLddYEQo=
+=zida
 -----END PGP SIGNATURE-----
 
---Hex63lWBCk07Jfvr--
+--FwVs2IaKZpUuxLb2--
 
