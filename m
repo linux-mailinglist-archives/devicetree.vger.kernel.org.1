@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-259888-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259889-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GOpDCnm0eGlzsQEAu9opvQ
-	(envelope-from <devicetree+bounces-259888-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 13:50:01 +0100
+	id kGrXHqu0eGlzsQEAu9opvQ
+	(envelope-from <devicetree+bounces-259889-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 13:50:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEED2947CD
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 13:50:00 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD32F94811
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 13:50:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 2DC553004F3D
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 12:50:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BEC0C3022966
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 12:50:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAE55346E47;
-	Tue, 27 Jan 2026 12:49:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE7B3354AEF;
+	Tue, 27 Jan 2026 12:50:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uaNYvjUx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IJDahrVS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7925185E4A;
-	Tue, 27 Jan 2026 12:49:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA78134CFD0;
+	Tue, 27 Jan 2026 12:50:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769518198; cv=none; b=SZB6Sji1L11PDYLv1uf5zfmPQHyiro8Hz9NF8/jjks4FBrPD9JE6Ig9BnNl0P4AEm+BNxcOcz574axwKYGgNd01xjW6AtgIq6DyPbd0hUU0f382AhG+Ilo++yzfLO3UrnzGWgmRrORv9ivMfhE37eWt3bca+s6oBVV0nd5PdfWw=
+	t=1769518240; cv=none; b=kfbf0LNcCFvMdWDj8ZRvoOwQCkG9SyMqzQQuYcUPHV/5s+++RwMnenxe5mqyglu63e0rvrdkQL1YLyJ5adTVHGSBy6/j4Lg5ZBgz4pqtJRVdvji7Wo9xiY8UnnQajCCdYJdrIM/qKL0b9d9X/WF1+eYtXpkhGu/3CwcDykn0Dzw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769518198; c=relaxed/simple;
-	bh=KYms8UhlZqE4igiABRj1LzqgOIs+iJRMeClJApK6cbQ=;
+	s=arc-20240116; t=1769518240; c=relaxed/simple;
+	bh=yR0xQFj1SPiElELNM2aUlYLKzZ+HjyHsWuNBAkW9wEA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RN13FvO5MtpR33C9Um61WWMZ24njiYGFWvSYOmbebfwIVaxO0z61GCweekF/8VKgLPMLjkw90NTIxkGAo0NCxOfxXuCSKV1KQn0Bxe/WoaIu5NRIXDg124e09xIDOwBsouQbKQbhA+nuvMhFWcOXE6XRd6bJkwAq8Nl/dvJH2KE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uaNYvjUx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9E99C116C6;
-	Tue, 27 Jan 2026 12:49:54 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=pSuYN//91vmWOWmU+69UbfUGllx1x/eQFLxhF0D7Q9vLSZL17JuVSXAH40r0thqOEpY83r0IAD/tr778YpaltN6U9Ij1wXL+YlRIj8kqNIzpZ9ARqCCV7dVp3y0B4MUvdrUb4du6sok6AylKWDEmmqT7ALeyfaiGcU5wQHBytTs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IJDahrVS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17019C116C6;
+	Tue, 27 Jan 2026 12:50:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769518198;
-	bh=KYms8UhlZqE4igiABRj1LzqgOIs+iJRMeClJApK6cbQ=;
+	s=k20201202; t=1769518240;
+	bh=yR0xQFj1SPiElELNM2aUlYLKzZ+HjyHsWuNBAkW9wEA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uaNYvjUxY0GIM4J6cCobQ23NebB7GjsM2DZfK6UILpYCSRtdQ1W8+iVvZACzt1Dhh
-	 q3LFOHORgflGCdpvnxA9vWUHRxLFp3T1cmpz+iPnNnDW4EXZWjgqKVV4MY+oQP5D2T
-	 vO58w5ZiPuVfGZ3MftsqHj/ud7fALXaNx3LVnMx4dHa2a3HSGZgSGDeFvrb3AmxnJX
-	 gHBIFh0EFBFi1lCR/R3siM+huMpBhChoodmHn+Hpt1viDnik0ig2E4cFOckxsbSPBF
-	 Rn3Y27pM6p0L1o1VHlu+FZMifmTtMX/0Owbk8X4xqVn971LrHdIjUoU7SaIoCnx0M7
-	 HHX+4l1rl7CuQ==
-Date: Tue, 27 Jan 2026 12:49:52 +0000
+	b=IJDahrVSeY0j+JNbmUcys/dq1kvYkOjn5dmXcCY3U+ip7+zvhhQexofT1/vICTkF8
+	 RbhBc/WRI6igOGrN6psH3uRkq79zmx6QW4mP2JWNliPu5BgKeYdQhZD3UJpQMp/CIH
+	 u9i8YcwNC5774//uKqRYmbc/SRQKYzQeRvORsz2Qj4XBEfbW73zlZxcTnk3tJww8Bo
+	 msF/q08p6GQTQHbH6RxOuQ+MUvPKk5H/ouTMFCiFxYCiKTX3nABRa3jV6kREhgv3e8
+	 ucerZWmE2qL3Bb4Y/QialspvoC7ZWV6v4O2Vo88tSNb6Ff5hIactQOwVkYvWIr5bqi
+	 ECe2T6bCeoaCA==
+Date: Tue, 27 Jan 2026 12:50:34 +0000
 From: Mark Brown <broonie@kernel.org>
 To: "Anton D. Stavinskii" <stavinsky@gmail.com>
 Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
@@ -58,11 +58,9 @@ Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
 	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
 	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org,
 	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v4 5/6] ASoC: sophgo: add CV1800B internal DAC codec
- driver
-Message-ID: <88ef974b-9fa8-490e-ba19-1fb31ca94342@sirena.org.uk>
+Subject: Re: [PATCH v4 0/6] ASoC: sophgo: add CV1800 I2S controllers support
+Message-ID: <50b16e42-2621-46d9-bb3f-5b4ea20aaaa5@sirena.org.uk>
 References: <20260120-cv1800b-i2s-driver-v4-0-6ef787dc6426@gmail.com>
- <20260120-cv1800b-i2s-driver-v4-5-6ef787dc6426@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,9 +68,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="6aHygTPjbSMl5gIi"
+	protocol="application/pgp-signature"; boundary="j5gRACT764pWXPnU"
 Content-Disposition: inline
-In-Reply-To: <20260120-cv1800b-i2s-driver-v4-5-6ef787dc6426@gmail.com>
+In-Reply-To: <20260120-cv1800b-i2s-driver-v4-0-6ef787dc6426@gmail.com>
 X-Cookie: I brake for chezlogs!
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.76 / 15.00];
@@ -80,13 +78,13 @@ X-Spamd-Result: default: False [-2.76 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259888-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-259889-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -101,58 +99,42 @@ X-Spamd-Result: default: False [-2.76 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,sirena.org.uk:mid]
-X-Rspamd-Queue-Id: BEED2947CD
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sirena.org.uk:mid]
+X-Rspamd-Queue-Id: CD32F94811
 X-Rspamd-Action: no action
 
 
---6aHygTPjbSMl5gIi
+--j5gRACT764pWXPnU
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Tue, Jan 20, 2026 at 11:06:07PM +0400, Anton D. Stavinskii wrote:
+On Tue, Jan 20, 2026 at 11:06:02PM +0400, Anton D. Stavinskii wrote:
+> This patch series adds basic audio support for Sophgo CV1800B,
+> as used on boards such as the Milk-V Duo.
+> The series introduces the I2S controller driver,
+> the DAC and ADC codec drivers, corresponding DT bindings,
+> and DTS updates to wire the components together.
 
->  	help
->  	  This driver provides an ASoC codec DAI for capture and basic
->  	  control of the RXADC registers.
-> -
->  	  Say Y or M to build support for the Sophgo CV1800B
->  	  internal analog ADC codec block (RXADC).
->  	  The module will be called cv1800b-sound-adc
+I'm going to apply these, but there's a couple of small issues - please
+send incremental patches fixing these.
 
-Extra change here.
-
-> +static int cv1800b_dac_hw_params(struct snd_pcm_substream *substream,
-> +				 struct snd_pcm_hw_params *params,
-> +				 struct snd_soc_dai *dai)
-> +{
-> +	struct cv1800b_priv *priv = snd_soc_dai_get_drvdata(dai);
-> +	int ret;
-> +	unsigned int rate = params_rate(params);
-
-> +	cv1800b_dac_mute(priv, false);
-> +	/* minimal decimation for 48kHz is 64*/
-
-Nothing ever mutes the DAC so this is a bit redundant.  The mute should
-probably be a mute_stream() operation.
-
---6aHygTPjbSMl5gIi
+--j5gRACT764pWXPnU
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAml4tG8ACgkQJNaLcl1U
-h9BHkQf+Kuc6BJjZWeAWQyoncG7fDBwM+k/TqBukcTrPjZHiGZ22yCkrEVWU06Lc
-qWWOu9GIJM4QfBsRLYI9IEvy0L4b3RZK72dHfIsK0YEOUydC1oKWRYsm4qUqHnou
-vXTYz6nDIuMxvIAlODl9SiLHxT4/BNRKMWdPl/RCV86jUbF7mBqyRpDx41tTTuen
-lzSUWIvK8ZhTmCfkB6mdBapl4oxYANInUjMxq/28hOUOJ3xXIiPLTn/UHFLVYmdX
-ORMrhBMCWuVIiagUgK8RwF0Uc9Fd1zPgfA5QjanVdstgKYDe1IhODVJNT5n+E2bE
-8un1mgrWVdoXPo3r8LiZ9rth+YqXqw==
-=0mgc
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAml4tJkACgkQJNaLcl1U
+h9C15gf+LZ2vbf2V2mzyVpx5/XVKRAXSeNrkBB4ee2C+1MBVFvWzgMa54NBdBqHQ
+8rE7a4b2rJRF7x09H+YuUnzZasLwzzWVXG6MwsUqJq4avihbona0li959wEXDT7+
+8eMzdUwcKRpm8YkFBZIeBe6MEiCQz+OuFRuDR9kCnwlIx3D0R+sdDjUDpFgwglTW
+kNJb9syIqewNcmaYN73SMFtTNTr+ujXd5QjE1vHUM/wnILWk6sN2NI5XXyr64kQ+
+TlUQ9lTyeeKXsauW/RrhJQDQsNgLpifHqYMUWCVzLJ1/Tujwaut6rSFXxkXloUUK
+09CzNq6iyeXviiBHoz2vQvqQVQxNRg==
+=JDcg
 -----END PGP SIGNATURE-----
 
---6aHygTPjbSMl5gIi--
+--j5gRACT764pWXPnU--
 
