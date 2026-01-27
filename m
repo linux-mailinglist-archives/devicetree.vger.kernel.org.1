@@ -1,329 +1,174 @@
-Return-Path: <devicetree+bounces-259771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259772-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YNruOrt5eGnBqAEAu9opvQ
-	(envelope-from <devicetree+bounces-259771-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 09:39:23 +0100
+	id gI1DBCJ8eGkFqQEAu9opvQ
+	(envelope-from <devicetree+bounces-259772-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 09:49:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A529912A8
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 09:39:23 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEDB59144C
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 09:49:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 12A6E304D1DF
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 08:38:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C2FFD3013690
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 08:49:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA5492BE034;
-	Tue, 27 Jan 2026 08:38:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A0762BEC3A;
+	Tue, 27 Jan 2026 08:49:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="oOQ/oWLH"
+	dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b="mlk+gWDN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013044.outbound.protection.outlook.com [40.107.162.44])
+Received: from mail-m1973178.qiye.163.com (mail-m1973178.qiye.163.com [220.197.31.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 572E72BD5B9;
-	Tue, 27 Jan 2026 08:38:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.44
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769503106; cv=fail; b=leyOUwyt2F7wFe2Pzkt/Nc5MT/yoc9l0Yvkk86CreQ6y9qIr506njbqahweZlh9UXsSvOi9P3ZuLrtuQBxlwLTXhRtc9QmUFRNjdNQ0S4GQg0T5F/N01MuH/p+i3Pq+293XKdKJr14crxkurIDalKvnlmifcjUpFK6koPzB0Knw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769503106; c=relaxed/simple;
-	bh=szZiKgzHwcf53Uj6FVP9Oy5JDF/+9+UJBN2O+N/U4yo=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=BtY6HqBfATQroxnbUMnbnZxqvZNmKfusvtCsUUdgf/GAFtf/xMp8iu+4kgMtS8BzWdSsujP3cRV+z9X34k1toCX0bhvSyi3td2l86ibno6ijypNMzw7Dg7zsXboUTqPU3knHqYmiEPnLwW6eXMktbtyyBpo8WZ/OO5hVK6n6ivI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=oOQ/oWLH; arc=fail smtp.client-ip=40.107.162.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=cgdVVHl4bJixO7oVlJwNx/aZBRjhlQs66T8XTrS7q56Msq1rg5KxKwxo6ccVfKfZHfpSKaVSvJCDr7BMdDqkWvbom86LopvF3y2lLsqNrrrgokj6MyvLIPY90XTYx6ydnQmWQxRb4LUQY89OsHz8dAE6Sk3I7/0P8WHdRfxDvXjjaPotyrV2CM5ohLEbRKZSd69dhGDRFMib3eVGhkQIoHouSk2K8qYz3PKUmYj3nqjANAh2+Y3leLoVt1FnlQBAlOqYL0sDTNX9i1qiU+fyR5W5VjyIFETkNQpmHCTyrFz13du4GA1cZAB6jdSWUCyTUX0lkxIs0PucgIbThG4XFw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GsO5w+Ag/BmIZSVl2LhGqwRhhpWcWszIJ+Rx5spFeAI=;
- b=fiWs84XC02VJzJDW8l0gKxkSxoZxyOOIvGQWS0g585OCEE2/CvtbC/G1H9yfyyvNU6urqvdVBbUKpBMnkUHlon6Eitcj0Zp0PlfjBMlEmTJWItY5AYglXEZZDsphsYmgfEEyg6Gsbin66KWcf5Sq8SMb9DsHIUIBazhWsTrVyi+jnVpGP68lM/PMAewFvlpFnvhxbYQwoY+v+fZ8shQF4lFWFgEbBf9OXRDp4NQMIxbLzCg+8HKOjxEmoE6OE67wmYXm5ePue69MIdzo16dHD/oTkdUFFl5q4J3t5Bxm/A3RHmEUKeDZXJiOZYswkDM6H1sfUrAa6fh0tV7lEfNZQg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GsO5w+Ag/BmIZSVl2LhGqwRhhpWcWszIJ+Rx5spFeAI=;
- b=oOQ/oWLHied44mMOiQrqe9PiwKnppsIV/Lv6n6HdUcM8Slz8jy++SEA0WIr/Hc7fBLmt7j94An09y0pb3khp7ScJQin+X8WtbnmZdwA8ztD/FTzl9W+8EpHkFpCXTcukcO8ku8Z2LuKm7znbEZsrhWFFYY3w8rS6qoTLyuYR+nY98eQzYIM5Pl7DzvYm+hSpX5zkN6ulF0Ia8F9MuZ7OvOCfH+5ZAlAvGgmMDhVSXaZhD756Xgc4Wq4QblIIAT0XvQLsV6gqvpAucE6JcRuY1vlm3OKZOhicdtLIA6jbk/NsYa6pRYUR5XH254h/PStj5vZphnsSMRGKEPZ+EZYMfw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
- (2603:10a6:800:315::13) by AM0PR04MB6867.eurprd04.prod.outlook.com
- (2603:10a6:208:182::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.16; Tue, 27 Jan
- 2026 08:38:21 +0000
-Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
- ([fe80::2943:c36f:6a8c:81f7]) by VI0PR04MB12114.eurprd04.prod.outlook.com
- ([fe80::2943:c36f:6a8c:81f7%5]) with mapi id 15.20.9542.015; Tue, 27 Jan 2026
- 08:38:21 +0000
-From: Sherry Sun <sherry.sun@nxp.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F43D279903;
+	Tue, 27 Jan 2026 08:49:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.78
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769503762; cv=none; b=jqmd9hYTwTspgI91a+tiFfAMJVak8Bf0hH00upvJAtaDoPqXdMc+ax056Mq9dL66i6tvDwXqhh9u/hLpU7pnEFWoLRCyQccJ5SP/N+wFFSNVJov5fH5sQMuixXYf4jzQEBFWxdSHMxfL9sx7ceJhwZ5tYLRDsvfHNrV+0eJDkDY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769503762; c=relaxed/simple;
+	bh=VIzK0xG7aXFFlEfbs8uXle4LVOvvYl2JEUZDRMp6i7o=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=CRFOri7Wy3qRWi19RKWw8Ggkucar3utiwv3ebL5z7Q6kTbqJZrvj8k9noQul1d5SnzOkROSCMZtBEX4k62Yklmby6s93PqXo5l1motNw1oyCT6U4sfKqin9u/vlBC+4OeRwq9q/BrjoTFpeWqRgAAVjg17W3q0gRMPFrQ2OtpWU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com; spf=pass smtp.mailfrom=thundersoft.com; dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b=mlk+gWDN; arc=none smtp.client-ip=220.197.31.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thundersoft.com
+Received: from tsdl-HP-EliteDesk-880-G6-Tower-PC.. (unknown [36.129.139.90])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 321e5e450;
+	Tue, 27 Jan 2026 16:49:06 +0800 (GMT+08:00)
+From: Hongyang Zhao <hongyang.zhao@thundersoft.com>
+To: neil.armstrong@linaro.org
+Cc: Laurent.pinchart@ideasonboard.com,
+	airlied@gmail.com,
+	andersson@kernel.org,
+	andrzej.hajda@intel.com,
 	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	frank.li@nxp.com,
-	s.hauer@pengutronix.de,
-	festevam@gmail.com,
-	daniel.baluta@nxp.com,
-	dario.binacchi@amarulasolutions.com,
-	alexander.stein@ew.tq-group.com,
-	Markus.Niebel@tq-group.com,
-	matthias.schiffer@tq-group.com,
-	y.moog@phytec.de,
-	josua@solid-run.com,
-	francesco.dolcini@toradex.com,
-	primoz.fiser@norik.com
-Cc: kernel@pengutronix.de,
 	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH V3 3/3] arm64: dts: imx93: Add i.MX93 Wireless EVK board support
-Date: Tue, 27 Jan 2026 16:37:27 +0800
-Message-Id: <20260127083727.1839605-4-sherry.sun@nxp.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20260127083727.1839605-1-sherry.sun@nxp.com>
-References: <20260127083727.1839605-1-sherry.sun@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR02CA0088.apcprd02.prod.outlook.com
- (2603:1096:4:90::28) To VI0PR04MB12114.eurprd04.prod.outlook.com
- (2603:10a6:800:315::13)
+	dri-devel@lists.freedesktop.org,
+	hongyang.zhao@thundersoft.com,
+	jernej.skrabec@gmail.com,
+	jonas@kwiboo.se,
+	konradybcio@kernel.org,
+	krzk+dt@kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	rfoss@kernel.org,
+	robh@kernel.org,
+	rosh@debian.org,
+	simona@ffwll.ch,
+	tzimmermann@suse.de,
+	vkoul@kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: display: lt9611: Add dsi-port-b property
+Date: Tue, 27 Jan 2026 16:48:54 +0800
+Message-ID: <20260127084854.1714905-1-hongyang.zhao@thundersoft.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <7d9041a3-9d2b-469a-9fa7-89d53bbd2a1f@linaro.org>
+References: <7d9041a3-9d2b-469a-9fa7-89d53bbd2a1f@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VI0PR04MB12114:EE_|AM0PR04MB6867:EE_
-X-MS-Office365-Filtering-Correlation-Id: e8af0417-3c13-4798-944e-08de5d7f6d92
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|376014|7416014|366016|52116014|19092799006|1800799024|921020|38350700014;
-X-Microsoft-Antispam-Message-Info:
- =?us-ascii?Q?YP5mKSDQRcDFmKzP58i3Af5zC1aYnMbuG376mP4OUoHgtlatV8odKHY4AuPp?=
- =?us-ascii?Q?AGuqB1AvystNjqT/4XnVVHJI3cPhaByN8SIwpy8HWiiZqKdRBUyZ19NuV0Bv?=
- =?us-ascii?Q?WgecxfdOKe4X7Rzbt/sKKTo3DdyjNiK2Ak1dnBPgvJOyDU59wiKuUKTuhAVg?=
- =?us-ascii?Q?nrX4uVIUaQTHbUhKbYkRdH5U+2Zw/12QVjcqEhqixVSqbxsyKoT0mMEBPeZ6?=
- =?us-ascii?Q?mKWqk8cFLAbfmFgNqI9NFgoAAyJ2bMT1jhcEmu42huX+NcfO5MAGDZiFOPWX?=
- =?us-ascii?Q?SNKuhLgU7jgMfm8WxNA0wtCEUfCN28MzH1VxBx1o2UYugiMV5IbboWlUoP5m?=
- =?us-ascii?Q?znyoG4JsQSxfowu7w3vRDAsXwHDp99xcPWuia0QAd6hy75N/1nNAF90rHTWI?=
- =?us-ascii?Q?/i8PXsGmLn5LuppkQSU/m8JYj3WswTeVDIJ+VhiWbMYqb/YEh0tKs0kz/5BZ?=
- =?us-ascii?Q?m67jgQGT5NOsYPaGOyu0IhSPTurPDWKkMX9P8uEUsaGiA918pSoIRqIeh4aq?=
- =?us-ascii?Q?K31+RdnJHrOVLdWmpajRiG2nnBbmKiEurC4P4M830KI7Wr6IbNFx61JvGKyG?=
- =?us-ascii?Q?sInHWpNL71QKPYIkbdJs0cyc1UVv03jYYAcLaG8hDcKf/m7fpQIAArBb95Vi?=
- =?us-ascii?Q?PlsitjRChr9dr5zjr8gyH4D23JiXbTJhE4nz4rj72vvbh3eH6q1G1qdtE231?=
- =?us-ascii?Q?SjKY4aZcN0xSAcLRGUSCWDEYgLQMUfrT72IzlJX9/Nm4o6VsPSLV5K9X9tJt?=
- =?us-ascii?Q?7OxJF2gXWQGFIobz7C6sHvxWp4EsmEcfrqjNVZCCwEx85nHI+hFGn6rA5hU7?=
- =?us-ascii?Q?GA5ST9GNHqwCw350j76Bol6EFDlU4TgrYQpa8cvUhJ7J0vBqES7jFATzk1dh?=
- =?us-ascii?Q?FLAAkk1xH9FemHlzB7Jl439Dwm9kzPpyXSaL+Bw18J7WFiAbSpB7FtYBI0QO?=
- =?us-ascii?Q?fPzQxbjfmA9kUxeWIbc7X0aaFSXlg5UPlJg1jkOTjm/iEnvSyQAxFun38jNC?=
- =?us-ascii?Q?AqLwyvEVXM/VU85x8QRB4hFS8hDxXfRYWVHYuq+Bqslwr6kIH0oNXyACTpbt?=
- =?us-ascii?Q?MsoT8sBFiWT2RFK3LBWRRZtkIzQYNsRC1e5G+xZZ2Ie1v8Tc5hEoONjvBa5I?=
- =?us-ascii?Q?Go3jcaN75BEHTlxdQ29GPHP7dybIFpnXeG+8akXewa/tgsx7aXzbgkqODb7+?=
- =?us-ascii?Q?fzwqD5GqanvKLzVOOrLIqA7/caMqyJ2LIaPGND/V0nfO77lpQ+us3mGYZD0C?=
- =?us-ascii?Q?URZgROt8wZLl4OXWCX6f6CoodtfnyD/ScYc3cbe4N/LAg9pyCJ7U6zDQLAh8?=
- =?us-ascii?Q?n/DbAOQ9IZRjkUJZ8dmlLKDbA2+Eg5ZMpQCWPWxxmxyO2vVHRXytjMYT+ONz?=
- =?us-ascii?Q?m8ZM64F7q2g9Blj15H5Sht6j7ll3YeO3GQPMPcLbPS7Je2Oy14N2M6ZJgR2H?=
- =?us-ascii?Q?hNzpb7C1VKYBBA0rpfUQ054SGhGf4S5hYf9oyr0SWZ+qiOo1k8eV+sl+p/+2?=
- =?us-ascii?Q?L3yDTU0S9R9GczUIELqRT9Uvz3PjE0wGLVznYeU0EGOcX3SAWt6jPicRSFhq?=
- =?us-ascii?Q?34NU/CdMRgLKJYoOU0Q7YTiGLnd9cuGuQH+UpEDBX0ljfvQe+pYEeFi1dsew?=
- =?us-ascii?Q?y8qBo1xjU5YHq254voSphDORmVfmvBgsra7rZ1aRsof7?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI0PR04MB12114.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(52116014)(19092799006)(1800799024)(921020)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?doGyfM+V/wnFLH2sUb779LVw5Xl944IqCSaVJi+hYH/Spu920jz7PGsVexTA?=
- =?us-ascii?Q?uOLTrL1gbqITm3nNmgib8qH9GW/Oki8MT4PlIWZku7Gg/efpFhktiqnA7ipb?=
- =?us-ascii?Q?lKNBWlzbqrl5g3OIfVaBtPc3a/CMK+BXPXeThcgredq3xTdd0k18yejx+N37?=
- =?us-ascii?Q?a4u1VaetIl6u4CRCkoivI1R8UPXexTXRyWWnS/keFHer9JmilVfJvu7hXZHq?=
- =?us-ascii?Q?45zJCzavstNnqGm1MZRJwVvYlsjrbgO0yxf4rE38DUpOJgGF3Cu6FVn8pd9B?=
- =?us-ascii?Q?VYoCDBuiJ+PTjK9bJjxgL79+nl4543AQ84UzAqDMvDacuNVkHmt9eGKrtGaQ?=
- =?us-ascii?Q?I0ABr+/hVbEHtq+PpUcnzu+bXtYgD+qMNm5iFSNcYaTrtog/EQMv/5UzC6kx?=
- =?us-ascii?Q?Vm+H7WjRFhRRIxnmNypxW0EMz75vr6txeHoZK3gwSgDSOdIO4Lxaj6f42wXA?=
- =?us-ascii?Q?CfASSJy4kz1RPKpDIldyHhnGZ99KOf0uVGBf/ljVRXVNO8TejdTwOzG1YsKv?=
- =?us-ascii?Q?BYrvfECd4gtM2C4kc/RoRZUpnQiTsjYdFs0YW1yeFuYhIO/20d8R7pDycdPl?=
- =?us-ascii?Q?XZOUR0/+TK1iHGtIl1Jg0gkj8YECoWHHcbh6kvqvhVFrVVhi8ZJpulaQJcUh?=
- =?us-ascii?Q?aDTvH5eGdfbCs+uVQCXl+wbT20BeN6r3txKDLhmwx1ic2OVWcvPFByRku//A?=
- =?us-ascii?Q?oh0X2pQXslYA02hmZPGdsjvJEF00tgFWLiBj7Gzp0Q6tCiPBoJfwluuNQ89G?=
- =?us-ascii?Q?Ex/YvI54+bok6SgDTiXRtiFaLDhWgxdtxbI0iLquVSzCJz6fgeezpemnEab5?=
- =?us-ascii?Q?nhtyasHi9IHy3o5lqEaw7efoqZr+jvPPrmvbzfEbF78Zzg24QYunMIcgrkRT?=
- =?us-ascii?Q?GL/RqewIYee5PzcQ57cljn2bbDUnXlLUNa+EJcvP+TtO9J+tLlf7tD/iuRcF?=
- =?us-ascii?Q?LlWA9jpeSFkkvAaHMHqMlP40f+SbA7RWZkl8idOtz/+tVfxe1Ps4IpVqgEjZ?=
- =?us-ascii?Q?ANKWhB5cYhBazxbBrDB+rnziBqhKJPKcx8ys+hDiTyhH0ESqKbtY8wBQYilq?=
- =?us-ascii?Q?K92L5oAqC7+zqL2F0YBsxbVs3VU4NhC6kAgxL0YCWCwkZscray2bZQlhtY2H?=
- =?us-ascii?Q?YmnMqBYBLoezHcLkXemFRlT5F1GXe9KZ+dsRfQ0pqaY4nrM3ZBMJ+9dKOYnf?=
- =?us-ascii?Q?MTkPgh3OUOoLMa9yDcoeeNfbmuhfMwS2URM1Rl5q6nj+uuZ2JExsy2YV1lzZ?=
- =?us-ascii?Q?lxVon+v2zKPLTGB3gSWkoSB5HcAvK3Ef3BRafbMMqV26y6qYB2cIV1eI6xyl?=
- =?us-ascii?Q?qpDnn6VJIjoR1NRbB/sTn6XyAdAWtUFkZ2VKyVYBvWKfbZcHT/wxRSmv+Fxh?=
- =?us-ascii?Q?dlNoP6JnWa1zvN40xpmoyDCw+JNTcwGKVnO34t2/FNZuGrLN0SbpqNn+tYed?=
- =?us-ascii?Q?K3e4mmWX0hZyfAeP8l3WyFWaUsCWK7ZXjsdL3GDPdQ+1SLi8lUgdKcgOJ+ey?=
- =?us-ascii?Q?3sfQzJaSJCCWs58b40pPWN9lggYd8snFvktLyO+E3GP5PrdoAIBpKS5KYi0T?=
- =?us-ascii?Q?t4S+SDZbTC8FUNaUpd/bPyLiVCR1JTFCt5gvZMI3AMYtt4eKjKiO4tZ3960r?=
- =?us-ascii?Q?SDQ1wN4lj+LHCg9wvIIk93Yy5louwXFDCHJIuq8Fn7iT0oahDuNKNRCDyrom?=
- =?us-ascii?Q?NpFBQKxVHSjTht4a7RBWuOCd6lQa14VQM3HmDtODJLeZc3kJxKJPOgGsJMNl?=
- =?us-ascii?Q?bjSvjk3EUA=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e8af0417-3c13-4798-944e-08de5d7f6d92
-X-MS-Exchange-CrossTenant-AuthSource: VI0PR04MB12114.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jan 2026 08:38:21.4651
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: wCzzhK9VjTHvFP/FkW48sVpSMK6zTzoWP0POlJ5f5MpKoQjpK32zr+T/RaukLzUbiphjZR/8DKwoB/yPzEVaKg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6867
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9bfea4675109d5kunmba5438e79bdb8
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDTRlMVkpCQ0NMGEtOHh1DSVYVFAkWGhdVEwETFh
+	oSFyQUDg9ZV1kYEgtZQVlITVVKSUJVSkhCVUJLWVdZFhoPEhUdFFlBWU9LSFVKS0lPT09IVUpLS1
+	VKQktLWQY+
+DKIM-Signature: a=rsa-sha256;
+	b=mlk+gWDNP+RqWapm0pGEHyn+VNIojWyCvX7Gej8QBEvR0UOoYJrKDabGcSKBLqY7RWJzGheg4L4DEAE7iMcn2Sq8TuXZ8sPDWLjuleu+66t6roxCp3BwwnvVSxy16FIb8Sk+pUecX58R/gJKyAZy7sLyDxQbE21vr5hkZ9met2A=; c=relaxed/relaxed; s=default; d=thundersoft.com; v=1;
+	bh=ReKCnW0AuE/9mtifNT8wvXgnWudkFHiGhNf2b73WgFA=;
+	h=date:mime-version:subject:message-id:from;
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.84 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	DMARC_POLICY_ALLOW(-0.50)[thundersoft.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[thundersoft.com:s=default];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[ideasonboard.com,gmail.com,kernel.org,intel.com,vger.kernel.org,lists.freedesktop.org,thundersoft.com,kwiboo.se,linux.intel.com,debian.org,ffwll.ch,suse.de];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-259771-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,amarulasolutions.com,ew.tq-group.com,tq-group.com,phytec.de,solid-run.com,toradex.com,norik.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259772-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sherry.sun@nxp.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[hongyang.zhao@thundersoft.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[thundersoft.com:+];
 	TO_DN_NONE(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nxp.com:email,nxp.com:dkim,nxp.com:mid]
-X-Rspamd-Queue-Id: 6A529912A8
+	NEURAL_HAM(-0.00)[-0.993];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,thundersoft.com:email,thundersoft.com:dkim,thundersoft.com:mid,0.0.0.1:email,0.0.0.0:email]
+X-Rspamd-Queue-Id: AEDB59144C
 X-Rspamd-Action: no action
 
-i.MX93 Wireless SiP is created by integrating i.MX93 and IW610 WLCSP
-(Wi-Fi + BLE + 802.15.4). And i.MX93 Wireless EVK board with the i.MX93
-Wireless SiP basically reuse the i.MX93 11x11 EVK board, with some minor
-functional and pin connection differences. Reuse the new
-imx93-evk-common.dtsi and add the board-specific changes here.
+> On 1/27/26 07:58, Hongyang Zhao wrote:
+> > Document the lontium,dsi-port-b property for selecting DSI Port B as
+> > the input source instead of the default Port A.
+> >
+> > Signed-off-by: Hongyang Zhao <hongyang.zhao@thundersoft.com>
+> > Reviewed-by: Roger Shimizu <rosh@debian.org>
+> > ---
+> >   .../devicetree/bindings/display/bridge/lontium,lt9611.yaml          | 6 ++++++
+> >   1 file changed, 6 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/display/bridge/lontium,lt9611.yaml b/Documentation/devicetree/bindings/display/bridge/lontium,lt9611.yaml
+> > index 655db8cfdc25..9b7dba4e114c 100644
+> > --- a/Documentation/devicetree/bindings/display/bridge/lontium,lt9611.yaml
+> > +++ b/Documentation/devicetree/bindings/display/bridge/lontium,lt9611.yaml
+> > @@ -37,6 +37,12 @@ properties:
+> >     vcc-supply:
+> >       description: Regulator for 3.3V IO power.
+> >
+> > +  lontium,dsi-port-b:
+> > +    type: boolean
+> > +    description:
+> > +      Use DSI Port B as the input source instead of Port A or Port A + B.
+> > +      Required when the DSI is physically connected to Port B.
+>
+> This is not how this should be solved, the ports links are here for this exact purpose.
+>
+> port@0 represents port A, port@1 represent port B, so you need to describe the HW correctly
+> in the first place.
+>
+> Populate only port1 and in the driver check which ports are population and change the
+> configuration.
+>
+> Neil
+>
+> > +
+> >     ports:
+> >       $ref: /schemas/graph.yaml#/properties/ports
+> >
+> >
 
-Here are the detailed differences between i.MX93 Wireless EVK and i.MX93
-11x11 EVK board.
+Hi Neil,
 
-Function differences:
-Function	i.MX93W EVK			i.MX93 EVK
-WIFI/BT		IW610 in i.MX93W		IW612 M.2 module
-MQS		N				Y
-PDM MIC		N				Y
-M.2		N				Y
-RPi 40-pin HDR	Limited support(pin conflict) 	Y
+Thanks for the review. You're right - I'll use the ports to describe the
+physical connection properly.
 
-Pin connection differences:
-Function  Signal name	i.MX93W EVK		i.MX93 EVK
-WIFI/BT	  SPI_FRM	SAI1_TXFS (spi1.PCS0)	GPIO_IO08 (spi3.PCS0)
-	  SPI_TXD	SAI1_TXC (spi1.SIN)	GPIO_IO09 (spi3.SIN)
-	  SPI_RXD	SAI1_RXD0 (spi1.SOUT)	GPIO_IO10 (spi3.SOUT)
-	  SPI_CLK	SAI1_TXD0 (spi1.SCK)	GPIO_IO11 (spi3.SCK)
-	  SPI_INT	CCM_CLKO1		on-board IO expander
-	  NB_WAKE_IN	PDM_CLK			on-module IO expander
-	  WL_WAKE_IN	PDM_BIT_STREAM0		on-module IO expander
-	  IND_RST_WL	PDM_BIT_STREAM1		on-module IO expander
-	  IND_RST_NB	GPIO_IO28		on-module IO expander
-	  PDn		GPIO_IO29		on-module IO expander
-	  NB_WAKE_OUT	GPIO_IO14		on-board IO expander
-	  WL_WAKE_OUT	GPIO_IO15		CCM_CLKO1
-I2C3	  I2C3_SDA	GPIO_IO00		GPIO_IO28
-	  I2C3_SCL	GPIO_IO01		GPIO_IO29
+I'll update the patches to:
+1. Make port@0 optional in the binding (require at least one of port@0 or port@1)
+2. Update port descriptions to clarify port@0 = Port A, port@1 = Port B
+3. Modify the driver to detect which port is populated and configure accordingly
+4. Use port@1 in the RubikPi3 DTS since the DSI is physically connected to Port B
 
-Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
----
- arch/arm64/boot/dts/freescale/Makefile       |  1 +
- arch/arm64/boot/dts/freescale/imx93w-evk.dts | 52 ++++++++++++++++++++
- 2 files changed, 53 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx93w-evk.dts
+Will send v2 shortly.
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 700bab4d3e60..d0ea746c59b8 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -418,6 +418,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx93-9x9-qsb-i3c.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-11x11-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-11x11-frdm.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-14x14-evk.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx93w-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-kontron-bl-osm-s.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-nash.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-segin.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx93w-evk.dts b/arch/arm64/boot/dts/freescale/imx93w-evk.dts
-new file mode 100644
-index 000000000000..ea76d5df84a1
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx93w-evk.dts
-@@ -0,0 +1,52 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2026 NXP
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx93-evk-common.dtsi"
-+
-+/ {
-+	model = "NXP i.MX93W EVK board";
-+	compatible = "fsl,imx93-wireless-evk", "fsl,imx93";
-+};
-+
-+&reg_usdhc3_vmmc {
-+	pinctrl-0 = <&pinctrl_reg_usdhc3_vmmc>;
-+	pinctrl-names = "default";
-+	gpio = <&gpio2 29 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&usdhc3_pwrseq {
-+	pinctrl-0 = <&pinctrl_usdhc3_pwrseq>;
-+	pinctrl-names = "default";
-+	reset-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
-+};
-+
-+&iomuxc {
-+	pinctrl_lpi2c3: lpi2c3grp {
-+		fsl,pins = <
-+			MX93_PAD_GPIO_IO00__LPI2C3_SDA			0x40000b9e
-+			MX93_PAD_GPIO_IO01__LPI2C3_SCL			0x40000b9e
-+		>;
-+	};
-+
-+	pinctrl_reg_usdhc3_vmmc: regusdhc3vmmcgrp {
-+		fsl,pins = <
-+			MX93_PAD_GPIO_IO29__GPIO2_IO29			0x31e
-+		>;
-+	};
-+
-+	pinctrl_usdhc3_pwrseq: usdhc3pwrseqgrp {
-+		fsl,pins = <
-+			MX93_PAD_PDM_BIT_STREAM1__GPIO1_IO10		0x31e
-+		>;
-+	};
-+
-+	pinctrl_usdhc3_wlan: usdhc3wlangrp {
-+		fsl,pins = <
-+			MX93_PAD_GPIO_IO15__GPIO2_IO15			0x31e
-+		>;
-+	};
-+};
--- 
-2.37.1
-
+Thanks,
+Hongyang
 
