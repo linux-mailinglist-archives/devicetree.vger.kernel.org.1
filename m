@@ -1,252 +1,266 @@
-Return-Path: <devicetree+bounces-259929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259931-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WH5jDKXMeGmNtQEAu9opvQ
-	(envelope-from <devicetree+bounces-259929-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:33:09 +0100
+	id 8GyCApDPeGmNtQEAu9opvQ
+	(envelope-from <devicetree+bounces-259931-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:45:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D00F95C5B
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:33:08 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75FBF95EF8
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:45:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B903E30205CC
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 14:32:15 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0E9F330B0E32
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 14:40:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9302735BDDB;
-	Tue, 27 Jan 2026 14:32:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VvV6MVxn";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="NTgR9RT3"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BA6035EDA0;
+	Tue, 27 Jan 2026 14:40:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2DD435B642
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 14:32:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE28035DD07
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 14:40:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769524334; cv=none; b=iqnnTXjVIJ8UuEfmkRWP8QvtQ/bedOa7Pu8VRhzEpH9xlkD9zzM4TdXoriFuwXu65rjeyYFJ6VK7WVQTj7aKCi0M7GfCPHvKKPt9dImOEz6H8Te5OgoBg1xZDKwb9YgnmButH59XfWMb+lEB+YtLFNUtqFwOAmeVwEVAGqke8kA=
+	t=1769524812; cv=none; b=djstIlR1Ld8YYuVzaQbtQ3JKY/m7p9B7RjCN/o2kA8wB0hcJnM4rNsDBkrehJEVyMq5ZULf6kQS0uPlH98vP2TYbPRe+4wYE7/gF6GfFJjHjz9XenUzgzNh+tk2gfIpIkhiDNiBHJg7mgWJARxWN5AsItwa2G+BBUGzoS+/gpJA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769524334; c=relaxed/simple;
-	bh=7VXB1W83ikac6HwtZPI8A7T7A1xzAjgKY7T53e0jxAk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Beua51jmwWmhRDcfljIxjJQNViKC4TQWYMtMMkSsSgptBqi9qTdangsZ4h7VpZKLv+1YvCO+aJ0RL1L7QcgvO0TQc5AP7sLfO25QF+PDbTe+bASQwwfubL0HA8B7mren7n9Emva8jyvWxZJDtQVQcW+U147wb7SHrioYWvyk2E8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VvV6MVxn; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=NTgR9RT3; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60RBxR5S1795413
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 14:32:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=/JZfqn4pG1aepAs8U6hjEKbh
-	NO9LoeCJ/TwZWLdXsS4=; b=VvV6MVxnKqWgkVcxcrN5sXdR5t1kQ9UQCjChNu/y
-	VBJIo3GtInplcwgriuEkXIR7YpkYt5qQSflvYRp5ThsY/fEo2eQF6DVEn8KvPR8Z
-	ANuxtmAXQaVpmzMqCVIOU5YPmI1TsQ77FEJBNfDReQJGcFGcxaVh3tprqH3bZogN
-	yFHhRRYklY/hWtSdFNzv0uCitkHh+cLCESFqpu4g1hsFOT3hlj/X3zK9ZtT+7n29
-	C6+Q47VN4aug5YKETtElqopTK4fObc+e4dXAfJkdijeNullYnJ4BvrQpqq9UDbfe
-	IRXSM7x4fsdrLR3dNX6bqV4iqBj7URNqz1hWxjopawlhPA==
-Received: from mail-vs1-f72.google.com (mail-vs1-f72.google.com [209.85.217.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bxg93jvmu-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 14:32:11 +0000 (GMT)
-Received: by mail-vs1-f72.google.com with SMTP id ada2fe7eead31-5f53b7f1341so5292475137.0
-        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 06:32:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769524331; x=1770129131; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=/JZfqn4pG1aepAs8U6hjEKbhNO9LoeCJ/TwZWLdXsS4=;
-        b=NTgR9RT37U1+vGNJm4EdLaoG7E5OzxcrnxX/4fDQcsISCqBpoQ7zUypVLMRlqHleVI
-         CBkhkv6iTjhTpnMuOCUTt3Vli9+6LVKRcqTMi7Ki7Ed46hynJ8OW6P4+aJqjAWTwUMlt
-         QAClNCTn6o2THT7J9f8ch9wgawlD4POJ160cI6R2bx49tC2ne1CsDPG8/JpaROk0GPGY
-         t7QVUscRDqISiJyMzMzHA7gQl7Lxok188mxz8zx6gH8z6rtErPgaFY+IdXyLISgvHCkM
-         3NTi3WC5IS5gXMR15SEKMcRM3Nqan+iNhMQeAJdW8a4c/NY/HNDfcSgsGBlvDBMoc562
-         AcWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769524331; x=1770129131;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/JZfqn4pG1aepAs8U6hjEKbhNO9LoeCJ/TwZWLdXsS4=;
-        b=wtoJEt9JXClUD1+phdmPP3CMdk+x4hciF7qhm4/eTDBovhOkO1EpFF2Q4aoDwJGQRm
-         8/bel/uO7Ju1evAv8KxLxZ7qY48dnYoZBVeXcSksAGYvpkgh2ccCtsSRPRoO/UTLoP2m
-         hK3HM3xC3R0Camo1QFBUX+DM+rwBKbsAe068zorh9xpt9SS9KrVNXObPvgHra5F715tw
-         F0ZuV2syD05KvSqKnIGDtR1eJ/9d2TKosSjM9JkUZ3ZV/ZKCQp7O3T2hJsp5oOtIYOlw
-         fFoWE5pSlC2511+16PH/Y7svsJAzbVb+Hg/GOxcQ1kIt+skeq+Y9XWcP+gYd6YBTjgEj
-         tIag==
-X-Forwarded-Encrypted: i=1; AJvYcCXvoH5QF72yXG1cC6sxcl6mPyxWbcPM7u282mDcf9FPJ5CdE5xw/2eDMNPTqv/5SLvMe27rjoCUEuPW@vger.kernel.org
-X-Gm-Message-State: AOJu0YxD//UWBP1AbkHvbxngPAEzDR25UyuCYuiSqI9kQAgWYio6KoQm
-	qpLZteLFbMnm/jcjpYb/GQZQCTMhjq+CXodrf6etO4u02FgnQyEG1RaF12cuJwno8nUor6K4cg4
-	RqgcZKyoe6hFb+m20sRRKuWZL07XVFZ2qjZ5NJo0SNzWjcNMu+c8tyRgymRf4lZJw
-X-Gm-Gg: AZuq6aLUyET27cNTw4iL+036MBIRNzhCY6qfjJNK9g2qdZpYJUrWBGeZtq1X5yHyxeH
-	C9OXbNHjayVLJdJYfc8hyQo0JjgPqABazozOEn00V/TI5ZftPn24os6EIZPpV8s+6b4aMKJV4Rz
-	T3YwV1mQQoCizdWBGmp8TA0XpaMe2+qN2zFw5qLVTl7AeoYiiXsrBT7f8iM32Xkiw01mX9UBoWc
-	Y/ap8dWhzTfDdSkge3N377dbRjAc3aL3IV+w/ZxcPT+rlbZg5ThXQ2POz4CWTBoxG4MAQleOEDm
-	IpudACXFjedTgcrH5GQ5PQFSOhrayb5Ne5FGWMgwwi2WA0nbSthE4usqrwNBiT6PIoUodvLp83Z
-	z16YlW+r+xvPMwy4equUlIAXL
-X-Received: by 2002:a05:6102:94f:b0:5db:cba0:941 with SMTP id ada2fe7eead31-5f72380ed5bmr763975137.38.1769524330883;
-        Tue, 27 Jan 2026 06:32:10 -0800 (PST)
-X-Received: by 2002:a05:6102:94f:b0:5db:cba0:941 with SMTP id ada2fe7eead31-5f72380ed5bmr763912137.38.1769524330210;
-        Tue, 27 Jan 2026 06:32:10 -0800 (PST)
-Received: from oss.qualcomm.com ([86.121.162.109])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48066c37433sm62354795e9.10.2026.01.27.06.32.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Jan 2026 06:32:09 -0800 (PST)
-Date: Tue, 27 Jan 2026 16:32:08 +0200
-From: Abel Vesa <abel.vesa@oss.qualcomm.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] interconnect: qcom: Add Eliza interconnect provider
- driver
-Message-ID: <jvvj6eehw3gxthrldtafc26xua4ai7nheojfdflbgabjwxbdxl@ymrgczsq4zhy>
-References: <20260123-eliza-interconnect-v1-0-010ff0d100c9@oss.qualcomm.com>
- <20260123-eliza-interconnect-v1-2-010ff0d100c9@oss.qualcomm.com>
- <8015c8d1-6eee-44e0-9a50-df23126bf7f1@oss.qualcomm.com>
+	s=arc-20240116; t=1769524812; c=relaxed/simple;
+	bh=18lEKo00RNfN8cP/AW+rfHOqfikScH7fq7tdULLR/4Y=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=VID3t7Sm8bPm46x4OOSO8TSaXZY17c39mG+drvj3iKRxaeFx7KfS4+U/R3oB/u8Tv/DQzHwS/xzNnFsV1YpgTSbjk0/qXQedRzSkVm26ZYKmI8ASvFD4dkEyg2p6m6+Zlk1H/d4JGK82sGlHfiXw/0KcmAFkpGV2iKyQiU74teU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=peter.mobile.pengutronix.de)
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <s.pueschel@pengutronix.de>)
+	id 1vkkEX-0007YT-BL; Tue, 27 Jan 2026 15:39:57 +0100
+From: =?utf-8?q?Sven_P=C3=BCschel?= <s.pueschel@pengutronix.de>
+Subject: [PATCH v3 00/27] media: platform: rga: Add RGA3 support
+Date: Tue, 27 Jan 2026 15:39:09 +0100
+Message-Id: <20260127-spu-rga3-v3-0-77b273067beb@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8015c8d1-6eee-44e0-9a50-df23126bf7f1@oss.qualcomm.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI3MDExOCBTYWx0ZWRfXwg8WcCfPxhWa
- 1mWe7Vcx7JPJmhK9s6nEhZjSWxevZsmYAHk14yFVJ8wjMOTJgQlcwyR7CpRGPkMZEsxxScv/IAs
- 80kDGI6VGHZYpGgO4LdVa3VKjJrRT0cNNIi2Ot+2UdXai2s12ADsL9sw5hwzKQAeM/cis2EYSEJ
- chLE2Pf5TrB56ubAw2VtE7ZTvKVMVZdyQmaoXkYcsQdsRg54UWdcvhYBIFj7VPfo5wspnx9viHY
- rt85JkggLBVvlsjo1/UDI+JMo9m6fndKEgA40DjVuu0TLqxkaSiKuRG9EEcysmyPGiP1d9YcsOX
- TC/UPsO39QlUnVrESr0asfEABd3K2JUQ19RlImyHSGPlu8ytob+OudSFhyMCE1qEbiM+mISHUQb
- wPP+nVy37157gWRM8IRlUIX+t01R5GeVB421xEm1q3MOBxnCO4JjlACcbXLP4BHOeHjYJhXFTKk
- VNymL6p2tMOmrp5ZfyQ==
-X-Authority-Analysis: v=2.4 cv=Uc1ciaSN c=1 sm=1 tr=0 ts=6978cc6b cx=c_pps
- a=DUEm7b3gzWu7BqY5nP7+9g==:117 a=oauzzCmhM186DRC0Y2yWPg==:17
- a=kj9zAlcOel0A:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=npw072eAQMWWEgrtj34A:9
- a=CjuIK1q_8ugA:10 a=-aSRE8QhW-JAV6biHavz:22
-X-Proofpoint-ORIG-GUID: vY_m2Vj1eMJUL0HTPwBZn-jAseujO-R4
-X-Proofpoint-GUID: vY_m2Vj1eMJUL0HTPwBZn-jAseujO-R4
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-01-27_03,2026-01-27_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 lowpriorityscore=0 clxscore=1015 priorityscore=1501
- impostorscore=0 malwarescore=0 phishscore=0 spamscore=0 bulkscore=0
- adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2601270118
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/2WPzW6EMAyEXwXl3LROCAQ49T2qHrKJl/WBnyYBU
+ a323WtYVVTqcayZzzN3kTASJtEVdxFxpUTTyKJ8KYS/ubFHSYG10KArBaBkmhcZe1fKxgEgqOa
+ iNAi2zxGvtB2oj0/WN0p5it8HeVX79RdiT8iqJMiydqGpKgsG9PuMY7/kOI20vQYUO2nVZ1pD+
+ SetOd02ratta+zVqn/px7NYxK+Fp+Vnu3NZVxxQpesDStMwLCHvO6QP4CttjLfGddyfQReXUHr
+ 2UO6KAQO5txG3zF8eP+RcjRNIAQAA
+X-Change-ID: 20251001-spu-rga3-8a00e018b120
+To: Jacob Chen <jacob-chen@iotwrt.com>, 
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, kernel@pengutronix.de, 
+ =?utf-8?q?Sven_P=C3=BCschel?= <s.pueschel@pengutronix.de>, 
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
+ Michael Olbrich <m.olbrich@pengutronix.de>
+X-Mailer: b4 0.14.3
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: s.pueschel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259931-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[pengutronix.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259929-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[abel.vesa@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[s.pueschel@pengutronix.de,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
+	MID_RHS_MATCH_FROM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 9D00F95C5B
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,pengutronix.de:mid,pengutronix.de:email]
+X-Rspamd-Queue-Id: 75FBF95EF8
 X-Rspamd-Action: no action
 
-On 26-01-26 11:26:07, Konrad Dybcio wrote:
-> On 1/23/26 1:43 PM, Abel Vesa wrote:
-> > From: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
-> > 
-> > Add driver for the Qualcomm interconnect buses found in Eliza
-> > based platforms. The topology consists of several NoCs that are
-> > controlled by a remote processor that collects the aggregated
-> > bandwidth for each master-slave pairs.
-> > 
-> > Signed-off-by: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
-> > Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
-> > ---
-> 
-> [...]
-> 
-> >  drivers/interconnect/qcom/Kconfig  |    9 +
-> >  drivers/interconnect/qcom/Makefile |    2 +
-> >  drivers/interconnect/qcom/eliza.c  | 1586 ++++++++++++++++++++++++++++++++++++
-> >  3 files changed, 1597 insertions(+)
-> > 
-> > diff --git a/drivers/interconnect/qcom/Kconfig b/drivers/interconnect/qcom/Kconfig
-> > index bb1cb8a640c1..53398e972458 100644
-> > --- a/drivers/interconnect/qcom/Kconfig
-> > +++ b/drivers/interconnect/qcom/Kconfig
-> > @@ -8,6 +8,15 @@ config INTERCONNECT_QCOM
-> >  config INTERCONNECT_QCOM_BCM_VOTER
-> >  	tristate
-> >  
-> > +config INTERCONNECT_QCOM_ELIZA
-> > +       tristate "Qualcomm ELIZA interconnect driver"
-> 
-> Please don't scream
+This series adds support for the Raster Graphic Acceleration 3 (RGA3)
+peripheral, which is included in the RK3588 SoC. The RK3588
+contains one RGA2 core (which is already implemented by the rockchip rga
+driver) and two independent RGA3 cores. RGA2 and RGA3 feature
+a similar functionality of scaling, cropping and rotating of up to two input
+images into one output image. Key differences of the RGA3 are:
 
-But this would make it "the one-off" though...
-All other ones are all caps. :-)
+- supports 10bit YUV output formats
+- supports 8x8 tiles and FBCD as inputs and outputs
+- supports BT2020 color space conversion
+- max output resolution of (8192-64)x(8192-64)
+- MMU can map up to 32G DDR RAM
+- fully planar formats (3 planes) are not supported
+- max scale up/down factor of 8 (RGA2 allows up to 16)
 
-> 
-> > +       depends on INTERCONNECT_QCOM_RPMH_POSSIBLE
-> > +       select INTERCONNECT_QCOM_RPMH
-> > +       select INTERCONNECT_QCOM_BCM_VOTER
-> > +       help
-> > +         This is a driver for the Qualcomm Network-on-Chip on eliza-based
-> 
-> Whispering afterwards is odd too
+This patch set adds support for one RGA3 core in the existing
+rga m2m driver. The feature set of the PR is limited to scaling,
+format and color space conversions between common 8bit RGB/YUV formats.
+This already allows a practical usage of the RGA3.
 
-Will fix.
+During testing it has been noted that the scaling of the hardware is
+slightly incorrect. A test conversion of 128x128 RGBA to 256x256 RGBA
+causes a slightly larger scaling. The scaling is suddle, as it seems
+that the image is scaled to a 2px larger version and then cropped to
+it's final size. Trying to use the RGA2 scaling factor calculation
+didn't work. As the calculation matches the vendor kernel driver, no
+further research has been utilized to check if there may be some kind of
+better scaling factor calculation.
 
-> 
-> [...]
-> 
-> > +++ b/drivers/interconnect/qcom/eliza.c
-> > @@ -0,0 +1,1586 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-> > + *
-> > + */
-> 
-> Stray empty comment line above
+Furthermore comparing the RGA3 conversion with the GStreamer
+videoconvertscale element, the chroma-site is different. A quick testing
+didn't reveal a chroma-site that creates the same image with the
+GStreamer Element. Also when converting from YUV to RGB the RGB values
+differ by 1 or 2. This doesn't seem to be a colorspace conversion issue
+but rather a slightly different precision on the calculation.
 
-Will drop.
+This was tested on a Radxa Rock 5T. Around 80 fps were measured when
+scaling and converting from RGBA 480x360 to NV12 3840x2160 in a single
+gstreamer pipeline. Format conversions were tested with a single
+gstreamer pipeline converting a fixed input to a given input format.
+Afterwards it's piped through the RGA3 and the result is converted back
+to rgba and compared against a given hash value (generated after
+comparing the output manually to the input).
 
-> 
-> [...]
-> 
-> > +MODULE_DESCRIPTION(" Qualcomm ELIZA NoC driver");
-> 
-> Please don't scream
+The patchset also fixes the failing v4l2-compliance tests due to the
+missing colorimetry propagation from output to capture:
 
-Yep, this one needs to be "Eliza". Will fix.
+  v4l2-compliance 1.28.1, 64 bits, 64-bit time_t
+  ...
+  	Card type        : rga2
+  ...
+  Total for rockchip-rga device /dev/video0: 47, Succeeded: 47, Failed: 0, Warnings: 0
 
-> 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> 
-> Konrad
-> 
+  v4l2-compliance 1.28.1, 64 bits, 64-bit time_t
+  ...
+  	Card type        : rga3
+  ...
+  Total for rockchip-rga device /dev/video1: 47, Succeeded: 47, Failed: 0, Warnings: 0
+
+To distinguish the RGA2 core from the RGA3 cores the Card type is set
+accordingly. Scheduling operations between both RGA3 cores to double
+the possible frame rate might be a future improvement. Until then
+additional RGA3 cores are disabled to only provide one video device to
+the user space. This prevents a potential ABI breakage when multi core
+support is implemented.
+
+The DTS change at the end is just as a preview, as this series targets
+media/next. After it's merged the DTS change will be sent as a new
+patch not targeting media.
+
+Patch 1 updates the dtb bindings doc to support the RGA3
+Patch 2-5 extend v4l2 common functionality
+Patch 6-9 are general cleanups
+Patch 10-25 prepare the rga driver for the RGA3
+Patch 26 adds RGA3 support to the rga driver
+Patch 27 dtsi additions for the RGA3
+
+Signed-off-by: Sven Püschel <s.pueschel@pengutronix.de>
+---
+Changes in v3:
+- Add iommus property to the dtb bindings documentation
+- Drop interrupt name from the dtsi
+- Added v4l2_format_info for missing 2 byte RGB formats
+- Fixed incorrect dt node reference in the binding patch commit message
+- Removed now unused depth member of rga_frame
+- Replaced RGA3 semi planar bool with v4l2_format_info check
+- Calculated x_div/y_div variables instead of storing them
+- Limited width/height to even values for YUV formats
+- Support all 4 CSC modes: BT601L, BT601F, BT709L, BT2020L
+- Note slightly incorrect scaling by the hardware
+- Fix stride alignment to bytes
+- Use early returns in rga-buf init/cleanup
+- Fix incorrect devm_clk_bulk_get with devm_clk_bulk_get_all
+- Don't enforce max scaling factor in try_fmt (only in s_fmt)
+- Merge single register editing RGA3 functions into the other functions
+- Link to v2: https://lore.kernel.org/r/20251203-spu-rga3-v2-0-989a67947f71@pengutronix.de
+
+Changes in v2:
+- Removed overclocking (assigning higher clock speeds in the dts)
+- Disable the second RGA3 core
+- Improved RGA3 feature documentation and code comments
+- Don't write the whole command buffer in each frame
+- Don't announce CIDs for the RGA3 and error out on s_selection
+- Check the max scaling factor of 16 (RGA2) and 8 (RGA3)
+- Move stride alignment and alpha checking to v4l2 common
+- Register the interrupt as shared for an external IOMMU
+- Add IOMMU patch as dependency to fix sporadic hangups
+- Link to v1: https://lore.kernel.org/r/20251007-spu-rga3-v1-0-36ad85570402@pengutronix.de
+
+---
+Michael Olbrich (1):
+      media: rockchip: rga: share the interrupt when an external iommu is used
+
+Sven Püschel (26):
+      media: dt-bindings: media: rockchip-rga: add rockchip,rk3588-rga3
+      media: v4l2-common: sort RGB formats in v4l2_format_info
+      media: v4l2-common: add missing 1 and 2 byte RGB formats to v4l2_format_info
+      media: v4l2-common: add has_alpha to v4l2_format_info
+      media: v4l2-common: add v4l2_fill_pixfmt_mp_aligned helper
+      media: rockchip: rga: use clk_bulk api
+      media: rockchip: rga: use stride for offset calculation
+      media: rockchip: rga: remove redundant rga_frame variables
+      media: rockchip: rga: announce and sync colorimetry
+      media: rockchip: rga: move hw specific parts to a dedicated struct
+      media: rockchip: rga: avoid odd frame sizes for YUV formats
+      media: rockchip: rga: calculate x_div/y_div using v4l2_format_info
+      media: rockchip: rga: move cmdbuf to rga_ctx
+      media: rockchip: rga: align stride to 4 bytes
+      media: rockchip: rga: prepare cmdbuf on streamon
+      media: rockchip: rga: check scaling factor
+      media: rockchip: rga: use card type to specify rga type
+      media: rockchip: rga: change offset to dma_addresses
+      media: rockchip: rga: support external iommus
+      media: rockchip: rga: remove size from rga_frame
+      media: rockchip: rga: remove stride from rga_frame
+      media: rockchip: rga: move rga_fmt to rga-hw.h
+      media: rockchip: rga: add feature flags
+      media: rockchip: rga: disable multi-core support
+      media: rockchip: rga: add rga3 support
+      arm64: dts: rockchip: add rga3 dt nodes
+
+ .../devicetree/bindings/media/rockchip-rga.yaml    |  19 +-
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi      |  44 ++
+ drivers/media/platform/rockchip/rga/Makefile       |   2 +-
+ drivers/media/platform/rockchip/rga/rga-buf.c      |  61 ++-
+ drivers/media/platform/rockchip/rga/rga-hw.c       | 358 +++++++++----
+ drivers/media/platform/rockchip/rga/rga-hw.h       |  14 +-
+ drivers/media/platform/rockchip/rga/rga.c          | 577 ++++++++++-----------
+ drivers/media/platform/rockchip/rga/rga.h          |  85 +--
+ drivers/media/platform/rockchip/rga/rga3-hw.c      | 507 ++++++++++++++++++
+ drivers/media/platform/rockchip/rga/rga3-hw.h      | 192 +++++++
+ drivers/media/v4l2-core/v4l2-common.c              | 122 +++--
+ include/media/v4l2-common.h                        |   6 +
+ 12 files changed, 1483 insertions(+), 504 deletions(-)
+---
+base-commit: c824345288d11e269ce41b36c105715bc2286050
+change-id: 20251001-spu-rga3-8a00e018b120
+prerequisite-change-id: 20251126-spu-iommudtefix-cd0c5244c74a:v1
+prerequisite-patch-id: 10c6c977c0f71400931941b42da73adcaf63e810
+
+Best regards,
+-- 
+Sven Püschel <s.pueschel@pengutronix.de>
+
 
