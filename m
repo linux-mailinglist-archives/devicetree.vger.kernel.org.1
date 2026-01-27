@@ -1,310 +1,163 @@
-Return-Path: <devicetree+bounces-259990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259989-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sPsREHbZeGmwtgEAu9opvQ
-	(envelope-from <devicetree+bounces-259990-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:27:50 +0100
+	id +OFBOYnZeGmwtgEAu9opvQ
+	(envelope-from <devicetree+bounces-259989-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:28:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC88796AEA
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:27:49 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CE9196B00
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:28:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 2FEC5306B2F4
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:20:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B957130E2648
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:19:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A801135D603;
-	Tue, 27 Jan 2026 15:19:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D26923E23C;
+	Tue, 27 Jan 2026 15:19:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="BR2jD5LI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UpuPk5bm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dl1-f41.google.com (mail-dl1-f41.google.com [74.125.82.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 660A6286D64;
-	Tue, 27 Jan 2026 15:19:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BFE1346AC1
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 15:19:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769527161; cv=none; b=Gv1CeJs9bzbjqIkK+vLB/W4nb6WEGY5HR2nXgAt8GM5XCMqWtx4Qr0npSiUmBXUGhNc5EE9MDrzFZQjd3kqhJcs5ABh5kJgmZ6oN3f47mJwn1f67y8LQq1dCDb/VNNEros67oNqOhxg6YbBcJmmmGnpXcrs/9NL4dIXZI9MBqkE=
+	t=1769527155; cv=none; b=YDZ1O+XtJwZLAwOQyKcZtMd1GBHZNI5Gg6QjC2iaMfXHdyypc0l5HXQZyD+vxRr8d1YzLjJXZ6hKDbtyqlS01zLS0lSKNDOrtk9UdLrf8s0VpSjlGdyxeI8/d4+UGAGQHnZpnC/cFgQ7VJlmNIq6Gk49ZoLJn1F6MIljmyf7n5o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769527161; c=relaxed/simple;
-	bh=EIo7pHHR4gO4mfGCmnUXZm4mLaL8wgTqA2CvQFXF+84=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jfGPOvfkmYz7nc0HoulsS+hmrub6kINgbGNmyukWOcMz3aaAnj3fIMfyOP7hraey0TaiKl39VCA0AGGKGA8VWo14JQBhLnA/Ad2ommg++skcE4+FTsBVAhdrGQhRmVwWIQg+yHyQu61SCBrX0aYwxBflM1ulXhstbMs9hu/VxeU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=BR2jD5LI; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id BD424C211C3;
-	Tue, 27 Jan 2026 15:19:16 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 8943F606F5;
-	Tue, 27 Jan 2026 15:19:14 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id BEFE5119A8637;
-	Tue, 27 Jan 2026 16:19:08 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1769527153; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=heh6QTABC1RnxC0/CG7m3EfBRVf7thqpKJghKBFLwUE=;
-	b=BR2jD5LIdOE6ItV2BRJUFQObFYdruvwGz1lszaCg7pAFfAIg4EC6Yzwx0VbPAs97IpAWlH
-	ztlECsdrIIHhCobpxvfCpphGNOmb7I5qO1gbTrzIqbIIfKKQLmugUTwolXAUhCNRRqahdu
-	d1pe6pudiyyRMQS55g6bLXou7oxF0cBUbpAC6QvIWx83ZGuZyNnclutPMGnlcYDalA38U9
-	dhGNvT7GzmcPFn2OvVXBMWbhIDKzN/COaakTGpMYm7oi52m9O6avbqeN0GphqiSVpEMnop
-	FgCodcIV4ut386bv+8WU4mHlpG+7CSBbLeaGq++gogMXc4Se1ESBEr348WL3iw==
-Date: Tue, 27 Jan 2026 16:19:07 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: David Gibson <david@gibson.dropbear.id.au>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Ayush Singh <ayush@beagleboard.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>,
- devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org, Hui Pu
- <hui.pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, Luca
- Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, Saravana Kannan <saravanak@kernel.org>
-Subject: Re: [RFC PATCH 00/77] Add support for dtb metadata and addon
- device-trees
-Message-ID: <20260127161907.23e62463@bootlin.com>
-In-Reply-To: <aW3IjNpBnnFE7-r7@zatzit>
-References: <20260112142009.1006236-1-herve.codina@bootlin.com>
-	<CAL_JsqK4nH0B-CfKz5wgg12C+Vzi31ceHeOes94Z8hg3uN=X1g@mail.gmail.com>
-	<20260114171822.2a44d2a5@bootlin.com>
-	<aW3IjNpBnnFE7-r7@zatzit>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1769527155; c=relaxed/simple;
+	bh=sqRtYnS4EMx1wud8eWzUNmsiL0QjlWJurfA7CBk479E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ApVTYZ7E9wX2DdpWVY8IimrgByJMAve3FE9vmFNFnwJ/WNxhKiSUDYoHVyw+7jhI2LPS32oKhTlXgg/sBGpQcTb6dm2i8eiCWp1SKEVTs7kWDize5EZgGnlNeCk+AEkvX1nhFo0a4OutEwW0DZj7/jBDpKMezncxIcY6hGLYgSw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UpuPk5bm; arc=none smtp.client-ip=74.125.82.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dl1-f41.google.com with SMTP id a92af1059eb24-1233c155a42so8235283c88.1
+        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 07:19:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1769527153; x=1770131953; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lo2+pTnr8aPKBBLG3pwCmtVAgLkRnA2s+o7HL4Gsrrg=;
+        b=UpuPk5bmFtgcj0KTCj0P03FzBgBYahm+XT5wUdS4Fu+JiMvLESM8Yj/sOjPeJXQDyV
+         oRFxfDiNmNOBMoq+CH+ON8XrpeSrK+4Kz6q3C9gRB8xovCrZ8MxqgGxb8YyrZA36OS32
+         UnXNaK8nKVS1lrvs5Rgf/fU+mhE9OBLZ18Vses/GaLtzZ7hqs4idgU6Oqn1oTn2Ww5rz
+         KnGmkylxF55hnE+WPBM99k+BzX26CnRH6Uls0VlETsmuQCXvoxvXP6/A7kTcsi2+QwLC
+         uaVBKPz6YxZj1vbZU3T/iaVUzs6cACQAGlXcTRSgo1KDLjR8sAteMFB8+ZC5XeCi/avW
+         hXDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769527153; x=1770131953;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=lo2+pTnr8aPKBBLG3pwCmtVAgLkRnA2s+o7HL4Gsrrg=;
+        b=GxHAJXwP93WvCdl57ZitCEoAJBWAOMIiZ6hvT8JWqMPvlNwkLb85OjeSlUbXFkSCrk
+         pIOpu+05yE8T+08ORQlRZKWt1t91tTpWX7EyvFkaMiAUrRYLO4neHjckfpLoPq8a4U12
+         eyU09jWpuM7IaJfkvBpLTru/Hdsjj7/mZUQa3zzMPN1dojRpDaA16SLymze0PveyVQpi
+         SKq/xLeS8sRwhNtsdzRtyju23xJbCSYYBVL1sytLvmVea6rd/yMd5JRU4GeMa+tsHrld
+         E4f1CRDlmsWlsSxWwKOiLuvsLy/4XqdkQAgGQmI9bxT4U2B0xBrU+hvkaE/WUc0Q0u01
+         jJ5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXNGQ14G7ZuRCSrPkJAGjMvaY60vmVXYdmk6mnyJjDwX25vMxwFUm+nJT7TiVcIAMx5rWw8pFJ6CjvO@vger.kernel.org
+X-Gm-Message-State: AOJu0YyaaKyzkg/n5ssT3Ar6V481U50/+oaJQksPZmyCVzEcWusDMb1x
+	S/4cUVrW9uxYHyc8QpFqN6r4n7Nd9X4YVvuN1JBKdbP1Z0k6TbgPHTvm
+X-Gm-Gg: AZuq6aL+/MoPKZH+47k4dFkt7fzsKlHq6frQp2y8FyePsniEd6EgHOkxE0YMWnXZ/xn
+	tY70eIuUmqxXDIycPNSXkNabwLgFGaHF5kIJj6LB+qoq4jBqbuOutU+7uuuRfZTVCHvQPCikKC7
+	2UFqVK0ppKNSA7rnsHNMHVB+XVTQHFLeKaTF24wM35ls7Ai2cl8ODQUdtSU1vZf/u3Xv4WmJLni
+	COPJnqzZlIWcvkKSPzxdTDa3gfWxD4tzq8H3vUN3dvan4jXvCdQ5ItCbamNHag/GdKG/7xF3eKK
+	qWDkXW2CXn7c8hv9i/JJCQcFVch2XwzckHVpDCzyiycmJGRXwPeqcWzcG7GABbTIGoBgSuyVlwU
+	w1uRszVWZBXgrTzbSYYzuE21274+ovydAhIG9IvZfmWENuhiDx7Hhc7PxM352scuXLjIMN39Ys3
+	X+5j3eKTnzV/aX0n8vVGIACwQg
+X-Received: by 2002:a05:7301:1f01:b0:2b0:5b6b:6529 with SMTP id 5a478bee46e88-2b78da68e7cmr1147445eec.39.1769527152906;
+        Tue, 27 Jan 2026 07:19:12 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b73aa03fd0sm17872331eec.23.2026.01.27.07.19.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Jan 2026 07:19:12 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Tue, 27 Jan 2026 07:19:11 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: Vasileios Amoiridis <vassilisamir@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
+	Vasileios Amoiridis <vasileios.amoiridis@cern.ch>
+Subject: Re: [PATCH v2 2/2] hwmon: Add support for HiTRON HAC300S PSU
+Message-ID: <19d5da08-5605-414a-a1f3-2849b9bff19b@roeck-us.net>
+References: <20260119190806.35276-1-vassilisamir@gmail.com>
+ <20260119190806.35276-3-vassilisamir@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260119190806.35276-3-vassilisamir@gmail.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	HAS_ORG_HEADER(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-259990-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259989-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[bootlin.com:+];
+	DMARC_NA(0.00)[roeck-us.net];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[herve.codina@bootlin.com,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCVD_COUNT_FIVE(0.00)[6];
-	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,dropbear.id.au:email]
-X-Rspamd-Queue-Id: CC88796AEA
+	DBL_BLOCKED_OPENRESOLVER(0.00)[cern.ch:email,roeck-us.net:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 7CE9196B00
 X-Rspamd-Action: no action
 
-Hi Rob, David,
-
-On Mon, 19 Jan 2026 17:00:44 +1100
-David Gibson <david@gibson.dropbear.id.au> wrote:
-
-...
-> > 
-> > I think we can have metadata at 3 differents levels:
-> > - Property
-> > - Node
-> > - Global dtb  
+On Mon, Jan 19, 2026 at 08:08:06PM +0100, Vasileios Amoiridis wrote:
+> From: Vasileios Amoiridis <vasileios.amoiridis@cern.ch>
 > 
-> This is a really minor point, but I don't especially like the term
-> "metadata" for the symbol / fixup information.  Although it's
-> technically accurate that it's metadata for the property bytestrings,
-> in most contexts "metadata" makes me think only of tree global
-> metadata.  By analogy, symbols and fixup information in a .so or .a
-> could be seen as metadata to the raw code / data bytes, but I wouldn't
-> normally use that term for it (whereas I might for, say, the soname or
-> certain .note sections).
+> Add Support for HiTRON HAC300S PSU. This is a AC/DC hot-swappable
+> CompactPCI Serial Dual output active current sharing switching power
+> supply with a 312W rating.
 > 
-> > With the suggestion you did on patch 6 related to FDT_REF_LOCAL and if I
-> > understood correctly, you expect to have a kind of "container" tag to group
-> > metadata on each level.
-> > 
-> > Also you expect to have the ability to handle all 'for now unknown' tag
-> > smoothly and so, I agree, the length of the data related to a tag are
-> > needed to be present with the tag itself. I see to kind of tag, some with
-> > the length of data available in the u32 following the tag and other without
-> > the length encoded.
-> > 
-> > Tags without length encoded are followed by one u32 field containing data
-> > related to the tag. This allow to avoid a lot of 'TAG_XXX 0x04 u32_data'
-> > Indeed, I have the feeling that quite a lot of tags will have only one u32
-> > field as data part and so, having 0x04 encoded (cell aligned) each time.
-> > 
-> > A tag value is on 32bits. We can define the structure of this value.
-> >   - bit 31 (msb):
-> >      - 0: This is not a new kind to tag and so it doesn't follow this definition.
-> >           All existing tags are in this categorie
-> >      - 1: New kind of tag adopting this definition
-> > 
-> >   - bits 30..28:
-> >      tag data length encoding
-> >      0b000: No data related to the tag
-> >      0b001: 1 data cell (u32) directly follows the tag
-> >      0b010: 2 data cells (2 u32) directly follow the tag
-> >      ...
-> >      0b110: 6 data cells (6 u32) directly follow the tag
-> >      0b111: Tag is followed by a cell (u32) indicating the size (in bytes)
-> >             of data available just after this cell (including any padding
-> >             if needed).
-> > 	    Because this size include some possible padding, its value is a
-> >             multiple of 4 bytes.
-> >             The offset of the tag + 4 + size points to the next tag.
-> >           
-> > 
-> >   - bit 27..0
-> >      tag specific identifier  
-> 
-> As noted elsewhere, I'm not necessarily opposed to having a general
-> length encoding.  However, for each new tag I think we need to think
-> carefully about whether it really is safe for older software that
-> doesn't understand it to just skip it.
-> 
-> > With that definition, the following tags can be defined:
-> >   - FDT_INFO_PROPERTY (new tag, length encoding): 0xf0000001
-> >      This tag is available after a property.
-> >      It is followed by a cell for the length of data, the data part is a
-> >      sequence of tags (and related data) giving information related to the
-> >      last property available before the tag.  
-> 
-> I'd prefer to avoid an additional layer of nesting here - I'd rather
-> just have multiple top level tags.
-> 
-> >   - FDT_REF_LOCAL (new tag, 1 cell data): 0x90000002:
-> >      The cell after this tag is the offset in the property where a local
-> >      phandle is available
-> > 
-> >   - FDT_REF_PHANDLE (new tag, length encoding): 0xf0000003
-> >      Cf. patch 11 for definition
-> >      It is followed by a cell for the length of data. The data part is
-> >      composed of:
-> >        - offset (u32)
-> >        - label (string including \0)
-> >        - padding if needed to have next item aligned on 32bits
-> > 
-> > 
-> > With that defined, supposing the following dts example:
-> >   --- 8< ---
-> >   /* 'foo' is a reference to local node,
-> >    * 'bar' is a reference to an external node
-> >    */
-> >   prop = <1 2 &foo &bar1>;
-> >   --- 8< ---
-> > 
-> > The dtb will see the following structure:
-> > FDT_PROP ...
-> > FDT_INFO_PROPERTY (0xf0000001)
-> >   28 (length = (4+4)+(4+4+12) bytes)
-> >   FDT_REF_LOCAL (0x90000002)
-> >     0x8                             <--- offset of &foo
-> >   FDT_REF_PHANDLE (0xf0000003)
-> >     12 (length = 4+4+1+3 bytes)
-> >     0xc                             <--- offset of &bar
-> >     "bar1" + its \0                 <-- reference to resolve
-> >     0x00 0x00 0x00                  <-- 3 bytes padding
-> > 
-> > Adding FDT_TYPE_U32 later will consist in defining
-> > its value, probably a 0x9 family (1 cell after the tag for the
-> > offset value)
-> > 
-> > At any point, only looking at the higher part of the tag (i.e. 0xN.......), we
-> > can skip the tag and its data if don't know about the tag.
-> >  - 0x0: Old tag format  
-> >     -> Error if unknown  
-> > 
-> >  - 0x8 to 0xe: New format followed by 0 (0x8) to 6 cells of data  
-> >     -> Ignore if unknown and skip the N cells of data to look at the next  
-> > 
-> >  - 0xf: New format followed by 1 cell giving the size of following data.  
-> >     -> Ignore if unknown and read the length available in the cell after the  
-> >        tag, skip length byte of data to look at the next.
-> >        If the length read is not a multiple of 4: Error, invalid tag.
-> > 
-> > 
-> > For this series we need the container tags:
-> > - FDT_INFO_PROPERTY for information related to a property
-> >   Among known tags defined in this series, only FDT_REF_LOCAL and
-> >   FDT_REF_PHANDLE can be grouped into a FDT_INFO_PROPERTY.
-> > 
-> > - FDT_INFO_NODE for information related to a node
-> >   Among known tags defined in this series, only FDT_EXPORT_SYM_LOCAL
-> >   and FDT_EXPORT_SYM_REF can be grouped into a FDT_INFO_NODE.
-> > 
-> > - FDT_INFO_DTB for information related to the dtb
-> >   Among known tags defined in this series, only FDT_IMPORT_SYM can
-> >   be present into a FDT_INFO_DTB.
-> > 
-> > IMHO, the new tag FDT_BEGIN_NODE_REF related to orphan nodes doesn't
-> > have to be in one of those containers. Indeed, FDT_BEGIN_NODE_REF
-> > is more a node definition than a metadata.  
-> 
-> That's a perfect example of a new tag that absolutely cannot be just
-> skipped if not understood.  Software *must* hard error if they
-> encounter this and don't understand it.
-> 
+> Signed-off-by: Vasileios Amoiridis <vasileios.amoiridis@cern.ch>
 
-I have started to implement this "unknown tag" feature based on the tag
-values definition presented here and with complementary feature (bit
-allowing to skip an unknown tag) as presented in patch 2 discussion [1].
+checkpatch --strict returns various whitespace errors. Please run that
+command in the future.
 
-I didn't introduce any FDT_INFO_xxx tags. They introduce nesting tags
-and David seems not agree with that.
+Also,
 
-I use simple test tags to have some "unknown tags" in dtb and looked at
-the way to handle them.
+> +static int hac300s_read_byte_data(struct i2c_client *client, int page, int reg)
+> +{
+> +	const struct pmbus_driver_info *info = pmbus_get_driver_info(client);
+> +	struct hac300s_data *data = to_hac300s_data(info);
+> +
+> +	if (reg == PMBUS_VOUT_MODE)
+> +		return data->exponent;
+> +
+> +	return pmbus_read_byte_data(client, page, reg);
 
-When we read a dtb, no problem, we just skip "unknown tags" if we are
-allowed to (flag in tag value).
+This should return -ENODATA.
 
-The issue comes when we modify a dtb.
+No need to resend; I fixed it all up and applied the patch.
 
-libftd allows to modify a dtb. It allows to add/modify/remove properties
-and nodes. Bootloaders for instance use this capability to update a dtb
-before passing it to the kernel.
-
-How should we handle unknown tags in this context?
-
-We don't knwow about the meaning of those tags (unknown tags) and so, we
-don't know if those tags are still consistent with modifications done?
-
-A property can be followed by an unknown tags related to this property.
-Also a property can be followed by an unknown tag related to the node.
-We simply don't know.
-
-Any modification can impact unknown tags and make them inconsistent.
-Here again, we simply don't know.
-
-Should we avoid any modification when a dtb contains unknown tags?
-Should we simply remove all unknown tags when a modification is done?
-
-Bootloaders need to modify the dtb. Avoiding modification is a no-go.
-Removing "unknown tags" when a modification is done will lead to removing
-all unknown tags at bootloader stage.
-
-Rob, David, any opinion related to this specific issue and the strategy we
-should follow when modification are involved?
-
-[1] https://lore.kernel.org/all/20260119104852.3e7043ee@bootlin.com/
-
-Best regards,
-Hervé
+Thanks,
+Guenter
 
