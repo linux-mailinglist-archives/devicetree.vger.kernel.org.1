@@ -1,162 +1,134 @@
-Return-Path: <devicetree+bounces-259792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259793-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WD2TLD+GeGk/qwEAu9opvQ
-	(envelope-from <devicetree+bounces-259792-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 10:32:47 +0100
+	id gNDOJhuHeGk/qwEAu9opvQ
+	(envelope-from <devicetree+bounces-259793-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 10:36:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F71891C35
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 10:32:47 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C5CA91D16
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 10:36:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BE11D30156EF
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 09:32:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6CEAA306B08B
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 09:33:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC3C72E0901;
-	Tue, 27 Jan 2026 09:32:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0274C2F069E;
+	Tue, 27 Jan 2026 09:32:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aSS+VaaW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hqg/p5fw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93B862DB7A9;
-	Tue, 27 Jan 2026 09:32:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C045A2E173B
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 09:32:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769506364; cv=none; b=uHQkpaEiwprRyBgXmLDeOp/5CBDKyHkGpBtukCrXkxWE31pg8eiONImFFMjId1Wc7/PhR3iUAxxUj1rHMwLEDuGDUYwLwZHZojUC1XpYYqsn5DEWAjPP97dRyBHD8KDcGuY8pRGwfMHkidJbOKhHavsm5+XiVxpaG9lVOn2qs4w=
+	t=1769506377; cv=none; b=tJT1NsrcZfoiZS2B1sB7iYRhxCQaRmhZv/oSaKrdaIDL0nkoE17bLxypIIZXdcKkx7hl//+3RMwZgp6k/ovBv8Doa3L5EfFXDfC8fySzoxsOrFTwxvmbTQ9md9gACrzwSaRbkK2QxSTaojIBXJACjiKVRAI0pfOUHbbyZpXDSrE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769506364; c=relaxed/simple;
-	bh=eG+yqP+7Rbf/01a+0aRQfQsP84mxP22w8iRV1atNAx8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VIMOjHjWe2p+hyvbda594bg4HC7ZDImG45tksDefYdEdU8AZY7KRhV+fJdZBSpeMT0RDrWeyTB5NiU+TT2A6mu97TtoQchQ1Hzd2hZ7ttL/Ie5Qw+QTjbZgm4x/YgvWIIZ1QZjVdSjDd5oOUMiOB1J+Q+pdU0QkJL99ejbRASNU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aSS+VaaW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5E38C116C6;
-	Tue, 27 Jan 2026 09:32:39 +0000 (UTC)
+	s=arc-20240116; t=1769506377; c=relaxed/simple;
+	bh=nd4756Hy+92ohyhREHEr2ehaES7a+HF9kecPSnYoKRI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=i6kWIG3Hau8uZvp+yQLqWA5EANVX9Uv6f1EMzawq8jRzbz7Yub7KLzXFFvL5bIHidOqUcqC7uLGF0OMX+dYb+nftt1BR4gXv7kZoFLIEDpihCJ4vO65s3Lh8qmJ4A5hgAM0Nh5k++EeMh/KkX21wXijXGnRhAzhdMCyX8D7Ccts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hqg/p5fw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A504EC2BCB1
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 09:32:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769506364;
-	bh=eG+yqP+7Rbf/01a+0aRQfQsP84mxP22w8iRV1atNAx8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aSS+VaaW0gQiMQJpnFaoFoSeI4RJ3dpo6xD6n59QUWRVypkDc2fw+WTsBAM3Mm8eh
-	 I2sqE71fRUXvxcWs5p7CB+hbwWu46UXDj9j/e2M4BQ+E2Abpfl+dvPE29cQFuKEObv
-	 rMJbUmeG0MpIQDnmGZq2UrWamIMONUVPyefIENAdToSmh8saSO2lwSpoV1TkP7xVu/
-	 duTUdqX/ahduaSksRHPdmmMxwiFJXuq9km0JOBOmFadymoJiw4mq8YJPQwQ2GoQmFZ
-	 BmOXmdpoUV36ElNmRdNT8QzsTzmIsO4BWBvdzBRK96WZ0bi/s0MLc7uB2pUr+9nKth
-	 t8gbV4zdLvMxQ==
-Date: Tue, 27 Jan 2026 10:32:37 +0100
-From: Niklas Cassel <cassel@kernel.org>
-To: Markus Probst <markus.probst@posteo.de>
-Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-	Damien Le Moal <dlemoal@kernel.org>,
-	John Garry <john.g.garry@oracle.com>,
-	Jason Yan <yanaijie@huawei.com>,
-	"James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
-	"Martin K. Petersen" <martin.petersen@oracle.com>,
-	Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-ide@vger.kernel.org, linux-scsi@vger.kernel.org,
-	Ian Pilcher <arequipeno@gmail.com>
-Subject: Re: [PATCH RFC 0/4] leds: extend disk trigger
-Message-ID: <aXiGNZm12vLhQJ4Q@fedora>
-References: <20260123-ledtrig_disk_-v1-0-07004756467b@posteo.de>
- <aXctPaaXFYemV20T@ryzen>
- <ce454969b83dbb0e3bb4ea78f682603cc328ceb9.camel@posteo.de>
+	s=k20201202; t=1769506377;
+	bh=nd4756Hy+92ohyhREHEr2ehaES7a+HF9kecPSnYoKRI=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=hqg/p5fwd0Wtm1K4HPBR20a0ZALUIPwJbR+HTRa2SE9d84XqA97XGZ0n5H7mZ/pdY
+	 LrjP7i6moJ/1DKMh3Ytl3YLATfXpP09QgOljgvsJQY/IYIEHYWaCJWONYB5b1bsQdM
+	 JVDDcg/mmFlM3swvNUuEodb70UKzeHAXzR3f3GWxzLI+QLDjCYFcH0etlakY+OErJj
+	 UtNpdTSkGiffuXXOp+rivvZLqk7ewNp1ny7Vd5fcL9tYwhlehqrW4wLewQ5h4JslZ7
+	 P2hD4a0YTZxIISfyde3jLLAOXwD7M0PnMd/pnnluIIr1/1vvlxzzehe1wM3o8X4nrE
+	 rDvlKs0ndj1Zg==
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-790ac42fd00so55437017b3.3
+        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 01:32:57 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWnV/WqOr7CRqTq9qIhVMS/17e5DNzfg9PHqdAm0e28rk6/N0OAu3kfKlv9zfgM0LHSrEQ7HpkjutXt@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzd5k+apgrHZEUjSZ0mET6kD5VKwwNpMMUKoELe7dz+yUvGuoZg
+	78dqk+9r1VUZLsQZOBXVyEQTA825T27Ox3Sa149F8wo7d8VwW8D/9zAd02tpiY/OmkRs/kS/bNl
+	W2s/iTGvo1mThrPDIUCFONKg2baIQRlQ=
+X-Received: by 2002:a05:690c:fd1:b0:794:78ad:470d with SMTP id
+ 00721157ae682-7947ab40c1fmr16169877b3.27.1769506376440; Tue, 27 Jan 2026
+ 01:32:56 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ce454969b83dbb0e3bb4ea78f682603cc328ceb9.camel@posteo.de>
+References: <20260115114021.111324-1-robert.marko@sartura.hr> <20260115114021.111324-7-robert.marko@sartura.hr>
+In-Reply-To: <20260115114021.111324-7-robert.marko@sartura.hr>
+From: Linus Walleij <linusw@kernel.org>
+Date: Tue, 27 Jan 2026 10:32:45 +0100
+X-Gmail-Original-Message-ID: <CAD++jLn3pP4cdB3h5KN04Pn_v+XuvK6ROuxpNfJVhSRJpo2FUQ@mail.gmail.com>
+X-Gm-Features: AZwV_QjPaAf4YpNWpzKIxLTu_1dAPvSU-dSWNUWnEkSR0mawzeMGDcKYjAjufcE
+Message-ID: <CAD++jLn3pP4cdB3h5KN04Pn_v+XuvK6ROuxpNfJVhSRJpo2FUQ@mail.gmail.com>
+Subject: Re: [PATCH v5 06/11] dt-bindings: pinctrl: pinctrl-microchip-sgpio:
+ add LAN969x
+To: Robert Marko <robert.marko@sartura.hr>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com, 
+	claudiu.beznea@tuxon.dev, herbert@gondor.apana.org.au, davem@davemloft.net, 
+	lee@kernel.org, andrew+netdev@lunn.ch, edumazet@google.com, kuba@kernel.org, 
+	pabeni@redhat.com, Steen.Hegelund@microchip.com, daniel.machon@microchip.com, 
+	UNGLinuxDriver@microchip.com, olivia@selenic.com, richard.genoud@bootlin.com, 
+	radu_nicolae.pirea@upb.ro, gregkh@linuxfoundation.org, 
+	richardcochran@gmail.com, horatiu.vultur@microchip.com, 
+	Ryan.Wanner@microchip.com, tudor.ambarus@linaro.org, 
+	kavyasree.kotagiri@microchip.com, lars.povlsen@microchip.com, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-crypto@vger.kernel.org, 
+	netdev@vger.kernel.org, linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org, 
+	linux-serial@vger.kernel.org, luka.perkov@sartura.hr, 
+	Conor Dooley <conor.dooley@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-259792-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259793-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,microchip.com,bootlin.com,tuxon.dev,gondor.apana.org.au,davemloft.net,lunn.ch,google.com,redhat.com,selenic.com,upb.ro,linuxfoundation.org,gmail.com,linaro.org,vger.kernel.org,lists.infradead.org,sartura.hr];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[37];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,oracle.com,huawei.com,hansenpartnership.com,ucw.cz,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cassel@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 2F71891C35
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid,tuxon.dev:email]
+X-Rspamd-Queue-Id: 3C5CA91D16
 X-Rspamd-Action: no action
 
-On Mon, Jan 26, 2026 at 10:06:02PM +0000, Markus Probst wrote:
-> On Mon, 2026-01-26 at 10:00 +0100, Niklas Cassel wrote:
-> > 
-> > Why do we want to have this in kernel space?
-> Because there are more than enough devices that could make use of it.
-> 
-> Just search the term "NAS device" and you see rarely any devices for
-> which this wouldn't be useful.
-> 
-> The only reason the leds work on those devices currently, is because
-> they get shipped with a custom modified kernel by the manufacturer.
-> This shouldn't be a requirement for running Linux properly on a NAS
-> device with disk leds.
+On Thu, Jan 15, 2026 at 12:41=E2=80=AFPM Robert Marko <robert.marko@sartura=
+.hr> wrote:
 
-I understand why you want the feature. I just don't understand why we
-should add this feature to the kernel, rather than implement it in
-user space.
+> Document LAN969x compatibles for SGPIO.
+>
+> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Reviewed-by: Claudiu Beznea <claudiu.beznea@tuxon.dev>
 
-Having a user space implementation for your feature would also allow
-an upstream kernel, without the need for any custom kernel patches.
+This patch 6/11 applied to the pinctrl tree!
 
-
-> > If we want something more complex than what is already there, then it
-> > is probably much better handled in user space, considering the amount
-> > of possible configuration options.
-> A userspace daemon by itself is possible, but I don't think it is the
-> best solution. Having an indicator for disk activity on a per-disk
-> basis seems like basic led functionality that should be present in the
-> kernel.
-
-There seems to be existing user space applications that handles this,
-I think both the daemon I linked to before, which uses /sys/block/<dev>/stat
-which is thus per device and not per port, and e.g. this:
-https://linux.die.net/man/8/ledmon
-https://github.com/md-raid-utilities/ledmon
-https://github.com/md-raid-utilities/ledmon/blob/main/src/lib/ahci.c
-
-
-> > Basically the same argument as used in:
-> > https://lore.kernel.org/linux-nvme/20220227234258.24619-1-ematsumiya@suse.de/T/#u
-> If I understood it corretly, the argument there is that led code
-> shouldn't be present in a fast path.
-> 
-> This does not apply to this scenario.
-
-I think my main concern is that I don't think we should bloat the kernel
-for a complex feature that can just as well be implemented in user space.
-
-
-Kind regards,
-Niklas
+Yours,
+Linus Walleij
 
