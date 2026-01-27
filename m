@@ -1,323 +1,535 @@
-Return-Path: <devicetree+bounces-259726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259727-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8OOwOW9HeGnWpAEAu9opvQ
-	(envelope-from <devicetree+bounces-259726-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 06:04:47 +0100
+	id uDr0GABMeGkipQEAu9opvQ
+	(envelope-from <devicetree+bounces-259727-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 06:24:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EE018FF0A
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 06:04:47 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01B2F901B7
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 06:24:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4EAC2301FAA8
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 05:04:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B34BF3013AA4
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 05:24:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33839328614;
-	Tue, 27 Jan 2026 05:04:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 290FA329E4B;
+	Tue, 27 Jan 2026 05:24:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="h6zE3QIl"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LEIyc1q5";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="CULRNVHt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PH8PR06CU001.outbound.protection.outlook.com (mail-westus3azon11012012.outbound.protection.outlook.com [40.107.209.12])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B714A328608;
-	Tue, 27 Jan 2026 05:04:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.209.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A0832D3A75
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 05:24:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=205.220.168.131
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769490280; cv=fail; b=VLrGzLjwo/A+5exope0sfUkkCciWrKZukIeByo0JnLg4mVZB+gVQlrmgtwFUNSwYT7tIEJuzvhorMyAfQQVzFmOms9V014OOQpIP4Gnh8ucXx5dL0kmNIZdc8rjmxH4tuVIaq/SmHbo+ztxlb8fV2R8yFMOg5U1fHv63rHtpfwQ=
+	t=1769491443; cv=pass; b=QgC6pxeivjmZOKURFNDEEVbFfHAy/psM/Do/DVdM+z2pI/Dx0P5FC2zRErxQPg57rSpb14c2JQEz70X0nu4jjkwsow043iMfe7hSrJIIxBVffFuO82hZAKspgwwD6CAmHiogK89xtTn1Q7uf0mlgrYx3fwljvQOk7CdwjsoVqhs=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769490280; c=relaxed/simple;
-	bh=044D9XlTxrs02Sy1EaPlOhDtVXdZOBC3pjVTahmY3E4=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iFUYVmebJGP90dgGUJxt1I/T9sr5vTisuP8cDFKvNPjQ/2bk18gEMdoj/oME7UJQunmjB7mM2gLaZ8TJh6OJNuDXnWod11mzxk2z7v7Z3EzvD+cXoZFJ7/yn0zf7dPUjJ1NeBgobZF+SgyPGNPxJmHXg03fSEJ+EcTL0FNyRKZM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=h6zE3QIl; arc=fail smtp.client-ip=40.107.209.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=W2eiegZrIjLxCWWY2Bb5aDmxnuE+LjVVk9ORRrt1SS/lLQ1W4X/XlBLy5xyLoEDq6xTY5lBaHIfSnqNsyV2kR316mc3x0vvdy3Lyw5Sp8RrwScku9EIGnXXyA3Qh2Fzy4oB8FcHJEqggcJML/y6Bpz9EoyBGkXFrG8Tr3dV+BwXICbaoscOAzt8fF1kAmf2URR/71GzFhQaobiZMK2Lr4e+/fOnfQA1284B2Yiyg4hrgjh1XiLLYm4vZpo5ZDmCLTciV2BUvHz6N6gWFn+0ez4LVquvNHFnYhk8NYmCYkBlbshTb8TNSkidkZklmcblzMhLjCERChUx1hathz4eaCg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=noqUG0bgzb0Mz26bny+vYut7xyNQTS0q20oZpC/B5Os=;
- b=Y5YXc2OIeUV9yLVdPPYTWmo7ble2jI5/7S1urjQqhQgKxIJl/r/XG9aVGvRPQtzregNln5a/PJnML8l1HllmNwSIBV2wTBEXK3JPI3woHgvirX5CF4DRwrQe5PkXrukKdlyJT7se0HqYNd+DPEDO5ccFgBg4fYN2dXLr6oCOGGXIMuOdz4QIbcVcsBVCY1V94CQquF+Sljvo3VOwxDY81v3JB8gVCOmnYQj3Q9xkmSUoFBxq5YM78SRSBOAJurKdKyLrVdBtJh13Et98ivSYdhIb2eL9VqIuuaVFyX8OBIF4UIo9Lk8cRvdIsXaKLETmUPdHBT4a3TwWoTExI7dJKQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=noqUG0bgzb0Mz26bny+vYut7xyNQTS0q20oZpC/B5Os=;
- b=h6zE3QIlwhChXVcSp2oLhCfW4Bmj9OA3soMJBb+TK8lxLDfUgK0bPOh96o+MZgEiDNYB1FC1/8OMaO9DyqXNvIwh8gDsN34HYoqVcSQhqg8HMaAm3BtgWyJ/IIgSp2rNwBFOHYvtYFr2jP4mBYvOh57FJg0nvAXMOlA5w8PtU3gfv0cXEWqH5uAuGs7T68beHosmRZWZDE95YN7EOqeHRjer7I3NXyWHxEiF3aYgz/3Xqc1SMG9/FjPfVSp+B0WhbmEXyoBtTn34OmB91RTp4W+uZdB4EFPVzC++QAVsWZ1HSaJISG187oagX21tdlED7pnzyu612EWGCg8GdB7z3g==
-Received: from BLAPR03CA0068.namprd03.prod.outlook.com (2603:10b6:208:329::13)
- by SA0PR12MB4400.namprd12.prod.outlook.com (2603:10b6:806:95::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.7; Tue, 27 Jan
- 2026 05:04:34 +0000
-Received: from BN2PEPF000044AA.namprd04.prod.outlook.com
- (2603:10b6:208:329:cafe::a1) by BLAPR03CA0068.outlook.office365.com
- (2603:10b6:208:329::13) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9542.14 via Frontend Transport; Tue,
- 27 Jan 2026 05:04:34 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- BN2PEPF000044AA.mail.protection.outlook.com (10.167.243.105) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9564.3 via Frontend Transport; Tue, 27 Jan 2026 05:04:34 +0000
-Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 26 Jan
- 2026 21:04:24 -0800
-Received: from localhost (10.126.230.35) by rnnvmail201.nvidia.com
- (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 26 Jan
- 2026 21:04:23 -0800
-From: Prathamesh Shete <pshete@nvidia.com>
-To: <linusw@kernel.org>, <brgl@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-	<robh@kernel.org>, <linux-gpio@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-CC: <pshete@nvidia.com>
-Subject: [PATCH v4 3/3] arm64: tegra: Add Tegra264 GPIO controllers
-Date: Tue, 27 Jan 2026 05:03:58 +0000
-Message-ID: <20260127050358.1136279-3-pshete@nvidia.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260127050358.1136279-1-pshete@nvidia.com>
-References: <20260127050358.1136279-1-pshete@nvidia.com>
+	s=arc-20240116; t=1769491443; c=relaxed/simple;
+	bh=5ZlTeowz3mTvEpFuyPP/h5cAPT1w+3Lo6jgfjO0QgW4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=u9YqaYg3g1Izz9p8oucoonBTAuRtXoP2IOrtpIvib8wwTvNWBXEFGIyMMfckmqfyLg2FqPzVxEHcYeBJVE+dBAQAYpzhhh/IW7zBoRtEDzLcAEj9yqcEo3DIBLY72Zk57aphV8eCg43HXteFWDyDSPiF2ecnzuwnDWKw/FESSNw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LEIyc1q5; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=CULRNVHt; arc=pass smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60R4UBBV171530
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 05:24:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	65Dr++7k9piqDeeF3/jJFpw99hTaSa0WRcxnBV8/P6c=; b=LEIyc1q53oZymJgs
+	GxHSC8vEmspOAgK7Vr5GXoWWoU7wlbRT4055J+H+sJOE0rCwsl0VCgbdU8rCUW59
+	1FAtufAXt9EDY91YmUM4FqUbpknj13QlFK39TFVoDTxv06VNua65P0C6e7P+YZjj
+	CgjtFOqhpr/Gu63/0Nfg5jKzYdqvIuorcPNJAnTU75GnZ00wGT+Rh/jb7ECLOMTE
+	Fw3O2k2PPB9UpUZNp2njv+BqbJzRZ/H4ktSy6PkvQePDkQanuTNRJGUFPJMt4lmx
+	eLVlOigLGYrXy9l2lnV6/rEeZ+4/1cn0y3sKUmE9Gljl6JUO5/rRlhKuxu4RjdKW
+	fjofwg==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bxf3a1a83-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 05:23:59 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-88a344b86f7so196229636d6.0
+        for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 21:23:59 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1769491439; cv=none;
+        d=google.com; s=arc-20240605;
+        b=fJe72X2f3bnHcxAbG9SDAvloEERYBshNKDG2ey88RFVT0ui/3Tx/uW1gAQrsw0y0GG
+         FmwFhDBNhUI4OQRtdXCR9kTgubCmlq8kgnhvENnk6d1iy78N3uuaBFtE5278LKy/Bbld
+         3MPxeBQsGg4MPb+aDh8so9OnH3PzcYpJOAx+bpVZXM0z1lwr5EYnlYNRZEKSA37oiz6N
+         Cgm6s2xkzJWW0UGXk4JTYVYBP9NqShT1Thg9Dq7PFiENrpVuhNQmi42z1XIyiOeahagh
+         bgXGj10dlKbbqokH2s8ybgeN7StrBMQRDDdnhRC+1n/xJNrcV/2HERz9/VDPMD0Zj5n6
+         kvqA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=65Dr++7k9piqDeeF3/jJFpw99hTaSa0WRcxnBV8/P6c=;
+        fh=o5V9vZ2+50zKrx776sUboa9D8TNtzWdwbcA7o5JqPJE=;
+        b=eDxUEEw99sOlR2/4ioLihTQrai9+NXGev8WWJ0r+JsUJwwo16hOI3svRQyaBFkfyHf
+         z9nHItYHG6XuN+N52PdBumPZDjVu1zkhaBiaHHAqo6yXHoARidOcOl3S7Y+hR+avp+x7
+         RuhW8gSsKHyBmoRbrYpGBsNxqtbRDen0oRE7GAlR5GkI+WvK8UjdcxzMqxA2gsEfDv0w
+         El9+R4Tf/Yd/wR6pAahun9fjEQTRknyJnXjjndrwB2p5D/7a0WKHMLWChBJoirjthac3
+         9KAkLttIVofFwJgBfIcU/AquXemevTfP9aF53cyuRFA1B39BZ3aBGgatZavWkwiDM0gt
+         MPtQ==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1769491439; x=1770096239; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=65Dr++7k9piqDeeF3/jJFpw99hTaSa0WRcxnBV8/P6c=;
+        b=CULRNVHtCT2fmbgKO0/iYf3gmLynffdZdtHc8o7BruwFAriYt5YIJAyQq1Nz6s+IxZ
+         8tYx3J241tbSwcY8E4lUTN2nBhERk4n/IH8Ict07pd0VLUqm9xe8L+k7h+ahkEU9bVbS
+         zFQJ0+biYWob8mBfGtFhh49zC7j8ZyXCLqO55/k2WT0lOYIxlnYksymV1ln6HkMbRCQ6
+         rjQyCColJBNP3X6DYGWpdWtjwAsWRJOIFOwntNNGA9n5Mv7WfZBxOglC3dOHucu7wRv9
+         LXCe7x+34mRYMujXfIlFePq932wrpxGCwq4FRq27gemr4M+v3Lp7Gng9bUGIK7FGWGTZ
+         KJag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769491439; x=1770096239;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=65Dr++7k9piqDeeF3/jJFpw99hTaSa0WRcxnBV8/P6c=;
+        b=vUxpqa8qbI1T5MvALmNVHXrcrFazJKSENzIMoAsY6vxADhUygrgB1lyC47ETvKk+1j
+         bjaoTTywkak0tt6ULjGdS+NQVJhAVXQj6B+S7ehlR4/yk9xTmHHcWJLNRecbfctElEFA
+         E947gCbrIw/irn0Wnf+13X0FWblM0UdPi7h9LwpxFxFudXxeGArPvofJyWtOrkJNSm4D
+         j2ACW8DaVsCgOg+3RvVrC5rhvN5HUduQqj3l8L1T4BIXbPQ1FtyLn8iqA9rDrSi7oOek
+         v27/d4Tle2FxexeCe/eAgSiD2SbFJFaektaX3Y52l9+F5qO6MNeXUksdTw8Ng08AUKAL
+         fjhQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUE6YhdQgQhgSiAf+ZwgEh4Nf5aen+fjzqIst1IfpCAJAW7Fm3VOqvj87VCtGLG/+NrY30F+R9It4hE@vger.kernel.org
+X-Gm-Message-State: AOJu0YxoZk8leL05CoM1UmyDnnspulyjaeeSjnyCuZn57ZYhS7IjApX3
+	CXH5WdkNmfw8QBjbH7ms0kSLTRdrIXJKHFHrCbZSGaxKoogkWKSASgVQzlCVheogHnTEctT4T2I
+	N6mHsc08VElbLCf1W91niC6bN2KbjYIttwwcQG7IdQ13cirL6yNaP7Qo1SuBS9oa2gNonOkIyTY
+	jtnrz5cO8I1t7otbLOTEM02uZoKF5zGzD8WCMO3iA=
+X-Gm-Gg: AZuq6aJl7Ks4+WE6D4pwNa6BI+F7Vjj4gjoaJJcKyJj+fumJXRkqv4CPwW8Md0O3tLx
+	RPn/GRnjKQKxuCyhsUd48lN3e+dCH/wj4I1/jbBZlksBoBIIQU1FBgRI7fkbXIqvJZYxGDxTS/7
+	no0OFWVTuUfhPSMRUF1NNWdA5HVeQWTXAGLM6ioLrhHSKbphCxpB7Yo2MVKR3yKNvADP2H
+X-Received: by 2002:a05:620a:1a25:b0:8b2:e346:de72 with SMTP id af79cd13be357-8c70b8f27dcmr65743385a.57.1769491438747;
+        Mon, 26 Jan 2026 21:23:58 -0800 (PST)
+X-Received: by 2002:a05:620a:1a25:b0:8b2:e346:de72 with SMTP id
+ af79cd13be357-8c70b8f27dcmr65740285a.57.1769491438241; Mon, 26 Jan 2026
+ 21:23:58 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20260122092852.887624-1-swati.agarwal@oss.qualcomm.com>
+ <20260122092852.887624-5-swati.agarwal@oss.qualcomm.com> <63fjxtcmpbpna4cuuis332y3p52b6pvh43gyg6m7u5kiwkb2pb@znwfyet4xlpc>
+In-Reply-To: <63fjxtcmpbpna4cuuis332y3p52b6pvh43gyg6m7u5kiwkb2pb@znwfyet4xlpc>
+From: Swati Agarwal <swati.agarwal@oss.qualcomm.com>
+Date: Tue, 27 Jan 2026 10:53:46 +0530
+X-Gm-Features: AZwV_Qg9D9OqySXSR2jfxBJ3tC1_VxJSXb3-ILFt4f7DklcV5aYmk8s-xW6NZ78
+Message-ID: <CAHz4bYuR_LZXh=tS2FJ4VE9tVB6vN10pd-9i=uOL35sSx_BRzg@mail.gmail.com>
+Subject: Re: [PATCH v5 4/4] arm64: dts: qcom: lemans-evk: Enable secondary USB
+ controller in host mode
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <uwu@icenowy.me>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Mike Looijmans <mike.looijmans@topic.nl>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Jens Glathe <jens.glathe@oldschoolsolutions.biz>,
+        Chaoyi Chen <chaoyi.chen@rock-chips.com>,
+        =?UTF-8?B?SiAuIE5ldXNjaMOkZmVy?= <j.ne@posteo.net>,
+        Pin-yen Lin <treapking@chromium.org>,
+        Catalin Popescu <catalin.popescu@leica-geosystems.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: rnnvmail203.nvidia.com (10.129.68.9) To
- rnnvmail201.nvidia.com (10.129.68.8)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF000044AA:EE_|SA0PR12MB4400:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4ed4d0be-9bd0-4521-0c13-08de5d61900a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|36860700013|82310400026|376014|7416014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?NDFqajRPejFPd2JCczNTMXFHQWtvVkxzV1hJTnBIMlFIRXZ3b2ora1gxMzhO?=
- =?utf-8?B?UU9XMTZBMVlYQ0hwZUpVM2JldCtYMVc3cXFGdUcxb1d2TGx2bnhscWw3bk9R?=
- =?utf-8?B?QkJaUEc5ZWt6WWNrTHRYOWZRUnhHcENycHhVZ1I0MS8vOHhCVitCVGJxUHly?=
- =?utf-8?B?NlVqOHBQU2dNSzBSZU9nUDdwZzBPM2UrRmh6RC9sNE9JUS8yaGZaRXpoZytZ?=
- =?utf-8?B?QUtpeVg5NFVGbmlBWDM0SEdMcTk2TXoxb0VWVUNDTzFhNExZNVdnbmhtUHF4?=
- =?utf-8?B?SDRvOXIrOElFMlNoY29pUElBRVVrSTJoVi83KzI5dEJUK0Vja0dJL1hQYmVw?=
- =?utf-8?B?ajE5dkJNSWE5QzJieklIWUNuYS9xY3RJeEttUHJMRFRnbVlGaU5VUWxTV3ZG?=
- =?utf-8?B?cXdMV2Q1cG9RZnpMWElITVYwUEtYaFJOQWZrNzZFcDlIUEMxQjMyWGFqVFFZ?=
- =?utf-8?B?dHVBeTFleS95bGFGdG9CQk5vL2RUWnJVVzRDMHdJbG1vZmdxalFKMGxZeS82?=
- =?utf-8?B?N3UxUUlJRGlSeWtZV2dpRHFIM1NoTlYyejFCMlIwODdjb0wyK0EybDIrbVBW?=
- =?utf-8?B?UzZjRTFEK2dTV0RSekNvajNlRk1RTUNzSjhOZWlsOTJSSG0vRmMrNGU2a0Rn?=
- =?utf-8?B?cGdMbklXcTk2L1NBNm5leStyV01xVXFsQWJSOGUwNStKT0JnVmlVNHB3Tk1F?=
- =?utf-8?B?NFBUL200SWVjaW16cVFkaVQvYmZueHBwZ0c1N0hDb2MzRVhPeXlHZi85ZldG?=
- =?utf-8?B?T0tnMmc0UExqbHdpZ0pZTGd5YWhISGkwdDVadzhLQ0RMQmxqbWIvZEpxSUZJ?=
- =?utf-8?B?UlNZSjlNUFhkd0NTZDdEcXZ2S1BaZDJFMk92c1hQcWlXdUJEUVBFaEJiWklv?=
- =?utf-8?B?eGpNR0xJR3FwbE4zeENWb0NyWEJ3eHR5aG9xVHRQeUpCK3Exa0hlVG9Ha1BJ?=
- =?utf-8?B?MXA1TWNFZWxYQXlGbDkzTzQzZGtaWXI4Z2dMRnB3YzlDL2pyTFR6bTZ1NXo1?=
- =?utf-8?B?T01GbFJTSkZZWE5Pa2N6QmxKSDV3SHZRWkxwSFZOOERrUU4xZkNjWno0Ny9p?=
- =?utf-8?B?UmVwaS9wRHRibWpMRTlGYVlQTzhTTkhtb0dzYkVIY3drN3lnVWxBMFIwQmxO?=
- =?utf-8?B?MUZqQkhMTkZZTlhrK2NjU01QNTBTaEg4VHNGczFFbFJJN2c5SVJCMGNGbnRW?=
- =?utf-8?B?cUhiNXFtMWIvSFR4OFV0L1B5TXNybkV3dlF0bXZGMVU5Wkl5UXVTa1I0LzB4?=
- =?utf-8?B?a29lQVJUS3FwbVFYV0YvUzJDUXk4ajlrZDRPOVVoOGpSR29PNU9hdTlUNnNs?=
- =?utf-8?B?QXlNY3VicTN6RGhTL1lyOWVYZWxNN0YrZlcvblhZZ2FYaHJ1bHpMN3pKbDV0?=
- =?utf-8?B?dkNhanF0ZG5RUWFmL1NYUlUwbEluTytyVmJDazNyUHE2MVc2NUxFNVRzMzZ6?=
- =?utf-8?B?RXk1N09Eb1dLTHJKL3plQlQyWXA1RzFydisvbDM3ZFhoakVXN1RLWkpTbnZ4?=
- =?utf-8?B?Mnl4dXU1WFJTeGs3dGFOdnBxbFpIeXpnb0hWYVlmNjJLaTBtT20xQzR3cEhQ?=
- =?utf-8?B?Y0FOWXlyOVBzMkVYNXpaQkNuTUJIZ1dwa0xVYVJYenZNQmVNSjZtdjJTcFVj?=
- =?utf-8?B?OGFTRGZoZG16RldlNnl4bUtFam1hZHl5YlI0ZkZFQkR2dmxHYU1XdTUxY0Va?=
- =?utf-8?B?VlRMZFh4Q1A0Vk11Mm0rdk5TQzRnMWdPWm5scHZSVnJPVjU4SnB3UkRPbGJl?=
- =?utf-8?B?ZWlMOXJOeWR2MWpyc0MydS9ETXRyV1FzVEwvMDVxdmJaemkyMFVDQllvN0Ux?=
- =?utf-8?B?VGVqSUY2ZjBaU2pwRGpTS1VHY1hFRmx4S1hoZVRnU2crME9kdktBQ0U0SGQ0?=
- =?utf-8?B?WkxCbjB4QXZxR284Y3QrbUY4OHBxNXgwbGlTcXNQaDVvR1F6UExpUklFdGE4?=
- =?utf-8?B?UkY2T2ZkQVR3MU96TzVMYXp0cVNnL3dUVVNrbGU0bzNnZ1NFNkNDZnFXNk8v?=
- =?utf-8?B?V1ZIcTNTaFgxUzN5eWR4dU5NUVF3L2xhbTNzY0pyTXEwRTc3R2d5cWk1c3pF?=
- =?utf-8?B?NVNkdGVPNkRuK2RTQ2lMYXpBZkdIdTVGanRIaWpqYkpMVjJ2ZXJqdzRrb04w?=
- =?utf-8?B?Uk1iS21IckxtTkRvajNHc0hydkRUSlBSSkZYd2c3Sk5OQU44eURhVGZKb0JM?=
- =?utf-8?B?TGtDdGIwVlRlSFBad0ZlTjkvV2Vic1B4MDk5MWtiTDdYVW83V0RCaWdSRU9h?=
- =?utf-8?Q?gH/ZLnAFfG4Reo+q/hB2DfEyDuvF7YuOfrTWzv8a64=3D?=
-X-Forefront-Antispam-Report:
-	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(82310400026)(376014)(7416014)(921020);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jan 2026 05:04:34.1103
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4ed4d0be-9bd0-4521-0c13-08de5d61900a
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BN2PEPF000044AA.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4400
+Content-Transfer-Encoding: quoted-printable
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI3MDA0MiBTYWx0ZWRfXzm9vwNQsdzG/
+ oK65bSHK7/rY9wQFeqa8A084UaCHsFeAcylq/b8ozW9I5XhYs/a68wkH4rGXxtjQ7XwforQbS38
+ I/fp2HLmD9VVw29B0iaGpN+LcFgKlTkdF0OtdrpyZAsE9TbzNnlbM89xIFvvb2NQjVZtqVteaTk
+ o3V2a/AHkhxzxtYu0nGSGJauMF/nYtYdtl+ZZcubG0hic+tvQ+z2EbAQCwjRQau5bcjOIx09nal
+ nrYw/o8hZBtyCJ3QWKsN0OUP2RaArfTrVUrSz54kcqnJd5Mw2SRGd1emmpS860d00K1tO8iPCRM
+ kcJKxpomm6BWWGRM+pU3/iqNIT7iXW2O36Ac2ok5plx62JEuzCNtFFvShOZ0XCcx3pSViSqIdnw
+ IMiEOTcYRpFBchGNCaTOYu2D86Ahzzq5uVm3XVCNYBhFzq3zaXYAAe6HUpheIl5Do7Xpr4c0nPD
+ CbgNZMNbVs1igb3eaGQ==
+X-Proofpoint-ORIG-GUID: ahAi-jKvLx2rBoFDWKNQ_dO8_xTHMi1j
+X-Proofpoint-GUID: ahAi-jKvLx2rBoFDWKNQ_dO8_xTHMi1j
+X-Authority-Analysis: v=2.4 cv=a6k9NESF c=1 sm=1 tr=0 ts=69784bef cx=c_pps
+ a=wEM5vcRIz55oU/E2lInRtA==:117 a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10
+ a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8
+ a=fSljc-vNTktiGYv43x4A:9 a=QEXdDO2ut3YA:10 a=OIgjcC2v60KrkQgK7BGD:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
+ definitions=2026-01-27_01,2026-01-26_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 spamscore=0 phishscore=0 lowpriorityscore=0 adultscore=0
+ priorityscore=1501 bulkscore=0 suspectscore=0 clxscore=1015 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601270042
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259726-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,nvidia.com,vger.kernel.org];
-	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:mid,nvidia.com:email,Nvidia.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[pshete@nvidia.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-259727-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
-	TO_DN_NONE(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	DBL_PROHIBIT(0.00)[0.126.165.224:email];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[swati.agarwal@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.0.1:email,0.0.0.4:email];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: 8EE018FF0A
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.3:email,qualcomm.com:email,qualcomm.com:dkim,0.0.0.47:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.2:email,0.0.0.0:email,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 01B2F901B7
 X-Rspamd-Action: no action
 
-Add device tree nodes for MAIN, AON and UPHY GPIO controller instances.
+On Thu, Jan 22, 2026 at 4:02=E2=80=AFPM Dmitry Baryshkov
+<dmitry.baryshkov@oss.qualcomm.com> wrote:
+>
+> On Thu, Jan 22, 2026 at 02:58:52PM +0530, Swati Agarwal wrote:
+> > Enable secondary USB controller in host mode on lemans EVK Platform.
+> >
+> > Secondary USB controller is connected to a Genesys Logic USB HUB GL3590
+> > having 4 ports. The ports of hub that are present on lemans EVK standal=
+one
+> > board are used as follows:-
+> > 1) port-1 is connected to HD3SS3220 Type-C port controller.
+> > 2) port-4 is used for the M.2 E key on corekit. Standard core kit uses =
+UART
+> > for Bluetooth. This port is to be used only if user optionally replaces=
+ the
+> > WiFi card with the NFA765 chip which uses USB for Bluetooth.
+> >
+> > Remaining 2 ports will become functional when the interface plus mezzan=
+ine
+> > board is stacked on top of corekit:
+> >
+> > 3) port-2 is connected to another hub which is present on the mezz thro=
+ugh
+> > which 4 type-A ports are connected.
+> > 4) port-3 is used for the M.2 B key for a 5G card when the mezz is
+> > connected.
+> >
+> > Mark the second USB controller as host only capable and add the HD3SS32=
+20
+> > Type-C port controller along with Type-c connector for controlling vbus
+> > supply.
+> >
+> > Signed-off-by: Swati Agarwal <swati.agarwal@oss.qualcomm.com>
+> > ---
+> >  arch/arm64/boot/dts/qcom/lemans-evk.dts | 208 ++++++++++++++++++++++++
+> >  1 file changed, 208 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/lemans-evk.dts b/arch/arm64/boot/=
+dts/qcom/lemans-evk.dts
+> > index 074a1edd0334..a549f7fe53a1 100644
+> > --- a/arch/arm64/boot/dts/qcom/lemans-evk.dts
+> > +++ b/arch/arm64/boot/dts/qcom/lemans-evk.dts
+> > @@ -68,6 +68,45 @@ usb0_con_ss_ep: endpoint {
+> >               };
+> >       };
+> >
+> > +     connector-1 {
+> > +             compatible =3D "usb-c-connector";
+> > +             label =3D "USB1-Type-C";
+> > +             data-role =3D "host";
+> > +             power-role =3D "source";
+> > +
+> > +             vbus-supply =3D <&vbus_supply_regulator_1>;
+> > +
+> > +             ports {
+> > +                     #address-cells =3D <1>;
+> > +                     #size-cells =3D <0>;
+> > +
+> > +                     port@0 {
+> > +                             reg =3D <0>;
+> > +
+> > +                             usb1_con_ss_ep: endpoint {
+>
+> This contradicts USB-C connector bindings. Why?
+>
+> > +                                     remote-endpoint =3D <&hd3ss3220_1=
+_in_ep>;
+> > +                             };
+> > +                     };
+> > +
+> > +                     port@1 {
+> > +                             reg =3D <1>;
+> > +
+> > +                             usb1_hs_in: endpoint {
+> > +                                     remote-endpoint =3D <&usb_hub_2_1=
+>;
+> > +                             };
+> > +
+> > +                     };
+> > +
+> > +                     port@2 {
+> > +                             reg =3D <2>;
+> > +
+> > +                             usb1_ss_in: endpoint {
+>
+> port@2 is for the SBU signals. It can't be connected to the hub.
+>
+> > +                                     remote-endpoint =3D <&usb_hub_3_1=
+>;
+> > +                             };
+> > +                     };
+> > +             };
+> > +     };
+> > +
+> >       edp0-connector {
+> >               compatible =3D "dp-connector";
+> >               label =3D "EDP0";
+> > @@ -141,6 +180,16 @@ vbus_supply_regulator_0: regulator-vbus-supply-0 {
+> >               enable-active-high;
+> >       };
+> >
+> > +     vbus_supply_regulator_1: regulator-vbus-supply-1 {
+> > +             compatible =3D "regulator-fixed";
+> > +             regulator-name =3D "vbus_supply_1";
+> > +             gpio =3D <&expander1 3 GPIO_ACTIVE_HIGH>;
+> > +             regulator-min-microvolt =3D <5000000>;
+> > +             regulator-max-microvolt =3D <5000000>;
+> > +             regulator-boot-on;
+> > +             enable-active-high;
+> > +     };
+> > +
+> >       vmmc_sdc: regulator-vmmc-sdc {
+> >               compatible =3D "regulator-fixed";
+> >
+> > @@ -536,6 +585,39 @@ hd3ss3220_0_out_ep: endpoint {
+> >                       };
+> >               };
+> >       };
+> > +
+> > +     usb-typec@47 {
+> > +             compatible =3D "ti,hd3ss3220";
+> > +             reg =3D <0x47>;
+> > +
+> > +             interrupts-extended =3D <&pmm8654au_2_gpios 6 IRQ_TYPE_ED=
+GE_FALLING>;
+> > +
+> > +             id-gpios =3D <&tlmm 51 GPIO_ACTIVE_HIGH>;
+> > +
+> > +             pinctrl-0 =3D <&usb1_id>, <&usb1_intr>;
+> > +             pinctrl-names =3D "default";
+> > +
+> > +             ports {
+> > +                     #address-cells =3D <1>;
+> > +                     #size-cells =3D <0>;
+> > +
+> > +                     port@0 {
+> > +                             reg =3D <0>;
+> > +
+> > +                             hd3ss3220_1_in_ep: endpoint {
+> > +                                     remote-endpoint =3D <&usb1_con_ss=
+_ep>;
+> > +                             };
+> > +                     };
+> > +
+> > +                     port@1 {
+> > +                             reg =3D <1>;
+> > +
+> > +                             hd3ss3220_1_out_ep: endpoint {
+> > +                             };
+>
+> Why is this port disconnected? It it really N/C?
 
-Signed-off-by: Prathamesh Shete <pshete@nvidia.com>
-Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
----
-Changes in v2:
-  * Update Tegra264 GPIO nodes to use “wakeup-parent”.
----
- arch/arm64/boot/dts/nvidia/tegra264.dtsi | 88 ++++++++++++++++++++++++
- 1 file changed, 88 insertions(+)
+Hi Dmitry,
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra264.dtsi b/arch/arm64/boot/dts/nvidia/tegra264.dtsi
-index f137565da804..cf4de2c517fa 100644
---- a/arch/arm64/boot/dts/nvidia/tegra264.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra264.dtsi
-@@ -3277,6 +3277,50 @@
- 			status = "disabled";
- 		};
- 
-+		gpio_main: gpio@c300000 {
-+			compatible = "nvidia,tegra264-gpio";
-+			reg = <0x00 0x0c300000 0x0 0x4000>,
-+			      <0x00 0x0c310000 0x0 0x4000>;
-+			reg-names = "security", "gpio";
-+			wakeup-parent = <&pmc>;
-+			interrupts =  <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>,
-+				      <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>,
-+				      <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>,
-+				      <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>,
-+				      <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>,
-+				      <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>,
-+				      <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>,
-+				      <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>,
-+				      <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>,
-+				      <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>,
-+				      <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>,
-+				      <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>,
-+				      <GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH>,
-+				      <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>,
-+				      <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>,
-+				      <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH>,
-+				      <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>,
-+				      <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>,
-+				      <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>,
-+				      <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>,
-+				      <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>,
-+				      <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>,
-+				      <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>,
-+				      <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>,
-+				      <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>,
-+				      <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>,
-+				      <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH>,
-+				      <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>,
-+				      <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>,
-+				      <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>,
-+				      <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>,
-+				      <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+
- 		serial@c4e0000 {
- 			compatible = "nvidia,tegra264-utc";
- 			reg = <0x0 0x0c4e0000 0x0 0x8000>,
-@@ -3347,6 +3391,22 @@
- 			#interrupt-cells = <2>;
- 			interrupt-controller;
- 		};
-+
-+		gpio_aon: gpio@cf00000 {
-+			compatible = "nvidia,tegra264-gpio-aon";
-+			reg = <0x0 0x0cf00000 0x0 0x10000>,
-+			      <0x0 0x0cf10000 0x0 0x1000>;
-+			reg-names = "security", "gpio";
-+			wakeup-parent = <&pmc>;
-+			interrupts = <GIC_SPI 538 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 539 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 540 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 541 IRQ_TYPE_LEVEL_HIGH>;
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
- 	};
- 
- 	/* TOP_MMIO */
-@@ -3726,6 +3786,34 @@
- 
- 		ranges = <0x00 0x00000000 0xa8 0x00000000 0x40 0x00000000>, /* MMIO, ECAM, prefetchable memory, I/O */
- 			 <0x80 0x00000000 0x00 0x20000000 0x00 0x40000000>; /* non-prefetchable memory (32-bit) */
-+
-+		gpio_uphy: gpio@8300000 {
-+			compatible = "nvidia,tegra264-gpio-uphy";
-+			reg = <0x00 0x08300000 0x0 0x2000>,
-+			      <0x00 0x08310000 0x0 0x2000>;
-+			reg-names = "security", "gpio";
-+			wakeup-parent = <&pmc>;
-+			interrupts = <GIC_SPI 843 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 844 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 845 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 846 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 847 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 848 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 849 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 850 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 851 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 852 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 853 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 854 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 855 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 856 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 857 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 858 IRQ_TYPE_LEVEL_HIGH>;
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
- 	};
- 
- 	cpus {
--- 
-2.17.1
+Sorry for the confusion, Can we do it as follows:
 
+hub:                    Hd3ss3220   typec-connector
+
+usb_hub_2_1 <-> port@1       port@1 <-> empty
+usb_hub_3_1 <-> port@2       port@2 <-> <empty>
+                             port@0 <-> port@0
+
+Regards,
+Swati
+>
+> > +                     };
+> > +             };
+> > +     };
+> > +
+> >  };
+> >
+> >  &i2c18 {
+> > @@ -699,6 +781,14 @@ usb0_intr_state: usb0-intr-state {
+> >               bias-pull-up;
+> >               power-source =3D <0>;
+> >       };
+> > +
+> > +     usb1_intr: usb1-intr-state {
+> > +             pins =3D "gpio6";
+> > +             function =3D "normal";
+> > +             input-enable;
+> > +             bias-pull-up;
+> > +             power-source =3D <0>;
+> > +     };
+> >  };
+> >
+> >  &qup_i2c19_default {
+> > @@ -868,6 +958,12 @@ usb_id: usb-id-state {
+> >               function =3D "gpio";
+> >               bias-pull-up;
+> >       };
+> > +
+> > +     usb1_id: usb1-id-state {
+> > +             pins =3D "gpio51";
+> > +             function =3D "gpio";
+> > +             bias-pull-up;
+> > +     };
+> >  };
+> >
+> >  &uart10 {
+> > @@ -922,6 +1018,118 @@ &usb_0_qmpphy {
+> >       status =3D "okay";
+> >  };
+> >
+> > +&usb_1 {
+> > +     dr_mode =3D "host";
+> > +
+> > +     #address-cells =3D <1>;
+> > +     #size-cells =3D <0>;
+> > +
+> > +     status =3D "okay";
+> > +
+> > +     usb_hub_2_x: hub@1 {
+> > +             compatible =3D "usb5e3,610";
+> > +             reg =3D <1>;
+> > +
+> > +             peer-hub =3D <&usb_hub_3_x>;
+> > +
+> > +             ports {
+> > +                     #address-cells =3D <1>;
+> > +                     #size-cells =3D <0>;
+> > +
+> > +                     port@1 {
+> > +                             reg =3D <1>;
+> > +
+> > +                             usb_hub_2_1: endpoint {
+> > +                                     remote-endpoint =3D <&usb1_hs_in>=
+;
+> > +                             };
+> > +                     };
+> > +
+> > +                     /*
+> > +                      * Port-2 and port-3 are not connected to anythin=
+g on corekit.
+>
+> I thought that they are routed to the HS connectors. Are they not?
+>
+> > +                      */
+> > +                     port@2 {
+> > +                             reg =3D <2>;
+> > +
+> > +                             usb_hub_2_2: endpoint {
+> > +                             };
+> > +                     };
+> > +
+> > +                     port@3 {
+> > +                             reg =3D <3>;
+> > +
+> > +                             usb_hub_2_3: endpoint {
+> > +                             };
+> > +                     };
+> > +
+> > +                     /*
+> > +                      * Port-4 is connected to M.2 E key connector on =
+corekit.
+> > +                      */
+> > +                     port@4 {
+> > +                             reg =3D <4>;
+> > +
+> > +                             usb_hub_2_4: endpoint {
+> > +                             };
+> > +                     };
+> > +             };
+> > +     };
+> > +
+> > +     usb_hub_3_x: hub@2 {
+> > +             compatible =3D "usb5e3,625";
+> > +             reg =3D <2>;
+> > +
+> > +             peer-hub =3D <&usb_hub_2_x>;
+> > +
+> > +             ports {
+> > +                     #address-cells =3D <1>;
+> > +                     #size-cells =3D <0>;
+> > +
+> > +                     port@1 {
+> > +                             reg =3D <1>;
+> > +
+> > +                             usb_hub_3_1: endpoint {
+> > +                                     remote-endpoint =3D <&usb1_ss_in>=
+;
+> > +                             };
+> > +                     };
+> > +
+> > +                     port@2 {
+> > +                             reg =3D <2>;
+> > +
+> > +                             usb_hub_3_2: endpoint {
+> > +                             };
+> > +                     };
+> > +
+> > +                     port@3 {
+> > +                             reg =3D <3>;
+> > +
+> > +                             usb_hub_3_3: endpoint {
+> > +                             };
+> > +                     };
+> > +
+> > +                     port@4 {
+> > +                             reg =3D <4>;
+> > +
+> > +                             usb_hub_3_4: endpoint {
+> > +                             };
+> > +                     };
+> > +             };
+> > +     };
+> > +};
+> > +
+> > +&usb_1_hsphy {
+> > +     vdda-pll-supply =3D <&vreg_l7a>;
+> > +     vdda18-supply =3D <&vreg_l6c>;
+> > +     vdda33-supply =3D <&vreg_l9a>;
+> > +
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&usb_1_qmpphy {
+> > +     vdda-phy-supply =3D <&vreg_l1c>;
+> > +     vdda-pll-supply =3D <&vreg_l7a>;
+> > +
+> > +     status =3D "okay";
+> > +};
+> > +
+> >  &xo_board_clk {
+> >       clock-frequency =3D <38400000>;
+> >  };
+> > --
+> > 2.34.1
+> >
+>
+> --
+> With best wishes
+> Dmitry
 
