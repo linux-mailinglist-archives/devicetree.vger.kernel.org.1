@@ -1,42 +1,42 @@
-Return-Path: <devicetree+bounces-260116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260117-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wDGIMOQdeWkQvgEAu9opvQ
-	(envelope-from <devicetree+bounces-260116-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 21:19:48 +0100
+	id sHt0CgAeeWkQvgEAu9opvQ
+	(envelope-from <devicetree+bounces-260117-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 21:20:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60EAE9A524
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 21:19:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B55FB9A53A
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 21:20:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 26FC53047015
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 20:18:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5E0F43086412
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 20:18:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86A3936E49D;
-	Tue, 27 Jan 2026 20:18:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1814536EAA6;
+	Tue, 27 Jan 2026 20:18:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 352B0265CC2;
-	Tue, 27 Jan 2026 20:18:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C001236EA9C;
+	Tue, 27 Jan 2026 20:18:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769545101; cv=none; b=Wl3xpzeTa5oNRwONH4FDieD60UJ2Y7SM4faKo6pIPqpP/T01VB/yqLM4RiLaRib3gP154o03yHTGBjFGnFXC2iHelbGeSCH28k0RJ2dPqNeIQFL3C5m+HFx0gowld3Ua4lCEnn2THE/3Sw229pZ7eGPrRHH9yqcBB5j6i4n6Igw=
+	t=1769545104; cv=none; b=XUT6sEvnUY8nzsKFzp4sNMW1IIM53I290FZ3ZKsrhrOuDKTdLJch/7TiRrlZzf1/lw+BNJFIpMUap4rk0rPw+ZV4GoNbpqw6a/seuIdIhqxmmhatbRhEUdBiI1c3VjPYswkHMNI1zEZZWqrQ5Kyj/N5iNCFgqXgJKtNtJAF+EbE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769545101; c=relaxed/simple;
-	bh=vqM/AQoYvDn10JpUAvxzI5uTGLi1XLccpPDYZLLj7Q4=;
+	s=arc-20240116; t=1769545104; c=relaxed/simple;
+	bh=+iWjfmvsvSOespILsWRHwJCyWJhyy5bKPQjBs10MRK0=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Ym81mN7sEW+fiOyniYsQYUi5T1aNyKeLTd8cIBYdeQf/4Z/xUZJ3gwr/VihlkjzDPRXLkSxzrW8aep3aTaOK55zflP0o2kQtU8RsLlFoIGkJ7zjUY/ngWjT9eNCveZrORJOCgyaqQ86fXFHvdB9jb6sWpcuTfRyQE+oPIWP9Yi4=
+	 MIME-Version; b=e3K6apga7OkyZjLthQPJ0OcYtW5djHwRXi+cSWe2yuovyM+kKyCU1/TM096o/erq0Ssza9rXa9zoWpgp0ctVY7cv3K8y+gfgEgOIVmsgL9uUpEIB2i5WpmTrcqfkNtrZyrgb4nKODuiFLUqljpBCwhoyPe03/EPInqtuyEz4OWw=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-X-CSE-ConnectionGUID: Sy30TNNERDC3npRWBWs+rg==
-X-CSE-MsgGUID: P7IvSMygReGxHnthAJNOrw==
+X-CSE-ConnectionGUID: dUHLVLuATp2E5deY37JyNw==
+X-CSE-MsgGUID: cOgkzrIXQh2ELtGCXDfT9A==
 Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 28 Jan 2026 05:18:12 +0900
+  by relmlie6.idc.renesas.com with ESMTP; 28 Jan 2026 05:18:16 +0900
 Received: from demon-pc.localdomain (unknown [10.226.93.69])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 6C98840869DB;
-	Wed, 28 Jan 2026 05:18:08 +0900 (JST)
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 36B9F40869DB;
+	Wed, 28 Jan 2026 05:18:12 +0900 (JST)
 From: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
 To: Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
 	Mark Brown <broonie@kernel.org>,
@@ -50,9 +50,9 @@ Cc: linux-spi@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-Subject: [PATCH v2 2/3] arm64: dts: renesas: r9a09g077: wire up DMA support for SPI
-Date: Tue, 27 Jan 2026 22:17:05 +0200
-Message-ID: <20260127201706.616374-3-cosmin-gabriel.tanislav.xa@renesas.com>
+Subject: [PATCH v2 3/3] arm64: dts: renesas: r9a09g087: wire up DMA support for SPI
+Date: Tue, 27 Jan 2026 22:17:06 +0200
+Message-ID: <20260127201706.616374-4-cosmin-gabriel.tanislav.xa@renesas.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260127201706.616374-1-cosmin-gabriel.tanislav.xa@renesas.com>
 References: <20260127201706.616374-1-cosmin-gabriel.tanislav.xa@renesas.com>
@@ -79,7 +79,7 @@ X-Spamd-Result: default: False [0.14 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[12];
-	TAGGED_FROM(0.00)[bounces-260116-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-260117-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	R_DKIM_NA(0.00)[];
@@ -89,10 +89,10 @@ X-Spamd-Result: default: False [0.14 / 15.00];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 60EAE9A524
+X-Rspamd-Queue-Id: B55FB9A53A
 X-Rspamd-Action: no action
 
-RZ/T2H (R9A09G077) has three DMA controllers that can be used by
+RZ/N2H (R9A09G087) has three DMA controllers that can be used by
 peripherals like SPI to offload data transfers from the CPU.
 
 Wire up the DMA channels for the SPI peripherals.
@@ -104,15 +104,15 @@ Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 V2:
  * wire up all DMA controllers
 
- arch/arm64/boot/dts/renesas/r9a09g077.dtsi | 16 ++++++++++++++++
+ arch/arm64/boot/dts/renesas/r9a09g087.dtsi | 16 ++++++++++++++++
  1 file changed, 16 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g077.dtsi b/arch/arm64/boot/dts/renesas/r9a09g077.dtsi
-index 14d7fb6f8952..0e44b01a56c7 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g077.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a09g077.dtsi
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g087.dtsi b/arch/arm64/boot/dts/renesas/r9a09g087.dtsi
+index 4a1339561332..7d1c669ad262 100644
+--- a/arch/arm64/boot/dts/renesas/r9a09g087.dtsi
++++ b/arch/arm64/boot/dts/renesas/r9a09g087.dtsi
 @@ -200,6 +200,10 @@ rspi0: spi@80007000 {
- 			clocks = <&cpg CPG_CORE R9A09G077_CLK_PCLKM>,
+ 			clocks = <&cpg CPG_CORE R9A09G087_CLK_PCLKM>,
  				 <&cpg CPG_MOD 104>;
  			clock-names = "pclk", "pclkspi";
 +			dmas = <&dmac0 0x267a>, <&dmac0 0x267b>,
@@ -123,7 +123,7 @@ index 14d7fb6f8952..0e44b01a56c7 100644
  			#address-cells = <1>;
  			#size-cells = <0>;
 @@ -218,6 +222,10 @@ rspi1: spi@80007400 {
- 			clocks = <&cpg CPG_CORE R9A09G077_CLK_PCLKM>,
+ 			clocks = <&cpg CPG_CORE R9A09G087_CLK_PCLKM>,
  				 <&cpg CPG_MOD 105>;
  			clock-names = "pclk", "pclkspi";
 +			dmas = <&dmac0 0x267f>, <&dmac0 0x2680>,
@@ -134,7 +134,7 @@ index 14d7fb6f8952..0e44b01a56c7 100644
  			#address-cells = <1>;
  			#size-cells = <0>;
 @@ -236,6 +244,10 @@ rspi2: spi@80007800 {
- 			clocks = <&cpg CPG_CORE R9A09G077_CLK_PCLKM>,
+ 			clocks = <&cpg CPG_CORE R9A09G087_CLK_PCLKM>,
  				 <&cpg CPG_MOD 106>;
  			clock-names = "pclk", "pclkspi";
 +			dmas = <&dmac0 0x2684>, <&dmac0 0x2685>,
@@ -145,7 +145,7 @@ index 14d7fb6f8952..0e44b01a56c7 100644
  			#address-cells = <1>;
  			#size-cells = <0>;
 @@ -254,6 +266,10 @@ rspi3: spi@81007000 {
- 			clocks = <&cpg CPG_CORE R9A09G077_CLK_PCLKM>,
+ 			clocks = <&cpg CPG_CORE R9A09G087_CLK_PCLKM>,
  				 <&cpg CPG_MOD 602>;
  			clock-names = "pclk", "pclkspi";
 +			dmas = <&dmac0 0x2689>, <&dmac0 0x268a>,
