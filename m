@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-260017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260018-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gAg4DcLgeGkGtwEAu9opvQ
-	(envelope-from <devicetree+bounces-260017-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:58:58 +0100
+	id cCUIIQ3ieGkGtwEAu9opvQ
+	(envelope-from <devicetree+bounces-260018-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:04:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F0DC97419
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:58:57 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EAAE9759A
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:04:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 988EF304A145
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:56:41 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C3907300788D
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:56:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF2C635DCEA;
-	Tue, 27 Jan 2026 15:56:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E44535DD1C;
+	Tue, 27 Jan 2026 15:56:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ljxMjaQU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MQSmtF84"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B67235D60B;
-	Tue, 27 Jan 2026 15:56:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7821735DD12;
+	Tue, 27 Jan 2026 15:56:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769529400; cv=none; b=R0SjHteoKWKwg6ZvIVQakRTL5nvEoH7eJimvKlwnZiqg+depU3m2iylfY8sGsBbxyARjtx+3zBBoypMQ0RMjmQe8XPrrOw7eLNC3iXrUdhgndG+1qIO+GdSUGoMPg4kk5FOrEBkgA/wodYCK2Cz3p3HUqVy/FeYySPknvEdnyDA=
+	t=1769529401; cv=none; b=YPlNRqJfYm9rr9JLBaJ2wHRh9IQGWr+ijrgVFg2Qu0N9tyhOYCJ5QdXUyhDHSrjNNxE1JDbJZJ9oWNRX/ijYXhyo5ziumcs4HUuQQNf1Pgvluzao0jf04b7lehVFaDNvYZws3rJvDwyzRDjPYD/FQ9tXeFccL0peF/JpBovBw/w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769529400; c=relaxed/simple;
-	bh=pyesTGZkOMY1CDLH595pytnp+a/HTRbOucVfk8mO0ZE=;
+	s=arc-20240116; t=1769529401; c=relaxed/simple;
+	bh=Um8m4iWZhGp11leilj6JjEd/7T00UIp9bJaFYH0cOmo=;
 	h=From:Date:Content-Type:MIME-Version:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=mqNrqxxcLv7WZn4QbIZZmFWFJ6xAFPFjH6HrttcSK8nFA8Opv8Q6TjyorwNoFXPID1hSm1zG9QGFkSxdI7ApJBsVl3WxoSDrthGn0BFaoBmmhJpsI3jcW1zUqEKHnzEeNByMhd2G2xvzHvxE//4taJVrBbvV1QFJFypwqVKdMk4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ljxMjaQU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CED1C116C6;
-	Tue, 27 Jan 2026 15:56:40 +0000 (UTC)
+	 Message-Id:Subject; b=VcWz5N4lTonAsVAapzfREZ8yxGePyAxZDlsEi8xbIKxI42vWp6rFLwmQ5i5gGYXUw9iGxGX1+Nh5CyRvYQtillakboxpcQnwIiORq2AKQtgoIhFE9rp24KuMjAQM3zzCMkD7YRuVNvKSjrjzb4/mMu2Sy+IHWlMo3AEhoQbZmRo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MQSmtF84; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12219C2BCAF;
+	Tue, 27 Jan 2026 15:56:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769529400;
-	bh=pyesTGZkOMY1CDLH595pytnp+a/HTRbOucVfk8mO0ZE=;
+	s=k20201202; t=1769529401;
+	bh=Um8m4iWZhGp11leilj6JjEd/7T00UIp9bJaFYH0cOmo=;
 	h=From:Date:Cc:To:In-Reply-To:References:Subject:From;
-	b=ljxMjaQUO+xIXWR2kM5tAeDfxymnyk4/q4shrBM0f5GeTIT0DmYoM63aLv7+lQcCy
-	 Rk7IYQtD1bOoEL0oQEWsZBhaCCEXDj4NLcqQYJQxNV1sXXqEs/2rRpnRnRMR6KyYRo
-	 buTfxs1BbBY+zuVAYwZD0matwCs7Looq6cbtnepQqI7Eq0owiAxLkgGkHmulB4I+GP
-	 1ti7KFgGBbQspUdPV6iBN6kp/6PFtkyA3D252xhb5n0H5rVunUEgP++7niqXUr2eAd
-	 K60jcWQ3eZZbSf6vQT4KkJdCCletNodCaJzokJuwQN97yc0spPtBp6VjXxUASch5Tm
-	 sgmxNsvhOULWw==
+	b=MQSmtF84cboD6goWr4M8TtGV0VXUtHryB0XkUNNEjsq5d5rL5NSjsGme0v2Wt33hs
+	 SqJLxbe+OuMZ1FQCzbQ3NpcKxdx+FaE20hDZKuEMvGyj8rk0pcTz2AldxvnqmC2eDb
+	 R9RYlbnzoWwhKGoAflLWiUZUDK7/uNwPZlAm7kNEGxVIvyD5CFXCZrmbhT+KLgdi2L
+	 O8Pp4nwAI1Ue4M/7LpxOFTyKS1Sf9VP6KaXH6Ag9Gg4KWJly2xNjd8kCmCkoSS9v8u
+	 SYeagtFahiR5ckZWurL07MJHSp/yYWy0KBzL/MOsxVb+XCsHIbt3q+uMnoYw58kD8N
+	 5Xs042Xlp+dDw==
 From: Rob Herring <robh@kernel.org>
-Date: Tue, 27 Jan 2026 09:56:39 -0600
+Date: Tue, 27 Jan 2026 09:56:40 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -54,129 +54,112 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, linux-amlogic@lists.infradead.org, 
- Conor Dooley <conor+dt@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>, 
- linux-clk@vger.kernel.org, shuai.li@amlogic.com, 
- linux-arm-kernel@lists.infradead.org, 
- Michael Turquette <mturquette@baylibre.com>, jian.xu@amlogic.com, 
- linux-sound@vger.kernel.org, zhe.wang@amlogic.com, 
- Takashi Iwai <tiwai@suse.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Jaroslav Kysela <perex@perex.cz>, Mark Brown <broonie@kernel.org>
-To: Jiebing Chen <jiebing.chen@amlogic.com>
-In-Reply-To: <20260126-audio_drvier-v6-0-99e350855bc2@amlogic.com>
-References: <20260126-audio_drvier-v6-0-99e350855bc2@amlogic.com>
-Message-Id: <176952925847.1904460.11456869237043173749.robh@kernel.org>
-Subject: Re: [PATCH v6 0/5] Add support for S4 audio
+Cc: linux-kernel@vger.kernel.org, Konrad Dybcio <konradybcio@kernel.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Kees Cook <kees@kernel.org>, linux-arm-msm@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+ "Guilherme G. Piccoli" <gpiccoli@igalia.com>, 
+ ~postmarketos/upstreaming@lists.sr.ht, linux@mainlining.org, 
+ Bjorn Andersson <andersson@kernel.org>, Tony Luck <tony.luck@intel.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Biswapriyo Nath <nathbappai@gmail.com>, phone-devel@vger.kernel.org, 
+ linux-hardening@vger.kernel.org, Gabriel Gonzales <semfault@disroot.org>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+To: =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
+In-Reply-To: <20260126-xiaomi-willow-v3-0-aad7b106c311@mainlining.org>
+References: <20260126-xiaomi-willow-v3-0-aad7b106c311@mainlining.org>
+Message-Id: <176952925907.1904494.16599323648492614244.robh@kernel.org>
+Subject: Re: [PATCH v3 0/7] Initial Redmi Note 8T support and more
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[linaro.org,baylibre.com,vger.kernel.org,kernel.org,gmail.com,lists.infradead.org,amlogic.com,suse.com,googlemail.com,perex.cz];
-	TAGGED_FROM(0.00)[bounces-260017-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,oss.qualcomm.com,igalia.com,lists.sr.ht,mainlining.org,intel.com,gmail.com,disroot.org];
+	TAGGED_FROM(0.00)[bounces-260018-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_PROHIBIT(0.00)[0.5.9.16:email];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,amlogic.com:email]
-X-Rspamd-Queue-Id: 7F0DC97419
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mainlining.org:email,qualcomm.com:email,4ac0000:email,4cc0000:email,devicetree.org:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 4EAAE9759A
 X-Rspamd-Action: no action
 
 
-On Mon, 26 Jan 2026 06:01:41 +0000, Jiebing Chen wrote:
-> This series completes the end-to-end audio support
-> for S4 SoC from hardware bindings to driver implementation
-> and system integration.
+On Mon, 26 Jan 2026 17:34:50 +0100, Barnabás Czémán wrote:
+> Redmi Note 8 and 8T are sibling devices the only difference
+> is Redmi Note 8T have NFC.
+> This patch series is commonizing Redmi Note 8 devicetree
+> for a base for both devices.
 > 
-> 1 Device Tree Bindings Updates
-> Added audio power domain and S4 audio clock support for S4 SoC.
-> Added S4 audio tocodec binding support.
+> The patch series also contains some fixes for Redmi Note 8:
+> - Fix reserved memory ranges, they were wrongly defined.
+> - Remove board-id, board-id is not neccessary for the bootloader.
+> - Fix reserved-gpio-ranges the reserved ranges was wrongly
+> defined what caused the device crash on the boot.
+> - Remove unnecessary usb-extcon, gpio102 is related to DisplayPort
+> what is not supported by these devices.
+> - Use memory-region property for framebuffer.
 > 
-> 2 Driver Implementation
-> Implemented S4 tocodec driver for G12A architecture.
-> Added S4 audio clock support in AXG audio clock
+> Depends on:
+> [1] https://lore.kernel.org/all/20251229142806.241088-2-krzysztof.kozlowski@oss.qualcomm.com/
 > 
-> 3 Device Tree Integration
-> Add Amlogic S4 audio subsystem support in arm64 DTS.
-> 
-> Signed-off-by: jiebing chen <jiebing.chen@amlogic.com>
+> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
 > ---
-> Changes in v6:
-> - Fix the problem of string for Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
-> - Remove clock pad register, and it will be submitted as an independent patch.
-> - Redescribe sound/soc/meson/g12a-toacodec.c
-> - Link to v5: https://lore.kernel.org/r/20250710-audio_drvier-v5-0-d4155f1e7464@amlogic.com
-> 
-> Changes in v5:
-> - Fix warning Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yam when make dt_binding_check
-> - The audio reg is mounted below the APB bus in dts file.
-> - Deal with pad clock in a distinct controller.
-> - Fix warning for sound/soc/meson/g12a-toacodec.c
-> - Link to v4: https://lore.kernel.org/r/20250319-audio_drvier-v4-0-686867fad719@amlogic.com
-> 
-> Changes in v4:
-> - fix dtb check warning
-> - add maxItems of power domain for dt-bindings
-> - fixed audio clock pads regmap base and reg offset
-> - use dapm widget to control tocodec bclk and mclk enable
-> - Link to v3: https://lore.kernel.org/r/20250228-audio_drvier-v3-0-dbfd30507e4c@amlogic.com
-> 
 > Changes in v3:
-> - remove g12a tocodec switch event
-> - Modify the incorrect title for dt-bindings
-> - Link to v2: https://lore.kernel.org/r/20250214-audio_drvier-v2-0-37881fa37c9e@amlogic.com
+> - Remove unit address and label from frambuffer node.
+> - Link to v2: https://lore.kernel.org/r/20260116-xiaomi-willow-v2-0-4694feb70cdb@mainlining.org
 > 
 > Changes in v2:
-> - remove tdm pad control and change tocodec base on g12a
-> - change hifipll rate to support 24bit
-> - add s4 audio clock
-> - Link to v1: https://lore.kernel.org/r/20250113-audio_drvier-v1-0-8c14770f38a0@amlogic.com
+> - Fix copyright in sm6125-xiaomi-ginkgo.dts as requested.
+> - Use memory-region property for the framebuffer.
+> - Add comment about the NFC.
+> - Remove msm-id change in favor of [1].
+> - Link to v1: https://lore.kernel.org/r/20260112-xiaomi-willow-v1-0-8e4476897638@mainlining.org
 > 
 > ---
-> Jiebing Chen (5):
->       dt-bindings: clock: meson: Add audio power domain for S4 soc
->       dt-bindings: Asoc: axg-audio: Add S4 audio tocodec
->       ASoC: meson: g12a-toacodec: Add S4 tocodec driver
->       clk: meson: axg_audio: add S4 support
->       arm64: dts: amlogic: Add Amlogic S4 Audio
+> Barnabás Czémán (7):
+>       arm64: dts: qcom: sm6125-xiaomi-ginkgo: Remove board-id
+>       arm64: dts: qcom: sm6125-xiaomi-ginkgo: Correct reserved memory ranges
+>       arm64: dts: qcom: sm6125-xiaomi-ginkgo: Set memory-region for framebuffer
+>       arm64: dts: qcom: sm6125-xiaomi-ginkgo: Remove extcon
+>       arm64: dts: qcom: sm6125-xiaomi-ginkgo: Fix reserved gpio ranges
+>       dt-bindings: arm: qcom: Add Xiaomi Redmi Note 8T
+>       arm64: dts: qcom: Add Redmi Note 8T
 > 
->  .../bindings/clock/amlogic,axg-audio-clkc.yaml     |  18 +-
->  .../bindings/sound/amlogic,g12a-toacodec.yaml      |   1 +
->  .../boot/dts/amlogic/meson-s4-s805x2-aq222.dts     | 222 +++++++++++++
->  arch/arm64/boot/dts/amlogic/meson-s4.dtsi          | 361 +++++++++++++++++++++
->  drivers/clk/meson/axg-audio.c                      | 165 ++++++++++
->  sound/soc/meson/g12a-toacodec.c                    |  36 ++
->  6 files changed, 801 insertions(+), 2 deletions(-)
+>  Documentation/devicetree/bindings/arm/qcom.yaml    |   1 +
+>  arch/arm64/boot/dts/qcom/Makefile                  |   3 +-
+>  .../boot/dts/qcom/sm6125-xiaomi-ginkgo-common.dtsi | 301 +++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts  | 285 +------------------
+>  arch/arm64/boot/dts/qcom/sm6125-xiaomi-willow.dts  |  15 +
+>  5 files changed, 320 insertions(+), 285 deletions(-)
 > ---
-> base-commit: a0c666c25aeefd16f4b088c6549a6fb6b65a8a1d
-> change-id: 20250110-audio_drvier-07a5381c494b
+> base-commit: f417b7ffcbef7d76b0d8860518f50dae0e7e5eda
+> change-id: 20260111-xiaomi-willow-448552f02762
+> prerequisite-message-id: <20251229142806.241088-2-krzysztof.kozlowski@oss.qualcomm.com>
+> prerequisite-patch-id: 1bc49c0e2bec1a47667df776e1ab265b0699ea35
 > 
 > Best regards,
 > --
-> jiebing chen <jiebing.chen@amlogic.com>
+> Barnabás Czémán <barnabas.czeman@mainlining.org>
 > 
 > 
 > 
@@ -197,18 +180,32 @@ make sure dt-schema is up to date:
 
 
 This patch series was applied (using b4) to base:
- Base: a0c666c25aeefd16f4b088c6549a6fb6b65a8a1d (use --merge-base to override)
+ Deps: looking for dependencies matching 1 patch-ids
+ Deps: Applying prerequisite patch: [PATCH RFT] arm64: dts: qcom: sm6125-ginkgo: Fix missing msm-id subtype
+ Base: f417b7ffcbef7d76b0d8860518f50dae0e7e5eda (use --merge-base to override)
 
 If this is not the correct base, please add 'base-commit' tag
 (or use b4 which does this automatically)
 
 
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/amlogic/' for 20260126-audio_drvier-v6-0-99e350855bc2@amlogic.com:
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20260126-xiaomi-willow-v3-0-aad7b106c311@mainlining.org:
 
-arch/arm64/boot/dts/amlogic/meson-s4-s905y4-khadas-vim1s.dtb: clock-controller@330000 (amlogic,s4-audio-clkc): reg: [[0, 3342336, 0, 216], [0, 3346048, 0, 16]] is too long
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml
-arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: clock-controller@330000 (amlogic,s4-audio-clkc): reg: [[0, 3342336, 0, 216], [0, 3346048, 0, 16]] is too long
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml
+arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dtb: geniqup@4ac0000 (qcom,geni-se-qup): #address-cells: 2 was expected
+	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,geni-se.yaml
+arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dtb: geniqup@4ac0000 (qcom,geni-se-qup): #size-cells: 2 was expected
+	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,geni-se.yaml
+arch/arm64/boot/dts/qcom/sm6125-xiaomi-willow.dtb: geniqup@4ac0000 (qcom,geni-se-qup): #address-cells: 2 was expected
+	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,geni-se.yaml
+arch/arm64/boot/dts/qcom/sm6125-xiaomi-willow.dtb: geniqup@4ac0000 (qcom,geni-se-qup): #size-cells: 2 was expected
+	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,geni-se.yaml
+arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dtb: geniqup@4cc0000 (qcom,geni-se-qup): #address-cells: 2 was expected
+	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,geni-se.yaml
+arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dtb: geniqup@4cc0000 (qcom,geni-se-qup): #size-cells: 2 was expected
+	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,geni-se.yaml
+arch/arm64/boot/dts/qcom/sm6125-xiaomi-willow.dtb: geniqup@4cc0000 (qcom,geni-se-qup): #address-cells: 2 was expected
+	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,geni-se.yaml
+arch/arm64/boot/dts/qcom/sm6125-xiaomi-willow.dtb: geniqup@4cc0000 (qcom,geni-se-qup): #size-cells: 2 was expected
+	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,geni-se.yaml
 
 
 
