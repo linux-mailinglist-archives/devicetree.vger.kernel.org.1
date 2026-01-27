@@ -1,159 +1,183 @@
-Return-Path: <devicetree+bounces-259980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259981-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +KhhFufZeGmwtgEAu9opvQ
-	(envelope-from <devicetree+bounces-259980-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:29:43 +0100
+	id EENID9DaeGnHtgEAu9opvQ
+	(envelope-from <devicetree+bounces-259981-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:33:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 025A596B7C
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:29:42 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D83E96CAA
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:33:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 97C6D304AF5B
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:13:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0A74E3254509
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:13:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3626A35FF58;
-	Tue, 27 Jan 2026 15:07:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A65335F8D9;
+	Tue, 27 Jan 2026 15:08:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KLuW0I+J"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Cou97s3W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA2CE35DCF6
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 15:07:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEFE935F8CD
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 15:08:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769526474; cv=none; b=dJ3Dyt78R/y+GGONaEzpXWDwsC1AFyPe2q3M+rzXoniZzwzu40T9vpn022kiVaXdU1UImJFklnDA+E8S9snWyg8pZ4+j5BMvYBj7AmRIfPHhwit0J9J3pndGIV1wuHfRm8mpUMFOV/Nq4HmBn6cRDY1UioZrtk8DjzAkBDwOYpI=
+	t=1769526487; cv=none; b=OpdgMsZXqoKGWLBxDAHu3VvHy4B0NydJcPsupPnyl2eiTQMHV3Zmd2JmZfyAVWFLSdlS9xrrhXSD+uIhZqNI5z2Dy3Bv45fP6//xLF/+Anr1LfP3HjkoyegJ78LW4hmgkuGl3oUM/l4qISmEanB6LPSN12btgv6Hy+bxEbHBhmY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769526474; c=relaxed/simple;
-	bh=/BjVU7prHk+4d7FH+MQGsmkM+26lnbXBK0gFkSQr6Gw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=drWL5t+c2bbtf708TACAzgVcMira+nLhPb4RWiURewqtIt44E4Wk8y+tS+wK6pm7JMJFjyATqA9AW/Nwfi3OoMTVlvo2E3Z25GFaJvDwuhSr4Rj7fLhLhI5DMYgabCRJKqq4bX1yj/IqiTLDJ/tTosvoUmoGMvuUKFD5nHk5ZkY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KLuW0I+J; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4806a7ec499so386735e9.3
-        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 07:07:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769526471; x=1770131271; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=/BjVU7prHk+4d7FH+MQGsmkM+26lnbXBK0gFkSQr6Gw=;
-        b=KLuW0I+JbvO+81rSfo4PdjzKUC9VD3sGHm8UfC1smansfje9143PscSbilX1dyQKIU
-         qRuQUJZG6QbjYuRFSw4EwaP3zEfFHxIoqy/+91a3XajApV1YqN6EXYhfa5+GOmYozRQK
-         irfU4tv2tN/1QwKmFuM4o3UWR4ZgkED2/wiRY5/Cc6wjha+31MZpRzjqpBeGP4PpoTng
-         Et61wiNhSQRm3+sn9EKg7FbAYgiRB4BaADN8SO1oUuVwOkhJUVuZlJhO2S2427eZwIUO
-         wf9uMDS3KWZ9JQ5sFtb2TTjWZPqiLQ2WQWg4YVIRrc/7Gwf+D7DUkBwblwtUFFY5NFiq
-         UNRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769526471; x=1770131271;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/BjVU7prHk+4d7FH+MQGsmkM+26lnbXBK0gFkSQr6Gw=;
-        b=J1EyXrWzPf2zL037WdeDrKZir8clYthavfEXc32izHSBlSHOcW0i5QQtPYuyh7nktg
-         SlmCYpqF/3GScL21FfgX4+5hYkTncLfQKpjjNrDa6e+m4qCL2706/kVmumTNnXMqwpbJ
-         gKDrzOVWmqzpCW8sZMtZtVFWAIIsUjTQmXCvElUQ9Zjc8xwpLmaWzzOFiVw8XZlA+RVP
-         90d9+ExgzOaRUjxxThxishlX66efxwwKjw7XD4qt7MdQ4QOKpULUGRDUB7EPX26VgzLf
-         p+vaUDXDTaYpDxX8zL8C6OSkHKAhzzuRBYSM8ccgFNVgmT2F6ITgMAsEzSxJ6nHrbnVg
-         YlkA==
-X-Forwarded-Encrypted: i=1; AJvYcCVsnlj+jXKKRBvcW5i6kj0/+p9qqi07xkD/VzgBVH4npyBWAONi42BTrvtxGBnv9Xgo4PsEQ7z/O55d@vger.kernel.org
-X-Gm-Message-State: AOJu0YxA///0Hl4oser3PBKDrK7tk4+4AJeMKHkcS8VMRQA/ChcVRbzN
-	cgKm50dISAlw3aEAyD+kMVdjsjLMSFyqCOlT/jj20hAfTwyrkNxzh3Hc
-X-Gm-Gg: AZuq6aKr6fAYel5pca/KdOdFzWXgfWT8VlpXq5iDXZ5B2L03WGxdwJ0OKt4ZmjoGrgD
-	ZhM0fiSD7mh3xh2zpi8naw3DSPB5GDYU0Ze+dpIsfhw+V4hufgOWYae6+98tabzYRK6WAL8N5jH
-	FPManTKNC70eL55u4M+RSa60cc6eQKGXKGvLxinCSc/VO+Rcl90fXOE+TEd2rfBIUqNv62LgB/Q
-	EiZTPvi2TCqpCYbPKXQBLLgBi55dj5XpnXvrMoy5rkzIYQCF0vmqDrKFePMLbFUJTLGfgms3lP6
-	Ehyt4KAj/autOhJ/Uuphp94zx9W2nzOafhuBalchMMaXDkk7Yf4nXirYKe069Ax7NLt+6WD4DaU
-	3aB9Cj+pHtIj1uWqCLfZeFevUQBdQSlmmG1XKbrpDyjSwFlSXNSPkZXD03tLHRQ5IEd48GIQBao
-	+c6+I=
-X-Received: by 2002:a05:600c:468c:b0:47b:d992:601e with SMTP id 5b1f17b1804b1-48069bf34ecmr16877075e9.2.1769526470957;
-        Tue, 27 Jan 2026 07:07:50 -0800 (PST)
-Received: from skbuf ([2a02:2f04:d501:d900:739c:1012:de93:325c])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48066bee687sm105448855e9.5.2026.01.27.07.07.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Jan 2026 07:07:50 -0800 (PST)
-Date: Tue, 27 Jan 2026 17:07:47 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 1/3] dt-bindings: net: dsa: lantiq,gswip:
- reference common PHY properties
-Message-ID: <20260127150747.lzlfzhusywluuxhs@skbuf>
-References: <cover.1769519758.git.daniel@makrotopia.org>
- <d9b6212ad5137feeb58b28e9b0784f1084c813df.1769519758.git.daniel@makrotopia.org>
- <20260127132919.xsvapgqc65f44iah@skbuf>
- <aXjGh1nzeAz8TQzH@makrotopia.org>
+	s=arc-20240116; t=1769526487; c=relaxed/simple;
+	bh=94qh2yrWr1/XvEHMK9avGIZyKXmNLY+efsaIfueKJO8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=OfR2rZHqL5eG/VLWlKCQuzk32tXKV1EiS1CHsaU3qtAthYkEUGWs5LnLd3tn3vo2+hSk6k749v17rWnWglt7yABVEBr/K1FgtdFoUx3Xb1j+SMKKjxP9aotrYo8rxCTHMncW9NQoahNnfnCfj+22LJ+WKyFLqh4nn/6XVpZ6WUg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Cou97s3W; arc=none smtp.client-ip=210.118.77.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20260127150802euoutp022546669b9308c909ef7ec3470221cbf2~OnvX488yf0435104351euoutp02Y
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 15:08:02 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20260127150802euoutp022546669b9308c909ef7ec3470221cbf2~OnvX488yf0435104351euoutp02Y
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1769526482;
+	bh=bI7n7EMbVTLXkomvFX5EEgGQqwrIiq4zfj25LpKIMGc=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=Cou97s3WqBllpiKXMOmS6E6nyHX8cyRUsq+55z/ymrDXGb3vTEKta+8e89QekioTA
+	 hTEyh28KTJ1noDj/M0ONRFNqgVHWLXgHkTH4fJY5Wm+oHflOHeujbfGYiUXK0hbH0O
+	 7c6E9uFgQksYxE8gHL1gHsnKGGI2iNTxwrlD5b9E=
+Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20260127150802eucas1p15c9f15f01f36d46c5d109e71c41ebad7~OnvXOxVPF1522415224eucas1p1K;
+	Tue, 27 Jan 2026 15:08:02 +0000 (GMT)
+Received: from [106.210.134.192] (unknown [106.210.134.192]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20260127150800eusmtip28d6317572cc161355f75102851645d8e~OnvV-5j8K0406604066eusmtip2u;
+	Tue, 27 Jan 2026 15:08:00 +0000 (GMT)
+Message-ID: <4df6023e-310b-4da7-95bd-f2952f40a873@samsung.com>
+Date: Tue, 27 Jan 2026 16:08:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aXjGh1nzeAz8TQzH@makrotopia.org>
+User-Agent: Betterbird (Windows)
+Subject: Re: [PATCH] of: reserved_mem: Allow reserved_mem framework detect
+ "cma=" kernel param
+To: Rob Herring <robh@kernel.org>, Oreoluwa Babatunde
+	<oreoluwa.babatunde@oss.qualcomm.com>
+Cc: ye.li@oss.nxp.com, kernel@oss.qualcomm.com, saravanak@google.com,
+	akpm@linux-foundation.org, david@redhat.com, lorenzo.stoakes@oracle.com,
+	Liam.Howlett@oracle.com, vbabka@suse.cz, rppt@kernel.org, surenb@google.com,
+	mhocko@suse.com, robin.murphy@arm.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-mm@kvack.org, iommu@lists.linux.dev,
+	quic_c_gdjako@quicinc.com
+Content-Language: en-US
+From: Marek Szyprowski <m.szyprowski@samsung.com>
+In-Reply-To: <CAL_JsqKWd2H0bV9Z8REMBYd2hPMTjDO1T4dYehM-QvemB9zrDg@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20260127150802eucas1p15c9f15f01f36d46c5d109e71c41ebad7
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20251210002053eucas1p1d1408ad0fb49a49bf4371687f8df7395
+X-EPHeader: CA
+X-CMS-RootMailID: 20251210002053eucas1p1d1408ad0fb49a49bf4371687f8df7395
+References: <CGME20251210002053eucas1p1d1408ad0fb49a49bf4371687f8df7395@eucas1p1.samsung.com>
+	<20251210002027.1171519-1-oreoluwa.babatunde@oss.qualcomm.com>
+	<X-TH#1.CAL_JsqL6VVQ7K_ZAbHJ8Gb7ei_jusLx6wRn=AdOVgV50dX0ejQ@mail.gmail.com>
+	<99dc91c9-59fd-47c5-b1d9-157bda86ad59@samsung.com>
+	<CAL_JsqK5QEZfyRTDY4z88mX_eYENibea1ZM8H_bEfCCsOOwY4A@mail.gmail.com>
+	<89f8895f-436d-4a73-a2c8-d61a2f4ee41a@samsung.com>
+	<CAL_JsqKWd2H0bV9Z8REMBYd2hPMTjDO1T4dYehM-QvemB9zrDg@mail.gmail.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.15 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[samsung.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[samsung.com:s=mail20170921];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259980-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	XM_UA_NO_VERSION(0.01)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	TAGGED_FROM(0.00)[bounces-259981-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[samsung.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[olteanv@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 025A596B7C
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[m.szyprowski@samsung.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 9D83E96CAA
 X-Rspamd-Action: no action
 
-On Tue, Jan 27, 2026 at 02:07:03PM +0000, Daniel Golle wrote:
-> Yeah, I thought about that, but it would be a lot of work to
-> let the driver expose and simple-bus as MFD with devices (clk controller,
-> reset controller, pcs, ...) sitting on register ranges. Imho not worth
-> the effort in this case, we discussed it.
+On 26.01.2026 17:33, Rob Herring wrote:
+> On Mon, Jan 19, 2026 at 4:38 AM Marek Szyprowski
+> <m.szyprowski@samsung.com> wrote:
+>> On 18.12.2025 15:42, Rob Herring wrote:
+>>> On Thu, Dec 18, 2025 at 3:55 AM Marek Szyprowski
+>>> <m.szyprowski@samsung.com> wrote:
+>>>> On 10.12.2025 15:07, Rob Herring wrote:
+>>>>> On Tue, Dec 9, 2025 at 6:20 PM Oreoluwa Babatunde
+>>>>> <oreoluwa.babatunde@oss.qualcomm.com> wrote:
+>>>>>> When initializing the default cma region, the "cma=" kernel parameter
+>>>>>> takes priority over a DT defined linux,cma-default region. Hence, give
+>>>>>> the reserved_mem framework the ability to detect this so that the DT
+>>>>>> defined cma region can skip initialization accordingly.
+>>>>> Please explain here why this is a new problem. Presumably the
+>>>>> RESERVEDMEM_OF_DECLARE hook after commit xxxx gets called before the
+>>>>> early_param hook. And why is it now earlier?
+>>>>>
+>>>>> I don't really like the state/ordering having to be worried about in 2 places.
+>>>> I also don't like this spaghetti, but it originates from
+>>>> commit 8a6e02d0c00e ("of: reserved_mem: Restructure how the reserved
+>>>> memory regions are processed") and the first fixup for it: 2c223f7239f3
+>>>> ("of: reserved_mem: Restructure call site for
+>>>> dma_contiguous_early_fixup()").
+>>> Honestly, this code wasn't great before. Every time it is touched it
+>>> breaks someone.
+>> Indeed it got a bit complicated and needs some improvement, but first I
+>> want to fix the the reported regression. This patch does this and it
+>> looks that there are no ideas how to fix this in a different way. Rob,
+>> could I apply it via dma-mapping-fixes?
+> Sigh, yes.
+>
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-Possibly so; I don't have access from this computer to my previous notes
-on this topic.
+Thanks! It's very late in this kernel rc cycle, but I will try to merge 
+it to v6.19, as this issue is really a problem on some systems, see 
+https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1116251
 
-> However, even in that case imho it's fine to let it share the OF node
-> with the ethernet-port. Why not?
+I've rebased this patch onto v6.19-rc1, fixed the build break reported 
+by kernel test robot by adding a stub for 
+cma_skip_dt_default_reserved_mem() if no CONFIG_DMA_CMA is set and added 
+following fixes tags:
 
-I don't have a good feeling of how reusable this PCS IP truly is.
-For example the XPCS gained DT bindings before I needed to customize the
-lane polarity for its SJA1105 instantiation, so now I have to work with
-and somehow adapt those.
+Fixes: 8a6e02d0c00e ("of: reserved_mem: Restructure how the reserved 
+memory regions are processed")
+Fixes: 2c223f7239f3 ("of: reserved_mem: Restructure call site for 
+dma_contiguous_early_fixup()")
 
-If the PCS has a fixed mapping to that port then I suppose it can use
-its OF node space without any extra overengineering. There should exist
-ways to keep compatibility with this scheme even if there will be
-efforts to have a reusable driver later.
+With the above mentioned changes I've applied it to my 
+dma-mappping-fixes branch. Let's give it a day or two in the linux-next 
+for tests and, if nothing explodes, I will send it at the last minute 
+for the merge.
+
+I will try to untangle this spaghetti a bit and cleanup the code in the 
+next release cycle.
+
+Best regards
+-- 
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
+
 
