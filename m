@@ -1,87 +1,88 @@
-Return-Path: <devicetree+bounces-259908-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259909-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 9JwiKJHBeGmltAEAu9opvQ
-	(envelope-from <devicetree+bounces-259908-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 14:45:53 +0100
+	id 8N9YLB/EeGnqtAEAu9opvQ
+	(envelope-from <devicetree+bounces-259909-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 14:56:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D89C95102
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 14:45:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2083A9536F
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 14:56:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B1781308B987
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 13:40:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 04C59308F069
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 13:50:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D9B5359717;
-	Tue, 27 Jan 2026 13:40:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38747354AF7;
+	Tue, 27 Jan 2026 13:50:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="cnGsOS2y"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="d6spFCuW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D3FA3596FB;
-	Tue, 27 Jan 2026 13:40:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B53142C0F75;
+	Tue, 27 Jan 2026 13:50:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769521224; cv=none; b=MhDzpDTbA3i2i39kPf9VucOj8HSIPXrKgTW3kYpBeJ2NWMG+NACOI8wxC2S9ic/API9T47hsJNddSpCYdtGOZ0gVolZ5xcDjJ7XGChGXmTU9HK9cTVmI1Uz/49rgQSnoqwia1u+cx+IKK+tTF/1qP/XexSlr5uik3JbHZtPYslI=
+	t=1769521827; cv=none; b=ekpqZJQNOe2izBvaOjZ3dJtxqDEsjE007gESouPGKRQ3gm01jfmMr9w7EH6xRPEm+1bHnzO7XJYLYH7Jrs1+04e9q4RngzATugUL37aggxW0fvc11ns2gV7RWwfcNGqiPFBVn2Pcx1xLIOJ1XE1sXG/wqIwWUeJ2SCLUb7i7hNo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769521224; c=relaxed/simple;
-	bh=q/t8q6cIDKN4tGqUOXEyEpqfjwEaUcXWcc9726MeDqw=;
+	s=arc-20240116; t=1769521827; c=relaxed/simple;
+	bh=QRatMhJnRNyEA67EhLdS0NL/K+LI/ja+JygeQrfuyYU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BuowjA9OGVONWk0hw/GTxnmZLnVDPksu4wbRzZP0Pf+zkwSq8kauU1aFhm2nclXNjCLkk+xc5NCWlb4eYZNg/h42WaIiOdoLW/LOMtswt+uln4ua/MbDyPi95yQwU5yZS3U4xd/DAlqmvtjmMnk9jykT3T5ClD0uyOUxI5TvBNE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=cnGsOS2y; arc=none smtp.client-ip=156.67.10.101
+	 Content-Type:Content-Disposition:In-Reply-To; b=eGcQXgZQSeDBjqNJgibj9DHvkmTMgGtxLwaKflMUHkckbYib7UnSEXG9ngjf+LD7PllA6N5oa6oW5ezWadFyMVvEFonHi6FP+wkXvpoJccksoiG3attOmgmnT25J8hq+Z+o95Frp2xIJR6PNwFeg3zrA604C5jVznv4KVxp3/bw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=d6spFCuW; arc=none smtp.client-ip=156.67.10.101
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-	In-Reply-To:References; bh=PJdRV52Sg2t3bV7DwpZwSOiK3NFQ9DZEEcrZUnrZodU=; b=cn
-	GsOS2yQvDZsBDp5Wz+Jbu1jU+YHTDmHBhdXeEIzuGNWN40Nd+DG9Tjfc2btNHdwqq56odmbX3jNhY
-	VO1ybpvEP03QAAvSkm3RVj6TNE/GutH3KUIEKDhspKWLofy3XS5x8xcwTnRD7rakGj/hKKScIR44p
-	i6M87pQKKGEDGAc=;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=VxcWSdk87k0N5BVm27/BnYw/EywV/d+fGz43a/TzZdA=; b=d6spFCuWzBDRXW+2fq/oOurQMl
+	pP1ygt+7RZVtd23KlozpXjgAWtUWj7WOX2poASVQ0CQTzcFwNldE4kCx8ZbNFgx+SercHK7Nug+LI
+	3LpXk0pREYmoW2dBSFK5qrXPHa4juE87O6QjeYD5iB66ach8887KYgV7pWyd6l+dD8tM=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
 	(envelope-from <andrew@lunn.ch>)
-	id 1vkjIc-004xPn-HT; Tue, 27 Jan 2026 14:40:06 +0100
-Date: Tue, 27 Jan 2026 14:40:06 +0100
+	id 1vkjSQ-004xa8-Lt; Tue, 27 Jan 2026 14:50:14 +0100
+Date: Tue, 27 Jan 2026 14:50:14 +0100
 From: Andrew Lunn <andrew@lunn.ch>
-To: Min Lin <linmin@eswincomputing.com>
-Cc: =?utf-8?B?5p2O5b+X?= <lizhi2@eswincomputing.com>,
-	Bo Gan <ganboing@gmail.com>,
-	"Russell King (Oracle)" <linux@armlinux.org.uk>,
-	devicetree@vger.kernel.org, andrew+netdev@lunn.ch,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	netdev@vger.kernel.org, pabeni@redhat.com,
-	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	ningyu@eswincomputing.com, pinkesh.vaghela@einfochips.com,
-	weishangjuan@eswincomputing.com
-Subject: Re: Re: Re: [PATCH v1 1/2] dt-bindings: ethernet: eswin: add clock
- sampling control
-Message-ID: <e7183ae1-8b8b-4e77-9f4e-3bc1b4b63556@lunn.ch>
-References: <20260109080601.1262-1-lizhi2@eswincomputing.com>
- <20260109080859.1285-1-lizhi2@eswincomputing.com>
- <00b7b42f-2f9d-402a-82f0-21641ea894a1@lunn.ch>
- <aWKZvEW7rKFFwZLG@shell.armlinux.org.uk>
- <0d54ddca-9270-40a5-aa82-d8a7b65027ff@gmail.com>
- <1a622916.2d28.19bb105feab.Coremail.lizhi2@eswincomputing.com>
- <d010a6b8-5bf0-40ff-8e76-18362a238d50@lunn.ch>
- <203bb660.2c91.19bfe45d677.Coremail.linmin@eswincomputing.com>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Paolo Abeni <pabeni@redhat.com>, Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Simon Horman <horms@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Frank Wunderlich <frankwu@gmx.de>, Chad Monroe <chad@monroe.io>,
+	Cezary Wilmanski <cezary.wilmanski@adtran.com>,
+	Avinash Jayaraman <ajayaraman@maxlinear.com>,
+	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
+	Juraj Povazanec <jpovazanec@maxlinear.com>,
+	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
+	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
+	"Livia M. Rosu" <lrosu@maxlinear.com>,
+	John Crispin <john@phrozen.org>
+Subject: Re: [PATCH net-next v8 4/4] net: dsa: add basic initial driver for
+ MxL862xx switches
+Message-ID: <5e7c2f9c-bf49-4564-91b3-a639ef1c97d8@lunn.ch>
+References: <cover.1769053079.git.daniel@makrotopia.org>
+ <18c6a24eef8617abb5073569fee162f1aa1c06ea.1769053079.git.daniel@makrotopia.org>
+ <c2e191c4-dec4-4e42-b108-353778d9bd18@redhat.com>
+ <aXinOE7KIFIm5dUK@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <203bb660.2c91.19bfe45d677.Coremail.linmin@eswincomputing.com>
+In-Reply-To: <aXinOE7KIFIm5dUK@makrotopia.org>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -93,11 +94,11 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259908-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-259909-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[eswincomputing.com,gmail.com,armlinux.org.uk,vger.kernel.org,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,foss.st.com,st-md-mailman.stormreply.com,lists.infradead.org,einfochips.com];
-	RCPT_COUNT_TWELVE(0.00)[22];
+	FREEMAIL_CC(0.00)[redhat.com,gmail.com,davemloft.net,google.com,kernel.org,armlinux.org.uk,vger.kernel.org,gmx.de,monroe.io,adtran.com,maxlinear.com,phrozen.org];
+	RCPT_COUNT_TWELVE(0.00)[26];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -108,58 +109,47 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	DKIM_TRACE(0.00)[lunn.ch:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[armlinux.org.uk:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,stormreply.com:email,einfochips.com:email,eswincomputing.com:email,st.com:email]
-X-Rspamd-Queue-Id: 4D89C95102
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lunn.ch:mid,lunn.ch:dkim]
+X-Rspamd-Queue-Id: 2083A9536F
 X-Rspamd-Action: no action
 
-On Tue, Jan 27, 2026 at 03:05:48PM +0800, Min Lin wrote:
-> Hi Andrew,
+> > > +	/* handle errors returned by the firmware as -EIO
+> > > +	 * The firmware is based on Zephyr OS and uses the errors as
+> > > +	 * defined in errno.h of Zephyr OS. See
+> > > +	 * https://github.com/zephyrproject-rtos/zephyr/blob/v3.7.0/lib/libc/minimal/include/errno.h
+> > > +	 */
+> > > +	if ((s16)ret < 0) {
+> > 
+> > The cast is likely not needed above? if `ret` values < S16_MIN are
+> > possible this will return such values to the caller without the IO err
+> > printk.
 > 
-> Thank you for taking the time to review the patch.
+> Right, it should rather be
 > 
-> > -----Original Messages-----
-> > From: "Andrew Lunn" <andrew@lunn.ch>
-> > Send time:Thursday, 22/01/2026 21:27:34
-> > To: 李志 <lizhi2@eswincomputing.com>
-> > Cc: "Bo Gan" <ganboing@gmail.com>, "Russell King (Oracle)" <linux@armlinux.org.uk>, devicetree@vger.kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com, kuba@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org, pabeni@redhat.com, mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, ningyu@eswincomputing.com, linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com, weishangjuan@eswincomputing.com
-> > Subject: Re: Re: [PATCH v1 1/2] dt-bindings: ethernet: eswin: add clock sampling control
-> > 
-> > > We also intend
-> > > to upstream complete DTS files for EIC7700 so the bindings can be validated
-> > > against real hardware.
-> > 
-> > I suggest you prioritise this. ARM-SOC is pretty flexible for
-> > accepting work in progress support for new SoCs. All you really need
-> > is for the board to boot to a login prompt on a serial port using an
-> > initramsfs. So the .dtsi and .dts file can be very slim, CPUs, memory
-> > and UARTs.
-> > 
-> > Once you have that merged you can work on the other drivers, their
-> > bindings, etc.
-> > 
-> The eic7700.dtsi and eic7700-hifive-premier-p550.dts are already in
-> v6.19-rc6.
+> if (ret > S16_MAX && ret <= U16_MAX)
+> 
+> to really only catch the range of numbers which are negative 16-bit
+> signed values represented as positive 32-bit signed values.
+> 
+> mxl862xx_reg_read() primarily returns a signed 32-bit integer, as it is
+> basically just a wrapper around __mdiodev_c45_read(). Negative values of
+> that 32-bit integer mean that the MDIO Clause-45 read has somehow
+> failed, ie. it's the error the MDIO bus .read_c45() operation has
+> returned.
+> 
+> In case __mdiodev_c45_read() succeeds it returns the 16-bit value of the
+> register read. In this case, those 16-bit should be interpreted as a
+> 16-bit signed integer here. A negative value denotes an error returned
+> from the firmware running on the switch (see comment above the code).
 
-Great.
+Rather than these casts, maybe add a helper which takes the unsigned
+u16 from the register and returns a signed Zepher error code?
 
-> Because the device drivers such as Ethernet rely on the clock driver,
-> our plan is that once the clock driver is applied, we will add other
-> device nodes such as Ethernet and eMMC in the next upstream patch
-> of the DTS. Is this reasonable?
+int mxl862xx_to_zephyr_errno(u16 reg)
 
-Yes, this is reasonable. When you submit Ethernet support, please
-include the DT patches as part of the series, so we can see the full
-picture. When it comes to actually merging it could be the DT patches
-get separated out and go a different path, but we can decide that when
-we get to that stage.
+Just having a name like this makes it clearer what is going on.
 
-Given the new information, it becomes clear that backwards
-compatibility is not an issue. Since mainline does not have any users
-of the Ethernet driver, you should make non-backwards compatible
-changes in order to keep things clean. Just ensure the commit messages
-point out there are no users, so the changes are safe.
-
-	Andrew
+     Andrew
 
