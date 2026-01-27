@@ -1,200 +1,161 @@
-Return-Path: <devicetree+bounces-260159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260160-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gPdhA7hCeWmAwAEAu9opvQ
-	(envelope-from <devicetree+bounces-260159-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 23:56:56 +0100
+	id EOVEIENKeWmXwQEAu9opvQ
+	(envelope-from <devicetree+bounces-260160-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 00:29:07 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B698C9B487
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 23:56:55 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F18B9B65A
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 00:29:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AE348301910B
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 22:56:54 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 98B1A301945F
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 23:29:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 383DA2EA172;
-	Tue, 27 Jan 2026 22:56:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 062602EDD50;
+	Tue, 27 Jan 2026 23:29:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kqWEf1Ex"
+	dkim=pass (2048-bit key) header.d=puri.sm header.i=@puri.sm header.b="QFigpDm3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from ms.puri.sm (ms.puri.sm [135.181.196.210])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 677902EAB6B
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 22:56:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D2681373;
+	Tue, 27 Jan 2026 23:29:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=135.181.196.210
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769554612; cv=none; b=qcvjxJwOOmQnlcu2yNOsgQ3L+ViBXNQpQ/l6R2sLzzZm9phzHwrV5FgtidkRSfa+zyc7G9kyMZy0Kj0gb5omO6PcO3hUquQ6WM5es9fmXahKt6rGWQsNALLeqY2/n7Top99R/cuVw49j2ZhaeHUwHGRNyHzorTJCSMsCddP0GBk=
+	t=1769556543; cv=none; b=qijLw3ilWvMwMEJQ+DP0n9khioE/S99VPqjpOeSg/w9/biaxtuPwYnmlSXxn2p9+PwP6+PKSEDBbhSGxdrbFDUtuK9NAe8tYj2bDQ9yjG7vcR8vsL/45vBETSU2ek/ACGJR7YKb/byMDvPG0JA/6F84ygox6rYpevhXW1F0ONGU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769554612; c=relaxed/simple;
-	bh=6vaafjP0Uwb9/080lF02t8LDytLkowHMim8pDa81jso=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ML0RnKnf4OTrFd+fR+2nYJmBE9f9io61tOcLLjGvk/HBUGU3G2gWt1buE8QqS9pK2IMMiqemsfDtqYmBg0MAV4bvkBuDn/6NZAfFOWo43Dd0uSy04y1CL2uIwpHmcu+pFZuUghv8KIH7d8YIApeYVeZEYy8y4UUrUUBmO4nrtdU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kqWEf1Ex; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-430f38c7d4eso787106f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 14:56:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769554607; x=1770159407; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=YJj3rkrCWGO4XsqbS2RQcoD9sLDEl4QbuTlyvB/piF4=;
-        b=kqWEf1ExfgqWjQwDLkioLUA2cNmyAZn38A+Gt3WYsSaxnL1qsLV18FlnfIvZXcjsaV
-         E+Q4PbZDL9jd8BXSh0DF63GfOguP1TrvEgoP5Wm/E4GdTimzcg2c7fqTFa4fFdOu0u2p
-         EK9NklqXrhrB2wQualKWSXHtFl0e8JKSoYq+oLzUcIAblqABypCAo0KsMy71aQhP/lzP
-         A85lcVE6nPLFIl//qBBesYjIJV8WhQAe4O7T3esb36SbwhKZzZKpKmx5qQ0JZO1+FH8X
-         SH1V7SSqWqu5JdEXkSNUs0b6seQawTT/CpkQFg7wzk5PYrzayTG8TeeFXXges4reBzMo
-         gAww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769554607; x=1770159407;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YJj3rkrCWGO4XsqbS2RQcoD9sLDEl4QbuTlyvB/piF4=;
-        b=cTbnybAHkewGX59udRPr/KxzjhNn8EZP7zPsEPmVvdQXXlFnnCoI8G7kgrdAFqzTlf
-         9d+rhqM+fZRei3sk8Cljv4Q+pMgWaP1knTElmTvRtxEn1U1vssCrapBuK1iHu/Vp0n8q
-         A1R+KOOcG0mQUh5jMwjriV+7NBVKRbgFfWjv/D+LfRXkzYgOpm1OBGm3hhw0SwN4h9Kp
-         lvKIL59Zn/bYfx5pzUhInDPvOQQ1wAQhcdVBBHmbzAUCiXyAyXx+zUjUURgrCwVfmFHE
-         CL90zH41LZUUroBbP6/GwHzW1oAxhoKph14bPwD0SxjS2wEjDZaP47WpF1QlmuDdqt0A
-         Uccg==
-X-Forwarded-Encrypted: i=1; AJvYcCU1QytgWYxePLhQtB43krwTKZWxB4e9fCGDHY/i+EJaMlwVlV3FNbidgLPCGSi8gQOOAJU97X5XH6+5@vger.kernel.org
-X-Gm-Message-State: AOJu0YzMK24GS4PoQloyrimwenROu8qd9yHXmoI0P8DNsO0MDWi4flSQ
-	qWiZ1JN2WBWb5tjBAHESDtk9V4dQdYXDnoo2h7UQVjl9MPTEWozY3nIU
-X-Gm-Gg: AZuq6aIZ6OgpyCA0dn5dP2GoJl5d5PfgSDRWb2rH3QfC+T+Z5mhkKVFUCe6BzBMP2Qq
-	kkq1elAWKcvrt1ayUt0pVkw0MeoEyW2s9VTXDsCZJY2XvStvH99gRAJ1ihJxRiSI51Bs4Zd7nOV
-	BlqUNZbGk218wLTuvi6ajcc6EpP48Q6ISHOkUjZZwsdvYaPZqi9cfrQWY1VB8dsvUE1e/+8KhJ0
-	K5GRcY6JMFrtyi9w0X9B3Yn7Wj3peiXSN7OIpgxl4yAuUquZ+ZoQi/0AONvqABYIBI4bNk48IMK
-	BuE7eGr170kFK6y7i7C9Kw7uWJ2xR/7yNF5vSVZpzoEBfWR0HdvP3MLlTr9YaQs5jiNubM39tEB
-	0IeMlHy0dGGID8jnK7iNYFdFdcIKAuh0qlhMV0FIc7ibhjwp4kleroIyhx4veTwCnSRIMhXzLK7
-	tngw==
-X-Received: by 2002:a05:600c:3b19:b0:47d:3ffb:39ed with SMTP id 5b1f17b1804b1-4806e5a17b9mr2102095e9.4.1769554607085;
-        Tue, 27 Jan 2026 14:56:47 -0800 (PST)
-Received: from skbuf ([2a02:2f04:d501:d900:6c51:3f46:e918:f0b])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4806cdebf86sm19928945e9.8.2026.01.27.14.56.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Jan 2026 14:56:46 -0800 (PST)
-Date: Wed, 28 Jan 2026 00:56:43 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Simon Horman <horms@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Frank Wunderlich <frankwu@gmx.de>, Chad Monroe <chad@monroe.io>,
-	Cezary Wilmanski <cezary.wilmanski@adtran.com>,
-	Avinash Jayaraman <ajayaraman@maxlinear.com>,
-	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
-	Juraj Povazanec <jpovazanec@maxlinear.com>,
-	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
-	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
-	"Livia M. Rosu" <lrosu@maxlinear.com>,
-	John Crispin <john@phrozen.org>
-Subject: Re: [PATCH net-next v9 0/4] net: dsa: initial support for MaxLinear
- MxL862xx switches
-Message-ID: <20260127225643.qe4lpeyjmtl6flc4@skbuf>
-References: <cover.1769549559.git.daniel@makrotopia.org>
+	s=arc-20240116; t=1769556543; c=relaxed/simple;
+	bh=nB5itl0OfsAcMlRRjvhiZa0Vpr0lRGlYy2oe6AKphVE=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=iLDsFoPWKtmWUGNM2TLazfM/Ah9wxgSBSP6+ZpDflg9ppCimMhmMgv3kWaaDzw7v1dVWtbygOM2jdiyb4C/EsbIivEk9YsPdLttiAb8kfW0CK97e7HTF4hut1KcgYaMgxOGRS2X00njdKXAq97ZaD1GeohS9reYNaB4Bl2zLA7c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=puri.sm; spf=pass smtp.mailfrom=puri.sm; dkim=pass (2048-bit key) header.d=puri.sm header.i=@puri.sm header.b=QFigpDm3; arc=none smtp.client-ip=135.181.196.210
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=puri.sm
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=puri.sm
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=puri.sm; s=smtp2;
+	t=1769556532; bh=nB5itl0OfsAcMlRRjvhiZa0Vpr0lRGlYy2oe6AKphVE=;
+	h=From:Date:Subject:To:Cc;
+	b=QFigpDm3M/HXbeVuJlEFZYhGpfUfL4MQrYI5JY6AxkEl+yliw1XHgziURM54N02MW
+	 Azd3benz7gvhuACUuJj8fO6DE347VRQwNHn2LHT9tmyEoCwKvF/Xb/3kow2mKPVZeK
+	 HinfDqYIYc594uaa/GXaF951mSIw/mhMelwfNTRhHXGCNp7W73LqOnCoQuWgpAQera
+	 DjgOeQFP0dA6aF2SSXoNrYsv7BVJCt80BWZKD4o12Mi4z0K61rIjedtLvRuE6J7lRw
+	 YNn3slOg/tn5I8lVeF4+Ca6rEMOUqFq5aOe3fU+/BdZC0F29eTjq5tECt4sLtHuGzJ
+	 iV+4DtJ7bMqOg==
+Received: from pliszka.localdomain (79.184.64.12.ipv4.supernova.orange.pl [79.184.64.12])
+	by ms.puri.sm (Postfix) with ESMTPSA id 1C00F1FA50;
+	Tue, 27 Jan 2026 15:28:50 -0800 (PST)
+From: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
+Date: Wed, 28 Jan 2026 00:28:28 +0100
+Subject: [PATCH v2] arm64: dts: imx8mq: Set the correct gpu_ahb clock
+ frequency
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1769549559.git.daniel@makrotopia.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260128-imx8mq-gpu-ahb-clock-v2-1-f32548d46188@puri.sm>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/22Oyw6CMBBFf4V07Sit8nLlfxgWba10Ii3YAYIh/
+ LuFuDR3dZL7WhiZgIbYNVlYMBMSdj6COCRMW+kbA/iIzEQq8pSnGaCbS/eGph9BWgW67fQL+Ll
+ SstKykrlmMdoH88R5r73XkZUkAypIr+1W1qIf6eQkDSZsdos0dOGzn5j4Fvrticv/vYlDFNfCF
+ LrMClXc+jHgkRyr13X9Asisg/TVAAAA
+X-Change-ID: 20260105-imx8mq-gpu-ahb-clock-139ba9ca9a6c
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ kernel@puri.sm, Frank Li <Frank.Li@nxp.com>, 
+ Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1348;
+ i=sebastian.krzyszkowiak@puri.sm; h=from:subject:message-id;
+ bh=nB5itl0OfsAcMlRRjvhiZa0Vpr0lRGlYy2oe6AKphVE=;
+ b=owEBbQKS/ZANAwAKAejyNc8728P/AcsmYgBpeUoyEZCFYMXUwUaX5gfjPGTC/JuN9qZhu2+65
+ pdy4BmhMaGJAjMEAAEKAB0WIQQi3Z+uAGoRQ1g2YXzo8jXPO9vD/wUCaXlKMgAKCRDo8jXPO9vD
+ /wG1D/0WomytfwAtHknFNpGvPysCpyApzfcnmCaY8ZJ8/b1Q0vuwi5TnXOZdm9ycpSkKEIiMnNO
+ zmlOOXSS0ux0UzaZEZ3R1nEM21uEARQlw4xP2R/6P4H32ZJhMPumYGpuV1cdXzcHhsGAeVJZMhY
+ NHnks19P0Y3ha1RRLIp9aE2I61x017aQAN2K8xRyLx6bvDSKsgITEJvDxo7nkdwfYH16KkDcpQU
+ cuUEHeoXSPXoSz+wo19f92ApjReZfgZESTiyc325cuFzhm8C2/tHu+y7yePYVGpQvnNJuxKQ8rl
+ i2YncQp+VFI/Wd0K1xSWrwISmQBLi2LVRqLdT4Uy0yYgJUq5P8dNN9awpzgLq4ICNF1SfLg8W9a
+ 292ZeqKhoWFH19xCIrx0bkyVRCYjy9N0f0srsL8GAvx6z/8WzTqKF1LIuaIaNgmd/nxCcnlRthk
+ EubUq0NG28LmT6GxHRpcwH94jHHdZ+piTBJLzpiPBvnkzfZTZ9IYqn87Go5i46GDPCQHlKFoY8T
+ +UdGwtPO8h6SPcGfbbKXEVY0UBZfzLi6OtYYYUfr/bz2PnhkizXEe6t+Nj/MV5NBVSn8JhQVra1
+ 7Ze+jafmKiwNq3AZt1r2kPCUlBjRwboumQOcayFcC67TqEy2yxaZadMt44qebUce4iYBCraXrvD
+ qZj6QAXh8n87cTg==
+X-Developer-Key: i=sebastian.krzyszkowiak@puri.sm; a=openpgp;
+ fpr=22DD9FAE006A11435836617CE8F235CF3BDBC3FF
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[puri.sm,reject];
+	R_DKIM_ALLOW(-0.20)[puri.sm:s=smtp2];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-260159-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[26];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-260160-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,pengutronix.de,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,armlinux.org.uk,vger.kernel.org,gmx.de,monroe.io,adtran.com,maxlinear.com,phrozen.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	DBL_PROHIBIT(0.00)[0.0.0.0:email];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[olteanv@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sebastian.krzyszkowiak@puri.sm,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[puri.sm:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: B698C9B487
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,2.67.213.128:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 9F18B9B65A
 X-Rspamd-Action: no action
 
-On Tue, Jan 27, 2026 at 09:37:40PM +0000, Daniel Golle wrote:
-> This series adds very basic DSA support for the MaxLinear MxL86252
-> (5 PHY ports) and MxL86282 (8 PHY ports) switches.
-> 
-> MxL862xx integrates a firmware running on an embedded processor (running
-> Zephyr RTOS). Host interaction uses a simple netlink-like API transported
-> over MDIO/MMD.
-> 
-> This series includes only what's needed to pass traffic between user
-> ports and the CPU port: relayed MDIO to internal PHYs, basic port
-> enable/disable, and CPU-port special tagging.
-> Follow up series will bring bridge, VLAN, ... offloading,
+According to i.MX 8M Quad Reference Manual, GPU_AHB_CLK_ROOT's maximum
+frequency is 400MHz.
 
-I'm surprised the Kconfig help text says:
+Fixes: 45d2c84eb3a2 ("arm64: dts: imx8mq: add GPU node")
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
+Signed-off-by: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
+---
+Changes in v2:
+- added Fixes trailer as suggested by Fabio Estevam
+- Link to v1: https://lore.kernel.org/r/20260124-imx8mq-gpu-ahb-clock-v1-1-11c2e7c857b7@puri.sm
+---
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-	  These switches have two 10GE SerDes interfaces, one typically
-	  used as CPU port.
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+index 607962f807be..6a25e219832c 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+@@ -1632,7 +1632,7 @@ gpu: gpu@38000000 {
+ 			                         <&clk IMX8MQ_GPU_PLL_OUT>,
+ 			                         <&clk IMX8MQ_GPU_PLL>;
+ 			assigned-clock-rates = <800000000>, <800000000>,
+-			                       <800000000>, <800000000>, <0>;
++			                       <800000000>, <400000000>, <0>;
+ 			power-domains = <&pgc_gpu>;
+ 		};
+ 
 
-yet only PHY_INTERFACE_MODE_INTERNAL is set in phylink supported_interfaces.
-You're also not making any mention of future SerDes support. What's up
-with that, how do the SerDes ports currently work and how are they
-described? (as internal?!)
+---
+base-commit: 24d479d26b25bce5faea3ddd9fa8f3a6c3129ea7
+change-id: 20260105-imx8mq-gpu-ahb-clock-139ba9ca9a6c
 
-> and support for using a 802.1Q-based special tag instead of the
-> proprietary 8-byte tag.
+Best regards,
+-- 
+Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
 
-Why is that?
-
-Another (related) question. You have this comment in tag_mxl862xx.c:
-
-	/* switch firmware expects ports to be counted starting from 1 */
-
-from which I don't completely understand how is the firmware involved
-(does it process the tags?). Would the expectation also apply to the
-802.1Q based tagger?
-
-What's the real story behind port index 0? Does it really not exist, or
-is it some attempt to hide an internal port that's not supposed to be used?
-
-If the latter, I guess something like the snippet below (seen in
-arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3.dts) would simplify
-the driver by a bit:
-
-	ethernet-switch@0 {
-		...
-		ethernet-ports {
-			...
-			/* Microcontroller port */
-			port@0 {
-				reg = <0>;
-				status = "disabled";
-			};
 
