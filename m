@@ -1,174 +1,167 @@
-Return-Path: <devicetree+bounces-259965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259959-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0CF9IhPTeGmNtQEAu9opvQ
-	(envelope-from <devicetree+bounces-259965-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:00:35 +0100
+	id cEwnOm/SeGmNtQEAu9opvQ
+	(envelope-from <devicetree+bounces-259959-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:57:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3920396348
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:00:35 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F6909623E
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:57:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D1673303DD65
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 14:52:42 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 5D829306D2B9
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 14:49:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3664D35DD07;
-	Tue, 27 Jan 2026 14:52:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b="NuI4A0aw"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65EEC35CBC3;
+	Tue, 27 Jan 2026 14:48:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0046e701.pphosted.com (mx0b-0046e701.pphosted.com [67.231.157.77])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEE0E35CBB4;
-	Tue, 27 Jan 2026 14:52:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.157.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B750E359714;
+	Tue, 27 Jan 2026 14:48:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769525525; cv=none; b=M76D34AOnlYEqrSCxfzF3aPopfhAc4MWpoP7RyT7MjSM/hxkb4V319Vtl8hGsnooDatTKm09GFk8JqNSCeE8qM6kGHM0eU3VKpRBOWAPFOAh+y7N54ofTsB4Z7ODBWURPPGHq0oN+LVMyd8/Ih4hBN1zgI8/gZ27FsYV2fHFzgw=
+	t=1769525305; cv=none; b=kxyuqOt52y5KS7g1YY9AvzgRFkdetoILI2HLuMfdgo7awGwTK1ixZwlgiUGDnhoT+5NfuJw5NXINN/q13HrqRPWeca1YhKF432Bh9zll37LjQAYIGe2XUNaZyVxUPcXg+ZnzqGuJhk/o1q22uQz9z972F2frnwGq19yW0PvCpNU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769525525; c=relaxed/simple;
-	bh=sTuKmKs+MqyixoLYvUkl/qsU9H4HeSU66GDIdTbkekA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=tutASzhPeq182CVbBWxNOoWRbgruGc8l7N77fujNnvHcM6oryf7RpAdWXA81DctUZFxQDL7B+GZCY1tScoezotuuYESEEQu1KMxR2T4zMLdYNZJrq4S0shgGnIuJNo1fWsRzmaAJeWfOyRJFIogNNhSu3gKwp6AdxeAT7Dp1cBA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=plexus.com; spf=pass smtp.mailfrom=plexus.com; dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b=NuI4A0aw; arc=none smtp.client-ip=67.231.157.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=plexus.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=plexus.com
-Received: from pps.filterd (m0341555.ppops.net [127.0.0.1])
-	by mx0b-0046e701.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60R44AVk2151983;
-	Tue, 27 Jan 2026 14:51:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=plexus.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=pps1; bh=AMs/I
-	eyIbZy1nwXxcGTgvzvyBjW0gzBr8/WuXtGmG0o=; b=NuI4A0awuhB+HIx4HmfF/
-	KwAMn8tfWafeUTjWx2EGw05oKT7D2Gs8gmQPjc9SL7kkW9h1nV/C5fCkPryMT7hl
-	9FDn4CCnlWWEk/W08uKQe7I/LW8QAVlS3YKgVMVSpO8tuB6h7QuI87GadpeVDu+S
-	jvcCn2b+SWmhIvgVWjO83fnqzpMB0jnyfO/ntS6cf+sr51HhgqT9XT1mRTFSjlCI
-	EmV+iMWyjMZbWqE6SZ3GZug8FBqYLcCSr6WJncdpssvyGNZXv2MCXnIxLdmYSiZP
-	7fMM+1o6Wl5scZ4xKI8NCdDXv5L+OOKBmkQncv/UnI0doD07b6kwRrLGBDqEmBL9
-	A==
-Received: from intranet-smtp.plexus.com ([64.215.193.254])
-	by mx0b-0046e701.pphosted.com (PPS) with ESMTPS id 4bwcb144b1-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Tue, 27 Jan 2026 14:51:42 +0000 (GMT)
-Received: from LNDCL34533.neenah.na.plexus.com (unknown [10.255.48.203])
-	by intranet-smtp.plexus.com (Postfix) with ESMTP id DCD14580C4;
-	Tue, 27 Jan 2026 08:51:41 -0600 (CST)
-From: Danny Kaehn <danny.kaehn@plexus.com>
-Date: Tue, 27 Jan 2026 08:47:50 -0600
-Subject: [PATCH v13 3/3] HID: cp2112: Configure I2C Bus Speed from Firmware
+	s=arc-20240116; t=1769525305; c=relaxed/simple;
+	bh=1dGrQxPMqXnmX/zIdN8/9kmEKhqIvaP+J3Qi7b/et/Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pFw16fBq9WdrjttSsoSepMS1iDVPAN9s/Hyvqt9CXt6M4ad3CcQAFCxuLcaLnaflfLry7kKwG05E7RSqKJld5Ps3fkXdiTvLJb5QKOLozXecIfllGMLbffnWWNuUwQ4CQOKZdPqmsKgKyGuu+DjVpUIlQRPtiMqCKM1IN59t/cQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.99)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1vkkMY-0000000015f-3rkJ;
+	Tue, 27 Jan 2026 14:48:15 +0000
+Date: Tue, 27 Jan 2026 14:48:10 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Paolo Abeni <pabeni@redhat.com>, Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Simon Horman <horms@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Frank Wunderlich <frankwu@gmx.de>, Chad Monroe <chad@monroe.io>,
+	Cezary Wilmanski <cezary.wilmanski@adtran.com>,
+	Avinash Jayaraman <ajayaraman@maxlinear.com>,
+	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
+	Juraj Povazanec <jpovazanec@maxlinear.com>,
+	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
+	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
+	"Livia M. Rosu" <lrosu@maxlinear.com>,
+	John Crispin <john@phrozen.org>
+Subject: Re: [PATCH net-next v8 4/4] net: dsa: add basic initial driver for
+ MxL862xx switches
+Message-ID: <aXjQKoXBIAkV06XE@makrotopia.org>
+References: <cover.1769053079.git.daniel@makrotopia.org>
+ <18c6a24eef8617abb5073569fee162f1aa1c06ea.1769053079.git.daniel@makrotopia.org>
+ <c2e191c4-dec4-4e42-b108-353778d9bd18@redhat.com>
+ <aXinOE7KIFIm5dUK@makrotopia.org>
+ <5e7c2f9c-bf49-4564-91b3-a639ef1c97d8@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260127-cp2112-dt-v13-3-6448ddd4bf22@plexus.com>
-References: <20260127-cp2112-dt-v13-0-6448ddd4bf22@plexus.com>
-In-Reply-To: <20260127-cp2112-dt-v13-0-6448ddd4bf22@plexus.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Benjamin Tissoires <bentiss@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Danny Kaehn <danny.kaehn@plexus.com>,
-        Andi Shyti <andi.shyti@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Jiri Kosina <jikos@kernel.org>, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Ethan Twardy <ethan.twardy@plexus.com>, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Leo Huang <leohu@nvidia.com>,
-        Arun D Patil <arundp@nvidia.com>, Willie Thai <wthai@nvidia.com>,
-        Ting-Kai Chen <tingkaic@nvidia.com>
-X-Mailer: b4 0.14-dev-d4707
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1769525272; l=1081;
- i=danny.kaehn@plexus.com; s=20260127; h=from:subject:message-id;
- bh=sTuKmKs+MqyixoLYvUkl/qsU9H4HeSU66GDIdTbkekA=;
- b=4MODlWIYOuNwLzbSsNQer/HmwNaiys0dMZu9GCrVS3Ro409Uu25RlmMtdM/VYgOGM/M2eRHMe
- OIngCA196C1BfkEH6QUdaj4dam1Dp26MZLXGZIy+6KKJ49qJJSnZvxs
-X-Developer-Key: i=danny.kaehn@plexus.com; a=ed25519;
- pk=cbcR30mXg2VNyXtpE2SxVSXEDWLYwrxgnPCjJZn6A8s=
-X-Proofpoint-Reinject: loops=2 maxloops=12
-X-Authority-Analysis: v=2.4 cv=QvVTHFyd c=1 sm=1 tr=0 ts=6978d0fe cx=c_pps
- a=356DXeqjepxy6lyVU6o3hA==:117 a=356DXeqjepxy6lyVU6o3hA==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=Y_joWELsAAAA:8 a=B4QkrQ5K2Q0oYPUHz0oA:9 a=QEXdDO2ut3YA:10
- a=g_BQsM8wYJVSTWLOHH1t:22
-X-Proofpoint-GUID: NeWbfRo8c_k6o4E1Y-ByzzzFqSMYkONn
-X-Proofpoint-ORIG-GUID: 5tlxGXixyJ4R1ECK3t9AjI4UWh8Wy9yP
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI3MDEyMSBTYWx0ZWRfX0uXa69E2uI/z
- rLgB6vxR+4mcSjWBQbTvgQk7sEH7sPN8uwBbArZHtkmuTyynYuoubMTX9d/866qH3dCyrHJpHDM
- a31LLswEnU4H+qB9UZOluH0lo5oHntVeiHqFzEolMsu/8+Xt1qJ+N5xpTRkMzDauYx86aLP5ZA2
- O17//OT4Xr0VLf/9qaBQsjfpMuQZPiKWYc9EHYk3QhmN4gvC4ye8FuLxK/ooQCl+5KwoHuIMzeT
- cvDzqzK9hNDqRh41EYXSAEKDqYFH1CbvICBwAJNO7z6obWsTWAWZ3hfYBiEWLK+1FTlbpy2rkBY
- GwUiEbonBG2QOnqeXnnnhPlSMr/N17/jLPNogAX5/8bwQ9/xLdSd50eTGuHRTkP7m9nZNjJ93Nf
- L2xlueX2LT/NoHlGYaNPunUVbFkIWEbUNlo5DDHmeTqb12rrFEwYQYbtsDzDJSGrT5sjqB3H24V
- +vctiY+xj2hdchw0y6A==
-X-Proofpoint-Spam-Reason: orgsafe
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5e7c2f9c-bf49-4564-91b3-a639ef1c97d8@lunn.ch>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[plexus.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[plexus.com:s=pps1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259965-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com,linaro.org,plexus.com,nvidia.com];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259959-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_CC(0.00)[redhat.com,gmail.com,davemloft.net,google.com,kernel.org,armlinux.org.uk,vger.kernel.org,gmx.de,monroe.io,adtran.com,maxlinear.com,phrozen.org];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	DMARC_NA(0.00)[makrotopia.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.996];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[danny.kaehn@plexus.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[plexus.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[daniel@makrotopia.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[plexus.com:email,plexus.com:dkim,plexus.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 3920396348
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,makrotopia.org:mid]
+X-Rspamd-Queue-Id: 8F6909623E
 X-Rspamd-Action: no action
 
-Now that the I2C adapter on the CP2112 can have an associated firmware
-node, set the bus speed based on firmware configuration
+On Tue, Jan 27, 2026 at 02:50:14PM +0100, Andrew Lunn wrote:
+> > > > +	/* handle errors returned by the firmware as -EIO
+> > > > +	 * The firmware is based on Zephyr OS and uses the errors as
+> > > > +	 * defined in errno.h of Zephyr OS. See
+> > > > +	 * https://github.com/zephyrproject-rtos/zephyr/blob/v3.7.0/lib/libc/minimal/include/errno.h
+> > > > +	 */
+> > > > +	if ((s16)ret < 0) {
+> > > 
+> > > The cast is likely not needed above? if `ret` values < S16_MIN are
+> > > possible this will return such values to the caller without the IO err
+> > > printk.
+> > 
+> > Right, it should rather be
+> > 
+> > if (ret > S16_MAX && ret <= U16_MAX)
+> > 
+> > to really only catch the range of numbers which are negative 16-bit
+> > signed values represented as positive 32-bit signed values.
+> > 
+> > mxl862xx_reg_read() primarily returns a signed 32-bit integer, as it is
+> > basically just a wrapper around __mdiodev_c45_read(). Negative values of
+> > that 32-bit integer mean that the MDIO Clause-45 read has somehow
+> > failed, ie. it's the error the MDIO bus .read_c45() operation has
+> > returned.
+> > 
+> > In case __mdiodev_c45_read() succeeds it returns the 16-bit value of the
+> > register read. In this case, those 16-bit should be interpreted as a
+> > 16-bit signed integer here. A negative value denotes an error returned
+> > from the firmware running on the switch (see comment above the code).
+> 
+> Rather than these casts, maybe add a helper which takes the unsigned
+> u16 from the register and returns a signed Zepher error code?
+> 
+> int mxl862xx_to_zephyr_errno(u16 reg)
+so that would then just be
+	return (s16)reg;
+right?
 
-Signed-off-by: Danny Kaehn <danny.kaehn@plexus.com>
----
- drivers/hid/hid-cp2112.c | 4 ++++
- 1 file changed, 4 insertions(+)
+Or did you think to include the handling of the error __mdiodev_c45_read()
+would return, ie.
+int mxl862xx_to_zephyr_errno(int reg)
+{
+	if (reg < 0)
+		return reg;
 
-diff --git a/drivers/hid/hid-cp2112.c b/drivers/hid/hid-cp2112.c
-index ea19b5cb58f9..4c5957e0a5cc 100644
---- a/drivers/hid/hid-cp2112.c
-+++ b/drivers/hid/hid-cp2112.c
-@@ -1220,6 +1220,7 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- 	struct cp2112_smbus_config_report config;
- 	struct fwnode_handle *child;
- 	struct gpio_irq_chip *girq;
-+	struct i2c_timings timings;
- 	u32 addr;
- 	int ret;
- 
-@@ -1304,6 +1305,9 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- 		goto err_power_normal;
- 	}
- 
-+	i2c_parse_fw_timings(&dev->adap.dev, &timings, true);
-+
-+	config.clock_speed = cpu_to_be32(timings.bus_freq_hz);
- 	config.retry_time = cpu_to_be16(1);
- 
- 	ret = cp2112_hid_output(hdev, (u8 *)&config, sizeof(config),
+	/* handle errors returned by the firmware as -EIO
+	 * The firmware is based on Zephyr OS and uses the errors as
+	 * defined in errno.h of Zephyr OS. See
+	 * https://github.com/zephyrproject-rtos/zephyr/blob/v3.7.0/lib/libc/minimal/include/errno.h
+	 */
+	if (reg > S16_MAX && reg <= U16_MAX)
+		return -EIO;
+}
 
--- 
-2.25.1
-
+Or actually translating the actual errno to a Linux error code?
 
