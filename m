@@ -1,338 +1,366 @@
-Return-Path: <devicetree+bounces-260142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260143-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2EUBMfszeWmlvwEAu9opvQ
-	(envelope-from <devicetree+bounces-260142-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 22:54:03 +0100
+	id B8BYI+g2eWn5vwEAu9opvQ
+	(envelope-from <devicetree+bounces-260143-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 23:06:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E5CD9AD89
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 22:54:03 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 937109AE67
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 23:06:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0EB36301A72C
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 21:53:57 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id F36E03006083
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 22:06:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ED203321A3;
-	Tue, 27 Jan 2026 21:53:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25CD63321A5;
+	Tue, 27 Jan 2026 22:06:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ymLLB1PZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PcN4/G8O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8745833123C
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 21:53:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 026EF32A3F3
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 22:06:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769550835; cv=none; b=R8/wM4aParBkpDnVRBfFSjAXknujPjYqg1yyldMth8z2MQIv+OYaaGucs8JGK2EnQrsCiaTYsVkDgxYWXrgPVXhaA30mQFXl9mdUwA0SRQ5ClkYak88H7t2fanNxcegVy9vz9mqgs2e8GUfiPMzfzcT1wBby/6WCwCO9AXc15gI=
+	t=1769551587; cv=none; b=PqZwfU3MWnKFEIHmhCaAoP0fkv+Dm82Qg+rQbItxuNyI+h2KEFA2pmEadPm253I2MJ292u7xdeog01ElxkLrFe7dN30YLD815OPp7zinaqRtEkrBvADRTwigfIfOAGkf5w6kRTXM4R/mkd5Lc2i8k3O9AizfdBjZN2ZJTlkaT54=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769550835; c=relaxed/simple;
-	bh=0dVm4VUbznq0Tn+3bAgXEVSu5pdNdqlLlwfbGeK3pRc=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=fHGtZoRzv/bj737WX9nGCfrDVd3YvDmUv+2/PJf8kEqlo0N3CbRVB1zE8pQKF7RU6BCNGScvOHiuGS927eezzuGTWlXv0uR8J0Zj3rHHYUCNUBSG9knQ0rovoxh6p6x02DCS1vbrcrOxHIKDT8rSiYg6/QmpccEnnATU9dn5DMc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ymLLB1PZ; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4806dffc64cso1073165e9.1
-        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 13:53:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1769550832; x=1770155632; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=S6ONBdBrWL44g/dbc6EELGm2hRjj8YYj2H+Yh0hSCJs=;
-        b=ymLLB1PZHVZMhBAdRPW4Cp9u6XhS8NQt+auxfDUk+cpL3v2nfZuSB5kmTmCaa7An9f
-         8AcoYLGy9pw1ERSFWqw6CypNjR+XmUytE9+kyulZKl7x2CK2cNqMjo1qZnZlryShH/c4
-         NxdxUZjlqbdcb5FRpwkWQ53KNx5rOJeV+369Kl5MwA3lEkBWuKK3ZvtQmuqrSQwXSvhu
-         HjryP0q3Y7Jw8eHmlxGpX79VNxczrNuOyxSlgiqV3OQtGcXjLGI7EyFlfkiB4n4NbE2n
-         ziAb6XVB3PGaz9eeZEeoCbpnEHxL6Mv3KoHV6rF2jcQeCKwbxNYJgYrncQ9fGHbigBot
-         UdCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769550832; x=1770155632;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=S6ONBdBrWL44g/dbc6EELGm2hRjj8YYj2H+Yh0hSCJs=;
-        b=c6Y/6J/TVVp2tvkaBWS6lAgjugvVtSccy0Fk0LFKZF9GbyfMswhhGTMDVRmf/MuRj2
-         AABtGIdVE0yTyQ9fhetVNJaJCfQV6ysVJgx9qSysOauHrnv+6yhTiqAlGJUJqJAVH9o3
-         r9RXBca7mj19fIChe4qIZ/VuAa3iGuzhybYtlcZduayThkfffa7K2HHRmDnHnY3EeJcO
-         SSXTcEiH+DDcczCn9/cx0suwcz/q2xu2xq5JiH6ffbWAffzbFvhnFUD2tBBblV9/r08a
-         TM66n5yAN55UH8jCTwCjDSxVCq5hfjlhLxTJurr8suOSVILqd5tNIwWYuixm7AjICcc+
-         /FVg==
-X-Forwarded-Encrypted: i=1; AJvYcCWAkZw3i9oo+0hzHP8CvESTiD3JVcWbSIb9bE7imQyKI7WL9Y6EKVshHkXGgCIopGqBZI4MIHk6OOBy@vger.kernel.org
-X-Gm-Message-State: AOJu0YzTaqK5pk44JMUAoZVTi6QTjSI7Gh5NaQYcc0M1saHy/WyThiEl
-	FkGFzx0myaYsCw8ajXh8x0R0gTvoUDZwcTG1azvCnku6q7MRn+crEQA5fc6VeYONReQ=
-X-Gm-Gg: AZuq6aIixy5yTIFZ32wBKK5QzT2bETV736Ye4xumOZMo9qmvs56PQOv8rOg8RChziZk
-	Yvg7hTZZLthMYq+G89f7CJ4tHFhzH5lWktcEigJQPtExJyXqNSRhAC1Hz/P25LzlFrlRB2uyNxL
-	ythzu4cv94dOqTVNV7xHz+csYcgiJCZZxz1dV6tb6kWqaTop+hfp/05oVtUWcKg2bWaX2dY6Pr2
-	27ONfsX+SJpvQhYxKqwo+XHC6LQFM0NL6m0vAT6XN0gBtuDrZPUaqLHG4ZUzs6rvJlX30bUjutP
-	o0OxWjNrSYlXf6iJKcZ6wejI5ZKUMocLTnm8D1VCRv706UCXR4IaLIthnaAu1cK6JXVOfqrCP71
-	mngxNVXh6qPpPi9Yda/NKKXT1IaE2+ao6WlUFa8jeQLOG4kaEWMe39DlV54qJu7mBgAHJIkOeoE
-	nvAzqwZIFfQslnFjo9uQSO8NvoWclBK5k9FB2zY4dTB1VYYwhPsRMNTMtFExf10efvHwRA86kfE
-	A==
-X-Received: by 2002:a05:600c:1e1c:b0:479:2f95:5179 with SMTP id 5b1f17b1804b1-48069c161d3mr43220935e9.15.1769550831789;
-        Tue, 27 Jan 2026 13:53:51 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:3d9:2080:7745:d752:5f0b:2b68? ([2a01:e0a:3d9:2080:7745:d752:5f0b:2b68])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435e1354205sm1918002f8f.41.2026.01.27.13.53.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Jan 2026 13:53:51 -0800 (PST)
-Message-ID: <0104896e-44d0-485a-a44e-694864c819b7@linaro.org>
-Date: Tue, 27 Jan 2026 22:53:50 +0100
+	s=arc-20240116; t=1769551587; c=relaxed/simple;
+	bh=RfcVagdUTV88Kahd+Dc9O5qdG+kdzm3I9UF34Rjg7v8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YpwS3lofbfmm5yT8etH89U49mV4I94YdovHs9niFf/r/Gu2gFBBbCk7/oiNS+p5fMQahSyb9QkYB5TmlKGaG9fyYDfcbkuKLWZlQ6h6T+xnYVtCCPkann5LAkn0qJ6PFX9CSzaxhoKZEVlV/zWsBtxU/gbxlFin9WmMDqRNWuLU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PcN4/G8O; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AAD7EC2BC87
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 22:06:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769551586;
+	bh=RfcVagdUTV88Kahd+Dc9O5qdG+kdzm3I9UF34Rjg7v8=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=PcN4/G8Oz+muJikhFPQDM0xrmhu1IKGCecxJ4UMGX9J7SQ5RIXQCHJ8nfVhfv80j7
+	 cH5aQXgSRNzr8Yb13cop7Z5Ub6kwRacRkHOmy8OIBRruBFWeOIV5FX1MS0fHYvpSKd
+	 Jxq78D+4CxVs9aD81yxZxS3vVNO/ie8tjZ9OhLLmTm52QtA0bYZJWPrG3Wh90hYwV8
+	 TComA4l2U9/5Gnzb1Hm/aAw475IiprjAkrgMs/Ew9wCKUazCpIGeUk2hWFN6UCKe8z
+	 4mNRl6PA8thD/YUANEljhUAnGbqva1abw9FO7ksKXJjpXEFzC1ctAvmt8xs+hHe+Z6
+	 pM6DE/9ZYmPxA==
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-6581af9c94aso11617907a12.1
+        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 14:06:26 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUUNhabIsclCwGK4l2wu9vJVBRuXse3UYDWVb0T1gbXF8kqWLakOGoLlPn9g+gLWYIwIPDr18lpAWmK@vger.kernel.org
+X-Gm-Message-State: AOJu0YyoXxdcGCuQk5ZKCdjh9DxrQ2FWQclhbqQcpmKmthBj3c2xFIlp
+	Ui0i4DJ9bWoS02C/RgK66jRQ53qt4CMndMSCzDdJQPIJGS8PcVPDvZ2GJ4H5TUXdnTv/qF1dPvC
+	ULmkSwrWu8+CkR/AM3fmdu3Nd2dC1Aw==
+X-Received: by 2002:a05:6402:5246:b0:658:191a:31b9 with SMTP id
+ 4fb4d7f45d1cf-658a60a4d08mr2065670a12.27.1769551585134; Tue, 27 Jan 2026
+ 14:06:25 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 2/7] pci: pwrctrl: add PCI pwrctrl driver for the
- UPD720201/UPD720202 USB 3.0 xHCI Host Controller
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov
- <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, Bartosz Golaszewski <brgl@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
- linux-usb@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-pci@vger.kernel.org
-References: <20260127-topic-sm8650-ayaneo-pocket-s2-base-v2-0-c55ec1b5d8bf@linaro.org>
- <20260127-topic-sm8650-ayaneo-pocket-s2-base-v2-2-c55ec1b5d8bf@linaro.org>
- <llbnkm72mgcsrucnp7pdkwbgyzenvhe4kudxkdixplgaoirdem@3q3me34o5drf>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <llbnkm72mgcsrucnp7pdkwbgyzenvhe4kudxkdixplgaoirdem@3q3me34o5drf>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20260112142009.1006236-1-herve.codina@bootlin.com>
+ <CAL_JsqK4nH0B-CfKz5wgg12C+Vzi31ceHeOes94Z8hg3uN=X1g@mail.gmail.com>
+ <20260114171822.2a44d2a5@bootlin.com> <aW3IjNpBnnFE7-r7@zatzit> <20260127161907.23e62463@bootlin.com>
+In-Reply-To: <20260127161907.23e62463@bootlin.com>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 27 Jan 2026 16:06:12 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLRrbZje_gGZPBDni6StFa+6rdiECtk49on8VfkP7CDvw@mail.gmail.com>
+X-Gm-Features: AZwV_QiO-FsPw7PqASdps0MMd3o7LaYNuacdkgLexvuerHkx5YjRDAUAKv2cGPU
+Message-ID: <CAL_JsqLRrbZje_gGZPBDni6StFa+6rdiECtk49on8VfkP7CDvw@mail.gmail.com>
+Subject: Re: [RFC PATCH 00/77] Add support for dtb metadata and addon device-trees
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: David Gibson <david@gibson.dropbear.id.au>, Krzysztof Kozlowski <krzk@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Ayush Singh <ayush@beagleboard.org>, 
+	Geert Uytterhoeven <geert@linux-m68k.org>, devicetree-compiler@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree-spec@vger.kernel.org, Hui Pu <hui.pu@gehealthcare.com>, 
+	Ian Ray <ian.ray@gehealthcare.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Saravana Kannan <saravanak@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,oss.qualcomm.com,linux.dev,gmail.com,poorly.run,somainline.org,ffwll.ch,linuxfoundation.org,glider.be,google.com,vger.kernel.org,lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[27];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-260142-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	HAS_REPLYTO(0.00)[neil.armstrong@linaro.org];
-	PRECEDENCE_BULK(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-260143-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_EQ_FROM(0.00)[]
-X-Rspamd-Queue-Id: 4E5CD9AD89
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 937109AE67
 X-Rspamd-Action: no action
 
-On 1/27/26 16:53, Manivannan Sadhasivam wrote:
-> On Tue, Jan 27, 2026 at 10:57:29AM +0100, Neil Armstrong wrote:
->> Add support fo the Renesas UPD720201/UPD720202 USB 3.0 xHCI Host Controller
->> power control which connects over PCIe and requires specific power supplies
->> to start up.
->>
-> 
-> This driver only handles the supplies. So why can't you use the existing
-> pwrctrl-slot driver as a fallback?
+On Tue, Jan 27, 2026 at 9:19=E2=80=AFAM Herve Codina <herve.codina@bootlin.=
+com> wrote:
+>
+> Hi Rob, David,
+>
+> On Mon, 19 Jan 2026 17:00:44 +1100
+> David Gibson <david@gibson.dropbear.id.au> wrote:
+>
+> ...
+> > >
+> > > I think we can have metadata at 3 differents levels:
+> > > - Property
+> > > - Node
+> > > - Global dtb
+> >
+> > This is a really minor point, but I don't especially like the term
+> > "metadata" for the symbol / fixup information.  Although it's
+> > technically accurate that it's metadata for the property bytestrings,
+> > in most contexts "metadata" makes me think only of tree global
+> > metadata.  By analogy, symbols and fixup information in a .so or .a
+> > could be seen as metadata to the raw code / data bytes, but I wouldn't
+> > normally use that term for it (whereas I might for, say, the soname or
+> > certain .note sections).
+> >
+> > > With the suggestion you did on patch 6 related to FDT_REF_LOCAL and i=
+f I
+> > > understood correctly, you expect to have a kind of "container" tag to=
+ group
+> > > metadata on each level.
+> > >
+> > > Also you expect to have the ability to handle all 'for now unknown' t=
+ag
+> > > smoothly and so, I agree, the length of the data related to a tag are
+> > > needed to be present with the tag itself. I see to kind of tag, some =
+with
+> > > the length of data available in the u32 following the tag and other w=
+ithout
+> > > the length encoded.
+> > >
+> > > Tags without length encoded are followed by one u32 field containing =
+data
+> > > related to the tag. This allow to avoid a lot of 'TAG_XXX 0x04 u32_da=
+ta'
+> > > Indeed, I have the feeling that quite a lot of tags will have only on=
+e u32
+> > > field as data part and so, having 0x04 encoded (cell aligned) each ti=
+me.
+> > >
+> > > A tag value is on 32bits. We can define the structure of this value.
+> > >   - bit 31 (msb):
+> > >      - 0: This is not a new kind to tag and so it doesn't follow this=
+ definition.
+> > >           All existing tags are in this categorie
+> > >      - 1: New kind of tag adopting this definition
+> > >
+> > >   - bits 30..28:
+> > >      tag data length encoding
+> > >      0b000: No data related to the tag
+> > >      0b001: 1 data cell (u32) directly follows the tag
+> > >      0b010: 2 data cells (2 u32) directly follow the tag
+> > >      ...
+> > >      0b110: 6 data cells (6 u32) directly follow the tag
+> > >      0b111: Tag is followed by a cell (u32) indicating the size (in b=
+ytes)
+> > >             of data available just after this cell (including any pad=
+ding
+> > >             if needed).
+> > >         Because this size include some possible padding, its value is=
+ a
+> > >             multiple of 4 bytes.
+> > >             The offset of the tag + 4 + size points to the next tag.
+> > >
+> > >
+> > >   - bit 27..0
+> > >      tag specific identifier
+> >
+> > As noted elsewhere, I'm not necessarily opposed to having a general
+> > length encoding.  However, for each new tag I think we need to think
+> > carefully about whether it really is safe for older software that
+> > doesn't understand it to just skip it.
+> >
+> > > With that definition, the following tags can be defined:
+> > >   - FDT_INFO_PROPERTY (new tag, length encoding): 0xf0000001
+> > >      This tag is available after a property.
+> > >      It is followed by a cell for the length of data, the data part i=
+s a
+> > >      sequence of tags (and related data) giving information related t=
+o the
+> > >      last property available before the tag.
+> >
+> > I'd prefer to avoid an additional layer of nesting here - I'd rather
+> > just have multiple top level tags.
+> >
+> > >   - FDT_REF_LOCAL (new tag, 1 cell data): 0x90000002:
+> > >      The cell after this tag is the offset in the property where a lo=
+cal
+> > >      phandle is available
+> > >
+> > >   - FDT_REF_PHANDLE (new tag, length encoding): 0xf0000003
+> > >      Cf. patch 11 for definition
+> > >      It is followed by a cell for the length of data. The data part i=
+s
+> > >      composed of:
+> > >        - offset (u32)
+> > >        - label (string including \0)
+> > >        - padding if needed to have next item aligned on 32bits
+> > >
+> > >
+> > > With that defined, supposing the following dts example:
+> > >   --- 8< ---
+> > >   /* 'foo' is a reference to local node,
+> > >    * 'bar' is a reference to an external node
+> > >    */
+> > >   prop =3D <1 2 &foo &bar1>;
+> > >   --- 8< ---
+> > >
+> > > The dtb will see the following structure:
+> > > FDT_PROP ...
+> > > FDT_INFO_PROPERTY (0xf0000001)
+> > >   28 (length =3D (4+4)+(4+4+12) bytes)
+> > >   FDT_REF_LOCAL (0x90000002)
+> > >     0x8                             <--- offset of &foo
+> > >   FDT_REF_PHANDLE (0xf0000003)
+> > >     12 (length =3D 4+4+1+3 bytes)
+> > >     0xc                             <--- offset of &bar
+> > >     "bar1" + its \0                 <-- reference to resolve
+> > >     0x00 0x00 0x00                  <-- 3 bytes padding
+> > >
+> > > Adding FDT_TYPE_U32 later will consist in defining
+> > > its value, probably a 0x9 family (1 cell after the tag for the
+> > > offset value)
+> > >
+> > > At any point, only looking at the higher part of the tag (i.e. 0xN...=
+....), we
+> > > can skip the tag and its data if don't know about the tag.
+> > >  - 0x0: Old tag format
+> > >     -> Error if unknown
+> > >
+> > >  - 0x8 to 0xe: New format followed by 0 (0x8) to 6 cells of data
+> > >     -> Ignore if unknown and skip the N cells of data to look at the =
+next
+> > >
+> > >  - 0xf: New format followed by 1 cell giving the size of following da=
+ta.
+> > >     -> Ignore if unknown and read the length available in the cell af=
+ter the
+> > >        tag, skip length byte of data to look at the next.
+> > >        If the length read is not a multiple of 4: Error, invalid tag.
+> > >
+> > >
+> > > For this series we need the container tags:
+> > > - FDT_INFO_PROPERTY for information related to a property
+> > >   Among known tags defined in this series, only FDT_REF_LOCAL and
+> > >   FDT_REF_PHANDLE can be grouped into a FDT_INFO_PROPERTY.
+> > >
+> > > - FDT_INFO_NODE for information related to a node
+> > >   Among known tags defined in this series, only FDT_EXPORT_SYM_LOCAL
+> > >   and FDT_EXPORT_SYM_REF can be grouped into a FDT_INFO_NODE.
+> > >
+> > > - FDT_INFO_DTB for information related to the dtb
+> > >   Among known tags defined in this series, only FDT_IMPORT_SYM can
+> > >   be present into a FDT_INFO_DTB.
+> > >
+> > > IMHO, the new tag FDT_BEGIN_NODE_REF related to orphan nodes doesn't
+> > > have to be in one of those containers. Indeed, FDT_BEGIN_NODE_REF
+> > > is more a node definition than a metadata.
+> >
+> > That's a perfect example of a new tag that absolutely cannot be just
+> > skipped if not understood.  Software *must* hard error if they
+> > encounter this and don't understand it.
+> >
+>
+> I have started to implement this "unknown tag" feature based on the tag
+> values definition presented here and with complementary feature (bit
+> allowing to skip an unknown tag) as presented in patch 2 discussion [1].
+>
+> I didn't introduce any FDT_INFO_xxx tags. They introduce nesting tags
+> and David seems not agree with that.
+>
+> I use simple test tags to have some "unknown tags" in dtb and looked at
+> the way to handle them.
+>
+> When we read a dtb, no problem, we just skip "unknown tags" if we are
+> allowed to (flag in tag value).
+>
+> The issue comes when we modify a dtb.
+>
+> libftd allows to modify a dtb. It allows to add/modify/remove properties
+> and nodes. Bootloaders for instance use this capability to update a dtb
+> before passing it to the kernel.
+>
+> How should we handle unknown tags in this context?
+>
+> We don't knwow about the meaning of those tags (unknown tags) and so, we
+> don't know if those tags are still consistent with modifications done?
 
-It would fit with no change, but the name "slot" doesn't match the goal here,
-it's not a slot at all, it's an actual pcie IC.
+I don't think we have any choice, but to remove the tags.
 
-Neil
+> A property can be followed by an unknown tags related to this property.
+> Also a property can be followed by an unknown tag related to the node.
+> We simply don't know.
 
-> 
-> - Mani
-> 
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   drivers/pci/pwrctrl/Kconfig                 | 10 ++++
->>   drivers/pci/pwrctrl/Makefile                |  2 +
->>   drivers/pci/pwrctrl/pci-pwrctrl-upd720201.c | 88 +++++++++++++++++++++++++++++
->>   3 files changed, 100 insertions(+)
->>
->> diff --git a/drivers/pci/pwrctrl/Kconfig b/drivers/pci/pwrctrl/Kconfig
->> index e0f999f299bb..5a94e60d0d3e 100644
->> --- a/drivers/pci/pwrctrl/Kconfig
->> +++ b/drivers/pci/pwrctrl/Kconfig
->> @@ -11,6 +11,16 @@ config PCI_PWRCTRL_PWRSEQ
->>   	select POWER_SEQUENCING
->>   	select PCI_PWRCTRL
->>   
->> +config PCI_PWRCTRL_UPD720201
->> +	tristate "PCI Power Control driver for the UPD720201 USB3 Host Controller"
->> +	select PCI_PWRCTRL
->> +	help
->> +	  Say Y here to enable the PCI Power Control driver of the UPD720201
->> +	  USB3 Host Controller.
->> +
->> +	  The voltage regulators powering the rails of the PCI slots
->> +	  are expected to be defined in the devicetree node of the PCI device.
->> +
->>   config PCI_PWRCTRL_SLOT
->>   	tristate "PCI Power Control driver for PCI slots"
->>   	select PCI_PWRCTRL
->> diff --git a/drivers/pci/pwrctrl/Makefile b/drivers/pci/pwrctrl/Makefile
->> index 13b02282106c..a99f85de8a3d 100644
->> --- a/drivers/pci/pwrctrl/Makefile
->> +++ b/drivers/pci/pwrctrl/Makefile
->> @@ -5,6 +5,8 @@ pci-pwrctrl-core-y			:= core.o
->>   
->>   obj-$(CONFIG_PCI_PWRCTRL_PWRSEQ)	+= pci-pwrctrl-pwrseq.o
->>   
->> +obj-$(CONFIG_PCI_PWRCTRL_UPD720201)	+= pci-pwrctrl-upd720201.o
->> +
->>   obj-$(CONFIG_PCI_PWRCTRL_SLOT)		+= pci-pwrctrl-slot.o
->>   pci-pwrctrl-slot-y			:= slot.o
->>   
->> diff --git a/drivers/pci/pwrctrl/pci-pwrctrl-upd720201.c b/drivers/pci/pwrctrl/pci-pwrctrl-upd720201.c
->> new file mode 100644
->> index 000000000000..db96bbb69c21
->> --- /dev/null
->> +++ b/drivers/pci/pwrctrl/pci-pwrctrl-upd720201.c
->> @@ -0,0 +1,88 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * Based on upd720201.c:
->> + * Copyright (C) 2024 Linaro Ltd.
->> + * Author: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
->> + */
->> +
->> +#include <linux/device.h>
->> +#include <linux/mod_devicetable.h>
->> +#include <linux/module.h>
->> +#include <linux/pci-pwrctrl.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/regulator/consumer.h>
->> +#include <linux/slab.h>
->> +
->> +struct pci_pwrctrl_upd720201_data {
->> +	struct pci_pwrctrl ctx;
->> +	struct regulator_bulk_data *supplies;
->> +	int num_supplies;
->> +};
->> +
->> +static void devm_pci_pwrctrl_upd720201_power_off(void *data)
->> +{
->> +	struct pci_pwrctrl_upd720201_data *upd720201 = data;
->> +
->> +	regulator_bulk_disable(upd720201->num_supplies, upd720201->supplies);
->> +	regulator_bulk_free(upd720201->num_supplies, upd720201->supplies);
->> +}
->> +
->> +static int pci_pwrctrl_upd720201_probe(struct platform_device *pdev)
->> +{
->> +	struct pci_pwrctrl_upd720201_data *upd720201;
->> +	struct device *dev = &pdev->dev;
->> +	int ret;
->> +
->> +	upd720201 = devm_kzalloc(dev, sizeof(*upd720201), GFP_KERNEL);
->> +	if (!upd720201)
->> +		return -ENOMEM;
->> +
->> +	ret = of_regulator_bulk_get_all(dev, dev_of_node(dev),
->> +					&upd720201->supplies);
->> +	if (ret < 0) {
->> +		dev_err_probe(dev, ret, "Failed to get upd720201 regulators\n");
->> +		return ret;
->> +	}
->> +
->> +	upd720201->num_supplies = ret;
->> +	ret = regulator_bulk_enable(upd720201->num_supplies, upd720201->supplies);
->> +	if (ret < 0) {
->> +		dev_err_probe(dev, ret, "Failed to enable upd720201 regulators\n");
->> +		regulator_bulk_free(upd720201->num_supplies, upd720201->supplies);
->> +		return ret;
->> +	}
->> +
->> +	ret = devm_add_action_or_reset(dev, devm_pci_pwrctrl_upd720201_power_off,
->> +				       upd720201);
->> +	if (ret)
->> +		return ret;
->> +
->> +	pci_pwrctrl_init(&upd720201->ctx, dev);
->> +
->> +	ret = devm_pci_pwrctrl_device_set_ready(dev, &upd720201->ctx);
->> +	if (ret)
->> +		return dev_err_probe(dev, ret, "Failed to register pwrctrl driver\n");
->> +
->> +	return 0;
->> +}
->> +
->> +static const struct of_device_id pci_pwrctrl_upd720201_of_match[] = {
->> +	{
->> +		.compatible = "pci1912,0014",
->> +	},
->> +	{ }
->> +};
->> +MODULE_DEVICE_TABLE(of, pci_pwrctrl_upd720201_of_match);
->> +
->> +static struct platform_driver pci_pwrctrl_upd720201_driver = {
->> +	.driver = {
->> +		.name = "pci-pwrctrl-upd720201",
->> +		.of_match_table = pci_pwrctrl_upd720201_of_match,
->> +	},
->> +	.probe = pci_pwrctrl_upd720201_probe,
->> +};
->> +module_platform_driver(pci_pwrctrl_upd720201_driver);
->> +
->> +MODULE_AUTHOR("Neil Armstrong <neil.armstrong@linaro.org>");
->> +MODULE_DESCRIPTION("PCI Power Control driver for UPD720201 USB3 Host Controller");
->> +MODULE_LICENSE("GPL");
->>
->> -- 
->> 2.34.1
->>
-> 
+We should be able to distinguish between node and property tags at
+least. Either by value or location. IOW, node tags must follow a
+BEGIN_NODE tag and property tags must follow a property.
 
+> Any modification can impact unknown tags and make them inconsistent.
+> Here again, we simply don't know.
+>
+> Should we avoid any modification when a dtb contains unknown tags?
+
+You answered that below. :)
+
+> Should we simply remove all unknown tags when a modification is done?
+
+For that node or property, yes. For the whole DTB, no. Though does
+modifying a property constitute modifying a node?
+
+>
+> Bootloaders need to modify the dtb. Avoiding modification is a no-go.
+> Removing "unknown tags" when a modification is done will lead to removing
+> all unknown tags at bootloader stage.
+>
+> Rob, David, any opinion related to this specific issue and the strategy w=
+e
+> should follow when modification are involved?
+
+Perhaps we should separate the 'version we can read' and the 'version
+we can write'. Let's say it is v18 that allows unknown tags, but v19
+that actually adds any specific tags (or adds tags that are not safe
+to ignore). Then a DTB with last_compat_version=3Dv18 and version=3Dv19
+can be read by libfdt supporting v18+, but requires v19 libfdt to
+write it. We'd still have to allow writing a v19 DTB with v18 libfdt,
+but we'd have to downgrade the version to v18 (or downgrade if we had
+to drop some tags).
+
+The DT and bootloader/firmware are typically bundled together and in
+that case there shouldn't be an issue of different versions. You can
+have a newer DTB instead of the firmware one, but that doesn't need to
+have the new tags (if the OS does require them, then it broke
+compatibility).
+
+Even with this series, I think everything can be ignored if you are
+only looking for compatibility with what we have now. It's only if you
+want to support the addons, then you need v?? which defines the set of
+tags for addons. So I'm not certain a tag bit is the right way to say
+safe to ignore or not. I think if we have a new tag that every client
+has to understand and handle, then that's a major version change. I
+think the original intent with the versions was 0x10 (aka 16) was a
+new major version, 0x13(v18) would be another minor rev, and 0x20
+would be the next major version.
+
+Rob
 
