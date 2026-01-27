@@ -1,237 +1,313 @@
-Return-Path: <devicetree+bounces-260061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260085-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UOXnHiDzeGmGuAEAu9opvQ
-	(envelope-from <devicetree+bounces-260061-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 18:17:20 +0100
+	id WA79LUQMeWnyugEAu9opvQ
+	(envelope-from <devicetree+bounces-260085-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 20:04:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 205B1985BB
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 18:17:20 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A25F99945
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 20:04:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 051553048888
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:14:20 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 12D37300FF97
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 19:02:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E02AF363C46;
-	Tue, 27 Jan 2026 17:14:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B53682620DE;
+	Tue, 27 Jan 2026 19:02:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="mqdJCvhQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F597Q6x1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011047.outbound.protection.outlook.com [52.101.70.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com [209.85.222.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A90F3164C3;
-	Tue, 27 Jan 2026 17:14:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.47
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769534057; cv=fail; b=EUVjJI3lHW2fa0/MKTuKZqdii/f7zFwDTwMiywm5fC190L45fh+CMTRRKWPgkZttd6kD4iLstT9v/PvOLhInLCblPiq43e+Qg+q+GcRCaZmEFvy0VCGydDo9tUe5vFv7bvmuzsMP5ctfwJNMpXFebUBHtJHgYLncxRhIuPKBwyU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769534057; c=relaxed/simple;
-	bh=FHT668IY1o0ckGRYp+7+5fQfyUr8FMdtZFB7HLIdgcQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=o2vEr1GyFCDxH5PWjrUvfVvnjnRr27db4N5okQ4eFd7AZoWNIoNAIBwgPLPZb5/3gLO7/cKLd6hTD1f1WrXpBC2FO/XbYvHgj3toHnwoKDeg4pB8jJG+tg9sNsjsA/xNrV/hXNx5FmsM6Ls7zzfFBhIUo1/hWtAoQ5Za9Zz0e2M=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=mqdJCvhQ; arc=fail smtp.client-ip=52.101.70.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=W670u5/S1yZ6UubdtXtmBlpt4QEbPM+KxPm+H3XO/9pnY+5OLowu9YvdMIRN8CJyo8zcDpxMBjD2PsumC9YsLGZrAnR8cQ6U44FfcURYjp6kIHmbPD0K32QeRLHhsdwGSrtYzu1ovQm3J8k6xm9D0DZNFsqurU5J/9OE5va9bzieXT4KrDh2D3JLwo7GIEJ4cNgwGf3gpyvc0JNk6YR+uwBR+DSoE2xkBCxcMCED+9w85dqN2uNxs2e6r1qfgl4+mUDgJCvD/Od+oJqW8nUOsIWQrIVYkwPCfpooVm9JdBNHVD+k8ua9c95QcSv4uMj61agZWGHB6BptIkN2R8YcJQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wwLGdWhUsAJ8RP+T+F+GjVFHAs8vypgdA24qMS70SJE=;
- b=qIdqARh/I1vaCT8DZLJfPKkDUwJdi9+/RYo6KlFL6aUCIQtXuj/dzlmTGeivhDFFEPmO/Y+ygriqZ+UHJpjX2fRnAa7GUJjZzYRktwsYGkZ25K6+df8CmE59mkTtlS/FpLEU8IILQPCHkOGE4kdLJRxjgGnjS5svQYjOuHCJ8v5ZP9AQ/OInUqKhzBnXLPoitJaApOboBqF1tqsvvyS4XVeM4Vsx26McW5/kVstjgsNHKb1r6igFoY4X5lc2CSXyB79wQvWdF0MhLxoYuQBaGTG3qxdHGfBktXw+JemnraeiVavMWtMRZZm6ufJ3wk7ccULUicgG5s5xbwlNwf6dsQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wwLGdWhUsAJ8RP+T+F+GjVFHAs8vypgdA24qMS70SJE=;
- b=mqdJCvhQsrlgtGvLVTgxStopmYlFD0aETDitPqNO2o/G6fZARM6qRtZ+L/5q/rdHU7G7j37421o3ukij7+dvSI6XyX5FDv1oE7webR2JTqytISpXPbita60PnRR/rkHPQ3R2tlkh+x1i6Nr5ySxIFTC4aBuV/zaXZs3ndix2P2PrXDRzO7facg6SjpY3aZJtySLw7lniSHNtN6pWez4W0IIuccY2bldKDSX0586beBDpko/Ruk5KZKxz1Ey4InMidldNiXRqfFiGaN3S7y+ONp5YmOeaPrDnbeyiEvN6gKalKi7a8Z2CldG7xba9A7I8kO/Jc2qsJRINTtVM93JwMw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by DUZPR04MB10061.eurprd04.prod.outlook.com (2603:10a6:10:4df::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.16; Tue, 27 Jan
- 2026 17:14:12 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9520.005; Tue, 27 Jan 2026
- 17:14:12 +0000
-Date: Tue, 27 Jan 2026 12:14:00 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Shengjiu Wang <shengjiu.wang@nxp.com>,
-	Chancel Liu <chancel.liu@nxp.com>, linux-sound@vger.kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0394F45038
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 19:02:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.48
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769540529; cv=none; b=JY38e9ojbkZrnTC2DWzix1XhrneTx0EH1TnN2eYUvHq0Tan4Dv7WSVRCpAACJEu1pX1qjxoJwVuvriCWEgQw07pqzqvI+q5+tcvp3LyNsLB89nfQC85xq/6HFLoUTcubpC2H7n6r3u0OusW9Ua8Vm8NjWStI81n//jc4kQ89vJU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769540529; c=relaxed/simple;
+	bh=T44VeR198I3upruOy1asKmWdrTidLtonZaA4O+DeKc8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gvU7n2vpPNMEBFSeOqXgYz+WIq2UtmPzTTJBYWOm2J4OXe1qmweKupVsxVrDweJnv3RfuEwyj0uDwjeki4PBgLaW4j6N3zdudRRfIYwm2DkNWU/CoVXCp/f9eGHSM4jKZ/bQX3w1jz2m8mODRhMCBXNedKcDWQpCyqFJbNmymPg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=F597Q6x1; arc=none smtp.client-ip=209.85.222.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f48.google.com with SMTP id a1e0cc1a2514c-947fe9e92c3so4460799241.2
+        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 11:02:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1769540527; x=1770145327; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=m0NN/cRu09v0DOapIZODcIBfVWE6w2WjO1wQzxU5hQw=;
+        b=F597Q6x11Hta/OpJK3UINZnLm82aLVzO1YHYRxLzWblxofSdhym08xeYn069M6gdzp
+         LTJr8YRXQdKwws2Tw4bKVoq7PC0fk8X/ALtzIejDxggtvca5JI/n6Xox8T3ocRYI1YmZ
+         ax+i0kGnGS62wJ0POxLXBHePxF1gZdqEANLuEKGMdlLB1v0Yw9hXUBHljH3PsKgSTkkT
+         QI9SJogVqR8qkDkWuxBccVAOpF6quhbIj3uUcyhJexUFpzkTk/XmCfkVudQdWTnu+bZv
+         jDvZPJbUElrIWjUbNFYjBDQX9yZODDFVE4+rtv1tUNXpMJ9wpR2RsVRIj6qTZa4ZZ1CZ
+         dyzA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769540527; x=1770145327;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=m0NN/cRu09v0DOapIZODcIBfVWE6w2WjO1wQzxU5hQw=;
+        b=n/xMkPCd/+5OT6UFL8K1t02RvGFXYIATlsuQtTKzHN8h/q1B2VMd3nVh9U1kFeAjyo
+         ANP2+TFOtqZcMap9qKHbMoFBtOMxsFEDPurVWDW9yRJ54Pm0kapawPYZRBOoCONZY4hg
+         JZh/rCGMhbSPJaWP5AHbFC84Kq9i+sZnwtK/4OAvKfzxztI3jxuzFc8jlIgernJ8PH7Z
+         eXV4w4BA5aYAyWTaszzLfG9mN6+gd+/efSw6SYDb9lInB0icxcTCnKKbmMN+Gpfd8qn1
+         KYVJ+yqOMDIrleMlBEOydC2VnWpzMJt+yOPs2MqKO3nJzaKK1HdS6aP0tXEKO0t7Trvw
+         OOdA==
+X-Forwarded-Encrypted: i=1; AJvYcCUmGv/xHvdmeyDoWnOmVuqKly2Xp/jJNLc97VxGuEB+wdC1Qr2YJjyx4rk/GQj7HKBs+BeeNf3s4xDu@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywn7COzbwBi3+g5wtvv3l7T3XbGkZj8H8XDSCoe2HReaZoPB7a0
+	/9PYjsPTdbcFmf1bxudXuQ356k/PIZLJcejJgu9TJ0wDopPWEH/EUdmkZcapNmH4
+X-Gm-Gg: AZuq6aLCsg0HX91NVVyIsYmK+rLBo9iaBS54obg5gLvrk1esXn6GjcL9585WhbskK3+
+	ov0Szxe0ORxneQP+5psA63ABcWfA5wsADBQQBWNZPanHjybmrHRn7u7fvnITDXUHb/aT9G9n2O5
+	cPMi4ql4+66K4mQhRU/AKMKtNuOAOTX+U1oKV8VJ7HIl5QpN4cRvzpNvSjsE60F1yq9B+LeG5cT
+	LZQ1b8bpzazYX2KYx1sGRyCGQH7MAhGEWWASTTqqaEyWOoDwcnpKJMHBrH6IfCo2TMx/2hTNN+T
+	u62rt6JM6TTQnqerroWJND2ag+n5gRkvJDORCCbdEnbkDcrfD2fhZ/K3+JNpnLm/rloe4JOyLJs
+	Gvo+KNil9NKFjveRb2C33QXf169SdNd6Y3o3VNrYMkpN5ZKb7PuY2IIHbcZyPHIQ4zeb+YbmLiW
+	weXMPfJNjCARLGYNBFyW12P+ux
+X-Received: by 2002:a05:7300:7491:b0:2ae:5c71:3535 with SMTP id 5a478bee46e88-2b78d8a8ca3mr1787617eec.9.1769534542029;
+        Tue, 27 Jan 2026 09:22:22 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b79c8f031csm23765eec.21.2026.01.27.09.22.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Jan 2026 09:22:21 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Tue, 27 Jan 2026 09:22:20 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: Marius Cristea <marius.cristea@microchip.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: Re: [PATCH v2 2/2] arm64: dts: imx95-15x15-frdm: support AONMIX MQS
-Message-ID: <aXjyWHrwCJ19oUkX@lizhi-Precision-Tower-5810>
-References: <20260126145537.2301-1-laurentiumihalcea111@gmail.com>
- <20260126145537.2301-3-laurentiumihalcea111@gmail.com>
- <aXeY44T+5rvCqBs8@lizhi-Precision-Tower-5810>
- <c4f4a6cf-8511-44ac-8648-d8c4093e24d0@gmail.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c4f4a6cf-8511-44ac-8648-d8c4093e24d0@gmail.com>
-X-ClientProxiedBy: BYAPR02CA0015.namprd02.prod.outlook.com
- (2603:10b6:a02:ee::28) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] hwmon: temperature: add support for EMC1812
+Message-ID: <8248d422-c764-4b2d-ba82-3a68cff21256@roeck-us.net>
+References: <20260127-hw_mon-emc1812-v4-0-6bf636b54847@microchip.com>
+ <20260127-hw_mon-emc1812-v4-2-6bf636b54847@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|DUZPR04MB10061:EE_
-X-MS-Office365-Filtering-Correlation-Id: c3781ce2-00ec-4f92-6cf7-08de5dc77da6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|19092799006|7416014|366016|376014|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?4M9z3QSDtDkSkN/R+L/M5YxIb9eX5k3ZV56MMJS2dhype5WZEmlQ9ImpB3XN?=
- =?us-ascii?Q?ybcEvKIzenJ6hnj+axv9uR5Pk4hBnQxu/T75NoTG+sVuBeTMBrFO1ytbOteX?=
- =?us-ascii?Q?zPm8wsPM0CiNBwJh2qwnqBGlqYrFuXS/TszsAuKhDDrNa7JlzgJvqHdx3twq?=
- =?us-ascii?Q?Fi0AIhZjvF6PB9m969fRaShJvcniwQnfFsddKkGBzrhvRr0kLd3mbH6uDPwa?=
- =?us-ascii?Q?KfT5YlYhN8GEHBm2AZRhX01fmyxjYaveuEYw6FB7B2QVJpm8EXqXCzpTf5Nd?=
- =?us-ascii?Q?VyJ+kG7OnN0JjPY4mIrBODNRsKR1MFTjpcDP6ghjUIdnhVlm9u2YZ94qwDpA?=
- =?us-ascii?Q?qMT/GutiKj/Tr/vpeEiplpufYkH0BUkEVlaN7eGjyaUYYK4pGVkz/n5+zh2v?=
- =?us-ascii?Q?1X3Y8LQDeE5VH+PMGd0s5+eT0D9zNkS6u/yaOzO7bYIOqScm5w6TYD23Libo?=
- =?us-ascii?Q?7zYHvvM859Us3YuukNkG3pbO2Kwxkn+Dl91oU0ww361umhp0LUdZLy0nRhZY?=
- =?us-ascii?Q?N7ZGTgJn6aJs+a9uoclJ+loJn2I9wgERuVSpgZOk87dXxO5vYXjTido1+50B?=
- =?us-ascii?Q?/FSqh5jYq/3x9K1zGhQlBojqUzfvIwRECjqHjx+L7Ogs9+WzdiJ7AaBU0qwS?=
- =?us-ascii?Q?7Ib2y/D3Te18atVvaxzWp/hFyDU1NSgk4wlqqIiqsec+lhF6XgxqLTzAJiW/?=
- =?us-ascii?Q?OMOiWgwx2k7Gt6iRRuUcQg8DMQ/pm/rtxyOZVe9tdBg/1JOE3a3bZ/jfSAJY?=
- =?us-ascii?Q?YXNvSebL+sEUqERnmmJ1nvhbRYjCfSPOZC2DgMAsfZnYULipN2S8q6FzHuQ0?=
- =?us-ascii?Q?6lMwgg9yH3U3uNctMJ9oR3aCPn0p7IZU68f8LnO3R9sT3JWsHgtwyd8M1QLC?=
- =?us-ascii?Q?n63zVURCUtRR24kPfwy/mTqbZrVnyAJjlKql2TU1c3PsaeVzrT3sasz0DVBD?=
- =?us-ascii?Q?BGMpo7W2iURN5GdGrI/HikRrFT4zJR0/AAePp4hM5nww5Km+/jagS9pi3/4/?=
- =?us-ascii?Q?b3F2TS+3oHe+nIFDoOUarX1Pa6XBWWlHMMDpUQRhMcLlzpkJxwTOVzY793r0?=
- =?us-ascii?Q?Q8JTAPG118ZwPZw+l2gtZJoMLVYB/hDX+BB2W6ExsFwGz0Mz7NjGMyFkjNmI?=
- =?us-ascii?Q?1OO9gl3Oqy31sk3yTqOPOoVVjYHhZn2FXD+T1odfqM9eQ6pGuKezsGyu5W0I?=
- =?us-ascii?Q?K4q1q2KJDdYqdi3VN5deXCXpCtC6haCZWIUsauQmBKBLeLCYsfOSj9UpLf65?=
- =?us-ascii?Q?cG0ScEP4bWPYpwbox4o6NGsOfhunt6CdZi92caF0Mr6l2KCJNxWjFj+Suntc?=
- =?us-ascii?Q?rqEEItuegJADQ8lG+FfoNKrUEc2LZNf85dK7M0bICEUnBA/U5M6OnVFiflBb?=
- =?us-ascii?Q?l0l6Sc+RsYFcS+fW2X4tczeUigucoXZrr9WkA71Z3nSMGjXWCzF/7xWWBKN4?=
- =?us-ascii?Q?NcRqsEOZvSYoq8fT+xqP174rPFr27e4hZ5jmukTC56GaoRpMyUhpkrldxOAE?=
- =?us-ascii?Q?QoOi5ZbjuQ74byZMe/QTQnyvYSFPLhMFsf1xR9Ie6PhSlSNAqu+YaijoJYvA?=
- =?us-ascii?Q?G6vPCfo2WdHaBj0crg5N28S+0CXWpQ39mEDTZ7ZpR6XYyrXEIQtK7GEaR5Uo?=
- =?us-ascii?Q?AZ1WF0pYcMdf2lwlWXT4nnY=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(19092799006)(7416014)(366016)(376014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?EtMSMj205Gtx3Lu0aCLBGC29gsGCp7QKdBkmOehzApKsgPivAwBEnO26AUam?=
- =?us-ascii?Q?eDa/zHacirol4J61JWeWfse1LqeUoTqfk7sHBzttmS3H4Z0JuMAkDZDOPMtr?=
- =?us-ascii?Q?P7/tgVI1P2AZoU6aOekNDIpnRLY9Tvmqw9S8oEYGzV57aRgqBgOWuT9sHqr4?=
- =?us-ascii?Q?OtVmG872TzqXniQ1sz4oNFFqc1z2dNosmGPm4bTLEm/qAk9gpslTcaBtW5T3?=
- =?us-ascii?Q?obC6m3xcup/IXntKO5HIuWz6PbmJryC1nOtIrBLqajfcHasLdMz5kKHyILCE?=
- =?us-ascii?Q?e62PUi9AQUKmedswBBxec+ajme+UjBkvNAtQBzzODyEWsMYXjv11xsWSBloj?=
- =?us-ascii?Q?479mL25alClqzNUufRGZ9XbxVPWuu9iojzwBBluWrwN/6TnKqVAJyYUwQoT6?=
- =?us-ascii?Q?zmPGCZP1Xz4hZg7DCNeou8d0sAwLlS76Nowy+k1HWuJpG2q1Vm3Eziu2P+Pg?=
- =?us-ascii?Q?z2EhhKY8AmRv0pSV8/K+hukIVS5ADK/6y7HM199/KSyf0XlWmV6ZUDQv0vnX?=
- =?us-ascii?Q?SdJBmgjKFOKxJOs3Ihljbvj1nuoV+YUlB4HyZPpNmgPCN7fsGNCewCNfaZUe?=
- =?us-ascii?Q?v4mepn/p7afhS6Ka99YA9JPDRam7Io8EE89ZALtbxfiniKHmtvPaq9L0XD11?=
- =?us-ascii?Q?ugwMsikjayg256i0OhU5aS8uQh/TxQkLk9Tle7dkDMhdsdbQmLfgA1NGvWcD?=
- =?us-ascii?Q?nqBPSPBgrU/W4aHwMG9AdevKyPKdBWDqc75dv5Pc4JR/UWNNdAAsBJTSKmiy?=
- =?us-ascii?Q?krqeE/qydxIo+3X/nGeHoFT3OqQhWKYuugQC54Sabw3Pw/EH8ftVOtUq2jKa?=
- =?us-ascii?Q?3t9C+ieBA1pkmyPyQU7TS32O16nUe2ee4WazOGRxXyvJweTDn7U4eJ6pU1mi?=
- =?us-ascii?Q?Oga5D9lFLqUlRAHYj3Rm2dZLtL71acviVDh+KldDcgfO9CzF9gwi1Nfqclax?=
- =?us-ascii?Q?trMHvd95AKOzOIrI+vY/igX6epNlAvGiuT8ORpHlo662vHO9U6cEnzOr+zs+?=
- =?us-ascii?Q?c+WrUo6pjpN7jCkYNiC+b5hQtM6S0TJwvXr1FdUuGbIbgoNP+bnIk+LSY7P/?=
- =?us-ascii?Q?VjT+veZelYyx8cu7drtzVZykCWF9XUHt3A6yilYEySQiihs7oaDxoT1ZQBO2?=
- =?us-ascii?Q?TPRZjWFyTbgprosWD7UkKsJNeqDwMz2QmtcIgSaVo9kiArsLgwk2pX3fMN5M?=
- =?us-ascii?Q?Z99uN8t8ulWFqvzeYl7QNQyw5u0sXgr9KiKQqL63YDGeyNlJ3sBmxgNrANd7?=
- =?us-ascii?Q?GFkqjKSj9cyqqpPkS0XNiommQlPEXi2r7o0nRX+pVwpzrj62MTYgHryD7qAo?=
- =?us-ascii?Q?zNPe02v/I0rTgOl2tZd34IlGGPsSIzdP9C+miyK0Zg/9oml9tEDvkUAY4VPp?=
- =?us-ascii?Q?OjEr7ZU0YbTPPTIpm1C32ShYW5JI9YR2K7ZNKpftALPZtjCk5HbLfip00M+C?=
- =?us-ascii?Q?M8+qsNXJtBfFJ89AdGZ+l5nIlwOshbQecG3beWghSPO8WcFqp+hSFHO0XP8m?=
- =?us-ascii?Q?HNSmI2wAkNMgupHlrjHVXnpUKJQIg6sFBq5g5XdPZ0EhumD/fscQcykRPtN7?=
- =?us-ascii?Q?szNVVZxv5wnM2l7aX06CvPocEfBWEbA8ietCd+mNlzukPEiDfsZ5462flbOO?=
- =?us-ascii?Q?nXU0KcWZlo86L5UHc/aZ1kkVopSG5I54+hoYP11ZcEC9ZtE7jS33EemS9I62?=
- =?us-ascii?Q?kFyyeyhN6DEQOtJe1sRDfJB0hXnkvTw2xoBNRGrRMYBeM6GH?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c3781ce2-00ec-4f92-6cf7-08de5dc77da6
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jan 2026 17:14:12.2882
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ZQH/1rynz1RaaUaAz0soC8hvlmqkFpMCpF9foTxeW8UfI//75ewLy4xoEcTisi9XYsY7PH0zr/UBkSFrELQ7CA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DUZPR04MB10061
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260127-hw_mon-emc1812-v4-2-6bf636b54847@microchip.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.84 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260061-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	TAGGED_FROM(0.00)[bounces-260085-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[roeck-us.net];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,pengutronix.de,nxp.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,nxp.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 205B1985BB
+	DBL_BLOCKED_OPENRESOLVER(0.00)[roeck-us.net:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,microchip.com:url,microchip.com:email]
+X-Rspamd-Queue-Id: 5A25F99945
 X-Rspamd-Action: no action
 
-On Tue, Jan 27, 2026 at 04:22:19AM -0800, Laurentiu Mihalcea wrote:
->
-> On 1/26/2026 8:40 AM, Frank Li wrote:
-> > On Mon, Jan 26, 2026 at 06:55:37AM -0800, Laurentiu Mihalcea wrote:
-> >> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
-> >>
-> >> Add support for AONMIX MQS (i.e. MQS1).
-> >>
-> >> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
-> >> ---
-> >>  .../boot/dts/freescale/imx95-15x15-frdm.dts   | 73 +++++++++++++++++++
-> >>  arch/arm64/boot/dts/freescale/imx95.dtsi      |  5 ++
-> > Chip's dtsi and board dts should be two patches.
-> >
-> > Frank
->
->
-> What's the rationale for this? Is this "rule" documented anywhere?
->
-> IMO, the DTSI-related changes are small enough that it doesn't justify
->
-> the split into different patches. The split would've made more sense
->
-> if we were touching more than 1 board.
+Hi,
 
-Shawn's reqirement. I want to continue to follow this rule.
+On Tue, Jan 27, 2026 at 05:05:25PM +0200, Marius Cristea wrote:
+> This is the hwmon driver for Microchip EMC1812/13/14/15/33
+> Multichannel Low-Voltage Remote Diode Sensor Family.
+> 
+> EMC1812 has one external remote temperature monitoring channel.
+> EMC1813 has two external remote temperature monitoring channels.
+> EMC1814 has three external remote temperature monitoring channels and
+> channels 2 and 3 supports anti parallel diode.
+> EMC1815 has four external remote temperature monitoring channels and
+> channels 1/2  and 3/4 supports anti parallel diode.
+> EMC1833 has two external remote temperature monitoring channels and
+> channels 1 and 2 supports anti parallel diode.
+> 
+> Signed-off-by: Marius Cristea <marius.cristea@microchip.com>
+> ---
+>  Documentation/hwmon/emc1812.rst |  68 +++
+>  Documentation/hwmon/index.rst   |   1 +
+>  MAINTAINERS                     |   2 +
+>  drivers/hwmon/Kconfig           |  11 +
+>  drivers/hwmon/Makefile          |   1 +
+>  drivers/hwmon/emc1812.c         | 963 ++++++++++++++++++++++++++++++++++++++++
+>  6 files changed, 1046 insertions(+)
+> 
+> diff --git a/Documentation/hwmon/emc1812.rst b/Documentation/hwmon/emc1812.rst
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..799111a89541c57a839a121bb3dfc12f42604bc2
+> --- /dev/null
+> +++ b/Documentation/hwmon/emc1812.rst
+> @@ -0,0 +1,68 @@
+> +.. SPDX-License-Identifier: GPL-2.0-or-later
+> +
+> +Kernel driver emc1802
+> +=====================
+> +
+> +Supported chips:
+> +
+> +  * Microchip EMC1812, EMC1813, EMC1814, EMC1815, EMC1833
+> +
+> +    Addresses scanned: I2C 0x1c, 0x3c, 0x4c, 0x4d, 0x5c, 0x6c, 0x7c
+> +
+> +    Prefix: 'emc1812'
+> +
+> +    Datasheets:
+> +
+> +	- https://ww1.microchip.com/downloads/aemDocuments/documents/MSLD/ProductDocuments/DataSheets/EMC1812-3-4-5-33-Data-Sheet-DS20005751.pdf
+> +
+> +Author:
+> +    Marius Cristea <marius.cristea@microchip.com
+> +
+> +
+> +Description
+> +-----------
+> +
+> +The Microchip EMC181x/33 chips contain up to 4 remote temperature sensors
+> +and one internal.
+> +- The EMC1812 is a single channel remote temperature sensor.
+> +- The EMC1813 and EMC1833 is a dual channel remote temperature sensor. The
+> +remote channels for this selection of devices can support substrate diodes,
+> +discrete diode-connected transistors or CPU/GPU thermal diodes.
+> +- The EMC1814 is a three channel remote temperature sensor that supports
+> +Anti-Parallel Diode (APD) only on one channel. For the channel that does not
+> +support APD functionality, substrate diodes, discrete diode-connected
+> +transistors or CPU/GPU thermal diodes are supported. For the channel that
+> +supports APD, only discrete diode-connected transistors may be implemented.
+> +However, if APD is disabled on the EMC1814, then the channel that supports
+> +APD will be functional with substrate diodes, discrete diode-connected
+> +transistors and CPU/GPU thermal diodes.
+> +- The EMC1815 is a four channel remote temperature sensor. The EMC1815 and
+> +EMC1833 support APD on all channels. When APD is enabled, the channels support
+> +only diode-connected transistors. If APD is disabled, then the channels will
+> +support substrate transistors, discrete diode-connected transistors and
+> +CPU/GPU thermal diodes.
+> +
+> +Note: Disabling APD functionality to implement substrate diodes on devices
+> +that support APD eliminates the benefit of APD (two diodes on one channel).
+> +
+> +The chips implement three limits for each sensor: low (tempX_min), high
+> +(tempX_max) and critical (tempX_crit). The chips also implement an
+> +hysteresis mechanism which applies to all limits. The relative difference
+> +is stored in a single register on the chip, which means that the relative
+> +difference between the limit and its hysteresis is always the same for
+> +all three limits.
+> +
+> +This implementation detail implies the following:
+> +
+> +* When setting a limit, its hysteresis will automatically follow, the
+> +  difference staying unchanged. For example, if the old critical limit was
+> +  80 degrees C, and the hysteresis was 75 degrees C, and you change the
+> +  critical limit to 90 degrees C, then the hysteresis will automatically
+> +  change to 85 degrees C.
+> +* The hysteresis values can't be set independently. We decided to make
+> +  only tempX_crit_hyst writable, while all other hysteresis attributes
+> +  are read-only. Setting tempX_crit_hyst writes the difference between
+> +  tempX_crit_hyst and tempX_crit into the chip, and the same relative
+> +  hysteresis applies automatically to all other limits.
+> +* The limits should be set before the hysteresis. At power up the device
+> +  starts with a 10 degree written into hysteresis register.
+...
+> --- /dev/null
+> +++ b/drivers/hwmon/emc1812.c
+...
+> +
+> +static int emc1812_chip_identify(struct emc1812_data *data, struct i2c_client *client)
+> +{
+> +	const struct emc1812_features *chip;
+> +	struct device *dev = &client->dev;
+> +	int ret, tmp;
+> +
+> +	ret = regmap_read(data->regmap, EMC1812_PRODUCT_ID_ADDR, &tmp);
+> +	if (ret)
+> +		return ret;
+> +
+> +	chip = device_get_match_data(&client->dev);
+> +
+> +	switch (tmp) {
+> +	case EMC1812_PID:
+> +		data->chip = &emc1812_chip_config;
+> +		break;
+> +	case EMC1813_PID:
+> +		data->chip = &emc1813_chip_config;
+> +		break;
+> +	case EMC1814_PID:
+> +		data->chip = &emc1814_chip_config;
+> +		break;
+> +	case EMC1815_PID:
+> +		data->chip = &emc1815_chip_config;
+> +		break;
+> +	case EMC1833_PID:
+> +		data->chip = &emc1833_chip_config;
+> +		break;
+> +	default:
+> +		/*
+> +		 * If failed to identify the hardware based on internal registers,
+> +		 * try using fallback compatible in device tree to deal with some
+> +		 * newer part number.
+> +		 */
+> +		dev_info(dev, "Unknown hardware id: %x\n", tmp);
 
-Frank
+dev_warn() might be more appropriate. Alternatively, use dev_err() and bail out
+with -ENODEV, as suggested below.
 
->
+> +
+> +		data->chip = chip;
+> +
+
+AI feedback:
+
+Potential NULL pointer dereference. `device_get_match_data()` returns NULL
+when the driver is instantiated via I2C ID table (e.g. via sysfs
+`new_device`) instead of via Device Tree or ACPI. If the hardware ID
+is also unknown (triggering the `default` case), `data->chip` becomes NULL.
+
+The function returns 0 (success), and `emc1812_probe` proceeds to call
+`emc1812_parse_fw_config`, which immediately dereferences `data->chip`:
+
+Side note (not from AI): It might be appropriate to notify the user
+if the devicetree data does not match the real hardware.
+
+> +static int emc1812_parse_fw_config(struct emc1812_data *data, struct device *dev)
+> +{
+> +    /* to be able to load the driver in case we don't have device tree */
+> +    if (!dev_fwnode(dev)) {
+> +        data->active_ch_mask = BIT(data->chip->phys_channels) - 1;
+> +        return 0;
+> +    }
+
+This will crash.
+
+The driver should likely use `i2c_get_match_data(client)` instead of
+`device_get_match_data()` to support both ID table and FW node matching,
+or return an error in the default case if `chip` is NULL.
+
+> +		return 0;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
 
