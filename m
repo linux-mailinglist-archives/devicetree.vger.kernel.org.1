@@ -1,258 +1,163 @@
-Return-Path: <devicetree+bounces-260063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260064-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UIzEDpH4eGkxuQEAu9opvQ
-	(envelope-from <devicetree+bounces-260063-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 18:40:33 +0100
+	id tRGcMwD5eGlFuQEAu9opvQ
+	(envelope-from <devicetree+bounces-260064-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 18:42:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B1649893C
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 18:40:32 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 369869895B
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 18:42:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DCE6530214E5
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:39:19 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 540D8300B852
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:42:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A17A314D17;
-	Tue, 27 Jan 2026 17:39:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F60C31D732;
+	Tue, 27 Jan 2026 17:42:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eb1E4br9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IwEHWNY7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f42.google.com (mail-dl1-f42.google.com [74.125.82.42])
+Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A0A931355F
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 17:39:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32D18302742
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 17:42:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769535558; cv=none; b=LfkF/oewMmHZ79pLog3HePY6aGLHCnn2RrIu2mepV3mazUQBNzvtn10BVy/jm60yIwSC3/sJ8Y2ft3SeNnrJAHerCgQ2Id1wZ6c8HsXOlyH3j+6wRZFiduAOhK8S6ceNAB4mmogruh0eXF4UZSlocJa43ScK+Nie1Vnvmy5lsCY=
+	t=1769535740; cv=none; b=bRHOjpR8iCX5u90KVls9JcitxzhwuSbMLdDId/wmghXYVJa6ZBIU/CD55Yym9+PrRnyq60jjifFGwVqXVheIewZ85/5KDYhZxaWkiujSmU3unV86PqyUtBdPpv4ickhVSUhrXvIvQdtYYZE2lPj/JTOkkxgcWre/39g/CTYx8ts=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769535558; c=relaxed/simple;
-	bh=8UVLLIrsHUqOxlqfwM0sGO/TY65ZyUp+76xPFVVS7yQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rsHJLNqOqxeAPS61bkVnP10XjjCKgqh1FfVyCHlo4L2HPyHM2BwxPuORg7sq7zGW3hsptZjjhJ0yjQ9VfW0NMOzVXHRLI9RFZpkheJRhI2QFQbA81eae8H6b7SZkcsF0ij9U1UwoqzWKeHadqU+kQs4g+s7wTuQtYmZUUNfqKkI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eb1E4br9; arc=none smtp.client-ip=74.125.82.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+	s=arc-20240116; t=1769535740; c=relaxed/simple;
+	bh=UQR5Q0TT0vE/il1SHh9UiNaX4lkSPM/Wsx64afUvF8s=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=UMKfuPXh1tJ+asGCpUNXysttDhbLDv1oLs8NeuyfcSywKVpXylX67oNWhxbspDrSuxwX9k1o9MnGiV++9G504/i+fdolIpZ2Tz0oSrxc3F2z6DqUOFvfONtLISo1BV9a8oN4ghUo8r83RBU4jCEFcK45xO7Kvp3EOUdVylm7ZWs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IwEHWNY7; arc=none smtp.client-ip=209.85.216.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f42.google.com with SMTP id a92af1059eb24-1233c155a42so8498914c88.1
-        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 09:39:16 -0800 (PST)
+Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-34c868b197eso5060783a91.2
+        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 09:42:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769535556; x=1770140356; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=kr+iveQN+RoO7r/9SZpPd7B6TCre3+xXPMNTBTcaVrg=;
-        b=eb1E4br9qfXoTQhb5RSfPn4iDWVdaWn0IXsxV0deyiy6XleMuMBIiRg1753yYFg3HQ
-         huPUHu/6un10eSik237teps958qM3uMIVlZoCWajQG0WNS8ad6FA/Zj+O8USXKiVae9J
-         lgKIWDAtnP3gZrAUD6P8atKOJhF60HumdYCayt13LKjBV0b7KaJ1d6M2ow8fh+UE84fZ
-         oR/Y9ERWeIJcl/eLK1KgBQk+hUNewyTXwp96BiU4V095yGeZtJmV3r5zbRfMHQKJgOi8
-         4joUKtxGC28FFBOO4qvN2MB4VD7SjVWoqXB1iL1UYbbO0HhnBdqORrvgrQJaOhlvdE2K
-         Buvg==
+        d=gmail.com; s=20230601; t=1769535738; x=1770140538; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=E9H29XGRCWjq19aHAWGrvC5AjKxI+lrUGaklAUNmCS4=;
+        b=IwEHWNY7XOUBvDIu3PqLmr1fsqJ0J1QPquq1LLmddlSZrjlHAoQHqCxO9NQ0l65Rfy
+         5ddF5it51xV0L3x+eZ0v7hOPN9W1U+3GXcMTSCTnQzWjrtFLHbuoXNJTk3SgwJXm0to1
+         OYEicUEblkIOmeKsN6SvMNQTPs/d9d/fz+lo6T70SZNtZQEdWfWi7MKro6UAXhwJ629C
+         uww917vyJOmEcKYkmsj+HPo4zxaHSe+810jsaAwaB9F6pCLxmb3laxjxD955TdP4SE2T
+         20jSq/ej7zsjx5Gh2un30ECPNm5rbyGHmdzBOxQiK4/MAL+gDVBuIQl4me/dBRA7qKeC
+         Ujyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769535556; x=1770140356;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kr+iveQN+RoO7r/9SZpPd7B6TCre3+xXPMNTBTcaVrg=;
-        b=l37sD5r0JJs1ebn3TnbKpw59xKtHt8tDkeRwvzNAT7TPNXhPo5+sXzv6ti/PBdluZF
-         a1e8x0Hxxi5xaO+W7HO5Zkt6vnZGOYlkcRYR3P6WbjP0ucUg0HBnXDv2zAL58SL1U/cE
-         V4oegDZd4jqs7Fy+0yq/VQYalH6nT+PmXSZ/Q988kqnAGefafK9K00mj481A/JZVtZvU
-         8FtT3aQqAigebXwZlimjEOcK7ESpIV3w70NsN5EldblM+W2/yt81V+6BXKnPynNZHF/d
-         11tBxuoqD2fdGw3orDWfhGopJov48UNokJUNmZVUYBKyOGwNtibSejkCikahSCCAA9ub
-         DmCg==
-X-Forwarded-Encrypted: i=1; AJvYcCUxF0Lj6NArOooYnl5MEKr5VKMbMhK+JV3e9KLETXJ0DprKfv+eQUp7VhyRWv1CG8meu2U/FxH6Tle1@vger.kernel.org
-X-Gm-Message-State: AOJu0YwP70cS4iJ2RUVonR4WlClUqg4qKjj1RcD1lLy8GjoQ3q0/wEwS
-	9SKiEt0paLYOpE/O0nnJzKF+CkEUJh30rCCJKQ1N5eU3RRte6Hx+OiPm
-X-Gm-Gg: AZuq6aJk9dpEBhyIWbsz4WRdZO3OPu0X7+zoj7ToZODSdydKHwO7uelIMlApNl2kuLw
-	+oMWw8Zvbnbynkf0V8YQUSGgJnMV9LfWaabzN/AhXH8k/dggeCR6PFHBG8iFomCYS1Uh3DgcEqf
-	bsCY9qoIA/nd32bzpWfEPYvwSiBm35ixpAuQcDwe5sdYP3rDN0GDpwLeo2E805mBGZuqIm9MFbN
-	sbY1zJCqz1wz/dbuUtClvEai29nwJPCXY6o9nq4B63ABmKOvwKj0ZYOM8u9W78o0yDDVGZEjlOo
-	46SaNsFbmf7LAj583TywUs1wtUhB4RNFm7ThhCEa+TPImC+j3kw+jhQPZVLVICJBbxcYHcRvVJ4
-	a2d8j/z/IbZrirwRva3bhguItPVNARVfiookare3ndxde7Lm3GAtBPpDibKX5htjNsG7ICwc3/q
-	WA2oQB4ZIoaUovGA7lAIIejS9lsxgviDMVxMrnle6zLF9R46c/OhVuzBjTqEABVuq1hxGkbsU=
-X-Received: by 2002:a05:7022:6ba5:b0:119:e56b:9899 with SMTP id a92af1059eb24-1249ffe4d33mr1398672c88.0.1769535555975;
-        Tue, 27 Jan 2026 09:39:15 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-124a7c62819sm339772c88.12.2026.01.27.09.39.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Jan 2026 09:39:14 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <eed64bf1-93af-4b36-adf5-1476cb40edbb@roeck-us.net>
-Date: Tue, 27 Jan 2026 09:39:12 -0800
+        d=1e100.net; s=20230601; t=1769535738; x=1770140538;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=E9H29XGRCWjq19aHAWGrvC5AjKxI+lrUGaklAUNmCS4=;
+        b=fM5Hp7NBKY5XCGvrqN3ZN2aFwxmalHVlLYW4IWqv648qw7pBAQQ/tCpyYrHqN425ZA
+         U3mUjbic9Ge8VPjrpZn+M4ra5Yp/BtmuTVLnGV6jbGi8Ails28aiMSR/frRFpNx8WEZt
+         5tcFwYgH3M0l+kwlmfYF7pa0rZQwG+Vqv8NWXwfepb9dqNX7r3kT4pAUTXn+Zx4EbU/s
+         NnZWbcISCv55IN91JuXeAOVDi+V41hqxWXIIeARCo4YK9p5DK7OMlcNCy44WI8abS09t
+         xQI7RPx3l89uk4pwdkXSmQoeqEsyKpxj4BF9qLG80LUfTvuH8g6YgyfhIdqtwe6Pp/4M
+         XxEg==
+X-Forwarded-Encrypted: i=1; AJvYcCUkDGMSwIwLIZTSyVhcHMzigp7uOdZpTA0u9OvRwcF8eF7DT2c40MkziYjgTrK5S71v8gZyxTbjLmj8@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw9IINoJQ3OPOW7BoCRh2Y89OJ3EjE5P8XlfcMb8d4vZQ94ugru
+	W89QjU2JuZnaRYIStBy3q5CYxgzqXwSYyX9qN9Xz1D2h+iH8VMlbXZEXyimMjw==
+X-Gm-Gg: AZuq6aJXuD2EtgKVr32qbCYtRwf/OU4IlemjTa+ZZdnvgKBEeFoRCg85YX0muDjxvrc
+	NhF3XahZzlaVZK7wek/oCbSjYEreps1l7MoCzrJphOq0+wP4l1fop58YqAlIIHmPLUts0uk1ZOi
+	7ra9thnn2+IRluYFzKbkIPRAMZNNnpM+7ehxMKrC+h0TmMpCwMzDg/NC0YB63FolsSP7byC3X0T
+	RNXV7Qdr7XLLrKTl29d8qhVycZCPC7gI75m02zZBsItTm05wZG/Aogn7kz5YU5v5qjlQMuLjfis
+	3sw14BtF2Gps0EhknOH6C4z3K3aeWdzg4G0G1b5NdMzWnjUNX0O4hVS0tJ+25v0sdTm+GG41DLe
+	Vx5S5gxaiV/RhfR3NWM/HN/i4oI5baiWwhSP1g4hFkKa33+AtU0O4WCG8ybDMpvu8LMk9oGuiAm
+	mSRROdLmA/BDlOUwz3xiwJpw1SQvQbrx2O2A==
+X-Received: by 2002:a17:90b:1805:b0:34a:b8e0:dd59 with SMTP id 98e67ed59e1d1-353fed0a019mr2364861a91.15.1769535738230;
+        Tue, 27 Jan 2026 09:42:18 -0800 (PST)
+Received: from Black-Pearl.localdomain ([115.99.251.203])
+        by smtp.googlemail.com with ESMTPSA id 98e67ed59e1d1-3540f2cae91sm89251a91.4.2026.01.27.09.42.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Jan 2026 09:42:17 -0800 (PST)
+From: Charan Pedumuru <charan.pedumuru@gmail.com>
+Subject: [PATCH v2 0/2] dt-bindings: usb: Convert TI OMAP MUSB OTG
+ controller and DWC3 USB Glue to DT schema
+Date: Tue, 27 Jan 2026 17:42:12 +0000
+Message-Id: <20260127-ti-usb-v2-0-9dd6a65b43df@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 0/3] hwmon: Add support for the LTC4283 Hot Swap
- Controller
-To: nuno.sa@analog.com, linux-hwmon@vger.kernel.org,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
- Jonathan Corbet <corbet@lwn.net>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, "Rob Herring (Arm)" <robh@kernel.org>,
- Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>
-References: <20251223-ltc4283-support-v5-0-1152bff59a61@analog.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <20251223-ltc4283-support-v5-0-1152bff59a61@analog.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPT4eGkC/zXMyw7CIBCF4VdpZi0GxoDiyvcwXbQwbSexl0Alm
+ oZ3Fxtd/icn3waRAlOEa7VBoMSR56kEHipwQzP1JNiXBpRopJJWrCyesRXWd+bkzkRKI5TzEqj
+ j1w7d69IDx3UO791N6rv+CDR/IikhBV60dgottcbf+rHhx9HNI9Q55w9wlBwVnAAAAA==
+X-Change-ID: 20260109-ti-usb-9df63c7ee152
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@ti.com>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Charan Pedumuru <charan.pedumuru@gmail.com>
+X-Mailer: b4 0.14.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-260063-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[roeck-us.net];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260064-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[charanpedumuru@gmail.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 9B1649893C
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 369869895B
 X-Rspamd-Action: no action
 
-Hi Nuno,
+This series converts the old text-based DeviceTree bindings for TI OMAP
+MUSB OTG controller and TI DWC3 USB glue to modern JSON-schema (YAML) format.
 
-On 12/23/25 04:21, Nuno Sá via B4 Relay wrote:
-> This is v3 for the LTC4283 how swap controller. Main change is that I'm
-> now using the auxiliary bus for adding the GPIO device (done depending
-> on FW properties).
-> 
-> Similar to the LTC4282 device, we're clearing some fault logs in the
-> reset_history attributes.
-> 
-
-I ran the patch series through an AI review. Results are below.
-Please take a look.
-
-Thanks,
-Guenter
+Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+---
+Changes in v2:
+- ti,omap4-musb: Fix a missing ">" in the maintainer entry.
+- ti,omap4-musb: Drop obsolete "pattern" and "ti,hwmods" properties.
+- ti,omap4-musb: Update "interrupt-names" and "power" properties for clarity.
+- ti,dwc3: Drop obsolete "pattern" and "ti,hwmods" properties.
+- ti,omap4-musb, ti,dwc3: Revise commit message to justify changes in YAML bindings.
+- Link to v1: https://lore.kernel.org/r/20260126-ti-usb-v1-0-2855c129eb6d@gmail.com
 
 ---
-# Deep Dive Regression Analysis Log
-Date: 2026-01-27
+Charan Pedumuru (2):
+      dt-bindings: usb: ti,omap4-musb: convert to DT schema
+      dt-bindings: usb: ti,dwc3: convert to DT schema
 
-## Commit 5998c620fbd8: gpio: gpio-ltc4283: Add support for the LTC4283 Swap Controller
+ Documentation/devicetree/bindings/usb/omap-usb.txt |  80 --------------
+ Documentation/devicetree/bindings/usb/ti,dwc3.yaml | 100 +++++++++++++++++
+ .../devicetree/bindings/usb/ti,omap4-musb.yaml     | 120 +++++++++++++++++++++
+ 3 files changed, 220 insertions(+), 80 deletions(-)
+---
+base-commit: f417b7ffcbef7d76b0d8860518f50dae0e7e5eda
+change-id: 20260109-ti-usb-9df63c7ee152
 
-**Context**:
-- Adds a new GPIO driver `drivers/gpio/gpio-ltc4283.c`.
-- Depends on `drivers/hwmon/ltc4283.c` for regmap and MFD instantiation.
-
-**Findings**:
-1.  **Typo/Naming Issue**:
-     - File `drivers/gpio/gpio-ltc4283.c` uses `LTC42823_ADIO_CONFIG` definition.
-     - `LTC42823` appears to be a typo for `LTC4283`.
-     - `drivers/gpio/gpio-ltc4283.c:26`: `#define LTC42823_ADIO_CONFIG 0x12`
-
-2.  **Logic Verification**:
-     - GPIO direction and value setting logic appears consistent with bitmasks provided, assuming register `0x12` and `0x11` layout is correct as inferred.
-
-3.  **Regressions**:
-     - No critical functional regressions found in this commit alone.
-     - Code quality: Typo in macro name.
-
-## Commit 82433332ce16: hwmon: ltc4283: Add support for the LTC4283 Swap Controller
-
-**Context**:
-- Adds core HWMON driver `drivers/hwmon/ltc4283.c`.
-- Handles I2C communication, regmap initialization, and MFD child creation.
-
-**Findings**:
-1.  **Critical Regression: DebugFS Use-After-Free**:
-     - `ltc4283_probe` calls `ltc4283_debugfs_init`.
-     - `ltc4283_debugfs_init` calls `debugfs_create_file_unsafe` creating files associated with `st`.
-     - `st` is allocated with `devm_kzalloc`.
-     - **Issue**: There is no explicit cleanup of debugfs entries (e.g., `debugfs_remove_recursive`) and no `devm_add_action` to handle it.
-     - **Consequence**: When the driver is unbound/unloaded, `st` is freed by devm. The debugfs entries remain. Accessing them triggers a Use-After-Free on `st`.
-     - **Fix Required**: Use `devm_add_action_or_reset` to remove debugfs directory/entries on driver detach.
-
-2.  **Typo**:
-     - `drivers/hwmon/ltc4283.c:1765`: `MODULE_DESCRIPTION("LTC4283 How Swap Controller driver");`
-     - "How Swap" should be "Hot Swap".
-
-3.  **Property Handling**:
-     - Driver respects "missing property" by keeping hardware/EEPROM defaults, while Bindings document specific defaults. This is a minor consistency issue but likely acceptable if EEPROM usually matches defaults.
-
-## Commit a175d04e5900: dt-bindings: hwmon: Document the LTC4283 Swap Controller
-
-**Context**:
-- Adds DT bindings.
-
-**Findings**:
-- Bindings appear correct and consistent with driver usage.
-- Dependencies logic (`adi,external-fault-retry-enable` requiring `adi,pgio4-func` to not be `gpio`) is enforced in both YAML and Driver.
-
-## Summary
-
-**Final Regressions Found**: 1 Major (DebugFS UAF), 2 Minor (Typos).
-
-1.  **Major**: `drivers/hwmon/ltc4283.c`: DebugFS entries are not removed on driver unload, leading to UAF.
-2.  **Minor**: `drivers/gpio/gpio-ltc4283.c`: `LTC42823_ADIO_CONFIG` typo.
-3.  **Minor**: `drivers/hwmon/ltc4283.c`: `MODULE_DESCRIPTION` "How Swap" typo.
+Best regards,
+-- 
+Charan Pedumuru <charan.pedumuru@gmail.com>
 
 
