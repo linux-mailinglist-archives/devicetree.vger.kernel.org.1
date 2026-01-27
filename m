@@ -1,307 +1,183 @@
-Return-Path: <devicetree+bounces-259983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259984-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aGe6G5bYeGmftgEAu9opvQ
-	(envelope-from <devicetree+bounces-259983-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:24:06 +0100
+	id mEnKEsvYeGmftgEAu9opvQ
+	(envelope-from <devicetree+bounces-259984-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:24:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDE38969E4
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:24:05 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3405C96A2E
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:24:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 69F4930FC62E
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:14:57 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 17B8C30433CF
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:15:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA83535EDBE;
-	Tue, 27 Jan 2026 15:10:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D363035E529;
+	Tue, 27 Jan 2026 15:11:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="Ch0BRNRo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UaI65I1w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 387CA35E53A
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 15:10:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF013360753
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 15:11:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769526616; cv=none; b=EYCv2L5mR+7QI9xi4FHZ0PYiU5KngotmL62UQJJTCbeQrBml6+cuKbpZ3p20D06EP9NbjnjUTSg2z5qst1Bx389SpCguQm6IpOq3iFbS9rKLIVS3j/Omnf5hWQHLZHGlpaRE0NpxHxopBq7WYXpZNNKZvJ0Gc6jd62/F2jbrcHE=
+	t=1769526693; cv=none; b=kXuHt4b8aaGyuac9tyy6SkrEOuPfzpyWDiC3zzvLmamETKMSDRHlIHKrwPlklkEKpFhtbhv2e5qy2qpi5Ebc0IoQWzVilOsmKCAy2CdwGG+68fiqopYpteKP0lR0VrdblaHy0UqaC7vEtyGtOBBWJuTJR+DOjTTytsZFf+e4Kcs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769526616; c=relaxed/simple;
-	bh=V2NzastbFhpzOzHM5nA+miN7xKYKTp/1Xy8T6Y+6Cv0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=p/HNGjOTk6i4pubWWEmUcgu0HCAEzSmUUc9SMEAxl5sjV8BjF3+n5D3ojs0P32Naf5y4KN0owp11p8REHyEFkAaQ6CAztm4IFOYY/kRIULi6xbM3ECDDzpk5Y1JDiQYktvGkecFckPOeDtiIeabq7/nTLx/cYdr22/BkziuFn3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca; spf=pass smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=Ch0BRNRo; arc=none smtp.client-ip=209.85.160.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ndufresne.ca
-Received: by mail-qt1-f182.google.com with SMTP id d75a77b69052e-5033387c80aso4643411cf.0
-        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 07:10:13 -0800 (PST)
+	s=arc-20240116; t=1769526693; c=relaxed/simple;
+	bh=Blyg8N4zeGue27HmsSmO/bdRk6JHhRMc1NUiP/XT1BI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aPfphMyiXJpHKtBHdbeo93fo1KCf5Meddv22ziHAw699TzF9DTdsltHWc1vZUZ+cX6Gh2/ezX3+cOTVuDuAHpSYYZrDrrLoHWpCyQNFUaKeXHrP0bDX24mG8jFDEP7aSAq97Nz43hrywtvWCf4Lk5wi82J/MN5EiqyOyVtux4ls=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UaI65I1w; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-47edd6111b4so66282145e9.1
+        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 07:11:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1769526612; x=1770131412; darn=vger.kernel.org;
-        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
-         :from:subject:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=OhCrE4/omd3Aqh9ad+ieSaeycC5AgJDDUBgsMqT4cBk=;
-        b=Ch0BRNRoFYdSILdhOygMhPXCmhuWlh/wdX5WsRTQmCgY/N6Knl0bV8zueL5ZmpoGZI
-         qcyh5he21802KZJy4784amAGraXIKTALFhpKJCjASUbdHmxXXxc3W+vjapbm6TUcIStY
-         //4Teim1zo5tXQqFsBB+26C1Hzi4mHwLfHaQv3vQclfXmfVTBrd/oFWODvl4xe9z0vxZ
-         j8Y+pmWZIFwiPsah2AU4omDXSk2Dhsm2cFFVxkJ+R+8FbqH1IWAAuIyjGBJo338Lp1Fj
-         lGJhJkOCdnYOlcSNvG4Qodil4X8X7gKJZY1R/bvRPmpe2jLk2Oxbl2pcpGrNxEr1Hue9
-         X7ww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769526612; x=1770131412;
-        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
-         :from:subject:message-id:x-gm-gg:x-gm-message-state:from:to:cc
+        d=gmail.com; s=20230601; t=1769526690; x=1770131490; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=OhCrE4/omd3Aqh9ad+ieSaeycC5AgJDDUBgsMqT4cBk=;
-        b=tTfi3ZzyjBbRs0j7B/D1GaKe76OK/4WJt3O+iWNEUfAiG7eRTV6rrsHDkwSTabNkUA
-         8OzLFgPRxPyPP+gI5rywUeKVzQCF/X5zLQtnUcQGiquo8QNHKvqgW3YWbPzNJ34QgI4+
-         c8lTDIaaifSll9M1JsRBbMQWtd2n7c/XsKb9S7PCh/I9HokIRujCdLxbfKi98VzQesrn
-         8eq18VmnF2F0NucnDWS9yVHsWeR4ndNm+OpuH0qarVJ7u+AZfVCNyiVOwBPSP9ORFslZ
-         fpXHcitbEfWnPNQzCZW8AaP7KgZPSTOKc7FN+OeWGakFp0BS6uUS4yUU9/iYN/EXUs1C
-         nnkQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVbutCszDgZved62jorkfVnii4p0VxHkcW2sxfnjovJRmPFxECU54Q6fee4DWgm2gZmGz00s9LphyH8@vger.kernel.org
-X-Gm-Message-State: AOJu0YwJcmQpjt/4Y4hVIFyTEW9gjFW0yJKPN5P6Lfzx8+vjYEYMzLaM
-	BtqGS0w9T+1TqCazL7HaiVEeWMzKZA/eoY2o48zPs/JxKCjFs1thO6omSxsWEyfENCs=
-X-Gm-Gg: AZuq6aLYrTC8T2kpOh0A8s36tomVtS9JOx9P1WFZEWpapS/b5KdHHWOGTN9yVY5iD8M
-	Aypqg7UH3MiENa22FYxUINIEE8KtesBr+3ix2vxkPzLadaBTff0LIxuhnTiJG5PzPs9dXZ59WbC
-	khjU6JTkksGJwP8m9m4Z466HTHt6npshCPKP4FXftS7ku3vpDxzSNuaJNnjz3o514HjBvrn5rWm
-	8GEGdq92xE5xu5qNLZRcvvtUulbQltlYfzKGW+WpsZBc931ZPJCi2NTmx7b0UenZlXWcRhoVjaA
-	TnMfnKFRcT4KJiwqwpcK2OuuJCIEsLBKFu+oQL92lbYRizZdZdMQojp6o25F6Vk9M+WyyopZJ2A
-	75iXuIMGoi/ymPPoMvGP0rPoJF39yfJNXshpKWwA5u8Ncuq+LZNloV7pxitz4ZGEXtLMpB8g0g2
-	q29mmsrI3Y4sGfBBOT
-X-Received: by 2002:a05:622a:592:b0:501:45d7:10cd with SMTP id d75a77b69052e-503301175d8mr21471091cf.20.1769526612072;
-        Tue, 27 Jan 2026 07:10:12 -0800 (PST)
-Received: from ?IPv6:2606:6d00:17:7b4b::5ac? ([2606:6d00:17:7b4b::5ac])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-89491841640sm113651406d6.17.2026.01.27.07.10.10
+        bh=ZiYOJIssOgLGJ3sqVKfxdywenJ86qmXkRu/RSeqz5RI=;
+        b=UaI65I1wJEdhdhHNY5g4yd/swGFeeaVU5zSXxy4UlJZkQhQsSJjxT1ryKyL7NYsVUG
+         vzhzUAQHljHgvTBgjeLUp3BUiKXqlHNpWkXyRSU6Qsybs9Cu9pc3mt9Y2OKkkHIIMf0b
+         9Vz3akvxXe5oV9u2bbccyc+4E84//bs9PPDQu9uOYzVFKhQVTECEtgHF7qTyQP4/iWXn
+         63vLNVd91YXvWryyJcQ5csQn8DJ4ZQe9XaC4SERr+OIl58PC3QkNDRMlATBlaFxjKGIU
+         oiXOe4MuJXuOKIbw9+ASmIaHmisJk1UGWDL3dSwzmtni8RaskJd5Ts54h1lotns5b+5V
+         n/iw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769526690; x=1770131490;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZiYOJIssOgLGJ3sqVKfxdywenJ86qmXkRu/RSeqz5RI=;
+        b=M2jKVHoDuGT5y1lJW+3LfGyL9hYz/VqI+bGU4nEUoNl0htZWeZBinE1T4d0LFLk6tv
+         pH8ISVSdRJr5teeFXJb42LJGmrlB3GUpXsyq9P3weSnNC6Ihv1czgWxmEyn6/xFiHrkH
+         stPD9ud3U/fYWGLdpLE/PLbYCt8appfhFIQCsMvOyFZtrFw4Md220MfNP9ReZRlmqKaV
+         rjWprXU1w5ned9WIQoFgxqPIbOXPw+FtJSSB6kJU9nwNY9IkfSvdOHzMhRvvk7p+uuoF
+         GBY0jLAlU/hzXTx0qiUkohyBmZTbLIwD/7g9ilwM+ZAOBd0xCJcdpeFe924/AxesQHVj
+         5nvA==
+X-Forwarded-Encrypted: i=1; AJvYcCWAvxxsXeIG7Lwyu9zyPfKhZhJ2n2ojRIaemBkoA9L+WA6PCMM5r3PUZbm4m/6XVHud1hIkRQ5f2O5a@vger.kernel.org
+X-Gm-Message-State: AOJu0YwiTqGSD/febvJXie8V91Bp406Oc+MMKQvyA5GdRhSgeRAArhBv
+	B+DPOTQpZ4Kn07yILAEpZwJE7mDaPlPdSCWpd0jxHlg+s7B3Uk5Ao2jj
+X-Gm-Gg: AZuq6aJIijqONyBFYP76E/aKqWffOTtgtOGmQ1C0OH8o0MhBLW8PHlrS72OqqiLcXSY
+	EFS7DOfsJ19L6oZ3rsa8/HOruIcPMc5IYGM3Hl4uvQUpQMi8whYOnaGcEzYU+e3AUITBZN/5lut
+	rLX4dXRg1Euua6+fdpGkHauoMG5QteBglYcHY8grsBYgPfYQDybmG6U8antAb8sSS5vHPdSnNBB
+	sQzAzA+BWG0Kk7DULFi7N1eWGahSndGA+sVEdMFGpcIyjfBAe5xZDNoyNEeMF92vvG6UX3a8/JP
+	3gPzGfzd0Io4oNjAovBqVE25v+BPbX+E86o3gCDhlTQUztuZZ4yuQH0U39QKhfd41n/OzJAXGZl
+	HCl37yo8naHx5tIqtgBL62t8JH0QvY7qkF3Tf0geZNCkrDsE/pvPmF8iMucdthFRjZ+2e3AxSIj
+	4BXrlER+pBtfDJLloSuonXytEyFNmx/2jUBWZte9olLVLblJgu52zNmoo=
+X-Received: by 2002:a05:600c:8211:b0:480:4c45:aff5 with SMTP id 5b1f17b1804b1-48069c755e6mr25187715e9.34.1769526689995;
+        Tue, 27 Jan 2026 07:11:29 -0800 (PST)
+Received: from anton.local (bba-94-59-215-181.alshamil.net.ae. [94.59.215.181])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48066be7623sm63589915e9.2.2026.01.27.07.11.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Jan 2026 07:10:11 -0800 (PST)
-Message-ID: <df2d7dcc31c9a47752a1d58efdd7a416311e55ec.camel@ndufresne.ca>
-Subject: Re: [PATCH 0/7] media: iris: add support for kaanapali platform
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Vikash Garodia
-	 <vikash.garodia@oss.qualcomm.com>
-Cc: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>, Abhinav Kumar	
- <abhinav.kumar@linux.dev>, Bryan O'Donoghue <bod@kernel.org>, Mauro
- Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Saravana Kannan	 <saravanak@kernel.org>, Joerg
- Roedel <joro@8bytes.org>, Will Deacon	 <will@kernel.org>, Robin Murphy
- <robin.murphy@arm.com>, Stefan Schmidt	 <stefan.schmidt@linaro.org>, Hans
- Verkuil <hverkuil@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
- Vishnu Reddy <busanna.reddy@oss.qualcomm.com>, Hans Verkuil	
- <hverkuil+cisco@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, iommu@lists.linux.dev, Bryan O'Donoghue	
- <bryan.odonoghue@linaro.org>, Charan Teja Kalla
- <charan.kalla@oss.qualcomm.com>,  Vijayanand Jitta
- <vijayanand.jitta@oss.qualcomm.com>
-Date: Tue, 27 Jan 2026 10:10:08 -0500
-In-Reply-To: <vv4stkmrrwdqmbnpv7pg5nd4immtqo5iplwbcia3oykycfmg2m@dsithotfy5ls>
-References: <20260126-kaanapali-iris-v1-0-e2646246bfc1@oss.qualcomm.com>
-	 <lpgw6eodclsvfwgvtljfiorvjkpd5vd27yhxs7i3ijfibaqzuk@bak2lwbyh77f>
-	 <2d4632b2-916a-4eda-ad08-44af68461dc8@oss.qualcomm.com>
-	 <vv4stkmrrwdqmbnpv7pg5nd4immtqo5iplwbcia3oykycfmg2m@dsithotfy5ls>
-Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-fIhbK5YC4Jyx7+92/gYN"
-User-Agent: Evolution 3.58.2 (3.58.2-1.fc43) 
+        Tue, 27 Jan 2026 07:11:29 -0800 (PST)
+Date: Tue, 27 Jan 2026 19:11:24 +0400
+From: "Anton D. Stavinskii" <stavinsky@gmail.com>
+To: Mark Brown <broonie@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Paul Walmsley <pjw@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v4 5/6] ASoC: sophgo: add CV1800B internal DAC codec
+ driver
+Message-ID: <aXjRx12yPA7QflaF@anton.local>
+Mail-Followup-To: Mark Brown <broonie@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Paul Walmsley <pjw@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20260120-cv1800b-i2s-driver-v4-0-6ef787dc6426@gmail.com>
+ <20260120-cv1800b-i2s-driver-v4-5-6ef787dc6426@gmail.com>
+ <88ef974b-9fa8-490e-ba19-1fb31ca94342@sirena.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <88ef974b-9fa8-490e-ba19-1fb31ca94342@sirena.org.uk>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[ndufresne-ca.20230601.gappssmtp.com:s=20230601];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[ndufresne.ca : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-259983-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[26];
-	DKIM_TRACE(0.00)[ndufresne-ca.20230601.gappssmtp.com:+];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259984-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,outlook.com,perex.cz,suse.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nicolas@ndufresne.ca,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[stavinsky@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: BDE38969E4
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[anton.local:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 3405C96A2E
 X-Rspamd-Action: no action
 
+On Tue, Jan 27, 2026 at 12:49:52PM +0400, Mark Brown wrote:
+> On Tue, Jan 20, 2026 at 11:06:07PM +0400, Anton D. Stavinskii wrote:
+> 
+> >  	help
+> >  	  This driver provides an ASoC codec DAI for capture and basic
+> >  	  control of the RXADC registers.
+> > -
+> >  	  Say Y or M to build support for the Sophgo CV1800B
+> >  	  internal analog ADC codec block (RXADC).
+> >  	  The module will be called cv1800b-sound-adc
+> 
+> Extra change here.
+Will fix, thanks. 
+> 
+> > +static int cv1800b_dac_hw_params(struct snd_pcm_substream *substream,
+> > +				 struct snd_pcm_hw_params *params,
+> > +				 struct snd_soc_dai *dai)
+> > +{
+> > +	struct cv1800b_priv *priv = snd_soc_dai_get_drvdata(dai);
+> > +	int ret;
+> > +	unsigned int rate = params_rate(params);
+> 
+> > +	cv1800b_dac_mute(priv, false);
+> > +	/* minimal decimation for 48kHz is 64*/
+> 
+> Nothing ever mutes the DAC so this is a bit redundant.  The mute should
+> probably be a mute_stream() operation.
 
---=-fIhbK5YC4Jyx7+92/gYN
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+I'm not sure here. DAC mute feature was not implemented because I don't know how
+exactly do that. The public documentation is very weak for my taste. 
+This call added here to be sure that override flag is
+not set (override feature replaces the output by setting it to constant 
+value and ignoring the input, so it is some kind of mute from my understanding. 
+So ensuring this off is needed be sure that DAC will output our I2S data). 
+What do you think will be better to do here? 
+I'm sure that is needed, but may be better to move 
+it to some early stages, like probe function. 
 
-Hi,
-
-Le mardi 27 janvier 2026 =C3=A0 13:52 +0200, Dmitry Baryshkov a =C3=A9crit=
-=C2=A0:
-> On Tue, Jan 27, 2026 at 04:56:34PM +0530, Vikash Garodia wrote:
->=20
-
-[..]
-
->=20
-> > =C2=A0- 4 testcase failed due to unsupported resolution
->=20
-> Can it be fixed?
-
-Its nicer if you name the failing tests vectors. I can guess this is
-PICSIZE_{A,B,C,D}_Bossen_1 by experience, but not everyone will guess. HEVC
-level impose a limit on bandwidth, not on resolution. These files are eithe=
-r
-very large and small height or the opposite. One of these is just 4K in por=
-trait
-mode (that is more concerning). Though, there is a V4L2 limitation for this
-aspect, since we advertise the resolutions by range. Most hardware is desig=
-ned
-to support 4096x4096, in that casse that's what you should expose as limits=
-.
-
-Though, some hardware do have dynamic sizing capabilities (like RKVDEC HEVC=
-), in
-this case there is not much you can do, you have to find the right trade of=
-. But
-since you expose LEVELs, I think its fine to overshoot a little. Both
-constraints should ensure it works with valid streams.
-
->=20
-> > =C2=A0- 2 testcase failed due to CRC mismatch
-
-These are clear example of "no one can guess".
-
->=20
-> Which means an error in the testsuite or somewhere on our side?
-
-The testsuite fully pass if you run using Franhofer reference decoder. This=
- is
-logical since the MD5 has been generated with it.
-
->=20
-> > =C2=A0- 2 test fails due to session error (under debug)
-> > =C2=A0=C2=A0 - PICSIZE_C_Bossen_1
-
-Hmm, see, I have no idea which fourth one could fail due to resolution, and=
- that
-forth one is likely a bug on your side.
-
-> > =C2=A0=C2=A0 - WPP_E_ericsson_MAIN_2
-> >=20
-> > VP9:
-> > 235/305 testcases passed while testing VP9-TEST-VECTORS with
-> > =C2=A0GStreamer-VP9-V4L2-Gst1.0.
-> > =C2=A0The failing test case:
-> > =C2=A0- 64 testcases failed due to unsupported resolution
->=20
-> Can it be fixed?
-
-Check if you aren't mixing up constraints between display, coded and alloca=
-ted
-resolutions. On most hardware, all 3 can differ. The OUTPUT queue should ei=
-ther
-not care at all, or use it to allow optimistic pre-allocation. But check th=
-at
-the low resolution constraints is not coming from the OUTPUT queue software=
-.
-
-VP9 coded resolution, it always at least 64x64.
-
->=20
-> > =C2=A0- 2 testcases failed due to unsupported format
->=20
-> Hmm?
-
-Clarify please, I suppose these are YUV444 (aka professional profiles).
-
->=20
-> > =C2=A0- 1 testcase failed with CRC mismatch (fails with ref decoder as =
-well)
->=20
-> Could you please raise an issue against fluster?
-
-Check your setup, it fully pass with reference here. The MD5 has been gener=
-ated
-using the reference.
-
-  ./fluster.py run -d libvpx-VP9 -ts  VP9-TEST-VECTORS
-
-It also fully pass with the GStreamer wrapper, though it had been fixed in
-recent GStreamer versions (I'm testing with 1.26.10).
-
->=20
-> > =C2=A0- 2 testcase failed due to unsupported resolution after sequence =
-change
->=20
-> Can it be fixed?
-
-This one can't be fixed without adding an extension to the V4L2 Stateful De=
-coder
-spec, like we did for the stateless decoder spec. In order to handle inter-=
-frame
-resolution changes (a resolution change on a non-keyframe), you have to not=
-ify
-userspace with the new resolution, give it a way to read back this solution=
-,
-have CREATE_BUFS() support to allow allocating for that new resolution with=
-out
-going through streamoff (to avoid looking reference data), and finally, a w=
-ay to
-remove buffers that are now too small (or too big if userspace wants to red=
-uce
-the amount of RAM used) through the new DELETE_BUFS ioctl. You also have to
-track in your driver the reference buffer resolution/stride.
-
-This is non-trivial with the existing stateful state-machine. You have to m=
-ake
-sure userspace won't be confused between normal DRC and inter-frame DRC (dy=
-namic
-resolution changes).
-
-
-[...]
-
-regards,
-Nicolas
-
---=-fIhbK5YC4Jyx7+92/gYN
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaXjVUQAKCRDZQZRRKWBy
-9K0kAQD0MAxPQbBuvjXyEOQ54AGTdA6LiPXI/V2NXsiuOOyzsQEA0zSjwWpUUgI8
-OAbqxNRQbDIJW1n1zkHysWn/LRy5NQI=
-=TSG9
------END PGP SIGNATURE-----
-
---=-fIhbK5YC4Jyx7+92/gYN--
 
