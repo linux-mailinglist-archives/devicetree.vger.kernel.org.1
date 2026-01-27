@@ -1,235 +1,126 @@
-Return-Path: <devicetree+bounces-259923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259924-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aKs4E1/JeGmNtQEAu9opvQ
-	(envelope-from <devicetree+bounces-259923-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:19:11 +0100
+	id 2CAADM7KeGmNtQEAu9opvQ
+	(envelope-from <devicetree+bounces-259924-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:25:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4D2E95813
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:19:10 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A81BE95941
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:25:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 4F34F30041FD
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 14:19:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 029D53106ABF
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 14:20:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A113533B6FC;
-	Tue, 27 Jan 2026 14:19:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D1FA3587A4;
+	Tue, 27 Jan 2026 14:20:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 097B629DB61
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 14:19:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE94529CB52;
+	Tue, 27 Jan 2026 14:20:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769523548; cv=none; b=gmZ/8LkcpVGO+vsB5IOQmDo9Xo4y77w9sT/iaUpxnoB7YwldNYnKQlr1G50hupL/RNS2F9a90PCKkkB1ODvTUCusVp1kN4weVJbCrj220DJgUEnVyfT7/Px6xpi8jcuHxhyRlhToU5SYPPEraxs/HHd88nh/sF2BDxClFHtzajo=
+	t=1769523619; cv=none; b=gpY69ZnqQ0fJPKBV4aBGjh7dg48zDfpysiz6yOYfHq4/AzWGA9AOi9BvPqYDIRfFZTWkWZ4q63wUjJ7PsYO1NrfERVyVbV+n0bf7lxWb+9TFmoFZpG9acqq57HLfnWdwvAFzSut7LoPojgMwrWQ9B7q6vC9vJ3IESqowih1nuaE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769523548; c=relaxed/simple;
-	bh=PCLq2s4aOG+Wec0GFnYgx2+0WmAv2u2205kDMfxD08k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Fl1RurcT58fLAaBWXDWwc9sw8X0TkIr29KltwsagSHw0THDCdYMoRgvu6H3q7sqvVDCWQSC8OkEC8rKJCHH2wMPzlhQxJ//B1B6P3bHV9y1thZZz0+wpK7tGCp9fCikCRdCmVMtVHLWOzFjQTvxLHmxxhqtBc1hK3t6v2qkDugI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1vkjuE-0005PO-Eh; Tue, 27 Jan 2026 15:18:58 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1vkjuE-002lLx-2v;
-	Tue, 27 Jan 2026 15:18:58 +0100
-Received: from pengutronix.de (p54b15bf8.dip0.t-ipconnect.de [84.177.91.248])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id E6AB24D9602;
-	Tue, 27 Jan 2026 14:18:57 +0000 (UTC)
-Date: Tue, 27 Jan 2026 15:18:57 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Arun Muthusamy <arun.muthusamy@gaisler.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	mailhol@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-can@vger.kernel.org
-Subject: Re: [PATCH v3 13/15] can: grcan: Add CANFD TX support alongside
- legacy CAN
-Message-ID: <20260127-independent-meek-octopus-b49cb2-mkl@pengutronix.de>
-X-AI: stop_reason: "refusal"
-References: <20260122121038.7910-1-arun.muthusamy@gaisler.com>
- <20260122121038.7910-14-arun.muthusamy@gaisler.com>
- <20260123-berserk-crocodile-of-champagne-49d2b0-mkl@pengutronix.de>
- <78a8f06c-da93-4ade-bc69-872aac644724@gaisler.com>
- <20260127-fancy-fast-bird-e7c4c3-mkl@pengutronix.de>
- <99495edc-83aa-4427-89dc-bbeb0faac72f@gaisler.com>
+	s=arc-20240116; t=1769523619; c=relaxed/simple;
+	bh=3dbkaF5OVhRQfnw/0d9n1Gzk+2qa9elwJ9BhiZVnO/8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Vy47uylEoJqMDTD/+QfIbwzUJtCjxozNVyxGLkC5K+gczOswtoc4pLJDTjSKhc07AxuADGSLMvYh6av1NQV3aDAvSVxqEw7Dz+69jApbCIlYCGZfVNo81zCGTqgbY54F7dB0T3b1g4EownHYFzC7qrNEoxSNwjxGs7GJsIGVXX4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C522F1595;
+	Tue, 27 Jan 2026 06:20:10 -0800 (PST)
+Received: from [10.57.51.176] (unknown [10.57.51.176])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4E1BF3F73F;
+	Tue, 27 Jan 2026 06:20:13 -0800 (PST)
+Message-ID: <78ffd1ce-5408-4bf5-a782-0c4ca14017b1@arm.com>
+Date: Tue, 27 Jan 2026 14:20:09 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ykgmfzpme7f364b5"
-Content-Disposition: inline
-In-Reply-To: <99495edc-83aa-4427-89dc-bbeb0faac72f@gaisler.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/7] of/iommu: add multi-map support
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+Cc: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>, Bryan O'Donoghue <bod@kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Saravana Kannan <saravanak@kernel.org>,
+ Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+ Stefan Schmidt <stefan.schmidt@linaro.org>,
+ Hans Verkuil <hverkuil@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Vishnu Reddy <busanna.reddy@oss.qualcomm.com>,
+ Hans Verkuil <hverkuil+cisco@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Charan Teja Kalla <charan.kalla@oss.qualcomm.com>,
+ Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
+References: <20260126-kaanapali-iris-v1-0-e2646246bfc1@oss.qualcomm.com>
+ <20260126-kaanapali-iris-v1-3-e2646246bfc1@oss.qualcomm.com>
+ <hunwsdkmeo6efpv3yt3izkgmarelnubd74dywj3scryxrreq6p@njijwtoyjh46>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <hunwsdkmeo6efpv3yt3izkgmarelnubd74dywj3scryxrreq6p@njijwtoyjh46>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.56 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [0.14 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[arm.com : SPF not aligned (relaxed), No valid DKIM,none];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259923-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
+	TAGGED_FROM(0.00)[bounces-259924-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mkl@pengutronix.de,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robin.murphy@arm.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	R_DKIM_NA(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gaisler.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,pengutronix.de:url,pengutronix.de:mid]
-X-Rspamd-Queue-Id: E4D2E95813
+	NEURAL_HAM(-0.00)[-1.000];
+	MID_RHS_MATCH_FROM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,arm.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: A81BE95941
 X-Rspamd-Action: no action
 
+On 2026-01-27 11:45 am, Dmitry Baryshkov wrote:
+> On Mon, Jan 26, 2026 at 05:55:46PM +0530, Vikash Garodia wrote:
+>> From: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
+>>
+>> When multiple mappings are present for an input id, linux matches just
+>> the first one. There is a usecase[1] where all the mappings are to be
+>> maintained in parallel for an iommu-map entry of a same input id.
+> 
+> This contradicts the IOMMU idealogy (at least as far as I understood it
+> fom the maintainers): the device (driver) doesn't control which IOMMUs
+> are getting used. Instead _all_ defined entries should get used. For
+> iommu-map it means that if the map defines several entries for a single
+> function, then all entries should always get mapped.
 
---ykgmfzpme7f364b5
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 13/15] can: grcan: Add CANFD TX support alongside
- legacy CAN
-MIME-Version: 1.0
+Indeed there is no concept of "multi-map" - if a single input ID 
+represents more than one thing then that notion of "input ID" is 
+fundamentally wrong. A single *device* may have multiple IDs, as in the 
+case of PCI bridge aliasing, but in that case there are multiple things 
+to map.
 
-On 27.01.2026 15:17:58, Arun Muthusamy wrote:
->
-> On 1/27/26 15:12, Marc Kleine-Budde wrote:
-> > On 27.01.2026 15:06:55, Arun Muthusamy wrote:
-> > > On 1/23/26 15:25, Marc Kleine-Budde wrote:
-> > > > On 22.01.2026 13:10:36, Arun Muthusamy wrote:
-> > > > > Include CANFD TX support with the legacy CAN support, enabling
-> > > > > support for extended data payloads to provide higher bit rates.
-> > > > >
-> > > > > Signed-off-by: Arun Muthusamy <arun.muthusamy@gaisler.com>
-> > > > > ---
-> > > > >    drivers/net/can/grcan.c | 102 +++++++++++++++++++++++++++++---=
---------
-> > > > >    1 file changed, 74 insertions(+), 28 deletions(-)
-> > > > >
-> > > > > diff --git a/drivers/net/can/grcan.c b/drivers/net/can/grcan.c
-> > > > > index 9fc18064fab1..508ad5320cff 100644
-> > > > > --- a/drivers/net/can/grcan.c
-> > > > > +++ b/drivers/net/can/grcan.c
-> > > > > @@ -174,6 +174,7 @@ struct grcan_registers {
-> > > > >    #define GRCAN_IRQ_DEFAULT (GRCAN_IRQ_RX | GRCAN_IRQ_TX | GRCAN=
-_IRQ_ERRORS)
-> > > > >
-> > > > >    #define GRCAN_MSG_SIZE		16
-> > > > > +#define GRCAN_CLASSIC_DATA_SIZE 8
-> > > > >
-> > > > >    #define GRCAN_MSG_IDE		0x80000000
-> > > > >    #define GRCAN_MSG_RTR		0x40000000
-> > > > > @@ -195,6 +196,10 @@ struct grcan_registers {
-> > > > >    #define GRCAN_MSG_OFF		0x00000002
-> > > > >    #define GRCAN_MSG_PASS		0x00000001
-> > > > >
-> > > > > +#define GRCAN_MSG_EID_MASK      GENMASK(28, 0)
-> > > > > +#define GRCAN_MSG_BID_MASK      GENMASK(28, 18)
-> > > > > +#define GRCAN_MSG_DLC_MASK      GENMASK(31, 28)
-> > > > > +
-> > > > >    #define GRCAN_BUFFER_ALIGNMENT		1024
-> > > > >    #define GRCAN_DEFAULT_BUFFER_SIZE	1024
-> > > > >    #define GRCAN_VALID_TR_SIZE_MASK	0x001fffc0
-> > > > > @@ -227,6 +232,9 @@ struct grcan_registers {
-> > > > >    #define GRCANFD_FDBTR_PS2_BIT 5
-> > > > >    #define GRCANFD_FDBTR_SJW_BIT 0
-> > > > >
-> > > > > +#define GRCAN_TX_BRS  BIT(25)
-> > > > > +#define GRCAN_TX_FDF  BIT(26)
-> > > > > +
-> > > > >    /* Hardware capabilities */
-> > > > >    struct grcan_hwcap {
-> > > > >    	/* CAN-FD capable, indicates GRCANFD IP.
-> > > > > @@ -1218,6 +1226,13 @@ static void grcan_transmit_catch_up(struct=
- net_device *dev)
-> > > > >    	spin_unlock_irqrestore(&priv->lock, flags);
-> > > > >    }
-> > > > >
-> > > > > +static int grcan_numbds(int len)
-> > > > > +{
-> > > > > +	if (len <=3D GRCAN_CLASSIC_DATA_SIZE)
-> > > > > +		return 1;
-> > > > > +	return 1 + ((len - GRCAN_CLASSIC_DATA_SIZE + GRCAN_MSG_SIZE) / =
-GRCAN_MSG_SIZE);
-> > > > This looks strange, what is calculated here? Why is "<=3D
-> > > > GRCAN_CLASSIC_DATA_SIZE" a special case?
-> > > grcan_numbds() calculates the number of buffer descriptors needed bas=
-ed on the data length.
-> > > The condition "len <=3D GRCAN_CLASSIC_DATA_SIZE" addresses cases wher=
-e the data length fits within a one buffer descriptor.
-> > > For data lengths greater than "GRCAN_CLASSIC_DATA_SIZE", it computes =
-additional descriptors needed.
-> > What happens if "len =3D GRCAN_CLASSIC_DATA_SIZE + GRCAN_MSG_SIZE"?
-> >
-> > | return 1 + ((len - GRCAN_CLASSIC_DATA_SIZE + GRCAN_MSG_SIZE) / GRCAN_=
-MSG_SIZE);
-> >
-> > =3D 1 + ((GRCAN_CLASSIC_DATA_SIZE + GRCAN_MSG_SIZE - GRCAN_CLASSIC_DATA=
-_SIZE + GRCAN_MSG_SIZE) / GRCAN_MSG_SIZE);
-> > =3D 1 + ((                          GRCAN_MSG_SIZE -                   =
-      + GRCAN_MSG_SIZE) / GRCAN_MSG_SIZE);
-> > =3D 1 + 2;
-> > =3D 3
-> >
-> > Is this correct?
-> >
-> Thanks for pointing out.
-> That's not correct. It will be addressed in the next patch series.
-
-Please make use of DIV_ROUND_UP()
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---ykgmfzpme7f364b5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAml4yU4ACgkQDHRl3/mQ
-kZxe1Af7BtPC8tHi3f4fYNeN3oyckarQ4d3GhoPw2NShDzk/hVNlCACdOzp789md
-KcRExu4ymDp8FpnF6Q97ffrGXSYMNXFO57PZOEOSEd2vH8pdixcoUzfHPM/fZzoI
-IC4FYOzCVP2gEPLiERT+CHpu5uj6WsErYefTN5RXldt3nAdKV2Rw7aA8VazQRPfe
-aEmJDS5Jmoxlre3g4Qk0M0EA7vCnMp34c0YyibOlS2AEujmEM6EaV1ay+yXZN48H
-xrHsjax/9thao+Qcl/FpL/ZS9R9hNonBZX9IXpVX6sAPDr3s2pFHQv+SBpKchRSi
-knFo6+gkZhcRnx5aEBztoLjOConMrA==
-=Not7
------END PGP SIGNATURE-----
-
---ykgmfzpme7f364b5--
+Thanks,
+Robin.
 
