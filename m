@@ -1,232 +1,223 @@
-Return-Path: <devicetree+bounces-259823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259824-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oC+3LfyVeGn4rAEAu9opvQ
-	(envelope-from <devicetree+bounces-259823-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 11:39:56 +0100
+	id SANBFEiWeGnmrAEAu9opvQ
+	(envelope-from <devicetree+bounces-259824-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 11:41:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BD9992EE2
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 11:39:56 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E448892F4D
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 11:41:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 06D9430166D5
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 10:39:35 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 480AA3004D1C
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 10:41:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B56AB34251B;
-	Tue, 27 Jan 2026 10:39:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 500E9342500;
+	Tue, 27 Jan 2026 10:41:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="i4EWu9aG"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="T/1BrkNW";
+	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="jhub10ew"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AFC4342511;
-	Tue, 27 Jan 2026 10:39:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5C92342518
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 10:41:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769510375; cv=none; b=H/woCjG1XZTu2DsIz8OM4I05TUU3rUucGpLqIjB3a/tmo8HxDzm+N+V2xdOUm1ELBp+Rnqc7+XD106zTrx3056VOMZPkM2preB/no5fzUWItGnl8APZbY4dd+Rvzcruz/yIQV1ApPON96q/3SFMPlr2t0K1v2lzVsnOHyAEQDDo=
+	t=1769510470; cv=none; b=Z/wTwy9A9stAPKh61IaxvgmsPr3QGUKzR2HcN+jGQBzbtSbQJi7OD0lSInV1ebhDG7Z9Rw5AgSdrF+Bfck9lC0d7iOuB5oqpM/mjU7VObFrJdnww0rnkKrx+00HoR3rUKOtac/BNBrw+saV342WNcg7nyTHsT5K0ISw5qs1qnQ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769510375; c=relaxed/simple;
-	bh=ZzDd73Ng2R6n+Cihacwa8im9RBVNxVzfCxKK5la1Ruw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hZtyX4Fri1P+2cw0pQ6uYlbCoS3MRvRbR6+P7E0NiAqZpTpBxJqs2bmkem7Um9XMwmdqFW2XpB3T6fx6+DIisSgPiwcRg9nUiuYWW3VTfWGRFQlIYKhCYdKufAbUi3dr2t+aMBCN0yaN8NIxqBG32Z1VmR4a35Lo+2PJisOilB0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=i4EWu9aG; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1769510374; x=1801046374;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ZzDd73Ng2R6n+Cihacwa8im9RBVNxVzfCxKK5la1Ruw=;
-  b=i4EWu9aG+VT/Ilf8tBM5veVUmFEXBn7NSPnneho6eYBvEiXwbzuJzzSJ
-   8A6g8l/eNZTSRmIFtu5KUvWcewTMx9vzbv6p9wuZdQL0EP2EvCsC1bpM+
-   9CCmP16/xir1WhZJ+NrTI6Qgq8gIhRFpULHZUNRzfktexSUX/WDdjswsn
-   qdXvvHYzEcRPlkyKNrWh6fqYiVJCMKhswD4Er+TJjm/YVq1YNoxzFa8y0
-   wSPJfGSVCuJrJwe6B9IyUSpkj+ZNLbTJ+xJ+Pfhd3MVTGVWEjAh4hILh0
-   aosFCpmmBH6Fm2vBzEuEiwJB297Zp3ozYf96c4BdVUQLsDFkzgOwaHQLV
-   A==;
-X-CSE-ConnectionGUID: Lbs7WgeBTSmHUmeMlIaQ2w==
-X-CSE-MsgGUID: eQHvjUSnTciuKJFynRu9kA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11683"; a="70420793"
-X-IronPort-AV: E=Sophos;i="6.21,256,1763452800"; 
-   d="scan'208";a="70420793"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2026 02:39:34 -0800
-X-CSE-ConnectionGUID: puYNiABrR0iPPznUl3txCg==
-X-CSE-MsgGUID: 5S0ziBPTSIW+kc9fWBSz4A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,256,1763452800"; 
-   d="scan'208";a="207070933"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.245.248])
-  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2026 02:39:30 -0800
-Date: Tue, 27 Jan 2026 12:39:27 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, Andy Shevchenko <andy@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	David Jander <david@protonic.nl>
-Subject: Re: [PATCH v2 5/8] iio: dac: ds4424: convert to regmap
-Message-ID: <aXiV35CoH6f8FPUT@smile.fi.intel.com>
-References: <20260127060939.3914006-1-o.rempel@pengutronix.de>
- <20260127060939.3914006-6-o.rempel@pengutronix.de>
+	s=arc-20240116; t=1769510470; c=relaxed/simple;
+	bh=ep8pkCwlbUpSN66L5MpDnjNjWPh2mpgjhXM0xSkHFh4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sXzAX9muiMTHHTWzVqVNd3jyPPS1fnubWQzI/6lXOjSLkF5B++1LxLqmYzfmqtjpkwKp+78sYYPnU4LsIedrfPBoSb8gEXGeu6AkF13rvDTHGScXrP7pigUgLW8pl7sGz7bsSGOWZfKc68Tjr8t2vY1No9jU1E2/VJhiqwD/Y2s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=T/1BrkNW; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=jhub10ew; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1769510467;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Euj5FVmeiCgVhty6Ys/ujWG8Y866aXXG7V4F32PyIco=;
+	b=T/1BrkNWyXjGmU+ymdNnSNEtto9ZQ3lAmC1YqUfkRVpbmZJmKVruFcAGIBZAM5FsNZJvLM
+	6UEDl1LhQCz6r92M6VsYCLYc3mePLvtrvty7lfU8f7A9cmbLLerUmp7zpONb2L3EZNTSvG
+	oNPiWfbH9MK9+R+c99y+Vp8ykykFvZk=
+Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com
+ [209.85.167.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-511-F-7k4TAPOXyZpejT_kJFVw-1; Tue, 27 Jan 2026 05:41:06 -0500
+X-MC-Unique: F-7k4TAPOXyZpejT_kJFVw-1
+X-Mimecast-MFC-AGG-ID: F-7k4TAPOXyZpejT_kJFVw_1769510465
+Received: by mail-lf1-f71.google.com with SMTP id 2adb3069b0e04-59b70088327so3325555e87.1
+        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 02:41:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=redhat.com; s=google; t=1769510464; x=1770115264; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Euj5FVmeiCgVhty6Ys/ujWG8Y866aXXG7V4F32PyIco=;
+        b=jhub10ewdGewbax9zYjq3xfVBunI0eM2we7Uume9dL2DConQcshOLR3fUrNVNaLcfi
+         NQEkRkUogVl8IsM6bahZGZtOe2BDd+bvxYN9ohmk6e5QHGEPREV2gxi7/te+91OXSsOv
+         1ERjmLMXoidIyEvpXpoVT1aq0IYaXVHcK7SLw2a7WT7xqRstVqztebhi+4ueBPqt5QlJ
+         Wl77P2esxG1IWHXHMJIWcfDdKf7yGFGGb21DfokVSva8mXg0ShvhvnOiIyLd0sKaea6e
+         etIEV9QtL8eNFTbjamsOCtFQTOKzha3PWsIzZ/05IlY8Nw/68eQka9YU42HLsFqsj55h
+         m3MA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769510464; x=1770115264;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Euj5FVmeiCgVhty6Ys/ujWG8Y866aXXG7V4F32PyIco=;
+        b=A+dxM8XP0qrKVe9ignt/6EpZdN92Zn7tyoFx3Hp1tqxqsDXM27g5AsWTepzKagtB75
+         MJmIET422nWToNq4NqU4d2riHiaL2T85n4G23X6ni1V3zXO+uuq8l8F8VJmsXO8XWbuF
+         ZWO5h8uOpmoaVvo5JAuLX+i1SJ2qNnTGJUqzlZ6pQgOukGZpkOb1c6RzY1qa3bpwEqxr
+         T7L8XjmBIqi/dTjYhV4t9lD0blc6crkhoX6ahzwrxgvu0TYRVLmy1RogiPUl+Nae7TjZ
+         DqcYY71NYk9aGwLQjPKseGUsed9/w2yNN0BugLoGHGQcOF+MdNIJ7ml1SQq82NsWcajn
+         Lh2A==
+X-Forwarded-Encrypted: i=1; AJvYcCUatr8E8RqBUPOYvgKapQPys1rVDkHMCze3PK2cB8yDOJi8mnDlvGcdyp/vSysYwCIIxUYl6iAwP57e@vger.kernel.org
+X-Gm-Message-State: AOJu0YwHZAkUifmyQ5u1GAlFN+g5hIzsrRXFFa+jKDquEgKpbwLWTNxU
+	H8h/2N7U1yBIW5Mc9y4Q+RQ2MB+Es760+lVPk2kn+tKQDZoQKLBl+N5jfcnC62bf1rhEtPXjVGh
+	8OSuVkHQh4BgwPyTLzvphDUEqLCcHazIKgHRiG25670Rl8YmaRUrlcGOjyc0iDc4=
+X-Gm-Gg: AZuq6aI2cLWas7KK8nGQ1XRPS6mweZSB1aefBoDdi+H00hGSucpzL+hCFmdjfxunpjU
+	wJmjrZKwAulWOp8XVY781jXh+u2mPp5h2yVSzdzPSo9oQaMwDNvart/DwfDd8odVsY6VzFQlPBE
+	QkhMOzlggwjsYe9gWyRuZxR+QRHg24CwU8pqE8K3xQG9Z3X2t38GUylnt81vdIbWDhsOX1Nt+CI
+	xGJkFefjzUWSTgaZkb0O+RlKEjCVj3TAWetXqqEm3SHcTsUdJEVbAJh97NOuugxw8X51dntrHec
+	DsUCSUYJG27Xel65pI0bTrIKIQ5WEwr16vfLAyYabX0IdfS4JJ1LFURXdjd0IKLefxcxZpsH246
+	c82U5DvZaUV5Y
+X-Received: by 2002:a05:6512:3b91:b0:59d:fd1e:50da with SMTP id 2adb3069b0e04-59e040308e5mr507790e87.36.1769510464445;
+        Tue, 27 Jan 2026 02:41:04 -0800 (PST)
+X-Received: by 2002:a05:6512:3b91:b0:59d:fd1e:50da with SMTP id 2adb3069b0e04-59e040308e5mr507755e87.36.1769510463979;
+        Tue, 27 Jan 2026 02:41:03 -0800 (PST)
+Received: from [192.168.88.32] ([212.105.155.22])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59de492cc4asm3330939e87.101.2026.01.27.02.41.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Jan 2026 02:41:03 -0800 (PST)
+Message-ID: <c2e191c4-dec4-4e42-b108-353778d9bd18@redhat.com>
+Date: Tue, 27 Jan 2026 11:41:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260127060939.3914006-6-o.rempel@pengutronix.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v8 4/4] net: dsa: add basic initial driver for
+ MxL862xx switches
+To: Daniel Golle <daniel@makrotopia.org>, Andrew Lunn <andrew@lunn.ch>,
+ Vladimir Oltean <olteanv@gmail.com>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>,
+ Russell King <linux@armlinux.org.uk>, Simon Horman <horms@kernel.org>,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: Frank Wunderlich <frankwu@gmx.de>, Chad Monroe <chad@monroe.io>,
+ Cezary Wilmanski <cezary.wilmanski@adtran.com>,
+ Avinash Jayaraman <ajayaraman@maxlinear.com>, Bing tao Xu
+ <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
+ Juraj Povazanec <jpovazanec@maxlinear.com>,
+ "Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
+ "Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
+ "Livia M. Rosu" <lrosu@maxlinear.com>, John Crispin <john@phrozen.org>
+References: <cover.1769053079.git.daniel@makrotopia.org>
+ <18c6a24eef8617abb5073569fee162f1aa1c06ea.1769053079.git.daniel@makrotopia.org>
+Content-Language: en-US
+From: Paolo Abeni <pabeni@redhat.com>
+In-Reply-To: <18c6a24eef8617abb5073569fee162f1aa1c06ea.1769053079.git.daniel@makrotopia.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-259823-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-259824-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[makrotopia.org,lunn.ch,gmail.com,davemloft.net,google.com,kernel.org,armlinux.org.uk,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[gmx.de,monroe.io,adtran.com,maxlinear.com,phrozen.org];
+	RCPT_COUNT_TWELVE(0.00)[26];
 	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[pabeni@redhat.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[redhat.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smile.fi.intel.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:dkim]
-X-Rspamd-Queue-Id: 5BD9992EE2
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: E448892F4D
 X-Rspamd-Action: no action
 
-On Tue, Jan 27, 2026 at 07:09:36AM +0100, Oleksij Rempel wrote:
-> Refactor the driver to use the regmap API.
-> 
-> Replace the driver-specific mutex and manual shadow buffers with the
-> standard regmap infrastructure for locking and caching.
-> 
-> This ensures the cache is populated from hardware at probe, preventing
-> state desynchronization (e.g. across suspend/resume).
-> 
-> Define access tables to validate the different register maps of DS44x2
-> and DS44x4.
-
-...
-
-> +static const struct regmap_access_table ds44x4_table = {
-> +	.yes_ranges = ds44x4_ranges,
-> +	.n_yes_ranges = ARRAY_SIZE(ds44x4_ranges),
-
-+ array_size.h
-
-> +};
-
-...
-
-> +		ret = regmap_read(data->regmap, DS4424_DAC_ADDR(chan->channel),
-> +				  &regval);
->  		if (ret < 0) {
-> -			pr_err("%s : ds4424_get_value returned %d\n",
-> -							__func__, ret);
-> +			pr_err("%s : regmap_read returned %d\n",
-> +						__func__, ret);
-
-This should be dev_err() to begin with. Perhaps you want a new patch for that.
-
->  			return ret;
->  		}
-
-...
-
-> +	/* Bulk read all channels starting at 0xf8.
-> +	 * This populates the regmap cache with current HW values.
-> +	 */
-
-/*
- * Use proper style for multi-line
- * comments.
- */
-
-...
-
-> +	if (ret)
-> +		return dev_err_probe(&indio_dev->dev, ret, "Failed to seed cache\n");
-
-Why not physical device? I assume during probe we use physical device, when we
-do IIO callbacks, we use IIO device.
-
-...
-
->  static int ds4424_suspend(struct device *dev)
->  {
-> +	struct iio_dev *indio_dev = dev_get_drvdata(dev);
->  	struct ds4424_data *data = iio_priv(indio_dev);
+On 1/22/26 4:42 AM, Daniel Golle wrote:
+> +static int mxl862xx_send_cmd(struct mxl862xx_priv *priv, u16 cmd, u16 size,
+> +			     bool quiet)
+> +{
 > +	int ret;
 > +
-> +	/* Disable all outputs, bypass cache so the '0' isn't saved */
-> +	regcache_cache_bypass(data->regmap, true);
-> +	for (unsigned int i = 0; i < indio_dev->num_channels; i++) {
-> +		ret = regmap_write(data->regmap, DS4424_DAC_ADDR(i), 0);
-> +		if (ret) {
-> +			dev_err(dev, "Failed to zero channel %d: %d\n", i, ret);
-
-%u for 'i'.
-
-> +			regcache_cache_bypass(data->regmap, false);
->  			return ret;
-> +		}
->  	}
-> +	regcache_cache_bypass(data->regmap, false);
+> +	ret = mxl862xx_reg_write(priv, MXL862XX_MMD_REG_LEN_RET, size);
+> +	if (ret)
+> +		return ret;
 > +
-> +	regcache_cache_only(data->regmap, true);
-> +	regcache_mark_dirty(data->regmap);
+> +	ret = mxl862xx_reg_write(priv, MXL862XX_MMD_REG_CTRL,
+> +				 cmd | CTRL_BUSY_MASK);
+> +	if (ret)
+> +		return ret;
 > +
-> +	return 0;
->  }
-
-...
-
->  	usleep_range(1000, 1200);
-
-Side note: Perhaps fsleep() in the future...
-
-> +	ret = ds4424_init_regmap(client, indio_dev);
-> +	if (ret < 0)
-
-Do we need ' < 0' part?
-
-> +		goto fail;
+> +	ret = mxl862xx_busy_wait(priv);
+> +	if (ret)
+> +		return ret;
 > +
-> +	ret = ds4424_verify_chip(indio_dev);
-> +	if (ret < 0)
+> +	ret = mxl862xx_reg_read(priv, MXL862XX_MMD_REG_LEN_RET);
+> +	/* handle errors returned by the firmware as -EIO
+> +	 * The firmware is based on Zephyr OS and uses the errors as
+> +	 * defined in errno.h of Zephyr OS. See
+> +	 * https://github.com/zephyrproject-rtos/zephyr/blob/v3.7.0/lib/libc/minimal/include/errno.h
+> +	 */
+> +	if ((s16)ret < 0) {
 
-Ditto.
+The cast is likely not needed above? if `ret` values < S16_MIN are
+possible this will return such values to the caller without the IO err
+printk.
 
-> +		goto fail;
+> +		if (!quiet)
+> +			dev_err(&priv->mdiodev->dev,
+> +				"CMD %04x returned error %d\n", cmd, (s16)ret);
+> +		return -EIO;
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +int mxl862xx_api_wrap(struct mxl862xx_priv *priv, u16 cmd, void *_data,
+> +		      u16 size, bool read, bool quiet)
+> +{
+> +	__le16 *data = _data;
+> +	u16 max, i;
+> +	int ret, cmd_ret;
 
--- 
-With Best Regards,
-Andy Shevchenko
+Minor nit: reverse christmas tree above.
 
+BTW the initial port isolation LGTM, but I would appreciate some DSA
+expert second opinion.
+
+Thanks,
+
+Paolo
 
 
