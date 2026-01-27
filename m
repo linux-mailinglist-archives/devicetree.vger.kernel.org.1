@@ -1,393 +1,376 @@
-Return-Path: <devicetree+bounces-259973-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259974-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OJsxAI3XeGmUtgEAu9opvQ
-	(envelope-from <devicetree+bounces-259973-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:19:41 +0100
+	id sLuBDSngeGkGtwEAu9opvQ
+	(envelope-from <devicetree+bounces-259974-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:56:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C2A09689C
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:19:40 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D35D97379
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:56:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C24F430431CE
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:04:12 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B51543029230
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:04:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6978D35D605;
-	Tue, 27 Jan 2026 15:04:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 950A035DCE6;
+	Tue, 27 Jan 2026 15:04:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="faMhi5te";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="BYzIQptx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Eu4jX37C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E95135DCEE
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 15:04:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F15735DCE0
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 15:04:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769526243; cv=none; b=STsRsMF/tYz8U2Nh5ZqJYPju+P9gZ95ytImAyiAWZeulvws1ulepZfPOQWj1i/5NcDexnJM6/dnwNkz6XhFkXnehIkD0/7MDE5HIE4IzF4U2SveEklObin9L/ukiFQW46pSrsY5OVKqkGs3tWC+1MDRoYa4gwPSbwapixmrLm8U=
+	t=1769526250; cv=none; b=HdSe0BZeELYV1BE9a1RlNrnjBcANwRaLsekinn59v8bylNhl+g36yO8yn8iL+MRYLZbYrCfK+/7ZMN6+Iah2+LDVNhP3yamARPt3nDLJ3/krP9L5wGZeFTKm/WBZUA19F3ewyfLruO1kIRW1sEd841kRrz/MOY5XyH5s9nrToSY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769526243; c=relaxed/simple;
-	bh=2iSNr2mrjQlNgIhwXI0YLBCP6nI0wEEu4a7xd+a/z7c=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=qVJG+fQCh1PERDrCnyrPO1di6RzdkwcpPEvBn9o9Q2vMKBPBfxXl3fswYEv7TjqzwhzdA2yWLrgYlaCPkLC/VcP0VBnFJ79C8k9R26cVwqZZNBE/6HAcYk+RqFHlSbEgh/fJa6iMva6JmBD69lIy1aj8PZ65uKeBYqUQbQ6m1DY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=faMhi5te; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=BYzIQptx; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60RA6uZ33857547
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 15:04:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	D72x7J+ihB8n1bTt8RDNy1J6TX9XausoMPQdTRV97Yg=; b=faMhi5tecmIDZtP8
-	P4qDKWcnjhYgIh++OewLaHYBWZwDr7LgF/La7az9wtTZvphQE3gh5+Mpfg/wHq0w
-	hItNgPyg+HQTIbRjY8cK9yp8A+8pfxEc6feYsulzSSyo5iT4YPsCzyb86qtAdpq8
-	1v6P9c+qElrgfvUIPVGd7cl6f7p3EzW3Z8BCaHk3ee/n/aoAtJNs5iJwxghcaE4p
-	pM1qYMzV3WswrqZv+Cj1mWHCQBMydLtJZVrc8xbKcVm2bEr/BxM4T4ppF31mdEUw
-	HX0Q4OSbuWw0lR8d3cBxVbI8fcRhS+rv5zV/rAgVbCpQr5qOs3nsJTGIpPMYe0gZ
-	4nOq9w==
-Received: from mail-ua1-f69.google.com (mail-ua1-f69.google.com [209.85.222.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bxffs344h-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 15:04:00 +0000 (GMT)
-Received: by mail-ua1-f69.google.com with SMTP id a1e0cc1a2514c-93f57cdeb11so8263579241.0
-        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 07:04:00 -0800 (PST)
+	s=arc-20240116; t=1769526250; c=relaxed/simple;
+	bh=2oYYDYAvm4jTAaky3FQraxx496L7hwtdllCzqgHnnGE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZJBATIKEmIizNiGGboM1v6M6a/NHbFIz8ECsdX6sYW31IddGy6UVzFTj4xQL3IG/YyLvWA/IEAnLQm9I7TJ7n9qg8QwcFenvieR8fCeOfzYvkm82pO9kK1hVPTwwEcsddGKxjDa16cF9k5kbcMDTttOESqrbg4Mke6n4pGzKXFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Eu4jX37C; arc=none smtp.client-ip=209.85.215.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-c5513f598c0so2075032a12.0
+        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 07:04:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769526239; x=1770131039; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=D72x7J+ihB8n1bTt8RDNy1J6TX9XausoMPQdTRV97Yg=;
-        b=BYzIQptxYVvQUWhpwi8ueDsQzZrbpnvDv1iWuUkJFOJ1qjJr+nFVd+p9+S7m/3WCfY
-         AtwaFTrH1sEpds6DmTZUqAKY4WETJ8T9C9t3KErfp/iJM8NYyLfNciBEUjvOW2fcstzg
-         eLtGVb6nRqSCKFIZ00UA6MUiba4SxDtimLB0p70lSoG/x9gTtTBk35fYD+5pmyZBq6Kx
-         9mnPUhq3TvXMoVaIwmic6DemYLSl5HlOqYubOqrjHqLFUHMg9Oy/wLHhLXCD9jl+sC4X
-         ZSYGdGkI2wzoPKaGw7GJ46C5El88Pqp/wVEGu8y0m5s1prdInnoPFk4HAzPwHEmXD63w
-         S9xw==
+        d=gmail.com; s=20230601; t=1769526247; x=1770131047; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ph6GwNlod+IS+C8k9beoEWeYzHPUGffF1N1gSwv1l98=;
+        b=Eu4jX37CyCQCa/yNytVuptcAAQpbp1KaIYE0d+tgs9YiGn1QA9GJ6aMGYX/doWddkA
+         ggG8/3ke5LFL2dbVT8hLY+nVW8AfJCwFg8qfuSYir9yKSurNsafdBr0uMXIUa8sJalRA
+         GSGvhA6M+eKhOw9bL/D4rS4XHBKNxCqeB0WJu8f3GxW7VRPFpa9+qlozwG0ICACGxSYz
+         AVjx+/9Jn/42DvqQDCuY/6BpaglSIdbpuGLiH9PlEAz4GEW29vQ33FEWqUonPNA+2QiG
+         2huiSIuqz5QWJJ4KQ3fHE//w0nZNt1OadoBc5b0FWGHl5smonefJgYRFjE3a8hlASA+G
+         T4DQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769526239; x=1770131039;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=D72x7J+ihB8n1bTt8RDNy1J6TX9XausoMPQdTRV97Yg=;
-        b=C1cnICLW2uvhzgF+R+/MwFZmgoEDaeiws8z8kKN9SrFl1jlAOXSWdoZtomEbH9uoRN
-         TWpJTHm8tOrItiNHrbqHUrQieD8uGl9/cAJe1DcQNxg8+qeFWar8xCNhKpNonabUKa6y
-         alM/cX08RUDSb4/sLscZWnlqQ/smgG1QClNeqD1OcFxSH04TaqpLxWatzkft0rnDQqPJ
-         R26aAsExGgLFxsSJrlfeXkD24+xWgDasxVEtxiCe9FAgVu+kYESlX0+MfaloBr1Vujmr
-         dOSPqg8xcEcaCMmuIopUUkWkdf6x/CRIBxypQXXh359MHacBicnFHWBZGmB8d3mIZLEq
-         b0vw==
-X-Forwarded-Encrypted: i=1; AJvYcCUu1G4WUSTJKVMICHgNEHbR8seXWYgFgnC7dmu2tZfSUei4vSkNRTpDQwPCdbLu9J5bLPlW1DDIQe3o@vger.kernel.org
-X-Gm-Message-State: AOJu0YyJ8UItc03x+CHHkKwAfCBN6+2i+PevxiOL/yYXXWYFVITJESjk
-	1ns7Rp2PVMns8TOuaLyKp7jYhRCk1CtOW1zc4TBrQZqKlGNlwXjyQhEZ9joxYOK1e4vcP2KG7pn
-	OzIEEIj4G9E+efNnyeMWTtVRt2I1xbbBjBwvH69FHjXB1LA9wt1XeuSkRy8sWomBg
-X-Gm-Gg: AZuq6aLhSo1jE50p1zUVJ88354Oj0/srxAhITdGaJkw6C/bcuh/XxPKsmJPsszFRjCs
-	b5nunyZhgnGqbNUt6tGzxRpM5TrPkCEX3vR7kxXho3qdUcJLU8dgbys/FbKtoD2wAGbJ0S7rNra
-	gq1iNBWe1S7ggBqc2x52IYJ68c9du0PZ5PUYXgrlLXxvKZzW7vSruKt55GXXLhS/qMSD56C57mz
-	jZrAOHWmWvSEshlj0Y89yZE+BQeBTx5XwUspUXehpKloCsMQWedPa/RgUV+5Gsy3uORMU8rP3dY
-	qUhZtWVcqtZ8BuwIo8zWOelR81ZK77vbJ1ljlH/Il9PPzp6oXnyUw/TK3RwC2aNj0yinOSqd6CY
-	G8W4w7lsU+rGxnjmCnQ==
-X-Received: by 2002:a05:6102:41a5:b0:5f5:402b:7eda with SMTP id ada2fe7eead31-5f7236260dbmr660491137.10.1769526239232;
-        Tue, 27 Jan 2026 07:03:59 -0800 (PST)
-X-Received: by 2002:a05:6102:41a5:b0:5f5:402b:7eda with SMTP id ada2fe7eead31-5f7236260dbmr660431137.10.1769526238425;
-        Tue, 27 Jan 2026 07:03:58 -0800 (PST)
-Received: from hackbox.lan ([86.121.162.109])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435b1c02cd8sm36895097f8f.8.2026.01.27.07.03.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Jan 2026 07:03:57 -0800 (PST)
-From: Abel Vesa <abel.vesa@oss.qualcomm.com>
-Date: Tue, 27 Jan 2026 17:03:24 +0200
-Subject: [PATCH v2 6/6] clk: qcom: Add TCSR clock driver for Eliza
+        d=1e100.net; s=20230601; t=1769526247; x=1770131047;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ph6GwNlod+IS+C8k9beoEWeYzHPUGffF1N1gSwv1l98=;
+        b=aZqrpVVr1O8ev+xpbtrSb3PJPbMQ2vikaNYI7Cw3sZxS0j0K0WKXa7gJW8Vubh8xmq
+         7clPmsepQbIyUHAviCOXEGJxUGFEtEhnlS3SYM3rRvEyys9d+LvZNG81y0WmYOAAxCH6
+         zvyNHdQJbnFzk9zc5XyHZPy20OumUnf7TtYq6HhMYgEcaJRPYxqWjnvP9GkzWNkrcb6Z
+         PTH1bZpKkZY1/hOCdfXoSOPGOBwz54zXSZ2adKC0D1yiixAS4yz0ObHJiBY7M4mibnge
+         bMJ91wxMNFs2HotJt+7WROvZBNeTOudSF0T4wMjaKrVM00H4wHKlDoXPfzHG51jPG79N
+         ODPA==
+X-Forwarded-Encrypted: i=1; AJvYcCUHzc0t0zLUa540V94Uevbg7GazKyiX9SlBhAxoQTC5Mm0lVkzqRoBEF1KiUxrSk+ivDfzmLgfPQ53d@vger.kernel.org
+X-Gm-Message-State: AOJu0YzkKChC3Nox1mCcQKMnuyzEYZIfKAaOoFTFBIdOkfknbSbx9pRM
+	UQ+xq7UmkipdLv1KBjbTl0i6emwsNl16HPc0/JS1NRlwgJ4gmUGr1Io2q4Aedw==
+X-Gm-Gg: AZuq6aI2zPdFnQhXecpdILtBzXlL17aRPTvJJddea+cF3FtOmyv1PkHpfN8MQU00vl8
+	g48iVKQMxrU2gEB/EDnKktcUwIB3dGTvP2ov890gGTyA9B6nuWS7EPxBxwdNziuAoTbGUf4GKD2
+	oG8M7U83/OdX405Ox7P36r4eUpitchYEQk+3L6zwUtrlccbj13G5VALLNBv7IbNmdz2HOrMKRDn
+	sicnA2f8iR8yx0odTjxC2XeDdfF0Bl+GqGe0L2kfaAJapFAnENukWa886O7pSU2ft9Dfpnt0Fml
+	LCGycQsaH4CTnA0ygawOrbSInJfVeueIkxsPC0EZ5gPIXvmcdP2KqT87AdY+oPL8n9iiy4R6brn
+	OJ8jzZlRAbfXfbVIR71J/PhXC/jdZHOcxr/zUnQuyuANCDdU8W3GQ2n5QN6rqAvtJCev8UEN/v3
+	pelwlNV7JnvmOug4niX4BYh7jsoOgXD7r5qWU=
+X-Received: by 2002:a17:90b:1d02:b0:34a:e9b:26b1 with SMTP id 98e67ed59e1d1-353fed9900fmr2036177a91.26.1769526246430;
+        Tue, 27 Jan 2026 07:04:06 -0800 (PST)
+Received: from [192.168.1.5] ([115.99.251.203])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-353f5f96293sm2952869a91.0.2026.01.27.07.04.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Jan 2026 07:04:06 -0800 (PST)
+Message-ID: <a8c5e85c-6f42-4a5a-8dab-fe43728e8009@gmail.com>
+Date: Tue, 27 Jan 2026 20:34:00 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] dt-bindings: usb: ti,dwc3: convert to DT schema
+To: Rob Herring <robh@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Felipe Balbi <balbi@ti.com>,
+ linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260126-ti-usb-v1-0-2855c129eb6d@gmail.com>
+ <20260126-ti-usb-v1-2-2855c129eb6d@gmail.com>
+ <20260126160835.GA2502193-robh@kernel.org>
+Content-Language: en-US
+From: Charan Pedumuru <charan.pedumuru@gmail.com>
+In-Reply-To: <20260126160835.GA2502193-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260127-eliza-clocks-v2-6-ccee9438b5c8@oss.qualcomm.com>
-References: <20260127-eliza-clocks-v2-0-ccee9438b5c8@oss.qualcomm.com>
-In-Reply-To: <20260127-eliza-clocks-v2-0-ccee9438b5c8@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        Taniya Das <taniya.das@oss.qualcomm.com>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Abel Vesa <abel.vesa@oss.qualcomm.com>
-X-Mailer: b4 0.15-dev-47773
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5692;
- i=abel.vesa@oss.qualcomm.com; h=from:subject:message-id;
- bh=2iSNr2mrjQlNgIhwXI0YLBCP6nI0wEEu4a7xd+a/z7c=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBpeNPQfS5Weo/P+hX3rznrRv8hh2uG9S0FQ/wsb
- qaumj89Lv2JAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCaXjT0AAKCRAbX0TJAJUV
- Vvz0D/9YSE6TTAytL+Z01mZTtWnJBXwGSVqjJ+a5P7xmYi/q+MOpTENsB1Z7dzMaj3KlV/naTY9
- sUcJiNWlkwPHfJhaL1XMyqbYluAu1kUff7xCfoAyP8zOR1sJAODJV8dZc4zGLOElAWWN6zRfkoj
- gv3WIw4r+8i3yzBVEHc84JCLuQDrcelVcdpqelJFWay+lGLOj4R7EPWw7ThjL1AQ3N1RlsC33K1
- 96GW71GK2RgwJNtN8ULxdf2988YD97cwod4GVIvS1pEFX7kp2rtS/nqxbTu0iP6bqXPkX7XAbXW
- MpPAgQLOhaBW3W/LWjq+YON3datSgWbYGsichtKASbl8pZ4K/nbiBf4YCCF8bBvxuVkpEJ1L6Yx
- we22XWdqclB+NIxk+SHgQzKjNqR5q0izVF5BGZCGKUb+sbqugmJFqxyz6Xn8uGJfTmiHpp4udYv
- 3RRYNIfmenEeMVvp3BSly6xvSR1+YJTBPa/Kcs9sNf00orMM7NarJwgRL0VvpDdvd5BQkFAbk0N
- rE86N3Oy9ha8iyKWo+ycsR6l9QgTfjDRMw4pf2JzXmmis2pqixsoOAm9+qqYz/DojlQMfG5fecD
- 5OeTK6gRZc53DYyHCUT19nH852ZtBO32N8ByUrypn9P8cHdki/x6QyLP0SpIHwKiT2Kb7EP4icH
- C2cw5x4pSWlAMIQ==
-X-Developer-Key: i=abel.vesa@oss.qualcomm.com; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
-X-Proofpoint-GUID: zrYo21YkQi9G_r5XaXax1xbrstFJV3OC
-X-Authority-Analysis: v=2.4 cv=YpcChoYX c=1 sm=1 tr=0 ts=6978d3e0 cx=c_pps
- a=UbhLPJ621ZpgOD2l3yZY1w==:117 a=oauzzCmhM186DRC0Y2yWPg==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=3iaU8NaM3X0bdk3JexsA:9
- a=QEXdDO2ut3YA:10 a=TOPH6uDL9cOC6tEoww4z:22
-X-Proofpoint-ORIG-GUID: zrYo21YkQi9G_r5XaXax1xbrstFJV3OC
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI3MDEyMyBTYWx0ZWRfX2Mjg8ImiNMRF
- XZvsTjnV6L4nEY8ZDpiscNLhvNNLVgPGiWCCGxX2w+YpCWLST+HVfjo1InMrjweEwwvDlsocAI7
- dx742eLNr15YXeAtJWtvzdZz1EWo+YxTG5XQp16+ulRa2+168Lrp1286zCouSlhFm6W5I7dXO99
- bokA9c4TNe26hwkz4LK9hBcECiDv6Ru0efv2Ki/kIIym8tJuX6doVnJaJhiWU/bK7TDhj6jySVV
- jOzFN6XYCHksyKPVYEOo76yEU86KkQecoMBSifsdQIrcDkLZ/us68T9Bv989V7YMwgVCf3TDCSm
- T13v5sw9iU+FiEPCm2N7/p894LN96yiwnNpeAytg28cMYdhF9/q7JMNK/bUVrcd7Igu9a0cqFLo
- Hlp1l0SAe4Y5okPwE9bgyq1xd/okcDfpqYlVSoqJ9SiinCVTqqqJfjVKiw7BMgYaQGf7nu+fGpR
- 3l4A03/5h0HjLj9HYfg==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-01-27_03,2026-01-27_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 clxscore=1015 phishscore=0 impostorscore=0 suspectscore=0
- spamscore=0 malwarescore=0 bulkscore=0 adultscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601270123
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259973-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	TAGGED_FROM(0.00)[bounces-259974-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[abel.vesa@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[charanpedumuru@gmail.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 6C2A09689C
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[4a0ab000:email,0.0.0.0:email,devicetree.org:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,0.0.39.16:email]
+X-Rspamd-Queue-Id: 4D35D97379
 X-Rspamd-Action: no action
 
-Add the TCSR clock controller that provides the refclks on Eliza
-platform for PCIe, USB and UFS subsystems.
 
-Co-developed-by: Taniya Das <taniya.das@oss.qualcomm.com>
-Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
-Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
----
- drivers/clk/qcom/Kconfig        |   8 +++
- drivers/clk/qcom/Makefile       |   1 +
- drivers/clk/qcom/tcsrcc-eliza.c | 144 ++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 153 insertions(+)
 
-diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-index edac919d3aa2..dce21e33e366 100644
---- a/drivers/clk/qcom/Kconfig
-+++ b/drivers/clk/qcom/Kconfig
-@@ -28,6 +28,14 @@ config CLK_ELIZA_GCC
- 	  Say Y if you want to use peripheral devices such as UART, SPI,
- 	  I2C, USB, UFS, SDCC, etc.
- 
-+config CLK_ELIZA_TCSRCC
-+	tristate "Eliza TCSR Clock Controller"
-+	depends on ARM64 || COMPILE_TEST
-+	select QCOM_GDSC
-+	help
-+	  Support for the TCSR clock controller on Eliza devices.
-+	  Say Y if you want to use peripheral devices such as USB/PCIe/UFS.
-+
- config CLK_GLYMUR_DISPCC
- 	tristate "GLYMUR Display Clock Controller"
- 	depends on ARM64 || COMPILE_TEST
-diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
-index 6ec63a5d4363..d2bbaaada826 100644
---- a/drivers/clk/qcom/Makefile
-+++ b/drivers/clk/qcom/Makefile
-@@ -22,6 +22,7 @@ obj-$(CONFIG_APQ_GCC_8084) += gcc-apq8084.o
- obj-$(CONFIG_APQ_MMCC_8084) += mmcc-apq8084.o
- obj-$(CONFIG_CLK_GFM_LPASS_SM8250) += lpass-gfm-sm8250.o
- obj-$(CONFIG_CLK_ELIZA_GCC) += gcc-eliza.o
-+obj-$(CONFIG_CLK_ELIZA_TCSRCC) += tcsrcc-eliza.o
- obj-$(CONFIG_CLK_GLYMUR_DISPCC) += dispcc-glymur.o
- obj-$(CONFIG_CLK_GLYMUR_GCC) += gcc-glymur.o
- obj-$(CONFIG_CLK_GLYMUR_TCSRCC) += tcsrcc-glymur.o
-diff --git a/drivers/clk/qcom/tcsrcc-eliza.c b/drivers/clk/qcom/tcsrcc-eliza.c
-new file mode 100644
-index 000000000000..e01c40341d40
---- /dev/null
-+++ b/drivers/clk/qcom/tcsrcc-eliza.c
-@@ -0,0 +1,144 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-+ */
-+
-+#include <linux/clk-provider.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+
-+#include <dt-bindings/clock/qcom,eliza-tcsr.h>
-+
-+#include "clk-branch.h"
-+#include "clk-regmap.h"
-+#include "common.h"
-+
-+enum {
-+	DT_BI_TCXO_PAD,
-+};
-+
-+static struct clk_branch tcsr_pcie_0_clkref_en = {
-+	.halt_reg = 0x0,
-+	.halt_check = BRANCH_HALT_DELAY,
-+	.clkr = {
-+		.enable_reg = 0x0,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(const struct clk_init_data) {
-+			.name = "tcsr_pcie_0_clkref_en",
-+			.parent_data = &(const struct clk_parent_data){
-+				.index = DT_BI_TCXO_PAD,
-+			},
-+			.num_parents = 1,
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
-+static struct clk_branch tcsr_ufs_clkref_en = {
-+	.halt_reg = 0x8,
-+	.halt_check = BRANCH_HALT_DELAY,
-+	.clkr = {
-+		.enable_reg = 0x8,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(const struct clk_init_data) {
-+			.name = "tcsr_ufs_clkref_en",
-+			.parent_data = &(const struct clk_parent_data){
-+				.index = DT_BI_TCXO_PAD,
-+			},
-+			.num_parents = 1,
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
-+static struct clk_branch tcsr_usb2_clkref_en = {
-+	.halt_reg = 0x4,
-+	.halt_check = BRANCH_HALT_DELAY,
-+	.clkr = {
-+		.enable_reg = 0x4,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(const struct clk_init_data) {
-+			.name = "tcsr_usb2_clkref_en",
-+			.parent_data = &(const struct clk_parent_data){
-+				.index = DT_BI_TCXO_PAD,
-+			},
-+			.num_parents = 1,
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
-+static struct clk_branch tcsr_usb3_clkref_en = {
-+	.halt_reg = 0x10,
-+	.halt_check = BRANCH_HALT_DELAY,
-+	.clkr = {
-+		.enable_reg = 0x10,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(const struct clk_init_data) {
-+			.name = "tcsr_usb3_clkref_en",
-+			.parent_data = &(const struct clk_parent_data){
-+				.index = DT_BI_TCXO_PAD,
-+			},
-+			.num_parents = 1,
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
-+static struct clk_regmap *tcsr_cc_eliza_clocks[] = {
-+	[TCSR_PCIE_0_CLKREF_EN] = &tcsr_pcie_0_clkref_en.clkr,
-+	[TCSR_UFS_CLKREF_EN] = &tcsr_ufs_clkref_en.clkr,
-+	[TCSR_USB2_CLKREF_EN] = &tcsr_usb2_clkref_en.clkr,
-+	[TCSR_USB3_CLKREF_EN] = &tcsr_usb3_clkref_en.clkr,
-+};
-+
-+static const struct regmap_config tcsr_cc_eliza_regmap_config = {
-+	.reg_bits = 32,
-+	.reg_stride = 4,
-+	.val_bits = 32,
-+	.max_register = 0x1c,
-+	.fast_io = true,
-+};
-+
-+static const struct qcom_cc_desc tcsr_cc_eliza_desc = {
-+	.config = &tcsr_cc_eliza_regmap_config,
-+	.clks = tcsr_cc_eliza_clocks,
-+	.num_clks = ARRAY_SIZE(tcsr_cc_eliza_clocks),
-+};
-+
-+static const struct of_device_id tcsr_cc_eliza_match_table[] = {
-+	{ .compatible = "qcom,eliza-tcsr" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, tcsr_cc_eliza_match_table);
-+
-+static int tcsr_cc_eliza_probe(struct platform_device *pdev)
-+{
-+	return qcom_cc_probe(pdev, &tcsr_cc_eliza_desc);
-+}
-+
-+static struct platform_driver tcsr_cc_eliza_driver = {
-+	.probe = tcsr_cc_eliza_probe,
-+	.driver = {
-+		.name = "tcsr_cc-eliza",
-+		.of_match_table = tcsr_cc_eliza_match_table,
-+	},
-+};
-+
-+static int __init tcsr_cc_eliza_init(void)
-+{
-+	return platform_driver_register(&tcsr_cc_eliza_driver);
-+}
-+subsys_initcall(tcsr_cc_eliza_init);
-+
-+static void __exit tcsr_cc_eliza_exit(void)
-+{
-+	platform_driver_unregister(&tcsr_cc_eliza_driver);
-+}
-+module_exit(tcsr_cc_eliza_exit);
-+
-+MODULE_DESCRIPTION("QTI TCSR_CC Eliza Driver");
-+MODULE_LICENSE("GPL");
+On 26-01-2026 21:38, Rob Herring wrote:
+> On Mon, Jan 26, 2026 at 01:22:05PM +0000, Charan Pedumuru wrote:
+>> Convert OMAP DWC3 USB Glue Layer binding to DT schema.
+>> Changes during conversion:
+>> - Introduce a new compatible string pattern "omap_dwc3" to match nodes
+>>   already present in existing device tree sources.
+>>
+>> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+>> ---
+>>  Documentation/devicetree/bindings/usb/omap-usb.txt |  80 ---------------
+>>  Documentation/devicetree/bindings/usb/ti,dwc3.yaml | 112 +++++++++++++++++++++
+>>  2 files changed, 112 insertions(+), 80 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/usb/omap-usb.txt b/Documentation/devicetree/bindings/usb/omap-usb.txt
+>> deleted file mode 100644
+>> index f0dbc5ae45ae..000000000000
+>> --- a/Documentation/devicetree/bindings/usb/omap-usb.txt
+>> +++ /dev/null
+>> @@ -1,80 +0,0 @@
+>> -OMAP GLUE AND OTHER OMAP SPECIFIC COMPONENTS
+>> -
+>> -OMAP MUSB GLUE
+>> - - compatible : Should be "ti,omap4-musb" or "ti,omap3-musb"
+>> - - ti,hwmods : must be "usb_otg_hs"
+>> - - multipoint : Should be "1" indicating the musb controller supports
+>> -   multipoint. This is a MUSB configuration-specific setting.
+>> - - num-eps : Specifies the number of endpoints. This is also a
+>> -   MUSB configuration-specific setting. Should be set to "16"
+>> - - ram-bits : Specifies the ram address size. Should be set to "12"
+>> - - interface-type : This is a board specific setting to describe the type of
+>> -   interface between the controller and the phy. It should be "0" or "1"
+>> -   specifying ULPI and UTMI respectively.
+>> - - mode : Should be "3" to represent OTG. "1" signifies HOST and "2"
+>> -   represents PERIPHERAL.
+>> - - power : Should be "50". This signifies the controller can supply up to
+>> -   100mA when operating in host mode.
+>> - - usb-phy : the phandle for the PHY device
+>> - - phys : the phandle for the PHY device (used by generic PHY framework)
+>> - - phy-names : the names of the PHY corresponding to the PHYs present in the
+>> -   *phy* phandle.
+>> -
+>> -Optional properties:
+>> - - ctrl-module : phandle of the control module this glue uses to write to
+>> -   mailbox
+>> -
+>> -SOC specific device node entry
+>> -usb_otg_hs: usb_otg_hs@4a0ab000 {
+>> -	compatible = "ti,omap4-musb";
+>> -	ti,hwmods = "usb_otg_hs";
+>> -	multipoint = <1>;
+>> -	num-eps = <16>;
+>> -	ram-bits = <12>;
+>> -	ctrl-module = <&omap_control_usb>;
+>> -	phys = <&usb2_phy>;
+>> -	phy-names = "usb2-phy";
+>> -};
+>> -
+>> -Board specific device node entry
+>> -&usb_otg_hs {
+>> -	interface-type = <1>;
+>> -	mode = <3>;
+>> -	power = <50>;
+>> -};
+>> -
+>> -OMAP DWC3 GLUE
+>> - - compatible : Should be
+>> -	* "ti,dwc3" for OMAP5 and DRA7
+>> -	* "ti,am437x-dwc3" for AM437x
+>> - - ti,hwmods : Should be "usb_otg_ss"
+>> - - reg : Address and length of the register set for the device.
+>> - - interrupts : The irq number of this device that is used to interrupt the
+>> -   MPU
+>> - - #address-cells, #size-cells : Must be present if the device has sub-nodes
+>> - - utmi-mode : controls the source of UTMI/PIPE status for VBUS and OTG ID.
+>> -   It should be set to "1" for HW mode and "2" for SW mode.
+>> - - ranges: the child address space are mapped 1:1 onto the parent address space
+>> -
+>> -Optional Properties:
+>> - - extcon : phandle for the extcon device omap dwc3 uses to detect
+>> -   connect/disconnect events.
+>> - - vbus-supply : phandle to the regulator device tree node if needed.
+>> -
+>> -Sub-nodes:
+>> -The dwc3 core should be added as subnode to omap dwc3 glue.
+>> -- dwc3 :
+>> -   The binding details of dwc3 can be found in:
+>> -   Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+>> -
+>> -omap_dwc3 {
+>> -	compatible = "ti,dwc3";
+>> -	ti,hwmods = "usb_otg_ss";
+>> -	reg = <0x4a020000 0x1ff>;
+>> -	interrupts = <0 93 4>;
+>> -	#address-cells = <1>;
+>> -	#size-cells = <1>;
+>> -	utmi-mode = <2>;
+>> -	ranges;
+>> -};
+>> -
+>> diff --git a/Documentation/devicetree/bindings/usb/ti,dwc3.yaml b/Documentation/devicetree/bindings/usb/ti,dwc3.yaml
+>> new file mode 100644
+>> index 000000000000..859da4b1f207
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/usb/ti,dwc3.yaml
+>> @@ -0,0 +1,112 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/usb/ti,dwc3.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Texas Instruments OMAP DWC3 USB Glue Layer
+>> +
+>> +maintainers:
+>> +  - Felipe Balbi <balbi@ti.com>
+>> +
+>> +description:
+>> +  Texas Instruments glue layer for Synopsys DesignWare USB3 (DWC3)
+>> +  controller on OMAP and AM43xx SoCs. Manages SoC-specific integration
+>> +  including register mapping, interrupt routing, UTMI/PIPE interface mode
+>> +  selection (HW/SW), and child DWC3 core instantiation via address space
+>> +  translation. Supports both legacy single-instance and multi-instance
+>> +  (numbered) configurations.
+>> +
+>> +properties:
+>> +  $nodename:
+>> +    pattern: "^omap_dwc3(_[0-9]+)?@.*$"
+> 
+> Drop.
+
+Sure.
+
+> 
+>> +
+>> +  compatible:
+>> +    enum:
+>> +      - ti,dwc3
+>> +      - ti,am437x-dwc3
+>> +
+>> +  ti,hwmods:
+>> +    $ref: /schemas/types.yaml#/definitions/string
+>> +    description:
+>> +      TI PRCM hardware module name that must be enabled (powered and
+>> +      clocked) for this node. "usb_otg_ss" refers to the SuperSpeed
+>> +      (USB3 + USB2 OTG) controller wrapper/glue layer found in OMAP5,
+>> +      DRA7, AM57x, and similar TI SoCs using DWC3.
+>> +    const: usb_otg_ss
+> 
+> Drop. Not used anywhere.
+
+Okay.
+
+> 
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  utmi-mode:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    description:
+>> +      Controls the source of UTMI/PIPE status for VBUS and OTG ID.
+>> +      1 for HW mode, 2 for SW mode.
+>> +    enum: [1, 2]
+>> +
+>> +  "#address-cells":
+>> +    const: 1
+>> +
+>> +  "#size-cells":
+>> +    const: 1
+>> +
+>> +  ranges: true
+>> +
+>> +  extcon:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description:
+>> +      Phandle for the extcon device used to detect connect/
+>> +      disconnect events.
+>> +
+>> +  vbus-supply:
+>> +    description: Phandle to the regulator device tree node if needed.
+>> +
+>> +patternProperties:
+>> +  "^usb@[0-9a-f]+$":
+>> +    type: object
+>> +    $ref: snps,dwc3.yaml#
+>> +    unevaluatedProperties: false
+>> +
+>> +required:
+>> +  - reg
+>> +  - compatible
+>> +  - interrupts
+>> +  - "#address-cells"
+>> +  - "#size-cells"
+>> +  - utmi-mode
+>> +  - ranges
+>> +
+>> +unevaluatedProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    omap_dwc3_1@0 {
+>> +        compatible = "ti,dwc3";
+>> +        reg = <0x0 0x10000>;
+>> +        interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
+>> +        #address-cells = <1>;
+>> +        #size-cells = <1>;
+>> +        utmi-mode = <2>;
+>> +        ranges = <0 0 0x20000>;
+>> +
+>> +        usb@10000 {
+>> +            compatible = "snps,dwc3";
+>> +            reg = <0x10000 0x17000>;
+>> +            interrupts = <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
+>> +            interrupt-names = "peripheral", "host", "otg";
+>> +            phys = <&usb2_phy1>, <&usb3_phy1>;
+>> +            phy-names = "usb2-phy", "usb3-phy";
+>> +            maximum-speed = "super-speed";
+>> +            dr_mode = "otg";
+>> +            snps,dis_u3_susphy_quirk;
+>> +            snps,dis_u2_susphy_quirk;
+>> +        };
+>> +    };
+>> +...
+>>
+>> -- 
+>> 2.52.0
+>>
 
 -- 
-2.48.1
+Best Regards,
+Charan.
 
 
