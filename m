@@ -1,135 +1,228 @@
-Return-Path: <devicetree+bounces-259918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259919-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QHpSFoLHeGmDtQEAu9opvQ
-	(envelope-from <devicetree+bounces-259918-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:11:14 +0100
+	id WGH4L/PHeGmDtQEAu9opvQ
+	(envelope-from <devicetree+bounces-259919-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:13:07 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92BD195647
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:11:13 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A116956E1
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:13:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 634D63083A68
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 14:08:33 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D168930039B6
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 14:13:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1585428850C;
-	Tue, 27 Jan 2026 14:08:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="vujvGTdy"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3C423101BB;
+	Tue, 27 Jan 2026 14:13:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7644831062C;
-	Tue, 27 Jan 2026 14:08:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2855F26FD9A
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 14:13:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769522913; cv=none; b=OYg5J3t+WT9NQJGpajVKTYh8bH55frjBkXTb02XftLINPHv46kLKktnr/LRii9dcwIW/UYrf1ja8J5Y6gsZ7L/C61/TCO9lYlY8y0NJc/ePkeEe1v7SNDbr2v2ImROosLRiFterk5mzwSgkbg0qBAPLm2mM5ElZoRTmIjd5axaI=
+	t=1769523184; cv=none; b=iT/eWafK2rxK6a2TF5NhrjeAQIZHkwn7VLzM55RjUxWstAXilhhIxEMrKrbOd2HEzP5CPUdQXK3zBjeZN4YgoQ40o5HKi/5LLBYhoxOHJ0hOwE6Go1f5I3nGW2jfb+mMPvq5CC+HvzrfKrkE7uBf6j8wQmxRXQdZ49RATbt2pTE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769522913; c=relaxed/simple;
-	bh=nqpzeb2202jrK9ZEgJJDYC78q8Ydl4acN6oBCg7d+7A=;
+	s=arc-20240116; t=1769523184; c=relaxed/simple;
+	bh=xjc7u4fz6pmYlwP9Oa0iUMqnWYYtp999qs+HL8d3NQs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cYqydyP0OhA+cuzockvjyZ4KWT0HDLkla8fyl/uxfvM3Vw38GlVDxcvhqqZthVrFCrzH4JVIqE3m44b2LAs0oFNDiqzQQPwVJ157ziQkbm9Ia0CFWsLWJTFHMasOggdzS5qXUIVFn0Qi3uNML0BRGu3hHJgm5oBUqw3qu7XvYdc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=vujvGTdy; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=iLpcUMzrfi1cf21OsQRIeFglEgABcn83FXe046wtc6w=; b=vujvGTdyKGu+sOwB9NiLH6Yx+9
-	pZMjRz6QtgTMxR4KwCmFI6SiPV+n5BAM09uStkt/juZ9MEtngpAnJPV/BR0HPiQSoYbgQVlMR5iiD
-	qLq0IDkER5aKog+Fg9/QoQ0ieMfsHB8+S7/2pKsz5Y7Q+wkp7U7Md/YFkYKvVZGs/PGA=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vkjjw-004xlG-0i; Tue, 27 Jan 2026 15:08:20 +0100
-Date: Tue, 27 Jan 2026 15:08:20 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Lukasz Majewski <lukma@nabladev.com>
-Cc: Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3] clk: vf610: Add support for the Ethernet switch clocks
-Message-ID: <2ce32d04-ac62-4e66-bf76-9d99b94c1a4b@lunn.ch>
-References: <20260127085150.3040586-1-lukma@nabladev.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=iDgEbUmx1L5aFqaSl0WunCLG5CnFSnFWmU33ihOXfxciA71f6dUNHPnzqIlnIn5b4S1iYhW+5A1Y/T9dKxvln/5tALJ3mPwEHzxnvgH8xx6DwMTUcHXfL6HYwTb33jFejpVCzmt/VHuQe/F6mBdgGamJp2lGjOW9s7jmNPntGEI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1vkjoI-0004w0-UY; Tue, 27 Jan 2026 15:12:50 +0100
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1vkjoJ-002lLQ-1G;
+	Tue, 27 Jan 2026 15:12:50 +0100
+Received: from pengutronix.de (p54b15bf8.dip0.t-ipconnect.de [84.177.91.248])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 51AD84D95EC;
+	Tue, 27 Jan 2026 14:12:50 +0000 (UTC)
+Date: Tue, 27 Jan 2026 15:12:49 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Arun Muthusamy <arun.muthusamy@gaisler.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	mailhol@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-can@vger.kernel.org
+Subject: Re: [PATCH v3 13/15] can: grcan: Add CANFD TX support alongside
+ legacy CAN
+Message-ID: <20260127-fancy-fast-bird-e7c4c3-mkl@pengutronix.de>
+X-AI: stop_reason: "refusal"
+References: <20260122121038.7910-1-arun.muthusamy@gaisler.com>
+ <20260122121038.7910-14-arun.muthusamy@gaisler.com>
+ <20260123-berserk-crocodile-of-champagne-49d2b0-mkl@pengutronix.de>
+ <78a8f06c-da93-4ade-bc69-872aac644724@gaisler.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="rpakgy5wkqvr6pf3"
 Content-Disposition: inline
-In-Reply-To: <20260127085150.3040586-1-lukma@nabladev.com>
+In-Reply-To: <78a8f06c-da93-4ade-bc69-872aac644724@gaisler.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.56 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
-	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259918-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,nxp.com,baylibre.com,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[lunn.ch:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lunn.ch:email,lunn.ch:dkim,lunn.ch:mid]
-X-Rspamd-Queue-Id: 92BD195647
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259919-lists,devicetree=lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[pengutronix.de];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mkl@pengutronix.de,devicetree@vger.kernel.org];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gaisler.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 6A116956E1
 X-Rspamd-Action: no action
 
-On Tue, Jan 27, 2026 at 09:51:50AM +0100, Lukasz Majewski wrote:
-> The vf610 device has built in the MoreThanIP L2 switch. For proper
-> operation it is required to enable ESW and MAC table lookup clocks.
-> 
-> The MAC table spans from 0x400E_C000 for 0x4000 and it is necessary
-> to provide clocks for each AIPS1-"slot", which size is 0x1000
-> (hence four separate entries).
-> 
-> Those can be enabled via clock gating CCM_CCGR10 register (0x4006_B068).
-> 
-> This patch also adds VF610_CLK_ESW and VF610_CLK_ESW_MAC_TAB{0123}
-> macros definitions for L2 switch.
-> 
-> The VF610_CLK_END has been removed from dt-bindings, as its number had to
-> be increased when MTIP L2 switch clocks were added, and defined locally
-> in clk-vf610.c driver.
 
-The nice thing about having it in vf610-clock.h was that it was clear
-that whenever a new clock is added, the value needed to change. It is
-now hidden away. It could well be more clocks are added, the value
-does not get updated, and in use we go passed the end of the clk[]
-array, and probably corrupt the struct clk_onecell_data clk_data.
+--rpakgy5wkqvr6pf3
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 13/15] can: grcan: Add CANFD TX support alongside
+ legacy CAN
+MIME-Version: 1.0
 
-I would probably add a comment in vf610-clock.h about this.
+On 27.01.2026 15:06:55, Arun Muthusamy wrote:
+>
+> On 1/23/26 15:25, Marc Kleine-Budde wrote:
+> > On 22.01.2026 13:10:36, Arun Muthusamy wrote:
+> > > Include CANFD TX support with the legacy CAN support, enabling
+> > > support for extended data payloads to provide higher bit rates.
+> > >
+> > > Signed-off-by: Arun Muthusamy <arun.muthusamy@gaisler.com>
+> > > ---
+> > >   drivers/net/can/grcan.c | 102 +++++++++++++++++++++++++++++--------=
+---
+> > >   1 file changed, 74 insertions(+), 28 deletions(-)
+> > >
+> > > diff --git a/drivers/net/can/grcan.c b/drivers/net/can/grcan.c
+> > > index 9fc18064fab1..508ad5320cff 100644
+> > > --- a/drivers/net/can/grcan.c
+> > > +++ b/drivers/net/can/grcan.c
+> > > @@ -174,6 +174,7 @@ struct grcan_registers {
+> > >   #define GRCAN_IRQ_DEFAULT (GRCAN_IRQ_RX | GRCAN_IRQ_TX | GRCAN_IRQ_=
+ERRORS)
+> > >
+> > >   #define GRCAN_MSG_SIZE		16
+> > > +#define GRCAN_CLASSIC_DATA_SIZE 8
+> > >
+> > >   #define GRCAN_MSG_IDE		0x80000000
+> > >   #define GRCAN_MSG_RTR		0x40000000
+> > > @@ -195,6 +196,10 @@ struct grcan_registers {
+> > >   #define GRCAN_MSG_OFF		0x00000002
+> > >   #define GRCAN_MSG_PASS		0x00000001
+> > >
+> > > +#define GRCAN_MSG_EID_MASK      GENMASK(28, 0)
+> > > +#define GRCAN_MSG_BID_MASK      GENMASK(28, 18)
+> > > +#define GRCAN_MSG_DLC_MASK      GENMASK(31, 28)
+> > > +
+> > >   #define GRCAN_BUFFER_ALIGNMENT		1024
+> > >   #define GRCAN_DEFAULT_BUFFER_SIZE	1024
+> > >   #define GRCAN_VALID_TR_SIZE_MASK	0x001fffc0
+> > > @@ -227,6 +232,9 @@ struct grcan_registers {
+> > >   #define GRCANFD_FDBTR_PS2_BIT 5
+> > >   #define GRCANFD_FDBTR_SJW_BIT 0
+> > >
+> > > +#define GRCAN_TX_BRS  BIT(25)
+> > > +#define GRCAN_TX_FDF  BIT(26)
+> > > +
+> > >   /* Hardware capabilities */
+> > >   struct grcan_hwcap {
+> > >   	/* CAN-FD capable, indicates GRCANFD IP.
+> > > @@ -1218,6 +1226,13 @@ static void grcan_transmit_catch_up(struct net=
+_device *dev)
+> > >   	spin_unlock_irqrestore(&priv->lock, flags);
+> > >   }
+> > >
+> > > +static int grcan_numbds(int len)
+> > > +{
+> > > +	if (len <=3D GRCAN_CLASSIC_DATA_SIZE)
+> > > +		return 1;
+> > > +	return 1 + ((len - GRCAN_CLASSIC_DATA_SIZE + GRCAN_MSG_SIZE) / GRCA=
+N_MSG_SIZE);
+> > This looks strange, what is calculated here? Why is "<=3D
+> > GRCAN_CLASSIC_DATA_SIZE" a special case?
+>
+> grcan_numbds() calculates the number of buffer descriptors needed based o=
+n the data length.
+> The condition "len <=3D GRCAN_CLASSIC_DATA_SIZE" addresses cases where th=
+e data length fits within a one buffer descriptor.
+> For data lengths greater than "GRCAN_CLASSIC_DATA_SIZE", it computes addi=
+tional descriptors needed.
 
-Apart from that:
+What happens if "len =3D GRCAN_CLASSIC_DATA_SIZE + GRCAN_MSG_SIZE"?
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+| return 1 + ((len - GRCAN_CLASSIC_DATA_SIZE + GRCAN_MSG_SIZE) / GRCAN_MSG_=
+SIZE);
 
-    Andrew
+=3D 1 + ((GRCAN_CLASSIC_DATA_SIZE + GRCAN_MSG_SIZE - GRCAN_CLASSIC_DATA_SIZ=
+E + GRCAN_MSG_SIZE) / GRCAN_MSG_SIZE);
+=3D 1 + ((                          GRCAN_MSG_SIZE -                       =
+  + GRCAN_MSG_SIZE) / GRCAN_MSG_SIZE);
+=3D 1 + 2;
+=3D 3
+
+Is this correct?
+
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--rpakgy5wkqvr6pf3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAml4x94ACgkQDHRl3/mQ
+kZxCEQf/WCNswG5Klzxx8orvUzgaeba72UOu7p+lPT65hmeMJ4lgRbktTCQUC2p3
+2kw6hjgrs/Xn6U2/RVxFGNQ5vwEpMaLKDUDLr+0N+6BrqCBOZU5A+XTsAz948C6h
+dCyVDrkRzeEGwQGc9+nt+U2U/s4bg6DNqWPMyZsbCOWGY5DsVEj6nfHXt0kiB6Vt
+qq6ahDHR7HX4n+kpSr4+8MWAVJiSitJzopA5f2UyevQwjlOerLZv1mgdfpoq1vL6
+z+dLpEErj1kDW68DlQTdkToQrBO+838uaM1zDIcpynbmEoAWpGx4AtWBuMNTm8Kx
+WsQqIA+Z7sk9ZNPqRVkr9t6q6OyMoQ==
+=m7ih
+-----END PGP SIGNATURE-----
+
+--rpakgy5wkqvr6pf3--
 
