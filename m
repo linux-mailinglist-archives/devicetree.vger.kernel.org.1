@@ -1,136 +1,138 @@
-Return-Path: <devicetree+bounces-259802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259803-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gLURJ5uKeGn5qwEAu9opvQ
-	(envelope-from <devicetree+bounces-259802-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 10:51:23 +0100
+	id 8ERrAKGLeGmqqwEAu9opvQ
+	(envelope-from <devicetree+bounces-259803-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 10:55:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1965992178
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 10:51:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60118922B7
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 10:55:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0B9643032F59
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 09:45:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 64BAE3011F38
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 09:50:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A38433374F;
-	Tue, 27 Jan 2026 09:45:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 286EA335096;
+	Tue, 27 Jan 2026 09:50:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cheoRH6E"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xb59y/Go"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAC803321B9;
-	Tue, 27 Jan 2026 09:45:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0551C33372E
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 09:50:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769507137; cv=none; b=Qg8tZHyCoXYezh7GtL957SLlcpOJ6hV2V5VofFgLtFrcnpU5kMV+5ObeRqDlJ90mF5o1pc8xsnX/739IXvbAJzmZWtRrrAlUFk0sxGYauNR8LHcxJLiK0GUqJVOCj3gATXjkt9CFA613RnU3l3M058dtTQKB0BStdJOp0i1ueiQ=
+	t=1769507433; cv=none; b=nvd8RkDRvBuXqtXHaYE7b6lrz0rqBsfQ5FmqSASTXAaXnZhTp7U/4jMHlIPYqsnZw5jl19661WI7SJWG+rLvWuvMKTGj7x+TB5sTCB+FYcBUhvvQna2wlYXV2OUk3xISwl5AcRa9j15B+Vkhm51yU73Psa4tThDfA1WNhavlbTk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769507137; c=relaxed/simple;
-	bh=eG5ZRYyzkE/oygVVdcqghq8ygosS9UgM1FrIOdTY1RE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ylugb4zzsHzVNpQIZwR4M5Oxc1yYGIFG/EoWbLmfaMT+V/zrVCzJvuTjoKlYdYghlrGGXeHHlxGWgQ2NZxBb3CbrLVjJ1obfaL0QmH1Y5BQ5zsAavCicPVkTfZNVgM5Foz/mI2Y7qdgbfbFcEg6CGgb5Duvs6YI+Gl7Tmf9870E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cheoRH6E; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1769507135; x=1801043135;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=eG5ZRYyzkE/oygVVdcqghq8ygosS9UgM1FrIOdTY1RE=;
-  b=cheoRH6EDaRdOdtnMrQgnayVGyp87qoEuuvZWJv3Z0Ey11SmtCnwHYKr
-   CmI2JRaOqGXKQfrYqYOlJ6pLjhIi5BHHH4xn2Qm7APAleMReTu7S5b5Rq
-   +JR4sT+CK1BCc/qrmBscwEeF2AEBCIkL/vklZvM+FvjJXZZmdBmhGJiot
-   GEKKi8iKI6p9jr5hzd5FvhfcRXbPyBYAeF/rOG3nBDpesnGM6QRhGDuOL
-   Cfy1jOcdMTdAtXZ59Bv+0ng3IkH7NyKA8KqnHBnQB6lUyFAuwZljC5deH
-   hBbsxhPgAq05Z+wTij8WgZZqmY1omXjpFwbrg1csvHfJYh7emt1kMw+iD
-   Q==;
-X-CSE-ConnectionGUID: eE1kdBUtT+Spt3OG4gfHWQ==
-X-CSE-MsgGUID: 2hL25m4ZTLC3ACVPzynrwA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11683"; a="81331363"
-X-IronPort-AV: E=Sophos;i="6.21,256,1763452800"; 
-   d="scan'208";a="81331363"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2026 01:45:34 -0800
-X-CSE-ConnectionGUID: +rUZ+MEEQNONIbN5/OPhag==
-X-CSE-MsgGUID: 7J5wmYIuQdqhPUw5ch/tPA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,256,1763452800"; 
-   d="scan'208";a="212909430"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.245.248])
-  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2026 01:45:31 -0800
-Date: Tue, 27 Jan 2026 11:45:28 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: abdurrahman@nexthop.ai
-Cc: Michal Simek <michal.simek@amd.com>, Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, info@mocean-labs.com,
-	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 0/6] i2c: xiic: use generic device property accessors
-Message-ID: <aXiJOBaN12bo_BR-@smile.fi.intel.com>
-References: <20260126-i2c-xiic-v5-0-88a16a28721c@nexthop.ai>
+	s=arc-20240116; t=1769507433; c=relaxed/simple;
+	bh=7LwtmF+bVcSCmHj4byAyUrKHq7eeTlgeOzbbwUaPTlg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kIkJkNj2xn2VYL0ajrZ01NsnI0xpMQfqgautZiOOgfm/NP7Uq3qElWuvmZtV5n6wzurGShm3+0Jhtte0eQb19jV7rlhtlg7ajAqsQRQ79H2xahiHb7FehdkPicOM3Uyi5qLTfzTAhyeHCUzHwvrvxz/V7qKxwK866dPy9z76R9s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xb59y/Go; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 958E2C16AAE
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 09:50:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769507432;
+	bh=7LwtmF+bVcSCmHj4byAyUrKHq7eeTlgeOzbbwUaPTlg=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=Xb59y/GoDUM6EzFcgaj7NO4++ndX2ObAjyeo9GTE65HysdDbIprpb51PK7LbwJUxE
+	 m4z3wwZmpbs1suTL6iZBOixVEON3HxWpObomLH9k7Mbd0O0DssfBz12o+nFihMmiM1
+	 WCBec+TklrCcYZMnIV7WXwbx17V/YROM2P7/pB3ZfBzqCScg2Bi2D4sUI639L8vDhe
+	 6+li6u+EO0jjrEdYb3HshcEhx+quBMMDkErL59KGXyLNO90inG6ckHls9KfaUa805Z
+	 1ZlR+VhMav7G5Zj7XDzLBh9enfyWKdXbodRbo6q3dQAk/m5a9BbNLte0ghGmfNUXHK
+	 6A94PmjxQtOyg==
+Received: by mail-yx1-f43.google.com with SMTP id 956f58d0204a3-649278a69c5so5058792d50.3
+        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 01:50:32 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUXN8YDXL9u7HYuqtDLG5LeUAZUkcUrdQJoFdrdg0jhNAwqTBur0Z6mvRi/pmp5l7vlaIBZBXj9QhzZ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx81B9WCgcQvpYk0kyHIhRcvVO1iJp5isne70C9XTP/MIV1jilI
+	+/zySpj4o0roUdCE0cgvY5C65B7cZQwyCTrd4dyr0Z+Pe48Rc3/+7Om9a2XnJmczlqx2QqZYW5o
+	q56eaAj4IkneUPKZQN4gCcB9rfEHZBYw=
+X-Received: by 2002:a05:690e:191a:b0:648:170b:7978 with SMTP id
+ 956f58d0204a3-6498fbf6b67mr593257d50.42.1769507431993; Tue, 27 Jan 2026
+ 01:50:31 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260126-i2c-xiic-v5-0-88a16a28721c@nexthop.ai>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+References: <20260126-armada3700-usb32_drvvbus0-fix-v1-1-9dcdf68f5fbd@gmail.com>
+In-Reply-To: <20260126-armada3700-usb32_drvvbus0-fix-v1-1-9dcdf68f5fbd@gmail.com>
+From: Linus Walleij <linusw@kernel.org>
+Date: Tue, 27 Jan 2026 10:50:20 +0100
+X-Gmail-Original-Message-ID: <CAD++jLmbkKGR2xOEdJK5VsqcdThOUFdcZGK3NhgRGgTfpyi1tA@mail.gmail.com>
+X-Gm-Features: AZwV_Qin6FOjSp4sEFtALnimRFKmQnlfD33duU7mgixjZcsnYxytXr13mypUymg
+Message-ID: <CAD++jLmbkKGR2xOEdJK5VsqcdThOUFdcZGK3NhgRGgTfpyi1tA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: pinctrl: marvell,armada3710-xb-pinctrl: fix
+ 'usb32_drvvbus0' group name
+To: Gabor Juhos <j4g8y7@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Gregory CLEMENT <gregory.clement@bootlin.com>, 
+	=?UTF-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>, 
+	Miquel Raynal <miquel.raynal@bootlin.com>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-259802-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259803-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smile.fi.intel.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim]
-X-Rspamd-Queue-Id: 1965992178
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 60118922B7
 X-Rspamd-Action: no action
 
-On Mon, Jan 26, 2026 at 05:08:15PM +0000, Abdurrahman Hussain via B4 Relay wrote:
-> Switch to generic device property accessors.
-> 
-> Switch to managed devm_ functions to simplify error handling.
-> 
-> Make the clock optional since the driver is designed to operate without
-> explicit configuration in firmware thus making it useful on platforms
-> where clock is not or cannot be provided.
+On Mon, Jan 26, 2026 at 4:13=E2=80=AFPM Gabor Juhos <j4g8y7@gmail.com> wrot=
+e:
 
-Overall looks good, needs some nit-picks to be addressed.
-I hope v6 will manage to go in soon.
+> The trailing '0' character of the  'usb32_drvvbus0' pin group got removed
+> during converting the bindings to DT schema.
+>
+>   $ git grep -n usb32_drvvbus v6.18
+>   v6.18:Documentation/devicetree/bindings/pinctrl/marvell,armada-37xx-pin=
+ctrl.txt:106:group usb32_drvvbus0
+>   v6.18:drivers/pinctrl/mvebu/pinctrl-armada-37xx.c:195:  PIN_GRP_GPIO("u=
+sb32_drvvbus0", 0, 1, BIT(0), "drvbus"),
+>
+>   $ git grep -n usb32_drvvbus v6.19-rc1
+>   v6.19-rc1:Documentation/devicetree/bindings/pinctrl/marvell,armada3710-=
+xb-pinctrl.yaml:91:                usb2_drvvbus1, usb32_drvvbus ]
+>   v6.19-rc1:drivers/pinctrl/mvebu/pinctrl-armada-37xx.c:195:      PIN_GRP=
+_GPIO("usb32_drvvbus0", 0, 1, BIT(0), "drvbus"),
+>
+> Add it back to match the group name with the one the driver expects.
+>
+> Fixes: c1c9641a04e8 ("dt-bindings: pinctrl: Convert marvell,armada-3710-(=
+sb|nb)-pinctrl to DT schema")
+> Signed-off-by: Gabor Juhos <j4g8y7@gmail.com>
 
--- 
-With Best Regards,
-Andy Shevchenko
+Patch applied for fixes, k=C3=B6sz=C3=B6n=C3=B6m Gabor!
 
-
+Yours,
+Linus Walleij
 
