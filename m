@@ -1,176 +1,254 @@
-Return-Path: <devicetree+bounces-260005-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260006-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uGQnOeHceGnbtgEAu9opvQ
-	(envelope-from <devicetree+bounces-260005-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:42:25 +0100
+	id aOhbCDDceGmwtgEAu9opvQ
+	(envelope-from <devicetree+bounces-260006-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:39:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BD1D96EF6
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:42:25 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75D6596E52
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:39:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id ED30A30C5742
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:31:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 43ABB308B02B
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:35:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F0F72FD7B3;
-	Tue, 27 Jan 2026 15:30:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 063D93009F6;
+	Tue, 27 Jan 2026 15:34:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kQIQOE71"
+	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="YrDjqjod"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84F082EA159
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 15:30:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 006C43009C1
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 15:34:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769527836; cv=none; b=rjOuP5kgNTE4ou7Ga5PwLAQtQqtbHR9cBcJNzQjSefSyFKGWxTZixQDX29GiS9BeNqEABzdKttezfie9vhKr/JznjOqENnMwcnCBbSQT0xpP9S6FtK6tyd/7h2Fs2axlKpeKxR11oKq5P98E2nhbTGR6q/FtCbFDKWCguzaaceM=
+	t=1769528061; cv=none; b=R6VWgIONYGqMyyKFCOD7sHRbV9H+FJz8WtP/trD7dQuxRq7WR2uPFQq1ifnODfdvNqxgDGgKdNTkmMb5lduVolkAK37hmjnD5dWyhK3kDZiz1tsbXTUtX8w/rteGTv0+dG5ZWqBWD1pTJSrrq2RRQhq8wfVkP0WoRmENOSYzvcU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769527836; c=relaxed/simple;
-	bh=FquAxMyEZUnx56clUpEYy39o5UtF6dOtZ+36u7/JQ9E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CU47sIwf65TvK4pDttbadnAYcYhHVk99s3jXdNdggDX9J6ggKdotfKSP8YgqQdou0W3+cpcnOGcgNSTDFznxeAD4s4is5oh2barYGu8kaSOqLok5WC1MT85aXWQ5vS6wNn1W6zU3a16EmCs732rKXEOhFzel/6R2oMpVCUGaDF0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kQIQOE71; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-47edd9024b1so48819475e9.3
-        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 07:30:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769527833; x=1770132633; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=y+BzwDOXsuwsKZRnCwm7TR0RjiDWsT5xOCESlbi3ly0=;
-        b=kQIQOE71mNGWcbWuQ9LoRb1g/3Y1ApZzi4AzAEK4qYe3Cqq0wpue47pfFBepFyLTIn
-         WZPOlqQXECroAfsxneCBxbR29qyYtgHVMLMLb8LnpkrKTllMg8FZJNtOqMx5AJ6QSD4Q
-         4mzh34YGiwsNeUPAh0+3uGrghqzqsXYvWIR3o+/k0IJMsWVCaOG4uWcSGL7HxXlNXZxU
-         Vf8KMbB7+QnviAhR0+jg0mpoyOCb44eo7559fzSPMvsi3pVA4Rfaz/wEDyvMcOM94ThO
-         vUNUB/uaML3Pto2mNDOLcZQDLpU74Y/flWx1DSiFHm5xD0aVh5vuFqijzzk6A9X3ADHN
-         xUiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769527833; x=1770132633;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=y+BzwDOXsuwsKZRnCwm7TR0RjiDWsT5xOCESlbi3ly0=;
-        b=uI0S6nDzee2V3drXy99q5YYX4HBI0KxcVOLm0dlrzbtQcm6hFm5/lE+qkSWFZW4vZP
-         wtnufbINUtmqJpdmyvcPcSOBKJlhji7QcmA+/8nQ5OLK3v5I+Z8+BjUzNOjj2v3YIKQn
-         I0vrW03F+tFbqVIrB5nubFHDeqlbzJGKQlY0IULoML8EIMzxqeD5Vz9T0ySbMkkSVLqz
-         K2u8otJK8Yis2Y+XJusA+C7MX5V/vvorD59v1yLBpqRLGwoVn0CMigD5s4vaxyZIW0Bi
-         vhbVxZ7KYM1q960zadIHA6DiqJoJkJTMoHbjFuIIBjuVNq/0XRiuP7HVjHs9vqmX5zv3
-         KuZA==
-X-Forwarded-Encrypted: i=1; AJvYcCXhhy5HZqQk6/Ek2DGBsTqDpsdXqAoBonXD0xBQHWc1cx8CS+coFoHIJLIZsCKkp/LGj3WvpDBcv6kY@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw2ajjTl9goMeHi4lYLu2zrPP7DVZvT9lRTWPEJ9Vi+kntcK46P
-	52F6qt0+3A7EmR5Q7La9JViqhSGT5SlpbsWfvEmEbE4NcYCFvmRNkhe2
-X-Gm-Gg: AZuq6aLPwmRt79Zmlxsdd08OjQTYeaVPKKYK6vs03KhZ85Xcy+JO2VGSGWndfBJSLgh
-	gkyTwHTfamy+/+Rhqy6jab8rmuSRCkD6XTXXl+4bL9NbumQ/8RE1Vuu063PRDensw6moG4Wo/2+
-	dUkTsqtFJ6wRBwZrgRJACMCGFvKDvpaTf9K3ApDZFjr2Qy+IcOUZLdvJvArROd0Rij8Qh7GtEAu
-	208LzST7FAauwwilU472a2bkx1xwI2M41K5flVgx3JZFEGjVxdRSGr61OjHDl8hE9AMiFRvupTj
-	mPghHzsJYP86Vg53u+siTJQqqCziWed2anpbx3iLernDpLixwx6rTiiGIF4d8cXAwsOyq38XKRD
-	MdzkfQXvi7GFI2lF9XfP9PkLSVO3qa9EuMCaC4eSYrZHtmaCTHKbSb10VGcbDByYF9N9ez7nbeF
-	WMPqbFvAu9jH7948Z/9DY+qLjCYHfBPlSWTZUrE5JN6UUPironABdSwRU=
-X-Received: by 2002:a05:600c:1f88:b0:459:db7b:988e with SMTP id 5b1f17b1804b1-48069c39a00mr29694175e9.13.1769527832532;
-        Tue, 27 Jan 2026 07:30:32 -0800 (PST)
-Received: from anton.local (bba-94-59-215-181.alshamil.net.ae. [94.59.215.181])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4804db63817sm137117845e9.3.2026.01.27.07.30.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Jan 2026 07:30:32 -0800 (PST)
-Date: Tue, 27 Jan 2026 19:30:27 +0400
-From: "Anton D. Stavinskii" <stavinsky@gmail.com>
-To: Mark Brown <broonie@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Paul Walmsley <pjw@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
-	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v4 5/6] ASoC: sophgo: add CV1800B internal DAC codec
- driver
-Message-ID: <aXjZoFi_fq3tzJFY@anton.local>
-Mail-Followup-To: Mark Brown <broonie@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Paul Walmsley <pjw@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
-	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20260120-cv1800b-i2s-driver-v4-0-6ef787dc6426@gmail.com>
- <20260120-cv1800b-i2s-driver-v4-5-6ef787dc6426@gmail.com>
- <88ef974b-9fa8-490e-ba19-1fb31ca94342@sirena.org.uk>
- <aXjRx12yPA7QflaF@anton.local>
- <153acfd6-cb4f-48ee-82e0-0a18a4a1e9c7@sirena.org.uk>
+	s=arc-20240116; t=1769528061; c=relaxed/simple;
+	bh=DQ2F9P8gXel5sqSxKC7vJrPwpNY2sFgwvFDvzLpmLHk=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=CS4GTwe0JCxo6t29RwY2VF29Kf4Y5/R85pvzPS0Ah9P7zZMd8QXHKEpuXDdoQRFRIKe0tQfvCANcEmUCGrcfYiNs0eioGk8KkqQY9emfkz5/RHq4JYA7q8Q1RcajufuDiRU0XYC3T14DBSw8+OvUfL7TC5pLX6Nf/lFLQI48GZM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=YrDjqjod; arc=none smtp.client-ip=185.67.36.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.de
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout02.posteo.de (Postfix) with ESMTPS id 51921240107
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 16:34:12 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=posteo.de; s=2017;
+	t=1769528052; bh=DQ2F9P8gXel5sqSxKC7vJrPwpNY2sFgwvFDvzLpmLHk=;
+	h=Message-ID:Subject:From:To:Cc:Date:Autocrypt:Content-Type:
+	 MIME-Version:OpenPGP:From;
+	b=YrDjqjodyTN2o1jhx3pYdrRv4p1dpea4aVqvN3P6yD10/jlRfBL1QgA0CAzwttAIU
+	 VcsgjRBKH1nFKRVh0eTwW+uEYAjRbtD8+ZgC/29Q2QJHTeUtA2KE/xVE9l/t8A++NS
+	 /ymidxlXfweavFOuK8QrjfYGxYqbiZ979htB+VC8aY+iryVkw3+TL8b3cgx1NrpOdl
+	 ERP9wl6siAM200TuzFUBuHZc9jmcP2Ja2cm3pZuwBqkaqDNKLNlep4FQgmZ8XytzGe
+	 anF6dqRRSK9T1i7kUVG3aqsitbAPw2W+TosT0doxaVZgXiPQsMDGeoR/gPE5xAVpyj
+	 AnTiIOSvVQeuQ==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4f0qFY3Lk8z9rxN;
+	Tue, 27 Jan 2026 16:34:09 +0100 (CET)
+Message-ID: <20f855baaa7c36010eab9997a2f43b4f62be726b.camel@posteo.de>
+Subject: Re: [PATCH RFC 0/4] leds: extend disk trigger
+From: Markus Probst <markus.probst@posteo.de>
+To: Niklas Cassel <cassel@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, Rob Herring
+	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
+ <conor+dt@kernel.org>, Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+ Damien Le Moal <dlemoal@kernel.org>, John Garry <john.g.garry@oracle.com>,
+ Jason Yan <yanaijie@huawei.com>,  "James E.J. Bottomley"
+ <James.Bottomley@hansenpartnership.com>, "Martin K. Petersen"
+ <martin.petersen@oracle.com>, Pavel Machek	 <pavel@ucw.cz>,
+ linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-ide@vger.kernel.org, 
+	linux-scsi@vger.kernel.org, Ian Pilcher <arequipeno@gmail.com>
+Date: Tue, 27 Jan 2026 15:34:11 +0000
+In-Reply-To: <aXiGNZm12vLhQJ4Q@fedora>
+References: <20260123-ledtrig_disk_-v1-0-07004756467b@posteo.de>
+	 <aXctPaaXFYemV20T@ryzen>
+	 <ce454969b83dbb0e3bb4ea78f682603cc328ceb9.camel@posteo.de>
+	 <aXiGNZm12vLhQJ4Q@fedora>
+Autocrypt: addr=markus.probst@posteo.de; prefer-encrypt=mutual;
+ keydata=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
+ jfGillcaQOqFZ3WwVqyzG1BUfTow==
+Content-Type: multipart/signed; micalg="pgp-sha256";
+	protocol="application/pgp-signature"; boundary="=-95wXs24+lMxxeIwklhSG"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <153acfd6-cb4f-48ee-82e0-0a18a4a1e9c7@sirena.org.uk>
+OpenPGP: url=https://posteo.de/keys/markus.probst@posteo.de.asc; preference=encrypt
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[posteo.de,none];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[posteo.de:s=2017];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260005-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,outlook.com,perex.cz,suse.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,oracle.com,huawei.com,hansenpartnership.com,ucw.cz,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-260006-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	DKIM_TRACE(0.00)[posteo.de:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[stavinsky@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[markus.probst@posteo.de,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[anton.local:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,infradead.org:url,infradead.org:email]
-X-Rspamd-Queue-Id: 6BD1D96EF6
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,die.net:url]
+X-Rspamd-Queue-Id: 75D6596E52
 X-Rspamd-Action: no action
 
-On Tue, Jan 27, 2026 at 03:13:59PM +0400, Mark Brown wrote:
-> On Tue, Jan 27, 2026 at 07:11:24PM +0400, Anton D. Stavinskii wrote:
-> > On Tue, Jan 27, 2026 at 12:49:52PM +0400, Mark Brown wrote:
-> 
-> > > Nothing ever mutes the DAC so this is a bit redundant.  The mute should
-> > > probably be a mute_stream() operation.
-> 
-> > I'm not sure here. DAC mute feature was not implemented because I don't know how
-> > exactly do that. The public documentation is very weak for my taste. 
-> > This call added here to be sure that override flag is
-> > not set (override feature replaces the output by setting it to constant 
-> > value and ignoring the input, so it is some kind of mute from my understanding. 
-> > So ensuring this off is needed be sure that DAC will output our I2S data). 
-> > What do you think will be better to do here? 
-> > I'm sure that is needed, but may be better to move 
-> > it to some early stages, like probe function. 
-> 
-> It's probably fine to leave the functional code as is but you should add
-> some comments to the mute function explaining waht's going on here.
 
-Sounds good. Will add comments and prepare v5. 
-Thanks a lot!
+--=-95wXs24+lMxxeIwklhSG
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, 2026-01-27 at 10:32 +0100, Niklas Cassel wrote:
+> On Mon, Jan 26, 2026 at 10:06:02PM +0000, Markus Probst wrote:
+> > On Mon, 2026-01-26 at 10:00 +0100, Niklas Cassel wrote:
+> > >=20
+> > > Why do we want to have this in kernel space?
+> > Because there are more than enough devices that could make use of it.
+> >=20
+> > Just search the term "NAS device" and you see rarely any devices for
+> > which this wouldn't be useful.
+> >=20
+> > The only reason the leds work on those devices currently, is because
+> > they get shipped with a custom modified kernel by the manufacturer.
+> > This shouldn't be a requirement for running Linux properly on a NAS
+> > device with disk leds.
+>=20
+> I understand why you want the feature. I just don't understand why we
+> should add this feature to the kernel, rather than implement it in
+> user space.
+>=20
+> Having a user space implementation for your feature would also allow
+> an upstream kernel, without the need for any custom kernel patches.
+Only because it can be done in userspace, doesn't mean it should be.
+>=20
+> > > If we want something more complex than what is already there, then it
+> > > is probably much better handled in user space, considering the amount
+> > > of possible configuration options.
+> > A userspace daemon by itself is possible, but I don't think it is the
+> > best solution. Having an indicator for disk activity on a per-disk
+> > basis seems like basic led functionality that should be present in the
+> > kernel.
+>=20
+> There seems to be existing user space applications that handles this,
+> I think both the daemon I linked to before, which uses /sys/block/<dev>/s=
+tat
+> which is thus per device and not per port, and e.g. this:
+> https://linux.die.net/man/8/ledmon
+> https://github.com/md-raid-utilities/ledmon
+> https://github.com/md-raid-utilities/ledmon/blob/main/src/lib/ahci.c
+As far as I can tell, this daemon doesn't actually use the LED
+Subsystem, but instead leds directly connected to the storage
+controller.
+But yes, I would be capable of coding such daemon.
 
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+> > > Basically the same argument as used in:
+> > > https://lore.kernel.org/linux-nvme/20220227234258.24619-1-ematsumiya@=
+suse.de/T/#u
+> > If I understood it corretly, the argument there is that led code
+> > shouldn't be present in a fast path.
+> >=20
+> > This does not apply to this scenario.
+>=20
+> I think my main concern is that I don't think we should bloat the kernel
+> for a complex feature that can just as well be implemented in user space.
+It is still unclear to me if you worry about the complexity in
+drivers/ata/libata-* or drivers/leds/trigger/ledtrig-disk.c
 
+@Pavel,@Lee: I would like to know your opinion on this.
+
+Thanks
+- Markus Probst
+
+>=20
+>=20
+> Kind regards,
+> Niklas
+
+--=-95wXs24+lMxxeIwklhSG
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJPBAABCAA5FiEEgnQYxPSsWOdyMMRzNHYf+OetQ9IFAml42uAbFIAAAAAABAAO
+bWFudTIsMi41KzEuMTEsMiwyAAoJEDR2H/jnrUPSj0QP/jBX+51lTUOAQlHdCXB1
+cnq3yWDlRE7864F+m33J5Zi3YXSdntJ5rza26ByMmx8liyHJMD5UDdGfz9L93sHM
+TSv4OClvl/xZ6gFRvaFPqBIL38erO9osMuwKsFVzdA3wwHWKeQWl2ZO3IWSiyRxn
+xy1U+Zxr6LxQlMENbKfTPmCyo1l6visyMouSYqV2ysJ9p+D1n9I81rvrBZYm1ebt
+EcPJiWGPzzgsA84NR13qKBjJFmelzJyiF48cYOGM5C1mlE3FjYjiVsyJe4h9FGsu
+d1kbovKMCuY+QAvtRnbFCeth2o8g6ky3Ij8OPIROhrH2NnA+w/INS8Ok92P8Ewvm
+CfGMkYVq8KXVhEaEaQRw9yWzLLKAquuLRFQ9oUUF3I3b6hEW4ALJkfWraWOPHA6/
+i9gx32NO2Pjo6urNcVBGTIAHUQnKwgsmtpCCX2YsF9/j/Vkq6KWmvxuO9eH2tu49
+fbEaehSqRlQnC7Q6ERVb2X4UaQYutytRAIJSloPLbmve44c7dE+kjSS460QY69FC
+Z8hKNL3H8UPSZFqeKGg77X94FYK8Hepd6ccQ0zEYhtLihVNEBC/Jdf5EIY17K4bN
+Es0E5bqHZMVAIr62ZxqmUdNI6gmnqxlV32OTp8s4BbpJiSoUbrp7JuUqI98rUdKr
+ELLweuctc6nLul+zl/4Nl71I
+=G8+8
+-----END PGP SIGNATURE-----
+
+--=-95wXs24+lMxxeIwklhSG--
 
