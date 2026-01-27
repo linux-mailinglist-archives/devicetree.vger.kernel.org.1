@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-260127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260126-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cBiQI00oeWkIvwEAu9opvQ
-	(envelope-from <devicetree+bounces-260127-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 22:04:13 +0100
+	id +ON4FEsoeWkIvwEAu9opvQ
+	(envelope-from <devicetree+bounces-260126-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 22:04:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2786F9A8C4
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 22:04:13 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E7439A8BB
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 22:04:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A6584301AD14
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6F7FC3014113
 	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 21:04:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D86829A312;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D2AC29992B;
 	Tue, 27 Jan 2026 21:04:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gh/mJHDc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p+N9NKKW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 075FB27603A;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0758B274FE3;
 	Tue, 27 Jan 2026 21:04:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769547845; cv=none; b=qo60yNVid+J+TScKqZhpxITgXcOy8J5SmRDjJ4V3eEvAQsRWynIqCbuMJn8K71Vg1Yuroaw+ONWGVcAmIOJV6Kw9XGC0+QyiLIxrtdpX3Oly6j46KlNYua049oDlGZ5tm15y46wSu74NoBg7QPEbZ6AQWsJ+LpoAmLL1OjFUcBs=
+	t=1769547845; cv=none; b=M0nw+h//gqRoqFfGvmcLgMaWgdAc40LE2VYfQozZjxyY/BfRs3srkP+H67sW5R78GGPxbKpczNukP1ZZA7/EP+5VwmiXZtqZroTftyybtaYv5Fv28SD5MvqTf4CQjfFzpg5Lxqhs4ceW/TQNb3IOZ+/odJmOOx5TOUqo5dcK0ec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1769547845; c=relaxed/simple;
-	bh=CRHikQs9eZ3gVMFAp8sJsNNcBwuKXFyi0QLHDmdzutM=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=oWxeOw7Gc7rGgBN6FMdUHdU8aiW6dsUwlcu/ge6wg3ZNV9ZtdBMaE04jb0NIAbrOjeOWygvS7EXa7oNZezQ/6nBCwTRCM1lG8MPrJ0/at2/I6HUvieYdbpQdT5y9ZrEkZWvt00AlY41mQ+nYiyioQc2VxruyQKa7WPmdmhcR4C4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gh/mJHDc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 85B18C19422;
+	bh=2f258ZKMGjMDX6rVeyYTKnl8hXsCenCR77UWDe3H8b8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=Rsnl/pkZaqysy6GSR2tEjt5+9y/EqKpNxsGCOzP9sg95Kh81qd6iwvLuAfOMGWc+VE2x4M0LT+jK/KgH3eScVxtIWip3Mk9819sX/zox4iKbbHd5CIosuUpkSQn95c3bGO4UGZHBbLOG3Le8EoINaGYmS/nIAfSJqMFmc8wlB4I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p+N9NKKW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id A026EC2BC87;
 	Tue, 27 Jan 2026 21:04:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1769547844;
-	bh=CRHikQs9eZ3gVMFAp8sJsNNcBwuKXFyi0QLHDmdzutM=;
-	h=From:Subject:Date:To:Cc:Reply-To:From;
-	b=gh/mJHDcI9vh2OnKWSskfmTiUBv/6fPf8UpZx0Sg3tPbV80LTrvGxAkyWi7O++AmE
-	 TFoBRaRkloKYO3LymsIOkN3EaVXQn5sVtpkl8VM69Tx9N5+/RirU4a4dqb4IaAcS/h
-	 4Uwz9guUBllfVps63+vV8R8fJCGEw5AawDjJ/XJ6iOmXUramoIQSeqW896j6z9+8Vi
-	 AQAQpTrRAZ21E7KvCFEvEd8vC0X2wU86B7Ci1xghrS0z6gK3OKKcl+HnZWEbFTglRf
-	 buUkFMVMzUnWr6yLcxxtTY3brHZpExBKjRAg6vsnSvINuOxZnm3i/FWyF+Ro4atX5M
-	 KLDM7rv5XUkVw==
+	bh=2f258ZKMGjMDX6rVeyYTKnl8hXsCenCR77UWDe3H8b8=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=p+N9NKKWL+cxS6luMRys+V2zGZago5/o/xnC2XxtwYcTUUaL2LN30OxxK8aaaqgeg
+	 AQT2n+47rGDlz3ZhvFceYlL5hf6c0/82Uf8WIWT281kKlV2smdizdE31K8tJajSqy2
+	 PrMR56heVIzOYbUMmJOdtCXjTAK6/DzTAqTm/ntl34jl4cIMzB3vHMJocKaFdObVKc
+	 rQhpCh+bnpAEjdNNyLs8a5xIxLUS5H691LE+myMrLfVU9BiqzeR3snbZ+1dX1x1bNQ
+	 wMExWqoI+BceO+D6OgWnJASUjvYKTeHw9VX+lLK3/3A6njhvbHbKMsJUq7howS9KGe
+	 qrOtG4ja4FH5g==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7CA1FD2FEDF;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 919AFD2FED9;
 	Tue, 27 Jan 2026 21:04:04 +0000 (UTC)
 From: Abdurrahman Hussain via B4 Relay <devnull+abdurrahman.nexthop.ai@kernel.org>
-Subject: [PATCH v6 0/7] i2c: xiic: use generic device property accessors
-Date: Tue, 27 Jan 2026 21:03:54 +0000
-Message-Id: <20260127-i2c-xiic-v6-0-e82e2f6f657c@nexthop.ai>
+Date: Tue, 27 Jan 2026 21:03:55 +0000
+Subject: [PATCH v6 1/7] dt-bindings: i2c: xiic: make clocks optional
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,12 +58,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIADooeWkC/3XOTW7DIBCG4atErEsEw49xV71HlcUAQ80idoRdy
- 1HkuxdnRZV2+UnzvJoHm6lkmtn76cEKrXnO01iHfTuxMOD4RTzHuhkIsEIC8AyBbzkHrjy6PiV
- D2CtWz2+FUt6eqc9L3alMV74MhbAJSCMEOG3PYJTrueTo43cpOFxx/BhpW4bpdsZ89IY8L1O5P
- z9b4aj+8cQKXHCpdDKx04qcbyPHF6tqpWqkqpJ8F6IGo2N6lfo/qavUqMijMlIEepGmlbaRpkr
- nUFoE14EMv+S+7z+QR6/pjwEAAA==
-X-Change-ID: 20260122-i2c-xiic-3ba89ff5ea93
+Message-Id: <20260127-i2c-xiic-v6-1-e82e2f6f657c@nexthop.ai>
+References: <20260127-i2c-xiic-v6-0-e82e2f6f657c@nexthop.ai>
+In-Reply-To: <20260127-i2c-xiic-v6-0-e82e2f6f657c@nexthop.ai>
 To: Michal Simek <michal.simek@amd.com>, Andi Shyti <andi.shyti@kernel.org>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, info@mocean-labs.com
@@ -72,11 +69,11 @@ Cc: Andy Shevchenko <andriy.shevchenko@intel.com>,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
  Abdurrahman Hussain <abdurrahman@nexthop.ai>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1769547843; l=2329;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1769547843; l=759;
  i=abdurrahman@nexthop.ai; s=20260119; h=from:subject:message-id;
- bh=CRHikQs9eZ3gVMFAp8sJsNNcBwuKXFyi0QLHDmdzutM=;
- b=PWVfIljp5RtV1b3Ejs67BgpI6Rpc4YgzjejvMPiI2S0pW+r7a/CdumGaGfTx7/6I81QMfYzDQ
- EiCAfZfAZsLCMgksT3CZ9o4DNvhsHFV2SI3DWFGQQa/+ss/aoTZHbw2
+ bh=Jp8L32rGkddXyWP1kCRtOWV6Txgpa0+B9TbjL9V4o78=;
+ b=u1JsuQG6Ngsrd05YJZA+2pdIjEIfAGdmj2WXnu48Z6ITIo+Hh2iL+m05kDLxkG7cwOBA1vGBk
+ I6GaIzZE4xDDKR18UK7oEOuDBzvE3o8QBxTX0ojRs1UnNdigFm7Llq4
 X-Developer-Key: i=abdurrahman@nexthop.ai; a=ed25519;
  pk=S+ysnf+NwMcBdHBlyKIUEAtaFGSIhQwcJcgcXhq0osg=
 X-Endpoint-Received: by B4 Relay for abdurrahman@nexthop.ai/20260119 with
@@ -89,12 +86,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260127-lists,devicetree=lfdr.de,abdurrahman.nexthop.ai];
+	TAGGED_FROM(0.00)[bounces-260126-lists,devicetree=lfdr.de,abdurrahman.nexthop.ai];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[12];
@@ -108,72 +105,38 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 2786F9A8C4
+X-Rspamd-Queue-Id: 9E7439A8BB
 X-Rspamd-Action: no action
 
-Switch to generic device property accessors.
+From: Abdurrahman Hussain <abdurrahman@nexthop.ai>
 
-Switch to managed devm_ functions to simplify error handling.
-
-Make the clock optional since the driver is designed to operate without
-explicit configuration in firmware thus making it useful on platforms
-where clock is not or cannot be provided.
+The xiic driver is designed to operate without explicit clock configuration
+when clocks are not specified in the firmware.
 
 Signed-off-by: Abdurrahman Hussain <abdurrahman@nexthop.ai>
 ---
-Changes in v6:
-- Cosmetic changes to address the comments.
-- Added a patch to use resource format specifier in debug log.
-- Link to v5: https://lore.kernel.org/r/20260126-i2c-xiic-v5-0-88a16a28721c@nexthop.ai
+ Documentation/devicetree/bindings/i2c/xlnx,xps-iic-2.00.a.yaml | 1 -
+ 1 file changed, 1 deletion(-)
 
-Changes in v5:
-- Reorder the cosmetic patch to be the last in the series.
-- Added a documentation patch to describe the optional clock.
-- Minor commit body rewording.
-- Link to v4: https://lore.kernel.org/r/20260123-i2c-xiic-v4-0-4a3eba3510ce@nexthop.ai
+diff --git a/Documentation/devicetree/bindings/i2c/xlnx,xps-iic-2.00.a.yaml b/Documentation/devicetree/bindings/i2c/xlnx,xps-iic-2.00.a.yaml
+index 658ae92fa86d..cc500130f41f 100644
+--- a/Documentation/devicetree/bindings/i2c/xlnx,xps-iic-2.00.a.yaml
++++ b/Documentation/devicetree/bindings/i2c/xlnx,xps-iic-2.00.a.yaml
+@@ -43,7 +43,6 @@ required:
+   - compatible
+   - reg
+   - interrupts
+-  - clocks
+ 
+ unevaluatedProperties: false
+ 
 
-Changes in v4:
-- Reorder the cosmetic patch to be the first in the series.
-- Amend the mutex_init patch to also switch to the managed pm_runtime_
-  variant.
-- Link to v3: https://lore.kernel.org/r/20260123-i2c-xiic-v3-0-eb7cd4254dfb@nexthop.ai
-
-Changes in v3:
-- Reorder the "optional clock" patch to be the first in the series. 
-- Add a patch to switch to devm_mutex_init().
-- Remove dup message in error path.
-- Cosmetic: use temporary dev variable.
-- Link to v2: https://lore.kernel.org/r/20260122-i2c-xiic-v2-0-134f5d743e8b@nexthop.ai
-
-Changes in v2:
-- Split the patch into two independent changes.
-- Added struct device *dev at the top of probe() and remove() to re-use.
-- Switched to device_set_node(...)
-
----
-Abdurrahman Hussain (7):
-      dt-bindings: i2c: xiic: make clocks optional
-      i2c: xiic: make the clock optional
-      i2c: xiic: switch to devres managed APIs
-      i2c: xiic: remove duplicate error message
-      i2c: xiic: switch to generic device property accessors
-      i2c: xiic: cosmetic cleanup
-      i2c xiic: cosmetic: use resource format specifier in debug log
-
- .../bindings/i2c/xlnx,xps-iic-2.00.a.yaml          |  1 -
- drivers/i2c/busses/i2c-xiic.c                      | 92 +++++++++-------------
- 2 files changed, 38 insertions(+), 55 deletions(-)
----
-base-commit: 63804fed149a6750ffd28610c5c1c98cce6bd377
-change-id: 20260122-i2c-xiic-3ba89ff5ea93
-
-Best regards,
 -- 
-Abdurrahman Hussain <abdurrahman@nexthop.ai>
+2.52.0
 
 
 
