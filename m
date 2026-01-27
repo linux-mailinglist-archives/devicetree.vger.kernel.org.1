@@ -1,313 +1,221 @@
-Return-Path: <devicetree+bounces-260085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260062-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WA79LUQMeWnyugEAu9opvQ
-	(envelope-from <devicetree+bounces-260085-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 20:04:36 +0100
+	id EFDuLo/2eGnYuAEAu9opvQ
+	(envelope-from <devicetree+bounces-260062-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 18:31:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A25F99945
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 20:04:36 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0F2698789
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 18:31:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 12D37300FF97
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 19:02:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 789CE3014667
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:31:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B53682620DE;
-	Tue, 27 Jan 2026 19:02:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F038B3093DE;
+	Tue, 27 Jan 2026 17:31:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F597Q6x1"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="D9fkkSqV";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="D320VSyT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com [209.85.222.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0394F45038
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 19:02:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91489302742
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 17:31:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769540529; cv=none; b=JY38e9ojbkZrnTC2DWzix1XhrneTx0EH1TnN2eYUvHq0Tan4Dv7WSVRCpAACJEu1pX1qjxoJwVuvriCWEgQw07pqzqvI+q5+tcvp3LyNsLB89nfQC85xq/6HFLoUTcubpC2H7n6r3u0OusW9Ua8Vm8NjWStI81n//jc4kQ89vJU=
+	t=1769535116; cv=none; b=gC5TaWVyctzgivGzE36sTXRbGSG9hC2uPm7jzNm9qZSQjM5jrKJXzl7MY41ZVarCKFY/HukscE+bs1kXrqe2GyH/Bp3cFlIlqKoHvEuzBq0wz8YhKGUWh4mr7AQEc/S2mMxtSNRSrP4Bu6Q7OOYm0tTYrgUti5NCe64lT2wdxtA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769540529; c=relaxed/simple;
-	bh=T44VeR198I3upruOy1asKmWdrTidLtonZaA4O+DeKc8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gvU7n2vpPNMEBFSeOqXgYz+WIq2UtmPzTTJBYWOm2J4OXe1qmweKupVsxVrDweJnv3RfuEwyj0uDwjeki4PBgLaW4j6N3zdudRRfIYwm2DkNWU/CoVXCp/f9eGHSM4jKZ/bQX3w1jz2m8mODRhMCBXNedKcDWQpCyqFJbNmymPg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=F597Q6x1; arc=none smtp.client-ip=209.85.222.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f48.google.com with SMTP id a1e0cc1a2514c-947fe9e92c3so4460799241.2
-        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 11:02:07 -0800 (PST)
+	s=arc-20240116; t=1769535116; c=relaxed/simple;
+	bh=sJM3dQkRhFtYUQBc5hx9GDtuCQPPDc99urCjAvY3avU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=k3bPSWRTJg+PHsnQE27kvcEM2QwSL48cIXV2QM6F+c1jqh1TP3UWTGn1pLloDpuxgHICsuysTyEUKzfODKrPsYrE34Z3RfqWoGuM4PmjL87X0pHdtyrz6VVJpFkLEgB9nILRX3mueTfxCZpafwqjj3qNaishtpXf4gsp77+wDuA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=D9fkkSqV; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=D320VSyT; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60RHAVMf495954
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 17:31:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	OIoUAWMTJE5rpivtR3W6H7oj3d6jWxH+8YOVX25OZr4=; b=D9fkkSqVE3eV4UlG
+	MGHnrILEzSAsWdT3eG0y2kd+fJVmRLOzstpOrq7Y/fE9x3PtLxmImHv40BvwEQ/Q
+	jV9gLDs/P8G956dO37G/p49LkgSSnfWcfEhuBWUGk2WAwBFgEZyQg9l0SpWNsQ+n
+	iDA2mIGTE0ayZr9T/vz578I2IFp837fbIRyTJRfEAEHcpSwm1bgANKFIlQMZUoMT
+	ob7xqBAdKGhl2hn5NLpWIGjsOaEhzocsQ7f/TIT9AhwXI86+gfYpem/RrFNeZTWY
+	L9f1yteD6+gq5DbtWbfBmc+NASmpCzGvywS8ERS9QndYOYyxQFbUW2gEMQOHjzkX
+	cf14lA==
+Received: from mail-dl1-f70.google.com (mail-dl1-f70.google.com [74.125.82.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bxf3bktcq-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 17:31:54 +0000 (GMT)
+Received: by mail-dl1-f70.google.com with SMTP id a92af1059eb24-12337114f3fso8173666c88.0
+        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 09:31:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769540527; x=1770145327; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=m0NN/cRu09v0DOapIZODcIBfVWE6w2WjO1wQzxU5hQw=;
-        b=F597Q6x11Hta/OpJK3UINZnLm82aLVzO1YHYRxLzWblxofSdhym08xeYn069M6gdzp
-         LTJr8YRXQdKwws2Tw4bKVoq7PC0fk8X/ALtzIejDxggtvca5JI/n6Xox8T3ocRYI1YmZ
-         ax+i0kGnGS62wJ0POxLXBHePxF1gZdqEANLuEKGMdlLB1v0Yw9hXUBHljH3PsKgSTkkT
-         QI9SJogVqR8qkDkWuxBccVAOpF6quhbIj3uUcyhJexUFpzkTk/XmCfkVudQdWTnu+bZv
-         jDvZPJbUElrIWjUbNFYjBDQX9yZODDFVE4+rtv1tUNXpMJ9wpR2RsVRIj6qTZa4ZZ1CZ
-         dyzA==
+        d=oss.qualcomm.com; s=google; t=1769535114; x=1770139914; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OIoUAWMTJE5rpivtR3W6H7oj3d6jWxH+8YOVX25OZr4=;
+        b=D320VSyT2X7tGfI0GdwbI8H55uqW090fbubA4yg4n1HXArlixWFIkjWHWpmMR75QCK
+         BCSHISMtB1KU63G1OlFZWCdHmRi8XnCUDQByV9i5nwDFylTntDQY5+R5MazhsNwDkSTt
+         0+1wo1jmtmyS4AWlY7eVNsXn849ouXCoh7w73bcb4z95m3hV3WbZ7jIQpw+UB8jVEOnj
+         JqRDMc1BemUqQ1AvBybBtOfn88+HRxMoMeLjQkLktdE6ZbkQXBZKgAJy/rAY7srjQUG8
+         dC4sJnhXRAHTSL2h6hiLFMfeqenBx90vbbVBaIOo36VSeiFyJbVYn+3FFtpkH9DdA/Rc
+         lqIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769540527; x=1770145327;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=m0NN/cRu09v0DOapIZODcIBfVWE6w2WjO1wQzxU5hQw=;
-        b=n/xMkPCd/+5OT6UFL8K1t02RvGFXYIATlsuQtTKzHN8h/q1B2VMd3nVh9U1kFeAjyo
-         ANP2+TFOtqZcMap9qKHbMoFBtOMxsFEDPurVWDW9yRJ54Pm0kapawPYZRBOoCONZY4hg
-         JZh/rCGMhbSPJaWP5AHbFC84Kq9i+sZnwtK/4OAvKfzxztI3jxuzFc8jlIgernJ8PH7Z
-         eXV4w4BA5aYAyWTaszzLfG9mN6+gd+/efSw6SYDb9lInB0icxcTCnKKbmMN+Gpfd8qn1
-         KYVJ+yqOMDIrleMlBEOydC2VnWpzMJt+yOPs2MqKO3nJzaKK1HdS6aP0tXEKO0t7Trvw
-         OOdA==
-X-Forwarded-Encrypted: i=1; AJvYcCUmGv/xHvdmeyDoWnOmVuqKly2Xp/jJNLc97VxGuEB+wdC1Qr2YJjyx4rk/GQj7HKBs+BeeNf3s4xDu@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywn7COzbwBi3+g5wtvv3l7T3XbGkZj8H8XDSCoe2HReaZoPB7a0
-	/9PYjsPTdbcFmf1bxudXuQ356k/PIZLJcejJgu9TJ0wDopPWEH/EUdmkZcapNmH4
-X-Gm-Gg: AZuq6aLCsg0HX91NVVyIsYmK+rLBo9iaBS54obg5gLvrk1esXn6GjcL9585WhbskK3+
-	ov0Szxe0ORxneQP+5psA63ABcWfA5wsADBQQBWNZPanHjybmrHRn7u7fvnITDXUHb/aT9G9n2O5
-	cPMi4ql4+66K4mQhRU/AKMKtNuOAOTX+U1oKV8VJ7HIl5QpN4cRvzpNvSjsE60F1yq9B+LeG5cT
-	LZQ1b8bpzazYX2KYx1sGRyCGQH7MAhGEWWASTTqqaEyWOoDwcnpKJMHBrH6IfCo2TMx/2hTNN+T
-	u62rt6JM6TTQnqerroWJND2ag+n5gRkvJDORCCbdEnbkDcrfD2fhZ/K3+JNpnLm/rloe4JOyLJs
-	Gvo+KNil9NKFjveRb2C33QXf169SdNd6Y3o3VNrYMkpN5ZKb7PuY2IIHbcZyPHIQ4zeb+YbmLiW
-	weXMPfJNjCARLGYNBFyW12P+ux
-X-Received: by 2002:a05:7300:7491:b0:2ae:5c71:3535 with SMTP id 5a478bee46e88-2b78d8a8ca3mr1787617eec.9.1769534542029;
-        Tue, 27 Jan 2026 09:22:22 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b79c8f031csm23765eec.21.2026.01.27.09.22.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Jan 2026 09:22:21 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Tue, 27 Jan 2026 09:22:20 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: Marius Cristea <marius.cristea@microchip.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] hwmon: temperature: add support for EMC1812
-Message-ID: <8248d422-c764-4b2d-ba82-3a68cff21256@roeck-us.net>
-References: <20260127-hw_mon-emc1812-v4-0-6bf636b54847@microchip.com>
- <20260127-hw_mon-emc1812-v4-2-6bf636b54847@microchip.com>
+        d=1e100.net; s=20230601; t=1769535114; x=1770139914;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OIoUAWMTJE5rpivtR3W6H7oj3d6jWxH+8YOVX25OZr4=;
+        b=xEqj6vOhFC5Pr1o6GPg9btXcAxzUPRlAX8k7lNTRauL4QCu6SxO9gFrRtZAuEXiQXW
+         GrLQbZBe2uOZZKtHF/ptCHKBtGieAzvakgxtWS5IPkhX7RGANgO9/+gCCxaooO7TyaWd
+         Ols4XMNoz3cN5EOxZ6ZcBxw+3kztJHsTXO20L4SmVUjPnp7hWp/BCpXloy5eByo/alHY
+         vtQYCGbjoKcDdn0X7jXiZD0X6g4F6VSyDRFVMR1GVOJUChKL12+OCyDbSA+nEKqqsEdy
+         /O+0bxZZhvMf2hFwNHXyj6zE2vVTQKyGuwH/4Jgue3kegWf9RL5flTxamkIt69F2BxAh
+         FYrg==
+X-Forwarded-Encrypted: i=1; AJvYcCVy0ui+a0mcFac+GL62TKRoUKGjg09zqFvW3IjpW+PXCvIKmhXYBV1pyvHA82mmfT9TTXsl1HcGPuEz@vger.kernel.org
+X-Gm-Message-State: AOJu0YwRAAG27AVe5s+m1n4fjqwHxnWiRsGrjdm/R7YiTr1cXvBB4/Zz
+	MEmUs/MaoyGza5aJCty59ZMTb1w4TC36f9B1Yy6AfHWOJhGylHLgrFFzr+1ZOxiTxUnDj099t38
+	S4spjuWvb1+SruswmvbKrmXghOKrjoxh3/bGLPfZdiDPcVmfACyHRfSLIOXrWay3X
+X-Gm-Gg: AZuq6aJYjHdrNvm7EQxUVwdj7vvxiA7GKXrPAMYwbzF7VZRPYRbmQlXH4JDaM5o0xnX
+	2oiV4+Xz0AcFCYoV62O6I6rMwfkSZ4uQDBedp3Jnyf2V1ghzHHQs56ENscYnuZ9wyyf6d/OjCSa
+	OYUd3hqhi17Og8AKh6Nk9MneC3JtPbXTopp/qaFtgEDtvIxF5I0DYEyjPLjtP4Wt255Gpo8wkvN
+	kOxx/rT4cvmlgNOJMJKFSNLqcJ208wRHgA7bURQGo79X68/o3IMU803GQmB7zl7f4Zz+y/jgTgd
+	gqA3/ztj5HU/48UuYwSpmOGqJPkZWKiu2nhkrfxduf6onYjET/EAcDAUvbsIRTjAWWrnYmgKlR/
+	cIZzg6ijYyXnYA/4yaDnBSXvSbVQrVq/zwlVGW0AyuCRiMQj2n8Pt1mXyEgib6gnLzC54ew==
+X-Received: by 2002:a05:7022:6286:b0:11b:9386:a37d with SMTP id a92af1059eb24-124a00e8ae7mr1238387c88.44.1769535113963;
+        Tue, 27 Jan 2026 09:31:53 -0800 (PST)
+X-Received: by 2002:a05:7022:6286:b0:11b:9386:a37d with SMTP id a92af1059eb24-124a00e8ae7mr1238370c88.44.1769535113332;
+        Tue, 27 Jan 2026 09:31:53 -0800 (PST)
+Received: from [10.227.110.203] (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-124a7c73c7csm287709c88.13.2026.01.27.09.31.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Jan 2026 09:31:53 -0800 (PST)
+Message-ID: <74176aab-03d4-4095-890d-7ef1739b914b@oss.qualcomm.com>
+Date: Tue, 27 Jan 2026 09:31:51 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260127-hw_mon-emc1812-v4-2-6bf636b54847@microchip.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 ath-current 0/2] wifi: ath11k: add usecase firmware
+ handling based on device compatible
+To: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>, jjohnson@kernel.org,
+        johannes@sipsolutions.net, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, krzk@kernel.org
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        jonas.gorski@gmail.com
+References: <20260121095055.3683957-1-miaoqing.pan@oss.qualcomm.com>
+Content-Language: en-US
+From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+In-Reply-To: <20260121095055.3683957-1-miaoqing.pan@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: tSUHI2nrHc5YHcikexkFYs6tOTsQa3lP
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI3MDE0MiBTYWx0ZWRfX+TtjIOehqlPE
+ IaIxkXy6cCsVL/VZXeIKzOkMrU0OUzIWCcC8C1vaR+MjbG0AE12NRszMcUGxwenWJWSe58cb6Nv
+ fvId2bGMIb8wXTte6jhKX//WpLAorc9YyvVRabNgqGyIHCbB7YEnczXpxJmM3UnUaPSSz53Jg9X
+ 2wsb6r1iR3tXzoRYBZzt8exlo158qb2zNmnaPAsFdZ8cR1fyJcoL+cKjJ/++HskNPR/eeLxIPg5
+ ND9Y71fEdxNzTJ6ybjMwlfkbyUNz2qNoardLHaM0CEluPOSc/8vcSk5T0XAJh9ioD8yLfL0kGqy
+ u/B2RzWYs8x6pEEC925bTIEuP1R8cRff7z1CNbD11ANa1UHXD6tNlkkr9NEHx+lXnWtoS4I6Bkj
+ 8xNysscTE8tLcvaNQc+kcj/j4NURElWCdAlH/2QApHqMP+pkYPT1UJGSUZeCPX4be2aQMkstHdk
+ vOMe6VPFnbSWO5V7w8g==
+X-Proofpoint-GUID: tSUHI2nrHc5YHcikexkFYs6tOTsQa3lP
+X-Authority-Analysis: v=2.4 cv=AOFXvqQI c=1 sm=1 tr=0 ts=6978f68a cx=c_pps
+ a=SvEPeNj+VMjHSW//kvnxuw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=8cwfA4bTiwTnQ3FzGgcA:9 a=QEXdDO2ut3YA:10
+ a=Kq8ClHjjuc5pcCNDwlU0:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-01-27_04,2026-01-27_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 suspectscore=0 phishscore=0 adultscore=0 priorityscore=1501
+ lowpriorityscore=0 bulkscore=0 spamscore=0 impostorscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601270142
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-260062-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:dkim];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260085-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[roeck-us.net];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[jeff.johnson@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[roeck-us.net:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,microchip.com:url,microchip.com:email]
-X-Rspamd-Queue-Id: 5A25F99945
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: C0F2698789
 X-Rspamd-Action: no action
 
-Hi,
-
-On Tue, Jan 27, 2026 at 05:05:25PM +0200, Marius Cristea wrote:
-> This is the hwmon driver for Microchip EMC1812/13/14/15/33
-> Multichannel Low-Voltage Remote Diode Sensor Family.
+On 1/21/2026 1:50 AM, Miaoqing Pan wrote:
+> The 'firmware-name' property was introduced to allow end-users and
+> integrators to select use-case-specific firmware for the WCN6855.
+> But for M.2 WLAN chips, there is no suitable DTS node to specify
+> the 'firmware-name' property. In addition, assigning firmware for
+> the M.2 PCIe interface causes chips that do not use use-case-specific
+> firmware to fail. Therefore, abandoning the approach of specifying
+> firmware in DTS. As an alternative, propose a static lookup table
+> mapping device compatible to firmware names.
 > 
-> EMC1812 has one external remote temperature monitoring channel.
-> EMC1813 has two external remote temperature monitoring channels.
-> EMC1814 has three external remote temperature monitoring channels and
-> channels 2 and 3 supports anti parallel diode.
-> EMC1815 has four external remote temperature monitoring channels and
-> channels 1/2  and 3/4 supports anti parallel diode.
-> EMC1833 has two external remote temperature monitoring channels and
-> channels 1 and 2 supports anti parallel diode.
-> 
-> Signed-off-by: Marius Cristea <marius.cristea@microchip.com>
 > ---
->  Documentation/hwmon/emc1812.rst |  68 +++
->  Documentation/hwmon/index.rst   |   1 +
->  MAINTAINERS                     |   2 +
->  drivers/hwmon/Kconfig           |  11 +
->  drivers/hwmon/Makefile          |   1 +
->  drivers/hwmon/emc1812.c         | 963 ++++++++++++++++++++++++++++++++++++++++
->  6 files changed, 1046 insertions(+)
+> v2:
+> - Drops `firmware-name` from completely.
+> - Updates the commit message to clearly state that the property is
+>   obsolete and the change is ABI-breaking but safe for upstream.
+> v3:
+>  - Deprecate 'firmware-name' property instead of obsolete.
+>  - Keep the ABI backwards compatible.
+> v4:
+>  - Use of_machine_is_compatible() to simplify the code.
+>  - Add back Acked-by tag. 
+> ---
 > 
-> diff --git a/Documentation/hwmon/emc1812.rst b/Documentation/hwmon/emc1812.rst
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..799111a89541c57a839a121bb3dfc12f42604bc2
-> --- /dev/null
-> +++ b/Documentation/hwmon/emc1812.rst
-> @@ -0,0 +1,68 @@
-> +.. SPDX-License-Identifier: GPL-2.0-or-later
-> +
-> +Kernel driver emc1802
-> +=====================
-> +
-> +Supported chips:
-> +
-> +  * Microchip EMC1812, EMC1813, EMC1814, EMC1815, EMC1833
-> +
-> +    Addresses scanned: I2C 0x1c, 0x3c, 0x4c, 0x4d, 0x5c, 0x6c, 0x7c
-> +
-> +    Prefix: 'emc1812'
-> +
-> +    Datasheets:
-> +
-> +	- https://ww1.microchip.com/downloads/aemDocuments/documents/MSLD/ProductDocuments/DataSheets/EMC1812-3-4-5-33-Data-Sheet-DS20005751.pdf
-> +
-> +Author:
-> +    Marius Cristea <marius.cristea@microchip.com
-> +
-> +
-> +Description
-> +-----------
-> +
-> +The Microchip EMC181x/33 chips contain up to 4 remote temperature sensors
-> +and one internal.
-> +- The EMC1812 is a single channel remote temperature sensor.
-> +- The EMC1813 and EMC1833 is a dual channel remote temperature sensor. The
-> +remote channels for this selection of devices can support substrate diodes,
-> +discrete diode-connected transistors or CPU/GPU thermal diodes.
-> +- The EMC1814 is a three channel remote temperature sensor that supports
-> +Anti-Parallel Diode (APD) only on one channel. For the channel that does not
-> +support APD functionality, substrate diodes, discrete diode-connected
-> +transistors or CPU/GPU thermal diodes are supported. For the channel that
-> +supports APD, only discrete diode-connected transistors may be implemented.
-> +However, if APD is disabled on the EMC1814, then the channel that supports
-> +APD will be functional with substrate diodes, discrete diode-connected
-> +transistors and CPU/GPU thermal diodes.
-> +- The EMC1815 is a four channel remote temperature sensor. The EMC1815 and
-> +EMC1833 support APD on all channels. When APD is enabled, the channels support
-> +only diode-connected transistors. If APD is disabled, then the channels will
-> +support substrate transistors, discrete diode-connected transistors and
-> +CPU/GPU thermal diodes.
-> +
-> +Note: Disabling APD functionality to implement substrate diodes on devices
-> +that support APD eliminates the benefit of APD (two diodes on one channel).
-> +
-> +The chips implement three limits for each sensor: low (tempX_min), high
-> +(tempX_max) and critical (tempX_crit). The chips also implement an
-> +hysteresis mechanism which applies to all limits. The relative difference
-> +is stored in a single register on the chip, which means that the relative
-> +difference between the limit and its hysteresis is always the same for
-> +all three limits.
-> +
-> +This implementation detail implies the following:
-> +
-> +* When setting a limit, its hysteresis will automatically follow, the
-> +  difference staying unchanged. For example, if the old critical limit was
-> +  80 degrees C, and the hysteresis was 75 degrees C, and you change the
-> +  critical limit to 90 degrees C, then the hysteresis will automatically
-> +  change to 85 degrees C.
-> +* The hysteresis values can't be set independently. We decided to make
-> +  only tempX_crit_hyst writable, while all other hysteresis attributes
-> +  are read-only. Setting tempX_crit_hyst writes the difference between
-> +  tempX_crit_hyst and tempX_crit into the chip, and the same relative
-> +  hysteresis applies automatically to all other limits.
-> +* The limits should be set before the hysteresis. At power up the device
-> +  starts with a 10 degree written into hysteresis register.
-...
-> --- /dev/null
-> +++ b/drivers/hwmon/emc1812.c
-...
-> +
-> +static int emc1812_chip_identify(struct emc1812_data *data, struct i2c_client *client)
-> +{
-> +	const struct emc1812_features *chip;
-> +	struct device *dev = &client->dev;
-> +	int ret, tmp;
-> +
-> +	ret = regmap_read(data->regmap, EMC1812_PRODUCT_ID_ADDR, &tmp);
-> +	if (ret)
-> +		return ret;
-> +
-> +	chip = device_get_match_data(&client->dev);
-> +
-> +	switch (tmp) {
-> +	case EMC1812_PID:
-> +		data->chip = &emc1812_chip_config;
-> +		break;
-> +	case EMC1813_PID:
-> +		data->chip = &emc1813_chip_config;
-> +		break;
-> +	case EMC1814_PID:
-> +		data->chip = &emc1814_chip_config;
-> +		break;
-> +	case EMC1815_PID:
-> +		data->chip = &emc1815_chip_config;
-> +		break;
-> +	case EMC1833_PID:
-> +		data->chip = &emc1833_chip_config;
-> +		break;
-> +	default:
-> +		/*
-> +		 * If failed to identify the hardware based on internal registers,
-> +		 * try using fallback compatible in device tree to deal with some
-> +		 * newer part number.
-> +		 */
-> +		dev_info(dev, "Unknown hardware id: %x\n", tmp);
+> Miaoqing Pan (2):
+>   wifi: ath11k: add usecase firmware handling based on device compatible
+>   dt-bindings: net: wireless: ath11k-pci: deprecate 'firmware-name'
+>     property
+> 
+>  .../net/wireless/qcom,ath11k-pci.yaml         |  1 +
+>  drivers/net/wireless/ath/ath11k/core.c        | 27 +++++++++++++++++++
+>  drivers/net/wireless/ath/ath11k/core.h        |  4 +++
+>  3 files changed, 32 insertions(+)
+> 
+> 
+> base-commit: d8e1f4a193101a72235416f189b01131a57e26e9
 
-dev_warn() might be more appropriate. Alternatively, use dev_err() and bail out
-with -ENODEV, as suggested below.
+Krzysztof,
+Since you previously NAKed this series, can you confirm that your review
+comments have been addressed?
 
-> +
-> +		data->chip = chip;
-> +
+Thanks!
+/jeff
 
-AI feedback:
-
-Potential NULL pointer dereference. `device_get_match_data()` returns NULL
-when the driver is instantiated via I2C ID table (e.g. via sysfs
-`new_device`) instead of via Device Tree or ACPI. If the hardware ID
-is also unknown (triggering the `default` case), `data->chip` becomes NULL.
-
-The function returns 0 (success), and `emc1812_probe` proceeds to call
-`emc1812_parse_fw_config`, which immediately dereferences `data->chip`:
-
-Side note (not from AI): It might be appropriate to notify the user
-if the devicetree data does not match the real hardware.
-
-> +static int emc1812_parse_fw_config(struct emc1812_data *data, struct device *dev)
-> +{
-> +    /* to be able to load the driver in case we don't have device tree */
-> +    if (!dev_fwnode(dev)) {
-> +        data->active_ch_mask = BIT(data->chip->phys_channels) - 1;
-> +        return 0;
-> +    }
-
-This will crash.
-
-The driver should likely use `i2c_get_match_data(client)` instead of
-`device_get_match_data()` to support both ID table and FW node matching,
-or return an error in the default case if `chip` is NULL.
-
-> +		return 0;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
 
