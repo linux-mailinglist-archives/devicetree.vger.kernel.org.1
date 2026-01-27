@@ -1,214 +1,710 @@
-Return-Path: <devicetree+bounces-259755-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259756-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SKlCK01veGmjpwEAu9opvQ
-	(envelope-from <devicetree+bounces-259755-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 08:54:53 +0100
+	id 0KCWAt50eGnEpwEAu9opvQ
+	(envelope-from <devicetree+bounces-259756-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 09:18:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5821F90DBE
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 08:54:53 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CC1890FDC
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 09:18:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 428DC3010615
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 07:54:40 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 04FB9300B9E3
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 08:18:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F63932D0FE;
-	Tue, 27 Jan 2026 07:54:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AFC623A9B0;
+	Tue, 27 Jan 2026 08:18:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qBkNyNI8"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="J+wDnEKS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B20732C945
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 07:54:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EC232248A0;
+	Tue, 27 Jan 2026 08:18:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769500475; cv=none; b=qSuKpo9DS/e+H+PYUDWEuMuwjqCrmriBrPp9SKzlA3AywkOwlzVJwxZcCy8g3mGMYmIZB+hsl1DWJNkRF960Xj9Ahp1GSY4/c7hraquK2dtADYrtUvsrqq03/rIxJSzGIq9HBXoRINJG+WKCxTiak56c1Ei3hXU/cMu4Si2zjVk=
+	t=1769501915; cv=none; b=gWAcAh1+aghju/Tzgyt1RiYKDz4EOTKdYAOd/2AuU2zN0xUSBk2xE3ep+MwpN7ladgeyTds7bhoN8T1QrqaulviD4UVmPIf0mERt9oUygTAqUN0opeVylHB0FxdWznwszliins9WkNH5XjsKVO3vsmyQYQ/wdTrpYeiN68lKCwI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769500475; c=relaxed/simple;
-	bh=x02G9I5G5FI4Stbx+0yop7O4JlcUUn8AQvXMHpX5C4I=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=WTLRLKDUzIEFfBx2eCf2JjUPDnLajm1najR9QskGQrGCXERHupzs0KVdVClUQkElZK3YOBMFpUGAnWcXiHwTkW26HlR2NcS8NaJXlUXtPtdmATa7giUTFWWIef4JF6VXKOCnPkCMSC/vJxoesvuHvcJsYzsjb5+gV2Usja4O4P8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qBkNyNI8; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-47edd6111b4so60864375e9.1
-        for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 23:54:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1769500471; x=1770105271; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=o/VxnSF8krGk0nRSnDEyD6IFePycjSGM7bgvmgAJYHs=;
-        b=qBkNyNI8TlmJM5gNJHCvaL3kvT+YUbN/DkP8ntJszuh9LSEvsRiqZQAqGnIEQa6cCF
-         AxmLdqTZqhXS20Ocb3TZB26/VuYs9k7/p31fnhPb463ZilDY9/yoFbPrgsKCSN6LRctb
-         v6bfmgPH4ukhfRZJN3+9MgcldHz4S5xR09zrVy9vH8ui2ryKmYceTU6lhlbGU22wczHf
-         lHo7J+d/oFuCRMbNqPFGg7FsTJNbTtr4hORNcgQGZMLINZjxokf6wTFtlel2fb2YRhUq
-         xthnb7fC2azu+qk+tSJsmg5vA6p8o1VX5esf6GIMtJ9URyGuYfmUuJT7ehjqLBjVePT+
-         zS9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769500471; x=1770105271;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=o/VxnSF8krGk0nRSnDEyD6IFePycjSGM7bgvmgAJYHs=;
-        b=RG7lS9qqiTUTO0Dk8PAyFu35dhbphfHPnjHLpHp1yu2xvGSFImR3ofw+X4pxaQzExG
-         FxW3kd4DAfQdncsdFPincIc7VtkL+xWgh555QAv1SAtIAkvP5OaGYwA7c4sABHfU9XnJ
-         vVZyPr01N0mwnhxcpgaPBtQlHO4XHUEG4IXftIv+ajTavd+7oliQuT296Q7Zc7vDbMoN
-         u6UsJjbGeZLLnJxRJRLQRWHgUiQhdI4YLMQU/kjjbkcCgJVYJVb3MRb/vN+WHszRxLfg
-         n9stKGAFeMTV062nDpaY3HDt2tn8NwbGhOhC4AOuLXkQiKbPYPKVL/Gq5ZvYUim1rhLR
-         wCHg==
-X-Forwarded-Encrypted: i=1; AJvYcCVyjTC/OmKb20ISyRn/IFw0XbZ5sxZSWV0vuSzjheFPDG5VY4tP0ZS7gN4fWU6RG+ZM3jMMp7RnBnSH@vger.kernel.org
-X-Gm-Message-State: AOJu0YxnY4vZVMw6TjyDXTYjDUqeSO2vZytKK68EKqWlf+P/XG8edrYf
-	d0BM0PV0xoCrJa412VXKkl5iCtGwQoSZfCiBY2zTtYQmA1AUZybKUAra22bxideyIUA=
-X-Gm-Gg: AZuq6aJd9k1zaz5Rx7kxSPkPSQXZmvMn1boYb6wtK9p4FamwvwKenGms9S8xs06pJVh
-	YC0OnGMk5DbFRlfDdEbBQhkUGdkp2PZAl9ICbhoJJjPv5l5MH0eQahQlMFd/J/peVj/XmD7cuxv
-	ZQg10QHwj/bwCmDDkmVyhe9w16UJK++UTGoJBbujfY9zbkY7dhDrIBnf/Ag+YEJKE7J36c6pdaH
-	FVHntYbYn84+JrlaxYwcG4huhBE+fGT4pSA61d/Q+gkwPMoIChWLGDLwWTnwtqsq4eRBvPMq4Tv
-	8GqjVq8NZP9IDQZhuu1ssMRXmxOFFP/Aw9t5zh/gC1hUbOe6W9+WiGe1HYze6iT/a/3ces2UkY8
-	AAiZrlQQSWudKQYc4GlBLifsGojRnHwz3FKM0K+J8kDkFnibXK3JMamGtSHyw+wabexikYifvEg
-	0NGRhdFUdss9l/YPrjopQ9bzkFWu7mOP/DdtE/dnxlS6u+QCFs1nMVvlVmbLMAflkf3q4B+nkdu
-	g==
-X-Received: by 2002:a05:6000:4028:b0:435:add0:3d76 with SMTP id ffacd0b85a97d-435dd1cb92cmr1128900f8f.56.1769500471311;
-        Mon, 26 Jan 2026 23:54:31 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:3d9:2080:53a6:bd3c:8e65:509d? ([2a01:e0a:3d9:2080:53a6:bd3c:8e65:509d])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435b1e715bfsm38117952f8f.22.2026.01.26.23.54.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Jan 2026 23:54:30 -0800 (PST)
-Message-ID: <7d9041a3-9d2b-469a-9fa7-89d53bbd2a1f@linaro.org>
-Date: Tue, 27 Jan 2026 08:54:29 +0100
+	s=arc-20240116; t=1769501915; c=relaxed/simple;
+	bh=WyCQT6KmszXsxbLp0IXhTLUnPRp8Si0heVbUZjxvQqw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=p/fJXFWGikj2G7dKiLmRf/KaOOQLrjGpvjaVij4Nw4QoeeoJ4fJQYtBI5MZeQJXSk1iLQXVpgSUfm+mUpFgbHT5s755TXEEKw60rvpR5xrhrzQbX9dLjqX4zqc07w7W0bchgNgT8OsfvL1Ay5wg5CKiuLITNyLozYeeVcnVANaQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=J+wDnEKS; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1769501913; x=1801037913;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=WyCQT6KmszXsxbLp0IXhTLUnPRp8Si0heVbUZjxvQqw=;
+  b=J+wDnEKShHLsLP/uF/G/GcuENm3xP+M3EQhUGKGhLEQp4dOVNtW7Z7KK
+   D6f72o1GyhiMXVnizPdV1SENDUwEEOU2V89QniiT+Z9EaO5V//s8MupmW
+   A17qJnsNtgh2cWupQGt3qoZ8io2XyjPo1IyuEPbsvVJttWhwTibiSznjM
+   WcLvpH5OHEANhweoy2ndEp7kE8yhQfLbfVT4dZJ8BfjurwxWqafol6s/E
+   ZGnMrI06BiLTLFbknE4oh2t4sIZ8K9IXX7s2/MhSKkcIqeI5UoBI/XbPZ
+   79ifXOixOZAQpYWZINxjh7Vq499SsP4x/71277kz03B+r0sihZM5mBCpL
+   A==;
+X-CSE-ConnectionGUID: GX2bXAuSQnCA8IozytgteA==
+X-CSE-MsgGUID: le8pPYC/Qxuvd8vLUAOHdg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11683"; a="70779102"
+X-IronPort-AV: E=Sophos;i="6.21,256,1763452800"; 
+   d="scan'208";a="70779102"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2026 00:18:32 -0800
+X-CSE-ConnectionGUID: NhDVZgCnSMS+rPCL0SxF+g==
+X-CSE-MsgGUID: Uku9b1QhRlSDFZI/hZK0Bw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,256,1763452800"; 
+   d="scan'208";a="207801382"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.245.248])
+  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2026 00:18:29 -0800
+Date: Tue, 27 Jan 2026 10:18:27 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Andy Shevchenko <andy@kernel.org>, linux-i2c@vger.kernel.org,
+	Huacai Chen <chenhuacai@kernel.org>,
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] i2c: ls2x-v2: Add driver for Loongson-2K0300 I2C
+ controller
+Message-ID: <aXh000kBfaqd1G9H@smile.fi.intel.com>
+References: <cover.1769476820.git.zhoubinbin@loongson.cn>
+ <402121da829497fc97f1461c8aaa3a44252c3f06.1769476820.git.zhoubinbin@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 1/3] dt-bindings: display: lt9611: Add dsi-port-b property
-To: Hongyang Zhao <hongyang.zhao@thundersoft.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- Roger Shimizu <rosh@debian.org>
-References: <20260127-rubikpi-next-20260116-v1-0-0286c75150c5@thundersoft.com>
- <20260127-rubikpi-next-20260116-v1-1-0286c75150c5@thundersoft.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20260127-rubikpi-next-20260116-v1-1-0286c75150c5@thundersoft.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <402121da829497fc97f1461c8aaa3a44252c3f06.1769476820.git.zhoubinbin@loongson.cn>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259755-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[thundersoft.com,intel.com,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,ffwll.ch,linux.intel.com,suse.de];
-	HAS_ORG_HEADER(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.1:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,0.0.0.0:email,linaro.org:replyto,linaro.org:dkim,linaro.org:mid];
-	HAS_REPLYTO(0.00)[neil.armstrong@linaro.org];
-	PRECEDENCE_BULK(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,loongson.cn,kernel.org,sang-engineering.com,vger.kernel.org,xen0n.name,lists.linux.dev];
+	TAGGED_FROM(0.00)[bounces-259756-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_EQ_FROM(0.00)[]
-X-Rspamd-Queue-Id: 5821F90DBE
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,intel.com:dkim]
+X-Rspamd-Queue-Id: 9CC1890FDC
 X-Rspamd-Action: no action
 
-On 1/27/26 07:58, Hongyang Zhao wrote:
-> Document the lontium,dsi-port-b property for selecting DSI Port B as
-> the input source instead of the default Port A.
+On Tue, Jan 27, 2026 at 10:47:57AM +0800, Binbin Zhou wrote:
+> This I2C module is integrated into the Loongson-2K0300 SoCs.
 > 
-> Signed-off-by: Hongyang Zhao <hongyang.zhao@thundersoft.com>
-> Reviewed-by: Roger Shimizu <rosh@debian.org>
-> ---
->   .../devicetree/bindings/display/bridge/lontium,lt9611.yaml          | 6 ++++++
->   1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/lontium,lt9611.yaml b/Documentation/devicetree/bindings/display/bridge/lontium,lt9611.yaml
-> index 655db8cfdc25..9b7dba4e114c 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/lontium,lt9611.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/lontium,lt9611.yaml
-> @@ -37,6 +37,12 @@ properties:
->     vcc-supply:
->       description: Regulator for 3.3V IO power.
->   
-> +  lontium,dsi-port-b:
-> +    type: boolean
-> +    description:
-> +      Use DSI Port B as the input source instead of Port A or Port A + B.
-> +      Required when the DSI is physically connected to Port B.
+> It provides multi-master functionality and controls all I2C bus-specific
+> timing, protocols, arbitration, and timing. It supports both standard
+> and fast modes.
 
-This is not how this should be solved, the ports links are here for this exact purpose.
+Thanks for the update, but either v1 was not reviewed properly (if reviewed
+at all), or this missed comments from there. This driver needs much more work.
+Since it misses v6.20 anyway, you have about 2 month to put this into a shape.
 
-port@0 represents port A, port@1 represent port B, so you need to describe the HW correctly
-in the first place.
+...
 
-Populate only port1 and in the driver check which ports are population and change the
-configuration.
+> +/*
+> + * Loongson-2K fast I2C controller driver
+> + *
+> + * Copyright (C) 2025-2026 Loongson Technology Corporation Limited
 
-Neil
+> + *
+
+Redundant blank line.
+
+> + */
+
+...
+
+> +#include <linux/bitfield.h>
+> +#include <linux/bits.h>
+> +#include <linux/clk.h>
+
+> +#include <linux/device.h>
+
+Is this being used?
+
+> +#include <linux/iopoll.h>
+> +#include <linux/i2c.h>
+> +#include <linux/init.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/io.h>
+
+> +#include <linux/kernel.h>
+
+No way you should include this one.
+
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/property.h>
+> +#include <linux/regmap.h>
+
+Please, follow IWYU principle, exempli gratia here the types.h is missing.
+
+> +#include <linux/units.h>
+
+...
+
+> +#define LOONGSON2_I2C_CR2_IRQ_MASK	(LOONGSON2_I2C_CR2_ITBUFEN | \
+> +					 LOONGSON2_I2C_CR2_ITEVTEN | \
+> +					 LOONGSON2_I2C_CR2_ITERREN)
+
+Better to indent differently:
+
+#define LOONGSON2_I2C_CR2_IRQ_MASK	\
+	(LOONGSON2_I2C_CR2_ITBUFEN | LOONGSON2_I2C_CR2_ITEVTEN | LOONGSON2_I2C_CR2_ITERREN)
+
+
+...
+
+> +#define LOONGSON2_I2C_SR1_ITEVTEN_MASK	(LOONGSON2_I2C_SR1_BTF | \
+> +					 LOONGSON2_I2C_SR1_ADDR | \
+> +					 LOONGSON2_I2C_SR1_SB)
+> +#define LOONGSON2_I2C_SR1_ITBUFEN_MASK	(LOONGSON2_I2C_SR1_TXE | LOONGSON2_I2C_SR1_RXNE)
+> +#define LOONGSON2_I2C_SR1_ITERREN_MASK	(LOONGSON2_I2C_SR1_AF | \
+> +					 LOONGSON2_I2C_SR1_ARLO | \
+> +					 LOONGSON2_I2C_SR1_BERR)
+
+As per above.
+
+...
+
+> +#define LOONGSON2_I2C_FREE_SLEEP_US	1000
+> +#define LOONGSON2_I2C_FREE_TIMEOUT_US	5000
+
+1 * USEC_PER_MSEC
+5 * USEC_PER_MSEC
+
+...
+
+> +#define LOONGSON2_I2C_MIN_STD_FREQ	2U
+> +#define LOONGSON2_I2C_MIN_FAST_FREQ	6U
+> +#define LOONGSON2_I2C_MAX_FREQ		46U
+
+The three are unused, what are they for?
+
+
+> +#define HZ_TO_MHZ			1000000
+
+Dup. Use units.h.
+
+...
+
+> +enum loongson2_i2c_speed {
+> +	LOONGSON2_I2C_SPEED_STANDARD, /* 100 kHz */
+> +	LOONGSON2_I2C_SPEED_FAST, /* 400 kHz */
+> +	LOONGSON2_I2C_SPEED_FAST_PLUS, /* 1 MHz */
+
+Use existing speed definitions and drop this enum.
+
+> +	LOONGSON2_I2C_SPEED_END,
+
+Besides comma in the terminator, that has not to be there, this is unused.
+
+> +};
+
+...
+
+> +/*
+
+It's not marked as kernel-doc, but looks very much like that. Why?
+Same Q for *all* cases like this.
+
+> + * struct loongson2_i2c_msg - client specific data
+> + * @addr: 8-bit slave addr, including r/w bit
+> + * @count: number of bytes to be transferred
+> + * @buf: data buffer
+> + * @stop: last I2C msg to be sent, i.e. STOP to be generated
+> + * @result: result of the transfer
+> + */
+> +struct loongson2_i2c_msg {
+> +	u8 addr;
+> +	u32 count;
+> +	u8 *buf;
+> +	bool stop;
+> +	int result;
+
+Run `pahole` and amend *all* data types accordingly.
+
+> +};
+
+...
+
+> +struct loongson2_i2c_priv {
+> +	struct i2c_adapter adapter;
+
+> +	struct device *dev;
+
+Isn't this a dup? Can't it be derived from regmap and/or adapter?
+
+> +	struct clk *clk;
+> +	struct completion complete;
+> +	struct regmap *regmap;
+> +	int speed;
+> +	int parent_rate;
+> +	struct loongson2_i2c_msg msg;
+> +};
+
+...
+
+> +static int loongson2_i2c_wait_free_bus(struct loongson2_i2c_priv *priv)
+> +{
+> +	u32 status;
+> +	int ret;
+> +
+> +	ret = regmap_read_poll_timeout(priv->regmap, LOONGSON2_I2C_SR2, status,
+> +				       !(status & LOONGSON2_I2C_SR2_BUSY),
+> +				       LOONGSON2_I2C_FREE_SLEEP_US,
+> +				       LOONGSON2_I2C_FREE_TIMEOUT_US);
+> +	if (ret) {
+> +		dev_dbg(priv->dev, "I2C bus free failed.\n");
+
+> +		ret = -EBUSY;
+
+Why?! What's wrong with the error code returned in ret?
+
+> +	}
+> +
+> +	return ret;
+> +}
+
+...
+
+> +static void loongson2_i2c_handle_read(struct loongson2_i2c_priv *priv, int flag)
+> +{
+> +	struct loongson2_i2c_msg *msg = &priv->msg;
+> +	bool changed;
+
+> +	int i;
+
+Why signed?
+
+> +	switch (msg->count) {
+> +	case 1:
+> +		/* only transmit 1 bytes condition */
+> +		loongson2_i2c_disable_irq(priv);
+> +		loongson2_i2c_read_msg(priv);
+> +		complete(&priv->complete);
+> +		break;
+> +	case 2:
+> +		if (flag != 1) {
+> +			/* ensure only transmit 2 bytes condition */
+> +			regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR2,
+> +					   LOONGSON2_I2C_CR2_ITBUFEN, 0);
+> +			break;
+> +		}
+> +		regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR1, LOONGSON2_I2C_CR1_OP_MASK,
+> +				   msg->stop ? LOONGSON2_I2C_CR1_STOP : LOONGSON2_I2C_CR1_START);
+> +
+> +		loongson2_i2c_disable_irq(priv);
+
+> +		for (i = 2; i > 0; i--)
+> +			loongson2_i2c_read_msg(priv);
+
+Just unroll the loop and put a comment on top explaining the magic 2. But I
+think it's just a msg->count.
+
+> +		regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR1, LOONGSON2_I2C_CR1_POS, 0);
+> +		complete(&priv->complete);
+> +		break;
+> +	case 3:
+> +		regmap_update_bits_check(priv->regmap, LOONGSON2_I2C_CR2, LOONGSON2_I2C_CR2_ITBUFEN,
+> +					 0, &changed);
+> +		if (changed)
+> +			break;
+> +		regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR1, LOONGSON2_I2C_CR1_ACK, 0);
+> +		fallthrough;
+> +	default:
+> +		loongson2_i2c_read_msg(priv);
+> +	}
+> +}
+
+...
+
+> +static irqreturn_t loongson2_i2c_isr_error(u32 status, void *data)
+> +{
+> +	struct loongson2_i2c_priv *priv = data;
+> +	struct loongson2_i2c_msg *msg = &priv->msg;
+> +
+> +	/* Arbitration lost */
+> +	if (status & LOONGSON2_I2C_SR1_ARLO) {
+> +		regmap_update_bits(priv->regmap, LOONGSON2_I2C_SR1, LOONGSON2_I2C_SR1_ARLO, 0);
+> +		msg->result = -EAGAIN;
+> +	}
+> +
+> +	/*
+> +	 * Acknowledge failure:
+> +	 * In master transmitter mode a Stop must be generated by software
+> +	 */
+> +	if (status & LOONGSON2_I2C_SR1_AF) {
+> +		regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR1, LOONGSON2_I2C_CR1_STOP,
+> +				   LOONGSON2_I2C_CR1_STOP);
+> +		regmap_update_bits(priv->regmap, LOONGSON2_I2C_SR1, LOONGSON2_I2C_SR1_AF, 0);
+> +		msg->result = -EIO;
+> +	}
+> +
+> +	/* Bus error */
+> +	if (status & LOONGSON2_I2C_SR1_BERR) {
+> +		regmap_update_bits(priv->regmap, LOONGSON2_I2C_SR1, LOONGSON2_I2C_SR1_BERR, 0);
+> +		msg->result = -EIO;
+> +	}
+
+Even if the interrupt is spurious you still Ack it, why?
+
+Ah, it seems it's a helper. Please, return the error code from it as int and
+not irqreturn_t, this will make things clearer.
+
+> +	loongson2_i2c_disable_irq(priv);
+> +	complete(&priv->complete);
+> +
+> +	return IRQ_HANDLED;
+> +}
+
+...
+
+> +static irqreturn_t loongson2_i2c_isr_event(int irq, void *data)
+> +{
+> +	u32 possible_status = LOONGSON2_I2C_SR1_ITEVTEN_MASK;
+
+Split assignment...
+
+> +	struct loongson2_i2c_priv *priv = data;
+> +	struct loongson2_i2c_msg *msg = &priv->msg;
+> +	u32 status, ien, event, cr2;
+> +
+> +	regmap_read(priv->regmap, LOONGSON2_I2C_SR1, &status);
+> +	if (status & LOONGSON2_I2C_SR1_ITERREN_MASK)
+> +		return loongson2_i2c_isr_error(status, data);
+> +
+> +	regmap_read(priv->regmap, LOONGSON2_I2C_CR2, &cr2);
+> +	ien = cr2 & LOONGSON2_I2C_CR2_IRQ_MASK;
+
+...to be here, which improves readability (no need to go somewhere up in
+the code to see what this is about.
+
+> +	/* Update possible_status if buffer interrupt is enabled */
+> +	if (ien & LOONGSON2_I2C_CR2_ITBUFEN)
+> +		possible_status |= LOONGSON2_I2C_SR1_ITBUFEN_MASK;
+> +
+> +	event = status & possible_status;
+> +	if (!event) {
+> +		dev_dbg(priv->dev, "spurious evt irq (status=0x%08x, ien=0x%08x)\n", status, ien);
+> +		return IRQ_NONE;
+> +	}
+> +
+> +	/* Start condition generated */
+> +	if (event & LOONGSON2_I2C_SR1_SB)
+> +		loongson2_i2c_write_msg(priv, msg->addr);
+> +
+> +	/* I2C Address sent */
+> +	if (event & LOONGSON2_I2C_SR1_ADDR) {
+> +		if (msg->addr & I2C_M_RD)
+> +			loongson2_i2c_handle_rx_addr(priv);
+> +		/* Clear ADDR flag */
+> +		regmap_read(priv->regmap, LOONGSON2_I2C_SR2, &status);
+> +		/* Enable buffer interrupts for RX/TX not empty events */
+> +		regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR2, LOONGSON2_I2C_CR2_ITBUFEN,
+> +				   LOONGSON2_I2C_CR2_ITBUFEN);
+> +	}
+> +
+> +	if (msg->addr & I2C_M_RD) {
+> +		/* RX not empty */
+> +		if (event & LOONGSON2_I2C_SR1_RXNE)
+> +			loongson2_i2c_handle_read(priv, 0);
+> +
+> +		if (event & LOONGSON2_I2C_SR1_BTF)
+> +			loongson2_i2c_handle_read(priv, 1);
+> +	} else {
+> +		/* TX empty */
+> +		if (event & LOONGSON2_I2C_SR1_TXE)
+> +			loongson2_i2c_handle_write(priv);
+> +
+> +		if (event & LOONGSON2_I2C_SR1_BTF)
+> +			loongson2_i2c_handle_write(priv);
+> +	}
+> +
+> +	return IRQ_HANDLED;
+> +}
+
+...
+
+> +static int loongson2_i2c_xfer_msg(struct loongson2_i2c_priv *priv, struct i2c_msg *msg,
+> +				  bool is_stop)
+> +{
+> +	struct loongson2_i2c_msg *l_msg = &priv->msg;
+> +	unsigned long timeout;
+
+> +	int ret;
+
+Seems unneeded.
 
 > +
->     ports:
->       $ref: /schemas/graph.yaml#/properties/ports
->   
-> 
+> +	l_msg->addr   = i2c_8bit_addr_from_msg(msg);
+> +	l_msg->buf    = msg->buf;
+> +	l_msg->count  = msg->len;
+> +	l_msg->stop   = is_stop;
+> +	l_msg->result = 0;
+> +
+> +	reinit_completion(&priv->complete);
+> +
+> +	/* Enable events and errors interrupts */
+> +	regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR2,
+> +			   LOONGSON2_I2C_CR2_ITEVTEN | LOONGSON2_I2C_CR2_ITERREN,
+> +			   LOONGSON2_I2C_CR2_ITEVTEN | LOONGSON2_I2C_CR2_ITERREN);
+
+> +	timeout = wait_for_completion_timeout(&priv->complete, priv->adapter.timeout);
+> +	ret = l_msg->result;
+> +
+> +	if (!timeout)
+> +		ret = -ETIMEDOUT;
+> +
+> +	return ret;
+
+	timeout = wait_for_completion_timeout(&priv->complete, priv->adapter.timeout);
+	if (!timeout)
+		return -ETIMEDOUT;
+
+	return l_msg->result;
+
+> +}
+
+> +static int loongson2_i2c_xfer(struct i2c_adapter *i2c_adap, struct i2c_msg msgs[], int num)
+> +{
+> +	struct loongson2_i2c_priv *priv = i2c_get_adapdata(i2c_adap);
+> +	int ret = 0, i;
+
+Why is 'i' signed?
+And redundant assignment for 'ret'.
+
+> +	ret = loongson2_i2c_wait_free_bus(priv);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* START generation */
+> +	regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR1, LOONGSON2_I2C_CR1_START,
+> +			   LOONGSON2_I2C_CR1_START);
+
+> +	for (i = 0; i < num && !ret; i++)
+> +		ret = loongson2_i2c_xfer_msg(priv, &msgs[i], i == num - 1);
+> +
+> +	return (ret < 0) ? ret : num;
+
+	for (i = 0; i < num; i++) {
+		ret = loongson2_i2c_xfer_msg(priv, &msgs[i], i == num - 1);
+		if (ret < 0)
+			return ret;
+	}
+
+	return num;
+
+
+> +}
+
+...
+
+> +static int loongson2_i2c_adjust_bus_speed(struct loongson2_i2c_priv *priv)
+> +{
+> +	u32 val, freq, ccr = 0, cr2 = 0;
+
+Redundant assignment(s), see below why.
+
+> +	priv->parent_rate = clk_get_rate(priv->clk);
+> +	freq = DIV_ROUND_UP(priv->parent_rate, HZ_TO_MHZ);
+
+Use unit suffix:
+
+	freq_mhz = ...
+
+(if I am not mistaken).
+
+> +	cr2 |= FIELD_GET(LOONGSON2_I2C_CR2_FREQ, freq);
+
+	cr2 = FIELD_GET(LOONGSON2_I2C_CR2_FREQ, freq);
+
+> +	regmap_write(priv->regmap, LOONGSON2_I2C_CR2, cr2);
+> +
+> +	if (priv->speed == LOONGSON2_I2C_SPEED_STANDARD) {
+> +		val = DIV_ROUND_UP(priv->parent_rate, I2C_MAX_STANDARD_MODE_FREQ * 2);
+
+		/* Select Standard mode */
+		ccr = 0;
+
+> +	} else {
+> +		val = DIV_ROUND_UP(priv->parent_rate, I2C_MAX_FAST_MODE_FREQ * 3);
+> +
+> +		/* Select Fast mode */
+> +		ccr |= LOONGSON2_I2C_CCR_FS;
+
+		ccr = LOONGSON2_I2C_CCR_FS;
+
+> +	}
+
+> +	ccr |= FIELD_GET(LOONGSON2_I2C_CCR_CCR, val);
+
+FIELD_MODIFY()?
+
+> +	regmap_write(priv->regmap, LOONGSON2_I2C_CCR, ccr);
+> +
+> +	/* reference clock determination the configure val(0x3f) */
+> +	regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR2, LOONGSON2_I2C_CR2_FREQ,
+> +			   LOONGSON2_I2C_CR2_FREQ);
+> +	regmap_update_bits(priv->regmap, LOONGSON2_I2C_TRISE, LOONGSON2_I2C_TRISE_SCL,
+> +			   LOONGSON2_I2C_TRISE_SCL);
+> +
+> +	/* Enable I2C */
+> +	regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR1, LOONGSON2_I2C_CR1_PE,
+> +			   LOONGSON2_I2C_CR1_PE);
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static int loongson2_i2c_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct loongson2_i2c_priv *priv;
+> +	struct i2c_adapter *adap;
+> +	void __iomem *base;
+> +	u32 clk_rate;
+> +	int irq, ret;
+> +
+> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(base))
+
+> +		return dev_err_probe(dev, PTR_ERR(base),
+> +				     "Failed to ioremap resource.\n");
+
+You utilise 100, put this on a single line.
+
+But, this is a dup, devm_platform_*() call above takes care already about error
+message.
+
+> +
+> +	priv->regmap = devm_regmap_init_mmio(dev, base,
+> +					     &loongson2_i2c_regmap_config);
+
+Single line.
+
+> +	if (IS_ERR(priv->regmap))
+> +		return dev_err_probe(dev, PTR_ERR(priv->regmap),
+> +				     "Failed to init regmap.\n");
+
+Single line.
+
+> +	priv->clk = devm_clk_get_enabled(dev, NULL);
+> +	if (IS_ERR(priv->clk))
+> +		return dev_err_probe(dev, PTR_ERR(priv->clk),
+> +				     "Failed  to enable clock.\n");
+
+Single line.
+
+> +	irq = platform_get_irq(pdev, 0);
+> +	if (irq < 0)
+> +		return -EINVAL;
+
+Why?! What's wrong with the error code in 'irq'?
+
+> +	priv->dev = dev;
+> +
+> +	adap = &priv->adapter;
+> +	adap->retries = 5;
+> +	adap->nr = pdev->id;
+> +	adap->dev.parent = dev;
+> +	adap->owner = THIS_MODULE;
+> +	adap->algo = &loongson2_i2c_algo;
+> +	adap->timeout = 2 * HZ;
+> +	device_set_node(&adap->dev, dev_fwnode(dev));
+> +	i2c_set_adapdata(adap, priv);
+
+> +	strscpy(adap->name, pdev->name, sizeof(adap->name));
+
+2-arguments version is even better.
+
+> +	init_completion(&priv->complete);
+> +	platform_set_drvdata(pdev, priv);
+> +
+> +	priv->speed = LOONGSON2_I2C_SPEED_STANDARD;
+
+> +	ret = of_property_read_u32(dev->of_node, "clock-frequency", &clk_rate);
+
+device_property_read_u32()
+
+> +	if (!ret && clk_rate >= I2C_MAX_FAST_MODE_FREQ)
+> +		priv->speed = LOONGSON2_I2C_SPEED_FAST;
+> +
+> +	ret = loongson2_i2c_adjust_bus_speed(priv);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = devm_request_irq(dev, irq, loongson2_i2c_isr_event, IRQF_SHARED, pdev->name, priv);
+> +	if (ret)
+
+> +		return dev_err_probe(dev, ret, "Unable to request irq %d\n", irq);
+
+Dup message.
+
+		return ret;
+
+> +	return devm_i2c_add_adapter(dev, adap);
+> +}
+
+...
+
+> +static struct platform_driver loongson2_i2c_driver = {
+> +	.driver = {
+> +		.name = "loongson2-i2c-v2",
+> +		.of_match_table = loongson2_i2c_id_table,
+> +	},
+> +	.probe = loongson2_i2c_probe,
+> +};
+
+> +
+
+Remove this blank line.
+
+> +module_platform_driver(loongson2_i2c_driver);
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
