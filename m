@@ -1,165 +1,199 @@
-Return-Path: <devicetree+bounces-259876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259877-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GIxjKjaueGlasAEAu9opvQ
-	(envelope-from <devicetree+bounces-259876-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 13:23:18 +0100
+	id uCuOH4WueGlasAEAu9opvQ
+	(envelope-from <devicetree+bounces-259877-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 13:24:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D4C09443E
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 13:23:18 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9C1A944A0
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 13:24:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 74500303EFB5
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 12:22:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 48A89300A753
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 12:22:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16D6834D391;
-	Tue, 27 Jan 2026 12:22:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="V53ynsOn"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83F9634D384;
+	Tue, 27 Jan 2026 12:22:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FC6D34D904
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 12:22:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97D9134C9AC;
+	Tue, 27 Jan 2026 12:22:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769516546; cv=none; b=lnvXddHA0plhdDv0FagCJcEwL6i5UW5zVljZC5qpXyK1eAKhT8jugng5gutz5eRQ1Y8WefHJbLF2uOx4OCeIbFVpCQoyGhffmvjz6pzV+X1nKF26X7fSBE7UYDz6rCT5PkA8GKFoF5jQABZ/lIuBwJ11VHZhWb+CkjokA0yW6zM=
+	t=1769516573; cv=none; b=oFGA/gP2exP/7az4OtH4dRG30rq5gDhuSetNcaPyKBjINnlpAeilGQyBDBRB8kBZFWf9gUevR/H7xesgDaul/AmilARje6o4t/UY42079j5YWkd5QKyeHK9aGz0Pbgk9HPeRve6PjLS0xYykd1r7rLPBLDGXC5l1FFJ7C2Wo4GM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769516546; c=relaxed/simple;
-	bh=+ilUKbu2ArLEGVUyAuSkij7jhAzxKx/xV6YfmxWnTAs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=trzbQovDWvyPGXy5hBZS3QVGtnUiigA77q5VyETIIMp6E6fj/+XcsXtKV29ipMZkOIK+JgEJgTOu8ONEQyUsLQB9p7+CV4bmokVnh14f9kf1vrEyfYKSj6EHQPCZI7bHwSIReGpturAUdkkeIJMZxSM8VjrAAu9L+hZSjDtioG0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=V53ynsOn; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-432d2c96215so4883196f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 04:22:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769516543; x=1770121343; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0MBhjNvO9uP33cA1otmnLsn1T/YWSSVCvR/7qKxO/MI=;
-        b=V53ynsOncXMPjhUQR2KH4KhCdbnxS+sBdxtBksc3Sue2ABFZuz7X2vIH+axa4HnK9Q
-         bz/EjNQec+LjYGx6Ej9Fe50Gqz42ZiCEp9BYESC6LzUI16ExM06bTaYjiHKO9SN7SlPf
-         dCkeW3Bq1ZUnWUsRpF4Ph+mLxDFgKlbuf17A+MTnPgSgSj3FMTpJLS8vwkTOrn/47BQ1
-         YRaqNqSTs9WrtW6Nx1NSiBq2SD6vmYo0IqygEF9mVdei7LRqplW9EVlakOKFyPq08g5P
-         I1m1hvpyS8ZjYFiedLdu6uXZDV2bgERKvmTNhA23+Ws4y3AUJLUN0f04o/sLLr8aAxGR
-         xP0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769516543; x=1770121343;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0MBhjNvO9uP33cA1otmnLsn1T/YWSSVCvR/7qKxO/MI=;
-        b=H/+x/wWsD/R/vWqyVFOAvB2f2Sg12C4fk8Oyogj8z5J7OHL9gUQ1+l/r9xiixaBNLK
-         MeUR8RLISwKQzQ5POMErR+Drad4T8cfTgDSL4ECNeazjTGuYWeltZ2UMklJsFdYJ89zO
-         rOD7YArU7Krf/91H7wvaGF30kHGkOB7EhEzqaLgyj37Bv/GPD269vsAzBY4z2XVvz9dg
-         Z5rItaPkvLfVAlZP3LRCX80I64BhREa507TZ2i99I/39i49SmnI3a5Y3/OV2HoQpp9jQ
-         5IXC3tSJuTZ6rXSataE5g2roUTBEnKhdQCzNXyX8dMQpJERFG2DsSzOEMLywKOgQhysj
-         0w+Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVRKWkxve84wVMa+NrkdTOtwv/74gc0JgwiWD95I8Aw9Fp4iQg0pTaIq0LCSj3HzUsPLhPmRqAtW3YQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6VNz1Syfy46LvkjlwqKKWwI9P4zA1A3etKpDD0ImGxCWkfQ8I
-	MQHGG1uks3UZgo8+wAu/vlun7KwtWlZqDgvL6SU7ZvxOvYX92LEYcPLe
-X-Gm-Gg: AZuq6aLLGYejgKoeI+AKP94r8fAGbyQ5yV+5FLCsGGBbc0DJ+O9GpCOx4N888rTQK2e
-	8cN+3TW573PmNhlVE0229DSBRR49LWwxMIWs+r9McZMQ/67STuZRPI452TSUy2D9MdToAKW1qIx
-	aXrRgJL44WMG55p0LpUtmk4dJkeKBtUaKTUJNA2FHF16It6ELNym+3Tqjifd/ac6GDNFzdrk/Um
-	IHqeGZ+TZ6K6Psopx3hlOnYhGPt2m07uvNT+FMrlGLEQtIBWYXgobEiM1vmQJZsEuMEzdXRuJJT
-	9H1WK4NC48l+pl0+anKVBnPD/jeqtzGIvWJDhfg7nqx5fy3CgjJ59G7ntQZRC80Wi5eonstASSP
-	bUeVwvwTxXbvsjbsVwl79FNK0sjO8BeZRF9q8FC1/uy8j602MRDYUkzLyn2ZIy7QmkeE12k93OF
-	hz4sdg+4Wa/xXSdSOlTTXp8ibEh/J7R0gpc/EDxa9wIqU=
-X-Received: by 2002:a05:6000:178a:b0:432:84ef:7160 with SMTP id ffacd0b85a97d-435dd022574mr2376326f8f.12.1769516542309;
-        Tue, 27 Jan 2026 04:22:22 -0800 (PST)
-Received: from [10.25.216.67] ([128.77.115.158])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435b1e71503sm41885074f8f.25.2026.01.27.04.22.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Jan 2026 04:22:21 -0800 (PST)
-Message-ID: <c4f4a6cf-8511-44ac-8648-d8c4093e24d0@gmail.com>
-Date: Tue, 27 Jan 2026 04:22:19 -0800
+	s=arc-20240116; t=1769516573; c=relaxed/simple;
+	bh=ujgP0jcbed1ZXd85wWPLMTNTNLiH/W/3Np/g9MdS0Z0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WYqxezwizHhUkjpEFxICLt+a8eo9Fv0ixW+l/jzcDv44FclWH7FCTbGz0Rjz+DCWQayVmlVEG9Ni8CS1oxmqayjLMoSBV0S/MLtMm2DIcHSg3KBiGjelUfS5ZBFOccxQzpF6vhETISF37ojf7duGuiGHSM4hIEvw1BrhARbDWiU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
+Received: from duge-virtual-machine (unknown [183.192.223.177])
+	by APP-03 (Coremail) with SMTP id rQCowACHqN8MrnhpMuD1Bg--.48031S2;
+	Tue, 27 Jan 2026 20:22:38 +0800 (CST)
+Date: Tue, 27 Jan 2026 20:22:36 +0800
+From: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+To: Xukai Wang <kingxukai@zohomail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Troy Mitchell <TroyMitchell988@gmail.com>
+Subject: Re: [PATCH v10 2/3] clk: canaan: Add clock driver for Canaan K230
+Message-ID: <aXiuDAO7I6urJj09@duge-virtual-machine>
+References: <20260116-b4-k230-clk-v10-0-de59033c5d30@zohomail.com>
+ <20260116-b4-k230-clk-v10-2-de59033c5d30@zohomail.com>
+ <aW3o8xVziqb9iRBN@duge-virtual-machine>
+ <bf39fdb8-6698-418b-bd4a-6d8d40ccc9a0@zohomail.com>
+ <aXJJ3MjQSq8Rq084@duge-virtual-machine>
+ <0af969a7-3579-4303-b302-f171ef02a163@zohomail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: imx95-15x15-frdm: support AONMIX MQS
-To: Frank Li <Frank.li@nxp.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
- Shengjiu Wang <shengjiu.wang@nxp.com>, Chancel Liu <chancel.liu@nxp.com>,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org,
- Pengutronix Kernel Team <kernel@pengutronix.de>
-References: <20260126145537.2301-1-laurentiumihalcea111@gmail.com>
- <20260126145537.2301-3-laurentiumihalcea111@gmail.com>
- <aXeY44T+5rvCqBs8@lizhi-Precision-Tower-5810>
-Content-Language: en-US
-From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-In-Reply-To: <aXeY44T+5rvCqBs8@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <0af969a7-3579-4303-b302-f171ef02a163@zohomail.com>
+X-CM-TRANSID:rQCowACHqN8MrnhpMuD1Bg--.48031S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxGr15tFyUArW5XF48uFWrAFb_yoW5trW3p3
+	97XF18CFWDGw1I9F1qvw47J34DtFs8ta1UGF93JFykJwnrA34jqF129w40gFWjvr4xCF4j
+	yr48twn0vFW2yw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUvvb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
+	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xII
+	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWUJVW8JwA2z4x0Y4vEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
+	64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8Jw
+	Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkIwI1l
+	c7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr
+	1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE
+	14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7
+	IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E
+	87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73Uj
+	IFyTuYvjxUqiFxDUUUU
+X-CM-SenderInfo: 5mld534oul2uny6l223fol2u1dvotugofq/
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-259876-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[iscas.ac.cn];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259877-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,pengutronix.de,nxp.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[17];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.997];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[laurentiumihalcea111@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[jiayu.riscv@isrc.iscas.ac.cn,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,sifive.com,gmail.com];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 2D4C09443E
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D9C1A944A0
 X-Rspamd-Action: no action
 
+On Tue, Jan 27, 2026 at 07:03:59PM +0800, Xukai Wang wrote:
+> 
+> On 2026/1/23 00:01, Jiayu Du wrote:
+> > On Thu, Jan 22, 2026 at 07:40:29PM +0800, Xukai Wang wrote:
+> >> On 2026/1/19 16:18, Jiayu Du wrote:
+> >>>> +
+> >>>> +K230_CLK_GATE_FORMAT(hs_hclk_src_gate,
+> >>>> +		     K230_HS_HCLK_SRC_GATE,
+> >>>> +		     0x18, 0, 0, 0,
+> >>>> +		     &hs_hclk_high_src_rate.clk.hw);
+> >>> Here, you replaced hs_hclk_high_gate(in v9) with hs_hclk_high_src_rate,
+> >> I'm a bit confused, as I don't recall making these specific changes.
+> >> Looking at the code below, the only difference between v9 and v10 is
+> >> within the K230_CLK_GATE_FORMAT(hs_hclk_src_gate, ...) definition, where
+> >> the second parameter changed from 1 to 0. Everything else appears
+> >> consistent. Could you clarify which change you were referring to?
+> >>> but after my board test, I find that when hs_hclk_high_gate is turned
+> >>> off, the mmc/sd and other high-speed subsystems can not work. So maybe
+> >>> you should not change the hs_hclk_high_gate to hs_hclk_high_src_rate.
+> >> Regarding the clock management, I recommend explicitly enabling
+> >> hs_hclk_high_gateas it will be closed by `close unused clocks`.
+> > Sorry, you are right. It was me who made the changes locally. And I
+> > saw your reply to this email[1], which you said According to the vendor's
+> > code, the parent clock of hs_hclk_src is hs_hclk_high_src.
+> >
+> > Indeed, the parent clock of hs_hclk_src is hs_hclk_high_src. 
+> 
+> > but hs_hclk_high_gate is the gate of hs_hclk_high_src. 
+> 
+> No. It seems there is some confusion. The hs_hclk_high_src does not have
+> a gate.
 
-On 1/26/2026 8:40 AM, Frank Li wrote:
-> On Mon, Jan 26, 2026 at 06:55:37AM -0800, Laurentiu Mihalcea wrote:
->> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
->>
->> Add support for AONMIX MQS (i.e. MQS1).
->>
->> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
->> ---
->>  .../boot/dts/freescale/imx95-15x15-frdm.dts   | 73 +++++++++++++++++++
->>  arch/arm64/boot/dts/freescale/imx95.dtsi      |  5 ++
-> Chip's dtsi and board dts should be two patches.
->
-> Frank
+In this code segment of the vendor[1], it states that hs_hclk_high is
+indeed the downstream gate of hs_hclk_high_src. Once hs_hclk_high is turned
+off, all the high-speed peripherals such as USB, MMC, and SD will fail.
+This indicates that in the hardware, the gate bit1 actually controls the
+overall clock switch of the high speed system.
 
+I understand that hs_sd0/1_ahb_gate should be enabled during the SD driver
+probe, and hs_usb0/1_ahb_gate should be enabled during the USB driver probe,
+but currently there is NO clear driver to ENABLE hi_hclk_high_gate. 
 
-What's the rationale for this? Is this "rule" documented anywhere?
+So in your code, I think hs_hclk_high_gate should be the gate of 
+hs_hclk_high_src_rate. And hs_hclk_high_gate should be the parent of
+hs_hclk_src_gate.
 
-IMO, the DTSI-related changes are small enough that it doesn't justify
+link: https://github.com/kendryte/k230_sdk/blob/main/src/little/linux/arch/riscv/boot/dts/kendryte/clock_provider.dtsi#L497 [1]
 
-the split into different patches. The split would've made more sense
+> 
+> The clock tree is as follow:
+> 
+>        pll0_div4
+>           hs_hclk_high_src_rate
+>              hs_hclk_high_gate
+>              hs_hclk_src_gate
+>                 hs_hclk_src_rate
+>                    hs_sd0_ahb_gate
+>                    hs_sd1_ahb_gate
+>                    hs_ssi1_ahb_gate
+>                    hs_ssi2_ahb_gate
+>                    hs_usb0_ahb_gate
+>                    hs_usb1_ahb_gate
+> 
+> > So, what you mean is
+> > that you will add the CLK_IS_CRITICAL flag to the hs_hclk_high_gate?
+> No, I don't intend to add CLK_IS_CRITICAL flag. Instead, I recommend you
+> to explicitly enable the clock by using clk_prepare_enable in your driver.
 
-if we were touching more than 1 board.
+I think there is NO clear driver to ENABLE hi_hclk_high_gate.
+
+Regards,
+Jiayu Du
+
+> >
+> > Link: https://lore.kernel.org/all/159615d3-cc52-43be-bf6d-5fe717ef1cc4@zohomail.com/ [1]
+> >
+> > Regards,
+> > Jiayu Du
+> >
 
 
