@@ -1,156 +1,153 @@
-Return-Path: <devicetree+bounces-259987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259988-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aDVGDSjZeGmwtgEAu9opvQ
-	(envelope-from <devicetree+bounces-259987-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:26:32 +0100
+	id mFnCBW7ZeGmwtgEAu9opvQ
+	(envelope-from <devicetree+bounces-259988-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:27:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D879496A9E
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:26:31 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F1AD96ADB
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:27:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id BAB5A307A087
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:17:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7FA8B30B6388
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:19:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2026136072E;
-	Tue, 27 Jan 2026 15:14:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FE7735F8AD;
+	Tue, 27 Jan 2026 15:17:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e6HCNZVC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sHES0Nxa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDEF0360723;
-	Tue, 27 Jan 2026 15:14:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B834EAE7;
+	Tue, 27 Jan 2026 15:17:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769526846; cv=none; b=Inrd97pK7LTN5S8bP1Sz4W7YXQKo/JoNOy4/Ugexg8LiUr/9kRWzbb8ZcK3LbeQqKXcvFxgwN87rUKF8bvzdLsHC5wZ5Y4rwiqahRh7TzSFWw5m/6oH9bM6vLbb6TEFhdsGiEzXgl6Js1sWCpFiQ1bgmhNq14B8JCBf1hIWV668=
+	t=1769527057; cv=none; b=AC1xSz5ipc3Vu9Lqw/SA0FVmlv7atLKd6TMCcLtvYSpWFKPQN7TEaacbx59PcTdiI359dFZg5QlxoblCfk/KMkd//c2bacxj8a19kXrNDFM3e+CZiPRAl+f0QXIoO5alCZ+HHilPK7r+rZ65gGGLMzZMJ9lfatTcf22kN3gslMA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769526846; c=relaxed/simple;
-	bh=m3TPcHEBsfQWalMm0WnZmJSQ9jtV0YcHvN+I+5GyKcg=;
-	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n94mgLMA23OIt2TMqvHmWoPwi6mtESXkJzQgr55OAZyUo7pC166uvZfveYw+LlUjxmtT+ANszS/7peBdpRgX19Sp4XsLgk1UcuHOKsDqLFyQ0YUSgQZrexsXBnQe5Q/UsJ4S8Yjl0Ig5gsVay28qfVN3FHA5tJ8uJjxyJwu+cTo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e6HCNZVC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80D4DC116C6;
-	Tue, 27 Jan 2026 15:14:02 +0000 (UTC)
+	s=arc-20240116; t=1769527057; c=relaxed/simple;
+	bh=06YFaYPc4N1f9nnWVb6MYBol7sp8w7ue49DiDGANxVs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pUmRJboK7pbFjdDwFlJQY7Nk59fJxQrHLj1yXUJzcbBMC0mKOEXgWesc4f7ZYsjmYpARPF2dCgli16MbIkIup3guqHSYcquOOARMpdxbd8S1c4RoSqwibeYH3IgJlAnwU8K8XxLZ5JZmmmc3g1goOTKB5pZKdS+RstgQ4b2PdHY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sHES0Nxa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81194C116C6;
+	Tue, 27 Jan 2026 15:17:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769526845;
-	bh=m3TPcHEBsfQWalMm0WnZmJSQ9jtV0YcHvN+I+5GyKcg=;
-	h=Date:From:To:Subject:References:In-Reply-To:From;
-	b=e6HCNZVCFeM8YX1tPMWcLW1EsiHYjkkwHqseYc4bv6Bxsmoy3ujng5Mi8tUfo/z+m
-	 8HReDz5GJjv0zfInqcd1hGFeoGPapwIEudAb2x6Ld7sIppls0NCygGN8UUYgylHX0m
-	 76kY5jTACLJPTP5Eye/yWZN0q+GDf1vyTm6jwa6w7NnKYbjnlRxupa5kbw/7IyWmeP
-	 xofHAcWndO66DHnxhYIQP66RnvfqNpBgRF4muj8ziPmzjwNkkI8uZokWbRA57cJLVv
-	 DIavMPNowsEypkBkLXA4uP6Rb9k8V0VDEGQx5jwMeoW5wermo7GwiEwA3eSDcSn77h
-	 wrruRGaaFjNIw==
-Date: Tue, 27 Jan 2026 15:13:59 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v4 5/6] ASoC: sophgo: add CV1800B internal DAC codec
- driver
-Message-ID: <153acfd6-cb4f-48ee-82e0-0a18a4a1e9c7@sirena.org.uk>
-References: <20260120-cv1800b-i2s-driver-v4-0-6ef787dc6426@gmail.com>
- <20260120-cv1800b-i2s-driver-v4-5-6ef787dc6426@gmail.com>
- <88ef974b-9fa8-490e-ba19-1fb31ca94342@sirena.org.uk>
- <aXjRx12yPA7QflaF@anton.local>
+	s=k20201202; t=1769527056;
+	bh=06YFaYPc4N1f9nnWVb6MYBol7sp8w7ue49DiDGANxVs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sHES0NxaudMq/qmeoTiz0aeclmGvJfz6FxHT6K36GqTbqX7FuX2L4MAYRvyv2v4+X
+	 BO8l5M8snhZ8zh6nJ9R9fVzCk1PGKpa0Si8inyfomPFntwM/9OBbQEYi5+xV2hK9Zt
+	 qRMHdYlFhrhArQZJJNNQoMB/UGmUjNpyKB0ttAxROg3Q8JEWRMqN2ZeLs4Yh2y8GiJ
+	 RTfouRyNIM2aGEtnaMuLeCyPstykfmMm75Sb8mUaDNqSZNW1KN9ronMaiveSfvW+A5
+	 qi47mLikdVZfjQDeb5VjMW11aG3f+FEG8+eJlswA8Muqs7glrWyhKuZxH4fXd5YFwx
+	 ZeZoJNND0LucQ==
+Date: Tue, 27 Jan 2026 09:17:35 -0600
+From: Rob Herring <robh@kernel.org>
+To: "Kevin Hilman (TI)" <khilman@baylibre.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+	arm-scmi@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH RFC v5 1/2] pmdomain: core: support domain hierarchy via
+ power-domain-map
+Message-ID: <20260127151735.GA1699112-robh@kernel.org>
+References: <20260122-pmdomain-hierarchy-onecell-v5-0-76855ec856bd@baylibre.com>
+ <20260122-pmdomain-hierarchy-onecell-v5-1-76855ec856bd@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="TAPu9R6EF7VUDzRm"
-Content-Disposition: inline
-In-Reply-To: <aXjRx12yPA7QflaF@anton.local>
-X-Cookie: I brake for chezlogs!
-X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	MAILLIST(-0.15)[generic];
-	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-259987-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,outlook.com,perex.cz,suse.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,sirena.org.uk:mid]
-X-Rspamd-Queue-Id: D879496A9E
-X-Rspamd-Action: no action
-
-
---TAPu9R6EF7VUDzRm
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20260122-pmdomain-hierarchy-onecell-v5-1-76855ec856bd@baylibre.com>
+X-Rspamd-Server: lfdr
+X-Spamd-Result: default: False [-1.16 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
+	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-259988-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.0.11:email];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 7F1AD96ADB
+X-Rspamd-Action: no action
 
-On Tue, Jan 27, 2026 at 07:11:24PM +0400, Anton D. Stavinskii wrote:
-> On Tue, Jan 27, 2026 at 12:49:52PM +0400, Mark Brown wrote:
+On Thu, Jan 22, 2026 at 05:14:00PM -0800, Kevin Hilman (TI) wrote:
+> Add of_genpd_[add|remove]_subdomain_map() helper functions to support
+> hierarchical PM domains defined by using power-domains-map
 
-> > Nothing ever mutes the DAC so this is a bit redundant.  The mute should
-> > probably be a mute_stream() operation.
+power-domain-map. No 's'.
 
-> I'm not sure here. DAC mute feature was not implemented because I don't k=
-now how
-> exactly do that. The public documentation is very weak for my taste.=20
-> This call added here to be sure that override flag is
-> not set (override feature replaces the output by setting it to constant=
-=20
-> value and ignoring the input, so it is some kind of mute from my understa=
-nding.=20
-> So ensuring this off is needed be sure that DAC will output our I2S data)=
-=2E=20
-> What do you think will be better to do here?=20
-> I'm sure that is needed, but may be better to move=20
-> it to some early stages, like probe function.=20
+> property (c.f. nexus node maps in DT spec, section 2.5.1).
+> 
+> This enables PM domain providers with #power-domain-cells > 0 to
+> establish subdomain relationships via the power-domain-map property,
+> which was not previously possible.
+> 
+> These new helper functions:
+> - uses an OF helper to iterate to over entries in power-domain-map
+> - For each mapped entry: extracts child specifier, resolves parent phandle,
+>   extracts parent specifier args, and establishes subdomain relationship
+> - Calls genpd_[add|remove]_subdomain() with proper gpd_list_lock mutex protection
+> 
+> Example from k3-am62l.dtsi:
+> 
+>   scmi_pds: protocol@11 {
+>       #power-domain-cells = <1>;
+>       power-domain-map = <15 &MAIN_PD>,  /* TIMER0 */
+>                          <19 &WKUP_PD>;  /* WKUP_TIMER0 */
+>   };
+> 
+>   MAIN_PD: power-controller-main {
+>       #power-domain-cells = <0>;
+>   };
+> 
+>   WKUP_PD: power-controller-main {
+>       #power-domain-cells = <0>;
+>   };
+> 
+> This allows SCMI power domain 15 to become a subdomain of MAIN_PD, and
+> domain 19 to become a subdomain of WKUP_PD.
 
-It's probably fine to leave the functional code as is but you should add
-some comments to the mute function explaining waht's going on here.
+One concern I have here is generally *-map is transparent meaning when 
+you lookup <&scmi_pds 15>, &MAIN_PD is returned as the provider. It's 
+also possible to have a map point to another map until you get to the 
+final provider. The only way we have to support both behaviors is the 
+consumer has to specify (i.e. with of_parse_phandle_with_args_map() vs. 
+of_parse_phandle_with_args()), but the consumer shouldn't really know 
+this detail.
 
---TAPu9R6EF7VUDzRm
-Content-Type: application/pgp-signature; name="signature.asc"
+Maybe a transparent map of power-domains would never make sense. IDK. If 
+so, then there's not really any issue since the pmdomain core handles 
+everyone the same way.
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAml41jYACgkQJNaLcl1U
-h9DvQAf+OiroM7nH8QOX1NaSJVvy9B/1hfdynFnaK+SbJP/lMp8bM0VZfV1zbgKk
-KEPUW6fk+OkycL5Qd9oiRuLf5BVb1CvzreYkv24xg/5f7b9tki+qc1NTwCVcCWU7
-RdOaf/YEdLbOgpk2APDtn9AwrfKSVZcuNlSUMGyXnTEVGABbGgx2c3wDiqjts2cB
-HyuOE4W82gMsLkP+QuBYIhuY8gyXg8kY7GFejrakOm89inTSOzR6hggArLzMOKY/
-VhE12PZ/837kiUrlCjPceVMbOFbpLkciDe7fCb3e0YQabDSFzQbk8qjSDG2uZ06R
-VPI5Qi3CG/KHSdnVE/nD0d/ARcsHMw==
-=jGOT
------END PGP SIGNATURE-----
-
---TAPu9R6EF7VUDzRm--
+Rob
 
