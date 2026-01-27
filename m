@@ -1,161 +1,121 @@
-Return-Path: <devicetree+bounces-260113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260114-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QK7GHaMceWmPvQEAu9opvQ
-	(envelope-from <devicetree+bounces-260113-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 21:14:27 +0100
+	id uCU7LbEdeWkQvgEAu9opvQ
+	(envelope-from <devicetree+bounces-260114-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 21:18:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 169799A46F
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 21:14:27 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 065739A4EF
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 21:18:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 4366C300B1AE
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 20:14:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C8E1C3030B01
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 20:18:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1719432D0E1;
-	Tue, 27 Jan 2026 20:14:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="av2YhStI"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AB3E36EA89;
+	Tue, 27 Jan 2026 20:18:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f193.google.com (mail-pg1-f193.google.com [209.85.215.193])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D828A32B9B4
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 20:14:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.193
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63323265CC2;
+	Tue, 27 Jan 2026 20:18:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769544863; cv=none; b=QTQbXmsbetJC9PEglGk1PomaUVY+FEr5+8TPYuk94N5VZ1T9UFNuQfjpC4sbfpPBuTmdCy72j/g0yR8UXmA/fEtY/ygGlHE9oVpKvJJAnE6xvxY5enpxnRor9txUlfQ5AIYY2Vfrbd0tqi+VLq27SXAmwd/Z9/fr6Q1p/xvTHzE=
+	t=1769545092; cv=none; b=PINyuOKnTi4tvIe8NlWPf5gwdxCyVLY3Oq8JSrMf9KOG6Pu0Jt2PB+ywRllnpROuAy+fLwTMc32UCgpppMF7IyTeYcW0WCcfnxPuY7ID2IqQnGCPU9ShMgXKP+dwdcMARx7qLNTO7MPjuoedDxsAPqE5mjfYBckK3arwozapj8w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769544863; c=relaxed/simple;
-	bh=TajH8yN8UqkekEASPsMQ18gVGY2nFAz8e8hQXy99WE0=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=jrEzHYabkHioHSg4VDE4/VtG1l1vv07+XhG2dLGk5VFWna4EI6YmrCQr+DgHQqt15T7x1XqZCN+nK+SNZmDXWqlr5JpSB1uh1Yp94AN0aZwPoG7/xUpzxIGMnDBUchT7u0Mzk/ZjoPAieczAwjJE6pAjux5LXmGtwVQALYLMRa0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=av2YhStI; arc=none smtp.client-ip=209.85.215.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pg1-f193.google.com with SMTP id 41be03b00d2f7-c63555db09fso59656a12.1
-        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 12:14:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1769544859; x=1770149659; darn=vger.kernel.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=TajH8yN8UqkekEASPsMQ18gVGY2nFAz8e8hQXy99WE0=;
-        b=av2YhStIDCAYGaFNP8HTvKCIknQmIAusKqHq6ZaDEATHuL1FUks8LAzSDCEq3tAtHp
-         bU/witTro6gFHznFPk6TFZo03VUHl/Ov5TZwsvavPttUsgPibORMJyXneeu/tWkjTA8c
-         oBkGuxfTM+UdTZFDlPkYJ213JC1TSurfVeijr06vZL7/+nVqxmXsXtIXxtPQABzZi8YA
-         zAwsA+QurVuUpZHC6ctyGIbLA8SVag4MSi8UvdV86aPNSHRmzfRs84XCipbY8d39tuue
-         dlghPN64hhS0ihVZzLcw5krpbFu4Ao3CfFBdJQFNc+fpTwtd8QXrIzf9J9HmD6HiYpch
-         Xi7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769544859; x=1770149659;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TajH8yN8UqkekEASPsMQ18gVGY2nFAz8e8hQXy99WE0=;
-        b=xC0KRKxP64YR6YFjRMax6qTfcduO2B/h3NIjozRH1f7NVkyZ4BDmGEMKj6rO3WZ27P
-         iA64DlTLJxIOAerx02cmx6HvVQEwAiciEtI97d+TR1km1Mo3zsAvTl7zYu/aAmvbBwWJ
-         ZpfomnTXeZxif8d6aYwZAjiShJf29M0JKzz5TwIXoH1VmSTFucxiV6np+ChIyVfIKL8P
-         qWN9dqC/TQNsDG5LvmOHWqYH8oh0v4O5fchSFnTfb/yzVoMeLXat+kAF21joQKa4aK4b
-         u7u/CEYYsMFHN+GKdvBri+gMTjxV4VsBClxaSNuzEiVzkLOet+akuqKEhxAWcqLlPboe
-         7pIg==
-X-Forwarded-Encrypted: i=1; AJvYcCWFwK1D9/Wrc4+sLgB5oNfuNgM07C5At7+A9xnqBXWdDlWtw2qPC8wCSD5Ch829nCdLrjrA1NZLG9dU@vger.kernel.org
-X-Gm-Message-State: AOJu0YxGY5IxL1qqhIgJ+E0r6mNKz6XwA8n2ZSdQ9/7Wz0ZtoVrxlx55
-	q9UnYmk2/lpPiNRVXVaBfATINk/Ub5gZll2v6vdDBV/qQP1gHeWhFYRXfG00nPmdxZw=
-X-Gm-Gg: AZuq6aJsPbI1+B/m/Id21vS/w6BXmQFVa1AfgiqUIGNkvRCeEx9RaDm85V7poqFbkXn
-	QrkbqbwinrlSGqjnch58ZqccO1JTIc7niFWEzWv5VO0xTPeADC7NJcx/WNR5i9Vn66DP0HyShMT
-	RzkCtg/qpsg7Ucsakx8QKH8bonQKdJHNSdoqCc6OJ+txM9pKbqsRWYmczoIiCraI9mwyp6UI5o9
-	rQfqlW9NY2rqdzVFaCjQO07+TSjZSJPcPsr8DX/JfT/zMxprgXAknJhaGeDq9BPVU+X9F1YRejc
-	QHm+NrS+D8xo2NDWxd3gB0nIi5sai+L1YcUBOqEahJF0ajpNPJuvznejvf27lX0TrJlnLKbgMb2
-	KCxtpOe06MS3ThsDwWPDGE5QuGyR4YecsYho4fOH9LkxrEa6fyX9F8g0hdg746IeVfK9ZWLsZmB
-	yKkeFny1/p
-X-Received: by 2002:a17:90b:3c4f:b0:34a:a16d:77c3 with SMTP id 98e67ed59e1d1-353ffa2e81bmr2244550a91.2.1769544859290;
-        Tue, 27 Jan 2026 12:14:19 -0800 (PST)
-Received: from localhost ([71.212.200.220])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-353f61e0007sm3373581a91.12.2026.01.27.12.14.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Jan 2026 12:14:18 -0800 (PST)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Kendall Willis <k-willis@ti.com>, Nishanth Menon <nm@ti.com>, Vignesh
- Raghavendra <vigneshr@ti.com>, Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- d-gole@ti.com, msp@baylibre.com
-Cc: vishalm@ti.com, sebin.francis@ti.com, a-kaur@ti.com,
- s-kochidanadu@ti.com, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Kendall Willis
- <k-willis@ti.com>
-Subject: Re: [PATCH v4 0/4] arm64: dts: ti: k3-am62: Support Main UART wakeup
-In-Reply-To: <20260122-b4-uart-daisy-chain-dts-v4-0-cfdabdf5e6c1@ti.com>
-References: <20260122-b4-uart-daisy-chain-dts-v4-0-cfdabdf5e6c1@ti.com>
-Date: Tue, 27 Jan 2026 12:14:18 -0800
-Message-ID: <7hbjie6cf9.fsf@baylibre.com>
+	s=arc-20240116; t=1769545092; c=relaxed/simple;
+	bh=mCoaBNPu3rA4vkKYBX41SOIXOOS2bbtUrm3BsqaZL80=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=sRAezXclc8VwtZzWmIhtlJRQoHNh1Xb+2mARECU4Toxpkj4Kjqo/UH7BLdkTgtOLI/zNNsnR/mHkaUBUu9WMZnWkKMGRIo9PWpDRiOCsiQxEtOhwYqCQMNnX8bTAoWqrFrKGEPzrzxOJciFDT053c5JfsyduMYamqOQ1nvm0LS8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+X-CSE-ConnectionGUID: myhtBSzlSRejUx04eld1JQ==
+X-CSE-MsgGUID: c8mOL1O3TFGijSk8Vxu4Uw==
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 28 Jan 2026 05:18:02 +0900
+Received: from demon-pc.localdomain (unknown [10.226.93.69])
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id BC99240869DB;
+	Wed, 28 Jan 2026 05:17:58 +0900 (JST)
+From: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+To: Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: linux-spi@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+Subject: [PATCH v2 0/3] Add DMA support for RZ/T2H RSPI
+Date: Tue, 27 Jan 2026 22:17:03 +0200
+Message-ID: <20260127201706.616374-1-cosmin-gabriel.tanislav.xa@renesas.com>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [0.14 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[renesas.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260113-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[baylibre.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[khilman@baylibre.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[renesas.com,kernel.org,glider.be,gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-260114-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[cosmin-gabriel.tanislav.xa@renesas.com,devicetree@vger.kernel.org];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	R_DKIM_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 169799A46F
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,renesas.com:mid]
+X-Rspamd-Queue-Id: 065739A4EF
 X-Rspamd-Action: no action
 
-Kendall Willis <k-willis@ti.com> writes:
+The DMA controller can be used to transfer data to and from the SPI
+controller without involving the CPU for each word of a SPI transfer.
 
-> This series adds wakeup support for the Main UART in the device tree of
-> the TI AM62 family of devices. It defines the specific pins and pinctrl
-> states needed to wakeup the system from the Main UART via I/O
-> daisy-chaining. The wakeup-source property is configured to describe the
-> low power modes the system can wakeup from using the Main UART.
->
-> Dependency
-> ----------
-> This series depends on the "serial: 8250: omap: set out-of-band wakeup if
-> wakeup pinctrl exists" [1] patch. This series should NOT be merged until
-> "serial: 8250: omap: set out-of-band wakeup if wakeup pinctrl exists"
-> is merged.
->
-> Testing
-> -------
-> Tested on a AM62P SK EVM board and a AM62L EVM board with all the above
-> mentioned series implemented. Suspend/resume verified with the Main UART
-> wakeup source by entering a keypress on the console.
->
-> This github branch has all the necessary patches to test the series
-> using v6.19-rc1:
-> https://github.com/kwillis01/linux/tree/v6.19/uart-daisy-chain/all
->
-> [1] https://lore.kernel.org/all/20260116-uart-wakeup-v2-1-0078ae9996e4@ti.com/
+Add support for DMA mode, and do some other cleanups while touching the
+same code.
 
-Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+The dts changes in this series depend on the DMA series [1].
+
+[1]: https://lore.kernel.org/lkml/20260105114445.878262-1-cosmin-gabriel.tanislav.xa@renesas.com/#t
+
+V2:
+ * drop patches picked up by Mark
+ * add new dt-bindings patch to allow multiple DMAs
+ * wire up all DMA controllers for every SPI controller
+
+Cosmin Tanislav (3):
+  dt-bindings: spi: renesas,rzv2h-rspi: allow multiple DMAs
+  arm64: dts: renesas: r9a09g077: wire up DMA support for SPI
+  arm64: dts: renesas: r9a09g087: wire up DMA support for SPI
+
+ .../bindings/spi/renesas,rzv2h-rspi.yaml         | 10 ++++++----
+ arch/arm64/boot/dts/renesas/r9a09g077.dtsi       | 16 ++++++++++++++++
+ arch/arm64/boot/dts/renesas/r9a09g087.dtsi       | 16 ++++++++++++++++
+ 3 files changed, 38 insertions(+), 4 deletions(-)
+
+-- 
+2.52.0
+
 
