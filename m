@@ -1,61 +1,65 @@
-Return-Path: <devicetree+bounces-260107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260108-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id /3jxB/4VeWmyvAEAu9opvQ
-	(envelope-from <devicetree+bounces-260107-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 20:46:06 +0100
+	id 2FPFCckWeWmyvAEAu9opvQ
+	(envelope-from <devicetree+bounces-260108-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 20:49:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 865F49A193
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 20:46:02 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F91B9A1DA
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 20:49:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 76448300957E
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 19:46:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DBFAE30214F4
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 19:49:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA80A31D732;
-	Tue, 27 Jan 2026 19:46:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7098330305;
+	Tue, 27 Jan 2026 19:49:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W5RBfkuM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B6xZ91xJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 882191D63F3;
-	Tue, 27 Jan 2026 19:46:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B398D1F09B3;
+	Tue, 27 Jan 2026 19:49:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769543160; cv=none; b=J+nJK3QKly/ztTjaqvOJNS+FUADrjqy7Yt9uSNlLR8aHRulFMtAMxJOW5F1nXikH+WBAO0h5rVAC+xQEkkfqjIWCbIRqVhwb1xUeY5nlAzeI6l64NOSj9WpB6Vtj9H4hxqYsZyNLpdV18uHY7vtnFxqLYubyItBA5CMtgyiQciY=
+	t=1769543365; cv=none; b=W+Piv6qbUh7pWRP71T/2ZfYg4C9pCF4f3LLsjhE/Xavya91MHItc5RmC67Phda2O+Nd9gz7Wkora5t4/A3SYvghPoqN52hnjteZQknDEqDUH2D+r3B7dIdds0Sfn2Gl1RcHrsQz7XGk++NdR74a2DTKJ03IKjwl3/PPTcLIFStA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769543160; c=relaxed/simple;
-	bh=lHoysDJO/Q3uRw+fwi7ZVNS0ieIlPNrDLpvxJCj1KQQ=;
+	s=arc-20240116; t=1769543365; c=relaxed/simple;
+	bh=4/uUjf4/GufOtTdgVCwHb7grIVbnVhgExUt+Y2JxJrY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VsuSBdOz0krui5gvOGW6fdNnChQatEvMZWOrCco6VH3ndrGEE+a1HZvlQ+yms1J9gzd2m9OGmmhJxjw/b4zVvBRCKRaeIECH3JT8xwvnxohiNb+kPLg01zgzPvDFYlHhDKOkG3Nc33eAbx/qLhIcMsGg511wSCc5iisOsD8aKW8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W5RBfkuM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43F79C116C6;
-	Tue, 27 Jan 2026 19:45:58 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=JrEDuTa+JgoSKhQUrO32JQ+7UXboaXCS+kbfLLBqJQoyUgzUArKlyka5qAhzfSFEirtcDl0iepF4TMMwcMSZSwIWApS+7GBeNIZtVI2FmghdH63yHp9VpjaKSfJlQCWzCSo0HivRO6GdRSu7pxILXXyQs0YhQbG+p8Ya28Jk0Ng=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B6xZ91xJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6630C116C6;
+	Tue, 27 Jan 2026 19:49:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769543160;
-	bh=lHoysDJO/Q3uRw+fwi7ZVNS0ieIlPNrDLpvxJCj1KQQ=;
+	s=k20201202; t=1769543365;
+	bh=4/uUjf4/GufOtTdgVCwHb7grIVbnVhgExUt+Y2JxJrY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=W5RBfkuMJHTiIPsN6sbKLeeLqHLVhWSSm0+zPIb8SUNPL2sfzVxJqDmcez9qhAlVC
-	 bHoDP3mhiEpASMoXAGFgEXA25ycvwoEU01lOinZ6K9fCB2Kwd9tlwvpHjbSSrSc+RW
-	 hjUU1h81GLTVCzN0NMT/l8v216nh1huTaU0VnW96Wqmfwj0OckB5ZSf6QC0Ff5ARrV
-	 Qx+UUpc4wSGB+ivHrwVC5/dfdC3zUrQ5Q0SdpPYuo7UMySEmpxyBMhKxA6Y122YTD5
-	 WmZcZRG538roCunHMqU81F9DuHmI1noqDNtps5Gjwzc4Elw39pA2ZnsQIsw4cn4B7X
-	 OJqhhaUwudg9g==
-Date: Tue, 27 Jan 2026 19:45:55 +0000
+	b=B6xZ91xJzMy5lCcfwPb6aIRHZXwrvhDXKednT+UQUVwBcxYoIsSDw32XJ9Du70a6J
+	 7L+pOD+VwuO3XMyAhqCQtAejGPuggZDaR3LF+6WbZULzPOuvOGdKvWpKO7WaCbsUfs
+	 Vp4hwW4WGp6rmyR6o8hISAXrnV7hvqOjUMjaCTKXrHe1IjmB3O8TyvSa4hij5cwEA0
+	 50eFQb8zPKtfLu/3FJfKilPPROVP1JmXixmubOXbZsfMvdzFYkK1e2xmInGe/LAQVY
+	 7esxSRW6ga4/C7lL5g3CSeJkfqhorAMhVTNiswq/i4/ngdiWeQJ6EsUGK8YZ3YNUSk
+	 SxHrIHRDCs11A==
+Date: Tue, 27 Jan 2026 19:49:20 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Romain Gantois <romain.gantois@bootlin.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: misc: Describe FPC202 LED features
-Message-ID: <20260127-private-culprit-e37a540d3d11@spud>
-References: <20260127-fpc202-leds-v1-0-ebd0cfb9f9a1@bootlin.com>
- <20260127-fpc202-leds-v1-1-ebd0cfb9f9a1@bootlin.com>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, Andy Shevchenko <andy@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	David Jander <david@protonic.nl>
+Subject: Re: [PATCH v2 2/8] dt-bindings: iio: dac: maxim,ds4424: add
+ maxim,rfs-ohms property
+Message-ID: <20260127-consonant-vividness-13707c7cf8f6@spud>
+References: <20260127060939.3914006-1-o.rempel@pengutronix.de>
+ <20260127060939.3914006-3-o.rempel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,9 +67,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="P1ZZ/RaByxLzpIUx"
+	protocol="application/pgp-signature"; boundary="ENel2A2ld7ahsmtT"
 Content-Disposition: inline
-In-Reply-To: <20260127-fpc202-leds-v1-1-ebd0cfb9f9a1@bootlin.com>
+In-Reply-To: <20260127060939.3914006-3-o.rempel@pengutronix.de>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
@@ -73,49 +77,155 @@ X-Spamd-Result: default: False [-2.26 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260107-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-260108-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 865F49A193
+X-Rspamd-Queue-Id: 4F91B9A1DA
 X-Rspamd-Action: no action
 
 
---P1ZZ/RaByxLzpIUx
+--ENel2A2ld7ahsmtT
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
+On Tue, Jan 27, 2026 at 07:09:33AM +0100, Oleksij Rempel wrote:
+> The Maxim DS4422/DS4424 and DS4402/DS4404 current DACs determine their
+> full-scale output current via external resistors (Rfs) connected to the
+> FSx pins. Without knowing these values, the full-scale range of the
+> hardware is undefined.
+>=20
+> Add the 'maxim,rfs-ohms' property to describe these physical components.
+> This property is required to provide a complete description of the
+> hardware configuration.
+>=20
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> ---
+> changes v2:
+> - make maxim,rfs-ohms a required property as the hardware range is undefi=
+ned
+>   without external resistors.
+> - add allOf constraints to enforce 2 vs 4 items in maxim,rfs-ohms based on
+>   compatible string.
+> - drop explicit $ref for maxim,rfs-ohms to fix dt_binding_check warning.
+> - update example in binding to include the new required property.
+> ---
+>  .../bindings/iio/dac/maxim,ds4424.yaml        | 36 +++++++++++++++++++
+>  1 file changed, 36 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/dac/maxim,ds4424.yaml =
+b/Documentation/devicetree/bindings/iio/dac/maxim,ds4424.yaml
+> index efe63e6cb55d..400afd8771aa 100644
+> --- a/Documentation/devicetree/bindings/iio/dac/maxim,ds4424.yaml
+> +++ b/Documentation/devicetree/bindings/iio/dac/maxim,ds4424.yaml
+> @@ -27,9 +27,44 @@ properties:
+> =20
+>    vcc-supply: true
+> =20
+> +  maxim,rfs-ohms:
+> +    description: |
+> +      Array of resistance values in Ohms for the external Rfs resistors
+> +      connected to the FS pins.
+> +      - For DS44x2 (2 channels): 2 values required.
+> +      - For DS44x4 (4 channels): 4 values required.
+> +      Typical values range from 40000 (40 kOhm) to 160000 (160 kOhm).
 
---P1ZZ/RaByxLzpIUx
+Add here
+maxItems: 4
+minItems: 2
+
+Are 40kOhm and 160kOhm actual max/min values, or just a suggested range?
+
+> +
+>  required:
+>    - compatible
+>    - reg
+> +  - maxim,rfs-ohms
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - maxim,ds4402
+> +              - maxim,ds4422
+> +    then:
+> +      properties:
+> +        maxim,rfs-ohms:
+
+> +          minItems: 2
+
+Remove this...
+
+> +          maxItems: 2
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - maxim,ds4404
+> +              - maxim,ds4424
+> +    then:
+> +      properties:
+> +        maxim,rfs-ohms:
+> +          minItems: 4
+
+
+> +          maxItems: 4
+
+=2E..and this. The outer-most constraints should be in the definition and
+the if/else bit just adjusts whichever bounds it needs to.
+
+Cheers,
+Conor.
+
+pw-bot: changes-requested
+
+> =20
+>  additionalProperties: false
+> =20
+> @@ -43,6 +78,7 @@ examples:
+>              compatible =3D "maxim,ds4424";
+>              reg =3D <0x10>; /* When A0, A1 pins are ground */
+>              vcc-supply =3D <&vcc_3v3>;
+> +            maxim,rfs-ohms =3D <5100>, <5100>, <5100>, <5100>;
+>          };
+>      };
+>  ...
+> --=20
+> 2.47.3
+>=20
+
+--ENel2A2ld7ahsmtT
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaXkV8wAKCRB4tDGHoIJi
-0jzUAQDQN4vRmxXaZCe91CjiZj2yp2h9cV+hLkT8b2eBtH2nvAEA3cri5zaRZxZx
-V6CI24jfHdH7caqSnbnQa0O6Fvs+VwE=
-=Jhs0
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaXkWwAAKCRB4tDGHoIJi
+0h8nAP9tMsqy0ql9+AwS4iH6tv8c+ZKRJ+neGd6+cLDiHYqu8wD/a4hQns3PXyBf
+0XKTviXmwH5XQ1/Ad8QaaWYjv1VMIAc=
+=8NZX
 -----END PGP SIGNATURE-----
 
---P1ZZ/RaByxLzpIUx--
+--ENel2A2ld7ahsmtT--
 
