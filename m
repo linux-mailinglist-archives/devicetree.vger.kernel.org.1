@@ -1,79 +1,81 @@
-Return-Path: <devicetree+bounces-259748-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259749-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sLcbLD9meGnTpgEAu9opvQ
-	(envelope-from <devicetree+bounces-259748-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 08:16:15 +0100
+	id KERmN1tmeGnTpgEAu9opvQ
+	(envelope-from <devicetree+bounces-259749-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 08:16:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38DCC90A69
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 08:16:15 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FB5090A78
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 08:16:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5107F3004612
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 07:16:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 69DD1300A8EA
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 07:16:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A21F2475CF;
-	Tue, 27 Jan 2026 07:16:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D61C4149C6F;
+	Tue, 27 Jan 2026 07:16:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IbXxEN69"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cFl5u8Fu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38C383EBF0D
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 07:16:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50E04267B92
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 07:16:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769498172; cv=none; b=sYhrJyIEeXUpIk2Jl82ZN6R1ONRdM3FR1LhjbIYC81sguId8aLti49vbQRy1DQJfv1DmhCpwB0KbA1r7OIS9mRSadeXBJozzpHZGQiMgzrB3pJibyxNm/wYJelqxJLxuxa66Jb2aO5E/5AJd0fU8jE4AdttaE0tV2DcvhXDdWAg=
+	t=1769498180; cv=none; b=D/dx++EYJMFLQofwet1K3bHL2yICBjzgGRnfjrJN8/0loZeRplkus8VWFaRk8CMWPu2h4nvq/6ga7Y4dZu6xLHPpkTIsnzWvoQ/kKvNMyvSk+rDV1mDI0/0mZs33rScO+Lr5a8ATpL0DF6elLivdu+I5uYhKAAdujjHhOV/uPtU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769498172; c=relaxed/simple;
-	bh=02e7n3+lctEJi09SAlNrz4VUwCcgYNB/BqGIhi/reAc=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=SybvzM8n7nSuUdn6uT7kRneYQW+FqyiYGNS5o/1gX8O0Vf1lVkMq7QRS1IMeoU9HNVQOiLhZBvlV+1wYjMAXLVjmq1EH6XFUkjiJ6jFOfhi6PyWT3ZcHOVuMILu+zIOiigiM6/3AkpL27atVKWdZXpVBIoaO82BKnI8s2bIKgvg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IbXxEN69; arc=none smtp.client-ip=209.85.214.170
+	s=arc-20240116; t=1769498180; c=relaxed/simple;
+	bh=Bt2f8O71ILMUJlYCIa3igd0y5irBYca7QPYlmNcvzT4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=GcIAqGM1l8eXIPQ+O6F+BxJff1WABZXOPolksi8rr6zeC2aVz4FSBpDk301E1dylpM7JSN0TUXFnagLnCllloloLU5H1mkvSpILJgwSMypWDMYwvL0ofM7XgGD6Je4AU5lvz2NqB42TJiIptA0mY0jFzjrwX9c6/9rWPMV9qSJ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cFl5u8Fu; arc=none smtp.client-ip=209.85.214.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-2a79ded11a2so32902145ad.3
-        for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 23:16:11 -0800 (PST)
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-2a102494058so30162065ad.0
+        for <devicetree@vger.kernel.org>; Mon, 26 Jan 2026 23:16:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769498171; x=1770102971; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ecu5YJerF7ppjEFjoeyqLO82/b5nn1WtdkAH1BLTIA0=;
-        b=IbXxEN69uBx8NY0SgYVHnB/HCEKrX8cwiYiyY+fePb1gST4EVQKm5WaOI73Jqht1HI
-         6jI6CXiNv000tYyVHjcwTK6Q1BytySfTcsmj939gHKM2cyfFtaHg9AoEeFfFFdXVcAIU
-         RjAyXMDrOj6BLIwRl3Ep8tBNbN5Tt6vtMTpiM7VVQWwkvqjK7eNve6FR+pxz7JbOtK8K
-         DMAhdT9Y15nX25p4Rvh+mRj7R0ScdA84flL89BMlmT5/HP2RZh0qSuJtn6O9+uYZ6tyZ
-         xMkLuzY2cKNHMlGFlHvkEynJ5MImIdIKUfXCd4aZzyMc2nPLgdNs7eWfOfURLON15wfM
-         fzcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769498171; x=1770102971;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1769498178; x=1770102978; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ecu5YJerF7ppjEFjoeyqLO82/b5nn1WtdkAH1BLTIA0=;
-        b=AmHFecusjIymP46dO2ZMEH2x15kHimn9PTMgd1rPzsU2T6RQNmQFSaCATszX1+tmYg
-         zxnqFIyyuo0Y5L5Mnz8D0wAi/0bVNj4KYL17USzNlDlI2E3Yhph1C0XilRYK6IGBHiYd
-         FP0MdHGc2lCC3cmnCEnr3E09a19w5gQiLFSgTvhK2MU/PnTt7jLPqxl7tgwQ6NfJBkKE
-         6CdKg8i1Tcs5DBoLxoapPAIlOjJs0KpLKhr2eWfiIkNPvQP95RYt6m7wh9IcrqRU1jZG
-         PdYR46VoO+u2HnQs3QOSv1+Ckkn5LFIGHy2z+RVFSptU0tPSTnnFB+XW4m+frKngVjCB
-         3lew==
-X-Forwarded-Encrypted: i=1; AJvYcCXY48/2vkLD6lw3+ENm7qcDOdtCtHWZspRmR8GUWZDgIRyxom7KZycemQvN/xUflKHxa7KMBKvArS3/@vger.kernel.org
-X-Gm-Message-State: AOJu0YzNWLx/o+jKHnzqkC9h5K/FjIHaQhLyTsdDLYA5fAZ2UkEmdsDH
-	a7NEHsPgwzGj++taM73+ab6GJViTAsZ7nTZUUVKmzS18bVVTCpfeff3g
-X-Gm-Gg: AZuq6aLR6eEJYDjfp6RJ/1X77ScbEmq7Q7JedOqOv8hAF4YhkMBDi2Xb+WfNlzM4oAc
-	miU0h6x5QH4Rbd5RxhQcYRE88GsWw+W3CDm6HcwuXqrzfVibHWQvsfGypX4EV1O4yUrRDk3ChV4
-	6igaUMr9bXwe4DizSqRTiEHmleKLbEYoB5SzhRVJVgYg0RDmb3rude66bgN6b5Fb6UX5waBCqN9
-	GYSXm6B2NBt2kl3VmmPGpWV963efCWeXOuymc3R014ezdSTwtNRytmgcL51kD5JySt8tYC4aHEO
-	a5WuyMwwalf/NgdN8D+DVCTfSQZ3353tCwQj5bMfbELiuopepRv3kkqwS50OGlEncZtxDIjC8na
-	eAR3jtv79MjcoIKo/u/WETAl5uMV1khrUd9Ak15UOy1/SXCbmhHAk8Fb5X/ZlLbvLkoVUOtjPzX
-	1uKuOHeMuDCpxBszC4vgOv0VUNTbaDOJtfKcykyfPCF/s7JUf8
-X-Received: by 2002:a17:903:3545:b0:297:c048:fb60 with SMTP id d9443c01a7336-2a870d5d5e3mr7523855ad.25.1769498170464;
-        Mon, 26 Jan 2026 23:16:10 -0800 (PST)
+        bh=EGC1e7GTJ+gs5YLdBWssdAfqY7NGH0UJX4m8BTmPg/I=;
+        b=cFl5u8FuLiaTqn/KBxYAfmNRfSpENIR9RxFKYKDlHliYAgQrzryooPNc89yVw+Ue5a
+         OFKjTSPkdEm8ecUClXvwA4HkhJgADPSbIZay3itRo5a8Fe2W06h4Oz9YZ7b5OG5RzfAz
+         8tYZm3lOqp/YyMeqCWwfUI/LRqmHgDunnf/UzkuhvB5/xAaasCLYpUbI2J6n6yxVmtdp
+         hNCinzm4bYk9iKb3S04xrexVx9fhFuvyROw+DAbpuIthtJ6F+oqxaBdy3lxoR4iEkt5j
+         OdhlBiuS7Ga0HSubInIvOLaA80aJtpYxZAeau6DWcM1g52ugnqwvzfYQPPeEs63ZeT7C
+         7IBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769498178; x=1770102978;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=EGC1e7GTJ+gs5YLdBWssdAfqY7NGH0UJX4m8BTmPg/I=;
+        b=SWGhvBAJHWkbexr3orVW5GYhixrz1404fswbQnSuWtHstQlakqAPilni/WtVqeyNOg
+         DcDtuoAzukZF8+d9ZMb4gXlQQAi2lNyVyF61DVjY7Td6M2j+aSv+Dibh1jGDImcOepPD
+         lXxI/B3+YixnzBwjLk8W91/HrYXniLXTwg6YpszMsvre1wSFhSfH5mdYOKlywMPZ745y
+         V0+uXIQ3LsubE5zesDdJIGvjRa2uAu6snHGrQhcxSF7/ZMXC+yC3QKSKntvuDvzVDQxK
+         E4rz+97QTaCFwA+n/xCoCcbFyc6v4Kvj9BzNQmR0a1qKruOnAnc7nQ17C4iBWUph4H8u
+         01PA==
+X-Forwarded-Encrypted: i=1; AJvYcCWR2jFdhyTsctExWXPlC8d4OkrlPhCisJyvhN0hLYp2KRYxRQYo6YJmlSd0N7GR/ldlAA20nEeUEILI@vger.kernel.org
+X-Gm-Message-State: AOJu0YyBaDQt+b94nW3y3lpcj9BozgubePhHNGZYzYTzfejQQ66DDj2y
+	1BF6fUfByxsNNiGBJDVNRnbn+T+gkphvMHdL0q9ux2qnpvk5/sdh7i72
+X-Gm-Gg: AZuq6aIgCtexQHGL3M3RHOcRj3RlJYxUCfIG1yo6KKtfvTNjbXX7heB4Zl2JkC8WXm0
+	8Vw+BigROaXIA835CQlktE2HkAUFG5Z3H4wthfMgbCGQ7EwYWUdORQ9D9MiB550mUF5mc4YpDdB
+	4RHz4hJ9vwvcoqkhA/qs98Hnjl5+4jNQuTI1yOobs/xyoU8/gxa0RUB5SazX3LrPZSV0Ycrv27Z
+	Se13urQ3fxZnoFsgLK5Jg5sj08d+5lZV57BrqE1DAVKJetMjis6d4VgffKnCs10b8g33Yk2qt0t
+	DiMK780DCN4Xr60mpT7hZ3XHAesdaR6btNOfcfl9hiFSbPQRgEF1u0wkWN0ThZH1c+IvT60ywLp
+	R3rWaeC4bxQftdRukohfQcHMglAx/dAslFoKm6zKrMt/luQ5t97m8OfkYHBJQeBIsTx1VmFULA/
+	u2Vi6GDMl4h09iPbcuCH4h5+PwaUYHFzyqDTCGdU2RlHaF5+fYhO1PtxvylXk=
+X-Received: by 2002:a17:903:189:b0:29e:fc06:b8a5 with SMTP id d9443c01a7336-2a87130b27bmr8439315ad.18.1769498178413;
+        Mon, 26 Jan 2026 23:16:18 -0800 (PST)
 Received: from cn1dhc-k02 (125-227-180-151.hinet-ip.hinet.net. [125.227.180.151])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a802fb063esm106160505ad.85.2026.01.26.23.16.08
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a802fb063esm106160505ad.85.2026.01.26.23.16.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Jan 2026 23:16:10 -0800 (PST)
+        Mon, 26 Jan 2026 23:16:18 -0800 (PST)
 From: Yu-Chun Lin <eleanor15x@gmail.com>
 To: robh@kernel.org,
 	krzk+dt@kernel.org,
@@ -88,104 +90,152 @@ Cc: afaerber@suse.de,
 	linux-kernel@vger.kernel.org,
 	cy.huang@realtek.com,
 	stanley_chang@realtek.com,
-	eleanor.lin@realtek.com
-Subject: [PATCH RESEND v3 0/2] arm64: dts: Add support for Kent SoC family
-Date: Tue, 27 Jan 2026 15:13:59 +0800
-Message-ID: <20260127071530.25426-1-eleanor15x@gmail.com>
+	eleanor.lin@realtek.com,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH RESEND v3 1/2] dt-bindings: arm: realtek: Add Kent Soc family compatibles
+Date: Tue, 27 Jan 2026 15:14:00 +0800
+Message-ID: <20260127071530.25426-2-eleanor15x@gmail.com>
 X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20260127071530.25426-1-eleanor15x@gmail.com>
+References: <20260127071530.25426-1-eleanor15x@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-259748-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-259749-lists,devicetree=lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[eleanor15x@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.dev:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 38DCC90A69
+	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,realtek.com:email]
+X-Rspamd-Queue-Id: 3FB5090A78
 X-Rspamd-Action: no action
 
 From: Yu-Chun Lin <eleanor.lin@realtek.com>
 
-Hello,
+Define compatible strings for Realtek RTD1501s, RTD1861b and RTD1920s.
 
-This patch series adds initial Device Tree support for Realtek's Kent SoC
-family, including the RTD1501S, RTD1861B, and RTD1920S variants with their
-respective evaluation boards.
+Additionally, convert legacy DTS-style comments to YAML description
+properties, following the pattern from the ARM bindings conversion series
+[1].
 
-The series includes:
+[1] https://lore.kernel.org/lkml/20200622125527.24207-2-afaerber@suse.de/
 
-1. Adds compatible strings for the Kent family.
-2. Add Device Tree files for the Kent SoC, TD1501S Phantom EVB (8GB),
-RTD1861B Krypton EVB (8GB), and RTD1920S Smallville EVB (4GB).
-
-The patches have been validated with 'make dtbs_check' and
-'dt_binding_check' to ensure compliance with DT schema and successful
-compilation.
-
-Cheers,
-Yu-Chun
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
 ---
-Because I haven't received a response from Andreas Färber for over two months,
-as suggested by Arnd, I am bypassing the currently listed maintainer and
-sending to soc@lists.linux.dev.
+ .../devicetree/bindings/arm/realtek.yaml      | 42 +++++++++++++------
+ 1 file changed, 30 insertions(+), 12 deletions(-)
 
-Yu-Chun Lin (2):
-  dt-bindings: arm: realtek: Add Kent Soc family compatibles
-  arm64: dts: realtek: Add Kent SoC and EVB device trees
-
- .../devicetree/bindings/arm/realtek.yaml      |  42 +++--
- arch/arm64/boot/dts/realtek/Makefile          |   7 +-
- arch/arm64/boot/dts/realtek/kent.dtsi         | 166 ++++++++++++++++++
- arch/arm64/boot/dts/realtek/rtd1501.dtsi      |  12 ++
- .../boot/dts/realtek/rtd1501s-phantom-8gb.dts |  25 +++
- .../boot/dts/realtek/rtd1501s-phantom.dtsi    | 118 +++++++++++++
- arch/arm64/boot/dts/realtek/rtd1861.dtsi      |  12 ++
- .../boot/dts/realtek/rtd1861b-krypton-8gb.dts |  25 +++
- .../boot/dts/realtek/rtd1861b-krypton.dtsi    |  72 ++++++++
- arch/arm64/boot/dts/realtek/rtd1920.dtsi      |  12 ++
- .../dts/realtek/rtd1920s-smallville-4gb.dts   |  23 +++
- .../boot/dts/realtek/rtd1920s-smallville.dtsi | 128 ++++++++++++++
- 12 files changed, 626 insertions(+), 16 deletions(-)
- create mode 100644 arch/arm64/boot/dts/realtek/kent.dtsi
- create mode 100644 arch/arm64/boot/dts/realtek/rtd1501.dtsi
- create mode 100644 arch/arm64/boot/dts/realtek/rtd1501s-phantom-8gb.dts
- create mode 100644 arch/arm64/boot/dts/realtek/rtd1501s-phantom.dtsi
- create mode 100644 arch/arm64/boot/dts/realtek/rtd1861.dtsi
- create mode 100644 arch/arm64/boot/dts/realtek/rtd1861b-krypton-8gb.dts
- create mode 100644 arch/arm64/boot/dts/realtek/rtd1861b-krypton.dtsi
- create mode 100644 arch/arm64/boot/dts/realtek/rtd1920.dtsi
- create mode 100644 arch/arm64/boot/dts/realtek/rtd1920s-smallville-4gb.dts
- create mode 100644 arch/arm64/boot/dts/realtek/rtd1920s-smallville.dtsi
-
+diff --git a/Documentation/devicetree/bindings/arm/realtek.yaml b/Documentation/devicetree/bindings/arm/realtek.yaml
+index ddd9a85099e9..be529490640c 100644
+--- a/Documentation/devicetree/bindings/arm/realtek.yaml
++++ b/Documentation/devicetree/bindings/arm/realtek.yaml
+@@ -14,21 +14,21 @@ properties:
+     const: '/'
+   compatible:
+     oneOf:
+-      # RTD1195 SoC based boards
+-      - items:
++      - description: RTD1195 SoC based boards
++        items:
+           - enum:
+               - mele,x1000 # MeLE X1000
+               - realtek,horseradish # Realtek Horseradish EVB
+           - const: realtek,rtd1195
+ 
+-      # RTD1293 SoC based boards
+-      - items:
++      - description: RTD1293 SoC based boards
++        items:
+           - enum:
+               - synology,ds418j # Synology DiskStation DS418j
+           - const: realtek,rtd1293
+ 
+-      # RTD1295 SoC based boards
+-      - items:
++      - description: RTD1295 SoC based boards
++        items:
+           - enum:
+               - mele,v9 # MeLE V9
+               - probox2,ava # ProBox2 AVA
+@@ -36,25 +36,43 @@ properties:
+               - zidoo,x9s # Zidoo X9S
+           - const: realtek,rtd1295
+ 
+-      # RTD1296 SoC based boards
+-      - items:
++      - description: RTD1296 SoC based boards
++        items:
+           - enum:
+               - synology,ds418 # Synology DiskStation DS418
+           - const: realtek,rtd1296
+ 
+-      # RTD1395 SoC based boards
+-      - items:
++      - description: RTD1395 SoC based boards
++        items:
+           - enum:
+               - bananapi,bpi-m4 # Banana Pi BPI-M4
+               - realtek,lion-skin # Realtek Lion Skin EVB
+           - const: realtek,rtd1395
+ 
+-      # RTD1619 SoC based boards
+-      - items:
++      - description: RTD1501s SoC based boards
++        items:
++          - enum:
++              - realtek,phantom # Realtek Phantom EVB (8GB)
++          - const: realtek,rtd1501s
++
++      - description: RTD1619 SoC based boards
++        items:
+           - enum:
+               - realtek,mjolnir # Realtek Mjolnir EVB
+           - const: realtek,rtd1619
+ 
++      - description: RTD1861b SoC based boards
++        items:
++          - enum:
++              - realtek,krypton # Realtek Krypton EVB (8GB)
++          - const: realtek,rtd1861b
++
++      - description: RTD1920s SoC based boards
++        items:
++          - enum:
++              - realtek,smallville # Realtek Smallville EVB (4GB)
++          - const: realtek,rtd1920s
++
+ additionalProperties: true
+ 
+ ...
 -- 
 2.34.1
 
