@@ -1,254 +1,153 @@
-Return-Path: <devicetree+bounces-260006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260007-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aOhbCDDceGmwtgEAu9opvQ
-	(envelope-from <devicetree+bounces-260006-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:39:28 +0100
+	id oPgQJIPceGnbtgEAu9opvQ
+	(envelope-from <devicetree+bounces-260007-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:40:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75D6596E52
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:39:27 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 129C696EBA
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:40:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 43ABB308B02B
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:35:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BDEBA309A7A2
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:35:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 063D93009F6;
-	Tue, 27 Jan 2026 15:34:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58F98334C27;
+	Tue, 27 Jan 2026 15:34:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="YrDjqjod"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AgwJC/mL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 006C43009C1
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 15:34:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 366E12FE598;
+	Tue, 27 Jan 2026 15:34:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769528061; cv=none; b=R6VWgIONYGqMyyKFCOD7sHRbV9H+FJz8WtP/trD7dQuxRq7WR2uPFQq1ifnODfdvNqxgDGgKdNTkmMb5lduVolkAK37hmjnD5dWyhK3kDZiz1tsbXTUtX8w/rteGTv0+dG5ZWqBWD1pTJSrrq2RRQhq8wfVkP0WoRmENOSYzvcU=
+	t=1769528089; cv=none; b=OD/A8n0aSDg8uH12TTQQ9rtXhVpfQ7wwTSxx5vRWGPTVb14Da6Oz+E7Jci7M1qllQtXavUwzUWzH0zxUbqXsP+yUesVQltzCBvPoHwQ8qAjXPc6F7cVr+jUkW1Cj+4tF1x9Y3K9Kg1/v/Bt8qbIQ1bNS2Q/lQ3u/5VUn20pofjI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769528061; c=relaxed/simple;
-	bh=DQ2F9P8gXel5sqSxKC7vJrPwpNY2sFgwvFDvzLpmLHk=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=CS4GTwe0JCxo6t29RwY2VF29Kf4Y5/R85pvzPS0Ah9P7zZMd8QXHKEpuXDdoQRFRIKe0tQfvCANcEmUCGrcfYiNs0eioGk8KkqQY9emfkz5/RHq4JYA7q8Q1RcajufuDiRU0XYC3T14DBSw8+OvUfL7TC5pLX6Nf/lFLQI48GZM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=YrDjqjod; arc=none smtp.client-ip=185.67.36.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.de
-Received: from submission (posteo.de [185.67.36.169]) 
-	by mout02.posteo.de (Postfix) with ESMTPS id 51921240107
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 16:34:12 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=posteo.de; s=2017;
-	t=1769528052; bh=DQ2F9P8gXel5sqSxKC7vJrPwpNY2sFgwvFDvzLpmLHk=;
-	h=Message-ID:Subject:From:To:Cc:Date:Autocrypt:Content-Type:
-	 MIME-Version:OpenPGP:From;
-	b=YrDjqjodyTN2o1jhx3pYdrRv4p1dpea4aVqvN3P6yD10/jlRfBL1QgA0CAzwttAIU
-	 VcsgjRBKH1nFKRVh0eTwW+uEYAjRbtD8+ZgC/29Q2QJHTeUtA2KE/xVE9l/t8A++NS
-	 /ymidxlXfweavFOuK8QrjfYGxYqbiZ979htB+VC8aY+iryVkw3+TL8b3cgx1NrpOdl
-	 ERP9wl6siAM200TuzFUBuHZc9jmcP2Ja2cm3pZuwBqkaqDNKLNlep4FQgmZ8XytzGe
-	 anF6dqRRSK9T1i7kUVG3aqsitbAPw2W+TosT0doxaVZgXiPQsMDGeoR/gPE5xAVpyj
-	 AnTiIOSvVQeuQ==
-Received: from customer (localhost [127.0.0.1])
-	by submission (posteo.de) with ESMTPSA id 4f0qFY3Lk8z9rxN;
-	Tue, 27 Jan 2026 16:34:09 +0100 (CET)
-Message-ID: <20f855baaa7c36010eab9997a2f43b4f62be726b.camel@posteo.de>
-Subject: Re: [PATCH RFC 0/4] leds: extend disk trigger
-From: Markus Probst <markus.probst@posteo.de>
-To: Niklas Cassel <cassel@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, Rob Herring
-	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
- <conor+dt@kernel.org>, Jacek Anaszewski <jacek.anaszewski@gmail.com>,
- Damien Le Moal <dlemoal@kernel.org>, John Garry <john.g.garry@oracle.com>,
- Jason Yan <yanaijie@huawei.com>,  "James E.J. Bottomley"
- <James.Bottomley@hansenpartnership.com>, "Martin K. Petersen"
- <martin.petersen@oracle.com>, Pavel Machek	 <pavel@ucw.cz>,
- linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-ide@vger.kernel.org, 
-	linux-scsi@vger.kernel.org, Ian Pilcher <arequipeno@gmail.com>
-Date: Tue, 27 Jan 2026 15:34:11 +0000
-In-Reply-To: <aXiGNZm12vLhQJ4Q@fedora>
-References: <20260123-ledtrig_disk_-v1-0-07004756467b@posteo.de>
-	 <aXctPaaXFYemV20T@ryzen>
-	 <ce454969b83dbb0e3bb4ea78f682603cc328ceb9.camel@posteo.de>
-	 <aXiGNZm12vLhQJ4Q@fedora>
-Autocrypt: addr=markus.probst@posteo.de; prefer-encrypt=mutual;
- keydata=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
- jfGillcaQOqFZ3WwVqyzG1BUfTow==
-Content-Type: multipart/signed; micalg="pgp-sha256";
-	protocol="application/pgp-signature"; boundary="=-95wXs24+lMxxeIwklhSG"
+	s=arc-20240116; t=1769528089; c=relaxed/simple;
+	bh=r8swAlZx9gfHag0kXpyqxA7e8B89YoYJ5gDgTraENPE=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=WkRE80muDmgwZWgsRtdVZ70BtK2/lJbkVhzWLDzYhu/0PR2yOLmpkDudZzHWYICFR/3+rehoq91cmkZmPRKNfw8f4RwljlN+l9IPF3dK67m/vsSp+yisb8sMWPiqmPOUCSgaMY5T0V/yzg5BudR1JZfAnh3tHOwZG8AvYgwZLH8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AgwJC/mL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70FDAC116C6;
+	Tue, 27 Jan 2026 15:34:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769528088;
+	bh=r8swAlZx9gfHag0kXpyqxA7e8B89YoYJ5gDgTraENPE=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=AgwJC/mLo/RKTmsx+eYELFgTaPAqfeSLcvwLkkGy2/CtRB3bhuXM4IEq9+YbGYMCQ
+	 R3GLERCy/X29SqmJD1hLWV5MP/2MD34L+tTdiGukKBZW3Y7UsdnK2LUtrNWUsUQdYA
+	 caLkJQLIHvkhynBAhxNbC+m1l9QoJHfSXcn8D1DTjnNko8YuESxNvMm80L+ZElSR0I
+	 e2p0hvdrKzUv25wZ/+xMN6Y49r175vWIE2LejimSl8ccZQYjwmwVH2E9eTLby/0Mki
+	 io0mAy4STdYdE4W29dr0JK5auJSPNKpABf0JwW5K72v2JXNl9b5R4Mlzd9ud+ABkMs
+	 HbOc+N8xrXM+A==
+Date: Tue, 27 Jan 2026 09:34:47 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-OpenPGP: url=https://posteo.de/keys/markus.probst@posteo.de.asc; preference=encrypt
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ linux-rockchip@lists.infradead.org, kernel@pengutronix.de, 
+ Jacob Chen <jacob-chen@iotwrt.com>, Conor Dooley <conor+dt@kernel.org>, 
+ linux-media@vger.kernel.org, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
+ linux-arm-kernel@lists.infradead.org
+To: =?utf-8?q?Sven_P=C3=BCschel?= <s.pueschel@pengutronix.de>
+In-Reply-To: <20260127-spu-rga3-v3-1-77b273067beb@pengutronix.de>
+References: <20260127-spu-rga3-v3-0-77b273067beb@pengutronix.de>
+ <20260127-spu-rga3-v3-1-77b273067beb@pengutronix.de>
+Message-Id: <176952808764.1883880.9874819074919420186.robh@kernel.org>
+Subject: Re: [PATCH v3 01/27] media: dt-bindings: media: rockchip-rga: add
+ rockchip,rk3588-rga3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[posteo.de,none];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[posteo.de:s=2017];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,oracle.com,huawei.com,hansenpartnership.com,ucw.cz,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-260006-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	DKIM_TRACE(0.00)[posteo.de:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[markus.probst@posteo.de,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-260007-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,die.net:url]
-X-Rspamd-Queue-Id: 75D6596E52
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 129C696EBA
 X-Rspamd-Action: no action
 
 
---=-95wXs24+lMxxeIwklhSG
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On Tue, 27 Jan 2026 15:39:10 +0100, Sven Püschel wrote:
+> Add a new compatible for the RGA3 (Raster Graphic Acceleration 3)
+> peripheral found on the RK3588 SoC. Also specify an iommu property,
+> as the RGA3 contains the generic rockchip iommu. The RGA2 also has
+> an iommu, but it's specific to the RGA2.
+> 
+> The existing binding refers to the RGA2 peripheral. The RK3588
+> contains one RGA2 core and two RGA3 cores. Both feature a similar
+> functionality of scaling, cropping and rotating of up to two input
+> images into one output image. Key differences of the RGA3 are:
+> 
+> - supports 10bit YUV output formats
+> - supports 8x8 tiles and FBCD as inputs and outputs
+> - supports BT2020 color space conversion
+> - max output resolution of (8192-64)x(8192-64)
+> - MMU can map up to 32G DDR RAM
+> - fully planar formats (3 planes) are not supported
+> - max scale up/down factor of 8 (RGA2 allows up to 16)
+> 
+> Signed-off-by: Sven Püschel <s.pueschel@pengutronix.de>
+> ---
+>  .../devicetree/bindings/media/rockchip-rga.yaml       | 19 ++++++++++++++++++-
+>  1 file changed, 18 insertions(+), 1 deletion(-)
+> 
 
-On Tue, 2026-01-27 at 10:32 +0100, Niklas Cassel wrote:
-> On Mon, Jan 26, 2026 at 10:06:02PM +0000, Markus Probst wrote:
-> > On Mon, 2026-01-26 at 10:00 +0100, Niklas Cassel wrote:
-> > >=20
-> > > Why do we want to have this in kernel space?
-> > Because there are more than enough devices that could make use of it.
-> >=20
-> > Just search the term "NAS device" and you see rarely any devices for
-> > which this wouldn't be useful.
-> >=20
-> > The only reason the leds work on those devices currently, is because
-> > they get shipped with a custom modified kernel by the manufacturer.
-> > This shouldn't be a requirement for running Linux properly on a NAS
-> > device with disk leds.
->=20
-> I understand why you want the feature. I just don't understand why we
-> should add this feature to the kernel, rather than implement it in
-> user space.
->=20
-> Having a user space implementation for your feature would also allow
-> an upstream kernel, without the need for any custom kernel patches.
-Only because it can be done in userspace, doesn't mean it should be.
->=20
-> > > If we want something more complex than what is already there, then it
-> > > is probably much better handled in user space, considering the amount
-> > > of possible configuration options.
-> > A userspace daemon by itself is possible, but I don't think it is the
-> > best solution. Having an indicator for disk activity on a per-disk
-> > basis seems like basic led functionality that should be present in the
-> > kernel.
->=20
-> There seems to be existing user space applications that handles this,
-> I think both the daemon I linked to before, which uses /sys/block/<dev>/s=
-tat
-> which is thus per device and not per port, and e.g. this:
-> https://linux.die.net/man/8/ledmon
-> https://github.com/md-raid-utilities/ledmon
-> https://github.com/md-raid-utilities/ledmon/blob/main/src/lib/ahci.c
-As far as I can tell, this daemon doesn't actually use the LED
-Subsystem, but instead leds directly connected to the storage
-controller.
-But yes, I would be capable of coding such daemon.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-> > > Basically the same argument as used in:
-> > > https://lore.kernel.org/linux-nvme/20220227234258.24619-1-ematsumiya@=
-suse.de/T/#u
-> > If I understood it corretly, the argument there is that led code
-> > shouldn't be present in a fast path.
-> >=20
-> > This does not apply to this scenario.
->=20
-> I think my main concern is that I don't think we should bloat the kernel
-> for a complex feature that can just as well be implemented in user space.
-It is still unclear to me if you worry about the complexity in
-drivers/ata/libata-* or drivers/leds/trigger/ledtrig-disk.c
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/media/rockchip-rga.yaml:64:1: [warning] wrong indentation: expected 2 but found 0 (indentation)
 
-@Pavel,@Lee: I would like to know your opinion on this.
+dtschema/dtc warnings/errors:
 
-Thanks
-- Markus Probst
+doc reference errors (make refcheckdocs):
 
->=20
->=20
-> Kind regards,
-> Niklas
+See https://patchwork.kernel.org/project/devicetree/patch/20260127-spu-rga3-v3-1-77b273067beb@pengutronix.de
 
---=-95wXs24+lMxxeIwklhSG
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
------BEGIN PGP SIGNATURE-----
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-iQJPBAABCAA5FiEEgnQYxPSsWOdyMMRzNHYf+OetQ9IFAml42uAbFIAAAAAABAAO
-bWFudTIsMi41KzEuMTEsMiwyAAoJEDR2H/jnrUPSj0QP/jBX+51lTUOAQlHdCXB1
-cnq3yWDlRE7864F+m33J5Zi3YXSdntJ5rza26ByMmx8liyHJMD5UDdGfz9L93sHM
-TSv4OClvl/xZ6gFRvaFPqBIL38erO9osMuwKsFVzdA3wwHWKeQWl2ZO3IWSiyRxn
-xy1U+Zxr6LxQlMENbKfTPmCyo1l6visyMouSYqV2ysJ9p+D1n9I81rvrBZYm1ebt
-EcPJiWGPzzgsA84NR13qKBjJFmelzJyiF48cYOGM5C1mlE3FjYjiVsyJe4h9FGsu
-d1kbovKMCuY+QAvtRnbFCeth2o8g6ky3Ij8OPIROhrH2NnA+w/INS8Ok92P8Ewvm
-CfGMkYVq8KXVhEaEaQRw9yWzLLKAquuLRFQ9oUUF3I3b6hEW4ALJkfWraWOPHA6/
-i9gx32NO2Pjo6urNcVBGTIAHUQnKwgsmtpCCX2YsF9/j/Vkq6KWmvxuO9eH2tu49
-fbEaehSqRlQnC7Q6ERVb2X4UaQYutytRAIJSloPLbmve44c7dE+kjSS460QY69FC
-Z8hKNL3H8UPSZFqeKGg77X94FYK8Hepd6ccQ0zEYhtLihVNEBC/Jdf5EIY17K4bN
-Es0E5bqHZMVAIr62ZxqmUdNI6gmnqxlV32OTp8s4BbpJiSoUbrp7JuUqI98rUdKr
-ELLweuctc6nLul+zl/4Nl71I
-=G8+8
------END PGP SIGNATURE-----
+pip3 install dtschema --upgrade
 
---=-95wXs24+lMxxeIwklhSG--
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
