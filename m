@@ -1,259 +1,150 @@
-Return-Path: <devicetree+bounces-259986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259985-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KCeBG63ieGkztwEAu9opvQ
-	(envelope-from <devicetree+bounces-259986-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:07:09 +0100
+	id CNgMHTbYeGmftgEAu9opvQ
+	(envelope-from <devicetree+bounces-259985-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:22:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 204009765A
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 17:07:07 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB8DA9695C
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 16:22:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C6D433097181
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:16:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4027F30045A6
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:15:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6959E36403C;
-	Tue, 27 Jan 2026 15:12:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DF3D363C59;
+	Tue, 27 Jan 2026 15:12:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b="i3t8NFHO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W3yan2P/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [193.136.128.21])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dy1-f178.google.com (mail-dy1-f178.google.com [74.125.82.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B00535D5E0;
-	Tue, 27 Jan 2026 15:12:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.136.128.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E44C635EDDC
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 15:12:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769526746; cv=none; b=lCVrjZ2S4AJ/jVgr/DBmcNLim5xSEhEpJ6JKSzY5IsXFdF9+xsO5uscGW4wx6nHIZk7KK0QSWjH04UTot8SSNYfkVjewIzNMOeNHS9jvB4vY/Wu2cpbJhIY9rIHEFIoy1DZ9Y1BhPvEr6VMxklXCv8u5sGLFeYAdL3ceG/y2FOU=
+	t=1769526730; cv=none; b=lRsEE1XXtP5dEkmVmOBvi2kPoVMV/N2L8Wcd2/43xZZ5B2WNuc3nm4by+4cVEvoYLZslgDJ6txbSyslXljQH/W0Vn4SUQzglrlMsGbGBXQLTNadQ2cHMOoPBWbTdWsYBYozoowQf7TqgAKUqELReYsI2PPkfw5+AMsiRUjXIWrw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769526746; c=relaxed/simple;
-	bh=xJHxYT+TadYewpoKOTjiaran92WN2DeuJBljdTuOCy4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=EEv63y79tYKvE85gA5QW6gX/nJ6t4sG0ftSymx/XSynaY7dZfgKi8QRsIjjFwyPsudmzxRmqenU6BFzVTB61/Eq+iQjaFnXfjKGVdN/0rQ6lFkf2Kt+sOuXsX0e3vcewFiyJBJE4D9Dy/37tguMChCzKYcnm5uvzB3FnM1vsYY0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt; spf=pass smtp.mailfrom=tecnico.ulisboa.pt; dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b=i3t8NFHO; arc=none smtp.client-ip=193.136.128.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tecnico.ulisboa.pt
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id E152F6002307;
-	Tue, 27 Jan 2026 15:12:12 +0000 (WET)
-X-Virus-Scanned: by amavis-2.13.0 (20230106) (Debian) at tecnico.ulisboa.pt
-Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
- by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavis, port 10025)
- with LMTP id bTCuZ5QEIXsH; Tue, 27 Jan 2026 15:12:10 +0000 (WET)
-Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [IPv6:2001:690:2100:1::b3dd:b9ac])
-	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id D6DFE6000257;
-	Tue, 27 Jan 2026 15:12:09 +0000 (WET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tecnico.ulisboa.pt;
-	s=mail2; t=1769526729;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=bZcC7nVQPcaOVfYrZtm+vknrQUeM733TEL9ACJo10WQ=;
-	b=i3t8NFHOtmH/eAyaSjIfAFwqblPVHBbcBsCy7WEwCTlp9jNJ6X/IQuMKuiZ+S7KjI5zfYS
-	GNFV/MnGGz39XEwTZggQy1rN8DhRc1ttTIyQcJ3Iut3WnNhrREOn4ZWVF81EFfhIGr/Ewq
-	B+FFDTYC9W445sZkkcQ4SCo0OwV38BSF6pfCEroVOiHhFKwWJCJA2x7PB+YYsRa4mEVTrJ
-	XAGVTFWfedWHq8GC3MY/O61+Mlzt7JqW24dzUI9XEZnGJGtCrumjfE8qdDbpAyVnFrT1LG
-	RbNc1gFBQNE9XGBqoWEA+RHA2pyGH2XOzS3nwvYZn4w5EeHqMiY/N14Xmj8lxA==
-Received: from [192.168.2.110] (unknown [148.63.39.39])
-	(Authenticated sender: ist187313)
-	by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id 8711E3600A6;
-	Tue, 27 Jan 2026 15:12:09 +0000 (WET)
-From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-Date: Tue, 27 Jan 2026 15:11:52 +0000
-Subject: [PATCH v2 6/6] phy: tegra: xusb: Move T186 .set_mode() to common
- implementation
+	s=arc-20240116; t=1769526730; c=relaxed/simple;
+	bh=Q0cKqs0Dz1obaEFFVDj8DAU+DC9JZA7AYb0lIuSwGY4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=um7R/NulJDrk9JpLyO3Uxq5AVB+z9dzSrpqc53N7JTslmy/xbxEMUFAIfD6lSB5QhrDUy+k7XMkXjEOfH6xw0AkXTdwyMFNIhnPDgtMqGf8/cIcdAT4lQd2OFCtl06rNjpQFuBMV6bBbxFZhNV2XeF6BWH3bNbcFzKrm2IKgEtM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W3yan2P/; arc=none smtp.client-ip=74.125.82.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dy1-f178.google.com with SMTP id 5a478bee46e88-2b704f08e73so2825522eec.1
+        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 07:12:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1769526728; x=1770131528; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Z9zCVx2BWe5mnavK+mjSCOB1GzARJ9mP4Z2n+82aaf4=;
+        b=W3yan2P/gMAHlxzzJLW1KiccBJLSrALkYwyCrvnOFksDW++Pml8uHBhmsOYTDBqIlg
+         ybA6xAAGcMMBjBD/44BcvulDyLprj2R3CpjyQXq9DjWmPRDOPCGT7hu5z0UnAP44XlMe
+         imhETc9gUtnWVpURzfPpTikLvXQLIB4a1jxW/u7AQ73SGw8NKa57YCmkl+Y3ywjBoh18
+         BwOdofgXOWHvAiHvpzNBeOI3xlioZgq8FsM9ESwCDEry7Ze87N4cMilffkIb2UH9E1Kt
+         WLK4PHb5v1vrwt1VKBmpvOcMScuPyykhIc8GgZGLYXxOwBBeGnWFGmJACxnBsoGNF+6r
+         YY4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769526728; x=1770131528;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Z9zCVx2BWe5mnavK+mjSCOB1GzARJ9mP4Z2n+82aaf4=;
+        b=B3GLwceDRnGMbsjlPONpERh4/xHDj05/JiX6s4Y2TVrSt5voDI8PxAGV+1skbogU9b
+         XRHbtTygijCWhkecUk2kkME5g8hpm2FmZPI8DwtN68I0l6rxnrq3SlRFF0v97EhWCKUF
+         b8CaciowVSz/+xGOD2FbFZQnNxAyyYR2r6bxloqdql+I8fdNuK6VI38hkxATtmoKZmGi
+         /EwX3l9BBPo4e6PLTwaLMchMW3rS+l+yvXM8idN4vjT2cih45rbM5AUR7nVfZsnlQ0t6
+         UUAHKPqQS/IZNBjmPZ3+E7RmOZLFYPzJPCM84iLbOw4jAFr0jtD2KaVZooZxB1ZYdtGw
+         0Mgw==
+X-Forwarded-Encrypted: i=1; AJvYcCUahv4Xc+n5VBk1DvUq0v21vZLH/AIZKtcIk1vWbo44IRnqRtPsFHEkUWpONI3hf31t44VmaYiVicgi@vger.kernel.org
+X-Gm-Message-State: AOJu0YwgCEPSpN5TXcCs7XRdLv5Atf4tkXs7ct0SKmtsup0mZ0qn/2cw
+	AMPIXZpTWCQ2BUaApQ9u76jn++bYVqG+RUcxQWAYgcW+H8XEN1YtqoA8
+X-Gm-Gg: AZuq6aJg5lGYVhQb1OOJjZeTP+PENLMB6LpKNsNP4JRGvdS8dPRjdvBIgkDvhDgDAlw
+	T9yFRGlIFnLsSXH2oauuprVJ5FL+rXy8WTXZ9Y1gk+fRCmEZTKLHlM8S+86NAEd1Cen7MAh6k9B
+	oUunzzc1MFnJUwQcKVeliGivZw4j/Shzh8vZR/oONIVlVtiCnkYaoLJwCfrWZj5M4Cu3QikpnO/
+	UYHUmLn5Jb/DEEtKE0O1JJXBzGRT5UED9DoiqEaiZ05mwmfylK+uxTydoeye+s/Qu4750aez2ep
+	Nsdr5GXHuYqz8+/dCVHDoV547L0yMQa/QonWg1Cl2oAMxoFi9FO0Vm25yo9cHlzDrZR6BHw4PUt
+	Xur1pfHwF28aDRgmKEiy1eikN/IxutSslaMXHWbbd5x7QXw1ykb0A9RVtAmoZf6qngH0YwYtSjm
+	seTAe9RyI2ovRTeiY/URUOcREQ
+X-Received: by 2002:a05:7300:72cb:b0:2b6:f13c:8d58 with SMTP id 5a478bee46e88-2b78e977fadmr1460659eec.20.1769526727776;
+        Tue, 27 Jan 2026 07:12:07 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b7987cc01csm493102eec.35.2026.01.27.07.12.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Jan 2026 07:12:07 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Tue, 27 Jan 2026 07:12:05 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: Vasileios Amoiridis <vassilisamir@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
+	Vasileios Amoiridis <vasileios.amoiridis@cern.ch>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: trivial-devices: Add hitron,hac300s
+Message-ID: <b4c150ce-1570-4b12-82e7-62b699adb377@roeck-us.net>
+References: <20260119190806.35276-1-vassilisamir@gmail.com>
+ <20260119190806.35276-2-vassilisamir@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260127-diogo-tegra_phy-v2-6-787b9eed3ed5@tecnico.ulisboa.pt>
-References: <20260127-diogo-tegra_phy-v2-0-787b9eed3ed5@tecnico.ulisboa.pt>
-In-Reply-To: <20260127-diogo-tegra_phy-v2-0-787b9eed3ed5@tecnico.ulisboa.pt>
-To: Mathias Nyman <mathias.nyman@intel.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Thierry Reding <thierry.reding@gmail.com>, 
- Jonathan Hunter <jonathanh@nvidia.com>, JC Kuo <jckuo@nvidia.com>, 
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: linux-usb@vger.kernel.org, linux-tegra@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, 
- devicetree@vger.kernel.org, Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1769526726; l=4050;
- i=diogo.ivo@tecnico.ulisboa.pt; s=20240529; h=from:subject:message-id;
- bh=xJHxYT+TadYewpoKOTjiaran92WN2DeuJBljdTuOCy4=;
- b=gaXGWJCSZfLtbD9smDMa7VQ2DugogGFT2gb4MjcM5WKZvEh96PE0vSbkt8/rnsGicaYnaDmwo
- i+3AaC7EUlrCCSYfmE13tj6KQbGjysGrDqpcx4hAp/S8sTOHnXmZi0F
-X-Developer-Key: i=diogo.ivo@tecnico.ulisboa.pt; a=ed25519;
- pk=BRGXhMh1q5KDlZ9y2B8SodFFY8FGupal+NMtJPwRpUQ=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260119190806.35276-2-vassilisamir@gmail.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[tecnico.ulisboa.pt,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64];
-	R_DKIM_ALLOW(-0.20)[tecnico.ulisboa.pt:s=mail2];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-259985-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259986-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[intel.com,linuxfoundation.org,gmail.com,nvidia.com,kernel.org,linaro.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DMARC_NA(0.00)[roeck-us.net];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[diogo.ivo@tecnico.ulisboa.pt,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[tecnico.ulisboa.pt:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 204009765A
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,roeck-us.net:mid,cern.ch:email]
+X-Rspamd-Queue-Id: CB8DA9695C
 X-Rspamd-Action: no action
 
-Move the Tegra186 PHY .set_mode() callback to a common implementation.
-In order to do this first revert cefc1caee9dd.
+On Mon, Jan 19, 2026 at 08:08:05PM +0100, Vasileios Amoiridis wrote:
+> From: Vasileios Amoiridis <vasileios.amoiridis@cern.ch>
+> 
+> Add HiTRON HAC300S PSU to trivial devices since it is simple PMBUS
+> capable device.
+> 
+> Since this is the first supported device from this vendor, document its
+> name to the vendor-prefixes.yaml file as well.
+> 
+> Signed-off-by: Vasileios Amoiridis <vasileios.amoiridis@cern.ch>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
----
-v1->v2:
-- New patch
----
- drivers/phy/tegra/xusb-tegra186.c | 73 ++++++---------------------------------
- 1 file changed, 10 insertions(+), 63 deletions(-)
+Applied.
 
-diff --git a/drivers/phy/tegra/xusb-tegra186.c b/drivers/phy/tegra/xusb-tegra186.c
-index bec9616c4a2e..bf678829245d 100644
---- a/drivers/phy/tegra/xusb-tegra186.c
-+++ b/drivers/phy/tegra/xusb-tegra186.c
-@@ -786,15 +786,13 @@ static int tegra186_xusb_padctl_vbus_override(struct tegra_xusb_padctl *padctl,
- }
- 
- static int tegra186_xusb_padctl_id_override(struct tegra_xusb_padctl *padctl,
--					    struct tegra_xusb_usb2_port *port, bool status)
-+					    bool status)
- {
--	u32 value, id_override;
--	int err = 0;
-+	u32 value;
- 
- 	dev_dbg(padctl->dev, "%s id override\n", status ? "set" : "clear");
- 
- 	value = padctl_readl(padctl, USB2_VBUS_ID);
--	id_override = value & ID_OVERRIDE(~0);
- 
- 	if (status) {
- 		if (value & VBUS_OVERRIDE) {
-@@ -805,68 +803,16 @@ static int tegra186_xusb_padctl_id_override(struct tegra_xusb_padctl *padctl,
- 			value = padctl_readl(padctl, USB2_VBUS_ID);
- 		}
- 
--		if (id_override != ID_OVERRIDE_GROUNDED) {
--			value &= ~ID_OVERRIDE(~0);
--			value |= ID_OVERRIDE_GROUNDED;
--			padctl_writel(padctl, value, USB2_VBUS_ID);
--
--			err = regulator_enable(port->supply);
--			if (err) {
--				dev_err(padctl->dev, "Failed to enable regulator: %d\n", err);
--				return err;
--			}
--		}
-+		value &= ~ID_OVERRIDE(~0);
-+		value |= ID_OVERRIDE_GROUNDED;
- 	} else {
--		if (id_override == ID_OVERRIDE_GROUNDED) {
--			/*
--			 * The regulator is disabled only when the role transitions
--			 * from USB_ROLE_HOST to USB_ROLE_NONE.
--			 */
--			err = regulator_disable(port->supply);
--			if (err) {
--				dev_err(padctl->dev, "Failed to disable regulator: %d\n", err);
--				return err;
--			}
--
--			value &= ~ID_OVERRIDE(~0);
--			value |= ID_OVERRIDE_FLOATING;
--			padctl_writel(padctl, value, USB2_VBUS_ID);
--		}
-+		value &= ~ID_OVERRIDE(~0);
-+		value |= ID_OVERRIDE_FLOATING;
- 	}
- 
--	return 0;
--}
--
--static int tegra186_utmi_phy_set_mode(struct phy *phy, enum phy_mode mode,
--				      int submode)
--{
--	struct tegra_xusb_lane *lane = phy_get_drvdata(phy);
--	struct tegra_xusb_padctl *padctl = lane->pad->padctl;
--	struct tegra_xusb_usb2_port *port = tegra_xusb_find_usb2_port(padctl,
--								lane->index);
--	int err = 0;
--
--	mutex_lock(&padctl->lock);
-+	padctl_writel(padctl, value, USB2_VBUS_ID);
- 
--	dev_dbg(&port->base.dev, "%s: mode %d", __func__, mode);
--
--	if (mode == PHY_MODE_USB_OTG) {
--		if (submode == USB_ROLE_HOST) {
--			err = tegra186_xusb_padctl_id_override(padctl, port, true);
--			if (err)
--				goto out;
--		} else if (submode == USB_ROLE_DEVICE) {
--			tegra186_xusb_padctl_vbus_override(padctl, true);
--		} else if (submode == USB_ROLE_NONE) {
--			err = tegra186_xusb_padctl_id_override(padctl, port, false);
--			if (err)
--				goto out;
--			tegra186_xusb_padctl_vbus_override(padctl, false);
--		}
--	}
--out:
--	mutex_unlock(&padctl->lock);
--	return err;
-+	return 0;
- }
- 
- static int tegra186_utmi_phy_power_on(struct phy *phy)
-@@ -1017,7 +963,7 @@ static const struct phy_ops utmi_phy_ops = {
- 	.exit = tegra186_utmi_phy_exit,
- 	.power_on = tegra186_utmi_phy_power_on,
- 	.power_off = tegra186_utmi_phy_power_off,
--	.set_mode = tegra186_utmi_phy_set_mode,
-+	.set_mode = tegra_xusb_usb2_phy_set_mode,
- 	.owner = THIS_MODULE,
- };
- 
-@@ -1578,6 +1524,7 @@ static const struct tegra_xusb_padctl_ops tegra186_xusb_padctl_ops = {
- 	.suspend_noirq = tegra186_xusb_padctl_suspend_noirq,
- 	.resume_noirq = tegra186_xusb_padctl_resume_noirq,
- 	.vbus_override = tegra186_xusb_padctl_vbus_override,
-+	.id_override = tegra186_xusb_padctl_id_override,
- 	.utmi_pad_power_on = tegra186_utmi_pad_power_on,
- 	.utmi_pad_power_down = tegra186_utmi_pad_power_down,
- };
-
--- 
-2.52.0
-
+Thanks,
+Guenter
 
