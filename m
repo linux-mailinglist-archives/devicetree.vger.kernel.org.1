@@ -1,462 +1,223 @@
-Return-Path: <devicetree+bounces-259805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259806-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0C9AEIyLeGmqqwEAu9opvQ
-	(envelope-from <devicetree+bounces-259805-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 10:55:24 +0100
+	id kAIqG0OMeGmqqwEAu9opvQ
+	(envelope-from <devicetree+bounces-259806-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 10:58:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBBF192299
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 10:55:23 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBE48923BA
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 10:58:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EA4273018767
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 09:54:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 03AB9301D30A
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 09:57:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A241336EE9;
-	Tue, 27 Jan 2026 09:54:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 333A73382FD;
+	Tue, 27 Jan 2026 09:57:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y0+7sslX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rG/0sAbR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com [209.85.128.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1758B335545
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 09:54:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D23993382EF
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 09:57:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769507659; cv=none; b=WP06GC/LOo1BbsJZMdOnqiAUBkmn4NFM+4yynp2oneu06HHjIKm7cTOjPNmgfaQyYY3Aye7sbyrBMr4GEZiHmicWteFVy6M+OCXSXvMcbp2Eaw6wEs6CYTVqmMJdsAelwu+B970MsW1HFNnJ/be8BsdeA2YW+CXdw4yDId5ymgg=
+	t=1769507866; cv=none; b=aoB/sPzrFCr+JAESPui7e+GMCD1dJ6GcCbYEe47AzPYWeaOjA4hSo5gJ8xPQuHyIsvfIpfwNuI3GMrVHl1iAdk4SR551aZLr1argQGsRHLkTjdm7kf+b1dB3vigrncJsRLsQPQGWwoC9HaHjcuByMAIC4QKtkwtsgp9zIafAZFo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769507659; c=relaxed/simple;
-	bh=q3on6zXQlBcRn83TcC1mwoIQdTfMogS1m+JCEdUOHdg=;
-	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Llp1CxWixXLemFZ4L7Pqo37UWNVJChNtbJMvB7ZBWF19RM4vjrfl92ohe6A1nnfWZao2obsfJT0zP4QpfzI8wJ7h9k4QZY2TsUBb8Y3QpDz+GGCjYxGt9pns/OZtyoQCV4RRvsT1R8+dT0xMKmh/sPKNCwPJFkZ/ZPQM9sQoItU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y0+7sslX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB201C2BCB3
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 09:54:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769507659;
-	bh=q3on6zXQlBcRn83TcC1mwoIQdTfMogS1m+JCEdUOHdg=;
-	h=From:In-Reply-To:References:Date:Subject:To:Cc:From;
-	b=Y0+7sslXPA4UMdogs5ANhTkrlJaPLfmFM1izAhTvIv7O0yDYW9K5B4MW4skmVHQIM
-	 Oh/IrSuMorP1ANOssCPD46vcKK9k5KEC2JLfiklINjsnaQ4aa8o+kGzJ9Uivim+eyh
-	 OKkTeE0vM4Ze8C6cA7WVzZjWOuO6+Bm18x+cjhP05M+77TSiz+p/GOmPn5z3v7mXsl
-	 L8X18UdR5y0loIqxFMwfg25Emg+NomFWuTBltoNFyi6AK/WVCBXDU8YO2i4LPgR8bF
-	 SCMDZbuL7DZwjoyxIprz55mjRIrXl2xEGLpMn53/3T+w6mJNLFakGCQyVuUCEJ0Ni6
-	 M7DfKlxuT8S9w==
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-59b6d5bd575so5579383e87.1
-        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 01:54:18 -0800 (PST)
-X-Gm-Message-State: AOJu0Ywy6V8qW9C+u+NPZDm760Ir+/9Pf0gZ230pi6kBlRQORaSKaYjX
-	VNcUTGmOANY2ofm7Sv9+5mOPqTL7UsjQbdoyby/wlwGYY6jbsqY2rE9sxGTPiJCh/5Yu6Ig0Lyq
-	KEQlm2IvPSnqxi7ZfbIXAiVnP9fYCA13YeGegimNPRQ==
-X-Received: by 2002:ac2:4f07:0:b0:59d:e350:3c45 with SMTP id
- 2adb3069b0e04-59e0412c85dmr497277e87.52.1769507657517; Tue, 27 Jan 2026
- 01:54:17 -0800 (PST)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 27 Jan 2026 01:54:15 -0800
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 27 Jan 2026 01:54:15 -0800
-From: Bartosz Golaszewski <brgl@kernel.org>
-In-Reply-To: <20260123-dev-b4-aaeon-mcu-driver-v2-4-9f4c00bfb5cb@bootlin.com>
+	s=arc-20240116; t=1769507866; c=relaxed/simple;
+	bh=1Ho0XG7dS+YggQv/oK2R0s/FYzjIvQaih1Dhu9EIl4g=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=E4naGGa3JfshsGsfGqdJKfMvyguBAmscfoC8OBTzN3g7xGVmFIXDa+lwLvN3J2YficDJmVSHoKMGzUdJ1QOxwRtKWDShafiy8WdDD0SW0mdj38P/kmiVbSBWX6Tjvint/3gUhf7y4KH+etYdxuwdD6kzvD/3RcEXPwX5bAa/OK4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rG/0sAbR; arc=none smtp.client-ip=209.85.128.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f65.google.com with SMTP id 5b1f17b1804b1-48049955f7fso47013845e9.0
+        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 01:57:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1769507862; x=1770112662; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2e0LebsihOgK1n8wthh7i3DWNd7QqTelv44kSjU7JJE=;
+        b=rG/0sAbR8B6CvOpWrh/ZdIMnfrKv6AU+3ggyZNk+A5ehS4g5E3hz4zdxCZsJpRzMFd
+         8iDT8f5u83qjoxzyC8IkIcLIhraI3O9K/X7IiI8FUPRnfoK+A11Rx/q4bMZ83nj/DTBN
+         EzHwZjtNf5s83ZTnX3nBPq/is4AbzJZTtNGp6dYnk8CAVOCgm1W1JhRHHkSpWQaRxkYZ
+         PdFXPl6YhxTMgfZ4xhjV+ckD4KI1kVNImfNoPsplzB8Cyx0jmvTPp4lZ4HbBvlhDI/qq
+         1Ve8pdSfEUtnfFNx8HTLRQtgtTk/u8fYPE0SALTV+jNKjM8pw+ani2dBadFQR/7IROLx
+         S/6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769507862; x=1770112662;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2e0LebsihOgK1n8wthh7i3DWNd7QqTelv44kSjU7JJE=;
+        b=KUQdr90QyvhJ38lsxHfblu+o/lN5E6ezB9ZVuYA7MQ+hxRjcrs03o2RQQYeGGUh4/m
+         mT8QchmzUFiaIcYPblJYbiz/TFk8U5HfFA/f/cEh67OGzqcjgNDs/+0VHpzVgxgWo1d6
+         9UEinW/bhFdU1kz9F4P1/Gz4tSNsf6XpdD2ayVZuB+FJfpwy9oHio25vTy1eamUhVzS5
+         z+5zFEisv9WZh3DaKzeWUPPI7BCG/etwxqeOyQ1zNWxKWZGvYpJDOFelO+D5jYGmrerx
+         L+JOp0Ni0Lk2qCE6uQsfyjFx5EI8kndvcFgrYUqPt8DNbgQ4K9JbD5Z3rinDAxYfkLOb
+         PDoA==
+X-Gm-Message-State: AOJu0Yw/sNxtLpH6MsLGTjUNxbGMp9ICn0ClBSiycapaF9jPCsKVhHnP
+	jAT8RDXi85cDWcIlXnlLeDNXPPGrv/3HdfJYs15llCB3Dz/tInMgejj44qFdjJJS4Fo=
+X-Gm-Gg: AZuq6aJWHMjwOyyA3XgEKtECOMYTCnUuMxNWGrHMP+7V3O48aFloRlyJ15XBCyRVuz1
+	XwY6agDm/tntSXA3+Vse66Jiz/nt0stDyI/KTN8aUTgdrsnhHmygZs3RkSeG8WWcWrvEG2qchq3
+	s1pK1B3aezwgMATIubMXFK/iKnIuqPAcNm3HreS0tNThkoZAsmUyz7fA1pgMU7pufZH5wnwUx8m
+	d2q0S2lGw7yNZkaacs0OPgscAIrvEKXISVSmSDunWx0WXcWpLokGzHecqbkxmGqj5QUPeG7sHvL
+	kQK84QDlzXWFKiDbQ5LXK338IIi8x0iEx5196MCU2DGn01M2HcVQzrk1REVMe7SgS6h2B9jUMz6
+	ABHqK/VlaBw8gq2G6bo+qq69epK1kRgtCM1qL0PEfp8Ej6TiHMka/BGVr6LkeZaBsFw037pLLni
+	oTZI1R/Acee+XkwRWMOHcvli30uYx3mG4=
+X-Received: by 2002:a05:600c:350b:b0:480:49ce:42cc with SMTP id 5b1f17b1804b1-48069c0de5cmr14612455e9.9.1769507861972;
+        Tue, 27 Jan 2026 01:57:41 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48066bf93cesm49056225e9.9.2026.01.27.01.57.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Jan 2026 01:57:41 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v2 0/7] arm64: dts: qcom: Add support for the Ayaneo Pocket
+ S2
+Date: Tue, 27 Jan 2026 10:57:27 +0100
+Message-Id: <20260127-topic-sm8650-ayaneo-pocket-s2-base-v2-0-c55ec1b5d8bf@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260123-dev-b4-aaeon-mcu-driver-v2-0-9f4c00bfb5cb@bootlin.com> <20260123-dev-b4-aaeon-mcu-driver-v2-4-9f4c00bfb5cb@bootlin.com>
-Date: Tue, 27 Jan 2026 01:54:15 -0800
-X-Gmail-Original-Message-ID: <CAMRc=Mf_=PY6QL8fA7v0GQPA-m6dEfyPYv9pm84_z_EF5Yewbw@mail.gmail.com>
-X-Gm-Features: AZwV_Qj8CKcS1FFb3PqQsuTgXOVMPEaGS00ey8cIdqqL78URlgFTGWvnaXxD5qA
-Message-ID: <CAMRc=Mf_=PY6QL8fA7v0GQPA-m6dEfyPYv9pm84_z_EF5Yewbw@mail.gmail.com>
-Subject: Re: [PATCH v2 4/5] gpio: aaeon: Add GPIO driver for SRG-IMX8PL MCU
-To: "Thomas Perrot (Schneider Electric)" <thomas.perrot@bootlin.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAeMeGkC/5WNQQ6CMBAAv0J6dk1bLKme/IfhUMoWNmpLuoRIC
+ H+38gOPM4eZTTBmQha3ahMZF2JKsYA+VcKPLg4I1BcWWupGKq1gThN54LdtjAS3uogJpuSfOAN
+ r6BwjSOPri8XQ26YXJTRlDPQ5Jo+28Eg8p7wez0X97F/5RYGErqvD1QTlpTX3F0WX0znlQbT7v
+ n8B1huUUdUAAAA=
+X-Change-ID: 20260121-topic-sm8650-ayaneo-pocket-s2-base-05c348efd86d
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Rob Clark <robin.clark@oss.qualcomm.com>, 
+ Dmitry Baryshkov <lumag@kernel.org>, 
+ Abhinav Kumar <abhinav.kumar@linux.dev>, 
+ Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>, 
+ Marijn Suijten <marijn.suijten@somainline.org>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Magnus Damm <magnus.damm@gmail.com>, Bartosz Golaszewski <brgl@kernel.org>, 
+ Manivannan Sadhasivam <mani@kernel.org>, 
+ Bjorn Helgaas <bhelgaas@google.com>
 Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-watchdog@vger.kernel.org, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, 
-	=?UTF-8?B?SsOpcsOpbWllIERhdXRoZXJpYmVz?= <jeremie.dautheribes@bootlin.com>, 
-	Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, Lee Jones <lee@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+ linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ freedreno@lists.freedesktop.org, linux-usb@vger.kernel.org, 
+ linux-renesas-soc@vger.kernel.org, linux-pci@vger.kernel.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ KancyJoe <kancy2333@outlook.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2479;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=1Ho0XG7dS+YggQv/oK2R0s/FYzjIvQaih1Dhu9EIl4g=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBpeIwRROCpb0TMHeAc6TMUdXNXB9/fuPUVBZL9uXyU
+ 2FlCoHWJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCaXiMEQAKCRB33NvayMhJ0aEaEA
+ CFi7NkRxXRZmDOfjdMNhmQFgH9m9TO18dvcYR4Szl4XAM66hsfrAr2BzHliKhGsuZGVQCn21OEacn1
+ 2psYd7D5fe821xwIpunC1uX3v5BxWozwN1D1h+ZMYLTyRLiOfWeboymDJvSvpQb7bivUNVwQKG5O4y
+ maY86FceNdv8JJwC8sx96Bzf2R4r2aPtUJwFU/ua8IYGbGtUAOc8L2DuQhM6RPz1wRNcXiggPUzhyP
+ jwaPYUsqvJeCW5+PXLUSHu2yYQKbxVt8d1RC+rzY+a+u7Ur5H9B23XHwGHUl6MnC//pDNtHoPeri3v
+ X8F6MS2V/EudvIBqHZeTU4OOlEzEDtHXrMqR2+ZkK1DL/is/kkSFX48e5gJkKEL6J5BFR0gXGC1dE0
+ Pkas7nXik4ArNrYr4EsYR1odk5y/a1Ix68QBRSA3M3hn+O9OgTZtveQyM1LuIHx86NiAKVNnrJnkFf
+ 7ZonrJyjqpd1ei/d+t/ELDeQrNxydxQi0jLuga8L2ZNm03YgRkSeL1/rukXbQ8Iior/wdS0YB2WN+W
+ iGHVYXymMyCW1c2ZtKs97b2qGEc1EpoAllwjD2LwdJfFvDLdlsc+mfBbyKANuVDVHRTypu9Af2UY5Y
+ X6N+TMHRPHf7v8/JbJ+3SlI3zqCz80sBujApWp0WGIJCilnZgrDhN6eVHVQg==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-259805-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.linux.dev,lists.infradead.org,bootlin.com,kernel.org,pengutronix.de,gmail.com,linux-watchdog.org,roeck-us.net];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,bootlin.com:email];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-259806-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	FREEMAIL_TO(0.00)[kernel.org,oss.qualcomm.com,linux.dev,gmail.com,poorly.run,somainline.org,ffwll.ch,linuxfoundation.org,glider.be,google.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.freedesktop.org,linaro.org,oss.qualcomm.com,outlook.com];
+	RCPT_COUNT_TWELVE(0.00)[30];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: CBBF192299
+	DBL_BLOCKED_OPENRESOLVER(0.00)[msgid.link:url,ayaneo.com:url,linaro.org:email,linaro.org:dkim,linaro.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: CBE48923BA
 X-Rspamd-Action: no action
 
-On Fri, 23 Jan 2026 10:54:33 +0100, "Thomas Perrot (Schneider
-Electric)" <thomas.perrot@bootlin.com> said:
-> Add GPIO driver for the Aaeon SRG-IMX8PL embedded controller. This
-> driver supports 7 GPO (General Purpose Output) pins and 12 GPIO pins
-> that can be configured as inputs or outputs.
->
-> The driver implements proper state management for GPO pins (which are
-> output-only) and full direction control for GPIO pins. During probe,
-> all pins are reset to a known state (GPOs low, GPIOs as inputs) to
-> prevent undefined behavior across system reboots, as the MCU does not
-> reset GPIO states on soft reboot.
->
-> Co-developed-by: J=C3=A9r=C3=A9mie Dautheribes (Schneider Electric) <jere=
-mie.dautheribes@bootlin.com>
-> Signed-off-by: J=C3=A9r=C3=A9mie Dautheribes (Schneider Electric) <jeremi=
-e.dautheribes@bootlin.com>
-> Signed-off-by: Thomas Perrot (Schneider Electric) <thomas.perrot@bootlin.=
-com>
-> ---
->  MAINTAINERS                   |   1 +
->  drivers/gpio/Kconfig          |  10 ++
->  drivers/gpio/Makefile         |   1 +
->  drivers/gpio/gpio-aaeon-mcu.c | 238 ++++++++++++++++++++++++++++++++++++=
-++++++
->  4 files changed, 250 insertions(+)
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 175c1e1b28b8151580ed340207d4a6fd59aa8853..28dd964cdf69bdcaec3eb82d6=
-df851a2bad47415 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -191,6 +191,7 @@ M:	Thomas Perrot <thomas.perrot@bootlin.com>
->  R:	J=C3=A9r=C3=A9mie Dautheribes <jeremie.dautheribes@bootlin.com>
->  S:	Maintained
->  F:	Documentation/devicetree/bindings/mfd/aaeon,srg-imx8pl-mcu.yaml
-> +F:	drivers/gpio/gpio-aaeon-mcu.c
->  F:	drivers/mfd/aaeon-mcu.c
->  F:	include/linux/mfd/aaeon-mcu.h
->
-> diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
-> index c74da29253e810b51540684b1186e8f274066b69..6142d50b92b3d8c1fac8b0d81=
-397dc22428fbb51 100644
-> --- a/drivers/gpio/Kconfig
-> +++ b/drivers/gpio/Kconfig
-> @@ -157,6 +157,16 @@ config GPIO_74XX_MMIO
->  	    8 bits:	74244 (Input), 74273 (Output)
->  	    16 bits:	741624 (Input), 7416374 (Output)
->
-> +config GPIO_AAEON_MCU
-> +	tristate "Aaeon MCU GPIO support"
-> +	depends on MFD_AAEON_MCU
+The Ayaneo Pocket S2 is a gaming console based on the Qualcomm
+Snapdragon 8 Gen 3. It has an internal UFS storage, WiFi,
+Bluetooth, gaming buttons, SDCard, 2K display and USB-C
+connector.
 
-Can you add support for COMPILE_TEST here and in the MFD part?
+Product Page [1].
 
-> +	select GPIO_GENERIC
-> +	help
-> +	  Select this option to enable GPIO support for the Aaeon SRG-IMX8PL
-> +	  onboard MCU. This driver provides access to GPIO pins and GPO
-> +	  (General Purpose Output) pins controlled by the microcontroller.
-> +	  The driver handles both input and output configuration.
-> +
->  config GPIO_ALTERA
->  	tristate "Altera GPIO"
->  	select GPIOLIB_IRQCHIP
-> diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
-> index 2421a8fd3733e0b06c2581262aaa9cd629f66c7d..1ba6318bc558743fbe5910966=
-c2c8fc3f792efe9 100644
-> --- a/drivers/gpio/Makefile
-> +++ b/drivers/gpio/Makefile
-> @@ -29,6 +29,7 @@ obj-$(CONFIG_GPIO_104_IDI_48)		+=3D gpio-104-idi-48.o
->  obj-$(CONFIG_GPIO_104_IDIO_16)		+=3D gpio-104-idio-16.o
->  obj-$(CONFIG_GPIO_74X164)		+=3D gpio-74x164.o
->  obj-$(CONFIG_GPIO_74XX_MMIO)		+=3D gpio-74xx-mmio.o
-> +obj-$(CONFIG_GPIO_AAEON_MCU)		+=3D gpio-aaeon-mcu.o
->  obj-$(CONFIG_GPIO_ADNP)			+=3D gpio-adnp.o
->  obj-$(CONFIG_GPIO_ADP5520)		+=3D gpio-adp5520.o
->  obj-$(CONFIG_GPIO_ADP5585)		+=3D gpio-adp5585.o
-> diff --git a/drivers/gpio/gpio-aaeon-mcu.c b/drivers/gpio/gpio-aaeon-mcu.=
-c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..533eaf3e7f82f3b9e3f50a1a6=
-31c8e853adc1226
-> --- /dev/null
-> +++ b/drivers/gpio/gpio-aaeon-mcu.c
-> @@ -0,0 +1,238 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * Aaeon MCU GPIO driver
-> + *
-> + * Copyright (C) 2025 Bootlin
-> + * Author: J=C3=A9r=C3=A9mie Dautheribes <jeremie.dautheribes@bootlin.co=
-m>
-> + * Author: Thomas Perrot <thomas.perrot@bootlin.com>
-> + */
-> +
-> +#include <linux/bitops.h>
-> +#include <linux/device.h>
-> +#include <linux/gpio/driver.h>
-> +#include <linux/mfd/aaeon-mcu.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +
-> +#define AAEON_MCU_CONFIG_GPIO_INPUT 0x69
-> +#define AAEON_MCU_CONFIG_GPIO_OUTPUT 0x6F
-> +#define AAEON_MCU_READ_GPIO 0x72
-> +#define AAEON_MCU_WRITE_GPIO 0x77
-> +
-> +#define AAEON_MCU_CONTROL_GPO 0x6C
-> +
-> +#define MAX_GPIOS 12
-> +#define MAX_GPOS 7
-> +
-> +struct aaeon_mcu_gpio {
-> +	struct gpio_chip gc;
-> +	struct device *dev;
-> +	DECLARE_BITMAP(dir_in, MAX_GPOS + MAX_GPIOS);
-> +	DECLARE_BITMAP(gpo_state, MAX_GPOS);
-> +};
-> +
-> +static int aaeon_mcu_gpio_config_input_cmd(struct aaeon_mcu_gpio *data,
-> +					    unsigned int offset)
-> +{
-> +	u8 cmd[3], rsp;
-> +
-> +	cmd[0] =3D AAEON_MCU_CONFIG_GPIO_INPUT;
-> +	cmd[1] =3D offset - 7;
-> +	cmd[2] =3D 0x00;
-> +
-> +	return aaeon_mcu_i2c_xfer(data->dev, cmd, 3, &rsp, 1);
-> +}
-> +
-> +static int aaeon_mcu_gpio_direction_input(struct gpio_chip *gc, unsigned=
- int offset)
-> +{
-> +	struct aaeon_mcu_gpio *data =3D gpiochip_get_data(gc);
-> +	int ret;
-> +
-> +	if (offset < MAX_GPOS) {
-> +		dev_err(gc->parent, "GPIO offset (%d) must be an output GPO\n", offset=
-);
-> +		return -EOPNOTSUPP;
-> +	}
-> +
-> +	ret =3D aaeon_mcu_gpio_config_input_cmd(data, offset);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	__set_bit(offset, data->dir_in);
-> +
-> +	return 0;
-> +}
-> +
-> +static int aaeon_mcu_gpio_config_output_cmd(struct aaeon_mcu_gpio *data,
-> +					     unsigned int offset,
-> +					     int value)
-> +{
-> +	u8 cmd[3], rsp;
-> +	int ret;
-> +
-> +	cmd[0] =3D AAEON_MCU_CONFIG_GPIO_OUTPUT;
-> +	cmd[1] =3D offset - 7;
-> +	cmd[2] =3D 0x00;
-> +
-> +	ret =3D aaeon_mcu_i2c_xfer(data->dev, cmd, 3, &rsp, 1);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	cmd[0] =3D AAEON_MCU_WRITE_GPIO;
-> +	/* cmd[1] =3D offset - 7; */
-> +	cmd[2] =3D !!value;
-> +
-> +	return aaeon_mcu_i2c_xfer(data->dev, cmd, 3, &rsp, 1);
-> +}
-> +
-> +static int aaeon_mcu_gpio_direction_output(struct gpio_chip *gc, unsigne=
-d int offset, int value)
-> +{
-> +	struct aaeon_mcu_gpio *data =3D gpiochip_get_data(gc);
-> +	int ret;
-> +
-> +	if (offset < MAX_GPOS)
-> +		return 0;
-> +
-> +	ret =3D aaeon_mcu_gpio_config_output_cmd(data, offset, value);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	__clear_bit(offset, data->dir_in);
-> +
-> +	return 0;
-> +}
-> +
-> +static int aaeon_mcu_gpio_get_direction(struct gpio_chip *gc, unsigned i=
-nt offset)
-> +{
-> +	struct aaeon_mcu_gpio *data =3D gpiochip_get_data(gc);
-> +
-> +	return test_bit(offset, data->dir_in) ?
-> +		GPIO_LINE_DIRECTION_IN : GPIO_LINE_DIRECTION_OUT;
-> +}
-> +
-> +static int aaeon_mcu_gpio_get(struct gpio_chip *gc, unsigned int offset)
-> +{
-> +	struct aaeon_mcu_gpio *data =3D gpiochip_get_data(gc);
-> +	u8 cmd[3], rsp;
-> +	int ret;
-> +
-> +	if (offset < MAX_GPOS)
-> +		return test_bit(offset, data->gpo_state);
-> +
-> +	cmd[0] =3D AAEON_MCU_READ_GPIO;
-> +	cmd[1] =3D offset - 7;
-> +	cmd[2] =3D 0x00;
-> +
-> +	ret =3D aaeon_mcu_i2c_xfer(data->dev, cmd, 3, &rsp, 1);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return rsp;
-> +}
-> +
-> +static int aaeon_mcu_gpo_set_cmd(struct aaeon_mcu_gpio *data, unsigned i=
-nt offset, int value)
-> +{
-> +	u8 cmd[3], rsp;
-> +
-> +	cmd[0] =3D AAEON_MCU_CONTROL_GPO;
-> +	cmd[1] =3D offset + 1;
-> +	cmd[2] =3D !!value;
-> +
-> +	return aaeon_mcu_i2c_xfer(data->dev, cmd, 3, &rsp, 1);
-> +}
-> +
-> +static int aaeon_mcu_gpio_set_cmd(struct aaeon_mcu_gpio *data, unsigned =
-int offset, int value)
-> +{
-> +	u8 cmd[3], rsp;
-> +
-> +	cmd[0] =3D AAEON_MCU_WRITE_GPIO;
-> +	cmd[1] =3D offset - 7;
-> +	cmd[2] =3D !!value;
-> +
-> +	return aaeon_mcu_i2c_xfer(data->dev, cmd, 3, &rsp, 1);
-> +}
-> +
-> +static int aaeon_mcu_gpio_set(struct gpio_chip *gc, unsigned int offset,
-> +			      int value)
-> +{
-> +	struct aaeon_mcu_gpio *data =3D gpiochip_get_data(gc);
-> +
-> +	if (offset >=3D MAX_GPOS)
-> +		return aaeon_mcu_gpio_set_cmd(data, offset, value);
-> +
-> +	if (aaeon_mcu_gpo_set_cmd(data, offset, value) =3D=3D 0)
-> +		__assign_bit(offset, data->gpo_state, value);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct gpio_chip aaeon_mcu_chip =3D {
-> +	.label			=3D "gpio-aaeon-mcu",
-> +	.owner			=3D THIS_MODULE,
-> +	.get_direction		=3D aaeon_mcu_gpio_get_direction,
-> +	.direction_input	=3D aaeon_mcu_gpio_direction_input,
-> +	.direction_output	=3D aaeon_mcu_gpio_direction_output,
-> +	.get			=3D aaeon_mcu_gpio_get,
-> +	.set			=3D aaeon_mcu_gpio_set,
-> +	.base			=3D -1,
-> +	.ngpio			=3D MAX_GPOS + MAX_GPIOS,
-> +	.can_sleep		=3D true,
-> +};
-> +
-> +static void aaeon_mcu_gpio_reset(struct aaeon_mcu_gpio *data, struct dev=
-ice *dev)
-> +{
-> +	unsigned int i;
-> +	int ret;
-> +
-> +	/* Reset all GPOs */
-> +	for (i =3D 0; i < MAX_GPOS; i++) {
-> +		ret =3D aaeon_mcu_gpo_set_cmd(data, i, 0);
-> +		if (ret < 0)
-> +			dev_warn(dev, "Failed to reset GPO %u state: %d\n", i, ret);
-> +		__clear_bit(i, data->dir_in);
-> +	}
-> +
-> +	/* Reset all GPIOs */
-> +	for (i =3D MAX_GPOS; i < MAX_GPOS + MAX_GPIOS; i++) {
-> +		ret =3D aaeon_mcu_gpio_config_input_cmd(data, i);
-> +		if (ret < 0)
-> +			dev_warn(dev, "Failed to reset GPIO %u state: %d\n", i, ret);
-> +		__set_bit(i, data->dir_in);
-> +	}
-> +}
-> +
-> +static int aaeon_mcu_gpio_probe(struct platform_device *pdev)
-> +{
-> +	struct aaeon_mcu_gpio *data;
-> +
-> +	data =3D devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	data->dev =3D pdev->dev.parent;
-> +	data->gc =3D aaeon_mcu_chip;
-> +	data->gc.parent =3D data->dev;
-> +
-> +	/*
-> +	 * Reset all GPIO states to a known configuration. The MCU does not
-> +	 * reset GPIO state on soft reboot, only on power cycle (hard reboot).
-> +	 * Without this reset, GPIOs would retain their previous state across
-> +	 * reboots, which could lead to unexpected behavior.
-> +	 */
-> +	aaeon_mcu_gpio_reset(data, &pdev->dev);
-> +
-> +	return devm_gpiochip_add_data(&pdev->dev, &data->gc, data);
-> +}
-> +
-> +static struct platform_driver aaeon_mcu_gpio_driver =3D {
-> +	.driver =3D {
-> +		.name =3D "aaeon-mcu-gpio",
-> +	},
-> +	.probe =3D aaeon_mcu_gpio_probe,
-> +};
-> +
+The Initial linux port was done by KancyJoe (Sunflower2333)
+at [2].
 
-Drop the newline.
+[1] https://www.ayaneo.com/goods/9344082149621
+[2] https://github.com/sunflower2333/linux/tree/master
 
-> +module_platform_driver(aaeon_mcu_gpio_driver);
-> +
-> +MODULE_DESCRIPTION("GPIO interface for Aaeon MCU");
-> +MODULE_AUTHOR("J=C3=A9r=C3=A9mie Dautheribes <jeremie.dautheribes@bootli=
-n.com>");
-> +MODULE_LICENSE("GPL");
->
-> --
-> 2.52.0
->
->
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v2:
+- Add proper regulators for the USB controller, with bindings & power ctrl
+- Add proper regulators for FAN
+- Dropped support for headset over USB-C, audio is connected to a jack port
+- Cleaned up Audio routing and fixed the DP endpoint index
+- Added i2c clk frequencies
+- Renamed fan node and used interrupts-extended
+- Dropped the usb-c self-powered
+- Reordered nodes alphabetically
+- Renamed pcieport1 to pcie1_port0
+- Link to v1: https://patch.msgid.link/20260121-topic-sm8650-ayaneo-pocket-s2-base-v1-0-bb3f95f1c085@linaro.org
 
-Looks pretty good, just some nits.
+---
+KancyJoe (1):
+      arm64: dts: qcom: add basic devicetree for Ayaneo Pocket S2 gaming console
 
-Bartosz
+Neil Armstrong (6):
+      dt-bindings: usb: document the Renesas UPD720201/UPD720202 USB 3.0 xHCI Host Controller
+      pci: pwrctrl: add PCI pwrctrl driver for the UPD720201/UPD720202 USB 3.0 xHCI Host Controller
+      arm64: defconfig: enable pci-pwrctrl-upd720201 as module
+      dt-binding: vendor-prefixes: document the Ayaneo brand
+      dt-bindings: arm: qcom: document the Ayaneo Pocket S2
+      arm64: dts: qcom: sm8650: Add sound DAI prefix for DP
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |    1 +
+ .../bindings/usb/renesas,upd720201-pci.yaml        |   55 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |    2 +
+ arch/arm64/boot/dts/qcom/Makefile                  |    1 +
+ .../boot/dts/qcom/sm8650-ayaneo-pocket-s2.dts      | 1559 ++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8650.dtsi               |   47 +-
+ arch/arm64/configs/defconfig                       |    1 +
+ drivers/pci/pwrctrl/Kconfig                        |   10 +
+ drivers/pci/pwrctrl/Makefile                       |    2 +
+ drivers/pci/pwrctrl/pci-pwrctrl-upd720201.c        |   88 ++
+ 10 files changed, 1743 insertions(+), 23 deletions(-)
+---
+base-commit: cd31ece0d7a4f2fb2266d6d6abd4d33f45e93dac
+change-id: 20260121-topic-sm8650-ayaneo-pocket-s2-base-05c348efd86d
+
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
+
 
