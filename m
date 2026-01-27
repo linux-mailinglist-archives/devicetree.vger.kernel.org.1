@@ -1,228 +1,209 @@
-Return-Path: <devicetree+bounces-259919-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259920-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WGH4L/PHeGmDtQEAu9opvQ
-	(envelope-from <devicetree+bounces-259919-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:13:07 +0100
+	id YGS9ADXJeGmNtQEAu9opvQ
+	(envelope-from <devicetree+bounces-259920-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:18:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A116956E1
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:13:07 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47CAC957EF
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 15:18:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D168930039B6
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 14:13:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 705703061464
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 14:16:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3C423101BB;
-	Tue, 27 Jan 2026 14:13:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D598C2853E0;
+	Tue, 27 Jan 2026 14:16:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AyY4dNMr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2855F26FD9A
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 14:13:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B01DA1F5842;
+	Tue, 27 Jan 2026 14:16:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769523184; cv=none; b=iT/eWafK2rxK6a2TF5NhrjeAQIZHkwn7VLzM55RjUxWstAXilhhIxEMrKrbOd2HEzP5CPUdQXK3zBjeZN4YgoQ40o5HKi/5LLBYhoxOHJ0hOwE6Go1f5I3nGW2jfb+mMPvq5CC+HvzrfKrkE7uBf6j8wQmxRXQdZ49RATbt2pTE=
+	t=1769523370; cv=none; b=sbnDw2Sej4NszpYp5pDQKq1gzmAA/jEQPuOEOU1utCxCAGgG5Kf1Akqcnb98KvP9sAsYr0umymxmQexrqCOcH/6In3czJxnDdJ/ec1+95nifhSyOQp+uhmAdARN9l3LT55eisOQBDCzlBn8XT/tkPTAUT14vq7UpMChlDaVpjqM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769523184; c=relaxed/simple;
-	bh=xjc7u4fz6pmYlwP9Oa0iUMqnWYYtp999qs+HL8d3NQs=;
+	s=arc-20240116; t=1769523370; c=relaxed/simple;
+	bh=n45w/e+eBxNQzW3Y3a27ZkR2bgkFWFyAg7LB/8ubdr4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iDgEbUmx1L5aFqaSl0WunCLG5CnFSnFWmU33ihOXfxciA71f6dUNHPnzqIlnIn5b4S1iYhW+5A1Y/T9dKxvln/5tALJ3mPwEHzxnvgH8xx6DwMTUcHXfL6HYwTb33jFejpVCzmt/VHuQe/F6mBdgGamJp2lGjOW9s7jmNPntGEI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1vkjoI-0004w0-UY; Tue, 27 Jan 2026 15:12:50 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1vkjoJ-002lLQ-1G;
-	Tue, 27 Jan 2026 15:12:50 +0100
-Received: from pengutronix.de (p54b15bf8.dip0.t-ipconnect.de [84.177.91.248])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 51AD84D95EC;
-	Tue, 27 Jan 2026 14:12:50 +0000 (UTC)
-Date: Tue, 27 Jan 2026 15:12:49 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Arun Muthusamy <arun.muthusamy@gaisler.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	mailhol@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-can@vger.kernel.org
-Subject: Re: [PATCH v3 13/15] can: grcan: Add CANFD TX support alongside
- legacy CAN
-Message-ID: <20260127-fancy-fast-bird-e7c4c3-mkl@pengutronix.de>
-X-AI: stop_reason: "refusal"
-References: <20260122121038.7910-1-arun.muthusamy@gaisler.com>
- <20260122121038.7910-14-arun.muthusamy@gaisler.com>
- <20260123-berserk-crocodile-of-champagne-49d2b0-mkl@pengutronix.de>
- <78a8f06c-da93-4ade-bc69-872aac644724@gaisler.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ea1JXtqxuLWeIDkuZtmjaVsCUvUqg5UmhFiC9+EBytotJqP4XClsE8yaBD5snPv1HtPPtce5et8PVriL0hUYRckAUOLyafKsz8iUJy0QsKQo4cQYK82gLz3SY1VW/0YcB5vk4E7284uAHeaWV1+9NEPCjsg+7qw9CIMs6FA+308=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AyY4dNMr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D196C116C6;
+	Tue, 27 Jan 2026 14:16:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769523370;
+	bh=n45w/e+eBxNQzW3Y3a27ZkR2bgkFWFyAg7LB/8ubdr4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AyY4dNMr5eqHXSWq7PuRhGoNRgh82QPvdnFJ0MiS/3gvl05gNyD+M7W8DebnsIeOc
+	 4RHGorjc1pYx9EWlBR4EIenTVKAg373EEUz/y4TRL3ROVF/sVwGMdDL12GRX9/zUJ/
+	 /jC6nb1vW58Hz2c51r8ila3EsuIBq08E8jGYKOZ3dkHPGbjnDPDj3w4pEbE4ALdd+y
+	 jqGX8dNecIQUv0Be0aRt0xcbk/WbEQfPFo72FVAWyEHC8qn65wgXrL0VJioJe/iw6G
+	 0sBDZ2gnlvSX0o1U0xD9N0Z+clKyMUaBJ5mAWU4RkpLGqn8rpiv1fk7ogWgFL2VcmD
+	 q+6A84AxFpvdQ==
+Date: Tue, 27 Jan 2026 08:16:09 -0600
+From: Rob Herring <robh@kernel.org>
+To: Andrew Thomas <andrew.thomas@touchnetix.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Marco Felsch <m.felsch@pengutronix.de>
+Subject: Re: [PATCH 1/2] dt-bindings: input: touchscreen: add TouchNetix
+ aXiom device tree
+Message-ID: <20260127141609.GA1565784-robh@kernel.org>
+References: <20260126-axiom-driver-submission3-v1-0-d462c4a608e3@touchnetix.com>
+ <20260126-axiom-driver-submission3-v1-1-d462c4a608e3@touchnetix.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="rpakgy5wkqvr6pf3"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <78a8f06c-da93-4ade-bc69-872aac644724@gaisler.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20260126-axiom-driver-submission3-v1-1-d462c4a608e3@touchnetix.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.56 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259919-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,bitmath.org,vger.kernel.org,pengutronix.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-259920-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	DBL_PROHIBIT(0.00)[0.0.0.66:email,0.0.0.0:email];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mkl@pengutronix.de,devicetree@vger.kernel.org];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gaisler.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 6A116956E1
+	RCPT_COUNT_SEVEN(0.00)[9];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 47CAC957EF
 X-Rspamd-Action: no action
 
+On Mon, Jan 26, 2026 at 04:38:23PM +0000, Andrew Thomas wrote:
+> ---
 
---rpakgy5wkqvr6pf3
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 13/15] can: grcan: Add CANFD TX support alongside
- legacy CAN
-MIME-Version: 1.0
+Also needs a commit message and S-o-b.
 
-On 27.01.2026 15:06:55, Arun Muthusamy wrote:
->
-> On 1/23/26 15:25, Marc Kleine-Budde wrote:
-> > On 22.01.2026 13:10:36, Arun Muthusamy wrote:
-> > > Include CANFD TX support with the legacy CAN support, enabling
-> > > support for extended data payloads to provide higher bit rates.
-> > >
-> > > Signed-off-by: Arun Muthusamy <arun.muthusamy@gaisler.com>
-> > > ---
-> > >   drivers/net/can/grcan.c | 102 +++++++++++++++++++++++++++++--------=
----
-> > >   1 file changed, 74 insertions(+), 28 deletions(-)
-> > >
-> > > diff --git a/drivers/net/can/grcan.c b/drivers/net/can/grcan.c
-> > > index 9fc18064fab1..508ad5320cff 100644
-> > > --- a/drivers/net/can/grcan.c
-> > > +++ b/drivers/net/can/grcan.c
-> > > @@ -174,6 +174,7 @@ struct grcan_registers {
-> > >   #define GRCAN_IRQ_DEFAULT (GRCAN_IRQ_RX | GRCAN_IRQ_TX | GRCAN_IRQ_=
-ERRORS)
-> > >
-> > >   #define GRCAN_MSG_SIZE		16
-> > > +#define GRCAN_CLASSIC_DATA_SIZE 8
-> > >
-> > >   #define GRCAN_MSG_IDE		0x80000000
-> > >   #define GRCAN_MSG_RTR		0x40000000
-> > > @@ -195,6 +196,10 @@ struct grcan_registers {
-> > >   #define GRCAN_MSG_OFF		0x00000002
-> > >   #define GRCAN_MSG_PASS		0x00000001
-> > >
-> > > +#define GRCAN_MSG_EID_MASK      GENMASK(28, 0)
-> > > +#define GRCAN_MSG_BID_MASK      GENMASK(28, 18)
-> > > +#define GRCAN_MSG_DLC_MASK      GENMASK(31, 28)
-> > > +
-> > >   #define GRCAN_BUFFER_ALIGNMENT		1024
-> > >   #define GRCAN_DEFAULT_BUFFER_SIZE	1024
-> > >   #define GRCAN_VALID_TR_SIZE_MASK	0x001fffc0
-> > > @@ -227,6 +232,9 @@ struct grcan_registers {
-> > >   #define GRCANFD_FDBTR_PS2_BIT 5
-> > >   #define GRCANFD_FDBTR_SJW_BIT 0
-> > >
-> > > +#define GRCAN_TX_BRS  BIT(25)
-> > > +#define GRCAN_TX_FDF  BIT(26)
-> > > +
-> > >   /* Hardware capabilities */
-> > >   struct grcan_hwcap {
-> > >   	/* CAN-FD capable, indicates GRCANFD IP.
-> > > @@ -1218,6 +1226,13 @@ static void grcan_transmit_catch_up(struct net=
-_device *dev)
-> > >   	spin_unlock_irqrestore(&priv->lock, flags);
-> > >   }
-> > >
-> > > +static int grcan_numbds(int len)
-> > > +{
-> > > +	if (len <=3D GRCAN_CLASSIC_DATA_SIZE)
-> > > +		return 1;
-> > > +	return 1 + ((len - GRCAN_CLASSIC_DATA_SIZE + GRCAN_MSG_SIZE) / GRCA=
-N_MSG_SIZE);
-> > This looks strange, what is calculated here? Why is "<=3D
-> > GRCAN_CLASSIC_DATA_SIZE" a special case?
->
-> grcan_numbds() calculates the number of buffer descriptors needed based o=
-n the data length.
-> The condition "len <=3D GRCAN_CLASSIC_DATA_SIZE" addresses cases where th=
-e data length fits within a one buffer descriptor.
-> For data lengths greater than "GRCAN_CLASSIC_DATA_SIZE", it computes addi=
-tional descriptors needed.
+>  .../bindings/input/touchscreen/tnx,axiom.yaml      | 70 ++++++++++++++++++++++
+>  .../devicetree/bindings/vendor-prefixes.yaml       |  2 +
+>  2 files changed, 72 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/tnx,axiom.yaml b/Documentation/devicetree/bindings/input/touchscreen/tnx,axiom.yaml
+> new file mode 100644
+> index 000000000000..7b532471c17f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/tnx,axiom.yaml
+> @@ -0,0 +1,70 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/touchscreen/tnx,axiom.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TouchNetix aXiom Touchscreen Controller
+> +
+> +maintainers:
+> +  - Andrew Thomas <andrew.thomas@touchnetix.com>
+> +
+> +description: |
 
-What happens if "len =3D GRCAN_CLASSIC_DATA_SIZE + GRCAN_MSG_SIZE"?
+Don't need '|' if no formatting to preserve.
 
-| return 1 + ((len - GRCAN_CLASSIC_DATA_SIZE + GRCAN_MSG_SIZE) / GRCAN_MSG_=
-SIZE);
-
-=3D 1 + ((GRCAN_CLASSIC_DATA_SIZE + GRCAN_MSG_SIZE - GRCAN_CLASSIC_DATA_SIZ=
-E + GRCAN_MSG_SIZE) / GRCAN_MSG_SIZE);
-=3D 1 + ((                          GRCAN_MSG_SIZE -                       =
-  + GRCAN_MSG_SIZE) / GRCAN_MSG_SIZE);
-=3D 1 + 2;
-=3D 3
-
-Is this correct?
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---rpakgy5wkqvr6pf3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAml4x94ACgkQDHRl3/mQ
-kZxCEQf/WCNswG5Klzxx8orvUzgaeba72UOu7p+lPT65hmeMJ4lgRbktTCQUC2p3
-2kw6hjgrs/Xn6U2/RVxFGNQ5vwEpMaLKDUDLr+0N+6BrqCBOZU5A+XTsAz948C6h
-dCyVDrkRzeEGwQGc9+nt+U2U/s4bg6DNqWPMyZsbCOWGY5DsVEj6nfHXt0kiB6Vt
-qq6ahDHR7HX4n+kpSr4+8MWAVJiSitJzopA5f2UyevQwjlOerLZv1mgdfpoq1vL6
-z+dLpEErj1kDW68DlQTdkToQrBO+838uaM1zDIcpynbmEoAWpGx4AtWBuMNTm8Kx
-WsQqIA+Z7sk9ZNPqRVkr9t6q6OyMoQ==
-=m7ih
------END PGP SIGNATURE-----
-
---rpakgy5wkqvr6pf3--
+> +  The TouchNetix aXiom series are high-performance touchscreen controllers
+> +  supporting various interface methods including I2C and SPI.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - tnx,axiom
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description: Both IRQ_TYPE_LEVEL_LOW and IRQ_TYPE_EDGE_FALLING are supported
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +allOf:
+> +  - $ref: touchscreen.yaml#
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        touchscreen@66 {
+> +            compatible = "tnx,axiom-i2c";
+> +            reg = <0x66>;
+> +            interrupt-parent = <&gpio>;
+> +            interrupts = <24 IRQ_TYPE_LEVEL_LOW>;
+> +            axiom,poll-enable;
+> +            axiom,poll-period = <15>;
+> +        };
+> +    };
+> +
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        touchscreen@0 {
+> +            compatible = "tnx,axiom-spi";
+> +            reg = <0>;
+> +            interrupt-parent = <&gpio>;
+> +            interrupts = <24 IRQ_TYPE_EDGE_FALLING>;
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index f1d1882009ba..dadfc7036ed7 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -1636,6 +1636,8 @@ patternProperties:
+>      description: Trusted Logic Mobility
+>    "^tmt,.*":
+>      description: Tecon Microprocessor Technologies, LLC.
+> +  "^tnx,.*":
+> +    description: TouchNetix
+>    "^topeet,.*":
+>      description: Topeet
+>    "^topic,.*":
+> 
+> -- 
+> 2.43.0
+> 
 
