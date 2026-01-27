@@ -1,170 +1,179 @@
-Return-Path: <devicetree+bounces-260124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260127-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WCj6EWAneWkMvwEAu9opvQ
-	(envelope-from <devicetree+bounces-260124-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 22:00:16 +0100
+	id cBiQI00oeWkIvwEAu9opvQ
+	(envelope-from <devicetree+bounces-260127-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 22:04:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CD269A839
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 22:00:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2786F9A8C4
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 22:04:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3C0ED30125D8
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 21:00:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A6584301AD14
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 21:04:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83692274FE3;
-	Tue, 27 Jan 2026 21:00:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D86829A312;
+	Tue, 27 Jan 2026 21:04:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gmxztl/I"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gh/mJHDc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDABA231A23;
-	Tue, 27 Jan 2026 21:00:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 075FB27603A;
+	Tue, 27 Jan 2026 21:04:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769547611; cv=none; b=UeBfJ6IXz9J654iHF9mIIKfBYpJQBmLp7rsYKP/JLx06RX1XEXhgDwh8y3nbHJ6CLfa94DdBEV7Cf8GRXdupt7ttBL/eg0uIZ+zQ+4cTgaDFvsYp6T2KQuRGgUz5JqtMpEqDVFZO7SKMGQPcHhqwxTvKb9hx2mzC8IpTTz/sHN0=
+	t=1769547845; cv=none; b=qo60yNVid+J+TScKqZhpxITgXcOy8J5SmRDjJ4V3eEvAQsRWynIqCbuMJn8K71Vg1Yuroaw+ONWGVcAmIOJV6Kw9XGC0+QyiLIxrtdpX3Oly6j46KlNYua049oDlGZ5tm15y46wSu74NoBg7QPEbZ6AQWsJ+LpoAmLL1OjFUcBs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769547611; c=relaxed/simple;
-	bh=15LikzopnR8kHz+hCxZ6bhTjumJSimQzGGKBrixcPlk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PDXGVnkeBLe9o6udU6lLEAuXLYP4rh4vR4aRtxWkyd13ELs80wto4JKYLN0Pv/vzM1cJVTRkjShPNPmdvfxPV9raPXYkZ8imTvGwICrAJu1+9PfTI/We+GhWQ9Z4Ko+Q51dM/dU1zY9d25tEn89o8+CN0r07Q5wLMIIgfzGRUkA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gmxztl/I; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1769547610; x=1801083610;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=15LikzopnR8kHz+hCxZ6bhTjumJSimQzGGKBrixcPlk=;
-  b=gmxztl/I2EF3LrEf8eyGnSPTAfAw8A95+NbgMgYSPxvBH3nfMZyk1SRd
-   sV5Vzxv7dQ2FnNMJAbfJeZ68EaWAFrUy+9mTNHTthFx8svy5+ZfijeDgh
-   PJDvpKRU2KVutdW6mczNVo8ayF2RTgdgRhi4mDtdIcbTekzXAUGPvlIIb
-   bIehf/k8xkQCdmjB3EImaFazJxy6TqYiQ/cEv5vFrlBJ+lOaRxaL06Ivt
-   7IU45GExB/Rc41h/fepDfBjW/1cZtvS7EIzPLLFThCH69oZRFDUIEl9Of
-   u6q4BdpcHy+rAxfJwvWhmI4U4mbqs4s8N7txexreK4qanxeOWnLt6rNmr
-   A==;
-X-CSE-ConnectionGUID: nJnSfAlUTru+bVv469sRcQ==
-X-CSE-MsgGUID: BHFsjuIhTKem8PClr0gnfw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="82183461"
-X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; 
-   d="scan'208";a="82183461"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2026 13:00:10 -0800
-X-CSE-ConnectionGUID: gY1JV+vCT1GAgSKQNhVjWA==
-X-CSE-MsgGUID: TJfwN4TiS/Su1VcPdaiwvA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; 
-   d="scan'208";a="212185906"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.245.248])
-  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2026 13:00:04 -0800
-Date: Tue, 27 Jan 2026 23:00:03 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Danny Kaehn <danny.kaehn@plexus.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Benjamin Tissoires <bentiss@kernel.org>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Jiri Kosina <jikos@kernel.org>,
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Ethan Twardy <ethan.twardy@plexus.com>, linux-i2c@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Leo Huang <leohu@nvidia.com>,
-	Arun D Patil <arundp@nvidia.com>, Willie Thai <wthai@nvidia.com>,
-	Ting-Kai Chen <tingkaic@nvidia.com>
-Subject: Re: [PATCH v13 1/3] dt-bindings: i2c: Add CP2112 HID USB to SMBus
- Bridge
-Message-ID: <aXknU-fxh286Nkek@smile.fi.intel.com>
-References: <20260127-cp2112-dt-v13-0-6448ddd4bf22@plexus.com>
- <20260127-cp2112-dt-v13-1-6448ddd4bf22@plexus.com>
- <20260127160217.GA3776731@LNDCL34533.neenah.na.plexus.com>
+	s=arc-20240116; t=1769547845; c=relaxed/simple;
+	bh=CRHikQs9eZ3gVMFAp8sJsNNcBwuKXFyi0QLHDmdzutM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=oWxeOw7Gc7rGgBN6FMdUHdU8aiW6dsUwlcu/ge6wg3ZNV9ZtdBMaE04jb0NIAbrOjeOWygvS7EXa7oNZezQ/6nBCwTRCM1lG8MPrJ0/at2/I6HUvieYdbpQdT5y9ZrEkZWvt00AlY41mQ+nYiyioQc2VxruyQKa7WPmdmhcR4C4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gh/mJHDc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 85B18C19422;
+	Tue, 27 Jan 2026 21:04:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769547844;
+	bh=CRHikQs9eZ3gVMFAp8sJsNNcBwuKXFyi0QLHDmdzutM=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=gh/mJHDcI9vh2OnKWSskfmTiUBv/6fPf8UpZx0Sg3tPbV80LTrvGxAkyWi7O++AmE
+	 TFoBRaRkloKYO3LymsIOkN3EaVXQn5sVtpkl8VM69Tx9N5+/RirU4a4dqb4IaAcS/h
+	 4Uwz9guUBllfVps63+vV8R8fJCGEw5AawDjJ/XJ6iOmXUramoIQSeqW896j6z9+8Vi
+	 AQAQpTrRAZ21E7KvCFEvEd8vC0X2wU86B7Ci1xghrS0z6gK3OKKcl+HnZWEbFTglRf
+	 buUkFMVMzUnWr6yLcxxtTY3brHZpExBKjRAg6vsnSvINuOxZnm3i/FWyF+Ro4atX5M
+	 KLDM7rv5XUkVw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7CA1FD2FEDF;
+	Tue, 27 Jan 2026 21:04:04 +0000 (UTC)
+From: Abdurrahman Hussain via B4 Relay <devnull+abdurrahman.nexthop.ai@kernel.org>
+Subject: [PATCH v6 0/7] i2c: xiic: use generic device property accessors
+Date: Tue, 27 Jan 2026 21:03:54 +0000
+Message-Id: <20260127-i2c-xiic-v6-0-e82e2f6f657c@nexthop.ai>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260127160217.GA3776731@LNDCL34533.neenah.na.plexus.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADooeWkC/3XOTW7DIBCG4atErEsEw49xV71HlcUAQ80idoRdy
+ 1HkuxdnRZV2+UnzvJoHm6lkmtn76cEKrXnO01iHfTuxMOD4RTzHuhkIsEIC8AyBbzkHrjy6PiV
+ D2CtWz2+FUt6eqc9L3alMV74MhbAJSCMEOG3PYJTrueTo43cpOFxx/BhpW4bpdsZ89IY8L1O5P
+ z9b4aj+8cQKXHCpdDKx04qcbyPHF6tqpWqkqpJ8F6IGo2N6lfo/qavUqMijMlIEepGmlbaRpkr
+ nUFoE14EMv+S+7z+QR6/pjwEAAA==
+X-Change-ID: 20260122-i2c-xiic-3ba89ff5ea93
+To: Michal Simek <michal.simek@amd.com>, Andi Shyti <andi.shyti@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, info@mocean-labs.com
+Cc: Andy Shevchenko <andriy.shevchenko@intel.com>, 
+ linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Abdurrahman Hussain <abdurrahman@nexthop.ai>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1769547843; l=2329;
+ i=abdurrahman@nexthop.ai; s=20260119; h=from:subject:message-id;
+ bh=CRHikQs9eZ3gVMFAp8sJsNNcBwuKXFyi0QLHDmdzutM=;
+ b=PWVfIljp5RtV1b3Ejs67BgpI6Rpc4YgzjejvMPiI2S0pW+r7a/CdumGaGfTx7/6I81QMfYzDQ
+ EiCAfZfAZsLCMgksT3CZ9o4DNvhsHFV2SI3DWFGQQa/+ss/aoTZHbw2
+X-Developer-Key: i=abdurrahman@nexthop.ai; a=ed25519;
+ pk=S+ysnf+NwMcBdHBlyKIUEAtaFGSIhQwcJcgcXhq0osg=
+X-Endpoint-Received: by B4 Relay for abdurrahman@nexthop.ai/20260119 with
+ auth_id=608
+X-Original-From: Abdurrahman Hussain <abdurrahman@nexthop.ai>
+Reply-To: abdurrahman@nexthop.ai
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com,linaro.org,plexus.com,nvidia.com];
-	TAGGED_FROM(0.00)[bounces-260124-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCPT_COUNT_TWELVE(0.00)[18];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-260127-lists,devicetree=lfdr.de,abdurrahman.nexthop.ai];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[abdurrahman@nexthop.ai];
 	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,smile.fi.intel.com:mid]
-X-Rspamd-Queue-Id: 6CD269A839
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 2786F9A8C4
 X-Rspamd-Action: no action
 
-On Tue, Jan 27, 2026 at 10:02:17AM -0600, Danny Kaehn wrote:
-> On Tue, Jan 27, 2026 at 08:47:48AM -0600, Danny Kaehn wrote:
-> > This is a USB HID device which includes an I2C controller and 8 GPIO pins.
-> > 
-> > The binding allows describing the chip's gpio and i2c controller in DT,
-> > with the i2c controller being bound to a subnode named "i2c". This is
-> > intended to be used in configurations where the CP2112 is permanently
-> > connected in hardware.
+Switch to generic device property accessors.
 
-> Hi Folks (Intended for Rob or Krzysztof),
-> 
-> Wasn't sure the best way to go about this, but trying to see the best
-> way to get a message in front of you regarding an ask from Andy S.
-> 
-> In [1], Rob H initially directed that the gpio chip share a node with
-> the CP2112 itself, rather than having a subnode named 'gpio'.
-> 
-> Initially, I did the same thing for both DT and ACPI, but Andy S.
-> directed that ACPI should not have the node be shared in that way.
-> 
-> With the last revision of this patch, Andy S. asked that I try to get a
-> rationalle from Rob (or other DT expert presumably) on why the gpio node
-> should be combined with the parent, rather than being a named subnode
-> [2].
-> 
-> Any context you can provide would be extremely helpful. Apologies about
-> the age of this patch series and the amount of historical context; some
-> is due to my long delays between revisions, but other of it is due to
-> attempting to get the ACPI and DT folks to talk / agree.
+Switch to managed devm_ functions to simplify error handling.
 
-I think this is about markers such as "gpio-controller" or
-"interrupt-controller" in DT for the device in question.
-With that it might not be required to have a separate child
-node for the GPIO function.
+Make the clock optional since the driver is designed to operate without
+explicit configuration in firmware thus making it useful on platforms
+where clock is not or cannot be provided.
 
-> [1]: https://lore.kernel.org/all/20240213152825.GA1223720-robh@kernel.org/
-> [2]: https://lore.kernel.org/all/aSdvv3Qss5oz_o6P@smile.fi.intel.com/
+Signed-off-by: Abdurrahman Hussain <abdurrahman@nexthop.ai>
+---
+Changes in v6:
+- Cosmetic changes to address the comments.
+- Added a patch to use resource format specifier in debug log.
+- Link to v5: https://lore.kernel.org/r/20260126-i2c-xiic-v5-0-88a16a28721c@nexthop.ai
 
+Changes in v5:
+- Reorder the cosmetic patch to be the last in the series.
+- Added a documentation patch to describe the optional clock.
+- Minor commit body rewording.
+- Link to v4: https://lore.kernel.org/r/20260123-i2c-xiic-v4-0-4a3eba3510ce@nexthop.ai
+
+Changes in v4:
+- Reorder the cosmetic patch to be the first in the series.
+- Amend the mutex_init patch to also switch to the managed pm_runtime_
+  variant.
+- Link to v3: https://lore.kernel.org/r/20260123-i2c-xiic-v3-0-eb7cd4254dfb@nexthop.ai
+
+Changes in v3:
+- Reorder the "optional clock" patch to be the first in the series. 
+- Add a patch to switch to devm_mutex_init().
+- Remove dup message in error path.
+- Cosmetic: use temporary dev variable.
+- Link to v2: https://lore.kernel.org/r/20260122-i2c-xiic-v2-0-134f5d743e8b@nexthop.ai
+
+Changes in v2:
+- Split the patch into two independent changes.
+- Added struct device *dev at the top of probe() and remove() to re-use.
+- Switched to device_set_node(...)
+
+---
+Abdurrahman Hussain (7):
+      dt-bindings: i2c: xiic: make clocks optional
+      i2c: xiic: make the clock optional
+      i2c: xiic: switch to devres managed APIs
+      i2c: xiic: remove duplicate error message
+      i2c: xiic: switch to generic device property accessors
+      i2c: xiic: cosmetic cleanup
+      i2c xiic: cosmetic: use resource format specifier in debug log
+
+ .../bindings/i2c/xlnx,xps-iic-2.00.a.yaml          |  1 -
+ drivers/i2c/busses/i2c-xiic.c                      | 92 +++++++++-------------
+ 2 files changed, 38 insertions(+), 55 deletions(-)
+---
+base-commit: 63804fed149a6750ffd28610c5c1c98cce6bd377
+change-id: 20260122-i2c-xiic-3ba89ff5ea93
+
+Best regards,
 -- 
-With Best Regards,
-Andy Shevchenko
+Abdurrahman Hussain <abdurrahman@nexthop.ai>
 
 
 
