@@ -1,104 +1,61 @@
-Return-Path: <devicetree+bounces-259834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259835-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AAGuHiCceGlurQEAu9opvQ
-	(envelope-from <devicetree+bounces-259834-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 12:06:08 +0100
+	id 4KUeEN2beGlurQEAu9opvQ
+	(envelope-from <devicetree+bounces-259835-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 12:05:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D539993572
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 12:06:07 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE2B79352E
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 12:05:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DE380301E3E3
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 11:03:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 264A33014535
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 11:04:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A9A430B51B;
-	Tue, 27 Jan 2026 11:03:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1448230B52E;
+	Tue, 27 Jan 2026 11:04:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nW2gsptQ";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="U20RJlKV"
+	dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b="Yssn+2Mq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from sender4-pp-o92.zoho.com (sender4-pp-o92.zoho.com [136.143.188.92])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42E1030AD15
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 11:03:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769511836; cv=none; b=YuHvR9gaAIwVp1OWkaFFzfyoCp3MZ6SCx2EKp2XH6ZKyZLH/w/23rzjx4eI51idFC2swslXEkKmP7FnE0Gqo/YKFFDVC1FE3TAedjnHY6Fxtd0vqjuSC65dKC1GvbmrVtWTWG40eKFTET2+Na2jT73C28RUU+WhwxIKzyjoHT3w=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769511836; c=relaxed/simple;
-	bh=iBCY7qOgjb/BvYY+7R0cdnjXBWepr7FXmN50KgQr2zI=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B25D30B51F;
+	Tue, 27 Jan 2026 11:04:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.92
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769511886; cv=pass; b=bIE4faOrkBbgIQaiQSBsRzio1yUMAMypbhTaXcJA0bgjqSjq3buHx29VeWt6vPBJHvxRD63/Fiar0rwlWLEQdIXwxGfTG8DdkjmCejuewXdklgw60WHKK8rIyio2ymgg0R5FujrIqYiElAj3EhHR00E+W9npcsekcQQDQTainxc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769511886; c=relaxed/simple;
+	bh=FG6HFQL/cV3+5iYVYIgLIOwsbcYD6bxgBJ/bMY+o10k=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QTyZwVQ6dtwgkQf02N0uHaMqxUuoQyy8W4TJD1CocKnh12f34OCTTOoRSVSdoZttGjxwFGpnlJ/RwRjGrRnjtGTnXn45Dr9nL3WpjmZpeCoLfAdmSv2cOv7EfSXcsSHcuKgdnNS9H5t16XNTWNq+HndpAoNuvtM9p9HF62ws79U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nW2gsptQ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=U20RJlKV; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60R87L4I2379299
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 11:03:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	9HDg93K558bl2sB4IRlaeHit85Z4PQhKJls60teCPJg=; b=nW2gsptQ2T6jeujb
-	xBGcMZgUn2wg6XPW22K2EXbeuujAodQxoUm/VOyQ4leBNNzWzMQlr8thYoiDPimN
-	AVWxR/Tb0rJs5LC8NsIZpqgc6Kwi3z+jI12lZ3yN7mSgHgOjZP9Boa/Rd9ifH8Ad
-	xbMYkqlqpzfAOPsxrh7sJasmscB+VmGKkRdm7JYqdtLtFOMX8jIGM/xtyMpdzqwP
-	F9hfaGprY2ILt4Eo5bVVFMgq3+Ac8A8yQu5c8BUXeR0shSYe+X8y0MJSbVsL47su
-	wof9urh/7VedrV7OCVr2Z4xnbTGWJ9yEAGgi09XBR/CFiATy4e8bFk1Qe2HjrNh0
-	hkM/tw==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bxsjr8k8s-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 11:03:54 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-501468a59d6so6597991cf.0
-        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 03:03:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769511833; x=1770116633; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9HDg93K558bl2sB4IRlaeHit85Z4PQhKJls60teCPJg=;
-        b=U20RJlKVmttzP6OrKr+p2WXZ9vrA49QfjyAQCSkR++k9WUQGcLM+r5w1iPPyM2Yn/C
-         kjB9Im1Gf6/NQPW9vme9Rz4dlEjdFbAwJHhwd7F4aM0atp103Pm770V+OCuZ+dMC3Zha
-         Lmc0m6wyzkKwv0QO4ze/l9TbIA9+JT7MO7S17ZuhVBfLu3eeBz4IYV7iQCg9IEchLguq
-         y33tXZMYhLSgw/SI8FvrZUFC+PNkqvbdCLHK1GQdVPXwvj8TcTYjgCervWuI+F8IOy9G
-         6+kklU6i5MZcjPzmJ+E1WvuZiI6rqA0xu5MoRZtFToi7QouiyAiMnCGOrjDXide7Usg/
-         E5qA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769511833; x=1770116633;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9HDg93K558bl2sB4IRlaeHit85Z4PQhKJls60teCPJg=;
-        b=ol2iQj3U8QJHqV4c2lHVmAZhWChTM3fQPIufiLTO/bwfU1qZ6i+Q36lksUMmbykD1n
-         wRJfn5YMR2/214W08WD9xMC33NYySR++QWI6CHtSnfyqHsbCES7Mjsjp/38sXIch80kV
-         wSTE1EGNTJ6l7xSUZsZEQDGIlHmNC+cAY6EkEhRModu62alXNagZlA3SQpl0YcUSA+Sp
-         G47U/pyUqNBEze2vh1UffkLIck6mPHN8oM70MMPYw2ZId39dgOR6shtTWO9FmBIeiQzY
-         MHuoX0gSQbVZSc5LGSyJw0glafsESdDsbNY2//39L+3A6HLydkruc/mk3Y/fAhb1fFBR
-         +Oxg==
-X-Forwarded-Encrypted: i=1; AJvYcCX+7yUJeRSC6PqhhGfAjuWELzFEsgAYujcKyprSKHSssuyRZpqAWU4dwrZcroBg3v60btEBvO6nKIVP@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzs2ZM6uNnjHrKUGGuLX3bpw+gL0ZaXtmJhkHHgmxVj9Ma0FPbA
-	eZOaqdPAzWOcb4i3L0sQFJ02lJPGvXnYcGBmaDREydFuzrGPYZprYZaPsQYGKot7bXOOwtlMajB
-	VNtCUi0/QPiyw9PUUrX+VZvsgcNs7eSeyG/4uReVLS+5VF9DbWhtESOcF7wXLWT8n
-X-Gm-Gg: AZuq6aI+t6NZ8z/gCQYFNW5CDjqCqYXzp6AZP1TCFYcGn1P4u9p16rFuPXsEBWYF6U6
-	jWl+9EgL4PSvvQaAxpmIK9jMu/cWQC2IIx+W55kfkGdDx9GIEOiGAB00mvZcgzDtPMX9qVuHEWw
-	3DDd9fjWUF+kinOWjJ+DdgNvQk7myiVyXkZY15eddYGMvYVK6RCSowqUjA3+ENDmzhodOirlFMw
-	f83QJsfPwe6GZ/8hxY+bmgZsx2FJCEmNmahA1qZ59UNe+JPV3bMSKyG0ddp5VRNHl8B1tDcKl+u
-	x7BUo3hNqh0n7LGnPaxtFc9iFodn7LEnrQOWcAkReg8vcwU4gaWxryJUv78ytkcxDlm6EJpFdc0
-	+Tbvh/kXKIlJaSa5YcaL0O6sKeak1pVaUsIiUIVe608qEFg7Bz1CaPoeRNnspu2uLHDE=
-X-Received: by 2002:a05:622a:14b:b0:4f1:dffa:7834 with SMTP id d75a77b69052e-5032f9f3eb2mr9633261cf.7.1769511833429;
-        Tue, 27 Jan 2026 03:03:53 -0800 (PST)
-X-Received: by 2002:a05:622a:14b:b0:4f1:dffa:7834 with SMTP id d75a77b69052e-5032f9f3eb2mr9632971cf.7.1769511833039;
-        Tue, 27 Jan 2026 03:03:53 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6584b3e06c5sm6653970a12.3.2026.01.27.03.03.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Jan 2026 03:03:52 -0800 (PST)
-Message-ID: <a780c082-083c-4d6f-9f35-37170b55339b@oss.qualcomm.com>
-Date: Tue, 27 Jan 2026 12:03:50 +0100
+	 In-Reply-To:Content-Type; b=HhSiCZTjBCuhEv8ghEFTOyVd+k0BwIFntoPSJRDDRFD+yKiW9qPYz4Lzum1Pz6naCri0FR0lVEs2r+5qm92SpgIWmBZ2A9mvKF2OfZd16nQ791MeOWVuTwgIfO2CbVyg8Bd/oB+t/B0s91oQ0XuUotP8nSPeYF1vg4bR79KQr+E=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com; spf=pass smtp.mailfrom=zohomail.com; dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b=Yssn+2Mq; arc=pass smtp.client-ip=136.143.188.92
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zohomail.com
+ARC-Seal: i=1; a=rsa-sha256; t=1769511863; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=Qg9X3pcoJnoqViWAtoWu+1abukl8Fw5lGIAyAv5BWD3vf2Qt+Y2HBJoSm6lHZzgY07f9QhbdgMnisC8fVRFzFp4CUU5HhGtDUJfPfY89ioVwpqdt8hXeZ0xpvyx1oZiwhLKIIUkrWK40ABNm/4+axHkf/jSJsjLFuS134r3jGpg=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1769511863; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=zIZv98xexLqGPRXaRA7uJoEdTPOCRvLcc++itdaM4UI=; 
+	b=D+E2caX5GVBGRR0A8rjCa2P57YJRm8gJTwfYBgJFz0Ffg43w0VLJZCQlCoRDdYKahcNa2xnx/CjuKY4KGhPHfFZDFyGeBox2Arze2ad1Ac9ED0AluOZlgXXxzaFxBpMAyRREUfl2ctsmkp2W3p69mhQkCho4FIvzkjS4wB0Z6tU=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=zohomail.com;
+	spf=pass  smtp.mailfrom=kingxukai@zohomail.com;
+	dmarc=pass header.from=<kingxukai@zohomail.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1769511863;
+	s=zm2022; d=zohomail.com; i=kingxukai@zohomail.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Feedback-ID:Message-Id:Reply-To;
+	bh=zIZv98xexLqGPRXaRA7uJoEdTPOCRvLcc++itdaM4UI=;
+	b=Yssn+2MqnT1qoMPXr6YSK96CPNXVriKXqEsW0mq/UEwfSKYG4Bu+HG8e/oaAAkno
+	jMBGI1Um3eAiMZeBuuNH1jma14j1gOEaS7iIUZ9ASMOb7tW3WyXclPRjU0cgrzHPAsw
+	HnfbuposIAuRXBDIRp+LCc2H8kJFktwrdXwklJWU=
+Received: by mx.zohomail.com with SMTPS id 1769511855331786.2569087782504;
+	Tue, 27 Jan 2026 03:04:15 -0800 (PST)
+Message-ID: <0af969a7-3579-4303-b302-f171ef02a163@zohomail.com>
+Date: Tue, 27 Jan 2026 19:03:59 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -106,86 +63,114 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: qcom: hamoa: Add EL2 overlay for hamoa-evk
-To: Xin Liu <xin.liu@oss.qualcomm.com>, andersson@kernel.org,
-        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, tingwei.zhang@oss.qualcomm.com,
-        jie.gan@oss.qualcomm.com
-References: <20260127062425.1084673-1-xin.liu@oss.qualcomm.com>
+Subject: Re: [PATCH v10 2/3] clk: canaan: Add clock driver for Canaan K230
+To: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Conor Dooley <conor@kernel.org>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ Samuel Holland <samuel.holland@sifive.com>,
+ Troy Mitchell <TroyMitchell988@gmail.com>
+References: <20260116-b4-k230-clk-v10-0-de59033c5d30@zohomail.com>
+ <20260116-b4-k230-clk-v10-2-de59033c5d30@zohomail.com>
+ <aW3o8xVziqb9iRBN@duge-virtual-machine>
+ <bf39fdb8-6698-418b-bd4a-6d8d40ccc9a0@zohomail.com>
+ <aXJJ3MjQSq8Rq084@duge-virtual-machine>
+From: Xukai Wang <kingxukai@zohomail.com>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260127062425.1084673-1-xin.liu@oss.qualcomm.com>
+In-Reply-To: <aXJJ3MjQSq8Rq084@duge-virtual-machine>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: RX9iF2bJ84OO4q74MkQG-JKXVO6d_hif
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI3MDA5MCBTYWx0ZWRfXzAXTw8KvA632
- NolbwMprRsNN0eYAXZbE+WTNkemCfP/+lx1gocaEXocJilKDwrHZyT3tZD/5K9rM+H6/TDMy1GZ
- kc5YMbZjuWo6Sd5xbdZiJx4vXVDtH8KhYeHoO8UZB2RLRhi6Pec7+4QRh2vBAxxbd4w11rarlTW
- Fayt1GRymu9IItGulRxfjSJ7VtTU46k0/4ZjAFJ/J9hMcL1QaLIBT1192q4TZKniF7IoBeq5WYn
- PQJ3E/DQHZRCej/QxXsEuQhGzpQrAQQX8j6tieEteii+8B2FbZ9hZY8ouXkk5yC+Vx7Xs/CSEqo
- SDY8G4g/3ECCoga9F0c4h6AVJrTAsprtuaKAmfKWmLXEl9yRcLW8OCWVarmAiq0WuKsOOIOnxKV
- eLDqsxetmJqzyiq2F6qsfyEVoatWvRz0H/BZHqYTgEZcWqHEB6/MR7Nwx35xSiFw4n769vYUaVj
- +4N/aZrXAay6W7dIULA==
-X-Authority-Analysis: v=2.4 cv=b+i/I9Gx c=1 sm=1 tr=0 ts=69789b9a cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=tPD64odK4mGqIG_ypxYA:9
- a=QEXdDO2ut3YA:10 a=a_PwQJl-kcHnX1M80qC6:22
-X-Proofpoint-ORIG-GUID: RX9iF2bJ84OO4q74MkQG-JKXVO6d_hif
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.20,FMLib:17.12.100.49
- definitions=2026-01-27_02,2026-01-26_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 adultscore=0 lowpriorityscore=0 clxscore=1015 phishscore=0
- impostorscore=0 bulkscore=0 spamscore=0 priorityscore=1501 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601270090
+Content-Transfer-Encoding: 8bit
+Feedback-ID: rr08011227a510c0fba220186bba5f362e000053b54e7061a9cbdd371d5284c83a55924f9557a426366cbb14:zu080112272a5276332e1090ec5d5ceed40000b2c296e870bfa7ef506b33ce0394521dd45f1929333996b33b:rf0801122cc4400f0c83132b1947518dc60000c8bd395d79c79d723ff8939ceba3fa55336a182f4efa95f61dab38722347:ZohoMail
+X-ZohoMailClient: External
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[zohomail.com,reject];
+	R_DKIM_ALLOW(-0.20)[zohomail.com:s=zm2022];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-259834-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-259835-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,sifive.com,gmail.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kingxukai@zohomail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[zohomail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: D539993572
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,zohomail.com:mid,zohomail.com:dkim]
+X-Rspamd-Queue-Id: AE2B79352E
 X-Rspamd-Action: no action
 
-On 1/27/26 7:24 AM, Xin Liu wrote:
-> Add support for building an EL2 combined DTB for the hamoa-evk
-> in the Qualcomm DTS Makefile.
-> 
-> The new hamoa-iot-evk-el2.dtb is generated by combining the base
-> hamoa-iot-evk.dtb with the x1-el2.dtbo overlay, enabling EL2-specific
-> configurations required by the platform.
-> 
-> Signed-off-by: Xin Liu <xin.liu@oss.qualcomm.com>
-> ---
-> Changes in v2:
-> - Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-This should live a couple lines higher!
+On 2026/1/23 00:01, Jiayu Du wrote:
+> On Thu, Jan 22, 2026 at 07:40:29PM +0800, Xukai Wang wrote:
+>> On 2026/1/19 16:18, Jiayu Du wrote:
+>>>> +
+>>>> +K230_CLK_GATE_FORMAT(hs_hclk_src_gate,
+>>>> +		     K230_HS_HCLK_SRC_GATE,
+>>>> +		     0x18, 0, 0, 0,
+>>>> +		     &hs_hclk_high_src_rate.clk.hw);
+>>> Here, you replaced hs_hclk_high_gate(in v9) with hs_hclk_high_src_rate,
+>> I'm a bit confused, as I don't recall making these specific changes.
+>> Looking at the code below, the only difference between v9 and v10 is
+>> within the K230_CLK_GATE_FORMAT(hs_hclk_src_gate, ...) definition, where
+>> the second parameter changed from 1 to 0. Everything else appears
+>> consistent. Could you clarify which change you were referring to?
+>>> but after my board test, I find that when hs_hclk_high_gate is turned
+>>> off, the mmc/sd and other high-speed subsystems can not work. So maybe
+>>> you should not change the hs_hclk_high_gate to hs_hclk_high_src_rate.
+>> Regarding the clock management, I recommend explicitly enabling
+>> hs_hclk_high_gateas it will be closed by `close unused clocks`.
+> Sorry, you are right. It was me who made the changes locally. And I
+> saw your reply to this email[1], which you said According to the vendor's
+> code, the parent clock of hs_hclk_src is hs_hclk_high_src.
+>
+> Indeed, the parent clock of hs_hclk_src is hs_hclk_high_src. 
 
-Konrad
+> but hs_hclk_high_gate is the gate of hs_hclk_high_src. 
+
+No. It seems there is some confusion. The hs_hclk_high_src does not have
+a gate.
+
+The clock tree is as follow:
+
+       pll0_div4
+          hs_hclk_high_src_rate
+             hs_hclk_high_gate
+             hs_hclk_src_gate
+                hs_hclk_src_rate
+                   hs_sd0_ahb_gate
+                   hs_sd1_ahb_gate
+                   hs_ssi1_ahb_gate
+                   hs_ssi2_ahb_gate
+                   hs_usb0_ahb_gate
+                   hs_usb1_ahb_gate
+
+> So, what you mean is
+> that you will add the CLK_IS_CRITICAL flag to the hs_hclk_high_gate?
+No, I don't intend to add CLK_IS_CRITICAL flag. Instead, I recommend you
+to explicitly enable the clock by using clk_prepare_enable in your driver.
+>
+> Link: https://lore.kernel.org/all/159615d3-cc52-43be-bf6d-5fe717ef1cc4@zohomail.com/ [1]
+>
+> Regards,
+> Jiayu Du
+>
 
