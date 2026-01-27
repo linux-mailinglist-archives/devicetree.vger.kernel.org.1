@@ -1,145 +1,162 @@
-Return-Path: <devicetree+bounces-260084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260086-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0FHgJakMeWnyugEAu9opvQ
-	(envelope-from <devicetree+bounces-260084-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 20:06:17 +0100
+	id gMwoJkcMeWnyugEAu9opvQ
+	(envelope-from <devicetree+bounces-260086-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 20:04:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44348999B6
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 20:06:17 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 846D499953
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 20:04:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0E2BA304DD4A
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 18:59:12 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 5DEC43023759
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jan 2026 19:02:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C53434F476;
-	Tue, 27 Jan 2026 18:59:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4D88266565;
+	Tue, 27 Jan 2026 19:02:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cWXAZ33Q"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lfKoWLku"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76E3A346E6A;
-	Tue, 27 Jan 2026 18:59:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CCB529DB65
+	for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 19:02:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769540346; cv=none; b=syC8TRsqE5DaXuyFf5LZRtFvsv2FUokk9IGjdsejsHa/hOFujUXW5uoP5SRTnbbBOxpd/gs7diOdMo3fMtnb0Xd2e7MCfB5sKrIdhyJEOGFt7LsSlRbq0EclOKDIZzAVkimd3xnIOGT1oEJw2CJTpFekJw6B5mu4/+eTaZgeoh4=
+	t=1769540540; cv=none; b=BH/Glviqn26Y47GTLaju6qVQzqNCYFRdiNTsucNoMGOwPxBet97iAyg8sYdNq8ONajpbUkfQEuSCvTII6ejUYX+7zOrBrUF6aMUQqM4K97xKyn5XOu3R5h7Dg1XmuhXkYLXnwV9mmw1cmimDBYAv1WlJexLyjh2tj1u9dZZM5YQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769540346; c=relaxed/simple;
-	bh=RNmO6INJrf6vBZOIGgzqhzcFiKfgOZ5TeFz3FBzqLHw=;
-	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pEQ54RdzFOTx5cIVzDsTRSq9nLbPVqAVkIL5Y2eXYx54PyX8NnTfxIplo7hnx01vRhLlH9NWNBoWtyMLG1r/dvdERn/ehZn9FXqRtKNBuoULynK3iGudkgDH5ptBJBwvPUro2Ht8ddV5GKmGN9VU1sQlT4a54nhmvuuBh+/bbGM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cWXAZ33Q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CA81C116C6;
-	Tue, 27 Jan 2026 18:59:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769540346;
-	bh=RNmO6INJrf6vBZOIGgzqhzcFiKfgOZ5TeFz3FBzqLHw=;
-	h=Date:From:To:Subject:References:In-Reply-To:From;
-	b=cWXAZ33QRRnZkydpJVvnUSoHkk8cxWYejV8/TPs8NZD0o8n+tA5Gm0fblbii+5VGc
-	 zE3lmp4kPGZWOrVbzafwOENhHCHGueS8GLOFS/U2h5jDuhGclzkVJqTybpK7HgVVkA
-	 NCDGysIFqGpSOGwldCYwZ54m1x0jeANTKg8dfnTkt2o7wGOSY3y/uZE0lCJ26s0TII
-	 hwvPUU4rdUkDTaX5h2uxp2LB+6cty8MZrPBeWQh0abyILSKhQKFi0hSvh6XxFw0qJz
-	 jNnp5eYhRL4LDUw71ZpWrlO6Wfl+b7E5lE6Jaq+XTvEbep4gk7b6iKXUBbDOLIPPVO
-	 2aMucMFWV9IXA==
-Date: Tue, 27 Jan 2026 18:58:59 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>, linux-sound@vger.kernel.org,
-	sophgo@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 1/2] ASoC: sophgo: cv1800b: document DAC overwrite
- handling
-Message-ID: <f5a0646e-f21d-48a2-8a57-e47db794a327@sirena.org.uk>
-References: <20260127-incremental-for-i2s-dvier-v1-0-431b809c632d@gmail.com>
- <20260127-incremental-for-i2s-dvier-v1-1-431b809c632d@gmail.com>
- <6f1d8478-c2b6-4966-b339-47c4d55fe7c8@sirena.org.uk>
- <aXkKfZDyG1uxDsD0@anton.local>
+	s=arc-20240116; t=1769540540; c=relaxed/simple;
+	bh=wsTUs7Ugu6sRsPCnLRugfGiJd2KbA6A3fdK52CcU1sY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=D/fyUE+UsDQGT68/K1LvRyD9xvE78/1AdaQ2S/AHM/WseEzotwWAaWGVQzKgQdVI3QYgURLvwb27oShmCiDFJFU8BqWIJT8qztrTs+n6ipSwdk734d7X2AO6Jvv9iWM1jDBpdcH8iriz2vt2wKJ81TIuQOBvMSz/kcOgUH1C5b8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lfKoWLku; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-2a0fe77d141so35048625ad.1
+        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 11:02:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1769540539; x=1770145339; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rKr/gj4p6dZheadeORZRicBPaAbBWotO+jXxUdB5K+g=;
+        b=lfKoWLku/vUEoT73z38w/GsCgVaCGGe4qqmQO47E6w1U/U4udMd0thR3I+nvdF3fKw
+         WvK3qHY22QGjFQCS6dHdgAvj/W8q4YUwncefnYAKg9P2tBMrKRFgNvEJLIzIFzB4A3MX
+         lTJaMAXESyeN3SWbfAol3Q6CKEar8k0f6Vn1yqnUtjYyH7c92W0qno4DtuDIg/tmbJmi
+         ZL4DIaKUEdJjw5oKGYZExdiIrlV5YvjrHnXzQ3KmmcnncApEgS78vj5nj6MP1Vyw1jfs
+         WNQ4ELL6GKleIT3k1VasDTifr8X9rGlEr4uF+dahmghYO1tNkEHXURqODAyixsSOvFDP
+         +gyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769540539; x=1770145339;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rKr/gj4p6dZheadeORZRicBPaAbBWotO+jXxUdB5K+g=;
+        b=o38fjDqVkyPFbXoMrY38ysSTXqShUgcMuK2kuUBGpDkpFIpMuHAHEFJ1RjdOoe/oLj
+         EBs3AssHch2izhtzSzhngv45hAH19Flpyu53Hju5PlpOaV6kDi6YEwihMW8odD0eNiOi
+         WQ8KQQrRteJTccqW+jkG0kPhd1BEnuTdAXYi51Kh6WfG0jpkkPMDwwthm32YI+wWx7ft
+         0ozmuCrHPOtjyusszq9qXUFoFAWq3bekSgFn2dfEwsXrPrc0tu9bbivcRcVKytKAe168
+         MAZybO/GAoBhOaSKwnF9qOdEDjXlapJ6YZmyEHml9oQdHHrBdWeGdqxhQhXqopxX8dVw
+         aRiA==
+X-Forwarded-Encrypted: i=1; AJvYcCXH2ZIH7gtCXnj/p657d8KgYa5lhyMvrLuygEL6qg3syr5eK5EYHE7Fvrh8mbpKTT+hMtqW5+av5r/c@vger.kernel.org
+X-Gm-Message-State: AOJu0YyyFsp2ASXjxC/FexiClvDYqEGsDwOQ6agh1GNzNRVTLg02AvoG
+	ChMpvJl23deHics6IVYmdCVyNsY4/TeqqccLE70R2fsELx2BtpYSDPCGJ5v2EXVy
+X-Gm-Gg: AZuq6aKerrclL0VzGDU7LWeEj+Sx4qd4fCbOtLohmVkizjmjl0o9uejlAItsvdeNtXr
+	lX1ykidi3A8kgqqzenlEirt+PdjkkXSGA/YhIZYJySU/PrWLkIwnMaajFz94TCSvigQMO7Svz+y
+	THANxN55fD7933geoX4xUMaFpmoQmNNt0+fyJ91zcyXrMgzfBrOAgRY5vXIM6x8m97HJbmb/buD
+	5JwFXG/xcZjaz+kBOT74jbJsU7A68fmddLsCJK4QBrphGb4KpAUyilQXtGC6gClwmjUD/SbMah8
+	eA2VnSKx/lMkgyIQCJPIvZcxdRW4K1eoK2JM9fNhlf2mausuHJqUCvVAnEVzPj9ovhiRNaD2H2I
+	8g3aVdyRdAdG+rQwOVNX2JG42bLbWwKQJ+h8rrt+EgYmYZghsCdijS7gpGlpo093TuzlTigWC+A
+	PQJ6MaDmH4Og4urnU0JkPRych+Q/47NxooKXck
+X-Received: by 2002:a17:903:2b0c:b0:2a0:9970:13fd with SMTP id d9443c01a7336-2a870dd9313mr22301895ad.43.1769540538606;
+        Tue, 27 Jan 2026 11:02:18 -0800 (PST)
+Received: from saikiran-Yoga-Slim-7-14Q8X9 ([2402:e280:3d17:646:6ecf:d9ab:b640:78c0])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a88b4c3d4csm938105ad.56.2026.01.27.11.02.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Jan 2026 11:02:18 -0800 (PST)
+From: Saikiran <bjsaikiran@gmail.com>
+To: broonie@kernel.org,
+	lgirdwood@gmail.com
+Cc: andersson@kernel.org,
+	konrad.dybcio@kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v3 0/2] regulator: qcom-rpmh: Add off-on-delay support
+Date: Wed, 28 Jan 2026 00:32:09 +0530
+Message-ID: <20260127190211.14312-1-bjsaikiran@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="8LAMoqXCOpm9loGG"
-Content-Disposition: inline
-In-Reply-To: <aXkKfZDyG1uxDsD0@anton.local>
-X-Cookie: I brake for chezlogs!
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260084-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,perex.cz,suse.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,outlook.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260086-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 44348999B6
+	FREEMAIL_FROM(0.00)[gmail.com];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[bjsaikiran@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_NONE(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 846D499953
 X-Rspamd-Action: no action
 
+This series adds support for the standard `regulator-off-on-delay-us`
+property to the Qualcomm RPMh regulator driver and updates the
+corresponding Device Tree bindings.
 
---8LAMoqXCOpm9loGG
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Motivation:
+On the Lenovo Yoga Slim 7x (Snapdragon X Elite), the camera regulators
+(LDO1, LDO3, LDO7) have large bulk capacitors and rely on passive discharge.
+When these regulators are disabled, the voltage decays very slowly. If
+re-enabled too quickly, the sensor experiences a brownout and fails to
+initialize.
 
-On Tue, Jan 27, 2026 at 10:57:43PM +0400, Anton D. Stavinskii wrote:
-> On Tue, Jan 27, 2026 at 06:49:14PM +0400, Mark Brown wrote:
+Verification:
+I verified that the core `drivers/regulator/of_regulator.c` does not
+currently parse `regulator-off-on-delay-us` in `of_get_regulation_constraints()`.
+Therefore, the driver must parse this property explicitly and populate
+`rdesc->off_on_delay` so the regulator core can enforce the constraint.
 
-> > You've not provided a Signed-off-by for this so I can't do anything with
-> > it, please see Documentation/process/submitting-patches.rst for details
-> > on what this is and why it's important.
+Changes in v3:
+- Added Patch 1/2: Update DT bindings to allow `regulator-off-on-delay-us`
+  for `qcom,rpmh-regulator` (Requested by Mark Brown).
+- Updated Patch 2/2: Refined commit message to explicitly mention the
+  passive discharge and bulk capacitor mechanism on the Yoga Slim 7x
+  (Requested by Mark Brown).
 
-> Sorry. I was relying on b4 prep --check. Looks like it was wrong. Should
-> I resend as v1?=20
+Changes in v2:
+- Moved the motivation/context from the cover letter into the commit
+  message of the driver patch.
 
-Probably easiest to just resend - sending as v2 is fine and probably
-less likely to confuse tools.
-
---8LAMoqXCOpm9loGG
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAml5CvIACgkQJNaLcl1U
-h9ColAf/fkgnBF6kRiud7owt/zoAhQrLAMNQlUlFwskWevHmn16QwdOmfa4p8Zxz
-iZ7aUK2l72TqSnLGeGTsQaN0b6F/95fIQKv6HHN3IpFapf6PQ/yRqRr18cZiXoEG
-IRZOwmrxHOeym/3pg/Ebsz6aOAXfOorDiZEx7rJo1MFVy82YuXbSNcjTgruQsPmV
-lTvtFv+F2E97fkAwjVLqbGcbBpmXcP37NoPD15fYIPyipUCijusaHEdeHEcj4XvS
-K19zqmoS4Ay8XVe723/HPS6787jIo3tKuPDhDGv7xKbIPG+egQ+w5vifCEpuA1Y3
-Ev54KUVRptPiGGTomsb6qOlTWeGmCQ==
-=6QcR
------END PGP SIGNATURE-----
-
---8LAMoqXCOpm9loGG--
+Saikiran (2):
+  dt-bindings: regulator: qcom,rpmh: Allow regulator-off-on-delay-us
+  regulator: qcom-rpmh: Add support for regulator-off-on-delay-us
 
