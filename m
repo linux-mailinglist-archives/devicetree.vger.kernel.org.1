@@ -1,542 +1,216 @@
-Return-Path: <devicetree+bounces-260638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260639-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qKL8K4KDemnx7AEAu9opvQ
-	(envelope-from <devicetree+bounces-260638-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 22:45:38 +0100
+	id GKQjNGCEemnx7AEAu9opvQ
+	(envelope-from <devicetree+bounces-260639-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 22:49:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16303A9311
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 22:45:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 65C0AA93AD
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 22:49:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CBA443004F4D
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:45:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DD7003019937
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:49:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C041227563;
-	Wed, 28 Jan 2026 21:45:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 683EA33B946;
+	Wed, 28 Jan 2026 21:49:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="E7lIJ5sa"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="aIGJEdcP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07FEE4A33;
-	Wed, 28 Jan 2026 21:45:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EEFB2F5A22;
+	Wed, 28 Jan 2026 21:49:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769636736; cv=none; b=HXy+P5mR4DcnEPADzgF6H7H78CaEQFn1K9SELl5AYSvwBtfSGisB5xVH7P8CTAqk6cSxMPzGCBR3ze7FqU5SNebpgWWNh9JzKNwg72uPoc4SirAS3qjYnaIfEEhHmidbUhWqlZuRKaJtyi2BucUI9b75FQHFoBTveqL+oGc6rR8=
+	t=1769636953; cv=none; b=SYNM28DEo3p1Oy11R3HnuWd3TCMCVycmpGA/VWiSAvWI8fg/EN42f7qZhlqgd8QUzu2Yz8J5V+z5TBkszd0nXkgy2Vbe8rTp/Ms0N2Ub8WF27IFK7wwA+BGwXTIE757d8Z9YehmhBboM2AfWtRZeag5ORmjcHGQcp6IY5Hi+O2E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769636736; c=relaxed/simple;
-	bh=vuFNYwMITtQZtPhVh75ICH5ResFTjDJ7mP/pdnIeeKc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Xl7gEAoyTjfXtvKRi3JGmKrib1MeBy4YNGlOnJMDU9dwvTJIQd5U8636hcZx67Ruy3Br32ZNhcfORAFTG7qWG2PVqrwF2Mm8eR3gRG1OJr3XbtBOT2xBCLV2bfaZuNd6WCw/GpbZ+dYJgzP1CZ7DGZmF+685FJV5jGeyWtGU708=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=E7lIJ5sa; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1769636734; x=1801172734;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=vuFNYwMITtQZtPhVh75ICH5ResFTjDJ7mP/pdnIeeKc=;
-  b=E7lIJ5sa5Kr0lw5RBv7F1Zs2JP2uMp/N3cHB9tDxFFyq8+aShd0ZzLhJ
-   7BDuFPiqsEuoaIyJlW2jTIfykxnvXWSudZNkwIaJnFWPLDGf5RbEHcigL
-   8wALf6MOYYXdUxowClV89g+Yc1l0gjwBNA4T2vs05SvGXDtlL9O+5IQ6S
-   0uRGKE37VHrmeHMNZYvsQAdXJDL+bpO6e0jcLlQYwTp+8g3iTpTf6MviQ
-   lYUAQQPq33CfItagcihzbbll6cRJubQUJgpRH1amGOWewX0p5ilTAKRB/
-   J+g/6vFGMh6qcVgkgRG2Jzd9q4OHg2WgWijPT0bZ2QyNfzE4q5+kdOQkR
-   A==;
-X-CSE-ConnectionGUID: opYWcwkHRzmZp7KyiOhT8A==
-X-CSE-MsgGUID: B9z9dy8BQqGdp/clRnt0+g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11685"; a="74724712"
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; 
-   d="scan'208";a="74724712"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jan 2026 13:45:33 -0800
-X-CSE-ConnectionGUID: NPsEVXleRK6jax+SzHr1qA==
-X-CSE-MsgGUID: 0hkHzCDOQWOH54TjItZp8A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; 
-   d="scan'208";a="245984124"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.245.57])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jan 2026 13:45:27 -0800
-Date: Wed, 28 Jan 2026 23:45:24 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Matthias Fend <matthias.fend@emfend.at>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hans Verkuil <hverkuil@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Hans de Goede <hansg@kernel.org>,
-	Ricardo Ribalda <ribalda@chromium.org>,
-	=?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>,
-	Tarang Raval <tarang.raval@siliconsignals.io>,
-	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-	Sylvain Petinot <sylvain.petinot@foss.st.com>,
-	Dongcheng Yan <dongcheng.yan@intel.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Alan Stern <stern@rowland.harvard.edu>,
-	Jingjing Xiong <jingjing.xiong@intel.com>,
-	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
-	Mehdi Djait <mehdi.djait@linux.intel.com>,
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
-	Svyatoslav Ryhel <clamor95@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Hao Yao <hao.yao@intel.com>,
-	Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
-Subject: Re: [PATCH v9 2/2] media: i2c: add Himax HM1246 image sensor driver
-Message-ID: <aXqDdN2fHDlcYjhk@smile.fi.intel.com>
-References: <20260128-hm1246-v9-0-f9c996486a95@emfend.at>
- <20260128-hm1246-v9-2-f9c996486a95@emfend.at>
+	s=arc-20240116; t=1769636953; c=relaxed/simple;
+	bh=WrvAyanbpwZ6MTEpVe5ifEBlgTpCvqg1qgTjOkpLaBY=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=t5UHVc9YQu4XlMEq7o2HRT5hJoJx5rIyc0UmTLvJY1wyO5qe+mwrwH740LKMVvgKORApBQc8H3KLRlYPPcf7+fh/1manWHQ544wxlVjiCm1dCLjIXYymgGW39YCWgXS4iQ/Vs3QX/0DYxNoUAo0AKzT4OGx4FCR9azlfgjXguKw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=aIGJEdcP; arc=none smtp.client-ip=80.241.56.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4f1bWc4D8zz9v9k;
+	Wed, 28 Jan 2026 22:49:00 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1769636940;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ruAirXc8ptlR96ve5/9BugE40WCJ6xsmkWJx5Uj7rfU=;
+	b=aIGJEdcPUTNpCRPoxieT4ns0YAjlCS1SCWknUwnMSvmg9qMSU20pliO7EHJ/YKehTef8X4
+	OfTEP83Ov9GJqRBfQnmvxyTZcUkhN3Isu8Z69m16GysXboDZgypVf6Kj9EW9o5rDTKZsMY
+	NIcdir18IPW6rSkamg/khyUXsG3gehroa1KRAizet4EDWTmH8218TSM2mJHy+ejCWT3X0R
+	RlbV1knLwiHUkLPAQpjKDcSOf9gjVgsxYEH1P6cGBrYcHW7AVeKncHeNW5OdTfn2+5JM62
+	sRj7wXkwpjWQSCUAdP5w3MdePLt7m5N1DeC244DsjJqF2Be7TWLIy2uh2IH44A==
+Date: Wed, 28 Jan 2026 22:48:52 +0100
+From: =?UTF-8?B?xYF1a2Fzeg==?= Majewski <lukasz.majewski@mailbox.org>
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: festevam@gmail.com, linux-arm-kernel@lists.infradead.org,
+ s.hauer@pengutronix.de, kernel@pengutronix.de, horms@kernel.org,
+ shawnguo@kernel.org, imx@lists.linux.dev, linux-kernel@vger.kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org, wahrenst@gmx.net,
+ pabeni@redhat.com, davem@davemloft.net, netdev@vger.kernel.org,
+ richardcochran@gmail.com, edumazet@google.com, andrew+netdev@lunn.ch,
+ robh@kernel.org, krzk+dt@kernel.org, andrew@lunn.ch
+Subject: Re: [net-next,v20,3/7] net: mtip: Add buffers management functions
+ to the L2 switch driver
+Message-ID: <20260128224852.62b16788@wsk>
+In-Reply-To: <20260128022554.4151421-1-kuba@kernel.org>
+References: <20260126103400.1683125-4-lukasz.majewski@mailbox.org>
+	<20260128022554.4151421-1-kuba@kernel.org>
+Organization: mailbox.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260128-hm1246-v9-2-f9c996486a95@emfend.at>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-MBO-RS-ID: 0a70d41f27b7b89e913
+X-MBO-RS-META: p4u7ozw7pi4bkkx54cikgzroe65njg1g
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,linux.intel.com,chromium.org,apitzsch.eu,siliconsignals.io,foss.st.com,intel.com,linaro.org,rowland.harvard.edu,gmail.com,ideasonboard.com,pengutronix.de,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-260638-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260639-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	HAS_ORG_HEADER(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[29];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,lists.infradead.org,pengutronix.de,kernel.org,lists.linux.dev,vger.kernel.org,gmx.net,redhat.com,davemloft.net,google.com,lunn.ch];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:email,intel.com:dkim]
-X-Rspamd-Queue-Id: 16303A9311
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lukasz.majewski@mailbox.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[mailbox.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mailbox.org:dkim,linux.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 65C0AA93AD
 X-Rspamd-Action: no action
 
-On Wed, Jan 28, 2026 at 05:08:02PM +0100, Matthias Fend wrote:
-> Add a V4L2 sub-device driver for Himax HM1246 image sensor.
-> 
-> The Himax HM1246-AWD is a 1/3.7-Inch CMOS image sensor SoC with an active
-> array size of 1296 x 976. It is programmable through an I2C interface and
-> connected via parallel bus.
-> 
-> The sensor has an internal ISP with a complete image processing pipeline
-> including control loops. However, this driver uses the sensor in raw mode
-> and the entire ISP is bypassed.
-
-I found no serious issues here, just a few nit-picks. FWIW,
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-
-...
-
-> +/* Clock setup registers */
-> +#define HM1246_PLL1CFG_REG		 CCI_REG8(0x0303)
-> +#define HM1246_PLL1CFG_MULTIPLIER(x)	 (((x) & 0xff) << 0)
-> +#define HM1246_PLL2CFG_REG		 CCI_REG8(0x0305)
-> +#define HM1246_PLL2CFG_PRE_DIV(x)	 (((x) & 0x1f) << 1)
-> +#define HM1246_PLL2CFG_MULTIPLIER(x)	 (((x) & 0x01) << 0)
-> +#define HM1246_PLL3CFG_REG		 CCI_REG8(0x0307)
-> +#define HM1246_PLL3CFG_POST_DIV(x)	 (((x) & 0x3) << 6)
-> +#define HM1246_PLL3CFG_SYSCLK_DIV(x)	 (((x) & 0x3) << 4)
-> +#define HM1246_PLL3CFG_PCLK_DIV(x)	 (((x) & 0x7) << 0)
-
-Is not using BIT*() and GENMASK*() in the above on purpose?
-
-...
-
-> +/* Test pattern registers */
-> +#define HM1246_TEST_PATTERN_MODE_REG	 CCI_REG8(0x0601)
-> +#define HM1246_TEST_PATTERN_MODE_MODE(x) (((x) & 0xf) << 4)
-> +#define HM1246_TEST_PATTERN_MODE_ENABLE	 BIT(0)
-
-Ditto.
-
-...
-
-> +#define HM1246_ANALOG_GLOBAL_GAIN_STEP	 1
-
-0x01 ? (Since the min and max are represented in hexadecimal form)
-
-...
-
-> +struct hm1246 {
-> +	struct device *dev;
-> +	struct v4l2_subdev sd;
-> +	struct media_pad pad;
-
-Wondering if putting the embedded structs first (either sd or pad) gives a
-better (smaller) object size. Sometimes this kind of shuffling makes
-container_of() to be a compile-time no-op.
-
-> +	struct regulator_bulk_data supplies[ARRAY_SIZE(hm1246_supply_names)];
-> +	struct clk *xclk;
-> +	unsigned long xclk_freq;
-> +	struct reset_control *reset;
-> +	unsigned int mbus_flags;
-> +	s64 link_frequency;
-> +
-> +	struct v4l2_ctrl_handler ctrls;
-> +	struct v4l2_ctrl *exposure_ctrl;
-> +	struct v4l2_ctrl *hflip_ctrl;
-> +	struct v4l2_ctrl *vflip_ctrl;
-> +
-> +	struct regmap *regmap;
-> +
-> +	bool identified;
-> +};
-
-...
-
-> +static int hm1246_enum_frame_size(struct v4l2_subdev *subdev,
-> +				  struct v4l2_subdev_state *sd_state,
-> +				  struct v4l2_subdev_frame_size_enum *fse)
-> +{
-> +	struct hm1246 *hm1246 = to_hm1246(subdev);
-> +	const struct hm1246_mode *mode;
-> +
-> +	if (fse->index > 0)
-> +		return -EINVAL;
-> +
-> +	mode = hm1246_find_mode_by_mbus_code(hm1246, fse->code);
-> +	if (!mode)
-> +		return -EINVAL;
-
-Hmm... Is it common practice to return -EINVAL in such cases?
-From the context (not found) I would rather return -ENOENT.
-
-> +	fse->min_width = mode->rect.width;
-> +	fse->max_width = mode->rect.width;
-> +	fse->min_height = mode->rect.height;
-> +	fse->max_height = mode->rect.height;
-> +
-> +	return 0;
-> +}
-
-...
-
-> +static int hm1246_calc_pll(u32 xclk, u32 link_freq, u32 clocks_per_pixel,
-> +			   u8 *pll1, u8 *pll2, u8 *pll3)
-> +{
-> +	const u8 pclk_div_table[] = { 4, 5, 6, 7, 8, 12, 14, 16 };
-> +	const u8 sysclk_div_table[] = { 1, 2, 3, 4 };
-> +	const u8 post_div_table[] = { 1, 2, 4, 8 };
-> +	const int sysclk_pclk_ratio = 3; /* Recommended value */
-
-Why not marking them static? Note, in some cases compiler might decide to fill
-up the values on the stack or put them as a direct constant in the register.
-It might lead to suboptimal code.
-
-> +	u32 pclk, vco_out;
-> +	int pclk_div_index, sysclk_div_index, post_div_index;
-
-> +	bool sysclk_pclk_ratio_found = false;
-
-We don't need this. See below how.
-
-> +	if (link_freq < HM1246_PCLK_MIN || link_freq > HM1246_PCLK_MAX)
-> +		return -EINVAL;
-> +
-> +	/*
-> +	 * In raw mode (1 pixel per clock) the pixel clock is internally
-> +	 * divided by two.
-> +	 */
-> +	pclk = 2 * link_freq / clocks_per_pixel;
-> +
-> +	/* Find suitable PCLK and SYSCLK dividers. */
-> +	for (pclk_div_index = 0; pclk_div_index < ARRAY_SIZE(pclk_div_table);
-> +	     pclk_div_index++) {
-> +		for (sysclk_div_index = 0;
-> +		     sysclk_div_index < ARRAY_SIZE(sysclk_div_table);
-> +		     sysclk_div_index++) {
-> +			if (sysclk_div_table[sysclk_div_index] *
-> +				    sysclk_pclk_ratio ==
-> +			    pclk_div_table[pclk_div_index]) {
-
-> +				sysclk_pclk_ratio_found = true;
-
-Drop.
-
-> +				break;
-> +			}
-> +		}
-
-		if (sysclk_div_index < ARRAY_SIZE(sysclk_div_table))
-
-> +		if (sysclk_pclk_ratio_found)
-> +			break;
-> +	}
-
-	if (pclk_div_index < ARRAY_SIZE(pclk_div_table))
-
-> +	if (!sysclk_pclk_ratio_found)
-> +		return -EINVAL;
-
-> +	/* Determine an appropriate post divider. */
-> +	for (post_div_index = 0; post_div_index < ARRAY_SIZE(post_div_table);
-> +	     post_div_index++) {
-> +		vco_out = pclk * pclk_div_table[pclk_div_index] *
-> +			  post_div_table[post_div_index];
-> +
-> +		if (vco_out >= HM1246_PLL_VCO_MIN &&
-> +		    vco_out <= HM1246_PLL_VCO_MAX)
-> +			break;
-> +	}
-> +	if (post_div_index >= ARRAY_SIZE(post_div_table))
-> +		return -EINVAL;
-> +
-> +	/* Find pre-divider and multiplier values. */
-> +	for (u32 div = DIV_ROUND_UP(xclk, HM1246_PLL_INCLK_MAX);
-> +	     div <= xclk / HM1246_PLL_INCLK_MIN; div++) {
-> +		u32 multi, multi_h, multi_l, vco;
-
-> +		multi = DIV_ROUND_CLOSEST_ULL((u64)vco_out * div, xclk);
-
-Can we define vco_out as u64 and drop the casting?
-
-> +		if (multi < HM1246_PLL_MULTI_MIN ||
-> +		    multi > HM1246_PLL_MULTI_MAX)
-> +			continue;
-> +
-> +		multi_h = multi / (HM1246_PLL_MULTI_H_MIN *
-> +				   HM1246_PLL_MULTI_L_MAX) +
-> +			  2;
-> +		multi_l = multi / multi_h;
-> +		vco = div_u64((u64)xclk * multi_h * multi_l, div);
-
-Similar Q for multi_h and multi_l.
-
-> +		if (vco != vco_out)
-> +			continue;
-> +
-> +		if (pll1 && pll2 && pll3) {
-> +			*pll1 = HM1246_PLL1CFG_MULTIPLIER(multi_l - 1);
-> +			*pll2 = HM1246_PLL2CFG_PRE_DIV(div - 1) |
-> +				HM1246_PLL2CFG_MULTIPLIER(multi_h - 2);
-> +			*pll3 = HM1246_PLL3CFG_POST_DIV(post_div_index) |
-> +				HM1246_PLL3CFG_SYSCLK_DIV(sysclk_div_index) |
-> +				HM1246_PLL3CFG_PCLK_DIV(pclk_div_index);
-> +		}
-> +
-> +		return 0;
-> +	}
-> +
-> +	return -EINVAL;
-> +}
-
-...
-
-> +static int hm1246_cci_write_pll(struct hm1246 *hm1246, u8 pll1, u8 pll2,
-> +				u8 pll3)
-
-I believe we can leave a prototype to be on a single line.
-
-> +{
-> +	const struct cci_reg_sequence pll_regs[] = {
-> +		{ HM1246_PLL1CFG_REG, pll1 },
-> +		{ HM1246_PLL2CFG_REG, pll2 },
-> +		{ HM1246_PLL3CFG_REG, pll3 },
-> +		{ HM1246_SBC_CTRL_REG, HM1246_SBC_CTRL_PLL_EN },
-> +	};
-> +
-> +	return cci_multi_reg_write(hm1246->regmap, pll_regs,
-> +				   ARRAY_SIZE(pll_regs), NULL);
-> +}
-
-...
-
-> +static int hm1246_cci_write_test_pattern(struct hm1246 *hm1246, u8 mode, u16 r,
-> +					 u16 g, u16 b)
-
-More logical is to have them as
-
-static int hm1246_cci_write_test_pattern(struct hm1246 *hm1246, u8 mode,
-					 u16 r, u16 g, u16 b)
-
-> +{
-> +	const struct cci_reg_sequence tpg_enable_regs[] = {
-> +		{ HM1246_TEST_DATA_RED_REG, r },
-> +		{ HM1246_TEST_DATA_GR_REG, g },
-> +		{ HM1246_TEST_DATA_GB_REG, g },
-> +		{ HM1246_TEST_DATA_BLUE_REG, b },
-> +		{ HM1246_TEST_PATTERN_MODE_REG, mode },
-> +	};
-> +
-> +	return cci_multi_reg_write(hm1246->regmap, tpg_enable_regs,
-> +				   ARRAY_SIZE(tpg_enable_regs), NULL);
-> +}
-
-...
-
-> +static int hm1246_test_pattern(struct hm1246 *hm1246, u32 index)
-> +{
-> +	const u16 RGBMIN = 0, RGBMAX = 0x3ff;
-> +	const struct tp {
-> +		int pattern;
-> +		u16 r, g, b;
-
-static const ... ?
-
-> +	} tps[] = {
-> +		/* Disabled */
-> +		[0] = { .pattern = 0, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
-> +		/* Checkboard pattern */
-> +		[1] = { .pattern = 0, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
-> +		/* Ramp */
-> +		[2] = { .pattern = 1, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
-> +		/* Moving ones */
-> +		[3] = { .pattern = 2, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
-> +		/* Blending color bars */
-> +		[4] = { .pattern = 3, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
-> +		/* Color bars */
-> +		[5] = { .pattern = 4, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
-> +		/* Solid white */
-> +		[6] = { .pattern = 15, .r = RGBMAX, .g = RGBMAX, .b = RGBMAX },
-> +		/* Solid black */
-> +		[7] = { .pattern = 15, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
-> +		/* Solid red */
-> +		[8] = { .pattern = 15, .r = RGBMAX, .g = RGBMIN, .b = RGBMIN },
-> +		/* Solid green */
-> +		[9] = { .pattern = 15, .r = RGBMIN, .g = RGBMAX, .b = RGBMIN },
-> +		/* Solid blue */
-> +		[10] = { .pattern = 15, .r = RGBMIN, .g = RGBMIN, .b = RGBMAX },
-> +	};
-> +	u8 mode;
-> +
-> +	if (index >= ARRAY_SIZE(tps))
-> +		return -EINVAL;
-> +
-> +	mode = HM1246_TEST_PATTERN_MODE_MODE(tps[index].pattern);
-> +	if (index)
-> +		mode |= HM1246_TEST_PATTERN_MODE_ENABLE;
-> +
-> +	return hm1246_cci_write_test_pattern(hm1246, mode, tps[index].r,
-> +					     tps[index].g, tps[index].b);
-> +}
-
-...
-
-> +static int hm1246_set_ctrl(struct v4l2_ctrl *ctrl)
-> +{
-> +	struct hm1246 *hm1246 =
-> +		container_of_const(ctrl->handler, struct hm1246, ctrls);
-> +	struct v4l2_subdev_state *state;
-> +	const struct v4l2_mbus_framefmt *format;
-> +	u32 val;
-> +	bool needs_cmu_update = true;
-
-> +	int ret = 0;
-
-The assignments like this is fragile. Better to decouple and put it near to the first user.
-
-> +	state = v4l2_subdev_get_locked_active_state(&hm1246->sd);
-> +	format = v4l2_subdev_state_get_format(state, 0);
-> +
-> +	if (ctrl->id == V4L2_CID_VBLANK) {
-> +		s64 exposure_max;
-> +
-> +		exposure_max =
-> +			format->height + ctrl->val - HM1246_COARSE_INTG_MARGIN;
-> +		ret = __v4l2_ctrl_modify_range(hm1246->exposure_ctrl,
-> +					       hm1246->exposure_ctrl->minimum,
-> +					       exposure_max,
-> +					       hm1246->exposure_ctrl->step,
-> +					       exposure_max);
-> +
-> +		if (ret) {
-
-What if this is changed to return something positive? Or what if we will ignore
-one of the error code in the future for some reason?
-
-These questions are to justify the idea of decoupling the above assignment.
-
-> +			dev_err(hm1246->dev, "exposure ctrl range update failed\n");
-> +			return ret;
-> +		}
-> +	}
-
-> +	if (!pm_runtime_get_if_active(hm1246->dev))
-> +		return 0;
-
-Wondering if we can use one of PM_ACQUIRE() macros here.
-
-	ret = 0;
-
-> +	switch (ctrl->id) {
-> +	case V4L2_CID_EXPOSURE:
-> +		cci_write(hm1246->regmap, HM1246_COARSE_INTG_REG, ctrl->val,
-> +			  &ret);
-> +		break;
-> +
-> +	case V4L2_CID_ANALOGUE_GAIN:
-> +		cci_write(hm1246->regmap, HM1246_ANALOG_GLOBAL_GAIN_REG,
-> +			  ctrl->val, &ret);
-> +		break;
-> +
-> +	case V4L2_CID_VBLANK:
-> +		val = format->height + ctrl->val;
-> +		cci_write(hm1246->regmap, HM1246_FRAME_LENGTH_LINES_REG, val,
-> +			  &ret);
-> +		break;
-> +
-> +	case V4L2_CID_HFLIP:
-> +	case V4L2_CID_VFLIP:
-> +		val = 0;
-> +		if (hm1246->hflip_ctrl->val)
-> +			val |= HM1246_IMAGE_ORIENTATION_HFLIP;
-> +		if (hm1246->vflip_ctrl->val)
-> +			val |= HM1246_IMAGE_ORIENTATION_VFLIP;
-> +
-> +		cci_write(hm1246->regmap, HM1246_IMAGE_ORIENTATION_REG, val,
-> +			  &ret);
-> +		break;
-> +
-> +	case V4L2_CID_TEST_PATTERN:
-> +		ret = hm1246_test_pattern(hm1246, ctrl->val);
-> +		needs_cmu_update = false;
-> +		break;
-> +
-> +	default:
-> +		ret = -EINVAL;
-> +		needs_cmu_update = false;
-> +		break;
-> +	}
-> +
-> +	if (needs_cmu_update)
-> +		cci_write(hm1246->regmap, HM1246_CMU_UPDATE_REG, 0, &ret);
-> +
-> +	pm_runtime_put(hm1246->dev);
-> +
-> +	return ret;
-> +}
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Hi Jakub,
+
+> This is an AI-generated review of your patch. The human sending this
+> email has considered the AI review valid, or at least plausible.
+>=20
+> For local reproduction steps see
+> https://netdev-ai.bots.linux.dev/ai-local.html ---
+> net: mtip: Add buffers management functions to the L2 switch driver
+>=20
+> This patch adds buffer management functions for the MTIP L2 switch
+> driver, implementing mtip_free_buffers(), mtip_create_page_pool(), and
+> mtip_alloc_buffers() for RX page pool and TX bounce buffer handling.
+>=20
+> > diff --git a/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c
+> > b/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c index
+> > 03c5163d6508..9c21a3d29c1c 100644 ---
+> > a/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c +++
+> > b/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c @@ -888,11
+> > +888,96 @@ static void mtip_get_drvinfo(struct net_device *dev,
+> >
+> >  static void mtip_free_buffers(struct net_device *dev)
+> >  {
+> > +	struct mtip_ndev_priv *priv =3D netdev_priv(dev);
+> > +	struct switch_enet_private *fep =3D priv->fep;
+> > +	int i;
+> > +
+> > +	for (i =3D 0; i < RX_RING_SIZE; i++) {
+> > +		page_pool_put_full_page(fep->page_pool,
+> > +					fep->page[i], false); =20
+>=20
+> Can fep->page[i] be NULL here?  When mtip_alloc_buffers() fails
+> partway through the RX allocation loop, it calls mtip_free_buffers()
+> via the error path.  At that point, only some fep->page[] entries
+> have been allocated - the rest remain NULL from the kzalloc
+> initialization.
+>=20
+> The call chain page_pool_put_full_page()->page_pool_put_netmem()->
+> page_pool_unref_and_test()->page_pool_unref_netmem()->
+> netmem_get_pp_ref_count_ref() will attempt to access
+> &NULL->pp_ref_count when passed a NULL page, causing a NULL pointer
+> dereference.
+>=20
+> Should there be a NULL check before calling page_pool_put_full_page()?
+>=20
+
+Yes, such check shall be added.
+
+> > +		fep->page[i] =3D NULL;
+> > +	}
+> > +
+> > +	page_pool_destroy(fep->page_pool);
+> > +	fep->page_pool =3D NULL;
+> > +
+> > +	for (i =3D 0; i < TX_RING_SIZE; i++)
+> > +		kfree(fep->tx_bounce[i]);
+> >  } =20
+>=20
+> [ ... ]
+>=20
+> > +static int mtip_alloc_buffers(struct net_device *dev)
+> > +{
+> > +	struct mtip_ndev_priv *priv =3D netdev_priv(dev);
+> > +	struct switch_enet_private *fep =3D priv->fep;
+> > +	struct cbd_t *bdp;
+> > +	struct page *page;
+> > +	int i, ret;
+> > +
+> > +	ret =3D mtip_create_page_pool(fep, RX_RING_SIZE);
+> > +	if (ret < 0) {
+> > +		dev_err(&fep->pdev->dev, "Failed to create page
+> > pool\n");
+> > +		return ret;
+> > +	}
+> > +
+> > +	bdp =3D fep->rx_bd_base;
+> > +	for (i =3D 0; i < RX_RING_SIZE; i++) {
+> > +		page =3D page_pool_dev_alloc_pages(fep->page_pool);
+> > +		if (!page) {
+> > +			dev_err(&fep->pdev->dev,
+> > +				"Failed to allocate page for rx
+> > buffer\n");
+> > +			goto err;
+> > +		} =20
+>=20
+> [ ... ]
+>=20
+> > + err:
+> > +	mtip_free_buffers(dev); =20
+>=20
+> When this error path is taken, fep->page[] may contain NULL entries
+> for pages that were never allocated.
+>=20
+> > +	return -ENOMEM;
+> >  } =20
+
+I will add proper fix for v21.
+
+--=20
+Best regards,
+
+=C5=81ukasz Majewski
 
