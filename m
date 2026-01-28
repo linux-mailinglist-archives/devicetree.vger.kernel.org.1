@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-260359-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260361-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oJumGGH1eWnT1AEAu9opvQ
-	(envelope-from <devicetree+bounces-260359-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 12:39:13 +0100
+	id UM2XLGr1eWnT1AEAu9opvQ
+	(envelope-from <devicetree+bounces-260361-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 12:39:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D0DFA09F0
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 12:39:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66840A0A00
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 12:39:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8510530929CC
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 11:32:48 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D97C03137B5C
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 11:33:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49BA134FF7A;
-	Wed, 28 Jan 2026 11:30:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D991C352C48;
+	Wed, 28 Jan 2026 11:30:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XFT0kK+4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Xj/RJneN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f67.google.com (mail-ej1-f67.google.com [209.85.218.67])
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07EF834FF4F
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 11:30:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.67
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B57C03502A6
+	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 11:30:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769599847; cv=none; b=I/hlnzoyp6toBa9iSWEMCTSR8bl4DQMgT6Qty/IEGhB74Zh3IN+uxbprd1qvwlJHiqGJRJIMOBIswnlv6RBhauSZ+AihmoOhyWOcb+AiztWX8ORZ2Tc9/sQORabd4+zZaZShTHaQHBvDW/ESjOqfk052kM+t5p+RBpo5GKQWEz4=
+	t=1769599849; cv=none; b=Ni/Uj+QzKtvHUMy7cxnC2cQfQeTWbgeRMqWU6Ygm72gyX/kPjMFCdRr5EgqQthukz0MtweVLX00A3OI700dWsi57u1KBuV/deHo1dVOBG8LtUhf7yxkQysrtUOTTKpTvlKCaN3zAPDNzbAGxBc1xyOdjbMmK6dJNeuTgSBOKsHY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769599847; c=relaxed/simple;
-	bh=Wv8iBQh9BhPWMxxUkybXy7B9Wi0QfwnJCF9mYOUGzq8=;
+	s=arc-20240116; t=1769599849; c=relaxed/simple;
+	bh=wYGYHHecgZ3f8TInHssT/2zr5i37lvwq1yFMVyVZT9c=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=RuQzDeA0UyNyZZ2prHKkLUpi+sXFzEXan8CqRsRMn13QyQ6sPCl6GCo9bC5/01w95jaonG8J3tac8zTfgWhfqhGxTrGU3Ux37HM+WoaG3Fls31JjP7ZRlAGiHRMrOjWX5btAYMk5k3On0czccve5Gshdww+2D+AjS69R8UAHjCE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XFT0kK+4; arc=none smtp.client-ip=209.85.218.67
+	 MIME-Version; b=MQcNzlgBJOjIV5StwtHrvTnef92TJxyxmMNCKVm/dcJEiokL7uf+UUzpVNTamtwJHULro6wpuXlQvZ+ytHXlwhwp1GKKUU7BsxYn/3Yg0coEf9qVd5teAZiIElpwwDzor8It/aGvZTuJO7pyc1VaGbz3GIIu8PFWkVy6nvhFfVs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Xj/RJneN; arc=none smtp.client-ip=209.85.208.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f67.google.com with SMTP id a640c23a62f3a-b885e8c679bso822241966b.1
-        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 03:30:44 -0800 (PST)
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-658b9e95990so898558a12.1
+        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 03:30:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20230601; t=1769599843; x=1770204643; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=TYnWxJV7wO+oC9V9UGDmvqoLF/l/Si8kYGh6iersI0Y=;
-        b=XFT0kK+4AhBCLYnPyhUAHLL7wg1JkJenkkoA8uAsAMkNAxla8ez/xx0hxT5GJEf8df
-         ZODlMrYpmfZYyFlvdMRf6TTucQcGmutZNje7yJfXa7ipCxhfh+1o79I4VcQNsnEba1vF
-         kSRRgrIHkaURSAB8fBqZjQIzV+JM6sUcGGKHr4s/fCL5FhiSTtIq/J+WtYbpJVgeoGaJ
-         efjV4G/U5Q7T9IrxZa/RjlQCJoBPI+LLno6A0NhPCHK4p2zvp4GiH4jO6jLlr55bSgRR
-         2dLD587oNdOCKWPU+VhpVP7DVIdVHMXDQnd3UumgB81ngnFOJUczIx8Ugx4X+hVLpWXL
-         Ixkw==
+        bh=T6lNXhVo6rabsx9uuwYfPMUxIX+5+vIBC2iOr84Rj6M=;
+        b=Xj/RJneNvJV5wFyIcB5S6VLA84W3857QVlI/bJCTwfWlS62iMBXKk2XEkaEC3V+RKt
+         sveZmJGQErIbcO2rqK07ZSYGNusfQtLHAsv4cbHjDYBgegRvXtqyn2LObJcQt69wW6kr
+         /Q/kDnCExwbRfrvzAW3WYOr4x0V2UQnOrgl1UGts/sTye4ynk1SGFST/GCfpBuUjFXiF
+         FPc+6IZsN6TSoI4Z0PnikV9QtbszyvJ2AOS0QCiZK0402J/BuXo59HrgeRc7urB/GTbc
+         R809TBZAu3UkSzO5jL2HXicr6duYgZLxbo8F50Tgrvp7qulbLHhVbBOuJ57wSPLZlmaj
+         N1eA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1769599843; x=1770204643;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=TYnWxJV7wO+oC9V9UGDmvqoLF/l/Si8kYGh6iersI0Y=;
-        b=BKhLRF7VhBz3u9fiEachoFMx6iEUlSZJ6Fc80H8gNMv/pQAoT4LtGTsyn95nF/Tswp
-         BUQN2x4fjUwaqM3/cZs5Bi91Edct3V5iCpH41azfiGHrAzE945JPfoFAIDIgd+0vB20s
-         l03Lr/HORwCqnk8zADMVlXPkIOyaHmfB/DFcvy4M+H2cPFSQjdYCbqCxRKdBkhlQnLEN
-         DoTcYElmT6ZAn0UafYYO2JZQHiiRn5ldf05ISP57Y3knfZYrUTAX4uw5qwiG8nd6IJhT
-         og1M9egtTn+CCeLg+rqNFVKKyXmSzKSnstMWJMK7TZ5vQbmWetL2c2699v2VDSA4pil+
-         wbpA==
-X-Forwarded-Encrypted: i=1; AJvYcCUb/dFcKqRatxA1+YX4GL2fLPbmKTtSpYSkC9VxJGyAwC3Jryo3kSALMEhVYpv+YxRwI3OzovI242KT@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywo2ImtaM5BZyY2PL8tnz7jAf4Ly9k4SY9QcfayrAIPM35ZKha2
-	IcEk5S+rJy7XNThJIQAnspIj1F+tZqhBJq+hy89E65WBXsF7LuinHE29
-X-Gm-Gg: AZuq6aJZjjYx/+SRCAityrvHzmprk+SRL9TitzLAZKt9H4QtW7U+QAeW0I8q0kilJ2m
-	3UBvnwKABP0e/bwjm4MiP8N98ZMp76u20T/hQCAEt/MaAJqgb9PK2EhNDLr9h2LL14PQ2upq6pg
-	/cpQ2Iqv8n25VJ+nZDPKBbnAqxBeynOkk99+dWR2Czsu6I42hOqhk1wqPGQVzmr0Q0nB+bOwO2a
-	cogDV13VLMs5kwCmqw6O7p1tgFeWGLm9rGmOnKcD6giiVRb+mimn1VmOVIgb3TWWFvl+lpZi+iO
-	rBicj4ya1CGkqa9iC5YvVpyc2Me6PSgH8F+CywEaYcxEUMzUnQ06oY2JcCmsljOo0WOPL+fgWzT
-	Q8Mz13lYMjI2WI4Zvw8xjwvQHXxCwzTot5vNT5VeqI+hTGyTVxkbmulkMo75hhyfT37ao8nBpER
-	mf7PxI/ugSTc4DRdhM7bN9sx8FRy2zcIOc04A=
-X-Received: by 2002:a17:906:9f85:b0:b86:f495:5e4c with SMTP id a640c23a62f3a-b8dab3cf38dmr352676266b.55.1769599842557;
-        Wed, 28 Jan 2026 03:30:42 -0800 (PST)
+        bh=T6lNXhVo6rabsx9uuwYfPMUxIX+5+vIBC2iOr84Rj6M=;
+        b=nxqqCzLGKRwMQRe8LHw6b+i1joCdWwnaAFbRfFypx9R+modGUJ3qlC+QiWzS7gYmi2
+         enjgeMW+J7PVkoGX7OWG3HFS9gU+k/m/ob35L3ZXciUoVMTBEiZ2Pb4BMVqQrkMlOo8a
+         dnrYg+widlmdo73wlJ0g4SIJi3GPbxH7e/aki/DBPXYY1u9zi2ddSF3ohOPxnASJXxHK
+         8sUuv4oJAj0EQj+FJ9hsA/EhJaKkcYLeK2KQRUAF9QdcOl8smEXqpY7cPZXs1bKXeCaI
+         bNPrHul7ckkmZAB/kP6pWij67W9M4jUeYQ6Uia/PDe8ZjwBZqcWkS+mDuoejzpWkJsg4
+         urMQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVql2J11fuyJFXP0ECXAwjZFl4eoeQ08lgFdOGD3D768VenJB0qbOseSd9ljJHADfd++DcOsh1DuMUW@vger.kernel.org
+X-Gm-Message-State: AOJu0YwjYrss64ZutJ80cO/RcAlQ9CCzyR2swKl42JRkMwbQWu3JIUPM
+	z9EJd0jc7xxY4N5MBju8OcvrQIh07g89jR09EKJAM5ihCemjJMs7F00P
+X-Gm-Gg: AZuq6aJtMD6q4AzYR7egTP0We/AOo7NcrUo1BhVfryReirQI/yn5uf0k1vENLV0Qgni
+	LczQZZ5liu7x0LxVjAShG0k2hU2FtMQNL72y30yxwFlDhg5KzKtp/lZitOeHGuwcbsfkYLQnLfi
+	uz/Zqjry9Gttm9diPYBk0jFdeXQHP1WW4dRLn4Q6LAPXE/9JU4MUHF65hIrAGMtz+wPgDi7cuEh
+	U9DEshdaucYgakaw94CvJYwx0dvlUixczFE/0eXYRixERr2t2IU81GtXfRAJsauzivayMkg3JNb
+	G7SfnowcRBUdX46rs/Ih2KrZ9FeeURJr5pWfxDxNsX2jBDUMngh08m39zkYsJTrwqzNV0JGnQG3
+	DmOnvxVLFygh7HMyjs1DnXadZm2D6KAJTygYyGP6f2u8OjW2/WmcQnbezopn2FoyOyk1D2gB0ta
+	RlSOXgSsUtk3HQkUaDaGBSGh1aqkPgO4/q/ec=
+X-Received: by 2002:a17:907:8689:b0:b79:f984:1557 with SMTP id a640c23a62f3a-b8dab37d05cmr365383666b.46.1769599843232;
+        Wed, 28 Jan 2026 03:30:43 -0800 (PST)
 Received: from localhost.localdomain ([2a00:23c4:a758:8a01:e29d:6e0e:72c1:d15d])
         by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8dbf1baa42sm114400366b.46.2026.01.28.03.30.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Jan 2026 03:30:42 -0800 (PST)
+        Wed, 28 Jan 2026 03:30:43 -0800 (PST)
 From: Biju <biju.das.au@gmail.com>
 X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
 To: Geert Uytterhoeven <geert+renesas@glider.be>,
@@ -89,9 +89,9 @@ Cc: Biju Das <biju.das.jz@bp.renesas.com>,
 	linux-kernel@vger.kernel.org,
 	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
 	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v2 09/10] arm64: dts: renesas: renesas-smarc2: Move usb3 nodes to board DTS
-Date: Wed, 28 Jan 2026 11:30:28 +0000
-Message-ID: <20260128113032.337231-10-biju.das.jz@bp.renesas.com>
+Subject: [PATCH v2 10/10] arm64: dts: renesas: Add initial device tree for RZ/G3L SMARC EVK board
+Date: Wed, 28 Jan 2026 11:30:29 +0000
+Message-ID: <20260128113032.337231-11-biju.das.jz@bp.renesas.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260128113032.337231-1-biju.das.jz@bp.renesas.com>
 References: <20260128113032.337231-1-biju.das.jz@bp.renesas.com>
@@ -112,7 +112,7 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260359-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-260361-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -132,57 +132,83 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,bp.renesas.com:mid]
-X-Rspamd-Queue-Id: 0D0DFA09F0
+X-Rspamd-Queue-Id: 66840A0A00
 X-Rspamd-Action: no action
 
 From: Biju Das <biju.das.jz@bp.renesas.com>
 
-SMARC2 board dtsi is common for multiple SoCs. So move usb3 nodes
-to board DTS as some SOCs (eg: RZ/G3{S,L}) does not support USB3.
+Add the initial device tree for the Renesas RZ/G3L SMARC EVK board.
+
+Added placeholders to avoid compilation error with the common code in
+renesas-smarc2.dtsi.
 
 Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 ---
 v1->v2:
- * No change
+ * Dropped scif node as it is already included in common platform
+   file.
 ---
- arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts | 6 ++++++
- arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi    | 8 --------
- 2 files changed, 6 insertions(+), 8 deletions(-)
+ arch/arm64/boot/dts/renesas/Makefile          |  2 +
+ .../boot/dts/renesas/r9a08g046l48-smarc.dts   | 37 +++++++++++++++++++
+ 2 files changed, 39 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a08g046l48-smarc.dts
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-index 696903dc7a63..cc75f6fdf7f5 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-@@ -248,7 +248,13 @@ &sdhi1 {
- 	vqmmc-supply = <&vqmmc_sd1_pvdd>;
- };
+diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
+index 1fab1b50f20e..0153e772c231 100644
+--- a/arch/arm64/boot/dts/renesas/Makefile
++++ b/arch/arm64/boot/dts/renesas/Makefile
+@@ -179,6 +179,8 @@ dtb-$(CONFIG_ARCH_R9A08G045) += r9a08g045s33-smarc-pmod1-type-3a.dtbo
+ r9a08g045s33-smarc-pmod1-type-3a-dtbs := r9a08g045s33-smarc.dtb r9a08g045s33-smarc-pmod1-type-3a.dtbo
+ dtb-$(CONFIG_ARCH_R9A08G045) += r9a08g045s33-smarc-pmod1-type-3a.dtb
  
-+&usb3_phy {
-+	status = "okay";
++dtb-$(CONFIG_ARCH_R9A08G046) += r9a08g046l48-smarc.dtb
++
+ dtb-$(CONFIG_ARCH_R9A09G011) += r9a09g011-v2mevk2.dtb
+ 
+ dtb-$(CONFIG_ARCH_R9A09G047) += r9a09g047e57-smarc.dtb
+diff --git a/arch/arm64/boot/dts/renesas/r9a08g046l48-smarc.dts b/arch/arm64/boot/dts/renesas/r9a08g046l48-smarc.dts
+new file mode 100644
+index 000000000000..86db86335d5e
+--- /dev/null
++++ b/arch/arm64/boot/dts/renesas/r9a08g046l48-smarc.dts
+@@ -0,0 +1,37 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++/*
++ * Device Tree Source for the RZ/G3L SMARC EVK board
++ *
++ * Copyright (C) 2026 Renesas Electronics Corp.
++ */
++
++/dts-v1/;
++
++/* Add place holder to avoid compilation error with renesas-smarc2.dtsi */
++#define KEY_1_GPIO		1
++#define KEY_2_GPIO		2
++#define KEY_3_GPIO		3
++
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/input.h>
++#include "r9a08g046l48.dtsi"
++#include "rzg3l-smarc-som.dtsi"
++#include "renesas-smarc2.dtsi"
++
++/ {
++	model = "Renesas SMARC EVK version 2 based on r9a08g046l48";
++	compatible = "renesas,smarc2-evk", "renesas,rzg3l-smarcm",
++		     "renesas,r9a08g046l48", "renesas,r9a08g046";
++
++	aliases {
++		serial3 = &scif0;
++	};
 +};
 +
- &xhci {
- 	pinctrl-0 = <&usb3_pins>;
- 	pinctrl-names = "default";
++&keys {
++	status = "disabled";
 +
-+	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi b/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-index b607b5d6c259..69c0101ff7f5 100644
---- a/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-+++ b/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-@@ -107,11 +107,3 @@ &sdhi1 {
- 
- 	status = "okay";
- };
--
--&usb3_phy {
--	status = "okay";
--};
--
--&xhci {
--	status = "okay";
--};
++	/delete-node/ key-1;
++	/delete-node/ key-2;
++	/delete-node/ key-3;
++};
 -- 
 2.43.0
 
