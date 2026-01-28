@@ -1,215 +1,347 @@
-Return-Path: <devicetree+bounces-260361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260362-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UM2XLGr1eWnT1AEAu9opvQ
-	(envelope-from <devicetree+bounces-260361-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 12:39:22 +0100
+	id mCh+KpT1eWkE1QEAu9opvQ
+	(envelope-from <devicetree+bounces-260362-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 12:40:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66840A0A00
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 12:39:22 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46655A0A27
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 12:40:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D97C03137B5C
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 11:33:02 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 00577302D255
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 11:34:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D991C352C48;
-	Wed, 28 Jan 2026 11:30:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DE692DA75A;
+	Wed, 28 Jan 2026 11:32:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Xj/RJneN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uKYGYuIa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B57C03502A6
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 11:30:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ABFC2BEFFF;
+	Wed, 28 Jan 2026 11:32:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769599849; cv=none; b=Ni/Uj+QzKtvHUMy7cxnC2cQfQeTWbgeRMqWU6Ygm72gyX/kPjMFCdRr5EgqQthukz0MtweVLX00A3OI700dWsi57u1KBuV/deHo1dVOBG8LtUhf7yxkQysrtUOTTKpTvlKCaN3zAPDNzbAGxBc1xyOdjbMmK6dJNeuTgSBOKsHY=
+	t=1769599950; cv=none; b=HJ37W0QlQwIQCBrC3ssZ6PpoEm7ChW6D2LCnL47pgW7rLp2el1dJyqvJgqQ79GQy8p83+VruqVCN5owIKHKeoG08/NIbpO9XSTsErvon18PFAoZfCBDMBci/9K8XMvZPyfL9JsTkXqcetTaLtlxphK97MOMb3Upmqh91LZMtdLE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769599849; c=relaxed/simple;
-	bh=wYGYHHecgZ3f8TInHssT/2zr5i37lvwq1yFMVyVZT9c=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=MQcNzlgBJOjIV5StwtHrvTnef92TJxyxmMNCKVm/dcJEiokL7uf+UUzpVNTamtwJHULro6wpuXlQvZ+ytHXlwhwp1GKKUU7BsxYn/3Yg0coEf9qVd5teAZiIElpwwDzor8It/aGvZTuJO7pyc1VaGbz3GIIu8PFWkVy6nvhFfVs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Xj/RJneN; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-658b9e95990so898558a12.1
-        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 03:30:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769599843; x=1770204643; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=T6lNXhVo6rabsx9uuwYfPMUxIX+5+vIBC2iOr84Rj6M=;
-        b=Xj/RJneNvJV5wFyIcB5S6VLA84W3857QVlI/bJCTwfWlS62iMBXKk2XEkaEC3V+RKt
-         sveZmJGQErIbcO2rqK07ZSYGNusfQtLHAsv4cbHjDYBgegRvXtqyn2LObJcQt69wW6kr
-         /Q/kDnCExwbRfrvzAW3WYOr4x0V2UQnOrgl1UGts/sTye4ynk1SGFST/GCfpBuUjFXiF
-         FPc+6IZsN6TSoI4Z0PnikV9QtbszyvJ2AOS0QCiZK0402J/BuXo59HrgeRc7urB/GTbc
-         R809TBZAu3UkSzO5jL2HXicr6duYgZLxbo8F50Tgrvp7qulbLHhVbBOuJ57wSPLZlmaj
-         N1eA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769599843; x=1770204643;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=T6lNXhVo6rabsx9uuwYfPMUxIX+5+vIBC2iOr84Rj6M=;
-        b=nxqqCzLGKRwMQRe8LHw6b+i1joCdWwnaAFbRfFypx9R+modGUJ3qlC+QiWzS7gYmi2
-         enjgeMW+J7PVkoGX7OWG3HFS9gU+k/m/ob35L3ZXciUoVMTBEiZ2Pb4BMVqQrkMlOo8a
-         dnrYg+widlmdo73wlJ0g4SIJi3GPbxH7e/aki/DBPXYY1u9zi2ddSF3ohOPxnASJXxHK
-         8sUuv4oJAj0EQj+FJ9hsA/EhJaKkcYLeK2KQRUAF9QdcOl8smEXqpY7cPZXs1bKXeCaI
-         bNPrHul7ckkmZAB/kP6pWij67W9M4jUeYQ6Uia/PDe8ZjwBZqcWkS+mDuoejzpWkJsg4
-         urMQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVql2J11fuyJFXP0ECXAwjZFl4eoeQ08lgFdOGD3D768VenJB0qbOseSd9ljJHADfd++DcOsh1DuMUW@vger.kernel.org
-X-Gm-Message-State: AOJu0YwjYrss64ZutJ80cO/RcAlQ9CCzyR2swKl42JRkMwbQWu3JIUPM
-	z9EJd0jc7xxY4N5MBju8OcvrQIh07g89jR09EKJAM5ihCemjJMs7F00P
-X-Gm-Gg: AZuq6aJtMD6q4AzYR7egTP0We/AOo7NcrUo1BhVfryReirQI/yn5uf0k1vENLV0Qgni
-	LczQZZ5liu7x0LxVjAShG0k2hU2FtMQNL72y30yxwFlDhg5KzKtp/lZitOeHGuwcbsfkYLQnLfi
-	uz/Zqjry9Gttm9diPYBk0jFdeXQHP1WW4dRLn4Q6LAPXE/9JU4MUHF65hIrAGMtz+wPgDi7cuEh
-	U9DEshdaucYgakaw94CvJYwx0dvlUixczFE/0eXYRixERr2t2IU81GtXfRAJsauzivayMkg3JNb
-	G7SfnowcRBUdX46rs/Ih2KrZ9FeeURJr5pWfxDxNsX2jBDUMngh08m39zkYsJTrwqzNV0JGnQG3
-	DmOnvxVLFygh7HMyjs1DnXadZm2D6KAJTygYyGP6f2u8OjW2/WmcQnbezopn2FoyOyk1D2gB0ta
-	RlSOXgSsUtk3HQkUaDaGBSGh1aqkPgO4/q/ec=
-X-Received: by 2002:a17:907:8689:b0:b79:f984:1557 with SMTP id a640c23a62f3a-b8dab37d05cmr365383666b.46.1769599843232;
-        Wed, 28 Jan 2026 03:30:43 -0800 (PST)
-Received: from localhost.localdomain ([2a00:23c4:a758:8a01:e29d:6e0e:72c1:d15d])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8dbf1baa42sm114400366b.46.2026.01.28.03.30.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Jan 2026 03:30:43 -0800 (PST)
-From: Biju <biju.das.au@gmail.com>
-X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v2 10/10] arm64: dts: renesas: Add initial device tree for RZ/G3L SMARC EVK board
-Date: Wed, 28 Jan 2026 11:30:29 +0000
-Message-ID: <20260128113032.337231-11-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260128113032.337231-1-biju.das.jz@bp.renesas.com>
-References: <20260128113032.337231-1-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1769599950; c=relaxed/simple;
+	bh=KysVmJLSIzaMW0m7vxH9W3dWOyoa8ERdFfNk2aIsbSQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ni2Mn7RckTE7et0oIC+FEy7YaRZDNfncN8NLJ0qO0CX6mQgm+87dDSE33iu35SstbChL868ds8atFCWckYh//IdJTNyx++ct1BPVh6MPqAdLOgIuTRFMn5igPuLF/Q6obqH6PDZlB9GWvGxgczx0SPW7LaSgFkIx9MilkFnh22U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uKYGYuIa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35A3DC4CEF1;
+	Wed, 28 Jan 2026 11:32:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769599949;
+	bh=KysVmJLSIzaMW0m7vxH9W3dWOyoa8ERdFfNk2aIsbSQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uKYGYuIahSZ+TPTJjz5bg7dz4ONXUnjVHKaxBdcbQv+FcCD0ibu/Mpu5DgIkjgrMB
+	 3zwfucstE8QTnVFTQg7GQvvJCLKIh1bc/WqP7rdpDS1bmR0EKL1oUhd1uCVOYd/b3r
+	 oyhsY689OHeSjvR5MFc/PNpu2su/EyZ+hq0JAgwy0WeeD1gmVFKT+AVC+QYc7csUn0
+	 Bl+zHQB0TVtrb6/UNt7e99Ki4jDml7OFKpPj33PB/ji2nmdvQQ9Zivc6U6iNnMk5QW
+	 HJhVllaxsKQdlcDiiqUyL5Lq9zPQVbzLObB/7qb6glEuuYaD4p4Z1A6OYWzSYUeHhD
+	 0nY+kAnCEs7zQ==
+Date: Wed, 28 Jan 2026 12:32:27 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
+Cc: andersson@kernel.org, mathieu.poirier@linaro.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, rui.zhang@intel.com, lukasz.luba@arm.com, 
+	konradybcio@kernel.org, mani@kernel.org, casey.connolly@linaro.org, 
+	amit.kucheria@oss.qualcomm.com, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, manaf.pallikunhi@oss.qualcomm.com
+Subject: Re: [PATCH v2 1/8] thermal: Add Remote Proc cooling driver
+Message-ID: <20260128-quick-maroon-dragon-d832c8@quoll>
+References: <20260127155722.2797783-1-gaurav.kohli@oss.qualcomm.com>
+ <20260127155722.2797783-2-gaurav.kohli@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260127155722.2797783-2-gaurav.kohli@oss.qualcomm.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260361-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-260362-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[bp.renesas.com,vger.kernel.org,gmail.com];
-	FREEMAIL_TO(0.00)[glider.be,gmail.com,kernel.org];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_COUNT_FIVE(0.00)[5];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,bp.renesas.com:mid]
-X-Rspamd-Queue-Id: 66840A0A00
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,qualcomm.com:email,arm.com:email]
+X-Rspamd-Queue-Id: 46655A0A27
 X-Rspamd-Action: no action
 
-From: Biju Das <biju.das.jz@bp.renesas.com>
+On Tue, Jan 27, 2026 at 09:27:15PM +0530, Gaurav Kohli wrote:
+> Add a new generic driver for thermal cooling devices that control
 
-Add the initial device tree for the Renesas RZ/G3L SMARC EVK board.
+There is no driver here. You did not a single driver entry point.
 
-Added placeholders to avoid compilation error with the common code in
-renesas-smarc2.dtsi.
+> remote processors (modem, DSP, etc.) through various communication
+> channels.
+> 
+> This driver provides an abstraction layer between the thermal
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v1->v2:
- * Dropped scif node as it is already included in common platform
-   file.
----
- arch/arm64/boot/dts/renesas/Makefile          |  2 +
- .../boot/dts/renesas/r9a08g046l48-smarc.dts   | 37 +++++++++++++++++++
- 2 files changed, 39 insertions(+)
- create mode 100644 arch/arm64/boot/dts/renesas/r9a08g046l48-smarc.dts
+Please read coding style how much we like abstraction layers.
 
-diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
-index 1fab1b50f20e..0153e772c231 100644
---- a/arch/arm64/boot/dts/renesas/Makefile
-+++ b/arch/arm64/boot/dts/renesas/Makefile
-@@ -179,6 +179,8 @@ dtb-$(CONFIG_ARCH_R9A08G045) += r9a08g045s33-smarc-pmod1-type-3a.dtbo
- r9a08g045s33-smarc-pmod1-type-3a-dtbs := r9a08g045s33-smarc.dtb r9a08g045s33-smarc-pmod1-type-3a.dtbo
- dtb-$(CONFIG_ARCH_R9A08G045) += r9a08g045s33-smarc-pmod1-type-3a.dtb
- 
-+dtb-$(CONFIG_ARCH_R9A08G046) += r9a08g046l48-smarc.dtb
-+
- dtb-$(CONFIG_ARCH_R9A09G011) += r9a09g011-v2mevk2.dtb
- 
- dtb-$(CONFIG_ARCH_R9A09G047) += r9a09g047e57-smarc.dtb
-diff --git a/arch/arm64/boot/dts/renesas/r9a08g046l48-smarc.dts b/arch/arm64/boot/dts/renesas/r9a08g046l48-smarc.dts
-new file mode 100644
-index 000000000000..86db86335d5e
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/r9a08g046l48-smarc.dts
-@@ -0,0 +1,37 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+/*
-+ * Device Tree Source for the RZ/G3L SMARC EVK board
-+ *
-+ * Copyright (C) 2026 Renesas Electronics Corp.
-+ */
-+
-+/dts-v1/;
-+
-+/* Add place holder to avoid compilation error with renesas-smarc2.dtsi */
-+#define KEY_1_GPIO		1
-+#define KEY_2_GPIO		2
-+#define KEY_3_GPIO		3
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include "r9a08g046l48.dtsi"
-+#include "rzg3l-smarc-som.dtsi"
-+#include "renesas-smarc2.dtsi"
-+
-+/ {
-+	model = "Renesas SMARC EVK version 2 based on r9a08g046l48";
-+	compatible = "renesas,smarc2-evk", "renesas,rzg3l-smarcm",
-+		     "renesas,r9a08g046l48", "renesas,r9a08g046";
-+
-+	aliases {
-+		serial3 = &scif0;
-+	};
-+};
-+
-+&keys {
-+	status = "disabled";
-+
-+	/delete-node/ key-1;
-+	/delete-node/ key-2;
-+	/delete-node/ key-3;
-+};
--- 
-2.43.0
+> subsystem and vendor-specific remote processor communication
+> mechanisms.
+> 
+> Advantage of this to avoid duplicating vendor-specific logic
+> in the thermal subsystem and make it easier for different vendors
+> to plug in their own cooling mechanisms via callbacks.
+> 
+> Suggested-by: Amit Kucheria <amit.kucheria@oss.qualcomm.com>
+> Signed-off-by: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
+> ---
+>  MAINTAINERS                          |   7 ++
+>  drivers/thermal/Kconfig              |  10 ++
+>  drivers/thermal/Makefile             |   2 +
+>  drivers/thermal/remoteproc_cooling.c | 143 +++++++++++++++++++++++++++
+>  include/linux/remoteproc_cooling.h   |  52 ++++++++++
+>  5 files changed, 214 insertions(+)
+>  create mode 100644 drivers/thermal/remoteproc_cooling.c
+>  create mode 100644 include/linux/remoteproc_cooling.h
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 414f44093269..5ebc7819d2cf 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -26169,6 +26169,13 @@ F:	drivers/thermal/cpufreq_cooling.c
+>  F:	drivers/thermal/cpuidle_cooling.c
+>  F:	include/linux/cpu_cooling.h
+>  
+> +THERMAL/REMOTEPROC_COOLING
+> +M:	Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
+> +L:	linux-pm@vger.kernel.org
+> +S:	Supported
+> +F:	drivers/thermal/remoteproc_cooling.c
+> +F:	include/linux/remoteproc_cooling.h
+> +
+>  THERMAL/POWER_ALLOCATOR
+
+Please beginning of this file. P < R.
+
+
+>  M:	Lukasz Luba <lukasz.luba@arm.com>
+>  L:	linux-pm@vger.kernel.org
+> diff --git a/drivers/thermal/Kconfig b/drivers/thermal/Kconfig
+> index b10080d61860..dfc52eed64de 100644
+> --- a/drivers/thermal/Kconfig
+> +++ b/drivers/thermal/Kconfig
+> @@ -229,6 +229,16 @@ config PCIE_THERMAL
+>  
+>  	  If you want this support, you should say Y here.
+>  
+> +config REMOTEPROC_THERMAL
+> +	tristate "Remote processor cooling support"
+> +	help
+> +	  This implements a generic cooling mechanism for remote processors
+> +	  (modem, DSP, etc.) that allows vendor-specific implementations to
+> +	  register thermal cooling devices and provide callbacks for thermal
+> +	  mitigation.
+> +
+> +	  If you want this support, you should say Y here.
+> +
+>  config THERMAL_EMULATION
+>  	bool "Thermal emulation mode support"
+>  	help
+> diff --git a/drivers/thermal/Makefile b/drivers/thermal/Makefile
+> index bb21e7ea7fc6..ae747dde54fe 100644
+> --- a/drivers/thermal/Makefile
+> +++ b/drivers/thermal/Makefile
+> @@ -34,6 +34,8 @@ thermal_sys-$(CONFIG_DEVFREQ_THERMAL) += devfreq_cooling.o
+>  
+>  thermal_sys-$(CONFIG_PCIE_THERMAL) += pcie_cooling.o
+>  
+> +thermal_sys-$(CONFIG_REMOTEPROC_THERMAL) += remoteproc_cooling.o
+> +
+>  obj-$(CONFIG_K3_THERMAL)	+= k3_bandgap.o k3_j72xx_bandgap.o
+>  # platform thermal drivers
+>  obj-y				+= broadcom/
+> diff --git a/drivers/thermal/remoteproc_cooling.c b/drivers/thermal/remoteproc_cooling.c
+> new file mode 100644
+> index 000000000000..f958efa691b3
+> --- /dev/null
+> +++ b/drivers/thermal/remoteproc_cooling.c
+> @@ -0,0 +1,143 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Remote Processor Cooling Device
+> + *
+> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+> + */
+> +
+> +#include <linux/err.h>
+> +#include <linux/export.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/of.h>
+
+Where do you use it?
+
+> +#include <linux/slab.h>
+> +#include <linux/thermal.h>
+> +
+> +#define REMOTEPROC_PREFIX		"rproc_"
+> +
+> +struct remoteproc_cooling_ops {
+> +	int (*get_max_level)(void *devdata, unsigned long *level);
+> +	int (*get_cur_level)(void *devdata, unsigned long *level);
+> +	int (*set_cur_level)(void *devdata, unsigned long level);
+> +};
+> +
+> +/**
+> + * struct remoteproc_cdev - Remote processor cooling device
+> + * @cdev: Thermal cooling device handle
+> + * @ops: Vendor-specific operation callbacks
+> + * @devdata: Private data for vendor implementation
+> + * @np: Device tree node associated with this cooling device
+> + * @lock: Mutex to protect cooling device operations
+> + */
+> +struct remoteproc_cdev {
+> +	struct thermal_cooling_device *cdev;
+> +	const struct remoteproc_cooling_ops *ops;
+> +	void *devdata;
+> +	struct mutex lock;
+> +};
+> +
+> +/* Thermal cooling device callbacks */
+> +
+> +static int remoteproc_get_max_state(struct thermal_cooling_device *cdev,
+> +				    unsigned long *state)
+> +{
+> +	struct remoteproc_cdev *rproc_cdev = cdev->devdata;
+> +	int ret;
+> +
+> +	mutex_lock(&rproc_cdev->lock);
+> +	ret = rproc_cdev->ops->get_max_level(rproc_cdev->devdata, state);
+> +	mutex_unlock(&rproc_cdev->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static int remoteproc_get_cur_state(struct thermal_cooling_device *cdev,
+> +				    unsigned long *state)
+> +{
+> +	struct remoteproc_cdev *rproc_cdev = cdev->devdata;
+> +	int ret;
+> +
+> +	mutex_lock(&rproc_cdev->lock);
+> +	ret = rproc_cdev->ops->get_cur_level(rproc_cdev->devdata, state);
+> +	mutex_unlock(&rproc_cdev->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static int remoteproc_set_cur_state(struct thermal_cooling_device *cdev,
+> +				    unsigned long state)
+> +{
+> +	struct remoteproc_cdev *rproc_cdev = cdev->devdata;
+> +	int ret;
+> +
+> +	mutex_lock(&rproc_cdev->lock);
+> +	ret = rproc_cdev->ops->set_cur_level(rproc_cdev->devdata, state);
+> +	mutex_unlock(&rproc_cdev->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct thermal_cooling_device_ops remoteproc_cooling_ops = {
+> +	.get_max_state = remoteproc_get_max_state,
+> +	.get_cur_state = remoteproc_get_cur_state,
+> +	.set_cur_state = remoteproc_set_cur_state,
+> +};
+> +
+> +struct remoteproc_cdev *
+> +remoteproc_cooling_register(struct device_node *np,
+> +			    const char *name, const struct remoteproc_cooling_ops *ops,
+> +			     void *devdata)
+> +{
+> +	struct remoteproc_cdev *rproc_cdev;
+> +	struct thermal_cooling_device *cdev;
+> +	int ret;
+> +
+> +	if (!name || !ops)
+> +		return ERR_PTR(-EINVAL);
+> +
+> +	rproc_cdev = kzalloc(sizeof(*rproc_cdev), GFP_KERNEL);
+> +	if (!rproc_cdev)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	rproc_cdev->ops = ops;
+> +	rproc_cdev->devdata = devdata;
+> +	mutex_init(&rproc_cdev->lock);
+> +
+> +	char *rproc_name __free(kfree) =
+> +		kasprintf(GFP_KERNEL, REMOTEPROC_PREFIX "%s", name);
+> +	/* Register with thermal framework */
+> +	if (np)
+> +		cdev = thermal_of_cooling_device_register(np, rproc_name, rproc_cdev,
+> +							  &remoteproc_cooling_ops);
+> +	else
+> +		cdev = thermal_cooling_device_register(rproc_name, rproc_cdev,
+> +						       &remoteproc_cooling_ops);
+> +
+> +	if (IS_ERR(cdev)) {
+> +		ret = PTR_ERR(cdev);
+> +		goto free_rproc_cdev;
+> +	}
+> +
+> +	rproc_cdev->cdev = cdev;
+> +
+> +	return rproc_cdev;
+> +
+> +free_rproc_cdev:
+> +	kfree(rproc_cdev);
+> +	return ERR_PTR(ret);
+> +}
+> +EXPORT_SYMBOL_GPL(remoteproc_cooling_register);
+> +
+> +void remoteproc_cooling_unregister(struct remoteproc_cdev *rproc_cdev)
+> +{
+> +	if (!rproc_cdev)
+> +		return;
+> +
+> +	thermal_cooling_device_unregister(rproc_cdev->cdev);
+> +	mutex_destroy(&rproc_cdev->lock);
+> +	kfree(rproc_cdev);
+> +}
+> +EXPORT_SYMBOL_GPL(remoteproc_cooling_unregister);
+> +
+> +MODULE_LICENSE("GPL");
+> +MODULE_DESCRIPTION("Remote Processor Cooling Device");
+
+I do not see any driver here, just bunch of exported functions. I do not
+see point in this abstraction/wrapping layer.
+
+Another abstraction layer, NAK.
+
+Best regards,
+Krzysztof
 
 
