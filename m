@@ -1,179 +1,162 @@
-Return-Path: <devicetree+bounces-260290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260291-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kMF5DFLgeWm50gEAu9opvQ
-	(envelope-from <devicetree+bounces-260290-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 11:09:22 +0100
+	id iDkWHoLgeWm50gEAu9opvQ
+	(envelope-from <devicetree+bounces-260291-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 11:10:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E13D9F416
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 11:09:21 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F19A9F444
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 11:10:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 89A8F30117BA
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 10:09:20 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 3737F300399E
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 10:10:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1B4A2D73AE;
-	Wed, 28 Jan 2026 10:09:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 338CA2DA757;
+	Wed, 28 Jan 2026 10:10:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="fRcA0V6J"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KWI/646Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 724DD1E3DCD;
-	Wed, 28 Jan 2026 10:09:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 104BA2D0C92;
+	Wed, 28 Jan 2026 10:10:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769594957; cv=none; b=Y0xPoR9jGLDW3Lm5feJ2jsMARUd5R9uO/wnVrGU0719b/qPb6L7v16w54BDW46UgCn35K3u0ECnJtXzlhfD7UAEaav4mJnItsdWIMwKFiLRioz9jE443kFeuwfrBT+OClEJMzKmm6KTtC5nmKwA7zLyma81A+eqGGXbUI2UlfB4=
+	t=1769595006; cv=none; b=g+1H+zav9w3aoOlpfn3C/L+liBSclX7IMJaBPrm6FUWjSe1+JvnBeG5xQRsOqzq0YepsW5/m8juWQVz6bI6Fp1l/YbfbAhjvDToVegBh0tRzf0bLrs1XyjSHY6bfNRnt/+zwwcvBcpMSfG1jmDwbx8qtcSJmqrWQQFUhCvGJr8k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769594957; c=relaxed/simple;
-	bh=fQR2+fRKPKr1SPYT7Dye2OabwpjQcbGHOv0mQ8n+MAE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=s/vZ/10IDUw4hc7q36hRWakkMtcgFXiuRJrichROoWvn7S7vdEBz/m/h7LH5Tszn0rvYxNVcRLGrZs0OoUlBmghL2b9JpXcNaYpdiXzxK4kxV9jcB6bJCAgFN6QvMz+FPcswkUG+Bp5NnkMSgx8BWqOULeoHmA/npanJs4hZr0Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=fRcA0V6J; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1769594957; x=1801130957;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=fQR2+fRKPKr1SPYT7Dye2OabwpjQcbGHOv0mQ8n+MAE=;
-  b=fRcA0V6Je6p9pHI7L9+CvcK8FBYmMnZeL47k3BEDfeG3fQhPIgk+yD5G
-   qBz9dfbe//6gLbfrKg5e9QMfHQccFqYLYULzLR96O8PCMW3r0wkUmgwaA
-   U8kx/ZM8kr0ltGFtoASzMszf4BrpCijbxA6+pQzOhNDwJX0dGZYKtz/yi
-   CesGeDqLnE7QdGiH236TeLG0UzJ2ILokjBN/OGz9h6IxsKeqggvhtG2+z
-   L0sAZlB8uxe4HOh60nin49scoeGJ5VUtnVdaWJ9iyz47W+KTvsfUe1iMx
-   cqfKxlq2H8p358REMO3NJ2IinJWklVHf90cl1udR0t2ktrHVSQlOR4cm7
-   w==;
-X-CSE-ConnectionGUID: 35rxvDaeSsSDjfXRTtfmng==
-X-CSE-MsgGUID: zR82WaP6Qty79AP1UuXEDg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="70703242"
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; 
-   d="scan'208";a="70703242"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jan 2026 02:09:16 -0800
-X-CSE-ConnectionGUID: NPOPfa6JTsmz5qiDQpa+Cg==
-X-CSE-MsgGUID: enJd1VjrT/agPs45kcsqOw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; 
-   d="scan'208";a="212778403"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost) ([10.245.244.196])
-  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jan 2026 02:09:12 -0800
-Date: Wed, 28 Jan 2026 12:09:09 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v2 4/6] iio: amplifiers: ad8366: add device tree support
-Message-ID: <aXngRcVMj18tryGT@smile.fi.intel.com>
-References: <20260126-iio-ad8366-update-v2-0-c9a4d31aeb01@analog.com>
- <20260126-iio-ad8366-update-v2-4-c9a4d31aeb01@analog.com>
- <aXksSjsyNn6if3eQ@smile.fi.intel.com>
- <b6pzhwmfranyhuetv65movfqzubvbjasl6ruxiym2ehuch2hov@r56lgzgf4us5>
+	s=arc-20240116; t=1769595006; c=relaxed/simple;
+	bh=X4SuxCleKrrzGAtIw6zL8YaUitgC/KQKVkQAuw87xNw=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=kfxuBMT0jzyAVdrfol5e4JnRrpRz0WxHUW2Yv6xrKxfODbDKXbwqo7NzgWimXi+6KpBPmMvr9lCefYQe0+et+07b3VFE3bkkKhUOZ/RHDNhTtLKmG7Gcq/Ad5JGdt4I2LcYTCo2YegJPlb32ukcBMdWlx2omi3nksazQIrB/MpA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KWI/646Z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 96013C4CEF1;
+	Wed, 28 Jan 2026 10:10:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769595005;
+	bh=X4SuxCleKrrzGAtIw6zL8YaUitgC/KQKVkQAuw87xNw=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=KWI/646ZWVuGRf5tFzDPJ4w9K3A7JCMYnuNMLF0llsEkzOuxNXHldoxH+a9wmKyNu
+	 Ndq+MUk86Qhm/AQUJn+zf0T/5u6EtDSfriLeVBPb1Ky2x5R7CszDRXOUuvsfHzEJwm
+	 OVVcf3GSmrbeDaJsDO09niZnqPN8zEp9JZLrSlVOlNwgftzUOei7jQd+2w2ugJd2ss
+	 ile1Yw4zptEv4pk7crN7rqCOWkHra54zWoKeIhkhuPXK7y5eGO8MPGk+J/NnGOrqKg
+	 8/HhN/fvuuJ1TfzX17SYIyLf/Ww+Y8YdYra632FFPYV74f9ybAMj18pbc1o3HY2Nz8
+	 Cbx1aJQKM1XGQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 835F6D35693;
+	Wed, 28 Jan 2026 10:10:05 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Date: Wed, 28 Jan 2026 10:09:54 +0000
+Subject: [PATCH] arm64: dts: amlogic: a4: fix pinctrl node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b6pzhwmfranyhuetv65movfqzubvbjasl6ruxiym2ehuch2hov@r56lgzgf4us5>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260128-fix-a4-pinctl-node-v1-1-617a1f539902@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIAHHgeWkC/x2MWwqAIBAArxL73UJt0esq0YfpVguhohGBdPekz
+ 4GZSRA5CEeYigSBb4nibIa6LEAfyu6MYjIDVdRVNQ24yYOqRS9WXydaZxg702+jpnFtSEEOfeB
+ s/dN5ed8PqDHy92QAAAA=
+X-Change-ID: 20260128-fix-a4-pinctl-node-6d7f9c29b32a
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1769595003; l=1293;
+ i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
+ bh=F6Np6Gg5OfDL8SOtdbBhRnTvyEqILZTAt6VZ6iphZjU=;
+ b=klaiKJo6ZXYdkMttvJFCkjmYPGO+ViMwibRH3IvVKYi1pOexAtu5Fpu0DiJT/zW6MPW+LQJC5
+ PWuoph2b+74A/QH2bae0AyNkycivBV6dCia29/RQ2iwwzlcxBF2gGuT
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
+ auth_id=578
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260290-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260291-lists,devicetree=lfdr.de,xianwei.zhao.amlogic.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FREEMAIL_TO(0.00)[linaro.org,baylibre.com,googlemail.com,kernel.org];
 	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,smile.fi.intel.com:mid]
-X-Rspamd-Queue-Id: 9E13D9F416
+	HAS_REPLYTO(0.00)[xianwei.zhao@amlogic.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amlogic.com:replyto,amlogic.com:email,amlogic.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,0.0.0.44:email,0.0.0.4:email]
+X-Rspamd-Queue-Id: 0F19A9F444
 X-Rspamd-Action: no action
 
-On Wed, Jan 28, 2026 at 09:55:16AM +0000, Rodrigo Alencar wrote:
-> On 26/01/27 11:21PM, Andy Shevchenko wrote:
-> > On Mon, Jan 26, 2026 at 01:51:05PM +0000, Rodrigo Alencar via B4 Relay wrote:
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-...
+Fix incorrect pinctrl device reference when adding GPIO to pinctrl device.
 
-> > > +static size_t ad8366_pack_code(struct ad8366_state *st)
-> > > +{
-> > > +	u8 ch_a = bitrev8(st->ch[0] & 0x3F);
-> > > +	u8 ch_b = bitrev8(st->ch[1] & 0x3F);
-> > 
-> > GENMASK() in both cases? But I don't see why ch_a needs this at all,
-> > isn't the 2 LSBs are not used anyway?
-> 
-> Yes, I can adjust with:
-> 
-> u8 ch_a = bitrev8(st->ch[0]) >> 2;
-> u8 ch_b = bitrev8(st->ch[1]) >> 2;
-> 
-> st->data[0] = ch_b >> 2;
-> st->data[1] = (ch_b << 6) | ch_a;
-> 
-> so no need for masking both.
+Fixes: e9bb91734871 ("arm64: dts: amlogic: a4: add pinctrl node")
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Fix A4 pinctrl node.
+---
+ arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-This is better, but let's think a bit more. The data we put seems to be
-__be12 (yeah, we don't have the exact type for that) and can be put slightly
-differently.
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+index fce45933fa28..6587e3578f8d 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
++++ b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+@@ -218,7 +218,7 @@ gpioao: gpio@4 {
+ 			reg-names = "gpio", "mux";
+ 			gpio-controller;
+ 			#gpio-cells = <2>;
+-			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_AO<<8) 7>;
++			gpio-ranges = <&ao_pinctrl 0 (AMLOGIC_GPIO_AO<<8) 7>;
+ 		};
+ 
+ 		test_n: gpio@44 {
+@@ -226,7 +226,7 @@ test_n: gpio@44 {
+ 			reg-names = "gpio";
+ 			gpio-controller;
+ 			#gpio-cells = <2>;
+-			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_TEST_N<<8) 1>;
++			gpio-ranges = <&ao_pinctrl 0 (AMLOGIC_GPIO_TEST_N<<8) 1>;
+ 		};
+ 	};
+ 
 
-So, something like
+---
+base-commit: e3194dfb772304a1b7ca3bcfccacefec3468b7bf
+change-id: 20260128-fix-a4-pinctl-node-6d7f9c29b32a
 
-	put_unaligned_be16((ch_b << 6) | ch_a, &st->deta[0]);
-
-should be better, no? (Note, you would need linux/unaligned.h).
-
-> > Also missed header inclusion for this? And also perhaps sorting headers first
-> > to see what's there and what needs to be updated (ideally another patch to move
-> > to IWYU principle).
-> 
-> linux/bitrev.h is there, but indeed header includes are not sorted.
-> I will create a separate patch for that.
-
-Ah, good!
-
-> > > +	st->data[0] = ch_b >> 4;
-> > > +	st->data[1] = (ch_b << 4) | (ch_a >> 2);
-> > > +	return 2;
-> > > +}
-
+Best regards,
 -- 
-With Best Regards,
-Andy Shevchenko
+Xianwei Zhao <xianwei.zhao@amlogic.com>
 
 
 
