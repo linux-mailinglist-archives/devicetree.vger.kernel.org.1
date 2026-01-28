@@ -1,232 +1,204 @@
-Return-Path: <devicetree+bounces-260548-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260549-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yOilFzFEemn34wEAu9opvQ
-	(envelope-from <devicetree+bounces-260548-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 18:15:29 +0100
+	id +P8TK81Femn34wEAu9opvQ
+	(envelope-from <devicetree+bounces-260549-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 18:22:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A271A6A72
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 18:15:28 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC66DA6C27
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 18:22:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2823930FD415
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 16:56:16 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4711F310BA58
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 16:56:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30FC730F94D;
-	Wed, 28 Jan 2026 16:52:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4848536EAA8;
+	Wed, 28 Jan 2026 16:54:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f6MBlL8W"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f71woEqR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFCD030DD03
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 16:52:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.214.181
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769619164; cv=pass; b=QT0EOhqF9q34nGvOZ64jq2mSOndc8OSfOEeKm9rp4tfHo/s+oY7Bgsrg49WwnVYQNBFXUCQKfORX1NHwg4hAiRQYLwh7N0GIPlcgw3HiLnazhLwyhas8q3mvT0TcDw/L3CweW3NSKuLv3owVwlp/eON3/yoK8ukPmkBtF8vMx/g=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769619164; c=relaxed/simple;
-	bh=TpCucwmKAK2k086DcpFd+VvfN1GaOQ0WjNJ+vGCA69U=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=nNs1W6Uk25zZ8YesJEgqiPd/q0aCfbXsEhlQQtn1tUEykbmbKNSKSNq0feT9zOAWyJ7sEQ+ccMsh4K6rn39MDez0ODYLXiE42UO6KnwSa2i9+n5JQB09ByQ70+KutTD1AmsQM7LvxYXYhdX0f6PFAJ/6B5aPoxELjXA5NFJk/7s=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f6MBlL8W; arc=pass smtp.client-ip=209.85.214.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-2a09a3bd9c5so51499615ad.3
-        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 08:52:42 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1769619162; cv=none;
-        d=google.com; s=arc-20240605;
-        b=JIfOXtehYqDmVbxVHYFh5sjVeAh4fEfv5owopDy3aAGq8dYPLFCgmHEctjhNDWMtUE
-         8hcvulvu7EcLDKtzK47I8JrowHNLR/UMrokFQ0RfH2MaJ/ZIyCI+Dq4llJRW8Va79aTf
-         z0wb4bVBLyYK9IQGq6rET8e3W2chMwrwgPZHQKmjcdEOTawM5yOWffTGOFXqGzW/C7U/
-         gXTFOUI1yvqY285mklo5lslc+dMEoNnJiuR+OmFJ2FN46DXZXY5houj4wg/OygtFr/pA
-         OXuxSxf0OAMrVYAzYvniSnbE+tbTSUpQ8HUcs1aPtX9Gy7BsZ8SP6ar8oiS3LKLpkhm8
-         zEhw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=LX9gDx3KFBF5yxVstQOoU+G8u/eBTnZN64aCXHiziSg=;
-        fh=0Eok7C87sEWE401T51+fI4QbOjyDhS8AHNhYqlQk6e0=;
-        b=jKYDll625tj0lZBcBny5ExcNiShiScMiBzJfajy8uVEj/2vy483wUbcrDz96j0HE95
-         +eAd36RXboqgsqkRFhSEka1VEnhvnuPDpr0MuUXqSOvNLSftmymuO9ilrBjYpr5UBcV3
-         q39UfCUXfFUUE6bVP9G0dWBkxPbTu030nolzHCVZcb+KEC7J0inofnL0+L3uYVj4Snrl
-         7bZO3oN3YfLUQuevS+ZAfPeAcHEK+GG+6U0XBZwqgTrS4rMSbU0tNqdZkY66ccKypBAZ
-         SwId69t/ShliBr8lXmU7nNJCufyfUhWc3oTze4xw45dpQRq87OhmIYj5pTQolQhPbXTV
-         ezOQ==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769619162; x=1770223962; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LX9gDx3KFBF5yxVstQOoU+G8u/eBTnZN64aCXHiziSg=;
-        b=f6MBlL8WIhAFafLJ4DAT4Qk50DyvXWHd74MpB3ulde8nHx4dpYcJboAen5DZPrtJzQ
-         lOqwPZrmxS35O1Nlq31pE+DHZTc6fcD+sGMO2dOHOwfhfnz27iloilRinJFB/ACpt0S9
-         sb/4wof6twWUqMk/3Pz9x5hv21Av6BLTgIUm9PnIk83/RH+dltp9mNsvr4kFqZvlBQ0I
-         5Ve++Wk9WtkpJAx9yE1FeT2Lu7eiYw1bYDnbDoNlko5jwNwSj9Tn8mvZFD3S+bYi5l6V
-         Nuve8bAO++/eiHCTO1FHyFnTnyxm0EFGzKSCc+nHCgs9FO4BtlYM40nv86B+hCO/7CtK
-         usKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769619162; x=1770223962;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=LX9gDx3KFBF5yxVstQOoU+G8u/eBTnZN64aCXHiziSg=;
-        b=RlG0STceGpKWKmfMlcrC1+Hj86YT+Ae6ghx77SnCN5H7Yno5Zy5RAuCl2ND4aNkQqc
-         jiOhtamxUaN5lqIBgzpYIOvELMqdBvuvnAg3hm2NQOCkWOGrR5ax9SUJe3Uyccrs5qsg
-         7TkIo54bSyZbyuK1ljoslZdQWxtGUadOq7/P4qBYDlgcO76bRuyNzHnajLjaY3mCPDBP
-         unrdpk889cape2QJB33+j7wHQJpXchEtt+z01aNqHSqBTDEqJNHaI8tTNOXMTqpgmLUN
-         B+SpaLfriuqTobJS9V9Iu+l4i+/wpBECfE7fFBX6Uo1lvvrJNy2o1un5r+j13jz5aqP1
-         YCyQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUFmP0JbfAxmw4YimGnthgetjYky6EPHQAh9GJgLq5jiyW9IGwQh5aPFeGc4VqbLLQpySLj/cBzjtsX@vger.kernel.org
-X-Gm-Message-State: AOJu0YwbkM2fyYqKE9u62u3SX7QKuqK9G1bMjmroxXbsP0vEMCO5kEHE
-	gU3HjqbB4mb1P3HCMV5c6biKNk6dreHvmARQ2XqTsVHv/9tuSQMLLG1zsGSx4DU8kmwpfBhClyv
-	HEPGl2MXF7RVyWjWgXnKf5d30rejSyQ==
-X-Gm-Gg: AZuq6aL9jQC5s1KqfNNuzlp9b4dakaMym97pwZmqDH/WzFUR9t1AJyeLRuBm/yomcIl
-	uODDSpG+I7SZe2TG04Edu+0620wgOfejiNHZ4mFKTxnohW1YtOkMJjsG9Wo3b0kixq1CQ7BBiU9
-	Nf0Y7AokaHtFi6+xUqKIAejrDnM/KMZY5/KfSsrl8vPAZRDNAiVWtaltV089/eKqTAu8XgZSzyG
-	dpAleTYFKt1xtYFNo36PXC/V0CAdiH2aXDN46nv4lwfj64fCuHvq52/mQuteoaKDA4kECaZ
-X-Received: by 2002:a17:903:249:b0:2a5:99e9:569d with SMTP id
- d9443c01a7336-2a870d6483fmr54239625ad.18.1769619161524; Wed, 28 Jan 2026
- 08:52:41 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2382536BCE6;
+	Wed, 28 Jan 2026 16:54:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769619247; cv=none; b=Q4jIO0/aNYlisLJ/zLApbaTou7Xb0Yq77HbpGHWRWUnkCZS1xcaF9tkCKFUA9cMUC4Kxd/t/i3z8YarWFRzFk0AYj8ZqD2KqovAsshRkpxerkHGUGG4sj0rn1CcpcRjRvLJVeE4GytoKphLPoVfNR5GoCWpFiL8AEa/sgaDZ/yA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769619247; c=relaxed/simple;
+	bh=wjD1JjU+ufMC6qAGdcVwazuGSHIwkRbdDsek0eB02g0=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=GY7qNexGX08N67LHDODYbgJxMbhm1qGzWDMHK5w9AJCmnXvuXS5IaQCmnE0ljKyOB2KxN+amg/Xopb6gB2mZZkC6yWa8A7poKs2S/VxaYtGs/ternqAgI5Wq8ROOjAMtwrucYGznpgX6P3AVFocRxltuwcEJfXAfsKGnQATQiRc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f71woEqR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70ABCC4CEF1;
+	Wed, 28 Jan 2026 16:54:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769619246;
+	bh=wjD1JjU+ufMC6qAGdcVwazuGSHIwkRbdDsek0eB02g0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=f71woEqR3TUr+lS24Y4wNcYEiO6+oCU4HWInsmAWCYA1950UIl6+PYOG6Meoz/M5b
+	 i78IMS/LFpX7BMHpXqZ0iX3CmegKGCyiytk0l0J1zrEgR+b2OV/Me9v+EqlszCDPP/
+	 DsoN2t9EUwlT7yCuZ5hEbFAI2m22a8rswfn6/YKXMJmsXR3pfP6U7YUtqToVSCSZkK
+	 fJFzwRbs0FNej8C30P0BzPokpFD9HcQ/i5okTPETjUJfEdQmi71nzMDrIAfxZLJihU
+	 4vXsEtQVK8KwVyIyWWTlIyoB8WfgNkgt80yBX1Elq1e7fuMzIKO+9wwSU6DQ5lMcXP
+	 DWESbn/ZURc7g==
+Date: Wed, 28 Jan 2026 10:54:04 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Damien Le Moal <dlemoal@kernel.org>,
+	Niklas Cassel <cassel@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	Stephan Gerhold <stephan.gerhold@linaro.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	linux-pm@vger.kernel.org, linux-ide@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH v7 0/2] PCI: Add initial support for handling PCIe M.2
+ connectors in devicetree
+Message-ID: <20260128165404.GA421308@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250427142500.151925-1-privatesub2@gmail.com> <aXJTqzZaBrCMnTvv@shepard>
-In-Reply-To: <aXJTqzZaBrCMnTvv@shepard>
-From: =?UTF-8?B?0JDQu9C10LrRgdCw0L3QtNGAINCo0YPQsdC40L0=?= <privatesub2@gmail.com>
-Date: Wed, 28 Jan 2026 19:52:29 +0300
-X-Gm-Features: AZwV_QjtfqpOuCyYtNE1xKe0593NpcMxJ89wFPIBopBcRc0tp-flqstJbbXGRk0
-Message-ID: <CAF4idN=h9u2LX8Oa9_LcyM9ANUNtLbPTMyn_pHbZVBCXc5Orvg@mail.gmail.com>
-Subject: Re: [PATCH v12 0/3] Add support for Allwinner PWM on D1/T113s/R329 SoCs
-To: Paul Kocialkowski <paulk@sys-base.io>
-Cc: linux-kernel@vger.kernel.org, =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Samuel Holland <samuel@sholland.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Cheo Fusi <fusibrandon13@gmail.com>, linux-pwm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260128-pci-m2-v7-0-9b3a5fe3d244@oss.qualcomm.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260548-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260549-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[20];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,csie.org,gmail.com,sholland.org,sifive.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,pengutronix.de,lists.infradead.org,lists.linux.dev];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[privatesub2@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[helgaas@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[paulk.fr:url,ozlabs.org:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,mail.gmail.com:mid,sys-base.io:url,sys-base.io:email]
-X-Rspamd-Queue-Id: 7A271A6A72
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: EC66DA6C27
 X-Rspamd-Action: no action
 
-Hi Paul,
+On Wed, Jan 28, 2026 at 09:07:14PM +0530, Manivannan Sadhasivam wrote:
+> Hi,
+> 
+> This series is an initial attempt to support the PCIe M.2 connectors in the
+> kernel and devicetree binding. The PCIe M.2 connectors as defined in the PCI
+> Express M.2 Specification are widely used in Notebooks/Tablet form factors (even
+> in PCs). On the ACPI platforms, power to these connectors are mostly handled by
+> the firmware/BIOS and the kernel never bothered to directly power manage them as
+> like other PCIe connectors. But on the devicetree platforms, the kernel needs to
+> power manage these connectors with the help of the devicetree description. But
+> so far, there is no proper representation of the M.2 connectors in devicetree
+> binding. This forced the developers to fake the M.2 connectors as PMU nodes [1]
+> and fixed regulators in devicetree.
+> 
+> So to properly support the M.2 connectors in devicetree platforms, this series
+> introduces the devicetree binding for Mechanical Key M connector as an example
+> and also the corresponding pwrseq driver and PCI changes in kernel to driver the
+> connector.
+> 
+> The Mechanical Key M connector is used to connect SSDs to the host machine over
+> PCIe/SATA interfaces. Due to the hardware constraints, this series only adds
+> support for driving the PCIe interface of the connector in the kernel.
+> 
+> Also, the optional interfaces supported by the Key M connectors are not
+> supported in the driver and left for the future enhancements.
+> 
+> Testing
+> =======
+> 
+> This series, together with the devicetree changes [2] [3] were tested on the
+> Qualcomm X1e based Lenovo Thinkpad T14s Laptop which has the NVMe SSD connected
+> over PCIe.
+> 
+> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts?h=v6.18-rc4&id=d09ab685a8f51ba412d37305ea62628a01cbea57
+> [2] https://github.com/Mani-Sadhasivam/linux/commit/40120d02219f34d2040ffa6328f0d406b1e4c04d
+> [3] https://github.com/Mani-Sadhasivam/linux/commit/ff6c3075836cc794a3700b0ec6a4a9eb21d14c6f
+> 
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> ---
+> Changes in v7:
+> - Dropped the pwrseq and binding patches as they got applied
+> - Rebased on top of pci/pwrctrl branch
+> - Link to v6: https://lore.kernel.org/r/20260122-pci-m2-v6-0-575da9f97239@oss.qualcomm.com
+> 
+> Changes in v6:
+> - Used 'ports' to describe interfaces instead of endpoints in the binding
+> - Added GPIOs and USB to the example in binding
+> - Incorporated minor comments in the pwrseq driver
+> - Dropped the ata binding patch as it got applied
+> - Link to v5: https://lore.kernel.org/r/20260107-pci-m2-v5-0-8173d8a72641@oss.qualcomm.com
+> 
+> Changes in v5:
+> - used of_node_get() and devm_action to free regulators
+> - Link to v4: https://lore.kernel.org/r/20251228-pci-m2-v4-0-5684868b0d5f@oss.qualcomm.com
+> 
+> Changes in v4:
+> - Added graph property to SATA in this series and PCI to dtschema:
+>   https://github.com/devicetree-org/dt-schema/pull/180
+> - Used 'i2c-parent' instead of SMBus port
+> - Reworded the -gpios property description
+> - Rebased on top of v6.19-rc1
+> - Link to v3: https://lore.kernel.org/r/20251125-pci-m2-v3-0-c528042aea47@oss.qualcomm.com
+> 
+> Changes in v3:
+> - Changed the VIO supply name as per dtschema
+> - Added explicit endpoint properties to port 0 node for host I/F
+> - Used scope based cleanup for OF node in pwrseq driver
+> - Collected review tags
+> - Link to v2: https://lore.kernel.org/r/20251108-pci-m2-v2-0-e8bc4d7bf42d@oss.qualcomm.com
+> 
+> Changes in v2:
+> - Incorporated comments from Bartosz and Frank for pwrseq and dt-binding
+>   patches, especially adding the pwrseq match() code.
+> - Link to v1: https://lore.kernel.org/r/20251105-pci-m2-v1-0-84b5f1f1e5e8@oss.qualcomm.com
+> 
+> ---
+> Manivannan Sadhasivam (2):
+>       PCI/pwrctrl: Add support for handling PCIe M.2 connectors
+>       PCI/pwrctrl: Create pwrctrl device if the graph port is found
+> 
+>  drivers/pci/pwrctrl/Kconfig |  1 +
+>  drivers/pci/pwrctrl/core.c  |  7 ++++---
+>  drivers/pci/pwrctrl/slot.c  | 31 +++++++++++++++++++++++++++----
+>  3 files changed, 32 insertions(+), 7 deletions(-)
+> ---
+> base-commit: 3e7f562e20ee87a25e104ef4fce557d39d62fa85
+> change-id: 20251103-pci-m2-7633631b6faa
+> 
+> Best regards,
+> -- 
+> Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> 
 
-Thanks a lot for the detailed review and for testing on A133 - great
-to hear it works there as well.
-
-Good point about the naming. I can rename the driver to sun8i-pwm and
-send a new patch series.
-
-Thanks again for the pointers and the context.
-
-Thanks again,
-Aleksandr
-
-=D1=87=D1=82, 22 =D1=8F=D0=BD=D0=B2. 2026=E2=80=AF=D0=B3. =D0=B2 19:43, Pau=
-l Kocialkowski <paulk@sys-base.io>:
->
-> Hi Aleksandr,
->
-> On Sun 27 Apr 25, 17:24, Aleksandr Shubin wrote:
-> > Aleksandr Shubin (3):
-> >   dt-bindings: pwm: Add binding for Allwinner D1/T113-S3/R329 PWM
-> >     controller
-> >   pwm: Add Allwinner's D1/T113-S3/R329 SoCs PWM support
-> >   riscv: dts: allwinner: d1: Add pwm node
-> >
-> >  .../bindings/pwm/allwinner,sun20i-pwm.yaml    |  84 ++++
-> >  .../boot/dts/allwinner/sunxi-d1s-t113.dtsi    |  12 +
-> >  drivers/pwm/Kconfig                           |  10 +
-> >  drivers/pwm/Makefile                          |   1 +
-> >  drivers/pwm/pwm-sun20i.c                      | 379 ++++++++++++++++++
-> >  5 files changed, 486 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/pwm/allwinner,sun=
-20i-pwm.yaml
-> >  create mode 100644 drivers/pwm/pwm-sun20i.c
->
-> Thanks for your work on this driver!
->
-> For context, this PWM controller seems to be a second-generation design f=
-rom
-> Allwinner, which is found in the following chips: V5, A50, H616, V536, T7=
-, A133,
-> V833, R329, D1/T113, R128, V851, A523 and A733.
->
-> I've tested your driver on A133, which works fine too. It seems that H616=
- uses
-> a similar (but slightly different) register layout.
->
-> In case you've missed it, there's a follow-up series adding H616 support =
-at:
-> https://patchwork.ozlabs.org/project/linux-pwm/list/?series=3D409036&arch=
-ive=3Dboth&state=3D*
->
-> And there's also a standalone effort (which I've redirected to your serie=
-s) at:
-> https://patchwork.ozlabs.org/project/linux-pwm/list/?series=3D485644&arch=
-ive=3Dboth&state=3D*
->
-> Now given that the new controller was introduced with the V5 (sun8iw12) f=
-rom
-> 2018, I think it would be a bit confusing to keep the sun20i-pwm name.
->
-> How about renaming the driver to sun8i-pwm instead? That would be more
-> consistent with how other second generation designs from Allwinner are us=
-ually
-> called in Linux and makes it more clear that it also targets sun8i and su=
-n50i
-> chips, in addition to sun20i.
->
-> All the best,
->
-> Paul
->
-> --
-> Paul Kocialkowski,
->
-> Independent contractor - sys-base - https://www.sys-base.io/
-> Free software developer - https://www.paulk.fr/
->
-> Expert in multimedia, graphics and embedded hardware support with Linux.
+Applied to pci/pwrctrl for v6.20, thanks!
 
