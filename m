@@ -1,98 +1,51 @@
-Return-Path: <devicetree+bounces-260222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260223-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kDmuAF7CeWl0zAEAu9opvQ
-	(envelope-from <devicetree+bounces-260222-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 09:01:34 +0100
+	id wE+uFIbCeWl0zAEAu9opvQ
+	(envelope-from <devicetree+bounces-260223-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 09:02:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EA699DF8C
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 09:01:33 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE95F9DFB1
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 09:02:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 974DD3003D37
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 08:01:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BAF03300C90E
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 08:02:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1798D2FB630;
-	Wed, 28 Jan 2026 08:01:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC3E6337692;
+	Wed, 28 Jan 2026 08:02:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="ugOcTLVB";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="jRm8uTDT";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="ugOcTLVB";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="jRm8uTDT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UHDmGbNQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 765D826A1CF
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 08:01:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C802C32ABD0;
+	Wed, 28 Jan 2026 08:02:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769587290; cv=none; b=Zwk0b9UYeIm4uAQz0vN4QGiT0Uklhcu2nYFOR7C7vQHrgKsOFEiCI/Je19CgYGo4ZZG8BX8oLYHbfXYlAHN7jjV0SS0rnVQ/wLDBOWRBkoWwXyXV6NFoUff6Q9kFjc5fGvKnJY/9HlYlHU+sB4TqucxrBOesPOPdaTFiTxZvNJg=
+	t=1769587325; cv=none; b=ZaTwe0+HWLFSig894oBQWlKSpJKuc1dDoffOUNDNL2VBax/NvWvmQTj9+nA2vSgzAIeGnGYHrjUJGsNZzS7KMjCnIah4TCxT6wkAm0tLjvxce8clQzBnh9KELBn/UcK+3SIbqwTV8JkNSvEOXDzIACScUy5voqoVa3LP4pL3Omo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769587290; c=relaxed/simple;
-	bh=8Nzjnr3ZiI9IGvxGNf3diRub4ag/a+fVL2QlBnNqnG0=;
+	s=arc-20240116; t=1769587325; c=relaxed/simple;
+	bh=T8hcE7eNk2CecyVgSpXssfXRPdfqXP0wzf7C43lxfIg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=H9JaFz43lwAOiA28SrLoNQG7rzFJ5x/xs2QnWAdHb92G/5TmGrkWl03fqmEMWjQsl2JQWcK2jUAx/jEhbcj36mkWYwNIX8i9OxtmwDKcGrsyQzu/RPIHBMVjghfLt9EcQPgziPtnLQhkscxiUJ4IaWYj3zoqvfFWijAOATUEjUk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=ugOcTLVB; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=jRm8uTDT; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=ugOcTLVB; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=jRm8uTDT; arc=none smtp.client-ip=195.135.223.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id B63BD33A87;
-	Wed, 28 Jan 2026 08:01:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1769587286; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=JfbaSaMJ4TfRlYB+hqYtPRcOusylzLSXuD1Cbd6DQZY=;
-	b=ugOcTLVBHB2UxK1Z1DKH0Gn7qH7+ti43n/QimfRAs/C5a8g4IoWdjrcB4HucogcM9Km/6Q
-	t9JNeUgIHxMqi4Xs8Sn+WK8W86602uX/Y+PntqVU4MzbVv222DyN101LhAd68Z7lBAwCK0
-	ug2D2QASj4zSXnkOvk3N93j7liztShA=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1769587286;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=JfbaSaMJ4TfRlYB+hqYtPRcOusylzLSXuD1Cbd6DQZY=;
-	b=jRm8uTDT6yuTcUN/6XLq7s4bba8SMStprr4hVlymAG61+xto8Ut6B4LvQyboih8Jq4WUvI
-	QxzfE/+A5eeQvOAw==
-Authentication-Results: smtp-out1.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1769587286; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=JfbaSaMJ4TfRlYB+hqYtPRcOusylzLSXuD1Cbd6DQZY=;
-	b=ugOcTLVBHB2UxK1Z1DKH0Gn7qH7+ti43n/QimfRAs/C5a8g4IoWdjrcB4HucogcM9Km/6Q
-	t9JNeUgIHxMqi4Xs8Sn+WK8W86602uX/Y+PntqVU4MzbVv222DyN101LhAd68Z7lBAwCK0
-	ug2D2QASj4zSXnkOvk3N93j7liztShA=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1769587286;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=JfbaSaMJ4TfRlYB+hqYtPRcOusylzLSXuD1Cbd6DQZY=;
-	b=jRm8uTDT6yuTcUN/6XLq7s4bba8SMStprr4hVlymAG61+xto8Ut6B4LvQyboih8Jq4WUvI
-	QxzfE/+A5eeQvOAw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id EF47D3EA61;
-	Wed, 28 Jan 2026 08:01:25 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id OEYCOVXCeWn1BgAAD6G6ig
-	(envelope-from <tzimmermann@suse.de>); Wed, 28 Jan 2026 08:01:25 +0000
-Message-ID: <cbcb8b95-67c5-4ac2-ae27-6949bc0ed10b@suse.de>
-Date: Wed, 28 Jan 2026 09:01:25 +0100
+	 In-Reply-To:Content-Type; b=WMi71rMwujQnFgxhhu5QonN2U66gbZvRqrkd9c/Ouyes6qGLZZGzH+vtQ6ghO2a30BCwMniGgd2sKxcREgEbnelTyITlB+g/DIBjG30f1a+Qlj0Nh3wNHCsqVclqku6CQ8FY55AHVHNBHz/CWYHE0QPH2d2XF3JyjRGhDtXAWX0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UHDmGbNQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96028C4CEF1;
+	Wed, 28 Jan 2026 08:02:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769587325;
+	bh=T8hcE7eNk2CecyVgSpXssfXRPdfqXP0wzf7C43lxfIg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=UHDmGbNQe0aHHUS3zjJJwgCzA3D3DhG2XuBWb9TUfx3H/Vo5znrbHiMsfis6GezGi
+	 jFJK2dXU8+oVxJnun9gFOZmVe/OcTvAsPZdszEf0R5mvXRMxgqAPIWUP350D3B/vjl
+	 22QEYmHJTbMijnPUinAx0XrMyJWsVOhkHPtSt1PUapeJTfgGZ2T6Fe0g+kMWrgQCXn
+	 bKz5XKtjq0RcctFHH39VcS8cTCcQ4hZNFyVKOoqz2VUBF5IQpV83Fefo6iR5Q2WLSU
+	 mnSj9+IQ/2FQdXe1DUeGM1DiE2Uy86+Y3BPwTPWyXMW+L/skq9YPsOQU8SGiN4YOvM
+	 G5UQbGogsX7Rg==
+Message-ID: <32845805-5758-4c35-8818-ebccbfd9546a@kernel.org>
+Date: Wed, 28 Jan 2026 09:01:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,145 +53,140 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 8/9] MAINTAINERS: assign myself as maintainer for
- verisilicon DC driver
-To: Icenowy Zheng <zhengxingda@iscas.ac.cn>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Drew Fustini <fustini@kernel.org>,
- Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>,
- Dmitry Baryshkov <lumag@kernel.org>,
- Michal Wilczynski <m.wilczynski@samsung.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>, Han Gao <rabenda.cn@gmail.com>,
- Yao Zi <ziyao@disroot.org>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, Icenowy Zheng <uwu@icenowy.me>
-References: <20260123092830.4046009-1-zhengxingda@iscas.ac.cn>
- <20260123092830.4046009-9-zhengxingda@iscas.ac.cn>
+Subject: Re: [PATCH v4 ath-current 0/2] wifi: ath11k: add usecase firmware
+ handling based on device compatible
+To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
+ Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>, jjohnson@kernel.org,
+ johannes@sipsolutions.net, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ jonas.gorski@gmail.com
+References: <20260121095055.3683957-1-miaoqing.pan@oss.qualcomm.com>
+ <74176aab-03d4-4095-890d-7ef1739b914b@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <20260123092830.4046009-9-zhengxingda@iscas.ac.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Score: -2.80
-X-Spam-Level: 
-X-Spam-Flag: NO
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <74176aab-03d4-4095-890d-7ef1739b914b@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[suse.de,none];
-	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260222-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[iscas.ac.cn,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,ffwll.ch,redhat.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[pengutronix.de,kernel.org,samsung.com,bootlin.com,gmail.com,disroot.org,vger.kernel.org,lists.freedesktop.org,lists.infradead.org,icenowy.me];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TAGGED_FROM(0.00)[bounces-260223-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,gmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tzimmermann@suse.de,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[suse.de:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[icenowy.me:email,suse.de:email,suse.de:dkim,suse.de:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,suse.com:url]
-X-Rspamd-Queue-Id: 2EA699DF8C
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: CE95F9DFB1
 X-Rspamd-Action: no action
 
+On 27/01/2026 18:31, Jeff Johnson wrote:
+> On 1/21/2026 1:50 AM, Miaoqing Pan wrote:
+>> The 'firmware-name' property was introduced to allow end-users and
+>> integrators to select use-case-specific firmware for the WCN6855.
+>> But for M.2 WLAN chips, there is no suitable DTS node to specify
+>> the 'firmware-name' property. In addition, assigning firmware for
+>> the M.2 PCIe interface causes chips that do not use use-case-specific
+>> firmware to fail. Therefore, abandoning the approach of specifying
+>> firmware in DTS. As an alternative, propose a static lookup table
+>> mapping device compatible to firmware names.
+>>
+>> ---
+>> v2:
+>> - Drops `firmware-name` from completely.
+>> - Updates the commit message to clearly state that the property is
+>>   obsolete and the change is ABI-breaking but safe for upstream.
+>> v3:
+>>  - Deprecate 'firmware-name' property instead of obsolete.
+>>  - Keep the ABI backwards compatible.
+>> v4:
+>>  - Use of_machine_is_compatible() to simplify the code.
+>>  - Add back Acked-by tag. 
+>> ---
+>>
+>> Miaoqing Pan (2):
+>>   wifi: ath11k: add usecase firmware handling based on device compatible
+>>   dt-bindings: net: wireless: ath11k-pci: deprecate 'firmware-name'
+>>     property
+>>
+>>  .../net/wireless/qcom,ath11k-pci.yaml         |  1 +
+>>  drivers/net/wireless/ath/ath11k/core.c        | 27 +++++++++++++++++++
+>>  drivers/net/wireless/ath/ath11k/core.h        |  4 +++
+>>  3 files changed, 32 insertions(+)
+>>
+>>
+>> base-commit: d8e1f4a193101a72235416f189b01131a57e26e9
+> 
+> Krzysztof,
+> Since you previously NAKed this series, can you confirm that your review
+> comments have been addressed?
 
 
-Am 23.01.26 um 10:28 schrieb Icenowy Zheng:
-> From: Icenowy Zheng <uwu@icenowy.me>
->
-> As I am the author of this rewritten driver, it makes sense for me to be
-> the maintainer.
->
-> Confirm this in MAINTAINERS file.
->
-> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+Binding looks fine, but I did not check the driver.
 
-Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
-
-> ---
-> No changes since v4.
->
-> Changes in v3:
-> - Switch to my ISCAS mailbox.
->
-> No changes in v2.
->
->   MAINTAINERS | 7 +++++++
->   1 file changed, 7 insertions(+)
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index fc04fc007a054..507ffef26dac1 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -8658,6 +8658,13 @@ F:	Documentation/devicetree/bindings/display/brcm,bcm2835-*.yaml
->   F:	drivers/gpu/drm/vc4/
->   F:	include/uapi/drm/vc4_drm.h
->   
-> +DRM DRIVERS FOR VERISILICON DISPLAY CONTROLLER IP
-> +M:	Icenowy Zheng <zhengxingda@iscas.ac.cn>
-> +L:	dri-devel@lists.freedesktop.org
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/display/verisilicon,dc.yaml
-> +F:	drivers/gpu/drm/verisilicon/
-> +
->   DRM DRIVERS FOR VIVANTE GPU IP
->   M:	Lucas Stach <l.stach@pengutronix.de>
->   R:	Russell King <linux+etnaviv@armlinux.org.uk>
-
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
-
-
+Best regards,
+Krzysztof
 
