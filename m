@@ -1,204 +1,269 @@
-Return-Path: <devicetree+bounces-260549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260550-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +P8TK81Femn34wEAu9opvQ
-	(envelope-from <devicetree+bounces-260549-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 18:22:21 +0100
+	id iL5WIcxDemn34wEAu9opvQ
+	(envelope-from <devicetree+bounces-260550-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 18:13:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC66DA6C27
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 18:22:20 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D2B3A6A18
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 18:13:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 4711F310BA58
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 16:56:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 35A79327CBD7
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 16:57:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4848536EAA8;
-	Wed, 28 Jan 2026 16:54:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43E68322B7A;
+	Wed, 28 Jan 2026 16:56:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f71woEqR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nQY0pLE0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2382536BCE6;
-	Wed, 28 Jan 2026 16:54:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68E1231984E
+	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 16:55:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769619247; cv=none; b=Q4jIO0/aNYlisLJ/zLApbaTou7Xb0Yq77HbpGHWRWUnkCZS1xcaF9tkCKFUA9cMUC4Kxd/t/i3z8YarWFRzFk0AYj8ZqD2KqovAsshRkpxerkHGUGG4sj0rn1CcpcRjRvLJVeE4GytoKphLPoVfNR5GoCWpFiL8AEa/sgaDZ/yA=
+	t=1769619360; cv=none; b=SPvmljaDsM7DRN8KqHZI+Xy8Ggoz83bH6tzsxJ7N9afjEC41SdQDRpwYVDUohmpUYBTYxfZ9WH59Pk1MSG0RHGAcYNNQFbu0Wxyx27Wq+/Y5jlS0yJR0s8kXlVMabQSipKN27lkivZflE6b7MCdnFGc1+16ONOQhwXM2GGe9B5A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769619247; c=relaxed/simple;
-	bh=wjD1JjU+ufMC6qAGdcVwazuGSHIwkRbdDsek0eB02g0=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=GY7qNexGX08N67LHDODYbgJxMbhm1qGzWDMHK5w9AJCmnXvuXS5IaQCmnE0ljKyOB2KxN+amg/Xopb6gB2mZZkC6yWa8A7poKs2S/VxaYtGs/ternqAgI5Wq8ROOjAMtwrucYGznpgX6P3AVFocRxltuwcEJfXAfsKGnQATQiRc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f71woEqR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70ABCC4CEF1;
-	Wed, 28 Jan 2026 16:54:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769619246;
-	bh=wjD1JjU+ufMC6qAGdcVwazuGSHIwkRbdDsek0eB02g0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=f71woEqR3TUr+lS24Y4wNcYEiO6+oCU4HWInsmAWCYA1950UIl6+PYOG6Meoz/M5b
-	 i78IMS/LFpX7BMHpXqZ0iX3CmegKGCyiytk0l0J1zrEgR+b2OV/Me9v+EqlszCDPP/
-	 DsoN2t9EUwlT7yCuZ5hEbFAI2m22a8rswfn6/YKXMJmsXR3pfP6U7YUtqToVSCSZkK
-	 fJFzwRbs0FNej8C30P0BzPokpFD9HcQ/i5okTPETjUJfEdQmi71nzMDrIAfxZLJihU
-	 4vXsEtQVK8KwVyIyWWTlIyoB8WfgNkgt80yBX1Elq1e7fuMzIKO+9wwSU6DQ5lMcXP
-	 DWESbn/ZURc7g==
-Date: Wed, 28 Jan 2026 10:54:04 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1769619360; c=relaxed/simple;
+	bh=+PrAcvg+5OdtTUavt01TFD/L57Tt7DDcfpHsvpOvros=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QBq2zNDM0+uTc+pRc7JRb3advQPyCXj3rd1L0ls851nMNUHjM/t7KKDuXOsW4bVM8UeQ6aBmTBdGp55pTeMP6FlZTBzWzZSNFECFH1IaLp/A6/L/LImrExJOVV37gGLc1+DuXNLvq9BraI9XY98rA7CuZJF0nw2xQCxgYxaSS8c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nQY0pLE0; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-2a0834769f0so47303735ad.2
+        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 08:55:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1769619358; x=1770224158; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:sender
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=CJ5JUPDgasrNDJPGG/r08vgxAhhTjKNkbpybrz3kURc=;
+        b=nQY0pLE0nnde7DiGZvmZOge8Fv9Bt3YfyARhrE4FS1rnTDXxfADbPQW8y/lhNihN6z
+         CFxctGBPjiKUEWycMhxhOkHQ0DbggfLPLDPQLXMJf8Zv/ZDlfsOE0KZqPhD9QEEeODln
+         c6GzmIi5PtrhS/x70JwvXsaVfVNw1D+P3XekWFjsVvk5tiCu1okBSkODuhyDioGD7/Q6
+         EPT1VC/570ACiDHeUrvjqgkyx9fc+dMSERGmIk3QO1KPxHDcrkUfPmtu/eXM93wuIy1u
+         Lh0vAvwJWXzbgpThyRu7cMCYuMWdrsxceVzj4i3Mkqu1dZDkXaPx2oscz+CpGAbbajUh
+         frpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769619358; x=1770224158;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:sender
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CJ5JUPDgasrNDJPGG/r08vgxAhhTjKNkbpybrz3kURc=;
+        b=W8JEFg6zFYy1XRFXgeEORkk0HDZvIXPDMaj9gL3iP0ggzFQTb3M+VvCUM8hfI3AFdc
+         fcaiCmac+e+8Qlu+VzkLnjMfjAASr+APMkKIh3bMJs6KC8Oh0zEQvBdfRw1oqbi/ElvO
+         F23Gis1aMpSL9NDxUSw3SEfrlv09Dyccb4qYRdt+V/2SQH+8kB4riclRuSmbuSvaM9hc
+         j92tvvQFGXRbu+wXXq3A1A/+BZUXonCoNEVZNmolDMEzUNgOTr7jKsVs0d1JHxSYH4a+
+         Hz9zRA+6vYjmKBeCjxfGHWU/wjArf23vu6guFut4rK0XSxinQYQxHcmYbRgRiKSFDBWu
+         pN/A==
+X-Forwarded-Encrypted: i=1; AJvYcCVqJYGfNIG0dIx2vCUNvch4buST1axzxJHFssm765FXkqjFHZ7InT2dFkOSQ57itAsBuP2abFiXhskM@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx7v8IAtezap5FRaAAR7nf7t07iNJWpBk8YLDKdo6qKMKIyoKqa
+	bNJr0IkMpbeuWqIlstfons/x3GGNhWmXzcPIDKX/FDTM4i/pmYb/7Rh1AhyOsSk7
+X-Gm-Gg: AZuq6aIfXiKgOQxngFJWwHCRAiJQlXRRlu6wFk4Kud9L2qNRt2+dflrOWgyfX8XyDYj
+	rehnPeHtcsfWE+WAF5eNNMUx5Mj7vEsQN4AAfQO9+FDCBhnniRC99R6GtX+w0+jZlmN5r/VAh9w
+	bDIlvMDw7VOtXZHdVDHU5CM7rYiv1TBmvJyCTdIcaN2KxmLOsLhbwDA6oeRv8jpVYFXWebmb/Zg
+	X3AKCIy1g6rkAuCfMnmnodwjHRmEw7xj2TSaCPM5GlfqvFsuPQNpcXwNffuzA1hkRV7djav/fB1
+	gXxXy2Ewd3dPLCSZ8gOS/iL129JMfjXBNyOCFypIJsTCSSVKPbJq46/8hx2zBVgRSLJODvVFI/l
+	/4mM1ec8oaeMU0t0/7QiEiJ6HM29dWLogLSXd/fvZNG15ykV2OmPexFctvUTQTWzrnwuDSs2zq9
+	XV2xBb7ZulFWE1DM5lxDinOFwu
+X-Received: by 2002:a17:903:2291:b0:29f:2ec4:83e5 with SMTP id d9443c01a7336-2a870d55636mr50468865ad.12.1769619357703;
+        Wed, 28 Jan 2026 08:55:57 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a88b7f32bfsm29327505ad.96.2026.01.28.08.55.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Jan 2026 08:55:57 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Wed, 28 Jan 2026 08:55:55 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>, nuno.sa@analog.com,
+	linux-hwmon@vger.kernel.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Damien Le Moal <dlemoal@kernel.org>,
-	Niklas Cassel <cassel@kernel.org>,
+	Jean Delvare <jdelvare@suse.com>, Jonathan Corbet <corbet@lwn.net>,
 	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	Stephan Gerhold <stephan.gerhold@linaro.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	linux-pm@vger.kernel.org, linux-ide@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH v7 0/2] PCI: Add initial support for handling PCIe M.2
- connectors in devicetree
-Message-ID: <20260128165404.GA421308@bhelgaas>
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	"Rob Herring (Arm)" <robh@kernel.org>,
+	Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>
+Subject: Re: [PATCH v5 0/3] hwmon: Add support for the LTC4283 Hot Swap
+ Controller
+Message-ID: <02b7cf63-4f87-4cdd-8d9e-53a7d0e808a6@roeck-us.net>
+References: <20251223-ltc4283-support-v5-0-1152bff59a61@analog.com>
+ <eed64bf1-93af-4b36-adf5-1476cb40edbb@roeck-us.net>
+ <382e259ea3835ffbd2be9c36b529875f5a43f38b.camel@gmail.com>
+ <8efa188b-8b91-479c-ac10-3fba5b0cbb5f@roeck-us.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20260128-pci-m2-v7-0-9b3a5fe3d244@oss.qualcomm.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <8efa188b-8b91-479c-ac10-3fba5b0cbb5f@roeck-us.net>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-260550-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260549-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[helgaas@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,analog.com,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[roeck-us.net];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:email]
-X-Rspamd-Queue-Id: EC66DA6C27
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,roeck-us.net:mid,analog.com:email]
+X-Rspamd-Queue-Id: 0D2B3A6A18
 X-Rspamd-Action: no action
 
-On Wed, Jan 28, 2026 at 09:07:14PM +0530, Manivannan Sadhasivam wrote:
-> Hi,
-> 
-> This series is an initial attempt to support the PCIe M.2 connectors in the
-> kernel and devicetree binding. The PCIe M.2 connectors as defined in the PCI
-> Express M.2 Specification are widely used in Notebooks/Tablet form factors (even
-> in PCs). On the ACPI platforms, power to these connectors are mostly handled by
-> the firmware/BIOS and the kernel never bothered to directly power manage them as
-> like other PCIe connectors. But on the devicetree platforms, the kernel needs to
-> power manage these connectors with the help of the devicetree description. But
-> so far, there is no proper representation of the M.2 connectors in devicetree
-> binding. This forced the developers to fake the M.2 connectors as PMU nodes [1]
-> and fixed regulators in devicetree.
-> 
-> So to properly support the M.2 connectors in devicetree platforms, this series
-> introduces the devicetree binding for Mechanical Key M connector as an example
-> and also the corresponding pwrseq driver and PCI changes in kernel to driver the
-> connector.
-> 
-> The Mechanical Key M connector is used to connect SSDs to the host machine over
-> PCIe/SATA interfaces. Due to the hardware constraints, this series only adds
-> support for driving the PCIe interface of the connector in the kernel.
-> 
-> Also, the optional interfaces supported by the Key M connectors are not
-> supported in the driver and left for the future enhancements.
-> 
-> Testing
-> =======
-> 
-> This series, together with the devicetree changes [2] [3] were tested on the
-> Qualcomm X1e based Lenovo Thinkpad T14s Laptop which has the NVMe SSD connected
-> over PCIe.
-> 
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts?h=v6.18-rc4&id=d09ab685a8f51ba412d37305ea62628a01cbea57
-> [2] https://github.com/Mani-Sadhasivam/linux/commit/40120d02219f34d2040ffa6328f0d406b1e4c04d
-> [3] https://github.com/Mani-Sadhasivam/linux/commit/ff6c3075836cc794a3700b0ec6a4a9eb21d14c6f
-> 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> ---
-> Changes in v7:
-> - Dropped the pwrseq and binding patches as they got applied
-> - Rebased on top of pci/pwrctrl branch
-> - Link to v6: https://lore.kernel.org/r/20260122-pci-m2-v6-0-575da9f97239@oss.qualcomm.com
-> 
-> Changes in v6:
-> - Used 'ports' to describe interfaces instead of endpoints in the binding
-> - Added GPIOs and USB to the example in binding
-> - Incorporated minor comments in the pwrseq driver
-> - Dropped the ata binding patch as it got applied
-> - Link to v5: https://lore.kernel.org/r/20260107-pci-m2-v5-0-8173d8a72641@oss.qualcomm.com
-> 
-> Changes in v5:
-> - used of_node_get() and devm_action to free regulators
-> - Link to v4: https://lore.kernel.org/r/20251228-pci-m2-v4-0-5684868b0d5f@oss.qualcomm.com
-> 
-> Changes in v4:
-> - Added graph property to SATA in this series and PCI to dtschema:
->   https://github.com/devicetree-org/dt-schema/pull/180
-> - Used 'i2c-parent' instead of SMBus port
-> - Reworded the -gpios property description
-> - Rebased on top of v6.19-rc1
-> - Link to v3: https://lore.kernel.org/r/20251125-pci-m2-v3-0-c528042aea47@oss.qualcomm.com
-> 
-> Changes in v3:
-> - Changed the VIO supply name as per dtschema
-> - Added explicit endpoint properties to port 0 node for host I/F
-> - Used scope based cleanup for OF node in pwrseq driver
-> - Collected review tags
-> - Link to v2: https://lore.kernel.org/r/20251108-pci-m2-v2-0-e8bc4d7bf42d@oss.qualcomm.com
-> 
-> Changes in v2:
-> - Incorporated comments from Bartosz and Frank for pwrseq and dt-binding
->   patches, especially adding the pwrseq match() code.
-> - Link to v1: https://lore.kernel.org/r/20251105-pci-m2-v1-0-84b5f1f1e5e8@oss.qualcomm.com
-> 
-> ---
-> Manivannan Sadhasivam (2):
->       PCI/pwrctrl: Add support for handling PCIe M.2 connectors
->       PCI/pwrctrl: Create pwrctrl device if the graph port is found
-> 
->  drivers/pci/pwrctrl/Kconfig |  1 +
->  drivers/pci/pwrctrl/core.c  |  7 ++++---
->  drivers/pci/pwrctrl/slot.c  | 31 +++++++++++++++++++++++++++----
->  3 files changed, 32 insertions(+), 7 deletions(-)
-> ---
-> base-commit: 3e7f562e20ee87a25e104ef4fce557d39d62fa85
-> change-id: 20251103-pci-m2-7633631b6faa
-> 
-> Best regards,
-> -- 
-> Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> 
+On Wed, Jan 28, 2026 at 02:04:35AM -0800, Guenter Roeck wrote:
+> On 1/28/26 01:44, Nuno Sá wrote:
+> > Hi Guenter,
+> > 
+> > On Tue, 2026-01-27 at 09:39 -0800, Guenter Roeck wrote:
+> > > Hi Nuno,
+> > > 
+> > > On 12/23/25 04:21, Nuno Sá via B4 Relay wrote:
+> > > > This is v3 for the LTC4283 how swap controller. Main change is that I'm
+> > > > now using the auxiliary bus for adding the GPIO device (done depending
+> > > > on FW properties).
+> > > > 
+> > > > Similar to the LTC4282 device, we're clearing some fault logs in the
+> > > > reset_history attributes.
+> > > > 
+> > > 
+> > > I ran the patch series through an AI review. Results are below.
+> > > Please take a look.
+> > > 
 
-Applied to pci/pwrctrl for v6.20, thanks!
+Another run through AI below. Please let me know if there are further inaccuracies.
+
+Thanks,
+Guenter
+
+---
+commit 82433332ce165903d56fae327ced975aeef30475
+Author:     Nuno Sá <nuno.sa@analog.com>
+
+hwmon: ltc4283: Add support for the LTC4283 Swap Controller
+
+Adds support for the LTC4283 Hot Swap Controller I2C interface.
+
+> diff --git a/drivers/hwmon/ltc4283.c b/drivers/hwmon/ltc4283.c
+> new file mode 100644
+> index 000000000000..402b53f81548
+> --- /dev/null
+> +++ b/drivers/hwmon/ltc4283.c
+
+[ ... ]
+
+> +static int ltc4283_read_power_word(const struct ltc4283_hwmon *st,
+> +				   u32 reg, long *val)
+> +{
+> +	u64 temp = (u64)LTC4283_ADC1_FS_uV * LTC4283_ADC2_FS_mV * DECA * MILLI;
+> +	unsigned int __raw;
+> +	int ret;
+> +
+> +	ret = regmap_read(st->map_word, reg, &__raw);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/*
+> +	 * Power is given by:
+> +	 *     P = CODE(16b) * 32.768mV * 2.048V / (2^16 * Rsense)
+> +	 */
+> +	*val = DIV64_U64_ROUND_CLOSEST(temp * __raw, BIT_ULL(16) * st->rsense);
+
+Does this overflow *val on 32-bit systems if the calculated power exceeds
+2000 Watts (approx 2^31 microWatts)?  The intermediate calculation is
+u64, but the result is assigned to a signed long.
+
+[ ... ]
+
+> +static bool ltc4283_word_reg(struct device *dev, unsigned int reg)
+> +{
+> +	switch (reg) {
+> +	case LTC4283_SENSE ... LTC4283_ADIO34_MAX:
+> +		return true;
+> +	default:
+> +		return false;
+> +	}
+> +}
+
+LTC4283_SENSE is 0x41 and LTC4283_ADIO34_MAX is 0x40.  Does this invalid
+range (start > end) effectively disable access to the word registers
+via st->map_word?
+
+> +static const struct regmap_config ltc4283_word_regmap_config = {
+> +	.name = "ltc4283-16",
+> +	.reg_bits = 8,
+> +	.val_bits = 16,
+> +	.max_register = LTC4283_ADIO34_MAX,
+> +	.val_format_endian = REGMAP_ENDIAN_BIG,
+> +	.writeable_reg = ltc4283_word_reg,
+> +	.readable_reg = ltc4283_word_reg,
+> +};
+
+Does max_register = 0x40 prevent access to the sensor value registers
+(LTC4283_SENSE at 0x41 and above) which are intended to be read as
+words?
+
+commit 5998c620fbd8915340a4b92635c9489a91fae567
+Author:     Nuno Sá <nuno.sa@analog.com>
+
+gpio: gpio-ltc4283: Add support for the LTC4283 Swap Controller
+
+Adds GPIO support for the LTC4283.
+
+> diff --git a/drivers/gpio/gpio-ltc4283.c b/drivers/gpio/gpio-ltc4283.c
+> new file mode 100644
+> index 000000000000..fa0c106d4fac
+> --- /dev/null
+> +++ b/drivers/gpio/gpio-ltc4283.c
+
+[ ... ]
+
+> +#define LTC4283_PINS_MAX			8
+> +#define LTC4283_PGIOX_START_NR			4
+> +#define LTC4283_INPUT_STATUS			0x02
+> +#define LTC4283_PGIO_CONFIG			0x10
+> +#define   LTC4283_PGIO_CFG_MASK(pin) 
+> +	GENMASK(((pin) - LTC4283_PGIOX_START_NR) * 2 + 1, (((pin) - LTC4283_PGIOX_START_NR) * 2))
+> +#define LTC4283_PGIO_CONFIG_2			0x11
+> +
+> +#define LTC42823_ADIO_CONFIG			0x12
+
+This isn't a bug, but should this be LTC4283_ADIO_CONFIG instead of
+LTC42823?
+
+> +/* starts at bit 4 */
+> +#define   LTC4283_ADIOX_CONFIG_MASK(pin)	BIT((pin) + 4)
+> +#define LTC4283_PGIO_DIR_IN			3
+> +#define LTC4283_PGIO_DIR_OUT			2
+
 
