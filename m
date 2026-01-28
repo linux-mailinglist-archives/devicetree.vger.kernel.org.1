@@ -1,97 +1,96 @@
-Return-Path: <devicetree+bounces-260284-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260285-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yOHHFUzdeWnI0QEAu9opvQ
-	(envelope-from <devicetree+bounces-260284-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 10:56:28 +0100
+	id eFuiFgzeeWnI0QEAu9opvQ
+	(envelope-from <devicetree+bounces-260285-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 10:59:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 010A49F12A
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 10:56:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E0F609F249
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 10:59:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8FF2A302A6D2
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 09:54:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DCAD63038F5F
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 09:55:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECAFB34D4F3;
-	Wed, 28 Jan 2026 09:54:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3682B34D909;
+	Wed, 28 Jan 2026 09:55:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jIlDeW1b"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="E+40Dj57"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23A0634D93B
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 09:54:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E28834BA20
+	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 09:55:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769594059; cv=none; b=seDL7am3dFdg8p6T9eJsybJiluhbfM4zUkXYZNjR27RzjJ4znAjQ91DVbzc6vO7DtD8aM01Q69IH4otr3Urx2xaWRV6XdE5NWqK+MVZx+wQs9/zC6bV8K5QNSuoLHdEhHUVLrNL8aDixJGUzaOJQ5CUkq1ujtYJzBskMGDQwy9U=
+	t=1769594128; cv=none; b=B73zOuWMgjiV4Q60kOFkevd5EcDTZnU2tS+o9+ky0XIt0CbNyM2r+IozRxru/vHqDNpJzNCj9AuUUJtNzTuQmY+Rc+SPJFE+g0wBSxylN4+f87I0mx9OX9TNtEgRw1Dux6YSHNe+Y+H0SaBi38qFtGbZfYQ8UK7ZEQc3noBt5R0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769594059; c=relaxed/simple;
-	bh=8OOj3Wng4dXaPJsiDwVOM1LzCgSn6Um4RNSrv4895sE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OM3M6sdzT8DE30XoCD1JLLsGEgVMcHWxyVdt1t+RJH2hdnLMrIRG3n3cn780ekiO1H4TdgHmOmTKuXv54ELFwmylv8Hyval93Cs+XXx3e9os++tMC3j0IhHijmeqGbQbjaQHTRFwn7Uyp7JycN/RuP4hZcI0Ix6FsX4QGd2xhqA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jIlDeW1b; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4806ce0f97bso5864795e9.0
-        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 01:54:17 -0800 (PST)
+	s=arc-20240116; t=1769594128; c=relaxed/simple;
+	bh=N38H9ofcuvHeRPFG3cxDjpN7XrxCmZhZt/Nxt5wFxoc=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GJ/jRWHncq/Hpfh9mLxnDx/YBLvUrFglaq9r3uuscAMzkFAZByCSzIA/DROethpOBnKi9PibCMC2/YDG5LuZIh+blq6OLNFPDdx5b2zhM7sRb1P/FZNCFO44+gVyvLWjERORNpb7D1d6kBFnn+IhB6M11Llx1kS/LYj6/2IIrTw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=E+40Dj57; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-432755545fcso4954187f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 01:55:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1769594056; x=1770198856; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1769594125; x=1770198925; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=93zs4bIGQjJ2eAJOoDnsMxPVORSrFYYCc5PKWJTbXFs=;
-        b=jIlDeW1b5o+cBEAZCUzsZAh8M9q4DYiYmboP2EEsyi+j0vGBio5x7tM5+LAPaK0PS5
-         iimWiGFtjCbecEYRSDsDg2gU7PYlC+Lm2Lvu+oSt3K5ClCeTzd4Blj8VAI9NpR0P5aXr
-         qccMfRpjoJDqMgvjDAJXXWsf5qNGc/tK9KovUWK4uLejHihh1WAdMmYnS/LOM8MgXTeG
-         jxTMosnVUhiaoHlDrlAFDVccAs17qONeVC3iUZmNfPCrfNozvTiKbRy1vKA+1ea25UAc
-         xala84Bx/9BYOZ02ZRuFWj25SuuP2dp7tVymeTQxht+p4YlwrEdiP7R40n/YJqnI6qnK
-         Y0bA==
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=07mXvpuK72uwHoPVD3hAEymdnjxb4apNqwq3bNoPLnc=;
+        b=E+40Dj57BAuTTgGFTC+IeSTB93lTJ2wfkVWqUG8JrlH99kiGKZdVLb2N5/jHTfDiP5
+         5zuAjb+gs/fFvbWkRWj2GtUkapcqsz/CZsVXA0lmJ4Ud8R+mBuf8BztJ+Jr1uiQMQCx+
+         fNfNtiY8rgdjS7ZaAsXX4ZPeuKrYe4jkuVzo2zITdCBb3k1YLz9vO6GYsAnCIk/MD9Ng
+         YxyAqmccsycwKKHMovBGb40wr1iqCjkTJVIsh6BTWokghhW25U8+9U/0UYIL6lAYY0la
+         XeX9k6y19ykCSksZxfEkDccDV5rT+lU+Wh662r0RYnBS65wDhgHDRq6SvOkHupguGBTW
+         iV9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769594056; x=1770198856;
+        d=1e100.net; s=20230601; t=1769594125; x=1770198925;
         h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=93zs4bIGQjJ2eAJOoDnsMxPVORSrFYYCc5PKWJTbXFs=;
-        b=ksNBpdhpJQIX1YcwbzTJltgxhW9gQQC8DqnDtwkkSsX88XviI7FfYkqkrFo3cXp4Mo
-         atDpMxBH5F4T2MfEfRS2xF+/hGORvoW/QsNpzNnoDO+egNxPvcqQ2/gXgVaNbYzpiOC/
-         fwlNkaA0QAUaH4PUAvTv8eKx5+B3sUHh3IKCCfiJ0SWDBJ8Cg/4C0qeOq/qd9iaoOUSr
-         VpLZSRWTjn1chVDr+huE8CPH3ZdpsurLlbFhngo6mwcnxR27tMdDCrNN5HMNnvkLdOib
-         aUHcR2GnByNoNMl9kJ6tgRKU0Xq2SJgbIK4LfSHP8fBohPGA1E/NZ2Zw+qBTJW1avm5A
-         kKZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV0DNHfchzDEUewtZZTLHAH7jfnF8K0aLe/YRVQTGkguL4Ehy+vRCSSgehImINQmLlFpq+ncnEY58mW@vger.kernel.org
-X-Gm-Message-State: AOJu0YwHaXAPGeDuNDcd8YPSSSiygcLy5irwUaaAVhKbcBRc9OHu/5lU
-	JcDzMfnQpzQb0bcUVxfiyjvWuWRFPsEYQ+H54WJL9IqPr+nLdkww2zf6v4zlYIowieE=
-X-Gm-Gg: AZuq6aLDDEBNUpjJWjZRpp7TEy1o5Y0CEGmHuc9PNBQR1WdXoheL6X6DXoZFjGQSnMw
-	Ry9fNNWiNld6NYyBG7ekglwaCpf3YqyjDdtPhkpF9B1Y9FseI4/IIaZ0SQYYlNkloozuSQXjMPJ
-	oy/Nqoje2SiNSvXO5GjWmjD6BG+GZ7S7PrDT4MsiVQUUUn6d/6frPmrHd7Qq/jhGOBwxR1DdfcR
-	itErgf0ccWAQtkg8pSvjVA4aGyKH3Rj4rMqp8NxiTTTggNMiH9dtYKBqZ98r7+CW/3/iu4WbFsC
-	3z/KbvXcu+4o6n+cEN71361hmuploELazgRkXnojDrcnKTsSbCWExccmlWhwiG2WWpwkU5LGszr
-	P4ovAHtV8m/877JIZn0aLNNfiksiQJvscTyVshYvAALRxmH5I0asxGWAkwBa4y71StMMez0S9BT
-	pwuy72eeZNJsfvMEfi
-X-Received: by 2002:a05:600c:1d8c:b0:47b:deb9:f8a with SMTP id 5b1f17b1804b1-48069c7c4eemr58122425e9.30.1769594056369;
-        Wed, 28 Jan 2026 01:54:16 -0800 (PST)
-Received: from localhost ([196.207.164.177])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435e1354114sm5903050f8f.42.2026.01.28.01.54.15
+        bh=07mXvpuK72uwHoPVD3hAEymdnjxb4apNqwq3bNoPLnc=;
+        b=D8NFfePmu75hx2wpvEVuNYoL4hrPzqff1976owd+BUWqTgz5zRhPQXWBglI5FqY0mN
+         dC97cxd6eLqbMbJlAvsJ/vcvrvgUCNpLM2B15bQ8C83VJ0BeeieO+p2aJOjUOjXLuMwy
+         t1+NC4sZbGDwnVmLu69VdmbYUGekZp5B8dCGDGLssspYCFDTbzprFKQeCB0P2c2FzLNB
+         bYUwB5Z/oorPeuIAqmZ3L+jDwxxz7VIEd97ajAidX95yjT4h3/p1xG4diZ/EPydNwm9Z
+         V5a5TGyZABASJfhqHCHpa9ho84FAh95+rFOj4Yy45LoWlhvuRTijmTBxr0tfVhvmUAM8
+         IuoA==
+X-Forwarded-Encrypted: i=1; AJvYcCX/3M18G9hlQcfxAUBiK9WOh5TmlUSdrCGxscdXDsXQf+6qcPPvf/Dola5x2WGoG5wT2InhSTI1VVIg@vger.kernel.org
+X-Gm-Message-State: AOJu0YxoietMf/SjpDmJZCsXGHVQ69rLB1tIygE1jr7Hbo3ibhcf+H9b
+	ZkjqJnfMDhF0uz9Cw5BY171dCPUP3vwLH7NDR/1rcWxXlMSuEIUN+O8A
+X-Gm-Gg: AZuq6aJ4F7iguVrWTmsEv0iliRBssaqGIATiA9uFQHXRrkF3e5++GvKMpcLSZPJaWru
+	o060wRT07yxcSh+BofmvsCzNhJLKuKVkLo4TuaE1mONJvWKH7qJ894yuNsKCcoCmEBenxvgslAl
+	pC1BErCxx42FvD1IlXGTjXKAoYluEOw73RTCL8WBRRsvwsty6O0AVEmyZBhl3WV/9+YEp/oWEF9
+	Vhh2MEZvVIyeqPA0CbUiBJDjtgqexpNMwbp0kgQnQFrOQEXHsVtpuLbEzmoP3/og+K8fG/cWEqb
+	NaCstJ5oEEUmffpMOmttgbLfG9KtI89QSn7epkec5YiPzArLl3jjKg6HO0oYH2ANCKk/tmh957q
+	DXB51RPWn56vFMEVZF+g8e5jBaZjfdg8/w0nYRW8n5EskGz6wcwnNkkyj7Hvb8Ug+TP1EFfVFfG
+	syQrEgdSuRVYG/Y3hK8uoyP1qGv/yWaxo6gLtc7uRsQsGfNt89Pnwibhnk0ANkpNG0AgAYOtCQT
+	C7FTXEMBbpKTUM=
+X-Received: by 2002:a5d:64e7:0:b0:435:b732:771b with SMTP id ffacd0b85a97d-435dd05abf9mr6442125f8f.20.1769594124549;
+        Wed, 28 Jan 2026 01:55:24 -0800 (PST)
+Received: from RDEALENC-L01.ad.analog.com ([24.206.116.131])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435e131cfc9sm5493661f8f.21.2026.01.28.01.55.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Jan 2026 01:54:15 -0800 (PST)
-Date: Wed, 28 Jan 2026 12:54:13 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Chester Lin <chester62515@gmail.com>
-Cc: Matthias Brugger <mbrugger@suse.com>,
-	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
-	NXP S32 Linux Team <s32@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org, linaro-s32@linaro.org
-Subject: [PATCH v5 3/3] dts: s32g: Add GPR syscon region
-Message-ID: <1fbfa51de753039f132edc2554c41667e00c0176.1769592679.git.dan.carpenter@linaro.org>
-References: <cover.1769592679.git.dan.carpenter@linaro.org>
+        Wed, 28 Jan 2026 01:55:23 -0800 (PST)
+From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
+Date: Wed, 28 Jan 2026 09:55:16 +0000
+To: Andy Shevchenko <andriy.shevchenko@intel.com>, 
+	rodrigo.alencar@analog.com
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Jonathan Cameron <jic23@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v2 4/6] iio: amplifiers: ad8366: add device tree support
+Message-ID: <b6pzhwmfranyhuetv65movfqzubvbjasl6ruxiym2ehuch2hov@r56lgzgf4us5>
+References: <20260126-iio-ad8366-update-v2-0-c9a4d31aeb01@analog.com>
+ <20260126-iio-ad8366-update-v2-4-c9a4d31aeb01@analog.com>
+ <aXksSjsyNn6if3eQ@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,103 +99,96 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cover.1769592679.git.dan.carpenter@linaro.org>
+In-Reply-To: <aXksSjsyNn6if3eQ@smile.fi.intel.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260284-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260285-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[suse.com,oss.nxp.com,nxp.com,kernel.org,pengutronix.de,gmail.com,lists.infradead.org,lists.linux.dev,vger.kernel.org,linaro.org];
-	DKIM_TRACE(0.00)[linaro.org:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dan.carpenter@linaro.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[4033c000:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:email,linaro.org:dkim,linaro.org:mid,4007c000:email]
-X-Rspamd-Queue-Id: 010A49F12A
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: E0F609F249
 X-Rspamd-Action: no action
 
-Add the GPR syscon region for the s32 chipset.
+On 26/01/27 11:21PM, Andy Shevchenko wrote:
+> On Mon, Jan 26, 2026 at 01:51:05PM +0000, Rodrigo Alencar via B4 Relay wrote:
+> 
+> > Add device-tree support by dropping the enum ID in favor of extended
+> > chip info table, containing:
+> > - gain_step, indicating with sign the start of the code range;
+> > - num_channels, to indicate the number IIO channels;
+> > - pack_code() function to describe how SPI buffer is populated;
+> > 
+> > With this, switch cases on the device type were dropped:
+> > - probe() function adjusted accordingly;
+> > - Simplified read_raw() and write_raw() callbacks;
+> 
+> > - mutex_lock()/mutex_unlock() replaced for guard(mutex)() to allow
+> >   moving to early returns;
+> 
+> Shouldn't this be in a separate change? I dunno. Let Jonathan to decide.
+> 
 
-Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
----
-v5: no change
-v4: no change
-v3: no change
-v2: Remove #address-cells and #size-cells
+As read_raw() and write_raw() were refactored, I thought it would not be
+a problem. I can drop the change... as it is not a function with many
+complicated returns.
 
- arch/arm64/boot/dts/freescale/s32g2.dtsi | 6 ++++++
- arch/arm64/boot/dts/freescale/s32g3.dtsi | 6 ++++++
- 2 files changed, 12 insertions(+)
+> 
+> > +static size_t ad8366_pack_code(struct ad8366_state *st)
+> > +{
+> > +	u8 ch_a = bitrev8(st->ch[0] & 0x3F);
+> > +	u8 ch_b = bitrev8(st->ch[1] & 0x3F);
+> 
+> GENMASK() in both cases? But I don't see why ch_a needs this at all,
+> isn't the 2 LSBs are not used anyway?
 
-diff --git a/arch/arm64/boot/dts/freescale/s32g2.dtsi b/arch/arm64/boot/dts/freescale/s32g2.dtsi
-index 51d00dac12de..b954952d962b 100644
---- a/arch/arm64/boot/dts/freescale/s32g2.dtsi
-+++ b/arch/arm64/boot/dts/freescale/s32g2.dtsi
-@@ -325,6 +325,11 @@ usdhc0-200mhz-grp4 {
- 			};
- 		};
- 
-+		gpr: syscon@4007c000 {
-+			compatible = "nxp,s32g2-gpr", "syscon";
-+			reg = <0x4007c000 0x3000>;
-+		};
-+
- 		ocotp: nvmem@400a4000 {
- 			compatible = "nxp,s32g2-ocotp";
- 			reg = <0x400a4000 0x400>;
-@@ -731,6 +736,7 @@ gmac0: ethernet@4033c000 {
- 			compatible = "nxp,s32g2-dwmac";
- 			reg = <0x4033c000 0x2000>, /* gmac IP */
- 			      <0x4007c004 0x4>;    /* GMAC_0_CTRL_STS */
-+			nxp,phy-sel = <&gpr 0x4>;
- 			interrupt-parent = <&gic>;
- 			interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "macirq";
-diff --git a/arch/arm64/boot/dts/freescale/s32g3.dtsi b/arch/arm64/boot/dts/freescale/s32g3.dtsi
-index e314f3c7d61d..be03db737384 100644
---- a/arch/arm64/boot/dts/freescale/s32g3.dtsi
-+++ b/arch/arm64/boot/dts/freescale/s32g3.dtsi
-@@ -383,6 +383,11 @@ usdhc0-200mhz-grp4 {
- 			};
- 		};
- 
-+		gpr: syscon@4007c000 {
-+			compatible = "nxp,s32g3-gpr", "syscon";
-+			reg = <0x4007c000 0x3000>;
-+		};
-+
- 		ocotp: nvmem@400a4000 {
- 			compatible = "nxp,s32g3-ocotp", "nxp,s32g2-ocotp";
- 			reg = <0x400a4000 0x400>;
-@@ -808,6 +813,7 @@ gmac0: ethernet@4033c000 {
- 			compatible = "nxp,s32g2-dwmac";
- 			reg = <0x4033c000 0x2000>, /* gmac IP */
- 			      <0x4007c004 0x4>;    /* GMAC_0_CTRL_STS */
-+			nxp,phy-sel = <&gpr 0x4>;
- 			interrupt-parent = <&gic>;
- 			interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "macirq";
+Yes, I can adjust with:
+
+u8 ch_a = bitrev8(st->ch[0]) >> 2;
+u8 ch_b = bitrev8(st->ch[1]) >> 2;
+
+st->data[0] = ch_b >> 2;
+st->data[1] = (ch_b << 6) | ch_a;
+
+so no need for masking both.
+
+> Also missed header inclusion for this? And also perhaps sorting headers first
+> to see what's there and what needs to be updated (ideally another patch to move
+> to IWYU principle).
+
+linux/bitrev.h is there, but indeed header includes are not sorted.
+I will create a separate patch for that.
+
+> 
+> > +	st->data[0] = ch_b >> 4;
+> > +	st->data[1] = (ch_b << 4) | (ch_a >> 2);
+> > +	return 2;
+> > +}
+
 -- 
-2.51.0
+Kind regards,
 
+Rodrigo Alencar
 
