@@ -1,209 +1,174 @@
-Return-Path: <devicetree+bounces-260505-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260507-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yIdMLCsxemlT4gEAu9opvQ
-	(envelope-from <devicetree+bounces-260505-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 16:54:19 +0100
+	id WCxvL9wzeml+4gEAu9opvQ
+	(envelope-from <devicetree+bounces-260507-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 17:05:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74892A4B03
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 16:54:19 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8D78A5101
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 17:05:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 935C330558EE
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 15:48:32 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4BD5E30B99D0
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 15:51:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D7B93054D8;
-	Wed, 28 Jan 2026 15:48:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEDAD30DED4;
+	Wed, 28 Jan 2026 15:51:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tQsU+VSH"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="aV6HDSK7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 274A33033C3;
-	Wed, 28 Jan 2026 15:48:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C932030C60D
+	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 15:51:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769615306; cv=none; b=tSBp3bBhc11oKs3chBC62/CSOoG+CjFzVa8kVos+fuJy45XLcqyMtFyqLCqvyPdLHdnrp1YuWVLDMOSyn22tX9d8IT5FYBoyME7+aYop8sIKt92BEQ5gOAqIos1mhexlMJCvEGtLi9Kj0AbTUaP5oj1qNASns+OvLPZ1wU+swDM=
+	t=1769615485; cv=none; b=k9bbUaRLDCc4n6svi1+sQi3SJqut+QTBeNGIHvC/LYHNUwJxi/fuM4A4R0ClAK35ZGjjVV9fAsdqMbeY01+KbRJX0KBL9+rFZZ1GfB8Pc4qKfimnUB83cQkvW1tI9EU8pQBKBCSKztqkB5Z4RJ3EYROX99iXhJW9mbSEvk8MnGI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769615306; c=relaxed/simple;
-	bh=nMmyDWkQnV3I7GZMPlWVQ0MXtLcXBmX4DSwzNeO1os4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=S4eJahJhGMowej7V/zmuEoY4xt7a32VCPMKV2JVF8xsOMXfzbZb3uChbh50yO7yERlSJgJiTHrE55UO4/+N6D/ZQ+0A/QkRQLb7BJap9/4Ays4tBLzX8PxvLgwFFfgfF9fzFG2Iw+WlDr26G5+Hob1S3O0gD2YIOPrqUb+K8IYY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tQsU+VSH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31568C4CEF7;
-	Wed, 28 Jan 2026 15:48:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769615304;
-	bh=nMmyDWkQnV3I7GZMPlWVQ0MXtLcXBmX4DSwzNeO1os4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=tQsU+VSHZpjZdAXLTmABg/gNAXMA+TDHBfkk8V3n0zVkM7a0o/6nl5BSQiRifK2aN
-	 1OvAANda2HLtuH7qYpR85cqB40xQBgKaNz9M7h8H+PHEWXUaLfsMEKVtwqD+P7rpIN
-	 MM+Cx3P/H9jr4YW9VqozqSaK1NS7QAN8jBelpjlM8nbziS2MVUTyU7eUn9R5FY/G6x
-	 UPTIAqx6Pm6ngLCDvIe8ioTGsvn845+T7IKfcTmlFaEkBlG/xusF/6YoX2Hc+Ix1lY
-	 HMhC5QZ2BQTakGSq6fzJO8WyCOL+VmxXNhvMio3a+NU7RSUj9dvMgxEclwGMSlymgR
-	 TnPDqqinB9+IA==
-Message-ID: <3db84b61-e463-4362-b142-59d3ca6eae90@kernel.org>
-Date: Wed, 28 Jan 2026 16:48:18 +0100
+	s=arc-20240116; t=1769615485; c=relaxed/simple;
+	bh=s2XftgRLoQjS+g/1qoc7zKuSMJw+yLwcSC76tOy1XDY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=LwR5n61iRTacTEIz6lmAg3ATyrxUZcL9/PGN52Dwjfj+RWp6KIxg5GkMsypv0nCKJOSeoG0C0yDi+iwzGOsfrGUyXeWJ6AOOl0waINPKGarsiIHBRTODjUc/+HdvllVURB1dcqiH++v/cM8hhl8RZ0TM/0Iu+Y0lrDhXMh+4hog=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=aV6HDSK7; arc=none smtp.client-ip=209.85.208.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-65819e75691so10925a12.3
+        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 07:51:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1769615482; x=1770220282; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MqPhMZPef8IxeMTLsFDJp6gjrCUIfXLXeKcG0ugnntI=;
+        b=aV6HDSK7zTGc79REnCSxq8Mt6QGmrcHKv3MpXeChDruqleXzdXHiCYi2oyVd3eF7Wj
+         mbAQzATsG1InFchtHM/x0qvWIo2hM6g9q/9vW+DVYJhM0QzURPakut784EDCHpNKfdnO
+         ofax65U8DtXelMyYHJZq54oCll1UEQqiHIjtdE6T7dTtHtkS4sBruVH8vml83Jo3H9FG
+         V/eciT+y9VeVDhH0bux55UHP55/LmCBhv2W1BzIfca6ma79vGQ3ILL4a98lsCYM/NPku
+         +s+U5qRbaFmFd2DeAvCdso4CpOn/H+kvpNxVnIdq4qquBiNvjwFLaQ/0mqePIBxi+Aw1
+         QBoQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769615482; x=1770220282;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MqPhMZPef8IxeMTLsFDJp6gjrCUIfXLXeKcG0ugnntI=;
+        b=D+TSWMYt4OYn3pCBLEOXOICsC/uTUApYIzKKWMgA4xAhpQzRm4mPqlUgmFWPWTMoFh
+         Kfhzwc/7e3zNIh7jH6nwfwEoMKi9tTjqJ6yR1Iy+ZKzUQ1o2mSUHH4L1TkQAANJfWQcA
+         hb61AtvSv1Cbz+0wND5dC2RYm8CsUNjWVU1UfbX0OCL2saiPYTiAAHCNboDw8yfHRelX
+         zWmt7p6LWTxk0oqWyMG9RX9aimTk3XC8JLqTWOGQAcNTuurZP5SO0seZ3IQ2AZNoYRCh
+         LmDOFmm84o5MECv5QQuHeam2r7oeUJeKIG26bHDsxwJ6R/85OvnahkhVD5P6BIhsmpik
+         vhsQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX2Jagv792npwWnAuRD0g7VpQg5OuIM0Ja0rpex+Y8Y3fjxNjrAY2PI6ZvwtzHng2f2O6zFGv6/J4cU@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZJeYcFggG5dUUgOD10lVNqTuWJA45fHtKY8iOwS7Ux5W2w7HW
+	33TCakB0PVorutBNb5YV27m5GfgdEwz5ICesqsFKai2TKazorZX1zqnXn/K0SxoaTQzyxiTp62l
+	L8GqT
+X-Gm-Gg: AZuq6aJDnjIfISPo6JpXsCvuw6ej5bOUrR9kSjEBEMC8y46w+Nk2VF5obCw6FCvwyNr
+	pgP5bt0igfrZKul5ClTgnk69Xl/c8W+ImXLzCFhh1/0xh4m5KrA8jdtBLlN3AFMni4SwgEzWobQ
+	NNUt0JlJT+B5tWau6poDm2W9k+VMhC8nsQcvMMhSlCt/ar4G3Bu1QMHzFfWxud65Z3+LKHwF8az
+	b1ATnGCWEDbKWJ083SVQzyfrsWw9bWHCHZRRsiliV4s3ykOKdJzoSFrU8rbYsCLdiIx/EVsJGQn
+	jLH9o3/qnGLRfMm530r/baM0rzeFxm+HWu+r9oBAA6viz9hRnClaBSkUVj4vqnpVQswHm/IMJvv
+	+GfBJmAHXSVm5mEREg0rI4EQGC7VkUduGTuEiqQJEG0Bd64vMBSmgyCywrsVmO6O3fhjuAhTRLE
+	/eNRF3jpWcyRshyFV6NgVUamQ+P7WqBH+26Dh1kWD/bn/1Ww40knPou3+D7olMfLmdeCjobzDH9
+	1GqXkk=
+X-Received: by 2002:a05:6402:3548:b0:649:cec1:6cf1 with SMTP id 4fb4d7f45d1cf-658a5f8edcbmr3566350a12.0.1769615482091;
+        Wed, 28 Jan 2026 07:51:22 -0800 (PST)
+Received: from [172.16.220.227] (144-178-202-139.static.ef-service.nl. [144.178.202.139])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-658b469eb9fsm1727223a12.28.2026.01.28.07.51.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Jan 2026 07:51:21 -0800 (PST)
+From: Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
+Subject: [PATCH v2 0/3] Add support for Awinic AW86938 haptic driver
+Date: Wed, 28 Jan 2026 16:51:12 +0100
+Message-Id: <20260128-aw86938-driver-v2-0-b51ee086aaf5@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 1/3] dt-bindings: i2c: Add CP2112 HID USB to SMBus
- Bridge
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Danny Kaehn <danny.kaehn@plexus.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Benjamin Tissoires <bentiss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jiri Kosina <jikos@kernel.org>,
- devicetree@vger.kernel.org, linux-input@vger.kernel.org,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- Ethan Twardy <ethan.twardy@plexus.com>, linux-i2c@vger.kernel.org,
- linux-kernel@vger.kernel.org, Leo Huang <leohu@nvidia.com>,
- Arun D Patil <arundp@nvidia.com>, Willie Thai <wthai@nvidia.com>,
- Ting-Kai Chen <tingkaic@nvidia.com>
-References: <20260127-cp2112-dt-v13-0-6448ddd4bf22@plexus.com>
- <20260127-cp2112-dt-v13-1-6448ddd4bf22@plexus.com>
- <20260127160217.GA3776731@LNDCL34533.neenah.na.plexus.com>
- <20260128-magnificent-faithful-otter-c4f900@quoll>
- <aXoF4zi4SZrXaku5@smile.fi.intel.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <aXoF4zi4SZrXaku5@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHAwemkC/12OSxKCMBBEr0Jlbax8ECIr72GxCGQisyDBBCMWx
+ d2NsHP5eqpfz0oiBIRImmIlARJG9C6DOBWkH7R7AEWTmQgmLpxzSfVbVVepqAmYINCutJoZKYT
+ SguTSFMDisgvvbeYB4+zDZ/cn/ksPlWDlvypxyih0puaqUsZKfbMawzR4B+fej6TdDn+A5yv/O
+ R8jpNMRaL6PODeFg2WmeaBiXNS5sX0Bxjce/+EAAAA=
+X-Change-ID: 20251113-aw86938-driver-b4fa0d3228a2
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Luca Weiss <luca.weiss@fairphone.com>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1769615481; l=1152;
+ i=griffin.kroah@fairphone.com; s=20250804; h=from:subject:message-id;
+ bh=s2XftgRLoQjS+g/1qoc7zKuSMJw+yLwcSC76tOy1XDY=;
+ b=UpFCfkbXOgKJjpAw86bajCWZpxZ2xCtZDbZ3ywSoJtcvP95aZ1oKyJXqSvx3734Dc7DE5opPd
+ noxQ/gLYBMnCYkfNbKF8qg/gnEClSRd+PNBQ6hm9KSGeQJ1wVeY3eJe
+X-Developer-Key: i=griffin.kroah@fairphone.com; a=ed25519;
+ pk=drSBvqKFiR+xucmLWONHSq/wGrW+YvcVtBXFYnYzn8U=
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[fairphone.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[fairphone.com:s=fair];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-260507-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[plexus.com,kernel.org,vger.kernel.org,gmail.com,linaro.org,nvidia.com];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,fairphone.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-260505-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DKIM_TRACE(0.00)[fairphone.com:+];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[griffin.kroah@fairphone.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 74892A4B03
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,fairphone.com:email,fairphone.com:dkim,fairphone.com:mid]
+X-Rspamd-Queue-Id: D8D78A5101
 X-Rspamd-Action: no action
 
-On 28/01/2026 13:49, Andy Shevchenko wrote:
-> On Wed, Jan 28, 2026 at 11:35:25AM +0100, Krzysztof Kozlowski wrote:
->> On Tue, Jan 27, 2026 at 10:02:17AM -0600, Danny Kaehn wrote:
->>> On Tue, Jan 27, 2026 at 08:47:48AM -0600, Danny Kaehn wrote:
->>>> This is a USB HID device which includes an I2C controller and 8 GPIO pins.
->>>>
->>>> The binding allows describing the chip's gpio and i2c controller in DT,
->>>> with the i2c controller being bound to a subnode named "i2c". This is
->>>> intended to be used in configurations where the CP2112 is permanently
->>>> connected in hardware.
->>>>
->>>> Signed-off-by: Danny Kaehn <danny.kaehn@plexus.com>
->>>> ---
->>>
->>> Hi Folks (Intended for Rob or Krzysztof),
->>>
->>> Wasn't sure the best way to go about this, but trying to see the best
->>> way to get a message in front of you regarding an ask from Andy S.
->>>
->>> In [1], Rob H initially directed that the gpio chip share a node with
->>> the CP2112 itself, rather than having a subnode named 'gpio'.
->>>
->>> Initially, I did the same thing for both DT and ACPI, but Andy S.
->>> directed that ACPI should not have the node be shared in that way.
->>>
->>> With the last revision of this patch, Andy S. asked that I try to get a
->>> rationalle from Rob (or other DT expert presumably) on why the gpio node
->>> should be combined with the parent, rather than being a named subnode
->>> [2].
->>
->> Because it is explicitly asked in writing bindings. Please read it.
->>
->> Because we do not want Linux driver model affecting design of bindings
->> and DTS, by subnodes present only to instantiate Linux drivers. I do not
->> care about driver model in this review and I do not see any reason it
->> should make DTS less obvious or readable.
->>
->> That's actually rule communicated many times, also documented in writing
->> bindings and in recent talks.
-> 
-> Does DT represents HW in this case? Shouldn't I²C controller be the same node?
-> Why not? This is inconsistent for the device that is multi-functional. And from
-> my understanding the firmware description (DT, ACPI, you-name-it) must follow
-> the HW. I don't see how it's done in this case.
+Add devicetree bindings and a driver for the AW86938 haptic driver chip,
+and add it to the devicetree for the Fairphone 6 smartphone.
 
-What is inconsistent exactly? What sort of rule tells that every little
-function needs a device node? It's first time I hear about any of such
-rule and for all this time we already NAKed it so many times (node per
-GPIO, node per clock, node per every little pin).
+This driver is very similar to the AW86927, and shares many core
+features.
 
-> 
+Signed-off-by: Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
+---
+Changes in v2:
+- Added AW86938 specific registers
+- Added chip model enum to differentiate chips
+- Link to v1: https://lore.kernel.org/r/20251204-aw86938-driver-v1-0-ebd71868df3a@fairphone.com
 
+---
+Griffin Kroah-Hartman (3):
+      dt-bindings: input: awinic,aw86927: Add Awinic AW86938
+      Input: aw86938 - add driver for Awinic AW86938
+      arm64: dts: qcom: milos-fairphone-fp6: Add vibrator support
+
+ .../devicetree/bindings/input/awinic,aw86927.yaml  |  4 +-
+ arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts   | 19 ++++++-
+ drivers/input/misc/aw86927.c                       | 65 ++++++++++++++++++----
+ 3 files changed, 74 insertions(+), 14 deletions(-)
+---
+base-commit: 0364de6be161e2360cbb1f26d5aff5b343ef7bb0
+change-id: 20251113-aw86938-driver-b4fa0d3228a2
 
 Best regards,
-Krzysztof
+-- 
+Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
+
 
