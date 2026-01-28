@@ -1,230 +1,173 @@
-Return-Path: <devicetree+bounces-260184-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260178-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 3RQpMj6NeWlZxgEAu9opvQ
-	(envelope-from <devicetree+bounces-260184-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 05:14:54 +0100
+	id 4Jj+LSB6eWlQxQEAu9opvQ
+	(envelope-from <devicetree+bounces-260178-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 03:53:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 212C99CEF2
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 05:14:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6336C9C6C3
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 03:53:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A8C3B300A3A4
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 04:14:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E6E9F300BD86
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 02:53:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 100462DB7B4;
-	Wed, 28 Jan 2026 04:14:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA4472C11CF;
+	Wed, 28 Jan 2026 02:53:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X0CUngBw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SiIQOE+W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
+Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F07F1A3029
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 04:14:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CC452BE7D2
+	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 02:53:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769573691; cv=none; b=bmM9gR2TjwMMWllkpWY+hOgU+d0ewSvFxOVg9iVh4ew5yHIjj+xq/3mhFuYfOEh4C2y3mHcRpH9kpdryjH1caoM/mU9tOTlAXQ6JqfCN1ImrT4PIknM1+aOrSxaLejzDmfaFT0SQkczoXOM2rYHoXA1Unr78R7o4PoYY12/E5RE=
+	t=1769568796; cv=none; b=STBFlLmQ7UEl6kW00fiSiuaFyr1KifsPkSE65/y9gjhlZfB4eFZegQ4A9WmNMxuROQOKLeHlZ+b46k3V7FEMpIhetroyyg4gprMIi8O8x5rpVimF/KIrFtNrXFc+7lighKtvBssEpuhtlSovrST8h994BaJTYngZLdwExLHSMis=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769573691; c=relaxed/simple;
-	bh=oM89C4h0+705Q5QrOC+AfMkyUp4pRbPcDrBjP080Sos=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RQyMeVln6C6PwjcXNXnSP+9XIg/PLK8U/D0pygTv0wmKIVb82gkL2hSEajtQZ5nfxtwhEyEsYJ9d40NLcIb5hhsks/7zaxss3fWBlxLVJBOCtu0DXP5lxbdpMGJhskEYaj3jES8/k2hdRlKTR86vHxEgJWEJBWv2DB4NKQwuyB8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X0CUngBw; arc=none smtp.client-ip=209.85.210.44
+	s=arc-20240116; t=1769568796; c=relaxed/simple;
+	bh=9KL0qFGhdBvOIIw6GVscMMDXp1h7L+qs/1b2H49sp40=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GenfbRfxD593LN7qMahgbjVyZ4dkOqgALQbipoxusyMMrP1+QIVTD+M3mitjUueK9JGB0H1DdA41lP4quy3yeH52tRv910HzsbMh1DOjH4LbBaHQEJj9k80oY5nAS2VIHMdekMwxGNDGRSCesk/iFn5zcoEZh7kgzC75JBKy4J4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SiIQOE+W; arc=none smtp.client-ip=209.85.219.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f44.google.com with SMTP id 46e09a7af769-7d18dd2adf7so236643a34.1
-        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 20:14:49 -0800 (PST)
+Received: by mail-qv1-f50.google.com with SMTP id 6a1803df08f44-88a26ce6619so81441616d6.3
+        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 18:53:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769573688; x=1770178488; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=VklwEd5dwuBjikrAPpEFP/UQPzhOaAWoIKJ/0tvPqOU=;
-        b=X0CUngBwNNbn/LbCxxuXTII+eQH0kiDtCVZCZZBFEq4mzTZYHow9EiQd6eeCVHrUft
-         zqwYEePaSmDmZLejPqLJZODlWWcaoKQyf4EINXKDF6ULGIi9eAQYLu8pYCiiazfkMrcu
-         sXR+kVhdrMju7IRrnfU8uxUqc4gg5K3ZJrFGrKG8B1vs+cJXX2wzYNfFW9EFR4VFGHDk
-         aPE+9+R8VgFAj59zp1qPtHhg0Xfk7AWeKOaM2flkYntv+UNkEhI8nN6jDhNN/xG5qrFt
-         3a2RwkVY7JjxMYd6Rh30hIwtDqNNLf7GbZ9uqLGSIQkAISiKBggmcY6w6x+nHTGgqdZk
-         PCTA==
+        d=gmail.com; s=20230601; t=1769568794; x=1770173594; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=yluvfUNr6pH7GOU/s+jQXcqg7WVVoVQL2cZIk1rM12A=;
+        b=SiIQOE+WNstIDMT5YlVCQsJtZWphJZJr3NdEDMdV5NDb67FflCWbfmi3VIVT0kk6ut
+         Eqvh/niJq2sI0m/kI7RTwI5BZC9UZIq6s50meT0FW+1yG0LTGneqVw71RkKu2BH2L4OB
+         uAdj0yV5PMH47KKYtVJZid4JEn/6KRfjQt8tWwF/ufLdmqQqAgUXOgkzCoMEdFoEUTk8
+         tqlCWumtPztW5G/VJ6/2OdX/qUhpIsUFVtFjDQ+KAhc+rfUPFLpKr6IvGmxCsK8TTZbW
+         riyZr8g0rDrhdE11+KTpoiCHOwkbxmeBXDglcBQKaGzWiTVtBM+a/TyVL0rClf2Plb27
+         oK9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769573688; x=1770178488;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VklwEd5dwuBjikrAPpEFP/UQPzhOaAWoIKJ/0tvPqOU=;
-        b=s6cHRiGbImtcJ2H9eSua5yBjEbtUE6m9JOAIozU2C/temWUviHhNhKrAQq3EXzxkIt
-         oJHtfE4t+y18mh9vfAJvmJYvKft8Oa4PBQXpR9ZstJkuN3L/3My1mrKPSyRlL6yNg5w3
-         yq790q9hFBctEdui0bqXzDf29zmBz/P+GPRiD9PF8yWewi0xS0YcAyInwk7fd5jn/Z/H
-         j1/tDZYevrRtc/+lH4CoDHXJkNh2oSUL5I6mYAVBwPwZmYpIueTwWI/8F0rosevdSnQK
-         puLlxU6CPKAcP/xpNUNAK6CAZb1M61qQ8ow5ctUW/5Ayhyx2691UBMmXZnkD+HVbZ9B+
-         8SDQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX3Mzj4JlyoC+a34/ZK2YE1A0lSCevTDgMsHh7mIPDN+tIMVpO2BLaBZuhtX9dZ5XXeOuYzv42UcQkp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxc1hgcPDFTGdXHbtwLtfNoWupn6SjaMDJWftGCzeX20PrXXieH
-	6D1VRSfUA+qY6MfS0OovPbF/6fKhPfMnVw9E2VLiEUhrsPMl2dQZMx9qQOoxHw==
-X-Gm-Gg: AZuq6aLgCW8gBxeE9ZD7JVxoVEKl0667FU3NfUK2d7BmZguo3DNkutP2/9hfR7hBSBY
-	LBhs+oCdVZygN9MQhvEvgUBsUCp8zvNRo/ifISzOZR8Ey42kcteBnvZPfhIcZp00G/71vITe+lQ
-	NP5TA5XlXSdrj1HqsrRXd6/d2BsePMkWXi3oxj8wsNlKWzjRZqlTllzbsqh2JXWEDWo3iuEaWUW
-	czwKdEGl2no8K73lwannFYeZxr1korjBdft7kHZIGhZQfGSgolaRHhBhfiTKkdEHQx3yF55jQ9J
-	/xsgIqpak+phNfXplSlxRMWEuRKR12jfQImRMXsGgC/te33HvfjSxt0goSXJFUrTESDLUrMCLH4
-	1F1K3RSQ328ycJCtKwRCaO7/OMQy9gI0jSXElTrCZVTiH8sK+BLaI0nnXeRZXzRvf7pTV8sMhBM
-	qjfMiARkmnLIvjfvpNWGTqOYP7ytNxhz6Mt+U=
-X-Received: by 2002:a05:7022:1099:b0:123:3488:89a3 with SMTP id a92af1059eb24-124a00bd734mr1918278c88.24.1769567650952;
-        Tue, 27 Jan 2026 18:34:10 -0800 (PST)
-Received: from [172.16.0.242] ([192.19.161.250])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b7a1addafesm780825eec.25.2026.01.27.18.34.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Jan 2026 18:34:10 -0800 (PST)
-Message-ID: <973f2b4b-bf8d-4a77-a27a-47495bc21ff8@gmail.com>
-Date: Tue, 27 Jan 2026 18:38:28 -0800
+        d=1e100.net; s=20230601; t=1769568794; x=1770173594;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yluvfUNr6pH7GOU/s+jQXcqg7WVVoVQL2cZIk1rM12A=;
+        b=uEwyHY3lwuo3r6iaOeJbUbMaHOe3jyQRbALqXHsY4RjNXTy8CUrKeFU9MbM17MqfOm
+         iMl0kAiRy9XOcWXWuf3x+IxDgppJaQU/Zx5gohNtNJR2lGLMMJ3gjD15XtkbXX39JbKA
+         5+Ig59JCM3xZBUe/+ujka+q1w+oTD8nVgKBYKxMFbR6yxQKrlnU7z+zZ2P+K3kn2GidN
+         xqN0pSqJkrABs8Ja+gKCi0CXFPa0KE3Cm4uUr/AkXw5Lqp0Jajuf3qEhB4T4fOizlAg3
+         oAhgvvnf0X6l6bJq6Ct3Yp89PpKs903Go2MaJIV00LfG8Xizkg2zTV7CiJX6jvrqPfSO
+         15jg==
+X-Forwarded-Encrypted: i=1; AJvYcCUWWp8otLrCbTZh3T40lJYPgJ+raPkDV8HGLasgXVJ4TiSuyas5WLZicbFIdBxbBBfUFqiDa7Ks6M49@vger.kernel.org
+X-Gm-Message-State: AOJu0YzS7UzaxhXOnirr5Yfg5QetaB2BU+vBG3QjauRBJjaBnROlrYmj
+	21g2SkfInp7AhaSsGJh8OpYUEd3UogX/lSWT14SqFl6nM3MWu3kZQKy/
+X-Gm-Gg: AZuq6aIbuZz9NRIXsOweK//bYSgC7PaNUzhD7bb4RtdH5/HiWsHCdAjWhOzB/3MKULl
+	ht8P+9DSZ+lqFrfI6KC5WQ5ctcVAkQEPlGKBqj6UI5MB/uPK4663gy5QLfEgB+BCBqGrWYs5Sgs
+	kCpwRbZg7kJn/6gjT/OdF3yXAtLclIYdAgd5FpsYxvvBXuEskb8SCakyQ645INwPtwTwcnl4VPq
+	/0V4Sh94uBz85KXNXnrnDW2pg0C74+U+3FEx55yUSvRMMVhIP+aiIsK13sFA3dqDS2HbtC16R0b
+	hVSeHf/CC317Cp4DNQVxbMlXKIH6oNvFVb/wJR3GbQcUX44KhqqPIRs94SLQ201QRwsw53QDtQy
+	TsbMzvFmyGHUN2VDFBNHsHZO/opePKVgslHkwEtnh3cICGq3TgTutdSd2QuTBSVOqXXNqD0lTy+
+	IE2Tj+a519DOQrLQ==
+X-Received: by 2002:a05:6214:da5:b0:894:6e5d:eb8d with SMTP id 6a1803df08f44-894cc8c977dmr49820206d6.34.1769568794147;
+        Tue, 27 Jan 2026 18:53:14 -0800 (PST)
+Received: from localhost ([184.144.58.243])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-894d375ed92sm8696686d6.44.2026.01.27.18.53.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Jan 2026 18:53:13 -0800 (PST)
+Date: Tue, 27 Jan 2026 21:53:38 -0500
+From: Richard Acayan <mailingradian@gmail.com>
+To: Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Tianshu Qiu <tian.shu.qiu@intel.com>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	Robert Mader <robert.mader@collabora.com>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	David Heidelberg <david@ixit.cz>, phone-devel@vger.kernel.org
+Subject: Re: [PATCH v7 2/5] media: i2c: imx355: Support devicetree and power
+ management
+Message-ID: <aXl6MpRB9ncCeu2M@rdacayan>
+References: <20260117040657.27043-1-mailingradian@gmail.com>
+ <20260117040657.27043-3-mailingradian@gmail.com>
+ <578668b0-cba2-4550-b676-26ed0b447bf2@linaro.org>
+ <aW-V8VTcOICLWqaU@kekkonen.localdomain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: ethernet: eswin: add clock sampling
- control
-To: Min Lin <linmin@eswincomputing.com>,
- "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Andrew Lunn <andrew@lunn.ch>, Krzysztof Kozlowski <krzk@kernel.org>,
- =?UTF-8?B?5p2O5b+X?= <lizhi2@eswincomputing.com>,
- devicetree@vger.kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@google.com, kuba@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, netdev@vger.kernel.org, pabeni@redhat.com,
- mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- ningyu@eswincomputing.com, pinkesh.vaghela@einfochips.com,
- weishangjuan@eswincomputing.com
-References: <308b676.2d03.19bb0caebed.Coremail.lizhi2@eswincomputing.com>
- <59cec617-0189-4dc3-bc3f-6346155a62ae@lunn.ch>
- <4e2a55e7.3662.19be8cb9c3c.Coremail.lizhi2@eswincomputing.com>
- <c5c0bfdb-316d-4796-afa0-f6f018ceb414@lunn.ch>
- <abf12a3f-9cdd-472d-a02e-af4da594b84f@gmail.com>
- <e6f7da45-3dec-4af6-a5b1-a72210bf24f4@kernel.org>
- <43923bf9-6202-4147-8eac-5bd7bb653fd4@gmail.com>
- <bd202cfa-d6eb-4d0e-982d-b49795dd25f7@lunn.ch>
- <009aefc4-fbc9-4f91-9230-23d18c281bf3@gmail.com>
- <73ea5619.2b71.19bf847c80d.Coremail.linmin@eswincomputing.com>
- <aXeydXuWEMDz-yVM@shell.armlinux.org.uk>
- <32a1f814.2c79.19bfe173225.Coremail.linmin@eswincomputing.com>
-Content-Language: en-US
-From: Bo Gan <ganboing@gmail.com>
-In-Reply-To: <32a1f814.2c79.19bfe173225.Coremail.linmin@eswincomputing.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aW-V8VTcOICLWqaU@kekkonen.localdomain>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260184-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260178-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[lunn.ch,kernel.org,eswincomputing.com,vger.kernel.org,davemloft.net,google.com,redhat.com,gmail.com,foss.st.com,st-md-mailman.stormreply.com,lists.infradead.org,einfochips.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[23];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ganboing@gmail.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[mailingradian@gmail.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,einfochips.com:email,stormreply.com:email,armlinux.org.uk:email]
-X-Rspamd-Queue-Id: 212C99CEF2
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 6336C9C6C3
 X-Rspamd-Action: no action
 
-Hi Min, Russell, Krzysztof,
+On Tue, Jan 20, 2026 at 04:49:21PM +0200, Sakari Ailus wrote:
+> Hi Bryan, others,
+> 
+> On Tue, Jan 20, 2026 at 12:44:24PM +0000, Bryan O'Donoghue wrote:
+> > I think reset should be asserted before regulators and power are switched
+> > on. i.e. before you try to switch the chip on, you should establish that the
+> > reset pin is in the state that the timing diagram calls for.
+> 
+> Indeed.
 
-On 1/26/26 22:14, Min Lin wrote:
-> Hi Russell,
-> 
-> 
->> -----Original Messages-----
->> From: "Russell King (Oracle)" <linux@armlinux.org.uk>
->> Send time:Tuesday, 27/01/2026 02:29:09
->> To: "Min Lin" <linmin@eswincomputing.com>
->> Cc: "Bo Gan" <ganboing@gmail.com>, "Andrew Lunn" <andrew@lunn.ch>, "Krzysztof Kozlowski" <krzk@kernel.org>, 李志 <lizhi2@eswincomputing.com>, devicetree@vger.kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com, kuba@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org, pabeni@redhat.com, mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, ningyu@eswincomputing.com, pinkesh.vaghela@einfochips.com, weishangjuan@eswincomputing.com
->> Subject: Re: Re: [PATCH v1 1/2] dt-bindings: ethernet: eswin: add clock sampling control
->>
->> On Mon, Jan 26, 2026 at 11:10:12AM +0800, Min Lin wrote:
->>> Due to chip backend reasons, there is already a ~4-5ns skew between the RX
->>> clock and data of the eth1 MAC controller inside the silicon.
->>
->> Let's analyse this.
->>
->> 	TXC / RXC	TXC / RXC
->> Speed	Clock rate	Clock period
->> 1G	125MHz		8ns
->> 100M	25MHz		40ns
->> 10M	2.5MHz		400ns
->>
->> The required skew for TXC and RXC at the receiver is specified to be
->> between 1 and 2.6ns irrespective of the speed. The edge of the clock
->> is also important: the rising edge indicates the lower 4 bits, and
->> the falling edge indicates the upper 4 bits.
->>
->> At 1G speed, with a "4 to 5ns" skew in the chip. If this is accurate,
->> then inverting the clock and adding 1ns of additional skew by some
->> means (PCB trace, or at the MAC or PHY) will give the required clock
->> at the receiver.
->>
-> 
-> Yes, that's exactly the case.
-> 
->> The timing table in the RGMII standard (3.3) allows for Tcyc (the
->> clock rate) to be scaled, but there is no allowance for scaling
->> TskewR (the required 1 to 2.6ns skew.) This skew parameter is
->> fixed.
->>
->> So, at the other speeds, you are completely unable to meet the timing
->> specification, whether irrespective of the clock inversion. In effect,
->> the only speed that you can meet the specification is 1G.
->>
-> 
-> The timing table in the RGMII standard(3.3) says the max value of Tskew
-> for 10/100 is unspecified.
-> Quotation:"note1: ...,For 10/100 the Max value is unspecified."
-> 
-> I think for 10/100, the "4 to 5ns" skew in the chip doesn't break the
-> standard. At 10/100 speeds, it meets the timing specification without
-> having to to add clock inversion.
-> In practice, it works at 10/100 speeds in the rgmii-id phy mode.
-> 
->> Thus, I think this is something that needs a lot more than just "do
->> we need to invert the clock". You also need to prevent 10M and 100M
->> being supported IMHO.
->>
-> 
-> Regards,
-> Lin Min
+I think the discussion is more about whether there should be an assert
+in the same function as the de-assert.
 
-I had an offline discussion with Yao Zi and others regarding this. We feel
-like the proper way for ESWIN to deal with this broken eth1 is to have a
-different compatible string just for eth1, where it can be associated with
-platform data with quirks to do eswin,rx-clk-invert at 1G. The property is
-therefore not required to be exposed in DT. (Pretend it conforms to spec
-for 1G). Need confirmation for 10M/100M, though. I double checked Lin Min's
-claim, and indeed the spec says "For 10/100 the Max value is unspecified":
-https://community.nxp.com/pwmxy87654/attachments/pwmxy87654/imx-processors/20655/1/RGMIIv2_0_final_hp.pdf
+> The xshutdown pin, as it is typically called labelled as "reset" in this
+> case, functions as both hardware reset and hardware standby mode control.
+> It should be asserted (i.e. be set to low level) whenever the sensor is
+> expected to be powered off. Typically deasserting it is the last step in
+> the sensor's power-up sequence. This applies to nearly all CSI-2 and DVP
+> (parallel) camera sensors. (There are some exceptions that use explicitly
+> two GPIOs for similar functions but there are very few of them.)
 
-Thoughts?
+This patch has the reset asserted by the time it gets to
+imx355_power_on():
 
-Bo
+- when coming from runtime PM, the suspend callback asserted it
+- when coming from probe, GPIOD_OUT_HIGH asserted it (considering that
+  active-low also affects the initial output setting)
+
+Should it be asserted again inside the function, or
+should the initial `gpiod_set_value_cansleep()` be removed?
 
