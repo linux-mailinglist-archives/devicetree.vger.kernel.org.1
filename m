@@ -1,99 +1,104 @@
-Return-Path: <devicetree+bounces-260224-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260226-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8HBWJcPCeWl0zAEAu9opvQ
-	(envelope-from <devicetree+bounces-260224-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 09:03:15 +0100
+	id aHdYHXnDeWl0zAEAu9opvQ
+	(envelope-from <devicetree+bounces-260226-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 09:06:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05C4F9DFE3
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 09:03:14 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 842D79E039
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 09:06:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A35C8300D964
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 08:02:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2A65F300D46B
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 08:06:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 322F82DF142;
-	Wed, 28 Jan 2026 08:02:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 900B83358CD;
+	Wed, 28 Jan 2026 08:06:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="AzfytbL1";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="9mseFebz";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="AzfytbL1";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="9mseFebz"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="mifdXvZI";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Yhf/i5RV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D16032B98E
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 08:02:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3506F27F73A
+	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 08:06:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769587345; cv=none; b=gPDarFanqA415heEaTYBsO8o0g1Ki8wGp0BQENvkFjUtyryoImtvv6Vn/UuRppwRSZeJLwg4xIsTMTrTtMlaBSS7UHF1FwGtF5AZ1DwzUnWR5lpHpBMAvPguiZ+Lu3SdGuh1KMKZzeWRU2tYHdWlwoUotkhfHVexmWTSprret88=
+	t=1769587574; cv=none; b=U33DEuArOJcKdFx3UopDjCPIgA4jywX7wl+bObRJxJFyb3k2IBhVh/qKH5t6i3OeU+VrrsN3kUjD6aQjQfijUTuhvtBVHT8IGb5Yy4Sljp0/3pOO+wIANj7FJofe6foP7NAvBE3nXcQ3qHZaGV9WMTt6HG1AlXfER8McMtKrL7I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769587345; c=relaxed/simple;
-	bh=jS+1UDJs2/bwO2pjdrxmgXcLv/nUI4h2jJDRExxTkAw=;
+	s=arc-20240116; t=1769587574; c=relaxed/simple;
+	bh=fySWa2YPX+zY7WKT8GRxXSqY8amUG/E8RcBOrRuwtV8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=L1PrsaVbZVXI1tZw4iJ1Xax+51OsUbC8GZAHVtkC3dJhGRGAq7jvRSfCl0xAO6sql51HFMtenBZiWtdLpiVK+X72KA3rkIgjp889sX2PHnGxTM6zBZlAt2s0mJWw0BKN3ZdYR7lmIrKCdBx838hqWcE/N3TAxCWnexEdoPW9uJg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=AzfytbL1; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=9mseFebz; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=AzfytbL1; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=9mseFebz; arc=none smtp.client-ip=195.135.223.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id 39DC133A89;
-	Wed, 28 Jan 2026 08:02:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1769587341; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=HdX0f2dML8sWbRIWYSdyI0DECX0mAgXwtUGagydlIRI=;
-	b=AzfytbL1lVWXPoxtrRuFz1PEKLfUfEZm31NnZqciYlo29uMnXNz4s+ZJ6DNCP3ZoHp0I9v
-	ugWKtUgcxg6Su5Ymt3v2+TAVFF8YEs+1TWfywccwBnSLccRhSvrcFDLyl/jRUx/HHJJhLe
-	J7N22aQcwqLxRFiNWxTgDrV11VIrbto=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1769587341;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=HdX0f2dML8sWbRIWYSdyI0DECX0mAgXwtUGagydlIRI=;
-	b=9mseFebzzCyJbVAkX7gPTvcYQ1hVNzAA6tt6B2EAvC6K+ktzMtGwza4RrDYVriAj6spV63
-	ooFUhzr6tVN9RaAQ==
-Authentication-Results: smtp-out1.suse.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=AzfytbL1;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=9mseFebz
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1769587341; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=HdX0f2dML8sWbRIWYSdyI0DECX0mAgXwtUGagydlIRI=;
-	b=AzfytbL1lVWXPoxtrRuFz1PEKLfUfEZm31NnZqciYlo29uMnXNz4s+ZJ6DNCP3ZoHp0I9v
-	ugWKtUgcxg6Su5Ymt3v2+TAVFF8YEs+1TWfywccwBnSLccRhSvrcFDLyl/jRUx/HHJJhLe
-	J7N22aQcwqLxRFiNWxTgDrV11VIrbto=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1769587341;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=HdX0f2dML8sWbRIWYSdyI0DECX0mAgXwtUGagydlIRI=;
-	b=9mseFebzzCyJbVAkX7gPTvcYQ1hVNzAA6tt6B2EAvC6K+ktzMtGwza4RrDYVriAj6spV63
-	ooFUhzr6tVN9RaAQ==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 5CD8B3EA61;
-	Wed, 28 Jan 2026 08:02:20 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id 2Jo0FYzCeWmwBwAAD6G6ig
-	(envelope-from <tzimmermann@suse.de>); Wed, 28 Jan 2026 08:02:20 +0000
-Message-ID: <d83b2c28-c666-4dff-9a1d-59d4c5b2e284@suse.de>
-Date: Wed, 28 Jan 2026 09:02:20 +0100
+	 In-Reply-To:Content-Type; b=l3oAc0/p4Zb18teVIEHmyujoq/McHljaoVE0GdDXd4kfmM1ReBfg1+2INGgUM4lE7TcgBoMm7xs1B3vPL3dIVaoY4FUT/Nr9MyiZsX2KtB93wpmSGTmQbpIM/ZtiyZTdzHhlK9Fj5JYm1grVYOsaggYEWWcBJT7QG9TyrYhzfCQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mifdXvZI; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Yhf/i5RV; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60S3X3ev2728736
+	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 08:06:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	/Y/4AduHygOOr/US0JTx0tGB3z9DY7O4M+3RFP1ask4=; b=mifdXvZIYWE52xAQ
+	PmsTx5deIpdYsR/rNxxdJ9Sj6vzGBI2S9HurbN8sljxVdYdzIwLUK80fyb/iKK0k
+	ayt5orAwL4S9tOjn/u6nM1KelAkhsU8uVZj2zkfJmTMhA2pg2azj5Dh993DTpnJ0
+	DOvkh/LcRjNGK3tuaK+thOL8E2W/+3l/YP5PeKI1AwfgvFbEtFRcaomSzxXFlhM+
+	N99VLKg1SJSkhGgJoO4W1KxuAsUZNmL3tLHzZx43ps4PJ7KGfAsz7lWf9QMzwRGW
+	pbf3jXXcUzjyygkTkbtZl3k+2DHRXb9hyRrjjIFLUMFWdf60R4EEkafZBv7IldRB
+	Avg5Ig==
+Received: from mail-pg1-f197.google.com (mail-pg1-f197.google.com [209.85.215.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4byanagrqa-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 08:06:12 +0000 (GMT)
+Received: by mail-pg1-f197.google.com with SMTP id 41be03b00d2f7-c6187bdadcdso3778477a12.0
+        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 00:06:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1769587571; x=1770192371; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/Y/4AduHygOOr/US0JTx0tGB3z9DY7O4M+3RFP1ask4=;
+        b=Yhf/i5RVpL/cn7XytbGEy462bBp54gCS3vKYnfW2Vlt3duasoBLyQGG1wTJa7eeKfD
+         Pu+HQ+Eic1SBT5iUsvIXg54m+ghppDWLNyuFwEYK4gJtvpVo7lIxrbrz5Ad6Rys4crQx
+         wJxITqwPR0abmtto7vz2EcrUpxv6urC3pi6qE6xcbF1oi56ftnGYaR9qvv4U/cvdQX7r
+         so2JyTu6jaEemu53QqvPArIZByvHrk9I3d8a/hi5rmzuFe7ur3f12SrE3yo4JK0x2Gx6
+         7fsB7JiqCNm7dVC4lyzyRyVcOVp9nMRumRS4ylfMEQAtwzWKygJdfcx/WikT5XjVNxtP
+         siDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769587571; x=1770192371;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/Y/4AduHygOOr/US0JTx0tGB3z9DY7O4M+3RFP1ask4=;
+        b=ZztWCkhwsIx13bMGMdcgctpn8uKbhJRI+D+JhLZomg02vBD4UFTpGwa1NRVsvboJRI
+         Hw9yUsVcw/xf3W31fcDtwMR2/zmdJkC84meVrTfkhjOC5UaKPEHGipQeLzJ551kwO03I
+         B7J2SxI4Yf0fRAI14HbVr4gMnX8+JWkL4JiO8RENItIvjXb3O9sda2dLxtyq0Etz3ddq
+         HRV7jpnJu9ehTOGl61v4cktSj+tzZCY1dLmSnREO4oWiXCS6yE1ka4Omkw6SBrPOJRIq
+         Hm9BAN5kGdhuqyeToitCbycTlO5trAXFgg/o17+LuVeB8wHK9dYb2dAtUL3uQenKSmma
+         A7Xg==
+X-Forwarded-Encrypted: i=1; AJvYcCVH3HgAfzRNRWe0Zzd6Ml8SG52tb5TJEnrh2SFdOv76XKQkTq9jhCUNoaU1HLOqsNQFMlMDeKNg/Xbu@vger.kernel.org
+X-Gm-Message-State: AOJu0YxxlSavgzHCF0rRQsskvXpEwxAwm86DCfi+Q8/DSL+9UPiuk1li
+	dKowwwQZtcfR00p+i4YsK8t/CF2dkJE8G1WEXjSjlHoiob24cNpw65IFS9qoH84cNCqWZs8Y8Rf
+	WYsmpjShd51l8lHhlqCReov/1YkdJkX8ctQlYfj96fYxsGJJrbUY1eKKQtArwE0t2
+X-Gm-Gg: AZuq6aKs0L+X9rcOjujG/2j5msYYcTzFLkZa8Q1+mmRpAk1DB33BlglOveVkZJuJuN4
+	ljx1kLqswW442u5LXYTqWt322OlNhII4LY0oFk9RRrFER/AG+W/y+FP8nOQILlRSc2bpDW/Owe3
+	0A41Fk8doLIlFdrKgIozpIHbHYguNOpl9DEfLe72uMs+11o5EyJA6P8X049U1dgmxuNPXrqclXb
+	cprPYmNL1ZLsvil4I/4VNfbvLwDp8Sf1Vd0SgL+W9PxtbBt4BlhBJQd5ZpiXOFEhlLTviO7NltK
+	x8vyIrswFjWIV9tTXiw45hpoLGjvR4E84zGVZ8h3JYTdNQfJ4nlqYxVhUE3TwUgekLC13XQf/wN
+	Bbm7sW2i9O3nevmRh1m0YKeg9Gh3wz0wG49BIBqH+D1nxo9iWJrLqOc6HPujJgjm2USkm
+X-Received: by 2002:a05:6a00:cd3:b0:81f:4a0c:c584 with SMTP id d2e1a72fcca58-823691608cfmr4740770b3a.1.1769587571369;
+        Wed, 28 Jan 2026 00:06:11 -0800 (PST)
+X-Received: by 2002:a05:6a00:cd3:b0:81f:4a0c:c584 with SMTP id d2e1a72fcca58-823691608cfmr4740725b3a.1.1769587570872;
+        Wed, 28 Jan 2026 00:06:10 -0800 (PST)
+Received: from [10.133.33.20] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82379c54febsm1762607b3a.59.2026.01.28.00.06.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Jan 2026 00:06:10 -0800 (PST)
+Message-ID: <8e13cfba-5bc1-4588-aa79-6cf13d35dba9@oss.qualcomm.com>
+Date: Wed, 28 Jan 2026 16:06:05 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -101,358 +106,140 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 5/9] drm/bridge: add a driver for T-Head TH1520 HDMI
- controller
-To: Icenowy Zheng <zhengxingda@iscas.ac.cn>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Drew Fustini <fustini@kernel.org>,
- Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>,
- Dmitry Baryshkov <lumag@kernel.org>,
- Michal Wilczynski <m.wilczynski@samsung.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>, Han Gao <rabenda.cn@gmail.com>,
- Yao Zi <ziyao@disroot.org>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, Icenowy Zheng <uwu@icenowy.me>,
- Han Gao <gaohan@iscas.ac.cn>
-References: <20260123092830.4046009-1-zhengxingda@iscas.ac.cn>
- <20260123092830.4046009-6-zhengxingda@iscas.ac.cn>
+Subject: Re: [PATCH v4 ath-current 0/2] wifi: ath11k: add usecase firmware
+ handling based on device compatible
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Jeff Johnson <jeff.johnson@oss.qualcomm.com>, jjohnson@kernel.org,
+        johannes@sipsolutions.net, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        jonas.gorski@gmail.com
+References: <20260121095055.3683957-1-miaoqing.pan@oss.qualcomm.com>
+ <74176aab-03d4-4095-890d-7ef1739b914b@oss.qualcomm.com>
+ <32845805-5758-4c35-8818-ebccbfd9546a@kernel.org>
 Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <20260123092830.4046009-6-zhengxingda@iscas.ac.cn>
+From: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
+In-Reply-To: <32845805-5758-4c35-8818-ebccbfd9546a@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Score: -3.01
-X-Spam-Level: 
-X-Spam-Flag: NO
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: 6Mx30HxV5vTC46-N7AXsF80Vi2ug3QuP
+X-Proofpoint-ORIG-GUID: 6Mx30HxV5vTC46-N7AXsF80Vi2ug3QuP
+X-Authority-Analysis: v=2.4 cv=N58k1m9B c=1 sm=1 tr=0 ts=6979c374 cx=c_pps
+ a=rz3CxIlbcmazkYymdCej/Q==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=b4L-3lD8CPRiJR5BZnEA:9 a=QEXdDO2ut3YA:10
+ a=bFCP_H2QrGi7Okbo017w:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI4MDA2NSBTYWx0ZWRfX6QWUlPd1YCFI
+ qJtXLEp4lIIoL91a7cwkVhEdYseyHARyie92x8i6nFk0ste3E9lufSPorvdBn+kascBvgWYOmZG
+ fO1dO3wWuAhEDAbp+bOKWqRfqE1cDpppMYOyTm1waRPsFRoAQBJV+ivSIOu3YGHcPfydWlzfsfg
+ 4znKaKLD0Qq5EikICEgK0peWIlg0iIVC91NXSNzFfQRO3tmRxh8gVuaD1pvl8d5D456ZJwURN5O
+ SXzlE9xmFFF8Q1c0pYd0zHpxuSMZ6af2lZ9ZxKGodcNecRcf0kqnvt8Eln+ZYpXgM1onz3xY1xZ
+ Ix+JVz+zSnUmMOtaJmG3jFMU8TTFYH+HegN7HOkz6EcST73wC/sLfJEr4KZhvOBpgaLT2ouiPYK
+ AHE6yTOrcqCJXIlbZ32vJWGnPRO1YZXpgdZzWIX+zLZ/lidLVw6lLInGDY7JE2JCixO4/orQiJz
+ RFWUjsEpHjtPMcCcs2Q==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-01-28_01,2026-01-27_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 suspectscore=0 lowpriorityscore=0 priorityscore=1501
+ malwarescore=0 bulkscore=0 adultscore=0 clxscore=1015 impostorscore=0
+ phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
+ definitions=main-2601280065
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[suse.de,none];
-	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260224-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[iscas.ac.cn,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,ffwll.ch,redhat.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[pengutronix.de,kernel.org,samsung.com,bootlin.com,gmail.com,disroot.org,vger.kernel.org,lists.freedesktop.org,lists.infradead.org,icenowy.me,iscas.ac.cn];
-	RCPT_COUNT_TWELVE(0.00)[29];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,gmail.com];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260226-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tzimmermann@suse.de,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[suse.de:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[miaoqing.pan@oss.qualcomm.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:email,samsung.com:email,suse.de:email,suse.de:dkim,suse.de:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,iscas.ac.cn:email,icenowy.me:email,suse.com:url]
-X-Rspamd-Queue-Id: 05C4F9DFE3
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 842D79E039
 X-Rspamd-Action: no action
 
-Hi
-
-Am 23.01.26 um 10:28 schrieb Icenowy Zheng:
-> From: Icenowy Zheng <uwu@icenowy.me>
->
-> T-Head TH1520 SoC contains a Synopsys DesignWare HDMI controller (paired
-> with DesignWare HDMI TX PHY Gen2) that takes the "DP" output from the
-> display controller.
->
-> Add a driver for this controller utilizing the common DesignWare HDMI
-> code in the kernel.
->
-> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-> Tested-by: Han Gao <gaohan@iscas.ac.cn>
-> Tested-by: Michal Wilczynski <m.wilczynski@samsung.com>
-
-Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
-
-> ---
-> No changes since v3.
->
-> Changes in v2:
-> - Created a new function to set PHY parameters and refactored the
->    control flow of the configure_phy callback.
->
->   MAINTAINERS                             |   1 +
->   drivers/gpu/drm/bridge/Kconfig          |  10 ++
->   drivers/gpu/drm/bridge/Makefile         |   1 +
->   drivers/gpu/drm/bridge/th1520-dw-hdmi.c | 173 ++++++++++++++++++++++++
->   4 files changed, 185 insertions(+)
->   create mode 100644 drivers/gpu/drm/bridge/th1520-dw-hdmi.c
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 5b11839cba9de..fc04fc007a054 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -22556,6 +22556,7 @@ F:	Documentation/devicetree/bindings/reset/thead,th1520-reset.yaml
->   F:	arch/riscv/boot/dts/thead/
->   F:	drivers/clk/thead/clk-th1520-ap.c
->   F:	drivers/firmware/thead,th1520-aon.c
-> +F:	drivers/gpu/drm/bridge/th1520-dw-hdmi.c
->   F:	drivers/mailbox/mailbox-th1520.c
->   F:	drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
->   F:	drivers/pinctrl/pinctrl-th1520.c
-> diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
-> index a250afd8d6622..8e19f5fb9ad7c 100644
-> --- a/drivers/gpu/drm/bridge/Kconfig
-> +++ b/drivers/gpu/drm/bridge/Kconfig
-> @@ -335,6 +335,16 @@ config DRM_THINE_THC63LVD1024
->   	help
->   	  Thine THC63LVD1024 LVDS/parallel converter driver.
->   
-> +config DRM_THEAD_TH1520_DW_HDMI
-> +	tristate "T-Head TH1520 DesignWare HDMI bridge"
-> +	depends on OF
-> +	depends on COMMON_CLK
-> +	depends on ARCH_THEAD || COMPILE_TEST
-> +	select DRM_DW_HDMI
-> +	help
-> +	  Choose this to enable support for the internal HDMI bridge found
-> +	  on the T-Head TH1520 SoC.
-> +
->   config DRM_TOSHIBA_TC358762
->   	tristate "TC358762 DSI/DPI bridge"
->   	depends on OF
-> diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/bridge/Makefile
-> index c7dc03182e592..085b5db45d6fd 100644
-> --- a/drivers/gpu/drm/bridge/Makefile
-> +++ b/drivers/gpu/drm/bridge/Makefile
-> @@ -28,6 +28,7 @@ obj-$(CONFIG_DRM_SII902X) += sii902x.o
->   obj-$(CONFIG_DRM_SII9234) += sii9234.o
->   obj-$(CONFIG_DRM_SIMPLE_BRIDGE) += simple-bridge.o
->   obj-$(CONFIG_DRM_SOLOMON_SSD2825) += ssd2825.o
-> +obj-$(CONFIG_DRM_THEAD_TH1520_DW_HDMI) += th1520-dw-hdmi.o
->   obj-$(CONFIG_DRM_THINE_THC63LVD1024) += thc63lvd1024.o
->   obj-$(CONFIG_DRM_TOSHIBA_TC358762) += tc358762.o
->   obj-$(CONFIG_DRM_TOSHIBA_TC358764) += tc358764.o
-> diff --git a/drivers/gpu/drm/bridge/th1520-dw-hdmi.c b/drivers/gpu/drm/bridge/th1520-dw-hdmi.c
-> new file mode 100644
-> index 0000000000000..389eead5f1c45
-> --- /dev/null
-> +++ b/drivers/gpu/drm/bridge/th1520-dw-hdmi.c
-> @@ -0,0 +1,173 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Copyright (C) 2025 Icenowy Zheng <uwu@icenowy.me>
-> + *
-> + * Based on rcar_dw_hdmi.c, which is:
-> + *   Copyright (C) 2016 Renesas Electronics Corporation
-> + * Based on imx8mp-hdmi-tx.c, which is:
-> + *   Copyright (C) 2022 Pengutronix, Lucas Stach <kernel@pengutronix.de>
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/reset.h>
-> +
-> +#include <drm/bridge/dw_hdmi.h>
-> +#include <drm/drm_modes.h>
-> +
-> +#define TH1520_HDMI_PHY_OPMODE_PLLCFG	0x06	/* Mode of operation and PLL dividers */
-> +#define TH1520_HDMI_PHY_CKSYMTXCTRL	0x09	/* Clock Symbol and Transmitter Control Register */
-> +#define TH1520_HDMI_PHY_VLEVCTRL	0x0e	/* Voltage Level Control Register */
-> +#define TH1520_HDMI_PHY_PLLCURRGMPCTRL	0x10	/* PLL current and Gmp (conductance) */
-> +#define TH1520_HDMI_PHY_PLLDIVCTRL	0x11	/* PLL dividers */
-> +#define TH1520_HDMI_PHY_TXTERM		0x19	/* Transmission Termination Register */
-> +
-> +struct th1520_hdmi_phy_params {
-> +	unsigned long mpixelclock;
-> +	u16 opmode_pllcfg;
-> +	u16 pllcurrgmpctrl;
-> +	u16 plldivctrl;
-> +	u16 cksymtxctrl;
-> +	u16 vlevctrl;
-> +	u16 txterm;
-> +};
-> +
-> +static const struct th1520_hdmi_phy_params th1520_hdmi_phy_params[] = {
-> +	{ 35500000,  0x0003, 0x0283, 0x0628, 0x8088, 0x01a0, 0x0007 },
-> +	{ 44900000,  0x0003, 0x0285, 0x0228, 0x8088, 0x01a0, 0x0007 },
-> +	{ 71000000,  0x0002, 0x1183, 0x0614, 0x8088, 0x01a0, 0x0007 },
-> +	{ 90000000,  0x0002, 0x1142, 0x0214, 0x8088, 0x01a0, 0x0007 },
-> +	{ 121750000, 0x0001, 0x20c0, 0x060a, 0x8088, 0x01a0, 0x0007 },
-> +	{ 165000000, 0x0001, 0x2080, 0x020a, 0x8088, 0x01a0, 0x0007 },
-> +	{ 198000000, 0x0000, 0x3040, 0x0605, 0x83c8, 0x0120, 0x0004 },
-> +	{ 297000000, 0x0000, 0x3041, 0x0205, 0x81dc, 0x0200, 0x0005 },
-> +	{ 371250000, 0x0640, 0x3041, 0x0205, 0x80f6, 0x0140, 0x0000 },
-> +	{ 495000000, 0x0640, 0x3080, 0x0005, 0x80f6, 0x0140, 0x0000 },
-> +	{ 594000000, 0x0640, 0x3080, 0x0005, 0x80fa, 0x01e0, 0x0004 },
-> +};
-> +
-> +struct th1520_hdmi {
-> +	struct dw_hdmi_plat_data plat_data;
-> +	struct dw_hdmi *dw_hdmi;
-> +	struct clk *pixclk;
-> +	struct reset_control *mainrst, *prst;
-> +};
-> +
-> +static enum drm_mode_status
-> +th1520_hdmi_mode_valid(struct dw_hdmi *hdmi, void *data,
-> +		       const struct drm_display_info *info,
-> +		       const struct drm_display_mode *mode)
-> +{
-> +	/*
-> +	 * The maximum supported clock frequency is 594 MHz, as shown in the PHY
-> +	 * parameters table.
-> +	 */
-> +	if (mode->clock > 594000)
-> +		return MODE_CLOCK_HIGH;
-> +
-> +	return MODE_OK;
-> +}
-> +
-> +static void th1520_hdmi_phy_set_params(struct dw_hdmi *hdmi,
-> +				const struct th1520_hdmi_phy_params *params)
-> +{
-> +	dw_hdmi_phy_i2c_write(hdmi, params->opmode_pllcfg,
-> +			      TH1520_HDMI_PHY_OPMODE_PLLCFG);
-> +	dw_hdmi_phy_i2c_write(hdmi, params->pllcurrgmpctrl,
-> +			      TH1520_HDMI_PHY_PLLCURRGMPCTRL);
-> +	dw_hdmi_phy_i2c_write(hdmi, params->plldivctrl,
-> +			      TH1520_HDMI_PHY_PLLDIVCTRL);
-> +	dw_hdmi_phy_i2c_write(hdmi, params->vlevctrl,
-> +			      TH1520_HDMI_PHY_VLEVCTRL);
-> +	dw_hdmi_phy_i2c_write(hdmi, params->cksymtxctrl,
-> +			      TH1520_HDMI_PHY_CKSYMTXCTRL);
-> +	dw_hdmi_phy_i2c_write(hdmi, params->txterm,
-> +			      TH1520_HDMI_PHY_TXTERM);
-> +}
-> +
-> +static int th1520_hdmi_phy_configure(struct dw_hdmi *hdmi, void *data,
-> +				     unsigned long mpixelclock)
-> +{
-> +	unsigned int i;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(th1520_hdmi_phy_params); i++) {
-> +		if (mpixelclock <= th1520_hdmi_phy_params[i].mpixelclock) {
-> +			th1520_hdmi_phy_set_params(hdmi,
-> +						   &th1520_hdmi_phy_params[i]);
-> +			return 0;
-> +		}
-> +	}
-> +
-> +	return -EINVAL;
-> +}
-> +
-> +static int th1520_dw_hdmi_probe(struct platform_device *pdev)
-> +{
-> +	struct th1520_hdmi *hdmi;
-> +	struct dw_hdmi_plat_data *plat_data;
-> +	struct device *dev = &pdev->dev;
-> +
-> +	hdmi = devm_kzalloc(dev, sizeof(*hdmi), GFP_KERNEL);
-> +	if (!hdmi)
-> +		return -ENOMEM;
-> +
-> +	plat_data = &hdmi->plat_data;
-> +
-> +	hdmi->pixclk = devm_clk_get_enabled(dev, "pix");
-> +	if (IS_ERR(hdmi->pixclk))
-> +		return dev_err_probe(dev, PTR_ERR(hdmi->pixclk),
-> +				     "Unable to get pixel clock\n");
-> +
-> +	hdmi->mainrst = devm_reset_control_get_exclusive_deasserted(dev, "main");
-> +	if (IS_ERR(hdmi->mainrst))
-> +		return dev_err_probe(dev, PTR_ERR(hdmi->mainrst),
-> +				     "Unable to get main reset\n");
-> +
-> +	hdmi->prst = devm_reset_control_get_exclusive_deasserted(dev, "apb");
-> +	if (IS_ERR(hdmi->prst))
-> +		return dev_err_probe(dev, PTR_ERR(hdmi->prst),
-> +				     "Unable to get apb reset\n");
-> +
-> +	plat_data->output_port = 1;
-> +	plat_data->mode_valid = th1520_hdmi_mode_valid;
-> +	plat_data->configure_phy = th1520_hdmi_phy_configure;
-> +	plat_data->priv_data = hdmi;
-> +
-> +	hdmi->dw_hdmi = dw_hdmi_probe(pdev, plat_data);
-> +	if (IS_ERR(hdmi))
-> +		return PTR_ERR(hdmi);
-> +
-> +	platform_set_drvdata(pdev, hdmi);
-> +
-> +	return 0;
-> +}
-> +
-> +static void th1520_dw_hdmi_remove(struct platform_device *pdev)
-> +{
-> +	struct dw_hdmi *hdmi = platform_get_drvdata(pdev);
-> +
-> +	dw_hdmi_remove(hdmi);
-> +}
-> +
-> +static const struct of_device_id th1520_dw_hdmi_of_table[] = {
-> +	{ .compatible = "thead,th1520-dw-hdmi" },
-> +	{ /* Sentinel */ },
-> +};
-> +MODULE_DEVICE_TABLE(of, th1520_dw_hdmi_of_table);
-> +
-> +static struct platform_driver th1520_dw_hdmi_platform_driver = {
-> +	.probe		= th1520_dw_hdmi_probe,
-> +	.remove		= th1520_dw_hdmi_remove,
-> +	.driver		= {
-> +		.name	= "th1520-dw-hdmi",
-> +		.of_match_table = th1520_dw_hdmi_of_table,
-> +	},
-> +};
-> +
-> +module_platform_driver(th1520_dw_hdmi_platform_driver);
-> +
-> +MODULE_AUTHOR("Icenowy Zheng <uwu@icenowy.me>");
-> +MODULE_DESCRIPTION("T-Head TH1520 HDMI Encoder Driver");
-> +MODULE_LICENSE("GPL");
-
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
 
 
+On 1/28/2026 4:01 PM, Krzysztof Kozlowski wrote:
+> On 27/01/2026 18:31, Jeff Johnson wrote:
+>> On 1/21/2026 1:50 AM, Miaoqing Pan wrote:
+>>> The 'firmware-name' property was introduced to allow end-users and
+>>> integrators to select use-case-specific firmware for the WCN6855.
+>>> But for M.2 WLAN chips, there is no suitable DTS node to specify
+>>> the 'firmware-name' property. In addition, assigning firmware for
+>>> the M.2 PCIe interface causes chips that do not use use-case-specific
+>>> firmware to fail. Therefore, abandoning the approach of specifying
+>>> firmware in DTS. As an alternative, propose a static lookup table
+>>> mapping device compatible to firmware names.
+>>>
+>>> ---
+>>> v2:
+>>> - Drops `firmware-name` from completely.
+>>> - Updates the commit message to clearly state that the property is
+>>>    obsolete and the change is ABI-breaking but safe for upstream.
+>>> v3:
+>>>   - Deprecate 'firmware-name' property instead of obsolete.
+>>>   - Keep the ABI backwards compatible.
+>>> v4:
+>>>   - Use of_machine_is_compatible() to simplify the code.
+>>>   - Add back Acked-by tag.
+>>> ---
+>>>
+>>> Miaoqing Pan (2):
+>>>    wifi: ath11k: add usecase firmware handling based on device compatible
+>>>    dt-bindings: net: wireless: ath11k-pci: deprecate 'firmware-name'
+>>>      property
+>>>
+>>>   .../net/wireless/qcom,ath11k-pci.yaml         |  1 +
+>>>   drivers/net/wireless/ath/ath11k/core.c        | 27 +++++++++++++++++++
+>>>   drivers/net/wireless/ath/ath11k/core.h        |  4 +++
+>>>   3 files changed, 32 insertions(+)
+>>>
+>>>
+>>> base-commit: d8e1f4a193101a72235416f189b01131a57e26e9
+>>
+>> Krzysztof,
+>> Since you previously NAKed this series, can you confirm that your review
+>> comments have been addressed?
+> 
+> 
+> Binding looks fine, but I did not check the driver.
+> 
+> Best regards,
+> Krzysztof
+
+The driver has retained compatibility with the firmware-name.
+
+static inline const char *ath11k_scan_state_str(enum ath11k_scan_state 
+state)
+  {
+@@ -1346,6 +1347,9 @@ static inline void 
+ath11k_core_create_firmware_path(struct ath11k_base *ab,
+
+  	of_property_read_string(ab->dev->of_node, "firmware-name", &fw_name); 
+//here
+
++	if (!fw_name)
++		fw_name = ath11k_core_get_usecase_firmware(ab);
++
 
