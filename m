@@ -1,266 +1,210 @@
-Return-Path: <devicetree+bounces-260171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260175-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cELGBLVzeWkHxQEAu9opvQ
-	(envelope-from <devicetree+bounces-260171-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 03:25:57 +0100
+	id WMYKBD10eWkHxQEAu9opvQ
+	(envelope-from <devicetree+bounces-260175-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 03:28:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F9089C37F
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 03:25:56 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A30D9C3F9
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 03:28:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id F0CA3300ACB3
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 02:25:55 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 83D243035899
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 02:27:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEE1229827E;
-	Wed, 28 Jan 2026 02:25:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB85629994B;
+	Wed, 28 Jan 2026 02:27:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G9o+jUi4"
+	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="mHIPpK5i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8994928C864;
-	Wed, 28 Jan 2026 02:25:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEF812BD5AF;
+	Wed, 28 Jan 2026 02:27:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769567154; cv=none; b=DI7wvRAxF4n6t97MS4nHPtcHYt4A6I5Tv+aD0lztoNvN1yiICtkqkaHHOzAJtYZNV/3R8wDiXqEo2dUDBxEniHMgY1YE+LlBOY7OTHrxAKwOcQ2kJf9/5QnE40mb4yOvXZjOBGknwvqotSs8YplWkR4ZQqBPlx23pdw7z7tONDc=
+	t=1769567275; cv=none; b=SnuSSBraY99EhFrujd/mu0225Dxv06VeVKxJvpofxiTVG/Ifz8ZgTD0fG4bS16HHHGucpfx6i1y/bUxg5hR4DUWJgEaTPNaizu1k9aj8YoMBPRm50IiCMcFadYX917T7Sb538MTbiRIz6EpgGIBcm8rMs9RF5MpfqwYLnplZsqY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769567154; c=relaxed/simple;
-	bh=Mk9opi2AbVbBe/HXNJ/y7O89/iCTOme85Hdg19/TiCE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=oLakOS5qogD3qUQ6KUOOhFJDnGSFLgp+fankuGHx64XE4nmzqQqkDPeT+FfFG17DVLzq3H3LKhsQjkyLiA49pnubucfqkTUxtj0S/dbVXzuoTVf7Sof1np95wBwSPZuFlcnOVFCs2RKdOIPUrvYJ/+Qgv8oqnXbkMLY6WxLJOBU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G9o+jUi4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34568C116C6;
-	Wed, 28 Jan 2026 02:25:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769567154;
-	bh=Mk9opi2AbVbBe/HXNJ/y7O89/iCTOme85Hdg19/TiCE=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=G9o+jUi408eCNacnUmeDFNf/xEWzoBKRpV1QdqJIXBucZXBfPXgHnmbrnld7N2S+z
-	 2cA0cXhxrD4M8IZf89k+rndSotQUAPzsCXrOr2PjpXDhl7RvuL+aoqd/39cbtSGFm3
-	 oxg9Olnmo+Rvxn6VffmjYcOl9P3i3xL1hwUYJv6LnznKT4tWzdZc/K8RKjy42rOXfh
-	 q/97s6dI6PaiEmJmn5uC5N2DuQ5KwbnkK9DTv7SI8EK4t2Z4XuaEs03RH4sPtM9HBl
-	 BujDDi5NU/qLb1KrT6Fcl04UD7eXGM+QjOXRqpNbjBPg6ARqWeH74Rp6tFli6loO8B
-	 Ykd7K6HZBEAEQ==
-From: Jakub Kicinski <kuba@kernel.org>
-To: lukasz.majewski@mailbox.org
-Cc: Jakub Kicinski <kuba@kernel.org>,
-	festevam@gmail.com,
-	linux-arm-kernel@lists.infradead.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	horms@kernel.org,
-	shawnguo@kernel.org,
-	imx@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	wahrenst@gmx.net,
-	pabeni@redhat.com,
-	davem@davemloft.net,
-	netdev@vger.kernel.org,
-	richardcochran@gmail.com,
-	edumazet@google.com,
-	andrew+netdev@lunn.ch,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	andrew@lunn.ch
-Subject: Re: [net-next,v20,2/7] net: mtip: The L2 switch driver for imx287
-Date: Tue, 27 Jan 2026 18:25:49 -0800
-Message-ID: <20260128022549.4151341-1-kuba@kernel.org>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260126103400.1683125-3-lukasz.majewski@mailbox.org>
-References: <20260126103400.1683125-3-lukasz.majewski@mailbox.org>
+	s=arc-20240116; t=1769567275; c=relaxed/simple;
+	bh=GztNx/y6nVrcJ757mSW3Jpuu/xAjKoOGe1DCDWOqFFk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mPAVZE41rKjbc9b/5Cb6Ex+nRLWO7U7CoRghX6A27YjZ0U9hTVLK8rQdAuuv5o9LtOkkXz8i7OezUqGkjxr+y0q6ZSTb9IVpB7pnBqAPNEoKYSPIdueO1WHGGiwnBF7SMT7KLC0/vIvaRvpibBshDokYjRn2YI8mBhYKpvV2q9U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=mHIPpK5i; arc=none smtp.client-ip=150.107.74.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gibson.dropbear.id.au; s=202512; t=1769567269;
+	bh=Wu4BPTK9Yper0yPB6gAXC9AxTaKnLfEBKXF+9g/sfhM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=mHIPpK5iLsoaMyxtK7DOXipdT8xXbzTTbL1dZM8Fh1Wu2IiiT3paXT8Fth2RvIDqr
+	 CMtV2Sh+xMxdQcKsa4mln4Yj2DxVOAp650xTW8tUX2aI0crzOR2SzzCYwpui5+kKXU
+	 PjR5JgnkhaYcxdnGb1KrRivu0U5cCDbADlS1uDGD/iJr5SmIO/EYpP9o2p+sLuZenu
+	 1giFzURNfZnB5luHTUKmoOr7jNeZTrXTtqQdbPs9zW1KoIhizVGxuQHmIggUi4NTA5
+	 2rPruUUIOg04ghU9PueUOaQZQbfcxbnBSMdwzdHfPS2kv8m0WaRQDPart4GuXYfeuS
+	 oX3buNw9lPrYA==
+Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
+	id 4f15ln6GVPz4wCx; Wed, 28 Jan 2026 13:27:49 +1100 (AEDT)
+Date: Wed, 28 Jan 2026 13:25:53 +1100
+From: David Gibson <david@gibson.dropbear.id.au>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ayush Singh <ayush@beagleboard.org>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org,
+	Hui Pu <hui.pu@gehealthcare.com>,
+	Ian Ray <ian.ray@gehealthcare.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [RFC PATCH 35/77] Add support for FDT_IMPORT_SYM dtb tag
+Message-ID: <aXlzsYleV1AG4ISO@zatzit>
+References: <20260112142009.1006236-1-herve.codina@bootlin.com>
+ <20260112142009.1006236-36-herve.codina@bootlin.com>
+ <aWiMB8MljbOl-RRX@zatzit>
+ <20260119153629.26fa0f94@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="hPcM8Ky6YfWbhBz9"
+Content-Disposition: inline
+In-Reply-To: <20260119153629.26fa0f94@bootlin.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-1.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gibson.dropbear.id.au:s=202512];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260171-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,lists.infradead.org,pengutronix.de,lists.linux.dev,vger.kernel.org,gmx.net,redhat.com,davemloft.net,google.com,lunn.ch];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kuba@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_NA(0.00)[dropbear.id.au];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-260175-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,linux.dev:url]
-X-Rspamd-Queue-Id: 8F9089C37F
+	FROM_NEQ_ENVFROM(0.00)[david@gibson.dropbear.id.au,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gibson.dropbear.id.au:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ozlabs.org:url]
+X-Rspamd-Queue-Id: 2A30D9C3F9
 X-Rspamd-Action: no action
 
-This is an AI-generated review of your patch. The human sending this
-email has considered the AI review valid, or at least plausible.
 
-For local reproduction steps see https://netdev-ai.bots.linux.dev/ai-local.html
----
-net: mtip: The L2 switch driver for imx287
+--hPcM8Ky6YfWbhBz9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-This patch adds support for the More Than IP L2 switch embedded in the
-imx287 SoC. It creates a two-port switch driver that can be used
-interchangeably with the FEC driver.
+On Mon, Jan 19, 2026 at 03:36:29PM +0100, Herve Codina wrote:
+> Hi David,
+>=20
+> On Thu, 15 Jan 2026 17:41:11 +1100
+> David Gibson <david@gibson.dropbear.id.au> wrote:
+>=20
+> > On Mon, Jan 12, 2026 at 03:19:25PM +0100, Herve Codina wrote:
+> > > The FDT_IMPORT_SYM dtb tag is a meta-data tag defining an imported
+> > > symbol. It can be present globally in an addon dtb (i.e. outside nodes
+> > > definition) meaning that this symbol needs to be resolved when the dtb
+> > > is applied.
+> > >=20
+> > > The tag is followed by two values and possible alignment paddings:
+> > >   - name (string including \0)
+> > >       The import symbol name. I.e. the name used to reference this
+> > >       imported symbol.
+> > >   - padding:
+> > >       Padding (0x00) added to have the next value aligned on 32bit.
+> > >   - compatible (string including \0)
+> > >       The compatible string that can be used for symbol resolution.
+> > >       This string can be an empty string if it is not relevant.
+> > >   - padding:
+> > >       Padding (0x00) added to have the next value aligned on 32bit.
+> > >=20
+> > > Example:
+> > >   FDT_IMPORT_SYM 'foo1' 0x00 0x00 0x00 'bar,foo'
+> > >=20
+> > >   This means that 'foo1' is an imported symbol and it is 'bar,foo'
+> > >   compatible.
+> > >=20
+> > >   This is what is encoded in the dtb when the related dts has the
+> > >   following imported symbol defined:
+> > >     /import/ foo1: "bar,foo";
+> > >=20
+> > > If several symbols are imported, several FDT_IMPORT_SYM are present.
+> > > Each of them defining one imported symbol. For instance, importing
+> > > 'foo1' ("bar,foo" compatible) and 'baz1' ("bar,baz" compatible) leads
+> > > to the following sequence:
+> > >   FDT_IMPORT_SYM 'foo1' 0x00 0x00 0x00 'bar,foo'
+> > >   FDT_IMPORT_SYM 'baz1' 0x00 0x00 0x00 'bar,baz'
+> > >=20
+> > > If FDT_IMPORT_SYM tags are present in the dtb, they are present after
+> > > the root node definition (i.e. after the FDT_END_NODE related to the
+> > > first FDT_BEGIN_NODE).
+> > >=20
+> > > Add support for this new dtb tag. =20
+> >=20
+> > Since these are global to the whole tree, would a new block make more
+> > sense?
+>=20
+> I don't know.
+>=20
+> Exports symbols are in node blocs and that makes sense. I wouldn't expect
+> imports out of the dtb "structure block".
+>=20
+> They could be grouped into an other tag, FDT_INFO_DTB for instance (part =
+of
+> the "structure block").
+>=20
+> If you think that a new block is really relevant, I can implement this new
+> block.
 
-> diff --git a/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c b/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c
-> new file mode 100644
-> index 000000000000..03c5163d6508
-> --- /dev/null
-> +++ b/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c
+On further thought, I don't think this is a good idea.  For one thing
+adding an extra block makes resizing edits way harder to implement.
+For another adding support for multiple upstream connectors might mean
+they're no longer quite as global as they are.
 
-[ ... ]
+--=20
+David Gibson (he or they)	| I'll have my music baroque, and my code
+david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
+				| around.
+http://www.ozlabs.org/~dgibson
 
-> +static void mtip_netif_stop_queues(struct switch_enet_private *fep)
-> +{
-> +	for (int i = 0; i < SWITCH_EPORT_NUMBER; i++)
-> +		netif_stop_queue(fep->ndev[0]);
-                                      ^^^
+--hPcM8Ky6YfWbhBz9
+Content-Type: application/pgp-signature; name=signature.asc
 
-Should this be fep->ndev[i] instead of fep->ndev[0]? The loop iterates
-with variable i but always uses index 0, so port 1's queue is never
-stopped.
+-----BEGIN PGP SIGNATURE-----
 
-> +}
-> +
-> +static void mtip_netif_wake_queues(struct switch_enet_private *fep)
-> +{
-> +	for (int i = 0; i < SWITCH_EPORT_NUMBER; i++)
-> +		netif_wake_queue(fep->ndev[0]);
-                                      ^^^
+iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAml5c6IACgkQzQJF27ox
+2GdNOg//SVrxBdsOPQ5y7gvWb26GgXbMFIT7M5jNFRaoVQo55hPJ/9ueWp3isGuJ
+4bnTOVh3ohOfy4+oHY9WEyguue2c6N1BvlitkTb4syMeED2cQzwWM0tfrRKhiDYJ
+BKCwSG6ohz3O7hjTL5hocltv+E6moynjJaUEYPc51bA93pi8CfBPEtOAhU0qkL1y
+wLR60EAPhRMjtJsZ7yv3awFW1eZs3fBIUHOtbQsGVYi8NGDe/0pMGXmQuDbDRCGi
+eYNMTV/aPYr0vUEEjwtgxUGp6/YJX6F2lFTnx1vBniCIU/spBf7xjHvIvbKRj/Dp
+xo8JT2nwlNYzdmUAiNZaVIgvgGwVI6157rCbNm2O2Je+se6MYPxCBlKJf9a95oqC
+PmjivCpGNNQj+wvwTlOy/sSEoxftWFg+1XSzYDS5f1+hXyg9AjSMS9xZrqkFySug
+r0drL8zqbkTOFxSNvvLGpTLgT4xuPxCAVzleA8uAsRPW4hpWYnc7l9XQTkfsLah1
+sp9c2beGbimx0pvin25oau77oIHsV4lCSj1k7R3y0kJdB3O3YX0/KKNs/n+SKVsl
+wgQMyfInyObK13nAT8prRg4luoDfItMQt04Sl1TbBabD+1K4yYKtdkiyosaDkUHI
+795K9RISdXbHDk9pp6WFRWDjxlQoemrEewuks2pB5GnkKOXuSsU=
+=ajKA
+-----END PGP SIGNATURE-----
 
-Same here - should this be fep->ndev[i]?
-
-> +}
-
-[ ... ]
-
-> +static int mtip_mii_probe(struct net_device *dev)
-> +{
-> +	struct mtip_ndev_priv *priv = netdev_priv(dev);
-> +	struct switch_enet_private *fep = priv->fep;
-> +	struct phy_device *phy_dev = NULL;
-> +	int port_idx = priv->portnum - 1;
-> +
-> +	if (fep->phy_np[port_idx]) {
-> +		phy_dev = of_phy_connect(dev, fep->phy_np[port_idx],
-> +					 &mtip_adjust_link, 0,
-> +					 fep->phy_interface[port_idx]);
-> +		if (!phy_dev) {
-> +			netdev_err(dev, "Unable to connect to phy\n");
-> +			return -ENODEV;
-> +		}
-> +	}
-> +
-> +	phy_set_max_speed(phy_dev, 100);
-                          ^^^^^^^
-
-If fep->phy_np[port_idx] is NULL (no phy-handle in DT for this port),
-the if block is skipped and phy_dev remains NULL. Can this cause a NULL
-pointer dereference in phy_set_max_speed()?
-
-> +	fep->phy_dev[port_idx] = phy_dev;
-
-[ ... ]
-
-> +static int mtip_parse_of(struct switch_enet_private *fep,
-> +			 struct device_node *np)
-> +{
-> +	struct device_node *p;
-> +	unsigned int port_num;
-> +	int ret = 0;
-> +
-> +	p = of_get_child_by_name(np, "ethernet-ports");
-> +
-> +	for_each_available_child_of_node_scoped(p, port) {
-> +		if (of_property_read_u32(port, "reg", &port_num))
-> +			continue;
-> +
-> +		if (port_num > SWITCH_EPORT_NUMBER) {
-                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This only validates the upper bound. If the device tree contains
-reg = <0>, would fep->mac[port_num - 1] access fep->mac[-1]? Perhaps
-the check should also verify port_num is at least 1?
-
-> +			dev_err(&fep->pdev->dev,
-> +				"%s: The switch supports up to %d ports!\n",
-> +				__func__, SWITCH_EPORT_NUMBER);
-> +			goto of_get_err;
-> +		}
-> +
-> +		fep->n_ports = port_num;
-> +		ret = of_get_mac_address(port, &fep->mac[port_num - 1][0]);
-
-[ ... ]
-
-> +	ret = mtip_mii_init(fep, pdev);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "%s: Cannot init phy bus (%d)!\n", __func__,
-> +			ret);
-> +		goto dma_free_coherent_memory;
-> +	}
-> +
-> +	ret = mtip_ndev_init(fep, pdev);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "%s: Failed to create virtual ndev (%d)\n",
-> +			__func__, ret);
-> +		goto mdiobus_free_memory;
-> +	}
-
-[ ... ]
-
-> + mdiobus_free_memory:
-> +	mdiobus_free(fep->mii_bus);
-
-mtip_mii_init() calls of_mdiobus_register() which registers the bus.
-Should mdiobus_unregister() be called here before mdiobus_free()?
-Compare with mtip_mii_remove() which does call mdiobus_unregister().
-
-> + dma_free_coherent_memory:
-> +	dma_free_coherent(&fep->pdev->dev, PAGE_SIZE, fep->rx_bd_base,
-> +			  fep->bd_dma);
-> +	fep->rx_bd_base = NULL;
-> +	fep->tx_bd_base = NULL;
-> +
-> +	return ret;
-> +}
-> +
-> +static void mtip_sw_remove(struct platform_device *pdev)
-> +{
-> +	struct switch_enet_private *fep = platform_get_drvdata(pdev);
-> +
-> +	mtip_ndev_cleanup(fep);
-> +
-> +	mtip_mii_remove(fep);
-> +
-> +	timer_delete_sync(&fep->timer_mgnt);
-> +	platform_set_drvdata(pdev, NULL);
-> +}
-
-mtip_sw_probe() allocates DMA memory with dma_alloc_coherent() in
-mtip_switch_dma_init(), but mtip_sw_remove() does not appear to free it.
-Is this a memory leak on driver removal?
--- 
-pw-bot: cr
+--hPcM8Ky6YfWbhBz9--
 
