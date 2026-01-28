@@ -1,217 +1,208 @@
-Return-Path: <devicetree+bounces-260634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260635-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YKiAKyh5emny6wEAu9opvQ
-	(envelope-from <devicetree+bounces-260634-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 22:01:28 +0100
+	id KIbeNpx6emka7AEAu9opvQ
+	(envelope-from <devicetree+bounces-260635-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 22:07:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2645AA8E41
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 22:01:28 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82849A8F0F
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 22:07:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0A3DB3016268
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:01:27 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E9D513006830
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:07:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C478335571;
-	Wed, 28 Jan 2026 21:01:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5FE137416C;
+	Wed, 28 Jan 2026 21:07:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="e1BeNxbE"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="IBd/j4Ni"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f53.google.com (mail-yx1-f53.google.com [74.125.224.53])
+Received: from mail-pf1-f226.google.com (mail-pf1-f226.google.com [209.85.210.226])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F3672C159E
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 21:01:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.224.53
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769634086; cv=pass; b=PbVfv99Y2FBP86CC/Eow8D0YDBxmnUyaIyp2ZY9gt/cZ0SAhqjC6e9I85IMfyQU7oWt/y3TIK0tAaGslJkEnQ0I83nS+7aqVwZFVHOYjXFzZnlidt50PjHrLQc/1iJRdILgQL2SpbotLWXcZa/jvcmrKsXnQvVdgP2ZoYhq6yW4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769634086; c=relaxed/simple;
-	bh=q366hLe7gQaI5rjlaG/ooZDp0LuYfAPugWB8ysxyHwo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ruoZt4lh/gWvVs5vnhLqeWVq8eKhd8whl87FTz62yWeVacFoLrvdIZksPqyora9nj8BKo30Fs4/TKC/a5pkHNzZjPVUdGDYGhHVzux8ydNEVTl7J8XEFAddccsLluzaMipBPeIwr7e1etVfdDvhrnrxJ7xdcWWrElOgeN0rfeGc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=oss.tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=e1BeNxbE; arc=pass smtp.client-ip=74.125.224.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=oss.tenstorrent.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tenstorrent.com
-Received: by mail-yx1-f53.google.com with SMTP id 956f58d0204a3-64942ebf1a3so257875d50.3
-        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 13:01:23 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1769634083; cv=none;
-        d=google.com; s=arc-20240605;
-        b=Z5nDAmZ4AalGuBtPUG1f2+poJfvZ7HcWqJgomacm0LvMW9bx45lWYbDfyDrDa1e5k2
-         R/pT1wva+g/Amtq/D56A/x2KIyymqMoNyrNTvvsShyHlEndnhR6Wi8oOgc9h9eJvE4Z/
-         gSV2lQWt47S97hAIe8Yv/Gj2K7/tuVfudRtXAIDo48UGq6M91z0M7hTrs6EAiY54C460
-         Rnjq1JNzkMCTott1xvuaI53fUIDt13oNMkJx5d7WeCo5JiYS0rdJ7dZZ8cnmSGmY50FA
-         /ZsjFnYpogyMDMNwdGN+S49fektSPvZMzSstaZtNzGBxsWUw5usC5+5TRwUZLoYShNYk
-         kPOQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=q366hLe7gQaI5rjlaG/ooZDp0LuYfAPugWB8ysxyHwo=;
-        fh=VavqON4rOH3NZscdxOYl1sfFJfK1JEhZ3CV8Anyi3h4=;
-        b=S0CQD0D+avMCfCfy7R2X0S/kcrBSLryBPuPxfWprwx8oQyljFydWAGQue6E6iNuwUB
-         LsNvTn51XBqN57gGhb2u1J5DOZe/d8a5cAUHWcjYEF76Y075TgK1m3dI4z8l8xNDbIBB
-         Wr8e3kCcvfesdBvF0Fm39aIYVxVU+sGUmhOwj5vDUdIHEPb/nys2VdmA/Fy6Df2T7fKD
-         vfFph9M06hWqaUxjjEHicDa5BABoZ1BDEvth/rWgv+NSApatiXuOkfrJo8P5WAVDhJp1
-         /ijMw5XXH02r/sSInr2LIxqOgjykuUJ1AQFIrDZ74sdNmU9j1Gu+Eh6FOFRimvoIqzgh
-         AL4Q==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tenstorrent.com; s=google; t=1769634083; x=1770238883; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=q366hLe7gQaI5rjlaG/ooZDp0LuYfAPugWB8ysxyHwo=;
-        b=e1BeNxbEnFF7jWky50sCGNMplkmiWT0yNWkV9ages1z8Hl8ZUA+0Z+wmNb7uyRxzWs
-         xEBfpV8z5lsGfC2fn1AhClS56Hxz4OPmwn2AUiT9CHVLV3hLpoO+vpxl6r12L/F+xZ/0
-         3NtPsfHEliRgJ7suP1bUYwGhiQzFU37bw1GZOhL2FQneMFRgP57y6RNCiJj1TIkWfkgD
-         mIHO/fOryrc8wQBx9sPArH3nZlMIhLG2vFIQbIFpiZOQxNGgDzuHGRxAJX8SgWnPxITI
-         qMletHHtUCoHL0P2x5UMHX6tb3fukiQ3i76lFS1j9OxVU5/Je4TmdJnFSegTOoiD61xM
-         QLjg==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A612377546
+	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 21:07:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.226
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769634458; cv=none; b=KAeGVhZUgj5jWR0Su12AdzrWeY+ss/Gz3yD6MmuBWrYCbtImbG+aals3R1PL92dC1V6S7Up9Y3wmd9C3Daz28TejQPPoX0C2UnIBJOQNBVZw+5eOxlAZQWW99Lb/8IhrTtt24B92rDgYRAUGRnSYXyOSrHWbEhWXGOM20eIBH9g=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769634458; c=relaxed/simple;
+	bh=WPCC2/nPfE3keby/nQIU0U/NbD9BDat86wyAm2pkZGM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oeMljaKkrexD4JkXGvrXemb8GD31A5vaFMFN4PjZvQjqrk9S+53ELlQS3QW/PnrlIxZuzVAN+xRuK2Xj2Uvn1tnjgFNPp3NS6oGozzbXCPQ9kjnp78KkqNtO32KzN7gAofV82i7glt5/xNqOU87ORCdjPDlyA0A+4+ilyJpwnuU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=IBd/j4Ni; arc=none smtp.client-ip=209.85.210.226
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-pf1-f226.google.com with SMTP id d2e1a72fcca58-823210d1d8eso123716b3a.1
+        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 13:07:37 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769634083; x=1770238883;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=q366hLe7gQaI5rjlaG/ooZDp0LuYfAPugWB8ysxyHwo=;
-        b=cxJ5CIkTGQM3GZS/B7nAcHDH1Ir0/6sf4qGobD3hZxWzxRUy82NLBvA5y8T6BINdXf
-         XPc4yMl8r1UCm+6fgnW5zj8PJE8Ka0mtirlXo1kwEd6W0zYDve6j3nsgYIiEurz7CMqQ
-         t02/94WToHnWwt/K8/bONxdOZaXn4X6mBrFRlHvDkrj325opqaWffGBH0NucCZ6Yx/aY
-         d3tv20yoxR0TSXbTel6oE0vmNN4UPlhUMoMjPMNgxFUgNClazJEB/iluRR0JxBkYgkte
-         8a4wnJJc81yGXAMKXjDTH3Zvzzm1ar4/lTUHFN1FjMcO76VPLpV13KUJ7X6AOXHrEBfu
-         z6Jw==
-X-Forwarded-Encrypted: i=1; AJvYcCW91YlA5jaFP0Dw6WnpbDDF8JUJpptaKUhgyuf3HErHkS3sfIa6stsUd8STM+UC38AhyM63RNVI+EWe@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz77xnXX6K0fgZS+MV46pNDuZ0GwQeuU289myOVcPXR7l/EwQV6
-	maJR3G/MXgJwigcvZ37qHKdqGDyOeacMTl745REzRm3tZlo2LVfmuOvN1XM5dR0c59bW4jokGy2
-	C7TdVMTwRXXqPI1/Xy4K1L25ks3VUBfJ5BLnD5WHaarTv4SN/qsRImyo=
-X-Gm-Gg: AZuq6aI9sr6JL8J2Z8T6MnaLJTGTNZcBk/ICsFWwtIX0cqxKhMMcs+YfoU2axJQJftg
-	bnuJ89wI6arDMGL6hK6C4NeP+SK6TvzNh9q98VChAJF5KxbeSmviruNht0YNtnlmF7YZbC9zV+4
-	FBQxuWwfV+kFGu1Y4JotsWNMMaoPfJnhcgHrnfXZ6hgEmPfghqsLbZEDVHtzVy2iSiPNNon5RR+
-	whNKdCtaGLLaKNXP9OL6lkvmi2eiD/rvmImKa8k8peWwOGg9czj+IYH3jh4Ny92qRJ18hcBTcmW
-	fpDyuNhpQxnV8LZCBkG9XpDVFvENSFD8wGGxnaWlnfFlm68gcRlUQ78XiuI=
-X-Received: by 2002:a05:690e:1901:b0:641:e6aa:583f with SMTP id
- 956f58d0204a3-6498fbd7285mr5173079d50.15.1769634082636; Wed, 28 Jan 2026
- 13:01:22 -0800 (PST)
+        d=1e100.net; s=20230601; t=1769634457; x=1770239257;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:dkim-signature:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=yDDLJdqPk1Zlja9ZPS9PNMGzgyrH9rkUy74PKjqCyw4=;
+        b=ZenL3OvtpTICTYzYqgw6iRt+DzJsmPPh/bfaREWyRaAk9tTmnJGWFt22XzLnPAHIIK
+         nfwk7r1L7sdqr+U8BH7lBLbYNSC9jCtqxdLID7ka09KO+UQGH3ZX3NNg5dA+XrC1h8em
+         pFwrINKn9SeBxLsQGGHjtG/hFZguoU2zj25OLjmESa8QG/YeyzzE3QvtKVoquf1Syjce
+         86+u4+mfa3VTshUH//rT+REq/ee02pjY1OgK72HWbwFh7gbM+M8HcPNU9++zXbnL00Ar
+         UElK0ZbJt4Wb0FnQKZJLBfk9mphyGxffcwilldAw8vZXYjAnGtjw82F19QInUumeQxTD
+         G6aQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX1NoQqV6CuvtvejVarbM4qAr2c7yfOBrht9JaIs0MwSsipEJA2D4+enldrBM2vl2hoUwlQKrVt01BL@vger.kernel.org
+X-Gm-Message-State: AOJu0YzeHSpfwp+C9Q0nwq3qQs0XCrzKQiN9HJybIbZaCYz45aOKjXlB
+	DlciZolAgHIh5TzYCx7tgsy0ggKhpJuKiPeekMzBAMxITf72dD3mXwJODdypHwIQjEoyYIw0hBK
+	Qe/L2MJz/PDFrGIa1TP9rk7AMR5K5BvuYOOLlpY9gPLZTMF2oUpYV/pr1kgVz2saQ9QxUKEqTJP
+	U12vxi14cqm7sKZMREo/9S7tHhdkG9mUX5BExD50igjh7RkuG4Sh7j8wJGy3jkE/NZxcbT7hlhb
+	vjahBAVEqMHUTtEDcRvUg==
+X-Gm-Gg: AZuq6aJShyXITMgEzjR13NCJvistz6Nl65SnuhbtUqA2Lc5vZ0dWjLAuyz41OwGCl6J
+	60sUaMY9sXN8IEqxUiadw1+yrIVsKP7Bkku2RHiChoAhLAtZDqe60BUNrUFQetF0wIdEpAye1On
+	NVx7BpWzvJypSe6OqWrUSI70RUFT4QCC07iscBbQdadErNIdyTWWbw80lB+fC7RhvzALU+hxox3
+	XQ3xdPjM7hB48UaCwfWqa26SYoapVwBU9dfLvl7unmiRIrvIa0kz27wchOVxGRj+V4NkRzND792
+	tookJqo6No+AefwaD5o4YCUU641v5RbsHSXkOon4TxRVTWZ8o2iGzGdnGmKq0AF4Ir5soc8XQ2S
+	0oxjlB2TNFliy8XVwnWz8XOG0wm94fF+mIcJK8pBJhVASxH740ynHLIFBiYqnYJ3Z/yPVD/ghxw
+	XBrWAuO6nCttvErcEkSbzfkiCX+HdcyG9caSJVM4ukzcONS4IxrA==
+X-Received: by 2002:a05:6a00:ad0f:b0:81b:c599:7593 with SMTP id d2e1a72fcca58-823692eddb0mr5792984b3a.60.1769634456664;
+        Wed, 28 Jan 2026 13:07:36 -0800 (PST)
+Received: from smtp-us-east1-p01-i01-si01.dlp.protect.broadcom.com (address-144-49-247-20.dlp.protect.broadcom.com. [144.49.247.20])
+        by smtp-relay.gmail.com with ESMTPS id d2e1a72fcca58-82379b191fcsm391546b3a.2.2026.01.28.13.07.36
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 28 Jan 2026 13:07:36 -0800 (PST)
+X-Relaying-Domain: broadcom.com
+X-CFilter-Loop: Reflected
+Received: by mail-dl1-f72.google.com with SMTP id a92af1059eb24-12339eea50bso1504826c88.1
+        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 13:07:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1769634455; x=1770239255; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=yDDLJdqPk1Zlja9ZPS9PNMGzgyrH9rkUy74PKjqCyw4=;
+        b=IBd/j4NidZpqvAb+bGGLSJEje3zC2zPW5RW+4iVnh3T9HV3JC0TiH/4+tCG1N7leuj
+         eNUsSI9DoVnzC1ayxPTI65tnDFYsI1Wj+m/dQ5HH7xIysUHLqo8GhqibK7tfzG402L27
+         v5/QgdLLQjZkdIPTP4ZX2Q9sWrLJMyF0Kh2hU=
+X-Forwarded-Encrypted: i=1; AJvYcCWQRV7UoYAHaVx7A3NHW4vUqlLi7b5paiJLr1wr7T5vZx+ipoRpwQgBrrrrHoURnO9MNnh+RyAEzxrV@vger.kernel.org
+X-Received: by 2002:a05:7022:791:b0:124:9faf:4dd with SMTP id a92af1059eb24-124a012b15fmr3536821c88.47.1769634454876;
+        Wed, 28 Jan 2026 13:07:34 -0800 (PST)
+X-Received: by 2002:a05:7022:791:b0:124:9faf:4dd with SMTP id a92af1059eb24-124a012b15fmr3536799c88.47.1769634454395;
+        Wed, 28 Jan 2026 13:07:34 -0800 (PST)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-124a9d7f789sm3869245c88.6.2026.01.28.13.07.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Jan 2026 13:07:33 -0800 (PST)
+Message-ID: <ad644270-4236-4a71-b301-b912b0cd49f3@broadcom.com>
+Date: Wed, 28 Jan 2026 13:07:31 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260126-atlantis-clocks-v3-0-b016135551b7@oss.tenstorrent.com>
- <20260126-atlantis-clocks-v3-1-b016135551b7@oss.tenstorrent.com>
- <20260127-mystify-carmaker-150aa3fcd6c6@spud> <CAEev2e-p28J_H2oWdrtgGJ0Z=2iGn8FjFBN8ggU0t_Wtbi62rA@mail.gmail.com>
- <20260128-duckling-confess-88e64fabe752@spud> <CAEev2e9Y95bYDdvhJQ2954K2q5yMrGA3UF2U=QN83ZNbZ5LJBw@mail.gmail.com>
- <20260128-nappy-repaint-e464d9964134@spud>
-In-Reply-To: <20260128-nappy-repaint-e464d9964134@spud>
-From: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
-Date: Wed, 28 Jan 2026 15:01:11 -0600
-X-Gm-Features: AZwV_QgfoguDQdOLdwSNveH96jgRmNQg1sP19SgMVUtC9BAJsQ6YIqpThUYUpUM
-Message-ID: <CAEev2e9onS-ogepaTugmGSc4-p6H0ZL54n1yd3bofTWTnLRM-Q@mail.gmail.com>
-Subject: Re: [PATCH v3 1/3] dt-bindings: clk: tenstorrent: Add tenstorrent,atlantis-prcm
-To: Conor Dooley <conor@kernel.org>
-Cc: Drew Fustini <dfustini@oss.tenstorrent.com>, Joel Stanley <jms@oss.tenstorrent.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-riscv@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org, joel@jms.id.au, fustini@kernel.org, mpe@kernel.org, 
-	mpe@oss.tenstorrent.com, npiggin@oss.tenstorrent.com, agross@kernel.org, 
-	agross@oss.tenstorrent.com, bmasney@redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: broadcom: ns2-svk: fix AT25 EEPROM node and
+ properties
+To: Lee Yongjun <jun85566@gmail.com>, rjui@broadcom.com,
+ sbranden@broadcom.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: bcm-kernel-feedback-list@broadcom.com,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260122161823.105404-1-jun85566@gmail.com>
+Content-Language: en-US, fr-FR
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
+ M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
+ JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
+ PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
+ KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
+ AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
+ IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
+ ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
+ bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
+ Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
+ tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
+ TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
+ zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
+ WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
+ IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
+ U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
+ 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
+ pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
+ MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
+ IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
+ gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
+ obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
+ N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
+ CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
+ C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
+ wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
+ EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
+ fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
+ MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
+ 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
+ 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
+In-Reply-To: <20260122161823.105404-1-jun85566@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-DetectorID-Processed: b00c1d49-9d2e-4205-b15f-d015386d3d5e
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[tenstorrent.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[tenstorrent.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[broadcom.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[broadcom.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260634-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com,broadcom.com,kernel.org];
+	TAGGED_FROM(0.00)[bounces-260635-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[broadcom.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[asrinivasan@oss.tenstorrent.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[tenstorrent.com:+];
+	FROM_NEQ_ENVFROM(0.00)[florian.fainelli@broadcom.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 2645AA8E41
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 82849A8F0F
 X-Rspamd-Action: no action
 
-Hi Conor,
+On 1/22/26 08:18, Lee Yongjun wrote:
+> The AT25 EEPROM node on the Northstar 2 SVK board used legacy vendor
+> properties and a non-standard node name, which triggers dtbs_check
+> warnings.
+> 
+> Update the node to follow the dt-schema by:
+> - Renaming the node from at25@0 to eeprom@0.
+> - Replacing deprecated "at25,byte-len" with "size".
+> - Replacing deprecated "at25,page-size" with "pagesize".
+> - Replacing deprecated "at25,addr-mode" with "address-width".
+> 
+> For "address-width", the legacy value <2> corresponds to the EE_ADDR2
+> flag in the driver (include/linux/spi/eeprom.h), which is explicitly
+> defined as 16-bit addressing. Therefore, <16> is the technically
+> accurate value that preserves the existing hardware behavior while
+> satisfying the at25.yaml schema requirements.
+> 
+> Signed-off-by: Lee Yongjun <jun85566@gmail.com>
 
-On Wed, Jan 28, 2026 at 11:32=E2=80=AFAM Conor Dooley <conor@kernel.org> wr=
-ote:
->
-> On Wed, Jan 28, 2026 at 09:42:42AM -0600, Anirudh Srinivasan wrote:
-> > Hi Conor,
-> >
-> > On Wed, Jan 28, 2026 at 9:02=E2=80=AFAM Conor Dooley <conor@kernel.org>=
- wrote:
-> > >
-> > > On Tue, Jan 27, 2026 at 05:39:33PM -0600, Anirudh Srinivasan wrote:
-> > > > Hi Conor,
-> > > >
-> > > > On Tue, Jan 27, 2026 at 1:58=E2=80=AFPM Conor Dooley <conor@kernel.=
-org> wrote:
-> > > > >
-> > > > > On Mon, Jan 26, 2026 at 03:07:14PM -0600, Anirudh Srinivasan wrot=
-e:
-> > > > > > Document bindings for Tenstorrent Atlantis PRCM that manages cl=
-ocks
-> > > > > > and resets. This block is instantiated 4 times in the SoC.
-> > > > > > This commit documents the clocks from the RCPU PRCM block.
-> > > > > >
-> > > > > > Signed-off-by: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.=
-com>
-> > > > > > ---
-> > > > > This is pretty suspect sounding, if the PLLs for !rcpu are contro=
-lled in
-> > > > > the rcpu register region, why is it not a clock parent for the !r=
-cpu
-> > > > > prcms?
-> > > >
+Thanks for your patch, however I have something from Rob already queued up:
 
-> Right. Looking at the mail from Krzysztof, I suspect he meant to
-> completely document and explain the rcpu prcm, not all of the prcms (he
-> couldn't really know they existed, based on your v1, right?).
-> I'd suggest you drop the !rcpu stuff for now, and submit it when you
-> have the driver for them ready to go. That's typically what's done to
-> avoid introducing bindings that need to be changed once the driver
-> actually turns up, since as you say you've not actually tested the
-> driver for those prcms.
+https://lore.kernel.org/r/20260106-dt-dtbs-broadcom-fixes-v1-9-ba45874e4553@kernel.org
 
-Okay, thank you for clarifying that. I think I interpreted the
-original comments as "once you add bindings, you cannot change them
-later". I guess the changes I have wouldn't break backward
-compatibility, so they'd probably be fine. I will do this the way you
-suggest.
-
-> If you think it is going to be confusing, then move the bits common to
-> !rcpu and rcpu prcms to a file, with the unique bits in dedicated files
-> perhaps? It seems like they'd be fairly different even with your current
-> scheme and keeping them apart would aid readability of the driver in
-> either case?
-> You can do this extraction as part of adding the !rcpu code, that
-> doesn't need to be done for the rcpu stuff since the concept of "common"
-> wouldn't exist in upstream until the !rcpu stuff arrives.
-
-Okay, something to figure out for when I add the !rcpu code later.
-
->
-> Cheers,
-> Conor.
+You could re-submit the portion of your patch that renames the node?
+-- 
+Florian
 
