@@ -1,84 +1,84 @@
-Return-Path: <devicetree+bounces-260390-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260389-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mHEjCiEBemn31QEAu9opvQ
-	(envelope-from <devicetree+bounces-260390-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 13:29:21 +0100
+	id UNHqJf0Aemnq1QEAu9opvQ
+	(envelope-from <devicetree+bounces-260389-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 13:28:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF9E2A13F9
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 13:29:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0003FA13D3
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 13:28:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 399C83055833
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 12:27:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 352EA30305F5
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 12:27:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55B1D350287;
-	Wed, 28 Jan 2026 12:27:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2660234FF4B;
+	Wed, 28 Jan 2026 12:27:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="J8bOyXtC"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="uvxQFD7G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f66.google.com (mail-ej1-f66.google.com [209.85.218.66])
+Received: from mail-ej1-f68.google.com (mail-ej1-f68.google.com [209.85.218.68])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB5FB34F466
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 12:26:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7586434EF1F
+	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 12:26:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.68
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769603223; cv=none; b=mYEfxh6OjqXu7T0xVYiUoA7GkFYSq2/JE4XvOWP69Dt1P5VVUoytvZJnZcEGgQd8L9man7Li/AwwBIUrxJuKTqwr/PhNuhKrJ+lerUWYC8PNf29zZboXDe/c7oUUBmk4bzoxJCTyShbqRB9CKlmi7IfvifwQFphw9huf/8nsgUc=
+	t=1769603221; cv=none; b=ukU16OXHzoFE/y0mOYBAxDiFYKpYvPsCiE+IFtEuI6cpv+kNstxw3qLj6kYAEhBZ7Bk0BzJ3W+Laq+1KFB1AMl9FnZPblRPvc+pJkrZmJSqSvKPs+ncw3qEUGU1WClTF+wVcLCZecEM57PTE25W4NRYHcNTYrfY5k3IgBaqpBD8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769603223; c=relaxed/simple;
-	bh=aYBhXyfeGAiKcjO0bljvvMwVi3NEa7dlY1olVgUIsz0=;
+	s=arc-20240116; t=1769603221; c=relaxed/simple;
+	bh=DAIXJZLgc99QDCiZ1C54DNaCXxm8xbhdrA2aDX9YeRs=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=gPWpKQV0NIhfywMsVCsyGADEep79JTODdbBbXrbZaZojgBjXyYyJeM5/k4byDyBy+2RBDPBO09isE0l0zIqpIT8Wf+USXffCNRYkUOa2N5mkKIbebpBG8zF6uc4zgyuK8fD73uF7URAGmY4U5fq8XwMWt1oP93F/5qR5uVW3AOQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=J8bOyXtC; arc=none smtp.client-ip=209.85.218.66
+	 In-Reply-To:To:Cc; b=FY17awzAqOA8gmj/8UelzMuZGGR77qRJ5G2JBiZ9qCfFuJs1iTEkLX94tNGAEYCzXFr9TYsDIL5Q0xfXaJKyde7Eh+tKyqJw9OMhNTT4a6+Hj4xNkaMLaNukaMuZ+ZCyiESZnmR0pbo6RU/bM/k+i9YgAlFuDFoyi4gbtL/NNaE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=uvxQFD7G; arc=none smtp.client-ip=209.85.218.68
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f66.google.com with SMTP id a640c23a62f3a-b8838339fc6so177507366b.0
-        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 04:26:58 -0800 (PST)
+Received: by mail-ej1-f68.google.com with SMTP id a640c23a62f3a-b883787268fso1058783466b.3
+        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 04:26:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=fairphone.com; s=fair; t=1769603216; x=1770208016; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=2qgpD9LbGNFmxJFyhinMbda0sk3N9bu+o/hT9+cSIlY=;
-        b=J8bOyXtCWQ7xFL9PXieKp0SMLRX2j/dPw6NywCxHZmvrRz43SqDTEpQ7Gaatq8V9eN
-         hTIyS1wDov8qoR00iL1lBtXCXSF5rYSl2epg1EQmdIGlH3U8xYLvu7C3PqGlJ8NwKPdR
-         Ib77FzFdax8DgSDRhkWrRFj+Oun/rxcOI6q8BUyLhpDH90z/lpvGab0+wnYJB67F8vP7
-         C2pGSgkpZ7aH7A4lwr4IT7985HSrVK7No4YBfZnC5+UYrsitUakMmMJf6zCKogdD9OlP
-         uBGDe9wLNYxEQ6ZzpLodRoZhLXua+/ofar+E16d4UiRrZLufMgfNJ7uZo95YonLjsVPG
-         E3Mg==
+        bh=1J4Wgi9FdaGcRkgWW/fDa8if5n5CEMCZLtNv7Iii2Go=;
+        b=uvxQFD7GYMxwquNMYkebdeSxCcYu27gMk+DnT/EhaanRubF1qYTscu2fNq1ZHHpYDX
+         kZhUiFPCEvsz/Ysavx3bx1dCyhm9c/Eaa1YsHlW4KC+vaVmhxRe70cH55DuKkUfjkVhc
+         2CfAuHfvkKnmsBawZc8Qhb1D3OmnnpJGfL7xD2ahHzMxv3/bxQ6BsoqC8r6n5mwm/Azo
+         68C1AZmZiOYrcoEPZZErlOglpyyf4NBYmx7qQjEYranIgzjjWmbERx29aeByU6YRgPSx
+         quGdMX6J9RbGAtvMtuXERw0t42VZQFKbrDzoe4/P4WqGCrbexuAnkgXlFNkXaLmT7YVv
+         xW8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1769603216; x=1770208016;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=2qgpD9LbGNFmxJFyhinMbda0sk3N9bu+o/hT9+cSIlY=;
-        b=TIGn2ByVdJ2Ncec9cxeanwf9L2lzOOMLv/vx+S6kNY6rVJsNTuhZUOcdgMtVYF8+5h
-         0ab3T8lkOijVHm0u+MSWVKrYCvc25VyxRJcfMK70kqewgycTjkgSyc+cM1Ysebvtoum3
-         riNQVX9eNmnw9XC96c+5cbWPnvMxr/l/7GWyppDZzAFqsa+GHWx31PGHxmaq1dhlLg9m
-         /lvO30WKdTW1hkXHKg3re1rkbmbPBg9/BrmcNPazklJz84ixdZxAVSEBxPfcru6eai4r
-         Vz9V3XmNcxiH3gsHykS0ZreBFjSAahScLR1zZC9yQv+lydxDixNLO3JMuYQz6FZ58LaY
-         YxIw==
-X-Forwarded-Encrypted: i=1; AJvYcCWSSHlCRm4vT1H65+UHcuMHF+FhsMGnvIcVRStu+Aa4wLtW8RyS4moCiCzU6qBEIIn/KT0szRmPIbj1@vger.kernel.org
-X-Gm-Message-State: AOJu0YwZCVfjFqvuhzC9BDHukK944znyAhhGn92Y+vBR7PGGtINX1S22
-	VD9SQpYm//YQkspNqe2bKEnmi9Qh5GLd3ZOHqzcat/dukzYyaxIO/ZKZxdSq+q1qfEI=
-X-Gm-Gg: AZuq6aIDje0DOHmUmmwC9LNCTsjqzt0DOoSCX5Ki7jvCjsAOBj5KgmvDo9h49vvXZyj
-	TjCBJWt9W0/pZZlhAjNPqUvTr5B/Ib19m/9b1zr4zhKAqxQuUr23k5vxYKWXKOZsB9dxb+Ykn1v
-	B5BlQg57fLT1Fie9cXi/PbydKQzMEWBjeBr77740IsU9YnAJ/yB/YQeqZnm5kYHpUCD31umZvYg
-	ySIRL0UcclUu1Rpiy07P5JFc8uUx+wt2dzmKw7v6XejEqx/rWTm/RgSDc+C41r5PAELg5Un/8T2
-	88AT8WnFmjjB7ooLUWoybIK5iAgeesZtv0ZpkIX2bFzw7aSbud90g56l0z7FgNnU0a0/IvFpZEK
-	qgnXtSkiU02XHawuwMysztfI6qR2rrmZRHKm9mqbWLFXox9HnRd0Qq5vMdeS+siaHnbZ94J99ej
-	hLMwZtBsR0Cl1vPAfgid/G8lyxatiqIr/XPd5PPg+677u9J638230Q2slms+mogvm1Jw==
-X-Received: by 2002:a17:907:96a1:b0:b87:1ffc:bfc0 with SMTP id a640c23a62f3a-b8dacc4210dmr371179166b.20.1769603215509;
-        Wed, 28 Jan 2026 04:26:55 -0800 (PST)
+        bh=1J4Wgi9FdaGcRkgWW/fDa8if5n5CEMCZLtNv7Iii2Go=;
+        b=WiRq8/ZFFFYUWGVhWsswLUnA18CFkc4fBQ+7BI0zLxMGHYj15WCXT+jRNLaQOIqGU+
+         Wv+G6hR4AzopCt+gTz6ChSIaxN2Bk/C+ANyGDENcJnYxNBzVH5AXcx5ybXEXabWqDgig
+         ug71Ob9IKH9gik5+OMjKtrxVv/xWPl5qMnlSoahlejPG5vWIqgemMpXHP9HRgvtJmKe/
+         UP7xG/Dq+fzQ0D00JM3GruzAGHGYrSArUHOX/nbcYVBpVgpOjJxpcx1o5YQ8Y8iUvUqh
+         GoL38ig5lsLIOa/H8rT1zeRm0taYHdJCfQdm6Za00zKZkcY6o1IC8/J/s/6dEeeZaJHq
+         sagw==
+X-Forwarded-Encrypted: i=1; AJvYcCXY5y15hCCrDGVVw/PqfB05Dk666vt8oRi+qwBovItOTQmWnskh6EeoNK6M/GCsOyQNCl/Rs5+igyYn@vger.kernel.org
+X-Gm-Message-State: AOJu0YxwSS0b1T3vbaEZeub8fomHgxhHAqfeI4zn/3hAqJJjFDfgKmgv
+	rh8eoBYkJCLH/owu0MNe445bJ2OFNsYpdiV/nwloYV90RIayPPtrZMHUHhypd9LKezs=
+X-Gm-Gg: AZuq6aL1tuZ9dhBuW68D2+KoLnk2O8EBnQ+OAGkcRrunnvzP5Wfwa7WFAa0u2dPoaZX
+	F5kKct9UQcpT36/FfpHMoHQ7pb9/TOudencaGHrUGbA/aosQz/ab60tPA0QJg5GnAUhPNiPQlz2
+	Z1aRrVu1ARGjHrSSLrp/vTQAmjJ7djSOdg1j206B0YT769PJCCl/p2/Xg6TeIz8mwq0yT5e/bfp
+	tfnEBbBBaEItyCngPuGtf+MiIhr+bi7HMeYdGW0WQ5flv2XLc1KK/pIt41Zz3tvX0kVfIsQ5EhJ
+	sMKJ8032lk9tuJhU3vfUFPrBpzqJ3szcL+RbfllW4EhjvOuqkWyZ3TpXU+blJl+wNVuz9hKZmTP
+	qIus8Qy0KQdypbT5JuWkWFf0idCqs1/3FJLSuA3a2Ukyi3LnoSk4jdAHXSYuxH/eTYCfPuGUiW7
+	JuAi8uwYuCDQ1iZpnxw6J3nOpFoqtdPKl8STgUqMY4SnLhhyF8F9qqV9NsEzJ2iUcVxg==
+X-Received: by 2002:a17:906:d54a:b0:b88:7431:3942 with SMTP id a640c23a62f3a-b8dab331b78mr418073866b.33.1769603216171;
+        Wed, 28 Jan 2026 04:26:56 -0800 (PST)
 Received: from [172.16.220.101] (144-178-202-139.static.ef-service.nl. [144.178.202.139])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8dbf1baa42sm119536866b.46.2026.01.28.04.26.54
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8dbf1baa42sm119536866b.46.2026.01.28.04.26.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Jan 2026 04:26:54 -0800 (PST)
+        Wed, 28 Jan 2026 04:26:55 -0800 (PST)
 From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Wed, 28 Jan 2026 13:26:51 +0100
-Subject: [PATCH 3/5] pinctrl: qcom: Add SM6350 LPASS LPI TLMM
+Date: Wed, 28 Jan 2026 13:26:52 +0100
+Subject: [PATCH 4/5] arm64: dts: qcom: sm6350: add LPASS LPI pin controller
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,7 +87,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260128-sm6350-lpi-tlmm-v1-3-36583f2a2a2a@fairphone.com>
+Message-Id: <20260128-sm6350-lpi-tlmm-v1-4-36583f2a2a2a@fairphone.com>
 References: <20260128-sm6350-lpi-tlmm-v1-0-36583f2a2a2a@fairphone.com>
 In-Reply-To: <20260128-sm6350-lpi-tlmm-v1-0-36583f2a2a2a@fairphone.com>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -99,11 +99,11 @@ Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Luca Weiss <luca.weiss@fairphone.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1769603212; l=7472;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1769603212; l=2150;
  i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
- bh=aYBhXyfeGAiKcjO0bljvvMwVi3NEa7dlY1olVgUIsz0=;
- b=Z1sPCnTYjq8e93G9ajmQ1Xt6J8npA69WIKX8ZYM9ToolGZYM1LOfPsFuJqYEDiZ8wdCpGCSA1
- d5KNijgtBsBCQX+OqWNISkx4qdzrNv+Y2O02+jsOZFuq0FNJTvSUZwM
+ bh=DAIXJZLgc99QDCiZ1C54DNaCXxm8xbhdrA2aDX9YeRs=;
+ b=D91UBY5cJfLVMutL2lsGmg1v4mvGKWsRzbXpEV4eu/U4K9lh0e5fm7C+ouiiz0kgmE3NtTPM0
+ 6L9OFAXNAvxDq12KGz1dCTCCPaJ3gME7iJyvbMthwVmtBDUV92lcK72
 X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
  pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
 X-Rspamd-Server: lfdr
@@ -118,7 +118,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-260390-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-260389-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[fairphone.com:+];
@@ -132,206 +132,94 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,fairphone.com:email,fairphone.com:dkim,fairphone.com:mid]
-X-Rspamd-Queue-Id: BF9E2A13F9
+	DBL_BLOCKED_OPENRESOLVER(0.00)[33c0000:email,fairphone.com:email,fairphone.com:dkim,fairphone.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,3d00000:email,0.0.0.5:email]
+X-Rspamd-Queue-Id: 0003FA13D3
 X-Rspamd-Action: no action
 
-Add support for the pin controller block on SM6350 Low Power Island.
+Add LPASS LPI pinctrl node required for audio functionality on SM6350.
 
 Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 ---
- drivers/pinctrl/qcom/Kconfig                    |   9 ++
- drivers/pinctrl/qcom/Makefile                   |   1 +
- drivers/pinctrl/qcom/pinctrl-sm6350-lpass-lpi.c | 149 ++++++++++++++++++++++++
- 3 files changed, 159 insertions(+)
+ arch/arm64/boot/dts/qcom/sm6350.dtsi | 66 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 66 insertions(+)
 
-diff --git a/drivers/pinctrl/qcom/Kconfig b/drivers/pinctrl/qcom/Kconfig
-index f56592411cf6..9010b5879a0b 100644
---- a/drivers/pinctrl/qcom/Kconfig
-+++ b/drivers/pinctrl/qcom/Kconfig
-@@ -98,6 +98,15 @@ config PINCTRL_SM6115_LPASS_LPI
- 	  Qualcomm Technologies Inc LPASS (Low Power Audio SubSystem) LPI
- 	  (Low Power Island) found on the Qualcomm Technologies Inc SM6115 platform.
+diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+index 9f9b9f9af0da..b1fb6c812da7 100644
+--- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+@@ -1448,6 +1448,72 @@ compute-cb@5 {
+ 			};
+ 		};
  
-+config PINCTRL_SM6350_LPASS_LPI
-+	tristate "Qualcomm Technologies Inc SM6350 LPASS LPI pin controller driver"
-+	depends on ARM64 || COMPILE_TEST
-+	depends on PINCTRL_LPASS_LPI
-+	help
-+	  This is the pinctrl, pinmux, pinconf and gpiolib driver for the
-+	  Qualcomm Technologies Inc LPASS (Low Power Audio SubSystem) LPI
-+	  (Low Power Island) found on the Qualcomm Technologies Inc SM6350 platform.
++		lpass_tlmm: pinctrl@33c0000 {
++			compatible = "qcom,sm6350-lpass-lpi-pinctrl";
++			reg = <0x0 0x033c0000 0x0 0x20000>,
++			      <0x0 0x03550000 0x0 0x10000>;
++			gpio-controller;
++			#gpio-cells = <2>;
++			gpio-ranges = <&lpass_tlmm 0 0 15>;
 +
- config PINCTRL_SM8250_LPASS_LPI
- 	tristate "Qualcomm Technologies Inc SM8250 LPASS LPI pin controller driver"
- 	depends on ARM64 || COMPILE_TEST
-diff --git a/drivers/pinctrl/qcom/Makefile b/drivers/pinctrl/qcom/Makefile
-index 4269d1781015..ee63035c554c 100644
---- a/drivers/pinctrl/qcom/Makefile
-+++ b/drivers/pinctrl/qcom/Makefile
-@@ -58,6 +58,7 @@ obj-$(CONFIG_PINCTRL_SM6115) += pinctrl-sm6115.o
- obj-$(CONFIG_PINCTRL_SM6115_LPASS_LPI) += pinctrl-sm6115-lpass-lpi.o
- obj-$(CONFIG_PINCTRL_SM6125) += pinctrl-sm6125.o
- obj-$(CONFIG_PINCTRL_SM6350) += pinctrl-sm6350.o
-+obj-$(CONFIG_PINCTRL_SM6350_LPASS_LPI) += pinctrl-sm6350-lpass-lpi.o
- obj-$(CONFIG_PINCTRL_SM6375) += pinctrl-sm6375.o
- obj-$(CONFIG_PINCTRL_SM7150) += pinctrl-sm7150.o
- obj-$(CONFIG_PINCTRL_SM8150) += pinctrl-sm8150.o
-diff --git a/drivers/pinctrl/qcom/pinctrl-sm6350-lpass-lpi.c b/drivers/pinctrl/qcom/pinctrl-sm6350-lpass-lpi.c
-new file mode 100644
-index 000000000000..4d06abcfedfd
---- /dev/null
-+++ b/drivers/pinctrl/qcom/pinctrl-sm6350-lpass-lpi.c
-@@ -0,0 +1,149 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2026, Luca Weiss <luca.weiss@fairphone.com>
-+ */
++			clocks = <&q6afecc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
++				 <&q6afecc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
++			clock-names = "core",
++				      "audio";
 +
-+#include <linux/gpio/driver.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
++			i2s1_active: i2s1-active-state {
++				clk-pins {
++					pins = "gpio6";
++					function = "i2s1_clk";
++					drive-strength = <8>;
++					bias-disable;
++					output-high;
++				};
 +
-+#include "pinctrl-lpass-lpi.h"
++				ws-pins {
++					pins = "gpio7";
++					function = "i2s1_ws";
++					drive-strength = <8>;
++					bias-disable;
++					output-high;
++				};
 +
-+enum lpass_lpi_functions {
-+	LPI_MUX_dmic1_clk,
-+	LPI_MUX_dmic1_data,
-+	LPI_MUX_dmic2_clk,
-+	LPI_MUX_dmic2_data,
-+	LPI_MUX_dmic3_clk,
-+	LPI_MUX_dmic3_data,
-+	LPI_MUX_i2s1_clk,
-+	LPI_MUX_i2s1_data,
-+	LPI_MUX_i2s1_ws,
-+	LPI_MUX_i2s2_clk,
-+	LPI_MUX_i2s2_data,
-+	LPI_MUX_i2s2_ws,
-+	LPI_MUX_qua_mi2s_data,
-+	LPI_MUX_qua_mi2s_sclk,
-+	LPI_MUX_qua_mi2s_ws,
-+	LPI_MUX_swr_rx_clk,
-+	LPI_MUX_swr_rx_data,
-+	LPI_MUX_swr_tx_clk,
-+	LPI_MUX_swr_tx_data,
-+	LPI_MUX_wsa_swr_clk,
-+	LPI_MUX_wsa_swr_data,
-+	LPI_MUX_gpio,
-+	LPI_MUX__,
-+};
++				data-pins {
++					pins = "gpio8", "gpio9";
++					function = "i2s1_data";
++					drive-strength = <8>;
++					bias-disable;
++					output-high;
++				};
++			};
 +
-+static const struct pinctrl_pin_desc sm6350_lpi_pins[] = {
-+	PINCTRL_PIN(0, "gpio0"),
-+	PINCTRL_PIN(1, "gpio1"),
-+	PINCTRL_PIN(2, "gpio2"),
-+	PINCTRL_PIN(3, "gpio3"),
-+	PINCTRL_PIN(4, "gpio4"),
-+	PINCTRL_PIN(5, "gpio5"),
-+	PINCTRL_PIN(6, "gpio6"),
-+	PINCTRL_PIN(7, "gpio7"),
-+	PINCTRL_PIN(8, "gpio8"),
-+	PINCTRL_PIN(9, "gpio9"),
-+	PINCTRL_PIN(10, "gpio10"),
-+	PINCTRL_PIN(11, "gpio11"),
-+	PINCTRL_PIN(12, "gpio12"),
-+	PINCTRL_PIN(13, "gpio13"),
-+	PINCTRL_PIN(14, "gpio14"),
-+};
++			i2s1_sleep: i2s1-sleep-state {
++				clk-pins {
++					pins = "gpio6";
++					function = "i2s1_clk";
++					drive-strength = <2>;
++					bias-pull-down;
++					input-enable;
++				};
 +
-+static const char * const swr_tx_clk_groups[] = { "gpio0" };
-+static const char * const swr_tx_data_groups[] = { "gpio1", "gpio2", "gpio14" };
-+static const char * const swr_rx_clk_groups[] = { "gpio3" };
-+static const char * const swr_rx_data_groups[] = { "gpio4", "gpio5" };
-+static const char * const dmic1_clk_groups[] = { "gpio6" };
-+static const char * const dmic1_data_groups[] = { "gpio7" };
-+static const char * const dmic2_clk_groups[] = { "gpio8" };
-+static const char * const dmic2_data_groups[] = { "gpio9" };
-+static const char * const i2s2_clk_groups[] = { "gpio10" };
-+static const char * const i2s2_ws_groups[] = { "gpio11" };
-+static const char * const dmic3_clk_groups[] = { "gpio12" };
-+static const char * const dmic3_data_groups[] = { "gpio13" };
-+static const char * const qua_mi2s_sclk_groups[] = { "gpio0" };
-+static const char * const qua_mi2s_ws_groups[] = { "gpio1" };
-+static const char * const qua_mi2s_data_groups[] = { "gpio2", "gpio3", "gpio4", "gpio5" };
-+static const char * const i2s1_clk_groups[] = { "gpio6" };
-+static const char * const i2s1_ws_groups[] = { "gpio7" };
-+static const char * const i2s1_data_groups[] = { "gpio8", "gpio9" };
-+static const char * const wsa_swr_clk_groups[] = { "gpio10" };
-+static const char * const wsa_swr_data_groups[] = { "gpio11" };
-+static const char * const i2s2_data_groups[] = { "gpio12", "gpio13" };
++				ws-pins {
++					pins = "gpio7";
++					function = "i2s1_ws";
++					drive-strength = <2>;
++					bias-pull-down;
++					input-enable;
++				};
 +
-+static const struct lpi_pingroup sm6350_groups[] = {
-+	LPI_PINGROUP(0, 0, swr_tx_clk, qua_mi2s_sclk, _, _),
-+	LPI_PINGROUP(1, 2, swr_tx_data, qua_mi2s_ws, _, _),
-+	LPI_PINGROUP(2, 4, swr_tx_data, qua_mi2s_data, _, _),
-+	LPI_PINGROUP(3, 8, swr_rx_clk, qua_mi2s_data, _, _),
-+	LPI_PINGROUP(4, 10, swr_rx_data, qua_mi2s_data, _, _),
-+	LPI_PINGROUP(5, 12, swr_rx_data, _, qua_mi2s_data, _),
-+	LPI_PINGROUP(6, LPI_NO_SLEW, dmic1_clk, i2s1_clk, _,  _),
-+	LPI_PINGROUP(7, LPI_NO_SLEW, dmic1_data, i2s1_ws, _, _),
-+	LPI_PINGROUP(8, LPI_NO_SLEW, dmic2_clk, i2s1_data, _, _),
-+	LPI_PINGROUP(9, LPI_NO_SLEW, dmic2_data, i2s1_data, _, _),
-+	LPI_PINGROUP(10, 16, i2s2_clk, wsa_swr_clk, _, _),
-+	LPI_PINGROUP(11, 18, i2s2_ws, wsa_swr_data, _, _),
-+	LPI_PINGROUP(12, LPI_NO_SLEW, dmic3_clk, i2s2_data, _, _),
-+	LPI_PINGROUP(13, LPI_NO_SLEW, dmic3_data, i2s2_data, _, _),
-+	LPI_PINGROUP_SLEW_SPARE_1(14, 0, swr_tx_data, _, _, _),
-+};
++				data-pins {
++					pins = "gpio8", "gpio9";
++					function = "i2s1_data";
++					drive-strength = <2>;
++					bias-pull-down;
++					input-enable;
++				};
++			};
++		};
 +
-+static const struct lpi_function sm6350_functions[] = {
-+	LPI_FUNCTION(dmic1_clk),
-+	LPI_FUNCTION(dmic1_data),
-+	LPI_FUNCTION(dmic2_clk),
-+	LPI_FUNCTION(dmic2_data),
-+	LPI_FUNCTION(dmic3_clk),
-+	LPI_FUNCTION(dmic3_data),
-+	LPI_FUNCTION(i2s1_clk),
-+	LPI_FUNCTION(i2s1_data),
-+	LPI_FUNCTION(i2s1_ws),
-+	LPI_FUNCTION(i2s2_clk),
-+	LPI_FUNCTION(i2s2_data),
-+	LPI_FUNCTION(i2s2_ws),
-+	LPI_FUNCTION(qua_mi2s_data),
-+	LPI_FUNCTION(qua_mi2s_sclk),
-+	LPI_FUNCTION(qua_mi2s_ws),
-+	LPI_FUNCTION(swr_rx_clk),
-+	LPI_FUNCTION(swr_rx_data),
-+	LPI_FUNCTION(swr_tx_clk),
-+	LPI_FUNCTION(swr_tx_data),
-+	LPI_FUNCTION(wsa_swr_clk),
-+	LPI_FUNCTION(wsa_swr_data),
-+};
-+
-+static const struct lpi_pinctrl_variant_data sm6350_lpi_data = {
-+	.pins = sm6350_lpi_pins,
-+	.npins = ARRAY_SIZE(sm6350_lpi_pins),
-+	.groups = sm6350_groups,
-+	.ngroups = ARRAY_SIZE(sm6350_groups),
-+	.functions = sm6350_functions,
-+	.nfunctions = ARRAY_SIZE(sm6350_functions),
-+};
-+
-+static const struct of_device_id lpi_pinctrl_of_match[] = {
-+	{
-+	       .compatible = "qcom,sm6350-lpass-lpi-pinctrl",
-+	       .data = &sm6350_lpi_data,
-+	},
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, lpi_pinctrl_of_match);
-+
-+static struct platform_driver lpi_pinctrl_driver = {
-+	.driver = {
-+		   .name = "qcom-sm6350-lpass-lpi-pinctrl",
-+		   .of_match_table = lpi_pinctrl_of_match,
-+	},
-+	.probe = lpi_pinctrl_probe,
-+	.remove = lpi_pinctrl_remove,
-+};
-+
-+module_platform_driver(lpi_pinctrl_driver);
-+MODULE_DESCRIPTION("Qualcomm SM6350 LPI GPIO pin control driver");
-+MODULE_LICENSE("GPL");
+ 		gpu: gpu@3d00000 {
+ 			compatible = "qcom,adreno-619.0", "qcom,adreno";
+ 			reg = <0x0 0x03d00000 0x0 0x40000>,
 
 -- 
 2.52.0
