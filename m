@@ -1,315 +1,542 @@
-Return-Path: <devicetree+bounces-260637-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260638-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OH91LZuCemnx7AEAu9opvQ
-	(envelope-from <devicetree+bounces-260637-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 22:41:47 +0100
+	id qKL8K4KDemnx7AEAu9opvQ
+	(envelope-from <devicetree+bounces-260638-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 22:45:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F441A92B4
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 22:41:47 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16303A9311
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 22:45:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 203483014C7D
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:41:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CBA443004F4D
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:45:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0A5C337BAA;
-	Wed, 28 Jan 2026 21:41:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C041227563;
+	Wed, 28 Jan 2026 21:45:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="JLCusINL"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="E7lIJ5sa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1FFF32FA37;
-	Wed, 28 Jan 2026 21:41:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07FEE4A33;
+	Wed, 28 Jan 2026 21:45:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769636504; cv=none; b=gKxmsZn2eyNWPo66jhXtCfkrBGmhg/T162IJ0C5TvXfn5tbF2y2a57a1+kLkEq70QKDqd6kSoCfDHMU7/H3SwVOmH6eNpwsXGh1R8wnVcoblVheVGv1eqbo0nSExJ17BrZquPUVc4KTJ95mPMkdRiDE7Zwj3iRTIwFnW2BObR9Y=
+	t=1769636736; cv=none; b=HXy+P5mR4DcnEPADzgF6H7H78CaEQFn1K9SELl5AYSvwBtfSGisB5xVH7P8CTAqk6cSxMPzGCBR3ze7FqU5SNebpgWWNh9JzKNwg72uPoc4SirAS3qjYnaIfEEhHmidbUhWqlZuRKaJtyi2BucUI9b75FQHFoBTveqL+oGc6rR8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769636504; c=relaxed/simple;
-	bh=hoImD/dtQZQ1KTNyWAO0c7LqLNeONtsEuNoErTU7X+Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=l/WXel754ydH423ZWIMvRYVwMqEwMp8TJLFiDUUfkO6DcWfgDqJWa6BzgGeEoj6S5OKT/ft38tqPXGefGBcbsm4jNjZbymweFfMUGiys5KOMGOswISyuEa0vyN75WeRNKnqJbINsOryxk2lw6HH+yoJ7YDvciJDQ3+lyyKbCscA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=JLCusINL; arc=none smtp.client-ip=80.241.56.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4f1bM53WPdz9tcL;
-	Wed, 28 Jan 2026 22:41:37 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1769636497;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=cDIB0vB7AhOs2BLhO1BR5gGspK/qucCwKMUy1zrKhRM=;
-	b=JLCusINLF0xMJU0r42tPdKk3vsQCkFdrzletJCjCw88aVglZm7fCelyDbJNyWwSXm0xmiU
-	N7vtrt+wh7EV1bAGip9RrOtpBdUNXHmya3efrhFTZnGAPq92HUOOD4mM4m+J+LdF3WaYb+
-	NwlNoYrsTArjSvA9IqjoETarX9+XIixExQsxfJ9UMrCHckrs1h4i/8BhSvUxyvu/7C/b7v
-	734N5c4nm6ZexUE0JXKjKzPwL7TS4TwMGk7XTZ8BTTmf3RETmpf027xO+Jm8aR6J2KcOJr
-	7OnXoa+72psSiZ2mEroGSjuCxAI/eJDooclLpOehAj5jIqYfmmQeD6UGeZ6u0g==
-Date: Wed, 28 Jan 2026 22:41:25 +0100
-From: =?UTF-8?B?xYF1a2Fzeg==?= Majewski <lukasz.majewski@mailbox.org>
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: festevam@gmail.com, linux-arm-kernel@lists.infradead.org,
- s.hauer@pengutronix.de, kernel@pengutronix.de, horms@kernel.org,
- shawnguo@kernel.org, imx@lists.linux.dev, linux-kernel@vger.kernel.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org, wahrenst@gmx.net,
- pabeni@redhat.com, davem@davemloft.net, netdev@vger.kernel.org,
- richardcochran@gmail.com, edumazet@google.com, andrew+netdev@lunn.ch,
- robh@kernel.org, krzk+dt@kernel.org, andrew@lunn.ch
-Subject: Re: [net-next,v20,2/7] net: mtip: The L2 switch driver for imx287
-Message-ID: <20260128224125.246bcf41@wsk>
-In-Reply-To: <20260128022549.4151341-1-kuba@kernel.org>
-References: <20260126103400.1683125-3-lukasz.majewski@mailbox.org>
-	<20260128022549.4151341-1-kuba@kernel.org>
-Organization: mailbox.org
+	s=arc-20240116; t=1769636736; c=relaxed/simple;
+	bh=vuFNYwMITtQZtPhVh75ICH5ResFTjDJ7mP/pdnIeeKc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Xl7gEAoyTjfXtvKRi3JGmKrib1MeBy4YNGlOnJMDU9dwvTJIQd5U8636hcZx67Ruy3Br32ZNhcfORAFTG7qWG2PVqrwF2Mm8eR3gRG1OJr3XbtBOT2xBCLV2bfaZuNd6WCw/GpbZ+dYJgzP1CZ7DGZmF+685FJV5jGeyWtGU708=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=E7lIJ5sa; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1769636734; x=1801172734;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=vuFNYwMITtQZtPhVh75ICH5ResFTjDJ7mP/pdnIeeKc=;
+  b=E7lIJ5sa5Kr0lw5RBv7F1Zs2JP2uMp/N3cHB9tDxFFyq8+aShd0ZzLhJ
+   7BDuFPiqsEuoaIyJlW2jTIfykxnvXWSudZNkwIaJnFWPLDGf5RbEHcigL
+   8wALf6MOYYXdUxowClV89g+Yc1l0gjwBNA4T2vs05SvGXDtlL9O+5IQ6S
+   0uRGKE37VHrmeHMNZYvsQAdXJDL+bpO6e0jcLlQYwTp+8g3iTpTf6MviQ
+   lYUAQQPq33CfItagcihzbbll6cRJubQUJgpRH1amGOWewX0p5ilTAKRB/
+   J+g/6vFGMh6qcVgkgRG2Jzd9q4OHg2WgWijPT0bZ2QyNfzE4q5+kdOQkR
+   A==;
+X-CSE-ConnectionGUID: opYWcwkHRzmZp7KyiOhT8A==
+X-CSE-MsgGUID: B9z9dy8BQqGdp/clRnt0+g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11685"; a="74724712"
+X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; 
+   d="scan'208";a="74724712"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jan 2026 13:45:33 -0800
+X-CSE-ConnectionGUID: NPsEVXleRK6jax+SzHr1qA==
+X-CSE-MsgGUID: 0hkHzCDOQWOH54TjItZp8A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; 
+   d="scan'208";a="245984124"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.245.57])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jan 2026 13:45:27 -0800
+Date: Wed, 28 Jan 2026 23:45:24 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Matthias Fend <matthias.fend@emfend.at>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hans Verkuil <hverkuil@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Hans de Goede <hansg@kernel.org>,
+	Ricardo Ribalda <ribalda@chromium.org>,
+	=?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>,
+	Tarang Raval <tarang.raval@siliconsignals.io>,
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Sylvain Petinot <sylvain.petinot@foss.st.com>,
+	Dongcheng Yan <dongcheng.yan@intel.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Alan Stern <stern@rowland.harvard.edu>,
+	Jingjing Xiong <jingjing.xiong@intel.com>,
+	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
+	Mehdi Djait <mehdi.djait@linux.intel.com>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
+	Svyatoslav Ryhel <clamor95@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Hao Yao <hao.yao@intel.com>,
+	Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
+Subject: Re: [PATCH v9 2/2] media: i2c: add Himax HM1246 image sensor driver
+Message-ID: <aXqDdN2fHDlcYjhk@smile.fi.intel.com>
+References: <20260128-hm1246-v9-0-f9c996486a95@emfend.at>
+ <20260128-hm1246-v9-2-f9c996486a95@emfend.at>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-MBO-RS-ID: aaf4d6ce372ae19696f
-X-MBO-RS-META: obpg57tttc6kknksryg9wmtuwgikhh91
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260128-hm1246-v9-2-f9c996486a95@emfend.at>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260637-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,linux.intel.com,chromium.org,apitzsch.eu,siliconsignals.io,foss.st.com,intel.com,linaro.org,rowland.harvard.edu,gmail.com,ideasonboard.com,pengutronix.de,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-260638-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	HAS_ORG_HEADER(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[29];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com,lists.infradead.org,pengutronix.de,kernel.org,lists.linux.dev,vger.kernel.org,gmx.net,redhat.com,davemloft.net,google.com,lunn.ch];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lukasz.majewski@mailbox.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[mailbox.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
+	DKIM_TRACE(0.00)[intel.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mailbox.org:dkim]
-X-Rspamd-Queue-Id: 2F441A92B4
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:email,intel.com:dkim]
+X-Rspamd-Queue-Id: 16303A9311
 X-Rspamd-Action: no action
 
-Hi Jakub,
+On Wed, Jan 28, 2026 at 05:08:02PM +0100, Matthias Fend wrote:
+> Add a V4L2 sub-device driver for Himax HM1246 image sensor.
+> 
+> The Himax HM1246-AWD is a 1/3.7-Inch CMOS image sensor SoC with an active
+> array size of 1296 x 976. It is programmable through an I2C interface and
+> connected via parallel bus.
+> 
+> The sensor has an internal ISP with a complete image processing pipeline
+> including control loops. However, this driver uses the sensor in raw mode
+> and the entire ISP is bypassed.
 
-> This is an AI-generated review
+I found no serious issues here, just a few nit-picks. FWIW,
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-AI is going to take the "Maintainer's" job :D
+...
 
-> of your patch. The human sending this
-> email has considered the AI review valid, or at least plausible.
->=20
-> For local reproduction steps see
-> https://netdev-ai.bots.linux.dev/ai-local.html ---
-> net: mtip: The L2 switch driver for imx287
->=20
-> This patch adds support for the More Than IP L2 switch embedded in the
-> imx287 SoC. It creates a two-port switch driver that can be used
-> interchangeably with the FEC driver.
->=20
-> > diff --git a/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c
-> > b/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c new file mode
-> > 100644 index 000000000000..03c5163d6508
-> > --- /dev/null
-> > +++ b/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c =20
->=20
-> [ ... ]
->=20
-> > +static void mtip_netif_stop_queues(struct switch_enet_private *fep)
-> > +{
-> > +	for (int i =3D 0; i < SWITCH_EPORT_NUMBER; i++)
-> > +		netif_stop_queue(fep->ndev[0]); =20
->                                       ^^^
->=20
-> Should this be fep->ndev[i] instead of fep->ndev[0]? The loop iterates
-> with variable i but always uses index 0, so port 1's queue is never
-> stopped.
+> +/* Clock setup registers */
+> +#define HM1246_PLL1CFG_REG		 CCI_REG8(0x0303)
+> +#define HM1246_PLL1CFG_MULTIPLIER(x)	 (((x) & 0xff) << 0)
+> +#define HM1246_PLL2CFG_REG		 CCI_REG8(0x0305)
+> +#define HM1246_PLL2CFG_PRE_DIV(x)	 (((x) & 0x1f) << 1)
+> +#define HM1246_PLL2CFG_MULTIPLIER(x)	 (((x) & 0x01) << 0)
+> +#define HM1246_PLL3CFG_REG		 CCI_REG8(0x0307)
+> +#define HM1246_PLL3CFG_POST_DIV(x)	 (((x) & 0x3) << 6)
+> +#define HM1246_PLL3CFG_SYSCLK_DIV(x)	 (((x) & 0x3) << 4)
+> +#define HM1246_PLL3CFG_PCLK_DIV(x)	 (((x) & 0x7) << 0)
 
-Ech.... I will fix it.
+Is not using BIT*() and GENMASK*() in the above on purpose?
 
->=20
-> > +}
-> > +
-> > +static void mtip_netif_wake_queues(struct switch_enet_private *fep)
-> > +{
-> > +	for (int i =3D 0; i < SWITCH_EPORT_NUMBER; i++)
-> > +		netif_wake_queue(fep->ndev[0]); =20
->                                       ^^^
->=20
-> Same here - should this be fep->ndev[i]?
->=20
+...
 
-The same here.
+> +/* Test pattern registers */
+> +#define HM1246_TEST_PATTERN_MODE_REG	 CCI_REG8(0x0601)
+> +#define HM1246_TEST_PATTERN_MODE_MODE(x) (((x) & 0xf) << 4)
+> +#define HM1246_TEST_PATTERN_MODE_ENABLE	 BIT(0)
 
-> > +} =20
->=20
-> [ ... ]
->=20
-> > +static int mtip_mii_probe(struct net_device *dev)
-> > +{
-> > +	struct mtip_ndev_priv *priv =3D netdev_priv(dev);
-> > +	struct switch_enet_private *fep =3D priv->fep;
-> > +	struct phy_device *phy_dev =3D NULL;
-> > +	int port_idx =3D priv->portnum - 1;
-> > +
-> > +	if (fep->phy_np[port_idx]) {
-> > +		phy_dev =3D of_phy_connect(dev,
-> > fep->phy_np[port_idx],
-> > +					 &mtip_adjust_link, 0,
-> > +
-> > fep->phy_interface[port_idx]);
-> > +		if (!phy_dev) {
-> > +			netdev_err(dev, "Unable to connect to
-> > phy\n");
-> > +			return -ENODEV;
-> > +		}
-> > +	}
-> > +
-> > +	phy_set_max_speed(phy_dev, 100); =20
->                           ^^^^^^^
->=20
-> If fep->phy_np[port_idx] is NULL (no phy-handle in DT for this port),
-> the if block is skipped and phy_dev remains NULL. Can this cause a
-> NULL pointer dereference in phy_set_max_speed()?
+Ditto.
 
-No. The mtip_mii_probe() is only called in mtip_open(), which is called
-only when netdevice's DT node is correctly parsed in the
-mtip_sw_probe().
+...
 
->=20
-> > +	fep->phy_dev[port_idx] =3D phy_dev; =20
->=20
-> [ ... ]
->=20
-> > +static int mtip_parse_of(struct switch_enet_private *fep,
-> > +			 struct device_node *np)
-> > +{
-> > +	struct device_node *p;
-> > +	unsigned int port_num;
-> > +	int ret =3D 0;
-> > +
-> > +	p =3D of_get_child_by_name(np, "ethernet-ports");
-> > +
-> > +	for_each_available_child_of_node_scoped(p, port) {
-> > +		if (of_property_read_u32(port, "reg", &port_num))
-> > +			continue;
-> > +
-> > +		if (port_num > SWITCH_EPORT_NUMBER) { =20
->                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
->=20
-> This only validates the upper bound. If the device tree contains
-> reg =3D <0>, would fep->mac[port_num - 1] access fep->mac[-1]? Perhaps
-> the check should also verify port_num is at least 1?
->=20
+> +#define HM1246_ANALOG_GLOBAL_GAIN_STEP	 1
 
-In the:
-./Documentation/devicetree/bindings/net/nxp,imx28-mtip-switch.yaml
+0x01 ? (Since the min and max are represented in hexadecimal form)
 
-one can have only ethernet-ports set to [12].
+...
 
-In the current tree - some switches start numbering from 0, other from
-1.
+> +struct hm1246 {
+> +	struct device *dev;
+> +	struct v4l2_subdev sd;
+> +	struct media_pad pad;
 
-I would opt for keeping things as they are now...
+Wondering if putting the embedded structs first (either sd or pad) gives a
+better (smaller) object size. Sometimes this kind of shuffling makes
+container_of() to be a compile-time no-op.
 
-> > +			dev_err(&fep->pdev->dev,
-> > +				"%s: The switch supports up to %d
-> > ports!\n",
-> > +				__func__, SWITCH_EPORT_NUMBER);
-> > +			goto of_get_err;
-> > +		}
-> > +
-> > +		fep->n_ports =3D port_num;
-> > +		ret =3D of_get_mac_address(port, &fep->mac[port_num
-> > - 1][0]); =20
->=20
-> [ ... ]
->=20
-> > +	ret =3D mtip_mii_init(fep, pdev);
-> > +	if (ret) {
-> > +		dev_err(&pdev->dev, "%s: Cannot init phy bus
-> > (%d)!\n", __func__,
-> > +			ret);
-> > +		goto dma_free_coherent_memory;
-> > +	}
-> > +
-> > +	ret =3D mtip_ndev_init(fep, pdev);
-> > +	if (ret) {
-> > +		dev_err(&pdev->dev, "%s: Failed to create virtual
-> > ndev (%d)\n",
-> > +			__func__, ret);
-> > +		goto mdiobus_free_memory;
-> > +	} =20
->=20
-> [ ... ]
->=20
-> > + mdiobus_free_memory:
-> > +	mdiobus_free(fep->mii_bus); =20
->=20
-> mtip_mii_init() calls of_mdiobus_register() which registers the bus.
-> Should mdiobus_unregister() be called here before mdiobus_free()?
-> Compare with mtip_mii_remove() which does call mdiobus_unregister().
->=20
+> +	struct regulator_bulk_data supplies[ARRAY_SIZE(hm1246_supply_names)];
+> +	struct clk *xclk;
+> +	unsigned long xclk_freq;
+> +	struct reset_control *reset;
+> +	unsigned int mbus_flags;
+> +	s64 link_frequency;
+> +
+> +	struct v4l2_ctrl_handler ctrls;
+> +	struct v4l2_ctrl *exposure_ctrl;
+> +	struct v4l2_ctrl *hflip_ctrl;
+> +	struct v4l2_ctrl *vflip_ctrl;
+> +
+> +	struct regmap *regmap;
+> +
+> +	bool identified;
+> +};
 
-+1
+...
 
-The mdiobus_unregister() is missing.
+> +static int hm1246_enum_frame_size(struct v4l2_subdev *subdev,
+> +				  struct v4l2_subdev_state *sd_state,
+> +				  struct v4l2_subdev_frame_size_enum *fse)
+> +{
+> +	struct hm1246 *hm1246 = to_hm1246(subdev);
+> +	const struct hm1246_mode *mode;
+> +
+> +	if (fse->index > 0)
+> +		return -EINVAL;
+> +
+> +	mode = hm1246_find_mode_by_mbus_code(hm1246, fse->code);
+> +	if (!mode)
+> +		return -EINVAL;
 
-I will add it.
+Hmm... Is it common practice to return -EINVAL in such cases?
+From the context (not found) I would rather return -ENOENT.
 
-> > + dma_free_coherent_memory:
-> > +	dma_free_coherent(&fep->pdev->dev, PAGE_SIZE,
-> > fep->rx_bd_base,
-> > +			  fep->bd_dma);
-> > +	fep->rx_bd_base =3D NULL;
-> > +	fep->tx_bd_base =3D NULL;
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static void mtip_sw_remove(struct platform_device *pdev)
-> > +{
-> > +	struct switch_enet_private *fep =3D
-> > platform_get_drvdata(pdev); +
-> > +	mtip_ndev_cleanup(fep);
-> > +
-> > +	mtip_mii_remove(fep);
-> > +
-> > +	timer_delete_sync(&fep->timer_mgnt);
-> > +	platform_set_drvdata(pdev, NULL);
-> > +} =20
->=20
-> mtip_sw_probe() allocates DMA memory with dma_alloc_coherent() in
-> mtip_switch_dma_init(), but mtip_sw_remove() does not appear to free
-> it. Is this a memory leak on driver removal?
+> +	fse->min_width = mode->rect.width;
+> +	fse->max_width = mode->rect.width;
+> +	fse->min_height = mode->rect.height;
+> +	fse->max_height = mode->rect.height;
+> +
+> +	return 0;
+> +}
 
-Yes. The dma_free_coherent() is missing.
+...
 
-I will add it for v21.
+> +static int hm1246_calc_pll(u32 xclk, u32 link_freq, u32 clocks_per_pixel,
+> +			   u8 *pll1, u8 *pll2, u8 *pll3)
+> +{
+> +	const u8 pclk_div_table[] = { 4, 5, 6, 7, 8, 12, 14, 16 };
+> +	const u8 sysclk_div_table[] = { 1, 2, 3, 4 };
+> +	const u8 post_div_table[] = { 1, 2, 4, 8 };
+> +	const int sysclk_pclk_ratio = 3; /* Recommended value */
 
---=20
-Best regards,
+Why not marking them static? Note, in some cases compiler might decide to fill
+up the values on the stack or put them as a direct constant in the register.
+It might lead to suboptimal code.
 
-=C5=81ukasz Majewski
+> +	u32 pclk, vco_out;
+> +	int pclk_div_index, sysclk_div_index, post_div_index;
+
+> +	bool sysclk_pclk_ratio_found = false;
+
+We don't need this. See below how.
+
+> +	if (link_freq < HM1246_PCLK_MIN || link_freq > HM1246_PCLK_MAX)
+> +		return -EINVAL;
+> +
+> +	/*
+> +	 * In raw mode (1 pixel per clock) the pixel clock is internally
+> +	 * divided by two.
+> +	 */
+> +	pclk = 2 * link_freq / clocks_per_pixel;
+> +
+> +	/* Find suitable PCLK and SYSCLK dividers. */
+> +	for (pclk_div_index = 0; pclk_div_index < ARRAY_SIZE(pclk_div_table);
+> +	     pclk_div_index++) {
+> +		for (sysclk_div_index = 0;
+> +		     sysclk_div_index < ARRAY_SIZE(sysclk_div_table);
+> +		     sysclk_div_index++) {
+> +			if (sysclk_div_table[sysclk_div_index] *
+> +				    sysclk_pclk_ratio ==
+> +			    pclk_div_table[pclk_div_index]) {
+
+> +				sysclk_pclk_ratio_found = true;
+
+Drop.
+
+> +				break;
+> +			}
+> +		}
+
+		if (sysclk_div_index < ARRAY_SIZE(sysclk_div_table))
+
+> +		if (sysclk_pclk_ratio_found)
+> +			break;
+> +	}
+
+	if (pclk_div_index < ARRAY_SIZE(pclk_div_table))
+
+> +	if (!sysclk_pclk_ratio_found)
+> +		return -EINVAL;
+
+> +	/* Determine an appropriate post divider. */
+> +	for (post_div_index = 0; post_div_index < ARRAY_SIZE(post_div_table);
+> +	     post_div_index++) {
+> +		vco_out = pclk * pclk_div_table[pclk_div_index] *
+> +			  post_div_table[post_div_index];
+> +
+> +		if (vco_out >= HM1246_PLL_VCO_MIN &&
+> +		    vco_out <= HM1246_PLL_VCO_MAX)
+> +			break;
+> +	}
+> +	if (post_div_index >= ARRAY_SIZE(post_div_table))
+> +		return -EINVAL;
+> +
+> +	/* Find pre-divider and multiplier values. */
+> +	for (u32 div = DIV_ROUND_UP(xclk, HM1246_PLL_INCLK_MAX);
+> +	     div <= xclk / HM1246_PLL_INCLK_MIN; div++) {
+> +		u32 multi, multi_h, multi_l, vco;
+
+> +		multi = DIV_ROUND_CLOSEST_ULL((u64)vco_out * div, xclk);
+
+Can we define vco_out as u64 and drop the casting?
+
+> +		if (multi < HM1246_PLL_MULTI_MIN ||
+> +		    multi > HM1246_PLL_MULTI_MAX)
+> +			continue;
+> +
+> +		multi_h = multi / (HM1246_PLL_MULTI_H_MIN *
+> +				   HM1246_PLL_MULTI_L_MAX) +
+> +			  2;
+> +		multi_l = multi / multi_h;
+> +		vco = div_u64((u64)xclk * multi_h * multi_l, div);
+
+Similar Q for multi_h and multi_l.
+
+> +		if (vco != vco_out)
+> +			continue;
+> +
+> +		if (pll1 && pll2 && pll3) {
+> +			*pll1 = HM1246_PLL1CFG_MULTIPLIER(multi_l - 1);
+> +			*pll2 = HM1246_PLL2CFG_PRE_DIV(div - 1) |
+> +				HM1246_PLL2CFG_MULTIPLIER(multi_h - 2);
+> +			*pll3 = HM1246_PLL3CFG_POST_DIV(post_div_index) |
+> +				HM1246_PLL3CFG_SYSCLK_DIV(sysclk_div_index) |
+> +				HM1246_PLL3CFG_PCLK_DIV(pclk_div_index);
+> +		}
+> +
+> +		return 0;
+> +	}
+> +
+> +	return -EINVAL;
+> +}
+
+...
+
+> +static int hm1246_cci_write_pll(struct hm1246 *hm1246, u8 pll1, u8 pll2,
+> +				u8 pll3)
+
+I believe we can leave a prototype to be on a single line.
+
+> +{
+> +	const struct cci_reg_sequence pll_regs[] = {
+> +		{ HM1246_PLL1CFG_REG, pll1 },
+> +		{ HM1246_PLL2CFG_REG, pll2 },
+> +		{ HM1246_PLL3CFG_REG, pll3 },
+> +		{ HM1246_SBC_CTRL_REG, HM1246_SBC_CTRL_PLL_EN },
+> +	};
+> +
+> +	return cci_multi_reg_write(hm1246->regmap, pll_regs,
+> +				   ARRAY_SIZE(pll_regs), NULL);
+> +}
+
+...
+
+> +static int hm1246_cci_write_test_pattern(struct hm1246 *hm1246, u8 mode, u16 r,
+> +					 u16 g, u16 b)
+
+More logical is to have them as
+
+static int hm1246_cci_write_test_pattern(struct hm1246 *hm1246, u8 mode,
+					 u16 r, u16 g, u16 b)
+
+> +{
+> +	const struct cci_reg_sequence tpg_enable_regs[] = {
+> +		{ HM1246_TEST_DATA_RED_REG, r },
+> +		{ HM1246_TEST_DATA_GR_REG, g },
+> +		{ HM1246_TEST_DATA_GB_REG, g },
+> +		{ HM1246_TEST_DATA_BLUE_REG, b },
+> +		{ HM1246_TEST_PATTERN_MODE_REG, mode },
+> +	};
+> +
+> +	return cci_multi_reg_write(hm1246->regmap, tpg_enable_regs,
+> +				   ARRAY_SIZE(tpg_enable_regs), NULL);
+> +}
+
+...
+
+> +static int hm1246_test_pattern(struct hm1246 *hm1246, u32 index)
+> +{
+> +	const u16 RGBMIN = 0, RGBMAX = 0x3ff;
+> +	const struct tp {
+> +		int pattern;
+> +		u16 r, g, b;
+
+static const ... ?
+
+> +	} tps[] = {
+> +		/* Disabled */
+> +		[0] = { .pattern = 0, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
+> +		/* Checkboard pattern */
+> +		[1] = { .pattern = 0, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
+> +		/* Ramp */
+> +		[2] = { .pattern = 1, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
+> +		/* Moving ones */
+> +		[3] = { .pattern = 2, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
+> +		/* Blending color bars */
+> +		[4] = { .pattern = 3, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
+> +		/* Color bars */
+> +		[5] = { .pattern = 4, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
+> +		/* Solid white */
+> +		[6] = { .pattern = 15, .r = RGBMAX, .g = RGBMAX, .b = RGBMAX },
+> +		/* Solid black */
+> +		[7] = { .pattern = 15, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
+> +		/* Solid red */
+> +		[8] = { .pattern = 15, .r = RGBMAX, .g = RGBMIN, .b = RGBMIN },
+> +		/* Solid green */
+> +		[9] = { .pattern = 15, .r = RGBMIN, .g = RGBMAX, .b = RGBMIN },
+> +		/* Solid blue */
+> +		[10] = { .pattern = 15, .r = RGBMIN, .g = RGBMIN, .b = RGBMAX },
+> +	};
+> +	u8 mode;
+> +
+> +	if (index >= ARRAY_SIZE(tps))
+> +		return -EINVAL;
+> +
+> +	mode = HM1246_TEST_PATTERN_MODE_MODE(tps[index].pattern);
+> +	if (index)
+> +		mode |= HM1246_TEST_PATTERN_MODE_ENABLE;
+> +
+> +	return hm1246_cci_write_test_pattern(hm1246, mode, tps[index].r,
+> +					     tps[index].g, tps[index].b);
+> +}
+
+...
+
+> +static int hm1246_set_ctrl(struct v4l2_ctrl *ctrl)
+> +{
+> +	struct hm1246 *hm1246 =
+> +		container_of_const(ctrl->handler, struct hm1246, ctrls);
+> +	struct v4l2_subdev_state *state;
+> +	const struct v4l2_mbus_framefmt *format;
+> +	u32 val;
+> +	bool needs_cmu_update = true;
+
+> +	int ret = 0;
+
+The assignments like this is fragile. Better to decouple and put it near to the first user.
+
+> +	state = v4l2_subdev_get_locked_active_state(&hm1246->sd);
+> +	format = v4l2_subdev_state_get_format(state, 0);
+> +
+> +	if (ctrl->id == V4L2_CID_VBLANK) {
+> +		s64 exposure_max;
+> +
+> +		exposure_max =
+> +			format->height + ctrl->val - HM1246_COARSE_INTG_MARGIN;
+> +		ret = __v4l2_ctrl_modify_range(hm1246->exposure_ctrl,
+> +					       hm1246->exposure_ctrl->minimum,
+> +					       exposure_max,
+> +					       hm1246->exposure_ctrl->step,
+> +					       exposure_max);
+> +
+> +		if (ret) {
+
+What if this is changed to return something positive? Or what if we will ignore
+one of the error code in the future for some reason?
+
+These questions are to justify the idea of decoupling the above assignment.
+
+> +			dev_err(hm1246->dev, "exposure ctrl range update failed\n");
+> +			return ret;
+> +		}
+> +	}
+
+> +	if (!pm_runtime_get_if_active(hm1246->dev))
+> +		return 0;
+
+Wondering if we can use one of PM_ACQUIRE() macros here.
+
+	ret = 0;
+
+> +	switch (ctrl->id) {
+> +	case V4L2_CID_EXPOSURE:
+> +		cci_write(hm1246->regmap, HM1246_COARSE_INTG_REG, ctrl->val,
+> +			  &ret);
+> +		break;
+> +
+> +	case V4L2_CID_ANALOGUE_GAIN:
+> +		cci_write(hm1246->regmap, HM1246_ANALOG_GLOBAL_GAIN_REG,
+> +			  ctrl->val, &ret);
+> +		break;
+> +
+> +	case V4L2_CID_VBLANK:
+> +		val = format->height + ctrl->val;
+> +		cci_write(hm1246->regmap, HM1246_FRAME_LENGTH_LINES_REG, val,
+> +			  &ret);
+> +		break;
+> +
+> +	case V4L2_CID_HFLIP:
+> +	case V4L2_CID_VFLIP:
+> +		val = 0;
+> +		if (hm1246->hflip_ctrl->val)
+> +			val |= HM1246_IMAGE_ORIENTATION_HFLIP;
+> +		if (hm1246->vflip_ctrl->val)
+> +			val |= HM1246_IMAGE_ORIENTATION_VFLIP;
+> +
+> +		cci_write(hm1246->regmap, HM1246_IMAGE_ORIENTATION_REG, val,
+> +			  &ret);
+> +		break;
+> +
+> +	case V4L2_CID_TEST_PATTERN:
+> +		ret = hm1246_test_pattern(hm1246, ctrl->val);
+> +		needs_cmu_update = false;
+> +		break;
+> +
+> +	default:
+> +		ret = -EINVAL;
+> +		needs_cmu_update = false;
+> +		break;
+> +	}
+> +
+> +	if (needs_cmu_update)
+> +		cci_write(hm1246->regmap, HM1246_CMU_UPDATE_REG, 0, &ret);
+> +
+> +	pm_runtime_put(hm1246->dev);
+> +
+> +	return ret;
+> +}
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
