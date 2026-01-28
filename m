@@ -1,289 +1,310 @@
-Return-Path: <devicetree+bounces-260243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260244-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gAvPE1bLeWlwzgEAu9opvQ
-	(envelope-from <devicetree+bounces-260243-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 09:39:50 +0100
+	id ADQ2O5LLeWlwzgEAu9opvQ
+	(envelope-from <devicetree+bounces-260244-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 09:40:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80BB19E4A6
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 09:39:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 430BC9E4C3
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 09:40:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 660A83009513
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 08:39:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F29D73008760
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 08:40:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03A4232AAAD;
-	Wed, 28 Jan 2026 08:39:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84FAD30FC39;
+	Wed, 28 Jan 2026 08:40:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Pkl1gXpi"
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="mGNfB5eJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DD9F2F361A
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 08:39:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9D742BE644;
+	Wed, 28 Jan 2026 08:40:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769589575; cv=pass; b=Oj+lq2J2m6lJAI4ZcPsHjbIsHFJ4KUGYgoSFpYSyR12idJ7RKHUMOjZuQyVP+DkqkMHnno6wobXKjd3GR4l7+9L4rrTnYNOfbQqjuqVUDoADyc8trIaBx1v9mqQurP6oPm4/7o8OnxEZqm1p/Ic4r3jU53h6uZKl3YJ1z7GjH4E=
+	t=1769589648; cv=pass; b=LbE1e0njBkUJ7Ujz1HKyi0gJLl8RaBcOPAuHm70OpZdEEKwZwHx9sET8dx8afC9GDAlIaocLLS0P+LJ/mPmZqms9nNqJN8ki6au33V4Om6lEl7fcfmrb96Tr8XQFYgJDqEEYIw8GWOM1jUjBlrjnjCp6nldxCPZGF8q+jNHTSbA=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769589575; c=relaxed/simple;
-	bh=gGE2lZbNShncu6x47TBaOZt0HX0D2dy620kD7U47i8M=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=O642XflP/OEt04SlbwrJoZGmevdKw65oTTR/ho8yJssnN54OXeex8wXP9jAAPiCkWYehpTdW8s5VOMDuGcAsKDU0EBxzc2Uq+otNBwZoSRg922OmTW2pLlMlyX3uGqiQk1kTdFjtzaJ/S9FK28MNOnzfHB0xJGJbV1ki81mb4dg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Pkl1gXpi; arc=pass smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-432d28870ddso3506123f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 00:39:34 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1769589573; cv=none;
-        d=google.com; s=arc-20240605;
-        b=Sttskwh7j/hHhs63EMX1XpbRzwzutetog5lWqFdoQPp2QzY0GgF5hAixB1csEk1slc
-         nKkbYsBcy1i6JfKdqplfVAPC9lhcMu+3PHXgiuUdBfjPoIo0my6eyaR5RZBMXm/hCsE9
-         b8lqLgPs0XC6yxKEAy8B/D3QVvuIxbEWqIL5m3FPMZUPAHxJ+qpb1gzH5R+hKObeGTgq
-         sP4NfuTw29Lx0fQjrMkdQWx1uP48gwvoF6Eo015si0pVLB+XGoNfKrZtEyIAys3sSFUV
-         FKcVDNmQFI2a/xFIFFTkSvsJmk9J3i2sOuVCsuzS1PNzdcwsjEQpSeYRLFNG6hgJBzcb
-         g61w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=B66d3ujh7h0A/WS6d2XbPk4tiEtVkdJvMPjnQVBm9iU=;
-        fh=NZ7NU4UIUYEL7JAAtz3AKtI1xGbQcMRwhOQZ0vHnkzQ=;
-        b=gRVeHlvuvKjj8Sh7s+LbxabIFzZrVSxRW95bsyfCVrjdj/VFaAUgLdLEBn/+gk1tnP
-         W7YpZPd8RCl+8YRUjZRxGbXKLaZ0FL19pAjsqwLVkwBubt3dnv4oGTo7Md2/OtmL08f9
-         /X5APSx5gjh2s+gmayVatpjAJWb7KslYOiPi9RI6DiNrQyzleqaTD8jlNELIZ2N7cYAH
-         RMpxFtyNfkpJGJSfCbARJGLPjSaqAuPAP5OKVIvHpsZew1ZDPQgiYhFzI/eh4T3E+XfS
-         gqKJGunxv3ZDV9eToU0iB5AEiwGRYQAv9KXHOjMfK95rO685gWUWtD26DrSmIvBUs/zl
-         sFtw==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769589573; x=1770194373; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=B66d3ujh7h0A/WS6d2XbPk4tiEtVkdJvMPjnQVBm9iU=;
-        b=Pkl1gXpiOf23SRnktphsc5C+0QnyzOUsFssAhb38YkxYccmK8CIu7d5xTm9fN2pj5G
-         DgQ8iiksACb70oPWJumiN44lm4saya3bM8OpCFGi53pnHw6MtzpHH7ND5H7IKrklD511
-         YmK9wxiqFj5a6LjdrrP74meO1Y5ZrhVq6CgQ5wcTp/SS29Nu7C11c6Ob6m7UeLTepQjz
-         w+wobsOcPeb1F/4xCH88+P8KPb7ZuRC6WmWHRx+DkiTSA961nuyUpGi8mB5E0rDD77SI
-         LvClwjbBd5pNJaqZUkg533gvcQrPjowNFlyqVOsGy4+Jdmqghnf6hHUizdNGXeqH8sRm
-         PPLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769589573; x=1770194373;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=B66d3ujh7h0A/WS6d2XbPk4tiEtVkdJvMPjnQVBm9iU=;
-        b=UzUHUmOtire5FCtx1kpalQ1mPnmQ/KYJRwLWNz70Oj3/ard9Z+w6vN712N3EU5Gn0F
-         63gt/tG+uLsvut2I9DjI3ueK7IySMhfv41oRTemwujmuc7LrW8CUem4OewvT57lPTxXp
-         4luqUe5rgvpNmCqAEqdSvmn1wkrA0hljsdfqF6seRkDRXU+52QnNI9/9aoo7QnYt7JX5
-         fmzOzb71TQbAmhqDhDsBbqItkwFnaTV1pSJyj0kcHnJnNYxrNxUANr4CmJQqSU4iT69H
-         nmgwqWZKwXof1ObmRL1gOABB6AErIkjP1wZK4JcxkAnaoKKYAXw0k8OxOUDlXxuOq/ko
-         V6BQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUJsM5dsSFIUyKZPPuJo4du9tCfXoxt6/+URQjYyuZ2FGqHAr5SQd3ObruLxPAycUOh3/ww03dtrjnc@vger.kernel.org
-X-Gm-Message-State: AOJu0YyHvCYO9XWA+Ie/c36W5IgoQ1heWjk9BQ93n6S4koeETY4eKQ6h
-	h5rL3cVI5/NMknidYP+MvxSUkwhlGEnJ7mV9KFFLH9DIKZK/tIxrWIR4FoHxg/whV7aaBvXtVcu
-	5LkttASdEL9+7glJVGivQ8C3rOHdhoAQ=
-X-Gm-Gg: AZuq6aLMAbpp4mFpCq033Cef77mVX9UetdWO89ms51HV3qPv4N3rQ2nmnk6A+h6NuDQ
-	6dW8sFpuYJASFfNXQjEVSrp9m2deBn1s4AATzUXc+xcOI+tiBPMmulutMkWjSbUG1+GCJ2H8gOD
-	EJAve7Nzr2ncd9k3wamrZGhU1ZM3JxCDbd+1itm7VZoiC9TDA6Iwh2b9CWKVQ9zM95EttcaFuZe
-	QMH2k6+UqHDWJAemX2nnkMTyr/COLsG91TUgoeYq1VYONmkTJui3myTnlgf8NgxSz8uuj6M7DyZ
-	5PcoyA0=
-X-Received: by 2002:a05:6000:2906:b0:432:857d:e425 with SMTP id
- ffacd0b85a97d-435dd0a40a4mr6149417f8f.30.1769589572469; Wed, 28 Jan 2026
- 00:39:32 -0800 (PST)
+	s=arc-20240116; t=1769589648; c=relaxed/simple;
+	bh=HlEi773+TeHZUCoyc/ZuQqV5fswIiKkOV8ZXX0zRu2c=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=YzVbxdRkKGQZR80flN0Q4JXi1Mvjk2Ys9inhNVPXgBmiCFE3DRRvcj2DKeTxvyZs1DrgecB2y02orA5jW/0CyRnO+sYzvhjUahvmt47Se1fbFLDE/69fZz6/wCpNLih2OQ9ZF0siZ23h52118M74GSkPQ6ZqTJiZqPd3MM83qcM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=mGNfB5eJ; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1769589595; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=Csj0syZekeKRrrGKrI5ZwffZe/7sGw9fXAy2i222IHYWBlNd+51k0m22j12JFv1F4QYbtLTzKRJeENMc4VhqeP4GygR075XLdE6RJ3IrDQ21XbFm0RCqCTQb/GTlelpFpqxh0qWePaDOW+wf0CUNQipXpkv8ZQz6d58FvARd+2s=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1769589595; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=HlEi773+TeHZUCoyc/ZuQqV5fswIiKkOV8ZXX0zRu2c=; 
+	b=EGptGxUB9eMLdEXsnylintao1jrw80XPzuDw+Z22JzqFosXiU0VBmGGTyf5ujLMFO7fK9O3twJITr4AkM1j7MypJU2h3I3Zt+K5uoKeDKpr2bm+/oRA1YyNpGXtw816vBIy/t4NKsEn9/oYQ/19/LmfaRVdQfaaIWy3eDVzqkAk=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1769589595;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=HlEi773+TeHZUCoyc/ZuQqV5fswIiKkOV8ZXX0zRu2c=;
+	b=mGNfB5eJ5IRn9jsBhKJHDVc8IRyvcro31UNbWSD44nXVJe2YijECEVSqAGArkFwt
+	+fpf9QZEjOaOZjj6VuGvLw6f9bYPa+NuqVfaVw8eYVDBZbOZ/XvzpIvnmQpZh+bAJsP
+	FZUrmK7FlT5PXTItQmkq5bqOoU214QD/uWnLdBQMo5pLXpMjyM5VpCvCCpkL5UQ498s
+	veJ16OfAKzu6JTrRRizB6xzUoeisu+EhequfjRdmhLRkBEls3H+UjJfWS4JWDEQPtG0
+	Reqt+el4bjNsjwWiAhw9+122yKv3qJiGt8y90r88vaaMe3ivtXbGoNwwXsvw014c54d
+	hogMagApoQ==
+Received: by mx.zohomail.com with SMTPS id 1769589592848513.72162214513;
+	Wed, 28 Jan 2026 00:39:52 -0800 (PST)
+Message-ID: <7301d5f80c7f247d4a2f82c242b3d8b8ad69f5e1.camel@icenowy.me>
+Subject: Re: [PATCH v6 3/9] drm: verisilicon: add a driver for Verisilicon
+ display controllers
+From: Icenowy Zheng <uwu@icenowy.me>
+To: Thomas Zimmermann <tzimmermann@suse.de>, Andrzej Hajda
+ <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+ Robert Foss <rfoss@kernel.org>, Laurent Pinchart
+ <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob
+ Herring <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Drew Fustini <fustini@kernel.org>, Guo Ren
+ <guoren@kernel.org>, Fu Wei <wefu@redhat.com>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>, Dmitry Baryshkov
+ <lumag@kernel.org>,  Michal Wilczynski <m.wilczynski@samsung.com>, Luca
+ Ceresoli <luca.ceresoli@bootlin.com>, Han Gao <rabenda.cn@gmail.com>,  Yao
+ Zi <ziyao@disroot.org>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,  devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, Han Gao <gaohan@iscas.ac.cn>
+Date: Wed, 28 Jan 2026 16:39:40 +0800
+In-Reply-To: <6ea016d6-42a4-4d83-89fd-eee918a834ef@suse.de>
+References: <20260123092830.4046009-1-zhengxingda@iscas.ac.cn>
+	 <20260123092830.4046009-4-zhengxingda@iscas.ac.cn>
+	 <6ea016d6-42a4-4d83-89fd-eee918a834ef@suse.de>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260127025740.2601841-1-onlywig@gmail.com> <20260128050549.3337279-1-onlywig@gmail.com>
- <20260128050549.3337279-2-onlywig@gmail.com> <aXmsbbt9T5ZRGtES@shlinux89>
-In-Reply-To: <aXmsbbt9T5ZRGtES@shlinux89>
-From: Wig Cheng <onlywig@gmail.com>
-Date: Wed, 28 Jan 2026 16:39:19 +0800
-X-Gm-Features: AZwV_QisDOJPdzB7hBtncbVdr6RMWIjbixaTB16D-guHWsWAMozPqEa1RjRA1NY
-Message-ID: <CAPStFe7-1++d79LEnh0=ozkZrU7n8_FWx_cx8_YUc7UhOt48hw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/1] arm64: dts: freescale: add pixpaper display
- overlay for i.MX93 FRDM
-To: Peng Fan <peng.fan@oss.nxp.com>
-Cc: shawnguo@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
-	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	zaq14760@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-ZohoMailClient: External
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[icenowy.me,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[icenowy.me:s=zmail2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260243-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-260244-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[suse.de,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,ffwll.ch,redhat.com];
+	HAS_ORG_HEADER(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	RCPT_COUNT_TWELVE(0.00)[28];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[icenowy.me:+];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[onlywig@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[uwu@icenowy.me,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[pengutronix.de,kernel.org,samsung.com,bootlin.com,gmail.com,disroot.org,vger.kernel.org,lists.freedesktop.org,lists.infradead.org,iscas.ac.cn];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,0.0.0.1:email,nxp.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 80BB19E4A6
+	DBL_BLOCKED_OPENRESOLVER(0.00)[icenowy.me:email,icenowy.me:dkim,icenowy.me:mid,samsung.com:email,0.0.0.0:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,suse.de:email,iscas.ac.cn:email]
+X-Rspamd-Queue-Id: 430BC9E4C3
 X-Rspamd-Action: no action
 
-Peng Fan <peng.fan@oss.nxp.com> =E6=96=BC 2026=E5=B9=B41=E6=9C=8828=E6=97=
-=A5=E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=882:28=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> On Wed, Jan 28, 2026 at 01:05:49PM +0800, Wig Cheng wrote:
-> >Enable Open-EP Community pixpaper-213-c support on NXP i.MX93.
-> >
-> >Signed-off-by: Wig Cheng <onlywig@gmail.com>
-> >---
-> > arch/arm64/boot/dts/freescale/Makefile        |  4 ++
-> > .../freescale/imx93-11x11-frdm-pixpaper.dtso  | 51 +++++++++++++++++++
-> > 2 files changed, 55 insertions(+)
-> > create mode 100644 arch/arm64/boot/dts/freescale/imx93-11x11-frdm-pixpa=
-per.dtso
-> >
-> >diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dt=
-s/freescale/Makefile
-> >index ce8f937c2315..c2727f8061e2 100644
-> >--- a/arch/arm64/boot/dts/freescale/Makefile
-> >+++ b/arch/arm64/boot/dts/freescale/Makefile
-> >@@ -398,6 +398,10 @@ dtb-$(CONFIG_ARCH_MXC) +=3D imx93-9x9-qsb-i3c.dtb
-> >
-> > dtb-$(CONFIG_ARCH_MXC) +=3D imx93-11x11-evk.dtb
-> > dtb-$(CONFIG_ARCH_MXC) +=3D imx93-11x11-frdm.dtb
-> >+
-> >+imx93-11x11-frdm-pixpaper-dtbs +=3D imx93-11x11-frdm.dtb imx93-11x11-fr=
-dm-pixpaper.dtbo
-> >+dtb-$(CONFIG_ARCH_MXC) +=3D imx93-11x11-frdm-pixpaper.dtb
-> >+
-> > dtb-$(CONFIG_ARCH_MXC) +=3D imx93-14x14-evk.dtb
-> > dtb-$(CONFIG_ARCH_MXC) +=3D imx93-kontron-bl-osm-s.dtb
-> > dtb-$(CONFIG_ARCH_MXC) +=3D imx93-phyboard-nash.dtb
-> >diff --git a/arch/arm64/boot/dts/freescale/imx93-11x11-frdm-pixpaper.dts=
-o b/arch/arm64/boot/dts/freescale/imx93-11x11-frdm-pixpaper.dtso
-> >new file mode 100644
-> >index 000000000000..1111503b08af
-> >--- /dev/null
-> >+++ b/arch/arm64/boot/dts/freescale/imx93-11x11-frdm-pixpaper.dtso
-> >@@ -0,0 +1,51 @@
-> >+// SPDX-License-Identifier: GPL-2.0
-> >+/*
-> >+ * Device Tree Overlay for Mayqueen (Open-EP Community) pixpaper displa=
-y
-> >+ * support on NXP FRDM i.MX 93 Development Board
-> >+ *
-> >+ * Copyright (C) 2026 Wig Cheng <onlywig@gmail.com>
-> >+ */
-> >+
-> >+#include <dt-bindings/gpio/gpio.h>
-> >+#include "imx93-pinfunc.h"
-> >+
-> >+/dts-v1/;
-> >+/plugin/;
-> >+
-> >+&iomuxc {
-> >+      pinctrl_lpspi3: lpspi3grp {
-> >+              fsl,pins =3D <
-> >+                      MX93_PAD_GPIO_IO08__GPIO2_IO08          0x3fe /* =
-SPI3 CE0 */
-> >+                      MX93_PAD_GPIO_IO09__LPSPI3_SIN          0x3fe /* =
-SPI3 MISO */
-> >+                      MX93_PAD_GPIO_IO10__LPSPI3_SOUT         0x3fe /* =
-SPI3 MOSI */
-> >+                      MX93_PAD_GPIO_IO11__LPSPI3_SCK          0x3fe /* =
-SPI3 CLK */
-> >+              >;
-> >+      };
-> >+
-> >+      pinctrl_epd_ctrl: epdctrlgrp {
-> >+              fsl,pins =3D <
-> >+                      MX93_PAD_GPIO_IO05__GPIO2_IO05          0x31e /* =
-DC pin */
-> >+                      MX93_PAD_GPIO_IO06__GPIO2_IO06          0x31e /* =
-RESET pin */
-> >+                      MX93_PAD_GPIO_IO26__GPIO2_IO26          0x31e /* =
-BUSY pin */
-> >+              >;
-> >+      };
-> >+};
-> >+
-> >+&lpspi3 {
-> >+      #address-cells =3D <1>;
-> >+      #size-cells =3D <0>;
->
-> The above two properties are in imx93_91_common.dtsi lpspi3 node, no need=
- to
-> duplicate them.
->
-> Regards
-> Peng
->
-> >+      pinctrl-names =3D "default";
-> >+      pinctrl-0 =3D <&pinctrl_lpspi3>, <&pinctrl_epd_ctrl>;
-> >+      cs-gpios =3D <&gpio2 8 GPIO_ACTIVE_LOW>;
-> >+      fsl,spi-num-chipselects =3D <1>;
-> >+      status =3D "okay";
-> >+
-> >+      display@0 {
-> >+              compatible =3D "mayqueen,pixpaper";
-> >+              reg =3D <0>;
-> >+              spi-max-frequency =3D <5000000>;
-> >+              reset-gpios =3D <&gpio2 6 GPIO_ACTIVE_HIGH>;
-> >+              dc-gpios =3D <&gpio2 5 GPIO_ACTIVE_HIGH>;
-> >+              busy-gpios =3D <&gpio2 26 GPIO_ACTIVE_HIGH>;
-> >+      };
-> >+};
-> >--
-> >2.43.0
-> >
+=E5=9C=A8 2026-01-28=E6=98=9F=E6=9C=9F=E4=B8=89=E7=9A=84 08:58 +0100=EF=BC=
+=8CThomas Zimmermann=E5=86=99=E9=81=93=EF=BC=9A
+> Hi
+>=20
+> Am 23.01.26 um 10:28 schrieb Icenowy Zheng:
+> > From: Icenowy Zheng <uwu@icenowy.me>
+> >=20
+> > This is a from-scratch driver targeting Verisilicon DC-series
+> > display
+> > controllers, which feature self-identification functionality like
+> > their
+> > GC-series GPUs.
+> >=20
+> > Only DC8200 is being supported now, and only the main framebuffer
+> > is set
+> > up (as the DRM primary plane). Support for more DC models and more
+> > features is my further targets.
+> >=20
+> > As the display controller is delivered to SoC vendors as a whole
+> > part,
+> > this driver does not use component framework and extra bridges
+> > inside a
+> > SoC is expected to be implemented as dedicated bridges (this driver
+> > properly supports bridge chaining).
+> >=20
+> > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> > Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+> > Tested-by: Han Gao <gaohan@iscas.ac.cn>
+> > Tested-by: Michal Wilczynski <m.wilczynski@samsung.com>
+>=20
+> Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+>=20
+> I only briefly looked over this revision, as v5 already seemed quite=20
+> good. If you want to do a follow-up patch, see my other reply to v5
+> on=20
+> storing hardware formats in the plane state.
 
-Hi Peng,
+Well the kernel test robot found a small Kconfig problem in this
+revision -- DRM_DISPLAY_HELPER should be selected.
 
-Thank you for the review. I understand that #address-cells and #size-cells
-are already defined in imx91_93_common.dtsi for the lpspi3 node.
+Maybe I'm going to send a v7 to address this.
 
-However, these properties need to be present in the overlay file for proper
-DTC compilation. When compiling a device tree overlay (.dtbo), the DTC
-compiler cannot see the properties defined in the base DTB. Without these
-properties in the overlay, the build generates warnings:
+Should I also make derived plane state a change in v7, or leave it as a
+follow-up?
 
-    Warning (reg_format): /fragment@1/__overlay__/display@0:reg: property h=
-as
-    invalid length (4 bytes) (#address-cells =3D=3D 2, #size-cells =3D=3D 1=
-)
+By the way, I think PATCH 1-5 should go through drm-misc tree, am I
+right? Who's going to pick it if going through drm-misc?
 
-    Warning (avoid_default_addr_size): /fragment@1/__overlay__/display@0:
-    Relying on default #address-cells value
-
-This is a known limitation of overlay compilation, and other overlay files
-in the kernel tree follow the same pattern. For example:
-  - arch/arm64/boot/dts/freescale/imx8mm-kontron-bl-lte.dtso (line 78-79)
-  - arch/arm64/boot/dts/freescale/imx93-9x9-qsb-i3c.dtso (line 22-23)
-
-These properties in the overlay don't conflict with the base dtb, they are
-merged correctly at runtime. The duplication is necessary only for clean
-compilation of the overlay, thanks a lot!
-
-Regards,
-Wig
+>=20
+> Best regards
+> Thomas
+>=20
+> > ---
+> > Changes in v6:
+> > - Sorted Kconfig dependency.
+> > - Get rid of obsolete uppercase DRM_* printk marcos.
+> > - Optimization to printk messages (unknown IRQ message is only
+> > printed
+> > =C2=A0=C2=A0 once, device recognition message has "Found" added, "Skipp=
+ing
+> > output"
+> > =C2=A0=C2=A0 message priority lowered to debug).
+> > - Splitted most bridge functions for DPI/DP output.
+> > - Get rid of custom CRTC atomic_flush, which doesn't do anything
+> > =C2=A0=C2=A0 device-specific.
+> > - Adapted macro HZ_PER_KHZ and VSDC_DISP_TIMING_VALUE_MAX.
+> > - Switched to use drm_mode_size_dumb() to align dumb buffer pitch.
+> > - Reordered some function calls in vs_drm_initialize() (
+> > =C2=A0=C2=A0 aperture_remove_all_conflicting_devices() is now called ea=
+rlier
+> > and
+> > =C2=A0=C2=A0 drm_mode_config_reset() is now called later).
+> > - Splitted out vs_fb_get_dma_addr() and switched to use
+> > =C2=A0=C2=A0 drm_format_info_min_pitch() to calculate the src X offset =
+to the
+> > =C2=A0=C2=A0 framebuffer address.
+> > - Splitted out atomic_{en,dis}able for primary plane.
+> > - Removed an unused pm_runtime.h inclusion because the driver now
+> > does
+> > =C2=A0=C2=A0 not do runpm.
+> >=20
+> > Changes in v5:
+> > - Switching to drm_atomic_get_new_bridge_state, which seems to let
+> > the
+> > =C2=A0=C2=A0 driver get rid of the hack of saving bus format itself.
+> > - Add the internal bridge before attaching it.
+> > - Adapted next_bridge struct field name suggested by Luca Ceresoli.
+> > - Refactored the probe code to not use port count, to allow port@0
+> > being
+> > =C2=A0=C2=A0 missing.
+> >=20
+> > Changes in v4:
+> > - Switch to drm_* logger when we're handling with struct
+> > drm_device.
+> >=20
+> > Changes in v3:
+> > - Get rid of drm_atomic_get_existing_crtc_state() which is marked
+> > =C2=A0=C2=A0 deprecated.
+> >=20
+> > Changes in v2:
+> > - Changed some Control flows according to previous reviews.
+> > - Added missing of_node_put when checking of endpoints for output
+> > type.
+> > - Switched all userspace-visible modeset objects to be managed by
+> > drmm
+> > =C2=A0=C2=A0 instead of devm.
+> > - Utilize devm_drm_bridge_alloc() in internal bridge.
+> > - Prevented the usage of simple encoder helpers by passing a NULL
+> > funcs pointer.
+> > - Let devm enable clocks when getting them.
+> > - Removed explicit `.cache_type =3D REGCACHE_NONE` in regmap config.
+> > - Fixed a debug print using a variable before initialization.
+> > - Fixed a wrong index when using bulk to handle resets.
+> > - Added missing configuration for DPI format (currently fixed
+> > RGB888).
+> >=20
+> > =C2=A0 drivers/gpu/drm/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +
+> > =C2=A0 drivers/gpu/drm/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
+> > =C2=A0 drivers/gpu/drm/verisilicon/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 15 +
+> > =C2=A0 drivers/gpu/drm/verisilicon/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 5 +
+> > =C2=A0 drivers/gpu/drm/verisilicon/vs_bridge.c=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 | 371
+> > ++++++++++++++++++
+> > =C2=A0 drivers/gpu/drm/verisilicon/vs_bridge.h=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 |=C2=A0 39 ++
+> > =C2=A0 drivers/gpu/drm/verisilicon/vs_bridge_regs.h=C2=A0 |=C2=A0 54 ++=
++
+> > =C2=A0 drivers/gpu/drm/verisilicon/vs_crtc.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 | 191 +++++++++
+> > =C2=A0 drivers/gpu/drm/verisilicon/vs_crtc.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 31 ++
+> > =C2=A0 drivers/gpu/drm/verisilicon/vs_crtc_regs.h=C2=A0=C2=A0=C2=A0 |=
+=C2=A0 60 +++
+> > =C2=A0 drivers/gpu/drm/verisilicon/vs_dc.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 207 ++++++++++
+> > =C2=A0 drivers/gpu/drm/verisilicon/vs_dc.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 38 ++
+> > =C2=A0 drivers/gpu/drm/verisilicon/vs_dc_top_regs.h=C2=A0 |=C2=A0 27 ++
+> > =C2=A0 drivers/gpu/drm/verisilicon/vs_drm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 182 +++++++++
+> > =C2=A0 drivers/gpu/drm/verisilicon/vs_drm.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 28 ++
+> > =C2=A0 drivers/gpu/drm/verisilicon/vs_hwdb.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 | 150 +++++++
+> > =C2=A0 drivers/gpu/drm/verisilicon/vs_hwdb.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 29 ++
+> > =C2=A0 drivers/gpu/drm/verisilicon/vs_plane.c=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 | 124 ++++++
+> > =C2=A0 drivers/gpu/drm/verisilicon/vs_plane.h=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 |=C2=A0 72 ++++
+> > =C2=A0 .../gpu/drm/verisilicon/vs_primary_plane.c=C2=A0=C2=A0=C2=A0 | 1=
+73 ++++++++
+> > =C2=A0 .../drm/verisilicon/vs_primary_plane_regs.h=C2=A0=C2=A0 |=C2=A0 =
+53 +++
+> > =C2=A0 21 files changed, 1852 insertions(+)
+> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/Kconfig
+> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/Makefile
+> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/vs_bridge.c
+> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/vs_bridge.h
+> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/vs_bridge_regs.h
+> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc.c
+> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc.h
+> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc_regs.h
+> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/vs_dc.c
+> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/vs_dc.h
+> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/vs_dc_top_regs.h
+> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/vs_drm.c
+> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/vs_drm.h
+> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/vs_hwdb.c
+> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/vs_hwdb.h
+> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/vs_plane.c
+> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/vs_plane.h
+> > =C2=A0 create mode 100644 drivers/gpu/drm/verisilicon/vs_primary_plane.=
+c
+> > =C2=A0 create mode 100644
+> > drivers/gpu/drm/verisilicon/vs_primary_plane_regs.h
 
