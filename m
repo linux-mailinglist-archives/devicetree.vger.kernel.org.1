@@ -1,357 +1,203 @@
-Return-Path: <devicetree+bounces-260491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260499-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EOPrIHIuemlq3wEAu9opvQ
-	(envelope-from <devicetree+bounces-260491-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 16:42:42 +0100
+	id 0HZyHpkwemkx4gEAu9opvQ
+	(envelope-from <devicetree+bounces-260499-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 16:51:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32523A4403
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 16:42:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19B66A4936
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 16:51:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id AF905304ADD6
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 15:39:00 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D112430EA4C2
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 15:43:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFD332EC0A1;
-	Wed, 28 Jan 2026 15:38:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5417308F2E;
+	Wed, 28 Jan 2026 15:42:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GMqyasNn";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="LYfQFzy/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 766712E6CC0
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 15:38:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 853D2306B3E
+	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 15:42:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769614719; cv=none; b=rAeqJS9b+FyeCzOOqmV2+3RAyCD+eGU20Cox6GZRfjE4FzkelSoTPhfIQjHJPOjqEkUUllhkk8jnpDj+OMqAK/5bjDo5fNVDZPm1kJIUjFNQ+yeS4kQwh4kzXtz+w7XjS9XvA7E0IWZQtWt2jf29JY2/jQCSpWB+OUn/CIxiIio=
+	t=1769614954; cv=none; b=SBc6/OW9r3GxyZ1DE0nZrpWfBNLjrasjfFiR7bNacqyj2RBXnarjAtcpVuhns1DGXFRrOOlzvLh7L4h0ceCh+imUr8tCuQEbRIoDu+lv9eLwac4zKxOdzQI5wPdk4ZVyDfmMD1zhWZaJzG15HMrYAIGf1BNLTIX+gAV8r6R7E3M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769614719; c=relaxed/simple;
-	bh=g2b3UszPCHECOmiGzz20e72H5NdvyxMqvnX7o6q8Vr4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=LaBha/HgGtIrtHxWsNSXcradsFhGqEKAcSudXxggCabINTCpl2oen5563QYkuY4presIIz8wfhigmznbYKHnVfQm5CguwclKD3BszjkBBEWwxnRnrsFwcVmV8Avn1xiCIs0TAAaGRQiOGqx/+dmnu2xnNOJbV8yKWucqBghk7aE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1vl7cg-0003ow-Nh; Wed, 28 Jan 2026 16:38:26 +0100
-Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac] helo=dude04)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1vl7cg-002wSZ-3A;
-	Wed, 28 Jan 2026 16:38:26 +0100
-Received: from ore by dude04 with local (Exim 4.98.2)
-	(envelope-from <ore@pengutronix.de>)
-	id 1vl7cg-0000000FRAv-0oe3;
-	Wed, 28 Jan 2026 16:38:26 +0100
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Jonathan Cameron <jic23@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
-	kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Andy Shevchenko <andy@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
-	David Jander <david@protonic.nl>
-Subject: [PATCH v3 8/8] iio: dac: ds4424: add Rfs-based scale and per-variant limits
-Date: Wed, 28 Jan 2026 16:38:24 +0100
-Message-ID: <20260128153824.3679187-9-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260128153824.3679187-1-o.rempel@pengutronix.de>
-References: <20260128153824.3679187-1-o.rempel@pengutronix.de>
+	s=arc-20240116; t=1769614954; c=relaxed/simple;
+	bh=t9dLjF1QoezjJjk2zw7c53FVpAmlnd2OIVmC6BDJYKA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JMgbdmhqm57ESjPRKkakorKOsSBlLa3E5v2UCQNoVu1MBXUtHcgGRa6U+L6it6FVHbHQHF1D4KojP6bQCxmE2VPceCdQpKP3conKOWCgI3OKnXUwqMGXGy9Y8LGWnmx1Cx9Qh+SjZ9k7t8/InZhHHr+/yLrIHjxBCKV2qgh0F4k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GMqyasNn; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=LYfQFzy/; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60S92XPH4008452
+	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 15:42:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	K8QuYKjVLvret1GsI6cC3h1GiYwud96huRl7c4eEmng=; b=GMqyasNnooSdxV/T
+	GFg5h5Y6fi5w1/In5brGktJ8cxiASgFkCh8YBJJQ/RNG1757Fxs3g3JkNGyVM3eK
+	0yCG/LfJSx/P2he1/CaHLYXAg0e7hfx4X7JptnAoOnVdzWkAV8rsUul67YhtOjin
+	z3rN5t3xroPwmrL+/a51j21jjY7VjMTrToKQ/NRnzi+l39AZHOVWdCRRfhcEo/cV
+	kStm0yoWuNNWrgVjE1i6TnCZq8jpeEkOrKwm2XtT11Pk0DcSIyHk3dt5pnVmXZ5U
+	As2SmannLcYMOoiE9b3MuaDqC9fQRFEorpBP/bkbU6U3Z/k1Fwq/hteBHXC9CzzF
+	/ylALA==
+Received: from mail-pg1-f197.google.com (mail-pg1-f197.google.com [209.85.215.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4by1jx45w9-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 15:42:29 +0000 (GMT)
+Received: by mail-pg1-f197.google.com with SMTP id 41be03b00d2f7-b6097ca315bso13117107a12.3
+        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 07:42:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1769614949; x=1770219749; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=K8QuYKjVLvret1GsI6cC3h1GiYwud96huRl7c4eEmng=;
+        b=LYfQFzy/u/2C5W1Ynt+JY8/sgEl0e/l1dYcvPzCg+G9RL0KXghkWm28kCfD+7U3zjS
+         Y1W7Yvr7vnmFXqbRkKGAaUlDDaJyjfTmvkRrMWV1+VPWntVKZ2eKiZWeK1JaFmEblBES
+         5HK+SJVh4d3C6em1cd+Ze5LEhIpBfKTLEAZtdnFtTsJuB+/OJ2UNNm3S6NSMVKELDLJR
+         r9A8S3F5Fg+jbEvGOAnBy5PCJA8IgLCLZk3auccvFvb3pHmnZcDlTXmPjBMRp8Kk+8yN
+         LfUoR/saCP6X9DxYUtNzhuKGD0u5w3YZAr0/7tkVtu7ZKg01irjJxnU9SWqrdt/dJzq5
+         GMiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769614949; x=1770219749;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=K8QuYKjVLvret1GsI6cC3h1GiYwud96huRl7c4eEmng=;
+        b=ltvkPD435XWdVNwJRCvbXW8FCEzUZW0qlD6RF7cHLnhWSLXwwjRmHqqST+mZBpWRtS
+         I8IR9IwJRTxgH8EPJ1Y3GoxcE9OeFQ+qu5BITly/GzYxmpYz7hC+jvPxJvjA722LRdgm
+         G0HMTiCBSwHS6BwL3IoATsP2LzGtCXYGOqmfw5U0O3mh99E+eAgHqFEk2gShBud15AIm
+         0oWPI80fvTIbyC9G95IoXygv8AJLHns4aczxDiqgaW8ffsaChYSvlmp6/fRmuYEpzMDm
+         ppgRRwV+UPrabaOlNtg1HA0jSJq2CKaPg/AM1tfEMClo2GkrGREj3eVpvldoQaV1SlCb
+         jPTA==
+X-Forwarded-Encrypted: i=1; AJvYcCURvO4gnVGL+VCxgqxjDQLuyAprWcVPFGHze1aHPLEeFRISghKAcsN0yONcRTQuF38+g9VKFRr5EtG5@vger.kernel.org
+X-Gm-Message-State: AOJu0YwfSOgSxC+6iQfo7VBvs4u74NEuoIVUNQGb2iSNBdXZrAvCG/po
+	NizBp1y3bo6IxR68kaqA1N92R/uPyofjPvIzacz129Frh8gFWm18P1z09asHUeQx3fij5aDsUa8
+	hU1C/f6R6+T5FE9S9Yw7UpOBd00x6JQ5a3eEOkNWxawdbNMpCcH/Qv7i6iLZBxIpy
+X-Gm-Gg: AZuq6aJUtOIGvzb4qK1nUvF3kM1x0o64UJNXK2ehgx8+D7G4wTX90SffaMm2fnZtSvV
+	qdEoaJC/zzRo9hlQgGEtaefhEOhMZaj7yF+yf7Vw0wNV2JJv10WdqXlaHdjxXwkdLiDmXRkq1uv
+	V/vzirWa7Gpr4ekd+S+99AiLwllYGBLCwHKHP4aXGL/y6X9aeNnKkT0uARxpM69/0me1NJgw88R
+	a+QF2fG0KgBk3FCetFccuVtxoVZmbbc5W/LxtBrKevpnfkuQZTUfrVknI6uH15m9XG1jsDFpN1k
+	eLSrc1kpQ8tEdDFuLgGQ1vdU+9pRQGjgzhu3n8PnLHFK/dqa969clHZpD6KlQZ24CyUlzcIM6x9
+	XxfcNV3VsBhRjQfPxUG06DtT4C/O4I0I7/wHwu9to47VU13kyRGOWVEK0ULX2nA==
+X-Received: by 2002:a17:90b:4e90:b0:353:41e:1f51 with SMTP id 98e67ed59e1d1-353fedb0be5mr4436632a91.32.1769614949164;
+        Wed, 28 Jan 2026 07:42:29 -0800 (PST)
+X-Received: by 2002:a17:90b:4e90:b0:353:41e:1f51 with SMTP id 98e67ed59e1d1-353fedb0be5mr4436616a91.32.1769614948628;
+        Wed, 28 Jan 2026 07:42:28 -0800 (PST)
+Received: from [192.168.225.142] ([157.49.251.170])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-353f6128942sm5836935a91.5.2026.01.28.07.42.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Jan 2026 07:42:28 -0800 (PST)
+Message-ID: <ea99fca7-c51a-43f8-8fb7-f228b36d3eef@oss.qualcomm.com>
+Date: Wed, 28 Jan 2026 21:12:21 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 ath-current 1/2] wifi: ath11k: add usecase firmware
+ handling based on device compatible
+To: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>, jjohnson@kernel.org,
+        johannes@sipsolutions.net, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        jonas.gorski@gmail.com, krzk@kernel.org
+References: <20260121095055.3683957-1-miaoqing.pan@oss.qualcomm.com>
+ <20260121095055.3683957-2-miaoqing.pan@oss.qualcomm.com>
+Content-Language: en-US
+From: Vasanthakumar Thiagarajan <vasanthakumar.thiagarajan@oss.qualcomm.com>
+In-Reply-To: <20260121095055.3683957-2-miaoqing.pan@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: QUo2Cle6kEUv4GcXUt_dihRvo2-oWVXa
+X-Authority-Analysis: v=2.4 cv=duPWylg4 c=1 sm=1 tr=0 ts=697a2e66 cx=c_pps
+ a=rz3CxIlbcmazkYymdCej/Q==:117 a=ayGwEbGGg2t4nIWcsuXnMg==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=3bhG5mAFE4JtUZ8DKu0A:9 a=QEXdDO2ut3YA:10 a=bFCP_H2QrGi7Okbo017w:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI4MDEyOCBTYWx0ZWRfXzL1oDTgzdDUZ
+ laS+AWPR92B8wg5pYLWQZ4Wk3TQg9FQf8DyhJqWfUL4nqxDEpnKqsg7+68KmiiFqCsXMWuayQ5a
+ 1h8qV1Xxc4zzuQmY2mLh+nw1imbeFKi36clCU9v16ZhGeleF5ZFmRJCKU40ihlU0ARwZjxX+hHA
+ nlEjHO9aSEox0yEHpinJ/X+YjVEyQB2AhQC1/IsyfL3ar86GoiFRv4ynrhgwN8VVJ7LZkygfRkF
+ OoIuttq7AIkFusdCyBBkEYlRPa8MnA8vwAF1p1pnL/I+m2pjnNkrA+4bnl4klIcvLBkljACSYJt
+ 3AQizF7tOhnhPx7BltBP23kqmG11jnp0E//3bGuqK0WtTqWV54gfLA/gkI7xRhoPbtZ3nQfAP9t
+ s9xxEuRqFLmuUGvUDvZj1i5XDBqONDSryYET8Dizg43Qpo8lM+qnNnkz3mfNK3vw9GQXVLx0La/
+ X0zYzXFsgjCh6NlF7Bw==
+X-Proofpoint-GUID: QUo2Cle6kEUv4GcXUt_dihRvo2-oWVXa
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-01-28_03,2026-01-28_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 phishscore=0 bulkscore=0 priorityscore=1501 adultscore=0
+ lowpriorityscore=0 suspectscore=0 clxscore=1011 malwarescore=0
+ impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
+ definitions=main-2601280128
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.54 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
-	RCVD_COUNT_FIVE(0.00)[6];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-260491-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,gmail.com,kernel.org];
+	TAGGED_FROM(0.00)[bounces-260499-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.993];
-	FROM_NEQ_ENVFROM(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:mid,pengutronix.de:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 32523A4403
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[vasanthakumar.thiagarajan@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 19B66A4936
 X-Rspamd-Action: no action
 
-Parse optional maxim,rfs-ohms values to derive the per-channel output
-current scale (mA per step) for the IIO current ABI.
 
-Select per-variant parameters to match the shared register map while
-handling different data widths and full-scale current calculations.
 
-Behavior changes:
-- If maxim,rfs-ohms is present, IIO_CHAN_INFO_SCALE becomes available
-  and reports mA/step derived from Rfs.
-- If maxim,rfs-ohms is missing, SCALE is not exposed to keep older DTs
-  working without requiring updates.
-- RAW writes are now limited to the representable sign-magnitude range
-  of the detected variant to avoid silent truncation (e.g. +/-31 on
-  DS440x).
+On 1/21/2026 3:20 PM, Miaoqing Pan wrote:
+> For M.2 WLAN chips, there is no suitable DTS node to specify the
+> firmware-name property. In addition, assigning firmware for the
+> M.2 PCIe interface causes chips that do not use usecase specific
+> firmware to fail. Therefore, abandoning the approach of specifying
+> firmware in DTS. As an alternative, propose a static lookup table
+> mapping device compatible to firmware names. Currently, only WCN6855
+> HW2.1 requires this.
+> 
+> However, support for the firmware-name property is retained to keep
+> the ABI backwards compatible.
+> 
+> For details on usecase specific firmware, see:
+> https://lore.kernel.org/all/20250522013444.1301330-3-miaoqing.pan@oss.qualcomm.com/.
+> 
+> Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-04685-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1
+> 
+> Fixes: edbbc647c4f3 ("wifi: ath11k: support usercase-specific firmware overrides")
+> Signed-off-by: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
 
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
----
-changes v3:
-- Added explicit check for negative return from device_property_count_u32().
-- Rename vref_mv to vref_mV
-- Use devm_kmemdup_array() instead of devm_kmemdup()
-- Use %u for unsigned index in Rfs error logs.
-- Consolidated Rfs parse logs to a single line.
-changes v2:
-- Reorder struct ds4424_chip_info members to optimize padding.
-- Use GENMASK() for chip variant masks instead of hex constants.
-- Simplify ds4424_setup_channels: use direct devm_kmemdup to avoid stack
-  usage and memcpy.
-- Use local 'dev' pointer and dev_err_probe() in ds4424_parse_rfs for
-  cleaner error handling.
-- Rename the static iio_info struct to ds4424_iio_info to prevent name
-  collision with the new hardware chip_info structs.
-- Use unsigned int for loop counters.
-- Rebase on top of regmap and symmetrical raw_access refactoring.
----
- drivers/iio/dac/ds4424.c | 121 +++++++++++++++++++++++++++++++++++++--
- 1 file changed, 116 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/iio/dac/ds4424.c b/drivers/iio/dac/ds4424.c
-index 9bef1c60b2eb..2b01e20daee4 100644
---- a/drivers/iio/dac/ds4424.c
-+++ b/drivers/iio/dac/ds4424.c
-@@ -12,6 +12,7 @@
- #include <linux/i2c.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
-+#include <linux/property.h>
- #include <linux/regmap.h>
- #include <linux/regulator/consumer.h>
- 
-@@ -24,6 +25,7 @@
- #define DS4424_MAX_DAC_CHANNELS		4
- 
- #define DS4424_DAC_MASK			GENMASK(6, 0)
-+#define DS4404_DAC_MASK			GENMASK(4, 0)
- #define DS4424_DAC_SOURCE		BIT(7)
- 
- #define DS4424_DAC_ADDR(chan)   ((chan) + 0xf8)
-@@ -43,9 +45,38 @@ enum ds4424_device_ids {
- 	ID_DS4424,
- };
- 
-+/*
-+ * Two variant groups share the same register map but differ in:
-+ * - resolution/data mask (DS4402/DS4404: 5-bit, DS4422/DS4424: 7-bit)
-+ * - full-scale current calculation (different Vref and divider)
-+ * Addressing also differs (DS440x tri-level, DS442x bi-level), but is
-+ * handled via board configuration, not driver logic.
-+ */
-+struct ds4424_chip_info {
-+	int vref_mV;
-+	int scale_denom;
-+	u8 result_mask;
-+};
-+
-+static const struct ds4424_chip_info ds4424_info = {
-+	.vref_mV = 976,
-+	.scale_denom = 16,
-+	.result_mask = DS4424_DAC_MASK,
-+};
-+
-+/* DS4402 is handled like DS4404 (same resolution and scale formula). */
-+static const struct ds4424_chip_info ds4404_info = {
-+	.vref_mV = 1230,
-+	.scale_denom = 4,
-+	.result_mask = DS4404_DAC_MASK,
-+};
-+
- struct ds4424_data {
- 	struct regmap *regmap;
- 	struct regulator *vcc_reg;
-+	const struct ds4424_chip_info *chip_info;
-+	u32 rfs_ohms[DS4424_MAX_DAC_CHANNELS];
-+	bool has_rfs;
- };
- 
- static const struct iio_chan_spec ds4424_channels[] = {
-@@ -144,11 +175,20 @@ static int ds4424_read_raw(struct iio_dev *indio_dev,
- 			return ret;
- 		}
- 
--		*val = regval & DS4424_DAC_MASK;
-+		*val = regval & data->chip_info->result_mask;
- 		if (!(regval & DS4424_DAC_SOURCE))
- 			*val = -*val;
- 
- 		return IIO_VAL_INT;
-+	case IIO_CHAN_INFO_SCALE:
-+		if (!data->has_rfs)
-+			return -EINVAL;
-+
-+		/* SCALE is mA/step: mV / Ohm = mA. */
-+		*val = data->chip_info->vref_mV;
-+		*val2 = data->rfs_ohms[chan->channel] *
-+			data->chip_info->scale_denom;
-+		return IIO_VAL_FRACTIONAL;
- 
- 	default:
- 		return -EINVAL;
-@@ -168,7 +208,7 @@ static int ds4424_write_raw(struct iio_dev *indio_dev,
- 	switch (mask) {
- 	case IIO_CHAN_INFO_RAW:
- 		abs_val = abs(val);
--		if (abs_val > DS4424_DAC_MASK)
-+		if (abs_val > data->chip_info->result_mask)
- 			return -EINVAL;
- 
- 		/*
-@@ -187,6 +227,65 @@ static int ds4424_write_raw(struct iio_dev *indio_dev,
- 	}
- }
- 
-+static int ds4424_setup_channels(struct i2c_client *client,
-+				 struct ds4424_data *data,
-+				 struct iio_dev *indio_dev)
-+{
-+	struct iio_chan_spec *channels;
-+
-+	/* Use a local non-const pointer for modification */
-+	channels = devm_kmemdup_array(&client->dev, ds4424_channels,
-+				      indio_dev->num_channels,
-+				      sizeof(ds4424_channels[0]), GFP_KERNEL);
-+	if (!channels)
-+		return -ENOMEM;
-+
-+	if (data->has_rfs) {
-+		for (unsigned int i = 0; i < indio_dev->num_channels; i++)
-+			channels[i].info_mask_separate |=
-+				BIT(IIO_CHAN_INFO_SCALE);
-+	}
-+
-+	indio_dev->channels = channels;
-+
-+	return 0;
-+}
-+
-+static int ds4424_parse_rfs(struct i2c_client *client,
-+			    struct ds4424_data *data,
-+			    struct iio_dev *indio_dev)
-+{
-+	struct device *dev = &client->dev;
-+	int count, ret;
-+
-+	if (!device_property_present(dev, "maxim,rfs-ohms")) {
-+		dev_info_once(dev, "maxim,rfs-ohms missing, scale not supported\n");
-+		return 0;
-+	}
-+
-+	count = device_property_count_u32(dev, "maxim,rfs-ohms");
-+	if (count < 0)
-+		return dev_err_probe(dev, count, "Failed to count maxim,rfs-ohms entries\n");
-+	if (count != indio_dev->num_channels)
-+		return dev_err_probe(dev, -EINVAL, "maxim,rfs-ohms must have %u entries\n",
-+				     indio_dev->num_channels);
-+
-+	ret = device_property_read_u32_array(dev, "maxim,rfs-ohms",
-+					     data->rfs_ohms,
-+					     indio_dev->num_channels);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to read maxim,rfs-ohms property\n");
-+
-+	for (unsigned int i = 0; i < indio_dev->num_channels; i++) {
-+		if (!data->rfs_ohms[i])
-+			return dev_err_probe(dev, -EINVAL, "maxim,rfs-ohms entry %u is zero\n", i);
-+	}
-+
-+	data->has_rfs = true;
-+
-+	return 0;
-+}
-+
- static int ds4424_suspend(struct device *dev)
- {
- 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
-@@ -221,7 +320,7 @@ static int ds4424_resume(struct device *dev)
- 
- static DEFINE_SIMPLE_DEV_PM_OPS(ds4424_pm_ops, ds4424_suspend, ds4424_resume);
- 
--static const struct iio_info ds4424_info = {
-+static const struct iio_info ds4424_iio_info = {
- 	.read_raw = ds4424_read_raw,
- 	.write_raw = ds4424_write_raw,
- };
-@@ -258,15 +357,20 @@ static int ds4424_probe(struct i2c_client *client)
- 	switch (id->driver_data) {
- 	case ID_DS4402:
- 		indio_dev->num_channels = DS4422_MAX_DAC_CHANNELS;
-+		/* See ds4404_info comment above. */
-+		data->chip_info = &ds4404_info;
- 		break;
- 	case ID_DS4404:
- 		indio_dev->num_channels = DS4424_MAX_DAC_CHANNELS;
-+		data->chip_info = &ds4404_info;
- 		break;
- 	case ID_DS4422:
- 		indio_dev->num_channels = DS4422_MAX_DAC_CHANNELS;
-+		data->chip_info = &ds4424_info;
- 		break;
- 	case ID_DS4424:
- 		indio_dev->num_channels = DS4424_MAX_DAC_CHANNELS;
-+		data->chip_info = &ds4424_info;
- 		break;
- 	default:
- 		dev_err(&client->dev,
-@@ -279,9 +383,16 @@ static int ds4424_probe(struct i2c_client *client)
- 	if (ret)
- 		goto fail;
- 
--	indio_dev->channels = ds4424_channels;
-+	ret = ds4424_parse_rfs(client, data, indio_dev);
-+	if (ret)
-+		goto fail;
-+
-+	ret = ds4424_setup_channels(client, data, indio_dev);
-+	if (ret)
-+		goto fail;
-+
- 	indio_dev->modes = INDIO_DIRECT_MODE;
--	indio_dev->info = &ds4424_info;
-+	indio_dev->info = &ds4424_iio_info;
- 
- 	ret = iio_device_register(indio_dev);
- 	if (ret < 0) {
--- 
-2.47.3
-
+Reviewed-by: Vasanthakumar Thiagarajan <vasanthakumar.thiagarajan@oss.qualcomm.com>
 
