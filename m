@@ -1,163 +1,136 @@
-Return-Path: <devicetree+bounces-260321-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260322-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YAZ/BqnseWkF1AEAu9opvQ
-	(envelope-from <devicetree+bounces-260321-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 12:02:01 +0100
+	id mKMDB/TseWkF1AEAu9opvQ
+	(envelope-from <devicetree+bounces-260322-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 12:03:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EF019FE00
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 12:02:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 731999FE35
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 12:03:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 96542304CCE9
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 10:58:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9B76A3005D19
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 11:01:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 600B8338F36;
-	Wed, 28 Jan 2026 10:58:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BAB927B32C;
+	Wed, 28 Jan 2026 11:01:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sqcnM+5x"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fki8nXiN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C04329D273;
-	Wed, 28 Jan 2026 10:58:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBA6D238166;
+	Wed, 28 Jan 2026 11:01:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769597917; cv=none; b=gOZrjAj+cxE4MD7XoW2R4m/q8HNNCtGCNR2FRU9Ygx7q9e2SXsg71fgIJEDmPMNPE1ORAP8haRReqPrUuoFoKDb+y+b62pBceGbpvX3YilRCKm5WToYMZZMaW97nw7F8E8wsMh0mgI830PYrYYJ1QWDhp/UWrPN6kvyzIEDF4cs=
+	t=1769598060; cv=none; b=scoRiHI8OydvDSbmDV42bcFBNcFj4quZe5ry7vrng07sgRihXkB7LPUgUEs1jK8FLMYUihcu0SUL+yDIZMCadbQOQXQgmo0BIcj4xbisIknv2dpzn9VLHH4+kKg0bQaYk4fjNI6R6Tll38NJ+bR21xJRQEQyKjQV++Vpk4jLUL0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769597917; c=relaxed/simple;
-	bh=RjpmbzPXUM3KQzrs7x5nxZliNBnmviDdTU24X98Nhw0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rtYho0y1Z/VqqR7uyPoPCtTrcxkIbmZCcNrF74Pb2/lEt21qQgChvX9swl/ZROb9FVg0FhmNk8KrzGNp3/LDBn5ZPsaYZygHYx2t3ezJYd/MRiE7xdinr5ulldh7Io2trnzMcpzvHMjx7mzujxZ9vsaTucgRJHKAoi7cc7e/vSc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sqcnM+5x; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0AF1C4CEF1;
-	Wed, 28 Jan 2026 10:58:33 +0000 (UTC)
+	s=arc-20240116; t=1769598060; c=relaxed/simple;
+	bh=0CgB7cfLz+0wS6lVplaCaIvYpdBGSv37uE2NLQ2NHCg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QCo8cfd95sFsy1C0AQuTRaLeGsG7F0Fr6Zi3zluv8Cy/jAoB876+X5wT682Gozhh9FFSGOmRcpFx793bNwfgcsjDBZcSUHrlo8y0RBfHXSVx/mfv6UwN9A2LIrbdm4rAJm7gLQ/d31u48y/CXLkAzbkMY+ysusPUmI7K/JLEDis=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fki8nXiN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6EA2C4CEF1;
+	Wed, 28 Jan 2026 11:00:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769597917;
-	bh=RjpmbzPXUM3KQzrs7x5nxZliNBnmviDdTU24X98Nhw0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=sqcnM+5xKA/HrnS+5UmAZzQ5nj15UjfZqbN45JKvDDzBOhH2BVX3qlvQLnV5t4tYs
-	 IJOeAEkEvqm8VBdzJpxBNVXYdrb4vMbODCMeC1j5u/BpL6JuQ2gZs8VutJmnszZ9lw
-	 vH5n7bbafp1Xf1W7XWICkERB8Xeq4nfoWwg0RWEqLSL/gRPgAv0m7WFzhS8geNDJHJ
-	 hqI4v87OPWjCnosuYj0jTnicvFqNV6xl+iL4pAltRMt7UWnjLCH745I2pkKxnsfRNQ
-	 zeySl7SfBH84F4DdYeldW6sqNvgGHmm0zSYpxtb1sSuABxTWonq7BNmfBcUwA9UUmX
-	 1zMr0UT/rKGOQ==
-Message-ID: <abc5995e-3b29-4e0f-a091-40797f1b6abf@kernel.org>
-Date: Wed, 28 Jan 2026 11:58:31 +0100
+	s=k20201202; t=1769598060;
+	bh=0CgB7cfLz+0wS6lVplaCaIvYpdBGSv37uE2NLQ2NHCg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fki8nXiNuJ3FQ+FzIqTsI4OL08eaWsMyoqxSVHb9+mX1cwHU/2yB9HFlt9Nb9sT2F
+	 X0O12LT/HFBR/8zQkTMca9GQYfpflOIhSqUr3hJqpuyTNKnmcv7xAVfhpLfjk3zwod
+	 m6afNHeim+1Id4F0EaRg8BIP832FOyUwxqeLmRogHt2Vq1YJ1BUu1FQcKsoIK0xTmC
+	 Bu31EB5z1fILFs5xrXxe6vQfgA7EKNFKXMMS1IiRa3cS1xlnoosaFYtAq1SyldqpJc
+	 nVA4ZFOIbVCXd21NeanvshIW2U45a32RYp5X0/LKnqtwAx8lVJaCDkYsRSHDGo6SPz
+	 NdqgrXvWVnPrw==
+Date: Wed, 28 Jan 2026 12:00:57 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, 
+	"James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, "Martin K. Petersen" <martin.petersen@oracle.com>, 
+	Neeraj Soni <neeraj.soni@oss.qualcomm.com>, Herbert Xu <herbert@gondor.apana.org.au>, 
+	"David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org, 
+	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/4] dt-bindings: crypto: ice: add operating-points-v2
+ property for QCOM ICE
+Message-ID: <20260128-amigurumi-viper-of-gallantry-69ab8a@quoll>
+References: <20260128-enable-ufs-ice-clock-scaling-v4-0-260141e8fce6@oss.qualcomm.com>
+ <20260128-enable-ufs-ice-clock-scaling-v4-1-260141e8fce6@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] Add device tree for Samsung Galaxy J7 (2016)
-To: Kaustabh Chakraborty <kauschluss@disroot.org>,
- Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Kees Cook <kees@kernel.org>,
- Tony Luck <tony.luck@intel.com>, "Guilherme G. Piccoli" <gpiccoli@igalia.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Rayan Marzouk <rayanmarzouk743@gmail.com>,
- bluebunny <kalorin.bok084@passinbox.com>
-References: <20260125-exynos7870-j7xelte-v1-0-5cacc3042c42@disroot.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260125-exynos7870-j7xelte-v1-0-5cacc3042c42@disroot.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260128-enable-ufs-ice-clock-scaling-v4-1-260141e8fce6@oss.qualcomm.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260321-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260322-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,gmail.com,passinbox.com];
-	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 6EF019FE00
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: 731999FE35
 X-Rspamd-Action: no action
 
-On 24/01/2026 21:05, Kaustabh Chakraborty wrote:
-> This series introduces the device tree for a new Samsung Exynos 7870
-> device – Samsung Galaxy J7 (2016).
+On Wed, Jan 28, 2026 at 02:16:40PM +0530, Abhinaba Rakshit wrote:
+> Add support for specifying OPPs for the Qualcomm Inline Crypto Engine
+> by allowing the use of the standard "operating-points-v2" property in
+> the ICE device node. OPP-tabel is kept as an optional property.
+
+Last two lines are redundant. Instead explain the hardware - why it did
+not support clock scaling before?
+
 > 
-> I have acquired permission from the authors of this patch to upstream
-> this on their behalf.
+> Signed-off-by: Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>
+> ---
+>  .../bindings/crypto/qcom,inline-crypto-engine.yaml | 29 ++++++++++++++++++++++
+>  1 file changed, 29 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml b/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
+> index c3408dcf5d2057270a732fe0e6744f4aa6496e06..1e849def1e0078feb45874a436411188d26cf37f 100644
+> --- a/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
+> +++ b/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
+> @@ -30,6 +30,14 @@ properties:
+>    clocks:
+>      maxItems: 1
+>  
+> +  operating-points-v2:
+> +    description:
+> +      Each OPP entry contains the frequency configuration for the ICE device
+> +      clock(s).
 
-
-Thank you for the patch. My tree is currently closed for new features
-till the end of the merge window. I will review and/or apply the patch
-then. If I misjudged this patch and this is a fix, please let me know.
-
-
+Drop description, please look how other bindings define this.
 
 Best regards,
 Krzysztof
+
 
