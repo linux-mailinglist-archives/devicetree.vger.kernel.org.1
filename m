@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-260384-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260385-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4GpBMlEAemm71QEAu9opvQ
-	(envelope-from <devicetree+bounces-260384-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 13:25:53 +0100
+	id kLhHH1IAemm71QEAu9opvQ
+	(envelope-from <devicetree+bounces-260385-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 13:25:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46EA3A12DB
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E42BAA12E3
 	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 13:25:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id F07C9300EC84
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 12:25:49 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 53D533012CAF
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 12:25:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49E0E34EEF1;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E87034EF0C;
 	Wed, 28 Jan 2026 12:25:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W5v6j9IC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UjoBPkpp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16D4C340293;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17AB43451CE;
 	Wed, 28 Jan 2026 12:25:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769603148; cv=none; b=ARRSDFYYkQlUl9jjGX9TPmMylGOb8K2vSc8rfIDGPoeNQ6eL1Uzx3HldKFExZl/0y6ShyU0kpesgk6WlA7eItDn4P0YnE2lFenLRa/bMl7kEx7aCOM+NCLWulj1F1Xv+iYPihgfYC8WM/IhqBDM+tm64dqORxHAGNhjtvQtEqbk=
+	t=1769603148; cv=none; b=Q0+kirhCfQ/g//BD6Ah6EpqDpGMH6f01X53wQNWiPN1iEBh7C0raw2EkkTbeBhvaas4qy2BI1ALVfoffQkn6Ea6rd5Ri9k8BBsRVolm9ZYT1JXCYUzstDD80BHuq/FlC1tS7w0lcDvkCm3ZHBC1DMmAKSVOsRtju5K/g3UGFI2A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1769603148; c=relaxed/simple;
-	bh=4Hf8WFVjj3Fr8FkaoNLFWcuWjq8ROC9IttcHryo+64E=;
+	bh=YUyTnratnqlECwzSAzk6FREP35eA7ZpjXULZWweNn00=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=nBQSo071Jn8m1uILOsqH0g7dx9YLBkcjYxPCr+3fTeZ1qOn1PsKLd9YgYm58xNV1ftlIv1hffXVZR3/on2agnu5Poxpso8/+GH0AgNLxsx17/YNhZGd6mPCCeS4v2MaYLNaikQsxDGdDdYGSWqmtFn9KZ5TRIYaNw1YuyPzjDWs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W5v6j9IC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id D1A6EC2BCAF;
+	 In-Reply-To:To:Cc; b=bhh5/zgy61b2/N37w9BE4a5XbYRwVlzqgNXc8hrglfHl236ZBZwhSEJoEA/NyL/IHK5nUyBcezNUW7E7+FDce16bwuuvWFgrLCoI3hWB066XtsnFIAgTQFj7I6npssd2AxFRukxelZEi6dLyePmn82nU0nMMHAQB4gbmgNIMEzs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UjoBPkpp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id E0221C2BC9E;
 	Wed, 28 Jan 2026 12:25:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1769603147;
-	bh=4Hf8WFVjj3Fr8FkaoNLFWcuWjq8ROC9IttcHryo+64E=;
+	bh=YUyTnratnqlECwzSAzk6FREP35eA7ZpjXULZWweNn00=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=W5v6j9ICJ+4Zl1bzJQOMCZCZw9JRUHTudvZ3krWOw8Kz04QNC82GWWwO8xzmdsRA4
-	 HUrPKkwznuk9HM4aK4Bw/GwIlPD3I2VtwYrtBivfdTDIfJR+rXyRxp2aHHj4CkyRjE
-	 1z16VDBRy5XTe1c+ymBHShZnnzxXzB+PJ8SgP84twzCSit0OgnbR57Z8dm1wLLghNw
-	 /XCs6upOJH4bbqPyu1rTRU0Ix2Y1BOZ2OC14hWGNt3WthKeIYP/mAizW6rrE+BWufP
-	 tQk7/x31tBl44PfEs9CFrEpifESSo26mdOhwwu5I6kqDZLhP/MSNxUPqyV5g/3agXK
-	 Hxlf56DvA4QwA==
+	b=UjoBPkppqn8rtO4vKy06deYyu4nEch30VOjE3bjy/VoXTBZk4h65wHGWcKMZCODQz
+	 UA8DLH8KxZsWyKahslFBiWxkb9ANq3GL5jp9rE+ifRxmYQoWFkCPNnYtABy2JzHlPj
+	 crqzUpII1nVBf3KC53dJjJ+60PxmRMrvy1h7mNYZNq+RCU4PHQTP8lbpV1n4k0Mc8L
+	 uZgEm2+C5vqQdRxR+NsE2/agxnnl/qxx5+iUM1+UQNMW3gXw/v1lTpC42xxSs1m4OE
+	 ox32ny50ToD3DLc4h8ss7AaxO+KZgUWtCzOwPHxOF0Z4xYC1izFWTM86KLOzBOtqxs
+	 hLWAAimfbKnfQ==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C7E8FD25B48;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D7ED3D25B4F;
 	Wed, 28 Jan 2026 12:25:47 +0000 (UTC)
 From: Ben Zong-You Xie via B4 Relay <devnull+ben717.andestech.com@kernel.org>
-Date: Wed, 28 Jan 2026 20:25:46 +0800
-Subject: [PATCH v3 3/4] MAINTAINERS: add an entry for Andes I2C driver
+Date: Wed, 28 Jan 2026 20:25:47 +0800
+Subject: [PATCH v3 4/4] riscv: dts: andes: qilai: add I2C controller
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,8 +57,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260128-atciic100-v3-3-8c002fcc2bb4@andestech.com>
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260128-atciic100-v3-4-8c002fcc2bb4@andestech.com>
 References: <20260128-atciic100-v3-0-8c002fcc2bb4@andestech.com>
 In-Reply-To: <20260128-atciic100-v3-0-8c002fcc2bb4@andestech.com>
 To: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -70,11 +70,11 @@ Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
  Ben Zong-You Xie <ben717@andestech.com>
 X-Mailer: b4 0.15-dev-47773
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1769603146; l=725;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1769603146; l=723;
  i=ben717@andestech.com; s=20260120; h=from:subject:message-id;
- bh=R5gM2pzYU1W+0/8WWd58LyJRsiDel4+cHcYEncZpNOE=;
- b=nkvGd6uphKL+SR3Wj1edsbzWRIJnDia++C+nJ2w9q+QAj8xXJGRcJmp0GxcDMwtYFnu6OTPqQ
- ZSL9x9NgzgLCrzEVeb9jOFiokz8xBwtii7pXPkzMKgGUp85tlApImYx
+ bh=lHt2jE6+LDmM/nXD6n9TCCx5A6rJ3cqG+Q1RYfyMh24=;
+ b=ccLAKZkoxh+ypDT9aqYIJZXyBbiUKMWGPeojaXOGtFgKOjUzLSWq5zobh6hYafCbsxBnvUDRo
+ YnPdTctjgjNDRCgcm6B9SaJGo82neYFZHQZ+8isvziAopFYQ/XzYb5B
 X-Developer-Key: i=ben717@andestech.com; a=ed25519;
  pk=nb8L7zQKGJpYk0yvrYKjViOZ34A36g1ZIsCmCsP518s=
 X-Endpoint-Received: by B4 Relay for ben717@andestech.com/20260120 with
@@ -86,58 +86,60 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-260385-lists,devicetree=lfdr.de,ben717.andestech.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260384-lists,devicetree=lfdr.de,ben717.andestech.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	DBL_PROHIBIT(0.00)[1.213.248.128:email];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
 	HAS_REPLYTO(0.00)[ben717@andestech.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linuxfoundation.org:email,andestech.com:replyto,andestech.com:email,andestech.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 46EA3A12DB
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,andestech.com:replyto,andestech.com:email,andestech.com:mid,1.206.87.96:email]
+X-Rspamd-Queue-Id: E42BAA12E3
 X-Rspamd-Action: no action
 
 From: Ben Zong-You Xie <ben717@andestech.com>
 
-Add an entry for the Andes I2C driver to the MAINTAINERS file.
+Add the I2C node to QiLai DTS.
 
 Signed-off-by: Ben Zong-You Xie <ben717@andestech.com>
 ---
- MAINTAINERS | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/riscv/boot/dts/andes/qilai.dtsi | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 6863d5fa07a1..e2fdcf2b9677 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1819,6 +1819,12 @@ S:	Supported
- F:	drivers/clk/analogbits/*
- F:	include/linux/clk/analogbits*
- 
-+ANDES I2C DRIVER
-+M:	Ben Zong-You Xie <ben717@andestech.com>
-+S:	Supported
-+F:	Documentation/devicetree/bindings/i2c/andestech,ae350-i2c.yaml
-+F:	drivers/i2c/busses/i2c-andes.c
+diff --git a/arch/riscv/boot/dts/andes/qilai.dtsi b/arch/riscv/boot/dts/andes/qilai.dtsi
+index de3de32f8c39..8b40f4d7f8d5 100644
+--- a/arch/riscv/boot/dts/andes/qilai.dtsi
++++ b/arch/riscv/boot/dts/andes/qilai.dtsi
+@@ -182,5 +182,12 @@ uart0: serial@30300000 {
+ 			reg-io-width = <4>;
+ 			no-loopback-test;
+ 		};
 +
- ANDROID DRIVERS
- M:	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
- M:	Arve Hjønnevåg <arve@android.com>
++		i2c: i2c@30800000 {
++			compatible = "andestech,qilai-i2c",
++				     "andestech,ae350-i2c";
++			reg = <0x0 0x30800000 0x0 0x100000>;
++			interrupts = <6 IRQ_TYPE_LEVEL_HIGH>;
++		};
+ 	};
+ };
 
 -- 
 2.34.1
