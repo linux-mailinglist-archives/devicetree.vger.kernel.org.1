@@ -1,271 +1,169 @@
-Return-Path: <devicetree+bounces-260621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260622-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mMpRLQdzemme6gEAu9opvQ
-	(envelope-from <devicetree+bounces-260621-lists+devicetree=lfdr.de@vger.kernel.org>)
+	id 2H43HAdzemme6gEAu9opvQ
+	(envelope-from <devicetree+bounces-260622-lists+devicetree=lfdr.de@vger.kernel.org>)
 	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:35:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38C03A8A38
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:35:19 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id E93D4A8A37
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:35:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 463943003EB4
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 20:31:29 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 10F1D3002E22
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 20:34:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5EB2336EE5;
-	Wed, 28 Jan 2026 20:31:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6AD8328B78;
+	Wed, 28 Jan 2026 20:34:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fJV8AyCj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uP/54hZc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 926FC3168E6
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 20:31:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C481C2D4B77;
+	Wed, 28 Jan 2026 20:34:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769632288; cv=none; b=cctYGNt4KFII36koZtb76/zSMGMxv9Qw9O5OABFBz6H0CIE0EzwqtK8myUN10vODyJ8GXO+6MiQLace74AhpicegmYfsoQm7GCtYsRBFcSP+tTU3e6/ml6TRDcvKZhRipD5YoEEqknBufeNjoSZI/iIygRihTy7C68YKtMoV/Yc=
+	t=1769632483; cv=none; b=sFYf46VFsn1eYV29Pli+67vxAs3QbNWtFUfeVIyo5n2ndLVQ48O7XUQG61GqvzYw9p6F/ZeorWIxdfX61u6rdumf+sK9U3aHC0Zioq+AJ8p82+FoHrkEHUQopda+P69qjr4auFJrgr4RV/5baFdXWYea5b/+A4P7hP+v3IexFB0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769632288; c=relaxed/simple;
-	bh=gBKZeGXmRB72ugZQee9uLksgDTLcgvK/XSgyK0HBTYs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ILk+hW17BEKH6pzH3PD76yzPHNeyuX7Xz2wbS5fspke/0GEv1AxNcNmbKU8gTDatW3BwtEsdc7Jo719R/yF7e79K4elB0L0uw8xaSsjHdgI+Dv9d0eGA9LAQG55BaR41kO+TQcGXhpjOqWsSBOkLals8WbBzM1uNtDazIly3Kao=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fJV8AyCj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FB36C2BCB8
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 20:31:28 +0000 (UTC)
+	s=arc-20240116; t=1769632483; c=relaxed/simple;
+	bh=cmYuQlBDDUjfKDQHbd81D0K9u1pyvJ63sJDqKouExlY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gKJnSuVI4T9FL8AQNf6BFXPM8qKBqlvhknFf9SgO8Y4Sv2eIpVp6shxogCDwNlA8XbQSbkzCbHwJYEPzMK5lhvvuvZtZFrAISp/8o4av+5kyO7XJrc1xyuVgkUu6pLPrtDT1N36bLVIz+W8X3bujizXVXTxs0YjZWEyzylIBzYU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uP/54hZc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 020BEC4CEF1;
+	Wed, 28 Jan 2026 20:34:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769632288;
-	bh=gBKZeGXmRB72ugZQee9uLksgDTLcgvK/XSgyK0HBTYs=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=fJV8AyCjQjvZdUGePNhoVfrZMdJ8GUJEIoBRWGtSh9gGvFIbEe9/lQ5JyFCmnyMRd
-	 LW5m8YYPHmQceI1ZKQQ9P8xMSo5IiNoqlbxq1tfORv65VIsTFCydOco9+eUa6UtmAt
-	 vS6+nmhkALtkUIZMtlkKHXoz4kZ7svueDOmz9icuRSMhnAKTcsuU+0DaEKdtJOtRRI
-	 ietsL1xrzMh4ibjlyiE5a0gI16gGcpoAgMak67adSFZPL5QkwrXl8TsG7EadV11am9
-	 92JPLOlDDWG7sNt1pNxfZ86fHE+RcUVheKB7+ANlu9cmdH/LKuQLrCaPYU0hqbPjyR
-	 R2hGaCris2jOg==
-Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-40423dbe98bso149527fac.2
-        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 12:31:28 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUmyEn+PGtH6g6Qvg4YR9tcTzFTPShw+aZIM+EELZ4bAKxpf0WTVzI0SruZt4Gh04Zx79yKjseLFXgl@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz/WCX5CrcdA1PdXhsdzLB0kTJaaJjE8frGPkrQMlj2cYxnxU1W
-	+olPb7Two4fA/6iQVSMiZrHEhVFTyGR14J3jH3szBdUWs2yGWBpvt3u/vpW9O+fw2Jg5v2IzwHm
-	E0t6fFII2AnQxMGeu7qmTHHHBj88iBq8=
-X-Received: by 2002:a05:6820:4888:b0:661:1d0c:a5b5 with SMTP id
- 006d021491bc7-662f20b2282mr3218498eaf.48.1769632287212; Wed, 28 Jan 2026
- 12:31:27 -0800 (PST)
+	s=k20201202; t=1769632483;
+	bh=cmYuQlBDDUjfKDQHbd81D0K9u1pyvJ63sJDqKouExlY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uP/54hZc1216Iwwh9RQoZqekZgMZLdWPW1e0kXKk2wMfgd7UGFS7UTo6gFKTcMMQn
+	 hZIByhYDwDTZKiNUkTcaeu3AXmBh7E7DObifFV/GO8vor6Xf42Ib3tvYYZmkMzgh0B
+	 4yuJ3G0qTBbJ7QHytZ0AHY4oPZAZG8q1sf+a7mdP1SuDzarczYkBHhaDNFOKQMpCbB
+	 lkSH6g05s2a14Q94vY52y8nTSsW15W9hunxjTihKGo8co3PFO37cYEhsj87LkWNqaK
+	 Uhoa/P+4EI6HX4/zA5GM8M3ScKYehbcMuvWJgBsW89f8PmUF4UgEG7CcTPfVbozhfE
+	 S4oHDYLC5vCsg==
+Date: Wed, 28 Jan 2026 12:34:41 -0800
+From: Drew Fustini <fustini@kernel.org>
+To: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+	Dmitry Baryshkov <lumag@kernel.org>,
+	Michal Wilczynski <m.wilczynski@samsung.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Han Gao <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>,
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	Icenowy Zheng <uwu@icenowy.me>
+Subject: Re: [PATCH v6 2/9] dt-bindings: display: add verisilicon,dc
+Message-ID: <aXpy4f9G9QKRh3Ts@x1>
+References: <20260123092830.4046009-1-zhengxingda@iscas.ac.cn>
+ <20260123092830.4046009-3-zhengxingda@iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260128-ssqosid-cbqri-v2-0-dca586b091b9@kernel.org> <20260128-ssqosid-cbqri-v2-14-dca586b091b9@kernel.org>
-In-Reply-To: <20260128-ssqosid-cbqri-v2-14-dca586b091b9@kernel.org>
-From: "Rafael J. Wysocki" <rafael@kernel.org>
-Date: Wed, 28 Jan 2026 21:31:16 +0100
-X-Gmail-Original-Message-ID: <CAJZ5v0iSZ6qvhUWHtrWuO5XBviMcLUMfRB_hWn-FxAhe=LoA-Q@mail.gmail.com>
-X-Gm-Features: AZwV_QhTWYQto4BrtdQANhW7sZdsYf8E3diyh5q6rhkPzFH1j0ccCk27nUICkrQ
-Message-ID: <CAJZ5v0iSZ6qvhUWHtrWuO5XBviMcLUMfRB_hWn-FxAhe=LoA-Q@mail.gmail.com>
-Subject: Re: [PATCH RFC v2 14/17] include: acpi: actbl2: Add structs for RQSC table
-To: Drew Fustini <fustini@kernel.org>
-Cc: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
-	=?UTF-8?B?UmFkaW0gS3LEjW3DocWZ?= <rkrcmar@ventanamicro.com>, 
-	Samuel Holland <samuel.holland@sifive.com>, Adrien Ricciardi <aricciardi@baylibre.com>, 
-	Nicolas Pitre <npitre@baylibre.com>, =?UTF-8?Q?Kornel_Dul=C4=99ba?= <mindal@semihalf.com>, 
-	Atish Patra <atish.patra@linux.dev>, Atish Kumar Patra <atishp@rivosinc.com>, 
-	Vasudevan Srinivasan <vasu@rivosinc.com>, Ved Shanbhogue <ved@rivosinc.com>, 
-	yunhui cui <cuiyunhui@bytedance.com>, Chen Pei <cp0613@linux.alibaba.com>, 
-	Liu Zhiwei <zhiwei_liu@linux.alibaba.com>, Weiwei Li <liwei1518@gmail.com>, 
-	guo.wenjia23@zte.com.cn, liu.qingtao2@zte.com.cn, 
-	Reinette Chatre <reinette.chatre@intel.com>, Tony Luck <tony.luck@intel.com>, 
-	Babu Moger <babu.moger@amd.com>, Peter Newman <peternewman@google.com>, 
-	Fenghua Yu <fenghua.yu@intel.com>, James Morse <james.morse@arm.com>, 
-	Ben Horgan <ben.horgan@arm.com>, Dave Martin <Dave.Martin@arm.com>, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, x86@kernel.org, 
-	Rob Herring <robh@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>, 
-	Robert Moore <robert.moore@intel.com>, Sunil V L <sunilvl@ventanamicro.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, linux-acpi@vger.kernel.org, 
-	acpica-devel@lists.linux.dev, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260123092830.4046009-3-zhengxingda@iscas.ac.cn>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260621-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,ventanamicro.com,sifive.com,baylibre.com,semihalf.com,linux.dev,rivosinc.com,bytedance.com,linux.alibaba.com,gmail.com,zte.com.cn,intel.com,amd.com,google.com,arm.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	TAGGED_FROM(0.00)[bounces-260622-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[42];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[28];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[rafael@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,redhat.com,pengutronix.de,samsung.com,bootlin.com,disroot.org,vger.kernel.org,lists.freedesktop.org,lists.infradead.org,icenowy.me];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[fustini@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 38C03A8A38
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[icenowy.me:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.0:email]
+X-Rspamd-Queue-Id: E93D4A8A37
 X-Rspamd-Action: no action
 
-On Wed, Jan 28, 2026 at 9:28=E2=80=AFPM Drew Fustini <fustini@kernel.org> w=
-rote:
->
-> Add structs for the RQSC table which describes the properties of the
-> RISC-V QoS controllers (CBQRI) in the system. The table also describes
-> the topological arrangement of the QoS controllers and resources in the
-> system. The topology is expressed in terms of the location of the
-> resources within the system and the relation between the QoS Controller
-> and the resource it manages.
->
-> Link: https://github.com/riscv-non-isa/riscv-cbqri/releases/tag/v1.0
-> Link: https://github.com/riscv-non-isa/riscv-rqsc/blob/main/src/chapter2.=
-adoc
-> Signed-off-by: Drew Fustini <fustini@kernel.org>
-
-Of course, this change needs to go through upstream ACPICA.
-
+On Fri, Jan 23, 2026 at 05:28:23PM +0800, Icenowy Zheng wrote:
+> From: Icenowy Zheng <uwu@icenowy.me>
+> 
+> Verisilicon has a series of display controllers prefixed with DC and
+> with self-identification facility like their GC series GPUs.
+> 
+> Add a device tree binding for it.
+> 
+> Depends on the specific DC model, it can have either one or two display
+> outputs, and each display output could be set to DPI signal or "DP"
+> signal (which seems to be some plain parallel bus to HDMI controllers).
+> 
+> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 > ---
->  include/acpi/actbl2.h | 92 +++++++++++++++++++++++++++++++++++++++++++++=
-++++++
->  1 file changed, 92 insertions(+)
->
-> diff --git a/include/acpi/actbl2.h b/include/acpi/actbl2.h
-> index f726bce3eb84..7367990349ee 100644
-> --- a/include/acpi/actbl2.h
-> +++ b/include/acpi/actbl2.h
-> @@ -53,6 +53,7 @@
->  #define ACPI_SIG_RGRT           "RGRT" /* Regulatory Graphics Resource T=
-able */
->  #define ACPI_SIG_RHCT           "RHCT" /* RISC-V Hart Capabilities Table=
- */
->  #define ACPI_SIG_RIMT           "RIMT" /* RISC-V IO Mapping Table */
-> +#define ACPI_SIG_RQSC           "RQSC" /* RISC-V RISC-V Quality of Servi=
-ce Controller */
->  #define ACPI_SIG_SBST           "SBST" /* Smart Battery Specification Ta=
-ble */
->  #define ACPI_SIG_SDEI           "SDEI" /* Software Delegated Exception I=
-nterface Table */
->  #define ACPI_SIG_SDEV           "SDEV" /* Secure Devices table */
-> @@ -3165,6 +3166,97 @@ enum acpi_rgrt_image_type {
->         ACPI_RGRT_TYPE_RESERVED =3D 2     /* 2 and greater are reserved *=
-/
->  };
->
-> +/***********************************************************************=
-********
-> + *
-> + * RQSC - RISC-V Quality of Service Controller
-> + *        Version 1
-> + *
-> + ***********************************************************************=
-*******/
-> +
-> +struct acpi_table_rqsc_fields_res {
-> +       u8 type;        // 1
-> +       u8 resv;        // 1
-> +       u16 length;     // 2
-> +       u16 flags;      // 2
-> +       u8 resv2;       // 1
-> +       u8 id_type;     // 1
-> +       u64 id1;        // 8
-> +       u32 id2;        // 4
-> +};
-> +
-> +struct acpi_table_rqsc_fields {
-> +       u8 type;        //  1
-> +       u8 resv;        //  1
-> +       u16 length;     //  2
-> +       u32 reg[3];     // 12
-> +       u32 rcid;       //  4
-> +       u32 mcid;       //  4
-> +       u16 flags;      //  2
-> +       u16 nres;       //  2
-> +       struct acpi_table_rqsc_fields_res res; // 20
-> +};
-> +
-> +struct acpi_table_rqsc {
-> +       struct acpi_table_header header;        /* Common ACPI table head=
-er */
-> +       u32 num;
-> +       struct acpi_table_rqsc_fields f[6];
-> +};
-> +
-> +/* RQSC Flags */
-> +#define ACPI_RQSC_TIMER_CANNOT_WAKEUP_CPU       (1)
-> +
-> +/*
-> + * RQSC subtables
-> + */
-> +struct acpi_rqsc_node_header {
-> +       u16 type;
-> +       u16 length;
-> +       u16 revision;
-> +};
-> +
-> +/* Values for RQSC subtable Type above */
-> +enum acpi_rqsc_node_type {
-> +       ACPI_RQSC_NODE_TYPE_ISA_STRING =3D 0x0000,
-> +       ACPI_RQSC_NODE_TYPE_CMO =3D 0x0001,
-> +       ACPI_RQSC_NODE_TYPE_MMU =3D 0x0002,
-> +       ACPI_RQSC_NODE_TYPE_RESERVED =3D 0x0003,
-> +       ACPI_RQSC_NODE_TYPE_HART_INFO =3D 0xFFFF,
-> +};
-> +
-> +/*
-> + * RQSC node specific subtables
-> + */
-> +
-> +/* ISA string node structure */
-> +struct acpi_rqsc_isa_string {
-> +       u16 isa_length;
-> +       char isa[];
-> +};
-> +
-> +struct acpi_rqsc_cmo_node {
-> +       u8 reserved;            /* Must be zero */
-> +       u8 cbom_size;           /* CBOM size in powerof 2 */
-> +       u8 cbop_size;           /* CBOP size in powerof 2 */
-> +       u8 cboz_size;           /* CBOZ size in powerof 2 */
-> +};
-> +
-> +struct acpi_rqsc_mmu_node {
-> +       u8 reserved;            /* Must be zero */
-> +       u8 mmu_type;            /* Virtual Address Scheme */
-> +};
-> +
-> +enum acpi_rqsc_mmu_type {
-> +       ACPI_RQSC_MMU_TYPE_SV39 =3D 0,
-> +       ACPI_RQSC_MMU_TYPE_SV48 =3D 1,
-> +       ACPI__MMU_TYPE_SV57 =3D 2
-> +};
-> +
-> +/* Hart Info node structure */
-> +struct acpi_rqsc_hart_info {
-> +       u16 num_offsets;
-> +       u32 uid;                /* ACPI processor UID */
-> +};
-> +
->  /***********************************************************************=
-********
->   *
->   * RHCT - RISC-V Hart Capabilities Table
->
-> --
-> 2.43.0
->
+> Changes in v6:
+> - Added Rob's R-b.
+> 
+> Changes in v5:
+> - Dropped the requirement of port@0.
+> - Dropped the if clause for TH1520, which seems to be not needed because
+>   of implicit DT binding rules.
+> 
+> Changes in v4:
+> - Added a comment for "verisilicon,dc" that says the ID/revision is
+>   discoverable via registers.
+> - Removed clock minItems constraint w/o specific compatible strings.
+> 
+> Changes in v3:
+> - Added SoC-specific compatible string, and arm the binding with clock /
+>   port checking for the specific SoC (with a 2-output DC).
+> 
+> Changes in v2:
+> - Fixed misspelt "versilicon" in title.
+> - Moved minItems in clock properties to be earlier than items.
+> - Re-aligned multi-line clocks and resets in example.
+> 
+>  .../bindings/display/verisilicon,dc.yaml      | 122 ++++++++++++++++++
+>  1 file changed, 122 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+
+I've applied the bindings patches (1, 2, 4) to thead-dt-for-next as well
+so that 'make W=1 dtbs_check' won't break for the next release of
+linux-next.
+
+https://git.kernel.org/pub/scm/linux/kernel/git/fustini/linux.git/log/?h=thead-dt-for-next
+
+Please see my reply to patch 1 for the rest of my message.
+
+Thanks,
+Drew
 
