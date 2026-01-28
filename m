@@ -1,246 +1,313 @@
-Return-Path: <devicetree+bounces-260294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260295-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MDSiDZbheWm50gEAu9opvQ
-	(envelope-from <devicetree+bounces-260294-lists+devicetree=lfdr.de@vger.kernel.org>)
+	id EOuQKJbheWm50gEAu9opvQ
+	(envelope-from <devicetree+bounces-260295-lists+devicetree=lfdr.de@vger.kernel.org>)
 	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 11:14:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 975B19F510
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 11:14:45 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E27A9F511
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 11:14:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 59A44300BE2C
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 10:14:28 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 692713005584
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 10:14:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A30932DC787;
-	Wed, 28 Jan 2026 10:14:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBBE02D8DDB;
+	Wed, 28 Jan 2026 10:14:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rt++YOd+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QXfFbSuX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E6B52DC33F;
-	Wed, 28 Jan 2026 10:14:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C83492D46B2;
+	Wed, 28 Jan 2026 10:14:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769595266; cv=none; b=eMeiK6peJ2bdw52UwghcUbfgCxo/IFYK1nebiP+ti5SwnSmz5l0kXt7qdIuW5T3pb2PDXbehfqFsftPRndQKRa3HMCR9hqTaeBdCpPUGwZg3+eP9cQAdEgDSU39SeNGjuBlMVNDbL0o39APGhj98UgRn6GAcF4z8Uk7pCVULJk8=
+	t=1769595276; cv=none; b=UwS2TVx4aKC4/UX8tsG6nq+nmw1CQkeeKhEQJZD5qRZs4p0SxkTWwC9vYlTXDNk+Ok44UkXL4w9LiafN9y8ch7TV4wG+Dc4o3NdMa6tET37xb7kIuJKNS0ql+NjOWpM3vFe1u5Ju9GAJsqxz62LmMo9coxmf8ziHMAXalX7LNaw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769595266; c=relaxed/simple;
-	bh=4OWfhnYD2xIoJP/oYLpREJGUH7ShEHWsA3ATbPvp9sg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=O1PEfqvSeAk396bqX95lecVrOzEXne4ATQ0HF4Os+wK3XWuXWnaLw4MPPgWBAjwxwhyN5vtPuNgyczRkS6E5xtBkmiAtKqvs0HEWIk5cyPAQyf6qQux//973KHR8Da+BQWc08hFUrcbW05BtNaVU4yQq+2REkHZCaqxKYsLSrSg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rt++YOd+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A494C16AAE;
-	Wed, 28 Jan 2026 10:14:23 +0000 (UTC)
+	s=arc-20240116; t=1769595276; c=relaxed/simple;
+	bh=KAgStXIY/0n/ED+LlmoyP5606/L5gBLVdKMUWMJzF24=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=O/rZ1inFUPUG2nEi6cixzs+vVn10TbsxNJj9wfn2G6IYh5BYbQQ4LUfrtKH5rBVd4Mve/aTxsrQeFC9SmjPuRJgE/OEwoWHtV6mLV1mauTQMq0ZNLFOTASqOWUKyeR8tVJIk+56q+WhC5YixGrXY73JD2BRhwQZrcZB0ZvDV3lw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QXfFbSuX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 772CDC4CEF1;
+	Wed, 28 Jan 2026 10:14:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769595266;
-	bh=4OWfhnYD2xIoJP/oYLpREJGUH7ShEHWsA3ATbPvp9sg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rt++YOd+C4NUVRt2vuKCPAMReK7DRcFwepu1MTh9dUvzIPKqtZzazctknpKApIQXZ
-	 xJOS1/gJtY5uj9gxcYenbGN4oZwD4qMNdb9VO6iW6i6TT14POXPS6dJ9JBgObGpVhy
-	 XFpbvH1sRNLCtV/M/i0WHsh3HhGqt/SHgqOdk4C950DAOA3ii0LW5e9U/IUWXLN3OF
-	 Bn/tc2x7X76d/ZT6dMRDGRMW5UQ1bRkBe3MBuYxqko/zxBRJfSirw4G9A4eFF9b4ga
-	 Tiw/sHdNq5SPgf1cbYW+sBvYMlfiKVHwb0lofWvB+UybKpQWJVKZ1NgifAhTu5RVaJ
-	 CexKoFbRERkxw==
-Message-ID: <14c04d1d-f42f-4ac9-a887-ed37cedb4913@kernel.org>
-Date: Wed, 28 Jan 2026 11:14:21 +0100
+	s=k20201202; t=1769595276;
+	bh=KAgStXIY/0n/ED+LlmoyP5606/L5gBLVdKMUWMJzF24=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QXfFbSuXZPO1u9arOeVTJIcR3HaTkPSGMyDVMl3e1u1qgoPVhi5DDzilQaQXqgIbn
+	 aQtks6pXXY08gKatTcr62sghWWZ4mRMZr8YtpcQCoStbBs0IXGL16NxY8NIC8X1Md1
+	 Zydz7EMFBcZ/cwRpYU+Y42TYcltGvC3aE3qp0E3wwxnMlrZXjkpX0+mq5qR/xQ6bJH
+	 CWy7/unTg014tiM0wPzMIW48SIxw4kFK5zkltZAdeOokK6hdIPQ+8SeoYZ1Uh3h04h
+	 4PqE6Zl/1mBWx0ufUZWyzzTrc2OulnvK1nLu35LS1z0arr2G/XdIXDwsmi2SdQ8tAh
+	 VwhMC8fUYBD0A==
+Date: Wed, 28 Jan 2026 10:14:32 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Gary Yang <gary.yang@cixtech.com>, lee@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
+	peter.chen@cixtech.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	cix-kernel-upstream@cixtech.com
+Subject: Re: [PATCH v4 1/3] dt-bindings: reset: add sky1 reset controller
+Message-ID: <20260128-coke-poser-56bb1a5f6d00@spud>
+References: <20260128093611.1932770-1-gary.yang@cixtech.com>
+ <20260128093611.1932770-2-gary.yang@cixtech.com>
+ <556bf15b-727a-4eff-92c7-9fc6c744047b@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: backlight: gpio-backlight: allow
- multiple GPIOs
-To: tessolveupstream@gmail.com, lee@kernel.org, danielt@kernel.org,
- jingoohan1@gmail.com
-Cc: deller@gmx.de, pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, dri-devel@lists.freedesktop.org,
- linux-fbdev@vger.kernel.org, linux-leds@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260120125036.2203995-1-tessolveupstream@gmail.com>
- <20260120125036.2203995-2-tessolveupstream@gmail.com>
- <3f3c47ea-1660-4bd4-ab89-3bdf58217995@kernel.org>
- <54d156ba-e177-4059-a808-2505983b4e2e@gmail.com>
- <5f78fbe8-288d-4b0a-af57-e834bd1186ba@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <5f78fbe8-288d-4b0a-af57-e834bd1186ba@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="IlEptCxOdo5jO1Kg"
+Content-Disposition: inline
+In-Reply-To: <556bf15b-727a-4eff-92c7-9fc6c744047b@kernel.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260294-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-260295-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
-	FREEMAIL_CC(0.00)[gmx.de,kernel.org,lists.freedesktop.org,vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 975B19F510
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,cixtech.com:email,0.244.36.0:email]
+X-Rspamd-Queue-Id: 1E27A9F511
 X-Rspamd-Action: no action
 
-On 27/01/2026 13:46, tessolveupstream@gmail.com wrote:
-> 
-> 
-> On 23-01-2026 16:41, tessolveupstream@gmail.com wrote:
->>
->>
->> On 20-01-2026 20:01, Krzysztof Kozlowski wrote:
->>> On 20/01/2026 13:50, Sudarshan Shetty wrote:
->>>> Update the gpio-backlight binding to support configurations that require
->>>> more than one GPIO for enabling/disabling the backlight.
->>>
->>>
->>> Why? Which devices need it? How a backlight would have three enable
->>> GPIOs? I really do not believe, so you need to write proper hardware
->>> justification.
->>>
->>
->> To clarify our hardware setup: 
->> the panel requires one GPIO for the backlight enable signal, and it 
->> also has a PWM input. Since the QCS615 does not provide a PWM controller 
->> for this use case, the PWM input is connected to a GPIO that is driven 
->> high to provide a constant 100% duty cycle, as explained in the link 
->> below.
->> https://lore.kernel.org/all/20251028061636.724667-1-tessolveupstream@gmail.com/T/#m93ca4e5c7bf055715ed13316d91f0cd544244cf5
->>  
->>>>
->>>> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
->>>> ---
->>>>  .../leds/backlight/gpio-backlight.yaml        | 24 +++++++++++++++++--
->>>>  1 file changed, 22 insertions(+), 2 deletions(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
->>>> index 584030b6b0b9..4e4a856cbcd7 100644
->>>> --- a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
->>>> +++ b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
->>>> @@ -16,8 +16,18 @@ properties:
->>>>      const: gpio-backlight
->>>>  
->>>>    gpios:
->>>> -    description: The gpio that is used for enabling/disabling the backlight.
->>>> -    maxItems: 1
->>>> +    description: |
->>>> +      The gpio that is used for enabling/disabling the backlight.
->>>> +      Multiple GPIOs can be specified for panels that require several
->>>> +      enable signals. All GPIOs are controlled together.
->>>> +    type: array
->>>
->>> There is no such syntax in the bindings, from where did you get it? Type
->>> is already defined.
->>>
->>> items:
->>>   minItems: 1
->>>   maxItems: 3
->>>
->>>
->>>> +    minItems: 1
->>>> +    items:
->>>> +      type: array
->>>> +      minItems: 3
->>>> +      maxItems: 3
->>>> +      items:
->>>> +        type: integer
->>>
->>> All this is some odd stuff - just to be clear, don't send us LLM output.
->>> I don't want to waste my time to review microslop.
->>>
->>> Was it done with help of Microslop?
->>>
->>
->> I understand now that the schema changes I proposed were not correct, 
->> and I will address this in the next patch series. My intention was to 
->> check whether the gpio-backlight binding could support more than one 
->> enable-type GPIO. 
->> Could you please advise what would be an appropriate maximum number of 
->> GPIOs for gpio-backlight in such a scenario? For example, would allowing 
->> 2 GPIOs be acceptable, or should this case be handled in a different way?
->>
-> 
-> In line with Daniel’s suggestion, I am planning to adopt a fixed upper 
-> limit for the number of backlight GPIOs. The current hardware only 
-> requires two GPIOs, so the maxItems can be set to 2.
-> 
-> If future platforms or customers require support for a higher number 
-> of GPIOs, this limit can be increased and the driver can be 
-> updated accordingly.
-> 
-> Kindly advise if this solution aligns with your expectations, or if 
-> you prefer an alternative maximum value.
 
+--IlEptCxOdo5jO1Kg
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-You have entire commit msg to explain the hardware and explain WHY you
-are doing this. In a concise and readable way. I will not be going
-through 2 different email threads with 20 messages to figure that out.
+On Wed, Jan 28, 2026 at 11:01:40AM +0100, Krzysztof Kozlowski wrote:
+> On 28/01/2026 10:36, Gary Yang wrote:
+> > There are two reset controllers on Cix sky1 Soc.
+> > One is located in S0 domain, and the other is located
+> > in S0 and S5 domain.
+>=20
+> Please wrap commit message according to Linux coding style / submission
+> process (neither too early nor over the limit):
+> https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/su=
+bmitting-patches.rst#L597
+>=20
+> >=20
+> > Signed-off-by: Gary Yang <gary.yang@cixtech.com>
+> > Link: https://lore.kernel.org/r/20251124063235.952136-2-gary.yang@cixte=
+ch.com
+> > Signed-off-by: Peter Chen <peter.chen@cixtech.com>
+> > ---
+> >  .../devicetree/bindings/mfd/syscon.yaml       |   7 +
+> >  .../bindings/reset/cix,sky1-rst.yaml          |  46 +++++
+> >  .../soc/cix/cix,sky1-system-controller.yaml   |  48 +++++
+> >  include/dt-bindings/reset/cix,sky1-rst-fch.h  |  42 +++++
+> >  include/dt-bindings/reset/cix,sky1-rst.h      | 164 ++++++++++++++++++
+> >  5 files changed, 307 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/reset/cix,sky1-rs=
+t.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/soc/cix/cix,sky1-=
+system-controller.yaml
+> >  create mode 100644 include/dt-bindings/reset/cix,sky1-rst-fch.h
+> >  create mode 100644 include/dt-bindings/reset/cix,sky1-rst.h
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Docume=
+ntation/devicetree/bindings/mfd/syscon.yaml
+> > index 55efb83b1495..be864a6b8efb 100644
+> > --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
+> > +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> > @@ -170,6 +170,8 @@ properties:
+> >                - cirrus,ep7209-syscon1
+> >                - cirrus,ep7209-syscon2
+> >                - cirrus,ep7209-syscon3
+> > +              - cix,sky1-system-controller
+> > +              - cix,sky1-s5-system-controller
+> >                - cnxt,cx92755-uc
+> >                - freecom,fsg-cs2-system-controller
+> >                - fsl,imx93-aonmix-ns-syscfg
+> > @@ -254,6 +256,11 @@ properties:
+> >            - const: microchip,pic64gx-sysreg-scb
+> >            - const: microchip,mpfs-sysreg-scb
+> >            - const: syscon
+> > +      - items:
+> > +          - enum:
+> > +              - cix,sky1-system-controller
+> > +              - cix,sky1-s5-system-controller
+> > +          - const: syscon
+>=20
+> Do not create your own style. Cix is not special. There is already an
+> enum for EVERYONE.
+>=20
+> > =20
+> >    reg:
+> >      maxItems: 1
+>=20
+> Independent patch. Please do not combine unrelated patches into one.
 
-Best regards,
-Krzysztof
+Was mid reply when I saw this mail come through, just wanted to add the
+one thing I had to say in excess of what you've written:
+
+All the changes to syscon.yaml should be deleted, as it adds a competing
+definition to the one in the dedicated file, and I am surprised
+something like this passed testing.. Perhaps it passes if
+DT_SCHEMA_FILES=3Dsyscon.yaml but it'd fail a real dtbs_check, right?
+At v4, I'd be hoping for more thorough testing to be done.
+
+Cheers,
+Conor.
+
+>=20
+>=20
+> > diff --git a/Documentation/devicetree/bindings/reset/cix,sky1-rst.yaml =
+b/Documentation/devicetree/bindings/reset/cix,sky1-rst.yaml
+> > new file mode 100644
+> > index 000000000000..4323acdc2c45
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/reset/cix,sky1-rst.yaml
+> > @@ -0,0 +1,46 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/reset/cix,sky1-rst.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: CIX Sky1 Reset Controller
+> > +
+> > +maintainers:
+> > +  - Gary Yang <gary.yang@cixtech.com>
+> > +
+> > +description: |
+> > +  CIX Sky1 reset controller can be used to reset various set of periph=
+erals.
+> > +  There are two reset controllers, one is located in S0 domain, the ot=
+her
+> > +  is located in S0 and S5 domain.
+> > +
+> > +  See also:
+> > +  - include/dt-bindings/reset/cix,sky1-rst.h
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +          - cix,sky1-rst
+> > +          - cix,sky1-rst-fch
+> > +
+> > +  '#reset-cells':
+> > +    const: 1
+>=20
+> No resources? Then not a dedicated child node, but part of the syscon.
+> Fold this entire binding into the parent node.
+>=20
+> > +
+> > +required:
+> > +  - compatible
+> > +  - '#reset-cells'
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    syscon@16000000 {
+> > +      compatible =3D "cix,sky1-s5-system-controller", "syscon",
+> > +                "simple-mfd";
+>=20
+> Mess alignment.
+>=20
+> > +      reg =3D <0x0 0x16000000 0x0 0x1000>;
+>=20
+> Does not belong here.
+>=20
+> > +      src: reset-controller {
+> > +        compatible =3D "cix,sky1-rst";
+> > +        #reset-cells =3D <1>;
+> > +      };
+>=20
+> > +    };
+> > diff --git a/Documentation/devicetree/bindings/soc/cix/cix,sky1-system-=
+controller.yaml b/Documentation/devicetree/bindings/soc/cix/cix,sky1-system=
+-controller.yaml
+> > new file mode 100644
+> > index 000000000000..f6e2776e3f53
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/soc/cix/cix,sky1-system-control=
+ler.yaml
+> > @@ -0,0 +1,48 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/soc/cix/cix,sky1-system-controller.=
+yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Cix Sky1 SoC system controller register region
+> > +
+> > +maintainers:
+> > +  - Gary Yang <gary.yang@cixtech.com>
+> > +
+> > +description:
+> > +  An wide assortment of registers of the system controller on Sky1 SoC,
+> > +  including resets and usb.
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/mfd/syscon.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - contains:
+>=20
+> What? No, don't come with random code. There is no single code like this.
+>=20
+> > +          - enum:
+> > +              - cix,sky1-system-controller
+> > +              - cix,sky1-s5-system-controller
+> > +          - const: syscon
+> > +          - const: simple-mfd
+>=20
+> Huh? You already documented this.
+>=20
+> NAK, you are making random changes without any concept.
+>=20
+> Read previous feedback. Really carefully.
+>=20
+> Best regards,
+> Krzysztof
+
+--IlEptCxOdo5jO1Kg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaXnhiAAKCRB4tDGHoIJi
+0qlIAQDYoPNSj6epvxuaK++lkC3BS+BwQkFo9VsnahgMXn2zMwEAv7Pa1k8CBf7S
+5C6M3SuzcZoIF4AYeTyjTxTGxg7KbwE=
+=dMPV
+-----END PGP SIGNATURE-----
+
+--IlEptCxOdo5jO1Kg--
 
