@@ -1,164 +1,243 @@
-Return-Path: <devicetree+bounces-260560-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260561-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AKwLKo5Hemkp5AEAu9opvQ
-	(envelope-from <devicetree+bounces-260560-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 18:29:50 +0100
+	id QG48GhNKemkp5AEAu9opvQ
+	(envelope-from <devicetree+bounces-260561-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 18:40:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4997BA6EBD
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 18:29:50 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0357A708D
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 18:40:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 75E2530182B2
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 17:27:48 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 9644F3006D77
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 17:32:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 086A833EAE7;
-	Wed, 28 Jan 2026 17:27:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C0BA29D288;
+	Wed, 28 Jan 2026 17:32:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Nifj2gvW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QK56Y3Gx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 631DF330D29
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 17:27:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.54
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769621265; cv=pass; b=YL/g5LCLHsa3zEOFV9Xs6NzQAWMl0A6UvLS5WxCeqvM/aWklrBJ4g/DMPCJH72mhm+MuFziAhzB7gj6DE5VQ6NZGzFTI+p/fzfLY5LJTtY9NFPR6QrJChBcvKrleNyIzC1xV+Ou1q8rmoxh//q1nQapw7LAykAb5n/X27Ta3GVI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769621265; c=relaxed/simple;
-	bh=5RnEkCjzYpz4k2iW4MASQPKjHVwhosBVIbiwaiUkDW8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OnBdhzOP/Kh95UaFH4DbNiz6lEFqNTy5W9p/Rkwr1R42zltKd+fHPME1YtWrXFF8yHNUF4+bpOwmBS3TqZiM1eanZDVU82tXEm2pbwRzeMLflHUts8VB0qfeoHoIJcUdLpU/FSqyk/QJWNK665hhH494QUo7vNimd6FQfbWPoaE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Nifj2gvW; arc=pass smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-59de8860b94so48065e87.0
-        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 09:27:44 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1769621263; cv=none;
-        d=google.com; s=arc-20240605;
-        b=OxaBRvhVt/slenS64MitsH2JTLBQgJ9s6FpYVGKjKdshHHekLaNa6kC64n/vvMMGUe
-         cpeCtxzhnmjJCeiq2/T5KlC9MIwgs0zg+y3BvPMLPf1Ci9f54aTW+PY4ZyFGrapkUlZ+
-         SIlUs809ZDAixDQtFqoSp/uKnhxbtt5ic7fB2gjIm9sp8rCIrbKqcjlVJqo/1Mqt1/74
-         3zwXbbY31FLmXtryaKMFlyH4M/RXxfVxagXmWEzVcoX7ujLG5VyljdFzg8pvOYHBXchI
-         PqeOhXI4t1+518bOMyQCnqXdH9LdF6MPHIewWTYqe8lXr8rkMHZZLbVyXqhrO08gAMY4
-         /PBQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=PUaTn5YCYH1aGyPr+judBHKrOAYlextt2AGAL94fdA4=;
-        fh=aGc3838T3Ajp0i28RPzdwbjvtpc2kSRLplZgxnw3SkE=;
-        b=jDaWv1fbjFlSpCCjIkQnbHV42S8d5HXq03ZrG76+2YvX34LDcilsy8O+Xl6nZIgV4i
-         MNH6Ym/en18JDfwYhl5q6+Jb0qGRgv7zmLFSpWaNaB9VjdyqAb3KC0mhkutBYYmNt+SZ
-         3jojjviuLLMfefAYAyenUdI9eU7YFvBy7qvorPvTkSlhc8DpP0iDq48L3Szjcd3yqYJu
-         6qBrbSqVM6rq27vn+TwMC4ufYfZK/EzdTYIphapmiXOG51sK1HbvhnmYSoLGsvEo5iZj
-         KpyYP3Ixl1JYrLwxTAemKcg8wDOEtOLnfK9QUPWo5AB7IdihrSqWQLRjmLbGO0LazNaI
-         ASCA==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769621263; x=1770226063; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PUaTn5YCYH1aGyPr+judBHKrOAYlextt2AGAL94fdA4=;
-        b=Nifj2gvWIkKiqCsJzWv81dnjhHNg2ERJXpZjAo4Fs3AUytevtXCzIBJ+dkyp7Btw+o
-         ZSZQF67+1MbzpS41nwn8/O6K5+RxgoSM+wx4kFXdrheszHLUliZomjBzecWQkFanl5/9
-         IVFd7cfmUFeWQjJKZnh9RjZ7dFhrL0/JRg6CodP2i7in+0HpHX9tDDIm+kLLArzxk5OJ
-         V06KC/wswB1I0hWUVNkevLpM5Z+j6KiIPeMtKfn2lyyA0Zz3BFtKBfVbDG/fFRDV2KLN
-         7wDPRkCqFNQw7NPtbkqW39EZ5cLhYi5QVW2tKhs6zSJkSKS14grJYy5wHmYqYcI7DFLk
-         YkiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769621263; x=1770226063;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=PUaTn5YCYH1aGyPr+judBHKrOAYlextt2AGAL94fdA4=;
-        b=H4cyxZ8VveImDsCSwLdnYyF9UVe85hH75ULqIRjIfjanhS8bwP9hPzGRG1bjgmIjGC
-         u//Zpm6GD2gOxSi2GxX6R4Tdxr9rgszeUbMSgWGICkCzQTDsqbI5jX9bKq/G4v5bFJ8a
-         P8RRAnupyJLeDI+Vw36CyIjo0uQ+BRkc8bdFTsjw5pdOsqp32nxzjXCq7SsBVyftMmy/
-         y4VSyytVz2FRnczTY6UslHEi+bh/3X7rpYsa39Ok0RrmOpcBko747Cqp53AFCg/Gli15
-         fUf/ITBce/H2YuIM/S5pZBfHE/e3fSM0PbaP61rMIqjiN4LOG5H/q2f1yoACm/S3aN19
-         Gd/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUW2Hhocs0fjRpCPGCN4M4oZVy3HtPguViAALh7lfispTFuoyEQ3DB4uqkpHGfyqjaNjDdfmmaLjbr7@vger.kernel.org
-X-Gm-Message-State: AOJu0YxwE+iiYTFJoyHfXx8N+pMheY/4aKcJZt2jEKjPhwNPhdMGwaH4
-	iOMZzXHmNgZyUfwaCvBc1pXqYQWpGz0pATF2D3XFocP+zguY2vcPUp5pJwlkj7RyCzO2Bn/qXJ9
-	fZnC8ZaLwv+t0ESKkDFo/9a2T4VuAoRE=
-X-Gm-Gg: AZuq6aIVNSfO7hYZvAtYpIaFFFXTpS2H0Hb0xSuDHims/OGLu24VQnMqg9KGs/QKpiC
-	C/DzE05SSypbMd93Sx5kronbaYEUrWPCBJzG7p3NPaSwVFV+ER9QXRO+E6Sv8SxP5C7yqkmXQCA
-	Z56KNhF3VtIFEjLg0tSiN6pu6VA9PxmdCfqtkN99eeyPGw7F6cSqYe548stHFq+JpqcJ0d2wfI1
-	z+IYtjjYVYbQTF3D9gd1yV+o9GcCBRU2dJF41fQSZHjlTDDVdrjl5yg+kcaAl73CZJ30RmtHsZ7
-	KvmYOZKxmDEY/VJyr6ianxk9V4izCZexaLxA4w==
-X-Received: by 2002:a05:6512:3b9f:b0:59d:d32b:1d1e with SMTP id
- 2adb3069b0e04-59e04035516mr2970279e87.51.1769621262284; Wed, 28 Jan 2026
- 09:27:42 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56F9227D782;
+	Wed, 28 Jan 2026 17:32:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769621573; cv=none; b=SgltsuW0YzX0g/D+v6nt3ayuM3JGsHDlA3S8nd8ahMFI3XMEzhydmy3FyUpvFLUEZPr6/1tv7ougpNhRJYEUxdPGXsc7oJ/QOJl+eFkO3JhCKOfzdoCKCxcqk0WQeHWIbqA2S66MCy8LhyFucWNW8LNUPZtLB2d6sZAf20FSPQo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769621573; c=relaxed/simple;
+	bh=hI6NqofsXTOOPFq8DfXONvDZU0fg8MOdgkvelsOyIzw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OyR8AY/IJ+SVFGKxXQmtjzCS9h84ZSB+rECNW0HPw/TyUuiMSUKu+z20fJInYT4xquOF2dZkQTaRxal8BCryNQahj8La/AdE8hcm9nmIMSc07YnZlSqr+JDvwxS9Hg7sgRhsko/M6fVE9Ei87n/j6/C4ApxXIpzKh0TQ60KzQaQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QK56Y3Gx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FA12C4CEF1;
+	Wed, 28 Jan 2026 17:32:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769621572;
+	bh=hI6NqofsXTOOPFq8DfXONvDZU0fg8MOdgkvelsOyIzw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QK56Y3Gx9Z3haf1058CMfTCwwZaPvIYCdL7tJI6/+9YpDKuZk9rj4/AXXcvH2/KLA
+	 FAkq7nFqBDb2Lku2oDKC6wfRFt5p09yUBZZndYjU89xQm4SMo8+bJ8PHsk4p3cTK3o
+	 5tlT7wGuY89NwE97zRCcysHg015ofI3FEPx+yO7jrWpL70ZOl8Su7pfPEUeAC5Blnd
+	 VJvf7sw3vJbS5bAKJjrN1DbC7rD23FeXOF2DgVaEDUskZ2CVOrbRJV9rf/Ffex6om+
+	 Bz7Zd+OWbWx2NENRvZjc7AkT6q4m7kGGnKPEDo1W70jiAFoceDBlIq+PtPBFAC+tQd
+	 4yJowBm1u2l+A==
+Date: Wed, 28 Jan 2026 17:32:46 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
+Cc: Drew Fustini <dfustini@oss.tenstorrent.com>,
+	Joel Stanley <jms@oss.tenstorrent.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+	joel@jms.id.au, fustini@kernel.org, mpe@kernel.org,
+	mpe@oss.tenstorrent.com, npiggin@oss.tenstorrent.com,
+	agross@kernel.org, agross@oss.tenstorrent.com, bmasney@redhat.com
+Subject: Re: [PATCH v3 1/3] dt-bindings: clk: tenstorrent: Add
+ tenstorrent,atlantis-prcm
+Message-ID: <20260128-nappy-repaint-e464d9964134@spud>
+References: <20260126-atlantis-clocks-v3-0-b016135551b7@oss.tenstorrent.com>
+ <20260126-atlantis-clocks-v3-1-b016135551b7@oss.tenstorrent.com>
+ <20260127-mystify-carmaker-150aa3fcd6c6@spud>
+ <CAEev2e-p28J_H2oWdrtgGJ0Z=2iGn8FjFBN8ggU0t_Wtbi62rA@mail.gmail.com>
+ <20260128-duckling-confess-88e64fabe752@spud>
+ <CAEev2e9Y95bYDdvhJQ2954K2q5yMrGA3UF2U=QN83ZNbZ5LJBw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260127025740.2601841-1-onlywig@gmail.com> <20260128155529.3699599-1-onlywig@gmail.com>
- <20260128155529.3699599-2-onlywig@gmail.com>
-In-Reply-To: <20260128155529.3699599-2-onlywig@gmail.com>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Wed, 28 Jan 2026 14:27:31 -0300
-X-Gm-Features: AZwV_QiCWCfgEVaf466qIPBgCbhNFFu_DgTZRC-k1mWUAV0vRzvFYLXs8kt0N7M
-Message-ID: <CAOMZO5BdH3X_efJGFyAjCk-1amLTDA303Lfr9NHLJMpbPxEJcA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/1] arm64: dts: freescale: add pixpaper display
- overlay for i.MX93 FRDM
-To: Wig Cheng <onlywig@gmail.com>
-Cc: shawnguo@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
-	devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	zaq14760@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="VaO9E9H1PZRTiJNg"
+Content-Disposition: inline
+In-Reply-To: <CAEev2e9Y95bYDdvhJQ2954K2q5yMrGA3UF2U=QN83ZNbZ5LJBw@mail.gmail.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260560-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260561-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,vger.kernel.org,lists.linux.dev,lists.infradead.org,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[festevam@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 4997BA6EBD
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tenstorrent.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: B0357A708D
 X-Rspamd-Action: no action
 
-On Wed, Jan 28, 2026 at 12:55=E2=80=AFPM Wig Cheng <onlywig@gmail.com> wrot=
-e:
 
-> +&lpspi3 {
-> +       #address-cells =3D <1>;
-> +       #size-cells =3D <0>;
-> +       pinctrl-names =3D "default";
-> +       pinctrl-0 =3D <&pinctrl_lpspi3>, <&pinctrl_epd_ctrl>;
-> +       cs-gpios =3D <&gpio2 8 GPIO_ACTIVE_LOW>;
-> +       fsl,spi-num-chipselects =3D <1>;
+--VaO9E9H1PZRTiJNg
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Drop fsl,spi-num-chipselects. It's not a valid property.
+On Wed, Jan 28, 2026 at 09:42:42AM -0600, Anirudh Srinivasan wrote:
+> Hi Conor,
+>=20
+> On Wed, Jan 28, 2026 at 9:02=E2=80=AFAM Conor Dooley <conor@kernel.org> w=
+rote:
+> >
+> > On Tue, Jan 27, 2026 at 05:39:33PM -0600, Anirudh Srinivasan wrote:
+> > > Hi Conor,
+> > >
+> > > On Tue, Jan 27, 2026 at 1:58=E2=80=AFPM Conor Dooley <conor@kernel.or=
+g> wrote:
+> > > >
+> > > > On Mon, Jan 26, 2026 at 03:07:14PM -0600, Anirudh Srinivasan wrote:
+> > > > > Document bindings for Tenstorrent Atlantis PRCM that manages cloc=
+ks
+> > > > > and resets. This block is instantiated 4 times in the SoC.
+> > > > > This commit documents the clocks from the RCPU PRCM block.
+> > > > >
+> > > > > Signed-off-by: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.co=
+m>
+> > > > > ---
+> > > > This is pretty suspect sounding, if the PLLs for !rcpu are controll=
+ed in
+> > > > the rcpu register region, why is it not a clock parent for the !rcpu
+> > > > prcms?
+> > >
+> > > I saw another clock driver doing it in the manner I did [1], and
+> >
+> > The example is using it just to check lock status, which I think is
+> > different than what you've got here? What you wrote implies that the
+> > whole configuration for these PLLs is in that register region.
+>=20
+> Yes, it seems like that example actually needs one regmap for
+> configuring and another for checking lock status of the PLL, but in
+> our case only one is enough.
+>=20
+> > > thought that it would make writing the bindings and the clock driver
+> > > simpler. Each prcm node would have a single input clock (otherwise
+> > > there would be a differing number of input clocks for each prcm node).
+> > >
+> > > What would you suggest that I do?
+> >
+> > I suggest that you model the clock tree correctly in devicetree, even if
+> > that makes things more complicated. One prcm node having more input
+> > clocks isn't something to be afraid of, it should be pretty
+> > straightforward to handle in both devicetree and driver, and is not any
+> > more complicated than having to deal with the syscon phandle that you
+> > use at the moment.
+>=20
+> Understood.
+>=20
+> >
+> > btw, where is the code for the !rcpu clock controllers? AFAICT, this
+> > series only has the rcpu portion and I can't find the code that actually
+> > uses the phandle. Why is the patch documenting stuff that has no user?
+>=20
+> I haven't been able to completely test the clock driver for the other
+> subsystems yet, so that hasn't been posted yet. One of the comments on
+> the previous versions of this series was to document the complete
+> bindings, so I've tried to document all the 4 PRCMs.
+
+Right. Looking at the mail from Krzysztof, I suspect he meant to
+completely document and explain the rcpu prcm, not all of the prcms (he
+couldn't really know they existed, based on your v1, right?).
+I'd suggest you drop the !rcpu stuff for now, and submit it when you
+have the driver for them ready to go. That's typically what's done to
+avoid introducing bindings that need to be changed once the driver
+actually turns up, since as you say you've not actually tested the
+driver for those prcms.
+
+>=20
+> >
+> > > This would also avoid having the clock tree in the driver contain
+> > > multiple entries for some of the PLLs (one in the rcpu subsystem where
+> > > it is defined and another where the same clock is referred with {
+> > > .index =3D 0 }) which could become confusing.
+> >
+> > I don't really understand what you mean by this. Can you elaborate?
+> > If you mean that multiple clocks produced by the prcm would all use
+> > index =3D 0 as their parent, that does not sound abnormal to me. Without
+> > being able to see the !rcpu driver implementations, I can't even make
+> > guesses as to what the clock tree looks like.
+>=20
+> In the clock driver, you'd end up having something like this
+>=20
+> static const struct clk_parent_data osc_24m_clk[] =3D {
+>         { .index =3D 0 },
+>  };
+> .
+> .
+> static const struct clk_parent_data pcie_pll[] =3D {
+>         { .index =3D 0 },
+> };
+>=20
+> Both point to index 0, but one is for the rcpu prcm and another is for
+> the pcie prcm. To me, this felt like it might confuse someone looking
+> at the driver. But it doesn't affect functionality in any manner.
+
+If you think it is going to be confusing, then move the bits common to
+!rcpu and rcpu prcms to a file, with the unique bits in dedicated files
+perhaps? It seems like they'd be fairly different even with your current
+scheme and keeping them apart would aid readability of the driver in
+either case?
+You can do this extraction as part of adding the !rcpu code, that
+doesn't need to be done for the rcpu stuff since the concept of "common"
+wouldn't exist in upstream until the !rcpu stuff arrives.
+
+Cheers,
+Conor.
+
+--VaO9E9H1PZRTiJNg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaXpIPgAKCRB4tDGHoIJi
+0tmCAQCMz9cz9NcVHW/eTtgHv1aT9fv3jwGM8BPCavOxD+K7rQD/RF1rQxdGKrMA
+K3cTriOhZZtOkI7Vs6o/fkQVuU4cGA0=
+=4sdL
+-----END PGP SIGNATURE-----
+
+--VaO9E9H1PZRTiJNg--
 
