@@ -1,379 +1,182 @@
-Return-Path: <devicetree+bounces-260380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260381-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oD0gKjsAemm71QEAu9opvQ
-	(envelope-from <devicetree+bounces-260380-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 13:25:31 +0100
+	id +B6+NE4Aemnq1QEAu9opvQ
+	(envelope-from <devicetree+bounces-260381-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 13:25:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCD96A12B5
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 13:25:30 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47CFEA12CC
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 13:25:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 74F1F300A12E
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 12:25:29 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 36718300B842
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 12:25:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F012633F8C1;
-	Wed, 28 Jan 2026 12:25:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A86134DB52;
+	Wed, 28 Jan 2026 12:25:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BRzoc5hl";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Vi7Lv0Cm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Eij1+WrO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E29A21CC44
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 12:25:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06B4D3382CD;
+	Wed, 28 Jan 2026 12:25:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769603128; cv=none; b=rt2j6PutuDB5U1uBXkQqZjahDn7Qx+S1VysBCu/lGRN6Nvyv+S4+CCWeYelC6RkF5tBCoW2jqquDpU7AJZEZyctDsMTJUpibvRM4dri38xVdcr7Wuy2u1M1cIrXiFbegm6rcDA44ttSfHkqAeU5wyOUU+A0zgNl/GDyvxA+0dkM=
+	t=1769603148; cv=none; b=Fn3P/d7UrXgxUZ3zAGY/GDsKkfedwx5iZgJzf6yOrpg16b7d5rodS/WLFigNj2TMmil0H/PIgy2sItNuutkhLaGg+/tUBEpg2pC00h57JnTqQu+tQMVL0M2DDzNbYQD7o8RARh9rMSF298heKmra8XbL/VWY/AdOdVs3RwafhcQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769603128; c=relaxed/simple;
-	bh=AqP/zwq+oXAw8KKNd8XZEmpJoCL0qLyclSPxceHYiNY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NOqKb428Qm4Y57gjFM3d7Q5tIKhk8E0NE1ehT6kC5K1jyl+RR32MzdfHFOZOjs6425K3VLI6yc5Xdud04vBphFzL0TWpYc+nS8NXrLN0eoGeFJu5JTvTvojRHlXsNCc+06nDUsU9A3ipKdNlgPLXyKhbjOUVwk6QvQmICjJsOM4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BRzoc5hl; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Vi7Lv0Cm; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60S91vGx3879271
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 12:25:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ogspLhPEqRXF9cBYprMX74TpQ1dQLaEIE4qIsambE6k=; b=BRzoc5hlLHv7Muc9
-	sIGgAIAOqhFablO2Caj8QoHdNXonnt8cLl4Ii3r4XIvG4p6FZFuT5WaCkLj9FoV0
-	PfAl+4cdqE2HO7BOqakIRd1iznimutWhdUN/w36tW++g0dwgI23f9ADWSFdrnvZ6
-	r5UOBC8fVu5fCTYo0fcqQExm42o1n4wc6ppAgJf0x5C6CF5Wgls7ezZxXBvkryHw
-	oZh4zBak9IttOQjs7TwR1kGsSXqluEVJeR4rp1yp5C1iSh3mcOC+KAqwrYJvhFDL
-	GR6/ybC1BomnCg3E/nhS6H7fvMGe+eBkCl2b+CzA68f7Dey2S+MjIYxk123r6ZnS
-	2iaQ+w==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bybyv1dut-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 12:25:26 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8c536c9d2f7so221794785a.1
-        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 04:25:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769603126; x=1770207926; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ogspLhPEqRXF9cBYprMX74TpQ1dQLaEIE4qIsambE6k=;
-        b=Vi7Lv0CmaLSjjffSOS4Br53RFN2eSfPfGoSJl0NDvQymw7GG/MTEpHnLxEyVozDDeo
-         56J7QpIwOdeIHUdmROtViaSgEeGxev7nP1gTn67sK2uDxkcg7nwyohxtTklWfJJyfcVK
-         lMRg6e++36gzmYJtYOVWNskie+y2GarS8MAAhpHyPWeidGAwPXk547JnZ9qcePTyZuzZ
-         NcqGtNRIdYkgFehP4y3D89BP5MHAYHz2rOZ2r+A/nkwrDyLzd7byhdrtJat3p5IZvLyZ
-         uyQfEle0boC0W11qimZGRqzWse6pTANHoXVIQHQZ5WEpqnd+F5wqddxFm2s48DiKxTSQ
-         pCIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769603126; x=1770207926;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ogspLhPEqRXF9cBYprMX74TpQ1dQLaEIE4qIsambE6k=;
-        b=hf6bR8XJypVT/ie1JlR7IR615X9tyoq+itGPgGpVZWm8mi+fTQqFOPU6dI4AyYUUXM
-         N6PrYImvyUBwqe4HnHxUeXGfqJcVaJi+pbDsVVzO48mKehdBl6rS6jls5YCa7r5Xit8d
-         9MI6zZB0ZO/fh8YnzBe1lPyYhk+ZgvpRaWimgxHeleKh5t6NJv5LCNay2exSQibXGi1y
-         G2CdMKOTUsk9C9MxtjCKflpqP3HHhO3SjotScJxkG3V3IRBL2NIw757hsdWhityLvplN
-         XgZBkIx8fEUAInWtVerxQagL2Sx0mMSkzW1LbrtpaMu4QUS0q6it5aJBbJejt7ubDAex
-         9SHA==
-X-Forwarded-Encrypted: i=1; AJvYcCUuysdtWWsxDChJuxbXfaZpujbfEy9CswXn2JDM+dXBK3aa2mKa3clBKfDtBNkGjzyqASoeBifI3dRM@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywpk+R5IRHRMxYrsyPfbroCJsNsxN8Dabvx6Zd2f07D9KxWQ0O1
-	V+QvCksFMJ36dncedSU+vI31CPwAps4+/26yGadgTnSWFdeArtvl2KoxfvxoAMYamiMst8JlvbU
-	iQPoQo92EUDDvukjZGUEqjS043/eA0hg1qJXZE6AQ0zG9uEAbQMipqXUuWVWsLgoV
-X-Gm-Gg: AZuq6aLvaYeGvBeGR+DchJ6+4HiMCDYVuoyY0ZMKui9Ar1kCRYLTorL2RwAXMvH9ogl
-	lCfE5MW60/WNwJfAh81tnJpu93qPkiGWmB4cc71yJryy5XlgEvlflfY+kCiAkNjx8hCfz/Sbg6A
-	gize0SOZSMK1AWG7zLWngp/gZF/oEty04vpvBdkMyBsqteEMEQugytCH6mvDpRs4LhNwjR+5y/2
-	R03scuGyxYFyNLKQkJrnl+WkXcpe+NL+vuEjx5JzKkMmaBGjO+ZVuSxolTuNUQY1o1twV7G6uMV
-	7xegVFybumjHO3GtcH1vpdvMQy5b7s7+1YA2f4V7XgGIpqlbCZfzyzHxhxGouBXk6YkK9lXNnB5
-	FlaBTLlc2EFNNKaRoEDVf5H0jsolJxICpRLvIbzDgcPFt+RMWH+5l0REcPYRHupHRamQ=
-X-Received: by 2002:a05:620a:2988:b0:8b9:fa81:5282 with SMTP id af79cd13be357-8c714b60d57mr133378885a.3.1769603125755;
-        Wed, 28 Jan 2026 04:25:25 -0800 (PST)
-X-Received: by 2002:a05:620a:2988:b0:8b9:fa81:5282 with SMTP id af79cd13be357-8c714b60d57mr133375985a.3.1769603125161;
-        Wed, 28 Jan 2026 04:25:25 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8dbf2ed6f8sm118426366b.65.2026.01.28.04.25.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Jan 2026 04:25:24 -0800 (PST)
-Message-ID: <033aebad-b148-4cb9-9259-8f6e65dfc39d@oss.qualcomm.com>
-Date: Wed, 28 Jan 2026 13:25:22 +0100
+	s=arc-20240116; t=1769603148; c=relaxed/simple;
+	bh=htkwyATxZv3Whv5KhUFqYLbUDxJncIhL8/ca76w6xXk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=DnH9YC3l5wbjkNGxZPxQHKC79I8n6R0cEH7teN745gEH+eRMHQT19l07XsqLx2PzxGMkB74tNHU+PWrblAv7VhdAkCwr/eJ1Jr+5yuFWhhxkpgQOaYfN1Jube3p2KKXJQfgVb7WACgi/7Co19DCtwc9MpTjUwhUdHe8YnmaBEk8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Eij1+WrO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id A8E84C4CEF1;
+	Wed, 28 Jan 2026 12:25:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769603147;
+	bh=htkwyATxZv3Whv5KhUFqYLbUDxJncIhL8/ca76w6xXk=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=Eij1+WrOiuLyW5WO532l2BobbHwdnzVHXriw2Zr8Nx+qrEXzsvFh9SkNcYRMFe9kk
+	 iFHRUKD18pYtIJ24hGnT+WYc8QTAJtLMXNSrCLWI/wndRW4frekWK/Ps+Ndm8CbLWc
+	 hh3yY5m4RSniWLyK1u7MpdYjJ7dwoVqRD4ROMqCSsGbMPWMyLFypIxuquDjh7/+oq2
+	 12n8PVL/ZX8yWhJzBk9Led+NK5z8qV8fQKqRaJoGOknAhf+PdIcdT3ca3O6I+sW5uU
+	 tJljCqwJ0/zebz6oVyFmS0S6n3ItUJKE4Ntah6V9oGwqZj2ODsLfYfilkwX3ZigIWt
+	 jJEEVoosIitRg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 96BF4D25B4D;
+	Wed, 28 Jan 2026 12:25:47 +0000 (UTC)
+From: Ben Zong-You Xie via B4 Relay <devnull+ben717.andestech.com@kernel.org>
+Subject: [PATCH v3 0/4] i2c: add support for Andes platform
+Date: Wed, 28 Jan 2026 20:25:43 +0800
+Message-Id: <20260128-atciic100-v3-0-8c002fcc2bb4@andestech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: add Acer Swift SFA14-11 device
- tree
-To: weifu wu <wwfu06@163.com>, andersson@kernel.org, konradybcio@kernel.org,
-        robh@kernel.org
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260121112721.2981491-1-wwfu06@163.com>
- <20260121112721.2981491-3-wwfu06@163.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260121112721.2981491-3-wwfu06@163.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: L2T1z5jjoGKfGz7oYyaJZImvNgOJPGdU
-X-Authority-Analysis: v=2.4 cv=ZZ4Q98VA c=1 sm=1 tr=0 ts=697a0036 cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=Byx-y9mGAAAA:8 a=4EuywBWWGzNydUJ_w04A:9
- a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI4MDEwMiBTYWx0ZWRfX3dZFSL/gb+LI
- i/X/dm0VhovZpPwPvMQbDQrUvcm1vHESJfXMYvUzEAQO5N8meuvsHnA2+1QcTkznEdsSEVQPprf
- 31Vu71mgvAMsCFPLIzt0ARhTZVFCGz4prsBzOqR/9DjIxFM1CZZjwa8VG2TMwDtUyWSPacwGG5t
- A5pzA2mplScbzli0ktnO/BA7vbbuLGJQ1+PC9xFxRVI/3/+nc/74VZ0HRZyosnhgM++oNf5jM/Z
- /Ru5YBbZmCYcc7Avju2q1E/Bzh1MAUh6X9Jg01faYYeHjX44bvIPybHrf8Zcyu9I5vv0jwNGtKQ
- SRrGIVkal23KgCnyVywm5tvBp1b56OgMitarAdSPwFRoVrG65OXotoVxsfvv+UBFeK4bGuTF+Jt
- g3R8Put3geM2GUiCaCgvVFE8IirnRrOnT575txzogimGxXAycq81bC3iUdTohJb94+bGJX9F/ny
- wFxhKkzxB/3un/pNU8g==
-X-Proofpoint-ORIG-GUID: L2T1z5jjoGKfGz7oYyaJZImvNgOJPGdU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-01-28_02,2026-01-28_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 bulkscore=0 adultscore=0 lowpriorityscore=0 malwarescore=0
- clxscore=1015 impostorscore=0 suspectscore=0 priorityscore=1501 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601280102
+X-B4-Tracking: v=1; b=H4sIAEcAemkC/12OywrCMBREf0WyNuXmxjbWlf8hLvK4tRFsJYlBK
+ f13m4ogLg/MnJmJRQqeIjtsJhYo++jHYQG53TDb6+FC3LuFGQI2IBC4TtZ7KwC405Jss++UMTu
+ 25O+BOv9cXafzh+PDXMmmIiiJ3sc0htc6lkXJFW8NCApQtCgrbAVKJbnghgYl1FEPjmIi21d2v
+ LGizfgtlkP4cygjB67quhWycaBs99+e5/kNizEWaPEAAAA=
+X-Change-ID: 20260120-atciic100-da3ec68f7bb4
+To: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ Ben Zong-You Xie <ben717@andestech.com>
+X-Mailer: b4 0.15-dev-47773
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1769603146; l=2623;
+ i=ben717@andestech.com; s=20260120; h=from:subject:message-id;
+ bh=htkwyATxZv3Whv5KhUFqYLbUDxJncIhL8/ca76w6xXk=;
+ b=AgdNn4erauvy2HnDtQMQ2eNAmstIZmYqYJVaY4QwfhIix2abBHcxgoNP4+lWqXJ5xwj0KZwp2
+ AtRZEIMtrOUAYaQwLjqKoMk3Zzs7FhcDEESQ5t8E0+b21d2Ccuhgwse
+X-Developer-Key: i=ben717@andestech.com; a=ed25519;
+ pk=nb8L7zQKGJpYk0yvrYKjViOZ34A36g1ZIsCmCsP518s=
+X-Endpoint-Received: by B4 Relay for ben717@andestech.com/20260120 with
+ auth_id=610
+X-Original-From: Ben Zong-You Xie <ben717@andestech.com>
+Reply-To: ben717@andestech.com
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[163.com,kernel.org];
-	TAGGED_FROM(0.00)[bounces-260380-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:dkim,0.0.0.15:email,0.0.0.47:email];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-260381-lists,devicetree=lfdr.de,ben717.andestech.com];
 	FROM_HAS_DN(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.43:email,0.0.0.10:email,0.0.0.0:email,0.0.0.28:email];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[ben717@andestech.com];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: CCD96A12B5
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,andestech.com:replyto,andestech.com:email,andestech.com:mid,msgid.link:url]
+X-Rspamd-Queue-Id: 47CFEA12CC
 X-Rspamd-Action: no action
 
-On 1/21/26 12:27 PM, weifu wu wrote:
-> Add initial device tree for Acer Swift SFA14-11 laptop based on Qualcomm X1E78100 SoC.
-> 
-> Generated based on x1e78100-lenovo-thinkpad-t14s.dts.
-> 
-> Adjusted node ordering according to review feedback.
-> 
-> Passed format checks and successfully built without errors.
-> 
-> Signed-off-by: weifu wu <wwfu06@163.com>
-> ---
+This patch series adds I2C support to Andes platform, such as AE350 and
+QiLai SoC.
 
-[...]
+Signed-off-by: Ben Zong-You Xie <ben717@andestech.com>
+---
+Changes in v3:
+- (1/4)
+  - Rewrote the commit message to provide a detailed hardware
+    description and explain the relationship between the ATCIIC100 IP,
+    the AE350 platform, and the QiLai SoC. (Krzysztof)
 
-> +#include "hamoa.dtsi"
-> +#include "hamoa-pmics.dtsi"
-> +
-> +/ {
-> +	model = "Acer Swift 14 Go Pro AI (SFA14-11)";
-> +	compatible = "acer,swift-sfa14-11", "lenovo,thinkpad-t14s", "qcom,x1e78100", "qcom,x1e80100";
+- Link to v2: https://patch.msgid.link/20260122-atciic100-v2-0-7559136d07cf@andestech.com
 
-The lenovo part needs to go
+Changes in v2:
+- ATCIIC100 is the hardware name for the Andes I2C controller and was used
+  throughout v1. However, since Device Tree bindings should reflect the hardware
+  identity and driver/config naming typically follows the i2c-<soc/platform>
+  convention, this version replaces occurrences of "atciic100" with more
+  appropriate names, such as "i2c-andes" or "andes_i2c," to align with upstream
+  standards.
+- Updated cover letter title and the description.
+- Rebased on andi.shyti/i2c/i2c-host-next.
+- (1/4)
+  - Updated the title and the description of the patch.
+  - Specified what the hardware is, and modify the title and compatibles. (Krzysztof)
+  - Corrected device register size.
+- (2/4)
+  - Updated the title and the description of the patch.
+  - Replaced the readl/writel operations with regmap APIs.
+  - Replaced all occurrences of atciic100 with proper names.
+  - Used module_platform_driver() to initialize. (Andi)
+  - Moved CONFIG_I2C_ANDES (CONFIG_I2C_ATCIIC100 in v1) to the
+    "Embedded system I2C/SMBus host controller drivers" section.
+  - Made CONFIG_I2C_ANDES depend on ARCH_ANDES
+- (3/4) (new)
+  - Added an entry to the MAINTAINERS file.
+- (4/4) (new)
+  - Added the I2C node to QiLai DTS.
 
-[...]
+- Link to v1: https://patch.msgid.link/20250207021923.2912373-1-ben717@andestech.com
+
+---
+Ben Zong-You Xie (4):
+      dt-bindings: i2c: add support for AE350 I2C controller
+      i2c: add Andes I2C driver support
+      MAINTAINERS: add an entry for Andes I2C driver
+      riscv: dts: andes: qilai: add I2C controller
+
+ .../bindings/i2c/andestech,ae350-i2c.yaml          |  45 +++
+ MAINTAINERS                                        |   6 +
+ arch/riscv/boot/dts/andes/qilai.dtsi               |   7 +
+ drivers/i2c/busses/Kconfig                         |  10 +
+ drivers/i2c/busses/Makefile                        |   1 +
+ drivers/i2c/busses/i2c-andes.c                     | 341 +++++++++++++++++++++
+ 6 files changed, 410 insertions(+)
+---
+base-commit: e5d4c5082ccaef6f7cdbabcf597ceede3bc9815e
+change-id: 20260120-atciic100-da3ec68f7bb4
+
+Best regards,
+--  
+Ben Zong-You Xie <ben717@andestech.com>
 
 
-> +	/* two muxes together support CTIA and OMTP switching */
-> +	us_euro_mux_ctrl: mux-controller {
-> +		compatible = "gpio-mux";
-> +		pinctrl-0 = <&us_euro_hs_sel>;
-> +		pinctrl-names = "default";
-> +		mux-supply = <&vreg_l16b_2p5>;
-> +		#mux-control-cells = <0>;
-> +		mux-gpios = <&tlmm 68 GPIO_ACTIVE_HIGH>;
-> +	};
-
-Are you sure this is present on the Acer as well?
-
-[...]
-
-> +&i2c0 {
-> +	clock-frequency = <400000>;
-> +
-> +	pinctrl-0 = <&qup_i2c0_data_clk>, <&tpad_default>;
-> +	pinctrl-names = "default";
-> +
-> +	status = "okay";
-> +
-> +	/* ELAN06E2 or ELAN06E3 */
-> +	touchpad@15 {
-> +		compatible = "hid-over-i2c";
-> +		reg = <0x15>;
-> +
-> +		hid-descr-addr = <0x1>;
-> +		interrupts-extended = <&tlmm 3 IRQ_TYPE_LEVEL_LOW>;
-> +
-> +		vdd-supply = <&vreg_misc_3p3>;
-> +		vddl-supply = <&vreg_l12b_1p2>;
-> +
-> +		wakeup-source;
-> +	};
-> +
-> +	/* SYNA8022 or SYNA8024 */
-> +	touchpad@2c {
-> +		compatible = "hid-over-i2c";
-> +		reg = <0x2c>;
-> +
-> +		hid-descr-addr = <0x20>;
-> +		interrupts-extended = <&tlmm 3 IRQ_TYPE_LEVEL_LOW>;
-> +
-> +		vdd-supply = <&vreg_misc_3p3>;
-> +		vddl-supply = <&vreg_l12b_1p2>;
-> +
-> +		wakeup-source;
-> +	};
-> +
-> +	/* ELAN06F1 or SYNA06F2 */
-
-These look directly copypasted from the Lenovo DT, so I have concerns
-about their validity
-
-[...]
-
-> +&i2c5 {
-> +	clock-frequency = <400000>;
-> +
-> +	status = "okay";
-> +
-> +	eusb5_repeater: redriver@43 {
-> +		compatible = "nxp,ptn3222";
-> +		reg = <0x43>;
-> +		#phy-cells = <0>;
-> +
-> +		vdd3v3-supply = <&vreg_l13b_3p0>;
-> +		vdd1v8-supply = <&vreg_l4b_1p8>;
-> +
-> +		reset-gpios = <&tlmm 7 GPIO_ACTIVE_LOW>;
-> +
-> +		pinctrl-0 = <&eusb5_reset_n>;
-> +		pinctrl-names = "default";
-> +	};
-> +
-> +	eusb3_repeater: redriver@47 {
-> +		compatible = "nxp,ptn3222";
-> +		reg = <0x47>;
-> +		#phy-cells = <0>;
-> +
-> +		vdd3v3-supply = <&vreg_l13b_3p0>;
-> +		vdd1v8-supply = <&vreg_l4b_1p8>;
-> +
-> +		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
-> +
-> +		pinctrl-0 = <&eusb3_reset_n>;
-> +		pinctrl-names = "default";
-> +	};
-> +
-> +	eusb6_repeater: redriver@4f {
-> +		compatible = "nxp,ptn3222";
-> +		reg = <0x4f>;
-> +		#phy-cells = <0>;
-> +
-> +		vdd3v3-supply = <&vreg_l13b_3p0>;
-> +		vdd1v8-supply = <&vreg_l4b_1p8>;
-> +
-> +		reset-gpios = <&tlmm 184 GPIO_ACTIVE_LOW>;
-> +
-> +		pinctrl-0 = <&eusb6_reset_n>;
-> +		pinctrl-names = "default";
-> +	};
-
-This laptop seems to have 2 USB-A ports and no fingerprint/SDCard reader,
-are you sure all of these are present onboard?
-
-> +};
-> +
-> +&i2c6 {
-> +	clock-frequency = <400000>;
-> +
-> +	status = "okay";
-> +
-> +	embedded-controller@28 {
-> +		compatible = "lenovo,thinkpad-t14s-ec";
-
-I highly doubt this is the case
-
-[...]
-
-> +&i2c8 {
-> +	clock-frequency = <400000>;
-> +
-> +	status = "okay";
-> +
-> +	/* ILIT2911 or GTCH1563 */
-> +	touchscreen@10 {
-> +		compatible = "hid-over-i2c";
-> +		reg = <0x10>;
-> +
-> +		hid-descr-addr = <0x1>;
-> +		interrupts-extended = <&tlmm 51 IRQ_TYPE_LEVEL_LOW>;
-> +
-> +		vdd-supply = <&vreg_misc_3p3>;
-> +		vddl-supply = <&vreg_l15b_1p8>;
-> +
-> +		pinctrl-0 = <&ts0_default>;
-> +		pinctrl-names = "default";
-> +	};
-> +
-> +	/* TODO: second-sourced touchscreen @ 0x41 */
-
-This again looks directly copypasted
-
-[...]
-
-> +&usb_1_ss2_qmpphy {
-> +	vdda-phy-supply = <&vreg_l2j_1p2>;
-> +	vdda-pll-supply = <&vreg_l2d_0p9>;
-> +
-> +	/delete-property/ mode-switch;
-> +	/delete-property/ orientation-switch;
-> +
-> +	status = "okay";
-> +
-> +	ports {
-> +		port@0 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			/delete-node/ endpoint;
-> +
-> +			usb_1_ss2_qmpphy_out_dp: endpoint@0 {
-> +				reg = <0>;
-> +
-> +				data-lanes = <3 2 1 0>;
-> +				remote-endpoint = <&hdmi_bridge_dp_in>;
-
-I don't see a HDMI port on this laptop
-
-Moreover, I'm highly concerned about the regulator settings, which
-differ between boards and may lead to permanent hardware damage if
-misconfigured. If you took the values from the T14s DT as-is, you
-may be doing yourself a bad favor..
-
-Konrad
 
