@@ -1,247 +1,232 @@
-Return-Path: <devicetree+bounces-260277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260278-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yLgYG1XZeWlI0AEAu9opvQ
-	(envelope-from <devicetree+bounces-260277-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 10:39:33 +0100
+	id Mf0TMkLaeWkg0QEAu9opvQ
+	(envelope-from <devicetree+bounces-260278-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 10:43:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 913F39EEC0
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 10:39:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BFBCE9EF7D
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 10:43:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 577E6300B50D
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 09:39:24 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 3F80B3007AFC
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 09:43:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51F0734A3C5;
-	Wed, 28 Jan 2026 09:39:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B263834A76E;
+	Wed, 28 Jan 2026 09:43:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BPf7vn5I"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jADakhnf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90A8C34B186
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 09:39:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0107D327C0F
+	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 09:43:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769593160; cv=none; b=OzTNo6beUqV89a8FG9eZmaTzvusjRXDNVEW2TPVkBGppR628Snr16bj4QZwWwpiRCKscIcEd20t5/D/y/Idr0zhcNduqVit61Bk7VqUcQMk31slzCuyvy5D+Lgq3wsMeBDgm39OtNovHi1mIhimAdWBUlKKmt2iG+ykrArP5sd0=
+	t=1769593403; cv=none; b=pjcr5zeTmfukntuZ5gpmq08ALeYBJXvR3CPvyQwYTDRLNp568xZyxTChef+YPdIgvEaPz4NR3c1ejn3diXVl9X1NdUL1LIhej8MYOr23GB3o3D+8aIy181FkpG0yr0qw4YE82MeTqEoBq+ZSc8KnLYGIjxa/GbZBEhIe1r2qmrM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769593160; c=relaxed/simple;
-	bh=820pRQvBOUdwrO9VFOFFKHDDQblAqy5yU34fM/4UmhM=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SDn1aqhcYcE+wbQ4EKHm0/5tXq72/iKoJ0YU5sHHv32T7Wtf+HYdWszZ2cpXBKFtf2RSCLp8P/zW7jsvfi4/3V2PtHQb1GSc0RJGBE88FZiUfi0DAAfxBTa/hqx8z1rTY4YVHNiwG9n70ZAk+toGkbICw85MBVDmxax3w+bxOFQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BPf7vn5I; arc=none smtp.client-ip=209.85.128.43
+	s=arc-20240116; t=1769593403; c=relaxed/simple;
+	bh=nMrCEc2j5DclRR0VL3fs98R4zeyzXJH4AdEhgbDC6pY=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Wlyx+Vx7CklYkTzRhSlNMfQgyU174bTdwR7K6P9C5ZjYBlhkGXcRPJA/9bQpPMMLN6pXnQgEmzlSqgbSpWa031iJrjkn03fBoonEVwP3qBu8x3iviaH0qzmh7mPmIOxwobUzNvG22nwAzYciqHDQNEjAW/7t8hERFMX79Uo6www=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jADakhnf; arc=none smtp.client-ip=209.85.221.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4805ef35864so27325845e9.0
-        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 01:39:18 -0800 (PST)
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-42fed090e5fso4113857f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 01:43:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769593157; x=1770197957; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=YsYt9EtdSjP81eOEg7+PTgUVAYz631PUhGc1E+G2uEY=;
-        b=BPf7vn5ILMtu3IHSiTLh11soD+66YnO3diYCo1HfNGadq90VPZSz54rLAcTEnyns2d
-         3EjAU9rAImZ3D4ibUiOxCFI0rhCJ0j2QwJD5af3Q2dnwBEY9RhmCBNDiIfOU7pWHBlaX
-         1DgYu9dwHTZCmPVze+fhz4sw1wza8czmqpmqtNbjCYB2B0UJ4qBNXAxqoW6PDd3O4fkp
-         mET0HyB87s7F6qfJzC1JLjiLh09A7sdSilbeTv52pyJ2F2Jq4DlpeWQfwD3SqNOSUge3
-         79ARBSu/AzHaBKd2qo5KqhSFlue0HbznLX05hTAVVbaQ6tj1Ao8Cctbiy1u/mwDA0E35
-         rOAA==
+        d=gmail.com; s=20230601; t=1769593400; x=1770198200; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=nMrCEc2j5DclRR0VL3fs98R4zeyzXJH4AdEhgbDC6pY=;
+        b=jADakhnfc0qcVxohGd46xY/Hp3hxsOp+AMTPJdcbVZTEzMusz072E4fkW/elIVKuE8
+         HyhslAvF0zxzucX3+ZvLd0sVZCKtHhKvSG5qlx41BiKtLEALZ4pR6e8YFAUEKxm/3B/s
+         dj2MVfJeKwoYo3vGr45VJBmpcCB6W/fPkYD54Wup2hMNJ7RTq7px2pfBfwqJfgp/JE3W
+         g/HAQETM4oxzKC7xyqHB3HJCHERYfQwZFb6diKni+rS98BF9ZUswwq7Mwj1lKYxo3dIb
+         H9GyzTaLjeyLa5/+LNQozO1Q44xOlB1/R3kxTNvJwHZZs8tiQHOgn1JmAdPWUFeGKe3Q
+         4hLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769593157; x=1770197957;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YsYt9EtdSjP81eOEg7+PTgUVAYz631PUhGc1E+G2uEY=;
-        b=G+pEurstwHLa4emw5HBEPR7V9Jhv2lJQ74MVvohdKau9tMZvRtRwFa2p1iNYFcQmMr
-         roObL4p8mN+dl5zUmXXCUnIBKgmsqtNC4GwQSOGvR3Tc1z4yXPVZDY0GZVzAaIKMRJDV
-         /InUdQN92DIUvxCIp6vyGT0HKzESbS9zB8nPOdW3lWv8t9ignxR5p0Gl7CeNA0WBMfwe
-         pArSjXhGnFFLKKBgPgvNTK33CVkJkiXplXkWyO8isfubkZUFc3Du/4w47cnA/xo/f6ki
-         tAmSVrfDfQjlY0gdS3vmSXiA6I0N5hKmNExIcoed4WWJp7cLYOc5w6tzP+AkIO/ZftgT
-         q8oQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXFaMAOanX6LYx3nvk21xicPa1XW28L82XfpK58Usn/FtpolLtbzOYQFw3M1yZZX6a6jUhS5Hg20mhb@vger.kernel.org
-X-Gm-Message-State: AOJu0YzR+Yk1dZW++BeJLFD+i6kPpwgoeDotUzCHC0jy98/q34nYxljQ
-	7WDTFsPDlii7NEsRVELWIGrwyQAHksxecpRfNhq1usuM4QzI2plRC78l
-X-Gm-Gg: AZuq6aIhypBl8IjkmAkhvZ9wVREBagufdJW61IBUbQwGch/SRWJsklTvtPVuAlrhim1
-	c96VCXaE0PueE2lO/0P2LFcm2bP3AlQUsuaCvOJ4PKBj1QWjYogv919RP1RO4HzeCVnA6SSg7h8
-	AqqI/j1gf2TX2UQp2vmGTp2Zef9irQmubAJRpl2IeX7raAwtwcaBIgz0FXHBOOIDtcmuIYH9S7l
-	VcM50lJzJvgMxFWV3VpT4jXelk0UUcYawF6RPNPnyrEU2/iDAfgP3n56DtVaHhMJWuO/w+sn8Wb
-	twqSaQ8F8nc4TQimgp9v9pQZQkxOIKnP8qYSv4aN1vWHwCeyWw9bTxBboLgf69gfdKNup7JNYzQ
-	Bj321UVJ3t2JFbpw2VwevWMHUEM9rQUP3qljpgd26S/gxAk/f3SwSetkOVIwIwoDRs4oNW1sf1Y
-	STjlUb6Ypfgyqm57nYipb0FxKMNwoYfivEf0ckEPD1Ji2mZh2cRbrvX59O5be3ouBpV7y4Fpl/2
-	ejbe+dbF5scFow=
-X-Received: by 2002:a05:600c:8b30:b0:480:1e8f:d15f with SMTP id 5b1f17b1804b1-48069bfaa0bmr55650235e9.2.1769593156788;
-        Wed, 28 Jan 2026 01:39:16 -0800 (PST)
-Received: from RDEALENC-L01.ad.analog.com ([24.206.116.131])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435e1322eefsm5572266f8f.30.2026.01.28.01.39.15
+        d=1e100.net; s=20230601; t=1769593400; x=1770198200;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nMrCEc2j5DclRR0VL3fs98R4zeyzXJH4AdEhgbDC6pY=;
+        b=s9UR+agZ5tVdTsIcN3rGEga1j9B67BfwGecLKUQztCg5rohnhxsBEHO2+aBCztZebZ
+         vEnWhhn4EnhP1J3FYKVsyi5WZbZKSJhwkfA1Bnu2Hahg4yIDKsdI9k02ymzVgTysKqR1
+         7uYwm+hLIO2GljR7KDn9vBlgTgJYdV1B3t3m2T3LwQHB6vSPTHxzBUTMwIkqO57kwg7Q
+         gnrBpHZN39Kaalrappyxi5AjBvFdNSKsY8x80/0L1U6Xj7WIcteoMPHCFuGx3nR6RwVx
+         XCsCZnzdzHiw6Qc1vbTyLG+SIiihN0bVzCheJes2SdgVpSN8DQ947LHGazzISQgB99tw
+         QF/A==
+X-Forwarded-Encrypted: i=1; AJvYcCVa56k2RePOnBYbKA8IQUz4D4+QY6jf9w534MNhbwUlNt2Q1JavMHghf4k+E2yT/gnOC/FIAcW3u6C2@vger.kernel.org
+X-Gm-Message-State: AOJu0YzGhDQjfXvscL0h3OUngiQV9gdS6Ec796KZOmoqT/EOhiCaqHxq
+	Cce8t8ObwhdCqulCFxcNk4zoSh3CX0cTkHdlXFM/xih+JV2EbQPrbt+j
+X-Gm-Gg: AZuq6aK8z76a0V2AQ3XKcH20ep41BYKiqzGiuJkU1sUD2KNHVlp2Qz8rB8XNuzb0C36
+	0EI5dPNaDo/wpOY+YJGtfrdWgCdzPQvtqN3dzCC84JhFt08MT+vHBKopKXt4vDDMflwiVr3vQTX
+	DWeBC1fR7rpcly8PR6jWw7PKIdTrT54XFIrQC9NxZw2hJ5nyuXH/uX+rIxVoyo7r0ewB6mDJ/Ir
+	XXiaZVLZyPZxTyuL864mjzafnon9WNF+zJ7PlYrBO1XGJd67kjITiK8s+aMulQfwEoCeVGTZC/0
+	aGpp4AZpkOirhNV4bZ7enBZYZyD+lETDvX/BKOfE7Y3PMz/SmIxENTkxPZQpMnW7OAD5kgL8nLW
+	M466U++4ldWi/LZraukQhq+6zetkc2Lx3MYVQtDA+TyC4k/p/HWI8eXtbqguJ3fjDqPkBplkAXU
+	4FF639WMNR8IwV8z3fn/o=
+X-Received: by 2002:a05:6000:2084:b0:435:8d02:b9cd with SMTP id ffacd0b85a97d-435dd05f1c5mr7512803f8f.26.1769593400162;
+        Wed, 28 Jan 2026 01:43:20 -0800 (PST)
+Received: from [192.168.1.187] ([148.63.225.166])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435e1048a54sm5346836f8f.0.2026.01.28.01.43.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Jan 2026 01:39:16 -0800 (PST)
-From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
-Date: Wed, 28 Jan 2026 09:39:12 +0000
-To: Conor Dooley <conor@kernel.org>, 
-	Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, 
-	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v2 2/6] dt-bindings: iio: amplifiers: Add AD8366 support
-Message-ID: <4dkomm5sskte4olhvjtkuae2t34qim5alp6ptsn3a2m6cyqqrt@kemulszlm3ta>
-References: <20260126-iio-ad8366-update-v2-0-c9a4d31aeb01@analog.com>
- <20260126-iio-ad8366-update-v2-2-c9a4d31aeb01@analog.com>
- <20260126-porous-hurdle-bfc510f113bb@spud>
- <rzco2g6psoblzaaqrdnmpmhs44hl7kqusa2kuafpkjx635dug2@rtwebhwztfkd>
- <20260127-goes-grandpa-891eb0dc413a@spud>
+        Wed, 28 Jan 2026 01:43:19 -0800 (PST)
+Message-ID: <382e259ea3835ffbd2be9c36b529875f5a43f38b.camel@gmail.com>
+Subject: Re: [PATCH v5 0/3] hwmon: Add support for the LTC4283 Hot Swap
+ Controller
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Guenter Roeck <linux@roeck-us.net>, nuno.sa@analog.com, 
+	linux-hwmon@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,  Jean Delvare <jdelvare@suse.com>, Jonathan Corbet
+ <corbet@lwn.net>, Linus Walleij <linus.walleij@linaro.org>,  Bartosz
+ Golaszewski	 <brgl@bgdev.pl>, "Rob Herring (Arm)" <robh@kernel.org>, Linus
+ Walleij	 <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>
+Date: Wed, 28 Jan 2026 09:44:03 +0000
+In-Reply-To: <eed64bf1-93af-4b36-adf5-1476cb40edbb@roeck-us.net>
+References: <20251223-ltc4283-support-v5-0-1152bff59a61@analog.com>
+	 <eed64bf1-93af-4b36-adf5-1476cb40edbb@roeck-us.net>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260127-goes-grandpa-891eb0dc413a@spud>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-260278-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260277-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,analog.com:email]
-X-Rspamd-Queue-Id: 913F39EEC0
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,bootlin.com:url]
+X-Rspamd-Queue-Id: BFBCE9EF7D
 X-Rspamd-Action: no action
 
-On 26/01/27 07:38PM, Conor Dooley wrote:
-> On Tue, Jan 27, 2026 at 11:37:52AM +0000, Rodrigo Alencar wrote:
-> > On 26/01/26 08:11PM, Conor Dooley wrote:
-> > > On Mon, Jan 26, 2026 at 01:51:03PM +0000, Rodrigo Alencar via B4 Relay wrote:
-> > > > From: Rodrigo Alencar <rodrigo.alencar@analog.com>
-> > > > 
-> > > > Add device tree binding documentation for amplifiers and digital
-> > > > attenuators. This covers different device variants with similar
-> > > > SPI control.
-> > 
-> > ...
-> > 
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    enum:
-> > > > +      - adi,ad8366
-> > > > +      - adi,ada4961
-> > > > +      - adi,adl5240
-> > > > +      - adi,adrf5720
-> > > > +      - adi,adrf5730
-> > > > +      - adi,adrf5731
-> > > > +      - adi,hmc271a
-> > > > +      - adi,hmc792a
-> > > > +      - adi,hmc1018a
-> > > > +      - adi,hmc1019a
-> > > > +      - adi,hmc1119
-> > > 
-> > > Why do none of these devices use fallback compatibles? Please put the
-> > > rationale in the commit message.
-> > 
-> > Will do. Each device has their own gain range/step. 
-> > 
-> > > > +
-> > > > +  reg:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  vcc-supply:
-> > > > +    description: Regulator that provides power to the device.
-> > > > +
-> > > > +  reset-gpios:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  enable-gpios:
-> > > > +    maxItems: 1
-> > > 
-> > > How come enable-gpios is optional? Is it optional on all devices?
-> > > Do all devices support enable-gpios and/or reset-gpios?
-> > 
-> > Board designs often hardwire powerup or serial mode enable signals
-> > to high voltage level, so there will not be a reason to add the
-> > enable-gpio.
-> 
-> I don't see anything about all devices supporting enable-gpios, adl5240
-> doesn't appear to have one? I'm not going to check all of the datasheets
-> to see about the others, but you should disallow the property on devices
-> that don't have an enable pin.
+Hi Guenter,
 
-Understood. I will prepare the following for v3:
+On Tue, 2026-01-27 at 09:39 -0800, Guenter Roeck wrote:
+> Hi Nuno,
+>=20
+> On 12/23/25 04:21, Nuno S=C3=A1 via B4 Relay wrote:
+> > This is v3 for the LTC4283 how swap controller. Main change is that I'm
+> > now using the auxiliary bus for adding the GPIO device (done depending
+> > on FW properties).
+> >=20
+> > Similar to the LTC4282 device, we're clearing some fault logs in the
+> > reset_history attributes.
+> >=20
+>=20
+> I ran the patch series through an AI review. Results are below.
+> Please take a look.
+>=20
+> Thanks,
+> Guenter
+>=20
+> ---
+> # Deep Dive Regression Analysis Log
+> Date: 2026-01-27
+>=20
+> ## Commit 5998c620fbd8: gpio: gpio-ltc4283: Add support for the LTC4283 S=
+wap Controller
+>=20
+> **Context**:
+> - Adds a new GPIO driver `drivers/gpio/gpio-ltc4283.c`.
+> - Depends on `drivers/hwmon/ltc4283.c` for regmap and MFD instantiation.
+>=20
+> **Findings**:
+> 1.=C2=A0 **Typo/Naming Issue**:
+> =C2=A0=C2=A0=C2=A0=C2=A0 - File `drivers/gpio/gpio-ltc4283.c` uses `LTC42=
+823_ADIO_CONFIG` definition.
+> =C2=A0=C2=A0=C2=A0=C2=A0 - `LTC42823` appears to be a typo for `LTC4283`.
+> =C2=A0=C2=A0=C2=A0=C2=A0 - `drivers/gpio/gpio-ltc4283.c:26`: `#define LTC=
+42823_ADIO_CONFIG 0x12`
+>=20
+> 2.=C2=A0 **Logic Verification**:
+> =C2=A0=C2=A0=C2=A0=C2=A0 - GPIO direction and value setting logic appears=
+ consistent with bitmasks provided, assuming
+> register `0x12` and `0x11` layout is correct as inferred.
+>=20
+> 3.=C2=A0 **Regressions**:
+> =C2=A0=C2=A0=C2=A0=C2=A0 - No critical functional regressions found in th=
+is commit alone.
+> =C2=A0=C2=A0=C2=A0=C2=A0 - Code quality: Typo in macro name.
+>=20
+> ## Commit 82433332ce16: hwmon: ltc4283: Add support for the LTC4283 Swap =
+Controller
+>=20
+> **Context**:
+> - Adds core HWMON driver `drivers/hwmon/ltc4283.c`.
+> - Handles I2C communication, regmap initialization, and MFD child creatio=
+n.
+>=20
+> **Findings**:
+> 1.=C2=A0 **Critical Regression: DebugFS Use-After-Free**:
+> =C2=A0=C2=A0=C2=A0=C2=A0 - `ltc4283_probe` calls `ltc4283_debugfs_init`.
+> =C2=A0=C2=A0=C2=A0=C2=A0 - `ltc4283_debugfs_init` calls `debugfs_create_f=
+ile_unsafe` creating files associated with
+> `st`.
+> =C2=A0=C2=A0=C2=A0=C2=A0 - `st` is allocated with `devm_kzalloc`.
+> =C2=A0=C2=A0=C2=A0=C2=A0 - **Issue**: There is no explicit cleanup of deb=
+ugfs entries (e.g.,
+> `debugfs_remove_recursive`) and no `devm_add_action` to handle it.
+> =C2=A0=C2=A0=C2=A0=C2=A0 - **Consequence**: When the driver is unbound/un=
+loaded, `st` is freed by devm. The debugfs
+> entries remain. Accessing them triggers a Use-After-Free on `st`.
+> =C2=A0=C2=A0=C2=A0=C2=A0 - **Fix Required**: Use `devm_add_action_or_rese=
+t` to remove debugfs directory/entries on
+> driver detach.
 
-allOf:
-  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-  - if:
-      properties:
-        compatible:
-          contains:
-            const: adi,hmc271a
-    then:
-      properties:
-        reset-gpios:
-          maxItems: 1
-  - if:
-      properties:
-        compatible:
-          contains:
-            anyOf:
-              - const: adi,ad8366
-              - const: adi,ada4961
-              - const: adi,adrf5720
-              - const: adi,adrf5730
-              - const: adi,adrf5731
-              - const: adi,hmc792a
-              - const: adi,hmc1018a
-              - const: adi,hmc1019a
-              - const: adi,hmc1119
-    then:
-      properties:
-        enable-gpios:
-          maxItems: 1
-          description: Power-up or Serial Mode Enable GPIO.
+So actually a nice deduction from the agent but not accurate given that all=
+ the entries should be
+removed in [1]. If you want it to be explicit, I can add the action but giv=
+en that the dentry is
+given by i2c, I would argue it's fair to assume i2c will take care of the r=
+emoval. Thoughts?
 
-> > I went over the device datasheets and I could not find the
-> > reason for the reset gpio. I left it there because it was being used
-> > in the current driver implementation, and I would not like to
-> > invalidate designs that might be currently using it. I will ask around.
-> 
-> If none of the devices have a reset pin, then you should delete the
-> property from the binding and the driver. Not like you're going to break
-> something if none of the supported devices even have the pin!
+I'm also planning to pick this up again but was caught by something else. S=
+o hopefully next week.=C2=A0
 
-The pin might have been there due to an old revision of the ada4961 device
-(the reset_gpio was added to the code when ada4961 support was included)
-which I can't find related documentation. However, it turns out that
-hmc271a contains a reset pin, as you can see above.
+On another topic, I also (you questioned it in another thread) looked aroun=
+d and I do have a ltc4282
+board with me. Given that I just need to power up the digital parts to acce=
+ss the i2c bus, it should
+be pretty straight to get a register dump. So if you're still interested on=
+ that, I should be able
+to do it.
 
--- 
-Kind regards,
+[1]: https://elixir.bootlin.com/linux/v6.19-rc5/source/drivers/i2c/i2c-core=
+-base.c#L634
 
-Rodrigo Alencar
+- Nuno S=C3=A1
+>=20
 
