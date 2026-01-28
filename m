@@ -1,194 +1,330 @@
-Return-Path: <devicetree+bounces-260517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260541-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8JhWFhE1eml+4gEAu9opvQ
-	(envelope-from <devicetree+bounces-260517-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 17:10:57 +0100
+	id oOM0Kck6emlB4wEAu9opvQ
+	(envelope-from <devicetree+bounces-260541-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 17:35:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2B0DA5391
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 17:10:56 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF492A5D80
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 17:35:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4596830162A6
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 16:06:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 111C130D16C1
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 16:28:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C43F30BBA5;
-	Wed, 28 Jan 2026 16:06:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35849313E29;
+	Wed, 28 Jan 2026 16:28:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nID9qwAg";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="G4gtpb0W"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b="NILIDsNX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from lx20.hoststar.hosting (lx20.hoststar.hosting [168.119.41.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85B6C28D8DB
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 16:06:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24CEE31076A;
+	Wed, 28 Jan 2026 16:28:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=168.119.41.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769616408; cv=none; b=m55XLk2ioL1XWltDXFUr5taeLdGT63zO0jaE/7dzxO+8Rj17QrcOHD4lWm0RzeSTlI1cSGYaxNdFZSoZRx0NvakntZ/JtlANTRTIGwJTRz6EjiIMRmeYCZk4fI4QFLZ3kaDDEC4ib30wmdDxNuCLHIpSfEPe3ZXb6HPD1AXydLQ=
+	t=1769617689; cv=none; b=oHiTHcz3kalUC9rb3Q4DrewGOkor2l3dqpeelJdfuNzJzd0DWmZrkjlveOf4in1kehiRzLvzeLYnj59Ifui07ZWSSELOxImzE1S9CxH+47NU2wXrJDFsO8jwa5tIpPCGP6MXX2JQccyIBAQr98PfgRwXvjCHx8vU/42FfSk5y6k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769616408; c=relaxed/simple;
-	bh=VW/qc4m7QYnWq8rGr+uR7X5ZxtSgkDmixXSRRjkvsXs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=M7SMPYdZoTu+RYYxjiQh37CkTvs6/KlnfXzUhVMNBKzI6i5k7VlXCWV3uejcx4h5V2s0HboqAmd4h8nXIZLWIjYefA+AAWI+2763OiOymXaasoAhlM1Y6HMxFnhENDTQ2bgW578R4DC8vqFFnB7MQYF/Am9AUUQA9COjpVHceDM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nID9qwAg; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=G4gtpb0W; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60SFerBo4008468
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 16:06:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=XHLifZ9wwYI+BPtJUCR9DVIO
-	9WGqye4RlpIupw/JkLA=; b=nID9qwAglbIqC48REmyIsR5BGQea+I7x+m84TSH+
-	bH/L/m654Lj4V0/Xyp/5QMa/G8WfZUw0pTjOTK4E3rVFRTnDOXW6U1P8dl29W5rH
-	Yj7MHAnrV9MrcBDc6QUGZLtCLqUHDJFax8v0CmdPSjEYkCvQQG7e5G1CO02ktqV4
-	hbxK7Fp6MWJJL3F1CvoCosHwKXfZsCCgIG6XH3tzyD/JtuxiO9UQ5d2KSXPQzx6K
-	HfWMCEumtHBcKI/YQZFDLJODITOHF+acpXVhZrPPHPBCAB13LkYTNEsjQaKVgQ6q
-	uQbDhdy1ns5zwTvOCOfbhYkwyGxQVTMototqE7Cv6B3zHw==
-Received: from mail-vk1-f197.google.com (mail-vk1-f197.google.com [209.85.221.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4by1jx49rr-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 16:06:46 +0000 (GMT)
-Received: by mail-vk1-f197.google.com with SMTP id 71dfb90a1353d-5663cd97317so6796656e0c.2
-        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 08:06:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769616405; x=1770221205; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=XHLifZ9wwYI+BPtJUCR9DVIO9WGqye4RlpIupw/JkLA=;
-        b=G4gtpb0WpVoZy4gvVWWHo6Ex1JTbajju6N0WeCrhZL4mla9BcnAWsyiuvwaAJPptuU
-         UqWLmY6gdjjFro5T9PrWqgCzcL1VhxYuzZ4IKM8ypgbPUsV09bEx3eRyDz4OnhpUGwN0
-         clYcRh2WaDfzV9KAV8jPlv2pNlMalhsRbF5JjH1vbAJGF3Xe/5RX+Nb8Z8DnsEnIr3Mm
-         yZBWWHO3QiehU6qM/T5Q2e3s6VuME0ZjiplOU5j+gvt2eHtry71ZKtkatA/rw7U1CEHx
-         V914fWMI8LfmLi9Ef74yH9zQ51o/z0zqJb1ct6RTwJMeMei8NGQ+hPcmAYNi6RQi18hU
-         aidw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769616405; x=1770221205;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XHLifZ9wwYI+BPtJUCR9DVIO9WGqye4RlpIupw/JkLA=;
-        b=ClQmNWWcBtDg+U6Lkq6aWxkcRPrvwxKBpU4PBuGK8mqnJV7gUjL/hKXkUCJnkRsmn1
-         oAF+UMAqKgYWsoJ7l6OOpM8AWGHgimFa/Taqo/NqzQnDzB3PNeN4lbHqLCIKlPecjoie
-         4Cs6PnkNGv5eIr3dkGAMAf+bEqZDJa4hbaoRUCrdUDrfSnE6oD1eBqH/UBCXHKBVJyBv
-         rhEnscFRl9vChRj39Ny7xhCDlMAcMKmdW5ep3rU+hYaGhm48lmbFeXgaIotEVqQTymcq
-         MDASk1lCTQIMxKc+8POB+omHQp8Y8L2rcLg1fwNNSgIK0Ou/GIREkG8OAC1jjWfJEDAA
-         MJ8g==
-X-Forwarded-Encrypted: i=1; AJvYcCX1pWp6jBdRXgj3dGDGiZbzwsw12Q5pcEYMjsMvuihgq3pID4VgZlBurGe7j3/etlZFT7JYgHJMqbkg@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw7Pcl9dPhKcf18QoCPh79N9WesLy8OGjATcI3KNEIU6k42BLpc
-	IzJxOSiq0n9I505swWr6GKWNrXQqkFNuzF+9shVFM4mfGUzV60K4qhqtPmK1A4/f0ssVFWWnonk
-	Poi1xMG8z/lqMZa0PZMdu23mcdwPnCvdYjPC3vy48fOhz3ANGSZASouZ78iP48Lz4
-X-Gm-Gg: AZuq6aL5ZLlHESVIqWssoBqSYEJdJNQuwJDl5j4ouh2ReD8jns2ywcsQGyCzDTG9xOh
-	JfH7Yy37Mwg+q8Uq11MjbU3QYJs+F8lsCRW4dZAgSwpjV1L5buD1n5K/PgtrtrVM43jSWNaXLGz
-	Usa3xvvQixva6gCGHEEjSZOQZYUlS+fpm4VyGIV5Y4IC0EaWOLcOTquwB6zLthkRGARfeR+VQAT
-	qjLVgxEAo+tBP2MMbOkGXqk6atklGPRYiOlbyfc5XEb6rLMqpXlG4jej5pg7AXAop/2RcW8FeYN
-	C22LYP6+zS5lzvDlf87b7e4ytSMu+z6rwFlEhBEoNXUTRn6QpGEzfw2jfXlrq/O+57TH8TQ34FN
-	gn9ZKIhowrL8huzI2M/7nTGddmFOTHV9Yn3edYUR2D+/jn4Ik5fmheFGTUQMVM26XMXugLdcUZx
-	Brz+XPhcnzSXWo8sO9Q3C+BBE=
-X-Received: by 2002:a05:6122:210f:b0:566:24c0:716b with SMTP id 71dfb90a1353d-566794a81b7mr1704495e0c.3.1769616403841;
-        Wed, 28 Jan 2026 08:06:43 -0800 (PST)
-X-Received: by 2002:a05:6122:210f:b0:566:24c0:716b with SMTP id 71dfb90a1353d-566794a81b7mr1704396e0c.3.1769616401913;
-        Wed, 28 Jan 2026 08:06:41 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-38625f6c670sm4378361fa.32.2026.01.28.08.06.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Jan 2026 08:06:41 -0800 (PST)
-Date: Wed, 28 Jan 2026 18:06:39 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Luca Weiss <luca.weiss@fairphone.com>, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: milos-fairphone-fp6: Add
- vibrator support
-Message-ID: <w3e3weyxdp3bi6mlxa3hvtmvbtuyddaj3hfn3urhixtliejhsx@h3wqvscon6n4>
-References: <20260128-aw86938-driver-v2-0-b51ee086aaf5@fairphone.com>
- <20260128-aw86938-driver-v2-3-b51ee086aaf5@fairphone.com>
+	s=arc-20240116; t=1769617689; c=relaxed/simple;
+	bh=HbwxAhLVy43RqOQ9x5SQvssyY7PiwPNlDMYepyZcthU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=jpcV/GTYp2Mv/Ud8+0DQTZY0SUzcGIwCmbyVD5ZbJoA+BM93Ou9gHapQHL2ZVCCfsEMTHQsoSiQStx1TIqxrgYYdDNATA9G6GQrW9P1C93lBDwpG7i1KnUW48Va3D5m2BzUw7isIDyq1q1M+7AO+3CY0y3yaZZZevMpyoKLMb7g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at; spf=pass smtp.mailfrom=emfend.at; dkim=pass (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b=NILIDsNX; arc=none smtp.client-ip=168.119.41.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=emfend.at
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=emfend.at;
+	 s=mail; h=Cc:To:Content-Transfer-Encoding:Content-Type:MIME-Version:
+	Message-Id:Date:Subject:From:Sender:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=DBqTl7Bp0ENVfStgCdlohbJ0wAaKzi2DaTv86fT8c+E=; b=NILIDsNXUqYgJbtk/aUMCloaO2
+	ystJZ9tq4k9OVRlJrzXcfhCCLjiagrTnmkU+PSYLOdQhOxh9z41gNjKI/5TSPNOW0qldwEmuvWUNa
+	U033WuyHIMGZRJ26X0jELn/CzqfFDz5tR7lSr7ackF7iKiVVQXhSFgvicTKHYnM19LFE=;
+Received: from 194-208-208-245.tele.net ([194.208.208.245]:49569 helo=[127.0.1.1])
+	by lx20.hoststar.hosting with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.93)
+	(envelope-from <matthias.fend@emfend.at>)
+	id 1vl85L-000KBr-E3; Wed, 28 Jan 2026 17:08:05 +0100
+From: Matthias Fend <matthias.fend@emfend.at>
+Subject: [PATCH v9 0/2] media: add Himax HM1246 image sensor
+Date: Wed, 28 Jan 2026 17:08:00 +0100
+Message-Id: <20260128-hm1246-v9-0-f9c996486a95@emfend.at>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260128-aw86938-driver-v2-3-b51ee086aaf5@fairphone.com>
-X-Proofpoint-ORIG-GUID: nc1EowbuNrZQs_SNNd5DRbNYz5HFS1dq
-X-Authority-Analysis: v=2.4 cv=duPWylg4 c=1 sm=1 tr=0 ts=697a3416 cx=c_pps
- a=JIY1xp/sjQ9K5JH4t62bdg==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=6H0WHjuAAAAA:8 a=EUspDBNiAAAA:8 a=7WDzbpTNP48-5iC3XZUA:9 a=CjuIK1q_8ugA:10
- a=tNoRWFLymzeba-QzToBc:22 a=Soq9LBFxuPC4vsCAQt-j:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI4MDEzMiBTYWx0ZWRfX3kSGMpDD+gIP
- Ot5aGSLyaNMG73CS9LMgQivKR7h68H5KcENxNrdSw2q0IbW+fUEoX2mXWNVbB2883lO7VR5tksT
- +3QgddJklpYHj2Bcu/nZAvMVgHZ3OG+JJ0ennpMuGEZeI9U/hcYKKMTw3g6XBaDPhvT93SKrjZF
- yrpwT/bjSVfDnjMuGzP9Q2EOTwrABkNAcF9bdEZ5IwskHrJON5MVQA7qX1YOzO4SaidzyTi+O9U
- Q5OZWWHDT8Ys5UxdcN8+TmZu/mdrOEyopzK0PpiykntSmhebAy51hLraRrCKbOZLn716V2D316m
- 7/z7WMxASiATwluRD9b17fPzDADfROr+1dcMpbZbR2Bqn8TP1Hj1MUOQO9H20hzzEtSt2goEqsM
- Vk0MComZP5QltL8QkXxHR96K9sODDrgCgjQZhSB+778Vs+goYDIkLOw7HIC+RZG3tQD1Z7HMSAj
- d74XBsCNff/XLstw7tQ==
-X-Proofpoint-GUID: nc1EowbuNrZQs_SNNd5DRbNYz5HFS1dq
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-01-28_03,2026-01-28_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 phishscore=0 bulkscore=0 priorityscore=1501 adultscore=0
- lowpriorityscore=0 suspectscore=0 clxscore=1015 malwarescore=0
- impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2601280132
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGA0emkC/2XRy2rEIBQG4FcZXDdFj7djV32P0oWXY+NiLiRDa
+ Bny7jUDNcFuhF/8fj34YDNNhWb2dnqwiZYyl+ulBvdyYnH0ly8aSqqZAQfNFZfDeBagzOBM4DH
+ 5YK2MrB6+TZTL97Po47Pmscz36/Tz7F3EtvuvYhEDHyR3jicrQlTwTudMl/Tq72yrWGBnGkxjU
+ JkJiIBgvfS6Z3JnTkBjcrstoMvKpuyV7JlqTHBhG1OVkZSI5CFzjD3TOxNcNaYrczZiBh20Eq5
+ nZmd1acxsjyRnKJkgc/Y9s3/McHGYzVaWiVCjzYAce4ZHtn8AbrN5J52yQTigI1vX9RcgDHC2H
+ QIAAA==
+X-Change-ID: 20250403-hm1246-96b0cdab773c
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Hans Verkuil <hverkuil@kernel.org>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>, 
+ Hans de Goede <hansg@kernel.org>, Ricardo Ribalda <ribalda@chromium.org>, 
+ =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>, 
+ Tarang Raval <tarang.raval@siliconsignals.io>, 
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+ Benjamin Mugnier <benjamin.mugnier@foss.st.com>, 
+ Sylvain Petinot <sylvain.petinot@foss.st.com>, 
+ Dongcheng Yan <dongcheng.yan@intel.com>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Alan Stern <stern@rowland.harvard.edu>, 
+ Jingjing Xiong <jingjing.xiong@intel.com>, 
+ Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>, 
+ Mehdi Djait <mehdi.djait@linux.intel.com>, 
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>, 
+ Svyatoslav Ryhel <clamor95@gmail.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Hao Yao <hao.yao@intel.com>, 
+ Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>, 
+ Matthias Fend <matthias.fend@emfend.at>
+X-Mailer: b4 0.14.2
+X-Spam-Score: 
+X-Spam-Bar: 
+X-Spam-Report: 
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [1.04 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	R_DKIM_REJECT(1.00)[emfend.at:s=mail];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260517-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,fairphone.com,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,fairphone.com:email];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-260541-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[emfend.at];
+	FREEMAIL_TO(0.00)[kernel.org,linux.intel.com,chromium.org,apitzsch.eu,siliconsignals.io,foss.st.com,intel.com,linaro.org,rowland.harvard.edu,gmail.com,ideasonboard.com,pengutronix.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[30];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[matthias.fend@emfend.at,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[emfend.at:-];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: D2B0DA5391
+	HAS_WP_URI(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,emfend.at:mid,emfend.at:email]
+X-Rspamd-Queue-Id: DF492A5D80
 X-Rspamd-Action: no action
 
-On Wed, Jan 28, 2026 at 04:51:15PM +0100, Griffin Kroah-Hartman wrote:
-> Add the required node for haptic playback (Awinic AW86938)
-> 
-> Signed-off-by: Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
-> ---
->  arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts | 19 ++++++++++++++++++-
->  1 file changed, 18 insertions(+), 1 deletion(-)
-> 
+Hello,
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+this series adds support for the Himax HM1246 image sensor.
+The Himax HM1246-AWD is a 1/3.7-Inch CMOS image sensor SoC with an active
+array size of 1296 x 976.
+Currently, only the native RAW mode is supported. Other modes and the
+internal image signal processing pipeline are not currently supported.
+The data sheet is available on the manufacturer's website [1].
+Tested on i.MX8MP hardware. A Toshiba TC358746 bridge was used to convert
+the sensor's parallel video output into MIPI signals for the i.MX8MP.
 
+Best regards
+ ~Matthias
+ 
+[1] https://www.himax.com.tw/wp-content/uploads/2024/03/HM1246-AWD_DS_v01.pdf
 
+v4l2-compliance 1.28.1, 64 bits, 64-bit time_t
+
+Compliance test for device /dev/v4l-subdev4:
+
+Driver Info:
+        Driver version   : 6.12.0
+        Capabilities     : 0x00000000
+        Client Capabilities: 0x0000000000000003
+streams interval-uses-which
+Required ioctls:
+        test VIDIOC_SUDBEV_QUERYCAP: OK
+        test invalid ioctls: OK
+
+Allow for multiple opens:
+        test second /dev/v4l-subdev4 open: OK
+        test VIDIOC_SUBDEV_QUERYCAP: OK
+        test for unlimited opens: OK
+
+Debug ioctls:
+        test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+        test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+        test VIDIOC_ENUMAUDIO: OK (Not Supported)
+        test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDIO: OK (Not Supported)
+        Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+        test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+        test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+        Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+        test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+        test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+        test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+        test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+        test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+        test VIDIOC_QUERYCTRL: OK
+        test VIDIOC_G/S_CTRL: OK
+        test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+        test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+        test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+        Standard Controls: 15 Private Controls: 0
+
+Format ioctls:
+        test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+        test VIDIOC_G/S_PARM: OK (Not Supported)
+        test VIDIOC_G_FBUF: OK (Not Supported)
+        test VIDIOC_G_FMT: OK (Not Supported)
+        test VIDIOC_TRY_FMT: OK (Not Supported)
+        test VIDIOC_S_FMT: OK (Not Supported)
+        test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+        test Cropping: OK (Not Supported)
+        test Composing: OK (Not Supported)
+        test Scaling: OK (Not Supported)
+
+Codec ioctls:
+        test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+        test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+        test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+        test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+        test CREATE_BUFS maximum buffers: OK
+        test VIDIOC_REMOVE_BUFS: OK
+        test VIDIOC_EXPBUF: OK (Not Supported)
+        test Requests: OK (Not Supported)
+
+Total for device /dev/v4l-subdev4: 45, Succeeded: 45, Failed: 0, Warnings: 0
+
+Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
+---
+Changes in v9:
+- Use v4l2_rect in hm1246_mode
+- Return in default case of hm1246_get_selection()
+- Convert gpio based reset handling to use generic reset controller
+- Link to v8: https://lore.kernel.org/r/20260113-hm1246-v8-0-ea93947b192e@emfend.at
+
+Changes in v8:
+- Adjusted copyright year (Sakari)
+- Use local var for unreferenced v4l2 controls (Sakari)
+- Return NULL instead of PTR_ERR if hm1246_find_mode_by_mbus_code() fails (Sakari)
+- Removed unnecessary parentheses (Sakari)
+- Dropped git reference in MAINTAINER entry (Sakari)
+- Added default for bus-width in bindings (Sakari)
+- Link to v7: https://lore.kernel.org/r/20260112-hm1246-v7-0-fee8587f2808@emfend.at
+
+Changes in v7:
+- Expect the PLL to generate the exact link frequency specified in DT (Laurent, Sakari)
+- Dropped {g,s}_register functions
+- Link to v6: https://lore.kernel.org/r/20251202-hm1246-v6-0-3e96ed6b3ffa@emfend.at
+
+Changes in v6:
+- Rework includes to follow include-what-you-use (Andy)
+- Replace 'fsleep(6000)' with 'fsleep(6 * USEC_PER_MSEC)' (Andy)
+- Simplify hm1246_get_selection() return (Andy)
+- Use explicit indexes for test pattern array (Andy)
+- Improve some line-wrappings (Andy)
+- Avoid using __maybe_unused (Andy)
+- Drop an unnecessary type cast (Andy)
+- Use '0' instead of '0x0' (Andy)
+- Reword comments about timings (Andy)
+- Simplify error handling of hm1246_init_controls() (Sakari)
+- Revert 'rework PLL calc to use goto' (Andy, Sakari)
+- Link to v5: https://lore.kernel.org/r/20251104-hm1246-v5-0-97c8f25b5419@emfend.at
+
+Changes in v5:
+- Converted to lower case hexadecimals
+- Use consistent returns in switch of hm1246_get_selection()
+- Adjust some variable types/attributes
+- Removed redundant parentheses
+- Rework PLL calc to use goto
+- Simplified some function returns
+- Use array definition for test patterns
+- Source format adjustments
+- Properly init minimum of pixel_rate control
+- dropped hm1246_update_controls()
+- require and check DT link frequencies
+- Link to v4: https://lore.kernel.org/r/20251017-hm1246-v4-0-e3388ea2f08c@emfend.at
+
+Changes in v4:
+- Split changes to MAINTAINERS into commits
+- Fix comma after statement (use semicolon)
+- Replace abs() with abs_diff() in PLL calculation
+- Inverse needs_cmu_update logic
+- Drop mode from hm1246_set_ctrl()
+- Return if xclk frequency is out of range
+- Fix reset_gpio dev_err_probe()
+- Rebased on media-committers/next
+- Link to v3: https://lore.kernel.org/r/20250912-hm1246-v3-0-3b89f47dfa43@emfend.at
+
+Changes in v3:
+- Bindings: Remove bus-type and add default polarity values
+- Select V4L2_CCI_I2C
+- Convert additional macros to use HZ_PER_*
+- Replace cur_mode with v4l2_find_nearest_size()
+- Remove duplicates in the register init sequence
+- Use container_of_const
+- Check return of hm1246_update_controls()
+- Correct multi-line comments
+- Replace hm1246_cci_write_cmu()
+- Consistently use hm1246->dev
+- Use pm_runtime_put_autosuspend()
+- Remove v4l2 event handling
+- Convert to devm_v4l2_sensor_clk_get()
+- Configure PM before registering subdev
+- Link to v2: https://lore.kernel.org/r/20250526-hm1246-v2-0-6b882827a3a5@emfend.at
+- Depends-on: https://lore.kernel.org/all/20250707143253.167910-1-mehdi.djait@linux.intel.com/
+
+Changes in v2:
+- Use macros for 64-bit division
+- Avoid compiler warnings about potentially uninitialized variables
+- Fix two uses of dev_err_probe
+- Link to v1: https://lore.kernel.org/r/20250403-hm1246-v1-0-30990d71bc42@emfend.at
+
+---
+Matthias Fend (2):
+      media: dt-bindings: i2c: add Himax HM1246 image sensor
+      media: i2c: add Himax HM1246 image sensor driver
+
+ .../bindings/media/i2c/himax,hm1246.yaml           |  120 ++
+ MAINTAINERS                                        |    7 +
+ drivers/media/i2c/Kconfig                          |   10 +
+ drivers/media/i2c/Makefile                         |    1 +
+ drivers/media/i2c/hm1246.c                         | 1290 ++++++++++++++++++++
+ 5 files changed, 1428 insertions(+)
+---
+base-commit: 3aa9296a23ec41a8424e9a2346eea59fb6cb7d8c
+change-id: 20250403-hm1246-96b0cdab773c
+
+Best regards,
 -- 
-With best wishes
-Dmitry
+Matthias Fend <matthias.fend@emfend.at>
+
 
