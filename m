@@ -1,155 +1,233 @@
-Return-Path: <devicetree+bounces-260657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260658-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kB1XMpKUemmC8AEAu9opvQ
-	(envelope-from <devicetree+bounces-260657-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 23:58:26 +0100
+	id QOe6E8iUemmC8AEAu9opvQ
+	(envelope-from <devicetree+bounces-260658-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 23:59:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44C17A9CB0
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 23:58:26 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id B84ACA9CC7
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 23:59:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F21DD3011851
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 22:58:24 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id AE64A30166D9
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 22:59:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70E9C33E37A;
-	Wed, 28 Jan 2026 22:58:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F3A2343D76;
+	Wed, 28 Jan 2026 22:59:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pmMeCKXS"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="pGGMZR3G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E67E313520;
-	Wed, 28 Jan 2026 22:58:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9429E33065D;
+	Wed, 28 Jan 2026 22:59:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769641103; cv=none; b=fcV1x4+bV+ERLuTQi4sNN7hEkFk0JolJj71Fiwxdflc0YOE9Cw9AQnGGlPyeu2PEff4uJzHNNjfrol/3gTxkcTvXd8C2QH4vQEVH28apq8BYwtyRn3K9wNMi2qvl/nhIq6tqhY3eSPEtzF36ezNDuSjmi+hHzqFFb1BFAmyZDPs=
+	t=1769641157; cv=none; b=reU/5Zdd28EYCXmgLRpU/H7HON87rVpeZ0CcdIUmMTh3hOg8Pp6GlxeAVatjcpoGvasx0GvExt1wtw+wbYkZWjLs1FoFWLAcmZl47Va0uCfNufsucPH/0w8Q+5JqeIBmIdANYq5L3SNPYmRI0/qtG5qdWcMEt98XrGRhwO7D7Tw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769641103; c=relaxed/simple;
-	bh=Z9OqPeF9IuAUdu1BeekUKKNyvo5WfxDHVzPt2apoXDU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C9us7cIdCUPvGJ8oVsFZMPNHAJPK7KFmJtA2dYLFPeeDLS9Rd5ANFfk4haWQ5DHvBMtNoTnYnMClUh6hFhLZ887FUmXOEF7DKQPVaoYGiidJ0uKbdak2kexDvm8CCt7+T/SBgCRoTfZkGjlLQMvt7dG63RwaDvuvZG0emW0j1Uk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pmMeCKXS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55009C4CEF1;
-	Wed, 28 Jan 2026 22:58:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769641102;
-	bh=Z9OqPeF9IuAUdu1BeekUKKNyvo5WfxDHVzPt2apoXDU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pmMeCKXSIpP9RojxNRVcs7H1lP0xvQLj/J7xBmpBkM6vQOrrRbhWg6Wj4A95BnSiF
-	 O1otSk2VEAJeIin0cfw6z3ZNBiXTFpQeMi1t8JmuNJqYRSIc9apZ/WHkCvUHTovATr
-	 1FeOnna9f3hTBz4v6UWNmwRzw2lb2SRZ+55Se5862Z7w0GLTiRY2uVz5lFV+K5KL7M
-	 JxM4+ZJg0iZgyi1tbxdU4FPL0zkNMJb/OJSyiDYpK/coqjb8ajQv24ghCJDzwW/0UB
-	 H80PkBWiWFMGSjb2H3LDBd1U4RWSXHhrflJyCjeNyFJFsWulrwWKL7JDhBvitR7tWK
-	 vpEbN8h6dZDoA==
-Date: Wed, 28 Jan 2026 14:58:20 -0800
-From: Drew Fustini <fustini@kernel.org>
-To: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>,
-	Dmitry Baryshkov <lumag@kernel.org>,
-	Michal Wilczynski <m.wilczynski@samsung.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Han Gao <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>,
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	Icenowy Zheng <uwu@icenowy.me>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v6 4/9] dt-bindings: display/bridge: add binding for
- TH1520 HDMI controller
-Message-ID: <aXqUjLG9YdKSwh/2@x1>
-References: <20260123092830.4046009-1-zhengxingda@iscas.ac.cn>
- <20260123092830.4046009-5-zhengxingda@iscas.ac.cn>
- <aXpzC8MnShvc0tJv@x1>
+	s=arc-20240116; t=1769641157; c=relaxed/simple;
+	bh=G6zdpOrHpYOo+wAmzZPsLM+pB93NgVWdEtodPism9p8=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Ge14vbEE/TOuh0OJFRmXncsyzp+p6q5kJnW8N+7fLpM7sWROGLp1xAy+T/v/drQdCIsARLDm8SWq6dHK4BeykzagL0tcNQluAoPFpCNadQFwxtzunmGWXC7bBPXMndjxGws4LAww9HpGlOAN2pCjvHdikCbWfOUtDGo6l/n4Ad0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=pGGMZR3G; arc=none smtp.client-ip=80.241.56.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:b231:465::1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4f1d4Z4hc2z9tJr;
+	Wed, 28 Jan 2026 23:59:10 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1769641150;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=EfPWU/6INqaXgHJYGH9TyZanu63iz0zh/qr7Kle/x4Q=;
+	b=pGGMZR3Gu5EX08zu8GKw7j5PhRMFZlz1vhdUDXvKGBLi5Q9mBICXeeGUZhkCZg6fKlg6NJ
+	ENt8PjjDL4EbtvyChWm/qWknBGkZtM1UoyNXTYXOyTAmLEPDTfvo2KtlSHzugAt1SqgZaH
+	2DwBSzn5KkSncnm70q0VAKRGI9b0U/auWqa/gStNvhwRh9WAW+5K4Kc2PRqOEzQX/XX4NW
+	G4NQy5PZQppvMfI5rorQmp5QF3DNOeHnxLGQo5e4d2eqzMsXek/Uxgi1Y3A9RBz7iDOS1K
+	kf/2py0mHabS8U8diWWV/hQy3/xc2rPxGvcCHFhm+wcp2LLXvGcazKB/OR3IEA==
+Date: Wed, 28 Jan 2026 23:58:59 +0100
+From: =?UTF-8?B?xYF1a2Fzeg==?= Majewski <lukasz.majewski@mailbox.org>
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: festevam@gmail.com, linux-arm-kernel@lists.infradead.org,
+ s.hauer@pengutronix.de, kernel@pengutronix.de, horms@kernel.org,
+ shawnguo@kernel.org, imx@lists.linux.dev, linux-kernel@vger.kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org, wahrenst@gmx.net,
+ pabeni@redhat.com, davem@davemloft.net, netdev@vger.kernel.org,
+ richardcochran@gmail.com, edumazet@google.com, andrew+netdev@lunn.ch,
+ robh@kernel.org, krzk+dt@kernel.org, andrew@lunn.ch
+Subject: Re: [net-next,v20,7/7] net: mtip: Extend the L2 switch driver for
+ imx287 with bridge operations
+Message-ID: <20260128235859.634422f1@wsk>
+In-Reply-To: <20260128022600.4151612-1-kuba@kernel.org>
+References: <20260126103400.1683125-8-lukasz.majewski@mailbox.org>
+	<20260128022600.4151612-1-kuba@kernel.org>
+Organization: mailbox.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aXpzC8MnShvc0tJv@x1>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-MBO-RS-ID: 2682124a76cf458dce0
+X-MBO-RS-META: u9mik3pdfwu9wda13sbs1rycteokqfio
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-260658-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-260657-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,redhat.com,pengutronix.de,samsung.com,bootlin.com,disroot.org,vger.kernel.org,lists.freedesktop.org,lists.infradead.org,icenowy.me];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,lists.infradead.org,pengutronix.de,kernel.org,lists.linux.dev,vger.kernel.org,gmx.net,redhat.com,davemloft.net,google.com,lunn.ch];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[29];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[fustini@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lukasz.majewski@mailbox.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[mailbox.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
 	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 44C17A9CB0
+X-Rspamd-Queue-Id: B84ACA9CC7
 X-Rspamd-Action: no action
 
-On Wed, Jan 28, 2026 at 12:35:23PM -0800, Drew Fustini wrote:
-> On Fri, Jan 23, 2026 at 05:28:25PM +0800, Icenowy Zheng wrote:
-> > From: Icenowy Zheng <uwu@icenowy.me>
-> > 
-> > T-Head TH1520 SoC contains a Synopsys DesignWare HDMI controller paired
-> > with DesignWare HDMI PHY, with an extra clock gate for HDMI pixel clock
-> > and two reset controls.
-> > 
-> > Add a device tree binding to it.
-> > 
-> > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> > Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > ---
-> > No changes since v3.
-> > 
-> > Changes in v2:
-> > - Re-aligned multi-line clocks/resets in example.
-> > - Added Krzysztof's R-b.
-> > 
-> >  .../display/bridge/thead,th1520-dw-hdmi.yaml  | 120 ++++++++++++++++++
-> >  1 file changed, 120 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/display/bridge/thead,th1520-dw-hdmi.yaml
-> 
-> I've applied the bindings patches (1, 2, 4) to thead-dt-for-next as well
-> so that 'make W=1 dtbs_check' won't break for the next release of
-> linux-next.
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/fustini/linux.git/log/?h=thead-dt-for-next
-> 
-> Please see my reply to patch 1 for the rest of my message.
+Hi Jakub,
 
-I've dropped the yaml patches from thead-dt-for-next based on Conor's
-advice. Patches 1, 2 and 4 can go through drm.
+> This is an AI-generated review of your patch. The human sending this
+> email has considered the AI review valid, or at least plausible.
+>=20
+> For local reproduction steps see
+> https://netdev-ai.bots.linux.dev/ai-local.html ---
+> net: mtip: Extend the L2 switch driver for imx287 with bridge
+> operations
+>=20
+> This patch adds bridge operations support to the MTIP L2 switch
+> driver, enabling hardware offloading for packet switching when a
+> bridge is created on the switch interfaces.
+>=20
+> > diff --git a/drivers/net/ethernet/freescale/mtipsw/mtipl2sw_br.c
+> > b/drivers/net/ethernet/freescale/mtipsw/mtipl2sw_br.c new file mode
+> > 100644 index 000000000000..f961b9cc4e6a
+> > --- /dev/null
+> > +++ b/drivers/net/ethernet/freescale/mtipsw/mtipl2sw_br.c =20
+>=20
+> [ ... ]
+>=20
+> > +static int mtip_ndev_port_link(struct net_device *ndev,
+> > +			       struct net_device *br_ndev,
+> > +			       struct netlink_ext_ack *extack)
+> > +{
+> > +	struct mtip_ndev_priv *priv =3D netdev_priv(ndev),
+> > *other_priv;
+> > +	struct switch_enet_private *fep =3D priv->fep;
+> > +	struct net_device *other_ndev;
+> > +	int err;
+> > +
+> > +	/* Check if one port of MTIP switch is already bridged */
+> > +	if (fep->br_members && !fep->br_offload) {
+> > +		/* Get the second bridge ndev */
+> > +		other_ndev =3D fep->ndev[fep->br_members - 1];
+> > +		other_priv =3D netdev_priv(other_ndev);
+> > +		if (other_priv->master_dev !=3D br_ndev) {
+> > +			NL_SET_ERR_MSG_MOD(extack,
+> > +					   "L2 offloading only
+> > possible for the same bridge!");
+> > +			return notifier_from_errno(-EOPNOTSUPP); =20
+>                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>=20
+> Should this return -EOPNOTSUPP instead of
+> notifier_from_errno(-EOPNOTSUPP)? The caller mtip_netdevice_event()
+> already wraps the return value with notifier_from_errno(ret), so
+> double-wrapping corrupts the return value.
+>=20
+> Looking at similar drivers like cpsw_new.c (cpsw_netdevice_port_link),
+> the pattern is to return raw errno values here and let the event
+> handler do the conversion.
+>=20
 
-Drew
+Yes, the call to notifier_from_errno() can be removed.
+
+I will fix it with v21.
+
+> > +		}
+> > +
+> > +		fep->br_offload =3D 1;
+> > +		mtip_switch_dis_port_separation(fep);
+> > +		mtip_clear_atable(fep);
+> > +	}
+> > +
+> > +	if (!priv->master_dev)
+> > +		priv->master_dev =3D br_ndev;
+> > +
+> > +	fep->br_members |=3D BIT(priv->portnum - 1);
+> > +
+> > +	err =3D switchdev_bridge_port_offload(ndev, ndev, NULL,
+> > NULL, NULL,
+> > +					    false, extack);
+> > +	if (err) {
+> > +		dev_err(&ndev->dev, "can't offload bridge port %s
+> > [err: %d]\n",
+> > +			ndev->name, err);
+> > +		return err;
+> > +	} =20
+>=20
+> If switchdev_bridge_port_offload() fails, the state changes made
+> earlier in the function (br_offload, br_members, master_dev, and the
+> hardware configuration via mtip_switch_dis_port_separation and
+> mtip_clear_atable) are not rolled back.
+>=20
+> Looking at cpsw_new.c for reference, it modifies br_members after the
+> switchdev call succeeds, avoiding the need for rollback. Could the
+> state updates here be reordered to happen after
+> switchdev_bridge_port_offload() returns successfully?
+>=20
+
+I will add to v21:
+
+fep->br_members &=3D ~BIT(priv->portnum - 1);
+priv->master_dev =3D NULL;
+
+before I return err.
+
+(This "rollback" code was missing).
+
+> [ ... ]
+>=20
+> > +static int mtip_netdevice_event(struct notifier_block *unused,
+> > +				unsigned long event, void *ptr)
+> > +{ =20
+>=20
+> [ ... ]
+>=20
+> > +	return notifier_from_errno(ret);
+> > +} =20
+>=20
+> [ ... ]
+
+
+
+--=20
+Best regards,
+
+=C5=81ukasz Majewski
 
