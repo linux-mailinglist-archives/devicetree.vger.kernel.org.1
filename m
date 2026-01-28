@@ -1,233 +1,286 @@
-Return-Path: <devicetree+bounces-260485-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260486-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +Do9Jl8uemnd3gEAu9opvQ
-	(envelope-from <devicetree+bounces-260485-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 16:42:23 +0100
+	id gOMJLp81eml+4gEAu9opvQ
+	(envelope-from <devicetree+bounces-260486-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 17:13:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45CDFA43B4
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 16:42:23 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24D87A5485
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 17:13:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AB18530B154F
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 15:30:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 32D3C30CC8DF
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 15:36:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 464C0273803;
-	Wed, 28 Jan 2026 15:30:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D54462D660E;
+	Wed, 28 Jan 2026 15:36:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="HjlKuflm";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="MLJzPIkp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FicnEhqu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC820242D86
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 15:30:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 738192D6400
+	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 15:36:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769614250; cv=none; b=kdr6NgEcZExEkdGTaT9Y71pp1ISmGPOgpqgWwajtSXFNJHzU0oyQvXcvNwimapnR2U+zWVqh2y48XjFSV0kXNLQDj4t2NTmLo7yBszN9HQ4oP7d64UzlC/+vwUSTiqFFEcrQiNota37eZZ+Jq9SHvGn6bEdhuarFWYRm5UTI7Is=
+	t=1769614581; cv=none; b=edwRkrYcyL56NvACRJTqGItSScRbB+o3FlAXRI0Owi8xEUfv6YaD/s6K2PGVoPhYjFSIGbnPOtU9/UwD3p/nkNTU+4Orad5SZW3k56zTsSMgpldXx6vZ7EIh17mg3CsqD8i4uwHnKrjDQGB7rKShozsN/g68fmPPRSmx+XNttAk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769614250; c=relaxed/simple;
-	bh=XYAPBfBbLogIdfQzqy4JL/5bdxCR18ImMKIyx9mJGuk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GdK2mveufAIfQbLKJ/hM0wSeVNhL80sE3xcXRO4AuY6ZaqL6AXCIzKlQqfPcUJlhzh3JhS00E8QugkIYgYAIQAHXNZ+wEMwZE7ilex4g8cR8w8DyE9IyOtu7nr/zm4hbpDbvuDqaa860BEJVC0TrBOUtlztERjkbRWyn3j1/5Og=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HjlKuflm; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=MLJzPIkp; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60S927Kl811587
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 15:30:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	cfAWH0J+bT1TfO8Eut9bd0nqaaFvU1SsEogfvfC3c/s=; b=HjlKuflmfSJLO7jW
-	U0sgqjrUlREdzZtsYIYn4oXlvuPiiKP/hw0OvH9IR48pW7b6VM6oAUqB7FbRSaDc
-	2mjpYeUwTEH5E88QsGplKLgQPD+FLR5ue4gDs9hlwsjMaAGmGGCdYII+u8XpzjA1
-	zh/xhAoCJXrDjpzUNwJparQ1NaEpDE/GYk+pVR+wnTi/OuW4LsVB0gCEVpftkYtN
-	AuXQ77v8xKMBEizGRp4DpajJ2zygZM6z09AdiWSew3Y046pXk+tA59TUuKA5o2GR
-	BRcxGC3xdpxyX7MSqJMBx2nZCq875G01ik56H2SpulX+GsfsTIHHHAftdmNqV4Fp
-	ieVBpQ==
-Received: from mail-dl1-f70.google.com (mail-dl1-f70.google.com [74.125.82.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4by6qbk5nj-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 15:30:46 +0000 (GMT)
-Received: by mail-dl1-f70.google.com with SMTP id a92af1059eb24-1248da4d2d6so6044279c88.0
-        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 07:30:46 -0800 (PST)
+	s=arc-20240116; t=1769614581; c=relaxed/simple;
+	bh=RBTf5SpmW6wB8sbqGZJyrTpu2MaeLlNvD3QCGNKoHJI=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=orceLiCPZbD1cO/63yCZWJX6zjuUn6jkrhCR/sadPfjTP5dhFrlMgJ7+/cUacf+mLvwfVdVfF1ws/e/hTYcTncw7dfh57ZwzAcH7UXwCtIMTG3EaGPY5Vwt/OjoTQl4uCxt8JrZP6cy5BWXop6c/u2N0qPRFZhL6GoIT0iXd3Dg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FicnEhqu; arc=none smtp.client-ip=209.85.216.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-34c24f4dfb7so3721069a91.0
+        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 07:36:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769614246; x=1770219046; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cfAWH0J+bT1TfO8Eut9bd0nqaaFvU1SsEogfvfC3c/s=;
-        b=MLJzPIkpo4Lf34pb19Xj0FJPwdho1UvMnwH/i92twZIlQ/x5uzORYuT6WBebWcvxpZ
-         qNWE5IXxprHxAqq7kqWbGrJt+EwyQiBOi1MMg0CGfMVt/xGi8BOiabibmZ8hNaSwFNKn
-         WpAYJHtrDLyLl+SjfoqxP+4k3xtV3lx1pt01E1X3lLnzUZl6iCHBh1WEZ9q4dcPs6nKJ
-         z2wQZkG7jzQbAWpB1zK1pMklMFRk0ojF6myPDvmaX+OpLQ7Qw65wv8LXBNc4h6tXV/dF
-         peom58IKkAL9QZ0wdA8frTV1fHBQFMMyZ7bstSPtWKW26hxMvJ3402BBjRPIH+W1i1Gz
-         b9QQ==
+        d=gmail.com; s=20230601; t=1769614580; x=1770219380; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=nuofcrz98MXCzhxYxay1gJcoLhghs/UDg58+L67iybc=;
+        b=FicnEhquhUbXer9bW8IrLnQTUCoN77P6LKneOn3lEvNbkKmvc3RyTi7tL+tb81v5SS
+         KS/XmXjqjyLnBD0LRB/wD2keUMdU9eC4m3lOgND6+rPToQiRYqWdcVck8A6De8u8AKUj
+         4Wd8bMKA3FqF5KYOiQr9/UvHyXOVeJ/yZ/8evxWu7XOrXr57s9obfbGhZqvjZbxqBet/
+         5lb+ZVy5vmTy90mojDliSCTiImRFh5HOWzSl62tNPfDhdgM8ZkAVra3Bv12P6vRZzTE4
+         5snjJ7qQoujcf0N0lWfNvdHbMXYLAZBrPB0Fhop0D5ZoFjZ1cPnowyLgBv2hzrB5Vplz
+         5UlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769614246; x=1770219046;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cfAWH0J+bT1TfO8Eut9bd0nqaaFvU1SsEogfvfC3c/s=;
-        b=le6yL9dG40RmYOh2EitdkbsRyNKjUFk4RIRkLURp9yGf/UxyFc6FUR/ovbQbeIUJM7
-         79ThZdV9Vn+Heb6K9lIdzgVdLbj04hw8q+xmSs02EGOkHYfur1E0yn9k7VR83e7mnhAq
-         JIBoRpUaDpfZqHT4NKYr5TjNchR1ugwaeeAwrwJRtW+WfLzMrkdSTcUzMuQz2QRf0SmC
-         n1O+yOFy2QhZ+WAyRyG/rTd1di7N4dkILoxzRXYhkvc61N2rLN0uAocS29hC3skrQfBe
-         27WO9kpLd/X6NPYyLuqtOJ85dHLW7bKNPyplK4DhVvzF+ztLhd9paEYuJtZ4NykVgD4r
-         ZmBQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW05qfNfw4thY9L4kaEEs3q0Y3TKdRf9t70ekkocsA1/vVVcAmLS3UfsQ8RrW2aw/qgfh2vaVkcG1Wd@vger.kernel.org
-X-Gm-Message-State: AOJu0YyycR7BdzuXPmzGDbuTrn2jEVIAIfHG3qGFlH6zLSQGoJSQIdsp
-	qka0+O4TxUimPjGdV0TnqAsXZ2Or5jZS8pVVbuONIQRBVAxzrI8e8zZmXIgM111ff9k2yINCsRZ
-	06/a+JsZyTUvf/pKAiHxNJjp7y1bCNjFhwjDmOLXLQBI8XiadCEFCLwpINmCH3+fj
-X-Gm-Gg: AZuq6aJnQYm02lrO3riERpinAHcxUxravvRVJXsdQEsKryxGl6+vNTjyJnS16xeDki9
-	JvkrgaxoFdWsBLmu6flQj5OxjHXKO2KOqxr9yPu/7VjcLtBWGLnRQaXBCDEWJqdVvMrq94IgqM7
-	eD0RyS7HinOJT/P8S82O3pzCL3HMnrR80hqIYEnhuWB/PAMIc88v265K5owcQ1Xvmxit2pEo72o
-	gJ5b20W1G2ndxvwl2kWCcE21hJ5G9wGfAnF01jeecY5j2Pa6aRKmpWvU7DMovoKR33/Nsp0WXI8
-	13VR/f5D75yN4zLuEt1fhM3MIHHvWEvLc7dbmHxypjcLcSgulJEAmYZ8dJcxLVV8Yarrq6j9utq
-	G0cygLijoMjwjR2k2pLpmSUET0xwHlstbj7ieYsDu3X5iPTXK5Vagu63/J4w9SozNz17YAA==
-X-Received: by 2002:a05:7022:f97:b0:122:8d:3688 with SMTP id a92af1059eb24-124a00aad75mr3507987c88.22.1769614245556;
-        Wed, 28 Jan 2026 07:30:45 -0800 (PST)
-X-Received: by 2002:a05:7022:f97:b0:122:8d:3688 with SMTP id a92af1059eb24-124a00aad75mr3507956c88.22.1769614244895;
-        Wed, 28 Jan 2026 07:30:44 -0800 (PST)
-Received: from [10.227.110.203] (i-global254.qualcomm.com. [199.106.103.254])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-124a9d6b906sm2993776c88.4.2026.01.28.07.30.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Jan 2026 07:30:44 -0800 (PST)
-Message-ID: <9c2e80eb-1585-46eb-a0c4-95c0b50f25fd@oss.qualcomm.com>
-Date: Wed, 28 Jan 2026 07:30:43 -0800
+        d=1e100.net; s=20230601; t=1769614580; x=1770219380;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nuofcrz98MXCzhxYxay1gJcoLhghs/UDg58+L67iybc=;
+        b=AK9uMx3g6wATu3odwwurMpBS0RRQtLubXIYq2KA/hdQpENT/Qqz5Mhe6+FXX91HPJ1
+         rNdfObXitNb6wsmG8UZH/xqd96qVWeYwURcNfN8f86R5+mF7+f3fOQNvY9R/whPtrDKl
+         k6zXmrjTTREKUJ11e5LQAASMfoUThHVg1GFVXJHjYGOnim98jqcfWymWnw/U5r7yUT4/
+         LiXGxm3qt0KvBjnf6LNL6jAbe0+SmYyWZu9ETTds31/g5Q1/X41rFXHy5ObK81vd9DAv
+         vvc+oIU2WKxPjo98ZRMqTet0fRfTag69gNfow7eyhPrboezj8iVyFHacl3qr3okFTJGO
+         BMeQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXdvS1islimroW5UQt0KndKlIo1w2f1XKN/5GZ93bG8GZOJHcxrDMOSNedE93mhPlNJf+P0XeMv0XuO@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzppv55Zw9NeQ7tAtpyPJkoCODEwQ4CCts11FyM5jWWkiwPlNoW
+	nFe2hgsK9Z3q8eQJ7VHxCeTyzsZ0HzW1wmcb3Vb6F4J8AqxLj34/s9pA
+X-Gm-Gg: AZuq6aLkraWo2hJe4ucWTw9A3AoIVChgAJ/PjVXDq8zUWjKfVNO+96YJ8vC1wfq5P52
+	Bg+Fot0fUGIG5kldYh25BlxkeFAxEkjKiOUyi8ze4lHKO4vSyZ//A9ZAYOBnuU3FGCC/JFL5dwU
+	P2qJ83nRzSNZ9ku/671sU2bzOY5eeoXBQXRp3UnyO7389WZg4Wyfr152+0rTiTn6yO2Yl3EXfTE
+	Pz96iEHaYm7PSXFc03qN0QovTy04m67wysDQdPWp70Cd06JGMn9B2x0s0JHoZEjVrYvSm95sFNb
+	KUhZb6L8qmEbxEShmmhQo3Jx4U/WdkkpSMDsX0h5cgcl0HykTRvnUNNcbJM99v/UHLNCGh3RTqr
+	PuUwHgS3Sy3meHUNM0WWbrN6iVBHk4xiqpgHdGInfiGv+P08/MO5kIiCRrqpHS+mGDycPywBo0l
+	gTRcUvY94/7uPNqauxkbJrKHq1tkT0zbGV0Da0sEJa+AXyT6s=
+X-Received: by 2002:a17:90b:56c3:b0:32e:64ca:e84e with SMTP id 98e67ed59e1d1-353fecec28emr5232327a91.15.1769614579618;
+        Wed, 28 Jan 2026 07:36:19 -0800 (PST)
+Received: from LAPTOP-872M7T80.localdomain ([122.168.69.144])
+        by smtp.googlemail.com with ESMTPSA id 98e67ed59e1d1-35410ee55d1sm167976a91.3.2026.01.28.07.36.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Jan 2026 07:36:19 -0800 (PST)
+From: Akhila YS <akhilayalmati@gmail.com>
+Date: Wed, 28 Jan 2026 15:36:12 +0000
+Subject: [PATCH v3] dt-bindings: mtd: mxic,multi-itfc-v009-nand-controller:
+ convert to DT schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 ath-current 0/2] wifi: ath11k: add usecase firmware
- handling based on device compatible
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>, jjohnson@kernel.org,
-        johannes@sipsolutions.net, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        jonas.gorski@gmail.com
-References: <20260121095055.3683957-1-miaoqing.pan@oss.qualcomm.com>
- <74176aab-03d4-4095-890d-7ef1739b914b@oss.qualcomm.com>
- <32845805-5758-4c35-8818-ebccbfd9546a@kernel.org>
-From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Content-Language: en-US
-In-Reply-To: <32845805-5758-4c35-8818-ebccbfd9546a@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: ZSgAXc-yTzeVDEPjXQxcjUYu4wgWAV7s
-X-Authority-Analysis: v=2.4 cv=Z4Dh3XRA c=1 sm=1 tr=0 ts=697a2ba6 cx=c_pps
- a=SvEPeNj+VMjHSW//kvnxuw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=Zvf348k4SDH0cqSWWfIA:9 a=QEXdDO2ut3YA:10
- a=Kq8ClHjjuc5pcCNDwlU0:22
-X-Proofpoint-ORIG-GUID: ZSgAXc-yTzeVDEPjXQxcjUYu4wgWAV7s
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI4MDEyNyBTYWx0ZWRfXytEM+RTyT9J+
- JpEbyhCZUbv0gUIjklBPp/muWn1kLD2VyLkDsjcugCDFVr4UOrYLtZuDYCdClj/wfZhTPyBZ41V
- 8QE2/yGCs8gh2wD+tRpFNAHjZk3qQGsY862KYCmFSAXnTUV8HKiIbLKFE20GxdJ+6zrqCOeozP0
- bRpCsNmbH1F3EpZfNDCuWCZ3CCkaOgFEjQLgu5RdVJeqgTeXD5TGwcypn9aDNwhZoxEbnH0Qfdi
- niXz+u5lBSOCCbhuwTGb2hFvdXeF6Ek/bgoeCr8NUbmpoeo8UzpELqucMBWPrd8hGsBraVhEDB0
- cmAnZVTSOpV0Ty3ET4pJFsd+GxYiOCncH+ugm8DpxOpEWoV4M1MHsIimb+To2lqpO5THxikYnqE
- hYwbZbrqQkXu5DmQfz2aezi4XcI66OZ+lfzBGaExFPu92DJYJy/igdodOZV3SsEFCS8geMRa1pO
- 2THXxNdQA9fn/5NQHrw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-01-28_03,2026-01-28_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 suspectscore=0 lowpriorityscore=0 clxscore=1015
- impostorscore=0 adultscore=0 priorityscore=1501 spamscore=0 bulkscore=0
- phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2601280127
+Message-Id: <20260128-mxic-nand-v3-1-c61764e85f60@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAOssemkC/1WMywrCMBBFf6XM2kgyferK/xAXIcm0AzaVREKl9
+ N9NC0Jdnss9Z4HoArsI12KB4BJHnnyG8lSAGbTvnWCbGVBiIxWiGGc2wmtvRVuh6kqFtZMl5P8
+ rOOJ5b90fmQeO7yl89nRS2/qrNIdKUkKJum4tVVpa0u2tHzU/z2YaYaskPJrd0cRsNiQNXSpCs
+ n/muq5fuG9HKdwAAAA=
+X-Change-ID: 20260122-mxic-nand-742183125e03
+To: Miquel Raynal <miquel.raynal@bootlin.com>, 
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Mason Yang <masonccyang@mxic.com.tw>
+Cc: linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Akhila YS <akhilayalmati@gmail.com>
+X-Mailer: b4 0.14.3
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,gmail.com];
-	TAGGED_FROM(0.00)[bounces-260485-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jeff.johnson@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260486-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[akhilayalmati@gmail.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 45CDFA43B4
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 24D87A5485
 X-Rspamd-Action: no action
 
-On 1/28/2026 12:01 AM, Krzysztof Kozlowski wrote:
-> On 27/01/2026 18:31, Jeff Johnson wrote:
->> On 1/21/2026 1:50 AM, Miaoqing Pan wrote:
->>> The 'firmware-name' property was introduced to allow end-users and
->>> integrators to select use-case-specific firmware for the WCN6855.
->>> But for M.2 WLAN chips, there is no suitable DTS node to specify
->>> the 'firmware-name' property. In addition, assigning firmware for
->>> the M.2 PCIe interface causes chips that do not use use-case-specific
->>> firmware to fail. Therefore, abandoning the approach of specifying
->>> firmware in DTS. As an alternative, propose a static lookup table
->>> mapping device compatible to firmware names.
->>>
->>> ---
->>> v2:
->>> - Drops `firmware-name` from completely.
->>> - Updates the commit message to clearly state that the property is
->>>   obsolete and the change is ABI-breaking but safe for upstream.
->>> v3:
->>>  - Deprecate 'firmware-name' property instead of obsolete.
->>>  - Keep the ABI backwards compatible.
->>> v4:
->>>  - Use of_machine_is_compatible() to simplify the code.
->>>  - Add back Acked-by tag. 
->>> ---
->>>
->>> Miaoqing Pan (2):
->>>   wifi: ath11k: add usecase firmware handling based on device compatible
->>>   dt-bindings: net: wireless: ath11k-pci: deprecate 'firmware-name'
->>>     property
->>>
->>>  .../net/wireless/qcom,ath11k-pci.yaml         |  1 +
->>>  drivers/net/wireless/ath/ath11k/core.c        | 27 +++++++++++++++++++
->>>  drivers/net/wireless/ath/ath11k/core.h        |  4 +++
->>>  3 files changed, 32 insertions(+)
->>>
->>>
->>> base-commit: d8e1f4a193101a72235416f189b01131a57e26e9
->>
->> Krzysztof,
->> Since you previously NAKed this series, can you confirm that your review
->> comments have been addressed?
-> 
-> 
-> Binding looks fine, but I did not check the driver.
+Convert Macronix Raw NAND Controller Device Tree binding to DT Schema.
 
-Thanks Krzysztof for your re-review.
+Signed-off-by: Akhila YS <akhilayalmati@gmail.com>
+---
+Changes in v3:
+- Fix errors detected by dt check.
+- Link to v2: https://lore.kernel.org/r/20260128-mxic-nand-v2-1-6f0cf94f2fd7@gmail.com
 
-Although tagged for ath-current, we are too far in the v6.19 release cycle for
-this, so I'll be taking it through ath-next for the v7.0 merge window.
+Changes in v2:
+- Add "Mason Yang" as maintainer.
+- Link to v1: https://lore.kernel.org/r/20260126-mxic-nand-v1-1-557df4a0dfa7@gmail.com
+---
+ .../mtd/mxic,multi-itfc-v009-nand-controller.yaml  | 78 ++++++++++++++++++++++
+ .../devicetree/bindings/mtd/mxic-nand.txt          | 36 ----------
+ 2 files changed, 78 insertions(+), 36 deletions(-)
 
-/jeff
+diff --git a/Documentation/devicetree/bindings/mtd/mxic,multi-itfc-v009-nand-controller.yaml b/Documentation/devicetree/bindings/mtd/mxic,multi-itfc-v009-nand-controller.yaml
+new file mode 100644
+index 000000000000..81c041aa2610
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mtd/mxic,multi-itfc-v009-nand-controller.yaml
+@@ -0,0 +1,78 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mtd/mxic,multi-itfc-v009-nand-controller.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Macronix Raw NAND Controller
++
++maintainers:
++  - Mason Yang <masonccyang@mxic.com.tw>
++
++description:
++  The Macronix Multi-Interface Raw NAND Controller is a versatile flash
++  memory controller for embedding in SoCs, capable of interfacing with
++  various NAND devices. It requires dedicated clock inputs for core, data
++  transmit, and delayed transmit paths along with register space and an
++  interrupt line for operation.
++
++allOf:
++  - $ref: nand-controller.yaml#
++
++properties:
++  compatible:
++    const: mxic,multi-itfc-v009-nand-controller
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++  clocks:
++    minItems: 3
++    maxItems: 3
++
++  clock-names:
++    items:
++      - const: ps
++      - const: send
++      - const: send_dly
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - "#address-cells"
++  - "#size-cells"
++  - clocks
++  - clock-names
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    nand-controller@43c30000 {
++        compatible = "mxic,multi-itfc-v009-nand-controller";
++        reg = <0x43c30000 0x10000>;
++        #address-cells = <1>;
++        #size-cells = <0>;
++        interrupts = <GIC_SPI 0x1d IRQ_TYPE_EDGE_RISING>;
++        clocks = <&clkwizard 0>, <&clkwizard 1>, <&clkc 15>;
++        clock-names = "ps", "send", "send_dly";
++
++        nand@0 {
++            reg = <0>;
++            nand-ecc-mode = "soft";
++            nand-ecc-algo = "bch";
++        };
++    };
++...
+diff --git a/Documentation/devicetree/bindings/mtd/mxic-nand.txt b/Documentation/devicetree/bindings/mtd/mxic-nand.txt
+deleted file mode 100644
+index 46c55295a3e6..000000000000
+--- a/Documentation/devicetree/bindings/mtd/mxic-nand.txt
++++ /dev/null
+@@ -1,36 +0,0 @@
+-Macronix Raw NAND Controller Device Tree Bindings
+--------------------------------------------------
+-
+-Required properties:
+-- compatible: should be "mxic,multi-itfc-v009-nand-controller"
+-- reg: should contain 1 entry for the registers
+-- #address-cells: should be set to 1
+-- #size-cells: should be set to 0
+-- interrupts: interrupt line connected to this raw NAND controller
+-- clock-names: should contain "ps", "send" and "send_dly"
+-- clocks: should contain 3 phandles for the "ps", "send" and
+-	 "send_dly" clocks
+-
+-Children nodes:
+-- children nodes represent the available NAND chips.
+-
+-See Documentation/devicetree/bindings/mtd/nand-controller.yaml
+-for more details on generic bindings.
+-
+-Example:
+-
+-	nand: nand-controller@43c30000 {
+-		compatible = "mxic,multi-itfc-v009-nand-controller";
+-		reg = <0x43c30000 0x10000>;
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-		interrupts = <GIC_SPI 0x1d IRQ_TYPE_EDGE_RISING>;
+-		clocks = <&clkwizard 0>, <&clkwizard 1>, <&clkc 15>;
+-		clock-names = "send", "send_dly", "ps";
+-
+-		nand@0 {
+-			reg = <0>;
+-			nand-ecc-mode = "soft";
+-			nand-ecc-algo = "bch";
+-		};
+-	};
+
+---
+base-commit: cc3aa43b44bdb43dfbac0fcb51c56594a11338a8
+change-id: 20260122-mxic-nand-742183125e03
+
+Best regards,
+-- 
+Akhila YS <akhilayalmati@gmail.com>
+
 
