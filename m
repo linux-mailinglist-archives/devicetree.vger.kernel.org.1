@@ -1,167 +1,165 @@
-Return-Path: <devicetree+bounces-260220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260221-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ME3oEv7BeWl0zAEAu9opvQ
-	(envelope-from <devicetree+bounces-260220-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 08:59:58 +0100
+	id EFZsBULCeWl0zAEAu9opvQ
+	(envelope-from <devicetree+bounces-260221-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 09:01:06 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA5CE9DF2F
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 08:59:57 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9681C9DF6E
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 09:01:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 50DE53011BE4
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 07:59:22 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 302C0300A306
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 08:01:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ABD932ABFD;
-	Wed, 28 Jan 2026 07:59:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2BF73382F9;
+	Wed, 28 Jan 2026 08:00:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="EyXUMY6b"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cx1mqs+U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D0CF32BF2E;
-	Wed, 28 Jan 2026 07:59:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D8E4337BB5;
+	Wed, 28 Jan 2026 08:00:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769587161; cv=none; b=RqCujCoOXA5rKHH8yDEO1Hvf4834eJ/c2hQAW6zW6pGQG1fQmNxo7PCbiOrUv6xGl3LWAAOUaHwq/BG2x/1bE+YW9RcO39KRKrE69votogJGBItGffcBEEgkuF/Z5A1k9hcmQk8/5P+kY2qOhIB2PT+/6H6vOZhQXFdxB+8dI+c=
+	t=1769587254; cv=none; b=p5bcWM7yBEKM88DG/RquDJQgReGUIHKXA1YZceS8fvcOYbIbDWZZsrGlOoPeuHFfzrNVn8pT3wWCbYCl1C+GgqPnohpNjcdBcLpc/xzEiCD/Muf9m1yP1OscDPlJId/PoOOpDWNgQHPLa1eKRWiWx4IgEoQyPCaL3KTu6R+JWSw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769587161; c=relaxed/simple;
-	bh=bLrxrtaKEb0EIqN05MhZumlDxMxzAI3JunezXZpTj3E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OT0GfvPghCbduVRxwpROHVHZ2YZ7wwbuP84hTxvFYjbjtpcCShyRxQRT00u2wNql1TiSwcwoJRgNSq9YHVjgTZd5C1TaLtHaejrhoVVKvrJUPIu1aRh3KA43lwdHPOYFl3DdLud5fOpHd1wF2hckWVWiJLlx9siSZcQWrPjQ0lk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=EyXUMY6b; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1769587159; x=1801123159;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=bLrxrtaKEb0EIqN05MhZumlDxMxzAI3JunezXZpTj3E=;
-  b=EyXUMY6bWQ9zgHZf9zod8yZwZlhU0YvGdVLezgYgOqcGMyqE99KCsUUP
-   m9/FNJpxoHeEqEPGaVAuKFcBv1ZXCz7Mdym9NbkGZjSjDv/k4KhZmH238
-   5YLT7473+kEJHVruRm3IUcYIAPWkPSgNur+/dpXS2DqTxCTYyriB/jIsj
-   PpWngT7TwoksSsLEf/j4R7Oim2c8ePvCNrfucu+Witgqwcu0KIDDiDaOL
-   2XoqIkbOPXDkaKZM+C0ED5R+tXma64du4b3KCzs3VetHoGAAGnMhRsKmW
-   mfE+405ZL4mSRDLKn/VXnbzoOJ/LZ6n90JBA9F0WzwPR/UGzFgxRXEWEb
-   g==;
-X-CSE-ConnectionGUID: aMk2igRwTC+JmgmMhJgXFQ==
-X-CSE-MsgGUID: PZMJOQu/R62S8qLYWkjcYQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="88213354"
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; 
-   d="scan'208";a="88213354"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2026 23:59:19 -0800
-X-CSE-ConnectionGUID: 5zo4JnMQTI600qsDecQFhw==
-X-CSE-MsgGUID: O2q+B3eCRc+ROdb41+pwtA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; 
-   d="scan'208";a="208439050"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.244.229])
-  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2026 23:59:15 -0800
-Received: from kekkonen.localdomain (localhost [IPv6:::1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id BF78A1207FB;
-	Wed, 28 Jan 2026 09:59:20 +0200 (EET)
-Date: Wed, 28 Jan 2026 09:59:20 +0200
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Richard Acayan <mailingradian@gmail.com>
-Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Tianshu Qiu <tian.shu.qiu@intel.com>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	Robert Mader <robert.mader@collabora.com>,
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-	David Heidelberg <david@ixit.cz>, phone-devel@vger.kernel.org
-Subject: Re: [PATCH v7 2/5] media: i2c: imx355: Support devicetree and power
- management
-Message-ID: <aXnB2FUgb5OlGjfn@kekkonen.localdomain>
-References: <20260117040657.27043-1-mailingradian@gmail.com>
- <20260117040657.27043-3-mailingradian@gmail.com>
- <578668b0-cba2-4550-b676-26ed0b447bf2@linaro.org>
- <aW-V8VTcOICLWqaU@kekkonen.localdomain>
- <aXl6MpRB9ncCeu2M@rdacayan>
+	s=arc-20240116; t=1769587254; c=relaxed/simple;
+	bh=jIvfssoGcY0BvL3IR9BRlmSTBEHL996yOHu4WI2blRs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iqUcw/fqSe60SenUiOmcdvwpMcy4uz5wxkO60C6CVfO54hSG/JTWxIhL9xJrExaIwDyxsg8oOf5oxGtrtbe4djQc/X7nlifoCHQgEsf/IERv61bN+6LmSx0HSm0Q2TwkVAD3C8I8ZbvoY92K71boW3CkULZTrBrpavxDUitxZLc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cx1mqs+U; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B29E0C4CEF1;
+	Wed, 28 Jan 2026 08:00:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769587254;
+	bh=jIvfssoGcY0BvL3IR9BRlmSTBEHL996yOHu4WI2blRs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=cx1mqs+U9tA0vqZ18Rtfy7qYneyOKwndZ/UhZ+ASayVxWbTAgCjhPpdVbRXbmxITp
+	 At+/nJ64SSy3IeOclIN0YJOhcJOHKyfNLirOxv8qkiD5HMBZcFp45+k2iMfWFFmFsM
+	 /9mXJlYVQxzhJ2j0uQ3QozXyCbFmRhD8Y7/IK2HYPbq4wQrNFDsihnu3woeeBdOmS8
+	 OrOJlFp3TTNS8YNXKC2FNCVnTM8KZZb3NhBtN0VGOCYgUbjOnzK5u6uDAZcfuYwSDx
+	 l9SGgbsta2+tAomlg9clb0PfT+02k+iTzoJtvQIP/WgfZxYXrqAhsQSdTiwCcuEsmn
+	 IesvUezDgK8eg==
+Message-ID: <45a07659-4eed-418c-837f-b3a96d519768@kernel.org>
+Date: Wed, 28 Jan 2026 09:00:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aXl6MpRB9ncCeu2M@rdacayan>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 ath-current 2/2] dt-bindings: net: wireless:
+ ath11k-pci: deprecate 'firmware-name' property
+To: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>, jjohnson@kernel.org,
+ johannes@sipsolutions.net, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ jonas.gorski@gmail.com
+References: <20260121095055.3683957-1-miaoqing.pan@oss.qualcomm.com>
+ <20260121095055.3683957-3-miaoqing.pan@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260121095055.3683957-3-miaoqing.pan@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	TAGGED_FROM(0.00)[bounces-260220-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sakari.ailus@linux.intel.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-260221-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: CA5CE9DF2F
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 9681C9DF6E
 X-Rspamd-Action: no action
 
-On Tue, Jan 27, 2026 at 09:53:38PM -0500, Richard Acayan wrote:
-> On Tue, Jan 20, 2026 at 04:49:21PM +0200, Sakari Ailus wrote:
-> > Hi Bryan, others,
-> > 
-> > On Tue, Jan 20, 2026 at 12:44:24PM +0000, Bryan O'Donoghue wrote:
-> > > I think reset should be asserted before regulators and power are switched
-> > > on. i.e. before you try to switch the chip on, you should establish that the
-> > > reset pin is in the state that the timing diagram calls for.
-> > 
-> > Indeed.
+On 21/01/2026 10:50, Miaoqing Pan wrote:
+> The firmware-name property was originally introduced to allow end-users
+> and integrators to select use-case-specific firmware for the WCN6855.
+> However, specifying firmware for an M.2 WLAN module in the Device Tree
+> is not appropriate. Instead, this functionality will be handled within
+> the ath11k driver. Therefore, the firmware-name property is now
+> deprecated.
 > 
-> I think the discussion is more about whether there should be an assert
-> in the same function as the de-assert.
-> 
-> > The xshutdown pin, as it is typically called labelled as "reset" in this
-> > case, functions as both hardware reset and hardware standby mode control.
-> > It should be asserted (i.e. be set to low level) whenever the sensor is
-> > expected to be powered off. Typically deasserting it is the last step in
-> > the sensor's power-up sequence. This applies to nearly all CSI-2 and DVP
-> > (parallel) camera sensors. (There are some exceptions that use explicitly
-> > two GPIOs for similar functions but there are very few of them.)
-> 
-> This patch has the reset asserted by the time it gets to
-> imx355_power_on():
-> 
-> - when coming from runtime PM, the suspend callback asserted it
-> - when coming from probe, GPIOD_OUT_HIGH asserted it (considering that
->   active-low also affects the initial output setting)
-> 
-> Should it be asserted again inside the function, or
-> should the initial `gpiod_set_value_cansleep()` be removed?
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
+> ---
+>  .../devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml        | 1 +
+>  1 file changed, 1 insertion(+)
 
-Please remove it as requested.
 
--- 
-Sakari Ailus
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+
+Best regards,
+Krzysztof
 
