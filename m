@@ -1,269 +1,210 @@
-Return-Path: <devicetree+bounces-260550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260551-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iL5WIcxDemn34wEAu9opvQ
-	(envelope-from <devicetree+bounces-260550-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 18:13:48 +0100
+	id cHPRJ7ZAemmr4wEAu9opvQ
+	(envelope-from <devicetree+bounces-260551-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 18:00:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D2B3A6A18
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 18:13:47 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B676A6756
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 18:00:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 35A79327CBD7
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 16:57:11 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 8EAE73012978
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 17:00:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43E68322B7A;
-	Wed, 28 Jan 2026 16:56:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA81932939C;
+	Wed, 28 Jan 2026 17:00:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nQY0pLE0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Owcsb6Gn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68E1231984E
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 16:55:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9553D324B06;
+	Wed, 28 Jan 2026 17:00:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769619360; cv=none; b=SPvmljaDsM7DRN8KqHZI+Xy8Ggoz83bH6tzsxJ7N9afjEC41SdQDRpwYVDUohmpUYBTYxfZ9WH59Pk1MSG0RHGAcYNNQFbu0Wxyx27Wq+/Y5jlS0yJR0s8kXlVMabQSipKN27lkivZflE6b7MCdnFGc1+16ONOQhwXM2GGe9B5A=
+	t=1769619615; cv=none; b=Se8tuudGdJ314qC9XIpYOYiGTxzE2nY4dyB6vVKRptiS2h4ITvjjDFb0uU2FH7/tZj+DW8JQWsBxpr3nNwjeOQ1lKLnqnOG3rnr2/mnxD1RxFSciewNlOJkiRwVHQlWcduIhQIW0dCKN/btCzVxm3IIQKC63hLcoLVLwWYjwkxA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769619360; c=relaxed/simple;
-	bh=+PrAcvg+5OdtTUavt01TFD/L57Tt7DDcfpHsvpOvros=;
+	s=arc-20240116; t=1769619615; c=relaxed/simple;
+	bh=vyPijSiORLrhf1vw8XfUJJuj6sjnbOIb/14ClasAikU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QBq2zNDM0+uTc+pRc7JRb3advQPyCXj3rd1L0ls851nMNUHjM/t7KKDuXOsW4bVM8UeQ6aBmTBdGp55pTeMP6FlZTBzWzZSNFECFH1IaLp/A6/L/LImrExJOVV37gGLc1+DuXNLvq9BraI9XY98rA7CuZJF0nw2xQCxgYxaSS8c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nQY0pLE0; arc=none smtp.client-ip=209.85.214.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-2a0834769f0so47303735ad.2
-        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 08:55:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769619358; x=1770224158; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:sender
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CJ5JUPDgasrNDJPGG/r08vgxAhhTjKNkbpybrz3kURc=;
-        b=nQY0pLE0nnde7DiGZvmZOge8Fv9Bt3YfyARhrE4FS1rnTDXxfADbPQW8y/lhNihN6z
-         CFxctGBPjiKUEWycMhxhOkHQ0DbggfLPLDPQLXMJf8Zv/ZDlfsOE0KZqPhD9QEEeODln
-         c6GzmIi5PtrhS/x70JwvXsaVfVNw1D+P3XekWFjsVvk5tiCu1okBSkODuhyDioGD7/Q6
-         EPT1VC/570ACiDHeUrvjqgkyx9fc+dMSERGmIk3QO1KPxHDcrkUfPmtu/eXM93wuIy1u
-         Lh0vAvwJWXzbgpThyRu7cMCYuMWdrsxceVzj4i3Mkqu1dZDkXaPx2oscz+CpGAbbajUh
-         frpA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769619358; x=1770224158;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:sender
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CJ5JUPDgasrNDJPGG/r08vgxAhhTjKNkbpybrz3kURc=;
-        b=W8JEFg6zFYy1XRFXgeEORkk0HDZvIXPDMaj9gL3iP0ggzFQTb3M+VvCUM8hfI3AFdc
-         fcaiCmac+e+8Qlu+VzkLnjMfjAASr+APMkKIh3bMJs6KC8Oh0zEQvBdfRw1oqbi/ElvO
-         F23Gis1aMpSL9NDxUSw3SEfrlv09Dyccb4qYRdt+V/2SQH+8kB4riclRuSmbuSvaM9hc
-         j92tvvQFGXRbu+wXXq3A1A/+BZUXonCoNEVZNmolDMEzUNgOTr7jKsVs0d1JHxSYH4a+
-         Hz9zRA+6vYjmKBeCjxfGHWU/wjArf23vu6guFut4rK0XSxinQYQxHcmYbRgRiKSFDBWu
-         pN/A==
-X-Forwarded-Encrypted: i=1; AJvYcCVqJYGfNIG0dIx2vCUNvch4buST1axzxJHFssm765FXkqjFHZ7InT2dFkOSQ57itAsBuP2abFiXhskM@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx7v8IAtezap5FRaAAR7nf7t07iNJWpBk8YLDKdo6qKMKIyoKqa
-	bNJr0IkMpbeuWqIlstfons/x3GGNhWmXzcPIDKX/FDTM4i/pmYb/7Rh1AhyOsSk7
-X-Gm-Gg: AZuq6aIfXiKgOQxngFJWwHCRAiJQlXRRlu6wFk4Kud9L2qNRt2+dflrOWgyfX8XyDYj
-	rehnPeHtcsfWE+WAF5eNNMUx5Mj7vEsQN4AAfQO9+FDCBhnniRC99R6GtX+w0+jZlmN5r/VAh9w
-	bDIlvMDw7VOtXZHdVDHU5CM7rYiv1TBmvJyCTdIcaN2KxmLOsLhbwDA6oeRv8jpVYFXWebmb/Zg
-	X3AKCIy1g6rkAuCfMnmnodwjHRmEw7xj2TSaCPM5GlfqvFsuPQNpcXwNffuzA1hkRV7djav/fB1
-	gXxXy2Ewd3dPLCSZ8gOS/iL129JMfjXBNyOCFypIJsTCSSVKPbJq46/8hx2zBVgRSLJODvVFI/l
-	/4mM1ec8oaeMU0t0/7QiEiJ6HM29dWLogLSXd/fvZNG15ykV2OmPexFctvUTQTWzrnwuDSs2zq9
-	XV2xBb7ZulFWE1DM5lxDinOFwu
-X-Received: by 2002:a17:903:2291:b0:29f:2ec4:83e5 with SMTP id d9443c01a7336-2a870d55636mr50468865ad.12.1769619357703;
-        Wed, 28 Jan 2026 08:55:57 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a88b7f32bfsm29327505ad.96.2026.01.28.08.55.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Jan 2026 08:55:57 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Wed, 28 Jan 2026 08:55:55 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>, nuno.sa@analog.com,
-	linux-hwmon@vger.kernel.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jean Delvare <jdelvare@suse.com>, Jonathan Corbet <corbet@lwn.net>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	"Rob Herring (Arm)" <robh@kernel.org>,
-	Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>
-Subject: Re: [PATCH v5 0/3] hwmon: Add support for the LTC4283 Hot Swap
- Controller
-Message-ID: <02b7cf63-4f87-4cdd-8d9e-53a7d0e808a6@roeck-us.net>
-References: <20251223-ltc4283-support-v5-0-1152bff59a61@analog.com>
- <eed64bf1-93af-4b36-adf5-1476cb40edbb@roeck-us.net>
- <382e259ea3835ffbd2be9c36b529875f5a43f38b.camel@gmail.com>
- <8efa188b-8b91-479c-ac10-3fba5b0cbb5f@roeck-us.net>
+	 Content-Type:Content-Disposition:In-Reply-To; b=jDEHtno64N72zkv9QDL4dEfhqkLvj8wI6Aa1UFUAD0mMGqkiJYe11KatTYAjD/xLRfdis9wNDX9hz8AxuJ9c9aMdEKbh8WzJYKg2LJirsyP65PxXO0CuYrTyLXu1E70mgNmJpRhsgumq4ecPR/MPeaAK0yGGo9QKWwFa4CWk020=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Owcsb6Gn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABEB7C4CEF1;
+	Wed, 28 Jan 2026 17:00:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769619615;
+	bh=vyPijSiORLrhf1vw8XfUJJuj6sjnbOIb/14ClasAikU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Owcsb6GnWtzfdY6z+v3eDATFep3K4bF0Hd09BiEFyNsjArbt0ODIFhX8PGXxVk512
+	 ur6ESHMAcEleL5EI9g+t2zk9+qQz8VCtfWYLXAmT+7EhJeDmvDJp7h6yhngrAWxKpW
+	 7ohPXYtLV2pntprsn4K1JNEW2fM3rUCEvXgV5wIThTMCKd31eebu3o35oLFzaOqVnp
+	 MNVcSqwd8kDlUBSdM0vqiSEkF/RONY28vulehojAOuwVQb7rbkjdkSVeT8asvQ0Usr
+	 EKEs+H9G4oB6Jzm3zJ4ZivRXUn2zWlUxBzjNicLjnxEIAIOL8wpSCgMwigI13Atpzo
+	 eRdkeLmp4XUBg==
+Date: Wed, 28 Jan 2026 17:00:10 +0000
+From: Conor Dooley <conor@kernel.org>
+To: David Jander <david@protonic.nl>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, Andy Shevchenko <andy@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>
+Subject: Re: [PATCH v2 2/8] dt-bindings: iio: dac: maxim,ds4424: add
+ maxim,rfs-ohms property
+Message-ID: <20260128-omit-bubbling-9224777f4071@spud>
+References: <20260127060939.3914006-1-o.rempel@pengutronix.de>
+ <20260127060939.3914006-3-o.rempel@pengutronix.de>
+ <20260127-consonant-vividness-13707c7cf8f6@spud>
+ <20260127-rockiness-finalize-e0b50b9d823f@spud>
+ <20260128090118.5c1d7906@erd003.prtnl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="m6BRV1LwaCRhnwbk"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <8efa188b-8b91-479c-ac10-3fba5b0cbb5f@roeck-us.net>
+In-Reply-To: <20260128090118.5c1d7906@erd003.prtnl>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260550-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,analog.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-260551-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[roeck-us.net];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,roeck-us.net:mid,analog.com:email]
-X-Rspamd-Queue-Id: 0D2B3A6A18
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8B676A6756
 X-Rspamd-Action: no action
 
-On Wed, Jan 28, 2026 at 02:04:35AM -0800, Guenter Roeck wrote:
-> On 1/28/26 01:44, Nuno Sá wrote:
-> > Hi Guenter,
-> > 
-> > On Tue, 2026-01-27 at 09:39 -0800, Guenter Roeck wrote:
-> > > Hi Nuno,
-> > > 
-> > > On 12/23/25 04:21, Nuno Sá via B4 Relay wrote:
-> > > > This is v3 for the LTC4283 how swap controller. Main change is that I'm
-> > > > now using the auxiliary bus for adding the GPIO device (done depending
-> > > > on FW properties).
-> > > > 
-> > > > Similar to the LTC4282 device, we're clearing some fault logs in the
-> > > > reset_history attributes.
-> > > > 
-> > > 
-> > > I ran the patch series through an AI review. Results are below.
-> > > Please take a look.
-> > > 
 
-Another run through AI below. Please let me know if there are further inaccuracies.
+--m6BRV1LwaCRhnwbk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks,
-Guenter
+On Wed, Jan 28, 2026 at 09:01:18AM +0100, David Jander wrote:
+> On Tue, 27 Jan 2026 19:55:26 +0000
+> Conor Dooley <conor@kernel.org> wrote:
+>=20
+> > On Tue, Jan 27, 2026 at 07:49:20PM +0000, Conor Dooley wrote:
+> > > On Tue, Jan 27, 2026 at 07:09:33AM +0100, Oleksij Rempel wrote: =20
+> > > > The Maxim DS4422/DS4424 and DS4402/DS4404 current DACs determine th=
+eir
+> > > > full-scale output current via external resistors (Rfs) connected to=
+ the
+> > > > FSx pins. Without knowing these values, the full-scale range of the
+> > > > hardware is undefined.
+> > > >=20
+> > > > Add the 'maxim,rfs-ohms' property to describe these physical compon=
+ents.
+> > > > This property is required to provide a complete description of the
+> > > > hardware configuration.
+> > > >=20
+> > > > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> > > > ---
+> > > > changes v2:
+> > > > - make maxim,rfs-ohms a required property as the hardware range is =
+undefined
+> > > >   without external resistors.
+> > > > - add allOf constraints to enforce 2 vs 4 items in maxim,rfs-ohms b=
+ased on
+> > > >   compatible string.
+> > > > - drop explicit $ref for maxim,rfs-ohms to fix dt_binding_check war=
+ning.
+> > > > - update example in binding to include the new required property.
+> > > > ---
+> > > >  .../bindings/iio/dac/maxim,ds4424.yaml        | 36 +++++++++++++++=
+++++
+> > > >  1 file changed, 36 insertions(+)
+> > > >=20
+> > > > diff --git a/Documentation/devicetree/bindings/iio/dac/maxim,ds4424=
+=2Eyaml b/Documentation/devicetree/bindings/iio/dac/maxim,ds4424.yaml
+> > > > index efe63e6cb55d..400afd8771aa 100644
+> > > > --- a/Documentation/devicetree/bindings/iio/dac/maxim,ds4424.yaml
+> > > > +++ b/Documentation/devicetree/bindings/iio/dac/maxim,ds4424.yaml
+> > > > @@ -27,9 +27,44 @@ properties:
+> > > > =20
+> > > >    vcc-supply: true
+> > > > =20
+> > > > +  maxim,rfs-ohms:
+> > > > +    description: |
+> > > > +      Array of resistance values in Ohms for the external Rfs resi=
+stors
+> > > > +      connected to the FS pins.
+> > > > +      - For DS44x2 (2 channels): 2 values required.
+> > > > +      - For DS44x4 (4 channels): 4 values required.
+> > > > +      Typical values range from 40000 (40 kOhm) to 160000 (160 kOh=
+m). =20
+> > >=20
+> > > Add here
+> > > maxItems: 4
+> > > minItems: 2
+> > >=20
+> > > Are 40kOhm and 160kOhm actual max/min values, or just a suggested ran=
+ge? =20
+> >=20
+> > Datasheet for the ds4424 seems to imply they're actual max/min values:
+> > "Input resistors (RFS) must be between the speciifed values to ensure t=
+he
+> > device meets its accuracy and linearity specifications."
+> > In that case, consider also adding something like:
+> >     items:
+> >       maximum: 40000
+> >       minimum: 160000
+> >=20
+> > Although, that would complain about the 5100 Ohms you're using. How come
+> > the example lies outside of the "typical" range?
+>=20
+> Sorry to chime in here out of nowhere with this, but 2 things:
 
----
-commit 82433332ce165903d56fae327ced975aeef30475
-Author:     Nuno Sá <nuno.sa@analog.com>
+No no, don't apologise - that's good info and makes sense. Thanks.
 
-hwmon: ltc4283: Add support for the LTC4283 Swap Controller
+> 1. Rfs for DS4402/4 has a different "typical" range than DS4424 (different
+> Vref and different output current range).
+> 2. "Typical" or "recommended" ranges should not translate to a hard limit=
+ in
+> the driver. IMHO, no max or min value should be enforced here.
 
-Adds support for the LTC4283 Hot Swap Controller I2C interface.
+--m6BRV1LwaCRhnwbk
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> diff --git a/drivers/hwmon/ltc4283.c b/drivers/hwmon/ltc4283.c
-> new file mode 100644
-> index 000000000000..402b53f81548
-> --- /dev/null
-> +++ b/drivers/hwmon/ltc4283.c
+-----BEGIN PGP SIGNATURE-----
 
-[ ... ]
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaXpAmgAKCRB4tDGHoIJi
+0mjLAP42bZ+VfG5ssTl5dKm/yhQ90F96Jm0tk+aXu3nH3zl9/wD/SvHoYPb9PnMC
+BRCG/zHPh2OhiMc1AYSKeIwdz0E4Zgk=
+=uaEK
+-----END PGP SIGNATURE-----
 
-> +static int ltc4283_read_power_word(const struct ltc4283_hwmon *st,
-> +				   u32 reg, long *val)
-> +{
-> +	u64 temp = (u64)LTC4283_ADC1_FS_uV * LTC4283_ADC2_FS_mV * DECA * MILLI;
-> +	unsigned int __raw;
-> +	int ret;
-> +
-> +	ret = regmap_read(st->map_word, reg, &__raw);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 * Power is given by:
-> +	 *     P = CODE(16b) * 32.768mV * 2.048V / (2^16 * Rsense)
-> +	 */
-> +	*val = DIV64_U64_ROUND_CLOSEST(temp * __raw, BIT_ULL(16) * st->rsense);
-
-Does this overflow *val on 32-bit systems if the calculated power exceeds
-2000 Watts (approx 2^31 microWatts)?  The intermediate calculation is
-u64, but the result is assigned to a signed long.
-
-[ ... ]
-
-> +static bool ltc4283_word_reg(struct device *dev, unsigned int reg)
-> +{
-> +	switch (reg) {
-> +	case LTC4283_SENSE ... LTC4283_ADIO34_MAX:
-> +		return true;
-> +	default:
-> +		return false;
-> +	}
-> +}
-
-LTC4283_SENSE is 0x41 and LTC4283_ADIO34_MAX is 0x40.  Does this invalid
-range (start > end) effectively disable access to the word registers
-via st->map_word?
-
-> +static const struct regmap_config ltc4283_word_regmap_config = {
-> +	.name = "ltc4283-16",
-> +	.reg_bits = 8,
-> +	.val_bits = 16,
-> +	.max_register = LTC4283_ADIO34_MAX,
-> +	.val_format_endian = REGMAP_ENDIAN_BIG,
-> +	.writeable_reg = ltc4283_word_reg,
-> +	.readable_reg = ltc4283_word_reg,
-> +};
-
-Does max_register = 0x40 prevent access to the sensor value registers
-(LTC4283_SENSE at 0x41 and above) which are intended to be read as
-words?
-
-commit 5998c620fbd8915340a4b92635c9489a91fae567
-Author:     Nuno Sá <nuno.sa@analog.com>
-
-gpio: gpio-ltc4283: Add support for the LTC4283 Swap Controller
-
-Adds GPIO support for the LTC4283.
-
-> diff --git a/drivers/gpio/gpio-ltc4283.c b/drivers/gpio/gpio-ltc4283.c
-> new file mode 100644
-> index 000000000000..fa0c106d4fac
-> --- /dev/null
-> +++ b/drivers/gpio/gpio-ltc4283.c
-
-[ ... ]
-
-> +#define LTC4283_PINS_MAX			8
-> +#define LTC4283_PGIOX_START_NR			4
-> +#define LTC4283_INPUT_STATUS			0x02
-> +#define LTC4283_PGIO_CONFIG			0x10
-> +#define   LTC4283_PGIO_CFG_MASK(pin) 
-> +	GENMASK(((pin) - LTC4283_PGIOX_START_NR) * 2 + 1, (((pin) - LTC4283_PGIOX_START_NR) * 2))
-> +#define LTC4283_PGIO_CONFIG_2			0x11
-> +
-> +#define LTC42823_ADIO_CONFIG			0x12
-
-This isn't a bug, but should this be LTC4283_ADIO_CONFIG instead of
-LTC42823?
-
-> +/* starts at bit 4 */
-> +#define   LTC4283_ADIOX_CONFIG_MASK(pin)	BIT((pin) + 4)
-> +#define LTC4283_PGIO_DIR_IN			3
-> +#define LTC4283_PGIO_DIR_OUT			2
-
+--m6BRV1LwaCRhnwbk--
 
