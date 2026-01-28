@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-260591-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260592-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UK0+GSxoemmB5gEAu9opvQ
-	(envelope-from <devicetree+bounces-260591-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 20:49:00 +0100
+	id oITFEDtoemmB5gEAu9opvQ
+	(envelope-from <devicetree+bounces-260592-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 20:49:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04723A8424
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 20:48:59 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90355A842C
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 20:49:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7A4753015895
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 19:48:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 669D030160FE
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 19:49:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ED48335089;
-	Wed, 28 Jan 2026 19:48:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EEC6369223;
+	Wed, 28 Jan 2026 19:49:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZR4m4kSB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jkx+W8yk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 572C231A54E;
-	Wed, 28 Jan 2026 19:48:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C94E31A07C;
+	Wed, 28 Jan 2026 19:49:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769629730; cv=none; b=uGcLnpC5ArDXCT3a1yA1XrPeluXOzw6oC7exRcXReSvSc5eQ5UI5KQQ6dU1RIiZPy4M/FEW/kb9QkqwrDSqqMJLjSwHQZmzytfPq5MfwK+STb9YmoXjYfYTp4OglIUeHToUQaxy3MB5brsIrWmgYrMDTDCqhhnAfFXQWkzjUaJI=
+	t=1769629751; cv=none; b=isJ5uzYgZsHlPZWXbXOSMxCCfyfcTMeVdieE8Bzblak1Q0ssV8ex0/TsUlB70OwUCNyjPHNZGlettQtug6J4QNPNv0a94JIi0sOVBkRWmWqvq82HtE5uer87+9cw1uYY6+pe3QM41OAV/esn6hUBitLyVZyGxP8AhP2WUlEAD2w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769629730; c=relaxed/simple;
-	bh=4zt9hc3BBEaGcxjfty65LgYWsANjQMrfkrl4+EdZevs=;
+	s=arc-20240116; t=1769629751; c=relaxed/simple;
+	bh=ZgURDPXZxdlzY1nCr7dFdlPZ+CG+p3tih0XcJrBxJSc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RdKDsqMeURq3Lb3qnOjPKlDfAkODyDCI8awJ75joIUj/PZrHMYR3NOhsbTqtKLcLQx9EbJUbARco2cgQND9YyoFWROBcu7OWnTJe/oAx3IqaqzgtKA+5nj8ArAuTusLO9Of7x6kAwkBLBj0MIyk1h607EkQOCLricydrs+8QP8I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZR4m4kSB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF4C4C4CEF1;
-	Wed, 28 Jan 2026 19:48:49 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ns8Rm1lmwpGfwMC6xZnrtvFoToar6tw94z7GvDcAFO8mjDMdH/5vEap4PVvDVqOYJo8LnHoZyhwllc27XwILceU+gh5Syyj0TxTA8qeACf/LmFoFnvoQC8MJ7j0ZaufV44e16M+QA2We25+LlYQTVR/BwKm/4NcNoCCc1xsC5Js=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jkx+W8yk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 956C3C4CEF1;
+	Wed, 28 Jan 2026 19:49:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769629730;
-	bh=4zt9hc3BBEaGcxjfty65LgYWsANjQMrfkrl4+EdZevs=;
+	s=k20201202; t=1769629751;
+	bh=ZgURDPXZxdlzY1nCr7dFdlPZ+CG+p3tih0XcJrBxJSc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZR4m4kSBzAMSHsbeBQ34bIcwQAsZVK+OE178Cx8QjpLqVZ645Gg5NOBjPTVif7Wdg
-	 2jtmumLgu2VZ0EGB2gpNcViq/IV89Fa1xx0J5gGG97RPg+tPberSBmPjrWO/dDKu90
-	 U2ELtlQtf3PCUr3Z/h1gMGZJA1fqKAE7fbY4TW8EPMqhTOYzAviYnQLwUJyNVTdI53
-	 BTTAPgp24juLsdVvHNX5vePreHHTKj74IykwKaEUjcLWXD4tb7N9CFVCvuptLhIPdI
-	 AXs7ZbXMkSsODGCnPZDFGwMA7ex1Lk3gA/3kncgyGU8osDrXaXu+8E1Z7sR2L2lYou
-	 SvuvlPDbk+0WA==
-Date: Wed, 28 Jan 2026 11:48:48 -0800
+	b=jkx+W8ykaiIAXPqelZuIfPFrrsGq5g6rbS4D8Jk/4FwLCUPyFtyLQbdRWVd5QVY0G
+	 XOhZUqzVn1LqgIWGYrZDgEebxdC/KmN+dqrMiJ36UyI2+n1ywoBfPKW3kzUL4JwMSh
+	 TWQu2/usGHuvucBrBEYtY1CuGbnwXZCIYuv9XxdIziZ1xHxgWV8GUsm4WaD8vJTtyI
+	 ZjozH8/Y9OXlZkm/CQdngwr2lbuVJX3/CF01ddVSudhxRygFUhpXyXj8Bgbjk4WQim
+	 HASeIQyrPngoVJoNEuDYWJ/Iq7mtUb/As6vyFCkXvux9Q53OAsVmr7xAByTYYFOlcx
+	 bbpNtTZ7q9KSA==
+Date: Wed, 28 Jan 2026 11:49:09 -0800
 From: Drew Fustini <fustini@kernel.org>
 To: Icenowy Zheng <zhengxingda@iscas.ac.cn>
 Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
@@ -68,13 +68,12 @@ Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
 	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
 	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
 	Icenowy Zheng <uwu@icenowy.me>, Han Gao <gaohan@iscas.ac.cn>
-Subject: Re: [PATCH v6 6/9] riscv: dts: thead: add DPU and HDMI device tree
- nodes
-Message-ID: <aXpoIBxC6vwZ27By@x1>
+Subject: Re: [PATCH v6 7/9] riscv: dts: thead: lichee-pi-4a: enable HDMI
+Message-ID: <aXpoNTuziA2XOIuz@x1>
 References: <20260123092830.4046009-1-zhengxingda@iscas.ac.cn>
- <20260123092830.4046009-7-zhengxingda@iscas.ac.cn>
- <aXpa5zPWNOM1oP/C@x1>
- <aXpnGA80OYY+aoMy@x1>
+ <20260123092830.4046009-8-zhengxingda@iscas.ac.cn>
+ <aXpbBq3TwuiP9Qry@x1>
+ <aXpnTDSowoW+8UzN@x1>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,7 +82,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aXpnGA80OYY+aoMy@x1>
+In-Reply-To: <aXpnTDSowoW+8UzN@x1>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -91,11 +90,11 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260591-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-260592-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -110,43 +109,44 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[fustini@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,iscas.ac.cn:email,icenowy.me:email,samsung.com:email]
-X-Rspamd-Queue-Id: 04723A8424
+	DBL_BLOCKED_OPENRESOLVER(0.00)[iscas.ac.cn:email,samsung.com:email,icenowy.me:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 90355A842C
 X-Rspamd-Action: no action
 
-On Wed, Jan 28, 2026 at 11:44:24AM -0800, Drew Fustini wrote:
-> On Wed, Jan 28, 2026 at 10:52:23AM -0800, Drew Fustini wrote:
-> > On Fri, Jan 23, 2026 at 05:28:27PM +0800, Icenowy Zheng wrote:
-> > > From: Icenowy Zheng <uwu@icenowy.me>
+On Wed, Jan 28, 2026 at 11:45:16AM -0800, Drew Fustini wrote:
+> On Wed, Jan 28, 2026 at 10:52:54AM -0800, Drew Fustini wrote:
+> > On Fri, Jan 23, 2026 at 05:28:28PM +0800, Icenowy Zheng wrote:
+> > > Lichee Pi 4A board features a HDMI Type-A connector connected to the
+> > > HDMI TX controller of TH1520 SoC.
 > > > 
-> > > T-Head TH1520 SoC contains a Verisilicon DC8200 display controller
-> > > (called DPU in manual) and a Synopsys DesignWare HDMI TX controller.
-> > > 
-> > > Add device tree nodes to them.
+> > > Add a device tree node describing the connector, connect it to the HDMI
+> > > controller, and enable everything on this display pipeline.
 > > > 
 > > > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
 > > > Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
 > > > Tested-by: Han Gao <gaohan@iscas.ac.cn>
 > > > Tested-by: Michal Wilczynski <m.wilczynski@samsung.com>
 > > > ---
-> > > No changes since v4.
+> > > No changes in v5.
 > > > 
-> > > Changes in v3:
-> > > - Adapting to the changed binding.
+> > > Changes in v4:
+> > > - Rebased on top of v6.19-rc1.
 > > > 
-> > > No changes in v2.
+> > > No changes in v2, v3.
 > > > 
-> > >  arch/riscv/boot/dts/thead/th1520.dtsi | 66 +++++++++++++++++++++++++++
-> > >  1 file changed, 66 insertions(+)
+> > >  .../boot/dts/thead/th1520-lichee-pi-4a.dts    | 25 +++++++++++++++++++
+> > >  1 file changed, 25 insertions(+)
 > > 
 > > Reviewed-by: Drew Fustini <fustini@kernel.org>
 > 
 > I've applied this to tenstorrent-dt-for-next
 > 
-> https://git.kernel.org/pub/scm/linux/kernel/git/fustini/linux.git/commit/?h=tenstorrent-dt-for-next&id=b6a400f45aaf391d15d70758df207bbf5a63811e
+> https://git.kernel.org/pub/scm/linux/kernel/git/fustini/linux.git/commit/?h=tenstorrent-dt-for-next&id=0075f4c3aade0d436925026eaefb14be1ec52a69
+> 
+> Hopefully we can get some testing done with a next release once the driver patches hit next.
 
 Sorry about my typo mistake. The correct branch is thead-dt-for-next
 
