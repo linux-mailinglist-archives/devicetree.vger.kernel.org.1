@@ -1,148 +1,121 @@
-Return-Path: <devicetree+bounces-260654-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260655-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gB7fNh2SemlC8AEAu9opvQ
-	(envelope-from <devicetree+bounces-260654-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 23:47:57 +0100
+	id GOc1ApuSemlC8AEAu9opvQ
+	(envelope-from <devicetree+bounces-260655-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 23:50:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59247A9BD8
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 23:47:57 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26CAEA9C1D
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 23:50:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 27EEF3014C5E
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 22:47:56 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 762A130069BC
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 22:49:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5A9D2C11D1;
-	Wed, 28 Jan 2026 22:47:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AC0D32D0DC;
+	Wed, 28 Jan 2026 22:49:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="SyOhNsIE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uAxBNWVQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E47EA26CE2C;
-	Wed, 28 Jan 2026 22:47:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7FA7258ED5;
+	Wed, 28 Jan 2026 22:49:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769640472; cv=none; b=o/XL+i3CrR4NBEV82jgeUfCXazQYcuPSjsU3IIWy4BJ0astCo7KDMeYaTVhUIS3jPts8DvNn7r75BwIwdfxCbHuN7xyjM6OhX8w4z1sZGxp7m3bzL+m9w0pJYRmhkfE+g4aq8ejYV2mK/DJntDpyPJa/oJVKzgK5tO0iyfSCaTs=
+	t=1769640598; cv=none; b=ISLxS1k2FR2F8GVCMpV7LMhts1K8oxnGyKn8LmNepcJngaH3yqULL6Qod0jr5hNol09sX1TCyFogIhHh100sqmOx3Q4vBOkvE3utVNu1vtd2X6a3mbY9ySlGvSDTj5yi5bdVP6EOdcbA7myMsQjmi/EK6ITXMY6Sd/gAYNWNxVE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769640472; c=relaxed/simple;
-	bh=ialA5TyIBgxp+uDi4ejZ5ByJ3omyVvwj+aptox/jc5U=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dFJSCPgEOXW7q7GIoCsKfZOjzUCH79nmRIxZFG3HoxWndnLvhqBfvv1HZNTblyCvF+FSNIilH8OzEXU1fhzPTnNlOE2gJZp0F1w3+X2P4zV5CWjRuHrM0okj6EVZH4MZiT8lm9+v1xBcru5r9Pz0CeNELRQK4uH3+I6TyokAk/0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=SyOhNsIE; arc=none smtp.client-ip=80.241.56.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4f1cqQ2Kkhz9tgG;
-	Wed, 28 Jan 2026 23:47:46 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1769640466;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=O4upRbVfTJ07DQH6ODb25K7X4KuRaWDl+UDpNd35zMs=;
-	b=SyOhNsIE+x9Koof+yayV9dROTmHkxZR2tmaXFlmoeW44lqFagrJdNkWousn1cicP7XiTHY
-	DawN7wl5LiqsBW7AI9VDIXQGPfHLD75VGtrYTxK4GHSaIscGr7Oc2u6pL2eHuY5pF9atMn
-	TxO+WldlLcQx6UyyJicNCkghMB3b0GmC0f71pRK72knE8HDQQF1hcFodMBMVwoErd2t1GD
-	4ySioLnGAQcrYpsAfeezykD6ZZykeyhtLymTdatgn3vu2W516EW4EVlmuXZHIBUNLDMwFt
-	A2i27xDC8jmDdSGiW8OyduPz0t+el9ptTDlA2mkwQcHx1amp3Uc3Kwg1jT/lvA==
-Date: Wed, 28 Jan 2026 23:47:36 +0100
-From: =?UTF-8?B?xYF1a2Fzeg==?= Majewski <lukasz.majewski@mailbox.org>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Jakub Kicinski <kuba@kernel.org>, festevam@gmail.com,
- linux-arm-kernel@lists.infradead.org, s.hauer@pengutronix.de,
- kernel@pengutronix.de, horms@kernel.org, shawnguo@kernel.org,
- imx@lists.linux.dev, linux-kernel@vger.kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, wahrenst@gmx.net, pabeni@redhat.com,
- davem@davemloft.net, netdev@vger.kernel.org, richardcochran@gmail.com,
- edumazet@google.com, andrew+netdev@lunn.ch, robh@kernel.org,
- krzk+dt@kernel.org
-Subject: Re: [net-next,v20,2/7] net: mtip: The L2 switch driver for imx287
-Message-ID: <20260128234736.49bd70b3@wsk>
-In-Reply-To: <ed0e1af1-0210-4461-8939-3e4e35d74dae@lunn.ch>
-References: <20260126103400.1683125-3-lukasz.majewski@mailbox.org>
-	<20260128022549.4151341-1-kuba@kernel.org>
-	<20260128224125.246bcf41@wsk>
-	<ed0e1af1-0210-4461-8939-3e4e35d74dae@lunn.ch>
-Organization: mailbox.org
+	s=arc-20240116; t=1769640598; c=relaxed/simple;
+	bh=OhWAtoAMVGY6Et1Yc8CX1lcJ3C3DcbFYlo0kUfcMTlw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HcI0unI+IxWC1KImz5Tq+giSYuJ/H6+8kL6dHsL8oqjmVZ70/+S03MQHZifx199ZsZUDuDSS45r3V1W/mjhkhANGSlNGomrGqKnBjATUJ1MYJalYPgygNioj0yGOSEKEW/RO7qnYdkx20432y55C84iLyTLR5d431vn3ocWjM6Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uAxBNWVQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF1A5C4CEF1;
+	Wed, 28 Jan 2026 22:49:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769640597;
+	bh=OhWAtoAMVGY6Et1Yc8CX1lcJ3C3DcbFYlo0kUfcMTlw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uAxBNWVQeEfMmmrELqou1/D3qlgg1A+BMPNR5HleSgNrqa0bhMLaZ4vPqbt3rUEqV
+	 G1Q96A9C6DeoTCR3tHo6RmMKDXPtQ6q8kzSTELDW5Feyf4euirux2yv8+QUfnoM34O
+	 VQoCD6XVL4jPcWMDRWpZJby5BaHC1r9/S1a3PvhXS1RjCimmhoZ9nnS3Ai0WvbUcFv
+	 ddFgiJeekXyaYmerNB/xPQL48dMnD/Y+BNvvNW0vwi0SVxtBLavtuXjqrJn6ecQ/5y
+	 IMIsVloNypLDJD5gavVLyJz1nTI3d4rWVUof1bJPJIS/RhexmSVt/EMpo3Yjn6rp/+
+	 nMIE1TGe1sk9w==
+Date: Wed, 28 Jan 2026 23:49:53 +0100
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Praveen Talari <praveen.talari@oss.qualcomm.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>, Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, bryan.odonoghue@linaro.org, dmitry.baryshkov@oss.qualcomm.com, 
+	bjorn.andersson@oss.qualcomm.com, prasad.sodagudi@oss.qualcomm.com, quic_vtanuku@quicinc.com, 
+	aniket.randive@oss.qualcomm.com, chandana.chiluveru@oss.qualcomm.com
+Subject: Re: [SPAM] [PATCH v3 00/12] Enable I2C on SA8255p Qualcomm platforms
+Message-ID: <aXqRzQCZB-L8MhRg@zenone.zhora.eu>
+References: <20260112104722.591521-1-praveen.talari@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-MBO-RS-ID: 686151c5d01e846fd34
-X-MBO-RS-META: 5xys9hdxh1j3adjqtyn71d9ygs5oeaky
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260112104722.591521-1-praveen.talari@oss.qualcomm.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260654-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-260655-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,lists.infradead.org,pengutronix.de,lists.linux.dev,vger.kernel.org,gmx.net,redhat.com,davemloft.net,google.com,lunn.ch];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lukasz.majewski@mailbox.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[mailbox.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andi.shyti@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 59247A9BD8
+X-Rspamd-Queue-Id: 26CAEA9C1D
 X-Rspamd-Action: no action
 
-Hi Andrew,
+Hi,
 
-> On Wed, Jan 28, 2026 at 10:41:25PM +0100, =C5=81ukasz Majewski wrote:
-> > Hi Jakub,
-> >  =20
-> > > This is an AI-generated review =20
-> >=20
-> > AI is going to take the "Maintainer's" job :D =20
->=20
-> We had a bit of a discussion about this.
->=20
-> Our observations so far is that AI finds different sorts of issues,
-> which human reviewer often don't spot. It also does get things wrong,
-> so we spend some time sanity checking its reports. So overall, it
-> might actually increase the workload, but also increase the quality of
-> the code which gets committed.
->=20
+> Praveen Talari (12):
+>   soc: qcom: geni-se: Refactor geni_icc_get() and make qup-memory ICC
+>     path optional
+>   soc: qcom: geni-se: Add geni_icc_set_bw_ab() function
+>   soc: qcom: geni-se: Introduce helper API for resource initialization
+>   soc: qcom: geni-se: Add resources activation/deactivation helpers
+>   soc: qcom: geni-se: Introduce helper API for attaching power domains
+>   soc: qcom: geni-se: Introduce helper APIs for performance control
+>   dt-bindings: i2c: Describe SA8255p
+>   i2c: qcom-geni: Isolate serial engine setup
+>   i2c: qcom-geni: Move resource initialization to separate function
+>   i2c: qcom-geni: Use resources helper APIs in runtime PM functions
+>   i2c: qcom-geni: Store of_device_id data in driver private struct
+>   i2c: qcom-geni: Enable I2C on SA8255p Qualcomm platforms
 
-Frankly - from the MTIP L2 switch patch set review - the AI review does
-a _really_ good job ...
+Can I take this all via i2c?
 
-It finds non trivial issues - with very deep insights to function's
-call dependencies.
-
-> 	Andrew
-
-
-
---=20
-Best regards,
-
-=C5=81ukasz Majewski
+Bjorn
+Andi
 
