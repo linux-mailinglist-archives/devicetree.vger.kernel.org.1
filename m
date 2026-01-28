@@ -1,85 +1,86 @@
-Return-Path: <devicetree+bounces-260524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260525-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sFhfCyc2eml+4gEAu9opvQ
-	(envelope-from <devicetree+bounces-260524-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 17:15:35 +0100
+	id uG87JPM9emlB4wEAu9opvQ
+	(envelope-from <devicetree+bounces-260525-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 17:48:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8351A5567
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 17:15:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E851A627A
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 17:48:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6978B307FA31
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 16:11:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 85F0C31A650A
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 16:11:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D42C4314B94;
-	Wed, 28 Jan 2026 16:11:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 468AF318BB5;
+	Wed, 28 Jan 2026 16:11:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MQF3g+JB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aOwci1JH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4B0130FC05
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 16:10:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41A8230C60D
+	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 16:10:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769616661; cv=none; b=kL5qWuuB5V1JNSFwAokVBF+SzQARb3HcSxZtABvZijZLZRDp/NRz1zxeRChlkJe4ZidvA/ryXnCbdlZB9WfYQiUnn5+SdQ8USGtImrvy845hnrZYBBE61lfLYQeKV1WsCuiYcSqfvOnV6RiH5EKTOEnnf7NEAlS9dbcxEjs8i0s=
+	t=1769616662; cv=none; b=O86/UvsOM700cSoZzDTMLmZGUq5qBNEr2VtKWR43M4Divj4c3FNroyfRl1/oDBLYXdLetpFz8zMCfEdQzxQcnmmh7XrsiUQfXZ6+DZba5HRWRTLnhehHBFBwDbp4sdxf6qYPkcqI1YBqOJLRlTl1QLG7sw5eN0niNalSrc0qxjo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769616661; c=relaxed/simple;
-	bh=1cbyw29+xdi8VXIGles1S+s4A3CgVUMNo3a+m/ox1qA=;
+	s=arc-20240116; t=1769616662; c=relaxed/simple;
+	bh=ZYxzBg9tkVWzCzaxuPaae5TIGD91nZXT5GPxtR4tPNQ=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=LCPxIo1t9Hn2ebtel6ZyINMsKxrZxLvQZ2oaFG3hZ69a0k+1CKKj+YZlspLwN4c3D/cD2A86cDCVuTg+NPDYqEYY4C0yNMONnT4DY4Q1CYI+v6UbA2kpDZ/A3Esttg2sjZzSyXcv+zXe5RffU896kN2Vt8NfEFstctS6+kgPvmo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MQF3g+JB; arc=none smtp.client-ip=209.85.218.54
+	 In-Reply-To:To:Cc; b=tQmPIpomv/U6zXjKXgVWfgDiecy6CIDAnimdNg8pJiIKUaaClDlny5NCxkEUcOEqLBoa7SrnulXDMKhfXUthzjHqKygaPXihU1INQmUrYiEPjTBVatx+2x8SLrrRWIloXTvFTZSBEo4MDYicpEaf8B0Oriq5xwLuzFmFCGy5sxY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aOwci1JH; arc=none smtp.client-ip=209.85.218.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-b883c8dfb00so2080066b.1
-        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 08:10:57 -0800 (PST)
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-b8871718b05so917269066b.2
+        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 08:10:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google; t=1769616656; x=1770221456; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=hrnmD1pfTiX6z7osCVBlK0GrbNSN19fk3oj2Jxgvus8=;
-        b=MQF3g+JBp6VjcnE4HMLsJN7dD1HTRVVUvzKaIiNw6nxWtQMcxlc6e+hoVf7MPOaz42
-         Cn9gr+6b6POJSD2CDTNnHh1sNKCSv0sNJIECFegrpHvlw69OW2ZW8NUwZnOF6uu+X5IM
-         0iPDlTodmsAsO1KMo5fdkv0upNHgLT/MF1OLswBWwbRdsaTZw8pIvIJPm6/PWXkaZYMU
-         OPIcFIRxQAK3EdrwAmkZ+YpzFZrVyQTs9/WV/2HCVX48ZTx8uXccA0nle6UzldmA1VPT
-         9/GYcth90FSZ6kYPQi/mOh0wgNqZIqpuc+wiNvOr0QqZUxk39FqbmJWIaXYquHeG5P+r
-         xPNA==
+        bh=9J9mAVn8R3b4lSWOfrbKrodX1tmUBpKSiHbvrB/eirA=;
+        b=aOwci1JHIkQcJgyHu9Y1mf2aJ3de79GIiCo4W27OV7FX/DAPhEPUF14G1MfhlPyx9u
+         EjpXgHy2y2d3sqzYCemE835xJKRA+XllCN2WMtrqi4ViqpA5ArmZkFaUaLkN1/2RrjGb
+         oj5bTs7rWnv/UWtOT01HtTcES/4p/ZATxkkQFKH5+Xq8dhBBbiMv2nOl8UJTdDg90Mmy
+         2MpfTFKhDIODwAx7w/P+iGb81mCNtCTbFdloi49fjMPNnUOnKjToL2PXwGrZ/eu1wsin
+         9qNSJ1pJXPZL4WP9ETPS3J5E/memQx6n4prPrWK5XHyBmsSwZUdYHPeD4OvvXuzR1rAb
+         yDiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1769616656; x=1770221456;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=hrnmD1pfTiX6z7osCVBlK0GrbNSN19fk3oj2Jxgvus8=;
-        b=aGo1QBGdzKyOz0azygnd6LOEXI+FhoDtOlyc4DXjOgnOJEkcx9vaDCiM0iLmF/u4ZH
-         I9oShFIXO4YuXGyCVotE1zmY7kdIKUG2j/wGn1WNGm6sZWwEiU3zr1K2M1MwmufqPX8w
-         ciziI2T/CuQgJpUPS5KVEwVHp/nx0DM01fToZUUVVBb5lxHdtBOcanfMEuN9TedpM7ia
-         eNqlE3UwNPV+bDyERFiRS7uEA+cdNc6hDhXFI/Q5dNXUJrBl2YaoihH11A4l7IhUSxdl
-         EH3IiJW5Uq4NBkL2NlTmMuns4dQ7xPu9sd7njLlXYo0I63TlawbA0Ni56W/qfzCSWHAr
-         zccQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVQp6hFV11YBFd8DSdvkQl7mfNFSXv3KfftTsPOnyvpVqTkaK80bWLj63MxTFwDLqc7d5Car8xxy1c1@vger.kernel.org
-X-Gm-Message-State: AOJu0YyE95rTmghnwRS7NAX3pc0ccGThSD3RnEojDKktBMVg8E/vnfPr
-	kFKW6olLs2EMF+ewk+V5I2a2z68HgkH60+pOBTICwdg/Vm5FK690nIL8PFoPxTGQ/O0=
-X-Gm-Gg: AZuq6aIbX4S1JNlksg1zSP5P4QsW7a+rvjpkC1VbFNIUGp3TE+BVS6HWpjdJUxSg2Sg
-	Pgvm5glQMADMClMGY/YI6o1jbpKrsPddyCcFeEMzzAUHIKFBFS+AJ1H/SINx6fODi4CYEExf/bd
-	O54uv3mSsKaWGXyd7DAj3Amvm424Ls+Jt7HVaK6dLZSC07Rnb+n1Lli8N07z6/IPH+Mc3ESK8sm
-	O9shY5BKJluEr6HUG3bQQ8V87kGU9TKZiIx6BNPh2hoymYEbRkjb0ru5OsKulheUyGOlubRq4Lr
-	l//UdRNNf8UVhYNStC5KIRWgj5AgGUjXriWgAkEK0zz+YHRxeCCsDsSOygLuDG8To0kdI7QKTAr
-	16EOhsOWtiWaucHF1wbdOfomL+YIyqkcO+C5U824/KF+D84ZJw5FDY74QzMUaUlleyZm0xI6Rbb
-	JcFjKhjme55qEwu/j2xZknBf6BiPk4unNNhoX0EMu3ICwuonGJ1WbsW5okTZtFCgzgbx39n+uKO
-	dk2vA==
-X-Received: by 2002:a17:907:7207:b0:b72:a899:169f with SMTP id a640c23a62f3a-b8dab10cba8mr453205966b.4.1769616655855;
-        Wed, 28 Jan 2026 08:10:55 -0800 (PST)
+        bh=9J9mAVn8R3b4lSWOfrbKrodX1tmUBpKSiHbvrB/eirA=;
+        b=oxe8aD9DFZB5FOEb9kT0+XQYg0tq7wh3swuTSTV38jWYLkZXV9KlpwqSWuQbqEc/lA
+         cHHa23TPZqpq1tcb5i53h3sZ5UZ71afq7Jr3zjuCabsJ7tfdiPzRlxZ0TDoz1KFJKIZ+
+         Nq+HUT+piobufaiYvICw2bDFKyZeC8amgUcN3ivqLvgZTxvGSGT6iZ2G7xSomiuiqG44
+         zI6/QCtVa+FedPinjPi/7SS1llwG1Smw10+4Az2U0eGkb9Afja36V0evtuwOGvlXzkxl
+         RRTWPMl4sxpiowt5FJh484f4lUM7eUa8NXcfMu28+UaZTjnU9y5k4FXUBWmfgbYesRkd
+         iRRQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUhlHsqhnYwOXTWHVQElJBfJD0LQNKeEO82cSX902brLBWYKhvw/mVUW9zOurrnqXlCLTVGLOh7Y15q@vger.kernel.org
+X-Gm-Message-State: AOJu0YxtpO0sGUlpRLZ94v6YZUZt4fW5loq/ljGyUQRqj4CJ7QQQxHiI
+	pZVW1cRBzEa3JaxjyF3wpP5unFS7WRaSjtKwBmJoOeMP1ujT1JnHaiVW7UvaZs8emf0=
+X-Gm-Gg: AZuq6aLCgAsjaWP7lPqXqft0G733yCwnqiWSfJJslwlgOym+CYYP6ZOOR5K1vIgguhz
+	O7Y+b5HiTB+8jn3JgFs8F8hesCKOAtjeWjKWKQsPcwDgDB3RHt6WLCdqYZXd88heKddU6DogI8B
+	SSgD9xbhJqwOXIcc682xKwFM5fKleufLSIPwyBxwKmtawMmDMCqY7KhdaVF5ShjlA5+Dyz17cyo
+	9Y3+92/SWyaqPBibuDT4rDVfIKyJpcngyiIepFjHoZ6pMgcf3p1wt9i8o6N6h57ZXHpSfnFjcQj
+	38wpMIYilKfAtpsP5gzOsTNrOOiQN9FRYn38KEce2U/lOgc1MzobLDwCnz6A7rgmmCwQl4YcBap
+	D4PnM/DKCMiQcWINoh0Hpd6TsF57fTnM7Ljq48heNfnbn3A8pC+UDuaaWKH3WjtNglTLQNKBBuW
+	r1OrEUv7AbCU6xN2HG8oeoTxjjGXkT7nT4+TJP7nLFRQ6bZZAI1NtwhXTReiIdXaBpQI7YoPdIg
+	7mypulvsq4gsXN5
+X-Received: by 2002:a17:907:3f93:b0:b87:892:f43b with SMTP id a640c23a62f3a-b8dab4455a7mr396560766b.42.1769616656353;
+        Wed, 28 Jan 2026 08:10:56 -0800 (PST)
 Received: from puffmais2.c.googlers.com (244.175.141.34.bc.googleusercontent.com. [34.141.175.244])
         by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8dbf1c021fsm148553366b.49.2026.01.28.08.10.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Jan 2026 08:10:55 -0800 (PST)
+        Wed, 28 Jan 2026 08:10:56 -0800 (PST)
 From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Wed, 28 Jan 2026 16:10:54 +0000
-Subject: [PATCH v4 05/10] pmdomain: samsung: convert to using regmap
+Date: Wed, 28 Jan 2026 16:10:55 +0000
+Subject: [PATCH v4 06/10] pmdomain: samsung: don't hard-code offset for
+ registers to 0 and 4
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,7 +89,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20260128-gs101-pd-v4-5-cbe7bd5a4060@linaro.org>
+Message-Id: <20260128-gs101-pd-v4-6-cbe7bd5a4060@linaro.org>
 References: <20260128-gs101-pd-v4-0-cbe7bd5a4060@linaro.org>
 In-Reply-To: <20260128-gs101-pd-v4-0-cbe7bd5a4060@linaro.org>
 To: Krzysztof Kozlowski <krzk@kernel.org>, 
@@ -112,11 +113,11 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
 	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260524-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-260525-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FREEMAIL_TO(0.00)[kernel.org,samsung.com,linaro.org,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -124,7 +125,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[linaro.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
@@ -134,187 +135,77 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,linaro.org:dkim,linaro.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D8351A5567
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,samsung.com:email,linaro.org:email,linaro.org:dkim,linaro.org:mid]
+X-Rspamd-Queue-Id: 1E851A627A
 X-Rspamd-Action: no action
 
 On platforms such as Google gs101, direct mmio register access to the
 PMU registers doesn't necessarily work and access must happen via a
 regmap created by the PMU driver instead.
 
-In preparation for supporting such SoCs convert the existing mmio
-accesses to using a regmap wrapper.
+When such a regmap is used it will cover the complete PMU memory region
+rather than individual power domains. This means the register offsets
+for the configuration and status registers will have to take the power
+domain offsets into account, rather than unconditionally hard-coding 0
+and 4 respectively.
 
-With this change in place, a follow-up patch can update the driver to
-optionally acquire the PMU-created regmap without having to change the
-rest of the code.
+Update the code to allow that.
 
 Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
 Signed-off-by: André Draszik <andre.draszik@linaro.org>
 ---
-There is one checkpatch warning, relating to the non-const
-regmap_config. It can not easily be made const at this stage, but a
-follow-up patch allows us to make it const and the warning will go away
-anyway.
-
-v4:
-- rework the loop in exynos_pd_power() slightly, to not return 0 early
-  to allow more code to be run after pd on/off register write without
-  changing the loop again, required for gs101.
-- add error message in case first regmap write in exynos_pd_power() fails
----
- drivers/pmdomain/samsung/exynos-pm-domains.c | 83 +++++++++++++++++++++-------
- 1 file changed, 62 insertions(+), 21 deletions(-)
+ drivers/pmdomain/samsung/exynos-pm-domains.c | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/pmdomain/samsung/exynos-pm-domains.c b/drivers/pmdomain/samsung/exynos-pm-domains.c
-index 5c3aa898308793d424fb761c58ca01ba2580aeb5..3bcba7d38ac1572ef4bc2f4052c904dd6c4a7bfd 100644
+index 3bcba7d38ac1572ef4bc2f4052c904dd6c4a7bfd..8df46b41f9bc8f0b2a03300169a4b52457faaf4d 100644
 --- a/drivers/pmdomain/samsung/exynos-pm-domains.c
 +++ b/drivers/pmdomain/samsung/exynos-pm-domains.c
-@@ -9,15 +9,14 @@
- // conjunction with runtime-pm. Support for both device-tree and non-device-tree
- // based power domain support is included.
- 
--#include <linux/io.h>
- #include <linux/err.h>
- #include <linux/platform_device.h>
- #include <linux/slab.h>
- #include <linux/pm_domain.h>
- #include <linux/delay.h>
- #include <linux/of.h>
--#include <linux/of_address.h>
- #include <linux/pm_runtime.h>
-+#include <linux/regmap.h>
- 
- struct exynos_pm_domain_config {
- 	/* Value for LOCAL_PWR_CFG and STATUS fields for each domain */
-@@ -28,7 +27,7 @@ struct exynos_pm_domain_config {
-  * Exynos specific wrapper around the generic power domain
-  */
- struct exynos_pm_domain {
--	void __iomem *base;
-+	struct regmap *regmap;
+@@ -30,6 +30,8 @@ struct exynos_pm_domain {
+ 	struct regmap *regmap;
  	struct generic_pm_domain pd;
  	u32 local_pwr_cfg;
++	u32 configuration_reg;
++	u32 status_reg;
  };
-@@ -36,31 +35,42 @@ struct exynos_pm_domain {
- static int exynos_pd_power(struct generic_pm_domain *domain, bool power_on)
- {
- 	struct exynos_pm_domain *pd;
--	void __iomem *base;
- 	u32 timeout, pwr;
--	char *op;
-+	int err;
  
+ static int exynos_pd_power(struct generic_pm_domain *domain, bool power_on)
+@@ -41,7 +43,7 @@ static int exynos_pd_power(struct generic_pm_domain *domain, bool power_on)
  	pd = container_of(domain, struct exynos_pm_domain, pd);
--	base = pd->base;
  
  	pwr = power_on ? pd->local_pwr_cfg : 0;
--	writel_relaxed(pwr, base);
-+	err = regmap_write(pd->regmap, 0, pwr);
-+	if (err) {
-+		pr_err("Regmap write for power domain %s %sable failed: %d\n",
-+		       domain->name, power_on ? "en" : "dis", err);
-+		return err;
-+	}
+-	err = regmap_write(pd->regmap, 0, pwr);
++	err = regmap_write(pd->regmap, pd->configuration_reg, pwr);
+ 	if (err) {
+ 		pr_err("Regmap write for power domain %s %sable failed: %d\n",
+ 		       domain->name, power_on ? "en" : "dis", err);
+@@ -53,7 +55,7 @@ static int exynos_pd_power(struct generic_pm_domain *domain, bool power_on)
+ 	while (timeout-- > 0) {
+ 		unsigned int val;
  
- 	/* Wait max 1ms */
- 	timeout = 10;
--
--	while ((readl_relaxed(base + 0x4) & pd->local_pwr_cfg) != pwr) {
--		if (!timeout) {
--			op = (power_on) ? "enable" : "disable";
--			pr_err("Power domain %s %s failed\n", domain->name, op);
--			return -ETIMEDOUT;
-+	while (timeout-- > 0) {
-+		unsigned int val;
-+
-+		err = regmap_read(pd->regmap, 0x4, &val);
-+		if (err || ((val & pd->local_pwr_cfg) != pwr)) {
-+			cpu_relax();
-+			usleep_range(80, 100);
-+			continue;
- 		}
--		timeout--;
--		cpu_relax();
--		usleep_range(80, 100);
-+
-+		break;
- 	}
- 
--	return 0;
-+	if (!timeout && !err)
-+		/* Only return timeout if no other error also occurred. */
-+		err = -ETIMEDOUT;
-+	if (err)
-+		pr_err("Power domain %s %sable failed: %d\n", domain->name,
-+		       power_on ? "en" : "dis", err);
-+
-+	return err;
- }
- 
- static int exynos_pd_power_on(struct generic_pm_domain *domain)
-@@ -109,8 +119,18 @@ static int exynos_pd_probe(struct platform_device *pdev)
- 	struct device_node *np = dev->of_node;
- 	struct of_phandle_args child, parent;
- 	struct exynos_pm_domain *pd;
-+	struct resource *res;
-+	void __iomem *base;
-+	unsigned int val;
- 	int on, ret;
- 
-+	struct regmap_config reg_config = {
-+		.reg_bits = 32,
-+		.val_bits = 32,
-+		.reg_stride = 4,
-+		.use_relaxed_mmio = true,
-+	};
-+
- 	pm_domain_cfg = of_device_get_match_data(dev);
- 	pd = devm_kzalloc(dev, sizeof(*pd), GFP_KERNEL);
- 	if (!pd)
-@@ -120,9 +140,26 @@ static int exynos_pd_probe(struct platform_device *pdev)
- 	if (!pd->pd.name)
- 		return -ENOMEM;
- 
--	pd->base = of_iomap(np, 0);
--	if (!pd->base)
--		return -ENODEV;
-+	/*
-+	 * The resource typically points into the address space of the PMU.
-+	 * Therefore, avoid using devm_platform_get_and_ioremap_resource() and
-+	 * instead use platform_get_resource() and devm_ioremap() to avoid
-+	 * conflicts due to address space overlap.
-+	 */
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	if (!res)
-+		return dev_err_probe(dev, -ENXIO, "missing IO resources");
-+
-+	base = devm_ioremap(dev, res->start, resource_size(res));
-+	if (!base)
-+		return dev_err_probe(dev, -ENOMEM,
-+				     "failed to ioremap PMU registers");
-+
-+	reg_config.max_register = resource_size(res) - reg_config.reg_stride;
-+	pd->regmap = devm_regmap_init_mmio(dev, base, &reg_config);
-+	if (IS_ERR(pd->regmap))
-+		return dev_err_probe(dev, PTR_ERR(base),
-+				     "failed to init regmap");
- 
+-		err = regmap_read(pd->regmap, 0x4, &val);
++		err = regmap_read(pd->regmap, pd->status_reg, &val);
+ 		if (err || ((val & pd->local_pwr_cfg) != pwr)) {
+ 			cpu_relax();
+ 			usleep_range(80, 100);
+@@ -164,6 +166,8 @@ static int exynos_pd_probe(struct platform_device *pdev)
  	pd->pd.power_off = exynos_pd_power_off;
  	pd->pd.power_on = exynos_pd_power_on;
-@@ -137,7 +174,11 @@ static int exynos_pd_probe(struct platform_device *pdev)
+ 	pd->local_pwr_cfg = pm_domain_cfg->local_pwr_cfg;
++	pd->configuration_reg += 0;
++	pd->status_reg += 4;
+ 
+ 	/*
+ 	 * Some Samsung platforms with bootloaders turning on the splash-screen
+@@ -174,7 +178,7 @@ static int exynos_pd_probe(struct platform_device *pdev)
  	    of_device_is_compatible(np, "samsung,exynos4210-pd"))
  		exynos_pd_power_off(&pd->pd);
  
--	on = readl_relaxed(pd->base + 0x4) & pd->local_pwr_cfg;
-+	ret = regmap_read(pd->regmap, 0x4, &val);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to read status");
-+
-+	on = val & pd->local_pwr_cfg;
+-	ret = regmap_read(pd->regmap, 0x4, &val);
++	ret = regmap_read(pd->regmap, pd->status_reg, &val);
+ 	if (ret)
+ 		return dev_err_probe(dev, ret, "failed to read status");
  
- 	pm_genpd_init(&pd->pd, NULL, !on);
- 	ret = of_genpd_add_provider_simple(np, &pd->pd);
 
 -- 
 2.52.0.457.g6b5491de43-goog
