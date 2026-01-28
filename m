@@ -1,70 +1,79 @@
-Return-Path: <devicetree+bounces-260625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260626-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +FugH4Z0emng6gEAu9opvQ
-	(envelope-from <devicetree+bounces-260625-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:41:42 +0100
+	id qAQ2BK50emng6gEAu9opvQ
+	(envelope-from <devicetree+bounces-260626-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:42:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A49F3A8B88
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:41:41 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 691F8A8BAC
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:42:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 11D07300BC6A
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 20:41:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EB5C030136B0
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 20:42:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDE4C374191;
-	Wed, 28 Jan 2026 20:41:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCC13374726;
+	Wed, 28 Jan 2026 20:42:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g+w+EKTq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V5sy0u3u"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA00C374181;
-	Wed, 28 Jan 2026 20:41:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B906836F43A;
+	Wed, 28 Jan 2026 20:42:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769632884; cv=none; b=J8sgCpFPJCS5Nm23sONZM3gzk1VFZ/vvC5rn4zojZv1RtWEcqGORIZ9Vq9g82ZWez1c9PUsQScpec2Uz16fgOMERImeT+KJ7tzFR27Lbr7PE4+CZayfy3cogPWuiknb3QMKO+oxdOsUZ33oepbXhTwUkCJB8ILZnh8Gfo1O38hw=
+	t=1769632938; cv=none; b=b3h/rCJO1hIsP5KlMm2Ln4CkDITO6/2Z4L9eAglm3Uh4eGk1mhF+j8R0MghVsvqe8SV+JZue7tjMg9qh0dbSEjp6LTFudXVIoFIVssmrdkyJaCC+t1v/ZW3qsSGmA5MRfscIuPCe3saJg/j3Ky5I14lcfZGvm2tM8CCE5H7IFWk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769632884; c=relaxed/simple;
-	bh=zV0mvyMMlSBD4q7aPG43OXDxun9Eac0uTnkg5zP5ky8=;
+	s=arc-20240116; t=1769632938; c=relaxed/simple;
+	bh=N9bRTRnRi/F71DZAXsWoArwHXgrRZNZWQ2KdsfURCYk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Zosv5NzmsXwLlSV/orrQypMaqQtM+ZAza94VPHc8Vs4UrY6IBDmwWH5Zrx7R79JrX0dRmq8u1LrkHfEaPH2+au465bD301ITUwWbq0LK7lu1SSphtmYqFoBAFfzjRxCdKt764jV3tllbhH7lcEJo1R9iLxcsWgvxKqimAVBWm5c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g+w+EKTq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31CEAC4CEF1;
-	Wed, 28 Jan 2026 20:41:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ceX4SJoHr15w32Uq2mFx7aulP0HsvntY6h2cv/XB22+HOJReyy12InD95qYajnHUyXDpWYlNNqbJhusFPaWbo10EwjVXo2NkrnUZjwz2K4vncpE6XGhLoC98otfcGq8Kz/t3vjjpF40KvXQMDAUZQQZ4IdE8FNd5vWcLEyXNaWA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V5sy0u3u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 687E9C4CEF1;
+	Wed, 28 Jan 2026 20:42:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769632884;
-	bh=zV0mvyMMlSBD4q7aPG43OXDxun9Eac0uTnkg5zP5ky8=;
+	s=k20201202; t=1769632938;
+	bh=N9bRTRnRi/F71DZAXsWoArwHXgrRZNZWQ2KdsfURCYk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=g+w+EKTqfFc5MspnBFGc9n6lMh5F7L4tOZoKDDK5xFcZe+9FAtNNYskh4QUVXUsRP
-	 4kNPopBrlVYKoZb7G4EoVG8n2v0i7oeOfYN8h2hcb8O8a70KnzpgDzorI3Mf918mGM
-	 E/AjqIEEKMuU+Kf5QeVhkl/EF0FhSYdHICxGQTyhNkuF6k1jlCyw7+hKMOw+jda1TA
-	 6iuJJIyQNVEITwDlIZhkmpMykWA2NlKr9Td8U9jecV0KN31avpdX+5hgdq17KONQaO
-	 ocUc8qCfLlBf0A3P3BmP+OhyCnnEVLK6sliScCSOyqj3hBr3XOkkWw14lcw+xrdFuj
-	 0fTRhWK3iZPtQ==
-Date: Wed, 28 Jan 2026 20:41:18 +0000
-From: Mark Brown <broonie@kernel.org>
-To: "Miquel Raynal (Schneider Electric)" <miquel.raynal@bootlin.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Vaishnav Achath <vaishnav.a@ti.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	=?iso-8859-1?Q?Herv=E9?= Codina <herve.codina@bootlin.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Santhosh Kumar K <s-k6@ti.com>,
-	Pratyush Yadav <pratyush@kernel.org>,
-	Pascal Eberhard <pascal.eberhard@se.com>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v4 10/15] spi: cadence-qspi: Kill cqspi_jh7110_clk_init
-Message-ID: <919c7a9a-8341-4329-9fcc-630a2a3d0b91@sirena.org.uk>
-References: <20260122-schneider-6-19-rc1-qspi-v4-0-f9c21419a3e6@bootlin.com>
- <20260122-schneider-6-19-rc1-qspi-v4-10-f9c21419a3e6@bootlin.com>
+	b=V5sy0u3ue8GXSFoF5YArhrUPTN+gCqc0W6DH4mpjHy/w3hN4Lk4klplXE51vflLa3
+	 vRM7C0+w0zR/xQY5xx0RE1XSmI5+GbxT9C7jewdVirfP6AMQh2pYOLFySsusx/eUtE
+	 NrzQ0U084fAZjejhZns9iOuAF0XLTDU+fmvbcnfYB/US73q++pSJzAp5KMCRtUEbgC
+	 tXxrjcV5576XZ2IHhswEeq1ZM/L1N2ZhPFJJ8t4hthtyUXU7IoKz0b1XUAokEtQARf
+	 Pt98R5DMyTNJudxRjGASydUhr1fJa1xN9yy2r3Ct1nC5JpxzFhqjMSSx0gwF0eutOs
+	 ACwPemLaKCNQA==
+Date: Wed, 28 Jan 2026 20:42:11 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Drew Fustini <fustini@kernel.org>
+Cc: Icenowy Zheng <zhengxingda@iscas.ac.cn>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+	Dmitry Baryshkov <lumag@kernel.org>,
+	Michal Wilczynski <m.wilczynski@samsung.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Han Gao <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>,
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	Icenowy Zheng <uwu@icenowy.me>
+Subject: Re: [PATCH v6 1/9] dt-bindings: vendor-prefixes: add verisilicon
+Message-ID: <20260128-smokeless-angular-cff7e16ff8dc@spud>
+References: <20260123092830.4046009-1-zhengxingda@iscas.ac.cn>
+ <20260123092830.4046009-2-zhengxingda@iscas.ac.cn>
+ <aXpwED5wSZbnIjae@x1>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,78 +81,130 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="9gp6hdOn2aMXkGnv"
+	protocol="application/pgp-signature"; boundary="+rUt8E/m7BH8j/0F"
 Content-Disposition: inline
-In-Reply-To: <20260122-schneider-6-19-rc1-qspi-v4-10-f9c21419a3e6@bootlin.com>
-X-Cookie: APL hackers do it in the quad.
+In-Reply-To: <aXpwED5wSZbnIjae@x1>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-4.26 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260625-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,glider.be,gmail.com,ti.com,bootlin.com,sang-engineering.com,se.com,vger.kernel.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TAGGED_FROM(0.00)[bounces-260626-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[29];
+	FREEMAIL_CC(0.00)[iscas.ac.cn,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,redhat.com,pengutronix.de,samsung.com,bootlin.com,disroot.org,vger.kernel.org,lists.freedesktop.org,lists.infradead.org,icenowy.me];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sirena.org.uk:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: A49F3A8B88
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[icenowy.me:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,iscas.ac.cn:email]
+X-Rspamd-Queue-Id: 691F8A8BAC
 X-Rspamd-Action: no action
 
 
---9gp6hdOn2aMXkGnv
+--+rUt8E/m7BH8j/0F
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 22, 2026 at 04:13:35PM +0100, Miquel Raynal (Schneider Electric) wrote:
-> This controller can be fed by either a main "ref" clock, or three clocks
-> ("ref" again, "ahb", "apb"). In practice, it is likely that all
-> controllers have the same inputs, but a single clock feeds the three
-> interfaces (ref is used for controlling the external interface, ahb/apb
-> the internal ones). Handling these clocks is in no way SoC specific,
-> only the number of expected clocks may change. Plus, we will soon be
-> adding another controller requiring an AHB and an APB clock as well, so
-> it is time to align the whole clock handling.
+On Wed, Jan 28, 2026 at 12:22:40PM -0800, Drew Fustini wrote:
+> On Fri, Jan 23, 2026 at 05:28:22PM +0800, Icenowy Zheng wrote:
+> > From: Icenowy Zheng <uwu@icenowy.me>
+> >=20
+> > VeriSilicon is a Silicon IP vendor, which is the current owner of
+> > Vivante series video-related IPs and Hantro series video codec IPs.
+> >=20
+> > Add a vendor prefix for this company.
+> >=20
+> > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> > Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+> > Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> > ---
+> > No changes since v4.
+> >=20
+> > Changes in v3:
+> > - Add Rob's ACK.
+> >=20
+> > No changes in v2.
+> >=20
+> >  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/D=
+ocumentation/devicetree/bindings/vendor-prefixes.yaml
+> > index c7591b2aec2a7..18f931f369198 100644
+> > --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > @@ -1745,6 +1745,8 @@ patternProperties:
+> >      description: Variscite Ltd.
+> >    "^vdl,.*":
+> >      description: Van der Laan b.v.
+> > +  "^verisilicon,.*":
+> > +    description: VeriSilicon Microelectronics (Shanghai) Co., Ltd.
+> >    "^vertexcom,.*":
+> >      description: Vertexcom Technologies, Inc.
+> >    "^via,.*":
+> > --=20
+> > 2.52.0
+> >=20
+>=20
+> I've applied the bindings patches (1, 2, 4) to thead-dt-for-next as well
+> so that 'make W=3D1 dtbs_check' won't break for the next release of
+> linux-next.
+>=20
+> https://git.kernel.org/pub/scm/linux/kernel/git/fustini/linux.git/log/?h=
+=3Dthead-dt-for-next
+>=20
+> I wouldn't normally pick bindings patches but it is a short timeline if
+> we want to get some testing done in linux-next before sending v6.20 pull
+> requests. I have created an immutable branch thead-dt-v6.20-dpu-hdmi in
+> case that helps.
+>=20
+> https://git.kernel.org/pub/scm/linux/kernel/git/fustini/linux.git/log/?h=
+=3Dthead-dt-v6.20-dpu-hdmi
+>=20
+> I can drop the yaml patches from thead-dt-for-next if people think that
+> was the wrong thing to do. If we think that the driver changes won't
+> actually be ready for the merge window, then I can drop all these
+> patches from thead-dt-for-next.
 
-This also fails to apply:
+If you're taking the binding patches, it means the driver hasn't been
+applied, and therefore there's not much reason to do something abnormal
+like this? I'm not sure what the benefit of getting the dts patches
+applied if the driver hasn't been accepted yet.
 
-Applying: spi: cadence-qspi: Kill cqspi_jh7110_clk_init
-error: patch failed: drivers/spi/spi-cadence-quadspi.c:1829
-error: drivers/spi/spi-cadence-quadspi.c: patch does not apply
-Patch failed at 0009 spi: cadence-qspi: Kill cqspi_jh7110_clk_init
+If this is only about linux-next, and the driver /is/ going to land in
+v6.20 (or v7.0, w/e it ends up being), then the warnings don't warrant
+doing something abnormal either, as long as whatever Linus ends up with
+at -rc1 is clean.
 
---9gp6hdOn2aMXkGnv
+--+rUt8E/m7BH8j/0F
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAml6dG0ACgkQJNaLcl1U
-h9BFWQf+P8ddwp/xT/k7H9zUa3MSzlN2P2udlPLiMZ933Hi8s1bTMBrX4XXbpbaL
-i64dZ2JP+aW4SZkCNyNMiTZdNd3lMEXanGLm6Y0qi520SA7jMQNdXxI7+cdctJnr
-STr2h0kyTJkNoWKI0PKGoUNhlggyIiuZq6U/gj4TuSw21z27QbHnfScneoAOz/7Q
-eaE/e2UEsaia583kN5UgbwhoP070vGQfvI2W9A1Yp/ZUUhZRoNZlip2923YowicQ
-ozhXwpfCw4zz4imH8ZOuW/i5ZKotmnQMx3Un1OxlpbWXcoHp7UzAD5UEZAN7mHeE
-BAXQdgm7lCKXRJ9+w2VMmYcOOpkWiQ==
-=d+Ej
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaXp0owAKCRB4tDGHoIJi
+0jIUAQCPxPMJAFkFSlKYJJsayCDN1Mc4q5bLo9nBYjr8rRdXZgEAqwqLK+HYP+KJ
+lj2nW2S/kZbBQliNKngcF15VdRNArw8=
+=CbCJ
 -----END PGP SIGNATURE-----
 
---9gp6hdOn2aMXkGnv--
+--+rUt8E/m7BH8j/0F--
 
