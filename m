@@ -1,58 +1,57 @@
-Return-Path: <devicetree+bounces-260270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260272-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aFLqHnTZeWlI0AEAu9opvQ
-	(envelope-from <devicetree+bounces-260270-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 10:40:04 +0100
+	id GLS9DIfZeWlI0AEAu9opvQ
+	(envelope-from <devicetree+bounces-260272-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 10:40:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB7B99EEE4
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 10:40:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 911229EEED
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 10:40:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 77AC73006B59
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 09:36:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 065933025D0D
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 09:36:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC9693469FF;
-	Wed, 28 Jan 2026 09:36:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8495F34A3D0;
+	Wed, 28 Jan 2026 09:36:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023074.outbound.protection.outlook.com [52.101.127.74])
+Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023119.outbound.protection.outlook.com [52.101.127.119])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0B5E298CC0;
-	Wed, 28 Jan 2026 09:36:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.74
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8FDCDF76;
+	Wed, 28 Jan 2026 09:36:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.119
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769592978; cv=fail; b=tRoWyO4qyq1Cq974d1gvPTz5QBNWGP4bJwfUJm4u+Skpg5xwUK3K0vUTIPqgp2Ko2U6DrTbhMRfgGYRdjktSSVBZ+oUVUIHn1Ozw5Dn4FTYao+em28KdgzGU6cadyv3R1Fbl9t2FHVatUvALOo/pRJz+k4UH/YC2rP23R3eAfRA=
+	t=1769592979; cv=fail; b=ZZUKKeWfyrIxeWf6nyvvaNqhhiTLxO0LMP8zSJgF38w1TtpaEmNlfLZC0AzmGVSdgY6PkO4il62vE2sRqRo74mMoq8pcLkCG5mLV7WJpNvFV0Q0tj+o5xPUKzE63xR60tUaCWqHEuuetIMoT7bSiFJYrkCBDbmMXsLSKcEserbs=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769592978; c=relaxed/simple;
-	bh=WNADvlaAbeLu3AZh3oDWWOfqlusQBiSJXjMC7dIuf7o=;
+	s=arc-20240116; t=1769592979; c=relaxed/simple;
+	bh=joVc26Zp2PAyFoEeyvfmsXXOalVXpZwsGDVD/FYhU3I=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FWND6893P3UnSdLCJachKJZgPuNyhvp+4FPOSWntP3cCUQyt4II9AG9daYDLfoSXWj9eFa0nA0Dur3u0Em53HQiMe8Zqy9pV2swdZmUaRgfhGoen9aNYzkLHTwYPgx3ectAONpTFB8Fwz2y/Bltwwi36xgno3lHXHKwWz87DhUc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.127.74
+	 MIME-Version:Content-Type; b=Mz4WyV1GRLCUxhqBuX3I/4jF8IexpbxZbKen366XRkwJ0FWZuu9RBxPw/lXvgZvM8vo+lIgzaUjAFckC2Lw968FV0Z4guEAh8e01AmKV2zJxp14OqvUeHJzQh5FLWZ7Nvw5/NMGSWoZM9E1C/BIt0qlpDs5IqOTzZoQc9jSZZKQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.127.119
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VvBGK/G/VRKl7ms47fXjUQt6EyedEBu1FsiST7eOqD36LvZCLb2BmeJMUnezYAUXeagToChE9x2MNAI21PzA5vx/El2M1PnbCxKJsmUxz2lZL9dEYEvbRweeRL+PWRQpWsqVCjQHv7THBSwENYUTziAtOAs/vEUgvCBcPUMI1RUq0kM/qBVWNyHHnuXIyMLEElTDIVfjfkHCR/ANZvaF/TZDc/XYOCOvLFRYSNJYD5sKk2/4VAF1tIjyXptuxODuAfgtPQ4gmSQUNIDYkr1Xe+LDNXbSww59yLNcZnds/eAFZOpSlWKcwDNMsVcUMpV8URUWn3KhjDKCV6/4Sn5Nwg==
+ b=j1IpCa30cKnAgBnOB5Q93WFLso/JXLPxUs30hBDnjxcM6g2F+soCoGEoLXFfmjfV5nYNf26OtCX4hvqUImEqQZ9Qp2F5a/I1W9Cva2D4ZIm+gof5sKKyVPa+77Vm8PNif9jwyMRmjXnxhjY2keVZIfu7bDyb52hagZv3eqcERqk0jUEeMwKWBYYNwWjJjRzvAts5RbA7KmB0hudkUCrTgJEJO9EKciN+g0Mf6dee/+W10UVvjKsvFIqKHZaRJV8xnR8WwW5MID4a0Y/SfTktn1KmAN8Fv3aeOmZxTan8+jyxQzSKRpztVvc/vQRRnfH3n8ZfNv+/GHQWtdInPLCuAQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QJA+wPUH3yFQDLWjSjn21+lnOvYt1E7BiGZVhM9H9+E=;
- b=hltqeVRmoY3THrw5ORJvR/bjyYq3kwO8DwVaPymBerjn2jRtH17sACnIeIVKXTonUvy1y3JQ3+ht4toJhOGtjie65AIWB6YpuMm7Z8W9kEplFStQ8kN5At1k2bxvb+CuUjgiJ96aPva+g+oqSNyu0HtQpEwlUf2cbweRx+Lw28GP8dKPMxZ8VhWi0jhLuHC8ueDh9ZZB+TcU40HMlsDS8hzIBMlM0uoF6xSBSOW5rPRZf55iTs7CNY5t6TyMmQFv4DT1bWXqIUd6IDo5p0AGu/U9SU+6H1sDQ3rawVbzMJMZDPMuGWn8K/panHddTR0Qo8wXos54D5LQrICfjpWd/w==
+ bh=qgx/OZovnYaqJbXU8yLMLwe/etamtsRy8FltMyp7ndQ=;
+ b=ne5xJLpWu/jrbYIx4eGLbYOlTSr/wjya9UlhpKuUA6gwb0fyHvv7PH62PDgvJ4L7N+m+BHfV5LLPqRk0l0Xl5q6XzzL4YC6w0sSTFfIJy1q21OQiLRQjIBod3yIGnKKvzc8+8Z1AZzALPqskkzzydGtStA+7W05sRLhc8dRn69BQbSQnxDtrqBddIIR0JwLWpz1ru/zOuYMh27Bw9BJt0jAJdDZmLp5zJjKU3ioILy6RLSC+cUvkhZYo9oNkx+YKt2xHsk+YvRXzkVAJt0ZWvVBcAnmn4TcozNcsNXiuaa6Y9d++iHLfqDMXoZPdVuwFMjlH/dUgICHatoBBLeNrDg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
  dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
  not signed); arc=none (0)
-Received: from TY4PR01CA0116.jpnprd01.prod.outlook.com (2603:1096:405:379::16)
- by TYZPR06MB6355.apcprd06.prod.outlook.com (2603:1096:400:41d::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.16; Wed, 28 Jan
- 2026 09:36:13 +0000
-Received: from TY2PEPF0000AB8A.apcprd03.prod.outlook.com
- (2603:1096:405:379:cafe::2) by TY4PR01CA0116.outlook.office365.com
- (2603:1096:405:379::16) with Microsoft SMTP Server (version=TLS1_3,
+Received: from SI2PR02CA0020.apcprd02.prod.outlook.com (2603:1096:4:195::7) by
+ KL1PR06MB6428.apcprd06.prod.outlook.com (2603:1096:820:f6::11) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9542.15; Wed, 28 Jan 2026 09:36:14 +0000
+Received: from SG2PEPF000B66CA.apcprd03.prod.outlook.com
+ (2603:1096:4:195:cafe::cd) by SI2PR02CA0020.outlook.office365.com
+ (2603:1096:4:195::7) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9564.7 via Frontend Transport; Wed,
- 28 Jan 2026 09:36:16 +0000
+ 28 Jan 2026 09:36:14 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
  smtp.mailfrom=cixtech.com; dkim=none (message not signed)
  header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
@@ -60,11 +59,11 @@ Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
  222.71.101.198 as permitted sender) receiver=protection.outlook.com;
  client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
 Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- TY2PEPF0000AB8A.mail.protection.outlook.com (10.167.253.8) with Microsoft
+ SG2PEPF000B66CA.mail.protection.outlook.com (10.167.240.22) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
  15.20.9564.3 via Frontend Transport; Wed, 28 Jan 2026 09:36:12 +0000
 Received: from localhost.localdomain (unknown [172.16.64.196])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 164954350714;
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 269BB4350715;
 	Wed, 28 Jan 2026 17:36:12 +0800 (CST)
 From: Gary Yang <gary.yang@cixtech.com>
 To: lee@kernel.org,
@@ -78,9 +77,9 @@ Cc: devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	cix-kernel-upstream@cixtech.com,
 	Gary Yang <gary.yang@cixtech.com>
-Subject: [PATCH v4 2/3] reset: cix: add support for cix sky1 resets
-Date: Wed, 28 Jan 2026 17:36:10 +0800
-Message-ID: <20260128093611.1932770-3-gary.yang@cixtech.com>
+Subject: [PATCH v4 3/3] arm64: dts: cix: add support for cix sky1 resets
+Date: Wed, 28 Jan 2026 17:36:11 +0800
+Message-ID: <20260128093611.1932770-4-gary.yang@cixtech.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20260128093611.1932770-1-gary.yang@cixtech.com>
 References: <20260128093611.1932770-1-gary.yang@cixtech.com>
@@ -93,512 +92,138 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB8A:EE_|TYZPR06MB6355:EE_
+X-MS-TrafficTypeDiagnostic: SG2PEPF000B66CA:EE_|KL1PR06MB6428:EE_
 Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 879d8a9a-011b-4b46-9728-08de5e50ad67
+X-MS-Office365-Filtering-Correlation-Id: e622345c-7274-49cb-eb3c-08de5e50ad28
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|1800799024|376014|36860700013;
+	BCL:0;ARA:13230040|82310400026|36860700013|376014|1800799024;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?Tn/0Y58g09jWxr/6r+1dn/RXVS5250dmlF459ok/Ryn/3uXq7a1OCEQLofc4?=
- =?us-ascii?Q?afcVNzHh0CBDKqs0PpGNw5lMisQXtKPyVwYgUxiZh6TcBiauQV7FBpFJ4CNc?=
- =?us-ascii?Q?O1T75itp7APNNvzOZCTL+T/RVpvuZ7/xOqHLrm/F8TAWvrrT4hRhg7Jm4uah?=
- =?us-ascii?Q?uzZh4VTicEY2qGJ1p4Vb7KP4QjHYBvqvPIHzogEhvkueFQbmDnpE3miQiKim?=
- =?us-ascii?Q?xYskvnFvw46u8gi9GM+aKlYu+fDezd3v55D79ZgWij1u1tKnhw/JnLkdXacL?=
- =?us-ascii?Q?u0MuHPhbBYTKBAw2kVag7c9jfMwCFdQpopZQ6FzCmEF9r9xlQUYLaxQcILfK?=
- =?us-ascii?Q?76lBl7OnjMjfoOP4SIjm/wLTd6D3SfZjJgmP9GQifQBLnQ0QTkTIo0WOBB3G?=
- =?us-ascii?Q?9bREZuqQaTHlasTPlefhwn1HOaqIdG9NB4JSZGVXVTOq1l1Gc34SVmDBIf8n?=
- =?us-ascii?Q?w6MfLJZWTS4rnmrtm/nfG2Y2b+A3w4TQfvWzfZGHxLQNF4UDtYAzhP6B3q8d?=
- =?us-ascii?Q?RS1xLQOF78nKna/CbbjxIKKAgmxVackrCvZHR8MMCiIUtv0G+pJ52kTlLYjF?=
- =?us-ascii?Q?ZnDTrwd2Y1CdgVT511sLs+jG+ojUmV967K3+llsbATEIv+dQxj6qOarkwUEx?=
- =?us-ascii?Q?hPhTVApZ7umYGxRFYmf89FIRk6fi9T9Mv7joJs2K9wYNK65hxD/s5ZjiJuq3?=
- =?us-ascii?Q?p+MYdwVQEEhYdY0jpmiumb6ocm9WuLP4qd5dQq8+ZUiNLeHbjRr/UZNLoEaz?=
- =?us-ascii?Q?eFK/VbSNQhlnmMtfr+8YjwgwnvfWaz9oWPVxRUlg7UdJXoc1dlOoq6ZUkt1R?=
- =?us-ascii?Q?tLvsUmbQH2F7jeFLWDo5ifNWo7gQ9pRlyIHJe15uHO/vcCR7VlLG1PnqIqA4?=
- =?us-ascii?Q?0AALkWljB/vEdYTgTxlER7SaDGpS8a8W81r0k9ALYeqBqwxqMDC3CYc63lQB?=
- =?us-ascii?Q?O9S0OMEQU/SP+DUqVqcW8zIA3nFtx0Cb2Z6AW62Xeeu9FwaI19nF8Wz3IsJf?=
- =?us-ascii?Q?llFfdIbZxHubRm5i/9zNLLwfo2LqIbbZjlNnggRuM4mPFhZa4DSQiUDLx6EG?=
- =?us-ascii?Q?whzfDmirM+D7WELpcgMjrm7u68IMEiSzoVX60/ZqY9oPLhzxQrl1VBJs15ve?=
- =?us-ascii?Q?rDUU8S97nWu3Nrv0byVM5xRK85URXBObhMPmmslne+BzsZy+0c4Qq+Ns7+5/?=
- =?us-ascii?Q?KWcxBV8X690TT+3nFjqyuWfSEKAtE6JxqfkEUYbfu1+nu21k43vUMvMTnfLR?=
- =?us-ascii?Q?0VigGeNEhIBD5XKfHvcdwgxUO9ZkU9pvHo2HiPuBZw+v4JiB2nEUhHiSmgKl?=
- =?us-ascii?Q?jvJaNhbNuc0/FiRMJSyi5zGalgW347xK5xiQrQIcEP33GNroGMwv5PCVIfQm?=
- =?us-ascii?Q?kJy/a4tG0/gEIV0G78XK31nxFyrizvNJNewDDklueK0dBnL4rK4XBi2VrYof?=
- =?us-ascii?Q?HJenp0lyrDSCNUgf6ZSvoeaV9hdkNrqcyVSBmE5FYZP5pFy7OEWWZG+2OLJu?=
- =?us-ascii?Q?7oPjTt3f072d7vjetWMyX7uPSIxgQ+P0evFE7fdMoQDt0hW3lM27MOzgAvhU?=
- =?us-ascii?Q?LnWif78Xx9d1kgelDuYequrEuUjmxQ2C//Lkj5GpnhQJJ2sddUDzI7zbpHUp?=
- =?us-ascii?Q?wI2OcY98K1HfzbeFZdHnEXdMg8ZR7BPFHyBGKim9cjJyFPVscTYAIM98rd6o?=
- =?us-ascii?Q?+S4GEA=3D=3D?=
+	=?us-ascii?Q?bBe0tCbngmeuB59O2SmhzhuJ/coTqjU9eT+2yZo9u7BdaL3YBvsNX4sWSIKg?=
+ =?us-ascii?Q?EE8v0kOXtmXkU7zavnduksCuSq/o6NibCP+bBwU2AdaswTWJshg0ViGAOVt8?=
+ =?us-ascii?Q?9uni38GFvta+QU3D1BVju1XEcINnBbnU2eSik0PnAvfC5pEezQ13jI+LHiuQ?=
+ =?us-ascii?Q?PvdSvc73X4RW2OsvX3axY9auUT/A++eVyzyzNfL8kNT9Gu3jz9yVJIrQpUEC?=
+ =?us-ascii?Q?JOejPGzypjXRW/EJFMKb3Vz2QSJCk4MOScEXN9X2gSuTj9BDMwixFWUN1rdE?=
+ =?us-ascii?Q?WvF2tNCjls4cz1r6Dh5mcm8IKGhHRLoJtYfh5+EMgKTomEJR7+jDJ0j0sUcg?=
+ =?us-ascii?Q?neLxxSOIl5Q/txMzZpyS3EMxSX0YDikDk9c8tyxschFP9L95CFg8azm0E+dG?=
+ =?us-ascii?Q?e8f/McduXxQBwppWvllvtW9hMtUBFiwISUiw4kSvlii/nhSmUBiTlKk6CaB/?=
+ =?us-ascii?Q?e5dV5rwz5VYLSbWf735JA1Cm5VvMvrnaVW/fG08eSjjzuuiGzAS5PfqHP5Oh?=
+ =?us-ascii?Q?WiH65OK+VTJBqtNYeM0kJhXUHlQa6jg0oQVVrHG/7fY8vG1HXTwNCqeTN0bU?=
+ =?us-ascii?Q?zFjRUzAlp5Ej4VKe1HFW3LM9EjABDg7Q6fnfTbp3ckwak30vJ68R58J9m2BT?=
+ =?us-ascii?Q?V3TvFvUEwpTCxLxCMjWAWxpoHuTSYzIe9AD5xbKaSnd0y5ggt7ZgZvIhnERe?=
+ =?us-ascii?Q?3bXyQsHdIWkAns0/2CtDU2cbxph3HyuKyqvX/yadWp+oNnUAJLDWPTcnEJ7v?=
+ =?us-ascii?Q?WZGUB/8QBxTaCcGFDr+xvtzJ/SwWlhzv+YfooCRsX/4xKrvBuwpxOUxG+J5e?=
+ =?us-ascii?Q?6+rRBO8rkUIw9141yGMKNy2x+9to5vDqM9DNL0OOj2EvxRetWDvsavKfuqKY?=
+ =?us-ascii?Q?SQkvNhGbvDtFoKgqH8024mmX357g6LWDK4EqU8v0+itFNW0dpH0inLdkoRvU?=
+ =?us-ascii?Q?hi8uRd2zu9pZ7qliUse6ZtypI39d5ho+8/Nrnm+gGyEHnVe10LC1MuJQpBaS?=
+ =?us-ascii?Q?6kFXk6GpRwf9lYjgcbwpEQDBvsNoTkwN2qvmGDADy0d6eW9T3QtGrnwgzuxd?=
+ =?us-ascii?Q?w5KrTp8UgY4chfQYMMXgwTi3aE//ZdlgaRxkmpQ9CKoHnOOMZXbW/9sCkljC?=
+ =?us-ascii?Q?1HAhvNwKDMVg6l+SGBerKEzJPWJt/FgqQwb/tQq2Ln2tW0J//s8b/DctQ/7D?=
+ =?us-ascii?Q?WinEWAGhYAWAsrk4aQFJ7h1axaNhcW+wBE353UnI/XNA3vMhUSvNO2FcQLzN?=
+ =?us-ascii?Q?lt7fbUc/KCFhetxheafYDuosjMThyMKIMJwIk6LwafPPMvXm/XONANfPFafl?=
+ =?us-ascii?Q?d69PfI9rJaqzw7U/07RSzwQiQ+7SK4tjEuCNiIK/vd4lSZBLZhMNBFYJot/f?=
+ =?us-ascii?Q?qYBJg7QbDwKS89iXTASQkImfx2J2CTBXVzDTGYX9WMlpDAOAxB5tLv6Dbftt?=
+ =?us-ascii?Q?CJfWmz0n4lNJDS8MVVAarL4OKvwGuDKOlb/J1yAt83DK1cC0PiayjG0ex6yt?=
+ =?us-ascii?Q?jXqHrCpaPMSwBGAjZWNhcunzdSvkUwdci9eIIIpj4AIB6zNQ9jVVZU9HYg7U?=
+ =?us-ascii?Q?oayuGyguHcsYYE1J+5TNUAVOr4/ZXsPGe3R9KC/HYsLXyyhrxTKgz9Pn4bNe?=
+ =?us-ascii?Q?BQAWjnXXWAgP3C5RHAMel8PY0Ld4mKq9sO/rcyyKiF9L3efhQucIwMFMUbUP?=
+ =?us-ascii?Q?VvnWNQ=3D=3D?=
 X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(376014)(36860700013);DIR:OUT;SFP:1102;
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(376014)(1800799024);DIR:OUT;SFP:1102;
 X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jan 2026 09:36:12.9455
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jan 2026 09:36:12.6861
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 879d8a9a-011b-4b46-9728-08de5e50ad67
+X-MS-Exchange-CrossTenant-Network-Message-Id: e622345c-7274-49cb-eb3c-08de5e50ad28
 X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
 X-MS-Exchange-CrossTenant-AuthSource:
-	TY2PEPF0000AB8A.apcprd03.prod.outlook.com
+	SG2PEPF000B66CA.apcprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR06MB6355
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR06MB6428
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [3.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_REJECT(1.00)[cv is fail on i=2];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260270-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260272-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	DMARC_NA(0.00)[cixtech.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gary.yang@cixtech.com,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	RCVD_COUNT_SEVEN(0.00)[7];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gary.yang@cixtech.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7];
+	NEURAL_HAM(-0.00)[-0.999];
+	DBL_PROHIBIT(0.00)[0.244.63.88:email,0.63.122.0:email,0.244.36.0:email,0.63.161.16:email,0.62.143.160:email];
+	R_DKIM_NA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[cixtech.com:mid,cixtech.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: CB7B99EEE4
+X-Rspamd-Queue-Id: 911229EEED
 X-Rspamd-Action: no action
 
-There are two reset controllers on Cix Sky1 Soc.
+There are two reset conctrollers on Cix Sky1 Soc.
 One is located in S0 domain, and the other is located
 in S0 and S5 domain.
 
 Signed-off-by: Gary Yang <gary.yang@cixtech.com>
-Link: https://lore.kernel.org/r/20251124063235.952136-3-gary.yang@cixtech.com
+Link: https://lore.kernel.org/r/20251124063235.952136-4-gary.yang@cixtech.com
 Signed-off-by: Peter Chen <peter.chen@cixtech.com>
 ---
- drivers/reset/Kconfig      |   7 +
- drivers/reset/Makefile     |   1 +
- drivers/reset/reset-sky1.c | 376 +++++++++++++++++++++++++++++++++++++
- 3 files changed, 384 insertions(+)
- create mode 100644 drivers/reset/reset-sky1.c
+ arch/arm64/boot/dts/cix/sky1.dtsi | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-index 6e5d6deffa7d..24bf60c4e640 100644
---- a/drivers/reset/Kconfig
-+++ b/drivers/reset/Kconfig
-@@ -291,6 +291,13 @@ config RESET_SIMPLE
- 	   - SiFive FU740 SoCs
- 	   - Sophgo SoCs
+diff --git a/arch/arm64/boot/dts/cix/sky1.dtsi b/arch/arm64/boot/dts/cix/sky1.dtsi
+index 64b76905cbff..45c008bf580a 100644
+--- a/arch/arm64/boot/dts/cix/sky1.dtsi
++++ b/arch/arm64/boot/dts/cix/sky1.dtsi
+@@ -348,6 +348,17 @@ i3c1: i3c@4100000 {
+ 			status = "disabled";
+ 		};
  
-+config RESET_SKY1
-+	bool "Cix Sky1 reset controller"
-+	depends on HAS_IOMEM
-+	depends on ARCH_CIX || COMPILE_TEST
-+	help
-+	  This enables the reset controller for Cix Sky1.
++		syscon: syscon@4160000 {
++			compatible = "cix,sky1-system-controller", "syscon",
++				   "simple-mfd";
++			reg = <0x0 0x4160000 0x0 0x100>;
 +
- config RESET_SOCFPGA
- 	bool "SoCFPGA Reset Driver" if COMPILE_TEST && (!ARM || !ARCH_INTEL_SOCFPGA)
- 	default ARM && ARCH_INTEL_SOCFPGA
-diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-index 9c3e484dfd81..0d2e1329561d 100644
---- a/drivers/reset/Makefile
-+++ b/drivers/reset/Makefile
-@@ -37,6 +37,7 @@ obj-$(CONFIG_RESET_RZG2L_USBPHY_CTRL) += reset-rzg2l-usbphy-ctrl.o
- obj-$(CONFIG_RESET_RZV2H_USB2PHY) += reset-rzv2h-usb2phy.o
- obj-$(CONFIG_RESET_SCMI) += reset-scmi.o
- obj-$(CONFIG_RESET_SIMPLE) += reset-simple.o
-+obj-$(CONFIG_RESET_SKY1) += reset-sky1.o
- obj-$(CONFIG_RESET_SOCFPGA) += reset-socfpga.o
- obj-$(CONFIG_RESET_SPACEMIT) += reset-spacemit.o
- obj-$(CONFIG_RESET_SUNPLUS) += reset-sunplus.o
-diff --git a/drivers/reset/reset-sky1.c b/drivers/reset/reset-sky1.c
-new file mode 100644
-index 000000000000..92e34b48f041
---- /dev/null
-+++ b/drivers/reset/reset-sky1.c
-@@ -0,0 +1,376 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ *
-+ * CIX System Reset Controller (SRC) driver
-+ *
-+ * Author: Jerry Zhu <jerry.zhu@cixtech.com>
-+ */
++			src_fch: reset-controller {
++				compatible = "cix,sky1-rst-fch";
++				#reset-cells = <1>;
++			};
++		};
 +
-+#include <linux/delay.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/reset-controller.h>
-+#include <linux/regmap.h>
+ 		iomuxc: pinctrl@4170000 {
+ 			compatible = "cix,sky1-pinctrl";
+ 			reg = <0x0 0x04170000 0x0 0x1000>;
+@@ -568,6 +579,17 @@ ppi_partition1: interrupt-partition-1 {
+ 			};
+ 		};
+ 
++		s5_syscon: s5-syscon@16000000 {
++			compatible = "cix,sky1-s5-system-controller", "syscon",
++				   "simple-mfd";
++			reg = <0x0 0x16000000 0x0 0x1000>;
 +
-+#include <dt-bindings/reset/cix,sky1-rst.h>
-+#include <dt-bindings/reset/cix,sky1-rst-fch.h>
++			src: reset-controller {
++				compatible = "cix,sky1-rst";
++				#reset-cells = <1>;
++			};
++		};
 +
-+#define SKY1_RESET_SLEEP_MIN_US		50
-+#define SKY1_RESET_SLEEP_MAX_US		100
-+
-+struct sky1_src_signal {
-+	unsigned int offset;
-+	unsigned int bit;
-+};
-+
-+struct sky1_src_variant {
-+	const struct sky1_src_signal *signals;
-+	unsigned int signals_num;
-+};
-+
-+struct sky1_src {
-+	struct reset_controller_dev rcdev;
-+	const struct sky1_src_signal *signals;
-+	struct regmap *regmap;
-+};
-+
-+enum {
-+	CSU_PM_RESET				= 0x304,
-+	SENSORFUSION_RESET			= 0x308,
-+	SENSORFUSION_NOC_RESET			= 0x30c,
-+	RESET_GROUP0_S0_DOMAIN_0		= 0x400,
-+	RESET_GROUP0_S0_DOMAIN_1		= 0x404,
-+	RESET_GROUP1_USB_PHYS			= 0x408,
-+	RESET_GROUP1_USB_CONTROLLERS		= 0x40c,
-+	RESET_GROUP0_RCSU			= 0x800,
-+	RESET_GROUP1_RCSU			= 0x804,
-+};
-+
-+static const struct sky1_src_signal sky1_src_signals[] = {
-+	/* reset group1 for s0 domain modules */
-+	[SKY1_CSU_PM_RESET_N]		= { CSU_PM_RESET, BIT(0) },
-+	[SKY1_SENSORFUSION_RESET_N]	= { SENSORFUSION_RESET, BIT(0) },
-+	[SKY1_SENSORFUSION_NOC_RESET_N]	= { SENSORFUSION_NOC_RESET, BIT(0) },
-+	[SKY1_DDRC_RESET_N]		= { RESET_GROUP0_S0_DOMAIN_0, BIT(0) },
-+	[SKY1_GIC_RESET_N]		= { RESET_GROUP0_S0_DOMAIN_0, BIT(1) },
-+	[SKY1_CI700_RESET_N]		= { RESET_GROUP0_S0_DOMAIN_0, BIT(2) },
-+	[SKY1_SYS_NI700_RESET_N]	= { RESET_GROUP0_S0_DOMAIN_0, BIT(3) },
-+	[SKY1_MM_NI700_RESET_N]		= { RESET_GROUP0_S0_DOMAIN_0, BIT(4) },
-+	[SKY1_PCIE_NI700_RESET_N]	= { RESET_GROUP0_S0_DOMAIN_0, BIT(5) },
-+	[SKY1_GPU_RESET_N]		= { RESET_GROUP0_S0_DOMAIN_0, BIT(6) },
-+	[SKY1_NPUTOP_RESET_N]		= { RESET_GROUP0_S0_DOMAIN_0, BIT(7) },
-+	[SKY1_NPUCORE0_RESET_N]		= { RESET_GROUP0_S0_DOMAIN_0, BIT(8) },
-+	[SKY1_NPUCORE1_RESET_N]		= { RESET_GROUP0_S0_DOMAIN_0, BIT(9) },
-+	[SKY1_NPUCORE2_RESET_N]		= { RESET_GROUP0_S0_DOMAIN_0, BIT(10) },
-+	[SKY1_VPU_RESET_N]		= { RESET_GROUP0_S0_DOMAIN_0, BIT(11) },
-+	[SKY1_ISP_SRESET_N]		= { RESET_GROUP0_S0_DOMAIN_0, BIT(12) },
-+	[SKY1_ISP_ARESET_N]		= { RESET_GROUP0_S0_DOMAIN_0, BIT(13) },
-+	[SKY1_ISP_HRESET_N]		= { RESET_GROUP0_S0_DOMAIN_0, BIT(14) },
-+	[SKY1_ISP_GDCRESET_N]		= { RESET_GROUP0_S0_DOMAIN_0, BIT(15) },
-+	[SKY1_DPU_RESET0_N]		= { RESET_GROUP0_S0_DOMAIN_0, BIT(16) },
-+	[SKY1_DPU_RESET1_N]		= { RESET_GROUP0_S0_DOMAIN_0, BIT(17) },
-+	[SKY1_DPU_RESET2_N]		= { RESET_GROUP0_S0_DOMAIN_0, BIT(18) },
-+	[SKY1_DPU_RESET3_N]		= { RESET_GROUP0_S0_DOMAIN_0, BIT(19) },
-+	[SKY1_DPU_RESET4_N]		= { RESET_GROUP0_S0_DOMAIN_0, BIT(20) },
-+	[SKY1_DP_RESET0_N]		= { RESET_GROUP0_S0_DOMAIN_0, BIT(21) },
-+	[SKY1_DP_RESET1_N]		= { RESET_GROUP0_S0_DOMAIN_0, BIT(22) },
-+	[SKY1_DP_RESET2_N]		= { RESET_GROUP0_S0_DOMAIN_0, BIT(23) },
-+	[SKY1_DP_RESET3_N]		= { RESET_GROUP0_S0_DOMAIN_0, BIT(24) },
-+	[SKY1_DP_RESET4_N]		= { RESET_GROUP0_S0_DOMAIN_0, BIT(25) },
-+	[SKY1_DP_PHY_RST_N]		= { RESET_GROUP0_S0_DOMAIN_0, BIT(26) },
-+
-+	/* reset group1 for s0 domain modules */
-+	[SKY1_AUDIO_HIFI5_RESET_N]	= { RESET_GROUP0_S0_DOMAIN_1, BIT(0) },
-+	[SKY1_AUDIO_HIFI5_NOC_RESET_N]	= { RESET_GROUP0_S0_DOMAIN_1, BIT(1) },
-+	[SKY1_CSIDPHY_PRST0_N]		= { RESET_GROUP0_S0_DOMAIN_1, BIT(2) },
-+	[SKY1_CSIDPHY_CMNRST0_N]	= { RESET_GROUP0_S0_DOMAIN_1, BIT(3) },
-+	[SKY1_CSI0_RST_N]		= { RESET_GROUP0_S0_DOMAIN_1, BIT(4) },
-+	[SKY1_CSIDPHY_PRST1_N]		= { RESET_GROUP0_S0_DOMAIN_1, BIT(5) },
-+	[SKY1_CSIDPHY_CMNRST1_N]	= { RESET_GROUP0_S0_DOMAIN_1, BIT(6) },
-+	[SKY1_CSI1_RST_N]		= { RESET_GROUP0_S0_DOMAIN_1, BIT(7) },
-+	[SKY1_CSI2_RST_N]		= { RESET_GROUP0_S0_DOMAIN_1, BIT(8) },
-+	[SKY1_CSI3_RST_N]		= { RESET_GROUP0_S0_DOMAIN_1, BIT(9) },
-+	[SKY1_CSIBRDGE0_RST_N]		= { RESET_GROUP0_S0_DOMAIN_1, BIT(10) },
-+	[SKY1_CSIBRDGE1_RST_N]		= { RESET_GROUP0_S0_DOMAIN_1, BIT(11) },
-+	[SKY1_CSIBRDGE2_RST_N]		= { RESET_GROUP0_S0_DOMAIN_1, BIT(12) },
-+	[SKY1_CSIBRDGE3_RST_N]		= { RESET_GROUP0_S0_DOMAIN_1, BIT(13) },
-+	[SKY1_GMAC0_RST_N]		= { RESET_GROUP0_S0_DOMAIN_1, BIT(14) },
-+	[SKY1_GMAC1_RST_N]		= { RESET_GROUP0_S0_DOMAIN_1, BIT(15) },
-+	[SKY1_PCIE0_RESET_N]		= { RESET_GROUP0_S0_DOMAIN_1, BIT(16) },
-+	[SKY1_PCIE1_RESET_N]		= { RESET_GROUP0_S0_DOMAIN_1, BIT(17) },
-+	[SKY1_PCIE2_RESET_N]		= { RESET_GROUP0_S0_DOMAIN_1, BIT(18) },
-+	[SKY1_PCIE3_RESET_N]		= { RESET_GROUP0_S0_DOMAIN_1, BIT(19) },
-+	[SKY1_PCIE4_RESET_N]		= { RESET_GROUP0_S0_DOMAIN_1, BIT(20) },
-+
-+	/* reset group1 for usb phys */
-+	[SKY1_USB_DP_PHY0_PRST_N]		= { RESET_GROUP1_USB_PHYS, BIT(0) },
-+	[SKY1_USB_DP_PHY1_PRST_N]		= { RESET_GROUP1_USB_PHYS, BIT(1) },
-+	[SKY1_USB_DP_PHY2_PRST_N]		= { RESET_GROUP1_USB_PHYS, BIT(2) },
-+	[SKY1_USB_DP_PHY3_PRST_N]		= { RESET_GROUP1_USB_PHYS, BIT(3) },
-+	[SKY1_USB_DP_PHY0_RST_N]		= { RESET_GROUP1_USB_PHYS, BIT(4) },
-+	[SKY1_USB_DP_PHY1_RST_N]		= { RESET_GROUP1_USB_PHYS, BIT(5) },
-+	[SKY1_USB_DP_PHY2_RST_N]		= { RESET_GROUP1_USB_PHYS, BIT(6) },
-+	[SKY1_USB_DP_PHY3_RST_N]		= { RESET_GROUP1_USB_PHYS, BIT(7) },
-+	[SKY1_USBPHY_SS_PST_N]			= { RESET_GROUP1_USB_PHYS, BIT(8) },
-+	[SKY1_USBPHY_SS_RST_N]			= { RESET_GROUP1_USB_PHYS, BIT(9) },
-+	[SKY1_USBPHY_HS0_PRST_N]		= { RESET_GROUP1_USB_PHYS, BIT(10) },
-+	[SKY1_USBPHY_HS1_PRST_N]		= { RESET_GROUP1_USB_PHYS, BIT(11) },
-+	[SKY1_USBPHY_HS2_PRST_N]		= { RESET_GROUP1_USB_PHYS, BIT(12) },
-+	[SKY1_USBPHY_HS3_PRST_N]		= { RESET_GROUP1_USB_PHYS, BIT(13) },
-+	[SKY1_USBPHY_HS4_PRST_N]		= { RESET_GROUP1_USB_PHYS, BIT(14) },
-+	[SKY1_USBPHY_HS5_PRST_N]		= { RESET_GROUP1_USB_PHYS, BIT(15) },
-+	[SKY1_USBPHY_HS6_PRST_N]		= { RESET_GROUP1_USB_PHYS, BIT(16) },
-+	[SKY1_USBPHY_HS7_PRST_N]		= { RESET_GROUP1_USB_PHYS, BIT(17) },
-+	[SKY1_USBPHY_HS8_PRST_N]		= { RESET_GROUP1_USB_PHYS, BIT(18) },
-+	[SKY1_USBPHY_HS9_PRST_N]		= { RESET_GROUP1_USB_PHYS, BIT(19) },
-+
-+	/* reset group1 for usb controllers */
-+	[SKY1_USBC_SS0_PRST_N]		= { RESET_GROUP1_USB_CONTROLLERS, BIT(0) },
-+	[SKY1_USBC_SS1_PRST_N]		= { RESET_GROUP1_USB_CONTROLLERS, BIT(1) },
-+	[SKY1_USBC_SS2_PRST_N]		= { RESET_GROUP1_USB_CONTROLLERS, BIT(2) },
-+	[SKY1_USBC_SS3_PRST_N]		= { RESET_GROUP1_USB_CONTROLLERS, BIT(3) },
-+	[SKY1_USBC_SS4_PRST_N]		= { RESET_GROUP1_USB_CONTROLLERS, BIT(4) },
-+	[SKY1_USBC_SS5_PRST_N]		= { RESET_GROUP1_USB_CONTROLLERS, BIT(5) },
-+	[SKY1_USBC_SS0_RST_N]		= { RESET_GROUP1_USB_CONTROLLERS, BIT(6) },
-+	[SKY1_USBC_SS1_RST_N]		= { RESET_GROUP1_USB_CONTROLLERS, BIT(7) },
-+	[SKY1_USBC_SS2_RST_N]		= { RESET_GROUP1_USB_CONTROLLERS, BIT(8) },
-+	[SKY1_USBC_SS3_RST_N]		= { RESET_GROUP1_USB_CONTROLLERS, BIT(9) },
-+	[SKY1_USBC_SS4_RST_N]		= { RESET_GROUP1_USB_CONTROLLERS, BIT(10) },
-+	[SKY1_USBC_SS5_RST_N]		= { RESET_GROUP1_USB_CONTROLLERS, BIT(11) },
-+	[SKY1_USBC_HS0_PRST_N]		= { RESET_GROUP1_USB_CONTROLLERS, BIT(12) },
-+	[SKY1_USBC_HS1_PRST_N]		= { RESET_GROUP1_USB_CONTROLLERS, BIT(13) },
-+	[SKY1_USBC_HS2_PRST_N]		= { RESET_GROUP1_USB_CONTROLLERS, BIT(14) },
-+	[SKY1_USBC_HS3_PRST_N]		= { RESET_GROUP1_USB_CONTROLLERS, BIT(15) },
-+	[SKY1_USBC_HS0_RST_N]		= { RESET_GROUP1_USB_CONTROLLERS, BIT(16) },
-+	[SKY1_USBC_HS1_RST_N]		= { RESET_GROUP1_USB_CONTROLLERS, BIT(17) },
-+	[SKY1_USBC_HS2_RST_N]		= { RESET_GROUP1_USB_CONTROLLERS, BIT(18) },
-+	[SKY1_USBC_HS3_RST_N]		= { RESET_GROUP1_USB_CONTROLLERS, BIT(19) },
-+
-+	/* reset group0 for rcsu */
-+	[SKY1_AUDIO_RCSU_RESET_N]		= { RESET_GROUP0_RCSU, BIT(0) },
-+	[SKY1_CI700_RCSU_RESET_N]		= { RESET_GROUP0_RCSU, BIT(1) },
-+	[SKY1_CSI_RCSU0_RESET_N]		= { RESET_GROUP0_RCSU, BIT(2) },
-+	[SKY1_CSI_RCSU1_RESET_N]		= { RESET_GROUP0_RCSU, BIT(3) },
-+	[SKY1_CSU_PM_RCSU_RESET_N]		= { RESET_GROUP0_RCSU, BIT(4) },
-+	[SKY1_DDR_BROADCAST_RCSU_RESET_N]	= { RESET_GROUP0_RCSU, BIT(5) },
-+	[SKY1_DDR_CTRL_RCSU_0_RESET_N]		= { RESET_GROUP0_RCSU, BIT(6) },
-+	[SKY1_DDR_CTRL_RCSU_1_RESET_N]		= { RESET_GROUP0_RCSU, BIT(7) },
-+	[SKY1_DDR_CTRL_RCSU_2_RESET_N]		= { RESET_GROUP0_RCSU, BIT(8) },
-+	[SKY1_DDR_CTRL_RCSU_3_RESET_N]		= { RESET_GROUP0_RCSU, BIT(9) },
-+	[SKY1_DDR_TZC400_RCSU_0_RESET_N]	= { RESET_GROUP0_RCSU, BIT(10) },
-+	[SKY1_DDR_TZC400_RCSU_1_RESET_N]	= { RESET_GROUP0_RCSU, BIT(11) },
-+	[SKY1_DDR_TZC400_RCSU_2_RESET_N]	= { RESET_GROUP0_RCSU, BIT(12) },
-+	[SKY1_DDR_TZC400_RCSU_3_RESET_N]	= { RESET_GROUP0_RCSU, BIT(13) },
-+	[SKY1_DP0_RCSU_RESET_N]			= { RESET_GROUP0_RCSU, BIT(14) },
-+	[SKY1_DP1_RCSU_RESET_N]			= { RESET_GROUP0_RCSU, BIT(15) },
-+	[SKY1_DP2_RCSU_RESET_N]			= { RESET_GROUP0_RCSU, BIT(16) },
-+	[SKY1_DP3_RCSU_RESET_N]			= { RESET_GROUP0_RCSU, BIT(17) },
-+	[SKY1_DP4_RCSU_RESET_N]			= { RESET_GROUP0_RCSU, BIT(18) },
-+	[SKY1_DPU0_RCSU_RESET_N]		= { RESET_GROUP0_RCSU, BIT(19) },
-+	[SKY1_DPU1_RCSU_RESET_N]		= { RESET_GROUP0_RCSU, BIT(20) },
-+	[SKY1_DPU2_RCSU_RESET_N]		= { RESET_GROUP0_RCSU, BIT(21) },
-+	[SKY1_DPU3_RCSU_RESET_N]		= { RESET_GROUP0_RCSU, BIT(22) },
-+	[SKY1_DPU4_RCSU_RESET_N]		= { RESET_GROUP0_RCSU, BIT(23) },
-+	[SKY1_DSU_RCSU_RESET_N]			= { RESET_GROUP0_RCSU, BIT(24) },
-+	[SKY1_FCH_RCSU_RESET_N]			= { RESET_GROUP0_RCSU, BIT(25) },
-+	[SKY1_GICD_RCSU_RESET_N]		= { RESET_GROUP0_RCSU, BIT(26) },
-+	[SKY1_GMAC_RCSU_RESET_N]		= { RESET_GROUP0_RCSU, BIT(27) },
-+	[SKY1_GPU_RCSU_RESET_N]			= { RESET_GROUP0_RCSU, BIT(28) },
-+	[SKY1_ISP_RCSU0_RESET_N]		= { RESET_GROUP0_RCSU, BIT(29) },
-+	[SKY1_ISP_RCSU1_RESET_N]		= { RESET_GROUP0_RCSU, BIT(30) },
-+	[SKY1_NI700_MMHUB_RCSU_RESET_N]		= { RESET_GROUP0_RCSU, BIT(31) },
-+
-+	/* reset group1 for rcsu */
-+	[SKY1_NPU_RCSU_RESET_N]			= { RESET_GROUP1_RCSU, BIT(0) },
-+	[SKY1_NI700_PCIE_RCSU_RESET_N]		= { RESET_GROUP1_RCSU, BIT(1) },
-+	[SKY1_PCIE_X421_RCSU_RESET_N]		= { RESET_GROUP1_RCSU, BIT(2) },
-+	[SKY1_PCIE_X8_RCSU_RESET_N]		= { RESET_GROUP1_RCSU, BIT(3) },
-+	[SKY1_SF_RCSU_RESET_N]			= { RESET_GROUP1_RCSU, BIT(4) },
-+	[SKY1_RCSU_SMMU_MMHUB_RESET_N]		= { RESET_GROUP1_RCSU, BIT(5) },
-+	[SKY1_RCSU_SMMU_PCIEHUB_RESET_N]	= { RESET_GROUP1_RCSU, BIT(6) },
-+	[SKY1_RCSU_SYSHUB_RESET_N]		= { RESET_GROUP1_RCSU, BIT(7) },
-+	[SKY1_NI700_SMN_RCSU_RESET_N]		= { RESET_GROUP1_RCSU, BIT(8) },
-+	[SKY1_NI700_SYSHUB_RCSU_RESET_N]	= { RESET_GROUP1_RCSU, BIT(9) },
-+	[SKY1_RCSU_USB2_HOST0_RESET_N]		= { RESET_GROUP1_RCSU, BIT(10) },
-+	[SKY1_RCSU_USB2_HOST1_RESET_N]		= { RESET_GROUP1_RCSU, BIT(11) },
-+	[SKY1_RCSU_USB2_HOST2_RESET_N]		= { RESET_GROUP1_RCSU, BIT(12) },
-+	[SKY1_RCSU_USB2_HOST3_RESET_N]		= { RESET_GROUP1_RCSU, BIT(13) },
-+	[SKY1_RCSU_USB3_TYPEA_DRD_RESET_N]	= { RESET_GROUP1_RCSU, BIT(14) },
-+	[SKY1_RCSU_USB3_TYPEC_DRD_RESET_N]	= { RESET_GROUP1_RCSU, BIT(15) },
-+	[SKY1_RCSU_USB3_TYPEC_HOST0_RESET_N]	= { RESET_GROUP1_RCSU, BIT(16) },
-+	[SKY1_RCSU_USB3_TYPEC_HOST1_RESET_N]	= { RESET_GROUP1_RCSU, BIT(17) },
-+	[SKY1_RCSU_USB3_TYPEC_HOST2_RESET_N]	= { RESET_GROUP1_RCSU, BIT(18) },
-+	[SKY1_VPU_RCSU_RESET_N]			= { RESET_GROUP1_RCSU, BIT(19) },
-+};
-+
-+enum {
-+	FCH_SW_RST_FUNC			= 0x8,
-+	FCH_SW_RST_BUS			= 0xc,
-+	FCH_SW_XSPI			= 0x10,
-+};
-+
-+static const struct sky1_src_signal sky1_src_fch_signals[] = {
-+	/* resets for fch_sw_rst_func */
-+	[SW_I3C0_RST_FUNC_G_N]	= { FCH_SW_RST_FUNC, BIT(0) },
-+	[SW_I3C0_RST_FUNC_I_N]	= { FCH_SW_RST_FUNC, BIT(1) },
-+	[SW_I3C1_RST_FUNC_G_N]	= { FCH_SW_RST_FUNC, BIT(2) },
-+	[SW_I3C1_RST_FUNC_I_N]	= { FCH_SW_RST_FUNC, BIT(3) },
-+	[SW_UART0_RST_FUNC_N]	= { FCH_SW_RST_FUNC, BIT(4) },
-+	[SW_UART1_RST_FUNC_N]	= { FCH_SW_RST_FUNC, BIT(5) },
-+	[SW_UART2_RST_FUNC_N]	= { FCH_SW_RST_FUNC, BIT(6) },
-+	[SW_UART3_RST_FUNC_N]	= { FCH_SW_RST_FUNC, BIT(7) },
-+	[SW_TIMER_RST_FUNC_N]	= { FCH_SW_RST_FUNC, BIT(20) },
-+
-+	/* resets for fch_sw_rst_bus */
-+	[SW_I3C0_RST_APB_N]	= { FCH_SW_RST_BUS, BIT(0) },
-+	[SW_I3C1_RST_APB_N]	= { FCH_SW_RST_BUS, BIT(1) },
-+	[SW_DMA_RST_AXI_N]	= { FCH_SW_RST_BUS, BIT(2) },
-+	[SW_UART0_RST_APB_N]	= { FCH_SW_RST_BUS, BIT(4) },
-+	[SW_UART1_RST_APB_N]	= { FCH_SW_RST_BUS, BIT(5) },
-+	[SW_UART2_RST_APB_N]	= { FCH_SW_RST_BUS, BIT(6) },
-+	[SW_UART3_RST_APB_N]	= { FCH_SW_RST_BUS, BIT(7) },
-+	[SW_SPI0_RST_APB_N]	= { FCH_SW_RST_BUS, BIT(8) },
-+	[SW_SPI1_RST_APB_N]	= { FCH_SW_RST_BUS, BIT(9) },
-+	[SW_I2C0_RST_APB_N]	= { FCH_SW_RST_BUS, BIT(12) },
-+	[SW_I2C1_RST_APB_N]	= { FCH_SW_RST_BUS, BIT(13) },
-+	[SW_I2C2_RST_APB_N]	= { FCH_SW_RST_BUS, BIT(14) },
-+	[SW_I2C3_RST_APB_N]	= { FCH_SW_RST_BUS, BIT(15) },
-+	[SW_I2C4_RST_APB_N]	= { FCH_SW_RST_BUS, BIT(16) },
-+	[SW_I2C5_RST_APB_N]	= { FCH_SW_RST_BUS, BIT(17) },
-+	[SW_I2C6_RST_APB_N]	= { FCH_SW_RST_BUS, BIT(18) },
-+	[SW_I2C7_RST_APB_N]	= { FCH_SW_RST_BUS, BIT(19) },
-+	[SW_GPIO_RST_APB_N]	= { FCH_SW_RST_BUS, BIT(21) },
-+
-+	/* resets for fch_sw_xspi */
-+	[SW_XSPI_REG_RST_N]	= { FCH_SW_XSPI, BIT(0) },
-+	[SW_XSPI_SYS_RST_N]	= { FCH_SW_XSPI, BIT(1) },
-+};
-+
-+static struct sky1_src *to_sky1_src(struct reset_controller_dev *rcdev)
-+{
-+	return container_of(rcdev, struct sky1_src, rcdev);
-+}
-+
-+static int sky1_reset_set(struct reset_controller_dev *rcdev,
-+			  unsigned long id, bool assert)
-+{
-+	struct sky1_src *sky1src = to_sky1_src(rcdev);
-+	const struct sky1_src_signal *signal = &sky1src->signals[id];
-+	unsigned int value = assert ? 0 : sky1src->signals[id].bit;
-+
-+	return regmap_update_bits(sky1src->regmap,
-+				  signal->offset, signal->bit, value);
-+}
-+
-+static int sky1_reset_assert(struct reset_controller_dev *rcdev,
-+			     unsigned long id)
-+{
-+	sky1_reset_set(rcdev, id, true);
-+	usleep_range(SKY1_RESET_SLEEP_MIN_US,
-+		     SKY1_RESET_SLEEP_MAX_US);
-+	return 0;
-+}
-+
-+static int sky1_reset_deassert(struct reset_controller_dev *rcdev,
-+			       unsigned long id)
-+{
-+	sky1_reset_set(rcdev, id, false);
-+	usleep_range(SKY1_RESET_SLEEP_MIN_US,
-+		     SKY1_RESET_SLEEP_MAX_US);
-+	return 0;
-+}
-+
-+static int sky1_reset(struct reset_controller_dev *rcdev,
-+		      unsigned long id)
-+{
-+	sky1_reset_assert(rcdev, id);
-+	sky1_reset_deassert(rcdev, id);
-+	return 0;
-+}
-+
-+static int sky1_reset_status(struct reset_controller_dev *rcdev,
-+			     unsigned long id)
-+{
-+	unsigned int value = 0;
-+	struct sky1_src *sky1src = to_sky1_src(rcdev);
-+	const struct sky1_src_signal *signal = &sky1src->signals[id];
-+
-+	regmap_read(sky1src->regmap, signal->offset, &value);
-+	return !(value & signal->bit);
-+}
-+
-+static const struct sky1_src_variant variant_sky1 = {
-+	.signals = sky1_src_signals,
-+	.signals_num = ARRAY_SIZE(sky1_src_signals),
-+};
-+
-+static const struct sky1_src_variant variant_sky1_fch = {
-+	.signals = sky1_src_fch_signals,
-+	.signals_num = ARRAY_SIZE(sky1_src_fch_signals),
-+};
-+
-+static const struct reset_control_ops sky1_src_ops = {
-+	.reset    = sky1_reset,
-+	.assert   = sky1_reset_assert,
-+	.deassert = sky1_reset_deassert,
-+	.status   = sky1_reset_status
-+};
-+
-+static const struct regmap_config sky1_src_config[] = {
-+	{
-+		.reg_bits = 32,
-+		.val_bits = 32,
-+		.reg_stride = 4,
-+		.name = "src",
-+	},
-+};
-+
-+static int sky1_reset_probe(struct platform_device *pdev)
-+{
-+	struct sky1_src *sky1src;
-+	struct device *dev = &pdev->dev;
-+	struct device_node *np = dev->of_node;
-+	const struct sky1_src_variant *variant = of_device_get_match_data(dev);
-+
-+	sky1src = devm_kzalloc(dev, sizeof(*sky1src), GFP_KERNEL);
-+	if (!sky1src)
-+		return -ENOMEM;
-+
-+	sky1src->regmap = device_node_to_regmap(np->parent);
-+	if (IS_ERR(sky1src->regmap)) {
-+		dev_err(dev, "Unable to get sky1-src regmap");
-+		return PTR_ERR(sky1src->regmap);
-+	}
-+
-+	sky1src->signals = variant->signals;
-+	sky1src->rcdev.owner     = THIS_MODULE;
-+	sky1src->rcdev.nr_resets = variant->signals_num;
-+	sky1src->rcdev.ops       = &sky1_src_ops;
-+	sky1src->rcdev.of_node   = dev->of_node;
-+	sky1src->rcdev.dev       = dev;
-+
-+	return devm_reset_controller_register(dev, &sky1src->rcdev);
-+}
-+
-+static const struct of_device_id sky1_reset_dt_ids[] = {
-+	{ .compatible = "cix,sky1-rst", .data = &variant_sky1 },
-+	{ .compatible = "cix,sky1-rst-fch", .data = &variant_sky1_fch },
-+	{ /* sentinel */ },
-+};
-+MODULE_DEVICE_TABLE(of, sky1_reset_dt_ids);
-+
-+static struct platform_driver sky1_reset_driver = {
-+	.probe	= sky1_reset_probe,
-+	.driver = {
-+		.name		= KBUILD_MODNAME,
-+		.of_match_table	= sky1_reset_dt_ids,
-+	},
-+};
-+module_platform_driver(sky1_reset_driver)
-+
-+MODULE_AUTHOR("Jerry Zhu <jerry.zhu@cixtech.com>");
-+MODULE_DESCRIPTION("Cix Sky1 reset driver");
-+MODULE_LICENSE("GPL");
+ 		iomuxc_s5: pinctrl@16007000 {
+ 			compatible = "cix,sky1-pinctrl-s5";
+ 			reg = <0x0 0x16007000 0x0 0x1000>;
 -- 
 2.49.0
 
