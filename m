@@ -1,114 +1,179 @@
-Return-Path: <devicetree+bounces-260397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260398-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qEt/IxIFemlg1gEAu9opvQ
-	(envelope-from <devicetree+bounces-260397-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 13:46:10 +0100
+	id GBdcJO4FemlE1gEAu9opvQ
+	(envelope-from <devicetree+bounces-260398-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 13:49:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A703A17EC
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 13:46:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 155F8A1929
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 13:49:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id ACE8F3004F39
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 12:46:09 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 7476E30065FA
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 12:49:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8521F33D51D;
-	Wed, 28 Jan 2026 12:46:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2FBC34EEFC;
+	Wed, 28 Jan 2026 12:49:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JMkQOxJG"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WEUnJSQw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6198C32BF43;
-	Wed, 28 Jan 2026 12:46:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78369191F98;
+	Wed, 28 Jan 2026 12:49:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769604368; cv=none; b=q9tY0WPLa/yGX/IKH8FuohyByR0746W0xvZsZM3Iwpavth4yYx5uULjKLHiIGDYTwC7QTgvsmquz/Mfl/Z8fQ0WyoFy+AZSVFJ+B9GXE/ZnTKkTKYc2sn4J0XEmu+J+LL364SP6SGTVTRY+PpbjCXmx06wrVHVvaq6bzD2To6So=
+	t=1769604587; cv=none; b=Q4MIBHkopGRpZuc6uugpxii4sYe4jN0qWrtcRoRc8jYBfxl/XdpwiKRCvZHFAD+HGdcaGkdk8wCp73IhT3lbsdlseBwyorOSWwJhURHhsDJRfaMjfpP9Xh/3TMhrpImFlLQOEN7wpAbvBAG6IMOighW1v6eWmYw5b/C3cRs9Lpk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769604368; c=relaxed/simple;
-	bh=p/W6X8zBFCy3zqsriEE2F8BFuBBNIx2YRXMEdQK4D+w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=H9aDhLrV/67f4EyGJanThu9y5DmjpdbhRGabk/oeC57Xr4DAzKx+3CSwTb4kftI2o74yvZGD94XhnJRgVEvy8aRNZS15aJOd3JGYWN6Vcd82BCkcRB7by4W4H5pjmQiRh0Z+mfyV+SLHQBQBWu/ZRFtwMVVke7B9j1hRAWKbHy8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JMkQOxJG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DBECC4CEF1;
-	Wed, 28 Jan 2026 12:46:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769604367;
-	bh=p/W6X8zBFCy3zqsriEE2F8BFuBBNIx2YRXMEdQK4D+w=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=JMkQOxJGxE6dG7vC9VqErqm5iKHvg5NDIVQB9zD9TSWbP5b+cFqjdo70KhSX0RQT+
-	 VsKx3YV8Ph8dOfsG8/QV6kVqq9MVWOO08DXv0y7Xwq3IYfy4xexSsyfE/UiTWgM8FJ
-	 rv8JyYhi33+OcdOlQDTa15uO6wYajoz+lvbc0SwbhXeC//7ngeJDMvCp6HKcVlqPkP
-	 LqCCb+wfTvOWE+bPmm/nb62aUpjO4h/x3ttDche7LVkjDSREp9UdVkoqgKzSNGthCU
-	 /DYCLZJRxi64u/OUEEv4Ip+NmsIk/xNRAgfHoJXpCBbP4EXP5KZhf8KpxaOSEgjHJI
-	 bTh5jgYzDiq8w==
-Message-ID: <3da7378b-9e56-4e94-9c97-e41143a71b36@kernel.org>
-Date: Wed, 28 Jan 2026 06:46:06 -0600
+	s=arc-20240116; t=1769604587; c=relaxed/simple;
+	bh=KmjdpuWSlmGRPloRpd2Hx6yaXSeiIiqP/jIxfSxWb6s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nSjnclmUuYKg5A69YZpT/YnA94Lp6sdw1G7f0HGsm4tBDGrJIQHBr3HXlEiTTZQ7ZwN8E55j2NJVt4SL5/fCp0jEqSqWN9Cmyqu0KyAm3iO0g8Zm1kG1P/gyDS3If6DzqT1mkEELFlTFQ7I9Adly5qHnjkYolE93nBPjCGOxDpM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=WEUnJSQw; arc=none smtp.client-ip=192.198.163.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1769604587; x=1801140587;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=KmjdpuWSlmGRPloRpd2Hx6yaXSeiIiqP/jIxfSxWb6s=;
+  b=WEUnJSQwbkBBwq19uzdj7gGSkkTOtvKhgY51h0HZvDb9yVHCArTGHQ0u
+   NhZc4/WZzzZhG2l6jLLFo+fi+bNzZEpZKnW2XLjJkO3CuJVGDc+9MoYTO
+   w8HkFhZPWrbovV1JFSBpzt/2J0pBJPjgmwvtwLB6/5HHDYbJKtz3FhPfz
+   PMku6WErij+n/w7V+n0oOIoI4IROjjeu0dpa6wCi4NeU/cmg/Q+eQeFo2
+   5BFJm1b7mPOa4mWsjckqgPnyFsFS/RlSuuK1ZLkx80uuY26shGwi6L3F7
+   mqQCTClgazJ5wUtAHh3kKYM22AvZZNlukr0V+qvXiooKz7i3o6e79h6Nq
+   A==;
+X-CSE-ConnectionGUID: +pkohkgjQGe0EKhXMoh/iw==
+X-CSE-MsgGUID: go94jGEpT5Gg+C8AO+WcvA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="81537942"
+X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; 
+   d="scan'208";a="81537942"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jan 2026 04:49:46 -0800
+X-CSE-ConnectionGUID: a2PVRto2Qdyxt04flRADMw==
+X-CSE-MsgGUID: qk2UHxACR/a81rcNcGkVDg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; 
+   d="scan'208";a="245865958"
+Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost) ([10.245.244.196])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jan 2026 04:49:41 -0800
+Date: Wed, 28 Jan 2026 14:49:39 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Danny Kaehn <danny.kaehn@plexus.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Benjamin Tissoires <bentiss@kernel.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Jiri Kosina <jikos@kernel.org>,
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Ethan Twardy <ethan.twardy@plexus.com>, linux-i2c@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Leo Huang <leohu@nvidia.com>,
+	Arun D Patil <arundp@nvidia.com>, Willie Thai <wthai@nvidia.com>,
+	Ting-Kai Chen <tingkaic@nvidia.com>
+Subject: Re: [PATCH v13 1/3] dt-bindings: i2c: Add CP2112 HID USB to SMBus
+ Bridge
+Message-ID: <aXoF4zi4SZrXaku5@smile.fi.intel.com>
+References: <20260127-cp2112-dt-v13-0-6448ddd4bf22@plexus.com>
+ <20260127-cp2112-dt-v13-1-6448ddd4bf22@plexus.com>
+ <20260127160217.GA3776731@LNDCL34533.neenah.na.plexus.com>
+ <20260128-magnificent-faithful-otter-c4f900@quoll>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] net: stmmac: Disable queues before tx_disable
-Content-Language: en-US
-To: muhammad.nazim.amirul.nazle.asmade@altera.com,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260128002739.3590-1-muhammad.nazim.amirul.nazle.asmade@altera.com>
-From: Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <20260128002739.3590-1-muhammad.nazim.amirul.nazle.asmade@altera.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260128-magnificent-faithful-otter-c4f900@quoll>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260397-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[plexus.com,kernel.org,vger.kernel.org,gmail.com,linaro.org,nvidia.com];
+	TAGGED_FROM(0.00)[bounces-260398-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dinguyen@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,altera.com:email]
-X-Rspamd-Queue-Id: 2A703A17EC
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,intel.com:dkim,smile.fi.intel.com:mid]
+X-Rspamd-Queue-Id: 155F8A1929
 X-Rspamd-Action: no action
 
-
-
-On 1/27/26 18:27, muhammad.nazim.amirul.nazle.asmade@altera.com wrote:
-> From: Nazim Amirul <muhammad.nazim.amirul.nazle.asmade@altera.com>
+On Wed, Jan 28, 2026 at 11:35:25AM +0100, Krzysztof Kozlowski wrote:
+> On Tue, Jan 27, 2026 at 10:02:17AM -0600, Danny Kaehn wrote:
+> > On Tue, Jan 27, 2026 at 08:47:48AM -0600, Danny Kaehn wrote:
+> > > This is a USB HID device which includes an I2C controller and 8 GPIO pins.
+> > > 
+> > > The binding allows describing the chip's gpio and i2c controller in DT,
+> > > with the i2c controller being bound to a subnode named "i2c". This is
+> > > intended to be used in configurations where the CP2112 is permanently
+> > > connected in hardware.
+> > > 
+> > > Signed-off-by: Danny Kaehn <danny.kaehn@plexus.com>
+> > > ---
+> > 
+> > Hi Folks (Intended for Rob or Krzysztof),
+> > 
+> > Wasn't sure the best way to go about this, but trying to see the best
+> > way to get a message in front of you regarding an ask from Andy S.
+> > 
+> > In [1], Rob H initially directed that the gpio chip share a node with
+> > the CP2112 itself, rather than having a subnode named 'gpio'.
+> > 
+> > Initially, I did the same thing for both DT and ACPI, but Andy S.
+> > directed that ACPI should not have the node be shared in that way.
+> > 
+> > With the last revision of this patch, Andy S. asked that I try to get a
+> > rationalle from Rob (or other DT expert presumably) on why the gpio node
+> > should be combined with the parent, rather than being a named subnode
+> > [2].
 > 
-> Disable all queues and disconnect before tx_disable in stmmac_xdp_release
-> to prevent a corner case where packet may be still queued at the same time
-> tx_disable is called resulting in kernel panic if some packet still has to
-> be processed.
+> Because it is explicitly asked in writing bindings. Please read it.
 > 
-> Signed-off-by: Nazim Amirul <muhammad.nazim.amirul.nazle.asmade@altera.com>
+> Because we do not want Linux driver model affecting design of bindings
+> and DTS, by subnodes present only to instantiate Linux drivers. I do not
+> care about driver model in this review and I do not see any reason it
+> should make DTS less obvious or readable.
+> 
+> That's actually rule communicated many times, also documented in writing
+> bindings and in recent talks.
 
-You've sent this patch to the wrong people. Please run get_maintainer on 
-your patch next time! Refer to the submitting-patches documentation in 
-the section  'Select the recipients for your patch'
+Does DT represents HW in this case? Shouldn't I²C controller be the same node?
+Why not? This is inconsistent for the device that is multi-functional. And from
+my understanding the firmware description (DT, ACPI, you-name-it) must follow
+the HW. I don't see how it's done in this case.
 
-Dinh
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
