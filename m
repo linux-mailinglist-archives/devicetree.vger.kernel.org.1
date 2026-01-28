@@ -1,235 +1,416 @@
-Return-Path: <devicetree+bounces-260428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260429-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IN14KoQPemmS2AEAu9opvQ
-	(envelope-from <devicetree+bounces-260428-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 14:30:44 +0100
+	id OA1sCGgQemnH2AEAu9opvQ
+	(envelope-from <devicetree+bounces-260429-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 14:34:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AE61A22B2
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 14:30:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DF7DA234E
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 14:34:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EBCAA3057332
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 13:29:21 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 86DA930078B8
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 13:34:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 799D23542EA;
-	Wed, 28 Jan 2026 13:29:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 013E435B15A;
+	Wed, 28 Jan 2026 13:34:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="T+LOKvdW"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="gofiouF7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com [209.85.161.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA4123542CB
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 13:29:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 010BF35A933;
+	Wed, 28 Jan 2026 13:34:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769606946; cv=none; b=qu68op0TxnGR0nnz3FE+KoDXWQPm/DPUKFTfJUqrm3+x+ONnBHWuWqJAGPQAIWifWO6ZB+WSyH6M1WNwB2DX3f6/Hfi7KfV+orMl1oUUJwZ83eps9FbiBudinCTAb7TgGIHMx3iSrSV7PL5kldIjuu7cMp9V5kP5+2bhspRb5Rc=
+	t=1769607265; cv=none; b=oDwXs0Eg0vWHmB+ZSPgK5beUtY5QdiVc5ZhhJBp/NzNEHnyUwdVFYXPsok1Ge0pd4XrVCRt6dT/v5PaTQeya49zCTZskyN/X5Ns4knTvbPxxFMB6EYGMeu6eol0x+4wFguiVuchmFZvATriNBk65ThLP+AmfBIVW0PRdQ+W1jOE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769606946; c=relaxed/simple;
-	bh=AwkTB+Y8vc2jpSus7qu1cjCswZPdr3ovkHfH+PLJ0xE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ygzf6OsmJw61GPFwzHUfuCrsGW+1l4UwCnbPzxBduLQDgHv9tgIj5K8mZ7TI+Olvb+NuJrcKEdOQ8htwsEcqY6RHpygTqGGxT9lr2RKYcKCIGS/LGthFWW2nI0xsKxcvvrIgWQ76cLIzHlRWQcfElMZPaJVd6+RLI93IhwME9EE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=T+LOKvdW; arc=none smtp.client-ip=209.85.161.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-oo1-f54.google.com with SMTP id 006d021491bc7-6610b05b37dso5394292eaf.2
-        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 05:29:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1769606944; x=1770211744; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=raYtuP2NjeAqA5181HGaACfoUp8/gkl6VSn/CKYueq0=;
-        b=T+LOKvdWUzfz7tBKp1NSBuIiq0+IyRtKsD1kaJqhhuU7rJE2Y8RCBxI3Qz6HxYUqfD
-         khZXDmMcZH1shHeGGBslP2OSvwLb5ZZoe4YOiw61mxBREb991tUoZV/3F+t9JxmqLNyy
-         mMgCNsUUxNjtdxGRm+7c5dPLdCsumkUchvwNNfHHz/8O1RMz514BNDnMZl9ZUxfLnGZb
-         Iom9FDFmWqYJ9Uvu/k9NxzuPbdtT8v1HMbNWG0UTelyiLiZs3yt1KvhAXAOaRcnUsXql
-         sYEJMaIbHF/DjF378fR1QBZ66euHQ98xd+bA4MmFC4nh6XIP2vFjpw1OaMPzQ1n+/xN5
-         HlUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769606944; x=1770211744;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=raYtuP2NjeAqA5181HGaACfoUp8/gkl6VSn/CKYueq0=;
-        b=KH/KX0H57cv4bU8R/5AC5j9gifv18hNrzj7j41yog6kJ+vFL1stWfH8gwFZxflDY/f
-         jLL3PBGvvGElz8uR8SLttw77GTvQuqFibphwigXurEGG8v9YYaiULjpeK8MXGMFYac9a
-         MPXmtDFA64G0oo3nn7o8O2EGMTZUamwCgXVvcqGe491CEov2MqSuk83Znsbmcdy2RJvd
-         qfq+mBKU/nR2QYfXym3XYAawzfFsFh5J0Jeystl4IAbCFOoG9TociuDkGY7Oc1rdhn/+
-         MNSTXjirE9CHvZQcu3zJc+98XLpWeX3/r5AOBDnly0Oap8D52atnJwG+MA9PgwRo/VRW
-         43Sg==
-X-Forwarded-Encrypted: i=1; AJvYcCWtuydF0kgO4kiXks6f628qku4zZMnhnrz0ZhYULz6Vqep9KnM8TNO03HuMigL//9R67CvyPVtCRJLk@vger.kernel.org
-X-Gm-Message-State: AOJu0YwteEr5vS/DUrHBTwG2iqBidGUhJBv952WUdwOxYRvHQaCtITBR
-	axwN+uB/Cppk9b/n+KxOa19k/MfZajeqSEhcWKwypAeObMgM9hcJbBjSkcElnDCWibs=
-X-Gm-Gg: AZuq6aL40Lo+1tqpkCMYJHG5NKvUjpEFqbmR0Bg591kM6z5s0TDZHbSpNl62Wm09sST
-	6+44dRItT6STFT7LYxqrUdXkZokFKlH3/GIp5VzzHbK7eaSMouckpxkPbme6JaQlDPYLEiAFOMI
-	zwJEJ35DwC5ArmNnkzbG9vDY1d5WUDJ+4ReW4yc4kgZBt5vOZxRV6LN/ZUi/qGvrilFwd+4z3cQ
-	G7w5NJjaK5/UWGmjLCC612RWL4J8FUCvcG5wixPqcQRstjT10Hg65Jh9TeiMtDNpy8xGSNERabU
-	0ACM0/8UwiP7O+XxJbNMwV2ch8trvQDs6Q82hnHVV+gBM0uknyNzBtxz3A/DX/SqjVV/sxijRKv
-	dLSu6rlaPeq5hQm3IOepheNQvnF884moiCSiIiLv6X16YegvsyIBIhM1J+3SalteZhOjBxVrDGn
-	vKFFZi7iAYd8tYQQqC4TCkXpywVT1Yg3eIWSym5jmHmOCKMt9soDI=
-X-Received: by 2002:a05:6820:4588:b0:65f:1012:69c5 with SMTP id 006d021491bc7-662f20f917fmr2413146eaf.76.1769606943544;
-        Wed, 28 Jan 2026 05:29:03 -0800 (PST)
-Received: from [172.22.22.28] (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-662f994388fsm1374132eaf.4.2026.01.28.05.29.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Jan 2026 05:29:03 -0800 (PST)
-Message-ID: <7f892961-5978-4283-bec9-0f2953db42b7@riscstar.com>
-Date: Wed, 28 Jan 2026 07:29:02 -0600
+	s=arc-20240116; t=1769607265; c=relaxed/simple;
+	bh=1L8+cvPFAK/AEvCUscuKOHEOR6RJuiCSEiAsXVI1H90=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=OQLTdNH2YxmJahAc1xg+0vHQkc3xt5Q9wTYV65c8QbnEgouKuTfTDjx75RmdyK0c4aIAEXX7qic6sI/oEDnyrXU4h8ZkjvyQ+nQzxotGzPPPvw1DFnptaxTIbHXiE67Cw3LL8/Z0IJc41laR6KOd36rPRZ8QSeL2EPZr4R2uTZw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=gofiouF7; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1769607254;
+	bh=1L8+cvPFAK/AEvCUscuKOHEOR6RJuiCSEiAsXVI1H90=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=gofiouF7rsOgVmjUjqsXH9V1DNDGf725nLNSthN1euiqd5cBZLhy47w3dSFDP7a1/
+	 Ju4RjRcGJBCcodRGwoffxMbEliSBLTrltOhMzAyXz/1ucrwZ71Zx+cnPqZPjdiL664
+	 rLjwst7JuayceZI/34RSFqmVOyfGb8/HM6t6pA5ogdYQA8y1jf+WxxfrgNOH1c2Q5T
+	 197bVLhka1pmk8oxJVBzIJT3siG47zVgtG0tLIlCQ9sqCpWieeTdTEHusURwON9fNL
+	 gksLXTw2bqvtooGRRUhMAO/yBf+dMHEVrJcWDuxHLXnr6eCqsJumnCPYLUTI4v/G7b
+	 B8WNYHTW3Qrxg==
+Received: from [IPv6:2606:6d00:17:7b4b::5ac] (unknown [IPv6:2606:6d00:17:7b4b::5ac])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id D24F517E01E7;
+	Wed, 28 Jan 2026 14:34:11 +0100 (CET)
+Message-ID: <e87868a6209d18595bf90bc20633ea300330ba28.camel@collabora.com>
+Subject: Re: [PATCH v7 05/10] media: mediatek: vcodec: Add Decoder profile &
+ level Initialization
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Kyrie Wu =?UTF-8?Q?=28=E5=90=B4=E6=99=97=29?= <Kyrie.Wu@mediatek.com>, 
+ "linux-kernel@vger.kernel.org"	 <linux-kernel@vger.kernel.org>,
+ "linux-mediatek@lists.infradead.org"	 <linux-mediatek@lists.infradead.org>,
+ George Sun =?UTF-8?Q?=28=E5=AD=99=E6=9E=97=29?=	 <George.Sun@mediatek.com>,
+ Tiffany Lin =?UTF-8?Q?=28=E6=9E=97=E6=85=A7=E7=8F=8A=29?=	
+ <tiffany.lin@mediatek.com>, "nhebert@chromium.org" <nhebert@chromium.org>, 
+ "linux-media@vger.kernel.org"	 <linux-media@vger.kernel.org>,
+ "devicetree@vger.kernel.org"	 <devicetree@vger.kernel.org>,
+ "mchehab@kernel.org" <mchehab@kernel.org>,  "hverkuil@xs4all.nl"	
+ <hverkuil@xs4all.nl>, Yunfei Dong
+ =?UTF-8?Q?=28=E8=91=A3=E4=BA=91=E9=A3=9E=29?=	 <Yunfei.Dong@mediatek.com>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,  Irui Wang
+ =?UTF-8?Q?=28=E7=8E=8B=E7=91=9E=29?=	 <Irui.Wang@mediatek.com>,
+ "robh@kernel.org" <robh@kernel.org>, 
+ "linux-arm-kernel@lists.infradead.org"	
+ <linux-arm-kernel@lists.infradead.org>, "matthias.bgg@gmail.com"	
+ <matthias.bgg@gmail.com>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>, 
+ "arnd@arndb.de"	 <arnd@arndb.de>, Andrew-CT Chen
+ =?UTF-8?Q?=28=E9=99=B3=E6=99=BA=E8=BF=AA=29?=	
+ <Andrew-CT.Chen@mediatek.com>, AngeloGioacchino Del Regno	
+ <angelogioacchino.delregno@collabora.com>
+Cc: "andrzejtp2010@gmail.com" <andrzejtp2010@gmail.com>, 
+ "neil.armstrong@linaro.org"
+	 <neil.armstrong@linaro.org>, Yilong Zhou
+ =?UTF-8?Q?=28=E5=91=A8=E6=98=93=E9=BE=99=29?=
+	 <Yilong.Zhou@mediatek.com>
+Date: Wed, 28 Jan 2026 08:34:09 -0500
+In-Reply-To: <54689bc16875b979147c021123c2546aacb7541e.camel@mediatek.com>
+References: <20260127024248.18406-1-kyrie.wu@mediatek.com>
+		 <20260127024248.18406-6-kyrie.wu@mediatek.com>
+		 <4a6e111d-49ef-449d-af9d-b0bd4fb468a5@collabora.com>
+	 <54689bc16875b979147c021123c2546aacb7541e.camel@mediatek.com>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Organization: Collabora Canada
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-FOrviNbeQ1Mf1Othbhwt"
+User-Agent: Evolution 3.58.2 (3.58.2-1.fc43) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] riscv: dts: spacemit: Update PMIC supply
- properties for BPI-F3 and Jupiter
-To: Guodong Xu <guodong@riscstar.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Yixun Lan <dlan@gentoo.org>,
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Troy Mitchell <troy.mitchell@linux.spacemit.com>,
- Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
-Cc: linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- spacemit@lists.linux.dev, devicetree@vger.kernel.org
-References: <20260124-spacemit-p1-v2-0-2c86b06694ba@riscstar.com>
- <20260124-spacemit-p1-v2-4-2c86b06694ba@riscstar.com>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <20260124-spacemit-p1-v2-4-2c86b06694ba@riscstar.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.06 / 15.00];
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[riscstar-com.20230601.gappssmtp.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[riscstar.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[riscstar.com,gmail.com,kernel.org,gentoo.org,linux.spacemit.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr];
-	TAGGED_FROM(0.00)[bounces-260428-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260429-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[riscstar-com.20230601.gappssmtp.com:+];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[elder@riscstar.com,devicetree@vger.kernel.org];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[mediatek.com,vger.kernel.org,lists.infradead.org,chromium.org,kernel.org,xs4all.nl,gmail.com,arndb.de,collabora.com];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	HAS_ORG_HEADER(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.41:email];
-	MID_RHS_MATCH_FROM(0.00)[];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[nicolas.dufresne@collabora.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,linaro.org,mediatek.com];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[riscstar-com.20230601.gappssmtp.com:dkim,riscstar.com:mid,riscstar.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 9AE61A22B2
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:mid,collabora.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mediatek.com:email]
+X-Rspamd-Queue-Id: 9DF7DA234E
 X-Rspamd-Action: no action
 
-On 1/23/26 6:20 PM, Guodong Xu wrote:
-> Update individual supply properties in pmic "spacemit,p1" node to specify
-> the board's power tree topology for BananaPi F3 and Milk-V Jupiter.
-> 
-> Previously these relationships were hardcoded in the driver; now they
-> are explicitly defined in the devicetree per the updated binding
-> document spacemit,p1.yaml.
-> 
-> Signed-off-by: Guodong Xu <guodong@riscstar.com>
 
-I acknowledge that you've made an ABI change, and I should
-have done a better job of describing this the first time
-around.  (And reviewers might have caught that!)
+--=-FOrviNbeQ1Mf1Othbhwt
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I had some of the same thoughts about supporting just
-"vin_supply" for older systems.
+Hi,
 
-However I agree with the conclusion you and Vivian
-came to, which is that practically speaking it isn't
-likely to be a problem.  Boards should use either
-old DTB and software or new DTB and software, not
-a mix.
+Le mercredi 28 janvier 2026 =C3=A0 07:45 +0000, Kyrie Wu (=E5=90=B4=E6=99=
+=97) a =C3=A9crit=C2=A0:
+> On Tue, 2026-01-27 at 13:07 +0100, AngeloGioacchino Del Regno wrote:
+> > Il 27/01/26 03:42, Kyrie Wu ha scritto:
+> > > This commit initializes codec profile & level for VDEC. It sets
+> > > default values for H264, H265, and VP9 codecs across multiple
+> > > chipset configurations.
+> > >=20
+> >=20
+> > The previous patch "Refactor decoder profile and level handling" will
+> > break the
+> > driver if this patch is not also applied at the same time.
+> >=20
+> > The change looks good, but you should squash 05/10 in 04/10, and
+> > assign the params
+> > that you're adding here along with the refactoring, so that you get
+> > one single
+> > patch that, if applied, doesn't break anything as it doesn't depend
+> > on additional
+> > (future, as this is number 5) patch.
+> >=20
+> > Please squash
+> >=20
+> > Cheers,
+> > Angelo
+>=20
+> Dear Angelo,
+>=20
+> The 04/10 and 05/10 were designed in one patch in v6,
+> but Nicolas thought that refactor patch and configuration
+> were two different changes, should separate them in this
+> comments:=20
+> https://patchwork.linuxtv.org/project/linux-media/patch/20251202074038.31=
+73-5-kyrie.wu@mediatek.com/
+>=20
+> In my mind, refactor profile and level setting and assign
+> former ICs' parameters could merge into same patch. The
+> configuration of MT8189 should split to another one, because
+> it is a new setting.
 
-Reviewed-by: Alex Elder <elder@riscstar.com>
+I had assumed you'd be able to refactor without breaking it. Give me enough=
+ time
+to read again the patches since I don't remember all the details.
 
+Nicolas
 
-> ---
-> v2: Added the pmic supply properties for K1 Milkv Jupiter.
->      Updated the commit message accordingly.
-> ---
->   arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts   | 12 ++++++++++--
->   arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts | 12 ++++++++++--
->   2 files changed, 20 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> index 5971605754b3..444c3b1e6f44 100644
-> --- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> +++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> @@ -190,7 +190,15 @@ pmic@41 {
->   		compatible = "spacemit,p1";
->   		reg = <0x41>;
->   		interrupts = <64>;
-> -		vin-supply = <&reg_vcc_4v>;
-> +		vin1-supply = <&reg_vcc_4v>;
-> +		vin2-supply = <&reg_vcc_4v>;
-> +		vin3-supply = <&reg_vcc_4v>;
-> +		vin4-supply = <&reg_vcc_4v>;
-> +		vin5-supply = <&reg_vcc_4v>;
-> +		vin6-supply = <&reg_vcc_4v>;
-> +		aldoin-supply = <&reg_vcc_4v>;
-> +		dldoin1-supply = <&buck5>;
-> +		dldoin2-supply = <&buck5>;
->   
->   		regulators {
->   			buck1 {
-> @@ -221,7 +229,7 @@ buck4 {
->   				regulator-always-on;
->   			};
->   
-> -			buck5 {
-> +			buck5: buck5 {
->   				regulator-min-microvolt = <500000>;
->   				regulator-max-microvolt = <3450000>;
->   				regulator-ramp-delay = <5000>;
-> diff --git a/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts b/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
-> index 800a112d5d70..e2702a781734 100644
-> --- a/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
-> +++ b/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
-> @@ -100,7 +100,15 @@ pmic@41 {
->   		compatible = "spacemit,p1";
->   		reg = <0x41>;
->   		interrupts = <64>;
-> -		vin-supply = <&reg_vcc_4v>;
-> +		vin1-supply = <&reg_vcc_4v>;
-> +		vin2-supply = <&reg_vcc_4v>;
-> +		vin3-supply = <&reg_vcc_4v>;
-> +		vin4-supply = <&reg_vcc_4v>;
-> +		vin5-supply = <&reg_vcc_4v>;
-> +		vin6-supply = <&reg_vcc_4v>;
-> +		aldoin-supply = <&reg_vcc_4v>;
-> +		dldoin1-supply = <&buck5>;
-> +		dldoin2-supply = <&buck5>;
->   
->   		regulators {
->   			buck1 {
-> @@ -131,7 +139,7 @@ buck4 {
->   				regulator-always-on;
->   			};
->   
-> -			buck5 {
-> +			buck5: buck5 {
->   				regulator-min-microvolt = <500000>;
->   				regulator-max-microvolt = <3450000>;
->   				regulator-ramp-delay = <5000>;
-> 
+>=20
+> Do you agree with my opinion? I look forward to your further reply.
+>=20
+> Thanks.
+>=20
+> Regards,
+> Kyrie.
+>=20
+>=20
+> >=20
+> > > Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
+> > > ---
+> > > =C2=A0 .../vcodec/decoder/mtk_vcodec_dec_stateful.c=C2=A0 | 12 +++
+> > > =C2=A0 .../vcodec/decoder/mtk_vcodec_dec_stateless.c | 84
+> > > +++++++++++++++++++
+> > > =C2=A0 2 files changed, 96 insertions(+)
+> > >=20
+> > > diff --git
+> > > a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_sta
+> > > teful.c
+> > > b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_sta
+> > > teful.c
+> > > index 8ddb61670dc6..a47906b9d717 100644
+> > > ---
+> > > a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_sta
+> > > teful.c
+> > > +++
+> > > b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_sta
+> > > teful.c
+> > > @@ -619,4 +619,16 @@ const struct mtk_vcodec_dec_pdata
+> > > mtk_vdec_8173_pdata =3D {
+> > > =C2=A0=C2=A0	.is_subdev_supported =3D false,
+> > > =C2=A0=C2=A0	.hw_arch =3D MTK_VDEC_PURE_SINGLE_CORE,
+> > > =C2=A0=C2=A0	.chip_name =3D 8173,
+> > > +	.h264_params =3D {
+> > > +		.level =3D V4L2_MPEG_VIDEO_H264_LEVEL_4_1,
+> > > +		.profile =3D V4L2_MPEG_VIDEO_H264_PROFILE_HIGH,
+> > > +	},
+> > > +	.h265_params =3D {
+> > > +		.level =3D V4L2_MPEG_VIDEO_HEVC_LEVEL_4,
+> > > +		.profile =3D
+> > > V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE,
+> > > +	},
+> > > +	.vp9_params =3D {
+> > > +		.level =3D V4L2_MPEG_VIDEO_VP9_LEVEL_4_0,
+> > > +		.profile =3D V4L2_MPEG_VIDEO_VP9_PROFILE_1,
+> > > +	},
+> > > =C2=A0 };
+> > > diff --git
+> > > a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_sta
+> > > teless.c
+> > > b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_sta
+> > > teless.c
+> > > index a1f419202a24..b571c4ed3f79 100644
+> > > ---
+> > > a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_sta
+> > > teless.c
+> > > +++
+> > > b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_sta
+> > > teless.c
+> > > @@ -830,6 +830,18 @@ const struct mtk_vcodec_dec_pdata
+> > > mtk_vdec_8183_pdata =3D {
+> > > =C2=A0=C2=A0	.is_subdev_supported =3D false,
+> > > =C2=A0=C2=A0	.hw_arch =3D MTK_VDEC_PURE_SINGLE_CORE,
+> > > =C2=A0=C2=A0	.chip_name =3D 8183,
+> > > +	.h264_params =3D {
+> > > +		.level =3D V4L2_MPEG_VIDEO_H264_LEVEL_4_2,
+> > > +		.profile =3D V4L2_MPEG_VIDEO_H264_PROFILE_HIGH,
+> > > +	},
+> > > +	.h265_params =3D {
+> > > +		.level =3D V4L2_MPEG_VIDEO_HEVC_LEVEL_4,
+> > > +		.profile =3D
+> > > V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE,
+> > > +	},
+> > > +	.vp9_params =3D {
+> > > +		.level =3D V4L2_MPEG_VIDEO_VP9_LEVEL_4_0,
+> > > +		.profile =3D V4L2_MPEG_VIDEO_VP9_PROFILE_1,
+> > > +	},
+> > > =C2=A0 };
+> > > =C2=A0=20
+> > > =C2=A0 /* This platform data is used for one lat and one core
+> > > architecture. */
+> > > @@ -869,24 +881,72 @@ const struct mtk_vcodec_dec_pdata
+> > > mtk_vdec_8188_pdata =3D {
+> > > =C2=A0=C2=A0	MTK_STATELESS_DEC_DATA,
+> > > =C2=A0=C2=A0	.hw_arch =3D MTK_VDEC_LAT_SINGLE_CORE,
+> > > =C2=A0=C2=A0	.chip_name =3D 8188,
+> > > +	.h264_params =3D {
+> > > +		.level =3D V4L2_MPEG_VIDEO_H264_LEVEL_5_2,
+> > > +		.profile =3D V4L2_MPEG_VIDEO_H264_PROFILE_HIGH_10,
+> > > +	},
+> > > +	.h265_params =3D {
+> > > +		.level =3D V4L2_MPEG_VIDEO_HEVC_LEVEL_5_1,
+> > > +		.profile =3D V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_10,
+> > > +	},
+> > > +	.vp9_params =3D {
+> > > +		.level =3D V4L2_MPEG_VIDEO_VP9_LEVEL_5_1,
+> > > +		.profile =3D V4L2_MPEG_VIDEO_VP9_PROFILE_2,
+> > > +	},
+> > > =C2=A0 };
+> > > =C2=A0=20
+> > > =C2=A0 const struct mtk_vcodec_dec_pdata mtk_vdec_8192_pdata =3D {
+> > > =C2=A0=C2=A0	MTK_STATELESS_DEC_DATA,
+> > > =C2=A0=C2=A0	.hw_arch =3D MTK_VDEC_LAT_SINGLE_CORE,
+> > > =C2=A0=C2=A0	.chip_name =3D 8192,
+> > > +	.h264_params =3D {
+> > > +		.level =3D V4L2_MPEG_VIDEO_H264_LEVEL_5_2,
+> > > +		.profile =3D V4L2_MPEG_VIDEO_H264_PROFILE_HIGH,
+> > > +	},
+> > > +	.h265_params =3D {
+> > > +		.level =3D V4L2_MPEG_VIDEO_HEVC_LEVEL_4,
+> > > +		.profile =3D
+> > > V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE,
+> > > +	},
+> > > +	.vp9_params =3D {
+> > > +		.level =3D V4L2_MPEG_VIDEO_VP9_LEVEL_5_1,
+> > > +		.profile =3D V4L2_MPEG_VIDEO_VP9_PROFILE_1,
+> > > +	},
+> > > =C2=A0 };
+> > > =C2=A0=20
+> > > =C2=A0 const struct mtk_vcodec_dec_pdata mtk_vdec_8195_pdata =3D {
+> > > =C2=A0=C2=A0	MTK_STATELESS_DEC_DATA,
+> > > =C2=A0=C2=A0	.hw_arch =3D MTK_VDEC_LAT_SINGLE_CORE,
+> > > =C2=A0=C2=A0	.chip_name =3D 8195,
+> > > +	.h264_params =3D {
+> > > +		.level =3D V4L2_MPEG_VIDEO_H264_LEVEL_6_0,
+> > > +		.profile =3D V4L2_MPEG_VIDEO_H264_PROFILE_HIGH_10,
+> > > +	},
+> > > +	.h265_params =3D {
+> > > +		.level =3D V4L2_MPEG_VIDEO_HEVC_LEVEL_5_2,
+> > > +		.profile =3D V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_10,
+> > > +	},
+> > > +	.vp9_params =3D {
+> > > +		.level =3D V4L2_MPEG_VIDEO_VP9_LEVEL_5_2,
+> > > +		.profile =3D V4L2_MPEG_VIDEO_VP9_PROFILE_2,
+> > > +	},
+> > > =C2=A0 };
+> > > =C2=A0=20
+> > > =C2=A0 const struct mtk_vcodec_dec_pdata mtk_vdec_8196_pdata =3D {
+> > > =C2=A0=C2=A0	MTK_STATELESS_DEC_DATA,
+> > > =C2=A0=C2=A0	.hw_arch =3D MTK_VDEC_LAT_SINGLE_CORE,
+> > > =C2=A0=C2=A0	.chip_name =3D 8196,
+> > > +	.h264_params =3D {
+> > > +		.level =3D V4L2_MPEG_VIDEO_H264_LEVEL_6_0,
+> > > +		.profile =3D V4L2_MPEG_VIDEO_H264_PROFILE_HIGH_10,
+> > > +	},
+> > > +	.h265_params =3D {
+> > > +		.level =3D V4L2_MPEG_VIDEO_HEVC_LEVEL_5_2,
+> > > +		.profile =3D V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_10,
+> > > +	},
+> > > +	.vp9_params =3D {
+> > > +		.level =3D V4L2_MPEG_VIDEO_VP9_LEVEL_5_2,
+> > > +		.profile =3D V4L2_MPEG_VIDEO_VP9_PROFILE_2,
+> > > +	},
+> > > =C2=A0 };
+> > > =C2=A0=20
+> > > =C2=A0 const struct mtk_vcodec_dec_pdata mtk_vdec_single_core_pdata =
+=3D {
+> > > @@ -910,6 +970,18 @@ const struct mtk_vcodec_dec_pdata
+> > > mtk_vdec_8186_pdata =3D {
+> > > =C2=A0=C2=A0	MTK_STATELESS_DEC_DATA,
+> > > =C2=A0=C2=A0	.hw_arch =3D MTK_VDEC_PURE_SINGLE_CORE,
+> > > =C2=A0=C2=A0	.chip_name =3D 8186,
+> > > +	.h264_params =3D {
+> > > +		.level =3D V4L2_MPEG_VIDEO_H264_LEVEL_4_2,
+> > > +		.profile =3D V4L2_MPEG_VIDEO_H264_PROFILE_HIGH,
+> > > +	},
+> > > +	.h265_params =3D {
+> > > +		.level =3D V4L2_MPEG_VIDEO_HEVC_LEVEL_4,
+> > > +		.profile =3D
+> > > V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE,
+> > > +	},
+> > > +	.vp9_params =3D {
+> > > +		.level =3D V4L2_MPEG_VIDEO_VP9_LEVEL_4_1,
+> > > +		.profile =3D V4L2_MPEG_VIDEO_VP9_PROFILE_1,
+> > > +	},
+> > > =C2=A0 };
+> > > =C2=A0=20
+> > > =C2=A0 const struct mtk_vcodec_dec_pdata mtk_vdec_8189_pdata =3D {
+> > > @@ -928,4 +1000,16 @@ const struct mtk_vcodec_dec_pdata
+> > > mtk_vdec_8189_pdata =3D {
+> > > =C2=A0=C2=A0	.is_subdev_supported =3D true,
+> > > =C2=A0=C2=A0	.hw_arch =3D MTK_VDEC_PURE_SINGLE_CORE,
+> > > =C2=A0=C2=A0	.chip_name =3D 8189,
+> > > +	.h264_params =3D {
+> > > +		.level =3D V4L2_MPEG_VIDEO_H264_LEVEL_5_2,
+> > > +		.profile =3D V4L2_MPEG_VIDEO_H264_PROFILE_HIGH_10,
+> > > +	},
+> > > +	.h265_params =3D {
+> > > +		.level =3D V4L2_MPEG_VIDEO_HEVC_LEVEL_4,
+> > > +		.profile =3D
+> > > V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE,
+> > > +	},
+> > > +	.vp9_params =3D {
+> > > +		.level =3D V4L2_MPEG_VIDEO_VP9_LEVEL_5_2,
+> > > +		.profile =3D V4L2_MPEG_VIDEO_VP9_PROFILE_2,
+> > > +	},
+> > > =C2=A0 };
+> >=20
+> >=20
 
+--=-FOrviNbeQ1Mf1Othbhwt
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaXoQUQAKCRDZQZRRKWBy
+9LcnAP4up5SULcFsY+6zYREYvzrK+KAbnNX5JtmUVqMTj4R/1AEAlqI+PRyEBoxB
+KIF5bgVcbw5kaSZ/+UkJe169HlU7xAo=
+=q5Vk
+-----END PGP SIGNATURE-----
+
+--=-FOrviNbeQ1Mf1Othbhwt--
 
