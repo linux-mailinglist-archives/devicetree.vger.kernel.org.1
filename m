@@ -1,293 +1,169 @@
-Return-Path: <devicetree+bounces-260319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260320-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4GLrCMPreWkF1AEAu9opvQ
-	(envelope-from <devicetree+bounces-260319-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 11:58:11 +0100
+	id CP90FX3seWkF1AEAu9opvQ
+	(envelope-from <devicetree+bounces-260320-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 12:01:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 601849FCF5
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 11:58:10 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9CCE9FDD1
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 12:01:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 58DC7300D90E
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 10:58:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B47EA3034E04
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 10:58:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88AD333892C;
-	Wed, 28 Jan 2026 10:58:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCFBF33123D;
+	Wed, 28 Jan 2026 10:58:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="k4qADME/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dzy8ljFS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 931033382C4
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 10:58:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A745C2DC798;
+	Wed, 28 Jan 2026 10:58:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769597886; cv=none; b=bXivUMAmz0LbGPhysWWJ+yCyFsNMtLNdkdLe63smSnZ7EaWvjcasdSXAOr+1tO0o2tpwB00gn+AGfjv9NMxows91J2RMB/z9EKvIBu+dEgki7W86S63DfzAbqI0OJBfkSN+D6lA3xV4dkhJowfLocRXtMegOAfuS2gq1Wq6nv4A=
+	t=1769597899; cv=none; b=gFF3XL+03Xi1FRR2UwymFhKkQo6agr5yrHumJfu3z6hWckellRmQCpyxNVMkEQbOQD3Thp61jieCuXqE54QDONxcSXS8TPSn+UJrBod8UUJv1rxIMzig+M9BSIVb5oSVkqKrK5mUJKjGAfoEnsXQfflsV4p4vYP1IBYfqInoE3Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769597886; c=relaxed/simple;
-	bh=uFAzZ5CAPjtHAT6gvLI6Vg4+PXSvGLUnJQPv3sHGCsI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SzM1xn0LYIdNhyeGCPR0i14+fys8Su/7kczmNW9TL793Q/Sc+pV0zDEy1zBuSqLKs5OOmo4RdWUvC4zDGsLpxzs0FLDtwa21cAy+OtdCyxu9edg/lBtKf7mC+0Uts72gvzLoT1Q1ftvSN6vW61FkPc9gV0jFw1cTFb9iKS1D9fc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=k4qADME/; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-47ee07570deso51508885e9.1
-        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 02:58:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1769597883; x=1770202683; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ePwSV9uQcaY+n4jv1Q2W+vhnTy8c0WhUgXTMl4Q9tqw=;
-        b=k4qADME/LVM7ExuUtz1KHFmMvXX8q8HB1UzNLyWKhJdjPzOZLLL+xtXmVg7yINe6ZD
-         YVE2xWMaiDndOl8jIuidkc0k8Yxg0Tnou29OaDFTqzSPG7s1GSeeKImmgk62cjP6uUtg
-         auHd16eAq1Nff4vJdOHuW7vOQ7KfJlmfkwNeU4QhIY2oSLAsmq7tXacz7b2nipgc5haO
-         /VxLF+PTLTXZsHqBLhXLEYuBq3tufOSJ/84d9xXp/LpFsXsnkEF3GUkALeOdFQc9+GUq
-         LHiFIvH+7oQ3vxOs6r9Z01QiGFiVZhFEPqxIvv5N02rHeqZ0eFOCv9s7NtZE4g0PcC+F
-         OctQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769597883; x=1770202683;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ePwSV9uQcaY+n4jv1Q2W+vhnTy8c0WhUgXTMl4Q9tqw=;
-        b=UgGnqj5wq4yzGUeSdnsJWmBhAF3m0uQv4kqXEhPyRZUBcW1ig+sMOYwqNFouDbjO1a
-         QyWkeBGscWonQPkNDgIPXPbdOjkfkBOhwW7p34T2zCJ2cjaN2njZA/3ncvkaVywX6LZx
-         ZQOmUI9UdG1jgAotDp8j0Rd8/QjOOuM5jGLszqazEaLli2ttJk/F2iOc18cR8GqSETge
-         eMr3ZhdIARTXDMY9imU8wyDNXMEkvkkV4xwjdILjOb4OlNSGVGSKbMlA5HfMncuiDAnb
-         pRu7HILNpYnbec1QhQOwf9ZGLsZHmKmhcbL5Zu3Tlpa7RwT52HxpEiNz+CL9+0+1nyws
-         yvMA==
-X-Forwarded-Encrypted: i=1; AJvYcCWvjJ3idfc+bWXf1crGXiTcbJaXYVidmRf/padjTDYUhDj52Y5dMMT4FuqqUJTE2vNrEarfQL/rqWAv@vger.kernel.org
-X-Gm-Message-State: AOJu0YxD5byPjKo+aXQ7NITHqBDGiltpRI+5+0lIsr/dxg9Egi2I/YR6
-	OEkPz7hH6N0898ZmBhbowyPRW7MeN2oKTL3VdFrC8muSEw2iRVyoL4vhkPNxPFfbWMo=
-X-Gm-Gg: AZuq6aLBZHYRbfmlMGFCDNAN0LNyZcBfV0VB68gN/Eg9jqt3d7tesSWNqxRhuBxwOOB
-	7Yh1Wss9xJypKRp9IVeqchhunOksiVhTYKbxnv28RH8bn7kbjJPr1Q9t0B8XLscklfZVKWOh0N7
-	rqHotGlvK9Ke9mSqVr7Uer7rM5yyoKHbXksTvhEhpullPeH6YVyZ8yPqhC4uxQLWEQLwjURRV6g
-	WBX8o4IS0qK4fG7XxTCXala/4lXfDcsU5RjEn/kyvTOVSsS6W0NDzrGW+4aDElLG9br56tPpzbE
-	4C1ej4RMks1aoepZQ35ASZxFPGRGfS6Y1dC4vGjvPAK0SGmx5Z6debdsbXw2mtQl9TIlDEpVGCh
-	N0Y9QJBF3jLLKo92WwqKj8dvcN0+vLvOE7TUZgK+z5JL4IlF3QFDOyL0h0urbRO3EB5n0NHRBaA
-	3Sk0xLaom1o092NHj2RBDgs5VcEtV6lfN5kJMjLGxVQr2w1uWMnf6wL4/CtO0ejXlF0OpSU2vpJ
-	IG+FsjC1NC0UBiC5UrNWLwG/6hDgmTPsIpQQCbINQdDRhhWZH+felYANPwGxYvRbXn+Gs/W
-X-Received: by 2002:a05:600c:450b:b0:47d:25ac:3a94 with SMTP id 5b1f17b1804b1-48069c788a3mr59622875e9.17.1769597882839;
-        Wed, 28 Jan 2026 02:58:02 -0800 (PST)
-Received: from aspen.lan (aztw-34-b2-v4wan-166919-cust780.vm26.cable.virginm.net. [82.37.195.13])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4806cdd79c7sm54470645e9.2.2026.01.28.02.57.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Jan 2026 02:57:59 -0800 (PST)
-Date: Wed, 28 Jan 2026 10:57:55 +0000
-From: Daniel Thompson <daniel@riscstar.com>
-To: Sudarshan Shetty <tessolveupstream@gmail.com>
-Cc: lee@kernel.org, danielt@kernel.org, jingoohan1@gmail.com, deller@gmx.de,
-	pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, dri-devel@lists.freedesktop.org,
-	linux-fbdev@vger.kernel.org, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] backlight: gpio: add support for multiple GPIOs
- for backlight control
-Message-ID: <aXnrs-RWWYC2q4O_@aspen.lan>
-References: <20260120125036.2203995-1-tessolveupstream@gmail.com>
- <20260120125036.2203995-3-tessolveupstream@gmail.com>
+	s=arc-20240116; t=1769597899; c=relaxed/simple;
+	bh=yX9uJyvvHBgb5atLiB3p0mcLtf07NaZ+JbN9vi8aOUs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NyUjVezMdjMl0Ub3BN1aJlGk0Xh2t90kVWE55e/hzUqKiFYyjexxeUkCMR1LMDyJPXvvYPrXEW45y5MxywkCNLblShYh2cLXrd+UdoxYhpMBg/WVw3qZJdnmuWkUlzqUamcA1I5dW3VbaA1+U5tjuuiDxA/NTHrXHdfEXplmmmY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dzy8ljFS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A61E0C4CEF1;
+	Wed, 28 Jan 2026 10:58:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769597899;
+	bh=yX9uJyvvHBgb5atLiB3p0mcLtf07NaZ+JbN9vi8aOUs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=dzy8ljFScUzYuX2hGHMdGB8+0uOftaDh8qrsudDq+6MZTU2OXmEk2JCq5TuIsRF1Q
+	 b94L2u4VVuFly9ceSJB9j+9C4EIy3QPF53/R0yR2r3j4acAbvFoCZEdRJhw3ydGSRW
+	 GnPoWH1/cajSeWLCLmp8W7pk1R0u3fWaEp54rpEYyYSuKTdE3mHoa+0kZUL6pUnehj
+	 Chnen9sXwVfuKn5NxLfe95k8TlUXbiiJHhRfU4tyKO/K9XEaZmS+piUyJ7SFuHAGgi
+	 0L6/x1cEvdVcYCrbEn9rqRlWl2ISUJskstl+NLGpqiPBp5YAWhjwvbFSOChJUuiLXp
+	 lNnrXYAM2xmTQ==
+Message-ID: <277537d2-9b4f-41b9-94e2-9ff45db6c970@kernel.org>
+Date: Wed, 28 Jan 2026 11:58:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260120125036.2203995-3-tessolveupstream@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/3] Add support for exynos5250-manta (Google Nexus 10)
+To: Lukas Timmermann <linux@timmermann.space>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ phone-devel@vger.kernel.org, Alexandre Marquet <tb@a-marquet.fr>,
+ Henrik Grimler <henrik@grimler.se>
+References: <20260127-lat3st-staging-v4-0-797469aaaf9d@timmermann.space>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260127-lat3st-staging-v4-0-797469aaaf9d@timmermann.space>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.06 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[riscstar-com.20230601.gappssmtp.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[riscstar.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260319-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-260320-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,gmx.de,lists.freedesktop.org,vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	ASN_FAIL(0.00)[10.253.234.172.asn.rspamd.com:query timed out];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[daniel@riscstar.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[riscstar-com.20230601.gappssmtp.com:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[aspen.lan:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 601849FCF5
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D9CCE9FDD1
 X-Rspamd-Action: no action
 
-On Tue, Jan 20, 2026 at 06:20:36PM +0530, Sudarshan Shetty wrote:
-> The gpio-backlight driver currently supports only a single GPIO to
-> enable or disable a backlight device. Some panels require multiple
-> enable GPIOs to be asserted together.
->
-> Extend the driver to support an array of GPIOs for a single backlight
-> instance. All configured GPIOs are toggled together based on the
-> backlight state.
->
-> Existing single-GPIO Device Tree users remain unaffected.
->
-> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
-> ---
->  drivers/video/backlight/gpio_backlight.c | 66 ++++++++++++++++--------
->  1 file changed, 45 insertions(+), 21 deletions(-)
->
-> diff --git a/drivers/video/backlight/gpio_backlight.c b/drivers/video/backlight/gpio_backlight.c
-> index 728a546904b0..11d21de82cf5 100644
-> --- a/drivers/video/backlight/gpio_backlight.c
-> +++ b/drivers/video/backlight/gpio_backlight.c
-> @@ -14,17 +14,29 @@
->  #include <linux/platform_device.h>
->  #include <linux/property.h>
->  #include <linux/slab.h>
-> +#include <linux/bitmap.h>
->
->  struct gpio_backlight {
->  	struct device *dev;
-> -	struct gpio_desc *gpiod;
-> +	struct gpio_descs *gpiods;
-> +	unsigned long *bitmap;
->  };
->
->  static int gpio_backlight_update_status(struct backlight_device *bl)
->  {
->  	struct gpio_backlight *gbl = bl_get_data(bl);
-> +	unsigned int n = gbl->gpiods->ndescs;
-> +	int br = backlight_get_brightness(bl);
->
-> -	gpiod_set_value_cansleep(gbl->gpiod, backlight_get_brightness(bl));
-> +	if (br)
-> +		bitmap_fill(gbl->bitmap, n);
-> +	else
-> +		bitmap_zero(gbl->bitmap, n);
-> +
-> +	gpiod_set_array_value_cansleep(n,
-> +				       gbl->gpiods->desc,
-> +				       gbl->gpiods->info,
-> +				       gbl->bitmap);
->
->  	return 0;
->  }
-> @@ -48,26 +60,43 @@ static int gpio_backlight_probe(struct platform_device *pdev)
->  	struct device *dev = &pdev->dev;
->  	struct gpio_backlight_platform_data *pdata = dev_get_platdata(dev);
->  	struct device_node *of_node = dev->of_node;
-> -	struct backlight_properties props;
-> +	struct backlight_properties props = { };
-
-This change is unrelated to the patch description. Do not "hide"
-changes like this. It you want to replace the memset() it's better to
-send a separate patch.
+On 27/01/2026 21:40, Lukas Timmermann wrote:
+> This patch series adds initial support for the google-manta board, known
+> as Google Nexus 10 to users. The device is powered by
+> the Exynos 5250 SoC. The bindings for the notification led are already 
+> in the linux-next tree and can be found here:
+> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/leds/ams,as3668.yaml
+> 
+> The first two patches add the necessary device tree files and
+> bindings, while the last patch makes a small modification to
+> allow CPU1 to boot, as it requires a call to it's underlying firmware.
+> 
+> This first iteration only provides basic support to get the board
+> up and running and usable via UART and with WiFi support. We will upstream additional 
+> features in future patches. All patches have been tested on real hardware.
+> 
 
 
->  	struct backlight_device *bl;
->  	struct gpio_backlight *gbl;
-> -	int ret, init_brightness, def_value;
-> +	bool def_value;
-> +	enum gpiod_flags flags;
-> +	unsigned int n;
-> +	int words;
->
-> -	gbl = devm_kzalloc(dev, sizeof(*gbl), GFP_KERNEL);
-> -	if (gbl == NULL)
-> +	gbl = devm_kcalloc(dev, 1, sizeof(*gbl), GFP_KERNEL);
-> +	if (!gbl)
-
-Again, this change is unrelated to the patch description. Do not include
-changes that are not described in the patch description.
+Thank you for the patch. My tree is currently closed for new features
+till the end of the merge window. I will review and/or apply the patch
+then. If I misjudged this patch and this is a fix, please let me know.
 
 
->  		return -ENOMEM;
->
->  	if (pdata)
->  		gbl->dev = pdata->dev;
->
->  	def_value = device_property_read_bool(dev, "default-on");
-> +	flags = def_value ? GPIOD_OUT_HIGH : GPIOD_OUT_LOW;
-> +
-> +	gbl->gpiods = devm_gpiod_get_array(dev, NULL, flags);
 
-How is it safe to transition from GPIOD_ASIS to GPIOD_OUT_LOW
-here?
-
-Forcing the backlight off if the default-on property is not present
-will prevent the backlight state being properly inherited from the
-bootloader.
-
-
-> +	if (IS_ERR(gbl->gpiods)) {
-> +		if (PTR_ERR(gbl->gpiods) == -ENODEV)
-> +			return dev_err_probe(dev, -EINVAL,
-> +			"The gpios parameter is missing or invalid\n");
-> +		return PTR_ERR(gbl->gpiods);
-> +	}
->
-> -	gbl->gpiod = devm_gpiod_get(dev, NULL, GPIOD_ASIS);
-> -	if (IS_ERR(gbl->gpiod))
-> -		return dev_err_probe(dev, PTR_ERR(gbl->gpiod),
-> -				     "The gpios parameter is missing or invalid\n");
-> +	n = gbl->gpiods->ndescs;
-> +	if (!n)
-> +		return dev_err_probe(dev, -EINVAL,
-> +			"No GPIOs provided\n");
-> +
-> +	words = BITS_TO_LONGS(n);
-> +	gbl->bitmap = devm_kcalloc(dev, words, sizeof(unsigned long),
-> +				   GFP_KERNEL);
-> +	if (!gbl->bitmap)
-> +		return -ENOMEM;
->
-> -	memset(&props, 0, sizeof(props));
->  	props.type = BACKLIGHT_RAW;
->  	props.max_brightness = 1;
->  	bl = devm_backlight_device_register(dev, dev_name(dev), dev, gbl,
-> @@ -81,21 +110,16 @@ static int gpio_backlight_probe(struct platform_device *pdev)
->  	if (!of_node || !of_node->phandle)
->  		/* Not booted with device tree or no phandle link to the node */
->  		bl->props.power = def_value ? BACKLIGHT_POWER_ON
-> -					    : BACKLIGHT_POWER_OFF;
-> -	else if (gpiod_get_value_cansleep(gbl->gpiod) == 0)
-> +						    : BACKLIGHT_POWER_OFF;
-> +	else if (gpiod_get_value_cansleep(gbl->gpiods->desc[0]) == 0)
-
-This logic is broken. This code path needs to be taken is *any* GPIO is
-low (and, as mentioned, the initial GPIO state must be GPIOD_ASIS).
-
-
->  		bl->props.power = BACKLIGHT_POWER_OFF;
->  	else
->  		bl->props.power = BACKLIGHT_POWER_ON;
->
-> -	bl->props.brightness = 1;
-> -
-> -	init_brightness = backlight_get_brightness(bl);
-> -	ret = gpiod_direction_output(gbl->gpiod, init_brightness);
-> -	if (ret) {
-> -		dev_err(dev, "failed to set initial brightness\n");
-> -		return ret;
-> -	}
-> +	bl->props.brightness = def_value ? 1 : 0;
->
-> +	gpio_backlight_update_status(bl);
-> +
->  	platform_set_drvdata(pdev, bl);
->  	return 0;
->  }
-
-
-Daniel.
+Best regards,
+Krzysztof
 
