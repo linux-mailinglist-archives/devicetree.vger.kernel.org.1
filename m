@@ -1,104 +1,51 @@
-Return-Path: <devicetree+bounces-260293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260294-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sJcDI33heWm50gEAu9opvQ
-	(envelope-from <devicetree+bounces-260293-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 11:14:21 +0100
+	id MDSiDZbheWm50gEAu9opvQ
+	(envelope-from <devicetree+bounces-260294-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 11:14:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98B099F4E4
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 11:14:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 975B19F510
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 11:14:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 1B8BB3006827
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 10:14:18 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 59A44300BE2C
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 10:14:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9291E2DE6EF;
-	Wed, 28 Jan 2026 10:14:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A30932DC787;
+	Wed, 28 Jan 2026 10:14:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="aAV5WuW3";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="d4/HxNXI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rt++YOd+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAFFF2DAFC7
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 10:14:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E6B52DC33F;
+	Wed, 28 Jan 2026 10:14:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769595254; cv=none; b=tiT6xkb1mGJxRZUHwN4srrNeDlNOySdf2egOZ7Aik7A+KuNEx0JgLjPTId5uutrmt/KU4iPlyhn5Xef4dwCIA0PbihRMRqfSyKSdKiKwk8CWUFCJyv/dndgKyZQdtHRmFsHL0vPUE6ETcDHYHIUxvP0ZmJNs4PrM0xGGj0TV7zg=
+	t=1769595266; cv=none; b=eMeiK6peJ2bdw52UwghcUbfgCxo/IFYK1nebiP+ti5SwnSmz5l0kXt7qdIuW5T3pb2PDXbehfqFsftPRndQKRa3HMCR9hqTaeBdCpPUGwZg3+eP9cQAdEgDSU39SeNGjuBlMVNDbL0o39APGhj98UgRn6GAcF4z8Uk7pCVULJk8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769595254; c=relaxed/simple;
-	bh=buEGFL82JO8fTIAO2ycUIVJ8WjqCK/j0dMVra+EV6PM=;
+	s=arc-20240116; t=1769595266; c=relaxed/simple;
+	bh=4OWfhnYD2xIoJP/oYLpREJGUH7ShEHWsA3ATbPvp9sg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hWkHYvmJT7tKL+yQyzj2SfcTChV1+hkN5J36gRe9QG4r8v4eefK30EnZd9JoS3T0FjnCBC1wAVlGztdSenNCSP1zPegyaoFy62sxAiW4pmdfLDLc8PlLktonpf+Zdkpc3djrTRLYGDQAWyKhN2uWIUupV40z/vzs9LPTeUZEEm4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=aAV5WuW3; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=d4/HxNXI; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60S92CMv3387345
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 10:14:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	B4T0/R/Sy8rbm8kzN/wI0qTxGCJL+5QCvhkl6NSkXMY=; b=aAV5WuW32jWevEVv
-	07mo6a+oZT7dKZG3JmooinYySfnG1G09YkQER7C7Djh+Epg6EgJ0rkr/3E/GgU6p
-	/EIpB9yFnHvw5YR3zL1lTHzMtQ2L0MdUmLlIJdcEzUGwhecbaWpYr5F3FOAY9mMW
-	A6AZtCbE26WDs3jUFxxPNjJK3nsgYSUyZh/SWOx6QN6WXdx8qIFEIzlpm9T7eb4/
-	NKVA0Di8dwgVbJ+SgEHYMTXMR27YTaJsV6PTMbMdp8tYv8ybap3OQ1DejyKrWCBX
-	vavRSteTxgHMEGhEvVGGy7rxdKuHsMMLnB+oWqmIlm202w53zs8WOrhcLbF1SGQL
-	dOnaDQ==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4by1dfu1ta-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 10:14:09 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8c533f07450so183810585a.0
-        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 02:14:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769595249; x=1770200049; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=B4T0/R/Sy8rbm8kzN/wI0qTxGCJL+5QCvhkl6NSkXMY=;
-        b=d4/HxNXIVGokp7mc777q6GZN02q0uX2QipUJ5d+HwDTG6kcPxQWWbpfMwsrMcEJskL
-         Lt9BOxcnElYR4CLBdkYq8jTBUnE/fpV7GtFQhFfbYVC5EDyfOpiTLb3TWlCK3HnEeUpQ
-         7EhPpRVb0slZO+iqXZCi6vtu1Lew6wlF0VvCABD+VMp1gaRbbGXPE8jJU3KswgQz9fyv
-         FQFXZaQsvY+tzHgA3hWFZnN2NhxZ4rXfEqL9mxtV9X1VQIHcI+KD+h7/FQCmK3lSwlQI
-         AbukJn1IX97RjjVvD7Rrrxm1SZ5qUZNp4+uw6OOnsaI3FbQkT6OegOODrWdewjumb9j+
-         tRsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769595249; x=1770200049;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=B4T0/R/Sy8rbm8kzN/wI0qTxGCJL+5QCvhkl6NSkXMY=;
-        b=ezULLYUFcoH4rZY7Ju9onn5CwnOv2hZ08NCpisZrp4IUB8/4uUCWCCEjzPxbNUgOec
-         v9ypbCWuB1hpVWc3OaozYAVY2AlL6623hIbBcXBDJxqLSoVrXbjW+3+8dWlhYI09pZze
-         yCcudtsdKzrQoksFnD+vuFUZNV9peFaVYSmYDza9s7zfuDE8PZSI2OQnEFpUFSnWtfi/
-         GZ4mzHaW/SEZ+m1MJ5LifckRBysWeysJA59QVHeCMtXayappt8KBuSjQeMHmSTy0yzaZ
-         kxgsHNHX3NDZ/M6RuvaPlcwMznRNpBoDXVwMXJY/AsRg7zXhSvMDyz+Qhoqa1mkjoeKI
-         FwkA==
-X-Forwarded-Encrypted: i=1; AJvYcCVDF2TsmRdeZRP3siNQhTwB30mRDPavRjdZLIG2K8ukuxOs6/FrL8Cblqq3ewM1aXuOZMb752+wGmIU@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx0Dd4fL2xm/yn6uTX3jJIFfvm+axNa8ISYTQDpqNHgr1qPM7uW
-	TftOnkCl3ilBzN6fzj5MTf5y5gkCFfDhPfwK2+A/T2IHd9jqvDt6G4h6sXVvS0WqEiMNRYu2Cj1
-	fw2IFSgQVMm5vy6lHAmZAtbNHKwfv167i/1S7CVenSrznkqnqMIX3JZM0jeuWL1t4
-X-Gm-Gg: AZuq6aKqN2tzRoJpklgnjdSbJDH0aeCKG9VyjLTWUvW7YCrUxrbGWl3QIrvo/GhQUIl
-	m3NqcpzJGgbmq/HFi/X3zz3iHvdl72NLUkpTl5JpzAo0LxRjWtH9bIuiomd3BMdd9n/TIZAlzFj
-	oLy9jOKMWmlfvL04u1AFYKVqq3LCQFrxpJZDGWtPq7fioMIpDEsYASL+pHDYFGkQvF97MQzMR+p
-	cTsOlx80PAVxmG7W4rnnGWMQ8Y9BYzjRvca0OcP82NWOXl4U0H0IBaFF5OuyneLmPBJeSXOiEIk
-	jRIMyiU5jLuJsYy7GsQrIu7FG4QPf+sRF3CzNGhZCbVeA1Y6MzVMx7idDaHhvJBFRCLkC8v78SG
-	MHn2L+AY58aonwXK057rkF8FdoDBlE/sjoBAiVupkkaLvVMBRdX6w5SMtpdVf8JCJ5mo=
-X-Received: by 2002:a05:6214:4789:b0:890:7084:c6b4 with SMTP id 6a1803df08f44-894d78404a4mr9913836d6.3.1769595249311;
-        Wed, 28 Jan 2026 02:14:09 -0800 (PST)
-X-Received: by 2002:a05:6214:4789:b0:890:7084:c6b4 with SMTP id 6a1803df08f44-894d78404a4mr9913526d6.3.1769595248865;
-        Wed, 28 Jan 2026 02:14:08 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-658b46ae22fsm1341731a12.35.2026.01.28.02.14.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Jan 2026 02:14:07 -0800 (PST)
-Message-ID: <0dfafbc7-5623-4851-b1ee-112c4a97f7b2@oss.qualcomm.com>
-Date: Wed, 28 Jan 2026 11:14:04 +0100
+	 In-Reply-To:Content-Type; b=O1PEfqvSeAk396bqX95lecVrOzEXne4ATQ0HF4Os+wK3XWuXWnaLw4MPPgWBAjwxwhyN5vtPuNgyczRkS6E5xtBkmiAtKqvs0HEWIk5cyPAQyf6qQux//973KHR8Da+BQWc08hFUrcbW05BtNaVU4yQq+2REkHZCaqxKYsLSrSg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rt++YOd+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A494C16AAE;
+	Wed, 28 Jan 2026 10:14:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769595266;
+	bh=4OWfhnYD2xIoJP/oYLpREJGUH7ShEHWsA3ATbPvp9sg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=rt++YOd+C4NUVRt2vuKCPAMReK7DRcFwepu1MTh9dUvzIPKqtZzazctknpKApIQXZ
+	 xJOS1/gJtY5uj9gxcYenbGN4oZwD4qMNdb9VO6iW6i6TT14POXPS6dJ9JBgObGpVhy
+	 XFpbvH1sRNLCtV/M/i0WHsh3HhGqt/SHgqOdk4C950DAOA3ii0LW5e9U/IUWXLN3OF
+	 Bn/tc2x7X76d/ZT6dMRDGRMW5UQ1bRkBe3MBuYxqko/zxBRJfSirw4G9A4eFF9b4ga
+	 Tiw/sHdNq5SPgf1cbYW+sBvYMlfiKVHwb0lofWvB+UybKpQWJVKZ1NgifAhTu5RVaJ
+	 CexKoFbRERkxw==
+Message-ID: <14c04d1d-f42f-4ac9-a887-ed37cedb4913@kernel.org>
+Date: Wed, 28 Jan 2026 11:14:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -106,94 +53,194 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/8] clk: qcom: camcc-x1e80100: Add support for camera
- QDSS debug clocks
-To: Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
-        Imran Shaik <imran.shaik@oss.qualcomm.com>,
-        Taniya Das <taniya.das@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260128-purwa-videocc-camcc-v1-0-b23de57df5ba@oss.qualcomm.com>
- <20260128-purwa-videocc-camcc-v1-4-b23de57df5ba@oss.qualcomm.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: backlight: gpio-backlight: allow
+ multiple GPIOs
+To: tessolveupstream@gmail.com, lee@kernel.org, danielt@kernel.org,
+ jingoohan1@gmail.com
+Cc: deller@gmx.de, pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, dri-devel@lists.freedesktop.org,
+ linux-fbdev@vger.kernel.org, linux-leds@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260120125036.2203995-1-tessolveupstream@gmail.com>
+ <20260120125036.2203995-2-tessolveupstream@gmail.com>
+ <3f3c47ea-1660-4bd4-ab89-3bdf58217995@kernel.org>
+ <54d156ba-e177-4059-a808-2505983b4e2e@gmail.com>
+ <5f78fbe8-288d-4b0a-af57-e834bd1186ba@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260128-purwa-videocc-camcc-v1-4-b23de57df5ba@oss.qualcomm.com>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <5f78fbe8-288d-4b0a-af57-e834bd1186ba@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI4MDA4MyBTYWx0ZWRfX8RGVTHJGDTJY
- 9lbef1rHdiG8nZbdSgobNVBQaF4SCgroFj2NDN/1O4oIsdZX2kxu/ZOHUqm3/sxpqJqyiVcDIOP
- kZzVuA5lK62H1kJ6T8BRSAoqlbmpxNX8EMp+0QyEdtKbaKc7KQib1yCDJXjnfz+fDsl+gkslsSY
- 7Z1ul/1r7JVvk7m5hicLKhMom8G/TxUNxrsskLvP5y9XohMr5P9WLoKqzXTolQwGYBONs5ToTvU
- szXSm+LLG4HUoSPXKnRxRXTYmOhy2tWiiWkbP6bnVoNeNGjW1IDiNBfAAkjHVGbj4EHKZeuPNuU
- YVx1qg+2/lnm4WMa4nmkcAFjEMmE15n038RAjFmDguKRCtqGUSMHcrSTYUe04s7NVlbTVOE1F4j
- v6VnFc2RTs9Bprk0YlNgWgJvQSFHGu+Fn5t5o1ss0+32B283+P87xIItnu7aS9tDSQv4T7xaMgr
- myO2eNEZWsLDRWCuATg==
-X-Proofpoint-GUID: uIqn9Vuu-rduon1H6ClmRuWGAF7wdSIl
-X-Proofpoint-ORIG-GUID: uIqn9Vuu-rduon1H6ClmRuWGAF7wdSIl
-X-Authority-Analysis: v=2.4 cv=YeuwJgRf c=1 sm=1 tr=0 ts=6979e171 cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=LG3DDfy-6M914-NHDhAA:9
- a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-01-28_02,2026-01-27_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 spamscore=0 bulkscore=0 adultscore=0 priorityscore=1501
- suspectscore=0 phishscore=0 clxscore=1015 impostorscore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601280083
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260293-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	TAGGED_FROM(0.00)[bounces-260294-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
+	FREEMAIL_CC(0.00)[gmx.de,kernel.org,lists.freedesktop.org,vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 98B099F4E4
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 975B19F510
 X-Rspamd-Action: no action
 
-On 1/27/26 8:26 PM, Jagadeesh Kona wrote:
-> Add support for camera QDSS debug clocks on X1E80100 platform.
+On 27/01/2026 13:46, tessolveupstream@gmail.com wrote:
 > 
-> Signed-off-by: Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>
-> ---
+> 
+> On 23-01-2026 16:41, tessolveupstream@gmail.com wrote:
+>>
+>>
+>> On 20-01-2026 20:01, Krzysztof Kozlowski wrote:
+>>> On 20/01/2026 13:50, Sudarshan Shetty wrote:
+>>>> Update the gpio-backlight binding to support configurations that require
+>>>> more than one GPIO for enabling/disabling the backlight.
+>>>
+>>>
+>>> Why? Which devices need it? How a backlight would have three enable
+>>> GPIOs? I really do not believe, so you need to write proper hardware
+>>> justification.
+>>>
+>>
+>> To clarify our hardware setup: 
+>> the panel requires one GPIO for the backlight enable signal, and it 
+>> also has a PWM input. Since the QCS615 does not provide a PWM controller 
+>> for this use case, the PWM input is connected to a GPIO that is driven 
+>> high to provide a constant 100% duty cycle, as explained in the link 
+>> below.
+>> https://lore.kernel.org/all/20251028061636.724667-1-tessolveupstream@gmail.com/T/#m93ca4e5c7bf055715ed13316d91f0cd544244cf5
+>>  
+>>>>
+>>>> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
+>>>> ---
+>>>>  .../leds/backlight/gpio-backlight.yaml        | 24 +++++++++++++++++--
+>>>>  1 file changed, 22 insertions(+), 2 deletions(-)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
+>>>> index 584030b6b0b9..4e4a856cbcd7 100644
+>>>> --- a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
+>>>> +++ b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
+>>>> @@ -16,8 +16,18 @@ properties:
+>>>>      const: gpio-backlight
+>>>>  
+>>>>    gpios:
+>>>> -    description: The gpio that is used for enabling/disabling the backlight.
+>>>> -    maxItems: 1
+>>>> +    description: |
+>>>> +      The gpio that is used for enabling/disabling the backlight.
+>>>> +      Multiple GPIOs can be specified for panels that require several
+>>>> +      enable signals. All GPIOs are controlled together.
+>>>> +    type: array
+>>>
+>>> There is no such syntax in the bindings, from where did you get it? Type
+>>> is already defined.
+>>>
+>>> items:
+>>>   minItems: 1
+>>>   maxItems: 3
+>>>
+>>>
+>>>> +    minItems: 1
+>>>> +    items:
+>>>> +      type: array
+>>>> +      minItems: 3
+>>>> +      maxItems: 3
+>>>> +      items:
+>>>> +        type: integer
+>>>
+>>> All this is some odd stuff - just to be clear, don't send us LLM output.
+>>> I don't want to waste my time to review microslop.
+>>>
+>>> Was it done with help of Microslop?
+>>>
+>>
+>> I understand now that the schema changes I proposed were not correct, 
+>> and I will address this in the next patch series. My intention was to 
+>> check whether the gpio-backlight binding could support more than one 
+>> enable-type GPIO. 
+>> Could you please advise what would be an appropriate maximum number of 
+>> GPIOs for gpio-backlight in such a scenario? For example, would allowing 
+>> 2 GPIOs be acceptable, or should this case be handled in a different way?
+>>
+> 
+> In line with Daniel’s suggestion, I am planning to adopt a fixed upper 
+> limit for the number of backlight GPIOs. The current hardware only 
+> requires two GPIOs, so the maxItems can be set to 2.
+> 
+> If future platforms or customers require support for a higher number 
+> of GPIOs, this limit can be increased and the driver can be 
+> updated accordingly.
+> 
+> Kindly advise if this solution aligns with your expectations, or if 
+> you prefer an alternative maximum value.
 
-Fixes: 76126a5129b5 ("clk: qcom: Add camcc clock driver for x1e80100")
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+You have entire commit msg to explain the hardware and explain WHY you
+are doing this. In a concise and readable way. I will not be going
+through 2 different email threads with 20 messages to figure that out.
 
-Konrad
+Best regards,
+Krzysztof
 
