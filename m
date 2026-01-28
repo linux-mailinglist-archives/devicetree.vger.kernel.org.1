@@ -1,84 +1,84 @@
-Return-Path: <devicetree+bounces-260426-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260427-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6GtAKi4PemmS2AEAu9opvQ
-	(envelope-from <devicetree+bounces-260426-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 14:29:18 +0100
+	id KM/6F0UPemmS2AEAu9opvQ
+	(envelope-from <devicetree+bounces-260427-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 14:29:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31E78A2245
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 14:29:18 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id B59B9A2273
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 14:29:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 961D830254C7
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 13:29:01 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4EDE23044659
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 13:29:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66057352FA7;
-	Wed, 28 Jan 2026 13:28:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFCC9352FBB;
+	Wed, 28 Jan 2026 13:29:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="NFCpgi5y"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="umwvbSeN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7599353ED5
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 13:28:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5085A353ED1
+	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 13:29:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769606937; cv=none; b=U10rAltU4GQpiJSxEsZhazUcBrXivIFjJh1yi42oh1UZqXj2YB+QAdCGFjEb6Qlj89Qi4TUmgaORVAaO17ftj6qtbP1hmOkv1Q2E9qGbwA3SwAMEo6C53l2B/7X4uOJUvlK12lNDoPZmKCqxFUefsnJPthx1RrFHhgl6y1lp02k=
+	t=1769606942; cv=none; b=nBWuS1ZuGspkzGgAVY6KWE06YetM7GjOamqEVL4LIUSfoXokVt++jboA+k+Y3agKZFirrsrriHBrcKCrNkqTLi+hyJKgtWj2ZHzV3fMycvqWZgXle1nojqQhJCW/J9QcQF2dg6dEoCdH7OhICOgSoYjQGvtWs82l/KE8vFeBMf0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769606937; c=relaxed/simple;
-	bh=zmxOPeXvnOtchYfum5MfPM2ufP91Bp+oj32pDPeoclk=;
+	s=arc-20240116; t=1769606942; c=relaxed/simple;
+	bh=/SRbLJIOBCp6SkKGBSg0cd0VrfNVnSQQ5K/0eCQIYng=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WYlQz1tlpp/et5Jmb9YKy9A1MsiemrqOLYkSt3VgDonYXLDbQto/T1kHNcfmh6W6X0wja5687LmWdp9jAMI64gFapsU34UlO3OyuuIiRkLlSh5Cqff+RjBw1Lv7WYKg7hSifpuIkYg8/awTVelw2KiD6C92dOLdeISL1x44hGvQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=NFCpgi5y; arc=none smtp.client-ip=209.85.210.50
+	 In-Reply-To:Content-Type; b=jIIDzcAgNgpQC93XJzXSbqpbbWBFniXkB68H+r+G/VhI2U/4qb/2UbjQ1FAKbf3ybWrhS+Y1K/70Yz0n7quYffzq1UTIXgrlElaQ0dF/xwSPfQYS073T9mu+N0yK46vWhuTSKYUtdY40rYYLcSLBAxNQqei+I+R9H7KlNtOPaGM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=umwvbSeN; arc=none smtp.client-ip=209.85.167.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-ot1-f50.google.com with SMTP id 46e09a7af769-7cfdf7e7d19so5658226a34.2
-        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 05:28:55 -0800 (PST)
+Received: by mail-oi1-f174.google.com with SMTP id 5614622812f47-45f053b7b90so522351b6e.0
+        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 05:29:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1769606935; x=1770211735; darn=vger.kernel.org;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1769606940; x=1770211740; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=l7l6hZpxqhowIar9wP3g3p3H24Q2QksV27F6NMf90mY=;
-        b=NFCpgi5yZgnPMtIJAjjco+CiEsHER5KIjfxc+A84u/q1ZZtWm3EUgM/XbT67ImhXvS
-         caJp+27vsUYCjVq5oAbZXYQn5ZfmgCb4wiAtUl5hguNx/MztGnq0tLZ9eNLF3xHY63U5
-         m7zBewIwaj8GrJLxeC/ET3qFa3/M9EWE1XLCwzEkcrTjpr7MgnjrnCWYTfYkHcIcLNW5
-         WddOQO/gwLD4Z+FxB7jbt2NAx35jNBq3/pXQFTWye8b5mXCg7nJulqec9QBZKCTxDQ8M
-         J3MbPPlee/F+BTEqhvshDOuK4K/4d1nVsJHkEfRLf2b1BAsPVrfgLQV1EHvcW8L6AMrm
-         jGQg==
+        bh=O3+eV0m5YOcp1OGVa9q7WwRpTmAwgwaorWnGyCzBuiI=;
+        b=umwvbSeN9n4MYXWO5N2doXRRe8f9g2Th/mE7XxzFS/7AWnaJgi5Nd+nGkWHL09muQs
+         qVSlX/izxCa2uQ4JK6VpyX6J4eF02phBWZXorOfHuM4ht/8y+K2qUHM0cOdY5ZXNpym9
+         fxk0NGvCTNFNoMpL5Ck96btU13rZQu2ibUfYOCGXyVqSxvtCtCLiSZ3klNCuOMjO1oj/
+         jUIpH9Ec/bMyXz4a9rCaSY/VzppSXvf/hNyb+G0gpi/yu6PN+upgdYC5AodtqZvfgoHJ
+         2e5eZ27+X9NY7PHJO+elQRVMddjoqf/o4jtYqlIlupzcUpTGSVazQsSJaXTxNRsnxmXq
+         Kmrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769606935; x=1770211735;
+        d=1e100.net; s=20230601; t=1769606940; x=1770211740;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=l7l6hZpxqhowIar9wP3g3p3H24Q2QksV27F6NMf90mY=;
-        b=gj6HwM9NemsRaFHKKE69gxccwSbfOGQCqKcKU7Skel9qN9klU7yZa+fHLFPF9Tpag9
-         YOVWwDA02P0wW3PXj8ZfGx8Je8BeKq5NoFY/BkfJop3gnXvNJj4EPVGosQtY0T7eWbjn
-         iC/pPEHm0flh1AwYKUo42hpsxPWkZ9yCPGHMJ/dKgDmfoOHjK+9WGFakRgw+y8KnCSLK
-         ZLDJIpSDjFfRwygHte8G+P2RVvAyuzg00AV3WEe1/KRMZBwVQljssVyLlCKvxmgoya3V
-         wTlZj4uQPbdRrnGrTMCAaPjA9GbieL0zOOrmMJWOsoU15ilgRHxxB9nZveo5eRZuD+zE
-         zkhQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXWI88g8ffGJl7CpL1uULP8Zd9Y4sSVxQVNWEmNN8Ke5/GxJ+OBdGSu8ySk6dEv9lCbN2phbNVM9m3y@vger.kernel.org
-X-Gm-Message-State: AOJu0YybtEPGkl4IIycLX+oHuitw2Bsrak5VYzwOFDvJFPNVQB/HO3iM
-	WSksw90Vci/kgv999XVzE8KFKIWtt7To3CK2JGD3lnnW7TGDrdhaTQ10gaLUi4iVlDM=
-X-Gm-Gg: AZuq6aJ30B7Jx201ZGV53FHs4yzvaEeTRkQfHjdoOUfGcGNwp7J2hgUdzrQO+SBUfuq
-	sgp2MRAumvbRJd12WtShwObB+vbs/U1kA2tPulI8gxRNoyNDK20v1eklb/xWn92Dbuq3ClxOrye
-	G2VyLjIvHIzvWmiN06VFSRbdNy2S8s43l1VZEPhQLDoxyORZGfPC/hPonIx9gA/JbBJqWPvNbGw
-	hT6Vz7gljiZj9NJkk968WKZZjPe//KfPbiS4zToHQe60cZpIcS93JduFPedS2HK1Y1N7Jzot03N
-	koXzAlvrbTNjnNA4Bwe5BEW3FQrPMg0Wxma3ljZFOMd8lKPzfCFgpzwTvgL/MSd7xDvPpEMSCRD
-	g6mYjYD9o3bbgOT6A2/ilnhb4FYCwuRXXNpGAVn3gz7AtB1POYNuO1r2KRSR+dkkgIb1euihiPx
-	LDg2F7J/tJqR2koaRre3mYG9pripa/1NpA0X5SofY731IlWBmFxUI=
-X-Received: by 2002:a05:6820:134f:b0:662:ecc7:7193 with SMTP id 006d021491bc7-662f20d5753mr2863092eaf.54.1769606934872;
-        Wed, 28 Jan 2026 05:28:54 -0800 (PST)
+        bh=O3+eV0m5YOcp1OGVa9q7WwRpTmAwgwaorWnGyCzBuiI=;
+        b=nKja1bl5DH/ekO/UhkjEFrN+F1mLorkEx5jOq7lsKypEcmTpPCv0zZ+L7eyT7+9gjc
+         yxq3wYSTE0AbvVKK7w7A0452SiMkDibEiUTGCrOt1aEptPxcZOGAE9mJ7sPneF315+Kf
+         DNzYY3VYa5N5rxdbuIQNubsXUxPRDo1WRgOoQ+EhhiQGRGYh/PeLhZq1lsL+hcQaqM9z
+         ZXNPYdvJG8Q4DEO4wsPvgpDXscrYM91fVRJdddLz8nBP8leEOJ/n737ZZCJ+6mjE8fUv
+         jHouMi0iJrRzbKWapkMdrqq7MImGdtXBtZYvBEi6H+eRxfIvJFPulhtYwa4quPPuLgHJ
+         yCHw==
+X-Forwarded-Encrypted: i=1; AJvYcCVGAyocnSOkg5VCIboiqIYLOH51naW0ydUT0aSB+Wxm26a427gXEugjnMjxoQIXez3Z62BAbp3F2sUZ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz8Wuqz5+N/BKI7N3XzmvD3jmDyptmVRCcRE9KBy1ENQfDsWJ3O
+	q7AEKJfOnBV6r74ulOAVpYnESsRIrtwAvJeT6aqt8hYwoqVUbNhDqtSG0WjFEJ/kulg=
+X-Gm-Gg: AZuq6aJLOw6m0hHseT3w3iGa9JLeXJz8x1Gk/dxBbwSdIMmmHHQL43vbWW+HVvUcuKH
+	L3UxOyqFOAtvnU7aQg3i9ZIdN6d1KcoMQIDdsaH8+YdOn2MUfjVnQcCnKLpUA2mpk7GONEpwZFn
+	jVm1SMjBOhITnfTnj3O/pOpQ/RI4o5F0PZYD69WYNX92RkmDg/nrzuepubakYtPOT7ew7LG6dro
+	Y5uNqTnYPTC+K0VySP5oIx66zZf3OWSpdWCu7qGHmfJoEJqfn34kTNurrJQuJHkUPzlI38ojjBc
+	WrPwkD207olSnWhN5bPbNO3N06EcEAOhwGH6+q+fUt5Z5nU4Mv0WXFIx3cbkTGkEQ2FHG+Gm1Qb
+	eQk2IWY6f5WZevrfDFzY3b0RFpXeo4TnUgke7Thnxds5Tggslf4UypVAgud5IN9ycH64nb+bP6O
+	v0WbnBZyyItBrI7jbJJmTIoLr6l0IKKdj/RTX+0eD69NmWVNiYQYk=
+X-Received: by 2002:a4a:ee06:0:b0:659:9a49:8efc with SMTP id 006d021491bc7-662f208c524mr3076054eaf.13.1769606940245;
+        Wed, 28 Jan 2026 05:29:00 -0800 (PST)
 Received: from [172.22.22.28] (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-662f994388fsm1374132eaf.4.2026.01.28.05.28.53
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-662f994388fsm1374132eaf.4.2026.01.28.05.28.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Jan 2026 05:28:54 -0800 (PST)
-Message-ID: <5a1825e3-3517-4d17-aa8f-b0261245d9bb@riscstar.com>
-Date: Wed, 28 Jan 2026 07:28:53 -0600
+        Wed, 28 Jan 2026 05:28:59 -0800 (PST)
+Message-ID: <4395bea9-44d7-4f0f-81d6-c1e05976a308@riscstar.com>
+Date: Wed, 28 Jan 2026 07:28:58 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,8 +86,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] dt-bindings: mfd: spacemit,p1: Add individual
- regulator supply properties
+Subject: Re: [PATCH v2 3/4] regulator: spacemit-p1: Update supply names
 To: Guodong Xu <guodong@riscstar.com>, Liam Girdwood <lgirdwood@gmail.com>,
  Mark Brown <broonie@kernel.org>, Yixun Lan <dlan@gentoo.org>,
  Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -98,31 +97,30 @@ To: Guodong Xu <guodong@riscstar.com>, Liam Girdwood <lgirdwood@gmail.com>,
 Cc: linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
  spacemit@lists.linux.dev, devicetree@vger.kernel.org
 References: <20260124-spacemit-p1-v2-0-2c86b06694ba@riscstar.com>
- <20260124-spacemit-p1-v2-2-2c86b06694ba@riscstar.com>
+ <20260124-spacemit-p1-v2-3-2c86b06694ba@riscstar.com>
 Content-Language: en-US
 From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <20260124-spacemit-p1-v2-2-2c86b06694ba@riscstar.com>
+In-Reply-To: <20260124-spacemit-p1-v2-3-2c86b06694ba@riscstar.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.06 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[riscstar-com.20230601.gappssmtp.com:s=20230601];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[riscstar.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[riscstar.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260426-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260427-lists,devicetree=lfdr.de];
 	FREEMAIL_TO(0.00)[riscstar.com,gmail.com,kernel.org,gentoo.org,linux.spacemit.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[17];
 	DKIM_TRACE(0.00)[riscstar-com.20230601.gappssmtp.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
@@ -132,108 +130,94 @@ X-Spamd-Result: default: False [-0.06 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[riscstar-com.20230601.gappssmtp.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,riscstar.com:mid,riscstar.com:email]
-X-Rspamd-Queue-Id: 31E78A2245
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,riscstar-com.20230601.gappssmtp.com:dkim,riscstar.com:mid,riscstar.com:email]
+X-Rspamd-Queue-Id: B59B9A2273
 X-Rspamd-Action: no action
 
 On 1/23/26 6:20 PM, Guodong Xu wrote:
-> Add supply properties that match the P1 PMIC's actual hardware topology
-> where each buck converter has its own VIN pin and LDO groups share
-> common input pins. Supply names are defined according to the pinout
-> names in the P1 datasheet.
+> Update supply names to match the P1 PMIC's actual hardware pinout where
+> each buck has an individual VIN pin (vin1-vin6) and LDO groups have
+> dedicated input pins (aldoin, dldoin1, dldoin2).
 > 
-> This allows different boards to describe their actual power tree
-> connections in devicetree rather than hardcoding supply relationships
-> in the driver.
+> The supply is a board design decision and should not be hardcoded to any
+> existing power source. This allows boards to specify their actual power
+> tree topology in devicetree.
 > 
 > Signed-off-by: Guodong Xu <guodong@riscstar.com>
 
-Your additions match what I see in the data sheet.
-This looks good, thank you.
+These are good changes but I have a suggestion on the way
+you define the DLDO descriptors.  I might be mistaken but
+I think you should make this change.
+
+Aside from that:
 
 Reviewed-by: Alex Elder <elder@riscstar.com>
 
 > ---
-> v2: Remove providers from the dts example.
->      Pass the 'make dt_binding_check' test.
+> v2: No change.
 > ---
->   .../devicetree/bindings/mfd/spacemit,p1.yaml       | 49 +++++++++++++++++++++-
->   1 file changed, 47 insertions(+), 2 deletions(-)
+>   drivers/regulator/spacemit-p1.c | 25 ++++++++++++++-----------
+>   1 file changed, 14 insertions(+), 11 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/spacemit,p1.yaml b/Documentation/devicetree/bindings/mfd/spacemit,p1.yaml
-> index c6593ac6ef6a..c67b1c6e4e4f 100644
-> --- a/Documentation/devicetree/bindings/mfd/spacemit,p1.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/spacemit,p1.yaml
-> @@ -27,8 +27,41 @@ properties:
->     interrupts:
->       maxItems: 1
+> diff --git a/drivers/regulator/spacemit-p1.c b/drivers/regulator/spacemit-p1.c
+> index 2b585ba01a93..57e6e00a73fa 100644
+> --- a/drivers/regulator/spacemit-p1.c
+> +++ b/drivers/regulator/spacemit-p1.c
+> @@ -87,13 +87,16 @@ static const struct linear_range p1_ldo_ranges[] = {
+>   	}
 >   
-> -  vin-supply:
-> -    description: Input supply phandle.
-> +  vin1-supply:
-> +    description:
-> +      Power supply for BUCK1. Required if BUCK1 is defined.
+>   #define P1_BUCK_DESC(_n) \
+> -	P1_REG_DESC(BUCK, buck, _n, "vin", 0x47, BUCK_MASK, 255, p1_buck_ranges)
+> +	P1_REG_DESC(BUCK, buck, _n, "vin" #_n, 0x47, BUCK_MASK, 255, p1_buck_ranges)
+
+That was a simple change...
+
+>   #define P1_ALDO_DESC(_n) \
+> -	P1_REG_DESC(ALDO, aldo, _n, "vin", 0x5b, LDO_MASK, 128, p1_ldo_ranges)
+> +	P1_REG_DESC(ALDO, aldo, _n, "aldoin", 0x5b, LDO_MASK, 128, p1_ldo_ranges)
+
+As stated before, I believe the 128 should be 117 here.  (If
+you change the earlier patch, make sure the change to 128
+doesn't persist here.)  Same comment for the DLDO regulators.
+
+> -#define P1_DLDO_DESC(_n) \
+> -	P1_REG_DESC(DLDO, dldo, _n, "buck5", 0x67, LDO_MASK, 128, p1_ldo_ranges)
+> +#define P1_DLDO1_DESC(_n) \
+> +	P1_REG_DESC(DLDO, dldo, _n, "dldoin1", 0x67, LDO_MASK, 128, p1_ldo_ranges)
+
+Why can't you use _n here like you did for P1_BUCK_DESC() above?
+
 > +
-> +  vin2-supply:
-> +    description:
-> +      Power supply for BUCK2. Required if BUCK2 is defined.
-> +
-> +  vin3-supply:
-> +    description:
-> +      Power supply for BUCK3. Required if BUCK3 is defined.
-> +
-> +  vin4-supply:
-> +    description:
-> +      Power supply for BUCK4. Required if BUCK4 is defined.
-> +
-> +  vin5-supply:
-> +    description:
-> +      Power supply for BUCK5. Required if BUCK5 is defined.
-> +
-> +  vin6-supply:
-> +    description:
-> +      Power supply for BUCK6. Required if BUCK6 is defined.
-> +
-> +  aldoin-supply:
-> +    description:
-> +      Power supply for ALDO1-4. Required if any are defined.
-> +
-> +  dldoin1-supply:
-> +    description:
-> +      Power supply for DLDO1-4. Required if any are defined.
-> +
-> +  dldoin2-supply:
-> +    description:
-> +      Power supply for DLDO5-7. Required if any are defined.
+> +#define P1_DLDO2_DESC(_n) \
+> +	P1_REG_DESC(DLDO, dldo, _n, "dldoin2", 0x67, LDO_MASK, 128, p1_ldo_ranges)
+
+So this is generalizing the input, which is good.  The use
+of "buck5" here was a Banana Pi BPI-F3 design and but it
+doesn't have to be that way.
+
+>   static const struct regulator_desc p1_regulator_desc[] = {
+>   	P1_BUCK_DESC(1),
+> @@ -108,13 +111,13 @@ static const struct regulator_desc p1_regulator_desc[] = {
+>   	P1_ALDO_DESC(3),
+>   	P1_ALDO_DESC(4),
 >   
->     regulators:
->       type: object
-> @@ -58,6 +91,10 @@ examples:
->               compatible = "spacemit,p1";
->               reg = <0x41>;
->               interrupts = <64>;
-> +            vin1-supply = <&reg_vcc_5v>;
-> +            vin5-supply = <&reg_vcc_5v>;
-> +            aldoin-supply = <&reg_vcc_5v>;
-> +            dldoin1-supply = <&buck5>;
+> -	P1_DLDO_DESC(1),
+> -	P1_DLDO_DESC(2),
+> -	P1_DLDO_DESC(3),
+> -	P1_DLDO_DESC(4),
+> -	P1_DLDO_DESC(5),
+> -	P1_DLDO_DESC(6),
+> -	P1_DLDO_DESC(7),
+> +	P1_DLDO1_DESC(1),
+> +	P1_DLDO1_DESC(2),
+> +	P1_DLDO1_DESC(3),
+> +	P1_DLDO1_DESC(4),
+> +	P1_DLDO2_DESC(5),
+> +	P1_DLDO2_DESC(6),
+> +	P1_DLDO2_DESC(7),
+>   };
 >   
->               regulators {
->                   buck1 {
-> @@ -68,6 +105,14 @@ examples:
->                       regulator-always-on;
->                   };
->   
-> +                buck5: buck5 {
-> +                    regulator-name = "buck5";
-> +                    regulator-min-microvolt = <500000>;
-> +                    regulator-max-microvolt = <3450000>;
-> +                    regulator-ramp-delay = <5000>;
-> +                    regulator-always-on;
-> +                };
-> +
->                   aldo1 {
->                       regulator-name = "aldo1";
->                       regulator-min-microvolt = <500000>;
+>   static int p1_regulator_probe(struct platform_device *pdev)
 > 
 
 
