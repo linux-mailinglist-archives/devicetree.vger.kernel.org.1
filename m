@@ -1,69 +1,68 @@
-Return-Path: <devicetree+bounces-260596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260598-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QBlsA/9semne6AEAu9opvQ
-	(envelope-from <devicetree+bounces-260596-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:09:35 +0100
+	id EBVgLzxtemne6AEAu9opvQ
+	(envelope-from <devicetree+bounces-260598-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:10:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BAE6A860D
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:09:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20672A8664
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:10:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 69DF2301485E
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 20:09:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6DDFA3022612
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 20:10:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AF7136F434;
-	Wed, 28 Jan 2026 20:09:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E046937417B;
+	Wed, 28 Jan 2026 20:10:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b1+ussOA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RyHHTAlK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD66F328614;
-	Wed, 28 Jan 2026 20:09:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD58B36F435;
+	Wed, 28 Jan 2026 20:10:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769630970; cv=none; b=T/dfL2oPgNx214Fhl2MHE+oqA/QYJbZ60zkjmptt9bfmPzEc25POsB5IOS1QDrs2zkjNCUVnCVlXkO2+zIAdVU4z8RYrLH5xNr3J+HTI2RD6Y5oNh9+EZJzqhea2P1yo7/Uf9G9UZo3icZhq+inv0tU218aRevCLbJm4pm+FI6o=
+	t=1769631033; cv=none; b=M5iXrl1T/ev0erzwA7liYCdWP7TgGOI+krMD8WcYsCRLSworIjHPkRtS1LErKBFDA5M9/MyT3B2wluJ/bsYikDrtbpvhdTHh32V52HXqfNzXIIChWfaE/zyeFWq6Nkjhlah2A2ZFNnCRonjqk1RelpeuG8RHvLvOosUYBHhU9eQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769630970; c=relaxed/simple;
-	bh=xP1UrJYoo9PqSH6m3cGOzNBpuoatCQeonA4dE8uoyt0=;
+	s=arc-20240116; t=1769631033; c=relaxed/simple;
+	bh=cbUTU7UNDP0PcQPrkgEPxOaWJaIp7t5a4TDdNENC9sQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bTgyL73o9DHAoRv3VIzTakZ6nxIiIq7heuW4AI7wtL/4L8PEJcHlQPdsCzzD7B2tdqZsCZOlFkPX+Ny9Ejy7pVY/Ao+ghejdxLjmIiSXz5oRebkes1em7xdnHyNOOq7mgHRAL6LFNs26PsRTEnWqfYv2Tw02DZcWPaHSH0iDh80=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b1+ussOA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10F70C4CEF7;
-	Wed, 28 Jan 2026 20:09:27 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=N3r9t2wQVnvi+bG1Mo5ylhYfk+nv4Lvd5ivtQGdGPbPifA1Fs4EkvSHjmmX58otqpXlqbW0CU7Du1DKagl4BTxvLPUWsKiMNapv/VUu3oFLEP/Z/H5PvF4H0qZMuaB5wy4+oMcePJ8nr9trAe/Q35X/t3JPzseW+2OfSIh7RmsE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RyHHTAlK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 278F7C4CEF1;
+	Wed, 28 Jan 2026 20:10:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769630970;
-	bh=xP1UrJYoo9PqSH6m3cGOzNBpuoatCQeonA4dE8uoyt0=;
+	s=k20201202; t=1769631033;
+	bh=cbUTU7UNDP0PcQPrkgEPxOaWJaIp7t5a4TDdNENC9sQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=b1+ussOA6D74+DDBHmWN/G4Jsyhy9stzvol0jmfEahdAOqtYY/lz1SXXYiOIC9wBk
-	 3JqOF7jrlf9rZtqDYBl0gjB3QXysGPoYcR4TPjCQrkNB53AFNce+qu7TzO1Trpb46U
-	 1Gvdbr8onzOsulpjRsf8hmkG/2U/nZrnQRpjuxsgzcE3GP8wFjLXsMah9somh5InLb
-	 h66Jpf3shJ/ae69WMCaL5c6QOQQqoFr2CyqXxKySH/4rwQaTOcqdp9ZfsFA39Uhp5y
-	 ZKdKsrKsFHaXXI3OPtOD3Q/f9VjsK4Trdu7H3qkXV4EA2zNFeKMe8VEgD7ol8bWlV8
-	 QTABrY2Vfo0Ww==
-Date: Wed, 28 Jan 2026 20:09:25 +0000
+	b=RyHHTAlKb5eS4BFX+Ch9ajyVf8ZIjISXgZhpX65ZmewBuzaGEjODnpepq0cOhxXk+
+	 W9UaEu3RJk+MAqDZ3u9jGCKTdLdT3toK6JV7DrCPovZkLjRxpUi8Qcn9txEPHy9Y+1
+	 KrLShf3iCnzBS8+GW/3JnqVlaId+Xq0SmY8+3LGVboM1vmvI7SCh9PHzP44d4301OE
+	 mcdeHvsYe/MHNgvuNf1CQj8Smc1ZXZVDt42NChEyssMcY0BbdimGVWmUWqOoKZoyOP
+	 NKbAg8iGCxIs8bymtpsQ19QZfpg9uKtAK9CRTvMX7VXmUp2NvcjXXqKpRSFPAUDSpT
+	 wwpo2DdbEvCag==
+Date: Wed, 28 Jan 2026 20:10:28 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Cosmin-Gabriel Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To: Guodong Xu <guodong@riscstar.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	"magnus.damm" <magnus.damm@gmail.com>,
-	"linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/3] dt-bindings: spi: renesas,rzv2h-rspi: allow
- multiple DMAs
-Message-ID: <20260128-debatable-scribe-4e55c208b31a@spud>
-References: <20260127201706.616374-1-cosmin-gabriel.tanislav.xa@renesas.com>
- <20260127201706.616374-2-cosmin-gabriel.tanislav.xa@renesas.com>
- <20260128-sequence-platypus-59ae3318318a@spud>
- <TYRPR01MB15619DCD987445778003A81588591A@TYRPR01MB15619.jpnprd01.prod.outlook.com>
+	Samuel Holland <samuel.holland@sifive.com>,
+	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Evan Green <evan@rivosinc.com>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: riscv: Add Supm extension description
+Message-ID: <20260128-steering-luckless-565bb14495a1@spud>
+References: <20260125-supm-ext-id-v2-0-1e3b9714c860@riscstar.com>
+ <20260125-supm-ext-id-v2-1-1e3b9714c860@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,206 +70,143 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="pLCfrU3bVE1x79WZ"
+	protocol="application/pgp-signature"; boundary="qxguFY5XCRtrbMWp"
 Content-Disposition: inline
-In-Reply-To: <TYRPR01MB15619DCD987445778003A81588591A@TYRPR01MB15619.jpnprd01.prod.outlook.com>
+In-Reply-To: <20260125-supm-ext-id-v2-1-1e3b9714c860@riscstar.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-3.76 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260596-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-260598-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[renesas.com,kernel.org,glider.be,gmail.com,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,renesas.com:email]
-X-Rspamd-Queue-Id: 7BAE6A860D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,microchip.com:email]
+X-Rspamd-Queue-Id: 20672A8664
 X-Rspamd-Action: no action
 
 
---pLCfrU3bVE1x79WZ
+--qxguFY5XCRtrbMWp
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jan 28, 2026 at 06:51:48PM +0000, Cosmin-Gabriel Tanislav wrote:
-> Hi Conor, thank you for your response.
+On Sun, Jan 25, 2026 at 09:36:06AM +0800, Guodong Xu wrote:
+> Add description for the Supm extension. Supm indicates support for pointer
+> masking in user mode. Supm is mandatory for RVA23S64.
 >=20
-> > From: Conor Dooley <conor@kernel.org>
-> > Sent: Wednesday, January 28, 2026 8:09 PM
-> >=20
-> > On Tue, Jan 27, 2026 at 10:17:04PM +0200, Cosmin Tanislav wrote:
-> > > The Renesas RZ/T2H and RZ/N2H SoCs have multiple DMA controllers that
-> > > can be used with the RSPI peripheral. The current bindings only allow=
- a
-> > > single pair of RX and TX DMAs.
-> > >
-> > > Allow multiple DMAs by only restricting the possible names of the DMA
-> > > channels.
-> > >
-> >=20
-> > > All '.*-names$' properties must conform to the string-array.yaml
-> > > meta-schema, which requires both minItems and maxItems properties to =
-be
-> > > present before the items can be a schema. Otherwise, the items need to
-> > > be an array.
-> >=20
-> > Why is this in the commit message?
-> >=20
+> Add dependency check that Supm requires either Smnpm or Ssnpm.
 >=20
-> To provide a context for the maxItems that are needed below, even if
-> there's not really a maximum. Which is why having a maxItems does not
-> really make sense but it is expected by the meta-schema so we can
-> constrain the names of the DMA channels.
+> The Supm extension is ratified in commit d70011dde6c2 ("Update to ratified
+> state") of riscv-j-extension.
 >=20
-> dtschema/meta-schemas/string-array.yaml:
->=20
-> if:
->   not:
->     required:
->       - minItems
->       - maxItems
-> then:
->   properties:
->     items:
->       type: array
+> Signed-off-by: Guodong Xu <guodong@riscstar.com>
 
-Right. You can probably remove all that since I'm asking you to add
-actual constraints to the property.
+FWIW, this is missing my 6.20/7.0 (whichever it ends up being) PR cos
+I'd like some other folks to look at the series. If Paul/Palmer are
+happy with it though,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-> > > Declare a generous maxItems of 32, which should be enough for 16 DMA
-> > > controllers, so that we don't have to update this value ever again, e=
-ven
-> > > if currently the maximum number of DMA controllers on a Renesas SoC is
-> > > 5.
-> >=20
-> > Huh, No. The binding should constrain this to fit what the actual
-> > devices do.
-> >=20
+Cheers,
+Conor.
+
+> ---
+> v2: Add dependency check for Sump.
+>     Put the check blok after single-letters and before Z*.
+> ---
+>  .../devicetree/bindings/riscv/extensions.yaml      | 27 ++++++++++++++++=
+++++++
+>  1 file changed, 27 insertions(+)
 >=20
-> Should the binding for SPI be updated if a device ever comes up with
-> 6 DMA controllers? It seems a bit unrelated to me. In this case, should
-> we constrain the number of dmas and dma-names per SoC? Some may have 2
-> DMA controllers, while others may have 5. Please let me know your
-> thoughts, taking into account that I only added maxItems to satisfy the
-> meta-schema.
-
-Yes, I think you should constrain it to the correct number of providers
-for each device.
-Whether that's done or not, there's not all that much reason to set it
-above whatever the current maximum is, since the binding will have to be
-updated to add the compatible for whatever device exceeds the current max
-and the limit can be increased then.
-
-> > > Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.co=
-m>
-> > > ---
-> > >
-> > > V2:
-> > >  * new patch
-> > >
-> > >  .../devicetree/bindings/spi/renesas,rzv2h-rspi.yaml    | 10 ++++++--=
---
-> > >  1 file changed, 6 insertions(+), 4 deletions(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/spi/renesas,rzv2h-rspi=
-=2Eyaml
-> > b/Documentation/devicetree/bindings/spi/renesas,rzv2h-rspi.yaml
-> > > index a588b112e11e..383e97f0dabd 100644
-> > > --- a/Documentation/devicetree/bindings/spi/renesas,rzv2h-rspi.yaml
-> > > +++ b/Documentation/devicetree/bindings/spi/renesas,rzv2h-rspi.yaml
-> > > @@ -57,13 +57,15 @@ properties:
-> > >        - const: presetn
-> > >        - const: tresetn
-> > >
-> > > -  dmas:
-> > > -    maxItems: 2
-> > > +  dmas: true
-> >=20
-> > This should have the same constraints as dma-names. You've now allowed
-> > this to have 1 and 33 dmas, because there's no requirement to have
-> > dma-names when you have dmas.
-> >=20
+> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Do=
+cumentation/devicetree/bindings/riscv/extensions.yaml
+> index c6ec9290fe07..2b0a8a93bb21 100644
+> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> @@ -262,6 +262,23 @@ properties:
+>              ratified in RISC-V Profiles Version 1.0, with commit b1d8066=
+05f87
+>              ("Updated to ratified state.")
+> =20
+> +        - const: supm
+> +          description: |
+> +            The standard Supm extension for pointer masking support in u=
+ser
+> +            mode (U-mode) as ratified at commit d70011dde6c2 ("Update to
+> +            ratified state") of riscv-j-extension.
+> +
+> +            Supm represents a combination of underlying hardware capabil=
+ity
+> +            (Smnpm or Ssnpm), U-mode consumer privilege level, and M/S-m=
+ode
+> +            software configuration that enables pointer masking for U-mo=
+de.
+> +
+> +            DO NOT include this property in device trees targeting privi=
+leged
+> +            system software (S-mode or M-mode).
+> +
+> +            This property is only appropriate in device trees provided to
+> +            U-mode software where the next-higher-privilege-mode supports
+> +            Smnpm or Ssnpm and enables it for U-mode.
+> +
+>          - const: svade
+>            description: |
+>              The standard Svade supervisor-level extension for SW-managed=
+ PTE A/D
+> @@ -907,6 +924,16 @@ properties:
+>          then:
+>            contains:
+>              const: b
+> +      # Supm depends on Smnpm or Ssnpm
+> +      - if:
+> +          contains:
+> +            const: supm
+> +        then:
+> +          oneOf:
+> +            - contains:
+> +                const: smnpm
+> +            - contains:
+> +                const: ssnpm
+>        # Za64rs and Ziccrse depend on Zalrsc or A
+>        - if:
+>            contains:
 >=20
-> I agree, I will fix it for V2 once you decide how to proceed with the
-> other comments.
+> --=20
+> 2.43.0
 >=20
-> > >
-> > >    dma-names:
-> > > +    minItems: 2
-> > > +    maxItems: 32
-> > >      items:
-> > > -      - const: rx
-> > > -      - const: tx
-> > > +      enum:
-> > > +        - rx
-> > > +        - tx
-> >=20
-> > You've changed this to allow 32 dma-names, but they all need to be
-> > called either "rx" or "tx", how is a driver meant to use dma-names to
-> > get the second pair of dma channels? Shouldn't anything in excess of the
-> > first two start getting numbers appended so that a driver can actually
-> > request them?
-> >=20
->=20
-> The DMA core handles multiple DMA channels with the same name by checking
-> their availability consecutively until finding an available one.
 
-TIL
-
-> I agree that this is not pretty but this pattern is already used in the
-> bindings / device tree for many Renesas IPs.
->=20
-> There's even an exception inside dt-schema specifically for this.
-
-Hmm, I see. Can you please put this into the commit message cos otherwise
-this looks really strange!
-
->=20
-> dtschema/schemas/dma/dma.yaml:
->   dma-names:
->     anyOf:
->       - uniqueItems: true
->       - items:
->           # Hack around Renesas bindings which repeat entries to support
->           # multiple possible DMA providers
->           enum: [rx, tx]
->=20
-> > pw-bot: changes-requested
-> >=20
-> > Conor.
-
---pLCfrU3bVE1x79WZ
+--qxguFY5XCRtrbMWp
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaXps9QAKCRB4tDGHoIJi
-0sf8AP9pbUvn4s5qF0PCWtCLb1jAA/yOxrWa6f659scDXYSBDgEAxzfDklN9nHqu
-5GOKbb6nNI1RWhMrVMyb8bQ7bXqDPAY=
-=XoY0
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaXptMwAKCRB4tDGHoIJi
+0i/IAPwIYQeMxvZnB3qX0r5k2G4LWuHgJmduU+vhmMmN4Dp59gD/S6sCI+hDlciv
+V3PF2CQwUvIJFEDbW9Mt1wkk+BIUggk=
+=TPgz
 -----END PGP SIGNATURE-----
 
---pLCfrU3bVE1x79WZ--
+--qxguFY5XCRtrbMWp--
 
