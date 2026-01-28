@@ -1,200 +1,276 @@
-Return-Path: <devicetree+bounces-260597-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260596-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wMqcHhZtemne6AEAu9opvQ
-	(envelope-from <devicetree+bounces-260597-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:09:58 +0100
+	id QBlsA/9semne6AEAu9opvQ
+	(envelope-from <devicetree+bounces-260596-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:09:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33407A8641
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:09:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BAE6A860D
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:09:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 110B23017BDF
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 20:09:43 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 69DF2301485E
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 20:09:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AFCB372B55;
-	Wed, 28 Jan 2026 20:09:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AF7136F434;
+	Wed, 28 Jan 2026 20:09:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b="lfFj13QE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b1+ussOA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0046e701.pphosted.com (mx0b-0046e701.pphosted.com [67.231.157.77])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A83E6328614;
-	Wed, 28 Jan 2026 20:09:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.157.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD66F328614;
+	Wed, 28 Jan 2026 20:09:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769630980; cv=none; b=Zo59MPhFJb+4+gogoFiqxyzDDRmrFMuNMLqafe1P3w00++7HiSVge7Qv/0xXRGRptBwMtEqHWfzqKwYPqTb8xYBLZs8rcFY0jEu0hkkBOk0m8fwzoQB1o0hb6puKu15E9l37oa2OKaP4rqPFIC+f1yPLwvwWR6PK+Jzk8jvUa5w=
+	t=1769630970; cv=none; b=T/dfL2oPgNx214Fhl2MHE+oqA/QYJbZ60zkjmptt9bfmPzEc25POsB5IOS1QDrs2zkjNCUVnCVlXkO2+zIAdVU4z8RYrLH5xNr3J+HTI2RD6Y5oNh9+EZJzqhea2P1yo7/Uf9G9UZo3icZhq+inv0tU218aRevCLbJm4pm+FI6o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769630980; c=relaxed/simple;
-	bh=Oeeg4cjce/fxCJNh2IVHR8NEWcBWxrm3D4hfbEhsWTo=;
+	s=arc-20240116; t=1769630970; c=relaxed/simple;
+	bh=xP1UrJYoo9PqSH6m3cGOzNBpuoatCQeonA4dE8uoyt0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VlpYyX7A4iRyIxCt+zis/aW3o+/nUWljwDH3ruby6NuIspAYAQ1Te7LbC+Xj8vEDCD3ITPfieTnJxFGZIOjA1tlR4BPGl49M/vUN5zz5Ihy0fDYGCSw+x06w49eK6d/lfOq/ltzs/KNIsv4Uy1R26mWcTKl48KZLGTRdtpiE1hc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=plexus.com; spf=pass smtp.mailfrom=plexus.com; dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b=lfFj13QE; arc=none smtp.client-ip=67.231.157.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=plexus.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=plexus.com
-Received: from pps.filterd (m0425993.ppops.net [127.0.0.1])
-	by mx0b-0046e701.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60SG9rDS3469621;
-	Wed, 28 Jan 2026 14:09:19 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=plexus.com; h=cc
-	:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=pps1; bh=fmLMp+sEH0p8Dn7Ha2MV6To9ci4B6
-	Z6QGC+jJWGXARk=; b=lfFj13QE7oK77xXuK/tci0YbRahXU8roy9XS5V+Tlsci8
-	Z6ARMqLlAHBa5/yzE8egAOFFpmY8O7+aMR5zY1IjQniWhi6Q317deHQZjwwYfIZY
-	k7a6eSjnage1ho5WXVJb1D/EecVGn1LfBeTtGHVq3hMA/4GXpPxV5mewx8ylS6TV
-	ZEYM748S8ahF2451ljf8rO2igBSIG40asNuHelLI0NVMB7xgo1TwrNOau3tllvn/
-	9nGFfr74iy92vFlsyuF38/kPYvU6+U5Q4+kOmOAJwAmJxnijVpatHlPWtUEDnfjE
-	8OwrnDceJfIQqWD/Q+hVGMgZ6TQtOyvUsX5twazdg==
-Received: from intranet-smtp.plexus.com ([64.215.193.254])
-	by mx0b-0046e701.pphosted.com (PPS) with ESMTPS id 4by97v9qn9-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Wed, 28 Jan 2026 14:09:19 -0600 (CST)
-Received: from localhost (unknown [10.255.48.203])
-	by intranet-smtp.plexus.com (Postfix) with ESMTP id 9818F580C1;
-	Wed, 28 Jan 2026 14:09:18 -0600 (CST)
-Date: Wed, 28 Jan 2026 14:05:25 -0600
-From: Danny Kaehn <danny.kaehn@plexus.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Benjamin Tissoires <bentiss@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Andi Shyti <andi.shyti@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-        Jiri Kosina <jikos@kernel.org>, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Ethan Twardy <ethan.twardy@plexus.com>, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Leo Huang <leohu@nvidia.com>,
-        Arun D Patil <arundp@nvidia.com>, Willie Thai <wthai@nvidia.com>,
-        Ting-Kai Chen <tingkaic@nvidia.com>
-Subject: Re: [PATCH v13 1/3] dt-bindings: i2c: Add CP2112 HID USB to SMBus
- Bridge
-Message-ID: <20260128200525.GA818373@LNDCL34533.neenah.na.plexus.com>
-References: <20260127-cp2112-dt-v13-0-6448ddd4bf22@plexus.com>
- <20260127-cp2112-dt-v13-1-6448ddd4bf22@plexus.com>
- <20260127160217.GA3776731@LNDCL34533.neenah.na.plexus.com>
- <20260128-magnificent-faithful-otter-c4f900@quoll>
+	 Content-Type:Content-Disposition:In-Reply-To; b=bTgyL73o9DHAoRv3VIzTakZ6nxIiIq7heuW4AI7wtL/4L8PEJcHlQPdsCzzD7B2tdqZsCZOlFkPX+Ny9Ejy7pVY/Ao+ghejdxLjmIiSXz5oRebkes1em7xdnHyNOOq7mgHRAL6LFNs26PsRTEnWqfYv2Tw02DZcWPaHSH0iDh80=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b1+ussOA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10F70C4CEF7;
+	Wed, 28 Jan 2026 20:09:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769630970;
+	bh=xP1UrJYoo9PqSH6m3cGOzNBpuoatCQeonA4dE8uoyt0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=b1+ussOA6D74+DDBHmWN/G4Jsyhy9stzvol0jmfEahdAOqtYY/lz1SXXYiOIC9wBk
+	 3JqOF7jrlf9rZtqDYBl0gjB3QXysGPoYcR4TPjCQrkNB53AFNce+qu7TzO1Trpb46U
+	 1Gvdbr8onzOsulpjRsf8hmkG/2U/nZrnQRpjuxsgzcE3GP8wFjLXsMah9somh5InLb
+	 h66Jpf3shJ/ae69WMCaL5c6QOQQqoFr2CyqXxKySH/4rwQaTOcqdp9ZfsFA39Uhp5y
+	 ZKdKsrKsFHaXXI3OPtOD3Q/f9VjsK4Trdu7H3qkXV4EA2zNFeKMe8VEgD7ol8bWlV8
+	 QTABrY2Vfo0Ww==
+Date: Wed, 28 Jan 2026 20:09:25 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Cosmin-Gabriel Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	"magnus.damm" <magnus.damm@gmail.com>,
+	"linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings: spi: renesas,rzv2h-rspi: allow
+ multiple DMAs
+Message-ID: <20260128-debatable-scribe-4e55c208b31a@spud>
+References: <20260127201706.616374-1-cosmin-gabriel.tanislav.xa@renesas.com>
+ <20260127201706.616374-2-cosmin-gabriel.tanislav.xa@renesas.com>
+ <20260128-sequence-platypus-59ae3318318a@spud>
+ <TYRPR01MB15619DCD987445778003A81588591A@TYRPR01MB15619.jpnprd01.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="pLCfrU3bVE1x79WZ"
 Content-Disposition: inline
-In-Reply-To: <20260128-magnificent-faithful-otter-c4f900@quoll>
-X-Proofpoint-Reinject: loops=2 maxloops=12
-X-Authority-Analysis: v=2.4 cv=NMjYOk6g c=1 sm=1 tr=0 ts=697a6cef cx=c_pps
- a=356DXeqjepxy6lyVU6o3hA==:117 a=356DXeqjepxy6lyVU6o3hA==:17
- a=kj9zAlcOel0A:10 a=vUbySO9Y5rIA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=Y_joWELsAAAA:8 a=DhTynmGxdE76aj_yemYA:9 a=CjuIK1q_8ugA:10
- a=g_BQsM8wYJVSTWLOHH1t:22
-X-Proofpoint-ORIG-GUID: NYeVex2Bi985EAWxbu_8AqS2ga0Q03-t
-X-Proofpoint-GUID: j19qSGvH8IEpzanveuemV69Q4wFBJ3CO
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI4MDE2NiBTYWx0ZWRfX7h71CsGn81Uo
- O1H0fgFDJeATCkEUfKD8nosI++J8NbeW6HB2RT7F9NUYNqNFN6PEh7g3eo7TEJblStlh4VF9uLE
- 8+akhfJn1Jf6hfAq65dqoFyijy0Zn9atAOW2ui8EdbJMEbcaZroJgxeiR4uJMJ007XnmiGw3GP2
- 72ex+XJP4Zvvukyaz5I7nyA+GBzn4cpxbXKNX/eH4mOefzNtH43b3eEdBKdLsba37LXE5dKIaG4
- Uhd6Jvx4I4XsfrWrYcTirhCywaLQPA3jWKi3NzW8A8QANtiCY/dBbFi/LXUPLvGm2uONYVGywvC
- 1eArPHEdHuf0gfc8JDMvqkMiXIp+EI0WZHY6jpLlCWxEyjyzkuwp/3Ru+RerokJf+OxE6fbcAYi
- ydRuxMAEytpwsRQWnwtAij1KiR5F0s95KH831uNGNmaronMOQNwV9TeF1irf99jI1EJQmPuG8aA
- YFHdWVgSi4yQrF3Njbg==
-X-Proofpoint-Spam-Reason: orgsafe
+In-Reply-To: <TYRPR01MB15619DCD987445778003A81588591A@TYRPR01MB15619.jpnprd01.prod.outlook.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[plexus.com,reject];
-	R_DKIM_ALLOW(-0.20)[plexus.com:s=pps1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260597-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260596-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[renesas.com,kernel.org,glider.be,gmail.com,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,linux.intel.com,vger.kernel.org,gmail.com,linaro.org,plexus.com,nvidia.com];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[danny.kaehn@plexus.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[plexus.com:+];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	TO_DN_SOME(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[LNDCL34533.neenah.na.plexus.com:mid,plexus.com:email,plexus.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 33407A8641
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,renesas.com:email]
+X-Rspamd-Queue-Id: 7BAE6A860D
 X-Rspamd-Action: no action
 
-On Wed, Jan 28, 2026 at 11:35:25AM +0100, Krzysztof Kozlowski wrote:
-> On Tue, Jan 27, 2026 at 10:02:17AM -0600, Danny Kaehn wrote:
-> > On Tue, Jan 27, 2026 at 08:47:48AM -0600, Danny Kaehn wrote:
-> > > This is a USB HID device which includes an I2C controller and 8 GPIO pins.
-> > > 
-> > > The binding allows describing the chip's gpio and i2c controller in DT,
-> > > with the i2c controller being bound to a subnode named "i2c". This is
-> > > intended to be used in configurations where the CP2112 is permanently
-> > > connected in hardware.
-> > > 
-> > > Signed-off-by: Danny Kaehn <danny.kaehn@plexus.com>
+
+--pLCfrU3bVE1x79WZ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Jan 28, 2026 at 06:51:48PM +0000, Cosmin-Gabriel Tanislav wrote:
+> Hi Conor, thank you for your response.
+>=20
+> > From: Conor Dooley <conor@kernel.org>
+> > Sent: Wednesday, January 28, 2026 8:09 PM
+> >=20
+> > On Tue, Jan 27, 2026 at 10:17:04PM +0200, Cosmin Tanislav wrote:
+> > > The Renesas RZ/T2H and RZ/N2H SoCs have multiple DMA controllers that
+> > > can be used with the RSPI peripheral. The current bindings only allow=
+ a
+> > > single pair of RX and TX DMAs.
+> > >
+> > > Allow multiple DMAs by only restricting the possible names of the DMA
+> > > channels.
+> > >
+> >=20
+> > > All '.*-names$' properties must conform to the string-array.yaml
+> > > meta-schema, which requires both minItems and maxItems properties to =
+be
+> > > present before the items can be a schema. Otherwise, the items need to
+> > > be an array.
+> >=20
+> > Why is this in the commit message?
+> >=20
+>=20
+> To provide a context for the maxItems that are needed below, even if
+> there's not really a maximum. Which is why having a maxItems does not
+> really make sense but it is expected by the meta-schema so we can
+> constrain the names of the DMA channels.
+>=20
+> dtschema/meta-schemas/string-array.yaml:
+>=20
+> if:
+>   not:
+>     required:
+>       - minItems
+>       - maxItems
+> then:
+>   properties:
+>     items:
+>       type: array
+
+Right. You can probably remove all that since I'm asking you to add
+actual constraints to the property.
+
+> > > Declare a generous maxItems of 32, which should be enough for 16 DMA
+> > > controllers, so that we don't have to update this value ever again, e=
+ven
+> > > if currently the maximum number of DMA controllers on a Renesas SoC is
+> > > 5.
+> >=20
+> > Huh, No. The binding should constrain this to fit what the actual
+> > devices do.
+> >=20
+>=20
+> Should the binding for SPI be updated if a device ever comes up with
+> 6 DMA controllers? It seems a bit unrelated to me. In this case, should
+> we constrain the number of dmas and dma-names per SoC? Some may have 2
+> DMA controllers, while others may have 5. Please let me know your
+> thoughts, taking into account that I only added maxItems to satisfy the
+> meta-schema.
+
+Yes, I think you should constrain it to the correct number of providers
+for each device.
+Whether that's done or not, there's not all that much reason to set it
+above whatever the current maximum is, since the binding will have to be
+updated to add the compatible for whatever device exceeds the current max
+and the limit can be increased then.
+
+> > > Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.co=
+m>
 > > > ---
-> > 
-> > Hi Folks (Intended for Rob or Krzysztof),
-> > 
-> > Wasn't sure the best way to go about this, but trying to see the best
-> > way to get a message in front of you regarding an ask from Andy S.
-> > 
-> > In [1], Rob H initially directed that the gpio chip share a node with
-> > the CP2112 itself, rather than having a subnode named 'gpio'.
-> > 
-> > Initially, I did the same thing for both DT and ACPI, but Andy S.
-> > directed that ACPI should not have the node be shared in that way.
-> > 
-> > With the last revision of this patch, Andy S. asked that I try to get a
-> > rationalle from Rob (or other DT expert presumably) on why the gpio node
-> > should be combined with the parent, rather than being a named subnode
-> > [2].
-> 
-> Because it is explicitly asked in writing bindings. Please read it.
-> 
-> Because we do not want Linux driver model affecting design of bindings
-> and DTS, by subnodes present only to instantiate Linux drivers. I do not
-> care about driver model in this review and I do not see any reason it
-> should make DTS less obvious or readable.
-> 
-> That's actually rule communicated many times, also documented in writing
-> bindings and in recent talks.
-> 
+> > >
+> > > V2:
+> > >  * new patch
+> > >
+> > >  .../devicetree/bindings/spi/renesas,rzv2h-rspi.yaml    | 10 ++++++--=
+--
+> > >  1 file changed, 6 insertions(+), 4 deletions(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/spi/renesas,rzv2h-rspi=
+=2Eyaml
+> > b/Documentation/devicetree/bindings/spi/renesas,rzv2h-rspi.yaml
+> > > index a588b112e11e..383e97f0dabd 100644
+> > > --- a/Documentation/devicetree/bindings/spi/renesas,rzv2h-rspi.yaml
+> > > +++ b/Documentation/devicetree/bindings/spi/renesas,rzv2h-rspi.yaml
+> > > @@ -57,13 +57,15 @@ properties:
+> > >        - const: presetn
+> > >        - const: tresetn
+> > >
+> > > -  dmas:
+> > > -    maxItems: 2
+> > > +  dmas: true
+> >=20
+> > This should have the same constraints as dma-names. You've now allowed
+> > this to have 1 and 33 dmas, because there's no requirement to have
+> > dma-names when you have dmas.
+> >=20
+>=20
+> I agree, I will fix it for V2 once you decide how to proceed with the
+> other comments.
+>=20
+> > >
+> > >    dma-names:
+> > > +    minItems: 2
+> > > +    maxItems: 32
+> > >      items:
+> > > -      - const: rx
+> > > -      - const: tx
+> > > +      enum:
+> > > +        - rx
+> > > +        - tx
+> >=20
+> > You've changed this to allow 32 dma-names, but they all need to be
+> > called either "rx" or "tx", how is a driver meant to use dma-names to
+> > get the second pair of dma channels? Shouldn't anything in excess of the
+> > first two start getting numbers appended so that a driver can actually
+> > request them?
+> >=20
+>=20
+> The DMA core handles multiple DMA channels with the same name by checking
+> their availability consecutively until finding an available one.
 
-Hi Krzysztof,
+TIL
 
-Thanks for all of the replies. It's never my intent to waste
-maintainers' time, so apologies if due-diligence was missed here on my
-part.
+> I agree that this is not pretty but this pattern is already used in the
+> bindings / device tree for many Renesas IPs.
+>=20
+> There's even an exception inside dt-schema specifically for this.
 
-When initially writing this binding, I did search around for any kernel
-doc or binding that might provide guidance on how the nodes could be    
-split, but failed to find anything particularly relevent, aside from
-general principles which can be applied to come to the same conclusion
-you have about why the gpio and i2c nodes are necessarily different
-because of i2c representing a true bus. This is likely a failing on my
-part, but I'm not sure exactly where I'd go to find rules like this
-which, as you say, have been communicated many times, aside from
-querying the mailing lists.
+Hmm, I see. Can you please put this into the commit message cos otherwise
+this looks really strange!
 
-I've started to go through some recent talks to see context there, and
-came across "How to Get Your DT Schema Bindings Accepted in Less Than
-10 Iterations"... clearly I've failed on that here :)
+>=20
+> dtschema/schemas/dma/dma.yaml:
+>   dma-names:
+>     anyOf:
+>       - uniqueItems: true
+>       - items:
+>           # Hack around Renesas bindings which repeat entries to support
+>           # multiple possible DMA providers
+>           enum: [rx, tx]
+>=20
+> > pw-bot: changes-requested
+> >=20
+> > Conor.
 
-Thanks,
+--pLCfrU3bVE1x79WZ
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Danny Kaehn
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaXps9QAKCRB4tDGHoIJi
+0sf8AP9pbUvn4s5qF0PCWtCLb1jAA/yOxrWa6f659scDXYSBDgEAxzfDklN9nHqu
+5GOKbb6nNI1RWhMrVMyb8bQ7bXqDPAY=
+=XoY0
+-----END PGP SIGNATURE-----
+
+--pLCfrU3bVE1x79WZ--
 
