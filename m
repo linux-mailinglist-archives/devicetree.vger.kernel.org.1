@@ -1,85 +1,85 @@
-Return-Path: <devicetree+bounces-260309-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260310-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CJ7fMxbmeWl60wEAu9opvQ
-	(envelope-from <devicetree+bounces-260309-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 11:33:58 +0100
+	id SCuqMgbmeWl60wEAu9opvQ
+	(envelope-from <devicetree+bounces-260310-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 11:33:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1CD49F87F
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 11:33:57 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 761629F862
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 11:33:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 79D20300BE09
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 10:33:33 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 7426A300E0E3
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 10:33:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4CB932AAD9;
-	Wed, 28 Jan 2026 10:33:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58865331222;
+	Wed, 28 Jan 2026 10:33:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KMX7uLwt"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Iy8y8AcA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDF3D23D7E6
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 10:33:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFE1729B78F
+	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 10:33:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769596405; cv=none; b=Lbh2J5UXpixrD+RcQmnibZ/SGaH6utstJGCOhhkkjMLQJ/MUna8OQMPsLE9JlDoUCeLkLJvU3BGm5kD2v5CYZham5mKsZ1o84jiIuQMEnBS3bFAVMj/PIQ/Ae/S4XCJV2QAatXoASAqoOiC4KAMNQ/+dnLhTKB+igSB57q4e2fI=
+	t=1769596406; cv=none; b=gYdCsbeGPkRGhNYwCc2FHZhbAwJzBewJFLDQBNEZjAjwHi3FcOuXqbDCF0w3TU5atyoOOlPnKjY9YxuxG4OQ5YQsEzoudb2Gzjg3MfS+lT2LHW8r63kejAbpl91oaFXW8WSQVJ0e1MgH26JeQ7mramr70PlCCiUeEz2z/gVWPAg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769596405; c=relaxed/simple;
-	bh=NTt92laGBXWa0dXkz821jS+e4ktZkVNCs2eds0MYEEw=;
+	s=arc-20240116; t=1769596406; c=relaxed/simple;
+	bh=ggM0lmW6cYYlFM//90YRvoXSRybaUBcYX+3iqltLc8s=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=VFJMzcphrrhkuvaG6pjqEWQlTyXdynhpdlgbuuo0WxlVpDTj69c8lHGd6PgmZE2J05JDlN9iAy9Pm8LKe2FznL0ksBt7qXtCloUPzciPU5G/CYCuhpkDu3b+SSFL6ZaNWk28iGZSq7588+OYmcEM+wX6Cs67fQa60M0jOYroumM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KMX7uLwt; arc=none smtp.client-ip=209.85.128.44
+	 In-Reply-To:To:Cc; b=htX4qqaegNfPdtd4deWObbXXJGgtPOi0/v6lRICq58VLqJYSW3YoKNd/6MF8JaPsd/BpzjEvBv8+tBOiCSrvrFR0a4rsNxV79AfGBes6bNTb7+S+Gca/iOC0mwDHyD6vEr/8C6VyzG57K5MOuxUynvMra2dJ1nc1JitXTusQoFI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Iy8y8AcA; arc=none smtp.client-ip=209.85.221.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4801bc32725so51257925e9.0
-        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 02:33:23 -0800 (PST)
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-42fb4eeb482so4579092f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 02:33:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1769596402; x=1770201202; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1769596403; x=1770201203; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=AZKhZYCrGgSV5qxzyJJ87NXFvhprZ3awbdJBkiwYbV0=;
-        b=KMX7uLwtZsWYI2pLrnEJJgcDIeyw5blcDDBu20xQIEEKilresGm8u6520VPntGodk0
-         VY+YnyRbBJmNUJ4V8I2EXLcxrhe69boFToTuRc+jL7a5dbSWVhr9ewe2QRgfGgxslqZf
-         Npnvp0Xs9dbkIyn8HkILuzQG6pUdKUEU0q4z4/LDuIneJ+Do+sRQOLpqv5AlSF+YEBKt
-         QNFnXM5y20abrYP2y6XPoHCpxKE3g0FN75GlIOqxsTD3rYVqyslLHEY/F0bnHUd+MPX7
-         1AMZVk5JPt7pOil8yhHJf02Ujfmf79EZQ4eVXICS44P6j52l/avf5nwAUgGy1QGSV8wp
-         V3Pg==
+        bh=K+MjNhLJgCjFiDuewhrwX20BQhE/Cx/HeW2YHayAgIQ=;
+        b=Iy8y8AcAmxusgwhMjluzs4TpjC6A9Jt7ZSyF7OynCuvmGw7kVioSdTCAMNMKAqyPyi
+         G4R1O+9whca7LxM1N3WcfFFh1W6NsAujJEmk03SnDwENHjeg7G8TxU0qx7L4vBK5VUhR
+         /FDOIvQ94PUYD54Pn+0deyUcdCNoxdDJEpYf3tuI+h6KovVPxA2qnO6nLzT/dYwDctps
+         fropR0th5lClQkX/BynsAZRpGKPyjfUiWflIxh4P3bFK2Gg1+dLsPp05+0evlGdwILoE
+         ++wlxntPKxbU4twvPgWNrd85dI4k8M28C0Jfc1XlXWqww9HbMy9J6BukVKoFTjGSU2re
+         v8iQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769596402; x=1770201202;
+        d=1e100.net; s=20230601; t=1769596403; x=1770201203;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=AZKhZYCrGgSV5qxzyJJ87NXFvhprZ3awbdJBkiwYbV0=;
-        b=dQ8Qlo3i2usL3lpmjxYfUMbGV+1AcCv7zPFWD+cX2QBPqCWk3DaEpKFrryhc/BWSdo
-         D4XHPPaRUyGOnUk/7IaYBfsh2M6WPGkcmlyqxOVDEfD6O61J+7gP83L4lVcbGAUSZaiM
-         H52J2jLYehX1s4KxO0Nka4L8BP+nxnge+6U1L0ilKZRQS5BMFU4Dm4OlyTQPhWRNRSWN
-         dnulTicaU9cgdMcw8iN6R11REAQvKbfjk5WJoRG6n0jAeu7IR5ac3qIMac6BqWbR1GoV
-         UIkmbTdR8P/HOUsCGFlloLNxgGgA8+C7a8JYY6mrDi0rfDru5Zu8hOg7glE2Jp5R/Uyx
-         DHpA==
-X-Forwarded-Encrypted: i=1; AJvYcCWD0tUjMdDuTLle/ivOROkC7BZS/NFCDHVBTe+w3LBfNP1dzY6D4VkGDyagVLlHWgLgsyLc4+LzG6He@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZqD+hEG96pImCQRnpbNZVrLhhB3AYPFMWfqbkR0CyvsK6I7/F
-	BiEHE3MbrF1zL28d92T40cNdTC9sMf1f1EwXLPOyf0rT4uSEjAZEYU/iGWp9+cCZI65yYkaoMjD
-	+usJH
-X-Gm-Gg: AZuq6aIJFmxyoQsRTcFkxzAcePiKFwWKBezd374C3fAO3zwCOtDwJtqfOj1zkGoetE7
-	BiMn6myeIm0lkhA1U0XbKqG0yttjbhkdPbuJ2fES/vrIc2py4esebgZQ3qWz41fCx4+2XyPXXkI
-	TytCwsdekEiB2x2C5OwfcfpuTG+BBg28AzOsowjtgiiubk/0wZIlKhjc6RNd2KIbp2Bwr4hbw8p
-	hs/oO8A/IGPhXZFZNmT99RVbNe8M482zQkSjDOtPZu644+RRfQd02u5FPQbavh2NB6QtLIPK14L
-	FY3gIvTTnVTJxnX62VmL06GZST6LrqsEOLw+oBr0qxP4tFrUtZ/+KIUaBRKS1YB+OAJ8v1MNLMP
-	BqeMpQ7zhg/1MuMDIXHjs11zsKtCnMoXUTLgoH5Z0ZuDyG5nuiUMlSYHOBP5XodU2SYQD/qkHU2
-	iBbV9/my7XLOEeEZKcIqObYmls95cRcQc=
-X-Received: by 2002:a05:600c:1d16:b0:47a:8088:439c with SMTP id 5b1f17b1804b1-48069c9ec08mr66603525e9.35.1769596402191;
-        Wed, 28 Jan 2026 02:33:22 -0800 (PST)
+        bh=K+MjNhLJgCjFiDuewhrwX20BQhE/Cx/HeW2YHayAgIQ=;
+        b=e77Us0lxSJCu91KxYTVVlW013hvvzmKbNaibNzONenl4uwKcDlF3Mr5JuaDJKY0t/v
+         Vop4ZtGMxqt6wkAWGTfv1z8g5A9oowd+HK3I/imCOwpgG7cBLyqUJijVr+w/Obtq99S6
+         DM1TDFTUcgBOW+7lwxArAxk164kRFhEf7W+RN51SWZSTxxRVoI7obrDfmdvMa2OM5Arm
+         ooI8anVVRTPd4TcPhd4nRY4a1qxeaA2rji7It8WS8QmfRe/pQl8EoXdqyITt2fSioDIm
+         0y93rr9AV7cIMp9WQJ39aUqoxLi0r3zStC/+Bmt5cWBBcdJl4fUw+b/BUfZB5wK4o67C
+         vWmA==
+X-Forwarded-Encrypted: i=1; AJvYcCWiWG3h//8UMwDWFFrRO74Vzjc0j8e414jPXlLmxjWr5BAhnijVw/iH42qdCQ+GWpRfOd7pNJmyIrxE@vger.kernel.org
+X-Gm-Message-State: AOJu0YwwzLXkOPRSbvPZcbJpPIwjgwGdYnqVR74eUKXgdu66ZCWeYE5/
+	5UxfwgPxDCsdbmLXD6DSqO+JsAIuCgjbO1uPFDw/bDRvjhy1FxoV/XPynyk63oAGbE74PaieaE6
+	WGZ7M
+X-Gm-Gg: AZuq6aL4MUZwlUVwQYnhw2nxvpowFm0/+vd+N8SyJ9kUbvpFqV4njKfCg49miJREp5a
+	G1gXoqEhedLIgKLz1M5/pnNmy7rjmHQC3FOUod8IA4siB6q4c//RavNHL0mu6jrLe+etT7C5HeY
+	ZoSjxutWhVAYbnWEs/K1+DGaRZyNG0a/sicQ6TNyG1cio1b4O7NKJBA6aulMOudjUJdwidJ4dF2
+	LcGFU0qFxGixx6HINrD0CUBNu9t+/vG4Ol5VxZ/Q7Rzoq9Nvat+Y2VC0x4nYKPA/vINZwioAGgQ
+	BOvNLcb5qeBmUW/7d4Cg+j97zPQynMgCAXCp9mzWngbTrYN6Sz+BiWC4gghtwCFyLa4mqs5YsLS
+	9zQrDqQF7E6Z/X3UugZm/ZV0W1tIv6CmZWNXsvz6SZuo5dRTgVWLFUZ0sDlX/BEuDO/qd5fLIdU
+	Scs9FOLd8FbNiYJHR5OndGCTSIJW/+3lY=
+X-Received: by 2002:a05:6000:186d:b0:430:f985:a7b2 with SMTP id ffacd0b85a97d-435dd1cc3f6mr6537266f8f.51.1769596403031;
+        Wed, 28 Jan 2026 02:33:23 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435e132356dsm6241692f8f.33.2026.01.28.02.33.21
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435e132356dsm6241692f8f.33.2026.01.28.02.33.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Jan 2026 02:33:21 -0800 (PST)
+        Wed, 28 Jan 2026 02:33:22 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Wed, 28 Jan 2026 11:33:17 +0100
-Subject: [PATCH 2/3] arm64: dts: qcom: sm8650: add CPU cache size
+Date: Wed, 28 Jan 2026 11:33:18 +0100
+Subject: [PATCH 3/3] arm64: dts: qcom: sm8650: fix soundwire ports
  properties
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -89,7 +89,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260128-topic-sm8650-upstream-cpu-props-v1-2-9fbb5efe7f07@linaro.org>
+Message-Id: <20260128-topic-sm8650-upstream-cpu-props-v1-3-9fbb5efe7f07@linaro.org>
 References: <20260128-topic-sm8650-upstream-cpu-props-v1-0-9fbb5efe7f07@linaro.org>
 In-Reply-To: <20260128-topic-sm8650-upstream-cpu-props-v1-0-9fbb5efe7f07@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -99,20 +99,20 @@ To: Bjorn Andersson <andersson@kernel.org>,
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4680;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4260;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=NTt92laGBXWa0dXkz821jS+e4ktZkVNCs2eds0MYEEw=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBpeeXund8wUunw3MVwyirTyS3bly+wNI7jZ3rG3N/z
- oz2zRz6JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCaXnl7gAKCRB33NvayMhJ0bJfD/
- wL96X2/VTV/Cx7MTWUbHACD6rX4oqVHql99OTq6Fxh8oU/aiPBfWx1GwpQ48hH/RCEdJcdJw4f8k7i
- d9GESHE6MXgZXaQw3KkYC8rvfYmV/jl19Npag6YSpI9/WS1oE5QktpaSIhA6qlPwPYm5TT0Ext3TOn
- 3P2waGtgJ+5F5QwmUlutunVtMW59vWp+hnUL57U9atQFLe6pRbVSoZFWFOBwJVZ3h1UZs7w9isIERn
- 6hbo04+VSmXAU0p6mkTloSZZP/SFCx+XJHYsCw9KFlfJDwfrJLOVQU1mRUFBFu1TgClaJBNuffYsCI
- fMb4Iq2tHFNBVz7FhtTBOAGectzWEr7B5b0JacB55o9BSuZIIKxaF6kgDQJy/1pZTvrb3dd+kYz4ws
- 6z9KCZww43b9tO2lpEOl5Hcd8wJ8v/tlTyATzLLI4UUd3dCRiOLtPwnLPXm3nx0cBwieWKpa9344LP
- PgqhmkZggFT/DSXcdXVRZIE1Kaoyek74Neak9ubD7jXQY/9LH8OyFM/WhGjbMsxaXQ6//x0s1TNmh3
- KrJygiwy6FRhO/xRUzB6v+KHE1ibEvFOp1oDIHiTyPTNxsCKWWOoqMj5SmLC5bSTWNtkW8FapDzN5a
- o0ZOZn2tqxmPOfX/oCgV/B6Uzv1fzH5lDHWZus2N3tOOBAKwtFNJzp5BTLtw==
+ bh=ggM0lmW6cYYlFM//90YRvoXSRybaUBcYX+3iqltLc8s=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBpeeXvrAtJIixC2ZibxfHOk7lufEOK0S4hm1qUFsjb
+ sW7HJsSJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCaXnl7wAKCRB33NvayMhJ0XqLD/
+ sFD7oLGxtH7I7XlW0nWH4vSGZOvL5toZ3a3YCIhCXoTF0nyUQ/Ac5faKxMAyutgioHEZm10+TKMYD9
+ 7UOtmbdDPnwEnIS5MhxoWYblcq1pcfv/0rIXV4JH7WG6hgbO1ANXEomBHsu490uBjGUowoQty1CR6q
+ 7liGstlXN+BEbwLemqHYVtoawaAMQK7gshJREnaIvlXLTRjqTaj9oDNXR4ckH75kgISQ2lJt6CoZFm
+ Xvv/1BAzAP0Q3I5QBfwfJbSrgNul3us5T8DPpeirdFqXRzF9F3Lu6KwwmqgcO7RWjtYDNRkaJhY+0+
+ 0cBHBCEaz5CsP+qvyGpSZnE14s++YvIFvP84c2DcvsEgb0OTcR6F/FhV0eWzNfWsezEChoAcJf+nF3
+ nkJekFapPWuNtzkldVX5fywh/tYcaSqI6w67rJLsaZVWEB68tQi2qT5T1qodIsNMgAYaPEE6kut3MK
+ 5jNnrggi8ykBqW8cMa8bOx0uFZrrxTztoVNm42IG0dg6HcJADHHwx4v2QQ56ltil99UQk6c7P07iG8
+ xJOhya/OiavEav6BSQ2r3fHpAdNalJ+9mqCtzl77EwAPQ2VQVJ/iDU3Hlx89tb+uVXA/TX8f7OsWLU
+ YzAocK3fj471BoNL2KHpDMntBiqlUb4f7OTV2Zkp8YIO34gOmFjtFdata+XA==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-Rspamd-Server: lfdr
@@ -120,214 +120,106 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
 	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260309-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	DKIM_TRACE(0.00)[linaro.org:+];
+	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260310-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCPT_COUNT_SEVEN(0.00)[9];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: F1CD49F87F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,linaro.org:email,linaro.org:dkim,linaro.org:mid,6d30000:email,6ad0000:email]
+X-Rspamd-Queue-Id: 761629F862
 X-Rspamd-Action: no action
 
-Add the L1 cache size and its line size (cache-size and
-cache-line-size) with the corresponding L1-I cache and L1-D cache.
+Since commit 9e53a66a2f2f ("soundwire: qcom: deprecate qcom,din/out-ports"),
+the ports are checked against the actul hardware configuration, leading to:
+qcom-soundwire 6ad0000.soundwire: din-ports (0) mismatch with controller (1)
+qcom-soundwire 6d30000.soundwire: dout-ports (0) mismatch with controller (1)
 
-L1 cache is unified, but clidr_el1 register (get_cache_type) tells that
-L1 cache is separated (CACHE_TYPE_SEPARATE), add i-cache-line-size and
-d-cache-line-size and cache-line-size of L3 cache is specified.
-
-All cache line sizes were confirmed by checking ccsidr_el1.
+Fix the ports count and properties of the corresponding soundwire
+controllers.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8650.dtsi | 56 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 56 insertions(+)
+ arch/arm64/boot/dts/qcom/sm8650.dtsi | 42 ++++++++++++++++++------------------
+ 1 file changed, 21 insertions(+), 21 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-index 8671c25dd68f..f8563ec79dc6 100644
+index f8563ec79dc6..3ddb5c3f097c 100644
 --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-@@ -75,6 +75,11 @@ cpu0: cpu@0 {
- 			compatible = "arm,cortex-a520";
- 			reg = <0 0>;
+@@ -4728,18 +4728,18 @@ swr1: soundwire@6ad0000 {
+ 			pinctrl-0 = <&rx_swr_active>;
+ 			pinctrl-names = "default";
  
-+			i-cache-size = <65536>;
-+			i-cache-line-size = <64>;
-+			d-cache-size = <65536>;
-+			d-cache-line-size = <64>;
+-			qcom,din-ports = <0>;
++			qcom,din-ports = <1>;
+ 			qcom,dout-ports = <11>;
+ 
+-			qcom,ports-sinterval =		/bits/ 16 <0x03 0x1f 0x1f 0x07 0x03 0xff 0xff 0x31 0xff 0xff 0xff>;
+-			qcom,ports-offset1 =		/bits/ 8 <0x00 0x00 0x0b 0x09 0x01 0xff 0xff 0x00 0xff 0xff 0xff>;
+-			qcom,ports-offset2 =		/bits/ 8 <0x00 0x00 0x0b 0x00 0x00 0xff 0xff 0x00 0xff 0xff 0xff>;
+-			qcom,ports-hstart =		/bits/ 8 <0xff 0x03 0xff 0xff 0xff 0xff 0xff 0x00 0xff 0xff 0xff>;
+-			qcom,ports-hstop =		/bits/ 8 <0xff 0x06 0xff 0xff 0xff 0xff 0xff 0x0f 0xff 0xff 0xff>;
+-			qcom,ports-word-length =	/bits/ 8 <0x01 0x07 0x04 0xff 0xff 0xff 0xff 0x18 0xff 0xff 0xff>;
+-			qcom,ports-block-pack-mode =	/bits/ 8 <0xff 0x00 0x01 0xff 0xff 0xff 0xff 0x01 0xff 0xff 0xff>;
+-			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff 0x01 0x03 0xff 0xff 0x00 0xff 0xff 0xff>;
+-			qcom,ports-lane-control =	/bits/ 8 <0x01 0x00 0x00 0x00 0x00 0xff 0xff 0x01 0xff 0xff 0xff>;
++			qcom,ports-sinterval =		/bits/ 16 <0x03 0x1f 0x1f 0x07 0x03 0xff 0xff 0x31 0xff 0xff 0xff 0xff>;
++			qcom,ports-offset1 =		/bits/ 8 <0x00 0x00 0x0b 0x09 0x01 0xff 0xff 0x00 0xff 0xff 0xff 0xff>;
++			qcom,ports-offset2 =		/bits/ 8 <0x00 0x00 0x0b 0x00 0x00 0xff 0xff 0x00 0xff 0xff 0xff 0xff>;
++			qcom,ports-hstart =		/bits/ 8 <0xff 0x03 0xff 0xff 0xff 0xff 0xff 0x00 0xff 0xff 0xff 0xff>;
++			qcom,ports-hstop =		/bits/ 8 <0xff 0x06 0xff 0xff 0xff 0xff 0xff 0x0f 0xff 0xff 0xff 0xff>;
++			qcom,ports-word-length =	/bits/ 8 <0x01 0x07 0x04 0xff 0xff 0xff 0xff 0x18 0xff 0xff 0xff 0xff>;
++			qcom,ports-block-pack-mode =	/bits/ 8 <0xff 0x00 0x01 0xff 0xff 0xff 0xff 0x01 0xff 0xff 0xff 0xff>;
++			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff 0x01 0x03 0xff 0xff 0x00 0xff 0xff 0xff 0xff>;
++			qcom,ports-lane-control =	/bits/ 8 <0x01 0x00 0x00 0x00 0x00 0xff 0xff 0x01 0xff 0xff 0xff 0xff>;
+ 
+ 			#address-cells = <2>;
+ 			#size-cells = <0>;
+@@ -4825,17 +4825,17 @@ swr2: soundwire@6d30000 {
+ 			pinctrl-names = "default";
+ 
+ 			qcom,din-ports = <4>;
+-			qcom,dout-ports = <0>;
+-
+-			qcom,ports-sinterval-low =	/bits/ 8 <0x01 0x01 0x03 0x03>;
+-			qcom,ports-offset1 =		/bits/ 8 <0x00 0x00 0x01 0x01>;
+-			qcom,ports-offset2 =		/bits/ 8 <0x00 0x00 0x00 0x00>;
+-			qcom,ports-hstart =		/bits/ 8 <0xff 0xff 0xff 0xff>;
+-			qcom,ports-hstop =		/bits/ 8 <0xff 0xff 0xff 0xff>;
+-			qcom,ports-word-length =	/bits/ 8 <0xff 0xff 0xff 0xff>;
+-			qcom,ports-block-pack-mode =	/bits/ 8 <0xff 0xff 0xff 0xff>;
+-			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff 0xff>;
+-			qcom,ports-lane-control =	/bits/ 8 <0x01 0x02 0x00 0x00>;
++			qcom,dout-ports = <1>;
 +
- 			clocks = <&cpufreq_hw 0>;
++			qcom,ports-sinterval-low =	/bits/ 8 <0x00 0x01 0x01 0x03 0x03>;
++			qcom,ports-offset1 =		/bits/ 8 <0x00 0x00 0x00 0x01 0x01>;
++			qcom,ports-offset2 =		/bits/ 8 <0x00 0x00 0x00 0x00 0x00>;
++			qcom,ports-hstart =		/bits/ 8 <0xff 0xff 0xff 0xff 0xff>;
++			qcom,ports-hstop =		/bits/ 8 <0xff 0xff 0xff 0xff 0xff>;
++			qcom,ports-word-length =	/bits/ 8 <0xff 0xff 0xff 0xff 0xff>;
++			qcom,ports-block-pack-mode =	/bits/ 8 <0xff 0xff 0xff 0xff 0xff>;
++			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff 0xff 0xff>;
++			qcom,ports-lane-control =	/bits/ 8 <0xff 0x01 0x02 0x00 0x00>;
  
- 			power-domains = <&cpu_pd0>;
-@@ -103,11 +108,15 @@ l2_0: l2-cache {
- 				cache-level = <2>;
- 				cache-unified;
- 				next-level-cache = <&l3_0>;
-+				cache-size = <262144>;
-+				cache-line-size = <64>;
- 
- 				l3_0: l3-cache {
- 					compatible = "cache";
- 					cache-level = <3>;
- 					cache-unified;
-+					cache-size = <12582912>;
-+					cache-line-size = <64>;
- 				};
- 			};
- 		};
-@@ -117,6 +126,11 @@ cpu1: cpu@100 {
- 			compatible = "arm,cortex-a520";
- 			reg = <0 0x100>;
- 
-+			i-cache-size = <65536>;
-+			i-cache-line-size = <64>;
-+			d-cache-size = <65536>;
-+			d-cache-line-size = <64>;
-+
- 			clocks = <&cpufreq_hw 0>;
- 
- 			power-domains = <&cpu_pd1>;
-@@ -146,6 +160,11 @@ cpu2: cpu@200 {
- 			compatible = "arm,cortex-a720";
- 			reg = <0 0x200>;
- 
-+			i-cache-size = <65536>;
-+			i-cache-line-size = <64>;
-+			d-cache-size = <65536>;
-+			d-cache-line-size = <64>;
-+
- 			clocks = <&cpufreq_hw 3>;
- 
- 			power-domains = <&cpu_pd2>;
-@@ -174,6 +193,8 @@ l2_200: l2-cache {
- 				cache-level = <2>;
- 				cache-unified;
- 				next-level-cache = <&l3_0>;
-+				cache-size = <524288>;
-+				cache-line-size = <64>;
- 			};
- 		};
- 
-@@ -182,6 +203,11 @@ cpu3: cpu@300 {
- 			compatible = "arm,cortex-a720";
- 			reg = <0 0x300>;
- 
-+			i-cache-size = <65536>;
-+			i-cache-line-size = <64>;
-+			d-cache-size = <65536>;
-+			d-cache-line-size = <64>;
-+
- 			clocks = <&cpufreq_hw 3>;
- 
- 			power-domains = <&cpu_pd3>;
-@@ -210,6 +236,8 @@ l2_300: l2-cache {
- 				cache-level = <2>;
- 				cache-unified;
- 				next-level-cache = <&l3_0>;
-+				cache-size = <524288>;
-+				cache-line-size = <64>;
- 			};
- 		};
- 
-@@ -218,6 +246,11 @@ cpu4: cpu@400 {
- 			compatible = "arm,cortex-a720";
- 			reg = <0 0x400>;
- 
-+			i-cache-size = <65536>;
-+			i-cache-line-size = <64>;
-+			d-cache-size = <65536>;
-+			d-cache-line-size = <64>;
-+
- 			clocks = <&cpufreq_hw 3>;
- 
- 			power-domains = <&cpu_pd4>;
-@@ -246,6 +279,8 @@ l2_400: l2-cache {
- 				cache-level = <2>;
- 				cache-unified;
- 				next-level-cache = <&l3_0>;
-+				cache-size = <524288>;
-+				cache-line-size = <64>;
- 			};
- 		};
- 
-@@ -254,6 +289,11 @@ cpu5: cpu@500 {
- 			compatible = "arm,cortex-a720";
- 			reg = <0 0x500>;
- 
-+			i-cache-size = <65536>;
-+			i-cache-line-size = <64>;
-+			d-cache-size = <65536>;
-+			d-cache-line-size = <64>;
-+
- 			clocks = <&cpufreq_hw 1>;
- 
- 			power-domains = <&cpu_pd5>;
-@@ -282,6 +322,8 @@ l2_500: l2-cache {
- 				cache-level = <2>;
- 				cache-unified;
- 				next-level-cache = <&l3_0>;
-+				cache-size = <524288>;
-+				cache-line-size = <64>;
- 			};
- 		};
- 
-@@ -290,6 +332,11 @@ cpu6: cpu@600 {
- 			compatible = "arm,cortex-a720";
- 			reg = <0 0x600>;
- 
-+			i-cache-size = <65536>;
-+			i-cache-line-size = <64>;
-+			d-cache-size = <65536>;
-+			d-cache-line-size = <64>;
-+
- 			clocks = <&cpufreq_hw 1>;
- 
- 			power-domains = <&cpu_pd6>;
-@@ -318,6 +365,8 @@ l2_600: l2-cache {
- 				cache-level = <2>;
- 				cache-unified;
- 				next-level-cache = <&l3_0>;
-+				cache-size = <524288>;
-+				cache-line-size = <64>;
- 			};
- 		};
- 
-@@ -326,6 +375,11 @@ cpu7: cpu@700 {
- 			compatible = "arm,cortex-x4";
- 			reg = <0 0x700>;
- 
-+			i-cache-size = <65536>;
-+			i-cache-line-size = <64>;
-+			d-cache-size = <65536>;
-+			d-cache-line-size = <64>;
-+
- 			clocks = <&cpufreq_hw 2>;
- 
- 			power-domains = <&cpu_pd7>;
-@@ -354,6 +408,8 @@ l2_700: l2-cache {
- 				cache-level = <2>;
- 				cache-unified;
- 				next-level-cache = <&l3_0>;
-+				cache-size = <2097152>;
-+				cache-line-size = <64>;
- 			};
- 		};
- 
+ 			#address-cells = <2>;
+ 			#size-cells = <0>;
 
 -- 
 2.34.1
