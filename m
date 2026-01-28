@@ -1,216 +1,200 @@
-Return-Path: <devicetree+bounces-260639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260640-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GKQjNGCEemnx7AEAu9opvQ
-	(envelope-from <devicetree+bounces-260639-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 22:49:20 +0100
+	id bpiVE+eEemmk7QEAu9opvQ
+	(envelope-from <devicetree+bounces-260640-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 22:51:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65C0AA93AD
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 22:49:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CCC1AA93E3
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 22:51:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DD7003019937
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:49:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8E9863013D68
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:51:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 683EA33B946;
-	Wed, 28 Jan 2026 21:49:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9042033065D;
+	Wed, 28 Jan 2026 21:51:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="aIGJEdcP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ypu8e0xL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EEFB2F5A22;
-	Wed, 28 Jan 2026 21:49:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A04D31C57B;
+	Wed, 28 Jan 2026 21:51:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769636953; cv=none; b=SYNM28DEo3p1Oy11R3HnuWd3TCMCVycmpGA/VWiSAvWI8fg/EN42f7qZhlqgd8QUzu2Yz8J5V+z5TBkszd0nXkgy2Vbe8rTp/Ms0N2Ub8WF27IFK7wwA+BGwXTIE757d8Z9YehmhBboM2AfWtRZeag5ORmjcHGQcp6IY5Hi+O2E=
+	t=1769637092; cv=none; b=p0z2t0gp7EkezG7fkWBdozMLCvPiE8b04l+FLvNElYu13R6Nh//JTYMeMkP8va8QrUYnEplrPsSlz9NRxAVEss2j6MuBNfdTTYPaxeNfZ3rIOsmAbP7e6HvniirJh0siRdY3qu8ecfvYBMLQg0rEP+Ulsd0nq/7drllnvESk2FI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769636953; c=relaxed/simple;
-	bh=WrvAyanbpwZ6MTEpVe5ifEBlgTpCvqg1qgTjOkpLaBY=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=t5UHVc9YQu4XlMEq7o2HRT5hJoJx5rIyc0UmTLvJY1wyO5qe+mwrwH740LKMVvgKORApBQc8H3KLRlYPPcf7+fh/1manWHQ544wxlVjiCm1dCLjIXYymgGW39YCWgXS4iQ/Vs3QX/0DYxNoUAo0AKzT4OGx4FCR9azlfgjXguKw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=aIGJEdcP; arc=none smtp.client-ip=80.241.56.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4f1bWc4D8zz9v9k;
-	Wed, 28 Jan 2026 22:49:00 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1769636940;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ruAirXc8ptlR96ve5/9BugE40WCJ6xsmkWJx5Uj7rfU=;
-	b=aIGJEdcPUTNpCRPoxieT4ns0YAjlCS1SCWknUwnMSvmg9qMSU20pliO7EHJ/YKehTef8X4
-	OfTEP83Ov9GJqRBfQnmvxyTZcUkhN3Isu8Z69m16GysXboDZgypVf6Kj9EW9o5rDTKZsMY
-	NIcdir18IPW6rSkamg/khyUXsG3gehroa1KRAizet4EDWTmH8218TSM2mJHy+ejCWT3X0R
-	RlbV1knLwiHUkLPAQpjKDcSOf9gjVgsxYEH1P6cGBrYcHW7AVeKncHeNW5OdTfn2+5JM62
-	sRj7wXkwpjWQSCUAdP5w3MdePLt7m5N1DeC244DsjJqF2Be7TWLIy2uh2IH44A==
-Date: Wed, 28 Jan 2026 22:48:52 +0100
-From: =?UTF-8?B?xYF1a2Fzeg==?= Majewski <lukasz.majewski@mailbox.org>
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: festevam@gmail.com, linux-arm-kernel@lists.infradead.org,
- s.hauer@pengutronix.de, kernel@pengutronix.de, horms@kernel.org,
- shawnguo@kernel.org, imx@lists.linux.dev, linux-kernel@vger.kernel.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org, wahrenst@gmx.net,
- pabeni@redhat.com, davem@davemloft.net, netdev@vger.kernel.org,
- richardcochran@gmail.com, edumazet@google.com, andrew+netdev@lunn.ch,
- robh@kernel.org, krzk+dt@kernel.org, andrew@lunn.ch
-Subject: Re: [net-next,v20,3/7] net: mtip: Add buffers management functions
- to the L2 switch driver
-Message-ID: <20260128224852.62b16788@wsk>
-In-Reply-To: <20260128022554.4151421-1-kuba@kernel.org>
-References: <20260126103400.1683125-4-lukasz.majewski@mailbox.org>
-	<20260128022554.4151421-1-kuba@kernel.org>
-Organization: mailbox.org
+	s=arc-20240116; t=1769637092; c=relaxed/simple;
+	bh=jd/m6ATiT++9/cH2mRhstNtAGJEDjd8OgcmOnu0mXWU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qYbUfrXsxyShlepV7Gqc6OkbhSsSZ3bBiW3bB2dF9CZCjfJPqwNvYKueoy+TMy/babpq2dcQ5UaVKQJMi0w991dyv79BSEim2MXPCVGnmx+NY7VlmqfdBGzc6yj+UCdIz3iBfubsKxzCZsQXeyDqjWM7sN8DLAZBJnFXvrX4mak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ypu8e0xL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E5FAC4CEF1;
+	Wed, 28 Jan 2026 21:51:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769637092;
+	bh=jd/m6ATiT++9/cH2mRhstNtAGJEDjd8OgcmOnu0mXWU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ypu8e0xLeAzQkaVnrXua7G8E9oF19JxmuoWyy/ov1c6he9+meQuexyqRkGxb3bHR2
+	 FcwTZCNPXBqzlxnAAohWG4TDQIauXUGSOIPPh8iWWgTsBUA/uvsvt3Qs20ac7pPSqh
+	 0L8HxqHmE1/PsqHSdMug5NP/WHBVUl1cdMgicrUM6s/BYSGlBvs4KsDDnDmHNgEaPC
+	 ROgHlm+Zh9EFdBS4kBfqv78oEN57nXVCiYKozOftp5/8+hsR1DzDBZ6ufIpMSyZZol
+	 sk0Bg2FovzUMLzz9NJMrftq6KvisfNhQf0aG7us3jRlani3euJRjxMXUfsaAhLdLYo
+	 fs+0VPxAsCDrQ==
+Date: Wed, 28 Jan 2026 22:51:26 +0100
+From: Niklas Cassel <cassel@kernel.org>
+To: Markus Probst <markus.probst@posteo.de>
+Cc: Damien Le Moal <dlemoal@kernel.org>, Lee Jones <lee@kernel.org>,
+	Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+	John Garry <john.g.garry@oracle.com>,
+	Jason Yan <yanaijie@huawei.com>,
+	"James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
+	"Martin K. Petersen" <martin.petersen@oracle.com>,
+	Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-ide@vger.kernel.org, linux-scsi@vger.kernel.org,
+	Ian Pilcher <arequipeno@gmail.com>
+Subject: Re: [PATCH RFC 0/4] leds: extend disk trigger
+Message-ID: <aXqE3tn4ACa9HnwU@ryzen>
+References: <20260123-ledtrig_disk_-v1-0-07004756467b@posteo.de>
+ <aXctPaaXFYemV20T@ryzen>
+ <ce454969b83dbb0e3bb4ea78f682603cc328ceb9.camel@posteo.de>
+ <aXiGNZm12vLhQJ4Q@fedora>
+ <20f855baaa7c36010eab9997a2f43b4f62be726b.camel@posteo.de>
+ <2382dee0-983f-4c69-af7b-a7a48cad23aa@kernel.org>
+ <c34fb5404e7033fe719b0072ea8a87a1caa2bf80.camel@posteo.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-MBO-RS-ID: 0a70d41f27b7b89e913
-X-MBO-RS-META: p4u7ozw7pi4bkkx54cikgzroe65njg1g
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c34fb5404e7033fe719b0072ea8a87a1caa2bf80.camel@posteo.de>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-260640-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260639-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com,lists.infradead.org,pengutronix.de,kernel.org,lists.linux.dev,vger.kernel.org,gmx.net,redhat.com,davemloft.net,google.com,lunn.ch];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,oracle.com,huawei.com,hansenpartnership.com,ucw.cz,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lukasz.majewski@mailbox.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[mailbox.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[cassel@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mailbox.org:dkim,linux.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 65C0AA93AD
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: CCC1AA93E3
 X-Rspamd-Action: no action
 
-Hi Jakub,
+Hello Markus,
 
-> This is an AI-generated review of your patch. The human sending this
-> email has considered the AI review valid, or at least plausible.
->=20
-> For local reproduction steps see
-> https://netdev-ai.bots.linux.dev/ai-local.html ---
-> net: mtip: Add buffers management functions to the L2 switch driver
->=20
-> This patch adds buffer management functions for the MTIP L2 switch
-> driver, implementing mtip_free_buffers(), mtip_create_page_pool(), and
-> mtip_alloc_buffers() for RX page pool and TX bounce buffer handling.
->=20
-> > diff --git a/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c
-> > b/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c index
-> > 03c5163d6508..9c21a3d29c1c 100644 ---
-> > a/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c +++
-> > b/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c @@ -888,11
-> > +888,96 @@ static void mtip_get_drvinfo(struct net_device *dev,
-> >
-> >  static void mtip_free_buffers(struct net_device *dev)
-> >  {
-> > +	struct mtip_ndev_priv *priv =3D netdev_priv(dev);
-> > +	struct switch_enet_private *fep =3D priv->fep;
-> > +	int i;
-> > +
-> > +	for (i =3D 0; i < RX_RING_SIZE; i++) {
-> > +		page_pool_put_full_page(fep->page_pool,
-> > +					fep->page[i], false); =20
->=20
-> Can fep->page[i] be NULL here?  When mtip_alloc_buffers() fails
-> partway through the RX allocation loop, it calls mtip_free_buffers()
-> via the error path.  At that point, only some fep->page[] entries
-> have been allocated - the rest remain NULL from the kzalloc
-> initialization.
->=20
-> The call chain page_pool_put_full_page()->page_pool_put_netmem()->
-> page_pool_unref_and_test()->page_pool_unref_netmem()->
-> netmem_get_pp_ref_count_ref() will attempt to access
-> &NULL->pp_ref_count when passed a NULL page, causing a NULL pointer
-> dereference.
->=20
-> Should there be a NULL check before calling page_pool_put_full_page()?
->=20
+On Wed, Jan 28, 2026 at 03:44:19PM +0000, Markus Probst wrote:
+> Something similar with scsi and ata exists. scsi doesn't expose the
+> firmware_node and there is no symlink (or other connection that I am
+> ware of) between scsi_* and ata_* in sysfs. This means, I cannot map a
+> fwnode path to a block device.
 
-Yes, such check shall be added.
+Hopefully this might help you:
 
-> > +		fep->page[i] =3D NULL;
-> > +	}
-> > +
-> > +	page_pool_destroy(fep->page_pool);
-> > +	fep->page_pool =3D NULL;
-> > +
-> > +	for (i =3D 0; i < TX_RING_SIZE; i++)
-> > +		kfree(fep->tx_bounce[i]);
-> >  } =20
->=20
-> [ ... ]
->=20
-> > +static int mtip_alloc_buffers(struct net_device *dev)
-> > +{
-> > +	struct mtip_ndev_priv *priv =3D netdev_priv(dev);
-> > +	struct switch_enet_private *fep =3D priv->fep;
-> > +	struct cbd_t *bdp;
-> > +	struct page *page;
-> > +	int i, ret;
-> > +
-> > +	ret =3D mtip_create_page_pool(fep, RX_RING_SIZE);
-> > +	if (ret < 0) {
-> > +		dev_err(&fep->pdev->dev, "Failed to create page
-> > pool\n");
-> > +		return ret;
-> > +	}
-> > +
-> > +	bdp =3D fep->rx_bd_base;
-> > +	for (i =3D 0; i < RX_RING_SIZE; i++) {
-> > +		page =3D page_pool_dev_alloc_pages(fep->page_pool);
-> > +		if (!page) {
-> > +			dev_err(&fep->pdev->dev,
-> > +				"Failed to allocate page for rx
-> > buffer\n");
-> > +			goto err;
-> > +		} =20
->=20
-> [ ... ]
->=20
-> > + err:
-> > +	mtip_free_buffers(dev); =20
->=20
-> When this error path is taken, fep->page[] may contain NULL entries
-> for pages that were never allocated.
->=20
-> > +	return -ENOMEM;
-> >  } =20
+$ ls -al /sys/class/scsi_device | grep ata
+lrwxrwxrwx.  1 root root 0 Jan 29 05:12 4:0:0:0 -> ../../devices/pci0000:00/0000:00:17.0/ata5/host4/target4:0:0/4:0:0:0/scsi_device/4:0:0:0
+lrwxrwxrwx.  1 root root 0 Jan 29 05:12 5:0:0:0 -> ../../devices/pci0000:00/0000:00:17.0/ata6/host5/target5:0:0/5:0:0:0/scsi_device/5:0:0:0
+lrwxrwxrwx.  1 root root 0 Jan 29 05:12 8:0:0:0 -> ../../devices/pci0000:00/0000:00:17.0/ata9/host8/target8:0:0/8:0:0:0/scsi_device/8:0:0:0
+lrwxrwxrwx.  1 root root 0 Jan 29 05:12 9:0:0:0 -> ../../devices/pci0000:00/0000:00:17.0/ata10/host9/target9:0:0/9:0:0:0/scsi_device/9:0:0:0
 
-I will add proper fix for v21.
 
---=20
-Best regards,
+For a specific device, e.g. 4:0:0:0:
 
-=C5=81ukasz Majewski
+$ realpath /sys/class/scsi_device/4:0:0:0/
+/sys/devices/pci0000:00/0000:00:17.0/ata5/host4/target4:0:0/4:0:0:0/scsi_device/4:0:0:0
+
+To get the block device name:
+$ ls /sys/class/scsi_device/4:0:0:0/device/block/
+sda
+
+or
+
+$ ls /sys/devices/pci0000:00/0000:00:17.0/ata5/host4/target4:0:0/4:0:0:0/scsi_device/4:0:0:0/device/block/
+sda
+
+
+You can parse the port from the path. The above example is port 5.
+
+If using a port multiplier (PM), there can be multiple links/devices per port.
+
+
+Otherwise, for SATA there should be only one.
+
+$ ls -al /sys/class/ata_port/ata5/device/ | grep link | wc -l
+1
+
+$ ls -al /sys/class/ata_port/ata5/device/link5/dev5.0/firmware_node
+
+or
+
+$ ls -al  /sys/class/ata_device/dev5.*/device/firmware_node
+
+
+
+For PCI BDF, you can use /dev/disk/by-path/
+
+$ ls -al /dev/disk/by-path/ | grep ata
+lrwxrwxrwx.  1 root root   9 Jan 29 05:11 pci-0000:00:17.0-ata-3 -> ../../sda
+lrwxrwxrwx.  1 root root   9 Jan 29 05:11 pci-0000:00:17.0-ata-3.0 -> ../../sda
+lrwxrwxrwx.  1 root root   9 Jan 29 05:11 pci-0000:00:17.0-ata-4 -> ../../sdb
+lrwxrwxrwx.  1 root root   9 Jan 29 05:11 pci-0000:00:17.0-ata-4.0 -> ../../sdb
+lrwxrwxrwx.  1 root root   9 Jan 29 05:11 pci-0000:00:17.0-ata-7 -> ../../sdc
+lrwxrwxrwx.  1 root root   9 Jan 29 05:11 pci-0000:00:17.0-ata-7.0 -> ../../sdc
+lrwxrwxrwx.  1 root root   9 Jan 29 05:11 pci-0000:00:17.0-ata-8 -> ../../sdd
+lrwxrwxrwx.  1 root root   9 Jan 29 05:11 pci-0000:00:17.0-ata-8.0 -> ../../sdd
+
+Note that these suffixes do not correlate to the ata port number in /sys/class/ata_*
+
+
+$ ls -al /sys/class/ata_port/
+total 0
+drwxr-xr-x.  2 root root 0 Jan 29 05:11 .
+drwxr-xr-x. 84 root root 0 Jan 29 05:12 ..
+lrwxrwxrwx.  1 root root 0 Nov 19 04:01 ata1 -> ../../devices/pci0000:00/0000:00:11.5/ata1/ata_port/ata1
+lrwxrwxrwx.  1 root root 0 Jan 29 05:26 ata10 -> ../../devices/pci0000:00/0000:00:17.0/ata10/ata_port/ata10
+lrwxrwxrwx.  1 root root 0 Nov 19 04:01 ata11 -> ../../devices/pci0000:50/0000:50:02.0/0000:51:00.0/ata11/ata_port/ata11
+lrwxrwxrwx.  1 root root 0 Nov 19 04:01 ata12 -> ../../devices/pci0000:50/0000:50:02.0/0000:51:00.0/ata12/ata_port/ata12
+lrwxrwxrwx.  1 root root 0 Nov 19 04:01 ata13 -> ../../devices/pci0000:50/0000:50:02.0/0000:51:00.0/ata13/ata_port/ata13
+lrwxrwxrwx.  1 root root 0 Nov 19 04:01 ata2 -> ../../devices/pci0000:00/0000:00:11.5/ata2/ata_port/ata2
+lrwxrwxrwx.  1 root root 0 Jan 29 05:26 ata3 -> ../../devices/pci0000:00/0000:00:17.0/ata3/ata_port/ata3
+lrwxrwxrwx.  1 root root 0 Jan 29 05:26 ata4 -> ../../devices/pci0000:00/0000:00:17.0/ata4/ata_port/ata4
+lrwxrwxrwx.  1 root root 0 Jan 29 05:26 ata5 -> ../../devices/pci0000:00/0000:00:17.0/ata5/ata_port/ata5
+lrwxrwxrwx.  1 root root 0 Jan 29 05:26 ata6 -> ../../devices/pci0000:00/0000:00:17.0/ata6/ata_port/ata6
+lrwxrwxrwx.  1 root root 0 Jan 29 05:26 ata7 -> ../../devices/pci0000:00/0000:00:17.0/ata7/ata_port/ata7
+lrwxrwxrwx.  1 root root 0 Jan 29 05:26 ata8 -> ../../devices/pci0000:00/0000:00:17.0/ata8/ata_port/ata8
+lrwxrwxrwx.  1 root root 0 Jan 29 05:26 ata9 -> ../../devices/pci0000:00/0000:00:17.0/ata9/ata_port/ata9
+
+
+Kind regards,
+Niklas
 
