@@ -1,125 +1,165 @@
-Return-Path: <devicetree+bounces-260567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260568-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ODDrH4FLemkp5AEAu9opvQ
-	(envelope-from <devicetree+bounces-260567-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 18:46:41 +0100
+	id SI8jI89Lemkp5AEAu9opvQ
+	(envelope-from <devicetree+bounces-260568-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 18:47:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEE3DA71DA
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 18:46:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FEEFA727C
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 18:47:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B29D73031316
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 17:42:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5DD103043BD7
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 17:43:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65BD731579B;
-	Wed, 28 Jan 2026 17:42:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F3E7369995;
+	Wed, 28 Jan 2026 17:43:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kl+fSdPs"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="RWLHydsP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42D0A248861;
-	Wed, 28 Jan 2026 17:42:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F2853612F7;
+	Wed, 28 Jan 2026 17:43:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769622147; cv=none; b=q7xFbXkiDTZzmzpo9rLD9srQY4spkZV+7HUhl2VIG908A2oqlx4lzt8ge0lLJ2rzDr7iEt1h9gIboQAOl0vJ3dXDVc+RSv8z7t+IMbJ+7LuIq4en9W2cwLYQFqaDq2aFTme9gQCZg+XS9dN618ThrcnNWE5KdtNd48UpUXBS/y0=
+	t=1769622217; cv=none; b=kMK4ziVoLbdgc/C8rDmOhdbV8sLTfgTSA24VHLEeBMD2zI3xrMJVdkixrAcb28SZAik9DS5EQEu89iUcdio+HaAG7zZcXklZ2icYnPN2Jt4fbujlGXWOwwrxlMsTcMUV4gBVDffh4HSuqca2GaJS5nrQdVwPPmkd9ivT6sv3B3E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769622147; c=relaxed/simple;
-	bh=3AAO19nNVqLcAGRkxvozsuhUW0i3Z+IQDaRF+aPh0L4=;
+	s=arc-20240116; t=1769622217; c=relaxed/simple;
+	bh=g1jAkOyBexOK0ZIsA6MWbUTp4PeGmeSSzmktzpC4sZg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LUR/63kWAn4wHp2fpqXzsseTuxxYX7M9czKact+gRmIMYb/9XNRXsYMWIIa0tmdh9V25qCUI7j6CW7+lBGavHV509Pgn5YM1+LuczaTPfFqYgtOndxjfR51z9Ltt/2WWV/jWDl14LrhbY2zOaRLpcAVfQkxUMFf2ZGpsrcTNKko=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kl+fSdPs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D698C4CEF1;
-	Wed, 28 Jan 2026 17:42:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769622147;
-	bh=3AAO19nNVqLcAGRkxvozsuhUW0i3Z+IQDaRF+aPh0L4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kl+fSdPsUFL1MDJ7fF6AsuWf/6pM+UtxxA5AvFPPCf0pnQCnA5BwiF5LATymFfDbp
-	 io9U8tZMC/oJ+Pr63Mo/MPR1fpJZ8lyyeKiAPzfDlgsQr8fNuK8YAphdC4xLmpRT6E
-	 bBoCL20sLdWWfC7hfo/w42YgBQeuIYbojIlANMT9tiIDrLhD4jnCJoRZok9yDRZ4pT
-	 6kdhxWnO139zoB4gIJmfd5xWHjRPMUJjyqRLntSNJSKhTYo3baWcaWg99gh8zwilQu
-	 uXDkuehJObU+a39S/gc+qQvPhEtkVJViBvX21NRqpUYe/LoOfetxJUyk+6GUG3CMjL
-	 xd3p1aOc+nV7g==
-Date: Wed, 28 Jan 2026 17:42:22 +0000
-From: Conor Dooley <conor@kernel.org>
-To: ben717@andestech.com
-Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v3 1/4] dt-bindings: i2c: add support for AE350 I2C
- controller
-Message-ID: <20260128-moonstone-grope-5df7a55b5da1@spud>
-References: <20260128-atciic100-v3-0-8c002fcc2bb4@andestech.com>
- <20260128-atciic100-v3-1-8c002fcc2bb4@andestech.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=BxIF06u5+IK0i7vWMSIupNA8tcegbgij5q918rT5QsCTOeURHthQAo2i1cjgdBC7IAMv4Sd8cRFY0z0JneLRr0et6NJA4v+TEMvSTKogHxK7Z5sU8epnZcwT+RvlZg4RyUEvvIINELNtBY1IIVaNsHhDENB2+0V/Q4kNW+KVHYs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=RWLHydsP; arc=none smtp.client-ip=192.198.163.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1769622216; x=1801158216;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=g1jAkOyBexOK0ZIsA6MWbUTp4PeGmeSSzmktzpC4sZg=;
+  b=RWLHydsPC18A6uOgX9ju2XY44+6UFsW0rU/WJpIjFHbknDXHryVzG25y
+   e8zaYISXLB/wNrFcz2xo/HrK7yBXObN57QOaEHZSmgfzchonlbzdcusOw
+   0vQuF41g0PeeLTfRT/VwjxB/UMpDcx/ayXBudV+iR8bLCfJmT7fDUE48H
+   tUlPREG2vY0qAn86e19eXaBjesM+5MMbhi/fDYN08o0Lubdp3Fc46cPHv
+   ZqZ6JO/jAjQIEQp/Bgs1eX/qqR+H/zL9miHoYbsOqt1GacZ6crvyAmLea
+   /XFHnf7WK6n/3I8FS/MuIbYfN4U0Okba4NpOG1yUTU3ldKVJF4W+lzCLW
+   w==;
+X-CSE-ConnectionGUID: SBqlro0cQxisVhu8gpJvcQ==
+X-CSE-MsgGUID: jmg7UzIATAyKSf5Dn4rWvw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11685"; a="96304445"
+X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; 
+   d="scan'208";a="96304445"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jan 2026 09:43:35 -0800
+X-CSE-ConnectionGUID: lXx90f1VRK+eSlHmKMrAxw==
+X-CSE-MsgGUID: /7RCZ1ZZRD+YePQfVNi8Xw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; 
+   d="scan'208";a="231278422"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+  by fmviesa002.fm.intel.com with ESMTP; 28 Jan 2026 09:43:32 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vl9Zg-00000000ae8-3lP1;
+	Wed, 28 Jan 2026 17:43:28 +0000
+Date: Thu, 29 Jan 2026 01:43:05 +0800
+From: kernel test robot <lkp@intel.com>
+To: Gary Yang <gary.yang@cixtech.com>, lee@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
+	peter.chen@cixtech.com
+Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	cix-kernel-upstream@cixtech.com, Gary Yang <gary.yang@cixtech.com>
+Subject: Re: [PATCH v4 2/3] reset: cix: add support for cix sky1 resets
+Message-ID: <202601290142.8FfZLLZk-lkp@intel.com>
+References: <20260128093611.1932770-3-gary.yang@cixtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="foFtRSyLMH1HfjkT"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260128-atciic100-v3-1-8c002fcc2bb4@andestech.com>
+In-Reply-To: <20260128093611.1932770-3-gary.yang@cixtech.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260567-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260568-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: EEE3DA71DA
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,01.org:url,git-scm.com:url]
+X-Rspamd-Queue-Id: 0FEEFA727C
 X-Rspamd-Action: no action
 
+Hi Gary,
 
---foFtRSyLMH1HfjkT
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+kernel test robot noticed the following build warnings:
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on lee-leds/for-leds-next linus/master v6.19-rc7 next-20260127]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
---foFtRSyLMH1HfjkT
-Content-Type: application/pgp-signature; name="signature.asc"
+url:    https://github.com/intel-lab-lkp/linux/commits/Gary-Yang/dt-bindings-reset-add-sky1-reset-controller/20260128-174335
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20260128093611.1932770-3-gary.yang%40cixtech.com
+patch subject: [PATCH v4 2/3] reset: cix: add support for cix sky1 resets
+config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20260129/202601290142.8FfZLLZk-lkp@intel.com/config)
+compiler: alpha-linux-gcc (GCC) 15.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260129/202601290142.8FfZLLZk-lkp@intel.com/reproduce)
 
------BEGIN PGP SIGNATURE-----
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202601290142.8FfZLLZk-lkp@intel.com/
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaXpKfgAKCRB4tDGHoIJi
-0odYAQCXZQk1e9GHrNVVuWzxBQYPhfgr69mFZon7hexoNefbyQD/SnpkBWgLGvlE
-vZ9+FsamjcmoLykBgiSU2lznlobpLwk=
-=uHGy
------END PGP SIGNATURE-----
+All warnings (new ones prefixed by >>):
 
---foFtRSyLMH1HfjkT--
+>> drivers/reset/reset-sky1.c:322:35: warning: 'sky1_src_config' defined but not used [-Wunused-const-variable=]
+     322 | static const struct regmap_config sky1_src_config[] = {
+         |                                   ^~~~~~~~~~~~~~~
+
+
+vim +/sky1_src_config +322 drivers/reset/reset-sky1.c
+
+   321	
+ > 322	static const struct regmap_config sky1_src_config[] = {
+   323		{
+   324			.reg_bits = 32,
+   325			.val_bits = 32,
+   326			.reg_stride = 4,
+   327			.name = "src",
+   328		},
+   329	};
+   330	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
