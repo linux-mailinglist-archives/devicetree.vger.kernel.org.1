@@ -1,157 +1,206 @@
-Return-Path: <devicetree+bounces-260592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260593-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oITFEDtoemmB5gEAu9opvQ
-	(envelope-from <devicetree+bounces-260592-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 20:49:15 +0100
+	id gDWTB1hpemmB5gEAu9opvQ
+	(envelope-from <devicetree+bounces-260593-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 20:54:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90355A842C
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 20:49:14 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4467CA850B
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 20:53:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 669D030160FE
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 19:49:12 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id C675B300862A
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 19:52:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EEC6369223;
-	Wed, 28 Jan 2026 19:49:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 636E337419C;
+	Wed, 28 Jan 2026 19:52:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jkx+W8yk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p88fggny"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C94E31A07C;
-	Wed, 28 Jan 2026 19:49:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F3F026B95B;
+	Wed, 28 Jan 2026 19:52:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769629751; cv=none; b=isJ5uzYgZsHlPZWXbXOSMxCCfyfcTMeVdieE8Bzblak1Q0ssV8ex0/TsUlB70OwUCNyjPHNZGlettQtug6J4QNPNv0a94JIi0sOVBkRWmWqvq82HtE5uer87+9cw1uYY6+pe3QM41OAV/esn6hUBitLyVZyGxP8AhP2WUlEAD2w=
+	t=1769629976; cv=none; b=hPwRDw72VNJUNYF2NZGQa7SG8SiER0dpFWyUxSCmJv2Kl5LndL2JvqWUELF/Sv87Jsd01RoB2G+uapNDFDPc0JsIbUC/L8GpWNpu1zxS4u4pAOwwZn3cUp+3KT8S1n/B0+Nz09tNFuv0XHzskKkkdSOk8vjBkbrX7hoa97H/rsE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769629751; c=relaxed/simple;
-	bh=ZgURDPXZxdlzY1nCr7dFdlPZ+CG+p3tih0XcJrBxJSc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ns8Rm1lmwpGfwMC6xZnrtvFoToar6tw94z7GvDcAFO8mjDMdH/5vEap4PVvDVqOYJo8LnHoZyhwllc27XwILceU+gh5Syyj0TxTA8qeACf/LmFoFnvoQC8MJ7j0ZaufV44e16M+QA2We25+LlYQTVR/BwKm/4NcNoCCc1xsC5Js=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jkx+W8yk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 956C3C4CEF1;
-	Wed, 28 Jan 2026 19:49:10 +0000 (UTC)
+	s=arc-20240116; t=1769629976; c=relaxed/simple;
+	bh=TMShfjmh4T3S0h1pucDmkoNvNg3NeE+IfCsm6Fe9djU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YRExAmGKgU4IxPCk2dxIzc3KM97RXDBpjrg+BsSoA+ePtrjlRp5jQsFGnrrkUGBigTAuNBmijZ8GzMZgXKi2y+NKS0IP9JzThaSeuToS1CMLwetNn28tbLXV3x5YpGx3xp/KQc+zfF/1m0gNqfZ2vGWiTidn6rTyZp3ruOS7d6M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p88fggny; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C716DC116C6;
+	Wed, 28 Jan 2026 19:52:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769629751;
-	bh=ZgURDPXZxdlzY1nCr7dFdlPZ+CG+p3tih0XcJrBxJSc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jkx+W8ykaiIAXPqelZuIfPFrrsGq5g6rbS4D8Jk/4FwLCUPyFtyLQbdRWVd5QVY0G
-	 XOhZUqzVn1LqgIWGYrZDgEebxdC/KmN+dqrMiJ36UyI2+n1ywoBfPKW3kzUL4JwMSh
-	 TWQu2/usGHuvucBrBEYtY1CuGbnwXZCIYuv9XxdIziZ1xHxgWV8GUsm4WaD8vJTtyI
-	 ZjozH8/Y9OXlZkm/CQdngwr2lbuVJX3/CF01ddVSudhxRygFUhpXyXj8Bgbjk4WQim
-	 HASeIQyrPngoVJoNEuDYWJ/Iq7mtUb/As6vyFCkXvux9Q53OAsVmr7xAByTYYFOlcx
-	 bbpNtTZ7q9KSA==
-Date: Wed, 28 Jan 2026 11:49:09 -0800
-From: Drew Fustini <fustini@kernel.org>
-To: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>,
-	Dmitry Baryshkov <lumag@kernel.org>,
-	Michal Wilczynski <m.wilczynski@samsung.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Han Gao <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>,
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	Icenowy Zheng <uwu@icenowy.me>, Han Gao <gaohan@iscas.ac.cn>
-Subject: Re: [PATCH v6 7/9] riscv: dts: thead: lichee-pi-4a: enable HDMI
-Message-ID: <aXpoNTuziA2XOIuz@x1>
-References: <20260123092830.4046009-1-zhengxingda@iscas.ac.cn>
- <20260123092830.4046009-8-zhengxingda@iscas.ac.cn>
- <aXpbBq3TwuiP9Qry@x1>
- <aXpnTDSowoW+8UzN@x1>
+	s=k20201202; t=1769629975;
+	bh=TMShfjmh4T3S0h1pucDmkoNvNg3NeE+IfCsm6Fe9djU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=p88fggnylPWJ/zGLcm1mSAi7u6IcHuvrrMFMAraeA8ZPr+Z/V7mweZen5IQ+ssv9x
+	 EYkLgpsJI0dX2/mVN3RJ8n8ce+fliZAyHklGqRKcCjyc31Emcqs04mjJyzSwxoohhd
+	 Tf1j2pX6c01aWin9JwMKSK9fFCO2NCq7zzA5/hUC8cU6tOKVda5wf4M9O7pFrco96a
+	 gbN7CJFKc8Omw8xUlJ81TD4ejUdaLMfkHlbnR3dMOYf7LbbycRnnDR7xEgOiUUNM95
+	 qJ0ziEiXQ5FxRfKHi/vo+kvR52DrVf410HTJZ72vuURAzU0Hvro3fkiPueh1yfGUak
+	 utOTjBr7o5b9Q==
+Message-ID: <bb448595-ae60-4497-98ad-040f148af2e5@kernel.org>
+Date: Wed, 28 Jan 2026 20:52:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aXpnTDSowoW+8UzN@x1>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v13 1/3] dt-bindings: i2c: Add CP2112 HID USB to SMBus
+ Bridge
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Danny Kaehn <danny.kaehn@plexus.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Benjamin Tissoires <bentiss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jiri Kosina <jikos@kernel.org>,
+ devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+ Ethan Twardy <ethan.twardy@plexus.com>, linux-i2c@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Leo Huang <leohu@nvidia.com>,
+ Arun D Patil <arundp@nvidia.com>, Willie Thai <wthai@nvidia.com>,
+ Ting-Kai Chen <tingkaic@nvidia.com>
+References: <20260127-cp2112-dt-v13-0-6448ddd4bf22@plexus.com>
+ <20260127-cp2112-dt-v13-1-6448ddd4bf22@plexus.com>
+ <20260127160217.GA3776731@LNDCL34533.neenah.na.plexus.com>
+ <20260128-magnificent-faithful-otter-c4f900@quoll>
+ <aXoF4zi4SZrXaku5@smile.fi.intel.com>
+ <3db84b61-e463-4362-b142-59d3ca6eae90@kernel.org>
+ <aXoz4Xs8csdxXeZU@smile.fi.intel.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <aXoz4Xs8csdxXeZU@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260592-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-260593-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[29];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[plexus.com,kernel.org,vger.kernel.org,gmail.com,linaro.org,nvidia.com];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,redhat.com,pengutronix.de,samsung.com,bootlin.com,disroot.org,vger.kernel.org,lists.freedesktop.org,lists.infradead.org,icenowy.me,iscas.ac.cn];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[fustini@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[iscas.ac.cn:email,samsung.com:email,icenowy.me:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 90355A842C
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 4467CA850B
 X-Rspamd-Action: no action
 
-On Wed, Jan 28, 2026 at 11:45:16AM -0800, Drew Fustini wrote:
-> On Wed, Jan 28, 2026 at 10:52:54AM -0800, Drew Fustini wrote:
-> > On Fri, Jan 23, 2026 at 05:28:28PM +0800, Icenowy Zheng wrote:
-> > > Lichee Pi 4A board features a HDMI Type-A connector connected to the
-> > > HDMI TX controller of TH1520 SoC.
-> > > 
-> > > Add a device tree node describing the connector, connect it to the HDMI
-> > > controller, and enable everything on this display pipeline.
-> > > 
-> > > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> > > Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-> > > Tested-by: Han Gao <gaohan@iscas.ac.cn>
-> > > Tested-by: Michal Wilczynski <m.wilczynski@samsung.com>
-> > > ---
-> > > No changes in v5.
-> > > 
-> > > Changes in v4:
-> > > - Rebased on top of v6.19-rc1.
-> > > 
-> > > No changes in v2, v3.
-> > > 
-> > >  .../boot/dts/thead/th1520-lichee-pi-4a.dts    | 25 +++++++++++++++++++
-> > >  1 file changed, 25 insertions(+)
-> > 
-> > Reviewed-by: Drew Fustini <fustini@kernel.org>
+On 28/01/2026 17:05, Andy Shevchenko wrote:
+> On Wed, Jan 28, 2026 at 04:48:18PM +0100, Krzysztof Kozlowski wrote:
+>> On 28/01/2026 13:49, Andy Shevchenko wrote:
+>>> On Wed, Jan 28, 2026 at 11:35:25AM +0100, Krzysztof Kozlowski wrote:
+>>>> On Tue, Jan 27, 2026 at 10:02:17AM -0600, Danny Kaehn wrote:
 > 
-> I've applied this to tenstorrent-dt-for-next
+> ...
 > 
-> https://git.kernel.org/pub/scm/linux/kernel/git/fustini/linux.git/commit/?h=tenstorrent-dt-for-next&id=0075f4c3aade0d436925026eaefb14be1ec52a69
+>>>> That's actually rule communicated many times, also documented in writing
+>>>> bindings and in recent talks.
+>>>
+>>> Does DT represents HW in this case? Shouldn't I²C controller be the same node?
+>>> Why not? This is inconsistent for the device that is multi-functional. And from
+>>> my understanding the firmware description (DT, ACPI, you-name-it) must follow
+>>> the HW. I don't see how it's done in this case.
+>>
+>> What is inconsistent exactly? What sort of rule tells that every little
+>> function needs a device node? It's first time I hear about any of such
+>> rule and for all this time we already NAKed it so many times (node per
+>> GPIO, node per clock, node per every little pin).
 > 
-> Hopefully we can get some testing done with a next release once the driver patches hit next.
+> That we should represent the HW as is. There is no "rule", there is a common
+> sense. Of course, it's possible to have all-in-one node, but this may lead
+> to a disaster when there are tons of devices in the Multi Functional HW
+> and some of them use the same properties. How would you distinguish HW
+> with two GPIO banks, two I²C controllers, et cetera? That's what my common
 
-Sorry about my typo mistake. The correct branch is thead-dt-for-next
+I do not see problems in these examples. GPIO banks have gpio-cells for
+that. i2c controllers are busses, so as I explained in other email, must
+have their own node whenever any other node is expected.
 
-https://git.kernel.org/pub/scm/linux/kernel/git/fustini/linux.git/log/?h=thead-dt-for-next
+And for everything which is more complex, e.g. regulators, we do expect
+child nodes.
 
-Thanks,
-Drew
+Still the "MFD" is not a reason itself, we consistently give such review
+and we also documented it.
+
+
+> sense tells to me, putting all eggs into one bucket is just a mine field
+> for the future.
+
+Some years passed and I do not remember any mine happening here.
+Actually mines appeared when people DID create fake nodes, because then
+when the actual true bus node was needed it was violating the rule we
+have - not mixing bus and non-bus nodes on the same level.
+
+
+Best regards,
+Krzysztof
 
