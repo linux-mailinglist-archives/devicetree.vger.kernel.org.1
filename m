@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-260622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260623-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2H43HAdzemme6gEAu9opvQ
-	(envelope-from <devicetree+bounces-260622-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:35:19 +0100
+	id iPtEChFzemng6gEAu9opvQ
+	(envelope-from <devicetree+bounces-260623-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:35:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id E93D4A8A37
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:35:18 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8814A8A65
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:35:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 10F1D3002E22
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 20:34:45 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2EE673006148
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 20:35:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6AD8328B78;
-	Wed, 28 Jan 2026 20:34:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DB0D371073;
+	Wed, 28 Jan 2026 20:35:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uP/54hZc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JzJGyY69"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C481C2D4B77;
-	Wed, 28 Jan 2026 20:34:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18E73336EE5;
+	Wed, 28 Jan 2026 20:35:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769632483; cv=none; b=sFYf46VFsn1eYV29Pli+67vxAs3QbNWtFUfeVIyo5n2ndLVQ48O7XUQG61GqvzYw9p6F/ZeorWIxdfX61u6rdumf+sK9U3aHC0Zioq+AJ8p82+FoHrkEHUQopda+P69qjr4auFJrgr4RV/5baFdXWYea5b/+A4P7hP+v3IexFB0=
+	t=1769632525; cv=none; b=TQ5GMVZhW+NBS0Pjh4JRxuqYbaSUa7os0OlpmMzAY2wDM2DkDfO3hp5OKkYDnKi0S7BAEB3pjkkoUCBDSt5Ng3UZlKHuDawoEyDLDi5a8P+aUm3kZ1hZkdALVeiQm2tutLn8N5jE944dZW/JtxBToBrfAnsgA/wK70loLZK1+4o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769632483; c=relaxed/simple;
-	bh=cmYuQlBDDUjfKDQHbd81D0K9u1pyvJ63sJDqKouExlY=;
+	s=arc-20240116; t=1769632525; c=relaxed/simple;
+	bh=yrnUUci/5Ahsz40PLPK7R0htusSkB8akdUK58N6WXS8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gKJnSuVI4T9FL8AQNf6BFXPM8qKBqlvhknFf9SgO8Y4Sv2eIpVp6shxogCDwNlA8XbQSbkzCbHwJYEPzMK5lhvvuvZtZFrAISp/8o4av+5kyO7XJrc1xyuVgkUu6pLPrtDT1N36bLVIz+W8X3bujizXVXTxs0YjZWEyzylIBzYU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uP/54hZc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 020BEC4CEF1;
-	Wed, 28 Jan 2026 20:34:42 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=R9OCi2PQayl5ZBskGwub1zsNV9k3Zlm0/QNHCglPyK+bZD7pLHPLca70nKbKEJNHmsjXvsC2MlIyjBBVVsd/Sff6PsQsOuHfjNHWYnftfdffKEx72Pm8MM0acQBmX3VtzGvhmZMdD2YWDWuv4BnLWAMfANyaXT7yGSuPtfZ2CkI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JzJGyY69; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E219C116C6;
+	Wed, 28 Jan 2026 20:35:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769632483;
-	bh=cmYuQlBDDUjfKDQHbd81D0K9u1pyvJ63sJDqKouExlY=;
+	s=k20201202; t=1769632524;
+	bh=yrnUUci/5Ahsz40PLPK7R0htusSkB8akdUK58N6WXS8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uP/54hZc1216Iwwh9RQoZqekZgMZLdWPW1e0kXKk2wMfgd7UGFS7UTo6gFKTcMMQn
-	 hZIByhYDwDTZKiNUkTcaeu3AXmBh7E7DObifFV/GO8vor6Xf42Ib3tvYYZmkMzgh0B
-	 4yuJ3G0qTBbJ7QHytZ0AHY4oPZAZG8q1sf+a7mdP1SuDzarczYkBHhaDNFOKQMpCbB
-	 lkSH6g05s2a14Q94vY52y8nTSsW15W9hunxjTihKGo8co3PFO37cYEhsj87LkWNqaK
-	 Uhoa/P+4EI6HX4/zA5GM8M3ScKYehbcMuvWJgBsW89f8PmUF4UgEG7CcTPfVbozhfE
-	 S4oHDYLC5vCsg==
-Date: Wed, 28 Jan 2026 12:34:41 -0800
+	b=JzJGyY690ZAhQVx+8Kmt2Sq//jhKMTPY7GWMxEIJHsuuL2XHLceWHtDPedYsO2H0B
+	 p6HpsgEy4ovTugw+gd6Y6RJXeprchF/38ic2lABzQc5zdWHu2QtxdAhILsIC2r9zcT
+	 8z7w5FzXoVPLV/ikIuCCUK+w1eAzZPlL/9ATO2dNOLrf4fNpybQU29HhpQ7eVzpEXg
+	 cJtGIMmB5peUC2JfQx+9amd4rBUpLFVafc3tbcfr4b1ZZYE0tF2hk4lv8wigP/ayMi
+	 KAnHC0P92ltnk0XYtkGO08rbyd0sCxaZK40RRWaM7tj7md+qsOARKJTrMfAz3H3Xd1
+	 klvlqdXTbM8kg==
+Date: Wed, 28 Jan 2026 12:35:23 -0800
 From: Drew Fustini <fustini@kernel.org>
 To: Icenowy Zheng <zhengxingda@iscas.ac.cn>
 Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
@@ -67,11 +67,13 @@ Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
 	Han Gao <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>,
 	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
 	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	Icenowy Zheng <uwu@icenowy.me>
-Subject: Re: [PATCH v6 2/9] dt-bindings: display: add verisilicon,dc
-Message-ID: <aXpy4f9G9QKRh3Ts@x1>
+	Icenowy Zheng <uwu@icenowy.me>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v6 4/9] dt-bindings: display/bridge: add binding for
+ TH1520 HDMI controller
+Message-ID: <aXpzC8MnShvc0tJv@x1>
 References: <20260123092830.4046009-1-zhengxingda@iscas.ac.cn>
- <20260123092830.4046009-3-zhengxingda@iscas.ac.cn>
+ <20260123092830.4046009-5-zhengxingda@iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,7 +82,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260123092830.4046009-3-zhengxingda@iscas.ac.cn>
+In-Reply-To: <20260123092830.4046009-5-zhengxingda@iscas.ac.cn>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -88,16 +90,16 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260622-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-260623-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[28];
+	RCPT_COUNT_TWELVE(0.00)[29];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_CC(0.00)[intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,redhat.com,pengutronix.de,samsung.com,bootlin.com,disroot.org,vger.kernel.org,lists.freedesktop.org,lists.infradead.org,icenowy.me];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -107,54 +109,35 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[fustini@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[icenowy.me:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.0:email]
-X-Rspamd-Queue-Id: E93D4A8A37
+	DBL_BLOCKED_OPENRESOLVER(0.00)[icenowy.me:email,linaro.org:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: B8814A8A65
 X-Rspamd-Action: no action
 
-On Fri, Jan 23, 2026 at 05:28:23PM +0800, Icenowy Zheng wrote:
+On Fri, Jan 23, 2026 at 05:28:25PM +0800, Icenowy Zheng wrote:
 > From: Icenowy Zheng <uwu@icenowy.me>
 > 
-> Verisilicon has a series of display controllers prefixed with DC and
-> with self-identification facility like their GC series GPUs.
+> T-Head TH1520 SoC contains a Synopsys DesignWare HDMI controller paired
+> with DesignWare HDMI PHY, with an extra clock gate for HDMI pixel clock
+> and two reset controls.
 > 
-> Add a device tree binding for it.
-> 
-> Depends on the specific DC model, it can have either one or two display
-> outputs, and each display output could be set to DPI signal or "DP"
-> signal (which seems to be some plain parallel bus to HDMI controllers).
+> Add a device tree binding to it.
 > 
 > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
 > Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
-> Changes in v6:
-> - Added Rob's R-b.
-> 
-> Changes in v5:
-> - Dropped the requirement of port@0.
-> - Dropped the if clause for TH1520, which seems to be not needed because
->   of implicit DT binding rules.
-> 
-> Changes in v4:
-> - Added a comment for "verisilicon,dc" that says the ID/revision is
->   discoverable via registers.
-> - Removed clock minItems constraint w/o specific compatible strings.
-> 
-> Changes in v3:
-> - Added SoC-specific compatible string, and arm the binding with clock /
->   port checking for the specific SoC (with a 2-output DC).
+> No changes since v3.
 > 
 > Changes in v2:
-> - Fixed misspelt "versilicon" in title.
-> - Moved minItems in clock properties to be earlier than items.
-> - Re-aligned multi-line clocks and resets in example.
+> - Re-aligned multi-line clocks/resets in example.
+> - Added Krzysztof's R-b.
 > 
->  .../bindings/display/verisilicon,dc.yaml      | 122 ++++++++++++++++++
->  1 file changed, 122 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+>  .../display/bridge/thead,th1520-dw-hdmi.yaml  | 120 ++++++++++++++++++
+>  1 file changed, 120 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/thead,th1520-dw-hdmi.yaml
 
 I've applied the bindings patches (1, 2, 4) to thead-dt-for-next as well
 so that 'make W=1 dtbs_check' won't break for the next release of
