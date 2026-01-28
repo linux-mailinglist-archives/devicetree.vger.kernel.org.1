@@ -1,104 +1,58 @@
-Return-Path: <devicetree+bounces-260279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260280-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2D7oIxHbeWkg0QEAu9opvQ
-	(envelope-from <devicetree+bounces-260279-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 10:46:57 +0100
+	id W6MgNYXceWnI0QEAu9opvQ
+	(envelope-from <devicetree+bounces-260280-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 10:53:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3CC59EFDC
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 10:46:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B6E89F050
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 10:53:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CC6EC3006153
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 09:45:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BBBC03006B10
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 09:53:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A944E34CFD1;
-	Wed, 28 Jan 2026 09:45:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D84B034B1A1;
+	Wed, 28 Jan 2026 09:53:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OVFaonOH";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="dYllvsff"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="MT4bhqjZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16DC82857EA
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 09:45:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D8952FF169;
+	Wed, 28 Jan 2026 09:53:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769593549; cv=none; b=BxMWNY8263astTdmbBg6suO/3hAV1yA/9lnAVdHek5wEzcTf1kcwSyWVNWGK4xDDMZMg7GGN4tzBN1acq9qjVTEuDJp+F6nBzvyixURc15hOI0vajjyMaDfRLvmcb34XNsT+R9PdSr/RGykFVHxz9Dm4U84YsWaxRA+n/VanY1g=
+	t=1769593986; cv=none; b=jWkSPG8I86lWaJHVKaP9LmD8m3Rg1ciibfy8tG+AcUCnKsKsvRnZjFw19sYpLZfIeuQuEh2Y/YI4EtRg2KB2dEdkTEpfbeDDFxWJ2TsmqxviclAh2ziiR52cCP/J9txFJb8bKen5mq7hi+J2RFwx34moozH+pu8qO5VqW7AmY3g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769593549; c=relaxed/simple;
-	bh=QnGDz/E5viip/7CHf2oehKFgbjBcJvjeICm9qPBUzJk=;
+	s=arc-20240116; t=1769593986; c=relaxed/simple;
+	bh=vr1IpjsppjvWE/p2emkhB1rpnvnBV8VpHY5/IN7FEzs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=baPwvBcRu3fIBkdUlGPSQ+nScKjo8Jy5ooqC+z9b7FdyPTO8ZVyL0LR55Dm8XKD6bvKhcdWkByCQu9IiZl/wRcZs+AyUzY/OVDUlaqnC/ofucCUQo8EGjzH01IPyXlOpGFR5AsHmB2PxoyED1/IKoqhQ+nT/O9J0mKwcllJCITY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OVFaonOH; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=dYllvsff; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60S92965320363
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 09:45:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Aqf0hprgBFDDa2Buyyt0F0yoiDV5iMmIOZoHRFYFO+g=; b=OVFaonOHbkxaBkVh
-	El9NZNkKsGsttzRJYJ5rktcQqx1O0IIfB9f3Nnv2CETfbe0wllqJJQfX8kNrNe2I
-	YJp2Xda3c/mZzRSEGu4xA/wVaySRX/J8Zpe5nMxWtz9VPP6zbripvjqaS8A3/iqm
-	+HUhhkHJud5m0/LfCuIhWRnF7KPR5wkh16L/B/rFnxBhzprvmXO+aYmHzLITH/Kb
-	W1kD+LUrSeW4sjq44FWc1cKlGAK0w26QOYC6Aoqipbmqldah7M/2XBrT42W2hfwj
-	MdGT7H3Iqkmk97lV5M1u5kmI4kGbi6U+FEOD8FsK4HeM622p6wGjTcl5J6CYCXmT
-	75Px8w==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4by4sjt5p7-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 09:45:47 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8c536c9d2f7so218573485a.1
-        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 01:45:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769593546; x=1770198346; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Aqf0hprgBFDDa2Buyyt0F0yoiDV5iMmIOZoHRFYFO+g=;
-        b=dYllvsffuJ+agELLcCgr6sExLqafJa9/J+1gWh0znXmBFpQp5HA+fwvdA8xS8sr2a4
-         p13jMzInhesoE3nNlSuodeFZN9Uv+bfqYVsRHabEzaKIspELmTiarmQCjx/1JJGzEQai
-         Xb9a9KIN3/vdsdCPw62C//QxSgUppLxK3BRS65+QQhjysgY45TieF9AmTK73akGRWzXM
-         o4AmCXo1ywQ4kCJVvepEGL01U6FhMZzTLoKpmxghghHd6cpRAbevw2bXxCEB+ZXnYv1u
-         9McKsfkOI8ZSAFmb1MT2y5/OPlOhsFsUsszCwcIxNlIbOfO/G9MYzyVCjOPT6+gzz/BI
-         qUvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769593546; x=1770198346;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Aqf0hprgBFDDa2Buyyt0F0yoiDV5iMmIOZoHRFYFO+g=;
-        b=ThtPeWyEj8MBaEhouX2DWC5mDF3znCrzo81RaBrwrO/h5lHGBjG5nDdByEkBO1R9IF
-         9DmkB9jtkIxUfSZy3oDApYsFm+J8Sc2u1z/RtWgKfauIUiZg9mD/Frcx8z6hmQodvai9
-         pnpIPcetUHi+4wQOI7DuEdVt7Ms6iMA57R7REzAx+8tRr9r1MxQjBJKL4Xx5vgxTyAxH
-         GGD/7K/osbZOD6Q7X5GiWNQwjZoMOaO71V4ndmUyzfiwKeKsG1Hh4amlo0siHPXwvDeo
-         veVWUTl1S1b/zQKHxBFB0XYPV3EfZQ32G4IktfqM9vuX3vMP62zGGDtcb3vDUFHOpKwo
-         f3MA==
-X-Forwarded-Encrypted: i=1; AJvYcCWWAksb8b4cxlo7FIct6ecHqQap4WZHxTZQE5PGrQse5wMpOQ79pS+K0b7AMg0tP6EQAwmQHqV0vPDv@vger.kernel.org
-X-Gm-Message-State: AOJu0YyeWiLL520N+biOU15W4V5eC594/fv90iN/3GzrwAtH1xflICBc
-	qFn6qJDxArH49wsfPywGHic2CjHQZcP9H2yyp589JyJKcEiT0eYjycNxoxcqam26N1aRoelI1cW
-	QRue+gjGE0g2Kr6smHkjlIxJow9ZGknezVW92G7vLY6lMhgNLmwKx4RanzHuHcIPs
-X-Gm-Gg: AZuq6aIlqBtMD1VOXuYBcWWIC9yoNuln2O4pAYe5Pv6qKlWkyy+y9UpWrXTXqir7q+J
-	xHcbBqX32oCBhUKR/F/M4DfsCKcvbPYs6lsuIbTx30esYU9rqs63NDudj1+Zjq/Kr30Mbs0cIgj
-	6EOi40TGmNC3agNIpnx6KAJQMyu/RdPk+/yjiBdTfCXIfJF0D1Aa2GFJ2rn6xF4+d22oxLenKeo
-	1Z4+tgwsGZbW2mH1sJTSO0kv6Zziv7XOVr4eNblYk9qo75QkUiD0svQEEC9/p1Z/be/60sIF5XV
-	05R+hGUEx3CtdP3WIPLC2VvFeOrkELFNyvtfNg207v9oGYpLj8U28Qh4CXrJPY95NNWdTgDLAeB
-	ZhwSjEiMdDe69W4cejvKPp8eABPa+Ulicp9MIHAraoWjT/yXyJc2DYKNhKUZcszCMyHw=
-X-Received: by 2002:a05:620a:4109:b0:8c7:111e:9db6 with SMTP id af79cd13be357-8c714c00500mr104165785a.9.1769593546334;
-        Wed, 28 Jan 2026 01:45:46 -0800 (PST)
-X-Received: by 2002:a05:620a:4109:b0:8c7:111e:9db6 with SMTP id af79cd13be357-8c714c00500mr104163285a.9.1769593545847;
-        Wed, 28 Jan 2026 01:45:45 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8dbef86957sm110464166b.5.2026.01.28.01.45.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Jan 2026 01:45:45 -0800 (PST)
-Message-ID: <98397a59-8ef2-4202-ae41-015c895d6bce@oss.qualcomm.com>
-Date: Wed, 28 Jan 2026 10:45:42 +0100
+	 In-Reply-To:Content-Type; b=WYzTFaLpwDQDhvsjNwVTJUDF4b5pl35ktg1lS8gysn0Hxj0yLIvj8YMTsAfXbJk7li6sLW6hNxT5ZO4UIbU7Gm+AlkxSThjvvuxG7rTbad9B1dg5S+AbJxjzyYW9gBrHFxqQcHtcM/T4VKyaunubWe5sbvicDpMHmHF9rMher0Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=MT4bhqjZ; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1769593982;
+	bh=vr1IpjsppjvWE/p2emkhB1rpnvnBV8VpHY5/IN7FEzs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=MT4bhqjZXbv6XCbzGcAoPi4Gya9NPY16Q89TwSaa81gBDfiTwuN9LfosCOBMVxcit
+	 LZ9CAuatyL4Lbl541UEsL4cJXn7oIqZrrUN8bjj0gjggHVRYlmgxvo1cLGjwU2zHgY
+	 MlHB981uLUCXcSSVrhtgrnRvgXbjkTdfhpXYQS5VXXYZwGsZyZL+eLKzd4bCcurz79
+	 6P23n+nZlT+YZoR5GfIcrVM7K2tAeeXjSonQF8iMsSNBfvD2uqC+Zu3rXiFJ+jY4DR
+	 FcOuKmY5cJQSDRPixZ2VuRkhxOi59YscHAo4Z1qQZmriiS7zzve2jqs8SAP7X7J4Wx
+	 gs4WXzwFyzEmg==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1B96717E0E4C;
+	Wed, 28 Jan 2026 10:53:02 +0100 (CET)
+Message-ID: <8b1c78db-12fc-4f06-bf2b-49b47f24850a@collabora.com>
+Date: Wed, 28 Jan 2026 10:53:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -106,194 +60,329 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/8] remoteproc: qcom: probe all child devices
-To: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, mathieu.poirier@linaro.org,
-        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        rafael@kernel.org, daniel.lezcano@linaro.org, rui.zhang@intel.com,
-        lukasz.luba@arm.com, konradybcio@kernel.org, amitk@kernel.org,
-        mani@kernel.org, casey.connolly@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-References: <20251223123227.1317244-1-gaurav.kohli@oss.qualcomm.com>
- <20251223123227.1317244-3-gaurav.kohli@oss.qualcomm.com>
- <evb5tn2cht7wk76fuc2wpsyxepknigfw37633n6ypuapstbceh@tn5glmi65bdv>
- <cb5430c8-12d6-4439-b1ae-c2f36f29a9f8@oss.qualcomm.com>
- <57493aef-fb35-4377-8cf3-1df7f53470c9@oss.qualcomm.com>
- <74h7r3vsig3csejax3eu3uk53mdiimg2hjx7ntmmfrwdai6s3j@eiztghclfcvt>
- <5db5dafd-3c1f-4844-b822-bbfe86b3eb4d@oss.qualcomm.com>
- <ctrpymbvjlchp3djnsqq4bghkq2zvqnf5bebszi74f3d36l5dv@icvnkdwgdxmi>
- <ef1911f5-2d96-428c-93f1-3d1815710894@oss.qualcomm.com>
+Subject: Re: [PATCH v7 05/10] media: mediatek: vcodec: Add Decoder profile &
+ level Initialization
+To: =?UTF-8?B?S3lyaWUgV3UgKOWQtOaZlyk=?= <Kyrie.Wu@mediatek.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ =?UTF-8?B?R2VvcmdlIFN1biAo5a2Z5p6XKQ==?= <George.Sun@mediatek.com>,
+ =?UTF-8?B?VGlmZmFueSBMaW4gKOael+aFp+ePiik=?= <tiffany.lin@mediatek.com>,
+ "nhebert@chromium.org" <nhebert@chromium.org>,
+ "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "mchehab@kernel.org" <mchehab@kernel.org>,
+ "hverkuil@xs4all.nl" <hverkuil@xs4all.nl>,
+ "nicolas.dufresne@collabora.com" <nicolas.dufresne@collabora.com>,
+ =?UTF-8?B?WXVuZmVpIERvbmcgKOiRo+S6kemjnik=?= <Yunfei.Dong@mediatek.com>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ =?UTF-8?B?SXJ1aSBXYW5nICjnjovnkZ4p?= <Irui.Wang@mediatek.com>,
+ "robh@kernel.org" <robh@kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "arnd@arndb.de" <arnd@arndb.de>,
+ =?UTF-8?B?QW5kcmV3LUNUIENoZW4gKOmZs+aZuui/qik=?=
+ <Andrew-CT.Chen@mediatek.com>
+Cc: "andrzejtp2010@gmail.com" <andrzejtp2010@gmail.com>,
+ "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+ =?UTF-8?B?WWlsb25nIFpob3UgKOWRqOaYk+m+mSk=?= <Yilong.Zhou@mediatek.com>
+References: <20260127024248.18406-1-kyrie.wu@mediatek.com>
+ <20260127024248.18406-6-kyrie.wu@mediatek.com>
+ <4a6e111d-49ef-449d-af9d-b0bd4fb468a5@collabora.com>
+ <54689bc16875b979147c021123c2546aacb7541e.camel@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <ef1911f5-2d96-428c-93f1-3d1815710894@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <54689bc16875b979147c021123c2546aacb7541e.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI4MDA3OSBTYWx0ZWRfX+yrsZr5O5O0m
- qhIhNtKc+fsXmklFfYNQZhfSn9MKyAQAXkdAWVi1tQgSG3i7SheQiEqjIW8yzMCZkTZF2hhljsR
- nRd3XA8C/rqbA/8t9Y4ZhJAvbuNrZt+Sf2GA0e39giZO3LFXl6+sJulDsHpar1On9+LtRN2WaiR
- 9zWIdxtm4usaVSb8O9uIaEzy0kaScQC1xkgUUu0beLYFzlRVp6ph7IFebf8YBvHkriPtCQj9yrN
- Qthbn2dag0YOdE5SaMVN50DENeNmA/vbvBKY4k0g06/lO9h8UgH0TXeZ0NbVtboNN2rVhEz+1aq
- 9gey3+Zdl0FMJEuhIAOPIYyAlWtlqyuthKYaqjQBagxXubFKjvSR4llLjBDBl21P6gi+DmJ4zDd
- jslFuK0mdjSZ1ibH4wxQpP9fYHt0ylfwnydTDpeo48gE+8UDYdO2M6l4erKAoBJOKpWa5rUSoxt
- mCJdRzRqW7GAD3egZZA==
-X-Proofpoint-ORIG-GUID: UHWv56L7DKdWHhadodWgojenSVesQM3q
-X-Authority-Analysis: v=2.4 cv=KezfcAYD c=1 sm=1 tr=0 ts=6979dacb cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=KKAkSRfTAAAA:8 a=c06_8Dn6AeKgcUQ8PTcA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
- a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-GUID: UHWv56L7DKdWHhadodWgojenSVesQM3q
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-01-28_02,2026-01-27_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 adultscore=0 impostorscore=0 suspectscore=0 malwarescore=0
- clxscore=1015 spamscore=0 bulkscore=0 phishscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601280079
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260279-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	TAGGED_FROM(0.00)[bounces-260280-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[mediatek.com,vger.kernel.org,lists.infradead.org,chromium.org,kernel.org,xs4all.nl,collabora.com,gmail.com,arndb.de];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	FREEMAIL_CC(0.00)[gmail.com,linaro.org,mediatek.com];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:email,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DKIM_TRACE(0.00)[collabora.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: C3CC59EFDC
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linuxtv.org:url]
+X-Rspamd-Queue-Id: 1B6E89F050
 X-Rspamd-Action: no action
 
-On 1/28/26 10:39 AM, Gaurav Kohli wrote:
-> 
-> On 1/27/2026 10:11 PM, Dmitry Baryshkov wrote:
->> On Tue, Jan 27, 2026 at 09:42:10PM +0530, Gaurav Kohli wrote:
->>> On 1/24/2026 12:33 AM, Dmitry Baryshkov wrote:
->>>> On Fri, Jan 23, 2026 at 07:23:39PM +0530, Gaurav Kohli wrote:
->>>>> On 1/8/2026 12:37 PM, Gaurav Kohli wrote:
->>>>>> On 1/3/2026 8:26 PM, Bjorn Andersson wrote:
->>>>>>> On Tue, Dec 23, 2025 at 06:02:21PM +0530, Gaurav Kohli wrote:
->>>>>>>> From: Casey Connolly <casey.connolly@linaro.org>
->>>>>>>>
->>>>>>>> Generalise the qcom,bam-dmux child node support by probing all
->>>>>>>> remoteproc children with of_platform_populate(). This will be used to
->>>>>>>> enable support for devices which are best represented as
->>>>>>>> subnodes of the
->>>>>>>> remoteproc, such as those representing QMI clients.
->>>>>>> Please flip this around, start with the description of the problem
->>>>>>> you're trying to solve.
->>>>>>>
->>>>>>>> Signed-off-by: Casey Connolly <casey.connolly@linaro.org>
->>>>>>> This must have your signed-off-by, where you certifies the origin of
->>>>>>> this patch.
->>>>>>>
->>>>>>>> ---
->>>>>>>>     drivers/remoteproc/qcom_q6v5.c     | 4 ++++
->>>>>>>>     drivers/remoteproc/qcom_q6v5_mss.c | 8 --------
->>>>>>>>     2 files changed, 4 insertions(+), 8 deletions(-)
->>>>>>>>
->>>>>>>> diff --git a/drivers/remoteproc/qcom_q6v5.c
->>>>>>>> b/drivers/remoteproc/qcom_q6v5.c
->>>>>>>> index 58d5b85e58cd..a02839c7ed8c 100644
->>>>>>>> --- a/drivers/remoteproc/qcom_q6v5.c
->>>>>>>> +++ b/drivers/remoteproc/qcom_q6v5.c
->>>>>>>> @@ -6,6 +6,7 @@
->>>>>>>>      * Copyright (C) 2014 Sony Mobile Communications AB
->>>>>>>>      * Copyright (c) 2012-2013, The Linux Foundation. All rights
->>>>>>>> reserved.
->>>>>>>>      */
->>>>>>>> +#include <linux/of_platform.h>
->>>>>>>>     #include <linux/kernel.h>
->>>>>>>>     #include <linux/platform_device.h>
->>>>>>>>     #include <linux/interconnect.h>
->>>>>>>> @@ -351,6 +352,8 @@ int qcom_q6v5_init(struct qcom_q6v5 *q6v5,
->>>>>>>> struct platform_device *pdev,
->>>>>>>>             return dev_err_probe(&pdev->dev, PTR_ERR(q6v5->path),
->>>>>>>>                          "failed to acquire interconnect path\n");
->>>>>>>>     +    of_platform_populate(q6v5->dev->of_node, NULL, NULL, q6v5->dev);
->>>>>>> There are other child nodes here, in particular the GLINK and SMD edges.
->>>>>>> Do we really want platform_devices registered for them?
->>>>>>>
->>>>>>> Regards,
->>>>>>> Bjorn
->>>>>> thanks for pointing this, can you please suggest the right approach.
->>>>>>
->>>>>> This should not impact glink, as that is registering as rproc sub node,
->>>>>> And we need rproc cooling as child node
->>>>>>
->>>>>> of remote proc subsytem to create probe dependency only.
->>>>>>
->>>>>>
->>>>>> Can we do platform populate for specific child, would that be right
->>>>>> approach. or we should create rproc cooling as independent of parent ?
->>>>>>
->>>>> HI Bjorn,
->>>>>
->>>>> I’d like to highlight the impact and details of placement of remoteproc
->>>>> cooling dt node:
->>>>>
->>>>>
->>>>> ->As a child of the remote proc subsystem node:
->>>>>       In this configuration, the cooling device will only be probed once the
->>>>> corresponding remote proc subsystem itself is probed.
->>>>>
->>>>> ->Outside the remote proc subsystem, may be part of soc node:
->>>>>       In this setup, the cooling device will be probed independently. It will
->>>>> wait until the remoteproc subsystem is brought up
->>>>>       before completing cooling registration.
->>>>>       The drawback here is that if the parent remoteproc subsystem is
->>>>> disabled, the cooling device will still undergo an
->>>>>       unnecessary probe, even though it cannot be registered.
->>>> Bjorns question was different. It wasn't about pushing cooling device
->>>> outside of the remoteproc node. It is about not registering the devices.
->>>>
->>>> Can we follow the approach outlined by qcom_add_smd_subdev() /
->>>> qcom_add_glink_subdev()?
+Il 28/01/26 08:45, Kyrie Wu (吴晗) ha scritto:
+> On Tue, 2026-01-27 at 13:07 +0100, AngeloGioacchino Del Regno wrote:
+>> Il 27/01/26 03:42, Kyrie Wu ha scritto:
+>>> This commit initializes codec profile & level for VDEC. It sets
+>>> default values for H264, H265, and VP9 codecs across multiple
+>>> chipset configurations.
 >>>
->>> Hi Dmitry,
+>>
+>> The previous patch "Refactor decoder profile and level handling" will
+>> break the
+>> driver if this patch is not also applied at the same time.
+>>
+>> The change looks good, but you should squash 05/10 in 04/10, and
+>> assign the params
+>> that you're adding here along with the refactoring, so that you get
+>> one single
+>> patch that, if applied, doesn't break anything as it doesn't depend
+>> on additional
+>> (future, as this is number 5) patch.
+>>
+>> Please squash
+>>
+>> Cheers,
+>> Angelo
+> 
+> Dear Angelo,
+> 
+> The 04/10 and 05/10 were designed in one patch in v6,
+> but Nicolas thought that refactor patch and configuration
+> were two different changes, should separate them in this
+> comments:
+> https://patchwork.linuxtv.org/project/linux-media/patch/20251202074038.3173-5-kyrie.wu@mediatek.com/
+
+Even though in this case I disagree with Nicolas, I'm the mediatek maintainer,
+not a linux-media maintainer... so... let's go with whatever the media
+maintainers think it's best.
+
+> 
+> In my mind, refactor profile and level setting and assign
+> former ICs' parameters could merge into same patch. The
+> configuration of MT8189 should split to another one, because
+> it is a new setting.
+> 
+> Do you agree with my opinion? I look forward to your further reply.
+> 
+
+I agree with your opinion, but if linux-media maintainers want those two
+patches separated as you just did, I will raise my hands, so...
+
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com
+
+...because when the two patches are applied at the same time, there's no
+breakage. But I want to still repeat my stance on this: single patches
+should never depend on subsequent patches to avoid regressions (and I know
+you agree as your previous version was compliant with that stance).
+
+Cheers,
+Angelo
+
+> Thanks.
+> 
+> Regards,
+> Kyrie.
+> 
+> 
+>>
+>>> Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
+>>> ---
+>>>    .../vcodec/decoder/mtk_vcodec_dec_stateful.c  | 12 +++
+>>>    .../vcodec/decoder/mtk_vcodec_dec_stateless.c | 84
+>>> +++++++++++++++++++
+>>>    2 files changed, 96 insertions(+)
 >>>
->>> Thanks for the review. Since the remoteproc cooling is a QMI-based driver,
->>> it will receive the
->>> subsystem up notification directly. Therefore, there’s no need to make it a
->>> subdev node or
->>> tie it into the init/reset sequence of remoteproc subsytem.
->> But you've added a subnode for it (and we are discussing exactly
->> of_platform_populate()) call. So, you are tying it to the remoteproc
->> device lifecycle instead of the remoteproc subsys, which seems strange
->> to me. There is no cooling device if the DSP is not running.
-> 
-> 
-> For the cooling feature, we don’t need to define it as a subnode. The cooling subsystem becomes relevant only
-> after the remote subsystem is up, at which point it will receive add/delete notifications from the QMI server.
-> 
-> 
-> If child nodes must be modeled as subnodes for rproc, we can move the CDSP TMD out of the remoteproc and add in soc.
-> Is there currently a way for the remoteproc core layer to call of_platform_populate() without requiring a subnode?
+>>> diff --git
+>>> a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_sta
+>>> teful.c
+>>> b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_sta
+>>> teful.c
+>>> index 8ddb61670dc6..a47906b9d717 100644
+>>> ---
+>>> a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_sta
+>>> teful.c
+>>> +++
+>>> b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_sta
+>>> teful.c
+>>> @@ -619,4 +619,16 @@ const struct mtk_vcodec_dec_pdata
+>>> mtk_vdec_8173_pdata = {
+>>>    	.is_subdev_supported = false,
+>>>    	.hw_arch = MTK_VDEC_PURE_SINGLE_CORE,
+>>>    	.chip_name = 8173,
+>>> +	.h264_params = {
+>>> +		.level = V4L2_MPEG_VIDEO_H264_LEVEL_4_1,
+>>> +		.profile = V4L2_MPEG_VIDEO_H264_PROFILE_HIGH,
+>>> +	},
+>>> +	.h265_params = {
+>>> +		.level = V4L2_MPEG_VIDEO_HEVC_LEVEL_4,
+>>> +		.profile =
+>>> V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE,
+>>> +	},
+>>> +	.vp9_params = {
+>>> +		.level = V4L2_MPEG_VIDEO_VP9_LEVEL_4_0,
+>>> +		.profile = V4L2_MPEG_VIDEO_VP9_PROFILE_1,
+>>> +	},
+>>>    };
+>>> diff --git
+>>> a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_sta
+>>> teless.c
+>>> b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_sta
+>>> teless.c
+>>> index a1f419202a24..b571c4ed3f79 100644
+>>> ---
+>>> a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_sta
+>>> teless.c
+>>> +++
+>>> b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_sta
+>>> teless.c
+>>> @@ -830,6 +830,18 @@ const struct mtk_vcodec_dec_pdata
+>>> mtk_vdec_8183_pdata = {
+>>>    	.is_subdev_supported = false,
+>>>    	.hw_arch = MTK_VDEC_PURE_SINGLE_CORE,
+>>>    	.chip_name = 8183,
+>>> +	.h264_params = {
+>>> +		.level = V4L2_MPEG_VIDEO_H264_LEVEL_4_2,
+>>> +		.profile = V4L2_MPEG_VIDEO_H264_PROFILE_HIGH,
+>>> +	},
+>>> +	.h265_params = {
+>>> +		.level = V4L2_MPEG_VIDEO_HEVC_LEVEL_4,
+>>> +		.profile =
+>>> V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE,
+>>> +	},
+>>> +	.vp9_params = {
+>>> +		.level = V4L2_MPEG_VIDEO_VP9_LEVEL_4_0,
+>>> +		.profile = V4L2_MPEG_VIDEO_VP9_PROFILE_1,
+>>> +	},
+>>>    };
+>>>    
+>>>    /* This platform data is used for one lat and one core
+>>> architecture. */
+>>> @@ -869,24 +881,72 @@ const struct mtk_vcodec_dec_pdata
+>>> mtk_vdec_8188_pdata = {
+>>>    	MTK_STATELESS_DEC_DATA,
+>>>    	.hw_arch = MTK_VDEC_LAT_SINGLE_CORE,
+>>>    	.chip_name = 8188,
+>>> +	.h264_params = {
+>>> +		.level = V4L2_MPEG_VIDEO_H264_LEVEL_5_2,
+>>> +		.profile = V4L2_MPEG_VIDEO_H264_PROFILE_HIGH_10,
+>>> +	},
+>>> +	.h265_params = {
+>>> +		.level = V4L2_MPEG_VIDEO_HEVC_LEVEL_5_1,
+>>> +		.profile = V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_10,
+>>> +	},
+>>> +	.vp9_params = {
+>>> +		.level = V4L2_MPEG_VIDEO_VP9_LEVEL_5_1,
+>>> +		.profile = V4L2_MPEG_VIDEO_VP9_PROFILE_2,
+>>> +	},
+>>>    };
+>>>    
+>>>    const struct mtk_vcodec_dec_pdata mtk_vdec_8192_pdata = {
+>>>    	MTK_STATELESS_DEC_DATA,
+>>>    	.hw_arch = MTK_VDEC_LAT_SINGLE_CORE,
+>>>    	.chip_name = 8192,
+>>> +	.h264_params = {
+>>> +		.level = V4L2_MPEG_VIDEO_H264_LEVEL_5_2,
+>>> +		.profile = V4L2_MPEG_VIDEO_H264_PROFILE_HIGH,
+>>> +	},
+>>> +	.h265_params = {
+>>> +		.level = V4L2_MPEG_VIDEO_HEVC_LEVEL_4,
+>>> +		.profile =
+>>> V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE,
+>>> +	},
+>>> +	.vp9_params = {
+>>> +		.level = V4L2_MPEG_VIDEO_VP9_LEVEL_5_1,
+>>> +		.profile = V4L2_MPEG_VIDEO_VP9_PROFILE_1,
+>>> +	},
+>>>    };
+>>>    
+>>>    const struct mtk_vcodec_dec_pdata mtk_vdec_8195_pdata = {
+>>>    	MTK_STATELESS_DEC_DATA,
+>>>    	.hw_arch = MTK_VDEC_LAT_SINGLE_CORE,
+>>>    	.chip_name = 8195,
+>>> +	.h264_params = {
+>>> +		.level = V4L2_MPEG_VIDEO_H264_LEVEL_6_0,
+>>> +		.profile = V4L2_MPEG_VIDEO_H264_PROFILE_HIGH_10,
+>>> +	},
+>>> +	.h265_params = {
+>>> +		.level = V4L2_MPEG_VIDEO_HEVC_LEVEL_5_2,
+>>> +		.profile = V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_10,
+>>> +	},
+>>> +	.vp9_params = {
+>>> +		.level = V4L2_MPEG_VIDEO_VP9_LEVEL_5_2,
+>>> +		.profile = V4L2_MPEG_VIDEO_VP9_PROFILE_2,
+>>> +	},
+>>>    };
+>>>    
+>>>    const struct mtk_vcodec_dec_pdata mtk_vdec_8196_pdata = {
+>>>    	MTK_STATELESS_DEC_DATA,
+>>>    	.hw_arch = MTK_VDEC_LAT_SINGLE_CORE,
+>>>    	.chip_name = 8196,
+>>> +	.h264_params = {
+>>> +		.level = V4L2_MPEG_VIDEO_H264_LEVEL_6_0,
+>>> +		.profile = V4L2_MPEG_VIDEO_H264_PROFILE_HIGH_10,
+>>> +	},
+>>> +	.h265_params = {
+>>> +		.level = V4L2_MPEG_VIDEO_HEVC_LEVEL_5_2,
+>>> +		.profile = V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_10,
+>>> +	},
+>>> +	.vp9_params = {
+>>> +		.level = V4L2_MPEG_VIDEO_VP9_LEVEL_5_2,
+>>> +		.profile = V4L2_MPEG_VIDEO_VP9_PROFILE_2,
+>>> +	},
+>>>    };
+>>>    
+>>>    const struct mtk_vcodec_dec_pdata mtk_vdec_single_core_pdata = {
+>>> @@ -910,6 +970,18 @@ const struct mtk_vcodec_dec_pdata
+>>> mtk_vdec_8186_pdata = {
+>>>    	MTK_STATELESS_DEC_DATA,
+>>>    	.hw_arch = MTK_VDEC_PURE_SINGLE_CORE,
+>>>    	.chip_name = 8186,
+>>> +	.h264_params = {
+>>> +		.level = V4L2_MPEG_VIDEO_H264_LEVEL_4_2,
+>>> +		.profile = V4L2_MPEG_VIDEO_H264_PROFILE_HIGH,
+>>> +	},
+>>> +	.h265_params = {
+>>> +		.level = V4L2_MPEG_VIDEO_HEVC_LEVEL_4,
+>>> +		.profile =
+>>> V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE,
+>>> +	},
+>>> +	.vp9_params = {
+>>> +		.level = V4L2_MPEG_VIDEO_VP9_LEVEL_4_1,
+>>> +		.profile = V4L2_MPEG_VIDEO_VP9_PROFILE_1,
+>>> +	},
+>>>    };
+>>>    
+>>>    const struct mtk_vcodec_dec_pdata mtk_vdec_8189_pdata = {
+>>> @@ -928,4 +1000,16 @@ const struct mtk_vcodec_dec_pdata
+>>> mtk_vdec_8189_pdata = {
+>>>    	.is_subdev_supported = true,
+>>>    	.hw_arch = MTK_VDEC_PURE_SINGLE_CORE,
+>>>    	.chip_name = 8189,
+>>> +	.h264_params = {
+>>> +		.level = V4L2_MPEG_VIDEO_H264_LEVEL_5_2,
+>>> +		.profile = V4L2_MPEG_VIDEO_H264_PROFILE_HIGH_10,
+>>> +	},
+>>> +	.h265_params = {
+>>> +		.level = V4L2_MPEG_VIDEO_HEVC_LEVEL_4,
+>>> +		.profile =
+>>> V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE,
+>>> +	},
+>>> +	.vp9_params = {
+>>> +		.level = V4L2_MPEG_VIDEO_VP9_LEVEL_5_2,
+>>> +		.profile = V4L2_MPEG_VIDEO_VP9_PROFILE_2,
+>>> +	},
+>>>    };
+>>
+>>
 
-I think the question is "why can't you register the remoteproc device
-as a cooling_device, with perhaps #cooling-cells = <1>; instead of
-any form of children?"
-
-Konrad
 
