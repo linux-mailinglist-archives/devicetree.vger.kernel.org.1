@@ -1,421 +1,260 @@
-Return-Path: <devicetree+bounces-260444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260445-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GPNhJGYgemmv2wEAu9opvQ
-	(envelope-from <devicetree+bounces-260444-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 15:42:46 +0100
+	id 0ISaEJIgemmv2wEAu9opvQ
+	(envelope-from <devicetree+bounces-260445-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 15:43:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49C60A300E
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 15:42:45 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9152A3058
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 15:43:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 27B1C300B46B
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 14:41:54 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2DE753004F09
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 14:43:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BE42361677;
-	Wed, 28 Jan 2026 14:41:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 046B1360757;
+	Wed, 28 Jan 2026 14:43:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="VskxW8cQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qu1Zmezw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57F66352FA5;
-	Wed, 28 Jan 2026 14:41:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D60062749EA;
+	Wed, 28 Jan 2026 14:43:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769611311; cv=none; b=e0HBp8f61sNnvmduZpyJ+4kIvQmKJ5t5sfjBsAgMrxAfNmIPytHq1xO7FuID/RjOcbgz8m3+D9anFPga3EVkKy4SEWGEsPlvaU0v/bCHSHTHckfttcwlHwzncWJq2JPkA468wu2G2l+4ESYVbQumfVq6hJMPZR53868xwmguTdM=
+	t=1769611405; cv=none; b=Xzwy9iT8Cnek6ReHkfXMCPBXj39TGR3XJs1dCNwdbUcci4Vwx+vcTdkg+OsRCVZl7+TV/DEgQF4uDfWouGw/No90WJcnJRE7RIHxgFYkqaX+IPgF1xmhywCELc1xsDhpFywjYH7e/fN/SrVl3z8QmwT++iGaavQhrete6OtvTk8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769611311; c=relaxed/simple;
-	bh=wAlJzcsh4bYcVJgHM5D12nidM5/BBv4ehJTvbKYkBXY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IIrUM3ts6hTFa1X1EweK1vdx6EIzT5kqcgfLlX3/e6XpfRHSC+B0BGCN9ULRSpdWFrlPI0Sfd4/szCe/bEGQ8zKGukx7dVLLDMUwBu0HpE4ElGTm4Zvcdi8G1+RiNE3cS3bMhN9u0BW8a71rutQexorXh2L+F2BZH6hlsoa7m10=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=VskxW8cQ; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1769611307;
-	bh=wAlJzcsh4bYcVJgHM5D12nidM5/BBv4ehJTvbKYkBXY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VskxW8cQHOvCgDxJWR5jQb0a7ljthDHhE46HFb7V4NWE6bTMUh6bjUOb1KcTt6PTd
-	 OfzE5i91d4FrRg9WNrAl2lnzH9E9r6bdVxrIQsPIqM9h6+YcP6bTiWsJW/wrrYDmwJ
-	 Y3G67ScEvLw1gUGY95KVXXTy6eGqvjyNOzMyl7jOsm/KtPiw5WOrKOe3sHSYDRZfOZ
-	 VXl1i208d5j8uSPWvNq/Eg+BDvw7de3GtWhcKmlvkrQOSpO5auDnncpnfhwIyS4Ubd
-	 C4imqDlgX1frq8W75CH7TG6jk0608gPt3GzB8SDRa7GFxiD1BvTHLYB9DXSwj0CxpK
-	 wwCq2kwH3nodg==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id A919017E0699;
-	Wed, 28 Jan 2026 15:41:46 +0100 (CET)
-Message-ID: <92cabfc7-b35c-4ed8-9654-c4ef52bcbe03@collabora.com>
-Date: Wed, 28 Jan 2026 15:41:46 +0100
+	s=arc-20240116; t=1769611405; c=relaxed/simple;
+	bh=0B519Vg/97pcy/TIGo6fOqWtnD7qqsR2NhzAAYeW+OI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VoV2XTdj98oJxnDlrxFsPvBLE5IR9p3RBqk98wXtDkDeOiWmg4Lob/+c+5b/KsGGcpHWSTQJLAGVICMok/5w8zG9tJoFlv5h+3rB4fAmJEmHxpV7xoHhYxxHoOyuM+dWwpyNn7ge27e/pl3j9+OGq8cowGtl2ccREsoQdcNyl2Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qu1Zmezw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F898C4CEF1;
+	Wed, 28 Jan 2026 14:43:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769611405;
+	bh=0B519Vg/97pcy/TIGo6fOqWtnD7qqsR2NhzAAYeW+OI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qu1ZmezwAkbrJ2zKOND7KXDNZeEK9g3dsBxeX3K6kpSSy8wO3QgnGgNN+djimNs69
+	 FrlIWBOVspka7ZkS3wEnQ0pGDCW50d39gBsqucCi1mNNDoooZ+hSqaGRdvakXcrrzm
+	 vqlyagn+vtVu5tWCj40T46YN5Wn3jgKCU4APeKfs26aJDLShVt8vDYA1cBY8WNnd/G
+	 AMhSiiQb10T7hMFw7ICI/PBXSW16L82COqA53F7jI53FIi0MNFOrgC/7wtXgN7MSZ0
+	 /Q+W9iJktOx2HF9F8eh+mQCFAb3uMCvkqZOWMnsg3PNhPZJ5Ccf6q4g52LDLwdRjOR
+	 OvfBqNJeVXVZA==
+Date: Wed, 28 Jan 2026 14:43:20 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v2 2/6] dt-bindings: iio: amplifiers: Add AD8366 support
+Message-ID: <20260128-grieving-polish-4292db90090d@spud>
+References: <20260126-iio-ad8366-update-v2-0-c9a4d31aeb01@analog.com>
+ <20260126-iio-ad8366-update-v2-2-c9a4d31aeb01@analog.com>
+ <20260126-porous-hurdle-bfc510f113bb@spud>
+ <rzco2g6psoblzaaqrdnmpmhs44hl7kqusa2kuafpkjx635dug2@rtwebhwztfkd>
+ <20260127-goes-grandpa-891eb0dc413a@spud>
+ <4dkomm5sskte4olhvjtkuae2t34qim5alp6ptsn3a2m6cyqqrt@kemulszlm3ta>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 05/10] media: mediatek: vcodec: Add Decoder profile &
- level Initialization
-To: Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- =?UTF-8?B?S3lyaWUgV3UgKOWQtOaZlyk=?= <Kyrie.Wu@mediatek.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- =?UTF-8?B?R2VvcmdlIFN1biAo5a2Z5p6XKQ==?= <George.Sun@mediatek.com>,
- =?UTF-8?B?VGlmZmFueSBMaW4gKOael+aFp+ePiik=?= <tiffany.lin@mediatek.com>,
- "nhebert@chromium.org" <nhebert@chromium.org>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "mchehab@kernel.org" <mchehab@kernel.org>,
- "hverkuil@xs4all.nl" <hverkuil@xs4all.nl>,
- =?UTF-8?B?WXVuZmVpIERvbmcgKOiRo+S6kemjnik=?= <Yunfei.Dong@mediatek.com>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- =?UTF-8?B?SXJ1aSBXYW5nICjnjovnkZ4p?= <Irui.Wang@mediatek.com>,
- "robh@kernel.org" <robh@kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "arnd@arndb.de" <arnd@arndb.de>,
- =?UTF-8?B?QW5kcmV3LUNUIENoZW4gKOmZs+aZuui/qik=?=
- <Andrew-CT.Chen@mediatek.com>
-Cc: "andrzejtp2010@gmail.com" <andrzejtp2010@gmail.com>,
- "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
- =?UTF-8?B?WWlsb25nIFpob3UgKOWRqOaYk+m+mSk=?= <Yilong.Zhou@mediatek.com>
-References: <20260127024248.18406-1-kyrie.wu@mediatek.com>
- <20260127024248.18406-6-kyrie.wu@mediatek.com>
- <4a6e111d-49ef-449d-af9d-b0bd4fb468a5@collabora.com>
- <54689bc16875b979147c021123c2546aacb7541e.camel@mediatek.com>
- <8b1c78db-12fc-4f06-bf2b-49b47f24850a@collabora.com>
- <d00d4dc685d76273ea99c9b90897602617c53abb.camel@collabora.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <d00d4dc685d76273ea99c9b90897602617c53abb.camel@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="K0apa4UihCntjqdq"
+Content-Disposition: inline
+In-Reply-To: <4dkomm5sskte4olhvjtkuae2t34qim5alp6ptsn3a2m6cyqqrt@kemulszlm3ta>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260444-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[collabora.com,mediatek.com,vger.kernel.org,lists.infradead.org,chromium.org,kernel.org,xs4all.nl,gmail.com,arndb.de];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	FREEMAIL_CC(0.00)[gmail.com,linaro.org,mediatek.com];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TAGGED_FROM(0.00)[bounces-260445-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,collabora.com:dkim,collabora.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,mediatek.com:email,linuxtv.org:url]
-X-Rspamd-Queue-Id: 49C60A300E
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C9152A3058
 X-Rspamd-Action: no action
 
-Il 28/01/26 14:39, Nicolas Dufresne ha scritto:
-> Hi,
-> 
-> Le mercredi 28 janvier 2026 à 10:53 +0100, AngeloGioacchino Del Regno a écrit :
->> Il 28/01/26 08:45, Kyrie Wu (吴晗) ha scritto:
->>> On Tue, 2026-01-27 at 13:07 +0100, AngeloGioacchino Del Regno wrote:
->>>> Il 27/01/26 03:42, Kyrie Wu ha scritto:
->>>>> This commit initializes codec profile & level for VDEC. It sets
->>>>> default values for H264, H265, and VP9 codecs across multiple
->>>>> chipset configurations.
->>>>>
->>>>
->>>> The previous patch "Refactor decoder profile and level handling" will
->>>> break the
->>>> driver if this patch is not also applied at the same time.
->>>>
->>>> The change looks good, but you should squash 05/10 in 04/10, and
->>>> assign the params
->>>> that you're adding here along with the refactoring, so that you get
->>>> one single
->>>> patch that, if applied, doesn't break anything as it doesn't depend
->>>> on additional
->>>> (future, as this is number 5) patch.
->>>>
->>>> Please squash
->>>>
->>>> Cheers,
->>>> Angelo
->>>
->>> Dear Angelo,
->>>
->>> The 04/10 and 05/10 were designed in one patch in v6,
->>> but Nicolas thought that refactor patch and configuration
->>> were two different changes, should separate them in this
->>> comments:
->>> https://patchwork.linuxtv.org/project/linux-media/patch/20251202074038.3173-5-kyrie.wu@mediatek.com/
->>
->> Even though in this case I disagree with Nicolas, I'm the mediatek maintainer,
->> not a linux-media maintainer... so... let's go with whatever the media
->> maintainers think it's best.
-> 
-> No need to disagree, I was not very clear in my reply indeed. What I want to see
-> is the added MT8189 configuration in isolation. So when I said two patches, the
-> first one should reorganize the code for existing platform, without breaking it,
-> and the second should add MT8189 support. I will have a read at these two patch
-> to understand what is being done wrong, and can provide further feedback later.
-> 
-> The commit description in v6 was only saying that it was adding a configuration
-> for MT8189.
-> 
 
-Re-reading what I wrote - my words could be misunderstood as well, so - just in
-case anyone did: sorry, that wasn't meant as any form of attack and was purely
-about sharing an opinion in a friendlier way than what appears from my previous
-words. Eh, writing emails fast .... :-P
+--K0apa4UihCntjqdq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Btw.
+On Wed, Jan 28, 2026 at 09:39:12AM +0000, Rodrigo Alencar wrote:
+> On 26/01/27 07:38PM, Conor Dooley wrote:
+> > On Tue, Jan 27, 2026 at 11:37:52AM +0000, Rodrigo Alencar wrote:
+> > > On 26/01/26 08:11PM, Conor Dooley wrote:
+> > > > On Mon, Jan 26, 2026 at 01:51:03PM +0000, Rodrigo Alencar via B4 Re=
+lay wrote:
+> > > > > From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+> > > > >=20
+> > > > > Add device tree binding documentation for amplifiers and digital
+> > > > > attenuators. This covers different device variants with similar
+> > > > > SPI control.
+> > >=20
+> > > ...
+> > >=20
+> > > > > +properties:
+> > > > > +  compatible:
+> > > > > +    enum:
+> > > > > +      - adi,ad8366
+> > > > > +      - adi,ada4961
+> > > > > +      - adi,adl5240
+> > > > > +      - adi,adrf5720
+> > > > > +      - adi,adrf5730
+> > > > > +      - adi,adrf5731
+> > > > > +      - adi,hmc271a
+> > > > > +      - adi,hmc792a
+> > > > > +      - adi,hmc1018a
+> > > > > +      - adi,hmc1019a
+> > > > > +      - adi,hmc1119
+> > > >=20
+> > > > Why do none of these devices use fallback compatibles? Please put t=
+he
+> > > > rationale in the commit message.
+> > >=20
+> > > Will do. Each device has their own gain range/step.=20
+> > >=20
+> > > > > +
+> > > > > +  reg:
+> > > > > +    maxItems: 1
+> > > > > +
+> > > > > +  vcc-supply:
+> > > > > +    description: Regulator that provides power to the device.
+> > > > > +
+> > > > > +  reset-gpios:
+> > > > > +    maxItems: 1
+> > > > > +
+> > > > > +  enable-gpios:
+> > > > > +    maxItems: 1
+> > > >=20
+> > > > How come enable-gpios is optional? Is it optional on all devices?
+> > > > Do all devices support enable-gpios and/or reset-gpios?
+> > >=20
+> > > Board designs often hardwire powerup or serial mode enable signals
+> > > to high voltage level, so there will not be a reason to add the
+> > > enable-gpio.
+> >=20
+> > I don't see anything about all devices supporting enable-gpios, adl5240
+> > doesn't appear to have one? I'm not going to check all of the datasheets
+> > to see about the others, but you should disallow the property on devices
+> > that don't have an enable pin.
+>=20
+> Understood. I will prepare the following for v3:
+>=20
+> allOf:
+>   - $ref: /schemas/spi/spi-peripheral-props.yaml#
+>   - if:
+>       properties:
+>         compatible:
+>           contains:
+>             const: adi,hmc271a
+>     then:
+>       properties:
+>         reset-gpios:
+>           maxItems: 1
 
-Happy to see that we're on the same page.
+This doesn't look right. The stuff you currently have in the patch
+should remain, and this should become
+if:
+  properties:
+    compatible:
+      not:
+        contains:
+          const: adi,hmc271a
+then:
+  properties:
+    reset-gpios: false
 
-Cheers,
-Angelo
+>   - if:
+>       properties:
+>         compatible:
+>           contains:
+>             anyOf:
+>               - const: adi,ad8366
+>               - const: adi,ada4961
+>               - const: adi,adrf5720
+>               - const: adi,adrf5730
+>               - const: adi,adrf5731
+>               - const: adi,hmc792a
+>               - const: adi,hmc1018a
+>               - const: adi,hmc1019a
+>               - const: adi,hmc1119
+>     then:
+>       properties:
+>         enable-gpios:
+>           maxItems: 1
+>           description: Power-up or Serial Mode Enable GPIO.
 
-> Nicolas
-> 
->>
->>>
->>> In my mind, refactor profile and level setting and assign
->>> former ICs' parameters could merge into same patch. The
->>> configuration of MT8189 should split to another one, because
->>> it is a new setting.
->>>
->>> Do you agree with my opinion? I look forward to your further reply.
->>>
->>
->> I agree with your opinion, but if linux-media maintainers want those two
->> patches separated as you just did, I will raise my hands, so...
->>
->> Reviewed-by: AngeloGioacchino Del Regno
->> <angelogioacchino.delregno@collabora.com
->>
->> ...because when the two patches are applied at the same time, there's no
->> breakage. But I want to still repeat my stance on this: single patches
->> should never depend on subsequent patches to avoid regressions (and I know
->> you agree as your previous version was compliant with that stance).
->>
->> Cheers,
->> Angelo
->>
->>> Thanks.
->>>
->>> Regards,
->>> Kyrie.
->>>
->>>
->>>>
->>>>> Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
->>>>> ---
->>>>>     .../vcodec/decoder/mtk_vcodec_dec_stateful.c  | 12 +++
->>>>>     .../vcodec/decoder/mtk_vcodec_dec_stateless.c | 84
->>>>> +++++++++++++++++++
->>>>>     2 files changed, 96 insertions(+)
->>>>>
->>>>> diff --git
->>>>> a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_sta
->>>>> teful.c
->>>>> b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_sta
->>>>> teful.c
->>>>> index 8ddb61670dc6..a47906b9d717 100644
->>>>> ---
->>>>> a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_sta
->>>>> teful.c
->>>>> +++
->>>>> b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_sta
->>>>> teful.c
->>>>> @@ -619,4 +619,16 @@ const struct mtk_vcodec_dec_pdata
->>>>> mtk_vdec_8173_pdata = {
->>>>>     	.is_subdev_supported = false,
->>>>>     	.hw_arch = MTK_VDEC_PURE_SINGLE_CORE,
->>>>>     	.chip_name = 8173,
->>>>> +	.h264_params = {
->>>>> +		.level = V4L2_MPEG_VIDEO_H264_LEVEL_4_1,
->>>>> +		.profile = V4L2_MPEG_VIDEO_H264_PROFILE_HIGH,
->>>>> +	},
->>>>> +	.h265_params = {
->>>>> +		.level = V4L2_MPEG_VIDEO_HEVC_LEVEL_4,
->>>>> +		.profile =
->>>>> V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE,
->>>>> +	},
->>>>> +	.vp9_params = {
->>>>> +		.level = V4L2_MPEG_VIDEO_VP9_LEVEL_4_0,
->>>>> +		.profile = V4L2_MPEG_VIDEO_VP9_PROFILE_1,
->>>>> +	},
->>>>>     };
->>>>> diff --git
->>>>> a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_sta
->>>>> teless.c
->>>>> b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_sta
->>>>> teless.c
->>>>> index a1f419202a24..b571c4ed3f79 100644
->>>>> ---
->>>>> a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_sta
->>>>> teless.c
->>>>> +++
->>>>> b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_sta
->>>>> teless.c
->>>>> @@ -830,6 +830,18 @@ const struct mtk_vcodec_dec_pdata
->>>>> mtk_vdec_8183_pdata = {
->>>>>     	.is_subdev_supported = false,
->>>>>     	.hw_arch = MTK_VDEC_PURE_SINGLE_CORE,
->>>>>     	.chip_name = 8183,
->>>>> +	.h264_params = {
->>>>> +		.level = V4L2_MPEG_VIDEO_H264_LEVEL_4_2,
->>>>> +		.profile = V4L2_MPEG_VIDEO_H264_PROFILE_HIGH,
->>>>> +	},
->>>>> +	.h265_params = {
->>>>> +		.level = V4L2_MPEG_VIDEO_HEVC_LEVEL_4,
->>>>> +		.profile =
->>>>> V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE,
->>>>> +	},
->>>>> +	.vp9_params = {
->>>>> +		.level = V4L2_MPEG_VIDEO_VP9_LEVEL_4_0,
->>>>> +		.profile = V4L2_MPEG_VIDEO_VP9_PROFILE_1,
->>>>> +	},
->>>>>     };
->>>>>     
->>>>>     /* This platform data is used for one lat and one core
->>>>> architecture. */
->>>>> @@ -869,24 +881,72 @@ const struct mtk_vcodec_dec_pdata
->>>>> mtk_vdec_8188_pdata = {
->>>>>     	MTK_STATELESS_DEC_DATA,
->>>>>     	.hw_arch = MTK_VDEC_LAT_SINGLE_CORE,
->>>>>     	.chip_name = 8188,
->>>>> +	.h264_params = {
->>>>> +		.level = V4L2_MPEG_VIDEO_H264_LEVEL_5_2,
->>>>> +		.profile = V4L2_MPEG_VIDEO_H264_PROFILE_HIGH_10,
->>>>> +	},
->>>>> +	.h265_params = {
->>>>> +		.level = V4L2_MPEG_VIDEO_HEVC_LEVEL_5_1,
->>>>> +		.profile = V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_10,
->>>>> +	},
->>>>> +	.vp9_params = {
->>>>> +		.level = V4L2_MPEG_VIDEO_VP9_LEVEL_5_1,
->>>>> +		.profile = V4L2_MPEG_VIDEO_VP9_PROFILE_2,
->>>>> +	},
->>>>>     };
->>>>>     
->>>>>     const struct mtk_vcodec_dec_pdata mtk_vdec_8192_pdata = {
->>>>>     	MTK_STATELESS_DEC_DATA,
->>>>>     	.hw_arch = MTK_VDEC_LAT_SINGLE_CORE,
->>>>>     	.chip_name = 8192,
->>>>> +	.h264_params = {
->>>>> +		.level = V4L2_MPEG_VIDEO_H264_LEVEL_5_2,
->>>>> +		.profile = V4L2_MPEG_VIDEO_H264_PROFILE_HIGH,
->>>>> +	},
->>>>> +	.h265_params = {
->>>>> +		.level = V4L2_MPEG_VIDEO_HEVC_LEVEL_4,
->>>>> +		.profile =
->>>>> V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE,
->>>>> +	},
->>>>> +	.vp9_params = {
->>>>> +		.level = V4L2_MPEG_VIDEO_VP9_LEVEL_5_1,
->>>>> +		.profile = V4L2_MPEG_VIDEO_VP9_PROFILE_1,
->>>>> +	},
->>>>>     };
->>>>>     
->>>>>     const struct mtk_vcodec_dec_pdata mtk_vdec_8195_pdata = {
->>>>>     	MTK_STATELESS_DEC_DATA,
->>>>>     	.hw_arch = MTK_VDEC_LAT_SINGLE_CORE,
->>>>>     	.chip_name = 8195,
->>>>> +	.h264_params = {
->>>>> +		.level = V4L2_MPEG_VIDEO_H264_LEVEL_6_0,
->>>>> +		.profile = V4L2_MPEG_VIDEO_H264_PROFILE_HIGH_10,
->>>>> +	},
->>>>> +	.h265_params = {
->>>>> +		.level = V4L2_MPEG_VIDEO_HEVC_LEVEL_5_2,
->>>>> +		.profile = V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_10,
->>>>> +	},
->>>>> +	.vp9_params = {
->>>>> +		.level = V4L2_MPEG_VIDEO_VP9_LEVEL_5_2,
->>>>> +		.profile = V4L2_MPEG_VIDEO_VP9_PROFILE_2,
->>>>> +	},
->>>>>     };
->>>>>     
->>>>>     const struct mtk_vcodec_dec_pdata mtk_vdec_8196_pdata = {
->>>>>     	MTK_STATELESS_DEC_DATA,
->>>>>     	.hw_arch = MTK_VDEC_LAT_SINGLE_CORE,
->>>>>     	.chip_name = 8196,
->>>>> +	.h264_params = {
->>>>> +		.level = V4L2_MPEG_VIDEO_H264_LEVEL_6_0,
->>>>> +		.profile = V4L2_MPEG_VIDEO_H264_PROFILE_HIGH_10,
->>>>> +	},
->>>>> +	.h265_params = {
->>>>> +		.level = V4L2_MPEG_VIDEO_HEVC_LEVEL_5_2,
->>>>> +		.profile = V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_10,
->>>>> +	},
->>>>> +	.vp9_params = {
->>>>> +		.level = V4L2_MPEG_VIDEO_VP9_LEVEL_5_2,
->>>>> +		.profile = V4L2_MPEG_VIDEO_VP9_PROFILE_2,
->>>>> +	},
->>>>>     };
->>>>>     
->>>>>     const struct mtk_vcodec_dec_pdata mtk_vdec_single_core_pdata = {
->>>>> @@ -910,6 +970,18 @@ const struct mtk_vcodec_dec_pdata
->>>>> mtk_vdec_8186_pdata = {
->>>>>     	MTK_STATELESS_DEC_DATA,
->>>>>     	.hw_arch = MTK_VDEC_PURE_SINGLE_CORE,
->>>>>     	.chip_name = 8186,
->>>>> +	.h264_params = {
->>>>> +		.level = V4L2_MPEG_VIDEO_H264_LEVEL_4_2,
->>>>> +		.profile = V4L2_MPEG_VIDEO_H264_PROFILE_HIGH,
->>>>> +	},
->>>>> +	.h265_params = {
->>>>> +		.level = V4L2_MPEG_VIDEO_HEVC_LEVEL_4,
->>>>> +		.profile =
->>>>> V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE,
->>>>> +	},
->>>>> +	.vp9_params = {
->>>>> +		.level = V4L2_MPEG_VIDEO_VP9_LEVEL_4_1,
->>>>> +		.profile = V4L2_MPEG_VIDEO_VP9_PROFILE_1,
->>>>> +	},
->>>>>     };
->>>>>     
->>>>>     const struct mtk_vcodec_dec_pdata mtk_vdec_8189_pdata = {
->>>>> @@ -928,4 +1000,16 @@ const struct mtk_vcodec_dec_pdata
->>>>> mtk_vdec_8189_pdata = {
->>>>>     	.is_subdev_supported = true,
->>>>>     	.hw_arch = MTK_VDEC_PURE_SINGLE_CORE,
->>>>>     	.chip_name = 8189,
->>>>> +	.h264_params = {
->>>>> +		.level = V4L2_MPEG_VIDEO_H264_LEVEL_5_2,
->>>>> +		.profile = V4L2_MPEG_VIDEO_H264_PROFILE_HIGH_10,
->>>>> +	},
->>>>> +	.h265_params = {
->>>>> +		.level = V4L2_MPEG_VIDEO_HEVC_LEVEL_4,
->>>>> +		.profile =
->>>>> V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE,
->>>>> +	},
->>>>> +	.vp9_params = {
->>>>> +		.level = V4L2_MPEG_VIDEO_VP9_LEVEL_5_2,
->>>>> +		.profile = V4L2_MPEG_VIDEO_VP9_PROFILE_2,
->>>>> +	},
->>>>>     };
->>>>
->>>>
+Same for this.
 
+Thanks,
+Conor.
 
+>=20
+> > > I went over the device datasheets and I could not find the
+> > > reason for the reset gpio. I left it there because it was being used
+> > > in the current driver implementation, and I would not like to
+> > > invalidate designs that might be currently using it. I will ask aroun=
+d.
+> >=20
+> > If none of the devices have a reset pin, then you should delete the
+> > property from the binding and the driver. Not like you're going to break
+> > something if none of the supported devices even have the pin!
+>=20
+> The pin might have been there due to an old revision of the ada4961 device
+> (the reset_gpio was added to the code when ada4961 support was included)
+> which I can't find related documentation. However, it turns out that
+> hmc271a contains a reset pin, as you can see above.
+>=20
+> --=20
+> Kind regards,
+>=20
+> Rodrigo Alencar
+
+--K0apa4UihCntjqdq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaXogiAAKCRB4tDGHoIJi
+0njaAQCn8VQe54YswGoonkiTQ5m8B1Y5mDTsQWGp5/oLjuPhggEA8hN+BhjHgGQ5
+NQRqUNgWNdnh7UZk6L7onHmxcOLLGwA=
+=QCqp
+-----END PGP SIGNATURE-----
+
+--K0apa4UihCntjqdq--
 
