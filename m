@@ -1,161 +1,233 @@
-Return-Path: <devicetree+bounces-260265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260267-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CEYYJgzSeWlCzwEAu9opvQ
-	(envelope-from <devicetree+bounces-260265-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 10:08:28 +0100
+	id AGtVHFvUeWm6zwEAu9opvQ
+	(envelope-from <devicetree+bounces-260267-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 10:18:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05EBE9EA37
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 10:08:27 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C42309EB92
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 10:18:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id ED866301301D
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 09:08:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5D1B9300D338
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 09:17:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A7FB33DEE0;
-	Wed, 28 Jan 2026 09:08:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cQKIvy6d"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6ECEC342523;
+	Wed, 28 Jan 2026 09:17:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEC6133D6F1;
-	Wed, 28 Jan 2026 09:08:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFAC8341AC7;
+	Wed, 28 Jan 2026 09:17:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769591306; cv=none; b=Yr6IWOK8SiHItgzA4bsx6YbxG2DP+DWSug8hINPeGQG/t+f7Nrr5ilgwJSOQXNBUs1WvanPyeahbbwTpsjr4sSmiDw+OEuZxmvaTp+7PtcNRMPHv6ZdbfqRZ98+wvusEYMnx2jWGI+R5D9tfnuW7zJt4zsXWHC2ULd0/sKEXelg=
+	t=1769591854; cv=none; b=tuZ2PG9AgD3ZJgEwJDrUbkRq1xdKO/0TPg5MBFGnWa9wRx4KrXslBbLZ5d91Bf8CvdwzINerYheFuQMhgS6LGw6quvzEfc69IjIJcgsvOEp43qWqOPoRmidsXOxX3MCbgbrirhqvY6TtRq8yiOsyQwtVX8FVIbnMHHxIVQeJd3M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769591306; c=relaxed/simple;
-	bh=gxwCy0FohwCt9CfP2SEhBKQ4OsUrFKsR651bzfSP/XE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bN+TQLZ3dgDiGjCUcS86/kx900CCi/UFVMNN6UTfOda8+6war66emCmyHSlglsrBNpwADiTV9GjaMdH4Q1hX7lwxj4M+4FZ2WxDCNfemgSzblVimbPC5dqtWtbh4p9dQm1yuAUKHAbWZXnWWTndPU5J2nx8fFWXwI3jO85wJiKk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cQKIvy6d; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1769591304; x=1801127304;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=gxwCy0FohwCt9CfP2SEhBKQ4OsUrFKsR651bzfSP/XE=;
-  b=cQKIvy6d1Gj85XX2OLBHD/ifN4PmfD6jGRrd4Q69FwsjTiUn2rzWYHpa
-   k/IRfk20C0ifo+FJkr59Dl7wUGRzuwTRPioxm8nRNGSuB4BDiAT0xSP/z
-   NaB3RlzTNJ0StUxaxn29BHvs9JbafwJglzZPymXwRY0WF1uaMwEF+ypvR
-   +EvuiXAwvEupYb6t8i+Pk9FJyLWlPcTwOB/Y2JaStKbxY1xcrhknnCoaj
-   Gq5GJ7IdIoFJYz4S9ReZBhqCCc3EUT3SHgvgbJ5Q5k7AL8ieD7mFJi4cl
-   ZJ2ljD9hpVDcfeqsa73R8UGTO3S1Dnw4qunYjchPoN9DnA+C0oWKgyZ5e
-   Q==;
-X-CSE-ConnectionGUID: U+tbU99qSJWpL5eSrtQGoA==
-X-CSE-MsgGUID: MgFj7+XOQT6r/iiScmpU4w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="81907542"
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; 
-   d="scan'208";a="81907542"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jan 2026 01:08:24 -0800
-X-CSE-ConnectionGUID: 9M5/o0cUSTW0V0iCuyGmKg==
-X-CSE-MsgGUID: PEobMgvDSRCos5YnKU1ttg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; 
-   d="scan'208";a="207352824"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost) ([10.245.244.196])
-  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jan 2026 01:08:20 -0800
-Date: Wed, 28 Jan 2026 11:08:18 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Huacai Chen <chenhuacai@kernel.org>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>,
-	Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Andy Shevchenko <andy@kernel.org>, linux-i2c@vger.kernel.org,
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] i2c: ls2x-v2: Add driver for Loongson-2K0300 I2C
- controller
-Message-ID: <aXnSAgPbTZ_IY8mQ@smile.fi.intel.com>
-References: <cover.1769476820.git.zhoubinbin@loongson.cn>
- <402121da829497fc97f1461c8aaa3a44252c3f06.1769476820.git.zhoubinbin@loongson.cn>
- <CAAhV-H5mYypVAXJVpQ7ZJCMd4OvtxkJ6BcKbph1e-JTd5u3xiA@mail.gmail.com>
+	s=arc-20240116; t=1769591854; c=relaxed/simple;
+	bh=ob8qtxwG9Y9g/gSpFLd9qZ7a/1OCBn7jtdmVPJwL5hE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=AxQVevsAXmiq8sDiDf7JIonLBSuY6vavL6KRLwbuqKS6Fwoxm7H8uhXZRlGav+jtanLnuOjQJnqYSD0EhFilbNwx5zLV4bkgfeSz6MkKIZi/UEAZHv6JioxVTBR/qx/eebZzdy474ce8JEF1R2dz9lOUSTsoZiZbTHbG6XCX60A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from [192.168.0.109] (unknown [123.118.222.47])
+	by APP-01 (Coremail) with SMTP id qwCowAD3nmr+03lp6YiOBg--.8714S2;
+	Wed, 28 Jan 2026 17:16:46 +0800 (CST)
+Message-ID: <f73fc83c-b38d-4974-ba3c-80c5e5556e7e@iscas.ac.cn>
+Date: Wed, 28 Jan 2026 17:16:46 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v3 3/3] net: stmmac: Add glue layer for Spacemit
+ K3 SoC
+To: Inochi Amaoto <inochiama@gmail.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Richard Cochran <richardcochran@gmail.com>, Paul Walmsley <pjw@kernel.org>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>,
+ "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+ Yao Zi <ziyao@disroot.org>, Yanteng Si <siyanteng@cqsoftware.com.cn>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ Maxime Chevallier <maxime.chevallier@bootlin.com>,
+ Choong Yong Liang <yong.liang.choong@linux.intel.com>,
+ Chen-Yu Tsai <wens@kernel.org>,
+ Shangjuan Wei <weishangjuan@eswincomputing.com>,
+ Boon Khai Ng <boon.khai.ng@altera.com>,
+ Quentin Schulz <quentin.schulz@cherry.de>,
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+ Jose Abreu <joabreu@synopsys.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ spacemit@lists.linux.dev, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, Longbin Li <looong.bin@gmail.com>
+References: <20260128072931.875041-1-inochiama@gmail.com>
+ <20260128072931.875041-4-inochiama@gmail.com>
+Content-Language: en-US
+From: Vivian Wang <wangruikang@iscas.ac.cn>
+In-Reply-To: <20260128072931.875041-4-inochiama@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAAhV-H5mYypVAXJVpQ7ZJCMd4OvtxkJ6BcKbph1e-JTd5u3xiA@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-CM-TRANSID:qwCowAD3nmr+03lp6YiOBg--.8714S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxWrW5Wr48GF4xGryDuF17KFg_yoW5uFWkpF
+	WrJF97KrWqyF4fAw4IyFZrZFn3Zr47tr17ur1ftryfGFn5Jr95Wr1FkrWxGr1xCrZ3Ja48
+	Z3Wfu3W3Wa9F93DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUvmb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26rWj6s0DM7CY07I2
+	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xII
+	jxv20xvEc7CjxVAFwI0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I
+	8E87Iv6xkF7I0E14v26rxl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
+	64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8Jw
+	Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkIwI1l
+	c7CjxVAaw2AFwI0_Wrv_ZF1l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr
+	1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE
+	14v26rWY6r4UJwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2I
+	x0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2
+	z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnU
+	UI43ZEXa7IUYQeOtUUUUU==
+X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[loongson.cn,gmail.com,kernel.org,sang-engineering.com,vger.kernel.org,xen0n.name,lists.linux.dev];
-	TAGGED_FROM(0.00)[bounces-260265-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
+	DMARC_NA(0.00)[iscas.ac.cn];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gentoo.org,foss.st.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,armlinux.org.uk,disroot.org,cqsoftware.com.cn,bp.renesas.com,bootlin.com,linux.intel.com,eswincomputing.com,altera.com,cherry.de,st.com,synopsys.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260267-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[37];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:dkim,loongson.cn:email]
-X-Rspamd-Queue-Id: 05EBE9EA37
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wangruikang@iscas.ac.cn,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.linux.dev,st-md-mailman.stormreply.com,gmail.com];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,iscas.ac.cn:mid]
+X-Rspamd-Queue-Id: C42309EB92
 X-Rspamd-Action: no action
 
-On Wed, Jan 28, 2026 at 12:15:08PM +0800, Huacai Chen wrote:
-> On Tue, Jan 27, 2026 at 10:48 AM Binbin Zhou <zhoubinbin@loongson.cn> wrote:
+Hi Inochi,
 
-...
+I have some comments below.
 
-> >  F:     Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.yaml
-> > +F:     drivers/i2c/busses/i2c-ls2x-v2.c
-> I  still think it is better to move this line below. Though it may
-> cause a checkpatch warning, but for checkpatch only errors must be
-> fixed, whether warnings need to be eliminated depends on the fact.
-> 
-> >  F:     drivers/i2c/busses/i2c-ls2x.c
+On 1/28/26 15:29, Inochi Amaoto wrote:
+> The etherenet controller on Spacemit K3 SoC is Synopsys DesignWare
+Typo: etherenet -> ethernet
+> MAC (version 5.40a), with the following special point:
+Nit: point -> points 
+> 1. The rate of the tx clock line is auto changed when the mac speed
+>    rate is changed, and no need for changing the input tx clock.
+> 2. This controller require a extra syscon device to configure the
+>    interface type, enable wake up interrupt and delay configuration
+>    if needed.
+>
+> Add Spacemit dwmac driver support on the Spacemit K3 SoC.
+>
+> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> ---
+>  drivers/net/ethernet/stmicro/stmmac/Kconfig   |  12 +
+>  drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+>  .../ethernet/stmicro/stmmac/dwmac-spacemit.c  | 218 ++++++++++++++++++
+>  3 files changed, 231 insertions(+)
+>  create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-spacemit.c
+>
+> [...]
+>
+> +
+> +/* dline register bits */
+> +#define RGMII_RX_DLINE_EN		BIT(0)
+> +#define RGMII_RX_DLINE_STEP		GENMASK(5, 4)
+> +#define RGMII_RX_DLINE_CODE		GENMASK(15, 8)
+> +#define RGMII_TX_DLINE_EN		BIT(16)
+> +#define RGMII_TX_DLINE_STEP		GENMASK(21, 20)
+> +#define RGMII_TX_DLINE_CODE		GENMASK(31, 24)
+> +
+> +#define MAX_DLINE_DELAY_CODE		0xff
+> +#define MAX_WORKED_DELAY		2800
+> +
+> +/* Note: the delay step value is at 0.1ps */
+> +static const unsigned int k3_delay_step_10x[4] = {
+> +	367, 493, 559, 685
+> +};
+> +
+> +static int spacemit_dwmac_set_delay(struct regmap *apmu,
+> +				    unsigned int dline_offset,
+> +				    unsigned int tx_code, unsigned int tx_config,
+> +				    unsigned int rx_code, unsigned int rx_config)
+> +{
+> +	unsigned int mask, val;
+> +
+> +	mask = RGMII_TX_DLINE_STEP | RGMII_TX_DLINE_CODE | RGMII_TX_DLINE_EN |
+> +	       RGMII_RX_DLINE_STEP | RGMII_RX_DLINE_CODE | RGMII_RX_DLINE_EN;
+> +	val = FIELD_PREP(RGMII_TX_DLINE_STEP, tx_config) |
+> +	      FIELD_PREP(RGMII_TX_DLINE_CODE, tx_code) | RGMII_TX_DLINE_EN |
+> +	      FIELD_PREP(RGMII_RX_DLINE_STEP, rx_config) |
+> +	      FIELD_PREP(RGMII_RX_DLINE_CODE, rx_code) | RGMII_RX_DLINE_EN;
+> +
+> +	return regmap_update_bits(apmu, dline_offset, mask, val);
+> +}
+> +
+> +static int spacemit_dwmac_detected_delay_value(unsigned int delay,
+> +					       unsigned int *config)
+> +{
+> +	unsigned int best_delay = 0;
+> +	unsigned int best_config = 0;
+> +	int best_code = 0;
+> +	int i;
+> +
+> +	if (delay == 0)
+> +		return 0;
+> +
+> +	if (delay > MAX_WORKED_DELAY)
+> +		return -EINVAL;
+> +
+> +	/*
+> +	 * Note K3 require a specific factor for calculate
+> +	 * the delay, in this scenario it is 0.9. So the
+> +	 * formula is code * step / 10 * 0.9
+> +	 */
+> +	for (i = 0; i < ARRAY_SIZE(k3_delay_step_10x); i++) {
+> +		unsigned int step = k3_delay_step_10x[i];
+> +		int code = DIV_ROUND_CLOSEST(delay * 10 * 10, step * 9);
+> +		unsigned int tmp = code * step * 9 / 10 / 10;
+> +
+> +		if (abs(tmp - delay) < abs(best_delay - delay)) {
+> +			best_code = code;
+> +			best_delay = tmp;
+> +			best_config = i;
+> +		}
+> +	}
+> +
+> +	*config = best_config;
+> +
+> +	return best_code;
 
-This should be sorted, and
+Is this really necessary? For K1 I just used the smallest step size.
 
-$ cat << EOF | LC_ALL=C sort
-> Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.yaml
-> drivers/i2c/busses/i2c-ls2x-v2.c
-> drivers/i2c/busses/i2c-ls2x.c
-
-Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.yaml
-drivers/i2c/busses/i2c-ls2x-v2.c
-drivers/i2c/busses/i2c-ls2x.c
-
-The patch is correct AFAICS.
-
-P.S> Remove the unneeded context when you do not comment on it,
-do not make others to waste time on reading that.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+It seems to me you have, for the smallest step size, about 36.7ps * 0.9
+= 33ps per step. Theoretically speaking that lets you fine tune the
+delay to within 1% of the 2ns total required RGMII delay (MAC + PCB +
+PHY). In practice this number shouldn't be that marginal. 
 
 
