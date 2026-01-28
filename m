@@ -1,264 +1,205 @@
-Return-Path: <devicetree+bounces-260297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260298-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UGsBJfnheWm50gEAu9opvQ
-	(envelope-from <devicetree+bounces-260297-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 11:16:25 +0100
+	id cJjOIxjieWm50gEAu9opvQ
+	(envelope-from <devicetree+bounces-260298-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 11:16:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C0919F558
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 11:16:25 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A658F9F56E
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 11:16:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6AE53300E5FA
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 10:16:23 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 643C030055DB
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 10:16:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 577FC2DF719;
-	Wed, 28 Jan 2026 10:16:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h34Pw9BZ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 022A82DB7B3;
+	Wed, 28 Jan 2026 10:16:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7D722DC35F;
-	Wed, 28 Jan 2026 10:16:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from zg8tmtyylji0my4xnjeumjiw.icoremail.net (zg8tmtyylji0my4xnjeumjiw.icoremail.net [162.243.161.220])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1338C2DB7A9;
+	Wed, 28 Jan 2026 10:16:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.161.220
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769595379; cv=none; b=Lyo+qWWRmEtSP54i0+vinNpiMGDORsHXNcz6+S8D0IRDJkiqxU51PMhvjgmjTK03usUm9z9hw/mp/HS2dih6SUS6Y+vpn2dWLm0l+ak+/tL/iHv5IVjA/arq3LU/EI/Og3Yw0ot5b0fkO9vmRSSib5Fy11hmI6tb2pgWKwpax8M=
+	t=1769595411; cv=none; b=gbTTIRnSv/Tv3RDYfhqxCQwFmaujToa+RXDNaFfN3sstQh9bCVN/sYIllU21Gct0t3JgeuOUHWuygq6I265cyKzFFzbCyOkIniI5GjOb6tseS9F2Q60ViH+nABunLSbM8L+pfAqpzE7P2aDksqAW3+BwPQlWpSik+ZrUOAwy58I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769595379; c=relaxed/simple;
-	bh=az6OHhEqj0x3WtC1hkJi6Kf+VtZtDMKobZlfHmsgHCs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kHOkLMvnsmm+yt6PnJ8H7etTSeFDESGyjNyTi6PoZggOHnBzxlFez02CU7gUmw+ywvrkzw+uvExe8D77iHFxHpx8dogSq0g8CxbXt7BgrEyajMGEadsOpY5T1fWWA6HhNW5yl0xDlgO76kO65m7IV4ew3HkQ8WsqzDJNkhZvQBc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h34Pw9BZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5DABC4CEF1;
-	Wed, 28 Jan 2026 10:16:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769595379;
-	bh=az6OHhEqj0x3WtC1hkJi6Kf+VtZtDMKobZlfHmsgHCs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=h34Pw9BZjRy5q8tBWVy6+B/ir10apTllfPOwNUHNjklV8dM9TY8JZ0W7C6KH5DfNc
-	 qHY89XZdazvpUAtyuT+TWgcCJdSYU/aTsSW+8/SQCHSxjp78T6jXcSYFz6tksEoV1Q
-	 ZaZ0xE5K4pDVxBhdjUqUxEyVgTXRzYYpNV4kppUtBzCl5XDgXh4S68ZCuGH0HXrM+f
-	 44+ni7K2n1kUdkVixIcbS/3mPv6sC+BTmS2c8lpxg2wxl9G8J2GNgoAxg/SPToupzq
-	 gSzHudx2gEBdQb08NlNtjEQD5xBJ1dBO+ljKju12sdFj6H7WnrtnI+TQ4ZHOatpTsg
-	 17QwHCDXk+EeA==
-Message-ID: <37133829-da88-4ea6-a58e-fcb4cc7f7c12@kernel.org>
-Date: Wed, 28 Jan 2026 11:16:13 +0100
+	s=arc-20240116; t=1769595411; c=relaxed/simple;
+	bh=iNd6XbEDRnKpxaITqr8TKaAwVS6iSc4TOiIKKSy8yUk=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=ZHLXCJbgaPL8hcmcq+N2XGcMp8TiU4HyJWdxvbEomdmZ0me7QoNPGWAH51resEBn5Fuh1fXFYoyN+QR+TMORm4Qdg8VeiEitmG5o7/luQxhoaKMj4KtHwxgEugsb7bZdFMLego+gPXhaAAB6YSA52w90WxZz410xsD3qOK6dJs8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=162.243.161.220
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0005182LT.eswin.cn (unknown [10.12.96.155])
+	by app1 (Coremail) with SMTP id TAJkCgDXJjcI4nlpC3kAAA--.2181S2;
+	Wed, 28 Jan 2026 18:16:41 +0800 (CST)
+From: hehuan1@eswincomputing.com
+To: linux@roeck-us.net,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	p.zabel@pengutronix.de,
+	linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com,
+	luyulin@eswincomputing.com,
+	Huan He <hehuan1@eswincomputing.com>
+Subject: [PATCH v2 1/2] dt-bindings: hwmon: Add Eswin EIC7700 PVT sensor
+Date: Wed, 28 Jan 2026 18:16:36 +0800
+Message-Id: <20260128101636.914-1-hehuan1@eswincomputing.com>
+X-Mailer: git-send-email 2.31.1.windows.1
+In-Reply-To: <20260128101400.859-1-hehuan1@eswincomputing.com>
+References: <20260128101400.859-1-hehuan1@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 2/2] arch: arm64: imx93-wevk: Add i.MX93 Wireless EVK
- board support
-To: Sherry Sun <sherry.sun@nxp.com>
-Cc: "robh@kernel.org" <robh@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "shawnguo@kernel.org" <shawnguo@kernel.org>, Frank Li <frank.li@nxp.com>,
- "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
- "festevam@gmail.com" <festevam@gmail.com>,
- Daniel Baluta <daniel.baluta@nxp.com>,
- "dario.binacchi@amarulasolutions.com" <dario.binacchi@amarulasolutions.com>,
- "alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>,
- "Markus.Niebel@tq-group.com" <Markus.Niebel@tq-group.com>,
- "matthias.schiffer@tq-group.com" <matthias.schiffer@tq-group.com>,
- "y.moog@phytec.de" <y.moog@phytec.de>,
- "josua@solid-run.com" <josua@solid-run.com>,
- Francesco Dolcini <francesco.dolcini@toradex.com>,
- "primoz.fiser@norik.com" <primoz.fiser@norik.com>,
- "kernel@pengutronix.de" <kernel@pengutronix.de>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20260123024448.3909345-1-sherry.sun@nxp.com>
- <20260123024448.3909345-3-sherry.sun@nxp.com>
- <20260123-gifted-wolverine-from-mars-47b9d4@quoll>
- <VI0PR04MB12114EDD17C2F37A3AE7D61089293A@VI0PR04MB12114.eurprd04.prod.outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <VI0PR04MB12114EDD17C2F37A3AE7D61089293A@VI0PR04MB12114.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TAJkCgDXJjcI4nlpC3kAAA--.2181S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7Kw4DWF18ur17Cw4Utw48Crg_yoW5JrW7pa
+	1kCryDGr4Sqry7Z3y7JF10kF4ftws5CFW7Ar1Iq3Wrtr1DJas0qw43Kr15Wa4xCr1SqFW3
+	uFyaqryjy3WDA3DanT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26F1j6w1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_JF0_Jw1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r1q6r43MxkIecxEwVCm-wCF04
+	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
+	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr4
+	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
+	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0JUQdb8UUUUU=
+X-CM-SenderInfo: 5khk3tzqr6v25zlqu0xpsx3x1qjou0bp/
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260297-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,amarulasolutions.com,ew.tq-group.com,tq-group.com,phytec.de,solid-run.com,toradex.com,norik.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[22];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-260298-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	DMARC_NA(0.00)[eswincomputing.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.998];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_NO_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 2C0919F558
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[hehuan1@eswincomputing.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,eswincomputing.com:mid,eswincomputing.com:email,50b00000:email]
+X-Rspamd-Queue-Id: A658F9F56E
 X-Rspamd-Action: no action
 
-On 26/01/2026 03:52, Sherry Sun wrote:
->> Subject: Re: [PATCH V2 2/2] arch: arm64: imx93-wevk: Add i.MX93 Wireless
->> EVK board support
->>
->> On Fri, Jan 23, 2026 at 10:44:48AM +0800, Sherry Sun wrote:
->>> i.MX93 Wireless SiP is created by integrating i.MX93 and IW610 WLCSP
->>> (Wi-Fi + BLE + 802.15.4). And i.MX93 Wireless EVK board with the
->>> i.MX93 Wireless SiP basically reuse the i.MX93 11x11 EVK board, with
->>> some minor functional and pin connection differences.
->>>
->>> Here are the detailed differences between i.MX93 Wireless EVK and
->>> i.MX93
->>> 11x11 EVK board.
->>>
->>> Function differences:
->>> Function	i.MX93W EVK			i.MX93 EVK
->>> WIFI/BT		IW610 in i.MX93W		IW612 M.2 module
->>> MQS		N				Y
->>> PDM MIC		N				Y
->>> M.2		N				Y
->>> RPi 40-pin HDR	Limited support(pin conflict) 	Y
->>>
->>> Pin connection differences:
->>> Function  Signal name	i.MX93W EVK		i.MX93 EVK
->>> WIFI/BT	  SPI_FRM	SAI1_TXFS (spi1.PCS0)	GPIO_IO08
->> (spi3.PCS0)
->>> 	  SPI_TXD	SAI1_TXC (spi1.SIN)	GPIO_IO09 (spi3.SIN)
->>> 	  SPI_RXD	SAI1_RXD0 (spi1.SOUT)	GPIO_IO10 (spi3.SOUT)
->>> 	  SPI_CLK	SAI1_TXD0 (spi1.SCK)	GPIO_IO11 (spi3.SCK)
->>> 	  SPI_INT	CCM_CLKO1		on-board IO expander
->>> 	  NB_WAKE_IN	PDM_CLK			on-module IO
->> expander
->>> 	  WL_WAKE_IN	PDM_BIT_STREAM0		on-module IO
->> expander
->>> 	  IND_RST_WL	PDM_BIT_STREAM1		on-module IO
->> expander
->>> 	  IND_RST_NB	GPIO_IO28		on-module IO expander
->>> 	  PDn		GPIO_IO29		on-module IO expander
->>> 	  NB_WAKE_OUT	GPIO_IO14		on-board IO
->> expander
->>> 	  WL_WAKE_OUT	GPIO_IO15		CCM_CLKO1
->>> I2C3	  I2C3_SDA	GPIO_IO00		GPIO_IO28
->>> 	  I2C3_SCL	GPIO_IO01		GPIO_IO29
->>>
->>> Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
->>> ---
->>>  arch/arm64/boot/dts/freescale/Makefile       |  1 +
->>>  arch/arm64/boot/dts/freescale/imx93w-evk.dts | 73
->>> ++++++++++++++++++++
->>>  2 files changed, 74 insertions(+)
->>>  create mode 100644 arch/arm64/boot/dts/freescale/imx93w-evk.dts
->>>
->>> diff --git a/arch/arm64/boot/dts/freescale/Makefile
->>> b/arch/arm64/boot/dts/freescale/Makefile
->>> index 700bab4d3e60..d0ea746c59b8 100644
->>> --- a/arch/arm64/boot/dts/freescale/Makefile
->>> +++ b/arch/arm64/boot/dts/freescale/Makefile
->>> @@ -418,6 +418,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx93-9x9-qsb-
->> i3c.dtb
->>>  dtb-$(CONFIG_ARCH_MXC) += imx93-11x11-evk.dtb
->>>  dtb-$(CONFIG_ARCH_MXC) += imx93-11x11-frdm.dtb
->>>  dtb-$(CONFIG_ARCH_MXC) += imx93-14x14-evk.dtb
->>> +dtb-$(CONFIG_ARCH_MXC) += imx93w-evk.dtb
->>>  dtb-$(CONFIG_ARCH_MXC) += imx93-kontron-bl-osm-s.dtb
->>>  dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-nash.dtb
->>>  dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-segin.dtb diff --git
->>> a/arch/arm64/boot/dts/freescale/imx93w-evk.dts
->>> b/arch/arm64/boot/dts/freescale/imx93w-evk.dts
->>> new file mode 100644
->>> index 000000000000..f09587dc74f6
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/freescale/imx93w-evk.dts
->>> @@ -0,0 +1,73 @@
->>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->>> +/*
->>> + * Copyright 2026 NXP
->>> + */
->>> +
->>> +#include "imx93-11x11-evk.dts"
->>> +
->>> +/ {
->>> +	model = "NXP i.MX93W EVK board";
->>> +	compatible = "fsl,imx93-wireless-evk", "fsl,imx93";
->>> +
->>> +	/delete-node/ regulator-m2-pwr;
->>
->> If you remove nodes then clearly you do not share a common design, thus
->> you should not include other DTSI... and definitely even more confusing to
->> include other DTS.
-> 
-> Hi Krzysztof,
-> Ok, it seems I should mark these nodes as disabled instead of delete them, will fix, thanks!
+From: Huan He <hehuan1@eswincomputing.com>
 
-Still wrong. How component present in the board can be missing in the
-same time? You included other DTS for a reason which means this board
-grows on the previous design.
+Add device tree binding documentation for ESWIN EIC7700 Process, Voltage
+and Temperature sensor.
 
-Best regards,
-Krzysztof
+The EIC7700 SoC integrates two PVT instances for monitoring SoC and DDR
+power domains respectively.
+
+Signed-off-by: Yulin Lu <luyulin@eswincomputing.com>
+Signed-off-by: Huan He <hehuan1@eswincomputing.com>
+---
+ .../bindings/hwmon/eswin,eic7700-pvt.yaml     | 70 +++++++++++++++++++
+ 1 file changed, 70 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/eswin,eic7700-pvt.yaml
+
+diff --git a/Documentation/devicetree/bindings/hwmon/eswin,eic7700-pvt.yaml b/Documentation/devicetree/bindings/hwmon/eswin,eic7700-pvt.yaml
+new file mode 100644
+index 000000000000..f4ba228924fe
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/eswin,eic7700-pvt.yaml
+@@ -0,0 +1,70 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/hwmon/eswin,eic7700-pvt.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ESWIN EIC7700 PVT Sensor
++
++maintainers:
++  - Yulin Lu <luyulin@eswincomputing.com>
++  - Huan He <hehuan1@eswincomputing.com>
++
++description:
++  ESWIN EIC7700 SoC integrates embedded process, voltage and temperature
++  sensors to monitor the internal SoC environment. The system includes two
++  PVT sensor instances. The PVT0 monitors the main SoC power domain. The
++  PVT1 sensor monitors the DDR core power domain.
++
++allOf:
++  - $ref: /schemas/hwmon/hwmon-common.yaml#
++
++properties:
++  compatible:
++    const: eswin,eic7700-pvt
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  label:
++    description:
++      Human readable identifier used to distinguish between different PVT
++      instances. Typically "pvt0" for SoC PVT sensor and "pvt1" for DDR
++      core PVT sensor.
++
++  resets:
++    maxItems: 1
++
++  '#thermal-sensor-cells':
++    description: Thermal sensor cells if used for thermal sensoring.
++    const: 0
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - interrupts
++  - label
++  - resets
++
++additionalProperties: false
++
++examples:
++  - |
++    pvt@50b00000 {
++      compatible = "eswin,eic7700-pvt";
++      reg = <0x50b00000 0x10000>;
++      clocks = <&clocks 244>;
++      interrupts = <349>;
++      interrupt-parent = <&plic>;
++      label = "pvt0";
++      resets = <&reset 111>;
++      #thermal-sensor-cells = <0>;
++    };
++...
+-- 
+2.25.1
+
 
