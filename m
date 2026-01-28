@@ -1,294 +1,197 @@
-Return-Path: <devicetree+bounces-260576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260577-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +BnsKaFRemnk5AEAu9opvQ
-	(envelope-from <devicetree+bounces-260576-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 19:12:49 +0100
+	id 2OemEedRemnk5AEAu9opvQ
+	(envelope-from <devicetree+bounces-260577-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 19:13:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94291A7924
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 19:12:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 137D9A795E
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 19:13:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 8F4883030337
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 18:08:54 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C997230389F9
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 18:09:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F2C9374734;
-	Wed, 28 Jan 2026 18:06:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58D90372B5E;
+	Wed, 28 Jan 2026 18:08:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X4aosgMO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DEPNG9h+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83C8937472D
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 18:06:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34915372B58;
+	Wed, 28 Jan 2026 18:08:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769623605; cv=none; b=PRvJeF21h8ENfuvpPmAJl5sj/g3B4OmPJ+ishiJ3f1lapIo8vy+rk6s3uN140jBN0e1XW2MY2MRwUYjQgbuAXYiUuw64nHjxWDpsMNDu/bXPcWqOaQoHQdVq8wawkzrtbf1rhYcJ+lAO5opmXvhpHnUjGjHTHuuoqyaS6G9lN9w=
+	t=1769623728; cv=none; b=RE7tyeIOCL0z7PTegLJhSJ1H2Ha5jnciB0fkC0zWJ2e3f+ha4mnRZ1sAKR/hVobGsSv1ROP3lSK3BLddol2OWg2LfEu3Rf30LpW6RuF/50fDvrwCJAnvYu2XE9iweV+fpLiTBcwazeFPHorHNBpj6U2sxlr711yiAPJkpUiktjU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769623605; c=relaxed/simple;
-	bh=8wTbKFDxZbZCQ1Q7yTsRV4W/LC5P/5on3cRlcOF4pOA=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Suebm1KZShy3RsFB88zUGvoB3KVxbMRB2vHebY8MSab1nI4vI8IwMhOQKK7E1aAOI9T2yNEvyH+/Z1JDQSQvGBTij51sWzipRra2GqbglTqQdhnQC96Zs1Hchz8B/D6y1OXEi3+BT9Qpf2xqqdAI3N4WYYUQJTLtjXJAiXttzng=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X4aosgMO; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-4327790c4e9so99923f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 10:06:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769623602; x=1770228402; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=bv3Ru//yBMPMzCGxGlXC/tIcSHnEGcKaRRDL4KweM6Y=;
-        b=X4aosgMOpCId7mxCyyIUchG1tEuXzQpw4a3QLA+6VElOqpuclOFzwvIgT4YsHLRTrl
-         TwuJct3SkVHpVjAPgEe8AuB+pVUJUqpCVS8izcyozuXHNN2Yw5u+tepoVBMYOOYNGhVe
-         2+R2xOCQ0hmiBCIsxeY0AW+IhOljZ8P47icwjgngB2XhhNMVzSDl24+uh50j1xrMeI5W
-         3mSpFFtV/mL3uKV4Ed5CvA/cVSJ5NiZlEBRsG0MzXwuvRUwV0tAAN820NgApt7P5uEYB
-         FpluslxaGxykQwmgPU5jvdNcGo5jzCt4d9Tk3MkI/XriiE5R5/aPxjCAMm/mnWx5OhxZ
-         x8Ng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769623602; x=1770228402;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bv3Ru//yBMPMzCGxGlXC/tIcSHnEGcKaRRDL4KweM6Y=;
-        b=a/Jrk8q4WAsAsQYqeqfMHUkPC6ws860P8Xf3bF+W1gTJ4oEzYcnMZFM2au5mEluUll
-         HaLqbF6foIXstl8iI2OUOH1QhX5yxQ1RsrNM6AdlNUYDeiB5G9Afuju+p3nQpITsBMSs
-         7l7gt/nfnn/3EhRHYZRLF8FOUQOEXugh0qs6QRP/Iwo8ioJwW8/fTU7FVnJVnuKtvUmB
-         1P8NMzu+/S5kYqUfkWEi6J3SXTsU1U8aBFmIM6F4v5K9rRCUw8hBJJRJpB8Ab5YlSSas
-         utBCKN/ib/Mij/q2aHw/sDB07uM14MbBCZeQEznc7Jp94/Z3BQ5GuJj4wrcreV3wwZIh
-         2EVQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWsCinwvDTUdQa2kiemXrB+kEu/Uw8eR9uY6mIEtiSsrSJin4RQahfvQMTPhvq0HMB+bY2N8h7D0TUn@vger.kernel.org
-X-Gm-Message-State: AOJu0YxzmcpRqKv2ptKmw0tmd61M1hvJfIEjtG4yQwLPwmePlHjjIa+N
-	u4nTIJdav0BsCRMSMnCpihEUEm0YgUNdgMNRwaCf+0oDP2TfmH9Ot2Du
-X-Gm-Gg: AZuq6aIwhvmRjEg9R1DUy6IE60zLAaSAdhgEe1DXhdcSPm2CaHxK9KcO56jE4kbde7F
-	qvymcOgVG9Di0/WZeeND4ZgnvRrDWEjuCkib9JbPdxYpUhGdoBOh39ITcK3L+oyLzpZG2QMvAoC
-	jbxkglI7HkaBs6/afF+tIdk+gp+zt12ZFKyc7wBblmejDbDrQxbKQJqg2UvMYuFm+luVPNS0kM5
-	uh1pV3s/VobjbFCdXwraX3MpE+Plyc494IdNgE6xRymPMincGXtfjFP7En+/9DefyCNmaxMZvgA
-	y/Ta90L7LGn8jPgZcyP71lxEXvk0ps4ESh+D/zy4wZSkMBKUqPeCdFIOQaJg8WVw5WCIV5ZFR8D
-	hjsthf1IPGEy8RIeGhA2VgFa8J7tnQ9Wrp8L4lhplIXwUmG27n9FTyosCV1vHwo8UoXxgple1dq
-	RTe8VGtcfekFnQyMVvbNBGUpJiTi4FkQ==
-X-Received: by 2002:a05:6000:2001:b0:435:9f41:d54 with SMTP id ffacd0b85a97d-435dd1d8e78mr8748442f8f.60.1769623601691;
-        Wed, 28 Jan 2026 10:06:41 -0800 (PST)
-Received: from [192.168.1.187] ([148.63.225.166])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435e132356dsm9024567f8f.33.2026.01.28.10.06.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Jan 2026 10:06:41 -0800 (PST)
-Message-ID: <e5b775065b92cada730f42a3d60546700ec46db9.camel@gmail.com>
-Subject: Re: [PATCH v5 0/3] hwmon: Add support for the LTC4283 Hot Swap
- Controller
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Guenter Roeck <linux@roeck-us.net>, nuno.sa@analog.com, 
-	linux-hwmon@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,  Jean Delvare <jdelvare@suse.com>, Jonathan Corbet
- <corbet@lwn.net>, Linus Walleij <linus.walleij@linaro.org>,  Bartosz
- Golaszewski	 <brgl@bgdev.pl>, "Rob Herring (Arm)" <robh@kernel.org>, Linus
- Walleij	 <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>
-Date: Wed, 28 Jan 2026 18:07:24 +0000
-In-Reply-To: <02b7cf63-4f87-4cdd-8d9e-53a7d0e808a6@roeck-us.net>
-References: <20251223-ltc4283-support-v5-0-1152bff59a61@analog.com>
-	 <eed64bf1-93af-4b36-adf5-1476cb40edbb@roeck-us.net>
-	 <382e259ea3835ffbd2be9c36b529875f5a43f38b.camel@gmail.com>
-	 <8efa188b-8b91-479c-ac10-3fba5b0cbb5f@roeck-us.net>
-	 <02b7cf63-4f87-4cdd-8d9e-53a7d0e808a6@roeck-us.net>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.2 
+	s=arc-20240116; t=1769623728; c=relaxed/simple;
+	bh=2T8vMMg2rf8+1yfCvimfNJF6NzhFISduol0pLG0i8k4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lSIW/pEjtENTBXir0ix2s76xSTfQlEK5zR/KfdLEnt5nrqd4jwUSRGv5S2XPyco59D1Y4qNFq5sRph0h3XIg13795SGJcPRGadxEaxtHTn/cLlt27UTWHvoXQjdUGvKVjxa+oerUtpHezXFhlq4IBS53S4Yw/5JbXj15LKVIq0Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DEPNG9h+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D13AAC4CEF7;
+	Wed, 28 Jan 2026 18:08:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769623728;
+	bh=2T8vMMg2rf8+1yfCvimfNJF6NzhFISduol0pLG0i8k4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DEPNG9h+z6zOk2rLGkKfYy/JoEz+49mE6uP0elCRJy5W2FvBHngS9zeAsDPE+AKhH
+	 M946e9ThxPb3uDGNr+JwxGss1n6O3lK6NHN836xYRo2ypeAvWFLRESKnmrMuPg1tK7
+	 7Wf4LqjD2m5Nig22wmhyfv2Cf1cdPzJYOi7ciR5deOl4rkC4qUW2r1lyvf8BPnXpb6
+	 0TE9vQp5nhzOYKFQ1sR6Xlk6wLL+Q3eMdN0zVE+iD9YyMJ6BoMDr3CPj/b4rR4dUR4
+	 t4uSEayM8PCF471NQ6cEq5il5ViUnIGjjhTLBZ4f/6caN56vlAzSrE0+H0ZDYDMmf7
+	 M399H+6l1vdQg==
+Date: Wed, 28 Jan 2026 18:08:43 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, linux-spi@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: spi: renesas,rzv2h-rspi: allow
+ multiple DMAs
+Message-ID: <20260128-sequence-platypus-59ae3318318a@spud>
+References: <20260127201706.616374-1-cosmin-gabriel.tanislav.xa@renesas.com>
+ <20260127201706.616374-2-cosmin-gabriel.tanislav.xa@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="pEGYxEu9IZd+THka"
+Content-Disposition: inline
+In-Reply-To: <20260127201706.616374-2-cosmin-gabriel.tanislav.xa@renesas.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260576-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	TAGGED_FROM(0.00)[bounces-260577-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[renesas.com,kernel.org,glider.be,gmail.com,vger.kernel.org];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 94291A7924
+X-Rspamd-Queue-Id: 137D9A795E
 X-Rspamd-Action: no action
 
-On Wed, 2026-01-28 at 08:55 -0800, Guenter Roeck wrote:
-> On Wed, Jan 28, 2026 at 02:04:35AM -0800, Guenter Roeck wrote:
-> > On 1/28/26 01:44, Nuno S=C3=A1 wrote:
-> > > Hi Guenter,
-> > >=20
-> > > On Tue, 2026-01-27 at 09:39 -0800, Guenter Roeck wrote:
-> > > > Hi Nuno,
-> > > >=20
-> > > > On 12/23/25 04:21, Nuno S=C3=A1 via B4 Relay wrote:
-> > > > > This is v3 for the LTC4283 how swap controller. Main change is th=
-at I'm
-> > > > > now using the auxiliary bus for adding the GPIO device (done depe=
-nding
-> > > > > on FW properties).
-> > > > >=20
-> > > > > Similar to the LTC4282 device, we're clearing some fault logs in =
-the
-> > > > > reset_history attributes.
-> > > > >=20
-> > > >=20
-> > > > I ran the patch series through an AI review. Results are below.
-> > > > Please take a look.
-> > > >=20
+
+--pEGYxEu9IZd+THka
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Jan 27, 2026 at 10:17:04PM +0200, Cosmin Tanislav wrote:
+> The Renesas RZ/T2H and RZ/N2H SoCs have multiple DMA controllers that
+> can be used with the RSPI peripheral. The current bindings only allow a
+> single pair of RX and TX DMAs.
 >=20
-> Another run through AI below. Please let me know if there are further ina=
-ccuracies.
+> Allow multiple DMAs by only restricting the possible names of the DMA
+> channels.
 >=20
-> Thanks,
-> Guenter
+
+> All '.*-names$' properties must conform to the string-array.yaml
+> meta-schema, which requires both minItems and maxItems properties to be
+> present before the items can be a schema. Otherwise, the items need to
+> be an array.
+
+Why is this in the commit message?
+
 >=20
+> Declare a generous maxItems of 32, which should be enough for 16 DMA
+> controllers, so that we don't have to update this value ever again, even
+> if currently the maximum number of DMA controllers on a Renesas SoC is
+> 5.
+
+Huh, No. The binding should constrain this to fit what the actual
+devices do.
+
+
+>=20
+> Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
 > ---
-> commit 82433332ce165903d56fae327ced975aeef30475
-> Author:=C2=A0=C2=A0=C2=A0=C2=A0 Nuno S=C3=A1 <nuno.sa@analog.com>
 >=20
-> hwmon: ltc4283: Add support for the LTC4283 Swap Controller
+> V2:
+>  * new patch
 >=20
-> Adds support for the LTC4283 Hot Swap Controller I2C interface.
+>  .../devicetree/bindings/spi/renesas,rzv2h-rspi.yaml    | 10 ++++++----
+>  1 file changed, 6 insertions(+), 4 deletions(-)
 >=20
-> > diff --git a/drivers/hwmon/ltc4283.c b/drivers/hwmon/ltc4283.c
-> > new file mode 100644
-> > index 000000000000..402b53f81548
-> > --- /dev/null
-> > +++ b/drivers/hwmon/ltc4283.c
->=20
-> [ ... ]
->=20
-> > +static int ltc4283_read_power_word(const struct ltc4283_hwmon *st,
-> > +				=C2=A0=C2=A0 u32 reg, long *val)
-> > +{
-> > +	u64 temp =3D (u64)LTC4283_ADC1_FS_uV * LTC4283_ADC2_FS_mV * DECA * MI=
-LLI;
-> > +	unsigned int __raw;
-> > +	int ret;
-> > +
-> > +	ret =3D regmap_read(st->map_word, reg, &__raw);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	/*
-> > +	 * Power is given by:
-> > +	 *=C2=A0=C2=A0=C2=A0=C2=A0 P =3D CODE(16b) * 32.768mV * 2.048V / (2^1=
-6 * Rsense)
-> > +	 */
-> > +	*val =3D DIV64_U64_ROUND_CLOSEST(temp * __raw, BIT_ULL(16) * st->rsen=
-se);
->=20
-> Does this overflow *val on 32-bit systems if the calculated power exceeds
-> 2000 Watts (approx 2^31 microWatts)?=C2=A0 The intermediate calculation i=
-s
-> u64, but the result is assigned to a signed long.
->=20
+> diff --git a/Documentation/devicetree/bindings/spi/renesas,rzv2h-rspi.yam=
+l b/Documentation/devicetree/bindings/spi/renesas,rzv2h-rspi.yaml
+> index a588b112e11e..383e97f0dabd 100644
+> --- a/Documentation/devicetree/bindings/spi/renesas,rzv2h-rspi.yaml
+> +++ b/Documentation/devicetree/bindings/spi/renesas,rzv2h-rspi.yaml
+> @@ -57,13 +57,15 @@ properties:
+>        - const: presetn
+>        - const: tresetn
+> =20
+> -  dmas:
+> -    maxItems: 2
+> +  dmas: true
 
-I'll have to double check this one but IIRC 2000W is not a realistic value =
-for
-these applications. One thing that could overflow is power_max given that t=
-he default
-register value is 0xff but we do write the proper max value depending on
-rsense (I actually need to check how will this behave in case we use a defa=
-ult
-rsense value - ie with no DT property).
+This should have the same constraints as dma-names. You've now allowed
+this to have 1 and 33 dmas, because there's no requirement to have
+dma-names when you have dmas.
 
-> [ ... ]
->=20
-> > +static bool ltc4283_word_reg(struct device *dev, unsigned int reg)
-> > +{
-> > +	switch (reg) {
-> > +	case LTC4283_SENSE ... LTC4283_ADIO34_MAX:
-> > +		return true;
-> > +	default:
-> > +		return false;
-> > +	}
-> > +}
->=20
-> LTC4283_SENSE is 0x41 and LTC4283_ADIO34_MAX is 0x40.=C2=A0 Does this inv=
-alid
-> range (start > end) effectively disable access to the word registers
-> via st->map_word?
+> =20
+>    dma-names:
+> +    minItems: 2
+> +    maxItems: 32
+>      items:
+> -      - const: rx
+> -      - const: tx
+> +      enum:
+> +        - rx
+> +        - tx
 
-The above is odd ad I'm pretty sure I ran sensors on this but could be some=
- late edit
-mistake. Anyways irrelevant for the next version as you prefer the custom b=
-us regmap
-approach.
+You've changed this to allow 32 dma-names, but they all need to be
+called either "rx" or "tx", how is a driver meant to use dma-names to
+get the second pair of dma channels? Shouldn't anything in excess of the
+first two start getting numbers appended so that a driver can actually
+request them?
 
->=20
-> > +static const struct regmap_config ltc4283_word_regmap_config =3D {
-> > +	.name =3D "ltc4283-16",
-> > +	.reg_bits =3D 8,
-> > +	.val_bits =3D 16,
-> > +	.max_register =3D LTC4283_ADIO34_MAX,
-> > +	.val_format_endian =3D REGMAP_ENDIAN_BIG,
-> > +	.writeable_reg =3D ltc4283_word_reg,
-> > +	.readable_reg =3D ltc4283_word_reg,
-> > +};
->=20
-> Does max_register =3D 0x40 prevent access to the sensor value registers
-> (LTC4283_SENSE at 0x41 and above) which are intended to be read as
-> words?
+pw-bot: changes-requested
 
-ditto
+Conor.
 
->=20
-> commit 5998c620fbd8915340a4b92635c9489a91fae567
-> Author:=C2=A0=C2=A0=C2=A0=C2=A0 Nuno S=C3=A1 <nuno.sa@analog.com>
->=20
-> gpio: gpio-ltc4283: Add support for the LTC4283 Swap Controller
->=20
-> Adds GPIO support for the LTC4283.
->=20
-> > diff --git a/drivers/gpio/gpio-ltc4283.c b/drivers/gpio/gpio-ltc4283.c
-> > new file mode 100644
-> > index 000000000000..fa0c106d4fac
-> > --- /dev/null
-> > +++ b/drivers/gpio/gpio-ltc4283.c
->=20
-> [ ... ]
->=20
-> > +#define LTC4283_PINS_MAX			8
-> > +#define LTC4283_PGIOX_START_NR			4
-> > +#define LTC4283_INPUT_STATUS			0x02
-> > +#define LTC4283_PGIO_CONFIG			0x10
-> > +#define=C2=A0=C2=A0 LTC4283_PGIO_CFG_MASK(pin)=20
-> > +	GENMASK(((pin) - LTC4283_PGIOX_START_NR) * 2 + 1, (((pin) - LTC4283_P=
-GIOX_START_NR) *
-> > 2))
-> > +#define LTC4283_PGIO_CONFIG_2			0x11
-> > +
-> > +#define LTC42823_ADIO_CONFIG			0x12
->=20
-> This isn't a bug, but should this be LTC4283_ADIO_CONFIG instead of
-> LTC42823?
+--pEGYxEu9IZd+THka
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Indeed!
+-----BEGIN PGP SIGNATURE-----
 
-- Nuno S=C3=A1
-		2
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaXpQqwAKCRB4tDGHoIJi
+0kgGAQDiC32wYWDqHtgMo0feJfCqK9GT5ynv9/ghgG3GbuhItwEAh4MHCGZj64KB
+Hjq1X1cCblm4zLQB2EdCs9RulMXuQww=
+=NMtP
+-----END PGP SIGNATURE-----
+
+--pEGYxEu9IZd+THka--
 
