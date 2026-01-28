@@ -1,163 +1,169 @@
-Return-Path: <devicetree+bounces-260506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260508-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id INRaECAyemlo4gEAu9opvQ
-	(envelope-from <devicetree+bounces-260506-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 16:58:24 +0100
+	id GL/bHy4yemlo4gEAu9opvQ
+	(envelope-from <devicetree+bounces-260508-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 16:58:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1943A4D57
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 16:58:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42159A4DAD
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 16:58:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 45657307C81C
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 15:51:30 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 39F1530802DE
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 15:51:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A8BE3043B2;
-	Wed, 28 Jan 2026 15:51:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBAD930EF7A;
+	Wed, 28 Jan 2026 15:51:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Oqms586W"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="M1Z3iG+N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F1B82EA172;
-	Wed, 28 Jan 2026 15:51:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1C6630CDA4
+	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 15:51:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769615482; cv=none; b=ONACpSZqxyPr01dgGHxS9RcAPmZGqtECMuNS37nhphYFd7NWV5gcLVeOmNpGEP+dRysA/Jn8nv8dgNMH5xWNqVC+xef5wy3+vUodmGpCKHoA2pe6xkc4ca04HMnbhylvyda3ADL6iQECSc6ioHlZfMRXi392H7iub88/Jr3qwGY=
+	t=1769615486; cv=none; b=fqTykxJlu1g6NDePJ/RLE0kIrOV596vjozYKo0ctSebFyhpzcZt1fKEWno/9K2M92Skt2eWet3yw8YuB9dyMgr/HDcIykOluNqp2X91HXHvy6rSqrI4Y5RZ1XyDPdZKIXam5Lz1wtZSo9sjaWxCAGF9chWUqb2gh+QI6iRvy86s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769615482; c=relaxed/simple;
-	bh=YMl7we/JDefweYTSXQOFToR7vNsq86hSDk6V8uFAxJ0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C9WJlPvzaXPp3wrPOE1zoyd+8oW16jFfx6KKdcSehyRdhnP6xa0wbzeq5cIdNLCnhYE6WcUl8ZL5bQCnL6VkGRCznBHAfPq80fNF9YJQEbMBK6s5EBQ5xA4MsyKNrEYryI7rQjMoeeh8u0k+Kg+SRuNdmsljapXIu0Toe0+qW94=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Oqms586W; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1769615482; x=1801151482;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=YMl7we/JDefweYTSXQOFToR7vNsq86hSDk6V8uFAxJ0=;
-  b=Oqms586Wrk6fgPVzcsziYCRwz6HenWY5H6zAl2Wh2K8Q4V07irCIWe3Z
-   3ux/7jOykL5cxSVSQL4l+HSUaqktXj1p460LMGn/RNCFVTfAeS6+dMcaO
-   LJy/qS1rC9RSyrgZSS14ojfXplO9Uu1jL+vDC8wgtJpoTbmPMHLM+F8hm
-   1T2+Ym0aAbMWFrw0+3kX+4VNyK7JCRMNeCWGkq+WPq2ASBDc5rQnR66vL
-   +9kuR7SYUeD4/c4W4muI9pvb+dai3jesWTyXlNEe31oWc2UYX30Jzq9SY
-   00x1DzK0LRBBn0UqWA6ztT7Y3UZFCZ+YOP5oMgW4+O4L8tAfHlhTQ9lwy
-   w==;
-X-CSE-ConnectionGUID: Qtv+4z7JQ/6U4GbDwqM4Fw==
-X-CSE-MsgGUID: 57Ycm5GQT1SpehbmT5kUsw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11685"; a="81943002"
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; 
-   d="scan'208";a="81943002"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jan 2026 07:51:21 -0800
-X-CSE-ConnectionGUID: YSjqylXoRHuhj1VvsnJgBw==
-X-CSE-MsgGUID: CuULZbbvQAyrw5QSFsjEig==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; 
-   d="scan'208";a="208097217"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.245.57])
-  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jan 2026 07:51:16 -0800
-Date: Wed, 28 Jan 2026 17:51:13 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Danny Kaehn <danny.kaehn@plexus.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Benjamin Tissoires <bentiss@kernel.org>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Jiri Kosina <jikos@kernel.org>,
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Ethan Twardy <ethan.twardy@plexus.com>, linux-i2c@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Leo Huang <leohu@nvidia.com>,
-	Arun D Patil <arundp@nvidia.com>, Willie Thai <wthai@nvidia.com>,
-	Ting-Kai Chen <tingkaic@nvidia.com>
-Subject: Re: [PATCH v13 1/3] dt-bindings: i2c: Add CP2112 HID USB to SMBus
- Bridge
-Message-ID: <aXowcdIpdZwrc5KW@smile.fi.intel.com>
-References: <20260127-cp2112-dt-v13-0-6448ddd4bf22@plexus.com>
- <20260127-cp2112-dt-v13-1-6448ddd4bf22@plexus.com>
- <20260127160217.GA3776731@LNDCL34533.neenah.na.plexus.com>
- <20260128-magnificent-faithful-otter-c4f900@quoll>
- <aXoF4zi4SZrXaku5@smile.fi.intel.com>
- <20260128-pelican-silenced-cd6a5bf69672@spud>
+	s=arc-20240116; t=1769615486; c=relaxed/simple;
+	bh=UL7oG9FT+R61+JPV9a6SqQpi6w6GPW9Vnjs6JNCt/og=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=EY/TCO9A/VMjD1WpKoootFKYlHEGXrZ7PCTW37oyLU0+O7cOQGgObviUSaK/87bIqIhFWhFL0GucfWK95tFbT7JySQo05wXAUYulMkVV1FDuwL4+rX5G0TYkoAhIn13TjrU0anNZiB/LUgIqGGLEwzCTZdTIm44Gk1Rlm+RnfR0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=M1Z3iG+N; arc=none smtp.client-ip=209.85.208.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-64bea6c5819so26752a12.3
+        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 07:51:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1769615483; x=1770220283; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bxosYBC+jkycfgMD0yZ2twi1arJ37bFp4Lz2LJNYscE=;
+        b=M1Z3iG+Nh+1QJG9YjegV3mDd0y2f/eABfzlHa4JUUHLmNc8JEDchlSBY0/cP8BPl6P
+         /qQyxh7zaszqn57GTbUaunqRuPbcNiCFDtT4P96XPmFesRMiL/gmsGOFmUP+ra/JwM5N
+         iiepMFobOHMtFJcSpSB31uEKjE5aEr/rcyeJCe8Gr4nLAArM0HaTJQ7FHX1w5M5vziHP
+         e42qKj4qVOt1p2KBmWiES5WeQsGyENQHzaNF8OqE7KG/wZQAEroovDHiT006YBvkIqQF
+         Daa0kcTyZLiVqOT5a/ia5/gKr8H5dWGFl3Shqs3wgSw2KvKPs+W3cVR3QGxEG/0SFpo/
+         5BYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769615483; x=1770220283;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=bxosYBC+jkycfgMD0yZ2twi1arJ37bFp4Lz2LJNYscE=;
+        b=dFB/MDXVfrhIbuu+HjPju1kivbSzCgZzqx7reuCpbm52iBMqgqWVQCG1JGvES0w7ye
+         0L+1t0IkFnCg8b9+6zuG/e+OrkkIJA+cTPxM4FM/t2FHGEXEWhFnHmA+5DyprdkEQFoX
+         Qh0ZyvYJyczsy46miPcguGcRHMLEs4qu1buNma+lC8IYPorUwfOcMRWhpyw5pXJssj5T
+         ShIViPL4xjlfgrItkPMUaCwlJuA/TUbXSud7F/YUFuu58M22Wb7XD5wyLOyteJThabzU
+         eOBS66D1csF08mIc+DGMWbO47UjuNkqv1FHN4mrccHWBDqs+N9PCRsgjK+lVaOZ2z8Gj
+         9KaQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV/u5dg8C2QuKctw7Y9XMnj7xxx7AMvfSFs4DXcslKXldbjTtRuwoHPQp+uowOnu9HgBLaCfSY/wg/x@vger.kernel.org
+X-Gm-Message-State: AOJu0YwIOwg6ngWsquGZHz6CabqYg2hX42Hoqn8i67kMoQqN2idkK30a
+	dDyqJXPOAsmR0kzavLSFK+nVNRN4da2UwDS8LvJUK9HTuG6Lj0+Cdn3byhZEy1L+l6s=
+X-Gm-Gg: AZuq6aIiU0gOWvnS1DZlrTF7a2kXhzxqftNjKqsswv82YiC+6hRuo2J1bmo5RMXQNVW
+	6uqcR4bsJKzBnck0hUAUvaiP6I+AFtT+Pg+SrRXkBcxluYh18tme2X+YbwXwC/LSJpZQFIGq+d3
+	yY/SKqM9TeRxPg9ttYhSi5BYMia3ZO/4rcs6HRpBy0Rwy8BAEp2o3f06t9QRpnJcNqv4WZYFhxN
+	ijhB6h/wPsZWiBRqS8LDdyB8CMLhKcZiXidqg5WyKQ5GSG10yOMHgiO9zVQwf56Qh+sJYwqU/Za
+	eBme/i4lg135MyqzNne/qLYDme7Maba4XHAQl+0oWbVHA7bKVVnp0r9R+Qu8+rL/mIB3xe0smXT
+	bNlZyky1Wsssiigyxiw64yyyFS9EyUaz1tIGM5AvXyVu715im3+WLm2qcT1fIgVOG1WtELXpqVT
+	95VwE1pIq2XVhXTE79trfuHNmhCojPuf8tPtiZBuTk4L+IVwnhtNGcb0J18sesR6pvX78x
+X-Received: by 2002:a17:906:2083:b0:b8d:c364:5e28 with SMTP id a640c23a62f3a-b8dc3646fc5mr124941966b.63.1769615483312;
+        Wed, 28 Jan 2026 07:51:23 -0800 (PST)
+Received: from [172.16.220.227] (144-178-202-139.static.ef-service.nl. [144.178.202.139])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-658b469eb9fsm1727223a12.28.2026.01.28.07.51.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Jan 2026 07:51:22 -0800 (PST)
+From: Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
+Date: Wed, 28 Jan 2026 16:51:13 +0100
+Subject: [PATCH v2 1/3] dt-bindings: input: awinic,aw86927: Add Awinic
+ AW86938
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260128-pelican-silenced-cd6a5bf69672@spud>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260128-aw86938-driver-v2-1-b51ee086aaf5@fairphone.com>
+References: <20260128-aw86938-driver-v2-0-b51ee086aaf5@fairphone.com>
+In-Reply-To: <20260128-aw86938-driver-v2-0-b51ee086aaf5@fairphone.com>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Luca Weiss <luca.weiss@fairphone.com>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1769615481; l=1012;
+ i=griffin.kroah@fairphone.com; s=20250804; h=from:subject:message-id;
+ bh=UL7oG9FT+R61+JPV9a6SqQpi6w6GPW9Vnjs6JNCt/og=;
+ b=aKHTzT/lhB2bB2KgRAkb3dRYwVVJH10iCeA7sSYkoE3JdKHSQdw8kEiu1ul6PCRgbkNBJqsXZ
+ A2S2CW4LHrwAxFJgRisWsUq1kJQKHfvZogbAIpcZgIyfxI9T8OLfGx4
+X-Developer-Key: i=griffin.kroah@fairphone.com; a=ed25519;
+ pk=drSBvqKFiR+xucmLWONHSq/wGrW+YvcVtBXFYnYzn8U=
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	DMARC_POLICY_ALLOW(-0.50)[fairphone.com,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_DKIM_ALLOW(-0.20)[fairphone.com:s=fair];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,plexus.com,vger.kernel.org,gmail.com,linaro.org,nvidia.com];
-	TAGGED_FROM(0.00)[bounces-260506-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-260508-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,fairphone.com];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[fairphone.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[griffin.kroah@fairphone.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: C1943A4D57
+X-Rspamd-Queue-Id: 42159A4DAD
 X-Rspamd-Action: no action
 
-On Wed, Jan 28, 2026 at 03:06:58PM +0000, Conor Dooley wrote:
-> On Wed, Jan 28, 2026 at 02:49:39PM +0200, Andy Shevchenko wrote:
-> > On Wed, Jan 28, 2026 at 11:35:25AM +0100, Krzysztof Kozlowski wrote:
-> > > On Tue, Jan 27, 2026 at 10:02:17AM -0600, Danny Kaehn wrote:
+Add bindings for the Awinic AW86938 haptic chip which can be found in
+smartphones. These two chips require a similar devicetree configuration,
+but have a register layout that's not 100% compatible.
+Still, we can document them in the same file.
 
-...
+Signed-off-by: Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
+---
+ Documentation/devicetree/bindings/input/awinic,aw86927.yaml | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-> > > That's actually rule communicated many times, also documented in writing
-> > > bindings and in recent talks.
-> > 
-> > Does DT represents HW in this case? Shouldn't I²C controller be the same node?
-> > Why not? This is inconsistent for the device that is multi-functional. And from
-> > my understanding the firmware description (DT, ACPI, you-name-it) must follow
-> > the HW. I don't see how it's done in this case.
-> 
-> The i2c controller should probably be in the same node too, unless it
-> would cause conflicts between function (e.g. inability to figure out if
-> a child is a hog or a i2c device). I would like a rationale provided for
-> why the i2c controller is in a subnode.
-
-I can expect a disaster with such a scheme, splitting multi-functional device
-to the subdevices (children) sounds to me like the best approach. With this,
-one may have the same (globally named) property to be different on subdevices.
-
-But I will hold my breath to see the outcome of this discussion.
+diff --git a/Documentation/devicetree/bindings/input/awinic,aw86927.yaml b/Documentation/devicetree/bindings/input/awinic,aw86927.yaml
+index b7252916bd727486c1a98913d4ec3ef12422e4bd..c3dee660422192720da3cf63851cea27db819742 100644
+--- a/Documentation/devicetree/bindings/input/awinic,aw86927.yaml
++++ b/Documentation/devicetree/bindings/input/awinic,aw86927.yaml
+@@ -11,7 +11,9 @@ maintainers:
+ 
+ properties:
+   compatible:
+-    const: awinic,aw86927
++    enum:
++      - awinic,aw86927
++      - awinic,aw86938
+ 
+   reg:
+     maxItems: 1
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.43.0
 
 
