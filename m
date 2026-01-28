@@ -1,349 +1,217 @@
-Return-Path: <devicetree+bounces-260633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260634-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6ALYHuZ3emmE6wEAu9opvQ
-	(envelope-from <devicetree+bounces-260633-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:56:06 +0100
+	id YKiAKyh5emny6wEAu9opvQ
+	(envelope-from <devicetree+bounces-260634-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 22:01:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E816A8DE4
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:56:05 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2645AA8E41
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 22:01:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id EE35E30055D4
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 20:56:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0A3DB3016268
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:01:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 165F237647B;
-	Wed, 28 Jan 2026 20:56:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C478335571;
+	Wed, 28 Jan 2026 21:01:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VT7u2N7M"
+	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="e1BeNxbE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com [209.85.221.67])
+Received: from mail-yx1-f53.google.com (mail-yx1-f53.google.com [74.125.224.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B68737475D
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 20:55:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.67
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769633760; cv=none; b=lWo/i41V7oM3lEy4J09wuZdjDW81GnI6+smPAIidEYwVCgnFV/0QSCFn/xe8AfvvqsiWr5N3MUPBvncNJuV2HghuUqls+acwkBuDKE7q5jUEzHdiLECTMADswzzKmIofUBWWy0jdXClwZWgaBB1Mqkc/LMTeyEnhTKl7tPpjdxo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769633760; c=relaxed/simple;
-	bh=gMQepSK8f7qhYnYkO0okMJg/16Om5zTTPa+WGPVbmyU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ROsM078IlnNcKWhHnOY+Ge3lFg+yFmv0rqliGZ0Jxft3vqXmCZWwgd4Hlg33LrpLr5jRJlsuERciX8tNJYsYc/HGHICpEnRNnhf/UMlsHNMZ2GK82CpCybcdN2B5YBqkrJzWkyNYX8OnX0dvTKW2VvdwwSXUzno5oeEoXPy/a8w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VT7u2N7M; arc=none smtp.client-ip=209.85.221.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f67.google.com with SMTP id ffacd0b85a97d-432d2885c85so39281f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 12:55:58 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F3672C159E
+	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 21:01:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.224.53
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769634086; cv=pass; b=PbVfv99Y2FBP86CC/Eow8D0YDBxmnUyaIyp2ZY9gt/cZ0SAhqjC6e9I85IMfyQU7oWt/y3TIK0tAaGslJkEnQ0I83nS+7aqVwZFVHOYjXFzZnlidt50PjHrLQc/1iJRdILgQL2SpbotLWXcZa/jvcmrKsXnQvVdgP2ZoYhq6yW4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769634086; c=relaxed/simple;
+	bh=q366hLe7gQaI5rjlaG/ooZDp0LuYfAPugWB8ysxyHwo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ruoZt4lh/gWvVs5vnhLqeWVq8eKhd8whl87FTz62yWeVacFoLrvdIZksPqyora9nj8BKo30Fs4/TKC/a5pkHNzZjPVUdGDYGhHVzux8ydNEVTl7J8XEFAddccsLluzaMipBPeIwr7e1etVfdDvhrnrxJ7xdcWWrElOgeN0rfeGc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=oss.tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=e1BeNxbE; arc=pass smtp.client-ip=74.125.224.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=oss.tenstorrent.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tenstorrent.com
+Received: by mail-yx1-f53.google.com with SMTP id 956f58d0204a3-64942ebf1a3so257875d50.3
+        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 13:01:23 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1769634083; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Z5nDAmZ4AalGuBtPUG1f2+poJfvZ7HcWqJgomacm0LvMW9bx45lWYbDfyDrDa1e5k2
+         R/pT1wva+g/Amtq/D56A/x2KIyymqMoNyrNTvvsShyHlEndnhR6Wi8oOgc9h9eJvE4Z/
+         gSV2lQWt47S97hAIe8Yv/Gj2K7/tuVfudRtXAIDo48UGq6M91z0M7hTrs6EAiY54C460
+         Rnjq1JNzkMCTott1xvuaI53fUIDt13oNMkJx5d7WeCo5JiYS0rdJ7dZZ8cnmSGmY50FA
+         /ZsjFnYpogyMDMNwdGN+S49fektSPvZMzSstaZtNzGBxsWUw5usC5+5TRwUZLoYShNYk
+         kPOQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=q366hLe7gQaI5rjlaG/ooZDp0LuYfAPugWB8ysxyHwo=;
+        fh=VavqON4rOH3NZscdxOYl1sfFJfK1JEhZ3CV8Anyi3h4=;
+        b=S0CQD0D+avMCfCfy7R2X0S/kcrBSLryBPuPxfWprwx8oQyljFydWAGQue6E6iNuwUB
+         LsNvTn51XBqN57gGhb2u1J5DOZe/d8a5cAUHWcjYEF76Y075TgK1m3dI4z8l8xNDbIBB
+         Wr8e3kCcvfesdBvF0Fm39aIYVxVU+sGUmhOwj5vDUdIHEPb/nys2VdmA/Fy6Df2T7fKD
+         vfFph9M06hWqaUxjjEHicDa5BABoZ1BDEvth/rWgv+NSApatiXuOkfrJo8P5WAVDhJp1
+         /ijMw5XXH02r/sSInr2LIxqOgjykuUJ1AQFIrDZ74sdNmU9j1Gu+Eh6FOFRimvoIqzgh
+         AL4Q==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769633757; x=1770238557; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=inVrPakEQC1UyRcMQR3934qNzhI0Dd0xU2zpnTM65tM=;
-        b=VT7u2N7MwolAOKiNA76rzxqPWsLNUtCaKicyspyfrf0N7xzotXYGPbZ5Vy4sm1voAg
-         2WJNvKNPMCv3my2TqQRytNXDU6rrExB4JvvyH79eTWZfQMQS7InSiKxSE/e9zIm0GElP
-         ZCQ6q/QXmuGEBQcdCtE51et59LdyB0Tu4DU/N/9DPP0cTIFZndn6YiJ/GqXXeiL/2V6A
-         oeOdF5Fi8UYmUGaqzDu1a78U8liBDmXpgRAuA8LMn76z7OEhkYxngHSzYB5rQvf4XjbE
-         AXP5i5XTGKyfk89PfLryZ/y8mS0MYapiXtTOn5MPjMdt7AB0abGl/tB918+crtj8kdKz
-         WDVw==
+        d=tenstorrent.com; s=google; t=1769634083; x=1770238883; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=q366hLe7gQaI5rjlaG/ooZDp0LuYfAPugWB8ysxyHwo=;
+        b=e1BeNxbEnFF7jWky50sCGNMplkmiWT0yNWkV9ages1z8Hl8ZUA+0Z+wmNb7uyRxzWs
+         xEBfpV8z5lsGfC2fn1AhClS56Hxz4OPmwn2AUiT9CHVLV3hLpoO+vpxl6r12L/F+xZ/0
+         3NtPsfHEliRgJ7suP1bUYwGhiQzFU37bw1GZOhL2FQneMFRgP57y6RNCiJj1TIkWfkgD
+         mIHO/fOryrc8wQBx9sPArH3nZlMIhLG2vFIQbIFpiZOQxNGgDzuHGRxAJX8SgWnPxITI
+         qMletHHtUCoHL0P2x5UMHX6tb3fukiQ3i76lFS1j9OxVU5/Je4TmdJnFSegTOoiD61xM
+         QLjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769633757; x=1770238557;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=inVrPakEQC1UyRcMQR3934qNzhI0Dd0xU2zpnTM65tM=;
-        b=G3fDUDB2sz8c10wzajixmedVO96wsNlaoNsa5uw0ALZTGJusuixzusdwPnSWYquf1N
-         iOrQO+SFWEIkFg2sNAHYQJaRJi3lp9iDW4YdiJHgUsCN8jnR3l3in1v7xR7s8r9Ib5PN
-         67jUfUQFsaw+4q13M7zSWKwYtyu+SFQUutzqPxgxc9jwTNk3OxkEgEY3XwNzMUaS1gUx
-         U2+8IK97XPczwjrajjcoYqHHvzDKpWq7WIpXrRluzHtPYWyLQqacQSUSFmTIgTOrUm5e
-         ynZHTVXne+snztC4Yj3yXY/DQIoe15B7UkACyQtCY3FtQLZboOWaqPfzzzBcgVgKU2Fy
-         2jKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUKoMOc6cQT5xoI+bDdVRBctEHZk+ngdaR/mZ9MfM2iG1Tir5PfN6k1nnH4Ee6/5Oe1I+uj2vpScNZ7@vger.kernel.org
-X-Gm-Message-State: AOJu0YxePN89F+B1LNakZFcubMBFgJ2AdmeJr5Fh0Q3I7zm2RIbQDjb1
-	WTlLGYp3/mAuoyJJdcxbfvNcgICTj0tzVSpUeQVekswxXUI9GoZaVJuJ
-X-Gm-Gg: AZuq6aIc8YpOe+9LUhZ/YP+HhPVoW6CMZlzylp9dW2A38mIfszThkR+1PnZN7CbCXrr
-	msaXZhdlMC4Qw10/jnf+K/8cH8A7bqs3nnWXWNOvMzPncNIk1lWT/u/5jLBrmO5SmoFuBcWsFs2
-	KuAT5u65MOapTwZ9aPdYPvAaIAHh07W+EXR8LrJj8bh2EBY4HbWG9/LOvOPQbXU+bizu/JpGCpE
-	HRUCzdBcwDX1oOqqxXvT20gjDlWIoRex1Uaq4Hf1MVsjgqh9gbvtAdVtPSysI8RrX01QQp0YmA2
-	OPtV0yRHBxrCmRAkTgN6eqGCgtHLmHRGCufMuO8XguPSiUuU8iyFGZDgNK31bXgtn/n5RgCN+P/
-	BSiLoec7WdjyxQfKkMkI4xbcO88o4wzhSJtgYCg9nC+5QWlje9IJRFxVwhaYEKal45t4eHqWBsY
-	Tcvg==
-X-Received: by 2002:a05:600c:34cd:b0:471:3b6:e24 with SMTP id 5b1f17b1804b1-48073cc37cemr10857405e9.8.1769633756442;
-        Wed, 28 Jan 2026 12:55:56 -0800 (PST)
-Received: from skbuf ([2a02:2f04:d501:d900:6c51:3f46:e918:f0b])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435e10f82aesm10032262f8f.19.2026.01.28.12.55.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Jan 2026 12:55:55 -0800 (PST)
-Date: Wed, 28 Jan 2026 22:55:52 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Simon Horman <horms@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Frank Wunderlich <frankwu@gmx.de>, Chad Monroe <chad@monroe.io>,
-	Cezary Wilmanski <cezary.wilmanski@adtran.com>,
-	Avinash Jayaraman <ajayaraman@maxlinear.com>,
-	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
-	Juraj Povazanec <jpovazanec@maxlinear.com>,
-	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
-	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
-	"Livia M. Rosu" <lrosu@maxlinear.com>,
-	John Crispin <john@phrozen.org>
-Subject: Re: [PATCH net-next v9 4/4] net: dsa: add basic initial driver for
- MxL862xx switches
-Message-ID: <20260128205552.2mheraoxodwqisns@skbuf>
-References: <cover.1769549559.git.daniel@makrotopia.org>
- <35ba37bee00af9de047e8ac49fcd739f10736f84.1769549559.git.daniel@makrotopia.org>
- <20260128112950.q2kzl632w3jidyls@skbuf>
- <aXo9MnBFuaj8d5Hv@makrotopia.org>
+        d=1e100.net; s=20230601; t=1769634083; x=1770238883;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=q366hLe7gQaI5rjlaG/ooZDp0LuYfAPugWB8ysxyHwo=;
+        b=cxJ5CIkTGQM3GZS/B7nAcHDH1Ir0/6sf4qGobD3hZxWzxRUy82NLBvA5y8T6BINdXf
+         XPc4yMl8r1UCm+6fgnW5zj8PJE8Ka0mtirlXo1kwEd6W0zYDve6j3nsgYIiEurz7CMqQ
+         t02/94WToHnWwt/K8/bONxdOZaXn4X6mBrFRlHvDkrj325opqaWffGBH0NucCZ6Yx/aY
+         d3tv20yoxR0TSXbTel6oE0vmNN4UPlhUMoMjPMNgxFUgNClazJEB/iluRR0JxBkYgkte
+         8a4wnJJc81yGXAMKXjDTH3Zvzzm1ar4/lTUHFN1FjMcO76VPLpV13KUJ7X6AOXHrEBfu
+         z6Jw==
+X-Forwarded-Encrypted: i=1; AJvYcCW91YlA5jaFP0Dw6WnpbDDF8JUJpptaKUhgyuf3HErHkS3sfIa6stsUd8STM+UC38AhyM63RNVI+EWe@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz77xnXX6K0fgZS+MV46pNDuZ0GwQeuU289myOVcPXR7l/EwQV6
+	maJR3G/MXgJwigcvZ37qHKdqGDyOeacMTl745REzRm3tZlo2LVfmuOvN1XM5dR0c59bW4jokGy2
+	C7TdVMTwRXXqPI1/Xy4K1L25ks3VUBfJ5BLnD5WHaarTv4SN/qsRImyo=
+X-Gm-Gg: AZuq6aI9sr6JL8J2Z8T6MnaLJTGTNZcBk/ICsFWwtIX0cqxKhMMcs+YfoU2axJQJftg
+	bnuJ89wI6arDMGL6hK6C4NeP+SK6TvzNh9q98VChAJF5KxbeSmviruNht0YNtnlmF7YZbC9zV+4
+	FBQxuWwfV+kFGu1Y4JotsWNMMaoPfJnhcgHrnfXZ6hgEmPfghqsLbZEDVHtzVy2iSiPNNon5RR+
+	whNKdCtaGLLaKNXP9OL6lkvmi2eiD/rvmImKa8k8peWwOGg9czj+IYH3jh4Ny92qRJ18hcBTcmW
+	fpDyuNhpQxnV8LZCBkG9XpDVFvENSFD8wGGxnaWlnfFlm68gcRlUQ78XiuI=
+X-Received: by 2002:a05:690e:1901:b0:641:e6aa:583f with SMTP id
+ 956f58d0204a3-6498fbd7285mr5173079d50.15.1769634082636; Wed, 28 Jan 2026
+ 13:01:22 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aXo9MnBFuaj8d5Hv@makrotopia.org>
+References: <20260126-atlantis-clocks-v3-0-b016135551b7@oss.tenstorrent.com>
+ <20260126-atlantis-clocks-v3-1-b016135551b7@oss.tenstorrent.com>
+ <20260127-mystify-carmaker-150aa3fcd6c6@spud> <CAEev2e-p28J_H2oWdrtgGJ0Z=2iGn8FjFBN8ggU0t_Wtbi62rA@mail.gmail.com>
+ <20260128-duckling-confess-88e64fabe752@spud> <CAEev2e9Y95bYDdvhJQ2954K2q5yMrGA3UF2U=QN83ZNbZ5LJBw@mail.gmail.com>
+ <20260128-nappy-repaint-e464d9964134@spud>
+In-Reply-To: <20260128-nappy-repaint-e464d9964134@spud>
+From: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
+Date: Wed, 28 Jan 2026 15:01:11 -0600
+X-Gm-Features: AZwV_QgfoguDQdOLdwSNveH96jgRmNQg1sP19SgMVUtC9BAJsQ6YIqpThUYUpUM
+Message-ID: <CAEev2e9onS-ogepaTugmGSc4-p6H0ZL54n1yd3bofTWTnLRM-Q@mail.gmail.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: clk: tenstorrent: Add tenstorrent,atlantis-prcm
+To: Conor Dooley <conor@kernel.org>
+Cc: Drew Fustini <dfustini@oss.tenstorrent.com>, Joel Stanley <jms@oss.tenstorrent.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-riscv@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org, joel@jms.id.au, fustini@kernel.org, mpe@kernel.org, 
+	mpe@oss.tenstorrent.com, npiggin@oss.tenstorrent.com, agross@kernel.org, 
+	agross@oss.tenstorrent.com, bmasney@redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[tenstorrent.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[tenstorrent.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	URIBL_MULTI_FAIL(0.00)[sin.lore.kernel.org:server fail];
-	TAGGED_FROM(0.00)[bounces-260633-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260634-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[26];
-	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,armlinux.org.uk,vger.kernel.org,gmx.de,monroe.io,adtran.com,maxlinear.com,phrozen.org];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[olteanv@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[asrinivasan@oss.tenstorrent.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[tenstorrent.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 9E816A8DE4
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 2645AA8E41
 X-Rspamd-Action: no action
 
-On Wed, Jan 28, 2026 at 04:45:38PM +0000, Daniel Golle wrote:
-> > > +static int mxl862xx_configure_tag_proto(struct dsa_switch *ds, int port, bool enable)
-> > > +{
-> > > +	struct mxl862xx_ctp_port_assignment assign = {
-> > > +		.number_of_ctp_port = cpu_to_le16(enable ? (32 - DSA_MXL_PORT(port)) : 1),
-> > > +		.logical_port_id = DSA_MXL_PORT(port),
-> > > +		.first_ctp_port_id = cpu_to_le16(DSA_MXL_PORT(port)),
-> > > +		.mode = cpu_to_le32(MXL862XX_LOGICAL_PORT_ETHERNET),
-> > 
-> > I have a really hard time understanding the physical port to CTP port
-> > mapping here. Specifically, I see you allocate 1 CTP port (sub-interface)
-> > per user port, and the rest up to 32 CTP ports as sub-interfaces of the
-> > DSA CPU port.
-> > 
-> > But I can only see this working if the index of the DSA CPU port is the
-> > last. Otherwise, won't the CTP port IDs of user ports subsequent to the
-> > DSA CPU port overlap with sub-interfaces of the latter?
-> > 
-> > Example:
-> > mxl862xx_configure_tag_proto(ds, 3, true) // CPU port
-> > -> .number_of_ctp_port = cpu_to_le16(32 - DSA_MXL_PORT(3)), // 28
-> > -> .logical_port_id = DSA_MXL_PORT(3), // 4
-> > -> .first_ctp_port_id = cpu_to_le16(DSA_MXL_PORT(3)), // 4
-> > mxl862xx_configure_tag_proto(ds, 4, false) // user port
-> > -> .number_of_ctp_port = cpu_to_le16(1), // 1
-> > -> .logical_port_id = DSA_MXL_PORT(4), // 5
-> > -> .first_ctp_port_id = cpu_to_le16(DSA_MXL_PORT(4)), // 5
-> > 
-> > Doesn't the CTP port ID of user port 4 (5) collide with sub-interface 2
-> > of CPU port 3?
-> 
-> Absolutely true. It works coincidental because only SerDes port 0
-> (port_id 9) is allowed to be CPU port. When using SerDes port 1
-> (port_id 13) as a user port it already starts to be tricky and more care
-> needs to be taken when setting up CTP port assignment...
-> 
-> Now that I understand more of what it actually does I'll try to come up
-> with something smarter.
+Hi Conor,
 
-I think the next step is to figure out how to best allocate the
-limited sub-interfaces for the CPU port depending on what is actually
-needed from them, because...
+On Wed, Jan 28, 2026 at 11:32=E2=80=AFAM Conor Dooley <conor@kernel.org> wr=
+ote:
+>
+> On Wed, Jan 28, 2026 at 09:42:42AM -0600, Anirudh Srinivasan wrote:
+> > Hi Conor,
+> >
+> > On Wed, Jan 28, 2026 at 9:02=E2=80=AFAM Conor Dooley <conor@kernel.org>=
+ wrote:
+> > >
+> > > On Tue, Jan 27, 2026 at 05:39:33PM -0600, Anirudh Srinivasan wrote:
+> > > > Hi Conor,
+> > > >
+> > > > On Tue, Jan 27, 2026 at 1:58=E2=80=AFPM Conor Dooley <conor@kernel.=
+org> wrote:
+> > > > >
+> > > > > On Mon, Jan 26, 2026 at 03:07:14PM -0600, Anirudh Srinivasan wrot=
+e:
+> > > > > > Document bindings for Tenstorrent Atlantis PRCM that manages cl=
+ocks
+> > > > > > and resets. This block is instantiated 4 times in the SoC.
+> > > > > > This commit documents the clocks from the RCPU PRCM block.
+> > > > > >
+> > > > > > Signed-off-by: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.=
+com>
+> > > > > > ---
+> > > > > This is pretty suspect sounding, if the PLLs for !rcpu are contro=
+lled in
+> > > > > the rcpu register region, why is it not a clock parent for the !r=
+cpu
+> > > > > prcms?
+> > > >
 
-> > If the hardware supports multiple CPU ports, then please describe all
-> > CPU ports as such in the device tree, and make an effort to handle that
-> > description gracefully even if you cannot make use of the second CPU port.
-> 
-> The number of available CTP (32) limits the possible setup for CPU ports.
-> The reference driver only allows port_id 9 (SerDes 0) to be used as CPU
-> port. SerDes 1 may also be used as CPU port in theory.
-> 
-> > See the rules by which dsa_tree_setup_cpu_ports() creates the initial
-> > user to CPU port mapping. This avoids a future breakage you'll cause
-> > with old kernels when you update the device tree to describe the second
-> > CPU port for what it is.
-> 
-> Understood. On old kernel, lets assume with this basic driver just added
-> but future DT with more than one CPU port described one should still end
-> up with the first CPU port used and all ports assigned to that CPU port.
-> Right?
+> Right. Looking at the mail from Krzysztof, I suspect he meant to
+> completely document and explain the rcpu prcm, not all of the prcms (he
+> couldn't really know they existed, based on your v1, right?).
+> I'd suggest you drop the !rcpu stuff for now, and submit it when you
+> have the driver for them ready to go. That's typically what's done to
+> avoid introducing bindings that need to be changed once the driver
+> actually turns up, since as you say you've not actually tested the
+> driver for those prcms.
 
-...with multiple CPU ports, calls such as dsa_switch_for_each_cpu_port()
-will enumerate them all. The second CPU port will exist and will be set
-up like all others (including mxl862xx_configure_tag_proto()), it's just
-that no user port will be mapped to it (dp->cpu_dp will all point to the
-first CPU port).
+Okay, thank you for clarifying that. I think I interpreted the
+original comments as "once you add bindings, you cannot change them
+later". I guess the changes I have wouldn't break backward
+compatibility, so they'd probably be fine. I will do this the way you
+suggest.
 
-> > > [...]
-> > > +#define MXL862XX_MAX_PHY_PORT_NUM	8
-> > > +#define MXL862XX_MAX_EXT_PORT_NUM	7
-> > > +#define MXL862XX_MAX_PORT_NUM		(MXL862XX_MAX_PHY_PORT_NUM + \
-> > > +					 MXL862XX_MAX_EXT_PORT_NUM)
-> > 
-> > 8 + 7 == 15. This is written into ds->num_ports.
-> 
-> Good you are asking this. It's another oddity which came from the vendor
-> driver. It's wrong in many ways, see below.
+> If you think it is going to be confusing, then move the bits common to
+> !rcpu and rcpu prcms to a file, with the unique bits in dedicated files
+> perhaps? It seems like they'd be fairly different even with your current
+> scheme and keeping them apart would aid readability of the driver in
+> either case?
+> You can do this extraction as part of adding the !rcpu code, that
+> doesn't need to be done for the rcpu stuff since the concept of "common"
+> wouldn't exist in upstream until the !rcpu stuff arrives.
 
-Ok, so in the next revision you'll set it to 17 according to the table
-below, right?
+Okay, something to figure out for when I add the !rcpu code later.
 
-> > Could you please explain how this agrees with the Kconfig help text:
-> > 	  These switches have two 10GE SerDes interfaces, one typically
-> > 	  used as CPU port.
-> > 	   MxL86282 has eight 2.5 Gigabit PHYs
-> > 	   MxL86252 has five 2.5 Gigabit PHYs
-> > 
-> > What are the extra port indices used for, and is it ok that MxL86282 and
-> > MxL86252 are registered with the same ds->num_ports value? This should
-> > be visible in the "devlink port" command - even unused ports have
-> > devlink instances.
-> 
-> This is probably because the SerDes ports also support 10G QXGMII PHYs
-> with 4x 2.5G TP ports connected via a single pair of 10G SerDes lanes.
-> In this case 4 port indexes are used for the 4 ports.
-> 
-> My understanding of the internal port IDs by now:
-> 	 MxL86282				MxL86252
-> port 0:  microcontroller			microcontroller
-> port 1:  PHY port 0				PHY port 0
-> port 2:  PHY port 1				PHY port 1
-> port 3:  PHY port 2				PHY port 2
-> port 4:  PHY port 3				PHY port 3
-> port 5:  PHY port 4				PHY port 4
-> port 6:  PHY port 5				n/c
-> port 7:  PHY port 6				n/c
-> port 8:  PHY port 7				n/c
-> port 9:  SerDes PCS 0				SerDes PCS 0
-> port 10: SerDes PCS 0 (QXGMII)			SerDes PCS 0 (QXGMII)
-> port 11: SerDes PCS 0 (QXGMII)			SerDes PCS 0 (QXGMII)
-> port 12: SerDes PCS 0 (QXGMII)			SerDes PCS 0 (QXGMII)
-
-For multi-port SerDes interfaces like 10G-QXGMII, technically each port
-has its own PCS (port 10 -> PCS 1, port 11 -> PCS 2, etc). But I think I
-understood the general idea. Maybe it would have been better to say
-"SerDes lane 0 PCS 0" etc.
-
-> port 13: SerDes PCS 1				SerDes PCS 1
-> port 14: SerDes PCS 1 (QXGMII)			SerDes PCS 1 (QXGMII)
-> port 15: SerDes PCS 1 (QXGMII)			SerDes PCS 1 (QXGMII)
-> port 16: SerDes PCS 1 (QXGMII)			SerDes PCS 1 (QXGMII)
-
-To be clear, what would be a proper name for the first column in this table?
-Physical ports, right?
-
-> MaxLinear seems to tell board designers to always use port 9 as CPU port
-> and port 13 for an SFP cage or for an additional single-port PHY.
-
-Ok, I assume that's what your board has as well. If I quickly run those
-numbers into mxl862_tag_xmit(), then I guess that if you wanted to ping
-each port (with cpu_port = 9), you'd set:
-
-         MXL862_SUBIF_ID			MXL862_IGP_EGP
-port 0:  7					9
-port 1:  8					9
-port 2:  9					9
-port 3:  10					9
-port 4:  11					9
-port 5:  12					9
-port 6:  13					9
-port 7:  14					9
-port 8:  15					9
-port 9:  16					9
-port 10: 17					9
-port 11: 18					9
-port 12: 19					9
-port 13: 20					9
-port 14: 21					9
-port 15: 22					9
-port 16: 23					9
-
-I wonder how those MXL862_SUBIF_ID values map to the .number_of_ctp_port
-configured by mxl862xx_configure_tag_proto(), which is 32 - DSA_MXL_PORT(9) == 22.
-So to target port 16, you'd need a MXL862_SUBIF_ID which is out of range,
-and results in an unrepresentable CTP index of 32. And subif_id values
-0..6 are unused. Something doesn't add up...
-
-Where does the 16 come from in the "usr_port + 16 - cpu_port" formula?
-
-> But this seem to be limitations of their current downstream driver
-> implementation and the hardware would be capable of using either
-> or both SerDes port as CPU port, and also support connecting a QXGMII PHY
-> to end up with 12 TP ports in total.
-
-Interesting. If your host SoC supported 10G-QXGMII, you could
-reconfigure both sides of that 10G SerDes interface on your existing
-board and test quad CPU ports just for fun and giggles.
-
-> Port 0 indeed turned out to be the microcontroller, I can confirm that
-> because it screams when poking it with IEEE1588v2 packets, which you
-> get to see in the kernel logs:
-> net eth1: Invalid source port, packet dropped, tag: 88 c3 0f 04 00 00 00 10
->                                                                          ^^
->                                           IGP/EGP is 0 here, Record-ID is 1
-> 
-> The datasheet says that Record-ID "[...] is used for logging information
-> for PTP and OAM packets".
-> 
-> And calling mxl862xx_port_disable() on it makes it shut up...
-
-In SJA1110 I could also ping the microcontroller by putting an IP
-address on that user port. I am shutting it down during probe time, in
-sja1110_disable_microcontroller(), and not relying on the firmware at all.
-
-
-Maybe this is a stupid question, but I still don't quite grasp the purpose
-of the logical port + sub-interface scheme from its use.
-
-From what I could gather:
-- xmit from Linux targets the logical port ID of the CPU port, and a
-  sub-interface somehow in an implicit 1:1 association with user ports,
-  which seems under-dimensioned in the maximal scenario
-- the P-Mapper documentation says it can map one of {VLAN PCP, IP DSCP,
-  LAG ID} to a sub-interface, but this feature is left to the firmware
-  default state (MXL862XX_BRIDGE_PORT_CONFIG_MASK_EGRESS_CTP_MAPPING is
-  never set), so I cannot make any assumptions about its influence
-
-I don't quite understand how these two uses interact.
+>
+> Cheers,
+> Conor.
 
