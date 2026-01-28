@@ -1,260 +1,137 @@
-Return-Path: <devicetree+bounces-260553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260554-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oE6LMBpEemn34wEAu9opvQ
-	(envelope-from <devicetree+bounces-260553-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 18:15:06 +0100
+	id kCzgOhBIemkp5AEAu9opvQ
+	(envelope-from <devicetree+bounces-260554-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 18:32:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42C00A6A62
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 18:15:06 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18E6BA6F3B
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 18:32:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8CD3F3011075
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 17:14:18 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B8D303047520
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 17:18:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C581B32ABCC;
-	Wed, 28 Jan 2026 17:14:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77403318EE5;
+	Wed, 28 Jan 2026 17:17:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="CsyKR4jQ"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="FnH6M/LE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013019.outbound.protection.outlook.com [40.107.162.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10E0532939F;
-	Wed, 28 Jan 2026 17:14:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.19
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769620454; cv=fail; b=edC/nDCWWPre2Q3ItYEnBU2RXtQ0pcRggcqmASbJ7IaFXLexpwzpFUKMyh/l9b5pdcqx0dLf0Yc5cW3HHtyKy2766rSIzsq9f8MxU4JRHWtmtSC0GYWcCIJ56wwHU+A2G7hp+bsOz2/lcXxPG/W7+RUjIu+0ZwLvA9lNh3f26KU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769620454; c=relaxed/simple;
-	bh=X1q2PPJOs6dPc5Q4Vf2GLPBLmpMN6aRAvJohVDHNddg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=TQ20ER53FMzhE+DW5xju9j9a0VW1MsE9dgRs9kL7Wwvmhn3nwLZa+8JsVUrkIwCSSTv2BsI2fp5xl/4CsDyOzcJhMyZ0neCN99ioUbR9MUzTl3kHkx8G4CIUNNE7lKzDQJ5Ag3wrmq2zlT90Ffja/fPHlK5fr8+aqH7sANhULUk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=CsyKR4jQ; arc=fail smtp.client-ip=40.107.162.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JAXupyc7nfzLsVcaMXC4KBRtiEhq3IBGU06kgBJIWTWum9DU7asf0EdGn0yCLne3HFdSTSW3fs07f7hS3Lclu6yUpoxjIQrFmqtBItPNHUGpEC0NF7DLRY1E31Hb8lv6UYaWZG3nwToltldzIkPtV3Cl5/vsolx+L1iO8/MvqegKwrkAHzmUiG2HS2RJ7qD6ncxEseYukPdOUHif/gSE0D9oPYr6NppiT4U7P3OE0nmO/UZgfXnMsmOTsRmhKl3yaQnRd2AAu7fcWHlBk6mubi7ARS0nKIMw5GMRMEWIIh/MAtMJz06A3vzvz9MwuFQ6q9HJQC1S0rMa0TpehfH1Gg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UpiqqFtqm1e0+JHpiwx2Og4KnvejCTDM3o63QGfnzL4=;
- b=WIAwlEURQPm6DJaVx6yekQ4PiFngOLBZaTMNamAFXI2YRJzzBrGmsnLEKoNEHfUyzJPbmsrcY/HbedD4ubN0Phe+3pu3hxWg/wP3K/o8NdcTS5UVg1w5OfLdFb0Hgmt0Q0XuQnNEI0fCDS4tdSS/XTkERcZfqNZ118i0OVDshQQVtHXlD9dQhLe12LqmYbgwk7mbWu2UMX3S4u+/rdIsLDTej9ChZkmazRDZpE8mTfVFc2XJ18/fmhT7YyF3ohBFHeQtS39CkyLIekilwkcC4x0pF8i8k6/9FHpXgMaFKheGGABlzPbxA9EFsopvjCxWpKrkCi9Y8Oq8Qn05/HdW9Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UpiqqFtqm1e0+JHpiwx2Og4KnvejCTDM3o63QGfnzL4=;
- b=CsyKR4jQwHncot30ZVuuL/qk+zRctjMtQOytUMN+vDtiBqCkmBh1etfIkc0f0dYLyoLTvdS8ZLKnYeMLcu+QsWRRTCjPpkpdBH8v1Z44UVWX9qfBk1xOiJvkMJ6UYPVHGxgfhjKCa0GDKM5ymCKJgykaavegjorW1kK085gwsXgy5H2OBnvtZT2Nxn3uQ2xGz1xQrGouaczcvfTyR0Zu0l53MGvD8GvQR9pBV+crFlACFp9pHyHIv7LS3sy6IgXO4RHg2wTAYzw8EhpVtnBTjaiMGQ5601rclgx7Wk8cTF2V3e5jN4v00d4xnIZN37rUNYugMmqbsznkvGjmZpx/Gg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by MRWPR04MB12277.eurprd04.prod.outlook.com (2603:10a6:501:81::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.15; Wed, 28 Jan
- 2026 17:14:08 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9520.005; Wed, 28 Jan 2026
- 17:14:08 +0000
-Date: Wed, 28 Jan 2026 12:13:59 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Josua Mayer <josua@solid-run.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Mikhail Anikin <mikhail.anikin@solid-run.com>,
-	Yazan Shhady <yazan.shhady@solid-run.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v8 3/8] arm64: dts: imx8mp-hummingboard-pulse: fix
- mini-hdmi dsi port reference
-Message-ID: <aXpD13sHZYoXGQY7@lizhi-Precision-Tower-5810>
-References: <20260128-imx8mp-hb-iiot-v8-0-9646a3025cf4@solid-run.com>
- <20260128-imx8mp-hb-iiot-v8-3-9646a3025cf4@solid-run.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260128-imx8mp-hb-iiot-v8-3-9646a3025cf4@solid-run.com>
-X-ClientProxiedBy: PH7P221CA0031.NAMP221.PROD.OUTLOOK.COM
- (2603:10b6:510:33c::26) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCBC3225390;
+	Wed, 28 Jan 2026 17:17:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769620678; cv=none; b=LDWgCLmKZTQpp9q7UMdSrT4AVj3WZ1m78TTna50q/W8g/wUmk4RmP0Mk+8muZidf5AoyVmmlZ6REOAl9/hxFeEO3qdWhEWmcFQilh0D+SacUlNc8cYRSGRd4ot//9AT2ITJShFWa5k8w5tdC+iHa09dUEoUJUzyVfUmUHylc/OM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769620678; c=relaxed/simple;
+	bh=2CMFkKWYqAiPJqedGOMih8yrSq49djeQXlILBKYzmzI=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=DKv7vj/kIbcuab4cZk1g7EgYybw2Kwq2Pomaa2LNzVzQkG4DJC2O5jdvf7YDW0c0xEOC1P4nCOtbWhUywQHCV6u36M3+dioqiJv10xRKRLHOs6S1oHpnsJd2CO4KWV7927Psr+ycsdPK9FgYLxfn6OsSprt+iXE3W4ONmpHwg0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=FnH6M/LE; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id EAF64279C4;
+	Wed, 28 Jan 2026 18:17:47 +0100 (CET)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id JSSomJ4dRYpG; Wed, 28 Jan 2026 18:17:47 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1769620667; bh=2CMFkKWYqAiPJqedGOMih8yrSq49djeQXlILBKYzmzI=;
+	h=Date:Cc:Subject:From:To:References:In-Reply-To;
+	b=FnH6M/LE6xRvSd3BCxukBrBdzw9jV5ENDKtDMtHsNFgtczSxak0z1Vgj2MIXluCJ2
+	 DfnsSqIXb5Fvbcdr9BB++GU84i466rHHEkJ7A5G0234h7xBsfIBEIXQCZIA87ctQt8
+	 9E/gq9/BZ8BnTtFuQre3vA3bvHTy/xxWNBB3LBDyjNUvAhSPYSUnZhR8RRkokbAdM/
+	 a/xpyiXZPJxPKBidcQVS6wHOBJNWvuXhbbxz7EcJESEXSCFvQ8w6Wqy784F/iiY6i2
+	 xif2IYytwsuS6DOgS8r39Jc8+mYgPqir56vni7MZ2lJkF6VXjRS1VChwk6JHvq0ous
+	 gtxLEsJBJpO9g==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|MRWPR04MB12277:EE_
-X-MS-Office365-Filtering-Correlation-Id: 43cb7004-daea-460a-ba36-08de5e90a5c2
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|19092799006|52116014|376014|7416014|366016|1800799024|38350700014|7053199007;
-X-Microsoft-Antispam-Message-Info:
- =?us-ascii?Q?xx2qham31sFu8R2LaYfQX35ZmXfbcS+LQ/Yxdfy49E1d31JcWOPy8DKH8JM0?=
- =?us-ascii?Q?1YFy7+Y1s/zuijq0BDZCbwlh5Doe/AqT6dXxDJiFN2ErqYPaygI5opMPxvPh?=
- =?us-ascii?Q?SEd9zpU+qGwoIvSztcsrYgSs3V96sSdPoBVpUHGTmr6bwUQdwi8VU7Pf+bCw?=
- =?us-ascii?Q?hgGkFL6pJ59F2aPu1R7VoEzs2AtDAZIKS3Y311ZKLDnP2+DkHQflJcX32UEl?=
- =?us-ascii?Q?9Nh3pUGprALjXarLtyOkL2kG0+lj9fCSV93mm8xkSDbaLymBtd3rkgPyZ3dI?=
- =?us-ascii?Q?u9hlnaUdBzKBC3bJPBwzTdIO9Q97U4sK/CTvUWfMLGt0w2bMiei3kQMGqGYL?=
- =?us-ascii?Q?Q7/L6oAQD6ltzV0jQCFuiceNP84kPwSgnRujQHKe9Uw2CyXf9uKLytkF8xNV?=
- =?us-ascii?Q?3uRLn0qTbn9NsWf8tVng36pxNS4UzvlLaFaiFKGGoHxizr7cvBr/+bavW2FE?=
- =?us-ascii?Q?3Bx+paYPJekbosl2Rrzj2mFsG32jShb0pRLZ36Z39POua62meAEvuuZrVCPC?=
- =?us-ascii?Q?F4dNFTctCoXGrRMFeCdLeEeUz4HYLh1TowVHmiI2q8A1EZm0dbvs9dZhBWRP?=
- =?us-ascii?Q?ZaCBDowXGPvYJ72BWuPu5ETdMLUz/S8/Ydk8TwveLCwgqg4BwnPDm+I5zfRC?=
- =?us-ascii?Q?1yr57qJcnB0J6UnYXsuD1atee7NCgHwx3RsOxF/7Ff2rxy6E/rgXXBvq3ODU?=
- =?us-ascii?Q?S/KSGrZpweHmitRgelu7jyswcytdUmkE9cPNQriuw1aAlSY+N69h+AMx+lXG?=
- =?us-ascii?Q?hotuJNUGChBjXXPKXSaZG8lR7ZqEfRuwDPR8sCZVzP2rogoF8ztM8azCxUpQ?=
- =?us-ascii?Q?kObpZu1AGIKhXy9uJlsI7jms3cRkOHmb4QQxnXUlzh09VsvnVPUGL2MoXJCF?=
- =?us-ascii?Q?rf+iO5cCj0TveEOANQ4oL8/8HkRjjs7gzpDWJCTG8mzMGfNK33UvFWrNxtnT?=
- =?us-ascii?Q?CMci/u8Zu4KKPVGVJAvAC5EHx47jPyQICkjvbckud39juOocP9kR8JL9baGz?=
- =?us-ascii?Q?JpxW8O2k69Pxe26sxTTXpx2gbgHQguxf3ZtZKdH1jdtjCFU0YqYkOiQrcvcg?=
- =?us-ascii?Q?abwn9iLnZFYpOVz1+7Q153IuJNR0S0DibylgGTyL3rzTx1hys+wTs9HFu1Dp?=
- =?us-ascii?Q?4E9fQZZVSDhIYBLPDr4Tb7SVqDRXP8e8hfQvkx8dvgPw9RO+5qghjqHqyLnw?=
- =?us-ascii?Q?eOVoYtlZs2e/8v/JhkwfofuNlc75aPgQ1Kf6o9ix5ab2l1qdMg6HxgC6qeVz?=
- =?us-ascii?Q?yUFeOjvjwPIRwCVYS86CeAcmpSPMw2S8+UfWmFAi4wR7Zo8bO0yvdxpO9rJP?=
- =?us-ascii?Q?Tcx0MMbYTLVs3CN9g3HA1y3PmEYcgf6xxy3l+zzHm3tMludzP7IpSUth2w/K?=
- =?us-ascii?Q?PfzneY/8OFB+udLL12h+2zRgBnURDDNSzHSYxDYB9fo1zhWFm/rKCAeulkkm?=
- =?us-ascii?Q?2Ky/QjxW+Mgg95Wkfqz1pbnMpDhiqIUZn9TiawMe7X25pa6kCUg9vEhgB5rK?=
- =?us-ascii?Q?HbGKjhrarYqkhXfxEgmxWB/+/YQUw8QScqZkfj6AL3LUFYPgoLjfh/NC+uh5?=
- =?us-ascii?Q?y5ryVAOlCRnwqgsflv9EmoNrtvowOfZ7QxBS1yssYbPx2B5zilgkqwmZcl3p?=
- =?us-ascii?Q?AETEVSLHiSkFQXZwITbwsmk=3D?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(52116014)(376014)(7416014)(366016)(1800799024)(38350700014)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?qtThje21PMdqWs8uXWqiP79cHY5K5yYngJkLBFzkYQZl+JcYEC8JLtK5E2xT?=
- =?us-ascii?Q?2oiknRHHoRSpsErrT5V/cDRMf5fvil7rwi/5daC6MpnIvp4duPsAF+EyuzeX?=
- =?us-ascii?Q?XHZVhwIbFXG09GvhtBk2WQRhMwx2aa1WU3RgWU0+bGuSnT28PREW4MeS2qgJ?=
- =?us-ascii?Q?S8pSWbfBjpyQ0+RaouoON7+ecSCDEMja7feoUYb/fQEj8Dlp2e6RM3OSe+59?=
- =?us-ascii?Q?EqqHtt1SuSuurWHAQTMYvGoNcV6STbeOxtF6zU32LueT4bp2hMeigZnoqEVW?=
- =?us-ascii?Q?Q5CFVTSeuHtyxesYMcrikMrzMMc1wxePGidF7tW/iYl6J6SGQgAsXN2b7QJo?=
- =?us-ascii?Q?os7HLEtdj0bS34yyD/rIW+h/HVPp1IkuyGg6La+EoE+k28TLgJLwFfuDtiqk?=
- =?us-ascii?Q?yRMszbwx7n6StGvSaxg4y57qEOlKCZa91nmCLfanUPv1fGd5rpz44LSd31gZ?=
- =?us-ascii?Q?URpLoz4lM+3v3FVJqr4q6Y3pNXtoUzM+ytel0VwnD3TusnGM5YAqRx2xm7FQ?=
- =?us-ascii?Q?Riw0CTfvM4QPuDVWF7lW8xs1yrUwm5cbd3uacbGxDRNvfATZNnQeL6A5PRGM?=
- =?us-ascii?Q?6WNeuV7ipKHLKGgsLEtqcQBD6VBiajyxrnZO5gQ4A9iGIkMEQihm3IC8UCoj?=
- =?us-ascii?Q?f1qdJP5N9vopo8NfggnNVt4W22psAGaa0qrLM2fI4mI3BX3WBexYODAxUf02?=
- =?us-ascii?Q?KM1Ys65b9ODTSiiPQzku+sdvdJIDzkBl84FeKMLYkoCCIONbsGfhqYMbvNZY?=
- =?us-ascii?Q?mz6A+XwV+F600heWojOzu+lh+PWz3O3arkdrtepttGF7dhapvOf3YXmS7P/m?=
- =?us-ascii?Q?7CNueO5pJeE/GIkF7dzBpXLlRDsw9sT1UVW5TLvLrMyH09GA+SCmjUr3/k9L?=
- =?us-ascii?Q?V4mjBRVdHHCLbu6Jm0k7bIx9lQJKX0z4G8vH5tsjbkPbMtMWXYtGoVlM10jk?=
- =?us-ascii?Q?7triTsCSdUkmjI9WLm2xYRV+6oJoWNWS9tXhv42UuWDjtkab3CQT2x6qDBCr?=
- =?us-ascii?Q?SkrY4T5SBB5mE3rhExChjoOP0Itr6T6IJHXBZyiscTz08FbiT9nmvepw7FlV?=
- =?us-ascii?Q?5Bc0G60gIfbjv5Wa6SxxmdSECLbST6ModrBtNNP2u/pJ+9Sg/Ntj9KbNUxHy?=
- =?us-ascii?Q?Mh62Q7io/koULX7BdMqh59pSf2/V0nRbhHTbDO68YzMo6v2veBe6ianZkF/r?=
- =?us-ascii?Q?IKbjpIrYBcrYh5UJVSN9tnNc83XK6PxY90EGT5UmmtP5/Xq4Kd+uabPZi6Mb?=
- =?us-ascii?Q?Vue/Dug6BQnhkUYimaQ63J2HKMm6ej8/jyZXpubbptMTCESUDecBB7TAyTa1?=
- =?us-ascii?Q?vgHihrmp0iEPVdsVTouOfvXtySFzcdZhnKT/pDmchPitGgMYltOnH9nD+KpD?=
- =?us-ascii?Q?DFZAk9O9xgZzOlsCuEfobip815onxAm3T4Iokk0SMbdYzHeg5DMfI3mKfXwP?=
- =?us-ascii?Q?rLtg5/1u5jeGFXC3UsXdPPPEopIaXqXhuD5uo3u9vl3FSwFK+OI3YWTx50q6?=
- =?us-ascii?Q?3RDjzMN92Yu/zyHpwP8nS79e6ITishnnbykfqOoB937mIW+X9penGLxVoXmt?=
- =?us-ascii?Q?/APdWZz2YtFEXeFoqTWSPudrDgETA4Rgb78T0tS2m8U20w5NNvJdUoxz+G4r?=
- =?us-ascii?Q?ur3Uaf4Iih9Dzkk02Oh6Ec+WXhBMxHPfjoJ13cIuFzezcd8J9Qo4w/mv3S3m?=
- =?us-ascii?Q?42fiyZIOj29ZXkx5enBkB/wNM2H8qPP3S3tUG0NMchQ7NOxutF+c0XCP/ozD?=
- =?us-ascii?Q?4rsWbs+naQ=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 43cb7004-daea-460a-ba36-08de5e90a5c2
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jan 2026 17:14:08.8071
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DCYsKJd+7QIANSq2kBcsuvWOVyBgl+82EzPVl1p9Mn7fKMnc9KSdbuVDnBhwZS6x5HdyT+IdG7LnYeAv5erC9w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MRWPR04MB12277
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 28 Jan 2026 22:47:38 +0530
+Message-Id: <DG0E63PNXEGU.1MAVGEG49ZV87@disroot.org>
+Cc: <linux-arm-kernel@lists.infradead.org>,
+ <linux-samsung-soc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, "Rayan Marzouk"
+ <rayanmarzouk743@gmail.com>, "bluebunny" <kalorin.bok084@passinbox.com>
+Subject: Re: [PATCH 0/2] Add device tree for Samsung Galaxy J7 (2016)
+From: "Kaustabh Chakraborty" <kauschluss@disroot.org>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>, "Kaustabh Chakraborty"
+ <kauschluss@disroot.org>, "Alim Akhtar" <alim.akhtar@samsung.com>, "Rob
+ Herring" <robh@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Kees Cook" <kees@kernel.org>,
+ "Tony Luck" <tony.luck@intel.com>, "Guilherme G. Piccoli"
+ <gpiccoli@igalia.com>
+References: <20260125-exynos7870-j7xelte-v1-0-5cacc3042c42@disroot.org>
+ <abc5995e-3b29-4e0f-a091-40797f1b6abf@kernel.org>
+In-Reply-To: <abc5995e-3b29-4e0f-a091-40797f1b6abf@kernel.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.84 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MV_CASE(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260553-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-260554-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,solid-run.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	DKIM_TRACE(0.00)[nxp.com:+];
+	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,gmail.com,passinbox.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[kauschluss@disroot.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[disroot.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,solid-run.com:email,0.0.0.1:email,nxp.com:dkim]
-X-Rspamd-Queue-Id: 42C00A6A62
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[disroot.org:mid,disroot.org:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 18E6BA6F3B
 X-Rspamd-Action: no action
 
-On Wed, Jan 28, 2026 at 06:21:27PM +0200, Josua Mayer wrote:
-> imx8mp.dtsi includes a default port@1 node with an empty placeholder
-> endpoint intended for linking to a dsi bridge or panel.
+On 2026-01-28 11:58 +01:00, Krzysztof Kozlowski wrote:
+> On 24/01/2026 21:05, Kaustabh Chakraborty wrote:
+>> This series introduces the device tree for a new Samsung Exynos 7870
+>> device =E2=80=93 Samsung Galaxy J7 (2016).
+>>=20
+>> I have acquired permission from the authors of this patch to upstream
+>> this on their behalf.
 >
-> HummingBoard Pulse mini-hdmi dtsi added and linked hdmi bridge to yet
-> another endpoint.
 >
-> This duplicate endpoint can cause dsi_attach to fail.
+> Thank you for the patch. My tree is currently closed for new features
+> till the end of the merge window. I will review and/or apply the patch
 
-Can you add descript about why duplicate endpoint cause fail?
+It's alright, I did not intend to have it picked up in v6.19 release anyway=
+.
 
-Frank
->
-> Remove the duplicate node and link to the one defined in soc dtsi.
-> Further remove the unnecessary attach-bridge property.
->
-> Fixes: 2a222aa2bee9 ("arm64: dts: add description for solidrun imx8mp hummingboard variants")
-> Signed-off-by: Josua Mayer <josua@solid-run.com>
-> ---
->  .../dts/freescale/imx8mp-hummingboard-pulse-mini-hdmi.dtsi    | 11 ++++-------
->  1 file changed, 4 insertions(+), 7 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-hummingboard-pulse-mini-hdmi.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-hummingboard-pulse-mini-hdmi.dtsi
-> index 46916ddc0533..0e5f4607c7c1 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-hummingboard-pulse-mini-hdmi.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-hummingboard-pulse-mini-hdmi.dtsi
-> @@ -41,7 +41,7 @@ port@0 {
->  				reg = <0>;
->
->  				adv7535_from_dsim: endpoint {
-> -					remote-endpoint = <&dsim_to_adv7535>;
-> +					remote-endpoint = <&mipi_dsi_out>;
->  				};
->  			};
->
-> @@ -71,11 +71,8 @@ &lcdif1 {
->  &mipi_dsi {
->  	samsung,esc-clock-frequency = <10000000>;
->  	status = "okay";
-> +};
->
-> -	port@1 {
-> -		dsim_to_adv7535: endpoint {
-> -			remote-endpoint = <&adv7535_from_dsim>;
-> -			attach-bridge;
-> -		};
-> -	};
-> +&mipi_dsi_out {
-> +	remote-endpoint = <&adv7535_from_dsim>;
->  };
->
-> --
-> 2.43.0
+> then. If I misjudged this patch and this is a fix, please let me know.
+
+It is indeed, not a fix.
+
 >
 >
+>
+> Best regards,
+> Krzysztof
+
 
