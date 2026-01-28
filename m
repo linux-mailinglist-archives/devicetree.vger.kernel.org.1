@@ -1,277 +1,201 @@
-Return-Path: <devicetree+bounces-260189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260190-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id v++cIG6feWnbyAEAu9opvQ
-	(envelope-from <devicetree+bounces-260189-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 06:32:30 +0100
+	id +NoWL3GjeWlMyQEAu9opvQ
+	(envelope-from <devicetree+bounces-260190-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 06:49:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBD629D337
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 06:32:29 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D1869D3CB
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 06:49:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4A5C03009177
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 05:32:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8CBD9300F5E3
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 05:49:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B80E921CC5A;
-	Wed, 28 Jan 2026 05:32:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="IqHK3xXt";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ahdcvIxU"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFBA2284B2E;
+	Wed, 28 Jan 2026 05:49:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5975A13DDAE
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 05:32:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [13.75.44.102])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71C23136351;
+	Wed, 28 Jan 2026 05:49:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.75.44.102
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769578347; cv=none; b=OprrafyT+hRxBeSoix2vZK0RkMYEGtRTvGtQ/9EpI4t8KZ+TwdmoA4I8ccXq1/lKU6VFod8P725KZ2KscR0ximPMQxkpXhDW7HvWZv/AnfUsveno3kLE9n0WwjyXsml+4vtf7iybw9bo/f3Qh/yAMcRybSzm2tVfXvBVJ12lewo=
+	t=1769579373; cv=none; b=L/EnI3fzEE0FFevtJe8UiEXrKF3wQXMzLKjcSwNmqQ8iqZvYsV3mnMcph6577jATACJrFxfTHt9Govo1o7jZgzM9vCDJfqU/Ecubc1gE2UrDYzosBTz2cqsfX1RH9qXW6tUJLYa6uaCa2TdDJMIR9zcy3J8gLLhJhy4oA1L8vYY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769578347; c=relaxed/simple;
-	bh=Rl2VjhzNHTs/VthlnhBCPaMqo9n0+hGSZr+TckRmPIw=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=nid1OJVQKTNESNFXlqA44NBv0MYYdaqpfJwcH9dfLOj9cBcwQfYBZIFay6Hmg1mUE5/DbnLwZj+KnzSJFjVN6xNUPN4qsZxnUJWKFNFJPrFfSplcna4vIcHkbzRQ7DBKVwEdZEtK15YW3F4mkSB0gXnyhtjvL8Ch7MlEIu9DEMI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IqHK3xXt; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ahdcvIxU; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60S3SIid1953284
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 05:32:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=4Od/JiwGvZwOKY/KO8TC8PWC0YhRAWCA41u
-	rKKr0w3o=; b=IqHK3xXtjM2GUXrc0rMzeg38AylaiRhKNo9sWEfeqm4QVl44vD1
-	cj3NpLjuQMwA7hQty5TuNi38SYo63TQikH8RpFrzLt/KV3sfvSOaxdRfzuGelQBh
-	fcP4Efyd36kvAeyAs0S7qhyNCx22pYbMqcUaMDsq5ML3vyHkqG/oChFY0EIR4YFV
-	ZL4adfmhHuDU9WXp6r+izjG0whq0ldSvzvvc+X/FkPrXpixeDahKlShVPrEBbFSP
-	0y3XiShnNZe/1xtUZQRSbdJNVGvJIso+RQ1yJSi6AuL6bAafcaeFsQN8bMgujSmA
-	gu97eSS4KwqNNmdK4AVGpImSMpwuTLpG1QQ==
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4by2119y18-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 05:32:25 +0000 (GMT)
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-81f3c36dd2cso4765759b3a.2
-        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 21:32:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769578345; x=1770183145; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=4Od/JiwGvZwOKY/KO8TC8PWC0YhRAWCA41urKKr0w3o=;
-        b=ahdcvIxUpMwAOO24NJIuI+dNCB2t3jgyQWkz65Z5xz4qhAvMgt6lMGjIFauvNGhybr
-         lA/6tiDEePJU6xABTo6DtNrSI2H4cbgXrtR+bdz93IL3+4/xw9SY1UFxt7FU7gCUsRig
-         bR/B0mg4I4OirLa+8mZics0hEYuqdbXLFMrg6oQjIAfCpb3h76vUtb5WOjuH5Q1oLnN+
-         j2fFI33f+z6nn9Q9XkKujshNIEMVIACytBbwFa+HbH60x8aumkEvWiSlCxxOLyDimcuI
-         BzAodjCz6U6r3U2dJBKX03/MgKOBYDGEZB+svi2P0hIxRx8Lm189OMt4/ezmJms5cxFz
-         05JQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769578345; x=1770183145;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4Od/JiwGvZwOKY/KO8TC8PWC0YhRAWCA41urKKr0w3o=;
-        b=OSxi987a9CQ/xH7QZdRyTtYyRhuepwGIMrNsH0fv4XlRDaz2CbYLCoOK6YDTv7UGsL
-         REUdOjWzlHSVOKl67IhoYo3rkBugcCcinndMEZc1cyZAKpqkSibQdkLySfVwZ3sy6Ulx
-         +rf9WwwvbYzv3v3PkVaTKCyKTzlYgA4/7G3a0xEC8BZp4PlIipXaY3Wg/NHUynsBALiK
-         VhWajG3ZoYKomnPutG1rAxFOwXmh93nzG6xCf39eAy7C7UibB5ShNTh1X7s4DFVi+hen
-         k+zzNCnAqg9hgKKx9liUl9UI6XOwBt69pUm5/K5m2N5NeWTlMMRfLsMQW1EDXx/6mG5r
-         ct5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVhftc0lxqnKLxyLGVivzYLTBCJs+de3rvmXVsUFFoxdAUDbUK25XzZyDXkxJwx3VjKlnhJPTVz/IHL@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw3BA9w4tCfVk6DJNbpx2bcVYtwZ9JdMbjlZG6gazfzIfRZhpde
-	ISGzPxdA13Qt+RYqziDKR7otzxP1fAk8awKtIF5ImY4kCKCI9BTwkmj49roP+7+dt0OCOcZ2n2J
-	eGQ5G4F1yfai/vs9/n4FC8mNymcW9vxAm+9pHQGamiAKgczXebEZ73VsrYsRKzeTv
-X-Gm-Gg: AZuq6aLML4PEB7LaP6xLO8tSHe4JlC8byiZ9srAHBYREl2XTFEn8e2DBVdsmvDxqCKn
-	szK1NyfALchd4SBE6AyhSRXCFTmWfXAU4PgXSdTPMxJ9N2Ub9sBkr/v/+n0UFv8KSl0Klv1aOxN
-	vcul13DCmhLfqcvNfhhwGng0PFq4gd7bjfRcyED95pfzwd2wvVF2vBJEOXq+EPbe72zb1tXxsH/
-	xj332Tes/col4ilV8/2AC+ZFPYzbriD/4QOQlVjUGOYCr4IjTHETWgH40kArw+KUxDLIXPfCFFB
-	AIZ1gMfheJKIDa389wblwe7QyEOpXE7qFxl/Gu3JyDEyTgdPvpBMI37DpYG6WdhJIMQXpcRvKU5
-	Q/d/w9EdViAZfqpDYrkZde4I1lX5mGFzowiGZV3M=
-X-Received: by 2002:a05:6a00:4145:b0:81f:852b:a93a with SMTP id d2e1a72fcca58-8236916a53dmr3902827b3a.2.1769578344836;
-        Tue, 27 Jan 2026 21:32:24 -0800 (PST)
-X-Received: by 2002:a05:6a00:4145:b0:81f:852b:a93a with SMTP id d2e1a72fcca58-8236916a53dmr3902800b3a.2.1769578344342;
-        Tue, 27 Jan 2026 21:32:24 -0800 (PST)
-Received: from hu-gkohli-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82379c521cdsm1234271b3a.62.2026.01.27.21.32.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Jan 2026 21:32:23 -0800 (PST)
-From: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
-To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
-Subject: [[PATCH]] arm64: dts: qcom: hamoa: Enable cpufreq cooling devices
-Date: Wed, 28 Jan 2026 11:02:08 +0530
-Message-Id: <20260128053208.3240189-1-gaurav.kohli@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1769579373; c=relaxed/simple;
+	bh=QXG0L22qXs1DF+kKrTmU2+1euU1VrkVIwRndNbthQ5k=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=QZMObpKt8f/+bTSPZO2Tn7T5EKr9n5Nww7nzmjfMv4HGIodrpHUbVSGPQg9YNEl3NIBxd/KIF3BPgYQFZeZmyWCB/u1xZ5DXbBLPgU5jLn3GERAoB19DCNDbkigBqg6t5H+DJV7+KkZV56GwPZ/G2OEsB5z7oyQ4wHY2dmkx1r8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=13.75.44.102
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from linmin$eswincomputing.com ( [10.10.96.205] ) by
+ ajax-webmail-app2 (Coremail) ; Wed, 28 Jan 2026 13:48:59 +0800 (GMT+08:00)
+Date: Wed, 28 Jan 2026 13:48:59 +0800 (GMT+08:00)
+X-CM-HeaderCharset: UTF-8
+From: "Min Lin" <linmin@eswincomputing.com>
+To: "Bo Gan" <ganboing@gmail.com>
+Cc: "Russell King (Oracle)" <linux@armlinux.org.uk>,
+	"Andrew Lunn" <andrew@lunn.ch>,
+	"Krzysztof Kozlowski" <krzk@kernel.org>,
+	=?UTF-8?B?5p2O5b+X?= <lizhi2@eswincomputing.com>,
+	devicetree@vger.kernel.org, andrew+netdev@lunn.ch,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	netdev@vger.kernel.org, pabeni@redhat.com, mcoquelin.stm32@gmail.com,
+	alexandre.torgue@foss.st.com,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	ningyu@eswincomputing.com, pinkesh.vaghela@einfochips.com,
+	weishangjuan@eswincomputing.com
+Subject: Re: Re: [PATCH v1 1/2] dt-bindings: ethernet: eswin: add clock
+ sampling control
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
+ 20241203(6b039d88) Copyright (c) 2002-2026 www.mailtech.cn
+ mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
+In-Reply-To: <973f2b4b-bf8d-4a77-a27a-47495bc21ff8@gmail.com>
+References: <308b676.2d03.19bb0caebed.Coremail.lizhi2@eswincomputing.com>
+ <59cec617-0189-4dc3-bc3f-6346155a62ae@lunn.ch>
+ <4e2a55e7.3662.19be8cb9c3c.Coremail.lizhi2@eswincomputing.com>
+ <c5c0bfdb-316d-4796-afa0-f6f018ceb414@lunn.ch>
+ <abf12a3f-9cdd-472d-a02e-af4da594b84f@gmail.com>
+ <e6f7da45-3dec-4af6-a5b1-a72210bf24f4@kernel.org>
+ <43923bf9-6202-4147-8eac-5bd7bb653fd4@gmail.com>
+ <bd202cfa-d6eb-4d0e-982d-b49795dd25f7@lunn.ch>
+ <009aefc4-fbc9-4f91-9230-23d18c281bf3@gmail.com>
+ <73ea5619.2b71.19bf847c80d.Coremail.linmin@eswincomputing.com>
+ <aXeydXuWEMDz-yVM@shell.armlinux.org.uk>
+ <32a1f814.2c79.19bfe173225.Coremail.linmin@eswincomputing.com>
+ <973f2b4b-bf8d-4a77-a27a-47495bc21ff8@gmail.com>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI4MDA0MSBTYWx0ZWRfX3x4WIqf4Siiu
- uN/+zUYNlTaocQk4dp2YwmP1tD+RCcWc5FzXjWG143wbCTmF8mxknNUuU4nW20VODZBa86K41hM
- ivzC5cSiN4E3khhGSUTyoIrbjfcLsONibKWE9AktLid+P2YnLvfhcoGuMe9tRzg1y+JQdbbYD0K
- DlWFEAj5Vu2XTdWVyRldRaJtgSJUfdkayZGawG+d8gFSaHYT/wTbTVxHzaJkRwbBTZMgSny8Bo/
- U1sv4C2Vw3EWERt+JjPzmMUMgvNneGuCDkG7FnqtxcY+as8c5HTlL7TA06A46yb1p9YgaCr6QpH
- kNYj8ArSLeCxKXvPjStFwrxIm6stfpFgYq2l3gNjguEf1v29pG/1nOWV6O6aBLzrg9U8vOzfETA
- EBuMYhZ/EZBLcUmkp2CE8Fdy/NaYYz9REb1BZn/k6vMsQPTBSXt+yEGWEmkGjCV/OUmM4ixcg7j
- jGl+tAQ1eKtU+YrjPlA==
-X-Authority-Analysis: v=2.4 cv=GuxPO01C c=1 sm=1 tr=0 ts=69799f69 cx=c_pps
- a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=t0jY72NJK1JnOMXx7JwA:9 a=OpyuDcXvxspvyRM73sMx:22
-X-Proofpoint-GUID: _SxVa6dS_grxR37sZreiPQpbFk7BWkCf
-X-Proofpoint-ORIG-GUID: _SxVa6dS_grxR37sZreiPQpbFk7BWkCf
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-01-27_05,2026-01-27_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 adultscore=0 malwarescore=0 lowpriorityscore=0 phishscore=0
- bulkscore=0 impostorscore=0 spamscore=0 clxscore=1015 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601280041
+Message-ID: <5c835fe9.2d60.19c0325df03.Coremail.linmin@eswincomputing.com>
+X-Coremail-Locale: en_US
+X-CM-TRANSID:TQJkCgBXoa1Lo3lphmAAAA--.141W
+X-CM-SenderInfo: 5olqzx3q6h245lqf0zpsxwx03jof0z/1tbiAgEBCWl46QEQVgABs1
+X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
+	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
+	daVFxhVjvjDU=
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.14 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_PROHIBIT(0.00)[0.0.78.132:email,0.0.78.232:email,0.0.0.100:email,0.0.39.216:email,0.0.40.60:email,0.0.1.44:email,0.0.78.32:email,0.0.79.76:email,0.0.0.200:email];
-	TAGGED_FROM(0.00)[bounces-260189-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[gaurav.kohli@oss.qualcomm.com,devicetree@vger.kernel.org];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim,0.0.0.0:email,0.0.39.116:email,0.0.39.16:email];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	DMARC_NA(0.00)[eswincomputing.com];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260190-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[armlinux.org.uk,lunn.ch,kernel.org,eswincomputing.com,vger.kernel.org,davemloft.net,google.com,redhat.com,gmail.com,foss.st.com,st-md-mailman.stormreply.com,lists.infradead.org,einfochips.com];
 	NEURAL_HAM(-0.00)[-1.000];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linmin@eswincomputing.com,devicetree@vger.kernel.org];
+	HAS_X_PRIO_THREE(0.00)[3];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: BBD629D337
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,infradead.org:email,davemloft.net:email]
+X-Rspamd-Queue-Id: 0D1869D3CB
 X-Rspamd-Action: no action
 
-Add cooling-cells property to the CPU nodes to support cpufreq
-cooling devices.
-
-Signed-off-by: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/hamoa.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/hamoa.dtsi b/arch/arm64/boot/dts/qcom/hamoa.dtsi
-index db65c392e618..799e405a9f87 100644
---- a/arch/arm64/boot/dts/qcom/hamoa.dtsi
-+++ b/arch/arm64/boot/dts/qcom/hamoa.dtsi
-@@ -75,6 +75,7 @@ cpu0: cpu@0 {
- 			next-level-cache = <&l2_0>;
- 			power-domains = <&cpu_pd0>, <&scmi_dvfs 0>;
- 			power-domain-names = "psci", "perf";
-+			#cooling-cells = <2>;
- 
- 			l2_0: l2-cache {
- 				compatible = "cache";
-@@ -91,6 +92,7 @@ cpu1: cpu@100 {
- 			next-level-cache = <&l2_0>;
- 			power-domains = <&cpu_pd1>, <&scmi_dvfs 0>;
- 			power-domain-names = "psci", "perf";
-+			#cooling-cells = <2>;
- 		};
- 
- 		cpu2: cpu@200 {
-@@ -101,6 +103,7 @@ cpu2: cpu@200 {
- 			next-level-cache = <&l2_0>;
- 			power-domains = <&cpu_pd2>, <&scmi_dvfs 0>;
- 			power-domain-names = "psci", "perf";
-+			#cooling-cells = <2>;
- 		};
- 
- 		cpu3: cpu@300 {
-@@ -111,6 +114,7 @@ cpu3: cpu@300 {
- 			next-level-cache = <&l2_0>;
- 			power-domains = <&cpu_pd3>, <&scmi_dvfs 0>;
- 			power-domain-names = "psci", "perf";
-+			#cooling-cells = <2>;
- 		};
- 
- 		cpu4: cpu@10000 {
-@@ -121,6 +125,7 @@ cpu4: cpu@10000 {
- 			next-level-cache = <&l2_1>;
- 			power-domains = <&cpu_pd4>, <&scmi_dvfs 1>;
- 			power-domain-names = "psci", "perf";
-+			#cooling-cells = <2>;
- 
- 			l2_1: l2-cache {
- 				compatible = "cache";
-@@ -137,6 +142,7 @@ cpu5: cpu@10100 {
- 			next-level-cache = <&l2_1>;
- 			power-domains = <&cpu_pd5>, <&scmi_dvfs 1>;
- 			power-domain-names = "psci", "perf";
-+			#cooling-cells = <2>;
- 		};
- 
- 		cpu6: cpu@10200 {
-@@ -147,6 +153,7 @@ cpu6: cpu@10200 {
- 			next-level-cache = <&l2_1>;
- 			power-domains = <&cpu_pd6>, <&scmi_dvfs 1>;
- 			power-domain-names = "psci", "perf";
-+			#cooling-cells = <2>;
- 		};
- 
- 		cpu7: cpu@10300 {
-@@ -157,6 +164,7 @@ cpu7: cpu@10300 {
- 			next-level-cache = <&l2_1>;
- 			power-domains = <&cpu_pd7>, <&scmi_dvfs 1>;
- 			power-domain-names = "psci", "perf";
-+			#cooling-cells = <2>;
- 		};
- 
- 		cpu8: cpu@20000 {
-@@ -167,6 +175,7 @@ cpu8: cpu@20000 {
- 			next-level-cache = <&l2_2>;
- 			power-domains = <&cpu_pd8>, <&scmi_dvfs 2>;
- 			power-domain-names = "psci", "perf";
-+			#cooling-cells = <2>;
- 
- 			l2_2: l2-cache {
- 				compatible = "cache";
-@@ -183,6 +192,7 @@ cpu9: cpu@20100 {
- 			next-level-cache = <&l2_2>;
- 			power-domains = <&cpu_pd9>, <&scmi_dvfs 2>;
- 			power-domain-names = "psci", "perf";
-+			#cooling-cells = <2>;
- 		};
- 
- 		cpu10: cpu@20200 {
-@@ -193,6 +203,7 @@ cpu10: cpu@20200 {
- 			next-level-cache = <&l2_2>;
- 			power-domains = <&cpu_pd10>, <&scmi_dvfs 2>;
- 			power-domain-names = "psci", "perf";
-+			#cooling-cells = <2>;
- 		};
- 
- 		cpu11: cpu@20300 {
-@@ -203,6 +214,7 @@ cpu11: cpu@20300 {
- 			next-level-cache = <&l2_2>;
- 			power-domains = <&cpu_pd11>, <&scmi_dvfs 2>;
- 			power-domain-names = "psci", "perf";
-+			#cooling-cells = <2>;
- 		};
- 
- 		cpu-map {
--- 
-2.34.1
-
+SGkgQm8gR2FuLAoKCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlcy0tLS0tCj4gRnJvbTogIkJvIEdh
+biIgPGdhbmJvaW5nQGdtYWlsLmNvbT4KPiBTZW5kIHRpbWU6V2VkbmVzZGF5LCAyOC8wMS8yMDI2
+IDEwOjM4OjI4Cj4gVG86ICJNaW4gTGluIiA8bGlubWluQGVzd2luY29tcHV0aW5nLmNvbT4sICJS
+dXNzZWxsIEtpbmcgKE9yYWNsZSkiIDxsaW51eEBhcm1saW51eC5vcmcudWs+Cj4gQ2M6ICJBbmRy
+ZXcgTHVubiIgPGFuZHJld0BsdW5uLmNoPiwgIktyenlzenRvZiBLb3psb3dza2kiIDxrcnprQGtl
+cm5lbC5vcmc+LCDmnY7lv5cgPGxpemhpMkBlc3dpbmNvbXB1dGluZy5jb20+LCBkZXZpY2V0cmVl
+QHZnZXIua2VybmVsLm9yZywgYW5kcmV3K25ldGRldkBsdW5uLmNoLCBkYXZlbUBkYXZlbWxvZnQu
+bmV0LCBlZHVtYXpldEBnb29nbGUuY29tLCBrdWJhQGtlcm5lbC5vcmcsIHJvYmhAa2VybmVsLm9y
+Zywga3J6aytkdEBrZXJuZWwub3JnLCBjb25vcitkdEBrZXJuZWwub3JnLCBuZXRkZXZAdmdlci5r
+ZXJuZWwub3JnLCBwYWJlbmlAcmVkaGF0LmNvbSwgbWNvcXVlbGluLnN0bTMyQGdtYWlsLmNvbSwg
+YWxleGFuZHJlLnRvcmd1ZUBmb3NzLnN0LmNvbSwgbGludXgtc3RtMzJAc3QtbWQtbWFpbG1hbi5z
+dG9ybXJlcGx5LmNvbSwgbGludXgtYXJtLWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnLCBsaW51
+eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnLCBuaW5neXVAZXN3aW5jb21wdXRpbmcuY29tLCBwaW5r
+ZXNoLnZhZ2hlbGFAZWluZm9jaGlwcy5jb20sIHdlaXNoYW5nanVhbkBlc3dpbmNvbXB1dGluZy5j
+b20KPiBTdWJqZWN0OiBSZTogW1BBVENIIHYxIDEvMl0gZHQtYmluZGluZ3M6IGV0aGVybmV0OiBl
+c3dpbjogYWRkIGNsb2NrIHNhbXBsaW5nIGNvbnRyb2wKPiAKPiBIaSBNaW4sIFJ1c3NlbGwsIEty
+enlzenRvZiwKPiAKPiBPbiAxLzI2LzI2IDIyOjE0LCBNaW4gTGluIHdyb3RlOgo+ID4gSGkgUnVz
+c2VsbCwKPiA+IAo+ID4gCj4gPj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlcy0tLS0tCj4gPj4gRnJv
+bTogIlJ1c3NlbGwgS2luZyAoT3JhY2xlKSIgPGxpbnV4QGFybWxpbnV4Lm9yZy51az4KPiA+PiBT
+ZW5kIHRpbWU6VHVlc2RheSwgMjcvMDEvMjAyNiAwMjoyOTowOQo+ID4+IFRvOiAiTWluIExpbiIg
+PGxpbm1pbkBlc3dpbmNvbXB1dGluZy5jb20+Cj4gPj4gQ2M6ICJCbyBHYW4iIDxnYW5ib2luZ0Bn
+bWFpbC5jb20+LCAiQW5kcmV3IEx1bm4iIDxhbmRyZXdAbHVubi5jaD4sICJLcnp5c3p0b2YgS296
+bG93c2tpIiA8a3J6a0BrZXJuZWwub3JnPiwg5p2O5b+XIDxsaXpoaTJAZXN3aW5jb21wdXRpbmcu
+Y29tPiwgZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmcsIGFuZHJldytuZXRkZXZAbHVubi5jaCwg
+ZGF2ZW1AZGF2ZW1sb2Z0Lm5ldCwgZWR1bWF6ZXRAZ29vZ2xlLmNvbSwga3ViYUBrZXJuZWwub3Jn
+LCByb2JoQGtlcm5lbC5vcmcsIGtyemsrZHRAa2VybmVsLm9yZywgY29ub3IrZHRAa2VybmVsLm9y
+ZywgbmV0ZGV2QHZnZXIua2VybmVsLm9yZywgcGFiZW5pQHJlZGhhdC5jb20sIG1jb3F1ZWxpbi5z
+dG0zMkBnbWFpbC5jb20sIGFsZXhhbmRyZS50b3JndWVAZm9zcy5zdC5jb20sIGxpbnV4LXN0bTMy
+QHN0LW1kLW1haWxtYW4uc3Rvcm1yZXBseS5jb20sIGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5m
+cmFkZWFkLm9yZywgbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZywgbmluZ3l1QGVzd2luY29t
+cHV0aW5nLmNvbSwgcGlua2VzaC52YWdoZWxhQGVpbmZvY2hpcHMuY29tLCB3ZWlzaGFuZ2p1YW5A
+ZXN3aW5jb21wdXRpbmcuY29tCj4gPj4gU3ViamVjdDogUmU6IFJlOiBbUEFUQ0ggdjEgMS8yXSBk
+dC1iaW5kaW5nczogZXRoZXJuZXQ6IGVzd2luOiBhZGQgY2xvY2sgc2FtcGxpbmcgY29udHJvbAo+
+ID4+Cj4gPj4gT24gTW9uLCBKYW4gMjYsIDIwMjYgYXQgMTE6MTA6MTJBTSArMDgwMCwgTWluIExp
+biB3cm90ZToKPiA+Pj4gRHVlIHRvIGNoaXAgYmFja2VuZCByZWFzb25zLCB0aGVyZSBpcyBhbHJl
+YWR5IGEgfjQtNW5zIHNrZXcgYmV0d2VlbiB0aGUgUlgKPiA+Pj4gY2xvY2sgYW5kIGRhdGEgb2Yg
+dGhlIGV0aDEgTUFDIGNvbnRyb2xsZXIgaW5zaWRlIHRoZSBzaWxpY29uLgo+ID4+Cj4gPj4gTGV0
+J3MgYW5hbHlzZSB0aGlzLgo+ID4+Cj4gPj4gCVRYQyAvIFJYQwlUWEMgLyBSWEMKPiA+PiBTcGVl
+ZAlDbG9jayByYXRlCUNsb2NrIHBlcmlvZAo+ID4+IDFHCTEyNU1IegkJOG5zCj4gPj4gMTAwTQky
+NU1IegkJNDBucwo+ID4+IDEwTQkyLjVNSHoJCTQwMG5zCj4gPj4KPiA+PiBUaGUgcmVxdWlyZWQg
+c2tldyBmb3IgVFhDIGFuZCBSWEMgYXQgdGhlIHJlY2VpdmVyIGlzIHNwZWNpZmllZCB0byBiZQo+
+ID4+IGJldHdlZW4gMSBhbmQgMi42bnMgaXJyZXNwZWN0aXZlIG9mIHRoZSBzcGVlZC4gVGhlIGVk
+Z2Ugb2YgdGhlIGNsb2NrCj4gPj4gaXMgYWxzbyBpbXBvcnRhbnQ6IHRoZSByaXNpbmcgZWRnZSBp
+bmRpY2F0ZXMgdGhlIGxvd2VyIDQgYml0cywgYW5kCj4gPj4gdGhlIGZhbGxpbmcgZWRnZSBpbmRp
+Y2F0ZXMgdGhlIHVwcGVyIDQgYml0cy4KPiA+Pgo+ID4+IEF0IDFHIHNwZWVkLCB3aXRoIGEgIjQg
+dG8gNW5zIiBza2V3IGluIHRoZSBjaGlwLiBJZiB0aGlzIGlzIGFjY3VyYXRlLAo+ID4+IHRoZW4g
+aW52ZXJ0aW5nIHRoZSBjbG9jayBhbmQgYWRkaW5nIDFucyBvZiBhZGRpdGlvbmFsIHNrZXcgYnkg
+c29tZQo+ID4+IG1lYW5zIChQQ0IgdHJhY2UsIG9yIGF0IHRoZSBNQUMgb3IgUEhZKSB3aWxsIGdp
+dmUgdGhlIHJlcXVpcmVkIGNsb2NrCj4gPj4gYXQgdGhlIHJlY2VpdmVyLgo+ID4+Cj4gPiAKPiA+
+IFllcywgdGhhdCdzIGV4YWN0bHkgdGhlIGNhc2UuCj4gPiAKPiA+PiBUaGUgdGltaW5nIHRhYmxl
+IGluIHRoZSBSR01JSSBzdGFuZGFyZCAoMy4zKSBhbGxvd3MgZm9yIFRjeWMgKHRoZQo+ID4+IGNs
+b2NrIHJhdGUpIHRvIGJlIHNjYWxlZCwgYnV0IHRoZXJlIGlzIG5vIGFsbG93YW5jZSBmb3Igc2Nh
+bGluZwo+ID4+IFRza2V3UiAodGhlIHJlcXVpcmVkIDEgdG8gMi42bnMgc2tldy4pIFRoaXMgc2tl
+dyBwYXJhbWV0ZXIgaXMKPiA+PiBmaXhlZC4KPiA+Pgo+ID4+IFNvLCBhdCB0aGUgb3RoZXIgc3Bl
+ZWRzLCB5b3UgYXJlIGNvbXBsZXRlbHkgdW5hYmxlIHRvIG1lZXQgdGhlIHRpbWluZwo+ID4+IHNw
+ZWNpZmljYXRpb24sIHdoZXRoZXIgaXJyZXNwZWN0aXZlIG9mIHRoZSBjbG9jayBpbnZlcnNpb24u
+IEluIGVmZmVjdCwKPiA+PiB0aGUgb25seSBzcGVlZCB0aGF0IHlvdSBjYW4gbWVldCB0aGUgc3Bl
+Y2lmaWNhdGlvbiBpcyAxRy4KPiA+Pgo+ID4gCj4gPiBUaGUgdGltaW5nIHRhYmxlIGluIHRoZSBS
+R01JSSBzdGFuZGFyZCgzLjMpIHNheXMgdGhlIG1heCB2YWx1ZSBvZiBUc2tldwo+ID4gZm9yIDEw
+LzEwMCBpcyB1bnNwZWNpZmllZC4KPiA+IFF1b3RhdGlvbjoibm90ZTE6IC4uLixGb3IgMTAvMTAw
+IHRoZSBNYXggdmFsdWUgaXMgdW5zcGVjaWZpZWQuIgo+ID4gCj4gPiBJIHRoaW5rIGZvciAxMC8x
+MDAsIHRoZSAiNCB0byA1bnMiIHNrZXcgaW4gdGhlIGNoaXAgZG9lc24ndCBicmVhayB0aGUKPiA+
+IHN0YW5kYXJkLiBBdCAxMC8xMDAgc3BlZWRzLCBpdCBtZWV0cyB0aGUgdGltaW5nIHNwZWNpZmlj
+YXRpb24gd2l0aG91dAo+ID4gaGF2aW5nIHRvIHRvIGFkZCBjbG9jayBpbnZlcnNpb24uCj4gPiBJ
+biBwcmFjdGljZSwgaXQgd29ya3MgYXQgMTAvMTAwIHNwZWVkcyBpbiB0aGUgcmdtaWktaWQgcGh5
+IG1vZGUuCj4gPiAKPiA+PiBUaHVzLCBJIHRoaW5rIHRoaXMgaXMgc29tZXRoaW5nIHRoYXQgbmVl
+ZHMgYSBsb3QgbW9yZSB0aGFuIGp1c3QgImRvCj4gPj4gd2UgbmVlZCB0byBpbnZlcnQgdGhlIGNs
+b2NrIi4gWW91IGFsc28gbmVlZCB0byBwcmV2ZW50IDEwTSBhbmQgMTAwTQo+ID4+IGJlaW5nIHN1
+cHBvcnRlZCBJTUhPLgo+ID4+Cgo+IAo+IEkgaGFkIGFuIG9mZmxpbmUgZGlzY3Vzc2lvbiB3aXRo
+IFlhbyBaaSBhbmQgb3RoZXJzIHJlZ2FyZGluZyB0aGlzLiBXZSBmZWVsCj4gbGlrZSB0aGUgcHJv
+cGVyIHdheSBmb3IgRVNXSU4gdG8gZGVhbCB3aXRoIHRoaXMgYnJva2VuIGV0aDEgaXMgdG8gaGF2
+ZSBhCj4gZGlmZmVyZW50IGNvbXBhdGlibGUgc3RyaW5nIGp1c3QgZm9yIGV0aDEsIHdoZXJlIGl0
+IGNhbiBiZSBhc3NvY2lhdGVkIHdpdGgKPiBwbGF0Zm9ybSBkYXRhIHdpdGggcXVpcmtzIHRvIGRv
+IGVzd2luLHJ4LWNsay1pbnZlcnQgYXQgMUcuIFRoZSBwcm9wZXJ0eSBpcwo+IHRoZXJlZm9yZSBu
+b3QgcmVxdWlyZWQgdG8gYmUgZXhwb3NlZCBpbiBEVC4gKFByZXRlbmQgaXQgY29uZm9ybXMgdG8g
+c3BlYwo+IGZvciAxRykuIE5lZWQgY29uZmlybWF0aW9uIGZvciAxME0vMTAwTSwgdGhvdWdoLiBJ
+IGRvdWJsZSBjaGVja2VkIExpbiBNaW4ncwo+IGNsYWltLCBhbmQgaW5kZWVkIHRoZSBzcGVjIHNh
+eXMgIkZvciAxMC8xMDAgdGhlIE1heCB2YWx1ZSBpcyB1bnNwZWNpZmllZCI6Cj4gaHR0cHM6Ly9j
+b21tdW5pdHkubnhwLmNvbS9wd214eTg3NjU0L2F0dGFjaG1lbnRzL3B3bXh5ODc2NTQvaW14LXBy
+b2Nlc3NvcnMvMjA2NTUvMS9SR01JSXYyXzBfZmluYWxfaHAucGRmCj4gCj4gVGhvdWdodHM/CgpJ
+IGFncmVlIHdpdGggeW91ciBhcHByb2FjaC4KClJlZ2FyZHMsCkxpbiBNaW4KCg==
 
