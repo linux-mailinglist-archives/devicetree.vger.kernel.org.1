@@ -1,200 +1,124 @@
-Return-Path: <devicetree+bounces-260640-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260641-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id bpiVE+eEemmk7QEAu9opvQ
-	(envelope-from <devicetree+bounces-260640-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 22:51:35 +0100
+	id +KTNEsWFemnx7AEAu9opvQ
+	(envelope-from <devicetree+bounces-260641-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 22:55:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCC1AA93E3
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 22:51:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D729AA94A1
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 22:55:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8E9863013D68
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:51:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 79FFF3085D0B
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:52:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9042033065D;
-	Wed, 28 Jan 2026 21:51:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ypu8e0xL"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1B6333C1B9;
+	Wed, 28 Jan 2026 21:52:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A04D31C57B;
-	Wed, 28 Jan 2026 21:51:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F5E433B6F9;
+	Wed, 28 Jan 2026 21:52:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769637092; cv=none; b=p0z2t0gp7EkezG7fkWBdozMLCvPiE8b04l+FLvNElYu13R6Nh//JTYMeMkP8va8QrUYnEplrPsSlz9NRxAVEss2j6MuBNfdTTYPaxeNfZ3rIOsmAbP7e6HvniirJh0siRdY3qu8ecfvYBMLQg0rEP+Ulsd0nq/7drllnvESk2FI=
+	t=1769637155; cv=none; b=mDyZRdN+U0ZuWuWck5RSbHwL10gMQjswx4qch0lPycVW8Mtj/OPvhjxfEz2ZFuslobNBHrY5eubDGdhPeAbicdqId1nYZBgtGieSMIPo3eKjNPxDfHHKNefzXvJPPYBbkJDCCXT8h6oI7deIs8CA1f0ZI/Zb0DHMl/M3Oq9vqUc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769637092; c=relaxed/simple;
-	bh=jd/m6ATiT++9/cH2mRhstNtAGJEDjd8OgcmOnu0mXWU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qYbUfrXsxyShlepV7Gqc6OkbhSsSZ3bBiW3bB2dF9CZCjfJPqwNvYKueoy+TMy/babpq2dcQ5UaVKQJMi0w991dyv79BSEim2MXPCVGnmx+NY7VlmqfdBGzc6yj+UCdIz3iBfubsKxzCZsQXeyDqjWM7sN8DLAZBJnFXvrX4mak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ypu8e0xL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E5FAC4CEF1;
-	Wed, 28 Jan 2026 21:51:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769637092;
-	bh=jd/m6ATiT++9/cH2mRhstNtAGJEDjd8OgcmOnu0mXWU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ypu8e0xLeAzQkaVnrXua7G8E9oF19JxmuoWyy/ov1c6he9+meQuexyqRkGxb3bHR2
-	 FcwTZCNPXBqzlxnAAohWG4TDQIauXUGSOIPPh8iWWgTsBUA/uvsvt3Qs20ac7pPSqh
-	 0L8HxqHmE1/PsqHSdMug5NP/WHBVUl1cdMgicrUM6s/BYSGlBvs4KsDDnDmHNgEaPC
-	 ROgHlm+Zh9EFdBS4kBfqv78oEN57nXVCiYKozOftp5/8+hsR1DzDBZ6ufIpMSyZZol
-	 sk0Bg2FovzUMLzz9NJMrftq6KvisfNhQf0aG7us3jRlani3euJRjxMXUfsaAhLdLYo
-	 fs+0VPxAsCDrQ==
-Date: Wed, 28 Jan 2026 22:51:26 +0100
-From: Niklas Cassel <cassel@kernel.org>
-To: Markus Probst <markus.probst@posteo.de>
-Cc: Damien Le Moal <dlemoal@kernel.org>, Lee Jones <lee@kernel.org>,
-	Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1769637155; c=relaxed/simple;
+	bh=EAxXFzluNTGqwriAEY40/4tNtnYUQQnL2Rr3iGk7l7E=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HDksGeV/OhLp3Xh+x/l5w1Ucds7sH22UcLt6YXcjdC8TN0L8HyxoyTA3UxgCOx6dXbaZIgGD8bb5Ips8mwnbDvdL/K6KxQ+YW3a0dRQtqtxv4kOzz5NmxtzX3zLiusp1bAA3dudMjsGQ93RFgjiqZSEwIuGxmXfTf/aML9MxsMA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+X-CSE-ConnectionGUID: f68bQ5daSu+DM4JrDIx7AA==
+X-CSE-MsgGUID: yuNnU2BhQeuncPXrimBbqA==
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 29 Jan 2026 06:52:26 +0900
+Received: from demon-pc.localdomain (unknown [10.226.92.19])
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id C7CC040C0B68;
+	Thu, 29 Jan 2026 06:52:22 +0900 (JST)
+From: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+To: Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-	John Garry <john.g.garry@oracle.com>,
-	Jason Yan <yanaijie@huawei.com>,
-	"James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
-	"Martin K. Petersen" <martin.petersen@oracle.com>,
-	Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-ide@vger.kernel.org, linux-scsi@vger.kernel.org,
-	Ian Pilcher <arequipeno@gmail.com>
-Subject: Re: [PATCH RFC 0/4] leds: extend disk trigger
-Message-ID: <aXqE3tn4ACa9HnwU@ryzen>
-References: <20260123-ledtrig_disk_-v1-0-07004756467b@posteo.de>
- <aXctPaaXFYemV20T@ryzen>
- <ce454969b83dbb0e3bb4ea78f682603cc328ceb9.camel@posteo.de>
- <aXiGNZm12vLhQJ4Q@fedora>
- <20f855baaa7c36010eab9997a2f43b4f62be726b.camel@posteo.de>
- <2382dee0-983f-4c69-af7b-a7a48cad23aa@kernel.org>
- <c34fb5404e7033fe719b0072ea8a87a1caa2bf80.camel@posteo.de>
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: linux-spi@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+Subject: [PATCH v3 0/3] Add DMA support for RZ/T2H RSPI
+Date: Wed, 28 Jan 2026 23:51:29 +0200
+Message-ID: <20260128215132.1353381-1-cosmin-gabriel.tanislav.xa@renesas.com>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c34fb5404e7033fe719b0072ea8a87a1caa2bf80.camel@posteo.de>
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [0.14 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[renesas.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260640-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_TO(0.00)[renesas.com,kernel.org,glider.be,gmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,oracle.com,huawei.com,hansenpartnership.com,ucw.cz,vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-260641-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cassel@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[cosmin-gabriel.tanislav.xa@renesas.com,devicetree@vger.kernel.org];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: CCC1AA93E3
+	TO_DN_SOME(0.00)[];
+	FROM_HAS_DN(0.00)[]
+X-Rspamd-Queue-Id: D729AA94A1
 X-Rspamd-Action: no action
 
-Hello Markus,
+The DMA controller can be used to transfer data to and from the SPI
+controller without involving the CPU for each word of a SPI transfer.
 
-On Wed, Jan 28, 2026 at 03:44:19PM +0000, Markus Probst wrote:
-> Something similar with scsi and ata exists. scsi doesn't expose the
-> firmware_node and there is no symlink (or other connection that I am
-> ware of) between scsi_* and ata_* in sysfs. This means, I cannot map a
-> fwnode path to a block device.
+Add support for DMA mode, and do some other cleanups while touching the
+same code.
 
-Hopefully this might help you:
+The dts changes in this series depend on the DMA series [1].
 
-$ ls -al /sys/class/scsi_device | grep ata
-lrwxrwxrwx.  1 root root 0 Jan 29 05:12 4:0:0:0 -> ../../devices/pci0000:00/0000:00:17.0/ata5/host4/target4:0:0/4:0:0:0/scsi_device/4:0:0:0
-lrwxrwxrwx.  1 root root 0 Jan 29 05:12 5:0:0:0 -> ../../devices/pci0000:00/0000:00:17.0/ata6/host5/target5:0:0/5:0:0:0/scsi_device/5:0:0:0
-lrwxrwxrwx.  1 root root 0 Jan 29 05:12 8:0:0:0 -> ../../devices/pci0000:00/0000:00:17.0/ata9/host8/target8:0:0/8:0:0:0/scsi_device/8:0:0:0
-lrwxrwxrwx.  1 root root 0 Jan 29 05:12 9:0:0:0 -> ../../devices/pci0000:00/0000:00:17.0/ata10/host9/target9:0:0/9:0:0:0/scsi_device/9:0:0:0
+[1]: https://lore.kernel.org/lkml/20260105114445.878262-1-cosmin-gabriel.tanislav.xa@renesas.com/#t
 
+V3:
+ * impose proper maxItems for each device
+ * impose maxItems for dmas property
 
-For a specific device, e.g. 4:0:0:0:
+V2:
+ * drop patches picked up by Mark
+ * add new dt-bindings patch to allow multiple DMAs
+ * wire up all DMA controllers for every SPI controller
 
-$ realpath /sys/class/scsi_device/4:0:0:0/
-/sys/devices/pci0000:00/0000:00:17.0/ata5/host4/target4:0:0/4:0:0:0/scsi_device/4:0:0:0
+Cosmin Tanislav (3):
+  dt-bindings: spi: renesas,rzv2h-rspi: allow multiple DMAs
+  arm64: dts: renesas: r9a09g077: wire up DMA support for SPI
+  arm64: dts: renesas: r9a09g087: wire up DMA support for SPI
 
-To get the block device name:
-$ ls /sys/class/scsi_device/4:0:0:0/device/block/
-sda
+ .../bindings/spi/renesas,rzv2h-rspi.yaml         | 16 +++++++++++++---
+ arch/arm64/boot/dts/renesas/r9a09g077.dtsi       | 16 ++++++++++++++++
+ arch/arm64/boot/dts/renesas/r9a09g087.dtsi       | 16 ++++++++++++++++
+ 3 files changed, 45 insertions(+), 3 deletions(-)
 
-or
+-- 
+2.52.0
 
-$ ls /sys/devices/pci0000:00/0000:00:17.0/ata5/host4/target4:0:0/4:0:0:0/scsi_device/4:0:0:0/device/block/
-sda
-
-
-You can parse the port from the path. The above example is port 5.
-
-If using a port multiplier (PM), there can be multiple links/devices per port.
-
-
-Otherwise, for SATA there should be only one.
-
-$ ls -al /sys/class/ata_port/ata5/device/ | grep link | wc -l
-1
-
-$ ls -al /sys/class/ata_port/ata5/device/link5/dev5.0/firmware_node
-
-or
-
-$ ls -al  /sys/class/ata_device/dev5.*/device/firmware_node
-
-
-
-For PCI BDF, you can use /dev/disk/by-path/
-
-$ ls -al /dev/disk/by-path/ | grep ata
-lrwxrwxrwx.  1 root root   9 Jan 29 05:11 pci-0000:00:17.0-ata-3 -> ../../sda
-lrwxrwxrwx.  1 root root   9 Jan 29 05:11 pci-0000:00:17.0-ata-3.0 -> ../../sda
-lrwxrwxrwx.  1 root root   9 Jan 29 05:11 pci-0000:00:17.0-ata-4 -> ../../sdb
-lrwxrwxrwx.  1 root root   9 Jan 29 05:11 pci-0000:00:17.0-ata-4.0 -> ../../sdb
-lrwxrwxrwx.  1 root root   9 Jan 29 05:11 pci-0000:00:17.0-ata-7 -> ../../sdc
-lrwxrwxrwx.  1 root root   9 Jan 29 05:11 pci-0000:00:17.0-ata-7.0 -> ../../sdc
-lrwxrwxrwx.  1 root root   9 Jan 29 05:11 pci-0000:00:17.0-ata-8 -> ../../sdd
-lrwxrwxrwx.  1 root root   9 Jan 29 05:11 pci-0000:00:17.0-ata-8.0 -> ../../sdd
-
-Note that these suffixes do not correlate to the ata port number in /sys/class/ata_*
-
-
-$ ls -al /sys/class/ata_port/
-total 0
-drwxr-xr-x.  2 root root 0 Jan 29 05:11 .
-drwxr-xr-x. 84 root root 0 Jan 29 05:12 ..
-lrwxrwxrwx.  1 root root 0 Nov 19 04:01 ata1 -> ../../devices/pci0000:00/0000:00:11.5/ata1/ata_port/ata1
-lrwxrwxrwx.  1 root root 0 Jan 29 05:26 ata10 -> ../../devices/pci0000:00/0000:00:17.0/ata10/ata_port/ata10
-lrwxrwxrwx.  1 root root 0 Nov 19 04:01 ata11 -> ../../devices/pci0000:50/0000:50:02.0/0000:51:00.0/ata11/ata_port/ata11
-lrwxrwxrwx.  1 root root 0 Nov 19 04:01 ata12 -> ../../devices/pci0000:50/0000:50:02.0/0000:51:00.0/ata12/ata_port/ata12
-lrwxrwxrwx.  1 root root 0 Nov 19 04:01 ata13 -> ../../devices/pci0000:50/0000:50:02.0/0000:51:00.0/ata13/ata_port/ata13
-lrwxrwxrwx.  1 root root 0 Nov 19 04:01 ata2 -> ../../devices/pci0000:00/0000:00:11.5/ata2/ata_port/ata2
-lrwxrwxrwx.  1 root root 0 Jan 29 05:26 ata3 -> ../../devices/pci0000:00/0000:00:17.0/ata3/ata_port/ata3
-lrwxrwxrwx.  1 root root 0 Jan 29 05:26 ata4 -> ../../devices/pci0000:00/0000:00:17.0/ata4/ata_port/ata4
-lrwxrwxrwx.  1 root root 0 Jan 29 05:26 ata5 -> ../../devices/pci0000:00/0000:00:17.0/ata5/ata_port/ata5
-lrwxrwxrwx.  1 root root 0 Jan 29 05:26 ata6 -> ../../devices/pci0000:00/0000:00:17.0/ata6/ata_port/ata6
-lrwxrwxrwx.  1 root root 0 Jan 29 05:26 ata7 -> ../../devices/pci0000:00/0000:00:17.0/ata7/ata_port/ata7
-lrwxrwxrwx.  1 root root 0 Jan 29 05:26 ata8 -> ../../devices/pci0000:00/0000:00:17.0/ata8/ata_port/ata8
-lrwxrwxrwx.  1 root root 0 Jan 29 05:26 ata9 -> ../../devices/pci0000:00/0000:00:17.0/ata9/ata_port/ata9
-
-
-Kind regards,
-Niklas
 
