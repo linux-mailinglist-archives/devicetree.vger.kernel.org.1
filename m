@@ -1,445 +1,238 @@
-Return-Path: <devicetree+bounces-260207-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260208-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WD3zHDG7eWnoygEAu9opvQ
-	(envelope-from <devicetree+bounces-260207-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 08:30:57 +0100
+	id 2JNPDc67eWnoygEAu9opvQ
+	(envelope-from <devicetree+bounces-260208-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 08:33:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF2099DC35
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 08:30:56 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id B317D9DC5F
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 08:33:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4B1393029AFC
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 07:30:07 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B951130039B6
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 07:33:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97C512D73A1;
-	Wed, 28 Jan 2026 07:30:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F49029AB1A;
+	Wed, 28 Jan 2026 07:33:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H9iDSduC"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="KHu2EV0s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f48.google.com (mail-dl1-f48.google.com [74.125.82.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011066.outbound.protection.outlook.com [52.101.70.66])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D65F92D8384
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 07:30:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.48
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769585406; cv=none; b=AtRqmbwx/7yT4JWYQ3JkCLLxidSv95VpufuKuwXP361EE9FH/Ji+n6KWyV8yMFPVLTKqbKlyOpJBtLCjy1kUK0zlfOHUnGmw90PoBmEkcj8CkEUNtqQtyY2bgR4UtvT5LFkn1SPYxjZrp1G8j6pHTn7uh1dmhhorTekL50Ld1hM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769585406; c=relaxed/simple;
-	bh=LGgLo0sQ1anLSBo9ms/BbXzFi/dI/E3272sNm0bwKzY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=lmzCHsW3wLlsFPmN3HId9XlcWoXmY9IVFNdWMHZUIQbpCqnFKjRfHP9/eNHP1Li5+qUhQkeBX2HCQQtIf/7e+BUmnymsGFVm9Bbf10d09v0LJNbli/03LoedPktX6JY69F+dSH31H4ZNC0J9DHx1NpPQw/kXvnV7a+Bk+JIMV7U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H9iDSduC; arc=none smtp.client-ip=74.125.82.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f48.google.com with SMTP id a92af1059eb24-12331482b8fso225289c88.1
-        for <devicetree@vger.kernel.org>; Tue, 27 Jan 2026 23:30:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769585403; x=1770190203; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fUAlcjlhE29H5H5PUKfg3wkA3zq9RKgoay7Cyo7WuV8=;
-        b=H9iDSduCOXb1SbaMH9Y73XlKqdVzlChlth8ciOkji/2zrGgfAUDHUm/dLfE/EhXJUD
-         fBoKdLujNPGx+x1QqBup0QGKGXPdtTI2XoOj7C3DgYHfQ8YXFHKncUhU75W54Kc2Qc8X
-         k6HpqWBxCOo2WmJ2lCgQEBnvuQMk30g7mx+DdPMiOvlceUXwPqNBLNEDB2Uru+dFWhNk
-         xbUd/f2jQ4qEFcqDhchKk3h92l4f2bsc6zSSb1Gu7Wh1MIKvIK3li2zmvS4yO5xMpYAX
-         ywR0u+yFNWJ5d97fSuT/E6kfZKAlUJED6uSPMcuXqhJ68dIGn+7VDPw3f8TCc1JgaXk/
-         ZfGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769585403; x=1770190203;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=fUAlcjlhE29H5H5PUKfg3wkA3zq9RKgoay7Cyo7WuV8=;
-        b=Jmw/Vwx/G5NUgvC018004ymqsr6/LpK0Vuq/igpa1+xKlVdKC83Hhi8+PaPFKXCrny
-         yP6ilbLdA1my93/R3Ej3hbWmx57dn67w32GYclEYq+BQG6YSGXM1qyjdNs5eI9neOqzr
-         hzcBXQ+8Pvo90z37UorCUuAXcWbtneqMN4+YD/bTB/y/1JnavvaeF665iNdc9jIL6/Dx
-         RiNf2U7js7+HB/e/6ZXpFHsD8QIGrBBJX0QYKHHEBdsnT8Moe5RQ1x0INUjAbMxYMn53
-         MCpBKquz4hAXrjCxjFeTXQGJFvQYuQ0JxIr33JZtCQ0XpQ+522pEu+O+WgQrPhRqVDTp
-         wnGw==
-X-Forwarded-Encrypted: i=1; AJvYcCUSB6I9ZWgP1BEMdAGH/IfBg7LIzjQiQPc1Fx6M+0jlGBMP+TVjBpetp6+2Kqb7VOqfGpidYwWu9z0G@vger.kernel.org
-X-Gm-Message-State: AOJu0YwzjEMQ20TiExrIjGS+nw01vhnKUxedoY2RUXoi0q+xV4WV+RPY
-	fPcqm3j9elZF51L7MU//UUA3/l9G/6j8mw05KMn0nTF7BPhHe0I1PIpB
-X-Gm-Gg: AZuq6aLmQeLZ8z+TpOntqGCekmLViUNL4Kzg30mfrF60qPDV24jUA+5BqMylPZpVWAT
-	1c0HzdFkomyfHNTdgzKNkh9NJ+413/ahnmHAV+qCxk5KhlWCYg6GRHLAJjQhM1FVin5l399w+1q
-	sUwQEWBJt0zKjL50NOOsa5BrO+VXM7PaZdLVUtyD6O5EiATIf8OwDaLwuVyQzJybra1oaIo+exZ
-	MAXkPS8N22dHfNc6VPQ+ZdoWh4mNKIjqMsEpGkoAzvEOu2/L7Wb5uzwOV8XWMufs3ASJQ4GFZN4
-	Gvtd+QbXPZTGcCUsjnBUurJnjgSO0eVSbxk4fWHYtLVMtHvX1K3ME0LS8CYa2yxqp5L3MujtEMZ
-	37O5sXmAMjWrZRlId3PLOjdxER++x+HE4tEZl/HYCe0kWCHIiZb8k/2zlf4hJw5VdFxoQ9jflhR
-	tLKE0XbMiL5Q==
-X-Received: by 2002:a05:693c:4087:b0:2b7:2bbd:95a2 with SMTP id 5a478bee46e88-2b78da4a12fmr2343465eec.40.1769585403387;
-        Tue, 27 Jan 2026 23:30:03 -0800 (PST)
-Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b7a16cfc73sm1552992eec.6.2026.01.27.23.30.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Jan 2026 23:30:03 -0800 (PST)
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Yixun Lan <dlan@gentoo.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-	Yao Zi <ziyao@disroot.org>,
-	Yanteng Si <siyanteng@cqsoftware.com.cn>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Choong Yong Liang <yong.liang.choong@linux.intel.com>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Shangjuan Wei <weishangjuan@eswincomputing.com>,
-	Boon Khai Ng <boon.khai.ng@altera.com>,
-	Quentin Schulz <quentin.schulz@cherry.de>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>
-Cc: netdev@vger.kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0B1528D82F;
+	Wed, 28 Jan 2026 07:33:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.66
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769585612; cv=fail; b=X/uBAyRUPMTElq3dxYrpFSVPPh3uBAgwaa2VXsiVKOOBcrGKY23KEXLQRaKprg2Zz3TnMezjx7hYA3OzqE93f1szb7Xt3YbpN5tp9vkYAf9aqE5J+wqy8Z3Mh0N/9mu7Vs/niDhUEeEpgYgZTaJrwIGcZtrDkHNaQ2GEZQ0i9kk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769585612; c=relaxed/simple;
+	bh=6msjIUyM3puBwuRsHQIxBRJno6wtwW2uC3uD9rBPlCw=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=hz4zfZfeo4B/rPJpJ0k/WR+w+F0ImU3/SyCtP2IkmBaqh00V7MOIRTL2xyigZ5eewFk7quOYYJPTNxTzKIPhofc1q+gx7byqrbWlQTx3PeSu813imtMi7wxg1elGIbo5E2LynKgzn1otQf7jhxZfZc2wy6hqb7tRL+2tXe2XSoU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=KHu2EV0s; arc=fail smtp.client-ip=52.101.70.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=CQIfV0nLkKwnjpyCwkmim7mULyy34v4yXHfnF7uUGy6wTBD7Tubg8SwpG67aJr6sqytl8LODDCKw/GNQwnBIHPDY1cdPEuix07GEBVei/l82AtK31N/ToLhN67iO1eKPA7P53WcwpfstU4uk4w+h3weHJPSGUByNytif/+od8sGKknl4BUZM5rdyNW7pzBet57xODTAzCsKVm9Y4I020uyVNIQItkbXvik2ZDpmYHBNVELXtNNRWjLOdAIWcOpZ/GDbQICd+SFvDLZP+WVEDXIu6io5xxLjbrDDKncCdxD0j7W+qBxleMhaYCfoo+qf/xrDP6meT41vvGHfR+8T3EQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=G1VC/YfFaiWT8qxPUv2AIItUbLnwq0ciAURcX4g1A2M=;
+ b=Qkp5AGMSdSgjLSKSmYm/7KmmvxeO9tcf4CFB8PJkh6boXWFo+ozrO5DMEmsR0LugR6MV9H7Tx1i0WWkM3gwpH45e0ynLANh1UnjtZ7j0lO538N0oacpExEnbQ+Vhehny2+L88BIGoh700AYZ1cBCYoxSBatJv+xhFmP2l8z2oL/PU5HZfAlUdQ0Wcyr3/HJfsImAJBdcjkYkBiYZr0uE1+4twF9FhtV53CUydU2m2ZwRSYdTqPJdNpV9uF7pgloLnHEI4F1QlrDhIf2wktU3qKPK/VbJM9ZhUvVANz7lcRXnAqzcizhJbXsFBMkEN3KlnCQwxuYppRd1UohsiQmZTg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=G1VC/YfFaiWT8qxPUv2AIItUbLnwq0ciAURcX4g1A2M=;
+ b=KHu2EV0sNd/ugDq5E3GrnxFxceQ7dfxBxuQ2gaxf8qyP6764vLHJ3EjZ2pp8/dN5mAJ+t3DmZ+GSQp16NVdPmlHB3SG1Rb2e8MsUQtWpfjURJAFu3LzfK0j/2P8shqK2rEbqFveAEHKoJFkz4TId30Xz7/iGc79fEINForPp3lRSzsycdUD2FndY/etS554xSZtlCI61HXt3YxW5VHlmAA9n3QQ6uTsotP66iLDYn1uAcHXfwvO49RPE3asb16BCxzoMue9FLWg3v7wZUZAnvKlkU4NDQ7mMwo4ABUcVqTHCgofFr39rSdvfhzztYb2bcDGIQfJOVqH8lvrx54pDng==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DU2PR04MB8567.eurprd04.prod.outlook.com (2603:10a6:10:2d6::21)
+ by DU7PR04MB11234.eurprd04.prod.outlook.com (2603:10a6:10:5b2::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.15; Wed, 28 Jan
+ 2026 07:33:25 +0000
+Received: from DU2PR04MB8567.eurprd04.prod.outlook.com
+ ([fe80::32c4:a8a7:1724:b754]) by DU2PR04MB8567.eurprd04.prod.outlook.com
+ ([fe80::32c4:a8a7:1724:b754%2]) with mapi id 15.20.9542.008; Wed, 28 Jan 2026
+ 07:33:25 +0000
+From: ziniu.wang_1@nxp.com
+To: shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	frank.li@nxp.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: kernel@pengutronix.de,
+	festevam@gmail.com,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev,
-	linux-stm32@st-md-mailman.stormreply.com,
+	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
-	Longbin Li <looong.bin@gmail.com>
-Subject: [PATCH net-next v3 3/3] net: stmmac: Add glue layer for Spacemit K3 SoC
-Date: Wed, 28 Jan 2026 15:29:29 +0800
-Message-ID: <20260128072931.875041-4-inochiama@gmail.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260128072931.875041-1-inochiama@gmail.com>
-References: <20260128072931.875041-1-inochiama@gmail.com>
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/3] arm64: dts: imx93-9x9-qsb: change usdhc tuning step for eMMC and SD
+Date: Wed, 28 Jan 2026 15:35:30 +0800
+Message-Id: <20260128073532.2904161-1-ziniu.wang_1@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: AS4PR10CA0013.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:20b:5dc::20) To DU2PR04MB8567.eurprd04.prod.outlook.com
+ (2603:10a6:10:2d6::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PR04MB8567:EE_|DU7PR04MB11234:EE_
+X-MS-Office365-Filtering-Correlation-Id: d42a5e0f-5f7f-418d-5a6d-08de5e3f857d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|7416014|19092799006|366016|52116014|376014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?EnvtiR2ngnPGGvy9/bjw0ivftomH0BdBliFoyTA1h9TurtyuIrjuDOiYnJ6i?=
+ =?us-ascii?Q?yKTljwA4f0URs4kIjUYvgWRWyRfYniNQn1OGnSEeGApqEb3VTcmGnU0eHozp?=
+ =?us-ascii?Q?PjMwPz0YHiUp3wU9X3Qaiwhg6OgDiGR0Vfz0b/0aVGOB51HYejDwhWMOld7I?=
+ =?us-ascii?Q?BDPVxUvW3l/fNMsNU2TrSoLI++nDEgb5a5YyyTDdu5sfPXoqW/VL2dzgob/+?=
+ =?us-ascii?Q?YOX15/KVs5VXJUewese0ZyhmVVlP57anJafo2+PALvnyxAcJO1XuzHnWFKlf?=
+ =?us-ascii?Q?Leq/0g2RN3Pf57BeZFj1mvysuLQD+wWQexQBeaBazlwyGfM6DMsUXV8Erv+z?=
+ =?us-ascii?Q?7fgDVa2wpYEwSSLiIZsgLTJDykhNNq+8M+D2WsQiH/UXuh9C+563MDmZSpET?=
+ =?us-ascii?Q?+280z/aGgCNurl/2L25N2H5wJ332Ons6ct9n6WJ7wwrhLCC6y/5eZjHVRZEy?=
+ =?us-ascii?Q?xC6inVd/tH/K+yID0VraAphhQDOnv5loTXX/zfHu+abQq7n6cOmNt2AFai1h?=
+ =?us-ascii?Q?sCKdeV/CzN7ekRCdKeOudWuQ/WRKlPUs0ncs7gBRCL+cyUC6Kuvq5T74Nc3p?=
+ =?us-ascii?Q?mx2Jk7IwIYCN91MG4q0zVJV02NUzmDNfMBqbUvDVUj0k2T1Eyebz4HC2rAv5?=
+ =?us-ascii?Q?NBZM9wIKhF7913UfJaoN22/9kcOq9ypZs7dLKumwaGO3QXQ1X8OyAYu8dt4g?=
+ =?us-ascii?Q?vrzibFQv9ThifP60CNbOzX6hUnmc49D4l0oPm4gDerZNEaf9Nn6LrJKq61jq?=
+ =?us-ascii?Q?PjMeoCVdA7srgorf/gbS3AJ755avGDWEuzuq4aUsbpsztRNFuYNU+6j1ttrK?=
+ =?us-ascii?Q?QPeIGKsOg6vPoRP76NlJqc7CcZ13L/guuVD7QB4gZ5VN5/gNveJ8xTiVBrs/?=
+ =?us-ascii?Q?jDYhdhgEm24nTRcusP5RmUlT5AWJO2wpXuNfMZgnA+oSLGaHr1p+A+3jO4hu?=
+ =?us-ascii?Q?E8z5jshfEhuXUqKQC/jptDni7ienv47GlraK59tenJxos7UeByrPebOcJ+zm?=
+ =?us-ascii?Q?mB/kn5yZNBMhZR5apf+zKGNSvbVbnghBVbMHyFFOBJnnUAeRAXhb47zyoO7p?=
+ =?us-ascii?Q?T7tIpq1+Ar4k/zIririh9knFnQwiNc5Re07FoO5wyhxjZJMIa3m0qANYUmYv?=
+ =?us-ascii?Q?OScC9FsyKAg3jGxOhTfgNso1g1z4W7J+52Ev3+pPX3QYJGEzJSltO/1qCUo7?=
+ =?us-ascii?Q?Zd/HQMBQs9vFFvpj042KK+JQF+mbqnNJLHZgdQhjaC0qVXC1U1zsDXKAoswx?=
+ =?us-ascii?Q?My2GjANK1mZR1CZRbLO45K/+xHyXFkWQ6v7bKLXwMX8OIFtQxowax3dkzBsa?=
+ =?us-ascii?Q?7S28E6zsdZkywbMvsa/L/QDjRUMSF2OQbVtNznWI/uthmXltDojUObbI90i5?=
+ =?us-ascii?Q?JAsbxCgPdcYEU4wEnbmlxt04VQvnIQ4Mi7eBkTjGRLLvgGu+JhE9nBT6BZpz?=
+ =?us-ascii?Q?yn19EmrhN3AeNcJ1wbTgAPCxkbIrHVxBZUjUC3DbqVTug1p75IRFekkFsifn?=
+ =?us-ascii?Q?MbvkitDKKlPd/b3P3wOQSV7/sdVP5Y3TNZJTx87JGapJP5h+ENGGjMmH61bR?=
+ =?us-ascii?Q?UMLYEJcT5lV3dcZJpayQzyoli/5+snYx1ErYhTzTOe4SeTSVmqxd4jcfBoFS?=
+ =?us-ascii?Q?bhLFtfQ5lDijhkotf5anRc0=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8567.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(19092799006)(366016)(52116014)(376014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?P0C3W0eAwzf+1AfHfLsDTs4U+iPW8eZwAD9Z9qw4waXJ+7FNJHg9VXWVsQfr?=
+ =?us-ascii?Q?7J9O1TgoMCgrEf+CebI6PpmONlFdL2MGUweza4FbHU5antuSlJT2ZX0PWdzF?=
+ =?us-ascii?Q?dHVKHAEJfv3RhKJG7iNZkPfPF217wQf206mmSf6srQYcluafj7tyTS4fwYY0?=
+ =?us-ascii?Q?ztumytsBold5m4chaKG54CjKTtE1YvtLgfEq4hOjLK/h5uAb7VTsVglH9stf?=
+ =?us-ascii?Q?My7DDuesjrjYGL68eoiyIkEARIv3WMb6WQnedMPF0FGZus+vUqJJQ5tLVrqO?=
+ =?us-ascii?Q?D9XJrGiNj+5M5w9THeN8DGw5n85FqaiSTfCqE+YC1vwNBCuGMQFEMFpoeHNO?=
+ =?us-ascii?Q?Jza4KAE3mQ8lmPdRONHWGqahIXYqNK+KnUU9gtX1y8YONUgGVV6f0QTozwgw?=
+ =?us-ascii?Q?XdzpDxG0CAerdq4sbvtvjuN6dRC+EwDnwSGL/LOkVmSPHbGyplrp+3gxnzhk?=
+ =?us-ascii?Q?M61SfD245p7SiZE3m1c4U/4owB2G1kxKpXTLcrSaWQLyxTi6gItmpVHgMfNE?=
+ =?us-ascii?Q?ooYslekCoAaazulxXTajT+sYKSvw0kd/96rQI8emES3YbvC5vyan+jD7ep/p?=
+ =?us-ascii?Q?d0FW04jsgnf2MA6R6FvJwpXG94LpAmPTNkbjo2AgSRU0O7XmiUjUTs6onB3z?=
+ =?us-ascii?Q?heclH/vAIkevkoPNJikLdLiflMeDPBMJEDjCznQ6UqLgK86JyqUnH5yqmNqE?=
+ =?us-ascii?Q?egXDU9Y8WVa/+tIl6rDgtTtKbrqu4H+xic2d+GwWOjmvf497x6g1tSRZt4YR?=
+ =?us-ascii?Q?8egwO73G/yOg/ACMp1hkdfUEHuWqNtHq7xJeMPkdbSjyUATzojvybtuRqsCF?=
+ =?us-ascii?Q?rIF6OUByPC8Ckh8BD+/6fxD/AVhdCkK7yM8dXcFMiOrp3Vw1dCxaTM1elv58?=
+ =?us-ascii?Q?QljkpwpUv7lm3Ig8gwzw9dIyWGhszYYx69RXSwjNybLTGUPBZ9E/E9ZRrdk0?=
+ =?us-ascii?Q?YA4IijC9m22NL82WHEF5E61H5rUj3xnEEVLQd+SXDd/rFJ0gfpjImFsb8vlv?=
+ =?us-ascii?Q?/M+WULpCFVE5Y3qOFy64zuohu7YNMRVxHMwiQs1XIkt1OnMBNhIMvU2yGeoe?=
+ =?us-ascii?Q?YTkdAD9odO8xFztXkCEFV26V1jJ/a/Dh2F6U0iYj+ka/b72yQBCcR8CRx1ky?=
+ =?us-ascii?Q?U0h8ubpg7wVYMZkemCpTE5uCujddJ8DW9u6B50UKC+0JBIcpe7ep9CR4jzi6?=
+ =?us-ascii?Q?QC1Or9Pmby2yDCCiXfQAZ6QRRdAqJN7VdIj1xL4dX8EunjOROxqVfOMedfuJ?=
+ =?us-ascii?Q?0seXOBuQGjX5TshtGXYiGYVZyvcGQ5wA1gM69n6OqZ6dITNk4jVGTS2NmkV0?=
+ =?us-ascii?Q?FRgLDYs42Hn0xvChUFd6UsKLcoCdNDq2b6Ho6OoO6OiO3aZT9jOjFdN77gp2?=
+ =?us-ascii?Q?oaI2hEWPdWbgFs/pFVmDt3gVrzpg1WhqkmkZoUwyZMKrPYOwUHvznHe2+jIi?=
+ =?us-ascii?Q?mNFdget3fuwvsn81jzRdzEitnXEhgt9cddavOGFW9w0/jmHNzvizLSOuS6PO?=
+ =?us-ascii?Q?/thheSi7Sl9zLHKSzZ6Mx1Gmxb5lKtSc3Veml1ZGY7Jlw/fGS5tfud0YPDJi?=
+ =?us-ascii?Q?JibGjBHysyR4t3+XAOggbA+yYifaZwvhBhbkLMUcwYNhhwCpFTziByUMDnYu?=
+ =?us-ascii?Q?fRjYc9F82/sEap1NrhvPwlbW53a5hPQgNjBduH2fzdVZ5N1pFJm2eW/sMsE7?=
+ =?us-ascii?Q?OKNVGmzm0uTXmw+JvXnoZalLL/JpLA43Fnz1RU2hpfwMfMguImkfxS2smsGT?=
+ =?us-ascii?Q?wyN1Xiy9+Q=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d42a5e0f-5f7f-418d-5a6d-08de5e3f857d
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8567.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jan 2026 07:33:25.2642
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: bWjZGDwzy84w99O9NWepHHMJNSMQCqls7cSV/YSl2ooii2fcjQA7/NKXIbqV45/Q3+s25/UHgcJnyB4iTOeiCg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU7PR04MB11234
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	ARC_REJECT(1.00)[cv is fail on i=2];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-260207-lists,devicetree=lfdr.de];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[37];
-	FREEMAIL_TO(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gentoo.org,gmail.com,foss.st.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,armlinux.org.uk,disroot.org,cqsoftware.com.cn,bp.renesas.com,bootlin.com,linux.intel.com,eswincomputing.com,altera.com,cherry.de,st.com,synopsys.com];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[inochiama@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.linux.dev,st-md-mailman.stormreply.com,gmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
-	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_FROM(0.00)[bounces-260208-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: DF2099DC35
+	RCPT_COUNT_TWELVE(0.00)[12];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ziniu.wang_1@nxp.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	TO_DN_NONE(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.997];
+	FROM_NO_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,nxp.com:dkim,nxp.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: B317D9DC5F
 X-Rspamd-Action: no action
 
-The etherenet controller on Spacemit K3 SoC is Synopsys DesignWare
-MAC (version 5.40a), with the following special point:
-1. The rate of the tx clock line is auto changed when the mac speed
-   rate is changed, and no need for changing the input tx clock.
-2. This controller require a extra syscon device to configure the
-   interface type, enable wake up interrupt and delay configuration
-   if needed.
+From: Luke Wang <ziniu.wang_1@nxp.com>
 
-Add Spacemit dwmac driver support on the Spacemit K3 SoC.
+For eMMC and SD, there are two tuning pass windows and the gap between
+those two windows may only have one cell. If tuning step > 1, the gap may
+just be skipped and host assumes those two windows as a continuous
+windows. This will cause a bad delay cell near the gap to be selected.
 
-Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+For SDIO, the gap is big enough, default tuning step is fine.
+
+Signed-off-by: Luke Wang <ziniu.wang_1@nxp.com>
 ---
- drivers/net/ethernet/stmicro/stmmac/Kconfig   |  12 +
- drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
- .../ethernet/stmicro/stmmac/dwmac-spacemit.c  | 218 ++++++++++++++++++
- 3 files changed, 231 insertions(+)
- create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-spacemit.c
+ arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-index 907fe2e927f0..583a4692f5da 100644
---- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
-+++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-@@ -216,6 +216,18 @@ config DWMAC_SOPHGO
- 	  for the stmmac device driver. This driver is used for the
- 	  ethernet controllers on various Sophgo SoCs.
+diff --git a/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts b/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts
+index 0852067eab2c..197c8f8b7f66 100644
+--- a/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts
++++ b/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts
+@@ -507,6 +507,7 @@ &usdhc1 {
+ 	pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
+ 	bus-width = <8>;
+ 	non-removable;
++	fsl,tuning-step = <1>;
+ 	status = "okay";
+ };
  
-+config DWMAC_SPACEMIT
-+	tristate "Spacemit dwmac support"
-+	depends on OF && (ARCH_SPACEMIT || COMPILE_TEST)
-+	select MFD_SYSCON
-+	default m if ARCH_SPACEMIT
-+	help
-+	  Support for ethernet controllers on Spacemit RISC-V SoCs
-+
-+	  This selects the Spacemit platform specific glue layer support
-+	  for the stmmac device driver. This driver is used for the
-+	  Spacemit K3 ethernet controllers.
-+
- config DWMAC_STARFIVE
- 	tristate "StarFive dwmac support"
- 	depends on OF && (ARCH_STARFIVE || COMPILE_TEST)
-diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/drivers/net/ethernet/stmicro/stmmac/Makefile
-index 7bf528731034..9e32045631d8 100644
---- a/drivers/net/ethernet/stmicro/stmmac/Makefile
-+++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
-@@ -27,6 +27,7 @@ obj-$(CONFIG_DWMAC_RZN1)	+= dwmac-rzn1.o
- obj-$(CONFIG_DWMAC_S32)		+= dwmac-s32.o
- obj-$(CONFIG_DWMAC_SOCFPGA)	+= dwmac-altr-socfpga.o
- obj-$(CONFIG_DWMAC_SOPHGO)	+= dwmac-sophgo.o
-+obj-$(CONFIG_DWMAC_SPACEMIT)	+= dwmac-spacemit.o
- obj-$(CONFIG_DWMAC_STARFIVE)	+= dwmac-starfive.o
- obj-$(CONFIG_DWMAC_STI)		+= dwmac-sti.o
- obj-$(CONFIG_DWMAC_STM32)	+= dwmac-stm32.o
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-spacemit.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-spacemit.c
-new file mode 100644
-index 000000000000..d5cb91182963
---- /dev/null
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-spacemit.c
-@@ -0,0 +1,218 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Spacemit DWMAC platform driver
-+ *
-+ * Copyright (C) 2026 Inochi Amaoto <inochiama@gmail.com>
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/math.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+#include <linux/regmap.h>
-+
-+#include "stmmac_platform.h"
-+
-+/* ctrl register bits */
-+#define PHY_INTF_RGMII			BIT(3)
-+#define PHY_INTF_MII			BIT(4)
-+
-+#define WAKE_IRQ_EN			BIT(9)
-+#define PHY_IRQ_EN			BIT(12)
-+
-+/* dline register bits */
-+#define RGMII_RX_DLINE_EN		BIT(0)
-+#define RGMII_RX_DLINE_STEP		GENMASK(5, 4)
-+#define RGMII_RX_DLINE_CODE		GENMASK(15, 8)
-+#define RGMII_TX_DLINE_EN		BIT(16)
-+#define RGMII_TX_DLINE_STEP		GENMASK(21, 20)
-+#define RGMII_TX_DLINE_CODE		GENMASK(31, 24)
-+
-+#define MAX_DLINE_DELAY_CODE		0xff
-+#define MAX_WORKED_DELAY		2800
-+
-+/* Note: the delay step value is at 0.1ps */
-+static const unsigned int k3_delay_step_10x[4] = {
-+	367, 493, 559, 685
-+};
-+
-+static int spacemit_dwmac_set_delay(struct regmap *apmu,
-+				    unsigned int dline_offset,
-+				    unsigned int tx_code, unsigned int tx_config,
-+				    unsigned int rx_code, unsigned int rx_config)
-+{
-+	unsigned int mask, val;
-+
-+	mask = RGMII_TX_DLINE_STEP | RGMII_TX_DLINE_CODE | RGMII_TX_DLINE_EN |
-+	       RGMII_RX_DLINE_STEP | RGMII_RX_DLINE_CODE | RGMII_RX_DLINE_EN;
-+	val = FIELD_PREP(RGMII_TX_DLINE_STEP, tx_config) |
-+	      FIELD_PREP(RGMII_TX_DLINE_CODE, tx_code) | RGMII_TX_DLINE_EN |
-+	      FIELD_PREP(RGMII_RX_DLINE_STEP, rx_config) |
-+	      FIELD_PREP(RGMII_RX_DLINE_CODE, rx_code) | RGMII_RX_DLINE_EN;
-+
-+	return regmap_update_bits(apmu, dline_offset, mask, val);
-+}
-+
-+static int spacemit_dwmac_detected_delay_value(unsigned int delay,
-+					       unsigned int *config)
-+{
-+	unsigned int best_delay = 0;
-+	unsigned int best_config = 0;
-+	int best_code = 0;
-+	int i;
-+
-+	if (delay == 0)
-+		return 0;
-+
-+	if (delay > MAX_WORKED_DELAY)
-+		return -EINVAL;
-+
-+	/*
-+	 * Note K3 require a specific factor for calculate
-+	 * the delay, in this scenario it is 0.9. So the
-+	 * formula is code * step / 10 * 0.9
-+	 */
-+	for (i = 0; i < ARRAY_SIZE(k3_delay_step_10x); i++) {
-+		unsigned int step = k3_delay_step_10x[i];
-+		int code = DIV_ROUND_CLOSEST(delay * 10 * 10, step * 9);
-+		unsigned int tmp = code * step * 9 / 10 / 10;
-+
-+		if (abs(tmp - delay) < abs(best_delay - delay)) {
-+			best_code = code;
-+			best_delay = tmp;
-+			best_config = i;
-+		}
-+	}
-+
-+	*config = best_config;
-+
-+	return best_code;
-+}
-+
-+static int spacemit_dwmac_fix_delay(struct plat_stmmacenet_data *plat_dat,
-+				    struct regmap *apmu,
-+				    unsigned int dline_offset,
-+				    unsigned int tx_delay, unsigned int rx_delay)
-+{
-+	unsigned int rx_config = 0;
-+	unsigned int tx_config = 0;
-+	int rx_code;
-+	int tx_code;
-+
-+	rx_code = spacemit_dwmac_detected_delay_value(rx_delay, &rx_config);
-+	if (rx_code < 0)
-+		return rx_code;
-+
-+	tx_code = spacemit_dwmac_detected_delay_value(tx_delay, &tx_config);
-+	if (tx_code < 0)
-+		return tx_code;
-+
-+	return spacemit_dwmac_set_delay(apmu, dline_offset,
-+					tx_code, tx_config,
-+					rx_code, rx_config);
-+}
-+
-+static int spacemit_dwmac_update_ifconfig(struct plat_stmmacenet_data *plat_dat,
-+					  struct stmmac_resources *stmmac_res,
-+					  struct regmap *apmu,
-+					  unsigned int ctrl_offset)
-+{
-+	unsigned int mask = PHY_INTF_MII | PHY_INTF_RGMII | WAKE_IRQ_EN;
-+	unsigned int val = 0;
-+
-+	switch (plat_dat->phy_interface) {
-+	case PHY_INTERFACE_MODE_MII:
-+		val = PHY_INTF_MII;
-+		break;
-+
-+	case PHY_INTERFACE_MODE_RMII:
-+		break;
-+
-+	case PHY_INTERFACE_MODE_RGMII:
-+	case PHY_INTERFACE_MODE_RGMII_ID:
-+	case PHY_INTERFACE_MODE_RGMII_RXID:
-+	case PHY_INTERFACE_MODE_RGMII_TXID:
-+		val = PHY_INTF_RGMII;
-+		break;
-+
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+
-+	if (stmmac_res->wol_irq >= 0)
-+		val |= WAKE_IRQ_EN;
-+
-+	return regmap_update_bits(apmu, ctrl_offset, mask, val);
-+}
-+
-+static int spacemit_dwmac_probe(struct platform_device *pdev)
-+{
-+	struct plat_stmmacenet_data *plat_dat;
-+	struct stmmac_resources stmmac_res;
-+	struct device *dev = &pdev->dev;
-+	unsigned int offset[2];
-+	struct regmap *apmu;
-+	struct clk *clk_tx;
-+	u32 rx_delay = 0;
-+	u32 tx_delay = 0;
-+	int ret;
-+
-+	ret = stmmac_get_platform_resources(pdev, &stmmac_res);
-+	if (ret)
-+		return dev_err_probe(dev, ret,
-+				     "failed to get platform resources\n");
-+
-+	plat_dat = devm_stmmac_probe_config_dt(pdev, stmmac_res.mac);
-+	if (IS_ERR(plat_dat))
-+		return dev_err_probe(dev, PTR_ERR(plat_dat),
-+				     "failed to parse DT parameters\n");
-+
-+	clk_tx = devm_clk_get_enabled(&pdev->dev, "tx");
-+	if (IS_ERR(clk_tx))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(clk_tx),
-+				     "failed to get tx clock\n");
-+
-+	apmu = syscon_regmap_lookup_by_phandle_args(pdev->dev.of_node, "spacemit,apmu", 2, offset);
-+	if (IS_ERR(apmu))
-+		return dev_err_probe(dev, PTR_ERR(apmu),
-+				"Failed to get apmu regmap\n");
-+
-+	ret = spacemit_dwmac_update_ifconfig(plat_dat, &stmmac_res,
-+					     apmu, offset[0]);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to configure ifconfig\n");
-+
-+	of_property_read_u32(pdev->dev.of_node, "tx-internal-delay-ps", &tx_delay);
-+	of_property_read_u32(pdev->dev.of_node, "rx-internal-delay-ps", &rx_delay);
-+
-+	ret = spacemit_dwmac_fix_delay(plat_dat, apmu, offset[1], tx_delay, rx_delay);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to configure delay\n");
-+
-+	return stmmac_dvr_probe(dev, plat_dat, &stmmac_res);
-+}
-+
-+static const struct of_device_id spacemit_dwmac_match[] = {
-+	{ .compatible = "spacemit,k3-dwmac" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, spacemit_dwmac_match);
-+
-+static struct platform_driver spacemit_dwmac_driver = {
-+	.probe  = spacemit_dwmac_probe,
-+	.remove = stmmac_pltfr_remove,
-+	.driver = {
-+		.name = "spacemit-dwmac",
-+		.pm = &stmmac_pltfr_pm_ops,
-+		.of_match_table = spacemit_dwmac_match,
-+	},
-+};
-+module_platform_driver(spacemit_dwmac_driver);
-+
-+MODULE_AUTHOR("Inochi Amaoto <inochiama@gmail.com>");
-+MODULE_DESCRIPTION("Spacemit DWMAC platform driver");
-+MODULE_LICENSE("GPL");
+@@ -519,6 +520,7 @@ &usdhc2 {
+ 	vmmc-supply = <&reg_usdhc2_vmmc>;
+ 	bus-width = <4>;
+ 	no-mmc;
++	fsl,tuning-step = <1>;
+ 	status = "okay";
+ };
+ 
 -- 
-2.52.0
+2.34.1
 
 
