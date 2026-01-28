@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-260496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260498-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kIXQFHg2eml+4gEAu9opvQ
-	(envelope-from <devicetree+bounces-260496-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 17:16:56 +0100
+	id sBWXB64uemlq3wEAu9opvQ
+	(envelope-from <devicetree+bounces-260498-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 16:43:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A679FA5601
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 17:16:55 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9B82A44E1
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 16:43:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 478D1318A88B
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 15:39:17 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 126923056482
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 15:39:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA62C2F3C30;
-	Wed, 28 Jan 2026 15:38:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A86A42F659C;
+	Wed, 28 Jan 2026 15:38:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2E512DE71D
-	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 15:38:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECD942ECD1B
+	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 15:38:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769614722; cv=none; b=LZsRp9n1PlMqynqqwcYT3P8A76ypc0bzuJ8C5nSVwat+SGDlaipx6qguuUo4Ogg0OWD0KJPEpeAmbrzdfhX4cxZNg3bGbeiY/Sl8m2gExnbJ6dd74eodZxTPcDvwHzPvuQcg/W8F5UuLthtVuGqUzl2iCaMxikMs88JfIW5mHU4=
+	t=1769614723; cv=none; b=ZGPhtqaQX+4p90bVYeyAgqUSIb3D2o+fHhmnZX3pyJgNNPb/tCkSfwXtgi16J5BIncHjyEHKpGkeba1Utm7uLAv54h3uDj/Y3LWG+kp6jFclZQZ0Fc2fx822Z6yOylTeeHwq2HROT0x1dHcj2QK3XvC8OqsCYNkMqznp9+q0qSQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769614722; c=relaxed/simple;
-	bh=ilau8yL6huoGlzY1yLTbGIzny37UcmWhmrfY2LugRYA=;
+	s=arc-20240116; t=1769614723; c=relaxed/simple;
+	bh=8OlP/76Ew+hhf0/5eOzjr5oQG0D+UPVg93zLkxqIWvE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=O8PG2ic4iquHO1rBA/irl8OP19cPU2ycHr8aQRgJ6kt4/FJEjh089boCftQr34W3iP1yw3Fgz9+WCmuUbgiT/zewokB82pUQN3YmKojZWhORRuiNPQMzzqvCZeZ3m1hZEO0mc/wxS0DZsJ4dXnRGFD94dHXutpn5/EawUrQDZus=
+	 MIME-Version; b=gwELsSC26hh1WaUX3NoSqVzFw2CgOKYSDlB+Jv7fjOUfMlSCck4PZV17TvYoUoMmTgCsavjFzilnEL5d4/6oFDvw8DFuZzV1rRvJeC7BfQ2YqMTFB5Yw0MaCpxPAuZRkM4FsC8rBYN5v/nOM1H9gAh6Q75eKC3MpQNifCJZdMaY=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
@@ -36,16 +36,16 @@ Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <ore@pengutronix.de>)
-	id 1vl7cg-0003os-Nh; Wed, 28 Jan 2026 16:38:26 +0100
+	id 1vl7cg-0003ot-Nh; Wed, 28 Jan 2026 16:38:26 +0100
 Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac] helo=dude04)
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.96)
 	(envelope-from <ore@pengutronix.de>)
-	id 1vl7cg-002wSO-2k;
+	id 1vl7cg-002wSR-2p;
 	Wed, 28 Jan 2026 16:38:26 +0100
 Received: from ore by dude04 with local (Exim 4.98.2)
 	(envelope-from <ore@pengutronix.de>)
-	id 1vl7cg-0000000FRAE-0LUK;
+	id 1vl7cg-0000000FRAO-0SOw;
 	Wed, 28 Jan 2026 16:38:26 +0100
 From: Oleksij Rempel <o.rempel@pengutronix.de>
 To: Jonathan Cameron <jic23@kernel.org>,
@@ -53,7 +53,6 @@ To: Jonathan Cameron <jic23@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>
 Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
-	Conor Dooley <conor.dooley@microchip.com>,
 	kernel@pengutronix.de,
 	linux-kernel@vger.kernel.org,
 	linux-iio@vger.kernel.org,
@@ -62,9 +61,9 @@ Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
 	David Lechner <dlechner@baylibre.com>,
 	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
 	David Jander <david@protonic.nl>
-Subject: [PATCH v3 4/8] dt-bindings: iio: dac: maxim,ds4424: add ds4402/ds4404
-Date: Wed, 28 Jan 2026 16:38:20 +0100
-Message-ID: <20260128153824.3679187-5-o.rempel@pengutronix.de>
+Subject: [PATCH v3 5/8] dt-bindings: iio: dac: maxim,ds4424: add maxim,rfs-ohms property
+Date: Wed, 28 Jan 2026 16:38:21 +0100
+Message-ID: <20260128153824.3679187-6-o.rempel@pengutronix.de>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260128153824.3679187-1-o.rempel@pengutronix.de>
 References: <20260128153824.3679187-1-o.rempel@pengutronix.de>
@@ -85,7 +84,7 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -93,9 +92,9 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	DMARC_NA(0.00)[pengutronix.de];
 	RCVD_COUNT_FIVE(0.00)[6];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-260496-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-260498-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
@@ -103,54 +102,98 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	NEURAL_HAM(-0.00)[-0.995];
 	FROM_NEQ_ENVFROM(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,devicetree.org:url,maximintegrated.com:url,pengutronix.de:mid,pengutronix.de:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: A679FA5601
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:mid,pengutronix.de:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C9B82A44E1
 X-Rspamd-Action: no action
 
-Add compatible strings for Maxim DS4402 and DS4404 current DACs.
-These devices are 5-bit variants of the DS4422/DS4424 family.
+The Maxim DS4422/DS4424 and DS4402/DS4404 current DACs determine their
+full-scale output current via external resistors (Rfs) connected to the
+FSx pins. Without knowing these values, the full-scale range of the
+hardware is undefined.
+
+Add the 'maxim,rfs-ohms' property to describe these physical components.
+This property is required to provide a complete description of the
+hardware configuration.
 
 Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
 ---
 changes v3:
-- No changes.
+- Moved minItems and maxItems to the main property definition
+- Refined property description to state that values depend on chip
+  variant and hardware requirements, deliberately avoiding specific
+  "typical" ranges to prevent unnecessary hard-limit enforcement.
+- Corrected the rfs-ohms example to use a plausible value within
+  datasheet typical range.
+- Removed redundant constraint definitions from the allOf logic.
 changes v2:
-  - add Acked-by: Conor ..
+- make maxim,rfs-ohms a required property as the hardware range is undefined
+  without external resistors.
+- add allOf constraints to enforce 2 vs 4 items in maxim,rfs-ohms based on
+  compatible string.
+- drop explicit $ref for maxim,rfs-ohms to fix dt_binding_check warning.
+- update example in binding to include the new required property.
 ---
- .../devicetree/bindings/iio/dac/maxim,ds4424.yaml          | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ .../bindings/iio/dac/maxim,ds4424.yaml        | 35 +++++++++++++++++++
+ 1 file changed, 35 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/iio/dac/maxim,ds4424.yaml b/Documentation/devicetree/bindings/iio/dac/maxim,ds4424.yaml
-index 264fa7c5fe3a..efe63e6cb55d 100644
+index efe63e6cb55d..4323df2036ac 100644
 --- a/Documentation/devicetree/bindings/iio/dac/maxim,ds4424.yaml
 +++ b/Documentation/devicetree/bindings/iio/dac/maxim,ds4424.yaml
-@@ -4,18 +4,21 @@
- $id: http://devicetree.org/schemas/iio/dac/maxim,ds4424.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
+@@ -27,9 +27,43 @@ properties:
  
--title: Maxim Integrated DS4422/DS4424 7-bit Sink/Source Current DAC
-+title: Maxim Integrated DS4402/DS4404 and DS4422/DS4424 Current DACs
+   vcc-supply: true
  
- maintainers:
-   - Ismail Kose <ihkose@gmail.com>
++  maxim,rfs-ohms:
++    description: |
++      Array of resistance values in Ohms for the external Rfs resistors
++      connected to the FS pins. These values determine the full-scale
++      output current. The actual resistance depends on the chip variant
++      and specific hardware design requirements.
++    minItems: 2
++    maxItems: 4
++
+ required:
+   - compatible
+   - reg
++  - maxim,rfs-ohms
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - maxim,ds4402
++              - maxim,ds4422
++    then:
++      properties:
++        maxim,rfs-ohms:
++          maxItems: 2
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - maxim,ds4404
++              - maxim,ds4424
++    then:
++      properties:
++        maxim,rfs-ohms:
++          minItems: 4
  
- description: |
--  Datasheet publicly available at:
-+  Datasheets publicly available at:
-+  https://datasheets.maximintegrated.com/en/ds/DS4402-DS4404.pdf
-   https://datasheets.maximintegrated.com/en/ds/DS4422-DS4424.pdf
+ additionalProperties: false
  
- properties:
-   compatible:
-     enum:
-+      - maxim,ds4402
-+      - maxim,ds4404
-       - maxim,ds4422
-       - maxim,ds4424
- 
+@@ -43,6 +77,7 @@ examples:
+             compatible = "maxim,ds4424";
+             reg = <0x10>; /* When A0, A1 pins are ground */
+             vcc-supply = <&vcc_3v3>;
++            maxim,rfs-ohms = <40000>, <40000>, <40000>, <40000>;
+         };
+     };
+ ...
 -- 
 2.47.3
 
