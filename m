@@ -1,92 +1,109 @@
-Return-Path: <devicetree+bounces-260632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260633-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eLQfGAB4emmE6wEAu9opvQ
-	(envelope-from <devicetree+bounces-260632-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:56:32 +0100
+	id 6ALYHuZ3emmE6wEAu9opvQ
+	(envelope-from <devicetree+bounces-260633-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:56:06 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E64A0A8E02
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:56:31 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E816A8DE4
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 21:56:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 69B36302F3A0
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 20:51:55 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id EE35E30055D4
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jan 2026 20:56:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3952F374734;
-	Wed, 28 Jan 2026 20:51:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 165F237647B;
+	Wed, 28 Jan 2026 20:56:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="I6NQOWhG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VT7u2N7M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com [209.85.221.67])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E1A318027;
-	Wed, 28 Jan 2026 20:51:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B68737475D
+	for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 20:55:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.67
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769633513; cv=none; b=CIfCAwV+r21P9KhB7cUsqnSTMyvkInrCPgNgaoiaOakT9S4y/kiFuzKqwTGcGbXmJzRAXcrvmvr0YvpCulyRGfj50/Bpu7tR+Q2myRZX37oxO+vhNF8hDewBzG5sNEu7uPYJfZ6fDP+RQDA7iqAp/PS9kR0I/UhfEKTvNiamHWk=
+	t=1769633760; cv=none; b=lWo/i41V7oM3lEy4J09wuZdjDW81GnI6+smPAIidEYwVCgnFV/0QSCFn/xe8AfvvqsiWr5N3MUPBvncNJuV2HghuUqls+acwkBuDKE7q5jUEzHdiLECTMADswzzKmIofUBWWy0jdXClwZWgaBB1Mqkc/LMTeyEnhTKl7tPpjdxo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769633513; c=relaxed/simple;
-	bh=ha8O6xBwkZSEe2x4SwRua9ejKFac6uo5R6gUfiFhrL0=;
+	s=arc-20240116; t=1769633760; c=relaxed/simple;
+	bh=gMQepSK8f7qhYnYkO0okMJg/16Om5zTTPa+WGPVbmyU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rR77NEKSak6/hjuCcWkDdlJ04OpqOw4dn5ptt2+TlSfTBzyexqUYrFmFKVPGw6VKVmyjjoB2KIS/FlXyWfG1NYe+28P0MGLDFZsRovtCDSXzsyPGG4DIBljR0cMukz8i5fzJcUNGOuz1oly//nCHIFuSmQVcUlKKh8kRZoR8hwM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=I6NQOWhG; arc=none smtp.client-ip=198.175.65.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1769633512; x=1801169512;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ha8O6xBwkZSEe2x4SwRua9ejKFac6uo5R6gUfiFhrL0=;
-  b=I6NQOWhGeAkK+895bW3tbBrhhF2YTnCE/kS+S/MpUoXivlOZugZijLv4
-   29Gr8Yr/ktom6jdU9T2g2u35ByoH8GSFeSDzHFyDio6UvR98e7xSsslwS
-   9eKS2haefkPYsQfyjyH689m43nkGrOQ9OJr0t6hbTuxXMlNNQ4a2Pa1M+
-   Pf/44EckXFy07lFlEGpdKq1LwBHkoSJVMTpmwCxNne07IEytx1X96Fnh5
-   Vuriz90MBdduX8NHdkZuIYGeEj+SeCJHrjwEiwMfxg0C9+QvFojabRrM3
-   mRmHAr2L/rcG/kQ27F+46m/8mjoyAKLFYJ6tAD6562bBWPRm51tu4wpNM
-   w==;
-X-CSE-ConnectionGUID: sKtiKRU8SkWIOryzL7/HTA==
-X-CSE-MsgGUID: 5eWT0QOGR5ikcBRE68r5JA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11685"; a="74707655"
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; 
-   d="scan'208";a="74707655"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jan 2026 12:51:48 -0800
-X-CSE-ConnectionGUID: ycrchlomTX6zgh1lpCciQw==
-X-CSE-MsgGUID: Zz6Zga9YSyWrIn4dTFUbww==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; 
-   d="scan'208";a="207971392"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by fmviesa007.fm.intel.com with ESMTP; 28 Jan 2026 12:51:41 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vlCVm-00000000anM-33eF;
-	Wed, 28 Jan 2026 20:51:38 +0000
-Date: Thu, 29 Jan 2026 04:51:33 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>, jic23@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	agross@kernel.org, andersson@kernel.org, lumag@kernel.org,
-	dmitry.baryshkov@oss.qualcomm.com, konradybcio@kernel.org,
-	daniel.lezcano@linaro.org, sboyd@kernel.org, amitk@kernel.org,
-	thara.gopinath@gmail.com, lee@kernel.org, rafael@kernel.org,
-	subbaraman.narayanamurthy@oss.qualcomm.com,
-	david.collins@oss.qualcomm.com, anjelique.melendez@oss.qualcomm.com,
-	kamal.wadhwa@oss.qualcomm.com
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	rui.zhang@intel.com, lukasz.luba@arm.com,
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, cros-qcom-dts-watchers@chromium.org,
-	jishnu.prakash@oss.qualcomm.com, quic_kotarake@quicinc.com,
-	neil.armstrong@linaro.org
-Subject: Re: [PATCH V9 4/4] thermal: qcom: add support for PMIC5 Gen3 ADC
- thermal monitoring
-Message-ID: <202601290438.IXYMj3d2-lkp@intel.com>
-References: <20260128112420.695518-5-jishnu.prakash@oss.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ROsM078IlnNcKWhHnOY+Ge3lFg+yFmv0rqliGZ0Jxft3vqXmCZWwgd4Hlg33LrpLr5jRJlsuERciX8tNJYsYc/HGHICpEnRNnhf/UMlsHNMZ2GK82CpCybcdN2B5YBqkrJzWkyNYX8OnX0dvTKW2VvdwwSXUzno5oeEoXPy/a8w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VT7u2N7M; arc=none smtp.client-ip=209.85.221.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f67.google.com with SMTP id ffacd0b85a97d-432d2885c85so39281f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 12:55:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1769633757; x=1770238557; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=inVrPakEQC1UyRcMQR3934qNzhI0Dd0xU2zpnTM65tM=;
+        b=VT7u2N7MwolAOKiNA76rzxqPWsLNUtCaKicyspyfrf0N7xzotXYGPbZ5Vy4sm1voAg
+         2WJNvKNPMCv3my2TqQRytNXDU6rrExB4JvvyH79eTWZfQMQS7InSiKxSE/e9zIm0GElP
+         ZCQ6q/QXmuGEBQcdCtE51et59LdyB0Tu4DU/N/9DPP0cTIFZndn6YiJ/GqXXeiL/2V6A
+         oeOdF5Fi8UYmUGaqzDu1a78U8liBDmXpgRAuA8LMn76z7OEhkYxngHSzYB5rQvf4XjbE
+         AXP5i5XTGKyfk89PfLryZ/y8mS0MYapiXtTOn5MPjMdt7AB0abGl/tB918+crtj8kdKz
+         WDVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769633757; x=1770238557;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=inVrPakEQC1UyRcMQR3934qNzhI0Dd0xU2zpnTM65tM=;
+        b=G3fDUDB2sz8c10wzajixmedVO96wsNlaoNsa5uw0ALZTGJusuixzusdwPnSWYquf1N
+         iOrQO+SFWEIkFg2sNAHYQJaRJi3lp9iDW4YdiJHgUsCN8jnR3l3in1v7xR7s8r9Ib5PN
+         67jUfUQFsaw+4q13M7zSWKwYtyu+SFQUutzqPxgxc9jwTNk3OxkEgEY3XwNzMUaS1gUx
+         U2+8IK97XPczwjrajjcoYqHHvzDKpWq7WIpXrRluzHtPYWyLQqacQSUSFmTIgTOrUm5e
+         ynZHTVXne+snztC4Yj3yXY/DQIoe15B7UkACyQtCY3FtQLZboOWaqPfzzzBcgVgKU2Fy
+         2jKQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUKoMOc6cQT5xoI+bDdVRBctEHZk+ngdaR/mZ9MfM2iG1Tir5PfN6k1nnH4Ee6/5Oe1I+uj2vpScNZ7@vger.kernel.org
+X-Gm-Message-State: AOJu0YxePN89F+B1LNakZFcubMBFgJ2AdmeJr5Fh0Q3I7zm2RIbQDjb1
+	WTlLGYp3/mAuoyJJdcxbfvNcgICTj0tzVSpUeQVekswxXUI9GoZaVJuJ
+X-Gm-Gg: AZuq6aIc8YpOe+9LUhZ/YP+HhPVoW6CMZlzylp9dW2A38mIfszThkR+1PnZN7CbCXrr
+	msaXZhdlMC4Qw10/jnf+K/8cH8A7bqs3nnWXWNOvMzPncNIk1lWT/u/5jLBrmO5SmoFuBcWsFs2
+	KuAT5u65MOapTwZ9aPdYPvAaIAHh07W+EXR8LrJj8bh2EBY4HbWG9/LOvOPQbXU+bizu/JpGCpE
+	HRUCzdBcwDX1oOqqxXvT20gjDlWIoRex1Uaq4Hf1MVsjgqh9gbvtAdVtPSysI8RrX01QQp0YmA2
+	OPtV0yRHBxrCmRAkTgN6eqGCgtHLmHRGCufMuO8XguPSiUuU8iyFGZDgNK31bXgtn/n5RgCN+P/
+	BSiLoec7WdjyxQfKkMkI4xbcO88o4wzhSJtgYCg9nC+5QWlje9IJRFxVwhaYEKal45t4eHqWBsY
+	Tcvg==
+X-Received: by 2002:a05:600c:34cd:b0:471:3b6:e24 with SMTP id 5b1f17b1804b1-48073cc37cemr10857405e9.8.1769633756442;
+        Wed, 28 Jan 2026 12:55:56 -0800 (PST)
+Received: from skbuf ([2a02:2f04:d501:d900:6c51:3f46:e918:f0b])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435e10f82aesm10032262f8f.19.2026.01.28.12.55.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Jan 2026 12:55:55 -0800 (PST)
+Date: Wed, 28 Jan 2026 22:55:52 +0200
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Simon Horman <horms@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Frank Wunderlich <frankwu@gmx.de>, Chad Monroe <chad@monroe.io>,
+	Cezary Wilmanski <cezary.wilmanski@adtran.com>,
+	Avinash Jayaraman <ajayaraman@maxlinear.com>,
+	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
+	Juraj Povazanec <jpovazanec@maxlinear.com>,
+	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
+	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
+	"Livia M. Rosu" <lrosu@maxlinear.com>,
+	John Crispin <john@phrozen.org>
+Subject: Re: [PATCH net-next v9 4/4] net: dsa: add basic initial driver for
+ MxL862xx switches
+Message-ID: <20260128205552.2mheraoxodwqisns@skbuf>
+References: <cover.1769549559.git.daniel@makrotopia.org>
+ <35ba37bee00af9de047e8ac49fcd739f10736f84.1769549559.git.daniel@makrotopia.org>
+ <20260128112950.q2kzl632w3jidyls@skbuf>
+ <aXo9MnBFuaj8d5Hv@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,134 +112,238 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260128112420.695518-5-jishnu.prakash@oss.qualcomm.com>
+In-Reply-To: <aXo9MnBFuaj8d5Hv@makrotopia.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[33];
-	URIBL_MULTI_FAIL(0.00)[intel.com:server fail,sea.lore.kernel.org:server fail,01.org:server fail];
-	TAGGED_FROM(0.00)[bounces-260632-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,linaro.org,gmail.com];
+	URIBL_MULTI_FAIL(0.00)[sin.lore.kernel.org:server fail];
+	TAGGED_FROM(0.00)[bounces-260633-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,armlinux.org.uk,vger.kernel.org,gmx.de,monroe.io,adtran.com,maxlinear.com,phrozen.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
+	FROM_NEQ_ENVFROM(0.00)[olteanv@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[01.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
-X-Rspamd-Queue-Id: E64A0A8E02
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 9E816A8DE4
 X-Rspamd-Action: no action
 
-Hi Jishnu,
+On Wed, Jan 28, 2026 at 04:45:38PM +0000, Daniel Golle wrote:
+> > > +static int mxl862xx_configure_tag_proto(struct dsa_switch *ds, int port, bool enable)
+> > > +{
+> > > +	struct mxl862xx_ctp_port_assignment assign = {
+> > > +		.number_of_ctp_port = cpu_to_le16(enable ? (32 - DSA_MXL_PORT(port)) : 1),
+> > > +		.logical_port_id = DSA_MXL_PORT(port),
+> > > +		.first_ctp_port_id = cpu_to_le16(DSA_MXL_PORT(port)),
+> > > +		.mode = cpu_to_le32(MXL862XX_LOGICAL_PORT_ETHERNET),
+> > 
+> > I have a really hard time understanding the physical port to CTP port
+> > mapping here. Specifically, I see you allocate 1 CTP port (sub-interface)
+> > per user port, and the rest up to 32 CTP ports as sub-interfaces of the
+> > DSA CPU port.
+> > 
+> > But I can only see this working if the index of the DSA CPU port is the
+> > last. Otherwise, won't the CTP port IDs of user ports subsequent to the
+> > DSA CPU port overlap with sub-interfaces of the latter?
+> > 
+> > Example:
+> > mxl862xx_configure_tag_proto(ds, 3, true) // CPU port
+> > -> .number_of_ctp_port = cpu_to_le16(32 - DSA_MXL_PORT(3)), // 28
+> > -> .logical_port_id = DSA_MXL_PORT(3), // 4
+> > -> .first_ctp_port_id = cpu_to_le16(DSA_MXL_PORT(3)), // 4
+> > mxl862xx_configure_tag_proto(ds, 4, false) // user port
+> > -> .number_of_ctp_port = cpu_to_le16(1), // 1
+> > -> .logical_port_id = DSA_MXL_PORT(4), // 5
+> > -> .first_ctp_port_id = cpu_to_le16(DSA_MXL_PORT(4)), // 5
+> > 
+> > Doesn't the CTP port ID of user port 4 (5) collide with sub-interface 2
+> > of CPU port 3?
+> 
+> Absolutely true. It works coincidental because only SerDes port 0
+> (port_id 9) is allowed to be CPU port. When using SerDes port 1
+> (port_id 13) as a user port it already starts to be tricky and more care
+> needs to be taken when setting up CTP port assignment...
+> 
+> Now that I understand more of what it actually does I'll try to come up
+> with something smarter.
 
-kernel test robot noticed the following build warnings:
+I think the next step is to figure out how to best allocate the
+limited sub-interfaces for the CPU port depending on what is actually
+needed from them, because...
 
-[auto build test WARNING on 63804fed149a6750ffd28610c5c1c98cce6bd377]
+> > If the hardware supports multiple CPU ports, then please describe all
+> > CPU ports as such in the device tree, and make an effort to handle that
+> > description gracefully even if you cannot make use of the second CPU port.
+> 
+> The number of available CTP (32) limits the possible setup for CPU ports.
+> The reference driver only allows port_id 9 (SerDes 0) to be used as CPU
+> port. SerDes 1 may also be used as CPU port in theory.
+> 
+> > See the rules by which dsa_tree_setup_cpu_ports() creates the initial
+> > user to CPU port mapping. This avoids a future breakage you'll cause
+> > with old kernels when you update the device tree to describe the second
+> > CPU port for what it is.
+> 
+> Understood. On old kernel, lets assume with this basic driver just added
+> but future DT with more than one CPU port described one should still end
+> up with the first CPU port used and all ports assigned to that CPU port.
+> Right?
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jishnu-Prakash/dt-bindings-iio-adc-Split-out-QCOM-VADC-channel-properties/20260128-193116
-base:   63804fed149a6750ffd28610c5c1c98cce6bd377
-patch link:    https://lore.kernel.org/r/20260128112420.695518-5-jishnu.prakash%40oss.qualcomm.com
-patch subject: [PATCH V9 4/4] thermal: qcom: add support for PMIC5 Gen3 ADC thermal monitoring
-config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20260129/202601290438.IXYMj3d2-lkp@intel.com/config)
-compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260129/202601290438.IXYMj3d2-lkp@intel.com/reproduce)
+...with multiple CPU ports, calls such as dsa_switch_for_each_cpu_port()
+will enumerate them all. The second CPU port will exist and will be set
+up like all others (including mxl862xx_configure_tag_proto()), it's just
+that no user port will be mapped to it (dp->cpu_dp will all point to the
+first CPU port).
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202601290438.IXYMj3d2-lkp@intel.com/
+> > > [...]
+> > > +#define MXL862XX_MAX_PHY_PORT_NUM	8
+> > > +#define MXL862XX_MAX_EXT_PORT_NUM	7
+> > > +#define MXL862XX_MAX_PORT_NUM		(MXL862XX_MAX_PHY_PORT_NUM + \
+> > > +					 MXL862XX_MAX_EXT_PORT_NUM)
+> > 
+> > 8 + 7 == 15. This is written into ds->num_ports.
+> 
+> Good you are asking this. It's another oddity which came from the vendor
+> driver. It's wrong in many ways, see below.
 
-All warnings (new ones prefixed by >>):
+Ok, so in the next revision you'll set it to 17 according to the table
+below, right?
 
->> drivers/thermal/qcom/qcom-spmi-adc-tm5-gen3.c:180:9: warning: variable 'upper_set' is used uninitialized whenever 'if' condition is true [-Wsometimes-uninitialized]
-     180 |                                 if (ret)
-         |                                     ^~~
-   drivers/thermal/qcom/qcom-spmi-adc-tm5-gen3.c:188:9: note: uninitialized use occurs here
-     188 |                 if (!(upper_set || lower_set))
-         |                       ^~~~~~~~~
-   drivers/thermal/qcom/qcom-spmi-adc-tm5-gen3.c:180:5: note: remove the 'if' if its condition is always false
-     180 |                                 if (ret)
-         |                                 ^~~~~~~~
-     181 |                                         break;
-         |                                         ~~~~~
-   drivers/thermal/qcom/qcom-spmi-adc-tm5-gen3.c:171:17: note: initialize the variable 'upper_set' to silence this warning
-     171 |                 bool upper_set, lower_set;
-         |                               ^
-         |                                = 0
-   1 warning generated.
+> > Could you please explain how this agrees with the Kconfig help text:
+> > 	  These switches have two 10GE SerDes interfaces, one typically
+> > 	  used as CPU port.
+> > 	   MxL86282 has eight 2.5 Gigabit PHYs
+> > 	   MxL86252 has five 2.5 Gigabit PHYs
+> > 
+> > What are the extra port indices used for, and is it ok that MxL86282 and
+> > MxL86252 are registered with the same ds->num_ports value? This should
+> > be visible in the "devlink port" command - even unused ports have
+> > devlink instances.
+> 
+> This is probably because the SerDes ports also support 10G QXGMII PHYs
+> with 4x 2.5G TP ports connected via a single pair of 10G SerDes lanes.
+> In this case 4 port indexes are used for the 4 ports.
+> 
+> My understanding of the internal port IDs by now:
+> 	 MxL86282				MxL86252
+> port 0:  microcontroller			microcontroller
+> port 1:  PHY port 0				PHY port 0
+> port 2:  PHY port 1				PHY port 1
+> port 3:  PHY port 2				PHY port 2
+> port 4:  PHY port 3				PHY port 3
+> port 5:  PHY port 4				PHY port 4
+> port 6:  PHY port 5				n/c
+> port 7:  PHY port 6				n/c
+> port 8:  PHY port 7				n/c
+> port 9:  SerDes PCS 0				SerDes PCS 0
+> port 10: SerDes PCS 0 (QXGMII)			SerDes PCS 0 (QXGMII)
+> port 11: SerDes PCS 0 (QXGMII)			SerDes PCS 0 (QXGMII)
+> port 12: SerDes PCS 0 (QXGMII)			SerDes PCS 0 (QXGMII)
+
+For multi-port SerDes interfaces like 10G-QXGMII, technically each port
+has its own PCS (port 10 -> PCS 1, port 11 -> PCS 2, etc). But I think I
+understood the general idea. Maybe it would have been better to say
+"SerDes lane 0 PCS 0" etc.
+
+> port 13: SerDes PCS 1				SerDes PCS 1
+> port 14: SerDes PCS 1 (QXGMII)			SerDes PCS 1 (QXGMII)
+> port 15: SerDes PCS 1 (QXGMII)			SerDes PCS 1 (QXGMII)
+> port 16: SerDes PCS 1 (QXGMII)			SerDes PCS 1 (QXGMII)
+
+To be clear, what would be a proper name for the first column in this table?
+Physical ports, right?
+
+> MaxLinear seems to tell board designers to always use port 9 as CPU port
+> and port 13 for an SFP cage or for an additional single-port PHY.
+
+Ok, I assume that's what your board has as well. If I quickly run those
+numbers into mxl862_tag_xmit(), then I guess that if you wanted to ping
+each port (with cpu_port = 9), you'd set:
+
+         MXL862_SUBIF_ID			MXL862_IGP_EGP
+port 0:  7					9
+port 1:  8					9
+port 2:  9					9
+port 3:  10					9
+port 4:  11					9
+port 5:  12					9
+port 6:  13					9
+port 7:  14					9
+port 8:  15					9
+port 9:  16					9
+port 10: 17					9
+port 11: 18					9
+port 12: 19					9
+port 13: 20					9
+port 14: 21					9
+port 15: 22					9
+port 16: 23					9
+
+I wonder how those MXL862_SUBIF_ID values map to the .number_of_ctp_port
+configured by mxl862xx_configure_tag_proto(), which is 32 - DSA_MXL_PORT(9) == 22.
+So to target port 16, you'd need a MXL862_SUBIF_ID which is out of range,
+and results in an unrepresentable CTP index of 32. And subif_id values
+0..6 are unused. Something doesn't add up...
+
+Where does the 16 come from in the "usr_port + 16 - cpu_port" formula?
+
+> But this seem to be limitations of their current downstream driver
+> implementation and the hardware would be capable of using either
+> or both SerDes port as CPU port, and also support connecting a QXGMII PHY
+> to end up with 12 TP ports in total.
+
+Interesting. If your host SoC supported 10G-QXGMII, you could
+reconfigure both sides of that 10G SerDes interface on your existing
+board and test quad CPU ports just for fun and giggles.
+
+> Port 0 indeed turned out to be the microcontroller, I can confirm that
+> because it screams when poking it with IEEE1588v2 packets, which you
+> get to see in the kernel logs:
+> net eth1: Invalid source port, packet dropped, tag: 88 c3 0f 04 00 00 00 10
+>                                                                          ^^
+>                                           IGP/EGP is 0 here, Record-ID is 1
+> 
+> The datasheet says that Record-ID "[...] is used for logging information
+> for PTP and OAM packets".
+> 
+> And calling mxl862xx_port_disable() on it makes it shut up...
+
+In SJA1110 I could also ping the microcontroller by putting an IP
+address on that user port. I am shutting it down during probe time, in
+sja1110_disable_microcontroller(), and not relying on the firmware at all.
 
 
-vim +180 drivers/thermal/qcom/qcom-spmi-adc-tm5-gen3.c
+Maybe this is a stupid question, but I still don't quite grasp the purpose
+of the logical port + sub-interface scheme from its use.
 
-   159	
-   160	static void tm_handler_work(struct work_struct *work)
-   161	{
-   162		struct adc_tm5_gen3_chip *adc_tm5 = container_of(work, struct adc_tm5_gen3_chip,
-   163								 tm_handler_work);
-   164		int sdam_index = -1;
-   165		u8 tm_status[2] = { };
-   166		u8 buf[16] = { };
-   167	
-   168		for (int i = 0; i < adc_tm5->nchannels; i++) {
-   169			struct adc_tm5_gen3_channel_props *chan_prop = &adc_tm5->chan_props[i];
-   170			int offset = chan_prop->tm_chan_index;
-   171			bool upper_set, lower_set;
-   172			int ret, temp;
-   173			u16 code;
-   174	
-   175			scoped_guard(adc5_gen3, adc_tm5) {
-   176				if (chan_prop->sdam_index != sdam_index) {
-   177					sdam_index = chan_prop->sdam_index;
-   178					ret = adc5_gen3_tm_status_check(adc_tm5, sdam_index,
-   179									tm_status, buf);
- > 180					if (ret)
-   181						break;
-   182				}
-   183	
-   184				upper_set = ((tm_status[0] & BIT(offset)) && chan_prop->high_thr_en);
-   185				lower_set = ((tm_status[1] & BIT(offset)) && chan_prop->low_thr_en);
-   186			}
-   187	
-   188			if (!(upper_set || lower_set))
-   189				continue;
-   190	
-   191			code = get_unaligned_le16(&buf[2 * offset]);
-   192			dev_dbg(adc_tm5->dev, "ADC_TM threshold code:%#x\n", code);
-   193	
-   194			ret = adc5_gen3_therm_code_to_temp(adc_tm5->dev,
-   195							   &chan_prop->common_props,
-   196							   code, &temp);
-   197			if (ret) {
-   198				dev_err(adc_tm5->dev,
-   199					"Invalid temperature reading, ret = %d, code=%#x\n",
-   200					ret, code);
-   201				continue;
-   202			}
-   203	
-   204			chan_prop->last_temp = temp;
-   205			chan_prop->last_temp_set = true;
-   206			thermal_zone_device_update(chan_prop->tzd, THERMAL_TRIP_VIOLATED);
-   207		}
-   208	}
-   209	
+From what I could gather:
+- xmit from Linux targets the logical port ID of the CPU port, and a
+  sub-interface somehow in an implicit 1:1 association with user ports,
+  which seems under-dimensioned in the maximal scenario
+- the P-Mapper documentation says it can map one of {VLAN PCP, IP DSCP,
+  LAG ID} to a sub-interface, but this feature is left to the firmware
+  default state (MXL862XX_BRIDGE_PORT_CONFIG_MASK_EGRESS_CTP_MAPPING is
+  never set), so I cannot make any assumptions about its influence
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+I don't quite understand how these two uses interact.
 
