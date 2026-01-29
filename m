@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-260818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260820-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UIhwKrgze2lJCQIAu9opvQ
-	(envelope-from <devicetree+bounces-260818-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 11:17:28 +0100
+	id oNy8FuU0e2mGCQIAu9opvQ
+	(envelope-from <devicetree+bounces-260820-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 11:22:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3A0BAE7AC
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 11:17:27 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DF51AE94B
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 11:22:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id E27D0300BE3D
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 10:17:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 40465308A42A
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 10:17:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 550373815C3;
-	Thu, 29 Jan 2026 10:17:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 006E837FF49;
+	Thu, 29 Jan 2026 10:17:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B5ytokqH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iFpFXrpS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F22703385B6
-	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 10:16:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 212F9337BAA
+	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 10:16:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769681821; cv=none; b=fLbVivqcmK8JZGIZNyIV4Rz/8GBCO4p5At3C1Gkx0UQO/fZxLspc0xDTD/+2td2l5qwqDJrsQ303gU4FXZ5vpc5ugHkhsobmHPR1xW7FH1zxIU3hR9Dp17mb2Y9Xxy//r4KE3h9N19Z+K5sPLrBLX8Wqgf4HpuZmKTbdXHgYVW8=
+	t=1769681821; cv=none; b=fgQ964PVyFodh46HU51xOmikdHsJ3inJC8qOInwqebhD50sW4LYuIhO69WBJsM68knPPHEvqrO4JE8CRnMGWlDqfJpJtRVd1A5kxpPaAJoiS986rosyHxiN9KnRT9dcLKGjaq+Lkd4NV1NHL8XQSGn0jOoYY40gieuDehWFdoXI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1769681821; c=relaxed/simple;
-	bh=l53JAl1A5TRe2s7pqTepmBMNLndaNxM1i2f8fJ+CJTQ=;
+	bh=pqS0iTnZy+TD7iR+ETY3i6A5U7dU6kE1UlBEw/91Vl8=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=fW5WAGcrGIEQEsM98Hg+J0MGBUrDUnmoeev8yJMpGzfDdUG2fS7SljzXLKU+602RFL+q/+KHIi7aHeqpSr89PpPytKlg+8N0tNGq++FK2qOBOOJiQFOLXEC66FucmSEWK6Wrs5UcgdYbXHKgzCoNJ/Ys0wshv5ypHs/tzua2U6Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B5ytokqH; arc=none smtp.client-ip=209.85.128.52
+	 MIME-Version; b=m3j6I4x1+UucB+KlBNj7/e4F2ctOPI+B7CKFmu6GPlxKcF6wBy8q0U6Mze5sn/X8t0BOgq288Yo1gqDyudZrBU4GWF30fEPgd4Za4KiUVQvnQfF1GnixpWfP4xBW2nt4GAGvcs5J73kfyg1hEOtzs5TSpe2XTzbRTHsbAfrtqL0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iFpFXrpS; arc=none smtp.client-ip=209.85.128.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4806b43beb6so6029345e9.3
-        for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 02:16:57 -0800 (PST)
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4806f9e61f9so4193245e9.1
+        for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 02:16:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769681816; x=1770286616; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1769681817; x=1770286617; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Kt7uEiXTlV6e7nA3ca7sq5Y8eWxdpRVOenYUuxl1aik=;
-        b=B5ytokqHOXE6HNDPinSMT5WL3E00A3POWmFiXns1tIzGFYxou8yfE9ypera1dWGU3b
-         2JrbvoN8mlm7LJWiJnOurKJA3zIkNv3KxpbiWZ4hJRFsszkyLG2o3M6G88b6oj5QGFPJ
-         PruwM0jJF/mM9vHnN9+L2WccsWnqpxzKDtFKCnqsIFzlW7VIYdx6Jc2A2hvHt9JkBQMC
-         D8GEn352w4QfOrADzU2Y99uCSlhapdz+2OTxKt8A5JnNVxPZrLYC6sXWnMTMO13n/MNp
-         Z8DBx5aSC4FYjiKj4cJESGfpkii1fhiw8bTbfb9lTScPGLhQVNsPs34g1v+iQRa34UAZ
-         MDNg==
+        bh=Y9LVqcaf1ijJnoQzqgdsz1n58Lr+Jp/HnhYJrE/7aVo=;
+        b=iFpFXrpSa8KAf2guM8KgUqlm1ytElYjCvdI37uQ7u8sZs7K+yEt9uZwPVtLrXZVfox
+         T7bta40U5Ksxk10svj3Q5d2wNyZIqyOBjXzuq7pVSaJO9aHJKiOYZ54tbZAI5GtNSh7Q
+         c4XS6tSPj7D2XDcZV3sdjSuuDRA7b+DCx4H3aGMMxK+xs6eUBe8CCKYohpI4Lc3bdtVM
+         7bNmkZn3I1Q0btDen6BVg4k4ATeA7TQceUGYHFyQ1yiDNMSWOydv8C5mGxeIKZ8BjEgE
+         iBah2XQuuv1R1/Czhi2keTzwHuYZIgPSM1IeRv98pjx4xnJMoyQtTpaz6Dkkbjd3dBSL
+         8zIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769681816; x=1770286616;
+        d=1e100.net; s=20230601; t=1769681817; x=1770286617;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=Kt7uEiXTlV6e7nA3ca7sq5Y8eWxdpRVOenYUuxl1aik=;
-        b=RhANmsuchRSIeVJiux3neyINL4t3xg87/zLTv/fwYDABZoNMw1Qa3m4vWCfD9OJFLe
-         frjYS6zUFRby3ijVdUGXrH4h+rzL4Kr5Z/Rr+Ju0fpVs/QRL7Rrtj4SJV3UTo5bZ8w/J
-         e3ujCsRmpCIIBV9QTrc/EoLZysqQPyhpLuCucYGryIaRt3VMpZRB8Rp/MIegY7XuEhw2
-         E/gxa4s332czdW2omBDkJoNfSVuHtRdA+mKxXcDfEqg56VGiOvXjuLdaqbivjz/RUMfX
-         owN4w6Gon3b4uS0mIDHctaZLiyhYWfLkCgObWIXF5/a9d/x46j2W25pr1NoCeXR3jxUW
-         qvEw==
-X-Forwarded-Encrypted: i=1; AJvYcCXo/3YHBzrwmk7efLWHoFLFEVvVsxnUloEKsSMCMF9t82E2qOqGsSxsc1Dp9yUrVJATCjIkEliHJ3Rq@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz55KwAeZjUpvG3XH4BNc3GKtUz0zava4GLdKsh+bCbTHWpm37m
-	1tmyMDcf3isBS5y6ZZbqj1/2h4qUWCo2g4BdZo6UoiPsW77fFzKEdQw1
-X-Gm-Gg: AZuq6aLvAhIN+xUv3JAB11GsQ73lGvBtYIk3pHKMiVFyGyTugZHw3VHloTg7hCWEqKj
-	RAoxkLRKeQtqoZ5w7Szzoh15fq9XkdPPwcJusvTWt4nL3/VMUimwSe02cNmy/csQsD+lD4JGbHD
-	jOxPoCGi1YbPLK/7po68UrpT6xXMt3dqzDHDTlI7f1BxHBFGKyKbWi2aQqL3zrnVacj7gkiwLDV
-	3d/BzWMGdR2lHDgTFckeIrRRrH1rJRHSVznSIIfXk8jMvXnABD+OzKkhWRx2o7lDNDF6+UkFbIK
-	hA0PeXOUE3LNiLnd+19q9sXnjzI+H1Td5P7Mx3RYHi8YLc4JPBy89ynSiF8rKYl98qnguZVIdUL
-	qydUb3Mqv0XDKSuImfEpNjXhi8p/seW9IzBDXs8hZ8eX+i1IRKcTBVqgF9zdi0N62EUskmnt1tG
-	5qn9P5mVE1wJAFnRJY
-X-Received: by 2002:a05:600c:8b24:b0:47e:e807:a042 with SMTP id 5b1f17b1804b1-48069c1c009mr101678685e9.15.1769681815992;
-        Thu, 29 Jan 2026 02:16:55 -0800 (PST)
+        bh=Y9LVqcaf1ijJnoQzqgdsz1n58Lr+Jp/HnhYJrE/7aVo=;
+        b=LJbGAwKUSb3MO3ZTBmuliGKKF+h1zwbQtKMLPZQ0rxKjSKFKV/AMWMXfNdoQPim3xm
+         bwX13iIPEkXz0640F1DynccaBMHpnsWqmhyPSs5uxaujtfmgyiiitUx74dvcZFZ2AsZ/
+         KIeDFpWdKNWtwCw2WBVdwBs3oRWlBDobYm2efZhdpFsqTgmcwwVGYrsZ9omx6LOI/bH2
+         Umg9MgDb1zJAW78v977omm1LeKnFjcUpxKS89AnifXEGsWBzsN6xmXiZZAOuTIif0eXo
+         rMF6pOMhVr3p/Rclr9yu/ga8n+dIkCLvUadx0m/zmyHhN66jxYhQtErl5N/wV7zExhkv
+         0ang==
+X-Forwarded-Encrypted: i=1; AJvYcCUO0ngHpw8nuOWJraL+b6miY3gvWMwRVsVx5Jc5KwOO+iqd1BBw42o25xttBOZnztgiTahNe4sDUjjO@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywkgdrb7LrS3/PNfKdRUhLwyxiqvkiounoSfggOVnq7aqL+3P2u
+	i6xRf8tnO6dP/qAB5MXPcxhahFumducsJldFywuGz6tNTK5RwL9i2sw5
+X-Gm-Gg: AZuq6aKgPq9VcZdtJrSfzTqAfjNOwn+us9j7uq0U1ltsm1c2r/5Xrt52bmDHoNYjghz
+	hcx6XjBgp/sKi8F6RXdj/jwIsllPMYltIZnpNtTVykd0EKk6wY1MDP2SlqYjf+rMtWtCeSrupTM
+	J32uksl26hFMyoTavtYAFdeqdcisG6nMzHdztVwcG4Xf32GUqlvo1Iu13a/ZYQ5HA38idEyrLXB
+	9anZxYTvj02HsdI7fCOqEXXJ2PDlrqTXiialAVN4s51Q8WN0xQTHM69s5HsGNrDTleKdheyFFPL
+	ctopxENBJUDcw+28WIa6AptgmRrcCDnnLptkER6vJJ67WbdEt2jZ9EtaqXHeRQW8ONC4C/0kOMP
+	hAXYEeOm+ELaB1fGNbKKVaafgYyffs12OXwWIfpUeeyyHKnVQdxrd7GjDSuVn1K3V0d+4dhxKMA
+	9RXlypllE8mfZiEbNJ
+X-Received: by 2002:a05:600c:35cb:b0:471:700:f281 with SMTP id 5b1f17b1804b1-48069c7c492mr112018935e9.25.1769681816653;
+        Thu, 29 Jan 2026 02:16:56 -0800 (PST)
 Received: from biju.lan ([2a00:23c4:a758:8a01:5792:2065:403:a80b])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48066be77b5sm178642065e9.2.2026.01.29.02.16.55
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48066be77b5sm178642065e9.2.2026.01.29.02.16.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Jan 2026 02:16:55 -0800 (PST)
+        Thu, 29 Jan 2026 02:16:56 -0800 (PST)
 From: Biju <biju.das.au@gmail.com>
 X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
 To: biju.das.au@gmail.com
@@ -94,9 +94,9 @@ Cc: linux-renesas-soc@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-clk@vger.kernel.org
-Subject: [PATCH RESEND 8/9] arm64: dts: renesas: r9a08g046l48-smarc: Add SCIF0 pincontrol
-Date: Thu, 29 Jan 2026 10:16:43 +0000
-Message-ID: <faaddb4d8bce3aacda6cdf032c677d8380f71b66.1769681553.git.biju.das.jz@bp.renesas.com>
+Subject: [PATCH RESEND 9/9] arm64: dts: renesas: rzg3l-smarc-som: Enable eth1 (GBETH1) interface
+Date: Thu, 29 Jan 2026 10:16:44 +0000
+Message-ID: <0d5ca20911357441cac914819da98b2a753f4f31.1769681553.git.biju.das.jz@bp.renesas.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <cover.1769681553.git.biju.das.jz@bp.renesas.com>
 References: <cover.1769681553.git.biju.das.jz@bp.renesas.com>
@@ -113,61 +113,177 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260818-lists,devicetree=lfdr.de];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,bp.renesas.com,glider.be,kernel.org,gmail.com,baylibre.com];
+	TAGGED_FROM(0.00)[bounces-260820-lists,devicetree=lfdr.de];
 	FREEMAIL_TO(0.00)[gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[16];
-	FREEMAIL_CC(0.00)[vger.kernel.org,bp.renesas.com,glider.be,kernel.org,gmail.com,baylibre.com];
 	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	TO_DN_SOME(0.00)[];
+	DBL_PROHIBIT(0.00)[2.220.108.0:email];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,bp.renesas.com:mid,renesas.com:email]
-X-Rspamd-Queue-Id: D3A0BAE7AC
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bp.renesas.com:mid,0.0.0.7:email]
+X-Rspamd-Queue-Id: 9DF51AE94B
 X-Rspamd-Action: no action
 
 From: Biju Das <biju.das.jz@bp.renesas.com>
 
-Add device node for SCIF0 pincontrol.
+Enable the Gigabit Ethernet Interface (GBETH1) populated on the RZ/G3L
+SMARC EVK. Also add pincontrol definitions for GBETH{0,1}.
 
 Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 ---
- arch/arm64/boot/dts/renesas/r9a08g046l48-smarc.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ .../boot/dts/renesas/r9a08g046l48-smarc.dts   |  1 +
+ .../boot/dts/renesas/rzg3l-smarc-som.dtsi     | 92 +++++++++++++++++++
+ 2 files changed, 93 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/renesas/r9a08g046l48-smarc.dts b/arch/arm64/boot/dts/renesas/r9a08g046l48-smarc.dts
-index 86db86335d5e..2f918830b8f1 100644
+index 2f918830b8f1..58733016b66b 100644
 --- a/arch/arm64/boot/dts/renesas/r9a08g046l48-smarc.dts
 +++ b/arch/arm64/boot/dts/renesas/r9a08g046l48-smarc.dts
-@@ -35,3 +35,15 @@ &keys {
- 	/delete-node/ key-2;
- 	/delete-node/ key-3;
+@@ -14,6 +14,7 @@
+ 
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/input/input.h>
++#include <dt-bindings/pinctrl/renesas,r9a08g046-pinctrl.h>
+ #include "r9a08g046l48.dtsi"
+ #include "rzg3l-smarc-som.dtsi"
+ #include "renesas-smarc2.dtsi"
+diff --git a/arch/arm64/boot/dts/renesas/rzg3l-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg3l-smarc-som.dtsi
+index f52af01a7eff..0b9bb073c282 100644
+--- a/arch/arm64/boot/dts/renesas/rzg3l-smarc-som.dtsi
++++ b/arch/arm64/boot/dts/renesas/rzg3l-smarc-som.dtsi
+@@ -10,6 +10,7 @@ / {
+ 
+ 	aliases {
+ 		ethernet0 = &eth0;
++		ethernet1 = &eth1;
+ 	};
+ 
+ 	memory@48000000 {
+@@ -23,6 +24,8 @@ &eth0 {
+ 	phy-handle = <&phy0>;
+ 	phy-mode = "rgmii-id";
+ 
++	pinctrl-0 = <&eth0_pins>;
++	pinctrl-names = "default";
+ 	status = "okay";
+ };
+ 
+@@ -30,6 +33,19 @@ &eth0_rxc_rx_clk {
+ 	clock-frequency = <125000000>;
+ };
+ 
++&eth1 {
++	phy-handle = <&phy1>;
++	phy-mode = "rgmii-id";
++
++	pinctrl-0 = <&eth1_pins>;
++	pinctrl-names = "default";
++	status = "okay";
++};
++
++&eth1_rxc_rx_clk {
++	clock-frequency = <125000000>;
++};
++
+ &extal_clk {
+ 	clock-frequency = <24000000>;
+ };
+@@ -53,3 +69,79 @@ phy0: ethernet-phy@7 {
+ 		txd3-skew-psec = <0>;
+ 	};
  };
 +
-+&pinctrl {
-+	scif0_pins: scif0 {
-+		pins = "SCIF_TXD", "SCIF_RXD";
-+		power-source = <1800>;
++&mdio1 {
++	phy1: ethernet-phy@7 {
++		compatible = "ethernet-phy-id0022.1640",
++			     "ethernet-phy-ieee802.3-c22";
++		reg = <7>;
++		rxc-skew-psec = <1400>;
++		txc-skew-psec = <1400>;
++		rxdv-skew-psec = <0>;
++		txdv-skew-psec = <0>;
++		rxd0-skew-psec = <0>;
++		rxd1-skew-psec = <0>;
++		rxd2-skew-psec = <0>;
++		rxd3-skew-psec = <0>;
++		txd0-skew-psec = <0>;
++		txd1-skew-psec = <0>;
++		txd2-skew-psec = <0>;
++		txd3-skew-psec = <0>;
 +	};
 +};
 +
-+&scif0 {
-+	pinctrl-0 = <&scif0_pins>;
-+	pinctrl-names = "default";
++&pinctrl {
++	eth0_pins: eth0 {
++		txc {
++			pinmux = <RZG3L_PORT_PINMUX(B, 1, 1)>;  /* ETH0_TXC_REF_CLK */
++			power-source = <1800>;
++			output-enable;
++			drive-strength-microamp = <5200>;
++		};
++
++		ctrl {
++			pinmux = <RZG3L_PORT_PINMUX(A, 1, 1)>, /* MDC */
++				 <RZG3L_PORT_PINMUX(A, 0, 1)>, /* MDIO */
++				 <RZG3L_PORT_PINMUX(C, 2, 1)>, /* PHY_INTR */
++				 <RZG3L_PORT_PINMUX(C, 1, 1)>, /* RXD3 */
++				 <RZG3L_PORT_PINMUX(C, 0, 1)>, /* RXD2 */
++				 <RZG3L_PORT_PINMUX(B, 7, 1)>, /* RXD1 */
++				 <RZG3L_PORT_PINMUX(B, 6, 1)>, /* RXD0 */
++				 <RZG3L_PORT_PINMUX(B, 0, 1)>, /* RXC */
++				 <RZG3L_PORT_PINMUX(A, 2, 1)>, /* RX_CTL */
++				 <RZG3L_PORT_PINMUX(B, 5, 1)>, /* TXD3 */
++				 <RZG3L_PORT_PINMUX(B, 4, 1)>, /* TXD2 */
++				 <RZG3L_PORT_PINMUX(B, 3, 1)>, /* TXD1 */
++				 <RZG3L_PORT_PINMUX(B, 2, 1)>, /* TXD0 */
++				 <RZG3L_PORT_PINMUX(A, 3, 1)>; /* TX_CTL */
++				 power-source = <1800>;
++		};
++	};
++
++	eth1_pins: eth1 {
++		txc {
++			pinmux = <RZG3L_PORT_PINMUX(E, 1, 1)>;  /* ETH1_TXC_REF_CLK */
++			power-source = <1800>;
++			output-enable;
++			drive-strength-microamp = <5200>;
++		};
++
++		ctrl {
++			pinmux = <RZG3L_PORT_PINMUX(D, 1, 1)>, /* MDC */
++				 <RZG3L_PORT_PINMUX(D, 0, 1)>, /* MDIO */
++				 <RZG3L_PORT_PINMUX(F, 2, 1)>, /* PHY_INTR */
++				 <RZG3L_PORT_PINMUX(F, 1, 1)>, /* RXD3 */
++				 <RZG3L_PORT_PINMUX(F, 0, 1)>, /* RXD2 */
++				 <RZG3L_PORT_PINMUX(E, 7, 1)>, /* RXD1 */
++				 <RZG3L_PORT_PINMUX(E, 6, 1)>, /* RXD0 */
++				 <RZG3L_PORT_PINMUX(E, 0, 1)>, /* RXC */
++				 <RZG3L_PORT_PINMUX(D, 2, 1)>, /* RX_CTL */
++				 <RZG3L_PORT_PINMUX(E, 5, 1)>, /* TXD3 */
++				 <RZG3L_PORT_PINMUX(E, 4, 1)>, /* TXD2 */
++				 <RZG3L_PORT_PINMUX(E, 3, 1)>, /* TXD1 */
++				 <RZG3L_PORT_PINMUX(E, 2, 1)>, /* TXD0 */
++				 <RZG3L_PORT_PINMUX(D, 3, 1)>; /* TX_CTL */
++				 power-source = <1800>;
++		};
++	};
 +};
 -- 
 2.43.0
