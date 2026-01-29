@@ -1,175 +1,182 @@
-Return-Path: <devicetree+bounces-261047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261041-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SONGBrPUe2klIwIAu9opvQ
-	(envelope-from <devicetree+bounces-261047-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 22:44:19 +0100
+	id UGevFqfUe2klIwIAu9opvQ
+	(envelope-from <devicetree+bounces-261041-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 22:44:07 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39E1FB5030
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 22:44:18 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E12EAB5014
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 22:44:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 26692300E180
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 21:43:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1A2DD3035D41
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 21:43:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5398F366839;
-	Thu, 29 Jan 2026 21:43:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43F74364E8C;
+	Thu, 29 Jan 2026 21:43:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O2fX8xji"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC7C4364EA2;
-	Thu, 29 Jan 2026 21:43:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C4B936402B;
+	Thu, 29 Jan 2026 21:43:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769723011; cv=none; b=ad57aTrfVBXG0Nw6kBn+y2NkMwBz02+0Rc96C5qSOEOYkkEcNCYR3Dlqz39Zwkrxi3OAH5LYHDHWNvBDObDGhW3qb/cPg3DzlTzv8MDXKMvkn0AG6RX+c8yutQfaClmIwo3bqKzInFekcHvqil2XGPbIEC2QFg255Gb/Fj8SL5w=
+	t=1769723006; cv=none; b=U089eMGtHG4xFpGI9YsXpmFVlDSBAbiR6jakPXCbiPckulDb4qbN2NKMvIj5FauLDbqHmyUMFKmpjyWEI4uh0gFNsz3//djZH/DcdZtZtU+bWvOLfCkt7kqGxQ3pCSHAKTJ7CR6yakEc7iBqohCfb22eiU2L1jf3IRKHgujI7Kk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769723011; c=relaxed/simple;
-	bh=CaoVe4DoenYysaU/+0Z5eyf9BKiKiOFsVOTKW2hNf0U=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=heBtBy7Of3Sk2u5V0KCQ7O+6X250MklM6TZW4fzaYfo4L6KC4qoaT15YJYFD+TQgoYc2UVGIuXIZKw+Z/+Zz/0/bvMXTTUcaye9k8s5r+qhjqG8z76LA4+DtRa7rVBR1jjB5UfYGAo/yxG+nwVIh10V84KYpaj3p04j2aKULq+w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: 6tj8rkpyQp6ninNaNYQLTQ==
-X-CSE-MsgGUID: wK/9Om6tTwy3h5KMswiEtg==
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 30 Jan 2026 06:43:27 +0900
-Received: from ubuntu.adwin.renesas.com (unknown [10.226.92.73])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id D0747408FDE1;
-	Fri, 30 Jan 2026 06:43:22 +0900 (JST)
-From: John Madieu <john.madieu.xa@bp.renesas.com>
-To: claudiu.beznea.uj@bp.renesas.com,
-	lpieralisi@kernel.org,
-	kwilczynski@kernel.org,
-	mani@kernel.org,
-	geert+renesas@glider.be,
-	krzk+dt@kernel.org
-Cc: robh@kernel.org,
-	bhelgaas@google.com,
-	conor+dt@kernel.org,
-	magnus.damm@gmail.com,
-	biju.das.jz@bp.renesas.com,
-	linux-pci@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	john.madieu@gmail.com,
-	John Madieu <john.madieu.xa@bp.renesas.com>
-Subject: [PATCH v4 15/15] arm64: dts: renesas: r9a09g047e57-smarc: Enable PCIe
-Date: Thu, 29 Jan 2026 22:41:29 +0100
-Message-ID: <20260129214130.16067-16-john.madieu.xa@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260129214130.16067-1-john.madieu.xa@bp.renesas.com>
-References: <20260129214130.16067-1-john.madieu.xa@bp.renesas.com>
+	s=arc-20240116; t=1769723006; c=relaxed/simple;
+	bh=7smW9wv7mnfx4la6W1Qts9O6kM1lftllC1c0AQLzYw0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Hg220pG7YTK3rgEB2D2GaN7FCrqiMvIRjT9HXoPJleLmsRCfUcGx6/4+RmXbix/J4/CuioO1DkCSHxjmy22KiAbkRkcZ4ZGb2hRWhOssrrnXzV8xTTgxqJhtD0d8lJv2c0OdT0U35oWA33Tx+IOl1le6/iDy/UWuLuSMN3NGoIo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O2fX8xji; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id AE4F1C19421;
+	Thu, 29 Jan 2026 21:43:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769723005;
+	bh=7smW9wv7mnfx4la6W1Qts9O6kM1lftllC1c0AQLzYw0=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=O2fX8xjiBytJKz1dtLSUIoLjqIENP5rpV5zxiSiewqicWudeffKeUxf4qPOAXl+vm
+	 EApcR21/73tz1mJ2aC3PmvJ4qPQQ7OgSpQoHOpn4+5b/P9Y8XzXf+F1g/nHJ7CgTft
+	 yIoQ5BXSCHZ8abGIMCfCQKkZsL6r+3F41JztREkvD5ZQm6o7Wf/xHYn90iC4OwXkHN
+	 J4uRcB3WuQ1q2EWVcREW82UsV1POteGkTpGK+8t6KI3S4LborYJUPZIpUhcH3FMGrk
+	 leBhZW9YqPmbEa/QqdDTI0+KiDytrx5k5cF9++UIYoaKU2XbSp/Db8/F1ijF+6FPdn
+	 IRQLPl+Y0EIWw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 993DED73E9C;
+	Thu, 29 Jan 2026 21:43:25 +0000 (UTC)
+From: Abdurrahman Hussain via B4 Relay <devnull+abdurrahman.nexthop.ai@kernel.org>
+Subject: [PATCH v7 0/6] i2c: xiic: use generic device property accessors
+Date: Thu, 29 Jan 2026 21:43:12 +0000
+Message-Id: <20260129-i2c-xiic-v7-0-727e434897ef@nexthop.ai>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHDUe2kC/3XOTW6DMBCG4atEXteRPf6lq96j6mJsxsWLQGQoo
+ oq4e01WrmiXI83z6nuwmUqmmb1eHqzQmuc8jfVwLxcWBxw/iee+3gwEWCEBeIbIt5wjVwF9l5I
+ h7BSr7/dCKW/P1PtHvVOZbnwZCmETkEYI8NpewSjfcckx9F+l4HDD8W2kbRmm+xXz0RvyvEzl+
+ 7lshaP6x4gVuOBS6WR6pxX50EaOFatqpWqkqpKCi70Go/t0lvo/qavUqCigMlJEOknTSttIU6X
+ 3KC2CdyDjSdpWukbaY60HgmSTNe633Pf9B2Xj/2DJAQAA
+X-Change-ID: 20260122-i2c-xiic-3ba89ff5ea93
+To: Michal Simek <michal.simek@amd.com>, Andi Shyti <andi.shyti@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Andy Shevchenko <andriy.shevchenko@intel.com>, 
+ linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Abdurrahman Hussain <abdurrahman@nexthop.ai>, Andrew Lunn <andrew@lunn.ch>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1769723005; l=2376;
+ i=abdurrahman@nexthop.ai; s=20260119; h=from:subject:message-id;
+ bh=7smW9wv7mnfx4la6W1Qts9O6kM1lftllC1c0AQLzYw0=;
+ b=d4ZaXTI8ZTXU3UokV9L94MlJcMelypXusSRQkbs4aKOPqCOI/p+76DFcmQapIHKmR6z4TxqgA
+ FcEf4ua9LK1BFZoBQq2Su5sNs7Yj75FrF6TbpX9Tu0opg7AUPJA2FPa
+X-Developer-Key: i=abdurrahman@nexthop.ai; a=ed25519;
+ pk=S+ysnf+NwMcBdHBlyKIUEAtaFGSIhQwcJcgcXhq0osg=
+X-Endpoint-Received: by B4 Relay for abdurrahman@nexthop.ai/20260119 with
+ auth_id=608
+X-Original-From: Abdurrahman Hussain <abdurrahman@nexthop.ai>
+Reply-To: abdurrahman@nexthop.ai
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.64 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[renesas.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261047-lists,devicetree=lfdr.de];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-261041-lists,devicetree=lfdr.de,abdurrahman.nexthop.ai];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FREEMAIL_CC(0.00)[kernel.org,google.com,gmail.com,bp.renesas.com,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.839];
-	FROM_NEQ_ENVFROM(0.00)[john.madieu.xa@bp.renesas.com,devicetree@vger.kernel.org];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bp.renesas.com:mid,renesas.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 39E1FB5030
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[abdurrahman@nexthop.ai];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nexthop.ai:replyto,nexthop.ai:email,nexthop.ai:mid]
+X-Rspamd-Queue-Id: E12EAB5014
 X-Rspamd-Action: no action
 
-The RZ Smarc Crarrier-II board has PCIe slots mounted on it.
-Enable PCIe support.
+Switch to generic device property accessors.
 
-Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
+Switch to managed devm_ functions to simplify error handling.
+
+Skip clock setup on non-OF systems where clock cannot be provided.
+
+Signed-off-by: Abdurrahman Hussain <abdurrahman@nexthop.ai>
 ---
+Changes in v7:
+- Drop the dt-bindings patch.
+- Skip clock setup on non-OF systems.
+- Minor commit body rewording.
+- Applied code-review trailers with `b4 trailers -u`
+- Link to v6: https://lore.kernel.org/r/20260127-i2c-xiic-v6-0-e82e2f6f657c@nexthop.ai
 
-Changes:
+Changes in v6:
+- Cosmetic changes to address the comments.
+- Added a patch to use resource format specifier in debug log.
+- Link to v5: https://lore.kernel.org/r/20260126-i2c-xiic-v5-0-88a16a28721c@nexthop.ai
 
-v4: No changes
+Changes in v5:
+- Reorder the cosmetic patch to be the last in the series.
+- Added a documentation patch to describe the optional clock.
+- Minor commit body rewording.
+- Link to v4: https://lore.kernel.org/r/20260123-i2c-xiic-v4-0-4a3eba3510ce@nexthop.ai
 
-v3:
- - Splitted enablement into common carrier dtsi and board dts
+Changes in v4:
+- Reorder the cosmetic patch to be the first in the series.
+- Amend the mutex_init patch to also switch to the managed pm_runtime_
+  variant.
+- Link to v3: https://lore.kernel.org/r/20260123-i2c-xiic-v3-0-eb7cd4254dfb@nexthop.ai
 
-v2:
- - Removed board-specific dma-ranges.
- - Merged enablement and pinmux assignment in same file
+Changes in v3:
+- Reorder the "optional clock" patch to be the first in the series. 
+- Add a patch to switch to devm_mutex_init().
+- Remove dup message in error path.
+- Cosmetic: use temporary dev variable.
+- Link to v2: https://lore.kernel.org/r/20260122-i2c-xiic-v2-0-134f5d743e8b@nexthop.ai
 
- .../boot/dts/renesas/r9a09g047e57-smarc.dts      | 16 ++++++++++++++++
- arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi  |  4 ++++
- 2 files changed, 20 insertions(+)
+Changes in v2:
+- Split the patch into two independent changes.
+- Added struct device *dev at the top of probe() and remove() to re-use.
+- Switched to device_set_node(...)
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-index 696903dc7a63..1ba50512f4ef 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-@@ -122,6 +122,11 @@ key-sleep {
- #endif
- };
- 
-+&pcie {
-+	pinctrl-0 = <&pcie_pins>;
-+	pinctrl-names = "default";
-+};
-+
- &pinctrl {
- 	canfd_pins: canfd {
- 		can1_pins: can1 {
-@@ -167,6 +172,17 @@ rsci9_pins: rsci9 {
- 		bias-pull-up;
- 	};
- 
-+	pcie-clkreq-n {
-+		gpio-hog;
-+		gpios = <RZG3E_GPIO(4, 5) GPIO_ACTIVE_HIGH>;
-+		output-low;
-+		line-name = "pcie_clkreq_n";
-+	};
-+
-+	pcie_pins: pcie {
-+		pinmux = <RZG3E_PORT_PINMUX(G, 7, 1)>; /* PCIE_RST_OUT# */
-+	};
-+
- 	scif_pins: scif {
- 		pins = "SCIF_TXD", "SCIF_RXD";
- 		renesas,output-impedance = <1>;
-diff --git a/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi b/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-index b607b5d6c259..e2a34577a1a1 100644
---- a/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-+++ b/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-@@ -96,6 +96,10 @@ &i2c0 {
- 	clock-frequency = <400000>;
- };
- 
-+&pcie {
-+	status = "okay";
-+};
-+
- &scif0 {
- 	status = "okay";
- };
+---
+Abdurrahman Hussain (6):
+      i2c: xiic: skip input clock setup on non-OF systems
+      i2c: xiic: switch to devres managed APIs
+      i2c: xiic: remove duplicate error message
+      i2c: xiic: switch to generic device property accessors
+      i2c: xiic: cosmetic cleanup
+      i2c xiic: cosmetic: use resource format specifier in debug log
+
+ drivers/i2c/busses/i2c-xiic.c | 98 +++++++++++++++++++------------------------
+ 1 file changed, 42 insertions(+), 56 deletions(-)
+---
+base-commit: 63804fed149a6750ffd28610c5c1c98cce6bd377
+change-id: 20260122-i2c-xiic-3ba89ff5ea93
+
+Best regards,
 -- 
-2.25.1
+Abdurrahman Hussain <abdurrahman@nexthop.ai>
+
 
 
