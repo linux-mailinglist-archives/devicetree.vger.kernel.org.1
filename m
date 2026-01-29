@@ -1,546 +1,229 @@
-Return-Path: <devicetree+bounces-260896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260898-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gNqXIT5le2l2EQIAu9opvQ
-	(envelope-from <devicetree+bounces-260896-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 14:48:46 +0100
+	id 8BkxOJ5me2l2EQIAu9opvQ
+	(envelope-from <devicetree+bounces-260898-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 14:54:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D893CB0911
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 14:48:45 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 706A4B0A08
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 14:54:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8A6653024134
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 13:46:15 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C04513004D25
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 13:54:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9744310624;
-	Thu, 29 Jan 2026 13:46:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14246340295;
+	Thu, 29 Jan 2026 13:54:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="C87cdl59"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GYsHGx4k";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="MDOuN/P4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA9CC246BC5
-	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 13:46:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2C4E2D7DC0
+	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 13:54:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=205.220.180.131
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769694374; cv=pass; b=UipzfruY9/cwmBC7NEWhPaQXFPANY/dxB+PR0beZpCKUb22CzWz1h8CYDTzYBiXmo9zSRFRsOXWfXxtvr/9veZ2+iRegCkmjLYoSUwaVLq8IJBLd43ZluTTQQ01jTZjF/umr1puZ1aXuA9KVipn4lXBwZhGRpf3uNKJ3AoqDjIQ=
+	t=1769694874; cv=pass; b=Hn8A2iVDxS90h5LgEH7fzjJfEMS4FDhy9Za4Ijmlp0p4WARatJhRD3GiZrL5UhbLJPkr9tbd9khzN3LXFZ4DwUyYtqdM82BloXpRf5tLjxZg7bKrg2BbVfTzDB+n8o/y+8vOk0l3+WjwsQ7aoWG/mqcncM93KcbI/51GTmsTE1o=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769694374; c=relaxed/simple;
-	bh=FVF7JxhMSZ+jyL1X5JPYnMI8hKnMPd92PJE21AQ0fd8=;
+	s=arc-20240116; t=1769694874; c=relaxed/simple;
+	bh=x2kcQCjLWvSwWoGbTSYAJLl1+G4WgE16Ma+wcFoZtYM=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ivHCXLAfsEeJn0TD9bwe9iuqXYmcVq5WlitU70GwQINMvPaffckQR6YZlyiqVsf3nqLHS2f7V5obvqYuzybGeUy1CjcXQbkFFOmrpKgZ4cOPFoD7lMx+yeRYe/7HfOkPx+sdg7C7HgIeP4WcXHCY5QBWd1ypqxHcNO+YPuqd1/0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=C87cdl59; arc=pass smtp.client-ip=209.85.208.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-658078d6655so2096670a12.3
-        for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 05:46:12 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1769694371; cv=none;
+	 To:Cc:Content-Type; b=B3imV7qYh0JfOBj0Pl/xpsJgv3aPLb9cJExAlURy5juo3YkYCVxNZCJ1DZdx4+Cs6ZlXs8uquqcDuRtWii0W9BIe7Dff+F5eRH4JDI6ZERQ+UMQRu8wZNH6pDwvm1uCbJq12Z3Ht9pT4BNEf5ck/+areMQ31PONYp7vzC/pAOvE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GYsHGx4k; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=MDOuN/P4; arc=pass smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60TAVfl22033505
+	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 13:54:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	UdkNENK4MfeAhXOjhlnGRinrez69eCWQy+/BgYxeifM=; b=GYsHGx4kx+/nF6jA
+	VdNBL4kyaeNiH6PSJsEvVUZRJUXCy43UudeZ7yaZRLaV0suT8IC5lG9BSUf5ykVa
+	RC8Zhe30RTdogxeZpXijMvevG0tLLG/vMdRh1vMgZ7XZ+E7vbiAi3LBdJ71ir9Vy
+	ZKiHBNHqNnT0aSLafme9+/n3joWzsjbKBTDIUrIWV5fIKly20blCnNA0i5iqfb2z
+	+fg251jwE2Iah+W/j85Ce2IwWTFkTMzlPZtDC5dR4LNN23J4IeumBPUxv8KInTYi
+	9vUivSzqJcNKkl+QrnG9AgpluvnNncCWBC7a7P2L1I+4602d1r/GO+CXPRy0OsT3
+	JiGerA==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4byna7ktf1-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 13:54:31 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8c5296c7e57so412846585a.1
+        for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 05:54:31 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1769694864; cv=none;
         d=google.com; s=arc-20240605;
-        b=YtOo0di7H9SJDEDM3qLCn396SyzIupyHeH24cWBRSrW02qe+YwYf6YpspZBu2oCOtu
-         gx+PqN46DIT4NmjgVNDZOc6mougu64krXoT+WP20woToRbzAABaSZQOAYjppYaH3E+K7
-         S0IGKKEUZJ92zm9aI4Fdl6ePO37ZaHe/KMAbOhNE18p68H7o8oj26NfbkSebg9jXNKjT
-         d6vO+zo4x1/lNwcvj59Eiol18XwcV6/oIYfSW0lP1+Tox3jsNwXne51DKRsKD9KZZ+ou
-         rwFS3YptZ45iDklw3KMXfIuU1TORcUd8wb6/sdgalkAR4eynM1a/sdP5rithwHBxLO7E
-         +U/g==
+        b=iDb+Z0vnbbUXwxOksskilfQuda0lYj1OGoJocu711B78dp6BiJz4Pg92M5B7h02v/m
+         hncsSd3arosfeiDy5snpnmHwsk/wBrvNeqxII36JA+kKBq8LVGT99mcN/w7HztXmnI8a
+         Cb+UGJIWUihVjkdzM78n9FnWFzKqnDQbHpTSIgQraheDqJBY6Fndkd1eq2Z9yXhTimWM
+         5pLlmQARbTEIhzg37geyAfvygJgPdXKFt1ljFYoKQp2I/w0/4v6/2XWB6ohRN1B8tmrx
+         J5mauhUbBBzEd+suyU+cGRR+luG61dJ5s8ueFOyrnWb56FA8L/tEyiW0gdw/Y/JvFiBh
+         eLcw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=ok1T5yGKDmAmT0BHb7DhO7NcpXgpsjNNJLpNZQI3pio=;
-        fh=eF2Xvs4Xizzdel61sYAxNkJdiHyjFZkZwmDglL4rSjQ=;
-        b=NrO7t6Wy5ILOVy4yIEUx39PzXr0AMzFAUWRqs10flhjQCSA1HkMOZkdzFHgz6HkqkT
-         CAVy1+Jqexi9MtLpQfcOSJ/iZxopwdsz3xTXdnwBwm0KzutLnJA0KlFn106IKdnMCmYx
-         btF9XfLUQAXtuoK2V7BrQfZJRPu3hKehOdzAqhT5Kxw0X/CeMMz/ivS+4nxv9txlamjJ
-         xbPMNp7Ejatmbp5kEtvdzVBGFnIArhe/RmL/JVhjmy8Z4qI97k95CreN0o+97IyDqQ29
-         3R6BB8OsVOH81rEJzbSmkKggYAzduPcfQH6UXFoWmn/UJBUJ04VHYlQgqFm5fCqv6hlL
-         BIRQ==;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=UdkNENK4MfeAhXOjhlnGRinrez69eCWQy+/BgYxeifM=;
+        fh=CXD7hts0EomvG3jc6kCSTF27iRkDQ0apOixKKKKLJ9Y=;
+        b=aOXSC83ByrczyoB3lMeAJg7dlNmv3JIUHF/T1qvifl4HaN0drGbkKpRmJkExQ81NBh
+         ZvthShFZORSxQGByDUu6cVigqULbN1/BhZHAJQnJb2OEJtUsGM5WPfGmKop5TazVqGda
+         8eLr2iFG4/CcoLTAlzECOUuwOenF7cNSKuCrhdIAjdeWFS7NL05mmVW1rrb3OLgyGEgR
+         nIREI1qiNX099zpGw/2iIlTgqsggf+bUcmGTpOw2g8lMw//TrhMDHLsSCriqimymEoD4
+         lHSuRIL8mGjBG5XldX6M8NigJ/LFkBXp6+SbogY68JcCW6cByhAboTDDnj48pY0ggI6z
+         w0yw==;
         darn=vger.kernel.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1769694371; x=1770299171; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ok1T5yGKDmAmT0BHb7DhO7NcpXgpsjNNJLpNZQI3pio=;
-        b=C87cdl59yRHDShXCxD4Eb3BCC2P6KPNWMYFECLcfIsi+iE7eVNIeHAl26V+hrAPbr8
-         mvg8gylJbNGAFCaCseuWvVcDd2R7WBsb/XlZBRbWol5mq1x+N0NKbYnc4I0LbDs5IGPl
-         Q3JeD+KVAp6CUmhw1wPXNULmsGofCNSErqDcORXJHnuBF/Xtsb0XfxpjMUHBxusG0p0+
-         Zh0WqPW6jsrNI7QTiqwT0o9/qGnWTYQY5ruU3zCnjxNmga/ia5d+id8Ev/qCrBQnU3Uc
-         //NgwbiASOhTn0q90x1Jhta6BWwG6NUh1FAzdAy5tI8wA1ZDfEMmN4bll7OeCMUhPL6P
-         vKWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769694371; x=1770299171;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=oss.qualcomm.com; s=google; t=1769694864; x=1770299664; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ok1T5yGKDmAmT0BHb7DhO7NcpXgpsjNNJLpNZQI3pio=;
-        b=ZQr3Qr9TLUxy75d+TO7IcHgGttwpacqEMwVI0D3uOVorwpK9rCeTpSbfuQnsWZIih5
-         YwN6pJOyuzEE2OZU4sx4STMwSZvRBWJC+/Vcl5/qjQr6VIK2SOOPo3xUazppZklnvF4s
-         WYTM4s2NKKjIwN1eudiGSMXIlPxJoXexgxWpQBoBrXpF17WFVdV0zEvnbzZnHdIH88wL
-         XFGpcMNfOcvMLPRIxYX/WOyue70MOAekq4O0r21a4jstnVSNWExB2L2fXVM09D6xb/tD
-         6yMFrklkgZfxd64ZQyU82qqGqWvWBWzUKqVeHorvQnsyBK/k185GmIBNxR+iYRA730fY
-         IBBw==
-X-Forwarded-Encrypted: i=1; AJvYcCXN7jmMOCfLNRr9zdZtnFV93slytX7i8QGQTBuHQy8euEwUFZtrMqwSzjVzBDs2ocQ3AULK//HZYczA@vger.kernel.org
-X-Gm-Message-State: AOJu0YztuBjIfXaIvqaNdpURCBipts2ZMFm86lSuVH3Az0/7wjf4ZB6y
-	gsC3arDkus6k6CWss3v0L1eWkLNaep9dvdxAK60deNWN2YsSVueq1Q48ALk3zMZa7x8nkqfOJzn
-	nm5rQg3XNl21In7PXkc6E3+Y9BiMDpYFJi4xv5uvI4w==
-X-Gm-Gg: AZuq6aKPeybnvfxOX1LUv8LP6LGR2MtpbCE9HVfvwzF+/Iazp9PFg4U5hRzKThbxmC7
-	5AVKnuaX8P1qKSz6mmhp+lSqLU9ZYOdlAEqkHbvvuTF2VV3EU+Pr9vPVco+risHpCYZXsMkmUCw
-	Oo1SN7dwFOM7IBEMExq37ogrdZ7SRpvoD/9HCcUe/smcrQXQN1VLajv6mrKmAss29iZ4Ts4Spoc
-	+UGCC9qdXEulz7RUuhuUj0sMwHlI1g3ieep/ie4/GMj7ASsSbnjAfhx6z6UFPdjfB+JkqDsTUy+
-	ln4a2lU4vt81tlWyS6TDUlmp
-X-Received: by 2002:a05:6402:26d4:b0:658:c043:6a5b with SMTP id
- 4fb4d7f45d1cf-658c0436b9cmr2360410a12.32.1769694370785; Thu, 29 Jan 2026
- 05:46:10 -0800 (PST)
+        bh=UdkNENK4MfeAhXOjhlnGRinrez69eCWQy+/BgYxeifM=;
+        b=MDOuN/P4o68vafCUtR3Q8pyQCj+jOQgDUXh7Raa1CbXV8u6QJfgUyYpUbXikYZ+RRv
+         yJBN2GrNwP2TbIIH/6dasIo8ulROD258HQtiX5MDJTzQWdFTFBUEUK3DKlUeCBSN755v
+         vDrWbyquF6ijyJ0c2o6m0O5pKnodtyrbXx8bjtGrlW91PdOI+Sc+ZDmYGtWZpjNlPL7x
+         n2nszrqaWbKBqQoAZgQVaS4IJ/W1aplGZoO48J0/kEZcqdCtYDWn1KOmO9j5ArsLKLnT
+         WrTjsPB5KI8pipS//ysjbG9WG/u0fB3x4HJQdWvPbwvZCo9LiuRyNGot/PbSQU4sLMLN
+         Y1oQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769694864; x=1770299664;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=UdkNENK4MfeAhXOjhlnGRinrez69eCWQy+/BgYxeifM=;
+        b=DcN8ZcwKc+/d7glCHbQEuFKQ+CwjJoD7E3cKaKEMFsk7+VsISa2QDTspc44V5sAqtP
+         CY39z18WvpwXGpGJCdjVhF58u3H0oat+pZzf20u0U7yBq7KzM9wG6NnZGrweQL5yhGPW
+         YJIfXl/mo73PjjUn++FGJEUa5zj2F5VKtbLlslz5IFWzqoSBptObYQi3Bgz0WRrqP+0L
+         SaESKB/D5vQusEUiKosaVfxaprrnhEdMguC/6u8lrBjkJ5e0TdnNHYyCOWut/EBbVtA/
+         8uXmTHLnIreKSpp/xFeugqPsstP2HeJPtXC4Yn1CDHOxdxBxg8QS+Tojvgtv4dPm1XpD
+         WHPg==
+X-Forwarded-Encrypted: i=1; AJvYcCV86cZ+jHNKELv6olGMq/gc2MwTc8fn9LCcpWmE2U9KI/sZcQse7tloV5BuhKT5Ux/8dImFcvEifD5T@vger.kernel.org
+X-Gm-Message-State: AOJu0YzsCJvZn9RuB5lrA2xSkJYao65V/wXxcgY54LElcJ4g4HzTVLy+
+	WmsPJdrvxiGQ+raCvfj2OYIUCr+cqIkZ9oObdrA3vY5QZYgwVhgdr0WHl9ZKEUBxGk6DyUFcom9
+	c6kkMSnM038cqe3GY7ZueLIhQTh3T9UwTB0J4tbCjP2JXZ5+SWyZ4tBClxULAUI+Pn1AJexr/O5
+	w11qcHZ+bc3x4oNxSHx43A2RbN5CQE16hn4NWuzu/PEz6K2vXxvk2N/7w=
+X-Gm-Gg: AZuq6aL5ZBJdr/25ryRyxQ9HwqnTQAUpMgRodReETsF06mbVzcQIvEbQ/8M9h86XGjm
+	zDforxn5NllEWPVjLQJcrpA9DVgszZilHULQbhJRDKx84Y6ztsLWQpQ68NpIBOA3f9xrh7MPrLw
+	zs5YNGuJ1jTCJUPVZwpDgEyRj0SgYlpnIidwqRUS7U/M7Z5lsWjWWFS2F61qc3jFp4kdPIwdB//
+	dxxpzlkfPM+9GSSYUHp9LUwtKlb
+X-Received: by 2002:a05:620a:4508:b0:8b1:ed55:e4f0 with SMTP id af79cd13be357-8c70b8918f8mr1267906285a.39.1769694864589;
+        Thu, 29 Jan 2026 05:54:24 -0800 (PST)
+X-Received: by 2002:ac8:5ad3:0:b0:501:1796:b10e with SMTP id
+ d75a77b69052e-5032f76d867mr118480341cf.12.1769694535419; Thu, 29 Jan 2026
+ 05:48:55 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260126092159.815968-1-vincent.guittot@linaro.org>
- <20260126092159.815968-4-vincent.guittot@linaro.org> <aXtS-Yan4HkXZlDD@shell.armlinux.org.uk>
-In-Reply-To: <aXtS-Yan4HkXZlDD@shell.armlinux.org.uk>
-From: Vincent Guittot <vincent.guittot@linaro.org>
-Date: Thu, 29 Jan 2026 14:45:59 +0100
-X-Gm-Features: AZwV_QiabLNjn8YnhRXNiAMfl90Rxlw1Vjj6PXig98KuvyBH9m5MNPhf3K_NWig
-Message-ID: <CAKfTPtDdpfGK2JE57kwLMEzpi2MuLOBe0FaeOaqgjqPPV-9pLA@mail.gmail.com>
-Subject: Re: [PATCH 3/4] phy: s32g: Add serdes xpcs subsystem
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: vkoul@kernel.org, neil.armstrong@linaro.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, ciprianmarian.costea@oss.nxp.com, s32@nxp.com, 
-	p.zabel@pengutronix.de, ghennadi.procopciuc@nxp.com, 
-	bogdan-gabriel.roman@nxp.com, Ionut.Vicovan@nxp.com, 
-	alexandru-catalin.ionita@nxp.com, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org, 
-	Frank.li@nxp.com
+References: <20260116214354.256878-1-loic.poulain@oss.qualcomm.com>
+ <20260116214354.256878-3-loic.poulain@oss.qualcomm.com> <0ca0920a-aebb-4072-a098-48c4c9938c26@oss.qualcomm.com>
+In-Reply-To: <0ca0920a-aebb-4072-a098-48c4c9938c26@oss.qualcomm.com>
+From: Loic Poulain <loic.poulain@oss.qualcomm.com>
+Date: Thu, 29 Jan 2026 14:48:43 +0100
+X-Gm-Features: AZwV_QjKKzAWXurh-8bT8DC1CHu5nxjU1-Fo42l7MZ4s-C1C7gmIX6rlnFipR1E
+Message-ID: <CAFEp6-3T1=+fZ1x3ADPpu_9P5d+bx3w0XdPzip6OBiWuk32KzA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: monaco-evk: Enable SDHC1 for eMMC
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        dmitry.baryshkov@oss.qualcomm.com,
+        srinivas.kandagatla@oss.qualcomm.com
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Proofpoint-GUID: CzTQgxyMmJ8sSkLhHuzITSEB-lZXQonj
+X-Authority-Analysis: v=2.4 cv=J72nLQnS c=1 sm=1 tr=0 ts=697b6697 cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10
+ a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8
+ a=nKmlwK7UcfY3cOHo8XsA:9 a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-ORIG-GUID: CzTQgxyMmJ8sSkLhHuzITSEB-lZXQonj
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI5MDA5NCBTYWx0ZWRfXwjPAtanu6OFY
+ XENUYN1DNKvtM+B2RCz2DMY1W39OXCOz+gT6zFGv3z2YtQkbpmDmgVQOC9TYJHsxO2TGTeanbtV
+ 0srWZ2C5vzSgWZ5zWjf9CGzcJCogY+74Ml0Th0tlPxY8as0fzyShvVcZTQyIkkUqSfE+3zFL6lH
+ RoaHVe5wGo+xR0iofYFzG8LR+L5TAdpE9Hj9h5k3Z0RApFc7pKCotzdFKpxcXpVL/vyk/kO+xiF
+ 33WB4zZPkhGkch50VBN6eFuWKuGFsxcJDTC9+k7TGbLiMzViKcu98maBJqzY0pKIUfMWlgT6D0P
+ EHJqweM1Ed8ZU7Do9QPm7Pz4XqY2e2u0ik8v3BZMdj1iyxLsD5R1PPDQwfguPtsBpEDEPk1iixk
+ CkJe/nSc04zRuxW13juxrDutGh+EZv4T9uWUOIiYZLyJNBT92Uh8yWzbgOI3P8EzuQyuxXyOeYh
+ 7EzeurrkYeyD8BxL1Yg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-01-29_02,2026-01-28_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 phishscore=0 malwarescore=0 lowpriorityscore=0 spamscore=0
+ priorityscore=1501 bulkscore=0 impostorscore=0 suspectscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601290094
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260896-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260898-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vincent.guittot@linaro.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linaro.org:+];
+	FROM_NEQ_ENVFROM(0.00)[loic.poulain@oss.qualcomm.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_COUNT_FIVE(0.00)[6];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,linaro.org:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:email,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: D893CB0911
+	TAGGED_RCPT(0.00)[devicetree];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,mail.gmail.com:mid,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim]
+X-Rspamd-Queue-Id: 706A4B0A08
 X-Rspamd-Action: no action
 
-On Thu, 29 Jan 2026 at 13:30, Russell King (Oracle)
-<linux@armlinux.org.uk> wrote:
+Hi Konrad,
+
+On Tue, Jan 27, 2026 at 1:00=E2=80=AFPM Konrad Dybcio
+<konrad.dybcio@oss.qualcomm.com> wrote:
 >
-> On Mon, Jan 26, 2026 at 10:21:58AM +0100, Vincent Guittot wrote:
-> > s32g SoC family includes 2 serdes subsystems which are made of one PCIe
-> > controller, 2 XPCS and one Phy. The Phy got 2 lanes that can be configure
-> > to output PCIe lanes and/or SGMII.
+> On 1/16/26 10:43 PM, Loic Poulain wrote:
+> > Monaco EVK has onboard eMMC, that can be used either as primary
+> > boot storage or as secondary storage when booting from UFS.
 > >
-> > Add XPCS and SGMII support.
+> > Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
+> > ---
+> >  arch/arm64/boot/dts/qcom/monaco-evk.dts | 20 ++++++++++++++++++++
+> >  1 file changed, 20 insertions(+)
 > >
-> > Co-developed-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-> > Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-> > Co-developed-by: Alexandru-Catalin Ionita <alexandru-catalin.ionita@nxp.com>
-> > Signed-off-by: Alexandru-Catalin Ionita <alexandru-catalin.ionita@nxp.com>
-> > Co-developed-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
-> > Signed-off-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
-> > Co-developed-by: Ionut Vicovan <Ionut.Vicovan@nxp.com>
-> > Signed-off-by: Ionut Vicovan <Ionut.Vicovan@nxp.com>
-> > Co-developed-by: Bogdan Roman <bogdan-gabriel.roman@nxp.com>
-> > Signed-off-by: Bogdan Roman <bogdan-gabriel.roman@nxp.com>
-> > Signed-off-by: Vincent Guittot <vincent.guittot@linaro.org>
->
-> I'm not doing a full review for this patch yet.
->
-> > +/*
-> > + * Note: This function should be compatible with phylink.
-> > + * That means it should only modify link, duplex, speed
-> > + * an_complete, pause.
-> > + */
-> > +static int s32g_xpcs_get_state(struct s32g_xpcs *xpcs,
-> > +                            struct phylink_link_state *state)
-> > +{
-> > +     struct device *dev = xpcs->dev;
-> > +     unsigned int mii_ctrl, val, ss;
-> > +     bool ss6, ss13, an_enabled, intr_en;
+> > diff --git a/arch/arm64/boot/dts/qcom/monaco-evk.dts b/arch/arm64/boot/=
+dts/qcom/monaco-evk.dts
+> > index bb35893da73d..c272d7db80e2 100644
+> > --- a/arch/arm64/boot/dts/qcom/monaco-evk.dts
+> > +++ b/arch/arm64/boot/dts/qcom/monaco-evk.dts
+> > @@ -76,6 +76,15 @@ platform {
+> >                       };
+> >               };
+> >       };
 > > +
-> > +     mii_ctrl = s32g_xpcs_read(xpcs, SR_MII_CTRL);
-> > +     an_enabled = !!(mii_ctrl & AN_ENABLE);
-> > +     intr_en = !!(s32g_xpcs_read(xpcs, VR_MII_AN_CTRL) & MII_AN_INTR_EN);
+> > +     /* This comes from a PMIC handled within the SAIL domain */
+> > +     vreg_s2s: vreg-s2s {
+> > +             compatible =3D "regulator-fixed";
+> > +             regulator-name =3D "vreg_s2s";
 > > +
-> > +     /* Check this important condition */
-> > +     if (an_enabled && !intr_en) {
-> > +             dev_err(dev, "Invalid SGMII AN config interrupt is disabled\n");
-> > +             return -EINVAL;
-> > +     }
+> > +             regulator-min-microvolt =3D <1800000>;
+> > +             regulator-max-microvolt =3D <1800000>;
 >
-> This isn't an interrupt handler. Phylink calls it from the state
-> resolver, which _may_ be triggered by an interrupt handler, but will
-> also be called at other times.
->
-> > +
-> > +     if (an_enabled) {
-> > +             /* MLO_AN_INBAND */
-> > +             state->speed = SPEED_UNKNOWN;
-> > +             state->link = 0;
-> > +             state->duplex =  DUPLEX_UNKNOWN;
-> > +             state->an_complete = 0;
-> > +             state->pause = MLO_PAUSE_NONE;
->
-> Have you looked at the initial state that phylink sets up before
-> calling the .pcs_get_state() method? See phylink_mac_pcs_get_state().
+> Is that the case for both SAIL- and SAIL-free SKUs?
 
-okay, I'm going to have a look
+To my knowledge, there is no Monaco=E2=80=91based SKU that can start withou=
+t
+SAIL. Monaco depends on SAIL for proper initialization, even if it is
+not subsequently used.
 
->
-> speed/duplex/pause/an_complete are already setup like that for you if
-> autoneg is enabled. link is the only member you'd need to touch.
-
-Okay
-
->
-> > +             val = s32g_xpcs_read(xpcs, VR_MII_AN_INTR_STS);
-> > +
-> > +             /* Interrupt is raised with each SGMII AN that is in cases
-> > +              * Link down - Every SGMII link timer expire
-> > +              * Link up - Once before link goes up
-> > +              * So either linkup or raised interrupt mean AN was completed
-> > +              */
-> > +             if ((val & CL37_ANCMPLT_INTR) || (val & CL37_ANSGM_STS_LINK)) {
-> > +                     state->an_complete = 1;
-> > +                     if (val & CL37_ANSGM_STS_LINK)
-> > +                             state->link = 1;
-> > +                     else
-> > +                             return 0;
-> > +                     if (val & CL37_ANSGM_STS_DUPLEX)
-> > +                             state->duplex = DUPLEX_FULL;
-> > +                     else
-> > +                             state->duplex = DUPLEX_HALF;
-> > +                     ss = FIELD_GET(CL37_ANSGM_STS_SPEED_MASK, val);
-> > +             } else {
-> > +                     return 0;
-> > +             }
-> > +
-> > +     } else {
-> > +             /* MLO_AN_FIXED, MLO_AN_PHY */
->
-> This function won't be called in those modes, so this is a misleading
-> comment. It can be called in MLO_AN_INBAND but when autoneg is disabled.
-
-Okay
-
->
-> > +             val = s32g_xpcs_read(xpcs, SR_MII_STS);
-> > +             state->link = !!(val & LINK_STS);
-> > +             state->an_complete = 0;
-> > +             state->pause = MLO_PAUSE_NONE;
-> > +
-> > +             if (mii_ctrl & DUPLEX_MODE)
-> > +                     state->duplex = DUPLEX_FULL;
-> > +             else
-> > +                     state->duplex = DUPLEX_HALF;
-> > +
-> > +             /*
-> > +              * Build similar value as CL37_ANSGM_STS_SPEED with
-> > +              * SS6 and SS13 of SR_MII_CTRL:
-> > +              *   - 0 for 10 Mbps
-> > +              *   - 1 for 100 Mbps
-> > +              *   - 2 for 1000 Mbps
-> > +              */
-> > +             ss6 = !!(mii_ctrl & SS6);
-> > +             ss13 = !!(mii_ctrl & SS13);
-> > +             ss = ss6 << 1 | ss13;
-> > +     }
-> > +
-> > +     switch (ss) {
-> > +     case CL37_ANSGM_10MBPS:
-> > +             state->speed = SPEED_10;
-> > +             break;
-> > +     case CL37_ANSGM_100MBPS:
-> > +             state->speed = SPEED_100;
-> > +             break;
-> > +     case CL37_ANSGM_1000MBPS:
-> > +             state->speed = SPEED_1000;
-> > +             break;
-> > +     default:
-> > +             dev_err(dev, "Failed to interpret the value of SR_MII_CTRL\n");
-> > +             break;
-> > +     }
-> > +
-> > +     val = s32g_xpcs_read(xpcs, VR_MII_DIG_CTRL1);
-> > +     if ((val & EN_2_5G_MODE) && state->speed == SPEED_1000)
-> > +             state->speed = SPEED_2500;
-> > +
-> > +     /* Cover SGMII AN inability to distigunish between 1G and 2.5G */
-> > +     if ((val & EN_2_5G_MODE) &&
-> > +         state->speed != SPEED_2500 && an_enabled) {
-> > +             dev_err(dev, "Speed not supported in SGMII AN mode\n");
-> > +             return -EINVAL;
-> > +     }
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int s32g_xpcs_config_an(struct s32g_xpcs *xpcs,
-> > +                            const struct phylink_link_state state)
-> > +{
-> > +     bool an_enabled = false;
-> > +
-> > +     an_enabled = linkmode_test_bit(ETHTOOL_LINK_MODE_Autoneg_BIT,
-> > +                                    state.advertising);
-> > +     if (!an_enabled)
-> > +             return 0;
->
-> Don't check the autoneg bit. This is the media-side autoneg, not
-> the PCS autoneg.
-
-Okay
-
->
-> > +
-> > +     s32g_xpcs_write_bits(xpcs, VR_MII_DIG_CTRL1,
-> > +                          CL37_TMR_OVRRIDE, CL37_TMR_OVRRIDE);
-> > +
-> > +     s32g_xpcs_write_bits(xpcs, VR_MII_AN_CTRL,
-> > +                          PCS_MODE_MASK | MII_AN_INTR_EN,
-> > +                          FIELD_PREP(PCS_MODE_MASK, PCS_MODE_SGMII) | MII_AN_INTR_EN);
-> > +     /* Enable SGMII AN */
-> > +     s32g_xpcs_write_bits(xpcs, SR_MII_CTRL, AN_ENABLE, AN_ENABLE);
-> > +     /* Enable SGMII AUTO SW */
-> > +     s32g_xpcs_write_bits(xpcs, VR_MII_DIG_CTRL1,
-> > +                          MAC_AUTO_SW, MAC_AUTO_SW);
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int s32g_xpcs_config(struct s32g_xpcs *xpcs,
-> > +                         const struct phylink_link_state state)
-> > +{
-> > +     struct device *dev = xpcs->dev;
-> > +     unsigned int val = 0, duplex = 0;
-> > +     int ret = 0;
-> > +     int speed = state.speed;
-> > +     bool an_enabled;
-> > +
-> > +     /* Configure adaptive MII width */
-> > +     s32g_xpcs_write_bits(xpcs, VR_MII_AN_CTRL, MII_CTRL, 0);
-> > +
-> > +     an_enabled = !!(s32g_xpcs_read(xpcs, SR_MII_CTRL) & AN_ENABLE);
-> > +
-> > +     dev_dbg(dev, "xpcs_%d: speed=%u duplex=%d an=%d\n", xpcs->id,
-> > +             speed, state.duplex, an_enabled);
-> > +
-> > +     if (an_enabled) {
-> > +             switch (speed) {
-> > +             case SPEED_10:
-> > +             case SPEED_100:
-> > +             case SPEED_1000:
-> > +                     s32g_xpcs_write(xpcs, VR_MII_LINK_TIMER_CTRL, 0x2faf);
-> > +                     break;
-> > +             case SPEED_2500:
-> > +                     s32g_xpcs_write(xpcs, VR_MII_LINK_TIMER_CTRL, 0x7a1);
-> > +                     s32g_xpcs_write_bits(xpcs, VR_MII_DIG_CTRL1, MAC_AUTO_SW, 0);
->
-> Configuring the link timer _after_ the link has already come up looks
-> completely wrong to me... this should be done when .pcs_config() detects
-> that the PHY interface mode has changed.
-
-Okay
-
->
-> > +                     break;
-> > +             default:
-> > +                     dev_err(dev, "Speed not recognized. Can't setup xpcs\n");
-> > +                     return -EINVAL;
-> > +             }
-> > +
-> > +             s32g_xpcs_write_bits(xpcs, SR_MII_CTRL, RESTART_AN, RESTART_AN);
->
-> As this is called from the .pcs_link_up() method, expect the link to
-> go bouncey bouncy bouncy if you restart AN _after_ the link has
-> come up.
->
-> > +
-> > +             ret = s32g_xpcs_wait_an_done(xpcs);
-> > +             if (ret)
-> > +                     dev_warn(dev, "AN did not finish for XPCS%d", xpcs->id);
-> > +
-> > +             /* Clear the AN CMPL intr */
-> > +             s32g_xpcs_write_bits(xpcs, VR_MII_AN_INTR_STS, CL37_ANCMPLT_INTR, 0);
-> > +     } else {
-> > +             s32g_xpcs_write_bits(xpcs, SR_MII_CTRL, AN_ENABLE, 0);
-> > +             s32g_xpcs_write_bits(xpcs, VR_MII_AN_CTRL, MII_AN_INTR_EN, 0);
-> > +
-> > +             switch (speed) {
-> > +             case SPEED_10:
-> > +                     break;
-> > +             case SPEED_100:
-> > +                     val = SS13;
-> > +                     break;
-> > +             case SPEED_1000:
-> > +                     val = SS6;
-> > +                     break;
-> > +             case SPEED_2500:
-> > +                     val = SS6;
-> > +                     break;
-> > +             default:
-> > +                     dev_err(dev, "Speed not supported\n");
-> > +                     break;
-> > +             }
-> > +
-> > +             if (state.duplex == DUPLEX_FULL)
-> > +                     duplex = DUPLEX_MODE;
-> > +
-> > +             s32g_xpcs_write_bits(xpcs, SR_MII_CTRL, DUPLEX_MODE, duplex);
-> > +
-> > +             if (speed == SPEED_2500) {
-> > +                     ret = s32g_serdes_bifurcation_pll_transit(xpcs, XPCS_PLLB);
-> > +                     if (ret)
-> > +                             dev_err(dev, "Switch to PLLB failed\n");
-> > +             } else {
-> > +                     ret = s32g_serdes_bifurcation_pll_transit(xpcs, XPCS_PLLA);
-> > +                     if (ret)
-> > +                             dev_err(dev, "Switch to PLLA failed\n");
-> > +             }
-> > +
-> > +             s32g_xpcs_write_bits(xpcs, SR_MII_CTRL, SS6 | SS13, val);
-> > +     }
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +/*
-> > + * phylink_pcs_ops fops
->
-> They are not "fops" which commonly refers to struct file_operations
->
-> > + */
-> > +
-> > +static void s32cc_phylink_pcs_get_state(struct phylink_pcs *pcs, unsigned int neg_mode,
-> > +                                     struct phylink_link_state *state)
-> > +{
-> > +     struct s32g_xpcs *xpcs = phylink_pcs_to_s32g_xpcs(pcs);
-> > +
-> > +     s32g_xpcs_get_state(xpcs, state);
-> > +}
->
-> Seems to me a pointless wrapper.
-
-okay
-
->
-> > +
-> > +static int s32cc_phylink_pcs_config(struct phylink_pcs *pcs,
-> > +                                 unsigned int neg_mode,
-> > +                                 phy_interface_t interface,
-> > +                                 const unsigned long *advertising,
-> > +                                 bool permit_pause_to_mac)
-> > +{
-> > +     struct s32g_xpcs *xpcs = phylink_pcs_to_s32g_xpcs(pcs);
-> > +     struct phylink_link_state state  = { 0 };
-> > +
-> > +     if (!(neg_mode == PHYLINK_PCS_NEG_INBAND_ENABLED))
-> > +             return 0;
-> > +
-> > +     linkmode_copy(state.advertising, advertising);
-> > +
-> > +     return s32g_xpcs_config_an(xpcs, state);
->
-> Given this is the only callsite for this function, and the only thing
-> you pass is the advertising mask, why pass a struct phylink_link_state
-> rather than the advertising mask?
-
-fair enough
-
->
-> > +}
-> > +
-> > +static void s32cc_phylink_pcs_restart_an(struct phylink_pcs *pcs)
-> > +{
-> > +     /* Not yet */
-> > +}
-> > +
-> > +static void s32cc_phylink_pcs_link_up(struct phylink_pcs *pcs,
-> > +                                   unsigned int neg_mode,
-> > +                                   phy_interface_t interface, int speed,
-> > +                                   int duplex)
-> > +{
-> > +     struct s32g_xpcs *xpcs = phylink_pcs_to_s32g_xpcs(pcs);
-> > +     struct phylink_link_state state = { 0 };
-> > +
-> > +     state.speed = speed;
-> > +     state.duplex = duplex;
-> > +     state.an_complete = false;
->
-> an_complete is never an "input" to drivers. It's a state from PCS
-> drivers back to phylink. Also, s32g_xpcs_config never looks at this.
->
-> > +
-> > +     s32g_xpcs_config(xpcs, state);
->
-> Again, the only things that this function uses are the speed and
-> duplex, so why wrap them up into a struct?
-
-will clean this
-
->
-> > +}
-> > +
-> > +static const struct phylink_pcs_ops s32cc_phylink_pcs_ops = {
-> > +     .pcs_get_state = s32cc_phylink_pcs_get_state,
-> > +     .pcs_config = s32cc_phylink_pcs_config,
-> > +     .pcs_an_restart = s32cc_phylink_pcs_restart_an,
-> > +     .pcs_link_up = s32cc_phylink_pcs_link_up,
-> > +};
->
-> Please implement .pcs_inband_caps. As you don't support disabling
-> inband for SGMII, that means you can't support MLO_AN_PHY mode
-> reliably.
-
-okay
-
->
-> Also note that there are PHYs out there that do _not_ provide SGMII
-> inband, which means if you have it enabled, and you're relying on it
-> to complete, you won't be able to interface with those PHYs. There's
-> such a PHY on a SFP module.
->
-> If this driver is purely for a network PCS, then please locate it in
-> drivers/net/pcs.
-
-That was an one open point for me because the content of this file is
-only called by
-drivers/phy/freescale/phy-nxp-s32g-xpcs.c
-So locating both in the same place looked reasonable but I can but
-files in different dir
-
->
-> I'm pretty sure there's other stuff I've missed as far as the phylink
-> API goes, so please expect further review once you've addressed the
-> comments above.
-
-Thanks
-
->
-> --
-> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-> FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+Regards,
+Loic
 
