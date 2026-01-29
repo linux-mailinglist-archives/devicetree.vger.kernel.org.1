@@ -1,64 +1,82 @@
-Return-Path: <devicetree+bounces-261001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261002-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UDIPBeuie2kVHgIAu9opvQ
-	(envelope-from <devicetree+bounces-261001-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 19:11:55 +0100
+	id sO5wBMmje2kVHgIAu9opvQ
+	(envelope-from <devicetree+bounces-261002-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 19:15:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 678C0B36CD
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 19:11:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 885AEB3763
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 19:15:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 15C52300F5D2
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 18:11:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2AB39301980E
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 18:15:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 790CB343D71;
-	Thu, 29 Jan 2026 18:11:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2C742E542A;
+	Thu, 29 Jan 2026 18:15:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gm2MrgTI"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="mZrJQ+RD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54EF219F40B;
-	Thu, 29 Jan 2026 18:11:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AD912D94BA
+	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 18:15:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769710275; cv=none; b=ZpVR5KO7w9+rfmor2tdIXPaoiG1zaxYtzkFuDddM1CJ24B26Kyrp1R3E/CUvVlzBV9hxeKjeTasanSy/ucpe4MbKsUy9h19BDvzQspRngU5lpUw20kIIaEWBUTgENqW+r+8CDqSrQ17ZmQgVW4UcO+OY54CzsJmRrB36Ud+O8zU=
+	t=1769710509; cv=none; b=HpEyz/j4gMAkbKao1+SgZ42h/3wffwSOLf2zoe7y15+5yw0XdlcbGm0fBGuPULsg5LLrKUPJTinc+ORC/7j/QqZ6OXWTYKlgKsPLsF0TmaH4zRxP9PrHD1anZZKLpCM9eAg05Jm5O94o5MpwJJ/dLHvC4PcuOJII/w7AslVVzZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769710275; c=relaxed/simple;
-	bh=3Au9COKP+vRsf+RlNddoz8B4QzP+leArD8miTuKlC1Q=;
+	s=arc-20240116; t=1769710509; c=relaxed/simple;
+	bh=4MJvj2+fHYfSWTC96lU3fBxhfU5kqQ0zRTEQY/NwItc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EanFh514UfqQgUM9pRu5sUie4va42SCC+TjGBi5F1m+sqS+UeyVN84t/UfD0QXgCo57RmionqSB1jWiV6X14+Py6bj+7wsMydJSYZYV1MYTEoV5W3B5RQkPwWUuuC6kFhd66fz6J4Atjq1SERcAGCn9mQJqAuGQxt7P1HL19TXc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gm2MrgTI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D144CC4CEF7;
-	Thu, 29 Jan 2026 18:11:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769710275;
-	bh=3Au9COKP+vRsf+RlNddoz8B4QzP+leArD8miTuKlC1Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gm2MrgTISL7NlkFAsK1t2vtt8JUCr14uepW9AgHCbfWVGiTdOZ7INDSBNzJrZKHGN
-	 +5JXllxrpHZBd4m5KLFEQL9gxFceakknubpmtc00iVn1azvi0HVsjqSs17IW9t3f4q
-	 z1adpmfG9ynlgkQqe9Nt5SB33ArDiJZaOf8KEiePWHOFjMqkMVXwo3/rmq86X/+nYt
-	 JSSk4WFTYEBV6I7tI+o1ex5zBOXjfMv6pb73xd/Bk1FFJ6+88Qp6afDuLNxg9lLg5K
-	 Wb//99Lgn2tdGhKVybVdKFaKCcf3PSib+eTeJRKjeizoijP9F+8kQ/smqftFe6IcLg
-	 rVV3a2xELSS3w==
-Date: Thu, 29 Jan 2026 12:11:14 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Sherry Sun <sherry.sun@nxp.com>
-Cc: mani@kernel.org, kwilczynski@kernel.org, shawnguo@kernel.org,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
-	hongxing.zhu@nxp.com, linux-pci@vger.kernel.org, festevam@gmail.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	kernel@pengutronix.de, krzk+dt@kernel.org, frank.li@nxp.com,
-	l.stach@pengutronix.de, lpieralisi@kernel.org, conor+dt@kernel.org,
-	bhelgaas@google.com, s.hauer@pengutronix.de
-Subject: Re: [PATCH V2 01/10] dt-bindings: PCI: fsl,imx6q-pcie: Add reset
- GPIO in Root Port node
-Message-ID: <176971027369.1393650.10286669434894758293.robh@kernel.org>
-References: <20260123021445.3782170-1-sherry.sun@nxp.com>
- <20260123021445.3782170-2-sherry.sun@nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=mPOnAlMQhS9cytYLdbM/XBoLpcUapOxWGb6qn32vp/ErIlxdyARcy6Epf4TIWFPB/8sUUA6Y+Df/E4m0WlqCSDCLd2n67oEWvqy2WVlZ5gA8rNFRhbTZogFA/c1+IoglkQ7UarDyKv3AvOTAn5fhmvab9C+ARe9VaM+IPle6Lgw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=mZrJQ+RD; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=kMwJ
+	sRUTY1+8DlXqwrzudKGi67r8tcF8NN0fyMeA4OI=; b=mZrJQ+RDSMYjGwdVp2wP
+	GzAkcvLuH78nOpPUuIN36eh/2nTSF5H9WVKg1Gmg98Jwk3KE3AUZoOaY9JBtHaGd
+	Frd6gTcLDqOz5v1S0wcpf/bx9u4Xm+FZlru7a6OhVRjpeHbtFEry2iHyQJXKqXY2
+	/B3zB2GINvd41izUXf2jojEJp70bEoY5c5ypI/7SNyTIfZTavHXwVYRki6HuVT7F
+	aUZPwL1Kits1/RJUOAAJQGhN+NZ5MOjw+t/8xMuEaODY+opLGlWzIdKv2HTd98Tq
+	3Gkv3tFwhSZKxdKWUNedaH5aHSJow2GI0M5IvYzVsb6SZgB2pxySgwEnEWqefkVf
+	/A==
+Received: (qmail 4159334 invoked from network); 29 Jan 2026 19:14:56 +0100
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 29 Jan 2026 19:14:56 +0100
+X-UD-Smtp-Session: l3s3148p1@5gh11YpJZEVtKXEx
+Date: Thu, 29 Jan 2026 19:14:55 +0100
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Josua Mayer <josua@solid-run.com>,
+	Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Peter Rosin <peda@axentia.se>, Aaro Koskinen <aaro.koskinen@iki.fi>,
+	Andreas Kemnade <andreas@kemnade.info>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
+	Janusz Krzysztofik <jmkrzyszt@gmail.com>,
+	Vignesh R <vigneshr@ti.com>, Andi Shyti <andi.shyti@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Yazan Shhady <yazan.shhady@solid-run.com>,
+	Jon Nettleton <jon@solid-run.com>,
+	Mikhail Anikin <mikhail.anikin@solid-run.com>,
+	linux-can@vger.kernel.org, linux-phy@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+	linux-i2c@vger.kernel.org, linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v7 0/7] mmc: host: renesas_sdhi_core: support configuring
+ an optional sdio mux
+Message-ID: <aXujn-jpKLcBeFPE@shikoro>
+References: <20260128-rz-sdio-mux-v7-0-92ebb6da0df8@solid-run.com>
+ <CAPDyKFp9StNf1eLaSETxC72=7sXYBmGFmHnv0CXysUGcYma5VA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,56 +85,63 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260123021445.3782170-2-sherry.sun@nxp.com>
+In-Reply-To: <CAPDyKFp9StNf1eLaSETxC72=7sXYBmGFmHnv0CXysUGcYma5VA@mail.gmail.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,lists.infradead.org,lists.linux.dev,nxp.com,vger.kernel.org,gmail.com,pengutronix.de,google.com];
-	TAGGED_FROM(0.00)[bounces-261001-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_NA(0.00)[sang-engineering.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261002-lists,devicetree=lfdr.de,renesas];
+	RCPT_COUNT_TWELVE(0.00)[31];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[sang-engineering.com:+];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[solid-run.com,pengutronix.de,kernel.org,linaro.org,axentia.se,iki.fi,kemnade.info,baylibre.com,atomide.com,gmail.com,ti.com,glider.be,vger.kernel.org,lists.infradead.org];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:email]
-X-Rspamd-Queue-Id: 678C0B36CD
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[solid-run.com:email,sang-engineering.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 885AEB3763
 X-Rspamd-Action: no action
 
+On Thu, Jan 29, 2026 at 05:15:06PM +0100, Ulf Hansson wrote:
+> On Wed, 28 Jan 2026 at 15:46, Josua Mayer <josua@solid-run.com> wrote:
+> >
+> > Some Renesas SoC based boards mux SD and eMMC on a single sdio
+> > controller, exposing user control by dip switch and software control by
+> > gpio.
+> >
+> > Purpose is to simplify development and provisioning by selecting boot
+> > media at power-on, and again before starting linux.
+> >
+> > Add binding and driver support for linking a (gpio) mux to renesas sdio
+> > controller.
+> >
+> > Introduce generic helper functions for getting managed and selected
+> > mux-state objects, and switch i2c-omap and phy-can-transceiver drivers.
+> >
+> > Signed-off-by: Josua Mayer <josua@solid-run.com>
+> 
+> This series needs to go together in some way. If you like, I can
+> funnel it via my mmc tree, unless someone (Wolfram for the i2c part?)
+> has objections to this of course.
 
-On Fri, 23 Jan 2026 10:14:36 +0800, Sherry Sun wrote:
-> Update fsl,imx6q-pcie.yaml to include the standard reset-gpios property
-> for the Root Port node.
-> 
-> The reset-gpios property is already defined in pci-bus-common.yaml for
-> PERST#, so use it instead of the local reset-gpio property. Keep the
-> existing reset-gpio property in the bridge node for backward
-> compatibility, but mark it as deprecated.
-> 
-> Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
-> ---
->  .../bindings/pci/fsl,imx6q-pcie.yaml          | 32 +++++++++++++++++++
->  1 file changed, 32 insertions(+)
-> 
-
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+No objections, I even acked the I2C patch in a previous series. Since
+the series changed because of some of my suggestions, I want to have
+another look at it. But yes, your tree sounds very reasonable.
 
 
