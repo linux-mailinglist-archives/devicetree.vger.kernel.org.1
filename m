@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-260758-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260726-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aMtKHTQPe2nqAwIAu9opvQ
-	(envelope-from <devicetree+bounces-260758-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 08:41:40 +0100
+	id kMoCKtf0emnDAAIAu9opvQ
+	(envelope-from <devicetree+bounces-260726-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 06:49:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A214DACD94
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 08:41:39 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EB80AC121
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 06:49:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id AFEE93062736
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 07:33:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1F0B9303FF03
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 05:47:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF238374170;
-	Thu, 29 Jan 2026 07:32:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 524F3306496;
+	Thu, 29 Jan 2026 05:47:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="S3eBlUKF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="E7YGpAnI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23FB926463A
-	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 07:32:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E751302753
+	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 05:47:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769671977; cv=none; b=uTwWr95uJxm7Un8ky4vxrQDBIVrtzu1IE66037PvMq0GQ2STtqfeNwt0japS9mAThlAllEwKuTHpjf0eaVHlMlcsFejxD56obu3JpGK4gRV28v+1SQWGl3aLqqPFCp3ctqIvFgpDRFFsmDdXEdmsrbkRxIEvMw4+oSwb8VhFluU=
+	t=1769665673; cv=none; b=RFwNcExAXRuG5I42F7Mu0VCdNDqxeBPWVZfn7CJHYaye2svkseIGuAc3d1FBkzsX5qkVA9b2RT1NUMnpfndwqGfc8fk4dM41SH7MBQ3IHRK5xlRgilUDIbsVFaSUnRuuiJNojDlyVdXEjh3Wi9SC6xmfPrD+gJBEHDnq807V4jQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769671977; c=relaxed/simple;
-	bh=pi1fLBggw2w5nq+ku9XGxrPVz6Xc+gXO0i/5XkcUNq8=;
+	s=arc-20240116; t=1769665673; c=relaxed/simple;
+	bh=QtehmTlxVE2ImMqTMUlN+wssHL5rLi9pMI7VHV6x+J0=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ZHxVy79HSbRz93FPfCA1mujqzOmTZsPxalssKWdwz66BgEc+qatMpPWSlsAoSfPGTZFJgcGEOz7N4Zj52l0dUqP4ICwYEfofoD7n4G12C/jH0ORIpNC++1VPccdjSVCPi0QIh7mdPU1gRbYOLzlarsoRovVwGLzkEN7LnUTYX0A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=S3eBlUKF; arc=none smtp.client-ip=209.85.210.45
+	 MIME-Version; b=a5I2Je01SSmOTu5Mo5XpUhePEidJLRirwwBSQf6SGXLCCf1fQR2/ThpYWUi6Ix01cRErShLDlELaE+zY92qSSfBy6+XeH+rJyX+bRORVz5er1t33w0WvBbPrrrOtfzC+/RMBkbtsq/AGNmoz3w5zmNxXl4pMgj7IxuhpUZRQLZ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=E7YGpAnI; arc=none smtp.client-ip=209.85.219.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-7d1872504cbso537284a34.0
-        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 23:32:55 -0800 (PST)
+Received: by mail-qv1-f50.google.com with SMTP id 6a1803df08f44-894703956b8so10729936d6.1
+        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 21:47:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769671975; x=1770276775; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1769665669; x=1770270469; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Gnop4z34aVye00gIQguUoewYT5lM9SytbUgSGtePF4w=;
-        b=S3eBlUKF8N+2Cjp1NvrM3PPqPwIBHS82qz/ySKpmTsvin2/vJqghL0VTHJOxhPoz5a
-         dZy1X5Ym/7V3VOAFAywHiYoEShsKTwTgyeXxfNAG3vlOforqKRPl39y4+6CREWEFmCfN
-         jr5947HKfxclvwqG7M3LPBB45479anqD/CwpX5Q7WhKjDqR3/gmcrI0ZdG2fxM/kkZhn
-         zEDt++KaIz7EQ+EqrGAiIRp1HaV9gKPY4zTzEal3GH8JXEIQg0PPQgu+PzmUtm6RpUlv
-         xDI20MBa1NCZH6l7ujv9IO2wyVr1wfmjb2jqCCqsC78eijCg/33VfuskAW1mqTST0Ij1
-         jA1A==
+        bh=0Hq1Jil93LKWD5SqiddgyBykMfT43TbOI7JPjGrETyE=;
+        b=E7YGpAnITfaGdRPQnhHVxzbW2Sn1oJiSNGuXfBMiwxfim2ExAGcKq9zXxpn7KWNz/0
+         l8dXBsUjNmPElUBBBDarqfaQgaclljYSxh4p3zwiKoi6+LMG+cIKsD9el65FkE5puTxi
+         Xfe7UxlnbC1DIvF+NxGShKRKM/BYfiB9HL1oEl+mI7WnQgHZs7y43Rd4IM03mDZUSDLQ
+         uSor1P9HNlfTqLke/Jb37bwwqkRVe9a3w+ZPQDBZ7uL9+QPvq67+/Sjg6ZDXPiltSphl
+         w0Q1UkmGC9uJ3C24Yu8uPdLtPdl4sLuo3abT1vyRLHE0uBAoJUutZgncz3SMFtV7WFW6
+         OM2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769671975; x=1770276775;
+        d=1e100.net; s=20230601; t=1769665669; x=1770270469;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=Gnop4z34aVye00gIQguUoewYT5lM9SytbUgSGtePF4w=;
-        b=BWwlq7dqALt3QQjCA9lHb1pEfZV7R9iyeMcLO/pKnIx4F0cbjaGr9NScc07IxQmTfV
-         AevXv/jEK/Cy1XfC31Bw4lNYR/yMnX3PvawE+NuO5l9A8w7IrRl4EcLrexslVxlo1nIj
-         sZxWu6qiQI071BR41zS3Y/vN4IMtSZXuaBNiBCPRX+4JOuTc/XvtEiSOWU5HhUZ8qpIa
-         wckEoJxRQ6g5Qdo/8A6+sSM/QI/lhYK8s9gA3Ne6vnzN9ogKpyIJ9q+JIQzJS1lHCL51
-         MRXi0WScvxClayfWZrf6CLwaIIq1Afm5XWjE22j8S54IL97oKlhxoadSbnxV+bFYSkEi
-         AYsw==
-X-Gm-Message-State: AOJu0YwAlTFNJR0TsiF5y881e24upxl+/P+Czz19YMypLI5u2rKgGiwg
-	pvuWZBag1veUWq8hkAbEarN4ANdLnVYL7XNijt5Fzs+syHnobUpGNYHd1jk9btbl
-X-Gm-Gg: AZuq6aKY12DqtL/z/bav2GV811vpN6+wHJXVUPgcRNE9qMZ9qs8J/0hHugjsZjXWlQ9
-	OE/4j5xaglA8LcN0sbBEP0+d/LPpprh2gFSMix51a/ke/q8Nw0Ic2yvtS26wl+HUqdg0crZCE/N
-	rYdiUda/Ps1dN7HavHY/YjgAr3LC3b77rah586aALQC0OT6cQeVtDmgUqmK3fThmnvS78o69qLX
-	MVA1cDwav2O2cFrvpinJ38k7dV9kKkBd1Ov+i30oLIf7cdAqsZHh1ufhMpZfXUEE7Pt3m2HMqQ7
-	NzAZanFgp47K9RTW1K9A4ek2N5PdFSVcZACUm+zTXzDHJfCtNIn18z0SMm1AfaL689s98o+Beo/
-	xOdku2KHm2sNpD8RR+H1aTzaIVynIeoRhuQ+pMV5aEgh+A7qUpzn60jGCze9Zvmf7PnWB9oSAoY
-	lcnZgvrYdzjAMdbCt7QEhhesaSjrasc24Qb8Uip0Cuwsj5NstyBVJ4ngY/uyB/iPjVPl2qTcWeJ
-	d5DN8fIvg==
-X-Received: by 2002:a05:620a:1997:b0:8c6:a5ae:e9cc with SMTP id af79cd13be357-8c728acf291mr254438385a.14.1769665665773;
-        Wed, 28 Jan 2026 21:47:45 -0800 (PST)
+        bh=0Hq1Jil93LKWD5SqiddgyBykMfT43TbOI7JPjGrETyE=;
+        b=bBo99/20ZvbEg+nR7JdJWB7LzzpZ6HOF6ZcPxg3Ohrt51H0FA9BainCHGl7tdS/MQt
+         Cc8wuZqFpydamYgj7w/eIwj3N8nKqKt3j+yzDyLdwtY63nXSsflnQWKabK9BoSpeEowY
+         oH0EbTd2NsEulbvf0zWT7OirV5Ug5eqyPi3BA71mu/E2Oo2FKfgPaCoV3o8XlyU8nK5e
+         CiummNZvq3hKm6k3v1r0ZWF0Zt7K613ZLusPcHfnbnfCiIMeVN12m775m5HmZ8k3V45u
+         d6blVzILgd1qteTNyee947HyEp5iWBAweFVrdtTK2kncvVkVsjHUGYSzgU9zUBp7Llfp
+         a+2w==
+X-Gm-Message-State: AOJu0YyfEZOciR+MDRGQIIQ/3DwAfwjG5N+GEkqhui43LFsPgqp32Iib
+	xbcSj01tqOFr2P3cKgO6pjVHmiiM/FezmMLydzWtHm35/IeyKWve4Cz+
+X-Gm-Gg: AZuq6aLHgzr8af/s919AGTP9qEmioAAudOG7vIrqmmDIgd7ITvHp50msoX1mgm1QzT5
+	jxMWZgPY5ApmFbBww/tnJXzOstmvApFLhvjh7cf05ITDWJ5HjOpXPvwY3G46YG+/DOa3BO4XQpb
+	ly0SJYdmEwq6F+pvCY+T2LfInuy9Xc9XlzcKhyU79uvO4hRY3kbnZmujW81nwsVpUmOheEZfb+b
+	MiIEtF2WJF/dWU7JVnMmOJujeFrTmQIOyqRy/IBqeMr9fsvJfFXhuF4ciVe6qmT+KaDeGBUncpe
+	ype3LMSX9nTFXtU4FnG4aYtMdzBGK139RKsYg1vZaSPx1j7I1odYTJTZwd2yEBT1oNqJITvshrV
+	fcvchIs607W2JjgtKOCQPV4QixXL4EytVH6kTM7Dx94v8ScZ3ifYoXMi5+EAOJqqVkvJaMu+1dF
+	5HXeOARyhPeS+GBHkB0AJharnrKQF7MqT01Xrt6EaO62XLZT+/DGg5yjPHPm7hl95k3ap86GVAA
+	d7NBsZXCQ==
+X-Received: by 2002:a05:6214:410f:b0:894:7d78:9cf4 with SMTP id 6a1803df08f44-894cc7d012cmr118216296d6.13.1769665669193;
+        Wed, 28 Jan 2026 21:47:49 -0800 (PST)
 Received: from mighty.stonybrook.edu (nat-130-245-192-1.resnet.stonybrook.edu. [130.245.192.1])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-894d36dd1cfsm30903216d6.25.2026.01.28.21.47.44
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-894d36dd1cfsm30903216d6.25.2026.01.28.21.47.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Jan 2026 21:47:45 -0800 (PST)
+        Wed, 28 Jan 2026 21:47:48 -0800 (PST)
 From: Mithil Bavishi <bavishimithil@gmail.com>
 To: aaro.koskinen@iki.fi,
 	airlied@gmail.com,
@@ -104,10 +104,10 @@ Cc: devicetree@vger.kernel.org,
 	dri-devel@lists.freedesktop.org,
 	linux-kernel@vger.kernel.org,
 	linux-omap@vger.kernel.org,
-	Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH v5 2/8] dt-bindings: vendor-prefixes: Add Doestek
-Date: Thu, 29 Jan 2026 00:47:03 -0500
-Message-ID: <20260129054709.3878-3-bavishimithil@gmail.com>
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v5 3/8] dt-bindings: display: bridge: lvds-codec: add doestek,dtc34lm85am
+Date: Thu, 29 Jan 2026 00:47:04 -0500
+Message-ID: <20260129054709.3878-4-bavishimithil@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260129054709.3878-1-bavishimithil@gmail.com>
 References: <20260129054709.3878-1-bavishimithil@gmail.com>
@@ -125,7 +125,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -133,7 +133,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-260758-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-260726-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[28];
 	FREEMAIL_TO(0.00)[iki.fi,gmail.com,kemnade.info,kernel.org,kwiboo.se,baylibre.com,ideasonboard.com,linux.intel.com,linaro.org,bp.renesas.com,ffwll.ch,atomide.com,suse.de,intel.com];
@@ -146,34 +146,33 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,doestek.co.kr:url]
-X-Rspamd-Queue-Id: A214DACD94
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 2EB80AC121
 X-Rspamd-Action: no action
 
-Add vendor prefix for Doestek Co., Ltd.
-Link: http://www.doestek.co.kr/
+Add compatible strings for the Doestek DTC34LM85AM Flat Panel Display
+Transmitter
 
 Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
-Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index c7591b2ae..70a195fc6 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -437,6 +437,8 @@ patternProperties:
-     description: D-Link Corporation
-   "^dmo,.*":
-     description: Data Modul AG
-+  "^doestek,.*":
-+    description: Doestek Co., Ltd.
-   "^domintech,.*":
-     description: Domintech Co., Ltd.
-   "^dongwoon,.*":
+diff --git a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
+index 4f7d3e9cf..3ad01645c 100644
+--- a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
+@@ -33,6 +33,7 @@ properties:
+     oneOf:
+       - items:
+           - enum:
++              - doestek,dtc34lm85am # For the Doestek DTC34LM85AM Flat Panel Display (FPD) Transmitter
+               - ti,ds90c185   # For the TI DS90C185 FPD-Link Serializer
+               - ti,ds90c187   # For the TI DS90C187 FPD-Link Serializer
+               - ti,sn75lvds83 # For the TI SN75LVDS83 FlatLink transmitter
 -- 
 2.43.0
 
