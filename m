@@ -1,165 +1,205 @@
-Return-Path: <devicetree+bounces-260969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260970-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +BHdCYSYe2nOGAIAu9opvQ
-	(envelope-from <devicetree+bounces-260969-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 18:27:32 +0100
+	id UP9ZLtiYe2nOGAIAu9opvQ
+	(envelope-from <devicetree+bounces-260970-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 18:28:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8041AB2D8D
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 18:27:31 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DC41B2E4C
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 18:28:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DA9AE3076AD4
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 17:23:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C087F3026155
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 17:24:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FB0134B682;
-	Thu, 29 Jan 2026 17:23:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFC47349B0C;
+	Thu, 29 Jan 2026 17:24:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="gUibd4dK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rw6tQ/1j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-178.mta0.migadu.com (out-178.mta0.migadu.com [91.218.175.178])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE68934B183
-	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 17:23:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B97F82C21F6;
+	Thu, 29 Jan 2026 17:24:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769707406; cv=none; b=bpWPFbSr/98jEeW8cLTjawZXyvU3Fgw97nrerQ0fAAp70EG3TQmNMn91aE5SHFX48BH+qYP++stdtweUbFFrDao33WyAnRkOaQfYRC1Aca45UvAeaFtVoEh5yslIPzf5bE23eZujqEJJNe7M1rWxvlJVvfGVUK629rCg6q9Lfg4=
+	t=1769707453; cv=none; b=pI1c3+ENjpRU9krG7XmU76sURnlJGVVwg1NWhZfunlljKX9x0TjrPQWRNM42KPLKqqhpSckmjTuLOKOURaXcMEwGHlYWgSxu9MM5bA0UVM6libOwqxOyEM7QnaUk09APFkNaoOBnkrBiQgi/hrMTYbGZ+sC1VZv/Pbuk/XqRcZM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769707406; c=relaxed/simple;
-	bh=pRBa5TBjuQYiYyDUyFa9T4Jx9I8aK8yOKph8e6rqDMM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ZExes7z5gzmmsVFxhUr+kcV0yPTsqY3ZJ/LMIvKasqfuFxscJn2FbzRyVZgqtlJ2+Fu1ghNHk4H463FhabGzSSVOH5eGPk9Voe0yLAz/JJ5YKZC/oJEeyS5mIk6y0JU03o46vLlRXcmf3usW5+n5yn6ueGhBJxzL3nhvZtNiSC4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=gUibd4dK; arc=none smtp.client-ip=91.218.175.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1769707401;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=1Puyqb4KlLw9Tw9YVBGXVL1lbSf9jM4gxR8qM3PJNjw=;
-	b=gUibd4dKPoVe/gk+34E+1BEgtE1x5UGgCa2Tc8KZCiiA26Yp/nX3+Od1EBm9s9c27qraxZ
-	7qktT7InYMiJs/eDsEMHcHp0k08EBMeG1dXvD6Xr+F9hhvExGZ084O90gUbp1Vg5UGbylT
-	892LahQ6dunQe5XkgWpgntqpyxJf51s=
-From: Sean Anderson <sean.anderson@linux.dev>
-To: Vincenzo Frascino <vincenzo.frascino@arm.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	linux-sound@vger.kernel.org
-Cc: Jaroslav Kysela <perex@perex.cz>,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Michal Simek <michal.simek@amd.com>,
-	Takashi Iwai <tiwai@suse.com>,
-	Sean Anderson <sean.anderson@linux.dev>,
-	Conor Dooley <conor+dt@kernel.org>,
+	s=arc-20240116; t=1769707453; c=relaxed/simple;
+	bh=GwpyZ1XhwGvTuaJx2R/noCmHcGV2NRys+b4dwGgPMRw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DfNL28a5EVE16ljs54w3kPaosuGYlJA53S8Ow0jR5XPqYEqBrldhUmTecimJdhf6hXEZqLkuAMf89NIyIPqPmvPLCTuyYIJkTeiesImctUWPZS+sx1/YjVnn1l/3kWikc1BVOxN9xuxUmYFZFsSMWTvWQwfK/iPJ3QzPp5AuWhw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rw6tQ/1j; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12733C4CEF7;
+	Thu, 29 Jan 2026 17:24:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769707453;
+	bh=GwpyZ1XhwGvTuaJx2R/noCmHcGV2NRys+b4dwGgPMRw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Rw6tQ/1jebbzeNxeUd/uwC8v3wG9O5tVLwF2euGaO17C7SgFAnEj0LQIUhH7DjSwM
+	 7Dm2ej3g9X3WBu8/fBJkC/jCb6p1/XbKyqe5M6nMCYZff2P2o6xOLy6+z/UxW0cZ9w
+	 +WzjA8j3cjKOeAspg8ScQzaVSE7OZO/HeKgwADO8fBDm1LW6m4j7IE9azNZSNRIRtb
+	 F1xZUup+O5edsuyRuAF5V8hRA82pe4SWffHrvfCJa7jfxRyXHQRYcGQ6Sb59MP0JDk
+	 gUtjzxm4+UjaAHdZcKjgHj40Rj294kcwhOeToQDL5QIadAAfMBR6+yxE6gkjCM3HWg
+	 djTkIYBYJpZdQ==
+Date: Thu, 29 Jan 2026 11:24:12 -0600
+From: Rob Herring <robh@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
+	Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
+	Bryan O'Donoghue <bod@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: sound: xlnx,i2s: Make discoverable parameters optional
-Date: Thu, 29 Jan 2026 12:23:14 -0500
-Message-Id: <20260129172315.3871602-2-sean.anderson@linux.dev>
-In-Reply-To: <20260129172315.3871602-1-sean.anderson@linux.dev>
-References: <20260129172315.3871602-1-sean.anderson@linux.dev>
+	Conor Dooley <conor+dt@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Abhinav Kumar <abhinav.kumar@linux.dev>,
+	Bjorn Andersson <andersson@kernel.org>,
+	David Heidelberg <david@ixit.cz>, linux-media@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Johan Hovold <johan+linaro@kernel.org>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Subject: Re: [PATCH v3 1/7] media: dt-bindings: Document SC8280XP/SM8350 Venus
+Message-ID: <20260129172412.GA1303752-robh@kernel.org>
+References: <20260125-iris-sc8280xp-v3-0-d21861a9ea33@oss.qualcomm.com>
+ <20260125-iris-sc8280xp-v3-1-d21861a9ea33@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260125-iris-sc8280xp-v3-1-d21861a9ea33@oss.qualcomm.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260969-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260970-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[arm.com,gmail.com,kernel.org,vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sean.anderson@linux.dev,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[linux.dev:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt,linaro];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,a0090000:email,linux.dev:email,linux.dev:dkim,linux.dev:mid]
-X-Rspamd-Queue-Id: 8041AB2D8D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 1DC41B2E4C
 X-Rspamd-Action: no action
 
-These parameters can be discovered from a config register. As they will
-not be used any more, mark them deprecated, make them optional, and
-remove them from the example.
+On Sun, Jan 25, 2026 at 05:32:58PM +0200, Dmitry Baryshkov wrote:
+> From: Konrad Dybcio <konradybcio@kernel.org>
+> 
+> Both of these SoCs implement an IRIS2 block, with SC8280XP being able
+> to clock it a bit higher and  with SM8350 having 4 VPP pipes, while
+> SC8280XP having just 2.
+> 
+> Document Iris2 cores found on these SoCs.
+> 
+> Signed-off-by: Konrad Dybcio <konradybcio@kernel.org>
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> [ bod: dropped dts video-encoder/video-decoder ]
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> [db: dropped status, dropped extra LLCC interconnect]
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> ---
+>  .../bindings/media/qcom,sm8350-venus.yaml          | 113 +++++++++++++++++++++
+>  1 file changed, 113 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/qcom,sm8350-venus.yaml b/Documentation/devicetree/bindings/media/qcom,sm8350-venus.yaml
+> new file mode 100644
+> index 000000000000..d78bdc08d830
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/qcom,sm8350-venus.yaml
+> @@ -0,0 +1,113 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/qcom,sm8350-venus.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm SM8350 Venus video encode and decode accelerators
+> +
+> +maintainers:
+> +  - Konrad Dybcio <konradybcio@kernel.org>
+> +
+> +description: |
 
-Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
----
+Don't need '|'
 
- Documentation/devicetree/bindings/sound/xlnx,i2s.yaml | 8 ++------
- 1 file changed, 2 insertions(+), 6 deletions(-)
+> +  The Venus Iris2 IP is a video encode and decode accelerator present
+> +  on Qualcomm platforms
+> +
+> +allOf:
+> +  - $ref: qcom,venus-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,sc8280xp-venus
+> +      - qcom,sm8350-venus
+> +
+> +  clocks:
+> +    maxItems: 3
+> +
+> +  clock-names:
+> +    items:
+> +      - const: iface
+> +      - const: core
+> +      - const: vcodec0_core
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  reset-names:
+> +    items:
+> +      - const: core
+> +
+> +  power-domains:
+> +    maxItems: 3
+> +
+> +  power-domain-names:
+> +    items:
+> +      - const: venus
+> +      - const: vcodec0
+> +      - const: mx
+> +
+> +  interconnects:
+> +    maxItems: 2
+> +
+> +  interconnect-names:
+> +    items:
+> +      - const: cpu-cfg
+> +      - const: video-mem
+> +
+> +  operating-points-v2: true
 
-diff --git a/Documentation/devicetree/bindings/sound/xlnx,i2s.yaml b/Documentation/devicetree/bindings/sound/xlnx,i2s.yaml
-index 3c2b0be07c53..180f43f2b230 100644
---- a/Documentation/devicetree/bindings/sound/xlnx,i2s.yaml
-+++ b/Documentation/devicetree/bindings/sound/xlnx,i2s.yaml
-@@ -29,6 +29,7 @@ properties:
-     enum:
-       - 16
-       - 24
-+    deprecated: true
-     description: |
-       Sample data width.
- 
-@@ -36,14 +37,13 @@ properties:
-     $ref: /schemas/types.yaml#/definitions/uint32
-     minimum: 1
-     maximum: 4
-+    deprecated: true
-     description: |
-       Number of I2S streams.
- 
- required:
-   - compatible
-   - reg
--  - xlnx,dwidth
--  - xlnx,num-channels
- 
- additionalProperties: false
- 
-@@ -52,14 +52,10 @@ examples:
-     i2s@a0080000 {
-       compatible = "xlnx,i2s-receiver-1.0";
-       reg = <0xa0080000 0x10000>;
--      xlnx,dwidth = <0x18>;
--      xlnx,num-channels = <1>;
-     };
-     i2s@a0090000 {
-       compatible = "xlnx,i2s-transmitter-1.0";
-       reg = <0xa0090000 0x10000>;
--      xlnx,dwidth = <0x18>;
--      xlnx,num-channels = <1>;
-     };
- 
- ...
--- 
-2.35.1.1320.gc452695387.dirty
+blank line
 
+With that,
+
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+
+> +  opp-table:
+> +    type: object
 
