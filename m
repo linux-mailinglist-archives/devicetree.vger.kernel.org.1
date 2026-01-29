@@ -1,43 +1,104 @@
-Return-Path: <devicetree+bounces-260858-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260860-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2C3zM91Ge2kdDQIAu9opvQ
-	(envelope-from <devicetree+bounces-260858-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 12:39:09 +0100
+	id aPKaGeRKe2l/DgIAu9opvQ
+	(envelope-from <devicetree+bounces-260860-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 12:56:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D58AAFB65
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 12:39:09 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9FD6AFD56
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 12:56:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 647F63012243
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 11:38:47 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C71F2301725D
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 11:56:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 478BE385ECC;
-	Thu, 29 Jan 2026 11:38:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5388E387592;
+	Thu, 29 Jan 2026 11:56:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fr338N09";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="VjlchsDJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAF6F2E2665;
-	Thu, 29 Jan 2026 11:38:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 301303876AD
+	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 11:56:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769686726; cv=none; b=TaZ64ZZk5j6tSMISpLJpbg4BMDhiFjXSDm+L4D87lQXJeWz3w29fIR211I08wPkHMy05Eauc9sqyrIkm9+wRCC087UQJBPWWLQUnf16zog6SLU5GVrA6sVZ2jMUxZEVhIuyyoqE6RPy8maZvsW3ru6SwrTSdXEIpe6DRv7JzKOU=
+	t=1769687777; cv=none; b=d5zO09GLuzmfR7cy+q7qMRAOzmNAz5rW9p2ESFhZwg3Lud7lvz8I7XWC5L9PmOJiMp2iSZuVrUhOD0Kme92is/amox+MTjO0gkZlclld/cISLb5DvbRAp8mkLilxlKSfaofS7mYAu0HT6bhxmwImXGjOzIXHwbvOBBllSluTnTw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769686726; c=relaxed/simple;
-	bh=gn1GTeanFS2tyXtDUWwyjgOPS2OlfxQ6NFktIwKSUEU=;
+	s=arc-20240116; t=1769687777; c=relaxed/simple;
+	bh=7ben1nzOgp6NuXj4JLhvupKl4cYUOi4ZHQrjO7Ao/EA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=h0f8B//N2ojtRY+SyBTub7CViu9BRht9n/IMzF3cb4Zb1PEExJyRwgbgDhJCfAnrUltwgDQ2dR0AmksnMR3m0OuW4j2YU8unw82OLYrPU6Cj0i8MCFbc062zgWrUbs/xvKawe4o3qyOjNwzNsks3w4vew9TsxBIwfr0S5bNvnjU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 849AC1516;
-	Thu, 29 Jan 2026 03:38:36 -0800 (PST)
-Received: from [10.57.17.98] (unknown [10.57.17.98])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 046403F73F;
-	Thu, 29 Jan 2026 03:38:39 -0800 (PST)
-Message-ID: <2ca3a260-d05f-4f2d-bf3f-08b4a3908792@arm.com>
-Date: Thu, 29 Jan 2026 11:38:41 +0000
+	 In-Reply-To:Content-Type; b=hXnRj6v2lh1ya05CGzGOMAuvo3z0+S2oL4h2zdt8BF5RNzZgTBXqRExyXweoZ1Adx6GC9bbkj6YoLBCvfd7TYKpJlS1IgXaKIsE0soRzYv/9bW49oDcvEVTXeth1C1aSweixrrHAbbjBLo+iilk+/zTcDTY2vVjwbGkY3nv4pnI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fr338N09; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=VjlchsDJ; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60TA9Klc1430614
+	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 11:56:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	pDQk3BRBpJ5FcpP/PG7QKmjxWd+qP3CsaWqRU/Nc09Y=; b=fr338N09oLKwgduE
+	v6HCBwwmmWGv/TDQIRAbG8KrD35Zil/KNLb5EwjEizg/5HwqvYYck+jrtk96ZFGf
+	OKrRIgCdnFJxsmJBNtzMQltOltSeTu81dsGuho7KVunKrWnrkI437yZp0kGdLHQR
+	TrJLJGzMlhaM84X6cFwI4IaV9uq4gBqoAMTCJDFZ3RQykO8Ws/PV6ngvelciPcgk
+	bYXkRMJN9yZK0RDERmSeFEK6+Qjx+edqlBtud88hAJZ6NI04BGLJ4ZFYLJ5VVjKL
+	Nm7mcE2W0RqOUpolYJ4ClJsmEcj+zVDgbovo7Dt+9yT2LsZ6cC+HQUHV58vI33wy
+	zYgt7w==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4byydh1gd1-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 11:56:13 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8c536c9d2f7so28596285a.1
+        for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 03:56:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1769687773; x=1770292573; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pDQk3BRBpJ5FcpP/PG7QKmjxWd+qP3CsaWqRU/Nc09Y=;
+        b=VjlchsDJGEcAsIg355ndQzWO6N9JybmuSh3Aj9c9CtVCS+4WW60WMPZ3S5O73r6gi6
+         uicvQQef1FttEVfYxCJLQUJgObIZHZddpH1CNdhljoolZJo6IuGq3Jgb9d9Bk09w+Kzi
+         2lEgCs1HPk98ip+ZZEATlzWjGcni5X5lpCFlbUm0RGJx0742bZ62tyY/4OGifzUOH3fV
+         3MOEXoD5Uxu7tbMu+2q7RheAOScP06dOrICWQzypsOOwGt3lwp+cFYVEbD+QxWd3eS1c
+         k8Qiknl11rrq9dIGxGw2JuDUecEtNgpyHCPgVNsirFIa7rTLE8cJpKy28IrXPJ6WM8uy
+         nPvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769687773; x=1770292573;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pDQk3BRBpJ5FcpP/PG7QKmjxWd+qP3CsaWqRU/Nc09Y=;
+        b=CBcc7dTWCeGE8PzMO4SX6GKf9bSlY5ZezriMiWlZXIgzC1vSdwI34asquydkIJ2lsq
+         WliHqHApT3ejshQCwaSkaFx39ITygXn/zI4EtG2+YwA1sA4PKUVccMpj1Z+r78y/UUhK
+         x0MY2gmSCzoWWFaO+r3DM3SY3wa8w32inB6M3nKj7NP0L1fvYTbnuJ5OMynIOfZ951EC
+         0FrDHF9sXp78gsQEO0Ai6WV4wLiPC7JcvBKk+bkNqY0IhnCugQwChYiBJV+oPOeP2sRA
+         mydUTXfgZM4YozHkO0g8FHu+3ayKPUyGcEPkaSS3nf7cLOl2bwpH8j0j1akWozLxEaNl
+         XSmw==
+X-Forwarded-Encrypted: i=1; AJvYcCVvKuNx3PFsuedFGoa1i7NGGr2UY3c6qghH3H1Owm+W/Caiu49Uz/doGs2Bhgv2QGkwaVHo+oquZ6Fk@vger.kernel.org
+X-Gm-Message-State: AOJu0YzccbiOWZSmIy9FZ6ugYtxNRh1kuw6ZBgfm52jjgNaMzUq2sTyo
+	uAN6SNZgNiGbALx/zx1emPAEgWLJxIZEkEHw+xfk4UN8//VAU+VV/cJx2O0JfP7EnkjmlmbAw2Z
+	uYOG6utq0g4yw1eonK8tOMtafpzweEolhnpn3gIupNbJi/nWTZOla+EzA6kEU3vrY
+X-Gm-Gg: AZuq6aKSJ/HRmTIJukUgXw1kVt5//tiXMhjPipW0KyT3qGAvpXJuYCXnah5oYSwNwIb
+	F2BKke/nkSRiZSVBovctpmT7dhsVWDpfpjkeIP5HgpNmLdsY5opYLozV9YICtDHrCkUL3IE4b6q
+	Sf+pf+kJKq6zB1L29/zizhHoTJf9L4syY+gL44bTeydR7Em5fFOK7ayuKL/EDDQnCxlH3ZfsLCd
+	gjfzkhaNbe7+kJXBQd9xqs7yDVTCqYbLVDxNY6ryiMLtDOmKLQn+3YpWIp2sKBJLENkt/dqQLAB
+	Uk0Q4Y5JAbfU9PFDO70vYI2RJT6aLIGTM59g8ecell0LWYmu/wdo2q0J6jRWFyXRKxG4SX9vSo6
+	3fVrHm3XAYBmo5wn8ET+KkREBJiGejSn3a0iP1Naw7l94eTMymYyCxb+pXSNZMQhNN3o=
+X-Received: by 2002:a05:620a:4049:b0:85a:8fc6:5c28 with SMTP id af79cd13be357-8c71acf3225mr341018085a.6.1769687773337;
+        Thu, 29 Jan 2026 03:56:13 -0800 (PST)
+X-Received: by 2002:a05:620a:4049:b0:85a:8fc6:5c28 with SMTP id af79cd13be357-8c71acf3225mr341016985a.6.1769687772773;
+        Thu, 29 Jan 2026 03:56:12 -0800 (PST)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8dbf1c5b23sm247562466b.57.2026.01.29.03.56.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Jan 2026 03:56:12 -0800 (PST)
+Message-ID: <26e2aa8a-912b-4e83-ad00-130cc137aa4b@oss.qualcomm.com>
+Date: Thu, 29 Jan 2026 12:56:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,99 +107,135 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH] arm64: dts: qcom: sm8550: Update EAS properties
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Viresh Kumar <viresh.kumar@linaro.org>
+To: Lukasz Luba <lukasz.luba@arm.com>, Viresh Kumar <viresh.kumar@linaro.org>
 Cc: webgeek1234@gmail.com, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
  <conor+dt@kernel.org>, Viresh Kumar <vireshk@kernel.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Xilin Wu <wuxilin123@gmail.com>
+        "Rafael J. Wysocki" <rafael@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Xilin Wu <wuxilin123@gmail.com>
 References: <20260128-sm8550-eas-v1-1-fb80615bed5c@gmail.com>
  <fec5907a-5619-4997-9e8f-034efdd31993@oss.qualcomm.com>
  <l6vdnit4sd5rx3k236dwrmywudkmydxfjprn2c5i7fsfmlqfnu@tabbezrje36b>
  <76c24508-bb75-475a-b973-d7ad18c302ce@oss.qualcomm.com>
+ <2ca3a260-d05f-4f2d-bf3f-08b4a3908792@arm.com>
 Content-Language: en-US
-From: Lukasz Luba <lukasz.luba@arm.com>
-In-Reply-To: <76c24508-bb75-475a-b973-d7ad18c302ce@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <2ca3a260-d05f-4f2d-bf3f-08b4a3908792@arm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: 3cwwW0JlvbdiOUoqOF9oLIMF1PXQQ88D
+X-Proofpoint-ORIG-GUID: 3cwwW0JlvbdiOUoqOF9oLIMF1PXQQ88D
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI5MDA4MCBTYWx0ZWRfX5xJhDnA/H8PM
+ gtf3HKxVu6Kwnbii1oS+8xDtBqLmjzG+JqaWr9bsW05him5NmIrSd6U3m1lMul8Xxe7H0RYRUz+
+ GS9pZoytLr/GWbViz/E4YV6xBdJ0QU9FWAxznPd4xJQyV3kFNHVdY6HHWB/OpP7/gpLKx4dof9l
+ GW2P/vWsJU954cRoe8gvXLWe21/2Lv8QyKR4dYrPZMCD0NYZYwaeDz+j/YgC+vvS7uiNWDrrQWz
+ 5iNY+YyvhzMR9fce0CrSyaQYkdcu3rMAkPMyMTbEneIxCWJvbr4qsr6tcaNN05hiuSCYv/3FfHs
+ 1pUh+GPvmQqlO0FlnPED+UUFWQJUdzTiHEYdkshqeAQsrRMvCorGZVvAeoq/TpT51TjxnjL9mRs
+ HspdTH/FCwGUDkhUlMrDnj3CXcqAS84eYsvsgUkKYZ1y/VeE419vCFnn7J0S8cBH3n3ShLKt3TM
+ iqIlaNTNwIfGq9ddlgA==
+X-Authority-Analysis: v=2.4 cv=Cs6ys34D c=1 sm=1 tr=0 ts=697b4add cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=pGLkceISAAAA:8
+ a=PiMsTdOUj7AAGbzPdagA:9 a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-01-29_02,2026-01-28_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 clxscore=1015 spamscore=0 phishscore=0 bulkscore=0
+ malwarescore=0 priorityscore=1501 adultscore=0 impostorscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601290080
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.14 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[arm.com : SPF not aligned (relaxed), No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-260858-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260860-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:dkim];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lukasz.luba@arm.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.975];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 2D58AAFB65
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: D9FD6AFD56
 X-Rspamd-Action: no action
 
-
-
-On 1/29/26 11:23, Konrad Dybcio wrote:
-> On 1/29/26 12:05 PM, Viresh Kumar wrote:
->> On 29-01-26, 12:00, Konrad Dybcio wrote:
->>> On 1/28/26 8:11 PM, Aaron Kling via B4 Relay wrote:
->>>> It should be noted that the A715 cores seem less efficient than the
->>>> A710 cores. Therefore, an average value has been assigned to them,
->>>> considering that the A715 and A710 cores share a single cpufreq
->>>> domain.
+On 1/29/26 12:38 PM, Lukasz Luba wrote:
+> 
+> 
+> On 1/29/26 11:23, Konrad Dybcio wrote:
+>> On 1/29/26 12:05 PM, Viresh Kumar wrote:
+>>> On 29-01-26, 12:00, Konrad Dybcio wrote:
+>>>> On 1/28/26 8:11 PM, Aaron Kling via B4 Relay wrote:
+>>>>> It should be noted that the A715 cores seem less efficient than the
+>>>>> A710 cores. Therefore, an average value has been assigned to them,
+>>>>> considering that the A715 and A710 cores share a single cpufreq
+>>>>> domain.
+>>>>
+>>>> Regarding the CPUFreq domain shared across cores with different power
+>>>> characteristics, I think we shouldn't be lying to the OS, rather Linux
+>>>> should be able to deal with it, somehow.
 >>>
->>> Regarding the CPUFreq domain shared across cores with different power
->>> characteristics, I think we shouldn't be lying to the OS, rather Linux
->>> should be able to deal with it, somehow.
+>>> cpufreq-domain == cpufreq-policy here I guess. All CPUs that change
+>>> their DVFS state together should be part of one policy. Not sure if
+>>> there is something else you were pointing at.
 >>
->> cpufreq-domain == cpufreq-policy here I guess. All CPUs that change
->> their DVFS state together should be part of one policy. Not sure if
->> there is something else you were pointing at.
+>> Yes, they change their state together.
+>>
+>> The question is whether it's okay for these CPUs to have different
+>> dynamic-power-coefficient values, and whether the EM code won't be
+>> thrown off by that.
 > 
-> Yes, they change their state together.
+> The Energy Model won't support that, since it's a single
+> instance per-cpufreq-policy and we have to pick 'some' values (in this
+> case).
+
+Do you think taking an average, like suggested by the original author,
+makes sense here?
+
+>> Again, they differ because within that shared policy, there's 2
+>> separate kinds of cores (2x Cortex-A715 + 2x Cortex-A710).
+>>
 > 
-> The question is whether it's okay for these CPUs to have different
-> dynamic-power-coefficient values, and whether the EM code won't be
-> thrown off by that.
+> For this SoC I assume the physical HW (power rail and frequency domain)
+> is linked to those 4 CPUs. That's quite novel configuration...
+>
+> Maybe I could give you some hint at least for the EAS part (the EM
+> for EAS), because for something in other areas (e.g. thermal) might
+> be really tough.
 
-The Energy Model won't support that, since it's a single
-instance per-cpufreq-policy and we have to pick 'some' values (in this
-case).
+In this case, these cores have **fairly** similar power/perf 
+characteristics, as evidenced by the measurements in the root of
+this thread, see:
 
-> 
-> Again, they differ because within that shared policy, there's 2
-> separate kinds of cores (2x Cortex-A715 + 2x Cortex-A710).
-> 
+https://lore.kernel.org/linux-arm-msm/20260128-sm8550-eas-v1-1-fb80615bed5c@gmail.com/
 
-For this SoC I assume the physical HW (power rail and frequency domain)
-is linked to those 4 CPUs. That's quite novel configuration...
+> What are the other CPUs in that SoC and their DVFS configs?
 
-Maybe I could give you some hint at least for the EAS part (the EM
-for EAS), because for something in other areas (e.g. thermal) might
-be really tough.
+Domain 0: 3x A510
+Domain 1: 2x A715 + 2x A710
+Domain 2: 1x X3
 
-What are the other CPUs in that SoC and their DVFS configs?
-
-Regards,
-Lukasz
-
+Konrad
 
