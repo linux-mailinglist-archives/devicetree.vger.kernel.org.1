@@ -1,150 +1,129 @@
-Return-Path: <devicetree+bounces-260950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260952-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wCr4ITOQe2nOGAIAu9opvQ
-	(envelope-from <devicetree+bounces-260950-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 17:52:03 +0100
+	id YJXhClCQe2nOGAIAu9opvQ
+	(envelope-from <devicetree+bounces-260952-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 17:52:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24437B2737
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 17:52:03 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8406BB274E
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 17:52:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BB0183008282
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 16:51:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 74F08301A732
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 16:51:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EE2B33F8DA;
-	Thu, 29 Jan 2026 16:51:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C13BD3451CE;
+	Thu, 29 Jan 2026 16:51:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WRDUNJsQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jy4Ve4L/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B7952DF14C;
-	Thu, 29 Jan 2026 16:51:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DBF2344D8B;
+	Thu, 29 Jan 2026 16:51:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769705467; cv=none; b=ONrZJkKcOV1PZeZXFqg1P2PtefyGXedvZJQU3aIfAz5CIReolMMq2hJvTIjZw5+mLBqI8/akk/NZYyyDFaP3jVGJ6sC8jMQyqs7e1/tK25g7Wp9bvb8Pmyx9JTF6GXEeEE0H0O/ugft1u+5ni5UiuMJVLXPJb9OG+ezeSEvHtls=
+	t=1769705499; cv=none; b=Ci2Op4d1pht148HZLqaGSNxoeQf3mHsf/Yp0GZ2VUT7/X7g5Dk6OgCTKApPR0aKwTfhJYuNjK99F4WU+JcrX5o+JAjS020hdwwzmpnAdJlxfyp74m6ajWHhcwzK83WqWnUVVs9J6W2K8Zh9koc8v2ENf4EHzK4v8UL1uAKw4wvg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769705467; c=relaxed/simple;
-	bh=fbtBH+MvGc4iLl2bUnG0eRJZOrVwYYmBhQhGVyL1U0Q=;
+	s=arc-20240116; t=1769705499; c=relaxed/simple;
+	bh=YmG0tgmvN9wkowhGDe7r72zqEn4bWMNuc4djbes+i7c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YK52jl6ozVFWn8uvA4ovA28h2Mybent2bkrcmF37TCtk4NvO6qKz3LGjOwqQzHLo3g3iYuZotXUD8YjIrzXE9IysuRGkAc3xoQtE1Wh711Z20J9qC7bFFiyKQ0Bkod6wyUSWj2tvsdpPaXJBmYiqQhfMmNXtHTVpJ6emxBNTOJU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WRDUNJsQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5059C4CEF7;
-	Thu, 29 Jan 2026 16:51:01 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=utga5HU6IMBiqxIImyX4TKEmE2Ur3CV7vN2U6kIlF+RDqNyQKYYvJQeWus325qzIas2kjP2yjXx73IezdoQRbdumcrLmg75QT+/AbcasXB2BwbJ/hXBB1oHawsk7BMZP8I1Vl8XfmiS3GC5+QNThlEsuyyBi8fR9fSAHyQiwarw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jy4Ve4L/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AFE4C4CEF7;
+	Thu, 29 Jan 2026 16:51:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769705467;
-	bh=fbtBH+MvGc4iLl2bUnG0eRJZOrVwYYmBhQhGVyL1U0Q=;
+	s=k20201202; t=1769705499;
+	bh=YmG0tgmvN9wkowhGDe7r72zqEn4bWMNuc4djbes+i7c=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WRDUNJsQTs/r84+i6XwiQNxAWY1M9JyyXTIOEM/EIDfewK7fYBJC15dkY0W9pSi+n
-	 yVzfIROkDrw8bD35G+gi9zZRg/prGxl4UV4QcRAVcmahG5Na5uOPPTv2HepQ5xiUsE
-	 q4BLnRtEGdSNamGgwNLhxlCm4jy4Yvu5wtXy+top8Y9JSxuMwnVsNXQ7jbdb7Iblwi
-	 cRgSyT1RoCCepxnc9H3InsleEOBGWpEvd1ymy2aqy6gnmUJaX38/G9PBaA5uTTpbNf
-	 CnBCrGoXyl3rfeVsn+NhK9S7inG8T43fLnVIlr1D4+k2lfp7FsonuBsdMQWZeyMgzJ
-	 JXAc+4xTTnLNw==
-Date: Thu, 29 Jan 2026 16:50:59 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Drew Fustini <fustini@kernel.org>
-Cc: Icenowy Zheng <zhengxingda@iscas.ac.cn>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>,
-	Dmitry Baryshkov <lumag@kernel.org>,
-	Michal Wilczynski <m.wilczynski@samsung.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Han Gao <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>,
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	Icenowy Zheng <uwu@icenowy.me>
-Subject: Re: [PATCH v6 1/9] dt-bindings: vendor-prefixes: add verisilicon
-Message-ID: <20260129-riveter-mute-bd981d46d58f@spud>
-References: <20260123092830.4046009-1-zhengxingda@iscas.ac.cn>
- <20260123092830.4046009-2-zhengxingda@iscas.ac.cn>
- <aXpwED5wSZbnIjae@x1>
- <20260128-smokeless-angular-cff7e16ff8dc@spud>
- <aXp2jfkpQVZ94rjU@x1>
+	b=Jy4Ve4L/V7YNRtTvddViMvmxnlxWUTQKwWlNePNOeOrXavOoH7mf49OSyoqQ3ijMF
+	 d/33ZVs4f9pQdu+jNkHi/S+EkUF/vz5gNERyOpDO85sxJ7vfjRAYkyerehsq0EjGQn
+	 FkZDdq/YJN7pzbXcsJFLBY1zlee9qe4RSa9scIabFDOX7Z4vU2NcsG/rRLwfVfbARf
+	 0B3iuRRyhj7VSjkB/9hKwJSbYH+5R3/tBqCcyS+OyFXqGyM9OgnPZEtcpUHIBxli6W
+	 gjNttqiQUS1PvNR+MYYRpI5bp/9PkHFraoZmJlovHyUY0N8b3FOJerc3B3ozR90hFS
+	 cgJfiLsvNrxAg==
+Date: Thu, 29 Jan 2026 10:51:38 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
+Cc: devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	"David S. Miller" <davem@davemloft.net>,
+	Matthias Brugger <mbrugger@suse.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	NXP S32 Linux Team <s32@nxp.com>,
+	linux-stm32@st-md-mailman.stormreply.com,
+	Paolo Abeni <pabeni@redhat.com>, Eric Dumazet <edumazet@google.com>,
+	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+	Shawn Guo <shawnguo@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jakub Kicinski <kuba@kernel.org>, linux-kernel@vger.kernel.org,
+	Fabio Estevam <festevam@gmail.com>, imx@lists.linux.dev,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Chester Lin <chester62515@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>
+Subject: Re: [PATCH v4 2/4] dt-bindings: net: nxp,s32-dwmac: Declare
+ per-queue interrupts
+Message-ID: <176970549762.1267513.768026318632683991.robh@kernel.org>
+References: <20260128-dwmac_multi_irq-v4-0-82fa34fcf2f2@oss.nxp.com>
+ <20260128-dwmac_multi_irq-v4-2-82fa34fcf2f2@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="JXm6OImfRPbt1yHG"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aXp2jfkpQVZ94rjU@x1>
+In-Reply-To: <20260128-dwmac_multi_irq-v4-2-82fa34fcf2f2@oss.nxp.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260950-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCPT_COUNT_TWELVE(0.00)[24];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[29];
-	FREEMAIL_CC(0.00)[iscas.ac.cn,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,redhat.com,pengutronix.de,samsung.com,bootlin.com,disroot.org,vger.kernel.org,lists.freedesktop.org,lists.infradead.org,icenowy.me];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,pengutronix.de,davemloft.net,suse.com,lunn.ch,nxp.com,st-md-mailman.stormreply.com,redhat.com,google.com,lists.infradead.org,gmail.com,lists.linux.dev,foss.st.com,oss.nxp.com];
+	TAGGED_FROM(0.00)[bounces-260952-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 24437B2737
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:email,nxp.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8406BB274E
 X-Rspamd-Action: no action
 
 
---JXm6OImfRPbt1yHG
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Wed, 28 Jan 2026 09:49:53 +0100, Jan Petrous (OSS) wrote:
+> The DWMAC IP on NXP S32G/R SoCs has connected queue-based IRQ lines,
+> set them to allow using Multi-IRQ mode.
+> 
+> Reviewed-by: Matthias Brugger <mbrugger@suse.com>
+> Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
+> ---
+>  .../devicetree/bindings/net/nxp,s32-dwmac.yaml     | 44 +++++++++++++++++++---
+>  1 file changed, 39 insertions(+), 5 deletions(-)
+> 
 
-On Wed, Jan 28, 2026 at 12:50:21PM -0800, Drew Fustini wrote:
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-> Are you saying it is okay to leave the dts patches in thead-dt-for-next
-> even though that means next will have W=1 dtbs_check warning about
-> undocumented compatible?
-
-
-fwiw, I was chatting to Drew on IRC last night after this mail so didn't
-reply here.
-
---JXm6OImfRPbt1yHG
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaXuP8wAKCRB4tDGHoIJi
-0vQ7AQCq6j5Mv5P+Lb/4p+HlTgaqjfjZK2j9YyzRsly3mjhoVgD9GnMrkrvTWTTi
-Ue7dqQ8duWlQu2bLnDaBD4U8Dy7FXwk=
-=1tmr
------END PGP SIGNATURE-----
-
---JXm6OImfRPbt1yHG--
 
