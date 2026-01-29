@@ -1,210 +1,432 @@
-Return-Path: <devicetree+bounces-260862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260805-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cB1BDLNMe2n9DgIAu9opvQ
-	(envelope-from <devicetree+bounces-260862-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 13:04:03 +0100
+	id gFzFCK8we2kVCQIAu9opvQ
+	(envelope-from <devicetree+bounces-260805-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 11:04:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7586BAFDBB
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 13:04:02 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D62FCAE605
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 11:04:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CE32D301690C
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 12:04:00 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 32BC8305D23C
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 10:03:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C54C234FF78;
-	Thu, 29 Jan 2026 12:03:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83BD03803C8;
+	Thu, 29 Jan 2026 10:02:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gDycEDVB"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LV93eoNq";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="QsWtd/9N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C77F2EE607
-	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 12:03:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB20937C114
+	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 10:02:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769688239; cv=none; b=mHGe79znD6MVqYb72s2FtQMedH5+jb4LnuozAajiVNHVtN9T+ebJ5aHKKztLo4+YeWsync+903kfNHZ+B5bz/j6Nf9HiLnMH+a8CzcXwtBTis5CtGwxVXqdjnY9RwPvV4L07ymiooz4DLg2LifE+c4DIIaHhaV1mH1CH1iPCAms=
+	t=1769680968; cv=none; b=tIyqwQ9086NO6YZSQg3jtHdhEjL/7zPH36WNXoDXX4dIXgC1/mzdlLaehLpyoeR2KdMRqt7PQyj2hRgxYQ54UwtE+9Ni4vEawo8Ue4FUayEfic6awccCDaCZBByypxtjtYbUTkeIDAavBX2GZOvfkyVkW094ISmozTDm1G8LimU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769688239; c=relaxed/simple;
-	bh=I38MUjkcoH9V79CpUKSDz1OC341UmQxGErHv0ex1jmw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LcxWAo6CMyEOdfJajnwPaRjTZiihxTpVqbhN95A8UjssASr++bJNo9caFK2PICuReotPCdWEcv3ZMMvM5U3jplMNIYoZkK7zexunLVYmL8dyxY+1pckU8dfQUHdOgrUb0mWa6WY56DAoLWZCWO+3jCPELO2lTP8NBnKcuNwOjVI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gDycEDVB; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-b8876d1a39bso130144166b.1
-        for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 04:03:57 -0800 (PST)
+	s=arc-20240116; t=1769680968; c=relaxed/simple;
+	bh=9A0iJD8u2IjHztqqRIDfM4noeZJV9Cijz4NKPsm2/X4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=i4rrELHplNtlhP24hp4Q/qIHEHDjVC4nwUfbpdaa3LBDj1/MWwdHy9YNJusZIAdIZoVa2dx+0/JG/uPyvxPV+pQw6ufGCqAnem515eim+lmbvp/ksCgAsYVzNmdNouQ6anKMP/p0SBWM7atwMfx7enLL5Gp++BAlwJnRBQuf7AQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LV93eoNq; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=QsWtd/9N; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60T2om2p2033398
+	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 10:02:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Kn3pXRnkAnLW6ZMn5kt8gyyDoOQ7s6Mqn8VFw7geJI0=; b=LV93eoNqqM0x9+Af
+	epZK/6JIXyPjQ/xI65sv0bbBnk/fg/fAS8LzXrtTjmEpg0Ki0Ej9XsIy6DD+vkxF
+	43K7pzNE8IL0dNRRD/JABgJ//kzj5J4xayU/Zz9YOqFljW8y/veweMA2U/0t5XJw
+	+ulCbcLYKr3EuD8j4rf58DVoiQopJrwIGYKgrfPh7WwkIpPJLU7Y0zMHwgCtN4r7
+	9GFkuJWuSrmDuW1gEDqgy+PHBfIeuHPb6jMJCjXx3C2UT8e4xtkEEYbKlNAs19aA
+	qBEzvWvtbGkYG4Oj72orxyXpFkC7aBpOei4r2M4NzJYDvT5dDUiSSaqq+hlSVy5S
+	lSL4hw==
+Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4byna7k6a7-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 10:02:38 +0000 (GMT)
+Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-34c66cb671fso743212a91.3
+        for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 02:02:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769688236; x=1770293036; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CkBngwJnmvxY2ZcqFRWqtKhnXiiLbRs1c6I12xgJLLE=;
-        b=gDycEDVB4B6baXI+S1e2w77YChm2zCRnIdpx7B0N4ChLrSgklEJmi24b6GjBYEreBX
-         RvT4X37QqsYvHejCXHaUT07RA8mY7iCXck+vg1r1NUSWERpYtJk4WlYJkL5KonAlNm8c
-         fh8oUaLYPPgusz2qr+ruKZEnrb2M+paxE02jVXTz5+9AehGWjlnzj7L1CciyJf44ME4A
-         PsM75mTqaJzu+RLhGe1mETlFZa6C1YwjieFYsSSXuyku3gO1rc2dwfMh361/OPF8wEjI
-         x+KsmHdGX1NtooHhJgEr1bd4jJ51y+BQiKjvBmV7iugPp3KIGHCoX1K+QtHwF/8SEHir
-         Hiqg==
+        d=oss.qualcomm.com; s=google; t=1769680958; x=1770285758; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Kn3pXRnkAnLW6ZMn5kt8gyyDoOQ7s6Mqn8VFw7geJI0=;
+        b=QsWtd/9Nh7fH4yePwfM+aeIIrxA38N4TPtRlN6IYu3DDoaw+p2CYwFUZ1Mkzd4f7PI
+         0KhfSef9v7c1O++ns6Bwy9AQUf7S6pWAjUW1Hs/z3WGfLxNWyJxNQWaLVSah08KM1vHk
+         4Mn2g2fAAxz+dYKOH5ouTcgN4eB/uEzIdA+Vm5MeG7cbiBc41mXbdn0nk3csPprW5dm0
+         v/ka/Je75bqv4WEg3+MOfNAk28c7AvER5IscRb9RedKhc56IqDPN9U5x7y0mkR1YRm8B
+         ZEoze2HdtnCx/Zgq2bC53/hxp1HGzHMczPFlg7NOptL8BbHKP9501g0MkX7V9cYLCHzy
+         EK1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769688236; x=1770293036;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=CkBngwJnmvxY2ZcqFRWqtKhnXiiLbRs1c6I12xgJLLE=;
-        b=FAtNL7Vdna97NhbK2qsPOLjkUbm69oI5sXeTNRKqm/lb0jdInEyQKxQ5wlXiYLh7vc
-         jKb5DfZvh3l9SCecDP0ybOFulaxk49m7pHqEeD0ym3rnsC/R696XKHlbYZfaa9iH54nx
-         nxHnu+H2ze6MvKdrw72iW4UYOqj4brWxUaFn8BR/Vy/ELDSGelJny4FKm7BPk8FEnw5G
-         G9P7D0bdHY6oiP3d1ElPozP/RT8lGxG4RkHaQTMJdCazwi7gwccBrSoyW91/fcK25JMv
-         TugLv5EeRuuW/DhdxiUF0FNmg6zZqPzgjc2roHENLMZJF3TuoRmeynj2zbs7bgQE6hIg
-         N/vQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUnj5XGvDZ3U+97cbCDmpJaM31BEqPltjCZ20BONI/sAzZHMpBJoeaTExIZuH1OIqyYlWZO4NBjphvJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxjfDNWMngQ8K5cJhXkZblki6RJYzXqwGtIJoJ5YzIolrSJos2l
-	YsZpswYlYTlrm3wcTAiebWJIuFaBIRVZdcyv1liDsP27WzeY4pgMPcz/wxdJJw==
-X-Gm-Gg: AZuq6aLDPTIuvpJ+QEIHFBrgdAZipX84OKjnECzYE6EdpGkqoWcWr+RMr+VRyg8NxkT
-	fddVUi/J2tpbEuOfpIm/O5D24IzhpW6bq5+3DSvS6BjFvIrTA2e4EHyLjrN9BuidwEhkcaPoC1b
-	bjieGU5uCegChQ+Xd1ZO55JvTfKY0ZnXVukxIEAL5ywCUbNPB+SyseAWwtOgRFBU4RWEzmL5hWf
-	XUcEJNnrkZjRqkLbMnzkHnv6Ey7IbouPipsCaw0YvIu8+3sxOKQ1kZveJ8uY9QtD4/1TP3AXX/O
-	AdUaDR6RjD24LapYktXcB9uV+RAHBkynPIb3dnDVMsHiJy0d0XPUr7RtmCTrneTX83o+tzr5wUV
-	F0kcGYfGnvmHAOo5m/iEtxAd6iwZTG3UXahvq+vplb6qu2YnwuyPDNSmlzu25bwWOoJFG/rUuWo
-	kw1lLqbSOmPgouL3oZ
-X-Received: by 2002:a05:600c:524c:b0:477:b0b9:312a with SMTP id 5b1f17b1804b1-48069c2c45amr116529645e9.7.1769680895603;
-        Thu, 29 Jan 2026 02:01:35 -0800 (PST)
-Received: from biju.lan ([2a00:23c4:a758:8a01:5792:2065:403:a80b])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4806ce56068sm111543005e9.13.2026.01.29.02.01.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Jan 2026 02:01:35 -0800 (PST)
-From: Biju <biju.das.au@gmail.com>
-X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Linus Walleij <linusw@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	linux-renesas-soc@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH 0/9] Add Renesas RZ/G3L PINCONTROL support
-Date: Thu, 29 Jan 2026 10:01:31 +0000
-Message-ID: <20260129100133.95711-1-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260129091108.95277-1-biju.das.jz@bp.renesas.com>
-References: <20260129091108.95277-1-biju.das.jz@bp.renesas.com>
+        d=1e100.net; s=20230601; t=1769680958; x=1770285758;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Kn3pXRnkAnLW6ZMn5kt8gyyDoOQ7s6Mqn8VFw7geJI0=;
+        b=li2iOzVSxUhgx3NT17mf/cwqMqfFN32SrlP7cXqB9qu4K9VJy/JybHUWAq+DZa3Nkl
+         mN9oSkZqdG3/SZy6Y4+7VLg8V92Q0ln4v44tZixxt0P16MxjrEJbGa+/IgwsBJvTSZw9
+         YPAXLyyDg9rCa429pUCwlOShEhM/oHe31aE96I53LfaBTcK95aA6C0/csnkGsQGkIqaW
+         rGO6V53WUWqi+BHvzQ13Cy/U06wjG7KO88orretXGoXr1f8aBOlAtbtDV0Pzj/2PwaQt
+         EMV2oD6/ZehSyccmw39tvXmR5E4idWBZa5gj3Xd3TmV41YxmAjgJKaozYq9lfRmtUoJ7
+         Wk6g==
+X-Forwarded-Encrypted: i=1; AJvYcCVSt15Tw5OYDwDYRacFC+U2mijXHChP/K52OlVS0u5XQq6uwHasULotDh6lgEVnixjUdNoRy5knEdol@vger.kernel.org
+X-Gm-Message-State: AOJu0YyXDI8V+LVCVlOJkTwwzZKR+HzfnjccnV5QBdqvVxvfwCqOdqKO
+	0m7+g1J0/iAYS43mYkn0ej6hD55XzUtq3bSiuzTNGxDolgVz7YgWX2Ou82X9Veth/dX/5akeqP7
+	EnXj9oOdXPe+EdRNy4wfvK2dFRt6jtodfN8xEXc2POz3iuu/uymlIC2xRmxvDMfXC
+X-Gm-Gg: AZuq6aJ8KPHzSRaXUzhJ+r9IvA/Ci0ABCrbWz4YK6E39H0DqIeMPQbiR1/0jYPquDKD
+	gnOaoj5qPzMtHI5i1kRcfdTzRXFvdkOXZUH/FuJQQ7RoiV4nBK4/8bMpI+3gth9Col0TK/KB6rr
+	t3vYdWvY0osY4P2oF+P4yZKfPpbKxrkXi8jAQUVMUi4QZZNynZQdVLrmDuwe3ISuHh3p1K/ZeXN
+	4ImKGl7ztDyglXbWOOU3IEPLDnn89V8d+pef6nwSd199pWUagQOXdXgoGUhVWqokQcseVHJ4JjO
+	mh3KHcScmVZo0MJlvsJxeI3vQiw44rdbVpSlfuzXSPmuXEu0jiqcVjr3knMyvWH5435k7dlCY+O
+	/6epEayIkglvbEmJqhSJnD4x5FxVlLd/9g9bYvPr3Whm2
+X-Received: by 2002:a17:90b:2e51:b0:352:b666:6ea with SMTP id 98e67ed59e1d1-353fedbb6d7mr7340786a91.36.1769680957549;
+        Thu, 29 Jan 2026 02:02:37 -0800 (PST)
+X-Received: by 2002:a17:90b:2e51:b0:352:b666:6ea with SMTP id 98e67ed59e1d1-353fedbb6d7mr7340739a91.36.1769680957022;
+        Thu, 29 Jan 2026 02:02:37 -0800 (PST)
+Received: from [192.168.0.171] ([49.205.248.133])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3542dd446b3sm13540a91.1.2026.01.29.02.02.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Jan 2026 02:02:36 -0800 (PST)
+Message-ID: <5df59084-d19b-414e-a43d-8c5d26cb07e9@oss.qualcomm.com>
+Date: Thu, 29 Jan 2026 15:32:28 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/4] media: qcom: flip the switch between Venus and
+ Iris drivers
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Bryan O'Donoghue <bod@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Stanimir Varbanov <stanimir.varbanov@linaro.org>,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Stephan Gerhold <stephan.gerhold@linaro.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20260127-venus-iris-flip-switch-v3-0-7f37689f4b39@oss.qualcomm.com>
+ <22583dde-caaa-4d64-bcb6-ac7f09916a8d@oss.qualcomm.com>
+ <xyhl36bcpmjhav73ujlvbtwqixngr5vko75t335mlcebxrs7lc@t43mxhknuqtj>
+Content-Language: en-US
+From: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+In-Reply-To: <xyhl36bcpmjhav73ujlvbtwqixngr5vko75t335mlcebxrs7lc@t43mxhknuqtj>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: 54Eu6sD6lW91wo1_76Zqutb0qETjpgsL
+X-Authority-Analysis: v=2.4 cv=J72nLQnS c=1 sm=1 tr=0 ts=697b303e cx=c_pps
+ a=0uOsjrqzRL749jD1oC5vDA==:117 a=OrrKugsxgu2A7SzPsjoKyw==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=NucSyHlijZH1nHOpjqgA:9 a=QEXdDO2ut3YA:10
+ a=mQ_c8vxmzFEMiUWkPHU9:22
+X-Proofpoint-ORIG-GUID: 54Eu6sD6lW91wo1_76Zqutb0qETjpgsL
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI5MDA2NCBTYWx0ZWRfX4CjzXQGsQWlm
+ exPMq06uCchNhveEasXQ0lOs9+oxGYLsgpUOhYAU1F8NV/OtP7EBo+Hf7fQajXqIwzGoxME+Bt3
+ Uu0FnU8SGhKJK0eZnPh+pvOEbbTKbG6Kd3+qrg74IkoZkgFXbKLGEF3pmDrs2W1KCvbZ/tvvDnY
+ wiVBuYfI0Mripd3Qxxlm6thHy++bRzr6JUXJHG2Y3Wu8HjHzwIHiz0jtFVCVl5zO9dN9iEiXCnY
+ M4d/aRkdnvz6YGZ/sakxzJqiP9+yVWgh+yaUBE72+8fGY5bminT6iIqIgelUNnAQ/sBYuij21Iv
+ mAunDOd3Dqw3NTvybJ6Y2rnUhzlY2TWm3KzVTO7y+tnITu+IA6gfs3OkrcfZ8jRpWPtPQDsJoSK
+ meDJEFN/hR6rxR4aCTz28vdcwdByVxltD5y8xrLmhWGirAh6nuMg+6Hm4Au3bEGqW/EexSo5BLY
+ 0Vw/CEn9/LH5et6GqHw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-01-29_02,2026-01-28_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 phishscore=0 malwarescore=0 lowpriorityscore=0 spamscore=0
+ priorityscore=1501 bulkscore=0 impostorscore=0 suspectscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601290064
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260862-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[glider.be,kernel.org,baylibre.com,gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[bp.renesas.com,vger.kernel.org,gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	TAGGED_FROM(0.00)[bounces-260805-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[vikash.garodia@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 7586BAFDBB
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: D62FCAE605
 X-Rspamd-Action: no action
 
-From: Biju Das <biju.das.jz@bp.renesas.com>
 
-Hi All,
+On 1/29/2026 5:51 AM, Dmitry Baryshkov wrote:
+> On Wed, Jan 28, 2026 at 06:35:01PM +0530, Vikash Garodia wrote:
+>>
+>> On 1/27/2026 5:52 PM, Dmitry Baryshkov wrote:
+>>> As the Venus and Iris drivers are close to the "feature parity" for the
+>>> common platforms (SC7280, SM8250), in order to get more attention to
+>>> squashing bugs from the Iris driver, flip the switch and default to the
+>>> Iris driver if both are enabled. The Iris driver has several
+>>> regressions, but hopefully they can be fixed through the development
+>>> cycle by the respective team. Also it is better to fail the test than
+>>> crash the device (which Venus driver does a lot).
+>>>
+>>> Note: then intention is to land this in 6.21, which might let us to
+>>> drop those platforms from the Venus driver in 6.22+.
+>>>
+>>> Testing methodology: fluster test-suite, single-threaded mode, SM8250
+>>> device (RB5).
+>>
+>> Could you run fluster on SC7280 as well ? Also please share the v4l2
+>> compliance results.
+> 
+> Okay, the SC7280 is a bit more interesting. For H.264 and VP9 the
+> results are the same. For H.265 Iris errors out for all tests except for
+> the one, WPP_E_ericsson_MAIN_2.
+> 
+> The kernel prints the following message:
+> 
+> [   82.573112] qcom-iris aa00000.video-codec: session error for command: d0000000, event id:1009, session id:52ef2000
+> 
 
-This patch series aims to add basic pincontrol support for RZ/G3L SoC. The
-RZ/G3L pinctrl has OTHER_POC register compared to other SoCs for setting
-IO domain volage for AWO, ISO and WDT.
+0x1009 corresponds to HFI_ERR_SESSION_INSUFFICIENT_RESOURCES
 
-Document the reset-names as all SOCs has multiple resets.
+Below patch would enable firmware logs and make it print in kernel logs, 
+you can apply and share to know more about insufficient resource error.
 
-Document the bindings for RZ/G3L SOC and add pinctrl definitions in
-driver.
+--- a/drivers/media/platform/qcom/iris/iris_hfi_common.c
++++ b/drivers/media/platform/qcom/iris/iris_hfi_common.c
+@@ -87,6 +87,10 @@ int iris_hfi_core_init(struct iris_core *core)
+  	if (ret)
+  		return ret;
 
-Add pincontrol device node and add pincontrol support for SCIF0 and GBETH
-nodes.
++	ret = hfi_ops->sys_set_debug(core);
++	if (ret)
++		return ret;
++
+  	return hfi_ops->sys_interframe_powercollapse(core);
+  }
 
-Note:
-Some IPs needs to set the register IPCONT_SEL_CLONECH in SYSC to control
-the clone channel of the IP. Plan to add clone channel control support
-later. The IP's involing clone channel needs to do the setup as per the
-below flow
+diff --git a/drivers/media/platform/qcom/iris/iris_hfi_gen1_command.c 
+b/drivers/media/platform/qcom/iris/iris_hfi_gen1_command.c
+index 6e5bd8e2356ee..2c62c8ac654af 100644
+--- a/drivers/media/platform/qcom/iris/iris_hfi_gen1_command.c
++++ b/drivers/media/platform/qcom/iris/iris_hfi_gen1_command.c
+@@ -79,6 +79,25 @@ static int 
+iris_hfi_gen1_sys_interframe_powercollapse(struct iris_core *core)
+  	return ret;
+  }
 
-(1) Set SYS_IPCONT_SEL_CLONECH register as necessary
-(2) Set the PWPR register to allow writing to the PFC_m register.
-    After setting the PWPR.B0WI bit to “0” (initial value = 1), 
-    set the PWPR.PFCWE bit to “1” (initial value = 0).
-    Select the required function from Functions 0-15.
-    (Hereafter, Function1 setting example)
-(3) Set PFC_m = 0001b and switch to Function1.
-(4) Set the PMC_m register to “1” (initial value = 0).
-(5) Set the PFC_m register to write-protected. After setting
-    the PWPR.PFCWE bit to “0”, set the PWPR.B0WI bit to “1”.
++static int iris_hfi_1_sys_set_debug(struct iris_core *core)
++{
++	struct hfi_sys_set_property_pkt *pkt;
++	u8 packet[IFACEQ_VAR_SMALL_PKT_SIZE];
++	struct hfi_debug_config *hfi;
++
++	pkt = (struct hfi_sys_set_property_pkt *)packet;
++
++	pkt->hdr.size = struct_size(pkt, data, 1) + sizeof(*hfi);
++	pkt->hdr.pkt_type = HFI_CMD_SYS_SET_PROPERTY;
++	pkt->num_properties = 1;
++	pkt->data[0] = HFI_PROPERTY_SYS_DEBUG_CONFIG;
++	hfi = (struct hfi_debug_config *)&pkt->data[1];
++	hfi->config = 0x1000003f;
++	hfi->mode = HFI_DEBUG_MODE_QUEUE;
++
++	return iris_hfi_queue_cmd_write_locked(core, pkt, pkt->hdr.size);
++}
++
+  static int iris_hfi_gen1_sys_pc_prep(struct iris_core *core)
+  {
+  	struct hfi_sys_pc_prep_pkt pkt;
+@@ -1065,6 +1084,7 @@ static const struct iris_hfi_command_ops 
+iris_hfi_gen1_command_ops = {
+  	.sys_init = iris_hfi_gen1_sys_init,
+  	.sys_image_version = iris_hfi_gen1_sys_image_version,
+  	.sys_interframe_powercollapse = 
+iris_hfi_gen1_sys_interframe_powercollapse,
++	.sys_set_debug = iris_hfi_1_sys_set_debug,
+  	.sys_pc_prep = iris_hfi_gen1_sys_pc_prep,
+  	.session_open = iris_hfi_gen1_session_open,
+  	.session_set_config_params = iris_hfi_gen1_session_set_config_params,
+diff --git a/drivers/media/platform/qcom/iris/iris_hfi_gen1_defines.h 
+b/drivers/media/platform/qcom/iris/iris_hfi_gen1_defines.h
+index 42226ccee3d9b..86571423ed94f 100644
+--- a/drivers/media/platform/qcom/iris/iris_hfi_gen1_defines.h
++++ b/drivers/media/platform/qcom/iris/iris_hfi_gen1_defines.h
+@@ -80,6 +80,7 @@
+  #define HFI_BUFFER_INTERNAL_SCRATCH_1			0x7
+  #define HFI_BUFFER_INTERNAL_SCRATCH_2			0x8
 
-The clock and dtsi/dts patches depend upon [1]
-[1] https://lore.kernel.org/all/20260128125850.425264-1-biju.das.jz@bp.renesas.com/
++#define HFI_PROPERTY_SYS_DEBUG_CONFIG				0x1
+  #define HFI_PROPERTY_SYS_CODEC_POWER_PLANE_CTRL		0x5
+  #define HFI_PROPERTY_SYS_IMAGE_VERSION			0x6
 
-Biju Das (9):
-  dt-bindings: pinctrl: renesas: Document reset-names
-  dt-bindings: pinctrl: renesas: Document RZ/G3L SoC
-  clk: renesas: r9a08g046: Add GPIO clocks/resets
-  pinctrl: renesas: rzg2l: Add support for selecting power source for
-    {WDT,AWO,ISO}
-  pinctrl: renesas: rzg2l: Add OEN support for RZ/G3L
-  pinctrl: renesas: rzg2l: Add support for RZ/G3L SoC
-  arm64: dts: renesas: r9a08g046: Add pincontrol node
-  arm64: dts: renesas: r9a08g046l48-smarc: Add SCIF0 pincontrol
-  arm64: dts: renesas: rzg3l-smarc-som: Enable eth1 (GBETH1) interface
+@@ -142,6 +143,8 @@
+  #define HFI_PROPERTY_PARAM_VENC_MAX_NUM_B_FRAMES		0x2005020
+  #define HFI_PROPERTY_CONFIG_VENC_TARGET_BITRATE			0x2006001
+  #define HFI_PROPERTY_CONFIG_VENC_SYNC_FRAME_SEQUENCE_HEADER	0x2006008
++#define HFI_DEBUG_MODE_QUEUE	0x01
++#define IFACEQ_VAR_SMALL_PKT_SIZE	100
 
- .../pinctrl/renesas,rzg2l-pinctrl.yaml        |  16 +
- arch/arm64/boot/dts/renesas/r9a07g043.dtsi    |   1 +
- arch/arm64/boot/dts/renesas/r9a07g044.dtsi    |   1 +
- arch/arm64/boot/dts/renesas/r9a07g054.dtsi    |   1 +
- arch/arm64/boot/dts/renesas/r9a08g045.dtsi    |   1 +
- arch/arm64/boot/dts/renesas/r9a08g046.dtsi    |  10 +
- .../boot/dts/renesas/r9a08g046l48-smarc.dts   |  13 +
- arch/arm64/boot/dts/renesas/r9a09g047.dtsi    |   1 +
- arch/arm64/boot/dts/renesas/r9a09g056.dtsi    |   1 +
- arch/arm64/boot/dts/renesas/r9a09g057.dtsi    |   1 +
- .../boot/dts/renesas/rzg3l-smarc-som.dtsi     |  92 ++++++
- drivers/clk/renesas/r9a08g046-cpg.c           |   6 +
- drivers/pinctrl/renesas/pinctrl-rzg2l.c       | 285 +++++++++++++++++-
- .../pinctrl/renesas,r9a08g046-pinctrl.h       |  39 +++
- 14 files changed, 465 insertions(+), 3 deletions(-)
- create mode 100644 include/dt-bindings/pinctrl/renesas,r9a08g046-pinctrl.h
+  struct hfi_pkt_hdr {
+  	u32 size;
+@@ -303,6 +306,11 @@ struct hfi_msg_session_flush_done_pkt {
+  	u32 flush_type;
+  };
 
--- 
-2.43.0
++struct hfi_debug_config {
++	u32 config;
++	u32 mode;
++};
++
+  struct hfi_enable {
+  	u32 enable;
+  };
+diff --git a/drivers/media/platform/qcom/iris/iris_hfi_gen1_response.c 
+b/drivers/media/platform/qcom/iris/iris_hfi_gen1_response.c
+index 8e864c239e293..102f7689b5e57 100644
+--- a/drivers/media/platform/qcom/iris/iris_hfi_gen1_response.c
++++ b/drivers/media/platform/qcom/iris/iris_hfi_gen1_response.c
+@@ -683,7 +683,7 @@ static void iris_hfi_gen1_flush_debug_queue(struct 
+iris_core *core, u8 *packet)
+  			struct hfi_msg_sys_debug_pkt *pkt =
+  				(struct hfi_msg_sys_debug_pkt *)packet;
+
+-			dev_dbg(core->dev, "%s", pkt->msg_data);
++			dev_err(core->dev, "%s", pkt->msg_data);
+  		}
+  	}
+  }
+
+> 
+> Compliance tests:
+> 
+> v4l2-compliance 1.30.1, 64 bits, 64-bit time_t
+> 
+> Compliance test for iris_driver device /dev/video1:
+> 
+> Driver Info:
+>          Driver name      : iris_driver
+>          Card type        : Iris Encoder
+>          Bus info         : platform:aa00000.video-codec
+>          Driver version   : 6.19.0
+>          Capabilities     : 0x84204000
+>                  Video Memory-to-Memory Multiplanar
+>                  Streaming
+>                  Extended Pix Format
+>                  Device Capabilities
+>          Device Caps      : 0x04204000
+>                  Video Memory-to-Memory Multiplanar
+>                  Streaming
+>                  Extended Pix Format
+>          Detected Stateful Encoder
+> 
+> Required ioctls:
+>          test VIDIOC_QUERYCAP: OK
+>          test invalid ioctls: OK
+> 
+> Allow for multiple opens:
+>          test second /dev/video1 open: OK
+>          test VIDIOC_QUERYCAP: OK
+>          test VIDIOC_G/S_PRIORITY: OK
+>          test for unlimited opens: OK
+> 
+> Debug ioctls:
+>          test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+>          test VIDIOC_LOG_STATUS: OK (Not Supported)
+> 
+> Input ioctls:
+>          test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+>          test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+>          test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+>          test VIDIOC_ENUMAUDIO: OK (Not Supported)
+>          test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+>          test VIDIOC_G/S_AUDIO: OK (Not Supported)
+>          Inputs: 0 Audio Inputs: 0 Tuners: 0
+> 
+> Output ioctls:
+>          test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+>          test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+>          test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+>          test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+>          test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+>          Outputs: 0 Audio Outputs: 0 Modulators: 0
+> 
+> Input/Output configuration ioctls:
+>          test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+>          test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+>          test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+>          test VIDIOC_G/S_EDID: OK (Not Supported)
+> 
+> Control ioctls:
+>          test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+>          test VIDIOC_QUERYCTRL: OK
+>          test VIDIOC_G/S_CTRL: OK
+>          test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+>          test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+>          test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+>          Standard Controls: 18 Private Controls: 0
+> 
+> Format ioctls:
+>          test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+>          test VIDIOC_G/S_PARM: OK
+>          test VIDIOC_G_FBUF: OK (Not Supported)
+>          test VIDIOC_G_FMT: OK
+>          test VIDIOC_TRY_FMT: OK
+>          test VIDIOC_S_FMT: OK
+>          test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+>          test Cropping: OK
+>          test Composing: OK (Not Supported)
+>          test Scaling: OK (Not Supported)
+> 
+> Codec ioctls:
+>          test VIDIOC_(TRY_)ENCODER_CMD: OK
+>          test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+>          test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+> 
+> Buffer ioctls:
+>          test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+>          test CREATE_BUFS maximum buffers: OK
+>          test VIDIOC_REMOVE_BUFS: OK
+>          test VIDIOC_EXPBUF: OK
+>          test Requests: OK (Not Supported)
+>          test blocking wait: OK
+> 
+> Total for iris_driver device /dev/video0: 48, Succeeded: 48, Failed: 0, Warnings: 0
+> 
+
+thanks.
+
+Regards,
+Vikash
 
 
