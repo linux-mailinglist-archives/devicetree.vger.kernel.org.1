@@ -1,169 +1,160 @@
-Return-Path: <devicetree+bounces-261014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261020-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EOLzNxC1e2neHwIAu9opvQ
-	(envelope-from <devicetree+bounces-261014-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 20:29:20 +0100
+	id NCYjJLW1e2kNIAIAu9opvQ
+	(envelope-from <devicetree+bounces-261020-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 20:32:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82B4BB3F93
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 20:29:20 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDD52B401C
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 20:32:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C394E300E39C
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 19:27:14 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 055A730055A6
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 19:32:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEF403101DB;
-	Thu, 29 Jan 2026 19:27:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 981F630CDB0;
+	Thu, 29 Jan 2026 19:32:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="TFSmtDqU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VWVVVJd3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 147732FABE1;
-	Thu, 29 Jan 2026 19:27:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7272D2D46B3;
+	Thu, 29 Jan 2026 19:32:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769714833; cv=none; b=MXzL1Wvt6mPLbnFPhXLdM5oDZHRSNtmObcBSFj85NKIM1i3qpZ6LADGZLjkE64XZMlFVj2AaQ2a+nnh2C4M8YZpDyVCt2Zs3KW2ES3c/RLJ3EfAwAQhEFGb1b5V3JKD+mMMESpunjSSmyxlKnBS9RddjiDIeDmJsLWhppIIhk3o=
+	t=1769715122; cv=none; b=XI6QuXHoKAT3YY970Dz+hEXRqGtyY/0fXZ6Z90HxoMhjwF7LrHTZlUkqtLHImwGozyAPOsHNkGF5i3AtQk+TESDHjkwxyVb8TbJqgFDF1uwIxxiKoBHfQU7S7KZZIFhnTfM6RCs/zk1UldnI9H4+cHyHQ+5nJVlIQqEP8kAxuCc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769714833; c=relaxed/simple;
-	bh=P/CpqQ1Va8KQ+bDForuk/5CwJLf99XVBWIRctB7o8tg=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=EnbzhlQTHfty1THaC5Wa4OTlgJLdrS0zp39zv1ODzLEpT1hBq/7H/UFlLMF7toEBGFnGlYcC5WwadUT6NogOIaYQqPEqGzilIf3vokMK4eWfDmAtPG94ZJ/3fAfQDqnFwPBugppurhNKrLCAdPXpy2dicOnaig590lQWzV0EOk0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=TFSmtDqU; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 935D01A2B0F;
-	Thu, 29 Jan 2026 19:27:10 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 6416560746;
-	Thu, 29 Jan 2026 19:27:10 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 24A61119A880F;
-	Thu, 29 Jan 2026 20:27:02 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1769714828; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=Ru8ksjKNHNdXsJAL8P7+zHtIeOmioD7a81kSF85U4bI=;
-	b=TFSmtDqUhRvJRkmUhK6FDy4SogHujGGBb70slhbZidAwG8w4I6SZ41Hl87JQAtssxJZq7Y
-	NB3Cn6DpAFDYMmf90geQCxR8s0VCxIHTPy3hp06icSc2vqz4kBvldGCFdbJadOeJml3hBH
-	dhbZP7iH0DAWxLoKUSt0JmqChZNW2+9vaOVyhL6FCZpoHehKuly/hKWua5cCE5EXT/68nD
-	ykFZoW0vVrZNDRKlenFFhcOX7jmzP8bppM7OQU1GsJMe1rXNExuJQgkH2zbKo2HZsoAB56
-	kCC53GQZCAHuxc5I6h2UvWnlLP1VGNT7kCOQckEcFoJa11J1r5f6mIFPqHBbxA==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Mark Brown <broonie@kernel.org>,  Rob Herring <robh@kernel.org>,
-  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor Dooley
- <conor+dt@kernel.org>,  Geert Uytterhoeven <geert+renesas@glider.be>,
-  Magnus Damm <magnus.damm@gmail.com>,  Vaishnav Achath
- <vaishnav.a@ti.com>,  Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-  =?utf-8?Q?Herv=C3=A9?= Codina <herve.codina@bootlin.com>,  Wolfram Sang
- <wsa+renesas@sang-engineering.com>,  Vignesh Raghavendra
- <vigneshr@ti.com>,  Santhosh Kumar K <s-k6@ti.com>,  Pratyush Yadav
- <pratyush@kernel.org>,  Pascal Eberhard <pascal.eberhard@se.com>,
-  linux-spi@vger.kernel.org,  devicetree@vger.kernel.org,
-  linux-kernel@vger.kernel.org,  linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v4 14/15] spi: cadence-qspi: Add support for the Renesas
- RZ/N1 controller
-In-Reply-To: <CAMuHMdU1QV6Ww--D8kycUmL_sFen_Qf+SXHAZJnF31J0NRtsAA@mail.gmail.com>
-	(Geert Uytterhoeven's message of "Thu, 29 Jan 2026 14:44:36 +0100")
-References: <20260122-schneider-6-19-rc1-qspi-v4-0-f9c21419a3e6@bootlin.com>
-	<20260122-schneider-6-19-rc1-qspi-v4-14-f9c21419a3e6@bootlin.com>
-	<CAMuHMdU1QV6Ww--D8kycUmL_sFen_Qf+SXHAZJnF31J0NRtsAA@mail.gmail.com>
-User-Agent: mu4e 1.12.7; emacs 30.2
-Date: Thu, 29 Jan 2026 20:27:02 +0100
-Message-ID: <87sebojk3d.fsf@bootlin.com>
+	s=arc-20240116; t=1769715122; c=relaxed/simple;
+	bh=+afXvXUiUrGnXFfdDqtAMfkE/vdSboOihJX6gkigv6M=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=qayAHBATQGjD/p8xdg2gM2Gf6OzDbpDj7H/ObXLp5K5FQiwkyhcqHywOFcUPuvsOMi702G4rmfjyNJDosuebw5NuXRiu7VeAG6c3GREw0J/TvU0jQeFNF+lEXrnRj9W41EGbqbB21p58uj0xhTu2qxnCWOKHma6/SFJdyPE2PMQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VWVVVJd3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37599C4CEF7;
+	Thu, 29 Jan 2026 19:32:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769715122;
+	bh=+afXvXUiUrGnXFfdDqtAMfkE/vdSboOihJX6gkigv6M=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=VWVVVJd3vy51QjUbs15jezgc+M60SoerF9LjzTPt8CR9bHtku0CAvZb4ybxDHFik2
+	 cEkKyU8wdpWO4+UqWA3G4ME4K/JGipl8s3GyfZzNe+N+xMpErhgmcprfIKSU6Fic9f
+	 dWA4nCVClDJqtnJ8gZt7sDgQBm7kx9OsXsnrUrhFbguzHXrXdUGUc8jFYqQPfFAm9G
+	 3tAh68gq6NkNWuWANyePQV+laaP+kkex48VJI7qoj2lTl+hYUzxfxraT8P08+j/2j1
+	 8JM/bOYeGTSJ/bpw5DYwC5PRzpcxS0FOuEgX/i39pe3Hzz2mU3L3Cd8KgInMNev6NM
+	 lQTFXfwv+DT6A==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 4ED25380CED5;
+	Thu, 29 Jan 2026 19:31:56 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH RESEND v3 00/11] Bluetooth: dt-bindings: qualcomm: Split
+ binding
+From: patchwork-bot+bluetooth@kernel.org
+Message-Id: 
+ <176971511510.3002804.2692229697653539128.git-patchwork-notify@kernel.org>
+Date: Thu, 29 Jan 2026 19:31:55 +0000
+References: 
+ <20260111-dt-bindings-qcom-bluetooth-v3-0-95e286de1da1@oss.qualcomm.com>
+In-Reply-To: 
+ <20260111-dt-bindings-qcom-bluetooth-v3-0-95e286de1da1@oss.qualcomm.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Cc: marcel@holtmann.org, luiz.dentz@gmail.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, quic_bgodavar@quicinc.com,
+ quic_rjliao@quicinc.com, brgl@bgdev.pl, brgl@kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org,
+ andersson@kernel.org
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-261014-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261020-lists,devicetree=lfdr.de,bluetooth];
+	FREEMAIL_CC(0.00)[holtmann.org,gmail.com,kernel.org,quicinc.com,bgdev.pl,vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[patchwork-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,glider.be,gmail.com,ti.com,bootlin.com,sang-engineering.com,se.com,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NO_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linux-m68k.org:email,bootlin.com:email,bootlin.com:dkim,bootlin.com:mid]
-X-Rspamd-Queue-Id: 82B4BB3F93
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,msgid.link:url,intel.com:email]
+X-Rspamd-Queue-Id: EDD52B401C
 X-Rspamd-Action: no action
 
-On 29/01/2026 at 14:44:36 +01, Geert Uytterhoeven <geert@linux-m68k.org> wr=
-ote:
+Hello:
 
-> Hi Miqu=C3=A8l,
->
-> Thanks for your patch!
->
-> On Thu, 22 Jan 2026 at 16:14, Miquel Raynal (Schneider Electric)
-> <miquel.raynal@bootlin.com> wrote:
->> Renesas RZ/N1 QSPI controllers embed a modified version of the Cadence
->> IP with the following settings:
->> - a limited bus clock range
->> - no DTR support
->> - no DMA
->> - no useful interrupt flag
->> - only direct accesses (no INDAC mode)
->> - write protection
->>
->> The controller has been tested by running the SPI NOR check list with a
->> custom RZ/N1D400 based board mounted with a Spansion s25fl128s1 quad
->
-> "RZN1D-DB"?
+This series was applied to bluetooth/bluetooth-next.git (master)
+by Luiz Augusto von Dentz <luiz.von.dentz@intel.com>:
 
-I am indeed talking about the RZ/N1D400 here which is the "nice"
-official name of the SoC. The board I was using is a custom board, not
-the publicly available DB.
+On Sun, 11 Jan 2026 16:48:57 +0100 you wrote:
+> Changes in v3:
+> - Just rebase and add review tags.
+> - Link to v2: https://patch.msgid.link/20251029-dt-bindings-qcom-bluetooth-v2-0-dd8709501ea1@linaro.org
+> 
+> Changes in v2:
+> - Drop in few commits the properties (supplies) from
+>   qualcomm-bluetooth.yaml which are not used by devices left there,
+>   instead of removing them in final patch (qcom,wcn7850-bt).
+> - Fix dt_binding_check error - missing gpio.h header in the example.
+> - Drop maintainers update - split into separate patch.
+> - Add also Bartosz as maintainer of two bindings because he was working
+>   with these in the past.
+> - Link to v1: https://patch.msgid.link/20251028-dt-bindings-qcom-bluetooth-v1-0-524a978e3cda@linaro.org
+> 
+> [...]
 
->
->> SPI.
->>
->> Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
->> Signed-off-by: Miquel Raynal (Schneider Electric) <miquel.raynal@bootlin=
-.com>
->
->> --- a/drivers/spi/spi-cadence-quadspi.c
->> +++ b/drivers/spi/spi-cadence-quadspi.c
->> @@ -110,6 +110,7 @@ struct cqspi_st {
->>         bool                    apb_ahb_hazard;
->>
->>         bool                    is_jh7110; /* Flag for StarFive JH7110 S=
-oC */
->> +       bool                    is_rzn1; /* Flag for Renesas RZN1 SoC */
->
-> RZ/N1
+Here is the summary with links:
+  - [RESEND,v3,01/11] dt-bindings: bluetooth: qcom,qca2066-bt: Split to separate schema
+    https://git.kernel.org/bluetooth/bluetooth-next/c/68f3769ce016
+  - [RESEND,v3,02/11] dt-bindings: bluetooth: qcom,qca9377-bt: Split to separate schema
+    (no matching commit)
+  - [RESEND,v3,03/11] dt-bindings: bluetooth: qcom,qca6390-bt: Split to separate schema
+    (no matching commit)
+  - [RESEND,v3,04/11] dt-bindings: bluetooth: qcom,wcn3950-bt: Split to separate schema
+    (no matching commit)
+  - [RESEND,v3,05/11] dt-bindings: bluetooth: qcom,wcn3990-bt: Split to separate schema
+    (no matching commit)
+  - [RESEND,v3,06/11] dt-bindings: bluetooth: qcom,wcn6750-bt: Split to separate schema
+    (no matching commit)
+  - [RESEND,v3,07/11] dt-bindings: bluetooth: qcom,wcn6750-bt: Deprecate old supplies
+    (no matching commit)
+  - [RESEND,v3,08/11] dt-bindings: bluetooth: qcom,wcn6855-bt: Split to separate schema
+    (no matching commit)
+  - [RESEND,v3,09/11] dt-bindings: bluetooth: qcom,wcn6855-bt: Deprecate old supplies
+    (no matching commit)
+  - [RESEND,v3,10/11] dt-bindings: bluetooth: qcom,wcn7850-bt: Split to separate schema
+    (no matching commit)
+  - [RESEND,v3,11/11] dt-bindings: bluetooth: qcom,wcn7850-bt: Deprecate old supplies
+    (no matching commit)
 
-Crap :-) I will rebase the two patches Mark couldn't apply and add this
-typo fix as a follow-up.
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-Thanks,
-Miqu=C3=A8l
+
 
