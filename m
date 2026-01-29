@@ -1,48 +1,50 @@
-Return-Path: <devicetree+bounces-260968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260969-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2MsgNm6Ye2nOGAIAu9opvQ
-	(envelope-from <devicetree+bounces-260968-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 18:27:10 +0100
+	id +BHdCYSYe2nOGAIAu9opvQ
+	(envelope-from <devicetree+bounces-260969-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 18:27:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F383B2D77
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 18:27:10 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8041AB2D8D
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 18:27:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BEDFC306DE42
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 17:23:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DA9AE3076AD4
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 17:23:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 833DB349AE1;
-	Thu, 29 Jan 2026 17:23:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FB0134B682;
+	Thu, 29 Jan 2026 17:23:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="bxe51VTn"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="gUibd4dK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-184.mta0.migadu.com (out-184.mta0.migadu.com [91.218.175.184])
+Received: from out-178.mta0.migadu.com (out-178.mta0.migadu.com [91.218.175.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAE2C2EA15C
-	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 17:23:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE68934B183
+	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 17:23:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769707404; cv=none; b=cNz8tAuWnXP46Igdn2t92FaZi4VGWuu+Bht+jkNO/U106TqnrKb2pHIJ1bc0CnF300vAO8AWImh20n5hP1BXjJMl/ury/Y0ji9GQSSqfMddFRjGQveW20PIh3JidGAXteYJcwpHae5i++WMIHQHec4XH4eyGg2ontKp3Fpc0EJs=
+	t=1769707406; cv=none; b=bpWPFbSr/98jEeW8cLTjawZXyvU3Fgw97nrerQ0fAAp70EG3TQmNMn91aE5SHFX48BH+qYP++stdtweUbFFrDao33WyAnRkOaQfYRC1Aca45UvAeaFtVoEh5yslIPzf5bE23eZujqEJJNe7M1rWxvlJVvfGVUK629rCg6q9Lfg4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769707404; c=relaxed/simple;
-	bh=SvH0AoqLQBztfThT9P/LUln8AmuAYBxZPjT9Lgf1hcI=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=QjklDxXjQrIlndhjtlHHv1FjFOIdVnl7+56gk3LJ4N2/9DbqRwFwBayxcuxIRYoSOdmEtT6tqy7Z/4ZZtOh3ouRi1b7Rh/po+znJjURPc8RwuNdO1Xqfi7unGxH+e/rwgpSxJ1QO3WlWVUR+mlhmM8qP/dSjx3OopktIE90XIA8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=bxe51VTn; arc=none smtp.client-ip=91.218.175.184
+	s=arc-20240116; t=1769707406; c=relaxed/simple;
+	bh=pRBa5TBjuQYiYyDUyFa9T4Jx9I8aK8yOKph8e6rqDMM=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=ZExes7z5gzmmsVFxhUr+kcV0yPTsqY3ZJ/LMIvKasqfuFxscJn2FbzRyVZgqtlJ2+Fu1ghNHk4H463FhabGzSSVOH5eGPk9Voe0yLAz/JJ5YKZC/oJEeyS5mIk6y0JU03o46vLlRXcmf3usW5+n5yn6ueGhBJxzL3nhvZtNiSC4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=gUibd4dK; arc=none smtp.client-ip=91.218.175.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1769707399;
+	t=1769707401;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=TF8JgnJjP3MwCPu1WCIn/bHY9tGL0Ps0MgNVk/UJcAA=;
-	b=bxe51VTne6PAUnEHSsR5xlFrzoUdmewfCiBqJfHClN6TTC/C5hcpEKBTbJyiR4740jI5qQ
-	MxMrBgJgXhRJYpMS5E9GHU3/7kmiEu5fRtbO45BdITYMg8gnKIrUvyNpfa9heGvyectkMZ
-	fmkCmyfYsikoXQQiLBDSxDIN+ikpfTQ=
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=1Puyqb4KlLw9Tw9YVBGXVL1lbSf9jM4gxR8qM3PJNjw=;
+	b=gUibd4dKPoVe/gk+34E+1BEgtE1x5UGgCa2Tc8KZCiiA26Yp/nX3+Od1EBm9s9c27qraxZ
+	7qktT7InYMiJs/eDsEMHcHp0k08EBMeG1dXvD6Xr+F9hhvExGZ084O90gUbp1Vg5UGbylT
+	892LahQ6dunQe5XkgWpgntqpyxJf51s=
 From: Sean Anderson <sean.anderson@linux.dev>
 To: Vincenzo Frascino <vincenzo.frascino@arm.com>,
 	Liam Girdwood <lgirdwood@gmail.com>,
@@ -58,9 +60,11 @@ Cc: Jaroslav Kysela <perex@perex.cz>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	devicetree@vger.kernel.org
-Subject: [PATCH 0/2] ASoC: xilinx: xlnx_i2s: Discover parameters from registers
-Date: Thu, 29 Jan 2026 12:23:13 -0500
-Message-Id: <20260129172315.3871602-1-sean.anderson@linux.dev>
+Subject: [PATCH 1/2] dt-bindings: sound: xlnx,i2s: Make discoverable parameters optional
+Date: Thu, 29 Jan 2026 12:23:14 -0500
+Message-Id: <20260129172315.3871602-2-sean.anderson@linux.dev>
+In-Reply-To: <20260129172315.3871602-1-sean.anderson@linux.dev>
+References: <20260129172315.3871602-1-sean.anderson@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,12 +80,12 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260968-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-260969-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[14];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
@@ -95,26 +99,66 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[linux.dev:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linux.dev:mid,linux.dev:dkim]
-X-Rspamd-Queue-Id: 3F383B2D77
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,a0090000:email,linux.dev:email,linux.dev:dkim,linux.dev:mid]
+X-Rspamd-Queue-Id: 8041AB2D8D
 X-Rspamd-Action: no action
 
-Xilinx helpfully included a read-only "config" register that contains
-configuration parameters. Discover our parameters from this register
-instead of reading them from the device tree.
+These parameters can be discovered from a config register. As they will
+not be used any more, mark them deprecated, make them optional, and
+remove them from the example.
 
+Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
+---
 
-Sean Anderson (2):
-  dt-bindings: sound: xlnx,i2s: Make discoverable parameters optional
-  ASoC: xilinx: xlnx_i2s: Discover parameters from registers
+ Documentation/devicetree/bindings/sound/xlnx,i2s.yaml | 8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
 
- .../devicetree/bindings/sound/xlnx,i2s.yaml   |  8 ++---
- sound/soc/xilinx/xlnx_i2s.c                   | 32 +++++++------------
- 2 files changed, 13 insertions(+), 27 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/sound/xlnx,i2s.yaml b/Documentation/devicetree/bindings/sound/xlnx,i2s.yaml
+index 3c2b0be07c53..180f43f2b230 100644
+--- a/Documentation/devicetree/bindings/sound/xlnx,i2s.yaml
++++ b/Documentation/devicetree/bindings/sound/xlnx,i2s.yaml
+@@ -29,6 +29,7 @@ properties:
+     enum:
+       - 16
+       - 24
++    deprecated: true
+     description: |
+       Sample data width.
+ 
+@@ -36,14 +37,13 @@ properties:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     minimum: 1
+     maximum: 4
++    deprecated: true
+     description: |
+       Number of I2S streams.
+ 
+ required:
+   - compatible
+   - reg
+-  - xlnx,dwidth
+-  - xlnx,num-channels
+ 
+ additionalProperties: false
+ 
+@@ -52,14 +52,10 @@ examples:
+     i2s@a0080000 {
+       compatible = "xlnx,i2s-receiver-1.0";
+       reg = <0xa0080000 0x10000>;
+-      xlnx,dwidth = <0x18>;
+-      xlnx,num-channels = <1>;
+     };
+     i2s@a0090000 {
+       compatible = "xlnx,i2s-transmitter-1.0";
+       reg = <0xa0090000 0x10000>;
+-      xlnx,dwidth = <0x18>;
+-      xlnx,num-channels = <1>;
+     };
+ 
+ ...
 -- 
 2.35.1.1320.gc452695387.dirty
 
