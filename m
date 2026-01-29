@@ -1,205 +1,254 @@
-Return-Path: <devicetree+bounces-260680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260681-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aDrQIxi3emkr9gEAu9opvQ
-	(envelope-from <devicetree+bounces-260680-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 02:25:44 +0100
+	id GCwfOFy3emkr9gEAu9opvQ
+	(envelope-from <devicetree+bounces-260681-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 02:26:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39226AAB27
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 02:25:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 605F9AAB89
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 02:26:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5B3C2300DEE1
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 01:22:22 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C46243003361
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 01:26:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF297326D62;
-	Thu, 29 Jan 2026 01:21:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SKcx2vat"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCF2D19755B;
+	Thu, 29 Jan 2026 01:26:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023100.outbound.protection.outlook.com [52.101.127.100])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C91B731AF1B;
-	Thu, 29 Jan 2026 01:21:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769649667; cv=none; b=XaQ0AXQ4NoONxou36lWUeDDWAdYYrgivMHwEnLju+rshOlHget1hCnk3Ti/BlVqgJ4KCBxxNidnxKWXZfEb/+ck609pTsf2v/h2a/Y8ZnfXbTLjbevaGLfgUsKmK0vdwdOud5ZYHcVF4DpBOkd0FMmLIpQSLiqAMCrfN4NwBIxA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769649667; c=relaxed/simple;
-	bh=0McdfhQtBdhOjXOFC6DVlyGfhbwPo1k+y44unTN78iU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Yk9F5Oroc28OHeoxx+se6NY/mJqlwRU+L9pVijgAaKd2TOp4CLo6G9MBcXVdJEhfgeRWpGUg1c9IRfVxGsfDHvyhpycrshjGbga4WW56YxTRqyNn4uc+UFaRVj8pGGCvuP2b01w9Tk3DZ4D54QxgYUHJcx5JgB/SIFzIgeDiwNM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SKcx2vat; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08873C4CEF1;
-	Thu, 29 Jan 2026 01:21:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769649667;
-	bh=0McdfhQtBdhOjXOFC6DVlyGfhbwPo1k+y44unTN78iU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SKcx2vat7yYdVVAFe+WNbSlQNPfCxM87Cx2wrVpIr34d0Bn0D9xFbWjt3YH6YB9Jw
-	 DcbSk+nqfO78RVaWc5R4sOY5BPH+p4WfZFoTQGezx2dZkodLI9RcFWkFAKOpVPCGRc
-	 IGLkuc0J/oogbAyN2ExQOgXRQ4FbTQXoRqdYOayEmhH2y2LXpyI4ao3Hk2qv0PQDpW
-	 cvCI7gkaA2kw+PBiO1ThtPp8KqME52g9lsbgroUswI3TyhnkjjVP0NB2y/ci4Es4As
-	 gRjoF5j9I1RLQZ2GjtlcIig+a4e4hsCrVYUdiPtBxpYrgmbkZ2sNfgJgdD418OGFTR
-	 87O04/h8xeX2A==
-Date: Wed, 28 Jan 2026 19:21:04 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>, 
-	Maulik Shah <maulik.shah@oss.qualcomm.com>, Sibi Sankar <sibi.sankar@oss.qualcomm.com>, 
-	Taniya Das <taniya.das@oss.qualcomm.com>, Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>, 
-	Qiang Yu <qiang.yu@oss.qualcomm.com>, 
-	Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>, Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>, 
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
-	Abel Vesa <abelvesa@kernel.org>
-Subject: Re: [PATCH v6 0/4] arm64: dts: qcom: Introduce Glymur SoC dtsi and
- Glymur CRD dts
-Message-ID: <75lzykd37zdvrks5i2bb4zb2yzjtm25kv3hegmikndkbr772mz@w2ykff3ny45u>
-References: <20260122-upstream_v3_glymur_introduction-v6-0-245f408ed82a@oss.qualcomm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F05F21EB9E1;
+	Thu, 29 Jan 2026 01:26:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.100
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769650008; cv=fail; b=ij9lCEkrqUPHg6BNIFGmADwj+j250fzXaeXsOfneIqWnatvEnOc14sifUrLqWLI7pgUBQxyfMrp7PXBFoS1LgsbMp0zk6AVbs5rbnQl6zs8Qi4Lz8pl1Bere18i7od3Q7fKndQ9uqbuPB13qUS7MsF0nqVC/ZaOD6B29En9Ntlo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769650008; c=relaxed/simple;
+	bh=/3Mc3YY8ck7bX0v6KQY+s1dEuUDllzvG0J7UXVL+Du4=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=Iz98J4otrVJNBM8soQuF32NEWgWQ/CSIxgmD/qLDzjEjp8wRV2A2g03Niaz6yfuvHU1xnMS8V8H2Y3JsInLiqUPP771buS2dm9oX0ECn3LAvrvSOhMh+BfltR1V+Wu4wMKsI5pjduhGW3a5uuw+ZUvYmhTndh4AhBAMFuobeFH0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.127.100
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QilN8MQHH9ayn02GUrfVf9i79NowtjJDfWhDxub+NKs9gKYvp4ss1cCdm8dwyikxt8wznLaBvJfiqZicd0hCtzcgggZdjYwa7I6UfWxHfApCEFARcPVQRspWt3W/ddKrdZoblOXIeEuf1iWuJhoR+a4TTpbTjtyEhy8JWexnRFIa/yZ7C7oVgEmvYtHPdcfwAaUTtWgaGZxQrhQc3dYd91J7L3Pb8jFlZzWDicP1CdbCnOV+gHfmB5mj8UkYvXYqSUAeVMKGK7CQTjgaVNBnRWqf5hVEcVrvQF0xi0GqK6kD05+0Fw0A/rbjtQXzCK7OOPSJMZ4EF3MFw0SP5s3Zzg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/3Mc3YY8ck7bX0v6KQY+s1dEuUDllzvG0J7UXVL+Du4=;
+ b=amKojBvn56L0HpEAfwPwjhUVHXYd5TqsrATCKNXu27Ad+1ltLeKdFfB/RzaVLbTbsfkpF06Aeqxs2pTs8LiwU3P2+5JBlRoAWyLeN9CsK3myzNl2KH/pbHAEkpfdFH8bjMu7G3S1WnD5vY5SYpKVUJunnFH/SSV8W7W/zJOXHybqtK6UPKiHVkwvlax9hq50XUeni7bG3CPvuijpcpOnogvrpTdMURoB7Bmwai0lEl1B+e5YOrS1NrE4gogrBcsJl979abK8zpKxKv4MQbBM7OS6Ei4Jx+zuKCl8hKWVJE4VEN8ceLyE45LjtME4n+wXAbH3TjpzpQtsU8y/FU3ZdA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=cixtech.com; dmarc=pass action=none header.from=cixtech.com;
+ dkim=pass header.d=cixtech.com; arc=none
+Received: from TYUPR06MB5876.apcprd06.prod.outlook.com (2603:1096:400:35e::5)
+ by KL1PR06MB6556.apcprd06.prod.outlook.com (2603:1096:820:f1::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.16; Thu, 29 Jan
+ 2026 01:26:41 +0000
+Received: from TYUPR06MB5876.apcprd06.prod.outlook.com
+ ([fe80::6718:b716:70e:9b32]) by TYUPR06MB5876.apcprd06.prod.outlook.com
+ ([fe80::6718:b716:70e:9b32%6]) with mapi id 15.20.9542.015; Thu, 29 Jan 2026
+ 01:26:40 +0000
+From: Gary Yang <gary.yang@cixtech.com>
+To: Philipp Zabel <p.zabel@pengutronix.de>, "lee@kernel.org" <lee@kernel.org>,
+	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, Peter Chen
+	<peter.chen@cixtech.com>
+CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, cix-kernel-upstream
+	<cix-kernel-upstream@cixtech.com>
+Subject:
+ =?utf-8?B?5Zue5aSNOiBbUEFUQ0ggdjQgMi8zXSByZXNldDogY2l4OiBhZGQgc3VwcG9y?=
+ =?utf-8?Q?t_for_cix_sky1_resets?=
+Thread-Topic: [PATCH v4 2/3] reset: cix: add support for cix sky1 resets
+Thread-Index: AQHckDmM0lroGc8ScE+Aon9VrBGENbVnca+AgADp+3A=
+Date: Thu, 29 Jan 2026 01:26:40 +0000
+Message-ID:
+ <TYUPR06MB58765E2F64B15B6434D596F7EF9EA@TYUPR06MB5876.apcprd06.prod.outlook.com>
+References: <20260128093611.1932770-1-gary.yang@cixtech.com>
+	 <20260128093611.1932770-3-gary.yang@cixtech.com>
+ <c4c546df215cbf4fc42bca58500a94140a5d6bf3.camel@pengutronix.de>
+In-Reply-To: <c4c546df215cbf4fc42bca58500a94140a5d6bf3.camel@pengutronix.de>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=cixtech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYUPR06MB5876:EE_|KL1PR06MB6556:EE_
+x-ms-office365-filtering-correlation-id: 7dfcddaa-aebd-4745-c38c-08de5ed5747b
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|1800799024|366016|38070700021|7053199007;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?THpaczJjVCt6cEtCaENZK0g3VGpFQlpKTmNLYTliU1hCVDE2d2hOTVRQaTRH?=
+ =?utf-8?B?cnRDOHJvK2t2dk1ENVpOVmVvNlNNOXBVUmVOUThJRGNOcCtUL1BaVjFORTRI?=
+ =?utf-8?B?R1piY2VyY0tjOS92MS9adUpUbzhXazF2ay9VajFLM3RoSXN2aGVmdXJqL1U1?=
+ =?utf-8?B?WE9RdVFkMUFXYjdOS2VyejJyaWJudDBZdE5KN2ZFTDh5bGdjNHQ4VTN6Y0RJ?=
+ =?utf-8?B?N0xhaU9GOENRTEM2ZEZvcnNZMm1majk1U3FiYkNJN2Vua1pFaDdGN0R2KzRs?=
+ =?utf-8?B?emJvMzZCWHN4OXlmVHZKWFI0QVRMUUl3dWhweW83VVJJMVF3S1BEOTE2Z3Zu?=
+ =?utf-8?B?M0Q1VllnMVZNdGFRam5XdmtZemhsY00rV1daemJ6YjN0YTZoMU1tbjd6eDc4?=
+ =?utf-8?B?b2NlSjAyMnRtdnVRcHkvWVpwNng1UDU3ek1DcW1lRWpjcVFYa0NGc256MTlN?=
+ =?utf-8?B?NHFQVHFzNmI5dkl5R1R2dE9WZ0V5MXQ5ckVJVlduMDVtSW8zVitXWGhhbGlU?=
+ =?utf-8?B?MWFDOHdTTGZHT2djdm5NbzlTbFpHS3JNbzh4L0g4TjJpRHVpVk5HcTMzbnBF?=
+ =?utf-8?B?VVZMN0hLTlJIS3hTWnhYRXNoOElaNVF2OGRhSUZacEZNYTlsMmxHSy82MXJD?=
+ =?utf-8?B?RDNydXh3blhVSkRqajRqMGxrckxFRnUvR1Y1WGRTVFdhZ0JFbTR0eGt0ZHFj?=
+ =?utf-8?B?S1l1Skd5RXhqUkZrTU1SNGx6WFVpamRFNEUyVEV1dTlHUW03VUV0VHQ0cy8r?=
+ =?utf-8?B?TTJrem1FbDkrZzhKd3hTWEQyRnpyVlgxYmo4MHBLNDRBU2M4L2dkUWlUanZ0?=
+ =?utf-8?B?NTFEUFpxOVlGM3F1TzZPRGU0VmdTYllkSEJUN2VHUHhwYzJHT3VHOUlUQnRO?=
+ =?utf-8?B?RitEM3pnbExMNnhZcWIycUxMQ2RLdEdxTHRhVlk4Zk9EUHFZQm16SUxzNXN6?=
+ =?utf-8?B?Z0tBZllsb0NrVjNkcVh6V2lZbjZvLzVPajFIMkMxUzBlK1RidEpWQjlmUWdt?=
+ =?utf-8?B?Qk9TUkh6d0tTOXRwYmptcnRjOWxOY3g4NlBtajhidmo5WEIxWWp1c0phRFJ6?=
+ =?utf-8?B?RUF4U29aZmhsRlJmRnpMWVpBRFQ0akQ2ZmtxQnp5VjBkbHJWWUt5eTMyU0xl?=
+ =?utf-8?B?a3QvaG5IaThMd3Rmek0rbTYyajZnVXEveDA5Y0RuYTZwN3VCcjY1NWpUenEw?=
+ =?utf-8?B?ZlBGckptUWcxS3hCbzBpZElMVmtsSzh4YkxhWUwyNGhsd0NKTUU3bUtramZY?=
+ =?utf-8?B?eFVWRHZMS3llNXhrMGhZTlh0aml6NEduVVNZbkhCNUFTdE02K0Y3eUp6czMy?=
+ =?utf-8?B?dERUeUo2ckhFdHBMbXFTb1JsNkxLTDN4STM0ZEdZbDBhWjFyQ3FPeG9va0dZ?=
+ =?utf-8?B?RWNuN2xXUzJ3bjZjcng5Rm9pdXdIdlZhRzI4MzlrUXhYdnhBMElQRkM3anVW?=
+ =?utf-8?B?aHRSeVRoSXgrNUtqYyt3ZkVnZG85azBtNDM5RG1HOS92Um5kYy9Sc0I3OVVG?=
+ =?utf-8?B?bTVTQW5IS2dRY2xnZDNVL3kzM3NnRVR0WGJiU2ZNQUx4dXZ2eU9IUEIxdytL?=
+ =?utf-8?B?S1RNTzEzL0poa1Y1TTB6K1FSUDV0RXNHMHZmSTNJQ0JCaFRhOEhGSWZ4SGNW?=
+ =?utf-8?B?SHljUjR6U3d1anpLbEwrL0x2c01pdmpRbTVzeS8yOWU5TWNQQmFBbXZqNlY2?=
+ =?utf-8?B?SUVNeGF2ZUU5enFQeFVhME9CU1ZaaHVja1YyYytHWDlxWmhrbWJSM0tDRWla?=
+ =?utf-8?B?Z211azVHclRrdzYvMi9wWnZTV3lxNlN6WE95SXJtZmJQZzZrRzhER0tqWlZ2?=
+ =?utf-8?B?anlEeStSNFNMVzQ1Zk4vYWJxMmRSSDRmV0Q1aFk5ZzNGMy9hdzlQTWFtRitW?=
+ =?utf-8?B?ZDJWd21ET1I1TUVKTld3REp0b0VOQllPK0FnR3F1SFBUb01zYlBYeWpUTFhO?=
+ =?utf-8?B?NFljWFkrZldkQlFuTEJyYlBWelpaYy82NmxNSHRtOERBOFB4a3J4R3ZVbHRa?=
+ =?utf-8?B?UnJyTHNBNG5aSndhS3NxeXBxQXVPdFE3UTZydHdsZDVjaHNaSlpld0dRMHZT?=
+ =?utf-8?B?V244cFVzT05MWWhoNkdhY3ZFOTlQU1JqV1h0WURIdUVNS0xQWVZ1NmdBVnAy?=
+ =?utf-8?B?TUo4OENvYzNoamtIQTV2QU1uMTBhUUxwcC9rdnA3QmJTTnFQcVdXb2J0bTB6?=
+ =?utf-8?Q?1u9Xef1b94m5uM6OFvsg5vs=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:zh-cn;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYUPR06MB5876.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(38070700021)(7053199007);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?U2dHTS9UQ21WVnE1QkVjdmI2WGVucnNNOUVMU3QzQ010eXRSTWo1SlVTbFdR?=
+ =?utf-8?B?WDNkZGd1RkhqUzBlR0pPNTY0c1NaVCtWZldOY1BHWkg4eVZlYnJNTU5hbm5I?=
+ =?utf-8?B?Z1hmbG5ZMWVhSEU0WXQva1RPRXJxcVRjZFRLL0tORVY5T2R5Rk9ibTMvaTdz?=
+ =?utf-8?B?QlowUlU5Q1RUTmlkVGIwcVprb3g5b0VwTkN4SFhKUDZ5c3d6STZPTTlXbjhp?=
+ =?utf-8?B?MUZCVUhWQktLNjk0emxSQ05PUUlvTjFIU3E0bW5aUGJMSEYrWXE0NkEwcXV5?=
+ =?utf-8?B?cUM2cHY2Ymw5SDVES0FHVDh0bjNyWXpUdllDa2RxWldaSWZnVXRxUU43WWZI?=
+ =?utf-8?B?L0ZBSXZpZlhJRzlyb0FKU2xDYy9wOC84MG1KOWJEbDl3V1BVVEZtdXNqQ2h4?=
+ =?utf-8?B?L1dvV25mbVE0T05jd0toMllQOXhualVEcWlrU0dCRUhFUWdLcGFEcU1HenJu?=
+ =?utf-8?B?SFF4aGlQQnBSV1VpVWFTQitkL3Q1UzlDVmVlL1lYMGxSN0w2ZkxiNlBFUTZx?=
+ =?utf-8?B?ZVpxTStuaHR4Yi9leTFIV1JmM0g0Y2lIcjMvL3dabGFsUjZ1VXRvMllhWWpz?=
+ =?utf-8?B?QU5SMDJJTGdacWVvMjdxaUpzOGFBOExMZmFVNHVUNVIybThNcFpxMnQ4RWdv?=
+ =?utf-8?B?Y21lNVNRM0hBcm54alhqUE93akhNbjl0ZU5ySVdSVEgrVHcwWW1HVjFLRFZU?=
+ =?utf-8?B?a3BVSy8xRS9zb0lYNkR3NWhUNG9yQzluczhQVk9pbjhRejVvY1M0NEQ3bXRh?=
+ =?utf-8?B?KzczNFZxdnV0aHJ5OXBDS3VMRUtMTEN5WjJNRzByQmNMUmJWVWVHVGpzaDlw?=
+ =?utf-8?B?TGZ4MG5RUjlaT0tkK3dOYVRvVDc5QWlHTkVZeEk4bk1kNkwwQ0hualBucTFK?=
+ =?utf-8?B?elphU0dKVnlJWHNkbU04b0NrSDgvb2pKeVVvejlvT0VvZW42YTJYMWIrRGlx?=
+ =?utf-8?B?R2pnOUV3UzdBL1ZTMkkrckVlRTRBOVNMVW9WSkV2V1QxKzBpWlU5VkUydit3?=
+ =?utf-8?B?SWZXdkl6RnNNV3BDWEppLys2WkwzTXlMbVhmaEhETmwxWmlPUTRLemdZTjdV?=
+ =?utf-8?B?VWpjbWFUREZXTmdPQ29Mc08vd3E0VXpSY3JWT2RoVmN2SU1yd2VhT2pOc2Zj?=
+ =?utf-8?B?bHNmd3hiS21oUjBPbUp1YTdvZVlJVnNwQndaUGE2bnM0Z3p6T2pFNTYvc28v?=
+ =?utf-8?B?VXJkRHB1ZldtQTh5ZzI4NGh6aWY0TG5XdDdMWlAwcE1pZzliQnhaeE14N2xl?=
+ =?utf-8?B?Y01VTUF1bzRocHlqUlJFK3ByWHhpWStVdTliZmZ0aHRIYkk4RFRLT211bEdh?=
+ =?utf-8?B?dVVYVDNLcUxvbHBxK2I1d3FDRDR1S3VDZzhmQmI3RnIxTTd0d0l3WDUyek9Y?=
+ =?utf-8?B?TWgxTXBzTnpyTy9EamFvWVpBKzVhYTFEUXZjR29YVXQwSVdBQi9Pby9xUjJs?=
+ =?utf-8?B?bnk0VXd2R2VzTGhOL0p5ODRSY0puSTF2a0d5SFc2YnEzVUc4M2xBUXJuUHRp?=
+ =?utf-8?B?ZnNyb2Y3RDlLeDJQVVY1bEh0VGUxWjNONlBVZzYyMjZ5bDQxU1VpRWNlZmgw?=
+ =?utf-8?B?Q3hwK0pVNHJUa0JiQ0lOc25PM3ZMdENaZXBtaFg3aEtybG5EYVZoQy9ETXhL?=
+ =?utf-8?B?MGxJYkZiUStHcmxjYkhHOGk4clAzK1Vra1pDUXgyWDJ4NnNYYnp2cG9sNDFW?=
+ =?utf-8?B?NkV5RERzVHE2MWY4emJjQ2gxdHRvUlBkSlF0QlZlMjlLbHhNbGxpZjduQUl1?=
+ =?utf-8?B?NDZYRU85QkFROHVNTGdqdnpWaTNwRTR1eStHbDRXZ3pvRjJXemR1ZlVzaGNk?=
+ =?utf-8?B?dkVHSGR3MC82THJUTFV1RVM3dFpHeXBRbHJDWjdZN2pUNFNHWFFCb2pyNXlT?=
+ =?utf-8?B?VHlhZXRFTkJJWnFPcVNqT3lYaFArWHZxUm1LU1QzeUFPQVBISXR1R2ppWmJI?=
+ =?utf-8?B?aTdLcU5zYXIvU0RiNGJqY0pSc2JIQmRYZFdhYlJGMlJ1NXVXelQwcWlURU5K?=
+ =?utf-8?B?RTJVcGtjeEtrVGhnaStRS0RnMXFrTDZ0Vjl3Tyt6SGRoYTVuMHcxaExYN2hs?=
+ =?utf-8?B?bHdiOWxpaW1LOVdNR0ZRbStaL1pUMFMrZDdVSDVpNmlUQ29GZHBoa1JjSkhZ?=
+ =?utf-8?B?eERGU2NMVFE3UEhjMHZZVVdHZ3g1S0FGVlVqWXc1Z1lnNEk4SEY2eGNxN3Y0?=
+ =?utf-8?B?S1hDL1E1T3dBRjExMkpheTlFU2kzUkdjSk12M1FlUWx2ZVFPSlArYW9tbGhX?=
+ =?utf-8?B?NTBhNzUxSDEvMDNqWkZ0enpsU2lHcWtFMG1udHlJd3BhWklZL3hyRURMWVV4?=
+ =?utf-8?B?cXkxaHczN1E0L2g5UjkvSHhUbUJYNHU3V0s3ajZtb1c0QkVtL0Rodz09?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260122-upstream_v3_glymur_introduction-v6-0-245f408ed82a@oss.qualcomm.com>
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYUPR06MB5876.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7dfcddaa-aebd-4745-c38c-08de5ed5747b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Jan 2026 01:26:40.7252
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: l/1zvvwe80XzhkHAo2MZyHiWOzc/29AB07EoVaOC+khsKwk5C0kut4CVSv65K+we9ZY/ge4dZ/tuaGpTdTqV+Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR06MB6556
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+X-Spamd-Result: default: False [2.14 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
 	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
+	MIME_BASE64_TEXT(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-260681-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260680-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	DMARC_NA(0.00)[cixtech.com];
 	TO_DN_SOME(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.1:email];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[c426000:email,codelinaro.org:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,0.12.53.0:email,devicetree.org:url,b00000:email,0.0.0.0:email]
-X-Rspamd-Queue-Id: 39226AAB27
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gary.yang@cixtech.com,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[infradead.org:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,cixtech.com:email,TYUPR06MB5876.apcprd06.prod.outlook.com:mid,pengutronix.de:email]
+X-Rspamd-Queue-Id: 605F9AAB89
 X-Rspamd-Action: no action
 
-On Thu, Jan 22, 2026 at 08:53:57PM +0530, Pankaj Patil wrote:
-> Introduce dt-bindings and initial device tree support for Glymur,
-> Qualcomm's next-generation compute SoC and it's associated
-> Compute Reference Device (CRD) platform.
-> 
-> https://www.qualcomm.com/products/mobile/snapdragon/laptops-and-tablets/snapdragon-x2-elite
-> https://www.qualcomm.com/news/releases/2025/09/new-snapdragon-x2-elite-extreme-and-snapdragon-x2-elite-are-the-
-> 
-> The base support enables booting to shell with rootfs on NVMe,
-> demonstrating functionality for PCIe and NVMe subsystems.
-> DCVS is also enabled, allowing dynamic frequency scaling for the CPUs.
-> TSENS (Thermal Sensors) enabled for monitoring SoC temperature and
-> thermal management. The platform is capable of booting kernel at EL2
-> with kvm-unit tests performed on it for sanity.
-> 
-> Added dtsi files for the PMIC's enabled PMH0101, PMK8850, PMCX0102,
-> SMB2370, PMH0104, PMH0110 along with temp-alarm and GPIO nodeS.
-> 
-> For CPU compatible naming, there is one discussion which is not specific
-> to Glymur, Kaanapali and Glymur use the same Oryon cores.
-> https://lore.kernel.org/all/20251119-oryon-binding-v1-1-f79a101b0391@oss.qualcomm.com/
-> We've kept the "qcom,oryon" compatible
-> 
-> Features enabled in this patchset:
-> 1. NVMe storage support
-> 2. PCIe controller and PCIe PHY
-> 3. RPMH Regulators
-> 4. Clocks and reset controllers - GCC, TCSRCC, DISPCC, RPMHCC
-> 5. Interrupt controller
-> 6. TLMM (Top-Level Mode Multiplexer)
-> 7. QUP Block
-> 8. Reserved memory regions
-> 9. PMIC support with regulators
-> 10. CPU Power Domains
-> 11. TSENS (Thermal Sensors)
-> 12. DCVS: CPU DCVS with scmi perf protocol
-> 
-> Dependencies:
-> 
-> dt-bindings:
-> 1. https://lore.kernel.org/all/20260121-glymur-pmic-mfd-v1-1-2aab4f21e79c@oss.qualcomm.com/
-> 2. https://lore.kernel.org/all/20251215-knp-pmic-leds-v3-2-5e583f68b0e5@oss.qualcomm.com/
-> 3. https://lore.kernel.org/all/20260121110828.2267061-1-pankaj.patil@oss.qualcomm.com/
-> 4. https://lore.kernel.org/all/20260111155234.5829-1-pankaj.patil@oss.qualcomm.com/
-> 
-> Linux-next based tree with Glymur patches is available at:
-> https://git.codelinaro.org/clo/linux-kernel/kernel-qcom/-/tree/b4/v6_glymur_introduction
-> 
-
-FWIW, I applied these patches onto next-20260128 to see if things has
-improved since Rob's report and I get:
-
-$ make qcom/glymur-crd.dtb CHECK_DTBS=1
-  DTC [C] arch/arm64/boot/dts/qcom/glymur-crd.dtb
-qcom/glymur-crd.dtb: dma-controller@800000 (qcom,glymur-gpi-dma): interrupts: [[0, 588, 4], [0, 589, 4], [0, 590, 4], [0, 591, 4], [0, 592, 4], [0, 593, 4], [0, 594, 4], [0, 595, 4], [0, 596, 4], [0, 597, 4], [0, 598, 4], [0, 599, 4], [2, 129, 4], [2, 130, 4], [2, 131, 4], [2, 132, 4]] is too long
-        from schema $id: http://devicetree.org/schemas/dma/qcom,gpi.yaml#
-qcom/glymur-crd.dtb: dma-controller@a00000 (qcom,glymur-gpi-dma): interrupts: [[0, 279, 4], [0, 280, 4], [0, 281, 4], [0, 282, 4], [0, 283, 4], [0, 284, 4], [0, 293, 4], [0, 294, 4], [0, 295, 4], [0, 296, 4], [0, 297, 4], [0, 298, 4], [2, 124, 4], [2, 125, 4], [2, 126, 4], [2, 127, 4]] is too long
-        from schema $id: http://devicetree.org/schemas/dma/qcom,gpi.yaml#
-qcom/glymur-crd.dtb: dma-controller@b00000 (qcom,glymur-gpi-dma): interrupts: [[2, 76, 4], [2, 77, 4], [2, 78, 4], [2, 79, 4], [2, 80, 4], [2, 81, 4], [2, 82, 4], [2, 83, 4], [2, 84, 4], [2, 85, 4], [2, 86, 4], [2, 87, 4], [2, 88, 4], [2, 89, 4], [2, 90, 4], [2, 91, 4]] is too long
-        from schema $id: http://devicetree.org/schemas/dma/qcom,gpi.yaml#
-qcom/glymur-crd.dtb: pmic@1 (qcom,pmh0101): led-controller@ee00:compatible:0: 'qcom,pmh0101-flash-led' is not one of ['qcom,pm6150l-flash-led', 'qcom,pm660l-flash-led', 'qcom,pm7550-flash-led', 'qcom,pm8150c-flash-led', 'qcom,pm8150l-flash-led', 'qcom,pm8350c-flash-led', 'qcom,pm8550-flash-led', 'qcom,pmi8998-flash-led']
-        from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml#
-qcom/glymur-crd.dtb: pmic@1 (qcom,pmh0101): pwm:compatible: 'oneOf' conditional failed, one must be fixed:
-        ['qcom,pmh0101-pwm', 'qcom,pm8350c-pwm'] is too long
-        'qcom,pmh0101-pwm' is not one of ['qcom,pm660l-lpg', 'qcom,pm8150b-lpg', 'qcom,pm8150l-lpg', 'qcom,pm8350c-pwm', 'qcom,pm8916-pwm', 'qcom,pm8941-lpg', 'qcom,pm8994-lpg', 'qcom,pmc8180c-lpg', 'qcom,pmi632-lpg', 'qcom,pmi8950-pwm', 'qcom,pmi8994-lpg', 'qcom,pmi8998-lpg', 'qcom,pmk8550-pwm']
-        'qcom,pmh0101-pwm' is not one of ['qcom,pm6150l-lpg']
-        'qcom,pmh0101-pwm' is not one of ['qcom,pm8550-pwm']
-        'qcom,pmh0101-pwm' is not one of ['qcom,pm8937-pwm']
-        'qcom,pm8150l-lpg' was expected
-        'qcom,pm8916-pwm' was expected
-        from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml#
-qcom/glymur-crd.dtb: led-controller@ee00 (qcom,pmh0101-flash-led): compatible:0: 'qcom,pmh0101-flash-led' is not one of ['qcom,pm6150l-flash-led', 'qcom,pm660l-flash-led', 'qcom,pm7550-flash-led', 'qcom,pm8150c-flash-led', 'qcom,pm8150l-flash-led', 'qcom,pm8350c-flash-led', 'qcom,pm8550-flash-led', 'qcom,pmi8998-flash-led']
-        from schema $id: http://devicetree.org/schemas/leds/qcom,spmi-flash-led.yaml#
-qcom/glymur-crd.dtb: /soc@0/arbiter@c400000/spmi@c426000/pmic@1/led-controller@ee00: failed to match any schema with compatible: ['qcom,pmh0101-flash-led', 'qcom,spmi-flash-led']
-qcom/glymur-crd.dtb: pwm (qcom,pmh0101-pwm): compatible: 'oneOf' conditional failed, one must be fixed:
-        ['qcom,pmh0101-pwm', 'qcom,pm8350c-pwm'] is too long
-        'qcom,pmh0101-pwm' is not one of ['qcom,pm660l-lpg', 'qcom,pm8150b-lpg', 'qcom,pm8150l-lpg', 'qcom,pm8350c-pwm', 'qcom,pm8916-pwm', 'qcom,pm8941-lpg', 'qcom,pm8994-lpg', 'qcom,pmc8180c-lpg', 'qcom,pmi632-lpg', 'qcom,pmi8950-pwm', 'qcom,pmi8994-lpg', 'qcom,pmi8998-lpg', 'qcom,pmk8550-pwm']
-        'qcom,pmh0101-pwm' is not one of ['qcom,pm6150l-lpg']
-        'qcom,pmh0101-pwm' is not one of ['qcom,pm8550-pwm']
-        'qcom,pmh0101-pwm' is not one of ['qcom,pm8937-pwm']
-        'qcom,pm8150l-lpg' was expected
-        'qcom,pm8916-pwm' was expected
-        from schema $id: http://devicetree.org/schemas/leds/leds-qcom-lpg.yaml#
-qcom/glymur-crd.dtb: /soc@0/arbiter@c400000/spmi@c426000/pmic@1/pwm: failed to match any schema with compatible: ['qcom,pmh0101-pwm', 'qcom,pm8350c-pwm']
-
-So, we're still missing a few dependencies.
-
-
-Booting the system I get a ton of errors from PCIe in the kernel log:
-
-debugfs: 'opp:5000000' already exists in 'soc@0-1c00000.pci'
-
-# dmesg | grep -E 'debugfs: .+ already exists' |wc -l
-508
-
-The system does eventually boot, and I was happy to see that we do end
-up finding the PCIe devices after all.
-
-Regards,
-Bjorn
+SGkgUGhpbGlwcDoNCg0KVGhhbmtzIGZvciB5b3VyIGNvbW1lbnRzDQoNCj4gLS0tLS3pgq7ku7bl
+jp/ku7YtLS0tLQ0KPiDlj5Hku7bkuro6IFBoaWxpcHAgWmFiZWwgPHAuemFiZWxAcGVuZ3V0cm9u
+aXguZGU+DQo+IOWPkemAgeaXtumXtDogMjAyNuW5tDHmnIgyOOaXpSAxOToyNw0KPiDmlLbku7bk
+uro6IEdhcnkgWWFuZyA8Z2FyeS55YW5nQGNpeHRlY2guY29tPjsgbGVlQGtlcm5lbC5vcmc7DQo+
+IHJvYmhAa2VybmVsLm9yZzsga3J6aytkdEBrZXJuZWwub3JnOyBjb25vcitkdEBrZXJuZWwub3Jn
+OyBQZXRlciBDaGVuDQo+IDxwZXRlci5jaGVuQGNpeHRlY2guY29tPg0KPiDmioTpgIE6IGRldmlj
+ZXRyZWVAdmdlci5rZXJuZWwub3JnOyBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnOw0KPiBs
+aW51eC1hcm0ta2VybmVsQGxpc3RzLmluZnJhZGVhZC5vcmc7IGNpeC1rZXJuZWwtdXBzdHJlYW0N
+Cj4gPGNpeC1rZXJuZWwtdXBzdHJlYW1AY2l4dGVjaC5jb20+DQo+IOS4u+mimDogUmU6IFtQQVRD
+SCB2NCAyLzNdIHJlc2V0OiBjaXg6IGFkZCBzdXBwb3J0IGZvciBjaXggc2t5MSByZXNldHMNCj4g
+DQo+IEVYVEVSTkFMIEVNQUlMDQo+IA0KPiBDQVVUSU9OOiBTdXNwaWNpb3VzIEVtYWlsIGZyb20g
+dW51c3VhbCBkb21haW4uDQo+IA0KPiBPbiBNaSwgMjAyNi0wMS0yOCBhdCAxNzozNiArMDgwMCwg
+R2FyeSBZYW5nIHdyb3RlOg0KPiA+IFRoZXJlIGFyZSB0d28gcmVzZXQgY29udHJvbGxlcnMgb24g
+Q2l4IFNreTEgU29jLg0KPiA+IE9uZSBpcyBsb2NhdGVkIGluIFMwIGRvbWFpbiwgYW5kIHRoZSBv
+dGhlciBpcyBsb2NhdGVkIGluIFMwIGFuZCBTNQ0KPiA+IGRvbWFpbi4NCj4gPg0KPiA+IFNpZ25l
+ZC1vZmYtYnk6IEdhcnkgWWFuZyA8Z2FyeS55YW5nQGNpeHRlY2guY29tPg0KPiA+IExpbms6DQo+
+ID4gaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvci8yMDI1MTEyNDA2MzIzNS45NTIxMzYtMy1nYXJ5
+LnlhbmdAY2l4dGVjaC5jbw0KPiA+IG0NCj4gPiBTaWduZWQtb2ZmLWJ5OiBQZXRlciBDaGVuIDxw
+ZXRlci5jaGVuQGNpeHRlY2guY29tPg0KPiA+IC0tLQ0KPiA+ICBkcml2ZXJzL3Jlc2V0L0tjb25m
+aWcgICAgICB8ICAgNyArDQo+ID4gIGRyaXZlcnMvcmVzZXQvTWFrZWZpbGUgICAgIHwgICAxICsN
+Cj4gPiAgZHJpdmVycy9yZXNldC9yZXNldC1za3kxLmMgfCAzNzYNCj4gPiArKysrKysrKysrKysr
+KysrKysrKysrKysrKysrKysrKysrKysrDQo+ID4gIDMgZmlsZXMgY2hhbmdlZCwgMzg0IGluc2Vy
+dGlvbnMoKykNCj4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvcmVzZXQvcmVzZXQtc2t5
+MS5jDQo+ID4NCj4gWy4uLl0NCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9yZXNldC9yZXNldC1z
+a3kxLmMgYi9kcml2ZXJzL3Jlc2V0L3Jlc2V0LXNreTEuYw0KPiA+IG5ldyBmaWxlIG1vZGUgMTAw
+NjQ0IGluZGV4IDAwMDAwMDAwMDAwMC4uOTJlMzRiNDhmMDQxDQo+ID4gLS0tIC9kZXYvbnVsbA0K
+PiA+ICsrKyBiL2RyaXZlcnMvcmVzZXQvcmVzZXQtc2t5MS5jDQo+ID4gQEAgLTAsMCArMSwzNzYg
+QEANCj4gWy4uLl0NCj4gPiArc3RhdGljIGNvbnN0IHN0cnVjdCByZWdtYXBfY29uZmlnIHNreTFf
+c3JjX2NvbmZpZ1tdID0gew0KPiA+ICsgICAgIHsNCj4gPiArICAgICAgICAgICAgIC5yZWdfYml0
+cyA9IDMyLA0KPiA+ICsgICAgICAgICAgICAgLnZhbF9iaXRzID0gMzIsDQo+ID4gKyAgICAgICAg
+ICAgICAucmVnX3N0cmlkZSA9IDQsDQo+ID4gKyAgICAgICAgICAgICAubmFtZSA9ICJzcmMiLA0K
+PiA+ICsgICAgIH0sDQo+ID4gK307DQo+IA0KPiBUaGlzIGxvb2tzIHVudXNlZC4NCj4gDQoNClll
+cywgeW91J3JlIHJpZ2h0LCB3ZSB3aWxsIGRlbGV0ZSBpdCBuZXh0IHBhdGNoDQoNCkJlc3QgUmVn
+YXJkcw0KR2FyeQ0KDQo+IHJlZ2FyZHMNCj4gUGhpbGlwcA0K
 
