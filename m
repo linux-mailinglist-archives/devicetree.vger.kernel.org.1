@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-260688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260686-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sORkKSPAemnw+AEAu9opvQ
-	(envelope-from <devicetree+bounces-260688-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 03:04:19 +0100
+	id oHKvKfu/emnw+AEAu9opvQ
+	(envelope-from <devicetree+bounces-260686-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 03:03:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA332AAFF1
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 03:04:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E06FAAFDC
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 03:03:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B0F613061448
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 02:00:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CC887305666A
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 02:00:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDC4C345CA6;
-	Thu, 29 Jan 2026 02:00:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54A6832E6A2;
+	Thu, 29 Jan 2026 02:00:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="TQcrLVAJ"
+	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="rJDJSAis"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 993992DB7BE;
-	Thu, 29 Jan 2026 02:00:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E365A281341;
+	Thu, 29 Jan 2026 02:00:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769652052; cv=none; b=iGDOMbRtRd4tKEFzS2kMEOcq9Lev7Pb53vs7XsoFY8b7aL5Un6bmru7oIzaZCc/ugnna98igCWCPbxPS6wemBaFXRezRJb9yMMyy4F6ilGqtsSBM8R7LA6HJwGu4FvPHs7J1E+sD4cEEHNnPX1wmMmhv5YHi6Se+7J+wp7UT/Zg=
+	t=1769652048; cv=none; b=u9NVeg+HwENfyrAP9K10/vr765M+mbw+gCvwo/dE7TniOPpQPCDvegvrnkiIApk+YP/mGioDnfYtLA7lTD3dJ2mXF5dgnA46ZnajFw5kcLun/7Y8e3FnzSuKDbkvzlsUQ272bwteIEF6XpxdIBi70pLPUDCPWtw3lN94zx7FmsQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769652052; c=relaxed/simple;
-	bh=nlBPQ8ALeTVOwipEC/WRbuQcdpF/TTUlTAu5AvR1Who=;
+	s=arc-20240116; t=1769652048; c=relaxed/simple;
+	bh=iokf/kpYrln8umkiUdlduCtexCVC1XLaGFAKLvBQaN4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IUfmqZ8oMfAVqPQVgCI77PcqBrAlpwdr9i60C7Px7RCKwIBLvajX+/5hxA5Ax/Qk2FNYtfkKqcZRvz0RIigqIr7uYY8bunGwv8BDPuLUbPSjHXU3hekwjJVZ6att9SqUcn+EjItks2ZBZlXSh0HZutYzwhKGL2ACkT48ciTHYDw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=TQcrLVAJ; arc=none smtp.client-ip=150.107.74.76
+	 Content-Type:Content-Disposition:In-Reply-To; b=qasUdnJH4qA57ce8ZUIqC5fs531T0mwOFC4XovEZmSTCrtJ4xb/YoZ/DDMHcxfOr0ovokMlsUuJFgQiCl0DrERcs/ocCbe+2a5Dg2jdFL8dSthlqXiCf/D6Py3nHaX3ygMwMOO9OCKEIg3aj2FCZDXhNu52JA4qgY7IwvrZUTZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=rJDJSAis; arc=none smtp.client-ip=150.107.74.76
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gibson.dropbear.id.au; s=202512; t=1769652032;
-	bh=1zLwAWFbGoJecP4wRdYsYMU5lBB4+ssVZn0KQG2tUi8=;
+	bh=IirDHt68D8UkDPDrXRmna4EOGz3A/+wd6rzpR4Ujdq4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TQcrLVAJa1mtk9c6G2rEaauBEvBvvHlb0abh4nxtyyx+TD9/F1ZzQJ3qBcCp9XuqX
-	 q0NR6ondxPtGUhw+dkEbclERZwapznPOgOvsh0AwHVmxfp+frcXWudVGH9R+VXHScw
-	 HOWfDHvDo1+mB8AllLe7IPTu/cCg13+uqg7mc/BkNj4OOGgj6XlUeWBiRe8BG3tZas
-	 2Rcom6ThJLakwy86UUkZdNj+4sbWXmhqMZE5T7kw/E8oD8N1Ok3VlgLzgenBUe/X4V
-	 KnF6z3/zSg7/xEMS/6R2GvY0EddfU6r7zPL2hZhHVV0cppoXKis5Yo24K0oWqBp47I
-	 xHaS7NTq8tzeg==
+	b=rJDJSAisrtQmZ98B0SopY+5BJbaN038q31BBN7jDAngEHZKMqW7QCr1WgWKK48JKA
+	 xPExcVjv4Z/s3LZJnDzk1tRovF6SyOVhCTwT4m/J8ue6KRbfJzfWNBWiK1sIfxpAnr
+	 WdQFvCbGVhBD8V/iW+v6NU7Gf17fr8QIfbcKcTPE0ScPUdMYMenzB9WUrlmGn9EPcq
+	 V/0Ji9k+4MIzv0Xoojazh1bqD8I7xJYrofQpQCTa6WT2xEgBVJe8f9sqOFf3TOC9gj
+	 nGXCNCMpB+hk5hP5Y1zw6zzmvUUguMXWKWRqNsr+ekzFIt6V89heBCA521bNO925bB
+	 2JKcDMvomj5rw==
 Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
-	id 4f1j5r24y1z4wDK; Thu, 29 Jan 2026 13:00:32 +1100 (AEDT)
-Date: Thu, 29 Jan 2026 12:36:51 +1100
+	id 4f1j5r2F27z4wB8; Thu, 29 Jan 2026 13:00:32 +1100 (AEDT)
+Date: Thu, 29 Jan 2026 12:38:06 +1100
 From: David Gibson <david@gibson.dropbear.id.au>
 To: Herve Codina <herve.codina@bootlin.com>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
@@ -59,12 +59,12 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
 	Ian Ray <ian.ray@gehealthcare.com>,
 	Luca Ceresoli <luca.ceresoli@bootlin.com>,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [RFC PATCH 29/77] Add support for FDT_EXPORT_SYM_REF dtb tag
-Message-ID: <aXq5s-XdN79YzOHF@zatzit>
+Subject: Re: [RFC PATCH 40/77] dtc: Introduce dti_get_node_by_path()
+Message-ID: <aXq5_uaKjksnQOJj@zatzit>
 References: <20260112142009.1006236-1-herve.codina@bootlin.com>
- <20260112142009.1006236-30-herve.codina@bootlin.com>
- <aWiIdpH0oG7H4fMZ@zatzit>
- <20260119164628.78f713bd@bootlin.com>
+ <20260112142009.1006236-41-herve.codina@bootlin.com>
+ <aWiNgZZ02-4jRc5l@zatzit>
+ <20260119165244.4dc11e18@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,9 +72,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="w/oBFm/TrS5PBwNI"
+	protocol="application/pgp-signature"; boundary="bg6ardM+KEoZVqAq"
 Content-Disposition: inline
-In-Reply-To: <20260119164628.78f713bd@bootlin.com>
+In-Reply-To: <20260119165244.4dc11e18@bootlin.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-1.76 / 15.00];
 	SIGNED_PGP(-2.00)[];
@@ -93,7 +93,7 @@ X-Spamd-Result: default: False [-1.76 / 15.00];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-260688-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-260686-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
@@ -103,94 +103,49 @@ X-Spamd-Result: default: False [-1.76 / 15.00];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dropbear.id.au:email,ozlabs.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,gibson.dropbear.id.au:dkim]
-X-Rspamd-Queue-Id: AA332AAFF1
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,dropbear.id.au:email,ozlabs.org:url]
+X-Rspamd-Queue-Id: 0E06FAAFDC
 X-Rspamd-Action: no action
 
 
---w/oBFm/TrS5PBwNI
+--bg6ardM+KEoZVqAq
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jan 19, 2026 at 04:46:28PM +0100, Herve Codina wrote:
+On Mon, Jan 19, 2026 at 04:52:44PM +0100, Herve Codina wrote:
 > Hi David,
 >=20
-> On Thu, 15 Jan 2026 17:25:58 +1100
+> On Thu, 15 Jan 2026 17:47:29 +1100
 > David Gibson <david@gibson.dropbear.id.au> wrote:
 >=20
-> > On Mon, Jan 12, 2026 at 03:19:19PM +0100, Herve Codina wrote:
-> > > The FDT_EXPORT_SYM_REF dtb tag is similar to the FDT_EXPORT_SYM tag
-> > > except that it identifies a reference to an external phandle. The node
-> > > referenced by the phandle is not present in the device-tree blob.
-> > >=20
-> > > The FDT_EXPORT_SYM_REF dtb tag is a meta-data tag defining an exported
-> > > symbol. It can be present in a node bloc meaning that a symbol is
-> > > exported at this node level. The node pointed to by this symbol is no=
-t a
-> > > local node (i.e. the node is not present in the device-tree blob.). T=
-his
-> > > tag can be available only in overlay or addon device-tree blobs. The
-> > > symbol has to be resolved when the device-tree blob is applied on top=
- of
-> > > a base device-tree.
-> > >=20
-> > > It is followed by three values and a possible alignment padding:
-> > >   - name (string including \0)
-> > >       The export symbol name. I.e. the name used to reference this
-> > >       exported symbol.
-> > >   - padding:
-> > >       Padding (0x00) added to have the next value aligned on 32bit.
-> > >   - phandle (32bit)
-> > >       A placeholder for a phandle value.
-> > >       This placeholder can be used during some dtb manipulation to st=
-ore
-> > >       a temporary phandle value. =20
+> > On Mon, Jan 12, 2026 at 03:19:30PM +0100, Herve Codina wrote:
+> > > The future introduction of orphan nodes for addons device-tree will l=
+ead
+> > > to more than one tree in the addons data. Those trees will be:
+> > >   - the classical root tree starting at the root node
+> > >   - trees related to orphan nodes =20
 > >=20
-> > Yuck.
+> > This doesn't make sense to me.  The new function still just takes a
+> > single path, nothing to specify which tree that path is looked up in.
+> >=20
+> > You can probably guarantee that labels and phandles are unique across
+> > all the trees.  Not paths, though.
+> >=20
 >=20
-> Will see what I can do to avoid this placeholder.
->=20
-> I need to store the phandle value related to this symbol during the symbol
-> resolution. This is done by addon_resolve_phandles() available in
-> libfdt/fdt_addon.c in patch 70.
->=20
-> libfdt is not designed to perform allocation to store temporary values. It
-> manipulates data directly mapped from dtb working with offset in dtb blob
-> without any other kind of object. No specific objects (C struct) for node,
-> properties, markers, ...
+> Paths can be unique across all trees. The tree needs to be indicated in t=
+he
+> path. Starting by '/' is the root tree.
 
-I know. I designed it that way.
+Oh, ok.  That wasn't clear from this patch, and I must have missed it
+in my cursory look at the later patches.  I had the mistaken
+impression this just looked for the same path in each orphan tree.
 
-Tangent: I have thought that it might be useful to have a diffferent
-dt library designed for non-flat trees - i.e. using allocations and
-pointers to allow O(1) edits (as well as import/export to flat tree,
-of course).  I think that would better suit some of the more complex
-tree manipulation many things are doing these days.  I've never had
-remotely enough time to look into it, but fwiw, I think the idea's
-good.
-
-> To have an area for this phandle value, a room reserved in dtb was really
-> the easier way.
->=20
-> But well, I understand your "yuck".
-
-Yeah, I do realise that lack of free space to put things can make
-things really tricky.  I hope we can find a way around this.
-
-> I think it will be quite tricky to store this temporary phandle value
-> without allocating some additional data.
->=20
-> This placeholder simplified a lot of things but well, I think I need to f=
-ind
-> an other solution.
->=20
-> If anyone has any ideas to store the temporary phandle value, I am all ea=
-rs.
+> For orphans, I proposed "$<orphan_name>/<path>" in patch 64 introducing
+> references by path for orphan nodes and so, for orphan trees.
 >=20
 > Best regards,
 > Herv=E9
->=20
 >=20
 
 --=20
@@ -199,25 +154,25 @@ david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
 				| around.
 http://www.ozlabs.org/~dgibson
 
---w/oBFm/TrS5PBwNI
+--bg6ardM+KEoZVqAq
 Content-Type: application/pgp-signature; name=signature.asc
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAml6ubIACgkQzQJF27ox
-2Gf6txAApTuNovQCuo3a0InAgh9NA4ISvAJHfHNhG2S4L/gSGVKno3pzYs6+teT+
-HUZCpaFVxkyr/TNXWkK9MeXvflQaAvHZrM4W1/H76TAjz34D2Fyi4MMkdV1V9LF0
-JygynDvJH55Prklwv4wzBYUisbY9Ebj2c5OpC+9QwtZ50BeOhjFOYHWGjMLqBU7X
-s/HQdkTEBTTwzFnM8okJVkAlIFl9/bLtZ3DrlQTlazkWf3y5jgGstyhSWG12O50l
-YwT4iXpCrEjup2VmXVPINxmcJtyOz1vGb8+Dz9Ob5P5u6azmCktRGbndkSHXttHO
-5foLkTBIthcoFHQi4Ii1FXDfq/1pgf9R2MMDL8u7CMnAP1XzWW7e5HAG+izr1mH2
-T1m3KYkudlUOqOzmb34BTvnF6jDuU3LBXoNIR3TQEUOv4kmPLZkYPHdbGXOEnbqc
-WmFyqiZIMRkXPwHKfZ1ioNkKZHUtXvDdXffLxkKFtgngYbBOxkqCd7KfGsxQNowS
-QTaqnBtZZzvTimuOF/2dC3dTswVB5Ry8Hb/uBioYrSITIzXlWg5jRsk7Dlu6+X29
-tdeSa24F99WyGyiAT9sOy7G2og7uFfhkcZAcyN3euN6toFhJtjILCrSd7p4izwoU
-+0g3uFqeEppkxPAm6uYl7mNGvPYr5gNuzPFRX6WCoKtdyfvnrkw=
-=3B3y
+iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAml6uf4ACgkQzQJF27ox
+2GdgfRAAgqHPbdnC3QUMdnCQFgdzFOFaWowEb5CMPH/lvD1EuQPFxgUFxj7IBBTU
+q5L1q1bZDe48okac66WpzNQX3lBQTkumvMolqAXF6YHFhC8S00NdNIl08Jxgqfet
+anuu3sNpRNi1PFGTGFMQzV9FX8jdawG/zfdK4D/y8O8YJXLWLrMYW0WSNuJnPJc6
+IJfup4lE+UN6WF/4SKddHcRKup5ChuSvdgjRJZqm38hwZZJRYtXZwVs4N11Wk+/i
+h4dpt6Q2JKQIHXlUYXe6MZWRr/wILXohDWz09M1sOE09/QpZR3Mxbfvo0bNXBcVT
+Pf1LxHNpHrjii/jCQUYV8q3Eh4nKl65Ue4uzIRhTfeT9vXkKVaDsQQPzgkccZAQl
+px690smmvJEWGQqP7cR3P+bQi28RNSw2lOdLKaE2qrpadg7psKT3mEtGvSO7wUVA
+UUhBRdVKQjN52ox7QWHyQjT1kklIEbywx6QHuVt2vebXO8TWlkU6BSE4FIN9cH8T
+yS3/CKNMddps6jKDtqE61RKifptVws1GfliS0oiBaAKgqe2JANKtTxIWtyo7S6xe
+Sa6RbSrnk9t5c5AW++FjUmkhO3xC3OXD+EbNaN1gDOKGqYe6n8Muxoy9goMX967F
+h9qcVqkcgykPahKAWq5fFWgmtQvxNGLaO+uLKUszO77Gd0ARvw8=
+=cXHW
 -----END PGP SIGNATURE-----
 
---w/oBFm/TrS5PBwNI--
+--bg6ardM+KEoZVqAq--
 
