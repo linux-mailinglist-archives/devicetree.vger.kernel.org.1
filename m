@@ -1,328 +1,338 @@
-Return-Path: <devicetree+bounces-260914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260915-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EDNQHGN3e2mMEgIAu9opvQ
-	(envelope-from <devicetree+bounces-260914-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 16:06:11 +0100
+	id 2IpfFYZ3e2mMEgIAu9opvQ
+	(envelope-from <devicetree+bounces-260915-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 16:06:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C59ACB149F
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 16:06:10 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4B16B14BD
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 16:06:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6666C3018777
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 15:05:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8E3B1300820F
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 15:06:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A69E2FF661;
-	Thu, 29 Jan 2026 15:05:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2730D287257;
+	Thu, 29 Jan 2026 15:06:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="il6dcJyd";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="hjtp8iRB"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="XUu5KxHI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from CH5PR02CU005.outbound.protection.outlook.com (mail-northcentralusazon11012024.outbound.protection.outlook.com [40.107.200.24])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 939C6287257
-	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 15:05:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769699122; cv=none; b=elgyMsBHO2LhZQ0U2gvBeROLS+/lZIuOIhqhPNT3QT/GLCj6SVOkhkq0okjq7AwBnljec4427QMBmifBw+FshczokvijtN1a14TcVsUqxwdBWARTdhetIoEThPEHAsWXsqd3uQusQtW1OBP2gbZQV683vIwSlnluLAlJhS6rBrE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769699122; c=relaxed/simple;
-	bh=sUdoQKuITD6AiZJ3dc9S+dNSXPTTT8L0qAJRfFVjOhc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZwObQmkqMXbsjRSAc0tknXT45xnYEf2juNaQK/BXE7qB9syg9W/e9JRBOeORs9ThF9ZUWSYJk4VGfi9hy1wW2VaXT96t3/IAGUuMhJrAEoVDlrMag823y6X+Y2QQ7qSZu9B2JgpWqClLi3RaAnZ/fO3kZR1xVdDU3X3yLYaeq0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=il6dcJyd; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=hjtp8iRB; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60TA3U9r2061149
-	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 15:05:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	1jujTeAzI9H5NsIDYheZqvKmgSMIu72C0nmLn2Vk+rw=; b=il6dcJydU4EmQSit
-	nzWPKj9xK9ACJKae6+1pMib8f23w8g4bZByTiQu57bH9AIOeOtjC78MPHP07U8BE
-	xLq3xOKmF3o0dRiQvteU71coIQXB9fZ0PR67vty41hyUSpQdsIZz6NR0bjotddo+
-	fIHZFXBfAmi1o53/qliHlhuVpbc7QVv9m8yS/WwENcs+sCeHs6FxYJ2YU6PfJLFy
-	6va3PZw4qmZPTnVsaZr6q794kDwnrinfso8CGeYkvaRE+Hox63nI1AGSpzfIAZjb
-	wDQAchSxZj3ZeS3il1/hjIMLga7vd34Nz/qtHDgRzVYTbxnAq8GODOE7scvWPGtM
-	QZZw2A==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bypgrkv9q-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 15:05:19 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2a7701b6353so10465875ad.3
-        for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 07:05:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769699119; x=1770303919; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1jujTeAzI9H5NsIDYheZqvKmgSMIu72C0nmLn2Vk+rw=;
-        b=hjtp8iRBPbEY5dm7RWya/D8IfaozKiNWn4D6+wXN+oOqCgOnW+7WEhSAqcoW3fbA7o
-         2TZs90kpJaFCtnURPpggzg0Ii7wr60KfRI1pqWlt6aevjweiKOBAnmzWDyREDO6OppWD
-         FUuw/4w2wnfbyE6Uar/mrgboG0xFKnlbAH1yBNzrd9CnQNm6oYeFGd8YbAuSmB0ifoh7
-         7QbLCT4Gk2Jgq2QcLD/yoTIWRu6vqX7VeHdlWZ3dtizYYr3U3tha8fDMjBYUZxPeW+cY
-         TBlLzN/F50mg/v3wqYXzAKDKKnJvGtMemgFAKr6JLw9UK3j0gU50NfgMYweFrSZ8mu1t
-         Pwqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769699119; x=1770303919;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1jujTeAzI9H5NsIDYheZqvKmgSMIu72C0nmLn2Vk+rw=;
-        b=MQdlUCrUx5xuQjibxR3uWoG3bCe0D7AZ/OLU/mP/TPLDZJ8kKNL+AWIE4SaVsgzmIl
-         FhdszrtDT0jSnnb6Nai+rSOVOoXoegSLZvpAO62YBpEu8FyxZQq+Ot98RB9o30p+amlu
-         xY1sFMZGDEGBVKR0cv1EySEUFfFhtAzN6HW4Kji5K2K/xhRKWjhrxtXwKgWDiD4eZT0C
-         cQOg9exX6krNpC990V+hA6q7jKCVh0WL4upV8PF7o4FSVfGwZFZ2VysVBqdDZtTQxrBH
-         ZtDU3QCEUsVpgunpQiG+3KE20nAQZ63O7JDnj6lRyO/Uu85cGLu0wok0hwlOKfoyuQ8r
-         7Z5w==
-X-Forwarded-Encrypted: i=1; AJvYcCW4B7YoH/TLzdEnc2C/9vRDxNEsETSi/PwJX2kyuwDBr/WmR/0XPBheB1tkosgZX4A82x7IsnNKZQt4@vger.kernel.org
-X-Gm-Message-State: AOJu0YxyxtPV/drNh/NDPK7i+HTxzhvb7UBT6ZugLxhV9tww6Ov97pF2
-	wxFrn7SAVFHMHVklLiOIjtnA4RwhY8iBiDwCWfErmuGjQ+PzGEoGQ3ZAz7abC915x7p31CMGspt
-	Vh5wN/1D4KTQHn65OXdLu/timI8MgBib3J73GEbHiw6Y8KzsaY52qMcWvTpne6w8a
-X-Gm-Gg: AZuq6aJuxglM33X7P/ytb5AOaJeshg5XYe57xk2WrNxnYf7qOVrcs1sRFjY1+GetUhC
-	xr5r9jKLmSimYIBtXospAZETmZYOlBTjfO4Ob3JHHnwoIsdCT8/pwSmHEmdfmGn626SIGn5UXIu
-	4POEm7SB2cx5D2BWJalnkLgtUKQ5TUzlc7OhEiChPFUUhHzS/SvgcweTIZ4s6r++jpoAPaiBpV3
-	HrkDkFXf3BDnKLRuGpiN5a4jHdhbnyz4vFzHqNdmVWr/6IpahZC4g817csGxjVHGrv2EvSfb55v
-	iiVsxxd5jpT+bNQxT9N+sua9o1wuk+qZH5LWm+etuEEuU3/9NbEheu3//e7/5U5jHhk0ZUKfMwx
-	veEH0tLcgbRVY5GiIWnt6bu87xboe812HaSlcuooEWw==
-X-Received: by 2002:a17:902:f54b:b0:2a0:e223:f6e6 with SMTP id d9443c01a7336-2a870e74030mr87760345ad.46.1769699118625;
-        Thu, 29 Jan 2026 07:05:18 -0800 (PST)
-X-Received: by 2002:a17:902:f54b:b0:2a0:e223:f6e6 with SMTP id d9443c01a7336-2a870e74030mr87759815ad.46.1769699117875;
-        Thu, 29 Jan 2026 07:05:17 -0800 (PST)
-Received: from [10.204.100.98] ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a8c3a23e40sm21406195ad.90.2026.01.29.07.05.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Jan 2026 07:05:17 -0800 (PST)
-Message-ID: <025b5070-676c-4284-9c30-1fd195d8a549@oss.qualcomm.com>
-Date: Thu, 29 Jan 2026 20:35:10 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21DA02580D7;
+	Thu, 29 Jan 2026 15:06:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.200.24
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769699176; cv=fail; b=VWBWY2etReL8eZe7hlNvLqRLzL/TsEXn/lgc396dMfqJIpqvEbToiBgKYAgWCFZtAq+mleK6Jh2n1IwFm3lWvgDsLFnRoHGL7L1vqjsv/tNbIcxq8/Gg2aUQbp9j5TuR+LgTqHEwDT5qwkBVrRuMwMZDavPYgdyIKgzYBtD7Ga0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769699176; c=relaxed/simple;
+	bh=Z1usP9w3pqDp3hEVBds15JRgUm0CfXJCNWFA6LWruAY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=BEkdiM5zkjdJTJxemEvZcdVcUd4g3LX5DtfEmk9oN8bZ/3P55PSoGMJC+UwBzYxftkAbw+yegX9mcqkIdnXJpDk7Kz1mQZaEPWuxgwJFcW/RUcIVnNb6a0aW/pQnzndS0ElPWe1b2oLbz+AOqR5U+mKaVLDw99WaUL1uzCVBIZI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=XUu5KxHI; arc=fail smtp.client-ip=40.107.200.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=SVRaM9qAOuHcIdukllP9Piq5FzpQI6G0i3ZbLn2MSYbQ/W0yCyc5mIsEX4mQqGuv8ne+551xTqxts390igw8saSwbDcc0onc6RiPV2hUXGCg5z7KC2TFlgg2kj4Qn4dWt72j6M81e1GzNsZIqVjcJdqyz0vKKfs2p5FH8V1u028+aMf8/si7sGTqw8mD9iRb4FHUNo7DghY/gbuRvCoqmjiIahdGuIUAuZ8uVw6h2s7zUby4zLUTrEyhbLgByiXiGEKTbMbWUd+5G/Ak5oI7f4IDwAAhJVWDmO+dLnt3Jo5209lyrrPjUhu1fQb63NbhLi1EAu+unpQfGWYgF88/kQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=MBq7k1WGsvFnYB9XbAotnXSzwKQ6pNeb6I8dr7u3WxI=;
+ b=wWh0vQPUCNDfJehb0qXsVKhPr/6bizezjgl4qyhTpViSlnLiT7AAuFDn46xyWegUUlGEpcB+w7DtkfhuFm7/uh/ozVH3Fw+YlO7TnUMY8DMJGfg46loRcMZ45E/k8xpMOAiLIulEDXIn6zbg2dJObwd10ZeQbyDAXQ/RpUT7PAZbIoxpTl2eBdvIpdPUcAuCoZG8lpn2ejWej7Aszd6W1keesSmoIY+IA04CQDafdCzLqqIpaEMkgORLRTZer9dfEdfkRaWlOXjh7wciB0hXKlvh0+er4U1ICyfdPPlvAvquppvygV06z09CKoNh6B9R8bnn0BNHpHk12v6o5t9d+Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MBq7k1WGsvFnYB9XbAotnXSzwKQ6pNeb6I8dr7u3WxI=;
+ b=XUu5KxHIh+2OTHeBRg8YM4pfw5YYSnxisrgpbJXpdp+WRmnkcwiTRP3MPgojd3Zpyl40r8FTX+0yTyeofHERWuJCQym4c2WajpCHw30O0hzVK3lq9Mm/w+Z1Zjs5+eUO83vo480NgO+PGYMzAunBGblf1ps5fpb9CvpHIghjihk=
+Received: from BYAPR02CA0036.namprd02.prod.outlook.com (2603:10b6:a02:ee::49)
+ by DS0PR10MB7956.namprd10.prod.outlook.com (2603:10b6:8:1bb::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.16; Thu, 29 Jan
+ 2026 15:06:10 +0000
+Received: from MWH0EPF000A6735.namprd04.prod.outlook.com
+ (2603:10b6:a02:ee:cafe::67) by BYAPR02CA0036.outlook.office365.com
+ (2603:10b6:a02:ee::49) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9564.10 via Frontend Transport; Thu,
+ 29 Jan 2026 15:06:10 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
+Received: from lewvzet201.ext.ti.com (198.47.23.195) by
+ MWH0EPF000A6735.mail.protection.outlook.com (10.167.249.27) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9564.3 via Frontend Transport; Thu, 29 Jan 2026 15:06:07 +0000
+Received: from DLEE215.ent.ti.com (157.170.170.118) by lewvzet201.ext.ti.com
+ (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 29 Jan
+ 2026 09:06:06 -0600
+Received: from DLEE205.ent.ti.com (157.170.170.85) by DLEE215.ent.ti.com
+ (157.170.170.118) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 29 Jan
+ 2026 09:06:06 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE205.ent.ti.com
+ (157.170.170.85) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Thu, 29 Jan 2026 09:06:06 -0600
+Received: from a0512632.dhcp.ti.com (a0512632.dhcp.ti.com [172.24.233.20])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60TF61mb121208;
+	Thu, 29 Jan 2026 09:06:02 -0600
+From: Swamil Jain <s-jain1@ti.com>
+To: <jyri.sarha@iki.fi>, <tomi.valkeinen@ideasonboard.com>,
+	<maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
+	<tzimmermann@suse.de>, <airlied@gmail.com>, <simona@ffwll.ch>,
+	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<devarsht@ti.com>
+CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <praneeth@ti.com>, <vigneshr@ti.com>,
+	<s-jain1@ti.com>
+Subject: [PATCH v2] dt-bindings: display: ti,am65x-dss: Fix AM62L DSS reg and clock constraints
+Date: Thu, 29 Jan 2026 20:36:01 +0530
+Message-ID: <20260129150601.185882-1-s-jain1@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/4] media: qcom: flip the switch between Venus and
- Iris drivers
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Bryan O'Donoghue <bod@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Stanimir Varbanov <stanimir.varbanov@linaro.org>,
-        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Stephan Gerhold <stephan.gerhold@linaro.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20260127-venus-iris-flip-switch-v3-0-7f37689f4b39@oss.qualcomm.com>
- <22583dde-caaa-4d64-bcb6-ac7f09916a8d@oss.qualcomm.com>
- <xyhl36bcpmjhav73ujlvbtwqixngr5vko75t335mlcebxrs7lc@t43mxhknuqtj>
- <5df59084-d19b-414e-a43d-8c5d26cb07e9@oss.qualcomm.com>
- <i37aqxqtb4dovx3lpjm3xmkbcwlpiyfe7blzz4kirme7tegbb5@hgztyetld6lf>
-Content-Language: en-US
-From: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
-In-Reply-To: <i37aqxqtb4dovx3lpjm3xmkbcwlpiyfe7blzz4kirme7tegbb5@hgztyetld6lf>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=d7T4CBjE c=1 sm=1 tr=0 ts=697b772f cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=P-IC7800AAAA:8 a=pM9kW0q8fP39S2ihOX0A:9
- a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22 a=d3PnA9EDa4IxuAV0gXij:22
-X-Proofpoint-GUID: ZzEtk4dzpJTYii8WBW4hatrmzZTuoioI
-X-Proofpoint-ORIG-GUID: ZzEtk4dzpJTYii8WBW4hatrmzZTuoioI
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI5MDEwNCBTYWx0ZWRfXzbwkx7u+vAt+
- onnQurKyO2kg5vmnKOkc69lbmZxTfMH6ejQmwkTgvFmjUSj3qpU3JN4v1dqm3hRwXdQVfevnwZy
- fUJu5vd7CJ6so8L02eFNHeWH3WPSlngFGy7kWytHP+spce9jqR4d276t2kxRqMCd+DLTqU4kZ9T
- CrNZlNKopJataLC/gaOziTUj8vsthz2/t+0+J3CVLarVS512RgIGdWo0Wfv6fPIzPDo0AEi8HOH
- ZrH41rTMuK9PyIZ0u8zTcYqsRhq7i1pGJCsHUVvoMHXLcEhLbiDg6o+V1vgTIhULMRyg4korZke
- /UxYSFrolfGhjrLH6qgYolMFJ11YtcKI0AuK09BRcfWZzqfdEll9WYTsfUoAfBHjmwBje0WH4YH
- yIQKXpoKe1Hgn+4MnQS5QVzdjX/6a1fjAQ5ueY3PT0Xr6qkrmN6+cJ0ueHgK8MwU3mYzYQg6jNF
- RObaEyNZtr+CNYV2siA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-01-29_02,2026-01-28_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 lowpriorityscore=0 suspectscore=0 adultscore=0
- malwarescore=0 impostorscore=0 bulkscore=0 spamscore=0 clxscore=1015
- phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2601290104
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MWH0EPF000A6735:EE_|DS0PR10MB7956:EE_
+X-MS-Office365-Filtering-Correlation-Id: 42b2fd01-377c-4844-ead9-08de5f47ee46
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|376014|1800799024|36860700013|7416014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?zmz2kldZBzLDL7P5l+Xptx0yz3r7eoBMSPOSxisB13UHI/yHgjWL1xDxP8r3?=
+ =?us-ascii?Q?KchRYjQcfez1J9fS4qaQy8+Ygl2SOVGdbAFL5n1XV3j+HCa8jrh0HLnyzY/A?=
+ =?us-ascii?Q?CNfCMPPVyL9GBo5kUBhqWYFMPG+F8o6DH5F1wrBni+f5WDZmkGyOC3ue5qR9?=
+ =?us-ascii?Q?t/1HgTXdJAUF4RvK4hDgNN1wQDEey0MEOseX1EvHK3n8vfcrVsTq6NpIiGp3?=
+ =?us-ascii?Q?fIIEtVQObkSCVEyq+RIgDGzLbJdMQJNuN1wyvDLyYO0VGvqFlktA4B5/ESoQ?=
+ =?us-ascii?Q?DAV8pk4UuTnOwyo+2RbZ9U6C6uDuJEIowj2yqtmYLc0AE5NI1qok4HhpVBF6?=
+ =?us-ascii?Q?KOGm/QYpsc/Ta5dzolQgIr/Zl8tGxQKbDiUVheivygPATkWscjng6aHExhfG?=
+ =?us-ascii?Q?xeWesDLBz/76IDjkBG/6lMXh7mR1OVy/moqoDvwBO+8d3PGaVLWHGnYuA1eT?=
+ =?us-ascii?Q?hU9OkqEi3lTGk6YNTrhSauvZfR4/s8k949mKht6/kFrH7yorYBhYvO2XlSc3?=
+ =?us-ascii?Q?TIfUZqw7NokLU1AC4SS+wGRHnFYp/jDvjBo0QFk4tEj8u81BZD2L57002TAV?=
+ =?us-ascii?Q?na7qfGlXBMEaghGgvJ4n6TEGDOqZSQ/T292R6E/n5r9hMs+3NpJoc00zSsne?=
+ =?us-ascii?Q?WZ3JtEg7VpOw0Z9U8kUn9h+cZZ5e6Mfx+eLL97YSZeZFKkfOJFmSwimHzWBV?=
+ =?us-ascii?Q?hnlE8TB1IH9sLYG3rrXhmiiJ5uE4ILZ6/NU9U0dFTNCHp91T52DVFbMYOToK?=
+ =?us-ascii?Q?FMU3rHD1wrYnOu6mrJfP+WeqhfanWkDer8OuNqsN8SvuRMaYviJmeilu1kqE?=
+ =?us-ascii?Q?IuY0WmwlCqhPJdhMDLI9oqpy9rmbRCuLStfmbvYgSwyDyWeoNvZR+Ch1Yt2b?=
+ =?us-ascii?Q?WiS25MBqCo1ChXUcXEChm5J32EDe0WYMBlH3bjCybbFM6XIEAvhVU29IAZr1?=
+ =?us-ascii?Q?iT6FrZ4P+UUFDTmX90mbJqOmi1HOznzpSnDHcRzottf2HhgGQRgfmod3jlvD?=
+ =?us-ascii?Q?InfzO7w9jVbjoGAX/AKhldYrWqKIYmSXLqNF4cr6wsUW3UqZ2C+Jnj5rWtFP?=
+ =?us-ascii?Q?kOyYXADvmBjjK8wnZMWrbhoXBMhCpdFDWcOF0h8wFgmVzE+AXY8oHbYTiQ8z?=
+ =?us-ascii?Q?Omo5nCnVFEixoD+rs3jTxgrAwc5STVvRaN1u1qA1HCEjOEvNpQC+pIo/ubAZ?=
+ =?us-ascii?Q?3EAgH7BD86pKD5q2gpB0u2UqhAby7m3Sb7UAeQem+lze2kbNPO7PrIaPS01A?=
+ =?us-ascii?Q?hcFT1+av/ZGAK/xfzUlMAVVD439YvCNJK2j8qZamyRufmif2z5S5RO7Xn5+0?=
+ =?us-ascii?Q?KvOPojGR14me7S+rH7KTS5VqnGB/ZMmF5CapMItHJMBl8iDlVhOFgvJ7Irol?=
+ =?us-ascii?Q?3B9XMGwbgU1ihYvO3f4Hjb8+ZVNuHQLy3xYXukAvHunPtGpXV5N5Y+sR7Rc9?=
+ =?us-ascii?Q?R/jJq4qlvss5+QrV+5OsdvmbtZ7HFSvpS5Xqsj2f7NGcbM752LmGhIOndY3X?=
+ =?us-ascii?Q?e9ghKDGWR+6ZV76d9eDmO/8oB8Jq1kQSf5pkYmLOmNBFzPgwFvdBSoxWjl6Q?=
+ =?us-ascii?Q?qvkZqWra8Q7svVy0wy1d2OJdVJMR/RxxNH+fn6dlt165ZiXGSGapkDYP7ngG?=
+ =?us-ascii?Q?TIUC5WqltU8kupnqfuAbTafqOGP7Q/+R2sGrdMlqyQ8FXOWb1zrRbia+t6FA?=
+ =?us-ascii?Q?k8yiZSum1gBoPgxhtv1SiHszh+s=3D?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(1800799024)(36860700013)(7416014)(921020);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2026 15:06:07.7124
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 42b2fd01-377c-4844-ead9-08de5f47ee46
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	MWH0EPF000A6735.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR10MB7956
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+X-Spamd-Result: default: False [2.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	TAGGED_FROM(0.00)[bounces-260914-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[iki.fi,ideasonboard.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,ti.com];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	TAGGED_FROM(0.00)[bounces-260915-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:dkim,bootlin.com:url];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vikash.garodia@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[s-jain1@ti.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DKIM_TRACE(0.00)[ti.com:+];
+	TO_DN_NONE(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:dkim,ti.com:email,ti.com:url,ti.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.1:email,0.0.0.0:email];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: C59ACB149F
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: B4B16B14BD
 X-Rspamd-Action: no action
 
+The AM62L DSS [1] support incorrectly used the same register and
+clock constraints as AM65x, but AM62L has a single video port.
 
-On 1/29/2026 8:02 PM, Dmitry Baryshkov wrote:
-> On Thu, Jan 29, 2026 at 03:32:28PM +0530, Vikash Garodia wrote:
->>
->> On 1/29/2026 5:51 AM, Dmitry Baryshkov wrote:
->>> On Wed, Jan 28, 2026 at 06:35:01PM +0530, Vikash Garodia wrote:
->>>>
->>>> On 1/27/2026 5:52 PM, Dmitry Baryshkov wrote:
->>>>> As the Venus and Iris drivers are close to the "feature parity" for the
->>>>> common platforms (SC7280, SM8250), in order to get more attention to
->>>>> squashing bugs from the Iris driver, flip the switch and default to the
->>>>> Iris driver if both are enabled. The Iris driver has several
->>>>> regressions, but hopefully they can be fixed through the development
->>>>> cycle by the respective team. Also it is better to fail the test than
->>>>> crash the device (which Venus driver does a lot).
->>>>>
->>>>> Note: then intention is to land this in 6.21, which might let us to
->>>>> drop those platforms from the Venus driver in 6.22+.
->>>>>
->>>>> Testing methodology: fluster test-suite, single-threaded mode, SM8250
->>>>> device (RB5).
->>>>
->>>> Could you run fluster on SC7280 as well ? Also please share the v4l2
->>>> compliance results.
->>>
->>> Okay, the SC7280 is a bit more interesting. For H.264 and VP9 the
->>> results are the same. For H.265 Iris errors out for all tests except for
->>> the one, WPP_E_ericsson_MAIN_2.
->>>
->>> The kernel prints the following message:
->>>
->>> [   82.573112] qcom-iris aa00000.video-codec: session error for command: d0000000, event id:1009, session id:52ef2000
->>>
->>
->> 0x1009 corresponds to HFI_ERR_SESSION_INSUFFICIENT_RESOURCES
->>
->> Below patch would enable firmware logs and make it print in kernel logs, you
->> can apply and share to know more about insufficient resource error.
-> 
-> Added it. BTW: would it make sense to land it in some way (I saw that
-> earlier you posted the same one for gen2). Would it make sense to land
-> it in some way upstram?
+Fix this by adding conditional constraints that properly define the
+register regions and clocks for AM62L DSS (single video port) versus
+other AM65x variants (dual video port).
 
-yes, for sure. It was pending, before we enable, to check firmware do 
-not emit any default message which are type "err | warn" and those gets 
-emitted in kernel logs everytime, even in success cases.
+[1]: Section 12.7 (Display Subsystem and Peripherals)
+Link : https://www.ti.com/lit/pdf/sprujb4
 
-> 
-> Anyway:
-> 
-> $ gst-launch-1.0 --no-fault filesrc location=/home/debian/fluster/fluster/../resources/JCT-VC-HEVC_V1/AMP_A_Samsung_7/AMP_A_Samsung_7.bin ! parsebin ! v4l2h265dec ! video/x-raw ! videoconvert dither=none ! video/x-raw,format=I420 ! videocodectestsink -m
-> Setting pipeline to PAUSED ...
-> Pipeline is PREROLLING ...
-> Got message #19 from element "videocodectestsink0" (state-changed): GstMessageStateChanged, old-state=(GstState)null, new-state=(GstState)ready, pending-state=(GstState)void-pending;
-> Got message #20 from element "capsfilter1" (state-changed): GstMessageStateChanged, old-state=(GstState)null, new-state=(GstState)ready, pending-state=(GstState)void-pending;
-> Got message #21 from element "videoconvert0" (state-changed): GstMessageStateChanged, old-state=(GstState)null, new-state=(GstState)ready, pending-state=(GstState)void-pending;
-> Got message #22 from element "capsfilter0" (state-changed): GstMessageStateChanged, old-state=(GstState)null, new-state=(GstState)ready, pending-state=(GstState)void-pending;
-> Got message #23 from element "v4l2h265dec0" (state-changed): GstMessageStateChanged, old-state=(GstState)null, new-state=(GstState)ready, pending-state=(GstState)void-pending;
-> Got message #24 from element "typefind" (state-changed): GstMessageStateChanged, old-state=(GstState)null, new-state=(GstState)ready, pending-state=(GstState)void-pending;
-> Got message #25 from element "parsebin0" (state-changed): GstMessageStateChanged, old-state=(GstState)null, new-state=(GstState)ready, pending-state=(GstState)void-pending;
-> Got message #26 from element "filesrc0" (state-changed): GstMessageStateChanged, old-state=(GstState)null, new-state=(GstState)ready, pending-state=(GstState)void-pending;
-> Got message #27 from element "pipeline0" (state-changed): GstMessageStateChanged, old-state=(GstState)null, new-state=(GstState)ready, pending-state=(GstState)paused;
-> Got message #29 from element "capsfilter1" (state-changed): GstMessageStateChanged, old-state=(GstState)ready, new-state=(GstState)paused, pending-state=(GstState)void-pending;
-> Got message #30 from element "videoconvert0" (state-changed): GstMessageStateChanged, old-state=(GstState)ready, new-state=(GstState)paused, pending-state=(GstState)void-pending;
-> Got message #31 from element "capsfilter0" (state-changed): GstMessageStateChanged, old-state=(GstState)ready, new-state=(GstState)paused, pending-state=(GstState)void-pending;
-> Got message #32 from element "v4l2h265dec0" (state-changed): GstMessageStateChanged, old-state=(GstState)ready, new-state=(GstState)paused, pending-state=(GstState)void-pending;
-> Got message #35 from pad "typefind:sink" (stream-status): GstMessageStreamStatus, type=(GstStreamStatusType)create, owner=(GstElement)"\(GstTypeFindElement\)\ typefind", object=(GstTask)"\(GstTask\)\ typefind:sink";
-> Got message #36 from element "typefind" (state-changed): GstMessageStateChanged, old-state=(GstState)ready, new-state=(GstState)paused, pending-state=(GstState)void-pending;
-> Got message #37 from element "parsebin0" (state-changed): GstMessageStateChanged, old-state=(GstState)ready, new-state=(GstState)paused, pending-state=(GstState)void-pending;
-> Got message #38 from element "filesrc0" (state-changed): GstMessageStateChanged, old-state=(GstState)ready, new-state=(GstState)paused, pending-state=(GstState)void-pending;
-> Got message #39 from pad "typefind:sink" (stream-status): GstMessageStreamStatus, type=(GstStreamStatusType)enter, owner=(GstElement)"\(GstTypeFindElement\)\ typefind", object=(GstTask)"\(GstTask\)\ typefind:sink";
-> Got message #51 from element "h265parse0" (state-changed): GstMessageStateChanged, old-state=(GstState)null, new-state=(GstState)ready, pending-state=(GstState)void-pending;
-> Got message #67 from pad "h265parse0:sink" (stream-status): GstMessageStreamStatus, type=(GstStreamStatusType)create, owner=(GstElement)"\(GstH265Parse\)\ h265parse0", object=(GstTask)"\(GstTask\)\ task1";
-> Got message #68 from element "h265parse0" (state-changed): GstMessageStateChanged, old-state=(GstState)ready, new-state=(GstState)paused, pending-state=(GstState)void-pending;
-> Got message #69 from pad "h265parse0:sink" (stream-status): GstMessageStreamStatus, type=(GstStreamStatusType)enter, owner=(GstElement)"\(GstH265Parse\)\ h265parse0", object=(GstTask)"\(GstTask\)\ h265parse0:sink";
-> Got message #74 from element "parsebin0" (stream-collection): GstMessageStreamCollection, collection=(GstStreamCollection)"\(GstStreamCollection\)\ unparented";
-> Got message #70 from element "pipeline0" (stream-start): GstMessageStreamStart, group-id=(uint)2;
-> Got message #83 from pad "v4l2h265dec0:src" (stream-status): GstMessageStreamStatus, type=(GstStreamStatusType)create, owner=(GstElement)"\(v4l2h265dec\)\ v4l2h265dec0", object=(GstTask)"\(GstTask\)\ task2";
-> ERROR: from element /GstPipeline:pipeline0/GstParseBin:parsebin0/GstH265Parse:h265parse0: Internal data stream error.
-> Additional debug info:
-> ../libs/gst/base/gstbaseparse.c(3703): gst_base_parse_loop (): /GstPipeline:pipeline0/GstParseBin:parsebin0/GstH265Parse:h265parse0:
-> streaming stopped, reason error (-5)
-> ERROR: pipeline doesn't want to preroll.
-> Got message #85 from pad "v4l2h265dec0:src" (stream-status): GstMessageStreamStatus, type=(GstStreamStatusType)enter, owner=(GstElement)"\(v4l2h265dec\)\ v4l2h265dec0", object=(GstTask)"\(GstTask\)\ v4l2h265dec0:src";
-> Setting pipeline to NULL ...
-> ERROR: from element /GstPipeline:pipeline0/v4l2h265dec:v4l2h265dec0: Could not read from resource.
-> Additional debug info:
-> ../sys/v4l2/gstv4l2object.c(6253): gst_v4l2_object_poll (): /GstPipeline:pipeline0/v4l2h265dec:v4l2h265dec0:
-> poll error 1: Success (0)
-> ERROR: pipeline doesn't want to preroll.
-> Freeing pipeline ...
-> 
-> 
-<snip>
+Fixes: cb8d4323302c ("dt-bindings: display: ti,am65x-dss: Add support for AM62L DSS")
+Cc: stable@vger.kernel.org
 
-> [   68.592482] qcom-iris aa00000.video-codec:
-> [   68.592482] <VFW_M:HostDr:265d:6eea4000:00000000> Set buffer type 0x7 addr 0xd0000000 num 1 size 135967744
-> [   68.605612] qcom-iris aa00000.video-codec:
-> [   68.605612] <VFW_H:HostDr:265d:6eea4000:00000000> HFI_BUFFER_COMMON_INTERNAL_SCRATCH_1, Driver macro size = 135967744 vs FW HFI macro size = 136623360 vs FW golden buffer size = 13640960
-> [   68.616954] qcom-iris aa00000.video-codec:
-> [   68.616954] <VFW_E:HostDr:265d:6eea4000:00000000> vDec_SetBuffers(2017): Dec_SetBuffers, Insufficient 7 buffer
+Signed-off-by: Swamil Jain <s-jain1@ti.com>
+---
+Changelog:
+v1->v2:
+- Remove oneOf from top level constraints, it makes bindings redundant
+- Remove minItems from top level constraints
+- "dma-coherent" property shouldn't be changed in v1 itself
+- Add description for reg-names, clock and clock-names
+- Add constraints specific to AM62L and for other SoCs within allOf
+  check
 
-One of the internal buffer size (135967744 bytes) fails to meet the size 
-desired by firmware (136623360 bytes) to decode this specific test 
-vector, hence resource insufficient.
+Link to v1:
+https://lore.kernel.org/all/20251224133150.2266524-1-s-jain1@ti.com/
+---
+ .../bindings/display/ti/ti,am65x-dss.yaml     | 93 +++++++++++++------
+ 1 file changed, 67 insertions(+), 26 deletions(-)
 
-We need to compare if iris is calculating any les size for scratch_1.
-
-scratch_1 venus - 
-https://elixir.bootlin.com/linux/v6.19-rc5/source/drivers/media/platform/qcom/venus/hfi_plat_bufs_v6.c#L647
-
-scratch_1 iris - 
-https://elixir.bootlin.com/linux/v6.19-rc5/source/drivers/media/platform/qcom/iris/iris_vpu_buffer.c#L552
-
-> [   68.628259] qcom-iris aa00000.video-codec:
-> [   68.628259] <VFW_L:HostDr:unkn:--------:-> Host cmd: HFI_CMD_SESSION_LOAD_RESOURCES
-> [   68.640602] qcom-iris aa00000.video-codec:
-> [   68.640602] <VFW_L:HostDr:265d:6eea4000:00000000> Output2 Dimensions 1:1 : NO_SCALING
-> [   68.653195] qcom-iris aa00000.video-codec:
-> [   68.653195] <VFW_E:HostDr:265d:6eea4000:00000000> vDec_LoadResources(1392): Load Resources Command received without complete buffer set 16/14
-> [   68.665510] qcom-iris aa00000.video-codec:
-> [   68.665510] <VFW_L:HostDr:265d:6eea4000:00000000> Load Resource with core id: 0
-> [   68.678699] qcom-iris aa00000.video-codec:
-> [   68.678699] <VFW_M:HostDr:265d:6eea4000:00000000> cabac_direct_mode = 0
-> [   68.692300] qcom-iris aa00000.video-codec:
-> [   68.692300] <VFW_E:HostDr:265d:6eea4000:00000000> vDec_AttachInternalBuffers(1760): mem->vsp_buf: pty->size_vsp:461056,total_size:0
-> [   68.704271] qcom-iris aa00000.video-codec:
-> [   68.704271] <VFW_E:HostDr:265d:6eea4000:00000000> vDec_LoadResources(1486): Load Resources failed with error code: 4105 due to internal buffer attachment
-> [   68.722196] qcom-iris aa00000.video-codec:
-
-...
-> [   68.892229] qcom-iris aa00000.video-codec: session error for command: d0000000, event id:1009, session id:6eea4000
-
-Regards,
-Vikash
-
+diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+index 38fcee91211e..dbc9d754cf9e 100644
+--- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
++++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+@@ -36,38 +36,18 @@ properties:
+   reg:
+     description:
+       Addresses to each DSS memory region described in the SoC's TRM.
+-    items:
+-      - description: common DSS register area
+-      - description: VIDL1 light video plane
+-      - description: VID video plane
+-      - description: OVR1 overlay manager for vp1
+-      - description: OVR2 overlay manager for vp2
+-      - description: VP1 video port 1
+-      - description: VP2 video port 2
+-      - description: common1 DSS register area
+ 
+   reg-names:
+-    items:
+-      - const: common
+-      - const: vidl1
+-      - const: vid
+-      - const: ovr1
+-      - const: ovr2
+-      - const: vp1
+-      - const: vp2
+-      - const: common1
++    description:
++      Names for each memory region described in the reg property.
+ 
+   clocks:
+-    items:
+-      - description: fck DSS functional clock
+-      - description: vp1 Video Port 1 pixel clock
+-      - description: vp2 Video Port 2 pixel clock
++    description:
++      Clocks used by the DSS. The number and order depends on the SoC variant.
+ 
+   clock-names:
+-    items:
+-      - const: fck
+-      - const: vp1
+-      - const: vp2
++    description:
++      Names for each clock described in the clocks property. The number and order depends on the SoC variant.
+ 
+   assigned-clocks:
+     minItems: 1
+@@ -195,6 +175,67 @@ allOf:
+             port@0:
+               properties:
+                 endpoint@1: false
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: ti,am62l-dss
++    then:
++      properties:
++        clock-names:
++          items:
++            - const: fck
++            - const: vp1
++        clocks:
++          items:
++            - description: fck DSS functional clock
++            - description: vp1 Video Port 1 pixel clock
++        reg:
++          items:
++            - description: common DSS register area
++            - description: VIDL1 light video plane
++            - description: OVR1 overlay manager for vp1
++            - description: VP1 video port 1
++            - description: common1 DSS register area
++        reg-names:
++          items:
++            - const: common
++            - const: vidl1
++            - const: ovr1
++            - const: vp1
++            - const: common1
++    else:
++      properties:
++        clock-names:
++          items:
++            - const: fck
++            - const: vp1
++            - const: vp2
++        clocks:
++          items:
++            - description: fck DSS functional clock
++            - description: vp1 Video Port 1 pixel clock
++            - description: vp2 Video Port 2 pixel clock
++        reg:
++          items:
++            - description: common DSS register area
++            - description: VIDL1 light video plane
++            - description: VID video plane
++            - description: OVR1 overlay manager for vp1
++            - description: OVR2 overlay manager for vp2
++            - description: VP1 video port 1
++            - description: VP2 video port 2
++            - description: common1 DSS register area
++        reg-names:
++          items:
++            - const: common
++            - const: vidl1
++            - const: vid
++            - const: ovr1
++            - const: ovr2
++            - const: vp1
++            - const: vp2
++            - const: common1
+ 
+ required:
+   - compatible
 
