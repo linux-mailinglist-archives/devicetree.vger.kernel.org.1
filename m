@@ -1,276 +1,236 @@
-Return-Path: <devicetree+bounces-260904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260907-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IFRAColqe2lEEgIAu9opvQ
-	(envelope-from <devicetree+bounces-260904-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 15:11:21 +0100
+	id +GOsAVFre2mMEgIAu9opvQ
+	(envelope-from <devicetree+bounces-260907-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 15:14:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3326B0C1C
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 15:11:20 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 999FBB0CCA
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 15:14:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 31A393004F3B
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 14:11:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2D3BC30382B0
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 14:14:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 170DD3803DA;
-	Thu, 29 Jan 2026 14:11:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF47E387344;
+	Thu, 29 Jan 2026 14:13:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="giXHduJy";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ZlF0vvLh"
+	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="Zht6Yn+E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11022084.outbound.protection.outlook.com [52.101.66.84])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3E1337F749
-	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 14:11:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769695877; cv=none; b=LOVX6tfRXHaYrIqTL1wNysrEav2Xnu/M3xSmfdvePNn6fVsCzAGVj4EH8a5zF2u3f3j+EXn5lkrE/p1LOZ15K9inPP8hBKJb3eJ6mCbB0EfW1O6Ei4iNGwt1pExbrzXEl62Cacl9U2j6U6TkxRT6xqISdD+UEwaZvxEKNERG8aQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769695877; c=relaxed/simple;
-	bh=/ykZcMAp0/hmfjN0oTjkHY/FPv9xSJ4Emd0fhE26KZ8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=U4sFweXB0JY16t46C10LITE/AZGY/tTy3VNL+2+zXnS4YHSUCqdaIuK3hOCzQEv+53wOsnoeQhu64WUdzzIOrXynIV1mUX4K+sNQ/UBwMRqmwtSgJRDEdgtq7b/drGnXh/rq/gFE7l8B5ACPX/g18Nn+OiEeL3Nj/F/KLEI3Cew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=giXHduJy; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ZlF0vvLh; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60TAlop32953448
-	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 14:11:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	lTy+/DrDMVLHO5FL74CxfRsfY3lzw1a+emT5zffUjhQ=; b=giXHduJy8iNLsGoI
-	QuqGBUTZM8Z8/BWcQDJZLZ1V9rRf+Iixo2xNfatmsYQXLZHwUjIkUG5K2ALcrEeR
-	xzimVcEvIM3rZKh2xWWKQgNRf4/9tQbHV1fK8HTW3cPAKZUDqCtvpoekeMg076Yp
-	E7MJvdVclncFm6JOhn7lwtAzgLv6ZXOx2lFzQzS2za8Yr4ME/aXUuZRh9UsevU32
-	eT6Tbf9exdMJrY3DiR22tb/3dUMmRMGn68R3xPJccN/q6+aGIsGLO3M9BqbakEPb
-	lgsvTFbBvVk3+Fomx1KojfWN39mm6Jio0d4GhYvLJ8RzKJxyMOcPrRbwdQVWzecH
-	ADAmeA==
-Received: from mail-ua1-f69.google.com (mail-ua1-f69.google.com [209.85.222.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c06420jah-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 14:11:14 +0000 (GMT)
-Received: by mail-ua1-f69.google.com with SMTP id a1e0cc1a2514c-93f666131b2so233296241.0
-        for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 06:11:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769695873; x=1770300673; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lTy+/DrDMVLHO5FL74CxfRsfY3lzw1a+emT5zffUjhQ=;
-        b=ZlF0vvLhYvPbzJsjnjwUCv/eBmhu3jv5qhkf/SHciRgwzkthdye7A50LUohaI5L8VM
-         RkTEbddIJSfCTUBJGTAFK+hb3+2jnmlH7sDLoz3cDRFaFT1Ek3S9lWSl79/A740O7XFi
-         mqdc1cvspfCMqLEDJS+8Z564OnvSqrrFDMo/WVsVc14sV6mUzR9W+glcMF3ZZ7+YjlBa
-         a8lQ004rgJKXR3lyieN7j7qITRIu3ouRB3WZXMAPlTjJC01OKS97bguwntx5pA05/ChO
-         CDAuXRusEJ53e/GsNaaqOW5UYHxpqOqeRwHFpuj1+l+gf7pMXrcb8LZfuRhIwsZie0XT
-         Bwsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769695873; x=1770300673;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lTy+/DrDMVLHO5FL74CxfRsfY3lzw1a+emT5zffUjhQ=;
-        b=ROiU3K/pn/+J1kzDENADJ6BppEJErhjhT8+lXO70Z0P7eDLZIUdqp1xbrFAzzQqF2u
-         XZp15LIugQxmoXARkn7WMplvR8n0XVLeJIDPr0aIKGikTgI+UwbqAvna8Mpq8NSNJ9ud
-         6T9IVmlzViK4mmcFf37fcJYFW9ibY3q1UhSR+NW9mHNdYcLgzvDk9oSi8aY46pX/X/sK
-         FlEihlsdxncDGrTaLJGtZdj4H15+C6HxPup/tQSTl5EtYDN8eehnxFV4pjazJs9KfHIU
-         tIiqd+FiDh427rdr+sFRp8jwWo+Sok5w5LofFr6GDjnp8d2d8xL42BTKSAHRrX0ukn0i
-         PAqQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX8q0vM0YfGf5ssHch/5SUyFlueZz27JHdBfIAN6MYkb6Qemz4uiEx1iwU6E2B9hfgmg1fC3s32tVCW@vger.kernel.org
-X-Gm-Message-State: AOJu0YweljU+FIJG3yGEJ5pfFDw6qEJu56tdeUPtmixkHHjjGsgVXEvz
-	7vSJXMhr2/vzHPTdwZeR0dIHN89plhwKh7EtbeSxJEo8JvlQCyJkgP/fTvsHUDyQzrgMRHXCXun
-	wHyxPSy/j8i3YCBfWvlfOUm0iOHGLT9bBVQGpUals3gujcFZ9XLcBum/gzHXNutP+YSVT7FSi
-X-Gm-Gg: AZuq6aJOucKDDk760SuDYoKAeoTNvpJSOGK2EGm6JNpRQQ7GgGeBubCikgB3Kpa87uR
-	s3mgZTWl7EqmttSf+ie2WW0oP58G/M3Ka/mRnbaTdJUD9i5EGytjM7287Lxy2foVXB5+KRVPwha
-	ZSTJjpQrSSrZCTN8F1DrgYLpNkJsotHKYDtI2zmiaiQYnJKHr9P7Puu4z6wR51oEDdDTah6fe3X
-	YB6hbtotOqHU27FXJ/aChT67ZtJ4txl4V5AvopiY+9S6i7XM+uv+rCnv2HxOsXprju2x1ors91f
-	SvUlOeUVDqg67OOms7M2iTVNHXGrCLPdK3YxmDfPMPmbvXLN/7Obpmv5wqIWa6TVa2AchJ6sUIh
-	PqfkTVYoES1NdbgXORKZEKJYvQAmVxB159h4HVsTX07i/HRfTmH0gCFx9hls9StP4KYc=
-X-Received: by 2002:a05:6122:365a:b0:559:9663:bfb1 with SMTP id 71dfb90a1353d-56689f43943mr723155e0c.0.1769695873120;
-        Thu, 29 Jan 2026 06:11:13 -0800 (PST)
-X-Received: by 2002:a05:6122:365a:b0:559:9663:bfb1 with SMTP id 71dfb90a1353d-56689f43943mr723080e0c.0.1769695870332;
-        Thu, 29 Jan 2026 06:11:10 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8dbf1c02d0sm262175766b.55.2026.01.29.06.11.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Jan 2026 06:11:09 -0800 (PST)
-Message-ID: <9234e45d-4a48-4820-a42b-48e11d79c0ee@oss.qualcomm.com>
-Date: Thu, 29 Jan 2026 15:11:07 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0371E385500;
+	Thu, 29 Jan 2026 14:13:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.84
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769696039; cv=fail; b=Cy1VCFjmvHLMhkj+R6cwZ7VeeAyRQcwI/naqy6ya83icUpwm7t5yfYIbFZxuCe3SapNZyaiUNu9kBbzBiaSWzKuCzURud0yjkYbIHSWpN0UzN1tb2WXpGumRwegGMEm1VsIN66soCEU8qOz7tEi1ouKZasUxNvxI7qM6JDYZJlw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769696039; c=relaxed/simple;
+	bh=pjYvFznFsxe5W9iFrFpfQZwFMMqYbt2uhR8i6yH85eI=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=TbBU+hL7eigoU+87sCoKFgC9/GwYVmg6Z6i1OfQEwSP7GQ7BKOUWxK6xDsSf8QnLw2XAEVeZtxqq5byWqEkyUOHlBx4KMBYHdK7U8nXAOdf0y+Nzg6gYkraZcU7haInbgL0BUqtZHyTTXcsV5eq7duHZl16TjrIIBN4SZ9+vjsI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=Zht6Yn+E; arc=fail smtp.client-ip=52.101.66.84
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=chw2ZTcKlhkpVYXqyerYg8E+J290s4gRg4hidvsoos01vXqhfcRzWF5fpMrHn1CrqUKS7+dOU5xNTh4/YhbwxL9HlnBeZFrCIEJhgKPI0xo7puB5ayw6NBGFwBhAq/16hrtuRftj3oVySRc6sLOF9JwKEqN0HFAeASvm5Nk+Kn663jxy7/9+J2qwmhSYq+HRJ9sBFTEalbhnJXO4Zflqpaom5ljCXYFYMBW7AFvvN4lko3dISEbLIjfmUctfqmk8qsMNksIf/AIaUbeMftBFt4Ho7eS868ueFwsUSmUuWFGpqRtdmtOJqAO5XUdr0NmNoEI7dfOlLaMHyXB6GWBKyw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Usx3Pm7LTQrR2UpdLniRRo5fm283tYxi1Fniwo6keGI=;
+ b=IvjeiToIYTSqTxzvuSedVCXr2obVBCnJ2EvAryxZcbh3gD6l/kyMtNmXxadoWr5qMBrgUNcGhMeGtC3PiG4BS2XciFcIPtGTiAaZOltM5N/PqduBqBXhbbvz3F3emao76334Vma5KstOZFgk4DKuDlrDnr4OteGVza+uQSNr7CYYmbs58+arwhcSeZGiZ6wtLoMuNheil3ABYZOxQumpH75wA4BpRP9XfjdAGJN13AA0Zk+z34Yz9fKrMx6cDwSpespaUuYUX1PEXWmxu9wA599KFPrCkA87Q+lltU8BilbPe7ELZFjDgBhVPtgoCIbrqfIs/W+Gz5VcZpEiV3qP6Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
+ is 91.26.50.189) smtp.rcpttodomain=kernel.org smtp.mailfrom=phytec.de;
+ dmarc=fail (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=phytec.de; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Usx3Pm7LTQrR2UpdLniRRo5fm283tYxi1Fniwo6keGI=;
+ b=Zht6Yn+ENj6w9uMhg3VzzpnN7rqgWTvZMoGVDbYWMP+klGLt+GZLZl94FUCw12BouxjwssDzgCRWKP2GNAuFxl86E04771buU8kf5TM9ojUWmYfH8/zObapS3QUi0V1dkHZEHdS6aZDlAaGFFRWxOJRdyw1I9xLMbmH/xd0QdU4y7xPX2BpHyX8Bjg5NCm+p4FTcq3J3ds2EfyAycYN7uoFHt+okgcXZJnJUJtdBoJd/TtMaPxc7DcSzv/DUbCXwXd/HMPYPssu3utRy1UYSod5aq5zR2a3o71I0fzj1u1iu5miT2ymS/GUho9cNyXep5moZGv5PMCyhECWqueP8dg==
+Received: from DBBPR09CA0047.eurprd09.prod.outlook.com (2603:10a6:10:d4::35)
+ by DB8P195MB0694.EURP195.PROD.OUTLOOK.COM (2603:10a6:10:15c::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.9; Thu, 29 Jan
+ 2026 14:13:51 +0000
+Received: from DU6PEPF0000A7E2.eurprd02.prod.outlook.com
+ (2603:10a6:10:d4:cafe::56) by DBBPR09CA0047.outlook.office365.com
+ (2603:10a6:10:d4::35) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9564.8 via Frontend Transport; Thu,
+ 29 Jan 2026 14:13:51 +0000
+X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is 91.26.50.189)
+ smtp.mailfrom=phytec.de; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=phytec.de;
+Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
+ phytec.de discourages use of 91.26.50.189 as permitted sender)
+Received: from Postix.phytec.de (91.26.50.189) by
+ DU6PEPF0000A7E2.mail.protection.outlook.com (10.167.8.42) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9564.3 via Frontend Transport; Thu, 29 Jan 2026 14:13:51 +0000
+Received: from llp-tremmet2.phytec.de (172.25.39.70) by Postix.phytec.de
+ (172.25.0.11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.35; Thu, 29 Jan
+ 2026 15:13:50 +0100
+From: Teresa Remmet <t.remmet@phytec.de>
+Subject: [PATCH 0/2] net: phy: dp83867: add numeric impedance DT property
+Date: Thu, 29 Jan 2026 15:13:32 +0100
+Message-ID: <20260129-wip-t-remmet-phytec-de-bspimx95-132_upstream-v1-0-8deccd658d16@phytec.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: document the Eliza Top Level
- Mode Multiplexer
-To: Abel Vesa <abel.vesa@oss.qualcomm.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20260127-eliza-pinctrl-v2-0-1faf78efdc2e@oss.qualcomm.com>
- <20260127-eliza-pinctrl-v2-1-1faf78efdc2e@oss.qualcomm.com>
- <20260128-hot-camel-of-acumen-eef9f2@quoll>
- <aizrc6xysfwzygdsfeuc2raccq7efmwg5bn6v33t2de6ugvzgi@z3ipf3i25ulf>
- <dc0b7245-de95-4db7-bf8f-815ba60d7adf@oss.qualcomm.com>
- <pdxrotmxjiebyj2gqx6buwupkydngxki6jgv4e6l6fmodzc5v2@yxky3civt3yz>
- <8360708d-5d82-4cbe-bf0c-31107ab07bac@oss.qualcomm.com>
- <p5rv7u5utnetlt2xvh6ixk2xvi74tdcurgwzrkxfuq7qa3m66u@m7u2ukr46n6j>
- <6244680d-f6c3-4aba-8e12-61093e51f76c@oss.qualcomm.com>
- <flr35di3ivjivnnkrcnwnurlzhmf43i5ymtgj3jnitexcm45sa@jli2o7qkb4tb>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <flr35di3ivjivnnkrcnwnurlzhmf43i5ymtgj3jnitexcm45sa@jli2o7qkb4tb>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI5MDA5NiBTYWx0ZWRfX/ofBMZU9CLyq
- JHS+a1H42Rex+92PlYDTMvavUoTL+scP6JJ7BiCgB0k9VXM1gEYG9eRd4k6210pdMdBsajsOVUD
- ODXdVrLl7Nf0DSQ1/5gA0JBkmQRL8xEZjX9GL9ifBrDfWUZFdDn/IL4UImNBfYnW+hMXfnOtrhL
- BoL/U+HZOUJZPqdNinETawZcf7U2A+TqxkNus3h/lG005lOKq1OM0WG5Krlu0r9X3ajlkFwzMUT
- oodCHL1/rJVWkUrK4eZH0qBlKM4DFSs28MbncwcNCbl7dYib4FOiGcAEU3irWKzyermMOjAbL4c
- MS3vwwnkBWWMDl5mP2dsXbzdHg8sFrr+4dmPOlj984S1b4+YhkUROwKS2/R4LllJ8RYAQr2XHk7
- mYLopdaNSt5kitQW/+Yjs8+89AS4I+/vMntgHDczXfoHgGL8CVqdHYEyed/g8rwRagv1YDV/tiJ
- tokUCcpsQZV06QQwbPw==
-X-Proofpoint-GUID: Z0VtDmY8BfVtcgi3s7m34GK0fsGNOJos
-X-Proofpoint-ORIG-GUID: Z0VtDmY8BfVtcgi3s7m34GK0fsGNOJos
-X-Authority-Analysis: v=2.4 cv=dpTWylg4 c=1 sm=1 tr=0 ts=697b6a82 cx=c_pps
- a=UbhLPJ621ZpgOD2l3yZY1w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=9alSFpSfKzYJ5GvhcA0A:9
- a=QEXdDO2ut3YA:10 a=TOPH6uDL9cOC6tEoww4z:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-01-29_02,2026-01-28_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 suspectscore=0 malwarescore=0 bulkscore=0 clxscore=1015
- spamscore=0 adultscore=0 lowpriorityscore=0 priorityscore=1501 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601290096
+X-B4-Tracking: v=1; b=H4sIAAxre2kC/x3NQQ6CMBBA0auQWTsJrS1Wr2KMqTDKLIrNTAUM4
+ e42Lt/m/w2UhEnh0mwgNLPye6owhwb6MU4vQh6qwba2a40NuHDGgkIpUcE8fgv1OBA+NHNazx7
+ N0d4/WYtQTOiCCSH67uSdg5rMQk9e/7vrbd9/iIg/I34AAAA=
+To: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+	<davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Andrew Davis <afd@ti.com>, Andrew Lunn
+	<andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, Russell King
+	<linux@armlinux.org.uk>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<upstream@lists.phytec.de>, Yannic Moog <y.moog@phytec.de>, Benjamin Hahn
+	<b.hahn@phytec.de>, Yashwanth Varakala <y.varakala@phytec.de>, Jan Remmet
+	<j.remmet@phytec.de>
+X-Mailer: b4 0.13.0
+X-ClientProxiedBy: Postix.phytec.de (172.25.0.11) To Postix.phytec.de
+ (172.25.0.11)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU6PEPF0000A7E2:EE_|DB8P195MB0694:EE_
+X-MS-Office365-Filtering-Correlation-Id: fef55f7a-dd7e-473b-9ce1-08de5f40a10b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|376014|82310400026|7416014|36860700013|7053199007|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?bjJidGU1RUxlb3pvSndYWTdnQnhQVXNmekpFaUVab3ZUbTBLbmExZENNSkdL?=
+ =?utf-8?B?V2hpUU1leDQxcllYeHN2SXFvYWJCZTh6Y09qeGFGZCtYSGROMlhxYUlhSlFj?=
+ =?utf-8?B?Mk5lUTBWUDk5Z29IRUVCaGZYbFl3eE5SaS9tblpLNWJOZ1lSajRMVndkcSs2?=
+ =?utf-8?B?enVZQ2ZGSSt6c1NvWk4zOXlOVEZNTUtTZ0ZQeXlwZm1HalZpK0ZUMXV4YWtt?=
+ =?utf-8?B?d1Z3WU5wSUZmMGwxMm5RcVpvWWt5ZUN6cHhTYlpvVHJ0ZDdPd3gzcDlFTERz?=
+ =?utf-8?B?Z0pod2hBVlpSMTJRZzN2ZFp3L29uRWhLODNCSTdVQVRmNWVDOG1paXVZdFhY?=
+ =?utf-8?B?ZFdQQzNCWjI5ekc3YWJmenZpMFFBbmMvc3FLSGxObllub3dJb0JuOVB5dDQ3?=
+ =?utf-8?B?endRNjlESHlVd0ZLNkVLbzN2WWhwNndDNkMwcWlGQXhVL2FuaHduZnQ3bjYy?=
+ =?utf-8?B?TzdPVlZwR0JqSStSelZnYWd1ZE1QQXN0YlpVelFrcVJHYi9od3RlR2NjSmEy?=
+ =?utf-8?B?MFV0RWVHTnpoemJieEprZWk1SGNIaU9DZ05tdnFueVYyZ1JqajB3L2V3OGZL?=
+ =?utf-8?B?OC8rVTVZSVU4T3dkbHNQOGNKNEY1MlBHdDI5QmJRMFUzeUQ0L1kvRTVkNVc1?=
+ =?utf-8?B?emx4ZTM2ZWxENWxqRVpvUXo0NTl2SWZ5NXAzTVF3WDBlNmFRbTA4Q2xYSXBw?=
+ =?utf-8?B?dmFkQnRtNXJ4dGt0eklVb0RUeGhCUmwxd2dqcUZ1NUxXZDZmZFQrZXUrVkpV?=
+ =?utf-8?B?cDRTc1hxYUtza1FXdEdLUTZEWElCQXloY1M1RkMxMDQ2MUYvMzZVUkUwa3FG?=
+ =?utf-8?B?ODVxbjNxS2psVFgvcXA0RDU3T25kVHNzd3dRdU03MG1kYlhyd1phQ25vQnZv?=
+ =?utf-8?B?KzVUTVJ2ZnBEUmovdm9aUWhoVmFEaU1OUlpJNDRmWlBVZldOUlVDc2RVNUxI?=
+ =?utf-8?B?bFZSbVEzelNrNTNwWnhoRTE1NTBoZXNJNnRBcDNMcVlEU0RPcWd4MFd1Q295?=
+ =?utf-8?B?TTliSHc3dk5hYkVUUzBoUmlFMWtIeVlYS2tyWDhqNFF4MTBBWGJiTlNsRFRS?=
+ =?utf-8?B?QWVjamV2eEZYLzgyY29lemV6ejZYYWtMRyttR3pRVGlRZTZBa0NsUUtqY1dH?=
+ =?utf-8?B?WTE0alJhZzBtVDhzN3d5Y2gvc0xlMU9Dc3pJSjNvb3RzaHUyLzRaM0RvN2Ew?=
+ =?utf-8?B?SUZhVVB6eGRnQ2tMaWsxWXNZcjlPUkk4Ym5odTR1eFlCYmtUZDk1ZzQ1dERn?=
+ =?utf-8?B?VWZmeG1Deko3NWUrRHROelU4YTgwZ3dYUzR6eE9rOW9Rd0dRQmRoaFJTWmdR?=
+ =?utf-8?B?UzdXbUJ1T0pWbXVRVElXQ25McHlwNkZnbzgyRFZIQjZudkdzRHg2SHR5TDdE?=
+ =?utf-8?B?TktGUDJ2THN5ellMOURuMXNPMG9kbzJGWE1BTTFZcGdjc0NnVW05ZW9EdEtP?=
+ =?utf-8?B?Vms5ZWJmRUgySXJLSi9abmJWeHRDR05PdjRpT04zZFNxeGxTQ3FST3NpWXRQ?=
+ =?utf-8?B?ZExUSTVEbXNiUkVJanpPcXdGeDlWSTBBYnlyUzN2SEJ2K2tOeVdDQXM5cjJH?=
+ =?utf-8?B?T09WSFZTWStmQThENGV1endWd0NzNC9Mamc0ek1nemdrSmpyUmtIbmJTNk5H?=
+ =?utf-8?B?Nm9jUHNhOCt6cURkRkdDb0E2K25aMnYvRFVWNEwwdWs5ZHJGdUtmUzdkOXZy?=
+ =?utf-8?B?THBCbWtCajFhN0Irc1dpWm1VSStGT0lEWDJxR09xaTlBOGUxRS9rT0RXSE1W?=
+ =?utf-8?B?K0JySlMyMmNZZnEvZFkzWTlCbVRyTTJ1Ry85T2c4bXBsR0ZVcVpXbzV2Ukdi?=
+ =?utf-8?B?OUF0R1Rvbmd0TVQ3eHk2TC9jMno2elhZVWlwNVFIZGdzdEYzLy9hZVVSUmFW?=
+ =?utf-8?B?Z004ditQdHU3V2xSVVBaWkQwd3ZKQmkrd0JOenYrQ2ljVFFtWC8yMUxWN2g1?=
+ =?utf-8?B?YXlpOWhLWGNieWJac29RMFcvZU9MU0ZFdVU3c0NIMDdKdlJTbGhmZWF4V1hZ?=
+ =?utf-8?B?K1FkeWU2aGxtdjBBdXJyZlYwMjBiTHJLSWh5Ym5kK0pRQU40dG13Z0NOOXBJ?=
+ =?utf-8?B?SEN1VTZhWk1yZFQycVVOUjhpWCtjQmF2TVl4YmFpbWtQT2s5SXc5cHdscXYx?=
+ =?utf-8?B?L1prbXBHVDJYdm82MXU1WlZDK0pMS0dqaFFJYTUxUU1lTG1YRDRaSCtRclpy?=
+ =?utf-8?B?SGpGWGY2L0xFYXJGQ1RLRjUyeW15VjhjV0NHcXMxdnRna1N2QzVnd3dlNmtM?=
+ =?utf-8?B?VmtmWk5Jd2pOVkF3V0xjVVEydDVRPT0=?=
+X-Forefront-Antispam-Report:
+	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:Postix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(376014)(82310400026)(7416014)(36860700013)(7053199007)(921020);DIR:OUT;SFP:1102;
+X-OriginatorOrg: phytec.de
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2026 14:13:51.6898
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: fef55f7a-dd7e-473b-9ce1-08de5f40a10b
+X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e609157c-80e2-446d-9be3-9c99c2399d29;Ip=[91.26.50.189];Helo=[Postix.phytec.de]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DU6PEPF0000A7E2.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8P195MB0694
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[phytec.de,quarantine];
+	R_DKIM_ALLOW(-0.20)[phytec.de:s=selector2];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns];
+	TAGGED_FROM(0.00)[bounces-260907-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260904-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,ti.com,gmail.com,armlinux.org.uk];
 	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lunn.ch:email,phytec.de:email,phytec.de:dkim,phytec.de:mid,ti.com:email,armlinux.org.uk:email];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[t.remmet@phytec.de,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[phytec.de:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: C3326B0C1C
+X-Rspamd-Queue-Id: 999FBB0CCA
 X-Rspamd-Action: no action
 
-On 1/29/26 1:42 PM, Abel Vesa wrote:
-> On 26-01-29 13:04:23, Konrad Dybcio wrote:
->> On 1/29/26 12:12 PM, Abel Vesa wrote:
->>> On 26-01-29 11:45:59, Konrad Dybcio wrote:
->>>> On 1/29/26 11:41 AM, Abel Vesa wrote:
->>>>> On 26-01-29 11:34:07, Konrad Dybcio wrote:
->>>>>> On 1/28/26 6:22 PM, Abel Vesa wrote:
->>>>>>> On 26-01-28 12:38:32, Krzysztof Kozlowski wrote:
->>>>>>>> On Tue, Jan 27, 2026 at 05:47:36PM +0200, Abel Vesa wrote:
->>>>>>>>> Document the Top Level Mode Multiplexer on the Eliza Platform.
->>>>>>>>>
->>>>>>>>> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
->>>>>>>>> ---
->>>>>>
->>>>>> [...]
->>>>>>
->>>>>>>>> +
->>>>>>>>> +  gpio-line-names:
->>>>>>>>> +    maxItems: 185
->>>>>>>>
->>>>>>>> 186, your first GPIO is 0 and last is 185.
->>>>>>>
->>>>>>> Actually it is 0 through 184. The 185 is ufs reset.
->>>>>>
->>>>>> The UFS reset also happens to be a GPIO..
->>>>>
->>>>> So the gpio-line-names should include the ufs reset,
->>>>> but the pattern not.
->>>>
->>>> Why not?
->>>
->>> ufs reset cannot be configured as gpio, so why would it be part of the
->>> pattern?
->>
->> It's certainly registered as a GPIO, as all users of UFSHC refer to it
-> 
-> Well, technically yes, SW-wise. But it definitely doesn't have the same
-> configuration fields in HW. Anyway, that is not the point here.
-> 
-> The point is the pattern has dedicated enum for ufs_reset and gpio185 is
-> not even part of the gpio groups anyway. [1]
+Introduce a new way to set the output impedance over device tree.
+So far it is possible to pass the value either over an nvmem
+cell or to set the min and max booleans over device tree.
 
-So, is the current behavior such that in case I wanted to set some
-properties on the ufs pin, the description would be:
+In our use case we want to be able to set the impedance over
+device tree but the boolean values are not the right fit to 
+provide best signal integrity for the hardware.
 
-foo-state {
-	pins = "ufs_reset";
-};
+To: Andrew Lunn <andrew+netdev@lunn.ch>
+To: David S. Miller <davem@davemloft.net>
+To: Eric Dumazet <edumazet@google.com>
+To: Jakub Kicinski <kuba@kernel.org>
+To: Paolo Abeni <pabeni@redhat.com>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Andrew Davis <afd@ti.com>
+To: Andrew Lunn <andrew@lunn.ch>
+To: Heiner Kallweit <hkallweit1@gmail.com>
+To: Russell King <linux@armlinux.org.uk>
+Cc: netdev@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: upstream@lists.phytec.de
 
-?
+Signed-off-by: Teresa Remmet <t.remmet@phytec.de>
+---
+Teresa Remmet (2):
+      dt-bindings: dp83867: add binding for ti,output-impedance property
+      net: phy: dp83867: add numeric io impedance DT property
 
-TBF we don't have any such ones, possibly because whatever the
-bootloader had configured has always seemed to work well enough..
+ Documentation/devicetree/bindings/net/ti,dp83867.yaml | 19 ++++++++++++++-----
+ drivers/net/phy/dp83867.c                             | 17 +++++++++++++----
+ 2 files changed, 27 insertions(+), 9 deletions(-)
+---
+base-commit: 1f97d9dcf53649c41c33227b345a36902cbb08ad
+change-id: 20260128-wip-t-remmet-phytec-de-bspimx95-132_upstream-48188a567544
 
-In that case, I agree that this pattern should not include the pin.
-I'm however a little surprised to see that would be the case, since
-we end up consuming this pin as a numbered GPIO via reset-gpios.
+Best regards,
+-- 
+Teresa Remmet <t.remmet@phytec.de>
 
-> Also, are you saying that all older platforms (sm8[3-7]50, at least) are effectively
-> wrong since they do exactly the thing I described ? :-)
-> 
->>
->>> For the same reason, it cannot be part of the gpio-line-names either.
->>
->> Since it's registered as a GPIO, why not?
-> 
-> If what I'm saying above is true, you can't configure gpio185, so AFAICT you
-> won't be able to name it either. Or am I wrong ?
-
-I think the truth is more nuanced:
-
-The UFS_RESET is a GPIO in the sense of pinctrl-msm, as it has a ctl_reg
-and an io_reg. It's not capable of receiving interrupts and it seems to
-be output-only.
-
-It does not have a "gpio" pinmux function (func0 is named "ufs_reset" intead),
-but that's just human-facing naming, so whatever.
-
-It can be toggled and is consumed by its number, through the gpios/xxx-pins
-property.
-
-Running cat /sys/kernel/debug/gpios on x1e80100, where ngpios and gpio-ranges
-includes that pin though, I could not see it listed. I don't really know why.
-That's where I'd expect to see the name given by gpio-line-names.
-
-Now, I would also strongly expect that this pin would be only ever used for
-UFS reset, making the name override unnecessary but we've all seen things..
-
-Konrad
 
