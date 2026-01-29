@@ -1,149 +1,329 @@
-Return-Path: <devicetree+bounces-261048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261049-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qIDOA3DVe2klIwIAu9opvQ
-	(envelope-from <devicetree+bounces-261048-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 22:47:28 +0100
+	id iI4vFB7We2klIwIAu9opvQ
+	(envelope-from <devicetree+bounces-261049-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 22:50:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id D48FEB50B9
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 22:47:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ECD3B514F
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 22:50:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 824DB3003BD0
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 21:47:24 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 23D483003BDB
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 21:50:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FB7736657C;
-	Thu, 29 Jan 2026 21:47:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96BCA36683A;
+	Thu, 29 Jan 2026 21:50:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="f04/yhoa"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="huk3KOUf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dy1-f170.google.com (mail-dy1-f170.google.com [74.125.82.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB810362134;
-	Thu, 29 Jan 2026 21:47:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E0EC366811
+	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 21:50:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769723243; cv=none; b=SUl4jNl7vexl9fmD3rhc0SVFp+Pew5WZE4olpO2cIKee2YmKuvd7TRExLEI7gT1JUhAX27v55qVBnoVytw18cTapst/Y/uMR5+9yjS6PjXKHAnNdLwz4GWHygniE3x91Sfq8niqyK8fMqqjlfxE+dFuOWnezMbZ2yz9Cxpanqkw=
+	t=1769723413; cv=none; b=lbyV3h71w0HJbCZY2wLIQzzsCOpXAdXNjZJU3Qp2MBUrhy7P3Ob3a9mInWKABKdfGvpKp/cm833NjupLh3B5yS62ECkVHLj6c3ZsbBT3+m3u7OQYCX2iiWV6HNSI/cN7FyPgITqzt4FyNy81P0P0VXR11Oe11jTwEaCGgJeO2sw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769723243; c=relaxed/simple;
-	bh=xuEWwxsCnKV1hgUcvG3HkKb3wtP4QNEso9PfcYG5F+c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MmGq3MrPJeWZW79gbdd4xSqBgV4ZyQITqVbNs/o6S31X401WTue+A5upF0tzjg0Yy1OcAtqzeAwGooCG48CxkRSmE9/++hblIn6jlX+mxNKKP7CItAGZEEvMVz1EOWPcxYlCt6uCq8k4Lj4eXe4tkPf7TY1Zl7PtW4NoietahzY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=f04/yhoa; arc=none smtp.client-ip=198.175.65.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1769723241; x=1801259241;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=xuEWwxsCnKV1hgUcvG3HkKb3wtP4QNEso9PfcYG5F+c=;
-  b=f04/yhoamEoWJwthRP8GYQ4W6MGGdJUwNDqabNadxcYd5CelKh+/vtPr
-   9qlEDM/HkzxopTOovXNx8VeyDBGsKgiAOkYMqWG6a4AXMkNsIRlUgGYQl
-   Vwubl4uiYHUoNTQDHWtL/txbhgMDgxETR8d/DQWDCPD1p86nKtBnLymqz
-   luRHRRf8wQWwZS8jFNX9s8qtHJNdqifZxccQaX+LndEfrA/9VL4KAIbtc
-   G0ROosqFycCkorB5qMMaq/HdMO5xkAZAxifqiYKfS2gJJAnh+bz9ozCP3
-   weUswUXS9vow2DGfvZL88ghChT5BfATxVe7c5D0F5CMtgOblzBLKaaLiV
-   w==;
-X-CSE-ConnectionGUID: 33YBsUrtS7Kz4rBsMZECOg==
-X-CSE-MsgGUID: Itmmys3mRQOK3EudLR2xhg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="74601380"
-X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; 
-   d="scan'208";a="74601380"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2026 13:47:21 -0800
-X-CSE-ConnectionGUID: yLbJJGB2QGqnFxxCDbzpEg==
-X-CSE-MsgGUID: v5zuVwWmR1iHFhcpO5K4vg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; 
-   d="scan'208";a="208481382"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by orviesa009.jf.intel.com with ESMTP; 29 Jan 2026 13:47:17 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vlZr8-00000000bvI-2acX;
-	Thu, 29 Jan 2026 21:47:14 +0000
-Date: Fri, 30 Jan 2026 05:46:17 +0800
-From: kernel test robot <lkp@intel.com>
-To: Varadarajan Narayanan <varadarajan.narayanan@oss.qualcomm.com>,
-	andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, sumit.garg@oss.qualcomm.com,
-	dmitry.baryshkov@oss.qualcomm.com,
-	Varadarajan Narayanan <varadarajan.narayanan@oss.qualcomm.com>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v3 2/4] arm64: dts: qcom: ipq9574-rdp433: Reorganize DTS
- to introduce eMMC support
-Message-ID: <202601300550.OQXggWux-lkp@intel.com>
-References: <20260129062825.666457-3-varadarajan.narayanan@oss.qualcomm.com>
+	s=arc-20240116; t=1769723413; c=relaxed/simple;
+	bh=cd9mN9FTxtobZucZUadzh1p8mFgy/n/xbH66wjlpJfg=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=r8CB4Juzbm7WXCDSkiyFHDJa2QCxY8KmM29BH9jKXGTPbGdbymZvfEVzm31VMQTFPV1rxrkG+ZSPMAXVyJ4SMLuZC3eP41yqi6hKAi3pitghZ9XL5cgMXTOq5NmRNylpu0vgwgeIepWVbHqOSyWoIiVDhNwXnzIGrTJRUVaozr0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=huk3KOUf; arc=none smtp.client-ip=74.125.82.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-dy1-f170.google.com with SMTP id 5a478bee46e88-2b74f839bdfso1882478eec.1
+        for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 13:50:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1769723410; x=1770328210; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=fnFZtFlF7N4pN1jjAdwC3X0D7hes9W8LIgmymlTg2eQ=;
+        b=huk3KOUfDbcdpXfAWGGv6beIQ5dOPJY5+TBosOp8hreoJpMmGitXBTi0K+iE+xx3dT
+         tqovgNb85G6lpxL9BquSaCZx6MY2l0exNt5rOYkPq0S2JqTAUTEGoIkOcJR0619gqnHw
+         jcV1iJbccxtSUadRbk9hYXvXuiCeOdHlQK2X2HZn7n5vTDwKrI6kWbnoFeLvnYcwIHO3
+         31co32Hx6oDMTGxVu/gtQpGNh3I2XesVspNq3Rl54pUYDiotrJDqeL+yGROPkpSVeUJz
+         AnEDcoAWBODIGChlmVXblU9sO/0aZ5hQ368ECHUMSOumGXXoC22g/KfZ3hIGa9WnVH3P
+         QyeA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769723410; x=1770328210;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fnFZtFlF7N4pN1jjAdwC3X0D7hes9W8LIgmymlTg2eQ=;
+        b=PHB9/CFWZatDKx71XL3uK/kQuZeOjLowueSCO+oaUGcWs0NFv7spCG7JfKIeETqMFl
+         8xEHWxzp2s8zPF6XPONrPIttGtI1q0V3eyx9RZVFjr2FaUvzlGCle5VA+o4hulSj15HM
+         JPo3Gytd8tlsREsqyHnQUMBiCRFM+PHn1gEphy//1hcrl7WOWLf2OVjYnlXhK5gNutjP
+         uhfAKm5roFePBEGzAOb2Wxaus7VV41ZEnY0U9YVQ8mA4X+/9+CtVSJypL2TEciwJDDSr
+         D5sCRyXnVH5PxHLORBFQag03s8CfAbcPudmGTdoraurtkf4LC0v4pKXyHN6EP15i/XBc
+         HUhQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVhwb4X9Up/RtieZTKgCBQzmkqMv7DzwHCeFVF4IxuqbDTKta0z0xPBWztUcfdLkT1HUafUG6FHNItg@vger.kernel.org
+X-Gm-Message-State: AOJu0YxjwA5IXk8+UonxYx69oiYhJUx6FYgn7uZECZpulYnBUCPW/kkl
+	ZdRNemImG0exIR02NfFaG+LsxXebxw3x6LFeXTkTr2aKGnmwpHQbp+chejmZq37viA==
+X-Gm-Gg: AZuq6aICUyrjqsNUnC0rXRBXDHuNUGHjzVkS9J79V/QiX804nzM+BUoEk1S3RtE9TNY
+	gSiFE+CzugTHKJNa6QqcXPM9Ls2SIsXS85QE6imJqfdk2nljp9ElhX08Jknw18cyykI2B5aeJTR
+	sDoAQBzp4euEgxMq1AwytZzv42iFAgIi8JpNXaWgNzC5Y5b0CyUlGkq5LUir4KVqMA6qb86EMMQ
+	DjOn0yXe8T3Zp4MkeVa7uUG8r1KsG9XNWiWwMiadzSpBUx93Ja7ZO+EFF6b2TeAnwgUArP/pHhF
+	qhYjntfFTIaDu/39uoVWyZChGUlr5VEtbYcfK2e+1OKsdh2FkFRujuaevi1tUjCqKkQGdKIf/Rq
+	OY8rg/kqR1t5UT2lF/CvIKFX6yV/ekmMJ8AsFEwe9H3awMC9gRxxnYoexVmm9cgp+m1OkChe1Tt
+	Avtu2horCjvLGlJl7VyS92ji0Np8IUQSjQ+Yz+SM3FNIwyqJDjRMg9R09asdSWX4Q2SRQdK20Ul
+	lmQwUGYMHo1nA==
+X-Received: by 2002:a05:7301:678d:b0:2ae:5022:fe7c with SMTP id 5a478bee46e88-2b7b178aae9mr2039688eec.1.1769723410111;
+        Thu, 29 Jan 2026 13:50:10 -0800 (PST)
+Received: from ?IPV6:2a00:79e0:2e7c:8:2ca3:c2a2:3ff7:e16e? ([2a00:79e0:2e7c:8:2ca3:c2a2:3ff7:e16e])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b7a1abedcasm8528777eec.21.2026.01.29.13.50.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Jan 2026 13:50:09 -0800 (PST)
+Message-ID: <b6cccee7-1acb-49ab-8970-a828aa86f056@google.com>
+Date: Thu, 29 Jan 2026 13:50:07 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260129062825.666457-3-varadarajan.narayanan@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+From: Amit Sunil Dhamne <amitsd@google.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: connector: extend ports property to
+ model power connections
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Badhri Jagan Sridharan <badhri@google.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <len.brown@intel.com>,
+ Pavel Machek <pavel@kernel.org>, Kyle Tso <kyletso@google.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-usb@vger.kernel.org, linux-pm@vger.kernel.org,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>,
+ "rdbabiera@google.com" <rdbabiera@google.com>
+References: <20250507-batt_ops-v2-0-8d06130bffe6@google.com>
+ <20250507-batt_ops-v2-1-8d06130bffe6@google.com>
+ <20250514194249.GA2881453-robh@kernel.org>
+ <b4a22161-8cab-4d76-a4b0-4bfd0d79cdc1@google.com>
+ <z2wrzts6cgunxs5tc764izvrfi4i2d637zpt6tj5f4piry6j66@cke2yxhih6dg>
+Content-Language: en-US
+In-Reply-To: <z2wrzts6cgunxs5tc764izvrfi4i2d637zpt6tj5f4piry6j66@cke2yxhih6dg>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4];
+	DMARC_POLICY_ALLOW(-0.50)[google.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[google.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-261048-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261049-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[google.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[amitsd@google.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
-X-Rspamd-Queue-Id: D48FEB50B9
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 7ECD3B514F
 X-Rspamd-Action: no action
 
-Hi Varadarajan,
+Hi Sebastian,
 
-kernel test robot noticed the following build errors:
+I hope you're doing well!
 
-[auto build test ERROR on fcb70a56f4d81450114034b2c61f48ce7444a0e2]
+On 6/23/25 3:08 PM, Sebastian Reichel wrote:
+> Hi,
+>
+> On Tue, May 20, 2025 at 01:10:25PM -0700, Amit Sunil Dhamne wrote:
+>> Hi Rob,
+>>
+>> Thanks for your response!
+>>
+>> On 5/14/25 12:42 PM, Rob Herring wrote:
+>>> On Wed, May 07, 2025 at 06:00:22PM -0700, Amit Sunil Dhamne wrote:
+>>>> Extend ports property to model power lines going between connector to
+>>>> charger or battery/batteries. As an example, connector VBUS can supply
+>>>> power in & out of the battery for a DRP.
+>>>>
+>>>> Additionally, add ports property to maxim,max33359 controller example.
+>>>>
+>>>> Signed-off-by: Amit Sunil Dhamne<amitsd@google.com>
+>>>> ---
+>>>>   .../bindings/connector/usb-connector.yaml          | 20 +++++++++++------
+>>>>   .../devicetree/bindings/usb/maxim,max33359.yaml    | 25 ++++++++++++++++++++++
+>>>>   2 files changed, 38 insertions(+), 7 deletions(-)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+>>>> index 11e40d225b9f3a0d0aeea7bf764f1c00a719d615..706094f890026d324e6ece8b0c1e831d04d51eb7 100644
+>>>> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
+>>>> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+>>>> @@ -181,16 +181,16 @@ properties:
+>>>>   
+>>>>     port:
+>>>>       $ref: /schemas/graph.yaml#/properties/port
+>>>> -    description: OF graph bindings modeling a data bus to the connector, e.g.
+>>>> -      there is a single High Speed (HS) port present in this connector. If there
+>>>> -      is more than one bus (several port, with 'reg' property), they can be grouped
+>>>> -      under 'ports'.
+>>>> +    description: OF graph binding to model a logical connection between a device
+>>>> +      and connector. This connection may represent a data bus or power line. For
+>>>> +      e.g. a High Speed (HS) data port present in this connector or VBUS line.
+>>>> +      If there is more than one connection (several port, with 'reg' property),
+>>>> +      they can be grouped under 'ports'.
+>>> 'port' and 'port@0' are equivalent. So you can't be changing its
+>>> definition.
+>> Noted!
+>>
+>>
+>>> I'm not sure showing a power connection with the graph is the right
+>>> approach.
+>> I want to provide some more context and rationale behind using this design.
+>>
+>>  From a hardware perspective:
+>>
+>> The max77759/max33359 IC has Type-C port controller, charger, fuel gauge
+>> (FG) ICs. The Vbus from the connector goes to/from the TCPC and connects
+>> with the charger IP via circuitry & from there on to the battery. The FG
+>> is connected to the battery in parallel. As it can be seen that while
+>> these IPs are interconnected, there's no direct connection of the fuel
+>> gauge & the connector.
+>>
+>> For this feature, I am interested in getting the reference to the FG. As
+>> per graph description: "...These common bindings do not contain any
+>> information about the direction or type of the connections, they just
+>> map their existence." This works for my case because I just want the
+>> connector to be aware of the Fuel gauge device without imposing a
+>> specific directionality in terms of power supplier/supplied. This is
+>> also the reason why I didn't use
+>> "/schemas/power/supply/power-supply.yaml#power-supplies" binding.
+>>
+>>> We have a binding for that already with the regulator binding.
+>> I haven't explored the option of using regulator bindings. But in my
+>> case I am interested in fuel gauge and unfortunately, they're modeled as
+>> power_supply devices.
+>  From hardware point of view there is no direct connection at all
+> between the fuel gauge and the connector. The usual hardware
+> connection is
+>
+> connector -> charger -> battery
+>
+> With the charger potentially supporting reverse operation to provide
+> energy from the battery to the connector (with "battery" I assume
+> a "smart" battery, so the raw cells and some kind of fuel gauge).
+>
+> Thus the following example should properly document the hardware
+> connections:
+>
+> ---------------------------------------
+> typec-connector {
+>      /* ... */
+> };
+>
+> charger {
+>      /* ... */
+>      power-supplies = <&connector>;
+> };
+>
+> fuel-gauge {
+>      /* ... */
+>      power-supplies = <&charger>;
+> };
+> ---------------------------------------
+>
+> It means instead of the direct graph lookup for the fuel gauge,
+> you would need a function walking through the graph build by the
+> power-supplies phandles. But it also means that the DT properly
+> describes the hardware instead of adding random graph connections.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Varadarajan-Narayanan/arm64-dts-qcom-ipq9574-Add-gpio-details-for-eMMC/20260129-143219
-base:   fcb70a56f4d81450114034b2c61f48ce7444a0e2
-patch link:    https://lore.kernel.org/r/20260129062825.666457-3-varadarajan.narayanan%40oss.qualcomm.com
-patch subject: [PATCH v3 2/4] arm64: dts: qcom: ipq9574-rdp433: Reorganize DTS to introduce eMMC support
-config: arm64-randconfig-001-20260129 (https://download.01.org/0day-ci/archive/20260130/202601300550.OQXggWux-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 10.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260130/202601300550.OQXggWux-lkp@intel.com/reproduce)
+I would like to revisit this thread.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202601300550.OQXggWux-lkp@intel.com/
+I have tested the hierarchical power-supplies approach you suggested 
+while working with the charger [1] and fuel gauge [2] drivers currently 
+being upstreamed. Unfortunately, this approach introduces two blockers 
+for USB PD compliance (with the first one being the most critical and 
+relevant to bindings):
 
-All errors (new ones prefixed by >>):
 
->> make[4]: *** No rule to make target 'arch/arm64/boot/dts/qcom/ipq9574-rdp433.dtb', needed by 'arch/arm64/boot/dts/qcom/dtbs-list'.
-   make[4]: Target 'arch/arm64/boot/dts/qcom/' not remade because of errors.
+Issue #1: Deterministic Probe Ordering and Feature Deferral
+Early in the boot cycle, the TCPM is the first to probe (based on the 
+power-supplies hierarchy). Without a direct phandle in the connector 
+node to the fg devices, the TCPM is "blind" to the system's battery 
+topology. If a power adapter initiates a Battery Status/Battery Caps AMS 
+before the FG driver has registered its power_supply object, the TCPM 
+response indicates no batteries as the TCPM doesn't have a complete view 
+of the FGs in the system at that time.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Issue #2: Violating Sender Response Timeout
+Iteratively traversing the power supply tree to resolve the hierarchy 
+(Connector -> Charger -> FG) is computationally expensive in the context 
+of USB PD. In testing, this traversal frequently exceeds the Sender 
+Response Timeout (27-33 ms). While caching psy references helps 
+subsequent requests, the failure of the initial request triggers a soft 
+reset by the adapter. This results in an inconsistent and unreliable 
+charging experience upon first plug-in.
+
+While I have thought about how we can mitigate these issues if we still 
+must have to go with the above approach, I strongly believe that TCPM 
+having actual references to the fg/charger phandles seems to be the 
+appropriate way here. Are there alternative methods you would suggest 
+that allow the TCPM to (1) know a priori that an FG device exists to 
+manage deferral, and (2) meet the <30 ms response window without direct 
+phandles?
+
+
+[1]
+https://lore.kernel.org/all/20260121-max77759-charger-v4-0-694234c8ded1@google.com/
+
+[2]
+https://lore.kernel.org/all/20250915-b4-gs101_max77759_fg-v6-0-31d08581500f@uclouvain.be/
+
+
+Thanks,
+
+Amit
+
+> Greetings,
+>
+> -- Sebastian
+>
+>>> Perhaps the connector needs to be a supply. It's already using that
+>>> binding in the supplying power to the connector case.
+>> Want to clarify, in this case you mean
+>> /schemas/regulator/regulator.yaml#*-supply$ right?
+>>
+>> Adding to my response above, the reason I don't want to impose a
+>> directionality in terms of supplier/supplied is that in case of USB Dual
+>> Role Port they're dynamic i.e., when USB is source, the power is
+>> supplied out of the battery (battery/FG will be supplier) and in case
+>> USB is sink, battery is supplied power. Whether the connector port is in
+>> source or sink role is determined on a connection to connection basis.
+>> Also, the knowledge of the supply direction is of no consequence for
+>> this feature.
+>>
+>>
+>> Please let me know what you think.
+>>
+>> Thanks,
+>>
+>> Amit
+>>
+>>
+>>> Rob
 
