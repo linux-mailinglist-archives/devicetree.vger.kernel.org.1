@@ -1,299 +1,209 @@
-Return-Path: <devicetree+bounces-260678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260679-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AAMfGreuemnv9AEAu9opvQ
-	(envelope-from <devicetree+bounces-260678-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 01:49:59 +0100
+	id UA/sMQKvemnv9AEAu9opvQ
+	(envelope-from <devicetree+bounces-260679-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 01:51:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4EC0AA5FD
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 01:49:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48C0DAA62C
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 01:51:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A4B25303AA9C
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 00:48:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C951B300DE1C
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 00:51:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE379258CDF;
-	Thu, 29 Jan 2026 00:48:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F17722EBBA4;
+	Thu, 29 Jan 2026 00:51:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="o+PFxSFo"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nhizYGFE";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ev+WyEJO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 113D31FF7C7
-	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 00:48:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2BD8288C25
+	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 00:51:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769647704; cv=none; b=PdsRXM/QOJTfE4Ky7SkuAQlcRgbZ76KzwF+3O7l7n/qYYPctTEdJUmyYGKqUNeOwzGQ9hu1c9wT7VATaqSuX964smGDth+/PqdWSQ1dkAnW7g1QUyXBu8WmR+vuj7p6sDt77VfVKpll5HpV247mz75UtKmqH0Plat7K8NdyPl44=
+	t=1769647871; cv=none; b=XQVXOpQHLQpghQqtdH/IfBb05vIHp0sf5jPrCaBebPqG/1pIwqgS9mNg/kaAomllCDMZeZQQUViR+5KZd42n68xfNTWkIGalNnxkv4GLHlok7zhm+bm29P9WKonlQOXmwjQtl4uGW19/JIlyWIJC4D/XNDC7DR3Td2uOXI42ICU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769647704; c=relaxed/simple;
-	bh=s6acg1YZfXk+qj172JzqyxisT0tzm2xM0+qf5t4a0b8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LJfae8iqdYctvh+YQdNOQHLIufaP4KnpDjwyI5vnBGVihlBbfRgpnEW/VA9vySiPVWLwQ3HpnwyvG+VLhApK2IJ62OHftKAPTmOacA7Th1M9kUukdt9Kj9w/VE4fmJ5Rd/AvnJpHPAdC43aynvd912I8WTGjafybwOdQVDZjyFQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=o+PFxSFo; arc=none smtp.client-ip=209.85.167.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-oi1-f170.google.com with SMTP id 5614622812f47-45effa36208so343006b6e.1
-        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 16:48:22 -0800 (PST)
+	s=arc-20240116; t=1769647871; c=relaxed/simple;
+	bh=XbGhdM5R6kglST7aIewJwl4vmHrrkLI83o4LjzUAOWs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=i/bDPEpBNngyUjsqWIGcsye36HtPV4P0GWBtf7AslPmwj3miWRQlAkcGwBxnnSazKs4gXuZ5dpX8PUg7kqAcey91+dftfE/cr1d3QEvAW8Yrge9lHUZinj1OiAXiBhm3s0QFJzPPof3l8M2gjjx/8y5bpYhe8GYVj5FDJw1STfo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nhizYGFE; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ev+WyEJO; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60SIOB872082366
+	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 00:51:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=M+WZ5p12VkpfX832o5SO9e+P
+	vKsqNe/lB/hAlOK3sLU=; b=nhizYGFEF52633CDuU4F8TIdryih2X4NqIejN8db
+	TKdy7A8NYkqNhc+Xi5PQxc1HNdOln9lnwsCGcruzVQ0+aSBkhlp70Q5OFHICsuB4
+	MTEcbA2Ra3cVw50EckPewbdt/0beA62X/XXBpPjoHYcBty5zEkOdMqgU2GCks9xi
+	x3yi3EG0NG00xZwwV5KqabVpDNqT2c2ms6dpHPY6f4Fmfw03abvBoUOz4K3DefJJ
+	6kerEiNnk1Uv53ysq09ZZa85w3UeD231qQbITqfeBLl5H3gzpsWzP+lS0DPizhVx
+	31+suTnwCsbBugiFlLj9BWIFYdetlurQubsok5wkwseR0w==
+Received: from mail-vk1-f197.google.com (mail-vk1-f197.google.com [209.85.221.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4byqpxgx06-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 00:51:07 +0000 (GMT)
+Received: by mail-vk1-f197.google.com with SMTP id 71dfb90a1353d-5662e5d9a84so426463e0c.2
+        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 16:51:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1769647702; x=1770252502; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kbKwb212VLN49qYjAz8qGGRthTaVQz4Y5dXEvDAnI6I=;
-        b=o+PFxSFo7XvIeG4TiruB+ZjbmHHhDsi080xZSdTUd6DBuaxvW7ayNUADyvdjT8CDa9
-         JnqKSdBbZu2SSDAYdXHC3v47UdgJ9P9cLBDibcSfk736+RJWxuTlWmt08gvOdvxmG4xg
-         zUAnhlnItbDubVGC5CPcQ9wbTEmyWaHj1tQEvMSMKlNTVBpFvkH7R8mIlV6wN/4xtVW4
-         k9zajwJhmOLX/+qaG9NrGWRfdzDQuiUQiTB5jNUHpE9cJ08E+jX3/sasaw1y6tjummXg
-         ParmY99kwpMrB/q6yLfR1DEC+WQOAJwBCH/G1cCeBJxej2ZqGVcGs+a/QC9YyPw89G6L
-         K6Cg==
+        d=oss.qualcomm.com; s=google; t=1769647866; x=1770252666; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=M+WZ5p12VkpfX832o5SO9e+PvKsqNe/lB/hAlOK3sLU=;
+        b=ev+WyEJOZGfLx8/S8IfymMcaj/6GGK3Ip0qeQb2i0VkBUBvmb1HZNgWRBFRHmrNPD2
+         qXIrT/WiDAUxfe39r6KLzVp4YExGJ/50l+fZ4mONFr58sJnoVXOcSkjU/qthc4y3/2O2
+         g0jVHC8iFY7T/GkK1QE7rXYk12nF+zbaVFkwLfhHkM6IPNhODR/UCwfcr19c0AFQZWhx
+         Hr5bZ1Wn8E50Q/PA++06LKRwrIYc9C2+9gxEJvhnLDFtQBzSjXg1Qv8HaPA7+KtbB1o0
+         ZN6+kbsfB0vbdNAAvKpCKGf6MSaGbQYO0o8Yytru6P3UTaeDDV7XzYBK6MtwxA8XuEJN
+         voFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769647702; x=1770252502;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kbKwb212VLN49qYjAz8qGGRthTaVQz4Y5dXEvDAnI6I=;
-        b=WlWs1fVSR4JlO7oTwgYFFgzNz3drdAUtsb11Z03q9N5i80qxdo0tz6Lopyrnf++BfY
-         E3ljG6ZFRNre5quwQZkM/LRqiyGsnYqL+923deOQhrhJuqs0U3dz0lV/ab7j86+YQ0CA
-         AGiDcu5LCFd0QgBdSxprO6WiuWqjoCPCC5zV0buWu6J1i1GAqCK6MdNGUxndJ20w8gQ7
-         OyoKK0EcJc/rhfbjLMx9eibpJIEP8o0YLEUC3SfWq2+cr7gVmRZxvcTTY81wF9hb0IxP
-         oJfgHCmaXFal1zoGFoVHGOJ605l5R1felKMtPyzcBvzxCmkYwrxj7zO6uZjFFEhX4ImL
-         BKjw==
-X-Forwarded-Encrypted: i=1; AJvYcCUAi0CnpdizoMBUl1omHzSV2vA5aSDA8eD1Jtae8C7+W8jGPfytg4Z3oMNOeTuxUxAMumctbX3xXlfx@vger.kernel.org
-X-Gm-Message-State: AOJu0YyuicNb7uODmjTIpy0liy8dbVbw6Bryq7uQFUhPrr21l2eL6cqu
-	2cjbbh70n2R2k2TVJjyafUdvTcmJWecXxHr1uAzv416J7tAZmNGuWR9gw6/t2kQyyLc=
-X-Gm-Gg: AZuq6aKxaF6QKWD3QOvbIdVck3fkTsvjeVvUr+SSf0cx2e/9f9SD8KC9WzElcMcQwx/
-	J3f2MBs4OqvNxlzz/5tgOQzDaC6SiOXxgnyO/HV9RhfOdzBLiZrW8NUGJI/gpfwJdyntXTF6DNG
-	CtF0z2sXSQmGtLBF4L5jutcYma3Fw9wZhNKkeAQyo/ShsHzbVmzCqGN0ZFJIckAL1YvRZ6H80IH
-	6jur9cP/LWKCV2SdC9BaqXCZMPZVjR7DlaHWB3qCZM1C604PahYQImfYpTtYEKwaea/kBzgBTbq
-	QNWo/ymEjMEoBa8nuOrr59fTvvCxR3U0DubkXABT0xC89LksIie8RHUdkjPegc6eLczzqI3bFEI
-	0Om7saFZyuxO5T01sl9nMyA4Aa6TmsRDp09S8dLw9Bi1zD8pM8ZQMChXQ8AKptrnmIDsETJ4m0G
-	4wpfenDp3yrqFnUYp5BlBnUSRJckK1QcKmnjY6GZE7+nyK0LlVRNQ=
-X-Received: by 2002:a05:6820:4a0c:b0:660:e444:1098 with SMTP id 006d021491bc7-662f2174a23mr3237977eaf.80.1769647701832;
-        Wed, 28 Jan 2026 16:48:21 -0800 (PST)
-Received: from [172.22.22.28] (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-662f9a18776sm2344023eaf.12.2026.01.28.16.48.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Jan 2026 16:48:21 -0800 (PST)
-Message-ID: <3184a357-9f32-4023-9c15-d0b2fd502f4b@riscstar.com>
-Date: Wed, 28 Jan 2026 18:48:19 -0600
+        d=1e100.net; s=20230601; t=1769647866; x=1770252666;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=M+WZ5p12VkpfX832o5SO9e+PvKsqNe/lB/hAlOK3sLU=;
+        b=MEkitigrpj9rvJCAzRMjSncg0LxnOsFXfQkfY9E7QPmVxmHKxZBsjjE3zs8SK7L4y2
+         f3dsSf1KDc2s7hUSFvLFp+4TbL92BerU3MmzoZvAFQiL9hHYihB63ZE+oCdxdc+YFUTJ
+         I8/dP0v2hmhJ8TA4TiZG4wxE8xUdYWQxBKwMTiPG64tTq8akO8JW/MzxfAF8j3NHN5Lv
+         KQUgcsyN48UJgCGm1mI3mAz0gV4FuaBkOpcx7JRIzXn60g+PkGZVW0lZa0ssipfvqFkt
+         2/j0E5VSbIXYKLQ7BAZss/4sEjrQSrscy6SZ3O32rzx0YPiVuyn2XrWcoq4JjgrzPNW4
+         b0eA==
+X-Forwarded-Encrypted: i=1; AJvYcCWPBlERbL8HYeLEWfcCoeTIQ4NFY7z7VlUrqvcoJF2LKdOzB2zEV9pAktyqXmd6PeI5UXIN9Vw3JGZ4@vger.kernel.org
+X-Gm-Message-State: AOJu0YzTa6Bt/IhwO59YaMIqp+EbL7kI03YxdpQmwA8eH9N33wYeS2P8
+	KEZpD3GWM7LFGjhJZMu+Na7oT1UNljoFl4bZD9xrihNF+IgDjnUnHu9AFoTFZz4nL+Ew6zhRi9D
+	QLu3OEQ8GBS969pwYLkpvE21Cnxnqt2R9t17a2xVsYIEPO9/69IJREkD80hkAe3jB
+X-Gm-Gg: AZuq6aJoVLpXPaN0AiH2D982dQ5Kcm3LidPiF7/NrAwezcFxBYVt93S7pOkxEvLYAZ+
+	F3O1MInMbDaFfGpxhhjHKimpGl5DUMTjzWG549iIf4+y4OErl1T3MFmztmhR/lo/EwZbSPvdp+/
+	TtekWiA7PoocULOpsgy3kYBNH5i9rfTi2TTmOWKeEmRKeJ+Lk41I6H35Rqr9HLKPeCVIXzv+MQU
+	NceiQs+RqkwEKJZ0VQZIew8Ph67jQc1D0Xdwwc93/M/9dZC2IRrOszJCiluQBhx4faRM+5XnaUD
+	lhclb4s5QIOKhgspjC9iYDt9KYbGZeNVqwA98wCj07SrnaNwh5/KCxcd7MLoDPwN5jmrHDK+SYy
+	aKpS3BKXpbV6+9E2I7GsApotdK3p14YGExy5hfxeS44HQWRdh1qmI0rBHZReAyrIDmrPX4hoF3f
+	d8N9Bo7WhfejK2G2X/iIui/WY=
+X-Received: by 2002:a05:6102:32c3:b0:5db:cc69:739c with SMTP id ada2fe7eead31-5f723631147mr2251778137.17.1769647866470;
+        Wed, 28 Jan 2026 16:51:06 -0800 (PST)
+X-Received: by 2002:a05:6102:32c3:b0:5db:cc69:739c with SMTP id ada2fe7eead31-5f723631147mr2251767137.17.1769647866075;
+        Wed, 28 Jan 2026 16:51:06 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59e074bbf55sm856387e87.90.2026.01.28.16.51.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Jan 2026 16:51:04 -0800 (PST)
+Date: Thu, 29 Jan 2026 02:51:02 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Rob Clark <robin.clark@oss.qualcomm.com>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Bartosz Golaszewski <brgl@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        linux-usb@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-pci@vger.kernel.org
+Subject: Re: [PATCH v2 6/7] arm64: dts: qcom: sm8650: Add sound DAI prefix
+ for DP
+Message-ID: <77qi3wlmjzdios6a6kqifsbsyusohcddz737fmdgmrgxcqlpsb@f2wkl7sw7nci>
+References: <20260127-topic-sm8650-ayaneo-pocket-s2-base-v2-0-c55ec1b5d8bf@linaro.org>
+ <20260127-topic-sm8650-ayaneo-pocket-s2-base-v2-6-c55ec1b5d8bf@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] regulator: spacemit-p1: Fix n_voltages for BUCK
- and LDO regulators
-To: Guodong Xu <guodong@riscstar.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Yixun Lan <dlan@gentoo.org>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Troy Mitchell <troy.mitchell@linux.spacemit.com>,
- Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- spacemit@lists.linux.dev, devicetree@vger.kernel.org
-References: <20260124-spacemit-p1-v2-0-2c86b06694ba@riscstar.com>
- <20260124-spacemit-p1-v2-1-2c86b06694ba@riscstar.com>
- <501849d1-2158-471a-af25-da3dbb070422@riscstar.com>
- <CAH1PCMYWFhR-Np0-yq40eWqJbTmFub4qop6Wq2gA2mUqbJrtdA@mail.gmail.com>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <CAH1PCMYWFhR-Np0-yq40eWqJbTmFub4qop6Wq2gA2mUqbJrtdA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260127-topic-sm8650-ayaneo-pocket-s2-base-v2-6-c55ec1b5d8bf@linaro.org>
+X-Proofpoint-GUID: txBSL8_r1FE8rB8tHY3uaGL3l4_SFVZj
+X-Proofpoint-ORIG-GUID: txBSL8_r1FE8rB8tHY3uaGL3l4_SFVZj
+X-Authority-Analysis: v=2.4 cv=dfSNHHXe c=1 sm=1 tr=0 ts=697aaefb cx=c_pps
+ a=JIY1xp/sjQ9K5JH4t62bdg==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=YAN0IDdG5KZRBbBB4vcA:9 a=CjuIK1q_8ugA:10
+ a=zZCYzV9kfG8A:10 a=tNoRWFLymzeba-QzToBc:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI5MDAwNCBTYWx0ZWRfX8QwQuXOo+JIl
+ +CQwBEz+1eDjM2wiwfHjQz4WqNWZmX8iFzxWx08W4x/BbL4xF3SnbxKtY2XuVhLW2Gc3HcbmORj
+ jNe2mmAUdTbXiy+VFZqyhgP8yemrT+jK62m9oLI57QthU1rZVO96CvYPqApOHnsTIcmz/IoqFFc
+ zBk3qPk5ZgQNmdLvGVJKUfWnhSMNl5oYYjYT3GCdFboQ94xWEHvGqQ30ThG5hKyF0OjBglghUdn
+ KvoXPiupTq1ZZtGSm6tQKkunxxOD9drJJeDdNHlW3GWZ9MrZ4w4PyQ7d9SZ5ktm6FQFsiLZjDWA
+ 6myr8IyHCfZz90QyXel/PtcgGvgEPTsXVsa9ODyRleZN9LJImTEMXTnpIi9WefWnOPyCByYesyv
+ A1aO/wbi3E7JqcX1sqKq1R8wpHLGr5jzsGn5ailBA09Gpkg7DFnN3NP57A6sr22FzFPcg38sni7
+ dWX96+VAukM7z7e+yCg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-01-28_06,2026-01-28_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 lowpriorityscore=0 phishscore=0 spamscore=0
+ priorityscore=1501 bulkscore=0 suspectscore=0 adultscore=0 clxscore=1015
+ malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
+ definitions=main-2601290004
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.06 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[riscstar-com.20230601.gappssmtp.com:s=20230601];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[riscstar.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260678-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,gentoo.org,linux.spacemit.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,vger.kernel.org,lists.infradead.org,lists.linux.dev];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	TAGGED_FROM(0.00)[bounces-260679-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[28];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[riscstar-com.20230601.gappssmtp.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[elder@riscstar.com,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,oss.qualcomm.com,linux.dev,gmail.com,poorly.run,somainline.org,ffwll.ch,linuxfoundation.org,glider.be,google.com,vger.kernel.org,lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,riscstar.com:mid,riscstar.com:email]
-X-Rspamd-Queue-Id: B4EC0AA5FD
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 48C0DAA62C
 X-Rspamd-Action: no action
 
-On 1/28/26 9:26 AM, Guodong Xu wrote:
-> Hi, Alex
-
-I'm going to keep all this context, but I have a few comments below.
-
-> On Wed, Jan 28, 2026 at 9:28 PM Alex Elder <elder@riscstar.com> wrote:
->>
->> On 1/23/26 6:20 PM, Guodong Xu wrote:
->>> Higher voltage settings were unusable due to incorrect n_voltages values
->>> causing registration failures. For example, setting aldo4 to 3.3V failed
->>> with -EINVAL because the required selector (123) exceeded the allowed
->>> range (n_voltages=117).
->>>
->>> Fix by aligning n_voltages with the hardware register widths per the P1
->>> datasheet [1]:
->>> - BUCK: 255 (was 254), allows selectors 0-254, selector 255 is reserved
->>> - LDO: 128 (was 117), allows selectors 0-127, selectors 0-10 are for
->>>     suspend mode, valid operational range is 11-127
->>>
->>> This enables the full voltage range supported by the hardware.
->>>
->>> Fixes: 8b84d712ad84 ("regulator: spacemit: support SpacemiT P1 regulators")
->>> Link: https://developer.spacemit.com/documentation [1]
->>> Signed-off-by: Guodong Xu <guodong@riscstar.com>
->>> ---
->>> v2: No change.
->>> ---
->>>    drivers/regulator/spacemit-p1.c | 6 +++---
->>>    1 file changed, 3 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/drivers/regulator/spacemit-p1.c b/drivers/regulator/spacemit-p1.c
->>> index 2bf9137e12b1..2b585ba01a93 100644
->>> --- a/drivers/regulator/spacemit-p1.c
->>> +++ b/drivers/regulator/spacemit-p1.c
->>> @@ -87,13 +87,13 @@ static const struct linear_range p1_ldo_ranges[] = {
->>>        }
->>>
->>>    #define P1_BUCK_DESC(_n) \
->>> -     P1_REG_DESC(BUCK, buck, _n, "vin", 0x47, BUCK_MASK, 254, p1_buck_ranges)
->>> +     P1_REG_DESC(BUCK, buck, _n, "vin", 0x47, BUCK_MASK, 255, p1_buck_ranges)
->>
->> This is correct.  There are 255 possible ranges, 0..254, and
->> 255 is an illegal value.
->>
->> I think this bug is an artifact of a change I made while
->> chasing an issue during development, and I neglected to
->> change it back.
->>
->> Technically this is a bug fix but it doesn't matter because
->> this voltage value (255 represents 3.450 volts) was not
->> required.
->>
->>>    #define P1_ALDO_DESC(_n) \
->>> -     P1_REG_DESC(ALDO, aldo, _n, "vin", 0x5b, LDO_MASK, 117, p1_ldo_ranges)
->>> +     P1_REG_DESC(ALDO, aldo, _n, "vin", 0x5b, LDO_MASK, 128, p1_ldo_ranges)
->>
->> I would say this is not correct.
->>
->> The valid range of values in this register is 0xd-0x1f (11-127),
->> which is 117 values; 0xd represents 0.500V and 0x1f represents
->> 3.400V.
->>
->> Technically, all other values represent 0.5v (and could therefore
->> be considered valid), but I believe those should never be used
->> and intentionally considered them invalid.  If 0.5V is desired,
->> 0xd should be used.
->>
->> Do you disagree with this?
+On Tue, Jan 27, 2026 at 10:57:33AM +0100, Neil Armstrong wrote:
+> Sound DAI devices exposing same set of mixers, e.g. each DisplayPort
+> controller, need to add dedicated prefix for these mixers to avoid
+> conflicts and to allow ALSA to properly configure given instance.
 > 
-> I understand your concern about selectors 0-10. However, maybe you missed
-> this part:
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8650.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> Code snippet from the c file, Line 53:
-> (The p1_buck_ranges and p1_ldo_ranges are defined correctly.)
-> 
-> /* Selector value 255 can be used to disable the buck converter on sleep */
-> static const struct linear_range p1_buck_ranges[] = {
-> REGULATOR_LINEAR_RANGE(500000, 0, 170, 5000),
-> REGULATOR_LINEAR_RANGE(1375000, 171, 254, 25000),
-> };
-> 
-> /* Selector value 0 can be used for suspend */
-> static const struct linear_range p1_ldo_ranges[] = {
-> REGULATOR_LINEAR_RANGE(500000, 11, 127, 25000),
-> };
-> 
-> .linear_range, the number of valid voltage steps (selectors 11-127)
-> .n_voltages field, which defines the selector namespace (0 to 170, then to 254)
 
-I think you mean 117, not 170.  I don't understand what you mean
-with "then to 254."
-
-In any case...  you and I talked offline and I now accept that,
-in order to allow selector values up through 127, the value of
-regulator_desc->n_voltages needs to be 128 (or conceivably,
-256).
-
-This is shown in numerous places, with things like:
-
-         if (selector >= desc->n_voltages)
-                 return -EINVAL;
-
-         if (selector < desc->linear_min_sel)
-                 return 0;
-
-In <linux/regulator/driver.h> it states "Selectors range from
-zero to one less than regulator_desc.n_voltages" but it also
-says n_voltages is the "Number of selectors available for
-ops.list_voltage()."
-
-The former meaning is really about all possible values that
-can be stored in a selector register (field)--whether those
-values are valid selectors or not.  While the latter description
-sounds to me like the size of an array.  We have a case where
-some values (0..10 and 128..255) don't really fit (they all
-represent value 0.5 volts, while 11..127 represent a linear
-range).  And I was thinking n_voltages was 117 (the size of
-the array), rather than 128 (one more than the maximum
-valid selector value).
-
-In any case, some of this seems less clear than it could be.
-
-But I'm not going to get in the way of your patch being
-accepted.
-
-Reviewed-by: Alex Elder <elder@riscstar.com>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
 
-
-
-> With n_voltages = 117, the maximum accessible selector is 116. This makes
-> selectors 117-127 unreachable, even though they're defined in the linear_range.
-> 
-> n_voltages = 128 doesn't enable those for operational use, it just allows
-> the full valid range (11-127) to be accessible.
-> 
-> This is why in my test for the K3 pico board, setting ALDO to 3.3V
-> (selector 123) or 3.4V (selector 127) fails with the current code.
-> I mean that leads me to this bug fix.
-> 
-> Best regards,
-> Guodong Xu
-> 
-> 
->>>    #define P1_DLDO_DESC(_n) \
->>> -     P1_REG_DESC(DLDO, dldo, _n, "buck5", 0x67, LDO_MASK, 117, p1_ldo_ranges)
->>> +     P1_REG_DESC(DLDO, dldo, _n, "buck5", 0x67, LDO_MASK, 128, p1_ldo_ranges)
->>>
->>>    static const struct regulator_desc p1_regulator_desc[] = {
->>>        P1_BUCK_DESC(1),
->>>
->>
->> I have exactly the same comment about this change to the
->> number of supported values.
->>
->>                                          -Alex
-
+-- 
+With best wishes
+Dmitry
 
