@@ -1,117 +1,121 @@
-Return-Path: <devicetree+bounces-260892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260893-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iBb8CrBge2kdEQIAu9opvQ
-	(envelope-from <devicetree+bounces-260892-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 14:29:20 +0100
+	id MMhNHmxie2l2EQIAu9opvQ
+	(envelope-from <devicetree+bounces-260893-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 14:36:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85074B063B
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 14:29:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D4B0AB074A
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 14:36:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3BA9630097E6
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 13:26:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EA9F9300B9DB
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 13:36:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B3F52BEC20;
-	Thu, 29 Jan 2026 13:26:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE3E22E9EBB;
+	Thu, 29 Jan 2026 13:36:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oQ8c05IG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="T5ICcfme"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+Received: from mail-dl1-f54.google.com (mail-dl1-f54.google.com [74.125.82.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A505127816C
-	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 13:26:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44E40246BC5
+	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 13:36:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.82.54
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769693180; cv=pass; b=WZIoSm1kKhWP18RXJZqMLcbyoYpuYcZ3IPK9gJopf9dojgLtflcxCfPcZZ9tZmwmGZrFCb4GbW18X32SypuT9EXVv536olwSLVDSQ8wcBtSD+IrS5OzYeumzopv0ZzUNIh3UozVc6L9jP+D/4MbassmaMaodUojAYHmmdApzRXM=
+	t=1769693780; cv=pass; b=WCzcEy4qZFCIgRJVj68RmbEr51YwDV/MFOQnY/eBc7uf4n8xToOuqvKoVKi3pToJDA2hMGYBQp1DGKnuucwqjiySH+kJXD1KDiXhm9JZUMHPeK99IS+OZgIJoosj8Jwp7XLUBvhFTTEMnheM95TQrwVBWfQfrNO6PpdUPrEwzWk=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769693180; c=relaxed/simple;
-	bh=wsidljbUOheDDhJRTDJXoKGXzNID+L+tmRs8iTD+1bg=;
+	s=arc-20240116; t=1769693780; c=relaxed/simple;
+	bh=T2/nv8JV1Ds7KRLfYUddoQsiK5wsxE0Be89T8jD7vSA=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NfUUZEu6x+Qx42x6oN+X9nBXD+wb04pyXL5ujyEmfUK3/e5ezbvoR3IAhiT0shOzaX+bZFlUoTuWVyGeLznVtp7XQudn7TeYqR10DdJ+T6mPbQg/58QA36As91OBlAhGDMVTW8XAAYvmq3kVMhTS42Cahq8uUrP2NImlocDyn1g=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oQ8c05IG; arc=pass smtp.client-ip=209.85.208.53
+	 To:Cc:Content-Type; b=agH3C77rx0tyl+hNioe46P2MGoDhhUTviIERlks7s7ipGKtmhueFTOfkBbPkgaikWKzbSKTlhQoQB23d8dG/gFLW5sZqGgFm1ga2Kph972CbZu6WzgbKinlB2iKpbk9yQ/7jykNDxuNeBMrDD7C2O9ueKUf36qp+N9QYZiSOHsQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=T5ICcfme; arc=pass smtp.client-ip=74.125.82.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-658cb3ee91aso1653078a12.0
-        for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 05:26:18 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1769693177; cv=none;
+Received: by mail-dl1-f54.google.com with SMTP id a92af1059eb24-124afd03fd1so1426159c88.0
+        for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 05:36:19 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1769693778; cv=none;
         d=google.com; s=arc-20240605;
-        b=RowvXMHr2xIrprXPW2jUKfk7getK4DvIujawFmUgHrLuBOrYb7IouICaKjIJbCymWr
-         yMwE8Orm36b1sfw6dy1rCpO3EjKAw9RuTF84iaxZr+YVYnFwe5Xn7hafoQDNK7h/PiB5
-         b7y6lyq9e+KSL7/0uS1m/umrydNJm0Af2JoC4TqBpF2tN0yLrI2gisFnqfMTvbuw3oHX
-         FwvqS5qEIkNOtXHlyz1M87Wb3JTln5f0SJ5KPJi8u9wX228NcrZR3NffxqxQhCEZyBkj
-         DFu3Da6K6iiDG3XlCdy1v5yefMtzJ6EBoleQYRm1OeOTdjwsFKvF/YkpMrrcjkHBtwSS
-         LHtQ==
+        b=TvBLjwboWSZcgWSWcOL/g9aIzdS5V1VjgWfKL7agbPq+dxICM45T28USOFBFDhDGM3
+         wzhcRBMr7DNbbBvk4M76cczIQebultjezDmnr3ymcR+/y9b7T7+PIo8DiefeJPFyTRFf
+         ryESJI/e+mxfxr4/5mZ/w8kLs5PasYEHpK/KL2n9YUhktLNYSMFr8eHmUCQ7YawLWARg
+         aapZzcgiZJbJ42c6lh0XUgxRug2qHYUzDZPHBRyWAzwyDPy9zppyNY8hB2HOiECxdkCX
+         nvyuKLQyjYy3H8CE7a9fFYUO1fJFgUrRp/xC6dfhUb3fRuLmQpY9V/lcJcSwwKv10ZeZ
+         6T5Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:dkim-signature;
-        bh=3FAbLg0n8TvG7sx8QobTC/6/6GD1GFWRF9jfzZ0OiBM=;
-        fh=ar+c19/WVtbkLVEK2wNXUxFpyKVoGqbTXmKbzsVGxmw=;
-        b=PGBpdM60L+hCfr7CCLWGwDONQJY54+dSiK8rWIVEZtTJ1Xs/WEaw2MNh6PcLEnCPWV
-         1DK2YlzNe30Vz/n2FNU3OMr6/kem5oxHDovyzkX3vYSd+QFvEGjIh/tlV8NVK5H3H30b
-         V8S5vD8ScFpHKR+vebIIKkj8Wfo8m8lIC36VOrzi7iY6yC3EZ9p8RYp3u5oYWPuWTzu1
-         FKtI+kMJ/cYa7AMxZXb/AMY3k7ctmSCl1W6HelcYn5fj7LaxEDD+btww0eBlYepB5gP9
-         lZQQUCfxTn2r0eIGckXT9oYDfSe9iZp2IKdI643VibaQRLmSgVGcDDl6CjHGnSq9eS9p
-         HcyA==;
+        bh=OUbc9YmxzZyQuCfYvCcWLpHnYb4bvtYeu1C4sFcAeps=;
+        fh=+yUbbiMpKU9tcYqiRIyLy0B5bAfj0Y6Zcb4kzTawuic=;
+        b=LCxpXjOCOvtuTkMih3GTtp4KZB2iEKsZjpfbtM/8dkE1GgNEOL7ppgYjVREhjxwLf2
+         Dxy0Ik1lNJEmiwPtzuf8qOd7Qj101K7q9p2sB8uoF5Ym152SWIR6/kUlFnoHo9YXpMux
+         RA7wfI+SACQCK4pQW0RZceqicOQSRBK04gGH+0w2ebyqdso2tPVd7kRpRveZAzIlBvO7
+         Gxp4FBvhI0beqigM8Tr8+qlwt6Tfdo3CqeTmdSDC6NIB+kks19PL6rnsDnORBHsRcbGW
+         OOaNAB3yexcRHCbtTTtjvIfQ+XuTcOgP/2l6D+UkeN+xz15IYHXJUzuw2Op4pyUwjYaP
+         eJfQ==;
         darn=vger.kernel.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1769693177; x=1770297977; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1769693778; x=1770298578; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=3FAbLg0n8TvG7sx8QobTC/6/6GD1GFWRF9jfzZ0OiBM=;
-        b=oQ8c05IGXOqyhroNUuHiaW+NzpdpvSHBIsNSXk4BVfyLFHBEWbOqy7B+3jff0P/bYL
-         WqBoLGdKIYJbpTrLX68nIv2+vBklLhWxtvE3dPCDw0zecHc1Drvvoy5PDjvu5zMK/iqY
-         OjKGpX2cdlZgZK12SiJPYP+n3vrLII1t2Ux5wdgnxdR5iz70bPXJ05jb+CYKrSfoeFZJ
-         qY/y1I7mLDE0w645m3EYQo0g5Tcq75yMJWtIVTl/xGFEwJiy5fOIie8dRM83zpzFtiYf
-         ogv1PjW5EOEh+ByLRx3UtMc8Xg2T/t7OVgY9eM9vPXpVH+oClx02joW3WCX/20Q397g2
-         ibaw==
+        bh=OUbc9YmxzZyQuCfYvCcWLpHnYb4bvtYeu1C4sFcAeps=;
+        b=T5ICcfme5PXXSgw9Qv+6I8Lw7XKnEUotqxEMtA8YOwGevsQKP95VFpo5Xc4R/CLV2e
+         c7HtnAYqxmPiVtDWPMZH357V2Fz6L8vLZtvcNs9RU1fACvI9wztDtxoH0q0QwMzUZim+
+         bV/KxBJh890z0i+I1Pjy2wjc/dCXzIIsiQbcj3jw11STsqUT+Nz88QMUVLDqDifWHIRh
+         2qyMdQq72IdC1mgtO7F8PcIy/II62nlSy4wQb23HSF3/93wfGkyRAw1ObALGbyo6V/HC
+         /9wcEDrqFcSTJ43zIErTPrya0NdB7cRdRmyM5cisajd/A7SGBzcUvbdfUFvKz0QO8KT+
+         tUuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769693177; x=1770297977;
+        d=1e100.net; s=20230601; t=1769693778; x=1770298578;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=3FAbLg0n8TvG7sx8QobTC/6/6GD1GFWRF9jfzZ0OiBM=;
-        b=fIT4RDZnOEycb33oAx9M7WXdAnd/5yvob52/ArCGh7chP/Od1dC3QIjECtIUITAj7L
-         xbes9CVaK0msx9NFm7QVXYENyoYkGsbeMMYoNHj6wIp/6EUu0w8r20kjDmSiPhJzVasH
-         KuiAIdpxhPqfMSggFPloAl4HwCVOiuxxpJAsZufcT769w8LQeOddeizol+/hjVLx/gHy
-         IjuZFG6/F0cJdyXbEmmXdL1wj36rXmD48aC6Zxu0tQpzkgtB2V7T53XVzecmXVRmcPeE
-         fsf5FKZGSa19uu8IOTNbix5BuVYskVzqsnJza5J7XqJOTThfa9mVhvpIfO/dSdW6+m2c
-         XmYg==
-X-Forwarded-Encrypted: i=1; AJvYcCXICsjYhMY1QD10tGM5d3qBJdknngQ3uLBY7iESap/J2k5k3vodgTXNQ9rvMIdaNLAglh6zYHA8yMVK@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx1zBPV/9R8E9DCAZB4i5M6KnYZp62pFAAjTU0LCM09PryHSJUq
-	yXAAN/Bw3SCDc2vtVZHk39zfhTKeKoHbvb0+QxCAx1GYl8R/ZWl9M6Vi+XzqTHuMxg5bls9UkNn
-	SVO1FTzfI/ZPk6B7Fe6tbdSPbR3Im6sipHIvIZeFR2w==
-X-Gm-Gg: AZuq6aLIDnO+v2cNShL5PzAVAJCsEa5chz1YI0ztMOELtxnotgYt0NOX3T6UmpyoCUR
-	En/GD9YV55xF4Vcdx18SKRhRi6BVoPQxrrkzpGruV3e10+0yQbF1Chi6D2ZsraC1FESi7nklaCg
-	7Mi3l3ptGRf/EfUiyIoKbxiRPtySdmfsnhucekAmBM/jY+pR/SDmTyc/Ft0Fk1KlBcs7xUQ0PFO
-	dLFm0o/4os823VZxCDRS64ogCSqxi/LZfo5VMZv+EFdiUwxYWOpFrLMFLZTynEbtYHg5GA6QKLu
-	ZVZm6pDA/E9pK3F2Hb71Q0Oy
-X-Received: by 2002:a05:6402:1d50:b0:64b:6e44:217 with SMTP id
- 4fb4d7f45d1cf-658a5f8e7cdmr5148739a12.0.1769693176886; Thu, 29 Jan 2026
- 05:26:16 -0800 (PST)
+        bh=OUbc9YmxzZyQuCfYvCcWLpHnYb4bvtYeu1C4sFcAeps=;
+        b=AwoVrxd+e8WFvm6ZEXLKV8Z8RcmEHotqvoK6qYLx7JSlEHChQ5MEME/HWAQdJf84Q7
+         UmxlUlpUOdtIQwBgHc2rjfiJjHkD/QKspaRtqS6XXOO62RSjVbOiWiGxrOU7CrMwj2mo
+         GfnQ5Jsw4i+qIkEC8FsLlViylNvD0sOqSgwqHrD0GMt8rlAtL95ZpGNuKup1/6dFp6zC
+         eardMS2FVYc+IxDAw8TzO3gVH05ibTXyxLrPXGzVMhcdDRrob4jUzwWG0pBbJS+LlyMy
+         WywOhNjwhIkRqwbyKihiKbMXcxynsSX6KACHc4NkXJwZMxcVYgJ6hJFX9sFHk+DXR7V2
+         A77g==
+X-Forwarded-Encrypted: i=1; AJvYcCWBcQNZ8amugwuwpYzU+RlVVU/yOD7XMqdB7+KZmlfs4eYvdaMOjO3C7zNl+COxycHqh0F/0O7uWRL4@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy/nC5FLIh+kO6obMwpIJFa3nHl9Up6aUd7hkF7lpK1sH+tCInT
+	K6rcZjYDz+hOPCHJW43Gkx527u7mQurf/NxOpeNmj3HJEvmyTynq3JrlbEfNRUgoMe4jS8vXeBv
+	8YocBSkADR3w9IlcsE4KNaCMC/LcwTki2YXS4q0YYUfXaUqt+eZw3iww=
+X-Gm-Gg: AZuq6aKIEboxb4BfImL+Nukj8TifH2BEQQmjXR9kWD82JhTpHAVQ6w51XAKiiaXdrOL
+	liXvSUUjoMM0+p/eH0+aytOg1QFw63cgIbh95mwDAGC0+sR6XWZPieQp2AwOF5I3Nd/peL7bFmN
+	mf4KTwSo/ldPnh7gpSviIq7asW4sjtixxj9ykQr7daOx2dlHBBWlU6eUAUyFzJ+XU5clQC4X6rS
+	pp7TLnlNdAbIKgmYDoY+TRJjAfOV2IbIDVavxcoXl+PgyZO451Cm2estlLbHk0nxQMkMCvOBV5P
+	d/msq8rlZLZVQVM9JfYzpolC
+X-Received: by 2002:a05:7022:b8f:b0:11b:923d:7753 with SMTP id
+ a92af1059eb24-124a005f58amr6177136c88.3.1769693778067; Thu, 29 Jan 2026
+ 05:36:18 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260126092159.815968-1-vincent.guittot@linaro.org> <aXtUNxEmxcvuNj6J@shell.armlinux.org.uk>
-In-Reply-To: <aXtUNxEmxcvuNj6J@shell.armlinux.org.uk>
+References: <20260126092159.815968-1-vincent.guittot@linaro.org>
+ <20260126092159.815968-3-vincent.guittot@linaro.org> <aXsuRTZUUnw0kdzV@horms.kernel.org>
+ <CAKfTPtDfnpzq2CB-isVzvh1ZCWo7kit9KRJvVGoU1C3zZTgdXw@mail.gmail.com> <aXtfVUb0eLwP4R28@shell.armlinux.org.uk>
+In-Reply-To: <aXtfVUb0eLwP4R28@shell.armlinux.org.uk>
 From: Vincent Guittot <vincent.guittot@linaro.org>
-Date: Thu, 29 Jan 2026 14:26:04 +0100
-X-Gm-Features: AZwV_QjGAIu9W6_VpH3QHcTFTkleDIzRR41H4AQo5SaX9LTdvMXOOFKWjz1rXio
-Message-ID: <CAKfTPtC6TOnrHbyS4mH05wF78OFOMp_ST1UOeEgNZ7+hhh8gvw@mail.gmail.com>
-Subject: Re: [PATCH 0/4] Serdes: s32g: Add support for serdes subsystem
+Date: Thu, 29 Jan 2026 14:36:01 +0100
+X-Gm-Features: AZwV_Qg3uPvaKNdmIviHyRFKK8XsxTqMLqCrJ58tO3_TcY5z3DRE4t2Ah-LnutY
+Message-ID: <CAKfTPtCiJcNOdoddZN5N1dKHXfUJBe0=zeWfZ5uENoXDvbMnpQ@mail.gmail.com>
+Subject: Re: [PATCH 2/4] phy: s32g: Add serdes subsystem phy
 To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: vkoul@kernel.org, neil.armstrong@linaro.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, ciprianmarian.costea@oss.nxp.com, s32@nxp.com, 
-	p.zabel@pengutronix.de, ghennadi.procopciuc@nxp.com, Ionut.Vicovan@nxp.com, 
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	netdev@vger.kernel.org, Frank.li@nxp.com
+Cc: Simon Horman <horms@kernel.org>, vkoul@kernel.org, neil.armstrong@linaro.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, ciprianmarian.costea@oss.nxp.com, 
+	s32@nxp.com, p.zabel@pengutronix.de, ghennadi.procopciuc@nxp.com, 
+	bogdan-gabriel.roman@nxp.com, Ionut.Vicovan@nxp.com, 
+	alexandru-catalin.ionita@nxp.com, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org, 
+	Frank.li@nxp.com
 Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
@@ -124,48 +128,50 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260892-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-260893-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[vincent.guittot@linaro.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[linaro.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	REDIRECTOR_URL(0.00)[aka.ms];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[aka.ms:url,n:email,outlook.com:url,xp.com:url,linaro.org:dkim,armlinux.org.uk:url,armlinux.org.uk:email,nxp.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 85074B063B
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,armlinux.org.uk:url,armlinux.org.uk:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: D4B0AB074A
 X-Rspamd-Action: no action
 
-On Thu, 29 Jan 2026 at 13:36, Russell King (Oracle)
+On Thu, 29 Jan 2026 at 14:23, Russell King (Oracle)
 <linux@armlinux.org.uk> wrote:
 >
-> Please drop these addresses from future patch series:
+> On Thu, Jan 29, 2026 at 02:01:13PM +0100, Vincent Guittot wrote:
+> > yes, the usual pattern is :
+> > - phy_set_mode_ext()
+> > - then phy_power_on()
+> > but I can add an additional check
+>
+> Please read Documentation/driver-api/phy/phy.rst section "Order of API
+> calls" which suggests phy_set_mode_ext() after phy_power_on().
 
-Yes, will dorp for next version
+Fair enough.
+That being said, all pcie drivers  that use phy_set_mode_ext(), call
+it before phy_power_on()
 
 >
->   alexandru-catalin.ionita@nxp.com
->     host nxp-com.mail.protection.outlook.com [2a01:111:f403:ca09::7]
->     SMTP error from remote mail server after RCPT TO:<alexandru-catalin.ionita@n
-> xp.com>:
->     550 5.4.1 Recipient address rejected: Access denied. For more information se
-> e https://aka.ms/EXOSmtpErrors [AM4PEPF00027A62.eurprd04.prod.outlook.com 2026-0
-> 1-29T12:31:01.197Z 08DE5971FB66165F]
->   bogdan-gabriel.roman@nxp.com
->     host nxp-com.mail.protection.outlook.com [2a01:111:f403:ca09::6]
->     SMTP error from remote mail server after RCPT TO:<bogdan-gabriel.roman@nxp.c
-> om>:
->     550 5.4.1 Recipient address rejected: Access denied. For more information se
-> e https://aka.ms/EXOSmtpErrors [AM3PEPF0000A798.eurprd04.prod.outlook.com 2026-0
-> 1-29T12:31:00.781Z 08DE596525364766]
+> Having different requirements for different SerDes PHYs quickly becomes
+> annoying for users of the SerDes PHYs.
+>
+> E.g. I'm trying to add SerDes PHY support to stmmac, which is used
+> across different platforms. Having all SerDes PHY drivers behave the
+> same as far as their PHY API calls are concerned means that the whole
+> point of having an abstracted interface is maintained. Otherwise, it's
+> completely pointless.
 >
 > --
 > RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
