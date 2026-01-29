@@ -1,251 +1,193 @@
-Return-Path: <devicetree+bounces-260935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260936-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IKNGLdaIe2mlFQIAu9opvQ
-	(envelope-from <devicetree+bounces-260935-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 17:20:38 +0100
+	id eDQiItqIe2mlFQIAu9opvQ
+	(envelope-from <devicetree+bounces-260936-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 17:20:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 791B7B2129
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 17:20:38 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id F39E0B2131
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 17:20:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E7B9230099AE
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 16:20:35 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id AA7D7300C263
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 16:20:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 736B733F8B7;
-	Thu, 29 Jan 2026 16:20:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E57733FE26;
+	Thu, 29 Jan 2026 16:20:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="L1mMlLB8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qk8qGl+P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f46.google.com (mail-dl1-f46.google.com [74.125.82.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8390033EB07
-	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 16:20:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 295851DC997;
+	Thu, 29 Jan 2026 16:20:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769703633; cv=none; b=GTYHoQeB9fN0pSVkecNscLKLWLUGlNzapNHU7rpfORZZpK+pJAdIyDo7s30ZVJMlEDFYERCAewsTVn/HjzrmQwjD/aRMjOW4HXfPOMCmrwkpYuRSATfDpLQdUku8PzH88i/EcJHTZuZJAjNqMbYPFAceV9vJpyzESi4NsWc3cvg=
+	t=1769703634; cv=none; b=rULVbUWKB8JFAW75D8wc7Ntvy3gtv+xyWryvIRJlPPBOFMwXYSgGCevgd/FpyMgNKQSwtQD4+TcUUMDAbEq3j47XpqXj+9AO1RGKJFsixInIzoXmPzcub5k91Xmr7FJUKF1+nQ68Ek5mnPdX/4I3f+gZqENCNo5ofavtCZCnjBw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769703633; c=relaxed/simple;
-	bh=EGsRY7aG0zzAYU857y9QMnROLwSVALHkPRes/8MaDSM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=oLe8I9yDREcnCmoZcvm0btOAMVMbJJgLMhYOg+aZ8mAzT9SLbNwyyo1FY1H3EnaZF1crnp2quG43H1dxyCzlo/E89Gcpw9B83g2G6LL4+p9CPFcOZmn3760qJcXJbXf28AgsRRxEn/svNBw687timHdL2Q3r9GY03RoxgfzvrSg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=L1mMlLB8; arc=none smtp.client-ip=74.125.82.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-dl1-f46.google.com with SMTP id a92af1059eb24-124899ee9d3so788715c88.0
-        for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 08:20:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1769703630; x=1770308430; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=MOn+Bs0qoUGUzxsaUu2YGKwHvxmscu6j9iNcuCgMsM4=;
-        b=L1mMlLB8xCwzeZpeKHkkBH6smX7+6helVTuSQ7qmRxi8GtnAprEhlUW0ci8HNWVFNd
-         z7z83MPNMvDjeaCb1+cO1H0f1MXRZ6vu5Kx3EdPgQ7l39u+90vqOqWR0u8Yy9uNiKdhx
-         QfDhO+GyfpplyoVD9ldqr5WKVAPDChBBko6UhEuk2ZSlo2e9idjOKo4VrNaeOcUaNzCM
-         jyNY+S1Y8qgXjgcaqyuPwDDcApgV9LSazkz26Beg1Jx7l6La5dVzV94v9+dK+JsT/Gc6
-         9zkP2+6GKx0B6GmzoQp0uor2QNZYq5aZJc0Ifk50S13NL8yM5xFErP3Y8HMLs2z+lU0o
-         Bxsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769703630; x=1770308430;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MOn+Bs0qoUGUzxsaUu2YGKwHvxmscu6j9iNcuCgMsM4=;
-        b=oFuJIRoUb39+GFa9cPNd0GN131yRxdeMMeyLj098TXyKjBdk529qFRzYsEl1sRlz8i
-         MO1yGvk5IbbuzLnaNiBPKkMtXJWHPvNhqYs6Dy8mAGWNaVenGPxkddVJJCA18Lg3G4MA
-         1dcsgiOZvUxdzulrpXrHXBG8Xs0RzsMJsjwnAC5XymzLglCkCgwE0BS6SAcVSoXPSfdp
-         QwjNcUlsMdR4tZk2t8+Ww7epVG/22v1Mr0siH42eSrVEgeMMhrzBh6rpwor/GZpRKt/0
-         KyBQXsMc/1gz0iAsh0cl+2MhxqwgSs1h1/irVYFOXShCW8s4f1d3N50McEjfjaJRV1Jx
-         hx7w==
-X-Forwarded-Encrypted: i=1; AJvYcCUvbK6CC6BPaIquO4T1zqHmYCSfpGBWtz2Dh7CnVMfrf75LYPBgKGCBLzSfND0WdZEgYyQ44Sv0hWLI@vger.kernel.org
-X-Gm-Message-State: AOJu0YwqJRjEIeWlOlpqCrD458619HVrp01FWLKWQFBQrr99hY4RzcnO
-	FTYPPgB4ez0eGByWn2pRyTlIzVJXf8+Ishco607IJapketwARaJmTxUsDrqKlPxTS5MUHQlWS1Y
-	9kiSf
-X-Gm-Gg: AZuq6aK17S3EwOlXeEAZ9GuKZCItTxKzllQI5iJCwzoxJJgHiUj1yU8tn1XD2Yhgw+a
-	h803sGXXOYYv8Z9TLEur59xb2+rJL42JYE2T0hrOSaZJJZ2jV72iClihwwsn+DVhODBT0Qfrt5o
-	avmNzl+coy4iJi5Nkcgp7NbJwEtpvKoG8X3eAKJmzrThHnRxriiZmX38wkDmt8604pZwUXds3eC
-	qdXATPR3FbmPyJOwGo3Vk+Pq3nhp9Nl20e0SxmmpWSqMwjl6uy6Vn2JgFVd5nnsMblBVReypBB3
-	6iraOizR5s9Ah9dnJWkttE3wIpSGsTdAq1vJQhcrgyihjsWiQ2DN/eTXMkxkCdGVzf0+EpQN3A/
-	A0ILjjso4eItQxM+xImvNtZUCXjpwty97vguYpqTdWsJul//vU0oKVdQu3cJRhMN7pQLWSnpaSg
-	KFcqs6zWSDS6pG2YgOEL3NrHfgClPdUFzRbGy/Ff0tK6d5+8We4X7e7Y5gfTvE
-X-Received: by 2002:a05:7022:220d:b0:123:331f:978f with SMTP id a92af1059eb24-124b101ee64mr1698024c88.7.1769703629586;
-        Thu, 29 Jan 2026 08:20:29 -0800 (PST)
-Received: from ?IPV6:2600:8803:e7e4:500:eca6:912e:45a4:4837? ([2600:8803:e7e4:500:eca6:912e:45a4:4837])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-124a9d6b663sm6740743c88.1.2026.01.29.08.20.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Jan 2026 08:20:29 -0800 (PST)
-Message-ID: <5d2e85cd-caa2-43a6-a451-3b822bd0ef01@baylibre.com>
-Date: Thu, 29 Jan 2026 10:20:27 -0600
+	s=arc-20240116; t=1769703634; c=relaxed/simple;
+	bh=Fz1cXF6f+rJrvUbhHS3fdB4yadryUHMv1k4BpBRxD8U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fAZiVqpHuZmD4cwXtLyh+dN4zLGD57BZ6YQg5OrNndvEhowcxmcvYH1zqmCLE4Fusl5rUaAbidyN22fxfERChUaCs8ZCHSCP153qWQBHhD799QiIUvmrhPBZSpoZmMIEX8oLXVD6VzeYkPHfjdQj1py5clctjohZSqbrk0JPnSg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qk8qGl+P; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BF5CC19422;
+	Thu, 29 Jan 2026 16:20:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769703634;
+	bh=Fz1cXF6f+rJrvUbhHS3fdB4yadryUHMv1k4BpBRxD8U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Qk8qGl+Pkcd4d1ocyt263pGIIb71t4DaBVUNxvGVhL4GjZ+0VFhvreTqIrTOl9min
+	 8TRYYRMyiAqaFRi+sYi/V4FURJnui5PEeeyiYNGGRsOCTbEHfV/k/Rd/efbn4aJw16
+	 3ZuZEWelIPyL13/nkF/pOeQBDfkdqq+kS2QmkNk1F0qyHQ8KFV3zbEbrPJnYv8M87r
+	 JAL/uuvmRFDGH1Ppn1vGBb4mahgzodbqTAWTygv7ryClXuV3gOk2/wm6XYyNCcl8/d
+	 /ueY04E03nuGlhj+h4NdCERf0RQH104yambHI+iDX17QbO79apmkgPv0zLaACAxAZQ
+	 Ur7QUYivF1ZGg==
+Date: Thu, 29 Jan 2026 16:20:28 +0000
+From: Simon Horman <horms@kernel.org>
+To: Vincent Guittot <vincent.guittot@linaro.org>
+Cc: vkoul@kernel.org, neil.armstrong@linaro.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, ciprianmarian.costea@oss.nxp.com, s32@nxp.com,
+	p.zabel@pengutronix.de, linux@armlinux.org.uk,
+	ghennadi.procopciuc@nxp.com, bogdan-gabriel.roman@nxp.com,
+	Ionut.Vicovan@nxp.com, alexandru-catalin.ionita@nxp.com,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	netdev@vger.kernel.org, Frank.li@nxp.com
+Subject: Re: [PATCH 3/4] phy: s32g: Add serdes xpcs subsystem
+Message-ID: <aXuIzJdZYEGX3XVy@horms.kernel.org>
+References: <20260126092159.815968-1-vincent.guittot@linaro.org>
+ <20260126092159.815968-4-vincent.guittot@linaro.org>
+ <aXtLsuOkMMryrUs4@horms.kernel.org>
+ <CAKfTPtB8xDB8qYUZwGnH+h94ww3+gSyOuZ+RL+zOh5tYGuu_HQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: ad4080: add AD4880 support
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260129152731.154368-1-antoniu.miclaus@analog.com>
- <20260129152731.154368-2-antoniu.miclaus@analog.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20260129152731.154368-2-antoniu.miclaus@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAKfTPtB8xDB8qYUZwGnH+h94ww3+gSyOuZ+RL+zOh5tYGuu_HQ@mail.gmail.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	TAGGED_FROM(0.00)[bounces-260935-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DMARC_NA(0.00)[baylibre.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260936-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[horms@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,analog.com:url,analog.com:email,0.0.0.0:email,baylibre.com:mid]
-X-Rspamd-Queue-Id: 791B7B2129
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,horms.kernel.org:mid]
+X-Rspamd-Queue-Id: F39E0B2131
 X-Rspamd-Action: no action
 
-On 1/29/26 9:27 AM, Antoniu Miclaus wrote:
-> Add AD4880 dual-channel ADC to the AD4080 bindings. The AD4880 is a
-> dual-channel variant with two independent ADC channels, each with its
-> own SPI configuration interface.
+On Thu, Jan 29, 2026 at 02:24:15PM +0100, Vincent Guittot wrote:
+> On Thu, 29 Jan 2026 at 12:59, Simon Horman <horms@kernel.org> wrote:
+> >
+> > On Mon, Jan 26, 2026 at 10:21:58AM +0100, Vincent Guittot wrote:
+> >
+> > ...
+> >
+> > > diff --git a/drivers/phy/freescale/phy-nxp-s32g-serdes.c b/drivers/phy/freescale/phy-nxp-s32g-serdes.c
+> >
+> > ...
+> >
+> > > +static void s32g_serdes_prepare_pma_mode5(struct s32g_serdes *serdes)
+> > > +{
+> > > +     u32 val;
+> > > +     /* Configure TX_VBOOST_LVL and TX_TERM_CTRL */
+> > > +     val = readl(serdes->ctrl.ss_base + S32G_PCIE_PHY_EXT_MISC_CTRL_2);
+> > > +     val &= ~(EXT_TX_VBOOST_LVL_MASK | EXT_TX_TERM_CTRL_MASK);
+> > > +     val |= FIELD_PREP(EXT_TX_VBOOST_LVL_MASK, 0x3) |
+> > > +             FIELD_PREP(EXT_TX_TERM_CTRL_MASK, 0x4);
+> > > +     writel(val, serdes->ctrl.ss_base + S32G_PCIE_PHY_EXT_MISC_CTRL_2);
+> >
+> > This is part of an AI Generated review.
+> > I have looked over it and I think it warrants investigation.
+> > For information on how to reproduce locally, as I did, please see [1].
+> >
+> >         The entire s32g_serdes_prepare_pma_mode5() function is ~70 lines of
+> >         magic numbers with zero explanation. These appear to be
+> >         hardware-specific PLL/PHY tuning parameters for 2.5G mode.
 > 
-> For AD4880, the binding requires:
-> - adi,aux-spi-cs property for secondary channel chip select
-> - Two io-backends entries for each channel's data interface
+> Unfortunately there is no additional information in the reference
+> manual other than
+> *step 4:
+> - Write 3h to EXT_TX_VBOOST_LVL.
+> - Write 4h to EXT_TX_TERM_CTRL
+
+Understood. Sometimes you have the play the hand you're dealt.
+
 > 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> ---
->  .../bindings/iio/adc/adi,ad4080.yaml          | 49 ++++++++++++++++++-
->  1 file changed, 48 insertions(+), 1 deletion(-)
+> >
+> > Please consider using #defines, to give values names.
+> >
+> > ...
+> >
+> > > +static int s32g_serdes_init_clks(struct s32g_serdes *serdes)
+> > > +{
+> > > +     struct s32g_serdes_ctrl *ctrl = &serdes->ctrl;
+> > > +     struct s32g_xpcs_ctrl *xpcs = &serdes->xpcs;
+> > > +     int ret, order[2], xpcs_id;
+> > > +     size_t i;
+> > > +
+> > > +     switch (ctrl->ss_mode) {
+> > > +     case 0:
+> > > +             return 0;
+> > > +     case 1:
+> > > +             order[0] = 0;
+> > > +             order[1] = XPCS_DISABLED;
+> > > +             break;
+> > > +     case 2:
+> > > +     case 5:
+> > > +             order[0] = 1;
+> > > +             order[1] = XPCS_DISABLED;
+> > > +             break;
+> > > +     case 3:
+> > > +             order[0] = 1;
+> > > +             order[1] = 0;
+> > > +             break;
+> > > +     case 4:
+> > > +             order[0] = 0;
+> > > +             order[1] = 1;
+> > > +             break;
+> > > +     default:
+> > > +             return -EINVAL;
+> >
+> > AI review also flags that s32g_serdes_get_ctrl_resources() ensures that
+> > ss_mode is <= 5.  So this check is unnecessary.
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad4080.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad4080.yaml
-> index ccd6a0ac1539..3909e3095507 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad4080.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad4080.yaml
-> @@ -18,6 +18,9 @@ description: |
->    service a wide variety of precision, wide bandwidth data acquisition
->    applications.
->  
-> +  The AD4880 is a dual-channel variant with two independent ADC channels,
-> +  each with its own SPI configuration interface.
-> +
->    https://www.analog.com/media/en/technical-documentation/data-sheets/ad4080.pdf
+> okay but providing a default seems a good practice
 
-Can we get a datasheet link?
+Yeah, I was of two minds about forwarding on this part of the report.
 
->  
->  $ref: /schemas/spi/spi-peripheral-props.yaml#
-> @@ -31,10 +34,18 @@ properties:
->        - adi,ad4084
->        - adi,ad4086
->        - adi,ad4087
-> +      - adi,ad4880
->  
->    reg:
->      maxItems: 1
->  
-> +  adi,aux-spi-cs:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Chip select for the auxiliary SPI interface used by multi-channel
-> +      devices like AD4880. Each additional channel beyond the first requires
-> +      its own SPI configuration interface on a separate chip select.
-> +
->    spi-max-frequency:
->      description: Configuration of the SPI bus.
->      maximum: 50000000
-> @@ -57,7 +68,8 @@ properties:
->    vrefin-supply: true
->  
->    io-backends:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 2
->  
->    adi,lvds-cnv-enable:
->      description: Enable the LVDS signal type on the CNV pin. Default is CMOS.
-> @@ -78,6 +90,23 @@ required:
->    - vdd33-supply
->    - vrefin-supply
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: adi,ad4880
-> +    then:
-> +      properties:
-> +        io-backends:
-> +          minItems: 2
-> +      required:
-> +        - adi,aux-spi-cs
-> +    else:
-> +      properties:
-> +        io-backends:
-> +          maxItems: 1
-> +
->  additionalProperties: false
->  
->  examples:
-> @@ -98,4 +127,22 @@ examples:
->            io-backends = <&iio_backend>;
->          };
->      };
-> +  - |
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        adc@0 {
-> +          compatible = "adi,ad4880";
-> +          reg = <0>;
-> +          adi,aux-spi-cs = <1>;
+...
 
-We can already have multiple reg for a multiple CS device.
+> > AI review also flags that s32g_xpcs_regmap_reg_read and
+> > s32g_xpcs_regmap_reg_write do not protect against concurrent access.
+> 
+> but regmap framework should
 
-             reg = <0>, <1>;
-
-So we shouldn't need a new adi,aux-spi-cs property for that.
-
-> +          spi-max-frequency = <10000000>;
-> +          vdd33-supply = <&vdd33>;
-> +          vddldo-supply = <&vddldo>;
-> +          vrefin-supply = <&vrefin>;
-> +          clocks = <&cnv>;
-> +          clock-names = "cnv";
-> +          io-backends = <&iio_backend_cha>, <&iio_backend_chb>;
-> +        };
-> +    };
->  ...
-
+If it does, then I agree there is no problem here.
 
