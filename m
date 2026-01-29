@@ -1,263 +1,247 @@
-Return-Path: <devicetree+bounces-260768-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260769-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iHgrOGYSe2mlBAIAu9opvQ
-	(envelope-from <devicetree+bounces-260768-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 08:55:18 +0100
+	id MPuzFkUUe2nLBAIAu9opvQ
+	(envelope-from <devicetree+bounces-260769-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 09:03:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E235AD0A4
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 08:55:18 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB2B9AD137
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 09:03:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 862F6301E7E8
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 07:55:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D40DC3006B0A
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 08:02:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0608537B400;
-	Thu, 29 Jan 2026 07:55:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BEE637AA73;
+	Thu, 29 Jan 2026 08:02:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AFiZYSWG"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="kxfAOJNE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f177.google.com (mail-dy1-f177.google.com [74.125.82.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011042.outbound.protection.outlook.com [52.101.65.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51631365A17
-	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 07:55:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.177
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769673312; cv=none; b=LpR+0v1XuPjh7OONE8xxH3DCfUo8e5rwDFf4fzEjzzKGVhsyP9nXOAx4laLnvLaL8T2TJ1l4vfzHfCEJPJqpZmVYu/QuCHqG0UoMvOiMMTNBsbVc6A2yik9D33RW4ztJR9uxn7Zs+qAWTqGuL1MGRq9R/v3a9ZGTFlmGz6bq6RY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769673312; c=relaxed/simple;
-	bh=eyCVeg7f67HR0pVwpHS/CU/ZJg5xRy4DjDYrcwUwdaE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IYMR7Auz5wk5hI166UP8IBvjLje34ZgTg86RvyZ5M7PneVHmqD44sl/sonpFTPgxYqlHEjQsvOAcdSoMOdWrraRTOqlSFTSDpsCVLyM9t/MFao/V+Tj/UJ2wDX0QgYjoGNKUU5qOzjfE/itzNbBQjT2IH5fGdhYfZ+h3ys8zgkE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AFiZYSWG; arc=none smtp.client-ip=74.125.82.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f177.google.com with SMTP id 5a478bee46e88-2b1981ca515so1001097eec.1
-        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 23:55:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769673309; x=1770278109; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=D3TPHc5bOLijVe07Jm6G9DH+b3/G4af6i/e5GczImAc=;
-        b=AFiZYSWGV6ak3LSNf4GVdhxsBg7z07JX0r+i6jjUOjMV6qsThw6lGlHzb/qm3OPu8O
-         bJ8BBdZJqXiEtIXjDg1tU0LYv50kY+aSueGGQN6c/pwpNiGSmStmh6+yAoK7Y81/EDCt
-         a04qmhYwZL4cINh7/VGPbxG82HAiSQ+BI1KnmKOkuVYSEF67vAkXX0PdIHgiHQ9waMi+
-         tU4kfkP+pfuIUsCjwIZN5n9nfBFWsfizSFz61TYJqmM4pt8j8eK2hFKhPqTAnZlp7IXU
-         umUjYfVxSIlJm4CaG7cCII/XtCCJ91mx8GGP5BXso/bMj6pLQXKzVWf02hXAIQsc9joQ
-         8rkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769673309; x=1770278109;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=D3TPHc5bOLijVe07Jm6G9DH+b3/G4af6i/e5GczImAc=;
-        b=no1jqe38bo0WTpxTF8xgnFZHAMrMSvby+10hM4AVyLJSoYyEUhjuBl0tjEHBWnLUhW
-         p/WE5OjdjGyF1a+IyX/yvktrAy5UgxM0AdD58SsnYzWyOKdUhQKFNQW5xZC3uN9NBNyv
-         QgdNUJbojdg+9XgZez+78n6uxpN8MQZDBXYf9+zq/1MlTlkLMPPftRkv7CTvfPi1QRr1
-         awEizdZ3kGL3TtDFufEBuaxv0Aaua14+Z1VLyqiRp42GpAKZovUG9Qr2n2VHXqsv9l0E
-         6ZqtjLyeM/m8wJlGSyfoDOlY2MQkbxlzQ3AT/PCnOYFs/TqR40ykWRSdK6Hzf2uCCDF2
-         0YhA==
-X-Forwarded-Encrypted: i=1; AJvYcCU5ZBMwe0tafkArxcl+fMpF5qM9rjpBA8+prpBXwoLlH9gISE8FYvlpLvq7E6FcHZSfonL2QRIWMz16@vger.kernel.org
-X-Gm-Message-State: AOJu0YxwxMJGb6qCeL2wff8n5iIsj1mUR6BQIJsLo8wbhDlgzhdznXeG
-	8j1iJvQ6URFrpuDlLaI6U9zpSCgF/+caN1sNm1uEbREaaFsj2EIwHA8j
-X-Gm-Gg: AZuq6aIoDpaDsUVpsUHoIwAyC/XQ8dbHbgsOsZYnUfLoIAY2Wmvoi04dPSfa9CpyObn
-	vLfYHvTwgq/5+KSQ3hvL5JAH8hx6ooPS2wgbzkmwpIgsr651ZflOjBu5qZFIvkdiMcJwDfEfjFd
-	ecOparJg0vOVA03mm4ktPQrnvK6Oucq2wMYzBtqEFjjr1KMkjfMN5+EqZaUGW1FoF7L6LGuHMVx
-	avmywtwDeNxSvsdkmkWUWTeJLBsTulI+cWp/VDd8tD9grqFAqH/50SQkXkpaU+SoBFtS3JPa76J
-	gWjBFT1BW62hDp9SgseS8+KkBLN7SQ0B9lHkV1gx5QRQNtuRzlwjl4mgL2Lis8LTeafwK8xxewe
-	IVK+RGTZqufwci0KjSFb/jm2s13Hfd6R19P8rLv9asX/E7e/guI4ToLkiu8rQJ+pp/kkwitmAt1
-	a1lNlh2oago/ijnKuCokfBfHB7EKTUJ5Sl3IueAR3h2DvuE8oNAW0bFofF4x2GfiefGA==
-X-Received: by 2002:a05:7300:7307:b0:2b7:2fff:ed30 with SMTP id 5a478bee46e88-2b78d9fda38mr4503871eec.20.1769673309301;
-        Wed, 28 Jan 2026 23:55:09 -0800 (PST)
-Received: from [192.168.68.65] (104-12-136-65.lightspeed.irvnca.sbcglobal.net. [104.12.136.65])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b7a170ca0esm5994238eec.15.2026.01.28.23.55.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Jan 2026 23:55:08 -0800 (PST)
-Message-ID: <d2e3face-8d66-4136-a40c-635a1d055b2c@gmail.com>
-Date: Wed, 28 Jan 2026 23:55:08 -0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BBB7280327;
+	Thu, 29 Jan 2026 08:02:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.42
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769673765; cv=fail; b=QONnHVIRS3ItaSUMBPUV31aNCmd/PHH7aYJu7YzBlDkSu62URUvX8sryowOYeCd7Bb3a6gegkBhbSahc1Qi+7wwfsH6UyLJ+NyTAxsBSswRiYujOGdSj3QgISPAubygtAGnWAUKVegZfiQ5OyXys3Hm+ZUvlhuZkLy/EBWVkg3E=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769673765; c=relaxed/simple;
+	bh=hSAZKlPwErZ7i/Jw6oXMiya04H6OEUGzhCTLvtcGXZs=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=qAavGTzeW/IHgbN+9m0514MMpgkc09EfLlp8/HPA96KXOHvwQg9m3n7hxaNGCS0XSfmcbDcAEUVU+dJn51BjXaMRyKsWA9boRxXIITaXSJEbWOFx7xA0iJlmdBFxgVKtcciLwlorUB6Ma0cxEtwFurGyidTcrm5N/THXtCop0Hc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=kxfAOJNE; arc=fail smtp.client-ip=52.101.65.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=XDgRGbVPG0457E9L8CSETGx7/ayv2DRzszIUiYq1uGIfl+PRQzsUoPrMM+2YSl3m1g193nRU27VwkheXWWzsQml/wkxhpsIL7O2TRw8Sq9yTnqgXIsfkvhzabEDgZC+/9m71SwGnoctzSOYC5hog5pr22utKiHXowxkkLHJfM3bnejPQqlZ0mlyjVGFwIFK2TTWi+dfrJcK28SrVPdf39vgkv9m2esamT00Y2dbeokBirY3CruT0Y2TIBKxG7s5NkJwKM87X6mvr+sTLwJHYzJ0DpoLzupvoWuA187ue+DUMCT7CbxdsiJxJg4amScJVuIu4gmPaRI16czQzlWoUzw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=h/DNrz70M5E94ESqIozXod8OWbO2N6z3BWNDSt87Kkg=;
+ b=Iu5cbTodJxybkBjoO7mSlp70IN1f8ls0jP+/0CWaG7gATTzBi4azKPIxmh3aIWGwzKJIODT6S9qia1UPVBMSa/V1QiDFymAykhOVdKs8JQ2Tr6Z7JIs42ttFsleCRIhtfV92/ezxvgjOuVBX8/TVH7GbVkIr8iOXKqqeiH9VP6WKfdQVmf6QXcC56fBL09JRr3bEB5GxLRXOLPBwrUhHZCukZepnVDlQoX3DN/gRvyRkw4Frs6ALMo2DsqyJBOW/fn581VfxIzprT8yFUEL9mAG89uh4fwG0TqCOy8jcDcXoWPEAROA4wCZyJON3k15c2CSjSew6OKkKhIH4osSK8g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=h/DNrz70M5E94ESqIozXod8OWbO2N6z3BWNDSt87Kkg=;
+ b=kxfAOJNEx2Ky+p6dv3dP+UPlmVIeSEAc/GOkk1PP8J5prq4KiF28MP2PVx5FPRbCSGv5jBtESf4lbZEHEyRLMqGflYOsEy/cQPPo2+EvdxJtKnme4znA66rZcmnwPvVxVZsH86erUJ+NYFqgJQzd6YUXTrQhqEzV+VPZzRwmZQSTUI02VXdH1z3RTdBSOj/uVPKoaa6M/Bhy8CKQHWnQOVH7AqWbOuekcj1t2rJV9Nof7GRBWv/R6wclYwJXFkcvVTSGUsLZjOOQDJLfB9r3ryMVh9IhTH2avZZoi47ip2H59e2LPh3xApsaMSk3+A+BKeXyw8kpuRBV+QL+DRIQzw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DU2PR04MB8567.eurprd04.prod.outlook.com (2603:10a6:10:2d6::21)
+ by VE1PR04MB7230.eurprd04.prod.outlook.com (2603:10a6:800:1ab::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.16; Thu, 29 Jan
+ 2026 08:02:39 +0000
+Received: from DU2PR04MB8567.eurprd04.prod.outlook.com
+ ([fe80::32c4:a8a7:1724:b754]) by DU2PR04MB8567.eurprd04.prod.outlook.com
+ ([fe80::32c4:a8a7:1724:b754%2]) with mapi id 15.20.9542.008; Thu, 29 Jan 2026
+ 08:02:38 +0000
+From: ziniu.wang_1@nxp.com
+To: shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	frank.li@nxp.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: kernel@pengutronix.de,
+	festevam@gmail.com,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/3] arm64: dts: imx93-9x9-qsb: change usdhc tuning step for eMMC and SD
+Date: Thu, 29 Jan 2026 16:04:37 +0800
+Message-Id: <20260129080439.2910727-1-ziniu.wang_1@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: AS4PR09CA0017.eurprd09.prod.outlook.com
+ (2603:10a6:20b:5d4::11) To DU2PR04MB8567.eurprd04.prod.outlook.com
+ (2603:10a6:10:2d6::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: qcom: msm8960: expressatt Add PWM vibrator
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251211-expressatt-vibrator-v1-1-41bdc47217b2@gmail.com>
- <821a7dc3-7b00-40d1-9332-ef57ad22f9ca@oss.qualcomm.com>
-Content-Language: en-US
-From: Rudraksha Gupta <guptarud@gmail.com>
-In-Reply-To: <821a7dc3-7b00-40d1-9332-ef57ad22f9ca@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PR04MB8567:EE_|VE1PR04MB7230:EE_
+X-MS-Office365-Filtering-Correlation-Id: 28d6c470-e306-484d-81c2-08de5f0cc50b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|19092799006|7416014|376014|52116014|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?9ZsJ72jpwFZmCnjrNqN4EYL9aGOlIAPiv1DTzBzzZeca7OnuOC69loQQdnkv?=
+ =?us-ascii?Q?zOg7uF4wa42luZ/gAPHlZZ841Ef/MHCEniKzAG8J4Dm9ZDfq/ThM3scvHRNY?=
+ =?us-ascii?Q?dlYW0PfCXGgVzrQuy/mTXOO/xhRxZcRggrSoeGksFeVpVzm98v8Nqwhs4Lsv?=
+ =?us-ascii?Q?6XVuudVu8a8FFPN2YJHv1FV0r5xOMWL6jWnCFlM9FQ6mnzjHe/390r9J66dI?=
+ =?us-ascii?Q?+oTeV9/tcDMLAF09+NHPG1pRGrhJPpHPziV+DzNfUraWNruyaqizzKmAjy8i?=
+ =?us-ascii?Q?6LR53tja/yQOvB44kYKw5GvF68PVzNW323uugyHoFab9IWwg3NaTXRbmDMwl?=
+ =?us-ascii?Q?1RrKrxrDwaINDayQRJok8WsOHpWA21GbS7ETNhpOj1icA0e9PWNHbclBB6Qm?=
+ =?us-ascii?Q?9jb2TuvC/EhAK6T+er+HilK1oAIdmZJ6SXP3UmVwD+3g/2a+Jilp8XD9G5rH?=
+ =?us-ascii?Q?Ny5GaG+pULIKxcLmpGMtJ3HE4EBL2epMjSdyNghfzHym0Jj3aOU4U4S7Gwnx?=
+ =?us-ascii?Q?yfSIN7JNyTZ7/SV60nHW2ltw2meyx8LgfcbKzFfJA+kJ2sKkEbYuA3LRMWU8?=
+ =?us-ascii?Q?bxHX3WozbDP78ec8vvcXqrjgnQ5eqPmkKI3O++v9syTaniIBXGIVGueJrMrt?=
+ =?us-ascii?Q?3FZGmbkjITULtQcPiMOl9+ExydCKculbO2BJCutm8FYZDwnL5xWRg149D0YZ?=
+ =?us-ascii?Q?onbTeIhN4SeSelHnBLcHYXPSF8naweUP6uO7dBV97K+7iUygAgvlwe5+2xYQ?=
+ =?us-ascii?Q?Ax364VLuBI2YBPvIo79TfFKzqkjIKfw6C64XHWg1nVXc/uELS8sHEVDnRz6L?=
+ =?us-ascii?Q?7o+51Df0thM6TzgUHOaV/H2/OFNLYtY1/Gk/bboUQMtNEMuhmxpMpU/ohtDH?=
+ =?us-ascii?Q?YuO1apSrD1jZL7Z90I3WibqDk6WVuvJh0JK0gFX+AGc4kBlOE9H49It01Hqr?=
+ =?us-ascii?Q?vSS1JLsb2IJjId7KCyz1Rf59pVDX5wAdE+VR+uGXOD5ri92LRoN5edRXk2Hg?=
+ =?us-ascii?Q?oiBUak3gGaxFvlNvz6CLRX7vTDUDPvmkdRVOsXZ/1S33mgLby45Vt1LQhlcm?=
+ =?us-ascii?Q?eUw3d+A/MaZtilBnmajx9Kg4LIyagWpG6kuKCW0ElWrt7qh5kkI/pE82P2fY?=
+ =?us-ascii?Q?bVVu2IpBB53/eLi5K21yopyumyyfNtFnxIy8lQSyn8S65+9NOi6ewS4rOzeE?=
+ =?us-ascii?Q?onWjpxXGAZS6nTHmm5TphWdpaSodEWX4AfHglbq1uw9W4/LRowW7tSueLLC6?=
+ =?us-ascii?Q?zZyOFRZltbEE2LeAKGbE9WsgwuucBDw0Dm0HfC+c0EcC35zH/pWB/Fz4Uov/?=
+ =?us-ascii?Q?ixml8wFC2KohWAL4XBcXghwBQw7bHeK3+SYa93Ck3YZKtCI9ahIRo/GtUF6i?=
+ =?us-ascii?Q?Xi72tauQrlT5FgOwrNEOtNpecj+e46PB66AWc8mQNmGYr8EFRBus0GAaPMsC?=
+ =?us-ascii?Q?BBpZcaH3gvftHNdhOvd0TKfqQ7h+YciRXFHdGqiqu30YsXWCoeUYDn9tRnNS?=
+ =?us-ascii?Q?y5nBSEMsv8kEqx7qKs3JhTK520pdg0Qjj2VS+B1kJdbuGa28KQ5cRSSal3eh?=
+ =?us-ascii?Q?Iqg+zEBSW0W9OtHiKmEP/VSDjpIrMCI86Orjz3La0999Z+M+2B3PKA8WG0ei?=
+ =?us-ascii?Q?lsBGpWP6IMROt8+zKd9d36Q=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8567.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(19092799006)(7416014)(376014)(52116014)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?rWNPUwk6oXv/jMk0PyVEFBxdiYUMD8lIKGvKasal9kQOeHBZnjGJT+fg/TBW?=
+ =?us-ascii?Q?CGmsEc4CxWp7QLUYAfdVplrfbqGTg/70LMop5xES+RCGHZeqft2yFCSk/U+M?=
+ =?us-ascii?Q?9p0SmcfjHxjzIaRpSbnVv9Mvi8j9TQdrtNnHJel+sU4s3Je15tc+y4azei1D?=
+ =?us-ascii?Q?mHHSUOMWrt/DJjImTWurlVp9FGSZj35dp967COQYo/8t8XbR7n9elM43/y2N?=
+ =?us-ascii?Q?kmF64BLgg/6krDvRjYEvaYKWR3kspaIcauztFCSlkexJNW5SoVaTEogfCgNf?=
+ =?us-ascii?Q?ipA5erbNmmpaKzi8ZoSWFQzwyCDWadT9LZTfsx2HiWyy7phfUGJgJfM0+Lvi?=
+ =?us-ascii?Q?4gkiUVHL4mIdLWqkYz6tFwhzsvbTVD8A4Ss/Aqf/UcXM26ahoj3oaVgV5L5b?=
+ =?us-ascii?Q?gDhSglyJgVHZxwzCo9Oni9qHKITET1ddcXq4ofwzDrJ4me7upWmigs4gUFh2?=
+ =?us-ascii?Q?vIJyYC4nqsEuOmebl/VHanKhGVMBdI48LuqmgPuB2Q5s4EWi4s0SwWkr1a8z?=
+ =?us-ascii?Q?g3BAnStTbpG3Eo1a92RsYYplN9cPXjFdqO90t0jOF0opvjor8IzJc35BkOKa?=
+ =?us-ascii?Q?fKVg6lvvXslRyc2rlxwqOAKlej0aYOVY6WWobky0lJ/UMtve70bCMsfsTWPv?=
+ =?us-ascii?Q?uDA1LC0DSMdvt7JnKVkaVxxloxSvDrCsA2PEWqnwoIVsjLJPEtv0K2dmtZ0G?=
+ =?us-ascii?Q?A6Os3l5QTXr8O+WYQ4UL2wHsz/AZJTjNYfXsuodC4Ww58CfcNc4aRkgHmMVi?=
+ =?us-ascii?Q?Bi7pbWZMJl07Xic1gm3D3pE+4ukLjtdlDJQAbHlH83b/TQ98xRCP66eDd19m?=
+ =?us-ascii?Q?cS1a98ZpaLPVuT70B+yJWHmFQHyuvK5fMyzhOT3zG0/BPx8Z8svagRmnCgNi?=
+ =?us-ascii?Q?DuaeW+qnDybTQXuV2Z2+HpDrL6et8BfMcnxtO0TwYvMs0afbz9gAhzRu4nXk?=
+ =?us-ascii?Q?yXI5ggKUIaQLAZADkZ+IvyqNn9ODbPkrfRK+GcgR+bISpT42HJ5ev/YHuvPU?=
+ =?us-ascii?Q?g+iX3JYdSTHBY8nSS/NKfDarZwVRcPTl1QSuYyh1sgSPWQa84aCnal6P8lRb?=
+ =?us-ascii?Q?oVKd1tR26zCRnihvyalP0Jduv2NcNtePtmKgIiiREPKI5OBSDyFx+jtfijZ0?=
+ =?us-ascii?Q?4UaCOBudHnBjN+A5Y6TIXv9Q5ukHlWkq1KSBKp8m9GituINUD5u0x6F46XO0?=
+ =?us-ascii?Q?4WDycYZfYjhFA90msy1uevCqdMxczQD5zBYnStulrQ1xpEcJxO0VmGvXG3kh?=
+ =?us-ascii?Q?8mQRqWjBV9Ziq69h+lxTLJMqL2UzHOKAcMNYQ9oT3GYXjCCZqLc+xPnZjDSV?=
+ =?us-ascii?Q?Z/C4R9Vd89mpoI6LsJ5khc+9Cj16XxB68yrd6F7XzKrh8DS3jiQU4g6hYMPJ?=
+ =?us-ascii?Q?pMOLpvaUqz//+6KMQTH8HLmNNGurfA7nciiNs9sHkZVn3v1wgu5Luah0CcmS?=
+ =?us-ascii?Q?15Y+ahMTiPYvkNh7X3ChUbrHwFe/4A5iKKfoXFNNUx9Hqj6e3Zy6BHbyU18a?=
+ =?us-ascii?Q?L8ZzCL0Xj9DqcLiemKC95PTxdi+Emcc9/8nCBMDtTB9IO8/zdk8J5R1VA1dP?=
+ =?us-ascii?Q?jWcmYW/2+FCX2uNH8e5O0r8WIGcxiFivUI33kwg/S1CvMQEGYOUCqagO33aR?=
+ =?us-ascii?Q?4kfllqaYNaDmHqlfzj969U5vv7C8hxKbRD60Xz/yZVhw6f27/cMlA0chQFBz?=
+ =?us-ascii?Q?70ATJZcTQI45veeNM7eiNAq9V8cO0Fz3p4SEohyL3xhMoTSohi9Mammgxgnf?=
+ =?us-ascii?Q?KyBEKBNKUg=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 28d6c470-e306-484d-81c2-08de5f0cc50b
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8567.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2026 08:02:38.7837
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2Ii6RO253VTVF73gIR6W9OsUn5ckavF1FyGZTINqMrsKYuhg5FRIFTmWCV8UOjxLN3N0eEYoVPzDwuURRMxqrg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7230
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+X-Spamd-Result: default: False [2.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_FROM(0.00)[bounces-260768-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260769-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[guptarud@gmail.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ziniu.wang_1@nxp.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	TO_DN_NONE(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,codeberg.org:url]
-X-Rspamd-Queue-Id: 5E235AD0A4
+	NEURAL_HAM(-0.00)[-0.997];
+	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,nxp.com:dkim,nxp.com:mid]
+X-Rspamd-Queue-Id: CB2B9AD137
 X-Rspamd-Action: no action
 
-Hello Konrad,
+From: Luke Wang <ziniu.wang_1@nxp.com>
 
+During system resume, the following errors occurred:
 
-On 12/16/25 06:22, Konrad Dybcio wrote:
-> On 12/11/25 11:23 AM, Rudraksha Gupta via B4 Relay wrote:
->> From: Rudraksha Gupta <guptarud@gmail.com>
->>
->> Add a pwm-vibrator to expressatt. Currently this vibrates only at 100%
->>
->> Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
->> ---
->> Add a pwm-vibrator to expressatt. Currently this vibrates only at 100%
->>
->> Link:
->> - https://github.com/LineageOS/android_kernel_samsung_d2/blob/stable/cm-12.0-YNG4N/arch/arm/mach-msm/board-express.c#L1767
->> - https://github.com/LineageOS/android_kernel_samsung_d2/blob/stable/cm-12.0-YNG4N/drivers/motor/Makefile#L5
->>
->> Test:
->> =====================
->> samsung-expressatt:~$ dmesg | grep vibra
->> [   79.892226] input: pwm-vibrator as /devices/platform/vibrator/input/input4
->> samsung-expressatt:~$ fftest /dev/input/event4
->> Force feedback test program.
->> HOLD FIRMLY YOUR WHEEL OR JOYSTICK TO PREVENT DAMAGES
->>
->> Device /dev/input/event4 opened
->> Features:
->>    * Absolute axes:
->>      [00 00 00 00 00 00 00 00 ]
->>    * Relative axes:
->>      [00 00 ]
->>    * Force feedback effects types: Periodic, Rumble, Gain,
->>      Force feedback periodic effects: Square, Triangle, Sine,
->>      [00 00 00 00 00 00 00 00 00 00 03 07 01 00 00 00 ]
->>    * Number of simultaneous effects: 16
->>
->> Setting master gain to 75% ... OK
->> Uploading effect #0 (Periodic sinusoidal) ... OK (id 0)
->> Uploading effect #1 (Constant) ... Error: Invalid argument
->> Uploading effect #2 (Spring) ... Error: Invalid argument
->> Uploading effect #3 (Damper) ... Error: Invalid argument
-> Looks like this is because GP1_CLK does not implement .set_duty_cycle..
->
-> The downstream driver you linked to does so in a terribly hacky way
-> (from the vibrator driver and not the clock driver):
->
-> https://github.com/LineageOS/android_kernel_samsung_d2/blob/cm-14.1/drivers/motor/immvibespi.c#L53
->
-> Upstream, we have an implementation for clk_rcg*2*_ops, whereas 8960
-> uses clk_rcg_ops.
->
-> They look very similar though, perhaps you can hack it up..
->
-> One thing to note is that you're passing GP1_CLK to the clk-pwm (as
-> you should), but we need to do clk_set_duty_cycle on its parent,
-> GP1_CLK*_SRC*. The framework will take care of this:
->
-> ```
-> --- drivers/clk/clk.c
-> 	if (!core->ops->get_duty_cycle)
-> 		return clk_core_update_duty_cycle_parent_nolock(core);
-> ```
->
-> so long as you add CLK_DUTY_CYCLE_PARENT to the child
->
-> [...]
+  [  430.638625] mmc1: error -84 writing Cache Enable bit
+  [  430.643618] mmc1: error -84 doing runtime resume
 
+For eMMC and SD, there are two tuning pass windows and the gap between
+those two windows may only have one cell. If tuning step > 1, the gap may
+just be skipped and host assumes those two windows as a continuous
+windows. This will cause a wrong delay cell near the gap to be selected.
 
-Sorry for the delay, but I'm struggling to get this implemented. I have 
-my in progress work here:
+Set the tuning step to 1 to avoid selecting the wrong delay cell.
 
-https://codeberg.org/LogicalErzor/linux/commit/4e7f94d9fdd1e4e1d688b2eb518494d710f157fb
+For SDIO, the gap is sufficiently large, so the default tuning step does
+not cause this issue.
 
+Signed-off-by: Luke Wang <ziniu.wang_1@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
-I was able to get rid of the -16 error that was getting spammed when 
-using fftest, but it is still showing
+diff --git a/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts b/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts
+index 0852067eab2c..197c8f8b7f66 100644
+--- a/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts
++++ b/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts
+@@ -507,6 +507,7 @@ &usdhc1 {
+ 	pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
+ 	bus-width = <8>;
+ 	non-removable;
++	fsl,tuning-step = <1>;
+ 	status = "okay";
+ };
+ 
+@@ -519,6 +520,7 @@ &usdhc2 {
+ 	vmmc-supply = <&reg_usdhc2_vmmc>;
+ 	bus-width = <4>;
+ 	no-mmc;
++	fsl,tuning-step = <1>;
+ 	status = "okay";
+ };
+ 
+-- 
+2.34.1
 
-Uploading effect #1 (Constant) ... Error: Invalid argument
-Uploading effect #2 (Spring) ... Error: Invalid argument
-Uploading effect #3 (Damper) ... Error: Invalid argument
-
-
-If you have any other insight on how to make the vibrator variable in 
-intensity (it's still either 0% or 100%), please feel free to let me 
-know. I will continue trying to hack away at it to see if I can get the 
-variable intensity to work via fftest.
->> +	/* TODO: Vary the frequency besides being 0% or 100% */
->> +	vibrator {
->> +		compatible = "pwm-vibrator";
->> +		pwms = <&gp1_pwm 0 54347 0>;  /* ~18.4 kHz */
->> +		pwm-names = "enable";
->> +		enable-gpios = <&pm8921_gpio 4 GPIO_ACTIVE_HIGH>;
->> +		vcc-supply = <&vdd_haptics>;
->> +
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&vib_pwm_gpio>;
-> pinctrl-n
-> pinctrl-names
->
-> please, both occurences
->
->> +	};
->> +
->> +	vdd_haptics: vdd-haptics-regulator {
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "vdd_haptics";
->> +		gpio = <&tlmm 47 GPIO_ACTIVE_HIGH>;
->> +		enable-active-high;
->> +		regulator-boot-on;
->> +
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&haptics_pwr_en>;
->> +	};
->>   };
->>   
->>   &gsbi2 {
->> @@ -241,6 +270,21 @@ touchkey_i2c_pins: touchkey-i2c-state {
->>   		bias-disable;
->>   	};
->>   
->> +	haptics_pwr_en: haptics-pwr-en-state {
->> +		pins = "gpio47";
->> +		function = "gpio";
->> +		drive-strength = <2>;
->> +		bias-disable;
->> +		output-low;
-> Drop output-low, the driver should take care of setting the state
->
-> Konrad
 
