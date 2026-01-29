@@ -1,101 +1,73 @@
-Return-Path: <devicetree+bounces-260696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260699-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mCxfNk3GemmY+QEAu9opvQ
-	(envelope-from <devicetree+bounces-260696-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 03:30:37 +0100
+	id AEZpMpLIemky+gEAu9opvQ
+	(envelope-from <devicetree+bounces-260699-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 03:40:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E094AB268
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 03:30:37 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77877AB329
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 03:40:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 946ED3028ECC
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 02:29:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2FB3E302170C
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 02:40:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B40A3559D2;
-	Thu, 29 Jan 2026 02:29:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lfIsZ1vn"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3BAA3570AD;
+	Thu, 29 Jan 2026 02:39:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1DC83563C5
-	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 02:29:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFFD13451DA;
+	Thu, 29 Jan 2026 02:39:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769653765; cv=none; b=JYtt0AvVEPHtr9RdOaUZl8dOR1jBvvDl2+qC1coRxxD6hGgixd1dVDhTsjReeZP2jmMSlQSfSveetUp9DI8m1KhuQtSsTDIntGoh7A91RZ4xQHky2GbIqmNw6rEgmUjKXefDEzO9TmTAr3K3W/w/NUO+lKzNZltP+6txmVu21VU=
+	t=1769654398; cv=none; b=Qk6SpqOUjZvNSK01ejJWpASGzWn99sRIJabaHfrwZF3tTfhCyGkth2tYEJaQ4D2IaacApmoZTwfTYruOSO4nwNtG+j2LkZofI4US784L5sX0fQIGPm6qxz71u4DxjqnBnkEy7ISU8jX71SMKOqGnKb9DFf0Cu24nf+q0ZT4ORps=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769653765; c=relaxed/simple;
-	bh=Ux4yXdcrD7sWaWrJxWfS5yeD2Dtq6BEm/InYgyeESXM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=AHirV/KrtojyjpCc9zmL/dv9EmQmzbAubYXBEtGbpZ08LmQ8XXnlGpv70HUuJHtXX0hQerKoBfz+F9lPn2lE+gPlopqu3upkP5XmGKm7wpHGIFbllz7x1VXDXm/DD2BzJT6w5xjcTG92+E6AcPO3C6YyAGP37itGjwUZtMeGx80=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lfIsZ1vn; arc=none smtp.client-ip=209.85.216.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-34c27d14559so232696a91.2
-        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 18:29:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769653763; x=1770258563; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Jyw7q0/YQsMTgrYvASBDoKvdAbxjjEM7hz6Ka6xcckU=;
-        b=lfIsZ1vnOLJCPEjEU9CqiAX/zuEyPGaYMj9rbunL605RupowduJ2T5sl7YerLcNjPp
-         93QR7Mun+IgFwXVid5HqWJiO66aWA3S+vT9GDGIalGiw4CW9ivrPLmwYJURrAUILCAj2
-         Y5zstfpSD5AQEyCwBcNyaq/mWEuNMRlputhF/KacwcLF0JbzXsK4hyE5N2rqkiQXKCoc
-         UtS6gEynfVgl6hTdP63Ku3dzoB+amW+R0wghp1cOUHG+2sbGQg33r+zDe5RyWSOZxVdb
-         3PfyMyE9+gU4qLQbjhgZ+uhl1A2OEnXGz2D/vnAyTWnzKMBcvY7lliL9IZOSfetX29Va
-         BUKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769653763; x=1770258563;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Jyw7q0/YQsMTgrYvASBDoKvdAbxjjEM7hz6Ka6xcckU=;
-        b=PLy0lh/1ZunnatuqDzE2o9L0v+GbPVxe0Emnc8toFHaqFo1Z5/IhDSNyhVSodfNw1D
-         yfB76nhQ8m+iDT9tANr6XU/k+ywvqH6reB9H2VqcClELXF7UNHvtFiKJdF0wNHmTw1+s
-         cWaY3IDT7bD4F+UDQYnfvz0zxNwEqYcQ3e+2+aEjOlIQbQWRSIFM8Yt46wBbPjLw2V6J
-         sy7IZ1FZGkWFeO/lXuS/wFup+G4MhmM19avcJ0DTCV/lK1o+Pljc0P2pvh5YwzsAbXSi
-         Sjx5kGYpFrF54NsgLrEb5eNss88jDEMaY+9GwQdydKyxBHWarUE3rJ+LPTOGUzNhySgk
-         aOYA==
-X-Forwarded-Encrypted: i=1; AJvYcCUQr6YSZ0dzzkkMC7buodBq521by2W+wGNsdrXBmAV6BDt44Z2Xb/YGn6Dtr62lB6dK71XtcbpgQ46+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw8Wxx7WCNpoRbrpFACBTnhB3m6xOHuRvdRf8wi6/RreCc5kGNV
-	pomuVmqMFeovIQveJJlrav7wZEaGXYcgVtmPZZvyFwHtYeBeTEKxuZ9x
-X-Gm-Gg: AZuq6aL9EP6BkdDsV/AHCPQBoQmyqy0V6+Pfetur+fyBx+jsf33A2c2Wa8SAoLUEXQ1
-	FB9eAeMQ4+HD0f4Az9463Tf4QuKW8WjcOg0A45lgddjQ2a8pofz8AiRefH4HDPijaVsJtZq8hlj
-	nlC+t0SIQhAWSQiFXSu7hQxjqJwoOMo4Z1rTpaaHBvdPi8Bok5R/VAh1m9eaplAhyVJE4kXt2tu
-	w44yt/O1VhFTvGNTNRwEPSmlJgDJzPXbN3fB1JNYcwGsq+bubn4aZB8nVhXxZqcx5xh0N7wFYdQ
-	cmnKT1v28FkgahKYjNuwWHEqJ3rhjh0FOXnjLkSNdw/km++TeRG1WUuOH5JeBqyQcuSCOy6Ebn5
-	g9/z9TFa8droZQyb2O85M37h+eeuSmc8z0dStTrgPiek7an90MB0At1w1L9JGPPCDQxr75h6CG5
-	7DMC2I7alX16Je0s6EK3LCBLZwrmCqp3Vz//+j1XL4asQ8/ijIMwR08IM=
-X-Received: by 2002:a17:90b:1d48:b0:32e:a8b7:e9c with SMTP id 98e67ed59e1d1-353fed8ac13mr6667239a91.29.1769653763199;
-        Wed, 28 Jan 2026 18:29:23 -0800 (PST)
-Received: from wig-Precision-3660.. (125-227-154-99.hinet-ip.hinet.net. [125.227.154.99])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3540f2f0283sm4380542a91.5.2026.01.28.18.29.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Jan 2026 18:29:22 -0800 (PST)
-From: Wig Cheng <onlywig@gmail.com>
-To: shawnguo@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
+	s=arc-20240116; t=1769654398; c=relaxed/simple;
+	bh=36zEl0SQ4Xfa4ldhrma3WBrXtc+YLx1WyROWhpzJkIw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=p1bV9rT1v+Jv1Dy5vFjF5vybgwObwzt+KEsPjv3lHLPN6pFr989uNCsg9iCbQzB9T+jpx6qkabJEIFHeKyoB1lO4ceJPU1Hn54C6MLdA0aZt11txaMVR7pBPX/HfD64saY4eUDTN67+T4OTfOX45XcZGh9zumIXr3lRNSEc7Kyo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from edelgard.fodlan.icenowy.me (unknown [112.94.102.235])
+	by APP-03 (Coremail) with SMTP id rQCowADX9t1byHppMtQpBw--.56353S2;
+	Thu, 29 Jan 2026 10:39:25 +0800 (CST)
+From: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Drew Fustini <fustini@kernel.org>,
+	Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>,
+	Dmitry Baryshkov <lumag@kernel.org>,
+	Michal Wilczynski <m.wilczynski@samsung.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Han Gao <gaohan@iscas.ac.cn>,
+	Yao Zi <ziyao@disroot.org>,
 	linux-kernel@vger.kernel.org,
-	zaq14760@gmail.com,
-	Wig Cheng <onlywig@gmail.com>
-Subject: [PATCH v4 1/1] arm64: dts: freescale: add pixpaper display overlay for i.MX93 FRDM
-Date: Thu, 29 Jan 2026 10:29:10 +0800
-Message-ID: <20260129022910.3942028-2-onlywig@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260129022910.3942028-1-onlywig@gmail.com>
-References: <20260129022910.3942028-1-onlywig@gmail.com>
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Icenowy Zheng <uwu@icenowy.me>,
+	Icenowy Zheng <zhengxingda@iscas.ac.cn>
+Subject: [PATCH v7 0/8] Verisilicon DC8200 driver (and adaption to TH1520)
+Date: Thu, 29 Jan 2026 10:39:14 +0800
+Message-ID: <20260129023922.1527729-1-zhengxingda@iscas.ac.cn>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -103,129 +75,153 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:rQCowADX9t1byHppMtQpBw--.56353S2
+X-Coremail-Antispam: 1UD129KBjvJXoW3Aw18Cw1UArykGr13KFW5GFg_yoW7Cw43pF
+	42yFWFyFyDAa1aqrZ7JF10gay3Aas7XFWfWry7XwnxZ3yqyFy5Zr98Ary5JFyDJr17AryI
+	vFsYkr42kr12yF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9Y14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26F4j
+	6r4UJwA2z4x0Y4vEx4A2jsIE14v26F4UJVW0owA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lc7CjxVAaw2AFwI0_GFv_Wryl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x
+	0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2
+	zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF
+	4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWU
+	CwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCT
+	nIWIevJa73UjIFyTuYvjTRM6wCDUUUU
+X-CM-SenderInfo: x2kh0wp0lqwv3d6l2u1dvotugofq/
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-260696-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[iscas.ac.cn];
 	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,redhat.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[29];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-260699-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[onlywig@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[zhengxingda@iscas.ac.cn,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	R_DKIM_NA(0.00)[];
 	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 3E094AB268
+X-Rspamd-Queue-Id: 77877AB329
 X-Rspamd-Action: no action
 
-Add device tree overlay to support the MayQueen PixPaper e-paper display
-on the NXP i.MX93 FRDM board. The display is connected via LPSPI3
-interface and uses GPIO pins for reset, busy and DC control.
+This patchset tries to add a driver for Verisilicon DC8200 driver, and
+demonstrates the driver on T-Head TH1520 with its HDMI output.
 
-The overlay configures:
-    - LPSPI3 pinmux for SPI communication (MOSI, MISO, CLK, CE0)
-    - PixPaper display device with proper GPIO assignments
-    - SPI frequency set to 5MHz for stable operation
+This display controller IP is used on StarFive JH7110 too, but as the
+HDMI controller used there isn't as common as the DesignWare one, I
+choose to use TH1520 in this patchset.
 
-Enable Open-EP Community pixpaper-213-c support on NXP i.MX93.
+The DC driver is written with other DC-series (mainly DC8000, which is
+known to be used on Eswin EIC7700 SoC) display controllers in mind, and
+uses the identification registers available on all Vivante branded IPs.
+A known exception is DCNano display controller, which is unlikely to be
+supported by this driver because of totally different register map and
+no known identification registers. (P.S. the in-tree loongson DRM driver
+seems to be for some DCNano instances based on the register map.)
 
-Signed-off-by: Wig Cheng <onlywig@gmail.com>
----
- arch/arm64/boot/dts/freescale/Makefile        |  4 ++
- .../freescale/imx93-11x11-frdm-pixpaper.dtso  | 50 +++++++++++++++++++
- 2 files changed, 54 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx93-11x11-frdm-pixpaper.dtso
+The HDMI controller seems to come with some common PHY by Synopsys, the
+DesignWare HDMI TX 2.0 PHY. By searching a few register names from the
+BSP driver of that PHY, that PHY seems to be used by a in-tree dw-hdmi
+glue, rcar_dw_hdmi -- an updated downstream version of rcar_dw_hdmi
+contains all 6 registers set here in the th1520-dw-hdmi driver. Some
+more suprising thing is that RK3288 uses the same PHY too, but the
+in-tree dw_hdmi-rockchip driver writes the configuration data array in a
+weird way to reuse the HDMI 3D TX PHY configuring function. It might be
+valuable to add common configuring function and configuration data
+definition for this HDMI 2.0 PHY too, but the current driver in this
+patchset simply duplicated most configuration logic from rcar_dw_hdmi
+driver (but with 3 extra configuration registers configured, which is
+done by their downstream kernel).
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index ce8f937c2315..c2727f8061e2 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -398,6 +398,10 @@ dtb-$(CONFIG_ARCH_MXC) += imx93-9x9-qsb-i3c.dtb
- 
- dtb-$(CONFIG_ARCH_MXC) += imx93-11x11-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-11x11-frdm.dtb
-+
-+imx93-11x11-frdm-pixpaper-dtbs += imx93-11x11-frdm.dtb imx93-11x11-frdm-pixpaper.dtbo
-+dtb-$(CONFIG_ARCH_MXC) += imx93-11x11-frdm-pixpaper.dtb
-+
- dtb-$(CONFIG_ARCH_MXC) += imx93-14x14-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-kontron-bl-osm-s.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-nash.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx93-11x11-frdm-pixpaper.dtso b/arch/arm64/boot/dts/freescale/imx93-11x11-frdm-pixpaper.dtso
-new file mode 100644
-index 000000000000..5fee27a589b5
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx93-11x11-frdm-pixpaper.dtso
-@@ -0,0 +1,50 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Device Tree Overlay for Mayqueen (Open-EP Community) pixpaper display
-+ * support on NXP FRDM i.MX 93 Development Board
-+ *
-+ * Copyright (C) 2026 Wig Cheng <onlywig@gmail.com>
-+ */
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include "imx93-pinfunc.h"
-+
-+/dts-v1/;
-+/plugin/;
-+
-+&iomuxc {
-+	pinctrl_lpspi3: lpspi3grp {
-+		fsl,pins = <
-+			MX93_PAD_GPIO_IO08__GPIO2_IO08		0x3fe /* SPI3 CE0 */
-+			MX93_PAD_GPIO_IO09__LPSPI3_SIN		0x3fe /* SPI3 MISO */
-+			MX93_PAD_GPIO_IO10__LPSPI3_SOUT		0x3fe /* SPI3 MOSI */
-+			MX93_PAD_GPIO_IO11__LPSPI3_SCK		0x3fe /* SPI3 CLK */
-+		>;
-+	};
-+
-+	pinctrl_epd_ctrl: epdctrlgrp {
-+		fsl,pins = <
-+			MX93_PAD_GPIO_IO05__GPIO2_IO05		0x31e /* DC pin */
-+			MX93_PAD_GPIO_IO06__GPIO2_IO06		0x31e /* RESET pin */
-+			MX93_PAD_GPIO_IO26__GPIO2_IO26		0x31e /* BUSY pin */
-+		>;
-+	};
-+};
-+
-+&lpspi3 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_lpspi3>, <&pinctrl_epd_ctrl>;
-+	cs-gpios = <&gpio2 8 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+
-+	display@0 {
-+		compatible = "mayqueen,pixpaper";
-+		reg = <0>;
-+		spi-max-frequency = <5000000>;
-+		reset-gpios = <&gpio2 6 GPIO_ACTIVE_HIGH>;
-+		dc-gpios = <&gpio2 5 GPIO_ACTIVE_HIGH>;
-+		busy-gpios = <&gpio2 26 GPIO_ACTIVE_HIGH>;
-+	};
-+};
+This revision contains only little code change -- only a Kconfig select
+is added. The other purpose is to collect Thomas Zimmermann's tags and
+squash MAINTAINERS change to real driver per his suggestion.
+
+Icenowy Zheng (8):
+  dt-bindings: vendor-prefixes: add verisilicon
+  dt-bindings: display: add verisilicon,dc
+  drm: verisilicon: add a driver for Verisilicon display controllers
+  dt-bindings: display/bridge: add binding for TH1520 HDMI controller
+  drm/bridge: add a driver for T-Head TH1520 HDMI controller
+  riscv: dts: thead: add DPU and HDMI device tree nodes
+  riscv: dts: thead: lichee-pi-4a: enable HDMI
+  mailmap: map all Icenowy Zheng's mail addresses
+
+ .mailmap                                      |   4 +
+ .../display/bridge/thead,th1520-dw-hdmi.yaml  | 120 ++++++
+ .../bindings/display/verisilicon,dc.yaml      | 122 ++++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   8 +
+ .../boot/dts/thead/th1520-lichee-pi-4a.dts    |  25 ++
+ arch/riscv/boot/dts/thead/th1520.dtsi         |  66 ++++
+ drivers/gpu/drm/Kconfig                       |   2 +
+ drivers/gpu/drm/Makefile                      |   1 +
+ drivers/gpu/drm/bridge/Kconfig                |  10 +
+ drivers/gpu/drm/bridge/Makefile               |   1 +
+ drivers/gpu/drm/bridge/th1520-dw-hdmi.c       | 173 ++++++++
+ drivers/gpu/drm/verisilicon/Kconfig           |  16 +
+ drivers/gpu/drm/verisilicon/Makefile          |   5 +
+ drivers/gpu/drm/verisilicon/vs_bridge.c       | 371 ++++++++++++++++++
+ drivers/gpu/drm/verisilicon/vs_bridge.h       |  39 ++
+ drivers/gpu/drm/verisilicon/vs_bridge_regs.h  |  54 +++
+ drivers/gpu/drm/verisilicon/vs_crtc.c         | 191 +++++++++
+ drivers/gpu/drm/verisilicon/vs_crtc.h         |  31 ++
+ drivers/gpu/drm/verisilicon/vs_crtc_regs.h    |  60 +++
+ drivers/gpu/drm/verisilicon/vs_dc.c           | 207 ++++++++++
+ drivers/gpu/drm/verisilicon/vs_dc.h           |  38 ++
+ drivers/gpu/drm/verisilicon/vs_dc_top_regs.h  |  27 ++
+ drivers/gpu/drm/verisilicon/vs_drm.c          | 182 +++++++++
+ drivers/gpu/drm/verisilicon/vs_drm.h          |  28 ++
+ drivers/gpu/drm/verisilicon/vs_hwdb.c         | 150 +++++++
+ drivers/gpu/drm/verisilicon/vs_hwdb.h         |  29 ++
+ drivers/gpu/drm/verisilicon/vs_plane.c        | 124 ++++++
+ drivers/gpu/drm/verisilicon/vs_plane.h        |  72 ++++
+ .../gpu/drm/verisilicon/vs_primary_plane.c    | 173 ++++++++
+ .../drm/verisilicon/vs_primary_plane_regs.h   |  53 +++
+ 31 files changed, 2384 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/thead,th1520-dw-hdmi.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+ create mode 100644 drivers/gpu/drm/bridge/th1520-dw-hdmi.c
+ create mode 100644 drivers/gpu/drm/verisilicon/Kconfig
+ create mode 100644 drivers/gpu/drm/verisilicon/Makefile
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_bridge.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_bridge.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_bridge_regs.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc_regs.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_dc.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_dc.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_dc_top_regs.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_drm.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_drm.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_hwdb.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_hwdb.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_plane.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_plane.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_primary_plane.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_primary_plane_regs.h
+
 -- 
-2.43.0
+2.52.0
 
 
