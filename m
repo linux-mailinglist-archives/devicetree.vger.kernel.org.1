@@ -1,61 +1,62 @@
-Return-Path: <devicetree+bounces-260990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260991-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cEArEK6ee2nOGAIAu9opvQ
-	(envelope-from <devicetree+bounces-260990-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 18:53:50 +0100
+	id 6KtNLUOee2nOGAIAu9opvQ
+	(envelope-from <devicetree+bounces-260991-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 18:52:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 943E9B3445
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 18:53:49 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0AFEB33D8
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 18:52:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2C56E300B065
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 17:49:45 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B12453009E23
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 17:51:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2826A3559D9;
-	Thu, 29 Jan 2026 17:49:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8A203563C4;
+	Thu, 29 Jan 2026 17:51:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KZdSWXS7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q70g6PdY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0545F34A3A5;
-	Thu, 29 Jan 2026 17:49:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92F3E3559E3;
+	Thu, 29 Jan 2026 17:51:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769708984; cv=none; b=uM8PbhtuUW8Mc5bNMdImI4vZgdwGwwSRumirhUuJlRU5JFdvTlzkQnsHENWd0Z2Ru/tDXAOlYzTovXWFNnjW26DshXR3pnOt8ybUrdT4xjWBF5XULU8mmb5jSYCV6wo1IeBiujKAGej6EWF1KqKH/Uym+3DCL9OItCBPFOxdEeE=
+	t=1769709116; cv=none; b=OG68J/HZkNR6VvPyjSS643mF8BpeTszhgCnwwH4Kd1tjpxjlFqARXA+OudqiWO6c8heBhN3XQbTpi80nms/F2/jGFyW1YuOcLbBMyBjxBeu658UYpFpD+S9ydXboaZ68JGeAqElB/1JpZWqKexQkSSe8cDW0Y7Gg5CMBz/163H0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769708984; c=relaxed/simple;
-	bh=gEHvadmzl4LEDFhKtaFmMTseScHIiexCv2jMG2q2OBA=;
+	s=arc-20240116; t=1769709116; c=relaxed/simple;
+	bh=2JtMQNQa+OnOl3AsJAyVXPNjSQbR/yg0GPNKZNSyqBg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MgQbYEyFqqiJbqRCWC3p8b8hSj8zxOvzVgpI62EMlCo6pzHtJhpU94Te9JVne30u5owCMap33xpWvSr05Rg0NN6i17/FVJglRWkzAcKCHhEHZHciv0ppMPuX3SsjHHueYL7gCfTjME4yXrlqGJRFuWdnY/64q1zN+yLP2UsllG4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KZdSWXS7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60BD3C4CEF7;
-	Thu, 29 Jan 2026 17:49:43 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=iJibh1L8HiqxKV33NGTjiiO3ASMpHS3rBIW5EGextO8O27sRKMfaxeAHZ0nM6bULCj3qihoKncP4eCMBF6ywdX6STGhGh/nrml4LQmiittvmaXJlKo2DfoPDZgIgweDAFTBGiHl89p1vxLc9P5+yiKb2Depo9lD5g3cc/tWHrTE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q70g6PdY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF971C4CEF7;
+	Thu, 29 Jan 2026 17:51:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769708983;
-	bh=gEHvadmzl4LEDFhKtaFmMTseScHIiexCv2jMG2q2OBA=;
+	s=k20201202; t=1769709116;
+	bh=2JtMQNQa+OnOl3AsJAyVXPNjSQbR/yg0GPNKZNSyqBg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KZdSWXS79SpaW+Gx+Je1m1wWbFwi1Ifrw3myZZMUv0w4uZ/KNDO0+HStzBlUv8oUB
-	 Lg5us3Bnyd3curqQlOdE57irw++J9A/xAjACuEkAtX37oEkoCqlL7KLRaVdEeTF9E8
-	 09ESqfTtShYPqL1OPt4VD7uXjl3ElXPg9Zo84wT8xKvXPeJ2L6oY9O49qOxAdH7uMp
-	 EnlXSpVGQIGmhh4sEj0kHiMxS82jPDCcKeFPkh5U+OJ0xRBlgSkjv7xHDfjkzlDkVE
-	 xIZELpAAHN1jEWSASTnUINVrMekJh7x9KAJfgapEA0wkPVmsdqRpsnUyMujhoiIkeh
-	 RbZud8PwK+zEQ==
-Date: Thu, 29 Jan 2026 11:49:42 -0600
-From: Rob Herring <robh@kernel.org>
-To: Saikiran <bjsaikiran@gmail.com>
-Cc: broonie@kernel.org, lgirdwood@gmail.com, andersson@kernel.org,
-	konradybcio@kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org, krzk+dt@kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: regulator: qcom,rpmh: Allow
- regulator-off-on-delay-us
-Message-ID: <20260129174829.GA1324020-robh@kernel.org>
-References: <20260127190211.14312-1-bjsaikiran@gmail.com>
- <20260127190211.14312-2-bjsaikiran@gmail.com>
+	b=Q70g6PdYHrvphSTH9w0yeqNlsW8vvOFPvBzoE3V4fKDavaR/SrMzQ8QfgW0xFCZkX
+	 iHSHz0i1d6UsRPytZqxmXm/QIgD2WM/QrdgUmB19iuSXOy4DJnp6Raw7T1ITup3SRZ
+	 J7XYM252epF0BXgN0G4cRJW313mOtVapFHDFJWJ1RwdhdfuVpw1jX8o9RwNoPcxvKI
+	 yrcieBe72iJrur0QRMmWcczORdBd+XwOtKWY+9/jDIommNB/ROnuBXgT4ltoqb1HhM
+	 r/MdRZLwE6nU1nDEJRHMIVIJI9ePS0KDkPLRQaYWB0X2VSJqW4Xa2Sd4tx0TNbs9l3
+	 9jCwwrXbJwOaQ==
+Date: Thu, 29 Jan 2026 11:51:55 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Akhila YS <akhilayalmati@gmail.com>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>, linux-kernel@vger.kernel.org,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-mtd@lists.infradead.org,
+	devicetree@vger.kernel.org, Mason Yang <masonccyang@mxic.com.tw>,
+	Richard Weinberger <richard@nod.at>
+Subject: Re: [PATCH v3] dt-bindings: mtd:
+ mxic,multi-itfc-v009-nand-controller: convert to DT schema
+Message-ID: <176970911448.1337178.5863396733768159664.robh@kernel.org>
+References: <20260128-mxic-nand-v3-1-c61764e85f60@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,19 +65,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260127190211.14312-2-bjsaikiran@gmail.com>
+In-Reply-To: <20260128-mxic-nand-v3-1-c61764e85f60@gmail.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.16 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-260990-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-260991-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -89,60 +90,34 @@ X-Spamd-Result: default: False [-1.16 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 943E9B3445
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: E0AFEB33D8
 X-Rspamd-Action: no action
 
-On Wed, Jan 28, 2026 at 12:32:10AM +0530, Saikiran wrote:
-> Add the standard 'regulator-off-on-delay-us' property to the list of
-> allowed properties for RPMh regulators.
 
-You almost fooled me, but 'regulator-off-on-delay-us' is not a standard 
-property.
-
+On Wed, 28 Jan 2026 15:36:12 +0000, Akhila YS wrote:
+> Convert Macronix Raw NAND Controller Device Tree binding to DT Schema.
 > 
-> This property is required for platforms where specific rails (like camera
-> LDOs) rely on passive discharge and need a mandatory off-time constraint
-> enforced by the regulator core.
-
-Does enforcing some off time on all your regulators cause some negative 
-impact on the ones that don't need it? If turning them back on is 
-performance critical maybe don't turn them off in the first place.
-
-> 
-> Signed-off-by: Saikiran <bjsaikiran@gmail.com>
+> Signed-off-by: Akhila YS <akhilayalmati@gmail.com>
 > ---
->  .../devicetree/bindings/regulator/qcom,rpmh-regulator.yaml    | 4 ++++
->  1 file changed, 4 insertions(+)
+> Changes in v3:
+> - Fix errors detected by dt check.
+> - Link to v2: https://lore.kernel.org/r/20260128-mxic-nand-v2-1-6f0cf94f2fd7@gmail.com
 > 
-> diff --git a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
-> index 58bb0ad5dda4..b02311263191 100644
-> --- a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
-> +++ b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
-> @@ -131,6 +131,8 @@ properties:
->      $ref: regulator.yaml#
->      unevaluatedProperties: false
->      description: BOB regulator node.
-> +    properties:
-> +      regulator-off-on-delay-us: true
->      dependencies:
->        regulator-allow-set-load: [ regulator-allowed-modes ]
->  
-> @@ -140,6 +142,8 @@ patternProperties:
->      $ref: regulator.yaml#
->      unevaluatedProperties: false
->      description: smps/ldo regulator nodes(s).
-> +    properties:
-> +      regulator-off-on-delay-us: true
->      dependencies:
->        regulator-allow-set-load: [ regulator-allowed-modes ]
->  
-> -- 
-> 2.51.0
+> Changes in v2:
+> - Add "Mason Yang" as maintainer.
+> - Link to v1: https://lore.kernel.org/r/20260126-mxic-nand-v1-1-557df4a0dfa7@gmail.com
+> ---
+>  .../mtd/mxic,multi-itfc-v009-nand-controller.yaml  | 78 ++++++++++++++++++++++
+>  .../devicetree/bindings/mtd/mxic-nand.txt          | 36 ----------
+>  2 files changed, 78 insertions(+), 36 deletions(-)
 > 
+
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+
 
