@@ -1,244 +1,232 @@
-Return-Path: <devicetree+bounces-260786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260792-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UF/aFi0ke2nXBgIAu9opvQ
-	(envelope-from <devicetree+bounces-260786-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 10:11:09 +0100
+	id cFmtC3gle2nXBgIAu9opvQ
+	(envelope-from <devicetree+bounces-260792-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 10:16:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0B65ADF3C
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 10:11:08 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59EA0AE0AA
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 10:16:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 589523003818
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 09:11:08 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A980E3001CEC
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 09:16:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D588376BE6;
-	Thu, 29 Jan 2026 09:11:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EB1E37F759;
+	Thu, 29 Jan 2026 09:16:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i5OXmsek"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mr7IhBj2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4050C37647A
-	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 09:11:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D263937F8B1;
+	Thu, 29 Jan 2026 09:16:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769677864; cv=none; b=Y5y5ce+UafAtuE30rcW9JrvT3u7wUkekSCyDPylcLYO8wlyCuo2tmDDA3lLUlo5ITrRTBs2jWms9JG8mNiWN/DFDGwSvCcMxE3RsH00EE5HpY0fPUt1ndvGcZqtxawrobKMtKG+JW6t6HHgjQNbn+/BNg9h0csA20m4QKKHa2ac=
+	t=1769678186; cv=none; b=QPxSZ+SGYM4QULVP5ENDP8VHdDMnZfpkURC9TYUe3/zJXZVah+atbHh5jIRKxL1VjJYqqHY8H5yLhkZ49ijLrdLi5LE+ss3G/acTPntqWuSEam5vpjuMMY5ToLZw1auOzQHmlyPJUwy3FMyGsg2Zlp1zJ8L6VLe+dLpvnBO2OK0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769677864; c=relaxed/simple;
-	bh=AYOs/LhIpS1QbFW/wJR/DWvbUY+aRCU/JaMpxZiwGvY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oCt7+tTa8TXszNAGsDvj96OIPwY0aFDF0m4jOlOTeYawmBQAl3JzIgnFzg1yxfWtdNNgMB7DxQOsPEa7izAdUG5Io4eqUuOXwm6ZfsKNpfwmoNStQRBQl9W207nC0YzRtahZ2SmS7w7J/UEpkfz2T4LUCToCvm5suC+jBz5e51E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i5OXmsek; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-2a7b23dd036so3376655ad.3
-        for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 01:11:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769677862; x=1770282662; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=RsxZVDoaeUk3c8W7bg+2od0RNsPRBc+p9ugPkxBtaco=;
-        b=i5OXmsekJSdR2g84RTSWxhvUk6wTInLncSXswQNKB0ZpysJfBA5l/O/CFNbrqRQIGQ
-         OvUz4U0a/4iQ9v/mfrz5oJokWqCsps/gFlytwU59V487mP8jrCIN7SOec15aui80vdcA
-         FCiQmLQmbhtaPTlr3JXChwpasw0uDzc/pqclQwXGk4V5CaBXN/NzAPI48xBak6afiwCi
-         SrQir2DsUhQFCbNkkiPYGzNqmI5YHNAdwZq9sX2lF63QEQa6123gZ7m9rqhYTJzkrIve
-         FKXjN+sWGVKbCjbrwNmpY/1ewCLovl65XpvYeWx3tpk/RPUUhmqp2FQBPJMw7nHhSPk+
-         HTTA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769677862; x=1770282662;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RsxZVDoaeUk3c8W7bg+2od0RNsPRBc+p9ugPkxBtaco=;
-        b=jm/u+MXAeAM/nGUpxdht/q9Qadd6+WX3VO/2guta3g5SIfLj967GaqauHTlzTZ5y9C
-         Yg79NpT68PjnkRXy6CUKm9QWQTePbUrfERwnTqLLKZPIxtonVq2A7LjwjcPzUMj5f2tU
-         jKY/0941pZESZx8WwC3ruj0K4xMbu7TVmsjgSQM+gLz6gt+/AXTKDA1/IO5yQX3lbXtb
-         3F3Az0RGDlO8FdjdJc9K2qR6dsbUQKa2AvzoKmXkIihrQCMVFEsCTobKNUD8tW3NJ197
-         djYV7eON7MHtaQuHr42clO7j19mOneJlhoVDPQg8dREn+YrKcwiaQyDzX3k5dFxoyNJB
-         MHHg==
-X-Forwarded-Encrypted: i=1; AJvYcCXvPZl9TDO1+Pe9cYTjrn5ubvFTrmjWfqzuSXqEa1Bm/udZwX1PW9jAdwRSLpMcKQ3BJMfKX7xiVRLX@vger.kernel.org
-X-Gm-Message-State: AOJu0YxsWYQ3jeaE81ZQAn3+RfYjB1AQOepzrpA1zl06I0tCzVo2F7S6
-	fMbK2/HavhxHesPT4JzhIdgjmyJbWvc3J7KI+RBnHMsDZCaLA2skW+jYOGcC1w==
-X-Gm-Gg: AZuq6aKLnrAif+E6/lkEKcLuJD32oexQ8wt2yE9YoApSMYfz2MjKB9rktbMNaO9sa98
-	4uGrpQ74qblEM8mrUln6Mg0YwkmlK8RDWfl9XsXvA57oQywSbyCIEMlmq249/7JQGQApWgRo7Si
-	RkIO8hSigPmrhUVR+8O9ogWJidD3vsYzmVDPEDea5nlZvvqXkhCkT7K1pHrDNkiAL7Oty2WQOCo
-	5krc636X28ecptYaDeWzqkeUmzCOLUnHt10qBBX0g7mNtY+n1kvZvXRGVS3MLZdz1ked+tOZ6C0
-	jqfyfd8azIteKJi1JaOesGRXoTymbwotWj4m+pHkfZYjqw9Om0YirULhTmIBf726JOkuk12yoKO
-	nwiiKVpeA8I6YAplF0pK75sizlp24URFXBzmlbA2cFGSLJqIhq4v5178PJynTrGDTJYvpY5u15D
-	PRVQsG3jG9XW64ySDnJdVgaCrL+UuSFhapyw==
-X-Received: by 2002:a17:902:ce8e:b0:29e:a615:f508 with SMTP id d9443c01a7336-2a870e34a96mr80533085ad.28.1769677862376;
-        Thu, 29 Jan 2026 01:11:02 -0800 (PST)
-Received: from [172.16.20.12] ([136.226.253.21])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a88b415b01sm43645235ad.40.2026.01.29.01.10.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Jan 2026 01:11:01 -0800 (PST)
-Message-ID: <2c59e43f-aee1-4ddb-88dc-1bbf6287c926@gmail.com>
-Date: Thu, 29 Jan 2026 14:41:25 +0530
+	s=arc-20240116; t=1769678186; c=relaxed/simple;
+	bh=1HIOr9VqVgD+lxbUBD7uTKdPs29LMRiAJ8svnoIwY04=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TCRGc5O8iJwQ+Q0761viD+OSErPazEd7enS03WgZmK6BSkw6qPZfmz+cy3SWkLkWT6aYXyqiydTr0bR89LGC1obGb+K5itu9BEGF7HASvPr2ktR6eMQjp6wNLaJT2uuSAmfiuPuNhMAQB4Cu4L4YHmY94JusU7CSOFMcN/Av2Gs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mr7IhBj2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6619C4CEF7;
+	Thu, 29 Jan 2026 09:16:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769678186;
+	bh=1HIOr9VqVgD+lxbUBD7uTKdPs29LMRiAJ8svnoIwY04=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Mr7IhBj2Pzbp5FXotoHGbmDxEe2LdR34si8ZN7qog3ATafMGOeWQGczCYUXpkUiGL
+	 UkPFclrsLSw05vg53pCEAY1OYevxG8oD36d3uistZ7vxnR3kAJ0BBiVDqNjKTdVy3z
+	 YWBaEP2aVhgJwYXDj8jnXyaBzX4EDmqjEAT9fjJqnrvnyNiTYQ0YiejFjTzcZYlPVi
+	 /6bDH7AUIqWvzqk/yW7JrocQuK+jrQ7vpdqfNmzpwU8RRBzAvYckGtsOeEGBN3upRm
+	 2zR/t0CUQBdymskYWs8QHKpMJ7VB/3XlnlvxUzuKI5MEo9/uY1V0DbEWBAMRaWQ1pW
+	 qRlHL002bzgsA==
+Date: Thu, 29 Jan 2026 09:16:21 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Cosmin-Gabriel Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	"magnus.damm" <magnus.damm@gmail.com>,
+	"linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings: spi: renesas,rzv2h-rspi: allow
+ multiple DMAs
+Message-ID: <20260129-public-musty-ff00b2f8dda7@spud>
+References: <20260127201706.616374-1-cosmin-gabriel.tanislav.xa@renesas.com>
+ <20260127201706.616374-2-cosmin-gabriel.tanislav.xa@renesas.com>
+ <20260128-sequence-platypus-59ae3318318a@spud>
+ <TYRPR01MB15619DCD987445778003A81588591A@TYRPR01MB15619.jpnprd01.prod.outlook.com>
+ <20260128-debatable-scribe-4e55c208b31a@spud>
+ <CAMuHMdWYKFoBnGaCfvVJFwYXEvtVyxXiAzHC2JvmTCwc5H91wQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 3/3] arm64: dts: qcom: talos-evk: Add support for
- QCS615 talos evk board
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Jie Gan <jie.gan@oss.qualcomm.com>, andersson@kernel.org,
- konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260114100043.1310164-1-tessolveupstream@gmail.com>
- <20260114100043.1310164-4-tessolveupstream@gmail.com>
- <5102252a-0f50-4ee9-97b4-a90859a33b2b@oss.qualcomm.com>
- <128a5f86-dd3f-4e5e-a55f-3c8b5993779b@gmail.com>
- <5c5oalpne2xedc42yomtur3lo7vvdyncgs7yd46xw4nvi6pzbd@vcjz3wsyjd3c>
-Content-Language: en-US
-From: tessolveupstream@gmail.com
-In-Reply-To: <5c5oalpne2xedc42yomtur3lo7vvdyncgs7yd46xw4nvi6pzbd@vcjz3wsyjd3c>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="b/mrbCtz2k8FTwAK"
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdWYKFoBnGaCfvVJFwYXEvtVyxXiAzHC2JvmTCwc5H91wQ@mail.gmail.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-3.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_FROM(0.00)[bounces-260786-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260792-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[renesas.com,kernel.org,glider.be,gmail.com,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NO_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tessolveupstream@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_COUNT_FIVE(0.00)[5];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: E0B65ADF3C
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 59EA0AE0AA
 X-Rspamd-Action: no action
 
 
+--b/mrbCtz2k8FTwAK
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 16-01-2026 13:24, Dmitry Baryshkov wrote:
-> On Fri, Jan 16, 2026 at 11:25:50AM +0530, tessolveupstream@gmail.com wrote:
->>
->>
->> On 15-01-2026 07:54, Jie Gan wrote:
->>>
->>>
->>> On 1/14/2026 6:00 PM, Sudarshan Shetty wrote:
->>>> Add the device tree for the QCS615-based Talos EVK platform. The
->>>> platform is composed of a System-on-Module following the SMARC
->>>> standard, and a Carrier Board.
->>>>
->>>> The Carrier Board supports several display configurations, HDMI and
->>>> LVDS. Both configurations use the same base hardware, with the display
->>>> selection controlled by a DIP switch.
->>>>
->>>> Use a DTBO file, talos-evk-lvds-auo,g133han01.dtso, which defines an
->>>> overlay that disables HDMI and adds LVDS. The DTs file talos-evk
->>>> can describe the HDMI display configurations.
->>>>
->>>> The initial device tree includes support for:
->>>> - CPU and memory
->>>> - UART
->>>> - GPIOs
->>>> - Regulators
->>>> - PMIC
->>>> - Early console
->>>> - AT24MAC602 EEPROM
->>>> - MCP2515 SPI to CAN
->>>> - ADV7535 DSI-to-HDMI bridge
->>>> - DisplayPort interface
->>>> - SN65DSI84ZXHR DSI-to-LVDS bridge
->>>> - Wi-Fi/BT
->>>>
-> 
->>>> +
->>>> +&usb_1 {
->>>> +    status = "okay";
->>>> +};
->>>> +
->>>> +&usb_1_dwc3 {
->>>> +    dr_mode = "host";
->>>> +};
->>>> +
->>>> +&usb_hsphy_1 {
->>>> +    vdd-supply = <&vreg_l5a>;
->>>> +    vdda-pll-supply = <&vreg_l12a>;
->>>> +    vdda-phy-dpdm-supply = <&vreg_l13a>;
->>>> +
->>>> +    status = "okay";
->>>> +};
->>>> +
->>>> +&usb_2 {
->>>> +    status = "okay";
->>>> +};
->>>> +
->>>> +&usb_2_dwc3 {
->>>> +    dr_mode = "host";
->>>> +};
->>>
->>> Both usb devices have been configured to host mode, do we need adb?
->>> The adb only work with usb peripheral mode.
->>>
->>
->> This topic was discussed previously, and the fix was implemented 
->> based on that discussion.
->> For reference, I’m sharing the earlier communication in the 
->> links below.
->>
->> https://lore.kernel.org/all/qq4aak33bn3mqxd2edu6zgkkshby63mmitg7zqkly2rj4c2lh7@4s7sndb7e2jr/T/#meaa464a4e6992b36b5d8d41ddc691ee4ea36b1ce
->>
->> https://lore.kernel.org/all/20251014120223.1914790-1-tessolveupstream@gmail.com/T/#t
-> 
-> Neither of these links is relevant to the question.
-> 
+On Thu, Jan 29, 2026 at 09:04:45AM +0100, Geert Uytterhoeven wrote:
+> Hi Conor,
+>=20
+> On Wed, 28 Jan 2026 at 21:09, Conor Dooley <conor@kernel.org> wrote:
+> > On Wed, Jan 28, 2026 at 06:51:48PM +0000, Cosmin-Gabriel Tanislav wrote:
+> > > > From: Conor Dooley <conor@kernel.org>
+>=20
+> > > > On Tue, Jan 27, 2026 at 10:17:04PM +0200, Cosmin Tanislav wrote:
+> > > > > The Renesas RZ/T2H and RZ/N2H SoCs have multiple DMA controllers =
+that
+> > > > > can be used with the RSPI peripheral. The current bindings only a=
+llow a
+> > > > > single pair of RX and TX DMAs.
+> > > > >
+> > > > > Allow multiple DMAs by only restricting the possible names of the=
+ DMA
+> > > > > channels.
+> > > >
+> > > > > All '.*-names$' properties must conform to the string-array.yaml
+> > > > > meta-schema, which requires both minItems and maxItems properties=
+ to be
+> > > > > present before the items can be a schema. Otherwise, the items ne=
+ed to
+> > > > > be an array.
+> > > >
+> > > > Why is this in the commit message?
+> > >
+> > > To provide a context for the maxItems that are needed below, even if
+> > > there's not really a maximum. Which is why having a maxItems does not
+> > > really make sense but it is expected by the meta-schema so we can
+> > > constrain the names of the DMA channels.
+> > >
+> > > dtschema/meta-schemas/string-array.yaml:
+> > >
+> > > if:
+> > >   not:
+> > >     required:
+> > >       - minItems
+> > >       - maxItems
+> > > then:
+> > >   properties:
+> > >     items:
+> > >       type: array
+> >
+> > Right. You can probably remove all that since I'm asking you to add
+> > actual constraints to the property.
+> >
+> > > > > Declare a generous maxItems of 32, which should be enough for 16 =
+DMA
+> > > > > controllers, so that we don't have to update this value ever agai=
+n, even
+> > > > > if currently the maximum number of DMA controllers on a Renesas S=
+oC is
+> > > > > 5.
+> > > >
+> > > > Huh, No. The binding should constrain this to fit what the actual
+> > > > devices do.
+>=20
+> The device is the SPI controller, or the SoC where the SPI controller
+> is integrated?
 
-In our hardware design, the USB0 controller is a USB 3.0-capable 
-controller whose high‑speed (HS) differential lines are routed through 
-a mechanical switch.
+Whether the SoC's number of dma controllers is the limiter or whether it's
+the number of inputs to the spi controller isn't something I know the
+answer to (and which it is in theory could vary between SoCs), so I used
+device instead of "SoC integration of the spi controller represented by
+a given compatible".
 
-a) During EDL (flashing) mode:
-   The HS lines are explicitly routed to the Micro‑USB port. 
-   This allows the SoC to enter "device mode" for firmware flashing.
+> > > Should the binding for SPI be updated if a device ever comes up with
+> > > 6 DMA controllers? It seems a bit unrelated to me. In this case, shou=
+ld
+> > > we constrain the number of dmas and dma-names per SoC? Some may have 2
+> > > DMA controllers, while others may have 5. Please let me know your
+> > > thoughts, taking into account that I only added maxItems to satisfy t=
+he
+> > > meta-schema.
+> >
+> > Yes, I think you should constrain it to the correct number of providers
+> > for each device.
+> > Whether that's done or not, there's not all that much reason to set it
+> > above whatever the current maximum is, since the binding will have to be
+> > updated to add the compatible for whatever device exceeds the current m=
+ax
+> > and the limit can be increased then.
+>=20
+> The actual maximum number of dmas pairs does not depend on the SPI
+> controller, but on the SoC integration.  I think the (single) DMA
+> request signal from the SPI controller is just wired to all DMACs
+> present (on this SoC, IIRC there were some Renesas SoCs where some
+>  DMA clients are wired to only a single DMAC).
 
-b) After EDL completes (normal operation):
-   The mechanical switch is driven to route the HS signals to the on‑
-   board USB 3.0 hub.
-   The hub connects to four Type-A ports, all designed for host mode 
-   only.
-   The Micro-USB connector is now electrically disconnected.
+Right, that's largely what I had gathered from Cosmin-Gabriel's comments
+and the patch itself. I think the comments I made here are all still
+applicable? If there's a new SoC, there'll be a new compatible for the
+spi controller's integration on that SoC and the limit can be bumped
+then.
 
-Why host-only mode: Once the switch routes to the hub, there's no 
-electrical path back to the Micro-USB port. The USB controller can 
-only talk to the hub and its downstream Type-A ports, which are wired 
-for host mode only. Device mode is physically impossible in this 
-configuration.
-Therefore, USB0 must be configured as host-only in the device tree, 
-since device mode cannot work after the system boots.
- 
-The USB1 controller supports USB 2.0 and has its data lines directly 
-routed to a Type-A connector. This hardware design restricts the 
-controller to host-only operation, preventing any peripheral/device 
-mode functionality.
-> 
+Cheers,
+Conor.
 
+
+--b/mrbCtz2k8FTwAK
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaXslYQAKCRB4tDGHoIJi
+0uKTAP4/jiLNrrz+gQV2hmFeqaAc7+mUUn6ERJZQEFt0ivyM/QD+PtCjUjHX5RKk
+aSa0BCvzov2G0mJ8s4yiTFXGlOtjgAU=
+=hJtA
+-----END PGP SIGNATURE-----
+
+--b/mrbCtz2k8FTwAK--
 
