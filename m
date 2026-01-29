@@ -1,279 +1,147 @@
-Return-Path: <devicetree+bounces-261005-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260929-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YNfgMsake2lWHgIAu9opvQ
-	(envelope-from <devicetree+bounces-261005-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 19:19:50 +0100
+	id yMZuL2iHe2lOFQIAu9opvQ
+	(envelope-from <devicetree+bounces-260929-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 17:14:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D43FB37F3
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 19:19:50 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00693B1FCE
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 17:14:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 56B6B3010529
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 18:17:54 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B08763009F2E
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 16:14:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A649B273803;
-	Thu, 29 Jan 2026 18:17:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10D4933BBC8;
+	Thu, 29 Jan 2026 16:14:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cz86Urx1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29E681D9A54
-	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 18:17:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB1A433ADB8;
+	Thu, 29 Jan 2026 16:14:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769710673; cv=none; b=KG7t4I0TqdP2vnYaBFh+ou54+c98MW2QDAIkJdCTrqIlkREnaCd3v+Jdk3uxzbTUv/92cpSxN4REWS8PsM6O6tQmx4w1ZD8sgPp+zcW1iJKdOgCup6kFgWlqO/913w9nwPhyRWbylrlZUPhcw9hI6hIzY/Vcz67sm8avFimX25M=
+	t=1769703245; cv=none; b=iHI5j+M8CoDuAcRnUb1Tuh1lAD8fWP2rFy9AMDINVC2fFQNYLXP0yofzHXYwEq264gDX0CNIcySZvJfauKIf2VbtJOxKav6ojyR/ra/o8rlxZ2w43qs2jXWJE0kcOG+MyOq12Rw/ohivu0dxrH0JO0NxDA1PtmRXe91qqNVUdQA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769710673; c=relaxed/simple;
-	bh=BmaXlCZ6264fsqvXXrjSoDhWiC9g1X99D6Z7+wsR+aY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tRyXoXGFzZ7e77+lpvGdg7DLh/lV0iIRPir6rpSrLzf1pZfzSVXMLqgBQ97yGybVh60YhpZnwiE9Hc6s+Jt5dSxIPSq6xLRv9R6dMLKCoKp2FT/3C16k1+LP2NPouosW1bmqVoJEY+OxWL0j2DH6+Zs1W2hk7E4sBFohIjQ8GTY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-8c6aaf3cd62so136316485a.3
-        for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 10:17:52 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769710671; x=1770315471;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4/B1720oxlP4NMLZCxNr6vg90MXZvyAsBr77z/rjaXw=;
-        b=kjdOLK8SdSVdl++jslDEjFHJyVTnJr7ySpKq7zaxQya0G14/ew9LIK6hPIXGUPB33R
-         ZbZKSFg3nVK009hsJpC8qizaOedaXH7slN8IEsE0R2AP8qz5BiMsg7dsWrxVgZUZvch0
-         whMOnFuOzVhCQYIdA6U5JNCZwAz8/kSi+Vphe9r4slUQSUGaX+Ld2RG9hVMb9JGB63Pz
-         xU2V+voNHemImhCtAdZog07+dUSw6fxYTVYtb4XVQ8dbiPDOHtiiRO02ExCJ6lAFFU/H
-         T4/Psc0rhmBJOW0OOhN24StvOdqvF1imk0Gi7ui2mW0H1x9jjAlayDHb02MWAqB9bOS2
-         i0nQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVd+/0dymZXesfIMJY0qGH+sJvMIVNQQ8V4y8Ah1qfVYZWpEIbhOF3CeDA21Wdo64QDcwLQu8sNxOPe@vger.kernel.org
-X-Gm-Message-State: AOJu0YxAgsnTamjfmCwK2DsoDu0uGRYAQJxuCd5oPwQM/q1uSKfDQb7y
-	yo2p49RdJMZ2HQkK39vghaXAxGQ6YbLACly2tQRkMOuM/41Kpzp6AB1RZkxQFV+a
-X-Gm-Gg: AZuq6aInavKO0eyE6eXLg9hLWemedVNAd1IvWioa7UMUaTu+AyeQs0stdKTgDvfwewT
-	76og3tZCQsdfqS4QX5+xpWekwzoRqjzA7mzXq1YSfi4JXFe7WY+k58iUE53UggpwD0otFW+zdPr
-	nDXiTWYKshnGnzlTtX7fc6dGt9+VR7AO7exf10PJMe9UUlMDinoRwAhhQTEsq7AeCrV9crD0WdC
-	YWIw84Vhqqh2wNCKaai2xhcM+SW4J2uZ+ROfTLZvzWiGV4mTXf95vGiP8GsSoKnKnMdv1MVYCLD
-	tC7KAmWRaK9kg7wITzF+Y/9br5XRgtxWN01Lby62m4Oy+VaWILAUlmy4wYC5E35ma7CfK2nohwO
-	sFwMY/xyDMBLrRGWJbU9NFXrToKd46CC3SxDvpWly7Qmz5SIjxqf25H2B7Ea655U9EyU/UN+2SL
-	KiE9jyxV5xiUl5m7dhSFzS6TEJSAs4uOyuGSFDq5qevgq65o0y
-X-Received: by 2002:a05:6123:a5:b0:560:2368:191 with SMTP id 71dfb90a1353d-566a00d510bmr11091e0c.10.1769703692442;
-        Thu, 29 Jan 2026 08:21:32 -0800 (PST)
-Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com. [209.85.222.51])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-948723ef486sm1276119241.5.2026.01.29.08.21.32
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Jan 2026 08:21:32 -0800 (PST)
-Received: by mail-ua1-f51.google.com with SMTP id a1e0cc1a2514c-9413e5ee53eso717358241.0
-        for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 08:21:32 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU12IYtSXzI92MRIuFwJNo4YPV2RAZjPEprmWHnzuxNuDDgmvRLaifVaKcfcGcKauvOhbM2Cuqyljxk@vger.kernel.org
-X-Received: by 2002:a05:6102:32d2:b0:5f1:50d0:3797 with SMTP id
- ada2fe7eead31-5f723937ba5mr3352368137.43.1769703201568; Thu, 29 Jan 2026
- 08:13:21 -0800 (PST)
+	s=arc-20240116; t=1769703245; c=relaxed/simple;
+	bh=qPHPxNpWWMDsGxyMBTnvxI4E48w2EhAOUYqVNBC3rCE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=atnDKhzDwYRH9DpMnEAnHZ7K14VSlX/X+pCO2a8XbWOewCkozoKm7rUskDZYPAb0nHTFeaRNkJ19EX0Gie0uC8I/6PuPDkL1Mnxtc4NXO9TimvlmUAECQdNK7eVbuuISZ6rcAy8fAub7nrh+6SUdRFr/N0qMVXYWf4zLvs8uwhk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cz86Urx1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40A02C4CEF7;
+	Thu, 29 Jan 2026 16:14:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769703245;
+	bh=qPHPxNpWWMDsGxyMBTnvxI4E48w2EhAOUYqVNBC3rCE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Cz86Urx1igiIQvTFTGutmwPdZkymvZ6zyMF4hl10hrKUhIi08rZfeK0wzyh9huT5j
+	 O02Ux4L1rjmNPwqTQcisZ0vIsEwN26pxyNS3f31UzLxlFYXIlIBewtJTNcMm5iBQ6f
+	 Zi1IHkHBphI91FBI0Ckujkeq1FueMncKbQ5aESt9iOEn/XQNnmcQK7Zcf4lTvK7y8k
+	 IOG23yFPUwhCHvx59ke9GuNCRXfgm19WA6RrRO5fiRbym9M9bAAL4lZKSvB8g6YhCV
+	 51bW9CoQgHMhDLQ1UrtCNf5462F6QTiLRzK0N/eM2F01Y9h5wTpVtIRYXit5VPxdxp
+	 3/9N3OYPx+LpQ==
+Date: Thu, 29 Jan 2026 10:14:04 -0600
+From: Rob Herring <robh@kernel.org>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Michal Simek <michal.simek@amd.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Abdurrahman Hussain <abdurrahman@nexthop.ai>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, info@mocean-labs.com,
+	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 1/7] dt-bindings: i2c: xiic: make clocks optional
+Message-ID: <20260129161404.GA1118793-robh@kernel.org>
+References: <20260127-i2c-xiic-v6-0-e82e2f6f657c@nexthop.ai>
+ <20260127-i2c-xiic-v6-1-e82e2f6f657c@nexthop.ai>
+ <20260128-remarkable-airborne-chihuahua-a1a16c@quoll>
+ <66c7435c-a936-413e-a016-c860d448c971@amd.com>
+ <fc00f8cf-b566-4694-82fe-76010d2f7c78@lunn.ch>
+ <aXog-KBw7Bp-VEC4@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260128-rz-sdio-mux-v7-0-92ebb6da0df8@solid-run.com>
- <20260128-rz-sdio-mux-v7-2-92ebb6da0df8@solid-run.com> <CAPDyKFrBuL+747QUJJUejtcvjm0V7Lt=vHwjvcMdCt_h4=sFwg@mail.gmail.com>
-In-Reply-To: <CAPDyKFrBuL+747QUJJUejtcvjm0V7Lt=vHwjvcMdCt_h4=sFwg@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 29 Jan 2026 17:13:10 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXgLR9yeLa5JKNdAOtNEirJ8263bmn1zRNAnKnmf8F-Sg@mail.gmail.com>
-X-Gm-Features: AZwV_Qhgryuc7jjty9iqHy9zUzs2cyLGoonPOo05F0vrabMAU0UMySZvEVLbN1w
-Message-ID: <CAMuHMdXgLR9yeLa5JKNdAOtNEirJ8263bmn1zRNAnKnmf8F-Sg@mail.gmail.com>
-Subject: Re: [PATCH v7 2/7] mux: Add helper functions for getting optional and
- selected mux-state
-To: Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Josua Mayer <josua@solid-run.com>, Marc Kleine-Budde <mkl@pengutronix.de>, 
-	Vincent Mailhol <mailhol@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Peter Rosin <peda@axentia.se>, 
-	Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas Kemnade <andreas@kemnade.info>, 
-	Kevin Hilman <khilman@baylibre.com>, Roger Quadros <rogerq@kernel.org>, 
-	Tony Lindgren <tony@atomide.com>, Janusz Krzysztofik <jmkrzyszt@gmail.com>, Vignesh R <vigneshr@ti.com>, 
-	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	Yazan Shhady <yazan.shhady@solid-run.com>, Jon Nettleton <jon@solid-run.com>, 
-	Mikhail Anikin <mikhail.anikin@solid-run.com>, linux-can@vger.kernel.org, 
-	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-omap@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, Dan Carpenter <dan.carpenter@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aXog-KBw7Bp-VEC4@smile.fi.intel.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[solid-run.com,pengutronix.de,kernel.org,linaro.org,axentia.se,iki.fi,kemnade.info,baylibre.com,atomide.com,gmail.com,ti.com,glider.be,sang-engineering.com,vger.kernel.org,lists.infradead.org];
-	TAGGED_FROM(0.00)[bounces-261005-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[33];
+	TAGGED_FROM(0.00)[bounces-260929-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[solid-run.com:email,linux-m68k.org:email,linaro.org:email,mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 4D43FB37F3
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 00693B1FCE
 X-Rspamd-Action: no action
 
-On Thu, 29 Jan 2026 at 17:06, Ulf Hansson <ulf.hansson@linaro.org> wrote:
-> On Wed, 28 Jan 2026 at 15:46, Josua Mayer <josua@solid-run.com> wrote:
-> >
-> > In-tree phy-can-transceiver driver has already implemented a local
-> > version of devm_mux_state_get_optional.
-> >
-> > The omap-i2c driver gets and selects an optional mux in its probe
-> > function without using any helper.
-> >
-> > Add new helper functions covering both aforementioned use-cases:
-> >
-> > - mux_control_get_optional:
-> >   Get a mux-control if specified in dt, return NULL otherwise.
-> > - devm_mux_state_get_optional:
-> >   Get a mux-state if specified in dt, return NULL otherwise.
-> > - devm_mux_state_get_selected:
-> >   Get and select a mux-state specified in dt, return error otherwise.
-> > - devm_mux_state_get_optional_selected:
-> >   Get and select a mux-state if specified in dt, return error or NULL.
-> >
-> > Existing mux_get helper function is changed to take an extra argument
-> > indicating whether the mux is optional.
-> > In this case no error is printed, and NULL returned in case of ENOENT.
-> >
-> > Calling code is adapted to handle NULL return case, and to pass optional
-> > argument as required.
-> >
-> > To support automatic deselect for _selected helper, a new structure is
-> > created storing an exit pointer similar to clock core which is called on
-> > release.
-> >
-> > To facilitate code sharing between optional/mandatory/selected helpers,
-> > a new internal helper function is added to handle quiet (optional) and
-> > verbose (mandatory) errors, as well as storing the correct callback for
-> > devm release: __devm_mux_state_get
-> >
-> > Due to this structure devm_mux_state_get_*_selected can no longer print
-> > a useful error message when select fails. Instead callers should print
-> > errors where needed.
-> >
-> > Commit e153fdea9db04 ("phy: can-transceiver: Re-instate "mux-states"
-> > property presence check") noted that "mux_get() always prints an error
-> > message in case of an error, including when the property is not present,
-> > confusing the user."
-> >
-> > The first error message covers the case that a mux name is not matched
-> > in dt. The second error message is based on of_parse_phandle_with_args
-> > return value.
-> >
-> > In optional case no error is printed and NULL is returned.
-> > This ensures that the new helper functions will not confuse the user
-> > either.
-> >
-> > With the addition of optional helper functions it became clear that
-> > drivers should compile and link even if CONFIG_MULTIPLEXER was not enabled.
-> > Add stubs for all symbols exported by mux core.
-> >
-> > Signed-off-by: Josua Mayer <josua@solid-run.com>
-> > ---
-> >  drivers/mux/core.c           | 178 ++++++++++++++++++++++++++++++++++++-------
-> >  include/linux/mux/consumer.h | 108 +++++++++++++++++++++++++-
-> >  2 files changed, 253 insertions(+), 33 deletions(-)
-> >
-> > diff --git a/drivers/mux/core.c b/drivers/mux/core.c
-> > index a3840fe0995f..b01ec126caaf 100644
-> > --- a/drivers/mux/core.c
-> > +++ b/drivers/mux/core.c
->
-> [...]
->
-> >  static void devm_mux_state_release(struct device *dev, void *res)
-> >  {
-> > -       struct mux_state *mstate = *(struct mux_state **)res;
-> > +       struct devm_mux_state_state *devm_state = res;
-> >
-> > -       mux_state_put(mstate);
-> > +       if (devm_state->exit)
-> > +               devm_state->exit(devm_state->mstate);
-> > +
-> > +       mux_state_put(devm_state->mstate);
-> >  }
-> >
-> >  /**
-> > - * devm_mux_state_get() - Get the mux-state for a device, with resource
-> > - *                       management.
-> > - * @dev: The device that needs a mux-control.
-> > - * @mux_name: The name identifying the mux-control.
-> > + * __devm_mux_state_get() - Get the optional mux-state for a device,
-> > + *                         with resource management.
-> > + * @dev: The device that needs a mux-state.
-> > + * @mux_name: The name identifying the mux-state.
-> > + * @optional: Whether to return NULL and silence errors when mux doesn't exist.
-> > + * @init: Optional function pointer for mux-state object initialisation.
-> > + * @exit: Optional function pointer for mux-state object cleanup on release.
-> >   *
-> >   * Return: Pointer to the mux-state, or an ERR_PTR with a negative errno.
-> >   */
-> > -struct mux_state *devm_mux_state_get(struct device *dev,
-> > -                                    const char *mux_name)
-> > +static struct mux_state *__devm_mux_state_get(struct device *dev, const char *mux_name,
-> > +                                             bool optional,
-> > +                                             int (*init)(struct mux_state *mstate),
-> > +                                             int (*exit)(struct mux_state *mstate))
-> >  {
-> > -       struct mux_state **ptr, *mstate;
-> > +       struct devm_mux_state_state *devm_state;
-> > +       struct mux_state *mstate;
-> > +       int ret;
-> >
-> > -       ptr = devres_alloc(devm_mux_state_release, sizeof(*ptr), GFP_KERNEL);
-> > -       if (!ptr)
-> > +       devm_state = devres_alloc(devm_mux_state_release, sizeof(*devm_state), GFP_KERNEL);
-> > +       if (!devm_state)
-> >                 return ERR_PTR(-ENOMEM);
-> >
-> > -       mstate = mux_state_get(dev, mux_name);
-> > -       if (IS_ERR(mstate)) {
-> > -               devres_free(ptr);
-> > -               return mstate;
-> > +       mstate = mux_state_get(dev, mux_name, optional);
-> > +       if (IS_ERR_OR_NULL(mstate)) {
-> > +               ret = PTR_ERR(mstate);
->
-> Should this be PTR_ERR_OR_ZERO?
+On Wed, Jan 28, 2026 at 04:45:12PM +0200, Andy Shevchenko wrote:
+> On Wed, Jan 28, 2026 at 03:34:02PM +0100, Andrew Lunn wrote:
+> > On Wed, Jan 28, 2026 at 12:21:41PM +0100, Michal Simek wrote:
+> > > On 1/28/26 11:37, Krzysztof Kozlowski wrote:
+> > > > On Tue, Jan 27, 2026 at 09:03:55PM +0000, Abdurrahman Hussain wrote:
+> > > > > The xiic driver is designed to operate without explicit clock configuration
+> > > > 
+> > > > And if you change this in the driver, then you change bindings?
+> > > > 
+> > > > You miss here explanation based on hardware - how does the hardware work
+> > > > if nothing ticks it clocks?
+> > > 
+> > > Hardware obviously have clock input which needs to be connected. Without it
+> > > it won't work.
+> > 
+> > Should ACPI potential limitations be making the DT description less
+> > accurate?
+> > 
+> > Would it not be better that the driver has an DT binding and an ACPI
+> > binding? Where there are common properties, common functions can be
+> > used to retrieve them. However, if ACPI lacks usable clocks, use the
+> > of_ method to get the clock from DT, and skip it for ACPI.
+> 
+> Why should we use of_ methods? If this is required we can check the type of
+> fwnode and act accordingly, but I think this should go deeper into some
+> treewide available helpers, because now some drivers repeat the mantra.
+> 
+> But how do the driver get the clock frequency (if needed for some register
+> settings and/or calculations)? DT seems to have well established property
+> 'clock-frequency' for that. Can we consider it as "ACPI binding" as well?
 
-"mux_state_get() never returns NULL"
-https://lore.kernel.org/202601221036.J0kR78Uw-lkp@intel.com
+Well established and somewhat deprecated. Generally, 'clocks' should be 
+used instead. There are some exceptions like I2C buses here to set the 
+bus frequency (or max freq). We probably should have used 
+'bus-frequency' in this case, but that predates me.
 
->
-> > +               goto err_mux_state_get;
-> >         }
+ACPI can use whatever the ACPI binding maintainers want. If you know who 
+they are, please let me know. :)
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Rob
 
