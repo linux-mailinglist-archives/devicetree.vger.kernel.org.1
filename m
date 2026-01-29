@@ -1,245 +1,205 @@
-Return-Path: <devicetree+bounces-260830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260827-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2P0qLLQ8e2mNCgIAu9opvQ
-	(envelope-from <devicetree+bounces-260830-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 11:55:48 +0100
+	id yJ+jCJA8e2mNCgIAu9opvQ
+	(envelope-from <devicetree+bounces-260827-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 11:55:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B7D6AF397
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 11:55:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 772D7AF353
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 11:55:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BBEF3302D0A8
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 10:45:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4F8F33065D55
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 10:41:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31A323803C4;
-	Thu, 29 Jan 2026 10:45:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96EDF3815D3;
+	Thu, 29 Jan 2026 10:41:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="PxbBmVCk";
-	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="Bewou8pX"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LdQj08rI";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="bvFpKhs4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0F3733F8BC
-	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 10:45:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 139293806A7
+	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 10:41:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769683531; cv=none; b=alJ48m1ugsnHu/5q84KvaRulbUh+OY0u4M6aRlcGCJZAylF7Z4/JC//4pdFultMEUPgVQd/qeupOauKk7JFFvY/Vb8RY7EBPRetpCIvOfqgzqnApD//Hpte7Fm7kxU3/g/aO9WhZYJ2zm1vuu98lc3J1/832mYOpGJs1tDMIiRo=
+	t=1769683316; cv=none; b=t3tgkH/WUGVcUsmwTN/JD1P+b+s4DkVxBsfzRqXDRXfeXNTRzZxfp6FGj2s3+nNMYvKa/SkJfMBZsNuybDbA4zRMcu/hEwpQclPo/8J7YtNT4Uyu8bMfUtnxDnbtimVCuSOKEEGnvR/Tsrjw+C5VtJU7ziOErGgatbFertjpXXY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769683531; c=relaxed/simple;
-	bh=MyHtdtX/B2rQ2W+HO8YtwrvuToyHHH7NnBiH9yw3hXI=;
+	s=arc-20240116; t=1769683316; c=relaxed/simple;
+	bh=zk+1O1yq82iIDastvmqkaAwAmTL02X6M9Y6PekCo/CU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=d9d400nDatmF4nFddckZa9TZR2Dx0ovOB5sbMenUyPcLJBztfygAOFno5XKt/nB2tsS6behhay7Ks0VKU4ziKsdAOh2FnR+LQ6Kdeylqgwp1rYJpyiSddmogFP6HTW562W2Ku7HhZPLce3ZXinl7jmINDt2iFnLWW7YPl8IZmAA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=PxbBmVCk; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=Bewou8pX; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1769683528;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=asMYvR4+8fIWZ4M/HFcAyNsDPqE2Xel47V6LP6IGUhQ=;
-	b=PxbBmVCkBq7qenLF4pvlx+aSOr/cdjJkIqj36A8nc06m8l7MMTGWYS1KIrd1FDocxugPQt
-	xS13ow5fd3Iu4lDzGf9v6O2T4H/jDLPIGK+yG/b368lPHEymlgxH6p1C4ewEfbLqQu5t+6
-	kCw9qfhaT2YJs41ivXzuMwTpluaZspE=
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com
- [209.85.214.199]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-623-KMgDGui5P2SiOxTpvCcAZQ-1; Thu, 29 Jan 2026 05:45:27 -0500
-X-MC-Unique: KMgDGui5P2SiOxTpvCcAZQ-1
-X-Mimecast-MFC-AGG-ID: KMgDGui5P2SiOxTpvCcAZQ_1769683526
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2a755a780caso13599925ad.0
-        for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 02:45:27 -0800 (PST)
+	 Content-Type:Content-Disposition:In-Reply-To; b=YuTFhd4bemob9+CWJliSfWFe7JVegwBIrGT/ZXKGSGkixZ7nrUIfKAyF66/ufmnW08w5Xco8+iaMNjfdUV2c9E4cvvIUgjM6mTA9JciAdGOg1d+qd2VLomcc3993v5VdvJgPN2pw32iCniwHfsPmT0BXK4hfHe1q5+sWnJzclM4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LdQj08rI; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=bvFpKhs4; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60TALQ7T2033398
+	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 10:41:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=78yc5FN4eslJFV/3x/1+L9rJ
+	7RkLelm3oGphAVI930Y=; b=LdQj08rIOk0vOQ7zGzkyJoPBUn62ZY4TWqL1V3LV
+	Sxz5UGtn5AvvaVgpX9CgmGJcsl3Vp5W3T4k0okvwoXug16XtNPiLH2IdL6LnEcCp
+	UvELoDV2rJNqwzyExU6YGcU7p7uyLURQ/018017NkNzeDwWZXX6crqaTqdz7u7zg
+	YoPV6nGk+aA0++dKQ8rkzjHLUZ2BfC/h5u+s8PcTi+flI8eNMqBDBgXYukoMje8n
+	19gm43flbKIGTF4RPwIEv+a6H4KXDzzCDSr5HhwNWmhiazItq5flgBaXbuO3kAda
+	doAii1W7YKOunqrZF0yVAf6iwqNRxsvp4XHvxGI8U1B1Pg==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4byna7k9yx-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 10:41:53 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8c6deddd7f7so203869485a.3
+        for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 02:41:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=redhat.com; s=google; t=1769683526; x=1770288326; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1769683313; x=1770288113; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=asMYvR4+8fIWZ4M/HFcAyNsDPqE2Xel47V6LP6IGUhQ=;
-        b=Bewou8pXYZM0BBUgwJWtd2i+76ZVWimiBsSLlBPhD9/ADpTFIhtB/hVz7xqtQ6/Hno
-         GaOLc9ye4zAK+uZghb1hZtdHsEqtK8sHSsOsQwLOf7WpGWiJwtmalj6HoSVkMtDyhzD0
-         HmytcK9/cBB+4a/6oXFnDRcedElDEmsqD4Hu3VcuGvZDeoCj/SC/WoqtyKd437kS076e
-         Gh6SKFIv+Yw92loMfDZgAc/r/vpgpK8ubA5i5GHdOeuO983JByaK/RAQ3k1OQErtVUOm
-         N6Z9OdkHT45wPoOtpaEuqH95Sw5MLSiuxRmZryEn30d7je/u+lF9AW/CimsUnCHYbmhS
-         45PQ==
+        bh=78yc5FN4eslJFV/3x/1+L9rJ7RkLelm3oGphAVI930Y=;
+        b=bvFpKhs4bsnxR3EM1DdoQkK5iLnelZkxkBuc6uV/alSICjBMNcEFEkFLFlxjSzS9nL
+         YA3ooM+KkrBwqZg9K2MU2vY1/O6adOQomE/bCysFTjexZZVMTRqXkeuMvQTTKZJS6XS1
+         GHvbL+zGiwiLfjr4vOURvZa0PwDBYvzDki+7XGAbATXcuu6jJmqqYByrAZoCg9TS6A2Y
+         XjMLZ1paJks2jBBBwJ4KY2RS5WelsDZ/SmFunGSkyWM9JkIIYote4YTit7lXjj51q2v4
+         g+H3eh6NJ076ppdzCiWoLAyaq4Zom2lF6QG5vtvW+ExjFZKMKxkW+9z/+7JH/58bUp9M
+         BjFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769683526; x=1770288326;
+        d=1e100.net; s=20230601; t=1769683313; x=1770288113;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=asMYvR4+8fIWZ4M/HFcAyNsDPqE2Xel47V6LP6IGUhQ=;
-        b=heC1VKePXThEJZZvRta9Gg3OGZl5sO7uWZqjQCsx+7oPLUA6uJB1WznAa0hBs5zKSL
-         09BJqqjyaW2HhnMZmilrbaIr47zkncBO42x/vGqxs1Evn96KTkOKMtlgokrupaEvvp+2
-         lHon5i0W09zT2hqt+QeLK63iSJaqZFm8Mem2briIZdr/MyuS2FCamCM9Vk/Cuhc4eZ4o
-         oQA79A/lPdOXNhzWo+Y2h70EV5aSU2kgnOzHVDOgbtv4lf8bt8+8SoISwAcIBTmUKPyd
-         r2w1eooEJLntMv3ZXonAd+m1M2AnjDgWFZtJ3jPX/CXc2AyeXP3wI5RAT0i5Z3zycX8b
-         PrQA==
-X-Forwarded-Encrypted: i=1; AJvYcCVyT0v8D/pAX5QEn1rGFC7Jo/9ISQPv++nWx1CB+xfqN5B3P5jSOX3bIItkWoC0RvGeFe8sJnk6+nXT@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy8Bj51ldkPAxXqw514ZKUci2OGxNcc0mUp+ix53rzWBQohNKRc
-	/slHL77pbUnEUcEebhdAGEQWTxxemE/seurGPSM0XfZXgEy/MtI5G3pBK78coxvIN84A39zDq+x
-	wR8c06x9jz+j/b0goyb1ghV4ITC0OLJffVIU7/qr3vo4DKjuroDkznYP+38xWDL8=
-X-Gm-Gg: AZuq6aKR08+4ZlQ5sAKQJ/ThDz8jBKlhDZDobS9ZXiRT7r42C1XzEj8536Ut3Oa9KKj
-	S9TJJVfbRKXLTZf5igerWlG3o6kV1x6fuiuNfEooSZGhiskSVCbD0QmlDOUcmNI1FiIFs21+qj8
-	/EYtP2h1jU66vFoDWa1WtT5OS4AJufe9Jm50JNyxW6oJLibKvnZpXvwo6KVSQUQxcm8pn2b4fet
-	Nnfco0nYv7N+arGfeNq8la6Km4H6ugKzXA6KTYCcXwmTtpCp55UaTzR5/9X2r0IZp6sv2Xq3eZ8
-	wUh0d2Xy5EuE+26MXp/tlnVteDlLl4Tm0XDkDz558FI5nUp4bkDHklLIOhw0UXJNqvnO3G741zn
-	V
-X-Received: by 2002:a17:902:e743:b0:2a0:f0e5:74eb with SMTP id d9443c01a7336-2a8bd51481cmr28168175ad.28.1769683525948;
-        Thu, 29 Jan 2026 02:45:25 -0800 (PST)
-X-Received: by 2002:a17:902:e743:b0:2a0:f0e5:74eb with SMTP id d9443c01a7336-2a8bd51481cmr28167925ad.28.1769683525347;
-        Thu, 29 Jan 2026 02:45:25 -0800 (PST)
-Received: from localhost ([209.132.188.88])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a88b426ae4sm46205555ad.43.2026.01.29.02.45.23
+        bh=78yc5FN4eslJFV/3x/1+L9rJ7RkLelm3oGphAVI930Y=;
+        b=o55lqNa8f19ugurIQtT5A1KQdDZCvtFc0f28EHRSmB0nQHOsyCGESugJOSax6GAMwf
+         aZXEoFz1vC1yZH63EG1KhS7+7lfbKbNh+k9iXmbrJZxprGXddfXyHtsI+je12tg/Ehkv
+         kQi7EXkOcHnUgiSDbcilVfir/DIhRO2tksf3fWEFJ4Qd3yeXDhnA5qied7gO/eMXZ1RZ
+         GVnJeoMJg+rMaQU+9VVcfKBEbKrBWzl2OhP9BF4w0rC7pVmvAZZe+bStICdDNjEYT/qq
+         CrCvYF7SInRhjfFg64f4V0JL4M7YhYV+i3u8EumOckdbeoV9QZ3DEO5s2G7TlR1Zl0UJ
+         dgmw==
+X-Forwarded-Encrypted: i=1; AJvYcCU6g+Mh2ZYT9DzkeAEhZRitaPGwiO+P544eKk1JBjqzgcT1qR9qgYQV3OYUgoO/IYbKmeWNtKC4Kr6t@vger.kernel.org
+X-Gm-Message-State: AOJu0YyXgYQYZs3VILxwISJPuXvc2BmZCBO9fI6Ava3FshmWB0qmWvhZ
+	jjQ1+PBmt22jJERRFekWP0XmebvLZEDs+P+HP7gDEHBUD1AMT86uz9NquQeCwBSHsGlKJnAVxXO
+	R1EZ0H8zlg6UZWAxLNKdG68glkvDJ5mBUZ/ZKDvNcQquOD4zD2kiY4vBbTnLHgucz
+X-Gm-Gg: AZuq6aKPhHHZJZOSPeBlYZJzSnhHTu5ZthJcwUa+igcHJC3U9feam30ulYyEsMQwAba
+	fuGKC8Nuy5vYwB44XVVQthDl5IicO8l23iRh0Ee/jkVzhNaQZNKgr+qWjXdbjE+kAJvA0PLydc4
+	FCzGhAJYmHI1LPfxGKSjihVWQyd2Ci29oFykzMJTZVTrz3RKs37b9w3buCJAPHeQMeepRJ7hwq8
+	DWskJNbkP9zRD3InxCOZNBuyhahHuN5vJ+Qz/d5EbHtss2TysTlHNhCLgwYtSzJVQ5u3gn04ke8
+	Nz2BCZnOGhouR/oaAFCfCbRpmppwKh6uWlEqoyEKyZeZl0eJOl8Di0OVsq5MCbRHHyXwnEsDqLU
+	sz1/g21oNiwy3090Nb6TbgISo
+X-Received: by 2002:a05:620a:29ce:b0:8c6:c0f6:afa8 with SMTP id af79cd13be357-8c70b85685dmr1015279185a.30.1769683313309;
+        Thu, 29 Jan 2026 02:41:53 -0800 (PST)
+X-Received: by 2002:a05:620a:29ce:b0:8c6:c0f6:afa8 with SMTP id af79cd13be357-8c70b85685dmr1015276785a.30.1769683312752;
+        Thu, 29 Jan 2026 02:41:52 -0800 (PST)
+Received: from oss.qualcomm.com ([86.121.162.109])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435e132303fsm13615583f8f.36.2026.01.29.02.41.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Jan 2026 02:45:24 -0800 (PST)
-Date: Thu, 29 Jan 2026 18:40:23 +0800
-From: Coiby Xu <coxu@redhat.com>
-To: Will Deacon <will@kernel.org>
-Cc: kexec@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	Arnaud Lefebvre <arnaud.lefebvre@clever-cloud.com>, Baoquan he <bhe@redhat.com>, Dave Young <dyoung@redhat.com>, 
-	Kairui Song <ryncsn@gmail.com>, Pingfan Liu <kernelfans@gmail.com>, 
-	Andrew Morton <akpm@linux-foundation.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Saravana Kannan <saravanak@kernel.org>, open list <linux-kernel@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v3] arm64/kdump: pass dm-crypt keys to kdump kernel
-Message-ID: <aXs0UnFE1fEa8Yxu@Rk>
-References: <20260123081326.1362666-1-coxu@redhat.com>
- <aXd72PcvvFsIFXO2@willie-the-truck>
+        Thu, 29 Jan 2026 02:41:52 -0800 (PST)
+Date: Thu, 29 Jan 2026 12:41:50 +0200
+From: Abel Vesa <abel.vesa@oss.qualcomm.com>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: document the Eliza Top
+ Level Mode Multiplexer
+Message-ID: <pdxrotmxjiebyj2gqx6buwupkydngxki6jgv4e6l6fmodzc5v2@yxky3civt3yz>
+References: <20260127-eliza-pinctrl-v2-0-1faf78efdc2e@oss.qualcomm.com>
+ <20260127-eliza-pinctrl-v2-1-1faf78efdc2e@oss.qualcomm.com>
+ <20260128-hot-camel-of-acumen-eef9f2@quoll>
+ <aizrc6xysfwzygdsfeuc2raccq7efmwg5bn6v33t2de6ugvzgi@z3ipf3i25ulf>
+ <dc0b7245-de95-4db7-bf8f-815ba60d7adf@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aXd72PcvvFsIFXO2@willie-the-truck>
+In-Reply-To: <dc0b7245-de95-4db7-bf8f-815ba60d7adf@oss.qualcomm.com>
+X-Proofpoint-GUID: 5l-2VaOKHqmY3XETk5HmyhMbBrHZdOyT
+X-Authority-Analysis: v=2.4 cv=J72nLQnS c=1 sm=1 tr=0 ts=697b3972 cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=oauzzCmhM186DRC0Y2yWPg==:17
+ a=kj9zAlcOel0A:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=ccfMCwPpft0q2rCTRJkA:9
+ a=CjuIK1q_8ugA:10 a=NFOGd7dJGGMPyQGDc5-O:22
+X-Proofpoint-ORIG-GUID: 5l-2VaOKHqmY3XETk5HmyhMbBrHZdOyT
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI5MDA3MCBTYWx0ZWRfX4vKXcoLQC6Xd
+ SUNe3HUsUIrN+IY43h4KPIHmr/AY2a73kQJl71db0uFPRJkpvCUBdYw7+byCwVGxNsrdE1EEigt
+ VfgHHi4oeFambJhPSRgQQHFkXWh+fmmadYumLwEv4eipKgcwVHDCuU7OGdxGbT62cnglX9oBVn+
+ oP1oNUXEXkcP70BLNN/y7oisNxLI/FLKrqJVa6p0TklDgakWKu1Tq36t8gil/TlrNyAOsyz3Y9+
+ H5or5NK/OTVUSqV5UaZ0Xke3XMNWR+u73YpT56k2l8oNxIq6UqCCiBERqlzABVXIpFsdK8831FO
+ H6rUIP73QHWfT7FVLg9CgzC5kmyT3uu2uK8xHKp9iA0EtJxSyaQyGHbgSPgjC2kxE00sansEHBE
+ GH77rkh5IJGHDkaasE0Q+6zsfMx8Ynz5RkwV7wHmgAqVMsI774041EXEFsDV/i+vOyjL+w99ZJZ
+ mRxtIBmqV2C8LlUNAHg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-01-29_02,2026-01-28_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 phishscore=0 malwarescore=0 lowpriorityscore=0 spamscore=0
+ priorityscore=1501 bulkscore=0 impostorscore=0 suspectscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601290070
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260830-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[lists.infradead.org,clever-cloud.com,redhat.com,gmail.com,linux-foundation.org,kernel.org,arm.com,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260827-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[coxu@redhat.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[redhat.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[abel.vesa@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[clever-cloud.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linux-foundation.org:email]
-X-Rspamd-Queue-Id: 4B7D6AF397
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 772D7AF353
 X-Rspamd-Action: no action
 
-On Mon, Jan 26, 2026 at 02:36:08PM +0000, Will Deacon wrote:
->On Fri, Jan 23, 2026 at 04:13:25PM +0800, Coiby Xu wrote:
->> CONFIG_CRASH_DM_CRYPT has been introduced to support LUKS-encrypted
->> device dump target by addressing two challenges [1],
->>  - Kdump kernel may not be able to decrypt the LUKS partition. For some
->>    machines, a system administrator may not have a chance to enter the
->>    password to decrypt the device in kdump initramfs after the 1st kernel
->>    crashes
->>
->>  - LUKS2 by default use the memory-hard Argon2 key derivation function
->>    which is quite memory-consuming compared to the limited memory reserved
->>    for kdump.
->>
->> To also enable this feature for ARM64, we only need to add device tree
->> property dmcryptkeys [2] as similar to elfcorehdr to pass the memory
->> address of the stored info of dm-crypt keys to the kdump kernel. Since
->> this property is only needed by the kdump kenrel, it won't be exposed to
->> user space.
->>
->> [1] https://lore.kernel.org/all/20250502011246.99238-1-coxu@redhat.com/
->> [2] https://github.com/devicetree-org/dt-schema/pull/181
->>
->> Cc: Arnaud Lefebvre <arnaud.lefebvre@clever-cloud.com>
->> Cc: Baoquan he <bhe@redhat.com>
->> Cc: Dave Young <dyoung@redhat.com>
->> Cc: Kairui Song <ryncsn@gmail.com>
->> Cc: Pingfan Liu <kernelfans@gmail.com>
->> Cc: Andrew Morton <akpm@linux-foundation.org>
->> Cc: Krzysztof Kozlowski <krzk@kernel.org>
->> Cc: Rob Herring <robh@kernel.org>
->> Signed-off-by: Coiby Xu <coxu@redhat.com>
->> ---
->> v3
->> - Delete the property after reading it [Rob Herring]
->>
->> v2
->> - Krzysztof
->>   - Use imperative mood for commit message
->>   - Add dt-schema ABI Documentation
->>     https://github.com/devicetree-org/dt-schema/pull/181
->> - Don't print dm-crypt keys address via pr_debug
->>
->>
->>  arch/arm64/kernel/machine_kexec_file.c |  9 +++++++++
->>  drivers/of/fdt.c                       | 21 +++++++++++++++++++++
->>  drivers/of/kexec.c                     | 19 +++++++++++++++++++
->>  3 files changed, 49 insertions(+)
->>
->> diff --git a/arch/arm64/kernel/machine_kexec_file.c b/arch/arm64/kernel/machine_kexec_file.c
->> index 410060ebd86d..5f3bad8ca96d 100644
->> --- a/arch/arm64/kernel/machine_kexec_file.c
->> +++ b/arch/arm64/kernel/machine_kexec_file.c
->> @@ -134,6 +134,15 @@ int load_other_segments(struct kimage *image,
->>
->>  		kexec_dprintk("Loaded elf core header at 0x%lx bufsz=0x%lx memsz=0x%lx\n",
->>  			      image->elf_load_addr, kbuf.bufsz, kbuf.memsz);
->> +
->> +		ret = crash_load_dm_crypt_keys(image);
->> +
->> +		if (ret == -ENOENT) {
->> +			kexec_dprintk("No dm crypt key to load\n");
->> +		} else if (ret) {
->> +			pr_err("Failed to load dm crypt keys\n");
->> +			goto out_err;
->> +		}
->
->This looks like an unusual mixture of kexec_dprintk() and pr_err().
->
->Stepping back a second, why do we need to print anything from the arch
->code at all? It looks like crash_load_dm_crypt_keys() already prints for
->the -ENOENT case so I'd be inclined just to do:
->
->	ret = crash_load_dm_crypt_keys(image);
->	if (ret)
->		goto out_err;
->
->Will
->
+On 26-01-29 11:34:07, Konrad Dybcio wrote:
+> On 1/28/26 6:22 PM, Abel Vesa wrote:
+> > On 26-01-28 12:38:32, Krzysztof Kozlowski wrote:
+> >> On Tue, Jan 27, 2026 at 05:47:36PM +0200, Abel Vesa wrote:
+> >>> Document the Top Level Mode Multiplexer on the Eliza Platform.
+> >>>
+> >>> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+> >>> ---
+> 
+> [...]
+> 
+> >>> +
+> >>> +  gpio-line-names:
+> >>> +    maxItems: 185
+> >>
+> >> 186, your first GPIO is 0 and last is 185.
+> > 
+> > Actually it is 0 through 184. The 185 is ufs reset.
+> 
+> The UFS reset also happens to be a GPIO..
 
-Hi Will,
+So the gpio-line-names should include the ufs reset,
+but the pattern not.
 
-Thanks for carefully reviewing the patch! Yeah, crash_load_dm_crypt_keys
-already prints for the -ENOTENT case, good catch! And it's also a good
-idea to not let the arch code print anything since
-crash_load_dm_crypt_keys is a better place. I'll make
-crash_load_dm_crypt_keys print more logs and also return 0 for the case
-of -ENOENT. This can make the arch code more succinct.
+Will fix accordingly.
 
-
--- 
-Best regards,
-Coiby
-
+Thanks.
 
