@@ -1,455 +1,392 @@
-Return-Path: <devicetree+bounces-260884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260885-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yA+5MrdYe2mZEAIAu9opvQ
-	(envelope-from <devicetree+bounces-260884-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 13:55:19 +0100
+	id wA/6Fytae2mvEAIAu9opvQ
+	(envelope-from <devicetree+bounces-260885-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 14:01:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC2EEB02C6
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 13:55:18 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76AF3B0384
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 14:01:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 09EC43001CC5
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 12:55:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 22D7F300F9CC
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 13:01:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63D77387591;
-	Thu, 29 Jan 2026 12:55:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83D012EE607;
+	Thu, 29 Jan 2026 13:01:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="hrZQUM6C"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="r42S10kY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYVP286CU001.outbound.protection.outlook.com (mail-japaneastazon11011065.outbound.protection.outlook.com [52.101.125.65])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CC4734FF72;
-	Thu, 29 Jan 2026 12:55:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.125.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C200F33F8CF
+	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 13:01:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.50
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769691314; cv=fail; b=t8225f+yGKkopTHaKM6Gck5IzPtbTNBBVtPFwM2DoV1j9sM0k6PUiBoiociIyGDHd/yaAnMpoETBO1EX/sHGFXY1ccgcDVw+EHlZwuiknbv+8up+h1ZKX7sBeYR58KOXAjDD9jnAW+BdCfcQG2wNU4F73pUgLIZkrC7tdtwGj+g=
+	t=1769691688; cv=pass; b=VFIMmqCacHml7NtB6Xs2ZCv3MiT4nyX/F/C+BdRN7l3pbhNJjHK8dzMw8amqP8pRsvuELtdFOZ1mO3pXfu4lNq+RyOqBu/28HiGjJzwrK3k0mdsJncae8FenT865LzRMAL5dD3P3C8qn0I2IkpYNZCl5QOoOA8ImQ5Yt8uOIvQw=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769691314; c=relaxed/simple;
-	bh=s/VHAHdreR7p/RF+hjcW0hs6YbXJ5y+Z/1KJduGtbgs=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=Viqq/1w9CTVJBQcxdmNXzTXVvCIkHLOQt/AfjsighIBXsp8dkofziuC0Jp0w5vgboDdI4aJLHcJBEaq3WHsiVcj3tu/9Y8Pn8jR/erayqFf63axLqtRqq+Ab3zw6CCrxcZPzcImsge+awz2+oARqne6lmBxhodBIPM1+hI+VaA8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=hrZQUM6C; arc=fail smtp.client-ip=52.101.125.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PKqt9+1UpS784TV0DaookkoJKI9sJjQCMuXZ54/jvE5tV0+y+W8rvaIP9EIrb9mOTu4FgIc3yv8uePxQG0HGBGoomGYw0dvi+bUO4WzQPQNe7LWKna7LIp4Ck0T5lfRhHA2g540faTX5NyWgtWAxJ1RSrtpPk0NhvZYzg7E8T9hZfYeilNk9PHuhXILzy8/8CcyEUH77g2v21Uf6bTfdbXzcbMR7+8KUjcoSfQ976LAxqDOKQ3wKc0kL0PK2RHnj4eVtTLlGdVhpceyTweshSo+oyyUvIWlxaDjY1lCnrn1N0gWRsJPZYn3h830bWvTSPTl273pY+4MrbHFT31HLXA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9AjW8xHM1oDDbNBxYSnLamInxAEePNvPHRSzTGOhPu8=;
- b=BCvhPvbm6mySl84nXw+Y82cC/lfjWjUbo3Z8spwVebNN/v0sYSjE2tlWUeLyXDFbp3Wq8Ff1aVYoik8xwYXiHFe3uAsUzH8f6s1G+Li4ALTTSexx7YkyOcb3BCAVJhpZtwuBSEsslcVChroNn3fnjYEWF655tkD3s7EYQ3kf5ETgOrLNKgiwLKPQg79kMLu5VcEMUXHgB9YgcpVmv9ErE+ce/s8iWFhhBmPVdfWr5DifDxs85I1IO4uHkQvqQZSb3D8io/+pR/y1zMb4D0ycNWTGIA/pdnY2IGO4EzHPcB8igH1XImH1/rb5IiEfAoNtSA2ndb86Ui5E3SAr9YiSXw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9AjW8xHM1oDDbNBxYSnLamInxAEePNvPHRSzTGOhPu8=;
- b=hrZQUM6CyQ05zMCaKrJLRahDmVwz3iFvfQDfHaUGFkS6qi3/ngR7NF2nZWWBMCujXHiRvqKmbx6lJvCXS7oy1H/GnzgwZfUZS3DlItbwsXf0AthYFpD3TakICHtiIyAmM9YNdInmIHFQaBALtQUjiMlvX9eJjfUhrf9+zO1MgV4=
-Received: from OS7PR01MB17371.jpnprd01.prod.outlook.com (2603:1096:604:43e::6)
- by TYWPR01MB7425.jpnprd01.prod.outlook.com (2603:1096:400:c6::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.10; Thu, 29 Jan
- 2026 12:55:07 +0000
-Received: from OS7PR01MB17371.jpnprd01.prod.outlook.com
- ([fe80::7c48:4e26:72a5:7960]) by OS7PR01MB17371.jpnprd01.prod.outlook.com
- ([fe80::7c48:4e26:72a5:7960%4]) with mapi id 15.20.9564.008; Thu, 29 Jan 2026
- 12:55:07 +0000
-From: John Madieu <john.madieu.xa@bp.renesas.com>
-To: Conor Dooley <conor@kernel.org>
-CC: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, "lpieralisi@kernel.org"
-	<lpieralisi@kernel.org>, "kwilczynski@kernel.org" <kwilczynski@kernel.org>,
-	"mani@kernel.org" <mani@kernel.org>, "geert+renesas@glider.be"
-	<geert+renesas@glider.be>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"robh@kernel.org" <robh@kernel.org>, "bhelgaas@google.com"
-	<bhelgaas@google.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	magnus.damm <magnus.damm@gmail.com>, Biju Das <biju.das.jz@bp.renesas.com>,
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-	"john.madieu@gmail.com" <john.madieu@gmail.com>
-Subject: RE: [PATCH v3 06/15] dt-bindings: PCI: renesas,r9a08g045s33-pcie:
- Document RZ/G3E SoC
-Thread-Topic: [PATCH v3 06/15] dt-bindings: PCI: renesas,r9a08g045s33-pcie:
- Document RZ/G3E SoC
-Thread-Index: AQHckFiD5LutvuE/wUOWR6pxx30ky7Vn2aOAgAE/wiA=
-Date: Thu, 29 Jan 2026 12:55:07 +0000
-Message-ID:
- <OS7PR01MB173719D8E22176F897D0757C1FF9EA@OS7PR01MB17371.jpnprd01.prod.outlook.com>
-References: <20260128131647.120511-1-john.madieu.xa@bp.renesas.com>
- <20260128131647.120511-7-john.madieu.xa@bp.renesas.com>
- <20260128-chaperone-hydrogen-421d911b964b@spud>
-In-Reply-To: <20260128-chaperone-hydrogen-421d911b964b@spud>
-Accept-Language: en-US, en-GB
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: OS7PR01MB17371:EE_|TYWPR01MB7425:EE_
-x-ms-office365-filtering-correlation-id: b4695118-81c6-459b-3cdb-08de5f35a11e
-x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|376014|7416014|1800799024|38070700021;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?zUAw13NEu2n+hExP0BCmuTjyxRHbrU8N5tYTStJPpx4JZGNZ3PkGkSp3eGCy?=
- =?us-ascii?Q?wnGxk8iseNOsQ5xcQRdaza0kJmd3glqq64tKzy6cG8m8QxN8jqtiyGHtpftz?=
- =?us-ascii?Q?dtsgR1sAxzmRGmi26L5kp18Fos+z30FfUPCCpNoYkkxJ145AYSuUj0MwMJPK?=
- =?us-ascii?Q?670n8TpaTyi9QGhGS8QjUVUSzCMjus31GrgioZMPWQG6vVgSnXwDn6dqiZ4T?=
- =?us-ascii?Q?yfl6gFA5WoXIVzfEAy+CKe4E4DeF6XMnEo4h/eiW2yqvl5LaeAnLECBnzn4P?=
- =?us-ascii?Q?NIR3hXT2k0Z57nJwFUJZhVoElIPrZbXn+3ZoActWXh9dnCEFINwf7n0kxu3k?=
- =?us-ascii?Q?rCd3eyp4pjkdrYV/KM60SGdvtvGKYJdxSPoS46odomTosCEP33UtdTYASOB2?=
- =?us-ascii?Q?2YmfwqFRoBPzJMQzfWX0nAamWCDszZbMwQxE4PatBaurTcgHr7+HkMD1vlPs?=
- =?us-ascii?Q?xBi27gqzajDKWTPj1q6Cd32GMd+WcvT2M96oeOcCmYM0iMP2BjixAx8eQLAy?=
- =?us-ascii?Q?KYbuKYKZ4+7t9j3me0jJV2OrydNjMzLJC7wxassluSLE1x2GagwEUj57qdWF?=
- =?us-ascii?Q?TqPTdkxIUeYVxWMZ0+gyvykGQP73uQyjR2ZolhCSWhhOyo8R0jtBALpE221Q?=
- =?us-ascii?Q?ziZL1FxCE8IhAYjRRsEKYTnfaxScH5MM3zYWepUMJyqmjsk7/pFiE8N3H+AO?=
- =?us-ascii?Q?F5NmpwVCRU6129lRVZh//ItuJq5alM/VsU4DPWITKlvaLYymjFvBQyIJbtxR?=
- =?us-ascii?Q?+FbCWESMZ7fIZUxT/TSM7aj04lsahj1Nr0aAfeTdAuqWYdqVdGvYxQ2rPP8a?=
- =?us-ascii?Q?09AlwTxVUnVWO+rGFbpigG0eT6DxSJmOhXoOwPGyAHHTT2eJADR3IVzdQP8L?=
- =?us-ascii?Q?BOaxgWlvixcFVFJGV8iAOBpHCoX1jHR+nS0/3cjXPJgP2XekgMQ3E3H6Dnpo?=
- =?us-ascii?Q?xG55BlZtBeUCd9F9CnIqC0zObcS5N351rZ7jg+uKTrJBBTnCO2hiyBiCtxrM?=
- =?us-ascii?Q?zyu/Jll2IttyIQ7iQ3wMAiclhzXkyJAsC/DWr/2OFmGH+TrhpwtIFlzobxiR?=
- =?us-ascii?Q?GFf5FPwlPUdVsRdAG58msalM+Wr7s3DybmowYATiShxi++KtQS5jKlLfp6rc?=
- =?us-ascii?Q?kGEWPkyNG4J5LFu6aY9r0KHaGpe8lYseZuCplQGVkCIG3qO2uexjGgUI6qU3?=
- =?us-ascii?Q?2TKDHQtu5U+OMkOQYyKF6A8Tb3fJ1ubkn7ktIZsIK9F/NaqT3wqwMBQv9eVp?=
- =?us-ascii?Q?pXh+EaFXKcelTr8Pmo1JfIQ66AyNiRD6pvU/0oUFqsOiRclKwg+qAwDJvfly?=
- =?us-ascii?Q?eXY82pkH1BRFI9fW8ssXQg4Kvk4lhawscJflmqbLtp287Ib48RqpBBXE/sFn?=
- =?us-ascii?Q?f9LaaS+0Wrp+R4nxe0KBYFHRNTNuuwxkutx6pxvFiV0z5DtGxCQuIxSCqmQR?=
- =?us-ascii?Q?QQlUeG2VUR+wlECemi9KVCbzlwOm7vr4IAHP/NMFpnCfSqWR7c2BanxT5Krk?=
- =?us-ascii?Q?y3ayMyVQZ0D2CU5MOzM54riY367ek/0LqrxRqCZ0ZzA8YaHpW34RCXUcrhoW?=
- =?us-ascii?Q?uamFsxKzbQxKQiK0niRyFRq7uBjuyOc7gGTVp2wstuCsRr8ZEWzKMx0nZLcA?=
- =?us-ascii?Q?iq+rDF3ynmHc10BTMCtk81Q=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS7PR01MB17371.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?hKzAjXh4fSisCkOLxZGF51RpqXH/hxeOko+Eufc8/Z9/qYi0KJn59+5NFjpj?=
- =?us-ascii?Q?Jy9b3uouqWbLirCJ0npUS2VCZTERv2f+sWgjBETyrTlZaGBP5T/7rY9t0aI9?=
- =?us-ascii?Q?3UUFgWgXacYTZlUsN0TL2ySWk69CXlXh3z3hBwQtzVvGE8w6B7nzls+5OcN1?=
- =?us-ascii?Q?+NFfVxeIR94zkW8csfnCqsrCwQKVrXYXvQB5iuSlVq4n3/yLxAemQ0SC7DPU?=
- =?us-ascii?Q?IeePq+xuFycyr/F5gsXdm8/9PMt/y7W3nLOqq1kXiAqAf1lvUIKrIrkWrLTW?=
- =?us-ascii?Q?5rMIsC5z6BT9ikzU999B7UP9uoxIjLj/szFJAT33ccjASWEphn4f1HrrISDk?=
- =?us-ascii?Q?LFYsQFZzipQrqZDPcGj+TCGg+7xu0OU8Z6TCV+aXCIA+ocil9mXbZ/wj2jZ8?=
- =?us-ascii?Q?oQrh79zcdEsAHGaTFQu2Hzb2GWcdB+TQsnKcTM/sRsYY0Qumi80qE3eWDZYV?=
- =?us-ascii?Q?3Tvx5Z9Qj3l1D9Qy4CUv5eQ+ryalJcY0QOKpixIkGNs2DsN8HassD12b3ie+?=
- =?us-ascii?Q?M2DnQdh/YKeyP0Ld7Mxd4DuEkEVWcojJpIvN6yxQR7hsmgZ3InhaX+HYglrH?=
- =?us-ascii?Q?GiSOR0yl4efto7nxq3VcqDEa++v8w3s0ihSZQ6JauN64e0zwFVJhaPxRwLuu?=
- =?us-ascii?Q?dEZipsYppMWDXhXFoIOQVzdRuHTIImL1rcpabFtAHG3bqx5eksVr4+d9IOAe?=
- =?us-ascii?Q?rEm3oiDhmd/2nRYoQiXZ6Q4gHjBepf9dXw1JLrQWIBrgxSiCqzfTYBobAPeN?=
- =?us-ascii?Q?MRTNRftqqsvtDhQv7zSH4csIo2RCcW78k44tHU6csh64D2ixL+T4fo3Mhenx?=
- =?us-ascii?Q?G3zLW7XGsN42Cc46hKuFZKtD4wFxHjx8j/+5UPXK9aEbJkB4loKFsduT2PzD?=
- =?us-ascii?Q?PAG/84C0yeHLvP8SjR6Ywzh/PxpTX/33e6bS5MZo6b60ZqlhXpzWzQB/AYmU?=
- =?us-ascii?Q?q3jPwfrdImxL4RGpKATMs0EYMW57mTYc8GhzwGF0uGU/y4uU8IZgpyerCmec?=
- =?us-ascii?Q?NJVImOYXjb4SqcYlKoQ+ITjyu6T1QmjmvFjX04IS0VQFzZ5JqP4aMCJHZNBt?=
- =?us-ascii?Q?Z5pNJiamTg1QiOq46C0rEQ1mHbZz0mMhjuYwOpld3lUFRz1wljU4QWUlpdev?=
- =?us-ascii?Q?wRSC9w8mSdnyneeIl8/ASGqpF/GB6dYWvTS2nKRX7fU1NMFu92PTCaTpLXr6?=
- =?us-ascii?Q?BEdlCVipkvOHgaxI//4aDJMJ5XPuNbHXtYzq3PSuo64nSWlHutghVmaLQKW6?=
- =?us-ascii?Q?ohNKLEy2SyFJcqfnAzqe1U4V8igRjkyrEdC3SEIquUvhPmW3qiPmTt3+Trsz?=
- =?us-ascii?Q?k8C8/rP1dmAQ7ceZV/WZGPLhMCRQfDYKD+Q3CMHhm2AqIMGIFL6t3zfbDBIA?=
- =?us-ascii?Q?odFi12wLOj0I8RtaxiCKK9WDEGsB8rPr+SSUHn8icbr0QdhKrdAsHktr4s22?=
- =?us-ascii?Q?tG11pkeSlrBy2U0T/wRRPQ1MN46G8DuKMG1qHUnozSXn0iTDJ072Dy2XJUTI?=
- =?us-ascii?Q?VRxnBK+OYwdbouzN6tyiM/iWeOulIg47w7jOBiN6ffn0ZlUKfJZ+ayjq8w0I?=
- =?us-ascii?Q?0tIOeLmYlstLCr2IyeK2CrbqO4UPL7LEXGXaoeoDxFApHndBdzOlu0Ut9AYZ?=
- =?us-ascii?Q?1eaVXb4tNvUMAT65BlSWv9MkaOwP5NFC4Y5nlFb3PTbgEYvTzuKp8Jj0OUab?=
- =?us-ascii?Q?mPQFVOBeIme7wvWt6hh3veC5VK5TIpxCx+xTYcD5jX//dSHBNWlP2qcp6zHK?=
- =?us-ascii?Q?cMFQr/ET5dUIjLhZ6PumaIU3049m3yo=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	s=arc-20240116; t=1769691688; c=relaxed/simple;
+	bh=O2bGTXjwn0dbEXJ9LllFe/AoB9VfaliGSCVigq8yX2Y=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=B2g/+53QrCX0K5axa61ZmhTrJBit8Gx+S/By4vZbUEdQUCNVNbD4en3hGm1G1G46ujLxCDUABK8U02M7fDEAst1ta/5HsOfEtJml5RjhVIzP4hLt6dFsIoCHDe1ERXnFi2V7QOOTbClDXE+y9ikj/0acn7ku7pAp/dE2uGeyA94=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=r42S10kY; arc=pass smtp.client-ip=209.85.208.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-6582e8831aeso1605592a12.1
+        for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 05:01:26 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1769691685; cv=none;
+        d=google.com; s=arc-20240605;
+        b=aPd2cruCTpKyM6um8X7zlqxdAosuvrWJGlZBMyw3w9+vXzDdR47E9X5Jcrrf75oUBS
+         s4q9gtH8meh4rKpiQAWij8n34wOvI8wAWpv/T/5UB0PY/S8HD36krsqOQSoBJYeSl3tQ
+         JqWoMa3ACQ+ooFZKB+SECilDc7lrD8r8hBjUhTvDilGZXS3NT10iHGkxXLc74yvrDlG8
+         KKkCt8XINSV19/IEcD4O3/pY/MLAIkp3rfsK9bpMMoSbcMQeaMrWMgpI3Mlxqqhg7zPh
+         amKn4PcU3ToFJBmm6hJawovE9WezZnzinCNwhzECcwbyorA/7Rp5mkgSYICxg6QgIEko
+         yNEA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=iesfD+1e0XJcSwTx9KNwWz9DxCNf+/Vb7CeNYX6bJos=;
+        fh=pRtO4cIE91H6xY/h0iZSR5VwJqxegjM1iNd87L7izTY=;
+        b=AvSrezDfyEiN9KIIOyF2hk1wX+JQpD5N0NMhFXGvh0M6SNegNNxIodd4aYYcCNmPCw
+         +dbqOTcBLu4jo0NiFDDOeRVzNmuO7IpRHk0mhAgPD0Ld65MTFym4/xL40FoYYhHuA+bV
+         I3pltS35yp6gn4O+3iurDRsODxOIepYkO9upQjGmxDURzMpRyWoVB/4TOhHlKg/p6Edp
+         PhJqa+9mtPRAZ6zJNy9vp6oqIQaH4I9+rm7a75cOo9q1pWOobx+UpT11rdlGECDqYX6Q
+         g2bxwV1nnJBIJZmIxEXf7NDvAJpCRQfqr+BQ5vjf6lYGEdXvRsuzPkjdjR/t4LVTo3mJ
+         Ztiw==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1769691685; x=1770296485; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=iesfD+1e0XJcSwTx9KNwWz9DxCNf+/Vb7CeNYX6bJos=;
+        b=r42S10kYNTzAh+UYuMToWSR+wk/K529aGthpFdjs18St2NPYM4Nrh+6jZ5sXMQ1i5G
+         BiqvtCYGxYLWSmrc8ErdOpIte3MPzMXiD/zh5botdSjhNOlMRJdAGRvt+LfzvW1qnNuv
+         2xL2ERUZZsUOltXyveFG2/7zzlD8agDjNCEP+UHjqsQBPj2DbPwYAZGc3yhnugh+JeOn
+         xl2/eDfxQ9esIwO1S3pZ3bISAOucrX4LdyXzdY7wDYPeGF0BLSfPxpb3uDzNPi41p14s
+         72hwBug3ZRcbG3C7NNwerGkKZP35J1I+MQ5eEzS5oRWPo2SQWDo6hDgW7PXpD2AW6iGS
+         +Ubg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769691685; x=1770296485;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iesfD+1e0XJcSwTx9KNwWz9DxCNf+/Vb7CeNYX6bJos=;
+        b=bZpjZRrFpSnbz7UOniXR7lGLiBmxiMUKYJ67XHjygTgDmEQvjznUoHyXJe/FBnszFa
+         2SN4V4lU1qbGPdw4FWIRQNqsdaXO8zSlv4y9EaSjtkiBva9CFa5Dj1MEu5pRVh1xBxEd
+         T6K9B408dF7VSzVoT2O0SQ9TzKdp6ucWGqIJLpMboDghflW46lYPsUmgZJKoNTFQKBPo
+         fm74eGfPHeRP+bxsUAYV6gn0fJGo+nJjwYkriOFnpAPMfH21gMduoRylzrfEgZLAYEur
+         Jxv+2qaKTweb8MiZ2Ea4rr8kzkKghLZmk+gRZmfiO+dkvXlG1C0ilCK/vIHIbA88IMSy
+         alvg==
+X-Forwarded-Encrypted: i=1; AJvYcCUhg+6oQxK/ZQBDv4OoewHNbOkjWYIcdp8gS8JLOYbCU0gU2hs0rFgm765LdULIr51esnHauZhXJXju@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw80dBMq1qdFulEICjhjk688TL5OrQe8X8DFTCn4xKCHidWc7fa
+	VZguQ0VsS4+eYj1JbIM6/asRzphho7ARbs2wK7diVG33kMZ3YpoUb2ExbF/pcEXnNrrqXnYJOij
+	yG7cjhNh7uvyPvFuz/VLQWBAtSi0qWQuzogB7/XaIDA==
+X-Gm-Gg: AZuq6aKfv1L3RiD6oFnt83d6bP5fH6RIRy25QZlbPABxTe1N3+PPlWTefJoDn+i5FbN
+	xcwRHG8NvP+wajZgZZv3p82V5Yh9hLQfKatU/qKf0fYeGpfY7OJZiBUMcUM++3bJf+ktQ1zDD3T
+	PFhrQrN3IGxYWQk5qWjbWoGdxFasop53B/3jXLdU6l5lpJAgJhgSuamZ6G7rewFRwRqWio6+o1R
+	GfE0MHFxARXi2QhzIBrJYBbsjfDRbVnhya47wx78rP8O/SfneMG2foPV1ErI6YrR926RkKC5n/L
+	c2x5sQd1gtkEuP4xE0ohizSJ
+X-Received: by 2002:a05:6402:2711:b0:658:1eee:8a40 with SMTP id
+ 4fb4d7f45d1cf-658a600eeb3mr6025005a12.2.1769691684890; Thu, 29 Jan 2026
+ 05:01:24 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS7PR01MB17371.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b4695118-81c6-459b-3cdb-08de5f35a11e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Jan 2026 12:55:07.3979
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: pPhmapl3Ebydjc1mWckxBeHXqdPXdO9tY1n8PwNmE6PkZDZn6SvOHlr944CjIKrvV6NQ2TK/fMyJxrSWyGrqDsrUv/H7z9pntfWt4K2pHDs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB7425
+References: <20260126092159.815968-1-vincent.guittot@linaro.org>
+ <20260126092159.815968-3-vincent.guittot@linaro.org> <aXsuRTZUUnw0kdzV@horms.kernel.org>
+In-Reply-To: <aXsuRTZUUnw0kdzV@horms.kernel.org>
+From: Vincent Guittot <vincent.guittot@linaro.org>
+Date: Thu, 29 Jan 2026 14:01:13 +0100
+X-Gm-Features: AZwV_QjS9ru6SWfw3DDchF_hxWLgsNEurVnBwt9Mvn_TEdB82tA-dgIWwcajOmY
+Message-ID: <CAKfTPtDfnpzq2CB-isVzvh1ZCWo7kit9KRJvVGoU1C3zZTgdXw@mail.gmail.com>
+Subject: Re: [PATCH 2/4] phy: s32g: Add serdes subsystem phy
+To: Simon Horman <horms@kernel.org>
+Cc: vkoul@kernel.org, neil.armstrong@linaro.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, ciprianmarian.costea@oss.nxp.com, s32@nxp.com, 
+	p.zabel@pengutronix.de, linux@armlinux.org.uk, ghennadi.procopciuc@nxp.com, 
+	bogdan-gabriel.roman@nxp.com, Ionut.Vicovan@nxp.com, 
+	alexandru-catalin.ionita@nxp.com, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org, 
+	Frank.li@nxp.com
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[renesas.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[bp.renesas.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260884-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[bp.renesas.com,kernel.org,glider.be,google.com,gmail.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-260885-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[john.madieu.xa@bp.renesas.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[bp.renesas.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	FROM_NEQ_ENVFROM(0.00)[vincent.guittot@linaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[OS7PR01MB17371.jpnprd01.prod.outlook.com:mid,renesas.com:email,bp.renesas.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: BC2EEB02C6
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 76AF3B0384
 X-Rspamd-Action: no action
 
-Hi Conor,
+On Thu, 29 Jan 2026 at 10:54, Simon Horman <horms@kernel.org> wrote:
+>
+> On Mon, Jan 26, 2026 at 10:21:57AM +0100, Vincent Guittot wrote:
+>
+> ...
+>
+> > diff --git a/drivers/phy/freescale/phy-nxp-s32g-serdes.c b/drivers/phy/freescale/phy-nxp-s32g-serdes.c
+> > new file mode 100644
+> > index 000000000000..8336c868c8dc
+> > --- /dev/null
+> > +++ b/drivers/phy/freescale/phy-nxp-s32g-serdes.c
+> > @@ -0,0 +1,569 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/**
+> > + * SerDes driver for S32G SoCs
+> > + *
+> > + * Copyright 2021-2026 NXP
+> > + */
+> > +
+> > +#include <dt-bindings/phy/phy.h>
+> > +#include <linux/clk.h>
+> > +#include <linux/delay.h>
+>
+> Hi Vincent, all,
+>
+> I think that you also need:
+>
+> #include <linux/iopoll.h>
+>
+> So that read_poll_timeout() is declared.
+> Else this patch causes a transient build failure
+> (for x86_64 allmodconfig)
 
-Thanks for your review.
+ok, i will add it
 
-> -----Original Message-----
-> From: Conor Dooley <conor@kernel.org>
-> Sent: Wednesday, January 28, 2026 6:40 PM
-> To: John Madieu <john.madieu.xa@bp.renesas.com>
-> Subject: Re: [PATCH v3 06/15] dt-bindings: PCI: renesas,r9a08g045s33-pcie=
-:
-> Document RZ/G3E SoC
->=20
-> On Wed, Jan 28, 2026 at 02:16:37PM +0100, John Madieu wrote:
-> > Extend the existing device tree bindings for Renesas RZ/G3S PCIe
-> > controller to include support for the RZ/G3E
-> > (renesas,r9a09g047e57-pcie) PCIe controller. The RZ/G3E PCIe
-> > controller is similar to RZ/G3S but has some key
-> > differences:
-> >
-> >  - Uses a different device ID
-> >  - Supports PCIe Gen3 (8.0 GT/s) link speeds
-> >  - Uses a different clock naming (clkpmu vs clkl1pm)
-> >  - Has a different set of interrupts, interrupt ordering, and reset
-> > signals
-> >
-> > Add device tree bindings for renesas,r9a09g047e57-pcie compatible IPs.
-> >
-> > Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
-> > ---
-> >
-> > Changes:
-> >
-> > v3:
-> >  - Moved interrupt/clock description in distinct PATCH
-> >  - Fixed clock name constraints
->=20
-> Can you explain why "pm" isn't close enough to "pmu", when it suffices fo=
-r
-> "l1pm", and therefore the same across both devices?
->=20
+>
+> > +#include <linux/module.h>
+> > +#include <linux/of_platform.h>
+> > +#include <linux/of_address.h>
+> > +#include <linux/phy/phy.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/processor.h>
+> > +#include <linux/reset.h>
+> > +#include <linux/units.h>
+>
+> ...
+>
+> > +static int s32g_serdes_phy_set_mode_ext(struct phy *p,
+> > +                                     enum phy_mode mode, int submode)
+> > +{
+> > +     struct s32g_serdes *serdes = phy_get_drvdata(p);
+> > +
+> > +     if (mode == PHY_MODE_PCIE)
+> > +             return -EINVAL;
+>
+> This is part of an AI Generated review.
+> I have looked over it and I think it warrants investigation.
+> For information on how to reproduce locally, as I did, please see [1].
+>
+> [1] https://netdev-ai.bots.linux.dev/ai-local.html
+>
+>   This returns error if mode IS PHY_MODE_PCIE, but this is a PCIe PHY!
+>   This looks like a typo. Should be !=.
 
-Regarding using "pm" for both, the underlying hardware clocks have differen=
-t
-names (CLK1PM for RZ/G3S vs CLKPMU for RZ/G3E) and serve slightly different
-purposes - the RZ/G3S clock is specifically for L1 substate power managemen=
-t
-while the RZ/G3E clock is for the PMU block. Therefore, I wanted the bindin=
-g
-to reflect the actual hardware clock naming.
+yes don't know what happened here but it should be !=
 
-There are also SoCs (such as the RZ/G3L) that have both clocks (CLK1PM and =
-CMLPMU)
-as Biju stated.
+>
+> > +
+> > +     if (!is_pcie_phy_mode_valid(submode))
+> > +             return -EINVAL;
+> > +
+> > +     /*
+> > +      * Do not configure SRIS or CRSS PHY MODE in conjunction
+> > +      * with any SGMII mode on the same SerDes subsystem
+> > +      */
+> > +     if ((submode == CRSS || submode == SRIS) &&
+> > +         serdes->ctrl.ss_mode != 0)
+> > +             return -EINVAL;
+> > +
+> > +     /*
+> > +      * Internal reference clock cannot be used with either Common clock
+> > +      * or Spread spectrum, leaving only SRNSS
+> > +      */
+> > +     if (submode != SRNS &&  !serdes->ctrl.ext_clk)
+> > +             return -EINVAL;
+> > +
+> > +     serdes->pcie.phy_mode = submode;
+>
+> The AI review also suggested that it may be unsafe
+> to set the submode after s32g_serdes_phy_power_on()
+> has been called. And that there is nothing preventing that.
+>
+> TBH, I am unsure if either of those statements are true.
+> But it seems worth validating with you.
 
-Is the explanation ok for you ?
+yes, the usual pattern is :
+- phy_set_mode_ext()
+- then phy_power_on()
+but I can add an additional check
 
-> >  - Updated clock descriptions
-> >
-> > v2: Reuse G3S names
-> >
-> >  .../bindings/pci/renesas,r9a08g045-pcie.yaml  | 76
-> > +++++++++++++++++--
-> >  1 file changed, 68 insertions(+), 8 deletions(-)
-> >
-> > diff --git
-> > a/Documentation/devicetree/bindings/pci/renesas,r9a08g045-pcie.yaml
-> > b/Documentation/devicetree/bindings/pci/renesas,r9a08g045-pcie.yaml
-> > index d1eb92995e2c..d48187ca0849 100644
-> > ---
-> > a/Documentation/devicetree/bindings/pci/renesas,r9a08g045-pcie.yaml
-> > +++ b/Documentation/devicetree/bindings/pci/renesas,r9a08g045-pcie.yam
-> > +++ l
-> > @@ -10,17 +10,21 @@ maintainers:
-> >    - Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> >
-> >  description:
-> > -  Renesas RZ/G3S PCIe host controller complies with PCIe Base
-> > Specification
-> > -  4.0 and supports up to 5 GT/s (Gen2).
-> > +  Renesas RZ/G3{E,S} PCIe host controllers comply with PCIe  Base
-> > + Specification 4.0 and support up to 5 GT/s (Gen2) for RZ/G3S and  up
-> > + to 8 GT/s (Gen3) for RZ/G3E.
-> >
-> >  properties:
-> >    compatible:
-> > -    const: renesas,r9a08g045-pcie # RZ/G3S
-> > +    enum:
-> > +      - renesas,r9a08g045-pcie # RZ/G3S
-> > +      - renesas,r9a09g047-pcie # RZ/G3E
-> >
-> >    reg:
-> >      maxItems: 1
-> >
-> >    interrupts:
-> > +    minItems: 16
-> >      items:
-> >        - description: System error interrupt
-> >        - description: System error on correctable error interrupt @@
-> > -38,8 +42,16 @@ properties:
-> >        - description: PCIe event interrupt
-> >        - description: Message interrupt
-> >        - description: All interrupts
-> > +      - description: Link equalization request interrupt
-> > +      - description: Turn off event interrupt
-> > +      - description: PMU power off interrupt
-> > +      - description: D3 event function 0 interrupt
-> > +      - description: D3 event function 1 interrupt
-> > +      - description: Configuration PMCSR write clear function 0
-> interrupt
-> > +      - description: Configuration PMCSR write clear function 1
-> > + interrupt
-> >
-> >    interrupt-names:
-> > +    minItems: 16
-> >      items:
-> >        - const: serr
-> >        - const: serr_cor
-> > @@ -57,20 +69,27 @@ properties:
-> >        - const: pcie_evt
-> >        - const: msg
-> >        - const: all
-> > +      - const: link_equalization_request
-> > +      - const: turn_off_event
-> > +      - const: pmu_poweroff
-> > +      - const: d3_event_f0
-> > +      - const: d3_event_f1
-> > +      - const: cfg_pmcsr_writeclear_f0
-> > +      - const: cfg_pmcsr_writeclear_f1
-> >
-> >    interrupt-controller: true
-> >
-> >    clocks:
-> >      items:
-> >        - description: System clock
-> > -      - description: PM control clock
-> > +      - description: PM control clock or clock for L1 substate and
-> > + CLKREQ_B handling
-> >
-> >    clock-names:
-> > -    items:
-> > -      - const: aclk
-> > -      - const: pm
->=20
-> and I'd like to see an attempt to keep an items list here, by making the
-> second item and enum if you keep using "pm" and "pmu".
->=20
+>
+> > +
+> > +     return 0;
+> > +}
+>
+> ...
+>
+> > +static int s32g_serdes_get_ctrl_resources(struct platform_device *pdev, struct s32g_serdes *serdes)
+> > +{
+> > +     struct s32g_serdes_ctrl *ctrl = &serdes->ctrl;
+> > +     struct device *dev = &pdev->dev;
+> > +     int ret, idx;
+> > +
+> > +     ret = of_property_read_u32(dev->of_node, "nxp,sys-mode",
+> > +                                &ctrl->ss_mode);
+> > +     if (ret) {
+> > +             dev_err(dev, "Failed to get SerDes subsystem mode\n");
+> > +             return -EINVAL;
+> > +     }
+> > +
+> > +     if (ctrl->ss_mode > S32G_SERDES_MODE_MAX) {
+> > +             dev_err(dev, "Invalid SerDes subsystem mode %u\n",
+> > +                     ctrl->ss_mode);
+> > +             return -EINVAL;
+> > +     }
+> > +
+> > +     ctrl->ss_base = devm_platform_ioremap_resource_byname(pdev, "ss_pcie");
+> > +     if (IS_ERR(ctrl->ss_base)) {
+> > +             dev_err(dev, "Failed to map 'ss_pcie'\n");
+> > +             return PTR_ERR(ctrl->ss_base);
+> > +     }
+> > +
+> > +     ctrl->rst = devm_reset_control_get(dev, "serdes");
+> > +     if (IS_ERR(ctrl->rst))
+> > +             return dev_err_probe(dev, PTR_ERR(ctrl->rst),
+> > +                                  "Failed to get 'serdes' reset control\n");
+> > +
+> > +     ctrl->nclks = devm_clk_bulk_get_all(dev, &ctrl->clks);
+> > +     if (ctrl->nclks < 1)
+> > +             return dev_err_probe(dev, ctrl->nclks,
+> > +                                  "Failed to get SerDes clocks\n");
+>
+> If devm_clk_bulk_get_all returns 0 then this value will
+> be passed to dev_err_probe(). And 0 will, in turn be returned by
+> dev_err_probe() and this function. However, that will be treated
+> as success by the caller, even though this is an error condition.
+>
+> Perhaps something like this is more appropriate if ctrl->nclks
+> must be greater than 0. (Completely untested!)
+>
+>         if (ctrl->nclks < 1) {
+>                 ret = ctrl->nclks ? : -EINVAL;
+>                 return dev_err_probe(dev, ret,
+>                                      "Failed to get SerDes clocks\n");
+>         }
+>
+> Flagged by Smatch.
 
-I'll use something like this in v3:
+okay
 
-       clock-names:
-         items:
-           - const: aclk
-           - enum:
-             - pm
-             - pmu
+>
+> ...
+>
+> > +static int s32g_serdes_parse_lanes(struct device *dev, struct s32g_serdes *serdes)
+> > +{
+> > +     int ret;
+> > +
+> > +     for_each_available_child_of_node_scoped(dev->of_node, of_port) {
+> > +             ret = s32g2_serdes_create_phy(serdes, of_port);
+> > +             if (ret)
+> > +                     break;
+> > +     }
+> > +
+> > +     return ret;
+>
+> Perhaps it cannot occur.
+> But if the loop above iterates zero times,
+> then ret will be used uninitialised here.
 
-If this is Ok for you, I'll keep this approach with both names.
-What do you think ?
+should not but will fix it
 
-Regards,
-John
+>
+> Also flagged by Smatch.
+>
+> > +}
+> > +
+> > +static int s32g_serdes_probe(struct platform_device *pdev)
+> > +{
+> > +     struct s32g_serdes *serdes;
+> > +     struct device *dev = &pdev->dev;
+> > +     int ret;
+> > +
+> > +     serdes = devm_kzalloc(dev, sizeof(*serdes), GFP_KERNEL);
+> > +     if (!serdes)
+> > +             return -ENOMEM;
+> > +
+> > +     platform_set_drvdata(pdev, serdes);
+> > +     serdes->dev = dev;
+> > +
+> > +     ret = s32g_serdes_get_ctrl_resources(pdev, serdes);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     ret = s32g_serdes_get_pcie_resources(pdev, serdes);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     ret = s32g_serdes_parse_lanes(dev, serdes);
+> > +     if (ret)
+> > +             return ret;
+>
+> The I review also says:
+>
+>   The probe function calls s32g_serdes_init() which enables clocks,
+>   configures hardware, and deasserts reset. However,
+>   s32g_serdes_parse_lanes() creates PHY providers via
+>   devm_of_phy_provider_register().
+>
+>   Problem: PHY consumers can start calling PHY ops (like power_on) as soon
+>   as the provider is registered, but the hardware isn't initialized until
+>   s32g_serdes_init() runs afterward. This creates a race window.
+>
+>   Recommendation: Move s32g_serdes_init() before s32g_serdes_parse_lanes().
 
-> Cheers,
-> Conor.
->=20
-> > +    minItems: 2
-> > +    maxItems: 2
-> >
-> >    resets:
-> > +    minItems: 1
-> >      items:
-> >        - description: AXI2PCIe Bridge reset
-> >        - description: Data link layer/transaction layer reset @@ -81,6
-> > +100,7 @@ properties:
-> >        - description: Configuration register reset
-> >
-> >    reset-names:
-> > +    minItems: 1
-> >      items:
-> >        - const: aresetn
-> >        - const: rst_b
-> > @@ -128,7 +148,9 @@ patternProperties:
-> >          const: 0x1912
-> >
-> >        device-id:
-> > -        const: 0x0033
-> > +        enum:
-> > +          - 0x0033
-> > +          - 0x0039
-> >
-> >        clocks:
-> >          items:
-> > @@ -167,6 +189,44 @@ required:
-> >
-> >  allOf:
-> >    - $ref: /schemas/pci/pci-host-bridge.yaml#
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: renesas,r9a08g045-pcie
-> > +    then:
-> > +      properties:
-> > +        interrupts:
-> > +          maxItems: 16
-> > +        interrupt-names:
-> > +          maxItems: 16
-> > +        clock-names:
-> > +          items:
-> > +            - const: aclk
-> > +            - const: pm
-> > +        resets:
-> > +          minItems: 7
-> > +        reset-names:
-> > +          minItems: 7
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: renesas,r9a09g047-pcie
-> > +    then:
-> > +      properties:
-> > +        interrupts:
-> > +          minItems: 23
-> > +        interrupt-names:
-> > +          minItems: 23
-> > +        clock-names:
-> > +          items:
-> > +            - const: aclk
-> > +            - const: pmu
-> > +        resets:
-> > +          maxItems: 1
-> > +        reset-names:
-> > +          maxItems: 1
-> >
-> >  unevaluatedProperties: false
-> >
-> > --
-> > 2.25.1
-> >
+I will look at this more deeply but part of s32g_serdes_init() needs
+lanes to be parsed for configuring clock
+
+>
+> > +
+> > +     ret = s32g_serdes_init(serdes);
+> > +
+> > +     return ret;
+>
+> nit: This could be more succinctly written as:
+
+fair enough
+
+>
+>         return s32g_serdes_init(serdes);
+>
+> > +}
+>
+> ...
 
