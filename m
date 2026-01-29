@@ -1,161 +1,211 @@
-Return-Path: <devicetree+bounces-260801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260859-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SJBFBU0we2n2CAIAu9opvQ
-	(envelope-from <devicetree+bounces-260801-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 11:02:53 +0100
+	id oF+NCXpHe2kdDQIAu9opvQ
+	(envelope-from <devicetree+bounces-260859-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 12:41:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C94E0AE591
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 11:02:52 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78ACDAFBAF
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 12:41:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E8BA83030EE7
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 10:02:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 303E43013695
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 11:41:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C69EC3803DD;
-	Thu, 29 Jan 2026 10:02:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C85FC3859DA;
+	Thu, 29 Jan 2026 11:41:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b="A5AXGlCp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ns9g5/jD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.nabladev.com (mx.nabladev.com [178.251.229.89])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D06137D137;
-	Thu, 29 Jan 2026 10:02:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.251.229.89
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C06D36604A
+	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 11:41:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769680951; cv=none; b=OgrisKaw1iwgbG6Do4LxYQx5067FAKl9OjNWlbnTQ5LnwFm/45esXuoir6a/emRF6xpgVIjORyLyBW8rNMBuuBKcaJDiK1uR7HtlMmolxohyA++pCLZoM/Gzflw263sOwUrN2EsddiKvxNJRMaxC23YbKovaM9x1GgEuXUbA2ho=
+	t=1769686903; cv=none; b=SBoRaPRTPN8jIv9HbsZsAUq781/lkCzRRoaSQ2yoJ8BefIwN6XOabzzm2klbDwEmCrpu8o38CinDLvQ1wwbxc6GFfkuhcapR+ki6VAVA1iuT4ed6CM4TfNFMgaQ/6GWWyyFq8XTmq9QGURT2JqFLQdZ6GDjjl42agDy2Fgu2zqI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769680951; c=relaxed/simple;
-	bh=nMvp7sq8ZZjQy/P5kCejyFLZpXtKta6haVWRdm941Ro=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=kTGx/HUPS8+SJ/nthhX6vcyn9cG1DPfro16Ql9gY94OGcQx8pMOpUM5wWY5NDFvu7nxuiMCUBonw3xtQr88xHtzDnZj8p9adOz31vDBvgC7/00E+NWHDOQ3MziFMBAzOSsOUv4vnomTbTtIRcUCS4n5/kfv+dUe/fI9p8b/LMXw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=A5AXGlCp; arc=none smtp.client-ip=178.251.229.89
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nabladev.com
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 03A0A10F7B1;
-	Thu, 29 Jan 2026 10:55:04 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
-	s=dkim; t=1769680505; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=Ua4dzCHRVlTur4dFIV0XO2jMj61CEAysss6aVhB7hN8=;
-	b=A5AXGlCpIvEkBSLGCNlNqlnDtfn//hfnk8wIN5HD2wNh5sm4m80V+9+wxLXic4xSwHDyf4
-	EJXXyoNBlKeDsjjP9l/oAjIdfv/QPy7MolmLXIRr7M7XCTLH/NBuyNnNNpe0X4RYy/usqv
-	MjJDRx6Fj7AdiJEW9Is2INMooWZC2uhUZMnIauhc4JJJvrhlxcs7qtkX0IT+9EddeCZfWw
-	JNViMT5h9CZCkSSoTMkdzuTNSg9P5RELz+/kA1avq/HKAVcAzJ1f25QH6ojBOJLc8/TQKU
-	gfexMP60K3sMBGRdpRxIALjxnSjGJskJ7FxCRRZD/jARmHp8vt4eXoZ0KcC7fw==
-From: Lukasz Majewski <lukma@nabladev.com>
-To: Abel Vesa <abelvesa@kernel.org>,
-	Peng Fan <peng.fan@nxp.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>
-Cc: Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1769686903; c=relaxed/simple;
+	bh=I38MUjkcoH9V79CpUKSDz1OC341UmQxGErHv0ex1jmw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=n1/tFGyvp7ERMJRk6Vw7V5LmWBhSnFxQKgQtYFIXzT67ypsaM1OsrUVmd+aUAdwJl6GV1nH0vSL/y4d/MaJQ8iFNVBf3/K3JRzxqVM+bHUmWGhVZPujBQBStCa4b7ynskS6MIWWtTpo58jFb9SwbrhH0cf+ciQe5oHu8D7laqMw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ns9g5/jD; arc=none smtp.client-ip=209.85.208.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-385c6c727fcso8319351fa.3
+        for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 03:41:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1769686900; x=1770291700; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CkBngwJnmvxY2ZcqFRWqtKhnXiiLbRs1c6I12xgJLLE=;
+        b=Ns9g5/jDqXbgMkfQCY3CRpm4tMRMxq1PUyfwetGEklG5OuXOXtJhgU9L2VVOSfmnMC
+         p2bCh/ShB1462FpAJXPh1dkHn72tbaXjy+AYtZZXuJi7stMSYVL3rXFSMju4BrVrRsUh
+         VxkKH4kkonucFDrOqF/qkadRYwTgxwzOvO0eC62iOkj3CsWm8RHK0BHPjeK4A+tf0wZo
+         blHH7u6BIoK7Vqbx16WH9Ztvz5LIflBbzprdQx2WC5/ae+NE4f7iMgRYhyWkJPR+APAc
+         EhdnTPAH5Daxg+SjDvPm6TfnIe1gwW7lnPq2IBjJATKvarDEI9m5f9oPvxqK7vaA8CUn
+         mlWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769686900; x=1770291700;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=CkBngwJnmvxY2ZcqFRWqtKhnXiiLbRs1c6I12xgJLLE=;
+        b=dUMhfnMaYlgoxuPQTppgndgxuyavU+/FUt+hLuGqz2pK6Z0nfXUrrOzC9bwUGLAHX1
+         PVMFmHBrrw8qUTOTqFjwofcTAHXVW15Rjox1w3LS4jp0Ist3EsaRAH0dWc6JlV5UtGMG
+         5SD0Yuf16AWq8R18c0XIu+aRh/ku3/+EXJIwO489ftIOFYSaPRGG14a6lC+4yEi7Zymj
+         EzHZ1DTt2Ei26j283GaSrnyCK15y/tmiflUzNqv4rwy3J8S5LmqzYuHHVNFUYq20bJaH
+         X0gzrvRpePdaUnyxX+K0BK+RK3P7kD1Wgfn8HCJX0X4V6lwX+XjLhIlTuKub9xa/nd7f
+         0FvQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVsP0tG1TW5rNPnktAJ8/ub+Q12gH4BnPkMucljT1MHBfZEw+ABlX/Q90GGiTutKYm4kER2gwkZ1NDm@vger.kernel.org
+X-Gm-Message-State: AOJu0YxwBBjgA7Szrl9MjJTpeTAv3P9CnkMH2HQCzHZskCNXrlV3pLVo
+	Xsqd8d0ArfCrs6PBm1GR9TRfaS0FQyOp0ncfCNf4b8NNNJDFyKBG3CQ+a1s9jA==
+X-Gm-Gg: AZuq6aJvm+Rk539fO9p1U/4FC57KmRG+F//InDRoJkM2fwXjCfAutnPMjDf+9+WtuDb
+	k3uG2iljrPbKTMIiYJmvnIc1wKLObcEhigsnnrTm6nxEY4AXNCB+5Ta+8+8ey2/V34JPBR9HwK2
+	H+L07nMKELzcpLrZ9ZfniG3+oCZGlMT5wmGUSYnV60174m+LVD5O8oy0xsyJjd+RAj4yUWDUkXr
+	6OpGJZ+0bYGePZWtNHlXg2s3Z+NR5vxN3WkyPOjBBMBNA7XdO+9l3TfNK3aMbo1AZegGoaEeSta
+	SZjHO8TjMgLgP3/EuzfzVzrux1LtnDTJYiLed2ImBtMQi97z/l+xN8QlwOKV8LSvmxAJADRHfXI
+	NKocPubOjRnrsRB444cVpk6+RylcVj84r62CbWqJZA7Dhp6LMjV7foguczRdduE7CT2klMNetjv
+	ZuDcum9+QI/24mlOAc
+X-Received: by 2002:a05:6000:428a:b0:435:91b6:f53 with SMTP id ffacd0b85a97d-435dd02450fmr10964058f8f.8.1769680573611;
+        Thu, 29 Jan 2026 01:56:13 -0800 (PST)
+Received: from biju.lan ([2a00:23c4:a758:8a01:5792:2065:403:a80b])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435e132303fsm13285141f8f.36.2026.01.29.01.56.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Jan 2026 01:56:13 -0800 (PST)
+From: Biju <biju.das.au@gmail.com>
+X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Linus Walleij <linusw@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	linux-clk@vger.kernel.org,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	linux-renesas-soc@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
 	devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Lukasz Majewski <lukma@nabladev.com>
-Subject: [PATCH v4 4/4] clk: vf610: Add support for the Ethernet switch clocks
-Date: Thu, 29 Jan 2026 10:54:42 +0100
-Message-Id: <20260129095442.1646748-5-lukma@nabladev.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20260129095442.1646748-1-lukma@nabladev.com>
-References: <20260129095442.1646748-1-lukma@nabladev.com>
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH 0/9] Add Renesas RZ/G3L PINCONTROL support
+Date: Thu, 29 Jan 2026 09:56:09 +0000
+Message-ID: <20260129095611.95622-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260129091108.95277-1-biju.das.jz@bp.renesas.com>
+References: <20260129091108.95277-1-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nabladev.com,reject];
-	R_DKIM_ALLOW(-0.20)[nabladev.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260801-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-260859-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	FREEMAIL_CC(0.00)[bp.renesas.com,vger.kernel.org,gmail.com];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[glider.be,kernel.org,baylibre.com,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,nabladev.com];
-	DKIM_TRACE(0.00)[nabladev.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lukma@nabladev.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C94E0AE591
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bp.renesas.com:mid,renesas.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 78ACDAFBAF
 X-Rspamd-Action: no action
 
-The vf610 device has built in the MoreThanIP L2 switch. For proper
-operation it is required to enable ESW and MAC table lookup
-clocks.
+From: Biju Das <biju.das.jz@bp.renesas.com>
 
-The MAC table spans from 0x400E_C000 for 0x4000 and it is necessary
-to provide clocks for each AIPS1-"slot", which size is 0x1000
-(hence four separate entries).
+Hi All,
 
-Those can be enabled via clock gating CCM_CCGR10 register
-(0x4006_B068).
+This patch series aims to add basic pincontrol support for RZ/G3L SoC. The
+RZ/G3L pinctrl has OTHER_POC register compared to other SoCs for setting
+IO domain volage for AWO, ISO and WDT.
 
-Signed-off-by: Lukasz Majewski <lukma@nabladev.com>
----
-Changes for v4:
-- Adjust VF610_CLK_END
----
- drivers/clk/imx/clk-vf610.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+Document the reset-names as all SOCs has multiple resets.
 
-diff --git a/drivers/clk/imx/clk-vf610.c b/drivers/clk/imx/clk-vf610.c
-index 457156944c67..766119a86841 100644
---- a/drivers/clk/imx/clk-vf610.c
-+++ b/drivers/clk/imx/clk-vf610.c
-@@ -16,7 +16,7 @@
-  * include/dt-bindings/clock/vf610-clock.h
-  * It shall be the value of the last defined clock +1
-  */
--#define VF610_CLK_END 191
-+#define VF610_CLK_END 196
- 
- #define CCM_CCR			(ccm_base + 0x00)
- #define CCM_CSR			(ccm_base + 0x04)
-@@ -316,6 +316,11 @@ static void __init vf610_clocks_init(struct device_node *ccm_node)
- 	clk[VF610_CLK_ENET_TS] = imx_clk_gate("enet_ts", "enet_ts_sel", CCM_CSCDR1, 23);
- 	clk[VF610_CLK_ENET0] = imx_clk_gate2("enet0", "ipg_bus", CCM_CCGR9, CCM_CCGRx_CGn(0));
- 	clk[VF610_CLK_ENET1] = imx_clk_gate2("enet1", "ipg_bus", CCM_CCGR9, CCM_CCGRx_CGn(1));
-+	clk[VF610_CLK_ESW] = imx_clk_gate2("esw", "ipg_bus", CCM_CCGR10, CCM_CCGRx_CGn(8));
-+	clk[VF610_CLK_ESW_MAC_TAB0] = imx_clk_gate2("esw_tab0", "ipg_bus", CCM_CCGR10, CCM_CCGRx_CGn(12));
-+	clk[VF610_CLK_ESW_MAC_TAB1] = imx_clk_gate2("esw_tab1", "ipg_bus", CCM_CCGR10, CCM_CCGRx_CGn(13));
-+	clk[VF610_CLK_ESW_MAC_TAB2] = imx_clk_gate2("esw_tab2", "ipg_bus", CCM_CCGR10, CCM_CCGRx_CGn(14));
-+	clk[VF610_CLK_ESW_MAC_TAB3] = imx_clk_gate2("esw_tab3", "ipg_bus", CCM_CCGR10, CCM_CCGRx_CGn(15));
- 
- 	clk[VF610_CLK_PIT] = imx_clk_gate2("pit", "ipg_bus", CCM_CCGR1, CCM_CCGRx_CGn(7));
- 
+Document the bindings for RZ/G3L SOC and add pinctrl definitions in
+driver.
+
+Add pincontrol device node and add pincontrol support for SCIF0 and GBETH
+nodes.
+
+Note:
+Some IPs needs to set the register IPCONT_SEL_CLONECH in SYSC to control
+the clone channel of the IP. Plan to add clone channel control support
+later. The IP's involing clone channel needs to do the setup as per the
+below flow
+
+(1) Set SYS_IPCONT_SEL_CLONECH register as necessary
+(2) Set the PWPR register to allow writing to the PFC_m register.
+    After setting the PWPR.B0WI bit to “0” (initial value = 1), 
+    set the PWPR.PFCWE bit to “1” (initial value = 0).
+    Select the required function from Functions 0-15.
+    (Hereafter, Function1 setting example)
+(3) Set PFC_m = 0001b and switch to Function1.
+(4) Set the PMC_m register to “1” (initial value = 0).
+(5) Set the PFC_m register to write-protected. After setting
+    the PWPR.PFCWE bit to “0”, set the PWPR.B0WI bit to “1”.
+
+The clock and dtsi/dts patches depend upon [1]
+[1] https://lore.kernel.org/all/20260128125850.425264-1-biju.das.jz@bp.renesas.com/
+
+Biju Das (9):
+  dt-bindings: pinctrl: renesas: Document reset-names
+  dt-bindings: pinctrl: renesas: Document RZ/G3L SoC
+  clk: renesas: r9a08g046: Add GPIO clocks/resets
+  pinctrl: renesas: rzg2l: Add support for selecting power source for
+    {WDT,AWO,ISO}
+  pinctrl: renesas: rzg2l: Add OEN support for RZ/G3L
+  pinctrl: renesas: rzg2l: Add support for RZ/G3L SoC
+  arm64: dts: renesas: r9a08g046: Add pincontrol node
+  arm64: dts: renesas: r9a08g046l48-smarc: Add SCIF0 pincontrol
+  arm64: dts: renesas: rzg3l-smarc-som: Enable eth1 (GBETH1) interface
+
+ .../pinctrl/renesas,rzg2l-pinctrl.yaml        |  16 +
+ arch/arm64/boot/dts/renesas/r9a07g043.dtsi    |   1 +
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi    |   1 +
+ arch/arm64/boot/dts/renesas/r9a07g054.dtsi    |   1 +
+ arch/arm64/boot/dts/renesas/r9a08g045.dtsi    |   1 +
+ arch/arm64/boot/dts/renesas/r9a08g046.dtsi    |  10 +
+ .../boot/dts/renesas/r9a08g046l48-smarc.dts   |  13 +
+ arch/arm64/boot/dts/renesas/r9a09g047.dtsi    |   1 +
+ arch/arm64/boot/dts/renesas/r9a09g056.dtsi    |   1 +
+ arch/arm64/boot/dts/renesas/r9a09g057.dtsi    |   1 +
+ .../boot/dts/renesas/rzg3l-smarc-som.dtsi     |  92 ++++++
+ drivers/clk/renesas/r9a08g046-cpg.c           |   6 +
+ drivers/pinctrl/renesas/pinctrl-rzg2l.c       | 285 +++++++++++++++++-
+ .../pinctrl/renesas,r9a08g046-pinctrl.h       |  39 +++
+ 14 files changed, 465 insertions(+), 3 deletions(-)
+ create mode 100644 include/dt-bindings/pinctrl/renesas,r9a08g046-pinctrl.h
+
 -- 
-2.39.5
+2.43.0
 
 
