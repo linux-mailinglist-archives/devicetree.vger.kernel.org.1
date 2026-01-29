@@ -1,146 +1,170 @@
-Return-Path: <devicetree+bounces-261008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261009-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gNsiMampe2m8HgIAu9opvQ
-	(envelope-from <devicetree+bounces-261008-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 19:40:41 +0100
+	id ILUxMFmqe2m8HgIAu9opvQ
+	(envelope-from <devicetree+bounces-261009-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 19:43:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E909B3A74
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 19:40:41 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C644B3ADF
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 19:43:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 70C863017BDD
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 18:40:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A0037303C612
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 18:42:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 304842FB093;
-	Thu, 29 Jan 2026 18:40:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2145B2F693D;
+	Thu, 29 Jan 2026 18:42:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IZWkPyXi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZGtf5QLw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 038DF21A444;
-	Thu, 29 Jan 2026 18:40:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2A5C1ADFE4;
+	Thu, 29 Jan 2026 18:42:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769712036; cv=none; b=i1RTRPPpJ6YUVcMjuuI3hLyAVPYkDezfG46U+eg2S+6w5KGMl6tyfyGNejnIALLkH6iwm7PSLv2NmGmW6u6g8t2RrsGJmMIPh9UHyr4QMbm/FIfufu7irU0bpnriJ2iJMbqzchRvs3M6rOkLYWohMHq/ccb+Iu8f5LemXVp/1eU=
+	t=1769712133; cv=none; b=aW3gRZEWSag5L2j2YpyGrT0rfojXkmYhVtcjG7t4EXgPFnyYUMDRHN0N8b7HuZEh7LuTucenGPwg7h7XI0JvDYgLYfn2JC5GXI1TzG5QC9SdfpEBBoHD50OFBVDXXm+3Oqbpyjhj9p8QmfRnfzfG5SoKN1oF/SZfjDtzbepk3uk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769712036; c=relaxed/simple;
-	bh=w5ZpZFUVGwCEwUETHRongFvZUoQhcqny4z5JtF1t74k=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=RTPZySq2VmE3j+X2qAVo3qO4h/PepJ1V9mr7I2Cy/yL3Ne2S8NewLCjB3YKMn4N6PpbOT8++F01TqOS51tsE16k0UQJGw2xy3fFWEPnz/hpuRRzDb39wpVWTbL4X9KG9vetEtDnGbCDNyYoLLNq0w9lg2IA07YZQS2O+c916FZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IZWkPyXi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 224E9C4CEF7;
-	Thu, 29 Jan 2026 18:40:30 +0000 (UTC)
+	s=arc-20240116; t=1769712133; c=relaxed/simple;
+	bh=oGKj3bJmdms/bUUnXYRdNRQubOf7F48t5aJal+BsCgw=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=Gvu/FGreYCqQVeK20N6cNpkLNIQYrJHYZ+rpClMcCykWJDqHTxqz2KcJ6kgZqQOtBmV6J6JNHII9mS3tjAUtr2Fvpnt2xfn7SQO/8OF8S5d0aQyOGEc+VgcN1Dj19QuSdp7r8+6aJQr0qJuqS9hgEyXUeS7/Ru00w/v8lTdn+4M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZGtf5QLw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BF3CC4CEF7;
+	Thu, 29 Jan 2026 18:42:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769712035;
-	bh=w5ZpZFUVGwCEwUETHRongFvZUoQhcqny4z5JtF1t74k=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=IZWkPyXi0aBhgsN5cXlQNJtckfRfXJifCq+blvMARj1gTfAmwq4hMy7T2nlC95QaR
-	 4mZi27CZT8SnAvzPZoQ2FQiMYrdJyWynWKhqsvY0AUEeIELGQzL23MxFR5KPtVMeTZ
-	 CxxsdFUaFF+cR9OjsY0TUpQRf0gCRne4wi0m5Zx++Coh3/H3a8wgbFTeu11QUclLa6
-	 jZYuizG+B8/zytF/S8bfja/yCGUdN53AW08SzOpoQfkA1zFWZxseHLRGFwNDpx7xSr
-	 caTCCf41SzvHojTqpyTao9n/y/9Pamq2Euj9qzkLP9xjN+Jpsn0xjElstSPF7WJqiR
-	 zOuPJSgu8qkPQ==
-Date: Thu, 29 Jan 2026 18:40:25 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-Cc: Andy Shevchenko <andriy.shevchenko@intel.com>,
- rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Michael Hennerich
- <Michael.Hennerich@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, David
- Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v2 3/6] iio: amplifiers: ad8366: refactor device
- resource management
-Message-ID: <20260129184025.4abd4fe0@jic23-huawei>
-In-Reply-To: <rtu3nsjdufyhtox5uvtkoyzqtfcmq2wdfzmsr3xyvqlrdloirn@a3jdshanc7ha>
-References: <20260126-iio-ad8366-update-v2-0-c9a4d31aeb01@analog.com>
-	<20260126-iio-ad8366-update-v2-3-c9a4d31aeb01@analog.com>
-	<aXkqKZELWdjrB8wN@smile.fi.intel.com>
-	<rtu3nsjdufyhtox5uvtkoyzqtfcmq2wdfzmsr3xyvqlrdloirn@a3jdshanc7ha>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=k20201202; t=1769712132;
+	bh=oGKj3bJmdms/bUUnXYRdNRQubOf7F48t5aJal+BsCgw=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=ZGtf5QLw9zwCqxr4xXdxFrjU8IT9HhG5kRNRUlVuW3rrjJgbtAhEreEi4GpBcB6Y0
+	 RXFJheuMDU7w37cE5KoYTJEMxJLxhMefERDww15DMZ3GGE1UgqvaYGgLbj5nTA4FrS
+	 lWh2LXfjonH/0TmECs2p+NqS+77SZDZ2FXSsCGZxY5LEqkZShiCd6rXPUoVmWriUrS
+	 mmqi1ubT+aQRg5TU4XbVXFKJoojHbkEz/YVC0oGoRWWMPncTzX8dhc0/vywHPjMdqC
+	 6msCosHo4JC+aSENu5d/eVvDCsxZc64U5BOI5RoRUQz5O9yYZcKCToAzVsEyH3Lh3K
+	 aoR9MuSDXlHnw==
+Date: Thu, 29 Jan 2026 12:42:11 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, biju.das.jz@bp.renesas.com, 
+ Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, linux-kernel@vger.kernel.org, 
+ Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, tomm.merciai@gmail.com, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>
+To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+In-Reply-To: <af75145b08e24034dcf367932002079363e5dd81.1769704000.git.tommaso.merciai.xr@bp.renesas.com>
+References: <cover.1769704000.git.tommaso.merciai.xr@bp.renesas.com>
+ <af75145b08e24034dcf367932002079363e5dd81.1769704000.git.tommaso.merciai.xr@bp.renesas.com>
+Message-Id: <176971213156.1637421.14962977334514056951.robh@kernel.org>
+Subject: Re: [PATCH v7 1/4] dt-bindings: reset: renesas,rzv2h-usb2phy: Add
+ '#mux-state-cells' property
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,bp.renesas.com,renesas.com,pengutronix.de,gmail.com,kernel.org,oss.qualcomm.com,glider.be];
+	TAGGED_FROM(0.00)[bounces-261009-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261008-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 3E909B3A74
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.241.139.240:email,qualcomm.com:email,renesas.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 2C644B3ADF
 X-Rspamd-Action: no action
 
-On Wed, 28 Jan 2026 09:31:10 +0000
-Rodrigo Alencar <455.rodrigo.alencar@gmail.com> wrote:
 
-> On 26/01/27 11:12PM, Andy Shevchenko wrote:
-> > On Mon, Jan 26, 2026 at 01:51:04PM +0000, Rodrigo Alencar via B4 Relay wrote:
-> >   
-> > > Adhere modern device resource management with the following:
-> > > - Voltage regulator managed and enabled internally;
-> > > - Proper mutex lifecycle with devm_mutex_init(), replacing mutex_init();
-> > > - IIO device registration handled with devm_iio_device_register();
-> > > - removal of goto's from the probe function;
-> > > - ad8366_remove() removed as it is not needed anymore;
-> > > 
-> > > Also, dev_err_probe() is used to report probe errors with created local
-> > > device pointer.  
-> > 
-> > And also it uses the temporary dev variable in the cases that are not covered
-> > by the above.
-> > 
-> > So, three changes in one patch...  
+On Thu, 29 Jan 2026 17:52:55 +0100, Tommaso Merciai wrote:
+> Add the '#mux-state-cells' property to support describing the USB VBUS_SEL
+> multiplexer as a mux-controller in the Renesas RZ/V2H(P) USB2PHY binding.
 > 
-> I can split. Using proper devm functions allowed me to drop goto's and
-> ad8366_remove(). Dropping the goto's allowed for the usage of
-> dev_err_probe().
+> The mux-controller cannot be integrated into the parent USB2PHY node
+> because the VBUS source selector is part of a separate hardware block,
+> not the USB2PHY block itself.
+> 
+> This is required to properly configure USB PHY power selection on
+> RZ/V2H(P) and RZ/G3E SoCs.
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+> ---
+> v6->v7:
+>  - No changes
+> 
+> v5->v6:
+>  - Collected KKrzysztof tag
+> 
+> v4->v5:
+>  - No changes
+> 
+> v3->v4:
+>  - Switch back to v2 implementation.
+>  - Improve commit body.
+> 
+> v2->v3:
+>  - Manipulate mux-controller as an internal node.
+>  - Improved commit body.
+> 
+> v1->v2:
+>  - New patch
+> 
+>  .../bindings/reset/renesas,rzv2h-usb2phy-reset.yaml          | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
 
-As general rule I prefer one patch one change, though just occasionally
-I'll take the expedient view if a series is otherwise ready to merge
-and one change is really really small.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-J
-> 
-> I could place the temporary dev variable in a separate patch. 
-> 
-> > 
-> > Dunno if Jonathan is okay with this. I would rather split it.
-> > Code wise LGTM.  
-> 
-> Yeah I can now see it coming. Thanks for the review.
-> 
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/reset/renesas,rzv2h-usb2phy-reset.example.dtb: reset-controller@15830000 (renesas,r9a09g057-usb2phy-reset): $nodename:0: 'reset-controller@15830000' does not match '^mux-controller(@.*|-([0-9]|[1-9][0-9]+))?$'
+	from schema $id: http://devicetree.org/schemas/mux/mux-controller.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.kernel.org/project/devicetree/patch/af75145b08e24034dcf367932002079363e5dd81.1769704000.git.tommaso.merciai.xr@bp.renesas.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
