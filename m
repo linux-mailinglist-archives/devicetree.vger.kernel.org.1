@@ -1,408 +1,263 @@
-Return-Path: <devicetree+bounces-260839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260840-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4JnSHMw+e2mNCgIAu9opvQ
-	(envelope-from <devicetree+bounces-260839-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 12:04:44 +0100
+	id AAomKhc/e2mNCwIAu9opvQ
+	(envelope-from <devicetree+bounces-260840-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 12:05:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0171FAF5E3
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 12:04:43 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30D44AF62F
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 12:05:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E85923038F50
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 11:00:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 60196300C5A1
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 11:02:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B9CF3859CA;
-	Thu, 29 Jan 2026 11:00:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C69C38552F;
+	Thu, 29 Jan 2026 11:02:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="FN8j6a5b";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="LMRoWACq"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="IH+14h2j";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="QXgUMiy2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7B71385536
-	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 11:00:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90785356A0E;
+	Thu, 29 Jan 2026 11:02:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769684451; cv=none; b=ZX8pDTkh1Y/UbcipNZAXxj/ZHHo7emI5E3GjaO+INImvTFW1LQj2+F2XiXP/YD7i26zMFWykTUa/i/95BCbdvX7qNg+xdFLsnqtUtJNBQediB2/2LbgFMrLPmHM+iAL717HVRkZLixb64hbSC/XJ+0CqyiQ8cu/muiYkxh4gves=
+	t=1769684553; cv=none; b=emJG2NbzNNs/QxeTUnhufRy245/ttL2GlQdogjZAnY0TFQEutdS9lMVp3iIfST7Mj2lJJ9vE7R17scnVSJdjI0A1Ovt1aeC2Gs2+865/gzDo9SB/ZmwPR4xkq0llPAcfy0FuV9I9k+bUJzKCOWDNM1O0y5EygKhPUl+j3w7fz2E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769684451; c=relaxed/simple;
-	bh=zuNjuEaPvKtiaTpnpi3GGSBMmU9WnejUGF/JPe46hnk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cZb3qKPgv1OZA3a2TT/neKyq5dcmqreEmQhJTmv1IHeA5hm8uAj0Mb3RSGR+zp7Q9czo5IivWSk5LZ69Q3KobH2zUOzqHKrpdqp/Ux1muRU+PI1OaVt6DnfqKwsZsxdABygVI1jB7bgW7N96V2dhdoVIgWZb2yz0yJlG61YlJOA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FN8j6a5b; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=LMRoWACq; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60TA5KDn3144552
-	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 11:00:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	LiAulGuQCTWxTDk/cPpKKBufD0fNTEL28yCBfrxiQQE=; b=FN8j6a5by0/x7FGL
-	b93ITjwAI/WSq3dRZyY5Fi9XtBas3SyEGwKQTheFf1nlDKo0nGcCX30ixT/FdDlc
-	1MKmvPk+Sf879kMXLwF7K4AoMxoPujMTUkCEUV8N/vlXyGYaqhGrnxNR0dBDLp8A
-	8fXSD4vMtzvP9b3m+88BWNaerLTiKINGEobWSi30yFs5C7ymQom0ZSL3wiR309UQ
-	+ljmFDU4pJkHIi7Mhren4tuQGaydCD1cXp9wF2hDaEub3Z6SHkoJ2BGbxhArJDLW
-	7QLgaSJRFrrowXp3+DhmgS9rfC67ErAPeWpPu7I+beiVB+jv0hhalqlfZTnEYYMV
-	SyQHag==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4byqpxjqaa-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 11:00:47 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8b2fdf3a190so14193885a.0
-        for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 03:00:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769684447; x=1770289247; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LiAulGuQCTWxTDk/cPpKKBufD0fNTEL28yCBfrxiQQE=;
-        b=LMRoWACqLCj+xJPH7P8Llu/74IrSkplnEJUm8XAi6s4PAXNCrvpoXqil/MCB2A3qFU
-         BFY6BF8X1jaIH+mMW9z3lXRMYKzaAzCivWpsHvMXercxZc9ovhzmhKYmxxRUTU/kg3wm
-         qLqZW74SwNN//47vj5cGKVtt8/zpXjcnFhMzHQnrbhQepnQMVV0kBOqvB/UxSa8DaouE
-         03lfXwiNV3jdjX3WZsywOwZdG67G+i93b6XCg+0fQCYlRZVumd0q1ciihDzsYZ+0cfF9
-         CWAQ1tMWnku8psaPY+9x1BnCCgHe/iGSpb9t2Nt7umOU4PVUfNShhHBXf+7jULoLpTmz
-         5csQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769684447; x=1770289247;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LiAulGuQCTWxTDk/cPpKKBufD0fNTEL28yCBfrxiQQE=;
-        b=u1lCpEeEi6hub++4PtJ9d44LQJSwO5G7Yq2T10mxTO25jwIFrk/0c+qbPe1ZdBCuc6
-         Oxdswi1vj8U6nnoiLEUtdgWOhvANYgtrhowBGkjNPGvffPSLwV5BrFrTpKFerC3fe+Zb
-         YGc6iis4y+LVuNsWbJzW7CxtWEOE3h6QhNE95S9yFWoL0nE61Qk1ZSEuaIZIngldGr+Q
-         VhDVHZWLy4xrCPPj0EJUoAqCRgypTUXkESywcZbLd0BRK3TL9wYiheyBWGV/X+b6qADa
-         5OzFOX6rcTUY/qzkyifyui04IoMpUT0Ws/8F+kL/GydspNYqNqPes1Amh3rcewQ5RvtG
-         vGbA==
-X-Forwarded-Encrypted: i=1; AJvYcCVqMmLoNtXe14rMAItZ8T1ccuhAytYJWaZF3JDORwht5Evz6/Ms/Khb2YYaXWWZbYXdvEA8SLK1Kqby@vger.kernel.org
-X-Gm-Message-State: AOJu0YxwTM13PwZYlTnS7Y3McXSTYzxdb6HNtGKGGlWS36YR/SLiRVGz
-	nnKFX98OduWc5JhNUlZr97dBmtglmRDc9dFBvtlSEjJjJFTnSbK/eGSHmTzENur4O6T1QG0KGTd
-	21M8dMvmsneox+1Il19wUoMUxiugdSm2QkRlPEoEGkkx8wmxlHaypbWEQ6cJmmbpg
-X-Gm-Gg: AZuq6aK606dttauNIZaYYxKRlSnPsO2Z53H8C2UuVF8Xlor6ZESlBbQKCSYDgOH0ccS
-	Du2pMgP6n2CZAtQBaQm1suHuURA5BEvEqfMgJOsMqeKsV6e4/50cQmR4uHujXJaQboA0Po/fM/E
-	3LCaq7rQ5B9IH/Z25CtHmv4LfJu96ARBsXCzi5SJEpG98pe1pkwyP2PggFeSfArGikYldCpevpa
-	0qfx5+SWKT+yZnVsW3woo4WtpZmjMNTFJUVg9PYCfAJXvkct/xNEltlVS7tt7Jnuf2FifEe8ztr
-	Xqvh5uZJipgg0J0gtQiIixCK5EQMf82ldOtsFrC37ozJmILOw6IzTUFjg6M6H98gFX//nPgZmk5
-	K3xHLPUfu87oOvdd/A780cI5+gHhWudg63DsFDxRca//ZLl6PhwVdR8Uj4LVthSOPJgU=
-X-Received: by 2002:a05:620a:1997:b0:8c7:1156:efe9 with SMTP id af79cd13be357-8c71ae4c755mr331470985a.11.1769684447032;
-        Thu, 29 Jan 2026 03:00:47 -0800 (PST)
-X-Received: by 2002:a05:620a:1997:b0:8c7:1156:efe9 with SMTP id af79cd13be357-8c71ae4c755mr331464485a.11.1769684446335;
-        Thu, 29 Jan 2026 03:00:46 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-658b4256322sm2867275a12.7.2026.01.29.03.00.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Jan 2026 03:00:45 -0800 (PST)
-Message-ID: <fec5907a-5619-4997-9e8f-034efdd31993@oss.qualcomm.com>
-Date: Thu, 29 Jan 2026 12:00:43 +0100
+	s=arc-20240116; t=1769684553; c=relaxed/simple;
+	bh=tONPc9hzB6jMfsjEda8KVc3XR9PMY1AWXjpVBWAXNRg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=DfHCdI9QNccJCdWhFTaFpNiEVTI7VuUSv0KA6BjitKOH6YPNFfdZ3YVMlzWhViW4HrZHOmmXBGZmyiiMwNiQltm2p4f/MTHYtxl5TRf96KVO9W0DkZYlTe70fg18gxIUXhCfEkjTAB7G+ZnCui62kj8vuSdGhpZKenR3OLqiqLE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=IH+14h2j; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=QXgUMiy2; arc=none smtp.client-ip=80.241.56.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4f1x793YDDz9vCZ;
+	Thu, 29 Jan 2026 12:02:29 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1769684549;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=MA6Ut00LW++ic/Us0JJXgLnoZo0SRLSn0wVnaN1tGFM=;
+	b=IH+14h2jAXZ59xxKiQW7uvqgvbGR6e0i91bdY34hCpHeIztXQoWUIKvWe/CHthIgXLLUDF
+	6hx/UX7X0hRRDn7zYjY9ahlpmCaIY3cID/UJpWA//+G2PLg3kQxkF8Ki3tdgyf489ogNzR
+	7ledCo+yHAYRdDLgJH2Q72Fp1AdST0SUaYOksWaKWS1QyRgIU59t/XIHp44sBC6iwM1fgg
+	9N+YX8RIcJGk58RsDbmNcC+op9rINALLFssNEVxJwZGyXZUupNhev2M0iBmWn/pfXgTl+I
+	V0CMxq6l/wU9JMW9PC0/VXMWUVN95WlhCZFUAyYrPyVVRL/dF3nQwNgJ++moDA==
+From: Lukasz Majewski <lukasz.majewski@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1769684547;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=MA6Ut00LW++ic/Us0JJXgLnoZo0SRLSn0wVnaN1tGFM=;
+	b=QXgUMiy2y+3XnJdNVQu4btaNa/PO90wlcLid8sWkMc8AVYv11Kr7Ue+voeGo+6REuyTbrt
+	eTztN0YLBNx0oP/k4uA9vxFG4TJXlstZ78h1TZ/tpU9k+GKxuLq28sLvUDey17HuUdEaib
+	8pTTsGXu1vMdL/ijk5ZQ3A7MmOd1eh4j7HjveTl9Hvfg2p1qxU6lzTUxfn1xDbTp+M2XKi
+	49Nt/uIqTb+QITAovbULBNaeE9+xndVnjc+JLbinvU1w8OaYLKGqsHYv/nPHH5lQv95Z6j
+	VngnqJfMQXxV+VroAfxyy5R34LQ593sUmXfEPz361YqAWASOQeva0eLMWEyvWA==
+To: Andrew Lunn <andrew+netdev@lunn.ch>,
+	davem@davemloft.net,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Simon Horman <horms@kernel.org>,
+	Lukasz Majewski <lukasz.majewski@mailbox.org>
+Subject: [net-next v21 0/7] net: mtip: Add support for MTIP imx287 L2 switch driver
+Date: Thu, 29 Jan 2026 12:01:47 +0100
+Message-Id: <20260129110154.1699976-1-lukasz.majewski@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: sm8550: Update EAS properties
-To: webgeek1234@gmail.com, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, Viresh Kumar <vireshk@kernel.org>,
-        Lukasz Luba <lukasz.luba@arm.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Xilin Wu <wuxilin123@gmail.com>
-References: <20260128-sm8550-eas-v1-1-fb80615bed5c@gmail.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260128-sm8550-eas-v1-1-fb80615bed5c@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: tqj8XCRtLFNQz1iIVOEOmLHuFKTojYCf
-X-Proofpoint-ORIG-GUID: tqj8XCRtLFNQz1iIVOEOmLHuFKTojYCf
-X-Authority-Analysis: v=2.4 cv=dfSNHHXe c=1 sm=1 tr=0 ts=697b3ddf cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=pGLkceISAAAA:8 a=w0eI_ImC2IWBDziolGQA:9
- a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI5MDA3MyBTYWx0ZWRfX+PI0x3d5NpA0
- Un84u3eXJ6y2g0MfkD7z0ljoHSYiKbZUD9UI73DO+b8Bh03s6yUa/sDI12F7O5AvLX70xtZjDgO
- cE4UiLS05w2QtCE84rwQOR9b9TqlEg1DZNAxEz5nn/CKDsWlzFYJOMXoKQfWFJAYkJWihSXjviI
- QoTld2RC7IWVji1SOSPvX9Dw+nSbQ0ojpcamlg/ViK6fGveVGOvWu+HdE/+6nuuchXlzFa57qjM
- +4Jo76mfMe1fGCv6bFfVgAwtbmyiSzgfyCwx8uG/g6AmA/46fGzwehQkG2XJs1hFVkAYbG9Gx4o
- fo5Bb+3Ct1JZ/arsPWcGnQCxVsdWn2wK7BIbjs5ZMglCMYGyU6n/I0MhFsV3ZJxeuzae+kOsjqX
- kUqkOP+XJW13TBWE8g0XuNHCkgxL5pA7/ProvZ+0Or5CGWJ4CKBJnRAw4hD3kS9xvjTnGRuyZcf
- zf1RSHcfdpyjmPBnNaA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-01-29_02,2026-01-28_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 lowpriorityscore=0 phishscore=0 spamscore=0
- priorityscore=1501 bulkscore=0 suspectscore=0 adultscore=0 clxscore=1015
- malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2601290073
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-META: qe8ni4omdgeehm9sz99pijumdche3xpy
+X-MBO-RS-ID: 07305b32d9288a1fe30
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
-	URIBL_MULTI_FAIL(0.00)[sea.lore.kernel.org:server fail];
-	TAGGED_FROM(0.00)[bounces-260839-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.100:email,0.0.0.0:email,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,0.0.1.44:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,arm.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	FREEMAIL_CC(0.00)[pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,gmx.net,kernel.org,mailbox.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	TAGGED_FROM(0.00)[bounces-260840-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[lukasz.majewski@mailbox.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.200:email,0.0.1.144:email,0.0.2.88:email,0.0.2.188:email,0.0.1.244:email];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 0171FAF5E3
+	DKIM_TRACE(0.00)[mailbox.org:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[denx.de:url,mailbox.org:mid,mailbox.org:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 30D44AF62F
 X-Rspamd-Action: no action
 
-On 1/28/26 8:11 PM, Aaron Kling via B4 Relay wrote:
-> From: Xilin Wu <wuxilin123@gmail.com>
-> 
-> The original values provided by Qualcomm appear to be quite
-> inaccurate. Specifically, some heavy gaming tasks could be
-> improperly assigned to the A510 cores by the scheduler, resulting
-> in a CPU bottleneck. This update to the EAS properties aims to
-> enhance the user experience across various scenarios.
-> 
-> The power numbers were obtained using a Type-C power meter, which
-> was directly connected to the battery connector on the AYN Odin 2
-> motherboard, acting as a fake battery.
-> 
-> It should be noted that the A715 cores seem less efficient than the
-> A710 cores. Therefore, an average value has been assigned to them,
-> considering that the A715 and A710 cores share a single cpufreq
-> domain.
 
-FWIW the A715s each have 512 kiB of L2, compared to the 256 on the
-A710s, which definitely contributes to the power draw. The X core
-has 1MiB.
-But we have to take that into account, given if the core is online,
-so is its cache.
+in some NXP's SoCs. This one has been tested on imx287, but is also available
+in the vf610.
 
-Regarding the CPUFreq domain shared across cores with different power
-characteristics, I think we shouldn't be lying to the OS, rather Linux
-should be able to deal with it, somehow.
+In the past there has been performed some attempts to upstream this driver:
 
-Maybe +CPUFreq/EM maintainers know whether it can do so today
+1. The 4.19-cip based one [1]
+2. DSA based one for 5.12 [2] - i.e. the switch itself was treat as a DSA switch
+   with NO tag appended.
+3. The extension for FEC driver for 5.12 [3] - the trick here was to fully reuse
+   FEC when the in-HW switching is disabled. When bridge offloading is enabled,
+   the driver uses already configured MAC and PHY to also configure PHY.
 
-Konrad
+All three approaches were not accepted as eligible for upstreaming.
 
-> 
-> Cortex-A510 cores:
-> 441 kHz, 564 mV, 43 mW, 350 Cx
-> 556 kHz, 580 mV, 59 mW, 346 Cx
-> 672 kHz, 592 mV, 71 mW, 312 Cx
-> 787 kHz, 604 mV, 83 mW, 290 Cx
-> 902 kHz, 608 mV, 96 mW, 288 Cx
-> 1017 kHz, 624 mV, 107 mW, 264 Cx
-> 1113 kHz, 636 mV, 117 mW, 252 Cx
-> 1228 kHz, 652 mV, 130 mW, 240 Cx
-> 1344 kHz, 668 mV, 146 mW, 235 Cx
-> 1459 kHz, 688 mV, 155 mW, 214 Cx
-> 1555 kHz, 704 mV, 166 mW, 205 Cx
-> 1670 kHz, 724 mV, 178 mW, 192 Cx
-> 1785 kHz, 744 mV, 197 mW, 189 Cx
-> 1900 kHz, 764 mV, 221 mW, 190 Cx
-> 2016 kHz, 784 mV, 243 mW, 188 Cx
-> Your dynamic-power-coefficient for cpu 1: 251
-> 
-> Cortex-A715 cores:
-> 614 kHz, 572 mV, 97 mW, 470 Cx
-> 729 kHz, 592 mV, 123 mW, 473 Cx
-> 844 kHz, 608 mV, 152 mW, 486 Cx
-> 940 kHz, 624 mV, 178 mW, 485 Cx
-> 1056 kHz, 644 mV, 207 mW, 465 Cx
-> 1171 kHz, 656 mV, 243 mW, 480 Cx
-> 1286 kHz, 672 mV, 271 mW, 459 Cx
-> 1401 kHz, 692 mV, 310 mW, 454 Cx
-> 1536 kHz, 716 mV, 368 mW, 462 Cx
-> 1651 kHz, 740 mV, 416 mW, 454 Cx
-> 1785 kHz, 760 mV, 492 mW, 475 Cx
-> 1920 kHz, 784 mV, 544 mW, 457 Cx
-> 2054 kHz, 804 mV, 613 mW, 458 Cx
-> 2188 kHz, 828 mV, 702 mW, 465 Cx
-> 2323 kHz, 852 mV, 782 mW, 461 Cx
-> 2457 kHz, 876 mV, 895 mW, 473 Cx
-> 2592 kHz, 896 mV, 1020 mW, 490 Cx
-> 2707 kHz, 920 mV, 1140 mW, 498 Cx
-> 2803 kHz, 940 mV, 1215 mW, 490 Cx
-> Your dynamic-power-coefficient for cpu 3: 472
-> 
-> Cortex-A710 cores:
-> 614 kHz, 572 mV, 91 mW, 388 Cx
-> 729 kHz, 592 mV, 116 mW, 424 Cx
-> 844 kHz, 608 mV, 143 mW, 443 Cx
-> 940 kHz, 624 mV, 165 mW, 434 Cx
-> 1056 kHz, 644 mV, 195 mW, 430 Cx
-> 1171 kHz, 656 mV, 218 mW, 414 Cx
-> 1286 kHz, 672 mV, 250 mW, 415 Cx
-> 1401 kHz, 692 mV, 286 mW, 412 Cx
-> 1536 kHz, 716 mV, 331 mW, 407 Cx
-> 1651 kHz, 740 mV, 374 mW, 401 Cx
-> 1785 kHz, 760 mV, 439 mW, 417 Cx
-> 1920 kHz, 784 mV, 495 mW, 411 Cx
-> 2054 kHz, 804 mV, 557 mW, 412 Cx
-> 2188 kHz, 828 mV, 632 mW, 415 Cx
-> 2323 kHz, 852 mV, 721 mW, 422 Cx
-> 2457 kHz, 876 mV, 813 mW, 427 Cx
-> 2592 kHz, 896 mV, 912 mW, 435 Cx
-> 2707 kHz, 920 mV, 1019 mW, 442 Cx
-> 2803 kHz, 940 mV, 1087 mW, 436 Cx
-> Your dynamic-power-coefficient for cpu 5: 421
-> 
-> Cortex-X3 core:
-> 729 kHz, 568 mV, 252 mW, 1110 Cx
-> 864 kHz, 580 mV, 312 mW, 1097 Cx
-> 998 kHz, 592 mV, 379 mW, 1109 Cx
-> 1132 kHz, 608 mV, 453 mW, 1099 Cx
-> 1248 kHz, 624 mV, 517 mW, 1067 Cx
-> 1363 kHz, 636 mV, 587 mW, 1067 Cx
-> 1478 kHz, 648 mV, 657 mW, 1058 Cx
-> 1593 kHz, 664 mV, 739 mW, 1049 Cx
-> 1708 kHz, 680 mV, 813 mW, 1020 Cx
-> 1843 kHz, 704 mV, 940 mW, 1021 Cx
-> 1977 kHz, 724 mV, 1054 mW, 1007 Cx
-> 2092 kHz, 740 mV, 1201 mW, 1045 Cx
-> 2227 kHz, 768 mV, 1358 mW, 1029 Cx
-> 2342 kHz, 788 mV, 1486 mW, 1016 Cx
-> 2476 kHz, 812 mV, 1711 mW, 1046 Cx
-> 2592 kHz, 836 mV, 1846 mW, 1014 Cx
-> 2726 kHz, 856 mV, 2046 mW, 1020 Cx
-> 2841 kHz, 880 mV, 2266 mW, 1027 Cx
-> 2956 kHz, 908 mV, 2616 mW, 1074 Cx
-> 3187 kHz, 956 mV, 3326 mW, 1147 Cx
-> Your dynamic-power-coefficient for cpu 7: 1057
-> 
-> 7-zip benchmark single-core MIPS:
-> 2128   4416   4632   6686
-> 
-> Signed-off-by: Xilin Wu <wuxilin123@gmail.com>
-> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
-> ---
->  arch/arm64/boot/dts/qcom/sm8550.dtsi | 32 ++++++++++++++++----------------
->  1 file changed, 16 insertions(+), 16 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> index e3f93f4f412ded9583a6bc9215185a0daf5f1b57..7bbbf3109bc2c6e2e6445207cc86c401be482a73 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> @@ -76,8 +76,8 @@ cpu0: cpu@0 {
->  			power-domains = <&cpu_pd0>;
->  			power-domain-names = "psci";
->  			qcom,freq-domain = <&cpufreq_hw 0>;
-> -			capacity-dmips-mhz = <1024>;
-> -			dynamic-power-coefficient = <100>;
-> +			capacity-dmips-mhz = <326>;
-> +			dynamic-power-coefficient = <251>;
->  			#cooling-cells = <2>;
->  			l2_0: l2-cache {
->  				compatible = "cache";
-> @@ -102,8 +102,8 @@ cpu1: cpu@100 {
->  			power-domains = <&cpu_pd1>;
->  			power-domain-names = "psci";
->  			qcom,freq-domain = <&cpufreq_hw 0>;
-> -			capacity-dmips-mhz = <1024>;
-> -			dynamic-power-coefficient = <100>;
-> +			capacity-dmips-mhz = <326>;
-> +			dynamic-power-coefficient = <251>;
->  			#cooling-cells = <2>;
->  			l2_100: l2-cache {
->  				compatible = "cache";
-> @@ -123,8 +123,8 @@ cpu2: cpu@200 {
->  			power-domains = <&cpu_pd2>;
->  			power-domain-names = "psci";
->  			qcom,freq-domain = <&cpufreq_hw 0>;
-> -			capacity-dmips-mhz = <1024>;
-> -			dynamic-power-coefficient = <100>;
-> +			capacity-dmips-mhz = <326>;
-> +			dynamic-power-coefficient = <251>;
->  			#cooling-cells = <2>;
->  			l2_200: l2-cache {
->  				compatible = "cache";
-> @@ -144,8 +144,8 @@ cpu3: cpu@300 {
->  			power-domains = <&cpu_pd3>;
->  			power-domain-names = "psci";
->  			qcom,freq-domain = <&cpufreq_hw 1>;
-> -			capacity-dmips-mhz = <1792>;
-> -			dynamic-power-coefficient = <270>;
-> +			capacity-dmips-mhz = <693>;
-> +			dynamic-power-coefficient = <447>;
->  			#cooling-cells = <2>;
->  			l2_300: l2-cache {
->  				compatible = "cache";
-> @@ -165,8 +165,8 @@ cpu4: cpu@400 {
->  			power-domains = <&cpu_pd4>;
->  			power-domain-names = "psci";
->  			qcom,freq-domain = <&cpufreq_hw 1>;
-> -			capacity-dmips-mhz = <1792>;
-> -			dynamic-power-coefficient = <270>;
-> +			capacity-dmips-mhz = <693>;
-> +			dynamic-power-coefficient = <447>;
->  			#cooling-cells = <2>;
->  			l2_400: l2-cache {
->  				compatible = "cache";
-> @@ -186,8 +186,8 @@ cpu5: cpu@500 {
->  			power-domains = <&cpu_pd5>;
->  			power-domain-names = "psci";
->  			qcom,freq-domain = <&cpufreq_hw 1>;
-> -			capacity-dmips-mhz = <1792>;
-> -			dynamic-power-coefficient = <270>;
-> +			capacity-dmips-mhz = <693>;
-> +			dynamic-power-coefficient = <447>;
->  			#cooling-cells = <2>;
->  			l2_500: l2-cache {
->  				compatible = "cache";
-> @@ -207,8 +207,8 @@ cpu6: cpu@600 {
->  			power-domains = <&cpu_pd6>;
->  			power-domain-names = "psci";
->  			qcom,freq-domain = <&cpufreq_hw 1>;
-> -			capacity-dmips-mhz = <1792>;
-> -			dynamic-power-coefficient = <270>;
-> +			capacity-dmips-mhz = <693>;
-> +			dynamic-power-coefficient = <447>;
->  			#cooling-cells = <2>;
->  			l2_600: l2-cache {
->  				compatible = "cache";
-> @@ -228,8 +228,8 @@ cpu7: cpu@700 {
->  			power-domains = <&cpu_pd7>;
->  			power-domain-names = "psci";
->  			qcom,freq-domain = <&cpufreq_hw 2>;
-> -			capacity-dmips-mhz = <1894>;
-> -			dynamic-power-coefficient = <588>;
-> +			capacity-dmips-mhz = <1024>;
-> +			dynamic-power-coefficient = <1057>;
->  			#cooling-cells = <2>;
->  			l2_700: l2-cache {
->  				compatible = "cache";
-> 
-> ---
-> base-commit: 3f24e4edcd1b8981c6b448ea2680726dedd87279
-> change-id: 20260128-sm8550-eas-cdaffda7f779
-> 
-> Best regards,
+The driver from this series has following features:
+
+1. It is fully separated from fec_main - i.e. can be used interchangeable
+   with it. To be more specific - one can build them as modules and
+   if required switch between them when e.g. bridge offloading is required.
+
+   To be more specific:
+        - Use FEC_MAIN: When one needs support for two ETH ports with separate
+          uDMAs used for both and bridging can be realized in SW.
+
+        - Use MTIPL2SW: When it is enough to support two ports with only uDMA0
+          attached to switch and bridging shall be offloaded to HW. 
+
+2. This driver uses MTIP's L2 switch internal VLAN feature to provide port
+   separation at boot time. Port separation is disabled when bridging is
+   required.
+
+3. Example usage:
+        Configuration:
+        ip link set lan0 up; sleep 1;
+        ip link set lan1 up; sleep 1;
+        ip link add name br0 type bridge;
+        ip link set br0 up; sleep 1;
+        ip link set lan0 master br0;
+        ip link set lan1 master br0;
+        bridge link;
+        ip addr add 192.168.2.17/24 dev br0;
+        ping -c 5 192.168.2.222
+
+        Removal:
+        ip link set br0 down;
+        ip link delete br0 type bridge;
+        ip link set dev lan1 down
+        ip link set dev lan0 down
+
+4. Limitations:
+        - Driver enables and disables switch operation with learning and ageing.
+        - Missing is the advanced configuration (e.g. adding entries to FBD). This is
+          on purpose, as up till now we didn't had consensus about how the driver
+          shall be added to Linux.
+          However, on top of this patch set the code with SWITCHDEV support (v6.6.
+          PREEMPT_RT enabled) has been implemented in [4].
+
+5. Clang build:
+	make LLVM_SUFFIX=-19 LLVM=1 mrproper
+	cp ./arch/arm/configs/mxs_defconfig .config
+	make ARCH=arm LLVM_SUFFIX=-19 LLVM=1 W=1 menuconfig
+	make ARCH=arm LLVM_SUFFIX=-19 LLVM=1 W=1 -j8 LOADADDR=0x40008000 uImage dtbs
+
+        make LLVM_SUFFIX=-19 LLVM=1 mrproper
+        make LLVM_SUFFIX=-19 LLVM=1 allmodconfig
+        make LLVM_SUFFIX=-19 LLVM=1 W=1 drivers/net/ethernet/freescale/mtipsw/ | tee llvm_build.log
+        make LLVM_SUFFIX=-19 LLVM=1 W=1 -j8 | tee llvm_build.log
+
+6. Kernel compliance checks:
+	make coccicheck MODE=report J=4 M=drivers/net/ethernet/freescale/mtipsw/
+        make allmodconfig; ~/work/src/smatch/smatch_scripts/kchecker drivers/net/ethernet/freescale/mtipsw/
+
+7. GCC:
+        make mrproper
+        make allmodconfig
+        make W=1 drivers/net/ethernet/freescale/mtipsw/
+
+        
+        [source OE/Yocto SDK build environment]
+        CROSS_COMPILE=arm-poky-linux-gnueabi- ARCH=arm make mrproper
+        cp ./arch/arm/configs/mxs_defconfig .config
+        CROSS_COMPILE=arm-poky-linux-gnueabi- ARCH=arm make menuconfig
+        CROSS_COMPILE=arm-poky-linux-gnueabi- ARCH=arm make -j8 LOADADDR=0x40008000 uImage dtbs
+
+8. DT_SCHEMA checks:
+        source ~/.venv/bin/activate
+        source /opt/poky/3.1.31/environment-setup-armv5e-poky-linux-gnueabi
+        make dt_binding_check DT_SCHEMA_FILES=nxp,imx28-mtip-switch.yaml
+        make CHECK_DTBS=y DT_SCHEMA_FILES=nxp,imx28-mtip-switch.yaml nxp/mxs/imx28-xea.dtb
+
+
+Links:
+[1] - https://github.com/lmajewski/linux-imx28-l2switch/commits/master
+[2] - https://github.com/lmajewski/linux-imx28-l2switch/tree/imx28-v5.12-L2-upstream-RFC_v1
+[3] - https://source.denx.de/linux/linux-imx28-l2switch/-/tree/imx28-v5.12-L2-upstream-switchdev-RFC_v1?ref_type=heads
+[4] - https://github.com/lmajewski/linux-imx28-l2switch/commits/vf610-linux-6.6.y-mtipl2sw
+
+
+Lukasz Majewski (7):
+  dt-bindings: net: Add MTIP L2 switch description
+  net: mtip: The L2 switch driver for imx287
+  net: mtip: Add buffers management functions to the L2 switch driver
+  net: mtip: Add net_device_ops functions to the L2 switch driver
+  net: mtip: Add mtip_switch_{rx|tx} functions to the L2 switch driver
+  net: mtip: Extend the L2 switch driver with management operations
+  net: mtip: Extend the L2 switch driver for imx287 with bridge
+    operations
+
+ .../bindings/net/nxp,imx28-mtip-switch.yaml   |  150 ++
+ MAINTAINERS                                   |    7 +
+ drivers/net/ethernet/freescale/Kconfig        |    1 +
+ drivers/net/ethernet/freescale/Makefile       |    1 +
+ drivers/net/ethernet/freescale/mtipsw/Kconfig |   13 +
+ .../net/ethernet/freescale/mtipsw/Makefile    |    4 +
+ .../net/ethernet/freescale/mtipsw/mtipl2sw.c  | 2006 +++++++++++++++++
+ .../net/ethernet/freescale/mtipsw/mtipl2sw.h  |  648 ++++++
+ .../ethernet/freescale/mtipsw/mtipl2sw_br.c   |  136 ++
+ .../ethernet/freescale/mtipsw/mtipl2sw_mgnt.c |  443 ++++
+ 10 files changed, 3409 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/nxp,imx28-mtip-switch.yaml
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/Kconfig
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/Makefile
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/mtipl2sw.h
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/mtipl2sw_br.c
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/mtipl2sw_mgnt.c
+
+-- 
+2.39.5
+
 
