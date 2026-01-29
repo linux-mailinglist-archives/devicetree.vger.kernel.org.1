@@ -1,191 +1,319 @@
-Return-Path: <devicetree+bounces-260798-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260799-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2OoZHi8ue2mbCAIAu9opvQ
-	(envelope-from <devicetree+bounces-260798-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 10:53:51 +0100
+	id ybuBAk8ue2m3CAIAu9opvQ
+	(envelope-from <devicetree+bounces-260799-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 10:54:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBB47AE48A
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 10:53:50 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77E25AE4A0
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 10:54:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7C251300A101
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 09:53:49 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 432CB300C264
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 09:54:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D126E37FF70;
-	Thu, 29 Jan 2026 09:53:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BCCC37FF70;
+	Thu, 29 Jan 2026 09:54:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VVDln4t8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uKX7li8J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A7CF37F75A
-	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 09:53:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.214.172
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769680428; cv=pass; b=esYE3OXZ4ZotR8KWXRhkqIqbi8mGkrFe77X+YEJbPyxVejjf57W5caancJc4Nkj1O4g5o4quVGS3kcei445T9TObOttErtLO1iBsU9e757tLIvIbIMyxUX+FiQ9Pq+jUiyAEAIRD6OWoGO3qmZfL4d0Oa4Qo6rILM9ZjQ+NbYvs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769680428; c=relaxed/simple;
-	bh=/7eUFYzBO0piSeiJwey3BFHh10mwh8sua4KhOGsFt8I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FSHmAV+fHNNYdSnoKxpS1X65N/AaJmboqBn+sjMbLDn34EhHMUz86cOPQYO9Tkn9njcCMphe/OK/7SkXUZHEi26f2yvWWTzqnkKxyKpVa0ZPYSvHT6TuMADtJsDTOnrRbR0xhqpPlxTv+Kh39acEOwJo4ssuZEZqJgNlNWIcCVU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VVDln4t8; arc=pass smtp.client-ip=209.85.214.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-2a12ebe4b74so8940505ad.0
-        for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 01:53:47 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1769680427; cv=none;
-        d=google.com; s=arc-20240605;
-        b=BbyJjsX9vZR6x1RRnG51LMnYysG5AR7Oh/ZfjL+/TNCoqAwpPhhZ/yPqUjCErSDCRg
-         s02c+4cPYHTPTOdJiDv4MQ2OJOt7JL9/M0MKIX3+3Iq2/51WJiTg2GC4COjnEve7Xoca
-         GwrVoh6v9H2l7VnscPveFnNvNiuFNaQj1FinbyYFnM+VLq0EO9q+qYJ5wPutn/+R6Jw1
-         rR94JLWB1eGYJjSPWCiIeA1dlxzaYSSADafIpc/LzlZmZLh8yh0QNIrhe7d9EdONWwOu
-         QusUy7b9bEfnALgHT+QM6oDTNv8OfrKcqTsi55XWqjif92YJY0kO8ABFBMp4y0snuKX/
-         NMbA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=/7eUFYzBO0piSeiJwey3BFHh10mwh8sua4KhOGsFt8I=;
-        fh=1U480w3M1zQzF9zXc6iiupL03L9sM0mGXRmIrMRcvpU=;
-        b=NBTHwfqDHwWLwYUB9BVfIR+NAxQCeHguxlBp4fEy/7/MqyqiPfelTgfuyR/ZW21eaA
-         o6gSqghhIpWVQrQMaTx1k600IkPvepbJmzXQMupk+Zg62+XV31d5L8ZCWECn8LNcrcjB
-         I2qHHPLDzM26eQfDE9NRbXHlqS1+ChgQV+4nTk1TwYe3Pz+cP5wOF6yqmnBq+63ZPj0l
-         QBwd9K7Rp+hneY7/shQ+03diRqAWMw7Max8FDZ50fBhx14QUcgNA6lUj9MYswCtwQ2Ng
-         Ez5KJQmiX2l6meQworu9v16UWnqiihfL9dW3lfds4ZzLgV/vnyJaR4w1r6xui8m49A0U
-         erhg==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769680427; x=1770285227; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/7eUFYzBO0piSeiJwey3BFHh10mwh8sua4KhOGsFt8I=;
-        b=VVDln4t8gSR78q9W8H7dhnzty/dnpOHAIh36ebaajTIOicGBqd1AmkCmfx4v5MMe9G
-         yh9OszJ5gzmL4II+FWH0O4Lz8hqcXme54WcsJOu2ninUG4Zi415HI3pHOqprkqLGsnzR
-         UHKTTz8NmaISq0pjFp5MstPyqjcWMTC1RSLOUzHUf4nsVS5aqO3j2FR3MQaFu4QTzD5F
-         YqNyB3+m10i6s0KyuIKAz/XsuAzSuVhG4+4l8j0ErsC1FC2aqEkHcufY5cKm4xOQS+1Z
-         AG9p6IIBEIi6gaHQHhYfy2ZNyn9yUmkrTfTg3ACoR+I7+u5vQWZjdjggg+DoftpN20HB
-         nqlw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769680427; x=1770285227;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=/7eUFYzBO0piSeiJwey3BFHh10mwh8sua4KhOGsFt8I=;
-        b=BHg8uZCbyvk1udHWnTSgewK0kxbCmUn4GHRmfOIadmrJ3VpTC62lW4DBBAhiO+LWAK
-         KA9BiSa2wHjuOpN9sCJvO4QFiyhXeD5fdV0Pwy3klSKks99CqFJb0JV/TinotXijY3n8
-         H8nlcJRqOuitlw7gw50u1HL9Lek1JpKZu82YR0nqIddslecNnJMKNt66om6cCV5sZksi
-         /PKWsVAJQkBVYNvyiyIHmQmzlZ9G1TIwQlWHana1waOY9bPEb4CNahTUFmxcIM+rWC/Y
-         2QU9RRoLAhHT5czzCpITzB0EdfVRBxEOutbModb6vN+vtoVLVElhxxSwU1+3JRVcQzmC
-         iU1Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXFFn2RJfowNPe+Kq+UaBcOST4tWRt64qLtcZQKIHghcTaQxNtbQbFL12LEO5Oof7909UgrwtCaii8+@vger.kernel.org
-X-Gm-Message-State: AOJu0YwyS6E2lw+f1PAxH+EeHrgm9LbL3zQ62/GDYjII4UgjaJWr67GZ
-	yTAmmZZTT3JG29Vc/TsmFM02HT07OHnCVXRa968KeDK9FYqto6s+lQOTeYZiPCq0MTP53sFr54r
-	96qDvQDV7xZXzB0NENtmClvk+IevVpLc=
-X-Gm-Gg: AZuq6aKsBaEUcqwIUxmxaHzxQl7IhPMZWzo6tEzIyzR4QZYGUEAyw1rFdFuAJypTfjB
-	fduYsq3vUY5Csao45l89p4jZarUOz9DLA/UoF1ItHKWJTWvIUY19j/2FL++WDAUWB5w2I1xyPcI
-	EH71zv9lfraHi1up+A6bEarmiFq79xPkCVZ+tfg336z7MZH9RlmS1ceTQ5Am4o1+4JdzMJvsLRe
-	9PkroN0gP0w4IQviq4s2MdBXPbSEy9xD9Kq/QE3YzGdmtt+vaFNv3NxyIwOTmzoz3b8Tgk=
-X-Received: by 2002:a17:903:40ca:b0:2a1:5d2:2e45 with SMTP id
- d9443c01a7336-2a870e7dbf0mr74134655ad.59.1769680426799; Thu, 29 Jan 2026
- 01:53:46 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28EF037F8B1;
+	Thu, 29 Jan 2026 09:54:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769680459; cv=none; b=KqmIRWgHxLgLh4muu7//3JcN+Uabz4Ldeu3oLNVu9C/Sj22kSiLEDfPiR7CaUsNb7ua7xPjNK77Fhr+8PiZdrxiiPt6tt5Uq1CsE7qnzJ8tHROfN3gtvjVW0T3InLzfmGNybBqmzWgiq2iBhz/NoPJO8wHOUexQ2CK1TbtT9XlE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769680459; c=relaxed/simple;
+	bh=EnOTj/7CZJ9tyZqdurXyWWI0fv+qLb1PjDZ8+646Wj4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=scoqhxeZCCCwI8lOfzwhUbNrIrdVNT2DYXHY8IlC4CqF5Ec3LtgK9oI1jbesXKEbYOKfsnQ5luE3fjp75AyN9FhBS9MN1ME/XabBXXjK4yQJxQD2JziKH8P5CEZKVvufSHNqUTFuaf/eds1B7lbubm/BeiExN3LehPoT4p/iL3I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uKX7li8J; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48A56C4CEF7;
+	Thu, 29 Jan 2026 09:54:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769680458;
+	bh=EnOTj/7CZJ9tyZqdurXyWWI0fv+qLb1PjDZ8+646Wj4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uKX7li8JfZPEdKeB1hBz8vBzLGN3uCNhd+sHkwTGTkJD5nNgCGxu88Shq8feblZWM
+	 7fb/NUtu1fVDkPOIYo0mlr8zHv9A3KUBNPNnN1Pt50ZycH3lvLgXAl6H7J0xaHtEid
+	 rApdiYCn5zrDIUovDT7gonalq6ycUOIABp9ypiyB4yhTDtiWsRx3XOZBjw3xUMqi+A
+	 0HkyXHWBY0bPE/9w0XWx+R9T+w4uw4MzzSx1nzr+MWICq1lAr4FInbGkUX55Y2+ZgH
+	 LICcilYOu7iiKrVFCMl3SjduswdnI20aCMusYEipXRpakmFazkmWpSEqzOyec3Ck3v
+	 OPQKsuwm5Yl5g==
+Date: Thu, 29 Jan 2026 09:54:13 +0000
+From: Simon Horman <horms@kernel.org>
+To: Vincent Guittot <vincent.guittot@linaro.org>
+Cc: vkoul@kernel.org, neil.armstrong@linaro.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, ciprianmarian.costea@oss.nxp.com, s32@nxp.com,
+	p.zabel@pengutronix.de, linux@armlinux.org.uk,
+	ghennadi.procopciuc@nxp.com, bogdan-gabriel.roman@nxp.com,
+	Ionut.Vicovan@nxp.com, alexandru-catalin.ionita@nxp.com,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	netdev@vger.kernel.org, Frank.li@nxp.com
+Subject: Re: [PATCH 2/4] phy: s32g: Add serdes subsystem phy
+Message-ID: <aXsuRTZUUnw0kdzV@horms.kernel.org>
+References: <20260126092159.815968-1-vincent.guittot@linaro.org>
+ <20260126092159.815968-3-vincent.guittot@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260128071853.2602784-1-shengjiu.wang@nxp.com>
- <20260128071853.2602784-3-shengjiu.wang@nxp.com> <36309f30-8b83-4eaa-842e-c663edd8a439@oss.nxp.com>
-In-Reply-To: <36309f30-8b83-4eaa-842e-c663edd8a439@oss.nxp.com>
-From: Shengjiu Wang <shengjiu.wang@gmail.com>
-Date: Thu, 29 Jan 2026 17:53:34 +0800
-X-Gm-Features: AZwV_QhJaxBDlnFwwTXJVH6oDtpo891knd-s55tPdoqjkrrPNspPNZy-5Dfzq3s
-Message-ID: <CAA+D8AP==mteo7ucx=R4eyPw+DpBUtzC7H1++_iZBMN1kkPJsA@mail.gmail.com>
-Subject: Re: [PATCH 2/3] ASoC: fsl_asrc: Add support for i.MX952 platform
-To: Daniel Baluta <daniel.baluta@oss.nxp.com>
-Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, lgirdwood@gmail.com, broonie@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, 
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, 
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Xiubo.Lee@gmail.com, nicoleotsuka@gmail.com, perex@perex.cz, tiwai@suse.com, 
-	linuxppc-dev@lists.ozlabs.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260126092159.815968-3-vincent.guittot@linaro.org>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260798-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260799-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	FREEMAIL_CC(0.00)[nxp.com,gmail.com,kernel.org,pengutronix.de,vger.kernel.org,lists.linux.dev,lists.infradead.org,perex.cz,suse.com,lists.ozlabs.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[shengjiuwang@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[horms@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:email,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: CBB47AE48A
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,linux.dev:url]
+X-Rspamd-Queue-Id: 77E25AE4A0
 X-Rspamd-Action: no action
 
-On Thu, Jan 29, 2026 at 5:17=E2=80=AFPM Daniel Baluta <daniel.baluta@oss.nx=
-p.com> wrote:
->
-> On 1/28/26 09:18, Shengjiu Wang wrote:
->
-> Add a compatible string and clock mapping table to support ASRC on the
-> i.MX952 platform.
->
-> There is a limitation on i.MX952 that dma request is not cleared at the
-> end of conversion with dma slave mode. Which causes sample is dropped
-> from the input fifo on the second time if dma is triggered before the
-> client device and EDMA may copy wrong data from output fifo as the output
-> fifo is not ready in the beginning.
->
-> So need to trigger asrc before dma on i.MX952, and add delay to wait
-> output data is generated then start the EDMA for output, otherwise the
-> m2m function has noise issues.
->
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
->
-> This patch does more than one logical change.
->
-> I would split in two patches:
->
-> - 1) introduce functionality to start ASRC before DMA.
->
-> - 2) add imx952 support including clk_map and introduce fsl_asrc_imx952_d=
-ata
+On Mon, Jan 26, 2026 at 10:21:57AM +0100, Vincent Guittot wrote:
 
-Ok, will separate them.
+...
 
-best regards
-Shengjiu Wang
->
-> Thanks,
->
-> Daniel.
->
->
+> diff --git a/drivers/phy/freescale/phy-nxp-s32g-serdes.c b/drivers/phy/freescale/phy-nxp-s32g-serdes.c
+> new file mode 100644
+> index 000000000000..8336c868c8dc
+> --- /dev/null
+> +++ b/drivers/phy/freescale/phy-nxp-s32g-serdes.c
+> @@ -0,0 +1,569 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/**
+> + * SerDes driver for S32G SoCs
+> + *
+> + * Copyright 2021-2026 NXP
+> + */
+> +
+> +#include <dt-bindings/phy/phy.h>
+> +#include <linux/clk.h>
+> +#include <linux/delay.h>
+
+Hi Vincent, all,
+
+I think that you also need:
+
+#include <linux/iopoll.h>
+
+So that read_poll_timeout() is declared.
+Else this patch causes a transient build failure
+(for x86_64 allmodconfig)
+
+> +#include <linux/module.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/of_address.h>
+> +#include <linux/phy/phy.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/processor.h>
+> +#include <linux/reset.h>
+> +#include <linux/units.h>
+
+...
+
+> +static int s32g_serdes_phy_set_mode_ext(struct phy *p,
+> +					enum phy_mode mode, int submode)
+> +{
+> +	struct s32g_serdes *serdes = phy_get_drvdata(p);
+> +
+> +	if (mode == PHY_MODE_PCIE)
+> +		return -EINVAL;
+
+This is part of an AI Generated review.
+I have looked over it and I think it warrants investigation.
+For information on how to reproduce locally, as I did, please see [1].
+
+[1] https://netdev-ai.bots.linux.dev/ai-local.html
+
+  This returns error if mode IS PHY_MODE_PCIE, but this is a PCIe PHY!
+  This looks like a typo. Should be !=.
+
+> +
+> +	if (!is_pcie_phy_mode_valid(submode))
+> +		return -EINVAL;
+> +
+> +	/*
+> +	 * Do not configure SRIS or CRSS PHY MODE in conjunction
+> +	 * with any SGMII mode on the same SerDes subsystem
+> +	 */
+> +	if ((submode == CRSS || submode == SRIS) &&
+> +	    serdes->ctrl.ss_mode != 0)
+> +		return -EINVAL;
+> +
+> +	/*
+> +	 * Internal reference clock cannot be used with either Common clock
+> +	 * or Spread spectrum, leaving only SRNSS
+> +	 */
+> +	if (submode != SRNS &&  !serdes->ctrl.ext_clk)
+> +		return -EINVAL;
+> +
+> +	serdes->pcie.phy_mode = submode;
+
+The AI review also suggested that it may be unsafe
+to set the submode after s32g_serdes_phy_power_on()
+has been called. And that there is nothing preventing that.
+
+TBH, I am unsure if either of those statements are true.
+But it seems worth validating with you.
+
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static int s32g_serdes_get_ctrl_resources(struct platform_device *pdev, struct s32g_serdes *serdes)
+> +{
+> +	struct s32g_serdes_ctrl *ctrl = &serdes->ctrl;
+> +	struct device *dev = &pdev->dev;
+> +	int ret, idx;
+> +
+> +	ret = of_property_read_u32(dev->of_node, "nxp,sys-mode",
+> +				   &ctrl->ss_mode);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to get SerDes subsystem mode\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (ctrl->ss_mode > S32G_SERDES_MODE_MAX) {
+> +		dev_err(dev, "Invalid SerDes subsystem mode %u\n",
+> +			ctrl->ss_mode);
+> +		return -EINVAL;
+> +	}
+> +
+> +	ctrl->ss_base = devm_platform_ioremap_resource_byname(pdev, "ss_pcie");
+> +	if (IS_ERR(ctrl->ss_base)) {
+> +		dev_err(dev, "Failed to map 'ss_pcie'\n");
+> +		return PTR_ERR(ctrl->ss_base);
+> +	}
+> +
+> +	ctrl->rst = devm_reset_control_get(dev, "serdes");
+> +	if (IS_ERR(ctrl->rst))
+> +		return dev_err_probe(dev, PTR_ERR(ctrl->rst),
+> +				     "Failed to get 'serdes' reset control\n");
+> +
+> +	ctrl->nclks = devm_clk_bulk_get_all(dev, &ctrl->clks);
+> +	if (ctrl->nclks < 1)
+> +		return dev_err_probe(dev, ctrl->nclks,
+> +				     "Failed to get SerDes clocks\n");
+
+If devm_clk_bulk_get_all returns 0 then this value will
+be passed to dev_err_probe(). And 0 will, in turn be returned by
+dev_err_probe() and this function. However, that will be treated
+as success by the caller, even though this is an error condition.
+
+Perhaps something like this is more appropriate if ctrl->nclks
+must be greater than 0. (Completely untested!)
+
+	if (ctrl->nclks < 1) {
+		ret = ctrl->nclks ? : -EINVAL;
+		return dev_err_probe(dev, ret,
+				     "Failed to get SerDes clocks\n");
+	}
+
+Flagged by Smatch.
+
+...
+
+> +static int s32g_serdes_parse_lanes(struct device *dev, struct s32g_serdes *serdes)
+> +{
+> +	int ret;
+> +
+> +	for_each_available_child_of_node_scoped(dev->of_node, of_port) {
+> +		ret = s32g2_serdes_create_phy(serdes, of_port);
+> +		if (ret)
+> +			break;
+> +	}
+> +
+> +	return ret;
+
+Perhaps it cannot occur.
+But if the loop above iterates zero times,
+then ret will be used uninitialised here.
+
+Also flagged by Smatch.
+
+> +}
+> +
+> +static int s32g_serdes_probe(struct platform_device *pdev)
+> +{
+> +	struct s32g_serdes *serdes;
+> +	struct device *dev = &pdev->dev;
+> +	int ret;
+> +
+> +	serdes = devm_kzalloc(dev, sizeof(*serdes), GFP_KERNEL);
+> +	if (!serdes)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, serdes);
+> +	serdes->dev = dev;
+> +
+> +	ret = s32g_serdes_get_ctrl_resources(pdev, serdes);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = s32g_serdes_get_pcie_resources(pdev, serdes);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = s32g_serdes_parse_lanes(dev, serdes);
+> +	if (ret)
+> +		return ret;
+
+The I review also says:
+
+  The probe function calls s32g_serdes_init() which enables clocks,
+  configures hardware, and deasserts reset. However,
+  s32g_serdes_parse_lanes() creates PHY providers via
+  devm_of_phy_provider_register().
+
+  Problem: PHY consumers can start calling PHY ops (like power_on) as soon
+  as the provider is registered, but the hardware isn't initialized until
+  s32g_serdes_init() runs afterward. This creates a race window.
+
+  Recommendation: Move s32g_serdes_init() before s32g_serdes_parse_lanes().
+
+> +
+> +	ret = s32g_serdes_init(serdes);
+> +
+> +	return ret;
+
+nit: This could be more succinctly written as:
+
+	return s32g_serdes_init(serdes);
+
+> +}
+
+...
 
