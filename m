@@ -1,157 +1,289 @@
-Return-Path: <devicetree+bounces-260964-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260965-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yEzzOB+Ue2nOGAIAu9opvQ
-	(envelope-from <devicetree+bounces-260964-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 18:08:47 +0100
+	id kLeBBGKUe2nOGAIAu9opvQ
+	(envelope-from <devicetree+bounces-260965-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 18:09:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E93E0B2A76
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 18:08:46 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FC36B2A82
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 18:09:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DD4523048B31
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 17:06:08 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5AFFD30060BA
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 17:09:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 398D0344033;
-	Thu, 29 Jan 2026 17:06:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CDFB3446AF;
+	Thu, 29 Jan 2026 17:09:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="WR050G9z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 349AA3469F7;
-	Thu, 29 Jan 2026 17:06:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769706368; cv=none; b=LiAVLiPHNEyR9I9V5MOVt5X/jc5iX9s9vBCofu5ISF3UdikxkFenS+w17sk6UB/QHnfxAEmPz6h9xy35SJaNka16IuXT8ZdwP6g4KMYSITnQYgkOmQ7YGxTPzP0f2BNcbR3Gqx8qwRgjKp3359fsJiR8CTIBmMj71Ro+B4BKao4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769706368; c=relaxed/simple;
-	bh=Bj+6EzKaz2HdsMGmdFcp3gynrSLuJENGKgJTVdXR3xc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eEr0IvEMD+5FO5Afo2DobqexFamMhYGdfJHlaFE/V8BRMLYOy6qNvaYVzpGn0nfaThj/0Zf63Uup/9+L/oQsXOApsfNtIZuhpYdqQpctxA/yItkOfkaCtINmjq754GJERGHtdiUjWV4iR/K6jIvv1dCFRW8aeSbvo/NIGDd77s8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id F2820153B;
-	Thu, 29 Jan 2026 09:05:58 -0800 (PST)
-Received: from [10.1.196.85] (e121345-lin.cambridge.arm.com [10.1.196.85])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DC81F3F73F;
-	Thu, 29 Jan 2026 09:06:02 -0800 (PST)
-Message-ID: <2f1f48c6-ad75-4e7d-89a2-c93bb1c1d067@arm.com>
-Date: Thu, 29 Jan 2026 17:06:00 +0000
+Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011029.outbound.protection.outlook.com [52.101.70.29])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA1173009C1;
+	Thu, 29 Jan 2026 17:09:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.29
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769706587; cv=fail; b=J8qyKCBRkCes3hdH4OGFHMqXEsnu9ZVyAx7uDjT5itvsY0Iiuq/i8LB6OF4KUkvlaTlQ5JkQIh5ZjbwxOnJ93YyHw+xzLmbBSkbLIXyqGW0ooVD/GmqLqz2YkxIuv3EaC6ovPdfwz5qDSIhCgikamSjVZAadFCId34FDFacqZz0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769706587; c=relaxed/simple;
+	bh=htUlVz5iMlH/rF9BZFZCjIyJi3n2nWjVUTjENpyZ/+w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=DTAxZS8+dDb056PCs3bcZC3mAmO68Vmb+7wiDKaDC5SRDxlMIAQr33XjGvw6vHsKbtUMvOgFJDQXdkcZGiqO0WyAEwjXg18pUZr6M7NCA7Prciv4mrE01vtELf5UyDa+ubPf/X2cXtsOwKPIpRsGaUhpe/oko6Zjnj/isEfP/KA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=WR050G9z; arc=fail smtp.client-ip=52.101.70.29
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=v2vKqB+5QlR0if2cxB9kTgxGs35XmKKxbdY3ExVEJNkeoRZmrRs1J8qAWjx0QBiJO++uWCJJq7VTJEsgRiqlgJaMKY7Tw4sojLvEiO5xvCoEWen2RujaDEJq+e6k96K7Fj/9foeXamLJ+vb/91zxfy2+qN+GcrEPGogQ2UPhpeZ8h5kXkzY/idDoA2eaaCePAdQrE9YMZWPYjy4DaGcuSBgF/ax6R093AUQmTtei8XO2ooTQWx4xHKQjtSGH9Sh128lPH4BavWpAZz+pteLAU2s6aFfWY7aJaCty+ZhxaO6sm+rakpNhlSYCOAsuoSY/1gL6l850RZC/tvhTJL2IwA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4JvMIdPRcDojvFkxL5ETLXwHnt/nwzxruRvXsCzbMcY=;
+ b=Vp1gkL6FG9KM5vxPcKJXZp8nB/Yc+Ju7GpHmxWUAD/SqVc/mwrCjoeL8G+Q6YNxPQTFzZeo+uhkorbS99DKLKoo4ufJEOP6UjV0yMIQVbUGny0cIA7VyrBqe8/PR65z6QeZ/Mv1TIoyK8ILS0TxSv00rCbv5X5qhN3g78ExZS6THlV/Z301pYEHzsKky0hv31bamYzXZrla6rDPNOYtugdhuGobIwEioxUXsRTJMH4A3qVdoSui69nLSz0HI2ClQLgBcluL5IxktLxnBAHBWoHfU1M4xlTT8vNWIlGkvaxvSGt9EJBJso3+LN6YCHuGrGKG4P63E1bk2m0nMJoHp5A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4JvMIdPRcDojvFkxL5ETLXwHnt/nwzxruRvXsCzbMcY=;
+ b=WR050G9zsD0mBfZ+j8qo/VCnC+pqJSWunwDTzn2xAXpTYYRahXWAJ9ZcIrilDoKZqE3Qi9AG5sgFisQlwCcZJqBG+dXrxqEj7aqYYvSzu+HG/6+VRDx0khCHEqYvSwPjxwS0ss1pzqiGCHMCMb85DlfsdLw6BGPeGw6cqsynczWXGg4qo+kPv1yeuOp3m80lb+otHgUav6u3CQeqARsl740URGTMiGnhmAo9G0DGSzvED8GwAtUGEXhPnqJVhRzbihEZx24j+q5H7mhVf+8gQzgrVbUrkhfEJOrh/8nFdRzG/Pptu5MarBEWxgd2DCcPeJNu1gmy6cXhJg6ejVJ4Nw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
+ by AM8PR04MB8003.eurprd04.prod.outlook.com (2603:10a6:20b:240::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.7; Thu, 29 Jan
+ 2026 17:09:43 +0000
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9520.005; Thu, 29 Jan 2026
+ 17:09:42 +0000
+Date: Thu, 29 Jan 2026 12:09:30 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
+	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, shengjiu.wang@gmail.com,
+	Xiubo.Lee@gmail.com, nicoleotsuka@gmail.com, perex@perex.cz,
+	tiwai@suse.com, linuxppc-dev@lists.ozlabs.org
+Subject: Re: [PATCH 3/3] ASoC: fsl_asrc_dma: allocate memory from dma device
+Message-ID: <aXuUSnPSCa8YYfgd@lizhi-Precision-Tower-5810>
+References: <20260128071853.2602784-1-shengjiu.wang@nxp.com>
+ <20260128071853.2602784-4-shengjiu.wang@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260128071853.2602784-4-shengjiu.wang@nxp.com>
+X-ClientProxiedBy: SJ0PR13CA0170.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c7::25) To PA4PR04MB9366.eurprd04.prod.outlook.com
+ (2603:10a6:102:2a9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1.1 4/7] dt-bindings: iommu: Add spacemit/t100 features
-To: Conor Dooley <conor@kernel.org>, =?UTF-8?B?6YOR5b6L?=
- <lv.zheng@spacemit.com>
-Cc: Tomasz Jeznach <tjeznach@rivosinc.com>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Jingyu Li <joey.li@spacemit.com>,
- iommu <iommu@lists.linux.dev>,
- linux-perf-users <linux-perf-users@vger.kernel.org>,
- linux-riscv <linux-riscv@lists.infradead.org>,
- spacemit <spacemit@lists.linux.dev>, devicetree <devicetree@vger.kernel.org>
-References: <cover.1769562575.git.lv.zheng@spacemit.com>
- <cover.1769666438.git.lv.zheng@spacemit.com>
- <15209d7b8c5a5055f8944ab7261e440d70a18a03.1769666438.git.lv.zheng@spacemit.com>
- <20260129-evolution-femur-84eb5668f4a7@spud>
- <a4684b7f094a6a5ee87d9db722b75594f851b9fb.d4fb292a.1570.47af.8025.bf9af089dc8a@feishu.cn>
- <20260129-grandly-compare-e8e3a105f690@spud>
-From: Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <20260129-grandly-compare-e8e3a105f690@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|AM8PR04MB8003:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9941babe-8e75-4896-e5fd-08de5f59318b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|52116014|376014|1800799024|366016|19092799006|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?vaAdbh+KY2QYvqpOjTN4Bamg7dB1otZAQf87KR5kicTh2K9W0hbFGmcibUnf?=
+ =?us-ascii?Q?zK4IQ224MMnAjjxLI6/rMBNAW3GUwzQ6Co27fOnPbDQBUOtQayZIcw1TUdxZ?=
+ =?us-ascii?Q?XjwLXLXv/3l2cIZ922BgpjBZKo7dB7+NlpqKurTrEXWIIxgYY72ksEEb9+u7?=
+ =?us-ascii?Q?cSIslpEZRYFOc31N+nOK1oGvdKg048wBG4o/5bVSRPXKiFdixEzomupRRzen?=
+ =?us-ascii?Q?08JwUKsRUDKQjaoWsIi0r5S7rQGOZSxl1QKtk1P74FSVpbQvesCAENg8S3D5?=
+ =?us-ascii?Q?TO7GnVvZnzFW9VYgmUr8zz9YWktYZQyOTf8L0nTDz3CwX1VI5Lxme6ylTtXl?=
+ =?us-ascii?Q?97i1qByX4Yv7I1p3j7mr+k+yOAlpk2FXafW6wCDEQeM6t/erdi3GlnRFMsP9?=
+ =?us-ascii?Q?R50C4w3mCy2EU+H/jRwqPwFf9LjePtydXYyVe8C2Qp7vN1iZy/kktDQB2PcJ?=
+ =?us-ascii?Q?saTsPnsRUvzolWrEJVhY5Gvo0If8ZYAMB91O8i5KLTKLT+bQVlcHFqe6RTM9?=
+ =?us-ascii?Q?k7Ons4CoC7bpCwgy750F/elCxZnRUYLz9Jq5zEQS/yMpF0njRA/bIqrMrxlg?=
+ =?us-ascii?Q?DHSYQyMn6kZN0v7CasWvrWXdW+Gw7Vst7VlYgycGLzN1KvdKqjjFTGbNQuVf?=
+ =?us-ascii?Q?YApv8ZNDWwpbpk81Rjsev209JODJpTTJaaO8dngu+pIN5KBCZHpK8EEkqVCZ?=
+ =?us-ascii?Q?G7qncKNKRrq/lVSdtLnfFdie41LuYztfglBWKgSe4driXri8V+wlM7keiBS7?=
+ =?us-ascii?Q?OgB9L1fHH8YlRVVA4Vp3T2Y3X4+3VXuJUAqolVyjktdqo0AddslhjDa4GKfi?=
+ =?us-ascii?Q?R7EwYVWLk53GZWgtnadEdc0uG/d45f+2qNhiJ4XxgWCntXdwl1JtYokCELWn?=
+ =?us-ascii?Q?JlTJMn46XBI9wYQVzAF2jDd23aTNGGrsKUcTrdz9JczAUwwdG9TTc4Ijikbn?=
+ =?us-ascii?Q?53MBABWEMcmOTmMuUtSisNgj1yR3w0RQ9Th8bQOzd63E1GjFJxe7W94lNMFt?=
+ =?us-ascii?Q?NFk14hAbA0DLE16bPsAi3P9U1Q6Ytu3hvZe4DYIElV6hrtE3nT3vvlmxZnQT?=
+ =?us-ascii?Q?RhmWNtvaSNXKmhq+KtBolJABu04BwO/y+8mhTO4WeVdC5T9Sp9FHQbEuxWW+?=
+ =?us-ascii?Q?DCf/1uuxv/S4DHpT9yp0+mqESj4XwqLSt2Ln+t99zeS9Itp4DhYFbW3XFxt8?=
+ =?us-ascii?Q?gWXvQ4FFlWlq94hywx8OH2N/RKpGcYSmGKqiv6xQ5E4+kDjG83rRIhNpBuyb?=
+ =?us-ascii?Q?kZYtgewoRS6S/s/ZASPATK2k3vwTaYlph1JwFJO2o1LaZIeSlbfkyB6Ibg26?=
+ =?us-ascii?Q?kfKxPkl7p9bdoPUTPf1fFqPpXA/kV55i3YonUDYB3CCOZCNcc+tY2OvRk2nR?=
+ =?us-ascii?Q?0slAtYDkqoDhlINMgmYVfQkcr3EodcgiV+0Dug1/xhNIdkh4m2ckyu6N/7QM?=
+ =?us-ascii?Q?cDvX23W6+HsTuMjM8uyYXX7bu6rWxsoWC4bhcSMQOv5nCFx7TwtbPyR0XGsA?=
+ =?us-ascii?Q?jWMjNFEw/VOML2enJFed5kKlM94h5WrVaLwpafpp0LIpfVDa1xIi/IsNhfON?=
+ =?us-ascii?Q?VlMF4tb56TtuOUnQTnLUECWHpPUA7D8kGidAwmWNNO1MpbfzwX4FdmiPwXRP?=
+ =?us-ascii?Q?P3vrF5VTmNRP6LzG0yASdNg=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(52116014)(376014)(1800799024)(366016)(19092799006)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?2PvkbZHE+tJZiljFqGX9HumvfaK9RavVbZDOleVtKVqhGYlLjY32/MxZSWqH?=
+ =?us-ascii?Q?CQGfiWypz84xntNuEAwWfqIelrXybnBoYMFcF1TYn0bxyq+0V5zA9nEGvROJ?=
+ =?us-ascii?Q?N/AdmhhSnUMj9ZNPWM74ejnQlxR3EqJtMkSxnIPS7VNSil1Qnt+cobF0qaez?=
+ =?us-ascii?Q?kCKc2I5m+acLis9FZf/kTGTCBZhao+w9k6f6i6stF9I3S0OLEgvBO7bvhK4f?=
+ =?us-ascii?Q?bzm3AOH701zFl/U4DefPws+9bR880uQElPFxx6saN6Aq5HnwSwztk8UlEJp1?=
+ =?us-ascii?Q?SqpUgZvH3FoNK+oECbTnaJvLECDOVXE6uxfL6iZlWtclvad0u/qMIWIrpInc?=
+ =?us-ascii?Q?Zx80Bzt6lRhPjU6T9J3aCKjFjZKTXPnpszzbsO14RAPnKvP8JT3il5SlZL+N?=
+ =?us-ascii?Q?CDRZfKrEkQaYKXFnbACHUsJW6hCuyoXp180jC85WOcWuuM+IfkVdRU5UaFwL?=
+ =?us-ascii?Q?bUz6fpEZRCNHJw/RXQsJXjOIG/9QlHWFg70BVP54Zmm2L4pTe7kC60DLBFFc?=
+ =?us-ascii?Q?dowxzsvKSgF3CFIWeUXJVlGXuK+5OGQQ3GFVfet5WwOmtbNZJVpHl4nneSmd?=
+ =?us-ascii?Q?NBBMX480gmQ0hdTbeW6oNajKG5JvHC6PS/pNHvGkF4o9slG+WA0TnktVeVvJ?=
+ =?us-ascii?Q?cCLypsCbQHGBFPOf79vmICcYKpX7icU6TiSx8WxfskhmqWYaVv/uIV0lqArX?=
+ =?us-ascii?Q?BclbkMqnkmuMU8k/mThgpsM0ZnfnvGiWeer8g5spOxgKxjuCBW9Kg4QblY49?=
+ =?us-ascii?Q?iqT6kJh9gNr1PKmMh7bDN1jrRPJPKTpezIGSz7KiI3ePTaUUL28imFPQNyny?=
+ =?us-ascii?Q?0EBCyxTGRo150Q+4TdGl6ABTNr5X+4cCM7skhct6t/Yy+BxnX5OPw8cztbJL?=
+ =?us-ascii?Q?QYP0UnsnT0I1+krsDi0OCFe8MXIRqVz0DLn2KdR8YPb6cCOFsh9o3knjJV9x?=
+ =?us-ascii?Q?PiubMhBev2uUpWtJdttoxUv9dLhccf7z3W/TGFzHzhB0H1bzcMwqXGbb9JsE?=
+ =?us-ascii?Q?45xKeLwXlWymRuxexmuDMqglDiK+Yxey2LpJg5+wLwCr0/rGVoxYVzCsWN7j?=
+ =?us-ascii?Q?mxJy+H+lAsdSBoqn/voviUS/QCdNQfu7EgxdmviXcaMIDweOGRn6IyqhAn8e?=
+ =?us-ascii?Q?4TijQSn359VEEnwLj3PTnMBO3QtP6hNTJ7igCsDuFh6ZXXt8Lf3Tk4SBXcnx?=
+ =?us-ascii?Q?emmyui8vUwTJSQq0YX35c0VDFPXfkgRxM97nKtrUalKqSHwP4/NJNOGE1OQF?=
+ =?us-ascii?Q?NlB4GEoA2qh073/0vj4F0ygjTNjwgaixjLu8lwl+K5OEdhfWnUWuIXIRF/+2?=
+ =?us-ascii?Q?S2o85f5rxH5YT+dpfkvuoTkN12CVe9y3a8MzG16RFwcCyzcGN5YT7UNcFTJt?=
+ =?us-ascii?Q?jXcm4Rd/gEhriC7rVjNW/HTt8D2Lr4X33wJu3VtS60mHFGpMLsJ29jHTjRXV?=
+ =?us-ascii?Q?eemM1k1OycEqbPAYDapyW8cyLDd6bOQPddrUhYAfwSprtZeEQfQjPSTGMUV+?=
+ =?us-ascii?Q?OmYjcVRriP62zkJ7jxysjtlnRDj+bX9dKArs0jHoe6TJ+HtHt+e9xZFeu8Wr?=
+ =?us-ascii?Q?HwUgNfe1s69tm936sbdDLQdJZ+KsSZRqYtL/rUlontovh62Hsxl6rhkHzmqI?=
+ =?us-ascii?Q?T/1mDnXwP3pDuI9y/98FoHRcAjOhucfP3k5nAeD8KcDL8/gD6gNfDFQbatvR?=
+ =?us-ascii?Q?lFAxasqm4Shz36WHX5QS4/A2meDUJ6eZRjHQ/3p+3zADeT+HoDZM6dDYMHDN?=
+ =?us-ascii?Q?uznJckVCgA=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9941babe-8e75-4896-e5fd-08de5f59318b
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2026 17:09:42.6768
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: bQZQ9nwvLSFoDhnDaDouB/GKI7fCeQNJXCCWnawxuyTeXTxQ7ea7Jru5dZiYlKZBFPoiSH5XYxTLfJtTuP7F9A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB8003
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.14 / 15.00];
+X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[arm.com : SPF not aligned (relaxed), No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_ALL(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_FROM(0.00)[bounces-260964-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,pengutronix.de,vger.kernel.org,lists.linux.dev,lists.infradead.org,perex.cz,suse.com,lists.ozlabs.org];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-260965-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robin.murphy@arm.com,devicetree@vger.kernel.org];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[nxp.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_TWELVE(0.00)[18]
-X-Rspamd-Queue-Id: E93E0B2A76
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 3FC36B2A82
 X-Rspamd-Action: no action
 
-On 29/01/2026 4:41 pm, Conor Dooley wrote:
-> On Thu, Jan 29, 2026 at 06:43:03PM +0800, 郑律 wrote:
->>> From: "Conor Dooley"<conor@kernel.org>
->>> Date:  Thu, Jan 29, 2026, 18:08
->>> Subject:  Re: [PATCH v1.1 4/7] dt-bindings: iommu: Add spacemit/t100 features
->>> To: "Lv Zheng"<lv.zheng@spacemit.com>
->>> Cc: "Tomasz Jeznach"<tjeznach@rivosinc.com>, "Joerg Roedel"<joro@8bytes.org>, "Will Deacon"<will@kernel.org>, "Robin Murphy"<robin.murphy@arm.com>, "Rob Herring"<robh@kernel.org>, "Krzysztof Kozlowski"<krzk+dt@kernel.org>, "Conor Dooley"<conor+dt@kernel.org>, "Paul Walmsley"<pjw@kernel.org>, "Palmer Dabbelt"<palmer@dabbelt.com>, "Albert Ou"<aou@eecs.berkeley.edu>, "Alexandre Ghiti"<alex@ghiti.fr>, "Jingyu Li"<joey.li@spacemit.com>, "Zhijian Chen"<zhijian@spacemit.com>, <iommu@lists.linux.dev>, <linux-perf-users@vger.kernel.org>, <linux-riscv@lists.infradead.org>, <spacemit@lists.linux.dev>, <devicetree@vger.kernel.org>
->>> On Thu, Jan 29, 2026 at 02:09:13PM +0800, Lv Zheng wrote:
->>>> Adds device tree bindings for SpacemiT T100 specific features.
->>>>   
->>>> vendor-hpm-events: Allow vendor events to be customized in the device
->>>>                     tree.
->>>> global-filter: The feature saves silicon area by reducing filters to
->>>>                 one and use it as a global filter across all events.
->>>>                 This usually is sufficient for real applications.
->>>   
->>> Why can these not be determined from a device specific compatible?
->>
->> The specification only defines less than 10 standard event types while the
->> real silicons should have implemented many other event types based on
->> their micro-architecture. I tried to provide a common mechanism for all
->> vendor specific event types across different vendors.
-> 
-> Given that the variance is based on uarch, it sounds like it can be
-> determined from the compatible.
-> 
->> It is similar for the global filter, the global filter mechanism actually
->> complies to the IOMMU specification, users can alter the iohpmevt
->> registers as is what is specified in the IOMMU specification. It only
->> provides slight application difference between the final effection. Thus
->> this could also be a non-device specific option.
-> 
-> What is a "user" in this context? Given you're talking about reducing
-> silicon area, it sounds like this will be set in stone for each SoC, and
-> therefore can be determined by compatible. If other devices do this,
-> they can also determine it from their compatible.
-> 
-> Properties for things that can be determined based on compatible are
-> generally not permitted, so you'll need to provide a compelling
-> rationale. Common mechanism isn't one, since determining based on
-> compatible would be a common mechanism based on match data that people
-> can tack onto for their devices.
+On Wed, Jan 28, 2026 at 03:18:53PM +0800, Shengjiu Wang wrote:
+> As the dma device may support dma-coherent property on the i.MX952,
+> allocate memory from dma device to make asrc driver to be compatible with
+> such a case.
+>
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> ---
+>  sound/soc/fsl/fsl_asrc_dma.c | 48 ++++++++++++++++++++++++++++++------
+>  1 file changed, 41 insertions(+), 7 deletions(-)
+>
+> diff --git a/sound/soc/fsl/fsl_asrc_dma.c b/sound/soc/fsl/fsl_asrc_dma.c
+> index 7dacc06b2f02..b8fe242d53db 100644
+> --- a/sound/soc/fsl/fsl_asrc_dma.c
+> +++ b/sound/soc/fsl/fsl_asrc_dma.c
+> @@ -449,18 +449,52 @@ fsl_asrc_dma_pcm_pointer(struct snd_soc_component *component,
+>  static int fsl_asrc_dma_pcm_new(struct snd_soc_component *component,
+>  				struct snd_soc_pcm_runtime *rtd)
+>  {
+> -	struct snd_card *card = rtd->card->snd_card;
+> +	struct device *dev = component->dev;
+> +	struct fsl_asrc *asrc = dev_get_drvdata(dev);
+> +	struct fsl_asrc_pair *pair;
+>  	struct snd_pcm *pcm = rtd->pcm;
+> +	struct dma_chan *chan;
+>  	int ret;
+>
+> -	ret = dma_coerce_mask_and_coherent(card->dev, DMA_BIT_MASK(32));
+> -	if (ret) {
+> -		dev_err(card->dev, "failed to set DMA mask\n");
+> -		return ret;
+> +	pair = kzalloc(sizeof(*pair) + asrc->pair_priv_size, GFP_KERNEL);
 
-Also, reinventing jevents via devicetree is pretty grim anyway - the PMU 
-can simply expose an "identifier" attribute that uniquely identifies the 
-vendor implementation, and perf tooling can match that to a set of event 
-definitions in userspace, with the added bonus that jevents can also 
-encode meaningful descriptions, metrics and suchlike. There doesn't 
-*need* to be a sysfs alias for every possible event. I see the RISC-V 
-CPU PMUs are already on-board with this approach - note the 
-"Unit"/"Compat" matching for system/uncore PMUs is a little different 
-from the mapfile used for CPUs, but see other architectures for examples.
+prefer use size_add(sizeof(*pair), asrc->pair_priv_size), which did
+overflow check.
 
-Thanks,
-Robin.
+> +	if (!pair)
+> +		return -ENOMEM;
+> +
+> +	pair->asrc = asrc;
+> +	pair->private = (void *)pair + sizeof(struct fsl_asrc_pair);
+> +
+> +	/* Request a dummy pair, which will be released later.
+> +	 * Request pair function needs channel num as input, for this
+> +	 * dummy pair, we just request "1" channel temporarily.
+> +	 */
+> +	ret = asrc->request_pair(1, pair);
+> +	if (ret < 0) {
+> +		dev_err(dev, "failed to request asrc pair\n");
+> +		goto req_pair_err;
+>  	}
+>
+> -	return snd_pcm_set_fixed_buffer_all(pcm, SNDRV_DMA_TYPE_DEV,
+> -					    card->dev, FSL_ASRC_DMABUF_SIZE);
+> +	/* Request a dummy dma channel, which will be released later. */
+> +	chan = asrc->get_dma_channel(pair, IN);
 
+Is it possible get real dma chan from fsl_asrc?
+
+> +	if (!chan) {
+> +		dev_err(dev, "failed to get dma channel\n");
+> +		ret = -EINVAL;
+> +		goto dma_chan_err;
+> +	}
+> +
+> +	ret = snd_pcm_set_fixed_buffer_all(pcm,
+> +					   SNDRV_DMA_TYPE_DEV,
+> +					   chan->device->dev,
+> +					   FSL_ASRC_DMABUF_SIZE);
+
+Here you assume chan->device->dev never change when it did DMA transfer.
+
+Frank
+> +
+> +	dma_release_channel(chan);
+> +
+> +dma_chan_err:
+> +	asrc->release_pair(pair);
+> +
+> +req_pair_err:
+> +	kfree(pair);
+> +
+> +	return ret;
+>  }
+>
+>  struct snd_soc_component_driver fsl_asrc_component = {
+> --
+> 2.34.1
+>
 
