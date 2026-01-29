@@ -1,275 +1,185 @@
-Return-Path: <devicetree+bounces-260687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260683-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UKJJFBDAemnw+AEAu9opvQ
-	(envelope-from <devicetree+bounces-260687-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 03:04:00 +0100
+	id qKQZNXK/emnw+AEAu9opvQ
+	(envelope-from <devicetree+bounces-260683-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 03:01:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E83EAAFE3
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 03:03:59 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29DFEAAFA7
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 03:01:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1072C305BFEF
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 02:00:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3E8953077CF4
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 01:57:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 493C4330328;
-	Thu, 29 Jan 2026 02:00:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3620833120D;
+	Thu, 29 Jan 2026 01:57:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="syUm0Fyj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="npa9BVAG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dl1-f46.google.com (mail-dl1-f46.google.com [74.125.82.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 992DB2C3256;
-	Thu, 29 Jan 2026 02:00:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5027D32AAAD
+	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 01:57:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769652050; cv=none; b=RT+yzJpqVGjWbKPFgVbtflAwEAi4WNhf6bQTb87NehRznXvlL+Jo95B5Xy8OVoBMsDyQOppiH8bPA7sIuM4hBTBhqYpQwniYt3nrMGh/ZopiPsPa2IBp87fYVbSEXprzE+kELG87MLQJCWJ1jFGKpTeEBKXG9YXlrPxm4JnYVXo=
+	t=1769651837; cv=none; b=PKjxzg9NIKxJq9VUHD9VZm38sJAXy1hReugMipFkIfwa06OYJUaGj+wd9AAfkI0e3viKrAKvKA08tKwOIcL8jGAXj3pDdLtVGDKdap1dzKbIc6lNcFoTt47Yzkhoh2KV8X9nYc59OuQb8y6ckGfZUR12DOWQ3ddlhGIKG8vlqkA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769652050; c=relaxed/simple;
-	bh=wyJxFCIQfnKyodOiLeAsU0aw9P7EDVvWbzBEKcJfXyM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Lrx24bRqRBSPcI1Ex4WMJThNJqtxyvdVGx59UUVJW36LKBe96AGc/rLx0DvsFFSD2EG3LseTt68Xfdl/Apf5jWv6owUKAY4mxYBJB8HC6Pw3hJII95ho4rwbUM/jEgyVyYliBnMbodEvJbaq8CdW0BLvDwdnlwzKgGW5rveNjrE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=syUm0Fyj; arc=none smtp.client-ip=150.107.74.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
+	s=arc-20240116; t=1769651837; c=relaxed/simple;
+	bh=rzEJ36Hq0hzmVArMcVO/ak7vCFXqJMUCW5NjfaXT5+c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=elRbGOp5Ea4qnUATwzXwIYBKFfWgyNv4iDkwJ0Gg9J7NCSMSArw1ViNTTLaYL4t6Sz0GZ+ICKCaFaNOte1TQPlocGNNRV70D2z1vUJ8CpXeQThRABECxhJprYP7zPxU5IIjikSskNCA3BwTv6AtfFzonOxt9v/IxnGbo1JyXC9Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=npa9BVAG; arc=none smtp.client-ip=74.125.82.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dl1-f46.google.com with SMTP id a92af1059eb24-1248d27f2b9so672988c88.0
+        for <devicetree@vger.kernel.org>; Wed, 28 Jan 2026 17:57:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gibson.dropbear.id.au; s=202512; t=1769652032;
-	bh=4ugxzwbGGFzgSfDr7NjRRS/tn8RZ4p6Ky/eY27GR6NE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=syUm0FyjhCqQ0/gJtiLFc5H+wQVDTd0oSyKbuJm0pfwT3/wwOSwxDtP9iHRQpniht
-	 s/vhs9DEgyu9CiASaCoow2Tqoo4kNP9RCoe/Gxd7J1mVUPZcDhDZ0J+C3Ix9dPAZOG
-	 f9dspRZkAN706R46KcerpRVnuw8OczR/5DX6vKmqKB/IGxoAc0J1X3mviJAacPvx8s
-	 t5vXzbAmsywMwRowfeOj80tsBR8sC2JgY4yWA8DWlxP6bYiJghYFTIKyQEPxzcvwHh
-	 MD3YYmS0g8PliilYBoxiogxBGaiRdBZEeRkoT+w+T0ZiJfHiF5q1uMV7Hb7aFT6/On
-	 Jy8441rzbSpJw==
-Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
-	id 4f1j5r2ffTz4wDm; Thu, 29 Jan 2026 13:00:32 +1100 (AEDT)
-Date: Thu, 29 Jan 2026 13:00:26 +1100
-From: David Gibson <david@gibson.dropbear.id.au>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ayush Singh <ayush@beagleboard.org>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org,
-	Hui Pu <hui.pu@gehealthcare.com>,
-	Ian Ray <ian.ray@gehealthcare.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [RFC PATCH 64/77] dtc: Add support for references by path
- involving orphan nodes
-Message-ID: <aXq_On_DobrGt2fO@zatzit>
-References: <20260112142009.1006236-1-herve.codina@bootlin.com>
- <20260112142009.1006236-65-herve.codina@bootlin.com>
- <aWiQ05zlfPfcIaZk@zatzit>
- <20260119173831.3341e827@bootlin.com>
- <aXCXAwm34LobcW1h@zatzit>
- <20260121173012.2a087367@bootlin.com>
+        d=gmail.com; s=20230601; t=1769651826; x=1770256626; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1PA8gr+YKpeMZlbtexD0GnfzavDOVqcWassYAa2Q9AU=;
+        b=npa9BVAGuXhaDjSjI2zpw6vY9T4uejwsVsYKpbE6HMRI1/PMwMrUC+7u/JPLiNhb+w
+         6hbybL50KEf0BapPaOM0Dr9syYqGqsWxUuvM/xFQ81dRXlavPVBefbfc0RTb0BukVA7R
+         xzZZK7aPUggTGd3hwdwJVn/sCR7CnQRr8zhfG/wDzwhrcVqP3SJoDvx3dXB7f8wl5fn/
+         4RYduMW2OusIyFM7qHM8GdLZUC9MnEVsTVMC1Q4yndNo5UKtZz/rVhdcqNFP47EcU2JZ
+         0ZyjxEonJClGTwjNM/NtFylucCPVZVTrnDrIoDhkPS4QMgd4+2iJ/HueDn7piiZJ9wwG
+         ldqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769651826; x=1770256626;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1PA8gr+YKpeMZlbtexD0GnfzavDOVqcWassYAa2Q9AU=;
+        b=UfDyCKfC8GaFa32gDdYrQg+L5EtUOUeIXbLaXz9ozXJhnB3NYs7/v+olveS+0slgk6
+         OFjpD3j1dlGgkGiSji1mkmGDoi/Mttyw+BmC2+QlQVkl3dITFSJCwcmjsqUl63Ux/ZJS
+         gZL5guRh9Rt5VcqDkHl+WIxsBGC9gOxxcYNurflCK9MHc1kHgtVT+8GnIeaSTk+ixyho
+         LYmlsSUuTUcn4Aw6z6kdfbo3sW065xeKTVHU2btzr4/ky18J/63s7D+sohM6bENRfDf9
+         ibyHEtr+/pHLVfVqGrWou3yOJvZ2B8vzPkfH0RezZrmqVNttCYawhz/489G/WP8nUw8O
+         mf5w==
+X-Gm-Message-State: AOJu0YwBxJALCxr8uIDErfpj9eoU2e6Z5EeGMcRHJiU3+hGq26/N0Cax
+	TWKMf0iZWQehj86F94fAhkwGOlAye7o7mYyuUXzsc4iOxdaoIdN6iK5o
+X-Gm-Gg: AZuq6aJ9TeSZqIznSOCJGAC5MUsKQAU+s/ftl0E0mXU8UlHsXCUtFX9wvGq8qzzzHn5
+	VYE6UDMHiEkmF/FBIGm2suPuh8tlvWeXoyLhM9ig0La5nD7ImOQ5+VYY2f/sFJjz1tU4GVCIs55
+	kuftdI0r09pobNmguuHRZr5o4TViMpbgeRiRZFsUK3ytJgypr/ooDIRnPrh4MuqGDtEMRHC2jfF
+	C7lLyY0/vLYpqlIpFYk1SGWk57F07CbnnyOaicfWXX1K1c3vVuvXt/m59k4IyiUAXKq3+IJz9Xq
+	nhzE28bNBkBCPjsD0u5yJc2EsNHPFDLImLqmKw+Wuf+X/uRgg+bQye0yUBSugwuKvi1jAHoACK9
+	K4fRhUzQVhzUIA88UHWgQa9osm6z3G0eCxMLARZm0bJgDXRbBrRBO+KU7O/8oHL6VbJQIJDiKxy
+	yyXL+IPDYR5vTESPNNA5MwgC8Yn4qYekrBp/O1723hpxCJ0A==
+X-Received: by 2002:a05:7022:b8f:b0:11a:51a8:ec9 with SMTP id a92af1059eb24-124a00bd920mr3704741c88.29.1769651826013;
+        Wed, 28 Jan 2026 17:57:06 -0800 (PST)
+Received: from [172.16.0.242] ([192.19.161.250])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-124a9cdcbcfsm5670014c88.0.2026.01.28.17.57.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Jan 2026 17:57:05 -0800 (PST)
+Message-ID: <48f1c033-4a0a-4b17-aae0-9c712748b2ed@gmail.com>
+Date: Wed, 28 Jan 2026 18:01:15 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ccsgJZB1nDPqHMHH"
-Content-Disposition: inline
-In-Reply-To: <20260121173012.2a087367@bootlin.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/2] dt-bindings: ethernet: eswin: add clock sampling
+ control
+To: Krzysztof Kozlowski <krzk@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ =?UTF-8?B?5p2O5b+X?= <lizhi2@eswincomputing.com>
+Cc: devicetree@vger.kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
+ edumazet@google.com, kuba@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, netdev@vger.kernel.org, pabeni@redhat.com,
+ mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+ rmk+kernel@armlinux.org.uk, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ ningyu@eswincomputing.com, linmin@eswincomputing.com,
+ pinkesh.vaghela@einfochips.com, weishangjuan@eswincomputing.com
+References: <20260109080601.1262-1-lizhi2@eswincomputing.com>
+ <20260109080859.1285-1-lizhi2@eswincomputing.com>
+ <00b7b42f-2f9d-402a-82f0-21641ea894a1@lunn.ch>
+ <308b676.2d03.19bb0caebed.Coremail.lizhi2@eswincomputing.com>
+ <59cec617-0189-4dc3-bc3f-6346155a62ae@lunn.ch>
+ <4e2a55e7.3662.19be8cb9c3c.Coremail.lizhi2@eswincomputing.com>
+ <c5c0bfdb-316d-4796-afa0-f6f018ceb414@lunn.ch>
+ <abf12a3f-9cdd-472d-a02e-af4da594b84f@gmail.com>
+ <e6f7da45-3dec-4af6-a5b1-a72210bf24f4@kernel.org>
+ <43923bf9-6202-4147-8eac-5bd7bb653fd4@gmail.com>
+ <3ed93cd3-677c-4d0c-a3a6-25c3d47a4ef2@kernel.org>
+Content-Language: en-US
+From: Bo Gan <ganboing@gmail.com>
+In-Reply-To: <3ed93cd3-677c-4d0c-a3a6-25c3d47a4ef2@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gibson.dropbear.id.au:s=202512];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,armlinux.org.uk,st-md-mailman.stormreply.com,lists.infradead.org,eswincomputing.com,einfochips.com];
+	TAGGED_FROM(0.00)[bounces-260683-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DMARC_NA(0.00)[dropbear.id.au];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-260687-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[david@gibson.dropbear.id.au,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gibson.dropbear.id.au:+];
+	FROM_NEQ_ENVFROM(0.00)[ganboing@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[yyy:email,xxx:email,dropbear.id.au:email,ozlabs.org:url,0.0.48.57:email,abcde:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 9E83EAAFE3
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 29DFEAAFA7
 X-Rspamd-Action: no action
 
+On 1/28/26 02:05, Krzysztof Kozlowski wrote:
+> On 23/01/2026 11:47, Bo Gan wrote:
+>> Hi Krzysztof,
+>>
+>> On 1/23/26 02:07, Krzysztof Kozlowski wrote:
+>>> On 23/01/2026 08:39, Bo Gan wrote:
+>>>>> I assume the address of the interface is fixed. So you can just key
+>>>>> off that to distinguish the two instances.
+>>>>>
+>>>>> Since this is an internal property, not a board property, it is not
+>>>>> clear it actually belongs on DT.
+>>>>>
+>>>>>        Andrew
+>>>>
+>>>> IMO, they should be in DT to provide maximum flexibility. The SoC .dtsi
+>>>
+>>> This is not the purpose of DT. Please rather use arguments in terms of
+>>> DT rules (see docs, presentations).
+>>>
+>> Any examples? links? Thank you for your patience.
+> 
+> Really, doing simple search for it is your homework, not our task. You
+> need to try harder if you want to prove that you are not wasting our time.
+> 
+> Documentation/devicetree/bindings
+> 
+> Or any elinux resources or any recent talks of mine.
+> 
+> Best regards,
+> Krzysztof
 
---ccsgJZB1nDPqHMHH
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+You brought up the "use arguments in terms of DT rules" approach. and all I
+ask is just some pointers to make sure I'm not misinterpreting. No offense,
+but The way you slamming people w/ "not doing their homework" is truly not
+constructive.
 
-On Wed, Jan 21, 2026 at 05:30:12PM +0100, Herve Codina wrote:
-> Hi David,
->=20
-> On Wed, 21 Jan 2026 20:06:11 +1100
-> David Gibson <david@gibson.dropbear.id.au> wrote:
->=20
-> > On Mon, Jan 19, 2026 at 05:38:31PM +0100, Herve Codina wrote:
-> > > On Thu, 15 Jan 2026 18:01:39 +1100
-> > > David Gibson <david@gibson.dropbear.id.au> wrote:
-> > >  =20
-> > > > On Mon, Jan 12, 2026 at 03:19:54PM +0100, Herve Codina wrote: =20
-> > > > > Referencing a sub-node from an orphan node using a path is needed.
-> > > > >=20
-> > > > > Indeed, using the following snippet:
-> > > > > --- 8< ---
-> > > > > /addon/;
-> > > > >=20
-> > > > > &node1 {
-> > > > > 	subnode {
-> > > > > 		foo-phandle =3D <&foo_label>;
-> > > > > 	};
-> > > > > };
-> > > > >=20
-> > > > > &node2 {
-> > > > > 	foo_label: foo {
-> > > > > 		prop =3D <1>;
-> > > > > 	};
-> > > > > };
-> > > > > --- 8< ---
-> > > > >=20
-> > > > > Even if node2 is an orphan node, foo is a local node. foo-phandle
-> > > > > references the foo node using a label.   =20
-> > > >=20
-> > > > Another option would be to eliminate the idea of local references, =
-and
-> > > > require a symbol be attached to things that you want to reference by
-> > > > label. =20
-> > >=20
-> > > Hum, new kind of references. =20
-> >=20
-> > No, I'm trying to remove a type of reference: I'm suggesting using the
-> > same format as for external references on local references as well.
-> > That might mean things referenced need to be both exported and
-> > imported by the tree creating them.  That might be worth it to reduce
-> > the number of cases.
->=20
-> Hum, this means a new tags.
-
-Either I'm missing something, or I'm not explaining what I have in
-mind well.  My itention here is to *reduce* the number of tags.
-
-The proposal has two ways of adjusting a property referring to a
-phandle: a) if the referenced node is within this tree fragment
-(local), b) if the referenced node is external.
-
-Clearly we need (b), but I'm wondering if there's any way we can
-remove (a), using the method for (b) instead.  i.e. do local
-references via label, just like external references.
-
-Here's one possible idea: I've said elsewhere that I'm not convinced
-the current proposal adequately handles the case of an addon that
-requires several upstream connectors.  The obvious way of addressing
-that would mean that imported / referenced symbols aren't global to
-the whole addon, but instead are specific to a specified upstream
-connector.  So, say each phandle fixup tag contained both a namespace
-and a label.  The namespace selects which upstream connector we're
-referrring to, the label says what symbol within that connector we're
-referring to.
-
-If we went with a scheme like that, we could reserve a special
-namespace id to mean "this addon itself".  So, we can use the same
-sort of fixup tag for both local and external references, at the cost
-of having to explicitly "export" symbols/labels for the locally
-referenced nodes.  So, something like
-
-Base tree:
-	...
-	foo0: foobus@12345 {
-		/export/ bridge =3D &foo0;
-	   	/export/ intc =3D &/path/to/board/intc;
-		compatible =3D "foobus";
-		...
-	};
-	bar0: barbus@abcde {
-		/export/ gpio =3D &/path/to/gpio/mux;
-		compatible =3D "barbus";
-		...
-	};
-
-Addon:
-	/* Declare our upstream connectors */
-	/requires/ foo "foobus";
-	/requires/ bar "barbus";
-=09
-	&foo.bridge {
-		local_intc: local-intc@XXX {
-			interrupt-parent =3D <&foo.intc>;
-			...
-		};
-		widget@YYY {
-			compatible =3D "widget31415", "widget3000";
-			interrupt-parent =3D <&LOCAL.local_intc>;
-			interrupts =3D <...>;
-			gpio =3D <&bar.gpio>;
-		}
-	}
-
-By the time we compile to dtb, those namespace IDs could likely be
-ints, rather than strings.
-
-> local references: ok, phandle to to local node.
->=20
-> external references: phandle to external node.
-> This has to be resolved based on exports available in the device-tree the
-> addon is applied to.
->=20
-> Here, the node is not external. It is available in the addon and so it is
-> a local node.
->=20
-> No import/export mechanism is needed to resolve the phandle. Indeed, this
-> phandle is already well defined (resolved) in the addon blob.
-
-> Having a kind of 'local' import/export to allow local cross-tree referenc=
-es
-> is going to add an extra complexity where it is not needed.
-
-Does it, though?  We already need the import/export mechanism, so what
-prevents us from using it locally?
-
---=20
-David Gibson (he or they)	| I'll have my music baroque, and my code
-david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
-				| around.
-http://www.ozlabs.org/~dgibson
-
---ccsgJZB1nDPqHMHH
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAml6vzkACgkQzQJF27ox
-2GfMMhAAqHlEX7enr7bgiNAg34OQV+k/dkZ+STf+WxteUn+LykLGiLfnYqOgKKGi
-uvFAeypWSavzS47HYpxJ+OY0ymh+uMk51JxXEgy7Gd5E6QGx4h5AayqVViryllzq
-KrWmPCSmKTpzLECbYvEFAhSNA6FgyOAJKNS/wwYLxXYK50u5neJQNKdRltQwahGr
-grtOkcb5sZ6ES/cC2CuF/x23f2d67IAZgRdz0L1dHitjZ8uzE4YEtOgy1YtPr2n/
-O6FuwZrGk5PwFYPSb8/Am5TJbJuLGsvRHxH+Co0CGxVXXCF5x4PRJfelCjv850jn
-4TJYwdDld62zl1dUOCMgCc34zRIGj6wY14qsLsqSVyH9lxmzTbN/HjG18x37Lv7q
-phBMOb6MdSTwWA4ott4EOTB5Eh1cZGsB1KWUD81yH1HjF6R9nlF4WdNTodUTN7jx
-AIBiFDPMbh0uwCyLljMKSxb4OGzjLAbGCmyyTcS4cmeFogqjUO2pyGfVcatgqXg1
-v+/nYex+gj3yVkjHMhu9xAgjFjsuY7WQpiCFb20tGKtxWR3ztU5s00nHV+6R5sva
-ty1A9SrgmLrEqEtKK15tEpIUfPtSkj4ioY2gYmEbx99tlsqj1xK6AcstePIJd6Fd
-JP1R0O6wIuZxPnxzN++aGo2ZmQzIBnlTuZlX6jLicr0aEdPL/5o=
-=HDzn
------END PGP SIGNATURE-----
-
---ccsgJZB1nDPqHMHH--
+Bo
 
