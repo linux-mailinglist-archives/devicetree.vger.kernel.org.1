@@ -1,205 +1,343 @@
-Return-Path: <devicetree+bounces-260827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260829-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yJ+jCJA8e2mNCgIAu9opvQ
-	(envelope-from <devicetree+bounces-260827-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 11:55:12 +0100
+	id QLSzIFw7e2mNCgIAu9opvQ
+	(envelope-from <devicetree+bounces-260829-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 11:50:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 772D7AF353
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 11:55:11 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38182AF1F7
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 11:50:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4F8F33065D55
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 10:41:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D152A3031F27
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 10:43:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96EDF3815D3;
-	Thu, 29 Jan 2026 10:41:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A99233FE17;
+	Thu, 29 Jan 2026 10:43:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LdQj08rI";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="bvFpKhs4"
+	dkim=pass (2048-bit key) header.d=spacemit.com header.i=@spacemit.com header.b="LbIVunH/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sg-1-30.ptr.blmpb.com (sg-1-30.ptr.blmpb.com [118.26.132.30])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 139293806A7
-	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 10:41:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6439340295
+	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 10:43:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=118.26.132.30
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769683316; cv=none; b=t3tgkH/WUGVcUsmwTN/JD1P+b+s4DkVxBsfzRqXDRXfeXNTRzZxfp6FGj2s3+nNMYvKa/SkJfMBZsNuybDbA4zRMcu/hEwpQclPo/8J7YtNT4Uyu8bMfUtnxDnbtimVCuSOKEEGnvR/Tsrjw+C5VtJU7ziOErGgatbFertjpXXY=
+	t=1769683397; cv=none; b=URWiMmvXzTP7Ckt3tR5yTXXRjtOzWClYN8OVqqh9miEcA99TJkedOYty/D0k7h1e73lvTruIE460ThytlIzuGMDpBY0QGNv/Z63WV+b3mqX4itkwvfUZmYUq6Nz9J9RM2Srsfpm3ZUBChIzGJ6yr3v7bUCsvS7sAIzo1yIkpTdg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769683316; c=relaxed/simple;
-	bh=zk+1O1yq82iIDastvmqkaAwAmTL02X6M9Y6PekCo/CU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YuTFhd4bemob9+CWJliSfWFe7JVegwBIrGT/ZXKGSGkixZ7nrUIfKAyF66/ufmnW08w5Xco8+iaMNjfdUV2c9E4cvvIUgjM6mTA9JciAdGOg1d+qd2VLomcc3993v5VdvJgPN2pw32iCniwHfsPmT0BXK4hfHe1q5+sWnJzclM4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LdQj08rI; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=bvFpKhs4; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60TALQ7T2033398
-	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 10:41:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=78yc5FN4eslJFV/3x/1+L9rJ
-	7RkLelm3oGphAVI930Y=; b=LdQj08rIOk0vOQ7zGzkyJoPBUn62ZY4TWqL1V3LV
-	Sxz5UGtn5AvvaVgpX9CgmGJcsl3Vp5W3T4k0okvwoXug16XtNPiLH2IdL6LnEcCp
-	UvELoDV2rJNqwzyExU6YGcU7p7uyLURQ/018017NkNzeDwWZXX6crqaTqdz7u7zg
-	YoPV6nGk+aA0++dKQ8rkzjHLUZ2BfC/h5u+s8PcTi+flI8eNMqBDBgXYukoMje8n
-	19gm43flbKIGTF4RPwIEv+a6H4KXDzzCDSr5HhwNWmhiazItq5flgBaXbuO3kAda
-	doAii1W7YKOunqrZF0yVAf6iwqNRxsvp4XHvxGI8U1B1Pg==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4byna7k9yx-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 10:41:53 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8c6deddd7f7so203869485a.3
-        for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 02:41:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769683313; x=1770288113; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=78yc5FN4eslJFV/3x/1+L9rJ7RkLelm3oGphAVI930Y=;
-        b=bvFpKhs4bsnxR3EM1DdoQkK5iLnelZkxkBuc6uV/alSICjBMNcEFEkFLFlxjSzS9nL
-         YA3ooM+KkrBwqZg9K2MU2vY1/O6adOQomE/bCysFTjexZZVMTRqXkeuMvQTTKZJS6XS1
-         GHvbL+zGiwiLfjr4vOURvZa0PwDBYvzDki+7XGAbATXcuu6jJmqqYByrAZoCg9TS6A2Y
-         XjMLZ1paJks2jBBBwJ4KY2RS5WelsDZ/SmFunGSkyWM9JkIIYote4YTit7lXjj51q2v4
-         g+H3eh6NJ076ppdzCiWoLAyaq4Zom2lF6QG5vtvW+ExjFZKMKxkW+9z/+7JH/58bUp9M
-         BjFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769683313; x=1770288113;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=78yc5FN4eslJFV/3x/1+L9rJ7RkLelm3oGphAVI930Y=;
-        b=o55lqNa8f19ugurIQtT5A1KQdDZCvtFc0f28EHRSmB0nQHOsyCGESugJOSax6GAMwf
-         aZXEoFz1vC1yZH63EG1KhS7+7lfbKbNh+k9iXmbrJZxprGXddfXyHtsI+je12tg/Ehkv
-         kQi7EXkOcHnUgiSDbcilVfir/DIhRO2tksf3fWEFJ4Qd3yeXDhnA5qied7gO/eMXZ1RZ
-         GVnJeoMJg+rMaQU+9VVcfKBEbKrBWzl2OhP9BF4w0rC7pVmvAZZe+bStICdDNjEYT/qq
-         CrCvYF7SInRhjfFg64f4V0JL4M7YhYV+i3u8EumOckdbeoV9QZ3DEO5s2G7TlR1Zl0UJ
-         dgmw==
-X-Forwarded-Encrypted: i=1; AJvYcCU6g+Mh2ZYT9DzkeAEhZRitaPGwiO+P544eKk1JBjqzgcT1qR9qgYQV3OYUgoO/IYbKmeWNtKC4Kr6t@vger.kernel.org
-X-Gm-Message-State: AOJu0YyXgYQYZs3VILxwISJPuXvc2BmZCBO9fI6Ava3FshmWB0qmWvhZ
-	jjQ1+PBmt22jJERRFekWP0XmebvLZEDs+P+HP7gDEHBUD1AMT86uz9NquQeCwBSHsGlKJnAVxXO
-	R1EZ0H8zlg6UZWAxLNKdG68glkvDJ5mBUZ/ZKDvNcQquOD4zD2kiY4vBbTnLHgucz
-X-Gm-Gg: AZuq6aKPhHHZJZOSPeBlYZJzSnhHTu5ZthJcwUa+igcHJC3U9feam30ulYyEsMQwAba
-	fuGKC8Nuy5vYwB44XVVQthDl5IicO8l23iRh0Ee/jkVzhNaQZNKgr+qWjXdbjE+kAJvA0PLydc4
-	FCzGhAJYmHI1LPfxGKSjihVWQyd2Ci29oFykzMJTZVTrz3RKs37b9w3buCJAPHeQMeepRJ7hwq8
-	DWskJNbkP9zRD3InxCOZNBuyhahHuN5vJ+Qz/d5EbHtss2TysTlHNhCLgwYtSzJVQ5u3gn04ke8
-	Nz2BCZnOGhouR/oaAFCfCbRpmppwKh6uWlEqoyEKyZeZl0eJOl8Di0OVsq5MCbRHHyXwnEsDqLU
-	sz1/g21oNiwy3090Nb6TbgISo
-X-Received: by 2002:a05:620a:29ce:b0:8c6:c0f6:afa8 with SMTP id af79cd13be357-8c70b85685dmr1015279185a.30.1769683313309;
-        Thu, 29 Jan 2026 02:41:53 -0800 (PST)
-X-Received: by 2002:a05:620a:29ce:b0:8c6:c0f6:afa8 with SMTP id af79cd13be357-8c70b85685dmr1015276785a.30.1769683312752;
-        Thu, 29 Jan 2026 02:41:52 -0800 (PST)
-Received: from oss.qualcomm.com ([86.121.162.109])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435e132303fsm13615583f8f.36.2026.01.29.02.41.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Jan 2026 02:41:52 -0800 (PST)
-Date: Thu, 29 Jan 2026 12:41:50 +0200
-From: Abel Vesa <abel.vesa@oss.qualcomm.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: document the Eliza Top
- Level Mode Multiplexer
-Message-ID: <pdxrotmxjiebyj2gqx6buwupkydngxki6jgv4e6l6fmodzc5v2@yxky3civt3yz>
-References: <20260127-eliza-pinctrl-v2-0-1faf78efdc2e@oss.qualcomm.com>
- <20260127-eliza-pinctrl-v2-1-1faf78efdc2e@oss.qualcomm.com>
- <20260128-hot-camel-of-acumen-eef9f2@quoll>
- <aizrc6xysfwzygdsfeuc2raccq7efmwg5bn6v33t2de6ugvzgi@z3ipf3i25ulf>
- <dc0b7245-de95-4db7-bf8f-815ba60d7adf@oss.qualcomm.com>
+	s=arc-20240116; t=1769683397; c=relaxed/simple;
+	bh=Bsmu0ZtyxwBm7VmwVjV8hDfhurU6a3XA7N+L0IEyAyU=;
+	h=Mime-Version:References:In-Reply-To:Content-Type:To:Cc:Subject:
+	 From:Date:Message-Id; b=Lu53lAgJ3+GHacqoUoWFQ9ZxEdNkmpyK/H3IbC3RzgeD7JVws1fMQpxaEbqaJfBzaeRlS03vigjvahI+7rLkcWGKXNGOCqC7hgPGOOksMswCniRYksVm5u4tgJSlN72TEex3VnschZiQdcma2qXY0BzK50NTqLE/XDfHc+giGSc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=spacemit.com; spf=pass smtp.mailfrom=spacemit.com; dkim=pass (2048-bit key) header.d=spacemit.com header.i=@spacemit.com header.b=LbIVunH/; arc=none smtp.client-ip=118.26.132.30
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=spacemit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=spacemit.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ s=feishu2303021642; d=spacemit.com; t=1769683386; h=from:subject:
+ mime-version:from:date:message-id:subject:to:cc:reply-to:content-type:
+ mime-version:in-reply-to:message-id;
+ bh=Bsmu0ZtyxwBm7VmwVjV8hDfhurU6a3XA7N+L0IEyAyU=;
+ b=LbIVunH/EWD6EEA8W1O9RP6prp21kCg2APU8mmVKAkS3X3eTEDAgTJnp1jJAOM3zPUKz/p
+ uz2w9b90V8j89CySAX5jnUIjZbsefN+1ks5BXwnn+qxJ6p9ZPN6RTFVGfeeqsgVhFGpm4Z
+ 4kPxluxvQCJux+BQtDkucSudM+JNnzAVhXZi4wAEDELfXkkgU7Vx1WnCV5RP3Q1lsLSOJz
+ aAfY4PRQBAVoBCiYS9rdd5PWhEtMZ4KC1RXPNhF8x6bSL/NzOkl8Tp5XqDTDJ9qafM7qj1
+ JmkjzDnMZqtde1loEDYeVwBXIgWW9BKjANqSN7120owKEroVFPi5PrtWs5jZIQ==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <dc0b7245-de95-4db7-bf8f-815ba60d7adf@oss.qualcomm.com>
-X-Proofpoint-GUID: 5l-2VaOKHqmY3XETk5HmyhMbBrHZdOyT
-X-Authority-Analysis: v=2.4 cv=J72nLQnS c=1 sm=1 tr=0 ts=697b3972 cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=oauzzCmhM186DRC0Y2yWPg==:17
- a=kj9zAlcOel0A:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=ccfMCwPpft0q2rCTRJkA:9
- a=CjuIK1q_8ugA:10 a=NFOGd7dJGGMPyQGDc5-O:22
-X-Proofpoint-ORIG-GUID: 5l-2VaOKHqmY3XETk5HmyhMbBrHZdOyT
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI5MDA3MCBTYWx0ZWRfX4vKXcoLQC6Xd
- SUNe3HUsUIrN+IY43h4KPIHmr/AY2a73kQJl71db0uFPRJkpvCUBdYw7+byCwVGxNsrdE1EEigt
- VfgHHi4oeFambJhPSRgQQHFkXWh+fmmadYumLwEv4eipKgcwVHDCuU7OGdxGbT62cnglX9oBVn+
- oP1oNUXEXkcP70BLNN/y7oisNxLI/FLKrqJVa6p0TklDgakWKu1Tq36t8gil/TlrNyAOsyz3Y9+
- H5or5NK/OTVUSqV5UaZ0Xke3XMNWR+u73YpT56k2l8oNxIq6UqCCiBERqlzABVXIpFsdK8831FO
- H6rUIP73QHWfT7FVLg9CgzC5kmyT3uu2uK8xHKp9iA0EtJxSyaQyGHbgSPgjC2kxE00sansEHBE
- GH77rkh5IJGHDkaasE0Q+6zsfMx8Ynz5RkwV7wHmgAqVMsI774041EXEFsDV/i+vOyjL+w99ZJZ
- mRxtIBmqV2C8LlUNAHg==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-01-29_02,2026-01-28_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 phishscore=0 malwarescore=0 lowpriorityscore=0 spamscore=0
- priorityscore=1501 bulkscore=0 impostorscore=0 suspectscore=0 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601290070
+Mime-Version: 1.0
+References: <cover.1769562575.git.lv.zheng@spacemit.com> <cover.1769666438.git.lv.zheng@spacemit.com> <15209d7b8c5a5055f8944ab7261e440d70a18a03.1769666438.git.lv.zheng@spacemit.com>
+	<20260129-evolution-femur-84eb5668f4a7@spud>
+In-Reply-To: <20260129-evolution-femur-84eb5668f4a7@spud>
+Content-Type: text/plain; charset=UTF-8
+To: "Conor Dooley" <conor@kernel.org>
+Cc: "Tomasz Jeznach" <tjeznach@rivosinc.com>, 
+	"Joerg Roedel" <joro@8bytes.org>, "Will Deacon" <will@kernel.org>, 
+	"Robin Murphy" <robin.murphy@arm.com>, "Rob Herring" <robh@kernel.org>, 
+	"Krzysztof Kozlowski" <krzk+dt@kernel.org>, 
+	"Conor Dooley" <conor+dt@kernel.org>, "Paul Walmsley" <pjw@kernel.org>, 
+	"Palmer Dabbelt" <palmer@dabbelt.com>, 
+	"Albert Ou" <aou@eecs.berkeley.edu>, "Alexandre Ghiti" <alex@ghiti.fr>, 
+	"Jingyu Li" <joey.li@spacemit.com>, "iommu" <iommu@lists.linux.dev>, 
+	"linux-perf-users" <linux-perf-users@vger.kernel.org>, 
+	"linux-riscv" <linux-riscv@lists.infradead.org>, 
+	"spacemit" <spacemit@lists.linux.dev>, 
+	"devicetree" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v1.1 4/7] dt-bindings: iommu: Add spacemit/t100 features
+From: =?utf-8?q?=E9=83=91=E5=BE=8B?= <lv.zheng@spacemit.com>
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 29 Jan 2026 18:43:03 +0800
+Message-Id: <a4684b7f094a6a5ee87d9db722b75594f851b9fb.d4fb292a.1570.47af.8025.bf9af089dc8a@feishu.cn>
+X-Lms-Return-Path: <lba+1697b39b8+961d53+vger.kernel.org+lv.zheng@spacemit.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MV_CASE(0.50)[];
+	R_DKIM_ALLOW(-0.20)[spacemit.com:s=feishu2303021642];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	RCVD_TLS_LAST(0.00)[];
+	TO_DN_ALL(0.00)[];
+	DMARC_NA(0.00)[spacemit.com];
+	TAGGED_FROM(0.00)[bounces-260829-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-260827-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[abel.vesa@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lv.zheng@spacemit.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[spacemit.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 772D7AF353
+	RCPT_COUNT_TWELVE(0.00)[18];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,arm.com:email,linux.dev:email,infradead.org:email,spacemit.com:email,spacemit.com:dkim,ghiti.fr:email,8bytes.org:email,rivosinc.com:email,dabbelt.com:email]
+X-Rspamd-Queue-Id: 38182AF1F7
 X-Rspamd-Action: no action
 
-On 26-01-29 11:34:07, Konrad Dybcio wrote:
-> On 1/28/26 6:22 PM, Abel Vesa wrote:
-> > On 26-01-28 12:38:32, Krzysztof Kozlowski wrote:
-> >> On Tue, Jan 27, 2026 at 05:47:36PM +0200, Abel Vesa wrote:
-> >>> Document the Top Level Mode Multiplexer on the Eliza Platform.
-> >>>
-> >>> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
-> >>> ---
-> 
-> [...]
-> 
-> >>> +
-> >>> +  gpio-line-names:
-> >>> +    maxItems: 185
-> >>
-> >> 186, your first GPIO is 0 and last is 185.
-> > 
-> > Actually it is 0 through 184. The 185 is ufs reset.
-> 
-> The UFS reset also happens to be a GPIO..
+> From: "Conor Dooley"<conor@kernel.org>
+> Date:=C2=A0 Thu, Jan 29, 2026, 18:08
+> Subject:=C2=A0 Re: [PATCH v1.1 4/7] dt-bindings: iommu: Add spacemit/t100=
+ features
+> To: "Lv Zheng"<lv.zheng@spacemit.com>
+> Cc: "Tomasz Jeznach"<tjeznach@rivosinc.com>, "Joerg Roedel"<joro@8bytes.o=
+rg>, "Will Deacon"<will@kernel.org>, "Robin Murphy"<robin.murphy@arm.com>, =
+"Rob Herring"<robh@kernel.org>, "Krzysztof Kozlowski"<krzk+dt@kernel.org>, =
+"Conor Dooley"<conor+dt@kernel.org>, "Paul Walmsley"<pjw@kernel.org>, "Palm=
+er Dabbelt"<palmer@dabbelt.com>, "Albert Ou"<aou@eecs.berkeley.edu>, "Alexa=
+ndre Ghiti"<alex@ghiti.fr>, "Jingyu Li"<joey.li@spacemit.com>, "Zhijian Che=
+n"<zhijian@spacemit.com>, <iommu@lists.linux.dev>, <linux-perf-users@vger.k=
+ernel.org>, <linux-riscv@lists.infradead.org>, <spacemit@lists.linux.dev>, =
+<devicetree@vger.kernel.org>
+> On Thu, Jan 29, 2026 at 02:09:13PM +0800, Lv Zheng wrote:
+> > Adds device tree bindings for SpacemiT T100 specific features.
+> >=C2=A0
+> > vendor-hpm-events: Allow vendor events to be customized in the device
+> > =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0tr=
+ee.
+> > global-filter: The feature saves silicon area by reducing filters to
+> > =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0one and use it a=
+s a global filter across all events.
+> > =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0This usually is =
+sufficient for real applications.
+>=C2=A0
+> Why can these not be determined from a device specific compatible?
 
-So the gpio-line-names should include the ufs reset,
-but the pattern not.
+The specification only defines less than 10 standard event types while the
+real silicons should have implemented many other event types based on
+their micro-architecture. I tried to provide a common mechanism for all
+vendor specific event types across different vendors.
 
-Will fix accordingly.
+It is similar for the global filter, the global filter mechanism actually
+complies to the IOMMU specification, users can alter the iohpmevt
+registers as is what is specified in the IOMMU specification. It only
+provides slight application difference between the final effection. Thus
+this could also be a non-device specific option.
 
-Thanks.
+>=C2=A0
+> > Signed-off-by: Lv Zheng <lv.zheng@spacemit.com>
+> > Signed-off-by: Jingyu Li <joey.li@spacemit.com>
+> > ---
+> > =C2=A0.../bindings/iommu/riscv,iommu.yaml =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 | 60 ++++++++++++++++++-
+> > =C2=A01 file changed, 59 insertions(+), 1 deletion(-)
+> >=C2=A0
+> > diff --git a/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml b=
+/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml
+> > index d4838c3b3741..0378eef1f34e 100644
+> > --- a/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml
+> > +++ b/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml
+> > @@ -57,17 +57,42 @@ properties:
+> > =C2=A0
+> > =C2=A0 =C2=A0interrupts:
+> > =C2=A0 =C2=A0 =C2=A0minItems: 1
+> > - =C2=A0 =C2=A0maxItems: 4
+> > + =C2=A0 =C2=A0maxItems: 68
+> > =C2=A0 =C2=A0 =C2=A0description:
+> > =C2=A0 =C2=A0 =C2=A0 =C2=A0Wired interrupt vectors available for RISC-V=
+ IOMMU to notify the
+> > =C2=A0 =C2=A0 =C2=A0 =C2=A0RISC-V HARTS. The cause to interrupt vector =
+is software defined
+> > =C2=A0 =C2=A0 =C2=A0 =C2=A0using IVEC IOMMU register.
+> > + =C2=A0 =C2=A0 =C2=A0Normally the number of interrupt vectors availabl=
+e is 4 for IOATS
+> > + =C2=A0 =C2=A0 =C2=A0civ/fiv/pmiv/piv interrupts. But for SpacemiT dis=
+tributed IOMMU,
+> > + =C2=A0 =C2=A0 =C2=A0the number of interrupt vectors includes IOATC pm=
+iv wired
+> > + =C2=A0 =C2=A0 =C2=A0interrupts and the maximum number of IOATCs can b=
+e up to 64.
+>=C2=A0
+> The extension to 68 should only be permitted for a soc-specific
+> compatible.
+
+Sure.
+
+>=C2=A0
+> > +
+> > + =C2=A0interrupt-names:
+> > + =C2=A0 =C2=A0minItems: 1
+> > + =C2=A0 =C2=A0maxItems: 68
+> > =C2=A0
+> > =C2=A0 =C2=A0msi-parent: true
+> > =C2=A0
+> > =C2=A0 =C2=A0power-domains:
+> > =C2=A0 =C2=A0 =C2=A0maxItems: 1
+> > =C2=A0
+> > + =C2=A0vendor-hpm-events:
+> > + =C2=A0 =C2=A0minItems: 1
+> > + =C2=A0 =C2=A0maxItems: 120
+> > + =C2=A0 =C2=A0description:
+> > + =C2=A0 =C2=A0 =C2=A0Each item defines a vendor specific event using t=
+he format of
+> > + =C2=A0 =C2=A0 =C2=A0"eventId[:eventName]", where the eventId is an in=
+teger filling the
+> > + =C2=A0 =C2=A0 =C2=A0eventID field of the iohpmevt register and the ev=
+entName is an
+> > + =C2=A0 =C2=A0 =C2=A0optional string used as the annotation of the eve=
+nt instead of the
+> > + =C2=A0 =C2=A0 =C2=A0default name "eventId".
+> > + =C2=A0 =C2=A0$ref: /schemas/types.yaml#/definitions/string-array
+> > +
+> > + =C2=A0global-filter:
+> > + =C2=A0 =C2=A0type: boolean
+> > + =C2=A0 =C2=A0description:
+> > + =C2=A0 =C2=A0 =C2=A0Indicate the filters programmed across iohpmevt r=
+egisters are wired
+> > + =C2=A0 =C2=A0 =C2=A0together in hardware as a global filter applied t=
+o all HPM events.
+> > +
+> > =C2=A0required:
+> > =C2=A0 =C2=A0- compatible
+> > =C2=A0 =C2=A0- reg
+> > @@ -145,3 +170,36 @@ examples:
+> > =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0};
+> > =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0};
+> > =C2=A0 =C2=A0 =C2=A0};
+> > +
+> > + =C2=A0- |+
+> > + =C2=A0 =C2=A0/* Example 5 (SpacemiT distributed IOMMU) */
+> > + =C2=A0 =C2=A0#include <dt-bindings/interrupt-controller/irq.h>
+> > +
+> > + =C2=A0 =C2=A0iommu4: iommu@1bccd000 {
+> > + =C2=A0 =C2=A0 =C2=A0 =C2=A0compatible =3D "qemu,riscv-iommu", "riscv,=
+iommu";
+>=C2=A0
+> You cannot use the qemu compatible for your device, you must use a
+> specific one for the spacemit k3.
+
+Sure.
+
+>=C2=A0
+> Also, why is your version "v1.1"? That should just be "v1", and your
+> next version "v2" etc.
+
+I'm still using an old fashioned upstream rule, thanks for the reminder.
+
+>=C2=A0
+> pw-bot: changes-requested
+
+OK. Will send a revised patchset later.
+
+Cheers,
+Lv
+
+>=C2=A0
+> Cheers,
+> Conor.
+>=C2=A0
+> > + =C2=A0 =C2=A0 =C2=A0 =C2=A0reg =3D <0x1bccd000 0x1000>;
+> > + =C2=A0 =C2=A0 =C2=A0 =C2=A0interrupts =3D <58 IRQ_TYPE_LEVEL_HIGH>, <=
+58 IRQ_TYPE_LEVEL_HIGH>,
+> > + =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ <58 IRQ_TYPE_LEVEL_HIGH>, <58 IRQ_TYPE_LEVEL_HIGH>,
+> > + =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ <62 IRQ_TYPE_LEVEL_HIGH>, <63 IRQ_TYPE_LEVEL_HIGH>;
+> > + =C2=A0 =C2=A0 =C2=A0 =C2=A0interrupt-names =3D "civ", "fiv", "ioats-p=
+miv", "piv",
+> > + =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0"ioatc0-pmiv", "ioatc1-pmiv";
+> > + =C2=A0 =C2=A0 =C2=A0 =C2=A0interrupt-parent =3D <&saplic>;
+> > + =C2=A0 =C2=A0 =C2=A0 =C2=A0#iommu-cells =3D <0x01>;
+> > + =C2=A0 =C2=A0 =C2=A0 =C2=A0/* SpacemiT T100 features */
+> > + =C2=A0 =C2=A0 =C2=A0 =C2=A0global-filter;
+> > + =C2=A0 =C2=A0 =C2=A0 =C2=A0vendor-hpm-events =3D "0x10:pri_page_reqs"=
+,
+> > + =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0"0x11:ptw_cache_reqs",
+> > + =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0"0x12:dtw_cache_reqs",
+> > + =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0"0x15:all_trans_reqs",
+> > + =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0"0x20:dtw_cache_lkps",
+> > + =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0"0x28:s1l0_ptw_cache_lkps",
+> > + =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0"0x2A:s1l1_ptw_cache_lkps",
+> > + =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0"0x2C:s1l2_ptw_cache_lkps",
+> > + =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0"0x2E:s1l3_ptw_cache_lkps",
+> > + =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0"0x30:s2l0_ptw_cache_lkps",
+> > + =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0"0x32:s2l1_ptw_cache_lkps",
+> > + =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0"0x34:s2l2_ptw_cache_lkps",
+> > + =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0"0x36:s2l3_ptw_cache_lkps",
+> > + =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0"0x38:mtlb_lkps",
+> > + =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0"0x3A:utlb_lkps";
+> > + =C2=A0 =C2=A0};
+> > --=C2=A0
+> > 2.43.0
+> >=C2=A0
+
+
+This message and any attachment are confidential and may be privileged or o=
+therwise protected from disclosure. If you are not an intended recipient of=
+ this message, please delete it and any attachment from your system and not=
+ify the sender immediately by reply e-mail. Unintended recipients should no=
+t use, copy, disclose or take any action based on this message or any infor=
+mation contained in this message. Emails cannot be guaranteed to be secure =
+or error free as they can be intercepted, amended, lost or destroyed, and y=
+ou should take full responsibility for security checking.=20
+=20
+=E6=9C=AC=E9=82=AE=E4=BB=B6=E5=8F=8A=E5=85=B6=E4=BB=BB=E4=BD=95=E9=99=84=E4=
+=BB=B6=E5=85=B7=E6=9C=89=E4=BF=9D=E5=AF=86=E6=80=A7=E8=B4=A8=EF=BC=8C=E5=B9=
+=B6=E5=8F=AF=E8=83=BD=E5=8F=97=E5=85=B6=E4=BB=96=E4=BF=9D=E6=8A=A4=E6=88=96=
+=E4=B8=8D=E5=85=81=E8=AE=B8=E8=A2=AB=E6=8A=AB=E9=9C=B2=E7=BB=99=E7=AC=AC=E4=
+=B8=89=E6=96=B9=E3=80=82=E5=A6=82=E9=98=81=E4=B8=8B=E8=AF=AF=E6=94=B6=E5=88=
+=B0=E6=9C=AC=E9=82=AE=E4=BB=B6=EF=BC=8C=E6=95=AC=E8=AF=B7=E7=AB=8B=E5=8D=B3=
+=E4=BB=A5=E5=9B=9E=E5=A4=8D=E7=94=B5=E5=AD=90=E9=82=AE=E4=BB=B6=E7=9A=84=E6=
+=96=B9=E5=BC=8F=E9=80=9A=E7=9F=A5=E5=8F=91=E4=BB=B6=E4=BA=BA=EF=BC=8C=E5=B9=
+=B6=E5=B0=86=E6=9C=AC=E9=82=AE=E4=BB=B6=E5=8F=8A=E5=85=B6=E4=BB=BB=E4=BD=95=
+=E9=99=84=E4=BB=B6=E4=BB=8E=E9=98=81=E4=B8=8B=E7=B3=BB=E7=BB=9F=E4=B8=AD=E4=
+=BA=88=E4=BB=A5=E5=88=A0=E9=99=A4=E3=80=82=E5=A6=82=E9=98=81=E4=B8=8B=E5=B9=
+=B6=E9=9D=9E=E6=9C=AC=E9=82=AE=E4=BB=B6=E5=86=99=E6=98=8E=E4=B9=8B=E6=94=B6=
+=E4=BB=B6=E4=BA=BA=EF=BC=8C=E6=95=AC=E8=AF=B7=E5=88=87=E5=8B=BF=E4=BD=BF=E7=
+=94=A8=E3=80=81=E5=A4=8D=E5=88=B6=E3=80=81=E6=8A=AB=E9=9C=B2=E6=9C=AC=E9=82=
+=AE=E4=BB=B6=E6=88=96=E5=85=B6=E4=BB=BB=E4=BD=95=E5=86=85=E5=AE=B9=EF=BC=8C=
+=E4=BA=A6=E8=AF=B7=E5=88=87=E5=8B=BF=E4=BE=9D=E6=9C=AC=E9=82=AE=E4=BB=B6=E6=
+=88=96=E5=85=B6=E4=BB=BB=E4=BD=95=E5=86=85=E5=AE=B9=E8=80=8C=E9=87=87=E5=8F=
+=96=E4=BB=BB=E4=BD=95=E8=A1=8C=E5=8A=A8=E3=80=82=E7=94=B5=E5=AD=90=E9=82=AE=
+=E4=BB=B6=E6=97=A0=E6=B3=95=E4=BF=9D=E8=AF=81=E6=98=AF=E4=B8=80=E7=A7=8D=E5=
+=AE=89=E5=85=A8=E5=92=8C=E4=B8=8D=E4=BC=9A=E5=87=BA=E7=8E=B0=E4=BB=BB=E4=BD=
+=95=E5=B7=AE=E9=94=99=E7=9A=84=E9=80=9A=E4=BF=A1=E6=96=B9=E5=BC=8F=EF=BC=8C=
+=E5=8F=AF=E8=83=BD=E4=BC=9A=E8=A2=AB=E6=8B=A6=E6=88=AA=E3=80=81=E4=BF=AE=E6=
+=94=B9=E3=80=81=E4=B8=A2=E5=A4=B1=E6=88=96=E6=8D=9F=E5=9D=8F=EF=BC=8C=E6=94=
+=B6=E4=BB=B6=E4=BA=BA=E9=9C=80=E8=87=AA=E8=A1=8C=E8=B4=9F=E8=B4=A3=E5=81=9A=
+=E5=A5=BD=E5=AE=89=E5=85=A8=E6=A3=80=E6=9F=A5=E3=80=82
 
