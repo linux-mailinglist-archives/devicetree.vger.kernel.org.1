@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-261019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261017-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aFsKD2y1e2neHwIAu9opvQ
-	(envelope-from <devicetree+bounces-261019-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 20:30:52 +0100
+	id CBFrK0+1e2neHwIAu9opvQ
+	(envelope-from <devicetree+bounces-261017-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 20:30:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B88DB3FF4
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 20:30:51 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8532B3FC8
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 20:30:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 785F1303AA98
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 19:30:22 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 0E33D3005151
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 19:30:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEFC4329E40;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04A48328608;
 	Thu, 29 Jan 2026 19:30:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=raptorengineering.com header.i=@raptorengineering.com header.b="GGxZm0Ka"
+	dkim=pass (1024-bit key) header.d=raptorengineering.com header.i=@raptorengineering.com header.b="HZPmuvq+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from raptorengineering.com (mail.raptorengineering.com [23.155.224.40])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBC7E2737F2;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC3632741DF;
 	Thu, 29 Jan 2026 19:30:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=23.155.224.40
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769715018; cv=none; b=OAOc2U6V/ob1hS34kEJO5Qzls0TuJifkPTbhiVWpTRdB6VUj9U47FZeac4Yv0oJ4ICwemA3FfAJdL8k6KZBFLcsBVB3kyKFbJZljLwLXtqKjZogGrTZVLmoK7Fta8+SqsQiuqKJjrNKhKwcfJQpJeHIuE4xCsLo9ijH5RHO6xkc=
+	t=1769715017; cv=none; b=qewuSGgd4r5yQKCRUZK+XaXsMGjK7vbrvli6MNvHdnaR4wfJlbM9QdXQdM1VHSvUGTXmn8KcBY3ycwzGh2xM5oIUVfWTRuJ8xG7y0wOfbUnjSiAuHWQIMgqyyUTRXmekWFhXOLWt68cIcWbYqhr/Wk+tjmJPYtwaQLzzgqzS09U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769715018; c=relaxed/simple;
-	bh=yY6caX74Doksm7vgV0/9wY1OFwjOjQU93XMIezMvkYw=;
+	s=arc-20240116; t=1769715017; c=relaxed/simple;
+	bh=QVzcCCqndxA2lAN5/hZCKeLPhfA387LDOWq3iFo1GhA=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=JHBg78yv9QhCMEhal5wS7d/914CuYzIQyeahZgnOlevu322ejGWmuV3zZPWXl50YABLUr4EBmfoZzRQejkn+aP8RcrtaYOxLCOpmfkY4lwaUa/jLE6Md3Dinyx1jOf6ftUe17NPAgnfZD6ru36LjQ9j7YMfUFQCgz2Sy+OmM3aE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raptorengineering.com; spf=pass smtp.mailfrom=raptorengineering.com; dkim=pass (1024-bit key) header.d=raptorengineering.com header.i=@raptorengineering.com header.b=GGxZm0Ka; arc=none smtp.client-ip=23.155.224.40
+	 MIME-Version; b=OfahTDozp1f5A0wFuzWBLuB9+yrAriOqaJHw1FGW55mI8CvXhgrpgkehg36Sgw+zBx0MbT5gSslWrUr5uJHcM3iu5rbfXALeOJMbTfn7LRLguL+CiOGsGOz0YmsXE5GxRww1jbEbrxHsC5OX5vWUqpPDtYNgSuNbW4TV0mDmOuI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raptorengineering.com; spf=pass smtp.mailfrom=raptorengineering.com; dkim=pass (1024-bit key) header.d=raptorengineering.com header.i=@raptorengineering.com header.b=HZPmuvq+; arc=none smtp.client-ip=23.155.224.40
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raptorengineering.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raptorengineering.com
 Received: from localhost (localhost [127.0.0.1])
-	by mail.rptsys.com (Postfix) with ESMTP id 41AFA7791D28;
-	Thu, 29 Jan 2026 13:20:58 -0600 (CST)
+	by mail.rptsys.com (Postfix) with ESMTP id 0992F7791C4F;
+	Thu, 29 Jan 2026 13:20:59 -0600 (CST)
 Received: from mail.rptsys.com ([127.0.0.1])
 	by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10032)
-	with ESMTP id sFIhhIjsKVLM; Thu, 29 Jan 2026 13:20:57 -0600 (CST)
+	with ESMTP id A10eKHOQYp92; Thu, 29 Jan 2026 13:20:57 -0600 (CST)
 Received: from localhost (localhost [127.0.0.1])
-	by mail.rptsys.com (Postfix) with ESMTP id 10C6E7791C4F;
+	by mail.rptsys.com (Postfix) with ESMTP id 978357791C80;
 	Thu, 29 Jan 2026 13:20:57 -0600 (CST)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.rptsys.com 10C6E7791C4F
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.rptsys.com 978357791C80
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=raptorengineering.com; s=B8E824E6-0BE2-11E6-931D-288C65937AAD;
-	t=1769714457; bh=kjCwV8XYxZAhdhGqIEUH1YN69lEod0KMsyIxUj4JY5Q=;
+	t=1769714457; bh=WPEfYO8iVjMyeWpUKloKZI1bJQk5ya4ryGzt0pqqcZM=;
 	h=From:To:Date:Message-Id:MIME-Version;
-	b=GGxZm0Ka9Zxs4txqm2TgM/sqwpEb4yEXue8lYIyypaYTcV8B4AZtMKZWksoxe0oiG
-	 F3cp7K7EQ909NK9oo25A2Y7Q7vxRe4/tf6918twk3nDNsWYxvy7bneHUpVX6fKWFEB
-	 GB82/jnoOCUNHmmSf8bmpotA4bBEAKdll4kQHmEo=
+	b=HZPmuvq+qAWkAVBTlpVCrkzmE16Sdi2GhRvc38JA2oVmqb9yKR/g/bRxy8jqtXv7S
+	 RHAn8rIaVLe8p8AwzyoXJIU2grM9VDWqyCnpXSJ5EjsrQjL6TU8MplcWqAKUuc3vBh
+	 irrWU+AUe1VDKMQRfcLTtsbDKpKnHEdlnQIfnVnw=
 X-Virus-Scanned: amavisd-new at rptsys.com
 Received: from mail.rptsys.com ([127.0.0.1])
 	by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id sAtmH5Q3FbZk; Thu, 29 Jan 2026 13:20:56 -0600 (CST)
+	with ESMTP id g9A2y6hqv7gj; Thu, 29 Jan 2026 13:20:57 -0600 (CST)
 Received: from rcs-ewks-005.starlink.edu (unknown [192.168.20.42])
-	by mail.rptsys.com (Postfix) with ESMTPSA id DB5EE7791B3D;
-	Thu, 29 Jan 2026 13:20:56 -0600 (CST)
+	by mail.rptsys.com (Postfix) with ESMTPSA id 6C2FF7791C22;
+	Thu, 29 Jan 2026 13:20:57 -0600 (CST)
 From: Raptor Engineering Development Team <support@raptorengineering.com>
 To: devicetree@vger.kernel.org
 Cc: linux-kernel@vger.kernel.org,
@@ -68,9 +68,9 @@ Cc: linux-kernel@vger.kernel.org,
 	Georgy.Yakovlev@sony.com,
 	sanastasio@raptorengineering.com,
 	Timothy Pearson <tpearson@raptorengineering.com>
-Subject: [PATCH v7 2/4] mfd: sony-cronos-smc: Add driver for Sony Cronos SMC
-Date: Thu, 29 Jan 2026 13:20:45 -0600
-Message-Id: <20260129192047.562540-3-support@raptorengineering.com>
+Subject: [PATCH v7 3/4] led: sony-cronos-smc: Add RGB LED driver for Sony Cronos SMC
+Date: Thu, 29 Jan 2026 13:20:46 -0600
+Message-Id: <20260129192047.562540-4-support@raptorengineering.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <20260129192047.562540-1-support@raptorengineering.com>
 References: <20260129192047.562540-1-support@raptorengineering.com>
@@ -87,14 +87,14 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[raptorengineering.com,quarantine];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[raptorengineering.com:s=B8E824E6-0BE2-11E6-931D-288C65937AAD];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261019-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sony.com:email,intel.com:email];
+	TAGGED_FROM(0.00)[bounces-261017-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
@@ -108,376 +108,475 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: 9B88DB3FF4
+X-Rspamd-Queue-Id: D8532B3FC8
 X-Rspamd-Action: no action
 
 From: Timothy Pearson <tpearson@raptorengineering.com>
 
 The Sony Cronos Platform Controller is a multi-purpose platform controlle=
-r
-that provides both a watchdog timer and an LED controller for the Sony
-Interactive Entertainment Cronos x86 server platform. As both functions
-are provided by the same CPLD, a multi-function device is exposed as the
-parent of both functions.
+r with
+an integrated multi-channel RGB LED controller.  The LED controller is a
+pseudo-RGB device with only two states for each of the RGB subcomponents =
+of
+each LED, but is exposed as a full RGB device for ease of integration wit=
+h
+userspace software.  Internal thresholding is used to convert the color v=
+alues
+to the required on/off RGB subcomponent controls.
 
 Signed-off-by: Timothy Pearson <tpearson@raptorengineering.com>
-Signed-off-by: Shawn Anastasio <sanastasio@raptorengineering.com>
 ---
- MAINTAINERS                     |   7 ++
- drivers/mfd/Kconfig             |  11 ++
- drivers/mfd/Makefile            |   2 +
- drivers/mfd/sony-cronos-smc.c   | 204 ++++++++++++++++++++++++++++++++
- include/linux/mfd/sony-cronos.h |  61 ++++++++++
- 5 files changed, 285 insertions(+)
- create mode 100644 drivers/mfd/sony-cronos-smc.c
- create mode 100644 include/linux/mfd/sony-cronos.h
+ drivers/leds/Kconfig            |  19 ++
+ drivers/leds/Makefile           |   1 +
+ drivers/leds/leds-sony-cronos.c | 376 ++++++++++++++++++++++++++++++++
+ 3 files changed, 396 insertions(+)
+ create mode 100644 drivers/leds/leds-sony-cronos.c
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 67db88b04537..a9fce9f72164 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -24298,6 +24298,13 @@ S:	Maintained
- F:	drivers/ssb/
- F:	include/linux/ssb/
+diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
+index 11e7282dc297..18bad7c643f3 100644
+--- a/drivers/leds/Kconfig
++++ b/drivers/leds/Kconfig
+@@ -1009,6 +1009,25 @@ config LEDS_IP30
+ 	  To compile this driver as a module, choose M here: the module
+ 	  will be called leds-ip30.
 =20
-+SONY CRONOS SMC DRIVER
-+M:	Georgy Yakovlev <Georgy.Yakovlev@sony.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/mfd/sony,cronos-smc.yaml
-+F:	drivers/mfd/sony-cronos-smc.c
-+F:	include/linux/mfd/sony-cronos.h
++config LEDS_SONY_CRONOS
++	tristate "LED support for the Sony Cronos SMC"
++	depends on ARCH_ASPEED || COMPILE_TEST
++	depends on LEDS_CLASS && I2C
++	depends on LEDS_CLASS_MULTICOLOR
++	depends on MFD_SONY_CRONOS_SMC
 +
- SONY IMX208 SENSOR DRIVER
- M:	Sakari Ailus <sakari.ailus@linux.intel.com>
- L:	linux-media@vger.kernel.org
-diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-index aace5766b38a..559aa64500e6 100644
---- a/drivers/mfd/Kconfig
-+++ b/drivers/mfd/Kconfig
-@@ -2388,6 +2388,17 @@ config MFD_QCOM_PM8008
- 	  under it in the device tree. Additional drivers must be enabled in
- 	  order to use the functionality of the device.
-=20
-+config MFD_SONY_CRONOS_SMC
-+	tristate "Sony Cronos System Management Controller"
-+	select MFD_CORE
-+	select REGMAP_I2C
-+	depends on I2C && OF
 +	help
-+      Support for the Sony Cronos system controller. Additional drivers =
-must
-+      be enabled in order to use the functionality of the device, includ=
-ing LED
-+      control and the system watchdog. The controller itself is a custom=
- design
-+      tailored to the specific needs of the Sony Cronos hardware platfor=
-m.
++	  Say Y here to include support for LEDs for the
++	  Sony Cronos system management controller.
 +
- menu "Multimedia Capabilities Port drivers"
- 	depends on ARCH_SA1100
-=20
-diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-index e75e8045c28a..2e8cf0c7096c 100644
---- a/drivers/mfd/Makefile
-+++ b/drivers/mfd/Makefile
-@@ -301,6 +301,8 @@ obj-$(CONFIG_MFD_QNAP_MCU)	+=3D qnap-mcu.o
- obj-$(CONFIG_MFD_RSMU_I2C)	+=3D rsmu_i2c.o rsmu_core.o
- obj-$(CONFIG_MFD_RSMU_SPI)	+=3D rsmu_spi.o rsmu_core.o
-=20
-+obj-$(CONFIG_MFD_SONY_CRONOS_SMC)	+=3D sony-cronos-smc.o
++	  All known Cronos systems use the ASpeed AST2600 SoC,
++	  therefore the configuration option is gated on
++	  ARCH_ASPEED selection.  If this changes, add the new
++	  SoCs to the selection list.
 +
- obj-$(CONFIG_MFD_UPBOARD_FPGA)	+=3D upboard-fpga.o
-=20
- obj-$(CONFIG_MFD_LOONGSON_SE)	+=3D loongson-se.o
-diff --git a/drivers/mfd/sony-cronos-smc.c b/drivers/mfd/sony-cronos-smc.=
-c
++	  To compile this driver as a module, choose M here: the module
++	  will be called leds-sony-cronos.
++
+ config LEDS_ACER_A500
+ 	tristate "Power button LED support for Acer Iconia Tab A500"
+ 	depends on LEDS_CLASS && MFD_ACER_A500_EC
+diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
+index 9a0333ec1a86..6dbcf747cab6 100644
+--- a/drivers/leds/Makefile
++++ b/drivers/leds/Makefile
+@@ -84,6 +84,7 @@ obj-$(CONFIG_LEDS_POWERNV)		+=3D leds-powernv.o
+ obj-$(CONFIG_LEDS_PWM)			+=3D leds-pwm.o
+ obj-$(CONFIG_LEDS_QNAP_MCU)		+=3D leds-qnap-mcu.o
+ obj-$(CONFIG_LEDS_REGULATOR)		+=3D leds-regulator.o
++obj-$(CONFIG_LEDS_SONY_CRONOS)		+=3D leds-sony-cronos.o
+ obj-$(CONFIG_LEDS_SC27XX_BLTC)		+=3D leds-sc27xx-bltc.o
+ obj-$(CONFIG_LEDS_ST1202)		+=3D leds-st1202.o
+ obj-$(CONFIG_LEDS_SUN50I_A100)		+=3D leds-sun50i-a100.o
+diff --git a/drivers/leds/leds-sony-cronos.c b/drivers/leds/leds-sony-cro=
+nos.c
 new file mode 100644
-index 000000000000..c1c67acf9319
+index 000000000000..e2b40a27421e
 --- /dev/null
-+++ b/drivers/mfd/sony-cronos-smc.c
-@@ -0,0 +1,204 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
++++ b/drivers/leds/leds-sony-cronos.c
+@@ -0,0 +1,376 @@
++// SPDX-License-Identifier: GPL-2.0
 +/*
-+ * Device driver for Sony Cronos SMCs
-+ * Copyright (C) 2015-2017  Dialog Semiconductor
-+ * Copyright (C) 2022-2025  Raptor Engineering, LLC
++ * LED driver for Sony Cronos SMCs
++ * Copyright (C) 2012 Dialog Semiconductor Ltd.
++ * Copyright (C) 2023 Sony Interactive Entertainment
++ * Copyright (C) 2025 Raptor Engineering, LLC
 + */
 +
-+#include <linux/device.h>
-+#include <linux/i2c.h>
-+#include <linux/init.h>
-+#include <linux/interrupt.h>
 +#include <linux/kernel.h>
-+#include <linux/mfd/core.h>
++#include <linux/leds.h>
++#include <linux/led-class-multicolor.h>
 +#include <linux/mfd/sony-cronos.h>
 +#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/platform_device.h>
 +#include <linux/regmap.h>
 +
-+static const struct mfd_cell cronos_smc_devs[] =3D {
-+	{
-+		.name =3D "cronos-watchdog",
-+		.of_compatible =3D "sony,cronos-watchdog",
-+	},
-+	{
-+		.name =3D "cronos-led",
-+		.of_compatible =3D "sony,cronos-led",
-+	},
++/* Masks and Bit shifts */
++#define CRONOS_LEDS_STATUS_FLASHING_MASK	0x40
++#define CRONOS_LEDS_STATUS_FLASHING_SHIFT	6
++#define CRONOS_LEDS_STATUS_COLOR_MASK		0x07
++#define CRONOS_LEDS_STATUS_COLOR_SHIFT		0
++
++#define CRONOS_LEDS_LINK_FLASHING_MASK		0x80
++#define CRONOS_LEDS_LINK_FLASHING_SHIFT		7
++#define CRONOS_LEDS_LINK_COLOR_MASK		0x38
++#define CRONOS_LEDS_LINK_COLOR_SHIFT		3
++
++#define CRONOS_LEDS_CCM1_POWER_COLOR_MASK	0x03
++#define CRONOS_LEDS_CCM1_POWER_COLOR_SHIFT	0
++#define CRONOS_LEDS_CCM2_POWER_COLOR_MASK	0x0C
++#define CRONOS_LEDS_CCM2_POWER_COLOR_SHIFT	2
++#define CRONOS_LEDS_CCM3_POWER_COLOR_MASK	0x30
++#define CRONOS_LEDS_CCM3_POWER_COLOR_SHIFT	4
++#define CRONOS_LEDS_CCM4_POWER_COLOR_MASK	0xC0
++#define CRONOS_LEDS_CCM4_POWER_COLOR_SHIFT	6
++
++/* LED Color mapping - Links and status LEDs */
++#define LED_COLOR_OFF		0x00
++#define LED_COLOR_BLUE		0x01
++#define LED_COLOR_GREEN		0x02
++#define LED_COLOR_RED		0x04
++
++/* LED Color mapping - Power state LEDs */
++#define LED_COLOR_POWER_OFF	0x00
++#define LED_COLOR_POWER_RED	0x02
++#define LED_COLOR_POWER_GREEN	0x01
++
++/* Number of LEDs per type */
++#define LED_COUNT_STATUS	6
++#define LED_COUNT_LINK		5
++#define LED_COUNT_POWER		4
++#define LED_COUNT_ALL (LED_COUNT_STATUS + LED_COUNT_LINK + LED_COUNT_POW=
+ER)
++
++enum sony_cronos_led_id {
++	LED_ID_CCM1_STATUS =3D 0x00,
++	LED_ID_CCM2_STATUS,
++	LED_ID_CCM3_STATUS,
++	LED_ID_CCM4_STATUS,
++	LED_ID_SWITCH_STATUS,
++	LED_ID_SMC_STATUS,
++
++	LED_ID_CCM1_LINK,
++	LED_ID_CCM2_LINK,
++	LED_ID_CCM3_LINK,
++	LED_ID_CCM4_LINK,
++	LED_ID_SWITCH_LINK,
++
++	LED_ID_CCM1_POWER,
++	LED_ID_CCM2_POWER,
++	LED_ID_CCM3_POWER,
++	LED_ID_CCM4_POWER
 +};
 +
-+static int sony_cronos_get_device_type(struct sony_cronos_smc *ddata)
-+{
-+	int device_id;
-+	int byte_high;
-+	int byte_low;
-+	int ret;
-+
-+	ret =3D regmap_read(ddata->regmap, CRONOS_SMC_DEVICE_ID_HIGH_REG, &byte=
-_high);
-+	if (ret) {
-+		dev_err(ddata->dev, "Cannot read ddata ID high byte.\n");
-+		return -EIO;
-+	}
-+	ret =3D regmap_read(ddata->regmap, CRONOS_SMC_DEVICE_ID_LOW_REG, &byte_=
-low);
-+	if (ret) {
-+		dev_err(ddata->dev, "Cannot read ddata ID low byte.\n");
-+		return -EIO;
-+	}
-+
-+	device_id =3D byte_high << 8;
-+	device_id |=3D byte_low;
-+
-+	if (device_id !=3D CRONOS_SMC_DEVICE_ID) {
-+		dev_err(ddata->dev, "Unsupported device ID 0x%04x\n", device_id);
-+		return -ENODEV;
-+	}
-+
-+	return ret;
-+}
-+
-+static bool cronos_smc_is_writeable_reg(struct device *dev, unsigned int=
- reg)
-+{
-+	switch (reg) {
-+	case CRONOS_SMC_BRIGHTNESS_RED_REG:
-+	case CRONOS_SMC_BRIGHTNESS_GREEN_REG:
-+	case CRONOS_SMC_BRIGHTNESS_BLUE_REG:
-+	case CRONOS_LEDS_SMC_STATUS_REG:
-+	case CRONOS_LEDS_SWITCH_STATUS_REG:
-+	case CRONOS_LEDS_CCM1_STATUS_REG:
-+	case CRONOS_LEDS_CCM2_STATUS_REG:
-+	case CRONOS_LEDS_CCM3_STATUS_REG:
-+	case CRONOS_LEDS_CCM4_STATUS_REG:
-+	case CRONOS_LEDS_CCM_POWER_REG:
-+
-+	case CRONOS_WDT_CTL_REG:
-+	case CRONOS_WDT_CLR_REG:
-+
-+	case CRONOS_SMC_UART_MUX_REG:
-+	case CRONOS_SMC_SWITCH_BOOT_FLASH_SELECT_REG:
-+	case CRONOS_SMC_SWITCH_RESET_CMD_REG:
-+	case CRONOS_SMC_BMC_BOOT_FLASH_SELECT_REG:
-+	case CRONOS_SMC_PAYLOAD_POWER_CTL_REG:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
-+static bool cronos_smc_is_readable_reg(struct device *dev, unsigned int =
-reg)
-+{
-+	switch (reg) {
-+	case CRONOS_SMC_REVISION_HIGH_REG:
-+	case CRONOS_SMC_REVISION_LOW_REG:
-+	case CRONOS_SMC_DEVICE_ID_HIGH_REG:
-+	case CRONOS_SMC_DEVICE_ID_LOW_REG:
-+
-+	case CRONOS_SMC_BRIGHTNESS_RED_REG:
-+	case CRONOS_SMC_BRIGHTNESS_GREEN_REG:
-+	case CRONOS_SMC_BRIGHTNESS_BLUE_REG:
-+	case CRONOS_LEDS_SMC_STATUS_REG:
-+	case CRONOS_LEDS_SWITCH_STATUS_REG:
-+	case CRONOS_LEDS_CCM1_STATUS_REG:
-+	case CRONOS_LEDS_CCM2_STATUS_REG:
-+	case CRONOS_LEDS_CCM3_STATUS_REG:
-+	case CRONOS_LEDS_CCM4_STATUS_REG:
-+	case CRONOS_LEDS_CCM_POWER_REG:
-+
-+	case CRONOS_WDT_CTL_REG:
-+	case CRONOS_WDT_CLR_REG:
-+
-+	case CRONOS_SMC_STATUS_2_REG:
-+	case CRONOS_SMC_UART_MUX_REG:
-+	case CRONOS_SMC_SWITCH_BOOT_FLASH_SELECT_REG:
-+	case CRONOS_SMC_SWITCH_RESET_CMD_REG:
-+	case CRONOS_SMC_BMC_BOOT_FLASH_SELECT_REG:
-+	case CRONOS_SMC_PAYLOAD_POWER_CTL_REG:
-+
-+	case CRONOS_SMC_BMC_MAC_LOW_REG ... CRONOS_SMC_BMC_MAC_HIGH_REG:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
-+static bool cronos_smc_is_volatile_reg(struct device *dev, unsigned int =
-reg)
-+{
-+	switch (reg) {
-+	case CRONOS_SMC_REVISION_HIGH_REG:
-+	case CRONOS_SMC_REVISION_LOW_REG:
-+
-+	case CRONOS_SMC_SWITCH_BOOT_FLASH_SELECT_REG:
-+	case CRONOS_SMC_SWITCH_RESET_CMD_REG:
-+	case CRONOS_SMC_BMC_BOOT_FLASH_SELECT_REG:
-+	case CRONOS_SMC_PAYLOAD_POWER_CTL_REG:
-+
-+	case CRONOS_WDT_CTL_REG:
-+	case CRONOS_WDT_CLR_REG:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
-+static struct regmap_config cronos_smc_regmap_config =3D {
-+	.reg_bits =3D 8,
-+	.val_bits =3D 8,
-+	.max_register =3D CRONOS_SMC_REVISION_HIGH_REG,
-+	.writeable_reg =3D cronos_smc_is_writeable_reg,
-+	.readable_reg =3D cronos_smc_is_readable_reg,
-+	.volatile_reg =3D cronos_smc_is_volatile_reg,
-+	.use_single_read =3D true,
-+	.use_single_write =3D true,
-+	.cache_type =3D REGCACHE_MAPLE,
++enum sony_cronos_led_type {
++	LED_TYPE_STATUS,
++	LED_TYPE_LINK,
++	LED_TYPE_POWER,
 +};
 +
-+static int sony_cronos_i2c_probe(struct i2c_client *i2c)
++/**
++ * struct sony_cronos_led - per-LED part of driver private data structur=
+e
++ * @mc_cdev:		multi-color LED class device
++ * @subled_info:	per-channel information
++ * @led_register:	led register in the MFD regmap
++ * @led_type:		sie_cronos_led_type
++ * @led_id:		sie_cronos_led_id
++ */
++struct sony_cronos_led {
++	struct led_classdev_mc mc_cdev;
++	struct mc_subled subled_info[LED_COUNT_ALL];
++	u8 led_register;
++	enum sony_cronos_led_type led_type;
++	enum sony_cronos_led_id led_id;
++};
++
++#define to_cronos_led(l) container_of(l, struct sony_cronos_led, mc_cdev=
+)
++
++/**
++ * struct sony_cronos_leds - driver private data structure
++ * @hw:				handle to hw device
++ * @leds:			flexible array of per-LED data
++ */
++struct sony_cronos_leds {
++	struct sony_cronos_smc *hw;
++	struct sony_cronos_led leds[];
++};
++
++static int cronos_led_color_store(struct sony_cronos_smc *chip, struct s=
+ony_cronos_led *led)
 +{
-+	struct sony_cronos_smc *ddata;
++	u8 byte;
++	u8 color_mask;
++	u8 color_shift;
++	u8 color_key_red;
++	u8 color_key_green;
++	u8 color_key_blue;
 +	int ret;
 +
-+	ddata =3D devm_kzalloc(&i2c->dev, sizeof(*ddata), GFP_KERNEL);
-+	if (!ddata)
++	if (led->led_type =3D=3D LED_TYPE_STATUS) {
++		color_mask =3D CRONOS_LEDS_STATUS_COLOR_MASK;
++		color_shift =3D CRONOS_LEDS_STATUS_COLOR_SHIFT;
++	} else if (led->led_type =3D=3D LED_TYPE_LINK) {
++		color_mask =3D CRONOS_LEDS_LINK_COLOR_MASK;
++		color_shift =3D CRONOS_LEDS_LINK_COLOR_SHIFT;
++	} else if (led->led_id =3D=3D LED_ID_CCM1_POWER) {
++		color_mask =3D CRONOS_LEDS_CCM1_POWER_COLOR_MASK;
++		color_shift =3D CRONOS_LEDS_CCM1_POWER_COLOR_SHIFT;
++	} else if (led->led_id =3D=3D LED_ID_CCM2_POWER) {
++		color_mask =3D CRONOS_LEDS_CCM2_POWER_COLOR_MASK;
++		color_shift =3D CRONOS_LEDS_CCM2_POWER_COLOR_SHIFT;
++	} else if (led->led_id =3D=3D LED_ID_CCM3_POWER) {
++		color_mask =3D CRONOS_LEDS_CCM3_POWER_COLOR_MASK;
++		color_shift =3D CRONOS_LEDS_CCM3_POWER_COLOR_SHIFT;
++	} else if (led->led_id =3D=3D LED_ID_CCM4_POWER) {
++		color_mask =3D CRONOS_LEDS_CCM4_POWER_COLOR_MASK;
++		color_shift =3D CRONOS_LEDS_CCM4_POWER_COLOR_SHIFT;
++	} else
++		return -EINVAL;
++
++	switch (led->led_type) {
++	case LED_TYPE_POWER:
++		color_key_red =3D LED_COLOR_POWER_RED;
++		color_key_green =3D LED_COLOR_POWER_GREEN;
++		/* Blue channel does not exist for CCM power LEDs */
++		color_key_blue =3D LED_COLOR_POWER_OFF;
++		break;
++	default:
++		color_key_red =3D LED_COLOR_RED;
++		color_key_green =3D LED_COLOR_GREEN;
++		color_key_blue =3D LED_COLOR_BLUE;
++	}
++
++	/* Assemble SMC color command code */
++	byte =3D LED_COLOR_POWER_OFF;
++	if (led->subled_info[0].brightness > 128)
++		byte |=3D color_key_red;
++	if (led->subled_info[1].brightness > 128)
++		byte |=3D color_key_green;
++	if (led->subled_info[2].brightness > 128)
++		byte |=3D color_key_blue;
++
++	ret =3D regmap_update_bits(chip->regmap, led->led_register, color_mask,=
+ byte << color_shift);
++	if (ret) {
++		dev_err(chip->dev, "Failed to set color value 0x%02x to LED register 0=
+x%02x\n", byte,
++			led->led_register);
++		return ret;
++	}
++	return 0;
++}
++
++static int cronos_led_set_brightness(struct led_classdev *cdev, enum led=
+_brightness brightness)
++{
++	struct led_classdev_mc *mc_cdev =3D lcdev_to_mccdev(cdev);
++	struct sony_cronos_leds *leds =3D dev_get_drvdata(cdev->dev->parent);
++	struct sony_cronos_led *led =3D to_cronos_led(mc_cdev);
++
++	led_mc_calc_color_components(mc_cdev, brightness ?: cdev->max_brightnes=
+s);
++
++	return cronos_led_color_store(leds->hw, led);
++}
++
++static int sony_cronos_led_register(struct device *dev, struct sony_cron=
+os_leds *leds,
++				    struct sony_cronos_led *led, struct device_node *np)
++{
++	struct led_init_data init_data =3D {};
++	struct led_classdev *cdev;
++	int led_index;
++	int ret, color;
++
++	ret =3D of_property_read_u32(np, "reg", &led_index);
++	if (ret || led_index >=3D LED_COUNT_ALL) {
++		dev_err(dev, "'reg' property is out of range (0-%i)\n", LED_COUNT_ALL =
+- 1);
++		return -EINVAL;
++	}
++
++	switch (led_index) {
++	case 0:
++		led->led_register =3D CRONOS_LEDS_CCM1_STATUS_REG;
++		led->led_type =3D LED_TYPE_STATUS;
++		led->led_id =3D LED_ID_CCM1_STATUS;
++		break;
++	case 1:
++		led->led_register =3D CRONOS_LEDS_CCM2_STATUS_REG;
++		led->led_type =3D LED_TYPE_STATUS;
++		led->led_id =3D LED_ID_CCM2_STATUS;
++		break;
++	case 2:
++		led->led_register =3D CRONOS_LEDS_CCM3_STATUS_REG;
++		led->led_type =3D LED_TYPE_STATUS;
++		led->led_id =3D LED_ID_CCM3_STATUS;
++		break;
++	case 3:
++		led->led_register =3D CRONOS_LEDS_CCM4_STATUS_REG;
++		led->led_type =3D LED_TYPE_STATUS;
++		led->led_id =3D LED_ID_CCM4_STATUS;
++		break;
++	case 4:
++		led->led_register =3D CRONOS_LEDS_SWITCH_STATUS_REG;
++		led->led_type =3D LED_TYPE_STATUS;
++		led->led_id =3D LED_ID_SWITCH_STATUS;
++		break;
++	case 5:
++		led->led_register =3D CRONOS_LEDS_SMC_STATUS_REG;
++		led->led_type =3D LED_TYPE_STATUS;
++		led->led_id =3D LED_ID_SMC_STATUS;
++		break;
++	case 6:
++		led->led_register =3D CRONOS_LEDS_CCM1_STATUS_REG;
++		led->led_type =3D LED_TYPE_LINK;
++		led->led_id =3D LED_ID_CCM1_LINK;
++		break;
++	case 7:
++		led->led_register =3D CRONOS_LEDS_CCM2_STATUS_REG;
++		led->led_type =3D LED_TYPE_LINK;
++		led->led_id =3D LED_ID_CCM1_LINK;
++		break;
++	case 8:
++		led->led_register =3D CRONOS_LEDS_CCM3_STATUS_REG;
++		led->led_type =3D LED_TYPE_LINK;
++		led->led_id =3D LED_ID_CCM2_LINK;
++		break;
++	case 9:
++		led->led_register =3D CRONOS_LEDS_CCM4_STATUS_REG;
++		led->led_type =3D LED_TYPE_LINK;
++		led->led_id =3D LED_ID_CCM3_LINK;
++		break;
++	case 10:
++		led->led_register =3D CRONOS_LEDS_SWITCH_STATUS_REG;
++		led->led_type =3D LED_TYPE_LINK;
++		led->led_id =3D LED_ID_CCM4_LINK;
++		break;
++	case 11:
++		led->led_register =3D CRONOS_LEDS_CCM_POWER_REG;
++		led->led_type =3D LED_TYPE_POWER;
++		led->led_id =3D LED_ID_CCM1_POWER;
++		break;
++	case 12:
++		led->led_register =3D CRONOS_LEDS_CCM_POWER_REG;
++		led->led_type =3D LED_TYPE_POWER;
++		led->led_id =3D LED_ID_CCM2_POWER;
++		break;
++	case 13:
++		led->led_register =3D CRONOS_LEDS_CCM_POWER_REG;
++		led->led_type =3D LED_TYPE_POWER;
++		led->led_id =3D LED_ID_CCM3_POWER;
++		break;
++	case 14:
++		led->led_register =3D CRONOS_LEDS_CCM_POWER_REG;
++		led->led_type =3D LED_TYPE_POWER;
++		led->led_id =3D LED_ID_CCM4_POWER;
++		break;
++	default:
++		return -EINVAL;
++	}
++
++	ret =3D of_property_read_u32(np, "color", &color);
++	if (ret || color !=3D LED_COLOR_ID_RGB) {
++		dev_warn(dev,
++			 "Node %pOF: must contain 'color' property with value LED_COLOR_ID_RG=
+B\n",
++			 np);
++		return -EINVAL;
++	}
++
++	led->subled_info[0].color_index =3D LED_COLOR_ID_RED;
++	led->subled_info[1].color_index =3D LED_COLOR_ID_GREEN;
++	led->subled_info[2].color_index =3D LED_COLOR_ID_BLUE;
++
++	/* Initial color is white */
++	for (int i =3D 0; i < LED_COUNT_ALL; i++) {
++		led->subled_info[i].intensity =3D 255;
++		led->subled_info[i].brightness =3D 255;
++		led->subled_info[i].channel =3D i;
++	}
++
++	led->mc_cdev.subled_info =3D led->subled_info;
++	led->mc_cdev.num_colors =3D LED_COUNT_ALL;
++
++	init_data.fwnode =3D &np->fwnode;
++
++	cdev =3D &led->mc_cdev.led_cdev;
++	cdev->max_brightness =3D 255;
++	cdev->brightness_set_blocking =3D cronos_led_set_brightness;
++
++	/* Set initial color */
++	ret =3D cronos_led_color_store(leds->hw, led);
++	if (ret < 0)
++		return dev_err_probe(dev, ret, "Cannot set LED %pOF initial color\n", =
+np);
++
++	ret =3D devm_led_classdev_multicolor_register_ext(dev, &led->mc_cdev, &=
+init_data);
++	if (ret)
++		return dev_err_probe(dev, ret, "Cannot register LED %pOF\n", np);
++
++	/* Set global brightness for all LEDs */
++	ret =3D regmap_write(leds->hw->regmap, CRONOS_SMC_BRIGHTNESS_RED_REG, 0=
+x00);
++	ret =3D regmap_write(leds->hw->regmap, CRONOS_SMC_BRIGHTNESS_GREEN_REG,=
+ 0x00);
++	ret =3D regmap_write(leds->hw->regmap, CRONOS_SMC_BRIGHTNESS_BLUE_REG, =
+0x00);
++
++	return 0;
++}
++
++static int sony_cronos_leds_probe(struct platform_device *pdev)
++{
++	struct device *dev =3D &pdev->dev;
++	struct device_node *np =3D dev_of_node(dev);
++	struct sony_cronos_smc *chip;
++	struct sony_cronos_leds *leds;
++	struct sony_cronos_led *led;
++	int ret, count;
++
++	chip =3D dev_get_drvdata(dev->parent);
++	if (!chip)
++		return -EINVAL;
++
++	count =3D of_get_available_child_count(np);
++	if (count =3D=3D 0)
++		return dev_err_probe(dev, -ENODEV, "LEDs are not defined in device tre=
+e!\n");
++	if (count > LED_COUNT_ALL)
++		return dev_err_probe(dev, -EINVAL, "Too many LEDs defined in device tr=
+ee!\n");
++
++	leds =3D devm_kzalloc(dev, struct_size(leds, leds, count), GFP_KERNEL);
++	if (!leds)
 +		return -ENOMEM;
 +
-+	i2c_set_clientdata(i2c, ddata);
-+	ddata->dev =3D &i2c->dev;
++	leds->hw =3D chip;
 +
-+	ddata->regmap =3D devm_regmap_init_i2c(i2c, &cronos_smc_regmap_config);
-+	if (IS_ERR(ddata->regmap)) {
-+		return dev_err_probe(ddata->dev, PTR_ERR(ddata->regmap),
-+				     "Failed to allocate register map\n");
++	led =3D &leds->leds[0];
++	for_each_available_child_of_node_scoped(np, child) {
++		ret =3D sony_cronos_led_register(dev, leds, led, child);
++		if (ret)
++			return ret;
++
++		led++;
 +	}
 +
-+	ret =3D sony_cronos_get_device_type(ddata);
-+	if (ret)
-+		return ret;
-+
-+	ret =3D mfd_add_devices(ddata->dev, PLATFORM_DEVID_AUTO, cronos_smc_dev=
-s,
-+			      ARRAY_SIZE(cronos_smc_devs), NULL, 0, NULL);
-+	if (ret) {
-+		return dev_err_probe(ddata->dev, ret,
-+				     "Failed to register child devices\n");
-+	}
-+
-+	return ret;
++	return 0;
 +}
 +
-+static void sony_cronos_i2c_remove(struct i2c_client *i2c)
-+{
-+	struct sony_cronos_smc *ddata =3D i2c_get_clientdata(i2c);
++static const struct of_device_id sony_cronos_led_of_id_table[] =3D {
++	{ .compatible =3D "sie,cronos-led" },
++	{},
++};
++MODULE_DEVICE_TABLE(of, sony_cronos_led_of_id_table);
 +
-+	mfd_remove_devices(ddata->dev);
-+}
-+
-+static struct i2c_driver sony_cronos_i2c_driver =3D {
++static struct platform_driver sony_cronos_led_driver =3D {
 +	.driver =3D {
-+		.name =3D "sony-cronos-smc",
++		.name =3D "sie-cronos-led",
++		.of_match_table =3D sony_cronos_led_of_id_table,
 +	},
-+	.probe =3D sony_cronos_i2c_probe,
-+	.remove =3D sony_cronos_i2c_remove,
++	.probe =3D sony_cronos_leds_probe,
 +};
-+module_i2c_driver(sony_cronos_i2c_driver);
++module_platform_driver(sony_cronos_led_driver);
 +
-+MODULE_DESCRIPTION("Device driver for the Sony Cronos system management =
-controller");
-+MODULE_AUTHOR("Raptor Engineering, LLC <tpearson@raptorengineering.com>"=
-);
++MODULE_DESCRIPTION("LED driver for SIE Cronos SMCs");
++MODULE_AUTHOR("Timothy Pearson <tpearson@raptorengineering.com>");
 +MODULE_LICENSE("GPL");
-+
-diff --git a/include/linux/mfd/sony-cronos.h b/include/linux/mfd/sony-cro=
-nos.h
-new file mode 100644
-index 000000000000..d82e46176bf7
---- /dev/null
-+++ b/include/linux/mfd/sony-cronos.h
-@@ -0,0 +1,61 @@
-+/* SPDX-License-Identifier: GPL-2.0-or-later */
-+/*
-+ * Copyright (C) 2015-2017  Dialog Semiconductor
-+ * Copyright (C) 2022  Raptor Engineering, LLC
-+ */
-+
-+#ifndef __MFD_SONY_CRONOS_H__
-+#define __MFD_SONY_CRONOS_H__
-+
-+#define CRONOS_SMC_DEVICE_ID				0x0134
-+
-+#define CRONOS_SMC_SWITCH_BOOT_FLASH_SELECT_REG		0x00
-+#define CRONOS_SMC_SWITCH_RESET_CMD_REG			0x01
-+#define CRONOS_SMC_BMC_BOOT_FLASH_SELECT_REG		0x02
-+#define CRONOS_BMC_RESET_REG				0x03
-+#define CRONOS_WDT_CLR_REG				0x03
-+#define CRONOS_SMC_STATUS_2_REG				0x05
-+#define CRONOS_SMC_PAYLOAD_POWER_CTL_REG		0x0a
-+#define CRONOS_WDT_CTL_REG				0x0c
-+#define CRONOS_SMC_UART_MUX_REG				0x0e
-+
-+#define CRONOS_SMC_BRIGHTNESS_RED_REG			0x17
-+#define CRONOS_SMC_BRIGHTNESS_GREEN_REG			0x18
-+#define CRONOS_SMC_BRIGHTNESS_BLUE_REG			0x19
-+
-+#define CRONOS_LEDS_SMC_STATUS_REG			0x10
-+#define CRONOS_LEDS_SWITCH_STATUS_REG			0x11
-+
-+#define CRONOS_LEDS_CCM3_STATUS_REG			0x12
-+#define CRONOS_LEDS_CCM2_STATUS_REG			0x13
-+#define CRONOS_LEDS_CCM4_STATUS_REG			0x14
-+#define CRONOS_LEDS_CCM1_STATUS_REG			0x15
-+
-+#define CRONOS_LEDS_CCM_POWER_REG			0x16
-+
-+#define CRONOS_SMC_BMC_MAC_LOW_REG			0x30
-+#define CRONOS_SMC_BMC_MAC_HIGH_REG			0x35
-+
-+#define CRONOS_SMC_DEVICE_ID_LOW_REG			0x70
-+#define CRONOS_SMC_DEVICE_ID_HIGH_REG			0x71
-+#define CRONOS_SMC_REVISION_LOW_REG			0x72
-+#define CRONOS_SMC_REVISION_HIGH_REG			0x73
-+
-+#define CRONOS_SMC_LEDS_BRIGHTNESS_SET_MASK		0x7F
-+#define CRONOS_LEDS_MAX_BRIGHTNESS			0x7F
-+
-+#define CRONOS_BMC_RESET_VAL				0xc2
-+
-+#define CRONOS_WDT_CLR_VAL				0xc3
-+#define CRONOS_WDT_ENABLE_MASK				0x80
-+#define CRONOS_WDT_ENABLE_VAL				0x80
-+#define CRONOS_WDT_DISABLE_VAL				0x00
-+#define CRONOS_WDT_TIMEOUT_MASK				0x07
-+#define CRONOS_WDT_CTL_RESET_VAL			0x00
-+
-+struct sony_cronos_smc {
-+	struct device *dev;
-+	struct regmap *regmap;
-+};
-+
-+#endif /* __MFD_SONY_CRONOS_H__ */
++MODULE_ALIAS("platform:sony-cronos-leds");
 --=20
 2.39.5
 
