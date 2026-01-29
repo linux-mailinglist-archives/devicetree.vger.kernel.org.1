@@ -1,162 +1,345 @@
-Return-Path: <devicetree+bounces-260911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-260912-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sMsZEBZxe2mMEgIAu9opvQ
-	(envelope-from <devicetree+bounces-260911-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 15:39:18 +0100
+	id mCCMGkhye2mMEgIAu9opvQ
+	(envelope-from <devicetree+bounces-260912-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 15:44:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3B12B10F1
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 15:39:17 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDA0CB11B9
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 15:44:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 300A130564C3
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 14:37:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3A678300F9E4
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 14:38:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68B2530BF69;
-	Thu, 29 Jan 2026 14:36:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D69442874F5;
+	Thu, 29 Jan 2026 14:38:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="IUnX78Xx"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WbnsN7PG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3D073009C1;
-	Thu, 29 Jan 2026 14:36:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 554B424887E;
+	Thu, 29 Jan 2026 14:38:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769697419; cv=none; b=qVTfS1GQRDOzNfOEH0zuEGJBfIJ9Q2GIKeIIcKB002vp94Y4j4Au2KcaoxXoj0Aj4r2n5smk9jBlF/d1TJ7He88ceSNRMRDobUIy+Wy9HuVWwcI7IwGHiZXBGWvEDYOP8ey+plLYLZDeyUJCRwqC/0Ub/FMiACvGJSXhwbrg8Y0=
+	t=1769697534; cv=none; b=KZ5QDEYy2zXD5g9ytOTrHel5p+bSIOMGWDXoy5EAuPaifvZUQtMl3zYqy7GR72O2jsIZFoCouELVMxA5//7lbupxq+iHJtpSUKC/hJsHfreae5rQ8vDN/vjXNjGGa4QVdgdcW47ZhY/ET35dqYpDZsOaokLDwsmyNze841O0QbY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769697419; c=relaxed/simple;
-	bh=yww0n1QNnrxlybVtSgCO21H3L4gn8OoO3+1JzIRppgM=;
+	s=arc-20240116; t=1769697534; c=relaxed/simple;
+	bh=J0CXaR9Xv5YMEu9lpIeArNADiWmdVJJkiFyMfktIAKM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Isk7dzi6TkbsWSRogH18k6m57M+tV/sv9sRC5I6H7t2l8PR6weik7e7ZmBa7quV5acKfGwrg5+9+X6ve35kXPNlL48DuTGbJKmulvJOpnO8CsU8PAgQtu3d65wgVw0qRAPy3uJY0kLpxOnUSth53X+zVEh7QlmzDkLRNuTJzhN4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=IUnX78Xx; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=gdLx6MqvKMI7VkaiN5mQVnb2eVwGGL9NszyRmXRKFV0=; b=IUnX78XxTN3897xqwPd6BmA4/H
-	EZehdxzJc8Fh5T/UIyymImNbkf0vAUqODyrY9JCzG8ckyviD4xiKe93el/EoD3p1JLof6a0DC3GNf
-	MDMz6/TSocUiQyJUxzcbH9Xd2R6QBCL1sJWpQ6DzeMm3du9sH/8YX4h8VC04CU7DgWI3x87nqo0Fv
-	+svJ8AlhFIV696xHGY3F35RC+v2S0PNnxW/If7wMVr310KDQjvREKy30qgwj74Ld1VIoUlzxxcb6U
-	X8GtPYmrW8kuWScU4XpHe004klCUsff/h6SR7Iekv9OzSEGaTRSe3g9jRbp7X+ShCqfegy8iiMosG
-	lkey1yOQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:37426)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1vlT8a-000000000BS-2Vfn;
-	Thu, 29 Jan 2026 14:36:48 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1vlT8Y-0000000083Z-3wB7;
-	Thu, 29 Jan 2026 14:36:46 +0000
-Date: Thu, 29 Jan 2026 14:36:46 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Vinod Koul <vkoul@kernel.org>
-Cc: Vincent Guittot <vincent.guittot@linaro.org>, neil.armstrong@linaro.org,
-	Simon Horman <horms@kernel.org>, krzk+dt@kernel.org,
-	conor+dt@kernel.org, ciprianmarian.costea@oss.nxp.com, s32@nxp.com,
-	p.zabel@pengutronix.de, ghennadi.procopciuc@nxp.com,
-	Ionut.Vicovan@nxp.com, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
-	Frank.li@nxp.com
-Subject: Re: [PATCH 2/4] phy: s32g: Add serdes subsystem phy
-Message-ID: <aXtwfj1vqB1cXKFM@shell.armlinux.org.uk>
-References: <20260126092159.815968-1-vincent.guittot@linaro.org>
- <20260126092159.815968-3-vincent.guittot@linaro.org>
- <aXsuRTZUUnw0kdzV@horms.kernel.org>
- <CAKfTPtDfnpzq2CB-isVzvh1ZCWo7kit9KRJvVGoU1C3zZTgdXw@mail.gmail.com>
- <aXtfVUb0eLwP4R28@shell.armlinux.org.uk>
- <CAKfTPtCiJcNOdoddZN5N1dKHXfUJBe0=zeWfZ5uENoXDvbMnpQ@mail.gmail.com>
- <aXtl6eQ8zD_olTdc@shell.armlinux.org.uk>
- <aXtvDn_-pCuKPrnf@vaman>
+	 Content-Type:Content-Disposition:In-Reply-To; b=D7w1hga87kzXKW1qL7Okj8tZMxnP87G0lQ+yWK9bDhx481ef406okybX3/Kw1qZf3dUIJ+SHjtmPY4i8YXRwE1sRf+uenRxhcsEvWqUZZR7Ma81gxA/BUmqhnE9sXKhIy2ugCTR1CXGbdxMNga2DEYZfHb5PprEU2HOHY27Es94=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=WbnsN7PG; arc=none smtp.client-ip=192.198.163.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1769697534; x=1801233534;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=J0CXaR9Xv5YMEu9lpIeArNADiWmdVJJkiFyMfktIAKM=;
+  b=WbnsN7PGJaaFycTLppuna32ETQkIrEvVk+YG19xuRg2JP2cu49r6ZEZC
+   ZZnCVSxz8P01SvT3tcfiP9AVm3iY3fR2I108udZYFYACSUNNzF1dzXGOe
+   kZn5p5X0bszIMDxLpSCSVBEfiveg0fALlxWw4I8egvSLWB9SwV8IEBDAX
+   1jwmcTiq4WxT18uzAWcPafNk5QgdU2BVlEOaqc21/hUKx63CVfPutKaNq
+   vDJm/UhFej2n3rwzdRjgX0qOU2nI7NasUbhbyeEtaRqEc9TyHBdwr3o6D
+   k6m7uvuh3MtIxu7SKQ2xmNiiXCUfshqhlKYLMNIWHBckfWMMjIoLFpPm8
+   A==;
+X-CSE-ConnectionGUID: +Dt0Y6cyQTuzuPO9xDe8Hg==
+X-CSE-MsgGUID: QddSZY1lT5m2ozRhjc7+HQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="96401232"
+X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; 
+   d="scan'208";a="96401232"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2026 06:38:53 -0800
+X-CSE-ConnectionGUID: mQJ0XTNXR/eGlwmM7QaAwA==
+X-CSE-MsgGUID: gW0mzCeKRs2s9OLL4qA+2g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; 
+   d="scan'208";a="213552921"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.155])
+  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2026 06:38:49 -0800
+Date: Thu, 29 Jan 2026 16:38:46 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>,
+	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Andy Shevchenko <andy@kernel.org>, linux-i2c@vger.kernel.org,
+	Huacai Chen <chenhuacai@kernel.org>,
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] i2c: ls2x-v2: Add driver for Loongson-2K0300 I2C
+ controller
+Message-ID: <aXtw9h8WUs5H9MgC@smile.fi.intel.com>
+References: <cover.1769476820.git.zhoubinbin@loongson.cn>
+ <402121da829497fc97f1461c8aaa3a44252c3f06.1769476820.git.zhoubinbin@loongson.cn>
+ <aXh000kBfaqd1G9H@smile.fi.intel.com>
+ <CAMpQs4JTqWr6AqRwEO9bcno-_MjjE8GKm_kUvrpy7m_tLMtuSQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <aXtvDn_-pCuKPrnf@vaman>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMpQs4JTqWr6AqRwEO9bcno-_MjjE8GKm_kUvrpy7m_tLMtuSQ@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.14 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_REJECT(1.00)[armlinux.org.uk:s=pandora-2019];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[armlinux.org.uk : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-260911-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[armlinux.org.uk:-];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	TAGGED_FROM(0.00)[bounces-260912-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[linux@armlinux.org.uk,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[armlinux.org.uk:url,armlinux.org.uk:email,shell.armlinux.org.uk:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D3B12B10F1
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,smile.fi.intel.com:mid]
+X-Rspamd-Queue-Id: EDA0CB11B9
 X-Rspamd-Action: no action
 
-On Thu, Jan 29, 2026 at 08:00:38PM +0530, Vinod Koul wrote:
-> On 29-01-26, 13:51, Russell King (Oracle) wrote:
-> > On Thu, Jan 29, 2026 at 02:36:01PM +0100, Vincent Guittot wrote:
-> > > On Thu, 29 Jan 2026 at 14:23, Russell King (Oracle)
-> > > <linux@armlinux.org.uk> wrote:
-> > > >
-> > > > On Thu, Jan 29, 2026 at 02:01:13PM +0100, Vincent Guittot wrote:
-> > > > > yes, the usual pattern is :
-> > > > > - phy_set_mode_ext()
-> > > > > - then phy_power_on()
-> > > > > but I can add an additional check
-> > > >
-> > > > Please read Documentation/driver-api/phy/phy.rst section "Order of API
-> > > > calls" which suggests phy_set_mode_ext() after phy_power_on().
-> > > 
-> > > Fair enough.
-> > > That being said, all pcie drivers  that use phy_set_mode_ext(), call
-> > > it before phy_power_on()
-> > 
-> > It looks like many ethernet drivers do the same, so I think maybe the
-> > generic PHY documentation is incorrect or misleading, or is expressing
-> > a preference that almost no one follows. Something for the generic PHY
-> > maintainers to look at and/or comment on.
-> 
-> I would feel it makes sense to configure the mode first and then power
-> the phy up. As commented above yes it looks like apart from one tegra
-> driver rest seem to do it this way.
-> 
-> Lets update the documentation
+On Thu, Jan 29, 2026 at 04:07:06PM +0800, Binbin Zhou wrote:
+> On Tue, Jan 27, 2026 at 4:18 PM Andy Shevchenko
+> <andriy.shevchenko@intel.com> wrote:
+> > On Tue, Jan 27, 2026 at 10:47:57AM +0800, Binbin Zhou wrote:
 
-Please also indicate in the documentation whether changing the submode
-of the serdes (particularly for ethernet) is permitted without doing a
-phy_power_down()..phy_power_up() dance around the phy_set_mode_ext()
-call.
+...
 
-Thanks.
+> > > +/*
+> >
+> > It's not marked as kernel-doc, but looks very much like that. Why?
+> > Same Q for *all* cases like this.
+> 
+> I didn't intend to mark it in kernel-doc; I just wanted to comment on
+> the variable.
+> Is removing the `@` symbol sufficient?
+
+But why? If you want it being properly documented, make sure it follows
+the regular format.
+
+> > > + * struct loongson2_i2c_msg - client specific data
+> > > + * @addr: 8-bit slave addr, including r/w bit
+> > > + * @count: number of bytes to be transferred
+> > > + * @buf: data buffer
+> > > + * @stop: last I2C msg to be sent, i.e. STOP to be generated
+> > > + * @result: result of the transfer
+> > > + */
+> > > +struct loongson2_i2c_msg {
+> > > +     u8 addr;
+> > > +     u32 count;
+> > > +     u8 *buf;
+> > > +     bool stop;
+> > > +     int result;
+> >
+> > Run `pahole` and amend *all* data types accordingly.
+> 
+>  Moving 'stop' from after 'buf' to after 'addr'.
+> >
+> > > +};
+
+...
+
+> After run `pahole`, the structs are reorganized as follow:
+> 
+> pahole --show_reorg_steps --reorganize --sort -C loongson2_i2c_priv
+> i2c-ls2x-v2.o
+> struct loongson2_i2c_priv {
+>         struct i2c_adapter         adapter
+> __attribute__((__aligned__(8))); /*     0  1064 */
+>         /* --- cacheline 16 boundary (1024 bytes) was 40 bytes ago ---
+> */
+>         struct clk *               clk;                  /*  1064
+> 8 */
+>         struct completion          complete;             /*  1072
+> 32 */
+>         /* --- cacheline 17 boundary (1088 bytes) was 16 bytes ago ---
+> */
+>         struct regmap *            regmap;               /*  1104
+
+It's better to keep pointers like clk and regmap next to each other.
+They are semantically coupled as "resources".
+
+> 8 */
+>         int                        speed;                /*  1112
+> 4 */
+>         int                        parent_rate;          /*  1116
+> 4 */
+>         struct loongson2_i2c_msg   msg;                  /*  1120
+> 24 */
+> 
+>         /* XXX last struct has 4 bytes of padding */
+> 
+>         /* size: 1144, cachelines: 18, members: 7 */
+>         /* paddings: 1, sum paddings: 4 */
+>         /* forced alignments: 1 */
+>         /* last cacheline: 56 bytes */
+> } __attribute__((__aligned__(8)));
+
+...
+
+> pahole --show_reorg_steps --reorganize --sort -C loongson2_i2c_msg
+> i2c-ls2x-v2.o
+> struct loongson2_i2c_msg {
+>         u8                         addr;                 /*     0
+> 1 */
+>         bool                       stop;                 /*     1
+> 1 */
+> 
+>         /* XXX 2 bytes hole, try to pack */
+
+>         u32                        count;                /*     4
+> 4 */
+>         u8 *                       buf;                  /*     8
+> 8 */
+
+Also think about it (don't blindly follow the `pahole` automatic mode).
+This is much better if you move the pointer to be the first, followed
+by a count, result, and others.
+
+>         int                        result;               /*    16
+> 4 */
+> 
+>         /* size: 24, cachelines: 1, members: 5 */
+>         /* sum members: 18, holes: 1, sum holes: 2 */
+>         /* padding: 4 */
+>         /* last cacheline: 24 bytes */
+> };
+
+TL;DR: don't use `pahole` blindly. Use the common sense.
+
+...
+
+> > > +static int loongson2_i2c_wait_free_bus(struct loongson2_i2c_priv *priv)
+> > > +{
+> > > +     u32 status;
+> > > +     int ret;
+> > > +
+> > > +     ret = regmap_read_poll_timeout(priv->regmap, LOONGSON2_I2C_SR2, status,
+> > > +                                    !(status & LOONGSON2_I2C_SR2_BUSY),
+> > > +                                    LOONGSON2_I2C_FREE_SLEEP_US,
+> > > +                                    LOONGSON2_I2C_FREE_TIMEOUT_US);
+> > > +     if (ret) {
+> > > +             dev_dbg(priv->dev, "I2C bus free failed.\n");
+> >
+> > > +             ret = -EBUSY;
+> >
+> > Why?! What's wrong with the error code returned in ret?
+> 
+> I want to indicate the bus busy state if it times out.
+
+This is not an answer. So, why do you remap error code. What's wrong with
+the callee's one?
+
+> > > +     }
+> > > +
+> > > +     return ret;
+> > > +}
+
+...
+
+> > Ah, it seems it's a helper. Please, return the error code from it as int and
+> > not irqreturn_t, this will make things clearer.
+> 
+> How about just define it as void:
+> 
+> static void loongson2_i2c_isr_error(u32 status, void *data)
+> {
+> .........
+>         if (status & LOONGSON2_I2C_SR1_ARLO) {
+>          ........
+>                 msg->result = -EAGAIN;
+>                 goto out;
+>         }
+>         if (status & LOONGSON2_I2C_SR1_AF) {
+>            .......
+>                 msg->result = -EIO;
+>                 goto out;
+>         }
+>         if (status & LOONGSON2_I2C_SR1_BERR) {
+>          .........
+>                 msg->result = -EIO;
+>                 goto out;
+>         }
+> 
+> out:
+>         loongson2_i2c_disable_irq(priv);
+>         complete(&priv->complete);
+> }
+> 
+> and in loongson2_i2c_isr_event(), I reference it as:
+> 
+>         if (status & LOONGSON2_I2C_SR1_ITERREN_MASK) {
+>                 loongson2_i2c_isr_error(status, data);
+>                 return IRQ_NONE;
+>         }
+
+> Its return value is meaningless for loongson2_i2c_isr_event().
+
+Works for me.
+
+...
+
+> > > +     u32 possible_status = LOONGSON2_I2C_SR1_ITEVTEN_MASK;
+> >
+> > Split assignment...
+
+> > ...to be here, which improves readability (no need to go somewhere up in
+> > the code to see what this is about.
+> 
+> ok, I will put  `possible_status = LOONGSON2_I2C_SR1_ITEVTEN_MASK;` here.
+> 
+> > > +     /* Update possible_status if buffer interrupt is enabled */
+> > > +     if (ien & LOONGSON2_I2C_CR2_ITBUFEN)
+> > > +             possible_status |= LOONGSON2_I2C_SR1_ITBUFEN_MASK;
+
+I expect something like this:
+
+		/* Update possible_status if buffer interrupt is enabled */
+		possible_status = LOONGSON2_I2C_SR1_ITEVTEN_MASK;
+		if (ien & LOONGSON2_I2C_CR2_ITBUFEN)
+			possible_status |= LOONGSON2_I2C_SR1_ITBUFEN_MASK;
+
+...
+
+> > > +     strscpy(adap->name, pdev->name, sizeof(adap->name));
+> >
+> > 2-arguments version is even better.
+> 
+> Sorry, I'm not quite sure what you mean by `2-arguments version.`
+
+Use 2 arguments instead of 3. I.o.w. just drop the third argument.
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+With Best Regards,
+Andy Shevchenko
+
+
 
