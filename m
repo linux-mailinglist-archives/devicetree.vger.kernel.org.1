@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-261234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261233-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eJROGPC0fGm7OQIAu9opvQ
-	(envelope-from <devicetree+bounces-261234-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 14:41:04 +0100
+	id sFmpEAa1fGm7OQIAu9opvQ
+	(envelope-from <devicetree+bounces-261233-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 14:41:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FB75BB3D2
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 14:41:03 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED41BBB3E0
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 14:41:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 04A9A300BB86
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 13:40:53 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id ED87F301372F
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 13:40:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0222F314D1E;
-	Fri, 30 Jan 2026 13:40:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF00B311C22;
+	Fri, 30 Jan 2026 13:40:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="blZoQbm1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Gd+XKquk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f68.google.com (mail-wm1-f68.google.com [209.85.128.68])
+Received: from mail-wm1-f67.google.com (mail-wm1-f67.google.com [209.85.128.67])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2797B308F34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC58A30C601
 	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 13:40:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.68
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.67
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769780443; cv=none; b=uPUzRCR4Ndt/M9UWQdgLTuMeQ8BVenoJNH4AfWygzWPNjBMAp5BDH38etP8gVl1sCj19SS5xktM9vfgOsdAhLQZHGr3bmjPeN4GhDL877nXZTpGvaj61B5QT6UGXhwTY+BCFeDqN/yh80tXX4yxT4IRO+0CGUQAtY6sK6exjXBI=
+	t=1769780443; cv=none; b=nBZIi0aO79yhPlmMuyxZa9z2JoIMjTwr4hQf9pyDV9r8DowF1dJCzSQXsH0JLA9yw5Ytl8U4MwVLhmuhSYv72a15S26YROBg3qcsr8Z1ORB3Uc6SXtEPh+oUZi07NbaTDLk+y2VM+BUqVXvCuHUYFh5i9v1Z/9c0dozKMQzP3dc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1769780443; c=relaxed/simple;
-	bh=95iIyzopFkQ9D9uWqLqTERrAIhio7k7WYfD1g3owJoI=;
+	bh=cnUUw44tvHNlr6PvqiEfM0NQBbDmCwZTNoYDpm7eRqY=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=cviMhwAAkbRqBqmanMHQpyQ8MaueEsBbyE/Wur8cpGDhv+0H4BnV45tByPpK+zSKksAjI7R8jEb15gAHN3FJhotHU4aleULRQNo8PmG2s5m7tEktKqBc1/FRPTK/UcQJGIqnnGZ4uifz39zlLipiENndWSBG50LyoICG6eBuWns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=blZoQbm1; arc=none smtp.client-ip=209.85.128.68
+	 MIME-Version; b=Z9t4z2KwImUtdBRl8nZjTxDCIIL1rgaMGZlDsI7HsN0YcmayNjvp6+twtDv1Fj802u+h9HFQPnHO0w7yCO89h+Tk2CXzMnZIo4KGXgjyTBWT7PsWGeSCJFKC1n/QaUJpJMX2bvbKeudRvriI1ZkG5M05WWDWrs0Kc2Aquktb+2w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Gd+XKquk; arc=none smtp.client-ip=209.85.128.67
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f68.google.com with SMTP id 5b1f17b1804b1-4806ce0f97bso17923445e9.0
+Received: by mail-wm1-f67.google.com with SMTP id 5b1f17b1804b1-4801c2fae63so16385775e9.2
         for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 05:40:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20230601; t=1769780440; x=1770385240; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=32vh1XyNdNiMvWqowSj9FrbYVVxs5wH5KyB1e47QLpA=;
-        b=blZoQbm1TGnULKAvX7Dt5nuA4UhwXpAbj/oSkSN/YzqSYHtxdgDspU5rX9/y3iXM2p
-         N2S9cHYz9ixV5IzAbx+I7bZkoL+tBGbhL/U5Zl9j1nqOsOF5Cuu5JDk8Emnf0Dfn/TY/
-         5YvkF0lca4vm5Q4Bi3kkShPX2rlwfdsFwX8kNaP8mrASjwbzTN9yQjcvFP6fe9zp7x6h
-         G5QlPCWxvbsoWccwIKv7l+VPZ6taHAEgwnR3MWa2jGG4ce+p1K8MBFrTcsqgnaQDX2/w
-         Q+lvLBYWVPzdtD+yIwOlSfbX1f+/pOjliIBt+HD5K19qWbcZlbOd5Za4rqB+xt44d3y3
-         eF/w==
+        bh=M97ZSM4vrEDur6yjHL1HrvY3NbiEvbdJrVir3jieaso=;
+        b=Gd+XKqukw64ZrLwv0cQtV6eIG9XoDjRivb6CS1vosWu7A1xqmNIhBbnKYkUPeLhoCO
+         gquOQgegxcTyOEzQp4oFgE9jBYE1GVeG7pNcYQGgUk+9p9uNckgaXvgpSGq6v0GRDctU
+         z8ydVSn3LXi/OhHdMrxB0VUl4l62gBWOEPZd0tcSn8tJL4gPvGEXTTkyyATmkTeLg2s2
+         wRD7JQwByBce+Kdo99EJXTwp8FJWfd/InjC84ZxmeQqW0p8JHpqCDR6Yu+ondm7+IiPy
+         sBbCy1TOMg0qgdM5qDv/6jDMlisBzSQziMugX/UCP0Qspg6ueqXVz6R0VuTw0XU3bUsS
+         HqvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1769780440; x=1770385240;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=32vh1XyNdNiMvWqowSj9FrbYVVxs5wH5KyB1e47QLpA=;
-        b=Rya/7z9/d9/yGPZxdFQwwmB2TrigJGIZFGmSuMI7aH3i19DR7smYIz/Zk4S3/vZgYx
-         v70LAiydb1zC9ESt6dNXPxHYAcut/9ouhCje62scFsrt4ZltglqP1X5ihvCk5zmqAass
-         GxgYftZmUqAWv/eOIOmH2F4BT9wG7YiUYzGAUhEg3lyYYaeJ50q9QSw7yH+VQxIMgENo
-         2JKMxg1l5p35QTfBglUyFGQBshwEln+U+vf11wQmGvqrJUZE7+WKwvJoGOkpEq2i8dpU
-         nCTYtgHMJYsFfF3NLIwTrF5EK+FxsQ3xL4mdDRY/QxJJ7WKRiN88Gx4OfZ72HJ6UgrVj
-         lP6A==
-X-Forwarded-Encrypted: i=1; AJvYcCXxdQ+n8E61uz/u0cl/ZKhVTIKwaEgd/G2F8Sq9RksTsEsDh5T5aiAVneanV6wSU+uI4ot9FtTy4Fvd@vger.kernel.org
-X-Gm-Message-State: AOJu0YxOoDnh5RHL17MALLVQ69JHUdyFquvsmAuLUXcEicMRgcT1o580
-	gO8wyj3VaWskjLFD/i9LkCaTYy8wOKJnQaMmAqdTnoQiajJS+o/Jd3BN/vDNPSiU
-X-Gm-Gg: AZuq6aLZ1eM5vNhvch5ryxg5+Wy45GQKSlq7VfZsV+FsVu30kuVIZCn0kHMRlAtSTFj
-	dhsimiu0vavj6G4FqMFJdrHPjNHCYbI7eoq9FY8qwBhSMFnQKa3LKR33IWhV0NnBzX5YdIekcYi
-	1Q+Qv78xS1pgiDPTmu9tzdUQ7zItFtIGXToBzjsge22/KCC1kk1zTR5D9NMaDpD7cZ3accilLTi
-	EBMqr8WpvQ++C8kvHLji5Ynv7a8z+x3/eUGpz/s1O44qLwcOzGveSY9DCLz13N9Stnx+ly9Dylf
-	Q4EXz0GiHJ91yweIN9PH0KbLVEBUcZ9VQd0oKbVG8WraAGTyX2E3KkgdiqJCqH6bbSCVGYiW/pz
-	kXGmoxd0NUP88YvfSFNZ5T9umiFysqlb2qaevmyaCSYZcjIDXZ3iv2SQEZ41LLo2vX3gvsVSu/v
-	YN
-X-Received: by 2002:a05:600c:5289:b0:477:abea:9028 with SMTP id 5b1f17b1804b1-482db44931bmr44744325e9.6.1769780439546;
-        Fri, 30 Jan 2026 05:40:39 -0800 (PST)
+        bh=M97ZSM4vrEDur6yjHL1HrvY3NbiEvbdJrVir3jieaso=;
+        b=R5YfqkLHDHw4LdgNtvffufRsPrrb4yiwDNzwf66yHU1Z7vOIRN0i/imyHC+v2RdZba
+         5tl/VkdbpuH7FCnHp6ksYAUQPaytS7dfbO6xnUQdyNQ6Diag7sHEOPzlTbNsqlsIO8W+
+         13r8ZdRTt7o+F4IeFZv9k6FXjPAGL3DAiCV+O3/IwovK22p3BmSpq8xDQf5OLE/SoppC
+         msl1meMYd5eecAhpKqYOfUulcN40n9SLWjOaDqMnLtaChiAA08/JuxXJ7cvS0Kx8M/Bv
+         loj6pjQu7ipXfRbnkTlyqSMpqUriCmglC2KV+DgAYHXcCs7Y2Q8nBNtP4i33cfJg2juX
+         p/Ng==
+X-Forwarded-Encrypted: i=1; AJvYcCXeGRiDAP48+tCMwCs7/ZnM6k5oXdkfR+iodwkO/fTVkXmxXAMcH5TrCqKkMWVnYj7kJhrq8W8Y89QF@vger.kernel.org
+X-Gm-Message-State: AOJu0YzT7uXKJFp9YlIm6J0wCkD6tBClhxjSYiMjivUYmgglk7RXYQVW
+	qUyCtKJhKg1J0FC86jJTtP+i9FY3L4k829i0RTddUSqJlBOcQ8aB9hgP
+X-Gm-Gg: AZuq6aKwAGSzP8wLFxiKdBBboGZd/+L6KBfdt/jQ9HDXXPLMhDWJwHxZVGfZFzUsoX6
+	U9FKDexVcY1XfQdJEgm6GXrW0JNIdLuiGy/wm+XWDNlNPfnYZeWrPIH6Pddltb0WTnDWMGYLpG2
+	zbcyfGBpsApKuPAgvGQBExM+XQlKWLcaXggqoWB7ssDfII7WgiNVcNycG4ZBGCw4hFd/IsYC1q3
+	fK6WUmtaZj7fiil0dsvPf4nyGN6kn14/qeJdxi/VebQytXLZ7AtgZBSYAMtcWGjt9VuIB4m92CL
+	kWuOm9d7cwKuc/SDtI6WKlJZQvsZ2v6nD9Bwfr3QmJvVL6EuECg+8/JIpXAzFnIHAXX9Sog1L5V
+	Dw2Y2w/vOyfhJr2O+UmzFLlX7sZxUkDSrD6bm0utLF57dH8lp2rMEHTZbupmabxM/ikHwlaB1Io
+	Pj
+X-Received: by 2002:a05:600c:628c:b0:480:2521:4d92 with SMTP id 5b1f17b1804b1-482db47ce39mr34693605e9.24.1769780440375;
+        Fri, 30 Jan 2026 05:40:40 -0800 (PST)
 Received: from xeon ([188.163.112.49])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4806cd8fadfsm199106075e9.0.2026.01.30.05.40.38
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4806cd8fadfsm199106075e9.0.2026.01.30.05.40.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Jan 2026 05:40:39 -0800 (PST)
+        Fri, 30 Jan 2026 05:40:40 -0800 (PST)
 From: Svyatoslav Ryhel <clamor95@gmail.com>
 To: Sebastian Reichel <sre@kernel.org>,
 	Rob Herring <robh@kernel.org>,
@@ -86,9 +86,9 @@ To: Sebastian Reichel <sre@kernel.org>,
 Cc: linux-pm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 1/2] dt-bindings: power: supply: cpcap-battery: document monitored-battery property
-Date: Fri, 30 Jan 2026 15:40:20 +0200
-Message-ID: <20260130134021.353688-2-clamor95@gmail.com>
+Subject: [PATCH v1 2/2] power: supply: cpcap-battery: pass static battery cell data from device tree
+Date: Fri, 30 Jan 2026 15:40:21 +0200
+Message-ID: <20260130134021.353688-3-clamor95@gmail.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260130134021.353688-1-clamor95@gmail.com>
 References: <20260130134021.353688-1-clamor95@gmail.com>
@@ -106,7 +106,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -116,9 +116,9 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_TO(0.00)[kernel.org,atomide.com,gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261234-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-261233-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
@@ -129,29 +129,63 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 0FB75BB3D2
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: ED41BBB3E0
 X-Rspamd-Action: no action
 
-Document monitored-battery used to describe static battery cell properties.
+Add an option to populate battery cell properties from the device tree if
+the driver cannot access the battery's NVMEM.
 
 Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 ---
- .../devicetree/bindings/power/supply/cpcap-battery.yaml          | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/power/supply/cpcap-battery.c | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/power/supply/cpcap-battery.yaml b/Documentation/devicetree/bindings/power/supply/cpcap-battery.yaml
-index 694bfdb5815c..6dcca55d6d90 100644
---- a/Documentation/devicetree/bindings/power/supply/cpcap-battery.yaml
-+++ b/Documentation/devicetree/bindings/power/supply/cpcap-battery.yaml
-@@ -55,6 +55,7 @@ properties:
-       - const: chg_isense
-       - const: batti
+diff --git a/drivers/power/supply/cpcap-battery.c b/drivers/power/supply/cpcap-battery.c
+index 507fdc1c866d..9e686ba20282 100644
+--- a/drivers/power/supply/cpcap-battery.c
++++ b/drivers/power/supply/cpcap-battery.c
+@@ -404,6 +404,30 @@ static int cpcap_battery_match_nvmem(struct device *dev, const void *data)
+ 		return 0;
+ }
  
-+  monitored-battery: true
-   power-supplies: true
++static void cpcap_battery_update_battery_data(struct cpcap_battery_ddata *ddata)
++{
++	struct power_supply_battery_info *info;
++
++	if (power_supply_get_battery_info(ddata->psy, &info) < 0)
++		return;
++
++	if (info->technology > 0)
++		ddata->config.info.technology = info->technology;
++
++	if (info->voltage_max_design_uv > 0)
++		ddata->config.info.voltage_max_design = info->voltage_max_design_uv;
++
++	if (info->voltage_min_design_uv > 0)
++		ddata->config.info.voltage_min_design = info->voltage_min_design_uv;
++
++	if (info->charge_full_design_uah > 0)
++		ddata->config.info.charge_full_design = info->charge_full_design_uah;
++
++	if (info->constant_charge_voltage_max_uv > 0)
++		ddata->config.bat.constant_charge_voltage_max_uv =
++			info->constant_charge_voltage_max_uv;
++}
++
+ static void cpcap_battery_detect_battery_type(struct cpcap_battery_ddata *ddata)
+ {
+ 	struct nvmem_device *nvmem;
+@@ -431,6 +455,9 @@ static void cpcap_battery_detect_battery_type(struct cpcap_battery_ddata *ddata)
+ 	default:
+ 		ddata->config = cpcap_battery_unkown_data;
+ 	}
++
++	if (ddata->psy)
++		cpcap_battery_update_battery_data(ddata);
+ }
  
- required:
+ /**
 -- 
 2.51.0
 
