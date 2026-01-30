@@ -1,118 +1,129 @@
-Return-Path: <devicetree+bounces-261108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261109-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yEfDE9dofGk/MQIAu9opvQ
-	(envelope-from <devicetree+bounces-261108-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 09:16:23 +0100
+	id aGDuFm9nfGk/MQIAu9opvQ
+	(envelope-from <devicetree+bounces-261109-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 09:10:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E7ECB83BC
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 09:16:22 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8735DB8301
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 09:10:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 251AB3027135
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 08:03:45 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id F333F30166C5
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 08:10:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75B0E314A77;
-	Fri, 30 Jan 2026 08:03:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3516B32AAB1;
+	Fri, 30 Jan 2026 08:10:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aL8/6tXG"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="D0WOjZgd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 534A531354D;
-	Fri, 30 Jan 2026 08:03:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A75A32B99F;
+	Fri, 30 Jan 2026 08:10:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769760224; cv=none; b=LKeXWsxFu6XeV03kTyEGk6E9zDtNo3Kw09iZH+yFSqdQ6XZtYektmRiq8gry9fP1WvghN7Mq5SN3bw7ilMgdznaF84Hi8tzsTC3XDqAYkhI/jWNgfpf+eVKGguFr7M+gKb0Qumtv7fJDJQngCb0zAkWa36Dn0+kWx4SOPDDZzo4=
+	t=1769760616; cv=none; b=Oby5k513oyXeS7hSfUY02UGxp9+YP2o1IevIQ2AseSf2S/b+As/lWxIbQcQbU3IV2ZqWAsk3Eqp3aEn8rTQeoH5JQhrDlT9ZGibrL2xfGOR00tmU6PRiUB0QBwn5duOY/1yGvgH7XwC0KWH+Jf6Xg9ddQdc9ax4tLRlwgKoCcQo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769760224; c=relaxed/simple;
-	bh=euq3DIZBTE4qM2eqOaDtKndvOwdKebOXy4NoVSox5u0=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=I3miAWPKnniLTA6dSVVSzmR5UXmso0FbkTVH0w3WrRTGy9SwbKh9KsFgQFh9riCVzBsnbyX+ThJpzTBTVUlLp07t7I9ZXhNzyu1po23aW3OndkUOJcl103VhEmSKwKnqiVIyEA6UOO2obPH3VXLbFcCSLokZsmC+vHn/JxAtVOU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aL8/6tXG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B0C9C4CEF7;
-	Fri, 30 Jan 2026 08:03:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769760224;
-	bh=euq3DIZBTE4qM2eqOaDtKndvOwdKebOXy4NoVSox5u0=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=aL8/6tXGmAYMFT4YxVmeA6am6EToZctkR2rUa7nKbvv8MtX/pvq5Fqc6Vc5m06Jps
-	 PEh3FbMbG6w1GUNMbesDU+jxUZzfRgmDVoJum4dUNjakaQCBxU21EaI57XkoIMZ/Va
-	 TWzbqsFya5T3U2gV0qoqrIozOuxAPELnpRvtdSZQUDSEpcQTD6bzYvIH/EhA44fDjJ
-	 HlrGHXoTyiLw99apzDFM0JEYGoElFGy42pA/dhdhG3ks86feBrvJsGTmc8baC6FWuN
-	 PjzAozsSsKRUHnpHMsO6fhTalWL5RDlKpvBON0e96q/CqKsvOUO1j7Miq0S9jWuTJY
-	 mO6LIK6s5p1dA==
-From: Thomas Gleixner <tglx@kernel.org>
-To: Janne Grunau <j@jannau.net>, Sven Peter <sven@kernel.org>, Neal Gompa
- <neal@gompa.dev>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Janne Grunau
- <j@jannau.net>
-Subject: Re: [PATCH v2 1/2] dt-bindings: interrupt-controller: apple,aic2:
- Add AICv3
-In-Reply-To: <20260128-irq-apple-aic3-v2-1-b4bc8e16c997@jannau.net>
-References: <20260128-irq-apple-aic3-v2-0-b4bc8e16c997@jannau.net>
- <20260128-irq-apple-aic3-v2-1-b4bc8e16c997@jannau.net>
-Date: Fri, 30 Jan 2026 09:03:40 +0100
-Message-ID: <878qdfmsrn.ffs@tglx>
+	s=arc-20240116; t=1769760616; c=relaxed/simple;
+	bh=Lo2fUO90q/v1JUx9mj7PlHCHtIMjuN2bDdqaRtG0DWI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QQn7XNqMC+pzf6eGoWyHpN+rgwnF+oBDQF1K9En0KJzveZWSGW36+7amhFU0DuG8bgDXlFOAXaMXI5GMfSTGVolgxiQq9TDte6fa2kP3CNsq6agxUG9ueV4J9NZWp/Z+yoNGQG0ct7kJL/a5HRzOUQY7u6ovS9Snwkyx/1i8C70=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=D0WOjZgd; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 628DA1FB55;
+	Fri, 30 Jan 2026 09:10:03 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1769760603;
+	bh=67UzpBZIHZQ7e3X7q7iVPb/2tlQ+jW3PPWa81fH4DkI=; h=From:To:Subject;
+	b=D0WOjZgdfDvtz72Ej5e3wl3mgZGzTCEqRfblslZM9Fw6nO7dz3qj6cy1pOLoJa87x
+	 KlmpewBFqFdIK7Nw7RrJEpMEt3v1LtNHjdiUGgRcs8csoc/59uDhz+jWtE7KbA8trU
+	 v4nhwOT7RnM6j/LEiz+8rxy1L3j4HrJGm6qy4zLZHbV6lnboDPy84ZLRwRPmzZvd9k
+	 EADxG9zetZmg9SQKrHYR+btK7wbzmgVwTMRELquv7pLwEsHka3B/6uh6iDc+Qmqt14
+	 vS+n+qYn5I9BUaYpRoAC3bnX7X0Z1JX9YKUMwa5V+NITTWnUNebnEL05ZpQ3TyYzW9
+	 J2Gd9aq64wynw==
+Date: Fri, 30 Jan 2026 09:09:59 +0100
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Emanuele Ghidoli <ghidoliemanuele@gmail.com>
+Cc: Francesco Dolcini <francesco@dolcini.it>,
+	Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH v1] power: reset: tdx-ec-poweroff: fix restart
+Message-ID: <20260130080943.GA157514@francesco-nb>
+References: <20260130071208.1184239-1-ghidoliemanuele@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260130071208.1184239-1-ghidoliemanuele@gmail.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [4.34 / 15.00];
-	MID_END_EQ_FROM_USER_PART(4.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[dolcini.it,none];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[dolcini.it:s=default];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-261108-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261109-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	GREYLIST(0.00)[pass,body];
+	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tglx@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[francesco@dolcini.it,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[dolcini.it:+];
 	RCPT_COUNT_SEVEN(0.00)[11];
-	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,jannau.net:email]
-X-Rspamd-Queue-Id: 9E7ECB83BC
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,dolcini.it:dkim]
+X-Rspamd-Queue-Id: 8735DB8301
 X-Rspamd-Action: no action
 
-On Wed, Jan 28 2026 at 09:57, Janne Grunau wrote:
-> AIC version 3 as found on the Apple M3 (t8122) is very similar to AICv2
-> in its base functionality. It can use the same device tree bindings as
-> AICv2 so add it to the AICv2 bindings.
-> This interrupt controller is used on all Apple SoCs starting with M3 up
-> to at least M5.
-> The only apparent difference is the increased IRQ config offset. Apple's
-> device tree codes this new offset as property of the "aic" node but the
-> value stayed constant for all SoCs with "aic,3". Since the SoC specific
-> compatible "apple,t8122-aic3" will be used in the driver this offset can
-> remain a driver implementation detail.
->
-> Signed-off-by: Janne Grunau <j@jannau.net>
+On Fri, Jan 30, 2026 at 08:11:35AM +0100, Emanuele Ghidoli wrote:
+> From: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
+> 
+> During testing, restart occasionally failed on Toradex modules.
+> 
+> The issue was traced to an interaction between the EC-based reset/poweroff
+> handler and the PSCI restart handler. While the embedded controller is
+> resetting or powering off the module, the PSCI code may still be invoked,
+> triggering an I2C transaction to the PMIC. This can leave the PMIC I2C
+> in a frozen state.
+> 
+> Add a delay after issuing the EC reset or power-off command to give the
+> controller time to complete the operation and avoid falling back to another
+> restart/poweroff provider.
+> 
+> Also print an error message if sending the command to the embedded controller
+> fails.
+> 
+> Fixes: 18672fe12367 ("power: reset: add Toradex Embedded Controller")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
 
-Can the device tree folks please have a look at this?
+Reviewed-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+
+
 
