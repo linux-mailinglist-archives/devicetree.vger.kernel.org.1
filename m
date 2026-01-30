@@ -1,420 +1,297 @@
-Return-Path: <devicetree+bounces-261350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261351-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gGdJC8MbfWlQQQIAu9opvQ
-	(envelope-from <devicetree+bounces-261350-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 21:59:47 +0100
+	id CKUuOFomfWkGQgIAu9opvQ
+	(envelope-from <devicetree+bounces-261351-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 22:44:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA281BE9E6
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 21:59:46 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C773BEDC4
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 22:44:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 1ED003008271
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 20:59:46 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id DB64F3002521
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 21:44:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B764836B05F;
-	Fri, 30 Jan 2026 20:59:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CD1034FF54;
+	Fri, 30 Jan 2026 21:44:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="WnhuGbkQ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="oBftqW2l";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="fuqBM+lq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11021127.outbound.protection.outlook.com [52.101.70.127])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F31FF3806D5;
-	Fri, 30 Jan 2026 20:59:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.127
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769806785; cv=fail; b=p1KsD471uhkNyA5vJV/mK9pMv5fh49C4ZWZc6Ufeie7/JgfEOcwsMoO71focJderjZhAGj4O5XhWceZAZPgSZIg2eWJFOlYSX0+VyrlEhCow+/FD4fCOQtn0nokRsdo9B1smcHlPFllvLio2V66O+hDqw+ipjUicLsY5ajW3bW8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769806785; c=relaxed/simple;
-	bh=Zw7rp42BCCSiMtzPaP7uBGhkgZfr2Je9T53prbZDAVY=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rwW58Izz/mpYvVTokomascTxFpOZRoAc0ATkzI3UO8DklqTlIUZB5Mtb0QA/s353W9N9aAi/ANlD3He8RV8ilt6BZgLTudhlNpaCXFwZHCKuPrVPxCIwamsbPq/bTgdnfnNATD/tkftBpzF5d6hBkSJS061p4BX14BvYOZaoQNs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=WnhuGbkQ; arc=fail smtp.client-ip=52.101.70.127
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NZ58ctqMX4ifC4n+F7spFfKNhx4+/7v1Y6VoXBl0uytF4nHDweldS5t+GhffFtCr86YY1gWT9UwvWTEoI+5OW0sKHsIw889bTXOj4+yHyxKWXUmvBI+FudD+wi1rr2Kr8Drbky61Wk/9QqhT5fp4xW5m9URzxN/2Ou+q9tghjJZKT74oVnVwiDFIp8FmJ3qv9Nzuvl9KyX2uynwgtdCSyFnksiCWo1MvQA9WMDy0ld0OfUytJ2JiwO4j7hFIk9y5i+DP0BVxHpa2O0bt0+hS7y7YPAH58x923R6vKK+viNq/RuLgfKkSxz9BOQz4AvG4T6elikTHX1IzTIcaRifYfg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0FmJDLmg7avb7I+Kra62xPecUUkYJ+PfRnFKZfXFcq4=;
- b=hZ4/BeHHONz6G/LGA2lGmDJqZq7dJ6hCvdX9aLXnG4LRN7gMVuwiSstA13/st9Dpe1jSPSZ4AG3lVhYwJwvwWPd8c32shqE7h9k24MD3q+IBI425Fgc0/MFCxkhzMktRU/UoqOYYUolJiWc8YikV89QfYCqG9VWj+RqizrW8K+vLwEs52oTkNn+MWYTnyoAeqZ7OdfUvnfDi3GqeG7dslZr4vOoLTPlG6xoOVHOM79sZV00DuNhVdBmXDRQWmCibwuogSyWdjf5k6dQkiuYZEoF06TEgWfUaotkCsQltT7qmcIUb7pVqG6afdCcs8SllTrKCJdJhPV5XKjE3gT3zMw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
- is 91.26.50.189) smtp.rcpttodomain=gmail.com smtp.mailfrom=phytec.de;
- dmarc=fail (p=quarantine sp=quarantine pct=100) action=quarantine
- header.from=phytec.de; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0FmJDLmg7avb7I+Kra62xPecUUkYJ+PfRnFKZfXFcq4=;
- b=WnhuGbkQq478lehvJl+EW0OzjfRlZZ7Iy0hovsmMJPG1WoefKzJL83MAGX4Z5C9WI5pdgn6k1pvQAqTrFvO0uxMZ3V5+mHDRQwgh8afYnlz3aGDbfpmcWNyc7hAr6jarhCyPtnlsTBdMuK0QW4e8NymofSVQC7BPZzzHBo6AloNoeEEZgP1aEnlATpZk++qen25D0UrV8mYPI3GNVsxs/cl7QbMzFWwycgnOrwzFJcvLbxYEvN++PoJVimEAIZJRJwrro0O3j/A6dOxzJHYOVu+xsWie7oN0EzpFG1N0PJmSgylqhSY0jm2sWK6GsM17Z965vsmZUJMi57DqTc/C4g==
-Received: from DUZPR01CA0114.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:4bb::13) by DU7PPF2541BF4ED.EURP195.PROD.OUTLOOK.COM
- (2603:10a6:18:3::bc9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.7; Fri, 30 Jan
- 2026 20:59:39 +0000
-Received: from DB1PEPF000509E6.eurprd03.prod.outlook.com
- (2603:10a6:10:4bb:cafe::14) by DUZPR01CA0114.outlook.office365.com
- (2603:10a6:10:4bb::13) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9542.16 via Frontend Transport; Fri,
- 30 Jan 2026 21:00:07 +0000
-X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is 91.26.50.189)
- smtp.mailfrom=phytec.de; dkim=none (message not signed)
- header.d=none;dmarc=fail action=quarantine header.from=phytec.de;
-Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
- phytec.de discourages use of 91.26.50.189 as permitted sender)
-Received: from Postix.phytec.de (91.26.50.189) by
- DB1PEPF000509E6.mail.protection.outlook.com (10.167.242.56) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9564.3 via Frontend Transport; Fri, 30 Jan 2026 20:59:39 +0000
-Received: from lws-haller-privat.phytec.de (172.25.39.212) by Postix.phytec.de
- (172.25.0.11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.35; Fri, 30 Jan
- 2026 21:59:35 +0100
-From: Dominik Haller <d.haller@phytec.de>
-To: <adrien.grassein@gmail.com>, <jernej.skrabec@gmail.com>, <onas@kwiboo.se>,
-	<Laurent.pinchart@ideasonboard.com>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <robh@kernel.org>, Nishanth Menon <nm@ti.com>,
-	"Vignesh Raghavendra" <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>
-CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <upstream@lists.phytec.de>, "Dominik
- Haller" <d.haller@phytec.de>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH 6/6] arm64: dts: ti: k3-am68-phyboard-izar: Add PEB-AV-15 overlay
-Date: Fri, 30 Jan 2026 12:58:16 -0800
-Message-ID: <20260130205820.83189-7-d.haller@phytec.de>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260130205820.83189-1-d.haller@phytec.de>
-References: <20260130205820.83189-1-d.haller@phytec.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEF7E346A1E
+	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 21:44:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769809493; cv=none; b=TD+nWp6EI+ij+zjKMG10vTzYEl6RUZWAapmE6OjYdVaYiceFVizfGO4gGiJaJ2vN4/3UXRZYobQ0KP/KveE1fLQok/LctqFEiGhZ1xlu7RSne67zsnG0KKuDPYiKR40oirbj3YLqdL/bcfLvik9mTzCuYGAwOoA17uNxe/HSQ3k=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769809493; c=relaxed/simple;
+	bh=qXQg2y/d2o6uYu1gS5By3iAcvkqzafnFo1F6Lxcxgno=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SDVVsUgrPQ5ShIwNuMQeOXyIT86U3SLNRhcKm2AbTgKBSr9+UufyXEruU+g+wBSje3PSY4ul+OqgJCkcVG8zb8fSzEmj9Cx1/1tCiKUzyXn8y74q8o7mNrDgeq3scrQs9zH9OU83Cgq5oWg+HIqvT8IbP6rkXuEBIoNCHfadsVk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=oBftqW2l; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=fuqBM+lq; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60UKMwcr3656056
+	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 21:44:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	LtEj9II9/M1aLm1RTC1VllQoW2Yjzu7fOoRqZyTBgCs=; b=oBftqW2l4LySOmEy
+	GoGlU/8KplYiRUZALnDDJVe8HToa5uLoYhbqYiyL23DuPB+N9S6t0klHnsF/7Uoq
+	g9qsxHFXBex9IKDRpT//HDDeeDDT9F/wiEkqykIYbN2fNomwAubt6p/6LqK7sbuw
+	Lcb5X+6hSwcIsU8XwDySlYus4YSAvoNUk78kJlw4FzciXdvRcf5TPJZtGALS/2f9
+	if9ojkM1CdrviiHWqzzrUD2cFMGAVGlznZljgG01+Ye5APF6BETcu09K+Ep0e1Ah
+	w8potS+3j/L/r0TalVdOPz9iiyf7iiHPYfpNDi4ggmYF09zGQqurHeIwurwnhXWP
+	iFw4HQ==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c114c0qm7-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 21:44:51 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8c711251ac5so654854985a.1
+        for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 13:44:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1769809490; x=1770414290; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=LtEj9II9/M1aLm1RTC1VllQoW2Yjzu7fOoRqZyTBgCs=;
+        b=fuqBM+lqF/w5hlsLlTQNyxUoOVhm7wrQYvIRH6qYqTxo2rpD2dU1243Dtgl+JAVqN3
+         acLnl5VuuZ9eTwrm68preUkePZMqtpdNK+7wrPVdvc9T+bM9eJVNVJSGKEoBfTWFALiN
+         OnEQjIBtFFboc0Vit9RevP+uOcnNnkJxl/DQb2ymspVTddhAddoO7SNNlB9R7Ar756F1
+         WHZQXQYHxYBn98lxMqdP7mRSvxETRHJY/F006Y9UCw/Qrl0YS21Wg6vEx1y9gJBGENqa
+         ny0pD8kvrz05n10TAh+tgkMLGnbZz5zRMTtln8J/ogXzmlusCEmYwRvdCrNGjI3voq/u
+         32og==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769809490; x=1770414290;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=LtEj9II9/M1aLm1RTC1VllQoW2Yjzu7fOoRqZyTBgCs=;
+        b=negh+0s2cPOqNMTeW+aIss9/TuWQd3dpsIbzLCmNDZm7F689OvCFbzugwIOlpCgAgA
+         aFslgGEp/aBdttXKrezPiCbUTd0LjRDJJdxyujhHhBbLm6CesrRumronvUOrpsZKSV6Y
+         W2hbGXy68P8Wmx9U8a0/Mgbur+LRsxnKxvs0ETMrJBKq/JBegiNOty+pJhPKI4D8g81S
+         eWSCsb+IwH8PiDJ4CJwXisi/a/h5VaOpfjh7WDotDRUvYLw5Gfewv38zVNSHlaKik+Sg
+         t9vbYSl98c8tr6RzixI0OOQNJe/03Uc3ab8pmwJ2ONDLjLGcQWdG7pdrxCQFx3290e+4
+         /BnA==
+X-Forwarded-Encrypted: i=1; AJvYcCVMTta26fMq/p/kLB52AYhhgW5z9r/ajgtr7heFaG9Lo1zV8h9Hvu6GuLKRZPsVeO4XBtMo0uHzlz8h@vger.kernel.org
+X-Gm-Message-State: AOJu0YzoF1HRVn4hUzzUUghzrFSbnfc43+iIUmlmt4DqUGNg66cufprV
+	ZQnnK4KRfQVl4WXx4U34xTC2pWN8F2Og/SoxUFho0IObOnBT6ksmCPYt+RO4Go47BGrg463kpLQ
+	1oKb1wYGHIMXthqEtYih/GT4qhKGpPszYnngRl+btkEZIiixYJ458TNMA95bYoZ2G
+X-Gm-Gg: AZuq6aJ9esAxs9HgmkalMcpUJsrzYNy+ISsMKQQ7ZP+5SJKTCTySh/Y9NTlaD1Y8BLK
+	tbpoeLHj7NvuA0ZGySzaSMKtHdi+kWUUvuT9YfW2dnQESQ3uOnowDxW9VR2XH5l/oK4kZat9eNB
+	TSHkAGOOD+30eNCn5KKLv52VP3ARWFz/16C8AXxrS+0qLEd7v5gUBSLLTuYocDU9vV3mOueSLJG
+	1huVYs2bAN9Zd5Moabz9G6sff5F0uffWsIB+jcGGseZXFLD2sWl+0mjTyWjoMHDFF1h4Xofkvsu
+	Be50NV/+bB2hNSWpr8xnD2ElQX78KNTBMsgCkULY5+oCChMSu9U+QZawEhyAzOLkDWVQfCGaM+b
+	PuV3o8T1vNF5ZtieqHwFO893a
+X-Received: by 2002:a05:620a:3910:b0:8c9:ea70:aa4 with SMTP id af79cd13be357-8c9eb23dabbmr587320185a.22.1769809489899;
+        Fri, 30 Jan 2026 13:44:49 -0800 (PST)
+X-Received: by 2002:a05:620a:3910:b0:8c9:ea70:aa4 with SMTP id af79cd13be357-8c9eb23dabbmr587318085a.22.1769809489274;
+        Fri, 30 Jan 2026 13:44:49 -0800 (PST)
+Received: from oss.qualcomm.com ([86.121.162.109])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-482dbd3953esm34541875e9.4.2026.01.30.13.44.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Jan 2026 13:44:48 -0800 (PST)
+Date: Fri, 30 Jan 2026 23:44:43 +0200
+From: Abel Vesa <abel.vesa@oss.qualcomm.com>
+To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>,
+        Maulik Shah <maulik.shah@oss.qualcomm.com>,
+        Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
+        Taniya Das <taniya.das@oss.qualcomm.com>,
+        Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
+        Qiang Yu <qiang.yu@oss.qualcomm.com>,
+        Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>,
+        Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
+        Abel Vesa <abelvesa@kernel.org>
+Subject: Re: [PATCH v6 3/4] arm64: dts: qcom: Introduce Glymur base dtsi
+Message-ID: <2vqho236mjlsnraqif6ivic6ybblnsmk4litqw2sbfpjvrp2t2@eztnjrlsmrp6>
+References: <20260122-upstream_v3_glymur_introduction-v6-0-245f408ed82a@oss.qualcomm.com>
+ <20260122-upstream_v3_glymur_introduction-v6-3-245f408ed82a@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: Postix.phytec.de (172.25.0.11) To Postix.phytec.de
- (172.25.0.11)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB1PEPF000509E6:EE_|DU7PPF2541BF4ED:EE_
-X-MS-Office365-Filtering-Correlation-Id: 75bb692f-58a9-4e61-9402-08de60427bf3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|7416014|376014|82310400026|1800799024|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?IvemZKefn1CP/0vd5ZNDGmEDBC+cNBCoKlvtMnTxJeQDW+fU6snkNxauNKMw?=
- =?us-ascii?Q?HDYBgLSgiE7c5/cYjUaDVid5DXrVmDYSfXO9PJ9DHS4eNd4ejHkkspkE+6j0?=
- =?us-ascii?Q?hKco8RcvWjwFjnuk0Ika57LV2sBtfdOOkk4tWLeo/CSBx2tqpm9f4+8tBdmc?=
- =?us-ascii?Q?EJobOGTGGnwI25NzjhwdNXuF/ijLUkb0ZTmUfvl+P/8vGEUMzMsyBfTwf7zC?=
- =?us-ascii?Q?AlMctDQmO0nZcgYS7GPvubAWy5Y2Q/wh0b3wvNKckI/uw0+koTRGvPXdP5Ny?=
- =?us-ascii?Q?MnhFBeKWkM5xziC7JDtgqWTEh4etPaXpddrJ7+IX47Zp7mAlJM01zmNZzYxC?=
- =?us-ascii?Q?6lX9LrniyZcH5LsQFy9Fh+KavLFNEJ6yxRXDEJpMkE6DsJwocKmyFYm9ySnR?=
- =?us-ascii?Q?m/TaA/ANQBljgvRsoMlAM5emIo4Gmak+WWgHXlZP0xkhBYB5VpIUm6owyhSq?=
- =?us-ascii?Q?MT7Sh2Nv2e3vShMYSxNx4mSaOsE2zW+wjHvMsuqvTXkNA77dKnKctDQl/7Et?=
- =?us-ascii?Q?sEUVtW1Kl7aaS13dgRnH9HSaBMnwFSszXdoLNSMfuPuV3CrSQcXsDAJRRXAb?=
- =?us-ascii?Q?2gHzCD1l/pxRS4DdCHZ07j7/Q6me3P0T5aWbR9057D+4bjohEp04Xo7/7+WB?=
- =?us-ascii?Q?wjshAEG1TuuhKljPSnk7xtNnFUoTKUHWmKxH5nmWpnmKsu1Z+lVmezy1fddj?=
- =?us-ascii?Q?FzNGTlOJCc8js5+ehPsIJEgV8qdtBu0uaT7fRlUd6cUfIMwMT+ks2YWc+sZD?=
- =?us-ascii?Q?bD2DTLWrXHrCQe1owLwwDx0r0rhOkNipzrku/QGHPZWSsjTwI6gyKRPmKOl2?=
- =?us-ascii?Q?chh6mnTzn0fmqqtAu0fdZmcGvD8DcJs3o8J1NzYeqsLeyXv0vXwuFIfKUjLQ?=
- =?us-ascii?Q?v0xr8VhSfWj4pr8xx28Uxvy6TsD007tmS8EymjPVu4W0HL5c2oHh5OwJh3sB?=
- =?us-ascii?Q?NaNUj6DJX9U6I0UocaMxTcuGFgCQpx6km1NZiA50hTkwDHasOgA60sMxEN98?=
- =?us-ascii?Q?3JyIokGH3myur9sbd0FZY3zD+GKM6O+rhdWLw8QuY3xqvtWscZF8PP0LPQgY?=
- =?us-ascii?Q?QnB18vxYVAKG99qTvvjaLygdUazFSrV38hOP0TakDEsDZEAQYSzYaMrLlc9S?=
- =?us-ascii?Q?AT0EP5fkHBUA5k6bFrwMVGu+QU7Fi8EJt3qBLLY6i+xOxtqLjmMo+txCdc6N?=
- =?us-ascii?Q?U1COLqyW3iPdp9dSt6dkLM+3p7juV2Wko0w6Cebe2uiiwtTcyIYTocXFwzj8?=
- =?us-ascii?Q?NgEMGAV5UsWLZNqxWH7wiPfZH01RQUo7SUwNkw/OjrQLlqbUNaF+Lv4Cl17Y?=
- =?us-ascii?Q?C3JGO6qCjMhd7uEv3DPGRBOZQxasrHvefSVc55wUALVHoM00QuN3waFkpTqu?=
- =?us-ascii?Q?OOzdSiU511Ae6HpP8AxKVWfBw9/KGRQB68tk5TnRFSVqIkstW5jSTr0AKrU+?=
- =?us-ascii?Q?154isAmptjqy0JYUwVnnmBtlvvZgaFn8VnOF6IxEnDKwM1yrd+ktzOHieRbe?=
- =?us-ascii?Q?kfm5IJpfdLDu2ukUklMyD3STnGgka74B/EDULotpUN1hkWUsoFWBaXErJVHk?=
- =?us-ascii?Q?qL5uhVxNM/J4JN/Zgox2g8WIs5L/3T8I6+URD3Od52QMH8HlamO8SZeZxdg5?=
- =?us-ascii?Q?TN3x5pCqBjvfdDKDIt1Z2Vk4YEFmiIrPeem3Avw8bCDjhRaOhK6B3XDlBq0G?=
- =?us-ascii?Q?0ZYTBtGYHuGTObwFXVOag91IAlA=3D?=
-X-Forefront-Antispam-Report:
-	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:Postix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(7416014)(376014)(82310400026)(1800799024)(921020);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	UOSxm6E/GW4S6AX3UbnjnIyNKyJqp5RwIAwx+KaDehissXgvWFGu24gv5AkFB4l5WOs++dr0K5N/DPWyuhooDniVFyUHpOPuovD26dqiZFH9pgX6tUos5LhiNuE6VhTdiCuBLI12RkDtY744uG+jAVq80Z1TyTYArk1+nNRqpRlFRI4njn5FLlejd/i5r/V+ujLqZIUStOZr2L7bGa/K4mnQ/nLOoYGdGAabvsDI1+MnXx1XrcIXFNLBfvYP3edNiLlRq6y1/BZjx9PtyThljXlPrKsNXrn5xeVcuakySzKlt0BSdwvEBDc3GjeVTAbhSP9W2qUPtM0qMdU1g6gasIo+Mu5E0vdDxnxl74s5otiAKsb9n3WcO6LltesG1Vs7OZ+9t+IvLPBDc1hspo6KG9vFll9KNQnNyUVgtl/CStYTlqPGmVolSqMvQ3I7H/dM
-X-OriginatorOrg: phytec.de
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2026 20:59:39.6162
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 75bb692f-58a9-4e61-9402-08de60427bf3
-X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e609157c-80e2-446d-9be3-9c99c2399d29;Ip=[91.26.50.189];Helo=[Postix.phytec.de]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DB1PEPF000509E6.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU7PPF2541BF4ED
+In-Reply-To: <20260122-upstream_v3_glymur_introduction-v6-3-245f408ed82a@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTMwMDE3OCBTYWx0ZWRfX16UZZs402wNJ
+ pfBYsfwm2xXEWnstqXm+2r5aCZO4y/xPHvFB+jwEVxH/L+eFUhpGn62U3r6+aVHmTQJpZ4jyc0p
+ 3AWbiljZ4h/whTOhU+0iLjwvQwgq37OlnI1MRHic9BznvzcBmEkyvN91R6DP/QLVy5xwm7Ec05p
+ zFVV2PPP/UkP9vk5RYhXM9e50gCdoQUUCZQCX+59afdpOqI2Oawwr0Ef+QHgOH+krgOcW3OuJYt
+ LRDuRoY0AcGJtuvHqFngG4V0etJ5HZhFxT8lohe9ueIeVaxIojHi2n1l9tNSV3+mGzPiMGuNfM+
+ awGJCrjhPO0rmBZshi1aH9M3oqV+jZ8k3u9H/R8+Ig9BqSIV6XXsR12FjVOGa1mauaixz+mVepn
+ BRBAfyV/QD971xXM4wem4FudyARS2f5d4uYT0KLPqEzWczh9ul2fTxB3bjIGJw29PgMx0BV+1Q3
+ syQ50EIoCfZJNVJOk4w==
+X-Proofpoint-GUID: RTErSxDVG8tkG7axT4T7gIRLptcVTMS6
+X-Proofpoint-ORIG-GUID: RTErSxDVG8tkG7axT4T7gIRLptcVTMS6
+X-Authority-Analysis: v=2.4 cv=YZuwJgRf c=1 sm=1 tr=0 ts=697d2653 cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=oauzzCmhM186DRC0Y2yWPg==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8
+ a=wwj1QbHfqlsupVj5eVEA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=IoWCM6iH3mJn3m4BftBB:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-01-30_03,2026-01-30_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 clxscore=1015 impostorscore=0 spamscore=0 lowpriorityscore=0
+ priorityscore=1501 suspectscore=0 bulkscore=0 phishscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601300178
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[phytec.de,quarantine];
-	R_DKIM_ALLOW(-0.20)[phytec.de:s=selector2];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[gmail.com,kwiboo.se,ideasonboard.com,kernel.org,ti.com];
-	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261351-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,0.0.0.0:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,0.1.134.160:email];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261350-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[d.haller@phytec.de,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[abel.vesa@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[phytec.de:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[phytec.de:email,phytec.de:dkim,phytec.de:mid,0.0.0.0:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,0.0.0.1:email];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	DBL_PROHIBIT(0.00)[0.0.0.48:email,0.0.0.18:email,0.0.0.3:email];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: BA281BE9E6
+X-Rspamd-Queue-Id: 4C773BEDC4
 X-Rspamd-Action: no action
 
-Add an overlay to use the PEB-AV-15 AV-Adapter. It's a small expansion board
-using a Lontium LT8912B DSI->HDMI bridge and a TLV320AIC3007 audio codec.
+On 26-01-22 20:54:00, Pankaj Patil wrote:
+> Introduce the base device tree support for Glymur – Qualcomm's
+> next-generation compute SoC. The new glymur.dtsi describes the core SoC
+> components, including:
+> 
+> - CPUs and CPU topology
+> - Interrupt controller and TLMM
+> - GCC,DISPCC and RPMHCC clock controllers
+> - Reserved memory and interconnects
+> - APPS and PCIe SMMU and firmware SCM
+> - Watchdog, RPMHPD, APPS RSC and SRAM
+> - PSCI and PMU nodes
+> - QUPv3 serial engines
+> - CPU power domains and idle states, plus SCMI/ SRAM pieces for CPU DVFS
+> - PDP0 mailbox, IPCC and AOSS
+> - Display clock controller
+> - SPMI PMIC arbiter with SPMI0/1/2 buses
+> - SMP2P nodes
+> - TSENS and thermal zones (8 instances, 92 sensors)
+> 
+> Add dtsi files for PMH0101, PMK8850, PMCX0102, SMB2370, PMH0104,
+> PMH0110, PMIC's along with temp-alarm and GPIO nodes needed on Glymur
+> 
+> Enabled PCIe controllers and associated PHY to support boot to
+> shell with nvme storage,
+> List of PCIe instances enabled:
+> 
+> - PCIe3b
+> - PCIe4
+> - PCIe5
+> - PCIe6
+> 
+> Co-developed-by: Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
+> Signed-off-by: Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
+> Co-developed-by: Maulik Shah <maulik.shah@oss.qualcomm.com>
+> Signed-off-by: Maulik Shah <maulik.shah@oss.qualcomm.com>
+> Co-developed-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+> Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+> Co-developed-by: Taniya Das <taniya.das@oss.qualcomm.com>
+> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
+> Co-developed-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+> Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+> Co-developed-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
+> Signed-off-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
+> Co-developed-by: Abel Vesa <abel.vesa@linaro.org>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> Co-developed-by: Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
+> Signed-off-by: Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
+> Co-developed-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+> Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+> ---
+>  arch/arm64/boot/dts/qcom/glymur.dtsi         | 5913 ++++++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/pmcx0102.dtsi       |  187 +
+>  arch/arm64/boot/dts/qcom/pmh0101.dtsi        |   68 +
+>  arch/arm64/boot/dts/qcom/pmh0104-glymur.dtsi |  144 +
+>  arch/arm64/boot/dts/qcom/pmh0110-glymur.dtsi |  144 +
+>  arch/arm64/boot/dts/qcom/pmk8850.dtsi        |   70 +
+>  arch/arm64/boot/dts/qcom/smb2370.dtsi        |   45 +
+>  7 files changed, 6571 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/glymur.dtsi b/arch/arm64/boot/dts/qcom/glymur.dtsi
+> new file mode 100644
+> index 000000000000..16a3c3ecf97a
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/glymur.dtsi
 
-Signed-off-by: Dominik Haller <d.haller@phytec.de>
----
- arch/arm64/boot/dts/ti/Makefile               |   4 +
- .../ti/k3-am68-phyboard-izar-peb-av-15.dtso   | 192 ++++++++++++++++++
- 2 files changed, 196 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am68-phyboard-izar-peb-av-15.dtso
+[...]
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index a188e62e32b4..ae5994818ad2 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -135,6 +135,9 @@ dtb-$(CONFIG_ARCH_K3) += k3-am68-phyboard-izar.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am68-phyboard-izar-lvds-ph128800t006.dtb
- k3-am68-phyboard-izar-lvds-ph128800t006-dtbs := k3-am68-phyboard-izar.dtb \
- 	k3-am68-phyboard-izar-lvds-ph128800t006.dtbo
-+dtb-$(CONFIG_ARCH_K3) += k3-am68-phyboard-izar-peb-av-15.dtb
-+k3-am68-phyboard-izar-peb-av-15-dtbs := k3-am68-phyboard-izar.dtb \
-+        k3-am68-phyboard-izar-peb-av-15.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am68-sk-base-board.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am68-sk-base-board-pcie1-ep.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-j721s2-common-proc-board.dtb
-@@ -323,6 +326,7 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
- 	k3-am642-tqma64xxl-mbax4xxl-wlan.dtb \
- 	k3-am67a-kontron-sa67-base-gpios.dtb \
- 	k3-am68-phyboard-izar-lvds-ph128800t006.dtb \
-+	k3-am68-phyboard-izar-peb-av-15.dtb \
- 	k3-am68-sk-base-board-csi2-dual-imx219.dtb \
- 	k3-am68-sk-base-board-pcie1-ep.dtb \
- 	k3-am69-sk-csi2-dual-imx219.dtb \
-diff --git a/arch/arm64/boot/dts/ti/k3-am68-phyboard-izar-peb-av-15.dtso b/arch/arm64/boot/dts/ti/k3-am68-phyboard-izar-peb-av-15.dtso
-new file mode 100644
-index 000000000000..bec959d2e97f
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am68-phyboard-izar-peb-av-15.dtso
-@@ -0,0 +1,192 @@
-+// SPDX-License-Identifier: GPL-2.0-or-only or MIT
-+/*
-+ * Copyright (C) 2026 PHYTEC Messtechnik GmbH
-+ * Author: Dominik Haller <d.haller@phytec.de>
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include "k3-pinctrl.h"
-+
-+&{/} {
-+	audio_refclk1: audio-clock {
-+		#clock-cells = <0>;
-+		compatible = "fixed-clock";
-+		clock-frequency = <19200000>;
-+	};
-+
-+	hdmi: hdmi-connector {
-+		compatible = "hdmi-connector";
-+		label = "hdmi";
-+		type = "a";
-+		ddc-i2c-bus = <&main_i2c2>;
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&lt8912b_out>;
-+			};
-+		};
-+	};
-+
-+	reg_audio_3v3: regulator-audio-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC3V3_AUDIO";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+	};
-+
-+	reg_audio_1v8: regulator-audio-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC1V8_AUDIO";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-always-on;
-+	};
-+
-+	sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "PEB-AV-15";
-+		simple-audio-card,widgets =
-+			"Headphone", "Headphone Jack",
-+			"Microphone", "Mic Jack";
-+		simple-audio-card,routing =
-+			"Headphone Jack", "HPLOUT",
-+			"Headphone Jack", "HPROUT",
-+			"MIC3R", "Mic Jack",
-+			"Mic Jack", "Mic Bias";
-+		simple-audio-card,format = "dsp_b";
-+		simple-audio-card,bitclock-inversion;
-+		simple-audio-card,bitclock-master = <&link0_codec>;
-+		simple-audio-card,frame-master = <&link0_codec>;
-+
-+		link0_cpu: simple-audio-card,cpu {
-+			sound-dai = <&mcasp0>;
-+		};
-+
-+		link0_codec: simple-audio-card,codec {
-+			sound-dai = <&audio_codec>;
-+			clocks = <&audio_refclk1>;
-+		};
-+	};
-+
-+};
-+
-+&dphy_tx1 {
-+        status = "okay";
-+};
-+
-+&dsi1 {
-+	status= "okay";
-+};
-+
-+&dsi1_ports {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	port@0 {
-+		reg = <0>;
-+		dsi1_out: endpoint {
-+			remote-endpoint = <&lt8912b_in>;
-+		};
-+	};
-+
-+	port@1 {
-+		reg = <1>;
-+		dsi1_in: endpoint {
-+			remote-endpoint = <&dpi3_out>;
-+		};
-+	};
-+};
-+
-+&dss {
-+	status = "okay";
-+};
-+
-+&dss_ports {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        port@3 {
-+                reg = <3>;
-+                dpi3_out: endpoint {
-+                        remote-endpoint = <&dsi1_in>;
-+                };
-+        };
-+};
-+
-+&mcasp0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcasp0_pins>;
-+
-+	#sound-dai-cells= <0>;
-+
-+	op-mode = <0>;	/* MCASP_IIS_MODE */
-+	tdm-slots = <2>;
-+
-+	/* 4 serializers */
-+	serial-dir = <  /* 0: INACTIVE, 1: TX, 2: RX */
-+		2 0 0 1
-+		0 0 0 0
-+		0 0 0 0
-+		0 0 0 0
-+	>;
-+
-+	tx-num-evt = <32>;
-+	rx-num-evt = <32>;
-+	status = "okay";
-+};
-+
-+&main_i2c2 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	audio_codec: audio-codec@18 {
-+		compatible = "ti,tlv320aic3007";
-+		reg = <0x18>;
-+		#sound-dai-cells= <0>;
-+		ai3x-micbias-vg = <2>;
-+		AVDD-supply = <&reg_audio_3v3>;
-+		IOVDD-supply = <&reg_audio_3v3>;
-+		DRVDD-supply = <&reg_audio_3v3>;
-+		DVDD-supply = <&reg_audio_1v8>;
-+
-+	};
-+
-+	bridge@48 {
-+		compatible = "lontium,lt8912b";
-+		reg = <0x48>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				lt8912b_in: endpoint {
-+					data-lanes = <0 1 2 3>;
-+					remote-endpoint = <&dsi1_out>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+				lt8912b_out: endpoint {
-+					remote-endpoint = <&hdmi_connector_in>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&main_pmx0 {
-+	mcasp0_pins: mcasp0-default-pins {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x03C, PIN_INPUT, 1) /* (U27) WCLK, MCASP0_AFSX.MCASP0_AFSX */
-+			J721S2_IOPAD(0x038, PIN_INPUT, 1) /* (AB28) BCLK, MCASP0_ACLKX.MCASP0_ACLKX */
-+			J721S2_IOPAD(0x040, PIN_OUTPUT, 1) /* (AC28) DOUT, MCASP0_AXR0.MCASP0_AXR0 */
-+			J721S2_IOPAD(0x07C, PIN_INPUT, 1) /* (T27) DIN, MCASP0_AXR3.MCASP0_AXR3 */
-+		>;
-+	};
-+};
--- 
-2.43.0
+> +
+> +	soc: soc@0 {
+> +		compatible = "simple-bus";
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges = <0x0 0x0 0x0 0x0 0x100 0x0>;
+> +		dma-ranges = <0x0 0x0 0x0 0x0 0x100 0x0>;
+> +
+> +		gcc: clock-controller@100000 {
+> +			compatible = "qcom,glymur-gcc";
+> +			reg = <0x0 0x00100000 0x0 0x1f9000>;
+> +			clocks = <&rpmhcc RPMH_CXO_CLK>,
+> +				 <&rpmhcc RPMH_CXO_CLK_A>,
+> +				 <&sleep_clk>,
+> +				 <0>,
+> +				 <0>,
+> +				 <0>,
+> +				 <0>,
+> +				 <0>,
+> +				 <0>,
+> +				 <0>,
+> +				 <0>,
+> +				 <0>,
+> +				 <0>,
+> +				 <0>,
+> +				 <0>,
+> +				 <0>,
+> +				 <0>,
+> +				 <0>,
+> +				 <0>,
+> +				 <0>,
+> +				 <&pcie3b_phy>,
+> +				 <&pcie4_phy>,
+> +				 <&pcie5_phy>,
+> +				 <&pcie6_phy>,
 
+I'm afraid these do not match the array from the driver.
+I think there is one more <0> before the pcie3b.
+
+Please double check.
+
+Thanks,
+Abel
 
