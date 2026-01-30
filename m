@@ -1,183 +1,359 @@
-Return-Path: <devicetree+bounces-261054-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261063-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AET5Icbte2kMJgIAu9opvQ
-	(envelope-from <devicetree+bounces-261054-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 00:31:18 +0100
+	id 4CIpOF4AfGlhJwIAu9opvQ
+	(envelope-from <devicetree+bounces-261063-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 01:50:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06A6AB5B44
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 00:31:17 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58423B6070
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 01:50:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B9338300D96F
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jan 2026 23:29:59 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BAF12301B162
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 00:50:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C9ED37649E;
-	Thu, 29 Jan 2026 23:29:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nexthop.ai header.i=@nexthop.ai header.b="DTCU4fKT"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3F823064A0;
+	Fri, 30 Jan 2026 00:50:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20BD036CDF1
-	for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 23:29:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48991308F1A;
+	Fri, 30 Jan 2026 00:50:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769729398; cv=none; b=CY026D9U1JwnvWaJ2p4PRf0Trm1B01gUotWKl7+lwWGR18EuLI73nMNnX34+5hnUvXnP1gFGjYP6/LnVE78mo7FAZm3JYOiKxFMIw3KvgJ4kJ8Vzm6OFduHlVVA0iSEdDiuHErj7U4QXUis3+Olm4BDUArZIJXZJeTzXjmirWwk=
+	t=1769734226; cv=none; b=TWK0VYbhKsvLBf7JbOtJNt/6QzGFLQ4SPwQVrFYAcFPckPzG4ovIzhaW306nqkRt6HscPNdPrhQXZKQeKvyib3rrNS+VyGNOiJrfqUcjonargRc4UaPrO/buCuO3s+a5Xnb1FbHf7MKRw6ygU53cY1iT5Dzdzqp9vGiT8CNteIA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769729398; c=relaxed/simple;
-	bh=tApPpTDpzWHbB1pWe+VsiMG5gGDF6f3x7Nan38A1rbo=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=LPpP934dtEiznCfjh39xeEuSD8WPW++ANZgPS8jnuiWjAWsGO15fbMv/6XxnG9RLJu7WQ369G2HL++oI0PEN3gyG/0+4m0SHzGaENE5DeQkA0+aIpGtHtf9fxYH8Q5UaVM+Tgup8SmHETkYSg2hbMN5fYGMcdVVQKW6MtPX8npI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nexthop.ai; spf=pass smtp.mailfrom=nexthop.ai; dkim=pass (2048-bit key) header.d=nexthop.ai header.i=@nexthop.ai header.b=DTCU4fKT; arc=none smtp.client-ip=209.85.210.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nexthop.ai
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nexthop.ai
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-81dab89f286so762933b3a.2
-        for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 15:29:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nexthop.ai; s=google; t=1769729396; x=1770334196; darn=vger.kernel.org;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tApPpTDpzWHbB1pWe+VsiMG5gGDF6f3x7Nan38A1rbo=;
-        b=DTCU4fKTTkBJVk0rl0M0yDldZu+5uj0u7VonTLzBtXktv4WH0jS4bteu1I2eRXhcSo
-         9w87JWRxr99O2sedgFUsTqjZlpZ4i4jBhPFN9o1AqzDAkjqIeo9VIW7VC5SwX7uRY4nu
-         brzxBnQjssYZl1d9gEz3l4S0pz9AxLEZsLbMHOIUwWDHkgwXz89UgFYbXkxKOEhzhNQ4
-         PP5L1xFIx47MhpAxVgyD+uEiCIx/RHZosY3C6rWQfkydmlbkKeI8OgG9FvFZHosi4/AV
-         f1U1E7BT8r9AIH2T+ShL7nppyQjSu+LCMcXbZ5m0Tla6VSS7+iTxUXS1Cd+eY2fY+Fxt
-         KRXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769729396; x=1770334196;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tApPpTDpzWHbB1pWe+VsiMG5gGDF6f3x7Nan38A1rbo=;
-        b=VC3qYhN8lAFxILZjGg+QwzL7xnTUFmfSd/Brb6qwRqNSkBF5wwFhqFkvyr3UJykkLQ
-         5JOA8Z7UDlZTPU3M7WK0e3725BVSNam8gX7dvR+am7Q/5j8K3CTAtqv7sbhn8FmLldNd
-         MJl5OWaUueMOWmfucBJWtjRG7dvQo3wuKhoKC1pJKIsCj+TLrRYmsbKFAbjPVYMskrVn
-         lfmf9ChyRqYh254sCrXsZdXTISs60KTRZqfgaqzDNOeAaF57fKEtLDqT7KDfQtuP/cy/
-         Indl5h/E5Cn3U3rkc1xqbxJlwSvOAjUD73ZF/ZHA9ikYMqGlgfDvGCeApRkacoBxjWZC
-         Axtg==
-X-Forwarded-Encrypted: i=1; AJvYcCWVqXNAa062wlRd6x6Ya93G7s3dCmMo7nkY42yx85RA6CBC7jr90FEfjc8Y3P3UGV2xzHCirNpSm/XW@vger.kernel.org
-X-Gm-Message-State: AOJu0YwdiDCATRdFAn/kx6K5+r3b83jOpdysZj+FRxv+IkJg9BZf56jk
-	RwMxtg2nGvP+m35XyUPFe18oAu2Vprh6NOFvMdR1h1MqcP/XYv9OrPP6X1ccIeem5Ug=
-X-Gm-Gg: AZuq6aLh5OPcS/1zJXBacGnyc+EHnlu0MIUFO/mYk1SG/EXoF9zfEwoVYxxbJ7h0Vr5
-	qK3a2acqXeuKAaMZhbA3bjlztYzyM+OBWOfFFisNn7rSxDQsZ/fQ3+UHwTZdIjCHkpmtqrYxeVp
-	ezCChekHg/lxR6IjzHAZHk+o9xI1MGGMoG6xDTogmpaGQHeqTWhrsYkNN+j0iKVGJj4A9AGw4IY
-	upjqjRbpp1rNIhwfD8+6iW8qX9yltO9VQn3SoRKpGLtxWrsuPpr9wG9pfFkh703JRYRMAgsRJ5V
-	iDNv89vujj7tu4eCoC5TxsL00V94aNSnJu24RcjhT3wuez+ThV1n6qM0RXevA8YfIs9mNNVdGzt
-	R9IiSpcJ4F8P++h8tUjTRi/1ghmmAQwN0lpqxjuZg/IiE9lmwcpFQoKiVRfSHv+g7hRKvKpjDRm
-	X91zkr3s+xesQJGuM0AZFVzuPkzZGlfB38lY0ySEy7JY0Lfc2TU7IS6rkuZPYzFWeJyszwqmI=
-X-Received: by 2002:a05:6a00:7584:b0:81b:13c5:b6b2 with SMTP id d2e1a72fcca58-823aa71186emr720685b3a.33.1769729396526;
-        Thu, 29 Jan 2026 15:29:56 -0800 (PST)
-Received: from smtpclient.apple (c-24-16-26-157.hsd1.wa.comcast.net. [24.16.26.157])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82379c64b4esm6363964b3a.69.2026.01.29.15.29.55
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 29 Jan 2026 15:29:56 -0800 (PST)
-Content-Type: text/plain;
-	charset=utf-8
+	s=arc-20240116; t=1769734226; c=relaxed/simple;
+	bh=6ywnDcLeBhx/4EhVCkd6XUgH/sn2H03ZCKcu6ZSdaZA=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=ArIrCEXZWdEVdVeimW+jDzR40wkDRmOY2kcG/qOyuzXEFf0LkGfTaI6rfDcVNpCgQQyQNiN9E6Io9EjT22xHwSsxJtCcoOgA5odveTzZawfDOmTlrlQWArvlsijoK/bgZwEIXKREY0KT39Ktm9EcoHZCkbibPIUnSeh6lAXu3Uw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.99)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1vlcVg-000000007jO-2b7S;
+	Fri, 30 Jan 2026 00:37:16 +0000
+Date: Fri, 30 Jan 2026 00:37:12 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Daniel Golle <daniel@makrotopia.org>, Andrew Lunn <andrew@lunn.ch>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Simon Horman <horms@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Frank Wunderlich <frankwu@gmx.de>, Chad Monroe <chad@monroe.io>,
+	Cezary Wilmanski <cezary.wilmanski@adtran.com>,
+	Avinash Jayaraman <ajayaraman@maxlinear.com>,
+	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
+	Juraj Povazanec <jpovazanec@maxlinear.com>,
+	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
+	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
+	"Livia M. Rosu" <lrosu@maxlinear.com>,
+	John Crispin <john@phrozen.org>
+Subject: [PATCH net-next v10 0/4] net: dsa: initial support for MaxLinear
+ MxL862xx switches
+Message-ID: <cover.1769731630.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3864.300.41.1.7\))
-Subject: Re: [PATCH v7 1/6] i2c: xiic: skip input clock setup on non-OF
- systems
-From: Abdurrahman Hussain <abdurrahman@nexthop.ai>
-In-Reply-To: <ab9dc191-59c1-40a9-bbf1-e6c082af128a@lunn.ch>
-Date: Thu, 29 Jan 2026 15:29:45 -0800
-Cc: Michal Simek <michal.simek@amd.com>,
- Andi Shyti <andi.shyti@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Andy Shevchenko <andriy.shevchenko@intel.com>,
- linux-arm-kernel@lists.infradead.org,
- linux-i2c@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <2428D892-89F9-4013-9681-AD9BD76B0874@nexthop.ai>
-References: <20260129-i2c-xiic-v7-0-727e434897ef@nexthop.ai>
- <20260129-i2c-xiic-v7-1-727e434897ef@nexthop.ai>
- <ab9dc191-59c1-40a9-bbf1-e6c082af128a@lunn.ch>
-To: Andrew Lunn <andrew@lunn.ch>
-X-Mailer: Apple Mail (2.3864.300.41.1.7)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [1.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[nexthop.ai:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[nexthop.ai:+];
-	DMARC_NA(0.00)[nexthop.ai];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261054-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261063-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[makrotopia.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[makrotopia.org,lunn.ch,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,armlinux.org.uk,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[27];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmx.de,monroe.io,adtran.com,maxlinear.com,phrozen.org];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[abdurrahman@nexthop.ai,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	FROM_NEQ_ENVFROM(0.00)[daniel@makrotopia.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nexthop.ai:email,nexthop.ai:dkim,nexthop.ai:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lunn.ch:email]
-X-Rspamd-Queue-Id: 06A6AB5B44
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[makrotopia.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 58423B6070
 X-Rspamd-Action: no action
 
+This series adds very basic DSA support for the MaxLinear MxL86252
+(5x 2500Base-T PHYs) and MxL86282 (8x 2500Base-T PHYs) switches.
+In addition to the 2.5G TP ports both switches also come with two
+SerDes interfaces which can be used either to connect external PHYs
+or SFP cages, or as CPU port when using the switch with this DSA driver.
+
+MxL862xx integrates a firmware running on an embedded processor (running
+Zephyr RTOS). Host interaction uses a simple netlink-like API transported
+over MDIO/MMD.
+
+This series includes only what's needed to pass traffic between user
+ports and the CPU port: relayed MDIO to internal PHYs, basic port
+enable/disable, and CPU-port special tagging.
+
+The SerDes interface of the CPU port is automatically configured by the
+switch after reset using a board-specific configuration stored together
+with the firmware in the flash chip attached to the switch, so no action
+is needed from the driver to setup the interface mode of the CPU port.
+
+Also MAC settings of the PHY ports are automatically configured, which
+means the driver works fine with phylink_mac_ops being all no-op stubs.
+
+Multiple follow up series will bring support for setting up the other
+SerDes PCS interface (ie. not used for the CPU port), bridge, VLAN, ...
+offloading, and support for using an 802.1Q-based special tag instead of
+the proprietary 8-byte tag.
+---
+basic DSA selftests were run, results:
+ * no_forwarding.sh: all tests PASS
+ * bridge_vlan_unaware.sh: all tests PASS
+ * bridge_vlan_mcast.sh: all tests PASS
+ * bridge_vlan_aware.sh: all tests PASS
+ * local_termination.sh: all tests PASS or XFAIL, except for
+TEST: VLAN over vlan_filtering=1 bridged port: Unicast IPv4 to unknown MAC address   [FAIL]
+        reception succeeded, but should have failed
+TEST: VLAN over vlan_filtering=1 bridged port: Unicast IPv4 to unknown MAC address, allmulti   [FAIL]
+        reception succeeded, but should have failed
+
+As obviously this is mostly testing the Linux software bridge at this
+point so I didn't bother to run any of the FDB or MDB related tests.
+
+Some mystery about the relationship between the sub-interface ID and CTP
+port assignment remains for now, so I cannot yet fully explain the magic
+numbers when calculating the two.
+(Why is it neccesary to allocate 23 CTPs when using port 9 as CPU port
+while there are at most 17 phyiscal interfaces in total, and only at
+most 13 when using one of the two SerDes as CPU interface? Why is there
+an offset of 16 when calculating the sub-interface ID? How will a total
+of 17 ports be possibly represented in a 4-bit field in the tag RX
+path?)
+
+At this point this doesn't impact functionality, and I hope for further
+clarification discussing all that with MaxLinear engineers.
+
+I believe the initial driver is anyway in good shape now, a follow-up
+series addressing configuring the SerDes interfaces will also have to
+take care of CTP assignment and sub-interfaces to not hit the mentioned
+4-bit cap in the tag driver.
+
+Changes since v9:
+1/4 dt-bindings: net: dsa: add MaxLinear MxL862xx
+ * add microcontroller port 0
+2/4 net: dsa: add tag format for MxL862xx switches
+ * count ports starting from 0
+3/4 net: mdio: add unlocked mdiodev C45 bus accessors
+ * no changes
+4/4 net: dsa: add basic initial driver for MxL862xx switches
+ * fix indentation in kernel-doc
+ * remove misleading comment regarding sub-interface IDs
+ * remove unused macros, set MXL862XX_MAX_PORTS to 17
+ * count ports starting from 0, 0 being the microcontroller
+ * improve port setup:
+   - split tag protocol and CTP port assignment
+   - use ports cpu_dp instead of relying on single (ie. first) CPU port
+   - handle CPU port like any other port
+   - prepare forward DT compatibility with multiple CPU ports
+
+Changes since v8:
+1/4 dt-bindings: net: dsa: add MaxLinear MxL862xx
+ * no changes
+2/4 net: dsa: add tag format for MxL862xx switches
+ * no changes
+3/4 net: mdio: add unlocked mdiodev C45 bus accessors
+ * no changes
+4/4 net: dsa: add basic initial driver for MxL862xx switches
+ * remove practically unused struct hw_info
+ * lots of kerneldoc improvements in mxl862xx-api.h
+ * drop .mac_select_pcs() stub
+ * better handling for firmware error return value
+ * apply reverse xmas tree in mxl862xx_api_wrap
+ * guard headers with #ifdef macro
+ * include net/dsa.h and linux/mdio.h in mxl862xx.h
+ * call mxl862xx_port_fast_age() only once in .port_setup
+ * don't create isolation bridges for unused ports
+ * replace errornous cast with correct range of values denoting firmware errors
+
+Changes since v7
+1/4 dt-bindings: net: dsa: add MaxLinear MxL862xx
+ * no changes
+2/4 net: dsa: add tag format for MxL862xx switches
+ * no changes
+3/4 net: mdio: add unlocked mdiodev C45 bus accessors
+ * no changes
+4/4 net: dsa: add basic initial driver for MxL862xx switches
+ * use little-endian in bridge_port_config API
+ * remove duplciate assignment of br_port_cfg.bridge_port_id when setting
+   up CPU port
+
+Changes since v6
+1/4 dt-bindings: net: dsa: add MaxLinear MxL862xx
+ * no changes
+2/4 net: dsa: add tag format for MxL862xx switches
+ * no changes
+3/4 net: mdio: add unlocked mdiodev C45 bus accessors
+ * no changes
+4/4 net: dsa: add basic initial driver for MxL862xx switches
+ * fix kerneldoc style
+
+Changes since RFC v5
+1/4 dt-bindings: net: dsa: add MaxLinear MxL862xx
+ * no changes
+
+2/4 net: dsa: add tag format for MxL862xx switches
+ * remove unnecessary check for skb != NULL
+ * merge consecutively printed warnings into single dev_warn_ratelimited
+
+3/4 net: mdio: add unlocked mdiodev C45 bus accessors
+ * no changes
+
+4/4 net: dsa: add basic initial driver for MxL862xx switches
+ * include bridge and bridgeport API needed to isolate ports
+ * remove warning in .setup as ports are now isolated
+ * make ready-after-reset check more robust by adding delay
+ * sort structs in order of struct definitions
+ * best effort to sort functions without introducing additional prototypes
+ * always use enums with kerneldoc comments in mxl862xx-api.h
+ * remove bogus .phy_read and .phy_write DSA ops as the driver anyway registers
+   a user MDIO bus with Clause-22 and Clause-45 operations
+ * various small style fixes
+
+Changes since RFC v4
+1/4 dt-bindings: net: dsa: add MaxLinear MxL862xx
+ * no changes
+
+2/4 net: dsa: add tag format for MxL862xx switches
+ * drop unused precompiler macros
+
+3/4 net: mdio: add unlocked mdiodev C45 bus accessors
+ * fix indentation
+
+4/4 net: dsa: add basic initial driver for MxL862xx switches
+ * output warning in .setup regarding unknown pre-configuration
+ * add comment explaining why CFGGET is used in reset function
+
+Changes since RFC v3
+1/4 dt-bindings: net: dsa: add MaxLinear MxL862xx
+ * remove labels from example
+ * remove 'bindings for' from commit title
+
+2/4 net: dsa: add tag format for MxL862xx switches
+ * describe fields and variables with comments
+ * sub-interface is only 5 bits
+ * harmonize Kconfig symbol name
+ * maintain alphabetic order in Kconfig
+ * fix typo s/beginnig/beginning/
+ * fix typo s/swtiches/switches/
+ * arrange local variables in reverse xmas tree order
+
+3/4 net: mdio: add unlocked mdiodev C45 bus accessors
+ * unchanged
+
+4/4 net: dsa: add basic initial driver for MxL862xx switches
+ * poll switch readiness after reset
+ * implement driver shutdown
+ * added port_fast_aging API call and driver op
+ * unified port setup in new .port_setup op
+ * improve comment explaining special handlign for unaligned API read
+ * various typos and formatting improvements
+
+Changes since RFC v2
+1/4, 2/4, 3/4: unchanged
+
+4/4 net: dsa: add basic initial driver for MxL862xx switches
+ * fix return value being uninitialized on error in mxl862xx_api_wrap()
+ * add missing description in kerneldoc comment of
+   struct mxl862xx_ss_sp_tag
+
+Changes since initial RFC
+
+1/4 dt-bindings: net: dsa: add bindings for MaxLinear MxL862xx
+ * better description in dt-bindings doc
+
+2/4 net: dsa: add tag formats for MxL862xx switches
+ * make sure all tag fields are initialized
+
+3/4 net: mdio: add unlocked mdiodev C45 bus accessors
+ * new patch
+
+4/4 net: dsa: add basic initial driver for MxL862xx switches
+ * make use of struct mdio_device
+ * add phylink_mac_ops stubs
+ * drop leftover nonsense from mxl862xx_phylink_get_caps()
+ * fix endian conversions
+ * use __le32 instead of enum types in over-the-wire structs
+ * use existing MDIO_* macros whenever possible
+ * simplify API constants to be more readable
+ * use readx_poll_timeout instead of open-coding poll timeout loop
+ * add mxl862xx_reg_read() and mxl862xx_reg_write() helpers
+ * demystify error codes returned by the firmware
+ * add #defines for mxl862xx_ss_sp_tag member values
+ * move reset to dedicated function, clarify magic number being the
+   reset command ID
 
 
-> On Jan 29, 2026, at 2:43=E2=80=AFPM, Andrew Lunn <andrew@lunn.ch> =
-wrote:
->=20
-> On Thu, Jan 29, 2026 at 09:43:13PM +0000, Abdurrahman Hussain via B4 =
-Relay wrote:
->> From: Abdurrahman Hussain <abdurrahman@nexthop.ai>
->>=20
->> The xiic driver supports operation without explicit clock =
-configuration
->> when clocks cannot be specified via firmware, such as on ACPI-based
->> systems.
->=20
-> Are you saying it is technically impossible to specify a clock in
-> ACPI?
->=20
-> Maybe a more accurate would be:
->=20
-> The xiic driver supports operation without explicit clock
-> configuration when the clocks are not specified via firmware, such as
-> when the ACPI tables are missing the description of the clocks.
->=20
-> Andrew
+Daniel Golle (4):
+  dt-bindings: net: dsa: add MaxLinear MxL862xx
+  net: dsa: add tag format for MxL862xx switches
+  net: mdio: add unlocked mdiodev C45 bus accessors
+  net: dsa: add basic initial driver for MxL862xx switches
 
-Actually, ACPI (since 6.5) added a ClockInput() macro that can be added =
-to
-_CRS of a device node. The ACPI subsystem in kernel could parse these =
-and
-convert into proper clocks integrated with the CCF. But, AFAIK, this =
-idea was
-rejected in the past. So, technically, it's the kernel that lacks =
-support on
-ACPI systems.
+ .../bindings/net/dsa/maxlinear,mxl862xx.yaml  | 160 +++++
+ MAINTAINERS                                   |   8 +
+ drivers/net/dsa/Kconfig                       |   2 +
+ drivers/net/dsa/Makefile                      |   1 +
+ drivers/net/dsa/mxl862xx/Kconfig              |  12 +
+ drivers/net/dsa/mxl862xx/Makefile             |   3 +
+ drivers/net/dsa/mxl862xx/mxl862xx-api.h       | 671 ++++++++++++++++++
+ drivers/net/dsa/mxl862xx/mxl862xx-cmd.h       |  49 ++
+ drivers/net/dsa/mxl862xx/mxl862xx-host.c      | 245 +++++++
+ drivers/net/dsa/mxl862xx/mxl862xx-host.h      |  12 +
+ drivers/net/dsa/mxl862xx/mxl862xx.c           | 476 +++++++++++++
+ drivers/net/dsa/mxl862xx/mxl862xx.h           |  16 +
+ include/linux/mdio.h                          |  13 +
+ include/net/dsa.h                             |   2 +
+ net/dsa/Kconfig                               |   7 +
+ net/dsa/Makefile                              |   1 +
+ net/dsa/tag_mxl862xx.c                        | 110 +++
+ 17 files changed, 1788 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/dsa/maxlinear,mxl862xx.yaml
+ create mode 100644 drivers/net/dsa/mxl862xx/Kconfig
+ create mode 100644 drivers/net/dsa/mxl862xx/Makefile
+ create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx-api.h
+ create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx-cmd.h
+ create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx-host.c
+ create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx-host.h
+ create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx.c
+ create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx.h
+ create mode 100644 net/dsa/tag_mxl862xx.c
 
-What about this wording then:
-
-The xiic driver supports operation without explicit clock configuration =
-when
-the clocks specified via firmware are ignored, such as on ACPI systems.
-
-Abdurrahman=
+-- 
+2.52.0
 
