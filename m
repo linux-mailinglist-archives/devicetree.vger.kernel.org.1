@@ -1,231 +1,162 @@
-Return-Path: <devicetree+bounces-261193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261194-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iElVGpKUfGkQNwIAu9opvQ
-	(envelope-from <devicetree+bounces-261193-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 12:22:58 +0100
+	id mJDZEYCUfGkQNwIAu9opvQ
+	(envelope-from <devicetree+bounces-261194-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 12:22:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA3F4BA06A
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 12:22:57 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEC19BA04D
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 12:22:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CB7BF305B46F
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 11:19:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BCEBE3005E8B
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 11:22:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3CCE367F20;
-	Fri, 30 Jan 2026 11:19:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39148357A5E;
+	Fri, 30 Jan 2026 11:22:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="AxqFUA1V";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="QdCylakC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TklEvXAE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEEB73382F4
-	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 11:18:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1222A7080E;
+	Fri, 30 Jan 2026 11:22:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769771942; cv=none; b=Sd6v862CTSFb6PvTwLSlXJjuHY8uW5ZGaQwdC3410ikDIx51pzsIsVl3wBkjg0w42/Z7ZzXm7+iKEPW2CTIAVehAEmBu/X3Kqi6X/xQMAAg8CCDtiYE2v7fbkA6MA7Vb1E9MVrIdcERFNdv0Jg2TgMiNli8ICRfyc1gbgv7YAkw=
+	t=1769772144; cv=none; b=OlQLRpMBMmsq3hhg+jrLd+Y2e/Jnd3TojMtuTPEe6FBs5/60sRzCXqRsppYGEbISZoXVXTwIqxiQ/iNPvoQqcTz88WNTNcjdSfbq+ROc1C4DGKkVtu+Dh1Jyqh6zWpWsUQ/qdT3aZMRGcUEqU3Z1N46oV2PPHsRzMFZrIbRz8Ew=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769771942; c=relaxed/simple;
-	bh=wgAliZeWKdq9v7QPy4UKFSpZpHhIs0m4Meochnf1yC8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EH50S1utPleRWxYiA6hhJeLtYjcBxSPkWRvQd6xD+NIGghCtD3m3ESqiXfBHv7paLkc4q2FzUjHVxtQ4sxOnPc/88cwcnpiXDdbuII6/YIC2vYfqjUZo6eDGCQxPcG7sejrwvhGJakC2womkPcYEilUd1OPfrZ6QTq0pa5IQZ3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=AxqFUA1V; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=QdCylakC; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60UAbxvl1488302
-	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 11:18:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Ex9GO0Pup1IY1uEeAFsAZWtpuM+CzU6Onq13HSd9IRQ=; b=AxqFUA1VaFwyISRM
-	F3Nb7I6SS6DB/CiqFcK56bHvxxJ8izidZFKiQfEyb46n0utoY1FV2oqXA8mhHU4F
-	dEplIj4sLXU7yXY5yNToSVUndZ/RiRoZCSmHlKMdMW9Us9EfJfOLf31/dTaOYmMN
-	J3IHwKuJldkN1YjboKIf05EGa/lWncZevTtKOSW0exrQHVAmVMmUfiBYo00PU8wO
-	UO9x46/XXRUB6wdi1MNZnq6S8Nh2IMjpvHcIVXarTmywFuxHC4l/qZ3LdSjvI/J3
-	fLKay4snj9sYcrVqVGreSIrMFkYNUne9RbIo3Q1ygEhdj39vpHGVBmeSO/9nSShf
-	fQ1vjg==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c0bp3tyx1-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 11:18:59 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8c52de12a65so40504885a.2
-        for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 03:18:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769771938; x=1770376738; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ex9GO0Pup1IY1uEeAFsAZWtpuM+CzU6Onq13HSd9IRQ=;
-        b=QdCylakCr/FksmyHn+Wh4ogNtXAZd+K/5LUwugk12fcW4SPN76dBhnaDtWbFp3KqHs
-         cfXNeNiDxVm3W7y1L7N5uWVmhe73qF1KXDXhYDpT0vYzpPz/psFmPiPZYB1DnJVwNyXp
-         W8HrPU7BP7td5oXZC/CH6iZ1JZj57CI8wO1fLU2NIPicPAeuNr2N+X2lFCRdZlJpKchD
-         +mtOc6RF7mWBIDRkP1nneESuRF82ddquPWwvr1UvkfqRJvnO0l1O1v+fuWk9yhhw40NS
-         Bm9tAHYeavFSsulPBNAqWsYZs4RGn03jFVK84tS0Cw0l5b782jTzHHKKov5oov+D0Dh6
-         QyAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769771938; x=1770376738;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Ex9GO0Pup1IY1uEeAFsAZWtpuM+CzU6Onq13HSd9IRQ=;
-        b=F4pWgSVRtDE3WrraNtjpKitLJitXFJlshv1F3NeO+KN/EhpgNh4BOg2N4St1iPkeV0
-         vMZ6zpLk+iGGHg0dkcvoYQUs6vc77DFHJzuZj2RcgsqCBRbPFv81FRDiRbjDuNC4j5sJ
-         MiguN3LZxsNTSAA4EmhAaZVPQC+psJNYWdXFmC2BDWIuixXDFLGbG9dOMB6m2Mt7unb7
-         RUCpCgFXwdIoQBzgjnla7pJzjk9yn+US3xktH8GFqaDjBvGEpIEH57FDgTsa/evZrcDP
-         GnQIY3lP3QDLrJmYBAVNQ4O3fA/X259mqf/bSkmdKZYcHiBUYMEgf9ffPyGg9GM6HmBe
-         71mQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWUh1yc8ve294Q14Vmjn68F+a5kYMWhIlCaZdoJGOLrqURJZC/Tf2Cf+FtSm0FFXfO54yacnRjTsPJF@vger.kernel.org
-X-Gm-Message-State: AOJu0YytNjF81fRjRvk2wJzcb6015VVOX5wDwJ3tq8RmJYSBCN/t+wCf
-	Do1JSMEAnyKRk2TwFvKgGIDWfwDJwOJ2fOZce7VbvASAdo1Md/nzXdIw8YCeTAqyHeBp5VI9nqT
-	bIm9irz7Ns0T6fjQjswI6lEpWyy1Ke50zvs6KVo+d/kClfBS4ElyoNicThYmxLyN+
-X-Gm-Gg: AZuq6aIiei8vYg54zcAfTh7BixCcD9yroPin3qp2oi5IDq5L4Zq7FAHNJ465A31e5Xu
-	CsagNA+srvLnCF9uB+nOX+deneDqaH9FHGfXxBPK2pY60PK39EoroYDg77QVR+d9r2LiyQQkCN/
-	3jNl/JmJap+KoqyYetm13IczBkPsdKCdrQzYdb7fCM6VP1Zib7qN9MtE1H8/ewu0Js8kGemIX6/
-	052B85PMJ+wdrUWTKz4Pf0vlWYRrkopsfYsBQM46QMBeArTf+o+6Orqda07/Ra+zpkhd2wdM9A7
-	mI1Zp/vaKhvx+i/bPn7mjvNjYQaBauEq48VC0LOVQXQ7X6bLc18A8l7Em4FGvpqEcWEqpreO8bI
-	SsOf43EG7jIfDH8OXe5xhMik409eZosJd21J9B3W+82QrzKXuxO7d1xrUNoc8yizzoHs=
-X-Received: by 2002:a05:620a:28c4:b0:8b2:ea2d:a5 with SMTP id af79cd13be357-8c9eb2f9759mr241396685a.7.1769771938050;
-        Fri, 30 Jan 2026 03:18:58 -0800 (PST)
-X-Received: by 2002:a05:620a:28c4:b0:8b2:ea2d:a5 with SMTP id af79cd13be357-8c9eb2f9759mr241394985a.7.1769771937616;
-        Fri, 30 Jan 2026 03:18:57 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-658b4691d15sm3906121a12.19.2026.01.30.03.18.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Jan 2026 03:18:55 -0800 (PST)
-Message-ID: <0b4ac3c1-11b3-4991-83c2-0c39a81baa8f@oss.qualcomm.com>
-Date: Fri, 30 Jan 2026 12:18:53 +0100
+	s=arc-20240116; t=1769772144; c=relaxed/simple;
+	bh=wpEge0618iQHhy+AsEBZQJc7isjU9ln4SRE/olHsnfE=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=ZCBE6MHzH2M1i8jqaYOhcvih13HIArAqm0BzjzkDsrsK9SR+QmE1oAUL4rjkL5EX6ymuGPbE/pu+er9uqkx3ZlA30ykNVCnew7NRRKvWYeI3QtzNgU6bGTO32LYUqaMHNCHE7xxYBpplwoY8hQ/zKv8LHCMexO/nnF+JuYdSejI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TklEvXAE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 076A1C4CEF7;
+	Fri, 30 Jan 2026 11:22:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769772143;
+	bh=wpEge0618iQHhy+AsEBZQJc7isjU9ln4SRE/olHsnfE=;
+	h=From:Date:Subject:To:Cc:From;
+	b=TklEvXAEfFMQq6cMmYsuX4rLzIJJS9uJv8bIIm8jrcnoJVOrPks0CFlSr8B9wU8Rk
+	 Ms5FnbGGxRxpb+vUkPBC0nel1quGR9uE2MtkYcv6dhJQvgCv5dUceAxJEFLC3wLgDs
+	 8sdeWXWmEngwbOPEWqP56SCcpBKBtUg8JMZ2XSG967uK7C4R5VW1VXRXKkhCnqLwlO
+	 PFzeJy2Bre1Aeo78vlR+q3Ti2LCa/SIt1mEX0BWj29WT12gZlduBDBt5MphQFU+30d
+	 wMZzsdmaZcuI3hGElDle1y7QQm8Mg72SjlqevRYbylqVli0rRxb2WAYEufnQiG0fA/
+	 /Qm80juFDNJ7Q==
+From: Yixun Lan <dlan@kernel.org>
+Date: Fri, 30 Jan 2026 19:22:15 +0800
+Subject: [PATCH] dt-bindings: pinctrl: spacemit: fix drive-strength check
+ warning
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: monaco-pmics: Add PON power key and
- reset inputs
-To: Rakesh Kota <rakesh.kota@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kamal.wadhwa@oss.qualcomm.com
-References: <20260122-add_pwrkey_and_resin-v1-1-a9fe87537816@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260122-add_pwrkey_and_resin-v1-1-a9fe87537816@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: ToteJiaJHb76Ko4U0Zdg0TEbtP64iW-9
-X-Proofpoint-ORIG-GUID: ToteJiaJHb76Ko4U0Zdg0TEbtP64iW-9
-X-Authority-Analysis: v=2.4 cv=d6T4CBjE c=1 sm=1 tr=0 ts=697c93a3 cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=K3N-fI1i-WqjdmaUcisA:9
- a=QEXdDO2ut3YA:10 a=NFOGd7dJGGMPyQGDc5-O:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTMwMDA5MiBTYWx0ZWRfX8kHcbd38iGGW
- BsCUhZW8id2yhoYKQgxnYRld6Z1lMm5xyZ8pwlMx2LeTCkwS9g18xHulEWwnpAjba1+jxs06VCs
- kWLo9jxPebViz8QzmRBs7oPCC/Rfg0L6xscF3LC2soUIe2/I9FLXklzEgefVo82eAA0kiw4LJ90
- 2JUE24IkJXqMsT7xcXp/8Gc7dYmEpUTUKAdCoQtks0Nj5EWa0UFND5cMAOAfcFjnzWH+uIGhA0l
- ubiyd8iMMcwOSta0w6gIkXTbFfxmknzXx+kPXMCsPnU4uoIb2lQ2XigC7McQOuj2NqTxcjFEAIl
- hFnpfz0dLdXYsbkH+y1JD1EGFRTskFe2JoFMeJy9w0lf8UlUnWk7IezkYonrMXzZQfcxgb/OZW8
- e6ZA3MMeSiLyPDWlujpXr4Kp3Zypa3AYHE/nG0shaMMfRNHDBtduczXtLHcXBY04Y0W9DTEzL4t
- CbdCZ9eM3PMvit0SqQA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-01-30_01,2026-01-29_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 impostorscore=0 spamscore=0 lowpriorityscore=0 adultscore=0
- bulkscore=0 malwarescore=0 clxscore=1015 phishscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601300092
+Message-Id: <20260130-k3-pinctrl-io-drv-fix-v1-1-077aec3ba7ae@kernel.org>
+X-B4-Tracking: v=1; b=H4sIAGaUfGkC/x2MQQqAMAzAviI9W1gnKvgV8aCu06JM6UQE2d8dH
+ hNIXoiswhG64gXlW6IcIQOVBczrGBZGcZnBGtsYqgxuFZ4S5kt3lAOd3ujlwXoiamvrRiYPuT2
+ Vs/6//ZDSB0hTzLlnAAAA
+X-Change-ID: 20260130-k3-pinctrl-io-drv-fix-5b11752dae1f
+To: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, Yixun Lan <dlan@kernel.org>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1778; i=dlan@kernel.org;
+ h=from:subject:message-id; bh=wpEge0618iQHhy+AsEBZQJc7isjU9ln4SRE/olHsnfE=;
+ b=owEB6QIW/ZANAwAKATGq6kdZTbvtAcsmYgBpfJRpCQzoCAhf/X3zr7VoIHvrUN2LFmTpcI8va
+ XADYq1CaEuJAq8EAAEKAJkWIQS1urjJwxtxFWcCI9wxqupHWU277QUCaXyUaRsUgAAAAAAEAA5t
+ YW51MiwyLjUrMS4xMSwyLDJfFIAAAAAALgAoaXNzdWVyLWZwckBub3RhdGlvbnMub3BlbnBncC5
+ maWZ0aGhvcnNlbWFuLm5ldEI1QkFCOEM5QzMxQjcxMTU2NzAyMjNEQzMxQUFFQTQ3NTk0REJCRU
+ QACgkQMarqR1lNu+0XYBAAl1cxD4kiJIq31CCJktQdJ1B8ARNWBGis2Wsm6/G43dIC3H8tTg3DX
+ HAuBqrEoEjSBmiRx0AsY4XSEXdGJFaKO+mABkmpGCe9rZ1EMMGjno0ATE/dFyZDlLtspy7wuuZE
+ GheKT98KVtFM6F8s5BeLOsbI9UbnE/Dg9OvFTMvWK+2yl93vW10outSA7a9lSlkf4aIwHBhmXu1
+ YK3PSjbiUmgDHSiZXAFVQ0eARrdGBnsrjHxXzI3h76lHW5/2JGe3N14agv9Lzg+E2CyTPHqAI2f
+ F2O68tcBk+hFu52+AXgZTaU33aTSqmBx/4zfeMDx8JxywLWr2MZ0EI22cJRLN0MRfakQgCBt63+
+ wM5UMEkGpVWMKan9jGizmNbwzFepAijJobAWOFi8wfsuGGjXpd/BV7zv2kWNu6G5td2m30ob75q
+ jyqTawiQB0paFUfPXq52WoddElBnoawhfGa2k2Buj3OF4ljQ+//KczybyyK84OJ56vCsAeDqkXc
+ X2RHPa2j+mCvDpfjd9GYFF3xDBU+fBFcOPbwI/9bmPbhk0Xqe9XkpO+gI4YkzySOswMgkaW4jqj
+ GYiOPyBNf8I3UO6B05Zbq0SsEPphh7m21QSdmdosKKPx6H2Ztpupfa8z3Cr6eboSNArXhap84kj
+ l+x09h3RZ6tR54m1kcLqbBIuktJaLc=
+X-Developer-Key: i=dlan@kernel.org; a=openpgp;
+ fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261194-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-261193-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.0:email,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FROM_HAS_DN(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.4.176:email];
-	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: CA3F4BA06A
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[d401e000:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: AEC19BA04D
 X-Rspamd-Action: no action
 
-On 1/22/26 7:59 AM, Rakesh Kota wrote:
-> Add the Power On (PON) peripheral with power key and reset input
-> support for the PMM8654AU PMIC on Monaco platforms.
-> 
-> Signed-off-by: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/monaco-pmics.dtsi | 20 ++++++++++++++++++++
->  1 file changed, 20 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/monaco-pmics.dtsi b/arch/arm64/boot/dts/qcom/monaco-pmics.dtsi
-> index e990d7367719beaa9e0cea87d9c183ae18c3ebc8..051407cd83eef8eace8521084b1ad012a5192ace 100644
-> --- a/arch/arm64/boot/dts/qcom/monaco-pmics.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/monaco-pmics.dtsi
-> @@ -13,6 +13,26 @@ pmm8620au_0: pmic@0 {
->  		#address-cells = <1>;
->  		#size-cells = <0>;
->  
-> +		pmm8654au_0_pon: pon@1200 {
-> +			compatible = "qcom,pmk8350-pon";
+The problem is that one value from drive-strength may match to more than
+two different enum groups which lead to DT complaint, switch to use 'anyOf'
+to fix this kind warning.
 
-I see pmm8655x has some slight changes vs pmk8350 (more configs but
-generally backwards compatible if we don't use them), let's add a
-separate compatible in bindings so that we can maybe handle these
-differences down the line:
+Fixes: c3efac0592f8 ("dt-bindings: pinctrl: spacemit: convert drive strength to schema format")
+Signed-off-by: Yixun Lan <dlan@kernel.org>
+---
+Doing DT check with command: make dtbs_check W=1, will get this kind
+of warning message:
 
-diff --git a/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml b/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
-index 979a377cb4ff..14b85b0d97da 100644
---- a/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
-+++ b/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
-@@ -17,12 +17,16 @@ description: |
- 
- properties:
-   compatible:
--    enum:
--      - qcom,pm8916-pon
--      - qcom,pm8941-pon
--      - qcom,pms405-pon
--      - qcom,pm8998-pon
--      - qcom,pmk8350-pon
-+    oneOf:
-+      - enum:
-+          - qcom,pm8916-pon
-+          - qcom,pm8941-pon
-+          - qcom,pms405-pon
-+          - qcom,pm8998-pon
-+          - qcom,pmk8350-pon
-+      - items:
-+          - const: qcom,pmm8654au-pon
-+          - const: qcom,pmk8350-pon
+arch/riscv/boot/dts/spacemit/k1-musepi-pro.dtb: pinctrl@d401e000 (spacemit,k1-pinctrl): gmac0-cfg:gmac0-pins:drive-strength: 21 is valid under each of {'enum': [2, 4, 6, 7, 9, 11, 13, 14, 21, 23, 25, 26, 28, 30, 31, 33]}, {'enum': [11, 21, 32, 42]}
+
+Instead of using more complicated minimum and maximum value of property
+with constrains of compatibles, we decide to use 'anyOf' to fix this
+warning.
+---
+ Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml
+index f009fed87e6b..5194fa92fe93 100644
+--- a/Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml
+@@ -76,7 +76,7 @@ patternProperties:
+           drive-strength:
+             description:
+               typical current (in mA) when the output at high level.
+-            oneOf:
++            anyOf:
+               - enum: [ 11, 21, 32, 42 ]
+                 description: For K1 SoC, 1.8V voltage output
  
 
+---
+base-commit: 3fcdb264b61a5bb0eb3fb7272717468aa376a74c
+change-id: 20260130-k3-pinctrl-io-drv-fix-5b11752dae1f
 
-Konrad
+Best regards,
+-- 
+Yixun Lan <dlan@kernel.org>
+
 
