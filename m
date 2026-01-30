@@ -1,223 +1,238 @@
-Return-Path: <devicetree+bounces-261066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261067-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QDg6B/kLfGkEKQIAu9opvQ
-	(envelope-from <devicetree+bounces-261066-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 02:40:09 +0100
+	id wNCyLzcNfGkEKQIAu9opvQ
+	(envelope-from <devicetree+bounces-261067-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 02:45:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40789B636B
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 02:40:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1810CB63D8
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 02:45:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EF6973012262
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 01:39:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3EB65301052A
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 01:45:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C40B733122A;
-	Fri, 30 Jan 2026 01:39:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BC413328F3;
+	Fri, 30 Jan 2026 01:45:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=spacemit.com header.i=@spacemit.com header.b="CMsIf+xE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ihifhpGv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sg-1-35.ptr.blmpb.com (sg-1-35.ptr.blmpb.com [118.26.132.35])
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4950A32A3D7
-	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 01:39:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=118.26.132.35
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769737195; cv=none; b=dd9Sz9thnDKVxpOBJEZGSpg1YjudXg8GzIIqE95ufgIP6b68joQO7dloLHkFP4dECpuqgrX7QKHQcKKef41nuXUiz1yPMpkh6BvEISlayUutloGCfOgkGdN+1E5K+j9a5vakrFNcND66Elo7o6KWRTljjfYtEDk1tZlqImJcEWY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769737195; c=relaxed/simple;
-	bh=/1CUBsDJd927BySIY8L9Fe7Z6JCInyOrDcCzO6bWOZ0=;
-	h=Message-Id:References:In-Reply-To:Content-Type:Date:To:Cc:Subject:
-	 From:Mime-Version; b=NIqA4RUNVmrt1WEY47QPc/S1/u8Zq2go7q2ObjLnk173yQWDEJKZ/u4up1ywltlYSTOnGs6cQ71ZQmtPaQkNdUnpsmlYeKDP2EbiUaDzo7N6CGB4di5he00QUyKzhLlUHsSVJTZu+mJWbvUePioL1gUqcv0flkHZeJZzvlqaZ08=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=spacemit.com; spf=pass smtp.mailfrom=spacemit.com; dkim=pass (2048-bit key) header.d=spacemit.com header.i=@spacemit.com header.b=CMsIf+xE; arc=none smtp.client-ip=118.26.132.35
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=spacemit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=spacemit.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- s=feishu2303021642; d=spacemit.com; t=1769737181; h=from:subject:
- mime-version:from:date:message-id:subject:to:cc:reply-to:content-type:
- mime-version:in-reply-to:message-id;
- bh=/1CUBsDJd927BySIY8L9Fe7Z6JCInyOrDcCzO6bWOZ0=;
- b=CMsIf+xE0H3KAtdj7fBL2J7G+2JI8x66aUS39iii9gbWdlgd+D9ixTNjtalZQkfeGSreKs
- wwDz76b2zWVUsGpyeHz5s5MLRs/1ztgYuxNCjrqvqc7Wc/tyNTK1rHeUrfsvrww/VjZHsa
- OfMOGkT00g8r4kAmVnGVn2V4DrHVozImQIQLIpnPB6zsf+UztpOyO+trpa/g+ZMuHumf2D
- 835xIOFZ+6xDkTj/m3+0SwNBKb4uElN/FvkW4m7vSDgFgPw8XeJ3W06cnYPgiToPcNVGcM
- URT/da8lluctXwamy1RpIU3vclARIe6xQFRToU3Hzpr/j/FFkMLOYAmv+8Vg6A==
-Message-Id: <a4684b7f094a6a5ee87d9db722b75594f851b9fb.f8d0aa16.da0e.4b42.9f4d.e17634051da8@feishu.cn>
-References: <cover.1769562575.git.lv.zheng@spacemit.com> <cover.1769666438.git.lv.zheng@spacemit.com> <15209d7b8c5a5055f8944ab7261e440d70a18a03.1769666438.git.lv.zheng@spacemit.com> <20260129-evolution-femur-84eb5668f4a7@spud> <a4684b7f094a6a5ee87d9db722b75594f851b9fb.d4fb292a.1570.47af.8025.bf9af089dc8a@feishu.cn>
-	<20260129-grandly-compare-e8e3a105f690@spud>
-In-Reply-To: <20260129-grandly-compare-e8e3a105f690@spud>
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 30 Jan 2026 09:39:38 +0800
-To: "Conor Dooley" <conor@kernel.org>
-Cc: "Tomasz Jeznach" <tjeznach@rivosinc.com>, 
-	"Joerg Roedel" <joro@8bytes.org>, "Will Deacon" <will@kernel.org>, 
-	"Robin Murphy" <robin.murphy@arm.com>, "Rob Herring" <robh@kernel.org>, 
-	"Krzysztof Kozlowski" <krzk+dt@kernel.org>, 
-	"Conor Dooley" <conor+dt@kernel.org>, "Paul Walmsley" <pjw@kernel.org>, 
-	"Palmer Dabbelt" <palmer@dabbelt.com>, 
-	"Albert Ou" <aou@eecs.berkeley.edu>, "Alexandre Ghiti" <alex@ghiti.fr>, 
-	"Jingyu Li" <joey.li@spacemit.com>, "iommu" <iommu@lists.linux.dev>, 
-	"linux-perf-users" <linux-perf-users@vger.kernel.org>, 
-	"linux-riscv" <linux-riscv@lists.infradead.org>, 
-	"spacemit" <spacemit@lists.linux.dev>, 
-	"devicetree" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v1.1 4/7] dt-bindings: iommu: Add spacemit/t100 features
-From: =?utf-8?q?=E9=83=91=E5=BE=8B?= <lv.zheng@spacemit.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BA79331A5F
+	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 01:44:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.210.179
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769737499; cv=pass; b=e9VeB+saTW3burGDcfRkUIhILOCdlXRZ+gNNvB0ug589F5DSyUcgVMF0xzs01azVhtxJ/HYj24MmwTcUfPMJTluRw0hSEh5cS7LIhufhFFAQTnp2VbRrGwZM+hK1V3MOtSni0i8/oVHwLXZ0KCcj9+iJVWJnSbjQIu8wh+ohkEo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769737499; c=relaxed/simple;
+	bh=6hJecC+jJ0J+VKAtd6bMBI8k9pmiUZLLcZyL9RL5cVw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=if+jFaJT5Yn/jm9a5oGf5MlALhJemdsS12W02kP07ZRmoesKsAqnRMciU2xIY0k6TzSmXXYZgzHWS/NRt+XJ6VOn/pSYrv0AklX7bo3afijuQxv8o1fov7pH8TsPBra+CB4w0qu3Occ5XbKoUEmPILkXeWxh/aKGefjvRpDRoN0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ihifhpGv; arc=pass smtp.client-ip=209.85.210.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-81f4dfa82edso899482b3a.0
+        for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 17:44:58 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1769737498; cv=none;
+        d=google.com; s=arc-20240605;
+        b=ckYU/dQK4tmtyHSflG/VZKPNC7KW3TDlD6UKXjSrgCWYky4Mm5cdud1CCsZIcn/xzG
+         f4QujoNZBd7xJBiYVwL2YK3OFLV0JTypU8Zdyy/ZK2tCUI410WO6FXnVp3EQ666JMdEM
+         FVpGajKtvKXVwDp9fOq+MkRUFlL4hYU2IH8Zk3Bc3shcjCWX9zRogXUCKlhBBe3MzzzU
+         Xd2MUqLIgbUItEKikVSCnJ0GxQpFs6SK+74Ru3u8IvTSd5jT2n6Ryf2rZs1v5Y3wMcE8
+         f/TLcJPOmY9b2f9wrTLLLqbffCYQnJcTrrt0CyCKNaimqnInJBHFFaDPqcXBlP0HJZMm
+         x3JQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=jNEnnUWc0ljhEZKMEfW+sE66aVZ/mqoNGO+gH29mfjQ=;
+        fh=aMBw2Llwnzx1io3+iFUBKsJJCe++oQvLE/8vRp6Sxz0=;
+        b=etPtj/ZQ7Orz+CPJx70y3xa/WMGLPuv6wNrbYD8k5iQEC1RYnBUHDFqxLZKmNYtKlD
+         Vi5NZd8ejCQlrbr763ZEPgcYtx1Z7W5dx2zBRL2YbYejpLEAiAivDtqYJJxg1CbUeNWp
+         e1RmaxMd5zmxhWT+XkeztjVe7gfA40wE5EABXKN0ckDaLufwZYCOx7qEV8RigkRiWkzG
+         kp+O+nSdZNWKaym57cYL4bo1cinapc5gjvghuQjtMZ99rUMExnmqrSIlUXvGsNZxYAKj
+         YGaOFZBfkwsw/YsiYfeL6n/eQ5YUvplsX79Fe92ykBrCuK/SBjAvcYH7lWVYGedUvQtS
+         skeQ==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1769737498; x=1770342298; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jNEnnUWc0ljhEZKMEfW+sE66aVZ/mqoNGO+gH29mfjQ=;
+        b=ihifhpGvf3Cr/iXOKBs6+yt/8GKjPnGz5zNAThyhC2SyRZMF2oA0oNudqUOPyXhiG5
+         XiMw7q2AkTHU85M5PWrT35ymLGYLsQfuILMqvyPdGIJrTJI7AA7A2wL56ZdaKcPAqTON
+         TWTHENWJpL/5IZsgxZqi70KoNtq6MvJSbMxoJhDBUODrc6krZ94ULk5wj70jGS52jOZ8
+         o2mwQYe5Uq3J57n7+leOk9VuCCaG62oYUzeSHyLQg8o2RBuXDo0XPUhaORbOcEb4LkSp
+         aac0JYx+2hmAB2UsnRstq/BRuitKyjSWcoBjZmEEvE77T7HlNuWQXywH2sjFJJWdZqfC
+         vi3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769737498; x=1770342298;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=jNEnnUWc0ljhEZKMEfW+sE66aVZ/mqoNGO+gH29mfjQ=;
+        b=gLGhmR73ocyTTvS5pLd/EonqFGK9ILnYWfC2W2nJY3S3JVZ15L/MKm/VCHnECN6N5c
+         CbsBJEpf0vnnuFHgxiJ0kprpIAMnDEwwt4RckCozbJCxoB9S114k+CNL4macQaCbEM2y
+         2WghhQZsokFhzyAogcHU/VpLcJcR2FsA6LAxlEVsq3o99dsU28+MHRTHNu27WYg+jn4M
+         g8CbK7l+UAHiYacM1lpKiT+r+66I9DBrOtKTDtOZSIY+umgVUCpGpHJ0EQZhZGSgHPVF
+         rDD9gd0+qvpUuYHq/WknVMfXrzl3QAyB+/JzIC1sBbVDn8oqUkWl2UW5hQZHGf22X29V
+         8siQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVq12c+29zB+Sd2UqwX8n9bi+4lZMfd4PM8IRrFa3ce8pP1HCXgdJvm+20U2/bDapk5begQNcpPGiYB@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxe9j6FEw/y0VZLvtvYPSH1Yf/1IVXU7x8HKrXxVrv+5yU67nKR
+	OSLRp/Dxb8Hsdo5JXMSiuTt8IrK8IRA6HnS6lpppOZ2kllsDQuVHWiYe+mm4Hqr3+BqLn3+qoDa
+	+H40UBYEcm8k+yzq1Z1WKww1lB7ClQfo=
+X-Gm-Gg: AZuq6aJ/WUuCOxPLqcwAbHDS8jjrEWhx+vV/Ax31JZywdcCnXyIM2Z6wPLnPrWxhYZT
+	sVnKW2amtlQVtxWJQYwnW5ReHejc7FbtBdNauHNpkTK9SzE294aB/hshx+bXJMY0krHmUGNgjFp
+	InIQREg18yIyhYPigkDo21GKeyS+rwqPlF70Rjk3ZaNBC5gWzzKKgW4zgZdRDPAn5S5UYAFK8Og
+	qoR11Wi/CzOhZeN7OAy5Y/zBTfd9YA206cLpSKYEvXTnEpM1jm6RJGK4bgV1gpDUgMyH0E=
+X-Received: by 2002:a05:6a21:9214:b0:366:14ac:8c6f with SMTP id
+ adf61e73a8af0-392e01842cemr1045926637.69.1769737497875; Thu, 29 Jan 2026
+ 17:44:57 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-X-Lms-Return-Path: <lba+1697c0bdb+2f6400+vger.kernel.org+lv.zheng@spacemit.com>
+MIME-Version: 1.0
+References: <20260128071853.2602784-1-shengjiu.wang@nxp.com>
+ <20260128071853.2602784-3-shengjiu.wang@nxp.com> <aXuVXruPir7hasdd@lizhi-Precision-Tower-5810>
+In-Reply-To: <aXuVXruPir7hasdd@lizhi-Precision-Tower-5810>
+From: Shengjiu Wang <shengjiu.wang@gmail.com>
+Date: Fri, 30 Jan 2026 09:44:45 +0800
+X-Gm-Features: AZwV_QgRSYSkN9m3U3HWfvC48m_G_i-4n2rGz9NZqS3r9F4yXRNiuZDo3HAYyaM
+Message-ID: <CAA+D8AMYEVbFTgTaVhTU_ZJ=eoyQAj4zygLsfuK+Yt+=8qQk1Q@mail.gmail.com>
+Subject: Re: [PATCH 2/3] ASoC: fsl_asrc: Add support for i.MX952 platform
+To: Frank Li <Frank.li@nxp.com>
+Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, lgirdwood@gmail.com, broonie@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, 
+	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, 
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Xiubo.Lee@gmail.com, nicoleotsuka@gmail.com, perex@perex.cz, tiwai@suse.com, 
+	linuxppc-dev@lists.ozlabs.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MV_CASE(0.50)[];
-	R_DKIM_ALLOW(-0.20)[spacemit.com:s=feishu2303021642];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_ALL(0.00)[];
-	DMARC_NA(0.00)[spacemit.com];
-	TAGGED_FROM(0.00)[bounces-261066-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
+	TAGGED_FROM(0.00)[bounces-261067-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FREEMAIL_CC(0.00)[nxp.com,gmail.com,kernel.org,pengutronix.de,vger.kernel.org,lists.linux.dev,lists.infradead.org,perex.cz,suse.com,lists.ozlabs.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lv.zheng@spacemit.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[spacemit.com:+];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[shengjiuwang@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[infradead.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,arm.com:email,spacemit.com:email,spacemit.com:dkim,dabbelt.com:email,rivosinc.com:email,berkeley.edu:email,linux.dev:email,8bytes.org:email,ghiti.fr:email]
-X-Rspamd-Queue-Id: 40789B636B
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid,nxp.com:email]
+X-Rspamd-Queue-Id: 1810CB63D8
 X-Rspamd-Action: no action
 
-> From: "Conor Dooley"<conor@kernel.org>
-> Date:=C2=A0 Fri, Jan 30, 2026, 00:42
-> Subject:=C2=A0 Re: [PATCH v1.1 4/7] dt-bindings: iommu: Add spacemit/t100=
- features
-> To: "=E9=83=91=E5=BE=8B"<lv.zheng@spacemit.com>
-> Cc: "Tomasz Jeznach"<tjeznach@rivosinc.com>, "Joerg Roedel"<joro@8bytes.o=
-rg>, "Will Deacon"<will@kernel.org>, "Robin Murphy"<robin.murphy@arm.com>, =
-"Rob Herring"<robh@kernel.org>, "Krzysztof Kozlowski"<krzk+dt@kernel.org>, =
-"Conor Dooley"<conor+dt@kernel.org>, "Paul Walmsley"<pjw@kernel.org>, "Palm=
-er Dabbelt"<palmer@dabbelt.com>, "Albert Ou"<aou@eecs.berkeley.edu>, "Alexa=
-ndre Ghiti"<alex@ghiti.fr>, "Jingyu Li"<joey.li@spacemit.com>, "iommu"<iomm=
-u@lists.linux.dev>, "linux-perf-users"<linux-perf-users@vger.kernel.org>, "=
-linux-riscv"<linux-riscv@lists.infradead.org>, "spacemit"<spacemit@lists.li=
-nux.dev>, "devicetree"<devicetree@vger.kernel.org>
-> On Thu, Jan 29, 2026 at 06:43:03PM +0800, =E9=83=91=E5=BE=8B wrote:
-> > > From: "Conor Dooley"<conor@kernel.org>
-> > > Date:=C2=A0 Thu, Jan 29, 2026, 18:08
-> > > Subject:=C2=A0 Re: [PATCH v1.1 4/7] dt-bindings: iommu: Add spacemit/=
-t100 features
-> > > To: "Lv Zheng"<lv.zheng@spacemit.com>
-> > > Cc: "Tomasz Jeznach"<tjeznach@rivosinc.com>, "Joerg Roedel"<joro@8byt=
-es.org>, "Will Deacon"<will@kernel.org>, "Robin Murphy"<robin.murphy@arm.co=
-m>, "Rob Herring"<robh@kernel.org>, "Krzysztof Kozlowski"<krzk+dt@kernel.or=
-g>, "Conor Dooley"<conor+dt@kernel.org>, "Paul Walmsley"<pjw@kernel.org>, "=
-Palmer Dabbelt"<palmer@dabbelt.com>, "Albert Ou"<aou@eecs.berkeley.edu>, "A=
-lexandre Ghiti"<alex@ghiti.fr>, "Jingyu Li"<joey.li@spacemit.com>, "Zhijian=
- Chen"<zhijian@spacemit.com>, <iommu@lists.linux.dev>, <linux-perf-users@vg=
-er.kernel.org>, <linux-riscv@lists.infradead.org>, <spacemit@lists.linux.de=
-v>, <devicetree@vger.kernel.org>
-> > > On Thu, Jan 29, 2026 at 02:09:13PM +0800, Lv Zheng wrote:
-> > > > Adds device tree bindings for SpacemiT T100 specific features.
-> > > >=C2=A0
-> > > > vendor-hpm-events: Allow vendor events to be customized in the devi=
-ce
-> > > > =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0tree.
-> > > > global-filter: The feature saves silicon area by reducing filters t=
-o
-> > > > =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0one and use =
-it as a global filter across all events.
-> > > > =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0This usually=
- is sufficient for real applications.
-> > >=C2=A0
-> > > Why can these not be determined from a device specific compatible?
-> >=C2=A0
-> > The specification only defines less than 10 standard event types while =
-the
-> > real silicons should have implemented many other event types based on
-> > their micro-architecture. I tried to provide a common mechanism for all
-> > vendor specific event types across different vendors.
->=C2=A0
-> Given that the variance is based on uarch, it sounds like it can be
-> determined from the compatible.
+On Fri, Jan 30, 2026 at 1:14=E2=80=AFAM Frank Li <Frank.li@nxp.com> wrote:
+>
+> On Wed, Jan 28, 2026 at 03:18:52PM +0800, Shengjiu Wang wrote:
+> > Add a compatible string and clock mapping table to support ASRC on the
+> > i.MX952 platform.
+> >
+> > There is a limitation on i.MX952 that dma request is not cleared at the
+> > end of conversion with dma slave mode. Which causes sample is dropped
+> > from the input fifo on the second time if dma is triggered before the
+> > client device and EDMA may copy wrong data from output fifo as the outp=
+ut
+> > fifo is not ready in the beginning.
+> >
+> > So need to trigger asrc before dma on i.MX952, and add delay to wait
+> > output data is generated then start the EDMA for output, otherwise the
+> > m2m function has noise issues.
+> >
+> > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> > ---
+> >  sound/soc/fsl/fsl_asrc.c        | 39 +++++++++++++++++++++++++++++++++
+> >  sound/soc/fsl/fsl_asrc.h        | 16 ++++++++++++++
+> >  sound/soc/fsl/fsl_asrc_common.h |  3 +++
+> >  sound/soc/fsl/fsl_asrc_m2m.c    | 29 +++++++++++++++++-------
+> >  4 files changed, 79 insertions(+), 8 deletions(-)
+> >
+> ...
+> > diff --git a/sound/soc/fsl/fsl_asrc_m2m.c b/sound/soc/fsl/fsl_asrc_m2m.=
+c
+> > index f46881f71e43..296e13a16490 100644
+> > --- a/sound/soc/fsl/fsl_asrc_m2m.c
+> > +++ b/sound/soc/fsl/fsl_asrc_m2m.c
+> > @@ -253,15 +253,28 @@ static int asrc_m2m_device_run(struct fsl_asrc_pa=
+ir *pair, struct snd_compr_task
+> >       reinit_completion(&pair->complete[IN]);
+> >       reinit_completion(&pair->complete[OUT]);
+> >
+> > -     /* Submit DMA request */
+> > -     dmaengine_submit(pair->desc[IN]);
+> > -     dma_async_issue_pending(pair->desc[IN]->chan);
+> > -     if (out_dma_len > 0) {
+> > -             dmaengine_submit(pair->desc[OUT]);
+> > -             dma_async_issue_pending(pair->desc[OUT]->chan);
+> > -     }
+> > +     if (asrc->start_before_dma) {
+> > +             asrc->m2m_start(pair);
+>
+> Does other Soc also work if ASRC start before DMA enable? Suppose most li=
+ke
+> work. Then needn't start_before_dma.
 
-I'll give Robin's suggestion a try.
+Yes, should work.  but I don't want to change the original behaviour
+of other SoC.
 
-> > It is similar for the global filter, the global filter mechanism actual=
-ly
-> > complies to the IOMMU specification, users can alter the iohpmevt
-> > registers as is what is specified in the IOMMU specification. It only
-> > provides slight application difference between the final effection. Thu=
-s
-> > this could also be a non-device specific option.
->=C2=A0
-> What is a "user" in this context? Given you're talking about reducing
-> silicon area, it sounds like this will be set in stone for each SoC, and
-> therefore can be determined by compatible. If other devices do this,
-> they can also determine it from their compatible.
->=C2=A0
-> Properties for things that can be determined based on compatible are
-> generally not permitted, so you'll need to provide a compelling
-> rationale. Common mechanism isn't one, since determining based on
-> compatible would be a common mechanism based on match data that people
-> can tack onto for their devices.
-
-I see. This sounds like a reasonable rule of DT attributes. I'll do similar
-stuffs based on compatible.
-
-Thanks and best regards,
-Lv
-
-
-This message and any attachment are confidential and may be privileged or o=
-therwise protected from disclosure. If you are not an intended recipient of=
- this message, please delete it and any attachment from your system and not=
-ify the sender immediately by reply e-mail. Unintended recipients should no=
-t use, copy, disclose or take any action based on this message or any infor=
-mation contained in this message. Emails cannot be guaranteed to be secure =
-or error free as they can be intercepted, amended, lost or destroyed, and y=
-ou should take full responsibility for security checking.=20
-=20
-=E6=9C=AC=E9=82=AE=E4=BB=B6=E5=8F=8A=E5=85=B6=E4=BB=BB=E4=BD=95=E9=99=84=E4=
-=BB=B6=E5=85=B7=E6=9C=89=E4=BF=9D=E5=AF=86=E6=80=A7=E8=B4=A8=EF=BC=8C=E5=B9=
-=B6=E5=8F=AF=E8=83=BD=E5=8F=97=E5=85=B6=E4=BB=96=E4=BF=9D=E6=8A=A4=E6=88=96=
-=E4=B8=8D=E5=85=81=E8=AE=B8=E8=A2=AB=E6=8A=AB=E9=9C=B2=E7=BB=99=E7=AC=AC=E4=
-=B8=89=E6=96=B9=E3=80=82=E5=A6=82=E9=98=81=E4=B8=8B=E8=AF=AF=E6=94=B6=E5=88=
-=B0=E6=9C=AC=E9=82=AE=E4=BB=B6=EF=BC=8C=E6=95=AC=E8=AF=B7=E7=AB=8B=E5=8D=B3=
-=E4=BB=A5=E5=9B=9E=E5=A4=8D=E7=94=B5=E5=AD=90=E9=82=AE=E4=BB=B6=E7=9A=84=E6=
-=96=B9=E5=BC=8F=E9=80=9A=E7=9F=A5=E5=8F=91=E4=BB=B6=E4=BA=BA=EF=BC=8C=E5=B9=
-=B6=E5=B0=86=E6=9C=AC=E9=82=AE=E4=BB=B6=E5=8F=8A=E5=85=B6=E4=BB=BB=E4=BD=95=
-=E9=99=84=E4=BB=B6=E4=BB=8E=E9=98=81=E4=B8=8B=E7=B3=BB=E7=BB=9F=E4=B8=AD=E4=
-=BA=88=E4=BB=A5=E5=88=A0=E9=99=A4=E3=80=82=E5=A6=82=E9=98=81=E4=B8=8B=E5=B9=
-=B6=E9=9D=9E=E6=9C=AC=E9=82=AE=E4=BB=B6=E5=86=99=E6=98=8E=E4=B9=8B=E6=94=B6=
-=E4=BB=B6=E4=BA=BA=EF=BC=8C=E6=95=AC=E8=AF=B7=E5=88=87=E5=8B=BF=E4=BD=BF=E7=
-=94=A8=E3=80=81=E5=A4=8D=E5=88=B6=E3=80=81=E6=8A=AB=E9=9C=B2=E6=9C=AC=E9=82=
-=AE=E4=BB=B6=E6=88=96=E5=85=B6=E4=BB=BB=E4=BD=95=E5=86=85=E5=AE=B9=EF=BC=8C=
-=E4=BA=A6=E8=AF=B7=E5=88=87=E5=8B=BF=E4=BE=9D=E6=9C=AC=E9=82=AE=E4=BB=B6=E6=
-=88=96=E5=85=B6=E4=BB=BB=E4=BD=95=E5=86=85=E5=AE=B9=E8=80=8C=E9=87=87=E5=8F=
-=96=E4=BB=BB=E4=BD=95=E8=A1=8C=E5=8A=A8=E3=80=82=E7=94=B5=E5=AD=90=E9=82=AE=
-=E4=BB=B6=E6=97=A0=E6=B3=95=E4=BF=9D=E8=AF=81=E6=98=AF=E4=B8=80=E7=A7=8D=E5=
-=AE=89=E5=85=A8=E5=92=8C=E4=B8=8D=E4=BC=9A=E5=87=BA=E7=8E=B0=E4=BB=BB=E4=BD=
-=95=E5=B7=AE=E9=94=99=E7=9A=84=E9=80=9A=E4=BF=A1=E6=96=B9=E5=BC=8F=EF=BC=8C=
-=E5=8F=AF=E8=83=BD=E4=BC=9A=E8=A2=AB=E6=8B=A6=E6=88=AA=E3=80=81=E4=BF=AE=E6=
-=94=B9=E3=80=81=E4=B8=A2=E5=A4=B1=E6=88=96=E6=8D=9F=E5=9D=8F=EF=BC=8C=E6=94=
-=B6=E4=BB=B6=E4=BA=BA=E9=9C=80=E8=87=AA=E8=A1=8C=E8=B4=9F=E8=B4=A3=E5=81=9A=
-=E5=A5=BD=E5=AE=89=E5=85=A8=E6=A3=80=E6=9F=A5=E3=80=82
+Best regards
+Shengjiu Wang
+>
+> Frank
+>
+> > +             /* Submit DMA request */
+> > +             dmaengine_submit(pair->desc[IN]);
+> > +             dma_async_issue_pending(pair->desc[IN]->chan);
+> > +             if (out_dma_len > 0) {
+> > +                     if (asrc->m2m_output_ready)
+> > +                             asrc->m2m_output_ready(pair);
+> > +                     dmaengine_submit(pair->desc[OUT]);
+> > +                     dma_async_issue_pending(pair->desc[OUT]->chan);
+> > +             }
+> > +     } else {
+> > +             /* Submit DMA request */
+> > +             dmaengine_submit(pair->desc[IN]);
+> > +             dma_async_issue_pending(pair->desc[IN]->chan);
+> > +             if (out_dma_len > 0) {
+> > +                     dmaengine_submit(pair->desc[OUT]);
+> > +                     dma_async_issue_pending(pair->desc[OUT]->chan);
+> > +             }
+> >
+> > -     asrc->m2m_start(pair);
+> > +             asrc->m2m_start(pair);
+> > +     }
+> >
+> >       if (!wait_for_completion_interruptible_timeout(&pair->complete[IN=
+], 10 * HZ)) {
+> >               dev_err(dev, "out DMA task timeout\n");
+> > --
+> > 2.34.1
+> >
 
