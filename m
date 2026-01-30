@@ -1,87 +1,88 @@
-Return-Path: <devicetree+bounces-261078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261082-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id /PYGFWE9fGkxLgIAu9opvQ
-	(envelope-from <devicetree+bounces-261078-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 06:10:57 +0100
+	id oMzvB3o9fGkxLgIAu9opvQ
+	(envelope-from <devicetree+bounces-261082-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 06:11:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75EBEB733E
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 06:10:56 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id A252AB7369
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 06:11:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 19B3A300D946
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 05:10:55 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E6C7D302085A
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 05:11:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9327C331A6D;
-	Fri, 30 Jan 2026 05:10:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 996B833BBBD;
+	Fri, 30 Jan 2026 05:11:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="KqD+eCbu"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="GW407SOt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CY7PR03CU001.outbound.protection.outlook.com (mail-westcentralusazon11010050.outbound.protection.outlook.com [40.93.198.50])
+Received: from CH1PR05CU001.outbound.protection.outlook.com (mail-northcentralusazon11010066.outbound.protection.outlook.com [52.101.193.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72DAB31355C;
-	Fri, 30 Jan 2026 05:10:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.198.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D242233E356;
+	Fri, 30 Jan 2026 05:10:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.193.66
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769749854; cv=fail; b=mrI50pGM4BB6F4vIE2Dbi4yEZZrFYcC+ovpMY6ZRsKYunYmwtgIBPmQ5XaWn/+dMXcNs52l1qDcqiNOImzmuZnWSf3CeERIKw1EQLb2pTnPxmT+yI6+lxHQHNSPv02XZRZOqqyn2OhwMoRw+kepk1LBSw9IXrimMcVkUFGNRUsY=
+	t=1769749863; cv=fail; b=Y7Zmxhs2AbFgrTDoq+BksrorD3HkU+UdGkDMm9iLzCMLyaF1tJq2YFRdqYamYKkHgykEWPJAAw3IYFkTguPcQmoz0Z1aYFpTrf5kCTP3LunxuapmpKrV7b9QQgbiSDgnIifeuUEkydfeQFdLf52oyLL0wSpuRj4pZ8ZthkFyeRk=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769749854; c=relaxed/simple;
-	bh=7ZURVIwatqPaLpzY03e8PDw5JjVe66Nx3g9Z+AB4MMg=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jIOXJoLd0iSgXQBzcZfjhwvtVrheB+ysX2cUhD7qZDMoagIgKW79tNNO1Mg1A1U0L0gH79D7fnCg7IF5VJ0r6UZzQlefGsXiYheTpz3+b9qh6YoEtoK1xCFS6PH3/xbH7+Jly4XjOLPJGqBkGT+9a3MN/Er5hEyyDl0wHv0iWko=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=KqD+eCbu; arc=fail smtp.client-ip=40.93.198.50
+	s=arc-20240116; t=1769749863; c=relaxed/simple;
+	bh=kdC6/LoOzEKtJpxIcgqdCHZGCXHcn26hdDsvWOzSTxk=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Id6VNW+8ALjKpdgiHfhS+FR7fqBAW5o2rLZrR5Iti69CexSnS17RKySe8FusBn0YVUZb0cCy4nuAI9oKyIul+8+XSVY4sMynbtA/jnz2GhmwH95ye9YVliHvKO1HkkmS0BWHhUwlOZS3d99ZSk1S+lzkfertSw2kgItVz20g1dk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=GW407SOt; arc=fail smtp.client-ip=52.101.193.66
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=aEvmRmluwjmBtNtnfLKllX/bIQYkrWh1ZdVcWlfgKy5YiQMmfajCjmYkNAw/ZnvEIsgGGycfDuYrS/tra/6t9kshyAZ+TkhRwpYWMsc5LmqoMAWBJNBr7FVTcObQz/YsJCjEFa+SPo/ERjgs0eJihhfhhvnsUQpL777AAp9SNfLOIQwiE5mWXtdu/6DhL2IEnxZ2zkO2EdwbWHNuMKeWXeCVeGq6Ew3273jtzgAJjGY9W3r9MTwvqTDi4b+ltMjdCpSK7PUxbwkfusB0xbRNqhYeRA9pLnvG1AGHK6LH+lk9m9NRzmJ56rTDwx4m1F28nfpgxml92pwLYbaXpSkldQ==
+ b=ppLxXKWgIXblbLA4a5T+4a0VlIAEQhagpXL9PF3kXJEyBFczF3mx5sXlY4tkgpYWG8ND+OhZDW/jXK0Uxar8bsdfD0Xogo3MOFc1wCzOwhDxmOwPvEmN2uLhjEbzeYNwL6Srwxto+aK/2q17r7ZV3VDVc+FK3ony4y2jCFPOTdQUeCek9gelqUF5xwnHGAsttDelzN7xTig3eBroO5SqOFAq4BYmF4NW6+GN+ZuDJRnrzJjiTeRih84+kqIUGc4rf8jnIbLKaUqITWYd0QEAfCcF5imxVq5bV0CgFWnsu4X6C7Y8qOrhysPTR2KPYEnffBrM9mmU0Y4foDsS2qjB2g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pyyf1qS1lVa1/r9qL513RDyuUsVtF/LOTVIuKgDMR2E=;
- b=aqkjExjEwWTJRRlFEfPc60WISp3DH7nAPzJk8OCfF1NGKiSIXsgc2wTFk3otk+5n6USmzI63l0eeFfbq2vWoYEmgin5otumEOklGenSDznrQznUIGEfsWGS97CSpptb6fqeAiKq0PcXqKDecVTh8rrirZ2Mqqw75smQomm6dG74u+L3qV6MtZ3JeWn4qRG4ZfZUkSucmItOlPtBszIf8j3FTjFa12NXOTVMeihd0czXGo7QloHSzo/JB0AraC3mPLTeF+ceyoZIk25ssIiMpSZgLywtdisA0cX16FmmGr2ABdwJ+hVY0L3u6u8u44LVKsbyYeWyJSxDYSc96JDMqbw==
+ bh=wgyHjFqRytWd9tkBKnSoeGBYFory6CM7c1qHFfUiP/s=;
+ b=w7gTTg9e8jf+x05mJPXuv28izo5FASdki/t7mGKCHKM91rbg0wwqIv8j+SSWb8AztPl36jklRNic2x0g+krdpXd1MeBZHGlqfiFuoh5npGWynpHEUwb1Grl7Ulo3toUohNFo7SQqCJMlk3qAgUGT8kn4zezaOriAN8fLzmG9Kcq7Q+7dtXpy5Mq4KnJNs1GwSTGEniW2GgLlbGWmL39HeRPthd4ecKAbsgbUyxNX/QP2vIpwEtHSDfFOgspXeLp8KRMrBb2MJBcR37jQ9jzlTNMmx8G8aWraxSoYwbaF5ftkDt5LhwW7Yh+Vw8oTCrp2PvQwU92LCwgjdtUR+1OCoA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ 198.47.21.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pyyf1qS1lVa1/r9qL513RDyuUsVtF/LOTVIuKgDMR2E=;
- b=KqD+eCbufWk/CODfrX73Bgx+A302/mEndUqd9DFdkKv5gTl+XGZfv3fXPGhistVVJUaIo+78Sw7DXNFCsEU1dlxakH6NwNAEDlUXRx/V0t3YrebaGhN/PZe3nWvgIUDiZUWf8amiYeNDUfRDAjukfB2SydQ6a56Sk5GM3yOyW9o=
-Received: from BYAPR06CA0028.namprd06.prod.outlook.com (2603:10b6:a03:d4::41)
- by BN0PR10MB4966.namprd10.prod.outlook.com (2603:10b6:408:128::12) with
+ bh=wgyHjFqRytWd9tkBKnSoeGBYFory6CM7c1qHFfUiP/s=;
+ b=GW407SOtY3y3WFjZ65+Olr1fMvbEiLRceNU1hsBPwoEjIuBE6xdMR7MdYOD4hgq/i3LWBYI9pP5qrGBlgwNVw2o7t1eRekWFErvtRU3Zpkbe5mFwu8zNaE428JL2YJZ1uIriYyREeFRjRpDNx8PbyPNU6CrvqIFMDnNuqhQ0rvg=
+Received: from BN9PR03CA0782.namprd03.prod.outlook.com (2603:10b6:408:13f::7)
+ by DM3PPF3F503E3E3.namprd10.prod.outlook.com (2603:10b6:f:fc00::c21) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.7; Fri, 30 Jan
- 2026 05:10:49 +0000
-Received: from CO1PEPF000066EC.namprd05.prod.outlook.com
- (2603:10b6:a03:d4:cafe::e6) by BYAPR06CA0028.outlook.office365.com
- (2603:10b6:a03:d4::41) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9564.8 via Frontend Transport; Fri,
- 30 Jan 2026 05:10:45 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
+ 2026 05:10:53 +0000
+Received: from BN3PEPF0000B06D.namprd21.prod.outlook.com
+ (2603:10b6:408:13f:cafe::60) by BN9PR03CA0782.outlook.office365.com
+ (2603:10b6:408:13f::7) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9564.10 via Frontend Transport; Fri,
+ 30 Jan 2026 05:10:44 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
  smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
  action=none header.from=ti.com;
 Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
-Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- CO1PEPF000066EC.mail.protection.outlook.com (10.167.249.8) with Microsoft
+ 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
+Received: from flwvzet200.ext.ti.com (198.47.21.194) by
+ BN3PEPF0000B06D.mail.protection.outlook.com (10.167.243.72) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9564.3 via Frontend Transport; Fri, 30 Jan 2026 05:10:48 +0000
-Received: from DLEE200.ent.ti.com (157.170.170.75) by lewvzet201.ext.ti.com
- (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.9587.0 via Frontend Transport; Fri, 30 Jan 2026 05:10:51 +0000
+Received: from DFLE204.ent.ti.com (10.64.6.62) by flwvzet200.ext.ti.com
+ (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 29 Jan
  2026 23:10:46 -0600
-Received: from DLEE212.ent.ti.com (157.170.170.114) by DLEE200.ent.ti.com
- (157.170.170.75) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DFLE207.ent.ti.com (10.64.6.65) by DFLE204.ent.ti.com
+ (10.64.6.62) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 29 Jan
  2026 23:10:46 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE212.ent.ti.com
- (157.170.170.114) with Microsoft SMTP Server (version=TLS1_2,
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE207.ent.ti.com
+ (10.64.6.65) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
  Transport; Thu, 29 Jan 2026 23:10:46 -0600
 Received: from localhost (mz02jj9v.dhcp.ti.com [128.247.81.0])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60U5Aktq748608;
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60U5Akmj748611;
 	Thu, 29 Jan 2026 23:10:46 -0600
 From: Sen Wang <sen@ti.com>
 To: <peter.ujfalusi@gmail.com>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
@@ -89,10 +90,12 @@ To: <peter.ujfalusi@gmail.com>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
 	<conor+dt@kernel.org>
 CC: <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
 	<linux-kernel@vger.kernel.org>, Sen Wang <sen@ti.com>
-Subject: [PATCH 0/4] ASoC: ti: davinci-mcasp: Add asynchronous mode support for McASP
-Date: Thu, 29 Jan 2026 23:10:40 -0600
-Message-ID: <20260130051045.1898892-1-sen@ti.com>
+Subject: [PATCH 1/4] dt-bindings: sound: davinci-mcasp: Add optional properties for asynchronous mode
+Date: Thu, 29 Jan 2026 23:10:41 -0600
+Message-ID: <20260130051045.1898892-2-sen@ti.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260130051045.1898892-1-sen@ti.com>
+References: <20260130051045.1898892-1-sen@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,57 +107,55 @@ Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000066EC:EE_|BN0PR10MB4966:EE_
-X-MS-Office365-Filtering-Correlation-Id: 366d4983-eb64-4ecb-139e-08de5fbdee5a
+X-MS-TrafficTypeDiagnostic: BN3PEPF0000B06D:EE_|DM3PPF3F503E3E3:EE_
+X-MS-Office365-Filtering-Correlation-Id: f66e5270-8329-443c-2f06-08de5fbdf076
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
 	BCL:0;ARA:13230040|1800799024|36860700013|82310400026|7416014|376014;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?qMvzzIecsa2lEBwoJe7Txp+pNM0YbQMVL/MAr7wfJMQkNZP1A/+7OhLhA2Gm?=
- =?us-ascii?Q?KhVRu/JxQHaxrqZsCNmO3ELriV2YrLyLWw2h2ZHccgCIhYF/j1HLTZbL4Pyk?=
- =?us-ascii?Q?SZwxNiOHMhXqReOmg4V513qdyeOcllAuyVJGN2kh0ixZR2jmyPCQtAwPdHb2?=
- =?us-ascii?Q?saadx4ED+cXE6gitDSaetSASJRt3WOOZBE0cFnYCLJ3VvysyuL5t95xxPIGZ?=
- =?us-ascii?Q?AlDBThvMA9NuHo3y5HfpktROLQ/R58PZ9n/BFjFdKMgzGDFHEAUlhxYwOGUj?=
- =?us-ascii?Q?Ls+kfFxFG+5QCOEQqnucFFQ8EY/hwKoNKFKwgscnusaKiCYhfGq2iQ27SaeT?=
- =?us-ascii?Q?bMgXXDYB+O0F53f8VTBGVrEn+kuTFimGHhN4wCKACzzIw3DyGo6zugv7PuTw?=
- =?us-ascii?Q?bJpwuSnTuj3AlnEiaX1jBWSjyhrLuYdcVYO7qozVmFyqzZXTQWyGlskOfPv/?=
- =?us-ascii?Q?5/XiaJhXChixrDqGSIaDwcJ1eAn0Nq+xGzYb5qJSNDPnPdg5237zuT3uq89i?=
- =?us-ascii?Q?K66mIuP0+C02K9/zgpAF0gs+yFT1BHFCLM9B0AzdrvM8kxyFUzAWT0ZJbsdQ?=
- =?us-ascii?Q?n2LOxQIbEkXQJ2hegbA9xrYCcM5H4QJLMUlvirEiL24phjCYGU7aU2/aKz2b?=
- =?us-ascii?Q?4nParor5XIBI6Ax7uWI+Ptt9gtwYSi4nbqF+u5qKubzpwGZ9IQR4JHeEp/Ex?=
- =?us-ascii?Q?JrIDZHOL+HG+FZgGf9TknL8pzMIP4Kz09BseHOQZK6txNAr5AcyFCeSXgUlB?=
- =?us-ascii?Q?5UOzsCYNtJjQcyDDtri84jo8TTKTxbpzPuRkGHp+dSWhGf6XQKAdhV5bvI/u?=
- =?us-ascii?Q?Wy+p7R38UIrcQ+Qzv8Gnk9ohUvcMrSm1qxqDUim+VL5hRDzDa9Xrvpst97kX?=
- =?us-ascii?Q?AF2/o4bAjg4mFSNJZj9939bxcnPEzP45fr9G9orRquesgGNIX65uEZ3FzGyJ?=
- =?us-ascii?Q?KwtVvu8ro7TR6NQ4OPdst+BSlw8w1LXMBZg4XtjEWRxYC7hN72bVAD3Nw448?=
- =?us-ascii?Q?v07xZlxFeihrc9huyFmJt9oFm1jW75wyGot3B2bCZGD8I43ubQx9ImHsOLrc?=
- =?us-ascii?Q?xgahdHXyTtabnMRhq6oa+X4o2DlT+vp7QAt3+lTqGApogiLzQtaFsiwCH3Cw?=
- =?us-ascii?Q?IKcP3SUgosF78buSc3OX6uUekQvQZRhCs9k+mufeSD0VxQvtITopffeng0KC?=
- =?us-ascii?Q?qQfYMapokRylPdJ/wEq3WfAjbZBnBzql+KmMmNsKWp0+ldoEpjDHlksLXHnT?=
- =?us-ascii?Q?V9RqeTrdYwkyzWFfaHYjM825pkzZ93GNjARNh/7NeXVqgUob/DWBoE1rZxFu?=
- =?us-ascii?Q?KUgBQVbH/n/4qhEY1vxb2WiniujKxdGDd7B395/eeuA66+2XKQWc/aps+00E?=
- =?us-ascii?Q?c4/C3IXJa0OqaUaudxSOhpTZBhi4X+xJXbcNcA3h/Wy8x4ZpSFQJLHm8qEf/?=
- =?us-ascii?Q?OmpmjDH/owUbgv3jTTSyTuXKpkhoKcj6aS64n4T3l0s2fk37rkKHvhAArWlH?=
- =?us-ascii?Q?a0T91LRBKPtzEUNTRBe87Lzb90mWai/pRyX7Kz1AeVj/zvlXgjD+3/21KcPA?=
- =?us-ascii?Q?1Yo0UDUEWYnyrKyp5hiKOYlZChHn7iUJrkkA4+uVRvfIfPKrVc1cce5p3BsT?=
- =?us-ascii?Q?iw=3D=3D?=
+	=?us-ascii?Q?UsmIDuP6ARLTWNfFxr3HxgEynLNg5VngwUo+sy+flB90SdwuDWy2P4YNNY/P?=
+ =?us-ascii?Q?l7OvI0NHuzob0rF+oDAG7cFbeUuSgd6/CLmqi1J7gw7S3fc0HWAfYdzJUif0?=
+ =?us-ascii?Q?/CS79DvA5lljVFXOfUR2CFzZjTSoLE0i2vvK2a30KIurJMOhuO4iYV16SGVZ?=
+ =?us-ascii?Q?yygrNXqsnJvymmKIiFiWd8y/cE1DyMKME+1nNhMh/tAy3JFHd4h65iOIQnMI?=
+ =?us-ascii?Q?hNOMCOLkEcmFLZdoqyslN0KEeezNTcBIiHveciSrgkUqacDp/fiv3axepJJV?=
+ =?us-ascii?Q?o5OvODm7yEB5AoPUahwm1tUE5Hv/7e4oDVB29BcGu5GsgbzM1x5z38akY/tO?=
+ =?us-ascii?Q?IFSEecqU5LbqSetR8nnYZxPJB8fXmCNYy0rsvirytKsgGTeNgx3okuO3acsk?=
+ =?us-ascii?Q?Xg0m0Cq4UNDzWYaGwsQhSY4OcnabD/HL3UWvBJGYmiqsvbQBoSNujp5olNnp?=
+ =?us-ascii?Q?9e9Hh/Idx2am7kQApq1ILEcnZ9nmTJlA9xVVvN9HwC1YThCjhV+z7pd1VmIr?=
+ =?us-ascii?Q?ck/C5yCyklG4EsAiV0Z/MGRd3ZQdC7UU8cPQYfmIFW36WnrF/Cyj5oYxlhut?=
+ =?us-ascii?Q?Ko82dGsYJ3ptdzgSxcaS4+zHTLplthku0PNeIzynHflsupCJkn/R4SHjTm2i?=
+ =?us-ascii?Q?zAFO3m/8VljirWKpsHVCd4nYkMIrc8kWNmDuxPjXHYLZ0v+Oor1fakPTxE7l?=
+ =?us-ascii?Q?dEniPiVj7By8kQ54fA3M/C4eGbWlMeeJg7k2h4dLrS30HAlJFa/Bv3BqQETr?=
+ =?us-ascii?Q?eJMqXZ6JN7JYf0yppSG4mQ4RkKlwsHeiG5H9vIUs1CKQ2gqxNDfAS0BqAOl9?=
+ =?us-ascii?Q?sGqJHC3oGb6lAWd60cEPnXyZ9cGAsOYfERrMMuxIqaatjp9FeosjnrFU1yVM?=
+ =?us-ascii?Q?M61uwRXK1sGbFPy+/KOm2q77/NdOeXJxdYmvXIACMczQ7F2F/SmGD+s2Kk4n?=
+ =?us-ascii?Q?vUajfpPsnwpigqmy60JCYPo0oVGIxxazScGoYVkvsRWWkcnMKKqpbwn1pVze?=
+ =?us-ascii?Q?33xKJi+BuUhHK0Vwo02lM5wMLRoCCaPowG+8S2X5vghD01LuQllA4i/VXlbN?=
+ =?us-ascii?Q?cNtyAtfvJd4SC81JTZLxfBOD7FS4Rr7/qMqojYL5TGUoVcsbAb6yeIag0w8U?=
+ =?us-ascii?Q?53Iq7Xo8UMLUMkvuvMVcRQwa3cuWJ/cnndylUGsJz1Ui45vY0LwHoSPwj7In?=
+ =?us-ascii?Q?rBiToZe/jorK2UyTHjPpvAsPN9fmKaDfwJscfAbf4qHC1NkdYJT17CXYapQ1?=
+ =?us-ascii?Q?fnXWB8I2q2qDJ0Ux3AyDygUufcQHBnNJlU+QvcLrIXmyRE4bGBw5Jsv2bKsx?=
+ =?us-ascii?Q?xe9TUQcKYkoSvGrpGNixwoPTthA8wAXrlaYYeUaLGRGZsAUpGVl9Xv8yYD+M?=
+ =?us-ascii?Q?Fy8IEJ+ETAjbXiDqiqvsbfgo3BLQK/JuUqbCzz0pzJD1XTbyAN78fA1Mm5kQ?=
+ =?us-ascii?Q?coWU2BHRDlxEhwBo6dCcO4yXRBJ4gXvCrFBLgDWhMQotVygigSSeR+EdS94w?=
+ =?us-ascii?Q?ap3nGLSTNqJrM5Is+oz+PtJbzSO6wULpSQjl?=
 X-Forefront-Antispam-Report:
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(82310400026)(7416014)(376014);DIR:OUT;SFP:1101;
+	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(82310400026)(7416014)(376014);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	TWqk0WaWo0lENCu955txBxhsbsRPd5xNuIFVbHKi6uKMZ2X+cDCLbnILDy0vcW0bISrHm6B6QxGI9pb3Qs4ErYdcjeg0TCUXqJQkjtlacSJXdWp+/qmWNcP+vw7R9+q2Gn1s8Vnn4hP1S0LKYdwTo+2JInQHta8UEb9+fgzUO+9OsBHw/3gfrBFEtvcjxD5mFkhXdQQLL1/WYo0dUpLjHRYORmo0fxjOxToaMAy8Uom6/6CQD/Ak1HbBjp5Fe+CVNntZhIMhvYHxbY65GlRGadekO1VS/Q12O3GNTa/kBF+zxN1GluKo0Vppz3WVp7MiGlgVnGwug1ukT6Dy5Kcql2d0HxdV4aRfQRWCZoyz7aPva2g+7Pzjp5vWZxaTZ0w9KsjSoZKjh5cRf4C6ggnVRYGT7SvPCaZHOyq4+r9ROKtqb5tqYO8ItgOpcPD52wps
+	cKFRfF4C7u2TiqNhs81+t1vgpgq5WZQb+T4Eju6V66m7/M/cT5uTWNytYa+6mJxlNrSG0IFPObX5EAT9UEF++Iq4izm2/7uazTmFbfXjUxaKzYyAYw0PalOroj3T7jP17AiIdrhCfqouDbNmsXJDNcjXrZRfDaEOPW7zb256GtOLwOoGxbG3C0Hm26rBeLOYbwfhzHbvWcINhPV/JZnTMYcXFPHKzfTdx4u4C8vom6ZPYv7Rjl4BWS41aH04nkIWkYuUEZD4gColuvRpENJvH2lWnfSMw8EKix7NJh97BIFam9/qQifEfHfKg1yDeVAgkWNEKpYDEuEWs/iGz1GAMIDj0Dsjgvl1pP1EPaS2NMsjTcZywE3imnBPXjbfdF0XLMnr/AZoB9kGOSr/sEdAmgWsw+BnxTVlPX0c4IlHGgfyBWC9VrwSlu2kuu1NwqKB
 X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2026 05:10:48.4201
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2026 05:10:51.9711
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 366d4983-eb64-4ecb-139e-08de5fbdee5a
+X-MS-Exchange-CrossTenant-Network-Message-Id: f66e5270-8329-443c-2f06-08de5fbdf076
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource:
-	CO1PEPF000066EC.namprd05.prod.outlook.com
+	BN3PEPF0000B06D.namprd21.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN0PR10MB4966
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PPF3F503E3E3
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -162,67 +163,169 @@ X-Spamd-Result: default: False [2.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
 	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FREEMAIL_TO(0.00)[gmail.com,kernel.org,perex.cz,suse.com];
 	RCPT_COUNT_TWELVE(0.00)[12];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261078-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261082-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	DKIM_TRACE(0.00)[ti.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sen@ti.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ti.com:email,ti.com:dkim,ti.com:mid];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:email,ti.com:dkim,ti.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: 75EBEB733E
+X-Rspamd-Queue-Id: A252AB7369
 X-Rspamd-Action: no action
 
-This series adds asynchronous mode support to the McASP driver, which
-enables independent configuration of bitclocks, frame sync, and audio
-configurations between tx(playback) and rx(record). And achieves
-simultaneous playback & record using different audio configurations.
+McASP supports the independent configuration of TX & RX clk and frame
+sync registers. By default, the driver is configured in synchronous mode
+where RX clock generator is disabled and it uses transmit clock signals as
+bit clock and frame sync. Therefore add optional properties needed for
+asynchronous mode.
 
-It also adds two clean up patches to the McASP driver that disambiguate
-and simplifies the logic which avoids the async enhancement from being
-too convoluted to review and analyze.
+Add ti,async-mode boolean binding to provide a way to decouple the default
+behavior and allows for independent TX & RX clocking.
 
-The implementation is based on vendor documentation and patches tested in
-both SK-AM62P-LP (sync mode, McASP slave) and AM62D-EVM
-(async mode, McASP master, rx & tx has different TDM configs).
-Testing verifies async mode functionality while maintaining backward
-compatibility with the default sync mode.
+Add tdm-slots-rx uint32 binding to provide an alternative hardware
+specifier stating the number of RX serializers.
+The existing property tdm-slots will still dictate number of
+TX serializers, and RX if tdm-slots-rx isn't given for backwards
+compatibility.
 
-Bootlog and Async mode tests on AM62D-EVM: [0]
-
-[0]: https://gist.github.com/SenWang125/f31f9172b186d414695e37c8b9ef127d
+Add auxclk-fs-ratio-rx which allows to specify the ratio just for RX.
+The driver can be supplied with two different ratios
+(auxclk-fs-ratio and auxclk-fs-ratio-rx in tandem) and achieve two
+different sampling rates for tx & rx.
 
 Signed-off-by: Sen Wang <sen@ti.com>
+---
+ .../bindings/sound/davinci-mcasp-audio.yaml   | 71 +++++++++++++++++--
+ 1 file changed, 66 insertions(+), 5 deletions(-)
 
-Sen Wang (4):
-  dt-bindings: sound: davinci-mcasp: Add optional properties for asynchronous mode
-  ASoC: ti: davinci-mcasp: Disambiguate mcasp_is_synchronous function
-  ASoC: ti: davinci-mcasp: Streamline pdir behavior across rx & tx streams
-  ASoC: ti: davinci-mcasp: Add asynchronous mode support
-
- .../bindings/sound/davinci-mcasp-audio.yaml   |  71 ++-
- include/linux/platform_data/davinci_asp.h     |   3 +-
- sound/soc/ti/davinci-mcasp.c                  | 510 ++++++++++++++----
- sound/soc/ti/davinci-mcasp.h                  |  10 +
- 4 files changed, 479 insertions(+), 115 deletions(-)
-
-
-base-commit: dbf8fe85a16a33d6b6bd01f2bc606fc017771465
+diff --git a/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml b/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
+index beef193aaaeb..87559d0d079a 100644
+--- a/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
++++ b/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
+@@ -40,11 +40,33 @@ properties:
+   tdm-slots:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     description:
+-      number of channels over one serializer
+-      the property is ignored in DIT mode
++      Number of channels over one serializer. This property
++      specifies the TX playback TDM slot count, along with default RX slot count
++      if tdm-slots-rx is not specified.
++      The property is ignored in DIT mode.
+     minimum: 2
+     maximum: 32
+ 
++  tdm-slots-rx:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Number of RX capture channels over one serializer. If specified,
++      allows independent RX TDM slot count separate from TX. Requires
++      ti,async-mode to be enabled for independent TX/RX clock rates.
++      The property is ignored in DIT mode.
++    minimum: 2
++    maximum: 32
++
++  ti,async-mode:
++    description:
++      Specify to allow independent TX & RX clocking,
++      to enable audio playback & record with different sampling rate,
++      and different number of bits per frame.
++      if property is omitted, TX and RX will share same bit clock and frame clock signals,
++      thus RX need to use same bits per frame and sampling rate as TX in synchronous mode.
++      the property is ignored in DIT mode (as DIT is TX-only)
++    type: boolean
++
+   serial-dir:
+     description:
+       A list of serializer configuration
+@@ -125,7 +147,21 @@ properties:
+ 
+   auxclk-fs-ratio:
+     $ref: /schemas/types.yaml#/definitions/uint32
+-    description: ratio of AUCLK and FS rate if applicable
++    description:
++      Ratio of AUCLK and FS rate if applicable. This property specifies
++      the TX ratio, along with default RX ratio if auxclk-fs-ratio-rx
++      is not specified.
++      When not specified, the inputted system clock frequency via set_sysclk
++      callback by the machine driver is used for divider calculation.
++
++  auxclk-fs-ratio-rx:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Ratio of AUCLK and FS rate for RX. If specified, allows
++      for a different RX ratio. Requires ti,async-mode to be
++      enabled when the ratio differs from auxclk-fs-ratio.
++      When not specified, it defaults to the value of auxclk-fs-ratio.
++      The property is ignored in DIT mode.
+ 
+   gpio-controller: true
+ 
+@@ -170,14 +206,38 @@ allOf:
+   - $ref: dai-common.yaml#
+   - if:
+       properties:
+-        opmode:
++        op-mode:
+           enum:
+             - 0
+-
+     then:
+       required:
+         - tdm-slots
+ 
++  - if:
++      properties:
++        op-mode:
++          const: 1
++    then:
++      properties:
++        tdm-slots: false
++        tdm-slots-rx: false
++        ti,async-mode: false
++        auxclk-fs-ratio-rx: false
++
++  - if:
++      required:
++        - tdm-slots-rx
++    then:
++      required:
++        - ti,async-mode
++
++  - if:
++      required:
++        - auxclk-fs-ratio-rx
++    then:
++      required:
++        - ti,async-mode
++
+ unevaluatedProperties: false
+ 
+ examples:
+@@ -190,6 +250,7 @@ examples:
+       interrupt-names = "tx", "rx";
+       op-mode = <0>;		/* MCASP_IIS_MODE */
+       tdm-slots = <2>;
++      ti,async-mode;
+       dmas = <&main_udmap 0xc400>, <&main_udmap 0x4400>;
+       dma-names = "tx", "rx";
+       serial-dir = <
 -- 
 2.43.0
 
