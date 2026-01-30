@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-261349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261350-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yFg5LcAbfWlQQQIAu9opvQ
-	(envelope-from <devicetree+bounces-261349-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 21:59:44 +0100
+	id gGdJC8MbfWlQQQIAu9opvQ
+	(envelope-from <devicetree+bounces-261350-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 21:59:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57B3ABE9D5
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 21:59:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA281BE9E6
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 21:59:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B81A5300A8DE
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 20:59:43 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 1ED003008271
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 20:59:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5833B37F8DA;
-	Fri, 30 Jan 2026 20:59:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B764836B05F;
+	Fri, 30 Jan 2026 20:59:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="mE5ztpzj"
+	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="WnhuGbkQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11023138.outbound.protection.outlook.com [40.107.159.138])
+Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11021127.outbound.protection.outlook.com [52.101.70.127])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 841A137F738;
-	Fri, 30 Jan 2026 20:59:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F31FF3806D5;
+	Fri, 30 Jan 2026 20:59:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.127
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769806783; cv=fail; b=JqLRupjd9IQFt7Cw5gC2PS2LDRUrPnlwiYqsk/Y1YaiZ9gyLa6eZNHZeid1galEos91LwtmbF/gNShXzw3d7iIB+uYCXpkA0S+Na2Im/8C+ASWPgC7U7zbF5jnzQLN1OrNmzFPlL7+og26bHG3bB82Pgbomko5tPSr8/yiCs/QI=
+	t=1769806785; cv=fail; b=p1KsD471uhkNyA5vJV/mK9pMv5fh49C4ZWZc6Ufeie7/JgfEOcwsMoO71focJderjZhAGj4O5XhWceZAZPgSZIg2eWJFOlYSX0+VyrlEhCow+/FD4fCOQtn0nokRsdo9B1smcHlPFllvLio2V66O+hDqw+ipjUicLsY5ajW3bW8=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769806783; c=relaxed/simple;
-	bh=ne5Sd8YPlGMnhn/qm9L5Yk+KiCoJ/dtiPWXBulolXNY=;
+	s=arc-20240116; t=1769806785; c=relaxed/simple;
+	bh=Zw7rp42BCCSiMtzPaP7uBGhkgZfr2Je9T53prbZDAVY=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=XgZVMzQ4aIkhD/pzjDm9dJJK8yzaQSkFISunVmqAPrp2P5+kk0ViZkmwXl62ZsuG9evVCqJPtOePm6H6a1XfgH9bkZytTXcvpiBs2FM47utHwlHXBy8DWI7P4+xyohTDWY9xskwBDl+/YA0gafR3r0oP7dhFOGvnT0LJNM6pB+g=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=mE5ztpzj; arc=fail smtp.client-ip=40.107.159.138
+	 MIME-Version:Content-Type; b=rwW58Izz/mpYvVTokomascTxFpOZRoAc0ATkzI3UO8DklqTlIUZB5Mtb0QA/s353W9N9aAi/ANlD3He8RV8ilt6BZgLTudhlNpaCXFwZHCKuPrVPxCIwamsbPq/bTgdnfnNATD/tkftBpzF5d6hBkSJS061p4BX14BvYOZaoQNs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=WnhuGbkQ; arc=fail smtp.client-ip=52.101.70.127
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=cB9V1bjTmDeqfG05Gfw9xujfryWvS2ksWG1HfdqgFNrOaAaMHIpgvwwQp9C/lImxki11+87++mzoEmlZEdsTYkkPP35oLMigWw2MgAt6A8nAnSzbuwln910/gzMRXBS7N6rJaFLcwplA6bwJpzc8mpfjWjQQ0NDuNvul6GRWfwEG3QrrAYx3w05UpQ/n87gtaEbujWU9+dn77AXNma2JzqS4yQfA4JRQxX5ApZ5BKwBQLQ4iW7Coso+dy5QO3/f83/+/EFZEJWrHxNMhVsX5x2T+MzKrVjw1JmWqADPDtxFvnU0dvwHTHs8Z62vqe2uiK2ty05RwvMOFBoKNYMbFZQ==
+ b=NZ58ctqMX4ifC4n+F7spFfKNhx4+/7v1Y6VoXBl0uytF4nHDweldS5t+GhffFtCr86YY1gWT9UwvWTEoI+5OW0sKHsIw889bTXOj4+yHyxKWXUmvBI+FudD+wi1rr2Kr8Drbky61Wk/9QqhT5fp4xW5m9URzxN/2Ou+q9tghjJZKT74oVnVwiDFIp8FmJ3qv9Nzuvl9KyX2uynwgtdCSyFnksiCWo1MvQA9WMDy0ld0OfUytJ2JiwO4j7hFIk9y5i+DP0BVxHpa2O0bt0+hS7y7YPAH58x923R6vKK+viNq/RuLgfKkSxz9BOQz4AvG4T6elikTHX1IzTIcaRifYfg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=B7dpP6i5ssvfQ44o7l2AgeSlVgDYIehTIhPC6kJVcqo=;
- b=gsBPrpIQnWGlWmYpVhcFmlOQLC3Ix+HOJ4BXELzLTPYogbfDIUKZBsdIL/p7bNTDj2oWmYkJYKRje/zIIKC/8r2Au/AB+B9lrkhpRYeliM3IBzEPgOK4D6IoGFlyeLvi77FINSik92zhaWolL9hVA+KZvU5aRrvRqM0bciJZUATkm2uu7DRs6CbIv2+Je6XHZljXxbhjzEIHX17dSH5NUgOBiPbn6WNlCz7PlnIL5erMkL7SEoEBjD7nd8Sz1ui/BISPLC2ubA5zlLfEc0pEP4Zxh6SiJBOZ6OorNADCpsCNRWaQxKwEcl+ky7JXOxcU0a42/nvaK2rNeLJWXAnEpQ==
+ bh=0FmJDLmg7avb7I+Kra62xPecUUkYJ+PfRnFKZfXFcq4=;
+ b=hZ4/BeHHONz6G/LGA2lGmDJqZq7dJ6hCvdX9aLXnG4LRN7gMVuwiSstA13/st9Dpe1jSPSZ4AG3lVhYwJwvwWPd8c32shqE7h9k24MD3q+IBI425Fgc0/MFCxkhzMktRU/UoqOYYUolJiWc8YikV89QfYCqG9VWj+RqizrW8K+vLwEs52oTkNn+MWYTnyoAeqZ7OdfUvnfDi3GqeG7dslZr4vOoLTPlG6xoOVHOM79sZV00DuNhVdBmXDRQWmCibwuogSyWdjf5k6dQkiuYZEoF06TEgWfUaotkCsQltT7qmcIUb7pVqG6afdCcs8SllTrKCJdJhPV5XKjE3gT3zMw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
  is 91.26.50.189) smtp.rcpttodomain=gmail.com smtp.mailfrom=phytec.de;
  dmarc=fail (p=quarantine sp=quarantine pct=100) action=quarantine
@@ -48,46 +48,42 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=B7dpP6i5ssvfQ44o7l2AgeSlVgDYIehTIhPC6kJVcqo=;
- b=mE5ztpzj2CJ7VLAD6fteUBS7wP53H6aagEBrJD2vmkX/zheU3dMeJbcX9FfHHqX/EdcBQYP8kjxUqhRjX78D4Pq7kd2GyG+JGimKendA+aXLw5YrjZzeYiox8UueR1S1mUHMgtw5WHwCWGYDm/DsabMVD8eX3ZbIzqBHrDRRGX8RtTZYutsRcuC1q2Q7pIvD6UTwLhV3CDj7P6kPFlOYFNiudx1Tt/TrkxpqP5jMcpH+yrNBvJU7qn4afILwfXW+zTQ17Q88ylBR3H0dfsT3tbSMke+krNGRw3zdBocig0H3U6jgJ14ezp1QQT9lstLYdwWoKN4pMgv7U2CrOVulmA==
-Received: from DB8PR04CA0025.eurprd04.prod.outlook.com (2603:10a6:10:110::35)
- by PAXP195MB1344.EURP195.PROD.OUTLOOK.COM (2603:10a6:102:1a4::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.10; Fri, 30 Jan
- 2026 20:59:35 +0000
-Received: from DB1PEPF000509E2.eurprd03.prod.outlook.com
- (2603:10a6:10:110:cafe::e8) by DB8PR04CA0025.outlook.office365.com
- (2603:10a6:10:110::35) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9564.11 via Frontend Transport; Fri,
- 30 Jan 2026 20:59:32 +0000
+ bh=0FmJDLmg7avb7I+Kra62xPecUUkYJ+PfRnFKZfXFcq4=;
+ b=WnhuGbkQq478lehvJl+EW0OzjfRlZZ7Iy0hovsmMJPG1WoefKzJL83MAGX4Z5C9WI5pdgn6k1pvQAqTrFvO0uxMZ3V5+mHDRQwgh8afYnlz3aGDbfpmcWNyc7hAr6jarhCyPtnlsTBdMuK0QW4e8NymofSVQC7BPZzzHBo6AloNoeEEZgP1aEnlATpZk++qen25D0UrV8mYPI3GNVsxs/cl7QbMzFWwycgnOrwzFJcvLbxYEvN++PoJVimEAIZJRJwrro0O3j/A6dOxzJHYOVu+xsWie7oN0EzpFG1N0PJmSgylqhSY0jm2sWK6GsM17Z965vsmZUJMi57DqTc/C4g==
+Received: from DUZPR01CA0114.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:4bb::13) by DU7PPF2541BF4ED.EURP195.PROD.OUTLOOK.COM
+ (2603:10a6:18:3::bc9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.7; Fri, 30 Jan
+ 2026 20:59:39 +0000
+Received: from DB1PEPF000509E6.eurprd03.prod.outlook.com
+ (2603:10a6:10:4bb:cafe::14) by DUZPR01CA0114.outlook.office365.com
+ (2603:10a6:10:4bb::13) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9542.16 via Frontend Transport; Fri,
+ 30 Jan 2026 21:00:07 +0000
 X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is 91.26.50.189)
  smtp.mailfrom=phytec.de; dkim=none (message not signed)
  header.d=none;dmarc=fail action=quarantine header.from=phytec.de;
 Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
  phytec.de discourages use of 91.26.50.189 as permitted sender)
 Received: from Postix.phytec.de (91.26.50.189) by
- DB1PEPF000509E2.mail.protection.outlook.com (10.167.242.52) with Microsoft
+ DB1PEPF000509E6.mail.protection.outlook.com (10.167.242.56) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9542.4 via Frontend Transport; Fri, 30 Jan 2026 20:59:35 +0000
+ 15.20.9564.3 via Frontend Transport; Fri, 30 Jan 2026 20:59:39 +0000
 Received: from lws-haller-privat.phytec.de (172.25.39.212) by Postix.phytec.de
  (172.25.0.11) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.35; Fri, 30 Jan
- 2026 21:59:30 +0100
+ 2026 21:59:35 +0100
 From: Dominik Haller <d.haller@phytec.de>
 To: <adrien.grassein@gmail.com>, <jernej.skrabec@gmail.com>, <onas@kwiboo.se>,
 	<Laurent.pinchart@ideasonboard.com>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <robh@kernel.org>, Andrzej Hajda
-	<andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
-	"Robert Foss" <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>, David
- Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
-	<mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>
+	<conor+dt@kernel.org>, <robh@kernel.org>, Nishanth Menon <nm@ti.com>,
+	"Vignesh Raghavendra" <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>
 CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, <upstream@lists.phytec.de>, "Dominik
  Haller" <d.haller@phytec.de>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH 5/6] dt-bindings: display: bridge: lt8912b: Drop reset gpio requirement
-Date: Fri, 30 Jan 2026 12:58:15 -0800
-Message-ID: <20260130205820.83189-6-d.haller@phytec.de>
+Subject: [PATCH 6/6] arm64: dts: ti: k3-am68-phyboard-izar: Add PEB-AV-15 overlay
+Date: Fri, 30 Jan 2026 12:58:16 -0800
+Message-ID: <20260130205820.83189-7-d.haller@phytec.de>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260130205820.83189-1-d.haller@phytec.de>
 References: <20260130205820.83189-1-d.haller@phytec.de>
@@ -103,111 +99,321 @@ X-ClientProxiedBy: Postix.phytec.de (172.25.0.11) To Postix.phytec.de
  (172.25.0.11)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB1PEPF000509E2:EE_|PAXP195MB1344:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5f777489-271b-4f44-a153-08de6042798e
+X-MS-TrafficTypeDiagnostic: DB1PEPF000509E6:EE_|DU7PPF2541BF4ED:EE_
+X-MS-Office365-Filtering-Correlation-Id: 75bb692f-58a9-4e61-9402-08de60427bf3
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|1800799024|82310400026|376014|7416014|921020;
+	BCL:0;ARA:13230040|36860700013|7416014|376014|82310400026|1800799024|921020;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?0KfECOlxvlp73ZVTC4c6hW5/lVFeg/OPTXG893cAFL9tWTts2CKwm2ikWGyX?=
- =?us-ascii?Q?PRnDQdKxpKDnzaADoVIvsORCnEpZvnQmUEh/fcTPkwfvzs0J3a04zWYdzMyI?=
- =?us-ascii?Q?N06wr3wYkkEr2XULnAcXb1TOppAt8vQSu18pke0G0NwWMv1i5E/5ZPBWIOjx?=
- =?us-ascii?Q?m55Ognbq2Pg0vbjPQXnvY9U45cWW2PoZNiMJosY/03KWdRhQfhNJOSclfdUn?=
- =?us-ascii?Q?EFklxA3hpKdFL52oSjet8UOC4YwqafOL9P7glb9m5R0nTxjI7BeE8UNNtcLu?=
- =?us-ascii?Q?h9c8dk6cw1/4fVdrYMnetCEAlD1l9oae5/G6AONnsn+thGV/A7XZSyBzGPSY?=
- =?us-ascii?Q?SLMlXUY9zX7PnOYEK0caSx70mX4NHmTc0inZFOr4Janm8umb5KMz0nGCZeBI?=
- =?us-ascii?Q?PQXp5K1wLhcTgnsLgcPuBeTjBnZtHqcjlKG4TSzbLsflFRrbTc8cO6LMDD7w?=
- =?us-ascii?Q?un/fN8JBL/vZmP5dYUu13gZJut5VeFSkCH5NEyBtclDbmKsw/wk9BULvNN/E?=
- =?us-ascii?Q?b74072uLD6l7tdra2i6tKgCBmUzi2lQ5RL93d3ia/6t4xIyir4pxwjYWdfdE?=
- =?us-ascii?Q?2NgmObZHGojGjcgihMr0ae79f9FdDvZdhi0tMd1bvg+FjA+iwWsjYktsBNJt?=
- =?us-ascii?Q?+rt2Urs8CdtX1NkboinZ8wGOx+7yoIJ5sKrP8OGxihButc2jOr2VH00+Omge?=
- =?us-ascii?Q?whnurrYUxf38FVVNRA6rwTQAAjCXRZOWwziuS7ruUuMNvcm9O7nLV+MqvQGe?=
- =?us-ascii?Q?6He5vEFfbZkz3iZGntHamRuyehmNQjLYdi2QufOAUq2/+vClPLlVV2/jpySU?=
- =?us-ascii?Q?D2AaBUskS336FiJmNg6iKrXRyC2tHwQ0m8+JzqDLa0xaBWI3KO7oLykBWupE?=
- =?us-ascii?Q?ylTtwU6W2eRu7se+iaaKgkkaX92tlYBf7HFdv+yImXNXP/jn6RIfnAfzsAP3?=
- =?us-ascii?Q?4nwiTPvgeNQ16hcTqAxBmtc88ZwZCxivLq1z+WxwDZkxTqSF8h764gHmPLav?=
- =?us-ascii?Q?w9TIlf/6rIpTm0GdFCaQKuJkSdnwARz9MivR2dEyTEqcc3kXBp8y7czfgKhA?=
- =?us-ascii?Q?uwe4WKV0ayoR3OcbxhKgJG9p8HmyFHyamoYDYyIAW+3EoDKWye+D9RVKZY8X?=
- =?us-ascii?Q?QyOMZjOao2XJllOshE4M/KZ5jd1te9o8H7qrKUVc+6H796/KCiAJm4lSZ7Qi?=
- =?us-ascii?Q?y7AOtshqoVr4xtREpBbK89z906JBBYsdAwhmzhcLvZpHSWGNQu5Rmr2Vn1hf?=
- =?us-ascii?Q?IJ531aStreDEuVUPuid1/w/cnVkTYdweCkaDqNpOrJut6qcp6YnJo9ekR2gB?=
- =?us-ascii?Q?f+x5XNtp2x+u5QjCX5RV5+cxoBS/m+533dNaQvUNVppGLIKmmD1NqskhDsGq?=
- =?us-ascii?Q?nP7BdrlqDpYjVFQBrsXfCwtjuErjHQCOuFWZzsJ+AKEUN22B3tV0pIw/5PC7?=
- =?us-ascii?Q?XRzTeFrV7CZN6UAbe3IKQFsGj2D4pRhCYGoc8AR+2uC1tFcaLU+8OElICtZl?=
- =?us-ascii?Q?sYliRZIgY8EJTK2++NAXyEcteqAETwERZIPKvTkxaVsO7Fn/vp0eOWCT2+Tz?=
- =?us-ascii?Q?Qk6O4MMpeYOh/m8C2haDC5vTq4Yx0Pxc2SMj7AwwBbApsk9RPhPdbvGSPCI3?=
- =?us-ascii?Q?zkbsuv6+LJ68FyBwQfmc36piAKgjXS0nVj6idNybbtYqMPWC14k2Gsr21pYL?=
- =?us-ascii?Q?EIxnINGRpSKiYSZchPMKiBuZivs=3D?=
+	=?us-ascii?Q?IvemZKefn1CP/0vd5ZNDGmEDBC+cNBCoKlvtMnTxJeQDW+fU6snkNxauNKMw?=
+ =?us-ascii?Q?HDYBgLSgiE7c5/cYjUaDVid5DXrVmDYSfXO9PJ9DHS4eNd4ejHkkspkE+6j0?=
+ =?us-ascii?Q?hKco8RcvWjwFjnuk0Ika57LV2sBtfdOOkk4tWLeo/CSBx2tqpm9f4+8tBdmc?=
+ =?us-ascii?Q?EJobOGTGGnwI25NzjhwdNXuF/ijLUkb0ZTmUfvl+P/8vGEUMzMsyBfTwf7zC?=
+ =?us-ascii?Q?AlMctDQmO0nZcgYS7GPvubAWy5Y2Q/wh0b3wvNKckI/uw0+koTRGvPXdP5Ny?=
+ =?us-ascii?Q?MnhFBeKWkM5xziC7JDtgqWTEh4etPaXpddrJ7+IX47Zp7mAlJM01zmNZzYxC?=
+ =?us-ascii?Q?6lX9LrniyZcH5LsQFy9Fh+KavLFNEJ6yxRXDEJpMkE6DsJwocKmyFYm9ySnR?=
+ =?us-ascii?Q?m/TaA/ANQBljgvRsoMlAM5emIo4Gmak+WWgHXlZP0xkhBYB5VpIUm6owyhSq?=
+ =?us-ascii?Q?MT7Sh2Nv2e3vShMYSxNx4mSaOsE2zW+wjHvMsuqvTXkNA77dKnKctDQl/7Et?=
+ =?us-ascii?Q?sEUVtW1Kl7aaS13dgRnH9HSaBMnwFSszXdoLNSMfuPuV3CrSQcXsDAJRRXAb?=
+ =?us-ascii?Q?2gHzCD1l/pxRS4DdCHZ07j7/Q6me3P0T5aWbR9057D+4bjohEp04Xo7/7+WB?=
+ =?us-ascii?Q?wjshAEG1TuuhKljPSnk7xtNnFUoTKUHWmKxH5nmWpnmKsu1Z+lVmezy1fddj?=
+ =?us-ascii?Q?FzNGTlOJCc8js5+ehPsIJEgV8qdtBu0uaT7fRlUd6cUfIMwMT+ks2YWc+sZD?=
+ =?us-ascii?Q?bD2DTLWrXHrCQe1owLwwDx0r0rhOkNipzrku/QGHPZWSsjTwI6gyKRPmKOl2?=
+ =?us-ascii?Q?chh6mnTzn0fmqqtAu0fdZmcGvD8DcJs3o8J1NzYeqsLeyXv0vXwuFIfKUjLQ?=
+ =?us-ascii?Q?v0xr8VhSfWj4pr8xx28Uxvy6TsD007tmS8EymjPVu4W0HL5c2oHh5OwJh3sB?=
+ =?us-ascii?Q?NaNUj6DJX9U6I0UocaMxTcuGFgCQpx6km1NZiA50hTkwDHasOgA60sMxEN98?=
+ =?us-ascii?Q?3JyIokGH3myur9sbd0FZY3zD+GKM6O+rhdWLw8QuY3xqvtWscZF8PP0LPQgY?=
+ =?us-ascii?Q?QnB18vxYVAKG99qTvvjaLygdUazFSrV38hOP0TakDEsDZEAQYSzYaMrLlc9S?=
+ =?us-ascii?Q?AT0EP5fkHBUA5k6bFrwMVGu+QU7Fi8EJt3qBLLY6i+xOxtqLjmMo+txCdc6N?=
+ =?us-ascii?Q?U1COLqyW3iPdp9dSt6dkLM+3p7juV2Wko0w6Cebe2uiiwtTcyIYTocXFwzj8?=
+ =?us-ascii?Q?NgEMGAV5UsWLZNqxWH7wiPfZH01RQUo7SUwNkw/OjrQLlqbUNaF+Lv4Cl17Y?=
+ =?us-ascii?Q?C3JGO6qCjMhd7uEv3DPGRBOZQxasrHvefSVc55wUALVHoM00QuN3waFkpTqu?=
+ =?us-ascii?Q?OOzdSiU511Ae6HpP8AxKVWfBw9/KGRQB68tk5TnRFSVqIkstW5jSTr0AKrU+?=
+ =?us-ascii?Q?154isAmptjqy0JYUwVnnmBtlvvZgaFn8VnOF6IxEnDKwM1yrd+ktzOHieRbe?=
+ =?us-ascii?Q?kfm5IJpfdLDu2ukUklMyD3STnGgka74B/EDULotpUN1hkWUsoFWBaXErJVHk?=
+ =?us-ascii?Q?qL5uhVxNM/J4JN/Zgox2g8WIs5L/3T8I6+URD3Od52QMH8HlamO8SZeZxdg5?=
+ =?us-ascii?Q?TN3x5pCqBjvfdDKDIt1Z2Vk4YEFmiIrPeem3Avw8bCDjhRaOhK6B3XDlBq0G?=
+ =?us-ascii?Q?0ZYTBtGYHuGTObwFXVOag91IAlA=3D?=
 X-Forefront-Antispam-Report:
-	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:Postix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(82310400026)(376014)(7416014)(921020);DIR:OUT;SFP:1102;
+	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:Postix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(7416014)(376014)(82310400026)(1800799024)(921020);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	oha7x6bevYlFtTKbECAVatgXrn6evn2LOPBPMTuhKutgmJc+cad6jXpb8Ik8JDlUIIAZ8k6DUtUGNVgulfRJuXjDv6sQLZKj1AmL9mMciDQxFHZLjv/2tg3CC2w6r60Xlopq/b1vJnGfXUA1CzescRQPklHEsjEuErlLX8gpxtNbfeLVT0mU6BEeRFOwRDJJovgIFZn3UyIoQTPiZ7dRiRpQgBYDbj9ajveWMc8n2hUnN/hSZQAS10ML38iJVTJv/j3lpx5OAmMkw7tsAe+vp6/ojGTRLaME9n+u5eivABj7qrycA6bkxizRTpb5Nf842KEXYJ+M8ahEUBYbZ1WgkKIcBPIDHnNCsnb28OQyeWjQp8nBCb/AqatyZp4BFxi0bVLVO3RNX93JokDXsAUNQ0zq80fADA5E4xJ2QbJxY2Zldbz14VHmc8T7ZYa1MjSg
+	UOSxm6E/GW4S6AX3UbnjnIyNKyJqp5RwIAwx+KaDehissXgvWFGu24gv5AkFB4l5WOs++dr0K5N/DPWyuhooDniVFyUHpOPuovD26dqiZFH9pgX6tUos5LhiNuE6VhTdiCuBLI12RkDtY744uG+jAVq80Z1TyTYArk1+nNRqpRlFRI4njn5FLlejd/i5r/V+ujLqZIUStOZr2L7bGa/K4mnQ/nLOoYGdGAabvsDI1+MnXx1XrcIXFNLBfvYP3edNiLlRq6y1/BZjx9PtyThljXlPrKsNXrn5xeVcuakySzKlt0BSdwvEBDc3GjeVTAbhSP9W2qUPtM0qMdU1g6gasIo+Mu5E0vdDxnxl74s5otiAKsb9n3WcO6LltesG1Vs7OZ+9t+IvLPBDc1hspo6KG9vFll9KNQnNyUVgtl/CStYTlqPGmVolSqMvQ3I7H/dM
 X-OriginatorOrg: phytec.de
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2026 20:59:35.6000
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2026 20:59:39.6162
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5f777489-271b-4f44-a153-08de6042798e
+X-MS-Exchange-CrossTenant-Network-Message-Id: 75bb692f-58a9-4e61-9402-08de60427bf3
 X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e609157c-80e2-446d-9be3-9c99c2399d29;Ip=[91.26.50.189];Helo=[Postix.phytec.de]
 X-MS-Exchange-CrossTenant-AuthSource:
-	DB1PEPF000509E2.eurprd03.prod.outlook.com
+	DB1PEPF000509E6.eurprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXP195MB1344
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU7PPF2541BF4ED
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_REJECT(1.00)[cv is fail on i=2];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[phytec.de,quarantine];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[phytec.de,quarantine];
 	R_DKIM_ALLOW(-0.20)[phytec.de:s=selector2];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[gmail.com,kwiboo.se,ideasonboard.com,kernel.org,intel.com,linaro.org,ffwll.ch,linux.intel.com,suse.de];
-	RCPT_COUNT_TWELVE(0.00)[22];
+	FREEMAIL_TO(0.00)[gmail.com,kwiboo.se,ideasonboard.com,kernel.org,ti.com];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261349-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[phytec.de:+];
+	TAGGED_FROM(0.00)[bounces-261350-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[d.haller@phytec.de,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,phytec.de:email,phytec.de:dkim,phytec.de:mid];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[phytec.de:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[phytec.de:email,phytec.de:dkim,phytec.de:mid,0.0.0.0:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,0.0.0.1:email];
 	NEURAL_HAM(-0.00)[-1.000];
+	DBL_PROHIBIT(0.00)[0.0.0.48:email,0.0.0.18:email,0.0.0.3:email];
 	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 57B3ABE9D5
+X-Rspamd-Queue-Id: BA281BE9E6
 X-Rspamd-Action: no action
 
-Drop the gpio reset from the list of required properties. The bridge works
-fine with a reset not managed by Linux. In the driver itself the gpio is
-already flagged as optional.
+Add an overlay to use the PEB-AV-15 AV-Adapter. It's a small expansion board
+using a Lontium LT8912B DSI->HDMI bridge and a TLV320AIC3007 audio codec.
 
 Signed-off-by: Dominik Haller <d.haller@phytec.de>
 ---
- .../devicetree/bindings/display/bridge/lontium,lt8912b.yaml      | 1 -
- 1 file changed, 1 deletion(-)
+ arch/arm64/boot/dts/ti/Makefile               |   4 +
+ .../ti/k3-am68-phyboard-izar-peb-av-15.dtso   | 192 ++++++++++++++++++
+ 2 files changed, 196 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am68-phyboard-izar-peb-av-15.dtso
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/lontium,lt8912b.yaml b/Documentation/devicetree/bindings/display/bridge/lontium,lt8912b.yaml
-index 2cef25215798..63f000ebc9c5 100644
---- a/Documentation/devicetree/bindings/display/bridge/lontium,lt8912b.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/lontium,lt8912b.yaml
-@@ -79,7 +79,6 @@ properties:
- required:
-   - compatible
-   - reg
--  - reset-gpios
-   - ports
- 
- additionalProperties: false
+diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+index a188e62e32b4..ae5994818ad2 100644
+--- a/arch/arm64/boot/dts/ti/Makefile
++++ b/arch/arm64/boot/dts/ti/Makefile
+@@ -135,6 +135,9 @@ dtb-$(CONFIG_ARCH_K3) += k3-am68-phyboard-izar.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am68-phyboard-izar-lvds-ph128800t006.dtb
+ k3-am68-phyboard-izar-lvds-ph128800t006-dtbs := k3-am68-phyboard-izar.dtb \
+ 	k3-am68-phyboard-izar-lvds-ph128800t006.dtbo
++dtb-$(CONFIG_ARCH_K3) += k3-am68-phyboard-izar-peb-av-15.dtb
++k3-am68-phyboard-izar-peb-av-15-dtbs := k3-am68-phyboard-izar.dtb \
++        k3-am68-phyboard-izar-peb-av-15.dtbo
+ dtb-$(CONFIG_ARCH_K3) += k3-am68-sk-base-board.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am68-sk-base-board-pcie1-ep.dtbo
+ dtb-$(CONFIG_ARCH_K3) += k3-j721s2-common-proc-board.dtb
+@@ -323,6 +326,7 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
+ 	k3-am642-tqma64xxl-mbax4xxl-wlan.dtb \
+ 	k3-am67a-kontron-sa67-base-gpios.dtb \
+ 	k3-am68-phyboard-izar-lvds-ph128800t006.dtb \
++	k3-am68-phyboard-izar-peb-av-15.dtb \
+ 	k3-am68-sk-base-board-csi2-dual-imx219.dtb \
+ 	k3-am68-sk-base-board-pcie1-ep.dtb \
+ 	k3-am69-sk-csi2-dual-imx219.dtb \
+diff --git a/arch/arm64/boot/dts/ti/k3-am68-phyboard-izar-peb-av-15.dtso b/arch/arm64/boot/dts/ti/k3-am68-phyboard-izar-peb-av-15.dtso
+new file mode 100644
+index 000000000000..bec959d2e97f
+--- /dev/null
++++ b/arch/arm64/boot/dts/ti/k3-am68-phyboard-izar-peb-av-15.dtso
+@@ -0,0 +1,192 @@
++// SPDX-License-Identifier: GPL-2.0-or-only or MIT
++/*
++ * Copyright (C) 2026 PHYTEC Messtechnik GmbH
++ * Author: Dominik Haller <d.haller@phytec.de>
++ */
++
++/dts-v1/;
++/plugin/;
++
++#include <dt-bindings/gpio/gpio.h>
++#include "k3-pinctrl.h"
++
++&{/} {
++	audio_refclk1: audio-clock {
++		#clock-cells = <0>;
++		compatible = "fixed-clock";
++		clock-frequency = <19200000>;
++	};
++
++	hdmi: hdmi-connector {
++		compatible = "hdmi-connector";
++		label = "hdmi";
++		type = "a";
++		ddc-i2c-bus = <&main_i2c2>;
++
++		port {
++			hdmi_connector_in: endpoint {
++				remote-endpoint = <&lt8912b_out>;
++			};
++		};
++	};
++
++	reg_audio_3v3: regulator-audio-3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "VCC3V3_AUDIO";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-always-on;
++	};
++
++	reg_audio_1v8: regulator-audio-1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "VCC1V8_AUDIO";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		regulator-always-on;
++	};
++
++	sound {
++		compatible = "simple-audio-card";
++		simple-audio-card,name = "PEB-AV-15";
++		simple-audio-card,widgets =
++			"Headphone", "Headphone Jack",
++			"Microphone", "Mic Jack";
++		simple-audio-card,routing =
++			"Headphone Jack", "HPLOUT",
++			"Headphone Jack", "HPROUT",
++			"MIC3R", "Mic Jack",
++			"Mic Jack", "Mic Bias";
++		simple-audio-card,format = "dsp_b";
++		simple-audio-card,bitclock-inversion;
++		simple-audio-card,bitclock-master = <&link0_codec>;
++		simple-audio-card,frame-master = <&link0_codec>;
++
++		link0_cpu: simple-audio-card,cpu {
++			sound-dai = <&mcasp0>;
++		};
++
++		link0_codec: simple-audio-card,codec {
++			sound-dai = <&audio_codec>;
++			clocks = <&audio_refclk1>;
++		};
++	};
++
++};
++
++&dphy_tx1 {
++        status = "okay";
++};
++
++&dsi1 {
++	status= "okay";
++};
++
++&dsi1_ports {
++	#address-cells = <1>;
++	#size-cells = <0>;
++	port@0 {
++		reg = <0>;
++		dsi1_out: endpoint {
++			remote-endpoint = <&lt8912b_in>;
++		};
++	};
++
++	port@1 {
++		reg = <1>;
++		dsi1_in: endpoint {
++			remote-endpoint = <&dpi3_out>;
++		};
++	};
++};
++
++&dss {
++	status = "okay";
++};
++
++&dss_ports {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        port@3 {
++                reg = <3>;
++                dpi3_out: endpoint {
++                        remote-endpoint = <&dsi1_in>;
++                };
++        };
++};
++
++&mcasp0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&mcasp0_pins>;
++
++	#sound-dai-cells= <0>;
++
++	op-mode = <0>;	/* MCASP_IIS_MODE */
++	tdm-slots = <2>;
++
++	/* 4 serializers */
++	serial-dir = <  /* 0: INACTIVE, 1: TX, 2: RX */
++		2 0 0 1
++		0 0 0 0
++		0 0 0 0
++		0 0 0 0
++	>;
++
++	tx-num-evt = <32>;
++	rx-num-evt = <32>;
++	status = "okay";
++};
++
++&main_i2c2 {
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	audio_codec: audio-codec@18 {
++		compatible = "ti,tlv320aic3007";
++		reg = <0x18>;
++		#sound-dai-cells= <0>;
++		ai3x-micbias-vg = <2>;
++		AVDD-supply = <&reg_audio_3v3>;
++		IOVDD-supply = <&reg_audio_3v3>;
++		DRVDD-supply = <&reg_audio_3v3>;
++		DVDD-supply = <&reg_audio_1v8>;
++
++	};
++
++	bridge@48 {
++		compatible = "lontium,lt8912b";
++		reg = <0x48>;
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++				lt8912b_in: endpoint {
++					data-lanes = <0 1 2 3>;
++					remote-endpoint = <&dsi1_out>;
++				};
++			};
++
++			port@1 {
++				reg = <1>;
++				lt8912b_out: endpoint {
++					remote-endpoint = <&hdmi_connector_in>;
++				};
++			};
++		};
++	};
++};
++
++&main_pmx0 {
++	mcasp0_pins: mcasp0-default-pins {
++		pinctrl-single,pins = <
++			J721S2_IOPAD(0x03C, PIN_INPUT, 1) /* (U27) WCLK, MCASP0_AFSX.MCASP0_AFSX */
++			J721S2_IOPAD(0x038, PIN_INPUT, 1) /* (AB28) BCLK, MCASP0_ACLKX.MCASP0_ACLKX */
++			J721S2_IOPAD(0x040, PIN_OUTPUT, 1) /* (AC28) DOUT, MCASP0_AXR0.MCASP0_AXR0 */
++			J721S2_IOPAD(0x07C, PIN_INPUT, 1) /* (T27) DIN, MCASP0_AXR3.MCASP0_AXR3 */
++		>;
++	};
++};
 -- 
 2.43.0
 
