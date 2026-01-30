@@ -1,211 +1,301 @@
-Return-Path: <devicetree+bounces-261153-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261154-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uMibFfKHfGmbNgIAu9opvQ
-	(envelope-from <devicetree+bounces-261153-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 11:29:06 +0100
+	id CCFGDhGIfGmbNgIAu9opvQ
+	(envelope-from <devicetree+bounces-261154-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 11:29:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB12AB95C1
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 11:29:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6357B95E1
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 11:29:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D0ED8304022C
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 10:28:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3E2E7300C923
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 10:29:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4872D35E551;
-	Fri, 30 Jan 2026 10:28:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B82B35EDB2;
+	Fri, 30 Jan 2026 10:29:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="TllZcqIA";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ISj8PxkI"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oln1L8NE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECFE035DCED
-	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 10:28:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769768883; cv=none; b=Yz+KwkM0FCqZ3tK9FH76ENXe0Pqg6M3Qn3LvYnf35FFw3VXpZlcfPMxFPr4QPRy5Y7buSKQwgevGozTR07u037PzfHIbMrFUZNazc58oT9NAXKBpJEv2OoA349eIOPmkUxwYD1kd90ZxgxhPF1dB7qmDMD5bmpvo2MEHFL5c1Kw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769768883; c=relaxed/simple;
-	bh=H0UyTXk1nUUZX1zubCYsCqOu7/Ckfv10R+SANPPN/WU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=my8g9ol+BYrQhuIr+uXU6PjFa3zhL3Ju6Bhp1cJwjSgYvnJfuD2+rHfG8ArgwZBR/ymQjtJVpw0aUXaoXJ8Qcc1qk0uUqOae4oLQui0lN/77RpYfoypWeCa2PyxzfY9Tfx1R4YAppBgLXQwUubUsI0xfgo9+2VjMIGPsp1lu5DI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=TllZcqIA; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ISj8PxkI; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60U3Vq6a2993780
-	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 10:28:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	B/OyCfGk/SamA6d9nF+juJ1GYNvt7qjOmgMyVL4iuPs=; b=TllZcqIAx9R5s0lw
-	k5OByVu8+NqNQJof1UilD/udJdb4fkVcF/D6RKVCYKdowv0QNdZ+5rNIrTVTdUey
-	+nXR7khlaZTnqAZjogHRw0v1a5nB9cRZGdKIPWRt1I2UNyH84gvjOmWu/TBZrC7w
-	8uVfZ5aSp8P17yGKSVxYjBLVJ9jYKcGYu2lur3fUDPTL/rDsZtdBkZ98izkvvPPJ
-	iCaSHkp06YhQCek2ile7g9emI/Lk0XdlXDzP/VxoZONKum3wx75A0QgC6ibb3skG
-	ymZNUroCDhHV6AA+u3P1OJUis3jJAXTlV3KG5UyPlY4u64gHiYhdIr6htsFrFxRU
-	ywZEGw==
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c0db1jevu-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 10:28:01 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2a0e952f153so50182795ad.0
-        for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 02:28:01 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30C7626B764
+	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 10:29:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.52
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769768944; cv=pass; b=r72oZfzWrNJX2YXv/GiDCD/jR4f5ojz5u3MT7gYYNi6tQ8uwXvy9yDLg0n5ZSZyOPk/G3fLPFBSBlIS5lsYu2wxiAXCMPkulGeu3+sI74pX2BMHvz0kBELQx+WW0YX3LHP08UEGL0e9FSNmnOhguXp2jjR0G4ftXu3mX9zaCAEs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769768944; c=relaxed/simple;
+	bh=4IZOypoh2mxenIel1BEB+3XJOHnFitDgJDIz3Q5JdHk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=d3KZZjAlxeU/wlYCaJGtagiR+Puo0AeuPcVF2xSUKoJSLOXHP8NExL9WoWS7DIp8pupTfPMzLOEI9hHbvo5+Xai3tLw7jE8a+SVVhdxJRj5Bx30xcAOOqMTGlct51HcMvq0P28ZndzNjwG6NnHJKAudpGCJ0bJs+D8DzcJAZAI0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oln1L8NE; arc=pass smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-59b77f2e43aso3266341e87.1
+        for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 02:29:02 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1769768940; cv=none;
+        d=google.com; s=arc-20240605;
+        b=JnuhIaReWSsZxKjUT14fHIeSaKxFH8Hj2r1yUb+mI3pfABAZZlphukDwLRkUGYJz+1
+         cSamDqKLyoVdOWgd7k2u0zlRCm0riHVV7ZmZJYZBFLBwJft7AsDWRaTc+PwsRBLafq60
+         GAPG8BtBbC1e9pjmyoHDbSsxAetlxKRMnKCVVw2I2Utdy2gfE6fMcwhEoBwVz5Me2VsH
+         jpYCTGxqcNW8g/0FYyWKJvqP9J2x9Hf2HFI1dAfZyDItYIUVb1elTZMx8fUiG3A2UbvG
+         /THivLtSn3RW9x3lQ27N94XUNVfpHO4QfYJvycxAWWHjMKPJsImST18jlAhI6wZGjVdF
+         +U7A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=UyyRc5JdnkROBEHu+xYdCyJ2Awi4tcsQvb7pPKheNS8=;
+        fh=6p+Zj6MmnQdtkzeHcJ84CUbufwKlCSjvM0Ye8JipYXk=;
+        b=Js8QM8EHji2q7ERMQRw7kQfD5sw+9zeaK08jsRz12Wo0CVlqR0P/QL37xTr47xGOdJ
+         ifvdcZPsv+jC8m/msWlHfDnhG4FUq5f7VO8APE0qzSq7JPFZYzcW0Iz4rSZ2sND9pcBV
+         jgLC1odGR0BM3PnHPYF86w24B9frQeioF7vxEMIgTxHsvB6BoV1slgUmEzW3gPILX8Vo
+         C/TTJJosjjI+j1RlZwv/dNejNV/X6RxAjGP4JvNiAd5vfGQPl4J5srX3Npg5TwFn3s5a
+         WV/Zr2gys2E3tNAZ7Zerx8xPM19/FJmEbMV9a8ElbYqA4zzy5szq/at8iUkKpPOQQfFz
+         n80w==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769768881; x=1770373681; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=B/OyCfGk/SamA6d9nF+juJ1GYNvt7qjOmgMyVL4iuPs=;
-        b=ISj8PxkIr5yeB19zv19EnE/pIPiEbS3q+KBYkeVa9w+6pxBz8thaa/Ok9VZJFhsIAk
-         9yRwlfOzjjUhTY+OHWF6PeWJGzlYpi/tW7oxsJn5Nnd2detVAZfWxQGJY9eHlJ2ISodB
-         0opE14RLlgQpQbztopRhfcX4kxB1tiqVw6Wc5g0s0Msr4wFfw8L3WervIvTD5yaHiRkD
-         8WQl5t1MoUPQrp3b1G04HIfvqpQ0kY70q2sipT6YsqFngCM7TjOXpi5eHGuiAAk5GyZN
-         6mulS30vLCvloTTm1lSPlwMDEmPTlGfdUItw7xvcB/XRuIVho2FaUqk6jr4II4A0B2m2
-         dOuQ==
+        d=linaro.org; s=google; t=1769768940; x=1770373740; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=UyyRc5JdnkROBEHu+xYdCyJ2Awi4tcsQvb7pPKheNS8=;
+        b=oln1L8NESX4rFb4aQJM6o8+hQcZgtNvlDrkk5mWrDRGAqBdlUxeNxMcw2eX8cve9/k
+         /B/tgoSqfiLOIQ6n5A7FGYAnfj5EkEFL8G5PmeCNy5FvfcKTZeeYcb2oSeEK7SPS4D8e
+         AveR4t8N/Rp88C06eoXuFV1HaAjukzyQGL78WB1q/NBX2S2iW4b37uTbndAiZcD8Y53S
+         yszc4WtoiN/tvRc5QBRssoUdiZyxH0VsMZ2fxnhKCwbFVUuo7ahbde+gcZ+cU5/AhEdd
+         giiAjMR47BZz/ObY0X3fCnsdeDveajpO1Ikp0KpWblJ/09ymDA34ELw6z8uXK7gTFL4x
+         OZUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769768881; x=1770373681;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=B/OyCfGk/SamA6d9nF+juJ1GYNvt7qjOmgMyVL4iuPs=;
-        b=jVQvzBCjyNbXXgvc33RJld6KaOPEkFmZHvBEYe8CQRLDnDAMMma6zhs/BS3zAPaec4
-         I6ZAReuLe/YwSSC5+rDfceZ+LehQ7f670ZCZqjJbZBL0UmTbBQ+e9r9oWjqNqs53JCs/
-         VDEJuyfnk6YXMWVgVpqU0kAS312n/2xPDEgUzagkmusL1bBbp8yc2SwcaN8iO27Jhua2
-         lcDvWFrmNMOT33CL7TKpAQsmw7xhpRrCu0ZCbWja25oiBFZt82/pUiCkszC6ADUMmb6Y
-         apDpCCRfNnhj72ejILdeVC27Azh7ZovMMks+hK02GN0AS1GtlyLz7foAs3Ko7V6JeJjK
-         HrOQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXsvS9YEOTOxDdkd8NIP/h056r2h/7ZfNi0rk/YGWDhiJD/q4d2RwqgXDlcvmQmYcaJp/czP09rzq2E@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy5UaUw+wi3jIBUgMfILQnRFLt1MQpPC/pYkoThLyv8TN8+cdtA
-	OffatoPWj230p/E7guCEwqmylPt4aPM0BSJUuvNbkl/LhXKjku50r5Q+wd5MKUraXx28HeLsDHI
-	70qe27rtrkoY9G7Ya3tVDhJaBvHLK+34R7LI4oIlbc26HKzI9h2LZQqIZQDM3EB/f
-X-Gm-Gg: AZuq6aIAglJ7NDQNHAtF6h8d1+fP2AZTxlv9+l/csCwsmaxcbMpM8QIihu9+G0qTNs3
-	LAbc0g616KLOVaWi+rxP1eKg09MU0kEsTeGJqnMOV2v+Z+TJt6YYCsWzC6an0fkKtgIpCif3EXX
-	+rAYr59DkNBuOH/TO2+MPGGaSQNyxmzr9ea0MA6q+Ir4sm0QUHcyaY5vYIT4MCxaWxdDUGiQ7fz
-	EpaFW2LCATv1S2pOwydzasXXzqXSOewtvRJryv5t81i49R1pQSW2Xv2oVKZ0zv/VWeztPcG/7EM
-	JnM5wCTtEyTl2PfAILOj17GaALy1Qj6RpGZd/GIqe9KoxQ9ZKk5dbY+qS8tSW2CuI+PNFp/+/Am
-	y3HQjAizPHMiChQRypX8rKpW8jKsyayn3XVG8xxsnPzSBc1twkg==
-X-Received: by 2002:a17:903:2f86:b0:2a1:10f7:9718 with SMTP id d9443c01a7336-2a8d9937435mr23036335ad.30.1769768880808;
-        Fri, 30 Jan 2026 02:28:00 -0800 (PST)
-X-Received: by 2002:a17:903:2f86:b0:2a1:10f7:9718 with SMTP id d9443c01a7336-2a8d9937435mr23036195ad.30.1769768880366;
-        Fri, 30 Jan 2026 02:28:00 -0800 (PST)
-Received: from hu-botlagun-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a88b414071sm69884635ad.29.2026.01.30.02.27.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Jan 2026 02:27:59 -0800 (PST)
-From: Gopi Botlagunta <venkata.botlagunta@oss.qualcomm.com>
-Date: Fri, 30 Jan 2026 15:57:26 +0530
-Subject: [PATCH v2 2/2] arm64: configs: Update defconfig for DSI-LVDS
- bridge support
+        d=1e100.net; s=20230601; t=1769768940; x=1770373740;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UyyRc5JdnkROBEHu+xYdCyJ2Awi4tcsQvb7pPKheNS8=;
+        b=HTMEmHgdcTeJDrkjzQTKgyiGYddE7B2qZ5ix13e2fkMSMhoF4pzrhBFNggatg2AT7D
+         e0pg3nSqsAcRmF+urSY4Uwp74+b6Q/TxgniiTzdntc3xBHjmAxz29IL8zXMEosxUcsqW
+         jmvx1uvkNp21b2/NyiRQP6+pGvJjYLbTAKOmjJRGsmE74l/9NUJVhD7+rIG4snWHiZqf
+         8znX97bddzmdzDbH6bOC7HR8kj34MDUJMFkFo8WeoAiGeQJVrdnN9RUWAUNAm1BpTqLw
+         2FmDLFVA0//9/K4WIr/hGdm5haLeOpmUk/Wh+Gsi6un1vI4a9lRZ5MrRlAqsO+W9MlcB
+         JnxQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUa4j0x4JIG5DFiXR7kuvP66GEtEHVGTUD+NLQAhfuI06cdGx2ecizR5nNvynkL/HTbMVzGEkjJhPPt@vger.kernel.org
+X-Gm-Message-State: AOJu0YwpJuPipGrH0dUr83PGp6eLc+MMdjdS3HMd5dlYIPl3wnyVUUcj
+	kc8b/ykrpdRUWi15tOys9YrkSvZfnmcjTLLjpUeDKbTaoFrkBXGcYtxFqwLDtAionsIFUG5cTDo
+	cLxEZrfH1JK9nM2kXYSvyl89bWfhTLwa9V9oFlK0F2w==
+X-Gm-Gg: AZuq6aL4iFbJ2dvfmfPfjGtKtSz0H7yaPxUfmttHseT8eGPZj6T/wZn5ADm3p+6P+Ds
+	DYRTY/S6z0g1q8tnjJnRTmOe5lW9va0PBNKrjKoVpIPCT2DSPAsxBAp4/ybYwR8EoIxD6IZGz5O
+	Q8MdPxVMtsUADK1mV35QJfuiiJqMzLz47juUQLv4XoX2sNNlcvko+2I/lsrw7iJkFtcjgvX9Bpd
+	SDsC8qr1odWrlSp+/u26fN0yL6BQDCXGJNNQG6z0vmyPV37dEGO9GFQ2ojTTFBjoSHSVakT
+X-Received: by 2002:a05:6512:3090:b0:59e:19f8:e7e5 with SMTP id
+ 2adb3069b0e04-59e19f8e879mr389940e87.10.1769768940222; Fri, 30 Jan 2026
+ 02:29:00 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260130-add-lt9211c-bridge-for-rb3gen2-industrial-mezzanine-v2-2-a98714fa1531@oss.qualcomm.com>
-References: <20260130-add-lt9211c-bridge-for-rb3gen2-industrial-mezzanine-v2-0-a98714fa1531@oss.qualcomm.com>
-In-Reply-To: <20260130-add-lt9211c-bridge-for-rb3gen2-industrial-mezzanine-v2-0-a98714fa1531@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Gopi Botlagunta <venkata.botlagunta@oss.qualcomm.com>,
-        venkata.valluru@oss.qualcomm.com, jessica.zhang@oss.qualcomm.com,
-        Yi Zhang <zhanyi@qti.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1769768867; l=815;
- i=venkata.botlagunta@oss.qualcomm.com; s=20251110; h=from:subject:message-id;
- bh=H0UyTXk1nUUZX1zubCYsCqOu7/Ckfv10R+SANPPN/WU=;
- b=u98w7SDpo6P/oWwKXrIxK7Ig4s1qBYL0Ae0Y5juKkzTnc1uZDkY8uOhjchl2mYVZ+9uqvfGa2
- HOBWntogdlLCqq4YzkjxD0WWqyOLn67r7wei7taJxXQy7S2BMpMleQe
-X-Developer-Key: i=venkata.botlagunta@oss.qualcomm.com; a=ed25519;
- pk=/SnYBwlkTzDCLnHFgEY0qFwPgKIV+aQWRbc3naiLzrk=
-X-Proofpoint-ORIG-GUID: HWJBUMQtsnJd1T86F2mdf8hXRA36uU1f
-X-Proofpoint-GUID: HWJBUMQtsnJd1T86F2mdf8hXRA36uU1f
-X-Authority-Analysis: v=2.4 cv=VMTQXtPX c=1 sm=1 tr=0 ts=697c87b1 cx=c_pps
- a=JL+w9abYAAE89/QcEU+0QA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=TPH8BSB2LpXbUaO1JMYA:9
- a=QEXdDO2ut3YA:10 a=324X-CrmTo6CU4MGRt3R:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTMwMDA4NCBTYWx0ZWRfX8HBgjBJOP2UE
- BPQZYkS52Z9+SFe8dc7LhJy+ExVl+iyMt5WqHYcv/FQW383XodJr2VZDerNWvwT7FWiZWICa1ir
- 2gsrbe7gfX4gE6dXD6s2Gc69vXtHTnlXdrIxEjuoHZjPubQo2L1pYVSQka0C6SGheU90IdUjXXM
- os10FG/DVUY7ArFW7qS1cLyO2pOr1qE4/ULb6uxTe25lKzD8edm9jttWYq02WsQ/0Rs5TWwwFr/
- Y2V9OHk/izVpr9L7Aw6MVmGMjWD23/SpzJFbhx+pyXZjq0E8JZSxRmH87B6IiH8aR3HHKW21/8U
- YdpufYg0SuulZp2eYXBmZ3mB1BUZykOKceJhWXu6e66h0tAM7snT8KMDl1T29XEhCdtfum1aL71
- eT4QNvRK/dkXTva5++CAexSMAI3zwt30iMXw+ZiQ6OHwBBBR1WSd1+N63kIerMmmnzTxyMversk
- lmLHOFGukFq+J+vzewQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-01-30_01,2026-01-29_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 priorityscore=1501 bulkscore=0 lowpriorityscore=0
- impostorscore=0 adultscore=0 phishscore=0 suspectscore=0 spamscore=0
- malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2601300084
+References: <20260128-rz-sdio-mux-v7-0-92ebb6da0df8@solid-run.com>
+ <20260128-rz-sdio-mux-v7-2-92ebb6da0df8@solid-run.com> <CAPDyKFrBuL+747QUJJUejtcvjm0V7Lt=vHwjvcMdCt_h4=sFwg@mail.gmail.com>
+ <CAMuHMdXgLR9yeLa5JKNdAOtNEirJ8263bmn1zRNAnKnmf8F-Sg@mail.gmail.com>
+In-Reply-To: <CAMuHMdXgLR9yeLa5JKNdAOtNEirJ8263bmn1zRNAnKnmf8F-Sg@mail.gmail.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Fri, 30 Jan 2026 11:28:24 +0100
+X-Gm-Features: AZwV_QjKt-7WVZ6iCRSlLFm6WIvZGroCu2x79LzMFz95tWuDMfGW172v0QkfhHE
+Message-ID: <CAPDyKFrvSp6tmhP=2=9kca1d3+b6MezvxJWwMOW=Gv6D8TKrgA@mail.gmail.com>
+Subject: Re: [PATCH v7 2/7] mux: Add helper functions for getting optional and
+ selected mux-state
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Josua Mayer <josua@solid-run.com>, Marc Kleine-Budde <mkl@pengutronix.de>, 
+	Vincent Mailhol <mailhol@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Peter Rosin <peda@axentia.se>, 
+	Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas Kemnade <andreas@kemnade.info>, 
+	Kevin Hilman <khilman@baylibre.com>, Roger Quadros <rogerq@kernel.org>, 
+	Tony Lindgren <tony@atomide.com>, Janusz Krzysztofik <jmkrzyszt@gmail.com>, Vignesh R <vigneshr@ti.com>, 
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Yazan Shhady <yazan.shhady@solid-run.com>, Jon Nettleton <jon@solid-run.com>, 
+	Mikhail Anikin <mikhail.anikin@solid-run.com>, linux-can@vger.kernel.org, 
+	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-omap@vger.kernel.org, linux-i2c@vger.kernel.org, 
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, Dan Carpenter <dan.carpenter@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	TAGGED_FROM(0.00)[bounces-261153-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	TAGGED_FROM(0.00)[bounces-261154-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[33];
+	FREEMAIL_CC(0.00)[solid-run.com,pengutronix.de,kernel.org,linaro.org,axentia.se,iki.fi,kemnade.info,baylibre.com,atomide.com,gmail.com,ti.com,glider.be,sang-engineering.com,vger.kernel.org,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[venkata.botlagunta@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[ulf.hansson@linaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: EB12AB95C1
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,linux-m68k.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:email,linaro.org:dkim]
+X-Rspamd-Queue-Id: D6357B95E1
 X-Rspamd-Action: no action
 
-Enable the LT9211 bridge driver to support DSI-to-LVDS conversion
-on the Qualcomm RB3GEN2 Industrial Kit.
+On Thu, 29 Jan 2026 at 18:46, Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> On Thu, 29 Jan 2026 at 17:06, Ulf Hansson <ulf.hansson@linaro.org> wrote:
+> > On Wed, 28 Jan 2026 at 15:46, Josua Mayer <josua@solid-run.com> wrote:
+> > >
+> > > In-tree phy-can-transceiver driver has already implemented a local
+> > > version of devm_mux_state_get_optional.
+> > >
+> > > The omap-i2c driver gets and selects an optional mux in its probe
+> > > function without using any helper.
+> > >
+> > > Add new helper functions covering both aforementioned use-cases:
+> > >
+> > > - mux_control_get_optional:
+> > >   Get a mux-control if specified in dt, return NULL otherwise.
+> > > - devm_mux_state_get_optional:
+> > >   Get a mux-state if specified in dt, return NULL otherwise.
+> > > - devm_mux_state_get_selected:
+> > >   Get and select a mux-state specified in dt, return error otherwise.
+> > > - devm_mux_state_get_optional_selected:
+> > >   Get and select a mux-state if specified in dt, return error or NULL.
+> > >
+> > > Existing mux_get helper function is changed to take an extra argument
+> > > indicating whether the mux is optional.
+> > > In this case no error is printed, and NULL returned in case of ENOENT.
+> > >
+> > > Calling code is adapted to handle NULL return case, and to pass optional
+> > > argument as required.
+> > >
+> > > To support automatic deselect for _selected helper, a new structure is
+> > > created storing an exit pointer similar to clock core which is called on
+> > > release.
+> > >
+> > > To facilitate code sharing between optional/mandatory/selected helpers,
+> > > a new internal helper function is added to handle quiet (optional) and
+> > > verbose (mandatory) errors, as well as storing the correct callback for
+> > > devm release: __devm_mux_state_get
+> > >
+> > > Due to this structure devm_mux_state_get_*_selected can no longer print
+> > > a useful error message when select fails. Instead callers should print
+> > > errors where needed.
+> > >
+> > > Commit e153fdea9db04 ("phy: can-transceiver: Re-instate "mux-states"
+> > > property presence check") noted that "mux_get() always prints an error
+> > > message in case of an error, including when the property is not present,
+> > > confusing the user."
+> > >
+> > > The first error message covers the case that a mux name is not matched
+> > > in dt. The second error message is based on of_parse_phandle_with_args
+> > > return value.
+> > >
+> > > In optional case no error is printed and NULL is returned.
+> > > This ensures that the new helper functions will not confuse the user
+> > > either.
+> > >
+> > > With the addition of optional helper functions it became clear that
+> > > drivers should compile and link even if CONFIG_MULTIPLEXER was not enabled.
+> > > Add stubs for all symbols exported by mux core.
+> > >
+> > > Signed-off-by: Josua Mayer <josua@solid-run.com>
+> > > ---
+> > >  drivers/mux/core.c           | 178 ++++++++++++++++++++++++++++++++++++-------
+> > >  include/linux/mux/consumer.h | 108 +++++++++++++++++++++++++-
+> > >  2 files changed, 253 insertions(+), 33 deletions(-)
+> > >
+> > > diff --git a/drivers/mux/core.c b/drivers/mux/core.c
+> > > index a3840fe0995f..b01ec126caaf 100644
+> > > --- a/drivers/mux/core.c
+> > > +++ b/drivers/mux/core.c
+> >
+> > [...]
+> >
+> > >  static void devm_mux_state_release(struct device *dev, void *res)
+> > >  {
+> > > -       struct mux_state *mstate = *(struct mux_state **)res;
+> > > +       struct devm_mux_state_state *devm_state = res;
+> > >
+> > > -       mux_state_put(mstate);
+> > > +       if (devm_state->exit)
+> > > +               devm_state->exit(devm_state->mstate);
+> > > +
+> > > +       mux_state_put(devm_state->mstate);
+> > >  }
+> > >
+> > >  /**
+> > > - * devm_mux_state_get() - Get the mux-state for a device, with resource
+> > > - *                       management.
+> > > - * @dev: The device that needs a mux-control.
+> > > - * @mux_name: The name identifying the mux-control.
+> > > + * __devm_mux_state_get() - Get the optional mux-state for a device,
+> > > + *                         with resource management.
+> > > + * @dev: The device that needs a mux-state.
+> > > + * @mux_name: The name identifying the mux-state.
+> > > + * @optional: Whether to return NULL and silence errors when mux doesn't exist.
+> > > + * @init: Optional function pointer for mux-state object initialisation.
+> > > + * @exit: Optional function pointer for mux-state object cleanup on release.
+> > >   *
+> > >   * Return: Pointer to the mux-state, or an ERR_PTR with a negative errno.
+> > >   */
+> > > -struct mux_state *devm_mux_state_get(struct device *dev,
+> > > -                                    const char *mux_name)
+> > > +static struct mux_state *__devm_mux_state_get(struct device *dev, const char *mux_name,
+> > > +                                             bool optional,
+> > > +                                             int (*init)(struct mux_state *mstate),
+> > > +                                             int (*exit)(struct mux_state *mstate))
+> > >  {
+> > > -       struct mux_state **ptr, *mstate;
+> > > +       struct devm_mux_state_state *devm_state;
+> > > +       struct mux_state *mstate;
+> > > +       int ret;
+> > >
+> > > -       ptr = devres_alloc(devm_mux_state_release, sizeof(*ptr), GFP_KERNEL);
+> > > -       if (!ptr)
+> > > +       devm_state = devres_alloc(devm_mux_state_release, sizeof(*devm_state), GFP_KERNEL);
+> > > +       if (!devm_state)
+> > >                 return ERR_PTR(-ENOMEM);
+> > >
+> > > -       mstate = mux_state_get(dev, mux_name);
+> > > -       if (IS_ERR(mstate)) {
+> > > -               devres_free(ptr);
+> > > -               return mstate;
+> > > +       mstate = mux_state_get(dev, mux_name, optional);
+> > > +       if (IS_ERR_OR_NULL(mstate)) {
+> > > +               ret = PTR_ERR(mstate);
+> >
+> > Should this be PTR_ERR_OR_ZERO?
+>
+> "mux_state_get() never returns NULL"
+> https://lore.kernel.org/202601221036.J0kR78Uw-lkp@intel.com
 
-Signed-off-by: Gopi Botlagunta <venkata.botlagunta@oss.qualcomm.com>
-Co-developed-by: Yi Zhang <zhanyi@qti.qualcomm.com>
-Signed-off-by: Yi Zhang <zhanyi@qti.qualcomm.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+By looking at the code in mux_state_get() and mux_get() that $subject
+patch changes, it intends to add a "bool optional" as in-parameter. If
+it's set, it looks like the intent is to allow returning NULL, which
+makes sense to me.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 00d15233a72b..b8a7d299acbb 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -959,6 +959,7 @@ CONFIG_DRM_DISPLAY_CONNECTOR=m
- CONFIG_DRM_FSL_LDB=m
- CONFIG_DRM_ITE_IT6263=m
- CONFIG_DRM_LONTIUM_LT8912B=m
-+CONFIG_DRM_LONTIUM_LT9211=m
- CONFIG_DRM_LONTIUM_LT9611=m
- CONFIG_DRM_LONTIUM_LT9611UXC=m
- CONFIG_DRM_ITE_IT66121=m
+Anyway, there seems to be some additional smatch warnings to fix
+before this is ready to go.
 
--- 
-2.34.1
+[...]
 
+Kind regards
+Uffe
 
