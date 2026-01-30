@@ -1,141 +1,141 @@
-Return-Path: <devicetree+bounces-261243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261244-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eEplMh3BfGmTOgIAu9opvQ
-	(envelope-from <devicetree+bounces-261243-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 15:33:01 +0100
+	id IOE7O+3CfGmgOgIAu9opvQ
+	(envelope-from <devicetree+bounces-261244-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 15:40:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D8E9BB9CB
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 15:33:01 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68B21BBAA7
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 15:40:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 4C4B13004622
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 14:33:00 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 119B0304EA4B
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 14:38:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBBF32E6CD3;
-	Fri, 30 Jan 2026 14:32:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="AgALEglG"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDFEC36AB49;
+	Fri, 30 Jan 2026 14:38:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FDB21D86DC;
-	Fri, 30 Jan 2026 14:32:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82F703191CE;
+	Fri, 30 Jan 2026 14:38:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.175.24.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769783577; cv=none; b=OMq68SrLEhvANu+d3s/VnvG/ObdowffiDqdBdMBL4zGtFIm83lkfHsrtVENqvVIdKbKFzckXntO1xHFPIzGmvkzGCndti4O7EKvAt205gKppUMmFTEB1+Z6F0+u/cgi4zDVFk0eq+saa9Czfy7XT1a35OeTT0n97tXXAmiSnfFg=
+	t=1769783904; cv=none; b=USrSSNB6+gqDdVNOI7ROqW7EBw4YRb16LPU2fhHlZmbWKmBKjBKXmMIg9E+WrncIjDz763f9d4/MQTMYUxtM/0+1GLe/9hVJWKpiRfwl31nZms5f0ADXlvHgFm5790qN/FZuWZZW6+imx+QZv6grU06teJK2uqgF+tu6t0zdATw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769783577; c=relaxed/simple;
-	bh=A5can+eY+4csM5OYkATRQZryaMHBwuJRBTYQxU8KRLY=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=W8w1F9pr/+hAr8JIC7W4yZik/d4Tp4lHqlaV61Jpe+CmgbfDtCPjLfxfgthJYh2Nt+aqAIskIEbaxkUrO7Ms7HW5luyBoMZED7hJfQseiK0+WD4I5nR/b1UgcQuK4PAmlM27I5jnfm2Tvveq0DIOAJEJW8WqBKIFOgSGtmnAuaY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=AgALEglG; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 0B273C22F5F;
-	Fri, 30 Jan 2026 14:32:57 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 893836075A;
-	Fri, 30 Jan 2026 14:32:53 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 55F67119A8874;
-	Fri, 30 Jan 2026 15:32:49 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1769783572; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=A5can+eY+4csM5OYkATRQZryaMHBwuJRBTYQxU8KRLY=;
-	b=AgALEglGx71hlug2G5IZdRzlyVmvcTltLBAj+ZZHKaI3Kc0IyOU0/0GaS5xNDvIeBdxMj7
-	B25hAUkRjGJD2W+LdJlHeDaZktAYfWRDi4w4BBEY96fH3jBfMGhN8I0T5JKwaKKAcVPXJA
-	xKJpkjk1zGjZEacJGiqnYnHI3WksBM94b3QIlsgyJ03g/yMfWgNhqvbCWOTQDF7BrhW/ru
-	oQV+zeKvbaaEb9nrUslZcCEwCJ7aRx2qFQi3o4IfE6z0WzKHhmzYRr9fEXl6Wk6ysg2ObT
-	iD3zUHoHYmOf3uwCI4PZrHxVp+520ZSlh1+X2D4cF6e8P2D4I/F3PzvfwKte4w==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Richard Weinberger <richard@nod.at>
-Cc: Vignesh Raghavendra <vigneshr@ti.com>,  Rob Herring <robh@kernel.org>,
-  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor Dooley
- <conor+dt@kernel.org>,  =?utf-8?Q?Rafa=C5=82_Mi=C5=82ecki?=
- <rafal@milecki.pl>,  Luca Ceresoli
- <luca.ceresoli@bootlin.com>,  Amit Kumar Mahapatra
- <amit.kumar-mahapatra@amd.com>,  Michal Simek <monstr@monstr.eu>,
-  Bernhard Frauendienst <kernel@nospam.obeliks.de>,  Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>,  linux-mtd@lists.infradead.org,
-  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v15 0/3] mtd: Add support for stacked memories
-In-Reply-To: <176971398683.256348.665652099075371899.b4-ty@bootlin.com>
-	(Miquel Raynal's message of "Thu, 29 Jan 2026 20:15:32 +0100")
-References: <20260129-mtd-virt-concat-v15-0-c56a232efbd2@bootlin.com>
-	<176971398683.256348.665652099075371899.b4-ty@bootlin.com>
-User-Agent: mu4e 1.12.7; emacs 30.2
-Date: Fri, 30 Jan 2026 15:32:48 +0100
-Message-ID: <87h5s3i31r.fsf@bootlin.com>
+	s=arc-20240116; t=1769783904; c=relaxed/simple;
+	bh=Vpj6epuo9fG8PKz4sZexbr8ZrNbxLueecrNLYcvVZnM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BMvk5oH835I8zsD0OHx+9YflDNhyEPOC6H7j/dXmou2VeT/IsZAoeOCnVE1fr5v0AI8s6QlRrW7KVS7PAtf/eztxs4pndZ5jwKbyVN4pbOsu07vv6RnCqu96EXUHX1MPjNoaTE1oaSP/f5+b6HQkatD1Pq+5eEJdqPUz1lJY+wo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de; spf=pass smtp.mailfrom=alpha.franken.de; arc=none smtp.client-ip=193.175.24.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alpha.franken.de
+Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
+	id 1vlpdb-0007Et-00; Fri, 30 Jan 2026 15:38:19 +0100
+Received: by alpha.franken.de (Postfix, from userid 1000)
+	id 4E5E4C0907; Fri, 30 Jan 2026 15:35:49 +0100 (CET)
+Date: Fri, 30 Jan 2026 15:35:49 +0100
+From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	Jiaxun Yang <jiaxun.yang@flygoat.com>, devicetree@vger.kernel.org,
+	linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] MIPS: Loongson64: dts: fix phy-related definition of
+ LS7A GMAC
+Message-ID: <aXzBxfYp13yZGRNd@alpha.franken.de>
+References: <20260102155243.3639731-1-zhengxingda@iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260102155243.3639731-1-zhengxingda@iscas.ac.cn>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-261243-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	MISSING_XM_UA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-261244-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DMARC_NA(0.00)[franken.de];
+	FROM_HAS_DN(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tsbogend@alpha.franken.de,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	R_DKIM_NA(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:email,bootlin.com:dkim,bootlin.com:mid,linux.dev:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 5D8E9BB9CB
+	DBL_BLOCKED_OPENRESOLVER(0.00)[alpha.franken.de:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,iscas.ac.cn:email,0.0.0.3:email]
+X-Rspamd-Queue-Id: 68B21BBAA7
 X-Rspamd-Action: no action
 
-Hello,
+On Fri, Jan 02, 2026 at 11:52:43PM +0800, Icenowy Zheng wrote:
+> Currently the LS7A GMAC device tree node lacks a proper phy-handle
+> property pointing to the PHY node.
+> 
+> In addition, the phy-mode property specifies "rgmii" without any
+> internal delay information, which means the board trace needs to add 2ns
+> delay to the RGMII data lines; but that isn't known to happen on any
+> Loongson board. The ACPI-based initialization codepath, which is used on
+> LoongArch-based 3A5000 + 7A1000 hardwares, specifies "rgmii-id" phy
+> mode, which should be the one we are using.
+> 
+> Add the lacking phy-handle property and set proper phy-mode.
+> 
+> Tested on a LS3A4000_7A1000_NUC_BOARD_V2.1 board with YT8521S PHY.
+> 
+> Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+> ---
+>  arch/mips/boot/dts/loongson/ls7a-pch.dtsi | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/mips/boot/dts/loongson/ls7a-pch.dtsi b/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
+> index ee71045883e7e..6dee85909f5a6 100644
+> --- a/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
+> +++ b/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
+> @@ -199,7 +199,8 @@ gmac@3,0 {
+>  					     <13 IRQ_TYPE_LEVEL_HIGH>;
+>  				interrupt-names = "macirq", "eth_lpi";
+>  				interrupt-parent = <&pic>;
+> -				phy-mode = "rgmii";
+> +				phy-mode = "rgmii-id";
+> +				phy-handle = <&phy0>;
+>  				mdio {
+>  					#address-cells = <1>;
+>  					#size-cells = <0>;
+> @@ -222,7 +223,8 @@ gmac@3,1 {
+>  					     <15 IRQ_TYPE_LEVEL_HIGH>;
+>  				interrupt-names = "macirq", "eth_lpi";
+>  				interrupt-parent = <&pic>;
+> -				phy-mode = "rgmii";
+> +				phy-mode = "rgmii-id";
+> +				phy-handle = <&phy1>;
+>  				mdio {
+>  					#address-cells = <1>;
+>  					#size-cells = <0>;
+> -- 
+> 2.52.0
 
-On 29/01/2026 at 20:15:32 +01, Miquel Raynal <miquel.raynal@bootlin.com> wr=
-ote:
+applied to mips-next
+Thomas.
 
-> On Thu, 29 Jan 2026 13:09:26 +0100, Luca Ceresoli wrote:
->> [TL;DR for v15: as agreed with Amit I'm sending a new iteration of his
->> patches to fix the build-time failure due to a module dependency
->> loop. Original cover follows.]
->>=20
->> This patch series adds stacked support by enhancing the existing mtd-con=
-cat
->> driver to be more generic.
->>=20
->> [...]
->
-> Thank you for finally re-sending the series after fixing the robot
-> warning, I will not wait for merging it because this needs to finally
-> get in, and it's been over the mailing list for 8 months with just a
-> Kconfig symbol to fix, so:
-
-Unfortunately, for the third time, this series breaks when robots go
-over it (see the oe-kbuild-all@lists.linux.dev ML), so I will drop it
-again :-/
-
-Sorry,
-Miqu=C3=A8l
+-- 
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
 
