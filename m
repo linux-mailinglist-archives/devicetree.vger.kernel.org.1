@@ -1,88 +1,88 @@
-Return-Path: <devicetree+bounces-261081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261079-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yEMcKGo9fGkxLgIAu9opvQ
-	(envelope-from <devicetree+bounces-261081-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 06:11:06 +0100
+	id oM3SMmI9fGkxLgIAu9opvQ
+	(envelope-from <devicetree+bounces-261079-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 06:10:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 496AEB735B
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 06:11:06 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AADFB7345
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 06:10:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CFE193021D3D
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 05:10:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 882C4300F5F1
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 05:10:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13E5833BBC0;
-	Fri, 30 Jan 2026 05:10:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2F1833985A;
+	Fri, 30 Jan 2026 05:10:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="M2MhzS3X"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="gSJDyWrz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DM5PR21CU001.outbound.protection.outlook.com (mail-centralusazon11011065.outbound.protection.outlook.com [52.101.62.65])
+Received: from BL2PR02CU003.outbound.protection.outlook.com (mail-eastusazon11011053.outbound.protection.outlook.com [52.101.52.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4645F33C18B;
-	Fri, 30 Jan 2026 05:10:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.62.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A78F4329392;
+	Fri, 30 Jan 2026 05:10:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.52.53
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769749857; cv=fail; b=Z1UXTRcPsS38VsvqjUQSvhWPP9PT7qoINgwdBZyMH6e3nXr+YJP3iHw5zrbA2ilfQ1zphBLl6vaRb0Mg0eQbCECMTfJa1n+msnKVW3Ki+xiQBIoJvQBNGs6s8etJDhmYq7QLFJRgWXaZoaC0GsDhDG3rrMyyubF1MGjh4/AdBkA=
+	t=1769749854; cv=fail; b=qwo34on6feXZ7Vz4V9q9zGoKMNeVN7k3nnCBc/Lfws9QugyJO2sYHN9unqsOfQAVxfpEb4gfs8Gvv2+/hvtQmJv7aNoQnGVf2OZIl/OkjBjXN0F9mQ9F948j2Nfg/5qPjXbkEy7KlixT8dKX27xGbuKUY2frOJytoVMJxmxdgIg=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769749857; c=relaxed/simple;
-	bh=3xhf3p6KShdWxm8wLshve+NrLUH3RKfLSICMdKt0VHo=;
+	s=arc-20240116; t=1769749854; c=relaxed/simple;
+	bh=QyIXjefb5CW3H0ywH7TBnPftSYFtsRplzyQcCuQulsk=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jjRPoJeoTn4tjPHXlRm4A3pZAdFbgM0OvkRSvKQBghJ/40IYfxmSsGvIqB5F4uzqpBpS91/SVCW3bCOffpmyJVL1nxXPOWBF0T0kaC+d5ZuLn05vZu+HIiuxwtxwC60hCIxcgiRyJAiqoLDrnuTGXQHozWX386VfAKTQuTa2+C4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=M2MhzS3X; arc=fail smtp.client-ip=52.101.62.65
+	 MIME-Version:Content-Type; b=fl2KxD1OJqoWgCQaRKodNEi7nntySJEODmNlzWjspWzUSS0PHANDMiEGLVSUUN8mhUcuL1PMp7GbChujlsIIWEXCqekMk9HP/2FCDQa6VCf3WiXJ+ra2UZvhs3f7YjkvumYBihc5V36OmiRtT/lyDbMGLT7jrBwJ2aEr+w61d0E=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=gSJDyWrz; arc=fail smtp.client-ip=52.101.52.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gbcvUqVLW4g+QCv/1Hnx7bgfMFafwtIYR9B7ZnNV5FF3LNMyqLN3N9lnbTVhjhDAV/oWeiTot7CkjnDwipqpsHb639FLknP2MkMNnYZtdBMaP5wOtS+AYecBkNSkYC6p23F3CB3Fmv5xiEjfyReN1lNAD/PncFkjcvw0CSKiZdJAKOCY87k3Xvxn6Jm4un7fRt7iQjIXiONtXUveTtfpQclrwtLKqXObiIb8o3gSd2e759vYBOlIL784VxI4sxkOYKx/a5MuFXdOm4VgOmd28JgjYuQoiAlqmmniUvs3oNjnJZVmdvEDCQW+7diVP/y9XvUkjpnOJ0ng5UVWRVXHcA==
+ b=Vb/d1Hb919K0IsAzrXCksVbquNhl42lWy5WzI4xtUYViFz2AYjLuJckU6tTMIykf8QjQre5YTGY/x1mby3X6DS5tL0NCm81D4bIy4WOcFnZUfZ3XH/5fq4QQxrObKY7SHFMglJljpVRiC4XkRIiHSFNtSAJnYfBfeT8FUVCCTReJ57Ycj8ZAuf+ARvG4xYyRL0yzINiRMdkqvzqy1i0H13DRI7I8mzOuZyWH6lZsk7HmWoKenMRy85kvX5shD15iB6vOgQBiha39WYgGLYE8mEpAzDqpdZVmr8VNY/xej8N9SjxgT44wGNLlUOD/R+uT5BjLAcdX4oYGAWhUWKvEFw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Fx6AUV/eZi4qaJiMhrZVMKP1cKHaQGAATmLnnOELOz0=;
- b=rfm6wJgqs5wK5H3ETJSUoKTQLl3Y+s89JWS9HTGbo6mv71yZ20H1kOahzsB270vHYfXB7gkflkHVdtcw15k4rn9xpOAb8JlqDhe0qKU9t3IrmCZDuZj3mE/da+vcP/2eJ5aI1f5C4NUMNuvkIVh/aGtKQ4ulqQHGjvm/ENJEz8Jb97CMm3apGSBafUfJ8M6KXhNKfBkeeO6EHzFM5bLhawhqsPeHXUaBqylDiHJN/OgWiY8/xe8tZAcUJ2Hx+3Lbn3aPFQI8SQbRgBLx3WP9t1K5pyNQ8h28OT514w9MA0L5bhDx4jQdjYsIgBuyHMnAXAUPBG99vpSLAcVh87CWdQ==
+ bh=hkAy5SZD2O7aRDAlY2U/PevHlCeGS+HC250YkWDjz/8=;
+ b=DaG4wvcwmp9+R+jMsHJd9MxI3QWOLrY69lsunTvdfUM2LMFW2xkaRr8/8ZQnvPKP5JOv7oqUGUcKgfKo1hzaITftq/9thsZ2cSv4c6Ot14Fbp/dwvcUhZ6rNRqILBUdrvNj2katcnV8cQzEfKDgBkXmw9GC0JmzGQMagsQglNg+obxxjvBKTN1PwAHYVYcbwU+1A4fuwdklxFDzLmYUkOA+gpZl+LAj9OiXs1vnNwqbvM0dEdax/pkJC+FNeT+xnH9IxtfkBs4BV0rHhTnMrDq4mb5FnG9i9cQAhHpJjAso+vjn0bMahEHQL6H67RXtSf8gkuu2UCTdXYePeruf4ng==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ 198.47.23.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Fx6AUV/eZi4qaJiMhrZVMKP1cKHaQGAATmLnnOELOz0=;
- b=M2MhzS3XXXYN3tj4/eIY9WkZ/BZGTMhsdEJzMUSw/VCy8H2Ps+SfMt3dhxIw/YVamahgT3k77zQBzlwyGM+cwmpxgmXm3S8jdbW6i5me7+GpqomQshDzX3o6g4+tNhUPRDXEo2xfk6bhm4DAyt3zyB5H2fDSQDXXulZr5v3G/ko=
-Received: from SJ0PR13CA0238.namprd13.prod.outlook.com (2603:10b6:a03:2c1::33)
- by SN7PR10MB6497.namprd10.prod.outlook.com (2603:10b6:806:2a4::9) with
+ bh=hkAy5SZD2O7aRDAlY2U/PevHlCeGS+HC250YkWDjz/8=;
+ b=gSJDyWrzlCed22Vk/GUgwW2YfgAr8tJ+cANBn8puqTgXMeBKOYhV5MjVlgc+eVxclQy8s5+QPqgIlCUiXjDNLgyMmpGLZM8Tg5rMgGNO+sVkW21AnQivntOLtd0Wz3NF1P4PfigcV/GJKKKdZ6SUS42xMwPWBDryBqHP+d2/k+w=
+Received: from BYAPR06CA0026.namprd06.prod.outlook.com (2603:10b6:a03:d4::39)
+ by LV3PR10MB7748.namprd10.prod.outlook.com (2603:10b6:408:1b4::11) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.7; Fri, 30 Jan
- 2026 05:10:53 +0000
-Received: from CO1PEPF000044EF.namprd05.prod.outlook.com
- (2603:10b6:a03:2c1:cafe::1a) by SJ0PR13CA0238.outlook.office365.com
- (2603:10b6:a03:2c1::33) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9587.2 via Frontend Transport; Fri,
- 30 Jan 2026 05:10:41 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.11; Fri, 30 Jan
+ 2026 05:10:50 +0000
+Received: from CO1PEPF000066EC.namprd05.prod.outlook.com
+ (2603:10b6:a03:d4:cafe::ee) by BYAPR06CA0026.outlook.office365.com
+ (2603:10b6:a03:d4::39) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9564.10 via Frontend Transport; Fri,
+ 30 Jan 2026 05:10:51 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
  smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
  action=none header.from=ti.com;
 Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
-Received: from flwvzet201.ext.ti.com (198.47.21.195) by
- CO1PEPF000044EF.mail.protection.outlook.com (10.167.241.69) with Microsoft
+ 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
+Received: from lewvzet201.ext.ti.com (198.47.23.195) by
+ CO1PEPF000066EC.mail.protection.outlook.com (10.167.249.8) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9564.3 via Frontend Transport; Fri, 30 Jan 2026 05:10:52 +0000
-Received: from DFLE202.ent.ti.com (10.64.6.60) by flwvzet201.ext.ti.com
- (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.9564.3 via Frontend Transport; Fri, 30 Jan 2026 05:10:49 +0000
+Received: from DLEE207.ent.ti.com (157.170.170.95) by lewvzet201.ext.ti.com
+ (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 29 Jan
  2026 23:10:46 -0600
-Received: from DFLE205.ent.ti.com (10.64.6.63) by DFLE202.ent.ti.com
- (10.64.6.60) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DLEE201.ent.ti.com (157.170.170.76) by DLEE207.ent.ti.com
+ (157.170.170.95) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 29 Jan
  2026 23:10:46 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE205.ent.ti.com
- (10.64.6.63) with Microsoft SMTP Server (version=TLS1_2,
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE201.ent.ti.com
+ (157.170.170.76) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
  Transport; Thu, 29 Jan 2026 23:10:46 -0600
 Received: from localhost (mz02jj9v.dhcp.ti.com [128.247.81.0])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60U5AkRj748615;
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60U5AkpV748621;
 	Thu, 29 Jan 2026 23:10:46 -0600
 From: Sen Wang <sen@ti.com>
 To: <peter.ujfalusi@gmail.com>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
@@ -90,9 +90,9 @@ To: <peter.ujfalusi@gmail.com>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
 	<conor+dt@kernel.org>
 CC: <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
 	<linux-kernel@vger.kernel.org>, Sen Wang <sen@ti.com>
-Subject: [PATCH 2/4] ASoC: ti: davinci-mcasp: Disambiguate mcasp_is_synchronous function
-Date: Thu, 29 Jan 2026 23:10:42 -0600
-Message-ID: <20260130051045.1898892-3-sen@ti.com>
+Subject: [PATCH 3/4] ASoC: ti: davinci-mcasp: Streamline pdir behavior across rx & tx streams
+Date: Thu, 29 Jan 2026 23:10:43 -0600
+Message-ID: <20260130051045.1898892-4-sen@ti.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260130051045.1898892-1-sen@ti.com>
 References: <20260130051045.1898892-1-sen@ti.com>
@@ -107,58 +107,58 @@ Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000044EF:EE_|SN7PR10MB6497:EE_
-X-MS-Office365-Filtering-Correlation-Id: 34e65fd6-320c-43f3-6ae8-08de5fbdf080
+X-MS-TrafficTypeDiagnostic: CO1PEPF000066EC:EE_|LV3PR10MB7748:EE_
+X-MS-Office365-Filtering-Correlation-Id: 349c2217-d1a7-469e-be60-08de5fbdef30
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|82310400026|376014|7416014|1800799024;
+	BCL:0;ARA:13230040|82310400026|36860700013|1800799024|7416014|376014;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?3SpB3rUCqaQF89pAGuA6yWA7yf0oNI/aGhMiICuy2zlJbM/BSthjBmDshxuz?=
- =?us-ascii?Q?N3BRx8xxkp9p85Qx/D/F2UmhahYz9s43WnQdSwGZeEgPfYoX98qLajXlq1d7?=
- =?us-ascii?Q?+AVyAwIOqMA6NoWVXHYRrd2Bq59UHUGXn8E+wI8TXsVA+K6+JVv1lkbX/vPy?=
- =?us-ascii?Q?aQi7tP9WpLEx/32Z2XCtohGV3RXRDgYR4yzwOsWCT5O04AksTLqhIdjw4SIa?=
- =?us-ascii?Q?52Lzsnm/eoQDIkYZMd+b7qhLf3050wFQ9AzEymgFrNu7EDz8LtJ9b55C+6+h?=
- =?us-ascii?Q?eUWddkuNLl/B5ff89QyFUVxvd7wvysMzZ2vh95QT5kZad0TCCPETZz4qpWan?=
- =?us-ascii?Q?onZ9jxe2ydqi1Odv0Pz+xZACiuD8Yq0DB64pn6Um879pMoy+UWmyGbQZHXxa?=
- =?us-ascii?Q?dDz8IlpbXzoyjsfoVMETaeJNIR++uzguBMLNLebABgZ6lV/fdadVBKLN6LuQ?=
- =?us-ascii?Q?BvIHfkxxnUUO8IMkQvygmdF1iSlH5cRj6g7+1vjGEW6hMMjd40OnP+SgEu1l?=
- =?us-ascii?Q?41GZ63/L6//hqyjAd7fDOfZEH52KqV6zK6+mz9G5bnIhKYW/3J4ENZJ6yFH7?=
- =?us-ascii?Q?uVxWu/Phdf+f4FH/5Xmk+Hc4Vgnbj8zDUW91TFpmZWYtrDFA2j2YKyQVlucB?=
- =?us-ascii?Q?IiHxPQ0FoqeYckFgabb3GPCuCzOUP4tdILUKVA7aRUJzzy79wBc8pGkQ4Rqp?=
- =?us-ascii?Q?z5TnDj/N2b74Tim34CfCFEvcq6FYWx/0cT3uE72RIXpGA6zeo/k9Ui+Zk5RL?=
- =?us-ascii?Q?qiFzkbSltWWeka1VBcBOfmuj46wqPhxmekXmF8CNAlr073OqZEQ6BsO1Fcu9?=
- =?us-ascii?Q?Lcp1LwaRVfDkTKmnyT9I1FEUzP2sRsZkS0VcU3AOf10J4j8xP58DsCygLwje?=
- =?us-ascii?Q?YwnjGdWrzfZo/Xdsw4XKWz4iiTDXiv88UUEGbm5kFnzccTFOVF5ehZOKp4yJ?=
- =?us-ascii?Q?YmXVNaxWBJaNku6uDKrBygRZJTK1gEhqGEH3q9ek6qQMtLY96KOvDg5m47cL?=
- =?us-ascii?Q?/Kv0WsMACd9fr9jg/7eNPfoL3A5HigrbYDSIOesfsRNIpXH81SWO+fbFcgdG?=
- =?us-ascii?Q?9Yc3b1uursm2H5qJR71rzwWP+uWn25AuS+q5PcNDlvohnHf8Z/X2HQ+62GAT?=
- =?us-ascii?Q?TrvFsWHl0O3IBVat8MkDjziGHqmdhPcAK7AGn3PTQ1xwwg2CUYSPF/HbtVLj?=
- =?us-ascii?Q?/CI1HHTZL7Wn4wx7RiJWpUZTk861Diw7kur8WaoLthHz9/vs3UjDKS2RRhVG?=
- =?us-ascii?Q?rqK3C9jF2Ym/RKdcqqzaBpq9uawWoNwX/6ofVRixqFFRQR/qd+PF5bw6EZuU?=
- =?us-ascii?Q?pcb08UcY5ybdF4oh1dr6poqoTlDVTf59CzVTi6Xtmq9nOxIH7Jz8OwRPOUDp?=
- =?us-ascii?Q?lZtSJpB3c/sjeVq5NMumOHYMvJPdQ0cXSZFuVI3tVfqziTmNYI7QbsAEYfEc?=
- =?us-ascii?Q?EKjbVdTR+UxZOMy8WJbYRHnDQPfFJ/0SncyqasevkOWoNXIILE01lhQkB2g4?=
- =?us-ascii?Q?sc33UvSufU5YtvsCj15kQy6BF25WxIuM8Gih1B4j+62ygc0gBCjPQGZ9BoCD?=
- =?us-ascii?Q?0ZnJLolMQMbMyNcBIB7h4E2zE1ZrhqOT9km/sN/AK5XNomygbUvBhR8TQ4jU?=
- =?us-ascii?Q?f8nASerbNk22reM/LZ+cKv3ZcxqPxr1vaqfOZti+EgF9i1MEe7OOGEDEke0I?=
- =?us-ascii?Q?fOy/CQ=3D=3D?=
+	=?us-ascii?Q?QXwhTSs7e21c1gxU0jZeNJuM/H7dWXcUJx3RUzd8APK8BK+DYw7toI2Y6ELJ?=
+ =?us-ascii?Q?C58q6FVCQiD+Oksh/Ifmao0yDGfwYohoK2cma9BbilblI2qJvVXjZ5WFqPB1?=
+ =?us-ascii?Q?PA5JOi8udWk/x2x84Kma8Ur9nl1AroUbn8vFC3QPzKudyFjSaNbTcWZqbEtd?=
+ =?us-ascii?Q?A/hWSZzRuDJ0sfxqdC+S/B3YCOqLvsuK2TVOlPsiezJjRG3OigAlJoY917sw?=
+ =?us-ascii?Q?pQvseauwmCJYFq1sYNg1gGdZhoVo+p4iZDSashOk0B/YUoIT1UuZqUwmeAwr?=
+ =?us-ascii?Q?fcuXlu4IVgJwX9bWPBfx7T7GEhJitlcEbFCJYO3vMD80uClCdjq8b55eCpQK?=
+ =?us-ascii?Q?ZyrONDhDq73KfvivvGrarhYx2sO+CakeSidrMw2oqHFPRuuf8FEAymD9sbRr?=
+ =?us-ascii?Q?95p88NDErXdKGBX4tYW0zIBgVeQHkiJx0Z9UvVRymqbhHlLc8lIeKZ6kPoai?=
+ =?us-ascii?Q?S2yZ0Yaui53Dk/RW15ckYiEkjddRC2dv5264eS4iQbqMrIZ6dvX2w3dUcxvw?=
+ =?us-ascii?Q?V+Pr5p/6hv7B7xSqfIixe/s8mq2tzDamMkxzbETgQytmKu+4cFqeUaT3T5je?=
+ =?us-ascii?Q?nFviJCiQRuTMj5nIF4oeI2ApL5TZQoi0RT8QiHyFFaz5IyJRw4OVt0lMmYQN?=
+ =?us-ascii?Q?koSGz4Whdn/m0Kbv0nDO4IjCIzgbsJ6Kws9imuVbmKSkLAZZ3FURzPKs3hIi?=
+ =?us-ascii?Q?wR3Xd4C5566iKmCdMJ3iGcNAHkaHITUgC5riOD9iPtoy5lEsek6RqW4RWwi7?=
+ =?us-ascii?Q?RgIDVHQXjPSRar377OWPFxX7o+n340otbD7Q47i7s4xSad3xqSv7rY4aR96X?=
+ =?us-ascii?Q?CZBjQ7q4dN1NnQlidmaxk6bmquWGR2q9RodF2O+Z/MMSO5NjulRxOBLD/zhQ?=
+ =?us-ascii?Q?NIGAKPB64gfwveOlLUxBlTiHT3R4Wsivjp3yzlkXrocWHqm/4VtT6V1zFkeZ?=
+ =?us-ascii?Q?z8rZB51Hyy16AT5k4b6OVc67579qwFZtXaRATjPT1vKtv+JEFISgWo3gYKqj?=
+ =?us-ascii?Q?ZY8ZfYEhEyX8vz8RSa4p7GAnkBtsbZWkbum09nl1/jA4EwLGbNuPnyVMqgZ8?=
+ =?us-ascii?Q?qKHCtHaRfY1MnzcneoQBzjYEaCbw7T+yHXJNv8Subos6N3CsrbI6lY85pYpC?=
+ =?us-ascii?Q?el0qsLcs1YyW7cwSARf0vDttik1iyxZh6k9kYBQYGmoqB5MojcvdZsy8d03d?=
+ =?us-ascii?Q?7eg+KGsqSWT2zh8roDRg/kGoFRU3i1uLTyRfz9e45zyybwRchklBfcdJd7Dc?=
+ =?us-ascii?Q?A9NejhM2fgU4/EV+sQrc0pmUvHFKWgb6IimZ/jfkARQV4BU6ha4OAlwwyiCn?=
+ =?us-ascii?Q?XvCRhbgptFA41+27CMrhwcW1OAdZehaolXzfQBQa9W0XHyIvhzNXs1Fyo62J?=
+ =?us-ascii?Q?ALNGgjkZuHBH9iQbOJE03HTy+kG361G2LZxuANGhyyTBEgVlByHrqBDUAKK2?=
+ =?us-ascii?Q?tqtDSNY8x3lxfMsLchtNDHIzRw6lGh0EFE2wvmnNJ+lyk8vLvAw4lRMHQ73x?=
+ =?us-ascii?Q?CyBnBn1J5ZHBXs4Eng8ZwrEe5kxMqQ1wAwUKHaA+OsSrspQSKPNXJD9ZE104?=
+ =?us-ascii?Q?zdIjeDFvy1R3B5IyKYM4SCos6GhCWznoWSedy4RfMqrtPRUsA7wtUVrXl1Jg?=
+ =?us-ascii?Q?bZWGR0WGBRPuSghj8nAEH8VA+qmpFWPjXt6XpgOw1Uq5mKT3qLekiU7O0tmw?=
+ =?us-ascii?Q?cN/Plw=3D=3D?=
 X-Forefront-Antispam-Report:
-	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(376014)(7416014)(1800799024);DIR:OUT;SFP:1101;
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(1800799024)(7416014)(376014);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	IpfXV2DjQ2qWAwVrHX51uvY1OIoJJNtFbsrJrEaXv/08t+/fvRX5k7q1ojZ1neNFI6XkFVt2+sr9L74uwBuFk5V6j+35mkmG7eS9J+3gvJK/MXF1kCVDzctet/PXuzMv7kYIaEMieAYqtkhl5ZSc4q81GV4mY5tnoldKxTRdEZXRy17LWLl7jN2wKhMRUZxT2jTS9VepjZuqvpCA0lhQ0vSswG9YK9RA1GL/gS7eBSxARr0fhqlI6lDY/Qfahet28A6VTGJ+rZm9jM+MlhR3OKZyuxFXZJvkF7njfCaPZ9yY2LABACiWtCa31IXeHtH7XnFt/0U0KZu9L4kdoFnYtNnvnX6CKM78lNukuiejpRB4/iXbvbcUbHvm1rRZYEyBfImcoBLciAKW0sZWxxIEAYlsnxqpX9CohJzhlNXCGh8I6oeqk4taYBfmA0n3uLgD
+	hxyDZrMQzdymYVtaVi66FmGoaIuy2Ya9YHJO1TLHbp1ARCnKEfszkbcSPDppyRhFyamX71CqMnrqSOCGRXYSiMe6itdD4rTq5w59G12v2hOSYb+wgDfK9TztgSn1S2vQ1Eb5m9erKdUKTbxQF4ONPmhZvaMHeI4jkLVQnVeCi48VSBPz/CEgwuEQJJy2pTAOdVdGCcUNfIiJPcjUVoavmzuTV9epdeISuggTrfoUg+auv21JmFU3jWfULIPwIsdrA3rnXNKpDilumhbQC2amfF40bef2X89KYPIP+GXrUlzeif0q0pc10SfgigRRJGOwXtE6JqaNwlR/VlAd4qSua65UYSaizDQZ+Wmn3UvbMJKt0Hv/5Tb2qVWzeUjKsrq8XA+rD9rXmm8wJOqN2Yds+XNizIyw6ph/x8XPbQ5+Db4kOt0reHF0i01IZmev2ijK
 X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2026 05:10:52.0286
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2026 05:10:49.8258
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 34e65fd6-320c-43f3-6ae8-08de5fbdf080
+X-MS-Exchange-CrossTenant-Network-Message-Id: 349c2217-d1a7-469e-be60-08de5fbdef30
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource:
-	CO1PEPF000044EF.namprd05.prod.outlook.com
+	CO1PEPF000066EC.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR10MB6497
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR10MB7748
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -166,7 +166,7 @@ X-Spamd-Result: default: False [2.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -176,7 +176,7 @@ X-Spamd-Result: default: False [2.84 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261081-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-261079-lists,devicetree=lfdr.de];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
 	DKIM_TRACE(0.00)[ti.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -184,96 +184,70 @@ X-Spamd-Result: default: False [2.84 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[sen@ti.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:email,ti.com:dkim,ti.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ti.com:dkim,ti.com:email,ti.com:url,ti.com:mid];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: 496AEB735B
+X-Rspamd-Queue-Id: 2AADFB7345
 X-Rspamd-Action: no action
 
-The current mcasp_is_synchronous() function does more than what it
-proclaims, it also checks if McASP is a frame producer.
+Simplify the mcasp_set_clk_pdir caller convention in start/stop stream
+function, to make it so that set_clk_pdir gets called regardless when
+stream starts and also disables when stream ends.
 
-Therefore split the original function into two separate ones and
-replace all occurrences with the new equivalent logic. So the functions
-can be re-used when checking async/sync status in light of async mode
-enhancements.
+Functionality-wise, everything remains the same as the previously skipped
+calls are now either correctly configured
+(when McASP is SND_SOC_DAIFMT_BP_FC - pdir needs to be enabled)
+or called with a bitmask of zero (when McASP is SND_SOC_DAIFMT_BC_FC - pdir
+gets disabled).
+
+On brief regarding McASP Clock and Frame sync configurations, refer to [0].
+
+[0]:TRM Section 12.1.1.4.2 https://www.ti.com/lit/ug/sprujd4a/sprujd4a.pdf
 
 Signed-off-by: Sen Wang <sen@ti.com>
 ---
- sound/soc/ti/davinci-mcasp.c | 21 ++++++++++++++-------
- 1 file changed, 14 insertions(+), 7 deletions(-)
+ sound/soc/ti/davinci-mcasp.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/sound/soc/ti/davinci-mcasp.c b/sound/soc/ti/davinci-mcasp.c
-index 621a9d5f9377..aa14fc1c8011 100644
+index aa14fc1c8011..4f8a2ce6ce78 100644
 --- a/sound/soc/ti/davinci-mcasp.c
 +++ b/sound/soc/ti/davinci-mcasp.c
-@@ -179,10 +179,16 @@ static void mcasp_set_ctl_reg(struct davinci_mcasp *mcasp, u32 ctl_reg, u32 val)
- 
- static bool mcasp_is_synchronous(struct davinci_mcasp *mcasp)
- {
--	u32 rxfmctl = mcasp_get_reg(mcasp, DAVINCI_MCASP_RXFMCTL_REG);
- 	u32 aclkxctl = mcasp_get_reg(mcasp, DAVINCI_MCASP_ACLKXCTL_REG);
- 
--	return !(aclkxctl & TX_ASYNC) && rxfmctl & AFSRE;
-+	return !(aclkxctl & TX_ASYNC);
-+}
-+
-+static bool mcasp_is_frame_producer(struct davinci_mcasp *mcasp)
-+{
-+	u32 rxfmctl = mcasp_get_reg(mcasp, DAVINCI_MCASP_RXFMCTL_REG);
-+
-+	return rxfmctl & AFSRE;
- }
- 
- static inline void mcasp_set_clk_pdir(struct davinci_mcasp *mcasp, bool enable)
-@@ -226,7 +232,7 @@ static void mcasp_start_rx(struct davinci_mcasp *mcasp)
- 	 * synchronously from the transmit clock and frame sync. We need to make
- 	 * sure that the TX signlas are enabled when starting reception.
- 	 */
--	if (mcasp_is_synchronous(mcasp)) {
-+	if (mcasp_is_frame_producer(mcasp) && mcasp_is_synchronous(mcasp)) {
+@@ -235,8 +235,8 @@ static void mcasp_start_rx(struct davinci_mcasp *mcasp)
+ 	if (mcasp_is_frame_producer(mcasp) && mcasp_is_synchronous(mcasp)) {
  		mcasp_set_ctl_reg(mcasp, DAVINCI_MCASP_GBLCTLX_REG, TXHCLKRST);
  		mcasp_set_ctl_reg(mcasp, DAVINCI_MCASP_GBLCTLX_REG, TXCLKRST);
- 		mcasp_set_clk_pdir(mcasp, true);
-@@ -239,7 +245,7 @@ static void mcasp_start_rx(struct davinci_mcasp *mcasp)
- 	mcasp_set_ctl_reg(mcasp, DAVINCI_MCASP_GBLCTLR_REG, RXSMRST);
- 	/* Release Frame Sync generator */
- 	mcasp_set_ctl_reg(mcasp, DAVINCI_MCASP_GBLCTLR_REG, RXFSRST);
--	if (mcasp_is_synchronous(mcasp))
-+	if (mcasp_is_frame_producer(mcasp) && mcasp_is_synchronous(mcasp))
- 		mcasp_set_ctl_reg(mcasp, DAVINCI_MCASP_GBLCTLX_REG, TXFSRST);
+-		mcasp_set_clk_pdir(mcasp, true);
+ 	}
++	mcasp_set_clk_pdir(mcasp, true);
  
- 	/* enable receive IRQs */
-@@ -305,7 +311,7 @@ static void mcasp_stop_rx(struct davinci_mcasp *mcasp)
+ 	/* Activate serializer(s) */
+ 	mcasp_set_reg(mcasp, DAVINCI_MCASP_RXSTAT_REG, 0xFFFFFFFF);
+@@ -311,10 +311,10 @@ static void mcasp_stop_rx(struct davinci_mcasp *mcasp)
  	 * In synchronous mode stop the TX clocks if no other stream is
  	 * running
  	 */
--	if (mcasp_is_synchronous(mcasp) && !mcasp->streams) {
-+	if (mcasp_is_frame_producer(mcasp) && mcasp_is_synchronous(mcasp) && !mcasp->streams) {
- 		mcasp_set_clk_pdir(mcasp, false);
+-	if (mcasp_is_frame_producer(mcasp) && mcasp_is_synchronous(mcasp) && !mcasp->streams) {
+-		mcasp_set_clk_pdir(mcasp, false);
++	if (mcasp_is_frame_producer(mcasp) && mcasp_is_synchronous(mcasp) && !mcasp->streams)
  		mcasp_set_reg(mcasp, DAVINCI_MCASP_GBLCTLX_REG, 0);
- 	}
-@@ -332,7 +338,7 @@ static void mcasp_stop_tx(struct davinci_mcasp *mcasp)
- 	 * In synchronous mode keep TX clocks running if the capture stream is
- 	 * still running.
+-	}
++	if (!mcasp->streams)
++		mcasp_set_clk_pdir(mcasp, false);
+ 
+ 	mcasp_set_reg(mcasp, DAVINCI_MCASP_GBLCTLR_REG, 0);
+ 	mcasp_set_reg(mcasp, DAVINCI_MCASP_RXSTAT_REG, 0xFFFFFFFF);
+@@ -340,7 +340,7 @@ static void mcasp_stop_tx(struct davinci_mcasp *mcasp)
  	 */
--	if (mcasp_is_synchronous(mcasp) && mcasp->streams)
-+	if (mcasp_is_frame_producer(mcasp) && mcasp_is_synchronous(mcasp) && mcasp->streams)
+ 	if (mcasp_is_frame_producer(mcasp) && mcasp_is_synchronous(mcasp) && mcasp->streams)
  		val =  TXHCLKRST | TXCLKRST | TXFSRST;
- 	else
+-	else
++	if (!mcasp->streams)
  		mcasp_set_clk_pdir(mcasp, false);
-@@ -1041,7 +1047,8 @@ static int mcasp_i2s_hw_param(struct davinci_mcasp *mcasp, int stream,
- 		 * not running already we need to configure the TX slots in
- 		 * order to have correct FSX on the bus
- 		 */
--		if (mcasp_is_synchronous(mcasp) && !mcasp->channels)
-+		if (mcasp_is_frame_producer(mcasp) && mcasp_is_synchronous(mcasp) &&
-+		    !mcasp->channels)
- 			mcasp_mod_bits(mcasp, DAVINCI_MCASP_TXFMCTL_REG,
- 				       FSXMOD(total_slots), FSXMOD(0x1FF));
- 	}
+ 
+ 
 -- 
 2.43.0
 
