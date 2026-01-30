@@ -1,210 +1,238 @@
-Return-Path: <devicetree+bounces-261100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261101-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KLmNDkpefGkYMAIAu9opvQ
-	(envelope-from <devicetree+bounces-261100-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 08:31:22 +0100
+	id wKBJLeBgfGl0MAIAu9opvQ
+	(envelope-from <devicetree+bounces-261101-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 08:42:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5C79B7EF9
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 08:31:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 21B5EB7FC7
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 08:42:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 242C130115BF
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 07:31:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4C4CB3019069
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 07:41:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0723930DED8;
-	Fri, 30 Jan 2026 07:31:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8715314D13;
+	Fri, 30 Jan 2026 07:41:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="o9azm+H1";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="aYRqOY5C"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="GCu6JACI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A6462DAFDF
-	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 07:31:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B49A3112B4;
+	Fri, 30 Jan 2026 07:41:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769758278; cv=none; b=XjGGOveKd+GJkam0StiPvnnIbYdQ6oRYrzSw1iLhnp3gTQIYC08RuL2lGGbnhNeH8aLstCML4xX8Y0ydhaCyG/pEV6Xlzf33Jw04VwGX4Tv2GO0EthIrDOCp4LHq7+HAREpeaCDJnL89xKOyNwExo0JL2fgv+6TLJd9QxKx3xhM=
+	t=1769758907; cv=none; b=uX5YF1Rmo/7/5Dc3tOnT8Hk4FaNYmLRFJlR9z7/e8esD8kg1xeKLZ52B10RRd5n64wPA3RIq8iJSMkCuMAAB0zNTIFbBpPiYhwRdjZzHoP5XFmaXAKuLVmLfrkDlTnkJdw0a3tnUVraep7dE5gUoGk86CM0oT9uQuuoEbcThIco=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769758278; c=relaxed/simple;
-	bh=K9o4+8dL4DAs6FnCTOf0dkAwq+TDIYPUZlFlla0eTDM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VyjSAmGUx1eW9Synh8JWQIGlkqZwx5Ageheccg+RMhVRYM+RID82O+/Zyztpr+e1oG18Jw02LSK0r1mRwBXa32YSJ0EamiUlNXD3eZTgHl1DD3SXxesxlaBzZv1eov5zmBcp3gGDTIxTc86OeXNsxAnBfRkwjwb1InymgEVs5FI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=o9azm+H1; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=aYRqOY5C; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60U4tg7V2295204
-	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 07:31:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=msnY9GJTIxur6oPtc9V4Y8nN9Xbi0+qaamT
-	0oROp0MA=; b=o9azm+H19zuO87v9CERHRZoPf8lYMuEIS9Xdbt5bVkIcmpAGDrU
-	XCt86zfpKgo3LKtXRUlebRYxmZuCHAauPJMkG36wy2+c8ebjEGZQ8ryV6Z4isy5/
-	0er+h8oLFqhYhkscUKcAU4IqZGWYxge5mPlJcX3ZHuPF/f96Kb1ldpVLM7xQfapT
-	rCX25M58kiiDGJZ48g0doq0aiKky6TZvcZ+6/6kzZ46IWfNs7w8QY4H39zmC99GV
-	8Fd/dpu4FUV+rh/tKAKLDoMf+HY0JfQjCWwBinC073ZQ5SJ/KbAfz4kJfFX5slYu
-	/eRPAP7xeCOV1I/+xepdA7NdaIJNaNAtLKw==
-Received: from mail-dy1-f200.google.com (mail-dy1-f200.google.com [74.125.82.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c0p1x8d3n-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 07:31:16 +0000 (GMT)
-Received: by mail-dy1-f200.google.com with SMTP id 5a478bee46e88-2b6b9c1249fso2975522eec.1
-        for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 23:31:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769758275; x=1770363075; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=msnY9GJTIxur6oPtc9V4Y8nN9Xbi0+qaamT0oROp0MA=;
-        b=aYRqOY5CKjTYAcLMcxBy+OJJoTQfAkeHoQtgrFr/jWJsHFq8ifOjQM9z8V7iWflohT
-         xePz3afT00uxJ9tWayWY5wurF/sdDp5VFGohqMPFEXWkIanmvODwx4OLtz+NpytMlLAy
-         yYalwuX9E6bubl5mq2XXQsOL5j7S3k7p76bwnz1ztkwGzFzddyBY1OfDsRqCM/3WWn6p
-         4pq3TV3+iu+0wHFpbYrsMdjCUlypOkMslA36qL3AeiyfEbenUYtZ8IUJ96BHepziQrRj
-         835QfuQFzb0hO8QGDWfZjZI7UxrWwJAITomZXzSryuLR3XlTrPJwJ6hie/WT1waxUQkH
-         IUsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769758275; x=1770363075;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=msnY9GJTIxur6oPtc9V4Y8nN9Xbi0+qaamT0oROp0MA=;
-        b=upcHzlqrbHiI2TSxDWEtqrSFMmA3xLJq7EBqbTAJtgi5102ukV9+G1hjAG9ak4g0Qi
-         83nBu+VIOESSbNEDSREF8LnzbKMtxUyDE6o3NTRv0rMwKbdKZIH3MoLP7BpcDm19tseM
-         +gq4k0IqJfhtY1IADU58H4a1/ZYBx26SMnQYdfTNDsSZMvPwpdDFWOkulrWW1bNnO1VM
-         qby+T64+H6AZobxwv7F3v1wQjtTek9D0p/klGAwsvZF5fslPrheze7xOgls8nWAQrWSB
-         ecvT3paxDTpPieOt4/fXuzp2nt/9D7VLd6JE7dj7eGO/kUDj7zC+BOH/Rr7BUthBBVBl
-         c2TA==
-X-Forwarded-Encrypted: i=1; AJvYcCVm8azlD1iFLEkWi7z+1nveNlocJiebS4KXy/k/ntUlSGMjW1GG3bMk6Edx+viqgzSTBBVbA3iPlZnt@vger.kernel.org
-X-Gm-Message-State: AOJu0YzBvZAFSKrenqMiDurHgSeIHfNkxNyske/OB9JMmJk5vLy/L8qX
-	NRyrJr+jtKkNSE7U1DUgw1Ui4bGh1fVDL0A9hoT7wp2EIj/IB9JcdZP/msuS1vDU7wu8GK/QG+V
-	utEN4hVu8k346p1TcLEwjHt8N7XdSNIsC7/AngEzjijB9/tsXXf820jJttf8GCkw0
-X-Gm-Gg: AZuq6aJvYPSyAOxBvwlPaV/TcsXQNiSyAc2Z5odhTzggDIdErAZvq1TLksNVwVDYJh2
-	UMKfhkU6a3R5UFJLC4BR6Msu1RbpDq6mmT6tNltvPvmopqirvDN45CRWCziqhPlxrgOMQyUxbkC
-	VNGbEqsOL2XJz9dJoAaIfx3D0259v9U5ViZ6sGvzK2ympZC9yxLbKLQ5Yv7lL4wLMIVvKOZ7o+z
-	zI7yriddE3zV2q2thMLvdSoFhqlkRxJBI5Hf9pOFvF5wgWARWW4uyFT6WMuqlK184r6rxNQ/QkO
-	P8U4YDAzSspBg5WBZzg3x3Ofs3cAJNZeIoNTew0zxWh1Rx1MEnhtZA4RtU3sHN7ylX3umGa51hQ
-	ZVQlWYSNlyWSffeivkESE+0ZW3SUgM2H0i+yUeTIb+bL+havlY79DaDU=
-X-Received: by 2002:a05:7301:1f0b:b0:2b7:1c58:dc97 with SMTP id 5a478bee46e88-2b7c8634916mr930200eec.6.1769758275321;
-        Thu, 29 Jan 2026 23:31:15 -0800 (PST)
-X-Received: by 2002:a05:7301:1f0b:b0:2b7:1c58:dc97 with SMTP id 5a478bee46e88-2b7c8634916mr930187eec.6.1769758274786;
-        Thu, 29 Jan 2026 23:31:14 -0800 (PST)
-Received: from hu-liuxin-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b7a16cf8f2sm11197535eec.7.2026.01.29.23.31.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Jan 2026 23:31:14 -0800 (PST)
-From: Xin Liu <xin.liu@oss.qualcomm.com>
-To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, tingwei.zhang@oss.qualcomm.com,
-        jie.gan@oss.qualcomm.com
-Subject: [PATCH] arm64: dts: qcom: hamoa: Add remoteproc in EL2 device trees
-Date: Thu, 29 Jan 2026 23:31:13 -0800
-Message-ID: <20260130073113.3091884-1-xin.liu@oss.qualcomm.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1769758907; c=relaxed/simple;
+	bh=CoghMDarm31ncDtGmy3+/C7MA74iQBTvl/1xN6lsCNo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Zar/imJFngKnKbIwxdT/hSFDAGfojDPiE5dRTWJTO1wwy2EqiuFAYCEOhlohGLUN+E+rQR9J90J4Q762267oTWqAmYDfoKvjpsKlozrpvdVQSqz9bEmFngfYURyQ3lDXVhsjpcAa/SIzK41/EEvx2pyQqEmNJEVyV7lBVVAu090=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=GCu6JACI; arc=none smtp.client-ip=198.175.65.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1769758906; x=1801294906;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=CoghMDarm31ncDtGmy3+/C7MA74iQBTvl/1xN6lsCNo=;
+  b=GCu6JACIDw5tnKmCGDJ74otv1Cl67zvzw+oBjhcW7EAc2FGsi4JBtl+P
+   6+GoCXm9vAEs+4SnmxfrOdTgxuIhqGcnvShtTb28QQA6LJ9qSUeVlzK5p
+   OMuJT/wLocmC5+L5OUIds2M5Oxm0mw2wcTdTlvat6iRvByl5oPkTMeLHB
+   biP+3ANeMhBTt6ypiI5sIWvErSVI2v3I60qW/lDzui1mcPY7ZnLa/VhEx
+   AXdZmfqiOMWBy9MAVhC1XTlw0jQ6p/Dse1ryVh5XMXXvm3QZopAJUUTtD
+   QZW9cEcVjlX5XNL99LDH3wWl3xB4Q7obSLSD1jwfvXWkoP0AtQOoU4BS8
+   g==;
+X-CSE-ConnectionGUID: zj8Gb5VUSCuup34Z6gTPzg==
+X-CSE-MsgGUID: PoIL6DisST+VB9sq/Xzdvg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="81323431"
+X-IronPort-AV: E=Sophos;i="6.21,262,1763452800"; 
+   d="scan'208";a="81323431"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2026 23:41:46 -0800
+X-CSE-ConnectionGUID: zehV8ryPT6KSXxgQ0osYOw==
+X-CSE-MsgGUID: PcQASZoQTUeETTFDMtO1nA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,262,1763452800"; 
+   d="scan'208";a="209046123"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+  by fmviesa008.fm.intel.com with ESMTP; 29 Jan 2026 23:41:39 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vlj8L-00000000cKm-1W0m;
+	Fri, 30 Jan 2026 07:41:37 +0000
+Date: Fri, 30 Jan 2026 15:40:41 +0800
+From: kernel test robot <lkp@intel.com>
+To: Daniel Golle <daniel@makrotopia.org>, Andrew Lunn <andrew@lunn.ch>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Simon Horman <horms@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
+	Frank Wunderlich <frankwu@gmx.de>, Chad Monroe <chad@monroe.io>,
+	Cezary Wilmanski <cezary.wilmanski@adtran.com>,
+	Avinash Jayaraman <ajayaraman@maxlinear.com>,
+	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
+	Juraj Povazanec <jpovazanec@maxlinear.com>,
+	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
+	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
+	"Livia M. Rosu" <lrosu@maxlinear.com>,
+	John Crispin <john@phrozen.org>
+Subject: Re: [PATCH net-next v10 4/4] net: dsa: add basic initial driver for
+ MxL862xx switches
+Message-ID: <202601301540.5yveQiWq-lkp@intel.com>
+References: <281fd7e777b51849fac9ef5191679586cc2a1b54.1769731630.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: h4zIEMIlw5tR3k24Kw6pOSrFgmFrzpuB
-X-Proofpoint-ORIG-GUID: h4zIEMIlw5tR3k24Kw6pOSrFgmFrzpuB
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTMwMDA1NyBTYWx0ZWRfX4gHxrBGo82gv
- /0z6bucBzU6efCWr2mbsJnt0an5qbEKMMYh0fHgvTT/kSLXoGfWPIqrIe17vwpUp3GcQ6rxi8jQ
- WMqvg7965kIIM+WWnCpyrKheuRDWUMc8384P08uTUmfgOGrg7cKt4fA+OTXAEHFiC5LUipK+RPH
- T6SzyOS4xh/M/cen5lTBCk9ROtW/LamP5Ojow7doQ0iLvjdLlXNwbHqQXvJZQYdE0og/q9NhUzi
- N9rYZbtj/YsA+M9OHqWYdh0c9lQRO9SLQkyFIbYDG0l/Y9H7zDwut9EeYn4ckvGHhKpVeNX8CXc
- nFZNdhNjk44dFCFw0bBp4oL84JE7qMh8JqCvWJ9AADQ6F4+06UA2q9AFFAy9/pby2a6FIFUY4IU
- VrW800goKYOKuiYGW4DwfrOaM8vTM6X6p4FS7WBBL9eSncsgVaK3JHO41jkXyGdbYa/rTghKiKc
- 0aqSmCoH9Hwgw6aQ/SA==
-X-Authority-Analysis: v=2.4 cv=G5cR0tk5 c=1 sm=1 tr=0 ts=697c5e44 cx=c_pps
- a=PfFC4Oe2JQzmKTvty2cRDw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=oz4SV0ID14j8E3haEeIA:9 a=eSe6kog-UzkA:10
- a=6Ab_bkdmUrQuMsNx7PHu:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-01-29_03,2026-01-29_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 malwarescore=0 clxscore=1015 lowpriorityscore=0 adultscore=0
- priorityscore=1501 spamscore=0 phishscore=0 bulkscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601300057
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <281fd7e777b51849fac9ef5191679586cc2a1b54.1769731630.git.daniel@makrotopia.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_MISSING_CHARSET(0.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	TAGGED_FROM(0.00)[bounces-261100-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[lists.linux.dev,vger.kernel.org,gmx.de,monroe.io,adtran.com,maxlinear.com,phrozen.org];
+	RCPT_COUNT_TWELVE(0.00)[28];
+	TAGGED_FROM(0.00)[bounces-261101-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:url,qualcomm.com:dkim];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[xin.liu@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[makrotopia.org,lunn.ch,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,armlinux.org.uk,vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_NONE(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: A5C79B7EF9
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid,01.org:url]
+X-Rspamd-Queue-Id: 21B5EB7FC7
 X-Rspamd-Action: no action
 
-All the existing variants Talos boards are using Gunyah hypervisor
-which means that, so far, Linux-based OS could only boot in EL1 on
-those devices.  However, it is possible for us to boot Linux at EL2
-on these devices [1].
+Hi Daniel,
 
-When running under Gunyah, the remote processor firmware IOMMU streams
-are controlled by Gunyah. However, without Gunyah, the IOMMU is managed
-by the consumer of this DeviceTree. Therefore, describe the firmware
-streams for each remote processor.
+kernel test robot noticed the following build errors:
 
-Add remoteproc to the EL2 device trees to generate the corresponding
--el2.dtb files.
+[auto build test ERROR on net-next/main]
 
-[1]
-https://docs.qualcomm.com/bundle/publicresource/topics/80-70020-4/boot-developer-touchpoints.html#uefi
+url:    https://github.com/intel-lab-lkp/linux/commits/Daniel-Golle/dt-bindings-net-dsa-add-MaxLinear-MxL862xx/20260130-085313
+base:   net-next/main
+patch link:    https://lore.kernel.org/r/281fd7e777b51849fac9ef5191679586cc2a1b54.1769731630.git.daniel%40makrotopia.org
+patch subject: [PATCH net-next v10 4/4] net: dsa: add basic initial driver for MxL862xx switches
+config: nios2-allmodconfig (https://download.01.org/0day-ci/archive/20260130/202601301540.5yveQiWq-lkp@intel.com/config)
+compiler: nios2-linux-gcc (GCC) 11.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260130/202601301540.5yveQiWq-lkp@intel.com/reproduce)
 
-Signed-off-by: Xin Liu <xin.liu@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/x1-el2.dtso | 8 ++++++++
- 1 file changed, 8 insertions(+)
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202601301540.5yveQiWq-lkp@intel.com/
 
-diff --git a/arch/arm64/boot/dts/qcom/x1-el2.dtso b/arch/arm64/boot/dts/qcom/x1-el2.dtso
-index 175679be01eb..8279854fd73c 100644
---- a/arch/arm64/boot/dts/qcom/x1-el2.dtso
-+++ b/arch/arm64/boot/dts/qcom/x1-el2.dtso
-@@ -52,6 +52,14 @@ &pcie_smmu {
- 	status = "okay";
- };
- 
-+&remoteproc_adsp {
-+	iommus = <&apps_smmu 0x1000 0x0>;
-+};
-+
-+&remoteproc_cdsp {
-+	iommus = <&apps_smmu 0x0c00 0x0>;
-+};
-+
- /*
-  * The "SBSA watchdog" is implemented in software in Gunyah
-  * and can't be used when running in EL2.
+All errors (new ones prefixed by >>):
+
+   drivers/net/dsa/mxl862xx/mxl862xx.c: In function 'mxl862xx_port_setup':
+   drivers/net/dsa/mxl862xx/mxl862xx.c:331:32: error: passing argument 1 of 'dsa_port_is_unused' from incompatible pointer type [-Werror=incompatible-pointer-types]
+     331 |         if (dsa_port_is_unused(ds, port) ||
+         |                                ^~
+         |                                |
+         |                                struct dsa_switch *
+   In file included from drivers/net/dsa/mxl862xx/mxl862xx.c:16:
+   include/net/dsa.h:546:56: note: expected 'struct dsa_port *' but argument is of type 'struct dsa_switch *'
+     546 | static inline bool dsa_port_is_unused(struct dsa_port *dp)
+         |                                       ~~~~~~~~~~~~~~~~~^~
+>> drivers/net/dsa/mxl862xx/mxl862xx.c:331:13: error: too many arguments to function 'dsa_port_is_unused'
+     331 |         if (dsa_port_is_unused(ds, port) ||
+         |             ^~~~~~~~~~~~~~~~~~
+   In file included from drivers/net/dsa/mxl862xx/mxl862xx.c:16:
+   include/net/dsa.h:546:20: note: declared here
+     546 | static inline bool dsa_port_is_unused(struct dsa_port *dp)
+         |                    ^~~~~~~~~~~~~~~~~~
+   drivers/net/dsa/mxl862xx/mxl862xx.c:332:29: error: passing argument 1 of 'dsa_port_is_dsa' from incompatible pointer type [-Werror=incompatible-pointer-types]
+     332 |             dsa_port_is_dsa(ds, port))
+         |                             ^~
+         |                             |
+         |                             struct dsa_switch *
+   In file included from drivers/net/dsa/mxl862xx/mxl862xx.c:16:
+   include/net/dsa.h:531:53: note: expected 'struct dsa_port *' but argument is of type 'struct dsa_switch *'
+     531 | static inline bool dsa_port_is_dsa(struct dsa_port *port)
+         |                                    ~~~~~~~~~~~~~~~~~^~~~
+>> drivers/net/dsa/mxl862xx/mxl862xx.c:332:13: error: too many arguments to function 'dsa_port_is_dsa'
+     332 |             dsa_port_is_dsa(ds, port))
+         |             ^~~~~~~~~~~~~~~
+   In file included from drivers/net/dsa/mxl862xx/mxl862xx.c:16:
+   include/net/dsa.h:531:20: note: declared here
+     531 | static inline bool dsa_port_is_dsa(struct dsa_port *port)
+         |                    ^~~~~~~~~~~~~~~
+   cc1: some warnings being treated as errors
+
+
+vim +/dsa_port_is_unused +331 drivers/net/dsa/mxl862xx/mxl862xx.c
+
+   317	
+   318	static int mxl862xx_port_setup(struct dsa_switch *ds, int port)
+   319	{
+   320		bool is_cpu_port = dsa_is_cpu_port(ds, port);
+   321		int ret;
+   322	
+   323		/* disable port and flush MAC entries */
+   324		ret = mxl862xx_port_state(ds, port, false);
+   325		if (ret)
+   326			return ret;
+   327	
+   328		mxl862xx_port_fast_age(ds, port);
+   329	
+   330		/* skip setup for unused and DSA ports */
+ > 331		if (dsa_port_is_unused(ds, port) ||
+ > 332		    dsa_port_is_dsa(ds, port))
+   333			return 0;
+   334	
+   335		/* configure tag protocol */
+   336		ret = mxl862xx_configure_sp_tag_proto(ds, port, is_cpu_port);
+   337		if (ret)
+   338			return ret;
+   339	
+   340		/* assign CTP port IDs */
+   341		ret = mxl862xx_configure_ctp_port(ds, port, port,
+   342						  is_cpu_port ? 32 - port : 1);
+   343		if (ret)
+   344			return ret;
+   345	
+   346		if (is_cpu_port)
+   347			/* assign user ports to CPU port bridge */
+   348			return mxl862xx_setup_cpu_bridge(ds, port);
+   349	
+   350		/* setup single-port bridge for user ports */
+   351		return mxl862xx_add_single_port_bridge(ds, port);
+   352	}
+   353	
+
 -- 
-2.43.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
