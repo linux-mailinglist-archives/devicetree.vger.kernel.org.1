@@ -1,294 +1,265 @@
-Return-Path: <devicetree+bounces-261271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261272-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OLFyOjLhfGmpPAIAu9opvQ
-	(envelope-from <devicetree+bounces-261271-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 17:49:54 +0100
+	id KJIHG+nifGmpPAIAu9opvQ
+	(envelope-from <devicetree+bounces-261272-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 17:57:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1095FBCA4F
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 17:49:54 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09C68BCB99
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 17:57:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A3689301093F
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 16:49:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 91E4030780CF
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 16:54:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AD6E3542DF;
-	Fri, 30 Jan 2026 16:49:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 451E9354AC5;
+	Fri, 30 Jan 2026 16:54:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="cm3AW8yb";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Qzvg/QRm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com [209.85.221.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A72BE34A794
-	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 16:49:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B27AE2FCBE3
+	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 16:54:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769791760; cv=none; b=FHDFOwZ253GfkKDCwblM+SCeZhOH1hIs59AbXJFS7A/vOpaR+2PG0jmokUW2hp2pCNaJzlLyTcDLKhD/L+GoNTpiFRDw+rNzlzVDUxVcOb60U6vB1eu+EQTo1GnkMcA7rFzHeQvPEJcggBndCNack7KcsenVe/l5uIgQAp+Ii3w=
+	t=1769792060; cv=none; b=UX7evB8HP0YSHQRgYpNZ/xYfWwXahB6VVPtMnkcDQ/xptFRwGw6YvzZ8UewAnZRV7fjshjRy5iYW5X0rjSuuKRpNGSK9a+DvlMRG1gw2cE6hp/GxLj5zYIV0bnamejKMw/fUhj5EXZh07tV3rlTZet3wM6lWSphyEXB2H3GmKPk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769791760; c=relaxed/simple;
-	bh=fD9gxQetzThjMYtpnsCWqdvlRxlJACAFBEWU3vYi8Uc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XXYeELkF/bgG9XrnU3aLLm44DfFZkUkzAW9ypkaRp5iB4b9mqdZwvkonaIsS7HHrnZjJXrC5o8EBwldtUdRVG2ES45rXpiLht+/dZsGBJII/6FQmZ3pznp2Nnsyzz/j076jt47zlLV4FpAlzsrxP228Xzvbny7ubXZRlQNNkLrE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-5636b2fde95so626779e0c.1
-        for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 08:49:18 -0800 (PST)
+	s=arc-20240116; t=1769792060; c=relaxed/simple;
+	bh=cW/CdnUqHSo8CZnbbZvcXwLLmwlTJ7iZ14B0yAcTM54=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JLvOkef1nfRVzcLlz05ip4S2q2xlpc4KvWCBRseFjdICGFNUs8VAMGqwfbwfFoDwmt/vTjXNVyjvD8/SdKd4jI7tXo1IhYqjgQhV27S07ZWbf+iX808X07OtQmusFqj+nCBFtys85TrkPuEcpC0csYmvd3T6RTYOzeCggy85Pqk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=cm3AW8yb; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Qzvg/QRm; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60UB9js62992821
+	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 16:54:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	awvAk9dpp7+jKmkbUjTkfr4pBxnpPpuKXslnuuCHXiM=; b=cm3AW8yb00HVORLd
+	OvwbA+Ip6FEQUvKzXOGqwCN5OznQjPOv1NVLK1A/HYFKCSuEdlFjdZiVDFwd5h3l
+	EfRDCZqNJoYcdsjZiSa8yomBySoYYiITJwaDqKqyHO57x/bF0d+HkLym2miXHzoE
+	8UwwEKmQ9+2M/6wWLUUApPqtq3vtW9Or0k2hBVv5uQjahm/Em9d4Vm5ithH0j8O3
+	f9r3cJAoDDiHcENv5cPS/Hc7K6dDPleqMsfUY0RPbegxXgyIhAXQFnlkwt8e84yi
+	YKu6/e3BABt8sb3EIfCePROs9kq9Ks+hTyhEXjRvRwO3kxfumFWzZTvi+IlSczl/
+	XZu7rA==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c0db1kjvp-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 16:54:17 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2a7701b6353so24725735ad.3
+        for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 08:54:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1769792056; x=1770396856; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=awvAk9dpp7+jKmkbUjTkfr4pBxnpPpuKXslnuuCHXiM=;
+        b=Qzvg/QRm1mkUarPvSRde/E2C2tfWU30m6gcZ6E1eaxXXZFPVBqMePqcGTkg8jllvTq
+         8J0FdY5YL2e5pMN2Eb2Qu3V3Ytrj61EHoN4Vc0MyjToRvgEytuyW5PfmX4Oz3Iiy0f7j
+         N3ga4ACCHkUgphoRPp66q30SQl0+oPvuhhT+dqfiNCG1wmdwzgZnvPPzzQneoC0/tvyE
+         jzhfwjYPXkQv1viSk/xclPa7pKEJRtlK9U84qWSYS/fgorlElhfJ1VJXeGN3LZd9d9Pz
+         PVhOY7LqIqjNl0I9Ym4Z4gg5uBAiM9u4XuHxHIRlX89vgGZAvsAYtTQG/4j/3NFp9h5O
+         Bgfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769791757; x=1770396557;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=eZJO5fek5/fmG2q9I10L0AXJiVKK7FgcGE1eelPW63I=;
-        b=YeWQLebFibvKmvEd7ZUJ9jTaiaihuOL8L8+70JOCxB8ZI+MSDOxyvcmys7NwlWAgWJ
-         0LUdp0oAZsFv8yLJJjyJokKY74CtL+JdkrorXMUZgt7W29TH8Af3blGq0rR8jHRWnD5N
-         LxoGm/VbuvgYxjX9WupRQ2P0/FDbrVWkUxq4Pf52O4Jq2UQohaO+QtVV1i571pjssDZa
-         z+UTPzRqvqUfQZa7QsN2sFqI1/9b8llAOBZcrH6AIH0PeXxUKX7yTikxTAd29RtY5Euy
-         OFBg4LY3AlJ4lmkiKzKViYZnEHZ476dq8m3xW/gmq/EJ4/eAdokbZctN4b+oa+qT07Ad
-         UtxA==
-X-Forwarded-Encrypted: i=1; AJvYcCXuQDGHJkzIbL5znB/ArmTgOPdMbpdL9/kA+6NuVEdhZfyj8sQIzmeSYy/Wbyy4Ovp8ESRZIlAxN6/t@vger.kernel.org
-X-Gm-Message-State: AOJu0YwUChQq1t3aqSWBQxS5N4f7P/zFlt4zUtJxDYroM1ZOWykNXJ7E
-	qtidlIGbXv7+5SUMVAgTFgLowhMq1I1/yiXcKGp6BY3ZaMMXagOedJFpt4SAVUr7Q/Q=
-X-Gm-Gg: AZuq6aIDmxlfq/u1WZ1UIFZG62B5mex84G5Kkvqjm6psLHZuVJX9CKS8yeE6/2LjzS2
-	J0SEV2cUd9eTMJvmmA1QeZ9Tf13o7QPBrnEPZ7yWYyCLBPWW8mIWGuihCJLV3cS1lUyJaDM5LuE
-	zOhhKy3CHoJjKprdRKPNPxj3aZyV5BMcyMemn1VkTSc/y508qDQ1jFMUbEdeB5fs9R7gdrHfwo8
-	4iI/tphxXpSC7YgYfxzrVsZT6IiBKDPF8pU8Va2OW8rZTmxHQwjUDxs/Fcj+mK5iv/cDEbRyu9u
-	qW3SwoUmzDXBcUOr40HQpQwtMEl+zRAHFzKEiCKOeNCoIYIp5X250rcZ1Mp6/vojmhDDAdqnG6E
-	K8hVQTPX6xcnjQwZUe2yM4vAfrirMAIxC8xrkpcZ+NsPV/0a77UEaXmt9ie+nk11U+TdAWpZr9T
-	0ly0PIFjtnj5FX/oL19a99sTb1XbnP2FRRg05Y//sEkXUO1SMt
-X-Received: by 2002:a05:6122:6794:b0:566:2711:d8ab with SMTP id 71dfb90a1353d-566a0037176mr653250e0c.6.1769791757395;
-        Fri, 30 Jan 2026 08:49:17 -0800 (PST)
-Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com. [209.85.222.50])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-56685d06834sm2374381e0c.16.2026.01.30.08.49.13
-        for <devicetree@vger.kernel.org>
+        d=1e100.net; s=20230601; t=1769792056; x=1770396856;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=awvAk9dpp7+jKmkbUjTkfr4pBxnpPpuKXslnuuCHXiM=;
+        b=PZtrFWSoT9//EmaLHj94KYPni1rUfR1nVapbMg2qtGClI7CybErlZ6G3XVTXKdsocw
+         Ax4zE6OX8qgTw+0nGxM6afeS0g6A6yvfjB2g/AXvxm2yiNQxky9Azr1D2t5JOobzYtAH
+         +7U6hVmOyaBHwBvb12h5zIPrhj5CKJLU7WES+qFbZt5PyEr5ZLPoQYCtN31/F9wNel4f
+         8E7mVzH/IKhmj4zF+BLjB68gczWIQpGT+zo6CwPVXjE/kAK8ERZ1dqjbE4hAxoBS6A77
+         Mv+ceuE4Q6kC5jLY3P4a1mhKwZ31TO15trMGFZjqNwW1cF8xquFQUd+9n+x+rRGnxhg2
+         0Eug==
+X-Forwarded-Encrypted: i=1; AJvYcCWg6afV31FtTgnrcg1ulM6PYX+l+OWPc/cdx+KQnbzYw3tHV8/JM4UNKnpTlYjyO+FxUzIdyJcF2Yng@vger.kernel.org
+X-Gm-Message-State: AOJu0YxMGbIyVOOWX20WrhCAiNa/hqYikPqhMxvgwYk1r9cw7+XOEsSs
+	7yvlMtkRDCgf8s/i4oosCx4MeZvVOqgpCfSPzQrIRT0cP/pg/XqgBvnDjyiHr1vWx9mmB4+31Bu
+	ydzOacf3DVlHME9vgkvSyKM+h0S/VADJrj1TN3fS7tOCGRT3FR72wQNHGv/NtCHXb
+X-Gm-Gg: AZuq6aLApjM1I6rOsmcP5WoejcawmFekYonEaM93yKScJ6pEoOwCjEXWRB0Db6rkeH6
+	NeP1UeXeMgdRUmznCUxUUKD8OsZXgzjfsuTgwzO/RfJv8U64y8+HtvsjtHrpcomAMiKf/jnknfU
+	6lhT15jmFPd4wpi3xCSm6eRYU1m42Z+CTk0iqo5zX/Qlo+FUpeadTtmdH9yYzL+QQdoc938Ncq/
+	4QVFLowNMqVaWqxEbOepE5EMEEPy2OGRJxwI81l+X+lN2flUpgPIKKpbU3hwF4D1w2v3MC0fGAt
+	UD/ouUkSH0lI4dQsOGSJ7xENpP7MN7628oGm0m0nnzftNIgN7GGyTiR7KzlIdkjOoVoQLSg86JG
+	qmT7KpY6UGiXmyWB9fm+gAONifUYlv3cJB5qUl39O
+X-Received: by 2002:a17:903:41d1:b0:2a8:ac0f:9ad1 with SMTP id d9443c01a7336-2a8d7ec4e83mr39817745ad.16.1769792056422;
+        Fri, 30 Jan 2026 08:54:16 -0800 (PST)
+X-Received: by 2002:a17:903:41d1:b0:2a8:ac0f:9ad1 with SMTP id d9443c01a7336-2a8d7ec4e83mr39817365ad.16.1769792055824;
+        Fri, 30 Jan 2026 08:54:15 -0800 (PST)
+Received: from [192.168.1.7] ([49.204.111.90])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a88b4c3afdsm78616215ad.61.2026.01.30.08.54.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Jan 2026 08:49:13 -0800 (PST)
-Received: by mail-ua1-f50.google.com with SMTP id a1e0cc1a2514c-93f573ba819so769440241.1
-        for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 08:49:13 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU61rQOb4zgbWoggQUOmZ+8ytCtlj6qMP/Ix2CEww8HyerT8sPuILXJyg319oTL1LFo8EpQxklDoHj+@vger.kernel.org
-X-Received: by 2002:a05:6102:3f05:b0:5f7:24d8:537c with SMTP id
- ada2fe7eead31-5f8e2659a26mr1102545137.31.1769791753256; Fri, 30 Jan 2026
- 08:49:13 -0800 (PST)
+        Fri, 30 Jan 2026 08:54:15 -0800 (PST)
+Message-ID: <b918cfa9-1f40-4aee-ad91-d6425798bd07@oss.qualcomm.com>
+Date: Fri, 30 Jan 2026 22:24:06 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260120150606.7356-1-ovidiu.panait.rb@renesas.com>
- <20260120150606.7356-5-ovidiu.panait.rb@renesas.com> <CAMuHMdVOCFS-31HA2Uxiu7CSmiOf_XwPk1kijYf_WkD0aJJJMw@mail.gmail.com>
- <TY7P301MB1984CB3A92C79442592B045DD39FA@TY7P301MB1984.JPNP301.PROD.OUTLOOK.COM>
- <CAMuHMdUwsC96cnsZqkV63hnG=C86G5ymScY3qnLR9v830D4m4Q@mail.gmail.com> <TY7P301MB1984FB85250A9B18B5F981F5D39FA@TY7P301MB1984.JPNP301.PROD.OUTLOOK.COM>
-In-Reply-To: <TY7P301MB1984FB85250A9B18B5F981F5D39FA@TY7P301MB1984.JPNP301.PROD.OUTLOOK.COM>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 30 Jan 2026 17:48:59 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVObafuLMBOt=atHJtBBcZ8s0C21Ep2juRE0XPih+iHBA@mail.gmail.com>
-X-Gm-Features: AZwV_Qh4mmsGcgcGKwaS7OePDsuvOPtDv-k1-Xv8XUGlO0JwZUtIwuEb4QXisgw
-Message-ID: <CAMuHMdVObafuLMBOt=atHJtBBcZ8s0C21Ep2juRE0XPih+iHBA@mail.gmail.com>
-Subject: Re: [PATCH v2 4/5] arm64: dts: renesas: r9a09g057h44-rzv2h-evk: Add
- versa3 clock generator node
-To: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
-Cc: "magnus.damm" <magnus.damm@gmail.com>, "robh@kernel.org" <robh@kernel.org>, 
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"mturquette@baylibre.com" <mturquette@baylibre.com>, "sboyd@kernel.org" <sboyd@kernel.org>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 06/12] soc: qcom: geni-se: Introduce helper APIs for
+ performance control
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>,
+        Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, bryan.odonoghue@linaro.org,
+        dmitry.baryshkov@oss.qualcomm.com, bjorn.andersson@oss.qualcomm.com
+Cc: prasad.sodagudi@oss.qualcomm.com, quic_vtanuku@quicinc.com,
+        aniket.randive@oss.qualcomm.com, chandana.chiluveru@oss.qualcomm.com
+References: <20260112104722.591521-1-praveen.talari@oss.qualcomm.com>
+ <20260112104722.591521-7-praveen.talari@oss.qualcomm.com>
+ <af0eba46-329f-4979-8b8a-fb5dbe2ad992@oss.qualcomm.com>
+Content-Language: en-US
+From: Praveen Talari <praveen.talari@oss.qualcomm.com>
+In-Reply-To: <af0eba46-329f-4979-8b8a-fb5dbe2ad992@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: eugKv_3iJb-e3mPdz26TcHJtH32rQPVO
+X-Proofpoint-GUID: eugKv_3iJb-e3mPdz26TcHJtH32rQPVO
+X-Authority-Analysis: v=2.4 cv=VMTQXtPX c=1 sm=1 tr=0 ts=697ce239 cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=10aD+GSAjGS7IfLbEAHBKg==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=JTZeKb06zDgOFcaq6ncA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=uG9DUKGECoFWVXl0Dc02:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTMwMDEzOSBTYWx0ZWRfX/G22guK3+uN+
+ 4tpGRcG7ci6zaIMdS0wXY758eGEnwzKUmAZvRsxd5lwvethJ4Wh7y6+g/SflBYaNhhTU1tS3Wux
+ rt9bv9atpvmNKcPiOlDh44Dn94dp+4fcyxj8J1mP/CTGdRfR4IEG7fT4RreVHyRQq1u6e+6U5DI
+ HEIfDytWio4MSJP6MVD4iDe9FeOwGr8ppWU3TFnADxXMbo2v4tzZBEAPA7ieb1GtJyLjtoW3sWt
+ ggUkXgv/tjYu0INsadwQOromH546OhIBEfhPUsy6qXgilBJu57ZmHYb4Jqj0W6J+xlcRXZF+mlg
+ a7UI98XqvSAaFjui8znIT6HezjIxT4JBHWLC/Xh1hI3HFiYCP+kfl4uRaqeARfyZuMhGoODsLF/
+ 5tDj5Vj4hV4DVWo5zpu+Ob2oIIgucI5wKvYXMsQu2LB8QCFSJ74SMTtP7VrojkGT7XC4zMkWEbM
+ VPVS5Xb5TCUv36X7ZXw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-01-30_02,2026-01-30_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 priorityscore=1501 bulkscore=0 lowpriorityscore=0
+ impostorscore=0 adultscore=0 phishscore=0 suspectscore=0 spamscore=0
+ malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
+ definitions=main-2601300139
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,baylibre.com,bp.renesas.com,renesas.com,vger.kernel.org];
-	DMARC_NA(0.00)[linux-m68k.org];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-261271-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261272-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[praveen.talari@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCVD_COUNT_FIVE(0.00)[6];
-	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux-m68k.org:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,0.0.0.69:email,renesas.com:email,0.0.0.12:email,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 1095FBCA4F
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 09C68BCB99
 X-Rspamd-Action: no action
 
-Hi Ovidiu,
+Hi Konrad
 
-On Fri, 30 Jan 2026 at 17:25, Ovidiu Panait
-<ovidiu.panait.rb@renesas.com> wrote:
-> > On Fri, 30 Jan 2026 at 14:43, Ovidiu Panait
-> > <ovidiu.panait.rb@renesas.com> wrote:
-> > > > On Tue, 20 Jan 2026 at 16:06, Ovidiu Panait
-> > > > <ovidiu.panait.rb@renesas.com> wrote:
-> > > > > Add versa3 clock generator node. It provides clocks for the RTC,
-> > PCIe
-> > > > > and audio devices.
-> > > > >
-> > > > > Signed-off-by: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
-> > > >
-> > > > Thanks for your patch!
-> > > >
-> > > > > --- a/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
-> > > > > +++ b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
-> > > > > @@ -108,6 +108,12 @@ vqmmc_sdhi1: regulator-vccq-sdhi1 {
-> > > > >                 states =3D <3300000 0>, <1800000 1>;
-> > > > >         };
-> > > > >
-> > > > > +       x1: x1-clock {
-> > > > > +               compatible =3D "fixed-clock";
-> > > > > +               #clock-cells =3D <0>;
-> > > > > +               clock-frequency =3D <24000000>;
-> > > > > +       };
-> > > > > +
-> > > > >         /* 32.768kHz crystal */
-> > > > >         x6: x6-clock {
-> > > > >                 compatible =3D "fixed-clock";
-> > > > > @@ -277,6 +283,25 @@ raa215300: pmic@12 {
-> > > > >                 clocks =3D <&x6>;
-> > > > >                 clock-names =3D "xin";
-> > > > >         };
-> > > > > +
-> > > > > +       versa3: clock-generator@69 {
-> > > > > +               compatible =3D "renesas,5l35023";
-> > > > > +               reg =3D <0x69>;
-> > > > > +               clocks =3D <&x1>;
-> > > > > +               #clock-cells =3D <1>;
-> > > > > +               assigned-clocks =3D <&versa3 0>,
-> > > > > +                                 <&versa3 1>,
-> > > > > +                                 <&versa3 2>,
-> > > > > +                                 <&versa3 3>,
-> > > > > +                                 <&versa3 4>,
-> > > > > +                                 <&versa3 5>;
-> > > > > +               assigned-clock-rates =3D <24000000>,
-> > > >
-> > > > Shouldn't (at least) qextal_clk and
-> > > >
-> > > > > +                                      <24576000>,
-> > > > > +                                      <32768>,
-> > > >
-> > > > rtxin_clk be overridden to point to the corresponding versa3 output=
-s?
-> > > > Same comment for [PATCH v2 5/5].
-> > > >
-> > >
-> > > I tried implementing this by overriding qextal_clk and rtxin_clk with
-> > > fixed-factor-clock nodes that reference the versa3 outputs as parents=
-:
-> > >
-> > > --- a/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
-> > > +++ b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
-> > > @@ -504,7 +504,11 @@ io {
-> > >  };
-> > > =C2=B7
-> > >  &qextal_clk {
-> > > -       clock-frequency =3D <24000000>;
-> > > +       compatible =3D "fixed-factor-clock";
-> > > +       clocks =3D <&versa3 0>;
-> > > +       #clock-cells =3D <0>;
-> > > +       clock-mult =3D <1>;
-> > > +       clock-div =3D <1>;
-> > >  };
-> > > =C2=B7
-> > >  &rtc {
-> > > @@ -512,7 +516,11 @@ &rtc {
-> > >  };
-> > > =C2=B7
-> > >  &rtxin_clk {
-> > > -       clock-frequency =3D <32768>;
-> > > +       compatible =3D "fixed-factor-clock";
-> > > +       clocks =3D <&versa3 2>;
-> > > +       #clock-cells =3D <0>;
-> > > +       clock-mult =3D <1>;
-> > > +       clock-div =3D <1>;
-> > >  };
-> > >
-> > > However, this breaks the boot. The problem seems to be probe
-> > > ordering:
-> > > 1. fixed-factor-clock uses CLK_OF_DECLARE, so it registers very early
-> > > 2. At that point, versa3 clocks are not yet available (since versa3 i=
-s
-> > > an I2C device, it is probed much later)
-> > > 3. The clock framework registers the fixed-factor-clock with rate =3D=
- 0
-> > > 4. Consumers (RTC, timers, etc) probe and see rate =3D 0, causing fai=
-lures
-> > >
-> > > I'm also concerned that if qextal_clk (the main SoC clock) depends on
-> > > versa3, nearly everything would need to defer until the I2C subsystem
-> > > and versa3 driver are ready.
-> > >
-> > > Could you please provide any suggestions on how to handle this?
-> >
-> > I meant to override the references to qextal_clk and rtxin_clk, i.e.
-> >
-> >     &cpg {
-> >             clocks =3D <&audio_extal_clk>, <&versa3 2>, <&versa3 0>;
-> >     };
-> >
-> > However, that could still delay everything, in which case we should
-> > just document the routing in the DTS using comments.
-> >
-> > Can you please give it a try?
->
-> With this change, the board doesn't boot at all, no output on the
-> serial console.
->
-> I think with this we are introducing the following circular clk
-> dependency chain:
->
->     cpg -> versa3 -> i2c -> cpg -> ...
+On 1/30/2026 5:53 PM, Konrad Dybcio wrote:
+> On 1/12/26 11:47 AM, Praveen Talari wrote:
+>> The GENI Serial Engine (SE) drivers (I2C, SPI, and SERIAL) currently
+>> manage performance levels and operating points directly. This resulting
+>> in code duplication across drivers. such as configuring a specific level
+>> or find and apply an OPP based on a clock frequency.
+>>
+>> Introduce two new helper APIs, geni_se_set_perf_level() and
+>> geni_se_set_perf_opp(), addresses this issue by providing a streamlined
+>> method for the GENI Serial Engine (SE) drivers to find and set the OPP
+>> based on the desired performance level, thereby eliminating redundancy.
+>>
+>> Signed-off-by: Praveen Talari <praveen.talari@oss.qualcomm.com>
+>> ---
+> 
+> [...]
+> 
+>> +/**
+>> + * geni_se_set_perf_level() - Set performance level for GENI SE.
+>> + * @se: Pointer to the struct geni_se instance.
+>> + * @level: The desired performance level.
+>> + *
+>> + * Sets the performance level by directly calling dev_pm_opp_set_level
+>> + * on the performance device associated with the SE.
+>> + *
+>> + * Return: 0 on success, or a negative error code on failure.
+>> + */
+>> +int geni_se_set_perf_level(struct geni_se *se, unsigned long level)
+>> +{
+>> +	return dev_pm_opp_set_level(se->pd_list->pd_devs[DOMAIN_IDX_PERF], level);
+>> +}
+>> +EXPORT_SYMBOL_GPL(geni_se_set_perf_level);
+> 
+> This function is never used
 
-I was already afraid so...
+it will be used by UART driver, not for I2C/SPI.
+> 
+>> +
+>> +/**
+>> + * geni_se_set_perf_opp() - Set performance OPP for GENI SE by frequency.
+>> + * @se: Pointer to the struct geni_se instance.
+>> + * @clk_freq: The requested clock frequency.
+>> + *
+>> + * Finds the nearest operating performance point (OPP) for the given
+>> + * clock frequency and applies it to the SE's performance device.
+>> + *
+>> + * Return: 0 on success, or a negative error code on failure.
+>> + */
+>> +int geni_se_set_perf_opp(struct geni_se *se, unsigned long clk_freq)
+> 
+> I think with the SPI driver in mind (which seems to do a simple rateset
 
-OK, then please just add comments like:
+APIs were added as generic interfaces shared across I²C/SPI which is 
+specific to firmware control, not Linux control.
 
-    @@ -289,9 +289,9 @@ versa3: clock-generator@69 {
-                    reg =3D <0x69>;
-                    clocks =3D <&x1>;
-                    #clock-cells =3D <1>;
-    -               assigned-clocks =3D <&versa3 0>,
-    +               assigned-clocks =3D <&versa3 0>,  /* quextal */
-                                      <&versa3 1>,
-    -                                 <&versa3 2>,
-    +                                 <&versa3 2>,  /* rtxin_clk */
-                                      <&versa3 3>,
-                                      <&versa3 4>,
-                                      <&versa3 5>;
+> for both backends) we could do:
+> 
+>> +{
+>> +	struct device *perf_dev = se->pd_list->pd_devs[DOMAIN_IDX_PERF];
+> 
+> Then, we can do struct device * perf_dev = se->dev;
+I don't think, it is needed since this is specific to firmware control, 
+not Linux control.
 
-Any others needed?
+Thanks,
+Praveen Talari
 
-Thanks for testing!
+> 
+> if (se->pd_list && se->pd_list->pd_devs[DOMAIN_IDX_PERF])
+> 	perf_dev = se->pd_list->pd_devs[DOMAIN_IDX_PERF];
+> 
+> and reuse it in both cases, completely transparently to the caller
+> 
+> Konrad
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
