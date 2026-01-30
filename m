@@ -1,177 +1,211 @@
-Return-Path: <devicetree+bounces-261107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261104-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ULqZBtRkfGkKMQIAu9opvQ
-	(envelope-from <devicetree+bounces-261107-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 08:59:16 +0100
+	id SIIGAnBjfGmlMAIAu9opvQ
+	(envelope-from <devicetree+bounces-261104-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 08:53:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F3A3B8179
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 08:59:15 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20723B80DE
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 08:53:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 6FD6B3007210
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 07:59:09 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 9AC6F30046A5
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 07:53:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC1213128AF;
-	Fri, 30 Jan 2026 07:59:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0718430C373;
+	Fri, 30 Jan 2026 07:53:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ite.com.tw header.i=@ite.com.tw header.b="qITWi1+G"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="e0IgF1zm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ironport.ite.com.tw (hc210-202-87-179.vdslpro.static.apol.com.tw [210.202.87.179])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFCE03128A2;
-	Fri, 30 Jan 2026 07:59:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.202.87.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 311802F8BD0;
+	Fri, 30 Jan 2026 07:53:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769759948; cv=none; b=NLwGRPidXXU/WYJFzoDc0wVLv57SIIYpkrkVfUyQX5qSZMksDDz9Ul4UJTuWLTXusbPCNzmTawgoLQu0ekb/nPqTPG6MexyP8c+XLYUO+YrsddAW/F8qiESqX3jPHqc0UBbh4RbNmm77olX60qvbyGpMty5Ccm2CQxDRPosVKxk=
+	t=1769759594; cv=none; b=Db+GxLsPIN/xl/n+d1W/rj8f45Ii8K5j3EveAJAXMsFlWvbyGvfV+Pa3hl4qKSy6BbHvWOkpX/UOgOjlhvROelD+sREQJxY6wfT4IUjaExLXInKN6b0p4ICWw5pC0HSf0tOBcDg7AgOsByFC00v/q81UfLxcgBBmP/FsDH2KCss=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769759948; c=relaxed/simple;
-	bh=JQUBEj75A0PTPSvXYmoh2ILgh4mBxianhtilZh6JVag=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=m34FbNZn/WLOSq+nBrJrQ5cq4PmNBshvWNV7gNmUiaS0Fhy0Fg3DNVXI5En8ox7mECoxQqhR7gKo8IYBwAb47zgP8sVjgrALhSPgZAMJXgGTLchhnlTJ4oJKp8t+T3Ql2RDHrcyAp3bjq6gyV+esSleYnTnwBj+ZdcMFiuuPLkk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ite.com.tw; spf=pass smtp.mailfrom=ite.com.tw; dkim=pass (2048-bit key) header.d=ite.com.tw header.i=@ite.com.tw header.b=qITWi1+G; arc=none smtp.client-ip=210.202.87.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ite.com.tw
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ite.com.tw
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=ite.com.tw; s=dkim;
-  h=from:date:subject:mime-version:content-transfer-encoding:
-   message-id:references:in-reply-to:to:cc;
-  bh=7S8jJuzimXa5C2vacv/YGWN5Ao9lPtw9w+xLYWUDZVc=;
-  b=qITWi1+GmDvoLRXPqQrR4pByW5mHteiQHDJtjbc5z+NO68Q7rtS7rb32
-   IFs/3lXhtEGcJp17lo+5FYBw4SJ9LbLpIT4cVjAMeKbQLtPBrJP9lksvj
-   LPHYAIT97y+6fAD1hE8JAO7/xyJynda/UNnEqmipLT/O/q7UIspv4sHiz
-   N2EGIIA7snY6gBTIM+JbL8I+G/vhE+gFDIdWPME286k9zdV5E6oy7eOv/
-   /YuXWpkXm65tX72SB0o0Qn5IJ2n/V3GJ7NPkTrmP/LL50C8IuDWlpZ9bP
-   7DOSMW9TCi3JtZhLjfmeDxkE87Qb+QYtsNJ9NueHfSBcRLCPJzxS6MhZR
-   Q==;
-X-CSE-ConnectionGUID: X0tGPioBRui1+qp/yVPo0w==
-X-CSE-MsgGUID: YdMbuaMQQmGm0mOwYmX/5Q==
-Received: from unknown (HELO mse.ite.com.tw) ([192.168.35.30])
-  by ironport.ite.com.tw with ESMTP; 30 Jan 2026 15:48:57 +0800
-Received: from CSBMAIL1.internal.ite.com.tw (CSBMAIL2.internal.ite.com.tw [192.168.65.41])
-	by mse.ite.com.tw with ESMTP id 60U7pSVd005434;
-	Fri, 30 Jan 2026 15:51:28 +0800 (+08)
-	(envelope-from Pet.Weng@ite.com.tw)
-Received: from [127.0.1.1] (192.168.72.40) by CSBMAIL2.internal.ite.com.tw
- (192.168.65.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.35; Fri, 30 Jan
- 2026 15:51:27 +0800
-From: Pet Weng <pet.weng@ite.com.tw>
-Date: Fri, 30 Jan 2026 15:51:36 +0800
-Subject: [PATCH v6 3/3] MAINTAINERS: Add entry for ITE IT61620 MIPI to HDMI
- bridge driver
+	s=arc-20240116; t=1769759594; c=relaxed/simple;
+	bh=N+XzgfavOWTt7osrny+ea51lBffcN2kQA5aqYOJwhhg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CnMlZMBCT8WBXPk4+xeU0/aBcY03Z7w7HAVO4/B+d2ccc8qEizaQHUzDB8RwwA7Qs/2c/saa7Gi6xwpePKQ2GUqkJwkIHwzB/b9TlG+fzyE2PyTwxBT76dVdWsaLKQhebF17z7WvgcSADw92lgmtZPM+Gk3wvCcOXOVPRtWG8vY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=e0IgF1zm; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1769759593; x=1801295593;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=N+XzgfavOWTt7osrny+ea51lBffcN2kQA5aqYOJwhhg=;
+  b=e0IgF1zm451RjgDhf2hsQzhPYjv7/hT3wSD4srTRae7sDRWKy5pYd3aM
+   KelCvCDcFno5dpmvvF9OFQXIMYHcLWgTNFgYAv5LtE4LTlu+B1rJU5FQc
+   E8Ank6uG6Za/E06ePPz+bmVh0U9YmrNFaBiTMINWh2jfD3gE38oVx2OeR
+   72WRSWtY69O+Vm9zkph/FuUVF26WhQTp9H9sjrpY/xbE8R/uznJ7r9a/I
+   U+OIR/Q807wZ+/w4Z5QF0uignRP6qmf4f7KQ1bmhG6/Alg2Y0w5a3ro1D
+   AwMmFw9UJm7SZpi7vFaYd6VsULNDSnqmmZlqbfIPxXy2u+h4Rewl89SRF
+   A==;
+X-CSE-ConnectionGUID: dr1LMaVxQmaHCfHGl13jPA==
+X-CSE-MsgGUID: zOmMK3WyRQuSsPnDZn7i3Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="81642347"
+X-IronPort-AV: E=Sophos;i="6.21,262,1763452800"; 
+   d="scan'208";a="81642347"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2026 23:53:12 -0800
+X-CSE-ConnectionGUID: aLY2uB+aRhi8535KZgPeyw==
+X-CSE-MsgGUID: t67pp0MMQ4+qux+BXtDumg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,262,1763452800"; 
+   d="scan'208";a="208391437"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.245.227])
+  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2026 23:53:08 -0800
+Date: Fri, 30 Jan 2026 09:53:06 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Danny Kaehn <danny.kaehn@plexus.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Benjamin Tissoires <bentiss@kernel.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Jiri Kosina <jikos@kernel.org>,
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Ethan Twardy <ethan.twardy@plexus.com>, linux-i2c@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Leo Huang <leohu@nvidia.com>,
+	Arun D Patil <arundp@nvidia.com>, Willie Thai <wthai@nvidia.com>,
+	Ting-Kai Chen <tingkaic@nvidia.com>
+Subject: Re: [PATCH v13 2/3] HID: cp2112: Fwnode Support
+Message-ID: <aXxjYtiZnSX-wEUh@smile.fi.intel.com>
+References: <20260127-cp2112-dt-v13-0-6448ddd4bf22@plexus.com>
+ <20260127-cp2112-dt-v13-2-6448ddd4bf22@plexus.com>
+ <aXkawwpmLW7m4Fu8@smile.fi.intel.com>
+ <20260129183650.GA1419235@LNDCL34533.neenah.na.plexus.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20260130-it61620-0714-v6-3-70afa65923b5@ite.com.tw>
-References: <20260130-it61620-0714-v6-0-70afa65923b5@ite.com.tw>
-In-Reply-To: <20260130-it61620-0714-v6-0-70afa65923b5@ite.com.tw>
-To: Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong
-	<neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart
-	<Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej
- Skrabec <jernej.skrabec@gmail.com>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Hermes Wu <hermes.Wu@ite.com.tw>,
-        Kenneth
- Hung <kenneth.Hung@ite.com.tw>,
-        Pet Weng <pet.weng@ite.com.tw>,
-        Jau-chih
- Tseng <jau-chih.tseng@ite.com.tw>,
-        Pin-yen Lin <treapking@google.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1769759532; l=1028;
- i=pet.weng@ite.com.tw; s=20250702; h=from:subject:message-id;
- bh=JQUBEj75A0PTPSvXYmoh2ILgh4mBxianhtilZh6JVag=;
- b=ojnNRPB1/JmO9j7imxv7TqYas2ju7dPlAmeeEjRwAHlMcZXxE+B8LFohcJc29KvTafVxb4eCU
- egsMNsDWeBOBGqz9iP65cszBBlsKrWVMTlORTzpm4rEgLb7TqOcAmSt
-X-Developer-Key: i=pet.weng@ite.com.tw; a=ed25519;
- pk=wd08uBtTLb93x2ixbKVNsxiZPdMh1Ov4z5klodh2bqo=
-X-ClientProxiedBy: CSBMAIL1.internal.ite.com.tw (192.168.65.58) To
- CSBMAIL2.internal.ite.com.tw (192.168.65.41)
-X-TM-SNTS-SMTP:
-	0C16B00633E41729994B987A836449DC29F11FE226CA7C7EA9D9FF18F723B6532002:8
-X-MAIL:mse.ite.com.tw 60U7pSVd005434
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260129183650.GA1419235@LNDCL34533.neenah.na.plexus.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ite.com.tw,quarantine];
-	R_DKIM_ALLOW(-0.20)[ite.com.tw:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-261107-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com,linaro.org,plexus.com,nvidia.com];
+	TAGGED_FROM(0.00)[bounces-261104-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[pet.weng@ite.com.tw,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ite.com.tw:+];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,linaro.org:email,lists.freedesktop.org:email,gitlab.freedesktop.org:url,ite.com.tw:email,ite.com.tw:dkim,ite.com.tw:mid,baylibre.com:email]
-X-Rspamd-Queue-Id: 3F3A3B8179
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smile.fi.intel.com:mid,intel.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 20723B80DE
 X-Rspamd-Action: no action
 
-Add a new entry for the ITE IT61620 MIPI to HDMI bridge driver to the
-MAINTAINERS file, include the responsible maintainer, mailing list, and
-file patterns.
+On Thu, Jan 29, 2026 at 12:36:50PM -0600, Danny Kaehn wrote:
+> On Tue, Jan 27, 2026 at 10:06:27PM +0200, Andy Shevchenko wrote:
+> > On Tue, Jan 27, 2026 at 08:47:49AM -0600, Danny Kaehn wrote:
 
-Signed-off-by: Pet Weng <pet.weng@ite.com.tw>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+...
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 3b84ad595e226f231b256d24f0da6bac459e93a8..6775ee371aa11bcaa1c45bbf5ea31d4aa5522288 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13504,6 +13504,13 @@ T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
- F:	Documentation/devicetree/bindings/display/bridge/ite,it6263.yaml
- F:	drivers/gpu/drm/bridge/ite-it6263.c
- 
-+ITE IT61620 MIPI DSI TO HDMI BRIDGE DRIVER
-+M:	Pet Weng <pet.weng@ite.com.tw>
-+L:	dri-devel@lists.freedesktop.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/display/bridge/ite,it61620.yaml
-+F:	drivers/gpu/drm/bridge/ite-it61620.c
-+
- ITE IT66121 HDMI BRIDGE DRIVER
- M:	Phong LE <ple@baylibre.com>
- M:	Neil Armstrong <neil.armstrong@linaro.org>
+> > I'm wondering if we can avoid this (additional) check and use the result of one
+> > of the branches.
+> 
+> Meaning something like using the result of acpi_get_local_address() to
+> determine whether the node is ACPI vs. not? That is what it used to do,
+> before I needed to switch to different schemas for DT vs. ACPI. Now, it
+> doesn't really make sense to use the child node types to determine
+> whether the GPIO node is shared, but still possible if we store a bool
+> result from the *_for_each_child_node() loop, but needs more complex
+> logic to store that based on each child's type (and the loop is fully
+> unnecessary for the non-ACPI case anyways).
+> 
+> Following the discussion on the DT binding thread, do you still want
+> ACPI to follow this different schema with the separate GPIO child node,
+> or would you prefer to unify them?
+
+Wouldn't it be a bit messy if we combine main Device object with the GPIO
+and leave I²C as a separate node? Besides that it seems already established
+practice to have GPIO + I²C controllers separated based on _ADR (see Intel
+Galileo case, drivers/mfd/intel_quark_i2c_gpio.c). Even if we can combine
+I prefer to use the existing schema to have less animals in the zoo, for
+the consistency's sake.
+
+...
+
+> > > +		device_for_each_child_node(&hdev->dev, child) {
+> > 
+> > If we are still use the above check it will be dev_fwnode() duplication call,
+> > so perhaps a temporary variable to collect the device's fwnode and use it
+> > there, below (see below), and here as for
+> > 
+> > 		fwnode_for_each_child_node()
+> 
+> 
+> Makes sense, will update. I initially assumed we wanted to use the
+> "device_*" API wherever possible.
+
+Yes, but use a common sense. If we have fwnode already available, why should we
+still use device_*()?
+
+> > > +			ret = acpi_get_local_address(ACPI_HANDLE_FWNODE(child), &addr);
+> > > +			if (ret)
+> > > +				continue;
+> > > +
+> > > +			switch (addr) {
+> > > +			case CP2112_I2C_ADR:
+> > > +				device_set_node(&dev->adap.dev, child);
+> > > +				break;
+> > > +			case CP2112_GPIO_ADR:
+> > > +				dev->gc.fwnode = child;
+> > > +				break;
+> > > +			}
+> > > +		}
+> > > +	} else {
+> > 
+> > I would still check if this is a proper (OF) node, in case we stick with the
+> > ACPI check above. Because we might have swnode and if it triggers, it will be
+> > really something unexpected.
+> >
+> > 	} else if (is_of_node(fwnode)) {
+> 
+> Wouldn't it be valid to use software nodes to describe the
+> CP2112's functions? Is there any reason to intentionally prevent that?
+
+swnode:s are for quirks. I hope in this case we won't see them IRL.
+In any case, let's enable them when we will have the case.
+
+> > > +		child = device_get_named_child_node(&hdev->dev, "i2c");
+> > > +		device_set_node(&dev->adap.dev, child);
+> > > +		fwnode_handle_put(child);
+> > > +	}
 
 -- 
-2.34.1
+With Best Regards,
+Andy Shevchenko
+
 
 
