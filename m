@@ -1,228 +1,217 @@
-Return-Path: <devicetree+bounces-261247-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261248-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aO+dI/XEfGm+OgIAu9opvQ
-	(envelope-from <devicetree+bounces-261247-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 15:49:25 +0100
+	id eJffHzPFfGm+OgIAu9opvQ
+	(envelope-from <devicetree+bounces-261248-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 15:50:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF91BBBBBD
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 15:49:24 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC0AABBBE2
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 15:50:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2E8DE3002F69
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 14:49:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DA55530082B4
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 14:50:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99EAA322C60;
-	Fri, 30 Jan 2026 14:49:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCD6A319604;
+	Fri, 30 Jan 2026 14:50:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="XJJPHXgk";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ERScmCGW"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="WH5B80zX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BB9130F92D
-	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 14:49:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6E072C11D7;
+	Fri, 30 Jan 2026 14:50:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769784560; cv=none; b=rPcSj0gcwuR1IzFmhT/cCaf6SGQuPiUvp1pHyeo3D5xY/ML+J+Q8pp+FJnOVVIvP0dYfpMfydUt2Yxf+oeYmWbGvyQxshZm/Cbd19TsHUwm+zNgU6KlCF55giAwVH21BxMmobiNUo0Md9OOdZBgEoGarl1FwMgXCYRGKqRuHzBA=
+	t=1769784624; cv=none; b=Ok2wTve3rMyO8vSJ4VKiQlNF2R477EiFYca1t7fRhct1bE/yRjr+ka9bUXbFfiZxzvKi82oLKROm/I+ZHTkDghjqSO0NZbwH4VGuYNUI90qmQFLVA5O4OmDTPOGJVzV9CtxrD3dyfuvivNKmlai+wvP0njrsutB2aGhHphM/gU4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769784560; c=relaxed/simple;
-	bh=tfZk+5KNNEIOJgNbg0qag/Nul+kpF2IKQPhVCoBQD6U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jo+6unAgjvDCDbSe+Nz1E876nRrdy4Tjq5nWaywHTDeSydc3qzJU/9/Xk9Q2ktEMQdPn9iPvr/S18Lot4PVGI0s7YIJolpd1K+aZ6FoabGuPghCq0ufON0T44bF55bZCHg1K2Uha63ysdgh472HLD+fGs14Lz72vKTZ21lYBLqc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XJJPHXgk; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ERScmCGW; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60UCSC1L555440
-	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 14:49:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	JwTwhgSyzqJLo63i9kwRYod4/mBwRdp48FEKlR9vabc=; b=XJJPHXgkE7AFnUgQ
-	LaMRZ5LJWwuQRZgrNpI8ZgUZKxAJKJ9PEv48TWDwUgQIzwuqt7xGhwa8sOUT4KYt
-	onnR+Quc/RrNXFABDQ6LbetxDbNv9fi1/xtgIdjAONecwl70UyYRGBFB3VBuUxd4
-	TkrMhAPr1uokJMvJje2QBVBAERIdg35+4W7tN5K1PMYf3EWRKxU9gxCP3Zkpw+AY
-	L17F1LePoBl5lg7GZ9utfAzpW+DnHTBxgVfrBDMV7t+cWCzDsgUgJcm6tLsx+oAb
-	5F875S/xlKU3eJ1NeA9toZBqa7uMHbbAiAkppKDR+wGtf9jYHDMvCF43htXth9wV
-	ve5oMg==
-Received: from mail-dl1-f71.google.com (mail-dl1-f71.google.com [74.125.82.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c0p59hppp-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 14:49:18 +0000 (GMT)
-Received: by mail-dl1-f71.google.com with SMTP id a92af1059eb24-124a38e8980so2970705c88.0
-        for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 06:49:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769784557; x=1770389357; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JwTwhgSyzqJLo63i9kwRYod4/mBwRdp48FEKlR9vabc=;
-        b=ERScmCGWTi6z71E9mN/E+TekdZioVidS/0MqrpYEhrJPfmkH9sNJW1ENl7D04SKSKX
-         NPBFRn6FXQVqI3YGWolOeT+cE/+kFltAtXymcDMifTZygI2p5I8wLzsATbkGtulXJtKZ
-         SKiRkcMMDXQjVRPFnOYU9YBCGOOqQoHM6eRoAnCh/FbykI34BKjnEMlG9Rp7qoam7JWA
-         82eYTJhIp0eQfZClT94z8Kx6kbB4VwN0s39SIdVZ+sS41DhUqXEDYIyW03gk2ikAm2+n
-         WFyvUSlcM5aSvM7IVrXlPgkgtjIVR0VXrGVpSrxJPGbW/bH1Dq96QBcNsq4NE5/nBGNy
-         mNtg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769784557; x=1770389357;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JwTwhgSyzqJLo63i9kwRYod4/mBwRdp48FEKlR9vabc=;
-        b=j7UqC0W+bHzLpdP1AcuZ6q+3Q/rTFD6u5EbW1RQhcN2v0W1CzRipsDffGxozu2HlgI
-         6IRGN7HbWcFHUd/l2fD42ToQEkZTS+yN5hTXN51S8SsfhB0Aqwm1xDyHQBfX4Gx6rSYP
-         pKbHdkTpu4TjQ/P4aRXPD/nvqNcGn0W8QcApQ2G71ClzyodKOTdRTYWebMW8P00vr8dn
-         CitMYasmuzyULiB1GVVBnDw16Sb3L5Gcpzcrs40K8BP/R3Fr3uktWFQQLBwCzbfQhQOU
-         sbVOvs3F6NmD36qy3Cw13KnCPlb85PRxxUSqgOPqRMQ9Ppj4Cekuy+NqRSWfA+4MYF68
-         8u7A==
-X-Forwarded-Encrypted: i=1; AJvYcCVL5YN5rD6e1ZH1kDN5zp6mBmjDOk4rLpM7j781OfSjYpcydFC52W2JMiFx67qlJodMz3E99nFwvfrG@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw62hAaNt852ktjQUs+O3UO2cBrHcV3VeEW3Rn6JZu1aeYZ+RLq
-	D3yBLBOJVEUjlkpat45tRMP/7IFlvTAU8E8CsDZooR2f0yh4g8Td4S71ju7PBiJvHfSrIs3zEMA
-	k2KAHiUjdbxG0lj4Tj887uvf2iDw4yCnbqhuD9xV2EAK7MyFp42azJzCUsmNq5by8
-X-Gm-Gg: AZuq6aI0IJkmAPVtg1tAZAwVLFTXMAnlRaFcXftyTQBVz+ayVC59rdNfiHhtHDBGKLB
-	H96MhPi+8+o9oeoLJnU3NAQi0+2yNaaWLwQQZpXckel9RlsAph6AiIKq4b+n2UdC4RkqZ0tHPzE
-	LVJRiM9gWYbf1iLsyAtWSUW8JK799hSiBt/ZUt/Gie/xddmXW83ggG7LGNQeJ3TGijpDH5mFkov
-	qKiNW7fUqdIXph1dU2EFgOJiDmVFtOlX2Jz/GPaDm8JHYxf3RRNvIn56O3O6RrzZDu1slGERGYf
-	ylSqm9MNDjIk8PNqnD+PV/PXj/LORhz7Xzhi2J1+q3gj21WUaJWe4vuf+jE3aMPNFqQgqfnZNFR
-	0qfZgiSiA3zkGO4GJ05AvV6/jDNePuCqwAddMldoulmm+/A==
-X-Received: by 2002:a05:7022:e25:b0:124:a93c:44f0 with SMTP id a92af1059eb24-125c1021329mr1305173c88.47.1769784556882;
-        Fri, 30 Jan 2026 06:49:16 -0800 (PST)
-X-Received: by 2002:a05:7022:e25:b0:124:a93c:44f0 with SMTP id a92af1059eb24-125c1021329mr1305147c88.47.1769784556232;
-        Fri, 30 Jan 2026 06:49:16 -0800 (PST)
-Received: from [192.168.1.3] ([122.177.244.129])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-124a9d6b740sm13384721c88.2.2026.01.30.06.49.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Jan 2026 06:49:15 -0800 (PST)
-Message-ID: <8892020f-b674-49fd-8715-aaa364ee9e54@oss.qualcomm.com>
-Date: Fri, 30 Jan 2026 20:19:09 +0530
+	s=arc-20240116; t=1769784624; c=relaxed/simple;
+	bh=HXujmcHAS9+iwTW6ICXOooCX0MlY74Azq227cCjStKo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=r4NpHNjDZSXry3n1aa5Dw5J2jt0wC+dZSKASt8LB1NmOM3RqThfLB5mZmMHHYFxIe3g9JZs97DubdG34DpLq9BQMwwJVcop3aiUlm6i98uIUzuwxVNwLa06KFygOAIGwsfT/taHU8RE0KbMetjuv0wK3/1MLqKqGCopshImk9iQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=WH5B80zX; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=LZzYYZ47MhM5DbXuBFYv+5+5v+vkghMIaO5mgHVitCI=; b=WH5B80zX3ZnL/qn/O8PYSUOAQF
+	/EGSfRNsE7jPycCz+dQZZzZe8SalMBbiZQXiHm4FltNSMewf03zVxDP/jFqYOUFGteKF3Ngv9ZlkX
+	iFPNODNPoWnURYUS0Vhowsvpmae3wTfe19CCBUl2nXKX2jr7kMwHDiX5sVud9TSAtW5MiGjMh10pG
+	76sp88yzPMDzxq3EWeO0W4PYsh00qKNcAxFD4gkSKRE7vAdrMWHXnzx+56maqPQhpm5ZlcDkkBM4I
+	TqTTE7+ISJl9mtxhtXHZeSenO5EvjqZcSafwi0aQu66BUUbABkXv3Dkd8xHMQK889/gg8cyKUkp/c
+	RVy6FFaQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:35632)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1vlpp4-000000001Cc-1afO;
+	Fri, 30 Jan 2026 14:50:10 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1vlpp2-000000000b3-0oEH;
+	Fri, 30 Jan 2026 14:50:08 +0000
+Date: Fri, 30 Jan 2026 14:50:07 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Vinod Koul <vkoul@kernel.org>
+Cc: Vincent Guittot <vincent.guittot@linaro.org>, neil.armstrong@linaro.org,
+	Simon Horman <horms@kernel.org>, krzk+dt@kernel.org,
+	conor+dt@kernel.org, ciprianmarian.costea@oss.nxp.com, s32@nxp.com,
+	p.zabel@pengutronix.de, ghennadi.procopciuc@nxp.com,
+	Ionut.Vicovan@nxp.com, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+	Frank.li@nxp.com
+Subject: Re: [PATCH 2/4] phy: s32g: Add serdes subsystem phy
+Message-ID: <aXzFH09AeIRawCwU@shell.armlinux.org.uk>
+References: <20260126092159.815968-1-vincent.guittot@linaro.org>
+ <20260126092159.815968-3-vincent.guittot@linaro.org>
+ <aXsuRTZUUnw0kdzV@horms.kernel.org>
+ <CAKfTPtDfnpzq2CB-isVzvh1ZCWo7kit9KRJvVGoU1C3zZTgdXw@mail.gmail.com>
+ <aXtfVUb0eLwP4R28@shell.armlinux.org.uk>
+ <CAKfTPtCiJcNOdoddZN5N1dKHXfUJBe0=zeWfZ5uENoXDvbMnpQ@mail.gmail.com>
+ <aXtl6eQ8zD_olTdc@shell.armlinux.org.uk>
+ <aXtvDn_-pCuKPrnf@vaman>
+ <aXtwfj1vqB1cXKFM@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] arm64: dts: qcom: talos: Flatten usb controller
- nodes
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-References: <20260128062720.437712-1-krishna.kurapati@oss.qualcomm.com>
- <20260128062720.437712-2-krishna.kurapati@oss.qualcomm.com>
- <2324aa41-6b2a-41ca-9f97-7a5b5e0f575f@oss.qualcomm.com>
- <f9f7514a-8841-43b8-b01e-aef4aceb8d3a@oss.qualcomm.com>
- <fa3735c3-ac4a-4f98-bca5-a1b75dad0939@oss.qualcomm.com>
-Content-Language: en-US
-From: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
-In-Reply-To: <fa3735c3-ac4a-4f98-bca5-a1b75dad0939@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: BPrdqQuAiEzcu7YjmgwJzBNsBU-hTdWi
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTMwMDEyMSBTYWx0ZWRfXyU9fqBoD6HvY
- pZgmLBseSzZ3d5ps+lGou52wxHzBnyNDW/4+4eIUEgT9dcA9F2KcuJBTxjyQNXHzqS5KtaAizCH
- C/DKLd507iclTQp6EVaatPyf/Gt/glpy04FppmWHJntZzINjKIyiLbzKhGajvdVMbXItZhVcJiQ
- +xPns/3gBCJ68bc2pwVrPo9Sp+0A2ooAY7osoXKRVe1omcdYpgTu95O+5jPw0BgMhOfqi7h3gk5
- MOHIEoqIBc53U7kHXexDTuEP6AkInNE0CGwakC44kK2pvwmEFkcStuS6WMOm9YxdlcbmWhra9xa
- mm7Mqq7OKmr59qZuWhYrbRVtt4AB2Y7X6xI9F854Y11Xlr7SkvsG6d/mBt5YOxi3TARyulxLhVL
- PleG/FAR3Yj5GlgSyD4M/hWLbVBirluhUNTssiagMiKlFhn5idkx78SEXH0cYbAu420JnlFUYce
- 8+Cu0eMFWxWWvTwxNrw==
-X-Proofpoint-GUID: BPrdqQuAiEzcu7YjmgwJzBNsBU-hTdWi
-X-Authority-Analysis: v=2.4 cv=Re+dyltv c=1 sm=1 tr=0 ts=697cc4ee cx=c_pps
- a=JYo30EpNSr/tUYqK9jHPoA==:117 a=cyLKOHUn2kgKoBmswTDEEg==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=RdQPRE3GmD7CddwFaIoA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=Fk4IpSoW4aLDllm1B1p-:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-01-30_02,2026-01-29_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 malwarescore=0 suspectscore=0 clxscore=1015 bulkscore=0
- adultscore=0 impostorscore=0 priorityscore=1501 lowpriorityscore=0
- phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2601300121
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aXtwfj1vqB1cXKFM@shell.armlinux.org.uk>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [1.14 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_REJECT(1.00)[armlinux.org.uk:s=pandora-2019];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[armlinux.org.uk : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261247-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NEQ_ENVFROM(0.00)[krishna.kurapati@oss.qualcomm.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-261248-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[armlinux.org.uk:-];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[linux@armlinux.org.uk,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: CF91BBBBBD
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,armlinux.org.uk:url,armlinux.org.uk:email]
+X-Rspamd-Queue-Id: EC0AABBBE2
 X-Rspamd-Action: no action
 
-
-
-On 1/29/2026 4:58 PM, Konrad Dybcio wrote:
-> On 1/28/26 5:09 PM, Krishna Kurapati wrote:
->>
->>
->> On 1/28/2026 4:01 PM, Konrad Dybcio wrote:
->>> On 1/28/26 7:27 AM, Krishna Kurapati wrote:
->>>> Flatten usb controller nodes and update to using latest bindings
->>>> and flattened driver approach.
->>>>
->>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
->>>> Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
->>>> ---
->>>
->>> Have you checked whether this brings about the same crash-on-suspend
->>> issue as it does on Hamoa?
->>>
->>> https://lore.kernel.org/linux-arm-msm/71c15a78-7a50-4913-b677-e5308fcabfad@packett.cool/
->>>
->>
->> Hi Konrad,
->>
->>   Yes, I did check system suspend use case after flattening and there is no crash seen.
->>
->>   The only issue I observed (both before and after flattening) is that waking up from bus suspend, there is an enumeration failure on second port in host mode, and an xHCI CMD_RUN timeout occurs. The issue is gone if we keep controller GDSC flags as RET_ON (not the right solution though). But this issue has nothing to do with flattening. I will sync up with clocks team and try to fix that host mode issue.
+On Thu, Jan 29, 2026 at 02:36:46PM +0000, Russell King (Oracle) wrote:
+> On Thu, Jan 29, 2026 at 08:00:38PM +0530, Vinod Koul wrote:
+> > On 29-01-26, 13:51, Russell King (Oracle) wrote:
+> > > On Thu, Jan 29, 2026 at 02:36:01PM +0100, Vincent Guittot wrote:
+> > > > On Thu, 29 Jan 2026 at 14:23, Russell King (Oracle)
+> > > > <linux@armlinux.org.uk> wrote:
+> > > > >
+> > > > > On Thu, Jan 29, 2026 at 02:01:13PM +0100, Vincent Guittot wrote:
+> > > > > > yes, the usual pattern is :
+> > > > > > - phy_set_mode_ext()
+> > > > > > - then phy_power_on()
+> > > > > > but I can add an additional check
+> > > > >
+> > > > > Please read Documentation/driver-api/phy/phy.rst section "Order of API
+> > > > > calls" which suggests phy_set_mode_ext() after phy_power_on().
+> > > > 
+> > > > Fair enough.
+> > > > That being said, all pcie drivers  that use phy_set_mode_ext(), call
+> > > > it before phy_power_on()
+> > > 
+> > > It looks like many ethernet drivers do the same, so I think maybe the
+> > > generic PHY documentation is incorrect or misleading, or is expressing
+> > > a preference that almost no one follows. Something for the generic PHY
+> > > maintainers to look at and/or comment on.
+> > 
+> > I would feel it makes sense to configure the mode first and then power
+> > the phy up. As commented above yes it looks like apart from one tegra
+> > driver rest seem to do it this way.
+> > 
+> > Lets update the documentation
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/talos.dtsi b/arch/arm64/boot/dts/qcom/talos.dtsi
-> index 75716b4a58d6..7e7f4eae8a98 100644
-> --- a/arch/arm64/boot/dts/qcom/talos.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/talos.dtsi
-> @@ -4559,7 +4559,7 @@ usb_2: usb@a8f8800 {
->                                   <&gcc GCC_AGGRE_USB2_SEC_AXI_CLK>,
->                                   <&gcc GCC_USB20_SEC_SLEEP_CLK>,
->                                   <&gcc GCC_USB20_SEC_MOCK_UTMI_CLK>,
-> -                                <&gcc GCC_USB2_PRIM_CLKREF_CLK>;
-> +                                <&gcc GCC_USB3_SEC_CLKREF_CLK>;
-> 
-> 
+> Please also indicate in the documentation whether changing the submode
+> of the serdes (particularly for ethernet) is permitted without doing a
+> phy_power_down()..phy_power_up() dance around the phy_set_mode_ext()
+> call.
 
-I tried this out but it didn't work.
+Maybe something like this, which simply alters the documentation to
+indicate that phy_set_mode*() is permissible prior to phy_power_on(),
+and should be used at that point where drivers know the mode which
+will be used.
 
-Regards,
-Krishna,
+Leaving the existing phy_set_mode*() in the sequence also indicates
+that it's permissible to call this while the PHY is still powered
+on.
+
+For drivers such as stmmac, it will be important that details such as
+whether phy_est_mode*() can be called with the PHY powered on are
+riveted down and not left up to the generic PHY driver author - without
+that, generic PHYs basically aren't usable from SoC/platform
+independent code, and stmmac has bazillions of platform specific glue
+already because of (a) bad code structuring and (b) lack of
+generalisation through standardised interfaces that abstract platform
+differences.
+
+I want to be able for core stmmac code, or even phylink code (which
+is even more platform generic) to be able to make use of generic PHY
+stuff, but if the calls that can be made into generic PHY are platform
+dependent, that is a blocking issue against that, and makes me question
+why we have the generic PHY subsystem... it's not very generic if it
+exposes the differences of each implementation to users of its
+interfaces.
+
+I think generic PHY has had the idea that its interfaces will only be
+used from platform specific code that knows about the behaviour of it's
+generic PHY driver, but as can be seen above, this will not remain the
+case given that we have hardware designs where the core of the driver
+is one vendor's IP that gets re-used across many different platforms,
+but the SerDes PHY is one of many other vendor's IP.
+
+diff --git a/Documentation/driver-api/phy/phy.rst b/Documentation/driver-api/phy/phy.rst
+index 719a2b3fd2ab..cf73e4fb0951 100644
+--- a/Documentation/driver-api/phy/phy.rst
++++ b/Documentation/driver-api/phy/phy.rst
+@@ -142,6 +142,7 @@ Order of API calls
+ 
+     [devm_][of_]phy_get()
+     phy_init()
++    [phy_set_mode[_ext]()]
+     phy_power_on()
+     [phy_set_mode[_ext]()]
+     ...
+@@ -154,7 +155,7 @@ but controllers should always call these functions to be compatible with other
+ PHYs. Some PHYs may require :c:func:`phy_set_mode <phy_set_mode_ext>`, while
+ others may use a default mode (typically configured via devicetree or other
+ firmware). For compatibility, you should always call this function if you know
+-what mode you will be using. Generally, this function should be called after
++what mode you will be using. Generally, this function should be called before
+ :c:func:`phy_power_on`, although some PHY drivers may allow it at any time.
+ 
+ Releasing a reference to the PHY
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
