@@ -1,397 +1,255 @@
-Return-Path: <devicetree+bounces-261334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261336-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mBxLHon5fGmYPgIAu9opvQ
-	(envelope-from <devicetree+bounces-261334-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 19:33:45 +0100
+	id cKpxMj77fGmYPgIAu9opvQ
+	(envelope-from <devicetree+bounces-261336-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 19:41:02 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 634FFBDD53
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 19:33:45 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BA49BDE9E
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 19:41:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 729AC301B2F3
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 18:33:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 94DC43009FAB
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 18:40:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 513E03806DA;
-	Fri, 30 Jan 2026 18:33:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8D3C3815C4;
+	Fri, 30 Jan 2026 18:40:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="HSsf8hZs"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Loxiu+c9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYVP286CU001.outbound.protection.outlook.com (mail-japaneastazon11011015.outbound.protection.outlook.com [52.101.125.15])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B48213806C2;
-	Fri, 30 Jan 2026 18:33:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.125.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769797997; cv=fail; b=IlG3J1rmUvXlokjA2P7RQDvCHI/SsvpaqvZGl/SSc0pSvwKdH/h3fd6rjRppsErkms2MTW7PAPLijgDiFADkShCVKzO1bBcHDOeTOZsvwNUUQGs8xW6btEzNBo0wJ55auftHOwW5aff5L+F/jJMMYBjzLgF/3f6+7QBRrZPzZ/o=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769797997; c=relaxed/simple;
-	bh=fXWl2UC4xPAJsIk+nI6Po26XeefTzySk3f0tANQPkrM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=bJ0UaUgZclkHPX43D9lqXHG96tnhpzaGtsOpmdGd4H6EvYRXKxfhssJYAnUVTYo6zKDhAhR5E+veJSKBSZviRK5USNOGTymO3QSAWWb/s2hzAusnYG08cGL2vvAvd3TzS7gT8ZnjqA9+qjZvTACi2A3uI28IqxVjvL7xCEGXLNk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=HSsf8hZs; arc=fail smtp.client-ip=52.101.125.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZtkRDJIMlfa+54P3ol6I8b/fuWXDEjjnUdN17A3vhsqaTLkv4ENQmNUV7tgI7prw5s+MYz/BO9iGPnrPrftPuvEACRJ75imh8fXYDxBPXwMOjiXdz1v0lIvlQhlkqjSib010h908+CVcZIeAlFtO6Z6yEypcWr8JSz2KgWRvKMGIZZvU+O4BVbjW7eTQ5MJUJZ3PuoV21tz3gmY6zRuinWb49BpyuvtjiDLRC0U6uG4Lbu1CenLgamfWBQ5nostIbbW6AUyqLZPS2rM0km5witDTD5iRugsm3knkt6jjyQhLRoeaquoxbIrRPNTKgX26LGN1KRVfhQv1v28I1TXlTg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/jRzfNzj0aaOUlm6jIjp5S1uXSASzDvciT9UiVU1vR0=;
- b=ItgiTTbRj9eGvWaLZJk4LGju/pciQoVgAqYRraYcqKJo/idkHWtbxGbYPXD6CIkIUKBVdL5Qu4Fva+OLe4QTinuQ9S49XkP03lhkJ3bxT6EGv4MJJ8EsprIreuMaqp6Gtzf2VUGyKZgrjpwM3JWeH0xUwbIhz3kaBsnYM2oqyaD8dLsG4+kSCGD3ySz2ANc/YxZ9M8SkmU1idJyY0qyuxdN5TWXlYg7chPLYzZUs4Hy+HznFJrtFi8N1YJ9htpzqviokdQDsfqK/dI3w9htXWxJOw8GdZz7Cx07ggxXO0bPkPJ8iBe4SOTpXd2rEbappiF2CoImII6fQSOxEAT10XQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/jRzfNzj0aaOUlm6jIjp5S1uXSASzDvciT9UiVU1vR0=;
- b=HSsf8hZsExhzoW2EqHw3v9AcHZORD9yXAveZLCyxlmOYGKX9+d2Nk/0xIpvnhMUT6tUkgM4vZ9ezfIKwS32w4ve5nAfM9GKgOJySMnQFEZzl2WNcWTXkUE8GDTgw+ewKvWHi/rS78ruh6hFLmBZ+RGieWHr33D2JOM5vQgAAMf8=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-Received: from TYCPR01MB11947.jpnprd01.prod.outlook.com (2603:1096:400:3e1::6)
- by OSZPR01MB8547.jpnprd01.prod.outlook.com (2603:1096:604:18c::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.13; Fri, 30 Jan
- 2026 18:33:13 +0000
-Received: from TYCPR01MB11947.jpnprd01.prod.outlook.com
- ([fe80::33f1:f7cd:46be:e4d8]) by TYCPR01MB11947.jpnprd01.prod.outlook.com
- ([fe80::33f1:f7cd:46be:e4d8%5]) with mapi id 15.20.9564.010; Fri, 30 Jan 2026
- 18:33:13 +0000
-From: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-To: tomm.merciai@gmail.com,
-	geert@linux-m68k.org,
-	laurent.pinchart@ideasonboard.com
-Cc: linux-renesas-soc@vger.kernel.org,
-	biju.das.jz@bp.renesas.com,
-	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org
-Subject: [PATCH v3 20/20] arm64: dts: renesas: r9a09g047e57-smarc: Enable DU1 and DSI support
-Date: Fri, 30 Jan 2026 19:30:12 +0100
-Message-ID: <e6d022a133dd0eeee68a3585e908467d01b76a78.1769797221.git.tommaso.merciai.xr@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1769797221.git.tommaso.merciai.xr@bp.renesas.com>
-References: <cover.1769797221.git.tommaso.merciai.xr@bp.renesas.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: MR1P264CA0120.FRAP264.PROD.OUTLOOK.COM
- (2603:10a6:501:50::12) To TYCPR01MB11947.jpnprd01.prod.outlook.com
- (2603:1096:400:3e1::6)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F18D3803FC;
+	Fri, 30 Jan 2026 18:40:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769798439; cv=none; b=rOz46obcyv8k9hJVS835kpFOo/Ac30f4jSTKS3rpgr62wwuSaK2coUvrfDIJURpVRGerWGILn7b/4VUnJ3EDPKo2R0Knt0TjkN/DggZjZTJ3CDBPavXdqT7DQ/kdlvgZM9nUDR/ljRxArqjqbh1oTJIiXbXvgx96zxiMteewk1c=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769798439; c=relaxed/simple;
+	bh=pTzY3pqKQxb+aZ0edQQc0lDTSUa7XikNWWEWjeorMo0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iUVsDShBqTxOdsovmGe4tQB9RSi4qExZWWC/70qIx7xQsVWdndYWTLGrystCeaXrXX2PxVIlCgLx5o2f85stAxfJF3tRMY3hdnOMZMQXQ+90aYYYRo0JbYzmj1RjdFQRJxRAFFgb54f8VMwfW/daFkMl/eV79BXjGiqTqrENnh8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Loxiu+c9; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1769798439; x=1801334439;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=pTzY3pqKQxb+aZ0edQQc0lDTSUa7XikNWWEWjeorMo0=;
+  b=Loxiu+c98wWGRxFRPUFEfwxlfxcxD5Yzp+hstGPuNFuLYYeZaAlnffAI
+   Ee979zgkZyEj0d9iHJ+g+R3LcyH0cdawl/RBJzAyHt+loj274OaM4gMc/
+   PElM/bS+YNtKLKnKh189CttbweoKblb3PLR+jlNvQqSDf3gZ+HwDwQrhz
+   ElfCl0gOVaq2h0vi4A4xDa0E+DmJSxkylE9ABe8p8sz99/1B0i/wbXmrc
+   vGwtqK3XiKpLGYHZ7LThYfhIJtu/ZPFg3HbvCEJqJk6tJJ3ZI040lKniN
+   +aWUMD+gAiTz084eQxZjOAQs5JWJsWrfZ8M2Pw3NMNStrzIXNstJeBsoZ
+   w==;
+X-CSE-ConnectionGUID: E80nj+P+QYOLPV7dSoPgUQ==
+X-CSE-MsgGUID: HrKohjK/QRi3xVz77smr2A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11687"; a="74906568"
+X-IronPort-AV: E=Sophos;i="6.21,263,1763452800"; 
+   d="scan'208";a="74906568"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jan 2026 10:40:32 -0800
+X-CSE-ConnectionGUID: Df/BIlV4QGu3l/SNdbt/1A==
+X-CSE-MsgGUID: ENSQz7T/TbK4fNHvDWy15A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,263,1763452800"; 
+   d="scan'208";a="213448805"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+  by orviesa004.jf.intel.com with ESMTP; 30 Jan 2026 10:40:25 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vltPp-00000000dEG-46DP;
+	Fri, 30 Jan 2026 18:40:21 +0000
+Date: Sat, 31 Jan 2026 02:40:07 +0800
+From: kernel test robot <lkp@intel.com>
+To: Sai Sree Kartheek Adivi <s-adivi@ti.com>, peter.ujfalusi@gmail.com,
+	vkoul@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, nm@ti.com, ssantosh@kernel.org,
+	dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	vigneshr@ti.com
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev, r-sharma3@ti.com,
+	gehariprasath@ti.com
+Subject: Re: [PATCH v4 11/19] drivers: soc: ti: k3-ringacc: handle absence of
+ tisci
+Message-ID: <202601310206.DLRWFXou-lkp@intel.com>
+References: <20260130110159.359501-12-s-adivi@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYCPR01MB11947:EE_|OSZPR01MB8547:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8dcff615-a506-43f8-ee88-08de602e06aa
-X-LD-Processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|52116014|1800799024|376014|7416014|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
- =?us-ascii?Q?bSXwCyKh1XiWF6rN1+3ewHpOXr1KQmuqMZjS9cle68eU1svajFR3L7ihwDX8?=
- =?us-ascii?Q?uR0RH/WADbKSYv4anoxQ+jMrLhiDKB6kERjiUX1g+vyNSfLL+FDgV5r1yJP4?=
- =?us-ascii?Q?mGXiEXv9NXopZrwZwtxGh8h16wzXnOx6u5Lc18su7xFj5sfwzbl/n8bidcKt?=
- =?us-ascii?Q?uamHE6nlJH+79s/5qLs/KIvwTu85CLoI1VZmGWP4JUR7H9yUh2BRUcVN3kcW?=
- =?us-ascii?Q?3LOcfFy8oRMHLQ0kITAs56StYHkRk4DH3DIthibPqq7mmX7dOhy4XG8RYmzp?=
- =?us-ascii?Q?I5oQWJVryYfETsJBOPttnGN5oOgEuxxjQe3Ro3IPvyN5dPQObJ0NRQNW1656?=
- =?us-ascii?Q?2jA8txwntcfmKK63ixsl43eCJ92mvVUiRuwQFWaIhvUY1Z7ZJjs6bE8IBsKW?=
- =?us-ascii?Q?bTrRWyoKIAOmYFYeRQSP2Dlp3j/QfiW2qUurqdUIY5ahvqZ1bWMpgYyxuift?=
- =?us-ascii?Q?QzFwGyLdB36a6wJDjlxAZQzDVAhrrlDqjWtoVycAQbBC7Jx3VkeVWpwI5SXN?=
- =?us-ascii?Q?2ER21B9G56K7KRW6v8/2JPFUQ6QGu4Ohz7eXvDgT2fiMx1oS5++J81X5QThU?=
- =?us-ascii?Q?LtSsvHmydjgRqgdaODjbUgqJwXBAbaTJYxKDrJ0wSETSIuLncaGH3fkWyIQt?=
- =?us-ascii?Q?NIR+wOXhdgiwWGpdSs8tA4k/blfXDzWsgeOnxPi0hDuxYG+gzyFxg6JuoSmO?=
- =?us-ascii?Q?lpokxOkEv558u3TxHr5ZSmslhGQzH25oz4n2hdB+dh3Ap4LmXI/CdG6HbmD4?=
- =?us-ascii?Q?Vjv2vKyGuCyMSkaA5jOjOmfD7YJkUCFdg1QrX4Ys1H8yUuMsrKW6DjVnhbGO?=
- =?us-ascii?Q?D8WTr7IJGPYCol5hOEAxwaDjKwF6di0rbzcU7g4GzutJy9/2PgOUBI7NHrf9?=
- =?us-ascii?Q?667p5MAaiLVmFatVOlhyWd1ZS39S7mZZyXCO0+OZK8hpvZNnyrKbOLyAxvbf?=
- =?us-ascii?Q?H7uzMJrxlX1gL9SfVSKrJcnxCJhm0gCf3GSPq6t65fNerG9jLpQD/9J1BaVR?=
- =?us-ascii?Q?6FBA/twf/ddkRuYZXpN8CILYJ7kG1GxNoQ+GzitlpzWbzQfmXoJs0fHZzmBy?=
- =?us-ascii?Q?quDSHwE2Tec7jty75Fg9STLc2WeRb156X/elBKKE3UnzYmsCiHhnijF18gS/?=
- =?us-ascii?Q?ny9C6DNszCpJUL56pPHccaSPFfi6QgrHUe7spcnGKlEm7x8MJNOiN7C4z3LK?=
- =?us-ascii?Q?Nc0MDimtp2XQJt0UZrN64YMUcOMFtY3cmocPoFNx5nC/0+bM9bgJSGAvq1P1?=
- =?us-ascii?Q?gpyRyjeaITNCk+kpS934YzgIbqP8hDpxGl8jxXHnfsmRGsE0s+QQksyMrN7f?=
- =?us-ascii?Q?NnIvN1LUZLeEbdnx48vGmZkSfXbRQAlB2LfBczCZqn68V0buCXIQQD4kfhlQ?=
- =?us-ascii?Q?SFoQpICnN8SX1GgbLNRfuGYR9ZLpOoaDzEMD0N7uEfmxnSD9R7Cw8E+prOfi?=
- =?us-ascii?Q?sRX33ev/Y2S62os9zUWEOHlSOgMbpUViCvR0MD60qcf5AHcELsOojIUf2YyR?=
- =?us-ascii?Q?Vko6f7X9MlZmSyJDt5IScQTjwwvX10tIJERp2f/yp44Xb5C7RETJx1VdHhwx?=
- =?us-ascii?Q?YwagVTYA6CMIxbK5WKsAheut4AWbvP+jaEyyX3pRqO99efUvIlLU21Z1FLXT?=
- =?us-ascii?Q?9SCwe3Jo8Dm0gMw0sw+MXl8=3D?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB11947.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(1800799024)(376014)(7416014)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?YN2Dga2Alb+gCSwcyMpI3luvHXd8l3LEgs8H6rHm99taWOVoMViE2ImqcgdC?=
- =?us-ascii?Q?YK2MgHMGdgYl8t4XLnB01VNOBFOVoHOy9xm/eSLtIJQQPl+M1OUs592xdRGn?=
- =?us-ascii?Q?RqEoR+GhsBSr9gJcIh6Rdraj5cG4UbNTQFrfHOPMoxnMlAewxcHPBeGfGS5W?=
- =?us-ascii?Q?Q8RnZcfSQ7VNEGTQeGPVNDb61ugrJf6/bSKumN9i54FG5WDGxIq3OusL1AXQ?=
- =?us-ascii?Q?bjwWW4nRXO3hIdm9igzakTJOy7X14ZDsFjDsdPQFhIccS7XbfRncI1NLK4yd?=
- =?us-ascii?Q?bZlOj8v19dodAA8isBgvo8WqNkSgF3DimcoOOgT+wMf07mG34vbRlx8zS8HA?=
- =?us-ascii?Q?Hzr+AJlQ0CE21SlqFTHc0dQJgkqf0tdELR6rLOK4J4Lg0UMG4WOIskUQ2Ep/?=
- =?us-ascii?Q?viVPxF8Zf8fFh865Zl4rriIrQnxHfEKeT0gafqVzmIsq/ORr4xqT4ux0QRhp?=
- =?us-ascii?Q?nxD8TUAixV/enC8Q8QZcOWzfAo2Bvx16KiN/bQLHYG7zJq9q6qwzExhJiMz7?=
- =?us-ascii?Q?Qub2XZa7k4fFEZLhqCPBArFYvC+QJF5KNkG35kZf6hy+K9yO7akZAxbaPbqI?=
- =?us-ascii?Q?e8fN4tbanyM5Iuaj+1aYMKIa0ZlnnSitbnfYvP70rm/bfy78iskz5KPeMxkn?=
- =?us-ascii?Q?NdmrMP1xWsKU6T2ITXZkYg1eZ0t3v0MZrynMK7WPYVTQqYE/9KTU8BH0Vz3C?=
- =?us-ascii?Q?yCiStJpS44TQVCo3kExasZ7T0p2S+7hlaflOMjs2d2NPE047YV1Mc2kAGiS2?=
- =?us-ascii?Q?F8p/4tkq6NwPKAjmdQW8P5lntwNi3vD4uqYKx3MxOWOyQgCvbH3PBuz9+ZnE?=
- =?us-ascii?Q?K1YRiZqG2Oi02VcJM+8lGjrr430LfA7vM5bVCr/UT/O0vIFM2bEgp3lerVy4?=
- =?us-ascii?Q?qRVoooxpC9ot4Urbk1gu7BugecVJ7kGq8QYua/R/iSrp+Ck/5pgVNDa7oBjp?=
- =?us-ascii?Q?YOJVfCYMHGPTZAqCycSXGMrtvY5Yfeeob1KI/2SilbOcogiR33hVem47UnuU?=
- =?us-ascii?Q?l4cHmJQSNx5/v3Jjz3MwWUgsh0xs8AjXVSSyBPPNM2Ijwila2KsPQYjHU7FY?=
- =?us-ascii?Q?W0DaA7NRg29AtRQpDyTrZ6HKJV+Dn4ARIi2BSRUz8qkbhxrNU528DxuM1trD?=
- =?us-ascii?Q?TQI5KZuUaIu0FXK4CLxNeFrsPKlmeQLmo304D5okerGIVLS2b76MUBQopB0w?=
- =?us-ascii?Q?I3Q97yVTiME8ix8f/7YS64XAvdavshrCKFG9dsbHgnJGoKnlxRah6R70dPNx?=
- =?us-ascii?Q?79hYNuvMQTENLYtLegyo2Bzskkbr/NhBCS2CqS7e+If8zEbSJIcdBZ8hMr41?=
- =?us-ascii?Q?9yYAJPSm5kFWLTgs8qJhjjFRbAzlFtsOXp/M2YRCf69SAi9l37o7U4TIe4ua?=
- =?us-ascii?Q?sMiHymQG2dzAXznTLxqL6R/rc94X9/WzS792tDepT8Dd/sIqpC5Z8rbP3J3T?=
- =?us-ascii?Q?mfA/cQrY/nMOfQFnbCWktAjSEHlsRdNU4I0uqYzRs3pNp+jelvbcw5EuhvjO?=
- =?us-ascii?Q?LFLP+g3jtOSXhBwO3RKAA8VfJP2bggmMSdsKPbTJGHYgcEalWg0qrQHtl7ee?=
- =?us-ascii?Q?5VleKGeq8wIaJaYnpuaZrlxd8/aj+SDqb04eGovEAe1WvR1uMddU1ittWjnX?=
- =?us-ascii?Q?iHpkz8LlBVOKrhGBa7CF+AeWBMMmMTKLDXYJgaOcTpfDzSRH/H2Q/cjbvmfp?=
- =?us-ascii?Q?G2N9fA18mvtXpB+9wDJLVt7v7lZzpti0xrEY2dhyGThliAZriBqgKbZHSI1X?=
- =?us-ascii?Q?nKazKK2Z7LH5Oti+52D7DvdT05nfQ6zWtYB/PO80HbcA1a6nUAkp?=
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8dcff615-a506-43f8-ee88-08de602e06aa
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB11947.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2026 18:33:13.2860
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 6WVEnoAcPnwjrn7S6cdvwtAx6TJbGmlwAR00Pd+Z9DZbqdULpHmNa4J6B9CDCiDw3LV+zIRDfqiv/eelDfCAHGWyVxdGWVf6X5cYSi74Zyxg/96TlVZpAzwzeju6BM4q
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSZPR01MB8547
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260130110159.359501-12-s-adivi@ti.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
+X-Spamd-Result: default: False [-1.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[renesas.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[bp.renesas.com:s=selector1];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[gmail.com,linux-m68k.org,ideasonboard.com];
-	FREEMAIL_CC(0.00)[vger.kernel.org,bp.renesas.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,glider.be,baylibre.com,ideasonboard.com,lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261336-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[ti.com,gmail.com,kernel.org,vger.kernel.org,lists.infradead.org];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-261334-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[bp.renesas.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tommaso.merciai.xr@bp.renesas.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	DBL_PROHIBIT(0.00)[0.0.0.12:email];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.2:email,0.0.0.1:email,0.0.0.0:email,renesas.com:email,3d:email,bp.renesas.com:mid,bp.renesas.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 634FFBDD53
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,git-scm.com:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,01.org:url]
+X-Rspamd-Queue-Id: 6BA49BDE9E
 X-Rspamd-Action: no action
 
-Enable DU1, DSI and ADV7535 on RZ/G3E SMARC EVK.
+Hi Sai,
 
-Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
----
-v1->v2:
- - Fixed: dsi, du and adv7535 are part of the the R9A09G047E57
-   SMARC SoM board then add entries in the rzg3e-smarc-som.dtsi instead
-   of using the r9a09g047e57-smarc-du1-adv7535.dtsi.
+kernel test robot noticed the following build errors:
 
-v2->v3:
- - No changes.
+[auto build test ERROR on vkoul-dmaengine/next]
+[also build test ERROR on next-20260129]
+[cannot apply to linus/master v6.19-rc7]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
- .../boot/dts/renesas/rzg3e-smarc-som.dtsi     | 114 ++++++++++++++++++
- 1 file changed, 114 insertions(+)
+url:    https://github.com/intel-lab-lkp/linux/commits/Sai-Sree-Kartheek-Adivi/dmaengine-ti-k3-udma-move-macros-to-header-file/20260130-191306
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/vkoul/dmaengine.git next
+patch link:    https://lore.kernel.org/r/20260130110159.359501-12-s-adivi%40ti.com
+patch subject: [PATCH v4 11/19] drivers: soc: ti: k3-ringacc: handle absence of tisci
+config: arm-randconfig-001-20260131 (https://download.01.org/0day-ci/archive/20260131/202601310206.DLRWFXou-lkp@intel.com/config)
+compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 9b8addffa70cee5b2acc5454712d9cf78ce45710)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260131/202601310206.DLRWFXou-lkp@intel.com/reproduce)
 
-diff --git a/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
-index 3b571c096752..fa45e001f706 100644
---- a/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
-@@ -33,6 +33,7 @@ aliases {
- 		ethernet0 = &eth0;
- 		ethernet1 = &eth1;
- 		i2c2 = &i2c2;
-+		i2c7 = &i2c7;
- 		mmc0 = &sdhi0;
- 		mmc2 = &sdhi2;
- 	};
-@@ -71,12 +72,47 @@ reg_vdd0p8v_others: regulator-vdd0p8v-others {
- 		regulator-always-on;
- 	};
- 
-+	reg_1p8v_adv: regulator-1p8v-adv {
-+		compatible = "regulator-fixed";
-+		regulator-name = "fixed-1.8V";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	reg_3p3v_adv: regulator-3p3v-adv {
-+		compatible = "regulator-fixed";
-+		regulator-name = "fixed-3.3V";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	osc1: cec-clock {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <12000000>;
-+	};
-+
- 	/* 32.768kHz crystal */
- 	x3: x3-clock {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <32768>;
- 	};
-+
-+	dsi-to-hdmi-out {
-+		compatible = "hdmi-connector";
-+		type = "d";
-+
-+		port {
-+			dsi_to_hdmi_out: endpoint {
-+				remote-endpoint = <&adv7535_out>;
-+			};
-+		};
-+	};
- };
- 
- &audio_extal_clk {
-@@ -101,6 +137,37 @@ &eth1 {
- 	status = "okay";
- };
- 
-+&dsi {
-+	status = "okay";
-+
-+	ports {
-+		port@1 {
-+			dsi_in1: endpoint {
-+				remote-endpoint = <&du1_out_dsi0>;
-+			};
-+		};
-+
-+		port@2 {
-+			dsi_out: endpoint {
-+				remote-endpoint = <&adv7535_in>;
-+				data-lanes = <1 2 3 4>;
-+			};
-+		};
-+	};
-+};
-+
-+&du1 {
-+	status = "okay";
-+
-+	ports {
-+		port@0 {
-+			du1_out_dsi0: endpoint {
-+				remote-endpoint = <&dsi_in1>;
-+			};
-+		};
-+	};
-+};
-+
- &gpu {
- 	status = "okay";
- 	mali-supply = <&reg_vdd0p8v_others>;
-@@ -126,6 +193,48 @@ raa215300: pmic@12 {
- 	};
- };
- 
-+&i2c7 {
-+	pinctrl-0 = <&i2c7_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+	clock-frequency = <400000>;
-+
-+	adv7535: hdmi@3d {
-+		compatible = "adi,adv7535";
-+		reg = <0x3d>, <0x4d>, <0x2d>, <0x5d>;
-+		reg-names = "main", "edid", "cec", "packet";
-+		clocks = <&osc1>;
-+		clock-names = "cec";
-+		avdd-supply = <&reg_1p8v_adv>;
-+		dvdd-supply = <&reg_1p8v_adv>;
-+		pvdd-supply = <&reg_1p8v_adv>;
-+		a2vdd-supply = <&reg_1p8v_adv>;
-+		v3p3-supply = <&reg_3p3v_adv>;
-+		v1p2-supply = <&reg_1p8v_adv>;
-+		adi,dsi-lanes = <4>;
-+		interrupts-extended = <&pinctrl RZG3E_GPIO(L, 4) IRQ_TYPE_EDGE_FALLING>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				adv7535_in: endpoint {
-+					remote-endpoint = <&dsi_out>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+				adv7535_out: endpoint {
-+					remote-endpoint = <&dsi_to_hdmi_out>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
- &i3c {
- 	pinctrl-0 = <&i3c_pins>;
- 	pinctrl-names = "default";
-@@ -231,6 +340,11 @@ i2c2_pins: i2c {
- 			 <RZG3E_PORT_PINMUX(3, 5, 1)>; /* SDA2 */
- 	};
- 
-+	i2c7_pins: i2c7 {
-+		pinmux = <RZG3E_PORT_PINMUX(A, 4, 4)>, /* SCL7 */
-+			 <RZG3E_PORT_PINMUX(A, 5, 4)>; /* SDA7 */
-+	};
-+
- 	i3c_pins: i3c {
- 		pinmux = <RZG3E_PORT_PINMUX(2, 0, 2)>, /* I3C0_SCL */
- 			 <RZG3E_PORT_PINMUX(2, 1, 2)>; /* I3C0_SDA */
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202601310206.DLRWFXou-lkp@intel.com/
+
+All error/warnings (new ones prefixed by >>):
+
+   In file included from drivers/soc/ti/k3-ringacc.c:17:
+>> include/linux/soc/ti/ti_sci_inta_msi.h:17:15: warning: declaration of 'struct msi_domain_info' will not be visible outside of this function [-Wvisibility]
+      17 |                                    struct msi_domain_info *info,
+         |                                           ^
+>> drivers/soc/ti/k3-ringacc.c:1506:11: error: no member named 'domain' in 'struct dev_msi_info'
+    1506 |         dev->msi.domain = of_msi_get_domain(dev, dev->of_node,
+         |         ~~~~~~~~ ^
+   drivers/soc/ti/k3-ringacc.c:1508:16: error: no member named 'domain' in 'struct dev_msi_info'
+    1508 |         if (!dev->msi.domain)
+         |              ~~~~~~~~ ^
+   1 warning and 2 errors generated.
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for CAN_DEV
+   Depends on [n]: NETDEVICES [=n] && CAN [=m]
+   Selected by [m]:
+   - CAN [=m] && NET [=y]
+
+
+vim +1506 drivers/soc/ti/k3-ringacc.c
+
+95e7be062aea6d2 Grygorii Strashko  2020-09-11  1497  
+40a2a7c395cf5d9 Grygorii Strashko  2020-07-24  1498  static int k3_ringacc_init(struct platform_device *pdev,
+40a2a7c395cf5d9 Grygorii Strashko  2020-07-24  1499  			   struct k3_ringacc *ringacc)
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1500  {
+95e7be062aea6d2 Grygorii Strashko  2020-09-11  1501  	const struct soc_device_attribute *soc;
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1502  	void __iomem *base_fifo, *base_rt;
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1503  	struct device *dev = &pdev->dev;
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1504  	int ret, i;
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1505  
+34fff62827b254f Thomas Gleixner    2021-12-10 @1506  	dev->msi.domain = of_msi_get_domain(dev, dev->of_node,
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1507  					    DOMAIN_BUS_TI_SCI_INTA_MSI);
+e50a76355c1d858 Jayesh Choudhary   2023-07-28  1508  	if (!dev->msi.domain)
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1509  		return -EPROBE_DEFER;
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1510  
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1511  	ret = k3_ringacc_probe_dt(ringacc);
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1512  	if (ret)
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1513  		return ret;
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1514  
+95e7be062aea6d2 Grygorii Strashko  2020-09-11  1515  	soc = soc_device_match(k3_ringacc_socinfo);
+95e7be062aea6d2 Grygorii Strashko  2020-09-11  1516  	if (soc && soc->data) {
+95e7be062aea6d2 Grygorii Strashko  2020-09-11  1517  		const struct k3_ringacc_soc_data *soc_data = soc->data;
+95e7be062aea6d2 Grygorii Strashko  2020-09-11  1518  
+95e7be062aea6d2 Grygorii Strashko  2020-09-11  1519  		ringacc->dma_ring_reset_quirk = soc_data->dma_ring_reset_quirk;
+95e7be062aea6d2 Grygorii Strashko  2020-09-11  1520  	}
+95e7be062aea6d2 Grygorii Strashko  2020-09-11  1521  
+f9dbb99748bab00 Zhang Zekun        2023-08-09  1522  	base_rt = devm_platform_ioremap_resource_byname(pdev, "rt");
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1523  	if (IS_ERR(base_rt))
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1524  		return PTR_ERR(base_rt);
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1525  
+f9dbb99748bab00 Zhang Zekun        2023-08-09  1526  	base_fifo = devm_platform_ioremap_resource_byname(pdev, "fifos");
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1527  	if (IS_ERR(base_fifo))
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1528  		return PTR_ERR(base_fifo);
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1529  
+f9dbb99748bab00 Zhang Zekun        2023-08-09  1530  	ringacc->proxy_gcfg = devm_platform_ioremap_resource_byname(pdev, "proxy_gcfg");
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1531  	if (IS_ERR(ringacc->proxy_gcfg))
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1532  		return PTR_ERR(ringacc->proxy_gcfg);
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1533  
+f9dbb99748bab00 Zhang Zekun        2023-08-09  1534  	ringacc->proxy_target_base = devm_platform_ioremap_resource_byname(pdev,
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1535  									   "proxy_target");
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1536  	if (IS_ERR(ringacc->proxy_target_base))
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1537  		return PTR_ERR(ringacc->proxy_target_base);
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1538  
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1539  	ringacc->num_proxies = readl(&ringacc->proxy_gcfg->config) &
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1540  				     K3_RINGACC_PROXY_CFG_THREADS_MASK;
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1541  
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1542  	ringacc->rings = devm_kzalloc(dev,
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1543  				      sizeof(*ringacc->rings) *
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1544  				      ringacc->num_rings,
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1545  				      GFP_KERNEL);
+a8eba8dde5fbf0b Christophe JAILLET 2021-12-23  1546  	ringacc->rings_inuse = devm_bitmap_zalloc(dev, ringacc->num_rings,
+a8eba8dde5fbf0b Christophe JAILLET 2021-12-23  1547  						  GFP_KERNEL);
+a8eba8dde5fbf0b Christophe JAILLET 2021-12-23  1548  	ringacc->proxy_inuse = devm_bitmap_zalloc(dev, ringacc->num_proxies,
+a8eba8dde5fbf0b Christophe JAILLET 2021-12-23  1549  						  GFP_KERNEL);
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1550  
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1551  	if (!ringacc->rings || !ringacc->rings_inuse || !ringacc->proxy_inuse)
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1552  		return -ENOMEM;
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1553  
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1554  	for (i = 0; i < ringacc->num_rings; i++) {
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1555  		ringacc->rings[i].rt = base_rt +
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1556  				       K3_RINGACC_RT_REGS_STEP * i;
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1557  		ringacc->rings[i].fifos = base_fifo +
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1558  					  K3_RINGACC_FIFO_REGS_STEP * i;
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1559  		ringacc->rings[i].parent = ringacc;
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1560  		ringacc->rings[i].ring_id = i;
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1561  		ringacc->rings[i].proxy_id = K3_RINGACC_PROXY_NOT_USED;
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1562  	}
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1563  
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1564  	ringacc->tisci_ring_ops = &ringacc->tisci->ops.rm_ring_ops;
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1565  
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1566  	dev_info(dev, "Ring Accelerator probed rings:%u, gp-rings[%u,%u] sci-dev-id:%u\n",
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1567  		 ringacc->num_rings,
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1568  		 ringacc->rm_gp_range->desc[0].start,
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1569  		 ringacc->rm_gp_range->desc[0].num,
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1570  		 ringacc->tisci_dev_id);
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1571  	dev_info(dev, "dma-ring-reset-quirk: %s\n",
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1572  		 ringacc->dma_ring_reset_quirk ? "enabled" : "disabled");
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1573  	dev_info(dev, "RA Proxy rev. %08x, num_proxies:%u\n",
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1574  		 readl(&ringacc->proxy_gcfg->revision), ringacc->num_proxies);
+40a2a7c395cf5d9 Grygorii Strashko  2020-07-24  1575  
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1576  	return 0;
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1577  }
+3277e8aa2504d97 Grygorii Strashko  2020-01-15  1578  
+
 -- 
-2.43.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
