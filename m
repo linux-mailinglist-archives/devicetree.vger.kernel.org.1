@@ -1,293 +1,386 @@
-Return-Path: <devicetree+bounces-261090-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261091-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OF7dJ3JFfGnfLgIAu9opvQ
-	(envelope-from <devicetree+bounces-261090-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 06:45:22 +0100
+	id uHgBIwNKfGktLwIAu9opvQ
+	(envelope-from <devicetree+bounces-261091-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 07:04:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34C79B7698
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 06:45:22 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1879B78F6
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 07:04:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 49772303F56A
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 05:44:31 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4EA5B3003702
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 06:04:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AFA33783D5;
-	Fri, 30 Jan 2026 05:44:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1522825F99F;
+	Fri, 30 Jan 2026 06:04:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="mPDU2D0u"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Gpy0AhSY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010015.outbound.protection.outlook.com [52.101.84.15])
+Received: from DM5PR21CU001.outbound.protection.outlook.com (mail-centralusazon11011047.outbound.protection.outlook.com [52.101.62.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1F673783B6;
-	Fri, 30 Jan 2026 05:44:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DD1723D7FC;
+	Fri, 30 Jan 2026 06:04:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.62.47
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769751867; cv=fail; b=Iop7RK3SQY/odrtZu1RM3YAOMORokCIuppWTH5QoTjslMo4OS3h3N6dSCSLaWTqFN5IFPk/tXlA6BG96IgEoaeiPtp2/SWpa3JRcHLJoryZ6IjfAce/aT2RjTm3XNS/uV+GQHAMNZpQDYxXuaaU/k6Hw+7hOjxWRXYgOeu7ZMrE=
+	t=1769753086; cv=fail; b=PnZDxF/g/4UedhWzDLeefzirEFIXI13bXOqaE1rDSkD6BV68HfpxhMsRTuWpRjnrAjf6CGjgQa+fy5pXzfAF4QVSMmRDc9UzLU00reWH2dAieXrQBBVEaqQx8jyODxsx8EdbtpDtF3TN5/98W6TnvMFBQG9LAugckI48p3xELZU=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769751867; c=relaxed/simple;
-	bh=oobwDQrbdUbGdtQGo3y88jVFw+xRnF/xh3pkDmF+Fn4=;
-	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=aM1ENcBPUFbsta6tX50UhxL9DlY7QJGOnxfYZlIxSmtE1urapvJTktHdxf98HZ+o4y7btryfSNWhaLjX0J0y8DBo/0xUgUfosUBFd0ol/GuD+TQ/+lyZ0zxWtOJgarTrJmdbKWnXzX9OadOqUmxv+f32ri/gLlKlV6oq29jUkcw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=mPDU2D0u; arc=fail smtp.client-ip=52.101.84.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+	s=arc-20240116; t=1769753086; c=relaxed/simple;
+	bh=nfgxWO9QhnUh0LY0vCFphgMwDm9bc9eI05rQumO1lBU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=uTlYs57+LSM0QDxGsW+qXPSexIgPL/e5BrXVCYBeff7Mzatx3HsEwlSSfnt633QZnQvB9nxEGqvsaEeedzO6zIza/w6TprWP8bqzxFib74u6udmaUoLyDAA90tLTjbO0+r4+2GhrKSXYeziKZcpXx4RoQzVPN/2VbiRsh/vL9ak=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Gpy0AhSY; arc=fail smtp.client-ip=52.101.62.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=IzakqJxZ/sQj8WjVDyzvYZwXNYFP+AaEqJ7PaE1IcK/FRSlwmu2se6ox9xUkgaBPvAPVLw8DuuMayr2IucQ4LaAdWdOCanUo/wPPhmTnmZtVNfkEebEGCzMZ1xK6dcTXvLbkTp+e3kggHYNz69v6yV056WckHznDa0ayjALOfcUMG8eVAAeh1oO1zQH8uy8XCJ9DGOfSy9y2HBq0helTw7ivudj4zpmJXU8lXjzc1uVBWFlz5CzGfIXfbJfvh6A2T1WyVRJ6Au+l1XBkjq5Ma/fSfYMzSXFovBKdvG7Gv/yFsEO9h9XdHpdHyq7D9f7+a3HwNHZr7x/BNcReqJkfHg==
+ b=vKQ47HkfRnpgSotIgHpdBcXufBNHkQZO6/kBCEIfw9uMgnVZGKnBN9rfJcLt8qycX+jK9R8eJ27nxpylahAK8eX1Qy9HN1kBth7Y1Ko9xv7Vu9PxdW9eFEUOSzjOmMTS7szBcyaMaRBK9jrj3CPYVqfg8K8qgFnJPUMjaIEg/3GEihl0bsKSjhhVIkOw6pe+SjyB3D0o4N3hxPH0I1FFumVAExyVe4aiWLV/Stm9oN+homecPNGGPHqR6Gt5++atkMJFi+eXXGA6n9ez+CEondiOytnN9q4u6PdXj2TzwaofWFULWpEfy2g55qg0uNB6ggtUO37m5A+uhI52pfLt9g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nYBCgdVnJ9uTFWH49fM4PwhUjwp3X164WXPES8CBV40=;
- b=V07mXHlEoRxQ6oDmKGFeK2fvb50mloNp0TphTVE65fFDtS98VTzhi/9QDIKsheEVQEvBdAfd8wL2t18AYjfkNHJCLCFe67lccOWNLL8AmtYhwueRcPaydZQvJHKqosC7Xf2sdCTDuGaruObCZTdIqexn97OWc+HWmqGmQDu3W9Jhcl7VwegTxZgtfXUQ/3u7czYQdCztmq5+HKbhWRyEtN/hDNfJvM2zLOibMbQKfIbVvn2aWjipnbwC649tjzZSPrbNS/XitjjtohDB6/PjzLSX6SSj1OUjcPMkGbovAHZ7Acg0UIbkZL4ndtgaLuP0MULfoA5DmEBD4FdrmsgRgA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ bh=TKxEfo+y7JwqbzMkIxwL0c81dKPbf4m7NbcinrEFObY=;
+ b=tyFRhLx+QQDXfFrFEIjRrjiA8Y5a8pluXAoJz9eqboo+Noesn7diA6csLXvfnJosHLreHC1Tr6usc5t4wuDd2ehAY0nRJ6sXX+CfBtlEedgGMp0dKtUlkkdmPjtfNC5phnDGFAU2mif8yX6dZiqse/cnROARFTvhv+70rQ5X/J4LwZI7jtio7E/vQqT5YIazfJwrLvIGPo96s91Bs2MW3Au205lJSPnJCIBNbGc+Ran+iN0eYHW21q4YZdrMgYNs32b6kD99B7bT8ROsZCPM610/DE6fIuWG8t+cDnA25oEWXCKVMDnaDDHdTmHl5IFE/lML2rH6SrJNg7AWPsoLUg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nYBCgdVnJ9uTFWH49fM4PwhUjwp3X164WXPES8CBV40=;
- b=mPDU2D0u8xliHCYnuS2Xl8+ViYzTV8LAaKdsI/8rD7dLT4xPDFPLBZJczpvr9hFL4Ls8l3Uzk5v7ffnHCvFoXpd+QXva/rFCEo/iMYcCQSANk/WHfEH5PGYrPzF+5YHjvf6lWjPnZ5nry2fWaSwNSNVuzdrFnZHiUbBvndMZpF6Re6aCK4gqGIBpWoPxsLc4e56NSU1epFIuutRvPoDldVsjyyW8alsHjnJkAMtxiRY9NVtLOZzIIz4OhBZNWUfJbDpC3+rGKb7qXeUE1PoI7PPI/SEuQtgbZMOu+7GLsboP4fMNh0cQto1dfjsixGtk5MPCRalV6cRN6BF+jSQwnw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM0PR04MB7044.eurprd04.prod.outlook.com (2603:10a6:208:191::20)
- by PAXPR04MB8174.eurprd04.prod.outlook.com (2603:10a6:102:1c4::9) with
+ bh=TKxEfo+y7JwqbzMkIxwL0c81dKPbf4m7NbcinrEFObY=;
+ b=Gpy0AhSYImriDGztj63fSLneqXjS97xE5hEd3ev3fwEIx8QghORV5x5hwlqbZ7EkeKiHFaVZb0sFmrhpNunHd1tes7ejSO9c656+E9puk2mK9o2WZ3+KTzluiqcss5EWRhJ1pwLOPVP3fpi3uPSpzHsk1zUfiVgmyOJ89DyGYQs=
+Received: from CH5PR03CA0003.namprd03.prod.outlook.com (2603:10b6:610:1f1::19)
+ by SJ5PPFC802EB2B9.namprd10.prod.outlook.com (2603:10b6:a0f:fc02::7cb) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.16; Fri, 30 Jan
- 2026 05:44:22 +0000
-Received: from AM0PR04MB7044.eurprd04.prod.outlook.com
- ([fe80::bab2:d15c:fcf8:ef2b]) by AM0PR04MB7044.eurprd04.prod.outlook.com
- ([fe80::bab2:d15c:fcf8:ef2b%3]) with mapi id 15.20.9564.008; Fri, 30 Jan 2026
- 05:44:22 +0000
-From: Shengjiu Wang <shengjiu.wang@nxp.com>
-To: lgirdwood@gmail.com,
-	broonie@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	shengjiu.wang@gmail.com,
-	Xiubo.Lee@gmail.com,
-	nicoleotsuka@gmail.com,
-	perex@perex.cz,
-	tiwai@suse.com,
-	linuxppc-dev@lists.ozlabs.org
-Subject: [PATCH v2 4/4] ASoC: fsl_asrc_dma: allocate memory from dma device
-Date: Fri, 30 Jan 2026 13:43:30 +0800
-Message-Id: <20260130054330.3462544-5-shengjiu.wang@nxp.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20260130054330.3462544-1-shengjiu.wang@nxp.com>
-References: <20260130054330.3462544-1-shengjiu.wang@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI1PR02CA0034.apcprd02.prod.outlook.com
- (2603:1096:4:1f6::10) To AM0PR04MB7044.eurprd04.prod.outlook.com
- (2603:10a6:208:191::20)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.7; Fri, 30 Jan
+ 2026 06:04:41 +0000
+Received: from DS2PEPF00003440.namprd02.prod.outlook.com
+ (2603:10b6:610:1f1:cafe::4f) by CH5PR03CA0003.outlook.office365.com
+ (2603:10b6:610:1f1::19) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9564.12 via Frontend Transport; Fri,
+ 30 Jan 2026 06:04:35 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
+Received: from flwvzet201.ext.ti.com (198.47.21.195) by
+ DS2PEPF00003440.mail.protection.outlook.com (10.167.18.43) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9564.3 via Frontend Transport; Fri, 30 Jan 2026 06:04:38 +0000
+Received: from DFLE211.ent.ti.com (10.64.6.69) by flwvzet201.ext.ti.com
+ (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 30 Jan
+ 2026 00:04:38 -0600
+Received: from DFLE215.ent.ti.com (10.64.6.73) by DFLE211.ent.ti.com
+ (10.64.6.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 30 Jan
+ 2026 00:04:38 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE215.ent.ti.com
+ (10.64.6.73) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Fri, 30 Jan 2026 00:04:38 -0600
+Received: from [172.24.233.20] (a0512632.dhcp.ti.com [172.24.233.20])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60U64XjP814780;
+	Fri, 30 Jan 2026 00:04:33 -0600
+Message-ID: <0711169f-6054-44c1-9039-1b56e68c32e0@ti.com>
+Date: Fri, 30 Jan 2026 11:34:32 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: display: ti,am65x-dss: Add AM62L DSS support
+To: Rob Herring <robh@kernel.org>
+CC: <jyri.sarha@iki.fi>, <tomi.valkeinen@ideasonboard.com>,
+	<airlied@gmail.com>, <simona@ffwll.ch>, <maarten.lankhorst@linux.intel.com>,
+	<mripard@kernel.org>, <tzimmermann@suse.de>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <devarsht@ti.com>, <praneeth@ti.com>, <bb@ti.com>,
+	<vigneshr@ti.com>, <dri-devel@lists.freedesktop.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20251224133150.2266524-1-s-jain1@ti.com>
+ <20251230022741.GA3217586-robh@kernel.org>
+ <fd9f0b37-001e-4721-82b7-ee29379eb9a9@ti.com>
+ <CAL_JsqKYsf9dmY3qKx6MVT0-0emTzO=0z32rOzt3070LykhrPA@mail.gmail.com>
+Content-Language: en-US
+From: Swamil Jain <s-jain1@ti.com>
+In-Reply-To: <CAL_JsqKYsf9dmY3qKx6MVT0-0emTzO=0z32rOzt3070LykhrPA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM0PR04MB7044:EE_|PAXPR04MB8174:EE_
-X-MS-Office365-Filtering-Correlation-Id: e64b8550-6a8d-404e-a79b-08de5fc29ec1
+X-MS-TrafficTypeDiagnostic: DS2PEPF00003440:EE_|SJ5PPFC802EB2B9:EE_
+X-MS-Office365-Filtering-Correlation-Id: b572b896-c4b5-4a1f-c262-08de5fc573cc
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|52116014|366016|19092799006|1800799024|38350700014|921020;
+	BCL:0;ARA:13230040|376014|7416014|1800799024|36860700013|82310400026;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?72X8KEZaTPyrS6E7v/F/XC2qv0TVwzxxodW/Uw7H2Xo7dHu1DIb3KJU+fofY?=
- =?us-ascii?Q?rQf35Bp3Ti/lfQ98BJYrGAywjRg5r/sox7MyRQQ1U3meX3NLtpB86UAyHsNH?=
- =?us-ascii?Q?a46v6O6ykxaOF2glmZTLX6GXDCqkTMy3A7UdUBKupJa+hHtadKW1gFPG79lO?=
- =?us-ascii?Q?VWpd2EsqbTrEWW754kdNSVStO12eBVlJucRKD2UaNJ+74jhrkuU4KvEJdj04?=
- =?us-ascii?Q?LZFRGYSAagUhKK6/hAHieW+vbusItmZyiOxS+sXGBkCL9SYWTqUVpZ7FS65l?=
- =?us-ascii?Q?F+1HTj9EGjABqqIXbhUEov2fH9EtSh02OqUzgBPRjtq0fJmM92daZQ8f4atQ?=
- =?us-ascii?Q?HSXVn35kubfKNAJN0mM+rql3ZoO/1Wix8NmxrM41ExrSw0ceMaFe7uHU71Re?=
- =?us-ascii?Q?Xg777i+V8FaqjG/FUhrupLcyTkMbTfl4LS7HG3b6wlz+TtIQAzCp7W3797Rs?=
- =?us-ascii?Q?ZjY4geW6yq64iQG/oFhlfgmwa3t7eY55jqA3icb85iII8iWN83gve3GI47Fg?=
- =?us-ascii?Q?rsB5IUiovLIavKVwc6k8gzrQR5D/SRa7brLTA12A4AhlCRxGUCi9kDDo7q07?=
- =?us-ascii?Q?uVVs6IiX4LtcBu+5yuqTZqRjFTbTCexQji6iIaum3tyNU9Op9CjSa3DmL0ci?=
- =?us-ascii?Q?x0l+dCgzhh9jHDT+CpdnQg3j+mal9vSAgF5oFLvhFmD4M9OLoHSO6o189/22?=
- =?us-ascii?Q?+hlShxJ9dBnlAsYyK3TtjToGTdKJMfsfGn5MPvkjoiBnc0Jl0tn0mdR/fx5Z?=
- =?us-ascii?Q?gr9ZPWANHSu6ZNAtVDAV+37DUMg/593Ho+9IUz/lPp6NGjZrOU6+S6d+g3Qq?=
- =?us-ascii?Q?uDxs1DuNv4GTNbJNHeMREM0ffVuzYJBentzD07yy+7Jas+jF2DeCfAlgCJla?=
- =?us-ascii?Q?CJyLA5E4WaZERQLYOAsPh/zKAtKoW9D+1YGQsdjBfZUlaQ4igaRI/hVrvspK?=
- =?us-ascii?Q?vMGHldrsIaYhvtvjkuSFuTRJhp+c4lQ1lB9KKfCJ2A4s19FzNaRn3U4yka3y?=
- =?us-ascii?Q?cpAarV5WSdQAGV2UeQHuBh2T4aW1L7USTfnCiEBjyjawhiSbI/MPAtqghssr?=
- =?us-ascii?Q?S2+aCyvIgqJ9H31eLLsEQinttSCXdtPFLXC9gvkDlyk7Y6hx1Yqo0jQr3Pdr?=
- =?us-ascii?Q?2pLUd/XkvAQlKmP7QRVk7+tK73P2QI72WOCUJvzxoWGeXxpMx/g7OqryYoa6?=
- =?us-ascii?Q?jnLsUI+JG37CPibr49lTa22PtrotKrwf19eQ8DIMf+7TPQHj9QELy0OQhSXv?=
- =?us-ascii?Q?H+DFUgoppIx3e51Ps3LZvCRKwW+/u1CWvPksq2N7eQIQpXvT8qsqAkd9xCqC?=
- =?us-ascii?Q?riHzCbxdq2oAZ3EhDuRBeK2UdsbBtzWucgQ0uYZ/1DZCW/HL0TUfpvLA4/6x?=
- =?us-ascii?Q?8bBFx32vK1AArc7wXiTchKfxktS1Xz+0wE9aHYFNkixLp1JrT95+4M9yTp67?=
- =?us-ascii?Q?ZvdkmJALSOFbfWXnnmZczKKKc23sjszSp17h/IB5PbAgIATfajnqPbAP+sUN?=
- =?us-ascii?Q?FPLgQhW38j29l8uExyGNAC4Y5/hm3zUBJPz3dNmvz81UYqv957++c/Lpx1ie?=
- =?us-ascii?Q?G03rHz2pDYi7TE8kGIRrvbsuw0MgXUL/JKbA/cNUNt7tTPhki1XZzaZXCC3q?=
- =?us-ascii?Q?zvcfX8w/ZPDxbXN91wDT41EmVSgifiRil96O8SyWlNmV?=
+	=?utf-8?B?UjQ0RzlpVC9FVXRiTExnNXNpQWo0bXptWHlrbWwrSU5paTF0VktlVGloTGtX?=
+ =?utf-8?B?SFI0TkpFSHpwNEJJWTBLSkJRZnVkLzVjYjhwMmxzSmQyb1Q1QkVFbzB0NmVO?=
+ =?utf-8?B?c3FIM2toZ3JYYzlOY0liOUJBbFBxUTdwUW1CTGg1aTFuWnU1bi8rd1U4S29W?=
+ =?utf-8?B?RGlsc0dKM3lramduYzgwTW1OWUhSdGRVYVdsakw5ZmpwZ1JYNjZkdHE1WVhs?=
+ =?utf-8?B?cG1mOEgvL2V5S3h4Q2MrdUVxM1k0QTNrdGJ6N0JnZ3gzc25xSXV0MzNha0hL?=
+ =?utf-8?B?OEJGblJoQTBIdEdwWTM4eENBMFNTMFRZWlpMUGZ4eXdETjlxMUFKZG1KWWhW?=
+ =?utf-8?B?L3lWNW93M0lhMUpOUzhobm8vWGtCRzJENFV5ZUsxZzE1emNKZ1ZaQVQzd3cx?=
+ =?utf-8?B?eXFlQUNRa1ovNFE3Uk9reXQ1QXJManVNaGlqYlJDTnpFOWNGalVma2JLSW9U?=
+ =?utf-8?B?T3pXcWZwbm41bTFHNEFlZFRTeDE3bnpsMCtZRFdQbnlWOG10dllucGN6andk?=
+ =?utf-8?B?OEFUbTVLWTlXbFFSeUxXRUU1ekV4UnVPd09vS2RteEFxYUozRWVydnJvTE5z?=
+ =?utf-8?B?NHp2MEVQQS9nZUxBOXF3aTRMYWVZUlFDWC9uajlaMkxBUEtHNjlLelBVdFFa?=
+ =?utf-8?B?UUZGWTlkQkxoZC94UXc1V052NGFFcEtyM3Y0WnhyRjg1QndvaVZhbnAzVUs2?=
+ =?utf-8?B?cGJxVHJCeUgxSU9UcGE1QnMwZjJseWlONkJ4TlI2dDhKQjRHMy90cFpJamVk?=
+ =?utf-8?B?VlpGQ0lUdmw4OUtuMVBwY1dSMnExQ1pXeG9TYUhtenJYT3hQYTJaa0lOYkRl?=
+ =?utf-8?B?NHBuekhFSTQxdExVa21aY01kYWZqYlpXMFMyN2xmWXZhWi84UkNZWEFQcy9t?=
+ =?utf-8?B?ZUF1ZzN5SnE2QTZINEhDNjVaTjB6TjYvVDRnc21MektvSnZXRkE3ZE9Lb25t?=
+ =?utf-8?B?emdDakNZNFVzUHpnOEl2eUxGMjNkaVNCdjhjdTN3am0yZUp1b1RNOGRJcklH?=
+ =?utf-8?B?ZkY4NStwbHQwZGQveDNlUE9Zd0ZEWmJGSStCYVZZckJDb1pJTnN4MGFEZTFa?=
+ =?utf-8?B?VGIzV1VSMWhCZlBrQm0vejB6c0RsNGxLcXFUOCtEYWNQR2E0TFFsanZpODYr?=
+ =?utf-8?B?WkZHNk5OdnQ5Rno1VjJtY1M2TVZPUk53WjNFSFk0amZwRW1KRG1hUy9lYlZj?=
+ =?utf-8?B?WkxEenBLSVRYSk5YeXFSZjZ3dDhLUmdXM2JpcTNYV3pDUXpwZUpka2MvWFpk?=
+ =?utf-8?B?ak9BZklROW5wWDFHaDM5V2R4VEgrTi9TTm9pZFRlM3lsU2VsaFYxNm5lajlF?=
+ =?utf-8?B?ekVlNzRaU1dUSEJFazh2U3BnSDVpQ3RJQ1dRNUtHQkpiTm9tSkJmbEFjYlJO?=
+ =?utf-8?B?a1hsTVA4SWtETGVwOE5vM2JrRkE5eHNFUmtIdFB0UGhBQXJMcGJQQ0Fyck5k?=
+ =?utf-8?B?dUhlVDZWcnNUMjFPRjlOcEFmVk1rczZpV2FCaUZZbGVTQXBDeC9wa0R1eEhI?=
+ =?utf-8?B?a2hsLzI0NGZDSFBSUXUzZUFkY21vWVVrREhzTlhDcnBrSGNWdDZjQ24wVzht?=
+ =?utf-8?B?UkhuQmFDTkRaMGZOa2lTRkNpemNNWVZEaG55WHVhTnNYT3JJWGtUMXNjcVg3?=
+ =?utf-8?B?U2xpcGt1R1ZjakNZbTFzQk92S1ZQM05oQ0RNWkM0bUFDb3U3Wi84NWlNTUd5?=
+ =?utf-8?B?YzAxUTZpY1U1a3Q3UmhFdDhWZDd1aDkrVXFvRjRyRzl0M2JjTDIyb2RkRkJa?=
+ =?utf-8?B?Mm5TQ3JabGtuOEtwTjJaVWlkU25icHdxN2Yxc0FJTk0wcjJQNHQ5enlyUjRO?=
+ =?utf-8?B?RGZaL1NSYlEvNVBzbHRGek1hdTJxZXhYMlVMQW01Y0dMdkx5TzlHa2dFTWxT?=
+ =?utf-8?B?eW5YQkxFT2hJVTNDeXBRakgyZ2MzL2JXZWN2TDdTWkxDQStlTkNvb2tLZUhM?=
+ =?utf-8?B?RHdTL1Z4elhqazFaSzM3Z0htcTVNN1M5eG1wem84a1BIUGlRRnFNeVNWNVQw?=
+ =?utf-8?B?R0gxTmFZdkt0L2M4V0w0Z1lDSEdPVU0vMDY1aStqLzZxQ09kbGJmaVoweVNZ?=
+ =?utf-8?B?STZkQ1kyVEFFL1Y1b2tycEIxeHp2K3FzblNjaG5zd25FamdHLzhyTU1maUlN?=
+ =?utf-8?B?V0JXY0ZHdlBEUFF1QXJlOHZKS3VmeXR5WG9wbVdmemFkYlNVMkIreXdXa3ph?=
+ =?utf-8?B?dnpQQXRKemdReTVuM0dJbmlKQUJLa00rKzh3aXQrL2tLU3h3OGc3S2wwclJp?=
+ =?utf-8?B?WW9aZmtROUNoWFhVbHllWDArUFVnPT0=?=
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB7044.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(52116014)(366016)(19092799006)(1800799024)(38350700014)(921020);DIR:OUT;SFP:1101;
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(36860700013)(82310400026);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?lvR/0UgqqEo8cSRPk3IYCNGS7ijvCO2kDQnoAQNWo+Zs0ih0aXZU4BsgjEPE?=
- =?us-ascii?Q?9OuAD5TT+DJvuR/1rYZbZDKU4WS8RM6Cq8CDBYQG/zg1K3BMJCDll7TJFdMH?=
- =?us-ascii?Q?u/n0K0kwcGBqBeqpSc6rbWwDC/flgfkHNqG1z8t05XOKK9+qIgU9DZBUeo5u?=
- =?us-ascii?Q?DWu2ydaFlGvdneJrCE/J/0CQgOY2OgM+plCkW4XKfVmi4M0aWQMSvm7Y5CSj?=
- =?us-ascii?Q?OXHFhm5U+sTC0/pYiz3WvbwrwT3IOBSc9q1JJAwctCUB5iB/IMF0Yqdrbo2s?=
- =?us-ascii?Q?SlZmPzYwlgRlvyc2uvXG3sROxFuYXyByi8LmTa16oe39fgT7sLblRTJ7dKx8?=
- =?us-ascii?Q?qSP/pqzYEC6imzbEpUoh3MC8N3i+9CrPiQyeA+8SOgW0ZWvjsyQDrHO++dD4?=
- =?us-ascii?Q?wH1/C37xJjHIqEp7pA6d+o1XPen02jtIUle7BaEhCxSiKYSWf8gxke0N6nqw?=
- =?us-ascii?Q?Zo9f/D4gF6ebLGvE5Ub7rZPLia/kXS2c579UHdX2awywbdtXS9ianxl8rCCY?=
- =?us-ascii?Q?ZEEqYUyKSuz6GxGeJLAo+NdSDuIQmxMYg9MmCJ8OyM7gJt+bXvBdRfanpCnH?=
- =?us-ascii?Q?Pzy8MCwWUecRIMkkpfTiJUew3rE0bh5y/1bFwviJBovUGaUP7doUTXFcxyEX?=
- =?us-ascii?Q?ter/LPqbWj4MMA7edbZ81R7BLy16L9CnLmabOSja3/B8Y4goAp8hny+2aERR?=
- =?us-ascii?Q?ENjRYSnACnhpZr1XU4nuduTJdH5bx4Jamqi7yuqoRUmM/RrbwQQTej/y/gnE?=
- =?us-ascii?Q?LBfMwq92U/+ojuRRkL7RKNwH8y3zIZ2Ft2zTTtOeGUqF1JePEdd/uWpUUi6x?=
- =?us-ascii?Q?qMPh+acNz46U2RsOcWQRWKeSdFqSeMZqkB50DNHaMZp+YBoKurP7bi1ycPZw?=
- =?us-ascii?Q?XQzag7qQlV9OpDkJn2GAHbue+mgtWZYLCvw9yQqVXykCuhgDykYp7SBRd/Uc?=
- =?us-ascii?Q?nvOBJ8iJRELFFmGgiaBYXMMpS7Xq4ndsgpWq5nrZ6sM4Ev+pXFBxzOdVkNb8?=
- =?us-ascii?Q?6vkDfXWW1ZCow17PCFx+1vwRvZIkxJqxrQWK0P81Ufy7nc5Wuzo86c+ff3V6?=
- =?us-ascii?Q?olmPQV9GHYDtwf8Yjjk0phn4TA0o866kEjeQEVHwYZFVEFFovCiK6YqSwQiR?=
- =?us-ascii?Q?l7C06ldiR6hL/r1B/YeMir4i2/SS2v4vjubUVNHD9bIrQlNawsglkRZxeSrE?=
- =?us-ascii?Q?zzVesaGnMi9kC7T7d3nZKa4dFXzoKHUlcdHDaJXmZN9BAhA2++Il2VC5V2S0?=
- =?us-ascii?Q?x2j9DIYknDJjlKBsGe9I7uDdsVtrdUwhI2bdQHDpDpj0n8nnpDuvIL1yxQtK?=
- =?us-ascii?Q?GDYIk4tI8nvjm9JGjdb5vQcLTRIJtrM6iJTpUxeTZA+FbLFT/+y+1UoNCbst?=
- =?us-ascii?Q?PXzD0HyKqZgM22u/EK+KzVPuZ1LkWixQpHJYC4kSoyRSQLc915rAqTVYPc4f?=
- =?us-ascii?Q?Fi+M8Ow7gjA7wT4K16lTocJ6bROQass2e15yswb5p5ZArWf7iHsvJt97nZkG?=
- =?us-ascii?Q?/DtssgX7leTgS5Pmkt07S82yR4+v5GZuTjfQAsGM33p1V7CggnmmJXEtGIYH?=
- =?us-ascii?Q?uYSW+MvpWUqSOuZdlpigLrigEjZnTUMdAIjxbACi1cqXlLgMxG6tkwkNu4C6?=
- =?us-ascii?Q?wGsV2M/8UYRTiC7I24/JfEJVDsKItFUl5slEC3YiXlf0DIFd/aR3P7RwT5xp?=
- =?us-ascii?Q?h5ikfMAO27iW2ABoQDvSRVWj2HhIyYRYMgtJwOOFUMRFFsts58BfH1i3fa47?=
- =?us-ascii?Q?m7pDlcuGOQ=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e64b8550-6a8d-404e-a79b-08de5fc29ec1
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB7044.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2026 05:44:22.8043
+	LsL34INujhb5bhSfoU+xDEEHoN+R+8+niXXoCvWSnR2hHti70ZoHkfrk8TbDkfTTsojTgrSnQXyixtDQCwz0Vs7PAW3McEEAAj4huWhfQ6/+rMqQUtkzyWz1pPxP1sSZ2g1CgkP93z4FzBLCu8nUv0lrJHGCAb+yBgzoP5+kQ7iRyvDLyw8fa13yqEGWSKIc+9oATRFg7knAtfYCd/VvT9siQIUkcRRWpwpzqNrxhVgTrwatdXCPDCmHQymIInUYUgUw0cNk3n2HV034nh5KMgxgQ+keMCi62WDAMUH/c0e3YZyCq2cdYHVEmQBR+3OapQjdbv/5gTmWyR8gsOcz28gTLXAY4sn4d11aX6GgB8IMWSTMp0gvpObSV7ZCm1Ee1+hjNny0Zqlcb3owkmjFmITCPaF0WoKwP2ONHgpETPmn1zY4GxHNFazA01EjdJRj
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2026 06:04:38.8266
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kcwx/earwrt1lDylmzzONPRbg5tmzPCYFnt1Lj93X0rSlkPkZLU2rm1Y9Ak2aGT/m/Do72+Lpv0Nx/ner0U/kg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8174
+X-MS-Exchange-CrossTenant-Network-Message-Id: b572b896-c4b5-4a1f-c262-08de5fc573cc
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DS2PEPF00003440.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPFC802EB2B9
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.84 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,pengutronix.de,vger.kernel.org,lists.linux.dev,lists.infradead.org,perex.cz,suse.com,lists.ozlabs.org];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261091-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[iki.fi,ideasonboard.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,ti.com,lists.freedesktop.org,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261090-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,0.0.0.0:email,0.0.0.1:email];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[shengjiu.wang@nxp.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[s-jain1@ti.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
+	DKIM_TRACE(0.00)[ti.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TO_DN_NONE(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,nxp.com:dkim,nxp.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 34C79B7698
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: B1879B78F6
 X-Rspamd-Action: no action
 
-The dma-coherent property is used to indicate a device is capable of
-coherent DMA operations. On i.MX952, one of EDMA devices support such
-feature, in order to support the EDMA device, the memory needs to be
-allocated from the DMA device.
+Hi Rob,
 
-The code change here is to make this driver compatible for non
-dma-coherent and dma-coherent dma devices.
+On 1/3/26 04:04, Rob Herring wrote:
+> On Tue, Dec 30, 2025 at 8:23 AM Swamil Jain <s-jain1@ti.com> wrote:
+>>
+>> Hi Rob,
+>>
+>> On 12/30/25 07:57, Rob Herring wrote:
+>>> On Wed, Dec 24, 2025 at 07:01:50PM +0530, Swamil Jain wrote:
+>>>> Update the AM65x DSS bindings to support AM62L which has a single video
+>>>> port. Add conditional constraints for AM62L.
+>>>>
+>>>> Signed-off-by: Swamil Jain <s-jain1@ti.com>
+>>>> ---
+>>>>    .../bindings/display/ti/ti,am65x-dss.yaml     | 95 +++++++++++++++----
+>>>>    1 file changed, 76 insertions(+), 19 deletions(-)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+>>>> index 38fcee91211e..ce39690df4e5 100644
+>>>> --- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+>>>> +++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+>>>> @@ -36,34 +36,50 @@ properties:
+>>>>      reg:
+>>>>        description:
+>>>>          Addresses to each DSS memory region described in the SoC's TRM.
+>>>> -    items:
+>>>> -      - description: common DSS register area
+>>>> -      - description: VIDL1 light video plane
+>>>> -      - description: VID video plane
+>>>> -      - description: OVR1 overlay manager for vp1
+>>>> -      - description: OVR2 overlay manager for vp2
+>>>> -      - description: VP1 video port 1
+>>>> -      - description: VP2 video port 2
+>>>> -      - description: common1 DSS register area
+>>>> +    oneOf:
+>>>> +      - items:
+>>>> +          - description: common DSS register area
+>>>> +          - description: VIDL1 light video plane
+>>>> +          - description: VID video plane
+>>>> +          - description: OVR1 overlay manager for vp1
+>>>> +          - description: OVR2 overlay manager for vp2
+>>>> +          - description: VP1 video port 1
+>>>> +          - description: VP2 video port 2
+>>>> +          - description: common1 DSS register area
+>>>> +      - items:
+>>>> +          - description: common DSS register area
+>>>> +          - description: VIDL1 light video plane
+>>>> +          - description: OVR1 overlay manager for vp1
+>>>> +          - description: VP1 video port 1
+>>>> +          - description: common1 DSS register area
+>>>>
+>>>>      reg-names:
+>>>> -    items:
+>>>> -      - const: common
+>>>> -      - const: vidl1
+>>>> -      - const: vid
+>>>> -      - const: ovr1
+>>>> -      - const: ovr2
+>>>> -      - const: vp1
+>>>> -      - const: vp2
+>>>> -      - const: common1
+>>>> +    oneOf:
+>>>> +      - items:
+>>>> +          - const: common
+>>>> +          - const: vidl1
+>>>> +          - const: vid
+>>>> +          - const: ovr1
+>>>> +          - const: ovr2
+>>>> +          - const: vp1
+>>>> +          - const: vp2
+>>>> +          - const: common1
+>>>> +      - items:
+>>>> +          - const: common
+>>>> +          - const: vidl1
+>>>> +          - const: ovr1
+>>>> +          - const: vp1
+>>>> +          - const: common1
+>>>>
+>>>>      clocks:
+>>>> +    minItems: 2
+>>>>        items:
+>>>>          - description: fck DSS functional clock
+>>>>          - description: vp1 Video Port 1 pixel clock
+>>>>          - description: vp2 Video Port 2 pixel clock
+>>>>
+>>>>      clock-names:
+>>>> +    minItems: 2
+>>>>        items:
+>>>>          - const: fck
+>>>>          - const: vp1
+>>>> @@ -84,7 +100,8 @@ properties:
+>>>>        maxItems: 1
+>>>>        description: phandle to the associated power domain
+>>>>
+>>>> -  dma-coherent: true
+>>>> +  dma-coherent:
+>>>> +    type: boolean
+>>>>
+>>>>      ports:
+>>>>        $ref: /schemas/graph.yaml#/properties/ports
+>>>> @@ -195,6 +212,46 @@ allOf:
+>>>>                port@0:
+>>>>                  properties:
+>>>>                    endpoint@1: false
+>>>> +  - if:
+>>>> +      properties:
+>>>> +        compatible:
+>>>> +          contains:
+>>>> +            const: ti,am62l-dss
+>>>> +    then:
+>>>> +      properties:
+>>>> +        clock-names:
+>>>> +          maxItems: 2
+>>>> +        clocks:
+>>>> +          maxItems: 2
+>>>> +        reg:
+>>>> +          maxItems: 5
+>>>
+>>>              reg-names:
+>>>                minItems: 8
+>>>          else:
+>>>            properties:
+>>>              reg:
+>>>                minItems: 8
+>>>              reg-names:
+>>>                minItems: 8
+>>>
+>>> clocks needs similar constraints...
+>>
+>> Sure, will add in v2.
+>>
+>>>
+>>>> +
+>>>> +  - if:
+>>>> +      properties:
+>>>> +        compatible:
+>>>> +          contains:
+>>>> +            const: ti,am62l-dss
+>>>> +    then:
+>>>> +      properties:
+>>>> +        reg-names:
+>>>> +          items:
+>>>> +            - const: common
+>>>> +            - const: vidl1
+>>>> +            - const: ovr1
+>>>> +            - const: vp1
+>>>> +            - const: common1
+>>>> +    else:
+>>>> +      properties:
+>>>> +        reg-names:
+>>>> +          items:
+>>>> +            - const: common
+>>>> +            - const: vidl1
+>>>> +            - const: vid
+>>>> +            - const: ovr1
+>>>> +            - const: ovr2
+>>>> +            - const: vp1
+>>>> +            - const: vp2
+>>>> +            - const: common1
+>>>
+>>> Why are you defining the names twice?
+>>>
+>>
+>> For AM62L we don't have "vid", "ovr2" and "vp2", the dtbs_check will fail.
+>> Could you please suggest a better way?
+> 
+> You already defined them at the top level. Here in the if/then schema,
+> all you need is 'maxItems: 5' and 'minItems: 8'. But then you already
+> have that as well.
+> 
+> Rob
 
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
----
- sound/soc/fsl/fsl_asrc_dma.c | 48 ++++++++++++++++++++++++++++++------
- 1 file changed, 41 insertions(+), 7 deletions(-)
+Posted a v2[1], could you please review if the patch looks good?
 
-diff --git a/sound/soc/fsl/fsl_asrc_dma.c b/sound/soc/fsl/fsl_asrc_dma.c
-index 7dacc06b2f02..348b0aabfa68 100644
---- a/sound/soc/fsl/fsl_asrc_dma.c
-+++ b/sound/soc/fsl/fsl_asrc_dma.c
-@@ -449,18 +449,52 @@ fsl_asrc_dma_pcm_pointer(struct snd_soc_component *component,
- static int fsl_asrc_dma_pcm_new(struct snd_soc_component *component,
- 				struct snd_soc_pcm_runtime *rtd)
- {
--	struct snd_card *card = rtd->card->snd_card;
-+	struct device *dev = component->dev;
-+	struct fsl_asrc *asrc = dev_get_drvdata(dev);
-+	struct fsl_asrc_pair *pair;
- 	struct snd_pcm *pcm = rtd->pcm;
-+	struct dma_chan *chan;
- 	int ret;
- 
--	ret = dma_coerce_mask_and_coherent(card->dev, DMA_BIT_MASK(32));
--	if (ret) {
--		dev_err(card->dev, "failed to set DMA mask\n");
--		return ret;
-+	pair = kzalloc(size_add(sizeof(*pair), asrc->pair_priv_size), GFP_KERNEL);
-+	if (!pair)
-+		return -ENOMEM;
-+
-+	pair->asrc = asrc;
-+	pair->private = (void *)pair + sizeof(struct fsl_asrc_pair);
-+
-+	/* Request a pair, which will be released later.
-+	 * Request pair function needs channel num as input, for this
-+	 * pair, we just request "1" channel temporarily.
-+	 */
-+	ret = asrc->request_pair(1, pair);
-+	if (ret < 0) {
-+		dev_err(dev, "failed to request asrc pair\n");
-+		goto req_pair_err;
-+	}
-+
-+	/* Request a dma channel, which will be released later. */
-+	chan = asrc->get_dma_channel(pair, IN);
-+	if (!chan) {
-+		dev_err(dev, "failed to get dma channel\n");
-+		ret = -EINVAL;
-+		goto dma_chan_err;
- 	}
- 
--	return snd_pcm_set_fixed_buffer_all(pcm, SNDRV_DMA_TYPE_DEV,
--					    card->dev, FSL_ASRC_DMABUF_SIZE);
-+	ret = snd_pcm_set_fixed_buffer_all(pcm,
-+					   SNDRV_DMA_TYPE_DEV,
-+					   chan->device->dev,
-+					   FSL_ASRC_DMABUF_SIZE);
-+
-+	dma_release_channel(chan);
-+
-+dma_chan_err:
-+	asrc->release_pair(pair);
-+
-+req_pair_err:
-+	kfree(pair);
-+
-+	return ret;
- }
- 
- struct snd_soc_component_driver fsl_asrc_component = {
--- 
-2.34.1
+[1]: https://lore.kernel.org/all/20260129150601.185882-1-s-jain1@ti.com/
 
+Regards,
+Swamil.
 
