@@ -1,301 +1,465 @@
-Return-Path: <devicetree+bounces-261154-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261155-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CCFGDhGIfGmbNgIAu9opvQ
-	(envelope-from <devicetree+bounces-261154-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 11:29:37 +0100
+	id 6CQCHpOIfGmbNgIAu9opvQ
+	(envelope-from <devicetree+bounces-261155-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 11:31:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6357B95E1
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 11:29:36 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6726FB9618
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 11:31:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3E2E7300C923
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 10:29:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D4B45300CC27
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 10:31:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B82B35EDB2;
-	Fri, 30 Jan 2026 10:29:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oln1L8NE"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CB67369202;
+	Fri, 30 Jan 2026 10:31:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30C7626B764
-	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 10:29:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.52
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769768944; cv=pass; b=r72oZfzWrNJX2YXv/GiDCD/jR4f5ojz5u3MT7gYYNi6tQ8uwXvy9yDLg0n5ZSZyOPk/G3fLPFBSBlIS5lsYu2wxiAXCMPkulGeu3+sI74pX2BMHvz0kBELQx+WW0YX3LHP08UEGL0e9FSNmnOhguXp2jjR0G4ftXu3mX9zaCAEs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769768944; c=relaxed/simple;
-	bh=4IZOypoh2mxenIel1BEB+3XJOHnFitDgJDIz3Q5JdHk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=d3KZZjAlxeU/wlYCaJGtagiR+Puo0AeuPcVF2xSUKoJSLOXHP8NExL9WoWS7DIp8pupTfPMzLOEI9hHbvo5+Xai3tLw7jE8a+SVVhdxJRj5Bx30xcAOOqMTGlct51HcMvq0P28ZndzNjwG6NnHJKAudpGCJ0bJs+D8DzcJAZAI0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oln1L8NE; arc=pass smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-59b77f2e43aso3266341e87.1
-        for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 02:29:02 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1769768940; cv=none;
-        d=google.com; s=arc-20240605;
-        b=JnuhIaReWSsZxKjUT14fHIeSaKxFH8Hj2r1yUb+mI3pfABAZZlphukDwLRkUGYJz+1
-         cSamDqKLyoVdOWgd7k2u0zlRCm0riHVV7ZmZJYZBFLBwJft7AsDWRaTc+PwsRBLafq60
-         GAPG8BtBbC1e9pjmyoHDbSsxAetlxKRMnKCVVw2I2Utdy2gfE6fMcwhEoBwVz5Me2VsH
-         jpYCTGxqcNW8g/0FYyWKJvqP9J2x9Hf2HFI1dAfZyDItYIUVb1elTZMx8fUiG3A2UbvG
-         /THivLtSn3RW9x3lQ27N94XUNVfpHO4QfYJvycxAWWHjMKPJsImST18jlAhI6wZGjVdF
-         +U7A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=UyyRc5JdnkROBEHu+xYdCyJ2Awi4tcsQvb7pPKheNS8=;
-        fh=6p+Zj6MmnQdtkzeHcJ84CUbufwKlCSjvM0Ye8JipYXk=;
-        b=Js8QM8EHji2q7ERMQRw7kQfD5sw+9zeaK08jsRz12Wo0CVlqR0P/QL37xTr47xGOdJ
-         ifvdcZPsv+jC8m/msWlHfDnhG4FUq5f7VO8APE0qzSq7JPFZYzcW0Iz4rSZ2sND9pcBV
-         jgLC1odGR0BM3PnHPYF86w24B9frQeioF7vxEMIgTxHsvB6BoV1slgUmEzW3gPILX8Vo
-         C/TTJJosjjI+j1RlZwv/dNejNV/X6RxAjGP4JvNiAd5vfGQPl4J5srX3Npg5TwFn3s5a
-         WV/Zr2gys2E3tNAZ7Zerx8xPM19/FJmEbMV9a8ElbYqA4zzy5szq/at8iUkKpPOQQfFz
-         n80w==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1769768940; x=1770373740; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=UyyRc5JdnkROBEHu+xYdCyJ2Awi4tcsQvb7pPKheNS8=;
-        b=oln1L8NESX4rFb4aQJM6o8+hQcZgtNvlDrkk5mWrDRGAqBdlUxeNxMcw2eX8cve9/k
-         /B/tgoSqfiLOIQ6n5A7FGYAnfj5EkEFL8G5PmeCNy5FvfcKTZeeYcb2oSeEK7SPS4D8e
-         AveR4t8N/Rp88C06eoXuFV1HaAjukzyQGL78WB1q/NBX2S2iW4b37uTbndAiZcD8Y53S
-         yszc4WtoiN/tvRc5QBRssoUdiZyxH0VsMZ2fxnhKCwbFVUuo7ahbde+gcZ+cU5/AhEdd
-         giiAjMR47BZz/ObY0X3fCnsdeDveajpO1Ikp0KpWblJ/09ymDA34ELw6z8uXK7gTFL4x
-         OZUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769768940; x=1770373740;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UyyRc5JdnkROBEHu+xYdCyJ2Awi4tcsQvb7pPKheNS8=;
-        b=HTMEmHgdcTeJDrkjzQTKgyiGYddE7B2qZ5ix13e2fkMSMhoF4pzrhBFNggatg2AT7D
-         e0pg3nSqsAcRmF+urSY4Uwp74+b6Q/TxgniiTzdntc3xBHjmAxz29IL8zXMEosxUcsqW
-         jmvx1uvkNp21b2/NyiRQP6+pGvJjYLbTAKOmjJRGsmE74l/9NUJVhD7+rIG4snWHiZqf
-         8znX97bddzmdzDbH6bOC7HR8kj34MDUJMFkFo8WeoAiGeQJVrdnN9RUWAUNAm1BpTqLw
-         2FmDLFVA0//9/K4WIr/hGdm5haLeOpmUk/Wh+Gsi6un1vI4a9lRZ5MrRlAqsO+W9MlcB
-         JnxQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUa4j0x4JIG5DFiXR7kuvP66GEtEHVGTUD+NLQAhfuI06cdGx2ecizR5nNvynkL/HTbMVzGEkjJhPPt@vger.kernel.org
-X-Gm-Message-State: AOJu0YwpJuPipGrH0dUr83PGp6eLc+MMdjdS3HMd5dlYIPl3wnyVUUcj
-	kc8b/ykrpdRUWi15tOys9YrkSvZfnmcjTLLjpUeDKbTaoFrkBXGcYtxFqwLDtAionsIFUG5cTDo
-	cLxEZrfH1JK9nM2kXYSvyl89bWfhTLwa9V9oFlK0F2w==
-X-Gm-Gg: AZuq6aL4iFbJ2dvfmfPfjGtKtSz0H7yaPxUfmttHseT8eGPZj6T/wZn5ADm3p+6P+Ds
-	DYRTY/S6z0g1q8tnjJnRTmOe5lW9va0PBNKrjKoVpIPCT2DSPAsxBAp4/ybYwR8EoIxD6IZGz5O
-	Q8MdPxVMtsUADK1mV35QJfuiiJqMzLz47juUQLv4XoX2sNNlcvko+2I/lsrw7iJkFtcjgvX9Bpd
-	SDsC8qr1odWrlSp+/u26fN0yL6BQDCXGJNNQG6z0vmyPV37dEGO9GFQ2ojTTFBjoSHSVakT
-X-Received: by 2002:a05:6512:3090:b0:59e:19f8:e7e5 with SMTP id
- 2adb3069b0e04-59e19f8e879mr389940e87.10.1769768940222; Fri, 30 Jan 2026
- 02:29:00 -0800 (PST)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B9E6258CE7;
+	Fri, 30 Jan 2026 10:31:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769769104; cv=none; b=kNa3iD8Cp1Yf9vnO5Ro03ePyfnbo+5iQ9Rjdbdpg/M34YOkqI+gn+aqNZYJ0socqFzFM84liy8wWd5soss02RMwEggF6WseILlIr+0Jlv0wsupCUdcZY0ahP0ohCKEkjSZlXPSBBh4BP26XB12ZxkavtKKgfEy+7vHHLrcdxfz4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769769104; c=relaxed/simple;
+	bh=GoaB1xxwIzCQsyep8H2a/ectfp8x05iyIQiJ9TzhyEc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JbtF5t2BPv0notG4LKJ4ck7SpJepmnq4ExuHE6JbCVS6UrxcP6ONHAxpoegpLV0z60E+mbHr7Quw1KfmLRGVN/R3UtpiXi20riySXFijoMFBYitHGcqT9pMZsPu5jROYRJEST6gJeuUUYh55VK8MLvkWMqorjWtaMxycA67pQcU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EA1DD153B;
+	Fri, 30 Jan 2026 02:31:27 -0800 (PST)
+Received: from [10.33.50.63] (e142021.arm.com [10.33.50.63])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 636A63F632;
+	Fri, 30 Jan 2026 02:31:32 -0800 (PST)
+Message-ID: <8c343e6d-14f8-4f55-8218-bc3f0813e8cf@arm.com>
+Date: Fri, 30 Jan 2026 11:31:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260128-rz-sdio-mux-v7-0-92ebb6da0df8@solid-run.com>
- <20260128-rz-sdio-mux-v7-2-92ebb6da0df8@solid-run.com> <CAPDyKFrBuL+747QUJJUejtcvjm0V7Lt=vHwjvcMdCt_h4=sFwg@mail.gmail.com>
- <CAMuHMdXgLR9yeLa5JKNdAOtNEirJ8263bmn1zRNAnKnmf8F-Sg@mail.gmail.com>
-In-Reply-To: <CAMuHMdXgLR9yeLa5JKNdAOtNEirJ8263bmn1zRNAnKnmf8F-Sg@mail.gmail.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Fri, 30 Jan 2026 11:28:24 +0100
-X-Gm-Features: AZwV_QjKt-7WVZ6iCRSlLFm6WIvZGroCu2x79LzMFz95tWuDMfGW172v0QkfhHE
-Message-ID: <CAPDyKFrvSp6tmhP=2=9kca1d3+b6MezvxJWwMOW=Gv6D8TKrgA@mail.gmail.com>
-Subject: Re: [PATCH v7 2/7] mux: Add helper functions for getting optional and
- selected mux-state
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Josua Mayer <josua@solid-run.com>, Marc Kleine-Budde <mkl@pengutronix.de>, 
-	Vincent Mailhol <mailhol@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Peter Rosin <peda@axentia.se>, 
-	Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas Kemnade <andreas@kemnade.info>, 
-	Kevin Hilman <khilman@baylibre.com>, Roger Quadros <rogerq@kernel.org>, 
-	Tony Lindgren <tony@atomide.com>, Janusz Krzysztofik <jmkrzyszt@gmail.com>, Vignesh R <vigneshr@ti.com>, 
-	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	Yazan Shhady <yazan.shhady@solid-run.com>, Jon Nettleton <jon@solid-run.com>, 
-	Mikhail Anikin <mikhail.anikin@solid-run.com>, linux-can@vger.kernel.org, 
-	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-omap@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, Dan Carpenter <dan.carpenter@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: zena: Add support for Zena CSS
+To: Debbie Horsfall <debbie.horsfall@arm.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
+ Sudeep Holla <sudeep.holla@arm.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20260123-zena-css-v1-0-34adb95cdf89@arm.com>
+ <20260123-zena-css-v1-2-34adb95cdf89@arm.com>
+ <20260127132206.036892e4@donnerap.manchester.arm.com>
+ <c1259bad-be4d-4489-840d-4ab2f4e466f2@arm.com>
+Content-Language: en-US
+From: Andre Przywara <andre.przywara@arm.com>
+In-Reply-To: <c1259bad-be4d-4489-840d-4ab2f4e466f2@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+X-Spamd-Result: default: False [-1.36 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[arm.com : SPF not aligned (relaxed), No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261154-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[33];
-	FREEMAIL_CC(0.00)[solid-run.com,pengutronix.de,kernel.org,linaro.org,axentia.se,iki.fi,kemnade.info,baylibre.com,atomide.com,gmail.com,ti.com,glider.be,sang-engineering.com,vger.kernel.org,lists.infradead.org];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261155-lists,devicetree=lfdr.de];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ulf.hansson@linaro.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linaro.org:+];
+	FROM_NEQ_ENVFROM(0.00)[andre.przywara@arm.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	DBL_PROHIBIT(0.00)[2.99.68.96:email,1.202.95.192:email,2.98.168.32:email];
+	R_DKIM_NA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,linux-m68k.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:email,linaro.org:dkim]
-X-Rspamd-Queue-Id: D6357B95E1
+	RCPT_COUNT_SEVEN(0.00)[10];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,1.202.17.160:email,1a400000:email,0.0.0.0:email,0.0.0.100:email,300d0000:email,0.0.0.13:email,1a420000:email,arm.com:mid,arm.com:email,1.61.98.0:email,1.202.56.176:email,0.0.78.32:email,0.1.150.64:email]
+X-Rspamd-Queue-Id: 6726FB9618
 X-Rspamd-Action: no action
 
-On Thu, 29 Jan 2026 at 18:46, Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> On Thu, 29 Jan 2026 at 17:06, Ulf Hansson <ulf.hansson@linaro.org> wrote:
-> > On Wed, 28 Jan 2026 at 15:46, Josua Mayer <josua@solid-run.com> wrote:
-> > >
-> > > In-tree phy-can-transceiver driver has already implemented a local
-> > > version of devm_mux_state_get_optional.
-> > >
-> > > The omap-i2c driver gets and selects an optional mux in its probe
-> > > function without using any helper.
-> > >
-> > > Add new helper functions covering both aforementioned use-cases:
-> > >
-> > > - mux_control_get_optional:
-> > >   Get a mux-control if specified in dt, return NULL otherwise.
-> > > - devm_mux_state_get_optional:
-> > >   Get a mux-state if specified in dt, return NULL otherwise.
-> > > - devm_mux_state_get_selected:
-> > >   Get and select a mux-state specified in dt, return error otherwise.
-> > > - devm_mux_state_get_optional_selected:
-> > >   Get and select a mux-state if specified in dt, return error or NULL.
-> > >
-> > > Existing mux_get helper function is changed to take an extra argument
-> > > indicating whether the mux is optional.
-> > > In this case no error is printed, and NULL returned in case of ENOENT.
-> > >
-> > > Calling code is adapted to handle NULL return case, and to pass optional
-> > > argument as required.
-> > >
-> > > To support automatic deselect for _selected helper, a new structure is
-> > > created storing an exit pointer similar to clock core which is called on
-> > > release.
-> > >
-> > > To facilitate code sharing between optional/mandatory/selected helpers,
-> > > a new internal helper function is added to handle quiet (optional) and
-> > > verbose (mandatory) errors, as well as storing the correct callback for
-> > > devm release: __devm_mux_state_get
-> > >
-> > > Due to this structure devm_mux_state_get_*_selected can no longer print
-> > > a useful error message when select fails. Instead callers should print
-> > > errors where needed.
-> > >
-> > > Commit e153fdea9db04 ("phy: can-transceiver: Re-instate "mux-states"
-> > > property presence check") noted that "mux_get() always prints an error
-> > > message in case of an error, including when the property is not present,
-> > > confusing the user."
-> > >
-> > > The first error message covers the case that a mux name is not matched
-> > > in dt. The second error message is based on of_parse_phandle_with_args
-> > > return value.
-> > >
-> > > In optional case no error is printed and NULL is returned.
-> > > This ensures that the new helper functions will not confuse the user
-> > > either.
-> > >
-> > > With the addition of optional helper functions it became clear that
-> > > drivers should compile and link even if CONFIG_MULTIPLEXER was not enabled.
-> > > Add stubs for all symbols exported by mux core.
-> > >
-> > > Signed-off-by: Josua Mayer <josua@solid-run.com>
-> > > ---
-> > >  drivers/mux/core.c           | 178 ++++++++++++++++++++++++++++++++++++-------
-> > >  include/linux/mux/consumer.h | 108 +++++++++++++++++++++++++-
-> > >  2 files changed, 253 insertions(+), 33 deletions(-)
-> > >
-> > > diff --git a/drivers/mux/core.c b/drivers/mux/core.c
-> > > index a3840fe0995f..b01ec126caaf 100644
-> > > --- a/drivers/mux/core.c
-> > > +++ b/drivers/mux/core.c
-> >
-> > [...]
-> >
-> > >  static void devm_mux_state_release(struct device *dev, void *res)
-> > >  {
-> > > -       struct mux_state *mstate = *(struct mux_state **)res;
-> > > +       struct devm_mux_state_state *devm_state = res;
-> > >
-> > > -       mux_state_put(mstate);
-> > > +       if (devm_state->exit)
-> > > +               devm_state->exit(devm_state->mstate);
-> > > +
-> > > +       mux_state_put(devm_state->mstate);
-> > >  }
-> > >
-> > >  /**
-> > > - * devm_mux_state_get() - Get the mux-state for a device, with resource
-> > > - *                       management.
-> > > - * @dev: The device that needs a mux-control.
-> > > - * @mux_name: The name identifying the mux-control.
-> > > + * __devm_mux_state_get() - Get the optional mux-state for a device,
-> > > + *                         with resource management.
-> > > + * @dev: The device that needs a mux-state.
-> > > + * @mux_name: The name identifying the mux-state.
-> > > + * @optional: Whether to return NULL and silence errors when mux doesn't exist.
-> > > + * @init: Optional function pointer for mux-state object initialisation.
-> > > + * @exit: Optional function pointer for mux-state object cleanup on release.
-> > >   *
-> > >   * Return: Pointer to the mux-state, or an ERR_PTR with a negative errno.
-> > >   */
-> > > -struct mux_state *devm_mux_state_get(struct device *dev,
-> > > -                                    const char *mux_name)
-> > > +static struct mux_state *__devm_mux_state_get(struct device *dev, const char *mux_name,
-> > > +                                             bool optional,
-> > > +                                             int (*init)(struct mux_state *mstate),
-> > > +                                             int (*exit)(struct mux_state *mstate))
-> > >  {
-> > > -       struct mux_state **ptr, *mstate;
-> > > +       struct devm_mux_state_state *devm_state;
-> > > +       struct mux_state *mstate;
-> > > +       int ret;
-> > >
-> > > -       ptr = devres_alloc(devm_mux_state_release, sizeof(*ptr), GFP_KERNEL);
-> > > -       if (!ptr)
-> > > +       devm_state = devres_alloc(devm_mux_state_release, sizeof(*devm_state), GFP_KERNEL);
-> > > +       if (!devm_state)
-> > >                 return ERR_PTR(-ENOMEM);
-> > >
-> > > -       mstate = mux_state_get(dev, mux_name);
-> > > -       if (IS_ERR(mstate)) {
-> > > -               devres_free(ptr);
-> > > -               return mstate;
-> > > +       mstate = mux_state_get(dev, mux_name, optional);
-> > > +       if (IS_ERR_OR_NULL(mstate)) {
-> > > +               ret = PTR_ERR(mstate);
-> >
-> > Should this be PTR_ERR_OR_ZERO?
->
-> "mux_state_get() never returns NULL"
-> https://lore.kernel.org/202601221036.J0kR78Uw-lkp@intel.com
+Hi Debbie,
 
-By looking at the code in mux_state_get() and mux_get() that $subject
-patch changes, it intends to add a "bool optional" as in-parameter. If
-it's set, it looks like the intent is to allow returning NULL, which
-makes sense to me.
+On 1/30/26 10:58, Debbie Horsfall wrote:
+> On 27/01/2026 13:22, Andre Przywara wrote:
+>> On Fri, 23 Jan 2026 17:37:47 +0000
+>> Debbie Horsfall <debbie.horsfall@arm.com> wrote:
+>>
+>> Hi Debbie,
+>>
+>> thanks for taking the time to send this upstream!
+>>
+> 
+> Thank you for reviewing it! I have responded to all of your points and 
+> will send a v2 patch set.
+> 
+> 
+>>> Introduce the Zena CSS Fixed Virtual Platform (FVP) dts. This is
+>>> currently the only Zena CSS variant, however the common definitions are
+>>> included in a common dtsi for extensibility.
+>>>
+>>> Signed-off-by: Debbie Horsfall <debbie.horsfall@arm.com>
+>>> ---
+>>>   MAINTAINERS                              |   1 +
+>>>   arch/arm64/boot/dts/arm/Makefile         |   1 +
+>>>   arch/arm64/boot/dts/arm/zena-css-fvp.dts |  55 ++
+>>>   arch/arm64/boot/dts/arm/zena-css.dtsi    | 826 ++++++++++++++++++++ 
+>>> +++++++++++
+>>>   4 files changed, 883 insertions(+)
+>>>
+>>> diff --git a/MAINTAINERS b/MAINTAINERS
+>>> index 90d88137adf1..d1d2dae6a71e 100644
+>>> --- a/MAINTAINERS
+>>> +++ b/MAINTAINERS
+>>> @@ -3727,6 +3727,7 @@ ARM/ZENA CSS PLATFORM
+>>>   M:    Debbie Horsfall <debbie.horsfall@arm.com>
+>>>   S:    Maintained
+>>>   F:    Documentation/devicetree/bindings/arm/arm,zena-css.yaml
+>>> +F:    arch/arm64/boot/dts/arm/zena-css*
+>>>   ARM/ZYNQ ARCHITECTURE
+>>>   M:    Michal Simek <michal.simek@amd.com>
+>>> diff --git a/arch/arm64/boot/dts/arm/Makefile b/arch/arm64/boot/dts/ 
+>>> arm/Makefile
+>>> index f30ee045dc95..770fb145b4a9 100644
+>>> --- a/arch/arm64/boot/dts/arm/Makefile
+>>> +++ b/arch/arm64/boot/dts/arm/Makefile
+>>> @@ -8,3 +8,4 @@ dtb-$(CONFIG_ARCH_VEXPRESS) += vexpress-v2f-1xv7- 
+>>> ca53x2.dtb
+>>>   dtb-$(CONFIG_ARCH_VEXPRESS) += fvp-base-revc.dtb
+>>>   dtb-$(CONFIG_ARCH_VEXPRESS) += corstone1000-fvp.dtb corstone1000- 
+>>> mps3.dtb
+>>>   dtb-$(CONFIG_ARCH_VEXPRESS) += morello-sdp.dtb morello-fvp.dtb
+>>> +dtb-$(CONFIG_ARCH_VEXPRESS) += zena-css-fvp.dtb
+>>> diff --git a/arch/arm64/boot/dts/arm/zena-css-fvp.dts b/arch/arm64/ 
+>>> boot/dts/arm/zena-css-fvp.dts
+>>> new file mode 100644
+>>> index 000000000000..d3c649e894d1
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/arm/zena-css-fvp.dts
+>>> @@ -0,0 +1,55 @@
+>>> +// SPDX-License-Identifier: (GPL-2.0 OR BSD-3-Clause)
+>>> +/*
+>>> + * Copyright (c) 2025, Arm Limited. All rights reserved.
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +
+>>> +#include "zena-css.dtsi"
+>>> +
+>>> +/ {
+>>> +    model = "Zena CSS Fixed Virtual Platform";
+>>> +    compatible = "arm,zena-css-fvp", "arm,zena-css";
+>>> +
+>>> +    chosen {
+>>> +        stdout-path = &soc_serial0;
+>>> +    };
+>>> +};
+>>> +
+>>> +&soc {
+>>> +    virtio@30060000 {
+>>> +        compatible = "virtio,mmio";
+>>> +        reg = <0x0 0x30060000 0x0 0x10000>;
+>>> +        interrupts = <GIC_SPI 261 IRQ_TYPE_LEVEL_HIGH>;
+>>> +    };
+>>> +
+>>> +    virtio@30020000 {
+>>
+>> I think the nodes should be ordered by their address. Do you make any
+>> assumptions about naming of devices (/dev/vda, /dev/vdb) in your setup?
+>>
+> 
+> I will move virtio@30060000 into order. I don't think there are any 
+> assumptions on device naming dependent on ordering but I will run all of 
+> our tests with them in address order to check.
 
-Anyway, there seems to be some additional smatch warnings to fix
-before this is ready to go.
+Thanks, that's good to know. I was afraid there was some cheeky 
+assumption about /dev/vda pointing to a certain image or something ...
 
-[...]
+>>> +        compatible = "virtio,mmio";
+>>> +        reg = <0x0 0x30020000 0x0 0x10000>;
+>>> +        interrupts = <GIC_SPI 257 IRQ_TYPE_LEVEL_HIGH>;
+>>> +    };
+>>> +
+>>> +    virtio@30030000 {
+>>> +        compatible = "virtio,mmio";
+>>> +        reg = <0x0 0x30030000 0x0 0x10000>;
+>>> +        interrupts = <GIC_SPI 258 IRQ_TYPE_LEVEL_HIGH>;
+>>> +    };
+>>> +
+>>> +    virtio@30040000 {
+>>> +        compatible = "virtio,mmio";
+>>> +        reg = <0x0 0x30040000 0x0 0x10000>;
+>>> +        interrupts = <GIC_SPI 259 IRQ_TYPE_LEVEL_HIGH>;
+>>> +    };
+>>> +
+>>> +    virtio@30050000 {
+>>> +        compatible = "virtio,mmio";
+>>> +        reg = <0x0 0x30050000 0x0 0x10000>;
+>>> +        interrupts = <GIC_SPI 260 IRQ_TYPE_LEVEL_HIGH>;
+>>> +    };
+>>> +
+>>
+>> Do you know if there is something at 0x30070000? Maybe something that
+>> needs explicit enablement on the model command line? In this case we 
+>> might
+>> want a comment here.
+>>
+> 
+> The memory map documentation says there is no device there.
 
-Kind regards
-Uffe
+Good, thanks for checking.
+
+> 
+>>> +    virtio@30080000 {
+>>> +        compatible = "virtio,mmio";
+>>> +        reg = <0x0 0x30080000 0x0 0x10000>;
+>>> +        interrupts = <GIC_SPI 263 IRQ_TYPE_LEVEL_HIGH>;
+>>> +    };
+>>> +};
+>>> diff --git a/arch/arm64/boot/dts/arm/zena-css.dtsi b/arch/arm64/boot/ 
+>>> dts/arm/zena-css.dtsi
+>>> new file mode 100644
+>>> index 000000000000..7825e93df0a6
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/arm/zena-css.dtsi
+>>> @@ -0,0 +1,826 @@
+>>> +// SPDX-License-Identifier: (GPL-2.0 OR BSD-3-Clause)
+>>> +/*
+>>> + * Copyright (c) 2025, Arm Limited. All rights reserved.
+>>> + */
+
+[ ... ]
+
+>>> +
+>>> +    soc: soc {
+>>> +        compatible = "simple-bus";
+>>> +        #address-cells = <2>;
+>>> +        #size-cells = <2>;
+>>> +        ranges;
+>>> +
+>>> +        timer@1a810000 {
+>>> +            compatible = "arm,armv7-timer-mem";
+>>> +            reg = <0x0 0x1a810000 0 0x10000>;
+>>> +            #address-cells = <1>;
+>>> +            #size-cells = <1>;
+>>> +            /* Map child space [0x0..0x30000) to parent @ 0x1a810000 */
+>>> +            ranges = <0x0 0x0 0x1a810000 0x00030000>;
+>>> +
+>>> +            frame@20000 {
+>>> +                frame-number = <0>;
+>>> +                interrupts = <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>;
+>>> +                reg = <0x20000 0x10000>;
+>>> +            };
+>>> +        };
+>>> +
+>>> +        gic: interrupt-controller@20800000 {
+>>> +            compatible = "arm,gic-v3";
+>>> +            #redistributor-regions = <16>;
+>>> +            reg = <0x0 0x20800000 0x0 0x10000>,    /* GICD */
+>>> +                <0x0 0x20880000 0x0 0x40000>,    /* 16 * GICR */
+>>> +                <0x0 0x208c0000 0x0 0x40000>,
+>>
+>> Those look as if they are all contiguous, aren't they?
+>> Then you wouldn't need the #redistributor-regions property above, and can
+>> just go with one big GICR region.
+>>
+> 
+> This is a workaround for the AP GIC Multiview. Is it acceptable?
+
+Ah, right, sorry, I now remember, that's some automotive GIC, and this 
+multiview feature causes the GICR_TYPER.Last bit not being correct, right?
+In this case this is indeed a workaround, but you should add a comment 
+here. Mention the GIC model (GIC-720AE?), and that its multiview feature 
+causes the GICR_TYPER.Last bit not being as expected, so each core needs 
+to gets its own redist region.
+
+>>> +                <0x0 0x20900000 0x0 0x40000>,
+>>> +                <0x0 0x20940000 0x0 0x40000>,
+>>> +                <0x0 0x20980000 0x0 0x40000>,
+>>> +                <0x0 0x209c0000 0x0 0x40000>,
+>>> +                <0x0 0x20a00000 0x0 0x40000>,
+>>> +                <0x0 0x20a40000 0x0 0x40000>,
+>>> +                <0x0 0x20a80000 0x0 0x40000>,
+>>> +                <0x0 0x20ac0000 0x0 0x40000>,
+>>> +                <0x0 0x20b00000 0x0 0x40000>,
+>>> +                <0x0 0x20b40000 0x0 0x40000>,
+>>> +                <0x0 0x20b80000 0x0 0x40000>,
+>>> +                <0x0 0x20bc0000 0x0 0x40000>,
+>>> +                <0x0 0x20c00000 0x0 0x40000>,
+>>> +                <0x0 0x20c40000 0x0 0x40000>;
+>>> +            #interrupt-cells = <3>;
+>>> +            #address-cells = <2>;
+>>> +            #size-cells = <2>;
+>>> +            ranges;
+>>> +            interrupt-controller;
+>>> +            interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+>>> +
+>>> +            its1: msi-controller@20840000 {
+>>
+>> Are there multiple ITSes, and some are just not shown here?
+>> If not, please just use "its" as the label name.
+>>
+> 
+> There's only one so I'll rename it.
+> 
+>>> +                compatible = "arm,gic-v3-its";
+>>> +                reg = <0x0 0x20840000 0x0 0x40000>;
+>>> +                msi-controller;
+>>> +                #msi-cells = <1>;
+>>> +            };
+>>> +        };
+>>> +
+>>> +        /* UART is fixed as 24MHz, both UARTCLK and PCLK */
+>>> +        soc_serial0: serial@1a400000 {
+>>> +            compatible = "arm,pl011", "arm,primecell";
+>>> +            reg = <0x0 0x1a400000 0x0 0x10000>;
+>>> +            interrupts = <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH>;
+>>> +            clocks = <&soc_clk24mhz>, <&soc_clk24mhz>;
+>>> +            clock-names = "uartclk", "apb_pclk";
+>>> +        };
+>>> +
+>>> +        watchdog@1a420000 {
+>>> +            compatible = "arm,sbsa-gwdt";
+>>> +            reg = <0x0 0x1a420000 0x0 0x10000>,
+>>> +                  <0x0 0x1a430000 0x0 0x10000>;
+>>> +            interrupts = <GIC_SPI 50 IRQ_TYPE_LEVEL_HIGH>;
+>>> +        };
+>>> +
+>>> +        rtc@300d0000 {
+>>> +            compatible = "arm,pl031", "arm,primecell";
+>>> +            reg = <0x0 0x300d0000 0x0 0x10000>;
+>>> +            interrupts = <GIC_SPI 268 IRQ_TYPE_LEVEL_HIGH>;
+>>
+>> Can you please double check this interrupt ID? The IRQ mapping document
+>> just lists some "expansion range" here, but I cannot verify if this is
+>> using the SPI offset of 32 or not.
+>>
+> 
+> I have confirmed with our interrupt map.
+> 
+>>> +            clocks = <&soc_clk24mhz>;
+>>> +            clock-names = "apb_pclk";
+>>> +        };
+>>> +
+>>> +    };
+>>> +
+>>> +    psci {
+>>> +        compatible = "arm,psci-1.0", "arm,psci-0.2", "arm,psci";
+>>
+>> You don't need compatibility to the pre 0.2 PSCI standard, so drop the
+>> last compatible name.
+>>
+> 
+> I will remove this.
+> 
+>>> +        method = "smc";
+>>> +        cpu_suspend = <0xc4000001>;
+>>> +        cpu_off = <0x84000002>;
+>>> +        cpu_on = <0xc4000003>;
+>>
+>> And those three function IDs are only needed for this pre-0.2 name, so 
+>> you
+>> can remove them.
+>>
+> 
+> I will remove them.
+> 
+>>> +    };
+>>> +
+>>> +    sram: sram@104000 {
+>>> +        compatible = "mmio-sram";
+>>> +        reg = <0x0 0x104000 0x0 0x00001000>;
+>>> +        #address-cells = <1>;
+>>> +        #size-cells = <1>;
+>>> +        ranges = <0 0x0 0x104000 0x00001000>;
+>>> +
+>>> +        scmi_shmem_tx: scpshmem-sram-section@0 {
+>>> +            compatible = "arm,scmi-shmem";
+>>> +            reg = <0x0 0x100>;
+>>> +        };
+>>> +        scmi_shmem_rx: scpshmem-sram-section@100 {
+>>> +            compatible = "arm,scmi-shmem";
+>>> +            reg = <0x100 0x100>;
+>>> +        };
+>>> +    };
+>>> +
+>>> +    mbox_db_tx: mailbox@40020000 {
+>>> +        compatible = "arm,mhuv3";
+>>> +        reg = <0x0 0x40020000 0x0 0x30000>;
+>>> +        clocks = <&soc_clk24mhz>;
+>>> +        #mbox-cells = <3>;
+>>> +        interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
+>>> +        interrupt-names = "combined";
+>>> +    };
+>>> +
+>>> +    mbox_db_rx: mailbox@40060000 {
+>>> +        compatible = "arm,mhuv3";
+>>> +        reg = <0x0 0x40060000 0x0 0x30000>;
+>>> +        clocks = <&soc_clk24mhz>;
+>>> +        #mbox-cells = <3>;
+>>> +        interrupts = <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>;
+>>> +        interrupt-names = "combined";
+>>> +    };
+>>> +
+>>> +    firmware {
+>>> +        scmi {
+>>> +            compatible = "arm,scmi";
+>>> +            mbox-names = "tx", "rx";
+>>> +            mboxes = <&mbox_db_tx 0 0 0 &mbox_db_rx 0 0 0 
+>>> &mbox_db_rx 0 0 2>;
+>>
+>> What is this third mailbox about? I think this would have to match
+>> mbox-names also? I guess this is not needed?
+>>
+> 
+> The team is confirming which mbox names are appropriate. To pass the 
+> Devicetree validation the only valid combination of three is: "tx", 
+> "tx_reply", "rx". However, the second mbox needs to be rx else the SCMI 
+> communication fails. I'll investigate further and make sure the names 
+> match.
+
+So do you need just one "tx", but "rx" plus "rx_reply"? Which isn't 
+valid in the current binding?
+If that's the case, then we would need a patch to relax the binding and 
+allowing this combination as well.
+Looking into the kernel code it looks like the SCMI driver doesn't use 
+mbox-names, but explicitly expects assignments depending on the number 
+of mboxes? Somewhat confusing ...
+
+Cheers,
+Andre
+
+> 
+>> Cheers,
+>> Andre
+>>
+>>> +            shmem = <&scmi_shmem_tx &scmi_shmem_rx>;
+>>> +            #address-cells = <1>;
+>>> +            #size-cells = <0>;
+>>> +
+>>> +            scmi_dvfs: protocol@13 {
+>>> +                reg = <0x13>;
+>>> +                #clock-cells = <1>;
+>>> +            };
+>>> +        };
+>>> +    };
+>>> +};
+>>>
+>>
+> 
+> 
+
 
