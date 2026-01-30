@@ -1,64 +1,122 @@
-Return-Path: <devicetree+bounces-261109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261111-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aGDuFm9nfGk/MQIAu9opvQ
-	(envelope-from <devicetree+bounces-261109-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 09:10:23 +0100
+	id +A3vFG5pfGk/MQIAu9opvQ
+	(envelope-from <devicetree+bounces-261111-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 09:18:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8735DB8301
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 09:10:22 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E742DB840B
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 09:18:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id F333F30166C5
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 08:10:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 92F1930136A5
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 08:18:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3516B32AAB1;
-	Fri, 30 Jan 2026 08:10:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A20D6350D5F;
+	Fri, 30 Jan 2026 08:18:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="D0WOjZgd"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VHFDfaF8";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="SFfXZnsI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A75A32B99F;
-	Fri, 30 Jan 2026 08:10:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 214363502BC
+	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 08:18:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769760616; cv=none; b=Oby5k513oyXeS7hSfUY02UGxp9+YP2o1IevIQ2AseSf2S/b+As/lWxIbQcQbU3IV2ZqWAsk3Eqp3aEn8rTQeoH5JQhrDlT9ZGibrL2xfGOR00tmU6PRiUB0QBwn5duOY/1yGvgH7XwC0KWH+Jf6Xg9ddQdc9ax4tLRlwgKoCcQo=
+	t=1769761105; cv=none; b=gyPv0nn+G0dIqBgFNcSV25oBy/dD3fMsnjfdU3eP4G4i/WhOwf+HQX8D4rNXSkgMPNxlElOvD7K9+1Xp8ikHVovOyNu9D/YSQsYrON/pCyLRQZFiT6pqRITjpEvrrbT9LGztaxDEyu8XsiEHRLZbMVwk6AF2NY6zySuVPK3ThY0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769760616; c=relaxed/simple;
-	bh=Lo2fUO90q/v1JUx9mj7PlHCHtIMjuN2bDdqaRtG0DWI=;
+	s=arc-20240116; t=1769761105; c=relaxed/simple;
+	bh=br2SMO/CqOLy01O9OblTwnj3Y8uFghxnpz7SdQ6Z3dY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QQn7XNqMC+pzf6eGoWyHpN+rgwnF+oBDQF1K9En0KJzveZWSGW36+7amhFU0DuG8bgDXlFOAXaMXI5GMfSTGVolgxiQq9TDte6fa2kP3CNsq6agxUG9ueV4J9NZWp/Z+yoNGQG0ct7kJL/a5HRzOUQY7u6ovS9Snwkyx/1i8C70=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=D0WOjZgd; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 628DA1FB55;
-	Fri, 30 Jan 2026 09:10:03 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1769760603;
-	bh=67UzpBZIHZQ7e3X7q7iVPb/2tlQ+jW3PPWa81fH4DkI=; h=From:To:Subject;
-	b=D0WOjZgdfDvtz72Ej5e3wl3mgZGzTCEqRfblslZM9Fw6nO7dz3qj6cy1pOLoJa87x
-	 KlmpewBFqFdIK7Nw7RrJEpMEt3v1LtNHjdiUGgRcs8csoc/59uDhz+jWtE7KbA8trU
-	 v4nhwOT7RnM6j/LEiz+8rxy1L3j4HrJGm6qy4zLZHbV6lnboDPy84ZLRwRPmzZvd9k
-	 EADxG9zetZmg9SQKrHYR+btK7wbzmgVwTMRELquv7pLwEsHka3B/6uh6iDc+Qmqt14
-	 vS+n+qYn5I9BUaYpRoAC3bnX7X0Z1JX9YKUMwa5V+NITTWnUNebnEL05ZpQ3TyYzW9
-	 J2Gd9aq64wynw==
-Date: Fri, 30 Jan 2026 09:09:59 +0100
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Emanuele Ghidoli <ghidoliemanuele@gmail.com>
-Cc: Francesco Dolcini <francesco@dolcini.it>,
-	Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH v1] power: reset: tdx-ec-poweroff: fix restart
-Message-ID: <20260130080943.GA157514@francesco-nb>
-References: <20260130071208.1184239-1-ghidoliemanuele@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=hZiiTK970OcUit7rAxXOeKkshl55i8J9yIQGnFQbH4svq345kV590q6oSCNygh5QXllpXp8fwRpErAhhZPxWaAwKv9tZ8yfybKAceZKYDjTMJtKlZ2X3nnWHfApSM6/FWYUfgyhvy0pqD8Wi+USiwX6tCDgfoC/eYWlJrTP9NWM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VHFDfaF8; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=SFfXZnsI; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60U3VZpm1022128
+	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 08:18:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=6SP+L5YkJ1dJdpaUxQXBP5gH
+	hMTqV+qrQzfZOzgDS6A=; b=VHFDfaF8W/2cTM+dHYtYLyqCEFSkC1PXaj+Nsw3H
+	mZcEh/B28ssTotdFCtmyd2JtJ+g3AV+RG8a9wModEPldBewrV3EFUqcQVALVPLWq
+	WhMoYVmmJ8UqGqTxXPBefgUWay0fnnJpPetQQ+iABdlZ3C3bZsHnVLs5Xk12F0S/
+	OD2t2ZUXx8LHDDOd8ooOpeYvxoTlrKo3DXe2Svj212r7LE0rFrCvmkow15lin7Uq
+	k/vcT0Qy7AMUrt6VtAVTKsAC3vUTyuetGWOJvzlu1XF4X6vxyMEiO68K0WnVvba7
+	j78lmvWQ0WeBo/+b0+Z+OkZVvuRhvREqsUEMuSzhLvACqw==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c0e3k9sqn-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 08:18:22 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8c538971a16so447671085a.1
+        for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 00:18:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1769761102; x=1770365902; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=6SP+L5YkJ1dJdpaUxQXBP5gHhMTqV+qrQzfZOzgDS6A=;
+        b=SFfXZnsI0eOu7E+NB0fGHJEg4L3Bx/nu/q+iRjkbLixYCBq38ORVmrbWB8FkgJwaU7
+         +4peO99MIERAFyL2aiHzGNhQA0A+iJTLjpx4qY9+T6xZ2m2l7MsbFcocSiQd4qdPltoA
+         XYmDAW0JigKyIen80PpB9mUjDCqVZzL6Dk7H7BCl6BE/74YuECeAKd2vCxo7OvbnhC6t
+         tnkEAiDI3P8pS1H4a8S9B8ov65bnkskmJmfqXWe58aMydXD7cY49UnLFjVNVeLc0A/jL
+         BQBUa1AB4j0lLTiispwYNK+k4J0lrE1xwZL8cFVQvBKpKrY9eCI2PjjD9qDPd0E9L0L8
+         0f+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769761102; x=1770365902;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6SP+L5YkJ1dJdpaUxQXBP5gHhMTqV+qrQzfZOzgDS6A=;
+        b=Fw4pvexCPOUgsV0TJyHIQ7oc9DWLgzW79WlAp2lOsDTCp761Km6mJzCR4CM0Mp0Jt/
+         FX+p08iJ7jOv883I94wa+nTGhEjPP9VpAFl+gmhxctmz86U59uT2XeiAmP9ij2DhMhxq
+         /S0as647L9On1iC9v9E0e0wXi3PrvpkCZX3iPwvh+DbK+BRI3bMfYKn3l6Z22NXvpSjr
+         APqdk2JCgy1bM6vx4oziQmLpZXCvaPgFrcT9AJL1/wCc0LJQMaq3fdqbk5PHfiCu+ZqH
+         EqFSgJd7RU5Hpd7heL2s/ptM3uE/0gBUqUNTwH+jRkEVgm8dQ/8NoDnYVIQjcNHe1YUQ
+         8qaA==
+X-Forwarded-Encrypted: i=1; AJvYcCUKknuT/NhKoARFY8PbBl/Hwap7TlGrfkcFGK953pBREj6qKLtQ81J8aNE0BoRu290pZ1EYZ/ET5nZ7@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx/dFVbKhbYbb5K0Myvto9OUUQkzlIsnRDp/6bGOGxwOq5Oh7Kn
+	1GgO+diZLD7d+26C6KTQFwxWeXykCMpxOaEFUOgtW0Pn9sWoA8/SEoG7m1cAZV+4VTDCtQKS7bw
+	+uN/eVpMFCS5q1ucWcmpeKkyCMapRea3iD6Cn8uhz6rVHGcupOCWo7MICNEmiP1ZAkZ4prpTc
+X-Gm-Gg: AZuq6aJaaGdKOw0Vlrlw0m0Z//uy0K2PIQFvjBR6sAOsp8ry1yhrsE8QAA3ROSalyqk
+	S8ORqWQdyE3KZTi1MW2JZnwubNpPtGDt5GeoBy4gaeyn8v9kN/YpeixuKmvQaFF51rDXei3+hCW
+	z7RQ38KYydMK7J4DvkNx+zB85coclXaJ1VUrAzWsd247sLNkqvMSlzq30oPuTrm5EW3J+05GU3x
+	Kkfe36OPbbWk4zyqNNZtXoNTM0QBZe9nBHa8j6Ixgj9hC/1Lwu5I/U5TKk8iVu1u7+a0LAPi7gy
+	oSSy8we/IiebvMVSxEtGMrwCI18buJroT9oeKVqWuA7HwFrvlyl4anJkYARw4XZqrGi9to2qpaQ
+	HzAC4nr0vQFunIbc1YNCRrE7T
+X-Received: by 2002:a05:620a:4708:b0:8c6:d398:4a76 with SMTP id af79cd13be357-8c9eb1fc068mr284444885a.2.1769761101945;
+        Fri, 30 Jan 2026 00:18:21 -0800 (PST)
+X-Received: by 2002:a05:620a:4708:b0:8c6:d398:4a76 with SMTP id af79cd13be357-8c9eb1fc068mr284441385a.2.1769761101378;
+        Fri, 30 Jan 2026 00:18:21 -0800 (PST)
+Received: from oss.qualcomm.com ([86.121.162.109])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435e1322dc7sm20233675f8f.37.2026.01.30.00.18.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Jan 2026 00:18:20 -0800 (PST)
+Date: Fri, 30 Jan 2026 10:18:19 +0200
+From: Abel Vesa <abel.vesa@oss.qualcomm.com>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: document the Eliza Top
+ Level Mode Multiplexer
+Message-ID: <lqzft4adz56ly5323cpcsdasr4uag6gb2wrtlabynd6mvxayhi@jdrxniqm6qek>
+References: <20260127-eliza-pinctrl-v2-1-1faf78efdc2e@oss.qualcomm.com>
+ <20260128-hot-camel-of-acumen-eef9f2@quoll>
+ <aizrc6xysfwzygdsfeuc2raccq7efmwg5bn6v33t2de6ugvzgi@z3ipf3i25ulf>
+ <dc0b7245-de95-4db7-bf8f-815ba60d7adf@oss.qualcomm.com>
+ <pdxrotmxjiebyj2gqx6buwupkydngxki6jgv4e6l6fmodzc5v2@yxky3civt3yz>
+ <8360708d-5d82-4cbe-bf0c-31107ab07bac@oss.qualcomm.com>
+ <p5rv7u5utnetlt2xvh6ixk2xvi74tdcurgwzrkxfuq7qa3m66u@m7u2ukr46n6j>
+ <6244680d-f6c3-4aba-8e12-61093e51f76c@oss.qualcomm.com>
+ <flr35di3ivjivnnkrcnwnurlzhmf43i5ymtgj3jnitexcm45sa@jli2o7qkb4tb>
+ <9234e45d-4a48-4820-a42b-48e11d79c0ee@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,63 +125,174 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260130071208.1184239-1-ghidoliemanuele@gmail.com>
+In-Reply-To: <9234e45d-4a48-4820-a42b-48e11d79c0ee@oss.qualcomm.com>
+X-Authority-Analysis: v=2.4 cv=VI3QXtPX c=1 sm=1 tr=0 ts=697c694e cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=oauzzCmhM186DRC0Y2yWPg==:17
+ a=kj9zAlcOel0A:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=k23fqYO9E_dANr8HoeMA:9
+ a=CjuIK1q_8ugA:10 a=IoWCM6iH3mJn3m4BftBB:22
+X-Proofpoint-GUID: rcjJZfouCdCBjxL71Z30kJ_Ae61xvFbM
+X-Proofpoint-ORIG-GUID: rcjJZfouCdCBjxL71Z30kJ_Ae61xvFbM
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTMwMDA2NSBTYWx0ZWRfXy1+9CLBV5Guz
+ RYrCq2HpqQHLuRFMeOYAf4qDX07plhspVOOgRrjZGE19cN0b7Bbw6kUGfTppZi3vui47OUMBBN6
+ 0lxo/sfygX3SsXgnGFLqO5YcPSSxjHYbY5AuwyXgxVDjhMT36m0xmRPYJudvIth1JDci9bcmA0S
+ U8A+uDjv96ETUYWyPzbUjesI/LxgxDBxbWjYbzhphbMbuTqhpwehadqsDr/FRmCHq30IirWsODX
+ Z9SV8c6v8HTydlfYjFurAArvbLhJ/vFCdAkh8C95ucT8VTuRx/da4uInJqrUeIk6bLd2S5t10Pu
+ FgsKuC35ISV91+oybqB1SRiKNIv/St7zOSCLhfRyf9m9dIw7mtxoo7chhOkyaSWJ9XVh0ohaxJw
+ llMFUK3EP2/lpgdM+IvgUNEPUVNE9S8eiehym6Rq0lt3Cc+ViXtr+SPCvnFID3/O1nZCNHiZno8
+ V8nyr8abMkQlbWinBcg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-01-29_03,2026-01-29_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 impostorscore=0 phishscore=0 bulkscore=0 priorityscore=1501
+ adultscore=0 clxscore=1015 lowpriorityscore=0 suspectscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601300065
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[dolcini.it,none];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[dolcini.it:s=default];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261109-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261111-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:dkim];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[francesco@dolcini.it,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[dolcini.it:+];
+	FROM_NEQ_ENVFROM(0.00)[abel.vesa@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,dolcini.it:dkim]
-X-Rspamd-Queue-Id: 8735DB8301
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: E742DB840B
 X-Rspamd-Action: no action
 
-On Fri, Jan 30, 2026 at 08:11:35AM +0100, Emanuele Ghidoli wrote:
-> From: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
+On 26-01-29 15:11:07, Konrad Dybcio wrote:
+> On 1/29/26 1:42 PM, Abel Vesa wrote:
+> > On 26-01-29 13:04:23, Konrad Dybcio wrote:
+> >> On 1/29/26 12:12 PM, Abel Vesa wrote:
+> >>> On 26-01-29 11:45:59, Konrad Dybcio wrote:
+> >>>> On 1/29/26 11:41 AM, Abel Vesa wrote:
+> >>>>> On 26-01-29 11:34:07, Konrad Dybcio wrote:
+> >>>>>> On 1/28/26 6:22 PM, Abel Vesa wrote:
+> >>>>>>> On 26-01-28 12:38:32, Krzysztof Kozlowski wrote:
+> >>>>>>>> On Tue, Jan 27, 2026 at 05:47:36PM +0200, Abel Vesa wrote:
+> >>>>>>>>> Document the Top Level Mode Multiplexer on the Eliza Platform.
+> >>>>>>>>>
+> >>>>>>>>> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+> >>>>>>>>> ---
+> >>>>>>
+> >>>>>> [...]
+> >>>>>>
+> >>>>>>>>> +
+> >>>>>>>>> +  gpio-line-names:
+> >>>>>>>>> +    maxItems: 185
+> >>>>>>>>
+> >>>>>>>> 186, your first GPIO is 0 and last is 185.
+> >>>>>>>
+> >>>>>>> Actually it is 0 through 184. The 185 is ufs reset.
+> >>>>>>
+> >>>>>> The UFS reset also happens to be a GPIO..
+> >>>>>
+> >>>>> So the gpio-line-names should include the ufs reset,
+> >>>>> but the pattern not.
+> >>>>
+> >>>> Why not?
+> >>>
+> >>> ufs reset cannot be configured as gpio, so why would it be part of the
+> >>> pattern?
+> >>
+> >> It's certainly registered as a GPIO, as all users of UFSHC refer to it
+> > 
+> > Well, technically yes, SW-wise. But it definitely doesn't have the same
+> > configuration fields in HW. Anyway, that is not the point here.
+> > 
+> > The point is the pattern has dedicated enum for ufs_reset and gpio185 is
+> > not even part of the gpio groups anyway. [1]
 > 
-> During testing, restart occasionally failed on Toradex modules.
+> So, is the current behavior such that in case I wanted to set some
+> properties on the ufs pin, the description would be:
 > 
-> The issue was traced to an interaction between the EC-based reset/poweroff
-> handler and the PSCI restart handler. While the embedded controller is
-> resetting or powering off the module, the PSCI code may still be invoked,
-> triggering an I2C transaction to the PMIC. This can leave the PMIC I2C
-> in a frozen state.
+> foo-state {
+> 	pins = "ufs_reset";
+> };
 > 
-> Add a delay after issuing the EC reset or power-off command to give the
-> controller time to complete the operation and avoid falling back to another
-> restart/poweroff provider.
+> ?
 > 
-> Also print an error message if sending the command to the embedded controller
-> fails.
+> TBF we don't have any such ones, possibly because whatever the
+> bootloader had configured has always seemed to work well enough..
 > 
-> Fixes: 18672fe12367 ("power: reset: add Toradex Embedded Controller")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
+> In that case, I agree that this pattern should not include the pin.
+> I'm however a little surprised to see that would be the case, since
+> we end up consuming this pin as a numbered GPIO via reset-gpios.
 
-Reviewed-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+That's because the pins property uses the name (here "ufs_reset") while
+the *-gpios uses the number that goes via driver specific of_xlate.
 
+> 
+> > Also, are you saying that all older platforms (sm8[3-7]50, at least) are effectively
+> > wrong since they do exactly the thing I described ? :-)
+> > 
+> >>
+> >>> For the same reason, it cannot be part of the gpio-line-names either.
+> >>
+> >> Since it's registered as a GPIO, why not?
+> > 
+> > If what I'm saying above is true, you can't configure gpio185, so AFAICT you
+> > won't be able to name it either. Or am I wrong ?
+> 
+> I think the truth is more nuanced:
+> 
+> The UFS_RESET is a GPIO in the sense of pinctrl-msm, as it has a ctl_reg
+> and an io_reg. It's not capable of receiving interrupts and it seems to
+> be output-only.
 
+Just because we treat it as gpio in the driver, doesn't mean it is a gpio.
+HW-wise, it is not a gpio. GPIOs have electrical properties (at least) that
+this ufs_reset doesn't.
+
+> 
+> It does not have a "gpio" pinmux function (func0 is named "ufs_reset" intead),
+> but that's just human-facing naming, so whatever.
+> 
+> It can be toggled and is consumed by its number, through the gpios/xxx-pins
+> property.
+
+Being toggle capable doesn't make it a GPIO. Again, a GPIO is more than that.
+
+> 
+> Running cat /sys/kernel/debug/gpios on x1e80100, where ngpios and gpio-ranges
+> includes that pin though, I could not see it listed. I don't really know why.
+> That's where I'd expect to see the name given by gpio-line-names.
+
+Yeah. I think it should've listed it. It does on Eliza and Glymur.
+
+> 
+> Now, I would also strongly expect that this pin would be only ever used for
+> UFS reset, making the name override unnecessary but we've all seen things..
+
+Anyway, to conclude, pins property does allow you to use it by name beacuse
+of the enum entry below.
+
+But the gpio-line-names doesn't make any sense to allow you to override the name.
+This part is can be debated, for sure.
+
+I'll respin with these in mind and we can fix this later on, if needed, on all
+platforms at once.  
+
+Thanks,
+Abel
 
