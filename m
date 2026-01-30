@@ -1,422 +1,256 @@
-Return-Path: <devicetree+bounces-261221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261222-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yMVsHiKvfGmPOQIAu9opvQ
-	(envelope-from <devicetree+bounces-261221-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 14:16:18 +0100
+	id KAf8OPKvfGmbOQIAu9opvQ
+	(envelope-from <devicetree+bounces-261222-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 14:19:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFEBEBAE68
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 14:16:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C70BBAEAE
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 14:19:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4738A3006B5E
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 13:16:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BE93B3003ED7
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 13:19:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB52828466F;
-	Fri, 30 Jan 2026 13:16:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FEF529B8E8;
+	Fri, 30 Jan 2026 13:19:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="V6gcwo6k";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="hrw0rVS7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DOMD7Bez"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CC6719F464
-	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 13:16:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AF087080E
+	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 13:19:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769778974; cv=none; b=apA6qec8btJ/zgbElAfZCXn9j/Tp6+MnQUe8xTOLybaD1S6dJkqOTVp6zGcTIYXW18Rb15gYX3bfJ+1Fqje7Wigp0DPapa13cq+EyPfKVK2iEOhX3hm+Q6Jy7Cp/UUtL1AidBH7wnEGChTLub/dvXzyuezrMw4Ab455hy+EnYf4=
+	t=1769779183; cv=none; b=TSIS0+XvubGg/d36S6SF8hckOf3NzarzUwM/6tCHMjLiMQ1jF582HzIYlH9F2i0oZ68On/0EAMSttc7AiOGUEhI4O+fFx8dpHQvlKzohCcIpZCjx000XeUQaAMk9PQ/c8zVS4CT2TtQiP4/O25SaD/uzAtEldjreT/qnKLaSmR8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769778974; c=relaxed/simple;
-	bh=vhwY5XruRuEDyW/2TsSKdeRmpkI+kWwgAODxEujg3Dk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=C0+vBl539GkSOTY++1CPoIL2Q2HVXlBKr9Grr+Yi0ow8BShIvU2D3Hz9oQeAHJNZ/5t9Gldla/HmAKdrnNHqNj5XgauzrvrBOQhR3gFR6Vsho4Dh/3QlN8iS0ZMUsHPzNKzppkYBxfyo6iVz3CbiNGXNfjEtMAqU2jccWhBup/E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=V6gcwo6k; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=hrw0rVS7; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60UC8EBe1485353
-	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 13:16:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	8VXF453gbssyoEkQiSKvuRsYKrHyVX27FC/n38uidpM=; b=V6gcwo6kJBOEJ8U7
-	nQHkz9RymZOwJ5LjLkB4qcncpISQVusocHHe9X9mZZHynxR+BZEKup8nISfRTBag
-	OaCxIscq/zSm5YBmWeHmT+MUVlcR8XaT0n8DGbJXJqJLq9L22cDMThvpbeUpsXak
-	Ay1kASdhPhg7lr5qHR4s7o2aCmD/B9R069KhwX6Ie/epqC2dtnJnwNaABkzz9TdZ
-	wY5nnMqCSVdLqu9XOVbG7wwh1orBOtMbJPS9wnfo4K4K88dvcUVLYPX/Qb+2AfyW
-	BhwQmcuLi9ScJyAXoi4xIkJQDxaobppihBzQUeqL4AEqTO6XM7vBcTSBp+6zOuL8
-	+dEbEQ==
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c0nsf9ecq-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 13:16:12 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2a8c273332cso47423775ad.1
-        for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 05:16:12 -0800 (PST)
+	s=arc-20240116; t=1769779183; c=relaxed/simple;
+	bh=GPGinCQroahYT06bixhJuzGEVunNCmKgVO1Cw29JfFg=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=QEYSuR32NIt0YnMb1sjuEOp7DX5YA6JtqN0c9tnrPoVf2c7FfpJ96Q7EfrQQxY56FK9QiUYfDky0dy/Er6PH2X8xcKIxPWi94tzcsysS1j7l1aViRPyCnFTPT8y9stSjU6siVc44r+2nXDqSj2KWEsiMUT4c5n/wpjpVnaPCLyI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DOMD7Bez; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4806f80cac9so12936865e9.1
+        for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 05:19:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769778972; x=1770383772; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1769779180; x=1770383980; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8VXF453gbssyoEkQiSKvuRsYKrHyVX27FC/n38uidpM=;
-        b=hrw0rVS7tQijZPtrDQj2GOJCIYinfUCeQQVTssnvTySSni8eIO92VvZsP1vR9MVjX9
-         jJGZR4ZVeJKsblqOJKYHA+/yKAwYzF06jd5PezydGegZ+/AdORBHH7j/GY7OvzZpiJNX
-         iMgRrCx6BgcSZCaq5tTsJ3Yka80AgF0PNXSJgjjTaPZ/roZayf3fIrte2F58hvkE0sBf
-         C+DWaIhcrv49LItpvxJb9h7mGoTgezoN0rB4fnrICpIlR5M5GFX6SR7wpVwCWJgGAiID
-         Me9dhNxxmW59EkUhIC2aUBUbrQfwDTRBgvGnYvG7yJsqOGwG2H7kao8ooQRWSphTpcMW
-         R3nw==
+        bh=HM7frh05im77oZIDqVclBmpgKOAVmImS7J83MO9Bgs0=;
+        b=DOMD7Bezm1Yx12C1v1027Xnka18s17PZLutCmpjxvcc5dmUjvxHnqbV5dLitv86K3c
+         uux+5crblve8u8S5RvuG/a+chifI4TpeVPtTyAJ90MdeG2Drci+D+AGLfusgL1LiRpv1
+         IxlilPsoDFhL4x3xFu0QSukQUqvnNsQMQoQwx3rySJcu9Wllp7uqPud1JKaiCnNhAG4c
+         dCRLuLxGz/75XavNh5v4G/NahLHlGQvo3q0YQ07mTfcnTtyXo323bq8Ukm6I5Z3LpfkB
+         LGnhlA8p0+rauanayRuWp/Is6KZ6gJMR670AWZ5lAjQbZE5uNQs3N7C5tvlaa7Lpm5kt
+         t5dg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769778972; x=1770383772;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1769779180; x=1770383980;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=8VXF453gbssyoEkQiSKvuRsYKrHyVX27FC/n38uidpM=;
-        b=FoKsnOoYrmV5rmOLGD3LXOfcCT8QIkFU1mkGC5E8JoLX0CW7a0n6XwH/CsUmKSrDbX
-         JnUI5hgaHq5yTSFTe7R/zuESUaM7DCzrXvMiwZ7slF69GBSFwsI22CAqe9OM021zZzeX
-         gzBHsTX5JEIqBq75oaDDnXogPPIwTc89wRt5Sjf8IFSOcp3lyR5oZEPw0LMUXX4NO7Vd
-         FGKyZwNTNGl7ppoFfe2hgkicb1SiiJT4Ka75fZp28GObRNm6M5Nmn1eVzz2LkfnsHqBf
-         cxuUYfaMkU5KUIZpYqMwdWweV+GNz1U1jEpKQMdsMK67wcrnvCO02ZixS0ALP/ABo34z
-         0qTA==
-X-Forwarded-Encrypted: i=1; AJvYcCXpIFwrpDLyDeFXjlDZMo/k8v6v+hM3r70H3Ig5PgvbN+ltjjOM6d6b95WD9vPFqWGyzLf5I6iZ8pKf@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/i+hmgP7NTDQR3tIHcmt8DJPtr4dBThYNBqmW3a+2qpGMoeQw
-	KH11vhXT9WQneWTacYqct1m3rhC1FtfrVkFE9n+jzxj6g5+zrAw9dQka+yg/xZGyH0fPTZ5OB3s
-	qxhs4yMvv4phfzFsI/AO81YRf6Z0FThNeA23AE/9uKfAFnimRhhOeLfKN05Y0XaLt
-X-Gm-Gg: AZuq6aKQHdDuB9xNpZCwIwKKhnvjV8fYRJFuCEB0hmyskkhamiCYUGZmCYP25sVV05A
-	KFAECPF8CvxZWqaJUAP3ITp4pmFNeiSqMvZh8uklkf3fbzShlTIsesbLpwGl0656H0NzICzaI7f
-	qvtyRXICXaaJX7iQCQnxnqs21smtIgJNYsxe9LryjLZvdM+Dlnosoyb1gk+Gg2nRrokxFQaBnms
-	jInctpJ4mHYSPET0Z7++JS0w2cr8oxYRSekFJijN/fkhVfmZ4dIn+eqg76mZJiaVClUdmJpHXI/
-	/f+45dHmDDBi9m+YnPKVkHe+TWbswpxpJJc6bE5sfu41jtj1nmc9Y/ObVtKAtR5isDupIEmN9hJ
-	qnR1MrEJJ97ZLw+ZwYt+/2/vDn743ywA/gacmhdw=
-X-Received: by 2002:a17:903:3204:b0:2a0:d6d5:b342 with SMTP id d9443c01a7336-2a8d9912e35mr29345775ad.37.1769778971540;
-        Fri, 30 Jan 2026 05:16:11 -0800 (PST)
-X-Received: by 2002:a17:903:3204:b0:2a0:d6d5:b342 with SMTP id d9443c01a7336-2a8d9912e35mr29345475ad.37.1769778970947;
-        Fri, 30 Jan 2026 05:16:10 -0800 (PST)
-Received: from [10.0.0.3] ([106.222.235.0])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a88b414fc4sm78288295ad.32.2026.01.30.05.16.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Jan 2026 05:16:10 -0800 (PST)
-Message-ID: <8c5cd9ff-e549-00ab-60c6-814b52f50949@oss.qualcomm.com>
-Date: Fri, 30 Jan 2026 18:46:04 +0530
+        bh=HM7frh05im77oZIDqVclBmpgKOAVmImS7J83MO9Bgs0=;
+        b=mp9sV3nm7v2qWYBzSF6evkE6XH7Kr/C6DxRGhlKSbIT7FZ9vYaz0Gf68xRgeb+nkBm
+         8n1LeYWFfZXZmt9wxNz0QgNf83ii2o9bfQfjdkzhYjonUmtJO32fHZhY/4LEIXsBVqFB
+         ymHPxc5vBZQqeXrg/elgVlJXUyT8mmdTXjm504PMg6qHSIabkGZ9ILAMSD2UTYgUFYQC
+         Sng999VOF17KIjc1nl64RC1o/rmfp7N3n10NtprTo6j6rzkyb+od4E+LAzWxQO1/sNKT
+         AikktDF2OiRtFWpQFtTy5RXOiWiaxfDfpFYcdMXSc/Vd39r29Twm+QUEzxlZy5SsxM1U
+         bLAg==
+X-Forwarded-Encrypted: i=1; AJvYcCUuWs7PebBI6SiFL2b0o02A9G5zv2OGNkcy6gBIUUoobc6mf0BBd215+wmys4QOWp3Ys2cnScLYb+eO@vger.kernel.org
+X-Gm-Message-State: AOJu0YwtQjQU157Q21uSZduNXehkLKxQ467/s+0fv8h8stVwCKTcUVJL
+	1m8V8RIgIpfVP/ALLxpAQWl5OBgksVqDhubnpnGPLR7X3QTCbum5XEjWoCf55OcLun4=
+X-Gm-Gg: AZuq6aKnF2Vh05n0C9WoyHKSIH7vlo1tzGrOC/Mflrg/p/JsO3AA3UOKbo+du1zddQe
+	OZTXNWsfnIYE2FyiTWEHVm8+fZD4wZv+quK54aHcI5NY26/xGWF4RT5J6hZIVNvaSUQ2xKHTj+w
+	kGD2f3d3RlgHI0M8GaWii3+9GYhrP9DPNXmMt0f+Sq3WiSmojo1rORs2P63f398aa7UsJnfUszT
+	Y+Bx4CSWKHUbgrcL4uZcEzW3MyVztivKliRzRbNdD95PfFXyU0EKiT+Mb8Labi6qzk+J9InFEc6
+	F13f8aJS8CWjEIDtrWzMmGpaacDwWYadXxwzqB0MEmaxB938vdjMyhXn+PG5GsJFTw9W2SDqk3g
+	dzCSFdOOXJnH09O9G2/58JcPtAgf2n7c8aR2pLDdP1JO2PEaF9HHfn3uPhP9DL/YLz3CwEO1kwL
+	swUwpJ7WJxGNdDk3uB
+X-Received: by 2002:a05:600c:870c:b0:47f:1a8d:4f30 with SMTP id 5b1f17b1804b1-482db4e2501mr31706135e9.26.1769779179560;
+        Fri, 30 Jan 2026 05:19:39 -0800 (PST)
+Received: from localhost ([196.207.164.177])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4806cdd78d3sm203603435e9.1.2026.01.30.05.19.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Jan 2026 05:19:39 -0800 (PST)
+Date: Fri, 30 Jan 2026 16:19:35 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Chester Lin <chester62515@gmail.com>
+Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>, devicetree@vger.kernel.org,
+	Eric Dumazet <edumazet@google.com>,
+	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>,
+	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
+	imx@lists.linux.dev, Jakub Kicinski <kuba@kernel.org>,
+	Jan Petrous <jan.petrous@oss.nxp.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	Matthias Brugger <mbrugger@suse.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, netdev@vger.kernel.org,
+	NXP S32 Linux Team <s32@nxp.com>, Paolo Abeni <pabeni@redhat.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>, linaro-s32@linaro.org
+Subject: [PATCH v6 0/3] s32g: Use a syscon for GPR
+Message-ID: <cover.1769764941.git.dan.carpenter@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v3 2/7] media: iris: introduce SM8350 and SC8280XP support
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
-        Bryan O'Donoghue <bod@kernel.org>,
-        Mauro Carvalho Chehab
- <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Bjorn Andersson <andersson@kernel.org>,
-        David Heidelberg <david@ixit.cz>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Johan Hovold <johan+linaro@kernel.org>
-References: <20260125-iris-sc8280xp-v3-0-d21861a9ea33@oss.qualcomm.com>
- <20260125-iris-sc8280xp-v3-2-d21861a9ea33@oss.qualcomm.com>
-From: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>
-In-Reply-To: <20260125-iris-sc8280xp-v3-2-d21861a9ea33@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: 5oKViMzjYYi3tlaWgEAyTJQoYcNnWH1C
-X-Authority-Analysis: v=2.4 cv=EvjfbCcA c=1 sm=1 tr=0 ts=697caf1c cx=c_pps
- a=JL+w9abYAAE89/QcEU+0QA==:117 a=6cH4IgXjao/mkWo6W7aGpA==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=QVgFpZlzPVjKh7SGavcA:9
- a=QEXdDO2ut3YA:10 a=324X-CrmTo6CU4MGRt3R:22
-X-Proofpoint-GUID: 5oKViMzjYYi3tlaWgEAyTJQoYcNnWH1C
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTMwMDEwOCBTYWx0ZWRfX8fRTCPrlQ5Kb
- C6WwhTqYtye0p9u/cYwN9rSJ8okN5d+/IYj2piIBkuke4NumMGY+0r3Sqcl9QUvK65ubYIAyOyE
- Oj01iy3R3C/GSdvg1/wDeuMpqY8DDGhxmHcV0S/XBTV25CW7fu4gsMvCOWbLMFG3k8gBCu15Yc3
- Dds7nxljn7HFciKxSPgfmxdEXGGVTYkIu2bQbX3UBXHcffGio2GYFmwY5U1s/IgDXgW03e4EXlD
- iMHe2MX4lnmrV/KcIyLmp01Hoosb0HX7SuPGZ0XdxrVEd2V0smfXLE0gjvgeCbwiDivcXZ0ZIRT
- gO9i25drl0MgA7H+XwvKaOp09qXm1zskQ7CSQ3g4a6F9TD08pZhOEoP9pnwB/Pe6xVARPFDeGjx
- /5dgGsiO3dm3gNXoMa0mfROp9Zgnq3Ar2V41trx+71AIa4cjTFYtG2v8RnR0WxhghGMzFrWDuZ8
- 8IGrjmGPrvdScYzPX7w==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-01-30_01,2026-01-29_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 spamscore=0 priorityscore=1501 bulkscore=0 suspectscore=0
- adultscore=0 malwarescore=0 impostorscore=0 lowpriorityscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601300108
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261221-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dikshita.agarwal@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[foss.st.com,lunn.ch,kernel.org,davemloft.net,vger.kernel.org,google.com,gmail.com,nxp.com,oss.nxp.com,lists.linux.dev,lists.infradead.org,st-md-mailman.stormreply.com,suse.com,redhat.com,pengutronix.de,linaro.org];
+	TAGGED_FROM(0.00)[bounces-261222-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dan.carpenter@linaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt,linaro];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: BFEBEBAE68
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:mid,linaro.org:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 4C70BBAEAE
 X-Rspamd-Action: no action
 
+The s32g devices have a GPR register region which holds a number of
+miscellaneous registers.  Currently only the stmmac/dwmac-s32.c uses
+anything from there and we just add a line to the device tree to
+access that GMAC_0_CTRL_STS register:
 
+                        reg = <0x4033c000 0x2000>, /* gmac IP */
+                              <0x4007c004 0x4>;    /* GMAC_0_CTRL_STS */
 
-On 1/25/2026 9:02 PM, Dmitry Baryshkov wrote:
-> SM8350 and SC8280XP have an updated version of the Iris2 core also
-> present on the SM8250 and SC7280 platforms. Add necessary platform data
-> to utilize the core on those two platforms.
-> 
-> The iris_platform_gen1.c is now compiled unconditionally, even if Venus
-> driver is enabled, but SM8250 and SC7280 are still disabled in
-> iris_dt_match.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> ---
->  drivers/media/platform/qcom/iris/Makefile          |   5 +-
->  .../platform/qcom/iris/iris_platform_common.h      |   2 +
->  .../media/platform/qcom/iris/iris_platform_gen1.c  | 111 +++++++++++++++++++++
->  .../platform/qcom/iris/iris_platform_sm8350.h      |  20 ++++
->  drivers/media/platform/qcom/iris/iris_probe.c      |  10 ++
->  5 files changed, 144 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/media/platform/qcom/iris/Makefile b/drivers/media/platform/qcom/iris/Makefile
-> index 2abbd3aeb4af..2fde45f81727 100644
-> --- a/drivers/media/platform/qcom/iris/Makefile
-> +++ b/drivers/media/platform/qcom/iris/Makefile
-> @@ -10,6 +10,7 @@ qcom-iris-objs += iris_buffer.o \
->               iris_hfi_gen2_packet.o \
->               iris_hfi_gen2_response.o \
->               iris_hfi_queue.o \
-> +             iris_platform_gen1.o \
->               iris_platform_gen2.o \
->               iris_power.o \
->               iris_probe.o \
-> @@ -26,8 +27,4 @@ qcom-iris-objs += iris_buffer.o \
->               iris_vpu_buffer.o \
->               iris_vpu_common.o \
->  
-> -ifeq ($(CONFIG_VIDEO_QCOM_VENUS),)
-> -qcom-iris-objs += iris_platform_gen1.o
-> -endif
-> -
->  obj-$(CONFIG_VIDEO_QCOM_IRIS) += qcom-iris.o
+I have included the whole list of registers below.
 
-This change is not needed in this patch, pls remove.
+We still have to maintain backwards compatibility to this format,
+of course, but it would be better to access these registers through a
+syscon.  Putting all the registers together is more organized and shows
+how the hardware actually is implemented.
 
-> diff --git a/drivers/media/platform/qcom/iris/iris_platform_common.h b/drivers/media/platform/qcom/iris/iris_platform_common.h
-> index 5a489917580e..49dba0f50988 100644
-> --- a/drivers/media/platform/qcom/iris/iris_platform_common.h
-> +++ b/drivers/media/platform/qcom/iris/iris_platform_common.h
-> @@ -43,7 +43,9 @@ enum pipe_type {
->  
->  extern const struct iris_platform_data qcs8300_data;
->  extern const struct iris_platform_data sc7280_data;
-> +extern const struct iris_platform_data sc8280xp_data;
->  extern const struct iris_platform_data sm8250_data;
-> +extern const struct iris_platform_data sm8350_data;
->  extern const struct iris_platform_data sm8550_data;
->  extern const struct iris_platform_data sm8650_data;
->  extern const struct iris_platform_data sm8750_data;
-> diff --git a/drivers/media/platform/qcom/iris/iris_platform_gen1.c b/drivers/media/platform/qcom/iris/iris_platform_gen1.c
-> index df8e6bf9430e..c99ff4d4644d 100644
-> --- a/drivers/media/platform/qcom/iris/iris_platform_gen1.c
-> +++ b/drivers/media/platform/qcom/iris/iris_platform_gen1.c
-> @@ -14,6 +14,7 @@
->  #include "iris_instance.h"
->  
->  #include "iris_platform_sc7280.h"
-> +#include "iris_platform_sm8350.h"
->  
->  #define BITRATE_MIN		32000
->  #define BITRATE_MAX		160000000
-> @@ -392,6 +393,61 @@ const struct iris_platform_data sm8250_data = {
->  	.enc_ip_int_buf_tbl_size = ARRAY_SIZE(sm8250_enc_ip_int_buf_tbl),
->  };
->  
-> +const struct iris_platform_data sm8350_data = {
-> +	.get_instance = iris_hfi_gen1_get_instance,
-> +	.init_hfi_command_ops = &iris_hfi_gen1_command_ops_init,
-> +	.init_hfi_response_ops = iris_hfi_gen1_response_ops_init,
-> +	.get_vpu_buffer_size = iris_vpu_buf_size,
-> +	.vpu_ops = &iris_vpu2_ops,
-> +	.set_preset_registers = iris_set_sm8350_preset_registers,
-> +	.icc_tbl = sm8250_icc_table,
-> +	.icc_tbl_size = ARRAY_SIZE(sm8250_icc_table),
-> +	.clk_rst_tbl = sm8350_clk_reset_table,
-> +	.clk_rst_tbl_size = ARRAY_SIZE(sm8350_clk_reset_table),
-> +	.bw_tbl_dec = sm8250_bw_table_dec,
-> +	.bw_tbl_dec_size = ARRAY_SIZE(sm8250_bw_table_dec),
-> +	.pmdomain_tbl = sm8250_pmdomain_table,
-> +	.pmdomain_tbl_size = ARRAY_SIZE(sm8250_pmdomain_table),
-> +	.opp_pd_tbl = sm8250_opp_pd_table,
-> +	.opp_pd_tbl_size = ARRAY_SIZE(sm8250_opp_pd_table),
-> +	.clk_tbl = sm8250_clk_table,
-> +	.clk_tbl_size = ARRAY_SIZE(sm8250_clk_table),
-> +	.opp_clk_tbl = sm8250_opp_clk_table,
-> +	/* Upper bound of DMA address range */
-> +	.dma_mask = 0xe0000000 - 1,
-> +	.fwname = "qcom/vpu/vpu20_p4.mbn",
+Secondly, in some versions of this chipset those registers can only be
+accessed via SCMI.  It's relatively straight forward to handle this
+by writing a syscon driver and registering it with of_syscon_register_regmap()
+but it's complicated to deal with if the registers aren't grouped
+together.
 
-This firmware is not compatible with SM8350.
-SM8350 firmware is not released to linux-firmware yet.
+Changes since v5:
+* Fix O vs 0 typo in yaml file
+* Add Jan Petrous's Reviewed-by tag
 
-> +	.pas_id = IRIS_PAS_ID,
-> +	.inst_iris_fmts = platform_fmts_sm8250_dec,
-> +	.inst_iris_fmts_size = ARRAY_SIZE(platform_fmts_sm8250_dec),
-> +	.inst_caps = &platform_inst_cap_sm8250,
-> +	.inst_fw_caps_dec = inst_fw_cap_sm8250_dec,
-> +	.inst_fw_caps_dec_size = ARRAY_SIZE(inst_fw_cap_sm8250_dec),
-> +	.inst_fw_caps_enc = inst_fw_cap_sm8250_enc,
-> +	.inst_fw_caps_enc_size = ARRAY_SIZE(inst_fw_cap_sm8250_enc),
-> +	.tz_cp_config_data = tz_cp_config_sm8250,
-> +	.tz_cp_config_data_size = ARRAY_SIZE(tz_cp_config_sm8250),
-> +	.hw_response_timeout = HW_RESPONSE_TIMEOUT_VALUE,
-> +	.num_vpp_pipe = 4,
-> +	.max_session_count = 16,
-> +	.max_core_mbpf = NUM_MBS_8K,
-> +	.max_core_mbps = ((7680 * 4320) / 256) * 60,
-> +	.dec_input_config_params_default =
-> +		sm8250_vdec_input_config_param_default,
-> +	.dec_input_config_params_default_size =
-> +		ARRAY_SIZE(sm8250_vdec_input_config_param_default),
-> +	.enc_input_config_params = sm8250_venc_input_config_param,
-> +	.enc_input_config_params_size =
-> +		ARRAY_SIZE(sm8250_venc_input_config_param),
-> +
-> +	.dec_ip_int_buf_tbl = sm8250_dec_ip_int_buf_tbl,
-> +	.dec_ip_int_buf_tbl_size = ARRAY_SIZE(sm8250_dec_ip_int_buf_tbl),
-> +	.dec_op_int_buf_tbl = sm8250_dec_op_int_buf_tbl,
-> +	.dec_op_int_buf_tbl_size = ARRAY_SIZE(sm8250_dec_op_int_buf_tbl),
-> +
-> +	.enc_ip_int_buf_tbl = sm8250_enc_ip_int_buf_tbl,
-> +	.enc_ip_int_buf_tbl_size = ARRAY_SIZE(sm8250_enc_ip_int_buf_tbl),
-> +};
-> +
->  const struct iris_platform_data sc7280_data = {
->  	.get_instance = iris_hfi_gen1_get_instance,
->  	.init_hfi_command_ops = &iris_hfi_gen1_command_ops_init,
-> @@ -446,3 +502,58 @@ const struct iris_platform_data sc7280_data = {
->  	.enc_ip_int_buf_tbl = sm8250_enc_ip_int_buf_tbl,
->  	.enc_ip_int_buf_tbl_size = ARRAY_SIZE(sm8250_enc_ip_int_buf_tbl),
->  };
-> +
-> +const struct iris_platform_data sc8280xp_data = {
-> +	.get_instance = iris_hfi_gen1_get_instance,
-> +	.init_hfi_command_ops = &iris_hfi_gen1_command_ops_init,
-> +	.init_hfi_response_ops = iris_hfi_gen1_response_ops_init,
-> +	.get_vpu_buffer_size = iris_vpu_buf_size,
-> +	.vpu_ops = &iris_vpu2_ops,
-> +	.set_preset_registers = iris_set_sm8350_preset_registers,
-> +	.icc_tbl = sm8250_icc_table,
-> +	.icc_tbl_size = ARRAY_SIZE(sm8250_icc_table),
-> +	.clk_rst_tbl = sm8350_clk_reset_table,
-> +	.clk_rst_tbl_size = ARRAY_SIZE(sm8350_clk_reset_table),
-> +	.bw_tbl_dec = sm8250_bw_table_dec,
-> +	.bw_tbl_dec_size = ARRAY_SIZE(sm8250_bw_table_dec),
-> +	.pmdomain_tbl = sm8250_pmdomain_table,
-> +	.pmdomain_tbl_size = ARRAY_SIZE(sm8250_pmdomain_table),
-> +	.opp_pd_tbl = sm8250_opp_pd_table,
-> +	.opp_pd_tbl_size = ARRAY_SIZE(sm8250_opp_pd_table),
-> +	.clk_tbl = sm8250_clk_table,
-> +	.clk_tbl_size = ARRAY_SIZE(sm8250_clk_table),
-> +	.opp_clk_tbl = sm8250_opp_clk_table,
-> +	/* Upper bound of DMA address range */
-> +	.dma_mask = 0xe0000000 - 1,
-> +	.fwname = "qcom/vpu/vpu20_p2.mbn",
+Changes since v4:
+* Return an error if regmap_write() fails
+* Add Rob's Reviewed-by tag to the yaml patch
 
-this firmware doesn't exist on linux-firmware.
+Changes since v3:
+* Fix the yaml file format
+* Add netdev to the CC list on all emails so the CI triggers
 
-> +	.pas_id = IRIS_PAS_ID,
-> +	.inst_iris_fmts = platform_fmts_sm8250_dec,
-> +	.inst_iris_fmts_size = ARRAY_SIZE(platform_fmts_sm8250_dec),
-> +	.inst_caps = &platform_inst_cap_sm8250,
-> +	.inst_fw_caps_dec = inst_fw_cap_sm8250_dec,
-> +	.inst_fw_caps_dec_size = ARRAY_SIZE(inst_fw_cap_sm8250_dec),
-> +	.inst_fw_caps_enc = inst_fw_cap_sm8250_enc,
-> +	.inst_fw_caps_enc_size = ARRAY_SIZE(inst_fw_cap_sm8250_enc),
-> +	.tz_cp_config_data = tz_cp_config_sm8250,
-> +	.tz_cp_config_data_size = ARRAY_SIZE(tz_cp_config_sm8250),
-> +	.hw_response_timeout = HW_RESPONSE_TIMEOUT_VALUE,
-> +	.num_vpp_pipe = 2,
+Changes since v2:
+* Improve the documentation in .../bindings/net/nxp,s32-dwmac.yaml
+* "[PATCH v2 2/4] dt-bindings: mfd: syscon: Document the GPR syscon
+  for the NXP S32 SoCs" was applied so drop it.
 
-sc8280xp is IRIS2 4 Pipe.
+Changes since v1:
+* Add imx@lists.linux.dev to the CC list.
+* Fix forward porting bug.  s/PHY_INTF_SEL_RGMII/S32_PHY_INTF_SEL_RGMII/
+* Use the correct SoC names nxp,s32g2-gpr and nxp,s32g3-gpr instead of
+  nxp,s32g-gpr which is the SoC family.
+* Fix the phandle name by adding the vendor prefix
+* Fix the documentation for the phandle
+* Remove #address-cells and #size-cells from the syscon block
 
-> +	.max_session_count = 16,
-> +	.max_core_mbpf = NUM_MBS_8K,
-> +	.max_core_mbps = ((7680 * 4320) / 256) * 60,
-> +	.dec_input_config_params_default =
-> +		sm8250_vdec_input_config_param_default,
-> +	.dec_input_config_params_default_size =
-> +		ARRAY_SIZE(sm8250_vdec_input_config_param_default),
-> +	.enc_input_config_params = sm8250_venc_input_config_param,
-> +	.enc_input_config_params_size =
-> +		ARRAY_SIZE(sm8250_venc_input_config_param),
-> +
-> +	.dec_ip_int_buf_tbl = sm8250_dec_ip_int_buf_tbl,
-> +	.dec_ip_int_buf_tbl_size = ARRAY_SIZE(sm8250_dec_ip_int_buf_tbl),
-> +	.dec_op_int_buf_tbl = sm8250_dec_op_int_buf_tbl,
-> +	.dec_op_int_buf_tbl_size = ARRAY_SIZE(sm8250_dec_op_int_buf_tbl),
-> +
-> +	.enc_ip_int_buf_tbl = sm8250_enc_ip_int_buf_tbl,
-> +	.enc_ip_int_buf_tbl_size = ARRAY_SIZE(sm8250_enc_ip_int_buf_tbl),
-> +};
-> diff --git a/drivers/media/platform/qcom/iris/iris_platform_sm8350.h b/drivers/media/platform/qcom/iris/iris_platform_sm8350.h
-> new file mode 100644
-> index 000000000000..74cf5ea2359a
-> --- /dev/null
-> +++ b/drivers/media/platform/qcom/iris/iris_platform_sm8350.h
-> @@ -0,0 +1,20 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-> + */
-> +
-> +#ifndef __IRIS_PLATFORM_SM8350_H__
-> +#define __IRIS_PLATFORM_SM8350_H__
-> +
-> +static void iris_set_sm8350_preset_registers(struct iris_core *core)
-> +{
-> +	u32 val;
-> +
-> +	val = readl(core->reg_base + 0xb0088);
-> +	val &= ~0x11;
-> +	writel(val, core->reg_base + 0xb0088);
-> +}
+Here is the whole list of registers in the GPR region
 
-you can reuse this from SM8250. That would work.
+Starting from 0x4007C000
 
-Thanks,
-Dikshita
+0  Software-Triggered Faults (SW_NCF)
+4  GMAC Control (GMAC_0_CTRL_STS)
+28 CMU Status 1 (CMU_STATUS_REG1)
+2C CMUs Status 2 (CMU_STATUS_REG2)
+30 FCCU EOUT Override Clear (FCCU_EOUT_OVERRIDE_CLEAR_REG)
+38 SRC POR Control (SRC_POR_CTRL_REG)
+54 GPR21 (GPR21)
+5C GPR23 (GPR23)
+60 GPR24 Register (GPR24)
+CC Debug Control (DEBUG_CONTROL)
+F0 Timestamp Control (TIMESTAMP_CONTROL_REGISTER)
+F4 FlexRay OS Tick Input Select (FLEXRAY_OS_TICK_INPUT_SELECT_REG)
+FC GPR63 Register (GPR63)
 
-> +
-> +static const char * const sm8350_clk_reset_table[] = { "core" };
-> +
-> +#endif
+Starting from 0x4007CA00
+
+0  Coherency Enable for PFE Ports (PFE_COH_EN)
+4  PFE EMAC Interface Mode (PFE_EMACX_INTF_SEL)
+20 PFE EMACX Power Control (PFE_PWR_CTRL)
+28 Error Injection on Cortex-M7 AHB and AXI Pipe (CM7_TCM_AHB_SLICE)
+2C Error Injection AHBP Gasket Cortex-M7 (ERROR_INJECTION_AHBP_GASKET_CM7)
+40 LLCE Subsystem Status (LLCE_STAT)
+44 LLCE Power Control (LLCE_CTRL)
+48 DDR Urgent Control (DDR_URGENT_CTRL)
+4C FTM Global Load Control (FLXTIM_CTRL)
+50 FTM LDOK Status (FLXTIM_STAT)
+54 Top CMU Status (CMU_STAT)
+58 Accelerator NoC No Pending Trans Status (NOC_NOPEND_TRANS)
+90 SerDes RD/WD Toggle Control (PCIE_TOGGLE)
+94 SerDes Toggle Done Status (PCIE_TOGGLEDONE_STAT)
+E0 Generic Control 0 (GENCTRL0)
+E4 Generic Control 1 (GENCTRL1)
+F0 Generic Status 0 (GENSTAT0)
+FC Cortex-M7 AXI Parity Error and AHBP Gasket Error Alarm (CM7_AXI_AHBP_GASKET_ERROR_ALARM)
+
+Starting from 4007C800
+
+4  GPR01 Register (GPR01)
+30 GPR12 Register (GPR12)
+58 GPR22 Register (GPR22)
+70 GPR28 Register (GPR28)
+74 GPR29 Register (GPR29)
+
+Starting from 4007CB00
+
+4 WKUP Pad Pullup/Pulldown Select (WKUP_PUS)
+
+Dan Carpenter (3):
+  net: stmmac: s32: use a syscon for S32_PHY_INTF_SEL_RGMII
+  dt-bindings: net: nxp,s32-dwmac: Use the GPR syscon
+  dts: s32g: Add GPR syscon region
+
+ .../bindings/net/nxp,s32-dwmac.yaml           | 13 +++++++++
+ arch/arm64/boot/dts/freescale/s32g2.dtsi      |  6 ++++
+ arch/arm64/boot/dts/freescale/s32g3.dtsi      |  6 ++++
+ .../net/ethernet/stmicro/stmmac/dwmac-s32.c   | 28 +++++++++++++++----
+ 4 files changed, 47 insertions(+), 6 deletions(-)
+
+-- 
+2.51.0
+
 
