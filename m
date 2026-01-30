@@ -1,64 +1,59 @@
-Return-Path: <devicetree+bounces-261065-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261066-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AFYsGe8JfGn1KAIAu9opvQ
-	(envelope-from <devicetree+bounces-261065-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 02:31:27 +0100
+	id QDg6B/kLfGkEKQIAu9opvQ
+	(envelope-from <devicetree+bounces-261066-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 02:40:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDE55B62BA
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 02:31:26 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40789B636B
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 02:40:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BC43430247C1
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 01:30:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EF6973012262
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 01:39:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11D0326CE32;
-	Fri, 30 Jan 2026 01:30:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C40B733122A;
+	Fri, 30 Jan 2026 01:39:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=spacemit.com header.i=@spacemit.com header.b="PPC9Q3yF"
+	dkim=pass (2048-bit key) header.d=spacemit.com header.i=@spacemit.com header.b="CMsIf+xE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sg-1-38.ptr.blmpb.com (sg-1-38.ptr.blmpb.com [118.26.132.38])
+Received: from sg-1-35.ptr.blmpb.com (sg-1-35.ptr.blmpb.com [118.26.132.35])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B524331220
-	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 01:30:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=118.26.132.38
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4950A32A3D7
+	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 01:39:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=118.26.132.35
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769736649; cv=none; b=fteQDJ2jmhMgMO8DYlBPFQ58n0EJASufr5+JkW4yTjR9Y5psbUt7DOBpNCo7Is3yZuKs3onEKmEq+YSz/yQiINKRxbm4pKa/lg9/h5fs+NOZDuWniFvj4GrFCR/k7naDo7koSuLvmhpfb1nXhemv3kcmXWAlsFxGsR2veKzFhbI=
+	t=1769737195; cv=none; b=dd9Sz9thnDKVxpOBJEZGSpg1YjudXg8GzIIqE95ufgIP6b68joQO7dloLHkFP4dECpuqgrX7QKHQcKKef41nuXUiz1yPMpkh6BvEISlayUutloGCfOgkGdN+1E5K+j9a5vakrFNcND66Elo7o6KWRTljjfYtEDk1tZlqImJcEWY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769736649; c=relaxed/simple;
-	bh=suEQkRNvZoCOc0//N1x9+pIb/ihS7enDgh91Lsz4D8I=;
-	h=To:Subject:From:Mime-Version:Message-Id:Cc:In-Reply-To:References:
-	 Content-Type:Date; b=RrV7ZCxJEm8EOYMCdhp3QOUg4lPr3wMyatKXTpDy/acCqRyt2qlbdsvwMsXPsDqLFE53RY9xO/vysLqWVmoSB/ZWYFdoIo54mYr0lw4XzWLreTRGSQjP/0aWDGtSiP6rJBxXC/r7GHRfdZlBzz5tbk2XZaItR3nvUzCmVDkxfFA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=spacemit.com; spf=pass smtp.mailfrom=spacemit.com; dkim=pass (2048-bit key) header.d=spacemit.com header.i=@spacemit.com header.b=PPC9Q3yF; arc=none smtp.client-ip=118.26.132.38
+	s=arc-20240116; t=1769737195; c=relaxed/simple;
+	bh=/1CUBsDJd927BySIY8L9Fe7Z6JCInyOrDcCzO6bWOZ0=;
+	h=Message-Id:References:In-Reply-To:Content-Type:Date:To:Cc:Subject:
+	 From:Mime-Version; b=NIqA4RUNVmrt1WEY47QPc/S1/u8Zq2go7q2ObjLnk173yQWDEJKZ/u4up1ywltlYSTOnGs6cQ71ZQmtPaQkNdUnpsmlYeKDP2EbiUaDzo7N6CGB4di5he00QUyKzhLlUHsSVJTZu+mJWbvUePioL1gUqcv0flkHZeJZzvlqaZ08=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=spacemit.com; spf=pass smtp.mailfrom=spacemit.com; dkim=pass (2048-bit key) header.d=spacemit.com header.i=@spacemit.com header.b=CMsIf+xE; arc=none smtp.client-ip=118.26.132.35
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=spacemit.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=spacemit.com
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- s=feishu2303021642; d=spacemit.com; t=1769736637; h=from:subject:
+ s=feishu2303021642; d=spacemit.com; t=1769737181; h=from:subject:
  mime-version:from:date:message-id:subject:to:cc:reply-to:content-type:
  mime-version:in-reply-to:message-id;
- bh=suEQkRNvZoCOc0//N1x9+pIb/ihS7enDgh91Lsz4D8I=;
- b=PPC9Q3yF5hUaX3Wtgs1l/TkEjcGUsqX2Jl1RwrfqgR5DjjKeoF8oN7VovRj8jGQosbKd3F
- suq32AMw4TYFeVvbcm1A71Gj74PPk5oa42UG7Lws7xhySfGfv7+P1Bk8dD7+zh9kttNKO2
- oRDe2j6ZF3STIEU0Jp/s2q0fvhxIp/DBc9z7I1cwFgEmP9qh7h2B8hFkMe7rZGsk+VSfH8
- uf1YaNbfQHvlP5Z2BP2YZiC9mkPlMjQBbEJuDex3P6FnsKZX2Gxup1lyKUHqaWC9kUoY/c
- SL9FchmZ2iwRbcyDlCsnqTcLhchsT8LYSVuBsC3q6bYdWfgl1TAuNEnDx8fqJg==
-To: "Robin Murphy" <robin.murphy@arm.com>
-Subject: Re: [PATCH v1.1 4/7] dt-bindings: iommu: Add spacemit/t100 features
-From: =?utf-8?q?=E9=83=91=E5=BE=8B?= <lv.zheng@spacemit.com>
-Precedence: bulk
-X-Mailing-List: devicetree@vger.kernel.org
-List-Id: <devicetree.vger.kernel.org>
-List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
-List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-X-Lms-Return-Path: <lba+1697c09bb+447dac+vger.kernel.org+lv.zheng@spacemit.com>
-Message-Id: <a4684b7f094a6a5ee87d9db722b75594f851b9fb.75577c8a.52dc.41c3.80a1.ca94d4edcb4c@feishu.cn>
-Cc: "Conor Dooley" <conor@kernel.org>, 
-	"Tomasz Jeznach" <tjeznach@rivosinc.com>, 
+ bh=/1CUBsDJd927BySIY8L9Fe7Z6JCInyOrDcCzO6bWOZ0=;
+ b=CMsIf+xE0H3KAtdj7fBL2J7G+2JI8x66aUS39iii9gbWdlgd+D9ixTNjtalZQkfeGSreKs
+ wwDz76b2zWVUsGpyeHz5s5MLRs/1ztgYuxNCjrqvqc7Wc/tyNTK1rHeUrfsvrww/VjZHsa
+ OfMOGkT00g8r4kAmVnGVn2V4DrHVozImQIQLIpnPB6zsf+UztpOyO+trpa/g+ZMuHumf2D
+ 835xIOFZ+6xDkTj/m3+0SwNBKb4uElN/FvkW4m7vSDgFgPw8XeJ3W06cnYPgiToPcNVGcM
+ URT/da8lluctXwamy1RpIU3vclARIe6xQFRToU3Hzpr/j/FFkMLOYAmv+8Vg6A==
+Message-Id: <a4684b7f094a6a5ee87d9db722b75594f851b9fb.f8d0aa16.da0e.4b42.9f4d.e17634051da8@feishu.cn>
+References: <cover.1769562575.git.lv.zheng@spacemit.com> <cover.1769666438.git.lv.zheng@spacemit.com> <15209d7b8c5a5055f8944ab7261e440d70a18a03.1769666438.git.lv.zheng@spacemit.com> <20260129-evolution-femur-84eb5668f4a7@spud> <a4684b7f094a6a5ee87d9db722b75594f851b9fb.d4fb292a.1570.47af.8025.bf9af089dc8a@feishu.cn>
+	<20260129-grandly-compare-e8e3a105f690@spud>
+In-Reply-To: <20260129-grandly-compare-e8e3a105f690@spud>
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 30 Jan 2026 09:39:38 +0800
+To: "Conor Dooley" <conor@kernel.org>
+Cc: "Tomasz Jeznach" <tjeznach@rivosinc.com>, 
 	"Joerg Roedel" <joro@8bytes.org>, "Will Deacon" <will@kernel.org>, 
-	"Rob Herring" <robh@kernel.org>, 
+	"Robin Murphy" <robin.murphy@arm.com>, "Rob Herring" <robh@kernel.org>, 
 	"Krzysztof Kozlowski" <krzk+dt@kernel.org>, 
 	"Conor Dooley" <conor+dt@kernel.org>, "Paul Walmsley" <pjw@kernel.org>, 
 	"Palmer Dabbelt" <palmer@dabbelt.com>, 
@@ -68,26 +63,30 @@ Cc: "Conor Dooley" <conor@kernel.org>,
 	"linux-riscv" <linux-riscv@lists.infradead.org>, 
 	"spacemit" <spacemit@lists.linux.dev>, 
 	"devicetree" <devicetree@vger.kernel.org>
-In-Reply-To: <2f1f48c6-ad75-4e7d-89a2-c93bb1c1d067@arm.com>
-References: <cover.1769562575.git.lv.zheng@spacemit.com> <cover.1769666438.git.lv.zheng@spacemit.com> <15209d7b8c5a5055f8944ab7261e440d70a18a03.1769666438.git.lv.zheng@spacemit.com> <20260129-evolution-femur-84eb5668f4a7@spud> <a4684b7f094a6a5ee87d9db722b75594f851b9fb.d4fb292a.1570.47af.8025.bf9af089dc8a@feishu.cn> <20260129-grandly-compare-e8e3a105f690@spud>
-	<2f1f48c6-ad75-4e7d-89a2-c93bb1c1d067@arm.com>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH v1.1 4/7] dt-bindings: iommu: Add spacemit/t100 features
+From: =?utf-8?q?=E9=83=91=E5=BE=8B?= <lv.zheng@spacemit.com>
+Precedence: bulk
+X-Mailing-List: devicetree@vger.kernel.org
+List-Id: <devicetree.vger.kernel.org>
+List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
+List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+Mime-Version: 1.0
+X-Lms-Return-Path: <lba+1697c0bdb+2f6400+vger.kernel.org+lv.zheng@spacemit.com>
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 30 Jan 2026 09:30:34 +0800
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MV_CASE(0.50)[];
 	R_DKIM_ALLOW(-0.20)[spacemit.com:s=feishu2303021642];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	TO_DN_ALL(0.00)[];
 	DMARC_NA(0.00)[spacemit.com];
-	TAGGED_FROM(0.00)[bounces-261065-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-261066-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[3];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -98,36 +97,34 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[lv.zheng@spacemit.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[spacemit.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_TWELVE(0.00)[18];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[infradead.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,feishu.cn:mid,dabbelt.com:email,8bytes.org:email,spacemit.com:email,spacemit.com:dkim,rivosinc.com:email,berkeley.edu:email]
-X-Rspamd-Queue-Id: BDE55B62BA
+	DBL_BLOCKED_OPENRESOLVER(0.00)[infradead.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,arm.com:email,spacemit.com:email,spacemit.com:dkim,dabbelt.com:email,rivosinc.com:email,berkeley.edu:email,linux.dev:email,8bytes.org:email,ghiti.fr:email]
+X-Rspamd-Queue-Id: 40789B636B
 X-Rspamd-Action: no action
 
-> From: "Robin Murphy"<robin.murphy@arm.com>
-> Date:=C2=A0 Fri, Jan 30, 2026, 01:06
+> From: "Conor Dooley"<conor@kernel.org>
+> Date:=C2=A0 Fri, Jan 30, 2026, 00:42
 > Subject:=C2=A0 Re: [PATCH v1.1 4/7] dt-bindings: iommu: Add spacemit/t100=
  features
-> To: "Conor Dooley"<conor@kernel.org>, "=E9=83=91=E5=BE=8B"<lv.zheng@space=
-mit.com>
+> To: "=E9=83=91=E5=BE=8B"<lv.zheng@spacemit.com>
 > Cc: "Tomasz Jeznach"<tjeznach@rivosinc.com>, "Joerg Roedel"<joro@8bytes.o=
-rg>, "Will Deacon"<will@kernel.org>, "Rob Herring"<robh@kernel.org>, "Krzys=
-ztof Kozlowski"<krzk+dt@kernel.org>, "Conor Dooley"<conor+dt@kernel.org>, "=
-Paul Walmsley"<pjw@kernel.org>, "Palmer Dabbelt"<palmer@dabbelt.com>, "Albe=
-rt Ou"<aou@eecs.berkeley.edu>, "Alexandre Ghiti"<alex@ghiti.fr>, "Jingyu Li=
-"<joey.li@spacemit.com>, "iommu"<iommu@lists.linux.dev>, "linux-perf-users"=
-<linux-perf-users@vger.kernel.org>, "linux-riscv"<linux-riscv@lists.infrade=
-ad.org>, "spacemit"<spacemit@lists.linux.dev>, "devicetree"<devicetree@vger=
-.kernel.org>
-> On 29/01/2026 4:41 pm, Conor Dooley wrote:
-> > On Thu, Jan 29, 2026 at 06:43:03PM +0800, =E9=83=91=E5=BE=8B wrote:
-> >>> From: "Conor Dooley"<conor@kernel.org>
-> >>> Date:=C2=A0 Thu, Jan 29, 2026, 18:08
-> >>> Subject:=C2=A0 Re: [PATCH v1.1 4/7] dt-bindings: iommu: Add spacemit/=
+rg>, "Will Deacon"<will@kernel.org>, "Robin Murphy"<robin.murphy@arm.com>, =
+"Rob Herring"<robh@kernel.org>, "Krzysztof Kozlowski"<krzk+dt@kernel.org>, =
+"Conor Dooley"<conor+dt@kernel.org>, "Paul Walmsley"<pjw@kernel.org>, "Palm=
+er Dabbelt"<palmer@dabbelt.com>, "Albert Ou"<aou@eecs.berkeley.edu>, "Alexa=
+ndre Ghiti"<alex@ghiti.fr>, "Jingyu Li"<joey.li@spacemit.com>, "iommu"<iomm=
+u@lists.linux.dev>, "linux-perf-users"<linux-perf-users@vger.kernel.org>, "=
+linux-riscv"<linux-riscv@lists.infradead.org>, "spacemit"<spacemit@lists.li=
+nux.dev>, "devicetree"<devicetree@vger.kernel.org>
+> On Thu, Jan 29, 2026 at 06:43:03PM +0800, =E9=83=91=E5=BE=8B wrote:
+> > > From: "Conor Dooley"<conor@kernel.org>
+> > > Date:=C2=A0 Thu, Jan 29, 2026, 18:08
+> > > Subject:=C2=A0 Re: [PATCH v1.1 4/7] dt-bindings: iommu: Add spacemit/=
 t100 features
-> >>> To: "Lv Zheng"<lv.zheng@spacemit.com>
-> >>> Cc: "Tomasz Jeznach"<tjeznach@rivosinc.com>, "Joerg Roedel"<joro@8byt=
+> > > To: "Lv Zheng"<lv.zheng@spacemit.com>
+> > > Cc: "Tomasz Jeznach"<tjeznach@rivosinc.com>, "Joerg Roedel"<joro@8byt=
 es.org>, "Will Deacon"<will@kernel.org>, "Robin Murphy"<robin.murphy@arm.co=
 m>, "Rob Herring"<robh@kernel.org>, "Krzysztof Kozlowski"<krzk+dt@kernel.or=
 g>, "Conor Dooley"<conor+dt@kernel.org>, "Paul Walmsley"<pjw@kernel.org>, "=
@@ -136,75 +133,57 @@ lexandre Ghiti"<alex@ghiti.fr>, "Jingyu Li"<joey.li@spacemit.com>, "Zhijian=
  Chen"<zhijian@spacemit.com>, <iommu@lists.linux.dev>, <linux-perf-users@vg=
 er.kernel.org>, <linux-riscv@lists.infradead.org>, <spacemit@lists.linux.de=
 v>, <devicetree@vger.kernel.org>
-> >>> On Thu, Jan 29, 2026 at 02:09:13PM +0800, Lv Zheng wrote:
-> >>>> Adds device tree bindings for SpacemiT T100 specific features.
-> >>>> =C2=A0=C2=A0
-> >>>> vendor-hpm-events: Allow vendor events to be customized in the devic=
-e
-> >>>> =C2=A0=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0tree.
-> >>>> global-filter: The feature saves silicon area by reducing filters to
-> >>>> =C2=A0=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0one and=
- use it as a global filter across all events.
-> >>>> =C2=A0=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0This us=
-ually is sufficient for real applications.
-> >>> =C2=A0=C2=A0
-> >>> Why can these not be determined from a device specific compatible?
-> >>
-> >> The specification only defines less than 10 standard event types while=
- the
-> >> real silicons should have implemented many other event types based on
-> >> their micro-architecture. I tried to provide a common mechanism for al=
-l
-> >> vendor specific event types across different vendors.
+> > > On Thu, Jan 29, 2026 at 02:09:13PM +0800, Lv Zheng wrote:
+> > > > Adds device tree bindings for SpacemiT T100 specific features.
+> > > >=C2=A0
+> > > > vendor-hpm-events: Allow vendor events to be customized in the devi=
+ce
+> > > > =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0tree.
+> > > > global-filter: The feature saves silicon area by reducing filters t=
+o
+> > > > =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0one and use =
+it as a global filter across all events.
+> > > > =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0This usually=
+ is sufficient for real applications.
+> > >=C2=A0
+> > > Why can these not be determined from a device specific compatible?
 > >=C2=A0
-> > Given that the variance is based on uarch, it sounds like it can be
-> > determined from the compatible.
-> >=C2=A0
-> >> It is similar for the global filter, the global filter mechanism actua=
-lly
-> >> complies to the IOMMU specification, users can alter the iohpmevt
-> >> registers as is what is specified in the IOMMU specification. It only
-> >> provides slight application difference between the final effection. Th=
-us
-> >> this could also be a non-device specific option.
-> >=C2=A0
-> > What is a "user" in this context? Given you're talking about reducing
-> > silicon area, it sounds like this will be set in stone for each SoC, an=
-d
-> > therefore can be determined by compatible. If other devices do this,
-> > they can also determine it from their compatible.
-> >=C2=A0
-> > Properties for things that can be determined based on compatible are
-> > generally not permitted, so you'll need to provide a compelling
-> > rationale. Common mechanism isn't one, since determining based on
-> > compatible would be a common mechanism based on match data that people
-> > can tack onto for their devices.
+> > The specification only defines less than 10 standard event types while =
+the
+> > real silicons should have implemented many other event types based on
+> > their micro-architecture. I tried to provide a common mechanism for all
+> > vendor specific event types across different vendors.
 >=C2=A0
-> Also, reinventing jevents via devicetree is pretty grim anyway - the PMU=
-=C2=A0
-> can simply expose an "identifier" attribute that uniquely identifies the=
-=C2=A0
-> vendor implementation, and perf tooling can match that to a set of event=
-=C2=A0
-> definitions in userspace, with the added bonus that jevents can also=C2=
-=A0
-> encode meaningful descriptions, metrics and suchlike. There doesn't=C2=A0
-> *need* to be a sysfs alias for every possible event. I see the RISC-V=C2=
-=A0
-> CPU PMUs are already on-board with this approach - note the=C2=A0
-> "Unit"/"Compat" matching for system/uncore PMUs is a little different=C2=
-=A0
-> from the mapfile used for CPUs, but see other architectures for examples.
+> Given that the variance is based on uarch, it sounds like it can be
+> determined from the compatible.
 
-Thanks for the idea. It sounds great and I'll give it a try.
+I'll give Robin's suggestion a try.
 
-Best regards,
+> > It is similar for the global filter, the global filter mechanism actual=
+ly
+> > complies to the IOMMU specification, users can alter the iohpmevt
+> > registers as is what is specified in the IOMMU specification. It only
+> > provides slight application difference between the final effection. Thu=
+s
+> > this could also be a non-device specific option.
+>=C2=A0
+> What is a "user" in this context? Given you're talking about reducing
+> silicon area, it sounds like this will be set in stone for each SoC, and
+> therefore can be determined by compatible. If other devices do this,
+> they can also determine it from their compatible.
+>=C2=A0
+> Properties for things that can be determined based on compatible are
+> generally not permitted, so you'll need to provide a compelling
+> rationale. Common mechanism isn't one, since determining based on
+> compatible would be a common mechanism based on match data that people
+> can tack onto for their devices.
+
+I see. This sounds like a reasonable rule of DT attributes. I'll do similar
+stuffs based on compatible.
+
+Thanks and best regards,
 Lv
-
->=C2=A0
-> Thanks,
-> Robin.
 
 
 This message and any attachment are confidential and may be privileged or o=
