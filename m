@@ -1,97 +1,97 @@
-Return-Path: <devicetree+bounces-261067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261068-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wNCyLzcNfGkEKQIAu9opvQ
-	(envelope-from <devicetree+bounces-261067-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 02:45:27 +0100
+	id IKUQL+oOfGlMKQIAu9opvQ
+	(envelope-from <devicetree+bounces-261068-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 02:52:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1810CB63D8
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 02:45:27 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 203C3B6478
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 02:52:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3EB65301052A
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 01:45:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CC905300F9D5
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 01:52:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BC413328F3;
-	Fri, 30 Jan 2026 01:45:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F1EB2DF145;
+	Fri, 30 Jan 2026 01:52:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ihifhpGv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="C1/bZmiu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BA79331A5F
-	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 01:44:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.210.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A95DD310620
+	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 01:52:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.216.52
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769737499; cv=pass; b=e9VeB+saTW3burGDcfRkUIhILOCdlXRZ+gNNvB0ug589F5DSyUcgVMF0xzs01azVhtxJ/HYj24MmwTcUfPMJTluRw0hSEh5cS7LIhufhFFAQTnp2VbRrGwZM+hK1V3MOtSni0i8/oVHwLXZ0KCcj9+iJVWJnSbjQIu8wh+ohkEo=
+	t=1769737960; cv=pass; b=km7C7SJg0c2awI4/0fvOs/hjXExtBgOHIb/5E9w9Y/woFA3QNHzDA221fxI9e+PYm4DBvRsWnk4CAnuE6cdsxc58hzTM3qctFPmRTGe46jPt/ove6koGfEtS1oz3kGyUZx9fRuHkZ2Z3UQiDA97WhFr0Yj6oNeGKJgn9rUluz9s=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769737499; c=relaxed/simple;
-	bh=6hJecC+jJ0J+VKAtd6bMBI8k9pmiUZLLcZyL9RL5cVw=;
+	s=arc-20240116; t=1769737960; c=relaxed/simple;
+	bh=fMWES3pEV3esIMGppPpcAB+xXRHTjsaan83wbju+n2U=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=if+jFaJT5Yn/jm9a5oGf5MlALhJemdsS12W02kP07ZRmoesKsAqnRMciU2xIY0k6TzSmXXYZgzHWS/NRt+XJ6VOn/pSYrv0AklX7bo3afijuQxv8o1fov7pH8TsPBra+CB4w0qu3Occ5XbKoUEmPILkXeWxh/aKGefjvRpDRoN0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ihifhpGv; arc=pass smtp.client-ip=209.85.210.179
+	 To:Cc:Content-Type; b=IMddp4OTa2sy4mhP1va+RcC0H5VOlJqCqglnteqlm0tXjuysCNd75BtqqXH17VN+0/PCENytJ1IQc0Eqtj4U55uwHe5VftPx4z1/0NEJLaKEfLpLYHvgSq+4w4olMb1U7lbaLNQ/I5fp5PrErCANc77F1F40SliUI/bhCo4FxdM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=C1/bZmiu; arc=pass smtp.client-ip=209.85.216.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-81f4dfa82edso899482b3a.0
-        for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 17:44:58 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1769737498; cv=none;
+Received: by mail-pj1-f52.google.com with SMTP id 98e67ed59e1d1-3541fd9dacdso739127a91.1
+        for <devicetree@vger.kernel.org>; Thu, 29 Jan 2026 17:52:38 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1769737958; cv=none;
         d=google.com; s=arc-20240605;
-        b=ckYU/dQK4tmtyHSflG/VZKPNC7KW3TDlD6UKXjSrgCWYky4Mm5cdud1CCsZIcn/xzG
-         f4QujoNZBd7xJBiYVwL2YK3OFLV0JTypU8Zdyy/ZK2tCUI410WO6FXnVp3EQ666JMdEM
-         FVpGajKtvKXVwDp9fOq+MkRUFlL4hYU2IH8Zk3Bc3shcjCWX9zRogXUCKlhBBe3MzzzU
-         Xd2MUqLIgbUItEKikVSCnJ0GxQpFs6SK+74Ru3u8IvTSd5jT2n6Ryf2rZs1v5Y3wMcE8
-         f/TLcJPOmY9b2f9wrTLLLqbffCYQnJcTrrt0CyCKNaimqnInJBHFFaDPqcXBlP0HJZMm
-         x3JQ==
+        b=JSWetViTVk/TLYo/xQngy360N9f0Vtaa5lbbunlEk9mU2s+3Zznjzy/QibfK1QLZSi
+         XG5Hz+KxjHzQ7+PoardjHbgxmRoqKw4sbXwGLEGfh+SV/PgIyCiTMBxRbmt5LP8x96/t
+         YRot2uNzpRl02okO4XivsCvxZcLQ53YN39IQ6tZ9dZLgWaj0DiF4thbvjeBsK+OgFH8t
+         917ihhmlInocLDSX1Yw0DMcZKG1Dn4GY0rcJd+LXnGz5loO6B9czGbd8m3YLXjAvrWe1
+         Y7nhWRaSgfAdhxyMt/3uAxzeTXp4GoPCeokPTUWhS8PQTdfWrdYJGlpFiHcs47+9ygR/
+         i6Cg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:dkim-signature;
-        bh=jNEnnUWc0ljhEZKMEfW+sE66aVZ/mqoNGO+gH29mfjQ=;
-        fh=aMBw2Llwnzx1io3+iFUBKsJJCe++oQvLE/8vRp6Sxz0=;
-        b=etPtj/ZQ7Orz+CPJx70y3xa/WMGLPuv6wNrbYD8k5iQEC1RYnBUHDFqxLZKmNYtKlD
-         Vi5NZd8ejCQlrbr763ZEPgcYtx1Z7W5dx2zBRL2YbYejpLEAiAivDtqYJJxg1CbUeNWp
-         e1RmaxMd5zmxhWT+XkeztjVe7gfA40wE5EABXKN0ckDaLufwZYCOx7qEV8RigkRiWkzG
-         kp+O+nSdZNWKaym57cYL4bo1cinapc5gjvghuQjtMZ99rUMExnmqrSIlUXvGsNZxYAKj
-         YGaOFZBfkwsw/YsiYfeL6n/eQ5YUvplsX79Fe92ykBrCuK/SBjAvcYH7lWVYGedUvQtS
-         skeQ==;
+        bh=AYrclzb/DI20ULzMRT5C3zx7BcemIpx5wfq90vBWrJQ=;
+        fh=xMaDWMY1nVtLrvsQJdVckbBlZFZgaEBznqCNCdEjHUk=;
+        b=U4cT8Pg8DdbEN5+i6HgnCS6L15zHZSy7VTelHlYanYG8OohE4OiT9pc01JpggI1Aio
+         ZDICrR2XfRBHm13r+EfDbw9bfStseSRh9m24ypZXJfOZPGdamc8WkSsWOumBvnaTpqyY
+         MljFPd8xSfAXQSMwhaf0pH43xQPES00DssjpaAPl6zZ0G2nhylIzmP755MQW1IBsbNm8
+         8fevmK+tDMjta5oXeAc8gVx+c3vFmSMK21B8xEuk8u30hL9L4QmltvjPacI1HVqIuRQk
+         K9BPlUvv1BdVdRdjQRYPAYnBCA7Rv9W5L1CC4rKpU/+S9GJfrzpGhbTB1IT0izPtUn7I
+         eFZw==;
         darn=vger.kernel.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769737498; x=1770342298; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1769737958; x=1770342758; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=jNEnnUWc0ljhEZKMEfW+sE66aVZ/mqoNGO+gH29mfjQ=;
-        b=ihifhpGvf3Cr/iXOKBs6+yt/8GKjPnGz5zNAThyhC2SyRZMF2oA0oNudqUOPyXhiG5
-         XiMw7q2AkTHU85M5PWrT35ymLGYLsQfuILMqvyPdGIJrTJI7AA7A2wL56ZdaKcPAqTON
-         TWTHENWJpL/5IZsgxZqi70KoNtq6MvJSbMxoJhDBUODrc6krZ94ULk5wj70jGS52jOZ8
-         o2mwQYe5Uq3J57n7+leOk9VuCCaG62oYUzeSHyLQg8o2RBuXDo0XPUhaORbOcEb4LkSp
-         aac0JYx+2hmAB2UsnRstq/BRuitKyjSWcoBjZmEEvE77T7HlNuWQXywH2sjFJJWdZqfC
-         vi3w==
+        bh=AYrclzb/DI20ULzMRT5C3zx7BcemIpx5wfq90vBWrJQ=;
+        b=C1/bZmiuEzUWb4LYvk54v/XL7RR3JHo7/gC+oAygchAbTXUBbjsKX3e6nAMRGEj33J
+         5EiRjfwsfTEiERAiVKelxEp5fpjSpTD62r1mBmf9mubQvRkw93YDgxqY2fwEj1hxFgzG
+         TPi3jwPi5qd1d2CyZ7McjEaAoSU1gJ5DJDj6DMLw+ZhB3cqZsk8ATWLim0Kc/tM1hmE0
+         FofGpu3gSi7VzEL2Bs05bApzOwT02z9G4wwbM6lx4qd+bNGgUyV/+M8kPn6w2k4yUCRf
+         amfnb9/shuXHoRXuts0rfTMHryY4FoQgLP7NQyYr1HuyiRBdb8yOWEDZhxe3oAaXu42/
+         NlLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769737498; x=1770342298;
+        d=1e100.net; s=20230601; t=1769737958; x=1770342758;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=jNEnnUWc0ljhEZKMEfW+sE66aVZ/mqoNGO+gH29mfjQ=;
-        b=gLGhmR73ocyTTvS5pLd/EonqFGK9ILnYWfC2W2nJY3S3JVZ15L/MKm/VCHnECN6N5c
-         CbsBJEpf0vnnuFHgxiJ0kprpIAMnDEwwt4RckCozbJCxoB9S114k+CNL4macQaCbEM2y
-         2WghhQZsokFhzyAogcHU/VpLcJcR2FsA6LAxlEVsq3o99dsU28+MHRTHNu27WYg+jn4M
-         g8CbK7l+UAHiYacM1lpKiT+r+66I9DBrOtKTDtOZSIY+umgVUCpGpHJ0EQZhZGSgHPVF
-         rDD9gd0+qvpUuYHq/WknVMfXrzl3QAyB+/JzIC1sBbVDn8oqUkWl2UW5hQZHGf22X29V
-         8siQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVq12c+29zB+Sd2UqwX8n9bi+4lZMfd4PM8IRrFa3ce8pP1HCXgdJvm+20U2/bDapk5begQNcpPGiYB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxe9j6FEw/y0VZLvtvYPSH1Yf/1IVXU7x8HKrXxVrv+5yU67nKR
-	OSLRp/Dxb8Hsdo5JXMSiuTt8IrK8IRA6HnS6lpppOZ2kllsDQuVHWiYe+mm4Hqr3+BqLn3+qoDa
-	+H40UBYEcm8k+yzq1Z1WKww1lB7ClQfo=
-X-Gm-Gg: AZuq6aJ/WUuCOxPLqcwAbHDS8jjrEWhx+vV/Ax31JZywdcCnXyIM2Z6wPLnPrWxhYZT
-	sVnKW2amtlQVtxWJQYwnW5ReHejc7FbtBdNauHNpkTK9SzE294aB/hshx+bXJMY0krHmUGNgjFp
-	InIQREg18yIyhYPigkDo21GKeyS+rwqPlF70Rjk3ZaNBC5gWzzKKgW4zgZdRDPAn5S5UYAFK8Og
-	qoR11Wi/CzOhZeN7OAy5Y/zBTfd9YA206cLpSKYEvXTnEpM1jm6RJGK4bgV1gpDUgMyH0E=
-X-Received: by 2002:a05:6a21:9214:b0:366:14ac:8c6f with SMTP id
- adf61e73a8af0-392e01842cemr1045926637.69.1769737497875; Thu, 29 Jan 2026
- 17:44:57 -0800 (PST)
+        bh=AYrclzb/DI20ULzMRT5C3zx7BcemIpx5wfq90vBWrJQ=;
+        b=lRW9DDCT2puvNAE0yxxLClJmRuSOIkhXPSGToN2CJNL2doUjyIcOYKIMh4kTM2lsDa
+         gYPx3DdfutqTwJU3tHzWSQ8fKp8FR5moQleTkmLhUoVrW+3wYjVj5sSHGZK99pRSMpde
+         RxYWuOSONi352ay7OSr7Ps4PtvJfrrs7HdeAjeVIc1JyTckKqwzGLJNfoJV6eRADnLJL
+         jEJraAX1tlNR0axUbErgBOjf+PUP8b/JLqPhFCHBoVQ5wI9YyonNDywgwsqETZanIleJ
+         4ICarpDSQhBsO/mWec/DyTmXm95LF47CBNcLS3wHSIX5ZURm4vjdYeAPZx1b16F67Iuv
+         u30Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXrVeAa5KzSZfctYyxEKTnroudYoeCtJRszUj5MS0ByLqb2T2xsLV44ORyKDvh9SVYhY0MMzQEsFyu+@vger.kernel.org
+X-Gm-Message-State: AOJu0YwQ7UD+FGvz+vnb8ZP1NG+BzaFLFw/fs0ZHGTH34Hsmf1drBKwB
+	ULCo0bWKJAfqrerUI6cT2EVoCzXE0NnjN69ks0bcaYhQdnqXo52u4boRGOGZ4JPspq1jqkR/pyi
+	j7dMuL/r9+DrLgkkzQ5kWjTNOYUOBz/Y=
+X-Gm-Gg: AZuq6aLx3JpC8TpBLjVz3XJO/RVqCqVoqFkiuGe1g592cw5R0QpEXcR8lQU+FZiF54+
+	0Owk8IYOIHLOYv87UMQ6JwvDbosSzmwI1VoNrVdLy1ogErl1GcApsaD1STBP/OzUfppCWrLXZj7
+	wGzrpeuhtU0orzohODj0nPKD03i3Uofq34IHChP+Wjrwez8iecA8IGfmQFsq11x2lEBQZlQgo26
+	iJ3OBXtrLEhm2MjBtCuzNTJweK6iOqzncrNs8c7YndvkFjZqye09y9ihU3VYWBSg60veW0=
+X-Received: by 2002:a17:90b:1c0e:b0:340:8d99:49d4 with SMTP id
+ 98e67ed59e1d1-354299f24a8mr4236387a91.1.1769737957855; Thu, 29 Jan 2026
+ 17:52:37 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,13 +99,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 References: <20260128071853.2602784-1-shengjiu.wang@nxp.com>
- <20260128071853.2602784-3-shengjiu.wang@nxp.com> <aXuVXruPir7hasdd@lizhi-Precision-Tower-5810>
-In-Reply-To: <aXuVXruPir7hasdd@lizhi-Precision-Tower-5810>
+ <20260128071853.2602784-4-shengjiu.wang@nxp.com> <aXuUSnPSCa8YYfgd@lizhi-Precision-Tower-5810>
+In-Reply-To: <aXuUSnPSCa8YYfgd@lizhi-Precision-Tower-5810>
 From: Shengjiu Wang <shengjiu.wang@gmail.com>
-Date: Fri, 30 Jan 2026 09:44:45 +0800
-X-Gm-Features: AZwV_QgRSYSkN9m3U3HWfvC48m_G_i-4n2rGz9NZqS3r9F4yXRNiuZDo3HAYyaM
-Message-ID: <CAA+D8AMYEVbFTgTaVhTU_ZJ=eoyQAj4zygLsfuK+Yt+=8qQk1Q@mail.gmail.com>
-Subject: Re: [PATCH 2/3] ASoC: fsl_asrc: Add support for i.MX952 platform
+Date: Fri, 30 Jan 2026 09:52:26 +0800
+X-Gm-Features: AZwV_QiF2cDrLfRKNnjCIo-qh5cZKFulc8s1nwm3YFRDiF2SntZx7QwlcKkdk5I
+Message-ID: <CAA+D8AM2d8m2eZnenH7gqOEUO1dLifFSNgizRRXwOiLX2vVdTA@mail.gmail.com>
+Subject: Re: [PATCH 3/3] ASoC: fsl_asrc_dma: allocate memory from dma device
 To: Frank Li <Frank.li@nxp.com>
 Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, lgirdwood@gmail.com, broonie@kernel.org, 
 	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, 
@@ -122,12 +122,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261067-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-261068-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
@@ -142,96 +142,118 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[shengjiuwang@gmail.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid,nxp.com:email]
-X-Rspamd-Queue-Id: 1810CB63D8
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:email,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 203C3B6478
 X-Rspamd-Action: no action
 
-On Fri, Jan 30, 2026 at 1:14=E2=80=AFAM Frank Li <Frank.li@nxp.com> wrote:
+On Fri, Jan 30, 2026 at 1:09=E2=80=AFAM Frank Li <Frank.li@nxp.com> wrote:
 >
-> On Wed, Jan 28, 2026 at 03:18:52PM +0800, Shengjiu Wang wrote:
-> > Add a compatible string and clock mapping table to support ASRC on the
-> > i.MX952 platform.
-> >
-> > There is a limitation on i.MX952 that dma request is not cleared at the
-> > end of conversion with dma slave mode. Which causes sample is dropped
-> > from the input fifo on the second time if dma is triggered before the
-> > client device and EDMA may copy wrong data from output fifo as the outp=
-ut
-> > fifo is not ready in the beginning.
-> >
-> > So need to trigger asrc before dma on i.MX952, and add delay to wait
-> > output data is generated then start the EDMA for output, otherwise the
-> > m2m function has noise issues.
+> On Wed, Jan 28, 2026 at 03:18:53PM +0800, Shengjiu Wang wrote:
+> > As the dma device may support dma-coherent property on the i.MX952,
+> > allocate memory from dma device to make asrc driver to be compatible wi=
+th
+> > such a case.
 > >
 > > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
 > > ---
-> >  sound/soc/fsl/fsl_asrc.c        | 39 +++++++++++++++++++++++++++++++++
-> >  sound/soc/fsl/fsl_asrc.h        | 16 ++++++++++++++
-> >  sound/soc/fsl/fsl_asrc_common.h |  3 +++
-> >  sound/soc/fsl/fsl_asrc_m2m.c    | 29 +++++++++++++++++-------
-> >  4 files changed, 79 insertions(+), 8 deletions(-)
+> >  sound/soc/fsl/fsl_asrc_dma.c | 48 ++++++++++++++++++++++++++++++------
+> >  1 file changed, 41 insertions(+), 7 deletions(-)
 > >
-> ...
-> > diff --git a/sound/soc/fsl/fsl_asrc_m2m.c b/sound/soc/fsl/fsl_asrc_m2m.=
+> > diff --git a/sound/soc/fsl/fsl_asrc_dma.c b/sound/soc/fsl/fsl_asrc_dma.=
 c
-> > index f46881f71e43..296e13a16490 100644
-> > --- a/sound/soc/fsl/fsl_asrc_m2m.c
-> > +++ b/sound/soc/fsl/fsl_asrc_m2m.c
-> > @@ -253,15 +253,28 @@ static int asrc_m2m_device_run(struct fsl_asrc_pa=
-ir *pair, struct snd_compr_task
-> >       reinit_completion(&pair->complete[IN]);
-> >       reinit_completion(&pair->complete[OUT]);
+> > index 7dacc06b2f02..b8fe242d53db 100644
+> > --- a/sound/soc/fsl/fsl_asrc_dma.c
+> > +++ b/sound/soc/fsl/fsl_asrc_dma.c
+> > @@ -449,18 +449,52 @@ fsl_asrc_dma_pcm_pointer(struct snd_soc_component=
+ *component,
+> >  static int fsl_asrc_dma_pcm_new(struct snd_soc_component *component,
+> >                               struct snd_soc_pcm_runtime *rtd)
+> >  {
+> > -     struct snd_card *card =3D rtd->card->snd_card;
+> > +     struct device *dev =3D component->dev;
+> > +     struct fsl_asrc *asrc =3D dev_get_drvdata(dev);
+> > +     struct fsl_asrc_pair *pair;
+> >       struct snd_pcm *pcm =3D rtd->pcm;
+> > +     struct dma_chan *chan;
+> >       int ret;
 > >
-> > -     /* Submit DMA request */
-> > -     dmaengine_submit(pair->desc[IN]);
-> > -     dma_async_issue_pending(pair->desc[IN]->chan);
-> > -     if (out_dma_len > 0) {
-> > -             dmaengine_submit(pair->desc[OUT]);
-> > -             dma_async_issue_pending(pair->desc[OUT]->chan);
-> > -     }
-> > +     if (asrc->start_before_dma) {
-> > +             asrc->m2m_start(pair);
+> > -     ret =3D dma_coerce_mask_and_coherent(card->dev, DMA_BIT_MASK(32))=
+;
+> > -     if (ret) {
+> > -             dev_err(card->dev, "failed to set DMA mask\n");
+> > -             return ret;
+> > +     pair =3D kzalloc(sizeof(*pair) + asrc->pair_priv_size, GFP_KERNEL=
+);
 >
-> Does other Soc also work if ASRC start before DMA enable? Suppose most li=
-ke
-> work. Then needn't start_before_dma.
+> prefer use size_add(sizeof(*pair), asrc->pair_priv_size), which did
+> overflow check.
 
-Yes, should work.  but I don't want to change the original behaviour
-of other SoC.
+Ok, will update it.
 
-Best regards
+>
+> > +     if (!pair)
+> > +             return -ENOMEM;
+> > +
+> > +     pair->asrc =3D asrc;
+> > +     pair->private =3D (void *)pair + sizeof(struct fsl_asrc_pair);
+> > +
+> > +     /* Request a dummy pair, which will be released later.
+> > +      * Request pair function needs channel num as input, for this
+> > +      * dummy pair, we just request "1" channel temporarily.
+> > +      */
+> > +     ret =3D asrc->request_pair(1, pair);
+> > +     if (ret < 0) {
+> > +             dev_err(dev, "failed to request asrc pair\n");
+> > +             goto req_pair_err;
+> >       }
+> >
+> > -     return snd_pcm_set_fixed_buffer_all(pcm, SNDRV_DMA_TYPE_DEV,
+> > -                                         card->dev, FSL_ASRC_DMABUF_SI=
+ZE);
+> > +     /* Request a dummy dma channel, which will be released later. */
+> > +     chan =3D asrc->get_dma_channel(pair, IN);
+>
+> Is it possible get real dma chan from fsl_asrc?
+
+This is real dma chan, may be I should remove "dummy".
+
+>
+> > +     if (!chan) {
+> > +             dev_err(dev, "failed to get dma channel\n");
+> > +             ret =3D -EINVAL;
+> > +             goto dma_chan_err;
+> > +     }
+> > +
+> > +     ret =3D snd_pcm_set_fixed_buffer_all(pcm,
+> > +                                        SNDRV_DMA_TYPE_DEV,
+> > +                                        chan->device->dev,
+> > +                                        FSL_ASRC_DMABUF_SIZE);
+>
+> Here you assume chan->device->dev never change when it did DMA transfer.
+
+Yes, this refers to the generic code in ALSA.
+
+best regards
 Shengjiu Wang
+
 >
 > Frank
->
-> > +             /* Submit DMA request */
-> > +             dmaengine_submit(pair->desc[IN]);
-> > +             dma_async_issue_pending(pair->desc[IN]->chan);
-> > +             if (out_dma_len > 0) {
-> > +                     if (asrc->m2m_output_ready)
-> > +                             asrc->m2m_output_ready(pair);
-> > +                     dmaengine_submit(pair->desc[OUT]);
-> > +                     dma_async_issue_pending(pair->desc[OUT]->chan);
-> > +             }
-> > +     } else {
-> > +             /* Submit DMA request */
-> > +             dmaengine_submit(pair->desc[IN]);
-> > +             dma_async_issue_pending(pair->desc[IN]->chan);
-> > +             if (out_dma_len > 0) {
-> > +                     dmaengine_submit(pair->desc[OUT]);
-> > +                     dma_async_issue_pending(pair->desc[OUT]->chan);
-> > +             }
+> > +
+> > +     dma_release_channel(chan);
+> > +
+> > +dma_chan_err:
+> > +     asrc->release_pair(pair);
+> > +
+> > +req_pair_err:
+> > +     kfree(pair);
+> > +
+> > +     return ret;
+> >  }
 > >
-> > -     asrc->m2m_start(pair);
-> > +             asrc->m2m_start(pair);
-> > +     }
-> >
-> >       if (!wait_for_completion_interruptible_timeout(&pair->complete[IN=
-], 10 * HZ)) {
-> >               dev_err(dev, "out DMA task timeout\n");
+> >  struct snd_soc_component_driver fsl_asrc_component =3D {
 > > --
 > > 2.34.1
 > >
