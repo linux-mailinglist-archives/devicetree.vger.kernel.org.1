@@ -1,162 +1,212 @@
-Return-Path: <devicetree+bounces-261194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261195-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mJDZEYCUfGkQNwIAu9opvQ
-	(envelope-from <devicetree+bounces-261194-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 12:22:40 +0100
+	id kCfTJKWVfGkQNwIAu9opvQ
+	(envelope-from <devicetree+bounces-261195-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 12:27:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEC19BA04D
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 12:22:39 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id C10C8BA117
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 12:27:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BCEBE3005E8B
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 11:22:26 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 661C330046B6
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 11:27:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39148357A5E;
-	Fri, 30 Jan 2026 11:22:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C0D436A02D;
+	Fri, 30 Jan 2026 11:27:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TklEvXAE"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eacAcz6d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1222A7080E;
-	Fri, 30 Jan 2026 11:22:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769772144; cv=none; b=OlQLRpMBMmsq3hhg+jrLd+Y2e/Jnd3TojMtuTPEe6FBs5/60sRzCXqRsppYGEbISZoXVXTwIqxiQ/iNPvoQqcTz88WNTNcjdSfbq+ROc1C4DGKkVtu+Dh1Jyqh6zWpWsUQ/qdT3aZMRGcUEqU3Z1N46oV2PPHsRzMFZrIbRz8Ew=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769772144; c=relaxed/simple;
-	bh=wpEge0618iQHhy+AsEBZQJc7isjU9ln4SRE/olHsnfE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=ZCBE6MHzH2M1i8jqaYOhcvih13HIArAqm0BzjzkDsrsK9SR+QmE1oAUL4rjkL5EX6ymuGPbE/pu+er9uqkx3ZlA30ykNVCnew7NRRKvWYeI3QtzNgU6bGTO32LYUqaMHNCHE7xxYBpplwoY8hQ/zKv8LHCMexO/nnF+JuYdSejI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TklEvXAE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 076A1C4CEF7;
-	Fri, 30 Jan 2026 11:22:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769772143;
-	bh=wpEge0618iQHhy+AsEBZQJc7isjU9ln4SRE/olHsnfE=;
-	h=From:Date:Subject:To:Cc:From;
-	b=TklEvXAEfFMQq6cMmYsuX4rLzIJJS9uJv8bIIm8jrcnoJVOrPks0CFlSr8B9wU8Rk
-	 Ms5FnbGGxRxpb+vUkPBC0nel1quGR9uE2MtkYcv6dhJQvgCv5dUceAxJEFLC3wLgDs
-	 8sdeWXWmEngwbOPEWqP56SCcpBKBtUg8JMZ2XSG967uK7C4R5VW1VXRXKkhCnqLwlO
-	 PFzeJy2Bre1Aeo78vlR+q3Ti2LCa/SIt1mEX0BWj29WT12gZlduBDBt5MphQFU+30d
-	 wMZzsdmaZcuI3hGElDle1y7QQm8Mg72SjlqevRYbylqVli0rRxb2WAYEufnQiG0fA/
-	 /Qm80juFDNJ7Q==
-From: Yixun Lan <dlan@kernel.org>
-Date: Fri, 30 Jan 2026 19:22:15 +0800
-Subject: [PATCH] dt-bindings: pinctrl: spacemit: fix drive-strength check
- warning
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56FFC7080E
+	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 11:27:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.45
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769772445; cv=pass; b=Sw5fFPmi/MhNs2r7ZMkHB1fbmKLiauYzoSeGWMpeTuOJo916iBql9Sm+Ze0/ynJI2nqOq2e+BGfG5aMzpgicY4LPZxY+2NH8cDHspq6eXoH8BDM5OSEUatdh+t/DwFg7a/3HPxkow2htWzjg6HUDmfcOdxuI0CTKQMGtetAtkAE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769772445; c=relaxed/simple;
+	bh=pC6EqmS+EnGYe8Q5IuSOWCmBS0Js0/5aG8PXRBQ4GlM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qERPlubpzHHO2voEuFiCkypGQYxsQTqLjnXCF+6o6siCm2Cvu9o8Ei/CHiLQUGIS54anjLssF5VwBd6o8aOQI10Y0zasS2kjKgaUH9m/IhoKohb/g1eVY8p0R1J0/QjGmZIp+gjJ8UadEKvdyEOpL6Cd2vCfS71Xky/WZlM9oRw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eacAcz6d; arc=pass smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-59de77e2e30so2540247e87.2
+        for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 03:27:23 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1769772442; cv=none;
+        d=google.com; s=arc-20240605;
+        b=OSg1nIrOXM02wcb45Yu9CBOi94perGyDY7VyKX6CC2R0SBCXPeti9l5j8Rl2hxKMAu
+         cEBt2kVXRTI8iOUUAPRD/tj5bQVJ82+G1NhYqo7bXncZ7SjEKPLYpTcBmwe5GvI5g9uX
+         4X5vdu53gmFJDH2r2v/ZlM/ROGFFXrfKT9xAtP59sGt30tPOQHWybPYEBeqFDlNICU7S
+         gsNrgJJ5r1Ac1QqY/vxkzW+vVeMXbn+8B0CpaVo5W4TLfOVgKnw9OcFn6qsJbGTKbVal
+         cjWJOBsiplt1Z9RnSS7yOiBGwKhWiPEPaVaswD1+tQfWs23ulMFR2/R5NshUuLsSiRBG
+         ZePA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=CTJuqQRZKV7ijK4EJjSamZFAm+pamffo2mFKEbOeye0=;
+        fh=tnpsXFIOAvb6RZtidNLopsAy4AJQ5fIqZ9hxWpE6ZkQ=;
+        b=Grn4VvEJPNG8SSEdZJFl0JfzW3AneijpQSip7xTA3oieca+AgjGf4wMg7zutlePzxQ
+         pchrbByeuWmG9XXJKhYlgIoucgOFBfyaL9A03FMFXLpDvrFZtIZDdjz/09lmQAU7N2Tt
+         u8Vc9QfeK3fQo5d2hFDcCzM55fd3Or0i39sw3Ta4+n6HtEMMvsB2P1LsNbI2u4Ct5dYv
+         Skz2TOek3K/ASMaJ1Q8hA7IiETwbO3qgkblr7GPvFui8EAgUVA5a+lntpkkuhnKSKoB2
+         mnB3fyGgoe9EMrtn36LUPXBvZMZUShrHFLOIDRHwMu+ZWq1z/br8l22tPKwITBISo50M
+         FiMQ==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1769772442; x=1770377242; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=CTJuqQRZKV7ijK4EJjSamZFAm+pamffo2mFKEbOeye0=;
+        b=eacAcz6d5BiANL3HwUEFCEohpNeH5wEOJEJIPHVDsPSOtDh0XIn8arSwO1/AtKuXqE
+         GmeIlTilKWKtFaC26Q4aq3vu2ysEZUt+zrHTK9jjXGtiZHw2kF1E0exK9mpziEpvU8yh
+         8EWtKQicCCBPALi/wDsPxHI5H2nTuZAd3eqR6B6Y1c7raanZHLiMIfQ/yvKkuZYjS5KX
+         OXnEBYUbJHZ5EuNxVV8ace6tagsUDtCmXPvxbtDM654SRpSY42+X3a6wsb/NGJqTWEUo
+         WhnVW+Si6499mU0jJDT9f9bSWSscEYSLsQ9WfzLidFtcmpUcuZfrSV/DgJHgSa0/5WY5
+         oPpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769772442; x=1770377242;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CTJuqQRZKV7ijK4EJjSamZFAm+pamffo2mFKEbOeye0=;
+        b=bcJGeHNLTJqaQzn2NpG1IwDh3mmJz4ixESfhbx/9IFkLwzhhzFN6u+nvj83xRBK1rA
+         jFaGd5HSGYbaQ7cU9KoB60ldTzNMztE1TNRsl7HH0f9fZ6fk2hriIyJroCJeDvLr3zS/
+         81UqaHxPfaoEHoQun86EeCZS+zSMdxVfZ+SEjhuQTs5FgSse98AmqIUUOTrHFhig2ZRh
+         oLdou1jtau+mL0HIHJOypN0GL5Hua4sXRj1riZp5Bqt6JbAnbQq3cWQmenlNReD+3NBG
+         gJhsta+VMXXq55hlvOCZQapovvJamaj+JQKyoPkyPORax0+HrRrAX8kq9+Bj05Tw6hre
+         3egA==
+X-Forwarded-Encrypted: i=1; AJvYcCWeR5/NkTrVlj15c0ayEUhdCLR/ih+lTKV6k9f0jEl0jOBIHJViIitmSP48V72KaAEW/TGdbJN/2aoa@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy9442cq+KuygKwKy0qQPY3suDXRbs3t2jDmEVldDVqiP/JrGTs
+	8bpOMXDhqbZ9+dWySIztlM1/BNJlp484LrEaJLkxDynUCwEwihRdFa0KjBG3hHerva4sKy0Beq9
+	hI54H9roBGaVg1JHTdA5cq5z0zY5nShUY2So6qOmsPw==
+X-Gm-Gg: AZuq6aKHD4ZrPTMWNs1gotARP58+1f4iZbL1Q6nMEiQAtTL9PaNQCN42ahRlj+uyBUw
+	ZgwnZpGJmVLFwwNlrCg7LFr2kvLMAsvEaRHhy950abywTvpuJUGMC17scNPOJ+I2iXtHihVJ2ve
+	+P9GPj9J+iZQ/CMbXs9XVXXGinH2590Hx6RGhocfRnRF3Z6R6ynxdxOkiKbGNPiTI4nx+fPJ4S+
+	/SF/954/DYipWjemAYK44aGqXKbuP5XxTRVEIMk0Y0uU5FFSApxawqxYc2ebr2QDoQ6ZBl4L4N0
+	e+CcZQI=
+X-Received: by 2002:a05:6512:1105:b0:59d:e714:fece with SMTP id
+ 2adb3069b0e04-59e164051d2mr838308e87.24.1769772441507; Fri, 30 Jan 2026
+ 03:27:21 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260130-k3-pinctrl-io-drv-fix-v1-1-077aec3ba7ae@kernel.org>
-X-B4-Tracking: v=1; b=H4sIAGaUfGkC/x2MQQqAMAzAviI9W1gnKvgV8aCu06JM6UQE2d8dH
- hNIXoiswhG64gXlW6IcIQOVBczrGBZGcZnBGtsYqgxuFZ4S5kt3lAOd3ujlwXoiamvrRiYPuT2
- Vs/6//ZDSB0hTzLlnAAAA
-X-Change-ID: 20260130-k3-pinctrl-io-drv-fix-5b11752dae1f
-To: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
- linux-kernel@vger.kernel.org, Yixun Lan <dlan@kernel.org>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1778; i=dlan@kernel.org;
- h=from:subject:message-id; bh=wpEge0618iQHhy+AsEBZQJc7isjU9ln4SRE/olHsnfE=;
- b=owEB6QIW/ZANAwAKATGq6kdZTbvtAcsmYgBpfJRpCQzoCAhf/X3zr7VoIHvrUN2LFmTpcI8va
- XADYq1CaEuJAq8EAAEKAJkWIQS1urjJwxtxFWcCI9wxqupHWU277QUCaXyUaRsUgAAAAAAEAA5t
- YW51MiwyLjUrMS4xMSwyLDJfFIAAAAAALgAoaXNzdWVyLWZwckBub3RhdGlvbnMub3BlbnBncC5
- maWZ0aGhvcnNlbWFuLm5ldEI1QkFCOEM5QzMxQjcxMTU2NzAyMjNEQzMxQUFFQTQ3NTk0REJCRU
- QACgkQMarqR1lNu+0XYBAAl1cxD4kiJIq31CCJktQdJ1B8ARNWBGis2Wsm6/G43dIC3H8tTg3DX
- HAuBqrEoEjSBmiRx0AsY4XSEXdGJFaKO+mABkmpGCe9rZ1EMMGjno0ATE/dFyZDlLtspy7wuuZE
- GheKT98KVtFM6F8s5BeLOsbI9UbnE/Dg9OvFTMvWK+2yl93vW10outSA7a9lSlkf4aIwHBhmXu1
- YK3PSjbiUmgDHSiZXAFVQ0eARrdGBnsrjHxXzI3h76lHW5/2JGe3N14agv9Lzg+E2CyTPHqAI2f
- F2O68tcBk+hFu52+AXgZTaU33aTSqmBx/4zfeMDx8JxywLWr2MZ0EI22cJRLN0MRfakQgCBt63+
- wM5UMEkGpVWMKan9jGizmNbwzFepAijJobAWOFi8wfsuGGjXpd/BV7zv2kWNu6G5td2m30ob75q
- jyqTawiQB0paFUfPXq52WoddElBnoawhfGa2k2Buj3OF4ljQ+//KczybyyK84OJ56vCsAeDqkXc
- X2RHPa2j+mCvDpfjd9GYFF3xDBU+fBFcOPbwI/9bmPbhk0Xqe9XkpO+gI4YkzySOswMgkaW4jqj
- GYiOPyBNf8I3UO6B05Zbq0SsEPphh7m21QSdmdosKKPx6H2Ztpupfa8z3Cr6eboSNArXhap84kj
- l+x09h3RZ6tR54m1kcLqbBIuktJaLc=
-X-Developer-Key: i=dlan@kernel.org; a=openpgp;
- fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
+References: <20251211-rework-rpmhpd-rpmpd-v2-0-a5ec4028129f@oss.qualcomm.com> <CAPDyKFpCZyseq2XiQLfL+zHWjYZpS-4Wo56=W5AkBpdhajJxrQ@mail.gmail.com>
+In-Reply-To: <CAPDyKFpCZyseq2XiQLfL+zHWjYZpS-4Wo56=W5AkBpdhajJxrQ@mail.gmail.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Fri, 30 Jan 2026 12:26:45 +0100
+X-Gm-Features: AZwV_Qho2KSeqV-UA771mqMAbX-CoeazXpNaSx_w79F053JQdWzkRlNIUDFeZ6I
+Message-ID: <CAPDyKFpSgRkc_cPnX9uTfxB_xrOc6=gjy0+OaQr-outr_eeX8Q@mail.gmail.com>
+Subject: Re: [PATCH v2 0/3] pmdomain: qcom: sort out RPM power domain indices
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+	Bjorn Andersson <andersson@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261194-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-261195-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ulf.hansson@linaro.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[d401e000:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: AEC19BA04D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,mail.gmail.com:mid,qualcomm.com:email]
+X-Rspamd-Queue-Id: C10C8BA117
 X-Rspamd-Action: no action
 
-The problem is that one value from drive-strength may match to more than
-two different enum groups which lead to DT complaint, switch to use 'anyOf'
-to fix this kind warning.
+On Thu, 11 Dec 2025 at 12:41, Ulf Hansson <ulf.hansson@linaro.org> wrote:
+>
+> On Thu, 11 Dec 2025 at 02:52, Dmitry Baryshkov
+> <dmitry.baryshkov@oss.qualcomm.com> wrote:
+> >
+> > - Switch platforms to using bindings for RPM power domains controller
+> >   where compatible
+> >
+> > - Drop now-unused binding indices for RPM platforms.
+> >
+> > Two last patch depend on first two patches and either should be merged
+> > through the same tee, should be merged with the help of the immutable
+> > branch or just merged in the next release.
+>
+> As soon as a couple of related changes [1] that are taken care of by
+> Bjorn, has reached an 6.19-rc[n], I can pick the complete series and
+> share it via an immutable branch. Let me know if you prefer another
+> route.
+>
+> Kind regards
+> Uffe
 
-Fixes: c3efac0592f8 ("dt-bindings: pinctrl: spacemit: convert drive strength to schema format")
-Signed-off-by: Yixun Lan <dlan@kernel.org>
----
-Doing DT check with command: make dtbs_check W=1, will get this kind
-of warning message:
+FYI, this one didn't make it for v7.0, please make a re-submit after
+the merge window.
 
-arch/riscv/boot/dts/spacemit/k1-musepi-pro.dtb: pinctrl@d401e000 (spacemit,k1-pinctrl): gmac0-cfg:gmac0-pins:drive-strength: 21 is valid under each of {'enum': [2, 4, 6, 7, 9, 11, 13, 14, 21, 23, 25, 26, 28, 30, 31, 33]}, {'enum': [11, 21, 32, 42]}
+Kind regards
+Uffe
 
-Instead of using more complicated minimum and maximum value of property
-with constrains of compatibles, we decide to use 'anyOf' to fix this
-warning.
----
- Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml
-index f009fed87e6b..5194fa92fe93 100644
---- a/Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml
-@@ -76,7 +76,7 @@ patternProperties:
-           drive-strength:
-             description:
-               typical current (in mA) when the output at high level.
--            oneOf:
-+            anyOf:
-               - enum: [ 11, 21, 32, 42 ]
-                 description: For K1 SoC, 1.8V voltage output
- 
-
----
-base-commit: 3fcdb264b61a5bb0eb3fb7272717468aa376a74c
-change-id: 20260130-k3-pinctrl-io-drv-fix-5b11752dae1f
-
-Best regards,
--- 
-Yixun Lan <dlan@kernel.org>
-
+>
+> [1]
+> https://lore.kernel.org/all/176499396490.224243.15580177530806530343.b4-ty@kernel.org/
+>
+>
+>
+> >
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> > ---
+> > Changes in v2:
+> > - Rebased on linux-next, dropping merged patches.
+> > - Split RPMh bindings patch to separate series.
+> > - Link to v1: https://lore.kernel.org/r/20250718-rework-rpmhpd-rpmpd-v1-0-eedca108e540@oss.qualcomm.com
+> >
+> > ---
+> > Dmitry Baryshkov (3):
+> >       arm64: dts: qcom: dts: switch to RPMPD_* indices
+> >       ARM: dts: qcom: dts: switch to RPMPD_* indices
+> >       dt-bindings: power: qcom-rpmpd: drop compatibility defines
+> >
+> >  arch/arm/boot/dts/qcom/qcom-msm8226.dtsi |  4 +-
+> >  arch/arm64/boot/dts/qcom/msm8916.dtsi    |  8 +--
+> >  arch/arm64/boot/dts/qcom/msm8917.dtsi    | 10 ++--
+> >  arch/arm64/boot/dts/qcom/msm8937.dtsi    | 12 ++---
+> >  arch/arm64/boot/dts/qcom/msm8976.dtsi    |  4 +-
+> >  arch/arm64/boot/dts/qcom/msm8998.dtsi    | 16 +++---
+> >  arch/arm64/boot/dts/qcom/sdm630.dtsi     | 16 +++---
+> >  arch/arm64/boot/dts/qcom/sdm660.dtsi     |  2 +-
+> >  arch/arm64/boot/dts/qcom/sm6125.dtsi     | 12 ++---
+> >  include/dt-bindings/power/qcom-rpmpd.h   | 88 --------------------------------
+> >  10 files changed, 42 insertions(+), 130 deletions(-)
+> > ---
+> > base-commit: 008d3547aae5bc86fac3eda317489169c3fda112
+> > change-id: 20250717-rework-rpmhpd-rpmpd-13352a10cbd5
+> >
+> > Best regards,
+> > --
+> > With best wishes
+> > Dmitry
+> >
 
