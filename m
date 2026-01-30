@@ -1,368 +1,147 @@
-Return-Path: <devicetree+bounces-261231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261232-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +NcrNku0fGm7OQIAu9opvQ
-	(envelope-from <devicetree+bounces-261231-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 14:38:19 +0100
+	id cHHjK+i0fGm7OQIAu9opvQ
+	(envelope-from <devicetree+bounces-261232-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 14:40:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54649BB2D9
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 14:38:19 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29D78BB3CA
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 14:40:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9AE3E3072A31
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 13:35:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 67D8E300E5D2
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 13:40:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A20E303A3B;
-	Fri, 30 Jan 2026 13:35:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB257308F1A;
+	Fri, 30 Jan 2026 13:40:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eJnK2kNm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DoFJX6i2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com [209.85.128.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 169863064A0
-	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 13:34:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AA482D8DC8
+	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 13:40:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769780102; cv=none; b=kFX91wIogSJ6QLRsZE3gKNRx78oZgIQWJ8nu6Uy7gzA6uovkp8RDUfUR1D21c1N88Rdw3MQvStt9ca0z3IAWGT/gXj4MvmKXhZK+A1AonEvEFlVFF6y7elT9vkhxWEWlGVeFl526PkrJsaCwiFzO/vMLJY/gogYBI8FhNtSIatM=
+	t=1769780441; cv=none; b=uGAXQQVLGAeBR33Mz8HJh6J8ViIwqJZrnWdJMy/CLb06aR2FfucLyNsqR+zrH1MNQIlCH6II+rF/T0/TEosk0/MfkmJ5n7bePWqMWrRHYlkOTXcm3IXCzbfD1RMHA6D45d/K8zNeAVSwEgm0oXR/zXT8Yv57K/xTKPbcrTvFyDs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769780102; c=relaxed/simple;
-	bh=D2udKOIgRxYLN++wJlYNmDyuzLLhyWkSNCE7NFH6d+E=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VtCuftF4gMyauHs6eqKM5+6wWb+S1x/kaVk97dL+czms9v/5P3u3GxwlsI9goXoreuh7N59W/SI2P1ot4zx7TFVPeIAx8wZGzxryG4o6yfiiCE+iwIKAbwmAQBqUKEPMUT3q7Lxd5jAOLyvEIN43WBlQvvmgR4IObbJzEp+vMpA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eJnK2kNm; arc=none smtp.client-ip=209.85.221.46
+	s=arc-20240116; t=1769780441; c=relaxed/simple;
+	bh=3/VKG5VfTqAMqvbMjOT0nIzf3Pu5Y9mcWf3O5q6vcuk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qebirEtdMaaGTMEi8zcQGO/CRtCrkSpDEIsMvqxoXjmxzGQto2bTLLeiQtOFhmjAQlYDTIqgxZNj9BheHfW5ySYzzGkr0JrGbvfLNo01rizEt3/S6rGTVshsK3ZU001bR2UFayCUbB7PZLW/20Zrv1iP7VA1JQCXNASX4HXlzV4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DoFJX6i2; arc=none smtp.client-ip=209.85.128.65
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-42fb6ce71c7so1831290f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 05:34:57 -0800 (PST)
+Received: by mail-wm1-f65.google.com with SMTP id 5b1f17b1804b1-47ee07570deso18194745e9.1
+        for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 05:40:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769780096; x=1770384896; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lKvxKGZ/wM7it4bTsO0Z3rMS2mHTFWTEN2O02PyhYlQ=;
-        b=eJnK2kNmw3iqt/rG3pKu3Kgb1Pjsgc2LnOWPktXTT0SCHFcqEdpIX1JfxSwGs3nNoM
-         YZZvWqnGqO4zHbJ/jbHE8NCWyd2lEqpEimm8Nv4LVnxDulyBtqScBMkgOtatrfiHd9yh
-         Xy3EgcXUHqQuTkmXL6u1mtd7CsnmFv9VC49Y/F9XQFKYwTHOvXSFBwkHLyz2ZL49LLUN
-         Lc+4oXBW+APm4gl24uitdYnywYvuYe3zAc09Rl3a/Ai44qKC1dsQY0FN1HEm+3vhsyp2
-         PBhkzMv75fgTiwXnDr1a0UxBE2zGMSSMw5YooEk3nLDXOKvkwpfmt0KPNxtK2iM3vSDh
-         oMsg==
+        d=gmail.com; s=20230601; t=1769780439; x=1770385239; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=OYwugTIJLc3eRCqiWoe8oZZ3VXR4XqUFabNpPOLivpg=;
+        b=DoFJX6i23Ij2tOxEakJOONpGKulA6w4V/fXTeWy3tgfhV15raDFNux+r0a8QX98F3a
+         fOkl4pD+4Ol4RikSvpeYSk/croAL7nHI+v0i2jT6B0mF4Kt97eYX0PLUEClU2umbOk3X
+         vXlsOKKxVPn20oRhGIBzgGGDdAy5TwCJGdOGEN1UdYQjdQMEQGO5Fu62aBCqRQ2gYQMa
+         yYCimEeSkA5BL7cld6+cNTiVFv5wIHqIA0+bXvCiORX7zN2hUX8+IzX+zJ+wVVXlhXqN
+         hMTggCaJa6v7bQskZg/3hUTstuN092FojkqUOQfJJOcfINFJdxUAoKrSrRp9EOfa7tc7
+         3FWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769780096; x=1770384896;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=lKvxKGZ/wM7it4bTsO0Z3rMS2mHTFWTEN2O02PyhYlQ=;
-        b=uVgOM50NHQZ7wEJKD5VtErFxDrIMVNRUkQRZJGiNsLOSC0tBFFBjG9v9tTBjqPwr4D
-         yUtAx8QtBsD/x+N8xwjcLUv4TkO2BI0CCDi917wRd+v1rMpFTpUdDHCR047aUoqrAGss
-         RgUPVYpZhbmDGJ1hDZZF957FOq76QUaWKBHG14QnYtj7nRE9SF8gtEbIMcHIRC6SYfrs
-         zntiaCGKKrvfqjGT/nViVeLKmYZ+7OHNPIG1daUog2m1q6lKaX0IpVNMt3auwGF6oK1G
-         dFyeCJdNHtHoDmMJv77y8uPRf+nnRoOki+m71HFMkLHeyP40CouNMioGOnOsB94U0ztK
-         7Z/A==
-X-Forwarded-Encrypted: i=1; AJvYcCUveVs91FhZHLeAu5sq858gsjM5WjOX3J9f/Av8nYhzHA9prXBglTILQnQbA3ugURayrw9FwK99Q3BD@vger.kernel.org
-X-Gm-Message-State: AOJu0YxQMHkASwfZ1eI6vzPgHuM6k4lj9EcgsogwNWETH1uco/IEsyTF
-	72ZjrrD0BOM7tTAlcmjMqSOx7q5s9/HET73tG1+DcRURZsvo59PQ9FU5
-X-Gm-Gg: AZuq6aJLI08jU5FYGHTGteB046RltvhsYszhDJRoSLRUtOi3imhUfHf54MRmSIZHKtU
-	x6QIte7deeG9zaFsdsSkqbvrodlnW8cQDhR5OxrHHAZb7IxMy56rqlJ1lSZl//k1RbHi0Vp6PuG
-	yzeTu9zgQQ3zR+zsVu8sUtlzByyttKVUzXkAT4Lg+u9STOxhWK8eXtQOcPeqn7VgAsvGj+6cY2d
-	dWt1hRwjzUQmUYvOEmq3uK+Hc4qazxt2Qt/Ww+mYTyZCp8dIOZn8/W9Rd1EPOrRCvglx5HTzs1Q
-	XDuF76X0j3LJVjFE3E/02KHOOssIXnG+fnQTsWcjp2i5+xmDjKgPfZo6pHdhMa4fLqOOePVEMvv
-	0fWtnx87ZHF64E/nJdqe8Ehf8ZY3TEPKiYuhsvabr4gMtcFxgviChtfKIqvCtQtOTYyfCCMlTm4
-	GC
-X-Received: by 2002:a05:6000:184d:b0:432:da3b:5941 with SMTP id ffacd0b85a97d-435f3a7b8camr4494369f8f.21.1769780096189;
-        Fri, 30 Jan 2026 05:34:56 -0800 (PST)
+        d=1e100.net; s=20230601; t=1769780439; x=1770385239;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OYwugTIJLc3eRCqiWoe8oZZ3VXR4XqUFabNpPOLivpg=;
+        b=E2b5rcGeQOQQc0ORA+QCpuGNl0IYsqsmtq/zsQbRx0TRCjuBDzZVLPixb+f41+Fa6w
+         0GmAPovvjS/D/X5tXzk+O84lsh38Je8lu7RHDIfHqGBu2zsZ0hAJvButaXEmfMc0tEje
+         cDZcWtQaJbbkD0SMMfEGnOeld1Uix7+oBXx0Fe3jvfys984KuIRllrx7srSfCuuVeuYV
+         v8+T6sHHhXitY+NVCxHGXUklrD8IIFmlFWvOFCvYenXza8z5KIpIHOF6mvGeOEu9h5kL
+         JQr1iHmnpucCR82ArVVbE5Y5vhsPQWAw+gM5yMW5N8XP+BiD4cjOmeLUdb3Ko5ySdZ/t
+         uOVA==
+X-Forwarded-Encrypted: i=1; AJvYcCUd2i2fDFiJupPSs9J4IWWihErXdWs7Vwy7HT7N52+hKZ+cX85Z/ScaIrgmTVP4e9eUnpo0fvEngKzi@vger.kernel.org
+X-Gm-Message-State: AOJu0YzSloauOP5qJWc1ZZoN+607PqB7QK4Y+x+ssvTvenZnZ4KgzE2r
+	JAqw0baFROLH0au020bNJaKcFC1TJXhvPlBfhrV5oChgHHk5+sgdt0xD
+X-Gm-Gg: AZuq6aIGQ6nNg0cChHG9eTKF7e5eZKNp3mf9z3NtjOQaT+ZGAC/LMwUpEWLNQi6mZX4
+	4uf2K9Jm9SqLyuW6UcjBY+saYT/Qm1LTeLFlnT9fh0UOcCeVVKKu7ocxGq94NQAsYWxkeIokKrO
+	lPlzR6FG0/XpM7sDdCuqj+nmjdb+q9SdiLDaZUvRlRKHZbrE85u5dYRGa9FOJ9LY03axWI/62Va
+	ZjZqNlpdFYMrJ3LESgOAcodmRYMRSjuYJsxSJSenJaXftak6n6Qz46QM1cJQ6sQhZZkQtbPcymH
+	bXkaC1tIbW+sPX/Yb/YjIGn8AnYy64rOiFjmyHCb8mB0KVRiz3Skj4IH5XFZC5kQhgWG2umxEfj
+	3O57UXouOl9uw23R5gaHaLFD6pRsOaL3YOT6IAihh03Bzem0RY2EXZbJqXuZUUXeGIY5nSYOHCP
+	75
+X-Received: by 2002:a05:600c:4f09:b0:477:97c7:9be7 with SMTP id 5b1f17b1804b1-482db45257amr36147095e9.1.1769780438670;
+        Fri, 30 Jan 2026 05:40:38 -0800 (PST)
 Received: from xeon ([188.163.112.49])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435e131ce93sm21536837f8f.24.2026.01.30.05.34.55
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4806cd8fadfsm199106075e9.0.2026.01.30.05.40.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Jan 2026 05:34:55 -0800 (PST)
+        Fri, 30 Jan 2026 05:40:38 -0800 (PST)
 From: Svyatoslav Ryhel <clamor95@gmail.com>
-To: Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
+To: Sebastian Reichel <sre@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	Svyatoslav Ryhel <clamor95@gmail.com>,
-	=?UTF-8?q?Jonas=20Schw=C3=B6bel?= <jonasschwoebel@yahoo.de>
-Cc: linux-sound@vger.kernel.org,
+	Tony Lindgren <tony@atomide.com>,
+	Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: linux-pm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 4/4] ASoC: tegra: Support WM8962 by machine driver
-Date: Fri, 30 Jan 2026 15:34:34 +0200
-Message-ID: <20260130133434.353353-5-clamor95@gmail.com>
+Subject: [PATCH v1 0/2] power: supply: cpcap-battery: pass static battery cell data from device tree
+Date: Fri, 30 Jan 2026 15:40:19 +0200
+Message-ID: <20260130134021.353688-1-clamor95@gmail.com>
 X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260130133434.353353-1-clamor95@gmail.com>
-References: <20260130133434.353353-1-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261231-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,nvidia.com,perex.cz,suse.com,yahoo.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,atomide.com,gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261232-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[wolfsonmicro.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nvidia.com:email,yahoo.de:email]
-X-Rspamd-Queue-Id: 54649BB2D9
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 29D78BB3CA
 X-Rspamd-Action: no action
 
-From: Jonas Schwöbel <jonasschwoebel@yahoo.de>
+Add an option to populate battery cell properties from the device tree if
+the driver cannot access the battery's NVMEM.
 
-Add Wolfson Microelectronics WM8962 codec support to the Tegra ASoC
-machine driver. The WM8962 codec is found on devices like Microsoft
-Surface RT and Microsoft Surface 2 Windows RT based tablets.
+Svyatoslav Ryhel (2):
+  dt-bindings: power: supply: cpcap-battery: document monitored-battery
+    property
+  power: supply: cpcap-battery: pass static battery cell data from
+    device tree
 
-Co-developed-by: Svyatoslav Ryhel <clamor95@gmail.com>
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-Signed-off-by: Jonas Schwöbel <jonasschwoebel@yahoo.de>
----
- sound/soc/tegra/Kconfig        |  10 ++
- sound/soc/tegra/Makefile       |   2 +
- sound/soc/tegra/tegra_wm8962.c | 165 +++++++++++++++++++++++++++++++++
- 3 files changed, 177 insertions(+)
- create mode 100644 sound/soc/tegra/tegra_wm8962.c
+ .../bindings/power/supply/cpcap-battery.yaml  |  1 +
+ drivers/power/supply/cpcap-battery.c          | 27 +++++++++++++++++++
+ 2 files changed, 28 insertions(+)
 
-diff --git a/sound/soc/tegra/Kconfig b/sound/soc/tegra/Kconfig
-index f9257830daa1..56a2f53df2c1 100644
---- a/sound/soc/tegra/Kconfig
-+++ b/sound/soc/tegra/Kconfig
-@@ -229,6 +229,16 @@ config SND_SOC_TEGRA_WM8903
- 	  boards using the WM8093 codec. Currently, the supported boards are
- 	  Harmony, Ventana, Seaboard, Kaen, and Aebl.
- 
-+config SND_SOC_TEGRA_WM8962
-+	tristate "SoC Audio support for Tegra boards using a WM8962 codec"
-+	depends on I2C && GPIOLIB
-+	select SND_SOC_TEGRA_MACHINE_DRV
-+	select SND_SOC_WM8962
-+	help
-+	  Say Y or M here if you want to add support for SoC audio on Tegra
-+	  boards using the WM8962 codec. Currently, the supported boards are
-+	  Microsoft Surface RT.
-+
- config SND_SOC_TEGRA_WM9712
- 	tristate "SoC Audio support for Tegra boards using a WM9712 codec"
- 	depends on GPIOLIB
-diff --git a/sound/soc/tegra/Makefile b/sound/soc/tegra/Makefile
-index defea7f53f11..3f396c87802e 100644
---- a/sound/soc/tegra/Makefile
-+++ b/sound/soc/tegra/Makefile
-@@ -43,9 +43,11 @@ obj-$(CONFIG_SND_SOC_TEGRA210_OPE) += snd-soc-tegra210-ope.o
- 
- # Tegra machine Support
- snd-soc-tegra-wm8903-y := tegra_wm8903.o
-+snd-soc-tegra-wm8962-y := tegra_wm8962.o
- snd-soc-tegra-machine-y := tegra_asoc_machine.o
- snd-soc-tegra-audio-graph-card-y := tegra_audio_graph_card.o
- 
- obj-$(CONFIG_SND_SOC_TEGRA_WM8903) += snd-soc-tegra-wm8903.o
-+obj-$(CONFIG_SND_SOC_TEGRA_WM8962) += snd-soc-tegra-wm8962.o
- obj-$(CONFIG_SND_SOC_TEGRA_MACHINE_DRV) += snd-soc-tegra-machine.o
- obj-$(CONFIG_SND_SOC_TEGRA_AUDIO_GRAPH_CARD) += snd-soc-tegra-audio-graph-card.o
-diff --git a/sound/soc/tegra/tegra_wm8962.c b/sound/soc/tegra/tegra_wm8962.c
-new file mode 100644
-index 000000000000..31f9d9181595
---- /dev/null
-+++ b/sound/soc/tegra/tegra_wm8962.c
-@@ -0,0 +1,165 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * tegra_wm8962.c - Tegra machine ASoC driver for boards using WM8962 codec.
-+ *
-+ * Copyright (C) 2021-2024 Jonas Schwöbel <jonasschwoebel@yahoo.de>
-+ *			   Svyatoslav Ryhel <clamor95@gmail.com>
-+ *
-+ * Based on tegra_wm8903 code copyright/by:
-+ *
-+ * Author: Stephen Warren <swarren@nvidia.com>
-+ * Copyright (C) 2010-2012 - NVIDIA, Inc.
-+ *
-+ * Based on code copyright/by:
-+ *
-+ * (c) 2009, 2010 Nvidia Graphics Pvt. Ltd.
-+ *
-+ * Copyright 2007 Wolfson Microelectronics PLC.
-+ * Author: Graeme Gregory
-+ *         graeme.gregory@wolfsonmicro.com or linux@wolfsonmicro.com
-+ */
-+
-+#include <linux/gpio/consumer.h>
-+#include <linux/of.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+
-+#include <sound/core.h>
-+#include <sound/jack.h>
-+#include <sound/soc.h>
-+
-+#include "../codecs/wm8962.h"
-+
-+#include "tegra_asoc_machine.h"
-+
-+static struct snd_soc_jack_pin tegra_wm8962_mic_jack_pins[] = {
-+	{ .pin = "Mic Jack", .mask = SND_JACK_MICROPHONE },
-+};
-+
-+static unsigned int tegra_wm8962_mclk_rate(unsigned int srate)
-+{
-+	unsigned int mclk;
-+
-+	switch (srate) {
-+	case 8000:
-+	case 16000:
-+	case 24000:
-+	case 32000:
-+	case 48000:
-+	case 64000:
-+	case 96000:
-+		mclk = 12288000;
-+		break;
-+	case 11025:
-+	case 22050:
-+	case 44100:
-+	case 88200:
-+		mclk = 11289600;
-+		break;
-+	default:
-+		mclk = 12000000;
-+		break;
-+	}
-+
-+	return mclk;
-+}
-+
-+static int tegra_wm8962_init(struct snd_soc_pcm_runtime *rtd)
-+{
-+	struct tegra_machine *machine = snd_soc_card_get_drvdata(rtd->card);
-+	struct snd_soc_card *card = rtd->card;
-+	struct snd_soc_dapm_context *dapm = snd_soc_card_to_dapm(card);
-+	int err;
-+
-+	err = tegra_asoc_machine_init(rtd);
-+	if (err)
-+		return err;
-+
-+	if (!machine->gpiod_mic_det && machine->asoc->add_mic_jack) {
-+		struct snd_soc_dai *codec_dai = snd_soc_rtd_to_codec(rtd, 0);
-+		struct snd_soc_component *component = codec_dai->component;
-+
-+		err = snd_soc_card_jack_new_pins(rtd->card, "Mic Jack",
-+						 SND_JACK_MICROPHONE,
-+						 machine->mic_jack,
-+						 tegra_wm8962_mic_jack_pins,
-+						 ARRAY_SIZE(tegra_wm8962_mic_jack_pins));
-+		if (err) {
-+			dev_err(rtd->dev, "Mic Jack creation failed: %d\n", err);
-+			return err;
-+		}
-+
-+		wm8962_mic_detect(component, machine->mic_jack);
-+	}
-+
-+	snd_soc_dapm_force_enable_pin(dapm, "MICBIAS");
-+
-+	return 0;
-+}
-+
-+static int tegra_wm8962_remove(struct snd_soc_card *card)
-+{
-+	struct snd_soc_dai_link *link = &card->dai_link[0];
-+	struct snd_soc_pcm_runtime *rtd = snd_soc_get_pcm_runtime(card, link);
-+	struct snd_soc_dai *codec_dai = snd_soc_rtd_to_codec(rtd, 0);
-+	struct snd_soc_component *component = codec_dai->component;
-+
-+	wm8962_mic_detect(component, NULL);
-+
-+	return 0;
-+}
-+
-+SND_SOC_DAILINK_DEFS(wm8962_hifi,
-+	DAILINK_COMP_ARRAY(COMP_EMPTY()),
-+	DAILINK_COMP_ARRAY(COMP_CODEC(NULL, "wm8962")),
-+	DAILINK_COMP_ARRAY(COMP_EMPTY()));
-+
-+static struct snd_soc_dai_link tegra_wm8962_dai = {
-+	.name = "WM8962",
-+	.stream_name = "WM8962 PCM",
-+	.init = tegra_wm8962_init,
-+	.dai_fmt = SND_SOC_DAIFMT_I2S |
-+		   SND_SOC_DAIFMT_NB_NF |
-+		   SND_SOC_DAIFMT_CBC_CFC,
-+	SND_SOC_DAILINK_REG(wm8962_hifi),
-+};
-+
-+static struct snd_soc_card snd_soc_tegra_wm8962 = {
-+	.components = "codec:wm8962",
-+	.owner = THIS_MODULE,
-+	.dai_link = &tegra_wm8962_dai,
-+	.num_links = 1,
-+	.remove = tegra_wm8962_remove,
-+	.fully_routed = true,
-+};
-+
-+static const struct tegra_asoc_data tegra_wm8962_data = {
-+	.mclk_rate = tegra_wm8962_mclk_rate,
-+	.card = &snd_soc_tegra_wm8962,
-+	.add_common_dapm_widgets = true,
-+	.add_common_controls = true,
-+	.add_common_snd_ops = true,
-+	.add_mic_jack = true,
-+	.add_hp_jack = true,
-+};
-+
-+static const struct of_device_id tegra_wm8962_of_match[] = {
-+	{ .compatible = "nvidia,tegra-audio-wm8962", .data = &tegra_wm8962_data },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, tegra_wm8962_of_match);
-+
-+static struct platform_driver tegra_wm8962_driver = {
-+	.driver = {
-+		.name = "tegra-wm8962",
-+		.of_match_table = tegra_wm8962_of_match,
-+		.pm = &snd_soc_pm_ops,
-+	},
-+	.probe = tegra_asoc_machine_probe,
-+};
-+module_platform_driver(tegra_wm8962_driver);
-+
-+MODULE_AUTHOR("Jonas Schwöbel <jonasschwoebel@yahoo.de>");
-+MODULE_AUTHOR("Svyatoslav Ryhel <clamor95@gmail.com>");
-+MODULE_DESCRIPTION("Tegra+WM8962 machine ASoC driver");
-+MODULE_LICENSE("GPL");
 -- 
 2.51.0
 
