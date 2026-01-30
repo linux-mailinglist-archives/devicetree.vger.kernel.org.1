@@ -1,161 +1,205 @@
-Return-Path: <devicetree+bounces-261354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261355-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6JjQMNIrfWmPQgIAu9opvQ
-	(envelope-from <devicetree+bounces-261354-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 23:08:18 +0100
+	id YHJnBx8tfWmYQgIAu9opvQ
+	(envelope-from <devicetree+bounces-261355-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 23:13:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24323BF059
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 23:08:18 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7E13BF10C
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 23:13:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DE7E63011F17
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 22:08:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A457230131F8
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 22:13:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3669037647D;
-	Fri, 30 Jan 2026 22:08:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C803E3876A4;
+	Fri, 30 Jan 2026 22:13:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Dn+GXskS"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="OYwB19Fl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+Received: from sender4-pp-g123.zoho.com (sender4-pp-g123.zoho.com [136.143.188.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDB202D23B6;
-	Fri, 30 Jan 2026 22:08:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769810895; cv=none; b=BCSCsNPUTdEr2phwu7aWvQ7mPo1+F71dS4hYMg9mhv8Qarw76ksgHO0epuFZA6Usn7UqaMmC4jL6EmERvjudZRbvYGi0K1QmLBJ36oyiVSMqMIrQf7Ht3xXp+vyiD7wdy1JlmphMHCm90LPnkmVUIT3QYBuV5gJmnGcCSohIJW8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769810895; c=relaxed/simple;
-	bh=4AxjIqvscBzxsPsSN0HE0NqBZ+G8oQmEn6yJ9jl163E=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AFC737F738;
+	Fri, 30 Jan 2026 22:13:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.123
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769811226; cv=pass; b=lhtWBoa6B5rmAJIPRAetkquAxDJaGYnWtAxu4RphJhhLmiY18xop0lfPrlwU17WDx40k0LydtycjYhiR05Ot/fYj8VuX+S7FBS1IC3XXr7dLoXpksAO7OzgySynP2GCRLCOj70tc8c/0OQcYFFbiWLmwwnaxw4JsIsm+YSwFON0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769811226; c=relaxed/simple;
+	bh=0UWf8/vCgMM8cY0jn3W8Sf1V0jhboB0n8p2xSh2EWEQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nBTumVkMKA9gBbR5TQnoQI4l56yhK151RZjGSRS6NTCl1wN8wX+TizBquBuZJdFP1FuENuI14p156pxnQnE0LZ+TIk6g1f5SdCyzfR6dQl3juv4OtbhfM1tJFs7Z0N+3zYOGGZBaOFdoY8OtVDPVvtLUCiry/1m0nae5MtCzOwY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Dn+GXskS; arc=none smtp.client-ip=198.175.65.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1769810894; x=1801346894;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=4AxjIqvscBzxsPsSN0HE0NqBZ+G8oQmEn6yJ9jl163E=;
-  b=Dn+GXskShl+pNaUmIP1CCo1IAIeZOKPOVvVKBxouq1XARJx5zHRsbVj3
-   l1hZTUeo5+PrrbTW/CVfHRBhCdXXvVhh+l3OoycmAdfFlwBJ7bzevXkVH
-   GCJPYdsxA5q3rG+1nP7+S71aQJyxoLvOvNwRPdKAJptZ+hjXuyqIRYP0n
-   WX/Lng11QutdFI/myI5nFd5UsYxq7Q5OUL3K0StOyars46t5dQoyHBivo
-   dspx3tXbp+ongNMKIXTzxe+PJ5EqLM5JPkCRtIBWhUM5a5pkqmKp4gY6K
-   9LSdvSTpfUHcv7B+2yE9prPnvRqiEj2LZLN0pxfcjtkb45HIpBK/J99VJ
-   A==;
-X-CSE-ConnectionGUID: R+3Lk1Z7RDyvZbjWFEkJ5g==
-X-CSE-MsgGUID: axNXcljlQ0C3LchaQfLsBw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11687"; a="74689499"
-X-IronPort-AV: E=Sophos;i="6.21,263,1763452800"; 
-   d="scan'208";a="74689499"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jan 2026 14:08:13 -0800
-X-CSE-ConnectionGUID: N1bBLNjxSlmdLIJDxekE7g==
-X-CSE-MsgGUID: hFXevYttQs2UXVQMAHhw6w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,263,1763452800"; 
-   d="scan'208";a="213896405"
-Received: from igk-lkp-server01.igk.intel.com (HELO afc5bfd7f602) ([10.211.93.152])
-  by orviesa005.jf.intel.com with ESMTP; 30 Jan 2026 14:08:10 -0800
-Received: from kbuild by afc5bfd7f602 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vlwet-000000002Yr-0iE8;
-	Fri, 30 Jan 2026 22:08:07 +0000
-Date: Fri, 30 Jan 2026 23:07:49 +0100
-From: kernel test robot <lkp@intel.com>
-To: Svyatoslav Ryhel <clamor95@gmail.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Jonas =?iso-8859-1?Q?Schw=F6bel?= <jonasschwoebel@yahoo.de>
-Cc: Paul Gazzillo <paul@pgazz.com>,
-	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-	oe-kbuild-all@lists.linux.dev, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/4] ASoC: tegra: Support CPCAP by machine driver
-Message-ID: <202601302320.3lveRyEF-lkp@intel.com>
-References: <20260130133434.353353-3-clamor95@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=QniAPcFGOgZmE6Gos7TI5zbygvU/GcF8rZl26ayzCZDcekko1b/hamgXehdnvtto97sMhVsdtCyEKmGb8TqNv+h2Owsyxy5JyvLe6ne2/FMtYfuR8LKKGfvzUjQqM1nhi65c/nkPkkvV7lH9ymcxfIB22n1e8Q6q339RUT+jeow=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=OYwB19Fl; arc=pass smtp.client-ip=136.143.188.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1769811212; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=EfFvkXi0ReEo8N2W9i08k5bntzx7Uc6JmMP5/Xd2HfZAaUMVbj2vMcGsA0EYE2mHvLE+OrMT/rFz9RpEXl62WMcztJsMGmnNdLNoCtSphoZYHK3Q3dpFo1r2iJVfi3q1iUiOMZgQDlVKSMXw0AxXM9X+cDyawbc2VHylxk4FG0A=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1769811212; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=OXz/6Gfdzu/1ZfkRFXBOdo+eqOyWAJBmkhJU39yARFk=; 
+	b=AjEDGxu6awAyCxms2rRc42M/f4rPht/wRV3bowKJRmeqGrwFse/xRVgRE0UXAbyW/UJEc+aOc7/v/1bXSlEVh4lJ5I63kwNUhP+ZfNUOA26K2x8XBUEzFo4LmtVI3yrEsWCivP9ERRa1gh5NmhPns0SIB0MDA/0SCAoo3FtAjYE=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1769811212;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=OXz/6Gfdzu/1ZfkRFXBOdo+eqOyWAJBmkhJU39yARFk=;
+	b=OYwB19FlwPMxAQdR7da84ZZ8UCArc81ZosrNRQaX4zH9u4gG5qLBTRUBW8w3wYpF
+	ELuz8w2+vWF5e2+9R4ArxQPOYmK2rthT/53dq88k/RXFoMXMK2L2wwbYSGmfTgXA8Hi
+	XtW6mArktYlTHMDI1JHQyxUkA2cdxS7X/Jjqivb0=
+Received: by mx.zohomail.com with SMTPS id 1769811210773530.1298129286961;
+	Fri, 30 Jan 2026 14:13:30 -0800 (PST)
+Received: by venus (Postfix, from userid 1000)
+	id 29B7B18050E; Fri, 30 Jan 2026 23:13:25 +0100 (CET)
+Date: Fri, 30 Jan 2026 23:13:25 +0100
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: dimitri.fedrau@liebherr.com
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Dimitri Fedrau <dima.fedrau@gmail.com>, Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: power: supply: gpio-charger: add
+ support for fast-charge timer
+Message-ID: <aX0peTW5KfZDXHRC@venus>
+References: <20260109-gpio-charger-timer-v2-0-63fd1ba75830@liebherr.com>
+ <20260109-gpio-charger-timer-v2-1-63fd1ba75830@liebherr.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="gb6ocaydawdjlbyl"
 Content-Disposition: inline
-In-Reply-To: <20260130133434.353353-3-clamor95@gmail.com>
+In-Reply-To: <20260109-gpio-charger-timer-v2-1-63fd1ba75830@liebherr.com>
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-0.2.1.1.4.3/269.789.21
+X-ZohoMailClient: External
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[pgazz.com,gmail.com,lists.linux.dev,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	TAGGED_FROM(0.00)[bounces-261354-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,nvidia.com,perex.cz,suse.com,yahoo.de];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com,microchip.com];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261355-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[git-scm.com:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,01.org:url,intel.com:email,intel.com:dkim,intel.com:mid]
-X-Rspamd-Queue-Id: 24323BF059
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,collabora.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: B7E13BF10C
 X-Rspamd-Action: no action
 
-Hi Svyatoslav,
 
-kernel test robot noticed the following build warnings:
+--gb6ocaydawdjlbyl
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 1/2] dt-bindings: power: supply: gpio-charger: add
+ support for fast-charge timer
+MIME-Version: 1.0
 
-[auto build test WARNING on tegra/for-next]
-[also build test WARNING on broonie-sound/for-next robh/for-next linus/master v6.19-rc7 next-20260130]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Hi,
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Svyatoslav-Ryhel/ASoC-dt-bindings-nvidia-tegra-audio-document-CPCAP-CODEC/20260130-214002
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/tegra/linux.git for-next
-patch link:    https://lore.kernel.org/r/20260130133434.353353-3-clamor95%40gmail.com
-patch subject: [PATCH v1 2/4] ASoC: tegra: Support CPCAP by machine driver
-config: arm-kismet-CONFIG_SND_SOC_CPCAP-CONFIG_SND_SOC_TEGRA_CPCAP-0-0 (https://download.01.org/0day-ci/archive/20260130/202601302320.3lveRyEF-lkp@intel.com/config)
-reproduce: (https://download.01.org/0day-ci/archive/20260130/202601302320.3lveRyEF-lkp@intel.com/reproduce)
+On Fri, Jan 09, 2026 at 07:41:19PM +0100, Dimitri Fedrau via B4 Relay wrote:
+> From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+>=20
+> On some devices like TIs BQ24081 battery charger it is possible to activa=
+te
+> or deactivate a fast-charge timer that provides a backup safety for charge
+> termination via GPIO. In case of the BQ24081 it is a fixed 7-hour timer.
+>=20
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+> ---
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202601302320.3lveRyEF-lkp@intel.com/
+With the time being charger specific, this is not a good solution
+for the generic gpio-charger compatible. You should add a compatible
+for the BQ24081 (using gpio-charger as fallback) and then only allow
+'fast-charge-timer-gpios' for the BQ24081.
 
-kismet warnings: (new ones prefixed by >>)
->> kismet: WARNING: unmet direct dependencies detected for SND_SOC_CPCAP when selected by SND_SOC_TEGRA_CPCAP
-   WARNING: unmet direct dependencies detected for SND_SOC_CPCAP
-     Depends on [n]: SOUND [=y] && SND [=y] && SND_SOC [=y] && (MFD_CPCAP [=n] || COMPILE_TEST [=n])
-     Selected by [y]:
-     - SND_SOC_TEGRA_CPCAP [=y] && SOUND [=y] && SND [=y] && SND_SOC [=y] && SND_SOC_TEGRA [=y] && I2C [=y] && GPIOLIB [=y]
+Greetings,
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+-- Sebastian
+
+>  Documentation/devicetree/bindings/power/supply/gpio-charger.yaml | 5 +++=
+++
+>  1 file changed, 5 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/power/supply/gpio-charger.=
+yaml b/Documentation/devicetree/bindings/power/supply/gpio-charger.yaml
+> index 25826bfc289c1c00c338fd0cee2ae6932529cfc3..0edacc104186497118d4ba41f=
+80947009a9aacf6 100644
+> --- a/Documentation/devicetree/bindings/power/supply/gpio-charger.yaml
+> +++ b/Documentation/devicetree/bindings/power/supply/gpio-charger.yaml
+> @@ -62,6 +62,10 @@ properties:
+>      description: Default charge current limit. Must be listed in
+>        charge-current-limit-mapping.
+> =20
+> +  fast-charge-timer-gpios:
+> +    maxItems: 1
+> +    description: GPIO used for enabling/disabling the fast-charge timer
+> +
+>  required:
+>    - compatible
+> =20
+> @@ -97,4 +101,5 @@ examples:
+>                                       <700000 0x01>, // 700 mA =3D> GPIO =
+A.12 high
+>                                       <0 0x02>; // 0 mA =3D> GPIO A.11 hi=
+gh
+>        charge-current-limit-default-microamp =3D <700000>;
+> +      fast-charge-timer-gpios =3D <&gpioA 13 GPIO_ACTIVE_LOW>;
+>      };
+>=20
+> --=20
+> 2.39.5
+>=20
+>=20
+
+--gb6ocaydawdjlbyl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAml9LQEACgkQ2O7X88g7
++po1xQ//ZZYeThKt3VE0cjvZ8SNrx0gp07qDGMVqTbA7uhEQqj0UYpP+RuT8z+41
+bq0N/g3O6wrZfEhSXXcdisizFTBtlwPsYLocb7fjxrrNqBn52MapkMCv65Dw3Kib
+dcwqjUkceEmxPlTTWa/C2HTpxt1K7X3I2J+3OFtsj5/Sz/lx23DhLIeZazpB48tA
+8/xQHx2G/qfdNMDXGplRAZok6JN+7fvq0VgTBOKppVRve6aEGFHxUYAcfIs5r4jO
+Mzh2S4p1crALAVlkxdgd9mBJBOX98whJQxbbMrHYMV44vfhbrrfxXn1KUzOR4v7P
+1zq/lfPAe88HTjEAHJbJs6JjphqJvPUcMutSF5XkZX9TQgqwNQ/FzqDngD5XrRg5
+ejO9SHP6wigxEvvArKSl2GFL0pmQe/cFJFWQxymVQEACnWqqdCfLeKNyFPXvyhm7
+PMJG1mQt/NsJDJqY/VVoft+OHORbJK+bRBMqvt5BKa+3V2ULvkJvedO5Mpl7CL9h
+YXYdL2cQBnZ4LbfrVjrr6naIzJgWFSuMKRvHELkp1SwHniQcGAitl3iTp/RbE4zy
+ZA6XvlV8lzxeHHyAFpNHl9e+ztqrxA9pAawlqwYRsB1NgWIhM/XlVjLqSuF9u2+a
+tKoKLsKYjhomdbWdloG5ePSgZ3yYRPuJg64gCbQtZOkQkZdoUQk=
+=2Wjr
+-----END PGP SIGNATURE-----
+
+--gb6ocaydawdjlbyl--
 
