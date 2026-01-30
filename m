@@ -1,67 +1,64 @@
-Return-Path: <devicetree+bounces-261275-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261276-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aHGgJmPlfGlDPQIAu9opvQ
-	(envelope-from <devicetree+bounces-261275-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 18:07:47 +0100
+	id IBNYLsHmfGlTPQIAu9opvQ
+	(envelope-from <devicetree+bounces-261276-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 18:13:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F24A4BCD2E
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 18:07:46 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D991BCE45
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 18:13:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EF5023054D3D
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 17:04:50 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 102A1304634C
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 17:11:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE2933596ED;
-	Fri, 30 Jan 2026 17:04:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCC4C3587C3;
+	Fri, 30 Jan 2026 17:11:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WMkDZ4J2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BOm4AEZg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C3033563E7;
-	Fri, 30 Jan 2026 17:04:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6D7B357715;
+	Fri, 30 Jan 2026 17:11:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769792688; cv=none; b=YRkqEDd1jjXgMpd+4qrOFzFtPmp50z9qLM3GY5n7Yh2cYjc3A8PvdpEqTfnX4lRL2RbvQ/gCWNMHnTurL086o5BEwXLiHaKeOj4pWEoTAYamZ5k+eEy0JBZ3ECkXRkyjcnQ9PkmyNzwdxg6JEUaGx0san+Y29+5EXv/RrYK48Jk=
+	t=1769793092; cv=none; b=LGbboe0RZ6R2tS+eNX/7h+UPZCWdURddOJWejYFFn6tlblF9TUl3a7fcDI/qI/8EyOwHnFhonnYMMFO+Ct/8iCsXJrCsgs8j/HfFZBfe/CvcwJvg7+Q9SuW//ELsqaCujR8SzpGvJXYpCWmrsVMapM1Kh5uxZfohHEFdqhd38ak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769792688; c=relaxed/simple;
-	bh=Aokumbn4pYY+yO1AHJkg6UzYFc3KfvSIeFM3/ulG6Lk=;
+	s=arc-20240116; t=1769793092; c=relaxed/simple;
+	bh=aIOowKRbbtWXCBTrIHVIrdOUVd0KWK+9sOxeQrb9Ik0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V+Y+7rhURXX/tFTF0bQiGz/SiKQYvfxw86rYS8FFSOzLV8qVlb2fUt3hMHG5FgB4AiTD9s54yhrYHMubBcGSHZY4gf25FLuQzz0yzGd/hI0cqaqwQadDc8YBcZd6vI6ZS1XyJUwwWZ8GCTgZfbSNLLzgpVbxtRW77igOf5Xhh7M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WMkDZ4J2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD834C4CEF7;
-	Fri, 30 Jan 2026 17:04:44 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=NmApT0FlKjB7iQpzTNbjmBHQGRxB63nU/crEJKXXPcvRIzI0kYHuQcU3TRDAkifcKnGqfQHMI/hNdxcsfozMEUZ5PAfwhtCCkIhGz1EFaZcd2mF0O+/hPU+RyV0r+BdQd+/nb1X4Z+1XjrePoSs/XTaBHO1cUesQiDG3TQcaiw4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BOm4AEZg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2892C116C6;
+	Fri, 30 Jan 2026 17:11:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769792687;
-	bh=Aokumbn4pYY+yO1AHJkg6UzYFc3KfvSIeFM3/ulG6Lk=;
+	s=k20201202; t=1769793092;
+	bh=aIOowKRbbtWXCBTrIHVIrdOUVd0KWK+9sOxeQrb9Ik0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WMkDZ4J2HLOjRLM8QLA6JSWVjY7CyjMpv+0UoR1aHgdBgeI+JUAYCxdeEZz2oWmhx
-	 tjaOW/eFXq+prCI/35BDgS/8WTFYU9ivIbb/9+8XYlk4XC5R5gW06o9RdI35p4GOWa
-	 bvvcClCyE99Uroz1a1tppdRNFCUuBvCK/1xYtrEXsEt0seQU9fumJoq2zsxhcDWn1C
-	 MNF8G9j/v/7C0526SUHVoWIibMBLXcvzJkI7IPFhFUMZtt+nBgVqnQ6gG8r5jmkV6x
-	 JoHmzSfgBBahAxim8QabBKNuuGNIAtuxWNbgimp0j8HHDXYvaj4+H4+rd+kkN3hMDT
-	 6rTaHTvcakfTA==
-Date: Fri, 30 Jan 2026 17:04:42 +0000
+	b=BOm4AEZgDq3BINv4ERUCFxnUo2rsm1AVJdfJIOgBhB4PmksARYScWcO6voVrPnYGg
+	 /7eI3N2vahljl5YNsTjZQn2EZwNKeKjisq99NTqFJEZhqsRIc9BrQRpZkL75Hqmm2p
+	 hUdXtLxoR2tOlNN0HW/ZEbWDrw8KMR1rJL4ojLBvoao5P27HgL6WlZZnsqvBFzIzxB
+	 RXSESCYXrPeHDoDgDDk8m7C0iYiogmPz67Zodg68N1Ru6bvVJ7gDI57LL/IiW3Xdci
+	 Sho7k1vNr+vu8KTk0YEbw/QkjNPrijCsU3b6hgJ0ut2OCu3RWzUAR57tLxgNKT98Hc
+	 c5vmb30d4Y6eQ==
+Date: Fri, 30 Jan 2026 17:11:27 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Huan He <hehuan1@eswincomputing.com>
-Cc: linux@roeck-us.net, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, p.zabel@pengutronix.de,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, ningyu@eswincomputing.com,
-	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com,
-	luyulin@eswincomputing.com
-Subject: Re: Re: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add Eswin EIC7700 PVT
- sensor
-Message-ID: <20260130-variety-unseeing-1abc6a941405@spud>
-References: <20260128101400.859-1-hehuan1@eswincomputing.com>
- <20260128101636.914-1-hehuan1@eswincomputing.com>
- <20260128-amperage-handstand-36fa4b3ec447@spud>
- <372016a8.2e10.19c07b74792.Coremail.hehuan1@eswincomputing.com>
- <20260129-unpainted-educated-3017ed90c817@spud>
- <1a01417e.2e9c.19c0ca12dc5.Coremail.hehuan1@eswincomputing.com>
+To: Yixun Lan <dlan@kernel.org>
+Cc: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: pinctrl: spacemit: fix drive-strength check
+ warning
+Message-ID: <20260130-outsmart-ether-73a7927b4c95@spud>
+References: <20260130-k3-pinctrl-io-drv-fix-v1-1-077aec3ba7ae@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,9 +66,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ltszGMIB7Xi46LRn"
+	protocol="application/pgp-signature"; boundary="BXE3nMVoCCy1SEy/"
 Content-Disposition: inline
-In-Reply-To: <1a01417e.2e9c.19c0ca12dc5.Coremail.hehuan1@eswincomputing.com>
+In-Reply-To: <20260130-k3-pinctrl-io-drv-fix-v1-1-077aec3ba7ae@kernel.org>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
@@ -79,16 +76,17 @@ X-Spamd-Result: default: False [-2.26 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-261275-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261276-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -97,112 +95,85 @@ X-Spamd-Result: default: False [-2.26 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: F24A4BCD2E
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,microchip.com:email]
+X-Rspamd-Queue-Id: 5D991BCE45
 X-Rspamd-Action: no action
 
 
---ltszGMIB7Xi46LRn
+--BXE3nMVoCCy1SEy/
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jan 30, 2026 at 10:00:15AM +0800, Huan He wrote:
-> > > > >=20
-> > > > > Add device tree binding documentation for ESWIN EIC7700 Process, =
-Voltage
-> > > > > and Temperature sensor.
-> > > > >=20
-> > > > > The EIC7700 SoC integrates two PVT instances for monitoring SoC a=
-nd DDR
-> > > > > power domains respectively.
-> > > > >=20
-> > > > > Signed-off-by: Yulin Lu <luyulin@eswincomputing.com>
-> > > > > Signed-off-by: Huan He <hehuan1@eswincomputing.com>
-> > > > > ---
-> > > > >  .../bindings/hwmon/eswin,eic7700-pvt.yaml     | 70 +++++++++++++=
-++++++
-> > > > >  1 file changed, 70 insertions(+)
-> > > > >  create mode 100644 Documentation/devicetree/bindings/hwmon/eswin=
-,eic7700-pvt.yaml
-> > > > >=20
-> > > > > diff --git a/Documentation/devicetree/bindings/hwmon/eswin,eic770=
-0-pvt.yaml b/Documentation/devicetree/bindings/hwmon/eswin,eic7700-pvt.yaml
-> > > > > new file mode 100644
-> > > > > index 000000000000..f4ba228924fe
-> > > > > --- /dev/null
-> > > > > +++ b/Documentation/devicetree/bindings/hwmon/eswin,eic7700-pvt.y=
-aml
-> > > > > @@ -0,0 +1,70 @@
-> > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > > +%YAML 1.2
-> > > > > +---
-> > > > > +$id: http://devicetree.org/schemas/hwmon/eswin,eic7700-pvt.yaml#
-> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > > +
-> > > > > +title: ESWIN EIC7700 PVT Sensor
-> > > > > +
-> > > > > +maintainers:
-> > > > > +  - Yulin Lu <luyulin@eswincomputing.com>
-> > > > > +  - Huan He <hehuan1@eswincomputing.com>
-> > > > > +
-> > > > > +description:
-> > > > > +  ESWIN EIC7700 SoC integrates embedded process, voltage and tem=
-perature
-> > > > > +  sensors to monitor the internal SoC environment. The system in=
-cludes two
-> > > > > +  PVT sensor instances. The PVT0 monitors the main SoC power dom=
-ain. The
-> > > > > +  PVT1 sensor monitors the DDR core power domain.
-> > > > > +
-> > > > > +allOf:
-> > > > > +  - $ref: /schemas/hwmon/hwmon-common.yaml#
-> > > >=20
-> > > > FYI, including this is kinda pointless because you have the label
-> > > > property defined below and your "additionalProperties: false" blocks
-> > > > shunt-resistor-micro-ohms from being used.
-> > >=20
-> > > I plan to keep the $ref: /schemas/hwmon/hwmon-common.yaml in use, cha=
-nge
-> > > the original additionalProperties: false to unevaluatedProperties: fa=
-lse,
-> > > and remove the label definition from our schema since it is already
-> > > provided by hwmon-common.yaml. Could you please confirm if this
-> > > modification conforms to the community standards?
-> >=20
-> > That's fine. Does the shunt resistor property apply on your platform?
+On Fri, Jan 30, 2026 at 07:22:15PM +0800, Yixun Lan wrote:
+> The problem is that one value from drive-strength may match to more than
+> two different enum groups which lead to DT complaint, switch to use 'anyO=
+f'
+> to fix this kind warning.
 >=20
-> The shunt-resistor-micro-ohms property does not apply to our platform. We
-> only use the label property from hwmon-common.yaml.
 
-You could just remove
-  label:
-    description:
-      Human readable identifier used to distinguish between different PVT
-      instances. Typically "pvt0" for SoC PVT sensor and "pvt1" for DDR
-      core PVT sensor.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-and do
-  label: true
-
-or leave it as-is.
-
-I don't mind.
+And I guess:
+Reported-by: Conor Dooley <conor.dooley@microchip.com>
 
 
---ltszGMIB7Xi46LRn
+> Fixes: c3efac0592f8 ("dt-bindings: pinctrl: spacemit: convert drive stren=
+gth to schema format")
+> Signed-off-by: Yixun Lan <dlan@kernel.org>
+> ---
+> Doing DT check with command: make dtbs_check W=3D1, will get this kind
+> of warning message:
+>=20
+> arch/riscv/boot/dts/spacemit/k1-musepi-pro.dtb: pinctrl@d401e000 (spacemi=
+t,k1-pinctrl): gmac0-cfg:gmac0-pins:drive-strength: 21 is valid under each =
+of {'enum': [2, 4, 6, 7, 9, 11, 13, 14, 21, 23, 25, 26, 28, 30, 31, 33]}, {=
+'enum': [11, 21, 32, 42]}
+>=20
+> Instead of using more complicated minimum and maximum value of property
+> with constrains of compatibles, we decide to use 'anyOf' to fix this
+> warning.
+> ---
+>  Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctr=
+l.yaml b/Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml
+> index f009fed87e6b..5194fa92fe93 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml
+> @@ -76,7 +76,7 @@ patternProperties:
+>            drive-strength:
+>              description:
+>                typical current (in mA) when the output at high level.
+> -            oneOf:
+> +            anyOf:
+>                - enum: [ 11, 21, 32, 42 ]
+>                  description: For K1 SoC, 1.8V voltage output
+> =20
+>=20
+> ---
+> base-commit: 3fcdb264b61a5bb0eb3fb7272717468aa376a74c
+> change-id: 20260130-k3-pinctrl-io-drv-fix-5b11752dae1f
+>=20
+> Best regards,
+> --=20
+> Yixun Lan <dlan@kernel.org>
+>=20
+
+--BXE3nMVoCCy1SEy/
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaXzkpwAKCRB4tDGHoIJi
-0k2bAQD+Ri6xmsnw8mkuYLWgr9qD9hPCKnjnJf0DwQ9PDviU/AEAnW/rxarr2j1h
-zNqOVLU5SybFlbpAipgp63M9Xk0ccA0=
-=4IrT
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaXzmPwAKCRB4tDGHoIJi
+0l9OAPwIZSVqA3HcerTZTYpElKg+7wSay+MnJcfS6DqQXii4XQD/XnTWlAiX3ZXJ
+XmLWxI52yWO62/AAzYhO6YGjdIbqOw0=
+=LlSc
 -----END PGP SIGNATURE-----
 
---ltszGMIB7Xi46LRn--
+--BXE3nMVoCCy1SEy/--
 
