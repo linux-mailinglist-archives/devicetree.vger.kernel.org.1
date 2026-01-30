@@ -1,217 +1,177 @@
-Return-Path: <devicetree+bounces-261248-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261249-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eJffHzPFfGm+OgIAu9opvQ
-	(envelope-from <devicetree+bounces-261248-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 15:50:27 +0100
+	id yFIMC3jJfGnaOgIAu9opvQ
+	(envelope-from <devicetree+bounces-261249-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 16:08:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC0AABBBE2
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 15:50:26 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C40DABBE0F
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 16:08:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DA55530082B4
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 14:50:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6A3C1300F5FC
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 15:08:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCD6A319604;
-	Fri, 30 Jan 2026 14:50:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="WH5B80zX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53CF034C808;
+	Fri, 30 Jan 2026 15:08:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f193.google.com (mail-vk1-f193.google.com [209.85.221.193])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6E072C11D7;
-	Fri, 30 Jan 2026 14:50:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C44EF30F92D
+	for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 15:08:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769784624; cv=none; b=Ok2wTve3rMyO8vSJ4VKiQlNF2R477EiFYca1t7fRhct1bE/yRjr+ka9bUXbFfiZxzvKi82oLKROm/I+ZHTkDghjqSO0NZbwH4VGuYNUI90qmQFLVA5O4OmDTPOGJVzV9CtxrD3dyfuvivNKmlai+wvP0njrsutB2aGhHphM/gU4=
+	t=1769785714; cv=none; b=c0Sbqt7a7B5bOY79y2l6d33PPdMOz40YaJs+hXhrqEbOHgfadJXSFPcbbMaZJrrslsPB/UuN5R//xmv7GPYlDBus42L9T9KfTQQ4VjvZ3/lifC0vIjkSEHjeF48fcxoKViheb6TFC+u8kZRon3XIgSmpOpJx5R1F6wkadHGAD/Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769784624; c=relaxed/simple;
-	bh=HXujmcHAS9+iwTW6ICXOooCX0MlY74Azq227cCjStKo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=r4NpHNjDZSXry3n1aa5Dw5J2jt0wC+dZSKASt8LB1NmOM3RqThfLB5mZmMHHYFxIe3g9JZs97DubdG34DpLq9BQMwwJVcop3aiUlm6i98uIUzuwxVNwLa06KFygOAIGwsfT/taHU8RE0KbMetjuv0wK3/1MLqKqGCopshImk9iQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=WH5B80zX; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=LZzYYZ47MhM5DbXuBFYv+5+5v+vkghMIaO5mgHVitCI=; b=WH5B80zX3ZnL/qn/O8PYSUOAQF
-	/EGSfRNsE7jPycCz+dQZZzZe8SalMBbiZQXiHm4FltNSMewf03zVxDP/jFqYOUFGteKF3Ngv9ZlkX
-	iFPNODNPoWnURYUS0Vhowsvpmae3wTfe19CCBUl2nXKX2jr7kMwHDiX5sVud9TSAtW5MiGjMh10pG
-	76sp88yzPMDzxq3EWeO0W4PYsh00qKNcAxFD4gkSKRE7vAdrMWHXnzx+56maqPQhpm5ZlcDkkBM4I
-	TqTTE7+ISJl9mtxhtXHZeSenO5EvjqZcSafwi0aQu66BUUbABkXv3Dkd8xHMQK889/gg8cyKUkp/c
-	RVy6FFaQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:35632)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1vlpp4-000000001Cc-1afO;
-	Fri, 30 Jan 2026 14:50:10 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1vlpp2-000000000b3-0oEH;
-	Fri, 30 Jan 2026 14:50:08 +0000
-Date: Fri, 30 Jan 2026 14:50:07 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Vinod Koul <vkoul@kernel.org>
-Cc: Vincent Guittot <vincent.guittot@linaro.org>, neil.armstrong@linaro.org,
-	Simon Horman <horms@kernel.org>, krzk+dt@kernel.org,
-	conor+dt@kernel.org, ciprianmarian.costea@oss.nxp.com, s32@nxp.com,
-	p.zabel@pengutronix.de, ghennadi.procopciuc@nxp.com,
-	Ionut.Vicovan@nxp.com, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
-	Frank.li@nxp.com
-Subject: Re: [PATCH 2/4] phy: s32g: Add serdes subsystem phy
-Message-ID: <aXzFH09AeIRawCwU@shell.armlinux.org.uk>
-References: <20260126092159.815968-1-vincent.guittot@linaro.org>
- <20260126092159.815968-3-vincent.guittot@linaro.org>
- <aXsuRTZUUnw0kdzV@horms.kernel.org>
- <CAKfTPtDfnpzq2CB-isVzvh1ZCWo7kit9KRJvVGoU1C3zZTgdXw@mail.gmail.com>
- <aXtfVUb0eLwP4R28@shell.armlinux.org.uk>
- <CAKfTPtCiJcNOdoddZN5N1dKHXfUJBe0=zeWfZ5uENoXDvbMnpQ@mail.gmail.com>
- <aXtl6eQ8zD_olTdc@shell.armlinux.org.uk>
- <aXtvDn_-pCuKPrnf@vaman>
- <aXtwfj1vqB1cXKFM@shell.armlinux.org.uk>
+	s=arc-20240116; t=1769785714; c=relaxed/simple;
+	bh=ixVqgiNKWlgJlcIKmTWTDEQrvH4ksjQzpSZ+bGRd1qM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Q7saNDtcWx5NazKv/2DdmBTByrmnXquWDjgk7236Dez7wLkUNopH+vzwNwSe4MIi4uq35iJk2clFkhBEkjcwF+DAuB6tguiKdDFQpjEM6beNOR9GpKaEmv3UfECpLvPY/gmriF91N/31pm7HqMq+U1kNqOag8WvFkDJ3ru36zwA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f193.google.com with SMTP id 71dfb90a1353d-566360cab07so708437e0c.3
+        for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 07:08:32 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769785712; x=1770390512;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dGkx6eA6mbqfFwtrPFINFpkOa49uJ1Td/6euugAjzpQ=;
+        b=vf2dxjgB7FGRMW4w5w/7DlyUfKilxvzXJWPY1Wg16lM7uqi0DVqP/UKofs04Fl9Dc1
+         o9tHs9q7nxPlawMkl75ReukGcAGY9ujXgrTs/+M9yyBe4Ku7bmsodU8ZoPdkKRviSXiX
+         KE62PT00b3ineyDX10Xash+alCV3UzqjIEgp99F5VWCvDzntfcjBlEaF+hAZjgCgR0jZ
+         JCaqz7fBGqUn2v2gIYkWEmhzdORUhjqm4o7DOGd+kzXDCVIzOIKsNb+GAvV2cqIo8g53
+         s4+STeX33PTOKmP0yLwjxkBn+q0dXSDO75cIiEK7cJpd0yg8d2P8fqujOOWF90LzpXaH
+         Oggw==
+X-Forwarded-Encrypted: i=1; AJvYcCU9XApVfUOhheD4Q2uhclrbei1SzKDXcMwolnfDLFSjtn9uQOo3RNkof4r+QKxA6jXsyRCpznM5niFm@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzcc0nVmiFIkF7PsMroOer9V6NcDDO1mIPRga6y8h4jJMYleRiJ
+	Y7FConHYpFj+GwQe2ZvUGj4BxW/iGxAxuO5sYpkExCAJJ0zgLe2FEWNO0xk4f1XWQAA=
+X-Gm-Gg: AZuq6aI0CEitH+cuYbBrdg2HLDDhUYoXLZw+onLI16Tl9STDycfhaHRFVARxwYKiNq8
+	L0LbZiDBDobRRp4ayeDSv+VxPJTy3aJSfKqKM6hVmXGF4soeBHXmjw7HX/yXg7W/pVh06RdlCf4
+	H8RqxEgR2XRtwijfQRp+Cmyx69dzmW+ylhImVckCCP4iG3eaS8FL4JXmmo6Hf8+rluCTzD/jItB
+	zplEfcUR2kGkaMArH1Hg3eRmS5+qSf4utW3hFFyvOw25vLMoMNxBDJQhDklwA/JKSfEHxSQrUCF
+	qsUxGUQtQkPCwfPGTnnirSAbG+Z3LoAq408GCGUapgg8yXXqAkKchTYBOzhaQZMWH5f+kfQaGZw
+	xHlncP38ovd6DBYcvSFMAUqVyWVnUNzq0eeFa12ahOWkZB7itTFeI7y86iDtNoXVMID/JkNr3sE
+	HF4bB+VjGDD4eR2w3mfxCNxBjEwICWT3xFhL/7kDdfgsqfWzqZ
+X-Received: by 2002:a05:6122:3a10:b0:563:460b:fe25 with SMTP id 71dfb90a1353d-566a00362edmr776372e0c.8.1769785710289;
+        Fri, 30 Jan 2026 07:08:30 -0800 (PST)
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com. [209.85.217.50])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-56685afc974sm2231749e0c.2.2026.01.30.07.08.27
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 30 Jan 2026 07:08:28 -0800 (PST)
+Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-5f52b3d98cfso666950137.2
+        for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 07:08:27 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXuAZzlmpUcWlDTPpjmuGNCBkt5IzhDqiajR7JnhkY4uSq+7gCybsxJNhmbPmu9SGhuBKMKcgoF8lnI@vger.kernel.org
+X-Received: by 2002:a05:6102:a4b:b0:5f5:7723:28ee with SMTP id
+ ada2fe7eead31-5f8e249d107mr1020998137.11.1769785707020; Fri, 30 Jan 2026
+ 07:08:27 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aXtwfj1vqB1cXKFM@shell.armlinux.org.uk>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+References: <20260129214130.16067-1-john.madieu.xa@bp.renesas.com>
+ <20260129214130.16067-11-john.madieu.xa@bp.renesas.com> <e53b50e2-72dc-47c3-be52-cefa593dd30a@tuxon.dev>
+In-Reply-To: <e53b50e2-72dc-47c3-be52-cefa593dd30a@tuxon.dev>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 30 Jan 2026 16:08:15 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXiQeMgJhs9QvEcBNeGRf85Fi0w-WODyaGBDrOdZeSgPg@mail.gmail.com>
+X-Gm-Features: AZwV_Qjr2oO3yVh97tvIdXRZ_5OwPpjHqcx_MNr99RIUg39FgQPjshWvCCZ7iVo
+Message-ID: <CAMuHMdXiQeMgJhs9QvEcBNeGRf85Fi0w-WODyaGBDrOdZeSgPg@mail.gmail.com>
+Subject: Re: [PATCH v4 10/15] PCI: rzg3s-host: Explicitly set class code for
+ RZ/G3E compatibility
+To: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Cc: John Madieu <john.madieu.xa@bp.renesas.com>, claudiu.beznea.uj@bp.renesas.com, 
+	lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org, 
+	geert+renesas@glider.be, krzk+dt@kernel.org, robh@kernel.org, 
+	bhelgaas@google.com, conor+dt@kernel.org, magnus.damm@gmail.com, 
+	biju.das.jz@bp.renesas.com, linux-pci@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-clk@vger.kernel.org, john.madieu@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.14 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_REJECT(1.00)[armlinux.org.uk:s=pandora-2019];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[armlinux.org.uk : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-261248-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[armlinux.org.uk:-];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	FREEMAIL_CC(0.00)[bp.renesas.com,kernel.org,glider.be,google.com,gmail.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-261249-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[linux-m68k.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[linux@armlinux.org.uk,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
 	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,armlinux.org.uk:url,armlinux.org.uk:email]
-X-Rspamd-Queue-Id: EC0AABBBE2
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,renesas.com:email]
+X-Rspamd-Queue-Id: C40DABBE0F
 X-Rspamd-Action: no action
 
-On Thu, Jan 29, 2026 at 02:36:46PM +0000, Russell King (Oracle) wrote:
-> On Thu, Jan 29, 2026 at 08:00:38PM +0530, Vinod Koul wrote:
-> > On 29-01-26, 13:51, Russell King (Oracle) wrote:
-> > > On Thu, Jan 29, 2026 at 02:36:01PM +0100, Vincent Guittot wrote:
-> > > > On Thu, 29 Jan 2026 at 14:23, Russell King (Oracle)
-> > > > <linux@armlinux.org.uk> wrote:
-> > > > >
-> > > > > On Thu, Jan 29, 2026 at 02:01:13PM +0100, Vincent Guittot wrote:
-> > > > > > yes, the usual pattern is :
-> > > > > > - phy_set_mode_ext()
-> > > > > > - then phy_power_on()
-> > > > > > but I can add an additional check
-> > > > >
-> > > > > Please read Documentation/driver-api/phy/phy.rst section "Order of API
-> > > > > calls" which suggests phy_set_mode_ext() after phy_power_on().
-> > > > 
-> > > > Fair enough.
-> > > > That being said, all pcie drivers  that use phy_set_mode_ext(), call
-> > > > it before phy_power_on()
-> > > 
-> > > It looks like many ethernet drivers do the same, so I think maybe the
-> > > generic PHY documentation is incorrect or misleading, or is expressing
-> > > a preference that almost no one follows. Something for the generic PHY
-> > > maintainers to look at and/or comment on.
-> > 
-> > I would feel it makes sense to configure the mode first and then power
-> > the phy up. As commented above yes it looks like apart from one tegra
-> > driver rest seem to do it this way.
-> > 
-> > Lets update the documentation
-> 
-> Please also indicate in the documentation whether changing the submode
-> of the serdes (particularly for ethernet) is permitted without doing a
-> phy_power_down()..phy_power_up() dance around the phy_set_mode_ext()
-> call.
+On Fri, 30 Jan 2026 at 14:55, Claudiu Beznea <claudiu.beznea@tuxon.dev> wrote:
+> On 1/29/26 23:41, John Madieu wrote:
+> > Program the class code register explicitly during PCIe configuration
+> > initialization. RZ/G3E requires this register to be set, while RZ/G3S
+> > has these values as hardware defaults.
+> >
+> > This configuration is harmless for RZ/G3S where these match the hardware
+> > defaults, and necessary for RZ/G3E to properly identify the device as a
+> > PCI bridge.
+> >
+> > Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
 
-Maybe something like this, which simply alters the documentation to
-indicate that phy_set_mode*() is permissible prior to phy_power_on(),
-and should be used at that point where drivers know the mode which
-will be used.
+> > --- a/drivers/pci/controller/pcie-rzg3s-host.c
+> > +++ b/drivers/pci/controller/pcie-rzg3s-host.c
+> > @@ -1054,6 +1054,7 @@ static int rzg3s_pcie_set_max_link_speed(struct rzg3s_pcie_host *host)
+> >   static int rzg3s_pcie_config_init(struct rzg3s_pcie_host *host)
+> >   {
+> >       struct pci_host_bridge *bridge = pci_host_bridge_from_priv(host);
+> > +     u32 mask = GENMASK(31, 8);
+> >       struct resource_entry *ft;
+> >       struct resource *bus;
+> >       u8 subordinate_bus;
+> > @@ -1077,6 +1078,13 @@ static int rzg3s_pcie_config_init(struct rzg3s_pcie_host *host)
+> >       writel_relaxed(0xffffffff, host->pcie + RZG3S_PCI_CFG_BARMSK00L);
+> >       writel_relaxed(0xffffffff, host->pcie + RZG3S_PCI_CFG_BARMSK00U);
+> >
+> > +     /*
+> > +      * Explicitly program class code. RZ/G3E requires this configuration.
+> > +      * Harmless for RZ/G3S where this matches the hardware default.
+> > +      */
+> > +     rzg3s_pcie_update_bits(host->pcie, PCI_CLASS_REVISION, mask,
+> > +                            FIELD_PREP(mask, PCI_CLASS_BRIDGE_PCI_NORMAL));
+>
+> According to kernel test robot report on v1 this throws a compilation warning:
 
-Leaving the existing phy_set_mode*() in the sequence also indicates
-that it's permissible to call this while the PHY is still powered
-on.
+Yeah, in case of a non-const mask, you must use field_prep() instead.
 
-For drivers such as stmmac, it will be important that details such as
-whether phy_est_mode*() can be called with the PHY powered on are
-riveted down and not left up to the generic PHY driver author - without
-that, generic PHYs basically aren't usable from SoC/platform
-independent code, and stmmac has bazillions of platform specific glue
-already because of (a) bad code structuring and (b) lack of
-generalisation through standardised interfaces that abstract platform
-differences.
+> https://lore.kernel.org/all/202601152104.pV9uMS76-lkp@intel.com/
 
-I want to be able for core stmmac code, or even phylink code (which
-is even more platform generic) to be able to make use of generic PHY
-stuff, but if the calls that can be made into generic PHY are platform
-dependent, that is a blocking issue against that, and makes me question
-why we have the generic PHY subsystem... it's not very generic if it
-exposes the differences of each implementation to users of its
-interfaces.
+Gr{oetje,eeting}s,
 
-I think generic PHY has had the idea that its interfaces will only be
-used from platform specific code that knows about the behaviour of it's
-generic PHY driver, but as can be seen above, this will not remain the
-case given that we have hardware designs where the core of the driver
-is one vendor's IP that gets re-used across many different platforms,
-but the SerDes PHY is one of many other vendor's IP.
-
-diff --git a/Documentation/driver-api/phy/phy.rst b/Documentation/driver-api/phy/phy.rst
-index 719a2b3fd2ab..cf73e4fb0951 100644
---- a/Documentation/driver-api/phy/phy.rst
-+++ b/Documentation/driver-api/phy/phy.rst
-@@ -142,6 +142,7 @@ Order of API calls
- 
-     [devm_][of_]phy_get()
-     phy_init()
-+    [phy_set_mode[_ext]()]
-     phy_power_on()
-     [phy_set_mode[_ext]()]
-     ...
-@@ -154,7 +155,7 @@ but controllers should always call these functions to be compatible with other
- PHYs. Some PHYs may require :c:func:`phy_set_mode <phy_set_mode_ext>`, while
- others may use a default mode (typically configured via devicetree or other
- firmware). For compatibility, you should always call this function if you know
--what mode you will be using. Generally, this function should be called after
-+what mode you will be using. Generally, this function should be called before
- :c:func:`phy_power_on`, although some PHY drivers may allow it at any time.
- 
- Releasing a reference to the PHY
+                        Geert
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
