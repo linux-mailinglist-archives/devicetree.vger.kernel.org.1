@@ -1,234 +1,276 @@
-Return-Path: <devicetree+bounces-261102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261103-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YHG2JwNhfGl0MAIAu9opvQ
-	(envelope-from <devicetree+bounces-261102-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 08:42:59 +0100
+	id OLBZGFNjfGmlMAIAu9opvQ
+	(envelope-from <devicetree+bounces-261103-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 08:52:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B2E0B7FE6
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 08:42:59 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E6B9B80BE
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 08:52:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1014D30342A5
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 07:41:51 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8CB8B3013A7A
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jan 2026 07:52:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94D4B34F46F;
-	Fri, 30 Jan 2026 07:41:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58168306B3E;
+	Fri, 30 Jan 2026 07:52:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jfMgV1Pl"
+	dkim=pass (2048-bit key) header.d=ite.com.tw header.i=@ite.com.tw header.b="OaU820oA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from ironport.ite.com.tw (60-251-196-230.hinet-ip.hinet.net [60.251.196.230])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73A2A3128A2;
-	Fri, 30 Jan 2026 07:41:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68B462EB87E;
+	Fri, 30 Jan 2026 07:52:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.251.196.230
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769758909; cv=none; b=Vf6ZgfDZnteVZATDDo8QZgsufdOmjwBQ8T3UMZ/4sCKsxKtYY67t69oV1GrGhPGkTPhK70YCKEzKi1TOgtjuJCT5ZcbbVdc7VTaVHp9EY2cuihr0lGoYpQBjzPHIbhQJx6+738xHHM3w1+OySexgdE6n2txmP1Zo3kfQOPu0+Ac=
+	t=1769759568; cv=none; b=nI5+HuYa/6G+Ebhkrj+bnw1cmD1R6y0pizGbmMilexAgJj18/08+Nqkcfc18gE7Ba3VUVZTP1udHI2MmJVh+LxIdCq72dZQt72K2Vd0vrrIlRNmGrkrTV3m9DhJRkV0y3hAQh8oYmgmmZV6U7BP2CGxf/PkJeAqL53QTpto/GLg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769758909; c=relaxed/simple;
-	bh=cXi0KRzZoV34WeDhHHBqcZR1/JcRSeqxXpA0StBk5vM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=M0T5ARg2jMdnT+Tjc6NXNRWFWAvqF08JWRK8vPMQyx2ivOcZUVMer8k/LHfM+uQfkdiB/jDyd4UlRTkOk7WNa3w97Cfzj70aw0s/7P7JKu9bFqg/YVV7Paw1gYBvFhW0b7ZyHIdkNXFir96yb9h4d2m7oVFbJFQ9zkni5EEHoaM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jfMgV1Pl; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1769758907; x=1801294907;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=cXi0KRzZoV34WeDhHHBqcZR1/JcRSeqxXpA0StBk5vM=;
-  b=jfMgV1Pleth1hGdOzquRHRKyrsnGEgTUfTHisBmSASa/XJR8P0zY5kDo
-   4RhMu0f6I9ERTndhlcXB7wzopsmIIv+Mea12fA9cplDCN8vxwSVIKRJL2
-   QnUn196t4oOBSuA7ZC8lCYP5NnL5M2WvqUpbFioCdt0V3lwgQIl8ei7CW
-   hlGFfGH6mBCDMMjUhgLAtY0HQrN5gBK3vlj5o3cQjXKaYma0LA6Aw5h3R
-   k4TFr7h3r8ftnFVaNCr9k6IWwzdMdSi2adwD1b6NMhHvwI9DzZa+cPBZk
-   Q6YCHmrpbbWWO522Pre4v3V1XVVKYo0I/IldNg3p+OGRfivOfjgBfOnbo
-   A==;
-X-CSE-ConnectionGUID: 3apuhws5R/iaOsyrdCuiZg==
-X-CSE-MsgGUID: XS7I4GrZRRuZjn+NhcV6wA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="82378407"
-X-IronPort-AV: E=Sophos;i="6.21,262,1763452800"; 
-   d="scan'208";a="82378407"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2026 23:41:46 -0800
-X-CSE-ConnectionGUID: KMnMedBOSHyr8E/b7Ob4jQ==
-X-CSE-MsgGUID: wLknmg+BTlSWpoyN9Da0yw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,262,1763452800"; 
-   d="scan'208";a="246411346"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by orviesa001.jf.intel.com with ESMTP; 29 Jan 2026 23:41:40 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vlj8L-00000000cKo-1bmS;
-	Fri, 30 Jan 2026 07:41:37 +0000
-Date: Fri, 30 Jan 2026 15:40:42 +0800
-From: kernel test robot <lkp@intel.com>
-To: Daniel Golle <daniel@makrotopia.org>, Andrew Lunn <andrew@lunn.ch>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Simon Horman <horms@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
-	Frank Wunderlich <frankwu@gmx.de>, Chad Monroe <chad@monroe.io>,
-	Cezary Wilmanski <cezary.wilmanski@adtran.com>,
-	Avinash Jayaraman <ajayaraman@maxlinear.com>,
-	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
-	Juraj Povazanec <jpovazanec@maxlinear.com>,
-	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
-	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
-	"Livia M. Rosu" <lrosu@maxlinear.com>,
-	John Crispin <john@phrozen.org>
-Subject: Re: [PATCH net-next v10 4/4] net: dsa: add basic initial driver for
- MxL862xx switches
-Message-ID: <202601301504.2pd3tNrg-lkp@intel.com>
-References: <281fd7e777b51849fac9ef5191679586cc2a1b54.1769731630.git.daniel@makrotopia.org>
+	s=arc-20240116; t=1769759568; c=relaxed/simple;
+	bh=xh2USqWmPFvVEzqqe3NKTlTfG0pQtpIHu7vzwqSFgP0=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=JyWOhRcpZfOqt3d/4ZS3X1MSoLIWOe6eYj25pXhbMy3SKOiFgZRdk0L41Vy/PJRJJ0WfkOy6SxqQM2N88vXfwvXvIffr9Z5RM4bvtYKhX82M9G05n8Xrr7yPxr+vaF4dxJRAE3nlcVwOgLxyRS1LtEpSstLsYm+JJzjwTWC1BlQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ite.com.tw; spf=pass smtp.mailfrom=ite.com.tw; dkim=pass (2048-bit key) header.d=ite.com.tw header.i=@ite.com.tw header.b=OaU820oA; arc=none smtp.client-ip=60.251.196.230
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ite.com.tw
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ite.com.tw
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=ite.com.tw; s=dkim;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=d8q7eoSppetlUUt5FXMVaOw5irGBi+mWlhzmWhDaui4=;
+  b=OaU820oA08phpFDMNuHUZj7iVFZS4MpLSnIZCP9Zuzx2FWVUPPkgGpzy
+   gCbOx/riRSZbynQWiA/JtDYG5L+AGYT4QFR/0eRP/Ij1vddg1V/3d7RLn
+   PnFWb0vQbEZPsAXxl4Ka+XKNb9PAikdTcQINbbRQdIbZje4FmI3D9PmU4
+   uyieGE0KX6fAXTieDtv+q0UZ6S2NBZq+l08ReT7OTNkH9iDsN7/zuMsNy
+   9C3EcKtT+cbYbJ9vsgBVnUqXKf3aVpiWGlzTgobo5ULiRUv6Nf/P1HEWQ
+   f0pNF4ZdyCuhNT0x07QlqylZKrCgxJD5DACuBsd67Dg5vsOv4EfS25Yvd
+   w==;
+X-CSE-ConnectionGUID: VrRCf1vOQaio2GtM9fjNAw==
+X-CSE-MsgGUID: OF7wCRxVR7u8QyA4Ded9cg==
+Received: from unknown (HELO mse.ite.com.tw) ([192.168.35.30])
+  by ironport.ite.com.tw with ESMTP; 30 Jan 2026 15:48:54 +0800
+Received: from CSBMAIL1.internal.ite.com.tw (CSBMAIL2.internal.ite.com.tw [192.168.65.41])
+	by mse.ite.com.tw with ESMTP id 60U7pQj7005426;
+	Fri, 30 Jan 2026 15:51:26 +0800 (+08)
+	(envelope-from Pet.Weng@ite.com.tw)
+Received: from [127.0.1.1] (192.168.72.40) by CSBMAIL2.internal.ite.com.tw
+ (192.168.65.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.35; Fri, 30 Jan
+ 2026 15:51:26 +0800
+From: Pet Weng <pet.weng@ite.com.tw>
+Subject: [PATCH v6 0/3] Add ITE IT61620 MIPI DSI to HDMI bridge driver
+Date: Fri, 30 Jan 2026 15:51:33 +0800
+Message-ID: <20260130-it61620-0714-v6-0-70afa65923b5@ite.com.tw>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <281fd7e777b51849fac9ef5191679586cc2a1b54.1769731630.git.daniel@makrotopia.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAVjfGkC/3XMPW7DMAyG4asEmqNApKi/Tr1H0UG2qEZD4sI23
+ BaB717ZQ5PYKMDlJfB8NzFwX3gQL4eb6HkqQ+muNezxINpzvH6wLKm2QIVGOSBZRgsWlVwjNlS
+ v5ZwxiEo+e87le517e699LsPY9T/r+gTL95+hCaSS2lkAS0k1wb+WkU9tdzmNX2JZmvCuPfqNx
+ qqNt9kETcnkvdZ/GpQKG60XnazHpNATwU7TXSPYjaaqQ8LM0XlykXfaPGjEjTZVx9xYciEm3cY
+ nPc/zLw5bXbGhAQAA
+X-Change-ID: 20250714-it61620-0714-ab4ab4ceff29
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong
+	<neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart
+	<Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej
+ Skrabec <jernej.skrabec@gmail.com>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Hermes Wu <hermes.Wu@ite.com.tw>,
+        Kenneth
+ Hung <kenneth.Hung@ite.com.tw>,
+        Pet Weng <pet.weng@ite.com.tw>,
+        Jau-chih
+ Tseng <jau-chih.tseng@ite.com.tw>,
+        Pin-yen Lin <treapking@google.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1769759532; l=5884;
+ i=pet.weng@ite.com.tw; s=20250702; h=from:subject:message-id;
+ bh=xh2USqWmPFvVEzqqe3NKTlTfG0pQtpIHu7vzwqSFgP0=;
+ b=rJ+CyM4DOhjJsPorbjC0vCuBo8wK9iwHURunpVeCoNJY6aWPeKsEtLFqZTfVwbhYvwSyGrbYx
+ tj2uN8VKPOxDZTcAYcSuC6FwgIIFIEOJ4/zbunmRXFaXtuzEwMFLQv7
+X-Developer-Key: i=pet.weng@ite.com.tw; a=ed25519;
+ pk=wd08uBtTLb93x2ixbKVNsxiZPdMh1Ov4z5klodh2bqo=
+X-ClientProxiedBy: CSBMAIL1.internal.ite.com.tw (192.168.65.58) To
+ CSBMAIL2.internal.ite.com.tw (192.168.65.41)
+X-TM-SNTS-SMTP:
+	E3887AD8A52ACCB7E1B5EECD5C5DB3C657921162994682458308DA2890FCB9DA2002:8
+X-MAIL:mse.ite.com.tw 60U7pQj7005426
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[ite.com.tw,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[ite.com.tw:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[lists.linux.dev,vger.kernel.org,gmx.de,monroe.io,adtran.com,maxlinear.com,phrozen.org];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	TAGGED_FROM(0.00)[bounces-261102-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-261103-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[makrotopia.org,lunn.ch,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,armlinux.org.uk,vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[ite.com.tw:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
+	FROM_NEQ_ENVFROM(0.00)[pet.weng@ite.com.tw,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.0.58:email];
+	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,01.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 4B2E0B7FE6
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.2:email]
+X-Rspamd-Queue-Id: 9E6B9B80BE
 X-Rspamd-Action: no action
 
-Hi Daniel,
+This patch series adds support for the ITE IT61620 MIPI DSI to HDMI 
+bridge chip.
 
-kernel test robot noticed the following build errors:
+The IT61620 is an I2C-controlled bridge that receives MIPI DSI input 
+and outputs HDMI signals. A single-port MIPI DSI input is converted to 
+an HDMI 1.4 output. This series introduces:
+- A device tree binding YAML file describing the hardware
+- A new DRM bridge driver implementing the basic functionality
+- A MAINTAINERS entry for the driver
 
-[auto build test ERROR on net-next/main]
+Signed-off-by: Pet Weng <pet.weng@ite.com.tw>
+---
+Changes in v6:
+- In patch 2								[Luca] 
+ 1. Fix a typo in the commit message.
+ 2. Remove redundant assignment of bridge.funcs, which is already set by 
+    devm_drm_bridge_alloc().
+- Link to v5: https://lore.kernel.org/r/20251222-it61620-0714-v5-0-afb6479ad3ca@ite.com.tw
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Daniel-Golle/dt-bindings-net-dsa-add-MaxLinear-MxL862xx/20260130-085313
-base:   net-next/main
-patch link:    https://lore.kernel.org/r/281fd7e777b51849fac9ef5191679586cc2a1b54.1769731630.git.daniel%40makrotopia.org
-patch subject: [PATCH net-next v10 4/4] net: dsa: add basic initial driver for MxL862xx switches
-config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20260130/202601301504.2pd3tNrg-lkp@intel.com/config)
-compiler: sh4-linux-gcc (GCC) 15.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260130/202601301504.2pd3tNrg-lkp@intel.com/reproduce)
+Changes in v5:
+- Fix dt_binding_check errors by adding missing unevaluatedProperties constraints
+  for port and endpoint nodes in the device tree binding.		[Rob]
+- Link to v4: https://lore.kernel.org/r/20251216-it61620-0714-v4-0-9d2fea7847ae@ite.com.tw
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202601301504.2pd3tNrg-lkp@intel.com/
+Changes in v4:
+- In patch 1								[Krzysztof]
+ 1. Remove redundant "description" fields from interrupts and regulators
+ 2. Drop pinctrl-names and pinctrl-0; driver does not require them
+ 3. Remove port/endpoint properties already covered by video interfaces schema
+ 4. Fix example indentation to 4 spaces for readability
+- In patch 2								[Jani]
+ 1. Use connector->display_info from DRM helper instead of parsing EDID manually
+- In patch 2								[Dmitry]
+ 1. Remove redundant powered check in reg access
+ 2. Use TMDS character rate instead of pixel clock for N/CTS
+ 3. Use consistent lowercase naming for tmds.
+ 4. Use test_bit() instead of custom bit-test helper
+ 5. Use tmds_char_rate_valid instead of custom mode_valid
+ 6. Use custom EDID read instead of DDC bus for segment handling
+ 7. Drop redundant atomic feature check
+ 8. Pass flags directly to drm_bridge_attach()
+ 9. Check DRM_BRIDGE_ATTACH_NO_CONNECTOR flag before drm_bridge_attach()
+ 10. Short-circuit HPD update if connector status unchanged
+ 11. Remove unnecessary NULL check for connector state
+ 12. Rename cached_edid to edid since it's no longer cached
+ 13. Remove redundant sample rate checks; rely on hdmi-codec validation
+ 14. Remove unsupported 18-bit audio sample size; rely on hdmi-codec
+ 15. Remove unnecessary fmt switch; rely on hdmi-codec defaults
+ 16. Check and propagate errors from it61620_audio_update_hw_params instead of
+     ignoring them
+- In patch 3								[Krzysztof]
+ 1. Remove unnecessary T: field pointing to git; subsystem already defines it
+- Link to v3: https://lore.kernel.org/r/20251009-it61620-0714-v3-0-5d682d028441@ite.com.tw
 
-All errors (new ones prefixed by >>):
+Changes in v3:
+- Wrapped description lines to comply with 80-character line length limit
+  in patch 1.								[Rob]
+- Renamed node from "it61620@58" to "bridge@58" in patch 1.		[Rob]
+- Add port@2 for I2S audio input in patch 1.				[Dmitry]
+- Updated the Kconfig dependency from CRYPTO and CRYPTO_HASH to 
+  CRYPTO_LIB_SHA1 in patch 2.						[Eric]
+- In patch 2								[Dmitry]
+ 1. Audio and InfoFrame
+   - Rename audfmt to i2s_input_format for clarity.
+   - Remove unused infoframe[HDMI_INFOFRAME_SIZE(AUDIO)].
+ 2. Platform data and structure
+   - Drop platform data usage; migrate members into struct it61620
+ 3. Code organization
+   - Reorder functions to avoid the need for forward declarations.
+   - Add static inline to small helper functions
+     (e.g. bridge_to_it61620()).
+ 4. HDCP handling
+   - Make HDCP enable/disable conditional on conn_state->content_protection.
+   - Report authentication result using drm_hdcp_update_content_protection().
+ 5. Error handling
+   - Replace manual error path with dev_err_probe().
+ 6. Power management
+   - Inline suspend/resume callbacks.
+   - Use DEFINE_RUNTIME_DEV_PM_OPS() instead of explicit struct definition.
+ 7. Bridge callbacks
+   - Drop empty bridge_detach().
+   - Inline it61620_bridge_mode_valid().
+ 8. EDID handling
+   - Remove unnecessary cached EDID duplication.
+ 9. Mode set and pixel clock
+   - Move mode handling to atomic_enable().
+   - Keep only pixelclock for future N/CTS audio calculations.
+ 10. Logging
+    - Replace noisy drm_err() calls with drm_dbg().
+ 11. InfoFrame support
+    - Add support for SPD and Vendor InfoFrames.
+- Link to v2: https://lore.kernel.org/r/20250828-it61620-0714-v2-0-586f5934d5f8@ite.com.tw
 
-   drivers/net/dsa/mxl862xx/mxl862xx.c: In function 'mxl862xx_port_setup':
->> drivers/net/dsa/mxl862xx/mxl862xx.c:331:32: error: passing argument 1 of 'dsa_port_is_unused' from incompatible pointer type [-Wincompatible-pointer-types]
-     331 |         if (dsa_port_is_unused(ds, port) ||
-         |                                ^~
-         |                                |
-         |                                struct dsa_switch *
-   In file included from drivers/net/dsa/mxl862xx/mxl862xx.c:16:
-   include/net/dsa.h:546:56: note: expected 'struct dsa_port *' but argument is of type 'struct dsa_switch *'
-     546 | static inline bool dsa_port_is_unused(struct dsa_port *dp)
-         |                                       ~~~~~~~~~~~~~~~~~^~
->> drivers/net/dsa/mxl862xx/mxl862xx.c:331:13: error: too many arguments to function 'dsa_port_is_unused'; expected 1, have 2
-     331 |         if (dsa_port_is_unused(ds, port) ||
-         |             ^~~~~~~~~~~~~~~~~~     ~~~~
-   include/net/dsa.h:546:20: note: declared here
-     546 | static inline bool dsa_port_is_unused(struct dsa_port *dp)
-         |                    ^~~~~~~~~~~~~~~~~~
->> drivers/net/dsa/mxl862xx/mxl862xx.c:332:29: error: passing argument 1 of 'dsa_port_is_dsa' from incompatible pointer type [-Wincompatible-pointer-types]
-     332 |             dsa_port_is_dsa(ds, port))
-         |                             ^~
-         |                             |
-         |                             struct dsa_switch *
-   include/net/dsa.h:531:53: note: expected 'struct dsa_port *' but argument is of type 'struct dsa_switch *'
-     531 | static inline bool dsa_port_is_dsa(struct dsa_port *port)
-         |                                    ~~~~~~~~~~~~~~~~~^~~~
->> drivers/net/dsa/mxl862xx/mxl862xx.c:332:13: error: too many arguments to function 'dsa_port_is_dsa'; expected 1, have 2
-     332 |             dsa_port_is_dsa(ds, port))
-         |             ^~~~~~~~~~~~~~~     ~~~~
-   include/net/dsa.h:531:20: note: declared here
-     531 | static inline bool dsa_port_is_dsa(struct dsa_port *port)
-         |                    ^~~~~~~~~~~~~~~
+Changes in v2:
+- Call the sha1() library function instead of using the crypto_shash
+  "sha1" in patch 2.
+- Rewrite it61620_hdmi_ddc_wait() with readx_poll_timeout() in patch 2.	[Pin-yen]
+- Rewrite it61620_hdmi_hdcp_wait_ksv_list() with readx_poll_timeout() in
+  patch 2.
+- Replace interrupts-extended with interrupts in patch 1.		[Rob]
+- Replace dsi-lanes with the standard property data-lanes from the graph
+  binding.								[Rob]
+- Replace "#/$defs/port-base" with "#/properties/port" in patch 1.	[Rob]
+- Drop unused labels and "hdmi" for the node name.			[Rob]
+- Drop status in patch 1.						[Rob]
+- Link to v1: https://lore.kernel.org/r/20250714-it61620-0714-v1-0-3761164d0b98@ite.com.tw
 
+---
+Pet Weng (3):
+      dt-binding: display: Add ITE IT61620 MIPI DSI to HDMI bridge
+      drm/bridge: Add ITE IT61620 MIPI DSI to HDMI bridge driver
+      MAINTAINERS: Add entry for ITE IT61620 MIPI to HDMI bridge driver
 
-vim +/dsa_port_is_unused +331 drivers/net/dsa/mxl862xx/mxl862xx.c
+ .../bindings/display/bridge/ite,it61620.yaml       |  142 +
+ MAINTAINERS                                        |    7 +
+ drivers/gpu/drm/bridge/Kconfig                     |   18 +
+ drivers/gpu/drm/bridge/Makefile                    |    1 +
+ drivers/gpu/drm/bridge/ite-it61620.c               | 2817 ++++++++++++++++++++
+ 5 files changed, 2985 insertions(+)
+---
+base-commit: 7d86ab402f1ccd4190af9b9eda766e0f53a44bf1
+change-id: 20250714-it61620-0714-ab4ab4ceff29
 
-   317	
-   318	static int mxl862xx_port_setup(struct dsa_switch *ds, int port)
-   319	{
-   320		bool is_cpu_port = dsa_is_cpu_port(ds, port);
-   321		int ret;
-   322	
-   323		/* disable port and flush MAC entries */
-   324		ret = mxl862xx_port_state(ds, port, false);
-   325		if (ret)
-   326			return ret;
-   327	
-   328		mxl862xx_port_fast_age(ds, port);
-   329	
-   330		/* skip setup for unused and DSA ports */
- > 331		if (dsa_port_is_unused(ds, port) ||
- > 332		    dsa_port_is_dsa(ds, port))
-   333			return 0;
-   334	
-   335		/* configure tag protocol */
-   336		ret = mxl862xx_configure_sp_tag_proto(ds, port, is_cpu_port);
-   337		if (ret)
-   338			return ret;
-   339	
-   340		/* assign CTP port IDs */
-   341		ret = mxl862xx_configure_ctp_port(ds, port, port,
-   342						  is_cpu_port ? 32 - port : 1);
-   343		if (ret)
-   344			return ret;
-   345	
-   346		if (is_cpu_port)
-   347			/* assign user ports to CPU port bridge */
-   348			return mxl862xx_setup_cpu_bridge(ds, port);
-   349	
-   350		/* setup single-port bridge for user ports */
-   351		return mxl862xx_add_single_port_bridge(ds, port);
-   352	}
-   353	
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Pet Weng <pet.weng@ite.com.tw>
+
 
