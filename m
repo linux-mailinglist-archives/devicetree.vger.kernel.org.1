@@ -1,145 +1,149 @@
-Return-Path: <devicetree+bounces-261411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261413-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uEcqIWbQfWlQTwIAu9opvQ
-	(envelope-from <devicetree+bounces-261411-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 10:50:30 +0100
+	id oB6COD7VfWniTwIAu9opvQ
+	(envelope-from <devicetree+bounces-261413-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 11:11:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CE14C1709
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 10:50:30 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C111C17BB
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 11:11:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id ACD0C305EFA7
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 09:46:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E17B93007F74
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 10:11:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F9B2342528;
-	Sat, 31 Jan 2026 09:46:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C8F7330B26;
+	Sat, 31 Jan 2026 10:11:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="HqgMgZ1l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BF2833C524;
-	Sat, 31 Jan 2026 09:46:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.84
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19E6E3033C7;
+	Sat, 31 Jan 2026 10:11:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769852781; cv=none; b=nMwrF2dkmcg5r2VZ6DMxaZMavtjksTQ4x98eoi5RA1OnRrPyCj0EmFJDMs9nHCXguGCRd1tAga6Htn9N7I0/T/Zbv0ZLxIq7lWcSzTzREZX3PGF5YIsNP65lbhAFRIJxdpJQJviu6FhMRmKh1K9pv/YD/x24NqT7+KMVGCxJoso=
+	t=1769854266; cv=none; b=mQsEux34OBiJzM34K+blMTeAxgxR9YCJPjcPi1WQY1WZpKj9xcZXV8K7BWIRAdiWZ7hcgfYuuvMMAEpc0Rc+WGVH2II01FOAgvebJv4TE9bBttDcyhbOPbpE3SOsOE2sYW3gSNQHNg9JXcYmoyOFd94CHCHx4ZldcRPC1yBLQ8k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769852781; c=relaxed/simple;
-	bh=q09QYvq+S2qlBAVxztGJqBEV+PIXyFtWRAbvlaoK/D8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=GAcUYNguVVCDDjvr2qKznKoHhl3DJy5ZoT0yAdFjxev/C5bd4MA/lPTc6XfiiDCqrcfLysGb/T4+hKqvYniQkB6JvF/AdCjd17pYDZ6YYo/24SxaBCgYTIlZMNZ+TtmNubOt+8JGZf8P3LO7gygFOoHhW5LXhEiziO0y8WwtGm4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.84
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from edelgard.fodlan.icenowy.me (unknown [112.94.102.235])
-	by APP-05 (Coremail) with SMTP id zQCowAC3Sw9Rz31p9UgiBw--.57463S10;
-	Sat, 31 Jan 2026 17:46:13 +0800 (CST)
-From: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-To: Thomas Gleixner <tglx@kernel.org>,
+	s=arc-20240116; t=1769854266; c=relaxed/simple;
+	bh=lPSRkXhyYoo04lDTt8FQmASYC0hGPW1luf8G308sWzw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Gou/y10vg6QgStXUpPKDNT97M9BtaMf+yfMGJi/AaLRLWNUeAWi+sqtkaFUtjM3E3wCQQ6Bv1lBrlByM8/Vpgdu+wz+HbbM8tm0BbHT9HMB5oDoPiDed5K7Y4did6snQNelfW/XJJJYe/5J+6FV4oB+jLdqHYYVkV5VpAfwzBlI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=HqgMgZ1l; arc=none smtp.client-ip=192.198.163.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1769854265; x=1801390265;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=lPSRkXhyYoo04lDTt8FQmASYC0hGPW1luf8G308sWzw=;
+  b=HqgMgZ1lynKDvN/9ZGlWR/ynpBaT/AV0jYhZw56yRBhkQTxRgCs8zY1W
+   BVeq78jR09HLrOefiCLjrgn1qYC+5/n7XthtWwF0kGyc/Trxe842PmNp4
+   jyZqdrvwr+7lID3U7g0ENbU642qTF6lbvukgkxZoJYuefJ5aAc1SRqF/H
+   cEHHqmwCBfz2Snc5mDbeWS7coWh85NSSe1bGKR14YkSBU8KCIBTzlpcwn
+   yuX7lYVJadgj1NQhPnIE2SnjgFzdmV3dCEfuxnhg7zdm5dc12YziFyuLq
+   mEs2ajXonVy2uqDOPTAy+dZFZ2bYkUQb6U5+75ZtKd8xg3k7Nz6IK3cdN
+   A==;
+X-CSE-ConnectionGUID: gfex78HPRqOh2LxVCbJ7pA==
+X-CSE-MsgGUID: C8HKm+TaRnGFyZIvP3k13w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11687"; a="70294400"
+X-IronPort-AV: E=Sophos;i="6.21,264,1763452800"; 
+   d="scan'208";a="70294400"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Jan 2026 02:11:04 -0800
+X-CSE-ConnectionGUID: QUVF/r1ERrun+lwgjxqIHA==
+X-CSE-MsgGUID: iyQ3i+59RI22i3wYlCRjBw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,264,1763452800"; 
+   d="scan'208";a="213564339"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.244.97])
+  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Jan 2026 02:11:02 -0800
+Date: Sat, 31 Jan 2026 12:10:58 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: abdurrahman@nexthop.ai
+Cc: Michal Simek <michal.simek@amd.com>, Andi Shyti <andi.shyti@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Huacai Chen <chenhuacai@kernel.org>,
-	Jiaxun Yang <jiaxun.yang@flygoat.com>
-Cc: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-mips@vger.kernel.org,
-	Icenowy Zheng <zhengxingda@iscas.ac.cn>
-Subject: [PATCH 8/8] MIPS: Loongson64: dts: add node for LS7A PCH LPC
-Date: Sat, 31 Jan 2026 17:45:47 +0800
-Message-ID: <20260131094547.455916-9-zhengxingda@iscas.ac.cn>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260131094547.455916-1-zhengxingda@iscas.ac.cn>
-References: <20260131094547.455916-1-zhengxingda@iscas.ac.cn>
+	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 1/6] i2c: xiic: skip input clock setup on non-OF
+ systems
+Message-ID: <aX3VMloJdfsrLh9i@smile.fi.intel.com>
+References: <20260129-i2c-xiic-v7-0-727e434897ef@nexthop.ai>
+ <20260129-i2c-xiic-v7-1-727e434897ef@nexthop.ai>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:zQCowAC3Sw9Rz31p9UgiBw--.57463S10
-X-Coremail-Antispam: 1UD129KBjvdXoW7Xw47JryxCrWftrWkGF17KFg_yoWftFg_Ar
-	17Ka1rWrZ3AasFy34kZrWkCFy7Z3y7A3s3C3W2gr15XF9YyrnxGFWUZ3yUAF1fWrWYqr1r
-	t39Yqr4DCF4IkjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUIcSsGvfJTRUUUbvAFF20E14v26rWj6s0DM7CY07I20VC2zVCF04k26cxKx2IYs7xG
-	6rWj6s0DM7CIcVAFz4kK6r1j6r18M28IrcIa0xkI8VA2jI8067AKxVWUAVCq3wA2048vs2
-	IY020Ec7CjxVAFwI0_Xr0E3s1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28E
-	F7xvwVC0I7IYx2IY67AKxVW5JVW7JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8Jr0_Cr
-	1UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s0D
-	M2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjx
-	v20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1l
-	F7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxan2
-	IY04v7MxkF7I0En4kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY
-	6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17
-	CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1I6r4UMIIF
-	0xvE2Ix0cI8IcVCY1x0267AKxVW8Jr0_Cr1UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCw
-	CI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4UJVWxJrUvcSsG
-	vfC2KfnxnUUI43ZEXa7VUbPC7UUUUUU==
-X-CM-SenderInfo: x2kh0wp0lqwv3d6l2u1dvotugofq/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260129-i2c-xiic-v7-1-727e434897ef@nexthop.ai>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.54 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_PROHIBIT(0.00)[0.153.207.0:email];
-	TAGGED_FROM(0.00)[bounces-261411-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-261413-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[iscas.ac.cn];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[zhengxingda@iscas.ac.cn,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	DKIM_TRACE(0.00)[intel.com:+];
 	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.152.150.128:email,iscas.ac.cn:mid,iscas.ac.cn:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.152.158.80:email]
-X-Rspamd-Queue-Id: 1CE14C1709
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim,smile.fi.intel.com:mid]
+X-Rspamd-Queue-Id: 3C111C17BB
 X-Rspamd-Action: no action
 
-Loongson 7A series PCH contain a LPC IRQ controller.
+On Thu, Jan 29, 2026 at 09:43:13PM +0000, Abdurrahman Hussain via B4 Relay wrote:
 
-Add the device tree node of it.
+> The xiic driver supports operation without explicit clock configuration
+> when clocks cannot be specified via firmware, such as on ACPI-based
+> systems. This behavior is implemented in xiic_setclk(), which returns
+> early when either i2c_clk or input_clk are zero.
 
-Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
----
- arch/mips/boot/dts/loongson/ls7a-pch.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+...
 
-diff --git a/arch/mips/boot/dts/loongson/ls7a-pch.dtsi b/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
-index 5269bf0f789b0..03018db47b18c 100644
---- a/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
-+++ b/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
-@@ -19,6 +19,15 @@ pic: interrupt-controller@10000000 {
- 			#interrupt-cells = <2>;
- 		};
- 
-+		lpc: interrupt-controller@10002000 {
-+			compatible = "loongson,pch-lpc-1.0";
-+			reg = <0 0x10002000 0 0x1000>;
-+			interrupt-controller;
-+			interrupt-parent = <&pic>;
-+			interrupts = <19 IRQ_TYPE_LEVEL_HIGH>;
-+			#interrupt-cells = <2>;
-+		};
-+
- 		ls7a_uart0: serial@10080000 {
- 			compatible = "ns16550a";
- 			reg = <0 0x10080000 0 0x100>;
+> -	i2c->clk = devm_clk_get_enabled(&pdev->dev, NULL);
+> -	if (IS_ERR(i2c->clk))
+> -		return dev_err_probe(&pdev->dev, PTR_ERR(i2c->clk),
+> -				     "failed to enable input clock.\n");
+> +	if (is_of_node(dev->fwnode)) {
+
+Avoid dereferencing fwnode. Use dev_fwnode() API.
+
+> +		i2c->clk = devm_clk_get_enabled(dev, NULL);
+> +		if (IS_ERR(i2c->clk))
+> +			return dev_err_probe(&pdev->dev, PTR_ERR(i2c->clk),
+> +					"failed to enable input clock.\n");
+> +	}
+
 -- 
-2.52.0
+With Best Regards,
+Andy Shevchenko
+
 
 
