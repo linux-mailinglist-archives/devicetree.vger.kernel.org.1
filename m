@@ -1,40 +1,40 @@
-Return-Path: <devicetree+bounces-261492-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261491-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qGMjCHd2fmlgZQIAu9opvQ
-	(envelope-from <devicetree+bounces-261492-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 22:39:03 +0100
+	id gdryF3F2fmlgZQIAu9opvQ
+	(envelope-from <devicetree+bounces-261491-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 22:38:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8ADDEC4079
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 22:39:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF31EC4072
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 22:38:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E2307302E900
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5B698300DDE7
 	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 21:38:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89F72379986;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BDF6379961;
 	Sat, 31 Jan 2026 21:38:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
 	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0583A364EA0;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A8E0366825;
 	Sat, 31 Jan 2026 21:38:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769895520; cv=none; b=MwuHZuju0gMEncVGMAWtzi+tUwB0Wrhc+0G3JKw54VQ4wJXBOYqIppYyUVcr+7H2veI5v0WKnagVf74ziQQs8BNNpQTx8Wfqlwl1FuIQyJW9m22LRhh4f0MfSrYQ3No9UW5DoIy5wjA6uJ5tYviUeIlh2IZt2RlMQaHVhTmmVXs=
+	t=1769895520; cv=none; b=jU8NkpOFU20PdZfQ9/spjzypYb+af1GfdarVrE4Y9EcNi+jw0MMXHWxdH4Kvl1rP7DBzp9SeoVnGtCPRsc7fOQj4EWPRPqM79Dd/nbIw1nwBTQVTFjZEaPcB7qq/1EgVIvLiqUOcLiEHNmXsxSwd4mXfRG1P5MROriuk4azFrWU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1769895520; c=relaxed/simple;
-	bh=ndj/wKTwblblFPRe0p+zhq1aniXYAZNpWdxiIFXaq2E=;
+	bh=I+vNsxG4eX58FNyj2dDJpBgqPtgz7xej87AydxqqEqM=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=TaeczI4mJIJmIm1kUarAl5Zen4m6kGvMovYjk4lUVCj+QyuD7kOUxOMEHXHN37FDzodXYLsSKYLO0hGaObMKBW1/nhHCW8q2RYQgcHuF996fZrUl3jnM58FPdhXqZomtA3PNt9+vu+mPHaK4Pfq1+DIifipkaWGTR9vo00wTfBs=
+	 MIME-Version; b=BakcdC+xpHbgkG4/iCtHP5eMpL2wD7I4YMgCoEj0Bdn0+OXot4nx6sYevwN+coLUPX8sx+XfBgtlB8GGZ6Jf7RYzDrS63wGPYPTDR+t5aP2hvwq9f5QFEh24crCRRnNGLpzwhqaQmcyzd4x7rEio9Mxaqo0mSNA0ucad4UQ94XA=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
 Received: from localhost.localdomain (unknown [223.166.92.103])
-	by APP-03 (Coremail) with SMTP id rQCowABXadBIdn5pRJhjBw--.18091S5;
-	Sun, 01 Feb 2026 05:38:18 +0800 (CST)
+	by APP-03 (Coremail) with SMTP id rQCowABXadBIdn5pRJhjBw--.18091S6;
+	Sun, 01 Feb 2026 05:38:19 +0800 (CST)
 From: Han Gao <gaohan@iscas.ac.cn>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -50,9 +50,9 @@ Cc: devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Han Gao <rabenda.cn@gmail.com>,
 	Han Gao <gaohan@iscas.ac.cn>
-Subject: [PATCH 3/7] riscv: dts: spacemit: Define the P1 PMIC regulators for OrangePi RV2
-Date: Sun,  1 Feb 2026 05:38:10 +0800
-Message-ID: <83affc871efc5fa1c1a08643e66a2dc42b47f24c.1769895215.git.gaohan@iscas.ac.cn>
+Subject: [PATCH 4/7] riscv: dts: spacemit: Enable USB3.0 on OrangePi RV2
+Date: Sun,  1 Feb 2026 05:38:11 +0800
+Message-ID: <2f4aa209fbdb718f751b1d45b73a37044e7f26b2.1769895215.git.gaohan@iscas.ac.cn>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1769895215.git.gaohan@iscas.ac.cn>
 References: <cover.1769895215.git.gaohan@iscas.ac.cn>
@@ -63,188 +63,129 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:rQCowABXadBIdn5pRJhjBw--.18091S5
-X-Coremail-Antispam: 1UD129KBjvJXoWxXFykAFy7JFW3ury8tryxXwb_yoW5CrWUpa
-	n8XFsxur4rAFyxJw45Ww1xta15Wr1Fka9xuryvkrWrJrW8tF9Fkr9rAr4rt3W8Ja1kZw4Y
-	yrW7uFy8tF1Ig3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUmI14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2048vs2IY020E87I2jVAFwI0_JrWl82xGYIkIc2
-	x26xkF7I0E14v26ryj6s0DM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2z4x0
-	Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Cr0_Gr1UM2
-	8EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4U
-	JwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7
-	IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4U
-	M4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628vn2
-	kIc2xKxwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkE
-	bVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67
-	AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI
-	42IY6xIIjxv20xvEc7CjxVAFwI0_Cr0_Gr1UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCw
-	CI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnI
-	WIevJa73UjIFyTuYvjfUO_MaUUUUU
-X-CM-SenderInfo: xjdrxt3q6l2u1dvotugofq/1tbiDAUEDGl+GkZihQAAst
+X-CM-TRANSID:rQCowABXadBIdn5pRJhjBw--.18091S6
+X-Coremail-Antispam: 1UD129KBjvJXoW7Zry8ZryUAF18Kr1rtFWfGrg_yoW8ZrWxpF
+	45uFsa9ayrArWFkw4a9as2ka1rXFsYgFWku34vvr48GrsF93WqkrnxJr1SvFn5WF48Xw4f
+	ArWI9ryUCF129aUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUmq14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2048vs2IY020E87I2jVAFwI0_JF0E3s1l82xGYI
+	kIc2x26xkF7I0E14v26ryj6s0DM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2
+	z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Cr0_Gr
+	1UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j
+	6F4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7V
+	C0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j
+	6r4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x0262
+	8vn2kIc2xKxwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE
+	7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI
+	8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWU
+	CwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Cr0_Gr1UMIIF0xvE42xK8VAvwI8IcIk0rVWUJV
+	WUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIY
+	CTnIWIevJa73UjIFyTuYvjfUOyIUUUUUU
+X-CM-SenderInfo: xjdrxt3q6l2u1dvotugofq/1tbiBwwEDGl+GlBjhQAAs4
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[iscas.ac.cn];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com,iscas.ac.cn];
+	TAGGED_FROM(0.00)[bounces-261491-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261492-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[iscas.ac.cn];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com,iscas.ac.cn];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[gaohan@iscas.ac.cn,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.41:email];
+	PRECEDENCE_BULK(0.00)[];
 	R_DKIM_NA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,iscas.ac.cn:mid,iscas.ac.cn:email]
-X-Rspamd-Queue-Id: 8ADDEC4079
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.1:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.2:email,iscas.ac.cn:mid,iscas.ac.cn:email]
+X-Rspamd-Queue-Id: BF31EC4072
 X-Rspamd-Action: no action
 
-Define the SpacemiT P1 PMIC voltage regulators and their constraints.
+Enable the DWC3 USB 3.0 controller and its associated usbphy2 on the
+OrangePi RV2 board.
 
-The power management hardware design on the OrangePi RV2 is identical to
-the Banana Pi BPI-F3, so the DT Nodes were taken from k1-bananapi-f3.dts.
+The board utilizes a Genesys Logic GL3523 hub, which requires two
+separate power supplies: one VBUS and one for hub itself.
+Add two GPIO-controlled fixed-regulators to manage this.
 
 Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 ---
- .../boot/dts/spacemit/k1-orangepi-rv2.dts     | 110 ++++++++++++++++++
- 1 file changed, 110 insertions(+)
+ .../boot/dts/spacemit/k1-orangepi-rv2.dts     | 46 +++++++++++++++++++
+ 1 file changed, 46 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-index bd1e45e95e38..f87c6ab417c4 100644
+index f87c6ab417c4..d8d0baaec731 100644
 --- a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
 +++ b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-@@ -110,6 +110,116 @@ &i2c8 {
- 	pinctrl-0 = <&i2c8_cfg>;
- 	pinctrl-names = "default";
- 	status = "okay";
-+
-+	pmic@41 {
-+		compatible = "spacemit,p1";
-+		reg = <0x41>;
-+		interrupts = <64>;
-+		vin-supply = <&reg_vcc_4v>;
-+
-+		regulators {
-+			buck1 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3450000>;
-+				regulator-ramp-delay = <5000>;
-+				regulator-always-on;
-+			};
-+
-+			buck2 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3450000>;
-+				regulator-ramp-delay = <5000>;
-+				regulator-always-on;
-+			};
-+
-+			buck3_1v8: buck3 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-ramp-delay = <5000>;
-+				regulator-always-on;
-+			};
-+
-+			buck4 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-ramp-delay = <5000>;
-+				regulator-always-on;
-+			};
-+
-+			buck5 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3450000>;
-+				regulator-ramp-delay = <5000>;
-+				regulator-always-on;
-+			};
-+
-+			buck6 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3450000>;
-+				regulator-ramp-delay = <5000>;
-+				regulator-always-on;
-+			};
-+
-+			aldo1 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+				regulator-boot-on;
-+			};
-+
-+			aldo2 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+			};
-+
-+			aldo3 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+			};
-+
-+			aldo4 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+			};
-+
-+			dldo1 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+				regulator-boot-on;
-+			};
-+
-+			dldo2 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+			};
-+
-+			dldo3 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+			};
-+
-+			dldo4 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+				regulator-always-on;
-+			};
-+
-+			dldo5 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+			};
-+
-+			dldo6 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+				regulator-always-on;
-+			};
-+
-+			dldo7 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+			};
-+		};
-+	};
- };
+@@ -42,6 +42,25 @@ reg_vcc_4v: vcc-4v {
+ 		vin-supply = <&reg_dc_in>;
+ 	};
  
- &uart0 {
++	usb3-vbus-5v {
++		compatible = "regulator-fixed";
++		regulator-name = "USB30_VBUS";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		regulator-always-on;
++		gpio = <&gpio K1_GPIO(97) GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
++
++	usb3_hub_5v: usb3-hub-5v {
++		compatible = "regulator-fixed";
++		regulator-name = "USB30_HUB";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		gpio = <&gpio K1_GPIO(123) GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
++
+ 	leds {
+ 		compatible = "gpio-leds";
+ 
+@@ -227,3 +246,30 @@ &uart0 {
+ 	pinctrl-0 = <&uart0_2_cfg>;
+ 	status = "okay";
+ };
++
++&usbphy2 {
++	status = "okay";
++};
++
++&usb_dwc3 {
++	dr_mode = "host";
++	#address-cells = <1>;
++	#size-cells = <0>;
++	status = "okay";
++
++	hub_2_0: hub@1 {
++		compatible = "usb5e3,610";
++		reg = <0x1>;
++		vdd-supply = <&usb3_hub_5v>;
++		peer-hub = <&hub_3_0>;
++		reset-gpios = <&gpio K1_GPIO(124) GPIO_ACTIVE_LOW>;
++	};
++
++	hub_3_0: hub@2 {
++		compatible = "usb5e3,620";
++		reg = <0x2>;
++		vdd-supply = <&usb3_hub_5v>;
++		peer-hub = <&hub_2_0>;
++		reset-gpios = <&gpio K1_GPIO(124) GPIO_ACTIVE_LOW>;
++	};
++};
 -- 
 2.47.3
 
