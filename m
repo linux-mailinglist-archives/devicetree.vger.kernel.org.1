@@ -1,235 +1,149 @@
-Return-Path: <devicetree+bounces-261402-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261403-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UD+6OM7GfWmBTgIAu9opvQ
-	(envelope-from <devicetree+bounces-261402-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 10:09:34 +0100
+	id nKV6MWTPfWlSTwIAu9opvQ
+	(envelope-from <devicetree+bounces-261403-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 10:46:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EB27C152C
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 10:09:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id F38D8C1634
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 10:46:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 42753300D62C
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 09:09:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3AC5A300C00A
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 09:46:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA6193093C1;
-	Sat, 31 Jan 2026 09:09:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lyBRJPkF"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F5042D7DF6;
+	Sat, 31 Jan 2026 09:46:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B455284672
-	for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 09:09:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.53
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769850567; cv=pass; b=XRF4iYEZsrih6UMK5AtFDWUAnytE9r4SPNrrU6QDxJ+KbEJjU3vE0jjaZ5d0LWHrmAEWgZaklvbHPWiJVBiSIU3GDjpUalUIG9MUZW3AX0rs7gnlQkkn7XbvnOwUha6Me7hjssi5sRCsruXvMqrh0QmdUKekIE1Ot1RiHElMCkY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769850567; c=relaxed/simple;
-	bh=nCj1OAarCxZdxbUETmSh2uXCHGrkZqQoz13cAYyo4/Q=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=p7eHt5KnqencE7f0BExB1Ie/4orgqBPaJpkZH7icJXEdSqbqdY83ifgM2umAggnBNgfAjxyNmCzhDRmSvOze5IcouzTJEznweX67nIx1GikrKC2pFaQzAd+fkbYa+UvcTjz9rJ5YG4JIsBdNvAm/K5ByxAfxWBpJM/AjAOO0IEQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lyBRJPkF; arc=pass smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-59de66fdb53so2615756e87.2
-        for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 01:09:25 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1769850564; cv=none;
-        d=google.com; s=arc-20240605;
-        b=GGXhyx0UaLDbuZR8guwvDCsO3rHZGUOiq3HYnuYO7HJ0M3doH/ll87JwcYlkg0+BYu
-         TZuNTWgqjguf3rr2X5VrulSxcva7Q/q/USycE9wpnw3afArh5H4tpZYvQoN1+MmgPkQy
-         DtZiyXkPpOMD2MvDc39u/md69VwwZljLv3hJ9lJKG8SJ+vSWTKqSz4PaHhf30eU8h7u/
-         EkUVJESAt+oEQz+NhOcb9luYqAxinBg+XLln4jrHylqeMQ8zy5jUes05w/N5g9ArpE94
-         k/EGa+dsvQMdHgeejHE2S8XK3BDMj7gypK6BL8A91JzXPfdVqulKHMRAL+RAzLBL1egY
-         n3yw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=ErL27rQjlumXcD5kCcCQtYknf95rNMXp3vNt9xcdPgs=;
-        fh=hryuOV0Q8fBz2V1uNCj8BQW0ERvIZ8II8HOmpHu3J/o=;
-        b=OW//bgm6AiX82yRctRbNm+fR9dEYm+2rDoISU1RJbkezSJEh07SP9sxauoRoPv8aYV
-         uLefUqDUFGSyblD0CD5Fvkfb3cP/gjcSW4LRk1tspbfEKFCrv3qicX+CY/p/2Ar1ZE9O
-         o90PpIPPbX0rcJurBis3XdEIE2POftFZJ5j0aWcPNFg16mQocGj3J13AEhSMqPWm2ps1
-         TXZwkY5wPgyEP+XTTjXNYyl2VmlShLouRArrGE3ta3IgU2fXaZe4DKn8qkGpLFftmLzb
-         YVDCT6LnptUQM9+5P4VVA9dBWMGfmzssbNiU0sdpy9Vpy82WwFvxl/5rKAN5scDamumD
-         FMWQ==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769850564; x=1770455364; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ErL27rQjlumXcD5kCcCQtYknf95rNMXp3vNt9xcdPgs=;
-        b=lyBRJPkFZk48v5W0uOrCpqtF/IxFeZ3kEd3ahcojfCGECAJWTr8I96gtS30oe1i9uh
-         Eiw14qIyyycJ/MrIaj1rM1fjylEmK/faTwPzupc2wygvbsn7gR3UyQcMpUmXC4wsph/V
-         rGorPL89Iicz0Mm5Ogr6hGjtE3edxR5YMnqO8IEBhBKM8JnDOOaONGmIne9clD9HAc3d
-         qcgeao5L9gFMRXKuMQhf26b8ORc1kK+uwPdnoBY0003R6+ilv2jQ/HFf+6Mb3nf+oGCE
-         GbnHe6pGf4GVkgDYYYY98sg0KN/p4UFyas+KABTVxygMaEFlD0K0cBA36zh9mvNZXwTp
-         08Ig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769850564; x=1770455364;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=ErL27rQjlumXcD5kCcCQtYknf95rNMXp3vNt9xcdPgs=;
-        b=WG8JHNm/WG+HoovSRPFlWhQNgl+TvkMoXZ300PihStHH+95fUQZuG5iSV2o+DuXEMt
-         fdQ/deTPJZq4VidBDwzTEwvs7wqpvXuw4x7PQ0w8GuITBnLlxfd3bg0U5nwWG0Lwsilx
-         2QO6XQcVtP7l1tKR/9Mk0QG0Fbnw79qxzEshLG+2+i2/yx/YOUAW4QWoWw/v+UZHrqkR
-         LiTOHwX+lY9IG0pzNxKy2PVnEr5/zLqRgo4QaqlrBmiVmmVgRmpCrMJCeBsN85Tj96ZE
-         WjjjQq7JOr79SWAjmDcmALz7zgRuA4wjlCAcDh8BvPLe6/1U3Qpqb6rtv3SgXejPObOd
-         mdDg==
-X-Forwarded-Encrypted: i=1; AJvYcCWCxnAFs7cyOYs6iJvxnPv0CSzfRtX9TA75lI1eNoiuTWEvsuPSYRnSOKXza1oUOn1y6IzHkPs47lPI@vger.kernel.org
-X-Gm-Message-State: AOJu0YxdZ0kTFypFDWVEA6DKjPPlm7/FiEt64EHjCGZNJ2I8NpsVhnzp
-	AUBQBrQylFUKOPhmnP6fMjDpVtoU32+U7vtlLCvF6Q1F4Kxlk42FR9LLLpV5dKPA8ryWhToc8FV
-	Pkcjt6Ehw1X4KpitzA2Ayp05My8m0CvY=
-X-Gm-Gg: AZuq6aJQ7E4Y6+woo6duKOqzjfl7Ogaxb7GSDsYZhOALxb68wf9mqYbAhriHS3Yi85a
-	81GpS5Xs5ZJuQ0Tz/Ygn5arz9UFYOodL16I/SdwxSTBOOYZYqc6VkH8GFFSxDN1P4KFs4k1PH2E
-	fZyltRwqF8zwflolT+yiX5S8XEndmDEYngIQ1DHtceuURrW+MjTfHrNDGPW7zGdSORJXa6n53Kp
-	ncrlx0vmbiXSXuo6ckQ44AyUt48lB6r9cDboZTRmkXKwiU4mKyIMgGouXKenQgHuxWQSHBP1QhL
-	uBlbl2e6bAAvfn5GSg8i5k/78MU5r/5ATbBQoDEB+AD36wEUEdOJxwlJ
-X-Received: by 2002:a05:6512:b0f:b0:59d:ec9f:b663 with SMTP id
- 2adb3069b0e04-59e16402044mr2083187e87.18.1769850564010; Sat, 31 Jan 2026
- 01:09:24 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 369ED21D3F5;
+	Sat, 31 Jan 2026 09:46:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.84
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769852767; cv=none; b=giXtbtdyj65AY42muy+3FX2pKxS1M4HVJaSww3aUcy9WMpAR7XO0je0x8WYVt7IYGYq5L46eJxidXbAliTWa4OMvSRYSlzfo3jv/gkrKxImWY4iKxDbEdiiYAJYkUY/KxRSLlRLoosVT6Zl2nh9/mfrbhjDktAxDKJlvIN70A6k=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769852767; c=relaxed/simple;
+	bh=JON1t9ASgos+dJNVQ057s+nR9haUTNxsvNUYH/Agmzg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=BvT9vDnT9omc1/tqbQIEzpZSOWEIbkOh93DjcnajTdBmm/MfwrNo8ytCJ/YmfIEkHTRJ3y3UiFwJDybpm0T3PYFqMjf1dfoymwASkJPgmBPcaIcKU6WRkpcy3SfSXfcmHPoCfQXXsr7P8LtSVvYWGFPEbg42VqdlzKRC4n+VezI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.84
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from edelgard.fodlan.icenowy.me (unknown [112.94.102.235])
+	by APP-05 (Coremail) with SMTP id zQCowAC3Sw9Rz31p9UgiBw--.57463S2;
+	Sat, 31 Jan 2026 17:45:54 +0800 (CST)
+From: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+To: Thomas Gleixner <tglx@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	Jiaxun Yang <jiaxun.yang@flygoat.com>
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-mips@vger.kernel.org,
+	Icenowy Zheng <zhengxingda@iscas.ac.cn>
+Subject: [PATCH 0/8] Add support for LS7A LPC IRQ for MIPS Loongson systems
+Date: Sat, 31 Jan 2026 17:45:39 +0800
+Message-ID: <20260131094547.455916-1-zhengxingda@iscas.ac.cn>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260129-sm8550-abl-dtbo-v1-0-abca3be14024@gmail.com>
- <20260129-sm8550-abl-dtbo-v1-3-abca3be14024@gmail.com> <7d473eubnez5gcbou6mguomeetpotp73q7cjol3kfjlg7pz5r3@yjsh4rd4mwbv>
-In-Reply-To: <7d473eubnez5gcbou6mguomeetpotp73q7cjol3kfjlg7pz5r3@yjsh4rd4mwbv>
-From: Aaron Kling <webgeek1234@gmail.com>
-Date: Sat, 31 Jan 2026 03:09:12 -0600
-X-Gm-Features: AZwV_QhI2wslJSs6FGb4rEwUKvBqr5b8LTNl4MaeH_JhV7NT8HJXuEbe8azVqlY
-Message-ID: <CALHNRZ80+KAfm2YHEoodBv_7jDZPZjtr-koo7q_N+aX+i1OfnA@mail.gmail.com>
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm8550: Fix DTBO boot failure
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kumar Sharma <quic_vksharma@quicinc.com>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:zQCowAC3Sw9Rz31p9UgiBw--.57463S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7WF4UGrW3Jw4xJF13urWfKrg_yoW8CFy7pF
+	Wak3WSgr48CrW7CryfA3WFgr13AFZ5JFsrKwsxt3WIgrZ5Was2g3W7AFs8ZrW3Ar9Iq3Wj
+	vry0g3W7WFyakaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9014x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+	6F4UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwVC2z280aVCY1x0267AKxVW0oV
+	Cq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
+	I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r
+	4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
+	n2kIc2xKxwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7x
+	kEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E
+	67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCw
+	CI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1x
+	MIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIda
+	VFxhVjvjDU0xZFpf9x0JUd-B_UUUUU=
+X-CM-SenderInfo: x2kh0wp0lqwv3d6l2u1dvotugofq/
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+X-Spamd-Result: default: False [1.54 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261402-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261403-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[iscas.ac.cn];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[zhengxingda@iscas.ac.cn,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	R_DKIM_NA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[webgeek1234@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[11];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 4EB27C152C
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,iscas.ac.cn:mid]
+X-Rspamd-Queue-Id: F38D8C1634
 X-Rspamd-Action: no action
 
-On Sat, Jan 31, 2026 at 1:47=E2=80=AFAM Dmitry Baryshkov
-<dmitry.baryshkov@oss.qualcomm.com> wrote:
->
-> On Thu, Jan 29, 2026 at 01:46:32AM -0600, Aaron Kling via B4 Relay wrote:
-> > From: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
-> >
-> > ABL requires certain things in the base dtb to apply a dtbo. Namely:
-> >
-> > * The scm node must be named qcom_scm
-> > * The timer node must have a label named arch_timer
-> >
-> > This aligns the sm8550 soc dtsi with those requirements. Without these
-> > in the base dtb, when ABL attempts to apply any dtbo, it will fail to
-> > the bootloader menu.
-> >
-> > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
->
-> Did Pavan provide an SoB to the patch?
+This patchset tries to add support for Loongson 7A1000 PCH's LPC IRQ
+controller to MIPS-based Loongson systems.
 
-No. The change comes from the gunyah watchdog discussion here [0].
+LPC, from software's perspective of view, is just ISA, so the IRQs
+should be handled as legacy ones occupying the lowest 0-15 IRQ numbers.
+Despite the current PCH LPC driver for ACPI-based LoongArch Loongson
+machines handled it, the setup is fragile and depends on its specific
+setup sequence (allocating the LPC IRQs first, and then allocate the
+parent IRQ at PCH PIC). The refactor of extracting parent IRQ allocation
+breaks this fragile sequence, so the first commit is created to address
+for this issue (by reserving ISA IRQs from the dynamic IRQ allocation
+space).
 
->
-> > ---
-> >  arch/arm64/boot/dts/qcom/sm8550.dtsi | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts=
-/qcom/sm8550.dtsi
-> > index 740e3c238e8ed0f162dd168291f6e307ace66e80..d7cc20e1931904e7c603b80=
-0089f00955ecec3b7 100644
-> > --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> > @@ -329,7 +329,7 @@ cluster_sleep_1: cluster-sleep-1 {
-> >       };
-> >
-> >       firmware {
-> > -             scm: scm {
-> > +             scm: qcom_scm {
->
-> This one is a definite no-go. Device nodes can't use underscores in
-> names. It has been told to Qualcomm for ages. If we didn't comply, it
-> doesn't give us a permission to break the rules.
+Then the remaining commits are just adding OF(DT) based initialization
+of PCH LPC IRQ controller, like what happened on PCH PIC.
 
-I have not been able to make ABL load a dtbo without this change so
-far, though I have had a suggestion from off list that I may need to
-try a different method of flashing changes. I have not yet had time to
-do so yet, however. Given this list came from a Qualcomm employee and
-worked as advertised, my tendency is to believe that it is the minimal
-required.
+Tested on a Haier Boyue G51 system with legacy i8042 keyboard/mouse as
+integrated ones. I don't own a LoongArch-based device with LPC
+peripherals, so test on LoongArch machines are welcomed.
 
-The devices I am working on are not fused and thus I do have the
-capability to use a custom ABL with fixes. However, doing so would
-make the user transition from the stock os to a custom one more
-complicated. Plus this affects many devices that are fused and thus do
-not have such an option.
+Icenowy Zheng (8):
+  genirq: reserve NR_IRQS_LEGACY IRQs by default
+  dt-bindings: interrupt-controller: add LS7A PCH LPC
+  irqchip/loongson-pch-lpc: extract non-ACPI-related code from ACPI init
+  irqchip/loongson-pch-lpc: guard ACPI init code with CONFIG_ACPI
+  irqchip/loongson-pch-lpc: add OF init code
+  irqchip/loongson-pch-lpc: enable building on MIPS Loongson64
+  MIPS: Loongson64: dts: sort nodes
+  MIPS: Loongson64: dts: add node for LS7A PCH LPC
 
-In the likely case that the bootloader dtbo functionality does indeed
-require this change, and the mainline kernel cannot accept it, then
-what are the options? My use case involves using out of tree dtbs that
-include the mainline dtsi's. I could do a delete-node on scm and add
-it back as qcom_scm, but I would very highly prefer not to. The less
-downstream changes I have to carry, the less work I need to do to keep
-up to date. And on the other side, getting android vendors to update
-their ABL seems extremely unlikely.
+ .../loongson,pch-lpc.yaml                     | 52 +++++++++++
+ arch/mips/boot/dts/loongson/ls7a-pch.dtsi     | 17 +++-
+ drivers/irqchip/Kconfig                       |  1 -
+ drivers/irqchip/irq-loongson-pch-lpc.c        | 86 ++++++++++++++-----
+ kernel/softirq.c                              |  2 +-
+ 5 files changed, 132 insertions(+), 26 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,pch-lpc.yaml
 
->
-> >                       compatible =3D "qcom,scm-sm8550", "qcom,scm";
-> >                       qcom,dload-mode =3D <&tcsr 0x19000>;
-> >                       interconnects =3D <&aggre2_noc MASTER_CRYPTO QCOM=
-_ICC_TAG_ALWAYS
-> > @@ -6764,7 +6764,7 @@ trip-point2 {
-> >               };
-> >       };
-> >
-> > -     timer {
-> > +     arch_timer: timer {
->
-> Please add a comment, otherwise somebody might decide to drop the unused
-> label.
+-- 
+2.52.0
 
-Ack.
-
-Aaron
-
-[0] https://lore.kernel.org/all/91002189-9d9e-48a2-8424-c42705fed3f8@quicin=
-c.com/
 
