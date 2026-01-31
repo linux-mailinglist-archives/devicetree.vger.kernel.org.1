@@ -1,200 +1,385 @@
-Return-Path: <devicetree+bounces-261394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261395-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ZSPDDMm1fWlXTQIAu9opvQ
-	(envelope-from <devicetree+bounces-261394-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 08:56:57 +0100
+	id QJNoIxe4fWl+TQIAu9opvQ
+	(envelope-from <devicetree+bounces-261395-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 09:06:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 768E1C1298
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 08:56:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6254C12E7
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 09:06:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 25838300C025
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 07:56:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3E6CE300953B
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 08:06:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C0982F9C2C;
-	Sat, 31 Jan 2026 07:56:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20E5A322C60;
+	Sat, 31 Jan 2026 08:06:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="obY5bTeh";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="OBPa8Dhw"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OAZvnROL";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="LIL3Kl+I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F7942D97BA
-	for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 07:56:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96FD22BDC27
+	for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 08:06:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769846213; cv=none; b=OhJWdcIbWl1MG0aAe8nqixCbMSpqz3uWVN2TXE1okLopWvvZ+tOrDVLV9+PqKeiTnukBBSnwlF+R5im/9ZS8u4y/UZtPZidl7UiDDlzNkmOQcqTg3Hdnls8YwWOmcpYX9t0e2VP6FrCpqtTTk9B48LyaLLQBM7JmJaDk00BZxlA=
+	t=1769846799; cv=none; b=YaXHTy0fUPeDHfVl3e68F16reyElrxp6FFK7ILpqRlaN4FwdeS147BXAfOxHo+1ECSl3rtUr7mMDquASr8MZIR0Rd/sHiRxNk02S/0AnmsOsHoe8XtUjN48no6IwJfObgSm/QfHOhRnw8p01sEMFIX+DM9dj1VSyOh4ZkMSVtSc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769846213; c=relaxed/simple;
-	bh=sHEicpusxt1BhCWPqTEoWD2qVeq44bchRv74bgEZmSQ=;
+	s=arc-20240116; t=1769846799; c=relaxed/simple;
+	bh=TljDi4urrmN1/0f4TKu3S+ZKN1I9tBKkewQ8FXC5Myw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pC7EPyWG+h6IKCIRYuxZ7h63nkHm529aJ/0E08azPcG5L8VW1CxUxmH72T5OoBpomveCJqSYgMvoTZq2CWSL9OVQqOnxzSyv27jjE8RteYiPE0yXo3IH2q+qsLpnwXgaGsO+mE0hTDj1c05zXqDjKtLPiQpKGq3xRJy1njUxiAs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=obY5bTeh; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=OBPa8Dhw; arc=none smtp.client-ip=205.220.180.131
+	 Content-Type:Content-Disposition:In-Reply-To; b=B2kiT4V6qCSErmVqSSzFS0/P3y+2ZErh++zKT0j0igW7xpy7UBFsdZDNd2xjqft6T/hXRndHUSFGG0zKkIE95vqExzxIEz72xmS7AI9Fiy7n6m3Dmy38DbQ+ZEhJKPrGLEUOhlRRsK6EAjOHkeLzevzTdV2K8TqdcIVo0dHvWng=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OAZvnROL; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=LIL3Kl+I; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60V4bjDj1061474
-	for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 07:56:51 GMT
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60V4UC8E448318
+	for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 08:06:37 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=PFdJohiEcyNjLvWuefXTpcb9
-	eDVSKkB5aq+atHh5Jos=; b=obY5bTehtMKIDHJwW4DzRjMb7E5VBVjBZIW5vkmf
-	Nvp2cD2CFEoPe2vczcxvwYgTelyIrlv9Hy9DdedDa86WHLLPVeInb0vqYmrNIYVC
-	oFGIGUkTYK066JpphwTlWrQJ0kFOsRuNHQFacp/grXsRuOmAopC2EN/D1OxgTcfN
-	c1sQPa9c8aF2xCrOwTShQZrkM9QjCfSZvE29DlZQ0uKrt5x9+nKPRU5EtnW3Ll4b
-	EpcsvSaJDulSt8f5ssueoN09aoRKjhMy7ttLZwAqW1SAc/tDFTnDvr1GQ++F08Uw
-	lOOGIhnJtBbFYayxEPa2oibdxyzqFwHW9GDpKQMCd26d8A==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c1avngdfq-1
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Gtvw/Y+adYkGVAvhe7+B4pJAGUVBfIyG3h0D4hvzEPg=; b=OAZvnROLpL/W+eiD
+	UpKyFW/qhWr83E1MA4UQcxlirE0OX/3W+GPiz/9Bo6rNXTA42rHOvwekGpvISyu3
+	Bf0+GL4eAuhTh29vBEXSXyfl6CbZ4D01ruIoHqUkMWIDTwBILvXs190u1kbn3XzJ
+	bo55DGuo7gOuwV/uDZNx7IFgrEGaX2FX5VHybOhMjqSwaUFO0c1gq577dyIo4Ubp
+	kbpYLL4CMbpkx7M7nprbkgc6OoHEVHW1b3peUluHhYoHDNGQdFZuc9eFl16TwHSv
+	zjM8F1Hh+xOtwDndPIbkXXPByY8vdSLliCf/Eh2m3jFoozlzzRCHCy6hJAjknREs
+	kpDsfQ==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c1as0rf6q-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 07:56:51 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8c6ad709d8fso674201885a.1
-        for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 23:56:51 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 08:06:36 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8c52f07fbd0so1227884185a.2
+        for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 00:06:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769846210; x=1770451010; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=PFdJohiEcyNjLvWuefXTpcb9eDVSKkB5aq+atHh5Jos=;
-        b=OBPa8Dhw7H3+NKA9spTHblGpe9PnA9+lPzFO4XCFs8NfoMc15bO9CVJIQdaIEIYdA9
-         hGPqmJaa8DdSgssvWERJTZqDCbysdo0vqzh5IPHCZgS4Jfw/t+/r8uCleIaxFjXw/IDO
-         TLWDg19RAH7DuGQNcynb964i3GI63jM4OIodrSATZi8vbBLl6U18NwPMgIeqVyThFaoS
-         wY9JMUpiHKATZXBWrX6N44ecfX1mKInt5QX5x58HJXc32oBlcNkRVCBkb1XhtUDgVe0W
-         TuWh/6WOFUdBSIpMIZt77UzFP2RVASloN0daBzmT0fIVW9QQjwmGIlVwAV81J1bq/Tqv
-         YJYw==
+        d=oss.qualcomm.com; s=google; t=1769846796; x=1770451596; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Gtvw/Y+adYkGVAvhe7+B4pJAGUVBfIyG3h0D4hvzEPg=;
+        b=LIL3Kl+IddntWwwyXlLK5l3GZB0CMUcPBuEqHtsqwGvq80bpJxtG62r4jYBRG5e/vv
+         qAgqDykDWVEBydcwCJQWOGfjU1UzVPFdfy2EBuYpsRANhACAe3zqAdAXrRUdWymIKsfB
+         G3YTfGsuCMJK591zqiGB4VyXzCqR1LvZWiAZT3OJUxdNeqWGy/BjXAYY9Ulwc18OxIyd
+         XOyDWcTPhU51PxDxCQ1ejzZv6+oD/pYVXXkqjIyOnXSbGnqp6WLQMMTviXIyZYwtajLc
+         M1NFKt36+NXWWanWwRqaaD6mW9LgHkk3aMYIoWrfdryhYeHTZDzmdaLO45LqktNoFu79
+         VxvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769846210; x=1770451010;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PFdJohiEcyNjLvWuefXTpcb9eDVSKkB5aq+atHh5Jos=;
-        b=r0HLk672we/q/quawEEPVJdZ5OduCy63DYg3AdXHsJAuzsI2KFUuzPSycld3UY++Sf
-         P82Tik5ueL1L7dV8GEk7enqsu3ud5iz16dQX0zilsW/Y5mSiPsVZAHERdDNmoLdGONza
-         pvJps61Ahq3FzQhubKThoEBAVO+1AF2mdzAboTMO+2ZcXhuapJ1tduw7N+fClrsoVKDg
-         tgFZGdbA2DuHKHRP9UGfJsnm6K5U+Kqpl4DlllEbGYz98lL/nPeanVFsq8GFW5oNGoCV
-         l+hDiKtSFy18CXXpGddbvs1SPd3BZ1rFao9T8vITiHKGAmXO0N9S3e6rxc//qEidGl+Z
-         Milw==
-X-Forwarded-Encrypted: i=1; AJvYcCUBAw2M6zLNGyEBvxQLKVGMh5K6UmZaVK1RgE4NtNjaOZz3Km1t6di+5riGYCkYls+nm79uWeUWfOI9@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzbn2IsfkBFcvACzxPhVnKQMwfNfmTU4yrnYOHLqUbXIFhI7j2h
-	ZUTFI3h00sqY3RovyLBZT8z1NneRsKSZttK7MjwoaGporgCdvurzmppvUIIl6LpMyqjo78xEW+x
-	xFOEwQAlVC9rOqxUkw9VGWvWE69lU9d3ELZ3Af1LCmEWnDY4g4eRDKSe7NsuRbmQk
-X-Gm-Gg: AZuq6aI7Fi3VmYCsi7eiMTU7hetR3/QRVDCoxBGlYg7jRP10I3xpvN9zh7zGRj6UXUy
-	uJSODsCeF34095Hcmeb+70kubxH670PFyQbALzE9zC/viK1EJnHG2w6Jr9OEaSQKKR5PNwUQ4SX
-	w7AUtTGxtb3jhhapx8HwQ8unFsh2LbemQQg2BYK0cX9KBe7YgUOOuxrN7iUXIazvT1O8q0LyC2I
-	gLikl7eo6OxiWF0hVoEfbIjZKKr1OZFqrmJj5JNqCNNPPmfzTkOy0cLwz54AZ7FQUKWQSzNRzTb
-	SxGBHo69EznbtzO9K9ayyCpIeKvqZIbDUt6HQe+OXLDftEnWDZU/mFka2uzpZvokVllDxIa+ALa
-	yM+LwAmISkScYpHqoihDDjmCmAcM5iGhs5/PjQNauiEA024Mg3LcCzS7iWRgWb/AbjJ8P8SnE7L
-	/m2V9tVA5qJYfxjlpxO5iseHQ=
-X-Received: by 2002:a05:620a:d58:b0:8c7:a39a:d51 with SMTP id af79cd13be357-8c7a39a0d92mr831914385a.13.1769846210517;
-        Fri, 30 Jan 2026 23:56:50 -0800 (PST)
-X-Received: by 2002:a05:620a:d58:b0:8c7:a39a:d51 with SMTP id af79cd13be357-8c7a39a0d92mr831913585a.13.1769846210035;
-        Fri, 30 Jan 2026 23:56:50 -0800 (PST)
+        d=1e100.net; s=20230601; t=1769846796; x=1770451596;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Gtvw/Y+adYkGVAvhe7+B4pJAGUVBfIyG3h0D4hvzEPg=;
+        b=U2Sfhx9gQGt7Dl6IBoY9KF6sCUhty3FAJVLVL7jhl8Ev9yUF4sNKkEpRRpNTi4K3YB
+         dz34PBEpsIAhTY4O0V6CAddlY+tYKcjL7nCvFvy1x8YQkZ7ZbN88+5MaOrVkI8Zm5yjt
+         iU9oESad+owL84PnTP82fjUUCdlHB7HY6HCvXVVNOnCxyhuUNTp3S0aF5rkAliBAc6rJ
+         yCan/fFncW8bR4+cZTwt7BxZnuIGIoUMl+yWFzMOPaR3LHImKIEj/3l44JY3/bBrVb3D
+         JAGY4hMXSM0qwdqK2B1AAwIJw7HjBsY9Gb6aIdvrrdDViY5QXK4Ul5o4wd9HrYboQQFx
+         KINA==
+X-Forwarded-Encrypted: i=1; AJvYcCU57qfHvgxUh3stjjoXKBdgvXQ3BB8FqWixisFRMHeGohusb5etSaVdLiZj9T+1EiYYdg/YnlSU6YYe@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx9fPo8C+gkLMJwsfF5NLbkSow3jCjC8yJV309hHAgFU5mW9mwf
+	FD68g6xJHY8fs7XUL3Jh2RtabW/Z3NHGfo5TOH7malWYQuvL7LFUPrLHJFkJL9qVlRSHFPdyUl4
+	CvRRnpirQWp1YqnUInQmpwv85sekEDs2KdmhKzI7rzEbBvRcX/JsKPU6xjn/mVvgU
+X-Gm-Gg: AZuq6aIpwQRbtxqtCt/cTAGAphvMTOdeoZV8EQD8wfi2OBZt2pbPbeHReFNGzV6hTRG
+	Ezg7+oHmbm784HbdTjKLEwv260eDe7t9HavqAnWcxACzSVpLhW7swOiEcNvf95M+CM4U+K046p8
+	AkzqzPf9P5p+iCiiccQFoGw/t4SFQv1mmVgxN/1KRFvh5PryF8yTDpCUjMeqI/Fsa+yBtMLtB21
+	YeOwfykzZd0J00WIqD47A3FnJ29xt36qX9QrQeA3FcnQvfGTWjpCEbUMpVyxL3SkhGFjmj2fWHJ
+	c/6pbkTR2Y6fTPEk9SbUshNipoEUvr+ELMYGwoMyoBs8cT/vt7fyVKSNzl8y36r1y2a5ZjWbxa4
+	kwAbLjnbrPsvPtg6cUmCBo246GZ6h5ilapMZ/bzfyUc7VgHGLdsQlCppdJ34aKgmjbpFmZBAaQl
+	t6l+JhAjKKAtUqhXLl6MjpCVY=
+X-Received: by 2002:a05:620a:c50:b0:8c7:806:386 with SMTP id af79cd13be357-8c9eb23d647mr743401485a.34.1769846795364;
+        Sat, 31 Jan 2026 00:06:35 -0800 (PST)
+X-Received: by 2002:a05:620a:c50:b0:8c7:806:386 with SMTP id af79cd13be357-8c9eb23d647mr743397885a.34.1769846794798;
+        Sat, 31 Jan 2026 00:06:34 -0800 (PST)
 Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-38625f6c13bsm19324641fa.30.2026.01.30.23.56.46
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-38625c44c32sm18685831fa.1.2026.01.31.00.06.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Jan 2026 23:56:48 -0800 (PST)
-Date: Sat, 31 Jan 2026 09:56:45 +0200
+        Sat, 31 Jan 2026 00:06:32 -0800 (PST)
+Date: Sat, 31 Jan 2026 10:06:31 +0200
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Xin Liu <xin.liu@oss.qualcomm.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        tingwei.zhang@oss.qualcomm.com, jie.gan@oss.qualcomm.com
-Subject: Re: [PATCH] arm64: dts: qcom: hamoa: Add remoteproc in EL2 device
- trees
-Message-ID: <5qplhwnkiwhsfr5rxzjqk4v6rtvpqkvsg7qxvrpkqd3b7vjvob@jffvv4fvvd3d>
-References: <20260130073113.3091884-1-xin.liu@oss.qualcomm.com>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>, mathieu.poirier@linaro.org,
+        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        rafael@kernel.org, daniel.lezcano@linaro.org, rui.zhang@intel.com,
+        lukasz.luba@arm.com, konradybcio@kernel.org, amitk@kernel.org,
+        mani@kernel.org, casey.connolly@linaro.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v1 2/8] remoteproc: qcom: probe all child devices
+Message-ID: <33kugspepphj3ywp642bp5ee4zd6pk6pxbooe4knv62coeofo6@5zqxy4n37k3j>
+References: <evb5tn2cht7wk76fuc2wpsyxepknigfw37633n6ypuapstbceh@tn5glmi65bdv>
+ <cb5430c8-12d6-4439-b1ae-c2f36f29a9f8@oss.qualcomm.com>
+ <57493aef-fb35-4377-8cf3-1df7f53470c9@oss.qualcomm.com>
+ <74h7r3vsig3csejax3eu3uk53mdiimg2hjx7ntmmfrwdai6s3j@eiztghclfcvt>
+ <5db5dafd-3c1f-4844-b822-bbfe86b3eb4d@oss.qualcomm.com>
+ <ctrpymbvjlchp3djnsqq4bghkq2zvqnf5bebszi74f3d36l5dv@icvnkdwgdxmi>
+ <ef1911f5-2d96-428c-93f1-3d1815710894@oss.qualcomm.com>
+ <98397a59-8ef2-4202-ae41-015c895d6bce@oss.qualcomm.com>
+ <c5ace95c-6ba1-4ce9-b461-82225a9fc576@oss.qualcomm.com>
+ <f461ca33-0892-4a58-a40b-6da2a32d1430@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260130073113.3091884-1-xin.liu@oss.qualcomm.com>
-X-Proofpoint-ORIG-GUID: XIbHhrjFX4lF5wSvAUbXFIz1dMG18zpP
-X-Authority-Analysis: v=2.4 cv=bPMb4f+Z c=1 sm=1 tr=0 ts=697db5c3 cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <f461ca33-0892-4a58-a40b-6da2a32d1430@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTMxMDA2NiBTYWx0ZWRfX9mYZb60VknVp
+ vs0ZvJBdv1mIMN6RF4vPLjAZB/z18mpFeOLn7OAH5KJMetiSZR0N1pQBAIcxLdTrDN+IG/yLrvi
+ cGpSaP+3B4+vGx5yx224hPK2Jx2aC5v/Dv9e4ESRNEFvtQCtZqzSKydgdWRVATocatupe9COKQr
+ fNNk/1bYgZ1rB88A8IX+7WoWKHo065dAFQ5klSEvdvAdH20QBrpmJ/Op1est0eZo0BggXOt+b+O
+ wDMRNhTaPr8jh1qqWt4Q8OUEhcXVKR2/zVf1KYIRw8l94o4IqgENJ+1uZZen6b0NQ8lw8YmS+NR
+ uKGqXRBRisqTJIEYyvnH6/8XqvlomKs/WE73j9s/4dHHiqNdk6XeB7Ar2QrmTeVxBc0s6Nq3gKH
+ 64drsyg29hf22v+Ya9UQkO5hJOmixaFO5Uyq1UStMfbAHfvZ7p2AkcsqAcZj02hl5F0DrEOqycb
+ HGsaKRP68gOFY17nnBA==
+X-Proofpoint-ORIG-GUID: SbWu7VYOSdKJnVw9Q1uexpCTFsjk6-jE
+X-Proofpoint-GUID: SbWu7VYOSdKJnVw9Q1uexpCTFsjk6-jE
+X-Authority-Analysis: v=2.4 cv=MYthep/f c=1 sm=1 tr=0 ts=697db80c cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
  a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=7aDssnv-2FInNtQMBZEA:9 a=CjuIK1q_8ugA:10 a=eSe6kog-UzkA:10
- a=NFOGd7dJGGMPyQGDc5-O:22
-X-Proofpoint-GUID: XIbHhrjFX4lF5wSvAUbXFIz1dMG18zpP
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTMxMDA2NSBTYWx0ZWRfX1Llx2iGV+7nU
- 6hTwB0KSPtMp/y6PLxoy5eMhZoVAMeeNSvJx0VkycsE2t5h96V5+OZFxxkwGdXzSNxd8U+QUDLE
- KXPcKcMmzsyopWimQtW/sKFVqyaoahLxlW7jeSNWGTS+c1OPfNRMS2q54kjxldH+lLdmZee/CR3
- pReB9DxTsBFnw/KOHxRll226/FN1zdJQI+CcNmyQ00k7I1NBETirowLeiQsx9EYdZUOQ05BNwoX
- 7uKf8tbOPhRH/GuGcd8k2GQFMUHHy51KU7tJji85aCPo+1+qD/MPDb+jBe/VTjLCaO5zO8LvrLP
- R/Taodyqfqa7dOKhnqlfHGP4IezRooPl+zfRRQixVHz2OqnW5GKu2xqAUW8K9mdTHoYkU/I8kSA
- mZynxu8XFidD9JTr09kgRDkzgi3W/ak+ZVyGijsSKG9cG/fHgl4vIaFePoOz2XT6xYh2d0ADT4Y
- PxV18WEcWY9Fn5OhFBg==
+ a=KKAkSRfTAAAA:8 a=o83Q0L2AJKWppjFfjf8A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=IoWCM6iH3mJn3m4BftBB:22 a=cvBusfyB2V15izCimMoJ:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-01-30_04,2026-01-30_04,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 clxscore=1015 malwarescore=0 suspectscore=0 bulkscore=0
- phishscore=0 priorityscore=1501 spamscore=0 lowpriorityscore=0
- impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2601310065
+ malwarescore=0 phishscore=0 adultscore=0 impostorscore=0 suspectscore=0
+ clxscore=1015 bulkscore=0 spamscore=0 priorityscore=1501 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601310066
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
 	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
 	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	TAGGED_FROM(0.00)[bounces-261395-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,oss.qualcomm.com:dkim];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261394-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:url,qualcomm.com:dkim];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 768E1C1298
+X-Rspamd-Queue-Id: E6254C12E7
 X-Rspamd-Action: no action
 
-On Thu, Jan 29, 2026 at 11:31:13PM -0800, Xin Liu wrote:
-> All the existing variants Talos boards are using Gunyah hypervisor
+On Fri, Jan 30, 2026 at 10:13:06AM +0100, Konrad Dybcio wrote:
+> On 1/30/26 8:03 AM, Gaurav Kohli wrote:
+> > 
+> > On 1/28/2026 3:15 PM, Konrad Dybcio wrote:
+> >> On 1/28/26 10:39 AM, Gaurav Kohli wrote:
+> >>> On 1/27/2026 10:11 PM, Dmitry Baryshkov wrote:
+> >>>> On Tue, Jan 27, 2026 at 09:42:10PM +0530, Gaurav Kohli wrote:
+> >>>>> On 1/24/2026 12:33 AM, Dmitry Baryshkov wrote:
+> >>>>>> On Fri, Jan 23, 2026 at 07:23:39PM +0530, Gaurav Kohli wrote:
+> >>>>>>> On 1/8/2026 12:37 PM, Gaurav Kohli wrote:
+> >>>>>>>> On 1/3/2026 8:26 PM, Bjorn Andersson wrote:
+> >>>>>>>>> On Tue, Dec 23, 2025 at 06:02:21PM +0530, Gaurav Kohli wrote:
+> >>>>>>>>>> From: Casey Connolly <casey.connolly@linaro.org>
+> >>>>>>>>>>
+> >>>>>>>>>> Generalise the qcom,bam-dmux child node support by probing all
+> >>>>>>>>>> remoteproc children with of_platform_populate(). This will be used to
+> >>>>>>>>>> enable support for devices which are best represented as
+> >>>>>>>>>> subnodes of the
+> >>>>>>>>>> remoteproc, such as those representing QMI clients.
+> >>>>>>>>> Please flip this around, start with the description of the problem
+> >>>>>>>>> you're trying to solve.
+> >>>>>>>>>
+> >>>>>>>>>> Signed-off-by: Casey Connolly <casey.connolly@linaro.org>
+> >>>>>>>>> This must have your signed-off-by, where you certifies the origin of
+> >>>>>>>>> this patch.
+> >>>>>>>>>
+> >>>>>>>>>> ---
+> >>>>>>>>>>      drivers/remoteproc/qcom_q6v5.c     | 4 ++++
+> >>>>>>>>>>      drivers/remoteproc/qcom_q6v5_mss.c | 8 --------
+> >>>>>>>>>>      2 files changed, 4 insertions(+), 8 deletions(-)
+> >>>>>>>>>>
+> >>>>>>>>>> diff --git a/drivers/remoteproc/qcom_q6v5.c
+> >>>>>>>>>> b/drivers/remoteproc/qcom_q6v5.c
+> >>>>>>>>>> index 58d5b85e58cd..a02839c7ed8c 100644
+> >>>>>>>>>> --- a/drivers/remoteproc/qcom_q6v5.c
+> >>>>>>>>>> +++ b/drivers/remoteproc/qcom_q6v5.c
+> >>>>>>>>>> @@ -6,6 +6,7 @@
+> >>>>>>>>>>       * Copyright (C) 2014 Sony Mobile Communications AB
+> >>>>>>>>>>       * Copyright (c) 2012-2013, The Linux Foundation. All rights
+> >>>>>>>>>> reserved.
+> >>>>>>>>>>       */
+> >>>>>>>>>> +#include <linux/of_platform.h>
+> >>>>>>>>>>      #include <linux/kernel.h>
+> >>>>>>>>>>      #include <linux/platform_device.h>
+> >>>>>>>>>>      #include <linux/interconnect.h>
+> >>>>>>>>>> @@ -351,6 +352,8 @@ int qcom_q6v5_init(struct qcom_q6v5 *q6v5,
+> >>>>>>>>>> struct platform_device *pdev,
+> >>>>>>>>>>              return dev_err_probe(&pdev->dev, PTR_ERR(q6v5->path),
+> >>>>>>>>>>                           "failed to acquire interconnect path\n");
+> >>>>>>>>>>      +    of_platform_populate(q6v5->dev->of_node, NULL, NULL, q6v5->dev);
+> >>>>>>>>> There are other child nodes here, in particular the GLINK and SMD edges.
+> >>>>>>>>> Do we really want platform_devices registered for them?
+> >>>>>>>>>
+> >>>>>>>>> Regards,
+> >>>>>>>>> Bjorn
+> >>>>>>>> thanks for pointing this, can you please suggest the right approach.
+> >>>>>>>>
+> >>>>>>>> This should not impact glink, as that is registering as rproc sub node,
+> >>>>>>>> And we need rproc cooling as child node
+> >>>>>>>>
+> >>>>>>>> of remote proc subsytem to create probe dependency only.
+> >>>>>>>>
+> >>>>>>>>
+> >>>>>>>> Can we do platform populate for specific child, would that be right
+> >>>>>>>> approach. or we should create rproc cooling as independent of parent ?
+> >>>>>>>>
+> >>>>>>> HI Bjorn,
+> >>>>>>>
+> >>>>>>> I’d like to highlight the impact and details of placement of remoteproc
+> >>>>>>> cooling dt node:
+> >>>>>>>
+> >>>>>>>
+> >>>>>>> ->As a child of the remote proc subsystem node:
+> >>>>>>>        In this configuration, the cooling device will only be probed once the
+> >>>>>>> corresponding remote proc subsystem itself is probed.
+> >>>>>>>
+> >>>>>>> ->Outside the remote proc subsystem, may be part of soc node:
+> >>>>>>>        In this setup, the cooling device will be probed independently. It will
+> >>>>>>> wait until the remoteproc subsystem is brought up
+> >>>>>>>        before completing cooling registration.
+> >>>>>>>        The drawback here is that if the parent remoteproc subsystem is
+> >>>>>>> disabled, the cooling device will still undergo an
+> >>>>>>>        unnecessary probe, even though it cannot be registered.
+> >>>>>> Bjorns question was different. It wasn't about pushing cooling device
+> >>>>>> outside of the remoteproc node. It is about not registering the devices.
+> >>>>>>
+> >>>>>> Can we follow the approach outlined by qcom_add_smd_subdev() /
+> >>>>>> qcom_add_glink_subdev()?
+> >>>>> Hi Dmitry,
+> >>>>>
+> >>>>> Thanks for the review. Since the remoteproc cooling is a QMI-based driver,
+> >>>>> it will receive the
+> >>>>> subsystem up notification directly. Therefore, there’s no need to make it a
+> >>>>> subdev node or
+> >>>>> tie it into the init/reset sequence of remoteproc subsytem.
+> >>>> But you've added a subnode for it (and we are discussing exactly
+> >>>> of_platform_populate()) call. So, you are tying it to the remoteproc
+> >>>> device lifecycle instead of the remoteproc subsys, which seems strange
+> >>>> to me. There is no cooling device if the DSP is not running.
+> >>>
+> >>> For the cooling feature, we don’t need to define it as a subnode. The cooling subsystem becomes relevant only
+> >>> after the remote subsystem is up, at which point it will receive add/delete notifications from the QMI server.
+> >>>
+> >>>
+> >>> If child nodes must be modeled as subnodes for rproc, we can move the CDSP TMD out of the remoteproc and add in soc.
+> >>> Is there currently a way for the remoteproc core layer to call of_platform_populate() without requiring a subnode?
+> >> I think the question is "why can't you register the remoteproc device
+> >> as a cooling_device, with perhaps #cooling-cells = <1>; instead of
+> >> any form of children?"
+> >>
+> >> Konrad
+> > 
+> > 
+> > thanks Konrad, for the review.
+> > 
+> > As each subsystem can expose multiple thermal mitigation devices via the remoteproc TMD service, so need to define child node.
+> 
+> I think you're stuck in an XY problem - you keep insisting that adding
+> a subnode is your end goal, while you really want to achieve being able
+> to register multiple cooling devices. Or at least that's how I read your
+> messages since you happen not to give any explanation as to why it's
+> actually necessary.
+> 
+> In my previous message, I forgot that cells for cooling devices actually
+> represent the minimum and maximum cooling state allowed. But since the
+> API is just part of the kernel, there's nothing preventing us from
+> evolving it.
+> 
+> Currently, we have:
+> 
+> Documentation/devicetree/bindings/thermal/thermal-cooling-devices.yaml
+> 
+> properties:
+>   "#cooling-cells":
+>     description:
+>       Must be 2, in order to specify minimum and maximum cooling state used in
+>       the cooling-maps reference. The first cell is the minimum cooling state
+>       and the second cell is the maximum cooling state requested.
+>     const: 2
+> 
+> But I think it would be perfectly fine to suggest a change such that
+> if cells > 2, the last two cells keep the current behavior and the former
+> ones let you index into a cooling device exposed through a single OF node
 
-Why are you mentioning Talos here?
+This might be a big change, which probably needs to be coordinated with
+thermal and DT maintainers first.
 
-> which means that, so far, Linux-based OS could only boot in EL1 on
-> those devices.  However, it is possible for us to boot Linux at EL2
-> on these devices [1].
 > 
-> When running under Gunyah, the remote processor firmware IOMMU streams
-> are controlled by Gunyah. However, without Gunyah, the IOMMU is managed
-> by the consumer of this DeviceTree. Therefore, describe the firmware
-> streams for each remote processor.
+> e.g.
 > 
-> Add remoteproc to the EL2 device trees to generate the corresponding
-> -el2.dtb files.
+> rproc_xyz: remoteproc {
+> 	compatible = "qcom,rproc-xyz";
 > 
-> [1]
-> https://docs.qualcomm.com/bundle/publicresource/topics/80-70020-4/boot-developer-touchpoints.html#uefi
+> 	...
 > 
-> Signed-off-by: Xin Liu <xin.liu@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/x1-el2.dtso | 8 ++++++++
->  1 file changed, 8 insertions(+)
+> 	#cooling-device-cells = <3>;
+> };
+
+Which brings in another topic. In DT we have labels for different DT
+children, which correspond to different handlers on the DSP side. For
+the CDSP we see a "cdsp_sw" only. I think I've asked several times, but
+didn't get an example of the device having more than one, just claims
+that there might be more thane one TMD.
+
+Do we need different cooling cells here? Or would it be enough to send
+the same max state to all TMDs on the DSP side?
+
 > 
+> ...
+> 
+> thermal-zones {
+> 	super-rproc-therm-a {
+> 		thermal-sensors = <&rproc_xyz RPROC_XYZ_COOLING_A
+> 				   THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> 
+> 		trips { ... } ;
+> 	};
+> 
+> 	super-rproc-therm-b {
+> 		thermal-sensors = <&rproc_xyz RPROC_XYZ_COOLING_B
+> 				   THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> 
+> 		trips { ... } ;
+> 	};
+> };
+> 
+> This would be resolved by allowing drivers to register an .of_xlate-type
+> function which would take the RPROC_XYZ_COOLING_n argument and e.g. use
+> it as an index into struct thermal_cooling_device cdev[]; within the
+> driver struct.
+
+
+
+> 
+> Konrad
 
 -- 
 With best wishes
