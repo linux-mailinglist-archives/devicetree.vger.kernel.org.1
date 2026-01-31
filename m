@@ -1,84 +1,84 @@
-Return-Path: <devicetree+bounces-261439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261440-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GG2PJ1ojfmn6VwIAu9opvQ
-	(envelope-from <devicetree+bounces-261439-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 16:44:26 +0100
+	id YHaWBnUjfmn6VwIAu9opvQ
+	(envelope-from <devicetree+bounces-261440-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 16:44:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1D12C2BA6
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 16:44:25 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75009C2BC5
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 16:44:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8661A3009157
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 15:44:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A1FF7300CC24
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 15:44:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E977A31AF31;
-	Sat, 31 Jan 2026 15:44:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9BC4330B22;
+	Sat, 31 Jan 2026 15:44:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="EBofFtti"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="nhexhr5g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 639AE1A724C
-	for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 15:44:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51AA83195E0
+	for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 15:44:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769874263; cv=none; b=IHd/FlIZRxrnZr75YX0nkWqjaFeWxccOlYGIIYsUSW+H8GpmLzei3Kt06Wu5Oo1LtnyRu2IU8NY08YwUOYLDS6n6W8y3djIo7kQg8qPzoRZMPSaEjbTMziUsdSxhg6WPaokfURgK4srcjTWBoqR6yVVzDosN0V8Vut8EolSf19E=
+	t=1769874283; cv=none; b=MGzdoANWDGfZbsmUaytq3veJFctRQ9e8juXsTYfZJ+shjui9uv/xOmyx0wHuxFudtlyosM6v7X5n9d9hQryShkV5CsVGwZjFrdgOqa+qdzz56QKhXe+eyxQcfk2ZiALzrzTRrrw5sntEzSYAdXxAQA7xfDP0UEp0VsqWDRBXL5M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769874263; c=relaxed/simple;
-	bh=SyfW8MfAu+qgwEKVRAVAEQD5JoAVSJqxtBVfLR2gTS8=;
+	s=arc-20240116; t=1769874283; c=relaxed/simple;
+	bh=nBY0khg7eDIIEFuS851zCdi1pnGyvEFTJ2BB69fUoXY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Upk/bLO8oLh5sRuIfVeOkuVP1szmUs1OuV9+BeUlPzNpCFR/vkybOIQvDGNtAw3kSASTUXOhAjuxvnJahKddFVPbk9D34can2FFyzWYiixUynzxOypN7Z+P7rvgyOy2tcrmnmoZvLyfZUHdfMnPMfaUZPshiTYG5vd0roysRb3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=EBofFtti; arc=none smtp.client-ip=209.85.221.54
+	 In-Reply-To:Content-Type; b=NCICRT+LWiZmcAAJZ5VU/40jrXdzG/bvtgYtWMSRZs48XpL++4p67KF6WIAOWNJzX5za4Gf2TT7jcKt0xowSe4MernEMcCoElSzdYmN9Zcjf5G7xjUtw7cC3YpVFTkGlTthc20rojkXXbyKzlxPmH8nZvZkrx6Gyaap1zgN91sM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=nhexhr5g; arc=none smtp.client-ip=209.85.221.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-430f3ef2d37so2620473f8f.3
-        for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 07:44:22 -0800 (PST)
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-42fb4eeb482so2176490f8f.0
+        for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 07:44:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1769874261; x=1770479061; darn=vger.kernel.org;
+        d=tuxon.dev; s=google; t=1769874281; x=1770479081; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=cdW//g6dNqevqx03cSVi7ZIuci+YN4ji+K9ErT7sw40=;
-        b=EBofFttipUt6nNo8e6f19KcidP/iKhcxdtyAXbaehB46tQ6iNg9gOMewPSUwI9UFwC
-         LYqdJocUFeDCOxIuM7zLeMPUAu9ADfO8Jn4oMqL9QrPvQoY4uu0OtWG3QJxb3w82Z83H
-         IS73oosNO+D9cGAjIo2gFtdw8/+EyqybQuDl7uI4aukes3ZFv2vJKIH6XVnaBOoGkGwl
-         v2KZLT+9/Wuylpw1R70k0/XonBLW7zm2hmvP/0Lmx3d+czowN5huHDr78vxMs9biC5uM
-         MsykmrMgQ/xVe1HaNRf+RFOJUoQ4FursPFWQt7ABt/on5nUrS1kPzwsZnArX8yyoWtN1
-         Ur+w==
+        bh=+pcVTF1IQloSPNuQJZHZDQB+v1xgBL61dkGZAU2ZjyA=;
+        b=nhexhr5gwc3d9OqMZL7f4SE2MOMNCBG8opuSR6O0K1W11qj0LOBrgOlD9UikJooSPC
+         JlgHO3j1Vnxr1DXFuxqEyleEJuBNdbSY03Wx4Foc85wLTLObiK6ybgRCP5hdaq90ddLs
+         dDnakupzqjANiTymTuE+cOT9WWIQRC6ElrugoNwawy7nX/tN2gIVjUm5vNqlf27M3hF7
+         tCE/bM2/9ny7W6RJEtv545dV+voIWSp1AXebzi75SHsfTmjXURH5hCoTLgYv7whM0oBp
+         no0twN7H98EpksfLjvA+JfoEeRFTsl/243Za2XMX9db0wgheyRAwXtfrciCQmDhpnCvO
+         YJ/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769874261; x=1770479061;
+        d=1e100.net; s=20230601; t=1769874281; x=1770479081;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=cdW//g6dNqevqx03cSVi7ZIuci+YN4ji+K9ErT7sw40=;
-        b=QH8loLAPLtZmQFLGhY5I10L68rkQQjIUAumNLH4g/XWBapR8CREG+mnSP3CRIgvdRS
-         dy6ZPHA3x3/B10Q2DaavgE/Kg/FuhxoZEWlFA5uqvPzBD40r2FtyF/QrTWo50/eKQ9qq
-         avCneo6g94tjERHDwFhsMN3RkyaneILGBS1em8QreWwcFzcbCQerj/zmDCAsHP39ZeTY
-         3Eigm4vUGDqVdsAMzpRw/EiTGvkVzKWfpqHXzQyZhy8BqhCx86i4GY3dqpe/6weHYMPk
-         62Z/YJExJZJQjCD4CP1EhQfVV9e+5ZG83tpsOqz5JF/a+BW+KoA2XKl36QHreFWBKKO5
-         5Sqg==
-X-Forwarded-Encrypted: i=1; AJvYcCWPRSnTojS+INx//TcNeHh9FTO1K8JjApug9+E5dYsan74rHHu3stCFFTzqWxR1ebqfBYXTxMh4m47N@vger.kernel.org
-X-Gm-Message-State: AOJu0YzR52e0rX+g66EJQ3HGA+l9lQ/sziMP9cjl9aCiYhU1/o9tHbZo
-	VMSiRtsDE39KEoJEo4ydovVKjwiuKK+o6GK6VYqPXgrXvPtT9+lNRBLeUYHl7of6jMU=
-X-Gm-Gg: AZuq6aL8PdU/M5O+k7Ll/aUXu+s1+Ab+CLXi9x2Al+jXN0v2SzpPQCkTdexBrOPVf/o
-	Xrj7qJXfL6auhWD5XibqcAnXAvtPyjEKbfVlV2BC2DtJst957SvhWG/sU7IzQdBX6+dF9pH1Sz9
-	ZyX8rEEvs+T8uTefMIyfK4wG9xBeDbJZYPXPCxPawgZG44+OL8I5TzAHtCFgG1HWf5w76u3SYDT
-	KgsIfTOdeXndRbh+CdIAb3QIwF3gY5B2GqPAgLsEtDRIBSBtECTTvXjZejow+MEoNNUztmYT1Y5
-	g8eTSqqeSlKMNrAQUVUmjJNxApWmEPosayzaPxTVHIKwEuwwPLO3WsDuOOgmKHB14wUcI8psTZp
-	rxOeHRcy3r0t10Slno3/vXM/aR8ti3w1QdvXL7uLwJenQc12UjZ+cyAki4cZGEz5ZNPOdjLVbh4
-	47hy6M86RnYoc6VapK4g==
-X-Received: by 2002:a05:6000:240c:b0:42f:b707:56dd with SMTP id ffacd0b85a97d-435f3aa79d9mr9246341f8f.33.1769874260757;
-        Sat, 31 Jan 2026 07:44:20 -0800 (PST)
+        bh=+pcVTF1IQloSPNuQJZHZDQB+v1xgBL61dkGZAU2ZjyA=;
+        b=BZc5+YtRG4Z6pgaqzrJn9DhH8AwyIEOx2bbdwiU+TtS7jUDB4+QcFlbqYdmg/VM9qD
+         ky8CPUHQ01JTIO6fetR7xnTvyLHt6j/0dj5OtRS+DIRWz05EdjbOZZL8CovU+nPlTK1N
+         vhCP81IkpE79JjAY48LFuOX3Pi5uTqomzTfq1l9alovhf8Ds3GilqiSGs2SADIr02cEc
+         KXEudXQ+Jd0ynGspevlPGKJdqcNSXeoZW2ayalYhDT1lBexUDymSQwXLY/GWMv7kou8y
+         r1vvab4RAZw4wjdGhKMDH80LYFw0MiwXipSYOUfDrDOPUrOGOB4uyxUW7AWrZ0NJZ/YT
+         IA4w==
+X-Forwarded-Encrypted: i=1; AJvYcCWSByI5hD7qYsG6ODHunTFPdqiRG+2DxB9C2rtQg2Ldpj6vjKm90j7cNhYuXKfS+Xj93+mhlPWmoWUw@vger.kernel.org
+X-Gm-Message-State: AOJu0YwBMmx7/MV3k/yres2f9VSbm7pBarpJcoLwLL2FLneWbaVH6uKb
+	X71T3oRsIUGIcJis9dnxf2De0uQdEwfz1IvrDuGw4Vgdm6yix5s67UchQbSgwIj+gFw=
+X-Gm-Gg: AZuq6aKj6iX3FPKYPGCdYihPtb5NkrvIUwsLXlucpHX2VfBbJC1wuOppAqBXyH4RrjE
+	KqpKIdxp+SD1V/ap70W1MA7ZkFkosLeV2y80TUCzkfX6/1Hi42NtblFwdtdlKqmy2ZSYDsomW2g
+	gTjTwwqnZBrIMr2pAg5n14rtDA2Z1gFO3fkrzx9Wv47/DgOR+dmwV24F5+tCyIypWYmpl1Og0aW
+	elXWwo37g5CJXvQx7FqKWrwGCE9EAkQqcCNR0DPhovZXrU244gwTwPYxa0TEEmLER5oTf8Ay/VS
+	id0oFlJS9igJKERXAzd+TAfK3124WDM2WEgl7rcS6GLi7rY9RDYXXIbJ7c2MaYSDB6lFTpKui59
+	EmLJeiyQgEH0AhUs5nffBCBMp5GQitj00nbq5zJbZOhNMmBgYYAaFhnKEd9+CH1pSr7tci2MtwF
+	r5CFHRDBWMZjCSJFzIZU6gb75HNuIq
+X-Received: by 2002:a05:6000:184b:b0:435:8d02:b9d2 with SMTP id ffacd0b85a97d-435f3ad1f8cmr8775581f8f.60.1769874280664;
+        Sat, 31 Jan 2026 07:44:40 -0800 (PST)
 Received: from [192.168.50.4] ([82.78.167.31])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435e1323770sm30730507f8f.32.2026.01.31.07.44.19
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435e10edfe7sm30019606f8f.14.2026.01.31.07.44.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 31 Jan 2026 07:44:20 -0800 (PST)
-Message-ID: <b932cdfb-9197-462b-abb8-e7b4c7ecab6f@tuxon.dev>
-Date: Sat, 31 Jan 2026 17:44:18 +0200
+        Sat, 31 Jan 2026 07:44:40 -0800 (PST)
+Message-ID: <1665d5bb-e978-4a46-a9e8-8522d54a2a03@tuxon.dev>
+Date: Sat, 31 Jan 2026 17:44:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,8 +86,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 03/19] dt-bindings: clock: at91: Allow referencing main
- rc oscillator in DT
+Subject: Re: [PATCH v3 04/19] clk: at91: Use new PMC bindings
 To: Alexander Dahl <ada@thorsis.com>
 Cc: Nicolas Ferre <nicolas.ferre@microchip.com>,
  Alexandre Belloni <alexandre.belloni@bootlin.com>,
@@ -95,127 +94,57 @@ Cc: Nicolas Ferre <nicolas.ferre@microchip.com>,
  linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
  Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+ <sboyd@kernel.org>, Cristian Birsan <cristian.birsan@microchip.com>,
+ Varshini Rajendran <varshini.rajendran@microchip.com>,
+ Balamanikandan Gunasundar <balamanikandan.gunasundar@microchip.com>
 References: <20260120143759.904013-1-ada@thorsis.com>
- <20260120143759.904013-4-ada@thorsis.com>
+ <20260120143759.904013-5-ada@thorsis.com>
 Content-Language: en-US
 From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20260120143759.904013-4-ada@thorsis.com>
+In-Reply-To: <20260120143759.904013-5-ada@thorsis.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[tuxon.dev:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-261439-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-261440-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	DMARC_NA(0.00)[tuxon.dev];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[tuxon.dev:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[claudiu.beznea@tuxon.dev,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_RCPT(0.00)[devicetree];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tuxon.dev:mid,tuxon.dev:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,thorsis.com:email]
-X-Rspamd-Queue-Id: F1D12C2BA6
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,tuxon.dev:mid,tuxon.dev:dkim,thorsis.com:email]
+X-Rspamd-Queue-Id: 75009C2BC5
 X-Rspamd-Action: no action
 
-Hi, Alexander,
+
 
 On 1/20/26 16:37, Alexander Dahl wrote:
-> The main rc oscillator will be needed for the OTPC to work properly.
+> The bindings were split up per SoC before adding new array members for
+> missing clocks.
+
+Please adjust the patch description to follow the submitting patches document: 
+https://www.kernel.org/doc/html/v6.13/process/submitting-patches.html#describe-your-changes
+
 > 
-> The new index introduced here was not used on the four affected SoC
-> clock drivers before, but for sama5d2 only (PMC_I2S1_MUX).
-> 
-> Link: https://lore.kernel.org/linux-devicetree/20250207-jailbird-circus-bcc04ee90e05@thorsis.com/T/#u
 > Signed-off-by: Alexander Dahl <ada@thorsis.com>
-> ---
-> 
-> Notes:
->      v3:
->      - adapt to different base changes, added lines are the same
->      
->      v2:
->      - new patch, not present in v1
-> 
->   include/dt-bindings/clock/microchip,sam9x60-pmc.h  | 1 +
->   include/dt-bindings/clock/microchip,sam9x7-pmc.h   | 1 +
->   include/dt-bindings/clock/microchip,sama7d65-pmc.h | 1 +
->   include/dt-bindings/clock/microchip,sama7g5-pmc.h  | 1 +
->   4 files changed, 4 insertions(+)
-> 
-> diff --git a/include/dt-bindings/clock/microchip,sam9x60-pmc.h b/include/dt-bindings/clock/microchip,sam9x60-pmc.h
-> index 91f8f863ea076..1f6bb51780d09 100644
-> --- a/include/dt-bindings/clock/microchip,sam9x60-pmc.h
-> +++ b/include/dt-bindings/clock/microchip,sam9x60-pmc.h
-> @@ -10,6 +10,7 @@
->   #define SAM9X60_PMC_MCK		1
->   #define SAM9X60_PMC_UTMI	2
->   #define SAM9X60_PMC_MAIN	3
-> +#define SAM9X60_PMC_MAIN_RC	6
 
-Why 6 and not another index? In theory, now, you should be able to define here 
-all the core clocks IDs (as these are known from the manuals) and prepare the 
-driver to allocate memory for all of them such that the driver will have to be 
-able to work with old and new device trees w/o further changes.
-
->   #define SAM9X60_PMC_PLLACK	7
->   
->   #endif
-> diff --git a/include/dt-bindings/clock/microchip,sam9x7-pmc.h b/include/dt-bindings/clock/microchip,sam9x7-pmc.h
-> index e1dd41fe75046..657f32ce10071 100644
-> --- a/include/dt-bindings/clock/microchip,sam9x7-pmc.h
-> +++ b/include/dt-bindings/clock/microchip,sam9x7-pmc.h
-> @@ -10,6 +10,7 @@
->   #define SAM9X7_PMC_MCK		1
->   #define SAM9X7_PMC_UTMI		2
->   #define SAM9X7_PMC_MAIN		3
-> +#define SAM9X7_PMC_MAIN_RC	6
->   #define SAM9X7_PMC_PLLACK	7
->   #define SAM9X7_PMC_AUDIOPMCPLL	9
->   #define SAM9X7_PMC_AUDIOIOPLL	10
-> diff --git a/include/dt-bindings/clock/microchip,sama7d65-pmc.h b/include/dt-bindings/clock/microchip,sama7d65-pmc.h
-> index 09d152da6db44..ddcb236718978 100644
-> --- a/include/dt-bindings/clock/microchip,sama7d65-pmc.h
-> +++ b/include/dt-bindings/clock/microchip,sama7d65-pmc.h
-> @@ -12,6 +12,7 @@
->   #define SAMA7D65_PMC_MAIN		3
->   #define SAMA7D65_PMC_CPUPLL		4
->   #define SAMA7D65_PMC_SYSPLL		5
-> +#define SAMA7D65_PMC_MAIN_RC		6
-
-E.g. 6 was previously reserved for DDR and IMG PLLs.
-
->   #define SAMA7D65_PMC_BAUDPLL		8
->   #define SAMA7D65_PMC_AUDIOPMCPLL	9
->   #define SAMA7D65_PMC_AUDIOIOPLL		10
-> diff --git a/include/dt-bindings/clock/microchip,sama7g5-pmc.h b/include/dt-bindings/clock/microchip,sama7g5-pmc.h
-> index 0303cae56f849..e891715a35173 100644
-> --- a/include/dt-bindings/clock/microchip,sama7g5-pmc.h
-> +++ b/include/dt-bindings/clock/microchip,sama7g5-pmc.h
-> @@ -12,6 +12,7 @@
->   #define SAMA7G5_PMC_MAIN	3
->   #define SAMA7G5_PMC_CPUPLL	4
->   #define SAMA7G5_PMC_SYSPLL	5
-> +#define SAMA7G5_PMC_MAIN_RC	6
->   #define SAMA7G5_PMC_AUDIOPMCPLL	9
->   #define SAMA7G5_PMC_AUDIOIOPLL	10
->   #define SAMA7G5_PMC_MCK1	13
-
+The rest LGTM.
 
