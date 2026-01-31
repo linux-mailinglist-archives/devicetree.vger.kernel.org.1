@@ -1,68 +1,69 @@
-Return-Path: <devicetree+bounces-261364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261365-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id XBclImZHfWlRRQIAu9opvQ
-	(envelope-from <devicetree+bounces-261364-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 01:05:58 +0100
+	id ALvnOYNIfWlZRQIAu9opvQ
+	(envelope-from <devicetree+bounces-261365-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 01:10:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E98CEBF7CC
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 01:05:57 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1131EBF813
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 01:10:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CDC473014C56
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 00:05:56 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E9154300808C
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 00:10:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6690C5477E;
-	Sat, 31 Jan 2026 00:05:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="V3MdabnD"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55514199230;
+	Sat, 31 Jan 2026 00:10:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C763A2556E;
-	Sat, 31 Jan 2026 00:05:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D49DE189F30;
+	Sat, 31 Jan 2026 00:10:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769817955; cv=none; b=eJBpnX6Ye0S6L3B4XmM3VjPz1SLOXioQg7oUe6kTFZcqF7cgGJ13z4pMzuB0560rJI0KWg+wgXAlJDOCs9+7hisb2/cHvrRQQ1mI4GkAnSYp0PAvhgR+Nr6ec/iNSZs0vufD/iSiTV/nPOB3lFHSBkcHuLA3M3mMCsewstcqskE=
+	t=1769818237; cv=none; b=o6bQfimW4U5/V1fJigyZl13Ur8eN9TTaT95Ci81IEr6TT7zcWTpqyFnmd5A84GjRehe8bif6edVTDEo2uPFI2Ec+9Kjw54NIYBzylAIxPBRZHvBOJzAoZdw3B4jQxXWgrjz/L5Ni6pq0QGpJ3pEmRXHYlf+jcbRUYK26CnFwVZE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769817955; c=relaxed/simple;
-	bh=nnF37jpn1ccH1eSP5LAYMpOQwE/0kLNPS98l5gNdcC0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GVZcZFyTPWHxHFB42WnMC5kI9KHYSFNU9o+8A9dnvMfmYfEFAdSqvQ78g0UCDo5ISdKYv7KZZuYt50jh8E8EajHmY5Ai420MUHiunFT1AfD8WcItTnFBM/vC3/DSAG7V4gBYxU2WldViJwz6SOisTo3AfSZ3NiRpUTEBjTKXv+Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=V3MdabnD; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 626AF1A2B3D;
-	Sat, 31 Jan 2026 00:05:52 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 290D56075A;
-	Sat, 31 Jan 2026 00:05:52 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AAAA2119A88BC;
-	Sat, 31 Jan 2026 01:05:49 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1769817951; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=E0wRSbu057Z1EpllgPAdIzsCUMQY+IxBbvgHtbwZcQo=;
-	b=V3MdabnDxciSkydKyaZBgduAYS647H7TcWaQwVtyXG1EmUqhvVMiDflBkRNkrQo6IlWxTO
-	eiXXzYX41t8NMKFG5oxLzsbCdOOtZKI254pphvKDF/6I0AcHA0qlQ2aq0HK2ZL6SG1M0kr
-	Nnh4PW/j9yRMAZjrve7VwLao0I1RCKZu9SfdBWWgebMrlCOAz6t+m2js/2TPEGUKXTVuAX
-	jM7bC563perU2q6Lr/zcaF3x64CYMhq7Ci4ori+300CEw8DV9a9qb0GFCICI9m0ZwyIB+H
-	+Sy30Y4W5fC/cvJ98gTZdxukXxqTzaWyQQl9qsE+aBXcY5+DRYBQKnBh3uAbag==
-Date: Sat, 31 Jan 2026 01:05:49 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Fredrik M Olsson <fredrik.m.olsson@axis.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1769818237; c=relaxed/simple;
+	bh=Xv2M6M6O6sfrEraeTgLEyvZPLflWLWqXsd5lWTcqpIE=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=YS/+Pt+mdO9mToD9SI85XsoLLQqqWmIocibnIXekj8yh9lxSnrwSXrEb671zOjXXOWi4o4Vtj4q/KLvKPFjOtkxRBvIsVMhu4ChNVyYT4Sp1yiGHz2KuBcjcr1j+03qE12KqWD22YWZHTTTqF7CAZtm/XQMY0Fy+cwhW3dXvcaU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.99)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1vlyZD-000000005ep-0Qb5;
+	Sat, 31 Jan 2026 00:10:23 +0000
+Date: Sat, 31 Jan 2026 00:10:18 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Daniel Golle <daniel@makrotopia.org>, Andrew Lunn <andrew@lunn.ch>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>,
-	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, kernel@axis.com
-Subject: Re: [PATCH 4/4] rtc: ds1307: Add support for reading RX8901CE
- battery VL status
-Message-ID: <20260131000549071abafa@mail.local>
-References: <20251219-ds1307-rx8901-add-v1-0-b13f346ebe93@axis.com>
- <20251219-ds1307-rx8901-add-v1-4-b13f346ebe93@axis.com>
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Simon Horman <horms@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Frank Wunderlich <frankwu@gmx.de>, Chad Monroe <chad@monroe.io>,
+	Cezary Wilmanski <cezary.wilmanski@adtran.com>,
+	Avinash Jayaraman <ajayaraman@maxlinear.com>,
+	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
+	Juraj Povazanec <jpovazanec@maxlinear.com>,
+	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
+	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
+	"Livia M. Rosu" <lrosu@maxlinear.com>,
+	John Crispin <john@phrozen.org>
+Subject: [PATCH net-next v11 0/4] net: dsa: initial support for MaxLinear
+ MxL862xx switches
+Message-ID: <cover.1769817939.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,136 +72,301 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251219-ds1307-rx8901-add-v1-4-b13f346ebe93@axis.com>
-X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [1.04 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261364-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-261365-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	DMARC_NA(0.00)[makrotopia.org];
+	FREEMAIL_TO(0.00)[makrotopia.org,lunn.ch,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,armlinux.org.uk,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[27];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexandre.belloni@bootlin.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[daniel@makrotopia.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmx.de,monroe.io,adtran.com,maxlinear.com,phrozen.org];
+	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,bootlin.com:url,bootlin.com:dkim]
-X-Rspamd-Queue-Id: E98CEBF7CC
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[makrotopia.org:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 1131EBF813
 X-Rspamd-Action: no action
 
-On 19/12/2025 13:10:38+0100, Fredrik M Olsson wrote:
-> Adds support for:
-> - Reading the battery voltage low status using the RTC_VL_READ ioctl,
->   which also reports invalid time information if the VLF flag is set.
-> 
-> Signed-off-by: Fredrik M Olsson <fredrik.m.olsson@axis.com>
-> ---
->  drivers/rtc/rtc-ds1307.c | 46 +++++++++++++++++++++++++++++++++++++++++++---
->  1 file changed, 43 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/rtc/rtc-ds1307.c b/drivers/rtc/rtc-ds1307.c
-> index 99d95e520108..ca062ed0c867 100644
-> --- a/drivers/rtc/rtc-ds1307.c
-> +++ b/drivers/rtc/rtc-ds1307.c
-> @@ -133,8 +133,11 @@ enum ds_type {
->  #define RX8901_REG_INTF			0x0e
->  #define RX8901_REG_INTF_VLF		BIT(1)
->  #define RX8901_REG_PWSW_CFG		0x37
-> +#define RX8901_REG_PWSW_CFG_VBATLDETEN	BIT(4)
->  #define RX8901_REG_PWSW_CFG_INIEN	BIT(6)
->  #define RX8901_REG_PWSW_CFG_CHGEN	BIT(7)
-> +#define RX8901_REG_BUF_INTF		0x46
-> +#define RX8901_REG_BUF_INTF_VBATLF	BIT(3)
->  
->  #define MCP794XX_REG_CONTROL		0x07
->  #	define MCP794XX_BIT_ALM0_EN	0x10
-> @@ -458,6 +461,39 @@ static int ds1307_set_time(struct device *dev, struct rtc_time *t)
->  	return 0;
->  }
->  
-> +#ifdef CONFIG_RTC_INTF_DEV
-> +static int rx8901_ioctl(struct device *dev, unsigned int cmd, unsigned long arg)
-> +{
-> +	struct ds1307 *ds1307 = dev_get_drvdata(dev);
-> +	unsigned int regflag, tmp = 0;
-> +	int ret = 0;
-> +
-> +	switch (cmd) {
-> +	case RTC_VL_READ:
-> +		ret = regmap_read(ds1307->regmap, RX8901_REG_INTF, &regflag);
-> +		if (ret)
-> +			return ret;
-> +
-> +		if (regflag & RX8901_REG_INTF_VLF)
-> +			tmp |= RTC_VL_DATA_INVALID;
-> +
-> +		ret = regmap_read(ds1307->regmap, RX8901_REG_BUF_INTF, &regflag);
-> +		if (ret)
-> +			return ret;
-> +
-> +		if (regflag & RX8901_REG_BUF_INTF_VBATLF)
-> +			tmp |= RTC_VL_BACKUP_LOW;
-> +
-> +		return put_user(tmp, (unsigned int __user *)arg);
-> +	default:
-> +		return -ENOIOCTLCMD;
-> +	}
-> +	return ret;
-> +}
-> +#else
-> +#define rx8901_ioctl NULL
-> +#endif
-> +
->  static int ds1337_read_alarm(struct device *dev, struct rtc_wkalrm *t)
->  {
->  	struct ds1307		*ds1307 = dev_get_drvdata(dev);
-> @@ -599,10 +635,13 @@ static u8 do_trickle_setup_rx8130(struct ds1307 *ds1307, u32 ohms, bool diode)
->  	return setup;
->  }
->  
-> -static u8 do_trickle_setup_rx8901(struct ds1307 *ds1307, u32 ohms, bool diode)
-> +static u8 do_trickle_setup_rx8901(struct ds1307 *ds1307, u32 ohms __always_unused, bool diode)
->  {
-> -	/* make sure that the backup battery is enabled */
-> -	u8 setup = RX8901_REG_PWSW_CFG_INIEN;
-> +	/*
-> +	 * make sure that the backup battery is enabled and that battery
-> +	 * voltage detection is performed
-> +	 */
-> +	u8 setup = RX8901_REG_PWSW_CFG_INIEN | RX8901_REG_PWSW_CFG_VBATLDETEN;
->  
->  	if (diode)
->  		setup |= RX8901_REG_PWSW_CFG_CHGEN;
-> @@ -1005,6 +1044,7 @@ static const struct rtc_class_ops rx8130_rtc_ops = {
->  static const struct rtc_class_ops rx8901_rtc_ops = {
->  	.read_time      = ds1307_get_time,
->  	.set_time       = ds1307_set_time,
-> +	.ioctl          = rx8901_ioctl,
->  };
->  
+This series adds very basic DSA support for the MaxLinear MxL86252
+(5x 2500Base-T PHYs) and MxL86282 (8x 2500Base-T PHYs) switches.
+In addition to the 2.5G TP ports both switches also come with two
+SerDes interfaces which can be used either to connect external PHYs
+or SFP cages, or as CPU port when using the switch with this DSA driver.
 
-This seems to be an unrelated changed that hasn't been squashed in the
-proper patch.
+MxL862xx integrates a firmware running on an embedded processor (based on
+Zephyr RTOS). Host interaction uses a simple netlink-like API transported
+over MDIO/MMD.
 
+This series includes only what's needed to pass traffic between user
+ports and the CPU port: relayed MDIO to internal PHYs, basic port
+enable/disable, and CPU-port special tagging.
+
+The SerDes interface of the CPU port is automatically configured by the
+switch after reset using a board-specific configuration stored together
+with the firmware in the flash chip attached to the switch, so no action
+is needed from the driver to setup the interface mode of the CPU port.
+
+Also MAC settings of the PHY ports are automatically configured, which
+means the driver works fine with phylink_mac_ops being all no-op stubs.
+
+Multiple follow up series will bring support for setting up the other
+SerDes PCS interface (ie. not used for the CPU port), bridge, VLAN, ...
+offloading, and support for using an 802.1Q-based special tag instead of
+the proprietary 8-byte tag.
+---
+basic DSA selftests were run, results:
+ * no_forwarding.sh: all tests PASS
+ * bridge_vlan_unaware.sh: all tests PASS
+ * bridge_vlan_mcast.sh: all tests PASS
+ * bridge_vlan_aware.sh: all tests PASS
+ * local_termination.sh: all tests PASS or XFAIL, except for
+TEST: VLAN over vlan_filtering=1 bridged port: Unicast IPv4 to unknown MAC address   [FAIL]
+        reception succeeded, but should have failed
+TEST: VLAN over vlan_filtering=1 bridged port: Unicast IPv4 to unknown MAC address, allmulti   [FAIL]
+        reception succeeded, but should have failed
+
+As obviously this is mostly testing the Linux software bridge at this
+point so I didn't bother to run any of the FDB or MDB related tests.
+
+Some mystery about the relationship between the sub-interface ID and CTP
+port assignment remains for now, so I cannot yet fully explain the magic
+numbers when calculating the two.
+(Why is it neccesary to allocate 23 CTPs when using port 9 as CPU port
+while there are at most 17 phyiscal interfaces in total, and only at
+most 13 when using one of the two SerDes as CPU interface? Why is there
+an offset of 16 when calculating the sub-interface ID? How will a total
+of 17 ports be possibly represented in a 4-bit field in the tag RX
+path?)
+
+At this point this doesn't impact functionality, and I hope for further
+clarification discussing all that with MaxLinear engineers.
+
+I believe the initial driver is anyway in good shape now, a follow-up
+series addressing configuring the SerDes interfaces will also have to
+take care of CTP assignment and sub-interfaces to not hit the mentioned
+4-bit cap in the tag driver.
+
+Changes since v10:
+1/4 dt-bindings: net: dsa: add MaxLinear MxL862xx
+ * no changes
+2/4 net: dsa: add tag format for MxL862xx switches
+ * arrange local variables in reverse xmas tree order (again)
+ * use MXL862_NAME as .name in struct dsa_device_ops
+3/4 net: mdio: add unlocked mdiodev C45 bus accessors
+ * no changes
+4/4 net: dsa: add basic initial driver for MxL862xx switches
+ * fix fatal last-second changes dsa_port_is_unused vs. dsa_is_unused_port
+   and dsa_port_is_unused vs. dsa_is_unused_port
+ * use cpu_to_le16 in mxl862xx_configure_ctp_port
+ * improve formatting of some kerneldoc comments
+
+Changes since v9:
+1/4 dt-bindings: net: dsa: add MaxLinear MxL862xx
+ * add microcontroller port 0
+2/4 net: dsa: add tag format for MxL862xx switches
+ * count ports starting from 0
+3/4 net: mdio: add unlocked mdiodev C45 bus accessors
+ * no changes
+4/4 net: dsa: add basic initial driver for MxL862xx switches
+ * fix indentation in kernel-doc
+ * remove misleading comment regarding sub-interface IDs
+ * remove unused macros, set MXL862XX_MAX_PORTS to 17
+ * count ports starting from 0, 0 being the microcontroller
+ * improve port setup:
+   - split tag protocol and CTP port assignment
+   - use ports cpu_dp instead of relying on single (ie. first) CPU port
+   - handle CPU port like any other port
+   - prepare forward DT compatibility with multiple CPU ports
+
+Changes since v8:
+1/4 dt-bindings: net: dsa: add MaxLinear MxL862xx
+ * no changes
+2/4 net: dsa: add tag format for MxL862xx switches
+ * no changes
+3/4 net: mdio: add unlocked mdiodev C45 bus accessors
+ * no changes
+4/4 net: dsa: add basic initial driver for MxL862xx switches
+ * remove practically unused struct hw_info
+ * lots of kerneldoc improvements in mxl862xx-api.h
+ * drop .mac_select_pcs() stub
+ * better handling for firmware error return value
+ * apply reverse xmas tree in mxl862xx_api_wrap
+ * guard headers with #ifdef macro
+ * include net/dsa.h and linux/mdio.h in mxl862xx.h
+ * call mxl862xx_port_fast_age() only once in .port_setup
+ * don't create isolation bridges for unused ports
+ * replace errornous cast with correct range of values denoting firmware errors
+
+Changes since v7
+1/4 dt-bindings: net: dsa: add MaxLinear MxL862xx
+ * no changes
+2/4 net: dsa: add tag format for MxL862xx switches
+ * no changes
+3/4 net: mdio: add unlocked mdiodev C45 bus accessors
+ * no changes
+4/4 net: dsa: add basic initial driver for MxL862xx switches
+ * use little-endian in bridge_port_config API
+ * remove duplciate assignment of br_port_cfg.bridge_port_id when setting
+   up CPU port
+
+Changes since v6
+1/4 dt-bindings: net: dsa: add MaxLinear MxL862xx
+ * no changes
+2/4 net: dsa: add tag format for MxL862xx switches
+ * no changes
+3/4 net: mdio: add unlocked mdiodev C45 bus accessors
+ * no changes
+4/4 net: dsa: add basic initial driver for MxL862xx switches
+ * fix kerneldoc style
+
+Changes since RFC v5
+1/4 dt-bindings: net: dsa: add MaxLinear MxL862xx
+ * no changes
+
+2/4 net: dsa: add tag format for MxL862xx switches
+ * remove unnecessary check for skb != NULL
+ * merge consecutively printed warnings into single dev_warn_ratelimited
+
+3/4 net: mdio: add unlocked mdiodev C45 bus accessors
+ * no changes
+
+4/4 net: dsa: add basic initial driver for MxL862xx switches
+ * include bridge and bridgeport API needed to isolate ports
+ * remove warning in .setup as ports are now isolated
+ * make ready-after-reset check more robust by adding delay
+ * sort structs in order of struct definitions
+ * best effort to sort functions without introducing additional prototypes
+ * always use enums with kerneldoc comments in mxl862xx-api.h
+ * remove bogus .phy_read and .phy_write DSA ops as the driver anyway registers
+   a user MDIO bus with Clause-22 and Clause-45 operations
+ * various small style fixes
+
+Changes since RFC v4
+1/4 dt-bindings: net: dsa: add MaxLinear MxL862xx
+ * no changes
+
+2/4 net: dsa: add tag format for MxL862xx switches
+ * drop unused precompiler macros
+
+3/4 net: mdio: add unlocked mdiodev C45 bus accessors
+ * fix indentation
+
+4/4 net: dsa: add basic initial driver for MxL862xx switches
+ * output warning in .setup regarding unknown pre-configuration
+ * add comment explaining why CFGGET is used in reset function
+
+Changes since RFC v3
+1/4 dt-bindings: net: dsa: add MaxLinear MxL862xx
+ * remove labels from example
+ * remove 'bindings for' from commit title
+
+2/4 net: dsa: add tag format for MxL862xx switches
+ * describe fields and variables with comments
+ * sub-interface is only 5 bits
+ * harmonize Kconfig symbol name
+ * maintain alphabetic order in Kconfig
+ * fix typo s/beginnig/beginning/
+ * fix typo s/swtiches/switches/
+ * arrange local variables in reverse xmas tree order
+
+3/4 net: mdio: add unlocked mdiodev C45 bus accessors
+ * unchanged
+
+4/4 net: dsa: add basic initial driver for MxL862xx switches
+ * poll switch readiness after reset
+ * implement driver shutdown
+ * added port_fast_aging API call and driver op
+ * unified port setup in new .port_setup op
+ * improve comment explaining special handlign for unaligned API read
+ * various typos and formatting improvements
+
+Changes since RFC v2
+1/4, 2/4, 3/4: unchanged
+
+4/4 net: dsa: add basic initial driver for MxL862xx switches
+ * fix return value being uninitialized on error in mxl862xx_api_wrap()
+ * add missing description in kerneldoc comment of
+   struct mxl862xx_ss_sp_tag
+
+Changes since initial RFC
+
+1/4 dt-bindings: net: dsa: add bindings for MaxLinear MxL862xx
+ * better description in dt-bindings doc
+
+2/4 net: dsa: add tag formats for MxL862xx switches
+ * make sure all tag fields are initialized
+
+3/4 net: mdio: add unlocked mdiodev C45 bus accessors
+ * new patch
+
+4/4 net: dsa: add basic initial driver for MxL862xx switches
+ * make use of struct mdio_device
+ * add phylink_mac_ops stubs
+ * drop leftover nonsense from mxl862xx_phylink_get_caps()
+ * fix endian conversions
+ * use __le32 instead of enum types in over-the-wire structs
+ * use existing MDIO_* macros whenever possible
+ * simplify API constants to be more readable
+ * use readx_poll_timeout instead of open-coding poll timeout loop
+ * add mxl862xx_reg_read() and mxl862xx_reg_write() helpers
+ * demystify error codes returned by the firmware
+ * add #defines for mxl862xx_ss_sp_tag member values
+ * move reset to dedicated function, clarify magic number being the
+   reset command ID
+
+
+Daniel Golle (4):
+  dt-bindings: net: dsa: add MaxLinear MxL862xx
+  net: dsa: add tag format for MxL862xx switches
+  net: mdio: add unlocked mdiodev C45 bus accessors
+  net: dsa: add basic initial driver for MxL862xx switches
+
+ .../bindings/net/dsa/maxlinear,mxl862xx.yaml  | 160 +++++
+ MAINTAINERS                                   |   8 +
+ drivers/net/dsa/Kconfig                       |   2 +
+ drivers/net/dsa/Makefile                      |   1 +
+ drivers/net/dsa/mxl862xx/Kconfig              |  12 +
+ drivers/net/dsa/mxl862xx/Makefile             |   3 +
+ drivers/net/dsa/mxl862xx/mxl862xx-api.h       | 675 ++++++++++++++++++
+ drivers/net/dsa/mxl862xx/mxl862xx-cmd.h       |  49 ++
+ drivers/net/dsa/mxl862xx/mxl862xx-host.c      | 245 +++++++
+ drivers/net/dsa/mxl862xx/mxl862xx-host.h      |  12 +
+ drivers/net/dsa/mxl862xx/mxl862xx.c           | 476 ++++++++++++
+ drivers/net/dsa/mxl862xx/mxl862xx.h           |  16 +
+ include/linux/mdio.h                          |  13 +
+ include/net/dsa.h                             |   2 +
+ net/dsa/Kconfig                               |   7 +
+ net/dsa/Makefile                              |   1 +
+ net/dsa/tag_mxl862xx.c                        | 110 +++
+ 17 files changed, 1792 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/dsa/maxlinear,mxl862xx.yaml
+ create mode 100644 drivers/net/dsa/mxl862xx/Kconfig
+ create mode 100644 drivers/net/dsa/mxl862xx/Makefile
+ create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx-api.h
+ create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx-cmd.h
+ create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx-host.c
+ create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx-host.h
+ create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx.c
+ create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx.h
+ create mode 100644 net/dsa/tag_mxl862xx.c
 
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.52.0
 
