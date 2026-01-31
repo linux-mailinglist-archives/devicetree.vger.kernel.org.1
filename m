@@ -1,333 +1,165 @@
-Return-Path: <devicetree+bounces-261430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261431-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6L7AARkLfmktVAIAu9opvQ
-	(envelope-from <devicetree+bounces-261430-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 15:00:57 +0100
+	id YP4UCiEMfmlAVAIAu9opvQ
+	(envelope-from <devicetree+bounces-261431-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 15:05:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72891C2250
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 15:00:56 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9998C2291
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 15:05:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 785A03039690
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 13:59:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 59A5B300B043
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 14:05:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B964357A25;
-	Sat, 31 Jan 2026 13:59:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3AEB2BE655;
+	Sat, 31 Jan 2026 14:05:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="iqlkuveL";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="h+Zw+Sna"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="AbVdQdYE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 753D73542FF
-	for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 13:59:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D11C372627;
+	Sat, 31 Jan 2026 14:05:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769867943; cv=none; b=OjllzrNqWT9eyP3prMrdlZ7+8GznNbQeXVYYvpPanIffJj+I+Vd89fBzBChuYZuhMi67nyS5OVdqS9A6yu6kK6UIBGnp/d8m5qIzh3HTxX3o4Qcs4qYiDshxcH+EdVwMX0Feu5nXSEpDZX0iBx9Zo0xomc0RpNPGAGslyDVGtOU=
+	t=1769868318; cv=none; b=ek0Ab3n2u1KpV6tp6ZzQJt53bd6VQm/7RksX/cpv3cSjbPEhjIC7egWn2B/Qu17TLSCEpXz9RxV7P8uiMphUl7giiSj3/IZpdrDOMcaQGX0qq/OrvhgR+CfUm1bTMqBckteYGwp/OnbOlPjvKryzQQIkvRzMke/zp5qtNQc8dmo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769867943; c=relaxed/simple;
-	bh=OzD4FTK6JV+5RvDrmyf8OgLghGE1je6zg8bW2QD9QnA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=iM3N8NratR4WeL05HADjt1O+zMtNK7UcM0iy9EfVT/Db50OspFuu2hZlu9BwJjmIgeoPyTxIt9UbYsM35nJEnURtSI9ver9UAuNwJdN/gqr25J4zfmyGZ7sx8BC2lwZKfWp1dYqs2fCaj4sC939V5Kn9ns4Ph8Gpm4TpR2uINNU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=iqlkuveL; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=h+Zw+Sna; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60V4Ywxx658600
-	for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 13:59:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	K3s8GuETxl5AklqxiZ+dsaNTgW8Onj8c//rAG+Um/F8=; b=iqlkuveLw/Hy22SK
-	wsaAr3ueyeL1BSziXwrVia6uiyHqvT3hivE6dFV71lNYDdG8M/mOBYqXF+Yh6NIP
-	iOzGpVwtlwyth9ihBaKxdNfoeOOboB4CZ5s+lTqGSFYgC1BHhSDt29WIpowXq5uO
-	dpIFZR+pzRosP20MPm4P48wjbqUazM2XhiCQX2kWN71MS8Mil90rpVtbdarAfmNM
-	tPSfyo4EUPKzvRrQ+d9tuzVcyMq3y/Pub7TsQ58JvJrc3zjgwC1rWD6VpgJ6Dx/1
-	B3vex8NDdBhRwzQdfClHQdGHtYQNAH5y2ot0hbZLWbnh3vX8se7/nLiMc794sSbj
-	M6aKWQ==
-Received: from mail-vs1-f71.google.com (mail-vs1-f71.google.com [209.85.217.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c1au2gurp-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 13:59:00 +0000 (GMT)
-Received: by mail-vs1-f71.google.com with SMTP id ada2fe7eead31-5ef31a7a2b1so7998826137.3
-        for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 05:59:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769867940; x=1770472740; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=K3s8GuETxl5AklqxiZ+dsaNTgW8Onj8c//rAG+Um/F8=;
-        b=h+Zw+SnapzsM90hFCFpFNmYrDqOPALWJIWCPEsi/dCpqwSLnLl8Ll4sI4lKaylvcbf
-         agbTccASuQL4YlEXg/y6PSVWBJ89f2qcSpGkAO+ym5IulpYrIgoaPE6B31HgteqybIMb
-         XLWQv+5/EcpFUQexASweh5zfVUnkqEYh2vg1UcR7PSM2ATLKkEg3L/pTAr+R3HhTLY42
-         MafJ/r53XxAdWOf4pmhx70gZDFfe6j9hidf72glC3FKAg+0Y3fekfaC3EZrqDnTrd921
-         5dps4a8Nyq19xk4CWfp/3f7BZWgDXke/hStd8wNMTxwFfEeQyOVph0OVTweQU8c2AlNx
-         xT7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769867940; x=1770472740;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=K3s8GuETxl5AklqxiZ+dsaNTgW8Onj8c//rAG+Um/F8=;
-        b=T4lu8Ht8XzXuIJRlreiclJVh7pBpK/VuaEYhqR8MyDDbLhec/LgU9SJsJtZZAwlW8e
-         b2DAJbWU9cAgDE595QZR5ASTAHwpEs0B09hXqVC+LqdGF1Jcl0nPWF6ZOQvBeNOfBiFi
-         6EKfM76r2hSX5nxfjXbYsvkumAkaU93/P5TW/Z3aBEba777NTZ7BrGjoDbYaC67ki4md
-         D57G9oFel+qgVHvOgZUXEaSVuzue2V2y7f31S1YBDcRKJjXwU2yzL6t1n3gjYKK9gkQg
-         8ySlw9bSaoUcqLJmSomSo7248kS2GzRQ+wQ950gTrRgoQZC0CuAiMupstnvPF4kKFzyf
-         G2BA==
-X-Forwarded-Encrypted: i=1; AJvYcCUoKXz5XFY6AXR+A6KXl4cS+66BCIhrxtwqjU2POtZKPRhpZqzx0nbs7tLwTEzU+no3Hb3iasKNbwLR@vger.kernel.org
-X-Gm-Message-State: AOJu0YyaIIJl8lJLHh4ow4Cri/7fxIUV64UrFf6Dx/gtODQ09l5arEuG
-	mX4e2S0v4h160S+QjIv195tH6rppbpB2K8OM9YhHgtDAK1yOQlUwX4Y19/0YP4DOwkoXYF8YST0
-	zUithcSznzjc0ttFcIuxPDHpwRW02kwWrxFWI/r7NmtzFwVCfzNT0h6IHXXhDOGiE
-X-Gm-Gg: AZuq6aLinYqoam3x7e1YbCzpGzZjJXdXOk68/TSu05XIyYUwV1dfOZRRoF8phedtq5m
-	z5AuoEPFTLWsn//9Jqt+FGxnG+59M1jZuejBBnePskNqoFIEMnm1KqHWeHz1vr7Z/S3tKdb657i
-	MUEWhLpLNRQaL8c5EDfTh9/BRepfL5TdDG+zINmeyt//+esQQ9hqBRfPEis9JWsEegqDAS1EW4I
-	4udBMIJzJ8SF6C9G6PbhbaoRPZAYHkUGpExjQimaWfckVnCpkNl734sDKMaLz/JB1eqDY0nHzTB
-	en4EZCiM2vpkvH3TkT1QpawFFFvr5Zksr57fxr/CsVSyiboXAgQtYxNqZR8VqA3Q2aYsY2H+zpe
-	eJJmkRfDQfmaL1nNvKy1rUv/PECQAKj0/wQXUNv/TEvXHjXVLZA9v75H3Zpq28MnkLnPFxKqUuv
-	g6GGer0wEfYqI8R34hx15lBwE=
-X-Received: by 2002:a05:6102:5092:b0:5f5:1256:5e4d with SMTP id ada2fe7eead31-5f8e2464410mr2254921137.2.1769867939692;
-        Sat, 31 Jan 2026 05:58:59 -0800 (PST)
-X-Received: by 2002:a05:6102:5092:b0:5f5:1256:5e4d with SMTP id ada2fe7eead31-5f8e2464410mr2254904137.2.1769867939284;
-        Sat, 31 Jan 2026 05:58:59 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59e074b2dddsm2373021e87.61.2026.01.31.05.58.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 31 Jan 2026 05:58:58 -0800 (PST)
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Sat, 31 Jan 2026 15:58:54 +0200
-Subject: [PATCH v4 5/5] media: qcom: venus: flip the venus/iris switch
+	s=arc-20240116; t=1769868318; c=relaxed/simple;
+	bh=Ey+OJhVw2NerzqvbFClDP/9Nqjz+1edbvqlInSXNrUs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gSSeq3C5olbtVre0Z7Rea4cJtwIu1cn7E3yfV/wjKL2yp1qnfHHaQfmbCOJGQef5Ob7odLyV46R3SStMG3n7qt46gojs8M0X+EwmS5KmQodBkpb2Tv19X0UFYiR93Vw7dq4S0J0be6wMRm29aWWsnSC0YjWpQq/MEmgZiB9K6mc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=AbVdQdYE; arc=none smtp.client-ip=192.198.163.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1769868316; x=1801404316;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Ey+OJhVw2NerzqvbFClDP/9Nqjz+1edbvqlInSXNrUs=;
+  b=AbVdQdYEql2Ii9Xkf44oVz491v9CNG9987nI5rB/ZR0ue+EMSTMzvxeN
+   UPRa3MSEZzkFF1fCHo8b2CZwrHH7UMvhiquSn4OSW8DfSLoW34U0vjstt
+   +NeQMJZDBxA/l6t0qc86xj7kbpJifRF1UjbJAey+9yjfqTe+VsU/4iwnh
+   cqocinTvCNZz1rQUPRP//4yrlQd99gbE4nnlVuAbSLGjVtUsO7BIUT+K7
+   6JuBWUfWjDncBMQSXaY3igMjL4rofN/ty+9+ilo+Dy+8KTEadBqn9nGZb
+   jUYvnCVo9/8QHvB9Djd4cS/2BtU0fSyRcNHRprKtQwD6V6pLt1x0ZTiZo
+   g==;
+X-CSE-ConnectionGUID: yRmC0ocoR/6KV4jsVIzzHg==
+X-CSE-MsgGUID: l2BFi56nSfWk33VqBr50Bg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11687"; a="81831486"
+X-IronPort-AV: E=Sophos;i="6.21,265,1763452800"; 
+   d="scan'208";a="81831486"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Jan 2026 06:05:15 -0800
+X-CSE-ConnectionGUID: rQg+inflTGOkpxo1O2PwwQ==
+X-CSE-MsgGUID: cocOB4sJTBSkIg7M3RhFlg==
+X-ExtLoop1: 1
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+  by fmviesa003.fm.intel.com with ESMTP; 31 Jan 2026 06:05:12 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vmBb3-00000000e5A-3ndo;
+	Sat, 31 Jan 2026 14:05:09 +0000
+Date: Sat, 31 Jan 2026 22:05:02 +0800
+From: kernel test robot <lkp@intel.com>
+To: Icenowy Zheng <zhengxingda@iscas.ac.cn>,
+	Thomas Gleixner <tglx@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	Jiaxun Yang <jiaxun.yang@flygoat.com>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-mips@vger.kernel.org, Icenowy Zheng <zhengxingda@iscas.ac.cn>
+Subject: Re: [PATCH 3/8] irqchip/loongson-pch-lpc: extract non-ACPI-related
+ code from ACPI init
+Message-ID: <202601312251.S1bOvHGe-lkp@intel.com>
+References: <20260131094547.455916-4-zhengxingda@iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260131-venus-iris-flip-switch-v4-5-e10b886771e1@oss.qualcomm.com>
-References: <20260131-venus-iris-flip-switch-v4-0-e10b886771e1@oss.qualcomm.com>
-In-Reply-To: <20260131-venus-iris-flip-switch-v4-0-e10b886771e1@oss.qualcomm.com>
-To: Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
-        Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Bryan O'Donoghue <bod@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Stanimir Varbanov <stanimir.varbanov@linaro.org>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5432;
- i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
- bh=OzD4FTK6JV+5RvDrmyf8OgLghGE1je6zg8bW2QD9QnA=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBpfgqcwACF4Kxly/RoVtv6V3U6XjPhT5z1WlsEa
- RnNJu+7oleJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCaX4KnAAKCRCLPIo+Aiko
- 1bE2B/9M9BoOKIhEY0BnR4LEyPnUl6Z8TFYtOzDaVOBiHp8Z7jaHIRgB4QJ8a/ga4l5D9v7MuYW
- 0eYKg9ODeBV8SWtQRXazGzdEXKCmBIY74enV4lmlo1UFCtSPP7rU75zU+qwmQxDlcqwDVW5Li2i
- BfAiBRdqrGWS9eZR3UP2qy9cTItQCv/0xxrJxaXrDItERGX7JtODmCsqgrlPL8Cf0D3fW5XkvYt
- uaQ3cd0txT2Xc4gOjENK8NiEgdpaKCEaun9PQc9VNqtAf6LeKz40G88bPKjPVl3lnYdC1eZfwUE
- fK5jQM4IqDTiHxpUuv7Mly66B0B2oTvpRJ7uPPHADM/Zx7YW
-X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
-X-Proofpoint-ORIG-GUID: 7N1qaOL1W99fD0XLqQNwKakko82xgkFp
-X-Authority-Analysis: v=2.4 cv=TtfrRTXh c=1 sm=1 tr=0 ts=697e0aa4 cx=c_pps
- a=P2rfLEam3zuxRRdjJWA2cw==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=PTCOktDilvW4XOe9n6IA:9 a=QEXdDO2ut3YA:10
- a=ODZdjJIeia2B_SHc_B0f:22
-X-Proofpoint-GUID: 7N1qaOL1W99fD0XLqQNwKakko82xgkFp
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTMxMDExNyBTYWx0ZWRfXxCuUXgpHtqm3
- 9OiacSX3ZiNeFnwzDdr+z074bC4/qNW3haSqnJWfmhB6z5N840grT4l5dkFDOZG1y5Kr2zQZC+i
- OxLtxq5TnD5LgJ4DrHbRYRRugwASZpbYIJ8ReglnxMxYfZ7kNV/e5vckWZEyopAhU8GQ9gOKj08
- 0QBzrSJT14Xq/jhq2hz77BT8gCuzggSuK/WqMuLvZzxw9RbkLj8lrmBwvXZJRqNRKxXEVCT53H2
- 72sThOsdKM02IwqFibVHjYp3hjIo0UN7rHRjVDg7iVIym7io1NpN7geih3jr85KgXJj2pKLngKH
- 1jXz615EC9TeyJIM4hcRl2q17UUeAfy04wZaMmXhIrMiE+zMcjxI0hflwFms+agpCbCGVyJAOo2
- J1zyy6PK5XZ1m0NV0EEVUFGiciU8vJELHLy/LI+ZXP9Lm/x643RCT+18HIRvjSr1I8Xbx4KWikG
- HvJEnSxTI0nPZRV/biA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-01-31_02,2026-01-30_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 spamscore=0 phishscore=0 clxscore=1015 bulkscore=0
- lowpriorityscore=0 malwarescore=0 priorityscore=1501 adultscore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2601310117
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260131094547.455916-4-zhengxingda@iscas.ac.cn>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-261431-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261430-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_PROHIBIT(0.00)[0.0.0.30:email];
-	MID_RHS_MATCH_FROM(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 72891C2250
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[01.org:url,intel.com:email,intel.com:dkim,intel.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: B9998C2291
 X-Rspamd-Action: no action
 
-With the Iris and Venus driver having more or less feature parity for
-"HFI 6xx" platforms and with Iris gaining support for SC7280, flip the
-switch. Use Iris by default for SM8250 and SC7280, the platforms which
-are supported by both drivers, and use Venus only if Iris is not
-compiled at all. Use IS_ENABLED to strip out the code and data
-structures which are used by the disabled platforms.
+Hi Icenowy,
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Reviewed-by: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
----
- drivers/media/platform/qcom/iris/Makefile     |  5 +----
- drivers/media/platform/qcom/iris/iris_probe.c |  2 --
- drivers/media/platform/qcom/venus/core.c      |  6 ++++++
- drivers/media/platform/qcom/venus/core.h      | 11 +++++++++++
- 4 files changed, 18 insertions(+), 6 deletions(-)
+kernel test robot noticed the following build warnings:
 
-diff --git a/drivers/media/platform/qcom/iris/Makefile b/drivers/media/platform/qcom/iris/Makefile
-index 2abbd3aeb4af..2fde45f81727 100644
---- a/drivers/media/platform/qcom/iris/Makefile
-+++ b/drivers/media/platform/qcom/iris/Makefile
-@@ -10,6 +10,7 @@ qcom-iris-objs += iris_buffer.o \
-              iris_hfi_gen2_packet.o \
-              iris_hfi_gen2_response.o \
-              iris_hfi_queue.o \
-+             iris_platform_gen1.o \
-              iris_platform_gen2.o \
-              iris_power.o \
-              iris_probe.o \
-@@ -26,8 +27,4 @@ qcom-iris-objs += iris_buffer.o \
-              iris_vpu_buffer.o \
-              iris_vpu_common.o \
- 
--ifeq ($(CONFIG_VIDEO_QCOM_VENUS),)
--qcom-iris-objs += iris_platform_gen1.o
--endif
--
- obj-$(CONFIG_VIDEO_QCOM_IRIS) += qcom-iris.o
-diff --git a/drivers/media/platform/qcom/iris/iris_probe.c b/drivers/media/platform/qcom/iris/iris_probe.c
-index ddaacda523ec..7b612ad37e4f 100644
---- a/drivers/media/platform/qcom/iris/iris_probe.c
-+++ b/drivers/media/platform/qcom/iris/iris_probe.c
-@@ -352,7 +352,6 @@ static const struct of_device_id iris_dt_match[] = {
- 		.compatible = "qcom,qcs8300-iris",
- 		.data = &qcs8300_data,
- 	},
--#if (!IS_ENABLED(CONFIG_VIDEO_QCOM_VENUS))
- 	{
- 		.compatible = "qcom,sc7280-venus",
- 		.data = &sc7280_data,
-@@ -361,7 +360,6 @@ static const struct of_device_id iris_dt_match[] = {
- 		.compatible = "qcom,sm8250-venus",
- 		.data = &sm8250_data,
- 	},
--#endif
- 	{
- 		.compatible = "qcom,sm8550-iris",
- 		.data = &sm8550_data,
-diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
-index 24d2b2fd0340..646dae3407b4 100644
---- a/drivers/media/platform/qcom/venus/core.c
-+++ b/drivers/media/platform/qcom/venus/core.c
-@@ -949,6 +949,7 @@ static const struct venus_resources sc7180_res = {
- 	.enc_nodename = "video-encoder",
- };
- 
-+#if (!IS_ENABLED(CONFIG_VIDEO_QCOM_IRIS))
- static const struct freq_tbl sm8250_freq_table[] = {
- 	{ 0, 444000000 },
- 	{ 0, 366000000 },
-@@ -1069,6 +1070,7 @@ static const struct venus_resources sc7280_res = {
- 	.dec_nodename = "video-decoder",
- 	.enc_nodename = "video-encoder",
- };
-+#endif
- 
- static const struct bw_tbl qcm2290_bw_table_dec[] = {
- 	{ 352800, 597000, 0, 746000, 0 }, /* 1080p@30 + 720p@30 */
-@@ -1125,11 +1127,15 @@ static const struct of_device_id venus_dt_match[] = {
- 	{ .compatible = "qcom,msm8998-venus", .data = &msm8998_res, },
- 	{ .compatible = "qcom,qcm2290-venus", .data = &qcm2290_res, },
- 	{ .compatible = "qcom,sc7180-venus", .data = &sc7180_res, },
-+#if (!IS_ENABLED(CONFIG_VIDEO_QCOM_IRIS))
- 	{ .compatible = "qcom,sc7280-venus", .data = &sc7280_res, },
-+#endif
- 	{ .compatible = "qcom,sdm660-venus", .data = &sdm660_res, },
- 	{ .compatible = "qcom,sdm845-venus", .data = &sdm845_res, },
- 	{ .compatible = "qcom,sdm845-venus-v2", .data = &sdm845_res_v2, },
-+#if (!IS_ENABLED(CONFIG_VIDEO_QCOM_IRIS))
- 	{ .compatible = "qcom,sm8250-venus", .data = &sm8250_res, },
-+#endif
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, venus_dt_match);
-diff --git a/drivers/media/platform/qcom/venus/core.h b/drivers/media/platform/qcom/venus/core.h
-index 7506f5d0f609..c7acacaa53b8 100644
---- a/drivers/media/platform/qcom/venus/core.h
-+++ b/drivers/media/platform/qcom/venus/core.h
-@@ -54,8 +54,10 @@ enum vpu_version {
- 	VPU_VERSION_AR50,
- 	VPU_VERSION_AR50_LITE,
- 	VPU_VERSION_IRIS1,
-+#if (!IS_ENABLED(CONFIG_VIDEO_QCOM_IRIS))
- 	VPU_VERSION_IRIS2,
- 	VPU_VERSION_IRIS2_1,
-+#endif
- };
- 
- struct firmware_version {
-@@ -525,13 +527,22 @@ struct venus_inst {
- #define IS_V1(core)	((core)->res->hfi_version == HFI_VERSION_1XX)
- #define IS_V3(core)	((core)->res->hfi_version == HFI_VERSION_3XX)
- #define IS_V4(core)	((core)->res->hfi_version == HFI_VERSION_4XX)
-+#if (!IS_ENABLED(CONFIG_VIDEO_QCOM_IRIS))
- #define IS_V6(core)	((core)->res->hfi_version == HFI_VERSION_6XX)
-+#else
-+#define IS_V6(core)	(0)
-+#endif
- 
- #define IS_AR50(core)		((core)->res->vpu_version == VPU_VERSION_AR50)
- #define IS_AR50_LITE(core)	((core)->res->vpu_version == VPU_VERSION_AR50_LITE)
- #define IS_IRIS1(core)		((core)->res->vpu_version == VPU_VERSION_IRIS1)
-+#if (!IS_ENABLED(CONFIG_VIDEO_QCOM_IRIS))
- #define IS_IRIS2(core)		((core)->res->vpu_version == VPU_VERSION_IRIS2)
- #define IS_IRIS2_1(core)	((core)->res->vpu_version == VPU_VERSION_IRIS2_1)
-+#else
-+#define IS_IRIS2(core)		(0)
-+#define IS_IRIS2_1(core)	(0)
-+#endif
- 
- static inline bool is_lite(struct venus_core *core)
- {
+[auto build test WARNING on tip/irq/core]
+[also build test WARNING on robh/for-next krzk/for-next krzk-dt/for-next krzk-mem-ctrl/for-next linus/master v6.19-rc7 next-20260130]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Icenowy-Zheng/genirq-reserve-NR_IRQS_LEGACY-IRQs-in-dynirq-by-default/20260131-175403
+base:   tip/irq/core
+patch link:    https://lore.kernel.org/r/20260131094547.455916-4-zhengxingda%40iscas.ac.cn
+patch subject: [PATCH 3/8] irqchip/loongson-pch-lpc: extract non-ACPI-related code from ACPI init
+config: loongarch-allnoconfig (https://download.01.org/0day-ci/archive/20260131/202601312251.S1bOvHGe-lkp@intel.com/config)
+compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 9b8addffa70cee5b2acc5454712d9cf78ce45710)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260131/202601312251.S1bOvHGe-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202601312251.S1bOvHGe-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/irqchip/irq-loongson-pch-lpc.c:232:18: warning: unused variable 'priv' [-Wunused-variable]
+     232 |         struct pch_lpc *priv;
+         |                         ^~~~
+   1 warning generated.
+
+
+vim +/priv +232 drivers/irqchip/irq-loongson-pch-lpc.c
+
+   227	
+   228	int __init pch_lpc_acpi_init(struct irq_domain *parent,
+   229						struct acpi_madt_lpc_pic *acpi_pchlpc)
+   230	{
+   231		int parent_irq;
+ > 232		struct pch_lpc *priv;
 
 -- 
-2.47.3
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
