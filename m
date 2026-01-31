@@ -1,204 +1,152 @@
-Return-Path: <devicetree+bounces-261487-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261494-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CFcSKr10fmnYZAIAu9opvQ
-	(envelope-from <devicetree+bounces-261487-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 22:31:41 +0100
+	id hr7TNEt4fmneZQIAu9opvQ
+	(envelope-from <devicetree+bounces-261494-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 22:46:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3163CC4017
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 22:31:41 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31504C410D
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 22:46:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B07603003985
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 21:31:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8A50B3005747
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 21:46:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 690A2339857;
-	Sat, 31 Jan 2026 21:31:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="wnDeEaXV"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC5C137F8D3;
+	Sat, 31 Jan 2026 21:46:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11D57320A00
-	for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 21:31:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0B9637F72F;
+	Sat, 31 Jan 2026 21:46:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769895097; cv=none; b=qkJvMmHu/lRC+JJtUONAjFSjxHrmiJ4rBy+S2N997OjIQ5Bvjn/RK4ulekJfaXwXz1e9TRdOLDpC/zstsFcei+acjPGbx+66wrkLyqk23LC2x6a6aiA9foHB+r95R+9lgZcAUrd/QOgcx2DD0i58o2JU3UC4Ga6C8ilyWEo6MZU=
+	t=1769896008; cv=none; b=rvsZht0QY77jpJrK1jl6THjWsQqhdjFAmEw83yewdd1Zch+UCCafhgPIhPPljB9DsXRO64vBUtoM15k5Zyv5AjlPTlDYqC3FFOEf2RGvam+WB1aVwbPiAc4gz2vfxE9fU1gozO+MOsVkbrntz2zI/tKJ3KbIf9uVtcWgAPrjw5s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769895097; c=relaxed/simple;
-	bh=ERnv3otAcYg//bBxuwJmzFwm1JYlCphbavP5uFY2jcg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lU+H+3+3JdDOGDEO866LVVVn1M/PXkfQlnt6C6O2j7WoGTPuCcc1v/606ylS0xRFdciQ0NK+XD14tC+6FejyrJVRUZPNet+V9Gf7d3bsnhcpXYIUvGVEl0f8f6Eyjql/EBBZfy1jLnLN176D/6vku7hxyBAFzobOSFFa6nGYmA0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=wnDeEaXV; arc=none smtp.client-ip=209.85.167.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f179.google.com with SMTP id 5614622812f47-45f053b7b90so2154278b6e.0
-        for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 13:31:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1769895094; x=1770499894; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oN7nfsMLYgFLh50J5K6u/iWba/AywR5N7bpGoZqwJBw=;
-        b=wnDeEaXVLQN+ycjBxkW6hwwuh7FHoCypHz1GXYVtdx/OFAFeGZs8pojxxU+Lo/48iY
-         NR2ZVQbVSF6J6z8Ulw+JDhIo0VjXGAUIlPp1NfxHp15MQq46yalPPAQAE7wlaJctJd7i
-         21OqRyiGnlSMIR9ISZpIRY5IYXglot7P0D8Tup2qSA2fBZpWhvBOhHQj6GmpwikF1k15
-         DOwjw/TP/o5aPkcgD/vNmwRAIruyskVoqiIgAgUtzCPZPDMn6XgztlQkKfgUerjKbEPh
-         15tEPBT4+0G3v7w0wNT2nT9P0QpQI+iMWAzPD2TTFPbjaSLyrd8251U6kr4LZNJVEdp4
-         vYFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769895094; x=1770499894;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oN7nfsMLYgFLh50J5K6u/iWba/AywR5N7bpGoZqwJBw=;
-        b=CEbj1NgTlFJvQclS7NbWz+OeHDbrkgDytq711Wx0a6dt6ftH8lAi9rE2xWs8H5Uu1q
-         lq2RrdnA133f54uWuqPn4vX7gvBap3LCTRZZSzcwN4s+NCSUWJyDbnQx6IoYMCFm3sH5
-         Ula0yyja7of/nhv99vWS5wSxx+iQU7ig4D+2bZEv1Q+GMK9jbNyRuhxjrAoMoEcI4MfT
-         Lpw3JH6TdOPYMi44HtUBi/w7zOtq4Hpd4QhY6Q1/RDJpopl8Ipd1TBq15aUMyeuMXtVc
-         uBsMGY1neaHsm4jgHvWPDnEfd4Mfwpf7AaBgdiR1bIs/jD/zx7sKCL0CHRFD557nMdho
-         khuQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVAwHc5FBy2fuh3wJ3McvJt3jVo6wn3SeNBSxh1MSK9+kxD69mL81WoFrsjZRsqHne+F452puS0OSIL@vger.kernel.org
-X-Gm-Message-State: AOJu0YyTok4eClLL7TL/yROLDrhviU6n5NRTHTBP2Cs6j7sVazVjkam2
-	PnUN3dwVFLV8JBcC3isqcJErTUKTODiMkiZ5jjztjpd+Ar/BZdczTL39G1RtgK1xsvg=
-X-Gm-Gg: AZuq6aLJzk0WJmiw8n5Ot35Xs+1eIUyFEa4arVENfmEZeJhq8oYZ4Izp0g/nkTvMXcY
-	/MSYezboDBH1CIIehUDvf10MLyi3JY3F1g4yYf0KuqOte2DD9g1AgaRf3mTngWJ7yrslBw4mJji
-	9+YYGlnQO20emebgKtV5BS2eZ4CvT4jNyNBF5rLbJUMCRVgMB0TdxYeO9fXBjXjN9gQZEbhDEg1
-	7fnbWfIdaoE1rKXZ5adCMgTkZK+kCOWZvuCR8LHid977LGrGL22tlXFENaPXtbyzgKT1+vvBQ1F
-	yg1z7kPQ87cypxSkLYmGcAVlj4XUEW0j9eff8GFSYcLI4e0hclcywblI27WMi5DpaD6gx55WVo3
-	ozilWORat0Crz4AVMnZG+bLUWCFctPriz+hAG27hoceydmgezqF9GN4VYeumemW8YnS1RL7+vLj
-	OlekHi3cC9BNEbKinAWVaNVXOrOM5n4cKWaWh3RMqUNuesQUhoHV15fhEPZPNN
-X-Received: by 2002:a05:6808:1a19:b0:45e:e52c:8a9b with SMTP id 5614622812f47-45f34d98b5amr3091519b6e.59.1769895093915;
-        Sat, 31 Jan 2026 13:31:33 -0800 (PST)
-Received: from ?IPV6:2600:8803:e7e4:500:c7ef:51f2:4f7a:6cd7? ([2600:8803:e7e4:500:c7ef:51f2:4f7a:6cd7])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-45f08d894f5sm7181770b6e.5.2026.01.31.13.31.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 31 Jan 2026 13:31:33 -0800 (PST)
-Message-ID: <629d8505-c4ba-4089-8dec-d627e3acd337@baylibre.com>
-Date: Sat, 31 Jan 2026 15:31:32 -0600
+	s=arc-20240116; t=1769896008; c=relaxed/simple;
+	bh=3odlencLpsM7Rn6D1RDjYk/a9U+PLsrfwc0Gj6NN7iY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=svLdO9HtbBexrHrMUCcJP8q+CHeJzyFwWVXq9BoZMsl3PHMtkRd+9j8Ev99OM0JBXIbr34Eg6xQlQHl+eBrEFw0aNL89xa04ooKjejXHIA+zuafbn8z9l26Ycz/7RxAanu51fqBtS/SyJclOQg4Gk4Olbld9KpL/736d5bux2hs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from localhost.localdomain (unknown [223.166.92.103])
+	by APP-03 (Coremail) with SMTP id rQCowABXadBIdn5pRJhjBw--.18091S2;
+	Sun, 01 Feb 2026 05:38:17 +0800 (CST)
+From: Han Gao <gaohan@iscas.ac.cn>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Yixun Lan <dlan@gentoo.org>,
+	Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>
+Cc: devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Han Gao <rabenda.cn@gmail.com>,
+	Han Gao <gaohan@iscas.ac.cn>
+Subject: [PATCH 0/7] riscv: dts: spacemit: Add PMIC regulators usb pcie
+Date: Sun,  1 Feb 2026 05:38:07 +0800
+Message-ID: <cover.1769895215.git.gaohan@iscas.ac.cn>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 6/8] iio: dac: ds4424: add DS4402/DS4404 device IDs
-To: Oleksij Rempel <o.rempel@pengutronix.de>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: David Jander <david@protonic.nl>, kernel@pengutronix.de,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, Andy Shevchenko <andy@kernel.org>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>
-References: <20260128153824.3679187-1-o.rempel@pengutronix.de>
- <20260128153824.3679187-7-o.rempel@pengutronix.de>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20260128153824.3679187-7-o.rempel@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:rQCowABXadBIdn5pRJhjBw--.18091S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7tr1fWF1xuFWrWFyftFW5Jrb_yoW8tF43pF
+	y7Zws09w1rXw1Iy3y3uwsrJF9YvFnYvrWa9r4UKr48ArnFga17ZFsxtr42yF9xZr4rK3W7
+	trs7Aw4xur47XF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9214x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26r1I6r4UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+	6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr
+	1j6F4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv
+	7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r
+	1j6r4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02
+	628vn2kIc2xKxwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4
+	IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1r
+	MI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJV
+	WUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j
+	6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYx
+	BIdaVFxhVjvjDU0xZFpf9x0JUd-B_UUUUU=
+X-CM-SenderInfo: xjdrxt3q6l2u1dvotugofq/1tbiBwwEDGl+GlBjgwAAs+
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-261487-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-261494-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[baylibre.com];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	DMARC_NA(0.00)[iscas.ac.cn];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com,iscas.ac.cn];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[gaohan@iscas.ac.cn,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	R_DKIM_NA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,baylibre.com:mid,pengutronix.de:email,protonic.nl:email,baylibre-com.20230601.gappssmtp.com:dkim]
-X-Rspamd-Queue-Id: 3163CC4017
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,iscas.ac.cn:mid]
+X-Rspamd-Queue-Id: 31504C410D
 X-Rspamd-Action: no action
 
-On 1/28/26 9:38 AM, Oleksij Rempel wrote:
-> From: David Jander <david@protonic.nl>
-> 
-> Add I2C/OF IDs for DS4402 and DS4404 and set the correct channel count.
-> Follow-up changes add per-variant scaling based on external Rfs.
-> 
-> Co-developed-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> Signed-off-by: David Jander <david@protonic.nl>
-> ---
-> changes v3:
-> - Reset author to David Jander and added Co-developed-by tag for
->   Oleksij Rempel to clarify roles
-> changes v2:
->   - No changes.
-> ---
->  drivers/iio/dac/ds4424.c | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
-> 
-> diff --git a/drivers/iio/dac/ds4424.c b/drivers/iio/dac/ds4424.c
-> index c03051dc763e..f340d491fcc1 100644
-> --- a/drivers/iio/dac/ds4424.c
-> +++ b/drivers/iio/dac/ds4424.c
-> @@ -35,6 +35,8 @@
->  }
->  
->  enum ds4424_device_ids {
-> +	ID_DS4402,
-> +	ID_DS4404,
->  	ID_DS4422,
->  	ID_DS4424,
->  };
+This patch series enables the PMIC, voltage regulators, usb and pcie
+for the OrangePi rv2 board.
 
-I suppose it was already suggested in previous reviews that we should
-be dropping these IDs and using device info instead of expanding the
-switch statement below.
+Han Gao (7):
+  riscv: dts: spacemit: Enable i2c8 adapter for OrangePi RV2
+  riscv: dts: spacemit: Define fixed regulators for OrangePi RV2
+  riscv: dts: spacemit: Define the P1 PMIC regulators for OrangePi RV2
+  riscv: dts: spacemit: Enable USB3.0 on OrangePi RV2
+  riscv: dts: spacemit: Update PMIC supply properties for OrangePi RV2
+  riscv: dts: spacemit: Add a PCIe regulator for OrangePi RV2
+  riscv: dts: spacemit: PCIe and PHY-related updates for OrangePi RV2
 
-> @@ -237,6 +239,12 @@ static int ds4424_probe(struct i2c_client *client)
->  		goto fail;
->  
->  	switch (id->driver_data) {
-> +	case ID_DS4402:
-> +		indio_dev->num_channels = DS4422_MAX_DAC_CHANNELS;
-> +		break;
-> +	case ID_DS4404:
-> +		indio_dev->num_channels = DS4424_MAX_DAC_CHANNELS;
-> +		break;
->  	case ID_DS4422:
->  		indio_dev->num_channels = DS4422_MAX_DAC_CHANNELS;
->  		break;
-> @@ -278,6 +286,8 @@ static void ds4424_remove(struct i2c_client *client)
->  }
->  
->  static const struct i2c_device_id ds4424_id[] = {
-> +	{ "ds4402", ID_DS4402 },
-> +	{ "ds4404", ID_DS4404 },
->  	{ "ds4422", ID_DS4422 },
->  	{ "ds4424", ID_DS4424 },
->  	{ }
-> @@ -286,6 +296,8 @@ static const struct i2c_device_id ds4424_id[] = {
->  MODULE_DEVICE_TABLE(i2c, ds4424_id);
->  
->  static const struct of_device_id ds4424_of_match[] = {
-> +	{ .compatible = "maxim,ds4402" },
-> +	{ .compatible = "maxim,ds4404" },
->  	{ .compatible = "maxim,ds4422" },
->  	{ .compatible = "maxim,ds4424" },
->  	{ }
+ .../boot/dts/spacemit/k1-orangepi-rv2.dts     | 235 ++++++++++++++++++
+ 1 file changed, 235 insertions(+)
+
+
+base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+prerequisite-patch-id: 32d6acfcb4801407e38510b391407943e9a8ec82
+prerequisite-patch-id: ae644485e1a8ead3fa7a087c8db9062c7acc14ff
+prerequisite-patch-id: 605d537aa0f8387b3523786a875c76b9edfbcbb4
+prerequisite-patch-id: faab9c820ac67de42c40f2c4578bb5b8753fcb71
+prerequisite-patch-id: f9c4643cc99e5b9f1acc9daf1e679b95f81cee73
+prerequisite-patch-id: 50138c8918218ea3b8650999bd558ed6350ed2f2
+prerequisite-patch-id: f8f91e32361cc99c531170c39ed54cd1b3c5997d
+prerequisite-patch-id: 475d1968c0c41895578809410c9bd8fe24997de4
+prerequisite-patch-id: c40f1562f712f04578ef58472840d257a19919fe
+prerequisite-patch-id: e9ef3af6c80187e6f05444704d13212d3beaf40a
+prerequisite-patch-id: 7076909bb4103588b4761d175eca40bce470230f
+prerequisite-patch-id: 0c859b4d131b3360875c795c6148c6176b55fb91
+prerequisite-patch-id: 2ed98dc1ab0f5ed923cc252415c345dc8caf6f17
+prerequisite-patch-id: 1be1a031763fac029076a768f012af31e455be66
+prerequisite-patch-id: 21bb8387c946e050910440e7a7622305d46d946d
+prerequisite-patch-id: f3bdc2c74b230663710086bd770a755d56cb8b9c
+prerequisite-patch-id: ba6a7df5c7a2fa9ce0b8a72a9177e42a4dcdab01
+prerequisite-patch-id: 33fd23112b55b5e6b1e276594826ee454afc1c7e
+prerequisite-patch-id: 009a5aaff0768d90d148eb9d5d999c5098fd6d93
+prerequisite-patch-id: 7e41df07cbce163a689f5dca246b98a0122d1610
+-- 
+2.47.3
 
 
