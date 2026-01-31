@@ -1,361 +1,305 @@
-Return-Path: <devicetree+bounces-261466-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261465-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iCPLOBZCfmmkWgIAu9opvQ
-	(envelope-from <devicetree+bounces-261466-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 18:55:34 +0100
+	id mAwRNtZBfmmkWgIAu9opvQ
+	(envelope-from <devicetree+bounces-261465-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 18:54:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60642C36F6
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 18:55:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DE47C36D1
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 18:54:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 42AEB30166F7
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 17:55:33 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 00E9C30173B0
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 17:54:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02A99364056;
-	Sat, 31 Jan 2026 17:55:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02A3D364026;
+	Sat, 31 Jan 2026 17:54:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fiHz/z8w"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jHDZEgMm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3D08364042;
-	Sat, 31 Jan 2026 17:55:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D230135BDD5;
+	Sat, 31 Jan 2026 17:54:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769882130; cv=none; b=ehR7ktVtGWGLedQgoC7fB9QbsvRS+HP10seRS0LPGZbk7mbytamNswZyHfZMEAKZTTcnSfWHldhVXBGv0k5higrUtwBUFXv1+WRG5mGUFEkKfBW0jLUcay6osubGCNjspsLsvKf2HfG/AliSBL4UEdIrnsZxXzn2zpzdPMpzomU=
+	t=1769882067; cv=none; b=J5/gLAp/jFbTRPbrBN1JQ6+Wg0WSPLFPsFGRYN2dVsmuuvYgcW+GyZK9I6fKhZGTdiZFgif2hBHYgi1zvUxQmJV2BnfFKCSITC6bBVu8Qv5f6wNdL35vuI6aFeGWe6VMNQUKoLZhdkuBbbZuoItCb+MLcLCeUUDWwPJ25wqwvmw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769882130; c=relaxed/simple;
-	bh=Z7+3/I6jiIVbes0Ajpxa4+cV1VONvsQL7MJjHuwUuKQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=gjY1UsztqsBehhu2c7ZgcsQIfI0XFAKxNH0VJOsBN33O64Dskuf3YAuqAbOJeR19FGJQiGu5QMa/dhtqStDSrGDDA1LyZLzlERTUC1kzovYUVJDQAsOD3tiyUwAxqTt8MTajb03xyoPVhuzh2yqfkEVz2rhOQBf1iUr0GOprWnM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fiHz/z8w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49407C4CEF1;
-	Sat, 31 Jan 2026 17:55:29 +0000 (UTC)
+	s=arc-20240116; t=1769882067; c=relaxed/simple;
+	bh=nGBuNWH2C/cZMgf7p2YBdZH+AmwcRBcXXxsMIojsYmg=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=r9A7rgNWZ8cdUM12G28tuBjdkF2yFrEVmrc4pS7R09sG3s1OrWipzKtbV/UC9TFcUvZ8zlqDxAINUA/48c+/8UvNTtzG4zY8uBDFpRIOiLnWL4hsBIM/jxQmmsLD+GQJJvg2Rba1/xF6w6jj2sVTUjv930cByZWfs99PPcxjqAQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jHDZEgMm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E84E5C4CEF1;
+	Sat, 31 Jan 2026 17:54:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769882130;
-	bh=Z7+3/I6jiIVbes0Ajpxa4+cV1VONvsQL7MJjHuwUuKQ=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=fiHz/z8wVdRzM4KxGgdQzZXPLMrVXsK0R8lSQ52rVRMxRAJppXU1mx/antmwqX13k
-	 GLD5B50cdyGYtXxIPB1abBCHFubpBjCLvD/f8Vc0kN0SyQPwbH5JyTuXC8TLxHBJAe
-	 6eaLTpSZBVVq4KnSoxPfW+gwcv0yA6qXCKThilxaf2beh0us5MZrmBiQlHOGWKk3mq
-	 imE/Jl8EWytmolQnaO4NLywoeD4uHxQ8/XHOs4kU9QTjtw3QPA9T/mbgQZH3ei6iEn
-	 pV18DbaegeGidAV4w+JjIb1sW0TTyOnSnWOc1yc1FazqKnTbaHfLcpx+g4DQZ4oKeH
-	 r7F6p6q3OeSSA==
-From: Jakub Kicinski <kuba@kernel.org>
-To: daniel@makrotopia.org
-Cc: Jakub Kicinski <kuba@kernel.org>,
-	lxu@maxlinear.com,
-	hkallweit1@gmail.com,
-	yweng@maxlinear.com,
-	ajayaraman@maxlinear.com,
-	andrew@lunn.ch,
-	netdev@vger.kernel.org,
-	bxu@maxlinear.com,
-	olteanv@gmail.com,
-	krzk+dt@kernel.org,
-	linux-kernel@vger.kernel.org,
-	lrosu@maxlinear.com,
-	chad@monroe.io,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	robh@kernel.org,
-	edumazet@google.com,
-	pabeni@redhat.com,
-	cezary.wilmanski@adtran.com,
-	davem@davemloft.net,
-	john@phrozen.org,
-	frankwu@gmx.de,
-	jpovazanec@maxlinear.com,
-	linux@armlinux.org.uk,
-	fchan@maxlinear.com,
-	horms@kernel.org
-Subject: Re: [net-next,v11,4/4] net: dsa: add basic initial driver for MxL862xx switches
-Date: Sat, 31 Jan 2026 09:52:44 -0800
-Message-ID: <20260131175243.1122906-2-kuba@kernel.org>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <46226b74030f76bd04149ed5c92b3e263abbe6c2.1769817939.git.daniel@makrotopia.org>
-References: <46226b74030f76bd04149ed5c92b3e263abbe6c2.1769817939.git.daniel@makrotopia.org>
+	s=k20201202; t=1769882067;
+	bh=nGBuNWH2C/cZMgf7p2YBdZH+AmwcRBcXXxsMIojsYmg=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=jHDZEgMmOSm1+ACoua48V5qu5JtEL2bEpqEynRaJeNhxFPOenmjCB5LHHYDI/rbeJ
+	 M0FGtQFh3qT3620cc0aYTB3VePZk7Uao+PhreNKmA6g5RMAtR4CyTRBOHHmnfInKae
+	 hF696o9C8wsg7Ed6Spgixk7au60XGloAONZs/5ks/u/02dODkex4o01I6oiND9z9GR
+	 CUf0EMcT2Wr0bAI2q2iGScu/hTG+dlYVnNS973+SHsX1g2KcBn12ens0OTFMfwvRfi
+	 CZ/K937jZ58DvnNc9WXHFst9dexsAeqM0rTbpr+3v/yvDWvNdSDeNmUk/7n0fMtk0W
+	 6Qegw+26FaARQ==
+Date: Sat, 31 Jan 2026 17:54:12 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ agross@kernel.org, andersson@kernel.org, lumag@kernel.org,
+ dmitry.baryshkov@oss.qualcomm.com, konradybcio@kernel.org,
+ daniel.lezcano@linaro.org, sboyd@kernel.org, amitk@kernel.org,
+ thara.gopinath@gmail.com, lee@kernel.org, rafael@kernel.org,
+ subbaraman.narayanamurthy@oss.qualcomm.com, david.collins@oss.qualcomm.com,
+ anjelique.melendez@oss.qualcomm.com, kamal.wadhwa@oss.qualcomm.com,
+ rui.zhang@intel.com, lukasz.luba@arm.com, devicetree@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ cros-qcom-dts-watchers@chromium.org, quic_kotarake@quicinc.com,
+ neil.armstrong@linaro.org, stephan.gerhold@linaro.org
+Subject: Re: [PATCH V10 4/4] thermal: qcom: add support for PMIC5 Gen3 ADC
+ thermal monitoring
+Message-ID: <20260131175412.0ded39d4@jic23-huawei>
+In-Reply-To: <20260130115421.2197892-5-jishnu.prakash@oss.qualcomm.com>
+References: <20260130115421.2197892-1-jishnu.prakash@oss.qualcomm.com>
+	<20260130115421.2197892-5-jishnu.prakash@oss.qualcomm.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,maxlinear.com,gmail.com,lunn.ch,vger.kernel.org,monroe.io,google.com,redhat.com,adtran.com,davemloft.net,phrozen.org,gmx.de,armlinux.org.uk];
+	TAGGED_FROM(0.00)[bounces-261465-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[27];
-	TAGGED_FROM(0.00)[bounces-261466-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kuba@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[30];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,oss.qualcomm.com,linaro.org,gmail.com,intel.com,arm.com,vger.kernel.org,chromium.org,quicinc.com];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,linux.dev:url]
-X-Rspamd-Queue-Id: 60642C36F6
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,huawei.com:email]
+X-Rspamd-Queue-Id: 1DE47C36D1
 X-Rspamd-Action: no action
 
-This is an AI-generated review of your patch. The human sending this
-email has considered the AI review valid, or at least plausible.
+On Fri, 30 Jan 2026 17:24:21 +0530
+Jishnu Prakash <jishnu.prakash@oss.qualcomm.com> wrote:
 
-For local reproduction steps see https://netdev-ai.bots.linux.dev/ai-local.html
----
-net: dsa: add basic initial driver for MxL862xx switches
+> Add support for ADC_TM part of PMIC5 Gen3.
+> 
+> This is an auxiliary driver under the Gen3 ADC driver, which implements the
+> threshold setting and interrupt generating functionalities of QCOM ADC_TM
+> drivers, used to support thermal trip points.
+> 
+> Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
 
-Add very basic DSA driver for MaxLinear's MxL862xx switches. In contrast
-to previous MaxLinear switches the MxL862xx has a built-in processor that
-runs a sophisticated firmware based on Zephyr RTOS. Interaction between
-the host and the switch hence is organized using a software API of that
-firmware rather than accessing hardware registers directly. Add
-descriptions of the most basic firmware API calls to access the built-in
-MDIO bus hosting the 2.5GE PHYs, basic port control as well as setting up
-the CPU port. Implement a very basic DSA driver using that API which is
-sufficient to get packets flowing between the user ports and the CPU port.
+Hi Jishnu.
 
-> diff --git a/drivers/net/dsa/mxl862xx/Kconfig b/drivers/net/dsa/mxl862xx/Kconfig
+Some minor editorial style stuff below if you are spinning again.
+Otherwise this looks good to me
+
+Reviewed-by: Jonathan Cameron <jonathan.cameron@huawei.com>
+Given I expect this patch will go through the thermal tree and not IIO.
+As mentioned in previous patch review, we've missed this cycle for IIO where
+I'd expect to spin an immutable branch for 1-3 so we can do this early
+next cycle.
+
+Thanks,
+
+Jonathan
+
+
+> diff --git a/drivers/thermal/qcom/qcom-spmi-adc-tm5-gen3.c b/drivers/thermal/qcom/qcom-spmi-adc-tm5-gen3.c
 > new file mode 100644
-> index 000000000000..3722260da7d8
+> index 000000000000..882355d6606d
 > --- /dev/null
-> +++ b/drivers/net/dsa/mxl862xx/Kconfig
-> @@ -0,0 +1,12 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +config NET_DSA_MXL862
-> +	tristate "MaxLinear MxL862xx"
-> +	depends on NET_DSA
-> +	select MAXLINEAR_GPHY
-> +	select NET_DSA_TAG_MXL_862XX
-> +	help
-> +	  This enables support for the MaxLinear MxL862xx switch family.
-> +	  These switches have two 10GE SerDes interfaces, one typically
-> +	  used as CPU port.
-> +	   MxL86282 has eight 2.5 Gigabit PHYs
-> +	   MxL86252 has five 2.5 Gigabit PHYs
-
-This isn't a bug, but the last two lines have inconsistent indentation.
-The help text lines describing MxL86282 and MxL86252 have three spaces
-after the tab while the other help text lines have two spaces.
-
-[Jakub] maybe add a "-" or such in front to make it clear this is a list?
-
-> diff --git a/drivers/net/dsa/mxl862xx/mxl862xx-api.h b/drivers/net/dsa/mxl862xx/mxl862xx-api.h
-> new file mode 100644
-> index 000000000000..535c37514455
-> --- /dev/null
-> +++ b/drivers/net/dsa/mxl862xx/mxl862xx-api.h
-
-[ ... ]
-
-> +/**
-> + * struct mxl862xx_bridge_alloc - Bridge Allocation
-> + * @bridge_id: If the bridge allocation is successful, a valid ID will be
-> + *             returned in this field. Otherwise, INVALID_HANDLE is
-> + *             returned. For bridge free, this field should contain a
-> + *             valid ID returned by the bridge allocation. ID 0 is not
-> + *             used for historic reasons.
-> + *
-> + * Used by MXL862XX_BRIDGE_ALLOC and MXL862XX_BRIDGE_FREE.
+> +++ b/drivers/thermal/qcom/qcom-spmi-adc-tm5-gen3.c
+> @@ -0,0 +1,512 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
 > + */
-> +struct mxl862xx_bridge_alloc {
-> +	__le16 bridge_id;
-> +} __packed;
+> +
+> +#include <linux/auxiliary_bus.h>
+> +#include <linux/bitfield.h>
+> +#include <linux/bits.h>
+> +#include <linux/cleanup.h>
+> +#include <linux/container_of.h>
+> +#include <linux/device.h>
 
-[ ... ]
+Similar comment to previous.  It's rare we need device.h
+and if a forwards definition of struct device is enough it
+is better to just do that.
 
-> +/**
-> + * struct mxl862xx_bridge_port_alloc - Bridge Port Allocation
-> + * @bridge_port_id: If the bridge port allocation is successful, a valid ID
-> + *                  will be returned in this field. Otherwise, INVALID_HANDLE
-> + *                  is returned. For bridge port free, this field should
-> + *                  contain a valid ID returned by the bridge port allocation.
-> + *
-> + * Used by MXL862XX_BRIDGE_PORT_ALLOC and MXL862XX_BRIDGE_PORT_FREE.
-> + */
-> +struct mxl862xx_bridge_port_alloc {
-> +	__le16 bridge_port_id;
-> +};
+> +#include <linux/device/devres.h>
+> +#include <linux/dev_printk.h>
+> +#include <linux/err.h>
+> +#include <linux/iio/adc/qcom-adc5-gen3-common.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/thermal.h>
+> +#include <linux/types.h>
+> +#include <linux/workqueue.h>
+> +#include <linux/unaligned.h>
+> +
+> +#include "../thermal_hwmon.h"
 
-Is the __packed attribute missing here? The similar struct
-mxl862xx_bridge_alloc has __packed, and both structures have identical
-layout with a single __le16 field. Both are used for firmware
-communication where padding could break the protocol.
-
-[Jakub] please remove the __packed attribute on structs which are
-        naturally packed according to C rules.
-
-> diff --git a/drivers/net/dsa/mxl862xx/mxl862xx.c b/drivers/net/dsa/mxl862xx/mxl862xx.c
-> new file mode 100644
-> index 000000000000..83946b50ea5f
-> --- /dev/null
-> +++ b/drivers/net/dsa/mxl862xx/mxl862xx.c
-
-[ ... ]
-
-> +static void mxl862xx_port_disable(struct dsa_switch *ds, int port)
+> +
+> +static void tm_handler_work(struct work_struct *work)
 > +{
-> +	mxl862xx_port_state(ds, port, false);
+> +	struct adc_tm5_gen3_chip *adc_tm5 = container_of(work, struct adc_tm5_gen3_chip,
+> +							 tm_handler_work);
+> +	int sdam_index = -1;
+> +	u8 tm_status[2] = { };
+> +	u8 buf[16] = { };
+> +
+> +	for (int i = 0; i < adc_tm5->nchannels; i++) {
+
+Not that important but you've been a bit inconsistent on this style
+of putting the loop iterator declaration in the for loop or not.
+You could definitely do it in a few more places.  I didn't comment on those
+because it's a style choice, but consistency is a good idea - hence I'm
+commenting here.
+
+> +		struct adc_tm5_gen3_channel_props *chan_prop = &adc_tm5->chan_props[i];
+> +		int offset = chan_prop->tm_chan_index;
+> +		bool upper_set, lower_set;
+> +		int ret, temp;
+> +		u16 code;
+> +
+> +		scoped_guard(adc5_gen3, adc_tm5) {
+> +			if (chan_prop->sdam_index != sdam_index) {
+> +				sdam_index = chan_prop->sdam_index;
+> +				ret = adc5_gen3_tm_status_check(adc_tm5, sdam_index,
+> +								tm_status, buf);
+> +				if (ret)
+> +					return;
+> +			}
+> +
+> +			upper_set = ((tm_status[0] & BIT(offset)) && chan_prop->high_thr_en);
+> +			lower_set = ((tm_status[1] & BIT(offset)) && chan_prop->low_thr_en);
+> +		}
+> +
+> +		if (!(upper_set || lower_set))
+> +			continue;
+> +
+> +		code = get_unaligned_le16(&buf[2 * offset]);
+> +		dev_dbg(adc_tm5->dev, "ADC_TM threshold code:%#x\n", code);
+> +
+> +		ret = adc5_gen3_therm_code_to_temp(adc_tm5->dev,
+> +						   &chan_prop->common_props,
+> +						   code, &temp);
+> +		if (ret) {
+> +			dev_err(adc_tm5->dev,
+> +				"Invalid temperature reading, ret = %d, code=%#x\n",
+> +				ret, code);
+> +			continue;
+> +		}
+> +
+> +		chan_prop->last_temp = temp;
+> +		chan_prop->last_temp_set = true;
+> +		thermal_zone_device_update(chan_prop->tzd, THERMAL_TRIP_VIOLATED);
+> +	}
 > +}
 
-Should the error return from mxl862xx_port_state() be logged?
+>
 
-The function mxl862xx_port_state() can fail and returns an error code,
-but mxl862xx_port_disable() ignores this return value. While the DSA
-framework defines port_disable as returning void so errors cannot be
-propagated to the caller, silently ignoring errors could leave the port's
-SDMA or FDMA enabled if the API call fails. The function
-mxl862xx_port_fast_age() logs errors when its API call fails.
-
-> +static int mxl862xx_add_single_port_bridge(struct dsa_switch *ds, int port)
+> +static int adc_tm5_register_tzd(struct adc_tm5_gen3_chip *adc_tm5)
 > +{
-> +	struct mxl862xx_bridge_port_config br_port_cfg = {};
-> +	struct dsa_port *dp = dsa_to_port(ds, port);
-> +	struct mxl862xx_bridge_alloc br_alloc = {};
+> +	unsigned int i, channel;
+> +	struct thermal_zone_device *tzd;
 > +	int ret;
 > +
-> +	ret = MXL862XX_API_READ(ds->priv, MXL862XX_BRIDGE_ALLOC, br_alloc);
-> +	if (ret) {
-> +		dev_err(ds->dev, "failed to allocate a bridge for port %d\n", port);
-> +		return ret;
+> +	for (i = 0; i < adc_tm5->nchannels; i++) {
+> +		channel = ADC5_GEN3_V_CHAN(adc_tm5->chan_props[i].common_props);
+> +		tzd = devm_thermal_of_zone_register(adc_tm5->dev, channel,
+> +						    &adc_tm5->chan_props[i],
+> +						    &adc_tm_ops);
+> +
+No blank line here.  Keep the function and the check on it's error tightly
+coupled by not having one.  Slightly improves readability.
+
+> +		if (IS_ERR(tzd)) {
+> +			if (PTR_ERR(tzd) == -ENODEV) {
+> +				dev_warn(adc_tm5->dev,
+> +					 "thermal sensor on channel %d is not used\n",
+> +					 channel);
+
+Why is it a warning?  Seems like maybe they'd sometimes not be used. In which case
+maybe dev_dbg() or dev_info() is more appropriate.
+
+> +				continue;
+> +			}
+> +			return dev_err_probe(adc_tm5->dev, PTR_ERR(tzd),
+> +					     "Error registering TZ zone:%ld for channel:%d\n",
+> +					     PTR_ERR(tzd), channel);
+> +		}
+> +		adc_tm5->chan_props[i].tzd = tzd;
+> +		ret = devm_thermal_add_hwmon_sysfs(adc_tm5->dev, tzd);
+> +		if (ret)
+> +			return ret;
 > +	}
+> +	return 0;
+> +}
 > +
-> +	br_port_cfg.bridge_id = br_alloc.bridge_id;
-> +	br_port_cfg.bridge_port_id = cpu_to_le16(port);
-> +	br_port_cfg.mask = cpu_to_le32(MXL862XX_BRIDGE_PORT_CONFIG_MASK_BRIDGE_ID |
-> +				       MXL862XX_BRIDGE_PORT_CONFIG_MASK_BRIDGE_PORT_MAP |
-> +				       MXL862XX_BRIDGE_PORT_CONFIG_MASK_MC_SRC_MAC_LEARNING |
-> +				       MXL862XX_BRIDGE_PORT_CONFIG_MASK_VLAN_BASED_MAC_LEARNING);
-> +	br_port_cfg.src_mac_learning_disable = true;
-> +	br_port_cfg.vlan_src_mac_vid_enable = false;
-> +	br_port_cfg.vlan_dst_mac_vid_enable = false;
-> +	br_port_cfg.bridge_port_map[0] = cpu_to_le16(BIT(dp->cpu_dp->index));
-
-Can this dereference NULL pointers?
-
-The dsa_to_port() function can return NULL if the port is not found in
-the switch tree. The code stores the result in dp but doesn't check if
-dp is NULL before dereferencing dp->cpu_dp->index.
-
-Looking at include/net/dsa.h, dsa_to_port() returns NULL when the port
-is not found:
-
-    static inline struct dsa_port *dsa_to_port(struct dsa_switch *ds, int p)
-    {
-        struct dsa_switch_tree *dst = ds->dst;
-        struct dsa_port *dp;
-
-        list_for_each_entry(dp, &dst->ports, list)
-            if (dp->ds == ds && dp->index == p)
-                return dp;
-
-        return NULL;
-    }
-
-Additionally, even if dp is non-NULL, dp->cpu_dp could also be NULL if
-the CPU port hasn't been properly assigned during initialization.
-
-> +static int mxl862xx_setup_mdio(struct dsa_switch *ds)
+> +static void adc5_gen3_clear_work(void *data)
 > +{
-> +	struct mxl862xx_priv *priv = ds->priv;
-> +	struct device *dev = ds->dev;
-> +	struct device_node *mdio_np;
-> +	struct mii_bus *bus;
-> +	static int idx;
-> +	int ret;
+> +	struct adc_tm5_gen3_chip *adc_tm5 = data;
 > +
-> +	bus = devm_mdiobus_alloc(dev);
-> +	if (!bus)
-> +		return -ENOMEM;
+> +	cancel_work_sync(&adc_tm5->tm_handler_work);
+> +}
+
 > +
-> +	bus->priv = priv;
-> +	ds->user_mii_bus = bus;
-> +	bus->name = KBUILD_MODNAME "-mii";
-> +	snprintf(bus->id, MII_BUS_ID_SIZE, KBUILD_MODNAME "-%d", idx++);
-
-Can concurrent probes race on the idx variable?
-
-The static int idx is shared across all driver instances and accessed
-without synchronization. If multiple instances of this driver are probed
-concurrently on different CPU cores, they could race on the idx++
-operation potentially leading to duplicate MII bus IDs. MII bus IDs must
-be unique system-wide.
-
-[ ... ]
-
-> +static int mxl862xx_setup_cpu_bridge(struct dsa_switch *ds, int port)
+> +static int adc_tm5_probe(struct auxiliary_device *aux_dev,
+> +			 const struct auxiliary_device_id *id)
 > +{
-> +	struct mxl862xx_bridge_port_config br_port_cfg = {};
-> +	struct mxl862xx_priv *priv = ds->priv;
-> +	u16 bridge_port_map = 0;
-> +	struct dsa_port *dp;
-> +
-> +	/* CPU port bridge setup */
-> +	br_port_cfg.mask = cpu_to_le32(MXL862XX_BRIDGE_PORT_CONFIG_MASK_BRIDGE_PORT_MAP |
-> +				       MXL862XX_BRIDGE_PORT_CONFIG_MASK_MC_SRC_MAC_LEARNING |
-> +				       MXL862XX_BRIDGE_PORT_CONFIG_MASK_VLAN_BASED_MAC_LEARNING);
-> +
-> +	br_port_cfg.bridge_port_id = cpu_to_le16(port);
-> +	br_port_cfg.src_mac_learning_disable = false;
-> +	br_port_cfg.vlan_src_mac_vid_enable = true;
-> +	br_port_cfg.vlan_dst_mac_vid_enable = true;
-> +
-> +	/* include all assigned user ports in the CPU portmap */
-> +	dsa_switch_for_each_user_port(dp, ds) {
-> +		if (dp->cpu_dp->index != port)
-> +			continue;
 
-Can dp->cpu_dp be dereferenced safely here?
+> +	adc5_gen3_register_tm_event_notifier(dev, adctm_event_handler);
+> +
+> +	/*
+> +	 * This is to cancel any instances of tm_handler_work scheduled by
+> +	 * TM interrupt, at the time of module removal.
+> +	 */
+> +
 
-The code dereferences dp->cpu_dp->index without checking if cpu_dp is
-NULL. While the DSA framework should ensure user ports have a CPU port
-assigned during initialization, there is no explicit NULL check. If
-cpu_dp is NULL for any reason such as incomplete initialization or
-configuration error, this will cause a NULL pointer dereference and
-kernel crash.
+Drop this blank line to keep the association between the comment and the call
+it is talking about.
 
-> +	ret = dsa_register_switch(ds);
+> +	ret = devm_add_action(dev, adc5_gen3_clear_work, adc_tm5);
 > +	if (ret)
 > +		return ret;
-
-Is dev_set_drvdata() called too early?
-
-The function calls dev_set_drvdata(dev, ds) before calling
-dsa_register_switch(ds). If dsa_register_switch() fails, the function
-returns the error but leaves the driver data pointing to an unregistered
-switch.
-
-This creates a problem for cleanup paths. The mxl862xx_remove() function
-retrieves the switch with dev_get_drvdata() and calls
-dsa_unregister_switch(ds). If probe failed, ds is not NULL so the check
-passes but the switch was never successfully registered. Similarly,
-mxl862xx_shutdown() could be called and would also operate on an
-unregistered switch. While dsa_switch_shutdown() has a check for
-ds->setup flag that provides some protection, this is fragile and could
-lead to inconsistent state or crashes in error scenarios.
-
-[Jakub] AI is a bit pedantic about leaving the drvdata pointer in place
-        but I guess it's not a bad thing to clean up
--- 
-pw-bot: cr
+> +
+> +	ret = adc_tm5_register_tzd(adc_tm5);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* This is to disable all ADC_TM channels in case of probe failure. */
+> +
+> +	return devm_add_action(dev, adc5_gen3_disable, adc_tm5);
+> +}
 
