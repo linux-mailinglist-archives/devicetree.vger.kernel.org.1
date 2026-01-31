@@ -1,159 +1,215 @@
-Return-Path: <devicetree+bounces-261480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261481-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EJnZLKRlfmkPYQIAu9opvQ
-	(envelope-from <devicetree+bounces-261480-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 21:27:16 +0100
+	id uN0dH8llfmkPYQIAu9opvQ
+	(envelope-from <devicetree+bounces-261481-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 21:27:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 473BDC3E04
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 21:27:16 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D33C1C3E23
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 21:27:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BCADA3019822
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 20:27:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0D30F3031328
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 20:27:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 930D33783CD;
-	Sat, 31 Jan 2026 20:27:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E04773783B6;
+	Sat, 31 Jan 2026 20:27:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u0kQKbDY"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="ZyqFDnDI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 701333783B6;
-	Sat, 31 Jan 2026 20:27:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B97F4378800
+	for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 20:27:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769891227; cv=none; b=mJzXyMkDTnuPQr9C5eSHcIKann+jBJrWfyh/8F1QPJC/6AfXuuRhomu1CNO/kZ2XxRRWCaXrSCLGMRbGNWTAs3ttro545TsiT/YE5x44M0BTOCOOoklqOl/O4kFMlBlviCzsvatozzt/ZmlX3i5gPqFRqr3Ih6GaJEvh4HzwKoM=
+	t=1769891249; cv=none; b=ayctDBi+DUq4Ee8t8/95BtQDT1+vnH06izWn5uxijdAkjzvPfCT/Qkkswbl8t9ZrPeasuB77GM8u2HV2bZkO1QpVzH8yAYyONvdcah5vgIpAu+kwM8ubS7oWZy7HA/6woV8oyiaSnRGCzvkvR5GSwTDBu708YlYRQYxTDA9TSDw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769891227; c=relaxed/simple;
-	bh=CDgRm36EUq0CocOGCQ7R89LdOQTptLSRwd5aeLsc1EU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=E2ysMwEi7d0YtJd6GNK1JPIim7cjfRNWpfvAybgUQS9hn/sxAKWsEYENWpPzGFmCbsZWuETEoK6TKPnTHlQ4ofG1J7NFziJzumn4ENLo9BuhJbGeprISvoVGCbktRTJz5QFgKMtxwW/qA84bM2TzCaT6wldhVjn8xjO0zdraGL4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u0kQKbDY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 733AFC4CEF1;
-	Sat, 31 Jan 2026 20:27:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769891227;
-	bh=CDgRm36EUq0CocOGCQ7R89LdOQTptLSRwd5aeLsc1EU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=u0kQKbDYGrDVBRlFazJMrJWhLC5iULxzrDsVeiYiPveT1T/CJ1rVIvZkjF3tOsas4
-	 Y1gCXqBgPqjVTcgj5RgGcjKhSGfAAq13o6uQQbAkIIuId+Hzi9O8oJs+v4sFV0S0/r
-	 Nws2wUkB9BXO/Mpb8yfEMpec8tkOc8Vpulfl20XdoimdiER8bWqrkvjLQkZ5NTJv+3
-	 N7LjOX82T47VPJUO1Rp5YUt2KBinhpKwC1Dfxh+dkxNezsak9AYPWTElcLMUfChEGo
-	 5dsKlDy0+dXZLRPQoLl9TUMP/RWfeu24/ax2eSJ+gAoXFPwv95BYNl9MiBzH8/qd9L
-	 q+gYkWuCEM9Xw==
-Date: Sat, 31 Jan 2026 20:27:03 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Dinh Nguyen <dinguyen@kernel.org>
-Cc: Eugeniy.Paltsev@synopsys.com, vkoul@kernel.org,
-	dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Khairul Anuar Romli <khairul.anuar.romli@altera.com>,
-	Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: dma: snps,dw-axi-dmac: add dma-coherent
- property
-Message-ID: <20260131-subtly-education-e13320fe0486@spud>
-References: <20260131172856.29227-1-dinguyen@kernel.org>
+	s=arc-20240116; t=1769891249; c=relaxed/simple;
+	bh=AIsfOhCphNVI+fCpooB40Ru5I9dGDZ/0vMKr2BxkakY=;
+	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
+	 Message-ID:Subject; b=r+nQf5UaLMx33+k4lBgI0rkdOy07r3/OMFHrWhC2A+/OVAguzTQAzIs74WiuZYrY0iP0kzvvgzVTI7ZKX/4sMP/UE9Ihpv7SseWaKVGNc7j2VG5DqRu8G7UDuuDQIrDuSW+pyVldM3JFTOWgafkKMPNzu/ocF0oB7E0pKJoDZ08=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=ZyqFDnDI; arc=none smtp.client-ip=142.132.176.110
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id 855EA41C15;
+	Sat, 31 Jan 2026 21:27:13 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
+	t=1769891239; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=rGwHSkJZn2IHtl0VYuWdb593LJsaVvLLi0zc9pE7w4M=;
+	b=ZyqFDnDImliBIsUp4VykZflufnaQHVYRGy/rqwfzoKWPcQyhQFcSnPflhjZRJQFnKhJacu
+	YSOLR8EPflWQM7jcPniJUdaj7UMm6vNDrDJHz/s3u/9gD2tKGa9S1tpKiHjUEqt/sIiAGc
+	Eebkdhib4q0FS0TWnpHeZPjo3nopjTtje9Bzuv+AmWyLHiAwO01X9GHI08Wmb0g08NszXB
+	DF7WGRS5R6EVu4AVK5HO/BpM8jlCD3VuoSECH7ce670CtP9oZQLKL7ppkPrzhbAAwtWEjl
+	wau7sAQs0r+72mhm+aTXwXN6xJmZDU3P2qe3gxD4pMOX7AHSp31pRMVUTOXbrw==
+From: "Dragan Simic" <dsimic@manjaro.org>
+In-Reply-To: <20260131153106.31723-4-jerrysteve1101@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+References: <20260131153106.31723-1-jerrysteve1101@gmail.com> <20260131153106.31723-4-jerrysteve1101@gmail.com>
+Date: Sat, 31 Jan 2026 21:27:13 +0100
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de, alchark@gmail.com
+To: "Jun Yan" <jerrysteve1101@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Rp3BASSQTT0TeGSl"
-Content-Disposition: inline
-In-Reply-To: <20260131172856.29227-1-dinguyen@kernel.org>
+Message-ID: <d2005c66-536c-8c0c-658a-fb6ed7b5f3c6@manjaro.org>
+Subject: =?utf-8?q?Re=3A?= [PATCH 3/3] =?utf-8?q?arm64=3A?==?utf-8?q?_dts=3A?=
+ =?utf-8?q?_rockchip=3A?= Add OneThing Edge Cube series
+User-Agent: SOGoMail 5.12.3
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: None
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-3.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [0.54 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	SUBJ_EXCESS_QP(1.20)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[manjaro.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[manjaro.org:s=dkim];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261480-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-261481-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,kernel.org,sntech.de,gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	NEURAL_HAM(-0.00)[-1.000];
+	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dsimic@manjaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[manjaro.org:+];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,altera.com:email]
-X-Rspamd-Queue-Id: 473BDC3E04
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D33C1C3E23
 X-Rspamd-Action: no action
 
+Hello Jun,
 
---Rp3BASSQTT0TeGSl
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Please, see a quick remark below, for now.
 
-On Sat, Jan 31, 2026 at 11:28:56AM -0600, Dinh Nguyen wrote:
-> From: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
+On Saturday, January 31, 2026 16:31 CET, Jun Yan <jerrysteve1101@gmail.=
+com> wrote:
+> The OneThing Edge Cube (OEC) series features the RK3566 SoC, 8GB
+> eMMC storage, and supports one SATA interface, one Gigabit Ethernet
+> port, and one USB 3.0 port.
 >=20
-> The Synopsys DesignWare AXI DMA Controller on Agilex5, the controller
-> operates on a cache-coherent AXI interface, where DMA transactions are
-> automatically kept coherent with the CPU caches. In previous generations
-> SoC (Stratix10 and Agilex) the interconnect was non-coherent, hence there
-> is no need for dma-coherent property to be presence. In Agilex 5, the
-> architecture has changed. It  introduced a coherent interconnect that
-> supports cache-coherent DMA.
+> Other than the difference in RAM capacity, the OEC and OEC-turbo are
+> identical in all other specifications.
 >=20
-> Signed-off-by: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-
-Why does this v1 have an ack?
-
-> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+>   Specification:
+>     - Rockchip RK3566
+>     - LPDDR4X 2GB (OEC) / 4GB (OEC-turbo)
+>     - eMMC 8GB
+>     - Gigabit Ethernet port x 1
+>     - USB 3.0 port x 1
+>     - USB-C 2.0 port x 1
+>     - 12V DC Power supply
+>     - SATA 3.0 connector x 1
+>=20
+> Signed-off-by: Jun Yan <jerrysteve1101@gmail.com>
 > ---
->  Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  arch/arm64/boot/dts/rockchip/Makefile         |   2 +
+>  .../rockchip/rk3566-onething-oec-turbo.dts    |  10 +
+>  .../boot/dts/rockchip/rk3566-onething-oec.dts |  10 +
+>  .../dts/rockchip/rk3566-onething-oec.dtsi     | 309 ++++++++++++++++=
+++
+>  4 files changed, 331 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-onething-oec-=
+turbo.dts
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-onething-oec.=
+dts
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-onething-oec.=
+dtsi
 >=20
-> diff --git a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml =
-b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-> index 216cda21c538..e12a48a12ea4 100644
-> --- a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-> +++ b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-> @@ -68,6 +68,8 @@ properties:
-> =20
->    dma-noncoherent: true
-> =20
-> +  dma-coherent: true
+> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/=
+dts/rockchip/Makefile
+> index 4d384f153c13..ec57719e4573 100644
+> --- a/arch/arm64/boot/dts/rockchip/Makefile
+> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> @@ -104,6 +104,8 @@ dtb-$(CONFIG=5FARCH=5FROCKCHIP) +=3D rk3566-anber=
+nic-rg353v.dtb
+>  dtb-$(CONFIG=5FARCH=5FROCKCHIP) +=3D rk3566-anbernic-rg353vs.dtb
+>  dtb-$(CONFIG=5FARCH=5FROCKCHIP) +=3D rk3566-anbernic-rg503.dtb
+>  dtb-$(CONFIG=5FARCH=5FROCKCHIP) +=3D rk3566-odroid-m1s.dtb
+> +dtb-$(CONFIG=5FARCH=5FROCKCHIP) +=3D rk3566-onething-oec.dtb
+> +dtb-$(CONFIG=5FARCH=5FROCKCHIP) +=3D rk3566-onething-oec-turbo.dtb
+>  dtb-$(CONFIG=5FARCH=5FROCKCHIP) +=3D rk3566-orangepi-3b-v1.1.dtb
+>  dtb-$(CONFIG=5FARCH=5FROCKCHIP) +=3D rk3566-orangepi-3b-v2.1.dtb
+>  dtb-$(CONFIG=5FARCH=5FROCKCHIP) +=3D rk3566-pinenote-v1.1.dtb
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-onething-oec-turbo.d=
+ts b/arch/arm64/boot/dts/rockchip/rk3566-onething-oec-turbo.dts
+> new file mode 100644
+> index 000000000000..16d0cd0cf577
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3566-onething-oec-turbo.dts
+> @@ -0,0 +1,10 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 > +
->    resets:
->      minItems: 1
->      maxItems: 2
-> --=20
-> 2.42.0.411.g813d9a9188
->=20
->=20
+> +/dts-v1/;
+> +
+> +#include "rk3566-onething-oec.dtsi"
+> +
+> +/ {
+> +	model =3D "OneThing OEC-turbo";
+> +	compatible =3D "onething,oec-turbo", "rockchip,rk3566";
+> +};
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-onething-oec.dts b/a=
+rch/arm64/boot/dts/rockchip/rk3566-onething-oec.dts
+> new file mode 100644
+> index 000000000000..81da771ad63d
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3566-onething-oec.dts
+> @@ -0,0 +1,10 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +
+> +/dts-v1/;
+> +
+> +#include "rk3566-onething-oec.dtsi"
+> +
+> +/ {
+> +	model =3D "OneThing OEC";
+> +	compatible =3D "onething,oec", "rockchip,rk3566";
+> +};
 
---Rp3BASSQTT0TeGSl
-Content-Type: application/pgp-signature; name="signature.asc"
+The only difference between the two OneThing OEC board variants is, as
+far as I can tell, the amount of LPDDR4X DRAM they have, so I don't thi=
+nk
+it's justified to have two separate board dts files that descend from t=
+he
+common dtsi ancestor.
 
------BEGIN PGP SIGNATURE-----
+Having different amounts of DRAM on the same board design is present on
+virtually all boards from other manufacturers, and some kind of special
+DT treatment is needed only in some special cases, such as when differe=
+nt
+types of DRAM are used for different capacities.
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaX5llwAKCRB4tDGHoIJi
-0uMZAQCg7i9k1xXsciMd67gAFFDYk07DED/QWtRml7eJWCvTowD9FCpalgSSpWhV
-EM1OuiWi8G0wRBa41pTDW/QLzeAn6wg=
-=aA6T
------END PGP SIGNATURE-----
+The different naming of the two board variants could be solved by havin=
+g
+something like this is the single board dts file:
 
---Rp3BASSQTT0TeGSl--
+  model =3D "OneThing OEC/OEC-turbo";
+
+Having two separate board dts files only makes it harder down the road,
+such as having to build and provide two separate U-Boot builds, with no
+real benefits.  Every user can run free(1) to check the amount of avail=
+able
+DRAM on their board, which also tells them the board variant.
+
 
