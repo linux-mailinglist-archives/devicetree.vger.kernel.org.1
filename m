@@ -1,79 +1,121 @@
-Return-Path: <devicetree+bounces-261419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261420-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sOhYHVjgfWnRUAIAu9opvQ
-	(envelope-from <devicetree+bounces-261419-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 11:58:32 +0100
+	id WDnhLYzjfWkgUQIAu9opvQ
+	(envelope-from <devicetree+bounces-261420-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 12:12:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C68BFC1A3B
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 11:58:31 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2B76C1AB9
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 12:12:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AE761300CC24
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 10:57:37 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4F9833002526
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 11:12:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0B5431ED88;
-	Sat, 31 Jan 2026 10:57:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 415622EC541;
+	Sat, 31 Jan 2026 11:12:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jU4YbmkQ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="QSBQ51Wl";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="J3wZQybZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14BFF25D216;
-	Sat, 31 Jan 2026 10:57:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B312C26B95B
+	for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 11:12:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769857056; cv=none; b=kYN9BgxeE5MWMxzdIbm+cO9+/mIsUf5H0FbOJblNK3KFYphpvsRCGzYKpZgNgsvVAaY/SkI/Je0RJYxGbgQVlSpLeDrUKUZB8j6haqNEu/BPW/A7DU4S/M4cOIoixRPxPiNZT1eICW24APfkHBaenFO51pfHPctszezqF3Kouhw=
+	t=1769857927; cv=none; b=NYLdZD04A90O4OZTS+FWDMob5xAjYwadPwYzdxrVq6fLBpKBc6zZuGjhz1UOw2oPgpfOIrJTWY7ekN1ccrOMhQMIKugYxvExmm8YRHlDWyWDvk4sud0YhH/evXfKpdLLrvIHmCjYMgH2tsc22iDpSg60H2ZpyUo/U95nn0FDHs0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769857056; c=relaxed/simple;
-	bh=3ctKiyNg4ambyWt7fnVocvftWSiDr2Re2IDPMzawjaA=;
+	s=arc-20240116; t=1769857927; c=relaxed/simple;
+	bh=hEGQeJLc9snxgQZrvlOkd2u1HNhX5oDOZXveo7AXrPs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZK+I9xqI6gn9/uUelJRAmYdJooa/rwpKVv7+HpiF6Yss4jhBb6CyC8sCfyqeVdtmFqxXX5Y22c4qVtJqywZ+BhioXCBQPERzhZLC/2bYhlPElo5NmoIYdVIAIVNFnQgdme3s29FsoGYTLrOa/D8UMTikJmM6OIZDMpbWyw8aOK0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jU4YbmkQ; arc=none smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1769857056; x=1801393056;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=3ctKiyNg4ambyWt7fnVocvftWSiDr2Re2IDPMzawjaA=;
-  b=jU4YbmkQByfX9OvjMZB8JWUSC+5oyYfuHZ71KMNP3TgugPNkGPwVmR1p
-   Ru9AIejBu9TwZIVHwMOcHc5ScT0mQf1TrgUGs/K3EnxddoKZAUHq3TGWx
-   t5kiqyfQAxVUHpxr0MmO/Hpucj1OP10o8B305NbRZgIO5+6gNkvTVsfIr
-   GXprBxRn47XQCe36FqQY1TlcyJMriAk/cVGF75GLF/oXRoM/sZrKRSyVa
-   MRkAJYwKi9KA7FuNoRds5pgUfLfjSYHriygv54Y5Eq19qIe2IXP2DKfpg
-   1pgtSJtFj9GQs4TgRaTadFqzvGtIdtWgvOOOnD1Zw9SM7NU9l7x7rG5d7
-   A==;
-X-CSE-ConnectionGUID: 6DAn7/s2SVSYi6fTaZOe6g==
-X-CSE-MsgGUID: LjfIxkGmSHKUyRkRF3EXQQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11687"; a="71003727"
-X-IronPort-AV: E=Sophos;i="6.21,264,1763452800"; 
-   d="scan'208";a="71003727"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Jan 2026 02:57:35 -0800
-X-CSE-ConnectionGUID: 7OLvNaPdQF+ihKc+/98WBQ==
-X-CSE-MsgGUID: uxRy37pdR1S6Od9dDDT+CA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,264,1763452800"; 
-   d="scan'208";a="213964787"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.244.97])
-  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Jan 2026 02:57:31 -0800
-Date: Sat, 31 Jan 2026 12:57:29 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: abdurrahman@nexthop.ai, Michal Simek <michal.simek@amd.com>,
-	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 0/6] i2c: xiic: use generic device property accessors
-Message-ID: <aX3gGYnBnA8otdMr@smile.fi.intel.com>
-References: <20260129-i2c-xiic-v7-0-727e434897ef@nexthop.ai>
- <ec8693a4-e982-4227-9558-0b1fac543e62@lunn.ch>
+	 Content-Type:Content-Disposition:In-Reply-To; b=NFm09EAAJS+rOFAAJ8a4MoM+hVPxUHG2uVEcBi76zOElrUvUaMP+tH86VOKrbyOlBRXUJtwOMfUM2d9bni0+6K7/9EJpsBakKujG2aGXW1o24I7xsdmqErkyGPSQemb0dsLLSuliV/m+l8Vi8OYWyw2JkkPpkPRMkDk/8/0EWzM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=QSBQ51Wl; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=J3wZQybZ; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60V4Sqf03956224
+	for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 11:12:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=OoZ8n+DyPxsq2VPklZMA/BOv
+	eui80D5NC/TA0egNhEU=; b=QSBQ51Wlr5tmJDn1xAYzBXtat/18Ievd/Df9C6Bv
+	5npFlt7E+91F/wR34qfNS4Df0OCRI40vzSzPQbDI58VeVEqAhf5NJc3yQrhJ1AsX
+	XzfBsvQaQ12I4LooLY89+4FolmZgwmK/jKrd9DSFsoFFwHHQ78NEZw/vXPJ042jC
+	yHs3t0ujp3xFm5l2HSiRnwd9FWpEYa4Xm3WfSj4z9la6kyMg9Y391JrrtkAw3aKm
+	97ITA1nf2IMTVnOXZoSrJ2e/boc2YutEUhi0UVL5Y5PJ4iTXfvF/vj+w747/vgzr
+	ERWQ9p1uT+LlWTzeRL5sOATVSLKhBf8DH6wDgxtQq+38FA==
+Received: from mail-vs1-f70.google.com (mail-vs1-f70.google.com [209.85.217.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c1are8nx5-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 11:12:04 +0000 (GMT)
+Received: by mail-vs1-f70.google.com with SMTP id ada2fe7eead31-5f8e001165eso1960661137.0
+        for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 03:12:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1769857924; x=1770462724; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=OoZ8n+DyPxsq2VPklZMA/BOveui80D5NC/TA0egNhEU=;
+        b=J3wZQybZf89+7mzQDSpsA/6NtxkyfHALjZwY04dt5QqCrgwL9eTDWOu3sjFAfI1vtd
+         KXMSm0LH4rap8rw8kXR72wZ5K4U4VwmLrPjsxpKvJm/FXdC0ypYyZjtqcfgp81/EMhUD
+         moYab5w5g02cPT1P2HJkV4jiCnKYMLf559GiH9GDCMgDzQISCox1/6nxS9I9aUhqpffC
+         APQMzMlGurDg+H3OhsfYheWfwsgpwCFXKW2B7hC5H2+pfZZu5GQk8PlyiN599EhMp92y
+         SRGu1jHIlvZuQgXtxhz7rRxXfeDI/fd2K72JTb0yApBHOgYnn6xyHyow89Xi2BQ7WPOg
+         YH0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769857924; x=1770462724;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=OoZ8n+DyPxsq2VPklZMA/BOveui80D5NC/TA0egNhEU=;
+        b=lL4P531L2PpIZA9dExQ19n2vFtskzs27ztHJoynzXcZRnRQtveP+0lZOHNHS014e/g
+         Sx3beIrjWcSG1B+Y6sS69UzbZ9fXwQxO0JnptIpQ44E40fc1gbLbTyHLPwdiVTKnWmA+
+         kVWcei7iFqBbQtGTBRkUFy1f1Kc0RpAr5ptQ8hKpyI8r99iXxpwxm7EbJ1k6Zk1EEtt/
+         OZMJwDbJyhzBT/sU5CpNxhTmumTsBqlx7NK8irnnApxuM/hPbjyYX79AIH7PgKndjAYE
+         IFdgwHXmDl+4hQoxo5cXXI0AZ1gLBdfG0WuJvkqwsEYxg1AUNrDDbkcPXLHEphQ0JVFj
+         0Z8g==
+X-Forwarded-Encrypted: i=1; AJvYcCXIM2Xt3UwbBpaEhqL0DdLL2VFcn++0roA0u+SzOA9hezHJTM/WNVOJ//EIQ2P/GSPXeG/+niYO8Azu@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz9GlTQIY3KxchRbGt1jCiLb3z8N6zCPu3Ryvk4siYZZxz6GptN
+	f6SfbfZXy6qqzg+W4CdgLgGmP9QhBd72GiDzhGokagkpeKLcQiJisgarDMjZ/TorJ37XFiEDAdJ
+	K5H7i4Q4zzM0aYiHhlTPAlHGChqKVhTSOGAUPh61BjFK16LzgfB6WKc889Wpvt+Q3
+X-Gm-Gg: AZuq6aLz3ERWhXKLomc3fw8euyvf6ONUCdlmDsNA3XO28DuMPm4CUpB1Y+1wl0gGP/i
+	kEXktyhSLAXAErwda3GKwNOD2bjAu2+YLasqsgNApraIaLNLI3hR3Ryo7/W5uy965kWnx4cG+bH
+	6hNSiHtiY1WItd5H7KNvCXZ8N6A6VuloQ+AvdKuumDmiH3Y4FulSw+LNPj3hZsh5yeOLmKAqP28
+	o7PxgsEcmd5kNNtIjQtult6v1++5MRipJntqzw8cy46Bjw5za85cJnfn9qmPx8kspk8EohVuJop
+	IW9wpDlvHiqyVmasGvE1Zh9gUAW2xVqHERZtfrms0q0koG6V1+4lrJN2lYiB1qh3BVVerzzxQ1b
+	1zDjGANimCldH3XuC9pjd5170UomcPc8XqqK/qpiIyI43mKgvYmxc4begXTO/1s1y5QUAIHViin
+	wjefUlaZQZjq6gcJS5ckKURZM=
+X-Received: by 2002:a05:6102:a48:b0:5de:93bb:c53f with SMTP id ada2fe7eead31-5f8e26024damr1588869137.25.1769857923748;
+        Sat, 31 Jan 2026 03:12:03 -0800 (PST)
+X-Received: by 2002:a05:6102:a48:b0:5de:93bb:c53f with SMTP id ada2fe7eead31-5f8e26024damr1588862137.25.1769857923275;
+        Sat, 31 Jan 2026 03:12:03 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59e074bc9b0sm2320056e87.91.2026.01.31.03.12.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 31 Jan 2026 03:12:02 -0800 (PST)
+Date: Sat, 31 Jan 2026 13:12:00 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>
+Cc: Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Bryan O'Donoghue <bod@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Stanimir Varbanov <stanimir.varbanov@linaro.org>,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v3 4/4] media: qcom: venus: flip the venus/iris switch
+Message-ID: <le6ji6czj7z7z4tfyzrjjr2yei6cf6ilj45poi5gccj7fpocmm@gbbb6t5lw5yb>
+References: <20260127-venus-iris-flip-switch-v3-0-7f37689f4b39@oss.qualcomm.com>
+ <20260127-venus-iris-flip-switch-v3-4-7f37689f4b39@oss.qualcomm.com>
+ <4257fb6f-280d-1866-b531-c25efe155d04@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,55 +124,212 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ec8693a4-e982-4227-9558-0b1fac543e62@lunn.ch>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+In-Reply-To: <4257fb6f-280d-1866-b531-c25efe155d04@oss.qualcomm.com>
+X-Authority-Analysis: v=2.4 cv=NNfYOk6g c=1 sm=1 tr=0 ts=697de384 cx=c_pps
+ a=N1BjEkVkxJi3uNfLdpvX3g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=mVD6tqMxNuARRlaT7CQA:9 a=CjuIK1q_8ugA:10
+ a=crWF4MFLhNY0qMRaF8an:22
+X-Proofpoint-GUID: F6K4YeQYoSONrjNfCFmOrLP9dS1oM9wj
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTMxMDA5MyBTYWx0ZWRfX6/WfUrzrdDVj
+ 1OONqPZNSaw4VSZNncANP//PvjiLKg6uCQI5EftBIyFZmqS91ZA/6TXSDys8QX8x5nFxVdN2Wlp
+ oyK3djyuIUhfv54RuzY7O/TsHKqqNPVvd8E+f4es29zjJPzId1p3sd0L77j0+AN4i9EtVQwFFs0
+ AYlU0EV2xFMTmoNmtSK3kLYZHAwnaq9ADa5rYbYJ/xXPgFuqE/BJrjrHwLgmZ24QOET2sAcEIFv
+ S948jEMa307zY0mZkYdnybtfYkkInJ2e6Dne9wsB0EEk1GBmpNnBtOwmqdNNjLgWnewsoJ5IMcp
+ YQRVDDnt/juWd0cAhzPiifkUn/lVmKiV8jmmeI9+f1sUh9M1F4vRUgRQ2lL6+O7/1+CKEZl6/wW
+ sfHsyql9RtfnR6mUD3VynkQNwdApPG5b8jV/BYnrOjxPBKmTOuakEQ4lRhr86ffIUHHCJK/B+2c
+ mA2TD00YxRR6HXV3cUg==
+X-Proofpoint-ORIG-GUID: F6K4YeQYoSONrjNfCFmOrLP9dS1oM9wj
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-01-31_01,2026-01-30_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 lowpriorityscore=0 adultscore=0 priorityscore=1501
+ clxscore=1015 suspectscore=0 spamscore=0 phishscore=0 bulkscore=0
+ malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
+ definitions=main-2601310093
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-261419-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261420-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim,0.0.0.30:email,oss.qualcomm.com:dkim];
 	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim]
-X-Rspamd-Queue-Id: C68BFC1A3B
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: E2B76C1AB9
 X-Rspamd-Action: no action
 
-On Thu, Jan 29, 2026 at 11:36:20PM +0100, Andrew Lunn wrote:
-> > Skip clock setup on non-OF systems where clock cannot be provided.
+On Thu, Jan 29, 2026 at 11:20:06AM +0530, Dikshita Agarwal wrote:
 > 
-> I think 'cannot' is wrong here. Non-OF system technically could
-> provide a clock, using whatever binding method they use. Not having a
-> clock simply appears to be a limitation of your implementation.
+> 
+> On 1/27/2026 5:53 PM, Dmitry Baryshkov wrote:
+> > With the Iris and Venus driver having more or less feature parity for
+> > "HFI 6xx" platforms and with Iris gaining support for SC7280, flip the
+> > switch. Use Iris by default for SM8250 and SC7280, the platforms which
+> > are supported by both drivers, and use Venus only if Iris is not
+> > compiled at all. Use IS_ENABLED to strip out the code and data
+> > structures which are used by the disabled platforms.
+> > 
+> > Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> > ---
+> >  drivers/media/platform/qcom/iris/iris_probe.c |  2 --
+> >  drivers/media/platform/qcom/venus/core.c      |  6 ++++++
+> >  drivers/media/platform/qcom/venus/core.h      | 11 +++++++++++
+> >  3 files changed, 17 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/media/platform/qcom/iris/iris_probe.c b/drivers/media/platform/qcom/iris/iris_probe.c
+> > index ddaacda523ec..7b612ad37e4f 100644
+> > --- a/drivers/media/platform/qcom/iris/iris_probe.c
+> > +++ b/drivers/media/platform/qcom/iris/iris_probe.c
+> > @@ -352,7 +352,6 @@ static const struct of_device_id iris_dt_match[] = {
+> >  		.compatible = "qcom,qcs8300-iris",
+> >  		.data = &qcs8300_data,
+> >  	},
+> > -#if (!IS_ENABLED(CONFIG_VIDEO_QCOM_VENUS))
+> >  	{
+> >  		.compatible = "qcom,sc7280-venus",
+> >  		.data = &sc7280_data,
+> > @@ -361,7 +360,6 @@ static const struct of_device_id iris_dt_match[] = {
+> >  		.compatible = "qcom,sm8250-venus",
+> >  		.data = &sm8250_data,
+> >  	},
+> > -#endif
+> >  	{
+> >  		.compatible = "qcom,sm8550-iris",
+> >  		.data = &sm8550_data,
+> > diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
+> > index 24d2b2fd0340..646dae3407b4 100644
+> > --- a/drivers/media/platform/qcom/venus/core.c
+> > +++ b/drivers/media/platform/qcom/venus/core.c
+> > @@ -949,6 +949,7 @@ static const struct venus_resources sc7180_res = {
+> >  	.enc_nodename = "video-encoder",
+> >  };
+> >  
+> > +#if (!IS_ENABLED(CONFIG_VIDEO_QCOM_IRIS))
+> >  static const struct freq_tbl sm8250_freq_table[] = {
+> >  	{ 0, 444000000 },
+> >  	{ 0, 366000000 },
+> > @@ -1069,6 +1070,7 @@ static const struct venus_resources sc7280_res = {
+> >  	.dec_nodename = "video-decoder",
+> >  	.enc_nodename = "video-encoder",
+> >  };
+> > +#endif
+> >  
+> >  static const struct bw_tbl qcm2290_bw_table_dec[] = {
+> >  	{ 352800, 597000, 0, 746000, 0 }, /* 1080p@30 + 720p@30 */
+> > @@ -1125,11 +1127,15 @@ static const struct of_device_id venus_dt_match[] = {
+> >  	{ .compatible = "qcom,msm8998-venus", .data = &msm8998_res, },
+> >  	{ .compatible = "qcom,qcm2290-venus", .data = &qcm2290_res, },
+> >  	{ .compatible = "qcom,sc7180-venus", .data = &sc7180_res, },
+> > +#if (!IS_ENABLED(CONFIG_VIDEO_QCOM_IRIS))
+> >  	{ .compatible = "qcom,sc7280-venus", .data = &sc7280_res, },
+> > +#endif
+> >  	{ .compatible = "qcom,sdm660-venus", .data = &sdm660_res, },
+> >  	{ .compatible = "qcom,sdm845-venus", .data = &sdm845_res, },
+> >  	{ .compatible = "qcom,sdm845-venus-v2", .data = &sdm845_res_v2, },
+> > +#if (!IS_ENABLED(CONFIG_VIDEO_QCOM_IRIS))
+> >  	{ .compatible = "qcom,sm8250-venus", .data = &sm8250_res, },
+> > +#endif
+> >  	{ }
+> >  };
+> >  MODULE_DEVICE_TABLE(of, venus_dt_match);
+> > diff --git a/drivers/media/platform/qcom/venus/core.h b/drivers/media/platform/qcom/venus/core.h
+> > index 7506f5d0f609..c7acacaa53b8 100644
+> > --- a/drivers/media/platform/qcom/venus/core.h
+> > +++ b/drivers/media/platform/qcom/venus/core.h
+> > @@ -54,8 +54,10 @@ enum vpu_version {
+> >  	VPU_VERSION_AR50,
+> >  	VPU_VERSION_AR50_LITE,
+> >  	VPU_VERSION_IRIS1,
+> > +#if (!IS_ENABLED(CONFIG_VIDEO_QCOM_IRIS))
+> >  	VPU_VERSION_IRIS2,
+> >  	VPU_VERSION_IRIS2_1,
+> > +#endif
+> >  };
+> >  
+> >  struct firmware_version {
+> > @@ -525,13 +527,22 @@ struct venus_inst {
+> >  #define IS_V1(core)	((core)->res->hfi_version == HFI_VERSION_1XX)
+> >  #define IS_V3(core)	((core)->res->hfi_version == HFI_VERSION_3XX)
+> >  #define IS_V4(core)	((core)->res->hfi_version == HFI_VERSION_4XX)
+> > +#if (!IS_ENABLED(CONFIG_VIDEO_QCOM_IRIS))
+> >  #define IS_V6(core)	((core)->res->hfi_version == HFI_VERSION_6XX)
+> > +#else
+> > +#define IS_V6(core)	(0)
+> > +#endif
+> >  
+> >  #define IS_AR50(core)		((core)->res->vpu_version == VPU_VERSION_AR50)
+> >  #define IS_AR50_LITE(core)	((core)->res->vpu_version == VPU_VERSION_AR50_LITE)
+> >  #define IS_IRIS1(core)		((core)->res->vpu_version == VPU_VERSION_IRIS1)
+> > +#if (!IS_ENABLED(CONFIG_VIDEO_QCOM_IRIS))
+> >  #define IS_IRIS2(core)		((core)->res->vpu_version == VPU_VERSION_IRIS2)
+> >  #define IS_IRIS2_1(core)	((core)->res->vpu_version == VPU_VERSION_IRIS2_1)
+> > +#else
+> > +#define IS_IRIS2(core)		(0)
+> > +#define IS_IRIS2_1(core)	(0)
+> > +#endif
+> >  
+> >  static inline bool is_lite(struct venus_core *core)
+> >  {
+> > 
+> 
+> compilation fails with this change.
+> ERROR: modpost: "sm8250_data"
+> [drivers/media/platform/qcom/iris/qcom-iris.ko] undefined!
+> ERROR: modpost: "sc7280_data"
+> [drivers/media/platform/qcom/iris/qcom-iris.ko] undefined!
+> 
+> to fix this:
+> ==============================================
+> --- a/drivers/media/platform/qcom/iris/Makefile
+> +++ b/drivers/media/platform/qcom/iris/Makefile
+> @@ -10,6 +10,7 @@ qcom-iris-objs += iris_buffer.o \
+>               iris_hfi_gen2_packet.o \
+>               iris_hfi_gen2_response.o \
+>               iris_hfi_queue.o \
+> +             iris_platform_gen1.o \
+>               iris_platform_gen2.o \
+>               iris_power.o \
+>               iris_probe.o \
+> @@ -26,8 +27,4 @@ qcom-iris-objs += iris_buffer.o \
+>               iris_vpu_buffer.o \
+>               iris_vpu_common.o \
+> 
+> -ifeq ($(CONFIG_VIDEO_QCOM_VENUS),)
+> -qcom-iris-objs += iris_platform_gen1.o
+> -endif
+> -
+>  obj-$(CONFIG_VIDEO_QCOM_IRIS) += qcom-iris.o
+> 
+> ==================================================
 
-Abdurrahman, can you rebase the series to move DT and clock changes to be the
-last in it? This way we can move forward with the cleanups that have no
-objections.
+Argh, this was a part of the other series (the sc8280xp) and it got lost
+in rebase to next/master.
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+With best wishes
+Dmitry
 
