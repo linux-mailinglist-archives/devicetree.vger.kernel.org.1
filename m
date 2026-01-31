@@ -1,40 +1,40 @@
-Return-Path: <devicetree+bounces-261493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261490-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uMQXOZF2fmlgZQIAu9opvQ
-	(envelope-from <devicetree+bounces-261493-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 22:39:29 +0100
+	id SB3ADGt2fmlZZQIAu9opvQ
+	(envelope-from <devicetree+bounces-261490-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 22:38:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86C99C4087
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 22:39:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17C57C4063
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 22:38:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CB8613045C20
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 21:38:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 96917301E202
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 21:38:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9A0437AA62;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B91D3793C9;
 	Sat, 31 Jan 2026 21:38:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
 	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BE55367F29;
-	Sat, 31 Jan 2026 21:38:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48F2037648E;
+	Sat, 31 Jan 2026 21:38:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769895520; cv=none; b=MyUCYr4xeD6W45WuwZqP0oZkxQBq607AgGsPtOeAwP2JF+OLhlvgLygFNN9HtQ3M7b2Va8n8TysJSyxCuAzaDZ/t+x+937qKzGGc1N6e3lNcdBh5yyV4f9zG4vyWo7EjqEgQsb+NUaIScwLOTiFukDVxdeJ8rRxto9/W+iOnTok=
+	t=1769895520; cv=none; b=tlTSYLGhoikdN603PwpifH/QCqaRxU715LocV1GxFun5b3JrEX68oq2NNMjRZB77W4ipm0ot2krqhmhgVunPKm6tu5jaei6ta7VuqltLLw3LAnSqu+XTWMFJk1XWs45kyAQu0ZZO2IkbkRMWJc1DLDLzPxhl9pV8hVk9QqbdQzU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1769895520; c=relaxed/simple;
-	bh=jpwxRVLKPoVZv9Fo4wEaj2y+VUHAF/4aKGEQRzoJzpY=;
+	bh=Pm2l+FpmwWwWmeOjvXpcn29N3BqIgFcmAvl0n69hkIU=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=pemhRU4zCCoiX56O3WAXMIktJXAxts+6K/MqywP9UyjQbHoFKKHJO0iyilIGpASTAnpHao1LgmFct4KxiNLIcCIjIkT6+LfO2CQKp0a4dbAyuCBPqy+RddcoUWWcdZkz2NHpdNH+AbiN4hFwZqIk0p/2wuQ1MWXHw6wLxmO+xss=
+	 MIME-Version; b=bqxeVu310IBUvohQBUxw3Gn2KZfsN6dkCJ0PzsR3Mm9Yldld0TA9WygCud7sC6dJjm7ZS8SppuTn56jhBs0DJy0JMFDokzDEPBF0g3MCFYLNNMQSKhABh0YTFO7y4KENKd8xoYuamNMi83g4ODRyoepE99+OpjmhhigzXnXBvrs=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
 Received: from localhost.localdomain (unknown [223.166.92.103])
-	by APP-03 (Coremail) with SMTP id rQCowABXadBIdn5pRJhjBw--.18091S3;
-	Sun, 01 Feb 2026 05:38:17 +0800 (CST)
+	by APP-03 (Coremail) with SMTP id rQCowABXadBIdn5pRJhjBw--.18091S4;
+	Sun, 01 Feb 2026 05:38:18 +0800 (CST)
 From: Han Gao <gaohan@iscas.ac.cn>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -50,9 +50,9 @@ Cc: devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Han Gao <rabenda.cn@gmail.com>,
 	Han Gao <gaohan@iscas.ac.cn>
-Subject: [PATCH 1/7] riscv: dts: spacemit: Enable i2c8 adapter for OrangePi RV2
-Date: Sun,  1 Feb 2026 05:38:08 +0800
-Message-ID: <505d0c3db0ca3c471ca0ac4d3c93c9e333b7fc28.1769895215.git.gaohan@iscas.ac.cn>
+Subject: [PATCH 2/7] riscv: dts: spacemit: Define fixed regulators for OrangePi RV2
+Date: Sun,  1 Feb 2026 05:38:09 +0800
+Message-ID: <c5799da08242f8aa1a77f144ab0273d68af1841f.1769895215.git.gaohan@iscas.ac.cn>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1769895215.git.gaohan@iscas.ac.cn>
 References: <cover.1769895215.git.gaohan@iscas.ac.cn>
@@ -63,14 +63,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:rQCowABXadBIdn5pRJhjBw--.18091S3
-X-Coremail-Antispam: 1UD129KBjvdXoW7Xry5AF4DWFyxCFyDZFyxZrb_yoW3GrX_CF
-	13Gay0vFyUGFWvkFnrXr1rtayxu3y5KrWSywnaqr1UGasYgrWrKFWUKF4kJw1rurWYvrW3
-	Jw48tFyxJwnIkjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+X-CM-TRANSID:rQCowABXadBIdn5pRJhjBw--.18091S4
+X-Coremail-Antispam: 1UD129KBjvdXoW7Wr1rZw4UXF4fAF1DtFyftFb_yoWkWFc_Cr
+	y3Ga4SqFWxXF4DKF93tFZY9ry5W3yv9a13Xrs7Wr4UG3Z5Zan7X3ZrJry8Ar4UGr45GF9x
+	Zr42vr18AF1YgjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
 	9fnUUIcSsGvfJTRUUUbkAFF20E14v26rWj6s0DM7CY07I20VC2zVCF04k26cxKx2IYs7xG
-	6rWj6s0DM7CIcVAFz4kK6r1j6r18M28IrcIa0xkI8VA2jI8067AKxVWUGwA2048vs2IY02
-	0Ec7CjxVAFwI0_Gr0_Xr1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xv
-	wVC0I7IYx2IY67AKxVWUCVW8JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwA2z4
+	6rWj6s0DM7CIcVAFz4kK6r1j6r18M28IrcIa0xkI8VA2jI8067AKxVWUXwA2048vs2IY02
+	0Ec7CjxVAFwI0_Xr0E3s1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xv
+	wVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwA2z4
 	x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4UJVWxJr1l
 	e2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI
 	8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8JwAC
@@ -80,8 +80,8 @@ X-Coremail-Antispam: 1UD129KBjvdXoW7Xry5AF4DWFyxCFyDZFyxZrb_yoW3GrX_CF
 	AY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAI
 	cVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42
 	IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIev
-	Ja73UjIFyTuYvjfU8XdbUUUUU
-X-CM-SenderInfo: xjdrxt3q6l2u1dvotugofq/1tbiCQ4EDGl+GiNkAAABsE
+	Ja73UjIFyTuYvjfUOdgAUUUUU
+X-CM-SenderInfo: xjdrxt3q6l2u1dvotugofq/1tbiCQ8EDGl+GiNkAwAAsH
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -92,7 +92,7 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-261493-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-261490-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -109,34 +109,47 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	R_DKIM_NA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[iscas.ac.cn:mid,iscas.ac.cn:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 86C99C4087
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 17C57C4063
 X-Rspamd-Action: no action
 
-The adapter is used to access the SpacemiT P1 PMIC present in this board.
+Define the DC power input and the 4v power as fixed regulator supplies.
 
 Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 ---
- arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts | 6 ++++++
- 1 file changed, 6 insertions(+)
+ .../boot/dts/spacemit/k1-orangepi-rv2.dts     | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-index 7b7331cb3c72..93880ba7bdfe 100644
+index 93880ba7bdfe..bd1e45e95e38 100644
 --- a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
 +++ b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-@@ -87,6 +87,12 @@ &pdma {
- 	status = "okay";
- };
+@@ -23,6 +23,25 @@ chosen {
+ 		stdout-path = "serial0";
+ 	};
  
-+&i2c8 {
-+	pinctrl-0 = <&i2c8_cfg>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
++	reg_dc_in: dc-in-12v {
++		compatible = "regulator-fixed";
++		regulator-name = "dc_in_12v";
++		regulator-min-microvolt = <12000000>;
++		regulator-max-microvolt = <12000000>;
++		regulator-boot-on;
++		regulator-always-on;
++	};
 +
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_2_cfg>;
++	reg_vcc_4v: vcc-4v {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc_4v";
++		regulator-min-microvolt = <4000000>;
++		regulator-max-microvolt = <4000000>;
++		regulator-boot-on;
++		regulator-always-on;
++		vin-supply = <&reg_dc_in>;
++	};
++
+ 	leds {
+ 		compatible = "gpio-leds";
+ 
 -- 
 2.47.3
 
