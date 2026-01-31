@@ -1,286 +1,132 @@
-Return-Path: <devicetree+bounces-261417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261418-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 3bSQL6PafWlrUAIAu9opvQ
-	(envelope-from <devicetree+bounces-261417-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 11:34:11 +0100
+	id AEtmIcPffWnRUAIAu9opvQ
+	(envelope-from <devicetree+bounces-261418-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 11:56:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03EFBC196D
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 11:34:10 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2BA9C19EF
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 11:56:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0D91A3008A74
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 10:34:09 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id F2AA43009B3F
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 10:56:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7835B2D73B4;
-	Sat, 31 Jan 2026 10:34:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 416732FB632;
+	Sat, 31 Jan 2026 10:55:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Qfkc4lyM";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="DbYqOcTU"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="M3ycjN1+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A4D922CBF1
-	for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 10:34:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43E3025D216;
+	Sat, 31 Jan 2026 10:55:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769855647; cv=none; b=G44fIKOy8sGOimIZia4E/XQz1kRjIdvAw38MDWa5limlYx5dkUJROpgFfpW6ACyGn55zQP3ZbWLANQQu50xsdIcVPKJVgu/N4I/eVxn5zUzouqTUxue//qZu57xXHhuf75LQ6mP/14Tp/qKw1gfj+l/yB6xT9OzRVXhVYh0sWZo=
+	t=1769856959; cv=none; b=WctslfDRTTAONZdnERmZHYbWT5ivvPTv/ZYldqDNAkWrMWufd4SoSQKyw16V2TI5OYOc5/WCEKBj6CIA90gUCFi7YwVxVp5hMwVPkeC0QdvBqHqPulUG4tsdznh2zgecbYd5DGriHsmm/WYS/rKkXtK9omAnv0zow9RW0EM4SV4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769855647; c=relaxed/simple;
-	bh=iKf/pUj7Dj6P60TsQaCaSkK27jTV8DaqbVPEG1naEjs=;
+	s=arc-20240116; t=1769856959; c=relaxed/simple;
+	bh=i8OKyiXWF1B5bWDrtl9oWmy/hdR4q3YhBRSRvOtR66Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R/6ruNBh7Zba/Pyoeeqf9vUYOC74eKIPSnLDq4IEQWBYADpbItQtVkB1QHZnW788zH1qOAZyGDMbJpDSgfdPmitLxnwdooJ9hXHBlyKjvQUC2o9iWq/7RvlgSISlGHnN3/QNZJqzIoqEXatCR4vDWo2lFb3T6rQAQuvxz3/Rx6g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Qfkc4lyM; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=DbYqOcTU; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60V4YrOI658527
-	for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 10:34:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	0WReQ3ea6bm+XxaXA+me3HZxBztgzIHWPdwYg39RO+g=; b=Qfkc4lyMslsbtJF4
-	S1xvUaxDb0t5INtoCQ+aO8cRbnwjGOeERB0U1NZMTud7HXelfb+zdHKhC6JXMar/
-	x9IGofanEVdAVDHgWQghSJz6yHBIZsMuZz01bF6W4rqCuuWADTnBdQhR7hZ0LgJJ
-	55bkOPcBPGRbkNJgEd6inKJZsplyk0iyE9Oax/j8Z3tc6EMClsRGvPH1VP+ln79b
-	Sw7BRg6jXhAQyZySDbgNpG6UrEaT3rsqDzmzg00IpIcDpQ+SML66nWiNPcmKIXAo
-	GpwoLWIWcwKcEyZ3p5CezFao7rL6C3ZQDVRByVtqo+yWFYmO6gW1K9nDsMYR05dY
-	hZ7EMw==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4c1au2gkus-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 10:34:05 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8c70ed6c849so690756185a.1
-        for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 02:34:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769855644; x=1770460444; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=0WReQ3ea6bm+XxaXA+me3HZxBztgzIHWPdwYg39RO+g=;
-        b=DbYqOcTUgfr+x2W+BARRR0DDaE3FtDlpILoXW5j3w9Y99pkhXKbACQ0W3MqA6dJBaU
-         CudB7MOzXDw6ywXS20Jq+qL8rClM8ZCh83/IRoHKMUSTmWbMp+Fv0Ik9f1wct4ujLNSd
-         masgGfHDIJ2c98ltNQ/Pv4JBuLiGPuyo4m7SZcgx5Bi1qTiSezTuiuRppcy62QJs40IL
-         7vL1YJcM7iAkM9wKSZ+KSPDA5QQ6GKlh7ouPxwXeA6knaBlxmKVz7ruASuz3LIvGXmQY
-         An+N/7mE8fFh0uJVvrQo8UR2Yzo7DWFgG/CMFBE0gMFPc2MPt3Zcqn1HDo/XW3Kwyz+C
-         wLmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769855644; x=1770460444;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0WReQ3ea6bm+XxaXA+me3HZxBztgzIHWPdwYg39RO+g=;
-        b=ob0bFFWO2p9TuVp1ZCWOgEop71PGlyVJaIsSf0ktFRmDNOJMtz/u3fXb/6S/8kuiCr
-         j4BWsYjRs71TpbqepevASajRXDi604JIBfS1oWtWvWmsmyRCpJDs6V4mhoQbenrRPSwz
-         se0Oy75t7eIjpcCFmzFdUukwPxB2W94ygzsKIciK2BvE44jEGQXSyrNd+TnTs1oHVrWV
-         wpou4a3eXmKS6uFrUpCMGP31fvKyx9QEIHiawRy+WceyZOcfO+lbLH/jL6ud15Gn+1TR
-         NMGps0RMeKHiRg2g2ElMnHG1EId9XAnrE4r8BPDxHsoU93Wn06d9dkivYvlRKGbOuXAa
-         lAEQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXewCibECWbBo6G9KPfzW9gfWIgoLiaL3Dv5tv7iV6AZi++lKLvmLoN9+5BHe6fFRmWlYDiIEsWSe6K@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+/Vi7t1XP5SneCSbs2YbiB8/TtRvrZGyuHJULURgUfS8NCdJc
-	2p1/RtWQkR2SJL2O4enUvhuJYZ+xX4aRWiDxYD+AL3EsNpU7pFzxdA/BxAL+Wvzn6Gt/dn1V1Cq
-	/B7aZuRRMepDK+V4xgItu/AdUxNrszhamOXIMqS+UngOkZtB4XSEt2gSDXdR9keiV
-X-Gm-Gg: AZuq6aI3SwJnWNn64nTQlaoLGagDyZTI43vtpNDTa0Dy1TQWTYOGaEojHv2LwXKVm4B
-	XadIHZIyHXu0LGxNsciyiQzahs6TjcQo0iB/ydD52XQxSNyWx7HuagKTLgfXQjTqtKcIzGewF7u
-	ri7XrcFU0QjEIzc23ssiM3jGr2vqEEhwTXgb7QDnbtCVoIg1iM23GJmSEhJiucwDVPcBl1k304e
-	bYIfj5HoFn+v7DsQXk+b56X1FkLFccz4EWNGhGFp9QlQEF0VadQzEuEJo8Ot7QjPlmBhU2xSfCp
-	nRCKh09t+ra9BGeaYgUkTlltYJhDPnxkZzBItxtgZcrpZWeozRT6FSxAM7f6yoI7aC1o34huCxP
-	YB9j+MRQA6w/ZpXNdGXT45HWeQyoACHirbV+rTFeNEHIsK/kGTBagHb42gCKaYR5+De8VhZ1I7M
-	UVOXXrehbEs7+DPHKQljeiYCE=
-X-Received: by 2002:a05:620a:28c3:b0:8c7:768:3b0b with SMTP id af79cd13be357-8c9eb30e513mr624072385a.65.1769855644073;
-        Sat, 31 Jan 2026 02:34:04 -0800 (PST)
-X-Received: by 2002:a05:620a:28c3:b0:8c7:768:3b0b with SMTP id af79cd13be357-8c9eb30e513mr624071285a.65.1769855643469;
-        Sat, 31 Jan 2026 02:34:03 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-38625fb314dsm21233301fa.40.2026.01.31.02.34.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 31 Jan 2026 02:34:01 -0800 (PST)
-Date: Sat, 31 Jan 2026 12:33:59 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Aaron Kling <webgeek1234@gmail.com>,
-        Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kumar Sharma <quic_vksharma@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm8550: Fix DTBO boot failure
-Message-ID: <osqwux5xkf4337gahljlkdvoeek6sudxcee3xqb5kp2ngqhwzj@6tz6xjj3cozl>
-References: <20260129-sm8550-abl-dtbo-v1-0-abca3be14024@gmail.com>
- <20260129-sm8550-abl-dtbo-v1-3-abca3be14024@gmail.com>
- <7d473eubnez5gcbou6mguomeetpotp73q7cjol3kfjlg7pz5r3@yjsh4rd4mwbv>
- <CALHNRZ80+KAfm2YHEoodBv_7jDZPZjtr-koo7q_N+aX+i1OfnA@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=hoFa9TmBPstVH4EfSlhG201dieOg6E9qnn4+LqAi3khQoDdqbBFBcPUikrHF5zp76re47912xU7JTlPrFMmea/baTuyxT+obIsu3LKKCSk+KLqbIv9y72BzhtL0DYQBlx7K56Lx+9zKieTdm9onZjShRdZT8kbiSK6kqcZP/fjk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=M3ycjN1+; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1769856957; x=1801392957;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=i8OKyiXWF1B5bWDrtl9oWmy/hdR4q3YhBRSRvOtR66Y=;
+  b=M3ycjN1+DVPlnYtAfy03paSF14DtbMEHPwC2YnCBQiZBqWoLVqg1hErQ
+   eVitcNaym8t6jf6hHrE+iId6Eekenbq4ti838NPcfvu6RtSkUzO+Y02BP
+   +FoIEtUZkmQKIdr57Pf5xD8yXijFTu1wrX77KM4pGf00wdNq1tXl6Lvxk
+   Xi0Lh+zvYFGLvzwvm4noM/JMr88UiuXpFTPwfjz8QHHQyMk+oSUj3GxOG
+   8DfElv3GOaWXBavRjF5AmRBs9G4kv8qPu963l/ByU4qMdpqwGkczL5G3R
+   fDBJiiQ6oF8Y+LqetP7xaI41VtoJ1E1nQLkgDc1JgX8vQgW/dJ8m1r94W
+   w==;
+X-CSE-ConnectionGUID: LM6eVVjHTJik9WL4+nwtvg==
+X-CSE-MsgGUID: aH+HDwvtTjahDsTxaSro/w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11687"; a="70811783"
+X-IronPort-AV: E=Sophos;i="6.21,264,1763452800"; 
+   d="scan'208";a="70811783"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Jan 2026 02:55:56 -0800
+X-CSE-ConnectionGUID: BtYc0yn3QLOyesdykEGhUw==
+X-CSE-MsgGUID: SPcmrXqkSh62GsT3WTbrmQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,264,1763452800"; 
+   d="scan'208";a="208646621"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.244.97])
+  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Jan 2026 02:55:53 -0800
+Date: Sat, 31 Jan 2026 12:55:51 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: abdurrahman@nexthop.ai
+Cc: Michal Simek <michal.simek@amd.com>, Andi Shyti <andi.shyti@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 6/6] i2c xiic: cosmetic: use resource format specifier
+ in debug log
+Message-ID: <aX3ft2nKrUkQ7Xg5@smile.fi.intel.com>
+References: <20260129-i2c-xiic-v7-0-727e434897ef@nexthop.ai>
+ <20260129-i2c-xiic-v7-6-727e434897ef@nexthop.ai>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CALHNRZ80+KAfm2YHEoodBv_7jDZPZjtr-koo7q_N+aX+i1OfnA@mail.gmail.com>
-X-Proofpoint-ORIG-GUID: H3qNrQpf2l4PW-BvdFAiJGjBKqGr36v_
-X-Authority-Analysis: v=2.4 cv=TtfrRTXh c=1 sm=1 tr=0 ts=697dda9d cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=pGLkceISAAAA:8
- a=3oC4OS_a_1vn86-RbbwA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=NFOGd7dJGGMPyQGDc5-O:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: H3qNrQpf2l4PW-BvdFAiJGjBKqGr36v_
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTMxMDA4NyBTYWx0ZWRfX0IyHUwqO2Jqt
- 1DwjSUnpWCJmHtbyFodXVS8FBTYB+JeuIln5kvk/hp+bDC05d51p3hOeBvoJQ5hn+NvCw04cAbi
- 0+wMxqYmgpmfJ7wqAKOj01qPCDARP8ojrUTT2IESO7VKjz8ZhQ45xPQNzy+eQaKRZyGsu9YsiYY
- P5fYwFYN94R1MqLM3hraXPslUgSHa+ByKMoOg8lmN4rNA+LszX1vQM0C/spngnfiz31Z8yM0Y+R
- X9YHyNAgqzVaM4SqcJFmJGpb/DRGhWY0z87LjdvdSgWMMd9MajcZc9AOQMBu0W+GNpUni8skFhH
- seox/GkKvzc7t5MW28vC3Qm6WytizCp2yZehRx8cPR4hzmN7r0vmO5vTqgxUV3o9JSNkIWp21Au
- tZnV3I7MWOinERPxoH8x99Q01VtPWfUv3ra2eGgvzk5+dtl5AJflt8AfJz89st1ImlM3w60F7Ih
- ummb6w2fi1tf4MXaCtQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-01-31_01,2026-01-30_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 spamscore=0 phishscore=0 clxscore=1015 bulkscore=0
- lowpriorityscore=0 malwarescore=0 priorityscore=1501 adultscore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2601310087
+In-Reply-To: <20260129-i2c-xiic-v7-6-727e434897ef@nexthop.ai>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261417-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,oss.qualcomm.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:dkim];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-261418-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[intel.com:+];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 03EFBC196D
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: E2BA9C19EF
 X-Rspamd-Action: no action
 
-On Sat, Jan 31, 2026 at 03:09:12AM -0600, Aaron Kling wrote:
-> On Sat, Jan 31, 2026 at 1:47 AM Dmitry Baryshkov
-> <dmitry.baryshkov@oss.qualcomm.com> wrote:
-> >
-> > On Thu, Jan 29, 2026 at 01:46:32AM -0600, Aaron Kling via B4 Relay wrote:
-> > > From: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
-> > >
-> > > ABL requires certain things in the base dtb to apply a dtbo. Namely:
-> > >
-> > > * The scm node must be named qcom_scm
-> > > * The timer node must have a label named arch_timer
-> > >
-> > > This aligns the sm8550 soc dtsi with those requirements. Without these
-> > > in the base dtb, when ABL attempts to apply any dtbo, it will fail to
-> > > the bootloader menu.
-> > >
-> > > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
-> >
-> > Did Pavan provide an SoB to the patch?
-> 
-> No. The change comes from the gunyah watchdog discussion here [0].
+On Thu, Jan 29, 2026 at 09:43:18PM +0000, Abdurrahman Hussain via B4 Relay wrote:
 
-Pavan, can we please get your SoB?
+> Use standard resource format specifier %pR in debug log.
 
-> 
-> >
-> > > ---
-> > >  arch/arm64/boot/dts/qcom/sm8550.dtsi | 4 ++--
-> > >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> > > index 740e3c238e8ed0f162dd168291f6e307ace66e80..d7cc20e1931904e7c603b800089f00955ecec3b7 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> > > @@ -329,7 +329,7 @@ cluster_sleep_1: cluster-sleep-1 {
-> > >       };
-> > >
-> > >       firmware {
-> > > -             scm: scm {
-> > > +             scm: qcom_scm {
-> >
-> > This one is a definite no-go. Device nodes can't use underscores in
-> > names. It has been told to Qualcomm for ages. If we didn't comply, it
-> > doesn't give us a permission to break the rules.
-> 
-> I have not been able to make ABL load a dtbo without this change so
-> far, though I have had a suggestion from off list that I may need to
-> try a different method of flashing changes. I have not yet had time to
-> do so yet, however. Given this list came from a Qualcomm employee and
-> worked as advertised, my tendency is to believe that it is the minimal
-> required.
-
-I understand your point. But I'd really not encourage my colleagues into
-thinking that it is okay (oh, it was landed for sm8550, so it's fine to
-do it in future). And I can foresee this pattern to continue, because
-even the latest downstream DTs I can see the qcom_scm node.
-
-> The devices I am working on are not fused and thus I do have the
-> capability to use a custom ABL with fixes. However, doing so would
-> make the user transition from the stock os to a custom one more
-> complicated. Plus this affects many devices that are fused and thus do
-> not have such an option.
-
-I understand this intention (and the pain of fused devices).
-
-> 
-> In the likely case that the bootloader dtbo functionality does indeed
-> require this change, and the mainline kernel cannot accept it, then
-> what are the options? My use case involves using out of tree dtbs that
-> include the mainline dtsi's. I could do a delete-node on scm and add
-> it back as qcom_scm, but I would very highly prefer not to. The less
-> downstream changes I have to carry, the less work I need to do to keep
-> up to date. And on the other side, getting android vendors to update
-> their ABL seems extremely unlikely.
-
-If you have an out-of-tree dts/dtb, then the easiest way might be to
-have #define scm qcom_scm in your file. Sorry about it :-(
-
-> > >                       compatible = "qcom,scm-sm8550", "qcom,scm";
-> > >                       qcom,dload-mode = <&tcsr 0x19000>;
-> > >                       interconnects = <&aggre2_noc MASTER_CRYPTO QCOM_ICC_TAG_ALWAYS
-> > > @@ -6764,7 +6764,7 @@ trip-point2 {
-> > >               };
-> > >       };
-> > >
-> > > -     timer {
-> > > +     arch_timer: timer {
-> >
-> > Please add a comment, otherwise somebody might decide to drop the unused
-> > label.
-> 
-> Ack.
-> 
-> Aaron
-> 
-> [0] https://lore.kernel.org/all/91002189-9d9e-48a2-8424-c42705fed3f8@quicinc.com/
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
 
 -- 
-With best wishes
-Dmitry
+With Best Regards,
+Andy Shevchenko
+
+
 
