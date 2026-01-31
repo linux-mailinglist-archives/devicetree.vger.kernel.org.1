@@ -1,249 +1,178 @@
-Return-Path: <devicetree+bounces-261433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261434-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0KudBCEWfml6VQIAu9opvQ
-	(envelope-from <devicetree+bounces-261433-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 15:48:01 +0100
+	id EFKWDFogfmnZVwIAu9opvQ
+	(envelope-from <devicetree+bounces-261434-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 16:31:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A804C290F
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 15:48:00 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86F13C2B37
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 16:31:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A9B4A3013EDC
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 14:39:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 503B8300331C
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 15:31:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 840563563FF;
-	Sat, 31 Jan 2026 14:39:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FF302BEC5E;
+	Sat, 31 Jan 2026 15:31:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cOWuZyQf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kVr6zs9x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B12682DFF04
-	for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 14:39:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C19335958
+	for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 15:31:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769870352; cv=none; b=jbnEGFEcCokDwR8JapnwI4PzphzYmOORgo9NXFmlx8Jk8Z0dcml58wDQAhrVfuBpGA/W7iQz1jous2DFysmL82F3gZgedVQagakOWCjYquVejt8fR+UjMxFsmGUfFu8tIUWRV6RDD3XJktbimfYxvykPMykK7GyNyPZitivjyQM=
+	t=1769873479; cv=none; b=ppBEpXY/Pu2XEjab/DYW4LQCE1Bm0eXrsYfee/IWzjLjVzcQ+rNPDcqiCkRnGuRIcq6K1VuvK+Es2awvDODK/fzHRO5PDIhayHLDTWxQZYbGEqmuNToYWOv/97D2ynLvckS+vjRQlpiL/1Ya38bhIWQZFeTqtRAq4iSQUitx5Q4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769870352; c=relaxed/simple;
-	bh=agoPNQOe0xFyH7/EILpgDCjcO8bvJhuUEoS05pqjCos=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HS0pD9APEcOPgxW9Yex5FK7USVmwzsjSzISSS4KL27SXCgsqVlp+uTeSYmeu+/8E2B4pzEkEJBhNqqvjpAqCAChlNXE5JLPWU6GgHOHUb9rKxtGgqfqTRyLxZVMeDJiAXthusQOBDOQkWsPr7bdOExollyTg0MN6bDker1TOBFM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cOWuZyQf; arc=none smtp.client-ip=209.85.221.48
+	s=arc-20240116; t=1769873479; c=relaxed/simple;
+	bh=bSY+fyfEDjKAZvIsTp4/2Bj3qzJpKHE89GywZ0xvZlk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Rg5EqXLYA2FQ2WRInK+oPJ7610NP1NKPikN4k8errhLiUYJnMZiL9sIzYB65GrGzz3sNjXd2D0uPm3IbyUV/yjAQRq9h1NHJGZ3/KVANGwQKo6KPGEg9q9hM8NvVBMWgpxgaETS3i4L1nJvXWBXlsx/2qbvTWwKauC+rnNOMVK0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kVr6zs9x; arc=none smtp.client-ip=209.85.216.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-435a51abad1so420144f8f.1
-        for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 06:39:10 -0800 (PST)
+Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-34c718c5481so1996964a91.3
+        for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 07:31:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769870349; x=1770475149; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=pM8RMrvOe0ebjDVKWMiFhnPrBIYHyAt65WWdm6ay16A=;
-        b=cOWuZyQfnYZmH08vxc4L24acMvkCav+lAOkl5V22dJkVC9ueY1B07Q1ZXfiIwo8ek2
-         jSimFQKc+YdsX/pibYTvdr8WMd+ur1tVrpV9ccTS0P1dl7W18qLNvvxWiz0W/wOfFuQA
-         nikYP9t/EcKXRaxfcmjuKxXFwSgvCNKhLKheg62nyULNAKvfYGkWMkyDbo1LBS7Vcml0
-         v+C1OSvva9SRYY26kUy+j2RGTKqZYfygqQqgUKRv+InOyXeoNT9Xs+acQShe6rMI2gmv
-         jl2pPHgsYUeaSwdEN4u8kssXfjZIqLUJus8yQBKg+dX7X/6l/aybUshPFFXWUVfpODc+
-         9tUg==
+        d=gmail.com; s=20230601; t=1769873477; x=1770478277; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kFQ3JH7bTaVaIkyZ1bwbiUf2YzJPD1mXXk4UJx103/U=;
+        b=kVr6zs9xD6XZVS2yoe7nEmHZ/P0/cKR6uIL8QxS5RFA8/H5TZREBzRaXxKUxLSEecp
+         j2ZVJqGl3yl2bE+TIIY6xjCdW2i5Y375j27ID2UpsUOtSM/NAtfX/qvkn/E5N3OOYSru
+         8bjip2yTp9MJFKrTSQwMM02McHdwDfC8zPjLy//106g+ab4OjuRnrC6U8DdI6Yq+y6hf
+         Hvo/kt066KDYu2SwkHPXTJ5eWdBfdF49n6ORgxCSk7duh/BS9/rsX0jwsOXn1vaPyGoC
+         op0Nfkm0kX/M65SJnZearngngZfAGmuXNS86UQfeCQ6e1s+T1aoyQQoHJDijYM478+TS
+         /VEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769870349; x=1770475149;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pM8RMrvOe0ebjDVKWMiFhnPrBIYHyAt65WWdm6ay16A=;
-        b=dwueHuUo6E3pn30FLBYR7P6+xLaWmGs1uBgO1eT9ruq8m4qhdGcR7Siko6OjNdhS9D
-         RVFKfFddxpAmrB4M2J2A+xs1OH+vhzWv0OPw4hF48/gGW23JgnIy5FU47zrNJQLc3KMP
-         opKChUMOM25LLSIVxOuS12Tx2whJk8WmwkTlm1kACBG8c8JhNRUeWdSpc/x8aI7IPsSc
-         K8r2/5soKvbJHDqH4gk/hsW/GWx60FegE1b70cuEREALA69HfLYRJUnHtn4f2ihUxF4x
-         yn8ytTZ/OOujPhGGgloFzpXZ2HXRVlcZ5e7IFoQQXkbhPHBM7Xr4wXmLmLcD4vj/Ga/y
-         Rp4w==
-X-Forwarded-Encrypted: i=1; AJvYcCXe3Z0pugiAD6F8VGacvbjTnFQRUoVEWzozlKhJFUuh2EAnE+ALiZsUbBZifZ9QugP9W+eO1EbwQ0Xi@vger.kernel.org
-X-Gm-Message-State: AOJu0YzNaYbzlO8g7ceJFfNw6PiCMf4FpPrdq0JKAzzyaIzppX0tHfAI
-	rTmM6pp3SBO9vglVmfNlrUsiAM9/kvVPeqDXrG+tYWy3O2zH+VdpNYUF
-X-Gm-Gg: AZuq6aLiqiaCkE0kVQdqm7bGeZ9VhV8WW+QYsfsISTFGnis2Krk3ikdGdZ5IaGjY3Xk
-	2g0aM8vhq9esB9ImzfU+4zhIEHQpFLBOPfnijQbAGMogthhX47ZyboRQAR27jK4x7Ek0ewptVZ/
-	GB8YmtPZCdQ3ETQSaZUTBE5hIxlnhpi2Ig0Qe7ARXOVG4Qq3LwLBUzdEvsFPgXUSO6orHIleaA0
-	7GmftcDk7Hs6+DnybEiaIMfpWGpFx7jaateSJayccRFBuMnj9VMfQF6wpRc8U+eeAGiHH4muez3
-	eX0IIxQ12y9e5AGR13o4AjF7l4MkvlFoB2sqTVUK/dWUY7n2Q1Ln5nwrJt9UTe/VkNgvivOBCQ1
-	sHPrVPUQH2BZ+TyKVsF2UEuW9kxKD3mwvuiuCoPJKJzkqT+gjjgQ1yI8YBwVK6b63453bOKL9F9
-	FRsA==
-X-Received: by 2002:a05:600c:154e:b0:47e:e20e:bbc0 with SMTP id 5b1f17b1804b1-482db4576ffmr51474885e9.2.1769870348868;
-        Sat, 31 Jan 2026 06:39:08 -0800 (PST)
-Received: from skbuf ([2a02:2f04:d501:d900:cd2:4e3c:ba08:4c89])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435e131cefdsm30491102f8f.23.2026.01.31.06.39.06
+        d=1e100.net; s=20230601; t=1769873477; x=1770478277;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kFQ3JH7bTaVaIkyZ1bwbiUf2YzJPD1mXXk4UJx103/U=;
+        b=QHSmEC2lMZFYipAFcsnTsbTUIXk7PEKuNTJf3MBWZZzOJN35SSmxjZ7M4vHR7B+II+
+         1CVVBau1+QfhHIWL0PKfOEB5/epN0GTD8EKJnT24GPwHE+YRgfjh19erpDBd4JPWBV9D
+         CVS0TaV8uDKJrOl2HiCtGh9+OPOXXuQNXGCjh8sAls2/kXp5F+26qQhvfebMGEoqVM1M
+         lVdbvrYituXI4fMQPFAdDHm4JplbCNXIekIFHXjfLi0EvItARppCaM99HjYTklaiP27f
+         k4q1xD/ceijcrO3f6Yrg2se1e6cHfeo3T9F1CbgrMQFo/uRr+OdcIW+1t9+jUEOriidP
+         N0xA==
+X-Gm-Message-State: AOJu0Yw6tW38TIbopX1sBpinmZkj/qfijmubMuCP8KBgknSz+IlKv/do
+	xbY5HqwZU6EtqkbJ4F1ZPSqg2yjscNCrVzOAPqpDM5b3IyI2gTSeg9Qx8CAE/w5Q
+X-Gm-Gg: AZuq6aKnDdcaFGwD/3NbBxBeA4EOygZDBP/Sd2UC242Hjl3iy9F1LQSqZ/T62jSD2nS
+	kILh62lB1kjqFeis+8060fOk92LYHUmRVYZUEH4ggflLkM//EQleAaHCAOMjbkV6iifbD2/SBoI
+	mGzHlCaFFfKf38/HQa7fDG65rCebY5vZm58KArozDnETYD5pygpvy3l80PGgshZAtTOji9LTwIc
+	BPFZE/4miXPZRu1E/dXc1qNWq9rD0xmo+atkgXJJYoe9gUhIkkXDiudVfbwnSxJRstfZNdmzRoS
+	d8LoZnzkP+L9EwC9MeJzEDaJHGcuNyznCjj7oRt/rWr41wUcSMLD426xrVJGjqNmks1EMVrZM/T
+	wOZidwEjN3T9SqvNRCLzcBW1NaRK2OE1HV11Z5gLvxuCGWBRMEJvsTTvM1t+yChW2UK3Nk7a/bE
+	rjiyA3YQt/C27ACfje9k5uFOAYpqPdXL1sHbYBMM4+49c9YpE0
+X-Received: by 2002:a17:90b:5868:b0:32b:baaa:21b0 with SMTP id 98e67ed59e1d1-3543b2e0552mr7576153a91.6.1769873477161;
+        Sat, 31 Jan 2026 07:31:17 -0800 (PST)
+Received: from arch.localdomain (awork135098.netvigator.com. [219.76.135.98])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c642487f1f5sm10701122a12.0.2026.01.31.07.31.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 31 Jan 2026 06:39:07 -0800 (PST)
-Date: Sat, 31 Jan 2026 16:39:04 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v2 2/3] net: dsa: mxl-gsw1xx: configure PCS
- polarities
-Message-ID: <20260131143904.ux4h43nmbxp5bn2b@skbuf>
-References: <cover.1769733972.git.daniel@makrotopia.org>
- <875329426cffe416ebe6a3064ed632604f29f100.1769733972.git.daniel@makrotopia.org>
- <cover.1769733972.git.daniel@makrotopia.org>
- <875329426cffe416ebe6a3064ed632604f29f100.1769733972.git.daniel@makrotopia.org>
- <a570f80f0fa66692746954684b10d13242ce9f18.1769733972.git.daniel@makrotopia.org>
- <a570f80f0fa66692746954684b10d13242ce9f18.1769733972.git.daniel@makrotopia.org>
+        Sat, 31 Jan 2026 07:31:16 -0800 (PST)
+From: Jun Yan <jerrysteve1101@gmail.com>
+To: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de,
+	alchark@gmail.com,
+	dsimic@manjaro.org,
+	Jun Yan <jerrysteve1101@gmail.com>
+Subject: [PATCH v2 0/3] board: rockchip: add OneThing Edge Cube series
+Date: Sat, 31 Jan 2026 23:31:00 +0800
+Message-ID: <20260131153106.31723-1-jerrysteve1101@gmail.com>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a570f80f0fa66692746954684b10d13242ce9f18.1769733972.git.daniel@makrotopia.org>
- <a570f80f0fa66692746954684b10d13242ce9f18.1769733972.git.daniel@makrotopia.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261433-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,sntech.de,gmail.com,manjaro.org];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-261434-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[olteanv@gmail.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[jerrysteve1101@gmail.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[makrotopia.org:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 6A804C290F
+	RCPT_COUNT_SEVEN(0.00)[10];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 86F13C2B37
 X-Rspamd-Action: no action
 
-On Fri, Jan 30, 2026 at 12:49:55AM +0000, Daniel Golle wrote:
-> Configure SerDes PCS RX and TX polarities using the newly
-> introduced generic properties.
-> 
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> ---
-> @@ -260,15 +268,17 @@ static int gsw1xx_pcs_reset(struct gsw1xx_priv *priv)
->  	      FIELD_PREP(GSW1XX_SGMII_PHY_RX0_CFG2_FILT_CNT,
->  			 GSW1XX_SGMII_PHY_RX0_CFG2_FILT_CNT_DEF);
->  
-> +	ret = phy_get_manual_rx_polarity(of_fwnode_handle(pcs_port->dn),
-> +					 phy_modes(interface), &pol);
-> +	if (ret)
-> +		return ret;
-> +
->  	/* RX lane seems to be inverted internally, so bit
->  	 * GSW1XX_SGMII_PHY_RX0_CFG2_INVERT needs to be set for normal
->  	 * (ie. non-inverted) operation.
+This series adds support for the OneThing Edge Cube series, which were
+initially marketed by OneThing Tech as PCDN (P2P Content Delivery Network) 
+devices. The Edge Cube series is based on Rockchip RK3566 SoC and is designed
+for PCDN applications.
 
-Sorry, I just noticed this existing comment now.
+The V2 patches adds a new device, the OneThing OEC. Together with the V1 patch 
+OneThing OEC-turbo, these two devices share identical hardware specifications
+except for the RAM capacity, enabling convenient support implementation.
 
-I think this patch set has the right solution with the wrong explanation,
-and as someone who cares about logical consistency as much as about
-functionality, I think it's worth resending to clarify something.
+The V1 patch was submitted quite some time ago and is now in an archived state[1].
+it has not been processed due to scheduling conflicts – apologies for this.
 
-There exists a problem which, at a high level, is that the signal can
-be inverted at multiple levels in its path. When multiple levels are
-configurable, it becomes important to know "which level does this DT
-property correspond to".  Otherwise it's not clear how inversions at
-multiple layers relate to each other.
+Changes in v2:
+- Fix typo in vendor-prefixes.
+- Simplify company and device names.
+- Add the new device OEC as part of the OneThing Edge Cube series for support.
+- Set display-subsystem node to "disabled" instead of using "delete-node".
+- Using generic node names for leds.
+- Follow DTS codeing style in vcc5v0_usb_host_en pinctrl node.
+- Modify the phy_mode of GMAC from rgmii to rgmii-id.
+- Adjust device tree node ordering to follow code style.
 
-For someone who doesn't study the problem deeply, it will be confusing
-that this approach is inconsistent with what I intend to do for XPCS on
-SJA1105:
-https://lore.kernel.org/netdev/20260122105654.105600-16-vladimir.oltean@nxp.com/
+Link to v1: https://lore.kernel.org/all/20250713163255.163669-1-jerrysteve1101@gmail.com/
 
-That is, if one needs to invert the TX lane signal in the PCS to achieve
-normal polarity at the pins (to compensate for internal inversion in the
-SerDes/PMA), then the PCS node needs to have "tx-polarity = <PHY_POL_INVERT>".
+[1] https://patchwork.kernel.org/project/linux-rockchip/cover/20250713163255.163669-1-jerrysteve1101@gmail.com/
 
-In Documentation/devicetree/bindings/phy/phy-common-props.yaml it
-explicitly says that "If the property is absent, the default value is
-undefined." in order to permit drivers to call phy_get_rx_polarity()
-with a custom default_val, rather than phy_get_manual_rx_polarity()
-which implies a predefined default_val of PHY_POL_NORMAL.
+Jun Yan (3):
+  dt-bindings: vendor-prefixes: Add Shenzhen OneThing Technologies Co.,
+    Ltd.
+  dt-bindings: arm: rockchip: Add OneThing Edge Cube series
+  arm64: dts: rockchip: Add OneThing Edge Cube series
 
-This is the opposite of what you're doing. You need to invert the RX
-signal in the SerDes for what can be assumed to be a hidden inversion in
-the PCS, but you make that invisible in the device tree, interpreting
-PHY_POL_NORMAL as "inverted" when programming the SerDes.
+ .../devicetree/bindings/arm/rockchip.yaml     |   6 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   2 +
+ .../rockchip/rk3566-onething-oec-turbo.dts    |  10 +
+ .../boot/dts/rockchip/rk3566-onething-oec.dts |  10 +
+ .../dts/rockchip/rk3566-onething-oec.dtsi     | 313 ++++++++++++++++++
+ 6 files changed, 343 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-onething-oec-turbo.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-onething-oec.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-onething-oec.dtsi
 
-Only difference, which also makes your approach self-consistent, is that
-the rx-polarity property goes neither in the PCS nor the SerDes OF nodes
-(which don't exist), but in the port node. If we interpret the port node
-as what happens at the pins, the totality of the internal data path
-layers with no further insight into sub-components, then it's OK and is
-the simplest solution to the problem.
-
-But it needs to be presented 100% clearly, with a very clear distinction
-between the PCS, the SerDes PHY and the port as a whole.  Patches 1 and
-2 use these 3 concepts very interchangeably, ranging from comments/commit
-messages ("Reference the common PHY properties so RX and TX SerDes lane
-polarity of the SGMII/1000Base-X/2500Base-X PCS can be configured") to
-code placement (SerDes configuration done in gsw1xx_pcs_reset()) to
-variable names ("pcs_port" could lose the "pcs" portion, to avoid somebody
-unfamiliar with the HW doing some refactoring where they take the port
-OF node as the PCS OF node, for other purposes as well, perhaps not applicable).
-
-> -	 *
-> -	 * TODO: Take care of inverted RX pair once generic property is
-> -	 *       available
->  	 */
-> -
-> -	val |= GSW1XX_SGMII_PHY_RX0_CFG2_INVERT;
-> +	if (pol == PHY_POL_NORMAL)
-> +		val |= GSW1XX_SGMII_PHY_RX0_CFG2_INVERT;
->  
->  	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_PHY_RX0_CFG2, val);
->  	if (ret < 0)
-> @@ -277,9 +287,13 @@ static int gsw1xx_pcs_reset(struct gsw1xx_priv *priv)
->  	val = FIELD_PREP(GSW1XX_SGMII_PHY_TX0_CFG3_VBOOST_LEVEL,
->  			 GSW1XX_SGMII_PHY_TX0_CFG3_VBOOST_LEVEL_DEF);
->  
-> -	/* TODO: Take care of inverted TX pair once generic property is
-> -	 *       available
-> -	 */
-> +	ret = phy_get_manual_tx_polarity(of_fwnode_handle(pcs_port->dn),
-> +					 phy_modes(interface), &pol);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (pol == PHY_POL_INVERT)
-> +		val |= GSW1XX_SGMII_PHY_TX0_CFG3_INVERT;
->  
->  	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_PHY_TX0_CFG3, val);
->  	if (ret < 0)
-> @@ -336,7 +350,7 @@ static int gsw1xx_pcs_config(struct phylink_pcs *pcs, unsigned int neg_mode,
->  	priv->tbi_interface = PHY_INTERFACE_MODE_NA;
->  
->  	if (!reconf)
-> -		ret = gsw1xx_pcs_reset(priv);
-> +		ret = gsw1xx_pcs_reset(priv, interface);
->  
->  	if (ret)
->  		return ret;
-> -- 
-> 2.52.0
+-- 
+2.52.0
 
 
