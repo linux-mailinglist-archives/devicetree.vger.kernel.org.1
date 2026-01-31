@@ -1,513 +1,259 @@
-Return-Path: <devicetree+bounces-261384-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261385-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0BVsOvZ5fWlDSQIAu9opvQ
-	(envelope-from <devicetree+bounces-261384-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 04:41:42 +0100
+	id gJKFJrV6fWlXSQIAu9opvQ
+	(envelope-from <devicetree+bounces-261385-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 04:44:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 639EFC0900
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 04:41:42 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD96EC0913
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 04:44:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D95533021583
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 03:41:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 70355300C913
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 03:44:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16B4835029F;
-	Sat, 31 Jan 2026 03:41:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CB4B34FF55;
+	Sat, 31 Jan 2026 03:44:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=reznichenko.net header.i=@reznichenko.net header.b="mJvxrenH"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="d9j5tRXk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EC1134F46C
-	for <devicetree@vger.kernel.org>; Sat, 31 Jan 2026 03:41:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76A4234F48B;
+	Sat, 31 Jan 2026 03:44:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769830869; cv=none; b=dUg6UDgViPXZWhi8dT/FUjsZDyg2gmZDp74E6gjK2rZd86xVO8az55bhfg898sPx87JFI2FBl/AZm8rGngMTepfTKAIs2ZCWpy4XHhi8xQWbGX/4ufXYTPRrQLWxMOqdvHcoNYXNpp7sg7l/zZsAFhJvaJKhcE9Ybz2dnlIO9U4=
+	t=1769831090; cv=none; b=tMq/2XvDIB3znK3oeKPKVMpnhWz9mhUQnA+voxJ8Dsoetej6pjnQhbPIRxeV+0RxYS9r8EzP+w5OSG15reOWAtCWWMdviSCW5wn4ZuIBXPgzVhETl3H0zTjpwowo/rO5BFWWIRzBNhe2FPTj1LXWPCHeWG9oZA8rOPtmI6jeE/k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769830869; c=relaxed/simple;
-	bh=zufNfSOMSdO9Chv/nu0rFZ76co69CahgcxDaETRNVQI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=SmmMIDhZrfKdIl1Ij/1Sqb5OJYpQQSVhHrYOyXbbcou0fmidKCC2BEvs08yeJiq5i/QjreOVdeo3+wJK6w6BDAvOlbqLV5KmVMJ40HyxktO2D43RHfwgu/DjEg0u713c7pcoP3zv9gEhUlYQIdB0a0DvemIcr7AXTaT4e/QP9oI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=reznichenko.net; spf=none smtp.mailfrom=dpplabs.com; dkim=pass (2048-bit key) header.d=reznichenko.net header.i=@reznichenko.net header.b=mJvxrenH; arc=none smtp.client-ip=209.85.215.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=reznichenko.net
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=dpplabs.com
-Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-c2a9a9b43b1so1598209a12.2
-        for <devicetree@vger.kernel.org>; Fri, 30 Jan 2026 19:41:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=reznichenko.net; s=google; t=1769830867; x=1770435667; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0F/+WwJ4GgbOYPy3UtQ/y6jWwOMUeMh//woYhmhU11g=;
-        b=mJvxrenHZB7YODnCdsC/1KoShIjqJakqOPybAk+e4lDIW8X47lRd7vwOObr1NjUQ2T
-         snZnbPeypcIhU1vTcRSzrjnX0j07d2bS/8B3TFQkeMEKtf6wS043R82RPMUDfu7OvvSq
-         qgJlEdJZ7Mn5X7gR69XIKAUEb1BzJhn6BcwkSKsnShLqIXv01kx2cL3yJNyh36HcbW+V
-         hNOoEath+uPijuJWP0ubot7CpfUNHEPvtcPrggT/a3eD4qmrFO6Mii95oFqYUoaebZ94
-         gbNthn8G6+Y2QrV0UOrm1xzfq0/43mFMAa4a4YjNpbX9lTcaFguJkfb/2UKrUHrdcy/U
-         /k5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769830867; x=1770435667;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=0F/+WwJ4GgbOYPy3UtQ/y6jWwOMUeMh//woYhmhU11g=;
-        b=SXoUTKjoXpA3IhfgWztl50SxELL0wzZv6sDSX/QJ6N+awPRu/X28u4D8R2+lgtC0At
-         hPiUpeiuPdhv16r/ixL0Sru1P9mooADC0czLuBzYX86WLv15hgdI7GQOFx9Od4VvwPmS
-         GPA+UcFl2J3PQ430FoPAOr/WgsJvrCNtYy4HltsE2DHcrwmMYS/sHSQzBhfpCyljzGEM
-         xFWvDuQQrWreKQ+SJ98TzP+ALuuVTJNCLNtULtf6n8lSzBmvdHJWEDTUg50tFOuQ8LJQ
-         ulFRhQ6euQ1vQDooZpKpDETU/c2uXooAbB/4TsyCoc0OT1OPNDnEOd+7fVt055hcn1xC
-         +jMg==
-X-Forwarded-Encrypted: i=1; AJvYcCXOcTj/UHh2fv4SK/X8YbHi5r4dSWIEYjuZGiQxTaU5rELFDCzK83S8Ggfv7gpb5XAnWXCyURBjE79a@vger.kernel.org
-X-Gm-Message-State: AOJu0YxP+MRFM+Icxiqlx0kWNim0mj4+ZgggOpOGE6x9paZsr8c7SdRA
-	HHBpsGMenkGft9ApSI4wi3dZF8lY5142bYd/kSJKVRdmF1CC9Of6t/5rGsWJRL+vntc=
-X-Gm-Gg: AZuq6aJryIVF+K3DmEy3AcDtgRYZOJQYPqkqhUjN72AIDq742uIEt0OhICgvVlLthFS
-	Y8BCU+fEqN15bbq4IunGPCh9u4BJmqNcfeiwvtuquSZzmAxBlJWgETBNlaZ52S4ZH/v+jAlnoTV
-	eQVRhM9r2zdBBpPtlVQbh+dBnBNUIzrNhvsij2kGir6UGJC6S2f3mTkb6KUUSUfIBgbFvNqmso3
-	N2HGgVQKTs7KR1Gj69wQ3SXrD4eS3f53i9Rwqi5RzKsGHtl2ZSOW6KsBLMhNWOPgJSZe4s/MwFU
-	/GkpBTdSiHMl+/686j4iEjEIubQY4pcws5l73moMAPv551wCT/XCOSufep+Fzl8p4px/swz0AXR
-	Fi2yv851xmPVI5PFyaVmVvmQul7WI2TWZSNfUXMN/99q14kA/bQG2rtnaRhfUVzWPS2k4Gf1W3Z
-	i8/cTp4ZHOFnzkPLBa
-X-Received: by 2002:a05:6a21:3a85:b0:38d:f8e6:fc87 with SMTP id adf61e73a8af0-392e01a7c46mr5228981637.76.1769830866746;
-        Fri, 30 Jan 2026 19:41:06 -0800 (PST)
-Received: from z440.. ([2601:1c0:4502:2d00:f8d:9478:bfbf:7332])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3540f3cc71bsm8986062a91.11.2026.01.30.19.41.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Jan 2026 19:41:06 -0800 (PST)
-From: Igor Reznichenko <igor@reznichenko.net>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <jesszhan0024@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
+	s=arc-20240116; t=1769831090; c=relaxed/simple;
+	bh=SNJ583uMJNx90Bhg99QOcCcVg2v0mCbIzORnBliCeMs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=upI+MJQw58rGO6CS0a7V08/OT0gvnqHjADKrmIPnmAWGbZPQiEKT8BwVUXTZO15iz3IEaCPm1phS4M0axFrTC/u3/q3r0bZShKzPxy/lC4AZglveWug6mCnkkyUN7JczIhMUzWwI0v3szghu+OsJ741uFSaktmjG7OIsAdVRnaQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=d9j5tRXk; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1769831089; x=1801367089;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=SNJ583uMJNx90Bhg99QOcCcVg2v0mCbIzORnBliCeMs=;
+  b=d9j5tRXk7ihV6k56y43NgYhcOT2vWUxDNevZSwvlAoAEoSuXF6zhzqWb
+   dOJ0RI83oP0L0bt+k0cfP7Nv/sQE5ct4ubJpu0mtzhYZfNjP4nWm8Mbs5
+   q47hu/2mle4QQvzc2mQbczTbXeZqZp7HnaoDuHhD5oXQ8QHO2N843G1bW
+   Wp9SoLhMkVei0qxncP5nl0uSL9mq1BoolpVYNuUZHQpNdvgaZovV9jGE/
+   YZwg1sUpftWX7d4JX7Rl/fAROX+Y/jI9lLaGdLkI9bwhDTenXfrysdqab
+   XfQ/7iDdig8RboI8lEmey7F+i532xQesESXN7+OaPixkVqRGx011fgr4E
+   w==;
+X-CSE-ConnectionGUID: nM+5ZtU2RA2jkUV7EZjPIA==
+X-CSE-MsgGUID: kESTGoW9Tcqu58cn8xWLig==
+X-IronPort-AV: E=McAfee;i="6800,10657,11687"; a="88656407"
+X-IronPort-AV: E=Sophos;i="6.21,264,1763452800"; 
+   d="scan'208";a="88656407"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jan 2026 19:44:48 -0800
+X-CSE-ConnectionGUID: oHVPMhvnTgKnAFf6Zdft0g==
+X-CSE-MsgGUID: 3eO9R+ihTLGyNGUvdbWDew==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,264,1763452800"; 
+   d="scan'208";a="209369766"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+  by fmviesa010.fm.intel.com with ESMTP; 30 Jan 2026 19:44:44 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vm1uc-00000000dcW-02b8;
+	Sat, 31 Jan 2026 03:44:42 +0000
+Date: Sat, 31 Jan 2026 11:44:35 +0800
+From: kernel test robot <lkp@intel.com>
+To: Griffin Kroah-Hartman <griffin.kroah@fairphone.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	"Kael D'Alcamo" <dev@kael-k.io>,
-	Kever Yang <kever.yang@rock-chips.com>
-Cc: dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] drm/panel: Add Ilitek ILI9488 controller driver
-Date: Fri, 30 Jan 2026 19:41:01 -0800
-Message-ID: <20260131034101.307486-3-igor@reznichenko.net>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260131034101.307486-1-igor@reznichenko.net>
-References: <20260131034101.307486-1-igor@reznichenko.net>
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Luca Weiss <luca.weiss@fairphone.com>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
+Subject: Re: [PATCH v2 2/3] Input: aw86938 - add driver for Awinic AW86938
+Message-ID: <202601311117.t00gEixW-lkp@intel.com>
+References: <20260128-aw86938-driver-v2-2-b51ee086aaf5@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260128-aw86938-driver-v2-2-b51ee086aaf5@fairphone.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[reznichenko.net:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	TAGGED_FROM(0.00)[bounces-261384-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[reznichenko.net];
+	TAGGED_FROM(0.00)[bounces-261385-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[fairphone.com,gmail.com,kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[linaro.org,gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,sntech.de,bp.renesas.com,kael-k.io,rock-chips.com];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[igor@reznichenko.net,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[reznichenko.net:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[reznichenko.net:email,reznichenko.net:dkim,reznichenko.net:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 639EFC0900
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: DD96EC0913
 X-Rspamd-Action: no action
 
-Add support for Ilitek ILI9488 controller which is used in
-FocusLCDs E35GH-I-MW800-CB 320x480 MIPI DSI panel.
+Hi Griffin,
 
-Signed-off-by: Igor Reznichenko <igor@reznichenko.net>
----
- MAINTAINERS                                  |   6 +
- drivers/gpu/drm/panel/Kconfig                |   9 +
- drivers/gpu/drm/panel/Makefile               |   1 +
- drivers/gpu/drm/panel/panel-ilitek-ili9488.c | 299 +++++++++++++++++++
- 4 files changed, 315 insertions(+)
- create mode 100644 drivers/gpu/drm/panel/panel-ilitek-ili9488.c
+kernel test robot noticed the following build warnings:
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 67db88b04537..19f7806bbb56 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -7908,6 +7908,12 @@ T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
- F:	Documentation/devicetree/bindings/display/ilitek,ili9486.yaml
- F:	drivers/gpu/drm/tiny/ili9486.c
- 
-+DRM DRIVER FOR ILITEK ILI9488 PANELS
-+M:	Igor Reznichenko <igor@reznichenko.net>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/display/panel/ilitek,ili9488.yaml
-+F:	drivers/gpu/drm/panel/panel-ilitek-ili9488.c
-+
- DRM DRIVER FOR ILITEK ILI9805 PANELS
- M:	Michael Trimarchi <michael@amarulasolutions.com>
- S:	Maintained
-diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index 7a83804fedca..2a764d3d5097 100644
---- a/drivers/gpu/drm/panel/Kconfig
-+++ b/drivers/gpu/drm/panel/Kconfig
-@@ -248,6 +248,15 @@ config DRM_PANEL_ILITEK_ILI9341
- 	  QVGA (240x320) RGB panels. support serial & parallel rgb
- 	  interface.
- 
-+config DRM_PANEL_ILITEK_ILI9488
-+	tristate "Ilitek ILI9488-based panels"
-+	depends on OF
-+	depends on DRM_MIPI_DSI
-+	depends on BACKLIGHT_CLASS_DEVICE
-+	help
-+	  Say Y if you want to enable support for panels based on the
-+	  Ilitek ILI9488 controller.
-+
- config DRM_PANEL_ILITEK_ILI9805
- 	tristate "Ilitek ILI9805-based panels"
- 	depends on OF
-diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-index b9562a6fdcb3..62e49a322f21 100644
---- a/drivers/gpu/drm/panel/Makefile
-+++ b/drivers/gpu/drm/panel/Makefile
-@@ -25,6 +25,7 @@ obj-$(CONFIG_DRM_PANEL_HIMAX_HX8394) += panel-himax-hx8394.o
- obj-$(CONFIG_DRM_PANEL_HYDIS_HV101HD1) += panel-hydis-hv101hd1.o
- obj-$(CONFIG_DRM_PANEL_ILITEK_IL9322) += panel-ilitek-ili9322.o
- obj-$(CONFIG_DRM_PANEL_ILITEK_ILI9341) += panel-ilitek-ili9341.o
-+obj-$(CONFIG_DRM_PANEL_ILITEK_ILI9488) += panel-ilitek-ili9488.o
- obj-$(CONFIG_DRM_PANEL_ILITEK_ILI9805) += panel-ilitek-ili9805.o
- obj-$(CONFIG_DRM_PANEL_ILITEK_ILI9806E) += panel-ilitek-ili9806e.o
- obj-$(CONFIG_DRM_PANEL_ILITEK_ILI9881C) += panel-ilitek-ili9881c.o
-diff --git a/drivers/gpu/drm/panel/panel-ilitek-ili9488.c b/drivers/gpu/drm/panel/panel-ilitek-ili9488.c
-new file mode 100644
-index 000000000000..2bb5622ae506
---- /dev/null
-+++ b/drivers/gpu/drm/panel/panel-ilitek-ili9488.c
-@@ -0,0 +1,299 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+#include <linux/delay.h>
-+#include <linux/device.h>
-+#include <linux/err.h>
-+#include <linux/errno.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+
-+#include <linux/gpio/consumer.h>
-+#include <linux/regulator/consumer.h>
-+
-+#include <drm/drm_mipi_dsi.h>
-+#include <drm/drm_modes.h>
-+#include <drm/drm_panel.h>
-+#include <drm/drm_probe_helper.h>
-+
-+#include <video/mipi_display.h>
-+
-+struct ili9488_desc {
-+	const struct drm_display_mode *display_mode;
-+	unsigned long mode_flags;
-+	enum mipi_dsi_pixel_format format;
-+	unsigned int lanes;
-+	void (*init_sequence)(struct mipi_dsi_multi_context *ctx);
-+};
-+
-+struct ili9488 {
-+	struct drm_panel panel;
-+	struct mipi_dsi_device *dsi;
-+	struct gpio_desc *reset;
-+	struct regulator_bulk_data supplies[2];
-+	const struct ili9488_desc *desc;
-+	enum drm_panel_orientation orientation;
-+};
-+
-+static const char * const regulator_names[] = {
-+	"vci",
-+	"iovcc",
-+};
-+
-+static void e35gh_i_mw800cb_init(struct mipi_dsi_multi_context *ctx)
-+{
-+	/* Gamma control 1,2 */
-+	mipi_dsi_dcs_write_seq_multi(ctx, 0xE0, 0x00, 0x10, 0x14, 0x01, 0x0E, 0x04, 0x33,
-+				     0x56, 0x48, 0x03, 0x0C, 0x0B, 0x2B, 0x34, 0x0F);
-+	mipi_dsi_dcs_write_seq_multi(ctx, 0xE1, 0x00, 0x12, 0x18, 0x05, 0x12, 0x06, 0x40,
-+				     0x34, 0x57, 0x06, 0x10, 0x0C, 0x3B, 0x3F, 0x0F);
-+	/* Power control 1,2 */
-+	mipi_dsi_dcs_write_seq_multi(ctx, 0xC0, 0x0F, 0x0C);
-+	mipi_dsi_dcs_write_seq_multi(ctx, 0xC1, 0x41);
-+	/* VCOM Control */
-+	mipi_dsi_dcs_write_seq_multi(ctx, 0xC5, 0x00, 0x25, 0x80);
-+	mipi_dsi_dcs_write_seq_multi(ctx, 0x36, 0x48);
-+	/* Interface pixel format 18bpp */
-+	mipi_dsi_dcs_write_seq_multi(ctx, 0x3A, 0x66);
-+	mipi_dsi_dcs_write_seq_multi(ctx, 0xB0, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(ctx, 0xB1, 0xA0);
-+	mipi_dsi_dcs_write_seq_multi(ctx, 0xB4, 0x02);
-+	mipi_dsi_dcs_write_seq_multi(ctx, 0xB6, 0x02, 0x02, 0x3B);
-+	mipi_dsi_dcs_write_seq_multi(ctx, 0xE9, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(ctx, 0xF7, 0xA9, 0x51, 0x2C, 0x82);
-+	mipi_dsi_dcs_write_seq_multi(ctx, 0x21, 0x00);
-+}
-+
-+static const struct drm_display_mode e35gh_i_mw800cb_display_mode = {
-+	.clock = 14256,
-+
-+	.hdisplay = 320,
-+	.hsync_start = 320 + 60,
-+	.hsync_end = 320 + 60 + 20,
-+	.htotal = 320 + 60 + 20 + 40,
-+
-+	.vdisplay = 480,
-+	.vsync_start = 480 + 20,
-+	.vsync_end = 480 + 20 + 10,
-+	.vtotal = 480 + 20 + 10 + 30,
-+
-+	.width_mm = 48,
-+	.height_mm = 73,
-+
-+	.flags = DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
-+	.type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED,
-+};
-+
-+static inline struct ili9488 *panel_to_ili9488(struct drm_panel *panel)
-+{
-+	return container_of(panel, struct ili9488, panel);
-+}
-+
-+static int ili9488_power_on(struct ili9488 *ili)
-+{
-+	struct mipi_dsi_device *dsi = ili->dsi;
-+	int ret;
-+
-+	ret = regulator_bulk_enable(ARRAY_SIZE(ili->supplies), ili->supplies);
-+	if (ret < 0) {
-+		dev_err(&dsi->dev, "regulator bulk enable failed: %d\n", ret);
-+		return ret;
-+	}
-+
-+	gpiod_set_value_cansleep(ili->reset, 0);
-+	usleep_range(1000, 5000);
-+	gpiod_set_value_cansleep(ili->reset, 1);
-+	usleep_range(1000, 5000);
-+	gpiod_set_value_cansleep(ili->reset, 0);
-+	usleep_range(5000, 10000);
-+
-+	return 0;
-+}
-+
-+static int ili9488_power_off(struct ili9488 *ili)
-+{
-+	struct mipi_dsi_device *dsi = ili->dsi;
-+	int ret;
-+
-+	gpiod_set_value_cansleep(ili->reset, 1);
-+
-+	ret = regulator_bulk_disable(ARRAY_SIZE(ili->supplies), ili->supplies);
-+	if (ret)
-+		dev_err(&dsi->dev, "regulator bulk disable failed: %d\n", ret);
-+
-+	return ret;
-+}
-+
-+static int ili9488_activate(struct ili9488 *ili)
-+{
-+	struct mipi_dsi_multi_context ctx = { .dsi = ili->dsi };
-+
-+	if (ili->desc->init_sequence)
-+		ili->desc->init_sequence(&ctx);
-+
-+	mipi_dsi_dcs_exit_sleep_mode_multi(&ctx);
-+	mipi_dsi_msleep(&ctx, 120);
-+	mipi_dsi_dcs_set_display_on_multi(&ctx);
-+
-+	return ctx.accum_err;
-+}
-+
-+static int ili9488_prepare(struct drm_panel *panel)
-+{
-+	struct ili9488 *ili = panel_to_ili9488(panel);
-+	int ret;
-+
-+	ret = ili9488_power_on(ili);
-+	if (ret)
-+		return ret;
-+
-+	ret = ili9488_activate(ili);
-+	if (ret) {
-+		ili9488_power_off(ili);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int ili9488_deactivate(struct ili9488 *ili)
-+{
-+	struct mipi_dsi_multi_context ctx = { .dsi = ili->dsi };
-+
-+	mipi_dsi_dcs_set_display_off_multi(&ctx);
-+	mipi_dsi_dcs_enter_sleep_mode_multi(&ctx);
-+	mipi_dsi_msleep(&ctx, 120);
-+
-+	return ctx.accum_err;
-+}
-+
-+static int ili9488_unprepare(struct drm_panel *panel)
-+{
-+	struct ili9488 *ili = panel_to_ili9488(panel);
-+	struct mipi_dsi_device *dsi = ili->dsi;
-+	int ret;
-+
-+	ili9488_deactivate(ili);
-+	ret = ili9488_power_off(ili);
-+	if (ret < 0)
-+		dev_err(&dsi->dev, "power off failed: %d\n", ret);
-+
-+	return ret;
-+}
-+
-+static int ili9488_get_modes(struct drm_panel *panel, struct drm_connector *connector)
-+{
-+	struct ili9488 *ili = panel_to_ili9488(panel);
-+	const struct drm_display_mode *mode = ili->desc->display_mode;
-+
-+	return drm_connector_helper_get_modes_fixed(connector, mode);
-+}
-+
-+static enum drm_panel_orientation ili9488_get_orientation(struct drm_panel *panel)
-+{
-+	struct ili9488 *ili = panel_to_ili9488(panel);
-+
-+	return ili->orientation;
-+}
-+
-+static const struct drm_panel_funcs ili9488_funcs = {
-+	.prepare	= ili9488_prepare,
-+	.unprepare	= ili9488_unprepare,
-+	.get_modes	= ili9488_get_modes,
-+	.get_orientation = ili9488_get_orientation,
-+};
-+
-+static int ili9488_dsi_probe(struct mipi_dsi_device *dsi)
-+{
-+	struct device *dev = &dsi->dev;
-+	struct ili9488 *ili;
-+	int i, ret;
-+
-+	ili = devm_drm_panel_alloc(dev, struct ili9488, panel, &ili9488_funcs,
-+				   DRM_MODE_CONNECTOR_DSI);
-+	if (IS_ERR(ili))
-+		return PTR_ERR(ili);
-+
-+	ili->desc = device_get_match_data(dev);
-+	mipi_dsi_set_drvdata(dsi, ili);
-+	ili->dsi = dsi;
-+
-+	dsi->mode_flags = ili->desc->mode_flags;
-+	dsi->format = ili->desc->format;
-+	dsi->lanes = ili->desc->lanes;
-+
-+	ili->reset = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
-+	if (IS_ERR(ili->reset))
-+		return dev_err_probe(dev, PTR_ERR(ili->reset),
-+				     "failed to get reset-gpios\n");
-+
-+	for (i = 0; i < ARRAY_SIZE(ili->supplies); i++)
-+		ili->supplies[i].supply = regulator_names[i];
-+
-+	ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(ili->supplies),
-+				      ili->supplies);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret, "failed to get regulators\n");
-+
-+	ret = of_drm_get_panel_orientation(dev->of_node, &ili->orientation);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to get orientation\n");
-+
-+	ret = drm_panel_of_backlight(&ili->panel);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to get backlight\n");
-+
-+	ili->panel.prepare_prev_first = true;
-+	drm_panel_add(&ili->panel);
-+
-+	ret = mipi_dsi_attach(dsi);
-+	if (ret < 0) {
-+		dev_err_probe(dev, ret, "failed to attach to DSI host\n");
-+		drm_panel_remove(&ili->panel);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static void ili9488_dsi_remove(struct mipi_dsi_device *dsi)
-+{
-+	struct ili9488 *ili = mipi_dsi_get_drvdata(dsi);
-+	int ret;
-+
-+	ret = mipi_dsi_detach(dsi);
-+	if (ret < 0)
-+		dev_err(&dsi->dev, "failed to detach from DSI host: %d\n", ret);
-+
-+	drm_panel_remove(&ili->panel);
-+}
-+
-+static const struct ili9488_desc e35gh_i_mw800cb_desc = {
-+	.init_sequence = e35gh_i_mw800cb_init,
-+	.display_mode = &e35gh_i_mw800cb_display_mode,
-+	.mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_SYNC_PULSE |
-+		      MIPI_DSI_MODE_LPM | MIPI_DSI_CLOCK_NON_CONTINUOUS,
-+	.format = MIPI_DSI_FMT_RGB666_PACKED,
-+	.lanes = 1,
-+};
-+
-+static const struct of_device_id ili9488_of_match[] = {
-+	{ .compatible = "focuslcds,e35gh-i-mw800cb", .data = &e35gh_i_mw800cb_desc },
-+	{ }
-+};
-+
-+MODULE_DEVICE_TABLE(of, ili9488_of_match);
-+
-+static struct mipi_dsi_driver ili9488_dsi_driver = {
-+	.probe	= ili9488_dsi_probe,
-+	.remove	= ili9488_dsi_remove,
-+	.driver = {
-+		.name		= "ili9488-dsi",
-+		.of_match_table	= ili9488_of_match,
-+	},
-+};
-+module_mipi_dsi_driver(ili9488_dsi_driver);
-+
-+MODULE_AUTHOR("Igor Reznichenko <igor@reznichenko.net>");
-+MODULE_DESCRIPTION("Ilitek ILI9488 Controller Driver");
-+MODULE_LICENSE("GPL");
+[auto build test WARNING on 0364de6be161e2360cbb1f26d5aff5b343ef7bb0]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Griffin-Kroah-Hartman/dt-bindings-input-awinic-aw86927-Add-Awinic-AW86938/20260129-000753
+base:   0364de6be161e2360cbb1f26d5aff5b343ef7bb0
+patch link:    https://lore.kernel.org/r/20260128-aw86938-driver-v2-2-b51ee086aaf5%40fairphone.com
+patch subject: [PATCH v2 2/3] Input: aw86938 - add driver for Awinic AW86938
+config: sparc64-allmodconfig (https://download.01.org/0day-ci/archive/20260131/202601311117.t00gEixW-lkp@intel.com/config)
+compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 9b8addffa70cee5b2acc5454712d9cf78ce45710)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260131/202601311117.t00gEixW-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202601311117.t00gEixW-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/input/misc/aw86927.c:778:19: warning: cast to smaller integer type 'enum aw86927_model' from 'const void *' [-Wvoid-pointer-to-enum-cast]
+     778 |         haptics->model = (enum aw86927_model)device_get_match_data(&client->dev);
+         |                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   1 warning generated.
+
+
+vim +778 drivers/input/misc/aw86927.c
+
+   766	
+   767	static int aw86927_probe(struct i2c_client *client)
+   768	{
+   769		struct aw86927_data *haptics;
+   770		int err;
+   771	
+   772		haptics = devm_kzalloc(&client->dev, sizeof(struct aw86927_data), GFP_KERNEL);
+   773		if (!haptics)
+   774			return -ENOMEM;
+   775	
+   776		haptics->dev = &client->dev;
+   777		haptics->client = client;
+ > 778		haptics->model = (enum aw86927_model)device_get_match_data(&client->dev);
+   779	
+   780		i2c_set_clientdata(client, haptics);
+   781	
+   782		haptics->regmap = devm_regmap_init_i2c(client, &aw86927_regmap_config);
+   783		if (IS_ERR(haptics->regmap))
+   784			return dev_err_probe(haptics->dev, PTR_ERR(haptics->regmap),
+   785						"Failed to allocate register map\n");
+   786	
+   787		haptics->input_dev = devm_input_allocate_device(haptics->dev);
+   788		if (!haptics->input_dev)
+   789			return -ENOMEM;
+   790	
+   791		haptics->reset_gpio = devm_gpiod_get(haptics->dev, "reset", GPIOD_OUT_HIGH);
+   792		if (IS_ERR(haptics->reset_gpio))
+   793			return dev_err_probe(haptics->dev, PTR_ERR(haptics->reset_gpio),
+   794					     "Failed to get reset gpio\n");
+   795	
+   796		/* Hardware reset */
+   797		aw86927_hw_reset(haptics);
+   798	
+   799		/* Software reset */
+   800		err = regmap_write(haptics->regmap, AW86927_RSTCFG_REG, AW86927_RSTCFG_SOFTRST);
+   801		if (err)
+   802			return dev_err_probe(haptics->dev, err,	"Failed Software reset\n");
+   803	
+   804		/* Wait ~3ms until I2C is accessible */
+   805		usleep_range(3000, 3500);
+   806	
+   807		err = aw86927_detect(haptics);
+   808		if (err)
+   809			return dev_err_probe(haptics->dev, err, "Failed to find chip\n");
+   810	
+   811		/* IRQ config */
+   812		err = regmap_write(haptics->regmap, AW86927_SYSCTRL4_REG,
+   813				   FIELD_PREP(AW86927_SYSCTRL4_INT_MODE_MASK,
+   814					      AW86927_SYSCTRL4_INT_MODE_EDGE) |
+   815					FIELD_PREP(AW86927_SYSCTRL4_INT_EDGE_MODE_MASK,
+   816						   AW86927_SYSCTRL4_INT_EDGE_MODE_POS));
+   817		if (err)
+   818			return dev_err_probe(haptics->dev, err, "Failed to configure interrupt modes\n");
+   819	
+   820		err = regmap_write(haptics->regmap, AW86927_SYSINTM_REG,
+   821				   AW86927_SYSINTM_BST_OVPM |
+   822					AW86927_SYSINTM_FF_AEM |
+   823					AW86927_SYSINTM_FF_AFM |
+   824					AW86927_SYSINTM_DONEM);
+   825		if (err)
+   826			return dev_err_probe(haptics->dev, err, "Failed to configure interrupt masks\n");
+   827	
+   828		err = devm_request_threaded_irq(haptics->dev, client->irq, NULL,
+   829						aw86927_irq, IRQF_ONESHOT, NULL, haptics);
+   830		if (err)
+   831			return dev_err_probe(haptics->dev, err, "Failed to request threaded irq\n");
+   832	
+   833		INIT_WORK(&haptics->play_work, aw86927_haptics_play_work);
+   834	
+   835		haptics->input_dev->name = "aw86927-haptics";
+   836		haptics->input_dev->close = aw86927_close;
+   837	
+   838		input_set_drvdata(haptics->input_dev, haptics);
+   839		input_set_capability(haptics->input_dev, EV_FF, FF_RUMBLE);
+   840	
+   841		err = input_ff_create_memless(haptics->input_dev, NULL, aw86927_haptics_play);
+   842		if (err)
+   843			return dev_err_probe(haptics->dev, err, "Failed to create FF dev\n");
+   844	
+   845		/* Set up registers */
+   846		err = aw86927_play_mode(haptics, AW86927_STANDBY_MODE);
+   847		if (err)
+   848			return dev_err_probe(haptics->dev, err,
+   849					     "Failed to enter standby for Haptic init\n");
+   850	
+   851		err = aw86927_haptic_init(haptics);
+   852		if (err)
+   853			return dev_err_probe(haptics->dev, err, "Haptic init failed\n");
+   854	
+   855		/* RAM init, upload the waveform for playback */
+   856		err = aw86927_ram_init(haptics);
+   857		if (err)
+   858			return dev_err_probe(haptics->dev, err, "Failed to init aw86927 sram\n");
+   859	
+   860		err = input_register_device(haptics->input_dev);
+   861		if (err)
+   862			return dev_err_probe(haptics->dev, err, "Failed to register input device\n");
+   863	
+   864		return 0;
+   865	}
+   866	
+
 -- 
-2.43.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
