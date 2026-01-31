@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-261453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261454-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WLl0C0k7fmkOWgIAu9opvQ
-	(envelope-from <devicetree+bounces-261453-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 18:26:33 +0100
+	id +B5CHwY8fmkhWgIAu9opvQ
+	(envelope-from <devicetree+bounces-261454-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 18:29:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78576C3332
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 18:26:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0CDCC3364
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 18:29:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 801CC301C149
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 17:26:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 61F303021737
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jan 2026 17:29:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D61A34EEF2;
-	Sat, 31 Jan 2026 17:26:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EB39340DB1;
+	Sat, 31 Jan 2026 17:29:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NVeIufvS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gghjNzsj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B08934DCE4;
-	Sat, 31 Jan 2026 17:26:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B17630F7EA;
+	Sat, 31 Jan 2026 17:29:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769880377; cv=none; b=B+zdrzhWXs/spewTTub4hfKMaW5LQWdmfMzZrmR0sH1knaBZJMZ21i735Yie6DOn3SOMuzqv3dGIuGrggeeoyUwLmeyACmVFvxaioprRX4mANj60eEFCaEbuBm5b519YsjRjAp83aeEdQVDdmQV4Pj+N4VWVjHKUfSksgk8Seg4=
+	t=1769880578; cv=none; b=brAqbTUsvaNfwNSbU8D+pMsSiXCLcqc5/4u7xQWVXpwdNkDX/1kdPikZrkneOhcdTYQbbBY544jufW57WgM8WTkN3RhcXk0swqaULfPPhpenhfc/+KyiTk1XgApJEHfI2m1B2o2DoKhLH0g5cXx1MpsR6iz80gSjHPe5qANjW5A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769880377; c=relaxed/simple;
-	bh=lL2KpW+5gB6aNpRTESTk9jPO2YC6wPsXm8d7yK5Jj18=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Dmt2x6XwDRekr5ifBcB50+uu1m/8ifyfDd/CA2ZR+OGN8qrSfKFLC/l34MdehbzO9Khh1d+euNk8jmPBfu/uVCo8wDdMLMbcfDmm2EFEbcCmjumtFSXcpAPg5bWfahJMwQW6gApY4ABoLrL8T7UTKb/6Ai8+HFl52X4rY9W78P0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NVeIufvS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 688EEC4CEF1;
-	Sat, 31 Jan 2026 17:26:16 +0000 (UTC)
+	s=arc-20240116; t=1769880578; c=relaxed/simple;
+	bh=111sFrCMC2KX1L0YRhT+g514MKW2WAswAFDFNAO9Ogs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=J4eUfuQQb9dQXwwCtZwrJ8cBdNeKsftN3c5iRXdDDP9Sk3lG46hl1dP2btjW1ubMF5BWvJORZjLgR2KSBdHB8X17ka1Akyx2tjpniCvywXsulCP22igdVFs6SI7FdwcqnB7d1cNp32T54eZpzrTIoSQgxCICoZ6Lt2gpH/F1VIo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gghjNzsj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFB42C4CEF1;
+	Sat, 31 Jan 2026 17:29:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769880377;
-	bh=lL2KpW+5gB6aNpRTESTk9jPO2YC6wPsXm8d7yK5Jj18=;
+	s=k20201202; t=1769880577;
+	bh=111sFrCMC2KX1L0YRhT+g514MKW2WAswAFDFNAO9Ogs=;
 	h=From:To:Cc:Subject:Date:From;
-	b=NVeIufvSICOnM+jMbsW8QKlexpX1UkuaFssed1due4sdc1ETuQYs1szA/hX5fgeJU
-	 ZgLlaCoRcN2akffcRil9db/7eXFipFdJ7QO3Hh80GnwnPoTUidA0A5JWsTQzJuVrsO
-	 GFSxxZWffMTE3VyUWiyDwDxcLR2ssz0pG8K/5qYlz8NUlFeAqhjrY6mkMWLwHdon37
-	 XM+UiijsonYAEjnc83Dp/bBuOxp1lDB/DX7RL0Kx46AaEFfuKF7NdxQyRndilKe9wS
-	 tUlH9Sg/O2fjOFdmhZnaIFkVT/Zprr3N4p0cqo4o8LZbu54N++wABb8T9c8sqE7ohE
-	 +1BqBnx49mAwA==
+	b=gghjNzsjYKgZh/eoZdyiIw3GR+7agi7OsItOZfP3v01hFQBOgL9Ta/aLVPVun/w6t
+	 FILuwcaTiEe24IO/L96ls+S8sfu8hPJh1vFby5BbiAJo9C7pd+ABwpH/atwvTCqNNu
+	 CMSFVe8by5ONiVzCvaPT4KoIEkohVz9JQwlD+KzwrKBW/jqEUg6wyP0Zh5xSn9ghwc
+	 TwnoGTgNLBwkpLKLCBGUZHpag1EhcGakKpXzwu31w/8cOCOZTr8py1/eYg9mUVk70+
+	 pzd40HYKtL0GuqWVP2T9haPorpvKtM8sz81dJbXSauGjPcp9DkSrCDF3pAXy98Obml
+	 8VvVb9Hciw+ZQ==
 From: Dinh Nguyen <dinguyen@kernel.org>
-To: miquel.raynal@bootlin.com,
-	richard@nod.at,
-	vigneshr@ti.com
+To: Eugeniy.Paltsev@synopsys.com,
+	vkoul@kernel.org
 Cc: dinguyen@kernel.org,
-	linux-mtd@lists.infradead.org,
+	dmaengine@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Khairul Anuar Romli <khairul.anuar.romli@altera.com>,
 	Rob Herring <robh@kernel.org>
-Subject: [PATCH] dt-bindings: mtd: cdns,hp-nfc: Add dma-coherent property
-Date: Sat, 31 Jan 2026 11:26:11 -0600
-Message-ID: <20260131172611.28807-1-dinguyen@kernel.org>
+Subject: [PATCH] dt-bindings: dma: snps,dw-axi-dmac: add dma-coherent property
+Date: Sat, 31 Jan 2026 11:28:56 -0600
+Message-ID: <20260131172856.29227-1-dinguyen@kernel.org>
 X-Mailer: git-send-email 2.42.0.411.g813d9a9188
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -76,7 +75,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261453-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-261454-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
@@ -84,7 +83,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[dinguyen@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	NEURAL_HAM(-0.00)[-1.000];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree];
@@ -92,37 +91,39 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,altera.com:email]
-X-Rspamd-Queue-Id: 78576C3332
+X-Rspamd-Queue-Id: A0CDCC3364
 X-Rspamd-Action: no action
 
 From: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
 
-The Cadence HP NAND Flash Controller on supports DMA transactions through
-a coherent interconnect. In previous generations SoC (Stratix10 and Agilex)
-the interconnect was non-coherent, hence there is no need for dma-coherent
-property to be presence. In Agilex 5, the architecture has changed. It
-introduced a coherent interconnect that supports cache-coherent DMA.
+The Synopsys DesignWare AXI DMA Controller on Agilex5, the controller
+operates on a cache-coherent AXI interface, where DMA transactions are
+automatically kept coherent with the CPU caches. In previous generations
+SoC (Stratix10 and Agilex) the interconnect was non-coherent, hence there
+is no need for dma-coherent property to be presence. In Agilex 5, the
+architecture has changed. It  introduced a coherent interconnect that
+supports cache-coherent DMA.
 
 Signed-off-by: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
 ---
- Documentation/devicetree/bindings/mtd/cdns,hp-nfc.yaml | 2 ++
+ Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml | 2 ++
  1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/mtd/cdns,hp-nfc.yaml b/Documentation/devicetree/bindings/mtd/cdns,hp-nfc.yaml
-index 73dc69cee4d8..367257a227b1 100644
---- a/Documentation/devicetree/bindings/mtd/cdns,hp-nfc.yaml
-+++ b/Documentation/devicetree/bindings/mtd/cdns,hp-nfc.yaml
-@@ -40,6 +40,8 @@ properties:
-   dmas:
-     maxItems: 1
+diff --git a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
+index 216cda21c538..e12a48a12ea4 100644
+--- a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
++++ b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
+@@ -68,6 +68,8 @@ properties:
+ 
+   dma-noncoherent: true
  
 +  dma-coherent: true
 +
-   iommus:
-     maxItems: 1
- 
+   resets:
+     minItems: 1
+     maxItems: 2
 -- 
 2.42.0.411.g813d9a9188
 
