@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-261596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261597-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6BYPOMqof2l9vQIAu9opvQ
-	(envelope-from <devicetree+bounces-261596-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 20:26:02 +0100
+	id yB08Afmpf2n6vQIAu9opvQ
+	(envelope-from <devicetree+bounces-261597-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 20:31:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4220BC70EE
-	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 20:26:02 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DA67C7131
+	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 20:31:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4FA233005D2A
-	for <lists+devicetree@lfdr.de>; Sun,  1 Feb 2026 19:25:59 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6D9DE30053B9
+	for <lists+devicetree@lfdr.de>; Sun,  1 Feb 2026 19:31:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 039402C08A1;
-	Sun,  1 Feb 2026 19:25:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4205D2874FB;
+	Sun,  1 Feb 2026 19:31:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zq5BCUNb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LhCIKTRM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D46135D8F0;
-	Sun,  1 Feb 2026 19:25:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D4261ACED5;
+	Sun,  1 Feb 2026 19:31:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769973957; cv=none; b=LWguobzh94D+z57+oJinNBtRmbI4Pls3JPPsVYK7P0/vW/bPkwHcyeVXV/VkkrSRSRlqbAg/TSnZBS7fnRVUnN9uWd3VBWTXxvHU7ifCe53/yLBmTrN2CEflbvRs/waL9Pu9Kk1VJ7eQqlOu2v7wm3jvkcVWLQh/Ieri+e3N/k4=
+	t=1769974262; cv=none; b=tFrdDzuNc+DvvWgafsE4Smp6Fr0neV165ZCR/YJSm6OgSfuywjPuHj5jo8JjmcmiknwJsoJk2S00Xz+Foz2Lt7/20B5BW/2KR55ex2O0cPfGQNT5L3oHnXZS2+Idg7nbLhqthlq3Sle1LMTt0qPKeOah2q+nrWsoOrxwj32t5Xk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769973957; c=relaxed/simple;
-	bh=bIDEY5frNolusbVDWxt6oMlaQ4LE9aJ4Oaroe+96lXk=;
+	s=arc-20240116; t=1769974262; c=relaxed/simple;
+	bh=/urQmFdCDUf+tZGDThKL0m9msVTzm4Zp2SVbKmDZ/70=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=U6H5L+kcXX8Gm5Z8N8hdY5Ne2KzVh1a9P86kG83HovNQ5K3qGj4ykx8AjnUo6lIpv8AO7z9vHGALsDy83GQqcnxWi/NWSrmJvoU9fh8AXofP/Bov+uiNdQ4yRT6AU1ReuuYrOsUwfvLEVKVVNXX1bu5oh+lWgW9letnYfAa6bzs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zq5BCUNb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 971F2C4CEF7;
-	Sun,  1 Feb 2026 19:25:56 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=jPvx+qgB7UpmbQaUoteubWvr7LoKgpSWLSS55/EfMqDri3wMEeQR0Tnhya2UOqhHcfhXR83upZ0yGsW6hTElfXXrzUJrTmGrp9GcNwb5XKdEzAOKvmkpVTw/D4g9OuyZbEG3pDxrt1iw7KjOecl9Z0No0LYj8LpplnhPkOP2zFk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LhCIKTRM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9C0CC4CEF7;
+	Sun,  1 Feb 2026 19:31:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769973957;
-	bh=bIDEY5frNolusbVDWxt6oMlaQ4LE9aJ4Oaroe+96lXk=;
+	s=k20201202; t=1769974261;
+	bh=/urQmFdCDUf+tZGDThKL0m9msVTzm4Zp2SVbKmDZ/70=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Zq5BCUNbYCAzHaa5wrT3MdNU+9RFSYJeO7UZeXcwbEp7zyHF+2k2JcBdgzoknG3zp
-	 w5/I5/emRVdf8GLHU5xp7h3Gs4POVu9bO1iy+OcTdgey6hpjRxUGihN+i57Ag5YUq6
-	 HnTBUJLd1YHmZ2P7m1U69tK9tqLCZZ5Z/5Im8FwE/tNBYHD6XtlJsKuKA4NRieWzoe
-	 mSh5nUj8x7du116o5c3TeJ4jE9y4iT4ud5NytHuPY1+NYMx2AjfeeZ43c7yJXT3BXO
-	 pwXV3RVPC63d6fVsPveYMQ9rkMOAgz0L7zZlX5inHRFhQdrciB9yRCCz71GW18NpvU
-	 qdyuK+fwiWdQg==
-Message-ID: <aa9d982e-1a69-48b4-b9f4-16584aac9924@kernel.org>
-Date: Sun, 1 Feb 2026 13:25:55 -0600
+	b=LhCIKTRM9HBanieN4TkDbSqAbvoHXkeASeqD3PzplZx9e9mer1VU7azEU7Dw2TAbg
+	 krF3idhabE1Hmeb2R1isNtxMID6tx+1zQVFYIaJeywxsK0QtFfFu9VfmsafI6Iul4w
+	 OISo5U7BVcjbjvX0622By7cwUi8FI7CDks/rW4yhqEMaOPdR2SvTLDkw9xYWvrz0BP
+	 BFCvJIhGvHERwiGT60lxizGoVF19GJARZqx1oqsrcTpJUskdKNSnH2HVvbQx/TTFuF
+	 hX0NWFwBbrBfT/yqSrY73awns4j265d5xf2M0cQ111NWprzHqrCS90z8RLu8OfYunN
+	 6D4xepmi5ZjJg==
+Message-ID: <f5183a72-6ea4-4d68-b136-f6d83a36493d@kernel.org>
+Date: Sun, 1 Feb 2026 13:30:59 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,30 +53,31 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: mtd: cdns,hp-nfc: Add dma-coherent property
+Subject: Re: [PATCH] dt-bindings: dma: snps,dw-axi-dmac: add dma-coherent
+ property
 Content-Language: en-US
 To: Conor Dooley <conor@kernel.org>
-Cc: miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
- linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+Cc: Eugeniy.Paltsev@synopsys.com, vkoul@kernel.org,
+ dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org,
  Khairul Anuar Romli <khairul.anuar.romli@altera.com>,
  Rob Herring <robh@kernel.org>
-References: <20260131172611.28807-1-dinguyen@kernel.org>
- <20260131-pasty-dicing-4ed7799aa546@spud>
+References: <20260131172856.29227-1-dinguyen@kernel.org>
+ <20260131-subtly-education-e13320fe0486@spud>
 From: Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <20260131-pasty-dicing-4ed7799aa546@spud>
+In-Reply-To: <20260131-subtly-education-e13320fe0486@spud>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-261596-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-261597-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -88,26 +89,28 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[dinguyen@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 4220BC70EE
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,altera.com:email]
+X-Rspamd-Queue-Id: 8DA67C7131
 X-Rspamd-Action: no action
 
 
 
-On 1/31/26 14:26, Conor Dooley wrote:
-> On Sat, Jan 31, 2026 at 11:26:11AM -0600, Dinh Nguyen wrote:
+On 1/31/26 14:27, Conor Dooley wrote:
+> On Sat, Jan 31, 2026 at 11:28:56AM -0600, Dinh Nguyen wrote:
 >> From: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
 >>
->> The Cadence HP NAND Flash Controller on supports DMA transactions through
->> a coherent interconnect. In previous generations SoC (Stratix10 and Agilex)
->> the interconnect was non-coherent, hence there is no need for dma-coherent
->> property to be presence. In Agilex 5, the architecture has changed. It
->> introduced a coherent interconnect that supports cache-coherent DMA.
+>> The Synopsys DesignWare AXI DMA Controller on Agilex5, the controller
+>> operates on a cache-coherent AXI interface, where DMA transactions are
+>> automatically kept coherent with the CPU caches. In previous generations
+>> SoC (Stratix10 and Agilex) the interconnect was non-coherent, hence there
+>> is no need for dma-coherent property to be presence. In Agilex 5, the
+>> architecture has changed. It  introduced a coherent interconnect that
+>> supports cache-coherent DMA.
 >>
 >> Signed-off-by: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
 >> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
@@ -115,14 +118,14 @@ On 1/31/26 14:26, Conor Dooley wrote:
 > Why does this v1 have an ack?
 > 
 
-I respun this patch based on the mtd tree so that the mtd maintainers 
-can take it. I had originally applied it to my tree, but avoid merge 
-conflicts, I'm going to submit it through mtd. This patch is the same as 
-this[1].
+I respun this patch based on the dmaengine tree so that the dma engine 
+maintainer can take it. I had originally applied it to my tree, but 
+avoid potential merge conflicts, I'm going to submit it through dma. 
+This patch is the same as this[1].
 
 Sorry for any confusion.
 
 Dinh
 [1] 
-https://lore.kernel.org/linux-devicetree/176488419217.2206248.9983976146883123306.robh@kernel.org/
+https://lore.kernel.org/linux-devicetree/176488420978.2206697.11201292177123636920.robh@kernel.org/
 
