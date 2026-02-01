@@ -1,178 +1,161 @@
-Return-Path: <devicetree+bounces-261535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261538-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id s6TpCeMGf2nZiQIAu9opvQ
-	(envelope-from <devicetree+bounces-261535-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 08:55:15 +0100
+	id aGOFHb4Lf2mEiwIAu9opvQ
+	(envelope-from <devicetree+bounces-261538-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 09:15:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC14AC528A
-	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 08:55:13 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0653EC5373
+	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 09:15:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D4D253011F22
-	for <lists+devicetree@lfdr.de>; Sun,  1 Feb 2026 07:55:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7BA5930238F4
+	for <lists+devicetree@lfdr.de>; Sun,  1 Feb 2026 08:15:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 011382E5B19;
-	Sun,  1 Feb 2026 07:55:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63F2731A044;
+	Sun,  1 Feb 2026 08:15:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="K9c/XmC4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 234EE2E2DF3;
-	Sun,  1 Feb 2026 07:55:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 382DB241690;
+	Sun,  1 Feb 2026 08:15:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769932509; cv=none; b=NAlEhGm94wzBU7bWciWcu8DDudjSHIyetNLqwKcazNauLuvolsM3ziaNu6qcjkNOMUdCqFeRKKnO3jqvDTg4oi2IwVzJ9gByjpgNX/TKSQk9vAnBEPNhn0TnayTbQds7ZWljtGkSWEmysSEM2ARUWHVJpUmkC2yhARc19x6OM14=
+	t=1769933728; cv=none; b=WjJW7pf129OCSio+4GVFyyazSoLlnAws6JEnyGCkCMBTEMTfuiL2QM9Sg/w+w0P05FSYzqcrkT9BhiL22TsAN8pBShlVDTvrGvD3n/pYYolv6HekDpcrgsU/SaU1XUCBxA9SqdxMOQmuAE3mGBdDXswbSckRZTi9Fnsu0IkK3BM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769932509; c=relaxed/simple;
-	bh=z6mWxDqFM4sMz0Ku7c7Hx1Zh61VJbVlC9psNnYXmEpQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hjpmtN5fwYllx5eDC5WdtgmBA9rmW64fTLZMrUOQ+71AVKk15tDyzpD2bt+0Y/L1f1zMpBtyU/EP4np7dYNbo9S0YNlCd+do410+ZTMznq/d2tbFc/Sw+5mcI8x74EB0VCxWvPH9J1SnqKZ0gY3SQpE5ga85fqls0IE48s4Ktos=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from [192.168.0.111] (unknown [123.118.222.47])
-	by APP-01 (Coremail) with SMTP id qwCowABnEm7FBn9pTAnlBg--.4747S2;
-	Sun, 01 Feb 2026 15:54:46 +0800 (CST)
-Message-ID: <d994ec8a-ff6a-4228-bfc9-2fcf9b35a460@iscas.ac.cn>
-Date: Sun, 1 Feb 2026 15:54:45 +0800
+	s=arc-20240116; t=1769933728; c=relaxed/simple;
+	bh=48x2CoXYLt1IS7z/CM7iZFIPQ5t6cPmYVU09MbgzJx0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZcGkLfUY7YivWHiRzAR0xgGXbCVWhW8JPnf8DseQXadd6FfKrSm9qt/L6NqtKP2J/X5HAlU8FGDFCnl+OvUKl1KVsnH2VnzrqsyZePcezxcuOC2YPNDyIFsmx4TPQg8t6sS0DStPjWu2DZhDHy9dcKaUQ+SSNPe9UEn9iEYA7eA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=K9c/XmC4; arc=none smtp.client-ip=220.197.31.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=aq
+	RmpHo6XX+cmlEPlSDptfKyft1oOFmzNX1tdW6dbIM=; b=K9c/XmC4mo6lHM5a7w
+	RczrDbm3oyC/hrWiARL5cVSkg48QS0UJnNXABTkVK2Tks/SNyVd9+A0yqZe/UH28
+	tButDg/N45SPjPtc1yRI1AnA1PIGgYpGKBpZgUXLOs8yaOXEMxnkzg4FU4iF9dXj
+	nyiCJFcqicqS8Hdyz0PdjCge4=
+Received: from ProDesk-480.. (unknown [])
+	by gzga-smtp-mtada-g0-2 (Coremail) with SMTP id _____wD3Hz40C39pmxGTKQ--.55310S2;
+	Sun, 01 Feb 2026 16:13:44 +0800 (CST)
+From: Andy Yan <andyshrk@163.com>
+To: dmitry.baryshkov@oss.qualcomm.com,
+	heiko@sntech.de
+Cc: alchark@gmail.com,
+	andrzej.hajda@intel.com,
+	conor+dt@kernel.org,
+	cristian.ciocaltea@collabora.com,
+	airlied@gmail.com,
+	jernej.skrabec@gmail.com,
+	jonas@kwiboo.se,
+	kever.yang@rock-chips.com,
+	krzk+dt@kernel.org,
+	Laurent.pinchart@ideasonboard.com,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	neil.armstrong@linaro.org,
+	nicolas.frattaroli@collabora.com,
+	robh@kernel.org,
+	rfoss@kernel.org,
+	hjc@rock-chips.com,
+	sebastian.reichel@collabora.com,
+	simona@ffwll.ch,
+	tzimmermann@suse.de,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Andy Yan <andy.yan@rock-chips.com>
+Subject: [PATCH v2 0/5] Add DisplayPort support for rk3576
+Date: Sun,  1 Feb 2026 16:13:26 +0800
+Message-ID: <20260201081338.407999-1-andyshrk@163.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/7] riscv: dts: spacemit: Add PMIC regulators usb pcie
-To: Konstantin Ryabitsev <konstantin@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
- Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
-Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
- Han Gao <rabenda.cn@gmail.com>, Han Gao <gaohan@iscas.ac.cn>
-References: <cover.1769895215.git.gaohan@iscas.ac.cn>
- <176992308158.607015.13478428408379130887@lemur>
-Content-Language: en-US
-From: Vivian Wang <wangruikang@iscas.ac.cn>
-In-Reply-To: <176992308158.607015.13478428408379130887@lemur>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:qwCowABnEm7FBn9pTAnlBg--.4747S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxurWfWrWUJrWDtFy7Gw47CFg_yoW5Ww43pa
-	1F9wn3Kr1Dtrn7C3s2v3WxXFyS9w4kWF98Xr98Wr1kZa1rXayxtrySka15ua4UCryrCw4j
-	qrZFkr93CF9xAa7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUvE14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
-	6F4UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwVC2z280aVCY1x0267AKxVWxJr
-	0_GcWle2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
-	2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
-	W8JwACjcxG0xvEwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2Y2ka
-	0xkIwI1lc7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7
-	v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF
-	1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIx
-	AIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI
-	42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWI
-	evJa73UjIFyTuYvjfUonmRUUUUU
-X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
+X-CM-TRANSID:_____wD3Hz40C39pmxGTKQ--.55310S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7Zr1DtFy7trW3Wr4rtw48tFb_yoW8Jw47pa
+	nxuFyYyrZ7GFWava43Cr1Uurs0vr1ktrW8Kw17J3y7t3s8GF17Gwn8GFn8Jr9rXF18A348
+	ur4UJa47Cr4jvrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jDrcfUUUUU=
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbC7RgLaWl-Czhr1gAA3P
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[163.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[163.com:s=s110527];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261535-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-261538-lists,devicetree=lfdr.de];
+	FREEMAIL_FROM(0.00)[163.com];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[28];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[iscas.ac.cn];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com,iscas.ac.cn];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[163.com:+];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wangruikang@iscas.ac.cn,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andyshrk@163.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,intel.com,kernel.org,collabora.com,kwiboo.se,rock-chips.com,ideasonboard.com,linux.intel.com,linaro.org,ffwll.ch,suse.de,vger.kernel.org,lists.freedesktop.org,lists.infradead.org];
 	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: BC14AC528A
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[rock-chips.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 0653EC5373
 X-Rspamd-Action: no action
 
-On 2/1/26 13:18, Konstantin Ryabitsev wrote:
-> On Sun, 01 Feb 2026 05:38:07 +0800, Han Gao <gaohan@iscas.ac.cn> wrote:
->> This patch series enables the PMIC, voltage regulators, usb and pcie
->> for the OrangePi rv2 board.
-> Hi:
->
-> Thank you for sending this in. I am working on "b4 review" functionality 
-> and I am using arbitrary series to perform agent-assisted reviews to 
-> find bugs in the process.
->
-> This review was done by Claude Opus 4.5. I do not know enough about the 
-> subsystem to make any judgment about the quality of these reviews, but 
-> they look valid enough.
+From: Andy Yan <andy.yan@rock-chips.com>
 
-I'm not sure if you see this, but your bot gave two contradictory
-recommendations.
 
-On patch 3 it says:
+The DisplayPort found on RK3576 is very similar to that of RK3588,
+but work in dual pixel mode and support for MST.
 
-> This vin-supply is replaced by per-rail supplies (vin1-supply through
-> vin6-supply, aldoin-supply, dldoin1-supply, dldoin2-supply) in patch
-> 5/7.  Consider using the final supply properties here directly to avoid
-> an intermediate state that is immediately superseded.
-Whereas on patch 5 it says
+This patch series aims to add basic display output, not include audio
+and MST, which will be the work for the next stage.
 
-> These per-rail supply properties (vin1-supply through dldoin2-supply)
-> are not declared in the spacemit,p1.yaml binding, which only has
-> vin-supply.  With unevaluatedProperties: false on the PMIC node, these
-> will cause dtbs_check failures.  The binding needs to be updated to
-> match, or these should remain as the single vin-supply.
-"Use vin1-supply through dldoin2-supply, not vin-supply" and "use
-vin-supply only, not vin1-supply etc" can't both be correct, so
-obviously something weird is going on.
+Tested with 2 lane standard DP port and USB-C Alt mode output now.
+For those who want to give it a try, I have a reference branch here[0].
 
-So what on earth is going on? Granted, Han could have described it
-better in his cover letter, but there's a proposed update to the
-spacemit,p1 bindings [1] that would have deprecated vin-supply and
-allowed vin1-supply etc. So there's a dependency in this series of
-something like:
+[0]https://github.com/andyshrk/linux/tree/rk3576-dp-upstream-v1
 
-    patch 1,2 -> patch 3 -> bindings update [1] -> patch 5
 
-If/when the bindings update is accepted, patch 5 can be accepted into
-the DTS tree. Until then, patch 5 should be withheld.
+Changes in v2:
+- Remove unnecessary maxItems
+- Commit message improve: The pixel mode is determined during the IC
+  integration stage
 
-This isn't obvious from the patch itself, but still, the two
-recommendations are contradictory on their own, and make dtbs_check
-(mentioned in the patch 5 comment!) would have caught the problem with
-the patch 3 comment. 
+Andy Yan (5):
+  dt-bindings: display: rockchip: Add rk3576 DisplayPort
+  drm/bridge: synopsys: dw-dp: Set pixel mode by platform data
+  drm/bridge: synopsys: dw-dp: Make i2s/spdif clk optional
+  drm/rockchip: dw_dp: Add DisplayPort support for rk3576
+  arm64: dts: rockchip: Add DisplayPort dt node for rk3576
 
-> Hopefully, these were useful. If not, I am sorry for wasting your time.
+ .../display/rockchip/rockchip,dw-dp.yaml      | 27 ++++++++++++++++--
+ arch/arm64/boot/dts/rockchip/rk3576.dtsi      | 28 +++++++++++++++++++
+ drivers/gpu/drm/bridge/synopsys/dw-dp.c       | 12 ++------
+ drivers/gpu/drm/rockchip/dw_dp-rockchip.c     | 27 +++++++++++++++---
+ include/drm/bridge/dw_dp.h                    |  7 +++++
+ 5 files changed, 85 insertions(+), 16 deletions(-)
 
-I acknowledge that this is a sample size of 1, but this is not making me
-feel inclined to trust the future of whatever "agent-assisted review" is
-going to be happening. What good is an "agent" if it knows about make
-dtbs_check but doesn't even run it to see what would happen to its
-suggested fixes?
-
-I don't know what you have in mind for "b4 review", but I think at the
-very least, "b4 review" should not encourage "I do not know much about
-the subsystem but the LLM comments look valid" replies.
-
-Regards,
-Vivian "dramforever" Wang
-
-[1]: https://lore.kernel.org/spacemit/20260124-spacemit-p1-v2-0-2c86b06694ba@riscstar.com/
+-- 
+2.43.0
 
 
