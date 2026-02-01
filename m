@@ -1,180 +1,193 @@
-Return-Path: <devicetree+bounces-261543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261544-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kO7YLzslf2nHkgIAu9opvQ
-	(envelope-from <devicetree+bounces-261543-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 11:04:43 +0100
+	id QLgXLIUuf2kZlQIAu9opvQ
+	(envelope-from <devicetree+bounces-261544-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 11:44:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 303BAC5654
-	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 11:04:43 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id C56BBC5779
+	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 11:44:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 69B18300E3EC
-	for <lists+devicetree@lfdr.de>; Sun,  1 Feb 2026 09:58:21 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 3F8A33004435
+	for <lists+devicetree@lfdr.de>; Sun,  1 Feb 2026 10:44:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A055320CAC;
-	Sun,  1 Feb 2026 09:58:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FA1E322DAF;
+	Sun,  1 Feb 2026 10:44:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ziyao.cc header.i=me@ziyao.cc header.b="dx7l8HvN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gROvpyKY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8760307AD5;
-	Sun,  1 Feb 2026 09:58:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769939899; cv=pass; b=EbB2F5ESJVvRR3qUapD4b4YbeUkq6fRiplNTa+DduuP1HV1UG7LXaFxFC6lA0NOVq5Cf3Bhyhx6ONPfqDWkOhtmCCOOMgT1q4ay25b8ve2ngTOy3UQdlnwkKT3iUlMtuW/+A3Y7gCdMttfBsHBWt1TQuBdNmAyKCD8yuw8/RSEQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769939899; c=relaxed/simple;
-	bh=SyZ862r8egUQ+PLwO/HVIclfWIhrbhNieK7VmqFffV8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AmDOEb+RKM34I8mfsEfQY9HS92+WSacDl/xGlanBipYbq+0N09HIGE3ZYRCOmdliCWaOv76TthmhPfp/N+jnSwABNHyRwfFNcDrBCwqfkyebpkgA5r3zYoAUd8NPy80TcDGMLepUet5tXjybyPeLCcKTLk1eHduHYIl1TnQ8O8c=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc; spf=pass smtp.mailfrom=ziyao.cc; dkim=pass (1024-bit key) header.d=ziyao.cc header.i=me@ziyao.cc header.b=dx7l8HvN; arc=pass smtp.client-ip=136.143.188.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziyao.cc
-ARC-Seal: i=1; a=rsa-sha256; t=1769939880; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=D6wSWuBp/riAZKXDyVoDMkGQA/0OBw5wO1iBKQ6TPad2twJss7BJ/hR/R5mayGW5PkgKhZtZHao7N+psCg0kjLh0cUlpqzJyUMjXGIKRwTCdySUhYsxPOmJA7GzIi/0T7PiE3a16j6THrsuaY+LkjAaM0f82n8s2TVrwuFwDR5g=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1769939880; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=1jNbGCcYgWGU3sfbSU1ooO1S553rJA1jU86fpokkzZY=; 
-	b=NpIaCQ2SHH2hvN1N5PSG7RrDlPjwnVTjImvZsq6fHID6VD7aIZKKBrRubdF2UKuXEShlSyotEoIs/GKYlaFbcJHE/ZiFvjU9mJPCm9Lnu8cLdjnbzEQ2MuhsuHgMna2apV3v2nstyQYt/sX4vZKIN/4zZH9kpePO4IUrWmR/Qzw=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=ziyao.cc;
-	spf=pass  smtp.mailfrom=me@ziyao.cc;
-	dmarc=pass header.from=<me@ziyao.cc>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1769939880;
-	s=zmail; d=ziyao.cc; i=me@ziyao.cc;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=1jNbGCcYgWGU3sfbSU1ooO1S553rJA1jU86fpokkzZY=;
-	b=dx7l8HvNnOzv1iscDKBKaf5whu3gvC64/Bj2qLux8yIlPdrddOOgAql612Lc7pTm
-	gJq3mBwv2/uvXN8nYml7TZcZjHqTRL+VwT+tawAuGuag2vFs/SUC0RThuae0GNlaC3G
-	FneCkbxXL6OEXOD6x1A2/ldcYmhQNSPyRI1UXLlg=
-Received: by mx.zohomail.com with SMTPS id 1769939878219710.5215253382021;
-	Sun, 1 Feb 2026 01:57:58 -0800 (PST)
-Date: Sun, 1 Feb 2026 09:57:34 +0000
-From: Yao Zi <me@ziyao.cc>
-To: Icenowy Zheng <zhengxingda@iscas.ac.cn>,
-	Thomas Gleixner <tglx@kernel.org>, Rob Herring <robh@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD4CA3203A0
+	for <devicetree@vger.kernel.org>; Sun,  1 Feb 2026 10:44:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1769942654; cv=none; b=ZkEU8w9Yk/JVqoKLqsFphIk8/Oro6xlQdkRRhHUzFOQXLF07ZXJ8btXejZszMUbhnJM1cJH64aqNFo4cQycTcZ86GIB/P8N8BNfYvzkLwuParrnJzqOITfCVrjt14njTCyfBDmnNmQ0JaA5U4P04D5zLbNjD1/j5telABHLx4Ks=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1769942654; c=relaxed/simple;
+	bh=z0OeZ0DJQ0E/+donS2QQkMz+d62Uv6TmN9IynwMz9Hs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=JHAkqly10HDbKbWlaIBV6akEZ23wNLSU4n8RB5MnGenDfb5OkirK1hdP6U3pA+hvPZaNpeWnyqo3NhuiZcxkQGRlgTHn7/jCR51vjVQRqBAs2dhDdhCJHsfBqKhPd0lTAYOtlaqispfhKaz7VmuwPzWLP2s47/btXnjQuEklmEk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gROvpyKY; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-4327555464cso2493219f8f.1
+        for <devicetree@vger.kernel.org>; Sun, 01 Feb 2026 02:44:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1769942651; x=1770547451; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=JaZLxb/TpfjjyCLjMdtwmkz7IMvUMrg74EGxr+gYNgs=;
+        b=gROvpyKYSnTUJkQJcIzYaiOop7uXsdVdFQGEarkCejwB8yrnhV9oaEndWdSbYbiy3b
+         Md9bmHa5C7NpPJrOD5p+eWiYPq6hIk3A2c8DIjbwrIOr8ZkaEAZfsPxsX3maXygqayPA
+         LgIoDNSnASA+qeJRMbFh+OkydaJro0BjItd/+qzuZyX2TJLMXb5mRDxb3Ntlg1qxmQOK
+         +RZl+xJlegAtnZnoBfTCzAfIJ7+2/Ny1+UBbKUHBl+1pkHvK85q46bRDQOdiwG5G/uTn
+         +pkeornbDPnPZJbWV1TuFckhYxqC1m3K2LAyfxlzX1EpN6BM01NuxS4eV3Vz+eJ26IDA
+         8VPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769942651; x=1770547451;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JaZLxb/TpfjjyCLjMdtwmkz7IMvUMrg74EGxr+gYNgs=;
+        b=DKUZ1o+CwkCe2BVkPnWIYlWAQgC+g20qmBzbBjsMTgq/PeVGIEgBdN17ipgvChpDxp
+         mQBsO/SnFFSTGh8cxXfkUKfg0WpbDXSOvhNK7c9Qj/lRCP4jS2lDhHFhh06MuDFCuzy3
+         X3fq4bgDmbOt5d5j/wVQmDL5aI1G+nV6wICar9gpIHGMBoa7G2oAqkRGtdoelQ7JoBpl
+         /Lm43vqTPoIAHjTLKIyEF4vr0GbqQS3clay85Sc4ih/d1lM9i+6iMeOo4RjR40oIz2NB
+         ZOi3JB28keNS4p8atSfuXfmtNYy5GhhCcD9QsQXIASw8MrNCX0HcC4zs0x0nsvf87VvU
+         F+Kg==
+X-Gm-Message-State: AOJu0YzzCz8P2QHVXWmHBAXSXFg5+oIcBy+ggx9hEtvqCroAOZgACodf
+	qJ7ta2uWHp5WCxQG3oy4444cRNkxWtmpfXozw1p8E9lXo4KXxB6KeAsf
+X-Gm-Gg: AZuq6aKIYM3YU8U5R8X2DPCqNThA8d52SQmcjA5p00VUUzhFuaK55GfJE/YeR2S4RtJ
+	bP2T6L60J857SUb6nnDhbhAi7NCjBzD9UY/odrkdSRGzpsZMg7lZw1jy2MXHpaXON+d+rp823Ku
+	2CdGVfKZAI/NgdUU8UaMhCQEoL2aspGBjc67JFq83otyH/17f1/Laj0AJd3WCSXFUUCxRz/Ikap
+	7i3lp+/tVztbhEelgTAwb0rR/nnFKD5DzXczPJp+mL1FML5gnI4mAQE8SiPUYRJ7wio/QhNqzEF
+	iqiHQkdJJ3/U0qpiOBlcVQaWgxoPqbLsleXctR7YFrf/mauYwpelJCdiXQUNzCuCQPPRoO38PnB
+	ic5k3tImZsHikv6URDN0RbeePH0hdNEaadXa9+CuLp2EK4utyQzm0U2Be7HNyABbOOlrPsGZzuR
+	BE3uV80ZwTzxY=
+X-Received: by 2002:a05:600c:474d:b0:47e:e952:86ca with SMTP id 5b1f17b1804b1-482db4486e9mr105328755e9.2.1769942650796;
+        Sun, 01 Feb 2026 02:44:10 -0800 (PST)
+Received: from xeon ([188.163.112.49])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4806ce56490sm308947455e9.12.2026.02.01.02.44.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 01 Feb 2026 02:44:10 -0800 (PST)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Huacai Chen <chenhuacai@kernel.org>,
-	Jiaxun Yang <jiaxun.yang@flygoat.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-mips@vger.kernel.org
-Subject: Re: [PATCH 0/8] Add support for LS7A LPC IRQ for MIPS Loongson
- systems
-Message-ID: <aX8jjqxrl2ccN1lA@pie>
-References: <20260131094547.455916-1-zhengxingda@iscas.ac.cn>
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Pavel Machek <pavel@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Sebastian Reichel <sre@kernel.org>,
+	Svyatoslav Ryhel <clamor95@gmail.com>,
+	=?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>,
+	Ion Agorria <ion@agorria.com>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-input@vger.kernel.org,
+	linux-leds@vger.kernel.org,
+	linux-pm@vger.kernel.org
+Subject: [PATCH v1 0/9] mfd: Add support for Asus Transformer embedded controller
+Date: Sun,  1 Feb 2026 12:43:34 +0200
+Message-ID: <20260201104343.79231-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260131094547.455916-1-zhengxingda@iscas.ac.cn>
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [9.34 / 15.00];
-	URIBL_BLACK(7.50)[ziyao.cc:email,ziyao.cc:dkim];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_RHS_NOT_FQDN(0.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
-	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261543-lists,devicetree=lfdr.de];
-	R_DKIM_ALLOW(0.00)[ziyao.cc:s=zmail];
-	FROM_HAS_DN(0.00)[];
-	GREYLIST(0.00)[pass,body];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-261544-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,arndb.de,linuxfoundation.org,rere.qmqm.pl,agorria.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[ziyao.cc,quarantine];
-	DKIM_TRACE(0.00)[ziyao.cc:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[me@ziyao.cc,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	R_SPF_ALLOW(0.00)[+ip4:172.105.105.114:c];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	NEURAL_SPAM(0.00)[0.851];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ziyao.cc:email,ziyao.cc:dkim]
-X-Rspamd-Queue-Id: 303BAC5654
-X-Rspamd-Action: add header
-X-Spam: Yes
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C56BBC5779
+X-Rspamd-Action: no action
 
-On Sat, Jan 31, 2026 at 05:45:39PM +0800, Icenowy Zheng wrote:
-> This patchset tries to add support for Loongson 7A1000 PCH's LPC IRQ
-> controller to MIPS-based Loongson systems.
-> 
-> LPC, from software's perspective of view, is just ISA, so the IRQs
-> should be handled as legacy ones occupying the lowest 0-15 IRQ numbers.
-> Despite the current PCH LPC driver for ACPI-based LoongArch Loongson
-> machines handled it, the setup is fragile and depends on its specific
-> setup sequence (allocating the LPC IRQs first, and then allocate the
-> parent IRQ at PCH PIC). The refactor of extracting parent IRQ allocation
-> breaks this fragile sequence, so the first commit is created to address
-> for this issue (by reserving ISA IRQs from the dynamic IRQ allocation
-> space).
-> 
-> Then the remaining commits are just adding OF(DT) based initialization
-> of PCH LPC IRQ controller, like what happened on PCH PIC.
-> 
-> Tested on a Haier Boyue G51 system with legacy i8042 keyboard/mouse as
-> integrated ones. I don't own a LoongArch-based device with LPC
-> peripherals, so test on LoongArch machines are welcomed.
+Add support for embedded controller used in Asus Transformers for
+managing power and input functions.
 
-Tested on TongFang L860-T2 system, which is LoongArch-based and exposes
-keyboard and mouse as i8042, too. Nothing breaks with this series,
+Michał Mirosław (7):
+  misc: Support Asus Transformer's EC access device
+  mfd: Add driver for Asus Transformer embedded controller
+  input: serio: Add driver for Asus Transformer dock keyboard and
+    touchpad
+  input: keyboard: Add driver for Asus Transformer dock multimedia keys
+  leds: Add driver for Asus Transformer LEDs
+  power: supply: Add driver for Asus Transformer battery
+  power: supply: Add charger driver for Asus Transformers
 
-$ cat /proc/interrupts
-           CPU0       CPU1       CPU2       CPU3
-  1:        606          0          0          0  PCH LPC   1  i8042
- 12:        645          0          0          0  PCH LPC  12  i8042
- 20:      16393      14853      15443      17386  CPUINTC  12  IPI
- 21:       4515       4154       3756       3701  CPUINTC  11  timer
- 22:          0          0          0          0  PCH PIC   1  acpi
- 28:          0          0          0          0  PCH PIC   7  loongson-alarm
- 29:          0          0          0          0  PCH PIC   8  ls2x-i2c, ls2x-i2c, ls2x-i2c, ls2x-i2c, ls2x-i2c, ls2x-i2c
- 37:          0          0          0          0 PCH-PCI-MSI-0000:00:09.0   0  PCIe bwctrl
- 39:          0          0          0          0 PCH-PCI-MSI-0000:00:0a.0   0  PCIe bwctrl
- 41:          0          0          0          0 PCH-PCI-MSI-0000:00:0b.0   0  PCIe bwctrl
- 43:          0          0          0          0 PCH-PCI-MSI-0000:00:0c.0   0  PCIe bwctrl
- 45:          0          0          0          0 PCH-PCI-MSI-0000:00:0d.0   0  PCIe bwctrl
- 47:          0          0          0          0 PCH-PCI-MSI-0000:00:11.0   0  PCIe bwctrl
- 49:          0          0          0          0 PCH-PCI-MSI-0000:00:13.0   0  PCIe bwctrl
- 50:          0          0          0          0  PCH PIC  21  ahci[0000:00:08.0]
- 51:         14          0          0          0 PCH-PCI-MSIX-0000:06:00.0   0  nvme0q0
- 52:          0          0          0          0  PCH PIC  22  ahci[0000:00:08.1]
- 53:          0          0          0          0  PCH PIC  23  ahci[0000:00:08.2]
- 54:          0          0          0          0 PCH-PCI-MSI-0000:04:00.0   0  ahci[0000:04:00.0]
- 55:        952          0          0          0 PCH-PCI-MSIX-0000:06:00.0   1  nvme0q1
- 56:          0       1590          0          0 PCH-PCI-MSIX-0000:06:00.0   2  nvme0q2
- 57:          0          0        916          0 PCH-PCI-MSIX-0000:06:00.0   3  nvme0q3
- 58:          0          0          0       3836 PCH-PCI-MSIX-0000:06:00.0   4  nvme0q4
- 61:       2649          0          0          0 PCH-PCI-MSI-0000:07:00.0   0  amdgpu
- 62:       2561          0          0          0 PCH-PCI-MSI-0000:01:00.0   0  iwlwifi
-IPI0:        350        507        573        311 LoongArch  1  Rescheduling interrupts
-IPI1:      16044      14345      14870      17074 LoongArch  2  Function call interrupts
-IPI2:          0          0          0          0 LoongArch  3  IRQ work interrupts
-IPI3:          0          0          0          0 LoongArch  4  Clear vector interrupts
-ERR:         12
+Svyatoslav Ryhel (2):
+  dt-bindings: misc: document ASUS Transformers EC Dockram
+  dt-bindings: mfd: document ASUS Transformer EC
 
-Tested-by: Yao Zi <me@ziyao.cc>
+ .../devicetree/bindings/mfd/asus,ec.yaml      | 153 ++++++
+ .../bindings/misc/asus,dockram.yaml           |  40 ++
+ drivers/input/keyboard/Kconfig                |  10 +
+ drivers/input/keyboard/Makefile               |   1 +
+ drivers/input/keyboard/asus-ec-keys.c         | 285 +++++++++++
+ drivers/input/serio/Kconfig                   |  15 +
+ drivers/input/serio/Makefile                  |   1 +
+ drivers/input/serio/asus-ec-kbc.c             | 162 ++++++
+ drivers/leds/Kconfig                          |  11 +
+ drivers/leds/Makefile                         |   1 +
+ drivers/leds/leds-asus-ec.c                   | 106 ++++
+ drivers/mfd/Kconfig                           |  14 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/asus-ec.c                         | 460 ++++++++++++++++++
+ drivers/misc/Kconfig                          |   9 +
+ drivers/misc/Makefile                         |   1 +
+ drivers/misc/asus-dockram.c                   | 327 +++++++++++++
+ drivers/power/supply/Kconfig                  |  22 +
+ drivers/power/supply/Makefile                 |   2 +
+ drivers/power/supply/asus-ec-battery.c        | 282 +++++++++++
+ drivers/power/supply/asus-ec-charger.c        | 205 ++++++++
+ include/linux/mfd/asus-ec.h                   | 113 +++++
+ 22 files changed, 2221 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/asus,ec.yaml
+ create mode 100644 Documentation/devicetree/bindings/misc/asus,dockram.yaml
+ create mode 100644 drivers/input/keyboard/asus-ec-keys.c
+ create mode 100644 drivers/input/serio/asus-ec-kbc.c
+ create mode 100644 drivers/leds/leds-asus-ec.c
+ create mode 100644 drivers/mfd/asus-ec.c
+ create mode 100644 drivers/misc/asus-dockram.c
+ create mode 100644 drivers/power/supply/asus-ec-battery.c
+ create mode 100644 drivers/power/supply/asus-ec-charger.c
+ create mode 100644 include/linux/mfd/asus-ec.h
 
-Thanks for your work!
+-- 
+2.51.0
 
-Regards,
-Yao Zi
 
