@@ -1,143 +1,152 @@
-Return-Path: <devicetree+bounces-261573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261574-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SGdIF+tGf2lvmwIAu9opvQ
-	(envelope-from <devicetree+bounces-261573-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 13:28:27 +0100
+	id UHQfLP5If2mBnAIAu9opvQ
+	(envelope-from <devicetree+bounces-261574-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 13:37:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B26F0C5E01
-	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 13:28:26 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7293C5E38
+	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 13:37:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D6489300E725
-	for <lists+devicetree@lfdr.de>; Sun,  1 Feb 2026 12:28:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 37129300D45E
+	for <lists+devicetree@lfdr.de>; Sun,  1 Feb 2026 12:37:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C73213314A4;
-	Sun,  1 Feb 2026 12:28:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AEF232F75B;
+	Sun,  1 Feb 2026 12:37:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gs05jlRb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NFgo0gX4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A20D83195EF;
-	Sun,  1 Feb 2026 12:28:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06D1131AA84;
+	Sun,  1 Feb 2026 12:37:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769948895; cv=none; b=o4pYcqSw3XityFml2vjOAV8AHng+brdIfh6e77kdZ5oqnQf9FtALWJ+lS5qH851sR4WERkjFbY2YDuRCI9KOx73y48CnMPjaQYZBxcf2+07XRijnGpDqskgPnx8PnNYO8gOr5R2CjknwOH4BjFxug99KvbiKldF188Anyu3HQpw=
+	t=1769949431; cv=none; b=NXxH9JKVljHjAdwNRjEGyaaPV5cnd3a0pbx6tW9zqTps3bSeJM6g77HVDC1bmoFQZjBUy3453am8rSpSFMqkzQa+ALbgdNttubOMMhy4ya7QCJaF4OPKBQw7qqhkaguyQcCIm1bjgZc/Cl5zV1f2rKGtbQUT4SNtUjwU3hwi2II=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769948895; c=relaxed/simple;
-	bh=x9TwMUy+wRDDN2yr7pxzvyLVYGWxpVW0zkafjCKEMcM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=osZjXeKxYMLhGwMy0hxJqVfOrRmqQEsYCX+Xxfflgnpa8sNmIJFbQX6AjD0pnNu4XpliSaNATJExHb6xXdtALAMGU8NBoauxbuKLPSa97Ift28VMDUxxjhqFjqBoNt79M1O1TPXquamtP9zjHcKvq098S02qsQcEFGo1XuikObA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gs05jlRb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A291C4CEF7;
-	Sun,  1 Feb 2026 12:28:14 +0000 (UTC)
+	s=arc-20240116; t=1769949431; c=relaxed/simple;
+	bh=dGFx1VFWlzUONLDaiGnHfQKX+Ch//O+EYhfbY6SQQX8=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=FFYD0+5I0sNDsPUcmOqg05rp+Em9ccfu/ACuuwta/g9oCm0hY2itt+ygL7ei1s/wVqyXkUrLjxT7v4xNswr7SxbgPMLG0N7CXmeF7oglIo3s9m+4CjN+UCH57Xx0aGLBcPrq5w34SYRocjcst93DvQxEpKSKdECTeWnWSc7L4E4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NFgo0gX4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6668DC4CEF7;
+	Sun,  1 Feb 2026 12:37:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769948895;
-	bh=x9TwMUy+wRDDN2yr7pxzvyLVYGWxpVW0zkafjCKEMcM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gs05jlRb07jjdH4O+O8f3ef82lbpXGPYtp+DCuoN00A1kLICm5Bf+TEwbz44DB7Vd
-	 TeIehbToIFSpdHniVZ7bHxCNYeT2YvoxN/FokJKSCC7E5w0UpwlGJnkOpRlGpwPPxa
-	 E50azS4THbOB9Jg4KJXzHjcXQVfZw+lxl0vPlPQEqcm77g9HEDfiy4nNQd3qjKSOGu
-	 YXQRWBSG+6t3SDfrB/dsnR59bWe3YiIEH0AY8ffZg5Rv8bTA6r2N05vEtFf2WLXyw7
-	 7o/L4F1oD1uk5WVOKaPk0vOfAocn45j7Yls5BJhm9aHV1O4UKrZJiynTMjBg7pIr80
-	 4h8wWgmXN66Kg==
-Date: Sun, 1 Feb 2026 14:28:10 +0200
-From: Leon Romanovsky <leon@kernel.org>
-To: bhelgaas@google.com, mani@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
-	robh@kernel.org, p.zabel@pengutronix.de, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	christian.bruel@foss.st.com, shradha.t@samsung.com,
-	krishna.chundru@oss.qualcomm.com, thippeswamy.havalige@amd.com,
-	inochiama@gmail.com, Frank.li@nxp.com,
-	zhangsenchuan@eswincomputing.com
-Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com
-Subject: Re: [PATCH v10 0/2] Add driver support for Eswin EIC7700 SoC PCIe
- controller
-Message-ID: <20260201122810.GA34749@unreal>
-References: <20260129092629.1866-1-zhangsenchuan@eswincomputing.com>
- <176994869472.79432.11245161336216033848.b4-ty@kernel.org>
+	s=k20201202; t=1769949430;
+	bh=dGFx1VFWlzUONLDaiGnHfQKX+Ch//O+EYhfbY6SQQX8=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=NFgo0gX4uOKnO4aLFv4fzv4vMsy2AG0BojmtvNr3bxDP12Dy4tyzj4qveTTpDRSIL
+	 Q57sjRmwqvpHVf9xjj3oOPLIzPqaBO19MQsd1xiCkW0LOdjMsyqiVFs6kueibSWxBl
+	 1sYm3LXChw7MeaYK/Ub8UiFaoEGvviYemv9+CkZWtqd4PV5DPtY0J7EFMnSkYcgYGG
+	 E43PXEL1yydK0NyN3j3U6zkLJnWdARgy158qhSyWH8/4dMVB131XON+0oOzbVBQ53E
+	 tocKg05grXKjzgNVU8Tffwm9bKKaYquC4APg3Uq28iowVCVS780fHLlShu3D3Bb5jY
+	 /om+toEnczXnQ==
+Date: Sun, 01 Feb 2026 06:37:09 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <176994869472.79432.11245161336216033848.b4-ty@kernel.org>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ linux-kernel@vger.kernel.org, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Nicolas Ferre <nicolas.ferre@microchip.com>, 
+ linux-arm-kernel@lists.infradead.org, 
+ Herve Codina <herve.codina@bootlin.com>, linux-usb@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>
+To: Charan Pedumuru <charan.pedumuru@gmail.com>
+In-Reply-To: <20260201-atmel-usb-v1-2-d1a3e93003f1@gmail.com>
+References: <20260201-atmel-usb-v1-0-d1a3e93003f1@gmail.com>
+ <20260201-atmel-usb-v1-2-d1a3e93003f1@gmail.com>
+Message-Id: <176994942956.410099.10343293169382130437.robh@kernel.org>
+Subject: Re: [PATCH 2/4] dt-bindings: usb: atmel,at91sam9g45-ehci: convert
+ to DT schema
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-261573-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[google.com,kernel.org,pengutronix.de,vger.kernel.org,foss.st.com,samsung.com,oss.qualcomm.com,amd.com,gmail.com,nxp.com,eswincomputing.com];
+	TAGGED_FROM(0.00)[bounces-261574-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[leon@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[eswincomputing.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: B26F0C5E01
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.7.161.32:email]
+X-Rspamd-Queue-Id: C7293C5E38
 X-Rspamd-Action: no action
 
-On Sun, Feb 01, 2026 at 07:24:54AM -0500, Leon Romanovsky wrote:
-> 
-> On Thu, 29 Jan 2026 17:26:28 +0800, zhangsenchuan@eswincomputing.com wrote:
-> > Changes in v10:
-> > - Updates: eswin,eic7700-pcie.yaml
-> >   - None
-> > 
-> > - Updates: pcie-eic7700.c
-> >   - Remove devm_clk_bulk_get_all_enabled API, use devm_clk_bulk_get_all
-> >     and clk_bulk_prepare_enable. Add resource release codes and add
-> >     eic7700_pcie_host_deinit API.
-> >   - Update PCI_DEVICE_ID_ESWIN_EIC7700.
-> >   - Add reset_control_put release resources in "goto err_port:".
-> >   - Delete trailing comma after a terminator in eic7700_pcie_of_match.
-> > - Link to V9: https://lore.kernel.org/all/20251229113021.1859-1-zhangsenchuan@eswincomputing.com/
-> > 
-> > [...]
-> 
-> Applied, thanks!
-> 
-> [1/2] dt-bindings: PCI: eic7700: Add Eswin PCIe host controller
->       (no commit info)
-> [2/2] PCI: eic7700: Add Eswin PCIe host controller driver
->       (no commit info)
 
-
-Sorry for the noise. The issue was caused by a mistake in my scripts.  
-Of course, it was never applied.
-
-Thanks
-
+On Sun, 01 Feb 2026 11:34:21 +0000, Charan Pedumuru wrote:
+> Convert Atmel AT91SAM9G45 EHCI USB Host Controller
+> binding to DT schema.
+> Changes during conversion:
+> - Include "usb-ehci" as a fallback compatible to allow atmel EHCI
+>   driver matching.
 > 
-> Best regards,
-> -- 
-> Leon Romanovsky <leon@kernel.org>
+> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+> ---
+>  .../bindings/usb/atmel,at91sam9g45-ehci.yaml       | 71 ++++++++++++++++++++++
+>  1 file changed, 71 insertions(+)
 > 
-> 
+
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Warning: Duplicate compatible "usb-ehci" found in schemas matching "$id":
+	http://devicetree.org/schemas/usb/atmel,at91sam9g45-ehci.yaml
+	http://devicetree.org/schemas/usb/generic-ehci.yaml#
+Warning: Duplicate compatible "atmel,at91sam9g45-ehci" found in schemas matching "$id":
+	http://devicetree.org/schemas/usb/atmel,at91sam9g45-ehci.yaml
+	http://devicetree.org/schemas/usb/generic-ehci.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/atmel,at91sam9g45-ehci.example.dtb: usb@500000 (atmel,at91sam9g45-ehci): Unevaluated properties are not allowed ('clock-names' was unexpected)
+	from schema $id: http://devicetree.org/schemas/usb/generic-ehci.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.kernel.org/project/devicetree/patch/20260201-atmel-usb-v1-2-d1a3e93003f1@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
