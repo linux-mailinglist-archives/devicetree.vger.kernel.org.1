@@ -1,85 +1,85 @@
-Return-Path: <devicetree+bounces-261568-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261569-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OE9fMrw6f2kfmAIAu9opvQ
-	(envelope-from <devicetree+bounces-261568-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 12:36:28 +0100
+	id aDP+H9s6f2kfmAIAu9opvQ
+	(envelope-from <devicetree+bounces-261569-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 12:36:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2519DC5C69
-	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 12:36:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3E33C5C80
+	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 12:36:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2F22C3016905
-	for <lists+devicetree@lfdr.de>; Sun,  1 Feb 2026 11:35:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1C73B3055125
+	for <lists+devicetree@lfdr.de>; Sun,  1 Feb 2026 11:35:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FE1B32936F;
-	Sun,  1 Feb 2026 11:35:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75CE0329C78;
+	Sun,  1 Feb 2026 11:35:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c8IeNUEO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DTSy9CLQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 320622EF64D
-	for <devicetree@vger.kernel.org>; Sun,  1 Feb 2026 11:35:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFCC5322C99
+	for <devicetree@vger.kernel.org>; Sun,  1 Feb 2026 11:35:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769945706; cv=none; b=GilAB18UDzgcGpMfTx6S7e6I8655+rk1Ji4WBJawYCibKezr5HgwwOaJ/wPc6G/i5gaBMCBmHUwcDVj3J5oqSLD/9oqbgPbvoIGFEeC5MyF+kOnWgLSC3ZouV5dbUPI+yGZy1lAycJqiVdnADJZCRqjPJqmisFd5WHm1Hu5bX4I=
+	t=1769945711; cv=none; b=kgS98XsxzGwq45YkZfgENRswn+DTp/Y9HJBQRz0mML8K++EqVVEafTh3BN66BlxI0keDmzIcWouM5GptLh8n8ik6WZOP+ioR5zJ8EDeQgeytbRiqTCtA14vx86na3ZWNMbQRK/DPmfz0mS8WRNnzpJxqmzYhyj/kAQU3Cwbq4WM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769945706; c=relaxed/simple;
-	bh=tiWnkS0c1E2yLOTA6pvv/0fAMnTGnan12wecxsGtKYE=;
+	s=arc-20240116; t=1769945711; c=relaxed/simple;
+	bh=jRae6im2r158sMjMElzfH9wCVDLeo+Lu6vQSBwtPV1c=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=rSCCrjSgztO022F+oiK48Te/CjFi3RHlBSJ5xYyxgrWnA2F17ms8YtJQ0Iok+e5fsONBdy+mNRb3Ki5tTvJPB9vypE7kVCxe/yV0ox6G+VEU7sPnPS3fqzLvwySngWUC33Ml725Np5rG5yRpSp0Emz0oVUSoe4SdB16YjxUYXSY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c8IeNUEO; arc=none smtp.client-ip=209.85.210.169
+	 In-Reply-To:To:Cc; b=qD1rgCnfPRKUT1RhnFB1SXieN+ViVery2zip9YsrWIIa1Op4xNnEKHJWHGmj++vpcNWnQFve+JmYzRFt10QTSnwMJNz7s+W44jezFtEgjZodtGVMkSuDvFJfJOzSk3epFoz+Cn+tqFPuHMSm9Sv/mJ3LJJwRQHMwPIsvxZBCce4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DTSy9CLQ; arc=none smtp.client-ip=209.85.210.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-8220bd582ddso1983758b3a.2
-        for <devicetree@vger.kernel.org>; Sun, 01 Feb 2026 03:35:04 -0800 (PST)
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-81f39438187so1926351b3a.2
+        for <devicetree@vger.kernel.org>; Sun, 01 Feb 2026 03:35:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769945704; x=1770550504; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1769945709; x=1770550509; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=uo8u5FaJGPF86RZ/ycn10HpgRIqDDK6kBOV/6qMYc8c=;
-        b=c8IeNUEOHMyTC550aUQN35ieJFdXn80CxFQXHt5zm+W2J6RHBbeJBFZBQ+E2AOmuic
-         SFnSU36BcFgbIL0QID3W5DuD7an2FrJKHkW/6HXuXOvp+GiOHUNXKD52/zpW0fBD/dn/
-         dm7Ur5BBLWMBa08+c0GTj4Cw1Kq0m54q4GzHbe3TQauf91iEEDYik5KNSwG17lsrdvNi
-         4ILeWSOnJKhj1ifexfNqkm/0aMD+a6yQ8wTHEkWhW1Vr3W+v9q/mjgnh7hyXtO2MFnuU
-         6zztG2Z6kfpszxprQ7fieVNcwtKmQKrd+5j53RagaRvZXu8J7GsTa5xKZF44/9lkQJFG
-         dyaw==
+        bh=5XV4nvlQJllxGJymMNGffVCbvnmIzM3P7KoEHXDM6RU=;
+        b=DTSy9CLQtkTW2ka5Q5Rg9MUMToFhBnrY0+lJmOsYZGfkomjCAwWAxSNIrtN9SPPEIu
+         WU2+Q8qlM3DHAG/MQUTPcLbvdGRs+PD5ZinslfW2kASwxXDm894PE6QQwGDsymabVj4q
+         e6I93d9y9EuKsI0Oh5NGzOZdDR7TLZsZEKRadpoAGVRh6JuPiSp0ftCfN5vQZSQ3c5ZB
+         Sd6cUUOm6LqPdiNBI145VoetjxBmBjsymWxHwxSKXe1Sgf8QexsLHCD/pHPd8c02m+L5
+         RNqb576Zdne+tAUu2Dojzd/ePgVtI45jXJv1hWthYKpsXANwwLkQA7x9IJ0JPTt5qQFL
+         zcNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769945704; x=1770550504;
+        d=1e100.net; s=20230601; t=1769945709; x=1770550509;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=uo8u5FaJGPF86RZ/ycn10HpgRIqDDK6kBOV/6qMYc8c=;
-        b=mEjK/vVEb0emYyWXWNTtKZhjHOHNAOJppQf8qghZ/mRGWKSYIhs0BACvlXnAJn1gUm
-         gv6aaHs079iEdLfyr1o6Y0yUwjabrUM309ebXsx0EU48mCMQ/JlXyLmKf9WHS6iuD/mX
-         sLx8zv1X3WCaPTibwYmw0vniZl6CNMj1j5mfzXcHupOjFwNwLKsTh3DpKGHXHGWpF5k7
-         +uFipelyr2ZZHcnFYNccvKuPPp/aEB1tepRvPvIe3Od/tE+fSZZnWgNCuI+wo9gmNIRd
-         RNHokUqSrJpKbg/Ul5KpPcSJ7BMe4iw82l4MtQ9dRsWTzolSLsK8DU4/jU11va0Sebgk
-         u1fQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXDH8Qm7Ep2bJ98R2xgfck9QmkGyX0l3GqiByucBsveyRGOE2tvuU5RNCyoYWbs68Ujt6NRNFatpjjx@vger.kernel.org
-X-Gm-Message-State: AOJu0YzQt/VcdKrMezhlNKYuAFWN3o91Lmf91IGBXbP/UfKgKXawDYJ/
-	bz2LpkBAQ+Ix23jpTlk8ObqBnv7CbN681C+mgmpnoCR3RWUWiy2zDz8D
-X-Gm-Gg: AZuq6aLgLLP0su/zuXDNRwolLMJrdP1JYcGxTMen5ClgD6R7QFiV/6pwiYxcUDIDDW/
-	AGfx5znkoXvNwOt+gUVXPwZKqmwaI6HuaM8UVk3F3zCE8LSMqHpMqgbMDWes6KZpauYGjx8L64K
-	DJb9NOf/ogSPmkrBiBp5cteO8RB3oxBt21S69A/4XAItHmSesBM6AUGJ0I2YMqHiDMN+K9HFZcl
-	YjYYUq+F1k/ON7TXRGjmDHNu6UeM2/X8EVgKkbo/kMLHwE8Y4HHfupDF1oZ6e2t7dr66QWX+Pve
-	XJIcZTwiznxJcljv44qtwhrSlpnlfs2NV2hQoQ0BtPwS6Of6Z3uvposU/naLR4fO+bfkBibDUhR
-	tLErGWQ8OSViuX+QDDWTYH2PTzApzwkajmOC4k/5rrRW2h7Q3SnxbRXKL3WFHjtrWrSiMoTTgNA
-	1rRIBUi4Z3cnZ730oOU+cOK6FR4GPPSl8X0g==
-X-Received: by 2002:a05:6a00:ac03:b0:7ff:f0c2:816e with SMTP id d2e1a72fcca58-823aa6ea4e5mr8829654b3a.28.1769945704450;
-        Sun, 01 Feb 2026 03:35:04 -0800 (PST)
+        bh=5XV4nvlQJllxGJymMNGffVCbvnmIzM3P7KoEHXDM6RU=;
+        b=LX4yAsO7TcTLFQFSPv6fJqjIkKpaU03H6iGoNF+deeezuV04WwvDqPdpJ/q7d9nohl
+         xjy5OZNIrQWszLlFP/zOxBcLE6sYIHIv0qlybZ5hFX8Aat7X0n5N8Eh/ec63TnZo1qN0
+         qWrEVPm07Brna1sw2pWHx8Hm68GG5qiYmHiOapeSjXuBxwRigYp689kL4wa/5we93bKt
+         jZO8TY2odszeDWFVi/U2eX29vcdFtB3aFsmizMu0LP+9MURGh+JKvTyNefkDC0MStBaC
+         Wfq/gLSb34PlwUjvm9m6cdiFNT7TeW/jgWOfEZHtCcMIEiYXVJIfgTjqYRPOFTU/xZzG
+         2XXQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWnwueUGqCShR9mhgi0Asybc5r3+9p3q1pTSEHMk8JEUBwn7Wh8kIm3K29P1D1ZqN8cXxs2Xo0+fjWN@vger.kernel.org
+X-Gm-Message-State: AOJu0YyjkHGUc4UNbnudgIsZDSvuuXmqh4SFfErYJeqQRLAU88/Y6gj/
+	AJwhmIHblSvTXDh0HCUQa8CTGoLokzKI5G52Qa8YJft0+E9aHRz45DOn
+X-Gm-Gg: AZuq6aJqRo6zQ3KLku3D5kMhYqLSs8wiVVYq+x9mITN4P3yyTomoSFsb+eYlMUg/mP5
+	o94hPCalEyxUHYWKr7TaX6V+6hiDCa4P8V4WDC7ah/O9K150PtYiwHsXSHtWJ0QX8WFkUWPCooj
+	bW5lrAbWYBkV6TbaWRa0YI1OJdWtwD8k3m24N1EGdv/LyZEdHN8rflvcqrDbVttx58q4AyBwJvL
+	XjCWTI4oOsMPC5WdwAAPkZYmQ4jPrelZCgIkvavjc/qPWFHMBtkVI7iUHjzKjcueLblqHgeJLhQ
+	9Zz3UgjWgzlhwlwog8Dn7zO6pkJ2I7joSnntzxJukd0jLeaFuPg5uPB0T+HXfejobnua5ccWnfm
+	VhxusE8ubabNnuKYNxCJpHOGRpmxS0KjKHcyDbo1yQUfeLRZXySM94C8bASilxMAcjq//FX3j+W
+	hbgQ9xBvXsvSC9PRsTi8z5oAtgqM/TqsW+cA==
+X-Received: by 2002:a05:6a00:4286:b0:821:81ef:5de8 with SMTP id d2e1a72fcca58-823ab65359amr8617021b3a.12.1769945709102;
+        Sun, 01 Feb 2026 03:35:09 -0800 (PST)
 Received: from Black-Pearl.localdomain ([115.99.252.105])
-        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-82379c24083sm12994728b3a.55.2026.02.01.03.35.00
+        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-82379c24083sm12994728b3a.55.2026.02.01.03.35.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 01 Feb 2026 03:35:03 -0800 (PST)
+        Sun, 01 Feb 2026 03:35:08 -0800 (PST)
 From: Charan Pedumuru <charan.pedumuru@gmail.com>
-Date: Sun, 01 Feb 2026 11:34:21 +0000
-Subject: [PATCH 2/4] dt-bindings: usb: atmel,at91sam9g45-ehci: convert to
- DT schema
+Date: Sun, 01 Feb 2026 11:34:22 +0000
+Subject: [PATCH 3/4] dt-bindings: usb: atmel,at91rm9200-udc: convert to DT
+ schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,7 +88,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260201-atmel-usb-v1-2-d1a3e93003f1@gmail.com>
+Message-Id: <20260201-atmel-usb-v1-3-d1a3e93003f1@gmail.com>
 References: <20260201-atmel-usb-v1-0-d1a3e93003f1@gmail.com>
 In-Reply-To: <20260201-atmel-usb-v1-0-d1a3e93003f1@gmail.com>
 To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
@@ -107,80 +107,74 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,gmail.com];
-	TAGGED_FROM(0.00)[bounces-261568-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-261569-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,gmail.com];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[charanpedumuru@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.7.161.32:email];
-	MID_RHS_MATCH_FROM(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,bootlin.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,microchip.com:email]
-X-Rspamd-Queue-Id: 2519DC5C69
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,bootlin.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,microchip.com:email,fffa4000:email]
+X-Rspamd-Queue-Id: D3E33C5C80
 X-Rspamd-Action: no action
 
-Convert Atmel AT91SAM9G45 EHCI USB Host Controller
-binding to DT schema.
+Convert Atmel AT91 USB Device Controller (UDC) binding to DT schema.
 Changes during conversion:
-- Include "usb-ehci" as a fallback compatible to allow atmel EHCI
-  driver matching.
+- Include "atmel,pullup-gpio" and "atmel,matrix" in the properties since
+  they are required by existing in-tree DTS definitions.
 
 Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
 ---
- .../bindings/usb/atmel,at91sam9g45-ehci.yaml       | 71 ++++++++++++++++++++++
- 1 file changed, 71 insertions(+)
+ .../bindings/usb/atmel,at91rm9200-udc.yaml         | 77 ++++++++++++++++++++++
+ 1 file changed, 77 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/usb/atmel,at91sam9g45-ehci.yaml b/Documentation/devicetree/bindings/usb/atmel,at91sam9g45-ehci.yaml
+diff --git a/Documentation/devicetree/bindings/usb/atmel,at91rm9200-udc.yaml b/Documentation/devicetree/bindings/usb/atmel,at91rm9200-udc.yaml
 new file mode 100644
-index 000000000000..d7b8d110656c
+index 000000000000..3af267c863e0
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/usb/atmel,at91sam9g45-ehci.yaml
-@@ -0,0 +1,71 @@
++++ b/Documentation/devicetree/bindings/usb/atmel,at91rm9200-udc.yaml
+@@ -0,0 +1,77 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/usb/atmel,at91sam9g45-ehci.yaml#
++$id: http://devicetree.org/schemas/usb/atmel,at91rm9200-udc.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Atmel AT91SAM9G45 EHCI USB Host Controller
++title: Atmel AT91 USB Device Controller (UDC)
 +
 +maintainers:
 +  - Nicolas Ferre <nicolas.ferre@microchip.com>
 +  - Alexandre Belloni <alexandre.belloni@bootlin.com>
 +
 +description:
-+  The Atmel AT91SAM9G45 EHCI controller is a high-speed USB 2.0 host
-+  controller compliant with the EHCI specification. It provides USB host
-+  functionality when operating in host mode and requires a peripheral clock
-+  and a UTMI clock for operation. The controller may support multiple USB
-+  ports, with the PHY interface type selectable via the phy_type property.
-+
-+allOf:
-+  - $ref: /schemas/usb/usb.yaml#
++  The Atmel AT91 USB Device Controller provides USB gadget (device-mode)
++  functionality on AT91 SoCs. It requires a peripheral clock and an AHB
++  clock for operation and may optionally control VBUS power through a GPIO.
 +
 +properties:
 +  compatible:
-+    oneOf:
-+      - items:
-+          - const: atmel,at91sam9g45-ehci
-+          - const: usb-ehci
++    enum:
++      - atmel,at91rm9200-udc
++      - atmel,at91sam9260-udc
++      - atmel,at91sam9261-udc
++      - atmel,at91sam9263-udc
 +
 +  reg:
 +    maxItems: 1
@@ -194,13 +188,22 @@ index 000000000000..d7b8d110656c
 +
 +  clock-names:
 +    items:
-+      - const: ehci_clk
-+      - const: usb_clk
++      - const: pclk
++      - const: hclk
 +
-+  phy_type:
-+    enum:
-+      - utmi
-+      - hsic
++  atmel,vbus-gpio:
++    description: GPIO used to enable or control VBUS power for the USB bus.
++    maxItems: 1
++
++  atmel,matrix:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: Phandle to the Atmel bus matrix controller.
++
++  atmel,pullup-gpio:
++    description:
++      GPIO controlling the USB D+ pull-up resistor used to signal device
++      connection to the host.
++    maxItems: 1
 +
 +required:
 +  - compatible
@@ -213,15 +216,16 @@ index 000000000000..d7b8d110656c
 +
 +examples:
 +  - |
-+    #include <dt-bindings/clock/at91.h>
 +    #include <dt-bindings/interrupt-controller/irq.h>
-+    usb@500000 {
-+        compatible = "atmel,at91sam9g45-ehci", "usb-ehci";
-+        reg = <0x00500000 0x100000>;
-+        interrupts = <41 IRQ_TYPE_LEVEL_HIGH 2>;
-+        clocks = <&pmc PMC_TYPE_CORE PMC_UTMI>, <&pmc PMC_TYPE_PERIPHERAL 41>;
-+        clock-names = "usb_clk", "ehci_clk";
-+        phy_type = "hsic";
++    #include <dt-bindings/clock/at91.h>
++    #include <dt-bindings/gpio/gpio.h>
++    gadget@fffa4000 {
++        compatible = "atmel,at91rm9200-udc";
++        reg = <0xfffa4000 0x4000>;
++        interrupts = <10 4>;
++        clocks = <&udc_clk>, <&udpck>;
++        clock-names = "pclk", "hclk";
++        atmel,vbus-gpio = <&pioC 5 GPIO_ACTIVE_HIGH>;
 +    };
 +...
 
