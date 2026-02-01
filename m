@@ -1,85 +1,65 @@
-Return-Path: <devicetree+bounces-261570-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-261571-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aAwIFYE6f2kfmAIAu9opvQ
-	(envelope-from <devicetree+bounces-261570-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 12:35:29 +0100
+	id wCHfGx1Gf2lvmwIAu9opvQ
+	(envelope-from <devicetree+bounces-261571-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 13:25:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CAC4C5C35
-	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 12:35:28 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D59B6C5DA6
+	for <lists+devicetree@lfdr.de>; Sun, 01 Feb 2026 13:25:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 02FEE3003BC5
-	for <lists+devicetree@lfdr.de>; Sun,  1 Feb 2026 11:35:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8363C300FEC2
+	for <lists+devicetree@lfdr.de>; Sun,  1 Feb 2026 12:24:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27EE232939A;
-	Sun,  1 Feb 2026 11:35:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBA96322B7D;
+	Sun,  1 Feb 2026 12:24:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ybim5pxW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cKCpE1Pr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F99B322522
-	for <devicetree@vger.kernel.org>; Sun,  1 Feb 2026 11:35:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5C643195EF;
+	Sun,  1 Feb 2026 12:24:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1769945716; cv=none; b=Lbhd4zf1Bit/yxPh2i6NeK3tyw45eVXXi245l4d15fubf0MedFr3pdVE3osdXMaqGVb+3peNK6UWRnqpo86Wt1GGH/NPlLiD5skFoPlk1HDM9hOQ7Xt3JN+8O9/suaqtBRQCmM0cva41Fddenmve4KnJaGWgg0vPGO1div44pc0=
+	t=1769948698; cv=none; b=bdngcvKLi2oxBk+wyWqhadwU6NFoDQDrGGChjNqT8Sc5ceUWtGUDL2kgbb92WspcAUoLo9/SEc1F/ix51MQ8O9S8KRavlYgnHrT+VRPbZeSo20bWONPBBoNWRIqS+Vzh2H/b0gV1s0CpB7VAhHYQn008A6qvLgZRhs7K3BGB+no=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1769945716; c=relaxed/simple;
-	bh=2xjOo4rQYT1KaQC3tvCqFCwXg2yc/61LBfO4QH6BKsY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=TddF7RoD0WLz1fotnhvcYoVZHdR5deP2vrcAg1j25edqu3nrQ45CefkrQAPTqTu2K5T0OmVXTCtTv9+cxwHa98vUcmgXMmSCxZWdeXr03Htl3b2U9L0CZ4RKmr1eIBn0yfr7yG2YEvZFnAiJNxrYCYzfO3wj2sqNcQIBj18jgJk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ybim5pxW; arc=none smtp.client-ip=209.85.210.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-82310b74496so2033828b3a.3
-        for <devicetree@vger.kernel.org>; Sun, 01 Feb 2026 03:35:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1769945714; x=1770550514; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CwiMlqn8zSWND/MaEGxRB1MrDjr/sEbwA0uoenl3eoE=;
-        b=Ybim5pxWMfq03fGVIv3I691ZgVK1ld+kyr/NWAtj2ej/mi+H6g2OZOlQ5LDbKG+7mk
-         wpUElM66DvA8ju4x8Qvi2CZvJ4kHmktgxQujs7uIfW1NqNylAsWjlm6uV9a6wsIYwCCx
-         /Ps+5LJiBqb6YWgUoeWAKwI0gdj17TrBFOSMtqiiir3mUNaEcCq6tmjdttX2gUq/2YbG
-         oCr5vaPjp6SFNek1JQvhJaW02N+viDHLV+koAS6msh6V7G91RZDxSsxquGVtfcaxMqkC
-         Y8b85tBaCk0K9LHyo3iWowzetEdIfsTp0VLBblTg7m9KM/tH8ABLPMhPk0OvRXeKbNFo
-         Qgxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769945714; x=1770550514;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=CwiMlqn8zSWND/MaEGxRB1MrDjr/sEbwA0uoenl3eoE=;
-        b=dGUDxBJXCxDAaSz6QrGRMAbB9BWkf5b7ysa0UOvOzJNYpuCnSvAJTnfm/PEuyNnZfr
-         OCHqp0qOukiQZpEgl0iUP9220SFOmmVyXcEQQXTeiMv9EIjLLx6OyDqhFYih/w6chrxE
-         B+55HEHwSdUBZEvCUpGHtI8ESAQ8zWM3dmdU9YIGvJHjeusReCCCXk57ht/OOvgkN5+7
-         UAwxsPDCcfOdBMdAOAo7d0jC5a2xAJKqRCYwdi1FLrWiFjS+qnANl4PizOPz9vGCwhgb
-         Nm4XeuF/92rISBTIysejf+kmzXP9OcpKG3ktmP75i+iv159BNetGbcghFIC1Jginv0pd
-         qB6A==
-X-Forwarded-Encrypted: i=1; AJvYcCW84h+FHVtNjt6ojvAe0J444xoD11zQhO9bj86CMGR/H4b6Sg+UTr+TjMOt702PHy9W1HCfvQC8+2Mn@vger.kernel.org
-X-Gm-Message-State: AOJu0YyC3UpuXstIj5TqM3ojm6jBrgc1Uju+mNzUAY/H+Wp7pJC9bFZ5
-	NbILsBJ/b6Jkr1/GppFrlLiyl7y5WMC5oJMML2tUSsH28diJCxyR0oJa
-X-Gm-Gg: AZuq6aIeUL6tG9Rv5dHSO/LmqjbFN0E7t2S25yWcwC7PQ/V6jmQ6RAQl9oXzbI3qgaV
-	8n3tOG5r9M11l18E42QR50iiFhcyxIKtmWSztdijQkj0hRCHcD0h0EBnIFYfvDSxRBmvh4m1ddg
-	kFSTP0+b5o1ZSwCMwbM27ii1x9Q8ITOqxs/W7+vexLRJ5bneTKv8L/0A0Fwl/kmpSLWP8GFBXgv
-	VAxmR+1juo2gdDxzcIg5EOB+fTZUo84OjeFm1S7QsV9lsJmt9Q6KIweD1kKc7wNPkweFc4HIy09
-	lyyR4d49hyCGH9STciYm9Jh8d17+uz4HJ2337zUeE/41yvOTvL7ByINbXlP+SUVcHOtkPhzBtii
-	XwxySlKqwV9VBZvkHu28Yy/M1Q7IIEVa7CxStQjxgEgtBpk0X+WrICGXzLjgonc0xyAQ5ZrEd6e
-	gQEsZAJWLgL451bgAWkatdx+gt3gRsdKgMIw==
-X-Received: by 2002:a05:6a00:430c:b0:81f:4769:6fde with SMTP id d2e1a72fcca58-823ab670cbbmr8524983b3a.17.1769945713898;
-        Sun, 01 Feb 2026 03:35:13 -0800 (PST)
-Received: from Black-Pearl.localdomain ([115.99.252.105])
-        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-82379c24083sm12994728b3a.55.2026.02.01.03.35.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 01 Feb 2026 03:35:13 -0800 (PST)
-From: Charan Pedumuru <charan.pedumuru@gmail.com>
-Date: Sun, 01 Feb 2026 11:34:23 +0000
-Subject: [PATCH 4/4] dt-bindings: usb: atmel,at91sam9rl-udc: convert to DT
- schema
+	s=arc-20240116; t=1769948698; c=relaxed/simple;
+	bh=e0FL0TcKkmbowDPf4LiX7QsYpwCM/WUr9bFfUtzr4Kk=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=ffq0hWJWxpV0f06l0VDn19PpZ7QkT9bxE9B7ZkQce/cL6UNbq35dMGUZe21Hfa15nkfzORqgrPjV3/IKF+A9om0QY8ngCxKr0xo4dP0PIfGdNl6YDG10l2CCVZYjWz9y0/2VluVSQhJSty0Mgn9JDujubwFJRdECb2W1ZoxlsQ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cKCpE1Pr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F5D0C4CEF7;
+	Sun,  1 Feb 2026 12:24:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769948697;
+	bh=e0FL0TcKkmbowDPf4LiX7QsYpwCM/WUr9bFfUtzr4Kk=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=cKCpE1PrSn1tpdFfW8mqJock00Ci868eBzjcTIml4DEamaH32f7kIo3lDI8YRPakD
+	 xztQHuLUk/6/eCm1cdvwd89VNNFd7Eg1M4svtAWmOFIXg9fqv/PPVG/29QbDomfkRt
+	 vbcyqVpA1HzMxVMprSO6fuMz7HADokwU72x99k+Yvibi7Ya8RfIHqCeYTZhmXjtKVS
+	 2J0s4MQF0zHoyHXjYwxZi1GaSmjIeoClB5QUtbBamFuUN5asfDg4NfkxbieaGm2UEI
+	 tkgh4Dd7yHa4Tm90vKYkKfzSKbiyCJO8V3sdidXGh8f2GOvI+mKmIYiz34mc/LHTgz
+	 gC2mzJdDbbSKQ==
+From: Leon Romanovsky <leon@kernel.org>
+To: bhelgaas@google.com, mani@kernel.org, krzk+dt@kernel.org, 
+ conor+dt@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org, 
+ robh@kernel.org, p.zabel@pengutronix.de, linux-pci@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ christian.bruel@foss.st.com, shradha.t@samsung.com, 
+ krishna.chundru@oss.qualcomm.com, thippeswamy.havalige@amd.com, 
+ inochiama@gmail.com, Frank.li@nxp.com, zhangsenchuan@eswincomputing.com
+Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com, 
+ pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com
+In-Reply-To: <20260129092629.1866-1-zhangsenchuan@eswincomputing.com>
+References: <20260129092629.1866-1-zhangsenchuan@eswincomputing.com>
+Subject: Re: [PATCH v10 0/2] Add driver support for Eswin EIC7700 SoC PCIe
+ controller
+Message-Id: <176994869472.79432.11245161336216033848.b4-ty@kernel.org>
+Date: Sun, 01 Feb 2026 07:24:54 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,285 +68,65 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260201-atmel-usb-v1-4-d1a3e93003f1@gmail.com>
-References: <20260201-atmel-usb-v1-0-d1a3e93003f1@gmail.com>
-In-Reply-To: <20260201-atmel-usb-v1-0-d1a3e93003f1@gmail.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
- Herve Codina <herve.codina@bootlin.com>, 
- Nicolas Ferre <nicolas.ferre@microchip.com>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Charan Pedumuru <charan.pedumuru@gmail.com>
-X-Mailer: b4 0.14.3
+X-Mailer: b4 0.15-dev-47773
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,gmail.com];
-	TAGGED_FROM(0.00)[bounces-261570-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-261571-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[google.com,kernel.org,pengutronix.de,vger.kernel.org,foss.st.com,samsung.com,oss.qualcomm.com,amd.com,gmail.com,nxp.com,eswincomputing.com];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	TO_DN_NONE(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[charanpedumuru@gmail.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[leon@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.7.161.32:email,0.12.53.0:email];
-	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,microchip.com:email,devicetree.org:url,bootlin.com:email]
-X-Rspamd-Queue-Id: 6CAC4C5C35
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,eswincomputing.com:email]
+X-Rspamd-Queue-Id: D59B6C5DA6
 X-Rspamd-Action: no action
 
-Convert Atmel High-Speed USB Device Controller (USBA) binding to DT schema.
-Changes during conversion:
-- Include "#address-cells" and "#size-cells" in the properties since they
-  are required by existing in-tree DTS definitions.
 
-Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
----
- .../bindings/usb/atmel,at91sam9rl-udc.yaml         |  81 +++++++++++++
- .../devicetree/bindings/usb/atmel-usb.txt          | 125 ---------------------
- 2 files changed, 81 insertions(+), 125 deletions(-)
+On Thu, 29 Jan 2026 17:26:28 +0800, zhangsenchuan@eswincomputing.com wrote:
+> Changes in v10:
+> - Updates: eswin,eic7700-pcie.yaml
+>   - None
+> 
+> - Updates: pcie-eic7700.c
+>   - Remove devm_clk_bulk_get_all_enabled API, use devm_clk_bulk_get_all
+>     and clk_bulk_prepare_enable. Add resource release codes and add
+>     eic7700_pcie_host_deinit API.
+>   - Update PCI_DEVICE_ID_ESWIN_EIC7700.
+>   - Add reset_control_put release resources in "goto err_port:".
+>   - Delete trailing comma after a terminator in eic7700_pcie_of_match.
+> - Link to V9: https://lore.kernel.org/all/20251229113021.1859-1-zhangsenchuan@eswincomputing.com/
+> 
+> [...]
 
-diff --git a/Documentation/devicetree/bindings/usb/atmel,at91sam9rl-udc.yaml b/Documentation/devicetree/bindings/usb/atmel,at91sam9rl-udc.yaml
-new file mode 100644
-index 000000000000..6f5710cecaee
---- /dev/null
-+++ b/Documentation/devicetree/bindings/usb/atmel,at91sam9rl-udc.yaml
-@@ -0,0 +1,81 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/usb/atmel,at91sam9rl-udc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Atmel High-Speed USB Device Controller (USBA)
-+
-+maintainers:
-+  - Nicolas Ferre <nicolas.ferre@microchip.com>
-+  - Alexandre Belloni <alexandre.belloni@bootlin.com>
-+
-+description:
-+  The Atmel High-Speed USB Device Controller (USBA) provides USB 2.0
-+  high-speed gadget functionality on several Atmel and Microchip SoCs.
-+  The controller requires a peripheral clock and a host clock for operation
-+  and may optionally use a GPIO to detect VBUS presence.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - enum:
-+          - atmel,at91sam9rl-udc
-+          - atmel,at91sam9g45-udc
-+          - atmel,sama5d3-udc
-+      - items:
-+          - const: microchip,lan9662-udc
-+          - const: atmel,sama5d3-udc
-+      - const: microchip,sam9x60-udc
-+
-+  reg:
-+    maxItems: 2
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+  clocks:
-+    minItems: 2
-+    maxItems: 2
-+
-+  clock-names:
-+    minItems: 2
-+    maxItems: 2
-+    items:
-+      enum: [pclk, hclk]
-+
-+  atmel,vbus-gpio:
-+    description: GPIO used to detect the presence of VBUS, indicating that
-+      the USB cable is connected.
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/clock/at91.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+    gadget@fff78000 {
-+        compatible = "atmel,at91sam9g45-udc";
-+        reg = <0x00600000 0x80000
-+               0xfff78000 0x400>;
-+        interrupts = <27 IRQ_TYPE_LEVEL_HIGH 0>;
-+        clocks = <&pmc PMC_TYPE_PERIPHERAL 27>, <&pmc PMC_TYPE_CORE PMC_UTMI>;
-+        clock-names = "pclk", "hclk";
-+        atmel,vbus-gpio = <&pioC 15 GPIO_ACTIVE_HIGH>;
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/usb/atmel-usb.txt b/Documentation/devicetree/bindings/usb/atmel-usb.txt
-deleted file mode 100644
-index 12183ef47ee4..000000000000
---- a/Documentation/devicetree/bindings/usb/atmel-usb.txt
-+++ /dev/null
-@@ -1,125 +0,0 @@
--Atmel SOC USB controllers
--
--OHCI
--
--Required properties:
-- - compatible: Should be "atmel,at91rm9200-ohci" for USB controllers
--   used in host mode.
-- - reg: Address and length of the register set for the device
-- - interrupts: Should contain ohci interrupt
-- - clocks: Should reference the peripheral, host and system clocks
-- - clock-names: Should contain three strings
--		"ohci_clk" for the peripheral clock
--		"hclk" for the host clock
--		"uhpck" for the system clock
-- - num-ports: Number of ports.
-- - atmel,vbus-gpio: If present, specifies a gpio that needs to be
--   activated for the bus to be powered.
-- - atmel,oc-gpio: If present, specifies a gpio that needs to be
--   activated for the overcurrent detection.
--
--usb0: ohci@500000 {
--	compatible = "atmel,at91rm9200-ohci", "usb-ohci";
--	reg = <0x00500000 0x100000>;
--	clocks = <&uhphs_clk>, <&uhphs_clk>, <&uhpck>;
--	clock-names = "ohci_clk", "hclk", "uhpck";
--	interrupts = <20 4>;
--	num-ports = <2>;
--};
--
--EHCI
--
--Required properties:
-- - compatible: Should be "atmel,at91sam9g45-ehci" for USB controllers
--   used in host mode.
-- - reg: Address and length of the register set for the device
-- - interrupts: Should contain ehci interrupt
-- - clocks: Should reference the peripheral and the UTMI clocks
-- - clock-names: Should contain two strings
--		"ehci_clk" for the peripheral clock
--		"usb_clk" for the UTMI clock
--
--Optional properties:
-- - phy_type : For multi port host USB controllers, should be one of
--   "utmi", or "hsic".
--
--usb1: ehci@800000 {
--	compatible = "atmel,at91sam9g45-ehci", "usb-ehci";
--	reg = <0x00800000 0x100000>;
--	interrupts = <22 4>;
--	clocks = <&utmi>, <&uhphs_clk>;
--	clock-names = "usb_clk", "ehci_clk";
--};
--
--AT91 USB device controller
--
--Required properties:
-- - compatible: Should be one of the following
--	       "atmel,at91rm9200-udc"
--	       "atmel,at91sam9260-udc"
--	       "atmel,at91sam9261-udc"
--	       "atmel,at91sam9263-udc"
-- - reg: Address and length of the register set for the device
-- - interrupts: Should contain macb interrupt
-- - clocks: Should reference the peripheral and the AHB clocks
-- - clock-names: Should contain two strings
--		"pclk" for the peripheral clock
--		"hclk" for the AHB clock
--
--Optional properties:
-- - atmel,vbus-gpio: If present, specifies a gpio that needs to be
--   activated for the bus to be powered.
--
--usb1: gadget@fffa4000 {
--	compatible = "atmel,at91rm9200-udc";
--	reg = <0xfffa4000 0x4000>;
--	interrupts = <10 4>;
--	clocks = <&udc_clk>, <&udpck>;
--	clock-names = "pclk", "hclk";
--	atmel,vbus-gpio = <&pioC 5 0>;
--};
--
--Atmel High-Speed USB device controller
--
--Required properties:
-- - compatible: Should be one of the following
--	       "atmel,at91sam9rl-udc"
--	       "atmel,at91sam9g45-udc"
--	       "atmel,sama5d3-udc"
--	       "microchip,sam9x60-udc"
--	       "microchip,lan9662-udc"
--	       For "microchip,lan9662-udc" the fallback "atmel,sama5d3-udc"
--	       is required.
-- - reg: Address and length of the register set for the device
-- - interrupts: Should contain usba interrupt
-- - clocks: Should reference the peripheral and host clocks
-- - clock-names: Should contain two strings
--		"pclk" for the peripheral clock
--		"hclk" for the host clock
--
--Deprecated property:
-- - ep childnode: To specify the number of endpoints and their properties.
--
--Optional properties:
-- - atmel,vbus-gpio: If present, specifies a gpio that allows to detect whether
--   vbus is present (USB is connected).
--
--Deprecated child node properties:
-- - name: Name of the endpoint.
-- - reg: Num of the endpoint.
-- - atmel,fifo-size: Size of the fifo.
-- - atmel,nb-banks: Number of banks.
-- - atmel,can-dma: Boolean to specify if the endpoint support DMA.
-- - atmel,can-isoc: Boolean to specify if the endpoint support ISOC.
--
--usb2: gadget@fff78000 {
--	#address-cells = <1>;
--	#size-cells = <0>;
--	compatible = "atmel,at91sam9rl-udc";
--	reg = <0x00600000 0x80000
--	       0xfff78000 0x400>;
--	interrupts = <27 4 0>;
--	clocks = <&utmi>, <&udphs_clk>;
--	clock-names = "hclk", "pclk";
--	atmel,vbus-gpio = <&pioB 19 0>;
--};
+Applied, thanks!
 
+[1/2] dt-bindings: PCI: eic7700: Add Eswin PCIe host controller
+      (no commit info)
+[2/2] PCI: eic7700: Add Eswin PCIe host controller driver
+      (no commit info)
+
+Best regards,
 -- 
-2.52.0
+Leon Romanovsky <leon@kernel.org>
 
 
